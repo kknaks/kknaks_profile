@@ -54,11 +54,10 @@ def gh_accounts() -> list[dict]:
 
     각 entry: {"user", "token", "email"}.
     email 은 commit author 필터 — 본인 commit 만 발라냄 (PR merge 시 다른 사람 commit 제외).
-    `GH_TOKEN` (legacy) 는 GH_TOKEN_PERSONAL fallback.
     """
     accounts: list[dict] = []
     personal_user = os.environ.get("GH_USER_PERSONAL", "kknaks")
-    personal_token = os.environ.get("GH_TOKEN_PERSONAL") or os.environ.get("GH_TOKEN", "")
+    personal_token = os.environ.get("GH_TOKEN_PERSONAL", "")
     personal_email = os.environ.get("GH_EMAIL_PERSONAL", "")
     if personal_user and personal_token:
         accounts.append({"user": personal_user, "token": personal_token, "email": personal_email})

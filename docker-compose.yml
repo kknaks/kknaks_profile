@@ -15,7 +15,6 @@ services:
       RUN_SCHEDULER: "1"
       JOB_GIT_PUSH_DRY_RUN: ${JOB_GIT_PUSH_DRY_RUN:-1}   # 운영 시 .env 에 0 박기
       RELOAD_TOKEN: ${RELOAD_TOKEN:-changeme}
-      GH_TOKEN: ${GH_TOKEN:-}                   # 개인 계정 PAT (legacy fallback)
       GH_USER_PERSONAL: ${GH_USER_PERSONAL:-kknaks}
       GH_TOKEN_PERSONAL: ${GH_TOKEN_PERSONAL:-}
       GH_EMAIL_PERSONAL: ${GH_EMAIL_PERSONAL:-}
