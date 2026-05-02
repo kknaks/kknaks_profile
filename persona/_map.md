@@ -1,8 +1,8 @@
 # persona/_map.md
 
-> 자동 생성 (build_persona_map.py, 2026-05-03 01:23 KST). 수동 편집 X.
+> 자동 생성 (build_persona_map.py, 2026-05-03 01:56 KST). 수동 편집 X.
 
-_총 170 파일 (profile 1 / career 5 / projects 5 / notes 156 / contents 2 / daily 1)_
+_총 171 파일 (profile 1 / career 5 / projects 5 / notes 156 / contents 3 / daily 1)_
 
 ## profile
 
@@ -180,7 +180,8 @@ _총 170 파일 (profile 1 / career 5 / projects 5 / notes 156 / contents 2 / da
 - [[notes/2025-11-01-database_migration]] Database Migration(AWS RDS -> Azure MySQL) (work · 2025.11.01)
 - [[notes/2025-11-01-migration_detail]] Database Migration 상세 프로세스 (work · 2025.11.01)
 
-## contents (총 2개)
+## contents (총 3개)
+- [[contents/C-003-pending]] Day 03 — (pending — enrich 잡이 채움) (2026-05-03)
 - [[contents/C-002-pending-sample]] Day 02 — 모듈로 편향으로 인한 게임 확률 버그 (2026.05.02)
 - [[contents/C-001-fastapi-di]] Day 01 — FastAPI Dependency Injection — 진짜 쓸 수 있게 (2026.05.01)
 
