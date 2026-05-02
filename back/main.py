@@ -78,13 +78,16 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# CORS — client component fetch (browser) 대응. dev/홈서버 origin 허용.
+# CORS — client component fetch (browser) 대응. dev/운영 origin 허용.
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
+        # dev
         "http://localhost:3000",
         "http://localhost:48000",
-        "https://kknaks.dev",
+        # 운영
+        "https://profile.kknaks.cloud",
+        "https://profile-api.kknaks.cloud",
     ],
     allow_credentials=True,
     allow_methods=["*"],

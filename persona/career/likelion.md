@@ -19,6 +19,7 @@ stack:
   - ELK
   - Postgres
   - Kubernetes
+  - React
 ---
 
 # 멋쟁이사자처럼 — 풀스택 엔지니어 심화과정

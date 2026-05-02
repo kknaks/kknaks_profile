@@ -1,0 +1,37 @@
+# Dockerfile.back / Dockerfile.worker 둘 다 build context = repo root.
+# 이미지에 필요한 건 back/, worker/, pyproject 등. 나머진 mount 로 들어옴 (compose `.:/repo`).
+
+# git
+.git/
+.gitignore
+
+# 프론트 (Vercel 별도 빌드)
+frontend/
+
+# persona — runtime mount 로만 들어오면 됨 (이미지에 박을 이유 없음)
+persona/
+
+# 문서 / IDE / 도구
+medi_docs/
+claude_design/
+.claude/
+.claude-tools/
+.cursor/
+.idea/
+.vscode/
+
+# 가상 환경 / 캐시 (호스트의 macOS .venv 가 컨테이너로 새지 않게)
+**/.venv/
+**/__pycache__/
+**/*.pyc
+
+# Node
+**/node_modules/
+
+# scripts (런타임 mount 로 접근, 이미지에 굳이 박을 필요 없음)
+scripts/
+
+# 환경/시크릿
+.env
+.env.*
+!.env.example

@@ -12,7 +12,7 @@ from service.jobs.git_push import commit_and_push_with_retry
 from service.jobs.inputs import (
     REPO,
     extract_tracked_repos,
-    fetch_github_events,
+    fetch_repo_commits,
     git_log_today,
     read_daily_narrative,
 )
@@ -45,18 +45,26 @@ async def run_daily_activity_job(
     if not tracked_repos:
         logger.info("no tracked repos in persona/projects/*.md — commit fetch skip")
 
+    # 각 tracked repo × 각 acc 조합으로 호출.
+    # 같은 commit 이 양쪽 acc 호출에서 중복으로 잡히지 않도록 sha 로 dedupe.
+    seen_shas: set[str] = set()
     commits: list[dict] = []
-    if tracked_repos:
-        for acc in config.gh_accounts():
-            commits.extend(
-                await fetch_github_events(
-                    acc["user"],
-                    today,
-                    acc["token"],
-                    author_email=acc.get("email") or None,
-                    tracked_repos=tracked_repos,
-                )
+    accounts = config.gh_accounts()
+    for repo in tracked_repos:
+        for acc in accounts:
+            fetched = await fetch_repo_commits(
+                repo,
+                today,
+                acc["token"],
+                author=acc["user"],
             )
+            for c in fetched:
+                # fetch_repo_commits 결과가 dict (no sha 키 — repo+msg 만). dedupe 는 (repo,msg) 로.
+                key = (c["repo"], c["msg"])
+                if key in seen_shas:
+                    continue
+                seen_shas.add(key)
+                commits.append(c)
 
     own_broker: RedisBroker | None = None
     if client is None:

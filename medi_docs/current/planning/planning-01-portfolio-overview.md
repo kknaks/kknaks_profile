@@ -4,7 +4,7 @@ type: planning
 title: kknaks.dev 포트폴리오 — 시스템 개요
 status: draft
 created: 2026-05-01
-updated: 2026-05-01
+updated: 2026-05-03
 sources: []
 tags: [planning, portfolio, persona]
 ---
@@ -35,13 +35,16 @@ tags: [planning, portfolio, persona]
 ┌─ 페르소나 시스템 ──────────┐    ┌─ 포트폴리오 시스템 ────────┐
 │ 입력 + 가공                 │ →  │ 외부 표시                  │
 │ kknaks 본인이 사용           │    │ 사이트 방문자가 사용         │
+│   ↑ 사람 편집 (md 직접)     │    │                            │
+│   ↓ 기계 쓰기 (LLM 잡 결과) │    │                            │
 └─────────────────────────────┘    └────────────────────────────┘
-              ↑                                    ↑
+              ↕                                    ↑
               └───── 인터페이스: persona/**/*.md ───┘
                      (md frontmatter + 본문 = SoT)
 ```
 
 - 두 시스템은 md 파일 형식만 계약으로 공유. 내부 구현은 독립적으로 진화 가능
+- 페르소나에 대한 쓰기는 양방향 — 사람이 직접 박는 흐름 + 기계(LLM 잡)가 결과를 commit하는 흐름. 데이터 흐름 디테일은 §3.6
 - 페르소나는 포트폴리오 외 다른 활용처도 가능 (이력서 자동 생성, AI 컨텍스트 주입 등 — 본 프로젝트 범위 밖)
 
 ---
@@ -79,7 +82,7 @@ tags: [planning, portfolio, persona]
 - **잔디 잡** (매일 1회, spec-03): 로컬 git log + GitHub API → 오늘 활동 수집 → ko/en 한 줄 종합 요약 + kind 결정 → `persona/activity.yaml` 갱신 + git commit
 - **콘텐츠 enrich 잡** (10분 interval, spec-06, ADR-05): `persona/contents/*.md` 중 `status: pending` 스캔 → yt-dlp 메타 + youtube-transcript-api 자막 + LLM 요약 → frontmatter (title/summary/duration/tags) + 본문 (개념/적용/실수 3-section) 채움 → `status: published` + git commit
 
-> **⚠ Architectural seam**: 스케쥴러가 어느 시스템에 속하는지(포트폴리오 인프라 vs 페르소나 gen 레이어)는 ADR-03에서 정의. Section 2의 한 방향 인터페이스는 *사람*의 편집 흐름 기준 — 기계 쓰기는 ADR-03이 다룸.
+> **⚠ Architectural seam**: 스케쥴러가 어느 시스템에 속하는지(포트폴리오 인프라 vs 페르소나 gen 레이어)는 ADR-03에서 정의. 가공 결과의 *서버 → 깃* 쓰기는 §3.6 의 ③/④ 채널.
 
 자세한 잡 명세는 spec-* 에서.
 
@@ -87,7 +90,41 @@ tags: [planning, portfolio, persona]
 
 **md = 진실의 원천**. 그 외의 모든 표현(API 응답, 사이트 HTML, 메모리 dict)은 파생물. md 변경 → git push → 자동 재로드.
 
-### 3.6 자동 인덱스 — `persona/_map.md`
+### 3.6 데이터 흐름 — 4채널 사이클 (양방향)
+
+페르소나 SoT(`persona/**/*.md`)는 사람과 기계 둘 다 쓰는 공유 자원이라, 변경 채널이 4개로 나뉘고 한 사이클로 닫힘.
+
+```
+                            ┌─────────────────────┐
+                            │   GitHub (origin)   │
+                            └──┬──────────────┬───┘
+        로컬 → 서버           │              │           서버 → 깃
+        (사람 편집)           ↓              ↑           (기계 쓰기)
+   ┌──────────────────────────┤              ├──────────────────────────┐
+   │ ① 코드 변경              │              │ ③ 잔디 잡 산출물          │
+   │   GitHub Actions         │              │   activity.yaml          │
+   │   → SSH → git pull       │              │   → git commit + push    │
+   │   → docker rebuild       │              │                          │
+   │   → curl admin/reload    │              │ ④ 콘텐츠 enrich 결과     │
+   │                          │              │   md frontmatter + 본문  │
+   │ ② 콘텐츠 변경 (md)        │              │   → git commit + push    │
+   │   GitHub webhook         │              │                          │
+   │   → admin/reload         │              │   (충돌 회피:            │
+   │   → git pull             │              │    fetch+rebase+retry,   │
+   │   → LLM 잡 트리거        │              │    git_push.py)          │
+   └──────────────────────────┤              ├──────────────────────────┘
+                              ↓              ↑
+                            ┌─────────────────────┐
+                            │  홈서버 백엔드       │
+                            │  (back + worker)    │
+                            └─────────────────────┘
+```
+
+- **① 코드 vs ② 콘텐츠 분리**: 코드는 빌드/이미지 재기동이 필요해 Actions+SSH로 가고, 콘텐츠는 빌드 불필요 → webhook 핸들러가 직접 git pull + LLM 잡 트리거. webhook의 본질이 "콘텐츠 변경 → LLM 돌려라"라 pull은 그 전제조건일 뿐
+- **③/④ 서버 → 깃**: LLM 잡이 가공한 결과가 다시 SoT로 박혀야 다음 부팅 때 메모리에 로드됨. `git_push.py` 가 잔디·콘텐츠 공통으로 처리 (paths + message 일반화)
+- **사이클 닫힘**: ③/④의 push 가 다시 ②의 webhook 을 발화시킬 수 있음 (콘텐츠 enrich가 자기 자신을 트리거하지 않도록 commit author 또는 path 필터로 차단 — 운영 디테일은 spec-03/spec-06)
+
+### 3.7 자동 인덱스 — `persona/_map.md`
 
 페르소나 폴더에 자동 생성 인덱스(`_map.md`)를 둠. 카테고리별 카운트·파일 리스트(위키링크)·notes 그래프·백링크를 한 페이지에 박아 옵시디언 vault로 페르소나 폴더를 열 때 진입점 역할. 빌드는 git pre-commit hook + 백엔드 부팅 시 둘 다 실행 (멱등). 디테일은 spec-04.
 
@@ -146,7 +183,7 @@ A안 — 슬롯은 단일 키, 백엔드가 `?lang=ko` / `?lang=en` 쿼리로 �
 
 ## 6. 비기능 요구
 
-- **호스팅**: 본인 홈서버 (uvicorn + nginx)
+- **호스팅**: 백엔드 = 본인 홈서버 docker compose (back + redis + worker, NPM = Nginx Proxy Manager 가 SSL/리버스 프록시) / 프론트 = Vercel. 도메인은 백 `profile-api.kknaks.cloud`, 프론트 `profile.kknaks.cloud`. 두 시스템은 같은 SoT(`persona/**/*.md`)를 git 으로만 공유 — 프론트는 백 API만 호출, 페르소나 직접 접근 X
 - **콘텐츠 SoT**: md 기본 (frontmatter + 본문). 데이터-only 파일(잡 자동 생성: `persona/activity.yaml`, 또는 사람이 박는 메타 정의: `persona/_meta.yaml`)에 한해 yaml 허용
 - **모노레포 구조**: `persona/` (md SoT — 백엔드의 "DB" 역할) + `back/` (FastAPI) + `frontend/` (Next.js). 통합 디렉토리 트리 SoT는 spec-05
 - **DB**: 사용 안 함. 부팅 시 md 메모리 로드. 향후 데이터 만 단위 넘으면 sqlite부터 incremental

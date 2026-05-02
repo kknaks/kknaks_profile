@@ -23,12 +23,24 @@ projects:
     - id: web
       label: { ko: "Web", en: "Web" }
       order: 1
+    - id: frontend
+      label: { ko: "Frontend", en: "Frontend" }
+      order: 2
+    - id: backend
+      label: { ko: "Backend", en: "Backend" }
+      order: 3
+    - id: mobile
+      label: { ko: "Mobile", en: "Mobile" }
+      order: 4
+    - id: ai
+      label: { ko: "AI", en: "AI" }
+      order: 5
     - id: cli
       label: { ko: "CLI", en: "CLI" }
-      order: 2
+      order: 6
     - id: bot
       label: { ko: "Bot", en: "Bot" }
-      order: 3
+      order: 7
 
 notes:
   clusters:

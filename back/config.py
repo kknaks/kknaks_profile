@@ -70,3 +70,26 @@ def gh_accounts() -> list[dict]:
         accounts.append({"user": company_user, "token": company_token, "email": company_email})
 
     return accounts
+
+
+def bot_identity() -> dict | None:
+    """서버가 git pull/commit/push 시 사용할 identity (planning-01 §3.6 ③/④ 채널).
+
+    `gh_accounts()[0]` (= personal, default `kknaks`) 을 사용. user/token/email 모두 박혀야 valid.
+    None 반환 시 호출자는 push/pull 자체를 skip 또는 dry_run 으로 fallback.
+    """
+    accounts = gh_accounts()
+    if not accounts:
+        return None
+    primary = accounts[0]
+    if not (primary.get("user") and primary.get("token") and primary.get("email")):
+        return None
+    return primary
+
+
+def bot_emails() -> set[str]:
+    """self-push webhook 필터용 — 서버가 commit 한 push 는 webhook 처리 skip.
+
+    모든 account 의 email 을 한 set 으로. email 빈 account 는 자동 제외.
+    """
+    return {a["email"] for a in gh_accounts() if a.get("email")}

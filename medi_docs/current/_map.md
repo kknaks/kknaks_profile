@@ -1,6 +1,6 @@
 # medi_docs/_map.md
 
-> 자동 생성 (medi-validate.sh, 2026-05-02).
+> 자동 생성 (medi-validate.sh, 2026-05-03).
 
 _총 13 문서 (planning 1 / plan 1 / spec 6 / policy 0 / adr 5 / runbook 0 / test 0 / release-notes 0 / retrospective 0)_
 

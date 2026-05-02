@@ -157,27 +157,32 @@ About 페이지 잔디. 입력 = `persona/activity.yaml`.
 
 ### 3.5 `GET /api/projects?lang=ko`
 
+> spec-01 §3.3 — `visible: false` 박힌 항목은 응답에서 제외 (사이트 노출 부담 있는 회사 내부 도구 등). `totalCount`, `categories.count` 도 visible 항목 기준.
+>
+> 잔디 잡 (`spec-03 §2.4`) 의 `extract_tracked_repos` 는 visible 무관 모든 projects 의 `links.repo` 를 추적.
+
 ```jsonc
 {
   "projects": {
     "subtitle":   "혼자 만든 것들",
-    "totalCount": 6,
+    "totalCount": 6,                   // visible: true 만 카운트
     "categories": [
-      // _meta.yaml/projects.categories[] 에서 빌드. count는 자동 집계
+      // _meta.yaml/projects.categories[] 에서 빌드. count는 visible 기준 자동 집계
       { "id": "web", "label": "Web", "count": 3 },
       ...
     ]
   },
-  "projects[]": [
+  "projects[]": [                      // visible: false 항목 제외
     {
-      "id":      "P-01",
-      "title":   "Homelab Console",
-      "summary": "...",
-      "category":"web",
-      "status":  "wip",
-      "date":    "2026.04",
-      "stack":   ["Next.js", "FastAPI"],
-      "links":   { "repo": "...", "live": "..." }
+      "id":        "P-01",
+      "title":     "Homelab Console",
+      "summary":   "...",
+      "category":  "web",
+      "status":    "wip",
+      "date":      "2026.04",
+      "stack":     ["Next.js", "FastAPI"],
+      "thumbnail": "/assets/projects/P-01/cover.png",  // optional. 미박음 시 null
+      "links":     { "repo": "...", "live": "..." }
     }
     // ...
   ]

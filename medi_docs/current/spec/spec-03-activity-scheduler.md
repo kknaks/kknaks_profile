@@ -112,46 +112,86 @@ notes_changes = git_log_today("persona/notes/", today)
 
 `§2.2`와 동일 패턴. path만 `persona/contents/`.
 
-### 2.4 입력 4: GitHub Events API — 외부 활동 (commit kind 입력)
+### 2.4 입력 4: GitHub commits API — 외부 활동 (commit kind 입력)
+
+> **API 변경 주의** (2026-05): `/users/{user}/events` 의 `PushEvent.payload.commits` 가 빈 배열로 반환됨 (GitHub 동작 변경). `/repos/{owner}/{repo}/commits` 직접 호출로 전환.
+
+#### 2.4.1 tracked repos 추출 — `persona/projects/*.md` SoT
 
 ```python
-import httpx, os
-from datetime import datetime, timezone, timedelta
+def extract_tracked_repos(projects: list[dict]) -> set[str]:
+    """projects/*.md 의 links.repo 에서 'owner/name' slug 추출.
 
-GH_USERS = ["kknaks", "kknaksss"]   # ⚠ kknaksss 본인 계정 확인 필요 (plan-01 M1 sign-off)
-# GH_TOKEN: PAT 필수 — SSH deploy key는 git 프로토콜 인증 only, REST API와 무관
-KST = timezone(timedelta(hours=9))
-
-def _to_kst_date(iso_utc: str) -> str:
-    """GitHub created_at(UTC, ...Z) → KST 날짜 ISO(YYYY-MM-DD)"""
-    return datetime.fromisoformat(iso_utc.replace("Z", "+00:00")).astimezone(KST).date().isoformat()
-
-async def fetch_github_events(user: str, today: date) -> list[dict]:
-    today_iso = today.isoformat()
-    async with httpx.AsyncClient() as c:
-        r = await c.get(
-            f"https://api.github.com/users/{user}/events",
-            headers={
-                "Authorization": f"Bearer {os.environ['GH_TOKEN']}",
-                "Accept": "application/vnd.github+json",
-            },
-            timeout=10,
-        )
-        r.raise_for_status()
-    return [
-        {"repo": e["repo"]["name"], "msg": commit["message"]}
-        for e in r.json()
-        if e["type"] == "PushEvent" and _to_kst_date(e["created_at"]) == today_iso
-        for commit in e["payload"]["commits"]
-    ]
+    visible 무관 모든 projects 검사 (visible: false 항목도 잔디 잡 추적 — spec-01 §3.3, spec-02 §3.5).
+    """
+    slugs: set[str] = set()
+    for proj in projects or []:
+        repo_url = (proj.get("links") or {}).get("repo", "") or ""
+        if "github.com/" not in repo_url:
+            continue
+        slug = repo_url.split("github.com/", 1)[1].rstrip("/").rstrip(".git")
+        if slug.count("/") == 1:
+            slugs.add(slug)
+    return slugs
 ```
 
-> **TZ 주의** (advisor 피드백): GitHub `created_at`은 UTC. KST 자정~오전 9시 사이 push는 UTC 기준 전날이라 `startswith(today_iso)`로 비교하면 매일 9시간 어치 누락. 반드시 KST로 변환 후 date 비교.
+#### 2.4.2 fetch_repo_commits — repo × account 호출
 
-GitHub Events API:
-- 인증: PAT (`GH_TOKEN`)
-- rate limit: 5000 req/hour (PAT 사용 시) — 매일 2회면 무관
-- 보존 기간: 90일까지만 events 반환 (백필 365일 시 §7 별도 처리)
+```python
+import httpx
+from datetime import date, timedelta
+
+async def fetch_repo_commits(
+    owner_repo: str, today: date, token: str, author: str = "",
+) -> list[dict]:
+    """`/repos/{owner_repo}/commits` — 오늘 (KST) author commits.
+
+    - `since` / `until` 파라미터 KST 기준 ISO timestamp.
+    - `author` (optional) — GitHub username 또는 email 매칭.
+    - 403/404/409 (권한 없거나 빈 repo) 는 silently skip — 다른 token 시도 가능.
+    """
+    if not token or not owner_repo:
+        return []
+    since = f"{today.isoformat()}T00:00:00+09:00"
+    until = f"{(today + timedelta(days=1)).isoformat()}T00:00:00+09:00"
+    params = {"since": since, "until": until, "per_page": "100"}
+    if author:
+        params["author"] = author
+    async with httpx.AsyncClient(timeout=10) as c:
+        r = await c.get(
+            f"https://api.github.com/repos/{owner_repo}/commits",
+            headers={"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json"},
+            params=params,
+        )
+        if r.status_code in (403, 404, 409):
+            return []
+        r.raise_for_status()
+        commits = r.json()
+    return [{"repo": owner_repo, "msg": c.get("commit", {}).get("message", "")} for c in commits]
+```
+
+#### 2.4.3 main_job — tracked × accounts 호출 + dedupe
+
+```python
+tracked_repos = extract_tracked_repos(get_data().get("projects", []))
+seen: set[tuple[str, str]] = set()
+commits: list[dict] = []
+for repo in tracked_repos:
+    for acc in config.gh_accounts():   # 개인 + 회사 PAT
+        for c in await fetch_repo_commits(repo, today, acc["token"], author=acc["user"]):
+            key = (c["repo"], c["msg"])
+            if key in seen:
+                continue
+            seen.add(key)
+            commits.append(c)
+```
+
+GitHub commits API:
+- **인증**: PAT (개인 + 회사 분리 — `GH_TOKEN_PERSONAL` / `GH_TOKEN_COMPANY`). 각 계정의 private repo 는 그 계정 PAT 으로만 보임.
+- **author 필터**: GitHub `author` 파라미터 — username 또는 email 매칭. 본인 commit 만 발라냄 (PR merge 시 타인 commit 제외).
+- **TZ**: `since` / `until` ISO timestamp (`+09:00`). UTC/KST 변환 GitHub 가 처리.
+- **rate limit**: 5000 req/hour (PAT). tracked × accounts 호출이라도 무관.
+- **보존**: commits API 는 모든 history 반환 (events API 의 90일 제약 없음).
 
 ---
 
@@ -352,7 +392,7 @@ async def daily_activity_job():
     contents  = git_log_today("persona/contents/", today)
     commits   = []
     for u in GH_USERS:
-        commits.extend(await fetch_github_events(u, today))
+        commits.extend(await fetch_repo_commits(repo, today, acc["token"], author=acc["user"]))
 
     resp  = summarize_activity(today, narrative, notes, contents, commits)
     entry = validate_llm_response(resp, today)

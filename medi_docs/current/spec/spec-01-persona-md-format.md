@@ -217,16 +217,60 @@ category: web                      # _meta.yaml/projects.categories[].id
 status: wip                        # live | wip | archived
 date: "2026.04"
 stack: ["Next.js", "FastAPI", "WebSocket"]
+visible: true                      # optional, default true. false → 사이트 Projects 미표시 (잔디 잡은 추적)
+thumbnail: /assets/projects/P-01/cover.png   # optional. 카드 대표 이미지 — §2.5 컨벤션
 links:
   repo: "github.com/kknaks/homelab-console"
   live: "https://homelab.kknaks.dev"
 ---
 
-# 프로젝트 포스트모템 — 왜 만들었는지, 어떻게 풀었는지
+# 개요
+무엇을 만들었고 왜 시작했는지 (2~4문장).
+
+# 기술스택
+프론트 / 백엔드 / 인프라 분리. 각 기술의 선택 이유.
+
+# 주요기능
+사용자 시나리오 — 무엇을 할 수 있는가. 핵심 페이지 / 사용 흐름.
+
+# 아키텍처
+시스템 구조. 프론트 ↔ 백엔드 ↔ DB ↔ 외부 서비스. 모듈 분리. 데이터 흐름.
+
+# 핵심 구현
+대표 API / 핵심 컴포넌트 / 알고리즘. 코드 스니펫 OK.
+
+# 마주친 문제
+디버깅 · 성능 · 설계 challenge. 어떻게 풀었는지.
+
+# 회고
+끝나고 보니 / 다시 한다면 / 배운 것.
 ```
 
 **필수**: `type`, `id`, `title`, `summary`, `category`, `status`, `stack`
-**선택**: `date`, `links`
+**선택**: `date`, `links`, `visible`, `thumbnail`
+
+`thumbnail` — `/assets/projects/<P-NN>/cover.png` 컨벤션 (`§2.5`). 카드 대표 이미지. 미박음 시 placeholder hatch 패턴 표시 (`spec-02 §3.5`).
+
+`visible: false` — 사이트 노출 부담 있는 프로젝트 (회사 내부 도구 등). `/api/projects` 응답에서 제외. `extract_tracked_repos` 는 visible 무관 모든 projects 검사하므로 잔디 잡은 그대로 추적.
+
+#### 본문 7섹션 표준
+
+모든 `projects/*.md` 본문은 7개 H1 섹션을 갖는다 (위 예시 순서 그대로):
+
+| 순서 | 섹션 | 내용 | skill 자동 채움 |
+|---|---|---|---|
+| 1 | `# 개요` | 무엇·왜 (2~4문장) | README intro 발췌 |
+| 2 | `# 기술스택` | 프론트/백엔드/인프라 분리 + 선택 이유 | `package.json` / `pyproject.toml` deps + README |
+| 3 | `# 주요기능` | 사용자 시나리오 | README features + 라우트(`app/*`, `pages/*`) + UI 컴포넌트 |
+| 4 | `# 아키텍처` | 시스템 구조 + 데이터 흐름 | 디렉토리 구조 + 라이브러리 패턴 |
+| 5 | `# 핵심 구현` | 대표 API / 컴포넌트 / 알고리즘 | API 라우터 + 주요 컴포넌트 + 코드 스니펫 |
+| 6 | `# 마주친 문제` | challenge + 풀이 | 커밋 히스토리 + commit msg |
+| 7 | `# 회고` | 끝나고 보니 / 배운 점 | README 회고 섹션 (있으면) + commit msg 패턴 |
+
+**원칙**:
+- 7섹션 *순서·제목* 고정 (declarative). 사용자가 임의 추가·삭제·순서 변경 X.
+- 빈 섹션 허용 — 분석 데이터 없으면 `(TBD)` 한 줄. 검증 fail 안 함.
+- skill 자동 채움 (`import-project`) 의 결과는 **초안** — 사용자가 검토·정정. 특히 `# 마주친 문제` / `# 회고` 는 LLM 추론이라 거짓 박힐 위험 큼.
 
 ### 3.4 `notes/slug.md`
 

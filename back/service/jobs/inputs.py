@@ -89,58 +89,51 @@ def extract_tracked_repos(projects: list[dict]) -> set[str]:
     return slugs
 
 
-async def fetch_github_events(
-    user: str,
+async def fetch_repo_commits(
+    owner_repo: str,
     today: date,
     token: str,
-    author_email: str | None = None,
-    tracked_repos: set[str] | None = None,
+    author: str = "",
 ) -> list[dict]:
-    """GitHub REST Events API → 오늘 (KST) PushEvent commits (spec-03 §2.4).
+    """`/repos/{owner_repo}/commits` — 오늘 (KST) 그 repo 의 author commits (spec-03 §2.4).
 
-    필터:
-    - author_email 박혀있으면 commit author.email 매칭 (본인 commit 만)
-    - tracked_repos 박혀있으면 그 repo slug 만 (persona/projects 등록한 레포)
-    빈 user/token 이면 skip.
+    `/users/{user}/events` 의 PushEvent payload.commits 가 GitHub API 변경으로 빈 배열로 바뀜 →
+    repo commits endpoint 직접 호출로 전환.
 
+    빈 token 이면 skip. 404/403 (권한 없는 repo) 도 silently skip.
     Returns: [{"repo": "...", "msg": "..."}, ...]
     """
-    if not user or not token:
+    if not token or not owner_repo:
         return []
 
-    today_iso = today.isoformat()
+    since = f"{today.isoformat()}T00:00:00+09:00"
+    until = f"{(today + timedelta(days=1)).isoformat()}T00:00:00+09:00"
+
+    params: dict[str, str] = {"since": since, "until": until, "per_page": "100"}
+    if author:
+        params["author"] = author
+
     try:
         async with httpx.AsyncClient(timeout=10) as c:
             r = await c.get(
-                f"https://api.github.com/users/{user}/events",
+                f"https://api.github.com/repos/{owner_repo}/commits",
                 headers={
                     "Authorization": f"Bearer {token}",
                     "Accept": "application/vnd.github+json",
                 },
+                params=params,
             )
+            if r.status_code in (403, 404, 409):
+                # 권한 없거나 빈 repo — 다른 token 시도 가능. silently skip.
+                return []
             r.raise_for_status()
-            events = r.json()
+            commits = r.json()
     except httpx.HTTPError as e:
-        logger.warning("GitHub events fetch failed for %s: %s", user, e)
+        logger.warning("repo commits fetch failed for %s: %s", owner_repo, e)
         return []
 
-    result: list[dict] = []
-    for e in events:
-        if e.get("type") != "PushEvent":
-            continue
-        if _to_kst_date(e["created_at"]) != today_iso:
-            continue
-        repo_slug = e["repo"]["name"]
-        if tracked_repos is not None and repo_slug not in tracked_repos:
-            continue
-        for commit in e.get("payload", {}).get("commits", []):
-            # distinct=False 는 이미 다른 push 에 들어간 commit (rebase/cherry-pick 중복) — 제외
-            if not commit.get("distinct", True):
-                continue
-            # author email 매칭 — 박혀있을 때만
-            if author_email:
-                commit_email = (commit.get("author") or {}).get("email", "")
-                if commit_email != author_email:
-                    continue
-            result.append({"repo": repo_slug, "msg": commit.get("message", "")})
-    return result
+    return [
+        {"repo": owner_repo, "msg": c.get("commit", {}).get("message", "")}
+        for c in commits
+        if isinstance(c, dict)
+    ]

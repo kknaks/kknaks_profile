@@ -147,6 +147,9 @@ def _hmac_sig(secret: bytes, body: bytes) -> str:
 class TestAdminReloadWebhook:
     def test_hmac_valid_signature_passes(self, client, monkeypatch):
         monkeypatch.setenv("GITHUB_WEBHOOK_SECRET", "wsecret")
+        # push event 시 _git_pull_rebase 호출됨 → 테스트 환경에선 no-op mock
+        from api.admin import reload as reload_mod
+        monkeypatch.setattr(reload_mod, "_git_pull_rebase", lambda: None)
         body = b'{"ref":"refs/heads/main"}'
         r = client.post(
             "/admin/reload",
@@ -158,6 +161,71 @@ class TestAdminReloadWebhook:
         )
         assert r.status_code == 200
         assert r.json()["status"] == "reloaded"
+
+    def test_push_self_push_filtered(self, client, monkeypatch):
+        """payload commits 가 모두 bot_emails 면 skip — 서버 자기 push 노이즈 차단."""
+        monkeypatch.setenv("GITHUB_WEBHOOK_SECRET", "wsecret")
+        monkeypatch.setenv("GH_USER_PERSONAL", "kknaks")
+        monkeypatch.setenv("GH_TOKEN_PERSONAL", "ghp_test")
+        monkeypatch.setenv("GH_EMAIL_PERSONAL", "bot@example.com")
+
+        # _git_pull_rebase 호출되면 fail — 필터에서 막혀야 함
+        from api.admin import reload as reload_mod
+
+        def _should_not_call() -> None:
+            raise AssertionError("git pull called on self-push — filter broken")
+
+        monkeypatch.setattr(reload_mod, "_git_pull_rebase", _should_not_call)
+
+        body = (
+            b'{"ref":"refs/heads/main",'
+            b'"commits":[{"author":{"email":"bot@example.com"}}]}'
+        )
+        r = client.post(
+            "/admin/reload",
+            content=body,
+            headers={
+                "X-Hub-Signature-256": _hmac_sig(b"wsecret", body),
+                "X-GitHub-Event": "push",
+            },
+        )
+        assert r.status_code == 200
+        assert r.json() == {"status": "skipped", "reason": "self-push"}
+
+    def test_push_human_commit_proceeds(self, client, monkeypatch):
+        """commits 중 사람 commit 한 개라도 있으면 reload 진행."""
+        monkeypatch.setenv("GITHUB_WEBHOOK_SECRET", "wsecret")
+        monkeypatch.setenv("GH_USER_PERSONAL", "kknaks")
+        monkeypatch.setenv("GH_TOKEN_PERSONAL", "ghp_test")
+        monkeypatch.setenv("GH_EMAIL_PERSONAL", "bot@example.com")
+
+        from api.admin import reload as reload_mod
+
+        called = {"count": 0}
+
+        def _spy() -> None:
+            called["count"] += 1
+
+        monkeypatch.setattr(reload_mod, "_git_pull_rebase", _spy)
+
+        body = (
+            b'{"ref":"refs/heads/main",'
+            b'"commits":['
+            b'{"author":{"email":"bot@example.com"}},'
+            b'{"author":{"email":"human@example.com"}}'
+            b']}'
+        )
+        r = client.post(
+            "/admin/reload",
+            content=body,
+            headers={
+                "X-Hub-Signature-256": _hmac_sig(b"wsecret", body),
+                "X-GitHub-Event": "push",
+            },
+        )
+        assert r.status_code == 200
+        assert r.json()["status"] == "reloaded"
+        assert called["count"] == 1
 
     def test_hmac_invalid_signature_403(self, client, monkeypatch):
         monkeypatch.setenv("GITHUB_WEBHOOK_SECRET", "wsecret")

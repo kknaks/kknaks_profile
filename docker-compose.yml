@@ -3,24 +3,29 @@
 
 services:
   back:
-    build: ./back
+    build:
+      context: .
+      dockerfile: Dockerfile.back
     container_name: kknaks-back
     ports:
       - "48000:48000"
     environment:
       REDIS_URL: redis://redis:6379          # 컨테이너 내부 통신은 redis 기본 포트
-      PERSONA_DIR: /persona
+      PERSONA_DIR: /repo/persona
       RUN_SCHEDULER: "1"
-      JOB_GIT_PUSH_DRY_RUN: "1"              # M4 stub 단계 — 내일 0으로
+      JOB_GIT_PUSH_DRY_RUN: ${JOB_GIT_PUSH_DRY_RUN:-1}   # 운영 시 .env 에 0 박기
       RELOAD_TOKEN: ${RELOAD_TOKEN:-changeme}
       GH_TOKEN: ${GH_TOKEN:-}                   # 개인 계정 PAT (legacy fallback)
       GH_USER_PERSONAL: ${GH_USER_PERSONAL:-kknaks}
       GH_TOKEN_PERSONAL: ${GH_TOKEN_PERSONAL:-}
+      GH_EMAIL_PERSONAL: ${GH_EMAIL_PERSONAL:-}
       GH_USER_COMPANY: ${GH_USER_COMPANY:-}
       GH_TOKEN_COMPANY: ${GH_TOKEN_COMPANY:-}
+      GH_EMAIL_COMPANY: ${GH_EMAIL_COMPANY:-}
       GITHUB_WEBHOOK_SECRET: ${GITHUB_WEBHOOK_SECRET:-}
     volumes:
-      - ./persona:/persona                    # read+write (잡이 activity.yaml + _map.md 갱신)
+      - .:/repo                                # repo root 전체 (.git + persona + back + frontend) — planning-01 §3.6 mount
+    working_dir: /repo/back
     depends_on:
       redis:
         condition: service_healthy

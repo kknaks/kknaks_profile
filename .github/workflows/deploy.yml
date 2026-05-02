@@ -1,0 +1,75 @@
+# 코드 push → SSH 홈서버 → git pull + docker compose up + admin/reload curl.
+# planning-01 §3.6 ① 채널 (코드 변경 흐름).
+#
+# 콘텐츠 (`persona/**/*.md`) 만 변경된 push 는 deploy 안 돔 (paths-ignore).
+# 콘텐츠는 webhook 채널 (② — back 컨테이너의 /admin/reload 가 직접 처리).
+#
+# 필요 secrets:
+#   SSH_HOST        — 홈서버 외부 IP 또는 도메인
+#   SSH_USER        — 홈서버 user (kknaks)
+#   SSH_KEY         — Actions 가 사용할 private key (호스트에 public 등록)
+#   SSH_PORT        — (선택) default 22
+#   DEPLOY_PATH     — 호스트의 repo 절대 경로
+#   RELOAD_TOKEN    — admin/reload curl 인증 (백엔드 .env 와 동일)
+
+name: Deploy to homelab
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "persona/**"          # 콘텐츠 변경은 webhook 채널 (planning-01 §3.6 ②)
+      - "medi_docs/**"        # 문서 변경은 배포 영향 X
+      - "claude_design/**"    # 디자인 자산 영향 X
+      - "**.md"               # README 등 루트 md
+  workflow_dispatch:           # 수동 트리거 (운영 디버깅)
+
+concurrency:
+  group: deploy-homelab
+  cancel-in-progress: false   # 배포는 순차 실행
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: SSH and deploy
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT || 22 }}
+          script: |
+            set -euo pipefail
+            cd "${{ secrets.DEPLOY_PATH }}"
+
+            echo "::group::git pull"
+            git pull --rebase origin main
+            echo "::endgroup::"
+
+            echo "::group::docker compose up"
+            docker compose up -d --build back redis worker
+            echo "::endgroup::"
+
+            echo "::group::wait for back healthy (ping)"
+            for i in $(seq 1 30); do
+              if curl -fsS -o /dev/null -X POST http://localhost:48000/admin/reload \
+                   -H "X-Reload-Token: ${{ secrets.RELOAD_TOKEN }}" \
+                   -H "X-GitHub-Event: ping"; then
+                echo "back ready (attempt $i)"
+                break
+              fi
+              sleep 2
+              if [ "$i" = "30" ]; then
+                echo "back never came up — check 'docker compose logs back'"
+                exit 1
+              fi
+            done
+            echo "::endgroup::"
+
+            echo "::group::trigger /admin/reload"
+            curl -fsS -X POST http://localhost:48000/admin/reload \
+              -H "X-Reload-Token: ${{ secrets.RELOAD_TOKEN }}" \
+              -w "\nHTTP %{http_code}\n"
+            echo "::endgroup::"

@@ -13,7 +13,8 @@ def get_projects(lang: str = Query("ko", pattern="^(ko|en)$")):
     from main import get_data
 
     data = get_data()
-    items = data.get("projects", [])
+    # spec-01 §3.3 — visible: false 박힌 항목은 사이트 미표시 (잔디 잡 추적은 별도 — extract_tracked_repos 가 다 봄)
+    items = [p for p in data.get("projects", []) if p.get("visible", True)]
     meta_categories = data.get("_meta", {}).get("projects", {}).get("categories", [])
 
     response = {
@@ -31,6 +32,7 @@ def get_projects(lang: str = Query("ko", pattern="^(ko|en)$")):
                 "status": p.get("status"),
                 "date": p.get("date"),
                 "stack": p.get("stack", []),
+                "thumbnail": p.get("thumbnail"),
                 "links": p.get("links", {}),
                 "body": p.get("body"),
             }

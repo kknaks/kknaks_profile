@@ -9,6 +9,7 @@ import type {
   ProjectsResponse,
 } from "@/lib/types";
 import { YouTubeThumbnail } from "@/components/contents/youtube-thumbnail";
+import { StatusTag } from "@/components/projects/status-tag";
 
 interface Props {
   lang: Lang;
@@ -99,7 +100,12 @@ export function LandingPreview({
   const { user } = me;
 
   const careerItems = career["career[]"].slice(0, 2);
-  const projectItems = projects["projects[]"].slice(0, 2);
+  const projectsSorted = [...projects["projects[]"]].sort((a, b) =>
+    (b.date ?? "").localeCompare(a.date ?? ""),
+  );
+  const projectsDone = projectsSorted.filter((p) => p.status !== "wip");
+  const projectsWip = projectsSorted.filter((p) => p.status === "wip");
+  const projectItems = [...projectsDone, ...projectsWip].slice(0, 4);
   const recentNotes = notesRecent.slice(0, 5);
   const stacks = notesGraph.notes.stacks.slice(0, 10);
   const contentItems = contents["contents[]"];
@@ -256,58 +262,72 @@ export function LandingPreview({
         viewAllLabel={viewAllLabel}
       >
         <div
-          className="m-stack"
-          style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}
+          className="landing-projects-grid m-stack"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",
+            gap: 12,
+          }}
         >
+          <style>{`
+            @media (max-width: 1024px) {
+              .landing-projects-grid { grid-template-columns: repeat(2, 1fr) !important; }
+            }
+          `}</style>
           {projectItems.map((p) => (
             <Link
               key={p.id}
-              href={`/projects${langSuffix}#${p.id}`}
+              href={`/projects/${p.id}${langSuffix}`}
               className="card"
-              style={{ overflow: "hidden", display: "block" }}
+              style={{
+                overflow: "hidden",
+                display: "block",
+                textDecoration: "none",
+                color: "inherit",
+              }}
             >
-              <div
-                className="placeholder-hatch"
-                style={{ aspectRatio: "16/9" }}
-              >
-                [ {p.title} · 1600×900 ]
-              </div>
-              <div
-                style={{
-                  padding: 18,
-                  borderTop: "1px solid var(--line-1)",
-                }}
-              >
+              {p.thumbnail ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={p.thumbnail}
+                  alt={`${p.title} cover`}
+                  style={{
+                    width: "100%",
+                    aspectRatio: "16/9",
+                    objectFit: "cover",
+                    display: "block",
+                    background: "var(--bg-2)",
+                  }}
+                />
+              ) : (
+                <div
+                  className="placeholder-hatch"
+                  style={{ aspectRatio: "16/9", fontSize: 10 }}
+                >
+                  [ {p.title} ]
+                </div>
+              )}
+              <div style={{ padding: 12, borderTop: "1px solid var(--line-1)" }}>
                 <div
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    gap: 8,
-                    marginBottom: 8,
+                    gap: 6,
+                    marginBottom: 6,
                   }}
                 >
                   <span
                     className="mono"
-                    style={{ fontSize: 11, color: "var(--fg-3)" }}
+                    style={{ fontSize: 10, color: "var(--fg-3)" }}
                   >
                     {p.id}
                   </span>
-                  <span
-                    className={`tag${p.status === "live" ? " accent" : ""}`}
-                  >
-                    {p.status === "live" && (
-                      <span
-                        className="tag-dot"
-                        style={{ background: "var(--accent)" }}
-                      />
-                    )}
-                    {p.status}
-                  </span>
+                  <StatusTag s={p.status} />
                   {p.date && (
                     <span
                       className="mono"
                       style={{
-                        fontSize: 11,
+                        fontSize: 10,
                         color: "var(--fg-3)",
                         marginLeft: "auto",
                       }}
@@ -316,30 +336,39 @@ export function LandingPreview({
                     </span>
                   )}
                 </div>
-                <h3 style={{ margin: "0 0 6px", fontSize: 17 }}>{p.title}</h3>
+                <h3
+                  style={{
+                    margin: "0 0 4px",
+                    fontSize: 13,
+                    letterSpacing: "-0.01em",
+                    fontWeight: 500,
+                  }}
+                >
+                  {p.title}
+                </h3>
                 <p
                   style={{
-                    margin: "0 0 10px",
-                    fontSize: 13,
+                    margin: "0 0 8px",
+                    fontSize: 11,
                     color: "var(--fg-2)",
                     lineHeight: 1.5,
                   }}
                 >
                   {p.summary}
                 </p>
-                <div
-                  style={{
-                    display: "flex",
-                    gap: 6,
-                    flexWrap: "wrap",
-                  }}
-                >
-                  {p.stack.map((tg) => (
-                    <span key={tg} className="tag">
-                      {tg}
-                    </span>
-                  ))}
-                </div>
+                {p.stack && p.stack.length > 0 && (
+                  <div style={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
+                    {p.stack.slice(0, 4).map((tg) => (
+                      <span
+                        key={tg}
+                        className="tag"
+                        style={{ fontSize: 9, padding: "1px 5px" }}
+                      >
+                        {tg}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
             </Link>
           ))}

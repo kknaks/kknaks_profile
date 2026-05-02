@@ -1,8 +1,8 @@
 # persona/_map.md
 
-> 자동 생성 (build_persona_map.py, 2026-05-02 23:43 KST). 수동 편집 X.
+> 자동 생성 (build_persona_map.py, 2026-05-03 01:23 KST). 수동 편집 X.
 
-_총 167 파일 (profile 1 / career 5 / projects 2 / notes 156 / contents 2 / daily 1)_
+_총 170 파일 (profile 1 / career 5 / projects 5 / notes 156 / contents 2 / daily 1)_
 
 ## profile
 
@@ -15,9 +15,12 @@ _총 167 파일 (profile 1 / career 5 / projects 2 / notes 156 / contents 2 / da
 - [[career/bitcamp]] 비트캠프 (2024.06 — 2024.12)
 - [[career/dowha-eng]] 도화 엔지니어링 (2020.01 — 2023.12)
 
-## projects (web 2 · cli 0 · bot 0)
+## projects (web 1 · frontend 0 · backend 0 · mobile 3 · ai 0 · cli 1 · bot 0)
 - [[projects/kknaks-profile]] kknaks.dev (web · wip)
-- [[projects/homelab-console]] Homelab Console (web · wip)
+- [[projects/persona-counselor]] Persona Counselor (mobile · wip)
+- [[projects/language-diary]] Language Diary (mobile · wip)
+- [[projects/wine-log]] Wine Log (mobile · live)
+- [[projects/open-kknaks]] open-kknaks (cli · live)
 
 ## notes (ai_skills 1 · airflow 2 · SpringBoot 4 · React 1 · NCPcloud 0 · network 7 · codingTest 27 · interview 2 · BackendSchool 24 · bitcamp 83 · study 2 · work 3)
 - [[notes/2024-12-30-Day01]] Day01_OT, 채팅기능구현 (BackendSchool · 2024.12.30)

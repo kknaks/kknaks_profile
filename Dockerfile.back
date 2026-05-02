@@ -9,18 +9,22 @@ RUN apt-get update \
 # uv — 의존성 매니저 (back/pyproject.toml과 일관)
 RUN pip install --no-cache-dir uv
 
-WORKDIR /app
+WORKDIR /repo/back
+
+# venv 를 mount 영역 (/repo) 밖에 박음 — compose `.:/repo` 가 .venv 를 host 로 덮어쓰는 충돌 회피
+ENV UV_PROJECT_ENVIRONMENT=/opt/venv
 
 # 의존성 먼저 (Docker layer caching — pyproject 안 바뀌면 재install 안 함)
-COPY pyproject.toml ./
+# build context = repo root → back/ prefix 명시
+COPY back/pyproject.toml ./
 RUN uv sync --no-install-project
 
-# 코드 복사
-COPY . .
+# 코드 복사 — compose 의 mount (.:/repo) 가 런타임에 덮어쓰지만 fallback 으로 박아둠
+COPY back/ .
 
 ENV PYTHONUNBUFFERED=1 \
-    PERSONA_DIR=/persona \
-    PYTHONPATH=/app
+    PERSONA_DIR=/repo/persona \
+    PYTHONPATH=/repo/back
 
 EXPOSE 48000
 

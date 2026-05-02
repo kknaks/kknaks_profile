@@ -68,6 +68,7 @@ export interface ProjectItem {
   status: "live" | "wip" | "archived";
   date?: string;
   stack: string[];
+  thumbnail?: string | null;
   links?: { repo?: string; live?: string };
   body?: string;
 }
