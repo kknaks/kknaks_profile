@@ -4,7 +4,8 @@ FROM python:3.13-slim
 # build deps — pydantic-core 등 일부 패키지가 컴파일 필요할 수 있음
 RUN apt-get update \
     && apt-get install -y --no-install-recommends git build-essential \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && git config --system --add safe.directory '*'
 
 # uv — 의존성 매니저 (back/pyproject.toml과 일관)
 RUN pip install --no-cache-dir uv
