@@ -1,0 +1,33 @@
+# secret
+.env
+.env.local
+.env.*.local
+
+# Claude Code 로컬 설정 (절대 경로 + 머신별)
+.claude/settings.local.json
+
+# 옵시디언 사용자 설정 (사용자 PC vs 홈서버 분리)
+.obsidian/
+
+# Python 빌드 산출물
+back/__pycache__/
+back/**/__pycache__/
+back/.pytest_cache/
+back/.venv/
+back/dist/
+back/*.egg-info/
+
+# Next.js 빌드 산출물
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/dist/
+
+# 시스템
+.DS_Store
+*.swp
+*.swo
+
+# log
+*.log
+back/logs/

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>kknaks — Design System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/tokens.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #f0eee9; }
+  </style>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel" src="design-canvas.jsx"></script>
+  <script type="text/babel" src="js/foundations.jsx"></script>
+  <script type="text/babel" src="js/components.jsx"></script>
+  <script type="text/babel" src="js/landing.jsx"></script>
+  <script type="text/babel" src="js/pages.jsx"></script>
+
+  <script type="text/babel">
+    const { FoundationColors, FoundationType, FoundationSpacing,
+            ComponentButtons, ComponentTags, ComponentNav, ComponentProjectCard, ComponentTimeline,
+            LandingTerminal, LandingEditorial, LandingIndex, LandingStatus,
+            PageAbout, PageCareer, PageProjects, PageProducts } = window;
+
+    function App() {
+      return (
+        <DesignCanvas title="kknaks.dev — Portfolio Design System" subtitle="Dark · monospace accents · minimal motion · v0.1">
+
+          <DCSection id="foundations" title="01 · Foundations" subtitle="Color · Type · Spacing">
+            <DCArtboard id="f-color"   label="Color system"        width={1100} height={620}><FoundationColors /></DCArtboard>
+            <DCArtboard id="f-type"    label="Typography"          width={1100} height={620}><FoundationType /></DCArtboard>
+            <DCArtboard id="f-space"   label="Spacing & radii"     width={1100} height={520}><FoundationSpacing /></DCArtboard>
+          </DCSection>
+
+          <DCSection id="components" title="02 · Components" subtitle="Atoms used across the site">
+            <DCArtboard id="c-nav"     label="Top navigation"      width={1100} height={140}><ComponentNav /></DCArtboard>
+            <DCArtboard id="c-btn"     label="Buttons"             width={760}  height={220}><ComponentButtons /></DCArtboard>
+            <DCArtboard id="c-tags"    label="Tags & status"       width={760}  height={260}><ComponentTags /></DCArtboard>
+            <DCArtboard id="c-card"    label="Project card"        width={760}  height={500}><ComponentProjectCard /></DCArtboard>
+            <DCArtboard id="c-time"    label="Timeline item"       width={760}  height={520}><ComponentTimeline /></DCArtboard>
+          </DCSection>
+
+          <DCSection id="landing" title="03 · Landing — 4 directions" subtitle="동일한 시스템, 다른 메타포. 마음에 드는 방향을 찾아 합쳐봅시다.">
+            <DCArtboard id="l-terminal"  label="A · Terminal"      width={1280} height={760}><LandingTerminal /></DCArtboard>
+            <DCArtboard id="l-editorial" label="B · Editorial"     width={1280} height={760}><LandingEditorial /></DCArtboard>
+            <DCArtboard id="l-index"     label="C · Index list"    width={1280} height={760}><LandingIndex /></DCArtboard>
+            <DCArtboard id="l-status"    label="D · Status board"  width={1280} height={760}><LandingStatus /></DCArtboard>
+          </DCSection>
+
+          <DCSection id="pages" title="04 · Sub pages" subtitle="About · Career · Projects · Products">
+            <DCArtboard id="p-about"    label="About"              width={1100} height={780}><PageAbout /></DCArtboard>
+            <DCArtboard id="p-career"   label="Career · timeline"  width={1100} height={860}><PageCareer /></DCArtboard>
+            <DCArtboard id="p-projects" label="Projects · grid"    width={1100} height={900}><PageProjects /></DCArtboard>
+            <DCArtboard id="p-products" label="Products · case"    width={1100} height={840}><PageProducts /></DCArtboard>
+          </DCSection>
+
+          <DCPostIt x={40} y={40} width={260}>
+            안녕하세요 — 디자인 시스템 v0.1입니다.<br/><br/>
+            먼저 1번 섹션(컬러·타입·스페이싱)을 확인하시고, 3번에서 랜딩 4가지 방향을 비교해주세요. 마음에 드는 방향과 톤을 알려주시면 v0.2에서 통일된 풀 페이지로 좁혀가겠습니다.
+          </DCPostIt>
+
+        </DesignCanvas>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

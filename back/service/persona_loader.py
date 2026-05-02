@@ -1,0 +1,243 @@
+"""페르소나 yaml/md → 메모리 dict 로드 + spec-01 §6 검증 (부팅 fail-fast)."""
+
+from __future__ import annotations
+
+import datetime
+from pathlib import Path
+from typing import Any
+
+import frontmatter
+import yaml
+
+from core.wikilinks import build_graph
+
+
+def _normalize_date(d: Any) -> str:
+    """multi-format date → 'YYYY.MM.DD'.
+
+    yaml은 ISO date를 datetime.date로 자동 파싱. obsidian/jekyll 스타일
+    'YYYY-MM-DD HH:MM:SS +0900' 같은 string도 받음.
+    """
+    if isinstance(d, (datetime.date, datetime.datetime)):
+        return d.strftime("%Y.%m.%d")
+    s = str(d).strip()
+    if not s:
+        return ""
+    s = s.split()[0]  # 시간 부분 제거
+    return s.replace("-", ".")
+
+
+def _auto_enrich_note(data: dict, path: Path, persona_dir: Path) -> None:
+    """notes/ 안의 .md 파일에 type/id/group 자동 채움 (frontmatter에 박혀있으면 그대로)."""
+    try:
+        rel = path.relative_to(persona_dir)
+    except ValueError:
+        return
+    if not rel.parts or rel.parts[0] != "notes":
+        return
+    data.setdefault("type", "note")
+    data.setdefault("id", path.stem)
+    # notes/<group>/<file>.md → group = 부모 폴더명
+    if len(rel.parts) >= 3:
+        data.setdefault("group", rel.parts[1])
+    # 빈 frontmatter도 동작하게 — title/date 없으면 파일에서 추출
+    data.setdefault("title", path.stem)
+    if "date" not in data:
+        # 파일명 prefix가 'YYYY-MM-DD-...'이면 그 날짜, 아니면 빈 문자열
+        stem = path.stem
+        if len(stem) >= 10 and stem[4] == "-" and stem[7] == "-":
+            data["date"] = stem[:10].replace("-", ".")
+        else:
+            data["date"] = ""
+
+# spec-01 §3 카테고리별 필수 필드
+REQUIRED_FIELDS: dict[str, set[str]] = {
+    "profile": {"type", "handle", "name", "role", "email", "tagline", "intro", "stack"},
+    "career": {"type", "period", "display_order", "title", "org", "summary", "stack"},
+    "project": {"type", "id", "title", "summary", "category", "status", "stack"},
+    "note": {"type", "id", "title", "date", "group"},
+    "content": {"type", "id", "date", "day", "title", "summary", "youtubeId"},
+    "daily": {"type", "date"},
+}
+
+
+class PersonaError(ValueError):
+    """페르소나 형식 위반. 부팅 시 fail-fast."""
+
+
+def load_persona(persona_dir: Path) -> dict[str, Any]:
+    """persona/ 전체 로드 → in-memory dict. 위반 시 PersonaError raise.
+
+    Returns dict with keys:
+        profile        (single dict)
+        career         (list, sorted by display_order asc)
+        projects       (list)
+        notes          (dict: id → note dict, 위키링크 lookup용)
+        contents       (list, sorted by id desc)
+        daily          (list, sorted by date desc)
+        activity       (dict, may be empty)
+        _meta          (dict)
+        _edges         (list of {source, target})
+        _backlinks     (dict: target_id → [source_id, ...])
+    """
+    if not persona_dir.is_dir():
+        raise PersonaError(f"persona dir not found: {persona_dir}")
+
+    meta_path = persona_dir / "_meta.yaml"
+    meta: dict = (
+        yaml.safe_load(meta_path.read_text(encoding="utf-8")) or {}
+        if meta_path.exists()
+        else {}
+    )
+
+    profile_path = persona_dir / "profile.md"
+    profile = _load_md(profile_path, persona_dir) if profile_path.exists() else None
+
+    career = _load_dir(persona_dir / "career", persona_dir)
+    career.sort(key=lambda c: c.get("display_order", 999))
+
+    projects = _load_dir(persona_dir / "projects", persona_dir)
+    notes_list = _load_dir(persona_dir / "notes", persona_dir, recursive=True)
+    contents = _load_dir(persona_dir / "contents", persona_dir)
+    contents.sort(key=lambda c: c.get("id", ""), reverse=True)
+    daily = _load_dir(persona_dir / "daily")
+    daily.sort(key=lambda d: d.get("date", ""), reverse=True)
+
+    # notes는 dict로 (위키링크 id 조회 용도)
+    notes: dict[str, dict] = {n["id"]: n for n in notes_list}
+
+    activity_path = persona_dir / "activity.yaml"
+    activity: dict = (
+        yaml.safe_load(activity_path.read_text(encoding="utf-8")) or {}
+        if activity_path.exists()
+        else {}
+    )
+
+    data: dict[str, Any] = {
+        "profile": profile,
+        "career": career,
+        "projects": projects,
+        "notes": notes,
+        "contents": contents,
+        "daily": daily,
+        "activity": activity,
+        "_meta": meta,
+    }
+
+    validate_persona(data)
+
+    edges, backlinks = build_graph(notes)
+    data["_edges"] = edges
+    data["_backlinks"] = backlinks
+
+    return data
+
+
+def validate_persona(data: dict[str, Any]) -> None:
+    """spec-01 §6.1 강제 검증. 위반 시 PersonaError raise."""
+    meta = data.get("_meta", {})
+
+    if data["profile"] is not None:
+        _check_required(data["profile"], "profile", "profile.md")
+
+    for c in data["career"]:
+        _check_required(c, "career", _path_label(c))
+
+    for p in data["projects"]:
+        _check_required(p, "project", _path_label(p))
+
+    project_categories = {
+        cat["id"] for cat in meta.get("projects", {}).get("categories", [])
+    }
+    for p in data["projects"]:
+        if project_categories and p.get("category") not in project_categories:
+            raise PersonaError(
+                f"projects/{_path_label(p)}: category '{p.get('category')}' "
+                f"not in _meta.yaml/projects.categories"
+            )
+
+    note_clusters = {
+        cl["id"] for cl in meta.get("notes", {}).get("clusters", [])
+    }
+    for nid, n in data["notes"].items():
+        _check_required(n, "note", f"notes/{nid}.md")
+        # spec-01 §6.1: notes id == 파일 slug
+        path: Path = n["_path"]
+        if path.stem != nid:
+            raise PersonaError(
+                f"notes/{path.name}: frontmatter id '{nid}' != filename slug '{path.stem}'"
+            )
+        if note_clusters and n.get("group") not in note_clusters:
+            raise PersonaError(
+                f"notes/{path.name}: group '{n.get('group')}' "
+                f"not in _meta.yaml/notes.clusters"
+            )
+
+    for c in data["contents"]:
+        _check_required(c, "content", _path_label(c))
+        # spec-01 §6.1: contents id (C-005) == 파일 prefix (C-005-...)
+        path: Path = c["_path"]
+        cid = c["id"]
+        if not path.stem.startswith(f"{cid}-"):
+            raise PersonaError(
+                f"contents/{path.name}: id '{cid}' must be prefix of filename"
+            )
+
+    for d in data["daily"]:
+        _check_required(d, "daily", _path_label(d))
+        # spec-01 §6.1: daily date == 파일명 (점→하이픈 변환 후)
+        path: Path = d["_path"]
+        date_iso = str(d["date"]).replace(".", "-")
+        if path.stem != date_iso:
+            raise PersonaError(
+                f"daily/{path.name}: date '{d['date']}' must match filename '{path.stem}'"
+            )
+
+
+def _load_md(path: Path, persona_dir: Path | None = None) -> dict:
+    """단일 md 파일 → dict (frontmatter + 'body' + '_path' + auto enrich).
+
+    notes/ 안의 파일은 type/id/group 자동 채움.
+    date는 multi-format 파싱 후 'YYYY.MM.DD' 정규화.
+    tags 단일 string은 list로 정규화.
+    """
+    post = frontmatter.load(path)
+    data = dict(post.metadata)
+    data["body"] = post.content
+    data["_path"] = path
+
+    if persona_dir is not None:
+        _auto_enrich_note(data, path, persona_dir)
+
+    if "date" in data:
+        data["date"] = _normalize_date(data["date"])
+
+    if "tags" in data and isinstance(data["tags"], str):
+        data["tags"] = [data["tags"]]
+
+    return data
+
+
+def _load_dir(
+    dir_path: Path,
+    persona_dir: Path | None = None,
+    recursive: bool = False,
+) -> list[dict]:
+    if not dir_path.is_dir():
+        return []
+    pattern = "**/*.md" if recursive else "*.md"
+    return [_load_md(p, persona_dir) for p in sorted(dir_path.glob(pattern))]
+
+
+def _check_required(obj: dict, kind: str, label: str) -> None:
+    required = REQUIRED_FIELDS.get(kind, set())
+    missing = required - set(obj.keys())
+    if missing:
+        raise PersonaError(
+            f"{label}: missing required field(s) for {kind}: {sorted(missing)}"
+        )
+
+
+def _path_label(obj: dict) -> str:
+    path = obj.get("_path")
+    return path.name if path else "(unknown)"

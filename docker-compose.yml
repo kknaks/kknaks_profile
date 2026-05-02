@@ -1,0 +1,39 @@
+# spec-05 §7 — back + redis. frontend/worker는 별도 (host process or 추후).
+# 포트 컨벤션 — 4-prefix (사용자 컨벤션).
+
+services:
+  back:
+    build: ./back
+    container_name: kknaks-back
+    ports:
+      - "48000:48000"
+    environment:
+      REDIS_URL: redis://redis:6379          # 컨테이너 내부 통신은 redis 기본 포트
+      PERSONA_DIR: /persona
+      RUN_SCHEDULER: "1"
+      JOB_GIT_PUSH_DRY_RUN: "1"              # M4 stub 단계 — 내일 0으로
+      RELOAD_TOKEN: ${RELOAD_TOKEN:-changeme}
+      GH_TOKEN: ${GH_TOKEN:-}
+    volumes:
+      - ./persona:/persona                    # read+write (잡이 activity.yaml + _map.md 갱신)
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: kknaks-redis
+    ports:
+      - "46379:6379"                          # 호스트 포트 4-prefix, 컨테이너 내부는 기본 6379
+    restart: unless-stopped
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+
+volumes:
+  redis-data:
