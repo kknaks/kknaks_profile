@@ -61,15 +61,25 @@ def _is_self_push(body: bytes) -> bool:
 
 
 def _git_pull_rebase() -> None:
-    """git pull --rebase origin main — extraheader 인증 (Basic + base64).
+    """origin main 과 강제 동기화 (fetch + reset --hard).
 
-    실패 시 raise (호출자가 502/503 으로 응답 → GitHub webhook delivery 페이지에서 가시화).
+    - extraheader 인증 (Basic + base64)
+    - rebase 가 아니라 reset --hard — 호스트 working tree 가 origin 의 mirror.
+      운영 모델: origin 이 SoT, 컨테이너가 git push 할 때만 일시적 변경.
+      webhook 호출 시점에 dirty working tree 면 이전 push 가 incomplete 였거나 외부 수정 — 어느 쪽이든 origin 우선.
+    - 실패 시 raise (호출자가 503 으로 응답 → GitHub webhook delivery 페이지에서 가시화).
     """
     identity = config.bot_identity()
     auth = _build_auth_args(identity["token"]) if identity else []
-    cmd = ["git", *auth, "pull", "--rebase", "origin", "main"]
     try:
-        subprocess.run(cmd, cwd=REPO, check=True, capture_output=True)
+        subprocess.run(
+            ["git", *auth, "fetch", "origin", "main"],
+            cwd=REPO, check=True, capture_output=True,
+        )
+        subprocess.run(
+            ["git", "reset", "--hard", "origin/main"],
+            cwd=REPO, check=True, capture_output=True,
+        )
     except subprocess.CalledProcessError as e:
         cmd_safe = _redact_cmd(e.cmd if isinstance(e.cmd, list) else [e.cmd])
         stderr = (e.stderr or b"").decode("utf-8", errors="replace")[:500]
