@@ -80,16 +80,18 @@ def commit_and_push_with_retry(
                 check=True,
                 capture_output=True,
             )
+
+            # 변경된 paths 만 먼저 stage — rebase 전에 자기 변경은 commit 으로 박음
             subprocess.run(
-                ["git", "rebase", "origin/main"],
+                ["git", "add", "--", *str_paths],
                 cwd=repo_root,
                 check=True,
                 capture_output=True,
             )
 
-            # 변경 없으면 commit skip (idempotent — 같은 entry 재실행)
+            # staging 된 변경 없으면 skip (idempotent)
             diff = subprocess.run(
-                ["git", "diff", "--quiet", "--", *str_paths],
+                ["git", "diff", "--cached", "--quiet", "--", *str_paths],
                 cwd=repo_root,
             )
             if diff.returncode == 0:
@@ -97,13 +99,14 @@ def commit_and_push_with_retry(
                 return True
 
             subprocess.run(
-                ["git", "add", "--", *str_paths],
+                ["git", *author, "commit", "-m", message],
                 cwd=repo_root,
                 check=True,
                 capture_output=True,
             )
+            # rebase + autostash — 다른 unstaged (호스트의 잔존 dirty 등) 자동 stash/pop
             subprocess.run(
-                ["git", *author, "commit", "-m", message],
+                ["git", "-c", "rebase.autoStash=true", "rebase", "origin/main"],
                 cwd=repo_root,
                 check=True,
                 capture_output=True,
