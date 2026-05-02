@@ -60,6 +60,11 @@ services:
       CONCURRENCY: "2"
       WORK_DIR: /tmp
       CLAUDE_CODE_OAUTH_TOKEN: ${CLAUDE_CODE_OAUTH_TOKEN:-}
+      # 호스트 path 그대로 컨테이너 안에서도 매핑 — npm symlink/require 깨짐 회피
+      PATH: /home/kknaks/.local/bin:/usr/local/bin:/usr/bin:/bin
+    volumes:
+      # 호스트의 system claude (npm install -g 결과) 를 그대로 mount
+      - /home/kknaks/.local:/home/kknaks/.local:ro
     restart: unless-stopped
 
 volumes:
