@@ -60,9 +60,6 @@ services:
       CONCURRENCY: "2"
       WORK_DIR: /tmp
       CLAUDE_CODE_OAUTH_TOKEN: ${CLAUDE_CODE_OAUTH_TOKEN:-}
-      PATH: /claude-tools/node/bin:/claude-tools/node_modules/.bin:/usr/local/bin:/usr/bin:/bin
-    volumes:
-      - ./.claude-tools:/claude-tools:ro       # Linux Node.js + claude CLI 바이너리 (호스트에서 setup)
     restart: unless-stopped
 
 volumes:
