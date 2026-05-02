@@ -26,7 +26,9 @@ COPY back/ .
 
 ENV PYTHONUNBUFFERED=1 \
     PERSONA_DIR=/repo/persona \
-    PYTHONPATH=/repo/back
+    PYTHONPATH=/repo/back \
+    UV_CACHE_DIR=/tmp/uv-cache \
+    HOME=/tmp
 
 EXPOSE 48000
 
