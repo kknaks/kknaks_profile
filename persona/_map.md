@@ -1,17 +1,22 @@
 # persona/_map.md
 
-> 자동 생성 (build_persona_map.py, 2026-05-02 20:22 KST). 수동 편집 X.
+> 자동 생성 (build_persona_map.py, 2026-05-02 23:43 KST). 수동 편집 X.
 
-_총 161 파일 (profile 1 / career 1 / projects 1 / notes 156 / contents 1 / daily 1)_
+_총 167 파일 (profile 1 / career 5 / projects 2 / notes 156 / contents 2 / daily 1)_
 
 ## profile
 
 - [[profile]] 이건학 — Backend Engineer
 
 ## career (display_order 오름차순)
-- [[career/stealth-ai]] Stealth AI Co. (2025.06 — present)
+- [[career/medisolve-ai]] 메디솔브 AI (2026.02 — present)
+- [[career/quantus]] 퀀터스 (2025.08 — 2026.02)
+- [[career/likelion]] 멋쟁이사자처럼 (2024.12 — 2025.03)
+- [[career/bitcamp]] 비트캠프 (2024.06 — 2024.12)
+- [[career/dowha-eng]] 도화 엔지니어링 (2020.01 — 2023.12)
 
-## projects (web 1 · cli 0 · bot 0)
+## projects (web 2 · cli 0 · bot 0)
+- [[projects/kknaks-profile]] kknaks.dev (web · wip)
 - [[projects/homelab-console]] Homelab Console (web · wip)
 
 ## notes (ai_skills 1 · airflow 2 · SpringBoot 4 · React 1 · NCPcloud 0 · network 7 · codingTest 27 · interview 2 · BackendSchool 24 · bitcamp 83 · study 2 · work 3)
@@ -172,7 +177,8 @@ _총 161 파일 (profile 1 / career 1 / projects 1 / notes 156 / contents 1 / da
 - [[notes/2025-11-01-database_migration]] Database Migration(AWS RDS -> Azure MySQL) (work · 2025.11.01)
 - [[notes/2025-11-01-migration_detail]] Database Migration 상세 프로세스 (work · 2025.11.01)
 
-## contents (총 1개)
+## contents (총 2개)
+- [[contents/C-002-pending-sample]] Day 02 — 모듈로 편향으로 인한 게임 확률 버그 (2026.05.02)
 - [[contents/C-001-fastapi-di]] Day 01 — FastAPI Dependency Injection — 진짜 쓸 수 있게 (2026.05.01)
 
 ## daily (총 1개, 최근 10)

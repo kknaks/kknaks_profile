@@ -7,7 +7,7 @@ import type { Lang } from "./i18n";
 import type {
   ActivityResponse,
   CareerResponse,
-  ContentItem,
+  ContentDetailResponse,
   ContentsResponse,
   MeResponse,
   NoteDetail,
@@ -52,8 +52,5 @@ export const api = {
   contents: (lang: Lang, limit = 5) =>
     get<ContentsResponse>(`/api/contents?limit=${limit}`, lang),
   contentDetail: (id: string, lang: Lang) =>
-    get<{ "contents.detail": ContentItem & { concept: string[]; example: string[] } }>(
-      `/api/contents/${id}`,
-      lang,
-    ),
+    get<ContentDetailResponse>(`/api/contents/${id}`, lang),
 };

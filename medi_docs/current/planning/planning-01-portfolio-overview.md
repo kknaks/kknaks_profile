@@ -74,10 +74,10 @@ tags: [planning, portfolio, persona]
 
 ### 3.4 가공 (LLM 잡)
 
-스케쥴러가 매일 1회:
-- 로컬 git log + GitHub API → 오늘 활동 수집
-- LLM(Anthropic) 호출 → ko/en 한 줄 종합 요약 + kind 결정
-- `persona/activity.md` 갱신 + git commit
+스케쥴러가 두 종류의 잡 운영 — 모두 LLM 호출은 `open-kknaks` (ADR-04) 를 통한 Claude Haiku 4.5.
+
+- **잔디 잡** (매일 1회, spec-03): 로컬 git log + GitHub API → 오늘 활동 수집 → ko/en 한 줄 종합 요약 + kind 결정 → `persona/activity.yaml` 갱신 + git commit
+- **콘텐츠 enrich 잡** (10분 interval, spec-06, ADR-05): `persona/contents/*.md` 중 `status: pending` 스캔 → yt-dlp 메타 + youtube-transcript-api 자막 + LLM 요약 → frontmatter (title/summary/duration/tags) + 본문 (개념/적용/실수 3-section) 채움 → `status: published` + git commit
 
 > **⚠ Architectural seam**: 스케쥴러가 어느 시스템에 속하는지(포트폴리오 인프라 vs 페르소나 gen 레이어)는 ADR-03에서 정의. Section 2의 한 방향 인터페이스는 *사람*의 편집 흐름 기준 — 기계 쓰기는 ADR-03이 다룸.
 

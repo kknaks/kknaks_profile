@@ -128,6 +128,23 @@ export interface ContentsResponse {
   "contents[]": ContentItem[];
 }
 
+export interface ContentDetailNeighbor {
+  id: string;
+  title: string;
+}
+
+export interface ContentDetail extends ContentItem {
+  speaker?: string;
+  concept: string[];                       // 시안 02 영역 카드 (spec-06 §3.3)
+  body: string;                            // 8섹션 강의 교안 markdown — 시안 03 영역
+  newer: ContentDetailNeighbor | null;
+  older: ContentDetailNeighbor | null;
+}
+
+export interface ContentDetailResponse {
+  "contents.detail": ContentDetail;
+}
+
 export interface ActivityEntry {
   date: string;
   count: number;

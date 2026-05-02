@@ -63,6 +63,7 @@ persona/
 ├─ notes/*.md                         ← 위키링크 [[id]]
 ├─ contents/*.md
 ├─ daily/YYYY-MM-DD.md
+├─ assets/<category>/...              ← 정적 자산 (spec-01 §2.5 — 백엔드가 /assets/* 로 서빙)
 ├─ activity.yaml                      ← 잡 산출물 (백엔드 write — ADR-03 §2.2)
 ├─ _meta.yaml                         ← enum 정의 (사람 작성)
 ├─ _map.md                            ← 자동 인덱스 (백엔드 + pre-commit write — spec-04)
@@ -264,7 +265,7 @@ back/logs/
 
 ---
 
-## 7. docker-compose (back + redis)
+## 7. docker-compose (back + redis + worker)
 
 ```yaml
 # docker-compose.yml (repo root)
@@ -277,7 +278,7 @@ services:
       REDIS_URL: redis://redis:6379            # 컨테이너 내부 통신은 redis 기본 포트
       PERSONA_DIR: /persona
     volumes:
-      - ./persona:/persona:ro                   # md SoT mount (read 위주, activity.yaml만 write — ADR-03)
+      - ./persona:/persona                      # md SoT mount (잡이 activity.yaml + contents/*.md write — ADR-03, ADR-05)
     depends_on: [redis]
     restart: unless-stopped
 
@@ -289,11 +290,26 @@ services:
     volumes:
       - redis-data:/data
 
+  worker:                                        # ADR-04 §2.2 — open-kknaks ClaudeWorker
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    depends_on:
+      redis:
+        condition: service_healthy
+    environment:
+      REDIS_URL: redis://redis:6379
+      CLAUDE_CODE_OAUTH_TOKEN: ${CLAUDE_CODE_OAUTH_TOKEN}
+      PATH: /claude-tools/node/bin:/claude-tools/node_modules/.bin:/usr/local/bin:/usr/bin:/bin
+    volumes:
+      - ./.claude-tools:/claude-tools:ro        # Linux Node.js + claude CLI 바이너리 (setup.sh 로 사전 박음)
+    restart: unless-stopped
+
 volumes:
   redis-data:
 ```
 
-**참고 — ClaudeWorker는 host process** (docker 안 X) — claude CLI 인증이 host에 박혀있어야 PTY 동작 (ADR-04 §2.2). systemd unit으로 띄움 (plan-01 M8).
+**참고 — ClaudeWorker 는 worker 컨테이너** (ADR-04 §2.2). 호스트의 `.claude-tools/` (Linux Node.js + Claude Code CLI 바이너리) 를 read-only 바인드 마운트하고, `CLAUDE_CODE_OAUTH_TOKEN` env 로 인증해 컨테이너 안에서 `claude` CLI 실행. 호스트에 별도 systemd unit 없음.
 
 ## 8. 향후 확장 여지
 

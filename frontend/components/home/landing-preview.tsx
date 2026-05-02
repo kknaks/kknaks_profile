@@ -8,6 +8,7 @@ import type {
   NotesGraphResponse,
   ProjectsResponse,
 } from "@/lib/types";
+import { YouTubeThumbnail } from "@/components/contents/youtube-thumbnail";
 
 interface Props {
   lang: Lang;
@@ -504,9 +505,9 @@ export function LandingPreview({
                   overflow: "hidden",
                 }}
               >
-                <div
-                  className="placeholder-hatch"
-                  style={{ position: "absolute", inset: 0 }}
+                <YouTubeThumbnail
+                  id={latestContent.youtubeId}
+                  title={latestContent.title}
                 />
                 <div
                   style={{
@@ -515,6 +516,7 @@ export function LandingPreview({
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
+                    pointerEvents: "none",
                   }}
                 >
                   <div
@@ -522,8 +524,8 @@ export function LandingPreview({
                       width: 56,
                       height: 56,
                       borderRadius: "50%",
-                      background: "rgba(255,255,255,0.08)",
-                      border: "1px solid rgba(255,255,255,0.2)",
+                      background: "rgba(0,0,0,0.55)",
+                      border: "1px solid rgba(255,255,255,0.25)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",

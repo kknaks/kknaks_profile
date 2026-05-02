@@ -58,9 +58,9 @@ result_text = task.result
 
 - **redis** 컨테이너 (포트 `46379` — 사용자 컨벤션 4-prefix)
 - **back** 컨테이너 (포트 `48000`) — FastAPI + APScheduler
-- **worker** 컨테이너 — `open-kknaks` ClaudeWorker (claude CLI host에서 실행 — 즉 worker는 host process로, host에 claude CLI 인증 박혀있어야 함)
+- **worker** 컨테이너 — `open-kknaks` ClaudeWorker. `python:3.12-slim` 베이스에 `pip install open-kknaks`. 호스트에서 `setup.sh` 1회 실행으로 사전에 박은 `.claude-tools/` (Linux Node.js 바이너리 + `@anthropic-ai/claude-code` npm 패키지) 를 read-only 바인드 마운트 → `PATH=/claude-tools/node/bin:/claude-tools/node_modules/.bin:...` 으로 컨테이너 안에서 `claude` CLI 실행. 인증은 `CLAUDE_CODE_OAUTH_TOKEN` env (호스트에서 `claude setup-token` 으로 1회 발급).
 
-→ docker-compose 디테일은 spec-05 §4.
+→ docker-compose 디테일은 spec-05 §4. 워커 셋업 스크립트는 `open-kknaks` repo `examples/setup.sh` 를 참조 (호스트 OS 무관, Docker 플랫폼 기준 linux/x64 또는 linux/arm64 바이너리 다운로드).
 
 ### 2.3 Anthropic SDK 의존성 제거
 
@@ -85,8 +85,8 @@ result_text = task.result
 
 ### 3.3 (현 결정) open-kknaks
 - **장점**: 비용 0, dogfooding 차별점, 큐 패턴 (재시도/스트리밍/우선순위) 빌트인, 향후 잡 추가 단순
-- **단점**: Redis + worker 운영 부담. claude CLI 인증 (host에 Pro/Max 로그인) 필요
-- **수용 가능한 이유**: docker-compose로 Redis 한 줄. claude CLI 인증은 1회. 차별점 가치 > 운영 부담
+- **단점**: Redis + worker 컨테이너 운영 부담. Claude 구독 (Pro/Max) + OAuth 토큰 1회 발급 필요
+- **수용 가능한 이유**: docker-compose 로 redis + worker 묶음. `setup.sh` 1회 + 토큰 발급 1회. 차별점 가치 > 운영 부담
 
 ---
 
@@ -132,21 +132,21 @@ async def lifespan(app):
 ### 4.3 운영 영향
 
 - **홈서버 셋업** (plan-01 M0/M8):
-  - `claude` CLI 설치 + Pro/Max 로그인 (host)
-  - docker-compose 셋업 (back + redis 컨테이너)
-  - ClaudeWorker host process (systemd unit)
+  - 호스트에서 `setup.sh` 1회 실행 — Linux Node.js + Claude Code CLI 바이너리를 `.claude-tools/` 에 박음 (호스트 OS와 무관, Docker 플랫폼 기준 linux/x64 / linux/arm64)
+  - `claude setup-token` 으로 OAuth 토큰 발급 → `.env` 의 `CLAUDE_CODE_OAUTH_TOKEN` 에 저장
+  - docker-compose 셋업 (back + redis + **worker** 모두 컨테이너) — worker 가 `.claude-tools/` 를 read-only 바인드 마운트하여 컨테이너 안에서 `claude` CLI 실행
 - **로컬 dev**:
-  - 로컬 Redis (docker run + port 46379) 또는 docker-compose dev profile
-  - claude CLI 로컬 설치
+  - 동일 패턴 — docker-compose 가 redis + worker 같이 띄움. 호스트에 `claude` CLI 설치 불요 (`.claude-tools/` 마운트로 해결)
 
 ### 4.4 위험 + 완화
 
 | 위험 | 완화 |
 |---|---|
-| claude CLI 인증 만료 | 만료 시 잡 실패 → 다음 날 재시도. 로그 monitoring 필요 (M8) |
+| OAuth 토큰 만료/회수 | 만료 시 잡 실패 → 로그 모니터링 (M8). `claude setup-token` 재발급 → `.env` 갱신 → worker 재시작 |
 | Redis 다운 | docker restart policy `unless-stopped`. 잡은 어차피 매일 1회라 30분 다운 OK |
 | open-kknaks 라이브러리 버그 (본인 OSS — 변경 잦음) | back/pyproject.toml에 버전 pin (`open-kknaks==X.Y.Z`). 업그레이드 시 사이트 검증 |
-| ClaudeWorker process 죽음 | systemd auto-restart |
+| worker 컨테이너 죽음 | docker `restart: unless-stopped` 으로 자동 재시작 |
+| `.claude-tools/` 누락 (clone 직후) | 컨테이너 부팅 실패 → `setup.sh` 재실행 안내 (runbook) |
 | 비용 0이지만 Pro/Max rate limit | 매일 1회 잡이라 한도 초과 가능성 무시 |
 
 ### 4.5 향후 확장

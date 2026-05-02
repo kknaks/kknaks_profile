@@ -1,5 +1,8 @@
 """TDD — M3 라우터 11개 통합 테스트."""
 
+import hashlib
+import hmac
+
 import pytest
 from fastapi.testclient import TestClient
 
@@ -103,20 +106,21 @@ class TestNotesSearch:
 
 class TestContents:
     def test_lists_contents(self, client):
+        # spec-06 — status: published 만 노출 (status 미명시는 default published)
         d = client.get("/api/contents").json()
         assert d["contents"]["totalCount"] >= 1
-        assert d["contents[]"][0]["id"] == "C-001"
+        assert "contents[]" in d
+        assert len(d["contents[]"]) >= 1
 
 
 class TestContentsDetail:
-    def test_extracts_concept_section(self, client):
+    def test_returns_concept_and_body(self, client):
+        # spec-06 §3.3 — concept (frontmatter 직접) + body (markdown 8섹션) 응답.
+        # C-001 mock 은 frontmatter concept 없을 수 있어 빈 list 도 OK.
         d = client.get("/api/contents/C-001").json()
-        # contents/C-001-fastapi-di.md 본문에 ## 개념 + bullet 박힘
-        assert len(d["contents.detail"]["concept"]) > 0
-
-    def test_extracts_example_section(self, client):
-        d = client.get("/api/contents/C-001").json()
-        assert len(d["contents.detail"]["example"]) > 0
+        detail = d["contents.detail"]
+        assert "concept" in detail and isinstance(detail["concept"], list)
+        assert "body" in detail and isinstance(detail["body"], str)
 
     def test_404_for_unknown_id(self, client):
         r = client.get("/api/contents/C-999")
@@ -134,3 +138,53 @@ class TestAdminReload:
         r = client.post("/admin/reload", headers={"X-Reload-Token": "secret"})
         assert r.status_code == 200
         assert r.json()["status"] == "reloaded"
+
+
+def _hmac_sig(secret: bytes, body: bytes) -> str:
+    return "sha256=" + hmac.new(secret, body, hashlib.sha256).hexdigest()
+
+
+class TestAdminReloadWebhook:
+    def test_hmac_valid_signature_passes(self, client, monkeypatch):
+        monkeypatch.setenv("GITHUB_WEBHOOK_SECRET", "wsecret")
+        body = b'{"ref":"refs/heads/main"}'
+        r = client.post(
+            "/admin/reload",
+            content=body,
+            headers={
+                "X-Hub-Signature-256": _hmac_sig(b"wsecret", body),
+                "X-GitHub-Event": "push",
+            },
+        )
+        assert r.status_code == 200
+        assert r.json()["status"] == "reloaded"
+
+    def test_hmac_invalid_signature_403(self, client, monkeypatch):
+        monkeypatch.setenv("GITHUB_WEBHOOK_SECRET", "wsecret")
+        r = client.post(
+            "/admin/reload",
+            content=b"{}",
+            headers={"X-Hub-Signature-256": "sha256=wrong"},
+        )
+        assert r.status_code == 403
+
+    def test_ping_event_returns_pong(self, client, monkeypatch):
+        monkeypatch.setenv("GITHUB_WEBHOOK_SECRET", "wsecret")
+        body = b""
+        r = client.post(
+            "/admin/reload",
+            content=body,
+            headers={
+                "X-Hub-Signature-256": _hmac_sig(b"wsecret", body),
+                "X-GitHub-Event": "ping",
+            },
+        )
+        assert r.status_code == 200
+        assert r.json()["status"] == "pong"
+
+    def test_no_secret_configured_falls_back_to_token(self, client, monkeypatch):
+        # webhook secret 안 박혀도 토큰으로 통과 가능
+        monkeypatch.delenv("GITHUB_WEBHOOK_SECRET", raising=False)
+        monkeypatch.setenv("RELOAD_TOKEN", "tok")
+        r = client.post("/admin/reload", headers={"X-Reload-Token": "tok"})
+        assert r.status_code == 200

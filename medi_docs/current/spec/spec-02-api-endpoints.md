@@ -48,6 +48,9 @@ tags: [spec, api, endpoints, i18n]
 | GET | `/api/notes/search` | `?q=...&lang=ko\|en` | `notes.recent[]` (동일 형식) | inverted index over `notes/*.md` |
 | GET | `/api/contents` | `?lang=ko\|en&limit=5` | `contents.*`, `contents[]` | `contents/*.md` (date desc) |
 | GET | `/api/contents/{id}` | `?lang=ko\|en` | `contents.detail.{...,newer,older}` | `contents/{id}.md` + 인접 항목 |
+| GET | `/assets/{path}` | (없음) | (정적 — image/*) | `persona/assets/{path}` 직접 서빙 (spec-01 §2.5) |
+
+> `/assets/*` 는 API 라우트가 아니라 FastAPI `StaticFiles` mount. `/api/` prefix 안 붙음 (이유: md frontmatter URL 필드는 `/assets/profile/me.png` 처럼 박혀 사이트 동일 origin 에서 풀려야 함).
 
 ---
 
@@ -89,7 +92,7 @@ About + Hero + Footer 연락처. 입력 = `persona/profile.md`.
     "email":      "kknaks@gmail.com",
     "github":     "github.com/kknaks",
     "linkedin":   "linkedin/in/kknaks",
-    "avatarUrl":  "https://cdn.kknaks.dev/me.jpg",
+    "avatarUrl":  "/assets/profile/me.png",
     "tagline":    "...lang에 따라 한쪽...",
     "intro":      "...lang에 따라 한쪽...",
     "intro2":     "...optional...",

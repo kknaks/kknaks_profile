@@ -6,10 +6,10 @@ role: Backend Engineer
 years: "1년차"
 location: "Seoul, KR"
 focus: "AI · Python · Infra"
-email: kknaks@example.com
+email: kknaks@gmail.com
 github: github.com/kknaks
 linkedin: linkedin/in/kknaks
-avatarUrl: https://cdn.kknaks.dev/me.jpg
+avatarUrl: /assets/profile/me.png
 tagline:
   ko: "호기심으로 시작해서, 도전으로 만들고, 개발로 풀어냅니다."
   en: "Start with curiosity, build by challenge, solve by code."
@@ -63,7 +63,7 @@ heroTerminal:
     output:
       - "Wine.Log · IOS/Android App"
 stack:
-  - Python1234124
+  - Python
   - FastAPI
   - Postgres
   - Next.js

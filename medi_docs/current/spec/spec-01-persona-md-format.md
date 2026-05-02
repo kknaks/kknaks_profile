@@ -4,9 +4,10 @@ type: spec
 title: 페르소나 md 형식 명세 — 디렉토리·frontmatter·파일명
 status: draft
 created: 2026-05-01
-updated: 2026-05-01
+updated: 2026-05-02
 sources:
   - "[[planning-01-portfolio-overview]]"
+  - "[[adr-05-content-pending-enrich]]"
 tags: [spec, persona, md, schema]
 ---
 
@@ -43,6 +44,12 @@ persona/
 │  ├─ 2026-04-30.md
 │  ├─ 2026-04-29.md
 │  └─ ...                          ← 일일 작업 로그 (잔디 잡 입력 소스)
+├─ assets/                         ← 이미지 등 정적 자산 (§2.5)
+│  ├─ profile/
+│  │  └─ me.png
+│  ├─ career/
+│  ├─ projects/
+│  └─ notes/
 ├─ activity.yaml                   ← 잡 자동 산출물 (사람 안 만짐)
 ├─ _meta.yaml                      ← 카테고리·클러스터 enum 정의
 └─ _map.md                         ← 자동 생성 인덱스 (옵시디언 진입점, 사람 안 만짐 — spec-04)
@@ -102,6 +109,35 @@ stack:    ["Python", "FastAPI"]      # 태그는 다국어 X
 
 slug는 kebab-case (영문 소문자 + 하이픈). 한글 X.
 
+### 2.5 정적 자산 (`assets/`)
+
+이미지 등 정적 파일은 `persona/assets/<category>/...` 에 둔다. md SoT 와 같은 트리 안에 박아 declarative 일관성을 유지 (frontend `public/` 분산 금지).
+
+**디렉토리 컨벤션**:
+
+| 위치 | 용도 | 예 |
+|---|---|---|
+| `assets/profile/` | profile.md 자산 | `assets/profile/me.png` |
+| `assets/career/<slug>/` | 회사별 자산 (로고·스크린샷) | `assets/career/medisolve-ai/logo.png` |
+| `assets/projects/<P-NN>/` | 프로젝트별 자산 | `assets/projects/P-01/screenshot.png` |
+| `assets/notes/<cluster>/` | 노트 다이어그램·스크린샷 | `assets/notes/py/asyncio-flow.png` |
+
+**참조 경로 (frontmatter URL 필드 / md 본문)**:
+
+`persona/` 루트 기준 절대경로로 `/assets/<category>/<file>` 박는다. 예:
+
+```yaml
+avatarUrl: /assets/profile/me.png        # frontmatter URL 필드
+```
+
+```markdown
+![asyncio flow](/assets/notes/py/asyncio-flow.png)   <!-- md 본문 -->
+```
+
+백엔드는 `persona/assets/` 를 `/assets/*` 라우트로 정적 서빙 (spec-02 §2). 프론트는 받은 URL 을 `<API_BASE>/assets/...` 또는 동일 origin 으로 그대로 박음.
+
+> 옵시디언 호환은 본 spec 시점 비-목표. 옵시디언 vault 안에서는 `/assets/...` 절대경로가 못 풀리지만, 사이트 렌더링이 1차 SoT (옵시디언은 작성 도구).
+
 ---
 
 ## 3. 카테고리별 frontmatter 스키마
@@ -122,7 +158,7 @@ focus: "AI · Python · Infra"
 email: kknaks@gmail.com
 github: github.com/kknaks
 linkedin: linkedin/in/kknaks
-avatarUrl: https://cdn.kknaks.dev/me.jpg
+avatarUrl: /assets/profile/me.png         # §2.5 컨벤션 (persona 루트 기준 절대경로)
 tagline:    { ko: "호기심으로 시작해서, 도전으로 만들고, 개발로 풀어냅니다.", en: "..." }
 intro:      { ko: "저는 새로운 것을 도전하고...", en: "..." }
 intro2:     { ko: "지금은 AI 회사에서...", en: "..." }      # optional
@@ -218,30 +254,101 @@ group: py                          # _meta.yaml/notes.clusters[].id
 
 ### 3.5 `contents/C-NNN-slug.md`
 
+**작성 모델**: 사용자가 `youtubeId` + `status: pending` 만 박은 stub 을 push → 백엔드 enrich 잡이 frontmatter (title/summary/duration/tags 등) + 본문을 자동으로 채워 `status: published` 로 commit (`adr-05`, `spec-06`).
+
+#### 사용자가 작성하는 stub (입력)
+
 ```yaml
 ---
 type: content
 id: C-005
-date: "2026.04.30"
+youtubeId: dQw4w9WgXcQ
+status: pending
+intent: |                # optional — 영상에서 강조하고 싶은 점 한 줄
+  Postgres GIN 인덱스의 jsonb 활용 시점이 핵심
+---
+```
+
+본문은 비워둔다 — 잡이 채움.
+
+**사용자 입력 — 필수**: `type`, `id`, `youtubeId`, `status` (= `"pending"`)
+**사용자 입력 — 선택**: `intent`
+
+#### 잡이 enrich 한 결과 (`status: published`)
+
+```yaml
+---
+type: content
+id: C-005
+youtubeId: dQw4w9WgXcQ
+status: published
+intent: |
+  Postgres GIN 인덱스의 jsonb 활용 시점이 핵심
+date: "2026.05.02"
 day: "Day 05"
 title:   { ko: "Postgres 인덱스 — B-tree vs GIN", en: "..." }
 summary: { ko: "인덱스 종류와 적합한 케이스...", en: "..." }
-youtubeId: dQw4w9WgXcQ
 duration: "18:42"
 speaker: kknaks
-tags: ["#postgres", "#index"]
+tags: ["#postgres", "#index", "#jsonb"]
+concept:
+  - "B-tree 는 범위 쿼리에 강함 — 정렬된 자료구조."
+  - "GIN 은 다중 값 컬럼 (jsonb, tsvector) 에 강함."
+  - "..."
+kind: "study"            # study | talk | tutorial | review
+transcript: true         # 자막 가용 여부
+enriched_at: "2026-05-02T19:30+09:00"
 ---
 
-## 개념
-- B-tree: 범위 쿼리에 강함...
-- GIN: 다중 값 컬럼(jsonb, tsvector)에 강함...
+## 개요
+주제와 왜 중요한지...
 
-## 적용 예시
-- 사내 메타 테이블에서...
+## 배경 / 사전 지식
+선수 지식·용어 정의...
+
+## 핵심 개념
+B-tree, GIN 정의 + 작동 원리...
+
+## 작동 원리
+단계별 설명...
+
+## 코드 예시
+```sql
+-- ...
 ```
 
-**필수**: `type`, `id`, `date`, `day`, `title`, `summary`, `youtubeId`
-**선택**: `duration`, `speaker`, `tags`
+## 함정·실수
+...
+
+## 베스트 프랙티스
+...
+
+## 참고
+(영상 내 명시 없음)
+```
+
+**잡이 채우는 키**: `date`, `day`, `title`, `summary`, `duration`, `speaker`, `tags`, `concept` (시안 02 영역 카드용), `kind`, `transcript`, `enriched_at`, `status` (→ `published`).
+**본문**: 8 H2 섹션 (개요 / 배경·사전 지식 / 핵심 개념 / 작동 원리 / 코드 예시 / 함정·실수 / 베스트 프랙티스 / 참고) — 시안 03 영역에 markdown 그대로 렌더 (`adr-05`, `spec-06` §3.3).
+
+#### `status` enum
+
+| 값 | 의미 | 누가 박음 |
+|---|---|---|
+| `pending` | enrich 대기 | 사용자 |
+| `published` | 잡이 enrich 완료 | 잡 |
+| `error` | enrich 실패 (재시도 필요) | 잡 |
+
+`error` 일 때 추가로 `error_reason: "..."`, `errored_at: ISO` 박힘. 사용자는 stub 의 `youtubeId` / `intent` 수정 후 `status: pending` 으로 되돌리고 push 하면 다음 잡 tick 에 재처리 (`spec-06` §7).
+
+#### 사용자 검수 흐름 (멱등)
+
+잡이 `published` 박은 후 사용자가 본문 또는 frontmatter 수정해서 push 해도, `status: published` 면 잡이 다시 덮지 않는다 (`spec-06` §8). 즉 잡 출력은 *초안*, 사용자 수정이 *최종*.
+
+#### 사이트 표시
+
+`/api/contents` 응답에 `status: published` 만 노출. `pending`/`error` 는 제외 (`spec-02` 갱신 필요 — 본 spec 시점 별개 task).
+
+상세 잡 명세는 `spec-06`.
 
 ### 3.6 `daily/YYYY-MM-DD.md`
 
@@ -355,6 +462,7 @@ notes:
 - i18n 객체에 한쪽 언어 누락 (예: `en`만 있고 `ko` 없음)
 - `notes/*.md` 본문의 `[[unknown-id]]` 위키링크 (타깃 노트 미존재)
 - `tags`/`stack` 빈 배열
+- frontmatter URL 필드 (예: `avatarUrl`) 가 `/assets/...` 컨벤션 밖 (`http://`, `https://`) — 외부 URL 허용은 하되 SoT 기조 깨짐 알림
 
 (부팅 검증 로직 자체는 spec-02 또는 별도 spec에서 명세)
 

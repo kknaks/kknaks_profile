@@ -59,30 +59,48 @@ export default async function AboutPage({
             flexWrap: "wrap",
           }}
         >
-          <div
-            style={{
-              width: 88,
-              height: 88,
-              borderRadius: "50%",
-              background: "var(--bg-2)",
-              border: "1px solid var(--line-2)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 40,
-              flexShrink: 0,
-            }}
-          >
-            <span
+          {user.avatarUrl ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={user.avatarUrl}
+              alt={`${user.name} avatar`}
+              width={88}
+              height={88}
               style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: 11,
-                color: "var(--fg-3)",
+                width: 88,
+                height: 88,
+                borderRadius: "50%",
+                border: "1px solid var(--line-2)",
+                objectFit: "cover",
+                flexShrink: 0,
+              }}
+            />
+          ) : (
+            <div
+              style={{
+                width: 88,
+                height: 88,
+                borderRadius: "50%",
+                background: "var(--bg-2)",
+                border: "1px solid var(--line-2)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 40,
+                flexShrink: 0,
               }}
             >
-              :)
-            </span>
-          </div>
+              <span
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: 11,
+                  color: "var(--fg-3)",
+                }}
+              >
+                :)
+              </span>
+            </div>
+          )}
           <div style={{ minWidth: 0 }}>
             <h1
               className="m-h1"

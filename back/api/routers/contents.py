@@ -1,12 +1,15 @@
-"""GET /api/contents, /api/contents/{id} — 스터디 영상+교안 (spec-02 §3.10-3.11)."""
-
-import re
+"""GET /api/contents, /api/contents/{id} — 스터디 영상+교안 (spec-02 §3.10-3.11, spec-06)."""
 
 from fastapi import APIRouter, HTTPException, Query
 
 from core.i18n import apply_i18n
 
 router = APIRouter()
+
+
+def _published_only(items: list[dict]) -> list[dict]:
+    """spec-06 §10 — status: published 만 사이트 노출. pending/error 는 제외."""
+    return [c for c in items if c.get("status", "published") == "published"]
 
 
 @router.get("/api/contents")
@@ -16,7 +19,7 @@ def get_contents(
 ):
     from main import get_data
 
-    items = get_data().get("contents", [])  # 이미 id desc 정렬
+    items = _published_only(get_data().get("contents", []))  # 이미 id desc 정렬
     response = {
         "contents": {
             "subtitle": {"ko": "매일 업로드 · 영상 + 교안", "en": "Daily — video + notes"},
@@ -47,15 +50,12 @@ def get_contents(
 def get_content_detail(content_id: str, lang: str = Query("ko", pattern="^(ko|en)$")):
     from main import get_data
 
-    items = get_data().get("contents", [])
+    items = _published_only(get_data().get("contents", []))
     idx = next((i for i, c in enumerate(items) if c.get("id") == content_id), None)
     if idx is None:
         raise HTTPException(404, f"content not found: {content_id}")
 
     item = items[idx]
-    body = item.get("body", "")
-    concept = _extract_section(body, "개념") or _extract_section(body, "Concept")
-    example = _extract_section(body, "적용 예시") or _extract_section(body, "Example")
 
     # items는 id desc 정렬 — index 0이 최신.
     # newer = idx-1 (더 최신), older = idx+1 (더 옛날)
@@ -73,32 +73,10 @@ def get_content_detail(content_id: str, lang: str = Query("ko", pattern="^(ko|en
             "duration": item.get("duration"),
             "speaker": item.get("speaker"),
             "tags": item.get("tags", []),
-            "concept": concept,
-            "example": example,
+            "concept": item.get("concept", []),    # 잡 출력 — 시안 02 영역 카드
+            "body": item.get("body", ""),          # 8섹션 강의 교안 markdown — 시안 03 영역
             "newer": {"id": newer["id"], "title": newer["title"]} if newer else None,
             "older": {"id": older["id"], "title": older["title"]} if older else None,
         }
     }
     return apply_i18n(response, lang)
-
-
-def _extract_section(body: str, heading_ko: str) -> list[str]:
-    """본문에서 `## {heading}` 섹션 추출 → 불릿 리스트.
-
-    spec-01 §3.5 — contents 본문 컨벤션 (## 개념, ## 적용 예시).
-    """
-    pattern = re.compile(
-        rf"^##\s+{re.escape(heading_ko)}\s*$(.*?)(?=^##\s|\Z)",
-        re.MULTILINE | re.DOTALL,
-    )
-    m = pattern.search(body or "")
-    if not m:
-        return []
-    section = m.group(1).strip()
-    # 불릿 라인만 (- 시작) 추출
-    bullets = []
-    for line in section.split("\n"):
-        line = line.strip()
-        if line.startswith("- "):
-            bullets.append(line[2:].strip())
-    return bullets

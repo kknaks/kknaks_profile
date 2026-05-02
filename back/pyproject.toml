@@ -12,6 +12,8 @@ dependencies = [
     "open-kknaks>=0.1",            # LLM 호출 — ADR-04 (Anthropic SDK 미사용)
     "redis>=5.0",                  # open-kknaks broker
     "apscheduler>=3.10",
+    "yt-dlp>=2024.12",             # YouTube 메타데이터 (content enrich 잡)
+    "youtube-transcript-api>=0.6", # YouTube 자막 (content enrich 잡)
 ]
 
 [dependency-groups]

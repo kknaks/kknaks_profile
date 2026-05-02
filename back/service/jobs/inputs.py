@@ -1,25 +1,22 @@
-"""잔디 잡 입력 4개 수집 (spec-03 §2).
-
-실 동작:
-- read_daily_narrative — daily/YYYY-MM-DD.md 본문 read
-- git_log_today — 로컬 git log (KST TZ 명시)
-
-Stub (내일 외부 모듈로 교체):
-- fetch_github_events — GitHub REST Events API (httpx + KST 변환)
-"""
+"""잔디 잡 입력 4개 수집 (spec-03 §2)."""
 
 from __future__ import annotations
 
+import logging
 import subprocess
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 import frontmatter
+import httpx
 
 import config
 
+logger = logging.getLogger("kknaks-back.inputs")
+
 REPO = Path(__file__).resolve().parent.parent.parent
 PERSONA = config.PERSONA_DIR
+KST = timezone(timedelta(hours=9))
 
 
 def read_daily_narrative(today: date) -> str | None:
@@ -65,11 +62,85 @@ def git_log_today(rel_path: str, today: date, repo_root: Path = REPO) -> list[di
     return out
 
 
-async def fetch_github_events(user: str, today: date) -> list[dict]:
-    """STUB — 내일 spec-03 §2.4 따라 실제 호출 박을 부분.
+def _to_kst_date(iso_utc: str) -> str:
+    """GitHub created_at(UTC, ...Z) → KST 날짜 (YYYY-MM-DD)."""
+    return (
+        datetime.fromisoformat(iso_utc.replace("Z", "+00:00"))
+        .astimezone(KST)
+        .date()
+        .isoformat()
+    )
 
-    Returns 내일 실제 형식: [{"repo": "...", "msg": "..."}, ...]
+
+def extract_tracked_repos(projects: list[dict]) -> set[str]:
+    """persona/projects/*.md 의 links.repo 에서 'owner/name' slug 추출.
+
+    `links.repo` 형식: `github.com/owner/name` 또는 `https://github.com/owner/name`.
+    GitHub Events API 의 `repo.name` (= 'owner/name') 과 매칭용.
     """
-    # TODO: httpx + GitHub REST API + _to_kst_date helper (spec-03 §2.4)
-    # raise NotImplementedError("GH_TOKEN env 셋업 후 spec-03 §2.4 구현")
-    return []
+    slugs: set[str] = set()
+    for proj in projects or []:
+        repo_url = (proj.get("links") or {}).get("repo", "") or ""
+        if "github.com/" not in repo_url:
+            continue
+        slug = repo_url.split("github.com/", 1)[1].rstrip("/").rstrip(".git")
+        if slug.count("/") == 1:  # owner/name 형식만
+            slugs.add(slug)
+    return slugs
+
+
+async def fetch_github_events(
+    user: str,
+    today: date,
+    token: str,
+    author_email: str | None = None,
+    tracked_repos: set[str] | None = None,
+) -> list[dict]:
+    """GitHub REST Events API → 오늘 (KST) PushEvent commits (spec-03 §2.4).
+
+    필터:
+    - author_email 박혀있으면 commit author.email 매칭 (본인 commit 만)
+    - tracked_repos 박혀있으면 그 repo slug 만 (persona/projects 등록한 레포)
+    빈 user/token 이면 skip.
+
+    Returns: [{"repo": "...", "msg": "..."}, ...]
+    """
+    if not user or not token:
+        return []
+
+    today_iso = today.isoformat()
+    try:
+        async with httpx.AsyncClient(timeout=10) as c:
+            r = await c.get(
+                f"https://api.github.com/users/{user}/events",
+                headers={
+                    "Authorization": f"Bearer {token}",
+                    "Accept": "application/vnd.github+json",
+                },
+            )
+            r.raise_for_status()
+            events = r.json()
+    except httpx.HTTPError as e:
+        logger.warning("GitHub events fetch failed for %s: %s", user, e)
+        return []
+
+    result: list[dict] = []
+    for e in events:
+        if e.get("type") != "PushEvent":
+            continue
+        if _to_kst_date(e["created_at"]) != today_iso:
+            continue
+        repo_slug = e["repo"]["name"]
+        if tracked_repos is not None and repo_slug not in tracked_repos:
+            continue
+        for commit in e.get("payload", {}).get("commits", []):
+            # distinct=False 는 이미 다른 push 에 들어간 commit (rebase/cherry-pick 중복) — 제외
+            if not commit.get("distinct", True):
+                continue
+            # author email 매칭 — 박혀있을 때만
+            if author_email:
+                commit_email = (commit.get("author") or {}).get("email", "")
+                if commit_email != author_email:
+                    continue
+            result.append({"repo": repo_slug, "msg": commit.get("message", "")})
+    return result

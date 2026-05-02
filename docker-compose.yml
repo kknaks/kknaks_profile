@@ -1,4 +1,4 @@
-# spec-05 §7 — back + redis. frontend/worker는 별도 (host process or 추후).
+# spec-05 §7 — back + redis + worker (ADR-04 §2.2).
 # 포트 컨벤션 — 4-prefix (사용자 컨벤션).
 
 services:
@@ -13,7 +13,12 @@ services:
       RUN_SCHEDULER: "1"
       JOB_GIT_PUSH_DRY_RUN: "1"              # M4 stub 단계 — 내일 0으로
       RELOAD_TOKEN: ${RELOAD_TOKEN:-changeme}
-      GH_TOKEN: ${GH_TOKEN:-}
+      GH_TOKEN: ${GH_TOKEN:-}                   # 개인 계정 PAT (legacy fallback)
+      GH_USER_PERSONAL: ${GH_USER_PERSONAL:-kknaks}
+      GH_TOKEN_PERSONAL: ${GH_TOKEN_PERSONAL:-}
+      GH_USER_COMPANY: ${GH_USER_COMPANY:-}
+      GH_TOKEN_COMPANY: ${GH_TOKEN_COMPANY:-}
+      GITHUB_WEBHOOK_SECRET: ${GITHUB_WEBHOOK_SECRET:-}
     volumes:
       - ./persona:/persona                    # read+write (잡이 activity.yaml + _map.md 갱신)
     depends_on:
@@ -34,6 +39,26 @@ services:
       interval: 5s
       timeout: 3s
       retries: 3
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    container_name: kknaks-worker
+    depends_on:
+      redis:
+        condition: service_healthy
+    environment:
+      REDIS_URL: redis://redis:6379
+      NAMESPACE: kknaks-portfolio              # content_enrich.py LLM_NAMESPACE 와 일치
+      QUEUES: default
+      CONCURRENCY: "2"
+      WORK_DIR: /tmp
+      CLAUDE_CODE_OAUTH_TOKEN: ${CLAUDE_CODE_OAUTH_TOKEN:-}
+      PATH: /claude-tools/node/bin:/claude-tools/node_modules/.bin:/usr/local/bin:/usr/bin:/bin
+    volumes:
+      - ./.claude-tools:/claude-tools:ro       # Linux Node.js + claude CLI 바이너리 (호스트에서 setup)
+    restart: unless-stopped
 
 volumes:
   redis-data:

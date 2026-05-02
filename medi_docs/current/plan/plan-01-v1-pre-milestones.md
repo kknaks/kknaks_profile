@@ -188,8 +188,9 @@ M0 셋업 ─→ M1 페르소나 시드 ─┬─→ M2 백엔드 스켈레톤 �
 
 | 작업 | 검증 |
 |---|---|
-| `docker compose up -d` (back + redis) | `docker compose ps` 둘 다 healthy |
-| systemd unit `kknaks-worker.service` (host process — claude CLI 인증 필요, ADR-04) | `systemctl status` running |
+| 호스트에서 `setup.sh` 1회 — Linux Node.js + Claude Code CLI 바이너리를 `.claude-tools/` 에 박음 (ADR-04 §2.2) | `.claude-tools/node/bin/node --version` 출력 OK |
+| `claude setup-token` 으로 OAuth 토큰 발급 → `.env` 의 `CLAUDE_CODE_OAUTH_TOKEN` 에 저장 | `cat .env \| grep CLAUDE_CODE_OAUTH_TOKEN` 값 존재 |
+| `docker compose up -d` (back + redis + **worker**) | `docker compose ps` 셋 다 healthy, worker 가 broker 큐 listen 로그 출력 |
 | nginx reverse proxy (`/api/* → 48000`, `/ → 3000`) | curl https://kknaks.dev/api/me 200 |
 | GitHub webhook → `/admin/reload` HMAC 검증 (token 방식 → HMAC 강화, advisor §4.3 nit) | 페르소나 push → 5초 내 reload 발동 |
 | HTTPS (Let's Encrypt) | https 접속 가능 |

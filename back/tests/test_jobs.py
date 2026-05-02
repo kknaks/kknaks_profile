@@ -1,5 +1,6 @@
 """TDD — M4 잡 내부 로직 (외부 API 호출은 stub이라 검증 X)."""
 
+import json
 from datetime import date
 from pathlib import Path
 
@@ -7,8 +8,30 @@ import pytest
 import yaml
 
 from service.jobs.inputs import read_daily_narrative
-from service.jobs.llm import summarize_activity
+from service.jobs.llm import (
+    _build_prompt,
+    summarize_activity,
+    validate_llm_response,
+)
 from service.jobs.upsert import upsert_activity
+
+
+class _MockTask:
+    def __init__(self, result: str):
+        self.result = result
+
+
+class _MockClient:
+    """ClaudeClient stand-in — 고정 응답 반환."""
+
+    def __init__(self, response_json: str):
+        self._response = response_json
+
+    async def submit(self, **kw) -> str:
+        return "task-id"
+
+    async def result(self, task_id: str, **kw) -> _MockTask:
+        return _MockTask(self._response)
 
 
 class TestUpsertIdempotent:
@@ -79,33 +102,87 @@ class TestUpsertIdempotent:
         assert "2026.05.01" in dates
 
 
-class TestLLMStub:
-    def test_empty_inputs_yield_null_kind(self):
-        r = summarize_activity(date(2026, 5, 1), None, [], [], [])
+class TestLLMEmpty:
+    @pytest.mark.asyncio
+    async def test_empty_inputs_yield_null_kind(self):
+        # 활동 0 — LLM 호출 skip, client 안 봄
+        r = await summarize_activity(date(2026, 5, 1), None, [], [], [], client=_MockClient(""))
         assert r["kind"] is None
         assert r["count"] == 0
+        assert r["summary"] is None
 
-    def test_count_is_sum_of_three_categories(self):
-        r = summarize_activity(
-            date(2026, 5, 1),
-            narrative="some narrative",  # narrative는 count 제외 (spec-03 §3.2)
-            notes=[{"subject": "a"}, {"subject": "b"}],
-            contents=[{"subject": "c"}],
-            commits=[{"msg": "d"}, {"msg": "e"}],
+
+class TestLLMValidate:
+    def test_kind_fallback_to_none(self):
+        # ALLOWED_KINDS 외 값 → None fallback
+        r = validate_llm_response(
+            {"kind": "rant", "summary": {"ko": "k", "en": "e"}}, expected_count=3
         )
-        assert r["count"] == 5
+        assert r["kind"] is None
+        assert r["count"] == 3
 
-    def test_kind_priority_study_over_note(self):
-        r = summarize_activity(
-            date(2026, 5, 1), None, notes=[{"subject": "n"}], contents=[{"subject": "s"}], commits=[]
+    def test_count_uses_expected_not_llm(self):
+        # LLM 응답의 count 무시, expected_count 박음 (idempotent)
+        r = validate_llm_response(
+            {"kind": "note", "count": 999, "summary": None}, expected_count=2
+        )
+        assert r["count"] == 2
+
+    def test_invalid_summary_raises(self):
+        with pytest.raises(ValueError, match="invalid_summary"):
+            validate_llm_response({"kind": "note", "summary": {"ko": "only"}}, expected_count=1)
+
+    def test_null_summary_passes(self):
+        r = validate_llm_response({"kind": None, "summary": None}, expected_count=0)
+        assert r["summary"] is None
+
+
+class TestLLMBuildPrompt:
+    def test_includes_narrative(self):
+        prompt = _build_prompt(
+            date(2026, 5, 1), narrative="오늘 한 일", notes=[], contents=[], commits=[]
+        )
+        assert "오늘 한 일" in prompt
+
+    def test_no_narrative_block_when_missing(self):
+        prompt = _build_prompt(date(2026, 5, 1), None, notes=[], contents=[], commits=[])
+        assert "미작성" in prompt
+
+    def test_bullets_default_to_no_data(self):
+        prompt = _build_prompt(date(2026, 5, 1), None, notes=[], contents=[], commits=[])
+        assert "(없음)" in prompt
+
+
+class TestLLMSummarize:
+    @pytest.mark.asyncio
+    async def test_call_with_mock_client(self):
+        mock_response = json.dumps(
+            {"kind": "study", "count": 99, "summary": {"ko": "k", "en": "e"}}
+        )
+        client = _MockClient(mock_response)
+
+        r = await summarize_activity(
+            date(2026, 5, 1),
+            narrative=None,
+            notes=[{"subject": "n"}],
+            contents=[{"subject": "c"}],
+            commits=[],
+            client=client,
         )
         assert r["kind"] == "study"
+        assert r["count"] == 2  # 실 입력 합계, LLM 응답의 99 무시
+        assert r["summary"]["ko"] == "k"
 
-    def test_returns_i18n_summary(self):
-        r = summarize_activity(
-            date(2026, 5, 1), None, notes=[], contents=[], commits=[{"msg": "c"}]
+    @pytest.mark.asyncio
+    async def test_extracts_json_from_codeblock(self):
+        # Claude 가 ```json ... ``` 박는 케이스 대응
+        mock_response = '```json\n{"kind": "note", "summary": {"ko": "k", "en": "e"}}\n```'
+        client = _MockClient(mock_response)
+
+        r = await summarize_activity(
+            date(2026, 5, 1), None, [{"subject": "n"}], [], [], client=client
         )
-        assert "ko" in r["summary"] and "en" in r["summary"]
+        assert r["kind"] == "note"
 
 
 class TestDailyNarrativeRead:

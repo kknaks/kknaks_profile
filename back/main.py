@@ -9,6 +9,7 @@ from typing import Any
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 import config
 from service.persona_loader import load_persona
@@ -57,7 +58,7 @@ async def lifespan(app: FastAPI):
 
     # APScheduler 시작 (spec-03 §1.1). 테스트에서는 RUN_SCHEDULER=0으로 skip
     if config.run_scheduler():
-        from scheduler import init_scheduler
+        from service.scheduler import init_scheduler
 
         sched = init_scheduler()
         sched.start()
@@ -110,3 +111,10 @@ app.include_router(projects.router)
 app.include_router(notes.router)
 app.include_router(contents.router)
 app.include_router(admin_reload.router)
+
+# 정적 자산 서빙 — persona/assets/<category>/... 를 /assets/* 로 노출 (spec-01 §2.5, spec-02 §2)
+app.mount(
+    "/assets",
+    StaticFiles(directory=PERSONA_DIR / "assets", check_dir=False),
+    name="assets",
+)

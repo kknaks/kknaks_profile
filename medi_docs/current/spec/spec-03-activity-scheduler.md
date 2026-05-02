@@ -397,12 +397,12 @@ async def backfill_365_days():
 
 | 키 | 용도 | 보관 |
 |---|---|---|
-| ~~`ANTHROPIC_API_KEY`~~ | ~~LLM 호출~~ — **불요** (ADR-04 — open-kknaks가 host의 claude CLI 인증 활용) | — |
+| ~~`ANTHROPIC_API_KEY`~~ | ~~LLM 호출~~ — **불요** (ADR-04 — open-kknaks worker 가 OAuth 토큰으로 claude CLI 호출) | — |
 | `GH_TOKEN` | GitHub REST + GraphQL API 인증 — **필수**. 최소 scope: `read:user`, `public_repo` (private repo 활동도 잡으려면 `repo`). 백필(§7)의 GraphQL `contributionsCollection`은 인증 필수라 anonymous 호출 불가 | systemd EnvironmentFile (`/etc/kknaks-api.env`, chmod 600) |
 | `REDIS_URL` | open-kknaks broker 접속 (ADR-04). docker-compose 내부에선 `redis://redis:6379`, host에선 `redis://localhost:46379` | docker-compose env |
 | `RELOAD_TOKEN` | webhook → /admin/reload 인증 (M8) | 동상 |
 | (SSH deploy key) | git 프로토콜 (push/fetch) — `~/.ssh/id_kknaks_profile`. **API 인증과 별개**. spec-03 §5.1 + plan-01 M0 | 파일시스템 |
-| (claude CLI 인증) | open-kknaks의 PTY가 활용 — Pro/Max 로그인 1회. host에 박힘 | `~/.claude/` (Claude Code 자체 관리) |
+| `CLAUDE_CODE_OAUTH_TOKEN` | open-kknaks worker 컨테이너가 claude CLI 호출용. 호스트에서 `claude setup-token` 1회 발급 (ADR-04 §2.2). worker 가 broker 통해 활용 — 본 잡 코드는 직접 안 봄 | docker-compose `.env` |
 
 `.env` 파일은 `.gitignore` 박음 (절대 commit X). 로컬 dev:
 ```bash
