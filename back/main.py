@@ -89,6 +89,8 @@ app.add_middleware(
         "https://profile.kknaks.cloud",
         "https://profile-api.kknaks.cloud",
     ],
+    # Vercel preview deployment 도 허용 (kknaks-profile-{hash}-kknaks-projects.vercel.app)
+    allow_origin_regex=r"https://kknaks-profile.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
