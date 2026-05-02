@@ -71,8 +71,11 @@ jobs:
             fi
             echo "::endgroup::"
 
-            echo "::group::git pull"
-            git pull --rebase origin main
+            echo "::group::git fetch + reset --hard"
+            # rebase 가 아니라 reset --hard — 호스트 working tree 가 origin 의 mirror.
+            # 잡 결과 commit 도중에 dirty 일 수 있는데, deploy 시점엔 origin 우선.
+            git fetch origin main
+            git reset --hard origin/main
             echo "::endgroup::"
 
             echo "::group::write .env"
