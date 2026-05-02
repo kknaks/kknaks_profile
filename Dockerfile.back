@@ -18,7 +18,8 @@ ENV UV_PROJECT_ENVIRONMENT=/opt/venv
 # 의존성 먼저 (Docker layer caching — pyproject 안 바뀌면 재install 안 함)
 # build context = repo root → back/ prefix 명시
 COPY back/pyproject.toml ./
-RUN uv sync --no-install-project
+RUN uv sync --no-install-project \
+    && chmod -R a+rX /opt/venv
 
 # 코드 복사 — compose 의 mount (.:/repo) 가 런타임에 덮어쓰지만 fallback 으로 박아둠
 COPY back/ .
