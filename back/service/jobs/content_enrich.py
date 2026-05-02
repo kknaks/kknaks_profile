@@ -231,20 +231,22 @@ def merge_frontmatter(
     day_index: int,
     transcript_available: bool,
 ) -> dict:
-    """사용자 입력 보존 + 잡 출력 추가 (spec-06 §4.1).
+    """잡 출력 (LLM + yt-dlp) 으로 frontmatter 채움.
 
-    setdefault — 사용자가 미리 박은 값은 덮지 않음. status/transcript/enriched_at 은 항상 갱신.
+    pending 의 frontmatter 는 hook validation 통과용 placeholder 라 가정 → LLM 응답이 항상 우선.
+    사용자가 의도적으로 박은 값을 보존하고 싶으면 published 상태에서 직접 수정 (enrich 잡은 status: pending 만 처리).
+    date/day 만 사용자 입력 보존 (사람이 정확히 박는 영역).
     """
     out = dict(user_meta)
     out.setdefault("date", today.strftime("%Y.%m.%d"))
     out.setdefault("day", f"Day {day_index:02d}")
-    out.setdefault("title", llm_resp["title"])
-    out.setdefault("summary", llm_resp["summary"])
-    out.setdefault("duration", format_duration(metadata["duration_s"]))
-    out.setdefault("speaker", metadata["channel"])
-    out.setdefault("tags", llm_resp["tags"])
-    out.setdefault("concept", llm_resp["concept"])
-    out.setdefault("kind", llm_resp["kind"])
+    out["title"] = llm_resp["title"]
+    out["summary"] = llm_resp["summary"]
+    out["duration"] = format_duration(metadata["duration_s"])
+    out["speaker"] = metadata["channel"]
+    out["tags"] = llm_resp["tags"]
+    out["concept"] = llm_resp["concept"]
+    out["kind"] = llm_resp["kind"]
     out["transcript"] = bool(transcript_available)
     out["enriched_at"] = datetime.now(KST).isoformat(timespec="seconds")
     out["status"] = "published"
