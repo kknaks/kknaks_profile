@@ -7,6 +7,7 @@ services:
       context: .
       dockerfile: Dockerfile.back
     container_name: kknaks-back
+    user: "1000:1000"                          # host kknaks uid 와 매핑 — mount file 권한 충돌 회피
     ports:
       - "48000:48000"
     environment:
