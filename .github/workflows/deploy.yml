@@ -13,6 +13,8 @@
 #   ENV_FILE        — 호스트의 .env 통째로 (multiline secret).
 #                     `.env.example` 형식으로 박되 실제 token/secret 값.
 #                     Actions 가 SSH 후 매 deploy 시 호스트의 .env 를 이 값으로 덮어씀 — SoT.
+#   GH_TOKEN        — (선택) private repo 면 clone/pull 인증 PAT.
+#                     public repo 면 안 박아도 됨 — clone 무인증.
 
 name: Deploy to homelab
 
@@ -44,7 +46,29 @@ jobs:
           port: ${{ secrets.SSH_PORT || 22 }}
           script: |
             set -euo pipefail
-            cd "/home/kknaks/kknaks_profile"
+
+            REPO_DIR=/home/kknaks/kknaks_profile
+            TOKEN="${{ secrets.GH_TOKEN }}"
+            if [ -n "$TOKEN" ]; then
+              REMOTE="https://kknaks:${TOKEN}@github.com/kknaks/kknaks_profile.git"
+            else
+              REMOTE="https://github.com/kknaks/kknaks_profile.git"
+            fi
+
+            echo "::group::ensure repo cloned (idempotent)"
+            mkdir -p "$REPO_DIR"
+            cd "$REPO_DIR"
+            if [ ! -d .git ]; then
+              # 디렉토리 안 비어있어도 동작 (init + fetch + checkout 패턴)
+              git init -b main
+              git remote add origin "$REMOTE" 2>/dev/null || git remote set-url origin "$REMOTE"
+              git fetch origin main
+              git checkout -B main origin/main
+            else
+              # 기존 repo — origin URL 만 갱신 (token 변경 시 자동 반영)
+              git remote set-url origin "$REMOTE"
+            fi
+            echo "::endgroup::"
 
             echo "::group::git pull"
             git pull --rebase origin main
