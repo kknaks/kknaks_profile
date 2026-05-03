@@ -1,14 +1,18 @@
-"""수동 호출용 dev 스크립트 — 잔디 잡 1회 실행 (cron 00:05 KST 안 기다리고 즉시 검증).
+"""수동 호출용 스크립트 — 잔디 잡 1회 실행 (cron 00:05 KST 안 기다리고 즉시 검증).
 
 target_date 미지정 → 어제 entry 박음 (spec-03 §1.1).
 
+push 정책: env `JOB_GIT_PUSH_DRY_RUN` 따름 (1=dry-run / 0=실 push).
+- 운영 (홈서버): .env 에 0 박혀있어 실 push
+- 로컬 dev: docker-compose.local.yml 가 1 강제 — main 으로 사고 push 차단
+
 전제:
-- redis + worker 컨테이너 떠있음 (`docker compose up -d redis worker`)
-- back deps 설치됨 (`cd back && uv sync`)
+- redis + worker 컨테이너 떠있음
+- back deps 설치됨
 - repo root 의 `.env` 박혀있음 (CLAUDE_CODE_OAUTH_TOKEN, GH_TOKEN_PERSONAL, GH_EMAIL_PERSONAL ...)
 
 사용법:
-    cd back && uv run python ../scripts/run_daily_activity.py
+    docker exec -w /repo/back kknaks-back uv run python ../scripts/run_daily_activity.py
 """
 
 from __future__ import annotations
@@ -48,10 +52,10 @@ logging.basicConfig(
 
 
 async def main() -> int:
-    """잡 1회 실행. dry_run_push=True 로 실 push 안 함 (daily/{date}.md 만 갱신, working tree 에 남음)."""
+    """잡 1회 실행. dry_run 정책은 env (JOB_GIT_PUSH_DRY_RUN) 따름."""
     # 호스트 스크립트는 lifespan 안 발동 → 메모리 dict 빈 상태. 잡 시작 전 explicit load.
     load_all()
-    entry = await run_daily_activity_job(dry_run_push=True)
+    entry = await run_daily_activity_job()
 
     print("\n=== daily_activity_job done ===")
     print(f"date:    {entry['date']}")
