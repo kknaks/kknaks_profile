@@ -1,13 +1,41 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { api } from "@/lib/api";
 import { DEFAULT_LANG, isLang, type Lang } from "@/lib/i18n";
+import type { MeResponse, SiteResponse } from "@/lib/types";
 
 export function PageFooter() {
   const searchParams = useSearchParams();
   const rawLang = searchParams.get("lang") ?? DEFAULT_LANG;
   const lang: Lang = isLang(rawLang) ? rawLang : DEFAULT_LANG;
-  const t = (ko: string, en: string) => (lang === "en" ? en : ko);
+
+  const [me, setMe] = useState<MeResponse | null>(null);
+  const [site, setSite] = useState<SiteResponse | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    Promise.all([api.me(lang), api.site(lang)])
+      .then(([meData, siteData]) => {
+        if (cancelled) return;
+        setMe(meData);
+        setSite(siteData);
+      })
+      .catch(() => {
+        // 네트워크 실패 시 hardcode fallback 안 함 — 빈 footer 보여줌 (md SoT 원칙).
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [lang]);
+
+  const user = me?.user;
+  const siteMeta = site?.site;
+  const files = site?.files;
+
+  const linkHref = (value: string | undefined) =>
+    value ? (value.startsWith("http") ? value : `https://${value}`) : "#";
 
   return (
     <footer
@@ -38,7 +66,8 @@ export function PageFooter() {
             }}
           >
             <span style={{ width: 8, height: 8, background: "var(--accent)", borderRadius: 2 }} />
-            kknaks<span style={{ color: "var(--fg-3)" }}>.dev</span>
+            {user?.handle ?? "kknaks"}
+            <span style={{ color: "var(--fg-3)" }}>.dev</span>
           </div>
           <p
             style={{
@@ -49,40 +78,76 @@ export function PageFooter() {
               maxWidth: 320,
             }}
           >
-            {t(
-              "홈서버에서 직접 호스팅하는 작은 포트폴리오. Next.js + Python.",
-              "A small portfolio self-hosted on my home server. Next.js + Python.",
-            )}
+            {siteMeta?.footerTagline ?? ""}
           </p>
         </div>
 
         <div>
           <div className="caps" style={{ marginBottom: 10 }}>
-            {t("연락", "Contact")}
+            {lang === "en" ? "Contact" : "연락"}
+          </div>
+          {user?.email && (
+            <a
+              href={`mailto:${user.email}`}
+              style={{
+                display: "block",
+                fontSize: 13,
+                color: "var(--fg-1)",
+                padding: "4px 0",
+                fontFamily: "var(--font-mono)",
+              }}
+            >
+              {user.email}
+            </a>
+          )}
+          {user?.github && (
+            <a
+              href={linkHref(user.github)}
+              target="_blank"
+              rel="noreferrer"
+              style={{
+                display: "block",
+                fontSize: 13,
+                color: "var(--fg-1)",
+                padding: "4px 0",
+                fontFamily: "var(--font-mono)",
+              }}
+            >
+              {user.github}
+            </a>
+          )}
+          {user?.linkedin && (
+            <a
+              href={linkHref(user.linkedin)}
+              target="_blank"
+              rel="noreferrer"
+              style={{
+                display: "block",
+                fontSize: 13,
+                color: "var(--fg-1)",
+                padding: "4px 0",
+                fontFamily: "var(--font-mono)",
+              }}
+            >
+              {user.linkedin}
+            </a>
+          )}
+        </div>
+
+        <div>
+          <div className="caps" style={{ marginBottom: 10 }}>
+            {lang === "en" ? "Files" : "자료"}
           </div>
           <a
-            href="mailto:hello@kknaks.dev"
+            href="#"
             style={{
               display: "block",
               fontSize: 13,
               color: "var(--fg-1)",
               padding: "4px 0",
-              fontFamily: "var(--font-mono)",
             }}
           >
-            hello@kknaks.dev
-          </a>
-          <a
-            href="https://github.com/kknaks"
-            style={{
-              display: "block",
-              fontSize: 13,
-              color: "var(--fg-1)",
-              padding: "4px 0",
-              fontFamily: "var(--font-mono)",
-            }}
-          >
-            github.com/kknaks
+            {files?.resumeLabel ?? ""} ↓
           </a>
           <a
             href="#"
@@ -91,52 +156,25 @@ export function PageFooter() {
               fontSize: 13,
               color: "var(--fg-1)",
               padding: "4px 0",
-              fontFamily: "var(--font-mono)",
             }}
           >
-            linkedin/in/kknaks
+            {files?.portfolioLabel ?? ""}
           </a>
         </div>
 
         <div>
           <div className="caps" style={{ marginBottom: 10 }}>
-            {t("자료", "Files")}
-          </div>
-          <a
-            href="#"
-            style={{
-              display: "block",
-              fontSize: 13,
-              color: "var(--fg-1)",
-              padding: "4px 0",
-            }}
-          >
-            {t("이력서 (PDF) ↓", "Resume (PDF) ↓")}
-          </a>
-          <a
-            href="#"
-            style={{
-              display: "block",
-              fontSize: 13,
-              color: "var(--fg-1)",
-              padding: "4px 0",
-            }}
-          >
-            {t("포트폴리오 (PDF)", "Portfolio (PDF)")}
-          </a>
-        </div>
-
-        <div>
-          <div className="caps" style={{ marginBottom: 10 }}>
-            {t("현재", "Now")}
+            {lang === "en" ? "Now" : "현재"}
           </div>
           <div
             className="mono"
             style={{ fontSize: 12, color: "var(--fg-2)", lineHeight: 1.7 }}
           >
-            <div>seoul · KST</div>
-            <div>v0.1.0 · stable</div>
-            <div style={{ color: "var(--accent)" }}>● uptime 99.4%</div>
+            {siteMeta?.location && <div>{siteMeta.location}</div>}
+            {siteMeta?.version && <div>v{siteMeta.version}</div>}
+            {siteMeta?.uptime && (
+              <div style={{ color: "var(--accent)" }}>● uptime {siteMeta.uptime}</div>
+            )}
           </div>
         </div>
       </div>
@@ -152,7 +190,7 @@ export function PageFooter() {
         }}
       >
         <span style={{ fontSize: 11, color: "var(--fg-3)" }}>
-          © 2026 kknaks · all systems nominal
+          © {siteMeta?.year ?? ""} {user?.handle ?? "kknaks"} · all systems nominal
         </span>
         <span style={{ fontSize: 11, color: "var(--fg-3)" }}>
           built with next.js + python

@@ -8,7 +8,7 @@ location: "Seoul, KR"
 focus: "AI · Python · Infra"
 email: kknaks@gmail.com
 github: github.com/kknaks
-linkedin: linkedin/in/kknaks
+linkedin: linkedin.com/in/kknaks
 avatarUrl: /assets/profile/me.png
 tagline:
   ko: "호기심으로 시작해서, 도전으로 만들고, 개발로 풀어냅니다."

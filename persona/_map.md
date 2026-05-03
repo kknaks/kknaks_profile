@@ -1,6 +1,6 @@
 # persona/_map.md
 
-> 자동 생성 (build_persona_map.py, 2026-05-03 16:53 KST). 수동 편집 X.
+> 자동 생성 (build_persona_map.py, 2026-05-03 17:51 KST). 수동 편집 X.
 
 _총 179 파일 (profile 1 / career 5 / projects 8 / notes 156 / contents 7 / daily 2)_
 
@@ -184,7 +184,7 @@ _총 179 파일 (profile 1 / career 5 / projects 8 / notes 156 / contents 7 / da
 - [[notes/2025-11-01-migration_detail]] Database Migration 상세 프로세스 (work · 2025.11.01)
 
 ## contents (총 7개)
-- [[contents/C-007-pending]] Day 07 —  (2026-05-03)
+- [[contents/C-007-pending]] Day 07 — AI 에이전트 제어의 핵심, 하네스 엔지니어링 완벽 가이드 (2026-05-03)
 - [[contents/C-006-pending]] Day 06 — 옵저버 패턴 이해하기 (2026-05-03)
 - [[contents/C-005-pending]] Day 05 — 깃헙 10만 스타 CLAUDE.md의 AI 협업 4원칙 (2026-05-03)
 - [[contents/C-004-pending]] Day 04 — Python에서 정책 패턴으로 조건문 복잡성 제거하기 (2026-05-03)
