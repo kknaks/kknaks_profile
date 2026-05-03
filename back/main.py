@@ -108,6 +108,7 @@ from api.routers import (  # noqa: E402
     contents,
     me,
     notes,
+    print as print_router,
     projects,
     site,
 )
@@ -119,6 +120,7 @@ app.include_router(career.router)
 app.include_router(projects.router)
 app.include_router(notes.router)
 app.include_router(contents.router)
+app.include_router(print_router.router)
 app.include_router(admin_reload.router)
 
 # 정적 자산 서빙 — persona/assets/<category>/... 를 /assets/* 로 노출 (spec-01 §2.5, spec-02 §2)

@@ -14,6 +14,7 @@ dependencies = [
     "apscheduler>=3.10",
     "yt-dlp>=2024.12",             # YouTube 메타데이터 (content enrich 잡)
     "youtube-transcript-api>=0.6", # YouTube 자막 (content enrich 잡)
+    "playwright>=1.49",            # PDF 생성 잡 (planning-02) — chromium headless 로 /print/* 라우트 → PDF
 ]
 
 [dependency-groups]

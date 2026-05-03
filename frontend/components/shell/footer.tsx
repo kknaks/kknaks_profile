@@ -1,12 +1,13 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { api } from "@/lib/api";
 import { DEFAULT_LANG, isLang, type Lang } from "@/lib/i18n";
 import type { MeResponse, SiteResponse } from "@/lib/types";
 
 export function PageFooter() {
+  const pathname = usePathname();
   const searchParams = useSearchParams();
   const rawLang = searchParams.get("lang") ?? DEFAULT_LANG;
   const lang: Lang = isLang(rawLang) ? rawLang : DEFAULT_LANG;
@@ -29,6 +30,8 @@ export function PageFooter() {
       cancelled = true;
     };
   }, [lang]);
+
+  if (pathname?.startsWith("/print")) return null;
 
   const user = me?.user;
   const siteMeta = site?.site;

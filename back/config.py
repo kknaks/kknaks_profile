@@ -45,6 +45,16 @@ def job_git_push_dry_run() -> bool:
     return os.environ.get("JOB_GIT_PUSH_DRY_RUN", "1") == "1"
 
 
+def frontend_url() -> str:
+    """PDF 생성 잡 (planning-02) 이 hit 할 frontend base URL.
+
+    로컬 dev: http://localhost:3000 (next dev)
+    프로덕션: https://kknaks.dev (Vercel)
+    docker (back container) Mac: host.docker.internal:3000.
+    """
+    return os.environ.get("FRONTEND_URL", "http://localhost:3000").rstrip("/")
+
+
 def github_webhook_secret() -> str | None:
     return os.environ.get("GITHUB_WEBHOOK_SECRET")
 

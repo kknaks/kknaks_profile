@@ -22,6 +22,8 @@ export function TopNav() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
+  if (pathname?.startsWith("/print")) return null;
+
   useEffect(() => {
     const onResize = () => setIsMobile(window.innerWidth <= 720);
     onResize();

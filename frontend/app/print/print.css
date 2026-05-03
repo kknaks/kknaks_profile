@@ -1,0 +1,129 @@
+/* =========================================================
+   /print/* 라우트 전용 — 라이트 톤 + A4 시트 + 터미널 그린.
+   원본: claude_design/kknaks_profile_v2.0.0/print/print.css
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+.print-root {
+  /* light palette — print-safe */
+  --bg-0:    #ffffff;
+  --bg-1:    #fafaf8;
+  --bg-2:    #f3f3f0;
+  --line-1:  #e6e6e1;
+  --line-2:  #d2d2cc;
+  --line-3:  #b9b9b3;
+  --fg-0:    #0e0e0c;
+  --fg-1:    #2a2a26;
+  --fg-2:    #555550;
+  --fg-3:    #8a8a85;
+  --accent:      oklch(0.52 0.16 152);
+  --accent-soft: oklch(0.94 0.06 152);
+  --accent-line: oklch(0.78 0.10 152);
+  --info:        oklch(0.55 0.10 240);
+
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --a4-w-portrait:  794px;
+  --a4-h-portrait:  1123px;
+  --a4-w-landscape: 1123px;
+  --a4-h-landscape: 794px;
+
+  font-family: var(--font-sans);
+  color: var(--fg-0);
+  background: #e9e9e4;
+  margin: 0;
+  padding: 0;
+  font-feature-settings: 'ss01', 'cv11', 'tnum';
+  -webkit-font-smoothing: antialiased;
+}
+
+.print-root * {
+  box-sizing: border-box;
+}
+
+.print-root .mono {
+  font-family: var(--font-mono);
+  font-feature-settings: 'tnum', 'zero';
+}
+
+.print-root .caps {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--fg-3);
+}
+
+.print-root .desk {
+  padding: 32px 0 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+
+.print-root .sheet {
+  background: var(--bg-0);
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.04),
+    0 8px 24px -4px rgba(0, 0, 0, 0.08),
+    0 2px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.print-root .sheet.portrait {
+  width: var(--a4-w-portrait);
+  height: var(--a4-h-portrait);
+}
+
+.print-root .sheet.landscape {
+  width: var(--a4-w-landscape);
+  height: var(--a4-h-landscape);
+}
+
+.print-root .cross {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  pointer-events: none;
+}
+.print-root .cross::before,
+.print-root .cross::after {
+  content: '';
+  position: absolute;
+  background: var(--line-3);
+}
+.print-root .cross::before { left: 0; top: 3px; width: 8px; height: 1px; }
+.print-root .cross::after  { left: 3px; top: 0; width: 1px; height: 8px; }
+
+.print-root .sheet-meta {
+  position: absolute;
+  bottom: 18px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 32px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--fg-3);
+  letter-spacing: 0.04em;
+}
+
+@media print {
+  .print-root {
+    background: #fff;
+  }
+  .print-root .desk {
+    padding: 0;
+    gap: 0;
+  }
+  .print-root .sheet {
+    box-shadow: none;
+    /* sheet 가 정확히 A4 (1123px) 라 page-break-after 없어도 자연 정렬.
+       sentinel 같은 형제가 :last-child 를 가로채는 케이스 방지. */
+  }
+}
