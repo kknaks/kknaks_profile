@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import logging
-from datetime import date
+from datetime import date, timedelta
 
 from open_kknaks import ClaudeClient, RedisBroker
 
@@ -28,15 +28,17 @@ async def run_daily_activity_job(
     client: ClaudeClient | None = None,
     *,
     dry_run_push: bool | None = None,
+    target_date: date | None = None,
 ) -> dict:
-    """매일 23:55 KST 발동 — spec-03 §1.
+    """매일 00:05 KST 발동 — 직전 날 entry 박음 (spec-03 §1).
 
     client 미지정 시 self-contained broker (content_enrich 와 동일 패턴).
+    target_date 미지정 시 어제 (`date.today() - 1`) — 백필/테스트용 override.
     """
-    today = date.today()
-    narrative = read_daily_narrative(today)
-    notes_changes = git_log_today("persona/notes/", today, REPO)
-    contents_changes = git_log_today("persona/contents/", today, REPO)
+    target = target_date if target_date is not None else date.today() - timedelta(days=1)
+    narrative = read_daily_narrative(target)
+    notes_changes = git_log_today("persona/notes/", target, REPO)
+    contents_changes = git_log_today("persona/contents/", target, REPO)
 
     # persona/projects 등록한 레포만 추적 (사용자 결정 — projects 파일이 SoT)
     from main import get_data
@@ -54,7 +56,7 @@ async def run_daily_activity_job(
         for acc in accounts:
             fetched = await fetch_repo_commits(
                 repo,
-                today,
+                target,
                 acc["token"],
                 author=acc["user"],
             )
@@ -75,14 +77,14 @@ async def run_daily_activity_job(
 
     try:
         resp = await summarize_activity(
-            today, narrative, notes_changes, contents_changes, commits, client
+            target, narrative, notes_changes, contents_changes, commits, client
         )
     finally:
         if own_broker is not None:
             await own_broker.close()
 
     entry = {
-        "date": today.strftime("%Y.%m.%d"),
+        "date": target.strftime("%Y.%m.%d"),
         "count": resp["count"],
         "kind": resp["kind"],
         "summary": resp["summary"],
@@ -92,7 +94,7 @@ async def run_daily_activity_job(
     dry_run = config.job_git_push_dry_run() if dry_run_push is None else dry_run_push
     commit_and_push_with_retry(
         paths=[config.PERSONA_DIR / "activity.yaml"],
-        message=f"chore: activity {today.isoformat()}",
+        message=f"chore: activity {target.isoformat()}",
         dry_run=dry_run,
     )
 

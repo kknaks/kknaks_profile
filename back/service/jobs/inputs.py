@@ -83,7 +83,10 @@ def extract_tracked_repos(projects: list[dict]) -> set[str]:
         repo_url = (proj.get("links") or {}).get("repo", "") or ""
         if "github.com/" not in repo_url:
             continue
-        slug = repo_url.split("github.com/", 1)[1].rstrip("/").rstrip(".git")
+        # rstrip(".git") 은 문자집합 — 끝글자가 g/i/t 면 의도치 않게 잘림 (e.g. wine_log → wine_lo)
+        slug = repo_url.split("github.com/", 1)[1].rstrip("/")
+        if slug.endswith(".git"):
+            slug = slug[:-4]
         if slug.count("/") == 1:  # owner/name 형식만
             slugs.add(slug)
     return slugs

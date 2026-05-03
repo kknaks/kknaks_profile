@@ -4,7 +4,7 @@ type: spec
 title: 잔디 잡 명세 — 입력 4개 + LLM 종합 + activity.yaml upsert + git push
 status: draft
 created: 2026-05-01
-updated: 2026-05-01
+updated: 2026-05-03
 sources:
   - "[[planning-01-portfolio-overview]]"
   - "[[spec-01-persona-md-format]]"
@@ -24,8 +24,11 @@ tags: [spec, scheduler, llm, activity, github]
 
 ### 1.1 스케쥴
 
-- **시각**: 매일 23:55 KST (`Asia/Seoul`)
-- **이유**: 하루 끝. 그날 커밋·노트·콘텐츠 모두 잡힘. 자정 직전이라 "오늘 = 직전 날" 혼동 없음
+- **시각**: 매일 **00:05 KST** (`Asia/Seoul`)
+- **target_date**: `date.today() - 1` (직전 날). 즉 자정 직후 발동해서 *어제* entry 박음
+- **이유**:
+  - 캘린더 day-fixed 윈도우 `[어제 00:00, 오늘 00:00)` — 하루 전체 commit 확보 + 23:55 발동 시 발생하던 23:55~24:00 5분 commit 유실 제거
+  - miss-fire (서버 down 후 coalesce 발동) 시에도 attribution 명확 — `target_date=어제` 라 발동 시각 흔들려도 entry 키 안 흔들림
 - **구현**: APScheduler `AsyncIOScheduler` + cron trigger
 
 ```python
@@ -35,13 +38,15 @@ scheduler = AsyncIOScheduler()
 scheduler.add_job(
     daily_activity_job,
     "cron",
-    hour=23, minute=55,
+    hour=0, minute=5,
     timezone="Asia/Seoul",
     id="daily-activity",
     coalesce=True,           # 백엔드 재시작 중 미스된 실행은 모아서 1번만
     max_instances=1,         # 동시 실행 차단
 )
 ```
+
+> **잡 함수 시그니처**: `run_daily_activity_job(*, target_date: date | None = None, ...)`. 미지정 시 어제. 백필(§7) / 수동 테스트는 `target_date=date(YYYY,MM,DD)` 로 override.
 
 ### 1.2 single-worker 강제 (ADR-03 §4.4 mitigation)
 

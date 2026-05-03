@@ -1,4 +1,6 @@
-"""수동 호출용 dev 스크립트 — 잔디 잡 1회 실행 (cron 23:55 안 기다리고 즉시 검증).
+"""수동 호출용 dev 스크립트 — 잔디 잡 1회 실행 (cron 00:05 KST 안 기다리고 즉시 검증).
+
+target_date 미지정 → 어제 entry 박음 (spec-03 §1.1).
 
 전제:
 - redis + worker 컨테이너 떠있음 (`docker compose up -d redis worker`)

@@ -11,10 +11,10 @@ scheduler = AsyncIOScheduler()
 
 
 def init_scheduler() -> AsyncIOScheduler:
-    """daily_activity_job을 매일 23:55 KST에 실행하도록 등록."""
+    """daily_activity_job을 매일 00:05 KST에 실행하도록 등록 (직전 날 entry 박음 — spec-03 §1.1)."""
     scheduler.add_job(
         run_daily_activity_job,
-        CronTrigger(hour=23, minute=55, timezone="Asia/Seoul"),
+        CronTrigger(hour=0, minute=5, timezone="Asia/Seoul"),
         id="daily-activity",
         coalesce=True,
         max_instances=1,
