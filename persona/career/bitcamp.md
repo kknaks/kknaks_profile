@@ -23,8 +23,16 @@ stack:
   - JavaScript
 # 이력서 PDF — 비면 PDF 미표시 (planning-02 §3.2).
 bullets:
-  ko: []
-  en: []
+  ko:
+    - "Java / Spring / MyBatis 기반 백엔드 기초 — 게시판·쇼핑몰 등 팀 프로젝트"
+    - "NCP (Naver Cloud Platform) 위 배포 실습 — VPC·로드밸런서·DB 구성"
+    - "JavaScript / jQuery 로 프론트엔드 기초 익힘"
+    - "Git·GitHub Actions 기반 형상관리·CI 기본기 정착"
+  en:
+    - "Backend foundations on Java / Spring / MyBatis — board, e-commerce team projects"
+    - "Hands-on deploy to NCP (Naver Cloud Platform) — VPC, load balancer, DB"
+    - "Frontend basics with JavaScript / jQuery"
+    - "Picked up VCS / CI fundamentals via Git and GitHub Actions"
 ---
 
 # 비트캠프 — 풀스택 엔지니어 과정

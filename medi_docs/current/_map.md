@@ -2,13 +2,14 @@
 
 > 자동 생성 (medi-validate.sh, 2026-05-03).
 
-_총 14 문서 (planning 1 / plan 1 / spec 6 / policy 0 / adr 6 / runbook 0 / test 0 / release-notes 0 / retrospective 0)_
+_총 16 문서 (planning 2 / plan 1 / spec 6 / policy 0 / adr 7 / runbook 0 / test 0 / release-notes 0 / retrospective 0)_
 
 ## 카테고리별
 
-### planning — 1
+### planning — 2
 
 - `planning-01-portfolio-overview.md`
+- `planning-02-print-pdf.md`
 
 ### plan — 1
 
@@ -23,7 +24,7 @@ _총 14 문서 (planning 1 / plan 1 / spec 6 / policy 0 / adr 6 / runbook 0 / te
 - `spec-05-monorepo-layout.md`
 - `spec-06-content-enrich-job.md`
 
-### adr — 6
+### adr — 7
 
 - `adr-01-db-less.md`
 - `adr-02-i18n-strategy.md`
@@ -31,4 +32,5 @@ _총 14 문서 (planning 1 / plan 1 / spec 6 / policy 0 / adr 6 / runbook 0 / te
 - `adr-04-llm-via-open-kknaks.md`
 - `adr-05-content-pending-enrich.md`
 - `adr-06-daily-as-grass-sot.md`
+- `adr-07-print-pdf-generation.md`
 

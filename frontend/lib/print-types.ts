@@ -10,9 +10,9 @@ export interface I18nPair<T = string> {
 
 export interface PrintProfile {
   handle: string;
-  name: string;
-  role: string;
-  location?: string;
+  name: I18nPair;
+  role: I18nPair;
+  location?: I18nPair;
   email: string;
   github?: string;
   linkedin?: string;
@@ -55,6 +55,13 @@ export interface PrintAwardItem {
   note?: I18nPair;
 }
 
+export interface PrintResumeProjectMini {
+  id: string;
+  title: I18nPair;
+  period?: string;
+  summary: I18nPair;
+}
+
 export interface PrintResumeResponse {
   profile: PrintProfile;
   about: PrintAbout;
@@ -62,6 +69,7 @@ export interface PrintResumeResponse {
   career: PrintCareerItem[];
   education: PrintEducationItem[];
   awards: PrintAwardItem[];
+  projects: PrintResumeProjectMini[];
 }
 
 export interface PrintTrouble {

@@ -48,7 +48,7 @@ tags: [spec, api, endpoints, i18n]
 | GET | `/api/notes/search` | `?q=...&lang=ko\|en` | `notes.recent[]` (동일 형식) | inverted index over `notes/*.md` |
 | GET | `/api/contents` | `?lang=ko\|en&limit=5` | `contents.*`, `contents[]` | `contents/*.md` (date desc) |
 | GET | `/api/contents/{id}` | `?lang=ko\|en` | `contents.detail.{...,newer,older}` | `contents/{id}.md` + 인접 항목 |
-| GET | `/api/print/resume` | (없음) | `profile, about, skills, career[], education[], awards[]` | `profile.md` + `career/*.md` (KO+EN 합본 — i18n 미적용) |
+| GET | `/api/print/resume` | (없음) | `profile, about, skills, career[], education[], awards[], projects[]` | `profile.md` + `career/*.md` + `projects/*.md` (visible:true 첫 4개, slim id/title/period/summary) — KO+EN 합본 i18n 미적용 |
 | GET | `/api/print/portfolio` | (없음) | `profile, projects[]` | `projects/*.md` (visible:true 만, KO+EN 합본) |
 | GET | `/assets/{path}` | (없음) | (정적 — image/*) | `persona/assets/{path}` 직접 서빙 (spec-01 §2.5) |
 
@@ -88,10 +88,10 @@ About + Hero + Footer 연락처. 입력 = `persona/profile.md`.
 {
   "user": {
     "handle":     "kknaks",
-    "name":       "이건학",
-    "role":       "Backend Engineer",
+    "name":       "이건학",                    // lang에 따라 한쪽
+    "role":       "백엔드 엔지니어",              // lang에 따라 한쪽
     "years":      "1년차",
-    "location":   "Seoul, KR",
+    "location":   "서울, 대한민국",                // lang에 따라 한쪽
     "focus":      "AI · Python · Infra",
     "email":      "kknaks@gmail.com",
     "github":     "github.com/kknaks",

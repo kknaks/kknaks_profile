@@ -56,6 +56,39 @@
   color: var(--fg-3);
 }
 
+.print-root .tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--fg-1);
+  border: 1px solid var(--line-2);
+  border-radius: 3px;
+  background: var(--bg-1);
+  white-space: nowrap;
+}
+
+.print-root .tag.accent {
+  color: var(--accent);
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+}
+
+.print-root h1,
+.print-root h2,
+.print-root h3,
+.print-root h4 {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.print-root p { margin: 0; }
+.print-root ul { margin: 0; padding-left: 18px; }
+.print-root li { margin-bottom: 4px; }
+
 .print-root .desk {
   padding: 32px 0 96px;
   display: flex;
@@ -112,6 +145,8 @@
   color: var(--fg-3);
   letter-spacing: 0.04em;
 }
+
+@page { size: A4; margin: 0; }
 
 @media print {
   .print-root {

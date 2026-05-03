@@ -1,10 +1,16 @@
 ---
 type: profile
 handle: kknaks
-name: 이건학
-role: Backend Engineer
+name:
+  ko: "이건학"
+  en: "keon-hak Lee"
+role:
+  ko: "백엔드 엔지니어"
+  en: "Backend Engineer"
 years: "1년차"
-location: "Seoul, KR"
+location:
+  ko: "서울, 대한민국"
+  en: "Seoul, KR"
 focus: "AI · Python · Infra"
 email: kknaks@gmail.com
 github: github.com/kknaks

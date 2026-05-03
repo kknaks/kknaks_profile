@@ -74,12 +74,12 @@ function CoverSheet({ data, lang }: { data: PrintPortfolioResponse; lang: Lang }
             portfolio · 2026 · {lang === "en" ? "english" : "한국어"}
           </div>
           <h1 style={{ fontSize: 84, lineHeight: 0.95, letterSpacing: "-0.04em", fontWeight: 700, margin: 0 }}>
-            {data.profile.name}
+            {pick(data.profile.name, lang)}
             <span style={{ color: "var(--accent)" }}>.</span>
           </h1>
           <div className="mono" style={{ fontSize: 14, color: "var(--fg-2)", marginTop: 16 }}>
-            {data.profile.handle} · {data.profile.role}
-            {data.profile.location ? ` · ${data.profile.location}` : ""}
+            {data.profile.handle} · {pick(data.profile.role, lang)}
+            {data.profile.location ? ` · ${pick(data.profile.location, lang)}` : ""}
           </div>
           <p style={{ fontSize: 16, lineHeight: 1.55, color: "var(--fg-1)", marginTop: 32, maxWidth: 460, fontWeight: 500 }}>
             {T(
@@ -249,7 +249,7 @@ function FullHeader({ data, lang }: { data: PrintPortfolioResponse; lang: Lang }
       <div style={{ flex: 1 }}>
         <div className="caps">portfolio · {lang === "en" ? "english" : "한국어"}</div>
         <div style={{ fontSize: 16, fontWeight: 600, marginTop: 2 }}>
-          {data.profile.name} <span style={{ color: "var(--fg-3)", fontWeight: 400 }}>· {data.profile.handle}</span>
+          {pick(data.profile.name, lang)} <span style={{ color: "var(--fg-3)", fontWeight: 400 }}>· {data.profile.handle}</span>
         </div>
       </div>
       <div className="mono" style={{ fontSize: 10, color: "var(--fg-3)", textAlign: "right" }}>

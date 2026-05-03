@@ -35,6 +35,7 @@ def get_print_resume():
     if not profile:
         raise HTTPException(status_code=503, detail="profile.md not loaded")
 
+    visible_projects = [p for p in data.get("projects", []) if p.get("visible", True)]
     return {
         "profile": _profile_block(profile),
         "about": {
@@ -56,6 +57,16 @@ def get_print_resume():
                 "is_current": c.get("is_current", False),
             }
             for c in data.get("career", [])
+        ],
+        # 06 / Projects mini — visible 첫 4개. id/title/period/summary 만 (slim).
+        "projects": [
+            {
+                "id": p.get("id"),
+                "title": p.get("title"),     # {ko, en}
+                "period": p.get("date"),     # string ("2026.05" 등)
+                "summary": p.get("summary"), # {ko, en}
+            }
+            for p in visible_projects[:4]
         ],
     }
 

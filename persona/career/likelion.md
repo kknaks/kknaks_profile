@@ -22,8 +22,16 @@ stack:
   - React
 # 이력서 PDF — 비면 PDF 미표시 (planning-02 §3.2).
 bullets:
-  ko: []
-  en: []
+  ko:
+    - "Spring + JPA 기반 백엔드 2개 팀 프로젝트 — 핵심 도메인 설계·API 구현"
+    - "Kubernetes 클러스터 직접 구성 — 배포·롤링 업데이트·롤백 실습"
+    - "ELK 스택으로 로그 수집·분석 파이프라인 구축"
+    - "React 프론트와 풀스택 협업 — API 계약·CORS·인증 흐름 정착"
+  en:
+    - "Spring + JPA backend, 2 team projects — core domain design and API implementation"
+    - "Hands-on Kubernetes cluster setup — deploy, rolling update, rollback"
+    - "Built log collection / analytics pipeline on the ELK stack"
+    - "Full-stack collaboration with a React frontend — API contracts, CORS, auth flow"
 ---
 
 # 멋쟁이사자처럼 — 풀스택 엔지니어 심화과정

@@ -23,8 +23,16 @@ stack:
   - LangChain
 # 이력서 PDF — 비면 PDF 미표시 (planning-02 §3.2).
 bullets:
-  ko: []
-  en: []
+  ko:
+    - "피부과 전용 CRM 백엔드 — Python/FastAPI/Postgres 기반 도메인 모델 설계 및 API 구현"
+    - "MSO (Multi-Site Operation) 백엔드 — 다중 의원 데이터 격리·권한·운영 기능"
+    - "사내 하네스 엔지니어링 — Claude Code 환경 설계, 자동화 룰·프리커밋·skill 정착"
+    - "LangChain 기반 의료 도메인 AI 기능 통합 — 차트 요약·문서 검색"
+  en:
+    - "Backend for a derm-focused CRM — domain modelling and API on Python/FastAPI/Postgres"
+    - "MSO (Multi-Site Operation) backend — multi-clinic data isolation, RBAC, ops features"
+    - "In-house harness engineering — Claude Code environment, automation rules, pre-commit, skills"
+    - "LangChain integration for medical-domain AI — chart summarisation, document retrieval"
 ---
 
 # 메디솔브 AI — 백엔드 개발자

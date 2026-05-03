@@ -1,13 +1,15 @@
 "use client";
 
 /**
- * PrintResume — KO + EN 두 lang 을 각각 Pager 로 렌더.
- * playwright 가 두 Pager 의 모든 sheet 를 한 PDF 안에 캡처.
- * 둘 다 ready 되면 root 에 `data-print-ready` 박아 playwright wait selector 로 사용.
+ * PrintResume — KO + EN 합본. 두 Pager 가 각자 분할 → 한 PDF 안에 KO 페이지 + EN 페이지.
+ * 원본: claude_design/kknaks_profile_v2.0.0/print/resume-sheet.jsx (lang prop 그대로)
+ *
+ * playwright wait selector: 두 Pager 모두 ready 시 [data-print-ready] sentinel.
  */
 
-import { useCallback, useState } from "react";
+import { useCallback, useState, type ReactNode } from "react";
 import { Pager, type PagerAtom } from "./pager";
+import { Monogram } from "./monogram";
 import type {
   PrintResumeResponse,
   I18nPair,
@@ -15,272 +17,24 @@ import type {
   PrintSkills,
   PrintEducationItem,
   PrintAwardItem,
+  PrintResumeProjectMini,
 } from "@/lib/print-types";
 
 type Lang = "ko" | "en";
 
-function pick<T>(val: I18nPair<T> | T | undefined, lang: Lang): T | undefined {
+const SITE = "kknaks.dev";
+
+function pick<T>(val: I18nPair<T> | T | undefined | null, lang: Lang): T | undefined {
   if (val == null) return undefined;
-  if (typeof val === "object" && val !== null && "ko" in val && "en" in val) {
+  if (typeof val === "object" && val !== null && "ko" in (val as object) && "en" in (val as object)) {
     return (val as I18nPair<T>)[lang];
   }
   return val as T;
 }
 
-function buildAtoms(data: PrintResumeResponse, lang: Lang): PagerAtom[] {
-  const atoms: PagerAtom[] = [];
+const LANG_LABEL: Record<Lang, string> = { ko: "한국어", en: "english" };
 
-  // 01 About
-  const intro = pick(data.about.intro, lang);
-  const intro2 = pick(data.about.intro2, lang);
-  atoms.push({
-    key: "about",
-    node: (
-      <section>
-        <div className="caps" style={{ marginBottom: 8 }}>01 / About</div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-          {intro && <p style={atomP}>{intro}</p>}
-          {intro2 && <p style={atomP}>{intro2}</p>}
-        </div>
-      </section>
-    ),
-  });
-
-  // 02 Career — 1 item = 1 atom
-  data.career.forEach((c, idx) => {
-    atoms.push({
-      key: `career-${idx}`,
-      node: <CareerAtom item={c} lang={lang} idx={idx} />,
-    });
-  });
-
-  // 03 Skills — primary/secondary/learning 3 tier
-  if (data.skills && (data.skills.primary?.length || data.skills.secondary?.length || data.skills.learning?.length)) {
-    atoms.push({
-      key: "skills",
-      node: <SkillsAtom skills={data.skills} lang={lang} />,
-    });
-  }
-
-  // 04 Education — 빈 배열이면 atom 자체 미생성
-  data.education.forEach((e, idx) => {
-    atoms.push({
-      key: `education-${idx}`,
-      node: <EducationAtom item={e} lang={lang} idx={idx} />,
-    });
-  });
-
-  // 05 Awards — 빈 배열이면 atom 자체 미생성
-  data.awards.forEach((a, idx) => {
-    atoms.push({
-      key: `award-${idx}`,
-      node: <AwardAtom item={a} lang={lang} idx={idx} />,
-    });
-  });
-
-  return atoms;
-}
-
-function EducationAtom({ item, lang, idx }: { item: PrintEducationItem; lang: Lang; idx: number }) {
-  const degree = pick(item.degree, lang);
-  const org = typeof item.org === "string" ? item.org : pick(item.org, lang);
-  const loc = typeof item.loc === "string" ? item.loc : pick(item.loc, lang);
-  const note = pick(item.note, lang);
-  return (
-    <div>
-      {idx === 0 && <div className="caps" style={{ marginBottom: 8 }}>04 / Education</div>}
-      <div className="mono" style={{ fontSize: 10.5, color: "var(--fg-3)" }}>{item.period}</div>
-      <h3 style={{ fontSize: 13.5, margin: "4px 0 2px", fontWeight: 600 }}>
-        {degree} <span style={{ fontSize: 11.5, color: "var(--fg-2)", fontWeight: 400 }}>· {org}</span>
-        {loc && <span className="mono" style={{ fontSize: 10, color: "var(--fg-3)", marginLeft: 6 }}>· {loc}</span>}
-      </h3>
-      {note && <p style={{ ...atomP, marginTop: 4 }}>{note}</p>}
-    </div>
-  );
-}
-
-function AwardAtom({ item, lang, idx }: { item: PrintAwardItem; lang: Lang; idx: number }) {
-  const title = pick(item.title, lang);
-  const note = pick(item.note, lang);
-  return (
-    <div>
-      {idx === 0 && <div className="caps" style={{ marginBottom: 8 }}>05 / Awards</div>}
-      <div style={{ display: "flex", alignItems: "baseline", gap: 8, flexWrap: "wrap" }}>
-        <span className="mono" style={{ fontSize: 10.5, color: "var(--fg-3)" }}>{item.period}</span>
-      </div>
-      <h3 style={{ fontSize: 13.5, margin: "4px 0 2px", fontWeight: 600 }}>{title}</h3>
-      {note && <p style={{ ...atomP, marginTop: 4 }}>{note}</p>}
-    </div>
-  );
-}
-
-function SkillsAtom({ skills, lang }: { skills: NonNullable<PrintResumeResponse["skills"]>; lang: Lang }) {
-  const tiers: Array<{ key: keyof PrintSkills; label: string }> = [
-    { key: "primary",   label: lang === "en" ? "Primary"   : "주력" },
-    { key: "secondary", label: lang === "en" ? "Working"   : "익숙" },
-    { key: "learning",  label: lang === "en" ? "Learning"  : "학습 중" },
-  ];
-  return (
-    <section>
-      <div className="caps" style={{ marginBottom: 8 }}>03 / Skills</div>
-      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-        {tiers.map(({ key, label }) => {
-          const list = skills[key];
-          if (!list || list.length === 0) return null;
-          return (
-            <div key={key} style={{ display: "grid", gridTemplateColumns: "70px 1fr", gap: 12, alignItems: "baseline" }}>
-              <div className="caps" style={{ fontSize: 9.5 }}>{label}</div>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
-                {list.map((s) => (
-                  <span
-                    key={s}
-                    className="mono"
-                    style={{
-                      fontSize: 9.5,
-                      padding: "1px 6px",
-                      border: "1px solid var(--line-2)",
-                      borderRadius: 3,
-                      color: "var(--fg-1)",
-                    }}
-                  >
-                    {s}
-                  </span>
-                ))}
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </section>
-  );
-}
-
-const atomP: React.CSSProperties = {
-  fontSize: 11.5,
-  lineHeight: 1.65,
-  color: "var(--fg-1)",
-  margin: 0,
-};
-
-function CareerAtom({ item, lang, idx }: { item: PrintCareerItem; lang: Lang; idx: number }) {
-  const title = pick(item.title, lang);
-  const org = typeof item.org === "string" ? item.org : pick(item.org, lang);
-  const loc =
-    typeof item.location === "string"
-      ? item.location
-      : pick(item.location, lang);
-  const summary = pick(item.summary, lang);
-  return (
-    <div>
-      {idx === 0 && (
-        <div className="caps" style={{ marginBottom: 8 }}>02 / Career</div>
-      )}
-      <div style={{ display: "flex", alignItems: "baseline", gap: 8, flexWrap: "wrap" }}>
-        <span className="mono" style={{ fontSize: 10.5, color: item.is_current ? "var(--accent)" : "var(--fg-3)" }}>
-          {item.period}
-        </span>
-      </div>
-      <h3 style={{ fontSize: 13.5, margin: "4px 0 2px", fontWeight: 600 }}>
-        {title} <span style={{ fontSize: 11.5, color: "var(--fg-2)", fontWeight: 400 }}>· {org}</span>
-        {loc && <span className="mono" style={{ fontSize: 10, color: "var(--fg-3)", marginLeft: 6 }}>· {loc}</span>}
-      </h3>
-      {summary && <p style={{ ...atomP, marginTop: 4 }}>{summary}</p>}
-      {item.bullets && pick(item.bullets, lang) && (pick(item.bullets, lang) as string[]).length > 0 && (
-        <ul style={{ margin: "6px 0 0", paddingLeft: 16 }}>
-          {(pick(item.bullets, lang) as string[]).map((b, bi) => (
-            <li key={bi} style={{ fontSize: 11, lineHeight: 1.55, color: "var(--fg-1)", marginBottom: 2 }}>
-              {b}
-            </li>
-          ))}
-        </ul>
-      )}
-      {item.stack.length > 0 && (
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 4, marginTop: 6 }}>
-          {item.stack.map((s) => (
-            <span
-              key={s}
-              className="mono"
-              style={{
-                fontSize: 9,
-                padding: "1px 5px",
-                border: "1px solid var(--line-2)",
-                borderRadius: 3,
-                color: "var(--fg-2)",
-              }}
-            >
-              {s}
-            </span>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
-function FullHeader({ data, lang }: { data: PrintResumeResponse; lang: Lang }) {
-  const tagline = pick(data.profile.tagline, lang);
-  const langLabel = lang === "en" ? "english" : "한국어";
-  return (
-    <div style={{ paddingBottom: 18, borderBottom: "1px solid var(--line-2)" }}>
-      <div className="caps">resume · {langLabel}</div>
-      <h1
-        style={{
-          fontSize: 32,
-          lineHeight: 1.05,
-          marginTop: 4,
-          fontWeight: 700,
-          letterSpacing: "-0.025em",
-        }}
-      >
-        {data.profile.name}{" "}
-        <span className="mono" style={{ fontSize: 14, color: "var(--fg-3)", fontWeight: 400 }}>
-          · {data.profile.handle}
-        </span>
-      </h1>
-      <div className="mono" style={{ fontSize: 11, color: "var(--fg-2)", marginTop: 4 }}>
-        {data.profile.role}
-        {data.profile.location ? ` · ${data.profile.location}` : ""}
-      </div>
-      {tagline && (
-        <p style={{ fontSize: 13, lineHeight: 1.55, color: "var(--fg-0)", fontWeight: 500, marginTop: 14 }}>
-          {tagline}
-        </p>
-      )}
-    </div>
-  );
-}
-
-function CompactHeader({ data, lang }: { data: PrintResumeResponse; lang: Lang }) {
-  const langLabel = lang === "en" ? "english" : "한국어";
-  return (
-    <div style={{ paddingBottom: 10, borderBottom: "1px solid var(--line-1)" }}>
-      <div style={{ fontSize: 14, fontWeight: 600 }}>
-        {data.profile.name} · {data.profile.handle}
-      </div>
-      <div className="caps">resume · {langLabel} · continued</div>
-    </div>
-  );
-}
-
-function Footer({ data }: { data: PrintResumeResponse }) {
-  return (
-    <div
-      style={{
-        borderTop: "1px solid var(--line-1)",
-        paddingTop: 10,
-        marginTop: 12,
-        display: "flex",
-        justifyContent: "space-between",
-        fontFamily: "var(--font-mono)",
-        fontSize: 9,
-        color: "var(--fg-3)",
-      }}
-    >
-      <span>kknaks.dev</span>
-      <span>{data.profile.email}</span>
-    </div>
-  );
-}
+const T = (lang: Lang, ko: string, en: string) => (lang === "ko" ? ko : en);
 
 export function PrintResume({ data }: { data: PrintResumeResponse }) {
   const langs: Lang[] = ["ko", "en"];
@@ -308,7 +62,7 @@ export function PrintResume({ data }: { data: PrintResumeResponse }) {
           paddingY={52}
           header={<FullHeader data={data} lang={lang} />}
           compactHeader={<CompactHeader data={data} lang={lang} />}
-          footer={<Footer data={data} />}
+          footer={<FooterRow lang={lang} />}
           atoms={buildAtoms(data, lang)}
           gap={14}
           meta={`resume · ${lang.toUpperCase()}`}
@@ -317,5 +71,589 @@ export function PrintResume({ data }: { data: PrintResumeResponse }) {
       ))}
       {allReady && <div data-print-ready aria-hidden style={{ display: "none" }} />}
     </>
+  );
+}
+
+/* =========================================================
+   Header / Footer
+   ========================================================= */
+
+function FullHeader({ data, lang }: { data: PrintResumeResponse; lang: Lang }) {
+  const name = pick(data.profile.name, lang);
+  const role = pick(data.profile.role, lang);
+  const location = pick(data.profile.location, lang);
+  const tagline = pick(data.profile.tagline, lang);
+  return (
+    <div>
+      <header
+        style={{
+          display: "flex",
+          alignItems: "flex-start",
+          gap: 18,
+          paddingBottom: 18,
+          borderBottom: "1px solid var(--line-2)",
+        }}
+      >
+        <Monogram size={44} />
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div
+            className="mono"
+            style={{
+              fontSize: 10,
+              color: "var(--fg-3)",
+              textTransform: "uppercase",
+              letterSpacing: "0.18em",
+            }}
+          >
+            resume · {LANG_LABEL[lang]}
+          </div>
+          <h1
+            style={{
+              fontSize: 32,
+              lineHeight: 1.05,
+              marginTop: 4,
+              fontWeight: 700,
+              letterSpacing: "-0.025em",
+              display: "flex",
+              alignItems: "baseline",
+              gap: 10,
+              flexWrap: "wrap",
+            }}
+          >
+            <span>{name}</span>
+            <span
+              className="mono"
+              style={{ fontSize: 14, color: "var(--fg-3)", fontWeight: 400 }}
+            >
+              · {data.profile.handle}
+            </span>
+          </h1>
+          <div className="mono" style={{ fontSize: 11, color: "var(--fg-2)", marginTop: 4 }}>
+            {role}
+            {location ? ` · ${location}` : ""}
+          </div>
+        </div>
+        <div
+          style={{
+            textAlign: "right",
+            fontFamily: "var(--font-mono)",
+            fontSize: 10,
+            lineHeight: 1.7,
+            color: "var(--fg-1)",
+          }}
+        >
+          <div>
+            <span style={{ color: "var(--fg-3)" }}>email </span>
+            {data.profile.email}
+          </div>
+          {data.profile.github && (
+            <div>
+              <span style={{ color: "var(--fg-3)" }}>github </span>
+              {data.profile.github}
+            </div>
+          )}
+          <div>
+            <span style={{ color: "var(--fg-3)" }}>site </span>
+            {SITE}
+          </div>
+        </div>
+      </header>
+      {tagline && (
+        <p
+          style={{
+            fontSize: 14,
+            lineHeight: 1.55,
+            color: "var(--fg-0)",
+            fontWeight: 500,
+            marginTop: 18,
+            letterSpacing: "-0.005em",
+          }}
+        >
+          {tagline}
+        </p>
+      )}
+    </div>
+  );
+}
+
+function CompactHeader({ data, lang }: { data: PrintResumeResponse; lang: Lang }) {
+  const name = pick(data.profile.name, lang);
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: 12,
+        paddingBottom: 10,
+        borderBottom: "1px solid var(--line-1)",
+      }}
+    >
+      <Monogram size={28} />
+      <div style={{ flex: 1 }}>
+        <div style={{ fontSize: 14, fontWeight: 600, lineHeight: 1.2 }}>
+          {name}
+          <span
+            className="mono"
+            style={{ fontSize: 10, color: "var(--fg-3)", fontWeight: 400, marginLeft: 8 }}
+          >
+            · {data.profile.handle}
+          </span>
+        </div>
+        <div
+          className="mono"
+          style={{
+            fontSize: 9.5,
+            color: "var(--fg-3)",
+            letterSpacing: "0.08em",
+            marginTop: 1,
+          }}
+        >
+          resume · {LANG_LABEL[lang]} · continued
+        </div>
+      </div>
+      <div
+        className="mono"
+        style={{ fontSize: 9.5, color: "var(--fg-3)", textAlign: "right" }}
+      >
+        {data.profile.email}
+        {data.profile.github && (
+          <>
+            <br />
+            {data.profile.github}
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function FooterRow({ lang }: { lang: Lang }) {
+  return (
+    <div
+      style={{
+        borderTop: "1px solid var(--line-1)",
+        paddingTop: 10,
+        marginTop: 12,
+        display: "flex",
+        justifyContent: "space-between",
+        fontFamily: "var(--font-mono)",
+        fontSize: 9,
+        color: "var(--fg-3)",
+      }}
+    >
+      <span>
+        {T(
+          lang,
+          "전체 프로젝트 케이스는 별도 포트폴리오 문서를 참고해주세요.",
+          "See the separate portfolio document for full project cases.",
+        )}
+      </span>
+      <span>{SITE}</span>
+    </div>
+  );
+}
+
+/* =========================================================
+   Atom builder — 빈 배열 (education/awards/projects) 이면 SectionHeadOnly atom 도 push 안 함.
+   ========================================================= */
+
+function buildAtoms(data: PrintResumeResponse, lang: Lang): PagerAtom[] {
+  const atoms: PagerAtom[] = [];
+
+  // 01 About
+  const intro = pick(data.about.intro, lang);
+  const intro2 = pick(data.about.intro2, lang);
+  const aboutParas = [intro, intro2].filter((p): p is string => Boolean(p));
+  if (aboutParas.length > 0) {
+    atoms.push({
+      key: "about",
+      node: (
+        <SectionAtom idx="01" label="About" sublabel={T(lang, "한 줄 소개", "who I am")}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
+            {aboutParas.map((p, i) => (
+              <p
+                key={i}
+                style={{ fontSize: 11.5, lineHeight: 1.65, color: "var(--fg-1)" }}
+              >
+                {p}
+              </p>
+            ))}
+          </div>
+        </SectionAtom>
+      ),
+    });
+  }
+
+  // 02 Skills
+  const skills = data.skills;
+  if (
+    skills &&
+    ((skills.primary && skills.primary.length) ||
+      (skills.secondary && skills.secondary.length) ||
+      (skills.learning && skills.learning.length))
+  ) {
+    atoms.push({
+      key: "skills",
+      node: (
+        <SectionAtom
+          idx="02"
+          label="Skills"
+          sublabel={T(lang, "주력 / 익숙 / 학습", "primary / working / learning")}
+        >
+          <SkillsGrid skills={skills} lang={lang} />
+        </SectionAtom>
+      ),
+    });
+  }
+
+  // 03 Career — head + per-item
+  if (data.career.length > 0) {
+    atoms.push({
+      key: "career-head",
+      node: (
+        <SectionHeadOnly
+          idx="03"
+          label="Career"
+          sublabel={T(lang, "언제 · 어디서", "when · where")}
+        />
+      ),
+    });
+    data.career.forEach((c, i) => {
+      atoms.push({
+        key: `career-${i}`,
+        node: <CareerItem c={c} lang={lang} />,
+      });
+    });
+  }
+
+  // 04 Education
+  if (data.education.length > 0) {
+    atoms.push({
+      key: "edu-head",
+      node: <SectionHeadOnly idx="04" label="Education" sublabel={T(lang, "학력", "school")} />,
+    });
+    data.education.forEach((e, i) => {
+      atoms.push({
+        key: `edu-${i}`,
+        node: <EducationItem e={e} lang={lang} />,
+      });
+    });
+  }
+
+  // 05 Activities
+  if (data.awards.length > 0) {
+    atoms.push({
+      key: "awards-head",
+      node: (
+        <SectionHeadOnly idx="05" label="Activities" sublabel={T(lang, "수상", "awards")} />
+      ),
+    });
+    data.awards.forEach((a, i) => {
+      atoms.push({
+        key: `awards-${i}`,
+        node: <AwardItem a={a} lang={lang} />,
+      });
+    });
+  }
+
+  // 06 Projects mini
+  if (data.projects.length > 0) {
+    atoms.push({
+      key: "projects-head",
+      node: (
+        <SectionHeadOnly
+          idx="06"
+          label="Projects"
+          sublabel={T(lang, "상세는 포트폴리오 참고", "see portfolio for detail")}
+        />
+      ),
+    });
+    for (let i = 0; i < data.projects.length; i += 2) {
+      const pair = data.projects.slice(i, i + 2);
+      atoms.push({
+        key: `projects-${i}`,
+        node: <ProjectsPair pair={pair} lang={lang} />,
+      });
+    }
+  }
+
+  return atoms;
+}
+
+/* =========================================================
+   Section heading primitives
+   ========================================================= */
+
+function SectionHeadOnly({
+  idx,
+  label,
+  sublabel,
+}: {
+  idx: string;
+  label: string;
+  sublabel?: string;
+}) {
+  return (
+    <div
+      className="mono"
+      style={{
+        fontSize: 9.5,
+        color: "var(--fg-3)",
+        textTransform: "uppercase",
+        letterSpacing: "0.16em",
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+      }}
+    >
+      <span style={{ color: "var(--accent)", flexShrink: 0 }}>{idx}</span>
+      <span style={{ color: "var(--fg-0)", fontWeight: 600, flexShrink: 0 }}>{label}</span>
+      <span style={{ flex: 1, minWidth: 12, height: 1, background: "var(--line-1)" }} />
+      {sublabel && (
+        <span style={{ color: "var(--fg-3)", flexShrink: 0, whiteSpace: "nowrap" }}>
+          {sublabel}
+        </span>
+      )}
+    </div>
+  );
+}
+
+function SectionAtom({
+  idx,
+  label,
+  sublabel,
+  children,
+}: {
+  idx: string;
+  label: string;
+  sublabel?: string;
+  children: ReactNode;
+}) {
+  return (
+    <section>
+      <div
+        className="mono"
+        style={{
+          fontSize: 9.5,
+          color: "var(--fg-3)",
+          textTransform: "uppercase",
+          letterSpacing: "0.16em",
+          marginBottom: 8,
+          display: "flex",
+          alignItems: "center",
+          gap: 8,
+        }}
+      >
+        <span style={{ color: "var(--accent)", flexShrink: 0 }}>{idx}</span>
+        <span style={{ color: "var(--fg-0)", fontWeight: 600, flexShrink: 0 }}>{label}</span>
+        <span
+          style={{ flex: 1, minWidth: 12, height: 1, background: "var(--line-1)" }}
+        />
+        {sublabel && (
+          <span style={{ color: "var(--fg-3)", flexShrink: 0, whiteSpace: "nowrap" }}>
+            {sublabel}
+          </span>
+        )}
+      </div>
+      {children}
+    </section>
+  );
+}
+
+/* =========================================================
+   02 Skills — 3-col grid
+   ========================================================= */
+
+function SkillsGrid({ skills, lang }: { skills: PrintSkills; lang: Lang }) {
+  const tiers: Array<{ key: keyof PrintSkills; labelKo: string; labelEn: string; accent: boolean }> = [
+    { key: "primary",   labelKo: "주력",        labelEn: "Primary",  accent: true },
+    { key: "secondary", labelKo: "익숙",        labelEn: "Working",  accent: false },
+    { key: "learning",  labelKo: "관심·학습 중", labelEn: "Learning", accent: false },
+  ];
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 14 }}>
+      {tiers.map(({ key, labelKo, labelEn, accent }) => {
+        const list = skills[key] ?? [];
+        return (
+          <div key={key}>
+            <div
+              className="mono"
+              style={{
+                fontSize: 10,
+                color: accent ? "var(--accent)" : "var(--fg-3)",
+                textTransform: "uppercase",
+                letterSpacing: "0.12em",
+                marginBottom: 6,
+              }}
+            >
+              // {lang === "en" ? labelEn : labelKo}
+            </div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
+              {list.map((s) => (
+                <span
+                  key={s}
+                  className={accent ? "tag accent" : "tag"}
+                  style={{ fontSize: 10 }}
+                >
+                  {s}
+                </span>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+/* =========================================================
+   03 Career — 110px 1fr 2-col
+   ========================================================= */
+
+function CareerItem({ c, lang }: { c: PrintCareerItem; lang: Lang }) {
+  const role = pick(c.title, lang);
+  const org = pick(c.org, lang);
+  const loc = pick(c.location, lang);
+  const summary = pick(c.summary, lang);
+  const bullets = pick(c.bullets, lang) as string[] | undefined;
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "110px 1fr", gap: 16 }}>
+      <div>
+        <div className="mono" style={{ fontSize: 10, color: c.is_current ? "var(--accent)" : "var(--fg-3)" }}>
+          {c.period}
+        </div>
+      </div>
+      <div>
+        <div style={{ display: "flex", alignItems: "baseline", gap: 6, flexWrap: "wrap" }}>
+          <span style={{ fontSize: 13, fontWeight: 600 }}>{role}</span>
+          {org && (
+            <>
+              <span style={{ color: "var(--fg-3)" }}>·</span>
+              <span style={{ fontSize: 12, color: "var(--fg-1)" }}>{org}</span>
+            </>
+          )}
+          {loc && (
+            <span
+              className="mono"
+              style={{ marginLeft: "auto", fontSize: 10, color: "var(--fg-3)" }}
+            >
+              {loc}
+            </span>
+          )}
+        </div>
+        {summary && (
+          <p style={{ fontSize: 11, color: "var(--fg-1)", lineHeight: 1.6, marginTop: 4 }}>
+            {summary}
+          </p>
+        )}
+        {bullets && bullets.length > 0 && (
+          <ul style={{ marginTop: 6, paddingLeft: 14, color: "var(--fg-1)" }}>
+            {bullets.map((b, j) => (
+              <li key={j} style={{ fontSize: 10.5, lineHeight: 1.55, marginBottom: 2 }}>
+                {b}
+              </li>
+            ))}
+          </ul>
+        )}
+        {c.stack.length > 0 && (
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 4, marginTop: 7 }}>
+            {c.stack.map((t) => (
+              <span key={t} className="tag" style={{ fontSize: 9.5 }}>
+                {t}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* =========================================================
+   04 Education / 05 Activities — 같은 110px 1fr
+   ========================================================= */
+
+function EducationItem({ e, lang }: { e: PrintEducationItem; lang: Lang }) {
+  const degree = pick(e.degree, lang);
+  const org = pick(e.org, lang);
+  const note = pick(e.note, lang);
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "110px 1fr", gap: 16 }}>
+      <div className="mono" style={{ fontSize: 10, color: "var(--fg-3)" }}>
+        {e.period}
+      </div>
+      <div>
+        <div style={{ fontSize: 12, fontWeight: 600 }}>
+          {degree}
+          {org && (
+            <>
+              <span style={{ color: "var(--fg-3)", fontWeight: 400 }}> · </span>
+              <span style={{ color: "var(--fg-1)", fontWeight: 400 }}>{org}</span>
+            </>
+          )}
+        </div>
+        {note && (
+          <p style={{ fontSize: 11, color: "var(--fg-2)", lineHeight: 1.55, marginTop: 4 }}>
+            {note}
+          </p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function AwardItem({ a, lang }: { a: PrintAwardItem; lang: Lang }) {
+  const title = pick(a.title, lang);
+  const note = pick(a.note, lang);
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "110px 1fr", gap: 16 }}>
+      <div className="mono" style={{ fontSize: 10, color: "var(--fg-3)" }}>
+        {a.period}
+      </div>
+      <div>
+        <div style={{ fontSize: 12, fontWeight: 600 }}>{title}</div>
+        {note && (
+          <div style={{ fontSize: 11, color: "var(--fg-2)", marginTop: 2 }}>{note}</div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* =========================================================
+   06 Projects mini — 2-col 페어 카드
+   ========================================================= */
+
+function ProjectsPair({
+  pair,
+  lang,
+}: {
+  pair: PrintResumeProjectMini[];
+  lang: Lang;
+}) {
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
+      {pair.map((p) => (
+        <div key={p.id} style={{ borderTop: "1px solid var(--line-1)", paddingTop: 7 }}>
+          <div style={{ display: "flex", alignItems: "baseline", gap: 6 }}>
+            <span className="mono" style={{ fontSize: 9, color: "var(--fg-3)" }}>
+              {p.id}
+            </span>
+            <span style={{ fontSize: 11.5, fontWeight: 600 }}>{pick(p.title, lang)}</span>
+            {p.period && (
+              <span
+                className="mono"
+                style={{ fontSize: 9, color: "var(--fg-3)", marginLeft: "auto" }}
+              >
+                {p.period}
+              </span>
+            )}
+          </div>
+          <p style={{ fontSize: 10.5, color: "var(--fg-2)", lineHeight: 1.5, marginTop: 3 }}>
+            {pick(p.summary, lang)}
+          </p>
+        </div>
+      ))}
+    </div>
   );
 }

@@ -19,8 +19,16 @@ stack:
   - Civil 3D
 # 이력서 PDF — 비면 PDF 미표시 (planning-02 §3.2).
 bullets:
-  ko: []
-  en: []
+  ko:
+    - "상수도·하수도 토목 설계 — 관망·펌프장·정수장 인프라 도면 작성"
+    - "AutoCAD / Civil 3D 기반 3D 지형 모델링·수리 검토"
+    - "다부서 협업 — 토목·기계·전기·시공 단계별 조율"
+    - "반복 설계 작업의 자동화 가능성을 보면서 프로그래밍에 입문 — 개발 전향 트리거"
+  en:
+    - "Civil engineering design for water & sewerage — pipe networks, pump stations, treatment plants"
+    - "3D terrain modelling and hydraulic review on AutoCAD / Civil 3D"
+    - "Cross-discipline coordination — civil, mechanical, electrical, construction"
+    - "Saw the automation potential in repetitive design work — the trigger for my pivot to engineering"
 ---
 
 # 도화 엔지니어링 — 토목 설계

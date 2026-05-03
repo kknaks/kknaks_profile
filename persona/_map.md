@@ -1,12 +1,12 @@
 # persona/_map.md
 
-> 자동 생성 (build_persona_map.py, 2026-05-03 18:54 KST). 수동 편집 X.
+> 자동 생성 (build_persona_map.py, 2026-05-03 22:18 KST). 수동 편집 X.
 
-_총 179 파일 (profile 1 / career 5 / projects 8 / notes 156 / contents 7 / daily 2)_
+_총 180 파일 (profile 1 / career 5 / projects 9 / notes 156 / contents 7 / daily 2)_
 
 ## profile
 
-- [[profile]] 이건학 — Backend Engineer
+- [[profile]] {'ko': '이건학', 'en': 'keon-hak Lee'} — {'ko': '백엔드 엔지니어', 'en': 'Backend Engineer'}
 
 ## career (display_order 오름차순)
 - [[career/medisolve-ai]] 메디솔브 AI (2026.02 — present)
@@ -15,10 +15,11 @@ _총 179 파일 (profile 1 / career 5 / projects 8 / notes 156 / contents 7 / da
 - [[career/bitcamp]] 비트캠프 (2024.06 — 2024.12)
 - [[career/dowha-eng]] 도화 엔지니어링 (2020.01 — 2023.12)
 
-## projects (web 1 · frontend 0 · backend 3 · mobile 3 · ai 0 · cli 1 · bot 0)
+## projects (web 1 · frontend 0 · backend 3 · mobile 4 · ai 0 · cli 1 · bot 0)
 - [[projects/kknaks-profile]] kknaks.dev (web · wip)
 - [[projects/persona-counselor]] Persona Counselor (mobile · wip)
 - [[projects/language-diary]] Language Diary (mobile · wip)
+- [[projects/study-timelapse]] Study Timelapse (mobile · wip)
 - [[projects/wine-log]] Wine Log (mobile · live)
 - [[projects/open-kknaks]] open-kknaks (cli · live)
 - [[projects/centurion-mso]] Centurion MSO (backend · wip)
