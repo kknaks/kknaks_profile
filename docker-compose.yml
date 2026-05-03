@@ -24,6 +24,8 @@ services:
       GH_EMAIL_COMPANY: ${GH_EMAIL_COMPANY:-}
       GITHUB_WEBHOOK_SECRET: ${GITHUB_WEBHOOK_SECRET:-}
       SLACK_WEBHOOK_URL: ${SLACK_WEBHOOK_URL:-}
+      # planning-02 — PDF 잡이 hit 할 frontend URL. 운영 = Vercel 정적 호스팅.
+      FRONTEND_URL: ${FRONTEND_URL:-https://kknaks.dev}
     volumes:
       - .:/repo                                # repo root 전체 (.git + persona + back + frontend) — planning-01 §3.6 mount
     working_dir: /repo/back

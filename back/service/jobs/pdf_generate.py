@@ -1,10 +1,9 @@
-"""PDF 생성 잡 — planning-02 P1.0 PoC.
+"""PDF 생성 잡 — planning-02.
 
 playwright (chromium headless) 로 frontend `/print/*` 라우트 hit → PDF 떨굼.
-출력은 `frontend/public/{name}.pdf`.
+출력은 `frontend/public/{name}.pdf` + git commit/push (spec-06 §5 공유 함수).
 
-P1.0 단계: resume 1장만 생성, push 없음 (수동 검증).
-P1.1+ 에서 portfolio 추가, P3 에서 commit_and_push_with_retry 통합.
+생성 PDF: resume.pdf (A4 portrait), portfolio.pdf (A4 landscape).
 """
 
 from __future__ import annotations
@@ -13,6 +12,7 @@ import logging
 from pathlib import Path
 
 import config
+from service.jobs.git_push import commit_and_push_with_retry
 
 logger = logging.getLogger("kknaks-back.pdf-generate")
 
@@ -65,8 +65,18 @@ async def render_pdf(route: str, output_name: str, *, landscape: bool = False) -
     return output_path
 
 
-async def run_pdf_generate_job() -> int:
-    """resume.pdf (A4 portrait) + portfolio.pdf (A4 landscape) 둘 다 생성."""
-    await render_pdf("/print/resume", "resume.pdf", landscape=False)
-    await render_pdf("/print/portfolio", "portfolio.pdf", landscape=True)
+async def run_pdf_generate_job(*, dry_run_push: bool | None = None) -> int:
+    """resume.pdf + portfolio.pdf 생성 → git commit/push (idempotent — diff 없으면 skip).
+
+    Returns 생성 시도한 PDF 개수 (push 여부와 무관).
+    """
+    resume_path = await render_pdf("/print/resume", "resume.pdf", landscape=False)
+    portfolio_path = await render_pdf("/print/portfolio", "portfolio.pdf", landscape=True)
+
+    dry_run = config.job_git_push_dry_run() if dry_run_push is None else dry_run_push
+    commit_and_push_with_retry(
+        paths=[resume_path, portfolio_path],
+        message="chore: regen resume.pdf + portfolio.pdf",
+        dry_run=dry_run,
+    )
     return 2

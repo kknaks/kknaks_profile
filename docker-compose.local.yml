@@ -29,6 +29,9 @@ services:
       GH_EMAIL_COMPANY: ${GH_EMAIL_COMPANY:-}
       GITHUB_WEBHOOK_SECRET: ${GITHUB_WEBHOOK_SECRET:-}
       SLACK_WEBHOOK_URL: ${SLACK_WEBHOOK_URL:-}
+      # planning-02 — PDF 잡이 hit 할 frontend URL.
+      # Mac docker → host.docker.internal:3000 (host 의 next dev). Linux 라면 host-gateway alias 필요.
+      FRONTEND_URL: ${FRONTEND_URL:-http://host.docker.internal:3000}
     volumes:
       - .:/repo
     working_dir: /repo/back

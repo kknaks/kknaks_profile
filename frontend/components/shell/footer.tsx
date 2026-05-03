@@ -142,7 +142,9 @@ export function PageFooter() {
             {lang === "en" ? "Files" : "자료"}
           </div>
           <a
-            href="#"
+            href="/resume.pdf"
+            target="_blank"
+            rel="noreferrer"
             style={{
               display: "block",
               fontSize: 13,
@@ -153,7 +155,9 @@ export function PageFooter() {
             {files?.resumeLabel ?? ""} ↓
           </a>
           <a
-            href="#"
+            href="/portfolio.pdf"
+            target="_blank"
+            rel="noreferrer"
             style={{
               display: "block",
               fontSize: 13,

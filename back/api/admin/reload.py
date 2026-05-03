@@ -113,8 +113,11 @@ async def reload(
 
     # enrich 잡 — background (LLM 호출 60-120s 걸림 → GitHub webhook 10s timeout 회피)
     background_tasks.add_task(_run_enrich_safe)
+    # PDF 잡 — background (playwright chromium 5-10s + commit/push)
+    # idempotent — commit_and_push_with_retry 가 diff 없으면 skip (planning-02 §5).
+    background_tasks.add_task(_run_pdf_safe)
 
-    return {"status": "reloaded", "enrich": "queued"}
+    return {"status": "reloaded", "enrich": "queued", "pdf": "queued"}
 
 
 async def _run_enrich_safe() -> None:
@@ -127,3 +130,14 @@ async def _run_enrich_safe() -> None:
             logger.info("content enrich done: %d processed", n)
     except Exception as e:
         logger.exception("content enrich failed: %s", e)
+
+
+async def _run_pdf_safe() -> None:
+    """background task — PDF 생성 + auto push. exception silently swallow."""
+    from service.jobs.pdf_generate import run_pdf_generate_job
+
+    try:
+        n = await run_pdf_generate_job()
+        logger.info("pdf generate done: %d rendered", n)
+    except Exception as e:
+        logger.exception("pdf generate failed: %s", e)

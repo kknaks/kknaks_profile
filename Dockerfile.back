@@ -21,6 +21,10 @@ COPY back/pyproject.toml ./
 RUN uv sync --no-install-project \
     && chmod -R a+rX /opt/venv
 
+# playwright chromium + system deps (planning-02 — PDF 생성 잡)
+# --with-deps 가 chromium 실행에 필요한 OS 라이브러리 (libnss, libatk 등) 자동 설치.
+RUN UV_PROJECT_ENVIRONMENT=/opt/venv uv run playwright install --with-deps chromium
+
 # 코드 복사 — compose 의 mount (.:/repo) 가 런타임에 덮어쓰지만 fallback 으로 박아둠
 COPY back/ .
 

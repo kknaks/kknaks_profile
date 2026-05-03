@@ -30,9 +30,10 @@ logging.basicConfig(
 
 
 async def main() -> int:
-    n = await run_pdf_generate_job()
+    """dry_run_push=True 강제 — 수동 dev 실행은 push 없이 working tree 에만 PDF 떨굼."""
+    n = await run_pdf_generate_job(dry_run_push=True)
     print(f"\n=== pdf_generate done: rendered={n} ===")
-    print("frontend/public/resume.pdf 확인 — 브라우저로 열어서 PDF 정상인지 검증.")
+    print("frontend/public/{resume,portfolio}.pdf 확인 — 브라우저로 열어서 PDF 정상인지 검증.")
     return 0
 
 
