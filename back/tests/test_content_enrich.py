@@ -196,7 +196,9 @@ class TestMergeFrontmatter:
         assert out["intent"] == "강조점"
         assert out["status"] == "published"
 
-    def test_setdefault_does_not_overwrite_user_title(self):
+    def test_llm_title_overrides_user_stub(self):
+        # commit df677fa 이후 정책 — LLM 응답이 user stub 갈아엎음 (setdefault → assign).
+        # user 가 박은 값 보존하려면 enrich 후 published 상태에서 별도 수정.
         user = {
             "id": "C-005", "type": "content", "youtubeId": "abc", "status": "pending",
             "title": {"ko": "USER", "en": "USER"},
@@ -209,7 +211,7 @@ class TestMergeFrontmatter:
         meta = {"duration_s": 60, "channel": "ch"}
 
         out = merge_frontmatter(user, llm, meta, date(2026, 5, 2), day_index=1, transcript_available=False)
-        assert out["title"]["ko"] == "USER"
+        assert out["title"]["ko"] == "LLM"
 
     def test_clears_error_fields_on_republish(self):
         user = {
