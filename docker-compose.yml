@@ -23,6 +23,7 @@ services:
       GH_TOKEN_COMPANY: ${GH_TOKEN_COMPANY:-}
       GH_EMAIL_COMPANY: ${GH_EMAIL_COMPANY:-}
       GITHUB_WEBHOOK_SECRET: ${GITHUB_WEBHOOK_SECRET:-}
+      SLACK_WEBHOOK_URL: ${SLACK_WEBHOOK_URL:-}
     volumes:
       - .:/repo                                # repo root 전체 (.git + persona + back + frontend) — planning-01 §3.6 mount
     working_dir: /repo/back

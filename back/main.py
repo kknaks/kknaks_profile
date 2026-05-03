@@ -7,6 +7,12 @@ import os
 from contextlib import asynccontextmanager
 from typing import Any
 
+# kknaks-back.* 로거가 컨테이너 stdout 으로 흐르게 — uvicorn 기본 설정만으론 묻힘
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s %(name)s %(levelname)s %(message)s",
+)
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles

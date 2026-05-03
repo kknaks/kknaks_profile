@@ -19,6 +19,7 @@ from service.jobs.inputs import (
 )
 from service.jobs.llm import summarize_daily
 from service.jobs.upsert import write_daily
+from service.notify import notify_slack
 
 logger = logging.getLogger("kknaks-back.scheduler")
 
@@ -37,21 +38,40 @@ async def run_daily_activity_job(
     target_date 미지정 시 어제 (`date.today() - 1`) — 백필/테스트용 override.
     """
     target = target_date if target_date is not None else date.today() - timedelta(days=1)
+    target_iso = target.isoformat()
 
     # spec-03 §1.3 — 본인 작성 (auto:false 또는 미박음) 우선. 잡 skip.
     existing = read_existing_daily(target)
     if existing and not existing.get("auto"):
         logger.info(
             "daily/%s.md 본인 작성 (auto=%r) — 잡 skip",
-            target.isoformat(),
+            target_iso,
             existing.get("auto"),
         )
+        await notify_slack(f":raised_hand: 잔디 잡 skip — daily/{target_iso}.md 본인 작성")
         return {
             "date": target.strftime("%Y.%m.%d"),
             "skipped": True,
             "reason": "user_authored",
         }
 
+    try:
+        return await _do_run_daily_activity_job(target, client, dry_run_push)
+    except Exception as e:
+        logger.exception("daily_activity_job failed for target=%s", target_iso)
+        await notify_slack(
+            f":x: 잔디 잡 실패 — daily/{target_iso}\n"
+            f"`{type(e).__name__}: {str(e)[:300]}`"
+        )
+        raise
+
+
+async def _do_run_daily_activity_job(
+    target: date,
+    client: ClaudeClient | None,
+    dry_run_push: bool | None,
+) -> dict:
+    """잡 본체 — 호출자 (run_daily_activity_job) 가 try/except 로 감쌈."""
     notes_changes = read_changed_files_today("persona/notes/", target, REPO)
     contents_changes = read_changed_files_today("persona/contents/", target, REPO, max_chars_per_file=2048)
 
@@ -122,4 +142,13 @@ async def run_daily_activity_job(
         "summary": resp.get("summary"),
     }
     logger.info("daily_activity_job done: %s", entry)
+
+    summary_ko = (resp.get("summary") or {}).get("ko") or "(활동 없음)"
+    push_status = "dry-run" if dry_run else "pushed"
+    await notify_slack(
+        f":seedling: 잔디 잡 — daily/{target.isoformat()} ({push_status})\n"
+        f"counts: commit={counts['commit']} note={counts['note']} study={counts['study']}\n"
+        f"{summary_ko}"
+    )
+
     return entry
