@@ -8,7 +8,14 @@
 
 import { useCallback, useState } from "react";
 import { Pager, type PagerAtom } from "./pager";
-import type { PrintResumeResponse, I18nPair, PrintCareerItem } from "@/lib/print-types";
+import type {
+  PrintResumeResponse,
+  I18nPair,
+  PrintCareerItem,
+  PrintSkills,
+  PrintEducationItem,
+  PrintAwardItem,
+} from "@/lib/print-types";
 
 type Lang = "ko" | "en";
 
@@ -47,7 +54,105 @@ function buildAtoms(data: PrintResumeResponse, lang: Lang): PagerAtom[] {
     });
   });
 
+  // 03 Skills — primary/secondary/learning 3 tier
+  if (data.skills && (data.skills.primary?.length || data.skills.secondary?.length || data.skills.learning?.length)) {
+    atoms.push({
+      key: "skills",
+      node: <SkillsAtom skills={data.skills} lang={lang} />,
+    });
+  }
+
+  // 04 Education — 빈 배열이면 atom 자체 미생성
+  data.education.forEach((e, idx) => {
+    atoms.push({
+      key: `education-${idx}`,
+      node: <EducationAtom item={e} lang={lang} idx={idx} />,
+    });
+  });
+
+  // 05 Awards — 빈 배열이면 atom 자체 미생성
+  data.awards.forEach((a, idx) => {
+    atoms.push({
+      key: `award-${idx}`,
+      node: <AwardAtom item={a} lang={lang} idx={idx} />,
+    });
+  });
+
   return atoms;
+}
+
+function EducationAtom({ item, lang, idx }: { item: PrintEducationItem; lang: Lang; idx: number }) {
+  const degree = pick(item.degree, lang);
+  const org = typeof item.org === "string" ? item.org : pick(item.org, lang);
+  const loc = typeof item.loc === "string" ? item.loc : pick(item.loc, lang);
+  const note = pick(item.note, lang);
+  return (
+    <div>
+      {idx === 0 && <div className="caps" style={{ marginBottom: 8 }}>04 / Education</div>}
+      <div className="mono" style={{ fontSize: 10.5, color: "var(--fg-3)" }}>{item.period}</div>
+      <h3 style={{ fontSize: 13.5, margin: "4px 0 2px", fontWeight: 600 }}>
+        {degree} <span style={{ fontSize: 11.5, color: "var(--fg-2)", fontWeight: 400 }}>· {org}</span>
+        {loc && <span className="mono" style={{ fontSize: 10, color: "var(--fg-3)", marginLeft: 6 }}>· {loc}</span>}
+      </h3>
+      {note && <p style={{ ...atomP, marginTop: 4 }}>{note}</p>}
+    </div>
+  );
+}
+
+function AwardAtom({ item, lang, idx }: { item: PrintAwardItem; lang: Lang; idx: number }) {
+  const title = pick(item.title, lang);
+  const note = pick(item.note, lang);
+  return (
+    <div>
+      {idx === 0 && <div className="caps" style={{ marginBottom: 8 }}>05 / Awards</div>}
+      <div style={{ display: "flex", alignItems: "baseline", gap: 8, flexWrap: "wrap" }}>
+        <span className="mono" style={{ fontSize: 10.5, color: "var(--fg-3)" }}>{item.period}</span>
+      </div>
+      <h3 style={{ fontSize: 13.5, margin: "4px 0 2px", fontWeight: 600 }}>{title}</h3>
+      {note && <p style={{ ...atomP, marginTop: 4 }}>{note}</p>}
+    </div>
+  );
+}
+
+function SkillsAtom({ skills, lang }: { skills: NonNullable<PrintResumeResponse["skills"]>; lang: Lang }) {
+  const tiers: Array<{ key: keyof PrintSkills; label: string }> = [
+    { key: "primary",   label: lang === "en" ? "Primary"   : "주력" },
+    { key: "secondary", label: lang === "en" ? "Working"   : "익숙" },
+    { key: "learning",  label: lang === "en" ? "Learning"  : "학습 중" },
+  ];
+  return (
+    <section>
+      <div className="caps" style={{ marginBottom: 8 }}>03 / Skills</div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        {tiers.map(({ key, label }) => {
+          const list = skills[key];
+          if (!list || list.length === 0) return null;
+          return (
+            <div key={key} style={{ display: "grid", gridTemplateColumns: "70px 1fr", gap: 12, alignItems: "baseline" }}>
+              <div className="caps" style={{ fontSize: 9.5 }}>{label}</div>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
+                {list.map((s) => (
+                  <span
+                    key={s}
+                    className="mono"
+                    style={{
+                      fontSize: 9.5,
+                      padding: "1px 6px",
+                      border: "1px solid var(--line-2)",
+                      borderRadius: 3,
+                      color: "var(--fg-1)",
+                    }}
+                  >
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
 }
 
 const atomP: React.CSSProperties = {
@@ -80,6 +185,15 @@ function CareerAtom({ item, lang, idx }: { item: PrintCareerItem; lang: Lang; id
         {loc && <span className="mono" style={{ fontSize: 10, color: "var(--fg-3)", marginLeft: 6 }}>· {loc}</span>}
       </h3>
       {summary && <p style={{ ...atomP, marginTop: 4 }}>{summary}</p>}
+      {item.bullets && pick(item.bullets, lang) && (pick(item.bullets, lang) as string[]).length > 0 && (
+        <ul style={{ margin: "6px 0 0", paddingLeft: 16 }}>
+          {(pick(item.bullets, lang) as string[]).map((b, bi) => (
+            <li key={bi} style={{ fontSize: 11, lineHeight: 1.55, color: "var(--fg-1)", marginBottom: 2 }}>
+              {b}
+            </li>
+          ))}
+        </ul>
+      )}
       {item.stack.length > 0 && (
         <div style={{ display: "flex", flexWrap: "wrap", gap: 4, marginTop: 6 }}>
           {item.stack.map((s) => (

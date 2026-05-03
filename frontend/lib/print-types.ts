@@ -24,6 +24,12 @@ export interface PrintAbout {
   intro2?: I18nPair;
 }
 
+export interface PrintSkills {
+  primary?: string[];
+  secondary?: string[];
+  learning?: string[];
+}
+
 export interface PrintCareerItem {
   period: string;
   title: I18nPair;
@@ -31,11 +37,59 @@ export interface PrintCareerItem {
   location?: I18nPair | string;
   summary: I18nPair;
   stack: string[];
+  bullets?: I18nPair<string[]>;
   is_current: boolean;
+}
+
+export interface PrintEducationItem {
+  period: string;
+  degree: I18nPair;
+  org: I18nPair | string;
+  loc?: I18nPair | string;
+  note?: I18nPair;
+}
+
+export interface PrintAwardItem {
+  period: string;
+  title: I18nPair;
+  note?: I18nPair;
 }
 
 export interface PrintResumeResponse {
   profile: PrintProfile;
   about: PrintAbout;
+  skills?: PrintSkills;
   career: PrintCareerItem[];
+  education: PrintEducationItem[];
+  awards: PrintAwardItem[];
+}
+
+export interface PrintTrouble {
+  when: string;
+  title: I18nPair;
+  cause: I18nPair;
+  fix: I18nPair;
+}
+
+export interface PrintProjectItem {
+  id: string;
+  code?: string;
+  title: I18nPair;
+  summary: I18nPair;
+  category: string;
+  status: "wip" | "live" | "archived" | string;
+  date?: string;
+  stack: string[];
+  links: { repo?: string; live?: string };
+  thumbnail?: string;
+  problem?: I18nPair;
+  approach?: I18nPair<string[]>;
+  impact?: I18nPair<string[]>;
+  learnings?: I18nPair<string[]>;
+  troubles: PrintTrouble[];
+}
+
+export interface PrintPortfolioResponse {
+  profile: PrintProfile;
+  projects: PrintProjectItem[];
 }

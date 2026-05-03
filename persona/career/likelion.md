@@ -20,6 +20,10 @@ stack:
   - Postgres
   - Kubernetes
   - React
+# 이력서 PDF — 비면 PDF 미표시 (planning-02 §3.2).
+bullets:
+  ko: []
+  en: []
 ---
 
 # 멋쟁이사자처럼 — 풀스택 엔지니어 심화과정

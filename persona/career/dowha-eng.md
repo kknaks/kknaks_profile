@@ -17,6 +17,10 @@ summary:
 stack:
   - AutoCAD
   - Civil 3D
+# 이력서 PDF — 비면 PDF 미표시 (planning-02 §3.2).
+bullets:
+  ko: []
+  en: []
 ---
 
 # 도화 엔지니어링 — 토목 설계

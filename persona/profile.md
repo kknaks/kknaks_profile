@@ -78,6 +78,17 @@ stack:
   - Docker
   - Linux
 stackShort: "Next.js · Python"
+# 이력서 PDF 용 — 사이트 stack[] 과 분리. tier 별 분류 (planning-02 §3.1).
+skills:
+  primary:   [Python, FastAPI, Postgres, pgvector, Docker]
+  secondary: [Next.js, TypeScript, React Native, Redis, LangGraph, Linux, AWS]
+  learning:  [Kubernetes, Kafka, Spring Boot, Airflow]
+# 이력서 PDF 04 / Education — 빈 배열이면 PDF atom 미표시.
+# 형식: { period, degree: {ko, en}, org: {ko, en}, loc: {ko, en}, note: {ko, en} }
+education: []
+# 이력서 PDF 05 / Awards — 빈 배열이면 PDF atom 미표시.
+# 형식: { period, title: {ko, en}, note: {ko, en} }
+awards: []
 cards:
   - title:
       ko: "지금 일하는 곳"

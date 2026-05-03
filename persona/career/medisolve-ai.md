@@ -21,6 +21,10 @@ stack:
   - Postgres
   - Vite
   - LangChain
+# 이력서 PDF — 비면 PDF 미표시 (planning-02 §3.2).
+bullets:
+  ko: []
+  en: []
 ---
 
 # 메디솔브 AI — 백엔드 개발자

@@ -48,7 +48,11 @@ tags: [spec, api, endpoints, i18n]
 | GET | `/api/notes/search` | `?q=...&lang=ko\|en` | `notes.recent[]` (동일 형식) | inverted index over `notes/*.md` |
 | GET | `/api/contents` | `?lang=ko\|en&limit=5` | `contents.*`, `contents[]` | `contents/*.md` (date desc) |
 | GET | `/api/contents/{id}` | `?lang=ko\|en` | `contents.detail.{...,newer,older}` | `contents/{id}.md` + 인접 항목 |
+| GET | `/api/print/resume` | (없음) | `profile, about, skills, career[], education[], awards[]` | `profile.md` + `career/*.md` (KO+EN 합본 — i18n 미적용) |
+| GET | `/api/print/portfolio` | (없음) | `profile, projects[]` | `projects/*.md` (visible:true 만, KO+EN 합본) |
 | GET | `/assets/{path}` | (없음) | (정적 — image/*) | `persona/assets/{path}` 직접 서빙 (spec-01 §2.5) |
+
+> `/api/print/*` 는 사이트 API 와 분리 (planning-02 §4) — KO+EN 합본 PDF 라 i18n 미적용 raw `{ko, en}` 객체 그대로 응답. `?lang=` 무시.
 
 > `/assets/*` 는 API 라우트가 아니라 FastAPI `StaticFiles` mount. `/api/` prefix 안 붙음 (이유: md frontmatter URL 필드는 `/assets/profile/me.png` 처럼 박혀 사이트 동일 origin 에서 풀려야 함).
 

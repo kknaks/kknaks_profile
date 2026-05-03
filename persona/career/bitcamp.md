@@ -21,6 +21,10 @@ stack:
   - MySQL
   - NCP
   - JavaScript
+# 이력서 PDF — 비면 PDF 미표시 (planning-02 §3.2).
+bullets:
+  ko: []
+  en: []
 ---
 
 # 비트캠프 — 풀스택 엔지니어 과정

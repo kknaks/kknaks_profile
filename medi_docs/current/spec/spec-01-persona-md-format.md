@@ -172,13 +172,28 @@ cards:
   - title: { ko: "만들고 있는 것", en: "..." }
     body:  { ko: "...", en: "..." }
   # 카드 4개 권장
+# planning-02 — 이력서 PDF 전용. 사이트는 사용 X. 비면 PDF atom 미표시.
+skills:
+  primary:   ["Python", "FastAPI", "Postgres"]   # 주력
+  secondary: ["Next.js", "TypeScript", "Redis"]  # 익숙
+  learning:  ["Kubernetes", "Kafka"]              # 학습 중
+education:
+  - period: "2014.03 — 2020.02"
+    degree: { ko: "학사", en: "B.S." }
+    org:    { ko: "...",  en: "..." }
+    loc:    { ko: "서울", en: "Seoul" }
+    note:   { ko: "...",  en: "..." }   # optional
+awards:
+  - period: "2025.05"
+    title:  { ko: "...", en: "..." }
+    note:   { ko: "...", en: "..." }    # optional
 ---
 
 # (자기소개 자유 서술 — 사이트엔 안 표시되지만 AI 컨텍스트)
 ```
 
 **필수**: `type`, `handle`, `name`, `role`, `email`, `tagline`, `intro`, `stack`
-**선택**: `intro2`, `hero`, `cards`, `linkedin`, `avatarUrl`, `stackShort`
+**선택**: `intro2`, `hero`, `cards`, `linkedin`, `avatarUrl`, `stackShort`, `skills`, `education`, `awards`
 
 ### 3.2 `career/slug.md`
 
@@ -196,13 +211,17 @@ location: { ko: "서울 · 하이브리드", en: "Seoul · Hybrid" }
 summary:  { ko: "LLM 기반 B2B 제품 백엔드. ...", en: "..." }
 stack:    ["Python", "FastAPI", "Postgres", "Docker"]
 links:    { repo: "...", site: "..." }    # optional
+# planning-02 — 이력서 PDF 02 / Career 의 bullet point. 비면 PDF 미표시.
+bullets:
+  ko: ["RAG 파이프라인 설계 — chunking → embedding → vector search end-to-end", "..."]
+  en: ["Designed end-to-end RAG: chunking, embeddings, vector search", "..."]
 ---
 
 # 회사 회고 / 기여 / 배운 점 자유 서술 (AI 컨텍스트)
 ```
 
 **필수**: `type`, `period`, `display_order`, `title`, `org`, `summary`, `stack`
-**선택**: `is_current`, `location`, `links`
+**선택**: `is_current`, `location`, `links`, `bullets`
 
 ### 3.3 `projects/slug.md`
 
@@ -221,6 +240,16 @@ thumbnail: /assets/projects/P-01/cover.png   # optional. 카드 대표 이미지
 links:
   repo: "github.com/kknaks/homelab-console"
   live: "https://homelab.kknaks.dev"
+# planning-02 — 포트폴리오 PDF 케이스 스터디. 본문 7섹션 (개요/회고 등) 과 분리된 압축본. 비면 atom 미표시.
+problem:   { ko: "...", en: "..." }
+approach:  { ko: ["...", "..."], en: ["...", "..."] }
+impact:    { ko: ["..."], en: ["..."] }
+learnings: { ko: ["..."], en: ["..."] }
+troubles:
+  - when: "2026.04.18"
+    title: { ko: "...", en: "..." }
+    cause: { ko: "...", en: "..." }
+    fix:   { ko: "...", en: "..." }
 ---
 
 # 개요
@@ -246,7 +275,7 @@ links:
 ```
 
 **필수**: `type`, `id`, `title`, `summary`, `category`, `status`, `stack`
-**선택**: `date`, `links`, `visible`, `thumbnail`
+**선택**: `date`, `links`, `visible`, `thumbnail`, `problem`, `approach`, `impact`, `learnings`, `troubles`
 
 `thumbnail` — `/assets/projects/<P-NN>/cover.png` 컨벤션 (`§2.5`). 카드 대표 이미지. 미박음 시 placeholder hatch 패턴 표시 (`spec-02 §3.5`).
 

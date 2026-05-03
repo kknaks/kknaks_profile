@@ -21,6 +21,20 @@ visible: true
 thumbnail: /assets/projects/P-04/cover.png
 links:
   repo: "github.com/kknaks/open_kknaks"
+# 포트폴리오 PDF 케이스 스터디 (planning-02 §3.3) — 비면 PDF 에 미표시.
+problem:
+  ko: ""
+  en: ""
+approach:
+  ko: []
+  en: []
+impact:
+  ko: []
+  en: []
+learnings:
+  ko: []
+  en: []
+troubles: []
 ---
 
 # 개요
