@@ -17,8 +17,8 @@ intro:
   ko: "저는 새로운 것을 도전하고 직접 만들어 보는 걸 좋아합니다. CS를 늦게 시작했지만, 매일의 학습을 코드와 노트로 남기며 배운 것을 조금씩 넓혀가고 있습니다."
   en: "I love trying new things and building them myself. I started CS late, but I keep expanding what I've learned by leaving daily traces in code and notes."
 intro2:
-  ko: "지금은 AI 회사에서 LLM 기반 B2B 제품의 백엔드를 맡고 있습니다. RAG·임베딩·벡터 DB 같은 인프라 단까지 함께 다루는 게 즐거워서 매일이 새롭습니다."
-  en: "I'm currently a backend engineer at an AI startup, working on the backend of an LLM-based B2B product. I enjoy reaching into infra layers like RAG, embeddings, and vector DBs."
+  ko: "지금은 AI 회사에서 피부과 전용 CRM·MSO 의 백엔드와 사내 하네스 엔지니어링을 맡고 있습니다. 제품을 만들면서 동시에 AI 가 규칙 안에서 일하도록 도구까지 함께 만들 수 있어 매일이 새롭습니다."
+  en: "I'm a backend engineer at an AI startup — building the backend for a derm-focused CRM/MSO and shaping in-house harness engineering. Shipping the product and the tools that keep AI working within rules at the same time keeps every day new."
 hero:
   headline:
     ko:
@@ -49,7 +49,9 @@ heroTerminal:
   - prompt: "cat stack.txt"
     output:
       - "frontend → Next.js · TypeScript"
+      - "mobile   → React Native · Expo"
       - "backend  → FastAPI · Python · Postgres"
+      - "ai       → LangGraph · OpenAI · pgvector"
       - "infra    → Docker · Linux · nginx"
   - prompt: "wc -l ~/career/**/*.md"
     output:
@@ -61,12 +63,18 @@ heroTerminal:
         en: "Dowha Eng · Civil Engineer"
   - prompt: "ls ~/product/now"
     output:
-      - "Wine.Log · IOS/Android App"
+      - "kknaks.dev          · This Site"
+      - "Wine.Log            · iOS/Android App"
+      - "Persona.Counselor   · iOS/Android App"
+      - "open-kknaks         · CLI · MCP"
 stack:
   - Python
   - FastAPI
   - Postgres
   - Next.js
+  - React Native
+  - Redis
+  - LangGraph
   - Docker
   - Linux
 stackShort: "Next.js · Python"
@@ -75,8 +83,8 @@ cards:
       ko: "지금 일하는 곳"
       en: "Where I work now"
     body:
-      ko: "AI 회사에서 LLM 기반 B2B 제품의 백엔드를 맡고 있습니다. RAG 파이프라인부터 임베딩 캐싱까지 다룹니다."
-      en: "Backend engineer at an AI startup. From RAG pipelines to embedding caches."
+      ko: "AI 회사에서 피부과 전용 CRM·MSO 의 백엔드와 사내 하네스 엔지니어링을 맡고 있습니다."
+      en: "Backend at an AI startup — derm-focused CRM/MSO, plus in-house harness engineering."
   - title:
       ko: "만들고 있는 것"
       en: "What I'm building"
@@ -101,7 +109,7 @@ cards:
 
 ## 자기소개 (사이트 미표시 — AI 컨텍스트용)
 
-비전공으로 학사를 마치고 SSAFY 12기 백엔드 부트캠프를 거쳐 AI 회사에서 1년차 백엔드 엔지니어로 일하고 있습니다.
+비전공으로 학사를 마치고 비트캠프 풀스택 과정과 멋쟁이사자처럼 백엔드스쿨플러스(심화)를 거쳐 AI 회사에서 1년차 백엔드 엔지니어로 일하고 있습니다.
 포트폴리오에서 차별점이 될 만한 회사 케이스가 아직 적기 때문에, 매일 쌓이는 학습 노트와 매일 한 편씩의 스터디 영상·교안 자체가 이 사이트의 진짜 콘텐츠입니다.
 
 홈서버를 직접 운영하면서 백엔드부터 인프라까지 제 손으로 만져 보는 게 좋아서, 이 포트폴리오 사이트도 셀프호스팅합니다.

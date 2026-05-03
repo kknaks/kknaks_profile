@@ -1,8 +1,8 @@
 # persona/_map.md
 
-> 자동 생성 (build_persona_map.py, 2026-05-03 16:06 KST). 수동 편집 X.
+> 자동 생성 (build_persona_map.py, 2026-05-03 16:53 KST). 수동 편집 X.
 
-_총 177 파일 (profile 1 / career 5 / projects 8 / notes 156 / contents 6 / daily 1)_
+_총 179 파일 (profile 1 / career 5 / projects 8 / notes 156 / contents 7 / daily 2)_
 
 ## profile
 
@@ -183,7 +183,8 @@ _총 177 파일 (profile 1 / career 5 / projects 8 / notes 156 / contents 6 / da
 - [[notes/2025-11-01-database_migration]] Database Migration(AWS RDS -> Azure MySQL) (work · 2025.11.01)
 - [[notes/2025-11-01-migration_detail]] Database Migration 상세 프로세스 (work · 2025.11.01)
 
-## contents (총 6개)
+## contents (총 7개)
+- [[contents/C-007-pending]] Day 07 —  (2026-05-03)
 - [[contents/C-006-pending]] Day 06 — 옵저버 패턴 이해하기 (2026-05-03)
 - [[contents/C-005-pending]] Day 05 — 깃헙 10만 스타 CLAUDE.md의 AI 협업 4원칙 (2026-05-03)
 - [[contents/C-004-pending]] Day 04 — Python에서 정책 패턴으로 조건문 복잡성 제거하기 (2026-05-03)
@@ -191,7 +192,8 @@ _총 177 파일 (profile 1 / career 5 / projects 8 / notes 156 / contents 6 / da
 - [[contents/C-002-pending-sample]] Day 02 — 모듈로 편향으로 인한 게임 확률 버그 (2026.05.02)
 - [[contents/C-001-fastapi-di]] Day 01 — FastAPI Dependency Injection — 진짜 쓸 수 있게 (2026.05.01)
 
-## daily (총 1개, 최근 10)
+## daily (총 2개, 최근 10)
+- [[daily/2026-05-02]] (2026.05.02)
 - [[daily/2026-05-01]] (2026.05.01)
 
 ## 위키링크 그래프 (notes)
