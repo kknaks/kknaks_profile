@@ -1,7 +1,7 @@
 ---
 id: spec-03
 type: spec
-title: 잔디 잡 명세 — 입력 4개 + LLM 종합 + activity.yaml upsert + git push
+title: 잔디 잡 명세 — 입력 → counts (deterministic) + LLM body·summary → daily/{date}.md
 status: draft
 created: 2026-05-01
 updated: 2026-05-03
@@ -9,14 +9,15 @@ sources:
   - "[[planning-01-portfolio-overview]]"
   - "[[spec-01-persona-md-format]]"
   - "[[adr-03-scheduler-attribution]]"
-tags: [spec, scheduler, llm, activity, github]
+  - "[[adr-06-daily-as-grass-sot]]"
+tags: [spec, scheduler, llm, activity, github, daily]
 ---
 
 # 잔디 잡 명세
 
 ## Summary
 
-매일 1회 백엔드 안 APScheduler가 실행. 입력 4개(`daily/YYYY-MM-DD.md` narrative + `notes`/`contents` 로컬 git log + GitHub Events API)를 수집해 Anthropic Haiku 4.5에 종합 → ko/en 한 줄 요약 + kind 결정 → `persona/activity.yaml` 한 entry upsert → fetch+rebase 후 git push (3회 retry) → `load_all()` 셀프 호출로 메모리 갱신. 첫 부팅 시 365일 백필 1회.
+매일 00:05 KST 백엔드 안 APScheduler가 발동. 어제 데이터 (`notes/`/`contents/` 그날 변경 파일 본문 + GitHub commits) 를 수집 → counts (commit/note/study) 는 코드가 deterministic 으로 계산 → LLM (Haiku 4.5 via open-kknaks) 이 ko/en 한 줄 summary + ≤500자 narrative body 생성 → `persona/daily/{어제}.md` 에 frontmatter (auto/counts/summary) + body 한 commit 으로 push → `load_all()` 셀프 호출로 메모리 갱신. **`activity.yaml` 폐지** (ADR-06) — `/api/activity` 응답은 모든 `daily/*.md` frontmatter 집계 derive.
 
 ---
 
@@ -25,7 +26,7 @@ tags: [spec, scheduler, llm, activity, github]
 ### 1.1 스케쥴
 
 - **시각**: 매일 **00:05 KST** (`Asia/Seoul`)
-- **target_date**: `date.today() - 1` (직전 날). 즉 자정 직후 발동해서 *어제* entry 박음
+- **target_date**: `date.today() - 1` (직전 날). 자정 직후 발동해서 *어제* entry 박음
 - **이유**:
   - 캘린더 day-fixed 윈도우 `[어제 00:00, 오늘 00:00)` — 하루 전체 commit 확보 + 23:55 발동 시 발생하던 23:55~24:00 5분 commit 유실 제거
   - miss-fire (서버 down 후 coalesce 발동) 시에도 attribution 명확 — `target_date=어제` 라 발동 시각 흔들려도 entry 키 안 흔들림
@@ -50,78 +51,71 @@ scheduler.add_job(
 
 ### 1.2 single-worker 강제 (ADR-03 §4.4 mitigation)
 
-**`uvicorn --workers N` (N>1) 으로 실행 시 스케쥴러 N번 발동**.
+`uvicorn --workers N` (N>1) 으로 실행 시 스케쥴러 N번 발동.
 
 대응:
 - 홈서버 운영은 single-worker (`uvicorn main:app` 또는 `--workers 1`)
-- 부팅 시 워커 수 검증:
+- 부팅 시 워커 수 검증 (back/main.py `_check_single_worker`)
+
+### 1.3 본인 작성 vs 자동 생성 충돌 회피
+
+target 날의 `persona/daily/{date}.md` 가 이미 존재하고 frontmatter `auto: true` 가 *아닌* 경우 (= 본인이 박은 narrative) → **잡 skip**. 본인 narrative 우선.
 
 ```python
-import os
-if int(os.environ.get("WEB_CONCURRENCY", 1)) > 1:
-    raise RuntimeError(
-        "Multi-worker deployment 금지 — APScheduler가 N번 발동. "
-        "single-worker로 띄우거나 spec-03 §1.3 distributed lock 적용."
-    )
+existing = read_daily(target)
+if existing and not existing.get("auto"):
+    logger.info("daily/%s.md exists with auto=false — skip", target)
+    return existing  # 잔디 viz 는 본인 narrative 의 frontmatter 그대로
 ```
-
-### 1.3 (선택) distributed lock — 만약 multi-worker 운영 필요해지면
-
-APScheduler의 `JobStore`를 SQLAlchemy + sqlite로 박고, 잡 실행 시 file lock. 본 spec 시점엔 single-worker 가정.
 
 ---
 
 ## 2. 입력 수집
 
-오늘 = `date.today()` (KST 기준). 수집은 병렬.
+target = `date.today() - 1` (KST 기준, §1.1). 수집은 병렬 가능.
 
-### 2.1 입력 1: `daily/YYYY-MM-DD.md` (narrative — 1순위)
+### 2.1 입력 1: `notes/` 그날 변경 파일 본문
 
-```python
-from pathlib import Path
-import frontmatter
-
-def read_daily_narrative(today: date) -> str | None:
-    path = Path(f"persona/daily/{today.strftime('%Y-%m-%d')}.md")
-    if not path.exists():
-        return None
-    post = frontmatter.load(path)
-    return post.content   # 본문만 (frontmatter 제외)
-```
-
-본인이 직접 쓴 narrative라 LLM이 "본인 의도" 이해에 가장 가치 큰 입력. 없는 날은 `None` → LLM 프롬프트에서 "narrative 없음" 명시.
-
-### 2.2 입력 2: 로컬 git log — `notes/` 변경 (note kind 입력)
+`notes/` 디렉토리의 그날 git commit 에서 변경된 파일들의 *본문* 을 읽음 (subject 만이 아니라 frontmatter 제외 본문 전체).
 
 ```python
-import subprocess
+def read_changed_files_today(path: str, target: date, repo: Path) -> list[dict]:
+    """그날 변경된 .md 파일들의 frontmatter + 본문 반환.
 
-def git_log_today(path: str, today: date) -> list[dict]:
-    # ⚠ TZ 명시 — homeserver clock이 UTC여도 KST 자정 기준으로 잘림
-    since_iso = f"{today.isoformat()}T00:00:00+09:00"
-    until_iso = f"{(today + timedelta(days=1)).isoformat()}T00:00:00+09:00"
+    [{path, frontmatter, body}, ...]
+    """
+    since_iso = f"{target.isoformat()}T00:00:00+09:00"
+    until_iso = f"{(target + timedelta(days=1)).isoformat()}T00:00:00+09:00"
     result = subprocess.run(
         ["git", "log", "--since", since_iso, "--until", until_iso,
-         "--name-status", "--pretty=format:%H%n%s%n", path],
-        capture_output=True, text=True, check=True,
+         "--name-only", "--pretty=format:", path],
+        cwd=repo, capture_output=True, text=True, check=True,
     )
-    # parse: [{commit_sha, subject, files: [...]}]
-    return _parse_git_log(result.stdout)
+    paths = sorted({line for line in result.stdout.splitlines() if line.endswith(".md")})
+    out = []
+    for p in paths:
+        full = repo / p
+        if not full.exists():
+            continue  # commit 후 삭제된 파일
+        post = frontmatter.load(full)
+        out.append({"path": p, "frontmatter": dict(post.metadata), "body": post.content})
+    return out
 
-notes_changes = git_log_today("persona/notes/", today)
+notes_changes = read_changed_files_today("persona/notes/", target, REPO)
 ```
 
-> **TZ 주의**: 홈서버 system clock이 UTC면 `--since "2026-04-30"` 만 박을 시 KST 자정~오전 9시 commit을 다른 날로 잡음. 명시적 `+09:00` ISO timestamp 사용 (또는 plan-01에서 홈서버 TZ를 KST로 박음).
+> **TZ**: 명시적 `+09:00` ISO timestamp 사용 (홈서버 TZ 가 UTC 든 KST 든 결과 동일).
+> **truncation**: 파일 본문이 N KB 초과 시 truncate (LLM 토큰 부담 회피). N = 4096 자 권장 (note 1개 평균 짧음).
 
-### 2.3 입력 3: 로컬 git log — `contents/` 변경 (study kind 입력)
+### 2.2 입력 2: `contents/` 그날 변경 파일 본문
 
-`§2.2`와 동일 패턴. path만 `persona/contents/`.
+§2.1 동일 패턴. path = `persona/contents/`.
 
-### 2.4 입력 4: GitHub commits API — 외부 활동 (commit kind 입력)
+content 본문은 LLM enrich 결과라 길 수 있음 — truncate 더 적극적 (예: 2048 자).
 
-> **API 변경 주의** (2026-05): `/users/{user}/events` 의 `PushEvent.payload.commits` 가 빈 배열로 반환됨 (GitHub 동작 변경). `/repos/{owner}/{repo}/commits` 직접 호출로 전환.
+### 2.3 입력 3: GitHub commits API — tracked repos × accounts
 
-#### 2.4.1 tracked repos 추출 — `persona/projects/*.md` SoT
+#### 2.3.1 tracked repos 추출 — `persona/projects/*.md` SoT
 
 ```python
 def extract_tracked_repos(projects: list[dict]) -> set[str]:
@@ -134,31 +128,32 @@ def extract_tracked_repos(projects: list[dict]) -> set[str]:
         repo_url = (proj.get("links") or {}).get("repo", "") or ""
         if "github.com/" not in repo_url:
             continue
-        slug = repo_url.split("github.com/", 1)[1].rstrip("/").rstrip(".git")
+        # rstrip(".git") 함정 회피 — 끝글자 g/i/t 가 잘림 (e.g. wine_log → wine_lo)
+        slug = repo_url.split("github.com/", 1)[1].rstrip("/")
+        if slug.endswith(".git"):
+            slug = slug[:-4]
         if slug.count("/") == 1:
             slugs.add(slug)
     return slugs
 ```
 
-#### 2.4.2 fetch_repo_commits — repo × account 호출
+#### 2.3.2 fetch_repo_commits — repo × account
 
 ```python
-import httpx
-from datetime import date, timedelta
-
 async def fetch_repo_commits(
-    owner_repo: str, today: date, token: str, author: str = "",
+    owner_repo: str, target: date, token: str, author: str = "",
 ) -> list[dict]:
-    """`/repos/{owner_repo}/commits` — 오늘 (KST) author commits.
+    """`/repos/{owner_repo}/commits` — 그날 (KST) author commits.
 
     - `since` / `until` 파라미터 KST 기준 ISO timestamp.
     - `author` (optional) — GitHub username 또는 email 매칭.
-    - 403/404/409 (권한 없거나 빈 repo) 는 silently skip — 다른 token 시도 가능.
+    - 403/404/409 (권한 없거나 빈 repo) 는 silently skip.
+    - msg 전체 (subject + body) 반환 — 이전엔 첫 줄만, 새 spec 은 LLM 컨텍스트 풍부화 위해 전체.
     """
     if not token or not owner_repo:
         return []
-    since = f"{today.isoformat()}T00:00:00+09:00"
-    until = f"{(today + timedelta(days=1)).isoformat()}T00:00:00+09:00"
+    since = f"{target.isoformat()}T00:00:00+09:00"
+    until = f"{(target + timedelta(days=1)).isoformat()}T00:00:00+09:00"
     params = {"since": since, "until": until, "per_page": "100"}
     if author:
         params["author"] = author
@@ -175,15 +170,15 @@ async def fetch_repo_commits(
     return [{"repo": owner_repo, "msg": c.get("commit", {}).get("message", "")} for c in commits]
 ```
 
-#### 2.4.3 main_job — tracked × accounts 호출 + dedupe
+#### 2.3.3 main_job — tracked × accounts 호출 + dedupe
 
 ```python
 tracked_repos = extract_tracked_repos(get_data().get("projects", []))
 seen: set[tuple[str, str]] = set()
 commits: list[dict] = []
 for repo in tracked_repos:
-    for acc in config.gh_accounts():   # 개인 + 회사 PAT
-        for c in await fetch_repo_commits(repo, today, acc["token"], author=acc["user"]):
+    for acc in config.gh_accounts():       # 개인 + 회사 PAT
+        for c in await fetch_repo_commits(repo, target, acc["token"], author=acc["user"]):
             key = (c["repo"], c["msg"])
             if key in seen:
                 continue
@@ -192,270 +187,245 @@ for repo in tracked_repos:
 ```
 
 GitHub commits API:
-- **인증**: PAT (개인 + 회사 분리 — `GH_TOKEN_PERSONAL` / `GH_TOKEN_COMPANY`). 각 계정의 private repo 는 그 계정 PAT 으로만 보임.
-- **author 필터**: GitHub `author` 파라미터 — username 또는 email 매칭. 본인 commit 만 발라냄 (PR merge 시 타인 commit 제외).
-- **TZ**: `since` / `until` ISO timestamp (`+09:00`). UTC/KST 변환 GitHub 가 처리.
-- **rate limit**: 5000 req/hour (PAT). tracked × accounts 호출이라도 무관.
-- **보존**: commits API 는 모든 history 반환 (events API 의 90일 제약 없음).
+- **인증**: PAT (개인 + 회사 분리 — `GH_TOKEN_PERSONAL` / `GH_TOKEN_COMPANY`). 각 계정의 private repo 는 그 계정 PAT 으로만 보임. 회사 레포 + 개인 token = 404 silently skip.
+- **author 필터**: GitHub `author` 파라미터 — username 또는 email 매칭. 본인 commit 만 발라냄.
+- **TZ**: `since` / `until` ISO timestamp (`+09:00`).
+- **rate limit**: 5000 req/hour (PAT). tracked repo 수 ≤ 100 가정 OK.
 
 ---
 
-## 3. LLM 호출
+## 3. counts (deterministic) + LLM (body + summary)
 
-### 3.1 모델 + 호출 라이브러리
-
-- **모델**: Claude Haiku 4.5 (`claude-haiku-4-5-20251001`)
-- **호출 라이브러리**: **`open-kknaks`** (본인 OSS, ADR-04). Anthropic SDK 미사용. Pro/Max 구독 활용 → API 비용 0
-- 이유: 매일 1회 짧은 요약. Sonnet은 오버. Haiku는 빠름
-
-### 3.2 프롬프트 (단일 user message)
+### 3.1 counts — 코드 계산
 
 ```python
-import json
-from open_kknaks import ClaudeClient
+counts = {
+    "commit": len(commits),               # GitHub commits dedupe 후
+    "note":   len(notes_changes),         # notes/*.md 그날 변경
+    "study":  len(contents_changes),      # contents/*.md 그날 변경
+}
+```
 
-# client는 main.py lifespan에서 생성 + 의존성 주입 (ADR-04 §4.2)
+LLM 추론 불요. source 1:1 매핑.
 
-async def summarize_activity(
-    today: date,
-    narrative: str | None,
-    notes: list,
-    contents: list,
-    commits: list,
+### 3.2 LLM 호출 — body + summary 만
+
+#### 모델 + 라이브러리
+
+- 모델: Claude Haiku 4.5 (`claude-haiku-4-5-20251001`)
+- 라이브러리: **`open-kknaks`** (ADR-04). Anthropic SDK 미사용
+
+#### 프롬프트
+
+```python
+async def summarize_daily(
+    target: date,
+    notes_changes: list[dict],     # [{path, frontmatter, body}, ...]
+    contents_changes: list[dict],
+    commits: list[dict],           # [{repo, msg}, ...]
+    counts: dict,
     client: ClaudeClient,
 ) -> dict:
-    bullets_notes    = "\n".join(f"- {n['subject']}" for n in notes) or "(없음)"
-    bullets_contents = "\n".join(f"- {c['subject']}" for c in contents) or "(없음)"
-    bullets_commits  = "\n".join(f"- [{c['repo']}] {c['msg'].splitlines()[0]}" for c in commits) or "(없음)"
-    narrative_block = (
-        f"[본인 narrative — 1순위 입력]\n{narrative}\n"
-        if narrative else
-        "[본인 narrative]\n(오늘 daily/*.md 미작성 — 사실 데이터로만 요약)\n"
-    )
+    """LLM 1 call → {body, summary}. counts 는 코드 계산이라 LLM 안 받음."""
+    notes_block = _format_notes(notes_changes) or "(없음)"
+    contents_block = _format_contents(contents_changes) or "(없음)"
+    commits_block = _format_commits(commits) or "(없음)"
 
-    prompt = f"""오늘({today.isoformat()}) 한 사람의 활동 데이터다.
-narrative는 본인 시각의 컨텍스트(1순위 입력), 나머지 3개는 kind 후보다.
+    prompt = f"""오늘({target.isoformat()}) 한 사람의 활동 데이터다.
 
-{narrative_block}
-[kind 후보 1 — note] notes 변경
-{bullets_notes}
+활동 분포 (자동 집계):
+- commits: {counts['commit']}
+- notes:   {counts['note']}
+- study:   {counts['study']}
 
-[kind 후보 2 — study] contents 변경
-{bullets_contents}
+[notes 변경 — 본문]
+{notes_block}
 
-[kind 후보 3 — commit] GitHub 외부 커밋
-{bullets_commits}
+[contents 변경 — 본문]
+{contents_block}
 
-다음을 결정해라:
-1. kind: "commit" | "note" | "study" 중 가장 의미 있는 활동의 kind. 세 후보 모두 비어있으면 null
-2. count: notes + contents + commits 항목 수의 합 (narrative는 셈에서 제외)
-3. summary: 무슨 작업을 했는지 한국어/영어 한 줄 (각각 60자 이내, 자연스러운 어투)
+[GitHub commits — msg 전체]
+{commits_block}
 
-응답은 다음 JSON 한 객체만 (다른 텍스트 X):
-{{"kind": "...", "count": 0, "summary": {{"ko": "...", "en": "..."}}}}
+다음 두 가지를 출력해라:
+1. summary: 무슨 작업을 했는지 한국어/영어 한 줄 (각각 60자 이내, 자연스러운 어투)
+2. body: ≤500자 markdown narrative. 다음 섹션 구조:
+   ## commits
+   - [repo] msg 한 줄 + 의미 (1줄)
+   ## notes
+   - [note-id] 한 줄 정리
+   ## study
+   - [content-id] 키 takeaway (1줄)
+
+   # 회고 / 다음
+   (1~2줄, 추론 어렵면 비움)
+
+응답은 다음 JSON 한 객체만 (다른 텍스트 X, 코드블록 ```json``` 도 박지 않음):
+{{"summary": {{"ko": "...", "en": "..."}}, "body": "..."}}
 """
-
-    task_id = await client.submit(
-        prompt=prompt,
-        model="claude-haiku-4-5-20251001",
-        timeout=120,
-        max_retries=2,
-    )
+    task_id = await client.submit(prompt=prompt, model=LLM_MODEL, timeout=120, max_retries=2)
     task = await client.result(task_id, timeout=120)
-    return json.loads(task.result)
+    resp = json.loads(_extract_json(task.result or ""))
+    return validate_llm_response(resp, target)
 ```
 
 ### 3.3 응답 검증
 
 ```python
-def validate_llm_response(resp: dict, today: date) -> dict:
-    assert resp.get("kind") in {"commit", "note", "study", None}
-    assert isinstance(resp.get("count"), int) and resp["count"] >= 0
-    assert isinstance(resp.get("summary"), dict) or resp["summary"] is None
-    if resp["summary"]:
-        assert "ko" in resp["summary"] and "en" in resp["summary"]
-    return {
-        "date":    today.strftime("%Y.%m.%d"),
-        "count":   resp["count"],
-        "kind":    resp["kind"],
-        "summary": resp["summary"],
-    }
+def validate_llm_response(resp: dict, target: date) -> dict:
+    summary = resp.get("summary")
+    body = resp.get("body", "")
+
+    if not isinstance(summary, dict) or "ko" not in summary or "en" not in summary:
+        raise ValueError("invalid_summary")
+    if not isinstance(body, str):
+        raise ValueError("invalid_body")
+    if len(body) > 600:                     # 500자 룰 + 100자 grace
+        body = body[:600] + "...(truncated)"
+    return {"summary": summary, "body": body}
 ```
 
-검증 실패 시 — LLM 재호출 1회 retry (max_tokens 늘리거나 프롬프트에 "JSON만 출력" 강조). 재차 실패 시 entry skip + 로그.
+검증 실패 시 — LLM 재호출 1회 retry. 재차 실패 시 entry skip + 로그.
 
-### 3.4 kind enum 정책
+### 3.4 활동 0 (counts 합계 = 0) 처리
 
-본 spec 시점엔 4종: `commit | note | study | null`.
-- `ship` 은 정의 안 됨 (planning-01 §6 미정 결정 — 향후 추가 시 `kind` enum 확장 + 프론트 색상 매핑 갱신).
+LLM 호출 skip. body 비움, summary=null:
+
+```python
+if sum(counts.values()) == 0:
+    return {"summary": None, "body": "(활동 없음)"}
+```
 
 ---
 
-## 4. activity.yaml upsert (idempotent)
+## 4. daily/{date}.md 갱신 (idempotent)
 
-같은 날 잡이 두 번 돌아도 결과 동일해야 함 (재실행/백필 안전).
-
-**`totalCount` 정책 = rolling 365일** (잔디는 1년 격자라 spec-01 §4 mock 의도와 정합). 365일 넘은 entry는 트림.
+같은 날 잡이 두 번 돌아도 결과 동일.
 
 ```python
-import yaml
-from pathlib import Path
-from datetime import date, timedelta
+import frontmatter
 
-ACTIVITY_PATH = Path("persona/activity.yaml")
-WINDOW_DAYS = 365
-
-def upsert_activity(entry: dict):
-    data = yaml.safe_load(ACTIVITY_PATH.read_text()) if ACTIVITY_PATH.exists() else {
-        "since": entry["date"], "until": entry["date"], "totalCount": 0, "items": []
+def write_daily(target: date, counts: dict, summary: dict | None, body: str) -> Path:
+    path = config.PERSONA_DIR / "daily" / f"{target.isoformat()}.md"
+    fm = {
+        "type": "daily",
+        "date": target.strftime("%Y.%m.%d"),
+        "auto": True,
+        "counts": counts,
     }
-    # 같은 date entry 제거 후 추가 (upsert)
-    data["items"] = [e for e in data["items"] if e["date"] != entry["date"]]
-    data["items"].append(entry)
-    data["items"].sort(key=lambda e: e["date"])
+    if summary is not None:
+        fm["summary"] = summary
 
-    # rolling 365일 트림
-    today = date.fromisoformat(entry["date"].replace(".", "-"))
-    cutoff = today - timedelta(days=WINDOW_DAYS - 1)
-    cutoff_str = cutoff.strftime("%Y.%m.%d")
-    data["items"] = [e for e in data["items"] if e["date"] >= cutoff_str]
-
-    data["since"]      = data["items"][0]["date"]
-    data["until"]      = data["items"][-1]["date"]
-    data["totalCount"] = sum(e["count"] for e in data["items"])
-
-    ACTIVITY_PATH.write_text(
-        yaml.safe_dump(data, allow_unicode=True, sort_keys=False),
-        encoding="utf-8",
-    )
+    post = frontmatter.Post(content=body, **fm)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(frontmatter.dumps(post), encoding="utf-8")
+    return path
 ```
 
-> 만약 향후 누적 카운트(전체 기간)도 필요해지면 별도 필드 `totalCountAllTime` 추가. 본 spec 시점엔 rolling 365 한 가지만.
+**`auto: false` 충돌 회피** (§1.3 의 사전 검사로 잡 자체가 skip 되지만, 방어적으로):
+
+```python
+if path.exists():
+    existing = frontmatter.load(path)
+    if not existing.metadata.get("auto"):
+        logger.warning("daily/%s.md auto=false — skip overwrite", target)
+        return path
+```
 
 ---
 
 ## 5. git push retry loop (ADR-03 §4.3 구체화)
 
+`commit_and_push_with_retry` (공통 함수, spec-03/spec-06 공유) 그대로 사용. paths 변경:
+
 ```python
-import subprocess
-
-def commit_and_push_with_retry(today: date, max_retries: int = 3):
-    msg = f"chore: activity {today.isoformat()}"
-    for attempt in range(1, max_retries + 1):
-        try:
-            # fetch + rebase (history divergence 회피)
-            subprocess.run(["git", "fetch", "origin"], check=True)
-            subprocess.run(["git", "rebase", "origin/main"], check=True)
-            # activity.yaml은 백엔드만 쓰므로 rebase 충돌 불가
-
-            # 변경 없으면 commit skip (idempotent — 같은 entry 재실행)
-            diff = subprocess.run(["git", "diff", "--quiet", "persona/activity.yaml"]).returncode
-            if diff == 0:
-                return   # no changes, nothing to push
-
-            subprocess.run(["git", "add", "persona/activity.yaml"], check=True)
-            subprocess.run(["git", "commit", "-m", msg], check=True)
-            subprocess.run(["git", "push", "origin", "main"], check=True)
-            return
-        except subprocess.CalledProcessError as e:
-            if attempt == max_retries:
-                # 모두 실패 — 로그만, 다음 날 retry. activity.yaml은 commit-pending 상태로 남음
-                logger.error(f"git push failed after {max_retries} retries: {e}")
-                return
-            time.sleep(2 ** attempt)   # 2s, 4s
+commit_and_push_with_retry(
+    paths=[config.PERSONA_DIR / "daily" / f"{target.isoformat()}.md"],
+    message=f"chore: daily {target.isoformat()}",
+    dry_run=config.job_git_push_dry_run(),
+)
 ```
 
-### 5.1 git auth (ADR-03 §4.4)
-
-홈서버에 deploy SSH key 또는 PAT 박음:
-- **권장**: GitHub deploy key — repo Settings → Deploy keys → Add deploy key. **반드시 "Allow write access" 체크** (default는 read-only). 키 위치 `~/.ssh/id_kknaks_profile`
-- systemd: `EnvironmentFile=/etc/kknaks-api.env` (GH_TOKEN 박을 경우, 권한 600)
-- git remote는 SSH (`git@github.com:kknaks/kknaks-profile.git`) 또는 HTTPS + PAT
-
-### 5.2 git user identity
-
-자동 commit이라 사용자 ID 명확화:
-```bash
-# 홈서버 git config
-git config user.name  "kknaks-bot"
-git config user.email "kknaks-bot@kknaks.dev"
-```
-
-→ git log에서 사람 commit과 시각적 구분 가능.
+자세한 인증 / retry / fetch+rebase 디테일은 `back/service/jobs/git_push.py` + ADR-03.
 
 ---
 
 ## 6. 메모리 reload
 
-push 성공 후 `load_all()` 셀프 호출.
+push 성공 후 `load_all()` 셀프 호출. `persona_loader` 가 `daily/*.md` 들 다시 읽으면서 새 파일 frontmatter 가 in-memory `daily` 리스트 + derived `activity` dict 양쪽 갱신.
 
 ```python
-async def daily_activity_job():
-    today = date.today()
-    narrative = read_daily_narrative(today)
-    notes     = git_log_today("persona/notes/", today)
-    contents  = git_log_today("persona/contents/", today)
-    commits   = []
-    for u in GH_USERS:
-        commits.extend(await fetch_repo_commits(repo, today, acc["token"], author=acc["user"]))
+async def daily_activity_job(*, target_date: date | None = None, dry_run_push: bool | None = None):
+    target = target_date or (date.today() - timedelta(days=1))
 
-    resp  = summarize_activity(today, narrative, notes, contents, commits)
-    entry = validate_llm_response(resp, today)
-    upsert_activity(entry)
-    commit_and_push_with_retry(today)
+    # §1.3 본인 작성 우선
+    existing = read_existing_daily(target)
+    if existing and not existing.get("auto"):
+        logger.info("daily/%s.md exists with auto=false — skip job", target)
+        return existing
 
-    # 메모리 캐시 갱신 (back/main.py의 load_all)
-    # ⚠ 함수 내부 import — module-level이면 main ↔ scheduler 순환 의존
+    notes_changes = read_changed_files_today("persona/notes/", target, REPO)
+    contents_changes = read_changed_files_today("persona/contents/", target, REPO)
+    commits = await fetch_all_tracked_commits(target)
+    counts = compute_counts(notes_changes, contents_changes, commits)
+
+    resp = await summarize_daily(target, notes_changes, contents_changes, commits, counts, client)
+    path = write_daily(target, counts, resp["summary"], resp["body"])
+
+    commit_and_push_with_retry(
+        paths=[path],
+        message=f"chore: daily {target.isoformat()}",
+        dry_run=config.job_git_push_dry_run() if dry_run_push is None else dry_run_push,
+    )
+
+    # 메모리 reload — circular import 회피
     from main import load_all
     load_all()
 ```
 
 ---
 
-## 7. 백필 (첫 부팅 365일 1회)
+## 7. 백필 (첫 부팅 365일 1회 — 옵션)
 
-GitHub Events API는 90일까지만 → 백필 시 fallback:
+`daily/*.md` 1개씩 박는 형태로 백필. GitHub Events API 90일 + GraphQL `contributionsCollection` (90~365일) fallback:
 
-| 시점 | 입력 |
-|---|---|
-| 최근 90일 | Events API 가능 |
-| 90일~365일 | GitHub GraphQL `contributionsCollection` (commit count만, 메시지 없음) → LLM 가공 없이 `count` + `kind=commit` + `summary=null`로 박음 |
+| 시점 | 입력 | counts | summary/body |
+|---|---|---|---|
+| 최근 90일 | GitHub commits API + git log | deterministic (위 §3.1 와 동일) | LLM 호출 |
+| 90~365일 | GraphQL `contributionsCollection` | counts={commit: N, note: 0, study: 0} (commit count 만) | summary=null, body=`(백필 — commit count 만)` |
 
 ```python
 async def backfill_365_days():
     today = date.today()
-    for offset in range(365, -1, -1):
+    for offset in range(365, 0, -1):
         target = today - timedelta(days=offset)
-        # ... §2의 입력 수집 (단, 90일 넘으면 graphql fallback)
-        # ... §3의 LLM 호출 (입력 부족하면 skip)
-        # ... §4의 upsert
-    commit_and_push_with_retry(today, max_retries=3)
+        existing = read_existing_daily(target)
+        if existing:
+            continue                  # 이미 박혀있으면 skip (멱등)
+        await run_daily_activity_job(target_date=target, dry_run_push=True)
+    # 마지막에 한 번 묶어서 push
+    commit_and_push_with_retry(
+        paths=[config.PERSONA_DIR / "daily"],
+        message=f"chore: backfill daily 365 days",
+        dry_run=False,
+    )
 ```
 
-수동 스크립트로 1회 실행. APScheduler에 안 박음.
-
-**중간 실패 안전성**: 백필이 200번째 entry 쓰고 push 전에 죽어도 — `upsert_activity`가 idempotent이고 `since/until/totalCount` 는 매 entry마다 재계산되니 재실행 안전. 단순히 다시 돌리면 됨.
+수동 스크립트로 1회 실행. APScheduler 에 안 박음.
 
 ---
 
-## 8. secret 관리
+## 8. secret 관리 (변경 없음)
 
 | 키 | 용도 | 보관 |
 |---|---|---|
-| ~~`ANTHROPIC_API_KEY`~~ | ~~LLM 호출~~ — **불요** (ADR-04 — open-kknaks worker 가 OAuth 토큰으로 claude CLI 호출) | — |
-| `GH_TOKEN` | GitHub REST + GraphQL API 인증 — **필수**. 최소 scope: `read:user`, `public_repo` (private repo 활동도 잡으려면 `repo`). 백필(§7)의 GraphQL `contributionsCollection`은 인증 필수라 anonymous 호출 불가 | systemd EnvironmentFile (`/etc/kknaks-api.env`, chmod 600) |
-| `REDIS_URL` | open-kknaks broker 접속 (ADR-04). docker-compose 내부에선 `redis://redis:6379`, host에선 `redis://localhost:46379` | docker-compose env |
-| `RELOAD_TOKEN` | webhook → /admin/reload 인증 (M8) | 동상 |
-| (SSH deploy key) | git 프로토콜 (push/fetch) — `~/.ssh/id_kknaks_profile`. **API 인증과 별개**. spec-03 §5.1 + plan-01 M0 | 파일시스템 |
-| `CLAUDE_CODE_OAUTH_TOKEN` | open-kknaks worker 컨테이너가 claude CLI 호출용. 호스트에서 `claude setup-token` 1회 발급 (ADR-04 §2.2). worker 가 broker 통해 활용 — 본 잡 코드는 직접 안 봄 | docker-compose `.env` |
+| `GH_TOKEN_PERSONAL` / `GH_TOKEN_COMPANY` | GitHub REST API 인증 — tracked repos commits 조회 + git push | `.env` |
+| `GH_USER_*`, `GH_EMAIL_*` | author 필터 + git commit identity | 동상 |
+| `REDIS_URL` | open-kknaks broker | docker-compose env |
+| `RELOAD_TOKEN` | webhook → /admin/reload 인증 | 동상 |
+| `CLAUDE_CODE_OAUTH_TOKEN` | open-kknaks worker — claude CLI 호출 | docker-compose `.env` |
 
-`.env` 파일은 `.gitignore` 박음 (절대 commit X). 로컬 dev:
-```bash
-# back/.env (gitignore)
-GH_TOKEN=github_pat_...
-REDIS_URL=redis://localhost:46379
-RELOAD_TOKEN=...
-```
+`.env` 는 `.gitignore` 박음.
 
 ---
 
@@ -463,12 +433,13 @@ RELOAD_TOKEN=...
 
 | 실패 케이스 | 대응 |
 |---|---|
-| Anthropic API 호출 실패 | 1회 retry. 재차 실패 시 그날 entry skip (다음 날 자동 다시 시도) |
-| GitHub API 5xx/timeout | 1회 retry. 재차 실패 시 commits=[] 로 진행 (narrative + git log만으로 LLM 호출) |
-| `daily/YYYY-MM-DD.md` 파싱 에러 (frontmatter 형식 위반) | narrative=None 으로 진행 + 로그 |
-| activity.yaml write 실패 (디스크 가득) | 잡 abort + 로그 |
-| git push 3회 retry 실패 | activity.yaml commit-pending 상태 유지. 다음 날 push 시도 시 자동 포함 |
+| open-kknaks LLM 호출 실패 | 1회 retry. 재차 실패 시 daily/{date}.md 박지 않음 (다음 날 자동 다시 시도) |
+| GitHub API 5xx/timeout | 1회 retry. 재차 실패 시 commits=[] 로 진행 (notes/contents 만으로 LLM 호출) |
+| `notes/*.md` 또는 `contents/*.md` frontmatter 파싱 에러 | 해당 파일 skip + 로그 |
+| `daily/{date}.md` write 실패 (디스크 가득) | 잡 abort + 로그 |
+| git push 3회 retry 실패 | daily/{date}.md commit-pending 상태 유지. 다음 날 push 시 자동 포함 (rebase) |
 | LLM 응답 JSON 파싱 실패 | 1회 retry. 재차 실패 시 entry skip |
+| LLM 응답 body > 600자 | truncate (`...(truncated)`) — soft enforcement |
 
 모든 실패 케이스에서 백엔드 프로세스는 **죽지 않음** (잡은 매일 새로 시도).
 
@@ -476,18 +447,18 @@ RELOAD_TOKEN=...
 
 ## 10. 멱등성 / 재실행 안전
 
-- `upsert_activity` 가 같은 date 항목을 갈아끼움 → 같은 날 잡 두 번 돌려도 결과 동일
+- `write_daily` 가 같은 path 갈아끼움 → 같은 날 잡 두 번 돌려도 결과 동일 (LLM 응답 wording 만 비결정적)
 - `commit_and_push_with_retry` 가 변경 없으면 skip → 재실행 시 빈 commit 생성 X
-- 백필 스크립트도 재실행 안전 (날짜별 upsert)
-
-→ 실수로 cron이 두 번 돌아도, 백필이 중복 실행되어도 안전.
+- 백필 스크립트도 재실행 안전 (날짜별 file 단위)
+- §1.3 본인 작성 (`auto: false`) 보존 — 잡 재실행해도 안 갈아엎음
 
 ---
 
 ## 11. 향후 확장 여지 (이 spec 범위 밖)
 
-- `kind` enum 추가 (`ship` 등) — planning-01 §6 미정 항목 결정 시
-- 다른 자동 산출물 (weekly digest, monthly summary) — 같은 패턴으로 별도 잡 추가
+- 프론트 `contrib-grass.tsx` viz upgrade — counts dict 활용해서 kind 별 stripe 또는 dominant color
+- counts 키 추가 (예: `ship`, `review`, `design`) — `_meta.yaml` 색 매핑 + spec-01 §7 정합
+- 다른 자동 산출물 (weekly digest, monthly summary) — 같은 패턴으로 별도 잡
 - LLM 모델 업그레이드 (Sonnet) — 비용 검토 후
-- daily/*.md 자동 작성 (오늘 commit 기반 초안 생성 → 본인 검수) — 별도 잡
-- multi-worker 운영 시 distributed lock — §1.3 옵션
+- multi-worker 운영 시 distributed lock — §1.2 옵션
+- `daily/2026/` 식 연도 파티션 — 1년 후 `daily/` 비대해지면 검토

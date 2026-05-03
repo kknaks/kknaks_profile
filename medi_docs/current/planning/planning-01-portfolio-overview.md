@@ -64,7 +64,7 @@ tags: [planning, portfolio, persona]
 - `projects` — 프로젝트별
 - `notes` — 학습 노트 (옵시디언 스타일 위키링크)
 - `contents` — 매일 스터디 영상 + 교안
-- `daily` — 일일 작업 로그 (잔디 입력 소스)
+- `daily` — 일일 작업 로그. **잔디 잡이 자동 작성 (frontmatter `auto: true`)**. 본인이 미리 박은 경우 (`auto: false` 또는 미박음) keep — LLM skip
 
 ### 3.3 형식
 
@@ -79,7 +79,7 @@ tags: [planning, portfolio, persona]
 
 스케쥴러가 두 종류의 잡 운영 — 모두 LLM 호출은 `open-kknaks` (ADR-04) 를 통한 Claude Haiku 4.5.
 
-- **잔디 잡** (매일 1회, spec-03): 로컬 git log + GitHub API → 오늘 활동 수집 → ko/en 한 줄 종합 요약 + kind 결정 → `persona/activity.yaml` 갱신 + git commit
+- **잔디 잡** (매일 00:05 KST, spec-03): 어제 데이터 (notes/contents 본문 + GitHub commits) → LLM 이 `persona/daily/{어제}.md` 자동 작성 (frontmatter: counts/summary, 본문: ≤500자 narrative). **`activity.yaml` 폐지** — `/api/activity` 응답은 `daily/*.md` frontmatter 들의 집계 derive (단일 SoT)
 - **콘텐츠 enrich 잡** (10분 interval, spec-06, ADR-05): `persona/contents/*.md` 중 `status: pending` 스캔 → yt-dlp 메타 + youtube-transcript-api 자막 + LLM 요약 → frontmatter (title/summary/duration/tags) + 본문 (개념/적용/실수 3-section) 채움 → `status: published` + git commit
 
 > **⚠ Architectural seam**: 스케쥴러가 어느 시스템에 속하는지(포트폴리오 인프라 vs 페르소나 gen 레이어)는 ADR-03에서 정의. 가공 결과의 *서버 → 깃* 쓰기는 §3.6 의 ③/④ 채널.
@@ -102,16 +102,18 @@ tags: [planning, portfolio, persona]
         (사람 편집)           ↓              ↑           (기계 쓰기)
    ┌──────────────────────────┤              ├──────────────────────────┐
    │ ① 코드 변경              │              │ ③ 잔디 잡 산출물          │
-   │   GitHub Actions         │              │   activity.yaml          │
-   │   → SSH → git pull       │              │   → git commit + push    │
-   │   → docker rebuild       │              │                          │
-   │   → curl admin/reload    │              │ ④ 콘텐츠 enrich 결과     │
-   │                          │              │   md frontmatter + 본문  │
-   │ ② 콘텐츠 변경 (md)        │              │   → git commit + push    │
-   │   GitHub webhook         │              │                          │
-   │   → admin/reload         │              │   (충돌 회피:            │
-   │   → git pull             │              │    fetch+rebase+retry,   │
-   │   → LLM 잡 트리거        │              │    git_push.py)          │
+   │   GitHub Actions         │              │   daily/{date}.md        │
+   │   → SSH → git pull       │              │   (auto: true frontmatter│
+   │   → docker rebuild       │              │    + ≤500자 narrative)   │
+   │   → curl admin/reload    │              │   → git commit + push    │
+   │                          │              │                          │
+   │ ② 콘텐츠 변경 (md)        │              │ ④ 콘텐츠 enrich 결과     │
+   │   GitHub webhook         │              │   md frontmatter + 본문  │
+   │   → admin/reload         │              │   → git commit + push    │
+   │   → git pull             │              │                          │
+   │   → LLM 잡 트리거        │              │   (충돌 회피:            │
+   │                          │              │    fetch+rebase+retry,   │
+   │                          │              │    git_push.py)          │
    └──────────────────────────┤              ├──────────────────────────┘
                               ↓              ↑
                             ┌─────────────────────┐
@@ -184,7 +186,7 @@ A안 — 슬롯은 단일 키, 백엔드가 `?lang=ko` / `?lang=en` 쿼리로 �
 ## 6. 비기능 요구
 
 - **호스팅**: 백엔드 = 본인 홈서버 docker compose (back + redis + worker, NPM = Nginx Proxy Manager 가 SSL/리버스 프록시) / 프론트 = Vercel. 도메인은 백 `profile-api.kknaks.cloud`, 프론트 `profile.kknaks.cloud`. 두 시스템은 같은 SoT(`persona/**/*.md`)를 git 으로만 공유 — 프론트는 백 API만 호출, 페르소나 직접 접근 X
-- **콘텐츠 SoT**: md 기본 (frontmatter + 본문). 데이터-only 파일(잡 자동 생성: `persona/activity.yaml`, 또는 사람이 박는 메타 정의: `persona/_meta.yaml`)에 한해 yaml 허용
+- **콘텐츠 SoT**: md 기본 (frontmatter + 본문). 데이터-only yaml 은 사람이 박는 메타 정의 (`persona/_meta.yaml`) 만. 잡 자동 산출물도 md 로 박음 (잔디 잡 → `persona/daily/{date}.md`, 콘텐츠 enrich → `persona/contents/*.md` 갱신)
 - **모노레포 구조**: `persona/` (md SoT — 백엔드의 "DB" 역할) + `back/` (FastAPI) + `frontend/` (Next.js). 통합 디렉토리 트리 SoT는 spec-05
 - **DB**: 사용 안 함. 부팅 시 md 메모리 로드. 향후 데이터 만 단위 넘으면 sqlite부터 incremental
 - **i18n**: A안 — md frontmatter `{ko, en}` 객체로 양쪽 보관. 백엔드가 `?lang=` 분기해서 응답
@@ -210,5 +212,5 @@ A안 — 슬롯은 단일 키, 백엔드가 `?lang=ko` / `?lang=en` 쿼리로 �
 - **ADR-03** — AI 잡 위치 (백엔드 내장 vs Actions cron) 결정 근거
 - **spec-01** — 페르소나 md 형식 명세 (frontmatter 스키마, 디렉토리 구조)
 - **spec-02** — API 엔드포인트 명세 (`claude_design/SLOTS.md` 흡수)
-- **spec-03** — 잔디 잡 명세 (GitHub API + LLM 프롬프트 + kind 결정 로직)
+- **spec-03** — 잔디 잡 명세 (notes/contents 본문 + GitHub commits → daily.md 자동 작성; `activity.yaml` 폐지)
 - **plan-01** — v1.0-pre 마일스톤 (페르소나 시드 → 백엔드 스켈레톤 → 프론트 fetch → 데이터 주입)

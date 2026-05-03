@@ -4,10 +4,11 @@ type: spec
 title: 페르소나 md 형식 명세 — 디렉토리·frontmatter·파일명
 status: draft
 created: 2026-05-01
-updated: 2026-05-02
+updated: 2026-05-03
 sources:
   - "[[planning-01-portfolio-overview]]"
   - "[[adr-05-content-pending-enrich]]"
+  - "[[adr-06-daily-as-grass-sot]]"
 tags: [spec, persona, md, schema]
 ---
 
@@ -15,7 +16,7 @@ tags: [spec, persona, md, schema]
 
 ## Summary
 
-페르소나 시스템(`persona/`)의 md 파일 형식을 정의. 디렉토리 구조, 카테고리별 frontmatter 스키마, 파일명 규칙, i18n 표현(`{ko, en}` 객체), 위키링크 컨벤션, 메타 정의(`_meta.yaml`), 잡 산출물(`activity.yaml`)을 다룸. 백엔드(`back/`)는 부팅 시 이 형식을 메모리 dict로 로드해서 API 응답 소스로 사용.
+페르소나 시스템(`persona/`)의 md 파일 형식을 정의. 디렉토리 구조, 카테고리별 frontmatter 스키마, 파일명 규칙, i18n 표현(`{ko, en}` 객체), 위키링크 컨벤션, 메타 정의(`_meta.yaml`)를 다룸. 잔디 잡 산출물도 md (`daily/{date}.md` frontmatter 집계 → `/api/activity` derive — §4). 백엔드(`back/`)는 부팅 시 이 형식을 메모리 dict로 로드해서 API 응답 소스로 사용.
 
 ---
 
@@ -50,15 +51,14 @@ persona/
 │  ├─ career/
 │  ├─ projects/
 │  └─ notes/
-├─ activity.yaml                   ← 잡 자동 산출물 (사람 안 만짐)
-├─ _meta.yaml                      ← 카테고리·클러스터 enum 정의
+├─ _meta.yaml                      ← 카테고리·클러스터 enum 정의 (사람이 박음)
 └─ _map.md                         ← 자동 생성 인덱스 (옵시디언 진입점, 사람 안 만짐 — spec-04)
 ```
 
 **원칙**:
 - 카테고리 디렉토리 이름은 영문 소문자 + kebab-case. 단/복수는 SLOTS.md mock 표기 따름 (`career`, `daily` 단수 / `projects`, `notes`, `contents` 복수)
 - 파일은 카테고리당 N개 (profile만 단일)
-- 자동 생성물(`activity.yaml`) + 메타(`_meta.yaml`)는 yaml 허용 (planning-01 §6 예외 조항)
+- 데이터-only yaml 은 사람이 박는 메타 (`_meta.yaml`) 만 허용. 잡 자동 산출물도 md (잔디 → `daily/{date}.md`, 콘텐츠 enrich → `contents/*.md` 갱신)
 
 ---
 
@@ -104,7 +104,6 @@ stack:    ["Python", "FastAPI"]      # 태그는 다국어 X
 | notes | `slug.md` (= 위키링크 id) | `python-asyncio.md` |
 | contents | `C-NNN-slug.md` | `C-005-postgres-index.md` |
 | daily | `YYYY-MM-DD.md` | `2026-04-30.md` |
-| activity | 단일 yaml | `activity.yaml` |
 | _meta | 단일 yaml | `_meta.yaml` |
 
 slug는 kebab-case (영문 소문자 + 하이픈). 한글 X.
@@ -396,51 +395,84 @@ B-tree, GIN 정의 + 작동 원리...
 
 ### 3.6 `daily/YYYY-MM-DD.md`
 
-잔디 잡(spec-03)의 입력 소스. 자유 서술 → LLM이 종합 요약.
+**잔디 잡 자동 작성** (spec-03). 본인이 미리 박은 경우 (`auto: false` 또는 `auto` 필드 미박음) 잡이 skip — 본인 narrative 가 우선.
+
+`activity.yaml` 폐지 (§4 참조) — 잔디 viz 데이터는 모든 `daily/*.md` 의 frontmatter 집계로 derive. 즉 **이 한 파일이 그날의 단일 SoT**.
 
 ```yaml
 ---
 type: daily
-date: "2026.04.30"
+date: "2026.05.02"
+auto: true                                # default false. true 면 잡이 갱신, false/없음 = 본인 작성 keep
+counts:                                    # 활동 분포 — 잡이 deterministic 으로 채움
+  commit: 19                               # GitHub commits (tracked repos × accounts, dedupe 후)
+  note: 0                                  # persona/notes/ 그날 git log
+  study: 9                                 # persona/contents/ 그날 git log
+summary:                                   # 잔디 hover 시 표시 — LLM 1줄 종합
+  ko: "프로필 잔디 자동화 + content enrich 작업 진행"
+  en: "Implemented grass automation and content enrichment"
 ---
 
-# 오늘 한 일
+# 한 일
 
-- API 캐싱 레이어 추가
-- Postgres GIN 인덱스 실험
-- spec-01 박음 (이 문서)
+## commits
+- [kknaks_profile] refactor(scheduler): 00:05 KST 직전 날 entry — 5분 빈틈 제거
+- [open_kknaks] fix(broker): redis pubsub timeout
 
-(자유 서술 — 잔디 잡이 통째로 LLM에 넘김)
+## notes
+- (없음)
+
+## study
+- [C-006] 프롬프트 엔지니어링 영상 — system prompt vs user prompt 구분
+
+# 회고 / 다음
+(LLM 추론 1~2줄 또는 비움)
 ```
 
-**필수**: `type`, `date`
-**선택**: 없음 (본문이 곧 데이터)
+**본문 룰**: ≤500자 (frontmatter 제외). 짧은 한 일 + 짧은 회고. 길게 쓸 일은 본인 narrative (`auto: false`) 로 박음.
+
+**필수**:
+- 항상: `type`, `date`
+- `auto: true` 인 경우 추가 필수: `counts`, `summary`
+- `auto: false`/미박음: `counts`/`summary` 선택 (없으면 잔디 viz 에서 count=0, kind=null 로 표시)
+
+**파일명**: `YYYY-MM-DD.md` — `date` 필드와 일치 (§6.1 강제).
 
 ---
 
-## 4. 잡 산출물 — `activity.yaml`
+## 4. 잔디 viz 데이터 — `daily/*.md` 집계 derive
 
-스케쥴러(spec-03 별도 명세)가 매일 갱신. 사람이 직접 만지지 않음.
+**`activity.yaml` 폐지** (이전 spec 에서 `persona/activity.yaml` 별도 yaml 로 박았던 것 — 단일 SoT 위배).
 
-```yaml
-since: "2025.05.01"
-until: "2026.05.01"
-totalCount: 487
-items:
-  - date: "2026.04.30"
-    count: 5
-    kind: "commit"                 # commit | note | study | null
-    summary:
-      ko: "API 캐싱 레이어 추가 + Postgres GIN 인덱스 실험"
-      en: "Added API caching layer + experimented with Postgres GIN index"
-  - date: "2026.04.29"
-    count: 0
-    kind: null
-    summary: null
-  # ...365개 항목
+`/api/activity` 응답은 `persona_loader` 가 부팅 시 모든 `daily/*.md` 의 frontmatter 를 스캔해서 derive:
+
+```python
+items = [
+    {
+        "date": d["date"],
+        "counts": d.get("counts", {}),
+        "count": sum(d.get("counts", {}).values()),  # 호환 — 프론트 잔디 색 강도용
+        "summary": d.get("summary"),
+    }
+    for d in sorted(daily_list, key=lambda x: x["date"])
+]
+since = items[0]["date"] if items else None
+until = items[-1]["date"] if items else None
+totalCount = sum(i["count"] for i in items)
 ```
 
-`kind` enum 5종 중 `ship`은 본 spec 시점엔 미사용 (spec-03에서 정의 시 추가).
+응답 schema (spec-02 §3.3 동일):
+```json
+{
+  "activity": {"totalCount": 350, "since": "2025.05.04", "until": "2026.05.02"},
+  "activity[]": [
+    {"date": "2026.05.02", "count": 28, "counts": {"commit": 19, "study": 9, "note": 0}, "summary": {"ko": "...", "en": "..."}},
+    ...
+  ]
+}
+```
+
+**rolling 365 트림**: 부팅 시 derive 단계에서 today 기준 365일 윈도우만 items 에 박음. 디스크의 오래된 `daily/*.md` 는 keep (개인 로그 가치) — 잔디 viz 에만 365 cap.
 
 ---
 
@@ -499,6 +531,7 @@ notes:
 - `notes/*.md` 의 frontmatter `id` == 파일명 slug
 - `contents/*.md` 의 frontmatter `id` (예: `C-005`) == 파일명 prefix (`C-005-...`)
 - `daily/*.md` 의 `date` 필드와 파일명(`YYYY-MM-DD`) 일치
+- `daily/*.md` 의 `auto: true` 인 경우 `counts` (dict) + `summary` (`{ko, en}`) 모두 박혀야 함
 - `_meta.yaml` 의 enum id 중복 없음
 
 ### 6.2 경고 (로그만 남김)
@@ -516,5 +549,6 @@ notes:
 
 - 페르소나 외부 활용처 (이력서 자동 생성, AI 컨텍스트 dump) — 같은 md SoT 재활용
 - `daily/` 의 주간/월간 자동 종합 → `weekly/`, `monthly/` 카테고리 추가 가능
-- `ship` kind 정의 시 `releases/` 카테고리 신설 옵션
+- `counts` 키 추가 (예: `ship`, `review`, `design`) — `_meta.yaml` 색 매핑 + 프론트 잔디 stripe 표현 검토
+- `releases/` 카테고리 신설 옵션 (배포 이벤트 별도 SoT)
 - 검색 인덱스 (memory inverted index) 외에 임베딩 도입 — 데이터 만 단위 넘을 때 검토 (planning-01 §6 incremental 원칙)
