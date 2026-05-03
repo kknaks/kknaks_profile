@@ -15,6 +15,8 @@
 - `api-design` — 신규·수정 API 엔드포인트의 *구현 전* 설계 합의 — 5 단계 절차 (충돌 점검 → ERD/DB 정합 → Request/Response → ...
 - `code-review` — 백엔드 변경분의 컨벤션 준수 + 설계 적정성 + 줄단위 보안/성능 점검을 4단계로 검토하고 심각도 5분류 (🔴blocking/🟡important...
 - `docs-validate` — medi_docs/current/ 의 frontmatter (R4-R9 최소셋) + 관계 (D4 lineage 필수) 검증 + _map
+- `enrich-note` — 단일 노트 
+- `import-project` — 외부 레포 디렉토리 1개를 분석해 persona/projects/<slug>
 - `medi-new` — medi_docs/current/ 의 9 카테고리 중 하나에 새 문서를 박는다
 - `medi-version-cut` — medi_docs/current/ 전체를 v{label}/ 으로 박제 (read-only 스냅샷)
 - `refactor-layered` — 라우터 1 개 단위 4 계층 (Router/Service/Repository/Schema) 정렬 리팩토링
