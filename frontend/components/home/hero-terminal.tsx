@@ -83,9 +83,14 @@ export function HeroTerminal({
           {hero?.subline ?? user.intro}
         </p>
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-          <button className="btn primary" type="button">
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noreferrer"
+            className="btn primary"
+          >
             {t("이력서 다운로드", "Resume")} <span className="arrow">↓</span>
-          </button>
+          </a>
           <Link href={`/projects${langSuffix}`} className="btn">
             {t("프로젝트 보기", "See projects")} <span className="arrow">→</span>
           </Link>
