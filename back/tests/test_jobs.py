@@ -1,19 +1,22 @@
-"""TDD — M4 잡 내부 로직 (외부 API 호출은 stub이라 검증 X)."""
+"""TDD — 잔디 잡 내부 로직 (외부 API 호출은 stub).
+
+새 flow (ADR-06): counts deterministic + LLM body+summary → daily/{date}.md write.
+"""
 
 import json
 from datetime import date
 from pathlib import Path
 
+import frontmatter
 import pytest
-import yaml
 
 from service.jobs.inputs import read_daily_narrative
 from service.jobs.llm import (
     _build_prompt,
-    summarize_activity,
+    summarize_daily,
     validate_llm_response,
 )
-from service.jobs.upsert import upsert_activity
+from service.jobs.upsert import write_daily
 
 
 class _MockTask:
@@ -34,155 +37,185 @@ class _MockClient:
         return _MockTask(self._response)
 
 
-class TestUpsertIdempotent:
-    def test_first_entry_creates_file(self, tmp_path: Path):
-        target = tmp_path / "activity.yaml"
-        entry = {
-            "date": "2026.05.01",
-            "count": 3,
-            "kind": "note",
-            "summary": {"ko": "k", "en": "e"},
-        }
-        result = upsert_activity(entry, target)
-        assert target.exists()
-        assert result["totalCount"] == 3
-        assert len(result["items"]) == 1
+class TestWriteDaily:
+    def test_creates_file_with_frontmatter_and_body(self, tmp_path: Path):
+        path = write_daily(
+            date(2026, 5, 2),
+            counts={"commit": 3, "note": 0, "study": 0},
+            summary={"ko": "k", "en": "e"},
+            body="# 한 일\n- x",
+            persona_dir=tmp_path,
+        )
+        assert path.exists()
+        post = frontmatter.load(path)
+        assert post.metadata["type"] == "daily"
+        assert post.metadata["date"] == "2026.05.02"
+        assert post.metadata["auto"] is True
+        assert post.metadata["counts"] == {"commit": 3, "note": 0, "study": 0}
+        assert post.metadata["summary"] == {"ko": "k", "en": "e"}
+        assert "# 한 일" in post.content
 
-    def test_same_entry_twice_yields_same_result(self, tmp_path: Path):
-        target = tmp_path / "activity.yaml"
-        entry = {"date": "2026.05.01", "count": 2, "kind": "note", "summary": None}
-        r1 = upsert_activity(entry, target)
-        r2 = upsert_activity(entry, target)
-        assert r1 == r2
-        assert len(r2["items"]) == 1
+    def test_idempotent_overwrite(self, tmp_path: Path):
+        write_daily(
+            date(2026, 5, 2), counts={"commit": 1}, summary=None, body="a",
+            persona_dir=tmp_path,
+        )
+        write_daily(
+            date(2026, 5, 2), counts={"commit": 1}, summary=None, body="a",
+            persona_dir=tmp_path,
+        )
+        # 같은 입력 → 같은 결과
+        path = tmp_path / "daily" / "2026-05-02.md"
+        post = frontmatter.load(path)
+        assert post.metadata["counts"] == {"commit": 1}
+        assert post.content == "a"
 
-    def test_overwrites_same_date_entry(self, tmp_path: Path):
-        target = tmp_path / "activity.yaml"
-        upsert_activity(
-            {"date": "2026.05.01", "count": 1, "kind": "note", "summary": None},
-            target,
+    def test_summary_omitted_when_none(self, tmp_path: Path):
+        path = write_daily(
+            date(2026, 5, 2), counts={"commit": 0, "note": 0, "study": 0},
+            summary=None, body="(활동 없음)",
+            persona_dir=tmp_path,
         )
-        upsert_activity(
-            {"date": "2026.05.01", "count": 5, "kind": "study", "summary": None},
-            target,
-        )
-        data = yaml.safe_load(target.read_text())
-        assert len(data["items"]) == 1
-        assert data["items"][0]["count"] == 5
-        assert data["items"][0]["kind"] == "study"
+        post = frontmatter.load(path)
+        assert "summary" not in post.metadata
 
-    def test_totalcount_aggregates_across_days(self, tmp_path: Path):
-        target = tmp_path / "activity.yaml"
-        upsert_activity(
-            {"date": "2026.05.01", "count": 3, "kind": "note", "summary": None},
-            target,
+    def test_user_authored_protected(self, tmp_path: Path):
+        # 본인 작성 (auto:false 또는 미박음) → overwrite skip
+        path = tmp_path / "daily" / "2026-05-02.md"
+        path.parent.mkdir(parents=True)
+        existing = frontmatter.Post(
+            content="본인이 박은 narrative", **{"type": "daily", "date": "2026.05.02"}
         )
-        upsert_activity(
-            {"date": "2026.05.02", "count": 5, "kind": "study", "summary": None},
-            target,
-        )
-        data = yaml.safe_load(target.read_text())
-        assert data["totalCount"] == 8
+        path.write_text(frontmatter.dumps(existing), encoding="utf-8")
 
-    def test_rolling_365_trims_old_entries(self, tmp_path: Path):
-        target = tmp_path / "activity.yaml"
-        # 366일 전 entry 박음
-        upsert_activity(
-            {"date": "2025.04.30", "count": 99, "kind": "note", "summary": None},
-            target,
+        # 잡이 overwrite 시도해도 보존
+        write_daily(
+            date(2026, 5, 2), counts={"commit": 99}, summary={"ko": "k", "en": "e"},
+            body="잡이 박는 본문", persona_dir=tmp_path,
         )
-        # 오늘 entry 박으면 366일 전 entry는 트림되어야 함 (window=365)
-        upsert_activity(
-            {"date": "2026.05.01", "count": 1, "kind": "note", "summary": None},
-            target,
-        )
-        data = yaml.safe_load(target.read_text())
-        dates = [e["date"] for e in data["items"]]
-        assert "2025.04.30" not in dates  # trimmed
-        assert "2026.05.01" in dates
+        post = frontmatter.load(path)
+        assert post.content == "본인이 박은 narrative"
+        assert "auto" not in post.metadata
+        assert "counts" not in post.metadata
 
 
 class TestLLMEmpty:
     @pytest.mark.asyncio
-    async def test_empty_inputs_yield_null_kind(self):
+    async def test_empty_inputs_skip_llm(self):
         # 활동 0 — LLM 호출 skip, client 안 봄
-        r = await summarize_activity(date(2026, 5, 1), None, [], [], [], client=_MockClient(""))
-        assert r["kind"] is None
-        assert r["count"] == 0
+        r = await summarize_daily(
+            date(2026, 5, 1),
+            notes_changes=[], contents_changes=[], commits=[],
+            counts={"commit": 0, "note": 0, "study": 0},
+            client=_MockClient(""),
+        )
         assert r["summary"] is None
+        assert r["body"] == "(활동 없음)"
 
 
 class TestLLMValidate:
-    def test_kind_fallback_to_none(self):
-        # ALLOWED_KINDS 외 값 → None fallback
+    def test_valid_response_passes(self):
         r = validate_llm_response(
-            {"kind": "rant", "summary": {"ko": "k", "en": "e"}}, expected_count=3
+            {"summary": {"ko": "k", "en": "e"}, "body": "# 한 일\n- x"}
         )
-        assert r["kind"] is None
-        assert r["count"] == 3
-
-    def test_count_uses_expected_not_llm(self):
-        # LLM 응답의 count 무시, expected_count 박음 (idempotent)
-        r = validate_llm_response(
-            {"kind": "note", "count": 999, "summary": None}, expected_count=2
-        )
-        assert r["count"] == 2
+        assert r["summary"] == {"ko": "k", "en": "e"}
+        assert r["body"] == "# 한 일\n- x"
 
     def test_invalid_summary_raises(self):
         with pytest.raises(ValueError, match="invalid_summary"):
-            validate_llm_response({"kind": "note", "summary": {"ko": "only"}}, expected_count=1)
+            validate_llm_response({"summary": {"ko": "only"}, "body": "x"})
 
-    def test_null_summary_passes(self):
-        r = validate_llm_response({"kind": None, "summary": None}, expected_count=0)
-        assert r["summary"] is None
+    def test_invalid_body_raises(self):
+        with pytest.raises(ValueError, match="invalid_body"):
+            validate_llm_response(
+                {"summary": {"ko": "k", "en": "e"}, "body": 123}
+            )
+
+    def test_body_truncated_when_too_long(self):
+        long_body = "x" * 1000
+        r = validate_llm_response(
+            {"summary": {"ko": "k", "en": "e"}, "body": long_body}
+        )
+        assert len(r["body"]) <= 700  # BODY_HARD_LIMIT (600) + truncation suffix
+        assert "(truncated)" in r["body"]
 
 
 class TestLLMBuildPrompt:
-    def test_includes_narrative(self):
+    def test_includes_counts(self):
         prompt = _build_prompt(
-            date(2026, 5, 1), narrative="오늘 한 일", notes=[], contents=[], commits=[]
+            date(2026, 5, 2),
+            notes_changes=[], contents_changes=[], commits=[],
+            counts={"commit": 5, "note": 2, "study": 1},
         )
-        assert "오늘 한 일" in prompt
+        assert "commits: 5" in prompt
+        assert "notes:   2" in prompt
+        assert "study:   1" in prompt
 
-    def test_no_narrative_block_when_missing(self):
-        prompt = _build_prompt(date(2026, 5, 1), None, notes=[], contents=[], commits=[])
-        assert "미작성" in prompt
-
-    def test_bullets_default_to_no_data(self):
-        prompt = _build_prompt(date(2026, 5, 1), None, notes=[], contents=[], commits=[])
+    def test_empty_blocks_show_no_data(self):
+        prompt = _build_prompt(
+            date(2026, 5, 2),
+            notes_changes=[], contents_changes=[], commits=[],
+            counts={"commit": 0, "note": 0, "study": 0},
+        )
         assert "(없음)" in prompt
+
+    def test_includes_note_body(self):
+        prompt = _build_prompt(
+            date(2026, 5, 2),
+            notes_changes=[
+                {"path": "persona/notes/x.md", "frontmatter": {"id": "x", "title": "X"}, "body": "본문 abc"}
+            ],
+            contents_changes=[], commits=[],
+            counts={"commit": 0, "note": 1, "study": 0},
+        )
+        assert "[x]" in prompt
+        assert "본문 abc" in prompt
+
+    def test_includes_commit_msg(self):
+        prompt = _build_prompt(
+            date(2026, 5, 2),
+            notes_changes=[], contents_changes=[],
+            commits=[{"repo": "kknaks/foo", "msg": "fix: bar"}],
+            counts={"commit": 1, "note": 0, "study": 0},
+        )
+        assert "[kknaks/foo]" in prompt
+        assert "fix: bar" in prompt
 
 
 class TestLLMSummarize:
     @pytest.mark.asyncio
     async def test_call_with_mock_client(self):
         mock_response = json.dumps(
-            {"kind": "study", "count": 99, "summary": {"ko": "k", "en": "e"}}
+            {"summary": {"ko": "k", "en": "e"}, "body": "# 한 일\n- x"}
         )
         client = _MockClient(mock_response)
 
-        r = await summarize_activity(
-            date(2026, 5, 1),
-            narrative=None,
-            notes=[{"subject": "n"}],
-            contents=[{"subject": "c"}],
+        r = await summarize_daily(
+            date(2026, 5, 2),
+            notes_changes=[{"path": "persona/notes/x.md", "frontmatter": {"id": "x"}, "body": "n"}],
+            contents_changes=[],
             commits=[],
+            counts={"commit": 0, "note": 1, "study": 0},
             client=client,
         )
-        assert r["kind"] == "study"
-        assert r["count"] == 2  # 실 입력 합계, LLM 응답의 99 무시
         assert r["summary"]["ko"] == "k"
+        assert "# 한 일" in r["body"]
 
     @pytest.mark.asyncio
     async def test_extracts_json_from_codeblock(self):
         # Claude 가 ```json ... ``` 박는 케이스 대응
-        mock_response = '```json\n{"kind": "note", "summary": {"ko": "k", "en": "e"}}\n```'
+        mock_response = '```json\n{"summary": {"ko": "k", "en": "e"}, "body": "x"}\n```'
         client = _MockClient(mock_response)
 
-        r = await summarize_activity(
-            date(2026, 5, 1), None, [{"subject": "n"}], [], [], client=client
+        r = await summarize_daily(
+            date(2026, 5, 2),
+            notes_changes=[],
+            contents_changes=[{"path": "persona/contents/C-001.md", "frontmatter": {"id": "C-001"}, "body": "c"}],
+            commits=[],
+            counts={"commit": 0, "note": 0, "study": 1},
+            client=client,
         )
-        assert r["kind"] == "note"
+        assert r["summary"] == {"ko": "k", "en": "e"}
 
 
 class TestDailyNarrativeRead:

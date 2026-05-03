@@ -48,22 +48,26 @@ logging.basicConfig(
 
 
 async def main() -> int:
-    """잡 1회 실행. dry_run_push=True 로 실 push 안 함 (activity.yaml 만 갱신, working tree 에 남음)."""
+    """잡 1회 실행. dry_run_push=True 로 실 push 안 함 (daily/{date}.md 만 갱신, working tree 에 남음)."""
     # 호스트 스크립트는 lifespan 안 발동 → 메모리 dict 빈 상태. 잡 시작 전 explicit load.
     load_all()
     entry = await run_daily_activity_job(dry_run_push=True)
 
     print("\n=== daily_activity_job done ===")
-    print(f"date:  {entry['date']}")
-    print(f"count: {entry['count']}")
-    print(f"kind:  {entry['kind']}")
-    if entry["summary"]:
-        print(f"summary ko: {entry['summary'].get('ko')}")
-        print(f"summary en: {entry['summary'].get('en')}")
+    print(f"date:    {entry['date']}")
+    if entry.get("skipped"):
+        print(f"skipped: {entry.get('reason')}")
+        return 0
+    counts = entry.get("counts", {})
+    print(f"counts:  commit={counts.get('commit', 0)} note={counts.get('note', 0)} study={counts.get('study', 0)}")
+    summary = entry.get("summary")
+    if summary:
+        print(f"summary ko: {summary.get('ko')}")
+        print(f"summary en: {summary.get('en')}")
     else:
         print("summary: (활동 없음 — LLM 호출 skip)")
     print()
-    print("activity.yaml 변경분: git diff persona/activity.yaml")
+    print(f"daily/{entry['date'].replace('.', '-')}.md 변경분: git diff persona/daily/")
     return 0
 
 

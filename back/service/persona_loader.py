@@ -11,6 +11,8 @@ import yaml
 
 from core.wikilinks import build_graph
 
+ACTIVITY_WINDOW_DAYS = 365  # spec-01 §4 — 잔디 viz rolling 윈도우
+
 
 def _normalize_date(d: Any) -> str:
     """multi-format date → 'YYYY.MM.DD'.
@@ -106,12 +108,8 @@ def load_persona(persona_dir: Path) -> dict[str, Any]:
     # notes는 dict로 (위키링크 id 조회 용도)
     notes: dict[str, dict] = {n["id"]: n for n in notes_list}
 
-    activity_path = persona_dir / "activity.yaml"
-    activity: dict = (
-        yaml.safe_load(activity_path.read_text(encoding="utf-8")) or {}
-        if activity_path.exists()
-        else {}
-    )
+    # spec-01 §4 — activity 는 daily/*.md frontmatter 집계 derive (activity.yaml 폐지, ADR-06)
+    activity = _derive_activity(daily)
 
     data: dict[str, Any] = {
         "profile": profile,
@@ -192,6 +190,59 @@ def validate_persona(data: dict[str, Any]) -> None:
             raise PersonaError(
                 f"daily/{path.name}: date '{d['date']}' must match filename '{path.stem}'"
             )
+        # spec-01 §6.1 — auto:true 면 counts (dict) + summary ({ko,en}) 모두 박혀야 함
+        if d.get("auto") is True:
+            counts = d.get("counts")
+            if not isinstance(counts, dict):
+                raise PersonaError(
+                    f"daily/{path.name}: auto=true requires 'counts' dict"
+                )
+            summary = d.get("summary")
+            if summary is not None and not (
+                isinstance(summary, dict) and "ko" in summary and "en" in summary
+            ):
+                raise PersonaError(
+                    f"daily/{path.name}: auto=true 'summary' must be null or {{ko, en}}"
+                )
+
+
+def _derive_activity(daily_list: list[dict]) -> dict:
+    """daily/*.md frontmatter → 잔디 viz 응답 (spec-01 §4, ADR-06).
+
+    `count` (single) 는 `sum(counts.values())` 로 derive — 프론트 잔디 색 강도 호환.
+    rolling 365 윈도우 — today 기준 cutoff 이전 entry 는 viz 에서 제외 (디스크 파일은 keep).
+    """
+    if not daily_list:
+        return {"totalCount": 0, "since": None, "until": None, "items": []}
+
+    today = datetime.date.today()
+    cutoff = today - datetime.timedelta(days=ACTIVITY_WINDOW_DAYS - 1)
+    cutoff_str = cutoff.strftime("%Y.%m.%d")
+
+    items: list[dict] = []
+    for d in sorted(daily_list, key=lambda x: x.get("date", "")):
+        date_str = d.get("date", "")
+        if not date_str or date_str < cutoff_str:
+            continue
+        counts = d.get("counts") if isinstance(d.get("counts"), dict) else {}
+        items.append(
+            {
+                "date": date_str,
+                "counts": counts,
+                "count": sum(counts.values()) if counts else 0,
+                "summary": d.get("summary"),
+            }
+        )
+
+    if not items:
+        return {"totalCount": 0, "since": None, "until": None, "items": []}
+
+    return {
+        "since": items[0]["date"],
+        "until": items[-1]["date"],
+        "totalCount": sum(i["count"] for i in items),
+        "items": items,
+    }
 
 
 def _load_md(path: Path, persona_dir: Path | None = None) -> dict:

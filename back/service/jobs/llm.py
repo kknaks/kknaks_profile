@@ -1,4 +1,10 @@
-"""잔디 LLM 종합 — Claude Haiku 4.5 via open-kknaks (spec-03 §3, ADR-04)."""
+"""잔디 LLM 종합 — Claude Haiku 4.5 via open-kknaks (spec-03 §3, ADR-04, ADR-06).
+
+새 flow (ADR-06):
+- counts 는 코드가 deterministic 으로 계산 (LLM 안 받음)
+- LLM 은 body (≤500자 markdown narrative) + summary (ko/en 한 줄) 만 생성
+- 결과는 daily/{date}.md 에 frontmatter (auto/counts/summary) + body 로 박힘
+"""
 
 from __future__ import annotations
 
@@ -12,55 +18,100 @@ logger = logging.getLogger("kknaks-back.llm")
 
 LLM_MODEL = "claude-haiku-4-5-20251001"
 LLM_TIMEOUT_S = 120
-ALLOWED_KINDS = {"commit", "note", "study"}
+BODY_HARD_LIMIT = 600  # 500자 룰 + 100자 grace
+
+
+def _format_notes_block(notes_changes: list[dict]) -> str:
+    """notes 변경 파일들 → bullet block (id + 본문 발췌)."""
+    if not notes_changes:
+        return "(없음)"
+    parts = []
+    for n in notes_changes:
+        fm = n.get("frontmatter", {}) or {}
+        nid = fm.get("id") or n.get("path", "")
+        title = fm.get("title", "")
+        body_excerpt = (n.get("body") or "").strip()
+        parts.append(f"### [{nid}] {title}\n{body_excerpt}")
+    return "\n\n".join(parts)
+
+
+def _format_contents_block(contents_changes: list[dict]) -> str:
+    """contents 변경 파일들 → bullet block (id + 본문 발췌)."""
+    if not contents_changes:
+        return "(없음)"
+    parts = []
+    for c in contents_changes:
+        fm = c.get("frontmatter", {}) or {}
+        cid = fm.get("id") or c.get("path", "")
+        title_ko = ""
+        title = fm.get("title")
+        if isinstance(title, dict):
+            title_ko = title.get("ko", "") or title.get("en", "")
+        elif isinstance(title, str):
+            title_ko = title
+        body_excerpt = (c.get("body") or "").strip()
+        parts.append(f"### [{cid}] {title_ko}\n{body_excerpt}")
+    return "\n\n".join(parts)
+
+
+def _format_commits_block(commits: list[dict]) -> str:
+    """GitHub commits → bullet block ([repo] msg 전체)."""
+    if not commits:
+        return "(없음)"
+    parts = []
+    for c in commits:
+        repo = c.get("repo", "")
+        msg = (c.get("msg") or "").strip()
+        parts.append(f"- [{repo}]\n  {msg}")
+    return "\n".join(parts)
 
 
 def _build_prompt(
-    today: date,
-    narrative: str | None,
-    notes: list[dict],
-    contents: list[dict],
+    target: date,
+    notes_changes: list[dict],
+    contents_changes: list[dict],
     commits: list[dict],
+    counts: dict,
 ) -> str:
-    """spec-03 §3.2 프롬프트 빌드."""
-    bullets_notes = (
-        "\n".join(f"- {n.get('subject', '')}" for n in notes) or "(없음)"
-    )
-    bullets_contents = (
-        "\n".join(f"- {c.get('subject', '')}" for c in contents) or "(없음)"
-    )
-    bullets_commits = (
-        "\n".join(
-            f"- [{c.get('repo', '')}] {(c.get('msg', '') or '').splitlines()[0] if c.get('msg') else ''}"
-            for c in commits
-        )
-        or "(없음)"
-    )
-    narrative_block = (
-        f"[본인 narrative — 1순위 입력]\n{narrative}\n"
-        if narrative
-        else "[본인 narrative]\n(오늘 daily/*.md 미작성 — 사실 데이터로만 요약)\n"
-    )
-    return f"""오늘({today.isoformat()}) 한 사람의 활동 데이터다.
-narrative는 본인 시각의 컨텍스트(1순위 입력), 나머지 3개는 kind 후보다.
+    """spec-03 §3.2 프롬프트 — counts 박고 (LLM 가 셈 안 함), body+summary 만 받음."""
+    return f"""오늘({target.isoformat()}) 한 사람의 활동 데이터다.
 
-{narrative_block}
-[kind 후보 1 — note] notes 변경
-{bullets_notes}
+활동 분포 (자동 집계):
+- commits: {counts.get("commit", 0)}
+- notes:   {counts.get("note", 0)}
+- study:   {counts.get("study", 0)}
 
-[kind 후보 2 — study] contents 변경
-{bullets_contents}
+[notes 변경 — frontmatter id + 본문]
+{_format_notes_block(notes_changes)}
 
-[kind 후보 3 — commit] GitHub 외부 커밋
-{bullets_commits}
+[contents 변경 — frontmatter id + 본문]
+{_format_contents_block(contents_changes)}
 
-다음을 결정해라:
-1. kind: "commit" | "note" | "study" 중 가장 의미 있는 활동의 kind. 세 후보 모두 비어있으면 null
-2. count: notes + contents + commits 항목 수의 합 (narrative는 셈에서 제외)
-3. summary: 무슨 작업을 했는지 한국어/영어 한 줄 (각각 60자 이내, 자연스러운 어투)
+[GitHub commits — msg 전체]
+{_format_commits_block(commits)}
+
+다음 두 가지를 JSON 으로 출력해라:
+1. summary: 무슨 작업을 했는지 한국어/영어 한 줄 (각각 60자 이내, 자연스러운 어투)
+2. body: ≤500자 markdown narrative. 다음 섹션 구조 그대로:
+
+# 한 일
+
+## commits
+- [repo] msg 한 줄 + 의미 (1줄)
+
+## notes
+- [note-id] 한 줄 정리
+
+## study
+- [content-id] 키 takeaway
+
+# 회고 / 다음
+1~2줄. 추론 어렵면 비움.
+
+각 섹션 항목 없으면 `- (없음)` 한 줄. body 전체는 frontmatter 제외 500자 이내로 압축.
 
 응답은 다음 JSON 한 객체만 (다른 텍스트 X, 코드블록 ```json``` 도 박지 않음):
-{{"kind": "...", "count": 0, "summary": {{"ko": "...", "en": "..."}}}}
+{{"summary": {{"ko": "...", "en": "..."}}, "body": "..."}}
 """
 
 
@@ -73,45 +124,39 @@ def _extract_json(text: str) -> str:
     return text
 
 
-def validate_llm_response(resp: dict, expected_count: int) -> dict:
-    """spec-03 §3.3 — 응답 검증.
+def validate_llm_response(resp: dict) -> dict:
+    """spec-03 §3.3 — body+summary 검증.
 
-    kind 가 ALLOWED 밖이면 None fallback (Claude 가 종종 빠뜨림).
-    count 는 LLM 응답 무시하고 expected_count (실 입력 합계) 박아 idempotent 보장.
+    - summary: {"ko", "en"} dict 필수
+    - body: str. BODY_HARD_LIMIT (=600자) 초과 시 truncate (soft enforcement, spec-03 §9)
     """
-    kind = resp.get("kind")
     summary = resp.get("summary")
+    body = resp.get("body", "")
 
-    if kind not in ALLOWED_KINDS:
-        logger.warning("kind=%r not in %s — fallback to None", kind, ALLOWED_KINDS)
-        kind = None
-
-    if summary is not None:
-        if not (
-            isinstance(summary, dict)
-            and "ko" in summary
-            and "en" in summary
-        ):
-            raise ValueError("invalid_summary")
-
-    return {"kind": kind, "count": expected_count, "summary": summary}
+    if not (isinstance(summary, dict) and "ko" in summary and "en" in summary):
+        raise ValueError("invalid_summary")
+    if not isinstance(body, str):
+        raise ValueError("invalid_body")
+    if len(body) > BODY_HARD_LIMIT:
+        logger.warning("body length=%d exceeds %d — truncate", len(body), BODY_HARD_LIMIT)
+        body = body[:BODY_HARD_LIMIT] + "\n...(truncated)"
+    return {"summary": summary, "body": body}
 
 
-async def summarize_activity(
-    today: date,
-    narrative: str | None,
-    notes: list[dict],
-    contents: list[dict],
+async def summarize_daily(
+    target: date,
+    notes_changes: list[dict],
+    contents_changes: list[dict],
     commits: list[dict],
+    counts: dict,
     client: ClaudeClient,
 ) -> dict:
-    """입력 4개 → kind/count/summary 결정 — open-kknaks 실 호출 (spec-03 §3.2)."""
-    total = len(notes) + len(contents) + len(commits)
-    if total == 0:
-        # 활동 없음 — LLM 호출 skip
-        return {"kind": None, "count": 0, "summary": None}
+    """입력 → body+summary (counts 는 deterministic 이라 LLM 안 거침). spec-03 §3.2."""
+    if sum(counts.values()) == 0:
+        # 활동 0 — LLM 호출 skip
+        return {"summary": None, "body": "(활동 없음)"}
 
-    prompt = _build_prompt(today, narrative, notes, contents, commits)
+    prompt = _build_prompt(target, notes_changes, contents_changes, commits, counts)
     task_id = await client.submit(
         prompt=prompt,
         model=LLM_MODEL,
@@ -120,4 +165,4 @@ async def summarize_activity(
     )
     task = await client.result(task_id, timeout=LLM_TIMEOUT_S)
     resp = json.loads(_extract_json(task.result or ""))
-    return validate_llm_response(resp, expected_count=total)
+    return validate_llm_response(resp)

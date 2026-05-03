@@ -148,8 +148,8 @@ export interface ContentDetailResponse {
 
 export interface ActivityEntry {
   date: string;
-  count: number;
-  kind: "commit" | "note" | "study" | null;
+  count: number;                                              // = sum(counts.values()) — 잔디 색 강도 호환
+  counts: Partial<Record<"commit" | "note" | "study", number>>;
   summary: string | null;
 }
 

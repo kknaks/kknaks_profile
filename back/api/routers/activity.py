@@ -1,4 +1,8 @@
-"""GET /api/activity — 활동 잔디 (spec-02 §3.3). activity.yaml 그대로 분기."""
+"""GET /api/activity — 활동 잔디 (spec-02 §3.3, ADR-06).
+
+`activity` 는 persona_loader 가 daily/*.md frontmatter 들을 derive 한 결과.
+items[] 의 각 entry: {date, counts: {commit/note/study}, count: sum(counts), summary: {ko, en} | null}.
+"""
 
 from fastapi import APIRouter, Query
 

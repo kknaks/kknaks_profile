@@ -1,4 +1,5 @@
-"""daily_activity_job orchestrator — 입력 → LLM → upsert → push → reload (spec-03 §1, §6)."""
+"""daily_activity_job orchestrator — inputs → counts (deterministic) + LLM body·summary
+→ daily/{date}.md write → push → reload (spec-03 §1·§6, ADR-06)."""
 
 from __future__ import annotations
 
@@ -13,11 +14,11 @@ from service.jobs.inputs import (
     REPO,
     extract_tracked_repos,
     fetch_repo_commits,
-    git_log_today,
-    read_daily_narrative,
+    read_changed_files_today,
+    read_existing_daily,
 )
-from service.jobs.llm import summarize_activity
-from service.jobs.upsert import upsert_activity
+from service.jobs.llm import summarize_daily
+from service.jobs.upsert import write_daily
 
 logger = logging.getLogger("kknaks-back.scheduler")
 
@@ -30,15 +31,29 @@ async def run_daily_activity_job(
     dry_run_push: bool | None = None,
     target_date: date | None = None,
 ) -> dict:
-    """매일 00:05 KST 발동 — 직전 날 entry 박음 (spec-03 §1).
+    """매일 00:05 KST 발동 — 직전 날 daily/{date}.md 자동 작성 (spec-03 §1, ADR-06).
 
     client 미지정 시 self-contained broker (content_enrich 와 동일 패턴).
     target_date 미지정 시 어제 (`date.today() - 1`) — 백필/테스트용 override.
     """
     target = target_date if target_date is not None else date.today() - timedelta(days=1)
-    narrative = read_daily_narrative(target)
-    notes_changes = git_log_today("persona/notes/", target, REPO)
-    contents_changes = git_log_today("persona/contents/", target, REPO)
+
+    # spec-03 §1.3 — 본인 작성 (auto:false 또는 미박음) 우선. 잡 skip.
+    existing = read_existing_daily(target)
+    if existing and not existing.get("auto"):
+        logger.info(
+            "daily/%s.md 본인 작성 (auto=%r) — 잡 skip",
+            target.isoformat(),
+            existing.get("auto"),
+        )
+        return {
+            "date": target.strftime("%Y.%m.%d"),
+            "skipped": True,
+            "reason": "user_authored",
+        }
+
+    notes_changes = read_changed_files_today("persona/notes/", target, REPO)
+    contents_changes = read_changed_files_today("persona/contents/", target, REPO, max_chars_per_file=2048)
 
     # persona/projects 등록한 레포만 추적 (사용자 결정 — projects 파일이 SoT)
     from main import get_data
@@ -47,9 +62,8 @@ async def run_daily_activity_job(
     if not tracked_repos:
         logger.info("no tracked repos in persona/projects/*.md — commit fetch skip")
 
-    # 각 tracked repo × 각 acc 조합으로 호출.
-    # 같은 commit 이 양쪽 acc 호출에서 중복으로 잡히지 않도록 sha 로 dedupe.
-    seen_shas: set[str] = set()
+    # 각 tracked repo × 각 acc 조합 호출 + (repo, msg) 키 dedupe
+    seen: set[tuple[str, str]] = set()
     commits: list[dict] = []
     accounts = config.gh_accounts()
     for repo in tracked_repos:
@@ -61,12 +75,18 @@ async def run_daily_activity_job(
                 author=acc["user"],
             )
             for c in fetched:
-                # fetch_repo_commits 결과가 dict (no sha 키 — repo+msg 만). dedupe 는 (repo,msg) 로.
                 key = (c["repo"], c["msg"])
-                if key in seen_shas:
+                if key in seen:
                     continue
-                seen_shas.add(key)
+                seen.add(key)
                 commits.append(c)
+
+    # spec-03 §3.1 — counts 코드 계산 (LLM 안 거침)
+    counts = {
+        "commit": len(commits),
+        "note": len(notes_changes),
+        "study": len(contents_changes),
+    }
 
     own_broker: RedisBroker | None = None
     if client is None:
@@ -76,25 +96,19 @@ async def run_daily_activity_job(
         logger.info("open-kknaks broker connected (self-contained): %s", config.redis_url())
 
     try:
-        resp = await summarize_activity(
-            target, narrative, notes_changes, contents_changes, commits, client
+        resp = await summarize_daily(
+            target, notes_changes, contents_changes, commits, counts, client
         )
     finally:
         if own_broker is not None:
             await own_broker.close()
 
-    entry = {
-        "date": target.strftime("%Y.%m.%d"),
-        "count": resp["count"],
-        "kind": resp["kind"],
-        "summary": resp["summary"],
-    }
+    path = write_daily(target, counts, resp.get("summary"), resp.get("body", ""))
 
-    upsert_activity(entry)
     dry_run = config.job_git_push_dry_run() if dry_run_push is None else dry_run_push
     commit_and_push_with_retry(
-        paths=[config.PERSONA_DIR / "activity.yaml"],
-        message=f"chore: activity {target.isoformat()}",
+        paths=[path],
+        message=f"chore: daily {target.isoformat()}",
         dry_run=dry_run,
     )
 
@@ -102,5 +116,10 @@ async def run_daily_activity_job(
     from main import load_all
 
     load_all()
+    entry = {
+        "date": target.strftime("%Y.%m.%d"),
+        "counts": counts,
+        "summary": resp.get("summary"),
+    }
     logger.info("daily_activity_job done: %s", entry)
     return entry

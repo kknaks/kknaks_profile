@@ -7,7 +7,7 @@ import type { ActivityEntry, ActivityResponse } from "@/lib/types";
 interface Cell {
   date: Date;
   count: number;
-  kind: ActivityEntry["kind"];
+  counts: ActivityEntry["counts"];
   summary: string | null;
   future: boolean;
 }
@@ -71,7 +71,7 @@ export function ContribGrass({
       cells.push({
         date: d,
         count: entry?.count ?? 0,
-        kind: entry?.kind ?? null,
+        counts: entry?.counts ?? {},
         summary: entry?.summary ?? null,
         future,
       });
@@ -330,7 +330,10 @@ export function ContribGrass({
               className="mono"
               style={{ fontSize: 11, color: "var(--accent)", marginBottom: 4 }}
             >
-              // {selected.cell.kind}
+              // {Object.entries(selected.cell.counts)
+                .filter(([, v]) => (v ?? 0) > 0)
+                .map(([k, v]) => `${k}:${v}`)
+                .join(" · ") || "—"}
             </div>
             <div
               className="mono"
