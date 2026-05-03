@@ -7,18 +7,17 @@
 흐름 (push event 기준 — planning-01 §3.6 ② 채널):
 1. ping event → pong (GitHub 가 webhook 등록 시 ping 한 번 보냄)
 2. push event:
-   - **self-push 필터** — payload `commits[*].author.email` 이 모두 `config.bot_emails()` 에 속하면 skip
-     (서버 자기 push 가 다시 webhook 발화 → fetch/load_all/LLM init 비용 노이즈 방지)
    - `git pull --rebase origin main` (extraheader 인증, token argv 노출 회피)
    - `load_all()` (즉시 메모리 dict 갱신)
    - `run_content_enrich_job` (background — LLM 호출 60-120s, GitHub webhook 10s timeout 회피)
+   - 서버 자기 push 도 webhook 발화하지만 enrich 잡이 idempotent (pending 만 처리) 라 무한 루프 X.
+     사용자 push 와 bot push 의 commit author email 구별 어려워 self-push 필터 제거.
 """
 
 from __future__ import annotations
 
 import hashlib
 import hmac
-import json
 import logging
 import subprocess
 
@@ -40,24 +39,6 @@ def _verify_hmac(secret: str, signature_header: str | None, body: bytes) -> bool
     expected = hmac.new(secret.encode(), body, hashlib.sha256).hexdigest()
     received = signature_header[len("sha256="):]
     return hmac.compare_digest(expected, received)
-
-
-def _is_self_push(body: bytes) -> bool:
-    """payload commits 가 모두 bot identity 의 commit 이면 True (self-push)."""
-    bot_emails = config.bot_emails()
-    if not bot_emails:
-        return False
-    try:
-        payload = json.loads(body)
-    except (ValueError, TypeError):
-        return False
-    commits = payload.get("commits") or []
-    if not commits:
-        return False
-    return all(
-        (c.get("author", {}).get("email") or "") in bot_emails
-        for c in commits
-    )
 
 
 def _git_pull_rebase() -> None:
@@ -117,11 +98,6 @@ async def reload(
     # GitHub ping event — webhook 등록 검증용
     if x_github_event == "ping":
         return {"status": "pong"}
-
-    # self-push 필터 — 서버가 박은 commit 만 있는 push 는 skip
-    if x_github_event == "push" and _is_self_push(body):
-        logger.info("self-push detected — skip reload")
-        return {"status": "skipped", "reason": "self-push"}
 
     # git pull (webhook 일 때만 — 수동 reload 는 호출자가 이미 pull 했다고 가정)
     if x_github_event == "push":
