@@ -17,7 +17,7 @@ tags: [spec, scheduler, llm, activity, github, daily]
 
 ## Summary
 
-매일 00:05 KST 백엔드 안 APScheduler가 발동. 어제 데이터 (`notes/`/`contents/` 그날 변경 파일 본문 + GitHub commits) 를 수집 → counts (commit/note/study) 는 코드가 deterministic 으로 계산 → LLM (Haiku 4.5 via open-kknaks) 이 ko/en 한 줄 summary + ≤500자 narrative body 생성 → `persona/daily/{어제}.md` 에 frontmatter (auto/counts/summary) + body 한 commit 으로 push → `load_all()` 셀프 호출로 메모리 갱신. **`activity.yaml` 폐지** (ADR-06) — `/api/activity` 응답은 모든 `daily/*.md` frontmatter 집계 derive.
+매일 09:05 KST 백엔드 안 APScheduler가 발동. 어제 데이터 (`notes/`/`contents/` 그날 변경 파일 본문 + GitHub commits) 를 수집 → counts (commit/note/study) 는 코드가 deterministic 으로 계산 → LLM (Haiku 4.5 via open-kknaks) 이 ko/en 한 줄 summary + ≤500자 narrative body 생성 → `persona/daily/{어제}.md` 에 frontmatter (auto/counts/summary) + body 한 commit 으로 push → `load_all()` 셀프 호출로 메모리 갱신. **`activity.yaml` 폐지** (ADR-06) — `/api/activity` 응답은 모든 `daily/*.md` frontmatter 집계 derive.
 
 ---
 
@@ -25,10 +25,11 @@ tags: [spec, scheduler, llm, activity, github, daily]
 
 ### 1.1 스케쥴
 
-- **시각**: 매일 **00:05 KST** (`Asia/Seoul`)
-- **target_date**: `date.today() - 1` (직전 날). 자정 직후 발동해서 *어제* entry 박음
+- **시각**: 매일 **09:05 KST** (`Asia/Seoul`) = 00:05 UTC
+- **target_date**: `date.today() - 1` (직전 날). 어제 entry 박음
+- **TZ 안전 시각 선택**: 컨테이너 TZ = UTC 인 상태에서 `date.today()` 가 "어제 KST" 와 일치하려면 UTC 자정 이후 발동 필요. 09:05 KST = 00:05 UTC 가 자정 직후 가장 빠른 시각. 00:05 KST 발동 시 컨테이너 시각은 전날 15:05 UTC → `date.today()` 가 그저께를 반환하는 off-by-one 발생 (b6979da 사고)
 - **이유**:
-  - 캘린더 day-fixed 윈도우 `[어제 00:00, 오늘 00:00)` — 하루 전체 commit 확보 + 23:55 발동 시 발생하던 23:55~24:00 5분 commit 유실 제거
+  - 캘린더 day-fixed 윈도우 `[어제 00:00 KST, 오늘 00:00 KST)` — 하루 전체 commit 확보 + 23:55 발동 시 발생하던 23:55~24:00 5분 commit 유실 제거
   - miss-fire (서버 down 후 coalesce 발동) 시에도 attribution 명확 — `target_date=어제` 라 발동 시각 흔들려도 entry 키 안 흔들림
 - **구현**: APScheduler `AsyncIOScheduler` + cron trigger
 
@@ -39,7 +40,7 @@ scheduler = AsyncIOScheduler()
 scheduler.add_job(
     daily_activity_job,
     "cron",
-    hour=0, minute=5,
+    hour=9, minute=5,
     timezone="Asia/Seoul",
     id="daily-activity",
     coalesce=True,           # 백엔드 재시작 중 미스된 실행은 모아서 1번만

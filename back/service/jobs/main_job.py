@@ -32,10 +32,11 @@ async def run_daily_activity_job(
     dry_run_push: bool | None = None,
     target_date: date | None = None,
 ) -> dict:
-    """매일 00:05 KST 발동 — 직전 날 daily/{date}.md 자동 작성 (spec-03 §1, ADR-06).
+    """매일 09:05 KST 발동 — 직전 날 daily/{date}.md 자동 작성 (spec-03 §1, ADR-06).
 
     client 미지정 시 self-contained broker (content_enrich 와 동일 패턴).
     target_date 미지정 시 어제 (`date.today() - 1`) — 백필/테스트용 override.
+    09:05 KST = 00:05 UTC — 컨테이너 TZ (UTC) 의 `date.today()` 가 어제 KST 와 일치.
     """
     target = target_date if target_date is not None else date.today() - timedelta(days=1)
     target_iso = target.isoformat()

@@ -68,7 +68,7 @@ async def lifespan(app: FastAPI):
 
         sched = init_scheduler()
         sched.start()
-        logger.info("APScheduler started — daily-activity at 00:05 KST")
+        logger.info("APScheduler started — daily-activity at 09:05 KST")
         try:
             yield
         finally:

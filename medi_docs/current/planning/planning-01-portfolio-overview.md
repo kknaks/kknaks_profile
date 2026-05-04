@@ -79,7 +79,7 @@ tags: [planning, portfolio, persona]
 
 스케쥴러가 두 종류의 잡 운영 — 모두 LLM 호출은 `open-kknaks` (ADR-04) 를 통한 Claude Haiku 4.5.
 
-- **잔디 잡** (매일 00:05 KST, spec-03): 어제 데이터 (notes/contents 본문 + GitHub commits) → LLM 이 `persona/daily/{어제}.md` 자동 작성 (frontmatter: counts/summary, 본문: ≤500자 narrative). **`activity.yaml` 폐지** — `/api/activity` 응답은 `daily/*.md` frontmatter 들의 집계 derive (단일 SoT)
+- **잔디 잡** (매일 09:05 KST, spec-03): 어제 데이터 (notes/contents 본문 + GitHub commits) → LLM 이 `persona/daily/{어제}.md` 자동 작성 (frontmatter: counts/summary, 본문: ≤500자 narrative). **`activity.yaml` 폐지** — `/api/activity` 응답은 `daily/*.md` frontmatter 들의 집계 derive (단일 SoT)
 - **콘텐츠 enrich 잡** (10분 interval, spec-06, ADR-05): `persona/contents/*.md` 중 `status: pending` 스캔 → yt-dlp 메타 + youtube-transcript-api 자막 + LLM 요약 → frontmatter (title/summary/duration/tags) + 본문 (개념/적용/실수 3-section) 채움 → `status: published` + git commit
 
 > **⚠ Architectural seam**: 스케쥴러가 어느 시스템에 속하는지(포트폴리오 인프라 vs 페르소나 gen 레이어)는 ADR-03에서 정의. 가공 결과의 *서버 → 깃* 쓰기는 §3.6 의 ③/④ 채널.
