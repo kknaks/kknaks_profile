@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import datetime
+import re
 from pathlib import Path
 from typing import Any
 
@@ -10,6 +11,9 @@ import frontmatter
 import yaml
 
 from core.wikilinks import build_graph
+
+# spec-07 §4 — 알고리즘 md 본문의 `## Data` fenced yaml 블록 추출
+ALGO_DATA_BLOCK = re.compile(r"## Data\s*\n+```yaml\n(.*?)\n```", re.DOTALL)
 
 ACTIVITY_WINDOW_DAYS = 365  # spec-01 §4 — 잔디 viz rolling 윈도우
 
@@ -52,7 +56,7 @@ def _auto_enrich_note(data: dict, path: Path, persona_dir: Path) -> None:
         else:
             data["date"] = ""
 
-# spec-01 §3 카테고리별 필수 필드
+# spec-01 §3 + spec-07 §3 카테고리별 필수 필드
 REQUIRED_FIELDS: dict[str, set[str]] = {
     "profile": {"type", "handle", "name", "role", "email", "tagline", "intro", "stack"},
     "career": {"type", "period", "display_order", "title", "org", "summary", "stack"},
@@ -60,6 +64,7 @@ REQUIRED_FIELDS: dict[str, set[str]] = {
     "note": {"type", "id", "title", "date", "group"},
     "content": {"type", "id", "date", "day", "title", "summary", "youtubeId"},
     "daily": {"type", "date"},
+    "algorithm": {"type", "id", "title", "date", "source", "difficulty"},
 }
 
 
@@ -105,6 +110,9 @@ def load_persona(persona_dir: Path) -> dict[str, Any]:
     daily = _load_dir(persona_dir / "daily")
     daily.sort(key=lambda d: d.get("date", ""), reverse=True)
 
+    algorithms = _load_algorithms_dir(persona_dir / "algorithms", persona_dir)
+    algorithms.sort(key=lambda a: a.get("date", ""), reverse=True)
+
     # notes는 dict로 (위키링크 id 조회 용도)
     notes: dict[str, dict] = {n["id"]: n for n in notes_list}
 
@@ -118,6 +126,7 @@ def load_persona(persona_dir: Path) -> dict[str, Any]:
         "notes": notes,
         "contents": contents,
         "daily": daily,
+        "algorithms": algorithms,
         "activity": activity,
         "_meta": meta,
     }
@@ -218,6 +227,48 @@ def validate_persona(data: dict[str, Any]) -> None:
                             f"daily/{path.name}: summary.{k} 는 str (legacy) 또는 list[str] 이어야 함"
                         )
 
+    # spec-07 §2-3 — algorithms 검증
+    valid_platforms = {"leetcode"}
+    valid_quiz_formats = {"slot"}  # MVP — adr-08
+    today_count = 0
+    for a in data.get("algorithms", []):
+        _check_required(a, "algorithm", _path_label(a))
+        path: Path = a["_path"]
+        aid = a["id"]
+        # spec-07 §2: id (A-NNN) == 파일 prefix (A-NNN-...)
+        if not path.stem.startswith(f"{aid}-"):
+            raise PersonaError(
+                f"algorithms/{path.name}: id '{aid}' must be prefix of filename"
+            )
+        # type 리터럴
+        if a.get("type") != "algorithm":
+            raise PersonaError(
+                f"algorithms/{path.name}: type must be 'algorithm', got '{a.get('type')}'"
+            )
+        # source.platform enum
+        src = a.get("source", {})
+        if not isinstance(src, dict) or src.get("platform") not in valid_platforms:
+            raise PersonaError(
+                f"algorithms/{path.name}: source.platform must be one of {sorted(valid_platforms)}"
+            )
+        # logic.format enum (MVP slot only — ADR-08)
+        logic = a.get("logic")
+        if logic is not None:
+            if not isinstance(logic, dict):
+                raise PersonaError(f"algorithms/{path.name}: logic must be a dict")
+            fmt = logic.get("format")
+            if fmt not in valid_quiz_formats:
+                raise PersonaError(
+                    f"algorithms/{path.name}: logic.format must be one of {sorted(valid_quiz_formats)} (MVP), got '{fmt}'"
+                )
+        # today 는 0개 또는 1개 — spec-07 §3
+        if a.get("today") is True:
+            today_count += 1
+    if today_count > 1:
+        raise PersonaError(
+            f"algorithms/: 'today: true' 항목이 여러 개 ({today_count}개) — 1개만 허용 (spec-07 §3)"
+        )
+
 
 def _derive_activity(daily_list: list[dict]) -> dict:
     """daily/*.md frontmatter → 잔디 viz 응답 (spec-01 §4, ADR-06).
@@ -291,6 +342,37 @@ def _load_dir(
         return []
     pattern = "**/*.md" if recursive else "*.md"
     return [_load_md(p, persona_dir) for p in sorted(dir_path.glob(pattern))]
+
+
+def _load_algorithms_dir(dir_path: Path, persona_dir: Path) -> list[dict]:
+    """algorithms/ 전용 — frontmatter + 본문 `## Data` yaml 블록 → 합쳐서 단일 dict.
+
+    spec-07 §4: 본문 = `## Data` 헤딩 + fenced yaml 1개. 6 최상위 키
+    (problem, clarifying, approach, logic, trace, solution).
+    """
+    if not dir_path.is_dir():
+        return []
+    items: list[dict] = []
+    for p in sorted(dir_path.glob("*.md")):
+        item = _load_md(p, persona_dir)
+        body = item.pop("body", "")
+
+        m = ALGO_DATA_BLOCK.search(body)
+        if not m:
+            raise PersonaError(f"algorithms/{p.name}: ## Data yaml block missing (spec-07 §4)")
+
+        try:
+            data = yaml.safe_load(m.group(1)) or {}
+        except yaml.YAMLError as e:
+            raise PersonaError(f"algorithms/{p.name}: ## Data yaml parse error: {e}")
+        if not isinstance(data, dict):
+            raise PersonaError(f"algorithms/{p.name}: ## Data must be a dict, got {type(data).__name__}")
+
+        # 6 최상위 키 (problem, clarifying, approach, logic, trace, solution) 를 item 에 merge.
+        # frontmatter 와 ## Data 키는 disjoint 가정 (spec-07 §3 vs §5).
+        item.update(data)
+        items.append(item)
+    return items
 
 
 def _check_required(obj: dict, kind: str, label: str) -> None:

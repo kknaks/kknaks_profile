@@ -48,6 +48,8 @@ tags: [spec, api, endpoints, i18n]
 | GET | `/api/notes/search` | `?q=...&lang=ko\|en` | `notes.recent[]` (동일 형식) | inverted index over `notes/*.md` |
 | GET | `/api/contents` | `?lang=ko\|en&limit=5` | `contents.*`, `contents[]` | `contents/*.md` (date desc) |
 | GET | `/api/contents/{id}` | `?lang=ko\|en` | `contents.detail.{...,newer,older}` | `contents/{id}.md` + 인접 항목 |
+| GET | `/api/algorithms` | `?lang=ko\|en` | `algorithms.*` (subtitle, intro, totalCount, today), `algorithms[]` | `algorithms/*.md` (date desc) — spec-07 |
+| GET | `/api/algorithms/{id}` | `?lang=ko\|en` | `algorithms.detail.{...,newer,older}` | `algorithms/{id}-*.md` 본문 `## Data` yaml + 인접 항목 — spec-07 |
 | GET | `/api/print/resume` | (없음) | `profile, about, skills, career[], education[], awards[], projects[]` | `profile.md` + `career/*.md` + `projects/*.md` (visible:true 첫 4개, slim id/title/period/summary) — KO+EN 합본 i18n 미적용 |
 | GET | `/api/print/portfolio` | (없음) | `profile, projects[]` | `projects/*.md` (visible:true 만, KO+EN 합본) |
 | GET | `/assets/{path}` | (없음) | (정적 — image/*) | `persona/assets/{path}` 직접 서빙 (spec-01 §2.5) |

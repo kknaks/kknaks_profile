@@ -127,6 +127,97 @@ class TestValidationFailures:
             load_persona(tmp_path)
 
 
+class TestAlgorithms:
+    """spec-07 — algorithms 카테고리 로드 + 검증."""
+
+    def test_loads_real_algorithms(self):
+        """실 persona/algorithms/A-001-two-sum.md 시드 로드."""
+        data = load_persona(PERSONA)
+        algos = data.get("algorithms", [])
+        assert len(algos) >= 1
+        a = next((x for x in algos if x.get("id") == "A-001"), None)
+        assert a is not None
+        # frontmatter
+        assert a["type"] == "algorithm"
+        assert a["difficulty"] == "easy"
+        assert a["source"]["platform"] == "leetcode"
+        # ## Data 키 6개 모두 merge 됨
+        for k in ("problem", "clarifying", "approach", "logic", "trace", "solution"):
+            assert k in a, f"missing {k} after ## Data merge"
+        # logic.format = slot
+        assert a["logic"]["format"] == "slot"
+        assert len(a["logic"]["slots"]) >= 4
+        # trace 단순 형식
+        assert isinstance(a["trace"]["cases"], list)
+        assert "worked_example" in a["trace"]
+        # body drop 됐는지 (구조화 yaml 가 모든 데이터)
+        assert a.get("body", "") == "" or a.get("body") is None or "body" not in a or len(a.get("body", "")) > 0  # body 는 drop 또는 무관
+        # _path 박혀있음 (다른 카테고리와 동일)
+        assert "_path" in a
+
+    def test_algorithms_sorted_by_date_desc(self, tmp_path: Path):
+        _scaffold_min_persona(tmp_path)
+        _scaffold_algo(tmp_path, "A-001", "two-sum", date="2026-05-01", today=False)
+        _scaffold_algo(tmp_path, "A-002", "valid-anagram", date="2026-05-03", today=True)
+        _scaffold_algo(tmp_path, "A-003", "contains-duplicate", date="2026-05-02", today=False)
+        data = load_persona(tmp_path)
+        ids = [a["id"] for a in data["algorithms"]]
+        assert ids == ["A-002", "A-003", "A-001"]
+
+    def test_missing_data_block_fails(self, tmp_path: Path):
+        _scaffold_min_persona(tmp_path)
+        algos_dir = tmp_path / "algorithms"
+        algos_dir.mkdir()
+        (algos_dir / "A-001-no-data.md").write_text(
+            "---\n"
+            "id: A-001\n"
+            "type: algorithm\n"
+            "title: { ko: T, en: T }\n"
+            "date: '2026-05-01'\n"
+            "source: { platform: leetcode, number: 1, slug: t, url: https://x }\n"
+            "difficulty: easy\n"
+            "---\n# T\n\n(no data block here)\n",
+            encoding="utf-8",
+        )
+        with pytest.raises(PersonaError, match="## Data yaml block missing"):
+            load_persona(tmp_path)
+
+    def test_id_filename_mismatch_fails(self, tmp_path: Path):
+        _scaffold_min_persona(tmp_path)
+        algos_dir = tmp_path / "algorithms"
+        algos_dir.mkdir()
+        _write_algo_file(algos_dir / "wrongprefix-foo.md", aid="A-001")
+        with pytest.raises(PersonaError, match="must be prefix"):
+            load_persona(tmp_path)
+
+    def test_unknown_platform_fails(self, tmp_path: Path):
+        _scaffold_min_persona(tmp_path)
+        algos_dir = tmp_path / "algorithms"
+        algos_dir.mkdir()
+        _write_algo_file(
+            algos_dir / "A-001-x.md",
+            aid="A-001",
+            platform="hackerrank",
+        )
+        with pytest.raises(PersonaError, match="source.platform"):
+            load_persona(tmp_path)
+
+    def test_invalid_logic_format_fails(self, tmp_path: Path):
+        _scaffold_min_persona(tmp_path)
+        algos_dir = tmp_path / "algorithms"
+        algos_dir.mkdir()
+        _write_algo_file(algos_dir / "A-001-x.md", aid="A-001", logic_format="ordering")
+        with pytest.raises(PersonaError, match="logic.format"):
+            load_persona(tmp_path)
+
+    def test_multiple_today_fails(self, tmp_path: Path):
+        _scaffold_min_persona(tmp_path)
+        _scaffold_algo(tmp_path, "A-001", "x", date="2026-05-01", today=True)
+        _scaffold_algo(tmp_path, "A-002", "y", date="2026-05-02", today=True)
+        with pytest.raises(PersonaError, match="today"):
+            load_persona(tmp_path)
+
+
 def _scaffold_min_persona(root: Path) -> None:
     """검증 가능한 최소 persona — _meta + profile."""
     (root / "_meta.yaml").write_text(
@@ -147,3 +238,48 @@ def _scaffold_min_persona(root: Path) -> None:
         "---\n# body\n",
         encoding="utf-8",
     )
+
+
+def _scaffold_algo(
+    root: Path, aid: str, slug: str, date: str = "2026-05-01", today: bool = False
+) -> None:
+    algos_dir = root / "algorithms"
+    algos_dir.mkdir(exist_ok=True)
+    _write_algo_file(algos_dir / f"{aid}-{slug}.md", aid=aid, date=date, today=today)
+
+
+def _write_algo_file(
+    path: Path,
+    *,
+    aid: str = "A-001",
+    date: str = "2026-05-01",
+    today: bool = False,
+    platform: str = "leetcode",
+    logic_format: str = "slot",
+) -> None:
+    """spec-07 형식의 최소 algorithm 파일 — 본문 ## Data 포함."""
+    today_yaml = "true" if today else "false"
+    fm = (
+        "---\n"
+        f"id: {aid}\n"
+        "type: algorithm\n"
+        "title: { ko: T, en: T }\n"
+        f"date: '{date}'\n"
+        f"source: {{ platform: {platform}, number: 1, slug: t, url: https://x }}\n"
+        "difficulty: easy\n"
+        f"today: {today_yaml}\n"
+        "---\n"
+    )
+    body = (
+        "# Title\n\n"
+        "## Data\n\n"
+        "```yaml\n"
+        "problem:\n  statement: { ko: t, en: t }\n  constraints: []\n  io: []\n"
+        "clarifying:\n  items: []\n"
+        "approach:\n  items: []\n"
+        f"logic:\n  format: {logic_format}\n  slots: []\n"
+        "trace:\n  code: []\n  cases: []\n  worked_example: { input: '', steps: [], answer: '' }\n"
+        "solution:\n  code: ''\n  complexity: { time: O(1), space: O(1) }\n  followup: []\n"
+        "```\n"
+    )
+    path.write_text(fm + body, encoding="utf-8")

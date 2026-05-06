@@ -33,12 +33,13 @@ def load_all() -> None:
     global _data
     _data = load_persona(PERSONA_DIR)
     logger.info(
-        "persona loaded: %d career, %d projects, %d notes, %d contents, %d daily",
+        "persona loaded: %d career, %d projects, %d notes, %d contents, %d daily, %d algorithms",
         len(_data["career"]),
         len(_data["projects"]),
         len(_data["notes"]),
         len(_data["contents"]),
         len(_data["daily"]),
+        len(_data.get("algorithms", [])),
     )
 
 
@@ -104,6 +105,7 @@ app.add_middleware(
 from api.admin import reload as admin_reload  # noqa: E402
 from api.routers import (  # noqa: E402
     activity,
+    algorithms,
     career,
     contents,
     me,
@@ -120,6 +122,7 @@ app.include_router(career.router)
 app.include_router(projects.router)
 app.include_router(notes.router)
 app.include_router(contents.router)
+app.include_router(algorithms.router)
 app.include_router(print_router.router)
 app.include_router(admin_reload.router)
 

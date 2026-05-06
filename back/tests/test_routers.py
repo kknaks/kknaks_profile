@@ -202,3 +202,78 @@ class TestAdminReloadWebhook:
         monkeypatch.setenv("RELOAD_TOKEN", "tok")
         r = client.post("/admin/reload", headers={"X-Reload-Token": "tok"})
         assert r.status_code == 200
+
+
+class TestAlgorithms:
+    """spec-07 — /api/algorithms + /api/algorithms/{id}."""
+
+    def test_list_returns_200(self, client):
+        r = client.get("/api/algorithms")
+        assert r.status_code == 200
+
+    def test_list_shape(self, client):
+        d = client.get("/api/algorithms").json()
+        assert "algorithms" in d
+        assert "algorithms[]" in d
+        assert "totalCount" in d["algorithms"]
+        assert "today" in d["algorithms"]
+
+    def test_list_includes_seed(self, client):
+        d = client.get("/api/algorithms").json()
+        ids = [a["id"] for a in d["algorithms[]"]]
+        assert "A-001" in ids
+
+    def test_list_today_pick(self, client):
+        # 시드 A-001 frontmatter 에 today: true 박혀있음
+        d = client.get("/api/algorithms").json()
+        today = d["algorithms"]["today"]
+        assert today is not None
+        assert today["id"] == "A-001"
+
+    def test_list_lang_ko(self, client):
+        d = client.get("/api/algorithms?lang=ko").json()
+        assert "neetcode" in d["algorithms"]["subtitle"].lower()
+        # 한글 평탄화 — title 이 string
+        assert isinstance(d["algorithms[]"][0]["title"], str)
+
+    def test_list_lang_en(self, client):
+        d = client.get("/api/algorithms?lang=en").json()
+        assert isinstance(d["algorithms[]"][0]["title"], str)
+
+    def test_detail_returns_existing(self, client):
+        r = client.get("/api/algorithms/A-001")
+        assert r.status_code == 200
+        d = r.json()
+        det = d["algorithms.detail"]
+        assert det["id"] == "A-001"
+        # 6 data 키
+        for k in ("problem", "clarifying", "approach", "logic", "trace", "solution"):
+            assert k in det
+
+    def test_detail_logic_slot_format(self, client):
+        d = client.get("/api/algorithms/A-001").json()
+        assert d["algorithms.detail"]["logic"]["format"] == "slot"
+
+    def test_detail_trace_simple_shape(self, client):
+        # adr-09: code + cases + worked_example
+        d = client.get("/api/algorithms/A-001").json()
+        trace = d["algorithms.detail"]["trace"]
+        assert "code" in trace
+        assert "cases" in trace
+        assert "worked_example" in trace
+        # step-by-step 폐기 — old 'steps' 키 없음
+        assert "steps" not in trace
+
+    def test_detail_404(self, client):
+        r = client.get("/api/algorithms/A-999")
+        assert r.status_code == 404
+
+    def test_detail_i18n_flatten(self, client):
+        # ko 응답에 영어만 들어있는 필드 X — distractor.why 같은 nested {ko, en} 도 평탄화
+        d = client.get("/api/algorithms/A-001?lang=ko").json()
+        clarifying = d["algorithms.detail"]["clarifying"]["items"]
+        assert len(clarifying) > 0
+        # 첫 항목의 q 가 string 으로 평탄화
+        assert isinstance(clarifying[0]["q"], str)
+        # why 도 string
+        assert isinstance(clarifying[0]["why"], str)
