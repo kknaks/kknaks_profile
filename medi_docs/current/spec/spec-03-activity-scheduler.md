@@ -1,23 +1,32 @@
 ---
 id: spec-03
 type: spec
-title: 잔디 잡 명세 — 입력 → counts (deterministic) + LLM body·summary → daily/{date}.md
+title: 스케쥴러 잡 명세 — daily-activity (잔디) + neetcode-canonical (algorithm)
 status: draft
 created: 2026-05-01
-updated: 2026-05-03
+updated: 2026-05-05
 sources:
   - "[[planning-01-portfolio-overview]]"
+  - "[[planning-03-algorithm-daily-tab]]"
   - "[[spec-01-persona-md-format]]"
+  - "[[spec-07-algorithms-trace]]"
   - "[[adr-03-scheduler-attribution]]"
   - "[[adr-06-daily-as-grass-sot]]"
-tags: [spec, scheduler, llm, activity, github, daily]
+tags: [spec, scheduler, llm, activity, github, daily, algorithms]
 ---
 
-# 잔디 잡 명세
+# 스케쥴러 잡 명세
 
 ## Summary
 
-매일 09:05 KST 백엔드 안 APScheduler가 발동. 어제 데이터 (`notes/`/`contents/` 그날 변경 파일 본문 + GitHub commits) 를 수집 → counts (commit/note/study) 는 코드가 deterministic 으로 계산 → LLM (Haiku 4.5 via open-kknaks) 이 ko/en 한 줄 summary + ≤500자 narrative body 생성 → `persona/daily/{어제}.md` 에 frontmatter (auto/counts/summary) + body 한 commit 으로 push → `load_all()` 셀프 호출로 메모리 갱신. **`activity.yaml` 폐지** (ADR-06) — `/api/activity` 응답은 모든 `daily/*.md` frontmatter 집계 derive.
+APScheduler 가 매일 2 잡 발동:
+
+1. **`daily-activity` (잔디 잡)** — **09:05 KST** 발동. 어제 데이터 (`notes/`/`contents/` 변경 + GitHub commits) → counts (deterministic) + LLM body·summary (Haiku 4.5 via open-kknaks) → `persona/daily/{어제}.md` 갱신. `activity.yaml` 폐지 (ADR-06).
+2. **`neetcode-canonical` (algorithm 잡)** — **23:00 UTC** 발동. NeetCode 150 시퀀스의 다음 slug → 5 단계 source-first 파이프라인 (LeetCode GraphQL + neetcode-gh + LLM gap-filler) → `persona/algorithms/A-NNN-slug.md` 박음 + `today` 필드 mutation. 상세 spec-07.
+
+두 잡은 **인프라 공유** (redis broker · open-kknaks worker · git push retry · `load_all` 메모리 reload), **큐만 분리** (`daily` vs `algorithm`).
+
+§1~10 = `daily-activity` 잡 명세. §11 = `neetcode-canonical` 잡 명세 (spec-07 의 인터페이스 이행). §12 = 향후 확장.
 
 ---
 
@@ -455,7 +464,158 @@ async def backfill_365_days():
 
 ---
 
-## 11. 향후 확장 여지 (이 spec 범위 밖)
+## 11. `neetcode-canonical` 잡 (algorithm 큐)
+
+planning-03 + spec-07 의 알고리즘 카테고리 자동 생성 잡. **잔디 잡과 별도 큐**, 매일 1 commit (`persona/algorithms/A-NNN-slug.md`) 박음.
+
+### 11.1 트리거
+
+- **시각**: 매일 **23:00 UTC** (= KST 다음날 08:00)
+- **큐**: `algorithm` (잔디 잡은 `daily` 큐)
+- **target_date**: `date.today()` (UTC) — 잡이 박는 날 자체. 잔디 잡과 달리 *어제 박지 않음* (오늘 박음)
+
+```python
+scheduler.add_job(
+    neetcode_canonical_job,
+    "cron", hour=23, minute=0, timezone="UTC",
+    id="neetcode-canonical",
+    coalesce=True, max_instances=1,
+)
+```
+
+§1.2 (single-worker 강제) 동일 적용.
+
+### 11.2 5 단계 파이프라인 (spec-07 §7 이행)
+
+| 단계 | 작업 | 외부 호출 |
+|---|---|---|
+| (a) source fetch | LeetCode GraphQL + neetcode-gh raw | https |
+| (b) 캐시 | local file 또는 redis (idempotent) | — |
+| (c) 정규화 | statement trim · cases 추출 · core region 판별 · solution code 정답 라인 추출 | — |
+| (d) LLM gap-filler | open-kknaks 1 호출 (clarifying·approach·logic distractor·trace worked_example·solution followup) | redis broker (잔디 잡과 동일 인프라) |
+| (e) md 박음 | frontmatter + `## Data` yaml 블록 + git commit/push | git |
+
+### 11.3 잡 함수 시그니처
+
+```python
+async def neetcode_canonical_job(*, target_date: date | None = None, dry_run_push: bool | None = None):
+    target = target_date or date.today()
+    seq_index = read_sequence_state()                  # redis state — §11.4
+    slug = NEETCODE_150[seq_index]                     # 시퀀스의 다음 slug
+
+    # (a) fetch — LeetCode + neetcode-gh
+    leetcode_data = await fetch_leetcode_graphql(slug)
+    solution_code = await fetch_neetcode_gh(slug)
+
+    # (b) 캐시 — 위 호출 내부에서 redis hit 시 재호출 skip
+
+    # (c) 정규화
+    normalized = normalize(leetcode_data, solution_code)
+    # → problem.statement·constraints·io / solution.code·complexity / trace.cases / core_region 라인 set
+
+    # (d) LLM gap-filler — open-kknaks 1 호출
+    llm_resp = await fill_gaps(normalized, client)
+    # → clarifying·approach·logic.{format,slots distractor·why·label·indent}·trace.worked_example·solution.followup
+
+    # (e) md 박음
+    md_path = write_algorithm_md(target, seq_index, slug, normalized, llm_resp)
+    prev_today_paths = clear_today_flag()              # §11.5 frontmatter mutation
+    advance_sequence_state(seq_index + 1)
+
+    commit_and_push_with_retry(
+        paths=[md_path] + prev_today_paths,
+        message=f"chore: algorithm A-{seq_index+1:03d} {slug}",
+        dry_run=config.job_git_push_dry_run() if dry_run_push is None else dry_run_push,
+    )
+
+    # 메모리 reload — 같은 패턴 (§6)
+    from main import load_all
+    load_all()
+```
+
+### 11.4 시퀀스 상태 — redis
+
+NeetCode 150 시퀀스의 진행도는 **redis** 에 저장 (잡이 갱신, 파일 안 만짐):
+
+```
+key: kknaks-portfolio:neetcode:next_index → "8"
+key: kknaks-portfolio:neetcode:last_run   → "2026-05-05T23:00:00Z"
+```
+
+매 잡 후 `next_index` += 1. NeetCode 150 끝 (index 150) 도달 시 잡 정지 또는 다른 큐레이션 리스트로 전환 (수동 결정).
+
+> **`_meta.yaml` 안 씀 이유**: spec-01 §1 의 `_meta.yaml` 은 *사람이 박는 enum 정의* 용도. 잡이 자동 갱신하는 시퀀스 상태는 redis 가 정합. 부팅 시 `_state.yaml` 같은 파일도 옵션이지만 redis 가 잔디 잡과 인프라 공유라 간단.
+
+### 11.5 `today` 필드 mutation
+
+잡의 **유일한 frontmatter mutation** (spec-07 §8.1):
+
+1. 새 항목 frontmatter `today: true` 박힘
+2. 이전 `today: true` 항목 (전날 박힌 것) → `today: false` 로 갱신
+3. 두 변경을 한 commit 에 묶음
+
+```python
+def clear_today_flag() -> list[Path]:
+    """이전 today=true 항목들의 frontmatter today: false 갱신.
+
+    return: 갱신된 path 리스트 (commit paths 에 합류).
+    """
+    algos_dir = config.PERSONA_DIR / "algorithms"
+    changed: list[Path] = []
+    for p in algos_dir.glob("A-*.md"):
+        post = frontmatter.load(p)
+        if post.metadata.get("today") is True:
+            post.metadata["today"] = False
+            p.write_text(frontmatter.dumps(post), encoding="utf-8")
+            changed.append(p)
+    return changed
+```
+
+### 11.6 활동 0 처리 — N/A
+
+잔디 잡과 달리 본 잡은 *콘텐츠 생성* 잡 → "활동 0" 개념 X. fetch·LLM 호출이 모두 성공해야 entry 박힘. 실패 시 §11.7 처리.
+
+### 11.7 실패 처리
+
+| 실패 | 처리 |
+|---|---|
+| LeetCode GraphQL down | 잡 실패 → 다음 날 재시도. 시퀀스 `next_index` 갱신 X (같은 slug 재시도) |
+| neetcode-gh 솔루션 누락 (slug 미존재) | LLM fallback — `solution.code` LLM 생성, frontmatter `solution_source: 'llm-fallback'` 마킹 |
+| LLM 응답 파싱 실패 | 1 retry. 재차 실패 시 잡 abort, 다음 날 재시도 |
+| 외부 lib 의존 솔루션 (numpy 등) | trace·logic 그대로 진행 (adr-09 단순화 후 sandbox 부담 없음) |
+| git push 3회 retry 실패 | spec-03 §5 의 `commit_and_push_with_retry` 동일 — pending 유지, 다음 날 자동 포함 |
+
+### 11.8 잡 인프라 공유
+
+| 인프라 | 잔디 잡 | algorithm 잡 |
+|---|---|---|
+| APScheduler 인스턴스 | 같음 | 같음 |
+| redis broker | 같음 (kknaks-portfolio namespace) | 같음 |
+| open-kknaks worker | 같음 | 같음 (큐만 다름) |
+| `commit_and_push_with_retry` | 같음 | 같음 |
+| `load_all` 셀프 호출 | 같음 | 같음 |
+| single-worker 강제 (§1.2) | 같음 | 같음 |
+| 큐 | `daily` | `algorithm` |
+| 발동 시각 | 09:05 KST | 23:00 UTC |
+| target_date | 어제 (KST) | 오늘 (UTC) |
+
+### 11.9 잔디와의 자연스러운 공존
+
+본 잡의 commit (`chore: algorithm A-NNN ...`) 은 다음 날 잔디 잡이 **GitHub commits API** 로 수집할 때 자동으로 카운트됨 — `commits` count +1 자연스럽게 박힘. 별도 처리 없이 잔디 시각화에 반영.
+
+### 11.10 멱등성
+
+- `next_index` 가 redis 에 박혀있어 재실행 시 같은 slug 재처리 X (§11.7 의 push 실패 케이스 외)
+- `clear_today_flag()` 는 today=true 가 1개만 남도록 강제 — 두 번 돌아도 결과 같음
+- 같은 날 두 번 발동하면 두 번째는 next_index 가 이미 갱신됐으므로 다음 slug 박음 (의도된 동작)
+
+### 11.11 백필
+
+`neetcode-canonical` 잡 백필은 **별도 스크립트** (수동 1회). NeetCode 150 의 첫 N 개를 days N 일 동안 한꺼번에 박을지, 아니면 출시일부터 1일 1개씩만 누적할지는 planning-03 §8 결정 박힘 — **백필 X**, 출시일부터 1/일.
+
+---
+
+## 12. 향후 확장 여지 (이 spec 범위 밖)
 
 - 프론트 `contrib-grass.tsx` viz upgrade — counts dict 활용해서 kind 별 stripe 또는 dominant color
 - counts 키 추가 (예: `ship`, `review`, `design`) — `_meta.yaml` 색 매핑 + spec-01 §7 정합
