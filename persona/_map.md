@@ -1,8 +1,8 @@
 # persona/_map.md
 
-> 자동 생성 (build_persona_map.py, 2026-05-06 21:59 KST). 수동 편집 X.
+> 자동 생성 (build_persona_map.py, 2026-05-06 23:20 KST). 수동 편집 X.
 
-_총 183 파일 (profile 1 / career 5 / projects 9 / notes 156 / contents 7 / daily 5)_
+_총 184 파일 (profile 1 / career 5 / projects 10 / notes 156 / contents 7 / daily 5)_
 
 ## profile
 
@@ -15,8 +15,9 @@ _총 183 파일 (profile 1 / career 5 / projects 9 / notes 156 / contents 7 / da
 - [[career/bitcamp]] 비트캠프 (2024.06 — 2024.12)
 - [[career/dowha-eng]] 도화 엔지니어링 (2020.01 — 2023.12)
 
-## projects (web 1 · frontend 0 · backend 3 · mobile 4 · ai 0 · cli 1 · bot 0)
+## projects (web 2 · frontend 0 · backend 3 · mobile 4 · ai 0 · cli 1 · bot 0)
 - [[projects/kknaks-profile]] kknaks.dev (web · wip)
+- [[projects/summer-star-company]] Summer Star — 사무실 NFC 출퇴근 (web · wip)
 - [[projects/persona-counselor]] Persona Counselor (mobile · wip)
 - [[projects/language-diary]] Language Diary (mobile · wip)
 - [[projects/study-timelapse]] Study Timelapse (mobile · wip)
