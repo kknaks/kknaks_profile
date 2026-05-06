@@ -258,7 +258,12 @@ async def summarize_daily(
 {commits_block}
 
 다음 두 가지를 출력해라:
-1. summary: 무슨 작업을 했는지 한국어/영어 한 줄 (각각 60자 이내, 자연스러운 어투)
+1. summary: 활동 단위별 한 줄 요약 — **list[str]** (ko/en 각각).
+   라벨 규칙 (한 활동 단위 = 한 줄):
+     - GitHub commits: `[<repo>] 작업요약` — 같은 repo 의 여러 commit 은 1줄로 합침
+     - notes 변경: `[notes] 항목 요약` — 전체 1줄로 합침
+     - contents 변경: `[study] 항목 요약` — 전체 1줄로 합침
+   각 줄 80자 이내, 자연스러운 어투. 활동 분포가 0 인 카테고리는 라인 생성 X.
 2. body: ≤500자 markdown narrative. 다음 섹션 구조:
    ## commits
    - [repo] msg 한 줄 + 의미 (1줄)
@@ -271,7 +276,7 @@ async def summarize_daily(
    (1~2줄, 추론 어렵면 비움)
 
 응답은 다음 JSON 한 객체만 (다른 텍스트 X, 코드블록 ```json``` 도 박지 않음):
-{{"summary": {{"ko": "...", "en": "..."}}, "body": "..."}}
+{{"summary": {{"ko": ["[repo] ...", "[notes] ..."], "en": ["[repo] ...", "[notes] ..."]}}, "body": "..."}}
 """
     task_id = await client.submit(prompt=prompt, model=LLM_MODEL, timeout=120, max_retries=2)
     task = await client.result(task_id, timeout=120)
@@ -288,6 +293,11 @@ def validate_llm_response(resp: dict, target: date) -> dict:
 
     if not isinstance(summary, dict) or "ko" not in summary or "en" not in summary:
         raise ValueError("invalid_summary")
+    # ko/en 각각 list[str] — 빈 list 도 허용 (활동은 있는데 LLM 이 categorize 못한 edge case)
+    for k in ("ko", "en"):
+        v = summary[k]
+        if not isinstance(v, list) or not all(isinstance(x, str) for x in v):
+            raise ValueError(f"invalid_summary_{k}_not_list_str")
     if not isinstance(body, str):
         raise ValueError("invalid_body")
     if len(body) > 600:                     # 500자 룰 + 100자 grace
@@ -296,6 +306,8 @@ def validate_llm_response(resp: dict, target: date) -> dict:
 ```
 
 검증 실패 시 — LLM 재호출 1회 retry. 재차 실패 시 entry skip + 로그.
+
+> **Backward compat (loader)**: 기존 daily entry 들의 `summary` 는 `{ko: str, en: str}` (legacy) 형태로 박혀있음. `persona_loader._validate` 는 list[str] / str 둘 다 통과. 새 entry 는 list[str] 만 박힘. 프론트 잔디 viz 도 두 형태 모두 렌더 (Array.isArray 분기).
 
 ### 3.4 활동 0 (counts 합계 = 0) 처리
 

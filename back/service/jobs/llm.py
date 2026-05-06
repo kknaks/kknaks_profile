@@ -91,7 +91,12 @@ def _build_prompt(
 {_format_commits_block(commits)}
 
 다음 두 가지를 JSON 으로 출력해라:
-1. summary: 무슨 작업을 했는지 한국어/영어 한 줄 (각각 60자 이내, 자연스러운 어투)
+1. summary: 활동 단위별 한 줄 요약 — list[str] (ko/en 각각).
+   라벨 규칙 (한 활동 단위 = 한 줄, 활동 0 인 카테고리는 라인 생성 X):
+     - GitHub commits: `[<repo>] 작업요약` — 같은 repo 의 여러 commit 은 1줄로 합침
+     - notes 변경: `[notes] 항목 요약` — 전체 1줄로 합침
+     - contents 변경: `[study] 항목 요약` — 전체 1줄로 합침
+   각 줄 80자 이내, 자연스러운 어투.
 2. body: ≤500자 markdown narrative. 다음 섹션 구조 그대로:
 
 # 한 일
@@ -111,7 +116,7 @@ def _build_prompt(
 각 섹션 항목 없으면 `- (없음)` 한 줄. body 전체는 frontmatter 제외 500자 이내로 압축.
 
 응답은 다음 JSON 한 객체만 (다른 텍스트 X, 코드블록 ```json``` 도 박지 않음):
-{{"summary": {{"ko": "...", "en": "..."}}, "body": "..."}}
+{{"summary": {{"ko": ["[repo] ...", "[notes] ..."], "en": ["[repo] ...", "[notes] ..."]}}, "body": "..."}}
 """
 
 
@@ -127,7 +132,7 @@ def _extract_json(text: str) -> str:
 def validate_llm_response(resp: dict) -> dict:
     """spec-03 §3.3 — body+summary 검증.
 
-    - summary: {"ko", "en"} dict 필수
+    - summary: {"ko": list[str], "en": list[str]} 필수. 각 항목은 활동 단위 1줄 (`[repo] ...`).
     - body: str. BODY_HARD_LIMIT (=600자) 초과 시 truncate (soft enforcement, spec-03 §9)
     """
     summary = resp.get("summary")
@@ -135,6 +140,10 @@ def validate_llm_response(resp: dict) -> dict:
 
     if not (isinstance(summary, dict) and "ko" in summary and "en" in summary):
         raise ValueError("invalid_summary")
+    for k in ("ko", "en"):
+        v = summary[k]
+        if not isinstance(v, list) or not all(isinstance(x, str) for x in v):
+            raise ValueError(f"invalid_summary_{k}_not_list_str")
     if not isinstance(body, str):
         raise ValueError("invalid_body")
     if len(body) > BODY_HARD_LIMIT:

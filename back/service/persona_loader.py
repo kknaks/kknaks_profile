@@ -198,12 +198,25 @@ def validate_persona(data: dict[str, Any]) -> None:
                     f"daily/{path.name}: auto=true requires 'counts' dict"
                 )
             summary = d.get("summary")
-            if summary is not None and not (
-                isinstance(summary, dict) and "ko" in summary and "en" in summary
-            ):
-                raise PersonaError(
-                    f"daily/{path.name}: auto=true 'summary' must be null or {{ko, en}}"
-                )
+            if summary is not None:
+                if not (
+                    isinstance(summary, dict) and "ko" in summary and "en" in summary
+                ):
+                    raise PersonaError(
+                        f"daily/{path.name}: auto=true 'summary' must be null or {{ko, en}}"
+                    )
+                # spec-03 §3.3 — 새 entry 는 list[str], 레거시 entry 는 str. 둘 다 통과.
+                for k in ("ko", "en"):
+                    v = summary[k]
+                    if isinstance(v, list):
+                        if not all(isinstance(x, str) for x in v):
+                            raise PersonaError(
+                                f"daily/{path.name}: summary.{k} list 의 모든 항목이 str 이어야 함"
+                            )
+                    elif not isinstance(v, str):
+                        raise PersonaError(
+                            f"daily/{path.name}: summary.{k} 는 str (legacy) 또는 list[str] 이어야 함"
+                        )
 
 
 def _derive_activity(daily_list: list[dict]) -> dict:

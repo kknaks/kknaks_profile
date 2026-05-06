@@ -42,7 +42,7 @@ class TestWriteDaily:
         path = write_daily(
             date(2026, 5, 2),
             counts={"commit": 3, "note": 0, "study": 0},
-            summary={"ko": "k", "en": "e"},
+            summary={"ko": ["[foo] k"], "en": ["[foo] e"]},
             body="# 한 일\n- x",
             persona_dir=tmp_path,
         )
@@ -52,7 +52,7 @@ class TestWriteDaily:
         assert post.metadata["date"] == "2026.05.02"
         assert post.metadata["auto"] is True
         assert post.metadata["counts"] == {"commit": 3, "note": 0, "study": 0}
-        assert post.metadata["summary"] == {"ko": "k", "en": "e"}
+        assert post.metadata["summary"] == {"ko": ["[foo] k"], "en": ["[foo] e"]}
         assert "# 한 일" in post.content
 
     def test_idempotent_overwrite(self, tmp_path: Path):
@@ -90,7 +90,8 @@ class TestWriteDaily:
 
         # 잡이 overwrite 시도해도 보존
         write_daily(
-            date(2026, 5, 2), counts={"commit": 99}, summary={"ko": "k", "en": "e"},
+            date(2026, 5, 2), counts={"commit": 99},
+            summary={"ko": ["[foo] k"], "en": ["[foo] e"]},
             body="잡이 박는 본문", persona_dir=tmp_path,
         )
         post = frontmatter.load(path)
@@ -116,25 +117,51 @@ class TestLLMEmpty:
 class TestLLMValidate:
     def test_valid_response_passes(self):
         r = validate_llm_response(
-            {"summary": {"ko": "k", "en": "e"}, "body": "# 한 일\n- x"}
+            {
+                "summary": {"ko": ["[a] x", "[notes] y"], "en": ["[a] X", "[notes] Y"]},
+                "body": "# 한 일\n- x",
+            }
         )
-        assert r["summary"] == {"ko": "k", "en": "e"}
+        assert r["summary"] == {
+            "ko": ["[a] x", "[notes] y"],
+            "en": ["[a] X", "[notes] Y"],
+        }
         assert r["body"] == "# 한 일\n- x"
 
-    def test_invalid_summary_raises(self):
+    def test_empty_summary_lists_pass(self):
+        # 활동 분포 0 인 카테고리만 있을 때 빈 list 도 허용 (spec-03 §3.3)
+        r = validate_llm_response(
+            {"summary": {"ko": [], "en": []}, "body": "x"}
+        )
+        assert r["summary"] == {"ko": [], "en": []}
+
+    def test_invalid_summary_missing_keys_raises(self):
         with pytest.raises(ValueError, match="invalid_summary"):
-            validate_llm_response({"summary": {"ko": "only"}, "body": "x"})
+            validate_llm_response({"summary": {"ko": ["only"]}, "body": "x"})
+
+    def test_legacy_str_summary_raises(self):
+        # 새 spec 은 list[str] — 레거시 str 은 LLM 출력에서 reject
+        with pytest.raises(ValueError, match="invalid_summary_ko_not_list_str"):
+            validate_llm_response(
+                {"summary": {"ko": "k", "en": "e"}, "body": "x"}
+            )
+
+    def test_summary_list_with_non_str_raises(self):
+        with pytest.raises(ValueError, match="invalid_summary_ko_not_list_str"):
+            validate_llm_response(
+                {"summary": {"ko": ["ok", 123], "en": ["ok"]}, "body": "x"}
+            )
 
     def test_invalid_body_raises(self):
         with pytest.raises(ValueError, match="invalid_body"):
             validate_llm_response(
-                {"summary": {"ko": "k", "en": "e"}, "body": 123}
+                {"summary": {"ko": ["k"], "en": ["e"]}, "body": 123}
             )
 
     def test_body_truncated_when_too_long(self):
         long_body = "x" * 1000
         r = validate_llm_response(
-            {"summary": {"ko": "k", "en": "e"}, "body": long_body}
+            {"summary": {"ko": ["k"], "en": ["e"]}, "body": long_body}
         )
         assert len(r["body"]) <= 700  # BODY_HARD_LIMIT (600) + truncation suffix
         assert "(truncated)" in r["body"]
@@ -186,7 +213,10 @@ class TestLLMSummarize:
     @pytest.mark.asyncio
     async def test_call_with_mock_client(self):
         mock_response = json.dumps(
-            {"summary": {"ko": "k", "en": "e"}, "body": "# 한 일\n- x"}
+            {
+                "summary": {"ko": ["[notes] k"], "en": ["[notes] e"]},
+                "body": "# 한 일\n- x",
+            }
         )
         client = _MockClient(mock_response)
 
@@ -198,13 +228,15 @@ class TestLLMSummarize:
             counts={"commit": 0, "note": 1, "study": 0},
             client=client,
         )
-        assert r["summary"]["ko"] == "k"
+        assert r["summary"]["ko"] == ["[notes] k"]
         assert "# 한 일" in r["body"]
 
     @pytest.mark.asyncio
     async def test_extracts_json_from_codeblock(self):
         # Claude 가 ```json ... ``` 박는 케이스 대응
-        mock_response = '```json\n{"summary": {"ko": "k", "en": "e"}, "body": "x"}\n```'
+        mock_response = (
+            '```json\n{"summary": {"ko": ["[study] k"], "en": ["[study] e"]}, "body": "x"}\n```'
+        )
         client = _MockClient(mock_response)
 
         r = await summarize_daily(
@@ -215,7 +247,7 @@ class TestLLMSummarize:
             counts={"commit": 0, "note": 0, "study": 1},
             client=client,
         )
-        assert r["summary"] == {"ko": "k", "en": "e"}
+        assert r["summary"] == {"ko": ["[study] k"], "en": ["[study] e"]}
 
 
 class TestDailyNarrativeRead:

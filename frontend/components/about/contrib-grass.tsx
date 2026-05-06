@@ -8,7 +8,7 @@ interface Cell {
   date: Date;
   count: number;
   counts: ActivityEntry["counts"];
-  summary: string | null;
+  summary: string | string[] | null;
   future: boolean;
 }
 
@@ -350,9 +350,20 @@ export function ContribGrass({
                   lineHeight: 1.55,
                   fontWeight: 500,
                   marginBottom: 12,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 4,
                 }}
               >
-                {selected.cell.summary}
+                {Array.isArray(selected.cell.summary) ? (
+                  selected.cell.summary.length > 0 ? (
+                    selected.cell.summary.map((line, i) => (
+                      <div key={i}>{line}</div>
+                    ))
+                  ) : null
+                ) : (
+                  <div>{selected.cell.summary}</div>
+                )}
               </div>
             )}
             <p style={{ margin: 0, fontSize: 12, lineHeight: 1.65, color: "var(--fg-2)" }}>

@@ -150,7 +150,8 @@ export interface ActivityEntry {
   date: string;
   count: number;                                              // = sum(counts.values()) — 잔디 색 강도 호환
   counts: Partial<Record<"commit" | "note" | "study", number>>;
-  summary: string | null;
+  // string = 레거시 entry, string[] = 새 spec (활동 단위별 1줄, spec-03 §3.2)
+  summary: string | string[] | null;
 }
 
 export interface ActivityResponse {
