@@ -1,8 +1,8 @@
 # persona/_map.md
 
-> 자동 생성 (build_persona_map.py, 2026-05-05 09:05 KST). 수동 편집 X.
+> 자동 생성 (build_persona_map.py, 2026-05-06 15:18 KST). 수동 편집 X.
 
-_총 182 파일 (profile 1 / career 5 / projects 9 / notes 156 / contents 7 / daily 4)_
+_총 183 파일 (profile 1 / career 5 / projects 9 / notes 156 / contents 7 / daily 5)_
 
 ## profile
 
@@ -193,7 +193,8 @@ _총 182 파일 (profile 1 / career 5 / projects 9 / notes 156 / contents 7 / da
 - [[contents/C-002-pending-sample]] Day 02 — 모듈로 편향으로 인한 게임 확률 버그 (2026.05.02)
 - [[contents/C-001-fastapi-di]] Day 01 — FastAPI Dependency Injection — 진짜 쓸 수 있게 (2026.05.01)
 
-## daily (총 4개, 최근 10)
+## daily (총 5개, 최근 10)
+- [[daily/2026-05-05]] (2026.05.05)
 - [[daily/2026-05-04]] (2026.05.04)
 - [[daily/2026-05-03]] (2026.05.03)
 - [[daily/2026-05-02]] (2026.05.02)
