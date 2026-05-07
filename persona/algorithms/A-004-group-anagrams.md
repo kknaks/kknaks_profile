@@ -20,7 +20,7 @@ tags:
 title:
   en: Group Anagrams
   ko: 애너그램 그룹화
-today: true
+today: false
 type: algorithm
 updated: '2026-05-07'
 visible: true
