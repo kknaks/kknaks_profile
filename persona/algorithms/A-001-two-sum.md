@@ -1,24 +1,28 @@
 ---
-id: A-001
-type: algorithm
-title:
-  ko: Two Sum
-  en: Two Sum
+created: 2026-05-05
 date: 2026-05-05
 day: Day 01
+difficulty: easy
+id: A-001
 source:
-  platform: leetcode
+  curated_in:
+  - neetcode150
+  - blind75
   number: 1
+  platform: leetcode
   slug: two-sum
   url: https://leetcode.com/problems/two-sum/
-  curated_in: [neetcode150, blind75]
-difficulty: easy
-tags: [array, hash]
-today: true
 status: draft
-visible: true
-created: 2026-05-05
+tags:
+- array
+- hash
+title:
+  en: Two Sum
+  ko: Two Sum
+today: false
+type: algorithm
 updated: 2026-05-05
+visible: true
 ---
 
 # Two Sum
