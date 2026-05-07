@@ -110,6 +110,8 @@ body {
   text-rendering: optimizeLegibility;
   scrollbar-width: none; /* Firefox */
   overflow-x: hidden; /* 가로 overflow 방어 — 내부 wide content 는 자체 overflow-x:auto 로 처리 */
+  -webkit-text-size-adjust: 100%; /* iOS Safari 가 긴 monospace 블록을 자동 확대하는 거 차단 */
+  text-size-adjust: 100%;
 }
 
 html::-webkit-scrollbar,
