@@ -1,8 +1,8 @@
 # persona/_map.md
 
-> 자동 생성 (build_persona_map.py, 2026-05-07 09:27 KST). 수동 편집 X.
+> 자동 생성 (build_persona_map.py, 2026-05-07 09:52 KST). 수동 편집 X.
 
-_총 185 파일 (profile 1 / career 5 / projects 10 / notes 156 / contents 7 / daily 6)_
+_총 186 파일 (profile 1 / career 5 / projects 10 / notes 156 / contents 8 / daily 6)_
 
 ## profile
 
@@ -185,7 +185,8 @@ _총 185 파일 (profile 1 / career 5 / projects 10 / notes 156 / contents 7 / d
 - [[notes/2025-11-01-database_migration]] Database Migration(AWS RDS -> Azure MySQL) (work · 2025.11.01)
 - [[notes/2025-11-01-migration_detail]] Database Migration 상세 프로세스 (work · 2025.11.01)
 
-## contents (총 7개)
+## contents (총 8개)
+- [[contents/C-008-pending]] Day 08 —  (2026-05-07)
 - [[contents/C-007-pending]] Day 07 — AI 에이전트 제어의 핵심, 하네스 엔지니어링 완벽 가이드 (2026-05-03)
 - [[contents/C-006-pending]] Day 06 — 옵저버 패턴 이해하기 (2026-05-03)
 - [[contents/C-005-pending]] Day 05 — 깃헙 10만 스타 CLAUDE.md의 AI 협업 4원칙 (2026-05-03)
