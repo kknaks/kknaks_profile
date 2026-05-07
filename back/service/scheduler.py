@@ -1,26 +1,37 @@
-"""APScheduler 셋업 (spec-03 §1.1)."""
+"""APScheduler 셋업 — daily-activity (잔디) + neetcode-canonical (algorithm) 두 잡."""
 
 from __future__ import annotations
 
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
 
+from service.jobs.algorithms.main import run_neetcode_canonical_job
 from service.jobs.main_job import run_daily_activity_job
 
 scheduler = AsyncIOScheduler()
 
 
 def init_scheduler() -> AsyncIOScheduler:
-    """daily_activity_job을 매일 09:05 KST에 실행하도록 등록 (직전 날 entry 박음 — spec-03 §1.1).
+    """두 잡 등록.
 
-    09:05 KST = 00:05 UTC — 컨테이너 TZ (UTC) 기준 `date.today() - 1d` 가
-    "어제 KST" 와 일치하는 시각. 자정 직후 발동 (00:05 KST = 15:05 UTC 전날) 이면
-    `date.today()` 가 그저께를 반환하는 off-by-one 발생 (b6979da 사고 회피).
+    - **daily-activity**: 매일 **09:05 KST** = 00:05 UTC. 어제 entry (spec-03 §1.1).
+      자정 직후 발동 시 `date.today() - 1d` 가 그저께가 되는 off-by-one 회피.
+    - **neetcode-canonical**: 매일 **23:00 UTC** = KST 다음날 08:00. NeetCode 150 다음 항목 박음 (spec-03 §11, spec-07 §7).
     """
+    # 잔디 잡
     scheduler.add_job(
         run_daily_activity_job,
         CronTrigger(hour=9, minute=5, timezone="Asia/Seoul"),
         id="daily-activity",
+        coalesce=True,
+        max_instances=1,
+        replace_existing=True,
+    )
+    # algorithm 잡 (별도 큐 — spec-03 §11)
+    scheduler.add_job(
+        run_neetcode_canonical_job,
+        CronTrigger(hour=23, minute=0, timezone="UTC"),
+        id="neetcode-canonical",
         coalesce=True,
         max_instances=1,
         replace_existing=True,
