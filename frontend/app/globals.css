@@ -109,6 +109,7 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   scrollbar-width: none; /* Firefox */
+  overflow-x: hidden; /* 가로 overflow 방어 — 내부 wide content 는 자체 overflow-x:auto 로 처리 */
 }
 
 html::-webkit-scrollbar,

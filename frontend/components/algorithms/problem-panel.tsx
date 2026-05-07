@@ -114,7 +114,10 @@ export function ProblemPanel({
                 <span>example {i + 1}</span>
                 <span>input → output</span>
               </div>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
+              <div
+                className="m-stack"
+                style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}
+              >
                 <pre
                   className="mono"
                   style={{
@@ -125,7 +128,9 @@ export function ProblemPanel({
                     background: "var(--bg-0)",
                     borderRight: "1px solid var(--line-1)",
                     whiteSpace: "pre-wrap",
+                    wordBreak: "break-word",
                     lineHeight: 1.5,
+                    overflowX: "auto",
                   }}
                 >
                   {ex.input}
@@ -139,7 +144,9 @@ export function ProblemPanel({
                     color: "var(--accent)",
                     background: "var(--bg-0)",
                     whiteSpace: "pre-wrap",
+                    wordBreak: "break-word",
                     lineHeight: 1.5,
+                    overflowX: "auto",
                   }}
                 >
                   {ex.output}

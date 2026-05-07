@@ -42,7 +42,7 @@ export function TracePanel({
 
   return (
     <div>
-      {/* Code (read-only) */}
+      {/* Code (read-only) — 긴 라인 시 카드 안에서만 가로 스크롤 (페이지 폭 유지) */}
       <div
         className="card"
         style={{
@@ -70,38 +70,40 @@ export function TracePanel({
           <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#28c840" }} />
           <span style={{ marginLeft: 12 }}>solution.py</span>
         </div>
-        <div>
-          {code.map((line, i) => (
-            <div key={i} style={{ display: "grid", gridTemplateColumns: "40px 1fr" }}>
-              <span
-                className="mono"
-                style={{
-                  padding: "4px 8px",
-                  textAlign: "right",
-                  color: "var(--fg-3)",
-                  fontSize: 12,
-                  lineHeight: 1.65,
-                  userSelect: "none",
-                  borderRight: "1px solid var(--line-1)",
-                }}
-              >
-                {i + 1}
-              </span>
-              <pre
-                className="mono"
-                style={{
-                  margin: 0,
-                  padding: "4px 16px",
-                  color: "var(--fg-1)",
-                  fontSize: 12,
-                  lineHeight: 1.65,
-                  whiteSpace: "pre",
-                }}
-              >
-                {line}
-              </pre>
-            </div>
-          ))}
+        <div style={{ overflowX: "auto" }}>
+          <div style={{ minWidth: "max-content" }}>
+            {code.map((line, i) => (
+              <div key={i} style={{ display: "grid", gridTemplateColumns: "40px 1fr" }}>
+                <span
+                  className="mono"
+                  style={{
+                    padding: "4px 8px",
+                    textAlign: "right",
+                    color: "var(--fg-3)",
+                    fontSize: 12,
+                    lineHeight: 1.65,
+                    userSelect: "none",
+                    borderRight: "1px solid var(--line-1)",
+                  }}
+                >
+                  {i + 1}
+                </span>
+                <pre
+                  className="mono"
+                  style={{
+                    margin: 0,
+                    padding: "4px 16px",
+                    color: "var(--fg-1)",
+                    fontSize: 12,
+                    lineHeight: 1.65,
+                    whiteSpace: "pre",
+                  }}
+                >
+                  {line}
+                </pre>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
