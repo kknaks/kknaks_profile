@@ -6,6 +6,8 @@
 import type { Lang } from "./i18n";
 import type {
   ActivityResponse,
+  AlgorithmDetailResponse,
+  AlgorithmsResponse,
   CareerResponse,
   ContentDetailResponse,
   ContentsResponse,
@@ -53,4 +55,7 @@ export const api = {
     get<ContentsResponse>(`/api/contents?limit=${limit}`, lang),
   contentDetail: (id: string, lang: Lang) =>
     get<ContentDetailResponse>(`/api/contents/${id}`, lang),
+  algorithms: (lang: Lang) => get<AlgorithmsResponse>("/api/algorithms", lang),
+  algorithmDetail: (id: string, lang: Lang) =>
+    get<AlgorithmDetailResponse>(`/api/algorithms/${id}`, lang),
 };

@@ -11,6 +11,7 @@ const NAV_ITEMS = [
   { id: "projects", label: { ko: "Projects", en: "Projects" }, href: "/projects" },
   { id: "notes", label: { ko: "Notes", en: "Notes" }, href: "/notes" },
   { id: "contents", label: { ko: "Contents", en: "Contents" }, href: "/contents" },
+  { id: "algorithms", label: { ko: "Algorithms", en: "Algorithms" }, href: "/algorithms" },
 ];
 
 export function TopNav() {

@@ -172,3 +172,111 @@ export interface SiteResponse {
     portfolioLabel: string;
   };
 }
+
+/* ---------- Algorithms (spec-07) — i18n flatten 후 string ---------- */
+
+export interface AlgorithmSource {
+  platform: "leetcode";
+  number: number;
+  slug: string;
+  url: string;
+  curated_in?: string[];
+}
+
+export interface AlgorithmListItem {
+  id: string;
+  date: string;
+  day?: string;
+  title: string;
+  summary: string;
+  difficulty: "easy" | "medium" | "hard";
+  source: AlgorithmSource;
+  tags: string[];
+}
+
+export interface AlgorithmsResponse {
+  algorithms: {
+    subtitle: string;
+    intro: string;
+    totalCount: number;
+    today: AlgorithmListItem | null;
+  };
+  "algorithms[]": AlgorithmListItem[];
+}
+
+export interface AlgoQuizItem {
+  q?: string;
+  name?: string;
+  complexity?: string;
+  type: "good" | "distractor";
+  why: string;
+}
+
+export interface AlgoLogicOption {
+  code: string;
+  type: "good" | "distractor";
+  why: string;
+}
+
+export interface AlgoLogicSlot {
+  label: string;
+  indent?: number;
+  options: AlgoLogicOption[];
+}
+
+export interface AlgoLogic {
+  format: "slot";
+  slots: AlgoLogicSlot[];
+}
+
+export interface AlgoTraceCase {
+  input: string;
+  expected: string;
+}
+
+export interface AlgoWorkedExample {
+  input: string;
+  steps: string[];
+  answer: string;
+}
+
+export interface AlgoTrace {
+  code: string[];
+  cases: AlgoTraceCase[];
+  worked_example: AlgoWorkedExample;
+}
+
+export interface AlgoSolution {
+  code: string;
+  complexity: { time: string; space: string };
+  followup: string[];
+}
+
+export interface AlgoProblem {
+  title?: string;
+  statement: string;
+  constraints: string[];
+  io: { input: string; output: string }[];
+}
+
+export interface AlgorithmDetail {
+  id: string;
+  date: string;
+  day?: string;
+  title: string;
+  difficulty: "easy" | "medium" | "hard";
+  source: AlgorithmSource;
+  tags: string[];
+  problem: AlgoProblem;
+  clarifying: { items: AlgoQuizItem[] };
+  approach: { items: AlgoQuizItem[] };
+  logic: AlgoLogic;
+  trace: AlgoTrace;
+  solution: AlgoSolution;
+  newer: { id: string; title: string } | null;
+  older: { id: string; title: string } | null;
+}
+
+export interface AlgorithmDetailResponse {
+  "algorithms.detail": AlgorithmDetail;
+}
