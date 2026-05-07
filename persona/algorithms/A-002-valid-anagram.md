@@ -19,7 +19,7 @@ tags:
 title:
   en: Valid Anagram
   ko: 유효한 애너그램
-today: true
+today: false
 type: algorithm
 updated: '2026-05-07'
 visible: true
