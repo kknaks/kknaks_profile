@@ -127,14 +127,16 @@ solution:    { code: "...", complexity: { ... }, followup: [ ... ] }
 
 ```yaml
 title: { ko: ..., en: ... }    # 짧은 제목 (frontmatter title 과 동일 가능)
-statement: { ko: ..., en: ... }   # 한 줄 요약 (LeetCode content 첫 문단 trim, paraphrased)
+statement: { ko: ..., en: ... }   # 풀 지문 (HTML → plain text, Examples·Constraints 섹션 제외)
 constraints:                      # source = LeetCode constraints
   - "2 ≤ nums.length ≤ 1e4"
 io:                               # source = LeetCode exampleTestcases (입출력 예시 1–2개)
   - { input: "...", output: "..." }
 ```
 
-지문 전체 복사 X (저작권). 한 줄 요약만.
+`statement` = LeetCode `content` HTML 의 본문 (Examples·Constraints 헤딩 이전) 을 태그만 제거한 plain text — 단락 보존. 교육·개인 용도 허가 박힘 (사용자 결정, 2026-05-07).
+- `en` = LeetCode 원문 (HTML 태그 제거, 줄바꿈·단락 보존)
+- `ko` = 자연스러운 한국어 번역 (의미 보존, 단락 구조 유지)
 
 ### 5.2 `clarifying`
 
@@ -312,7 +314,7 @@ input: NeetCode 150 시퀀스의 다음 slug (잡 상태에서 읽음)
     - **입력**: raw HTML content · 정규화 결과 (cases input 등) · 솔루션 코드 · 추출된 core region 라인 set · tags
     - **출력 (spec-07 yaml 6 키)**:
       - problem.{title, statement, constraints, io}
-        ← raw HTML → paraphrase + 추출 (statement 한 줄 / constraints list / io.output)
+        ← raw HTML → plain text 변환·번역 + 추출 (statement 풀 지문 plain text / constraints list / io.output)
       - clarifying.items / approach.items
       - logic.{format=slot, slots[].label/indent/options}
         ← 정답 옵션의 code 는 §c 의 추출 라인 그대로, distractor·why 만 LLM 생성
@@ -334,7 +336,7 @@ input: NeetCode 150 시퀀스의 다음 slug (잡 상태에서 읽음)
 
 | 필드 | source (raw) | LLM 가공 영역 | 단계 |
 |---|---|---|---|
-| Problem statement (한 줄) | LeetCode `content` (HTML) | HTML → 한 줄 paraphrase | (a) (d) |
+| Problem statement (풀 지문) | LeetCode `content` (HTML 본문) | HTML → plain text 변환 + 한국어 번역 | (a) (d) |
 | Problem constraints | LeetCode `content` (HTML — `<strong>Constraints:</strong>` 다음) | HTML → list[str] 추출 | (a) (d) |
 | Problem io.input | LeetCode `exampleTestcases` (newline-delimited) | — (`metaData.params.length` 줄씩 split) | (a) (c) |
 | Problem io.output | LeetCode `content` (HTML — `Output:` 라벨 추출) | HTML → 추출 (LLM 위임) | (a) (d) |

@@ -179,7 +179,7 @@ step-by-step interactive stepper · 콜스택 viz · Predict 마커 · subproces
 
 | §4 필드 | source (raw) | LLM 가공 영역 |
 |---|---|---|
-| §4.1 Problem statement (한 줄) | LeetCode `content` (HTML) | HTML → 한 줄 paraphrase |
+| §4.1 Problem statement (풀 지문) | LeetCode `content` (HTML 본문) | HTML → plain text 변환 + 한국어 번역 (교육·개인 용도, 2026-05-07 결정) |
 | §4.1 Problem constraints | LeetCode `content` (HTML 의 `<strong>Constraints:</strong>` 섹션) | HTML → list[str] 추출 |
 | §4.1 Problem io.input | LeetCode `exampleTestcases` | 없음 (`metaData.params.length` 줄씩 split — deterministic) |
 | §4.1 Problem io.output | LeetCode `content` (HTML 의 `Output:` 라벨) | HTML → 추출 |

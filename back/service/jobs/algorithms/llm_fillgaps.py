@@ -138,7 +138,7 @@ Test case inputs (parsed from LeetCode exampleTestcases — index → text, para
 
 1. **problem**:
    - title: {{"ko": str, "en": str}}  short topic ("Two Sum" style; KO can be same English or translated)
-   - statement: {{"ko": str, "en": str}}  paraphrase one-liner (≤120 chars each). DO NOT copy LeetCode HTML verbatim (copyright). Paraphrase in your own words.
+   - statement: {{"ko": str, "en": str}}  full problem statement converted from HTML to clean plain text. EXCLUDE the Examples and Constraints sections (handled separately as `io_outputs` and `constraints`). Preserve paragraph breaks. `en` = LeetCode source body with HTML tags removed (paragraph structure preserved). `ko` = natural Korean translation of `en` (faithful, paragraph structure preserved). Educational/personal use authorized — full text is OK.
    - constraints: list[str]  2-5 entries from the HTML <strong>Constraints:</strong> section. Concise (e.g. "2 ≤ nums.length ≤ 1e4").
    - io_outputs: list[str]  expected outputs corresponding 1:1 to the cases_input above (same length, same order).
 
