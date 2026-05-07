@@ -119,31 +119,44 @@ export function TracePanel({
         {cases.map((c, i) => (
           <div
             key={i}
-            className="card m-stack"
+            className="card"
             style={{
               padding: "10px 14px",
-              display: "grid",
-              gridTemplateColumns: "60px 1fr 24px 1fr",
-              gap: 12,
+              display: "flex",
               alignItems: "center",
+              gap: 10,
+              flexWrap: "wrap",
               background: "var(--bg-1)",
             }}
           >
-            <span className="mono" style={{ fontSize: 11, color: "var(--fg-3)" }}>
+            <span className="mono" style={{ fontSize: 11, color: "var(--fg-3)", flex: "0 0 auto" }}>
               case {i + 1}
             </span>
             <pre
               className="mono"
-              style={{ margin: 0, fontSize: 12, color: "var(--fg-1)", whiteSpace: "pre-wrap" }}
+              style={{
+                margin: 0,
+                fontSize: 12,
+                color: "var(--fg-1)",
+                whiteSpace: "pre-wrap",
+                flex: "1 1 auto",
+                minWidth: 0,
+              }}
             >
               {c.input}
             </pre>
-            <span className="mono" style={{ color: "var(--fg-3)", textAlign: "center" }}>
+            <span className="mono" style={{ color: "var(--fg-3)", flex: "0 0 auto" }}>
               →
             </span>
             <pre
               className="mono"
-              style={{ margin: 0, fontSize: 12, color: "var(--accent)", whiteSpace: "pre-wrap" }}
+              style={{
+                margin: 0,
+                fontSize: 12,
+                color: "var(--accent)",
+                whiteSpace: "pre-wrap",
+                flex: "0 0 auto",
+              }}
             >
               {c.expected}
             </pre>
