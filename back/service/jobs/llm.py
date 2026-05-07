@@ -160,18 +160,35 @@ async def summarize_daily(
     counts: dict,
     client: ClaudeClient,
 ) -> dict:
-    """입력 → body+summary (counts 는 deterministic 이라 LLM 안 거침). spec-03 §3.2."""
+    """입력 → body+summary (counts 는 deterministic 이라 LLM 안 거침). spec-03 §3.2.
+
+    JSON 파싱 / 응답 검증 실패 시 LLM 1회 retry (spec-03 §9).
+    """
     if sum(counts.values()) == 0:
         # 활동 0 — LLM 호출 skip
         return {"summary": None, "body": "(활동 없음)"}
 
     prompt = _build_prompt(target, notes_changes, contents_changes, commits, counts)
-    task_id = await client.submit(
-        prompt=prompt,
-        model=LLM_MODEL,
-        timeout=LLM_TIMEOUT_S,
-        max_retries=2,
-    )
-    task = await client.result(task_id, timeout=LLM_TIMEOUT_S)
-    resp = json.loads(_extract_json(task.result or ""))
-    return validate_llm_response(resp)
+
+    last_error: Exception | None = None
+    for attempt in range(2):  # spec-03 §9 — 1회 retry
+        task_id = await client.submit(
+            prompt=prompt,
+            model=LLM_MODEL,
+            timeout=LLM_TIMEOUT_S,
+            max_retries=2,
+        )
+        task = await client.result(task_id, timeout=LLM_TIMEOUT_S)
+        raw = task.result or ""
+        try:
+            resp = json.loads(_extract_json(raw))
+            return validate_llm_response(resp)
+        except (json.JSONDecodeError, ValueError) as e:
+            last_error = e
+            logger.warning(
+                "LLM 응답 파싱/검증 실패 (attempt=%d/2): %s — raw[:200]=%r",
+                attempt + 1,
+                e,
+                raw[:200],
+            )
+    raise RuntimeError(f"LLM 응답 파싱 2회 실패: {last_error}")
