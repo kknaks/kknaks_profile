@@ -292,43 +292,72 @@ spec-02 §2 표에 위 2 행 추가 — 구현 시점 PR 1개로.
 input: NeetCode 150 시퀀스의 다음 slug (잡 상태에서 읽음)
 
 (a) source fetch
-    - LeetCode GraphQL → title · content · exampleTestcases · constraints · hints · difficulty · topicTags
-    - neetcode-gh raw.githubusercontent.com → solution code · README
+    - LeetCode GraphQL → questionFrontendId · title · content (HTML) · exampleTestcases (raw)
+                       · difficulty · topicTags · hints · metaData (JSON 문자열)
+    - neetcode-gh raw.githubusercontent.com/neetcode-gh/leetcode/main/python/{NNNN}-{slug}.py
+                       → 솔루션 코드 (class Solution 패턴 일관)
 
 (b) 캐시 (idempotent)
     - 같은 slug 재호출 시 외부 API 안 때림 — local 캐시 (file 또는 redis)
 
-(c) 정규화
-    - Problem statement → 첫 문단 trim, 한 줄 요약
-    - exampleTestcases → cases 배열 (3개)
-    - solution code → code block + 복잡도 (코드 주석/README 파싱 1차)
-    - core region 판별 (adr-08 §2.4 휴리스틱) → Logic 정답 라인 추출
+(c) 미니멀 정규화 (deterministic, LLM 호출 X)
+    - metaData JSON.loads → params count 결정 (= exampleTestcases 분할 단위)
+    - exampleTestcases newline-split → params count 줄씩 grouping → cases 배열 (input 만)
+    - difficulty `.lower()` (Easy → easy)
+    - topicTags slug 그대로 (`hash-table`·`dynamic-programming` 등 NeetCode 어휘)
+    - core region 라인 set 판별 (adr-08 §2.4 휴리스틱)
+      → 솔루션 코드의 `class Solution: def methodName(self, ...)` 본체 inner 라인들
 
-(d) LLM gap-filler — open-kknaks 1회 호출 (adr-04)
-    - 입력: 정규화 산출물 + 솔루션 코드 + 추출된 Logic 정답 라인
-    - 출력: clarifying items, approach items, logic.{format/distractor/why/label/indent},
-            trace.worked_example, solution.followup
-    - **정답 코드는 LLM 응답에 포함 안 함** (추출 단계 별도, adr-08)
+(d) LLM 통째 — open-kknaks 1회 호출 (adr-04)
+    - **입력**: raw HTML content · 정규화 결과 (cases input 등) · 솔루션 코드 · 추출된 core region 라인 set · tags
+    - **출력 (spec-07 yaml 6 키)**:
+      - problem.{title, statement, constraints, io}
+        ← raw HTML → paraphrase + 추출 (statement 한 줄 / constraints list / io.output)
+      - clarifying.items / approach.items
+      - logic.{format=slot, slots[].label/indent/options}
+        ← 정답 옵션의 code 는 §c 의 추출 라인 그대로, distractor·why 만 LLM 생성
+      - trace.{cases, worked_example}
+        ← cases input 은 §c 그대로, expected (output) 와 worked_example 은 LLM
+      - solution.{code, complexity, followup}
+        ← code 는 source 그대로, complexity 와 followup 만 LLM
+    - **HTML 파싱 위임 이유**: LeetCode `content` 의 example 포맷이 두 종류 (옛 `<pre>` / 새 `<div class="example-block">`) + 트리 문제는 `<img>` 섞임. 정형 파서가 깨끗하게 안 잡힘 → LLM 이 robust.
+    - **source-first 정신 유지**: 정답 코드 라인 + cases input 은 §c 의 추출값 그대로, LLM 이 *발명* 하는 부분 = HTML 가공 + distractor + narrative 영역만.
 
 (e) md 박음
-    - frontmatter + 본문 헤딩 + yaml 블록 조립
+    - frontmatter + 본문 `## Data` yaml 블록 조립 (spec §4)
     - 파일명: A-NNN-slug.md (NNN = 다음 시퀀스 번호)
-    - git commit + push (잡 commit 메커니즘 — spec-03)
+    - `today` 필드 mutation (이전 today=true 항목들 → false, spec-03 §11.5)
+    - git commit + push (spec-03 §5 의 `commit_and_push_with_retry` 재사용)
 ```
 
 ### 7.2 source 매트릭스 → 단계 매핑
 
-| 필드 | source | LLM | 단계 |
+| 필드 | source (raw) | LLM 가공 영역 | 단계 |
 |---|---|---|---|
-| Problem 본문·예시·제약·태그·난이도 | LeetCode GraphQL | — | (a) (c) |
-| Clarifying | — | 전적 | (d) |
-| Approach 후보·복잡도 | neetcode-gh README | distractor·trade-off·why | (a) + (d) |
-| Logic 정답 라인 | neetcode-gh code 추출 | distractor·why·label·indent·format | (c) + (d) |
-| Trace cases | LeetCode exampleTestcases | (부족 시) 추가 케이스 | (a) (c) (d) |
-| Trace worked_example | — | 전적 | (d) |
-| Solution 코드 | neetcode-gh repo | (누락 시) 코드 fallback | (a) |
-| Solution 복잡도 | neetcode-gh 주석 | (누락 시) | (a) (c) (d) |
-| Solution followup | — | 전적 | (d) |
+| Problem statement (한 줄) | LeetCode `content` (HTML) | HTML → 한 줄 paraphrase | (a) (d) |
+| Problem constraints | LeetCode `content` (HTML — `<strong>Constraints:</strong>` 다음) | HTML → list[str] 추출 | (a) (d) |
+| Problem io.input | LeetCode `exampleTestcases` (newline-delimited) | — (`metaData.params.length` 줄씩 split) | (a) (c) |
+| Problem io.output | LeetCode `content` (HTML — `Output:` 라벨 추출) | HTML → 추출 (LLM 위임) | (a) (d) |
+| Problem tags | LeetCode `topicTags[].slug` | — (그대로 사용) | (a) (c) |
+| Problem difficulty | LeetCode `difficulty` | `.lower()` | (a) (c) |
+| Clarifying items | — | 전적 LLM (면접관 시뮬레이션) | (d) |
+| Approach items | neetcode-gh 패턴 (코드 보고 추론 가능) | distractor·trade-off·why·complexity 모두 | (a) + (d) |
+| Logic 정답 코드 | neetcode-gh code 의 core region 라인 | — (§c 추출 그대로) | (a) (c) |
+| Logic distractor + label·indent·format | — | 전적 LLM | (d) |
+| Trace cases input | LeetCode `exampleTestcases` | — | (a) (c) |
+| Trace cases expected | LeetCode `content` (HTML) | HTML → 추출 또는 LLM 시뮬레이션 | (d) |
+| Trace worked_example | — | 전적 LLM (단일 케이스 step text) | (d) |
+| Solution code | neetcode-gh repo | — (그대로) | (a) |
+| Solution complexity | — (neetcode-gh 주석 없음 가정) | LLM (코드 보고 추론) | (d) |
+| Solution followup | — | 전적 LLM | (d) |
+
+**(c) 단계 deterministic 작업** — 매우 좁음:
+- `metaData` JSON.loads
+- `exampleTestcases` newline split
+- `difficulty` lower
+- core region 라인 식별 (정규식 또는 AST 분석)
+
+**(d) 단계 LLM 책임** — input HTML + raw code → 6 yaml 키 통째 출력. HTML 파싱은 LLM 이 robust 하게.
 
 ### 7.3 실패 처리
 

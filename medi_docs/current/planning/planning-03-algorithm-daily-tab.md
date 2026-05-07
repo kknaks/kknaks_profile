@@ -177,17 +177,26 @@ step-by-step interactive stepper · 콜스택 viz · Predict 마커 · subproces
 
 원칙 — **source 가 있으면 source. 없을 때만 LLM**. 정확도·재현성·비용 모두 source 우위. 정규화·캐시·LLM 호출 경계의 구체 파이프라인은 spec-07 에서 명세.
 
-| §4 필드 | 1차 source | LLM 책임 영역 |
+| §4 필드 | source (raw) | LLM 가공 영역 |
 |---|---|---|
-| §4.1 Problem (본문·예시·제약·태그·hints·난이도) | LeetCode GraphQL | 없음 |
+| §4.1 Problem statement (한 줄) | LeetCode `content` (HTML) | HTML → 한 줄 paraphrase |
+| §4.1 Problem constraints | LeetCode `content` (HTML 의 `<strong>Constraints:</strong>` 섹션) | HTML → list[str] 추출 |
+| §4.1 Problem io.input | LeetCode `exampleTestcases` | 없음 (`metaData.params.length` 줄씩 split — deterministic) |
+| §4.1 Problem io.output | LeetCode `content` (HTML 의 `Output:` 라벨) | HTML → 추출 |
+| §4.1 Problem tags · difficulty | LeetCode `topicTags`·`difficulty` | difficulty `.lower()` 만 |
 | §4.2 Clarifying 질문 + distractor + why | ❌ 정형 source 없음 | 전적 — 면접관 시뮬레이션 |
-| §4.3 Approach 후보 이름·복잡도 | neetcode-gh 카테고리·README 일부 (패턴 이름) | 후보 distractor·trade-off 설명·why 텍스트 |
-| **§4.4 논리 구조 slot/step 정답 코드** | **neetcode-gh 솔루션 코드의 core region 발췌** | core region 판별 · format 결정 (slot/ordering/state-first) · distractor 생성 · why 텍스트 |
-| §4.5 Trace cases (입력) | LeetCode `exampleTestcases` | 부족 시 LLM 가 추가 케이스 생성 |
-| §4.5 worked_example (step text + 정답) | ❌ 정형 source 없음 | LLM 전적 (NeetCode 150 well-known → hallucination 위험 낮음) |
-| §4.6 Solution 코드 | neetcode-gh repo | 누락 슬러그 fallback 만 |
-| §4.6 복잡도 (시간·공간) | neetcode-gh 코드 주석 / 파싱 | 누락 시만 |
-| §4.6 follow-up · variations | ❌ 없음 (LeetCode editorial = premium 유료) | 전적 |
+| §4.3 Approach 후보 이름·복잡도·why | neetcode-gh 패턴 추론 가능 | 전적 LLM (distractor·trade-off·why) |
+| §4.4 논리 구조 정답 코드 | **neetcode-gh code 의 core region 라인 추출** | distractor·why·label·indent·format (slot 기본) |
+| §4.5 Trace cases.input | LeetCode `exampleTestcases` | 없음 |
+| §4.5 Trace cases.expected | LeetCode `content` (HTML) | HTML → 추출 또는 LLM 시뮬레이션 |
+| §4.5 worked_example (step text + 정답) | — | 전적 LLM (NeetCode 150 well-known → hallucination 위험 낮음) |
+| §4.6 Solution code | neetcode-gh repo | 없음 (그대로) |
+| §4.6 Solution complexity | — | LLM 추론 |
+| §4.6 Solution followup | — | 전적 LLM |
+
+**HTML 파싱이 LLM 으로 위임된 이유** — LeetCode `content` 의 example 포맷이 두 종류 (옛 `<pre>` / 새 `<div class="example-block">`) + 트리 문제는 `<img>` 섞임. 정형 파서가 깨끗하게 안 잡혀서 LLM 이 robust. **source-first 정신은 유지** — 정답 코드 라인 + cases input 은 deterministic 추출, LLM 은 *발명* 이 아닌 *추출 + 가공*.
+
+LLM 호출 단위 — **5 단계 파이프라인의 (d) 1회 호출** 에 위 모든 LLM 영역 통합 (raw HTML + 솔루션 코드 → spec-07 yaml 6 키 통째). spec-07 §7 참고.
 
 이 매트릭스가 **§4.1~4.6 의 자동 생성 절차** 의 source-of-truth. spec-07 의 정규화 파이프라인은 이 표를 입력으로 받아 (a) source fetch → (b) 캐시 → (c) 정규화 → (d) 비어있는 칸만 LLM 호출 → (e) md 박음 의 5 단계를 박는다.
 
@@ -264,6 +273,7 @@ ADR 후속:
 
 ## 변경 이력 (요약)
 
+- **2026-05-07 (LLM 통째 위임)** — plan-02 M3 fetch 탐색 결과 반영. LeetCode `content` 가 HTML (옛 `<pre>` / 새 `<div class="example-block">` / 트리 `<img>` 혼재) + Output·constraints 가 별도 필드 X 라 정형 파서가 robust 안 함 → §4.8 매트릭스에서 **HTML 파싱 (statement·constraints·io.output) 도 LLM 책임으로 위임**. 정답 코드·cases.input·tags·difficulty 는 deterministic 그대로. spec-07 §7.1 (c) 단계 *축소* + (d) LLM 호출이 raw HTML 통째 받아 yaml 6키 출력하는 구조로 정정.
 - **2026-05-05 (close opens + scope cut)** — §8 오픈 큐 4개 모두 close → **결정 박힘 박스** 로 (탭 = `algorithms`, Predict = 핵심 step 만, 모바일 우선·데스크탑 반응형, 백필 X). **§5 노트 승격·§4.7 Notes 통째 다음 버전 보류** — 시안 §05 Promote 섹션 제거 → 4 섹션. §9 row 1 — spec-07 표현 "본 SoT" → "**형식 명세** (실 SoT 는 per-항목 md)" 정정. §3 매핑 5섹션 → 4섹션.
 - **2026-05-05 (logic + core region)** — §4.4 **논리 구조** 신설 (Code 단계의 본질 = 코드 합성 quiz). format 다원화 (slot/ordering/state-first) — MVP 는 slot. §4.4 Trace → §4.5 로 밀고 **core region 한정** 명시 (3–5 step). §4.5~4.7 renumber. §4.8 source 매트릭스에 §4.4 행 추가 + 필드 reference 동기 (Trace 는 core region 만 sys.settrace 실행). §9 산출물에 ADR — 논리 구조 quiz format 다원화 추가.
 - **2026-05-05 (source-first)** — §4 전제를 *모두 LLM 자동 생성* → **source-first 정규화 + LLM gap-filler** 로 정정 (Summary·§1.3·§4 prelude·결정 박힌 항목 동기). §4.1 source = LeetCode GraphQL, §4.5 source = neetcode-gh repo (community-maintained, MIT) 명시. §4.4 trace yaml 정확도 — `sys.settrace` 자동 추출이 1차 후보로 강해짐 (LLM 은 narration·Predict 만). **§4.7 신설** — 필드별 source 매트릭스. §9 산출물 — spec-07 에 source 정규화 파이프라인 추가, ADR 명칭/옵션 (b) 우선시 명시.
