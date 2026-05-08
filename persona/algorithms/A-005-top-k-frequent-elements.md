@@ -24,7 +24,7 @@ tags:
 title:
   en: Top K Frequent Elements
   ko: 상위 K개 빈도 요소
-today: true
+today: false
 type: algorithm
 updated: '2026-05-07'
 visible: true
