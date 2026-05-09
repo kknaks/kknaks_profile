@@ -18,7 +18,7 @@ tags:
 title:
   en: Product of Array Except Self
   ko: 자신을 제외한 배열의 곱
-today: true
+today: false
 type: algorithm
 updated: '2026-05-08'
 visible: true
