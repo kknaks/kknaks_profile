@@ -19,7 +19,7 @@ tags:
 title:
   en: Valid Sudoku
   ko: 유효한 스도쿠
-today: true
+today: false
 type: algorithm
 updated: '2026-05-09'
 visible: true
