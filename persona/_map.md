@@ -1,8 +1,8 @@
 # persona/_map.md
 
-> 자동 생성 (build_persona_map.py, 2026-05-08 09:13 KST). 수동 편집 X.
+> 자동 생성 (build_persona_map.py, 2026-05-11 12:54 KST). 수동 편집 X.
 
-_총 188 파일 (profile 1 / career 5 / projects 10 / notes 156 / contents 9 / daily 7)_
+_총 192 파일 (profile 1 / career 5 / projects 10 / notes 156 / contents 10 / daily 10)_
 
 ## profile
 
@@ -185,8 +185,9 @@ _총 188 파일 (profile 1 / career 5 / projects 10 / notes 156 / contents 9 / d
 - [[notes/2025-11-01-database_migration]] Database Migration(AWS RDS -> Azure MySQL) (work · 2025.11.01)
 - [[notes/2025-11-01-migration_detail]] Database Migration 상세 프로세스 (work · 2025.11.01)
 
-## contents (총 9개)
-- [[contents/C-009-pending]] Day 09 —  (2026-05-08)
+## contents (총 10개)
+- [[contents/C-010-pending]] Day 10 —  (2026-05-11)
+- [[contents/C-009-pending]] Day 09 — AI 시대의 SEO 진화: GEO(생성형 AI 최적화) 완벽 가이드 (2026-05-08)
 - [[contents/C-008-pending]] Day 08 — MCP(Model Context Protocol) 완벽 가이드: 개념부터 직접 구현까지 (2026-05-07)
 - [[contents/C-007-pending]] Day 07 — AI 에이전트 제어의 핵심, 하네스 엔지니어링 완벽 가이드 (2026-05-03)
 - [[contents/C-006-pending]] Day 06 — 옵저버 패턴 이해하기 (2026-05-03)
@@ -196,7 +197,10 @@ _총 188 파일 (profile 1 / career 5 / projects 10 / notes 156 / contents 9 / d
 - [[contents/C-002-pending-sample]] Day 02 — 모듈로 편향으로 인한 게임 확률 버그 (2026.05.02)
 - [[contents/C-001-fastapi-di]] Day 01 — FastAPI Dependency Injection — 진짜 쓸 수 있게 (2026.05.01)
 
-## daily (총 7개, 최근 10)
+## daily (총 10개, 최근 10)
+- [[daily/2026-05-10]] (2026.05.10)
+- [[daily/2026-05-09]] (2026.05.09)
+- [[daily/2026-05-08]] (2026.05.08)
 - [[daily/2026-05-07]] (2026.05.07)
 - [[daily/2026-05-06]] (2026.05.06)
 - [[daily/2026-05-05]] (2026.05.05)
