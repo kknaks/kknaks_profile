@@ -19,7 +19,7 @@ tags:
 title:
   en: Longest Consecutive Sequence
   ko: 최장 연속 수열
-today: true
+today: false
 type: algorithm
 updated: '2026-05-11'
 visible: true
