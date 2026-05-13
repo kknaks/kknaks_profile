@@ -1,8 +1,8 @@
 # persona/_map.md
 
-> 자동 생성 (build_persona_map.py, 2026-05-11 12:54 KST). 수동 편집 X.
+> 자동 생성 (build_persona_map.py, 2026-05-13 16:14 KST). 수동 편집 X.
 
-_총 192 파일 (profile 1 / career 5 / projects 10 / notes 156 / contents 10 / daily 10)_
+_총 197 파일 (profile 1 / career 5 / projects 12 / notes 157 / contents 10 / daily 12)_
 
 ## profile
 
@@ -15,7 +15,7 @@ _총 192 파일 (profile 1 / career 5 / projects 10 / notes 156 / contents 10 / 
 - [[career/bitcamp]] 비트캠프 (2024.06 — 2024.12)
 - [[career/dowha-eng]] 도화 엔지니어링 (2020.01 — 2023.12)
 
-## projects (web 2 · frontend 0 · backend 3 · mobile 4 · ai 0 · cli 1 · bot 0)
+## projects (web 2 · frontend 0 · backend 5 · mobile 4 · ai 0 · cli 1 · bot 0)
 - [[projects/kknaks-profile]] kknaks.dev (web · wip)
 - [[projects/summer-star-company]] Summer Star — 사무실 NFC 출퇴근 (web · wip)
 - [[projects/persona-counselor]] Persona Counselor (mobile · wip)
@@ -23,11 +23,13 @@ _총 192 파일 (profile 1 / career 5 / projects 10 / notes 156 / contents 10 / 
 - [[projects/study-timelapse]] Study Timelapse (mobile · wip)
 - [[projects/wine-log]] Wine Log (mobile · live)
 - [[projects/open-kknaks]] open-kknaks (cli · live)
+- [[projects/centurion-charty]] Centurion Charty (backend · wip)
 - [[projects/centurion-mso]] Centurion MSO (backend · wip)
+- [[projects/linky]] Linky (backend · wip)
 - [[projects/mediness]] Mediness (backend · wip)
 - [[projects/nexus]] NEXUS (backend · wip)
 
-## notes (ai_skills 1 · airflow 2 · SpringBoot 4 · React 1 · NCPcloud 0 · network 7 · codingTest 27 · interview 2 · BackendSchool 24 · bitcamp 83 · study 2 · work 3)
+## notes (ai_skills 1 · airflow 2 · SpringBoot 4 · React 1 · NCPcloud 0 · network 7 · codingTest 27 · interview 2 · BackendSchool 24 · bitcamp 83 · study 2 · work 3 · k8s 1)
 - [[notes/2024-12-30-Day01]] Day01_OT, 채팅기능구현 (BackendSchool · 2024.12.30)
 - [[notes/2024-12-31-Day02]] Day02_Polling, SSE통신방식, webSocket (BackendSchool · 2024.12.30)
 - [[notes/2025-01-02-Day03]] Day03 SSE, WebSocket(STOMP) (BackendSchool · 2025.01.03)
@@ -172,6 +174,7 @@ _총 192 파일 (profile 1 / career 5 / projects 10 / notes 156 / contents 10 / 
 - [[notes/sample]] sample (codingTest · )
 - [[notes/2025-07-21-project1]] [포트폴리오대비] 취업뽀개기 (interview · 2025.07.21)
 - [[notes/2025-07-21-quantus]] 퀀터스 면접준비 (interview · 2025.07.21)
+- [[notes/2026-05-13-day1-컨테이너-정리]] day1 컨테이너 정리 (k8s · 2026.05.13)
 - [[notes/2024-10-13-chapter3-physic]] 3장 물리계층, 데이터를 전기신호로 변환하는 단계 (network · 2024.10.13)
 - [[notes/2024-10-14-chapter4-dataLink]] 4장 데이터링크 계층, MAC 주소로 통신하는 단계 (network · 2024.10.14)
 - [[notes/2024-10-17-chapter5-network]] 5장 네트워크 계층, 목적지를 찾는 단계 (network · 2024.10.17)
@@ -186,7 +189,7 @@ _총 192 파일 (profile 1 / career 5 / projects 10 / notes 156 / contents 10 / 
 - [[notes/2025-11-01-migration_detail]] Database Migration 상세 프로세스 (work · 2025.11.01)
 
 ## contents (총 10개)
-- [[contents/C-010-pending]] Day 10 —  (2026-05-11)
+- [[contents/C-010-pending]] Day 10 — LoRA 파인튜닝: 저차원 행렬로 효율적으로 모델 조정하기 (2026-05-11)
 - [[contents/C-009-pending]] Day 09 — AI 시대의 SEO 진화: GEO(생성형 AI 최적화) 완벽 가이드 (2026-05-08)
 - [[contents/C-008-pending]] Day 08 — MCP(Model Context Protocol) 완벽 가이드: 개념부터 직접 구현까지 (2026-05-07)
 - [[contents/C-007-pending]] Day 07 — AI 에이전트 제어의 핵심, 하네스 엔지니어링 완벽 가이드 (2026-05-03)
@@ -197,7 +200,9 @@ _총 192 파일 (profile 1 / career 5 / projects 10 / notes 156 / contents 10 / 
 - [[contents/C-002-pending-sample]] Day 02 — 모듈로 편향으로 인한 게임 확률 버그 (2026.05.02)
 - [[contents/C-001-fastapi-di]] Day 01 — FastAPI Dependency Injection — 진짜 쓸 수 있게 (2026.05.01)
 
-## daily (총 10개, 최근 10)
+## daily (총 12개, 최근 10)
+- [[daily/2026-05-12]] (2026.05.12)
+- [[daily/2026-05-11]] (2026.05.11)
 - [[daily/2026-05-10]] (2026.05.10)
 - [[daily/2026-05-09]] (2026.05.09)
 - [[daily/2026-05-08]] (2026.05.08)
@@ -206,8 +211,6 @@ _총 192 파일 (profile 1 / career 5 / projects 10 / notes 156 / contents 10 / 
 - [[daily/2026-05-05]] (2026.05.05)
 - [[daily/2026-05-04]] (2026.05.04)
 - [[daily/2026-05-03]] (2026.05.03)
-- [[daily/2026-05-02]] (2026.05.02)
-- [[daily/2026-05-01]] (2026.05.01)
 
 ## 위키링크 그래프 (notes)
 - 2024-05-24-Day01 → 2024-05-27-Day02
