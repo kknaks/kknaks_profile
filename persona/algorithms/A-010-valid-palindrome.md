@@ -18,7 +18,7 @@ tags:
 title:
   en: Valid Palindrome
   ko: 올바른 팰린드롬
-today: true
+today: false
 type: algorithm
 updated: '2026-05-12'
 visible: true
