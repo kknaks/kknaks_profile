@@ -19,7 +19,7 @@ tags:
 title:
   en: Two Sum II - Input Array Is Sorted
   ko: 두 수의 합 II - 입력 배열이 정렬됨
-today: true
+today: false
 type: algorithm
 updated: '2026-05-13'
 visible: true
