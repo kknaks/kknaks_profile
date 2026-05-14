@@ -1,8 +1,8 @@
 # persona/_map.md
 
-> 자동 생성 (build_persona_map.py, 2026-05-13 17:47 KST). 수동 편집 X.
+> 자동 생성 (build_persona_map.py, 2026-05-14 15:13 KST). 수동 편집 X.
 
-_총 198 파일 (profile 1 / career 5 / projects 12 / notes 157 / contents 11 / daily 12)_
+_총 200 파일 (profile 1 / career 5 / projects 12 / notes 157 / contents 12 / daily 13)_
 
 ## profile
 
@@ -188,8 +188,9 @@ _총 198 파일 (profile 1 / career 5 / projects 12 / notes 157 / contents 11 / 
 - [[notes/2025-11-01-database_migration]] Database Migration(AWS RDS -> Azure MySQL) (work · 2025.11.01)
 - [[notes/2025-11-01-migration_detail]] Database Migration 상세 프로세스 (work · 2025.11.01)
 
-## contents (총 11개)
-- [[contents/C-011-pending]] Day 11 —  (2026-05-13)
+## contents (총 12개)
+- [[contents/C-012-pending]] Day 12 —  (2026-05-14)
+- [[contents/C-011-pending]] Day 11 — OpenCode: 어떤 LLM이든 쓸 수 있는 오픈소스 코딩 에이전트 (2026-05-13)
 - [[contents/C-010-pending]] Day 10 — LoRA 파인튜닝: 저차원 행렬로 효율적으로 모델 조정하기 (2026-05-11)
 - [[contents/C-009-pending]] Day 09 — AI 시대의 SEO 진화: GEO(생성형 AI 최적화) 완벽 가이드 (2026-05-08)
 - [[contents/C-008-pending]] Day 08 — MCP(Model Context Protocol) 완벽 가이드: 개념부터 직접 구현까지 (2026-05-07)
@@ -201,7 +202,8 @@ _총 198 파일 (profile 1 / career 5 / projects 12 / notes 157 / contents 11 / 
 - [[contents/C-002-pending-sample]] Day 02 — 모듈로 편향으로 인한 게임 확률 버그 (2026.05.02)
 - [[contents/C-001-fastapi-di]] Day 01 — FastAPI Dependency Injection — 진짜 쓸 수 있게 (2026.05.01)
 
-## daily (총 12개, 최근 10)
+## daily (총 13개, 최근 10)
+- [[daily/2026-05-13]] (2026.05.13)
 - [[daily/2026-05-12]] (2026.05.12)
 - [[daily/2026-05-11]] (2026.05.11)
 - [[daily/2026-05-10]] (2026.05.10)
@@ -211,7 +213,6 @@ _총 198 파일 (profile 1 / career 5 / projects 12 / notes 157 / contents 11 / 
 - [[daily/2026-05-06]] (2026.05.06)
 - [[daily/2026-05-05]] (2026.05.05)
 - [[daily/2026-05-04]] (2026.05.04)
-- [[daily/2026-05-03]] (2026.05.03)
 
 ## 위키링크 그래프 (notes)
 - 2024-05-24-Day01 → 2024-05-27-Day02
