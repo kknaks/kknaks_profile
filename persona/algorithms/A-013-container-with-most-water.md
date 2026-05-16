@@ -19,7 +19,7 @@ tags:
 title:
   en: Container With Most Water
   ko: 물이 가장 많은 용기
-today: true
+today: false
 type: algorithm
 updated: '2026-05-15'
 visible: true
