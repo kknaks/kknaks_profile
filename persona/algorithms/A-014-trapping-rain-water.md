@@ -21,7 +21,7 @@ tags:
 title:
   en: Trapping Rain Water
   ko: 빗물 정거량
-today: true
+today: false
 type: algorithm
 updated: '2026-05-16'
 visible: true
