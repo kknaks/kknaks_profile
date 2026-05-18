@@ -18,6 +18,7 @@ from youtube_transcript_api import YouTubeTranscriptApi
 
 import config
 from service.jobs.git_push import commit_and_push_with_retry
+from service.notify import notify_slack
 
 logger = logging.getLogger("kknaks-back.content-enrich")
 
@@ -309,6 +310,13 @@ async def _enrich_one(md_path: Path, contents_dir: Path, client: ClaudeClient) -
     )
     write_enriched(md_path, new_meta, llm_resp["body"])
 
+    title_ko = (llm_resp.get("title") or {}).get("ko") or md_path.stem
+    await notify_slack(
+        f":movie_camera: 영상 enrich — {md_path.stem} (published)\n"
+        f"{title_ko}\n"
+        f"https://youtu.be/{youtube_id}"
+    )
+
 
 async def run_content_enrich_job(
     client: ClaudeClient | None = None,
@@ -357,6 +365,10 @@ async def run_content_enrich_job(
                     paths=[md_path],
                     message=f"chore: enrich {md_path.stem} (error)",
                     dry_run=dry_run,
+                )
+                await notify_slack(
+                    f":x: 영상 enrich 실패 — {md_path.stem}\n"
+                    f"`{type(e).__name__}: {str(e)[:300]}`"
                 )
     finally:
         if own_broker is not None:
