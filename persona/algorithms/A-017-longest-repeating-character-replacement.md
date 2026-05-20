@@ -19,7 +19,7 @@ tags:
 title:
   en: Longest Repeating Character Replacement
   ko: 가장 긴 반복 문자 치환
-today: true
+today: false
 type: algorithm
 updated: '2026-05-19'
 visible: true
