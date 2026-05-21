@@ -20,7 +20,7 @@ tags:
 title:
   en: Permutation in String
   ko: 문자열의 순열
-today: true
+today: false
 type: algorithm
 updated: '2026-05-20'
 visible: true
