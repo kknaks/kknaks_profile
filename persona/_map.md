@@ -1,8 +1,8 @@
 # persona/_map.md
 
-> 자동 생성 (build_persona_map.py, 2026-05-20 13:15 KST). 수동 편집 X.
+> 자동 생성 (build_persona_map.py, 2026-05-22 12:56 KST). 수동 편집 X.
 
-_총 209 파일 (profile 1 / career 5 / projects 12 / notes 157 / contents 15 / daily 19)_
+_총 212 파일 (profile 1 / career 5 / projects 12 / notes 157 / contents 16 / daily 21)_
 
 ## profile
 
@@ -188,8 +188,9 @@ _총 209 파일 (profile 1 / career 5 / projects 12 / notes 157 / contents 15 / 
 - [[notes/2025-11-01-database_migration]] Database Migration(AWS RDS -> Azure MySQL) (work · 2025.11.01)
 - [[notes/2025-11-01-migration_detail]] Database Migration 상세 프로세스 (work · 2025.11.01)
 
-## contents (총 15개)
-- [[contents/C-015-pending]] Day 15 —  (2026-05-20)
+## contents (총 16개)
+- [[contents/C-016-pending]] Day 16 —  (2026-05-22)
+- [[contents/C-015-pending]] Day 15 — GitFlow vs Trunk-based: 팀 협업 브랜칭 전략 (2026-05-20)
 - [[contents/C-014-pending]] Day 14 — Claude Code의 /goal 기능: RAFL Loop 마스터하기 (2026-05-19)
 - [[contents/C-013-pending]] Day 13 — AI 출력의 진화: HTML로의 전환 (2026-05-17)
 - [[contents/C-012-pending]] Day 12 — DOCX는 ZIP: Office 파일의 내부 구조와 활용 (2026-05-14)
@@ -205,7 +206,9 @@ _총 209 파일 (profile 1 / career 5 / projects 12 / notes 157 / contents 15 / 
 - [[contents/C-002-pending-sample]] Day 02 — 모듈로 편향으로 인한 게임 확률 버그 (2026.05.02)
 - [[contents/C-001-fastapi-di]] Day 01 — FastAPI Dependency Injection — 진짜 쓸 수 있게 (2026.05.01)
 
-## daily (총 19개, 최근 10)
+## daily (총 21개, 최근 10)
+- [[daily/2026-05-21]] (2026.05.21)
+- [[daily/2026-05-20]] (2026.05.20)
 - [[daily/2026-05-19]] (2026.05.19)
 - [[daily/2026-05-18]] (2026.05.18)
 - [[daily/2026-05-17]] (2026.05.17)
@@ -214,8 +217,6 @@ _총 209 파일 (profile 1 / career 5 / projects 12 / notes 157 / contents 15 / 
 - [[daily/2026-05-14]] (2026.05.14)
 - [[daily/2026-05-13]] (2026.05.13)
 - [[daily/2026-05-12]] (2026.05.12)
-- [[daily/2026-05-11]] (2026.05.11)
-- [[daily/2026-05-10]] (2026.05.10)
 
 ## 위키링크 그래프 (notes)
 - 2024-05-24-Day01 → 2024-05-27-Day02
