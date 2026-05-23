@@ -21,7 +21,7 @@ tags:
 title:
   en: Sliding Window Maximum
   ko: 슬라이딩 윈도우 최댓값
-today: true
+today: false
 type: algorithm
 updated: '2026-05-22'
 visible: true
