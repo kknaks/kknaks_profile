@@ -18,7 +18,7 @@ tags:
 title:
   en: Valid Parentheses
   ko: 유효한 괄호
-today: true
+today: false
 type: algorithm
 updated: '2026-05-23'
 visible: true
