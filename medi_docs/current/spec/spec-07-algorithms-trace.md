@@ -310,6 +310,14 @@ input: NeetCode 150 시퀀스의 다음 slug (잡 상태에서 읽음)
     - core region 라인 set 판별 (adr-08 §2.4 휴리스틱)
       → 솔루션 코드의 `class Solution: def methodName(self, ...)` 본체 inner 라인들
 
+    **design 분기** (`metaData.systemdesign: true` 또는 `metaData.classname` 존재):
+    - Min Stack·LRU Cache 등 클래스 기반 문제. 단일 함수가 아니라 클래스 전체가 알고리즘.
+    - `params_count = 2` 강제 (exampleTestcases 가 `[ops]\n[args]` 2 줄/case 포맷)
+    - `method_name = classname`, `return_type = "design"`
+    - core_lines = `class <classname>` 의 모든 메서드 (`__init__` 포함) 본체 라인 concat (선언 순)
+    - 결과 dict 에 `is_design: true`, `classname`, `methods` (metaData 의 methods 배열) 추가 박힘
+    - LLM prompt 는 `is_design` 시 분기 — DESIGN PROBLEM 안내 블록 추가, `io_outputs` 는 op 별 return value list ("null" for void) 한 문자열, trace.worked_example.answer 는 op 시퀀스의 주요 반환값 묘사. yaml schema (§5) 는 변경 없음 — input 파서 + prompt 분기 만.
+
 (d) LLM 통째 — open-kknaks 1회 호출 (adr-04)
     - **입력**: raw HTML content · 정규화 결과 (cases input 등) · 솔루션 코드 · 추출된 core region 라인 set · tags
     - **출력 (spec-07 yaml 6 키)**:
@@ -369,6 +377,7 @@ input: NeetCode 150 시퀀스의 다음 slug (잡 상태에서 읽음)
 | neetcode-gh 솔루션 누락 (slug 미존재) | LLM fallback — `solution.code` LLM 생성, frontmatter 에 `solution_source: 'llm-fallback'` 마킹 |
 | LLM 응답 파싱 실패 | 잡 실패 → 다음 날 재시도 |
 | 외부 lib 의존 솔루션 | 그대로 진행 — Trace 는 어차피 LLM 자유 텍스트 (adr-09 단순화 후 sandbox 부담 없음) |
+| design 문제 (systemdesign) | 정규화 design 분기로 처리 (§7.1 c). pedagogical 품질 caveat — `logic_slots` 가 여러 메서드 라인을 섞을 수 있음 (e.g. slot 5 = push, slot 7 = pop). 학습에는 무리 X, 시각 분리 정교화는 후속 ADR. |
 
 ---
 

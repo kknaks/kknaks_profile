@@ -6,6 +6,7 @@ import pytest
 
 from service.jobs.algorithms.normalize import (
     _extract_core_lines,
+    _extract_core_lines_design,
     _split_testcases,
     normalize_question,
 )
@@ -176,3 +177,125 @@ class TestNormalizeQuestion:
         n = normalize_question(broken, TWO_SUM_CODE)
         assert n["params_count"] == 0
         assert n["cases_input"] == []  # params_count=0 이라 split 못함
+
+    def test_non_design_has_is_design_false(self):
+        n = normalize_question(SAMPLE_QUESTION, TWO_SUM_CODE)
+        assert n["is_design"] is False
+        assert n["classname"] is None
+
+
+# ---------- design problem branch (systemdesign: true) ----------
+
+
+MIN_STACK_CODE = """class MinStack:
+    def __init__(self):
+        self.stack = []
+        self.minStack = []
+
+    def push(self, val: int) -> None:
+        self.stack.append(val)
+        val = min(val, self.minStack[-1] if self.minStack else val)
+        self.minStack.append(val)
+
+    def pop(self) -> None:
+        self.stack.pop()
+        self.minStack.pop()
+
+    def top(self) -> int:
+        return self.stack[-1]
+
+    def getMin(self) -> int:
+        return self.minStack[-1]
+"""
+
+
+MIN_STACK_QUESTION = {
+    "questionId": "155",
+    "questionFrontendId": "155",
+    "title": "Min Stack",
+    "titleSlug": "min-stack",
+    "content": "<p>Design a stack...</p>",
+    "difficulty": "Medium",
+    "exampleTestcases": (
+        '["MinStack","push","push","push","getMin","pop","top","getMin"]\n'
+        "[[],[-2],[0],[-3],[],[],[],[]]"
+    ),
+    "hints": [],
+    "topicTags": [{"name": "Stack", "slug": "stack"}, {"name": "Design", "slug": "design"}],
+    "metaData": (
+        '{"classname": "MinStack", "constructor": {"params": []}, '
+        '"methods": ['
+        '{"params": [{"type": "integer", "name": "val"}], "return": {"type": "void"}, "name": "push"}, '
+        '{"params": [], "return": {"type": "void"}, "name": "pop"}, '
+        '{"params": [], "return": {"type": "integer"}, "name": "top"}, '
+        '{"params": [], "return": {"type": "integer"}, "name": "getMin"}'
+        '], "return": {"type": "boolean"}, "systemdesign": true}'
+    ),
+}
+
+
+class TestDesignProblemExtractCore:
+    def test_concat_all_methods(self):
+        lines = _extract_core_lines_design(MIN_STACK_CODE, "MinStack")
+        # __init__ + push + pop + top + getMin 본체가 모두
+        assert any("self.stack = []" in l for l in lines)
+        assert any("self.minStack = []" in l for l in lines)
+        assert any("self.stack.append(val)" in l for l in lines)
+        assert any("self.stack.pop()" in l for l in lines)
+        assert any("return self.stack[-1]" in l for l in lines)
+        assert any("return self.minStack[-1]" in l for l in lines)
+        # class line / def line 제외
+        assert not any("class MinStack" in l for l in lines)
+        assert not any(l.lstrip().startswith("def ") for l in lines)
+
+    def test_no_blank_or_comment(self):
+        lines = _extract_core_lines_design(MIN_STACK_CODE, "MinStack")
+        assert all(l.strip() for l in lines)
+        assert not any(l.strip().startswith("#") for l in lines)
+
+    def test_classname_none_fallback_first_class(self):
+        lines = _extract_core_lines_design(MIN_STACK_CODE, None)
+        assert any("self.stack = []" in l for l in lines)
+
+    def test_unknown_classname_returns_empty(self):
+        lines = _extract_core_lines_design(MIN_STACK_CODE, "DoesNotExist")
+        assert lines == []
+
+    def test_empty_code(self):
+        assert _extract_core_lines_design("", "X") == []
+
+
+class TestNormalizeDesignProblem:
+    def test_detects_systemdesign(self):
+        n = normalize_question(MIN_STACK_QUESTION, MIN_STACK_CODE)
+        assert n["is_design"] is True
+        assert n["classname"] == "MinStack"
+        assert n["return_type"] == "design"
+        assert n["method_name"] == "MinStack"  # class name as method label
+
+    def test_params_count_is_two_for_design(self):
+        # design = [ops]\n[args] 2 줄/case
+        n = normalize_question(MIN_STACK_QUESTION, MIN_STACK_CODE)
+        assert n["params_count"] == 2
+
+    def test_cases_input_parsed_for_design(self):
+        n = normalize_question(MIN_STACK_QUESTION, MIN_STACK_CODE)
+        # Min Stack 은 1 case (2 줄)
+        assert len(n["cases_input"]) == 1
+        case = n["cases_input"][0]
+        assert '"MinStack"' in case
+        assert "[-2]" in case
+        # 2 줄로 join 됐는지
+        assert case.count("\n") == 1
+
+    def test_core_lines_span_all_methods(self):
+        n = normalize_question(MIN_STACK_QUESTION, MIN_STACK_CODE)
+        lines = n["core_lines"]
+        assert any("self.stack = []" in l for l in lines)
+        assert any("self.minStack.append(val)" in l for l in lines)
+        assert any("return self.minStack[-1]" in l for l in lines)
+
+    def test_methods_metadata_exposed(self):
+        n = normalize_question(MIN_STACK_QUESTION, MIN_STACK_CODE)
+        method_names = [m["name"] for m in n["methods"]]
+        assert method_names == ["push", "pop", "top", "getMin"]

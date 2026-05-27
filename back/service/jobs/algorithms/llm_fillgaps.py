@@ -105,10 +105,40 @@ def _build_prompt(n: dict) -> str:
     tags_str = ", ".join(n["tags"]) if n["tags"] else "(none)"
     code_block = n["code"] if n["code"] else "(missing — generate fallback)"
 
+    is_design = bool(n.get("is_design"))
+    if is_design:
+        methods = n.get("methods") or []
+        method_signatures = ", ".join(
+            f"{m.get('name')}({', '.join(p.get('name', '?') for p in (m.get('params') or []))})"
+            for m in methods
+        ) or "(unknown)"
+        case_format_line = (
+            f"Test cases (LeetCode systemdesign format — each case = 2 lines: "
+            f"operations array + per-op args array; class={n.get('classname')!r}, "
+            f"methods={method_signatures}):"
+        )
+        design_note = f"""
+[DESIGN PROBLEM — class-based]
+
+This is a LeetCode `systemdesign` problem (class with multiple methods, state across calls).
+- Class: {n.get("classname")}
+- Methods: {method_signatures}
+- core_lines above is the CONCAT of every method body in declaration order (e.g. __init__, then push, then pop, ...). One line index points to one line inside one method — logic_slots should reflect the data-structure invariant + each method's key step.
+- Each test case is TWO lines: line 1 = operation name array (first op is the constructor, e.g. "MinStack"), line 2 = per-op argument arrays (matching length, [] for no-arg ops).
+- For `io_outputs`: produce ONE string per case — a Python-list-shaped string of return values per operation (use "null" for void ops, including the constructor). Example for Min Stack 1 case of 8 ops: "[null, null, null, null, -3, null, 0, -2]".
+- trace.worked_example.steps should narrate the operation sequence (op-by-op or grouped logically). The `answer` field should be the same shape as io_outputs[input_case_index].
+"""
+    else:
+        case_format_line = (
+            f"Test case inputs (parsed from LeetCode exampleTestcases — "
+            f"index → text, params={n['params_count']}):"
+        )
+        design_note = ""
+
     return f"""You are filling content gaps for a coding interview practice problem (Korean & English bilingual).
 
 Site: kknaks.dev — daily NeetCode 150 dojo for foreign coding interviews. The user is studying on a phone, no keyboard.
-
+{design_note}
 [INPUT — source-direct, do not modify]
 
 slug: {n["slug"]}
@@ -130,7 +160,7 @@ Solution code (neetcode-gh):
 Method core_lines (the algorithm body — index → text):
 {core_lines_block}
 
-Test case inputs (parsed from LeetCode exampleTestcases — index → text, params={n["params_count"]}):
+{case_format_line}
 {cases_block}
 
 

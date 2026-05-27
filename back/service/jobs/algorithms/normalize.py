@@ -1,11 +1,13 @@
 """raw fetch 결과 → LLM prompt 입력용 정규화 (spec-07 §7.1 c).
 
 deterministic 작업만 (HTML 파싱·constraints·output 추출 X — LLM 책임).
-- metaData JSON.loads → params count
-- exampleTestcases newline split → params count 줄씩 grouping
+- metaData JSON.loads → params count (or design 분기 — `systemdesign: true` / `classname`)
+- exampleTestcases newline split → 일반 = params count 줄씩 / design = 2 줄씩 ([ops]\n[args])
 - difficulty .lower()
 - topicTags slug 그대로
-- 솔루션 코드 의 class Solution: def methodName 본체 inner 라인 set 식별 (adr-08 §2.4)
+- 솔루션 코드의 본체 inner 라인 set 식별 (adr-08 §2.4)
+  - 일반: `class Solution: def methodName` 첫 메서드 본체
+  - design: `class <classname>` 의 모든 메서드 (__init__ 포함) 본체 concat
 
 본 모듈 의 출력 dict 가 §7.1 (d) LLM 호출의 입력이 됨.
 """
@@ -36,8 +38,21 @@ def normalize_question(question: dict, code: str | None) -> dict[str, Any]:
         logger.warning("metaData JSON decode failed: %s — falling back to empty", e)
         metadata = {}
 
-    params = metadata.get("params") or []
-    params_count = len(params)
+    classname = metadata.get("classname")
+    is_design = bool(metadata.get("systemdesign") or classname)
+
+    if is_design:
+        params: list = []
+        params_count = 2  # design = [operations]\n[args] 2 줄/case
+        method_name = classname
+        return_type = "design"
+        core_lines = _extract_core_lines_design(code, classname) if code else []
+    else:
+        params = metadata.get("params") or []
+        params_count = len(params)
+        method_name = metadata.get("name")
+        return_type = (metadata.get("return") or {}).get("type")
+        core_lines = _extract_core_lines(code) if code else []
 
     return {
         "slug": question.get("titleSlug"),
@@ -49,11 +64,14 @@ def normalize_question(question: dict, code: str | None) -> dict[str, Any]:
         "raw_html": question.get("content") or "",
         "params": params,
         "params_count": params_count,
-        "method_name": metadata.get("name"),
-        "return_type": (metadata.get("return") or {}).get("type"),
+        "method_name": method_name,
+        "return_type": return_type,
+        "is_design": is_design,
+        "classname": classname,
+        "methods": metadata.get("methods") if is_design else None,
         "cases_input": _split_testcases(question.get("exampleTestcases") or "", params_count),
         "code": code,
-        "core_lines": _extract_core_lines(code) if code else [],
+        "core_lines": core_lines,
     }
 
 
@@ -131,3 +149,54 @@ def _extract_core_lines(code: str) -> list[str]:
                 line for line in body if line.strip() and not line.lstrip().startswith("#")
             ]
     return []
+
+
+def _extract_core_lines_design(code: str, classname: str | None) -> list[str]:
+    """class <classname> 의 모든 메서드 (__init__ 포함) 본체 라인 concat.
+
+    design 문제 (Min Stack·LRU Cache 등) — 단일 메서드가 없고 클래스 전체가 알고리즘.
+    각 메서드 본체를 순서대로 이어붙여 LLM 이 step slot 으로 분해할 수 있게 한다.
+    공백 라인 / 주석-only 라인 제외 (slot 후보 X).
+
+    Args:
+        code: neetcode-gh 솔루션 코드.
+        classname: metaData.classname (e.g. "MinStack"). None 이면 fallback — 첫 class.
+
+    Returns:
+        list of code line strings (non-blank, non-comment-only).
+        AST 실패 또는 class 미발견 시 [].
+    """
+    if not code or not code.strip():
+        return []
+
+    try:
+        tree = ast.parse(code)
+    except SyntaxError as e:
+        logger.warning("design solution code AST parse failed: %s", e)
+        return []
+
+    code_lines = code.splitlines()
+    target_class: ast.ClassDef | None = None
+    for node in tree.body:
+        if isinstance(node, ast.ClassDef):
+            if classname is None or node.name == classname:
+                target_class = node
+                break
+    if target_class is None:
+        return []
+
+    result: list[str] = []
+    for member in target_class.body:
+        if not isinstance(member, (ast.FunctionDef, ast.AsyncFunctionDef)):
+            continue
+        if not member.body:
+            continue
+        start = member.body[0].lineno
+        end = member.end_lineno or len(code_lines)
+        body = code_lines[start - 1 : end]
+        result.extend(
+            line
+            for line in body
+            if line.strip() and not line.lstrip().startswith("#")
+        )
+    return result

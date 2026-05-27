@@ -215,6 +215,33 @@ class TestBuildPrompt:
         p = _build_prompt(n)
         assert "(missing" in p
 
+    def test_design_branch_in_prompt(self):
+        n = {
+            **NORMALIZED_TWO_SUM,
+            "is_design": True,
+            "classname": "MinStack",
+            "methods": [
+                {"name": "push", "params": [{"name": "val", "type": "integer"}]},
+                {"name": "pop", "params": []},
+                {"name": "top", "params": []},
+                {"name": "getMin", "params": []},
+            ],
+            "params_count": 2,
+        }
+        p = _build_prompt(n)
+        assert "DESIGN PROBLEM" in p
+        assert "systemdesign" in p
+        assert "MinStack" in p
+        assert "push" in p and "getMin" in p
+        # 일반 분기의 'params=2' 라벨은 design에서 노출되지 않아야 함 (오해 방지)
+        assert "params=2)" not in p
+
+    def test_non_design_omits_design_note(self):
+        n = {**NORMALIZED_TWO_SUM, "is_design": False}
+        p = _build_prompt(n)
+        assert "DESIGN PROBLEM" not in p
+        assert "params=2)" in p  # 일반 분기 라벨
+
 
 # ---------- fill_gaps integration (mock client) ----------
 
@@ -277,3 +304,120 @@ async def test_fill_gaps_handles_json_with_prose():
     client = _MockClient([raw])
     result = await fill_gaps(NORMALIZED_TWO_SUM, client=client)
     assert "problem" in result
+
+
+# ---------- design problem branch (systemdesign) ----------
+
+
+NORMALIZED_MIN_STACK = {
+    "slug": "min-stack",
+    "number": 155,
+    "title": "Min Stack",
+    "difficulty": "medium",
+    "tags": ["stack", "design"],
+    "hints": [],
+    "raw_html": "<p>Design a stack...</p>",
+    "params": [],
+    "params_count": 2,
+    "method_name": "MinStack",
+    "return_type": "design",
+    "is_design": True,
+    "classname": "MinStack",
+    "methods": [
+        {"name": "push", "params": [{"name": "val", "type": "integer"}]},
+        {"name": "pop", "params": []},
+        {"name": "top", "params": []},
+        {"name": "getMin", "params": []},
+    ],
+    "cases_input": [
+        '["MinStack","push","push","push","getMin","pop","top","getMin"]\n'
+        "[[],[-2],[0],[-3],[],[],[],[]]"
+    ],
+    "code": "class MinStack:\n    def __init__(self):\n        self.stack = []\n",
+    "core_lines": [
+        "        self.stack = []",
+        "        self.minStack = []",
+        "        self.stack.append(val)",
+        "        val = min(val, self.minStack[-1] if self.minStack else val)",
+        "        self.minStack.append(val)",
+        "        self.stack.pop()",
+        "        self.minStack.pop()",
+        "        return self.stack[-1]",
+        "        return self.minStack[-1]",
+    ],
+}
+
+
+def _valid_design_response() -> dict:
+    """Min Stack 형태의 schema 통과 응답 — 1 case, op 시퀀스 io_outputs."""
+    core_n = len(NORMALIZED_MIN_STACK["core_lines"])
+    return {
+        "problem": {
+            "title": _i18n("최소값 스택", "Min Stack"),
+            "statement": _i18n("최소값을 상수 시간에", "min in O(1)"),
+            "constraints": ["-2^31 ≤ val ≤ 2^31 - 1"],
+            "io_outputs": ["[null, null, null, null, -3, null, 0, -2]"],
+        },
+        "clarifying_items": [
+            {"q": _i18n(), "type": "good", "why": _i18n()},
+            {"q": _i18n(), "type": "good", "why": _i18n()},
+            {"q": _i18n(), "type": "distractor", "why": _i18n()},
+        ],
+        "approach_items": [
+            {"name": _i18n(), "complexity": "O(1) per op", "type": "good", "why": _i18n()},
+            {"name": _i18n(), "complexity": "O(n) getMin", "type": "distractor", "why": _i18n()},
+            {"name": _i18n(), "complexity": "O(n) push", "type": "distractor", "why": _i18n()},
+        ],
+        "logic_slots": [
+            {
+                "label": _i18n("초기화"),
+                "indent": 0,
+                "good_line_index": 0,
+                "good_why": _i18n(),
+                "distractors": [{"code": "self.stack = None", "why": _i18n()}],
+            },
+            {
+                "label": _i18n("push: 새 min 계산"),
+                "indent": 0,
+                "good_line_index": 3,
+                "good_why": _i18n(),
+                "distractors": [{"code": "val = max(val, self.minStack[-1])", "why": _i18n()}],
+            },
+            {
+                "label": _i18n("getMin"),
+                "indent": 0,
+                "good_line_index": core_n - 1,  # last line
+                "good_why": _i18n(),
+                "distractors": [{"code": "return min(self.stack)", "why": _i18n()}],
+            },
+        ],
+        "trace_worked_example": {
+            "input_case_index": 0,
+            "steps": [_i18n(), _i18n(), _i18n()],
+            "answer": "[null, null, null, null, -3, null, 0, -2]",
+        },
+        "solution": {
+            "complexity": {"time": "O(1) per op", "space": "O(n)"},
+            "followup": [_i18n()],
+        },
+    }
+
+
+class TestDesignSchema:
+    def test_validates_design_response(self):
+        # design 분기 — cases=1, op-list io_outputs 통과
+        _validate_schema(_valid_design_response(), NORMALIZED_MIN_STACK)
+
+    def test_rejects_io_outputs_count_mismatch_for_design(self):
+        bad = _valid_design_response()
+        bad["problem"]["io_outputs"] = ["[null]", "[null,-3]"]  # 2 != 1 case
+        with pytest.raises(ValueError, match="io_outputs length"):
+            _validate_schema(bad, NORMALIZED_MIN_STACK)
+
+
+@pytest.mark.asyncio
+async def test_fill_gaps_design_problem():
+    client = _MockClient([json.dumps(_valid_design_response())])
+    result = await fill_gaps(NORMALIZED_MIN_STACK, client=client)
+    assert result["problem"]["title"]["en"] == "Min Stack"
+    assert result["trace_worked_example"]["answer"].startswith("[null,")
