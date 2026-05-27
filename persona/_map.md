@@ -1,8 +1,8 @@
 # persona/_map.md
 
-> 자동 생성 (build_persona_map.py, 2026-05-27 10:10 KST). 수동 편집 X.
+> 자동 생성 (build_persona_map.py, 2026-05-27 17:11 KST). 수동 편집 X.
 
-_총 218 파일 (profile 1 / career 5 / projects 12 / notes 157 / contents 17 / daily 26)_
+_총 219 파일 (profile 1 / career 5 / projects 12 / notes 157 / contents 18 / daily 26)_
 
 ## profile
 
@@ -188,8 +188,9 @@ _총 218 파일 (profile 1 / career 5 / projects 12 / notes 157 / contents 17 / 
 - [[notes/2025-11-01-database_migration]] Database Migration(AWS RDS -> Azure MySQL) (work · 2025.11.01)
 - [[notes/2025-11-01-migration_detail]] Database Migration 상세 프로세스 (work · 2025.11.01)
 
-## contents (총 17개)
-- [[contents/C-017-pending]] Day 17 —  (2026-05-27)
+## contents (총 18개)
+- [[contents/C-018-pending]] Day 18 —  (2026-05-27)
+- [[contents/C-017-pending]] Day 17 — AI를 운영 체제로: AI 네이티브 조직의 설계 원리 (2026-05-27)
 - [[contents/C-016-pending]] Day 16 — 클로드 디자인 디자인 시스템으로 고품질 UI 프로토타입 만들기 (2026-05-22)
 - [[contents/C-015-pending]] Day 15 — GitFlow vs Trunk-based: 팀 협업 브랜칭 전략 (2026-05-20)
 - [[contents/C-014-pending]] Day 14 — Claude Code의 /goal 기능: RAFL Loop 마스터하기 (2026-05-19)
