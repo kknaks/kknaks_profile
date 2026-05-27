@@ -18,7 +18,7 @@ tags:
 title:
   en: Min Stack
   ko: 최소값 스택
-today: true
+today: false
 type: algorithm
 updated: '2026-05-27'
 visible: true
