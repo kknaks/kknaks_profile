@@ -136,16 +136,26 @@ def _build_prompt(
    - `"review"`: 도구·라이브러리·기술 리뷰 (장단점 평가)
    영상 성격에 가장 가까운 거 한 개. 모호하면 `"study"`.
 
-응답은 다음 JSON 한 객체만 (다른 텍스트 X, 코드블록 ```json``` 도 안 박음):
+응답 형식 — 정확히 다음 순서대로 박는다:
+
+[1] JSON 한 객체만 (다른 텍스트 X, 코드블록 ```json``` 도 안 박음, **body 필드 없음**):
 {{
   "title":   {{"ko": "...", "en": "..."}},
   "summary": {{"ko": "...", "en": "..."}},
   "tags":    ["#tag1", "#tag2"],
   "concept": ["문장1", "문장2", "문장3", "문장4"],
-  "body":    "## 개요\\n...\\n\\n## 배경 / 사전 지식\\n...",
   "kind":    "tutorial"
 }}
+
+[2] 빈 줄 하나
+
+[3] 정확히 `---BODY---` 한 줄 (앞뒤 공백·다른 문자 X)
+
+[4] 강의 교안 markdown 본문 (raw — JSON escape 불필요, `"`, 코드블록 ```, 줄바꿈 자유롭게 사용. 따옴표·인용구 escape 하지 말 것. 본문은 `## 개요` 부터 시작).
 """
+
+
+BODY_SEPARATOR = "---BODY---"
 
 
 async def summarize_content(
@@ -164,16 +174,27 @@ async def summarize_content(
         max_retries=2,
     )
     task = await client.result(task_id, timeout=LLM_TIMEOUT_S)
-    return json.loads(_extract_json(task.result or ""))
+    return _parse_response(task.result or "")
 
 
-def _extract_json(text: str) -> str:
-    """LLM 응답에서 JSON 객체만 추출 — Claude 가 ```json ... ``` 또는 prefix 텍스트 박는 패턴 대응."""
-    start = text.find("{")
-    end = text.rfind("}")
-    if start != -1 and end > start:
-        return text[start : end + 1]
-    return text
+def _parse_response(text: str) -> dict:
+    """LLM 응답을 JSON metadata + raw markdown body 로 분리 파싱.
+
+    body 가 JSON 안에 박히면 따옴표/줄바꿈 escape 실수로 깨지는 사례 잦아서 분리 (spec-06 §3.3).
+    형식 — `{ JSON }` + 빈 줄 + `---BODY---` + markdown.
+    """
+    if BODY_SEPARATOR not in text:
+        raise ValueError("missing_body_separator")
+    json_part, body_part = text.split(BODY_SEPARATOR, 1)
+
+    start = json_part.find("{")
+    end = json_part.rfind("}")
+    if start == -1 or end <= start:
+        raise ValueError("missing_json_object")
+
+    meta = json.loads(json_part[start : end + 1])
+    meta["body"] = body_part.strip()
+    return meta
 
 
 # ───────────────────────────────────────────────────────────────────────

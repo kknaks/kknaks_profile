@@ -1,6 +1,6 @@
 # persona/_map.md
 
-> 자동 생성 (build_persona_map.py, 2026-05-27 17:38 KST). 수동 편집 X.
+> 자동 생성 (build_persona_map.py, 2026-05-27 17:53 KST). 수동 편집 X.
 
 _총 219 파일 (profile 1 / career 5 / projects 12 / notes 157 / contents 18 / daily 26)_
 

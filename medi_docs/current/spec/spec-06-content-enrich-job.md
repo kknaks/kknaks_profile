@@ -223,15 +223,22 @@ async def summarize_content(
    섹션은 빠짐없이 박되, 영상에 명시 안 된 항목은 자막에서 합리적 추론하거나 베스트 프랙티스로 채운다. **분량 압축 X — 외부 사람이 학습 가능한 수준으로 풍부하게.**
 6. kind: 영상 유형 — "study" | "talk" | "tutorial" | "review" 중 하나
 
-응답은 다음 JSON 한 객체만 (다른 텍스트 X, 코드블록 ```json``` 도 박지 않음):
+응답 형식 — 정확히 다음 순서대로 박는다:
+
+[1] JSON 한 객체만 (다른 텍스트 X, 코드블록 ```json``` 도 박지 않음, **body 필드 없음**):
 {{
   "title":   {{"ko": "...", "en": "..."}},
   "summary": {{"ko": "...", "en": "..."}},
   "tags":    ["#tag1", "#tag2"],
   "concept": ["문장1", "문장2", "문장3", "문장4"],
-  "body":    "## 개요\\n...\\n\\n## 배경 / 사전 지식\\n...",
   "kind":    "tutorial"
 }}
+
+[2] 빈 줄 하나
+
+[3] 정확히 `---BODY---` 한 줄
+
+[4] 강의 교안 markdown 본문 (raw — JSON escape 불필요, `"`, 코드블록, 줄바꿈 자유롭게 사용. 본문은 `## 개요` 부터 시작).
 """
 
     task_id = await client.submit(
@@ -241,7 +248,24 @@ async def summarize_content(
         max_retries=2,
     )
     task = await client.result(task_id, timeout=180)
-    return json.loads(task.result)
+    return _parse_response(task.result)
+
+
+def _parse_response(text: str) -> dict:
+    """JSON metadata + ---BODY--- separator + raw markdown body 분리.
+
+    body 를 JSON 안에 박으면 따옴표/줄바꿈 escape 실수로 invalid JSON 사례 잦음 (e.g. C-018 H-jSrhvnaLY)
+    → body 를 JSON 밖으로 분리. JSON 안에는 짧고 안전한 필드만.
+    """
+    if "---BODY---" not in text:
+        raise ValueError("missing_body_separator")
+    json_part, body_part = text.split("---BODY---", 1)
+    start, end = json_part.find("{"), json_part.rfind("}")
+    if start == -1 or end <= start:
+        raise ValueError("missing_json_object")
+    meta = json.loads(json_part[start : end + 1])
+    meta["body"] = body_part.strip()
+    return meta
 ```
 
 자막 토큰 절감 — 8000 자 컷 (Haiku 입력 한도 안에서 안전).
