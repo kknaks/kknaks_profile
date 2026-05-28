@@ -19,7 +19,7 @@ tags:
 title:
   en: Evaluate Reverse Polish Notation
   ko: 역폴란드 표기법 계산
-today: true
+today: false
 type: algorithm
 updated: '2026-05-27'
 visible: true
