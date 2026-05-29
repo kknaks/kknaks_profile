@@ -19,7 +19,7 @@ tags:
 title:
   en: Generate Parentheses
   ko: 괄호 생성하기
-today: true
+today: false
 type: algorithm
 updated: '2026-05-28'
 visible: true
