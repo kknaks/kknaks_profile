@@ -19,7 +19,7 @@ tags:
 title:
   en: Daily Temperatures
   ko: 일일 기온
-today: true
+today: false
 type: algorithm
 updated: '2026-05-29'
 visible: true
