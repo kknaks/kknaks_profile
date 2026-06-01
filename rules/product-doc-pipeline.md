@@ -18,7 +18,8 @@ products/<product>/
 ├── 10-decision/
 ├── 20-spec/
 ├── 30-work/
-└── 40-architecture/   # optional
+├── 40-architecture/   # optional
+└── 60-release/        # optional
 ```
 
 ## 핵심 흐름
@@ -30,6 +31,7 @@ products/<product>/
 → 10-decision
 → 20-spec
 → 30-work
+→ 60-release
 → log.md
 ```
 
@@ -40,6 +42,7 @@ products/<product>/
 | `20-spec/` | decision을 user flow, state machine, UI/UX, FE, BE 관점 계약으로 구체화한다 |
 | `30-work/` | 여러 spec을 조합해 실제 구현 작업, acceptance, 테스트 지시서로 내린다 |
 | `40-architecture/` | 여러 spec/work가 공유하는 데이터베이스, 시스템, 배포 구조를 관리한다. optional |
+| `60-release/` | 배포 버전별 요약, 상세 수정 사항, 검증/배포 정보를 관리한다. optional |
 | `log.md` | baseline, decision, spec, work 변경 이력을 제품 단위로 통합 관리한다 |
 
 ## 문서별 역할
@@ -60,6 +63,8 @@ products/<product>/
 | `40-architecture/database/` | database architecture | ERD, 테이블, 도메인 데이터 구조 | migration/schema 전문 복사 |
 | `40-architecture/system/` | system architecture | 시스템 구성요소, 외부 연동, 주요 흐름 | 기능 요구사항 본문 |
 | `40-architecture/deploy/` | deploy architecture | 배포 환경, back/front 배포 절차 | 임시 배포 로그 |
+| `60-release/README.md` | release index | 버전별 release note 목록, 배포 상태, 링크 | work/spec 상세 본문 복사 |
+| `60-release/release-*.md` | release note 1건 | 이번 버전 요약, 상세 수정 사항, 검증, 배포/rollback 정보 | 미완료 작업 지시, 다음 버전 scope |
 
 작업 종류와 역할/상태 추적 기준은 `context/studio/workflow.md`를 따른다.
 
@@ -102,6 +107,31 @@ Architecture에 두지 않는다:
 - spec의 기능 요구사항 본문 복사
 - 임시 배포 로그
 
+## Release 문서 원칙
+
+`60-release/`는 optional이다.
+
+제품이 실제 배포되거나 외부 사용자에게 설치/사용 가능한 버전을 낼 때 release note를 작성한다.
+
+Release note는 “이번 버전에서 무엇이 달라졌는지”를 사용자와 운영자가 빠르게 확인하는 문서다. spec/work의 상세 구현 지시를 다시 복사하지 않고, 배포된 버전의 결과만 요약한다.
+
+Release에 둔다:
+
+- 버전과 배포 일자
+- 이번 버전 요약
+- 상세 수정 사항
+- breaking change와 migration note
+- 검증 결과
+- 배포 대상과 artifact/link
+- rollback 또는 known issue
+
+Release에 두지 않는다:
+
+- 아직 배포되지 않은 다음 버전 작업 계획
+- spec/work 본문 복사
+- 미결 제품 결정
+- 임시 디버깅 로그 전문
+
 ## 매핑 규칙
 
 기본 연결은 아래 방향을 따른다.
@@ -127,7 +157,7 @@ BASE-001
 
 | 필드 | 설명 |
 |---|---|
-| `type` | `baseline`, `decision`, `spec`, `work` 중 하나 |
+| `type` | `baseline`, `decision`, `spec`, `work`, `release` 중 하나 |
 | `id` | 제품 안에서 유일한 ID |
 | `title` | 사람이 읽는 제목 |
 | `status` | 문서 유형별 상태 |
@@ -184,6 +214,16 @@ BASE-001
 | `review` | 검토 중 |
 | `done` | 완료 |
 
+### Release
+
+| Status | 의미 |
+|---|---|
+| `draft` | 배포 노트 초안 |
+| `ready` | 배포 전 검토 완료 |
+| `released` | 배포 완료 |
+| `failed` | 배포 실패 |
+| `rolled_back` | 배포 후 rollback 완료 |
+
 ## Obsidian Graph 규칙
 
 제품 문서는 Obsidian 그래프에서 관계를 볼 수 있어야 한다.
@@ -205,6 +245,7 @@ baseline-001-label-scan-idea.md
 decision-001-label-analysis-scope.md
 spec-001-label-analysis.md
 work-001-label-analysis-mvp.md
+release-001-v1-0-0.md
 ```
 
 ID는 frontmatter에서 관리한다.
@@ -225,6 +266,8 @@ links:
     - "[[spec-001-label-analysis]]"
   works:
     - "[[work-001-label-analysis-mvp]]"
+  releases:
+    - "[[release-001-v1-0-0]]"
   related:
     - "[[some-related-note]]"
 ```
@@ -268,6 +311,7 @@ tags:
 | spec 추가/수정 | `20-spec/README.md`, 연결된 decision index, `log.md` |
 | work 추가/수정 | `30-work/README.md`, spec coverage, `log.md` |
 | architecture 추가/수정 | `40-architecture/README.md`, 관련 spec/work link, `log.md` |
+| release 추가/수정 | `60-release/README.md`, 제품 `README.md`, `log.md` |
 | 제품 상태 변경 | 제품 `README.md`, `log.md` |
 
 ## 통합 로그 규칙
@@ -295,6 +339,8 @@ tags:
 - `work-change`
 - `architecture-add`
 - `architecture-change`
+- `release-add`
+- `release-change`
 - `status-change`
 - `mapping-change`
 

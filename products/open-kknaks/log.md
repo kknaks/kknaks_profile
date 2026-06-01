@@ -2,6 +2,7 @@
 
 | Date | Entry | Links |
 |---|---|---|
+| 2026-06-01 | `OKK-REL-002` open-kknaks 2.0.2 release note 작성 | `60-release/release-002-open-kknaks-2-0-2.md` |
 | 2026-06-01 | open-kknaks 2.0.2 PyPI release 완료 및 배포판 examples Docker에서 Claude/Codex E2E 검증 완료 | `30-work/work-005-demo-e2e-provider-surface.md` |
 | 2026-05-31 | 코드 레포에서 WORK-005 Demo와 E2E provider 실행 경로 갱신 완료 | `30-work/work-005-demo-e2e-provider-surface.md` |
 | 2026-05-31 | WORK-005 Demo와 E2E provider 실행 경로 갱신 작업 시작 | `30-work/work-005-demo-e2e-provider-surface.md` |

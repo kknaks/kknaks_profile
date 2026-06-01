@@ -28,6 +28,7 @@ baseline, decision, spec, work가 각각 어디까지 정리됐는지 한눈에 
 | 20-spec | `20-spec/README.md` |
 | 30-work | `30-work/README.md` |
 | 40-architecture | `40-architecture/README.md` |
+| 60-release | `60-release/README.md` |
 
 ## 최근 로그
 

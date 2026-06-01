@@ -12,6 +12,7 @@ links:
   decisions: []
   specs: []
   works: []
+  releases: []
   related: []
 created_at: 2026-05-28
 updated_at: 2026-05-28
