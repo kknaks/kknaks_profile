@@ -118,10 +118,10 @@ Claude PTY stdout/stderr는 merged stream이다. non-JSON line은 공통 stream 
 
 ## Done Criteria
 
-- [ ] 담당 role별 완료 상태가 갱신됐다.
-- [ ] 연결된 spec의 Work Handoff와 계약 섹션을 Acceptance Criteria에 반영했다.
-- [ ] 필요한 테스트/검증이 끝났다.
-- [ ] product `log.md`와 `30-work/README.md`가 갱신됐다.
+- [x] 담당 role별 완료 상태가 갱신됐다.
+- [x] 연결된 spec의 Work Handoff와 계약 섹션을 Acceptance Criteria에 반영했다.
+- [x] 필요한 테스트/검증이 끝났다.
+- [x] product `log.md`와 `30-work/README.md`가 갱신됐다.
 
 ## Open Issues
 

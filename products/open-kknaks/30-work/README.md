@@ -8,11 +8,11 @@
 
 | ID | Title | Type | Owner | Status | Progress | Covers Spec | PR/Branch | Next |
 |---|---|---|---|---|---|---|---|---|
-| [OKK-WORK-001](work-001-provider-task-model-client-broker.md) | Provider Task Model, AgentClient, Broker 계약 구현 | breaking-change |  | done | 100% | OKK-SPEC-001, 002, 003, 009 |  | OKK-WORK-003 진행 |
-| [OKK-WORK-002](work-002-provider-worker-and-claude-adapter.md) | Provider Worker와 Claude Adapter 구현 | refactor |  | done | 100% | OKK-SPEC-004, 008, 009 |  | OKK-WORK-003 진행 |
-| [OKK-WORK-003](work-003-codex-headless-runner.md) | Codex Headless Runner 구현 | new-feature |  | done | 100% | OKK-SPEC-009, 010 |  | OKK-WORK-004 진행 |
-| [OKK-WORK-004](work-004-batch-cli-mcp-provider-surface.md) | Batch, CLI, MCP Provider 표면 갱신 | breaking-change |  | done | 100% | OKK-SPEC-005, 006, 007, 008 |  | 통합 검토 |
-| [OKK-WORK-005](work-005-demo-e2e-provider-surface.md) | Demo와 E2E Provider 실행 경로 갱신 | qa-enablement |  | done | 100% | OKK-SPEC-003, 006, 009, 010 |  | 사용자 수동 E2E |
+| [OKK-WORK-001](work-001-provider-task-model-client-broker.md) | Provider Task Model, AgentClient, Broker 계약 구현 | breaking-change |  | done | 100% | OKK-SPEC-001, 002, 003, 009 |  | 완료 |
+| [OKK-WORK-002](work-002-provider-worker-and-claude-adapter.md) | Provider Worker와 Claude Adapter 구현 | refactor |  | done | 100% | OKK-SPEC-004, 008, 009 |  | 완료 |
+| [OKK-WORK-003](work-003-codex-headless-runner.md) | Codex Headless Runner 구현 | new-feature |  | done | 100% | OKK-SPEC-009, 010 |  | 완료 |
+| [OKK-WORK-004](work-004-batch-cli-mcp-provider-surface.md) | Batch, CLI, MCP Provider 표면 갱신 | breaking-change |  | done | 100% | OKK-SPEC-005, 006, 007, 008 |  | 완료 |
+| [OKK-WORK-005](work-005-demo-e2e-provider-surface.md) | Demo와 E2E Provider 실행 경로 갱신 | qa-enablement |  | done | 100% | OKK-SPEC-003, 006, 009, 010 |  | 완료 |
 
 ## Spec Coverage
 
