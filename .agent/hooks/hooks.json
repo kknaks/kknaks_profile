@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .agent/scripts/product_doc_pipeline.py",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}
