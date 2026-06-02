@@ -20,7 +20,7 @@ tags:
 title:
   en: Car Fleet
   ko: 자동차 떼
-today: true
+today: false
 type: algorithm
 updated: '2026-05-30'
 visible: true
