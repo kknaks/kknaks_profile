@@ -19,7 +19,7 @@ tags:
 title:
   en: Largest Rectangle in Histogram
   ko: 히스토그램에서 가장 큰 직사각형
-today: true
+today: false
 type: algorithm
 updated: '2026-06-02'
 visible: true
