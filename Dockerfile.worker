@@ -12,6 +12,6 @@ RUN pip install --no-cache-dir "open-kknaks>=0.0.8"
 
 # 워커 코드 — root 로 실행 (mount 한 호스트 ~/.local 권한 회피)
 WORKDIR /app
-COPY worker/ .
+COPY app/worker/ .
 
 CMD ["python3", "run.py"]

@@ -12,25 +12,25 @@
 .claude-tools/
 
 # worker 컨테이너 산출물
-worker/__pycache__/
+app/worker/__pycache__/
 
 # 옵시디언 사용자 설정 (사용자 PC vs 홈서버 분리)
 .obsidian/
 
 # Python 빌드 산출물
-back/__pycache__/
-back/**/__pycache__/
-back/.pytest_cache/
-back/.venv/
-back/dist/
-back/*.egg-info/
+app/back/__pycache__/
+app/back/**/__pycache__/
+app/back/.pytest_cache/
+app/back/.venv/
+app/back/dist/
+app/back/*.egg-info/
 
 # Next.js 빌드 산출물
-frontend/node_modules/
-frontend/.next/
-frontend/out/
-frontend/dist/
-frontend/tsconfig.tsbuildinfo
+app/front/node_modules/
+app/front/.next/
+app/front/out/
+app/front/dist/
+app/front/tsconfig.tsbuildinfo
 
 # 시스템
 .DS_Store
@@ -39,7 +39,7 @@ frontend/tsconfig.tsbuildinfo
 
 # log
 *.log
-back/logs/
+app/back/logs/
 
 
 # import-project skill의 외부 레포 둘 자리 (gitignore — 본 repo 일부 X)

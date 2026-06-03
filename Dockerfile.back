@@ -7,17 +7,17 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && git config --system --add safe.directory '*'
 
-# uv — 의존성 매니저 (back/pyproject.toml과 일관)
+# uv — 의존성 매니저 (app/back/pyproject.toml과 일관)
 RUN pip install --no-cache-dir uv
 
-WORKDIR /repo/back
+WORKDIR /repo/app/back
 
 # venv 를 mount 영역 (/repo) 밖에 박음 — compose `.:/repo` 가 .venv 를 host 로 덮어쓰는 충돌 회피
 ENV UV_PROJECT_ENVIRONMENT=/opt/venv
 
 # 의존성 먼저 (Docker layer caching — pyproject 안 바뀌면 재install 안 함)
-# build context = repo root → back/ prefix 명시
-COPY back/pyproject.toml back/uv.lock ./
+# build context = repo root → app/back/ prefix 명시
+COPY app/back/pyproject.toml app/back/uv.lock ./
 RUN uv sync --frozen --no-install-project \
     && chmod -R a+rX /opt/venv
 
@@ -29,11 +29,11 @@ RUN UV_PROJECT_ENVIRONMENT=/opt/venv uv run playwright install --with-deps chrom
 RUN chown -R 1000:1000 /opt/venv /tmp 2>/dev/null || true
 
 # 코드 복사 — compose 의 mount (.:/repo) 가 런타임에 덮어쓰지만 fallback 으로 박아둠
-COPY back/ .
+COPY app/back/ .
 
 ENV PYTHONUNBUFFERED=1 \
     PERSONA_DIR=/repo/persona \
-    PYTHONPATH=/repo/back \
+    PYTHONPATH=/repo/app/back \
     UV_CACHE_DIR=/tmp/uv-cache \
     HOME=/tmp
 

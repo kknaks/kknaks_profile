@@ -46,13 +46,13 @@ troubles: []
 
 # 기술스택
 
-**프론트엔드 (`frontend/`)**
+**프론트엔드 (`app/front/`)**
 - **Next.js 15 (App Router) + React 19** — Server Component 기본, 인터랙션만 Client
 - TypeScript
 - **react-force-graph-2d + d3-force** — 노트 그래프 시각화 (force-directed)
 - react-markdown — 노트/콘텐츠 본문 렌더
 
-**백엔드 (`back/`)**
+**백엔드 (`app/back/`)**
 - **FastAPI** + uvicorn — async, in-memory persona server
 - python-frontmatter + pyyaml — md SoT 파싱
 - httpx — 외부 API 호출
@@ -73,7 +73,7 @@ troubles: []
 
 # 주요기능
 
-**5 섹션 + 페이지** (`frontend/app/`)
+**5 섹션 + 페이지** (`app/front/app/`)
 - **랜딩** (`/`) — Hero (터미널 애니메이션) + 5섹션 미리보기
 - **About** (`/about`) — 자기소개 + 잔디 + Career timeline + Skills
 - **Career** (`/career`) — 경력 timeline (5개 — 도화 / 비트캠프 / 멋사 / 퀀터스 / 메디솔브)
@@ -81,7 +81,7 @@ troubles: []
 - **Notes** (`/notes`) — 노트 그래프 (force-directed) + 클러스터별 색상 + 위키링크 백링크
 - **Contents** (`/contents`) — 매일 업로드 스터디 영상 + 교안
 
-**잡 인프라** (`back/service/scheduler.py` + `back/service/jobs/`)
+**잡 인프라** (`app/back/service/scheduler.py` + `app/back/service/jobs/`)
 - **잔디 잡** — 매일 23:55 KST. `daily/YYYY-MM-DD.md` + git log + GitHub Events 수집 → LLM 종합 → `activity.yaml` rolling 365 + `git push`
 - **Content enrich 잡** — `contents/*.md` 의 `status: pending` 감지 → YouTube 메타 + 자막 추출 → LLM 으로 8 H2 섹션 본문 자동 생성 → `status: published` commit
 - **Reload trigger** — `POST /admin/reload` 또는 GitHub webhook → 메모리 dict 재로드
@@ -95,14 +95,15 @@ kknaks_profile/
 ├─ persona/             ← md SoT (사람 작성 + 잡 산출물)
 │  ├─ profile.md · career/ · projects/ · notes/ · contents/ · daily/
 │  ├─ assets/<category>/ · activity.yaml · _meta.yaml · _map.md
-├─ back/                ← FastAPI (4 layer: api/service/core/utils)
-│  ├─ main.py — lifespan: load_all() + APScheduler 시작
-│  ├─ api/routers/      ← 12 엔드포인트 + /assets static mount
-│  ├─ service/          ← persona_loader, scheduler, jobs/
-│  └─ core/             ← i18n, wikilinks (외부 의존 0)
-├─ frontend/            ← Next.js
-├─ worker/              ← open-kknaks ClaudeWorker (별도 컨테이너)
-├─ scripts/             ← build_persona_map.py, install_hooks.sh
+├─ app/
+│  ├─ back/             ← FastAPI (4 layer: api/service/core/utils)
+│  │  ├─ main.py — lifespan: load_all() + APScheduler 시작
+│  │  ├─ api/routers/   ← 12 엔드포인트 + /assets static mount
+│  │  ├─ service/       ← persona_loader, scheduler, jobs/
+│  │  └─ core/          ← i18n, wikilinks (외부 의존 0)
+│  ├─ front/            ← Next.js
+│  ├─ worker/           ← open-kknaks ClaudeWorker (별도 컨테이너)
+│  └─ scripts/          ← build_persona_map.py, install_hooks.sh
 ├─ medi_docs/           ← 본 설계 문서 (harness plugin)
 ├─ claude_design/       ← 디자인 v0.5 동결본
 ├─ workspace/           ← import-project skill 의 외부 레포 자리 (gitignored)
@@ -120,25 +121,25 @@ kknaks_profile/
 
 # 핵심 구현
 
-**페르소나 로더** (`back/service/persona_loader.py`)
+**페르소나 로더** (`app/back/service/persona_loader.py`)
 - `persona/**/*.md` 전체 스캔 → 카테고리별 dict + frontmatter 검증 (필수 필드 / enum / 위키링크 dead link 등 — `spec-01 §6`)
 - 검증 fail-fast — frontmatter 위반 시 부팅 abort
 
-**i18n 헬퍼** (`back/core/i18n.py`) — `{ko, en}` 객체 → `?lang=` 분기 단일 helper
+**i18n 헬퍼** (`app/back/core/i18n.py`) — `{ko, en}` 객체 → `?lang=` 분기 단일 helper
 
-**위키링크 그래프** (`back/core/wikilinks.py`) — `notes/*.md` 본문의 `[[id]]` 추출 → 그래프 edge + 백링크 자동 계산
+**위키링크 그래프** (`app/back/core/wikilinks.py`) — `notes/*.md` 본문의 `[[id]]` 추출 → 그래프 edge + 백링크 자동 계산
 
-**APScheduler 잡 등록** (`back/service/scheduler.py`) — `spec-03 §1.1`. multi-worker 차단으로 분산 lock 회피.
+**APScheduler 잡 등록** (`app/back/service/scheduler.py`) — `spec-03 §1.1`. multi-worker 차단으로 분산 lock 회피.
 
-**open-kknaks dogfooding** (`back/service/jobs/llm.py`)
+**open-kknaks dogfooding** (`app/back/service/jobs/llm.py`)
 - `RedisBroker` + `ClaudeClient` 로 큐 발행
-- ClaudeWorker (`worker/` 컨테이너) 가 PTY 로 `claude -p ...` 실행
+- ClaudeWorker (`app/worker/` 컨테이너) 가 PTY 로 `claude -p ...` 실행
 - LoggingMiddleware + RetriesMiddleware + CostMiddleware 체인
 - Anthropic SDK import 0 — `ADR-04` 강제
 
 **자산 정적 서빙** — `app.mount("/assets", StaticFiles(directory=PERSONA_DIR / "assets"))` (`spec-01 §2.5`, `spec-02 §2`)
 
-**Skill 시스템** (`.claude/skills/`) — enrich-note, import-project, medi-* 등 본 사이트 작업 자체에 SKILL 룰 박아 dogfooding.
+**Agent 시스템** (`.agent/skills/`, `.codex/`) — YouTube content stub 생성과 Codex 세션 hook 등 본 사이트 작업 흐름을 repo 안에 박아 dogfooding.
 
 # 마주친 문제
 

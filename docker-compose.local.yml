@@ -34,7 +34,7 @@ services:
       FRONTEND_URL: ${FRONTEND_URL:-http://host.docker.internal:3000}
     volumes:
       - .:/repo
-    working_dir: /repo/back
+    working_dir: /repo/app/back
     depends_on:
       redis:
         condition: service_healthy
