@@ -19,7 +19,8 @@ products/<product>/
 ├── 20-spec/
 ├── 30-work/
 ├── 40-architecture/   # optional
-└── 60-release/        # optional
+├── 60-release/        # optional
+└── 70-runbook/        # optional
 ```
 
 ## 핵심 흐름
@@ -43,6 +44,7 @@ products/<product>/
 | `30-work/` | 여러 spec을 조합해 실제 구현 작업, acceptance, 테스트 지시서로 내린다 |
 | `40-architecture/` | 여러 spec/work가 공유하는 데이터베이스, 시스템, 배포 구조를 관리한다. optional |
 | `60-release/` | 배포 버전별 요약, 상세 수정 사항, 검증/배포 정보를 관리한다. optional |
+| `70-runbook/` | 빌드, 서명, 배포, 심사, 운영 등 반복 실행하는 절차를 관리한다. optional |
 | `log.md` | baseline, decision, spec, work 변경 이력을 제품 단위로 통합 관리한다 |
 
 ## 문서별 역할
@@ -65,6 +67,8 @@ products/<product>/
 | `40-architecture/deploy/` | deploy architecture | 배포 환경, back/front 배포 절차 | 임시 배포 로그 |
 | `60-release/README.md` | release index | 버전별 release note 목록, 배포 상태, 링크 | work/spec 상세 본문 복사 |
 | `60-release/release-*.md` | release note 1건 | 이번 버전 요약, 상세 수정 사항, 검증, 배포/rollback 정보 | 미완료 작업 지시, 다음 버전 scope |
+| `70-runbook/README.md` | runbook index | runbook 목록, area, 상태, 링크 | 절차 본문 복사 |
+| `70-runbook/runbook-*.md` | 실행 절차 1건 | 목적, 사전 준비, 절차(명령·단계), 검증, 트러블슈팅 | 배포 환경/타겟 정적 구조, 일회성 실행 로그 |
 
 작업 종류와 역할/상태 추적 기준은 `context/studio/workflow.md`를 따른다.
 
@@ -132,6 +136,72 @@ Release에 두지 않는다:
 - 미결 제품 결정
 - 임시 디버깅 로그 전문
 
+## Release work 원칙 (work_type: release)
+
+출시 준비, 스토어 심사 제출, 심사 대응, 운영 체크는 `30-work/`의 work로 추적하되 frontmatter `work_type: release`로 표시한다. 작업 종류 정의는 `context/studio/workflow.md`를 따른다.
+
+세 문서의 역할을 구분한다.
+
+| 무엇 | 어디 | 성격 |
+|---|---|---|
+| *어떻게* 제출/배포하나 (재사용 절차·런북) | `40-architecture/deploy/` | 재사용, 버전 무관 |
+| *이번* 제출 시도의 체크리스트·제출 기록·심사 결과 | `30-work/` release work | 1회성, 버전별 상태 |
+| 출시된 *결과* 요약 | `60-release/` | 사후 결과 노트 |
+
+기본 전파 방향:
+
+```text
+30-work (work_type: release)
+→ (스토어 심사 통과)
+→ 60-release
+```
+
+규칙:
+
+- release work 문서는 일반 work 템플릿 대신 `templates/product/30-work/work-release.md`를 쓴다.
+- 상태는 일반 Work 상태(todo → in_progress → done)를 그대로 쓴다. 심사 단계(제출/심사중/반려/승인)는 본문 `## 심사 결과` 표에 누적한다.
+- 필수 섹션: `## 심사 체크리스트`, `## 제출 기록`, `## 심사 결과`.
+- 권장 frontmatter: `work_type: release`, `platform`, `target_version`. `tags`에 `work-type/release`를 추가한다.
+- 출시가 끝나면 `60-release/`에 release note를 생성하고 release work의 frontmatter `links.releases`로 연결한다.
+
+## Runbook 문서 원칙
+
+`70-runbook/`은 optional이다.
+
+빌드, 서명, 배포, 스토어 심사 제출, 운영 점검처럼 *반복 실행하는 절차*가 생겼을 때 작성한다. 한 번 하고 마는 일은 runbook으로 올리지 않는다.
+
+`40-architecture/deploy/`와 역할을 구분한다.
+
+| 무엇 | 어디 |
+|---|---|
+| 배포 *구조/환경* (환경 목록, 타겟, 채널, 서명 주체 — 무엇인지) | `40-architecture/deploy/` |
+| 실행 *절차* (명령, 단계, 검증, 트러블슈팅 — 어떻게 하는지) | `70-runbook/` |
+
+규칙:
+
+- runbook 문서는 `templates/product/70-runbook/runbook.md`를 쓴다.
+- 필수 섹션: `## 목적`, `## 절차`.
+- 권장 섹션: `## 사전 준비`, `## 검증`, `## 트러블슈팅`, `## 관련 파일`.
+- 권장 frontmatter: `area`(build/deploy/release/ops 등). 상태는 Runbook 상태(draft/active/deprecated)를 쓴다.
+- 배포 환경/타겟 같은 정적 구조는 복사하지 않고 `40-architecture/deploy/`를 링크한다.
+- 같은 절차는 한 곳(runbook)에만 둔다. deploy 문서나 work 본문에 절차를 중복하지 않는다.
+
+Runbook에 두지 않는다:
+
+- 배포 환경/타겟 정적 구조
+- 일회성 실행 로그
+- 제품 결정이나 기능 계약
+
+### Runbook 자산 (assets)
+
+스토어 제출용 스크린샷, 앱 아이콘, 프리뷰 영상 같은 바이너리 자산은 해당 절차 옆 `70-runbook/assets/`에 모은다. `products/`에서 바이너리를 두는 유일한 자리다.
+
+- 구조: `70-runbook/assets/<대상>/...` (예: `assets/appstore/icon/`, `assets/appstore/screenshots/`).
+- `70-runbook/assets/README.md`는 **manifest**다. 필요한 자산, 규격, 상태(있음/없음/N/A), 위치를 표로 추적한다.
+- 자산은 검증(validator) 대상이 아니다. manifest(markdown)만 정합성 관리한다.
+- 관련 runbook은 본문에서 manifest를 링크한다.
+- 코드 레포에 이미 있는 자산(앱 아이콘 등)은 필요 시 복사해 모으되, manifest에 원본 위치를 함께 적는다.
+
 ## 매핑 규칙
 
 기본 연결은 아래 방향을 따른다.
@@ -157,7 +227,7 @@ BASE-001
 
 | 필드 | 설명 |
 |---|---|
-| `type` | `baseline`, `decision`, `spec`, `work`, `release` 중 하나 |
+| `type` | `baseline`, `decision`, `spec`, `work`, `release`, `runbook` 중 하나 |
 | `id` | 제품 안에서 유일한 ID |
 | `title` | 사람이 읽는 제목 |
 | `status` | 문서 유형별 상태 |
@@ -223,6 +293,14 @@ BASE-001
 | `released` | 배포 완료 |
 | `failed` | 배포 실패 |
 | `rolled_back` | 배포 후 rollback 완료 |
+
+### Runbook
+
+| Status | 의미 |
+|---|---|
+| `draft` | 작성 중 |
+| `active` | 현재 유효, 따라 실행 가능 |
+| `deprecated` | 더 이상 쓰지 않음 (사유 비고) |
 
 ## Obsidian Graph 규칙
 
@@ -312,6 +390,7 @@ tags:
 | work 추가/수정 | `30-work/README.md`, spec coverage, `log.md` |
 | architecture 추가/수정 | `40-architecture/README.md`, 관련 spec/work link, `log.md` |
 | release 추가/수정 | `60-release/README.md`, 제품 `README.md`, `log.md` |
+| runbook 추가/수정 | `70-runbook/README.md`, 관련 deploy/work link, `log.md` |
 | 제품 상태 변경 | 제품 `README.md`, `log.md` |
 
 ## 통합 로그 규칙
@@ -341,6 +420,8 @@ tags:
 - `architecture-change`
 - `release-add`
 - `release-change`
+- `runbook-add`
+- `runbook-change`
 - `status-change`
 - `mapping-change`
 

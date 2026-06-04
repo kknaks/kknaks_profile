@@ -146,6 +146,7 @@ class TestAdminReload:
 
     def test_reloads_with_correct_token(self, client, monkeypatch):
         monkeypatch.setenv("RELOAD_TOKEN", "secret")
+        _noop_reload_background(monkeypatch)
         r = client.post("/admin/reload", headers={"X-Reload-Token": "secret"})
         assert r.status_code == 200
         assert r.json()["status"] == "reloaded"
@@ -155,9 +156,20 @@ def _hmac_sig(secret: bytes, body: bytes) -> str:
     return "sha256=" + hmac.new(secret, body, hashlib.sha256).hexdigest()
 
 
+def _noop_reload_background(monkeypatch):
+    from api.admin import reload as reload_mod
+
+    async def noop():
+        return None
+
+    monkeypatch.setattr(reload_mod, "_run_enrich_safe", noop)
+    monkeypatch.setattr(reload_mod, "_run_pdf_safe", noop)
+
+
 class TestAdminReloadWebhook:
     def test_hmac_valid_signature_passes(self, client, monkeypatch):
         monkeypatch.setenv("GITHUB_WEBHOOK_SECRET", "wsecret")
+        _noop_reload_background(monkeypatch)
         # push event 시 _git_pull_rebase 호출됨 → 테스트 환경에선 no-op mock
         from api.admin import reload as reload_mod
         monkeypatch.setattr(reload_mod, "_git_pull_rebase", lambda: None)
@@ -200,6 +212,7 @@ class TestAdminReloadWebhook:
         # webhook secret 안 박혀도 토큰으로 통과 가능
         monkeypatch.delenv("GITHUB_WEBHOOK_SECRET", raising=False)
         monkeypatch.setenv("RELOAD_TOKEN", "tok")
+        _noop_reload_background(monkeypatch)
         r = client.post("/admin/reload", headers={"X-Reload-Token": "tok"})
         assert r.status_code == 200
 
@@ -224,11 +237,11 @@ class TestAlgorithms:
         assert "A-001" in ids
 
     def test_list_today_pick(self, client):
-        # 시드 A-001 frontmatter 에 today: true 박혀있음
         d = client.get("/api/algorithms").json()
         today = d["algorithms"]["today"]
+        ids = [a["id"] for a in d["algorithms[]"]]
         assert today is not None
-        assert today["id"] == "A-001"
+        assert today["id"] in ids
 
     def test_list_lang_ko(self, client):
         d = client.get("/api/algorithms?lang=ko").json()

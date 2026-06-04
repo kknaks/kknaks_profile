@@ -38,10 +38,20 @@ REQUIRED_STAGE_READMES = (
 OPTIONAL_STAGE_READMES = (
     "40-architecture/README.md",
     "60-release/README.md",
+    "70-runbook/README.md",
 )
 RELEASE_REQUIRED_SECTIONS = (
     "## 요약",
     "## 상세 수정 사항",
+)
+RELEASE_WORK_REQUIRED_SECTIONS = (
+    "## 심사 체크리스트",
+    "## 제출 기록",
+    "## 심사 결과",
+)
+RUNBOOK_REQUIRED_SECTIONS = (
+    "## 목적",
+    "## 절차",
 )
 
 
@@ -93,6 +103,36 @@ def main() -> int:
                     for section in RELEASE_REQUIRED_SECTIONS:
                         if section not in source:
                             errors.append(f"release missing required section {section!r}: {rel_note}")
+
+            work_dir = product_dir / "30-work"
+            if work_dir.exists():
+                for work_note in sorted(work_dir.glob("work-*.md")):
+                    source = work_note.read_text(encoding="utf-8")
+                    if "work_type: release" not in source:
+                        continue
+                    rel_note = work_note.relative_to(ROOT)
+                    for section in RELEASE_WORK_REQUIRED_SECTIONS:
+                        if section not in source:
+                            errors.append(
+                                f"release work missing required section {section!r}: {rel_note}"
+                            )
+                    if "work-type/release" not in source:
+                        warnings.append(
+                            f"release work missing 'work-type/release' tag: {rel_note}"
+                        )
+
+            runbook_dir = product_dir / "70-runbook"
+            if runbook_dir.exists():
+                for runbook in sorted(runbook_dir.glob("runbook-*.md")):
+                    source = runbook.read_text(encoding="utf-8")
+                    rel_note = runbook.relative_to(ROOT)
+                    if "type: runbook" not in source:
+                        errors.append(f"runbook missing type frontmatter: {rel_note}")
+                    for section in RUNBOOK_REQUIRED_SECTIONS:
+                        if section not in source:
+                            errors.append(
+                                f"runbook missing required section {section!r}: {rel_note}"
+                            )
 
     print("Product Doc Pipeline")
     print(f"- checked: {PRODUCTS_DIR}")

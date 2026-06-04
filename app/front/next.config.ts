@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
         source: "/assets/:path*",
         destination: `${API_BASE}/assets/:path*`,
       },
+      // MacRemote 랜딩 — 정적 페이지를 클린 URL로 (public/macremote/index.html)
+      {
+        source: "/macremote",
+        destination: "/macremote/index.html",
+      },
     ];
   },
 };

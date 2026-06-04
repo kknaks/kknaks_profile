@@ -61,12 +61,14 @@ AI 문서 작업 완료
 - `00-baseline/`, `10-decision/`, `20-spec/`, `30-work/` 존재
 - `40-architecture/`는 optional. 존재하면 하위 README와 mermaid 기준 검증
 - `60-release/`는 optional. 존재하면 release index와 release note frontmatter/섹션 검증
+- `70-runbook/`는 optional. 존재하면 runbook index와 runbook frontmatter/필수 섹션(목적/절차) 검증
 - 각 단계의 `README.md` 존재
 - 개별 문서 frontmatter 필수 필드 존재
 - ID 형식 검사
 - 파일명과 ID 번호 일치 검사
 - baseline → decision → spec → work 참조 무결성 검사
 - spec → architecture → work 참조 무결성 검사
+- `work_type: release` work의 필수 섹션(심사 체크리스트/제출 기록/심사 결과) 검사
 - frontmatter `links` 필드의 Obsidian wikilink 정합성 검사
 - frontmatter `tags` 패턴 검사
 - 단계 README index와 실제 파일 목록 동기 검사
@@ -80,7 +82,7 @@ AI가 제품 문서 작업을 끝낸 뒤 아래 체크리스트를 순서대로 
 
 - [ ] 변경된 파일이 `products/**`, `templates/product/**`, `rules/product-doc-pipeline.md`, `.agent/hooks/product-doc-pipeline.md`, `.agent/scripts/product_doc_pipeline.py` 중 어디인지 확인했다.
 - [ ] 변경된 제품 slug를 확인했다.
-- [ ] 변경된 문서 유형을 확인했다: `baseline`, `decision`, `spec`, `work`, `architecture`, `release`, `index`, `log`.
+- [ ] 변경된 문서 유형을 확인했다: `baseline`, `decision`, `spec`, `work`, `architecture`, `release`, `runbook`, `index`, `log`.
 
 ### 2. 구조 검증
 
@@ -92,6 +94,7 @@ AI가 제품 문서 작업을 끝낸 뒤 아래 체크리스트를 순서대로 
 - [ ] `30-work/README.md`가 있다.
 - [ ] `40-architecture/`가 있으면 `README.md`, `database/README.md`, `system/README.md`, `deploy/README.md`를 확인했다.
 - [ ] `60-release/`가 있으면 `README.md`를 확인했다.
+- [ ] `70-runbook/`가 있으면 `README.md`와 각 runbook의 필수 섹션(목적/절차)을 확인했다.
 
 ### 3. Frontmatter 검증
 
@@ -106,6 +109,7 @@ AI가 제품 문서 작업을 끝낸 뒤 아래 체크리스트를 순서대로 
 - [ ] decision이 baseline/spec으로 연결되는지 확인했다.
 - [ ] spec이 decision/work로 연결되는지 확인했다.
 - [ ] work가 spec으로 연결되는지 확인했다.
+- [ ] `work_type: release` work는 필수 섹션(심사 체크리스트/제출 기록/심사 결과)이 있고, 출시 완료 시 release 연결을 확인했다.
 - [ ] architecture가 있으면 관련 spec/work와 연결되는지 확인했다.
 - [ ] release가 있으면 관련 spec/work/release와 연결되는지 확인했다.
 

@@ -1,0 +1,92 @@
+---
+type: release
+id: MRT-REL-002
+title: "mac-remote 1.0.1"
+status: released
+product: mac-remote
+version: "1.0.1"
+released_at: 2026-05-26
+summary: "단말 격리 Wi-Fi에서의 페어링/재연결/아이콘 누락 + stale IP 문제 수정"
+details:
+  - "메뉴바 QR이 옛 IP를 표시하던 문제 수정 (onAppear 재조회)"
+  - "다중 인터페이스에서 잘못된 IP 선택 위험 수정 (en0 → bridge* 우선, link-local 제외)"
+  - "iOS 재연결 시 옛 호스트로 계속 시도하던 문제 수정 (reconnect 메서드)"
+  - "재연결 클라이언트에 아이콘이 안 나오던 문제 수정 (full icon snapshot push)"
+  - "iOS: 연결 중 화면 자동 잠금 차단 추가"
+created_at: 2026-05-26
+updated_at: 2026-06-01
+tags:
+  - product/mac-remote
+  - doc/release
+  - status/released
+links:
+  baselines: []
+  decisions: []
+  specs:
+    - "[[spec-004-app-icon|MRT-SPEC-004]]"
+    - "[[spec-005-websocket-protocol|MRT-SPEC-005]]"
+    - "[[spec-007-pairing|MRT-SPEC-007]]"
+  works:
+    - "[[work-007-pairing-qr|MRT-WORK-007]]"
+    - "[[work-009-ws-client|MRT-WORK-009]]"
+    - "[[work-013-status-handling|MRT-WORK-013]]"
+  releases:
+    - "[[release-001-v1-0-0|MRT-REL-001]]"
+  related: []
+---
+
+# MRT-REL-002 mac-remote 1.0.1
+
+> 원본: `mac-remote/doc/Releases.md` (1.0.1 — 2026-05-26).
+
+## 요약
+
+회사 Wi-Fi 같은 단말 격리(client isolation) 환경에서 페어링/재연결이 실패하던 문제, 메뉴바 IP가 stale하게 표시되던 문제, 재연결 후 창 목록에 아이콘이 안 나오던 문제를 함께 수정한 패치 릴리즈다.
+
+iOS는 연결 중 화면 자동 잠금을 막아 리모컨 사용성을 개선했다. iOS 빌드 번호 2 → 3, Mac은 변경 없이 빌드 2 유지.
+
+## 상세 수정 사항
+
+| Area | Change | Notes |
+|---|---|---|
+| Mac / 메뉴바 (Fixed) | QR이 옛 IP 표시 → `onAppear`에서 `NetworkInfo.primaryIPAddress()` 매번 재조회 | `MenuBarApp.swift` |
+| Mac / 네트워크 (Fixed) | 잘못된 인터페이스 IP 선택 위험 → en0(Wi-Fi) → bridge*(인터넷 공유) → 기타 순, link-local 제외 | `NetworkInfo.swift` |
+| iOS / 연결 (Fixed) | 재연결 시 옛 호스트로 계속 시도 → `reconnect(host:port:)` 추가, 기존 task/timer 동기 정리 후 connect | `WebSocketManager.swift`, `SettingsView.swift` |
+| Mac / 아이콘 (Fixed) | 재연결 클라이언트에 아이콘 누락 → `handleConnect()`에서 `sendFullIconSnapshot(to:)` 1회 push | `WebSocketServer.swift` |
+| iOS / UX (Added) | 연결 중 화면 자동 잠금 차단 (`isIdleTimerDisabled`) | `ContentView.swift`, 빌드 2→3 |
+
+## Breaking Changes
+
+- 없음.
+
+## Migration Notes
+
+- 없음. iOS는 새 빌드(3) 설치만 하면 된다.
+
+## 검증
+
+| Check | Result | Evidence |
+|---|---|---|
+| `swift test --filter "NetworkInfo\|WebSocketServer\|IconExtractor"` | 통과 | — |
+| `swift build -c release` | 성공 | — |
+| `xcodebuild -scheme MacRemote -destination 'generic/platform=iOS' -configuration Debug build` | 성공 | — |
+| 기존 `MessageHandlerTests` 일부 실패 | 무관 | 테스트 환경 Accessibility 권한 부재 원인, 본 변경과 무관 |
+
+## 배포 정보
+
+| Item | Value |
+|---|---|
+| Version | 1.0.1 |
+| Released At | 2026-05-26 |
+| Artifact | `build/MacHelper-1.0.1.dmg`, iOS TestFlight 빌드 3 |
+| Git Tag | (원본 미기록) |
+| Deployment Target | macOS 14+, iOS 17+ |
+
+## Known Issues
+
+- iOS `WebSocketManager.connect()`가 핸드셰이크 성공 확인 없이 즉시 `.connected`로 전이 (WebSocketManager.swift:190-199). 실패 시 잠깐 "연결됨" 후 reconnect 루프 진입 — 다음 패치 후보.
+- 회사 Wi-Fi의 client isolation 자체는 앱 수정으로 우회 불가. Mac "인터넷 공유"로 Mac을 핫스팟화해 iPhone 직결하는 방식이 가장 안정적인 회피책.
+
+## Rollback
+
+- 이전 DMG/TestFlight 빌드로 교체. 영속 데이터 마이그레이션 불필요.

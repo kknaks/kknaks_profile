@@ -134,3 +134,10 @@ app.mount(
     StaticFiles(directory=PERSONA_DIR / "assets", check_dir=False),
     name="assets",
 )
+
+# MacRemote DMG 다운로드 — repo 루트 downloads/ 를 /download/* 로 노출 (mac-remote RB-001 §배포)
+app.mount(
+    "/download",
+    StaticFiles(directory=PERSONA_DIR.parent / "downloads", check_dir=False),
+    name="download",
+)

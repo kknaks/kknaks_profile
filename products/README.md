@@ -14,3 +14,4 @@
 | language-diary | `products/language-diary/` |
 | persona-counselor | `products/persona-counselor/` |
 | study-timelapse | `products/study-timelapse/` |
+| mac-remote | `products/mac-remote/` |
