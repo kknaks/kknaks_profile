@@ -1,12 +1,12 @@
 # Dockerfile.back / Dockerfile.worker 둘 다 build context = repo root.
-# 이미지에 필요한 건 back/, worker/, pyproject 등. 나머진 mount 로 들어옴 (compose `.:/repo`).
+# 이미지에 필요한 건 app/back/, app/worker/ 등. 나머진 mount 로 들어옴 (compose `.:/repo`).
 
 # git
 .git/
 .gitignore
 
 # 프론트 (Vercel 별도 빌드)
-frontend/
+app/front/
 
 # persona — runtime mount 로만 들어오면 됨 (이미지에 박을 이유 없음)
 persona/
@@ -29,7 +29,7 @@ claude_design/
 **/node_modules/
 
 # scripts (런타임 mount 로 접근, 이미지에 굳이 박을 필요 없음)
-scripts/
+app/scripts/
 
 # 환경/시크릿
 .env

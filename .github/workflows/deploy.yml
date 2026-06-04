@@ -22,7 +22,7 @@ on:
   push:
     branches: [main]
     paths-ignore:
-      - "frontend/**"         # 프론트는 Vercel 자체 배포 — 홈서버 영향 X
+      - "app/front/**"        # 프론트는 Vercel 자체 배포 — 홈서버 영향 X
       - "persona/**"          # 콘텐츠 변경은 webhook 채널 (planning-01 §3.6 ②)
       - "medi_docs/**"        # 문서 변경은 배포 영향 X
       - "claude_design/**"    # 디자인 자산 영향 X

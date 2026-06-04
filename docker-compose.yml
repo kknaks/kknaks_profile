@@ -27,8 +27,8 @@ services:
       # planning-02 — PDF 잡이 hit 할 frontend URL. 운영 = Vercel 정적 호스팅.
       FRONTEND_URL: ${FRONTEND_URL:-https://kknaks.dev}
     volumes:
-      - .:/repo                                # repo root 전체 (.git + persona + back + frontend) — planning-01 §3.6 mount
-    working_dir: /repo/back
+      - .:/repo                                # repo root 전체 (.git + persona + app) — planning-01 §3.6 mount
+    working_dir: /repo/app/back
     depends_on:
       redis:
         condition: service_healthy
