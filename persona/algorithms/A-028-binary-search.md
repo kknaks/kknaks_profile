@@ -18,7 +18,7 @@ tags:
 title:
   en: Binary Search
   ko: 이진 탐색
-today: true
+today: false
 type: algorithm
 updated: '2026-06-03'
 visible: true
