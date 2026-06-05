@@ -19,7 +19,7 @@ tags:
 title:
   en: Search a 2D Matrix
   ko: 2D 행렬 검색
-today: true
+today: false
 type: algorithm
 updated: '2026-06-04'
 visible: true
