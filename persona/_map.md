@@ -1,8 +1,8 @@
 # persona/_map.md
 
-> 자동 생성 (build_persona_map.py, 2026-06-04 11:04 KST). 수동 편집 X.
+> 자동 생성 (build_persona_map.py, 2026-06-05 17:06 KST). 수동 편집 X.
 
-_총 219 파일 (profile 1 / career 5 / projects 12 / notes 157 / contents 18 / daily 26)_
+_총 229 파일 (profile 1 / career 5 / projects 12 / notes 157 / contents 19 / daily 35)_
 
 ## profile
 
@@ -188,7 +188,8 @@ _총 219 파일 (profile 1 / career 5 / projects 12 / notes 157 / contents 18 / 
 - [[notes/2025-11-01-database_migration]] Database Migration(AWS RDS -> Azure MySQL) (work · 2025.11.01)
 - [[notes/2025-11-01-migration_detail]] Database Migration 상세 프로세스 (work · 2025.11.01)
 
-## contents (총 18개)
+## contents (총 19개)
+- [[contents/C-019-pending]] Day 19 —  (2026-06-05)
 - [[contents/C-018-pending]] Day 18 — Redis가 싱글 스레드로도 수십만 QPS를 처리하는 이유 (2026-05-27)
 - [[contents/C-017-pending]] Day 17 — AI를 운영 체제로: AI 네이티브 조직의 설계 원리 (2026-05-27)
 - [[contents/C-016-pending]] Day 16 — 클로드 디자인 디자인 시스템으로 고품질 UI 프로토타입 만들기 (2026-05-22)
@@ -208,17 +209,17 @@ _총 219 파일 (profile 1 / career 5 / projects 12 / notes 157 / contents 18 / 
 - [[contents/C-002-pending-sample]] Day 02 — 모듈로 편향으로 인한 게임 확률 버그 (2026.05.02)
 - [[contents/C-001-fastapi-di]] Day 01 — FastAPI Dependency Injection — 진짜 쓸 수 있게 (2026.05.01)
 
-## daily (총 26개, 최근 10)
+## daily (총 35개, 최근 10)
+- [[daily/2026-06-04]] (2026.06.04)
+- [[daily/2026-06-03]] (2026.06.03)
+- [[daily/2026-06-02]] (2026.06.02)
+- [[daily/2026-06-01]] (2026.06.01)
+- [[daily/2026-05-31]] (2026.05.31)
+- [[daily/2026-05-30]] (2026.05.30)
+- [[daily/2026-05-29]] (2026.05.29)
+- [[daily/2026-05-28]] (2026.05.28)
+- [[daily/2026-05-27]] (2026.05.27)
 - [[daily/2026-05-26]] (2026.05.26)
-- [[daily/2026-05-25]] (2026.05.25)
-- [[daily/2026-05-24]] (2026.05.24)
-- [[daily/2026-05-23]] (2026.05.23)
-- [[daily/2026-05-22]] (2026.05.22)
-- [[daily/2026-05-21]] (2026.05.21)
-- [[daily/2026-05-20]] (2026.05.20)
-- [[daily/2026-05-19]] (2026.05.19)
-- [[daily/2026-05-18]] (2026.05.18)
-- [[daily/2026-05-17]] (2026.05.17)
 
 ## 위키링크 그래프 (notes)
 - 2024-05-24-Day01 → 2024-05-27-Day02
