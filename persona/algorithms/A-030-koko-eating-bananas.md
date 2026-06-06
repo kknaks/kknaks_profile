@@ -18,7 +18,7 @@ tags:
 title:
   en: Koko Eating Bananas
   ko: 코코의 바나나 먹기
-today: true
+today: false
 type: algorithm
 updated: '2026-06-05'
 visible: true
