@@ -18,7 +18,7 @@ tags:
 title:
   en: Find Minimum in Rotated Sorted Array
   ko: 회전된 정렬 배열에서 최솟값 찾기
-today: true
+today: false
 type: algorithm
 updated: '2026-06-06'
 visible: true
