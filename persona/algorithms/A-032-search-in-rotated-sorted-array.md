@@ -18,7 +18,7 @@ tags:
 title:
   en: Search in Rotated Sorted Array
   ko: 회전된 정렬 배열에서 검색
-today: true
+today: false
 type: algorithm
 updated: '2026-06-07'
 visible: true
