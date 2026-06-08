@@ -7,6 +7,8 @@
 
 # Claude Code 로컬 설정 (절대 경로 + 머신별)
 .claude/settings.local.json
+# .claude 는 .agent 심볼릭 링크라 git 은 실제 경로로 봄 → 동일 파일 실경로도 제외
+.agent/settings.local.json
 
 # open-kknaks worker 바인드 마운트 자산 (호스트 setup.sh 로 박음, ADR-04 §2.2)
 .claude-tools/

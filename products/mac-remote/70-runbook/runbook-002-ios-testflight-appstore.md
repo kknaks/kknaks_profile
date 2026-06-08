@@ -105,7 +105,7 @@ App Store Connect를 위→아래로 따라가며 입력한다. **상태 칸**�
 | 필드 | 입력값 / 지침 | 상태 | 메모 |
 |---|---|---|---|
 | 데이터 수집 | "데이터를 수집하지 않습니다" (LAN-only, 수집 없음) | ✅ | 게시 완료 |
-| 개인정보 처리방침 URL | https://profile.kknaks.cloud/macremote#privacy | ⬜ | 랜딩 배포 후 입력. #privacy 섹션에 정책 텍스트 확인 |
+| 개인정보 처리방침 URL | https://profile.kknaks.cloud/macremote#privacy | ✅ | 2026-06-08 입력 |
 
 **D. 이번 버전** (좌측 `App Store` → iOS 버전)
 
@@ -115,24 +115,25 @@ App Store Connect를 위→아래로 따라가며 입력한다. **상태 칸**�
 | 프로모션 텍스트 | 작성 제공 | ✅ |  |
 | 설명 | 작성 제공 | ✅ |  |
 | 키워드 | 작성 제공 | ✅ |  |
-| 지원 URL | https://profile.kknaks.cloud/macremote | ⬜ | 랜딩 배포 후 입력 |
+| 지원 URL | https://profile.kknaks.cloud/macremote | ✅ | 2026-06-08 입력 (필수 필드) |
 | 마케팅 URL | https://profile.kknaks.cloud/macremote | ✅ | 랜딩 (선택) |
-| 빌드 | 업로드된 빌드 선택 (build +1) | ⬜ |  |
+| 빌드 | 업로드된 빌드 선택 (build +1) | ✅ | 2026-06-08 선택 |
 | 저작권 | 2026 keonhak lee | ✅ |  |
 | 연령 등급 | 4+ | ✅ |  |
 | App 심사 정보 — 연락처 | 이름/전화/이메일 | ✅ |  |
 | App 심사 정보 — 로그인 | 로그인 없음 → 데모 계정 불필요 | ✅ |  |
 | **App 심사 정보 — 메모** | companion Mac 필요·연결 절차 명시 (위 Reviewability) | ✅ | 붙여넣음 |
-| **App 심사 정보 — 첨부(데모 영상)** | 📹 **TODO: 나중에 녹화** (QR→창전환→매크로 30~60초) → 첨부 또는 메모에 링크 | ⬜ | ⚠️ 반려 방지 핵심, **제출 전 필수** |
-| 버전 출시 | 수동 / 자동 (택) | ⬜ |  |
+| **App 심사 정보 — 첨부(데모 영상)** | 📹 녹화·업로드 완료 (QR→창전환→매크로) | ✅ | 2026-06-08 업로드. ⚠️ 반려 방지 핵심 |
+| 버전 출시 | 수동 / 자동 (택) | ✅ | 2026-06-08 선택 |
 
 **E. 제출**
 
 | 필드 | 입력값 / 지침 | 상태 | 메모 |
 |---|---|---|---|
-| Export Compliance | `ITSAppUsesNonExemptEncryption=NO` → 자동 통과(다이얼로그 안 뜸) | ⬜ |  |
-| 심사를 위해 제출 | Submit for Review → Apple 심사 24~48h | ⬜ |  |
-| 출시 후 | 승인·출시되면 `60-release/release-003-*.md` 작성 | ⬜ |  |
+| Export Compliance | `ITSAppUsesNonExemptEncryption=NO` → 자동 통과(다이얼로그 안 뜸) | ✅ | 자동 통과 |
+| 심사를 위해 제출 | Submit for Review → Apple 심사 24~48h | ✅ | 2026-06-08 제출, "심사 대기 중" |
+| 출시 후 | 승인·출시되면 `60-release/release-003-*.md` 작성 | ⬜ | 심사 통과 대기 |
+| 출시 후 | App Store 정식 URL(`apps.apple.com/app/id…`)을 랜딩 다운로드 버튼에 연결 | ⬜ | ⚠️ 출시 전엔 앱 페이지 404 → URL 발급 후 연결 |
 
 > 입력하다 막히거나(⛔) 빠진 항목이 나오면 이 표에 행을 추가/갱신한다. 빌드 업로드 절차 자체는 위 §2(TestFlight) Deploy Steps와 동일(build number +1).
 
