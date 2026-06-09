@@ -131,7 +131,7 @@ App Store Connect를 위→아래로 따라가며 입력한다. **상태 칸**�
 | 필드 | 입력값 / 지침 | 상태 | 메모 |
 |---|---|---|---|
 | Export Compliance | `ITSAppUsesNonExemptEncryption=NO` → 자동 통과(다이얼로그 안 뜸) | ✅ | 자동 통과 |
-| 심사를 위해 제출 | Submit for Review → Apple 심사 24~48h | ⛔ | 2026-06-08 제출 → **2026-06-08 거절 (5.2.5)**. 대응은 §4 |
+| 심사를 위해 제출 | Submit for Review → Apple 심사 24~48h | ⏳ | 2026-06-08 제출 → 거절(5.2.5) → **2026-06-09 build 5(DeskDeck)로 재제출, 심사 대기 중**. 대응은 §4 |
 | 출시 후 | 승인·출시되면 `60-release/release-003-*.md` 작성 | ⬜ | 재제출·통과 대기 |
 | 출시 후 | App Store 정식 URL(`apps.apple.com/app/id…`)을 랜딩 다운로드 버튼에 연결 | ⬜ | ⚠️ 출시 전엔 앱 페이지 404 → URL 발급 후 연결 |
 
@@ -153,18 +153,18 @@ App Store Connect를 위→아래로 따라가며 입력한다. **상태 칸**�
 
 **대응 체크리스트**
 
-> ✅ = 이 작업 세션에서 코드 레포(`~/git/toy_pr2/mac-remote`)에 적용 완료. ⬜ = 사용자가 Xcode/ASC에서 수동 진행.
+> ✅ = 완료. ⏳ = Apple 심사 대기. (1~12 모두 완료, 2026-06-09 재제출)
 
 | # | 작업 | 위치 | 상태 |
 |---|---|---|---|
 | 1 | 표시 이름 `CFBundleDisplayName` + `CFBundleName` → `DeskDeck` (생성 plist가 `PRODUCT_NAME=$(TARGET_NAME)`=MacRemote를 쓰므로 **두 키 모두** 명시해야 바이너리 이름 필드에 MacRemote가 안 남음) | Swift 레포 `iOSApp` pbxproj Debug+Release | ✅ |
 | 2 | 앱 내 "MacRemote" UI 노출 문자열 점검 → 프로덕션 UI 0건(프리뷰 목업/주석만) | Swift 레포 | ✅ |
-| 3 | Build number +1 → **Archive → Upload** | Xcode | ⬜ `CURRENT_PROJECT_VERSION 4→5` 설정 완료, Archive/Upload만 수동 |
-| 4 | ASC **앱 이름** `DeskDeck`로 수정 | ASC → App 정보 | ⬜ |
-| 5 | ASC **부제** "내 컴퓨터가 손안의 리모컨으로"로 수정 | ASC → App 정보 | ⬜ |
-| 6 | 새 빌드 선택 (이번 버전) | ASC → 빌드 | ⬜ |
-| 7 | Resolution Center에 회신 (아래 회신문) | ASC → 메시지 | ⬜ |
-| 8 | Submit for Review 재제출 | ASC | ⬜ |
+| 3 | Build number +1 → **Archive → Upload** | Xcode | ✅ build 5 업로드·검증됨(ASC 빌드 메타 "앱 이름=DeskDeck"로 바이너리 표시명 확인) |
+| 4 | ASC **앱 이름** `DeskDeck`로 수정 | ASC → App 정보 | ✅ |
+| 5 | ASC **부제** "내 컴퓨터가 손안의 리모컨으로"로 수정 | ASC → App 정보 | ✅ |
+| 6 | 새 빌드 선택 (build 5) | ASC → 빌드 | ✅ 1.0.1에 build 5 선택 확인 |
+| 7 | Resolution Center에 회신 (아래 회신문) | ASC → 메시지 | ✅ |
+| 8 | Submit for Review 재제출 | ASC | ✅ 2026-06-09 재제출 (⏳ 심사 대기) |
 | 9 | 지원/개인정보 페이지 앱 이름 `DeskDeck`·헬퍼 `DeskDeckHelper`로 갱신 | `assets/appstore/pages/*.md` | ✅ |
 | 10 | (헬퍼) MacHelper Info.plist 표시 이름 → `DeskDeckHelper`, `CFBundleExecutable=MacHelper` 고정, `CFBundleVersion 2→3` | Swift 레포 `MacHelper` | ✅ |
 | 11 | (헬퍼) 새 DMG 빌드 → 공증·staple → `downloads/`에 `DeskDeckHelper-1.0.1.dmg` 배치(구 `MacHelper-1.0.1.dmg` 제거) | `scripts/build_dmg.sh` | ✅ 공증 통과 (Submission `3a01477f-9d26-4fb2-8895-638f2eac97eb`, source=Notarized Developer ID) |
