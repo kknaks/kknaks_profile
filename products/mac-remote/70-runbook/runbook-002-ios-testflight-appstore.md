@@ -149,21 +149,26 @@ App Store Connect를 위→아래로 따라가며 입력한다. **상태 칸**�
 
 **개명 결정:** `MacRemote` → **`DeskDeck`** (Apple 상표 0개, 5.2.5 재거절 리스크 사실상 0). Bundle ID `com.macremote.MacRemote`는 **변경하지 않는다** (5.2.5 대상 아님, 바꾸면 앱 레코드·심사 이력 소멸).
 
-> Mac 헬퍼 앱 `MacHelper`는 DMG 배포(앱스토어 미등록)라 5.2.5 대상 아님 → 이번엔 그대로 둔다.
+> Mac 헬퍼 앱 `MacHelper`는 DMG 배포라 5.2.5 대상은 아니지만 **브랜드 일관성**을 위해 표시 이름을 `DeskDeckHelper`로 함께 변경한다. 단 **실행파일 파일명·DMG 파일명(`MacHelper-1.0.1.dmg`)·Bundle ID는 유지** → 호스팅 URL·백엔드 `/download` 마운트 무영향. 표시 이름만 바꾸면 실행파일 해석이 깨지므로 `CFBundleExecutable=MacHelper`를 명시적으로 고정한다. 새 DMG 빌드·공증·재업로드 필요.
 
 **대응 체크리스트**
 
+> ✅ = 이 작업 세션에서 코드 레포(`~/git/toy_pr2/mac-remote`)에 적용 완료. ⬜ = 사용자가 Xcode/ASC에서 수동 진행.
+
 | # | 작업 | 위치 | 상태 |
 |---|---|---|---|
-| 1 | 기기 표시 이름 변경: `CFBundleDisplayName` (없으면 `CFBundleName`) → `DeskDeck` | **별도 Swift 레포** `iOSApp` Info.plist / target Display Name | ⬜ |
-| 2 | 코드/문구 내 "MacRemote" UI 노출 문자열 점검 (앱 내 표시 이름) | Swift 레포 | ⬜ |
-| 3 | Build number +1 → Archive → Upload (절차는 §2와 동일) | Xcode | ⬜ |
+| 1 | 표시 이름 `CFBundleDisplayName` + `CFBundleName` → `DeskDeck` (생성 plist가 `PRODUCT_NAME=$(TARGET_NAME)`=MacRemote를 쓰므로 **두 키 모두** 명시해야 바이너리 이름 필드에 MacRemote가 안 남음) | Swift 레포 `iOSApp` pbxproj Debug+Release | ✅ |
+| 2 | 앱 내 "MacRemote" UI 노출 문자열 점검 → 프로덕션 UI 0건(프리뷰 목업/주석만) | Swift 레포 | ✅ |
+| 3 | Build number +1 → **Archive → Upload** | Xcode | ⬜ `CURRENT_PROJECT_VERSION 4→5` 설정 완료, Archive/Upload만 수동 |
 | 4 | ASC **앱 이름** `DeskDeck`로 수정 | ASC → App 정보 | ⬜ |
 | 5 | ASC **부제** "내 컴퓨터가 손안의 리모컨으로"로 수정 | ASC → App 정보 | ⬜ |
 | 6 | 새 빌드 선택 (이번 버전) | ASC → 빌드 | ⬜ |
 | 7 | Resolution Center에 회신 (아래 회신문) | ASC → 메시지 | ⬜ |
 | 8 | Submit for Review 재제출 | ASC | ⬜ |
-| 9 | 지원/개인정보 페이지의 앱 이름 `DeskDeck`로 갱신 (배포 반영) | `assets/appstore/pages/*.md` → 랜딩 | ⬜ |
+| 9 | 지원/개인정보 페이지 앱 이름 `DeskDeck`·헬퍼 `DeskDeckHelper`로 갱신 | `assets/appstore/pages/*.md` | ✅ |
+| 10 | (헬퍼) MacHelper Info.plist 표시 이름 → `DeskDeckHelper`, `CFBundleExecutable=MacHelper` 고정, `CFBundleVersion 2→3` | Swift 레포 `MacHelper` | ✅ |
+| 11 | (헬퍼) 새 DMG 빌드 → 공증(notarize)·staple → **`MacHelper-1.0.1.dmg` 파일명 유지**로 재업로드 | `scripts/build_dmg.sh` + 수동 | ⬜ |
+| 12 | 랜딩(`/macremote`) 표기 `DeskDeck`/`DeskDeckHelper` 갱신 (DMG_URL 파일명 유지) | front `public/macremote/index.html` + 소스 | ✅ 배포 필요 |
 
 **Resolution Center 회신문 (초안)**
 

@@ -21,3 +21,6 @@
 | 2026-06-04 | runbook-change | MRT-RB-002 | MacRemote 랜딩(/macremote) app/front 추가 — 지원/마케팅/개인정보 URL 통합, DMG_URL 연결 | [RB-002](70-runbook/runbook-002-ios-testflight-appstore.md) |
 | 2026-06-08 | review-reject | MRT-RB-002 | App Store 심사 거절 — Guideline 5.2.5 IP (앱 이름·부제·기기 표시 이름의 Mac/iPhone 상표). Submission 7289e983 | [RB-002 §4](70-runbook/runbook-002-ios-testflight-appstore.md) |
 | 2026-06-09 | rename | — | 5.2.5 대응 앱 개명 `MacRemote`→`DeskDeck` (Bundle ID 유지). 부제 맥·아이폰 제거. 기기 표시 이름 변경 위해 새 빌드 필요(별도 Swift 레포) | [RB-002 §4](70-runbook/runbook-002-ios-testflight-appstore.md) |
+| 2026-06-09 | code-change | MRT-RB-002 | Swift 레포 적용 — iOS pbxproj `CFBundleDisplayName`+`CFBundleName=DeskDeck` (생성 plist가 타겟명 MacRemote 사용→두 키 모두 명시), build 4→5 | [RB-002 §4](70-runbook/runbook-002-ios-testflight-appstore.md) |
+| 2026-06-09 | code-change | MRT-RB-001 | 헬퍼 개명 `MacHelper`→표시 이름 `DeskDeckHelper` (Info.plist `CFBundleName`/`DisplayName`). `CFBundleExecutable=MacHelper` 고정으로 실행 보장, 파일명·DMG·Bundle ID 유지, build 2→3. 새 DMG 빌드·재업로드 필요 | [RB-002 §4](70-runbook/runbook-002-ios-testflight-appstore.md) |
+| 2026-06-09 | landing | MRT-RB-002 | 랜딩(/macremote) 표기 `DeskDeck`/`DeskDeckHelper`로 갱신 (배포본+소스). DMG_URL 파일명 `MacHelper-1.0.1.dmg` 유지. 재배포 필요 | [RB-002 §4](70-runbook/runbook-002-ios-testflight-appstore.md) |
