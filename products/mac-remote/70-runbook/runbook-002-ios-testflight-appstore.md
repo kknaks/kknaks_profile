@@ -149,7 +149,7 @@ App Store Connect를 위→아래로 따라가며 입력한다. **상태 칸**�
 
 **개명 결정:** `MacRemote` → **`DeskDeck`** (Apple 상표 0개, 5.2.5 재거절 리스크 사실상 0). Bundle ID `com.macremote.MacRemote`는 **변경하지 않는다** (5.2.5 대상 아님, 바꾸면 앱 레코드·심사 이력 소멸).
 
-> Mac 헬퍼 앱 `MacHelper`는 DMG 배포라 5.2.5 대상은 아니지만 **브랜드 일관성**을 위해 표시 이름을 `DeskDeckHelper`로 함께 변경한다. 단 **실행파일 파일명·DMG 파일명(`MacHelper-1.0.1.dmg`)·Bundle ID는 유지** → 호스팅 URL·백엔드 `/download` 마운트 무영향. 표시 이름만 바꾸면 실행파일 해석이 깨지므로 `CFBundleExecutable=MacHelper`를 명시적으로 고정한다. 새 DMG 빌드·공증·재업로드 필요.
+> Mac 헬퍼 앱 `MacHelper`는 DMG 배포라 5.2.5 대상은 아니지만 **브랜드 일관성**을 위해 `DeskDeckHelper`로 **완전 개명**한다 — 표시 이름(CFBundle*Name) + 실행파일명 + `.app`/DMG 파일명(`DeskDeckHelper-1.0.1.dmg`)까지. `CFBundleExecutable`을 실행파일명(`DeskDeckHelper`)과 일치시켜 실행 보장. **Bundle ID(`com.macremote.machelper`)와 SPM product명(`MacHelperApp`)·리소스번들(`MacHelper_MacHelperApp.bundle`)은 유지**(내부 식별자, 안 바꿔도 무방·빌드 안정). DMG 파일명이 바뀌므로 `downloads/`의 구파일 교체 + 랜딩 `DMG_URL` 갱신 필요.
 
 **대응 체크리스트**
 
@@ -167,8 +167,9 @@ App Store Connect를 위→아래로 따라가며 입력한다. **상태 칸**�
 | 8 | Submit for Review 재제출 | ASC | ⬜ |
 | 9 | 지원/개인정보 페이지 앱 이름 `DeskDeck`·헬퍼 `DeskDeckHelper`로 갱신 | `assets/appstore/pages/*.md` | ✅ |
 | 10 | (헬퍼) MacHelper Info.plist 표시 이름 → `DeskDeckHelper`, `CFBundleExecutable=MacHelper` 고정, `CFBundleVersion 2→3` | Swift 레포 `MacHelper` | ✅ |
-| 11 | (헬퍼) 새 DMG 빌드 → 공증(notarize)·staple → **`MacHelper-1.0.1.dmg` 파일명 유지**로 재업로드 | `scripts/build_dmg.sh` + 수동 | ⬜ |
-| 12 | 랜딩(`/macremote`) 표기 `DeskDeck`/`DeskDeckHelper` 갱신 (DMG_URL 파일명 유지) | front `public/macremote/index.html` + 소스 | ✅ 배포 필요 |
+| 11 | (헬퍼) 새 DMG 빌드 → 공증·staple → `downloads/`에 `DeskDeckHelper-1.0.1.dmg` 배치(구 `MacHelper-1.0.1.dmg` 제거) | `scripts/build_dmg.sh` | ✅ 공증 통과 (Submission `3a01477f-9d26-4fb2-8895-638f2eac97eb`, source=Notarized Developer ID) |
+| 12 | 랜딩(`/macremote`) 표기 `DeskDeck`/`DeskDeckHelper` + `DMG_URL` 파일명 갱신 | front `public/macremote/index.html` + 소스 | ✅ 배포 필요 |
+| 13 | RB-001 / 백엔드 deploy README 산출물명·다운로드 URL 갱신 (SPM 내부명 유지) | `runbook-001`, `40-architecture/deploy/back` | ✅ |
 
 **Resolution Center 회신문 (초안)**
 

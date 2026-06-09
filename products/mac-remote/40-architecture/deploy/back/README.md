@@ -2,7 +2,7 @@
 
 규칙: `rules/product-doc-pipeline.md`
 
-> Mac 헬퍼(MacHelper)의 배포 *구조/환경*. 실행 *절차*는 [70-runbook/runbook-001](../../../70-runbook/runbook-001-mac-dmg-release.md).
+> Mac 헬퍼(DeskDeckHelper)의 배포 *구조/환경*. 실행 *절차*는 [70-runbook/runbook-001](../../../70-runbook/runbook-001-mac-dmg-release.md).
 
 ## Runtime / Target
 
@@ -10,7 +10,7 @@
 |---|---|
 | Language | Swift 5.9+ / macOS 14+ |
 | Build | Swift Package Manager (`swift build -c release`) |
-| Artifact | `build/MacHelper-<버전>.dmg` (Universal: arm64 + x86_64) |
+| Artifact | `build/DeskDeckHelper-<버전>.dmg` (Universal: arm64 + x86_64) |
 | 서명 주체 | Developer ID Application (외부 직접 배포용) |
 | 공증 | 적용 (notarytool + stapler) — 더블클릭 실행 |
 | 배포 채널 | Developer ID 사인 DMG 직접 배포 |
