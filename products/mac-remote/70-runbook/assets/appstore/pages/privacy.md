@@ -1,8 +1,8 @@
-# MacRemote 개인정보 처리방침
+# DeskDeck 개인정보 처리방침
 
 최종 업데이트: 2026-06-01
 
-MacRemote(이하 "앱")는 사용자의 개인정보를 **수집하지 않습니다.**
+DeskDeck(이하 "앱")는 사용자의 개인정보를 **수집하지 않습니다.**
 
 - **데이터 수집 없음** — 앱은 어떠한 개인정보도 수집·저장·전송하지 않습니다.
 - **로컬 동작** — 모든 통신은 사용자의 iPhone과 같은 Wi‑Fi의 Mac 사이에서만 이뤄지며, 개발자나 제3자 서버로 전송되지 않습니다.
@@ -15,11 +15,11 @@ MacRemote(이하 "앱")는 사용자의 개인정보를 **수집하지 않습니
 
 ---
 
-# MacRemote Privacy Policy (English)
+# DeskDeck Privacy Policy (English)
 
 Last updated: 2026‑06‑01
 
-MacRemote ("the app") **does not collect any personal data.**
+DeskDeck ("the app") **does not collect any personal data.**
 
 - **No data collection** — The app does not collect, store, or transmit any personal data.
 - **Local‑only operation** — All communication happens only between your iPhone and your Mac on the same Wi‑Fi network. Nothing is sent to the developer or any third party.

@@ -19,3 +19,5 @@
 | 2026-06-03 | runbook-change | MRT-RB-001 | 공증(notarization) 절차 추가 — 외부 배포 DMG 더블클릭 실행 (우클릭→열기 제거) | [RB-001](70-runbook/runbook-001-mac-dmg-release.md) |
 | 2026-06-04 | runbook-change | MRT-RB-001 | DMG 다운로드 호스팅 — 백엔드 /download 정적 마운트 + repo downloads/에 공증·staple DMG | [RB-001](70-runbook/runbook-001-mac-dmg-release.md) |
 | 2026-06-04 | runbook-change | MRT-RB-002 | MacRemote 랜딩(/macremote) app/front 추가 — 지원/마케팅/개인정보 URL 통합, DMG_URL 연결 | [RB-002](70-runbook/runbook-002-ios-testflight-appstore.md) |
+| 2026-06-08 | review-reject | MRT-RB-002 | App Store 심사 거절 — Guideline 5.2.5 IP (앱 이름·부제·기기 표시 이름의 Mac/iPhone 상표). Submission 7289e983 | [RB-002 §4](70-runbook/runbook-002-ios-testflight-appstore.md) |
+| 2026-06-09 | rename | — | 5.2.5 대응 앱 개명 `MacRemote`→`DeskDeck` (Bundle ID 유지). 부제 맥·아이폰 제거. 기기 표시 이름 변경 위해 새 빌드 필요(별도 Swift 레포) | [RB-002 §4](70-runbook/runbook-002-ios-testflight-appstore.md) |

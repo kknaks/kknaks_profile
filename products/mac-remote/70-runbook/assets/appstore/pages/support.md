@@ -1,6 +1,6 @@
-# MacRemote 지원 (Support)
+# DeskDeck 지원 (Support)
 
-MacRemote는 iPhone을 Mac의 리모컨으로 사용해, 열려 있는 창을 전환하고 자주 쓰는 단축키 매크로를 실행하는 앱입니다.
+DeskDeck는 iPhone을 Mac의 리모컨으로 사용해, 열려 있는 창을 전환하고 자주 쓰는 단축키 매크로를 실행하는 앱입니다.
 
 ## 사용을 위한 준비
 - 같은 Wi-Fi 네트워크에 있는 Mac
@@ -10,7 +10,7 @@ MacRemote는 iPhone을 Mac의 리모컨으로 사용해, 열려 있는 창을 �
 ## 시작하기
 1. Mac에 MacHelper를 설치하고 실행합니다 (메뉴바에 아이콘이 표시됩니다).
 2. Mac 메뉴바 아이콘에서 QR 코드를 엽니다.
-3. iPhone의 MacRemote에서 QR을 스캔하거나 IP를 입력해 연결합니다.
+3. iPhone의 DeskDeck에서 QR을 스캔하거나 IP를 입력해 연결합니다.
 4. 창 목록 탭에서 창을 전환하고, 매크로 탭에서 단축키를 실행합니다.
 
 ## 자주 묻는 질문
@@ -18,7 +18,7 @@ MacRemote는 iPhone을 Mac의 리모컨으로 사용해, 열려 있는 창을 �
 **연결이 안 돼요**
 - iPhone과 Mac이 같은 Wi-Fi에 있는지 확인하세요.
 - 일부 회사/공용 Wi-Fi는 기기 간 통신을 차단합니다(client isolation). 이 경우 Mac의 "인터넷 공유"로 핫스팟을 만들어 iPhone을 직접 연결하면 해결됩니다.
-- iPhone 설정 → MacRemote → "로컬 네트워크"가 허용돼 있는지 확인하세요.
+- iPhone 설정 → DeskDeck → "로컬 네트워크"가 허용돼 있는지 확인하세요.
 
 **창 제목이 안 보여요**
 - Mac 시스템 설정 → 개인정보 보호 및 보안 → 화면 기록에서 MacHelper를 허용하세요.
@@ -31,9 +31,9 @@ MacRemote는 iPhone을 Mac의 리모컨으로 사용해, 열려 있는 창을 �
 
 ---
 
-# MacRemote Support (English)
+# DeskDeck Support (English)
 
-MacRemote turns your iPhone into a remote control for your Mac — switch between open windows and run your favorite keyboard‑shortcut macros.
+DeskDeck turns your iPhone into a remote control for your Mac — switch between open windows and run your favorite keyboard‑shortcut macros.
 
 ## Requirements
 - A Mac on the same Wi‑Fi network
@@ -43,7 +43,7 @@ MacRemote turns your iPhone into a remote control for your Mac — switch betwee
 ## Getting started
 1. Install and launch MacHelper on your Mac (an icon appears in the menu bar).
 2. Open the QR code from the MacHelper menu bar icon.
-3. In MacRemote on iPhone, scan the QR code (or enter the IP) to connect.
+3. In DeskDeck on iPhone, scan the QR code (or enter the IP) to connect.
 4. Switch windows from the Windows tab and run shortcuts from the Macro tab.
 
 ## FAQ
@@ -51,7 +51,7 @@ MacRemote turns your iPhone into a remote control for your Mac — switch betwee
 **It won't connect**
 - Make sure the iPhone and Mac are on the same Wi‑Fi.
 - Some corporate/public Wi‑Fi networks block device‑to‑device traffic (client isolation). In that case, enable "Internet Sharing" on the Mac to create a hotspot and connect the iPhone directly.
-- Check iPhone Settings → MacRemote → "Local Network" is allowed.
+- Check iPhone Settings → DeskDeck → "Local Network" is allowed.
 
 **Window titles are blank**
 - Allow MacHelper under System Settings → Privacy & Security → Screen Recording on the Mac.

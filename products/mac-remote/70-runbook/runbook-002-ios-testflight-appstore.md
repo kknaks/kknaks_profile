@@ -88,8 +88,8 @@ App Store Connect를 위→아래로 따라가며 입력한다. **상태 칸**�
 
 | 필드 | 입력값 / 지침 | 상태 | 메모 |
 |---|---|---|---|
-| 이름 | MacRemote | ✅ | 그대로 유지 |
-| 부제 | "아이폰이 맥 리모컨이 된다" | ✅ | 13자 |
+| 이름 | **DeskDeck** | ⬜ | 5.2.5 거절로 개명 (구 MacRemote). ASC 텍스트 수정 + 기기 표시 이름은 §4 새 빌드 필요 |
+| 부제 | "내 컴퓨터가 손안의 리모컨으로" | ⬜ | 맥·아이폰 제거 (구 "아이폰이 맥 리모컨이 된다"). 대안: "창 전환·단축키 매크로 리모컨" |
 | 카테고리 | 기본: 유틸리티 | ✅ |  |
 | 콘텐츠 권한 | 자체 콘텐츠 → 해당 없음 | ✅ |  |
 
@@ -131,11 +131,55 @@ App Store Connect를 위→아래로 따라가며 입력한다. **상태 칸**�
 | 필드 | 입력값 / 지침 | 상태 | 메모 |
 |---|---|---|---|
 | Export Compliance | `ITSAppUsesNonExemptEncryption=NO` → 자동 통과(다이얼로그 안 뜸) | ✅ | 자동 통과 |
-| 심사를 위해 제출 | Submit for Review → Apple 심사 24~48h | ✅ | 2026-06-08 제출, "심사 대기 중" |
-| 출시 후 | 승인·출시되면 `60-release/release-003-*.md` 작성 | ⬜ | 심사 통과 대기 |
+| 심사를 위해 제출 | Submit for Review → Apple 심사 24~48h | ⛔ | 2026-06-08 제출 → **2026-06-08 거절 (5.2.5)**. 대응은 §4 |
+| 출시 후 | 승인·출시되면 `60-release/release-003-*.md` 작성 | ⬜ | 재제출·통과 대기 |
 | 출시 후 | App Store 정식 URL(`apps.apple.com/app/id…`)을 랜딩 다운로드 버튼에 연결 | ⬜ | ⚠️ 출시 전엔 앱 페이지 404 → URL 발급 후 연결 |
 
 > 입력하다 막히거나(⛔) 빠진 항목이 나오면 이 표에 행을 추가/갱신한다. 빌드 업로드 절차 자체는 위 §2(TestFlight) Deploy Steps와 동일(build number +1).
+
+### 4. 심사 반려 대응 — Guideline 5.2.5 (지식재산권)
+
+**반려 이력**
+
+| 일자 | 버전(빌드) | Submission ID | 가이드라인 | 사유 |
+|---|---|---|---|---|
+| 2026-06-08 | 1.0.1 (4) | 7289e983-49ae-467e-86d6-52ba8d835210 | 5.2.5 IP | 메타데이터의 앱 이름·부제가 Apple 상표(Mac/iPhone)를 부적절하게 사용. **기기 표시 이름**에도 "Mac" 포함 지적 (QA1823 링크) |
+
+> **핵심:** 이건 텍스트 두 줄만이 아니라 **기기 표시 이름**(`CFBundleDisplayName`)까지 지적됐다. ASC 텍스트만 고치면 같은 가이드라인으로 재거절된다. → **새 빌드 필수.**
+
+**개명 결정:** `MacRemote` → **`DeskDeck`** (Apple 상표 0개, 5.2.5 재거절 리스크 사실상 0). Bundle ID `com.macremote.MacRemote`는 **변경하지 않는다** (5.2.5 대상 아님, 바꾸면 앱 레코드·심사 이력 소멸).
+
+> Mac 헬퍼 앱 `MacHelper`는 DMG 배포(앱스토어 미등록)라 5.2.5 대상 아님 → 이번엔 그대로 둔다.
+
+**대응 체크리스트**
+
+| # | 작업 | 위치 | 상태 |
+|---|---|---|---|
+| 1 | 기기 표시 이름 변경: `CFBundleDisplayName` (없으면 `CFBundleName`) → `DeskDeck` | **별도 Swift 레포** `iOSApp` Info.plist / target Display Name | ⬜ |
+| 2 | 코드/문구 내 "MacRemote" UI 노출 문자열 점검 (앱 내 표시 이름) | Swift 레포 | ⬜ |
+| 3 | Build number +1 → Archive → Upload (절차는 §2와 동일) | Xcode | ⬜ |
+| 4 | ASC **앱 이름** `DeskDeck`로 수정 | ASC → App 정보 | ⬜ |
+| 5 | ASC **부제** "내 컴퓨터가 손안의 리모컨으로"로 수정 | ASC → App 정보 | ⬜ |
+| 6 | 새 빌드 선택 (이번 버전) | ASC → 빌드 | ⬜ |
+| 7 | Resolution Center에 회신 (아래 회신문) | ASC → 메시지 | ⬜ |
+| 8 | Submit for Review 재제출 | ASC | ⬜ |
+| 9 | 지원/개인정보 페이지의 앱 이름 `DeskDeck`로 갱신 (배포 반영) | `assets/appstore/pages/*.md` → 랜딩 | ⬜ |
+
+**Resolution Center 회신문 (초안)**
+
+```
+Thank you for the review.
+
+We have addressed Guideline 5.2.5:
+- The app name has been changed from "MacRemote" to "DeskDeck",
+  removing the Apple trademark from both the App Store name and the
+  on-device display name (CFBundleDisplayName) in a new build.
+- The subtitle no longer references "Mac" or "iPhone" and now
+  describes the app's function generically.
+
+The new build (build +1) with the updated display name has been
+uploaded and selected for this version. Please re-review.
+```
 
 ## 검증
 
