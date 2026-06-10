@@ -19,7 +19,7 @@ tags:
 title:
   en: Median of Two Sorted Arrays
   ko: 두 정렬 배열의 중앙값
-today: true
+today: false
 type: algorithm
 updated: '2026-06-09'
 visible: true
