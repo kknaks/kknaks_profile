@@ -8,6 +8,7 @@
 
 | ID | Version | Title | Status | Released At | Summary |
 |---|---|---|---|---|---|
+| [MRT-REL-003](release-003-deskdeck-appstore.md) | 1.0.1 | DeskDeck App Store 출시 | released | 2026-06-10 | 5.2.5 대응 MacRemote→DeskDeck 개명, App Store 첫 출시(build 5). 기능 변경 없음 |
 | [MRT-REL-002](release-002-v1-0-1.md) | 1.0.1 | mac-remote 1.0.1 | released | 2026-05-26 | 단말 격리 Wi-Fi 페어링/재연결/아이콘 + stale IP 수정 |
 | [MRT-REL-001](release-001-v1-0-0.md) | 1.0.0 | mac-remote 1.0.0 | released | 2026-05-24 | iPhone 리모컨 + Mac 헬퍼 초기 릴리즈 |
 
@@ -15,7 +16,7 @@
 
 | Current Version | Status | Notes |
 |---|---|---|
-| 1.0.1 | released | Mac DMG (Developer ID 사인), iOS TestFlight 빌드 3 |
+| 1.0.1 (DeskDeck) | released | **App Store 출시** (build 5, https://apps.apple.com/app/id6772868137), Mac DMG `DeskDeckHelper-1.0.1.dmg` (공증) |
 
 ## 검증 기준
 

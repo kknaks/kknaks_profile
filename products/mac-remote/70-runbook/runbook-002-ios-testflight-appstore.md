@@ -131,9 +131,9 @@ App Store Connect를 위→아래로 따라가며 입력한다. **상태 칸**�
 | 필드 | 입력값 / 지침 | 상태 | 메모 |
 |---|---|---|---|
 | Export Compliance | `ITSAppUsesNonExemptEncryption=NO` → 자동 통과(다이얼로그 안 뜸) | ✅ | 자동 통과 |
-| 심사를 위해 제출 | Submit for Review → Apple 심사 24~48h | ⏳ | 2026-06-08 제출 → 거절(5.2.5) → **2026-06-09 build 5(DeskDeck)로 재제출, 심사 대기 중**. 대응은 §4 |
-| 출시 후 | 승인·출시되면 `60-release/release-003-*.md` 작성 | ⬜ | 재제출·통과 대기 |
-| 출시 후 | App Store 정식 URL(`apps.apple.com/app/id…`)을 랜딩 다운로드 버튼에 연결 | ⬜ | ⚠️ 출시 전엔 앱 페이지 404 → URL 발급 후 연결 |
+| 심사를 위해 제출 | Submit for Review → Apple 심사 24~48h | ✅ | 06-08 제출 → 거절(5.2.5) → 06-09 build 5(DeskDeck) 재제출 → **2026-06-10 승인·출시** |
+| 출시 후 | 승인·출시되면 `60-release/release-003-*.md` 작성 | ✅ | [release-003](../60-release/release-003-deskdeck-appstore.md) |
+| 출시 후 | App Store 정식 URL을 랜딩 다운로드 버튼에 연결 | ✅ | `APP_STORE_URL=https://apps.apple.com/app/id6772868137` (랜딩 배포본+소스) |
 
 > 입력하다 막히거나(⛔) 빠진 항목이 나오면 이 표에 행을 추가/갱신한다. 빌드 업로드 절차 자체는 위 §2(TestFlight) Deploy Steps와 동일(build number +1).
 
