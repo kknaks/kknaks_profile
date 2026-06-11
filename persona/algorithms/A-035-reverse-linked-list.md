@@ -18,7 +18,7 @@ tags:
 title:
   en: Reverse Linked List
   ko: 연결 리스트 뒤집기
-today: true
+today: false
 type: algorithm
 updated: '2026-06-10'
 visible: true
