@@ -18,7 +18,7 @@ tags:
 title:
   en: Merge Two Sorted Lists
   ko: 정렬된 두 연결 리스트 병합
-today: true
+today: false
 type: algorithm
 updated: '2026-06-11'
 visible: true
