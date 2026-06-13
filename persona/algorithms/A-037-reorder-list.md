@@ -20,7 +20,7 @@ tags:
 title:
   en: Reorder List
   ko: 연결 리스트 재배치
-today: true
+today: false
 type: algorithm
 updated: '2026-06-12'
 visible: true
