@@ -6,6 +6,16 @@
 
 > 제품 전체 지도. 상세 내용은 각 단계 문서에 두고, 여기에는 현재 상태와 어디부터 봐야 하는지만 둔다.
 
+## 코드 레포
+
+코드가 별도 레포에 있으면 위치를 적는다. remote URL의 SSOT는 `context/studio/projects.md`이고, 여기에는 작업용 local clone 경로를 함께 둔다.
+
+| 항목 | 경로 |
+|---|---|
+| Remote | `github.com/<owner>/<repo>` |
+| Local clone | `<로컬 절대 경로>` |
+| 문서 SoT | `<이 제품 문서 디렉토리 절대 경로>` |
+
 ## 현재 상태
 
 baseline, decision, spec, work가 각각 어디까지 정리됐는지 한눈에 적는다.

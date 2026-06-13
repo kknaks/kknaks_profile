@@ -17,6 +17,7 @@
 | Persona Counselor | mobile app | building | owner / developer | `github.com/kknaks/persona_counselor` | `products/persona-counselor/` | 개인화 AI 상담사 앱 |
 | Study Timelapse | mobile app | building | owner / developer | `github.com/kknaks/study_timelapse` | `products/study-timelapse/` | 공부 타임랩스 앱 |
 | Summer Star Company | internal tool | building | owner / developer | `github.com/kknaks/summer_star_company` |  | 사무실 NFC 출퇴근 관리 도구 |
+| mykakao | backend / tool | building | owner / developer | `github.com/kknaksss/mykakao` | `products/mykakao/` | 카톡 대화 로컬 추출(SQLCipher 복호화) → 향후 일정 파싱·캘린더 |
 
 ## 상태 값
 

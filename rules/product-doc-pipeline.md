@@ -54,7 +54,7 @@ products/<product>/
 
 | 문서 | 역할 | 넣는 것 | 넣지 않는 것 |
 |---|---|---|---|
-| `README.md` | 제품 전체 map | 현재 상태, 문서 맵, 최근 로그 링크 | 상세 아이디어, 결정 근거, spec 본문, 작업 지시 |
+| `README.md` | 제품 전체 map | 현재 상태, 문서 맵, 코드 레포 위치(local clone·문서 SoT 경로), 최근 로그 링크 | 상세 아이디어, 결정 근거, spec 본문, 작업 지시 |
 | `log.md` | 제품 통합 변경 로그 | 문서 변경 이력, 상태 변경, 연결 변경 | 단계별 본문 복사 |
 | `00-baseline/README.md` | baseline index | 아이디어 목록, 상태, decision 연결 | 결정 내용 본문 |
 | `00-baseline/baseline-*.md` | 날것 입력 1건 | 원문, 배경, 중요성, 가능한 방향 | 확정 결정, 구현 지시 |

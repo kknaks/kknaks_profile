@@ -21,6 +21,7 @@
 | P1 | Language Diary | building | 출시 후보 앱 개발 | MVP 범위 정리 |
 | P1 | Persona Counselor | building | 출시 후보 앱 개발 | MVP 범위 정리 |
 | P1 | Study Timelapse | building | 출시 후보 앱 개발 | 출시 범위 정리 |
+| P1 | mykakao | building | 카톡 대화 로컬 추출 → 일정/캘린더 | 일정 파싱 단계 decision/spec |
 
 ## 진행 중
 
@@ -31,6 +32,7 @@
 | Language Diary | MVP 정리 | todo |  | 핵심 사용자 흐름 정의 |
 | Persona Counselor | MVP 정리 | todo |  | 상담/코칭/저널링 범위 선택 |
 | Study Timelapse | 출시 범위 정리 | todo |  | 앱 출시 체크리스트 작성 |
+| mykakao | 메시지 추출 웹 데모 (WORK-001) | done |  | 일정 파싱 단계 spec/work |
 
 ## 이번 주 목표
 

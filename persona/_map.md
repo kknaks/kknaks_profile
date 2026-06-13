@@ -1,8 +1,8 @@
 # persona/_map.md
 
-> 자동 생성 (build_persona_map.py, 2026-06-09 18:03 KST). 수동 편집 X.
+> 자동 생성 (build_persona_map.py, 2026-06-13 14:12 KST). 수동 편집 X.
 
-_총 235 파일 (profile 1 / career 5 / projects 12 / notes 157 / contents 21 / daily 39)_
+_총 239 파일 (profile 1 / career 5 / projects 13 / notes 157 / contents 21 / daily 42)_
 
 ## profile
 
@@ -15,7 +15,7 @@ _총 235 파일 (profile 1 / career 5 / projects 12 / notes 157 / contents 21 / 
 - [[career/bitcamp]] 비트캠프 (2024.06 — 2024.12)
 - [[career/dowha-eng]] 도화 엔지니어링 (2020.01 — 2023.12)
 
-## projects (web 2 · frontend 0 · backend 5 · mobile 4 · ai 0 · cli 1 · bot 0)
+## projects (web 2 · frontend 0 · backend 6 · mobile 4 · ai 0 · cli 1 · bot 0)
 - [[projects/kknaks-profile]] kknaks.dev (web · wip)
 - [[projects/summer-star-company]] Summer Star — 사무실 NFC 출퇴근 (web · wip)
 - [[projects/persona-counselor]] Persona Counselor (mobile · wip)
@@ -23,6 +23,7 @@ _총 235 파일 (profile 1 / career 5 / projects 12 / notes 157 / contents 21 / 
 - [[projects/study-timelapse]] Study Timelapse (mobile · wip)
 - [[projects/wine-log]] Wine Log (mobile · live)
 - [[projects/open-kknaks]] open-kknaks (cli · live)
+- [[projects/mykakao]] mykakao (backend · wip)
 - [[projects/centurion-charty]] Centurion Charty (backend · wip)
 - [[projects/centurion-mso]] Centurion MSO (backend · wip)
 - [[projects/linky]] Linky (backend · wip)
@@ -189,7 +190,7 @@ _총 235 파일 (profile 1 / career 5 / projects 12 / notes 157 / contents 21 / 
 - [[notes/2025-11-01-migration_detail]] Database Migration 상세 프로세스 (work · 2025.11.01)
 
 ## contents (총 21개)
-- [[contents/C-021-pending]] Day 21 — Pending YouTube Content (2026.06.09)
+- [[contents/C-021-pending]] Day 21 — OpenViking: AI 에이전트의 컨텍스트 관리 혁신 (2026.06.09)
 - [[contents/C-020-pending]] Day 20 — GraphRAG와 지식 그래프: RAG의 한계 극복하기 (2026.06.08)
 - [[contents/C-019-pending]] Day 19 — 프라이빗 AI의 LLM 최적화: 증류모델과 양자화 가이드 (2026-06-05)
 - [[contents/C-018-pending]] Day 18 — Redis가 싱글 스레드로도 수십만 QPS를 처리하는 이유 (2026-05-27)
@@ -211,7 +212,10 @@ _총 235 파일 (profile 1 / career 5 / projects 12 / notes 157 / contents 21 / 
 - [[contents/C-002-pending-sample]] Day 02 — 모듈로 편향으로 인한 게임 확률 버그 (2026.05.02)
 - [[contents/C-001-fastapi-di]] Day 01 — FastAPI Dependency Injection — 진짜 쓸 수 있게 (2026.05.01)
 
-## daily (총 39개, 최근 10)
+## daily (총 42개, 최근 10)
+- [[daily/2026-06-11]] (2026.06.11)
+- [[daily/2026-06-10]] (2026.06.10)
+- [[daily/2026-06-09]] (2026.06.09)
 - [[daily/2026-06-08]] (2026.06.08)
 - [[daily/2026-06-07]] (2026.06.07)
 - [[daily/2026-06-06]] (2026.06.06)
@@ -219,9 +223,6 @@ _총 235 파일 (profile 1 / career 5 / projects 12 / notes 157 / contents 21 / 
 - [[daily/2026-06-04]] (2026.06.04)
 - [[daily/2026-06-03]] (2026.06.03)
 - [[daily/2026-06-02]] (2026.06.02)
-- [[daily/2026-06-01]] (2026.06.01)
-- [[daily/2026-05-31]] (2026.05.31)
-- [[daily/2026-05-30]] (2026.05.30)
 
 ## 위키링크 그래프 (notes)
 - 2024-05-24-Day01 → 2024-05-27-Day02
