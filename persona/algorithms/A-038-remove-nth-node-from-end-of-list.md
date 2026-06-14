@@ -18,7 +18,7 @@ tags:
 title:
   en: Remove Nth Node From End of List
   ko: 리스트 끝에서 N번째 노드 제거
-today: true
+today: false
 type: algorithm
 updated: '2026-06-13'
 visible: true
