@@ -18,7 +18,7 @@ tags:
 title:
   en: Copy List with Random Pointer
   ko: 랜덤 포인터가 있는 리스트 복사
-today: true
+today: false
 type: algorithm
 updated: '2026-06-14'
 visible: true
