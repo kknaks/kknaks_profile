@@ -19,7 +19,7 @@ tags:
 title:
   en: Add Two Numbers
   ko: 두 숫자 더하기
-today: true
+today: false
 type: algorithm
 updated: '2026-06-15'
 visible: true
