@@ -1,8 +1,8 @@
 # persona/_map.md
 
-> 자동 생성 (build_persona_map.py, 2026-06-13 14:12 KST). 수동 편집 X.
+> 자동 생성 (build_persona_map.py, 2026-06-17 11:35 KST). 수동 편집 X.
 
-_총 239 파일 (profile 1 / career 5 / projects 13 / notes 157 / contents 21 / daily 42)_
+_총 243 파일 (profile 1 / career 5 / projects 13 / notes 157 / contents 22 / daily 45)_
 
 ## profile
 
@@ -189,7 +189,8 @@ _총 239 파일 (profile 1 / career 5 / projects 13 / notes 157 / contents 21 / 
 - [[notes/2025-11-01-database_migration]] Database Migration(AWS RDS -> Azure MySQL) (work · 2025.11.01)
 - [[notes/2025-11-01-migration_detail]] Database Migration 상세 프로세스 (work · 2025.11.01)
 
-## contents (총 21개)
+## contents (총 22개)
+- [[contents/C-022-pending]] Day 22 — Pending YouTube Content (2026.06.17)
 - [[contents/C-021-pending]] Day 21 — OpenViking: AI 에이전트의 컨텍스트 관리 혁신 (2026.06.09)
 - [[contents/C-020-pending]] Day 20 — GraphRAG와 지식 그래프: RAG의 한계 극복하기 (2026.06.08)
 - [[contents/C-019-pending]] Day 19 — 프라이빗 AI의 LLM 최적화: 증류모델과 양자화 가이드 (2026-06-05)
@@ -212,7 +213,10 @@ _총 239 파일 (profile 1 / career 5 / projects 13 / notes 157 / contents 21 / 
 - [[contents/C-002-pending-sample]] Day 02 — 모듈로 편향으로 인한 게임 확률 버그 (2026.05.02)
 - [[contents/C-001-fastapi-di]] Day 01 — FastAPI Dependency Injection — 진짜 쓸 수 있게 (2026.05.01)
 
-## daily (총 42개, 최근 10)
+## daily (총 45개, 최근 10)
+- [[daily/2026-06-14]] (2026.06.14)
+- [[daily/2026-06-13]] (2026.06.13)
+- [[daily/2026-06-12]] (2026.06.12)
 - [[daily/2026-06-11]] (2026.06.11)
 - [[daily/2026-06-10]] (2026.06.10)
 - [[daily/2026-06-09]] (2026.06.09)
@@ -220,9 +224,6 @@ _총 239 파일 (profile 1 / career 5 / projects 13 / notes 157 / contents 21 / 
 - [[daily/2026-06-07]] (2026.06.07)
 - [[daily/2026-06-06]] (2026.06.06)
 - [[daily/2026-06-05]] (2026.06.05)
-- [[daily/2026-06-04]] (2026.06.04)
-- [[daily/2026-06-03]] (2026.06.03)
-- [[daily/2026-06-02]] (2026.06.02)
 
 ## 위키링크 그래프 (notes)
 - 2024-05-24-Day01 → 2024-05-27-Day02
