@@ -20,7 +20,7 @@ tags:
 title:
   en: Find the Duplicate Number
   ko: 중복된 숫자 찾기
-today: true
+today: false
 type: algorithm
 updated: '2026-06-17'
 visible: true
