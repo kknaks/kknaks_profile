@@ -20,7 +20,7 @@ tags:
 title:
   en: LRU Cache
   ko: LRU 캐시
-today: true
+today: false
 type: algorithm
 updated: '2026-06-18'
 visible: true
