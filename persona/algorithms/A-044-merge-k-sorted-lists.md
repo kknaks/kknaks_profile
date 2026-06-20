@@ -20,7 +20,7 @@ tags:
 title:
   en: Merge k Sorted Lists
   ko: k개 정렬 리스트 병합
-today: true
+today: false
 type: algorithm
 updated: '2026-06-19'
 visible: true
