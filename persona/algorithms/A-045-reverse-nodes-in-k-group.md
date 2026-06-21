@@ -18,7 +18,7 @@ tags:
 title:
   en: Reverse Nodes in k-Group
   ko: k개 노드씩 연결 리스트 뒤집기
-today: true
+today: false
 type: algorithm
 updated: '2026-06-20'
 visible: true
