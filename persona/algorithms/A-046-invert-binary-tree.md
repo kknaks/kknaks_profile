@@ -20,7 +20,7 @@ tags:
 title:
   en: Invert Binary Tree
   ko: 이진 트리 뒤집기
-today: true
+today: false
 type: algorithm
 updated: '2026-06-21'
 visible: true
