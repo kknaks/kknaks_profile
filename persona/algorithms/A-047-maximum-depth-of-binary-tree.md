@@ -20,7 +20,7 @@ tags:
 title:
   en: Maximum Depth of Binary Tree
   ko: 이진 트리의 최대 깊이
-today: true
+today: false
 type: algorithm
 updated: '2026-06-22'
 visible: true
