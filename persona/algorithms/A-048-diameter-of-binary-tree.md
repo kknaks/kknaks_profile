@@ -19,7 +19,7 @@ tags:
 title:
   en: Diameter of Binary Tree
   ko: 이진 트리의 지름
-today: true
+today: false
 type: algorithm
 updated: '2026-06-23'
 visible: true
