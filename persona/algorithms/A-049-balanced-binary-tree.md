@@ -19,7 +19,7 @@ tags:
 title:
   en: Balanced Binary Tree
   ko: 균형 이진 트리
-today: true
+today: false
 type: algorithm
 updated: '2026-06-24'
 visible: true
