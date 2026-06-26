@@ -20,7 +20,7 @@ tags:
 title:
   en: Same Tree
   ko: 같은 트리
-today: true
+today: false
 type: algorithm
 updated: '2026-06-25'
 visible: true
