@@ -21,7 +21,7 @@ tags:
 title:
   en: Subtree of Another Tree
   ko: 다른 트리의 부분트리
-today: true
+today: false
 type: algorithm
 updated: '2026-06-26'
 visible: true
