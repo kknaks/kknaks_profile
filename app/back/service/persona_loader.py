@@ -195,10 +195,13 @@ def _build_graph_nodes(
             "archived": bool(n.get("archived", False)),
         }, "persona/notes")
 
-    # products/**/*.md
+    # products/**/*.md — 노드 자격 = frontmatter `type` 보유 (KDEV-WORK-002 Phase 2).
+    # type 없는 navigational/legal 파일(README/log/privacy/support)은 노드가 아니다.
     if products_dir.is_dir():
         for p in sorted(products_dir.glob("**/*.md")):
             node = _load_product_node(p)
+            if not node.get("type"):
+                continue  # navigational — 그래프 노드/중복·orphan 검사 대상 아님
             _add(p.stem, node, str(p.relative_to(products_dir.parent)))
 
     return nodes, duplicates

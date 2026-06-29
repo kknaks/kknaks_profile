@@ -140,9 +140,19 @@ class TestValidateL1toL6:
         assert any(x["rule"] == "L4" for x in v)
 
     def test_l5_orphan(self):
-        nodes = {"lonely": _node(body="no links"), "a": _node(body="[[a]]")}
+        # KDEV-WORK-002 Phase 3 — orphan 검사는 지식 노드(reference 등)만 대상
+        nodes = {
+            "lonely": _node("reference", body="no links"),
+            "a": _node("reference", body="[[a]]"),
+        }
         v = validate_graph(nodes)
         assert any(x["rule"] == "L5" and x["node"] == "lonely" for x in v)
+
+    def test_l5_skips_non_knowledge_node(self):
+        # daily/note 등 비지식 노드는 엣지 0이어도 orphan 아님
+        nodes = {"daily-1": _node("daily", body="no links")}
+        v = validate_graph(nodes)
+        assert not any(x["rule"] == "L5" for x in v)
 
     def test_l6_archive_reference(self):
         nodes = {

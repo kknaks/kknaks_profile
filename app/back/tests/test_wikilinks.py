@@ -48,6 +48,21 @@ class TestExtractWikilinks:
         assert extract_wikilinks("") == []
         assert extract_wikilinks(None) == []
 
+    def test_skips_inline_code(self):
+        # KDEV-WORK-002 Phase 1 — 인라인 코드 안의 [[]] 는 문법 설명, 엣지 아님
+        body = "문법은 `[[stem]]` 처럼 쓰고 실제로는 [[real-note]] 를 건다"
+        assert extract_wikilinks(body) == ["real-note"]
+
+    def test_skips_fenced_code(self):
+        # KDEV-WORK-002 Phase 1 — fenced 코드블록 안의 [[]] 제외
+        body = "예시:\n```md\n[[example-stem]] 이렇게\n```\n본문 [[real-note]]"
+        assert extract_wikilinks(body) == ["real-note"]
+
+    def test_keeps_links_outside_code(self):
+        # 코드 밖 링크는 stripping 후에도 그대로 (회귀 방지)
+        body = "[[a]] 그리고 `code` 그리고 [[b]]"
+        assert extract_wikilinks(body) == ["a", "b"]
+
 
 class TestBuildGraph:
     def test_extracts_edges(self):

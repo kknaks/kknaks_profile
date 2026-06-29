@@ -127,6 +127,31 @@ class TestValidationFailures:
             load_persona(tmp_path)
 
 
+class TestGraphNodeQualification:
+    """KDEV-WORK-002 Phase 2 — 노드 자격 = frontmatter `type` 보유."""
+
+    def test_typeless_navigational_excluded(self, tmp_path: Path):
+        from service.persona_loader import _build_graph_nodes
+
+        products = tmp_path / "products" / "demo"
+        products.mkdir(parents=True)
+        # type 있는 진짜 노드
+        (products / "spec-001-foo.md").write_text(
+            "---\nid: D-SPEC-001\ntype: spec\ntitle: Foo\n---\n본문 [[x]]",
+            encoding="utf-8",
+        )
+        # type 없는 navigational 파일 — 노드 아님
+        (products / "README.md").write_text("# 안내\n그냥 readme", encoding="utf-8")
+        (products / "log.md").write_text("---\ntitle: 로그\n---\n변경 기록", encoding="utf-8")
+
+        nodes, dups = _build_graph_nodes({}, tmp_path / "products")
+        assert "spec-001-foo" in nodes
+        assert "README" not in nodes
+        assert "log" not in nodes
+        # type 없는 파일은 중복 stem 검사에도 안 걸림
+        assert dups == []
+
+
 class TestAlgorithms:
     """spec-07 — algorithms 카테고리 로드 + 검증."""
 

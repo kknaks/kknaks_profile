@@ -26,6 +26,11 @@ ALLOWED_NODE_TYPES: set[str] = {
     "baseline", "decision", "spec", "work", "release", "runbook", "bugfix",
 }
 
+# L5 orphan 대상 — zettel 지식 노드만 (decision-003 node type 중 idea 제외).
+# daily·algorithm·career·note·spec·work 등은 그래프 연결 의무가 없어 orphan 검사 제외
+# (KDEV-WORK-002 Phase 3, KDEV-SPEC-004 §4).
+KNOWLEDGE_NODE_TYPES: set[str] = {"reference", "permanent", "post", "product"}
+
 # L4 방향 정합 — 위계 rank (높을수록 상류). up 타겟 rank >= source rank 여야 함.
 # idea 는 어떤 것도 up 할 수 없다 (rank 0 + 별도 가드).
 _TYPE_RANK: dict[str, int] = {
@@ -214,8 +219,10 @@ def validate_graph(
             if nodes[resolved].get("archived") and not node.get("archived"):
                 violations.append(_v("L6", "WARN", stem, f"archived '{resolved}' 를 up 의존"))
 
-    # L5 — orphan (resolve 된 엣지가 in/out 모두 0)
+    # L5 — orphan (resolve 된 엣지가 in/out 모두 0). 지식 노드만 대상.
     for stem in sorted(nodes):
+        if nodes[stem].get("type") not in KNOWLEDGE_NODE_TYPES:
+            continue
         if degree.get(stem, 0) == 0:
             violations.append(_v("L5", "WARN", stem, "orphan (엣지 0개)"))
 
