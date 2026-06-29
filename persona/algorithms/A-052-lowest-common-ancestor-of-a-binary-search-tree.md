@@ -20,7 +20,7 @@ tags:
 title:
   en: Lowest Common Ancestor of a Binary Search Tree
   ko: 이진 탐색 트리의 최저 공통 조상
-today: true
+today: false
 type: algorithm
 updated: '2026-06-28'
 visible: true
