@@ -11,6 +11,7 @@ import frontmatter
 import yaml
 
 from core.wikilinks import build_graph
+from core.graph import build_knowledge_graph, validate_graph
 
 # spec-07 §4 — 알고리즘 md 본문의 `## Data` fenced yaml 블록 추출
 ALGO_DATA_BLOCK = re.compile(r"## Data\s*\n+```yaml\n(.*?)\n```", re.DOTALL)
@@ -84,8 +85,11 @@ def load_persona(persona_dir: Path) -> dict[str, Any]:
         daily          (list, sorted by date desc)
         activity       (dict, may be empty)
         _meta          (dict)
-        _edges         (list of {source, target})
-        _backlinks     (dict: target_id → [source_id, ...])
+        _edges         (list of {source, target}) — persona notes only (/api/notes/graph 계약)
+        _backlinks     (dict: target_id → [source_id, ...]) — persona notes only
+        _nodes         (dict: stem → node) — notes + products 결합 (지식그래프, KDEV-SPEC-002)
+        _graph         (dict: nodes/edges[type,dir]/backlinks) — _graph.json 형태
+        _graph_violations (list of {rule, level, node, detail}) — L1~L6 (report-only)
     """
     if not persona_dir.is_dir():
         raise PersonaError(f"persona dir not found: {persona_dir}")
@@ -137,7 +141,88 @@ def load_persona(persona_dir: Path) -> dict[str, Any]:
     data["_edges"] = edges
     data["_backlinks"] = backlinks
 
+    # KDEV-WORK-001 — products 포함 지식그래프 + L1~L6 검증 (report-only, 절대 raise X).
+    # persona 로드/notes 라우트와 분리된 신규 키. 실패해도 부팅 영향 없게 best-effort.
+    try:
+        products_dir = persona_dir.parent / "products"
+        nodes, duplicate_stems = _build_graph_nodes(notes, products_dir)
+        data["_nodes"] = nodes
+        data["_graph"] = build_knowledge_graph(nodes)
+        data["_graph_violations"] = validate_graph(nodes, duplicate_stems)
+    except Exception as e:  # noqa: BLE001 — report-only, 부팅 차단 금지
+        data["_nodes"] = {}
+        data["_graph"] = {"nodes": [], "edges": [], "backlinks": {}}
+        data["_graph_violations"] = []
+        data["_graph_error"] = f"{type(e).__name__}: {e}"
+
     return data
+
+
+def _build_graph_nodes(
+    notes: dict[str, dict],
+    products_dir: Path,
+) -> tuple[dict[str, dict], list[dict]]:
+    """persona notes + products `*.md` → stem→node dict + 중복 stem 위반 리스트.
+
+    노드 식별자 = 파일명 stem (KDEV-SPEC-002 §4). 같은 stem 이 두 곳이면
+    L2(SSOT 중복) 위반으로 수집하고 첫 항목을 유지(report-only).
+    """
+    nodes: dict[str, dict] = {}
+    origin: dict[str, str] = {}  # stem → 출처 라벨 (중복 진단용)
+    duplicates: list[dict] = []
+
+    def _add(stem: str, node: dict, label: str) -> None:
+        if stem in nodes:
+            duplicates.append({
+                "rule": "L2",
+                "level": "ERROR",
+                "node": stem,
+                "detail": f"중복 stem '{stem}' — {origin[stem]} 와 {label} (SSOT 유일 위반)",
+            })
+            return
+        nodes[stem] = node
+        origin[stem] = label
+
+    # persona notes (stem == id, spec-01 §6.1 강제됨)
+    for nid, n in notes.items():
+        _add(nid, {
+            "id": n.get("id", nid),
+            "type": n.get("type", "note"),
+            "title": n.get("title"),
+            "body": n.get("body", ""),
+            "up": n.get("up"),
+            "aliases": n.get("aliases"),
+            "archived": bool(n.get("archived", False)),
+        }, "persona/notes")
+
+    # products/**/*.md
+    if products_dir.is_dir():
+        for p in sorted(products_dir.glob("**/*.md")):
+            node = _load_product_node(p)
+            _add(p.stem, node, str(p.relative_to(products_dir.parent)))
+
+    return nodes, duplicates
+
+
+def _load_product_node(path: Path) -> dict:
+    """products `*.md` → 그래프 노드 dict (stem 은 호출부에서 path.stem)."""
+    post = frontmatter.load(path)
+    meta = dict(post.metadata)
+    archived = (
+        "_archive" in path.parts
+        or meta.get("status") == "archived"
+        or meta.get("archived") is True
+    )
+    return {
+        "id": meta.get("id"),
+        "type": meta.get("type"),
+        "title": meta.get("title"),
+        "body": post.content,
+        "up": meta.get("up"),
+        "aliases": meta.get("aliases"),
+        "archived": archived,
+        "_path": path,
+    }
 
 
 def validate_persona(data: dict[str, Any]) -> None:

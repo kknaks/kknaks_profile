@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import logging
 import os
 from contextlib import asynccontextmanager
@@ -41,6 +42,43 @@ def load_all() -> None:
         len(_data["daily"]),
         len(_data.get("algorithms", [])),
     )
+    _report_graph(_data)
+
+
+def _report_graph(data: dict[str, Any]) -> None:
+    """KDEV-WORK-001 — 지식그래프 산출(_graph.json) + L1~L6 검증 리포트.
+
+    **report-only**: 위반은 로그로만 출력, 부팅 차단 안 함. write 실패해도 무시.
+    """
+    from core.graph import summarize
+
+    graph = data.get("_graph") or {"nodes": [], "edges": [], "backlinks": {}}
+    violations = data.get("_graph_violations") or []
+    if data.get("_graph_error"):
+        logger.warning("graph build error (report-only): %s", data["_graph_error"])
+
+    logger.info(
+        "knowledge graph: %d nodes, %d edges (report-only)",
+        len(graph["nodes"]),
+        len(graph["edges"]),
+    )
+    if violations:
+        counts = summarize(violations)
+        logger.warning(
+            "graph validation (report-only, WORK-002 작업목록): %s",
+            ", ".join(f"{k}={v}" for k, v in sorted(counts.items())),
+        )
+
+    # _graph.json best-effort write — 읽기전용 FS 등 실패는 무시 (부팅 영향 0)
+    try:
+        out = config.graph_json_path()
+        out.write_text(
+            json.dumps(graph, ensure_ascii=False, indent=2, sort_keys=True),
+            encoding="utf-8",
+        )
+        logger.info("wrote %s", out)
+    except Exception as e:  # noqa: BLE001
+        logger.warning("could not write _graph.json (ignored): %s", e)
 
 
 def get_data() -> dict[str, Any]:

@@ -43,6 +43,9 @@ app/front/tsconfig.tsbuildinfo
 *.log
 app/back/logs/
 
+# 지식그래프 빌더 산출물 (KDEV-WORK-001, 부팅 시 derive — git 트래킹 X)
+_graph.json
+
 
 # import-project skill의 외부 레포 둘 자리 (gitignore — 본 repo 일부 X)
 workspace/

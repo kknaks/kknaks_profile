@@ -15,9 +15,34 @@ class TestExtractWikilinks:
         # 같은 id 두 번 등장 시 두 번 반환 (등장 순서 의미 있음)
         assert extract_wikilinks("[[x]] [[y]] [[x]]") == ["x", "y", "x"]
 
-    def test_ignores_non_kebab(self):
-        # 위키링크는 영문 소문자 + 하이픈만 (spec-01 §2.4)
+    def test_allows_uppercase_id_form(self):
+        # KDEV-SPEC-002 §4 — 대문자 id-style stem 허용 ([[KDEV-SPEC-001]])
+        assert extract_wikilinks("see [[KDEV-SPEC-001]] and [[ok-id]]") == [
+            "KDEV-SPEC-001",
+            "ok-id",
+        ]
+
+    def test_ignores_prose_with_space(self):
+        # 공백 포함은 stem 규약 위반 → 산문 오탐 방지로 무시
         assert extract_wikilinks("[[Foo Bar]] and [[ok-id]]") == ["ok-id"]
+
+    def test_parses_alias_form(self):
+        # [[stem|alias]] — alias 표시는 버리고 stem
+        assert extract_wikilinks("[[decision-001-foo|KDEV-DEC-001]]") == [
+            "decision-001-foo"
+        ]
+
+    def test_parses_folder_form(self):
+        # [[folder/stem]] — 마지막 경로 세그먼트가 stem
+        assert extract_wikilinks("[[20-spec/spec-002-graph-schema]]") == [
+            "spec-002-graph-schema"
+        ]
+
+    def test_parses_underscore_stem(self):
+        # 아카이브 버전 prefix stem (v1_0_1-work-005) 허용
+        assert extract_wikilinks("[[v1_0_1-work-005-websocket-server]]") == [
+            "v1_0_1-work-005-websocket-server"
+        ]
 
     def test_empty_body(self):
         assert extract_wikilinks("") == []
