@@ -34,7 +34,9 @@ links:
 
 - Decision reference: [[decision-005-classification-workflow|KDEV-DEC-005]]
 - Baseline reference: [[baseline-001-repo-knowledge-graph|KDEV-BL-001]]
-- Domain note: permanent·product·post는 평행한 독립 SSOT. idea는 휘발.
+- Domain note: permanent·product·post는 평행한 독립 SSOT. idea는 휘발. reference는 종착지가 아니라 인용되는 재료층.
+- 분류 기준: **product**=명백히 만들 것 / **permanent**=더 팔 탐구 / **post**=공유할 글.
+- 정제 주체: **사람(작성자)** 주도. 에이전트는 보조(inbox 정리·연결 후보 제안)만.
 - Open questions: §7
 
 ### Business Requirement
@@ -56,20 +58,28 @@ Out of scope: 검증 규칙([[spec-004-graph-validation|KDEV-SPEC-004]]), 디렉
 
 1. 떠오른 생각을 `inbox/`에 빠르게 적는다 (type: idea, 정제 안 함).
 
-### S-2. 분류 — 종착지로 배치
+### S-2. 분류·정제 — 종착지로 배치
 
-1. inbox의 idea를 검토해 성격을 판단한다.
-2. 제품 스펙감 → `products/{x}/00-baseline`로 옮겨 적는다.
-3. 연구/고찰 → `permanent/`로.
-4. 글감 → `persona/posts/`로.
-5. **원본 idea는 폐기** (휘발). 내용은 종착지에 존재.
+작성자가 주기적으로 inbox를 리뷰한다 (에이전트는 inbox 정리·연결 후보 제안까지만 보조).
 
-### S-3. 연결 — 기반/연상
+1. 각 idea의 성격을 판단한다. 분류 기준:
+   - **product** (명백히 만들 것) → `products/{x}/00-baseline`로 직행.
+   - **permanent** (더 팔 탐구·고찰) → `permanent/`로 정제(S-3).
+   - **post** (공유할 글) → `persona/posts/`로.
+   - 버릴 것 → 삭제.
+2. **두 경로 공존**: 명백하면 종착지 직행, 더 여물 게 필요하면 `permanent`를 거쳐 정제 후 product/post로 발전(up 기반).
+3. **원본 idea는 폐기** (휘발). 내용은 종착지에 존재.
 
-1. reference 자료를 읽고 permanent/product/post 작성 시 본문에 `[[reference-stem]]` 인용.
-2. 계보(기반)면 `up:`에도 stem을 넣는다.
-3. permanent끼리 관련되면 본문 `[[]]`로 연상 연결.
-4. permanent와 product는 별개 SSOT로 살아있고, `up:`은 인용일 뿐 중복 아님.
+### S-3. 정제 — 연결하며 재작성 (정제의 핵심)
+
+permanent 작성은 단순 이동이 아니라 **연결하며 내 언어로 다시 쓰는 사고 행위**다.
+
+1. 내 언어로 다시 서술한다 (자료 베끼기 X).
+2. "왜 중요한지 / 맥락"을 덧붙인다.
+3. 관련 reference 자료를 본문 `[[reference-stem]]`으로 인용하고, 기반이면 `up:`에도 stem을 넣는다.
+4. **기존 permanent와 본문 `[[]]`로 연결한다 — 여기서 정제가 일어난다** (관련/충돌/확장 발견). 연상 연결.
+5. permanent와 product는 별개 SSOT로 살아있고, `up:`은 인용일 뿐 중복 아님.
+6. permanent 연결이 쌓여 패턴이 보이면 product(만들 것)/post(글)로 발전한다.
 
 ### S-4. 망각 — 아카이브
 
@@ -83,10 +93,12 @@ Out of scope: 검증 규칙([[spec-004-graph-validation|KDEV-SPEC-004]]), 디렉
 ```mermaid
 stateDiagram-v2
     [*] --> idea : inbox 수집
-    idea --> product : 제품 스펙감 (분류)
-    idea --> permanent : 연구/고찰 (분류)
-    idea --> post : 글감 (분류)
+    idea --> product : 명백히 만들 것 (직행)
+    idea --> permanent : 더 팔 탐구
+    idea --> post : 공유할 글
     idea --> [*] : 분류 후 원본 폐기
+    permanent --> product : 정제·발전 (up 기반, 별개 SSOT)
+    permanent --> post : 정제·발전 (up 기반, 별개 SSOT)
     permanent --> archived : 안 씀
     archived --> permanent : 부활
     reference --> permanent : 인용(up)
@@ -95,6 +107,7 @@ stateDiagram-v2
 
 ## 5. Implementation Rules
 
+- **정제 주체 = 사람(작성자).** 에이전트는 inbox 정리·연결 후보 제안까지만 보조하고, permanent 재작성·연결(사고 행위)은 사람이 한다.
 - 분류 후 inbox 원본은 폐기 (inbox는 항상 미분류만 보유).
 - idea는 `up:` 대상 금지 (휘발). 상류는 reference·permanent만 — 검증 L4.
 - 종착지 간 동일 stem 중복 금지 = SSOT 단일 — 검증 L2.
