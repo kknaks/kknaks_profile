@@ -60,10 +60,10 @@ products/<product>/
 | `00-baseline/baseline-*.md` | 날것 입력 1건 | 원문, 배경, 중요성, 가능한 방향 | 확정 결정, 구현 지시 |
 | `10-decision/README.md` | decision index | 결정 로그, 미결 사항, baseline/spec 연결 | 기능 계약 본문, 작업 계획 |
 | `10-decision/decision-*.md` | 결정 1건 | 선택지, 결정, 미결, 영향 범위 | 상세 구현 단계 |
-| `20-spec/README.md` | spec index | spec 목록, 상태, decision/work 연결 | work 진행률 상세 |
-| `20-spec/spec-*.md` | 기능 계약 1건 | user flow, state machine, UI/UX, FE, BE, API, 데이터 계약, work handoff | PR 계획, 작업 순서, 구현 완료 acceptance, 체크리스트 |
-| `30-work/README.md` | work index | work 목록, spec coverage, 상태 | spec 본문 복사 |
-| `30-work/work-*.md` | 작업 지시 1건 | scope, 구현 순서, spec 계약에서 파생한 acceptance, 완료 조건, 테스트 | 제품 결정 자체 |
+| `20-spec/README.md` | spec index | spec 목록, 상태, decision 연결, 영역별 읽는 순서 | work 진행률 상세, owner, blocker, PR |
+| `20-spec/spec-*.md` | 기능 계약 1건 | user flow, state machine, UI/UX, API, 데이터 계약, acceptance criteria | PR 계획, 작업 순서, 구현 완료 체크리스트, 특정 work ID 참조 |
+| `30-work/README.md` | work index | Status Board, work 목록, spec coverage, release gate | spec 본문 복사 |
+| `30-work/work-*.md` | 작업 지시 1건 | scope, code surface, phase별 실행·검증·완료 증거, rollback | 제품 결정 자체, spec 본문 복사 |
 | `40-architecture/README.md` | architecture index | database, system, deploy 진입점 | 단일 work 구현 메모 |
 | `40-architecture/database/` | database architecture | ERD, 테이블, 도메인 데이터 구조 | migration/schema 전문 복사 |
 | `40-architecture/system/` | system architecture | 시스템 구성요소, 외부 연동, 주요 흐름 | 기능 요구사항 본문 |
@@ -235,8 +235,9 @@ BASE-001
 
 - baseline은 decision을 가리킬 수 있다.
 - decision은 baseline과 spec을 가리킬 수 있다.
-- spec은 decision과 work를 가리킬 수 있다.
+- spec은 decision/baseline을 가리킬 수 있다.
 - work는 spec을 가리킨다.
+- SPEC → WORK 추적은 SPEC 본문에 특정 work ID를 박지 않고, work frontmatter `links.specs`와 `30-work/README.md`의 Spec Coverage에서 단방향으로 관리한다.
 - 상위 문서는 하위 문서의 본문을 복사하지 않고 ID와 링크만 둔다.
 
 ## Frontmatter 원칙
@@ -303,6 +304,19 @@ BASE-001
 | `blocked` | 막힘 |
 | `review` | 검토 중 |
 | `done` | 완료 |
+
+Work 본문은 phase 단위로 진행을 추적한다. 각 phase의 `- **Status**:` 값은 `TODO`, `IN_PROGRESS`, `DONE`, `BLOCKED`, `SUPERSEDED` 중 하나만 쓴다. 완료 날짜, 검증 로그, caveat는 상태 줄에 붙이지 않고 같은 phase의 `완료 증거`에 적는다.
+
+Frontmatter `status`는 phase 상태와 동기화한다.
+
+| Phase 상태 | Work frontmatter status |
+|---|---|
+| 전 phase가 `TODO` | `todo` |
+| 하나라도 `IN_PROGRESS` 또는 `DONE` | `in_progress` |
+| 막힌 phase가 있음 | `blocked` |
+| 모든 phase가 `DONE` 또는 `SUPERSEDED` | `done` |
+
+`30-work/README.md`의 Status Board는 실행 상태의 owning view다. Work 본문을 수정해 상태, owner, blocker, next가 바뀌면 Status Board / Work List / Spec Coverage도 함께 갱신한다.
 
 ### Release
 
