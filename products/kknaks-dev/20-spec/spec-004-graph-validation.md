@@ -102,4 +102,7 @@ Out of scope: 검증 함수 구현(work), 스키마 정의([[spec-002-graph-sche
 
 ## 7. Open Questions
 
-- (구현 OQ, work) 검증 함수 시그니처, 리포트 출력 포맷, pre-commit/CI 훅 배선.
+- ~~(구현 OQ, work) 검증 함수 시그니처, 리포트 출력 포맷.~~ **해소(WORK-001, abcfbc4)** — `validate_graph(nodes, duplicate_stems=None) -> list[{rule,level,node,detail}]` + `summarize()`(rule/level별 카운트). 상세 [[spec-002-graph-schema|KDEV-SPEC-002]] §4.
+- (OPEN, WORK-007) pre-commit/CI 훅 배선 + ERROR/fail-fast 전환 — enforcement ON 시점.
+- (OPEN, WORK-002) L2 navigational 파일 처리 — WORK-002에서 정교화 (검증 false-positive: navigational L2=154, README/log/privacy/support + 중복 stem). 노드 제외 vs frontmatter type 부여 택일은 WORK-002 결정.
+- (OPEN, WORK-002) L5 orphan 적용 범위 — WORK-002에서 정교화 (검증 false-positive: orphan L5=196). daily/학습노트 제외 여부 미확정.

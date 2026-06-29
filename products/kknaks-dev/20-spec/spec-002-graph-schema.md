@@ -94,11 +94,11 @@ Out of scope: 빌더 함수 구현(work), 검증 규칙([[spec-004-graph-validat
 ```json
 {
   "nodes": [{ "id": "<stem>", "type": "permanent", "title": "...", "archived": false }],
-  "edges": [{ "source": "<stem>", "target": "<stem>", "type": "lineage", "dir": "up" }],
+  "edges": [{ "source": "<stem>", "target": "<stem>", "type": "assoc|lineage", "dir": "up|null" }],
   "backlinks": { "<stem>": ["<stem>", "..."] }
 }
 ```
-(필드 최종 형태·키 이름은 work에서 빌더 구현 시 확정 — §7.)
+- **확정**(WORK-001, abcfbc4): 위 필드가 빌더 산출물의 외부 계약이다. `nodes[id,type,title,archived]` / `edges[source,target,type,dir]`(assoc는 `dir=null`, lineage는 `dir="up"`) / `backlinks{stem:[source-stem]}`. 검증 함수 시그니처 = `validate_graph(nodes, duplicate_stems=None) -> list[{rule,level,node,detail}]`.
 
 ### Flow
 
@@ -116,7 +116,8 @@ flowchart LR
 - `up:`의 stem은 반드시 본문 `[[]]`에도 존재 (오버레이 전제 — 검증 L3).
 - 출처 URL은 `source:` 속성, 노드로 만들지 않는다.
 - 기존 평문 `links: [id]`는 폐기 → 본문 `[[]]` 또는 `up:`으로 흡수.
-- 빌더 regex·함수 시그니처·`_graph.json` 정확한 필드는 work에 둔다.
+- **alias 인덱스**(WORK-001 확정): frontmatter `aliases` + frontmatter `id` + 파일명 stem 자기참조 → canonical stem으로 resolve. 전체 노드 집합이 필요하므로 `core/graph.py`의 `build_alias_index`에서 구성.
+- 빌더 regex 패턴 세부는 work(구현)에 둔다.
 
 ## 6. Verification
 
@@ -129,5 +130,6 @@ flowchart LR
 
 ## 7. Open Questions
 
-- (구현 OQ, work) `_graph.json` 최종 필드명·빌더 함수 시그니처·regex 패턴.
-- (구현 OQ, work) aliases 인덱스 구현 방식.
+- ~~(구현 OQ, work) `_graph.json` 최종 필드명·빌더 함수 시그니처·regex 패턴.~~ **해소(WORK-001, abcfbc4)** — §4 확정 필드·시그니처 참조.
+- ~~(구현 OQ, work) aliases 인덱스 구현 방식.~~ **해소(WORK-001)** — §5 `build_alias_index`(aliases+id+stem 자기참조).
+- (OPEN, WORK-002) code-fence/inline-code 내 `[[]]` 스킵 — WORK-002에서 정교화 (검증 false-positive: prose 예시 L1=11). 빌더 스킵 vs 문서 예시 escape 중 택일은 WORK-002 결정.
