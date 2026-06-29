@@ -9,7 +9,7 @@
 ## 의존 흐름
 
 ```
-001 빌더+검증기(report) → 002 데이터정리 → 003 지식층 scaffold+규약
+001 빌더+검증기(report) → 002 검증기 정교화(report-only) → 003 지식층 scaffold+규약
   → ┬ 004 projects→products ┐
     ├ 005 notes→reference    ┼→ 007 enforcement ON → 008 /graph → 009 로컬그래프
     └ 006 contents→ref/posts ┘
@@ -20,7 +20,7 @@
 | ID | Title | 담당 | Status | Covers Spec | Depends | File |
 |---|---|---|---|---|---|---|
 | WORK-001 | 그래프 빌더 수술 + 검증기(report-only) | BE | done | SPEC-002·004 | — | `work-001-graph-builder-validator.md` |
-| WORK-002 | report-only 실행 → 데이터 정리(충돌3·링크정규화) | BE | todo | SPEC-002·004 | 001 | `work-002-data-cleanup.md` |
+| WORK-002 | 검증기 정교화 (code-fence 스킵·navigational 제외·orphan 범위, report-only) | BE | done | SPEC-002·004 | 001 | `work-002-validator-refinement.md` |
 | WORK-003 | 지식층 scaffold + 작성 규약(분류·정제·up·archive + agent.md) | BE/문서 | todo | SPEC-001·003 | 002 | `work-003-knowledge-layer-scaffold.md` |
 | WORK-004 | projects → products/showcase 재편 (+`/projects` 라우트가 `products/*/showcase.md`를 읽도록 재배선 + loader가 products showcase 노출 + inputs.py) | BE+FE | todo | SPEC-001 | 003 | `work-004-migrate-projects.md` |
 | WORK-005 | notes → reference 재편 (+ reference 라우트·loader 키 신설/재정의 — `/notes` 유지 vs `/reference` 네이밍은 발주 직전 admin 결정) | BE+FE | todo | SPEC-001 | 003 | `work-005-migrate-notes.md` |
@@ -34,7 +34,7 @@
 | Spec | Covering Work | 구현 상태 |
 |---|---|---|
 | SPEC-001 디렉토리 | WORK-003·004·005·006 | todo |
-| SPEC-002 스키마 | WORK-001·002 | 001 done / 002 todo |
+| SPEC-002 스키마 | WORK-001·002 | 001·002 done |
 | SPEC-003 워크플로 | WORK-003 (+강제: 001·007) | todo |
-| SPEC-004 검증 | WORK-001·007 | 001 done / 007 todo |
+| SPEC-004 검증 | WORK-001·002·007 | 001·002 done / 007 todo |
 | SPEC-005 시각화 | WORK-008·009 | todo |

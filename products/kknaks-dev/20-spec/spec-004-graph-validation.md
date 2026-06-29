@@ -88,6 +88,8 @@ Out of scope: 검증 함수 구현(work), 스키마 정의([[spec-002-graph-sche
 
 - L1~L4 = ERROR(차단), L5/L6 = WARN(리포트).
 - **enforcement 적용 순서 (라이브 서버 brick 방지)**: 검증기는 먼저 **report-only**로 도입 → 레포 데이터 정리 후 → **맨 마지막에** ERROR/fail-fast 전환. report-only 출력이 마이그레이션 작업목록이 된다.
+- **L2 노드 자격**(WORK-002 확정, 0014790): 그래프 노드 자격 = frontmatter `type` 보유. `type` 없는 navigational/legal 파일(README/log/privacy/support 및 그 아카이브 사본)은 노드가 아니다 → 중복 stem(L2)·orphan(L5) 검사 대상에서도 제외. (persona notes 는 항상 type 보유 → 무영향.)
+- **L5 orphan 대상**(WORK-002 확정, 0014790): orphan 검사 대상 = 지식 노드(`reference`/`permanent`/`post`/`product`)만. `idea`·`daily`·`algorithm`·`career`·`note`·`spec`·`work` 등은 제외.
 - 검증 함수 구현 위치·시그니처는 work (기존 `wikilinks.dead_links()` 확장).
 
 ## 6. Verification
@@ -104,5 +106,6 @@ Out of scope: 검증 함수 구현(work), 스키마 정의([[spec-002-graph-sche
 
 - ~~(구현 OQ, work) 검증 함수 시그니처, 리포트 출력 포맷.~~ **해소(WORK-001, abcfbc4)** — `validate_graph(nodes, duplicate_stems=None) -> list[{rule,level,node,detail}]` + `summarize()`(rule/level별 카운트). 상세 [[spec-002-graph-schema|KDEV-SPEC-002]] §4.
 - (OPEN, WORK-007) pre-commit/CI 훅 배선 + ERROR/fail-fast 전환 — enforcement ON 시점.
-- (OPEN, WORK-002) L2 navigational 파일 처리 — WORK-002에서 정교화 (검증 false-positive: navigational L2=154, README/log/privacy/support + 중복 stem). 노드 제외 vs frontmatter type 부여 택일은 WORK-002 결정.
-- (OPEN, WORK-002) L5 orphan 적용 범위 — WORK-002에서 정교화 (검증 false-positive: orphan L5=196). daily/학습노트 제외 여부 미확정.
+- ~~(OPEN, WORK-002) L2 navigational 파일 처리 — 노드 제외 vs frontmatter type 부여 택일.~~ **해소(WORK-002, 0014790)** — §5 확정: 노드 자격 = frontmatter `type` 보유, type 없는 navigational 은 노드 아님. probe L2 154→34.
+- ~~(OPEN, WORK-002) L5 orphan 적용 범위 — daily/학습노트 제외 여부.~~ **해소(WORK-002, 0014790)** — §5 확정: orphan 대상 = 지식 노드(reference/permanent/post/product)만. probe L5 196→0.
+- (OPEN, WORK-004~006 또는 별도) **L2=34 아카이브 사본 id 충돌** — `v1_0_1-X`(version-cutoff 동결 사본)가 live `X`와 같은 frontmatter `id`를 공유해 alias/id 전역유일(L2) 위반. 그래프는 정상(live로 resolve)이나 유일성 경고. 근본 원인 = `version-cutoff` skill 이 파일명·wikilink 에만 버전 prefix 를 붙이고 frontmatter `id` 는 원본 그대로 둠. 후속 결정(택일): (1) version-cutoff 가 frontmatter `id` 에도 버전 prefix 부여 / (2) 검증기가 `archived` 노드를 id/alias 유일성 검사에서 면제.
