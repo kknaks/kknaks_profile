@@ -1,8 +1,8 @@
 # persona/_map.md
 
-> 자동 생성 (build_persona_map.py, 2026-06-17 11:35 KST). 수동 편집 X.
+> 자동 생성 (build_persona_map.py, 2026-06-29 23:33 KST). 수동 편집 X.
 
-_총 243 파일 (profile 1 / career 5 / projects 13 / notes 157 / contents 22 / daily 45)_
+_총 257 파일 (profile 1 / career 5 / projects 13 / notes 157 / contents 22 / daily 59)_
 
 ## profile
 
@@ -190,7 +190,7 @@ _총 243 파일 (profile 1 / career 5 / projects 13 / notes 157 / contents 22 / 
 - [[notes/2025-11-01-migration_detail]] Database Migration 상세 프로세스 (work · 2025.11.01)
 
 ## contents (총 22개)
-- [[contents/C-022-pending]] Day 22 — Pending YouTube Content (2026.06.17)
+- [[contents/C-022-pending]] Day 22 — 부동소수점과 실수 계산 오차의 원인 (2026.06.17)
 - [[contents/C-021-pending]] Day 21 — OpenViking: AI 에이전트의 컨텍스트 관리 혁신 (2026.06.09)
 - [[contents/C-020-pending]] Day 20 — GraphRAG와 지식 그래프: RAG의 한계 극복하기 (2026.06.08)
 - [[contents/C-019-pending]] Day 19 — 프라이빗 AI의 LLM 최적화: 증류모델과 양자화 가이드 (2026-06-05)
@@ -213,17 +213,17 @@ _총 243 파일 (profile 1 / career 5 / projects 13 / notes 157 / contents 22 / 
 - [[contents/C-002-pending-sample]] Day 02 — 모듈로 편향으로 인한 게임 확률 버그 (2026.05.02)
 - [[contents/C-001-fastapi-di]] Day 01 — FastAPI Dependency Injection — 진짜 쓸 수 있게 (2026.05.01)
 
-## daily (총 45개, 최근 10)
-- [[daily/2026-06-14]] (2026.06.14)
-- [[daily/2026-06-13]] (2026.06.13)
-- [[daily/2026-06-12]] (2026.06.12)
-- [[daily/2026-06-11]] (2026.06.11)
-- [[daily/2026-06-10]] (2026.06.10)
-- [[daily/2026-06-09]] (2026.06.09)
-- [[daily/2026-06-08]] (2026.06.08)
-- [[daily/2026-06-07]] (2026.06.07)
-- [[daily/2026-06-06]] (2026.06.06)
-- [[daily/2026-06-05]] (2026.06.05)
+## daily (총 59개, 최근 10)
+- [[daily/2026-06-28]] (2026.06.28)
+- [[daily/2026-06-27]] (2026.06.27)
+- [[daily/2026-06-26]] (2026.06.26)
+- [[daily/2026-06-25]] (2026.06.25)
+- [[daily/2026-06-24]] (2026.06.24)
+- [[daily/2026-06-23]] (2026.06.23)
+- [[daily/2026-06-22]] (2026.06.22)
+- [[daily/2026-06-21]] (2026.06.21)
+- [[daily/2026-06-20]] (2026.06.20)
+- [[daily/2026-06-19]] (2026.06.19)
 
 ## 위키링크 그래프 (notes)
 - 2024-05-24-Day01 → 2024-05-27-Day02

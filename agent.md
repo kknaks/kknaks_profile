@@ -52,3 +52,13 @@ rules/product-doc-pipeline.md
 ```
 
 hook이 실패하면 성공처럼 보고하지 않는다. 자동으로 판단할 수 없는 제품 결정은 사용자에게 결정이 필요하다고 보고한다.
+
+## 지식층 읽기범위
+
+지식 파이프라인 층(KDEV-SPEC-001/003)을 스캔할 때 범위는 아래와 같다.
+
+- 평소 스캔(활성 층): `inbox/` · `reference/` · `permanent/` + `persona/posts/`
+- cold(명시 요청 시에만): `permanent/archive/`
+
+`permanent/archive/`는 안 쓰게 된 영구노트의 장기기억이라 평소 스캔에서 제외한다. 사용자가 명시적으로 요청할 때만 읽는다(D-005).
+
