@@ -44,7 +44,7 @@ links:
 - Covers spec: [[spec-002-graph-schema|KDEV-SPEC-002]], [[spec-004-graph-validation|KDEV-SPEC-004]]
 - Depends on work: 없음 (첫 work)
 - Parallel work: 없음
-- Follow-up work: WORK-002(데이터 정리, 이 검증기의 report 출력을 작업목록으로 사용)
+- Follow-up work: WORK-002(검증기 정교화 — 이 검증기의 report 출력을 정교화해 false-positive 제거)
 - External dependency: 없음
 
 ## Work Summary
@@ -57,7 +57,7 @@ links:
 | Progress | 100% |
 | Branch/PR | feat/knowledge-graph (커밋 abcfbc4) |
 | Blocker | - |
-| Next | WORK-002 데이터 정리 (검증 위반 리포트=worklist) |
+| Next | WORK-002 검증기 정교화 (false-positive 정교화) |
 
 ## Role Assignment
 
@@ -77,7 +77,7 @@ links:
 
 제외:
 - enforcement(ERROR/fail-fast/pre-commit/CI) → WORK-007
-- 실제 데이터 정리(충돌·링크 정규화) → WORK-002
+- 실제 데이터 정리(충돌·링크 정규화·평문 links: 정리) → WORK-004~006 (마이그레이션과 lockstep)
 
 ## Code Surface
 
