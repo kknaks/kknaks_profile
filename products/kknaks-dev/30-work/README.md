@@ -13,7 +13,7 @@
   → ┬ 004 projects→products ┐
     ├ 005 notes→reference    ┼→ 007 enforcement ON ✅ → 008 /graph → 009 로컬그래프
     └ 006 contents 잔류 확정 ┘  (006=문서정정, 마이그레이션 아님 → 007은 004·005만 의존)
-                                  (001~007 done — 남은 건 008/009 시각화)
+                                  (001~008 done — 남은 건 009 로컬그래프)
 ```
 
 ## Work 목록
@@ -27,7 +27,7 @@
 | WORK-005 | notes → reference 재편 (+ reference 라우트·loader 키 신설/재정의 — `/notes` 유지 vs `/reference` 네이밍은 발주 직전 admin 결정) | BE+FE | done | SPEC-001 | 003 | `work-005-migrate-notes.md` |
 | WORK-006 | contents 잔류 확정(마이그레이션 철회)+문서정정 (DEC-008 신설·DEC-002 amend·SPEC-001 정정, 코드 0, /posts 배선 연기) | 문서 | done | SPEC-001 | 003 | `work-006-migrate-contents.md` |
 | WORK-007 | enforcement ON (L1~L4 ERROR fail-fast + pre-commit + kill-switch GRAPH_ENFORCE) — 단일 지점 load_persona, boot propagate/reload catch, 메커니즘 4종 실증 | BE | done | SPEC-004 | 004·005 | `work-007-enforce-validation.md` |
-| WORK-008 | 전역 그래프 /graph (_graph.json API + force-directed) | BE+FE | todo | SPEC-005 | 007 | `work-008-global-graph.md` |
+| WORK-008 | 전역 그래프 /graph (_graph.json API + force-directed) | BE+FE | done | SPEC-005 | 007 | `work-008-global-graph.md` |
 | WORK-009 | 노트별 로컬 그래프 (이웃+백링크) | FE | todo | SPEC-005 | 008 | `work-009-local-graph.md` |
 
 ## Spec Coverage
@@ -38,4 +38,4 @@
 | SPEC-002 스키마 | WORK-001·002 | 001·002 done |
 | SPEC-003 워크플로 | WORK-003 (+강제: 001·007) | 003 규약 문서화 done / 강제 007 done |
 | SPEC-004 검증 | WORK-001·002·007 | 001·002 done / 007 enforcement done |
-| SPEC-005 시각화 | WORK-008·009 | todo |
+| SPEC-005 시각화 | WORK-008·009 | 008 전역 done / 009 로컬 todo |
