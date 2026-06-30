@@ -47,6 +47,32 @@ class TestAliasIndex:
         _, collisions = build_alias_index(nodes)
         assert any(c["rule"] == "L2" for c in collisions)
 
+    def test_archived_copy_does_not_collide_with_live(self):
+        # KDEV-SPEC-004 §7 Option 2 — archived 동결 사본은 live 와 같은
+        # frontmatter id/alias 를 가져도 L2 충돌이 안 난다 (canonical id 는 live 소유).
+        nodes = {
+            "decision-001": _node("decision", id_="MRT-DEC-001"),
+            "v1_0_1-decision-001": _node(
+                "decision", id_="MRT-DEC-001", aliases=["MRT-DEC-001"],
+                archived=True,
+            ),
+        }
+        index, collisions = build_alias_index(nodes)
+        assert collisions == []
+        # canonical id 는 live 로 resolve
+        assert index["MRT-DEC-001"] == "decision-001"
+        # archived 사본은 자기 stem 으로 여전히 resolve
+        assert index["v1_0_1-decision-001"] == "v1_0_1-decision-001"
+
+    def test_live_vs_live_id_collision_still_caught(self):
+        # 회귀 방지 — 둘 다 active 면 같은 id 는 여전히 L2 충돌
+        nodes = {
+            "a": _node("decision", id_="MRT-DEC-001"),
+            "b": _node("decision", id_="MRT-DEC-001"),
+        }
+        _, collisions = build_alias_index(nodes)
+        assert any(c["rule"] == "L2" for c in collisions)
+
 
 class TestKnowledgeGraph:
     def test_edge_assoc_default(self):
@@ -94,6 +120,22 @@ class TestKnowledgeGraph:
         nodes = {"a": _node(body="[[ghost]]")}
         g = build_knowledge_graph(nodes)
         assert g["edges"] == []
+
+    def test_archived_stem_link_still_resolves(self):
+        # KDEV-SPEC-004 §7 — archived 면제 후에도 [[v1_0_1-X]] stem 링크는 엣지로 살아있음.
+        # 같은 id 를 공유해도 [[MRT-DEC-001]] 는 live 로 resolve.
+        nodes = {
+            "decision-001": _node("decision", id_="MRT-DEC-001"),
+            "v1_0_1-decision-001": _node(
+                "decision", id_="MRT-DEC-001", aliases=["MRT-DEC-001"],
+                archived=True,
+            ),
+            "ref": _node("work", body="see [[v1_0_1-decision-001]] and [[MRT-DEC-001]]"),
+        }
+        g = build_knowledge_graph(nodes)
+        targets = {e["target"] for e in g["edges"] if e["source"] == "ref"}
+        assert "v1_0_1-decision-001" in targets  # archived stem 엣지 생존
+        assert "decision-001" in targets          # canonical id → live
 
 
 class TestValidateL1toL6:

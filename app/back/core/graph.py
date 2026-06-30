@@ -67,7 +67,11 @@ def build_alias_index(nodes: dict[str, dict]) -> tuple[dict[str, str], list[dict
         index[key] = stem
 
     for stem, node in nodes.items():
-        _register(stem, stem)  # stem 자체로도 resolve
+        _register(stem, stem)  # stem 자체로도 resolve (archived 도 stem 으로는 reachable)
+        if node.get("archived"):
+            # 동결 스냅샷 — canonical id/alias 는 live 가 소유 (KDEV-SPEC-004 §7 Option 2).
+            # archived 사본은 자기 stem(v1_0_1-X)으로만 resolve, MRT-* 를 claim 하지 않음 → live 와 L2 충돌 0.
+            continue
         fid = node.get("id")
         if isinstance(fid, str):
             _register(fid, stem)
