@@ -1,6 +1,7 @@
 ---
 type: project
 id: P-14
+org: studio
 title:
   ko: "mykakao"
   en: "mykakao"

@@ -1,6 +1,7 @@
 ---
 type: project
 id: P-03
+org: studio
 title:
   ko: "Wine Log"
   en: "Wine Log"

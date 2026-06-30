@@ -107,7 +107,9 @@ def load_persona(persona_dir: Path) -> dict[str, Any]:
     career = _load_dir(persona_dir / "career", persona_dir)
     career.sort(key=lambda c: c.get("display_order", 999))
 
-    projects = _load_dir(persona_dir / "projects", persona_dir)
+    # KDEV-WORK-004 — projects 는 products/*/showcase.md 에서 로드 (persona/projects 폐지).
+    # dict 키 "projects" 불변 → /api/projects·print·inputs·FE 무변경.
+    projects = _load_products_showcase(persona_dir.parent / "products")
     notes_list = _load_dir(persona_dir / "notes", persona_dir, recursive=True)
     contents = _load_dir(persona_dir / "contents", persona_dir)
     contents.sort(key=lambda c: c.get("id", ""), reverse=True)
@@ -199,6 +201,10 @@ def _build_graph_nodes(
     # type 없는 navigational/legal 파일(README/log/privacy/support)은 노드가 아니다.
     if products_dir.is_dir():
         for p in sorted(products_dir.glob("**/*.md")):
+            # KDEV-WORK-004 — showcase.md 는 모두 stem 동일 → 노드로 잡으면 L2 중복 폭발.
+            # type:project 라 아래 type 가드로는 안 걸러지므로 여기서 제외 (product-as-node 는 SPEC-002 후속).
+            if p.name == "showcase.md":
+                continue
             node = _load_product_node(p)
             if not node.get("type"):
                 continue  # navigational — 그래프 노드/중복·orphan 검사 대상 아님
@@ -430,6 +436,20 @@ def _load_dir(
         return []
     pattern = "**/*.md" if recursive else "*.md"
     return [_load_md(p, persona_dir) for p in sorted(dir_path.glob(pattern))]
+
+
+def _load_products_showcase(products_dir: Path) -> list[dict]:
+    """products/*/showcase.md (깊이 1) → project dict 리스트 (KDEV-WORK-004).
+
+    persona/projects/*.md 를 대체. 각 파일을 단일파일 로더 `_load_md` 로 로드해
+    frontmatter 전 필드 + body + _path 를 보존 — 기존 project dict 와 동일 형태.
+    정렬: product 디렉토리명 오름차순 (기존 persona/projects/*.md 파일명 정렬과 동순서).
+    persona_dir=None — products 는 notes/ 가 아니라 auto-enrich 대상 아님.
+    """
+    if not products_dir.is_dir():
+        return []
+    files = sorted(products_dir.glob("*/showcase.md"), key=lambda p: p.parent.name)
+    return [_load_md(p, None) for p in files]
 
 
 def _load_algorithms_dir(dir_path: Path, persona_dir: Path) -> list[dict]:

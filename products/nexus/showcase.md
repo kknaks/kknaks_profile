@@ -1,6 +1,7 @@
 ---
 type: project
 id: P-08
+org: company
 title:
   ko: "NEXUS"
   en: "NEXUS"

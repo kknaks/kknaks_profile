@@ -1,6 +1,7 @@
 ---
 type: project
 id: P-10
+org: studio
 title:
   ko: "Study Timelapse"
   en: "Study Timelapse"

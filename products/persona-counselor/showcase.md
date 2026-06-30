@@ -1,6 +1,7 @@
 ---
 type: project
 id: P-06
+org: studio
 title:
   ko: "Persona Counselor"
   en: "Persona Counselor"

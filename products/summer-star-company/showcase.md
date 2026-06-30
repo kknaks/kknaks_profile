@@ -1,6 +1,7 @@
 ---
 type: project
 id: P-11
+org: studio
 title:
   ko: "Summer Star — 사무실 NFC 출퇴근"
   en: "Summer Star — Office NFC Attendance"

@@ -1,6 +1,7 @@
 ---
 type: project
 id: P-02
+org: studio
 title:
   ko: "kknaks.dev"
   en: "kknaks.dev"

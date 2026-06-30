@@ -1,6 +1,6 @@
 # persona/_map.md
 
-> 자동 생성 (build_persona_map.py, 2026-06-29 23:33 KST). 수동 편집 X.
+> 자동 생성 (build_persona_map.py, 2026-06-30 09:19 KST). 수동 편집 X.
 
 _총 257 파일 (profile 1 / career 5 / projects 13 / notes 157 / contents 22 / daily 59)_
 
@@ -16,19 +16,19 @@ _총 257 파일 (profile 1 / career 5 / projects 13 / notes 157 / contents 22 / 
 - [[career/dowha-eng]] 도화 엔지니어링 (2020.01 — 2023.12)
 
 ## projects (web 2 · frontend 0 · backend 6 · mobile 4 · ai 0 · cli 1 · bot 0)
-- [[projects/kknaks-profile]] kknaks.dev (web · wip)
-- [[projects/summer-star-company]] Summer Star — 사무실 NFC 출퇴근 (web · wip)
-- [[projects/persona-counselor]] Persona Counselor (mobile · wip)
-- [[projects/language-diary]] Language Diary (mobile · wip)
-- [[projects/study-timelapse]] Study Timelapse (mobile · wip)
-- [[projects/wine-log]] Wine Log (mobile · live)
-- [[projects/open-kknaks]] open-kknaks (cli · live)
-- [[projects/mykakao]] mykakao (backend · wip)
-- [[projects/centurion-charty]] Centurion Charty (backend · wip)
-- [[projects/centurion-mso]] Centurion MSO (backend · wip)
-- [[projects/linky]] Linky (backend · wip)
-- [[projects/mediness]] Mediness (backend · wip)
-- [[projects/nexus]] NEXUS (backend · wip)
+- [[products/kknaks-profile/showcase]] kknaks.dev (web · wip)
+- [[products/summer-star-company/showcase]] Summer Star — 사무실 NFC 출퇴근 (web · wip)
+- [[products/persona-counselor/showcase]] Persona Counselor (mobile · wip)
+- [[products/language-diary/showcase]] Language Diary (mobile · wip)
+- [[products/study-timelapse/showcase]] Study Timelapse (mobile · wip)
+- [[products/wine-log/showcase]] Wine Log (mobile · live)
+- [[products/open-kknaks/showcase]] open-kknaks (cli · live)
+- [[products/mykakao/showcase]] mykakao (backend · wip)
+- [[products/centurion-charty/showcase]] Centurion Charty (backend · wip)
+- [[products/centurion-mso/showcase]] Centurion MSO (backend · wip)
+- [[products/linky/showcase]] Linky (backend · wip)
+- [[products/mediness/showcase]] Mediness (backend · wip)
+- [[products/nexus/showcase]] NEXUS (backend · wip)
 
 ## notes (ai_skills 1 · airflow 2 · SpringBoot 4 · React 1 · NCPcloud 0 · network 7 · codingTest 27 · interview 2 · BackendSchool 24 · bitcamp 83 · study 2 · work 3 · k8s 1)
 - [[notes/2024-12-30-Day01]] Day01_OT, 채팅기능구현 (BackendSchool · 2024.12.30)

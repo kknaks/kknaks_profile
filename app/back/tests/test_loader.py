@@ -243,6 +243,62 @@ class TestAlgorithms:
             load_persona(tmp_path)
 
 
+class TestProductsShowcaseLoading:
+    """KDEV-WORK-004 — projects 는 products/*/showcase.md 에서 로드 (persona/projects 폐지)."""
+
+    def test_projects_loaded_from_products_showcase(self, tmp_path: Path):
+        # persona.parent/products 가 격리되도록 unique tmp_path 하위에 repo 레이아웃 구성.
+        repo = tmp_path / "repo"
+        persona = repo / "persona"
+        persona.mkdir(parents=True)
+        _scaffold_min_persona(persona)
+
+        for slug, pid in (("wine-log", "P-01"), ("linky", "P-02")):
+            d = repo / "products" / slug
+            d.mkdir(parents=True)
+            (d / "showcase.md").write_text(
+                "---\n"
+                "type: project\n"
+                f"id: {pid}\n"
+                "org: studio\n"
+                "title: { ko: T, en: T }\n"
+                "summary: { ko: s, en: s }\n"
+                "category: web\n"
+                "status: live\n"
+                "stack: [FastAPI]\n"
+                "---\n# case study\n",
+                encoding="utf-8",
+            )
+
+        data = load_persona(persona)
+        assert len(data["projects"]) == 2
+        # 정렬 = product 디렉토리명 오름차순 (linky < wine-log)
+        assert [p["id"] for p in data["projects"]] == ["P-02", "P-01"]
+        assert data["projects"][0]["body"].strip() == "# case study"
+
+    def test_bad_category_in_showcase_fails(self, tmp_path: Path):
+        repo = tmp_path / "repo"
+        persona = repo / "persona"
+        persona.mkdir(parents=True)
+        _scaffold_min_persona(persona)
+        d = repo / "products" / "x"
+        d.mkdir(parents=True)
+        (d / "showcase.md").write_text(
+            "---\n"
+            "type: project\n"
+            "id: P-01\n"
+            "title: { ko: T, en: T }\n"
+            "summary: { ko: s, en: s }\n"
+            "category: nope\n"  # _meta 의 categories 에 없음
+            "status: live\n"
+            "stack: [FastAPI]\n"
+            "---\n# x\n",
+            encoding="utf-8",
+        )
+        with pytest.raises(PersonaError, match="category"):
+            load_persona(persona)
+
+
 def _scaffold_min_persona(root: Path) -> None:
     """검증 가능한 최소 persona — _meta + profile."""
     (root / "_meta.yaml").write_text(

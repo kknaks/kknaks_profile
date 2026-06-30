@@ -1,6 +1,7 @@
 ---
 type: project
 id: P-05
+org: studio
 title:
   ko: "Language Diary"
   en: "Language Diary"

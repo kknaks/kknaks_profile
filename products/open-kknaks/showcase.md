@@ -1,6 +1,7 @@
 ---
 type: project
 id: P-04
+org: studio
 title:
   ko: "open-kknaks"
   en: "open-kknaks"

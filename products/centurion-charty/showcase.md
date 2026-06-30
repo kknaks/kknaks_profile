@@ -1,9 +1,10 @@
 ---
 type: project
-id: P-12
+id: P-13
+org: company
 title:
-  ko: "Linky"
-  en: "Linky"
+  ko: "Centurion Charty"
+  en: "Centurion Charty"
 summary:
   ko: "(TBD)"
   en: "(TBD)"
@@ -12,7 +13,7 @@ status: wip
 stack: []
 visible: false
 links:
-  repo: "github.com/MediSolveAIDev/Linky"
+  repo: "github.com/MediSolveAIDev/CENTURION-CHARTY"
 ---
 
 # 개요

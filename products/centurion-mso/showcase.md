@@ -1,9 +1,10 @@
 ---
 type: project
-id: P-09
+id: P-07
+org: company
 title:
-  ko: "Mediness"
-  en: "Mediness"
+  ko: "Centurion MSO"
+  en: "Centurion MSO"
 summary:
   ko: "(TBD)"
   en: "(TBD)"
@@ -12,7 +13,7 @@ status: wip
 stack: []
 visible: false
 links:
-  repo: "github.com/MediSolveAIDev/mediness"
+  repo: "github.com/MediSolveAIDev/centurion_mso"
 ---
 
 # 개요

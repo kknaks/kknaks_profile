@@ -143,7 +143,7 @@ def _to_kst_date(iso_utc: str) -> str:
 
 
 def extract_tracked_repos(projects: list[dict]) -> set[str]:
-    """persona/projects/*.md 의 links.repo 에서 'owner/name' slug 추출.
+    """products/*/showcase.md 의 links.repo 에서 'owner/name' slug 추출.
 
     `links.repo` 형식: `github.com/owner/name` 또는 `https://github.com/owner/name`.
     GitHub Events API 의 `repo.name` (= 'owner/name') 과 매칭용.

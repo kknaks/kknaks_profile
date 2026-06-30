@@ -67,6 +67,23 @@ def _load_dir(category: str, recursive: bool = False) -> list:
     return posts
 
 
+def _load_products_showcase() -> list:
+    """products/*/showcase.md → frontmatter.Post 리스트 (persona/projects 대체, KDEV-WORK-004).
+
+    정렬 = product 디렉토리명 오름차순. post.path = showcase.md 경로
+    (slug 은 _section_projects 에서 parent.name 으로 도출).
+    """
+    products_dir = REPO / "products"
+    if not products_dir.is_dir():
+        return []
+    posts = []
+    for md_path in sorted(products_dir.glob("*/showcase.md"), key=lambda p: p.parent.name):
+        post = frontmatter.load(md_path)
+        post.path = md_path  # type: ignore[attr-defined]
+        posts.append(post)
+    return posts
+
+
 def _i18n_label(node, lang: str = "ko") -> str:
     """{ko: "...", en: "..."} → ko 추출. scalar는 그대로."""
     if isinstance(node, dict) and lang in node:
@@ -142,11 +159,17 @@ def _section_projects(projects: list, meta: dict) -> str:
     )
     for p in sorted_projects:
         m = p.metadata
-        slug = p.path.stem
+        # KDEV-WORK-004 — showcase.md 의 slug 은 파일명(showcase)이 아니라 product 디렉토리명.
+        if p.path.name == "showcase.md":
+            slug = p.path.parent.name
+            link = f"products/{slug}/showcase"
+        else:
+            slug = p.path.stem
+            link = f"projects/{slug}"
         title = _i18n_label(m.get("title", ""))
         cat = m.get("category", "")
         status = m.get("status", "")
-        lines.append(f"- [[projects/{slug}]] {title} ({cat} · {status})")
+        lines.append(f"- [[{link}]] {title} ({cat} · {status})")
     return "\n".join(lines)
 
 
@@ -259,7 +282,7 @@ def build_persona_map() -> str:
     profile_path = PERSONA / "profile.md"
     profile = frontmatter.load(profile_path) if profile_path.exists() else None
     careers = _load_dir("career")
-    projects = _load_dir("projects")
+    projects = _load_products_showcase()
     notes = _load_dir("notes", recursive=True)
     contents = _load_dir("contents")
     dailies = _load_dir("daily")
