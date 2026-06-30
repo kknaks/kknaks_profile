@@ -4,7 +4,7 @@ id: KDEV-SPEC-004
 title: "그래프 검증 게이트 — L1~L6"
 status: draft
 product: kknaks-dev
-version: 0.0.3
+version: 0.0.4
 created_at: 2026-06-29
 updated_at: 2026-06-30
 tags:
@@ -106,7 +106,7 @@ Out of scope: 검증 함수 구현(work), 스키마 정의([[spec-002-graph-sche
 ## 7. Open Questions
 
 - ~~(구현 OQ, work) 검증 함수 시그니처, 리포트 출력 포맷.~~ **해소(WORK-001, abcfbc4)** — `validate_graph(nodes, duplicate_stems=None) -> list[{rule,level,node,detail}]` + `summarize()`(rule/level별 카운트). 상세 [[spec-002-graph-schema|KDEV-SPEC-002]] §4.
-- (OPEN, WORK-007) pre-commit/CI 훅 배선 + ERROR/fail-fast 전환 — enforcement ON 시점.
+- ~~(OPEN, WORK-007) pre-commit/CI 훅 배선 + ERROR/fail-fast 전환 — enforcement ON 시점.~~ **해소(WORK-007, cd4e453)** — 단일 enforce 지점=`load_persona`의 `_enforce_graph`(ERROR-level만 차단, L5 WARN 통과). 3지점: pre-commit(`persona|reference|products` 트리거)+boot fail-fast(=deploy 게이트)+kill-switch `GRAPH_ENFORCE`(기본 1). boot=propagate, runtime reload=catch(구 데이터 유지). 메커니즘 4종 실증·278 passed. **CI PR merge-gate는 PR 플로 없어 보류**(boot-fail-fast-at-deploy가 deploy 게이트 역할 — PR 플로 생기면 별도).
 - ~~(OPEN, WORK-002) L2 navigational 파일 처리 — 노드 제외 vs frontmatter type 부여 택일.~~ **해소(WORK-002, 0014790)** — §5 확정: 노드 자격 = frontmatter `type` 보유, type 없는 navigational 은 노드 아님. probe L2 154→34.
 - ~~(OPEN, WORK-002) L5 orphan 적용 범위 — daily/학습노트 제외 여부.~~ **해소(WORK-002, 0014790)** — §5 확정: orphan 대상 = 지식 노드(reference/permanent/post/product)만. probe L5 196→0.
 - (메모, WORK-005) **L5 orphan baseline은 변동값** — 지식 노드(reference/permanent/post/product)가 채워지며 변한다. WORK-005 reference 재타이핑 후 측정 156(미인용 자료노트, report-only WARN). WORK-006 이후 재측정. 강제 해소 대상 아님 — 연결은 사람 정제(S3). **특정 숫자를 계약으로 고정하지 않는다.**
