@@ -13,6 +13,7 @@
 | KDEV-DEC-005 | 분류 워크플로 (독립 SSOT) | accepted | KDEV-BL-001 | accepted | 워크플로 |
 | KDEV-DEC-006 | 검증 게이트 L1~L6 | accepted | KDEV-BL-001 | accepted | 검증 |
 | KDEV-DEC-007 | 블로그 그래프 시각화 | accepted | KDEV-BL-001 | accepted | 시각화 |
+| KDEV-DEC-008 | contents 잔류 (YouTube 요약, 그래프 무관) | accepted | KDEV-BL-001 | accepted | 디렉토리 구조 |
 
 ## 미결 사항
 

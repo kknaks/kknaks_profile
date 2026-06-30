@@ -4,7 +4,7 @@ id: KDEV-SPEC-001
 title: "지식그래프 디렉토리 구조"
 status: draft
 product: kknaks-dev
-version: 0.0.2
+version: 0.0.3
 created_at: 2026-06-29
 updated_at: 2026-06-30
 tags:
@@ -89,7 +89,8 @@ products/              # type: product 계열
 persona/
 ├── posts/             # type: post (발행물)
 ├── career/ · profile.md · daily/ · assets/   # 정체성(그래프 주변 노드)
-└── algorithms/        # 그래프 무관, 잔류
+├── algorithms/        # 그래프 무관, 잔류
+└── contents/          # type: content — YouTube 요약 파이프라인, 그래프 무관, 잔류 (DEC-008)
 ```
 
 - `products/{제품}/showcase.md` frontmatter: `org: company | studio`, `category`, `status`, `visible`, `thumbnail`.
@@ -112,7 +113,7 @@ persona/
 
 - [ ] inbox/reference/permanent(+archive) 루트 층 존재.
 - [ ] products/{제품}/에 showcase.md 규약 적용, org 필드로 회사/개인 구분.
-- [ ] persona/posts 신설, projects→products·notes/contents→reference 재편 완료.
+- [ ] persona/posts 신설, projects→products·notes→reference 재편 완료 (contents 잔류 — DEC-008).
 - [ ] 각 디렉토리의 노드 타입이 frontmatter `type`과 일치.
 
 ## 7. Open Questions

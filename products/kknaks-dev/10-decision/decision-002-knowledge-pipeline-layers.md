@@ -5,7 +5,7 @@ title: "지식 파이프라인 층을 루트 레벨로 (inbox/reference/permanen
 status: accepted
 product: kknaks-dev
 created_at: 2026-06-29
-updated_at: 2026-06-29
+updated_at: 2026-06-30
 tags:
   - product/kknaks-dev
   - doc/decision
@@ -32,7 +32,7 @@ links:
 - 관련 baseline: [[baseline-001-repo-knowledge-graph|KDEV-BL-001]]
 - persona는 노드는 많은데 가로 연결이 비어 있었다. 빠진 층: 아이디어 inbox(fleeting), 영구노트(permanent), 참고노트의 명확한 위치.
 - `persona/daily/`는 `auto:true` 커밋 기반 활동 로그라 fleeting 역할을 못 함.
-- `persona/contents/` 22개 중 21개가 외부 자료 정리(참고노트), `persona/notes/` 168개도 참고노트.
+- `persona/notes/` 168개는 참고노트(외부 자료 정리) → reference 종착. (~~`persona/contents/` 22개 중 21개도 외부자료~~ — **오판이었음**: contents는 live YouTube 요약 파이프라인으로 잔류 확정. [[decision-008-contents-retention|KDEV-DEC-008]] 참조.)
 
 ## Options
 
@@ -47,11 +47,11 @@ links:
 
 - 채택:
   - `inbox/` — 정제 안 된 아이디어(fleeting, 휘발).
-  - `reference/` — 참고노트(자료 정리, 출처 종속). ← `persona/notes`·`contents` 외부정리 종착.
+  - `reference/` — 참고노트(자료 정리, 출처 종속). ← `persona/notes` 종착 (contents 잔류 — [[decision-008-contents-retention|KDEV-DEC-008]]).
   - `permanent/` — 영구노트. `permanent/archive/` = 장기기억(cold).
   - `persona/posts/` — 발행물(영구노트가 글이 된 것). 신설.
   - `persona/algorithms/` — 개인 배치 산출물, 그래프 무관, 잔류.
-  - `persona/contents/C-001`(테스트용) 삭제.
+  - `persona/contents/` — YouTube 요약 파이프라인, 그래프 무관, 잔류 ([[decision-008-contents-retention|KDEV-DEC-008]]). C-001 삭제 철회.
 - 기각: 파이프라인을 persona 하위에 두는 안.
 
 ## Rationale
@@ -63,7 +63,7 @@ links:
 
 ## Scope
 
-- In: 루트 디렉토리 층 + persona 재편(projects→products, notes/contents→reference, posts 신설).
+- In: 루트 디렉토리 층 + persona 재편(projects→products, notes→reference (contents 잔류 — DEC-008), posts 신설).
 - Out: 마이그레이션 실행, 아카이브 내림 기준(워크플로 spec).
 - 영향을 받는 spec 후보: 디렉토리 구조 spec.
 
