@@ -13,7 +13,8 @@
   → ┬ 004 projects→products ┐
     ├ 005 notes→reference    ┼→ 007 enforcement ON ✅ → 008 /graph ✅ → 009 로컬그래프 ✅
     └ 006 contents 잔류 확정 ┘  (006=문서정정, 마이그레이션 아님 → 007은 004·005만 의존)
-                                  (001~009 done — PLAN-003 적용 단계 전부 완료)
+                                  (001~009 done — PLAN-003 그래프 시각화 단계 완료)
+  005 reference 배선 ─(미러)→ 010 permanent 층 배선 ✅ (BE-only, lineage 발현 준비 — live permanent 0건이라 아직 latent)
 ```
 
 ## Work 목록
@@ -29,13 +30,14 @@
 | WORK-007 | enforcement ON (L1~L4 ERROR fail-fast + pre-commit + kill-switch GRAPH_ENFORCE) — 단일 지점 load_persona, boot propagate/reload catch, 메커니즘 4종 실증 | BE | done | SPEC-004 | 004·005 | `work-007-enforce-validation.md` |
 | WORK-008 | 전역 그래프 /graph (_graph.json API + force-directed) | BE+FE | done | SPEC-005 | 007 | `work-008-global-graph.md` |
 | WORK-009 | 노트별 로컬 그래프 (이웃+백링크) | FE | done | SPEC-005 | 008 | `work-009-local-graph.md` |
+| WORK-010 | permanent 층 그래프 배선 — 영구노트를 _graph 에 연결 (BE-only, WORK-005 미러) | BE | done | SPEC-001·003 | 005 | `work-010-wire-permanent.md` |
 
 ## Spec Coverage
 
 | Spec | Covering Work | 구현 상태 |
 |---|---|---|
-| SPEC-001 디렉토리 | WORK-003·004·005·006 | 003 scaffold done / 004 projects done / 005 notes done / 006 contents 잔류 확정 |
+| SPEC-001 디렉토리 | WORK-003·004·005·006·010 | 003 scaffold done / 004 projects done / 005 notes done / 006 contents 잔류 확정 / 010 permanent 층 실재화(배선) done |
 | SPEC-002 스키마 | WORK-001·002 | 001·002 done |
-| SPEC-003 워크플로 | WORK-003 (+강제: 001·007) | 003 규약 문서화 done / 강제 007 done |
+| SPEC-003 워크플로 | WORK-003·010 (+강제: 001·007) | 003 규약 문서화 done / 강제 007 done / 010 정제→permanent 종착 라이브화 done(빈 층 — 데이터 작성 시 발현) |
 | SPEC-004 검증 | WORK-001·002·007 | 001·002 done / 007 enforcement done |
 | SPEC-005 시각화 | WORK-008·009 | 008 전역 done / 009 로컬 done (시각화 완료) |
