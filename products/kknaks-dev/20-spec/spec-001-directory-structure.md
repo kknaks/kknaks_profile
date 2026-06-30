@@ -4,9 +4,9 @@ id: KDEV-SPEC-001
 title: "지식그래프 디렉토리 구조"
 status: draft
 product: kknaks-dev
-version: 0.0.1
+version: 0.0.2
 created_at: 2026-06-29
-updated_at: 2026-06-29
+updated_at: 2026-06-30
 tags:
   - product/kknaks-dev
   - doc/spec
@@ -104,6 +104,7 @@ persona/
 - 노드 타입은 디렉토리가 1차 결정, frontmatter `type`이 명시(불일치 시 검증 ERROR — [[spec-004-graph-validation|KDEV-SPEC-004]]).
 - 파일명 stem 전역 유일(식별자 — [[spec-002-graph-schema|KDEV-SPEC-002]]).
 - 실제 디렉토리 이동·라우트/로더 코드 정합은 work에 둔다.
+- showcase-only 제품(회사/일부 개인, S1)은 stage 디렉토리(00~30) 없이 `showcase.md`만 둔다. product-doc-pipeline은 **showcase.md 有 + stage 디렉토리 無**를 showcase-only로 추론해 stage README 강제를 면제한다(D-001/D-003 파생).
 
 ## 6. Verification
 
