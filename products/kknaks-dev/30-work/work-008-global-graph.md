@@ -73,11 +73,12 @@ links:
 `GET /api/graph` → 메모리 `get_data()["_graph"]` 그대로:
 ```json
 {
-  "nodes": [{"id": "<stem>", "type": "reference|permanent|post|product|idea", "title": "...", "archived": false}],
+  "nodes": [{"id": "<stem>", "type": "<node type>", "title": "...", "archived": false}],
   "edges": [{"source": "<stem>", "target": "<stem>", "type": "lineage|assoc", "dir": "up|null"}],
   "backlinks": {"<stem>": ["<stem>", ...]}
 }
 ```
+- **node `type` 실값(정정 T-021, 라이브 2026-06-30)**: 지식층 type(`idea/reference/permanent/post/product`) **+ products 문서 type**(`baseline/decision/spec/work/release/runbook/bugfix`). products 문서는 frontmatter `type`을 갖고 있어 빌더(`_build_graph_nodes`)가 그래프 노드로 포함한다. 라이브 등장 8종 = `reference(=notes, 156)·baseline·decision·spec·work·release·runbook·bugfix`(~154); `permanent/post/product/idea`는 현재 **데이터 0건**. → 시각화 팔레트는 **데이터 기반(present types)**, 미지 type은 fallback 색(5종 하드코딩 오기를 T-021에서 해소). enum 전체 집합은 [[spec-002-graph-schema|KDEV-SPEC-002]] 참조. 블로그가 products 개발문서 type을 포함할지/필터할지는 [[spec-005-graph-visualization|KDEV-SPEC-005]] §7 Open Question.
 - 빈 그래프면 `{nodes:[],edges:[],backlinks:{}}`. `_graph_error` 시에도 200 + 빈 그래프(부팅은 enforce가 별도 차단).
 
 ## Code Surface
@@ -97,7 +98,7 @@ links:
 
 ## Implementation Rules (SPEC-005 §5)
 
-- 노드 색 = `type` (idea/reference/permanent/post/product 5색 — reference·permanent·post·product가 실제 등장. 범례 표기).
+- 노드 색 = `type` (데이터 기반 팔레트 — 라이브 등장 type만 범례 표기, 미지 type fallback 색). 라이브 등장 8종은 §API 계약 참조(reference + products 문서 type; T-021 정정).
 - 엣지: `type=="lineage"` → 화살표(react-force-graph `linkDirectionalArrowLength`), `assoc` → 무방향 선.
 - `archived==true` → 흐리게(투명도↓).
 - type 필터 토글(범례 클릭 등). 노드 포커스 → 이웃 강조(선택).
@@ -111,11 +112,11 @@ links:
 
 ### Phase 2 — FE: /graph 페이지 + 뷰 (profile-fe, Phase 1과 병렬)
 - **Status**: DONE
-- `/graph` 페이지 + `knowledge-graph-view`(노드색=type 5색·lineage 화살표/assoc 선·archived 흐리게·type 필터·이웃 강조·클릭 패널 `NoteDetailPanel` 재사용). topnav 07/Graph. `npm build` green. (리포트 T-019)
+- `/graph` 페이지 + `knowledge-graph-view`(노드색=type 데이터 기반 팔레트·lineage 화살표/assoc 선·archived 흐리게·type 필터·이웃 강조·클릭 패널 `NoteDetailPanel` 재사용). topnav 07/Graph. `npm build` green. (리포트 T-019; ※ T-019 시점 5색 팔레트는 T-021에서 데이터 기반으로 교정)
 
 ### Phase 3 — 검증 + 커밋 (admin)
 - **Status**: DONE
-- pytest **281 passed**(+TestGraph 3), `npm build` green, 시각 규칙 코드 검증(5색·alpha 0.3·lineage 화살표 함수). 데이터 경로·계약·컴파일 검증 완료. ⚠ 실 canvas 픽셀 렌더는 미검증(force-dynamic, lineage 데이터 0건) — Open Issue 표기. 커밋 `211f502`.
+- pytest **281 passed**(+TestGraph 3), `npm build` green, 시각 규칙 코드 검증(type 팔레트·alpha 0.3·lineage 화살표 함수). 데이터 경로·계약·컴파일 검증 완료. ⚠ 실 canvas 픽셀 렌더는 미검증(force-dynamic, lineage 데이터 0건) — Open Issue 표기. 커밋 `211f502`. (※ T-019의 5색 하드코딩 팔레트 결함은 T-021/WORK-009에서 데이터 기반으로 교정)
 
 ## Pre-deploy Check
 

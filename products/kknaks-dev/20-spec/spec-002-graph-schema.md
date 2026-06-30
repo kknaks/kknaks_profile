@@ -4,9 +4,9 @@ id: KDEV-SPEC-002
 title: "그래프 스키마 — 노드·식별자·엣지·빌더 산출물"
 status: draft
 product: kknaks-dev
-version: 0.0.1
+version: 0.0.2
 created_at: 2026-06-29
-updated_at: 2026-06-29
+updated_at: 2026-06-30
 tags:
   - product/kknaks-dev
   - doc/spec
@@ -73,7 +73,7 @@ Out of scope: 빌더 함수 구현(work), 검증 규칙([[spec-004-graph-validat
 | 필드 | 필수 | 설명 |
 |---|---|---|
 | `id` | ✓ | 전역 유일. `{PRODUCT}-{TYPE}-{NNN}` 등 prefix 형태 (예: `KDEV-SPEC-002`) |
-| `type` | ✓ | `idea`/`reference`/`permanent`/`post`/`product` 계열 |
+| `type` | ✓ | 지식층 type `idea`/`reference`/`permanent`/`post`/`product` 계열([[decision-003-node-type-and-identifier\|KDEV-DEC-003]]). **+ products 문서 type**(`baseline`/`decision`/`spec`/`work`/`release`/`runbook`/`bugfix`)도 frontmatter `type` 보유 → 그래프 노드로 포함됨(§5·T-021 정정) |
 | `aliases` | 선택 | `[[id]]` 링크 resolve용. id를 등록 |
 | `up` | 선택 | lineage 상류 stem 리스트 (본문 `[[]]`의 부분집합) |
 | `source` | 선택 | 외부 자료 URL (노드 아님, 속성) |
@@ -115,6 +115,7 @@ flowchart LR
 - 링크 문법: 본문 `[[stem]]` / `[[stem|alias]]` / `[[folder/stem]]` 모두 동일 stem으로 resolve.
 - `up:`의 stem은 반드시 본문 `[[]]`에도 존재 (오버레이 전제 — 검증 L3).
 - 출처 URL은 `source:` 속성, 노드로 만들지 않는다.
+- **노드 집합 = frontmatter `type` 보유 문서 전체**(T-021 실측, v0.0.2): 빌더 `_build_graph_nodes`는 type 보유 문서를 노드화하므로, 지식층(reference 등) 외에 **products 개발문서**(spec/decision/work/baseline/release/runbook/bugfix)도 그래프 노드로 들어온다. 라이브(2026-06-30) 8종 등장(reference 156 + products 문서 ~154), `permanent/post/product/idea`는 0건. 블로그 `/graph`가 이 개발문서 노드를 노출/필터할지는 §7 Open Question.
 - 기존 평문 `links: [id]`는 폐기 → 본문 `[[]]` 또는 `up:`으로 흡수.
 - **alias 인덱스**(WORK-001 확정): frontmatter `aliases` + frontmatter `id` + 파일명 stem 자기참조 → canonical stem으로 resolve. 전체 노드 집합이 필요하므로 `core/graph.py`의 `build_alias_index`에서 구성.
 - **code-fence 스킵**(WORK-002 확정, 0014790): 빌더는 fenced(` ``` `)·inline(`` ` ``) 코드 영역 내 `[[]]`를 엣지에서 제외한다. 문법 설명용 prose 예시(코드블록·인라인 코드 안의 `[[stem]]`)는 링크가 아니다. 추출 직전 코드 영역을 공백 치환(경계 보존) 후 `[[]]` 파싱 — `extract_wikilinks()` 단일 지점이라 build/knowledge/validate 전부 동일 적용.
@@ -134,3 +135,5 @@ flowchart LR
 - ~~(구현 OQ, work) `_graph.json` 최종 필드명·빌더 함수 시그니처·regex 패턴.~~ **해소(WORK-001, abcfbc4)** — §4 확정 필드·시그니처 참조.
 - ~~(구현 OQ, work) aliases 인덱스 구현 방식.~~ **해소(WORK-001)** — §5 `build_alias_index`(aliases+id+stem 자기참조).
 - ~~(OPEN, WORK-002) code-fence/inline-code 내 `[[]]` 스킵 — 빌더 스킵 vs 문서 예시 escape 택일.~~ **해소(WORK-002, 0014790)** — §5 확정: 빌더가 fenced·inline 코드 영역 내 `[[]]`를 엣지에서 제외(빌더 스킵 채택). probe L1 12→0.
+- **(OPEN, T-021 박제 — 미해소)** **products 개발문서 type이 그래프 노드에 포함**됨(§5). 이게 의도된 범위인지(자기참조적 지식맵) vs 지식층만 노드화하고 개발문서는 제외할지 admin/사용자 결정. 블로그 노출 측면은 [[spec-005-graph-visualization|KDEV-SPEC-005]] §7과 동일 이슈.
+- **(OPEN, T-021 박제 — 미해소)** **lineage 엣지 0건** — 라이브 330엣지 전부 `assoc`/`dir:null`. 데이터에 `up:` 오버레이가 안 쓰여 lineage(§3·§4)가 발현되지 않음. 의도(현 데이터에 계보 표기 미사용)인지 빌더 결함인지 확인 필요.
