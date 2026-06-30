@@ -19,7 +19,7 @@ tags:
 title:
   en: Binary Tree Level Order Traversal
   ko: 이진 트리 레벨 순서 순회
-today: true
+today: false
 type: algorithm
 updated: '2026-06-29'
 visible: true
