@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import datetime
+import os
 import re
 from pathlib import Path
 from typing import Any
@@ -77,6 +78,46 @@ REQUIRED_FIELDS: dict[str, set[str]] = {
 
 class PersonaError(ValueError):
     """페르소나 형식 위반. 부팅 시 fail-fast."""
+
+
+class GraphEnforcementError(PersonaError):
+    """지식그래프 ERROR-level 위반(L1~L4) 또는 빌드 예외 → enforcement 차단.
+
+    KDEV-WORK-007. PersonaError 서브클래스라 기존 pre-commit `except PersonaError`
+    가 공짜로 catch. boot 경로(lifespan→load_all)에서는 propagate(fail-fast),
+    runtime reload caller(webhook/worker job)는 catch 하여 구 데이터 유지.
+    """
+
+
+def _enforce_graph(data: dict[str, Any]) -> None:
+    """KDEV-WORK-007 — 그래프 ERROR-level 위반 시 GraphEnforcementError raise.
+
+    - kill-switch: env `GRAPH_ENFORCE`(기본 "1"=enforce). "0"이면 enforce skip.
+    - 차단 대상: `level=="ERROR"` 위반(L1~L4) **만** + `_graph_error`(빌드 예외).
+      L5/L6 WARN(orphan 156개 등)은 절대 막지 않는다.
+    - report 산출(_graph_violations)은 호출 전에 이미 끝남 — 여기선 판정/raise 만.
+    """
+    if os.environ.get("GRAPH_ENFORCE", "1") == "0":
+        return
+
+    errors = [v for v in data.get("_graph_violations", []) if v.get("level") == "ERROR"]
+    graph_error = data.get("_graph_error")
+    if not errors and not graph_error:
+        return
+
+    parts: list[str] = []
+    if graph_error:
+        parts.append(f"graph build error: {graph_error}")
+    if errors:
+        counts: dict[str, int] = {}
+        for v in errors:
+            counts[v["rule"]] = counts.get(v["rule"], 0) + 1
+        rule_summary = ", ".join(f"{k}={counts[k]}" for k in sorted(counts))
+        sample = "; ".join(f"{v['node']}: {v['detail']}" for v in errors[:10])
+        parts.append(f"{len(errors)} ERROR-level violations ({rule_summary}) — {sample}")
+    raise GraphEnforcementError(
+        "knowledge graph enforcement failed (GRAPH_ENFORCE=1): " + " | ".join(parts)
+    )
 
 
 def load_persona(persona_dir: Path) -> dict[str, Any]:
@@ -164,6 +205,10 @@ def load_persona(persona_dir: Path) -> dict[str, Any]:
         data["_graph"] = {"nodes": [], "edges": [], "backlinks": {}}
         data["_graph_violations"] = []
         data["_graph_error"] = f"{type(e).__name__}: {e}"
+
+    # KDEV-WORK-007 — report 산출(위 try) 뒤에 enforcement. 그래프 try/except 밖이라
+    # 빌드 except 가 이 raise 를 삼키지 않는다. ERROR-level 위반/빌드예외 시 raise(fail-fast).
+    _enforce_graph(data)
 
     return data
 

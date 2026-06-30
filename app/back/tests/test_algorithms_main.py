@@ -146,13 +146,18 @@ def mock_external(monkeypatch, tmp_path: Path):
 
     monkeypatch.setattr(job_main, "notify_slack", fake_notify)
 
-    # load_all — no-op (실 main.load_all 은 file system 의존)
+    # load_all / reload_data — no-op (실 main 은 file system 의존). KDEV-WORK-007 이후
+    # 잡은 `from main import reload_data` 를 호출 → 가짜도 reload_data 노출.
     import sys
 
     class _FakeMain:
         @staticmethod
         def load_all():
             pass
+
+        @staticmethod
+        def reload_data():
+            return True
 
     monkeypatch.setitem(sys.modules, "main", _FakeMain)
 

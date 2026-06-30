@@ -106,10 +106,12 @@ async def reload(
         except subprocess.CalledProcessError:
             raise HTTPException(503, "git pull failed")
 
-    # 메모리 reload (즉시)
-    from main import load_all
+    # 메모리 reload (즉시). KDEV-WORK-007 — enforce 실패 시 reload_data 가 구 데이터를
+    # 유지하며 False 반환(prod 안 죽음). webhook 은 503 으로 응답해 GitHub delivery 에 가시화.
+    from main import reload_data
 
-    load_all()
+    if not reload_data():
+        raise HTTPException(503, "reload rejected by graph enforcement — serving previous data")
 
     # enrich 잡 — background (LLM 호출 60-120s 걸림 → GitHub webhook 10s timeout 회피)
     background_tasks.add_task(_run_enrich_safe)

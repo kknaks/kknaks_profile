@@ -133,10 +133,11 @@ async def _do_run_daily_activity_job(
         dry_run=dry_run,
     )
 
-    # 메모리 reload — circular import 회피 (spec-03 §6)
-    from main import load_all
+    # 메모리 reload — circular import 회피 (spec-03 §6). KDEV-WORK-007 — enforce 실패 시
+    # reload_data 가 구 데이터 유지·False 반환(워커 크래시 금지). 잡은 이미 commit/push 완료.
+    from main import reload_data
 
-    load_all()
+    reload_data()
     entry = {
         "date": target.strftime("%Y.%m.%d"),
         "counts": counts,
