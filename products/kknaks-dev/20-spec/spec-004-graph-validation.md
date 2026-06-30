@@ -4,9 +4,9 @@ id: KDEV-SPEC-004
 title: "그래프 검증 게이트 — L1~L6"
 status: draft
 product: kknaks-dev
-version: 0.0.1
+version: 0.0.2
 created_at: 2026-06-29
-updated_at: 2026-06-29
+updated_at: 2026-06-30
 tags:
   - product/kknaks-dev
   - doc/spec
@@ -108,4 +108,5 @@ Out of scope: 검증 함수 구현(work), 스키마 정의([[spec-002-graph-sche
 - (OPEN, WORK-007) pre-commit/CI 훅 배선 + ERROR/fail-fast 전환 — enforcement ON 시점.
 - ~~(OPEN, WORK-002) L2 navigational 파일 처리 — 노드 제외 vs frontmatter type 부여 택일.~~ **해소(WORK-002, 0014790)** — §5 확정: 노드 자격 = frontmatter `type` 보유, type 없는 navigational 은 노드 아님. probe L2 154→34.
 - ~~(OPEN, WORK-002) L5 orphan 적용 범위 — daily/학습노트 제외 여부.~~ **해소(WORK-002, 0014790)** — §5 확정: orphan 대상 = 지식 노드(reference/permanent/post/product)만. probe L5 196→0.
+- (메모, WORK-005) **L5 orphan baseline은 변동값** — 지식 노드(reference/permanent/post/product)가 채워지며 변한다. WORK-005 reference 재타이핑 후 측정 156(미인용 자료노트, report-only WARN). WORK-006 이후 재측정. 강제 해소 대상 아님 — 연결은 사람 정제(S3). **특정 숫자를 계약으로 고정하지 않는다.**
 - (OPEN, WORK-004~006 또는 별도) **L2=34 아카이브 사본 id 충돌** — `v1_0_1-X`(version-cutoff 동결 사본)가 live `X`와 같은 frontmatter `id`를 공유해 alias/id 전역유일(L2) 위반. 그래프는 정상(live로 resolve)이나 유일성 경고. 근본 원인 = `version-cutoff` skill 이 파일명·wikilink 에만 버전 prefix 를 붙이고 frontmatter `id` 는 원본 그대로 둠. 후속 결정(택일): (1) version-cutoff 가 frontmatter `id` 에도 버전 prefix 부여 / (2) 검증기가 `archived` 노드를 id/alias 유일성 검사에서 면제.
