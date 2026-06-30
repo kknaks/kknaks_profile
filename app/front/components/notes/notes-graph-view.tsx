@@ -519,7 +519,7 @@ function NavButton({
   );
 }
 
-function NoteDetailPanel({
+export function NoteDetailPanel({
   detail,
   loading,
   onClose,

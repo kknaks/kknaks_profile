@@ -103,6 +103,35 @@ export interface NotesGraphResponse {
   };
 }
 
+/* ---------- 전역 지식 그래프 (work-008 / spec-005) — NotesGraphResponse와 별개 ---------- */
+
+export type GraphNodeType =
+  | "reference"
+  | "permanent"
+  | "post"
+  | "product"
+  | "idea";
+
+export interface GraphNode {
+  id: string;
+  type: GraphNodeType;
+  title: string;
+  archived: boolean;
+}
+
+export interface GraphEdge {
+  source: string;
+  target: string;
+  type: "lineage" | "assoc";
+  dir?: "up" | null;
+}
+
+export interface GraphResponse {
+  nodes: GraphNode[];
+  edges: GraphEdge[];
+  backlinks: Record<string, string[]>;
+}
+
 export interface NoteDetail {
   id: string;
   title: string;

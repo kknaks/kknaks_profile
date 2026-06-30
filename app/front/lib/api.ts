@@ -11,6 +11,7 @@ import type {
   CareerResponse,
   ContentDetailResponse,
   ContentsResponse,
+  GraphResponse,
   MeResponse,
   NoteDetail,
   NoteRecent,
@@ -39,6 +40,7 @@ export const api = {
   projects: (lang: Lang) => get<ProjectsResponse>("/api/projects", lang),
   activity: (lang: Lang) => get<ActivityResponse>("/api/activity", lang),
   notesGraph: () => get<NotesGraphResponse>("/api/notes/graph"),
+  graph: (lang?: Lang) => get<GraphResponse>("/api/graph", lang),
   notesRecent: (lang: Lang, limit = 5) =>
     get<{ "notes.recent[]": NoteRecent[] }>(
       `/api/notes/recent?limit=${limit}`,
