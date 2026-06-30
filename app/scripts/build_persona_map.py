@@ -67,6 +67,28 @@ def _load_dir(category: str, recursive: bool = False) -> list:
     return posts
 
 
+def _load_reference() -> list:
+    """reference/{cluster}/**/*.md → frontmatter.Post 리스트 (persona/notes 대체, KDEV-WORK-005).
+
+    클러스터 하위만 로드 — top-level reference/README.md(navigational)는 제외.
+    id=stem, group=cluster, title 자동 추출(frontmatter 무편집 전제). 디덥 안 함
+    (loader 는 Day01 중복 stem 1개 dedup 하지만, map 은 prior 동작대로 전 파일 렌더).
+    """
+    reference_dir = REPO / "reference"
+    if not reference_dir.is_dir():
+        return []
+    posts = []
+    for cluster_dir in sorted(p for p in reference_dir.iterdir() if p.is_dir()):
+        for md_path in sorted(cluster_dir.glob("**/*.md")):
+            post = frontmatter.load(md_path)
+            post.path = md_path  # type: ignore[attr-defined]
+            post.metadata.setdefault("id", md_path.stem)
+            post.metadata.setdefault("group", cluster_dir.name)
+            post.metadata.setdefault("title", md_path.stem)
+            posts.append(post)
+    return posts
+
+
 def _load_products_showcase() -> list:
     """products/*/showcase.md → frontmatter.Post 리스트 (persona/projects 대체, KDEV-WORK-004).
 
@@ -196,7 +218,7 @@ def _section_notes(notes: list, meta: dict) -> str:
         title = _i18n_label(m.get("title", ""))
         grp = m.get("group", "")
         date = m.get("date", "")
-        lines.append(f"- [[notes/{slug}]] {title} ({grp} · {date})")
+        lines.append(f"- [[reference/{slug}]] {title} ({grp} · {date})")
     return "\n".join(lines)
 
 
@@ -283,7 +305,7 @@ def build_persona_map() -> str:
     profile = frontmatter.load(profile_path) if profile_path.exists() else None
     careers = _load_dir("career")
     projects = _load_products_showcase()
-    notes = _load_dir("notes", recursive=True)
+    notes = _load_reference()
     contents = _load_dir("contents")
     dailies = _load_dir("daily")
 

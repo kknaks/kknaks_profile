@@ -73,39 +73,43 @@ class TestValidationFailures:
             load_persona(tmp_path)
 
     def test_notes_id_filename_mismatch_fails(self, tmp_path: Path):
-        _scaffold_min_persona(tmp_path)
-        notes_dir = tmp_path / "notes"
-        notes_dir.mkdir(exist_ok=True)
+        # KDEV-WORK-005 — reference=persona_dir.parent/reference 라 unique repo layout 으로 격리
+        repo = tmp_path / "repo"
+        persona = repo / "persona"
+        persona.mkdir(parents=True)
+        _scaffold_min_persona(persona)
+        ref_dir = repo / "reference" / "py"
+        ref_dir.mkdir(parents=True)
         # 파일명은 foo.md 인데 frontmatter id는 bar
-        (notes_dir / "foo.md").write_text(
+        (ref_dir / "foo.md").write_text(
             "---\n"
-            "type: note\n"
             "id: bar\n"
             "title: { ko: t, en: t }\n"
             "date: '2026.05.01'\n"
-            "group: py\n"
             "---\n# body\n",
             encoding="utf-8",
         )
         with pytest.raises(PersonaError, match="filename slug"):
-            load_persona(tmp_path)
+            load_persona(persona)
 
     def test_notes_group_not_in_meta_fails(self, tmp_path: Path):
-        _scaffold_min_persona(tmp_path)
-        notes_dir = tmp_path / "notes"
-        notes_dir.mkdir(exist_ok=True)
-        (notes_dir / "x.md").write_text(
+        repo = tmp_path / "repo"
+        persona = repo / "persona"
+        persona.mkdir(parents=True)
+        _scaffold_min_persona(persona)
+        ref_dir = repo / "reference" / "nosuchgroup"
+        ref_dir.mkdir(parents=True)
+        # group 은 cluster 디렉토리명(nosuchgroup)에서 auto-enrich → _meta 에 없음
+        (ref_dir / "x.md").write_text(
             "---\n"
-            "type: note\n"
             "id: x\n"
             "title: { ko: t, en: t }\n"
             "date: '2026.05.01'\n"
-            "group: nosuchgroup\n"
             "---\n",
             encoding="utf-8",
         )
         with pytest.raises(PersonaError, match="not in _meta"):
-            load_persona(tmp_path)
+            load_persona(persona)
 
     def test_contents_id_filename_mismatch_fails(self, tmp_path: Path):
         _scaffold_min_persona(tmp_path)
@@ -297,6 +301,33 @@ class TestProductsShowcaseLoading:
         )
         with pytest.raises(PersonaError, match="category"):
             load_persona(persona)
+
+
+class TestReferenceNotesLoading:
+    """KDEV-WORK-005 — notes 는 reference/{cluster}/ 에서 로드 + type=reference auto-enrich."""
+
+    def test_reference_notes_loaded_and_retyped(self, tmp_path: Path):
+        repo = tmp_path / "repo"
+        persona = repo / "persona"
+        persona.mkdir(parents=True)
+        _scaffold_min_persona(persona)
+        ref = repo / "reference"
+        (ref / "py").mkdir(parents=True)
+        # frontmatter 에 type/id/group 없음 → auto-enrich 가 주입 (157개 실노트와 동형)
+        (ref / "py" / "n1.md").write_text(
+            "---\ntitle: { ko: t, en: t }\ndate: '2026.05.01'\n---\n# body\n",
+            encoding="utf-8",
+        )
+        (ref / "py" / "n2.md").write_text("# 빈 frontmatter\n본문", encoding="utf-8")
+        # top-level navigational README 는 노트로 로드되면 안 됨 (id 없음 → dict KeyError 위험)
+        (ref / "README.md").write_text("# 안내\nnavigational", encoding="utf-8")
+
+        data = load_persona(persona)
+        assert len(data["notes"]) == 2  # README 제외
+        for nid, n in data["notes"].items():
+            assert n["type"] == "reference"  # 재타이핑 주입
+            assert n["group"] == "py"  # cluster 디렉토리명
+            assert n["id"] == nid
 
 
 def _scaffold_min_persona(root: Path) -> None:

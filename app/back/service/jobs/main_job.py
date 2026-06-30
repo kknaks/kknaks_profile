@@ -73,7 +73,7 @@ async def _do_run_daily_activity_job(
     dry_run_push: bool | None,
 ) -> dict:
     """잡 본체 — 호출자 (run_daily_activity_job) 가 try/except 로 감쌈."""
-    notes_changes = read_changed_files_today("persona/notes/", target, REPO)
+    notes_changes = read_changed_files_today("reference/", target, REPO)
     contents_changes = read_changed_files_today("persona/contents/", target, REPO, max_chars_per_file=2048)
 
     # products/*/showcase.md 등록한 레포만 추적 (사용자 결정 — showcase 파일이 SoT)
