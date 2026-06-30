@@ -2,41 +2,26 @@
 
 import { forceX, forceY } from "d3-force";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { LocalGraph } from "@/components/graph/local-graph";
 import { NoteDetailPanel } from "@/components/notes/notes-graph-view";
+import {
+  arrowLengthFor,
+  endId,
+  LINK_COLOR_ASSOC,
+  LINK_COLOR_LINEAGE,
+  nodeColorFor,
+  NOTE_TYPES,
+  presentTypes,
+  TYPE_COLOR,
+} from "@/lib/graph";
 import type { Lang } from "@/lib/i18n";
-import type { GraphNodeType, GraphResponse, NoteDetail } from "@/lib/types";
+import type { GraphResponse, NoteDetail } from "@/lib/types";
 
 // SSR 회피 — useEffect 안에서 lazy import. ref 정상 forwarding. (notes-graph-view 패턴 복제)
 type FGComponent = React.ComponentType<Record<string, unknown> & { ref?: unknown }>;
 
 const API_BASE =
   process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:48000";
-
-// SPEC-005 §5 — 노드 색 = type. 5색(reference/permanent/post/product/idea).
-const TYPE_COLOR: Record<GraphNodeType, string> = {
-  reference: "oklch(0.72 0.13 240)", // blue
-  permanent: "oklch(0.78 0.14 145)", // green (notes accent 계열)
-  post: "oklch(0.82 0.13 80)", // gold
-  product: "oklch(0.70 0.16 320)", // magenta
-  idea: "oklch(0.76 0.15 50)", // orange
-};
-
-const TYPE_ORDER: GraphNodeType[] = [
-  "reference",
-  "permanent",
-  "post",
-  "product",
-  "idea",
-];
-
-// `/api/notes/{id}` 패널을 재사용할 수 있는 노트성 타입. product/idea는 정식 이동 = WORK-009.
-const NOTE_TYPES = new Set<GraphNodeType>(["reference", "permanent", "post"]);
-
-// react-force-graph는 첫 렌더 후 link.source/target을 string id → node 객체로 변형한다.
-const endId = (v: unknown): string =>
-  typeof v === "object" && v !== null && "id" in v
-    ? String((v as { id: string | number }).id)
-    : String(v);
 
 export function KnowledgeGraphView({
   graphData,
@@ -47,10 +32,16 @@ export function KnowledgeGraphView({
 }) {
   const t = (ko: string, en: string) => (lang === "en" ? en : ko);
 
-  const [activeTypes, setActiveTypes] = useState<Set<GraphNodeType>>(
-    () => new Set(TYPE_ORDER),
+  // 데이터에 실제 등장하는 타입만 (stale 문서 5종이 아니라 라이브 8종 기반)
+  const legend = useMemo(() => presentTypes(graphData.nodes), [graphData]);
+
+  const [activeTypes, setActiveTypes] = useState<Set<string>>(
+    () => new Set(legend.map((l) => l.type)),
   );
   const [hoverId, setHoverId] = useState<string | null>(null);
+  const [selected, setSelected] = useState<{ id: string; type: string } | null>(
+    null,
+  );
   const [detail, setDetail] = useState<NoteDetail | null>(null);
   const [loadingDetail, setLoadingDetail] = useState(false);
 
@@ -81,17 +72,7 @@ export function KnowledgeGraphView({
     return () => obs.disconnect();
   }, []);
 
-  // type별 노드 개수 (범례 표기)
-  const typeCounts = useMemo(() => {
-    const m = {} as Record<GraphNodeType, number>;
-    TYPE_ORDER.forEach((ty) => (m[ty] = 0));
-    graphData.nodes.forEach((n) => {
-      if (n.type in m) m[n.type] += 1;
-    });
-    return m;
-  }, [graphData]);
-
-  // 필터된 노드/엣지 + 이웃 인접 맵 (string id 기준으로 미리 계산)
+  // 필터된 노드/엣지 + 이웃 인접 맵 (pristine GraphResponse 에서 string id 기준 계산 후 복사)
   const { graph, neighbors } = useMemo(() => {
     const nodes = graphData.nodes.filter((n) => activeTypes.has(n.type));
     const visible = new Set(nodes.map((n) => n.id));
@@ -146,13 +127,13 @@ export function KnowledgeGraphView({
   }, [graph, ForceGraph2D]);
 
   useEffect(() => {
-    if (!detail) return;
+    if (!selected) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setDetail(null);
+      if (e.key === "Escape") closePanel();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [detail]);
+  }, [selected]);
 
   // 포커스(hover) 시 이웃 외 노드를 흐리게 — null이면 강조 없음
   const isDimmed = (id: string): boolean => {
@@ -161,30 +142,34 @@ export function KnowledgeGraphView({
     return !neighbors[hoverId]?.has(id);
   };
 
-  function toggleType(ty: GraphNodeType) {
+  function toggleType(ty: string) {
     setActiveTypes((prev) => {
       const next = new Set(prev);
       if (next.has(ty)) next.delete(ty);
       else next.add(ty);
       // 전부 끄면 다시 전체 (빈 그래프 방지)
-      return next.size === 0 ? new Set(TYPE_ORDER) : next;
+      return next.size === 0 ? new Set(legend.map((l) => l.type)) : next;
     });
   }
 
-  async function onNodeClick(node: {
-    id?: string | number;
-    type?: GraphNodeType;
-  }) {
-    if (!node.id || !node.type) return;
-    // product/idea 등은 정식 이동(WORK-009) — 이 work는 패널/하이라이트까지.
-    if (!NOTE_TYPES.has(node.type)) {
-      setHoverId(String(node.id));
+  function closePanel() {
+    setSelected(null);
+    setDetail(null);
+  }
+
+  // 노드 선택(전역 클릭·로컬 그래프 이웃 클릭 공용). reference(notes)면 상세 fetch, 그 외는 로컬 그래프만.
+  async function selectNode(id: string, type: string) {
+    setSelected({ id, type });
+    if (!NOTE_TYPES.has(type)) {
+      setDetail(null);
+      setLoadingDetail(false);
       return;
     }
     setLoadingDetail(true);
+    setDetail(null);
     try {
-      const id = encodeURIComponent(String(node.id));
-      const res = await fetch(`${API_BASE}/api/notes/${id}?lang=${lang}`, {
+      const encoded = encodeURIComponent(id);
+      const res = await fetch(`${API_BASE}/api/notes/${encoded}?lang=${lang}`, {
         cache: "no-store",
       });
       if (!res.ok) throw new Error(`API ${res.status}`);
@@ -198,7 +183,7 @@ export function KnowledgeGraphView({
     }
   }
 
-  const panelOpen = detail || loadingDetail;
+  const panelOpen = selected !== null;
 
   return (
     <div
@@ -251,15 +236,13 @@ export function KnowledgeGraphView({
               nodeColor={(n: object) => {
                 const node = n as {
                   id: string;
-                  type: GraphNodeType;
+                  type: string;
                   archived?: boolean;
                 };
-                const base = TYPE_COLOR[node.type] ?? "oklch(0.7 0 0)";
-                const lc = base.slice(0, -1); // "oklch(L C H" → 알파 합성용
-                // archived 흐리게 + hover 시 비이웃 흐리게 (둘 다면 더 흐리게)
-                let alpha = node.archived ? 0.3 : 1;
-                if (isDimmed(node.id)) alpha = Math.min(alpha, 0.12);
-                return alpha === 1 ? base : `${lc} / ${alpha})`;
+                return nodeColorFor(node.type, {
+                  archived: node.archived,
+                  dimmed: isDimmed(node.id),
+                });
               }}
               linkColor={(l: object) => {
                 const link = l as { source: unknown; target: unknown; type?: string };
@@ -269,19 +252,22 @@ export function KnowledgeGraphView({
                 if (touch) return "rgba(255,255,255,0.45)";
                 if (hoverId) return "rgba(255,255,255,0.04)";
                 return link.type === "lineage"
-                  ? "rgba(255,255,255,0.22)"
-                  : "rgba(255,255,255,0.1)";
+                  ? LINK_COLOR_LINEAGE
+                  : LINK_COLOR_ASSOC;
               }}
               linkWidth={(l: object) =>
                 (l as { type?: string }).type === "lineage" ? 0.9 : 0.6
               }
               // lineage = 화살표, assoc = 무방향 선
               linkDirectionalArrowLength={(l: object) =>
-                (l as { type?: string }).type === "lineage" ? 3 : 0
+                arrowLengthFor((l as { type?: string }).type)
               }
               linkDirectionalArrowRelPos={1}
               backgroundColor="transparent"
-              onNodeClick={onNodeClick}
+              onNodeClick={(n: object) => {
+                const node = n as { id?: string | number; type?: string };
+                if (node.id && node.type) selectNode(String(node.id), node.type);
+              }}
               onNodeHover={(n: object | null) =>
                 setHoverId(n ? String((n as { id: string }).id) : null)
               }
@@ -307,7 +293,7 @@ export function KnowledgeGraphView({
             </div>
           )}
 
-          {/* 범례 — 좌측 상단. 클릭 = type 필터 토글 (SPEC-005 §5) */}
+          {/* 범례 — 좌측 상단. 데이터에 등장하는 type만. 클릭 = 필터 토글 (SPEC-005 §5) */}
           <div
             className="mono"
             style={{
@@ -321,13 +307,13 @@ export function KnowledgeGraphView({
               maxWidth: "calc(100% - 32px)",
             }}
           >
-            {TYPE_ORDER.map((ty) => {
-              const on = activeTypes.has(ty);
+            {legend.map(({ type, count }) => {
+              const on = activeTypes.has(type);
               return (
                 <button
-                  key={ty}
+                  key={type}
                   type="button"
-                  onClick={() => toggleType(ty)}
+                  onClick={() => toggleType(type)}
                   title={t("type 필터 토글", "toggle type filter")}
                   style={{
                     display: "flex",
@@ -348,12 +334,12 @@ export function KnowledgeGraphView({
                       width: 8,
                       height: 8,
                       borderRadius: "50%",
-                      background: TYPE_COLOR[ty],
+                      background: TYPE_COLOR[type] ?? "oklch(0.70 0.02 250)",
                       flexShrink: 0,
                     }}
                   />
-                  {ty}
-                  <span style={{ color: "var(--fg-3)" }}>{typeCounts[ty]}</span>
+                  {type}
+                  <span style={{ color: "var(--fg-3)" }}>{count}</span>
                 </button>
               );
             })}
@@ -373,13 +359,33 @@ export function KnowledgeGraphView({
           </div>
         </div>
 
-        {/* 노드 클릭 패널 — notes NoteDetailPanel 재사용 */}
-        <NoteDetailPanel
-          detail={detail}
-          loading={loadingDetail}
-          onClose={() => setDetail(null)}
-          lang={lang}
-        />
+        {/* 노드 클릭 패널 — 로컬 그래프(WORK-009) + NoteDetailPanel(notes 재사용) */}
+        {panelOpen && (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              overflowY: "auto",
+              minHeight: 0,
+            }}
+          >
+            {selected && (
+              <LocalGraph
+                graphData={graphData}
+                centerId={selected.id}
+                onSelectNode={selectNode}
+                onClose={closePanel}
+                lang={lang}
+              />
+            )}
+            <NoteDetailPanel
+              detail={detail}
+              loading={loadingDetail}
+              onClose={closePanel}
+              lang={lang}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
