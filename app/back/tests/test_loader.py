@@ -156,6 +156,93 @@ class TestGraphNodeQualification:
         assert dups == []
 
 
+class TestPermanent:
+    """KDEV-WORK-010 — permanent(영구노트, flat) loader + 그래프 배선."""
+
+    @staticmethod
+    def _repo(tmp_path: Path) -> Path:
+        """repo/persona(min) + repo/permanent 격리 레이아웃 (WORK-005 미러)."""
+        repo = tmp_path / "repo"
+        persona = repo / "persona"
+        persona.mkdir(parents=True)
+        _scaffold_min_persona(persona)
+        (repo / "permanent").mkdir()
+        return repo
+
+    def test_loaded_as_permanent_nodes(self, tmp_path: Path):
+        repo = self._repo(tmp_path)
+        perm = repo / "permanent"
+        # active 영구노트 + navigational README(제외)
+        (perm / "concurrency-model.md").write_text(
+            "---\ntitle: 동시성 모델\n---\n# 본문\n", encoding="utf-8"
+        )
+        (perm / "README.md").write_text("# 안내\nnavigational", encoding="utf-8")
+
+        data = load_persona(repo / "persona")
+        assert len(data["permanent"]) == 1  # README 제외
+        node = next(n for n in data["_graph"]["nodes"] if n["id"] == "concurrency-model")
+        assert node["type"] == "permanent"
+        assert node["archived"] is False
+        assert "README" not in {n["id"] for n in data["_graph"]["nodes"]}
+
+    def test_archive_subdir_is_archived(self, tmp_path: Path):
+        repo = self._repo(tmp_path)
+        archive = repo / "permanent" / "archive"
+        archive.mkdir()
+        (archive / "old-idea.md").write_text(
+            "---\ntitle: 폐기 노트\n---\n# old\n", encoding="utf-8"
+        )
+        data = load_persona(repo / "persona")
+        node = next(n for n in data["_graph"]["nodes"] if n["id"] == "old-idea")
+        assert node["archived"] is True
+
+    def test_empty_permanent_no_nodes(self, tmp_path: Path):
+        repo = self._repo(tmp_path)
+        data = load_persona(repo / "persona")
+        assert data["permanent"] == []
+        assert not any(
+            n["type"] == "permanent" for n in data["_graph"]["nodes"]
+        )
+
+    def test_id_filename_mismatch_fails(self, tmp_path: Path):
+        # id == 파일 stem 강제 (그래프 노드 식별자 정합) — reference 미러
+        repo = self._repo(tmp_path)
+        (repo / "permanent" / "foo.md").write_text(
+            "---\nid: bar\ntitle: t\n---\n# body\n", encoding="utf-8"
+        )
+        with pytest.raises(PersonaError, match="filename slug"):
+            load_persona(repo / "persona")
+
+    def test_up_emits_lineage_and_l4_same_rank_ok(self, tmp_path: Path):
+        # permanent up: reference → lineage 엣지. _TYPE_RANK reference=permanent=4 동일 rank →
+        # L4(상류만 up) 가 동일-rank 를 ERROR 로 잡지 않는지 확인 (WORK-010 구현 주의).
+        repo = self._repo(tmp_path)
+        ref = repo / "reference" / "py"
+        ref.mkdir(parents=True)
+        (ref / "asyncio-basics.md").write_text(
+            "---\ntitle: asyncio\n---\n# ref\n", encoding="utf-8"
+        )
+        (repo / "permanent" / "concurrency-model.md").write_text(
+            "---\ntitle: 동시성\nup: [asyncio-basics]\n---\n"
+            "정제 출처: [[asyncio-basics]]\n",
+            encoding="utf-8",
+        )
+        data = load_persona(repo / "persona")
+
+        edge = next(
+            e for e in data["_graph"]["edges"]
+            if e["source"] == "concurrency-model" and e["target"] == "asyncio-basics"
+        )
+        assert edge["type"] == "lineage"
+        assert edge["dir"] == "up"
+        # 동일-rank up(permanent→reference)은 L4 ERROR 아님
+        l4 = [
+            v for v in data["_graph_violations"]
+            if v["rule"] == "L4" and v["node"] == "concurrency-model"
+        ]
+        assert l4 == []
+
+
 class TestAlgorithms:
     """spec-07 — algorithms 카테고리 로드 + 검증."""
 

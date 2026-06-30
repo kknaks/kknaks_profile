@@ -70,6 +70,7 @@ REQUIRED_FIELDS: dict[str, set[str]] = {
     "project": {"type", "id", "title", "summary", "category", "status", "stack"},
     "note": {"type", "id", "title", "date", "group"},
     "reference": {"type", "id", "title", "date", "group"},  # KDEV-WORK-005 — note 미러 (재타이핑)
+    "permanent": {"type", "id", "title"},  # KDEV-WORK-010 — reference 미러 minus group/date (flat·영구노트)
     "content": {"type", "id", "date", "day", "title", "summary", "youtubeId"},
     "daily": {"type", "date"},
     "algorithm": {"type", "id", "title", "date", "source", "difficulty"},
@@ -160,6 +161,8 @@ def load_persona(persona_dir: Path) -> dict[str, Any]:
     # KDEV-WORK-005 — notes 는 루트 reference/{cluster}/ 에서 로드 (persona/notes 폐지).
     # dict 키 "notes" 불변 → /api/notes·graph·edges·FE 무변경. type=reference auto-enrich.
     notes_list = _load_reference_notes(persona_dir.parent / "reference", persona_dir)
+    # KDEV-WORK-010 — permanent(영구노트, flat) 를 그래프 노드로 배선. 빈 permanent → [].
+    permanent_list = _load_permanent_notes(persona_dir.parent / "permanent")
     contents = _load_dir(persona_dir / "contents", persona_dir)
     contents.sort(key=lambda c: c.get("id", ""), reverse=True)
     daily = _load_dir(persona_dir / "daily")
@@ -183,6 +186,7 @@ def load_persona(persona_dir: Path) -> dict[str, Any]:
         "daily": daily,
         "algorithms": algorithms,
         "activity": activity,
+        "permanent": permanent_list,
         "_meta": meta,
     }
 
@@ -196,7 +200,7 @@ def load_persona(persona_dir: Path) -> dict[str, Any]:
     # persona 로드/notes 라우트와 분리된 신규 키. 실패해도 부팅 영향 없게 best-effort.
     try:
         products_dir = persona_dir.parent / "products"
-        nodes, duplicate_stems = _build_graph_nodes(notes, products_dir)
+        nodes, duplicate_stems = _build_graph_nodes(notes, products_dir, permanent_list)
         data["_nodes"] = nodes
         data["_graph"] = build_knowledge_graph(nodes)
         data["_graph_violations"] = validate_graph(nodes, duplicate_stems)
@@ -216,11 +220,14 @@ def load_persona(persona_dir: Path) -> dict[str, Any]:
 def _build_graph_nodes(
     notes: dict[str, dict],
     products_dir: Path,
+    permanent: list[dict] | None = None,
 ) -> tuple[dict[str, dict], list[dict]]:
-    """persona notes + products `*.md` → stem→node dict + 중복 stem 위반 리스트.
+    """persona notes + permanent + products `*.md` → stem→node dict + 중복 stem 위반 리스트.
 
     노드 식별자 = 파일명 stem (KDEV-SPEC-002 §4). 같은 stem 이 두 곳이면
     L2(SSOT 중복) 위반으로 수집하고 첫 항목을 유지(report-only).
+    KDEV-WORK-010 — permanent(영구노트) 도 노드. type=permanent, archived 반영,
+    본문 `[[]]`→assoc, `up:`→lineage 발현. 빈 permanent → 노드 0(무영향).
     """
     nodes: dict[str, dict] = {}
     origin: dict[str, str] = {}  # stem → 출처 라벨 (중복 진단용)
@@ -249,6 +256,19 @@ def _build_graph_nodes(
             "aliases": n.get("aliases"),
             "archived": bool(n.get("archived", False)),
         }, "reference")
+
+    # permanent 영구노트 (KDEV-WORK-010, stem == id — validate_persona 강제). flat.
+    for n in (permanent or []):
+        stem = n["_path"].stem
+        _add(stem, {
+            "id": n.get("id", stem),
+            "type": n.get("type", "permanent"),
+            "title": n.get("title"),
+            "body": n.get("body", ""),
+            "up": n.get("up"),
+            "aliases": n.get("aliases"),
+            "archived": bool(n.get("archived", False)),
+        }, f"permanent/{stem}")
 
     # products/**/*.md — 노드 자격 = frontmatter `type` 보유 (KDEV-WORK-002 Phase 2).
     # type 없는 navigational/legal 파일(README/log/privacy/support)은 노드가 아니다.
@@ -325,6 +345,16 @@ def validate_persona(data: dict[str, Any]) -> None:
             raise PersonaError(
                 f"reference/{path.name}: group '{n.get('group')}' "
                 f"not in _meta.yaml/notes.clusters"
+            )
+
+    # KDEV-WORK-010 — permanent(flat 영구노트). required + id==파일 stem (그래프 노드 식별자 정합).
+    for n in data.get("permanent", []):
+        _check_required(n, "permanent", f"permanent/{n.get('id', '?')}.md")
+        ppath: Path = n["_path"]
+        if ppath.stem != n["id"]:
+            raise PersonaError(
+                f"permanent/{ppath.name}: frontmatter id '{n['id']}' "
+                f"!= filename slug '{ppath.stem}'"
             )
 
     for c in data["contents"]:
@@ -503,6 +533,44 @@ def _load_reference_notes(reference_dir: Path, persona_dir: Path) -> list[dict]:
     out: list[dict] = []
     for cluster_dir in sorted(p for p in reference_dir.iterdir() if p.is_dir()):
         out.extend(_load_dir(cluster_dir, persona_dir, recursive=True))
+    return out
+
+
+def _enrich_permanent(data: dict, path: Path) -> dict:
+    """permanent 영구노트 enrich — type=permanent·id=stem·title 주입(frontmatter 존중).
+
+    KDEV-WORK-010. reference 의 `_auto_enrich_note` flat 미러 — cluster 없으니 group 없음.
+    archived = `archive` 경로 안 (permanent/archive/) 또는 frontmatter archived:true.
+    """
+    data.setdefault("type", "permanent")
+    data.setdefault("id", path.stem)
+    data.setdefault("title", path.stem)
+    data["archived"] = ("archive" in path.parts) or bool(data.get("archived", False))
+    return data
+
+
+def _load_permanent_notes(permanent_dir: Path) -> list[dict]:
+    """permanent/*.md (flat 영구노트) → note dict 리스트 (KDEV-WORK-010, WORK-005 미러).
+
+    flat 구조 — reference 의 cluster 개념 없음(group 없음). persona_dir 밖(레포 루트).
+      - `permanent/*.md`        → active
+      - `permanent/archive/*.md` → archived=true
+    top-level `README.md`(navigational, WORK-003 scaffold) 는 제외. 빈 permanent → [].
+    auto-enrich 비대상이라 `_load_md(p, None)` 로 로드 후 `_enrich_permanent` 직접 주입.
+    """
+    if not permanent_dir.is_dir():
+        return []
+    out: list[dict] = []
+    for p in sorted(permanent_dir.glob("*.md")):
+        if p.name == "README.md":
+            continue
+        out.append(_enrich_permanent(_load_md(p, None), p))
+    archive_dir = permanent_dir / "archive"
+    if archive_dir.is_dir():
+        for p in sorted(archive_dir.glob("*.md")):
+            if p.name == "README.md":
+                continue
+            out.append(_enrich_permanent(_load_md(p, None), p))
     return out
 
 
