@@ -20,7 +20,7 @@ tags:
 title:
   en: Binary Tree Right Side View
   ko: 이진 트리 우측 뷰
-today: true
+today: false
 type: algorithm
 updated: '2026-06-30'
 visible: true
