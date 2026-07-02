@@ -12,7 +12,7 @@ import json
 import logging
 from datetime import date
 
-from open_kknaks import ClaudeClient
+from open_kknaks import AgentClient
 
 logger = logging.getLogger("kknaks-back.llm")
 
@@ -158,7 +158,7 @@ async def summarize_daily(
     contents_changes: list[dict],
     commits: list[dict],
     counts: dict,
-    client: ClaudeClient,
+    client: AgentClient,
 ) -> dict:
     """입력 → body+summary (counts 는 deterministic 이라 LLM 안 거침). spec-03 §3.2.
 
@@ -175,7 +175,7 @@ async def summarize_daily(
         task_id = await client.submit(
             prompt=prompt,
             model=LLM_MODEL,
-            timeout=LLM_TIMEOUT_S,
+            options={"timeout_sec": LLM_TIMEOUT_S},
             max_retries=2,
         )
         task = await client.result(task_id, timeout=LLM_TIMEOUT_S)

@@ -18,7 +18,7 @@ import json
 import logging
 from typing import Any
 
-from open_kknaks import ClaudeClient
+from open_kknaks import AgentClient
 
 logger = logging.getLogger("kknaks-back.algorithms.llm")
 
@@ -32,13 +32,13 @@ class LLMFillError(Exception):
 
 
 async def fill_gaps(
-    normalized: dict, *, client: ClaudeClient, retries: int = RETRIES
+    normalized: dict, *, client: AgentClient, retries: int = RETRIES
 ) -> dict:
     """normalize 결과 → LLM 1회 호출 → 검증된 gap dict.
 
     Args:
         normalized: normalize_question() 결과.
-        client: open-kknaks ClaudeClient (lifespan 에서 inject).
+        client: open-kknaks AgentClient (lifespan 에서 inject).
         retries: 파싱·검증 실패 시 재시도 횟수 (default 2).
 
     Raises:
@@ -52,7 +52,7 @@ async def fill_gaps(
         task_id = await client.submit(
             prompt=prompt,
             model=LLM_MODEL,
-            timeout=LLM_TIMEOUT_S,
+            options={"timeout_sec": LLM_TIMEOUT_S},
             max_retries=2,
         )
         task = await client.result(task_id, timeout=LLM_TIMEOUT_S)

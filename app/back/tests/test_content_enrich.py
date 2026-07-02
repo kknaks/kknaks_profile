@@ -86,7 +86,7 @@ def mock_external(monkeypatch):
     monkeypatch.setattr(content_enrich, "extract_transcript", _transcript)
     monkeypatch.setattr(content_enrich, "summarize_content", _summarize)
     monkeypatch.setattr(content_enrich, "RedisBroker", lambda **kw: _DummyBroker())
-    monkeypatch.setattr(content_enrich, "ClaudeClient", _DummyClient)
+    monkeypatch.setattr(content_enrich, "AgentClient", _DummyClient)
 
 
 # ───────────────────────────────────────────────────────────────────────
@@ -371,7 +371,7 @@ class TestRunJob:
 
     @pytest.mark.asyncio
     async def test_self_contained_broker_when_no_client(self, tmp_path: Path, monkeypatch, mock_external):
-        """client=None 일 때 함수가 자체 broker connect/close — mock_external 의 RedisBroker/ClaudeClient 활용."""
+        """client=None 일 때 함수가 자체 broker connect/close — mock_external 의 RedisBroker/AgentClient 활용."""
         monkeypatch.setattr(content_enrich.config, "PERSONA_DIR", tmp_path)
         d = tmp_path / "contents"
         d.mkdir()
