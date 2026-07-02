@@ -72,7 +72,41 @@ services:
       # ADR-04 원형 패턴 — repo 안 .claude-tools/ (Linux ARM64 node + claude CLI 박제) 를 마운트
       PATH: /claude-tools/node/bin:/claude-tools/node_modules/.bin:/usr/local/bin:/usr/bin:/bin
     volumes:
+      - .:/repo:ro
       - ./.claude-tools:/claude-tools:ro
+    restart: unless-stopped
+
+  slack-bridge:
+    profiles: ["slack-capture"]
+    build:
+      context: .
+      dockerfile: Dockerfile.back
+    container_name: kknaks-slack-bridge
+    user: "501:20"
+    command: ["uv", "run", "--no-sync", "python", "/repo/app/slack_bridge/run.py"]
+    environment:
+      REDIS_URL: redis://redis:6379
+      NAMESPACE: kknaks-portfolio
+      REPO_ROOT: /repo
+      BACKEND_URL: http://back:48000
+      RELOAD_TOKEN: ${RELOAD_TOKEN:-changeme}
+      SLACK_CAPTURE_ENABLED: ${SLACK_CAPTURE_ENABLED:-0}
+      SLACK_BOT_TOKEN: ${SLACK_BOT_TOKEN:-}
+      SLACK_APP_TOKEN: ${SLACK_APP_TOKEN:-}
+      ALLOWED_SLACK_USERS: ${ALLOWED_SLACK_USERS:-}
+      ALLOWED_SLACK_CHANNELS: ${ALLOWED_SLACK_CHANNELS:-}
+      CAPTURE_PROVIDER: ${CAPTURE_PROVIDER:-claude}
+      CAPTURE_MODEL: ${CAPTURE_MODEL:-}
+      CAPTURE_WORK_DIR: ${CAPTURE_WORK_DIR:-/repo}
+      CAPTURE_TIMEOUT_SECONDS: ${CAPTURE_TIMEOUT_SECONDS:-600}
+    volumes:
+      - .:/repo
+    working_dir: /repo/app/back
+    depends_on:
+      back:
+        condition: service_started
+      redis:
+        condition: service_healthy
     restart: unless-stopped
 
 volumes:

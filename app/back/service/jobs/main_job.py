@@ -73,15 +73,15 @@ async def _do_run_daily_activity_job(
     dry_run_push: bool | None,
 ) -> dict:
     """잡 본체 — 호출자 (run_daily_activity_job) 가 try/except 로 감쌈."""
-    notes_changes = read_changed_files_today("persona/notes/", target, REPO)
+    notes_changes = read_changed_files_today("reference/", target, REPO)
     contents_changes = read_changed_files_today("persona/contents/", target, REPO, max_chars_per_file=2048)
 
-    # persona/projects 등록한 레포만 추적 (사용자 결정 — projects 파일이 SoT)
+    # products/*/showcase.md 등록한 레포만 추적 (사용자 결정 — showcase 파일이 SoT)
     from main import get_data
 
     tracked_repos = extract_tracked_repos(get_data().get("projects", []))
     if not tracked_repos:
-        logger.info("no tracked repos in persona/projects/*.md — commit fetch skip")
+        logger.info("no tracked repos in products/*/showcase.md — commit fetch skip")
 
     # 각 tracked repo × 각 acc 조합 호출 + (repo, msg) 키 dedupe
     seen: set[tuple[str, str]] = set()
@@ -133,10 +133,11 @@ async def _do_run_daily_activity_job(
         dry_run=dry_run,
     )
 
-    # 메모리 reload — circular import 회피 (spec-03 §6)
-    from main import load_all
+    # 메모리 reload — circular import 회피 (spec-03 §6). KDEV-WORK-007 — enforce 실패 시
+    # reload_data 가 구 데이터 유지·False 반환(워커 크래시 금지). 잡은 이미 commit/push 완료.
+    from main import reload_data
 
-    load_all()
+    reload_data()
     entry = {
         "date": target.strftime("%Y.%m.%d"),
         "counts": counts,

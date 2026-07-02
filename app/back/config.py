@@ -103,3 +103,12 @@ def bot_emails() -> set[str]:
     모든 account 의 email 을 한 set 으로. email 빈 account 는 자동 제외.
     """
     return {a["email"] for a in gh_accounts() if a.get("email")}
+
+
+def graph_json_path() -> Path:
+    """KDEV-WORK-001 — 지식그래프 산출물 `_graph.json` 경로 (best-effort write).
+
+    기본은 repo 루트(`persona` 와 sibling). 읽기전용 FS 등으로 실패해도 부팅 영향 없음.
+    """
+    raw = os.environ.get("GRAPH_JSON_PATH")
+    return Path(raw).expanduser().resolve() if raw else PERSONA_DIR.parent / "_graph.json"

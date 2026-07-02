@@ -15,6 +15,7 @@
 
 # worker 컨테이너 산출물
 app/worker/__pycache__/
+app/slack_bridge/__pycache__/
 
 # 옵시디언 사용자 설정 (사용자 PC vs 홈서버 분리)
 .obsidian/
@@ -42,6 +43,9 @@ app/front/tsconfig.tsbuildinfo
 # log
 *.log
 app/back/logs/
+
+# 지식그래프 빌더 산출물 (KDEV-WORK-001, 부팅 시 derive — git 트래킹 X)
+_graph.json
 
 
 # import-project skill의 외부 레포 둘 자리 (gitignore — 본 repo 일부 X)

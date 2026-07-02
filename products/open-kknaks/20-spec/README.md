@@ -16,6 +16,7 @@
 | [OKK-SPEC-008](spec-008-middleware-and-operational-controls.md) | Middleware와 운영 제어 | stable | 없음 | `open_kknaks/middleware/` | 없음 |
 | [OKK-SPEC-009](spec-009-claude-codex-runner-adapter.md) | Claude/Codex Runner Adapter 계약 | draft | [OKK-DEC-001](../10-decision/decision-001-provider-based-task-execution.md) | `open_kknaks/worker/`, runner adapter 후보 | 없음 |
 | [OKK-SPEC-010](spec-010-codex-headless-runner.md) | Codex Headless Runner 실행 계약 | draft | [OKK-DEC-001](../10-decision/decision-001-provider-based-task-execution.md) | Codex runner adapter 후보 | 없음 |
+| [OKK-SPEC-011](spec-011-slack-knowledge-capture.md) | Slack 지식 수집 — inbox·reference 생성 계약 | draft | 없음 ([OKK-BL-002](../00-baseline/OKK-BL-002-slack-idea-knowledge-graph.md) 직접 구체화) | Slack adapter, capture skill, renderer/validator | 없음 |
 
 ## 읽는 순서
 
@@ -26,6 +27,7 @@
 | CLI 사용자 | OKK-SPEC-006 -> OKK-SPEC-001 |
 | MCP 연동자 | OKK-SPEC-007 -> OKK-SPEC-003 |
 | provider runner 구현 | OKK-SPEC-009 -> OKK-SPEC-010 -> OKK-SPEC-004 -> OKK-SPEC-001 |
+| Slack 지식 수집 구현 | OKK-SPEC-011 -> OKK-SPEC-003 -> OKK-SPEC-001 -> OKK-SPEC-008 |
 | 구현 유지보수 | OKK-SPEC-001 -> OKK-SPEC-002 -> OKK-SPEC-004 -> OKK-SPEC-008 -> OKK-SPEC-009 -> OKK-SPEC-010 |
 
 ## Legacy 코드 기준 mismatch

@@ -74,10 +74,18 @@ def main() -> int:
     if not PRODUCTS_DIR.exists():
         errors.append(f"missing products directory: {PRODUCTS_DIR}")
     else:
+        stage_dir_names = tuple(rel.split("/")[0] for rel in REQUIRED_STAGE_READMES)
         for product_dir in sorted(p for p in PRODUCTS_DIR.iterdir() if p.is_dir()):
-            for rel_path in REQUIRED_STAGE_READMES:
-                if not (product_dir / rel_path).exists():
-                    errors.append(f"missing required stage README: {product_dir.name}/{rel_path}")
+            # showcase-only 제품(S1: 회사/일부 개인) — stage 디렉토리 없이 showcase.md 만.
+            # 구조로 추론(KDEV-SPEC-001 §5): showcase.md 가 있고 stage 디렉토리가 하나도
+            # 없으면 stage README 면제. (showcase 도 stage 도 없는 빈 dir 은 여전히 에러)
+            is_showcase_only = (product_dir / "showcase.md").exists() and not any(
+                (product_dir / s).is_dir() for s in stage_dir_names
+            )
+            if not is_showcase_only:
+                for rel_path in REQUIRED_STAGE_READMES:
+                    if not (product_dir / rel_path).exists():
+                        errors.append(f"missing required stage README: {product_dir.name}/{rel_path}")
 
             for rel_path in OPTIONAL_STAGE_READMES:
                 stage_dir = product_dir / rel_path.split("/")[0]

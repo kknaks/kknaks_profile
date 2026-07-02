@@ -73,39 +73,43 @@ class TestValidationFailures:
             load_persona(tmp_path)
 
     def test_notes_id_filename_mismatch_fails(self, tmp_path: Path):
-        _scaffold_min_persona(tmp_path)
-        notes_dir = tmp_path / "notes"
-        notes_dir.mkdir(exist_ok=True)
+        # KDEV-WORK-005 — reference=persona_dir.parent/reference 라 unique repo layout 으로 격리
+        repo = tmp_path / "repo"
+        persona = repo / "persona"
+        persona.mkdir(parents=True)
+        _scaffold_min_persona(persona)
+        ref_dir = repo / "reference" / "py"
+        ref_dir.mkdir(parents=True)
         # 파일명은 foo.md 인데 frontmatter id는 bar
-        (notes_dir / "foo.md").write_text(
+        (ref_dir / "foo.md").write_text(
             "---\n"
-            "type: note\n"
             "id: bar\n"
             "title: { ko: t, en: t }\n"
             "date: '2026.05.01'\n"
-            "group: py\n"
             "---\n# body\n",
             encoding="utf-8",
         )
         with pytest.raises(PersonaError, match="filename slug"):
-            load_persona(tmp_path)
+            load_persona(persona)
 
     def test_notes_group_not_in_meta_fails(self, tmp_path: Path):
-        _scaffold_min_persona(tmp_path)
-        notes_dir = tmp_path / "notes"
-        notes_dir.mkdir(exist_ok=True)
-        (notes_dir / "x.md").write_text(
+        repo = tmp_path / "repo"
+        persona = repo / "persona"
+        persona.mkdir(parents=True)
+        _scaffold_min_persona(persona)
+        ref_dir = repo / "reference" / "nosuchgroup"
+        ref_dir.mkdir(parents=True)
+        # group 은 cluster 디렉토리명(nosuchgroup)에서 auto-enrich → _meta 에 없음
+        (ref_dir / "x.md").write_text(
             "---\n"
-            "type: note\n"
             "id: x\n"
             "title: { ko: t, en: t }\n"
             "date: '2026.05.01'\n"
-            "group: nosuchgroup\n"
             "---\n",
             encoding="utf-8",
         )
         with pytest.raises(PersonaError, match="not in _meta"):
-            load_persona(tmp_path)
+            load_persona(persona)
 
     def test_contents_id_filename_mismatch_fails(self, tmp_path: Path):
         _scaffold_min_persona(tmp_path)
@@ -125,6 +129,118 @@ class TestValidationFailures:
         )
         with pytest.raises(PersonaError, match="must be prefix"):
             load_persona(tmp_path)
+
+
+class TestGraphNodeQualification:
+    """KDEV-WORK-002 Phase 2 — 노드 자격 = frontmatter `type` 보유."""
+
+    def test_typeless_navigational_excluded(self, tmp_path: Path):
+        from service.persona_loader import _build_graph_nodes
+
+        products = tmp_path / "products" / "demo"
+        products.mkdir(parents=True)
+        # type 있는 진짜 노드
+        (products / "spec-001-foo.md").write_text(
+            "---\nid: D-SPEC-001\ntype: spec\ntitle: Foo\n---\n본문 [[x]]",
+            encoding="utf-8",
+        )
+        # type 없는 navigational 파일 — 노드 아님
+        (products / "README.md").write_text("# 안내\n그냥 readme", encoding="utf-8")
+        (products / "log.md").write_text("---\ntitle: 로그\n---\n변경 기록", encoding="utf-8")
+
+        nodes, dups = _build_graph_nodes({}, tmp_path / "products")
+        assert "spec-001-foo" in nodes
+        assert "README" not in nodes
+        assert "log" not in nodes
+        # type 없는 파일은 중복 stem 검사에도 안 걸림
+        assert dups == []
+
+
+class TestPermanent:
+    """KDEV-WORK-010 — permanent(영구노트, flat) loader + 그래프 배선."""
+
+    @staticmethod
+    def _repo(tmp_path: Path) -> Path:
+        """repo/persona(min) + repo/permanent 격리 레이아웃 (WORK-005 미러)."""
+        repo = tmp_path / "repo"
+        persona = repo / "persona"
+        persona.mkdir(parents=True)
+        _scaffold_min_persona(persona)
+        (repo / "permanent").mkdir()
+        return repo
+
+    def test_loaded_as_permanent_nodes(self, tmp_path: Path):
+        repo = self._repo(tmp_path)
+        perm = repo / "permanent"
+        # active 영구노트 + navigational README(제외)
+        (perm / "concurrency-model.md").write_text(
+            "---\ntitle: 동시성 모델\n---\n# 본문\n", encoding="utf-8"
+        )
+        (perm / "README.md").write_text("# 안내\nnavigational", encoding="utf-8")
+
+        data = load_persona(repo / "persona")
+        assert len(data["permanent"]) == 1  # README 제외
+        node = next(n for n in data["_graph"]["nodes"] if n["id"] == "concurrency-model")
+        assert node["type"] == "permanent"
+        assert node["archived"] is False
+        assert "README" not in {n["id"] for n in data["_graph"]["nodes"]}
+
+    def test_archive_subdir_is_archived(self, tmp_path: Path):
+        repo = self._repo(tmp_path)
+        archive = repo / "permanent" / "archive"
+        archive.mkdir()
+        (archive / "old-idea.md").write_text(
+            "---\ntitle: 폐기 노트\n---\n# old\n", encoding="utf-8"
+        )
+        data = load_persona(repo / "persona")
+        node = next(n for n in data["_graph"]["nodes"] if n["id"] == "old-idea")
+        assert node["archived"] is True
+
+    def test_empty_permanent_no_nodes(self, tmp_path: Path):
+        repo = self._repo(tmp_path)
+        data = load_persona(repo / "persona")
+        assert data["permanent"] == []
+        assert not any(
+            n["type"] == "permanent" for n in data["_graph"]["nodes"]
+        )
+
+    def test_id_filename_mismatch_fails(self, tmp_path: Path):
+        # id == 파일 stem 강제 (그래프 노드 식별자 정합) — reference 미러
+        repo = self._repo(tmp_path)
+        (repo / "permanent" / "foo.md").write_text(
+            "---\nid: bar\ntitle: t\n---\n# body\n", encoding="utf-8"
+        )
+        with pytest.raises(PersonaError, match="filename slug"):
+            load_persona(repo / "persona")
+
+    def test_up_emits_lineage_and_l4_same_rank_ok(self, tmp_path: Path):
+        # permanent up: reference → lineage 엣지. _TYPE_RANK reference=permanent=4 동일 rank →
+        # L4(상류만 up) 가 동일-rank 를 ERROR 로 잡지 않는지 확인 (WORK-010 구현 주의).
+        repo = self._repo(tmp_path)
+        ref = repo / "reference" / "py"
+        ref.mkdir(parents=True)
+        (ref / "asyncio-basics.md").write_text(
+            "---\ntitle: asyncio\n---\n# ref\n", encoding="utf-8"
+        )
+        (repo / "permanent" / "concurrency-model.md").write_text(
+            "---\ntitle: 동시성\nup: [asyncio-basics]\n---\n"
+            "정제 출처: [[asyncio-basics]]\n",
+            encoding="utf-8",
+        )
+        data = load_persona(repo / "persona")
+
+        edge = next(
+            e for e in data["_graph"]["edges"]
+            if e["source"] == "concurrency-model" and e["target"] == "asyncio-basics"
+        )
+        assert edge["type"] == "lineage"
+        assert edge["dir"] == "up"
+        # 동일-rank up(permanent→reference)은 L4 ERROR 아님
+        l4 = [
+            v for v in data["_graph_violations"]
+            if v["rule"] == "L4" and v["node"] == "concurrency-model"
+        ]
+        assert l4 == []
 
 
 class TestAlgorithms:
@@ -216,6 +332,89 @@ class TestAlgorithms:
         _scaffold_algo(tmp_path, "A-002", "y", date="2026-05-02", today=True)
         with pytest.raises(PersonaError, match="today"):
             load_persona(tmp_path)
+
+
+class TestProductsShowcaseLoading:
+    """KDEV-WORK-004 — projects 는 products/*/showcase.md 에서 로드 (persona/projects 폐지)."""
+
+    def test_projects_loaded_from_products_showcase(self, tmp_path: Path):
+        # persona.parent/products 가 격리되도록 unique tmp_path 하위에 repo 레이아웃 구성.
+        repo = tmp_path / "repo"
+        persona = repo / "persona"
+        persona.mkdir(parents=True)
+        _scaffold_min_persona(persona)
+
+        for slug, pid in (("wine-log", "P-01"), ("linky", "P-02")):
+            d = repo / "products" / slug
+            d.mkdir(parents=True)
+            (d / "showcase.md").write_text(
+                "---\n"
+                "type: project\n"
+                f"id: {pid}\n"
+                "org: studio\n"
+                "title: { ko: T, en: T }\n"
+                "summary: { ko: s, en: s }\n"
+                "category: web\n"
+                "status: live\n"
+                "stack: [FastAPI]\n"
+                "---\n# case study\n",
+                encoding="utf-8",
+            )
+
+        data = load_persona(persona)
+        assert len(data["projects"]) == 2
+        # 정렬 = product 디렉토리명 오름차순 (linky < wine-log)
+        assert [p["id"] for p in data["projects"]] == ["P-02", "P-01"]
+        assert data["projects"][0]["body"].strip() == "# case study"
+
+    def test_bad_category_in_showcase_fails(self, tmp_path: Path):
+        repo = tmp_path / "repo"
+        persona = repo / "persona"
+        persona.mkdir(parents=True)
+        _scaffold_min_persona(persona)
+        d = repo / "products" / "x"
+        d.mkdir(parents=True)
+        (d / "showcase.md").write_text(
+            "---\n"
+            "type: project\n"
+            "id: P-01\n"
+            "title: { ko: T, en: T }\n"
+            "summary: { ko: s, en: s }\n"
+            "category: nope\n"  # _meta 의 categories 에 없음
+            "status: live\n"
+            "stack: [FastAPI]\n"
+            "---\n# x\n",
+            encoding="utf-8",
+        )
+        with pytest.raises(PersonaError, match="category"):
+            load_persona(persona)
+
+
+class TestReferenceNotesLoading:
+    """KDEV-WORK-005 — notes 는 reference/{cluster}/ 에서 로드 + type=reference auto-enrich."""
+
+    def test_reference_notes_loaded_and_retyped(self, tmp_path: Path):
+        repo = tmp_path / "repo"
+        persona = repo / "persona"
+        persona.mkdir(parents=True)
+        _scaffold_min_persona(persona)
+        ref = repo / "reference"
+        (ref / "py").mkdir(parents=True)
+        # frontmatter 에 type/id/group 없음 → auto-enrich 가 주입 (157개 실노트와 동형)
+        (ref / "py" / "n1.md").write_text(
+            "---\ntitle: { ko: t, en: t }\ndate: '2026.05.01'\n---\n# body\n",
+            encoding="utf-8",
+        )
+        (ref / "py" / "n2.md").write_text("# 빈 frontmatter\n본문", encoding="utf-8")
+        # top-level navigational README 는 노트로 로드되면 안 됨 (id 없음 → dict KeyError 위험)
+        (ref / "README.md").write_text("# 안내\nnavigational", encoding="utf-8")
+
+        data = load_persona(persona)
+        assert len(data["notes"]) == 2  # README 제외
+        for nid, n in data["notes"].items():
+            assert n["type"] == "reference"  # 재타이핑 주입
+            assert n["group"] == "py"  # cluster 디렉토리명
+            assert n["id"] == nid
 
 
 def _scaffold_min_persona(root: Path) -> None:

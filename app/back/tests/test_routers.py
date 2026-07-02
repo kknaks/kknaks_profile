@@ -80,6 +80,38 @@ class TestNotesGraph:
             assert "source" in e and "target" in e
 
 
+class TestGraph:
+    """KDEV-WORK-008 — GET /api/graph 전역 지식그래프 계약."""
+
+    def test_returns_200_with_keys(self, client):
+        r = client.get("/api/graph")
+        assert r.status_code == 200
+        d = r.json()
+        assert "nodes" in d and "edges" in d and "backlinks" in d
+        assert isinstance(d["nodes"], list)
+        assert isinstance(d["edges"], list)
+        assert isinstance(d["backlinks"], dict)
+
+    def test_node_contract(self, client):
+        d = client.get("/api/graph").json()
+        assert len(d["nodes"]) > 0  # notes + products 결합 그래프
+        for n in d["nodes"][:5]:
+            assert {"id", "type", "title", "archived"} <= set(n)
+            assert isinstance(n["archived"], bool)
+
+    def test_edge_contract(self, client):
+        d = client.get("/api/graph").json()
+        assert len(d["edges"]) > 0
+        types = set()
+        for e in d["edges"]:
+            assert {"source", "target", "type", "dir"} <= set(e)
+            assert e["type"] in ("lineage", "assoc")
+            assert e["dir"] in ("up", None)
+            types.add(e["type"])
+        # lineage(up 오버레이) / assoc 둘 다 실데이터에 존재
+        assert "assoc" in types
+
+
 class TestNotesRecent:
     def test_returns_recent_notes(self, client):
         d = client.get("/api/notes/recent?limit=5").json()

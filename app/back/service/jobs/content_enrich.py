@@ -396,8 +396,9 @@ async def run_content_enrich_job(
             await own_broker.close()
 
     if processed > 0:
-        from main import load_all
+        # KDEV-WORK-007 — enforce 실패 시 reload_data 가 구 데이터 유지·False 반환(워커 크래시 금지).
+        from main import reload_data
 
-        load_all()
+        reload_data()
         logger.info("content enrich done: %d processed", processed)
     return processed

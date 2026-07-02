@@ -190,7 +190,7 @@ class TestLLMBuildPrompt:
         prompt = _build_prompt(
             date(2026, 5, 2),
             notes_changes=[
-                {"path": "persona/notes/x.md", "frontmatter": {"id": "x", "title": "X"}, "body": "본문 abc"}
+                {"path": "reference/py/x.md", "frontmatter": {"id": "x", "title": "X"}, "body": "본문 abc"}
             ],
             contents_changes=[], commits=[],
             counts={"commit": 0, "note": 1, "study": 0},
@@ -222,7 +222,7 @@ class TestLLMSummarize:
 
         r = await summarize_daily(
             date(2026, 5, 2),
-            notes_changes=[{"path": "persona/notes/x.md", "frontmatter": {"id": "x"}, "body": "n"}],
+            notes_changes=[{"path": "reference/py/x.md", "frontmatter": {"id": "x"}, "body": "n"}],
             contents_changes=[],
             commits=[],
             counts={"commit": 0, "note": 1, "study": 0},

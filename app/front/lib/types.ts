@@ -103,6 +103,42 @@ export interface NotesGraphResponse {
   };
 }
 
+/* ---------- 전역 지식 그래프 (work-008 / spec-005) — NotesGraphResponse와 별개 ---------- */
+
+// BE `/api/graph` 실응답 타입(2026-06-30 라이브): reference(notes) + products 문서 타입들.
+// 집합은 닫혀있지 않다(향후 타입 추가 가능) — non-exhaustive union + fallback 처리. lib/graph.ts 참조.
+export type GraphNodeType =
+  | "reference"
+  | "baseline"
+  | "decision"
+  | "spec"
+  | "work"
+  | "release"
+  | "runbook"
+  | "bugfix"
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  | (string & {});
+
+export interface GraphNode {
+  id: string;
+  type: GraphNodeType;
+  title: string;
+  archived: boolean;
+}
+
+export interface GraphEdge {
+  source: string;
+  target: string;
+  type: "lineage" | "assoc";
+  dir?: "up" | null;
+}
+
+export interface GraphResponse {
+  nodes: GraphNode[];
+  edges: GraphEdge[];
+  backlinks: Record<string, string[]>;
+}
+
 export interface NoteDetail {
   id: string;
   title: string;

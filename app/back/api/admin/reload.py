@@ -32,6 +32,21 @@ logger = logging.getLogger("kknaks-back.admin-reload")
 router = APIRouter()
 
 
+@router.post("/admin/reload-data")
+async def reload_data_only(
+    x_reload_token: str | None = Header(default=None),
+):
+    """Token-authenticated in-memory reload without git pull or background jobs."""
+    expected_token = config.reload_token()
+    if not x_reload_token or not expected_token or not hmac.compare_digest(x_reload_token, expected_token):
+        raise HTTPException(403, "invalid auth")
+    from main import reload_data
+
+    if not reload_data():
+        raise HTTPException(503, "reload rejected by graph enforcement — serving previous data")
+    return {"status": "reloaded"}
+
+
 def _verify_hmac(secret: str, signature_header: str | None, body: bytes) -> bool:
     """GitHub webhook HMAC-SHA256 검증. signature 형식: 'sha256=<hex>'."""
     if not signature_header or not signature_header.startswith("sha256="):
@@ -106,10 +121,12 @@ async def reload(
         except subprocess.CalledProcessError:
             raise HTTPException(503, "git pull failed")
 
-    # 메모리 reload (즉시)
-    from main import load_all
+    # 메모리 reload (즉시). KDEV-WORK-007 — enforce 실패 시 reload_data 가 구 데이터를
+    # 유지하며 False 반환(prod 안 죽음). webhook 은 503 으로 응답해 GitHub delivery 에 가시화.
+    from main import reload_data
 
-    load_all()
+    if not reload_data():
+        raise HTTPException(503, "reload rejected by graph enforcement — serving previous data")
 
     # enrich 잡 — background (LLM 호출 60-120s 걸림 → GitHub webhook 10s timeout 회피)
     background_tasks.add_task(_run_enrich_safe)

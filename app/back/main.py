@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import logging
 import os
 from contextlib import asynccontextmanager
@@ -18,7 +19,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 import config
-from service.persona_loader import load_persona
+from service.persona_loader import GraphEnforcementError, load_persona
 
 logger = logging.getLogger("kknaks-back")
 
@@ -41,6 +42,64 @@ def load_all() -> None:
         len(_data["daily"]),
         len(_data.get("algorithms", [])),
     )
+    _report_graph(_data)
+
+
+def reload_data() -> bool:
+    """런타임 reload 안전 래퍼 (KDEV-WORK-007 — webhook/worker job 용).
+
+    boot(lifespan)는 raw `load_all()` 을 호출해 raise propagate(fail-fast).
+    런타임 reload caller 는 이 함수를 써서 enforce 실패 시 **절대 크래시하지 않는다**:
+    `load_all()` 이 GraphEnforcementError 를 raise 하면 `_data` 는 미재할당이라
+    기존(검증 통과한) 데이터가 그대로 살아 계속 서빙된다. 거부를 로그하고 False 반환.
+
+    Returns True=reload 성공, False=enforce 거부(구 데이터 유지).
+    """
+    try:
+        load_all()
+        return True
+    except GraphEnforcementError as e:
+        logger.error(
+            "persona reload REJECTED by graph enforcement — keeping previous data: %s",
+            e,
+        )
+        return False
+
+
+def _report_graph(data: dict[str, Any]) -> None:
+    """KDEV-WORK-001 — 지식그래프 산출(_graph.json) + L1~L6 검증 리포트.
+
+    **report-only**: 위반은 로그로만 출력, 부팅 차단 안 함. write 실패해도 무시.
+    """
+    from core.graph import summarize
+
+    graph = data.get("_graph") or {"nodes": [], "edges": [], "backlinks": {}}
+    violations = data.get("_graph_violations") or []
+    if data.get("_graph_error"):
+        logger.warning("graph build error (report-only): %s", data["_graph_error"])
+
+    logger.info(
+        "knowledge graph: %d nodes, %d edges (report-only)",
+        len(graph["nodes"]),
+        len(graph["edges"]),
+    )
+    if violations:
+        counts = summarize(violations)
+        logger.warning(
+            "graph validation (report-only, WORK-002 작업목록): %s",
+            ", ".join(f"{k}={v}" for k, v in sorted(counts.items())),
+        )
+
+    # _graph.json best-effort write — 읽기전용 FS 등 실패는 무시 (부팅 영향 0)
+    try:
+        out = config.graph_json_path()
+        out.write_text(
+            json.dumps(graph, ensure_ascii=False, indent=2, sort_keys=True),
+            encoding="utf-8",
+        )
+        logger.info("wrote %s", out)
+    except Exception as e:  # noqa: BLE001
+        logger.warning("could not write _graph.json (ignored): %s", e)
 
 
 def get_data() -> dict[str, Any]:
@@ -110,6 +169,7 @@ from api.routers import (  # noqa: E402
     algorithms,
     career,
     contents,
+    graph,
     me,
     notes,
     print as print_router,
@@ -123,6 +183,7 @@ app.include_router(activity.router)
 app.include_router(career.router)
 app.include_router(projects.router)
 app.include_router(notes.router)
+app.include_router(graph.router)
 app.include_router(contents.router)
 app.include_router(algorithms.router)
 app.include_router(print_router.router)

@@ -88,7 +88,12 @@ jobs:
             echo "::endgroup::"
 
             echo "::group::docker compose up"
-            docker compose up -d --build back redis worker
+            if grep -qx 'SLACK_CAPTURE_ENABLED=1' .env; then
+              docker compose --profile slack-capture up -d --build back redis worker slack-bridge
+            else
+              docker compose up -d --build back redis worker
+              docker compose --profile slack-capture stop slack-bridge || true
+            fi
             echo "::endgroup::"
 
             echo "::group::wait for back healthy (ping)"

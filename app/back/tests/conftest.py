@@ -11,6 +11,9 @@ import pytest
 os.environ.setdefault("RUN_SCHEDULER", "0")
 os.environ.setdefault("WEB_CONCURRENCY", "1")
 os.environ.setdefault("JOB_GIT_PUSH_DRY_RUN", "1")
+# KDEV-WORK-007 — 테스트는 enforce off 가 기본(실-persona load 포함 266 테스트 안정).
+# enforcement 메커니즘 테스트는 각자 monkeypatch.setenv("GRAPH_ENFORCE","1") 로 opt-in.
+os.environ.setdefault("GRAPH_ENFORCE", "0")
 
 
 @pytest.fixture(autouse=True)
