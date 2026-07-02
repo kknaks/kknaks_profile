@@ -252,7 +252,7 @@ class _MockTask:
 
 
 class _MockClient:
-    """ClaudeClient 대체 — 미리 박은 응답 list 를 순서대로 반환."""
+    """AgentClient 대체 — 미리 박은 응답 list 를 순서대로 반환."""
 
     def __init__(self, responses: list[str]):
         self._responses = list(responses)

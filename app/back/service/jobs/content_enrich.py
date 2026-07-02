@@ -13,7 +13,7 @@ from pathlib import Path
 
 import frontmatter
 import yt_dlp
-from open_kknaks import ClaudeClient, RedisBroker
+from open_kknaks import AgentClient, RedisBroker
 from youtube_transcript_api import YouTubeTranscriptApi
 
 import config
@@ -163,14 +163,14 @@ async def summarize_content(
     metadata: dict,
     transcript: str | None,
     user_intent: str | None,
-    client: ClaudeClient,
+    client: AgentClient,
 ) -> dict:
     """open-kknaks LLM 호출 — spec-06 §3.3, ADR-04."""
     prompt = _build_prompt(metadata, transcript, user_intent)
     task_id = await client.submit(
         prompt=prompt,
         model=LLM_MODEL,
-        timeout=LLM_TIMEOUT_S,
+        options={"timeout_sec": LLM_TIMEOUT_S},
         max_retries=2,
     )
     task = await client.result(task_id, timeout=LLM_TIMEOUT_S)
@@ -305,7 +305,7 @@ def mark_error(md_path: Path, reason: str) -> None:
 # 잡 orchestrator (spec-06 §6)
 # ───────────────────────────────────────────────────────────────────────
 
-async def _enrich_one(md_path: Path, contents_dir: Path, client: ClaudeClient) -> None:
+async def _enrich_one(md_path: Path, contents_dir: Path, client: AgentClient) -> None:
     """파일 1개 enrich — spec-06 §6 핵심 흐름."""
     post = frontmatter.load(md_path)
     youtube_id = post.metadata.get("youtubeId")
@@ -340,7 +340,7 @@ async def _enrich_one(md_path: Path, contents_dir: Path, client: ClaudeClient) -
 
 
 async def run_content_enrich_job(
-    client: ClaudeClient | None = None,
+    client: AgentClient | None = None,
     *,
     dry_run_push: bool | None = None,
 ) -> int:
@@ -365,7 +365,7 @@ async def run_content_enrich_job(
     if client is None:
         own_broker = RedisBroker(url=config.redis_url(), namespace=LLM_NAMESPACE)
         await own_broker.connect()
-        client = ClaudeClient(broker=own_broker)
+        client = AgentClient(broker=own_broker)
         logger.info("open-kknaks broker connected (self-contained): %s", config.redis_url())
 
     processed = 0

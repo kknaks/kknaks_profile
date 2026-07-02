@@ -18,7 +18,7 @@ import logging
 from datetime import date
 from pathlib import Path
 
-from open_kknaks import ClaudeClient, RedisBroker
+from open_kknaks import AgentClient, RedisBroker
 
 import config
 from service.jobs.algorithms.fetch import (
@@ -46,7 +46,7 @@ LLM_NAMESPACE = "kknaks-portfolio"
 
 
 async def run_neetcode_canonical_job(
-    client: ClaudeClient | None = None,
+    client: AgentClient | None = None,
     *,
     dry_run_push: bool | None = None,
     target_date: date | None = None,
@@ -57,7 +57,7 @@ async def run_neetcode_canonical_job(
     `persona/algorithms/A-NNN-slug.md` 1개 + commit/push.
 
     Args:
-        client: open-kknaks ClaudeClient. None 이면 self-contained broker 생성.
+        client: open-kknaks AgentClient. None 이면 self-contained broker 생성.
         dry_run_push: git push dry-run override.
         target_date: 박는 날 (UTC). 미지정 시 today.
         persona_dir: 미지정 시 config.PERSONA_DIR.
@@ -81,7 +81,7 @@ async def run_neetcode_canonical_job(
 
 
 async def _do_run_neetcode_canonical_job(
-    client: ClaudeClient | None,
+    client: AgentClient | None,
     dry_run_push: bool | None,
     target: date,
     persona: Path,
@@ -126,7 +126,7 @@ async def _do_run_neetcode_canonical_job(
     if client is None:
         own_broker = RedisBroker(url=config.redis_url(), namespace=LLM_NAMESPACE)
         await own_broker.connect()
-        client = ClaudeClient(broker=own_broker)
+        client = AgentClient(broker=own_broker)
         logger.info(
             "open-kknaks broker connected (self-contained): %s", config.redis_url()
         )

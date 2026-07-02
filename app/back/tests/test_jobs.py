@@ -25,7 +25,7 @@ class _MockTask:
 
 
 class _MockClient:
-    """ClaudeClient stand-in — 고정 응답 반환."""
+    """AgentClient stand-in — 고정 응답 반환."""
 
     def __init__(self, response_json: str):
         self._response = response_json

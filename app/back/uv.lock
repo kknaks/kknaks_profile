@@ -490,7 +490,7 @@ requires-dist = [
     { name = "apscheduler", specifier = ">=3.10" },
     { name = "fastapi", specifier = ">=0.115" },
     { name = "httpx", specifier = ">=0.27" },
-    { name = "open-kknaks", specifier = ">=0.1" },
+    { name = "open-kknaks", specifier = "==2.0.2" },
     { name = "playwright", specifier = ">=1.49" },
     { name = "pypdf", specifier = ">=5.0" },
     { name = "python-frontmatter", specifier = ">=1.1" },
@@ -556,7 +556,7 @@ wheels = [
 
 [[package]]
 name = "open-kknaks"
-version = "2.0.0"
+version = "2.0.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "mcp" },
@@ -565,9 +565,9 @@ dependencies = [
     { name = "structlog" },
     { name = "typer" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/7a/21/5b8af999d326b4cfc9ed971e23f911acddb34b131ce6f599881f5e9204a3/open_kknaks-2.0.0.tar.gz", hash = "sha256:efdc7bfac9ba32b82ddc8501d6a69beeb572a91919cef34963f9d7bdb5306038", size = 141237, upload-time = "2026-04-30T10:28:17.527Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/4c/67/e229661e8b7c85686f8b1e845801c293a7f119f8d8907cf742a06364f8f4/open_kknaks-2.0.2.tar.gz", hash = "sha256:198b016153fc69f15394ba8202c4ac0d9571d384ca41d3f89de067853cb37ef9", size = 145334, upload-time = "2026-06-01T01:50:58.934Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/42/96/45c4148360c33d6f3ea4889858766441eebe35c5b395b1a02be34b0f567a/open_kknaks-2.0.0-py3-none-any.whl", hash = "sha256:cb868a281637dc668ac20d9374d67149d5fb65e26e7faa65047ee580fa2debb2", size = 50439, upload-time = "2026-04-30T10:28:16.168Z" },
+    { url = "https://files.pythonhosted.org/packages/8d/41/c363c44f09ae025bd5fe07ecb10107830a89f045d23ac4d50775dcd92838/open_kknaks-2.0.2-py3-none-any.whl", hash = "sha256:fb889c6352b731806b595c79bdfa76273a741f254f2d3d98d8b63f33dd682d7b", size = 56222, upload-time = "2026-06-01T01:50:57.679Z" },
 ]
 
 [[package]]

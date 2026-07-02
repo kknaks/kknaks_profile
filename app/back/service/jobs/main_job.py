@@ -6,7 +6,7 @@ from __future__ import annotations
 import logging
 from datetime import date, timedelta
 
-from open_kknaks import ClaudeClient, RedisBroker
+from open_kknaks import AgentClient, RedisBroker
 
 import config
 from service.jobs.git_push import commit_and_push_with_retry
@@ -27,7 +27,7 @@ LLM_NAMESPACE = "kknaks-portfolio"
 
 
 async def run_daily_activity_job(
-    client: ClaudeClient | None = None,
+    client: AgentClient | None = None,
     *,
     dry_run_push: bool | None = None,
     target_date: date | None = None,
@@ -69,7 +69,7 @@ async def run_daily_activity_job(
 
 async def _do_run_daily_activity_job(
     target: date,
-    client: ClaudeClient | None,
+    client: AgentClient | None,
     dry_run_push: bool | None,
 ) -> dict:
     """잡 본체 — 호출자 (run_daily_activity_job) 가 try/except 로 감쌈."""
@@ -113,7 +113,7 @@ async def _do_run_daily_activity_job(
     if client is None:
         own_broker = RedisBroker(url=config.redis_url(), namespace=LLM_NAMESPACE)
         await own_broker.connect()
-        client = ClaudeClient(broker=own_broker)
+        client = AgentClient(broker=own_broker)
         logger.info("open-kknaks broker connected (self-contained): %s", config.redis_url())
 
     try:
