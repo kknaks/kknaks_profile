@@ -184,6 +184,7 @@ async def test_runner_reuses_session_and_output_path(tmp_path):
         work_dir=str(tmp_path),
         known_stems=set,
         allowed_groups=lambda: {"study"},
+        publish=lambda _path: True,
         reload_data=lambda: True,
         now=lambda: datetime.fromisoformat("2026-07-02T12:00:00+09:00"),
     )
@@ -214,6 +215,7 @@ async def test_runner_reuses_session_and_output_path(tmp_path):
 async def test_runner_writes_reference_and_requests_reload(tmp_path):
     sessions = CaptureSessionStore(FakeRedis())
     client = FakeAgentClient([(_reference_result(), "session-ref")])
+    published = []
     reloaded = []
     runner = KnowledgeCaptureRunner(
         client,
@@ -224,6 +226,7 @@ async def test_runner_writes_reference_and_requests_reload(tmp_path):
         work_dir=str(tmp_path),
         known_stems=set,
         allowed_groups=lambda: {"study"},
+        publish=lambda path: published.append(path.relative_to(tmp_path).as_posix()) or True,
         reload_data=lambda: reloaded.append(True) or True,
         now=lambda: datetime.fromisoformat("2026-07-02T12:00:00+09:00"),
     )
@@ -234,4 +237,5 @@ async def test_runner_writes_reference_and_requests_reload(tmp_path):
     )
     await runner.handle(request, FakeSlack())
     assert (tmp_path / "reference/study/2026-07-02-knowledge-graph-source.md").is_file()
+    assert published == ["reference/study/2026-07-02-knowledge-graph-source.md"]
     assert reloaded == [True]

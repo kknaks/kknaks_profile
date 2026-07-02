@@ -35,6 +35,7 @@ class KnowledgeCaptureRunner:
         work_dir: str | None,
         known_stems: Callable[[], set[str]],
         allowed_groups: Callable[[], set[str]],
+        publish: Callable[[Path], bool | Awaitable[bool]],
         reload_data: Callable[[], bool | Awaitable[bool]],
         now: Callable[[], datetime],
         timeout_seconds: float = 600,
@@ -47,6 +48,7 @@ class KnowledgeCaptureRunner:
         self.work_dir = work_dir
         self.known_stems = known_stems
         self.allowed_groups = allowed_groups
+        self.publish = publish
         self.reload_data = reload_data
         self.now = now
         self.timeout_seconds = timeout_seconds
@@ -108,6 +110,8 @@ class KnowledgeCaptureRunner:
             path = output_path(document, context)
             rendered = render_document(document, context)
             atomic_write(path, rendered, replace=relative_override is not None)
+            publish_result = self.publish(path)
+            publish_ok = await publish_result if inspect.isawaitable(publish_result) else publish_result
             reload_result = self.reload_data()
             reload_ok = await reload_result if inspect.isawaitable(reload_result) else reload_result
             relative = path.relative_to(self.repo_root.resolve()).as_posix()
@@ -122,7 +126,12 @@ class KnowledgeCaptureRunner:
                 created_at=created_at,
                 last_seen_at=timestamp.isoformat(timespec="seconds"),
             ))
-            warning = "" if reload_ok else "\n⚠ 파일은 저장됐지만 그래프 reload가 거부됐습니다."
+            warnings = []
+            if not publish_ok:
+                warnings.append("⚠ 파일은 저장됐지만 Git push에 실패했습니다.")
+            if not reload_ok:
+                warnings.append("⚠ 파일은 저장됐지만 그래프 reload가 거부됐습니다.")
+            warning = "".join(f"\n{item}" for item in warnings)
             await slack_client.chat_update(
                 channel=request.channel_id,
                 ts=message_ts,
