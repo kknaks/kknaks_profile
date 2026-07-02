@@ -2,6 +2,13 @@
 
 | Date | Entry | Links |
 |---|---|---|
+| 2026-07-02 | WORK-006 paper PDF·source security·reference reload fixture와 feature-flagged Slack bridge 배선 완료 — backend 303 passed | `30-work/work-006-slack-knowledge-capture.md` |
+| 2026-07-02 | WORK-006 Socket Mode thread/session, AgentClient resume, source extractor, compose 배선 구현 — backend 298 passed | `30-work/work-006-slack-knowledge-capture.md` |
+| 2026-07-02 | WORK-006 Phase 2 capture skill·schema validator·Markdown renderer·atomic writer 1차 구현 | `30-work/work-006-slack-knowledge-capture.md` |
+| 2026-07-02 | WORK-006 Slack thread 기반 inbox/reference 지식 수집 구현 시작 | `30-work/work-006-slack-knowledge-capture.md` |
+| 2026-07-02 | SPEC-011을 app mention + Socket Mode + Slack thread별 session·단일 노트 갱신 계약으로 보정 | `20-spec/spec-011-slack-knowledge-capture.md` |
+| 2026-07-02 | Slack 텍스트·URL을 inbox/reference로 생성하는 지식 수집 계약 추가 | `20-spec/spec-011-slack-knowledge-capture.md` |
+| 2026-07-02 | Slack 지식 수집 baseline을 accepted로 전환하고 SPEC-011에 연결 | `00-baseline/OKK-BL-002-slack-idea-knowledge-graph.md` |
 | 2026-06-01 | `OKK-REL-002` open-kknaks 2.0.2 release note 작성 | `60-release/release-002-open-kknaks-2-0-2.md` |
 | 2026-06-01 | open-kknaks 2.0.2 PyPI release 완료 및 배포판 examples Docker에서 Claude/Codex E2E 검증 완료 | `30-work/work-005-demo-e2e-provider-surface.md` |
 | 2026-05-31 | 코드 레포에서 WORK-005 Demo와 E2E provider 실행 경로 갱신 완료 | `30-work/work-005-demo-e2e-provider-surface.md` |

@@ -13,6 +13,7 @@
 | [OKK-WORK-003](work-003-codex-headless-runner.md) | Codex Headless Runner 구현 | new-feature |  | done | 100% | OKK-SPEC-009, 010 |  | 완료 |
 | [OKK-WORK-004](work-004-batch-cli-mcp-provider-surface.md) | Batch, CLI, MCP Provider 표면 갱신 | breaking-change |  | done | 100% | OKK-SPEC-005, 006, 007, 008 |  | 완료 |
 | [OKK-WORK-005](work-005-demo-e2e-provider-surface.md) | Demo와 E2E Provider 실행 경로 갱신 | qa-enablement |  | done | 100% | OKK-SPEC-003, 006, 009, 010 |  | 완료 |
+| [OKK-WORK-006](work-006-slack-knowledge-capture.md) | Slack Thread 기반 inbox·reference 지식 수집 | new-feature |  | in_progress | 90% | OKK-SPEC-011, 003, 008 | `feat/knowledge-graph` | 실제 Slack mention→thread smoke |
 
 ## Spec Coverage
 
@@ -32,3 +33,4 @@
 | [OKK-SPEC-010](../20-spec/spec-010-codex-headless-runner.md) | [OKK-WORK-003](work-003-codex-headless-runner.md) | done |
 | [OKK-SPEC-009](../20-spec/spec-009-claude-codex-runner-adapter.md) | [OKK-WORK-005](work-005-demo-e2e-provider-surface.md) | done |
 | [OKK-SPEC-010](../20-spec/spec-010-codex-headless-runner.md) | [OKK-WORK-005](work-005-demo-e2e-provider-surface.md) | done |
+| [OKK-SPEC-011](../20-spec/spec-011-slack-knowledge-capture.md) | [OKK-WORK-006](work-006-slack-knowledge-capture.md) | in_progress |

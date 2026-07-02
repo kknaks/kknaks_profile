@@ -32,6 +32,21 @@ logger = logging.getLogger("kknaks-back.admin-reload")
 router = APIRouter()
 
 
+@router.post("/admin/reload-data")
+async def reload_data_only(
+    x_reload_token: str | None = Header(default=None),
+):
+    """Token-authenticated in-memory reload without git pull or background jobs."""
+    expected_token = config.reload_token()
+    if not x_reload_token or not expected_token or not hmac.compare_digest(x_reload_token, expected_token):
+        raise HTTPException(403, "invalid auth")
+    from main import reload_data
+
+    if not reload_data():
+        raise HTTPException(503, "reload rejected by graph enforcement — serving previous data")
+    return {"status": "reloaded"}
+
+
 def _verify_hmac(secret: str, signature_header: str | None, body: bytes) -> bool:
     """GitHub webhook HMAC-SHA256 검증. signature 형식: 'sha256=<hex>'."""
     if not signature_header or not signature_header.startswith("sha256="):
