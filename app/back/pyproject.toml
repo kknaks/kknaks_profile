@@ -12,6 +12,7 @@ dependencies = [
     "open-kknaks==2.0.2",          # AgentClient provider 계약 — worker와 버전 일치
     "redis>=5.0",                  # open-kknaks broker
     "slack-bolt>=1.28",            # Socket Mode knowledge capture bridge
+    "aiohttp>=3.13.5",             # slack-bolt AsyncApp/Socket Mode runtime
     "pypdf>=5.0",                  # paper PDF text extraction
     "apscheduler>=3.10",
     "yt-dlp>=2024.12",             # YouTube 메타데이터 (content enrich 잡)
