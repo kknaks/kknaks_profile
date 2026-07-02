@@ -19,7 +19,9 @@ if str(BACK_DIR) not in sys.path:
     sys.path.insert(0, str(BACK_DIR))
 
 from open_kknaks import AgentClient, RedisBroker  # noqa: E402
+import config  # noqa: E402
 from service.knowledge_capture import CaptureSessionStore  # noqa: E402
+from service.jobs.git_push import commit_and_push_with_retry  # noqa: E402
 from service.slack_bridge import KnowledgeCaptureRunner, create_capture_app  # noqa: E402
 
 KST = ZoneInfo("Asia/Seoul")
@@ -69,6 +71,16 @@ async def main() -> None:
             )
             return response.status_code == 200
 
+    async def publish_capture(path: Path) -> bool:
+        relative = path.relative_to(repo_root)
+        return await asyncio.to_thread(
+            commit_and_push_with_retry,
+            [relative],
+            f"content: capture Slack knowledge note ({relative.as_posix()})",
+            dry_run=config.job_git_push_dry_run(),
+            repo_root=repo_root,
+        )
+
     runner = KnowledgeCaptureRunner(
         AgentClient(broker),
         sessions,
@@ -78,6 +90,7 @@ async def main() -> None:
         work_dir=os.environ.get("CAPTURE_WORK_DIR", "/repo"),
         known_stems=lambda: _known_stems(repo_root),
         allowed_groups=lambda: _allowed_groups(repo_root),
+        publish=publish_capture,
         reload_data=reload_backend,
         now=lambda: datetime.now(KST),
         timeout_seconds=float(os.environ.get("CAPTURE_TIMEOUT_SECONDS", "600")),

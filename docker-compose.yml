@@ -78,6 +78,7 @@ services:
       context: .
       dockerfile: Dockerfile.back
     container_name: kknaks-slack-bridge
+    user: "1000:1000"                          # host kknaks uid 와 매핑 — capture 파일 권한 충돌 회피
     command: ["uv", "run", "--no-sync", "python", "/repo/app/slack_bridge/run.py"]
     environment:
       REDIS_URL: redis://redis:6379
@@ -94,6 +95,10 @@ services:
       CAPTURE_MODEL: ${CAPTURE_MODEL:-}
       CAPTURE_WORK_DIR: ${CAPTURE_WORK_DIR:-/repo}
       CAPTURE_TIMEOUT_SECONDS: ${CAPTURE_TIMEOUT_SECONDS:-600}
+      JOB_GIT_PUSH_DRY_RUN: ${JOB_GIT_PUSH_DRY_RUN:-1}
+      GH_USER_PERSONAL: ${GH_USER_PERSONAL:-kknaks}
+      GH_TOKEN_PERSONAL: ${GH_TOKEN_PERSONAL:-}
+      GH_EMAIL_PERSONAL: ${GH_EMAIL_PERSONAL:-}
     volumes:
       - .:/repo
     working_dir: /repo/app/back

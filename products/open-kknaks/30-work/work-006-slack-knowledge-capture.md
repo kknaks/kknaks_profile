@@ -42,7 +42,7 @@ Markdown 노트에 연결한다. 일반 텍스트는 inbox, 외부 자료 URL은
 구조화하며 같은 thread의 후속 메시지는 같은 노트를 안전하게 갱신한다.
 
 > 비목표: permanent/product/post 자동 승격, slash command, 공개 HTTP Events API,
-> Slack 파일 첨부, 자동 git commit/push.
+> Slack 파일 첨부.
 
 ## Meta
 
@@ -93,6 +93,7 @@ Markdown 노트에 연결한다. 일반 텍스트는 inbox, 외부 자료 URL은
 - Redis idempotency, session TTL, thread별 lock
 - `AgentClient` 신규/resume task 실행
 - atomic file create/update와 runtime graph reload
+- 기존 git push 잡을 재사용한 capture 파일 자동 commit/push
 - Slack thread 결과 응답
 
 제외:
@@ -102,7 +103,6 @@ Markdown 노트에 연결한다. 일반 텍스트는 inbox, 외부 자료 URL은
 - Slack 파일 업로드/다운로드
 - 다중 workspace 설치/OAuth UI
 - URL 뒤 로그인·paywall 우회
-- git commit/push 자동화
 
 ## Code Surface
 

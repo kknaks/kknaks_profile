@@ -511,13 +511,14 @@ tags: []
 4. frontmatter 재파싱
 5. repository graph/persona validation
 6. atomic write
-7. runtime reload
-8. Slack result reply
+7. 기존 `commit_and_push_with_retry`를 통한 commit/push
+8. runtime reload
+9. Slack result reply
 
 - `reference` 저장 후 기존 graph builder가 노드와 명시된 wikilink를 반영한다.
 - `inbox` 저장은 runtime graph node 수를 변경하지 않는다.
 - reload 실패 시 파일 저장 성공과 reload 실패를 구분해 운영자에게 경고한다.
-- 1단계에서는 자동 git commit/push를 수행하지 않는다.
+- push 실패 시 로컬 파일은 보존하고 Slack 응답에 push 실패를 별도 경고한다.
 
 ## 11. Security and Operational Controls
 
