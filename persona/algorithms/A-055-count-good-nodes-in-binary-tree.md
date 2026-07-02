@@ -20,7 +20,7 @@ tags:
 title:
   en: Count Good Nodes in Binary Tree
   ko: 이진 트리의 좋은 노드 개수 세기
-today: true
+today: false
 type: algorithm
 updated: '2026-07-01'
 visible: true
