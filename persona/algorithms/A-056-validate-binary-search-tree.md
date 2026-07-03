@@ -20,7 +20,7 @@ tags:
 title:
   en: Validate Binary Search Tree
   ko: 이진 탐색 트리 검증
-today: true
+today: false
 type: algorithm
 updated: '2026-07-02'
 visible: true
