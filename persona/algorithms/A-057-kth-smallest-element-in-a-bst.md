@@ -20,7 +20,7 @@ tags:
 title:
   en: Kth Smallest Element in a BST
   ko: 이진 검색 트리에서 k번째 작은 원소
-today: true
+today: false
 type: algorithm
 updated: '2026-07-03'
 visible: true
