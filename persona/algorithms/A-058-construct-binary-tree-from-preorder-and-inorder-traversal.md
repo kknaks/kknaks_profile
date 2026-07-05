@@ -21,7 +21,7 @@ tags:
 title:
   en: Construct Binary Tree from Preorder and Inorder Traversal
   ko: 전위 순회와 중위 순회로부터 이진 트리 구성하기
-today: true
+today: false
 type: algorithm
 updated: '2026-07-04'
 visible: true
