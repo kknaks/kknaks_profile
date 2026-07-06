@@ -20,7 +20,7 @@ tags:
 title:
   en: Binary Tree Maximum Path Sum
   ko: 이진 트리 최대 경로 합
-today: true
+today: false
 type: algorithm
 updated: '2026-07-05'
 visible: true
