@@ -24,7 +24,7 @@ links:
     - "[[spec-010-document-template-management|AXKG-SPEC-010]]"
     - "[[spec-011-ai-execution-pipeline|AXKG-SPEC-011]]"
   works:
-    - "[[work-001-mvp-pipeline-scaffold|AXKG-WORK-001]]"
+    - "[[work-006-settings|AXKG-WORK-006]]"
   releases: []
   related: []
 ---
@@ -257,5 +257,5 @@ stateDiagram-v2
 - `output_schema` 변경 시 다운스트림 소비 코드와의 호환을 어떻게 보장할지(런타임 검증 / 마이그레이션 / admin 책임). MVP는 단일 admin 전제로 편집을 허용하되, 스키마와 소비 코드 불일치 리스크를 admin이 책임진다. 단, `output_schema`가 관장하는 범위는 게이트 payload envelope(`classification.v1`/`documentation.v1`, AXKG-SPEC-002) 내부의 form/구조 필드까지다 — envelope 자체는 코드 고정이다(AXKG-DEC-005).
 - ~~`output_schema` 표현 형식(JSON Schema vs zod-json 등)~~ → **JSON Schema로 확정**(AXKG-DEC-005). 편집기 검증(`INVALID_OUTPUT_SCHEMA`)과 구조화 출력 강제는 JSON Schema 기준이다.
 - tool/workflow를 설정에서 조회/렌더/편집할지(후속 별도 스펙 여지). MVP는 프롬프트만.
-- 프롬프트를 코드레포 `.agent.md`/`decision-pipe.md` 등 파일과 어떻게 동기화·우선순위 둘지(DB 우선 vs 파일 seed).
+- ~~프롬프트를 코드레포 `.agent.md`/`decision-pipe.md` 등 파일과 어떻게 동기화·우선순위 둘지(DB 우선 vs 파일 seed)~~ → **DB 우선으로 확정**. 초기 seed와 코드 fallback은 코드(마이그레이션/상수)가 소유하며, 별도 프롬프트/템플릿 파일 디렉토리는 두지 않는다.
 - ~~tool/workflow introspection을 VoltAgent 바인딩으로 할지 자체 구현할지~~ → **자체 구현으로 확정**. VoltAgent(레거시 my-agent-app)는 참고용 레거시일 뿐 바인딩·의존 대상이 아니다.

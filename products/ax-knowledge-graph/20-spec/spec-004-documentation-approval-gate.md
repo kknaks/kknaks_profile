@@ -28,7 +28,7 @@ links:
     - "[[spec-010-document-template-management|AXKG-SPEC-010]]"
     - "[[spec-011-ai-execution-pipeline|AXKG-SPEC-011]]"
   works:
-    - "[[work-001-mvp-pipeline-scaffold|AXKG-WORK-001]]"
+    - "[[work-004-approval-gates|AXKG-WORK-004]]"
   releases: []
   related: []
 ---

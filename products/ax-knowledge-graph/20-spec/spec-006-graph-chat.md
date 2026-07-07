@@ -22,7 +22,7 @@ links:
     - "[[spec-005-document-link-graph-contract|AXKG-SPEC-005]]"
     - "[[spec-007-ai-provider-settings|AXKG-SPEC-007]]"
   works:
-    - "[[work-001-mvp-pipeline-scaffold|AXKG-WORK-001]]"
+    - "[[work-005-graph-chat|AXKG-WORK-005]]"
   releases: []
   related: []
 ---

@@ -2,7 +2,7 @@
 type: work
 id: AXKG-WORK-001
 title: "WP0: 모노레포 scaffold와 실행 골격"
-status: in-progress
+status: done
 product: ax-knowledge-graph
 work_type: new-feature
 owner: kknaks
@@ -13,13 +13,13 @@ roles:
   be: kknaks
   qa: kknaks
   ops: kknaks
-progress: 10
+progress: 100
 created_at: 2026-07-07
 updated_at: 2026-07-07
 tags:
   - product/ax-knowledge-graph
   - doc/work
-  - status/in-progress
+  - status/done
 links:
   baselines:
     - "[[baseline-001-ax-knowledge-graph-from-curated-sources|AXKG-BL-001]]"
@@ -53,11 +53,11 @@ links:
 | WP | Work | 범위 | Covers | 선행 |
 |---|---|---|---|---|
 | WP0 | AXKG-WORK-001 (이 문서) | scaffold + migration + auth + 실행 골격 | SPEC-008, 011(골격) | — |
-| WP1 | work-002 (예정) | Source Inbox + 수집 adapter + 요약 | SPEC-003, 012, 011① | WP0 |
-| WP2 | work-003 (예정) | markdown parser + documents/edges 캐시 + rebuild + retriever + 그래프 뷰 | SPEC-005 | WP0 |
-| WP3 | work-004 (예정) | 분류②·문서화③ 게이트 + Apply Executor + 재분류 재오픈 | SPEC-001, 002, 004, 011②③ | WP1+WP2 |
-| WP4 | work-005 (예정) | Graph RAG chat 세션/run polling | SPEC-006, 011④ | WP2 |
-| WP5 | work-006 (예정) | AI Provider·Prompts·Templates 설정 | SPEC-007, 009, 010 | WP0 |
+| WP1 | [[work-002-source-intake\|AXKG-WORK-002]] | Source Inbox + 수집 adapter + 요약 | SPEC-003, 012, 011① | WP0 |
+| WP2 | [[work-003-document-graph-core\|AXKG-WORK-003]] | markdown parser + documents/edges 캐시 + rebuild + retriever + 그래프 뷰 | SPEC-005 | WP0 |
+| WP3 | [[work-004-approval-gates\|AXKG-WORK-004]] | 분류②·문서화③ 게이트 + Apply Executor + 재분류 재오픈 | SPEC-001, 002, 004, 011②③ | WP1+WP2 |
+| WP4 | [[work-005-graph-chat\|AXKG-WORK-005]] | Graph RAG chat 세션/run polling | SPEC-006, 011④ | WP2 |
+| WP5 | [[work-006-settings\|AXKG-WORK-006]] | AI Provider·Prompts·Templates 설정 | SPEC-007, 009, 010 | WP0 |
 
 WP2(그래프 코어)가 WP3(게이트)보다 선행이다 — 문서화 게이트의 연결 후보 컨텍스트(retriever + documents index)와 승인 apply의 엣지 rebuild가 WP2 산출물을 전제한다. WP4/WP5는 병렬 가능.
 
@@ -67,11 +67,11 @@ WP2(그래프 코어)가 WP3(게이트)보다 선행이다 — 문서화 게이�
 |---|---|
 | Type | new-feature |
 | Owner | kknaks |
-| Status | in-progress |
-| Progress | 10% |
+| Status | done |
+| Progress | 100% |
 | Branch/PR |  |
 | Blocker | 없음 (Redis는 FastAPI background task로 시작, 필요 시 도입 — Open Issues) |
-| Next | Phase 2 디렉토리 구조 scaffold → 구조 확정 후 40-architecture 역반영 + 도메인 WP(work-002~006) 생성 |
+| Next | 완료 — WP1(work-002)·WP2(work-003) 착수 |
 
 ## Scope
 
@@ -97,9 +97,13 @@ WP2(그래프 코어)가 WP3(게이트)보다 선행이다 — 문서화 게이�
 
 | 경로 후보 | 설명 |
 |---|---|
-| `apps/web/` | Next.js app (로그인 페이지 + 앱 셸) |
-| `apps/api/axkg/` | FastAPI app (core/security, domain 골격, workers 골격) |
-| `apps/api/alembic/` | PostgreSQL migration + seed |
+| `apps/web/` | Next.js app (app/: login·approval·graph·settings, 로그인 페이지 + 앱 셸) |
+| `apps/api/axkg/core/` | database(async engine/session), security, redis |
+| `apps/api/axkg/models/` · `repositories/` · `services/` | ORM 모델, DB 접근 계층(유일한 session 접근), 비즈니스 계층 |
+| `apps/api/axkg/dto/` · `schemas/` | 서비스 입출력 내부 전달 객체 / API 요청·응답 객체 (pydantic v2) |
+| `apps/api/axkg/api/routes/` | 얇은 라우터 |
+| `apps/api/axkg/workers/` · `integrations/` · `storage/` | 워커·외부 연동·Markdown root 골격 |
+| `apps/api/alembic/` | PostgreSQL migration + seed (async 설정) |
 | `packages/contracts/` | OpenAPI/JSON schema 공유 계약 |
 | `40-architecture/system/README.md` | 구조 확정 후 layout 역반영 (문서) |
 
@@ -134,57 +138,58 @@ WP2(그래프 코어)가 WP3(게이트)보다 선행이다 — 문서화 게이�
 
 ### Phase 2 — 디렉토리 구조 scaffold
 
-- **Status**: TODO
+- **Status**: DONE
 - **설명**: 모노레포 구조를 실제로 깔고, 확정된 구조를 아키텍처 문서에 역반영한다.
 - **작업**:
-  - [ ] `apps/web`(Next.js), `apps/api`(FastAPI), `packages/contracts` 생성
-  - [ ] FastAPI 모듈 골격 생성 (api/routes, core, domain, workers, integrations, storage)
-  - [ ] 로컬 실행 환경 구성 (dev server + PostgreSQL + workspace bind mount)
-  - [ ] 확정 구조를 `40-architecture/system/README.md` monorepo layout에 역반영
+  - [x] `apps/web`(Next.js), `apps/api`(FastAPI), `packages/contracts` 생성
+  - [x] FastAPI 모듈 골격 생성 (api/routes, core, models, repositories, services, dto, schemas, workers, integrations, storage)
+  - [x] 로컬 실행 환경 구성 (dev server + PostgreSQL + workspace bind mount)
+  - [x] 확정 구조를 `40-architecture/system/README.md` monorepo layout에 역반영
 - **검증**:
-  - [ ] 로컬에서 web/api가 뜨고 health check가 응답한다.
-  - [ ] 문서의 layout과 실제 트리가 일치한다.
-- **완료 증거**: 미작성
+  - [x] 로컬에서 web/api가 뜨고 health check가 응답한다.
+  - [x] 문서의 layout과 실제 트리가 일치한다.
+- **완료 증거**: `40-architecture/system/README.md` — Monorepo Layout(확정 구조 역반영)·API Layering(라우터→서비스→레포지토리 3계층, dto/schemas 분리, async DB)·FastAPI Modules 갱신 (2026-07-07)
 
 ### Phase 3 — DB 마이그레이션과 seed
 
-- **Status**: TODO
+- **Status**: DONE
 - **설명**: database README를 Alembic migration으로 전환하고 초기 seed를 넣는다.
 - **작업**:
-  - [ ] 권장 순서 15단계 migration 작성
-  - [ ] seed: user(`kknaks@medisolveai.com`), ai_provider 설정, prompts 4종, templates 3종(`reference`/`permanent`/`project_baseline`), task definitions 6종
+  - [x] 권장 순서 15단계 migration 작성 (async 설정, 순환 FK는 후속 스텝 마감, enum은 TEXT+CHECK)
+  - [x] seed: user(`kknaks@medisolveai.com`), ai_provider 설정, prompts 4종(+output_schema), templates 3종(`reference`/`permanent`/`project_baseline`), task definitions 6종 — idempotent(`axkg/seeds.py`), documentation gate의 `template_key`는 null(선택은 context builder의 destination 매핑)
 - **검증**:
-  - [ ] 빈 DB에서 migration + seed가 한 번에 통과한다.
-  - [ ] enum/제약이 database README와 일치한다.
-- **완료 증거**: 미작성
+  - [x] 빈 DB에서 migration + seed가 한 번에 통과한다. (PG 16 컨테이너: upgrade → downgrade → 재upgrade 라운드트립 + seed 재실행 idempotent 확인)
+  - [x] enum/제약이 database README와 일치한다.
+- **완료 증거**: `apps/api/alembic/versions/0001~0015`, `apps/api/axkg/seeds.py`, `apps/api/axkg/models/*` (2026-07-07)
 
 ### Phase 4 — 로그인 (SPEC-008)
 
-- **Status**: TODO
+- **Status**: DONE
 - **설명**: seed user 기반 토큰 로그인과 보호 라우트를 구현한다.
 - **작업**:
-  - [ ] `POST /auth/login`, `POST /auth/logout`, `GET /auth/me`
-  - [ ] token hash 저장 + TTL + Bearer 검증 미들웨어
-  - [ ] 로그인 페이지 + localStorage 저장 + 보호 라우트 리다이렉트
+  - [x] `POST /auth/login`, `POST /auth/logout`, `GET /auth/me` (에러는 Case Matrix의 error_code 형식)
+  - [x] token hash 저장(SHA-256) + TTL + Bearer 검증 dependency (auth 외 라우터 기본 적용, `/health`·integrations 제외)
+  - [x] 로그인 페이지 + localStorage 저장 + 보호 라우트 가드/리다이렉트 + 앱 셸(네비·로그아웃) + 기본 페이지 4개 골격 (FE — 21-html 시안 톤, 한국어 카피)
 - **검증**:
-  - [ ] SPEC-008 Acceptance Criteria 통과.
-- **완료 증거**: 미작성
+  - [x] SPEC-008 BE Acceptance Criteria 통과 (`uv run pytest` 10 passed: login 성공/실패, me, logout 후 401, 만료 토큰 401)
+  - [x] FE 로그인 흐름 검증 (headless Chromium 17개 체크 전부 PASS: 리다이렉트/에러 문구/토큰 저장·삭제/무효 토큰)
+- **완료 증거**: `apps/api/axkg/api/routes/auth.py`, `core/security.py`, `services/auth.py`, `tests/test_auth.py`, `apps/web/app/login/`, `components/app-shell.tsx`·`auth-guard.tsx`, `lib/api-client/` (2026-07-07)
 
 ### Phase 5 — AI 실행 골격 (SPEC-011)
 
-- **Status**: TODO
+- **Status**: DONE
 - **설명**: 4스테이지 공통 실행 경로의 프레임을 만든다. 스테이지별 context builder 내용은 도메인 WP가 채운다.
 - **작업**:
-  - [ ] `ai_task_definitions` 해석 → provider/options 해석(SPEC-007 규칙) → `ai_tasks` 생성·스냅샷
-  - [ ] context builder 인터페이스 + 3자 조립(template→prompt→output_schema[JSON Schema])
-  - [ ] open-kknaks client (task 생성/폴링, session id 저장)
-  - [ ] 출력 JSON 파싱 + output_schema 검증 + 실패 매핑(`OUTPUT_PARSE_FAILED`/`OUTPUT_SCHEMA_MISMATCH`)
-  - [ ] 활성 프롬프트/템플릿 로드 실패 시 코드 fallback + 관찰 기록
-  - [ ] 재시도 체인(`retry_of_task_id`)
+  - [x] `ai_task_definitions` 해석 → provider/options 해석(SPEC-007 병합 순서) → `ai_tasks` 생성·스냅샷(생성 시점 설정 비소급)
+  - [x] context builder 인터페이스(registry) + 3자 조립 — 블록 조립(변수 치환 없음, 코드 고정 프레임)
+  - [x] open-kknaks client — 원격 표면 미확정이라 ABC(submit/status/result·session_id)로 고정, 실 바인딩(HTTP vs Redis broker AgentClient)은 도메인 WP 확정
+  - [x] 출력 JSON 파싱 + output_schema 검증 + 실패 매핑(`OUTPUT_PARSE_FAILED`/`OUTPUT_SCHEMA_MISMATCH`, 실패 출력 미소비)
+  - [x] 코드 fallback(프롬프트/스키마/템플릿 generic 상수) + version id null + payload 기록
+  - [x] 재시도 체인(`retry_of_task_id`, 원 row 불변) + resume session 헬퍼(SPEC-002 규칙)
 - **검증**:
-  - [ ] 더미 handler로 해석→조립→실행→스냅샷 경로가 end-to-end로 돈다.
-  - [ ] SPEC-011 Acceptance Criteria 중 골격 항목(스냅샷, 검증 실패 미소비, fallback) 통과.
-- **완료 증거**: 미작성
+  - [x] 더미 handler + fake client로 해석→조립→실행→스냅샷 end-to-end.
+  - [x] 골격 AC 통과 — `uv run pytest` 21 passed (파싱 실패/스키마 불일치/fallback/retry/병합 순서/resume).
+- **완료 증거**: `apps/api/axkg/services/ai/`(resolution·fallbacks·context·assembly·pipeline), `repositories/`(definitions·prompts·templates·settings·ai_tasks), `integrations/open_kknaks.py`, `tests/test_ai_pipeline.py` (2026-07-07)
 
 ## Pre-deploy Check
 
@@ -199,10 +204,10 @@ WP2(그래프 코어)가 WP3(게이트)보다 선행이다 — 문서화 게이�
 
 ## Done Criteria
 
-- [ ] 모든 Phase가 `DONE` 또는 `SUPERSEDED`다.
-- [ ] 확정 디렉토리 구조가 40-architecture에 역반영됐다.
-- [ ] 도메인 WP(work-002~006)가 확정 구조 기준으로 생성됐다.
-- [ ] product `log.md`와 `30-work/README.md`가 갱신됐다.
+- [x] 모든 Phase가 `DONE` 또는 `SUPERSEDED`다.
+- [x] 확정 디렉토리 구조가 40-architecture에 역반영됐다.
+- [x] 도메인 WP(work-002~006)가 확정 구조 기준으로 생성됐다.
+- [x] product `log.md`와 `30-work/README.md`가 갱신됐다.
 
 ## Open Issues
 

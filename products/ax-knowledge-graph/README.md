@@ -19,7 +19,7 @@ AX 관련 기사, 영상, 링크를 수집하고 개념·사례·도구 사이�
 | Baseline | AXKG-BL-001 accepted | 핵심 가정 검증 |
 | Decision | AXKG-DEC-001~005 accepted | 배포 단계에서 bind mount host path 확정 |
 | Spec | AXKG-SPEC-001~012 stable | WP 분해 후 MVP 구현 착수 |
-| Work | WP0(AXKG-WORK-001) in-progress, WP1~5 분해 예정 | WP0 Phase 2 디렉토리 구조 → 구조 확정 후 work-002~006 생성 |
+| Work | **WP0 done** + WP1~5 todo | WP1(intake)·WP2(그래프 코어) 병렬 착수 |
 
 ## 문서 맵
 

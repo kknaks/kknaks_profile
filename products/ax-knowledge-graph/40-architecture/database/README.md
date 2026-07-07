@@ -12,6 +12,7 @@ Redis = optional volatile queue/cache/lock, never durable workflow SoT
 
 ## Design Rules
 
+- 접속 계층은 SQLAlchemy 2.0 async + `postgresql+psycopg`(psycopg3 async)를 사용한다. Alembic도 async 설정으로 구성한다. 레포지토리 계층만 DB session에 접근한다(`../system/README.md` API Layering).
 - Use UUID primary keys for application entities.
 - Use `created_at`, `updated_at` on mutable operational tables.
 - Use explicit enum-like text columns plus `CHECK` constraints in first migration.
@@ -232,7 +233,7 @@ Registered AI task definitions connect execution settings with prompt management
 | `description` | text | |
 | `handler_kind` | text not null | code-known handler. Not arbitrary executable code |
 | `prompt_key` | text not null | links to `prompts.key` |
-| `template_key` | text nullable | links to `document_templates.key`. Set for `documentation_gate` handler only (AXKG-DEC-005) |
+| `template_key` | text nullable | links to `document_templates.key`. 고정 override용 optional — documentation_gate의 기본 템플릿 선택은 destination→key 매핑(resource→reference, area→permanent, project→project_baseline, AXKG-SPEC-010)을 context builder가 적용하므로 seed는 null (AXKG-DEC-005/SPEC-011) |
 | `default_provider` | text | optional task default, otherwise global provider |
 | `default_model` | text | optional task model override |
 | `default_options` | jsonb not null default `{}` | task defaults, e.g. timeout |
@@ -626,6 +627,8 @@ Constraints:
 The split around gates/revisions avoids circular FK friction in the first migration. Graph chat has a similar nullable cycle between assistant messages and runs; create `graph_chat_messages` before `graph_chat_runs`, then add nullable `graph_chat_messages.run_id` and `graph_chat_runs.assistant_message_id` FKs after both tables exist.
 
 ## Initial Seeds
+
+seed의 소유는 코드(Alembic 마이그레이션)다. 별도 프롬프트/템플릿 파일 디렉토리는 두지 않는다 — 런타임 SSOT는 DB(AXKG-SPEC-009/010)이고, 초기 seed와 코드 fallback은 마이그레이션/상수가 소유한다.
 
 | Seed | Value |
 |---|---|

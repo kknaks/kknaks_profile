@@ -25,7 +25,7 @@ links:
     - "[[spec-004-documentation-approval-gate|AXKG-SPEC-004]]"
     - "[[spec-007-ai-provider-settings|AXKG-SPEC-007]]"
   works:
-    - "[[work-001-mvp-pipeline-scaffold|AXKG-WORK-001]]"
+    - "[[work-004-approval-gates|AXKG-WORK-004]]"
   releases: []
   related: []
 ---

@@ -109,6 +109,6 @@ Read-only context roots:
 
 ## Open Items
 
-- docker compose 초안 작성.
+- ~~docker compose 초안 작성~~ → 코드 레포 루트 `docker-compose.yml`로 작성 완료(postgres 45432 + redis 46380 + api 48100 + open-kknaks worker, web은 profile). 기존 kknaks 스택(48000/46379)과 포트 충돌 없음.
 - PostgreSQL volume/backup 정책 확정.
-- Redis 도입 시점 결정.
+- ~~Redis 도입 시점 결정~~ → open-kknaks broker가 Redis 기반이라 compose에 포함. AXKG 자체 queue/lock 용도 사용은 여전히 필요 시점에 결정.

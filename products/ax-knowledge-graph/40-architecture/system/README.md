@@ -31,69 +31,48 @@ FastAPI -- optional queue/cache --> Redis
 | Layer          | Choice                          | Responsibility                                                                          |
 | -------------- | ------------------------------- | --------------------------------------------------------------------------------------- |
 | Web            | Next.js + React + TypeScript    | Source Inbox, approval gates, graph/chat, settings                                      |
-| API            | FastAPI + Pydantic + SQLAlchemy | auth, source workflow, gate workflow, graph API, settings API                           |
+| API            | FastAPI + Pydantic v2 + SQLAlchemy 2.0 async (`postgresql+psycopg`, psycopg3 async) | auth, source workflow, gate workflow, graph API, settings API |
 | DB             | PostgreSQL                      | operational state, approval revisions, drafts, apply plans, document index, graph cache |
-| Migration      | Alembic                         | schema changes and seed data                                                            |
+| Migration      | Alembic (async 설정)            | schema changes and seed data                                                            |
 | AI runner      | open-kknaks                     | summary, classification, documentation draft, Graph RAG answer generation               |
 | Markdown SoT   | local/bind-mounted file root    | finalized`.md` documents only                                                         |
 | Optional infra | Redis                           | background queue, idempotency locks, short-lived cache, pub/sub progress                |
 
 ## Monorepo Layout
 
-Target implementation repo is a monorepo. Keep the same workspace shape as `kknaks_profile`: product docs and knowledge roots stay at the repository root, while runtime code lives under `apps` and shared contracts under `packages`.
+구현 레포는 모노레포다. 아래는 WP0 Phase 2에서 scaffold를 깔며 확정한 구조의 역반영이다(AXKG-WORK-001).
 
 ```text
-/
-  agent.md                      # workspace-level agent operating guide
-  .agent/                       # local agent tools used by this repo
-    hooks/
-    scripts/
-    skills/
-  rules/                        # product/document pipeline rules
-  templates/                    # reusable markdown/template seeds
-    context/
-    product/
-  context/                      # company/studio context notes
-  inbox/                        # raw captured sources before curation
-  permanent/                    # durable knowledge notes
-  reference/                    # external/reference materials
-  workspace/                    # local scratch/runtime workspace, gitignored as needed
-    ax-knowledge-graph/
-
+ax-graph/
+  CLAUDE.md                      # 얇게 — agent.md를 읽으라고만 둔다
+  agent.md                       # 에이전트 진입점
+  context/                       # AI 스테이지 배경지식 문서 (context builder가 주입, AXKG-SPEC-011)
+    source-summary-guide.md
+    para-classification.md
+    approval-gate-flow.md
+    document-link-rules.md
+    graph-chat-rules.md
   apps/
     web/                         # Next.js app
       app/
+        login/
         approval/
         graph/
         settings/
       components/
       lib/api-client/
-    api/                         # FastAPI app
-      axkg/
+    api/
+      axkg/                      # FastAPI app
         main.py
         config.py
+        core/                    # database(async engine/session), security, redis
+        models/                  # SQLAlchemy 2.0 ORM 모델
+        repositories/            # DB 접근 계층 — DB session은 여기서만
+        services/                # 비즈니스 로직 계층
+        dto/                     # 내부 전달 객체 (서비스 계층 입출력, pydantic v2)
+        schemas/                 # API 요청/응답 객체 (라우터 전용, pydantic v2)
         api/
-          routes/
-            auth.py
-            sources.py
-            approval_gates.py
-            documentation_gates.py
-            documents.py
-            graph.py
-            settings.py
-            prompts.py
-            templates.py
-        core/
-          security.py
-          database.py
-          redis.py
-        domain/
-          sources/
-          gates/
-          documents/
-          graph/
-          ai/
-          settings/
+          routes/                # 얇은 라우터 (auth, sources, gates, documents, graph, settings, prompts, templates)
         workers/
           ai_tasks.py
           apply_executor.py
@@ -101,37 +80,26 @@ Target implementation repo is a monorepo. Keep the same workspace shape as `kkna
         integrations/
           open_kknaks.py
           slack.py
+          source_collection/     # youtube, static_web, dynamic_web (AXKG-SPEC-012)
         storage/
           markdown_root.py
           markdown_parser.py
-      alembic/
+      alembic/                   # async 설정 migration + seed
       tests/
   packages/
     contracts/                   # OpenAPI-derived TS types or shared JSON schema
-    ui/                          # optional shared UI primitives
   data/
-    documents/                   # local dev Markdown root, gitignored if runtime generated
-  products/
-    ax-knowledge-graph/
-      00-baseline/
-      20-spec/
-      21-html/
-      30-work/
-      40-architecture/
+    documents/                   # 실험용 로컬 Markdown root
 ```
 
-Root knowledge directories are not incidental. AXKG reads from and writes around this repository shape:
+| Path                | Role                                                                                      |
+| ------------------- | ----------------------------------------------------------------------------------------- |
+| `agent.md`          | 에이전트 진입점. `CLAUDE.md`는 agent.md를 가리키는 얇은 포인터만 둔다                     |
+| `context/`          | AI 스테이지 배경지식 문서. context builder가 프롬프트 조립 시 주입한다(AXKG-SPEC-011)      |
+| `apps/`, `packages/` | runtime implementation and shared code                                                   |
+| `data/documents/`   | 실험용 로컬 Markdown root                                                                  |
 
-| Path                                         | Role                                                                         |
-| -------------------------------------------- | ---------------------------------------------------------------------------- |
-| `agent.md`                                 | human/agent operating instructions for the repository                        |
-| `.agent/`                                  | local skills, hooks, scripts, and automation helpers                         |
-| `templates/`                               | source templates for context/product documents and generated markdown shapes |
-| `rules/`                                   | curation and product-document pipeline rules                                 |
-| `context/`, `reference/`, `permanent/` | existing knowledge roots that can become graph inputs                        |
-| `inbox/`                                   | raw source intake before classification/documentation gates                  |
-| `products/ax-knowledge-graph/`             | AXKG product specs, HTML mocks, work items, architecture docs                |
-| `apps/`, `packages/`                     | runtime implementation and shared code                                       |
+별도 template/prompt 파일 디렉토리는 두지 않는다. 템플릿·프롬프트의 런타임 SSOT는 DB이고(AXKG-SPEC-009/010), 초기 seed와 코드 fallback은 코드(마이그레이션/상수)가 소유한다.
 
 ## Service Boundaries
 
@@ -188,16 +156,36 @@ Use Redis for:
 
 Do not use Redis as durable workflow state. PostgreSQL remains the durable source for task/gate/apply status.
 
+## API Layering
+
+백엔드는 라우터 → 서비스 → 레포지토리 3계층으로 나눈다. 의존은 단방향이다 — 역방향 import를 금지한다.
+
+```text
+api.routes (라우터)  -->  services (비즈니스)  -->  repositories (DB 접근)  -->  models (ORM)
+    schemas <-> dto              dto                      dto <-> ORM
+```
+
+- **라우터(`api/routes/`)**: 얇게 유지한다. 요청/응답 검증과 schemas↔dto 변환, 서비스 호출만 한다. 비즈니스 로직을 두지 않는다.
+- **서비스(`services/`)**: 비즈니스 로직 계층. 입출력은 dto다. DB session에 직접 접근하지 않고 레포지토리를 통해서만 데이터에 닿는다.
+- **레포지토리(`repositories/`)**: DB 접근 계층. **DB session은 레포지토리만 접근한다.** dto↔ORM 변환을 담당한다.
+- **객체 분리**: `schemas/`는 API 요청/응답 객체(라우터 전용), `dto/`는 내부 전달 객체(서비스 계층 입출력). 둘 다 pydantic v2다.
+- **DB 접속**: SQLAlchemy 2.0 async + `postgresql+psycopg`(psycopg3 async). Alembic도 async 설정으로 구성한다.
+
 ## FastAPI Modules
 
 | Module                     | Key responsibilities                                                                                                                   |
 | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `domain.sources`         | URL validation, source lifecycle, summary retry                                                                                        |
-| `domain.gates`           | classification/documentation gate lifecycle, feedback, revision approval                                                               |
-| `domain.ai`              | AI task creation, retry chaining, open-kknaks request mapping                                                                          |
-| `domain.documents`       | draft storage, apply plan validation, Markdown path safety                                                                             |
-| `domain.graph`           | Markdown link parsing, graph cache rebuild, Graph RAG retriever (shared by chat and documentation-gate context builder, AXKG-SPEC-011) |
-| `domain.settings`        | AI provider settings, prompt versions, template versions                                                                               |
+| `api.routes`             | 얇은 라우터 — 요청/응답 검증, schemas↔dto 변환, 서비스 호출. 비즈니스 로직 없음                                                        |
+| `services.sources`       | URL validation, source lifecycle, summary retry                                                                                        |
+| `services.gates`         | classification/documentation gate lifecycle, feedback, revision approval                                                               |
+| `services.ai`            | AI task creation, retry chaining, open-kknaks request mapping                                                                          |
+| `services.documents`     | draft storage, apply plan validation, Markdown path safety                                                                             |
+| `services.graph`         | Markdown link parsing, graph cache rebuild, Graph RAG retriever (shared by chat and documentation-gate context builder, AXKG-SPEC-011) |
+| `services.settings`      | AI provider settings, prompt versions, template versions                                                                               |
+| `repositories.*`         | 도메인별 DB 접근 — 유일한 DB session 접근 계층, dto↔ORM 변환                                                                            |
+| `models`                 | SQLAlchemy 2.0 ORM 모델 정의                                                                                                            |
+| `dto` / `schemas`        | 서비스 계층 입출력 내부 전달 객체 / API 요청·응답 객체(라우터 전용) — 둘 다 pydantic v2                                                 |
+| `core.database`          | SQLAlchemy 2.0 async engine/session (`postgresql+psycopg`)                                                                              |
 | `workers.apply_executor` | validates and applies approved DB/file actions                                                                                         |
 | `workers.ai_tasks`       | runs or polls open-kknaks tasks, stores outputs/failures                                                                               |
 | `workers.graph_rebuild`  | rebuilds `documents`/`document_edges` cache from Markdown (see Graph Rebuild triggers)                                                 |

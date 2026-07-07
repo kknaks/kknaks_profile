@@ -23,7 +23,7 @@ links:
     - "[[spec-011-ai-execution-pipeline|AXKG-SPEC-011]]"
     - "[[spec-012-source-collection-adapter|AXKG-SPEC-012]]"
   works:
-    - "[[work-001-mvp-pipeline-scaffold|AXKG-WORK-001]]"
+    - "[[work-002-source-intake|AXKG-WORK-002]]"
   releases: []
   related: []
 ---

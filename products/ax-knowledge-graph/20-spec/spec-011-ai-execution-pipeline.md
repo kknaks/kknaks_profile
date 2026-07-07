@@ -31,6 +31,9 @@ links:
     - "[[spec-012-source-collection-adapter|AXKG-SPEC-012]]"
   works:
     - "[[work-001-mvp-pipeline-scaffold|AXKG-WORK-001]]"
+    - "[[work-002-source-intake|AXKG-WORK-002]]"
+    - "[[work-004-approval-gates|AXKG-WORK-004]]"
+    - "[[work-005-graph-chat|AXKG-WORK-005]]"
   releases: []
   related: []
 ---
@@ -151,6 +154,7 @@ Out of scope:
 
 - 조립 주체는 **백엔드 context builder**다. AI는 조립된 컨텍스트를 채우기만 한다.
 - 조립 순서: `template(뼈대, AXKG-SPEC-010)` → `prompt(지시, AXKG-SPEC-009)` → `output_schema(출력 강제)`.
+- **조립 방식은 변수 치환이 아니라 블록 조립이다.** DB 프롬프트 본문에 `{{template}}` 같은 변수를 두지 않는다(변수 엔진은 AXKG-SPEC-009 out of scope). context builder가 코드 고정 프레임으로 입력을 쌓는다 — 프롬프트(지시) + "아래 템플릿 뼈대를 따르라" 프레임 + 활성 템플릿 body + source 데이터 + (③) 연결 후보 컨텍스트. 프레임 문구는 코드 소유라 admin이 프롬프트를 잘못 편집해도 템플릿 주입은 깨지지 않는다. 프롬프트는 "어떻게 채울지"(톤·밀도·강조)만 담당한다.
 - 템플릿은 `handler_kind=documentation_gate`에서만 조립된다. 바인딩은 `ai_task_definitions.template_key`, 사용 버전은 `ai_tasks.template_version_id`로 스냅샷한다.
 - 프롬프트 사용 버전은 `ai_tasks.prompt_version_id`로 스냅샷한다.
 - `output_schema`는 **JSON Schema**다. 게이트 payload envelope(`classification.v1`/`documentation.v1`)은 코드 고정이며, output_schema는 envelope 내부의 form/구조 필드만 관장한다.
