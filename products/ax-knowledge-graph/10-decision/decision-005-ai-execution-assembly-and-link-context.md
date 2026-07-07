@@ -65,5 +65,5 @@ links:
 
 ## Open Questions
 
-- 콘텐츠 수집(URL 본문 fetch/유튜브 transcript)의 실행 위치: FastAPI 내 fetcher vs open-kknaks runner 위임. 코드 조사 후 결정(AXKG-WORK-001 external dependency). 계약 자체는 SPEC-011이 정의한다.
+- ~~콘텐츠 수집(URL 본문 fetch/유튜브 transcript)의 실행 위치~~ → **AXKG-SPEC-012로 확정**: BE 내 Source Collection Adapter(YouTube/정적 웹/동적 웹)가 수집하고 SourceMaterial로 정규화해 SPEC-011 context builder에 넘긴다. dynamic adapter의 브라우저 실행 분리 여부만 SPEC-012 OQ로 잔존.
 - Graphify류 외부 그래프 도구의 배치 enrichment(후보 엣지 제안) 활용은 post-MVP 검토.

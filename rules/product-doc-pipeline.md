@@ -17,6 +17,7 @@ products/<product>/
 ├── 00-baseline/
 ├── 10-decision/
 ├── 20-spec/
+├── 21-html/           # optional, spec HTML 시안 산출물 (검증 대상 아님)
 ├── 30-work/
 ├── 40-architecture/   # optional
 ├── 60-release/        # optional
@@ -44,6 +45,7 @@ products/<product>/
 | `00-baseline/` | 날것 그대로의 아이디어, 요구, 레퍼런스, 문제, 관찰을 모은다 |
 | `10-decision/` | baseline의 내용을 이번 제품/스펙에 어떻게 적용할지 결정한다 |
 | `20-spec/` | decision을 user flow, state machine, UI/UX, FE, BE 관점 계약으로 구체화한다 |
+| `21-html/` | spec을 시각화한 baseline HTML 시안을 둔다. `spec-to-html` skill이 생성한다. optional |
 | `30-work/` | 여러 spec을 조합해 실제 구현 작업, acceptance, 테스트 지시서로 내린다 |
 | `40-architecture/` | 여러 spec/work가 공유하는 데이터베이스, 시스템, 배포 구조를 관리한다. optional |
 | `60-release/` | 배포 버전별 요약, 상세 수정 사항, 검증/배포 정보를 관리한다. optional |
@@ -421,6 +423,7 @@ tags:
 | baseline 추가/수정 | `00-baseline/README.md`, `log.md` |
 | decision 추가/수정 | `10-decision/README.md`, 연결된 baseline index, `log.md` |
 | spec 추가/수정 | `20-spec/README.md`, 연결된 decision index, `log.md` |
+| spec HTML 시안 추가/수정 | `log.md` |
 | work 추가/수정 | `30-work/README.md`, spec coverage, `log.md` |
 | architecture 추가/수정 | `40-architecture/README.md`, 관련 spec/work link, `log.md` |
 | release 추가/수정 | `60-release/README.md`, 제품 `README.md`, `log.md` |
@@ -448,6 +451,8 @@ tags:
 - `decision-change`
 - `spec-add`
 - `spec-change`
+- `spec-html-add`
+- `spec-html-change`
 - `work-add`
 - `work-change`
 - `architecture-add`
