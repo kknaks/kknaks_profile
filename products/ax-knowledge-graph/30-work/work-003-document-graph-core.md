@@ -2,7 +2,7 @@
 type: work
 id: AXKG-WORK-003
 title: "WP2: 문서·그래프 코어 — parser·index·retriever·그래프 뷰"
-status: todo
+status: done
 product: ax-knowledge-graph
 work_type: new-feature
 owner: kknaks
@@ -13,13 +13,13 @@ roles:
   be: kknaks
   qa: kknaks
   ops: kknaks
-progress: 0
+progress: 100
 created_at: 2026-07-07
-updated_at: 2026-07-07
+updated_at: 2026-07-08
 tags:
   - product/ax-knowledge-graph
   - doc/work
-  - status/todo
+  - status/done
 links:
   baselines:
     - "[[baseline-001-ax-knowledge-graph-from-curated-sources|AXKG-BL-001]]"
@@ -72,13 +72,20 @@ Markdown SoT를 파싱해 `documents`/`document_edges` 캐시를 만들고, 그�
 - Repo / module: ax-graph
 - 만질 파일 후보:
 
-| 경로 | 설명 |
-|---|---|
-| `apps/api/axkg/storage/markdown_parser.py` · `markdown_root.py` | 파싱·root 접근(경로 안전) |
-| `apps/api/axkg/services/graph.py` · `documents.py` + `repositories/documents.py` · `document_edges.py` | index/rebuild/retriever/조회 |
-| `apps/api/axkg/workers/graph_rebuild.py` | rebuild 트리거 |
-| `apps/api/axkg/api/routes/documents.py` · `graph.py` | 조회·rebuild·link-preview 라우터 |
-| `apps/web/app/graph/` | 그래프 뷰 |
+> Phase 1~3 실제 반영(PLAN-006-T-002). Phase 4(그래프 뷰 FE)는 미착수 후보.
+
+| 경로 | 설명 | 상태 |
+|---|---|---|
+| `apps/api/axkg/storage/markdown_parser.py` · `markdown_root.py` | 파싱·root 접근(경로 안전) | 스텁→구현 |
+| `apps/api/axkg/services/graph.py` · `documents.py` | index/rebuild/retriever/조회 서비스 | 스텁→구현 |
+| `apps/api/axkg/repositories/documents.py` | documents/document_edges CRUD (session 접근 유일) | 신규 |
+| `apps/api/axkg/dto/document.py` | DocumentDTO / DocumentEdgeDTO | 신규 |
+| `apps/api/axkg/workers/graph_rebuild.py` | rebuild 트리거 3종(full·증분·startup scan) | 스텁→구현 |
+| `apps/api/axkg/api/routes/documents.py` · `graph.py` | 조회·rebuild·link-preview 라우터 | 스텁→구현 |
+| `apps/api/axkg/schemas/documents.py` · `graph.py` | 조회·그래프 응답 스키마 | 신규 |
+| `apps/api/axkg/main.py` | startup scan 배선(best-effort) | 수정 |
+| `apps/api/pyproject.toml` · `uv.lock` | pyyaml 명시 선언 | 수정 |
+| `apps/web/app/graph/` | 그래프 뷰 (Phase 4) | 미착수 |
 
 ## Domain / Schema
 
@@ -94,39 +101,39 @@ Markdown SoT를 파싱해 `documents`/`document_edges` 캐시를 만들고, 그�
 
 ### Phase 1 — parser + index
 
-- **Status**: TODO
+- **Status**: DONE (PLAN-006-T-002)
 - **작업**:
-  - [ ] frontmatter/wikilink/up 파서 + 정규화
-  - [ ] documents index upsert(content_hash), stem/alias resolve, duplicate 거부
-- **검증**: [ ] SPEC-005 Link Syntax·Required Frontmatter 계약 단위 테스트
+  - [x] frontmatter/wikilink/up 파서 + 정규화
+  - [x] documents index upsert(content_hash), stem/alias resolve, duplicate 거부
+- **검증**: [x] SPEC-005 Link Syntax·Required Frontmatter 계약 단위 테스트 (`test_markdown_parser.py` 11 · `test_markdown_root.py` 5)
 
 ### Phase 2 — edges rebuild + 트리거
 
-- **Status**: TODO
+- **Status**: DONE (PLAN-006-T-002)
 - **작업**:
-  - [ ] assoc/lineage 엣지 생성, links 비엣지, is_broken 마킹
-  - [ ] startup scan / 증분 / `POST /graph/rebuild`
-- **검증**: [ ] 외부 편집 시나리오(파일 직접 수정 → rebuild → 엣지 갱신) 통과
+  - [x] assoc/lineage 엣지 생성, links 비엣지, is_broken 마킹
+  - [x] startup scan / 증분 / `POST /graph/rebuild`
+- **검증**: [x] 외부 편집 시나리오(파일 직접 수정 → rebuild → 엣지 갱신) 통과 (`test_external_edit_incremental_rebuild` · `test_incremental_rebuild_updates_edges_on_body_change`)
 
 ### Phase 3 — retriever + 조회 API
 
-- **Status**: TODO
+- **Status**: DONE (PLAN-006-T-002)
 - **작업**:
-  - [ ] keyword+edge distance retriever, neighborhood 우선, index 스냅샷 제공
-  - [ ] documents/graph 조회·검색·link-preview 라우터
-- **검증**: [ ] `BROKEN_WIKILINK` 등 Case Matrix, 검색 순위 스모크
+  - [x] keyword+edge distance retriever, neighborhood 우선, index 스냅샷 제공
+  - [x] documents/graph 조회·검색·link-preview 라우터
+- **검증**: [x] `BROKEN_WIKILINK` 등 Case Matrix, 검색 순위 스모크 (`test_graph_core.py` 11 · `test_graph_api.py` 12, admin 게이트 194 passed)
 
 ### Phase 4 — 그래프 뷰 (FE)
 
-- **Status**: TODO
+- **Status**: DONE (PLAN-006-T-008, tsc+build 통과)
 - **작업**:
-  - [ ] force graph 렌더 + 노드 선택 → 문서 상세(링크/백링크/lineage)
-- **검증**: [ ] SPEC-005 U-2 AC (page-graph.html 시안 참고)
+  - [x] force graph 렌더(react-force-graph-2d+d3-force, ssr:false dynamic) + 노드 선택 → 문서 상세(상류 up/하류/backlink/참조 wikilink). `type=source` 제외, assoc 실선/lineage 점선+화살표. 채팅 패널(SPEC-006)은 WP4 제외.
+- **검증**: [x] SPEC-005 U-2 AC (page-graph.html 좌측 그래프 섹션 시안), `/graph` 라이브 200 컴파일 (노드=데이터id, 상세 links/backlink)
 
 ## Pre-deploy Check
 
-- [ ] document root 밖 경로 접근 거부
-- [ ] rebuild가 Markdown을 쓰지 않음 (읽기 전용)
+- [x] document root 밖 경로 접근 거부 (`test_reject_absolute_path` · `test_reject_parent_escape`)
+- [x] rebuild가 Markdown을 쓰지 않음 (읽기 전용) (`test_rebuild_is_read_only`)
 
 ## Rollback
 
@@ -134,10 +141,11 @@ Markdown SoT를 파싱해 `documents`/`document_edges` 캐시를 만들고, 그�
 
 ## Done Criteria
 
-- [ ] 모든 Phase DONE/SUPERSEDED
-- [ ] SPEC-005 AC 전부 반영
-- [ ] product `log.md`·`30-work/README.md` 갱신
+- [x] 모든 Phase DONE/SUPERSEDED (Phase 1~4 done)
+- [x] SPEC-005 AC 전부 반영 (BE 계약 AC + U-2 그래프 뷰 AC done)
+- [x] product `log.md`·`30-work/README.md` 갱신 (PLAN-006-T-005)
 
 ## Open Issues
 
-- retriever top-N 기본값·발췌 길이 (SPEC-011 OQ — 구현 기본값으로 시작).
+- retriever 기본값 확정(구현): `top_n=8`, `snippet_len=240`, neighborhood boost `{거리1:+4, 거리2:+2}`, keyword 가중치(title/alias +3 / tag +2 / body 출현 최대 +3). WP3 Apply Executor로 확정 문서 유입 시작 — 라이브 데이터 축적 후 SPEC-011 OQ로 값 튜닝(스펙 환류는 admin 판단). PLAN-006-T-002.
+- 그래프 뷰 후속 개선(비차단, PLAN-006-T-008): 자동 fit/zoom 미적용(노드 소수라 무해), document_type 색 팔레트 FE 하드코딩(globals.css tier 토큰 통일 여지), "문서 열기"=source_url(단일 문서 뷰어 라우트 생기면 path 딥링크로 교체).

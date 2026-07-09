@@ -9,19 +9,23 @@ spec_ids: [AXKG-SPEC-001, AXKG-SPEC-002, AXKG-SPEC-003, AXKG-SPEC-004, AXKG-SPEC
 title: "요약 → 분류 게이트 → 문서화 승인 게이트 2-게이트 승인 워크플로우 시안"
 summary: |
   Source Inbox(SPEC-003) 에서 받은 URL 을 received 시 자동 요약하고(요약 AI ①),
-  중앙 세로 스택에서 ① 요약·분류 병합 카드 → ② 분류 게이트(PARA only, 분류기 AI ②) →
-  ③ 문서화 승인 게이트(SPEC-004: destination별 AI 초안 + up:/[[ ]] 연결 + 파생지식 + apply plan, 인라인)
-  로 이어진다. approval_gates 는 gate 묶음이고 approval_gate_revisions 가 실제 AI 제안(v1/v2)이다.
-  두 게이트 모두 버전 관리(v2 | v1 read-only) + 피드백/승인(SPEC-002), 실패 시 ai_tasks 기반 재시도 CTA 를 가진다.
+  중앙 세로 스택에서 요약 초안 검토 카드(SPEC-003 U-2: 수정 가능 형태 + [피드백] 세션 resume 재요약 · [분류] 트리거)
+  → ② 분류 게이트(PARA only, 분류기 AI ② — [분류] 눌러야 생성, 자동 아님)
+  → ③ 문서화 승인 게이트(SPEC-004: destination별 AI 초안 + up:/[[ ]] 연결 + 파생지식 + apply plan, 인라인)
+  로 이어진다. 요약 검토와 분류 게이트는 분리된 표면이다(병합 아님). approval_gates 는 gate 묶음이고 approval_gate_revisions 가 실제 AI 제안(v1/v2)이다.
+  요약 초안은 summary_payload(DB 임시)에 저장되고 피드백 재요약으로 v2 갱신된다. 두 게이트 모두 버전 관리(v2 | v1 read-only) + 피드백/승인(SPEC-002), 실패 시 ai_tasks 기반 재시도 CTA 를 가진다.
   연결은 별도 게이트가 아니라 문서화 초안에서 발현. 우측 사이드바 없음. AI 제안은 DB/파일을 직접 바꾸지 않고
   Apply Executor 가 승인된 apply_plan 을 검증 후 적용한다.
 sections:
   - spec_id: AXKG-SPEC-003
     anchor: "#section-spec-003"
     role: "Source Inbox 큐 + Direct Inbox 모달"
+  - spec_id: AXKG-SPEC-003
+    anchor: "#section-summary-draft"
+    role: "요약 초안 검토 카드 (U-2): 수정 가능 형태 + [피드백] 세션 resume 재요약 · [분류] 트리거"
   - spec_id: AXKG-SPEC-001
     anchor: "#section-spec-001"
-    role: "요약·분류 병합 카드 + 분류 게이트(PARA only)"
+    role: "분류 게이트(PARA only) — [분류] 트리거로만 생성"
   - spec_id: AXKG-SPEC-004
     anchor: "#section-spec-004"
     role: "문서화 승인 게이트: AI 초안 접기/펴기 + 파생지식 + apply plan (인라인)"
@@ -214,29 +218,30 @@ generated_by: spec-to-html
         </div>
       </section>
 
-      <!-- 중앙 세로 스택: ① 요약·분류 병합 → ② 분류 게이트 → 공통 버전 규칙 → ③ 문서화 게이트 -->
+      <!-- 중앙 세로 스택: 요약 초안 검토(SPEC-003 U-2) → ② 분류 게이트 → 공통 버전 규칙 → ③ 문서화 게이트 -->
       <div class="space-y-4">
 
         <!-- ============================================================ -->
-        <!-- SECTION SPEC-001: ① 요약·분류 병합 카드 + ② 분류 게이트 -->
-        <!-- shadcn: Card > CardHeader/CardContent, RadioGroup(destination), Badge(confidence) -->
+        <!-- SUMMARY DRAFT (SPEC-003 U-2): 요약 초안 검토 카드 — [피드백]|[분류]. 분류 게이트와 분리(병합 아님) -->
+        <!-- shadcn: Card > CardHeader/CardContent, Button(피드백=모달 트리거 / 분류=게이트 트리거) -->
         <!-- ============================================================ -->
-        <section id="section-spec-001" class="rounded-lg border border-border bg-card text-card-foreground shadow-sm">
+        <section id="section-summary-draft" class="rounded-lg border border-border bg-card text-card-foreground shadow-sm demo-hidden" data-step="2">
 
-          <!-- ① 요약부 (SPEC-001 U-2) — 요약 자동, "분류 게이트 생성" 버튼 없음. 제목/요약/태그 = frontmatter 시드 -->
-          <div class="border-b border-border p-4 demo-hidden" data-step="2">
+          <!-- 요약 초안부 (SPEC-003 U-2) — 요약 자동 생성 후 수정 가능 형태(요약 md/폼). summary_payload(DB 임시) -->
+          <div class="p-4">
             <div class="mb-2 flex items-center justify-between">
               <div class="flex items-center gap-2">
                 <span class="inline-flex items-center gap-1 rounded-full bg-secondary px-2 py-0.5 text-[10px] font-medium text-secondary-foreground">
                   <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
-                  요약 AI ① · 자동
+                  요약 AI ① · 초안
                 </span>
                 <span class="font-mono text-[11px] text-muted-foreground">status · summarized</span>
               </div>
-              <span class="font-mono text-[10px] text-muted-foreground">youtube.com/watch?v=…</span>
+              <span class="font-mono text-[10px] text-muted-foreground">summary_payload · DB 임시</span>
             </div>
-            <h3 class="text-sm font-semibold">Graph RAG 실전 설계 — 문서 그래프를 검색 context 로 쓰는 법</h3>
-            <p class="mt-1.5 text-xs leading-relaxed text-muted-foreground">
+            <!-- 수정 가능 형태: 제목/요약/키워드 폼 (문서보기 모달·폼 두 표면 중 폼) -->
+            <h3 class="text-sm font-semibold" contenteditable="true">Graph RAG 실전 설계 — 문서 그래프를 검색 context 로 쓰는 법</h3>
+            <p class="mt-1.5 text-xs leading-relaxed text-muted-foreground" contenteditable="true">
               문서 노드와 엣지를 retriever context 로 삼아 LLM 답변 근거를 명시하는 Graph RAG 접근을 정리한 영상.
               keyword score 와 edge distance 를 조합한 MVP ranking, evidence document 노출을 다룬다.
             </p>
@@ -245,11 +250,32 @@ generated_by: spec-to-html
               <span class="rounded-md bg-secondary px-2 py-0.5 text-[10px] text-secondary-foreground">#retriever</span>
               <span class="rounded-md bg-secondary px-2 py-0.5 text-[10px] text-secondary-foreground">#evidence</span>
             </div>
-            <p class="mt-2 font-mono text-[10px] text-muted-foreground">제목·요약·태그 = 생성될 노트 frontmatter 시드 · 요약 자동이므로 별도 "분류 게이트 생성" 버튼 없음</p>
+            <p class="mt-2 font-mono text-[10px] text-muted-foreground">제목·요약·태그 = 생성될 노트 frontmatter 시드 · 수정 가능 형태(폼/문서보기 모달) · summary_payload(DB 임시), 확정 md 는 문서화 후(WP3)</p>
           </div>
 
+          <!-- CTA (SPEC-003 U-2): [피드백](세션 resume 재요약, summary_payload v2) · [분류](분류 게이트 트리거). 요약이 자동으로 분류로 넘어가지 않음 -->
+          <div class="flex items-center justify-end gap-2 border-t border-border p-3">
+            <!-- shadcn: Button variant=outline size=sm — 피드백 모달(자연어 입력 → 세션 resume 재요약) -->
+            <button data-open-modal="feedback-modal" data-gate-label="요약 초안 ①" data-gate-version="v1" class="inline-flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-xs font-medium hover:bg-secondary">
+              <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+              피드백
+            </button>
+            <!-- shadcn: Button variant=default size=sm — [분류]: 분류 게이트 트리거(POST /sources/{id}/classification-gates, SPEC-001) -->
+            <button class="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground hover:opacity-90">
+              <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              분류
+            </button>
+          </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION SPEC-001: ② 분류 게이트 (PARA only) — 요약 초안에서 [분류] 눌러야 생성(자동 아님, 별도 카드) -->
+        <!-- shadcn: Card > CardHeader/CardContent, RadioGroup(destination), Badge(confidence) -->
+        <!-- ============================================================ -->
+        <section id="section-spec-001" class="rounded-lg border border-border bg-card text-card-foreground shadow-sm demo-hidden" data-step="3">
+
           <!-- ② 분류 게이트 (SPEC-001 U-3, 분류만) — v2 | v1(read-only) badge + PARA RadioGroup -->
-          <div class="p-4 demo-hidden" data-step="3">
+          <div class="p-4">
             <div class="mb-3 flex items-center justify-between">
               <div class="flex items-center gap-2">
                 <h3 class="text-sm font-semibold">분류 게이트 <span class="font-normal text-muted-foreground">· 분류기 AI ②</span></h3>
@@ -542,8 +568,8 @@ AXKG 답변은 검색된 문서 path, graph edge, source evidence 를 함께 노
   </div>
 
   <!-- ============================================================ -->
-  <!-- shadcn: Dialog — 피드백 모달 (SPEC-002 U-2, 두 게이트 공통) -->
-  <!-- 게이트 `피드백` 버튼 → 이 모달. 대상 게이트/현재 버전 표시 + 텍스트 입력 + [취소] [재생성→v2] -->
+  <!-- shadcn: Dialog — 피드백 모달 (SPEC-002 U-2 공통: 요약 초안 ① · 분류 게이트 ② · 문서화 게이트 ③) -->
+  <!-- `피드백` 버튼 → 이 모달. 대상/현재 버전 표시 + 텍스트 입력 + [취소] [재생성→v2]. 세션 resume 재생성(원문·지침 재전송 없음) -->
   <!-- ============================================================ -->
   <div id="feedback-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/40 p-4">
     <div class="w-full max-w-md rounded-xl border border-border bg-background p-5 shadow-xl">
@@ -558,7 +584,7 @@ AXKG 답변은 검색된 문서 path, graph edge, source evidence 를 함께 노
         <span id="feedback-gate-version" class="ml-auto rounded-full bg-secondary px-1.5 py-0.5 font-mono text-[10px] font-medium text-secondary-foreground">v1</span>
       </div>
       <label class="mt-3 block text-[11px] font-medium text-muted-foreground">무엇이 잘못됐나요 · 원하는 방향 (10자 이상)</label>
-      <textarea class="mt-1 h-24 w-full resize-none rounded-md border border-input bg-background p-2 text-sm outline-none placeholder:text-muted-foreground focus:ring-2 focus:ring-ring/40" placeholder="예: 도구가 아니라 사례로 분류해 주세요 / 초안·파생지식 어디든 지적 → 통째 v2 재생성"></textarea>
+      <textarea class="mt-1 h-24 w-full resize-none rounded-md border border-input bg-background p-2 text-sm outline-none placeholder:text-muted-foreground focus:ring-2 focus:ring-ring/40" placeholder="예: 요약이 핵심을 놓쳤어요, 서론 말고 방법론 위주로 다시 / 도구가 아니라 사례로 분류해 주세요 / 초안·파생지식 어디든 지적 → 통째 v2 재생성"></textarea>
       <div class="mt-2 flex flex-wrap gap-1.5">
         <button class="rounded-md border border-border px-2 py-1 text-[10px] font-medium hover:bg-secondary">목적지 변경</button>
         <button class="rounded-md border border-border px-2 py-1 text-[10px] font-medium hover:bg-secondary">초안 보강</button>
@@ -620,8 +646,8 @@ AXKG 답변은 검색된 문서 path, graph edge, source evidence 를 함께 노
       var TOTAL = 7;
       var LABELS = [
         '1 · Source Inbox — Slack URL 수신(received) (SPEC-003 S-1)',
-        '2 · received → 자동 요약(summarized) — 요약·분류 카드 (SPEC-001 U-2, 요약 AI ①)',
-        '3 · 분류 게이트 — PARA only, resource 제안 · v2 | v1 read-only (SPEC-001 U-3, 분류기 AI ②)',
+        '2 · received → 자동 요약(summarized) — 요약 초안 검토 카드 · 수정 가능 + [피드백] resume 재요약 | [분류] 트리거 (SPEC-003 U-2, 요약 AI ①)',
+        '3 · [분류] 클릭 → 분류 게이트 생성(자동 아님) — PARA only, resource 제안 · v2 | v1 read-only (SPEC-001 U-3, 분류기 AI ②)',
         '4 · 분류 승인 → resource 확정 → 문서화 승인 게이트 인라인 생성 (SPEC-001 S-1)',
         '5 · 문서화 게이트 — AI 초안 접기/펴기(frontmatter + 본문 + up:/[[ ]]) + 피드백/승인 (SPEC-004 U-2/U-4)',
         '6 · 파생지식 — 초안과 한 덩어리, 읽기용 (개별 승인 없음) (SPEC-004 U-3)',

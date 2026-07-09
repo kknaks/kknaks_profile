@@ -46,13 +46,19 @@ FastAPI -- optional queue/cache --> Redis
 ax-graph/
   CLAUDE.md                      # 얇게 — agent.md를 읽으라고만 둔다
   agent.md                       # 에이전트 진입점
-  context/                       # AI 스테이지 배경지식 문서 (context builder가 주입, AXKG-SPEC-011)
-    source-summary-guide.md
+  context/                       # AI 스테이지 배경지식·방법 지침 문서 (worker 프로젝트 컨텍스트, claude가 읽음 — api 주입 아님, AXKG-SPEC-011)
+    source-summary-guide.md      #   → 요약 지침은 apps/worker/workspace/context/로 이동(AXKG-WORK-002 Phase 3, profile-be); 나머지 스테이지 지침도 배선 시 동일 이동
     para-classification.md
     approval-gate-flow.md
     document-link-rules.md
     graph-chat-rules.md
   apps/
+    worker/                      # open-kknaks ClaudeWorker (Redis consumer)
+      workspace/                 # worker 이미지 내장 프로젝트 컨텍스트 (WORK_DIR, claude 진입점)
+        CLAUDE.md                #   얇게 — agent.md를 읽으라고만
+        agent.md                 #   worker 실행 에이전트 진입점
+        context/
+          source-summary-guide.md  # 요약 방법 지침 (api 미로드)
     web/                         # Next.js app
       app/
         login/
@@ -78,7 +84,8 @@ ax-graph/
           apply_executor.py
           graph_rebuild.py
         integrations/
-          open_kknaks.py
+          open_kknaks.py           # OpenKknaksClient ABC + HTTP 스텁(참고용)
+          redis_open_kknaks.py     # 실 바인딩 — AgentClient(RedisBroker namespace=axkg) producer (AXKG-WORK-002)
           slack.py
           source_collection/     # youtube, static_web, dynamic_web (AXKG-SPEC-012)
         storage/
@@ -95,7 +102,7 @@ ax-graph/
 | Path                | Role                                                                                      |
 | ------------------- | ----------------------------------------------------------------------------------------- |
 | `agent.md`          | 에이전트 진입점. `CLAUDE.md`는 agent.md를 가리키는 얇은 포인터만 둔다                     |
-| `context/`          | AI 스테이지 배경지식 문서. context builder가 프롬프트 조립 시 주입한다(AXKG-SPEC-011)      |
+| `context/`          | AI 스테이지 방법·배경 지침 문서. **worker 프로젝트 컨텍스트로 claude가 직접 읽는다**(api 조립·주입 아님). 요약 지침은 `apps/worker/workspace/context/`에 내장(AXKG-SPEC-011)      |
 | `apps/`, `packages/` | runtime implementation and shared code                                                   |
 | `data/documents/`   | 실험용 로컬 Markdown root                                                                  |
 
@@ -134,8 +141,12 @@ ax-graph/
 ### open-kknaks
 
 - Runs AI provider tasks using configured provider/options/provider_options.
+- **Binding = Redis 직결 `AgentClient`, HTTP 아님** (AXKG-WORK-002 Phase 3 확정). FastAPI api가 producer다: `RedisOpenKknaksClient`가 `AgentClient(RedisBroker(url=AXKG_REDIS_URL, namespace="axkg"))`를 감싸 `submit(prompt, context, provider, model, options, provider_options, metadata, queue="default", max_retries=0) -> task_id`로 태스크를 넣고 `result(task_id, timeout)`(XREAD BLOCK)로 결과를 받는다. open-kknaks `ClaudeWorker`가 같은 Redis + `namespace=axkg` + `queue=default`의 consumer다.
+- `max_retries=0` 고정 — 재시도는 AXKG가 `retry_of_task_id` 새 row로 소유(AXKG-SPEC-002/011), broker 자동재시도와 이중 방지한다.
+- Provider credential(`CLAUDE_CODE_OAUTH_TOKEN`)은 worker(consumer) 측에만 둔다(AXKG-SPEC-007: provider credential은 서버까지, 실제 실행은 worker). api/web에는 두지 않는다.
 - Returns output to FastAPI. It never writes AXKG DB rows or Markdown files directly.
-- Receives resolved prompt/context from FastAPI. Prompt selection is controlled by `ai_task_definitions.prompt_key` and the active prompt version.
+- **worker 실행 모델(AXKG-SPEC-011 Assembly Contract)**: worker(`ClaudeWorker`)는 스테이지 방법·배경 지침을 담은 프로젝트 컨텍스트를 **이미지에 내장**하고(배포 시 마운트/git pull 런타임 의존 회피, 빌드 시점 고정), 실행 작업 디렉토리(`WORK_DIR`)를 그 경로로 둔다. claude가 진입 `CLAUDE.md → agent.md → context/`를 스스로 읽는다. 요약 방법 지침(`source-summary-guide.md` 등)은 이 프로젝트 컨텍스트에 있고 api는 로드하지 않는다. 요약 작업용 프로젝트 컨텍스트는 코드레포 `apps/worker/workspace/`(profile-be 소관).
+- Receives resolved prompt/context from FastAPI. api submit 표면 = **DB 프롬프트(작업 지시) + output_schema (+③ 활성 템플릿) + 런타임 원문/후보**뿐이다. 방법 지침은 프로젝트 컨텍스트가 담당한다. Prompt selection is controlled by `ai_task_definitions.prompt_key` and the active prompt version.
 - Tool/workflow 정의는 코드레포(`.agent.md`/`decision-pipe.md` 등)가 관리하고 runner가 읽는다. 제품 설정 UI가 편집하는 것은 prompt/template뿐이다(AXKG-SPEC-009/010). VoltAgent(레거시 my-agent-app)는 참고용 레거시일 뿐 바인딩하지 않는다 — tool/workflow introspection이 필요해지면 자체 구현한다.
 - Default settings:
   - `provider=claude`
@@ -189,7 +200,8 @@ api.routes (라우터)  -->  services (비즈니스)  -->  repositories (DB 접�
 | `workers.apply_executor` | validates and applies approved DB/file actions                                                                                         |
 | `workers.ai_tasks`       | runs or polls open-kknaks tasks, stores outputs/failures                                                                               |
 | `workers.graph_rebuild`  | rebuilds `documents`/`document_edges` cache from Markdown (see Graph Rebuild triggers)                                                 |
-| `integrations.source_collection` | URL adapter selection + YouTube/static/dynamic web fetchers -> SourceMaterial (AXKG-SPEC-012, SSRF guard)                       |
+| `integrations.source_collection` | URL adapter selection + YouTube/static/dynamic web fetchers -> SourceMaterial (AXKG-SPEC-012, SSRF guard). api 프로세스 내 BackgroundTask에서 실행               |
+| `integrations.redis_open_kknaks` | open-kknaks 실 바인딩 — `AgentClient(RedisBroker namespace=axkg, queue=default)` producer. worker(`ClaudeWorker`)가 consumer (AXKG-WORK-002 Phase 3)          |
 
 ## Request Flows
 
@@ -203,9 +215,10 @@ task_type
   -> handler_kind decides context builder/result handler
   -> prompt_key loads active prompt version(prompt_text + output_schema[JSON Schema])
   -> template_key loads active template version (documentation_gate only)
-  -> context builder assembles: template -> prompt -> output_schema (AXKG-SPEC-011)
-     documentation_gate adds connection candidate context:
+  -> context builder assembles submit payload: prompt(작업 지시) + output_schema (+ documentation_gate: active template) + runtime data (AXKG-SPEC-011)
+     documentation_gate runtime data adds connection candidate context:
        graph retriever top-N + documents index snapshot(stem/aliases/title/type)
+     방법·배경 지침은 조립하지 않음 — worker 이미지 내장 프로젝트 컨텍스트(CLAUDE.md->agent.md->context/)를 claude가 실행 디렉토리에서 읽음
   -> global provider settings
   -> task definition defaults
   -> task_overrides[task_type]
@@ -222,14 +235,18 @@ Active prompt/template load failure does not stop the pipeline: the context buil
 ```text
 Next.js -> FastAPI POST /sources/manual
 FastAPI -> PostgreSQL insert sources(status=received)
-FastAPI -> ai_tasks create(task_type=collect_source_summary)
-FastAPI -> Source Collection Adapter (AXKG-SPEC-012)
+FastAPI -> commit, then schedule BackgroundTask  (Starlette가 BackgroundTask를 세션 teardown보다 먼저 실행 → 스케줄 직전 명시 commit)
+[api BackgroundTask] -> received -> summarizing + ai_tasks create(task_type=collect_source_summary)
+[api BackgroundTask] -> Source Collection Adapter (AXKG-SPEC-012, api 프로세스 내 실행)
            youtube | static_web | dynamic_web -> SourceMaterial
            canonical_url로 normalized_url 갱신 + 중복 재검사
-Worker/FastAPI -> open-kknaks (SourceMaterial 기반 context, 초과 길이는 chunk 요약 병합)
-open-kknaks -> summary result
-FastAPI -> sources.status=summarized, sources.summary_payload=...
+[api BackgroundTask] -> AgentClient.submit (Redis namespace=axkg, queue=default)
+           SourceMaterial 기반 context, 초과 길이는 chunk 요약 병합
+open-kknaks ClaudeWorker (consumer) -> claude 실행 -> Redis result
+[api BackgroundTask] -> AgentClient.result(timeout) -> sources.status=summarized, sources.summary_payload=...
 ```
+
+수집(collect_source)은 api 프로세스 내 BackgroundTask에서 실행한다(별도 browser worker로 분리하지 않는다, AXKG-WORK-002 Phase 3). open-kknaks worker로 넘어가는 것은 요약 AI 실행뿐이다.
 
 If summary fails:
 
@@ -339,7 +356,7 @@ Chat history is user-scoped and persisted in PostgreSQL. `ai_tasks` tracks provi
 | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Auth          | `POST /auth/login`, `POST /auth/logout`, `GET /auth/me`                                                                                                                                                                                                     |
 | Sources       | `POST /sources/manual`, `GET /sources`, `GET /sources/{id}`, `POST /sources/{id}/queue-collection`, `GET /sources/{id}/ai-tasks`                                                                                                                                                        |
-| Integrations  | `POST /integrations/slack/sources` — Slack intake (AXKG-SPEC-003)                                                                                                                                                                                            |
+| Integrations  | `POST /api/v1/slack/commands` — Slack 슬래시 커맨드 intake. 등록 Request URL과 문자 그대로 일치(무prefix 관례 예외) (AXKG-SPEC-003)                                                                                                                                                                                            |
 | Gates         | `GET /sources/{id}/gates`, `POST /sources/{id}/classification-gates`, `POST /gates/{id}/feedback`, `POST /gates/{id}/regenerate`, `POST /gates/{id}/retry`, `POST /gates/{id}/approve` — 분류·문서화 공통 액션 API (AXKG-SPEC-002)                                                                |
 | Documentation | `GET /documentation-gates`, `GET /documentation-gates/{source_id}/drafts/{version}/markdown` — 조회 전용 뷰. 액션은 Gates 공통 API 사용 (AXKG-SPEC-004)          |
 | Documents     | `GET /documents`, `GET /documents/{id}`, `GET /documents/{id}/markdown`, `GET /documents/{id}/links`, `POST /documents/{id}/link-preview`                                                                                                                                                      |
@@ -353,13 +370,13 @@ Chat history is user-scoped and persisted in PostgreSQL. `ai_tasks` tracks provi
 | Env                           | Default            | Notes                    |
 | ----------------------------- | ------------------ | ------------------------ |
 | `AXKG_DATABASE_URL`         | required           | PostgreSQL DSN           |
-| `AXKG_REDIS_URL`            | empty              | optional                 |
+| `AXKG_REDIS_URL`            | empty              | open-kknaks 실행 broker(`namespace=axkg`, `queue=default`) 겸 optional queue/cache. producer(api)·worker(`ClaudeWorker`) 공유. 미설정 시 요약 자동 트리거 조용히 생략 |
 | `AXKG_MARKDOWN_ROOT`        | `data/documents` | local dev document root  |
-| `AXKG_OPEN_KKNAKS_BASE_URL` | required           | open-kknaks API endpoint |
+| `AXKG_OPEN_KKNAKS_BASE_URL` | required           | HTTP 스텁(`open_kknaks.py`, 참고용)용 endpoint. **실 바인딩은 `AXKG_REDIS_URL` Redis broker** — required 여부는 배포 시 admin 재확인 |
 | `AXKG_AUTH_TOKEN_TTL_DAYS`  | `30`             | MVP token expiry         |
 | `AXKG_DEFAULT_PROVIDER`     | `claude`         | seed setting only        |
-| `AXKG_SLACK_SIGNING_SECRET` | required for Slack intake | `POST /integrations/slack/sources` 요청 서명 검증 |
-| `AXKG_SLACK_BOT_TOKEN`      | empty            | optional — 수신 완료 reaction/응답용 |
+| `AXKG_SLACK_SIGNING_SECRET` | required for Slack intake | `POST /api/v1/slack/commands` 슬래시 커맨드 서명 검증 |
+| `AXKG_SLACK_BOT_TOKEN`      | required for Slack intake | 앵커 메시지 post·스레드 요약 회신용 |
 
 ## Invariants
 
@@ -374,7 +391,7 @@ Chat history is user-scoped and persisted in PostgreSQL. `ai_tasks` tracks provi
 
 ## Open Items
 
-- Choose initial background execution mode: inline FastAPI task vs Redis-backed worker.
+- ~~Choose initial background execution mode: inline FastAPI task vs Redis-backed worker.~~ → Source Intake 경로 확정(AXKG-WORK-002 Phase 3): 수집은 **api 프로세스 내 BackgroundTask**, AI 실행은 **Redis-backed open-kknaks worker**(`AgentClient(RedisBroker)`). 후속 스테이지(분류/문서화 게이트)의 트리거 모델은 해당 WP에서 확정.
 - Decide whether local `data/documents` should be committed examples or runtime-only gitignored content.
 - Write Alembic migrations from `../database/README.md`.
 

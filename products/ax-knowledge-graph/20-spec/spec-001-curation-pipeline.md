@@ -6,7 +6,7 @@ status: stable
 product: ax-knowledge-graph
 version: 0.0.1
 created_at: 2026-07-07
-updated_at: 2026-07-07
+updated_at: 2026-07-08
 tags:
   - product/ax-knowledge-graph
   - doc/spec
@@ -41,19 +41,19 @@ Source Inbox에서 자동 요약된(summarized) source를 **분류 게이트**�
 - Decision reference: AXKG-DEC-001, AXKG-DEC-002, AXKG-DEC-004, AXKG-DEC-005
 - Baseline reference: AXKG-BL-001
 - Domain note: `Source`, `Classification Gate`(②, 분류만), `Documentation Gate`(③, AXKG-SPEC-004), `Permanent Note`
-- AI 2-stage: ① 요약 AI — 트리거는 AXKG-SPEC-003의 `received → summarizing` 자동 전이, 요약 생성 로직·결과는 이 spec의 U-2(요약·분류 카드에 병합). ② 분류기 AI — `summarized` 항목을 분류 게이트로 보내면 실행되어 **PARA 분류만** 생성한다(연결 추천은 생성하지 않음). 문서화 초안(연결·파생지식 포함) 생성 AI는 AXKG-SPEC-004 소관.
+- AI 2-stage: ① 요약 AI — 트리거는 AXKG-SPEC-003의 `received → summarizing` 자동 전이. 요약 초안 검토(피드백 재요약·`분류` 선택)는 **AXKG-SPEC-003 U-2 소관**이며 이 spec의 분류 게이트와 별개 표면이다(병합 아님). ② 분류기 AI — 사용자가 요약 초안에서 `분류`를 눌러 `summarized` 항목을 분류 게이트로 보낼 때만 실행되어 **PARA 분류만** 생성한다(요약에 딸려 자동 실행되지 않음, 연결 추천도 생성하지 않음). 문서화 초안(연결·파생지식 포함) 생성 AI는 AXKG-SPEC-004 소관.
 - 2-게이트: 분류 게이트(②) → 문서화 승인 게이트(③, AXKG-SPEC-004). 우측 사이드바 없이 중앙 세로 스택 인라인.
 - MVP scope: AX는 AI Transformation 중심, 저장소는 Markdown SoT + PostgreSQL, Graph RAG Chat 포함
 
 ### Business Requirement
 
-사용자는 AX 관련 링크를 쌓아두는 대신, 요약 AI가 자동으로 정리한 요약·분류 카드에서 분류기 AI의 PARA 분류를 승인하고, 문서화 승인 게이트에서 destination별 AI 초안(연결·파생지식 포함)을 검토·승인해 지식그래프의 일부로 전환할 수 있어야 한다.
+사용자는 AX 관련 링크를 쌓아두는 대신, 요약 AI가 자동으로 만든 요약 초안(AXKG-SPEC-003 U-2)을 검토해 `분류`를 누르면 실행되는 분류기 AI의 PARA 분류를 승인하고, 문서화 승인 게이트에서 destination별 AI 초안(연결·파생지식 포함)을 검토·승인해 지식그래프의 일부로 전환할 수 있어야 한다.
 
 ### Scope
 
 In scope:
 
-- Source Inbox에서 자동 요약된 `summarized` source를 분류 게이트로 진입시키기(요약·분류 카드 병합)
+- 요약 초안(AXKG-SPEC-003 U-2)에서 `분류`를 눌러 `summarized` source를 분류 게이트로 진입시키기(요약 검토와 분류 게이트는 분리된 표면)
 - 분류기 AI가 PARA 분류 후보만 생성(연결 추천 없음)
 - 분류 게이트에서의 사용자 승인/피드백
 - 분류 승인 후 문서화 승인 게이트(AXKG-SPEC-004) 진입
@@ -78,7 +78,8 @@ Out of scope:
 | Header: AX Knowledge Graph                        |
 +-------------------+------------------------------+
 | Source Inbox 큐   | 중앙 세로 스택 (선택 항목)     |
-| - Summarized      | ① 요약·분류 카드 (요약 AI ①)   |
+| - Summarized      | 요약 초안 검토 (SPEC-003 U-2)  |
+|                   |   [피드백] · [분류]            |
 | - Classify Pending| ② 분류 게이트 (분류기 AI ②)    |
 | - Doc Pending     |    PARA + reason + title/tags  |
 | - Documented      | ③ 문서화 승인 게이트 (SPEC-004)|
@@ -95,12 +96,12 @@ Out of scope:
 - **CTA**: 없음 — 수동 `수집 시작` 단계는 제거되었다. URL 최초 입력은 AXKG-SPEC-003 소관.
 - **기대 결과**: `summarized` source가 분류 게이트 선택 대상으로 목록에 나타난다.
 
-### U-2. 요약·분류 카드 (요약 + 분류 게이트 병합)
+### U-2. 요약 초안 → 분류 게이트 진입 (분리된 두 표면)
 
-- **상태**: 요약 중, 요약 완료(분류 게이트 자동 생성), 요약 실패
+- **상태**: 요약 중, 요약 완료(요약 초안), 요약 실패
 - **문구**: 제목, 핵심 요약, 태그 (요약 AI ① 결과 = 노트 frontmatter 시드). 제목/요약/태그가 이후 생성될 문서의 frontmatter 시드가 된다.
-- **CTA**: 없음 — 요약이 자동이므로 중간 `분류 게이트 생성` 버튼을 두지 않는다. 요약 카드와 분류 게이트는 한 카드로 병합된다.
-- **기대 결과**: source가 `summarized`가 되어 분류 게이트로 선택되면 분류기 AI(②)가 실행되어 아래 U-3 분류 게이트가 같은 카드에 이어서 나타난다.
+- **CTA**: 요약 초안 검토(`피드백`·`분류`)는 **AXKG-SPEC-003 U-2** 소관이다. 이 spec은 그중 `분류`가 트리거하는 분류 게이트(아래 U-3)를 다룬다. 요약이 자동으로 분류로 넘어가지 않는다 — 사용자가 `분류`를 눌러야 분류 게이트가 생성된다.
+- **기대 결과**: 사용자가 요약 초안에서 `분류`를 누르면 분류기 AI(②)가 실행되어 아래 U-3 분류 게이트가 **요약 초안과 별도 카드로** 중앙 스택에 이어 나타난다(병합 아님). 요약 초안은 `sources.summary_payload`(DB 임시)에 남는다.
 
 ### U-3. 분류 게이트 (②, 분류만)
 
@@ -144,8 +145,8 @@ Out of scope:
 
 ### S-1. User — 요약된 source를 2-게이트로 영구 문서화
 
-1. Source Inbox의 URL은 `received` 시 자동으로 요약되어 `summarized`가 된다(요약 AI ①, AXKG-SPEC-003). 제목·요약·태그가 요약·분류 카드에 표시된다.
-2. 사용자가 `summarized` 항목을 분류 게이트로 선택하면 분류기 AI(②)가 실행되어 같은 카드에 분류 게이트가 이어서 생성된다.
+1. Source Inbox의 URL은 `received` 시 자동으로 요약되어 `summarized`가 된다(요약 AI ①, AXKG-SPEC-003). 제목·요약·태그가 요약 초안(AXKG-SPEC-003 U-2)으로 표시되며, 사용자는 여기서 `피드백`으로 재요약할 수 있다.
+2. 사용자가 요약 초안에서 `분류`를 누르면(요약이 자동으로 넘어가지 않음) 분류기 AI(②)가 실행되어 요약 초안과 별도 카드로 분류 게이트가 생성된다.
 3. 분류기 AI는 PARA 목적지(`project`, `area`, `resource`, `archive`)·판단 근거·제목·태그·신뢰도를 생성한다(연결 후보는 생성하지 않는다).
 4. 분류가 틀리면 사용자는 `피드백` 버튼으로 피드백 모달을 열어 v2를 재생성받는다(v1은 read-only 보존). 맞으면 `승인`한다.
 5. 승인 시 source의 목적지가 확정된다. 목적지가 `archive`이면 문서화 게이트 없이 흐름을 종료한다.
@@ -198,8 +199,8 @@ sequenceDiagram
     participant AI
     participant Store
 
-    Note over User,Store: 요약(①)은 AXKG-SPEC-003에서 received 시 자동. 이 흐름은 summarized 이후.
-    User->>FE: summarized 항목을 분류 게이트로 선택
+    Note over User,Store: 요약(①)은 AXKG-SPEC-003에서 received 시 자동. 요약 초안 검토(피드백/분류)도 SPEC-003 U-2. 이 흐름은 [분류] 이후.
+    User->>FE: 요약 초안에서 [분류] 클릭 (자동 아님)
     FE->>BE: POST /sources/{id}/classification-gates
     BE->>AI: 분류기 AI ② — PARA 분류만 요청
     AI-->>BE: 분류 게이트(PARA + reason + title/tags) 반환
@@ -279,6 +280,7 @@ stateDiagram-v2
 - 승인되지 않은 AI 제안은 영구 문서에 반영하지 않는다.
 - AI 요약 결과는 source에 보존하고, 문서화 결과와 구분한다.
 - 요약 AI(①)·분류기 AI(②)·재생성 작업은 AXKG-SPEC-007의 open-kknaks provider 설정을 사용한다.
+- 분류기 AI(②)는 사용자가 요약 초안(AXKG-SPEC-003 U-2)에서 `분류`를 누른 `POST /sources/{source_id}/classification-gates` 트리거로만 실행된다. 요약에 딸려 자동 실행되지 않는다(요약 검토와 분류 게이트는 분리된 표면).
 - 분류기 AI(②)는 PARA 분류만 생성한다. 연결 추천은 분류 게이트에서 만들지 않고, 문서화 게이트(③)의 AI 초안 `up:`/`[[ ]]`와 파생지식 후보로 발현한다.
 - 분류 게이트 승인 전에는 source의 PARA 목적지를 확정하지 않는다.
 - `archive`로 승인된 source는 문서화 게이트로 넘어가지 않는다(문서·연결 생성 안 함).
@@ -290,7 +292,7 @@ stateDiagram-v2
 
 ### Acceptance Criteria
 
-- [ ] `summarized` source를 분류 게이트로 보낼 수 있다(요약·분류 카드 병합, 중간 버튼 없음).
+- [ ] `summarized` source는 요약 초안(AXKG-SPEC-003 U-2)에서 `분류`를 눌러야 분류 게이트로 진입한다(자동 아님, 요약 검토와 분류 게이트는 분리된 표면).
 - [ ] 분류 게이트는 분류기 AI가 PARA 분류만 생성한다(연결 후보 없음).
 - [ ] 분류 게이트는 `project`, `area`, `resource`, `archive` 중 하나의 목적지를 제안한다.
 - [ ] 분류 게이트에는 목적지 판단 근거, 문서화 후보 제목·태그, 신뢰도가 포함된다.

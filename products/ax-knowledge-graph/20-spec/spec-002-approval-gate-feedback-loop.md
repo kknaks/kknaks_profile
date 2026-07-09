@@ -6,7 +6,7 @@ status: stable
 product: ax-knowledge-graph
 version: 0.0.1
 created_at: 2026-07-07
-updated_at: 2026-07-07
+updated_at: 2026-07-08
 tags:
   - product/ax-knowledge-graph
   - doc/spec
@@ -19,6 +19,7 @@ links:
     - "[[decision-004-mvp-defaults-and-scope|AXKG-DEC-004]]"
   specs:
     - "[[spec-001-curation-pipeline|AXKG-SPEC-001]]"
+    - "[[spec-003-source-inbox|AXKG-SPEC-003]]"
     - "[[spec-004-documentation-approval-gate|AXKG-SPEC-004]]"
     - "[[spec-011-ai-execution-pipeline|AXKG-SPEC-011]]"
   works:
@@ -29,7 +30,13 @@ links:
 
 # 승인 게이트 피드백과 재생성 루프
 
-사용자가 AI 제안 게이트를 승인하지 않을 때 피드백을 남기고, 시스템이 그 피드백을 반영한 새 게이트 버전을 생성하는 **공통 버전 규칙**을 정의한다. 대상은 파이프라인의 두 게이트 — **분류 게이트(②, AXKG-SPEC-001)**와 **문서화 승인 게이트(③, AXKG-SPEC-004)** — 모두이며, 피드백은 해당 게이트의 새 revision(v2)을 만들고 직전 버전(v1)은 read-only로 보존한다.
+사용자가 AI 제안을 그대로 받지 않을 때 피드백을 남기고, 시스템이 그 피드백을 반영한 새 버전을 생성하는 **공통 버전·resume 규칙**을 정의한다. 주 대상은 파이프라인의 두 게이트 — **분류 게이트(②, AXKG-SPEC-001)**와 **문서화 승인 게이트(③, AXKG-SPEC-004)** — 이며, 피드백은 해당 게이트의 새 revision(v2)을 만들고 직전 버전(v1)은 read-only로 보존한다.
+
+같은 **피드백→v2 재생성 + 직전 버전 read-only 보존 + open-kknaks 세션 resume** 규칙은 **요약 스테이지(①, AXKG-SPEC-003 U-2)의 요약 초안**에도 적용된다. 다만 요약 초안은 게이트가 아니므로 아래 경계를 따른다.
+
+- 요약 초안은 `approval_gates`/`approval_gate_revisions`가 아니라 `sources.summary_payload`(DB 임시)에 저장되고, 피드백 재생성은 이 payload를 v2로 갱신한다. gate_kind·approve-lock·재분류 재오픈 같은 게이트 전용 상태 기계는 요약 초안에 적용하지 않는다.
+- 요약 초안의 "다음 단계로 넘기는" 액션은 게이트 승인(`approve`)이 아니라 **[분류]**(분류 게이트 트리거, AXKG-SPEC-001)다. 요약 초안 단계에는 승인/잠금 개념이 없다 — 사용자는 만족할 때까지 피드백으로 재생성하고, [분류]를 눌러야 파이프라인이 다음으로 진행한다.
+- 공유하는 것은 **버전 규칙(v1 read-only + v2)과 세션 resume 배선**(AXKG-SPEC-011 Feedback Regeneration Resume Wiring)뿐이다. 이하 §2~§5의 게이트 전용 계약(모달·API·게이트 상태)은 요약 초안 UX(AXKG-SPEC-003)와 별개다.
 
 ## 1. Context
 
@@ -53,6 +60,7 @@ In scope:
 - 피드백 반영 재생성(v2)
 - 게이트 버전 비교, 직전 버전(v1) read-only 보존
 - 승인된 버전 잠금
+- 요약 초안(①)에 공유되는 버전 규칙(v1 read-only + v2)과 세션 resume 배선(요약 초안 UX·저장은 AXKG-SPEC-003, 배선은 AXKG-SPEC-011)
 
 Out of scope:
 
@@ -279,6 +287,7 @@ stateDiagram-v2
 - 둘 다 없으면 stateless 재생성으로 실행하되, source + 이전 revision payload + feedback body를 모두 context에 포함한다.
 - 재생성 결과가 새 session id를 반환하면 새 `ai_tasks`와 새 `approval_gate_revisions`에 다시 저장한다.
 - 실패한 task도 `payload`에 요청 snapshot과 사용하려던 resume session id를 남긴다. retry는 기존 failed task를 수정하지 않고 새 `ai_tasks` row를 만들며 같은 resume session 후보를 다시 계산한다.
+- **요약 초안(①)의 재생성**도 같은 계산 규칙을 쓴다: resume 원천은 직전 요약 실행 `ai_tasks.open_kknaks_session_id`이고, 없으면 stateless로 원문+이전 요약 payload+feedback을 인라인한다. 대상 저장소만 `approval_gate_revisions`가 아니라 `sources.summary_payload`다. 실제 submit 배선(`options.resume=true` + session)은 AXKG-SPEC-011 Feedback Regeneration Resume Wiring이 SSOT다.
 
 ### Approval Gate Payload Schema
 

@@ -5,7 +5,7 @@ title: "AI 실행 파이프라인 계약: 3자 조립·연결 후보 컨텍스�
 status: accepted
 product: ax-knowledge-graph
 created_at: 2026-07-07
-updated_at: 2026-07-07
+updated_at: 2026-07-08
 tags:
   - product/ax-knowledge-graph
   - doc/decision
@@ -39,7 +39,11 @@ links:
   1. Graph RAG retriever(AXKG-DEC-003의 keyword score + edge distance)를 재사용해 관련 기존 문서 top-N 후보를 추출한다.
   2. documents index 경량 스냅샷(`stem`·`aliases`·`title`·`document_type`)을 항상 함께 주입해, AI가 생성하는 wikilink가 유효한 stem/alias만 가리키게 한다.
   - 외부 그래프 도구(Graphify 등)는 제품 서빙 경로에 도입하지 않는다. Markdown→PostgreSQL 캐시(AXKG-DEC-002)가 유일한 그래프 원천이다. Graphify류 도구의 배치 enrichment 활용은 post-MVP 검토 항목으로 남긴다.
-- **3자 조립(템플릿+프롬프트+output_schema)의 주체와 순서**: 백엔드 context builder가 조립하고, AI는 조립된 컨텍스트를 채우기만 한다. 순서는 `template(뼈대) → prompt(지시) → output_schema(출력 강제)`. `ai_task_definitions.template_key` 바인딩과 `ai_tasks.template_version_id` 스냅샷을 둔다.
+- **실행 입력 3원천의 주체** (2026-07-08 개정, AXKG-WORK-002 Phase 3 라이브 e2e): AI 실행 입력은 소유 주체가 다른 3원천으로 나뉜다.
+  1. **방법·배경 지침**은 worker 이미지에 내장된 프로젝트 컨텍스트(진입 `CLAUDE.md → agent.md → context/`)가 담당하고, claude가 실행 작업 디렉토리(`WORK_DIR`)에서 스스로 읽는다 — api는 로드·주입하지 않는다.
+  2. **DB 아티팩트**(활성 프롬프트=작업 지시, output_schema, ③ 활성 템플릿)는 api가 DB에서 로드해 submit으로 전달하고 `prompt_version_id`(+③ `template_version_id`)를 스냅샷한다. 템플릿 바인딩은 `ai_task_definitions.template_key`, 사용 버전은 `ai_tasks.template_version_id`.
+  3. **런타임 데이터**(① `SourceMaterial` 원문, ③ 연결 후보 컨텍스트)는 api가 런타임 상태에서 구성해 submit으로 전달한다.
+  - 개정 전 결정은 "api가 지침까지 프롬프트 한 방에 인라인 조립(`template → prompt → output_schema`)하고 claude엔 프로젝트를 주지 않는" 모델이었다. 프로젝트 컨텍스트는 배포 시 마운트(git pull 런타임 의존)가 아니라 **빌드 시점 이미지 내장**으로 고정한다. 요약 작업용 프로젝트 컨텍스트는 코드레포 `apps/worker/workspace/`에 둔다(profile-be 코드 소관, 병렬 진행).
 - **output_schema 경계**: `output_schema`는 게이트 payload envelope(`classification.v1`/`documentation.v1`, AXKG-SPEC-002)의 form/구조 필드 내부만 관장한다. envelope 자체는 코드 고정 계약이다.
 - **output_schema 표현 형식**: JSON Schema로 확정한다. 백엔드가 FastAPI/Python(Pydantic ↔ JSON Schema 상호변환)이고 AI provider structured output이 JSON Schema 기반이므로 대안이 없다.
 - **AI 실행 파이프라인 spec 신설**: 4개 AI 스테이지(①요약 ②분류 ③문서초안 ④Graph RAG chat)의 공통 실행 계약 — 입력 컨텍스트 구성, 3자 조립, 구조화 출력 파싱·검증, 실패→`ai_tasks` 상태 매핑, 콘텐츠 수집 — 은 AXKG-SPEC-011이 SSOT다. 요약 AI(①)의 실행 계약(AXKG-SPEC-003과 AXKG-SPEC-001 사이에서 소관이 비어 있던 부분)은 SPEC-011 소관으로 확정한다.
@@ -49,7 +53,8 @@ links:
 ## Rationale
 
 - 연결 품질은 제품 핵심 가치(AXKG-BL-001)인데, 초안 AI가 그래프 컨텍스트 없이 wikilink를 생성하면 executor의 깨진 링크 거부(AXKG-SPEC-004)와 구조적으로 충돌한다. retriever 재사용은 새 기계 없이 관련성을, index 스냅샷은 링크 유효성을 보장한다.
-- 조립을 AI에게 맡기면 출력 구조 보장이 약해지고 버전 스냅샷 추적이 애매해진다. BE 조립은 재현성과 감사 추적(`prompt_version_id`+`template_version_id`)을 확보한다.
+- 조립을 AI에게 맡기면 출력 구조 보장이 약해지고 버전 스냅샷 추적이 애매해진다. BE는 DB 아티팩트·런타임 데이터만 조립하고 사용 버전을 스냅샷해 재현성과 감사 추적(`prompt_version_id`+`template_version_id`)을 확보한다.
+- 방법·배경 지침은 자주 바뀌지 않는 코드성 자산이라 DB 동적 관리 대상이 아니다. worker가 claude를 프로젝트 컨텍스트 안에서 실행하면 지침을 프롬프트에 매번 인라인할 필요 없이 claude가 진입 문서로 읽는다. 런타임 git pull 의존을 피하려 빌드 시점 이미지에 내장한다.
 - 실행 계약이 스펙 없이 아키텍처 문서에만 있으면 요약 스테이지처럼 소관이 비는 구멍이 생긴다. 관리(009/010)와 실행(011)을 분리해 각자 SSOT를 갖게 한다.
 - project 문서화를 빼면 수집-분류-문서화 파이프라인이 PARA 4분류 중 하나에서 끊긴다. MVP에서 baseline 후보 한 종으로 좁혀 포함한다.
 

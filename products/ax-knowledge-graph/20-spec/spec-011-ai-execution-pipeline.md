@@ -6,7 +6,7 @@ status: stable
 product: ax-knowledge-graph
 version: 0.0.1
 created_at: 2026-07-07
-updated_at: 2026-07-07
+updated_at: 2026-07-08
 tags:
   - product/ax-knowledge-graph
   - doc/spec
@@ -63,7 +63,7 @@ In scope:
 
 - 스테이지별 입력 컨텍스트 구성(context builder) 계약
 - 문서초안 AI의 **연결 후보 검색 컨텍스트**(2단 하이브리드, AXKG-DEC-005)
-- 템플릿+프롬프트+output_schema **3자 조립** 계약(주체·순서·버전 스냅샷)
+- 실행 입력 3원천(프로젝트 컨텍스트·DB 아티팩트·런타임 데이터) 계약(소유 주체·전달 표면·버전 스냅샷)
 - 구조화 출력(JSON Schema) 강제와 파싱·검증 실패 처리
 - 실패의 `ai_tasks` 상태 매핑과 스테이지별 표면화
 - 요약 스테이지의 `SourceMaterial` 입력 조립 계약(수집 adapter 자체는 AXKG-SPEC-012)
@@ -85,7 +85,7 @@ Out of scope:
 
 | 스테이지 | 표면 위치 | 소관 spec |
 |---|---|---|
-| ① 요약 | Source Inbox 요약 카드, `요약 재시도` CTA | AXKG-SPEC-003 |
+| ① 요약 | Source Inbox 요약 초안 카드, `피드백`(세션 resume 재요약)·`분류`(분류 게이트 트리거)·`요약 재시도` CTA | AXKG-SPEC-003 |
 | ② 분류 | 분류 게이트 카드, `재시도` CTA | AXKG-SPEC-001/002 |
 | ③ 문서초안 | 문서화 게이트, `초안 생성 재시도` CTA | AXKG-SPEC-004 |
 | ④ chat | run polling 상태, 실패 메시지 | AXKG-SPEC-006 |
@@ -95,10 +95,10 @@ Out of scope:
 ### S-1. System — 요약 스테이지 실행
 
 1. source가 등록되면(`received`) 시스템은 `ai_tasks(task_type=collect_source_summary)`를 만든다.
-2. context builder가 AXKG-SPEC-012 Source Collection Adapter를 호출해 `SourceMaterial`을 얻고 입력 컨텍스트를 구성한다.
-3. 활성 요약 프롬프트+output_schema(AXKG-SPEC-009)를 로드해 조립하고 open-kknaks로 실행한다.
-4. 출력(`title`·`summary`·`keywords`·`source_type`)이 스키마 검증을 통과하면 `sources.summary_payload`에 저장되고 `summarized`가 된다.
-5. 수집 또는 실행이 실패하면 `ai_tasks.status=failed`가 보존되고 source는 `collection_failed`로 표면화된다(AXKG-SPEC-003).
+2. context builder가 AXKG-SPEC-012 Source Collection Adapter를 호출해 `SourceMaterial`(런타임 원문)을 얻는다. URL 원문 수집이 모두 실패하고 사용자 메모가 있으면 adapter는 `user_note` `SourceMaterial`(메모가 곧 원문)을 돌려준다(AXKG-SPEC-012 User Note Fallback). 요약 스테이지는 `SourceMaterial`의 형태를 구분하지 않고 동일하게 처리한다.
+3. api는 활성 요약 프롬프트(작업 지시)+output_schema(AXKG-SPEC-009)를 DB에서 로드해 원문과 함께 open-kknaks worker로 submit한다. **요약 방법·형식 지침은 worker 이미지 내장 프로젝트 컨텍스트(진입 `CLAUDE.md → agent.md → context/`)가 담당하며 api는 그 파일을 로드하지 않는다.** worker의 claude가 실행 디렉토리에서 지침을 읽고 원문을 요약한다. `SourceMaterial`이 `content_format=user_note`인 경우(원문 미수집, 사용자 메모 기반), 요약은 **메모에 담긴 내용만으로 수행하고 메모에 없는 사실을 추측·창작하지 않는다** — 이 지침의 서술 자산은 worker 프로젝트 컨텍스트 소관이고, 이 spec은 계약(입력 유형·금지 규칙)만 규정한다.
+4. 출력(`title`·`summary`·`keywords`·`source_type`)이 스키마 검증을 통과하면 `sources.summary_payload`에 저장되고 `summarized`가 된다. 메모 기반 요약도 원문 기반 요약과 동일하게 `summarized`이며 payload에 구분 플래그를 두지 않는다.
+5. 수집(URL 원문 실패 **AND** 메모 없음) 또는 실행이 실패하면 `ai_tasks.status=failed`가 보존되고 source는 `collection_failed`로 표면화된다(AXKG-SPEC-003). URL 수집이 실패해도 메모가 있으면 User Note로 성립하므로 `collection_failed`가 아니다.
 
 ### S-2. System — 문서초안 스테이지의 연결 후보 컨텍스트 조립
 
@@ -127,7 +127,7 @@ Out of scope:
 
 | 스테이지 | task_type | handler_kind | 입력 컨텍스트 | 출력 | 소비처 |
 |---|---|---|---|---|---|
-| ① 요약 | `collect_source_summary` | `source_summary` | source URL + `SourceMaterial`(AXKG-SPEC-012) | `title`, `summary`, `keywords`, `source_type` | `sources.summary_payload`, 요약 카드 |
+| ① 요약 | `collect_source_summary` | `source_summary` | source URL + `SourceMaterial`(런타임 원문, AXKG-SPEC-012 — URL 수집 실패 시 메모 기반 `user_note` 포함) + DB 프롬프트/output_schema. 방법 지침은 worker 프로젝트 컨텍스트. **(피드백 재생성 시) 사용자 피드백 + resume session**(아래 Feedback Regeneration Resume Wiring — 원문·지침 재전송 없이 세션 이어서) | `title`, `summary`, `keywords`, `source_type` | `sources.summary_payload`(초안, 재생성 시 v2로 갱신), 요약 초안 카드(AXKG-SPEC-003 U-2) |
 | ② 분류 | `generate_classification_gate`, `regenerate_classification_gate` | `classification_gate` | 요약 payload + PARA 분류 기준. **그래프 컨텍스트 없음**(연결은 ③ 소관, AXKG-SPEC-001 §5) | `classification.v1` form 필드(AXKG-SPEC-002) | 분류 게이트 revision |
 | ③ 문서초안 | `generate_documentation_gate`, `regenerate_documentation_gate` | `documentation_gate` | 요약+확정 destination + **활성 템플릿** + **연결 후보 컨텍스트**(아래) + (재생성 시) 피드백·이전 세션 | `documentation.v1` payload: draft(markdown_full) + derived_suggestions + apply_plan 제안 | 문서화 게이트 revision |
 | ④ chat | `graph_rag_chat` | `graph_rag_chat` | 질문 + retriever 결과(evidence 문서) + 세션 이력 | 답변 + evidence | `graph_chat_runs`/messages |
@@ -150,14 +150,35 @@ Out of scope:
 - top-N 기본값과 발췌 길이는 구현 기본값으로 두되, `ai_tasks.payload`에 실제 주입된 컨텍스트를 스냅샷한다.
 - retriever는 chat(④)과 문서초안(③)이 **공유**하는 컴포넌트다(`domain.graph`).
 
-### Assembly Contract (3자 조립, AXKG-DEC-005)
+### Assembly Contract (실행 입력 3원천, AXKG-DEC-005)
 
-- 조립 주체는 **백엔드 context builder**다. AI는 조립된 컨텍스트를 채우기만 한다.
-- 조립 순서: `template(뼈대, AXKG-SPEC-010)` → `prompt(지시, AXKG-SPEC-009)` → `output_schema(출력 강제)`.
-- **조립 방식은 변수 치환이 아니라 블록 조립이다.** DB 프롬프트 본문에 `{{template}}` 같은 변수를 두지 않는다(변수 엔진은 AXKG-SPEC-009 out of scope). context builder가 코드 고정 프레임으로 입력을 쌓는다 — 프롬프트(지시) + "아래 템플릿 뼈대를 따르라" 프레임 + 활성 템플릿 body + source 데이터 + (③) 연결 후보 컨텍스트. 프레임 문구는 코드 소유라 admin이 프롬프트를 잘못 편집해도 템플릿 주입은 깨지지 않는다. 프롬프트는 "어떻게 채울지"(톤·밀도·강조)만 담당한다.
-- 템플릿은 `handler_kind=documentation_gate`에서만 조립된다. 바인딩은 `ai_task_definitions.template_key`, 사용 버전은 `ai_tasks.template_version_id`로 스냅샷한다.
-- 프롬프트 사용 버전은 `ai_tasks.prompt_version_id`로 스냅샷한다.
+AI 실행 입력은 **소유 주체가 다른 3원천**으로 나뉜다. worker가 claude를 프로젝트 컨텍스트 안에서 실행하고(진입 `CLAUDE.md → agent.md → context/`), api는 작업 지시·원문·스키마만 공급한다.
+
+| 원천 | 내용 | 소유·전달 |
+|---|---|---|
+| 1. 프로젝트 컨텍스트(방법·배경) | 스테이지별 요약/분류/연결/chat 지침 — 진입 `CLAUDE.md → agent.md → context/` | **worker 이미지에 내장**(빌드 시점 고정). claude가 실행 작업 디렉토리에서 스스로 읽는다. **api는 로드·주입하지 않는다** |
+| 2. DB 아티팩트(작업 지시·출력 강제) | 활성 프롬프트 본문(작업 지시) + output_schema, (③) 활성 템플릿 뼈대 | api가 DB에서 활성 버전 로드 → submit으로 전달. 실행마다 `prompt_version_id`(+③ `template_version_id`) 스냅샷 |
+| 3. 런타임 데이터 | (①) `SourceMaterial` 원문, (③) 연결 후보 컨텍스트 2단 | api가 런타임 상태에서 구성 → submit으로 전달. `ai_tasks.payload`에 스냅샷 |
+
+- 조립·전달 주체는 **백엔드 context builder(원천 2·3)**이고, **방법·배경 지침(원천 1)은 api가 조립하지 않는다** — worker 프로젝트 컨텍스트가 담당한다. 이전의 "api가 지침까지 프롬프트 한 방에 인라인 3자 조립(template→prompt→output_schema)하고 claude엔 프로젝트를 주지 않는" 모델을 대체한다(2026-07-08, AXKG-WORK-002 Phase 3 라이브 e2e).
+- ③ 문서초안은 원천 2에 활성 템플릿이 더해진다. 템플릿은 `handler_kind=documentation_gate`에서만 조립되고, 바인딩은 `ai_task_definitions.template_key`, 사용 버전은 `ai_tasks.template_version_id`로 스냅샷한다.
+- **DB 프롬프트 본문에 `{{template}}` 같은 변수를 두지 않는다**(변수 엔진은 AXKG-SPEC-009 out of scope). 프롬프트는 "무엇을 할지"(작업 지시·톤·밀도·강조)만 담고, "어떻게 하는지"(방법·형식 배경)는 프로젝트 컨텍스트가 담당한다.
 - `output_schema`는 **JSON Schema**다. 게이트 payload envelope(`classification.v1`/`documentation.v1`)은 코드 고정이며, output_schema는 envelope 내부의 form/구조 필드만 관장한다.
+- 런타임 원문(`SourceMaterial`)이 claude에 닿는 방식은 **submit 프롬프트 인라인으로 확정**(2026-07-08, AXKG-WORK-002 Phase 3 라이브 e2e) — builder가 원문을 데이터 블록(`source`+`content`/`content_chunk_*`)으로 인라인 조립해 submit한다. workspace 파일로 넘기는 것은 방법 지침(원천 1)뿐. §7 OQ 해소.
+
+### Feedback Regeneration Resume Wiring (①②③ 공통)
+
+피드백 기반 재생성 실행은 **원 실행의 open-kknaks 세션을 이어서(resume)** 수행한다. 요약(①)·분류 게이트(②)·문서초안 게이트(③) 모두 같은 배선을 쓴다. 목적: 원문·방법 지침·이전 출력을 재전송하지 않고 세션 컨텍스트를 재사용해, 컨텍스트 소모 없이 피드백만 반영한 새 버전(v2)을 빠르게 생성한다.
+
+| 단계 | 규칙 |
+|---|---|
+| 1. resume 대상 계산 | context builder가 `resolve_resume_session`으로 대상 세션 id를 계산한다. 계산 규칙(대상 revision → ai_task fallback → 없으면 stateless)의 SSOT는 AXKG-SPEC-002 open-kknaks Session Rule이다 |
+| 2. submit 배선 | 얻은 session id를 open-kknaks submit에 **`options.resume=true` + session 전달**로 배선한다. 재생성 submit 본문에는 사용자 피드백만 싣고, **원문(`SourceMaterial`)·방법 지침·이전 payload는 재인라인하지 않는다**(세션이 보유) |
+| 3. stateless fallback | resume 세션 id가 없으면(둘 다 null) stateless로 실행하되, 이때만 source/이전 payload/feedback을 컨텍스트에 모두 인라인한다(AXKG-SPEC-002) |
+| 4. session id 저장 | 재생성 응답의 새 session id는 기존과 동일하게 새 `ai_tasks.open_kknaks_session_id`(+②③ revision)에 저장한다. 저장 계약은 변경 없음 |
+
+- 요약(①)의 재생성 대상은 `sources.summary_payload`(초안, DB 임시)이며, resume 세션 원천은 직전 요약 실행 `ai_tasks.open_kknaks_session_id`다. 요약 초안은 게이트 revision(`approval_gate_revisions`)이 아니라 `summary_payload`에 v2로 갱신 저장된다(AXKG-SPEC-003). 요약 재생성의 `task_type` 바인딩(`collect_source_summary` 재사용 여부)은 BE 구현(AXKG-WORK-002 Phase 6)에서 확정한다.
+- 인프라 현황(2026-07-08): `ai_tasks.open_kknaks_session_id` 저장·`resolve_resume_session` 계산은 구현됨. **`options.resume` 실제 전달 배선만 미완**(AXKG-WORK-002 Phase 6 / 코드 T-016 소관) — 이 spec은 그 배선 계약을 규정한다.
 
 ### Validation
 
@@ -194,9 +215,10 @@ sequenceDiagram
         BE->>Store: 활성 템플릿 로드 (실패 시 코드 fallback)
         BE->>Store: retriever top-N + documents index 스냅샷
     end
-    BE->>BE: 조립: template -> prompt -> output_schema
+    BE->>BE: submit 조립: 프롬프트(작업 지시)+output_schema (+③ template) + 런타임 원문/후보
     BE->>Store: ai_tasks 스냅샷(prompt_version_id, template_version_id, payload)
-    BE->>OK: task 실행
+    BE->>OK: submit(프롬프트·원문·스키마)
+    Note over OK: worker 이미지 내장 프로젝트 컨텍스트<br/>claude가 CLAUDE.md→agent.md→context/ 읽음(방법 지침)
     OK-->>BE: 출력
     alt 파싱·스키마 검증 통과
         BE->>Store: 스테이지별 결과 저장(summary_payload / revision / run)
@@ -223,11 +245,11 @@ sequenceDiagram
 - `SourceMaterial.content_text`가 최대 입력 길이를 초과하면 요약 스테이지가 chunk로 나눠 각각 요약한 뒤 하나의 summary로 병합한다(AXKG-SPEC-012 후처리 계약 연동). chunk 요약도 같은 output_schema를 따르고, 병합 결과만 `sources.summary_payload`에 저장한다.
 - 분류 스테이지(②)에는 그래프 컨텍스트를 주입하지 않는다. 연결 생성은 문서초안 스테이지(③)의 전속 책임이다.
 - 문서초안 스테이지(③)의 입력에는 연결 후보 컨텍스트 2단(retriever top-N + index 스냅샷)이 항상 포함된다.
-- 3자 조립은 백엔드 context builder가 수행하고, 실행마다 사용 버전을 `ai_tasks`에 스냅샷한다.
+- api context builder는 DB 아티팩트(활성 프롬프트=작업 지시·output_schema·③ 활성 템플릿)와 런타임 데이터(① 원문·③ 연결 후보)만 submit으로 조립·전달하고, 실행마다 사용 버전을 `ai_tasks`에 스냅샷한다. 방법·배경 지침은 조립하지 않는다 — worker 이미지 내장 프로젝트 컨텍스트(진입 `CLAUDE.md → agent.md → context/`)를 claude가 실행 디렉토리에서 읽는다. api는 요약 방법 지침 파일(`source-summary-guide.md` 등)을 로드하지 않는다.
 - output_schema는 JSON Schema이며, 구조화 출력을 강제한다. 검증 실패 출력은 소비하지 않고 task를 실패 처리한다.
 - 활성 프롬프트/템플릿 로드 실패는 실행을 중단시키지 않는다. 코드 fallback으로 계속하되 관찰 가능하게 기록한다.
 - 실패한 `ai_tasks`는 불변 보존하고, 재시도는 `retry_of_task_id`로 연결된 새 row다.
-- 재생성(피드백) 실행은 원 revision의 `open_kknaks_session_id`를 resume 컨텍스트로 사용한다(AXKG-SPEC-002).
+- 재생성(피드백) 실행은 요약(①)·분류 게이트(②)·문서초안 게이트(③) 모두 원 실행의 `open_kknaks_session_id`를 resume로 이어서 사용한다. `resolve_resume_session` → `options.resume=true` + session 전달 배선이며, 재생성 submit에는 피드백만 싣고 원문·방법 지침·이전 payload는 재전송하지 않는다(§4 Feedback Regeneration Resume Wiring, 계산 규칙 SSOT는 AXKG-SPEC-002).
 
 ## 6. Verification
 
@@ -241,8 +263,10 @@ sequenceDiagram
 - [ ] 요약 수집 실패가 `collection_failed` + `요약 재시도`로 표면화된다.
 - [ ] 활성 프롬프트/템플릿 로드 실패 시 코드 fallback으로 실행이 계속되고 그 사실이 기록된다.
 - [ ] 분류 스테이지 입력에 그래프 컨텍스트가 없다.
+- [ ] 피드백 재생성(①②③) submit에 `options.resume=true` + resume session이 배선되고, 원문·방법 지침·이전 payload가 재전송되지 않는다(resume 세션 없을 때만 stateless 인라인).
 
 ## 7. Open Questions
 
 - Source Collection Adapter의 실행 위치(FastAPI 내 fetcher vs worker 위임)는 구현 시 결정한다. 어느 쪽이든 AXKG-SPEC-012의 adapter 계약과 이 spec의 실패 매핑을 따른다.
 - retriever top-N 기본값과 후보 발췌 길이는 구현 기본값으로 시작하고, 초안 품질 관찰 후 조정한다.
+- ~~요약 방법 지침 프로젝트 컨텍스트 위치와 런타임 원문 전달 방식~~ → **확정**(2026-07-08, AXKG-WORK-002 Phase 3 라이브 e2e): 방법 지침은 `apps/worker/workspace/`(worker 이미지 내장, claude가 실행 디렉토리에서 Read), 런타임 원문(`SourceMaterial`)은 **submit 프롬프트 인라인 데이터 블록**으로 전달. api는 방법 지침 파일을 로드하지 않고 원문은 런타임 데이터로만 넘긴다.

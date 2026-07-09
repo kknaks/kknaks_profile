@@ -6,7 +6,7 @@ status: stable
 product: ax-knowledge-graph
 version: 0.0.1
 created_at: 2026-07-07
-updated_at: 2026-07-07
+updated_at: 2026-07-09
 tags:
   - product/ax-knowledge-graph
   - doc/spec
@@ -275,6 +275,9 @@ MVP 기본값:
 | `PROVIDER_UNAVAILABLE` | provider health 실패 | 선택한 provider를 사용할 수 없습니다. | Provider Health |
 | `AI_TASK_SUBMIT_FAILED` | open-kknaks task 생성 실패 | AI 작업을 시작하지 못했습니다. | 호출 화면 |
 | `INVALID_EXECUTION_LIMIT` | 실행 한도 범위 오류 | 실행 한도 값을 확인해 주세요. | Execution Limits |
+| `UNKNOWN_TASK_DEFINITION` (404) | 등록되지 않았거나 비활성인 작업입니다. | 등록되지 않았거나 비활성인 작업입니다. | AI Provider Settings (task override 편집) |
+
+`UNKNOWN_TASK_DEFINITION`은 task override(추가/수정)의 대상 `task_key`가 미등록이거나 `enabled=false`인 definition일 때 발생한다. 위 Validation의 `task_overrides` 규칙("등록되어 있고 `enabled=true`인 task definition key만 허용")을 API 레벨에서 강제하는 에러다.
 
 ### Flow
 

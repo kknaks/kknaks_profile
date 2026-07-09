@@ -6,7 +6,7 @@ status: stable
 product: ax-knowledge-graph
 version: 0.0.1
 created_at: 2026-07-07
-updated_at: 2026-07-07
+updated_at: 2026-07-08
 tags:
   - product/ax-knowledge-graph
   - doc/spec
@@ -81,11 +81,12 @@ Out of scope:
 | `static_web` 기준 미달 + public browser render 가능 | `dynamic_web` | 지원 |
 | PDF, RSS, 기타 non-HTML URL | `unsupported` | 후속 adapter 전까지 `UNSUPPORTED_SOURCE_TYPE` |
 
-Adapter 선택은 3단계로 한다.
+Adapter 선택은 4단계로 한다.
 
 1. URL host/path 기반으로 명확한 source type을 먼저 판정한다. YouTube URL은 HTTP content-type 확인 전에 `youtube` adapter로 보낸다.
 2. 명확한 전용 adapter가 없으면 HTTP HEAD 또는 GET 응답의 content-type과 body를 보고 `static_web` 가능 여부를 판정한다.
 3. `static_web`이 `DYNAMIC_RENDER_REQUIRED` 또는 본문 부족으로 실패하면 `dynamic_web` adapter를 시도한다.
+4. **최종 fallback — User Note.** 위 URL 기반 수집이 모두 `CollectionError`로 실패했을 때(예: Cloudflare/봇 방어로 static·dynamic 모두 원문 미달), 사용자가 함께 남긴 메모가 있으면 그 메모를 `user_note` `SourceMaterial`로 만들어 수집을 성립시킨다. 메모가 없으면 실패를 그대로 유지한다(collection_failed). 메모 "있음"은 **trim 후 non-empty** 기준이다.
 
 구현 원칙:
 
@@ -101,14 +102,14 @@ Adapter 선택은 3단계로 한다.
 {
   "source_url": "https://example.com/article",
   "canonical_url": "https://example.com/article",
-  "adapter": "youtube | static_web | dynamic_web",
+  "adapter": "youtube | static_web | dynamic_web | user_note",
   "title": "...",
   "author": "...",
   "published_at": "YYYY-MM-DD or null",
   "duration_seconds": 1234,
   "content_text": "... extracted body ...",
-  "content_format": "transcript | video_description | page_text",
-  "fetch_method": "youtube_transcript_api | youtube_metadata | static_html | playwright_chrome",
+  "content_format": "transcript | video_description | page_text | user_note",
+  "fetch_method": "youtube_transcript_api | youtube_metadata | static_html | playwright_chrome | user_note",
   "fetched_at": "ISO-8601",
   "external_id": "youtube video id or null",
   "metadata": {
@@ -126,7 +127,7 @@ Adapter 선택은 3단계로 한다.
 규칙:
 
 - `content_text`는 요약 AI가 읽을 원문이다.
-- `adapter`는 **수집 방식 식별자**다. 콘텐츠 유형 `source_type`(`article`/`video`/`document`/`unknown`, AXKG-SPEC-001/002 계약)과 다른 필드이며 어휘를 섞지 않는다. adapter는 요약 AI에 유형 힌트를 준다: `youtube→video`, `static_web`/`dynamic_web`→기본 `article`(요약 AI가 본문 기준으로 보정).
+- `adapter`는 **수집 방식 식별자**다. 콘텐츠 유형 `source_type`(`article`/`video`/`document`/`unknown`, AXKG-SPEC-001/002 계약)과 다른 필드이며 어휘를 섞지 않는다. adapter는 요약 AI에 유형 힌트를 준다: `youtube→video`, `static_web`/`dynamic_web`→기본 `article`(요약 AI가 본문 기준으로 보정), `user_note`→기본 `unknown`(요약 AI가 메모 내용 기준으로 보정).
 - `canonical_url`은 중복 source 판단과 trace에 사용한다. 수집 성공 시 `sources.normalized_url`을 canonical 기준으로 갱신하고 중복을 재검사한다(예: `youtu.be/X`와 `watch?v=X`는 canonical에서 합류). 갱신 결과 기존 source와 충돌하면 AXKG-SPEC-003 S-2 중복 규칙(기존 source에 연결)을 따른다.
 - `duration_seconds`는 YouTube처럼 재생 시간이 있는 source에서만 값이 있고, 정적 웹에서는 null이다.
 - `external_id`는 source provider의 안정 식별자다. YouTube는 video id, 정적 웹은 null이다.
@@ -233,6 +234,34 @@ AI 입력 지시(공통 — 요약 스테이지에 함께 전달):
 - static article: `https://bums-life.tistory.com/entry/Graphify%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80-AI%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%B4-%EC%BD%94%EB%93%9C%EC%99%80-%EB%AC%B8%EC%84%9C%EB%A5%BC-%EC%A7%80%EC%8B%9D-%EA%B7%B8%EB%9E%98%ED%94%84%EB%A1%9C-%EB%B0%94%EA%BE%B8%EB%8A%94-%EB%B0%A9%EB%B2%95` — HTML 응답만으로 title/author/published_at/본문이 나오는 케이스
 - dynamic list: `https://enterprise.kt.com/bt/P_BT_TI_LT_001.do?utm_source=google&utm_medium=searched&utm_campaign=googlesa_p_&utm_content=sa_pc_axstory_20260626&utm_term=&gad_source=1&gad_campaignid=22926266627` — 서버 HTML은 placeholder이고 렌더링 후 JS가 목록을 채우는 케이스
 
+### User Note Fallback (최종 fallback)
+
+URL 기반 수집(youtube/static_web/dynamic_web)이 모두 실패했을 때, 사용자가 함께 남긴 메모가 있으면 그 메모 텍스트 자체를 요약 입력 원문으로 삼는다. Cloudflare/봇 방어 등으로 원문을 못 가져와도 사용자가 넣은 메모/복붙 텍스트로 요약이 성립하게 하는 MVP 경로다.
+
+입력:
+
+- `source_id`, `source_url`, 사용자 메모(manual `note` 또는 Slack `<< >>` 안 텍스트, AXKG-SPEC-003)
+
+처리:
+
+1. URL 수집 체인(1~3단계)이 모두 `CollectionError`인지 확인한다.
+2. 메모가 **trim 후 non-empty**면 아래 `SourceMaterial`로 성립시킨다. 메모가 없거나 trim 후 비어 있으면 수집 실패를 유지한다(`collection_failed`).
+
+| 필드 | 값 |
+|---|---|
+| `adapter` | `user_note` |
+| `content_text` | 사용자 메모 원문 |
+| `content_format` | `user_note` |
+| `fetch_method` | `user_note` |
+| `canonical_url` | 원 URL(수집 실패로 canonical을 못 얻으므로 입력 URL 그대로) |
+| `title`/`author`/`published_at`/`duration_seconds`/`external_id` | null |
+
+규칙:
+
+- URL 수집이 성공하면 메모는 사용하지 않는다(원문 우선). User Note는 URL 수집이 모두 실패했을 때만 성립한다.
+- 메모 기반 수집과 원문 기반 수집을 **구분 표기하지 않는다** — 둘 다 정상 `SourceMaterial`이고 이후 요약 스테이지·상태(`summarized`)는 동일하다. source_basis 플래그/배지 같은 구분자를 두지 않는다.
+- `canonical_url`이 원 URL 그대로이므로 중복 재검사·S-2 규칙은 URL 기준으로 동일하게 적용된다.
+
 ## 3. Failure Contract
 
 | 에러 코드 | 조건 | AXKG 매핑 |
@@ -248,7 +277,9 @@ AI 입력 지시(공통 — 요약 스테이지에 함께 전달):
 | `SOURCE_TOO_LARGE` | adapter별 size limit 초과 | `ai_tasks.failed`, `sources.collection_failed` |
 | `FETCH_TIMEOUT` | timeout 초과 | `ai_tasks.failed`, `sources.collection_failed` |
 
-실패한 경우:
+위 에러 코드는 **URL 기반 수집(youtube/static_web/dynamic_web)의 실패 조건**이다. 이 실패들이 발생해도 사용자 메모가 있으면 User Note Fallback으로 수집이 성립하므로 `collection_failed`가 되지 않는다. **`sources.collection_failed`로 표면화되는 것은 "URL 원문 수집 실패 AND 메모 없음(trim 후 empty)"일 때만**이다.
+
+실패한 경우(원문 수집 실패 + 메모 없음):
 
 - 실패한 `ai_tasks` row는 보존한다.
 - Source Detail에는 최신 실패 task의 `error_code`와 `error_message`를 표시한다.
@@ -296,9 +327,12 @@ sources.received
 - [ ] 텍스트 분량 미달 또는 JS 의존 static page는 `dynamic_web` adapter로 fallback한다.
 - [ ] list page(static/dynamic 모두)는 실패하지 않고 `metadata.page_kind=list`와 `metadata.links` 후보를 반환한다.
 - [ ] 사이트별 내부 API endpoint는 일반 adapter에 하드코딩하지 않는다.
-- [ ] dynamic fallback 후에도 텍스트 분량 미달이면 `CONTENT_EXTRACT_FAILED`로 실패한다.
+- [ ] dynamic fallback 후에도 텍스트 분량 미달이면(그리고 메모가 없으면) `CONTENT_EXTRACT_FAILED`로 실패한다.
+- [ ] URL 수집이 모두 실패하고 사용자 메모(trim 후 non-empty)가 있으면 `adapter=user_note`·`content_format=user_note`·`content_text=메모`·`canonical_url=원 URL`인 `SourceMaterial`로 성립한다.
+- [ ] URL 수집이 성공하면 메모가 있어도 원문을 우선하고 메모는 사용하지 않는다.
+- [ ] 메모 기반 수집과 원문 기반 수집을 구분하는 플래그/배지를 두지 않는다(둘 다 동일한 `SourceMaterial`·`summarized`).
 - [ ] unsupported URL은 `UNSUPPORTED_SOURCE_TYPE`으로 실패한다.
-- [ ] 수집 실패는 `sources.collection_failed`와 실패 `ai_tasks` row로 표면화된다.
+- [ ] 수집 실패는 `sources.collection_failed`와 실패 `ai_tasks` row로 표면화된다(단, 메모가 있으면 User Note로 성립해 실패가 아니다).
 - [ ] transcript와 추출 본문 전문은 application log에 남지 않는다.
 
 ## 7. Open Questions

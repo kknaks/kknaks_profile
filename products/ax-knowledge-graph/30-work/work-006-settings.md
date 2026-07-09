@@ -2,7 +2,7 @@
 type: work
 id: AXKG-WORK-006
 title: "WP5: 설정 — AI Provider·Prompts·Templates"
-status: todo
+status: done
 product: ax-knowledge-graph
 work_type: new-feature
 owner: kknaks
@@ -13,13 +13,13 @@ roles:
   be: kknaks
   qa: kknaks
   ops: kknaks
-progress: 0
+progress: 100
 created_at: 2026-07-07
-updated_at: 2026-07-07
+updated_at: 2026-07-09
 tags:
   - product/ax-knowledge-graph
   - doc/work
-  - status/todo
+  - status/done
 links:
   baselines:
     - "[[baseline-001-ax-knowledge-graph-from-curated-sources|AXKG-BL-001]]"
@@ -39,6 +39,8 @@ links:
 # WP5: 설정 — AI Provider·Prompts·Templates
 
 AI 실행 설정(provider/options/task_overrides)과 프롬프트·템플릿의 편집/버전/롤백 UI·API. WP0이 깐 테이블·seed 위에 관리 표면을 붙인다. WP4와 병렬 가능.
+
+**완료(2026-07-09)**: BE API 3종(AI Provider·Prompts·Templates) + FE 설정 탭 3개. 회귀 275 passed·FE tsc/build 통과, BE↔FE 계약 정합(FE 무수정 연동).
 
 ## Meta
 
@@ -89,31 +91,35 @@ AI 실행 설정(provider/options/task_overrides)과 프롬프트·템플릿의 
 
 ### Phase 1 — AI Provider 설정 API
 
-- **Status**: TODO
+- **Status**: DONE
 - **작업**:
-  - [ ] settings 조회/갱신 + task-overrides CRUD(등록 definition 검증) + health
-- **검증**: [ ] SPEC-007 Validation·Case Matrix, 비소급 규칙(진행 중 task 영향 없음)
+  - [x] settings 조회/갱신 + task-overrides CRUD(등록 definition 검증) + health
+- **검증**: [x] SPEC-007 Validation·Case Matrix, 비소급 규칙(진행 중 task 영향 없음)
+- **완료 증거**: PLAN-007-T-008(profile-be). 기존 `resolve_execution_config` 병합 로직 재사용, API만 얹음. 전역 저장이 task_overrides 보존(U-3), override는 등록+`enabled=true` definition만 허용(미등록/비활성 = 404 `UNKNOWN_TASK_DEFINITION`, SPEC-007 §4 Case Matrix에 반영). pytest 254 passed.
 
 ### Phase 2 — Prompts API
 
-- **Status**: TODO
+- **Status**: DONE
 - **작업**:
-  - [ ] 목록/버전/저장(쌍 저장+활성)/롤백 + JSON Schema 검증
-- **검증**: [ ] SPEC-009 AC (빈 본문/무효 스키마 거부, 롤백 쌍 전환)
+  - [x] 목록/버전/저장(쌍 저장+활성)/롤백 + JSON Schema 검증
+- **검증**: [x] SPEC-009 AC (빈 본문/무효 스키마 거부, 롤백 쌍 전환)
+- **완료 증거**: PLAN-007-T-009(profile-be). 저장=새 버전+활성 포인터 이동, 롤백=포인터만 이동(복사 없음, 기존 row 불변). 활성 여부는 `Prompt.active_version_id` 포인터로 판별(`is_active`는 파생값). pytest 264 passed.
 
 ### Phase 3 — Templates API
 
-- **Status**: TODO
+- **Status**: DONE
 - **작업**:
-  - [ ] 목록/버전/저장/롤백 (key 3종 검증)
-- **검증**: [ ] SPEC-010 AC (스탬프 계약은 WP3 초안 생성과 연동 확인)
+  - [x] 목록/버전/저장/롤백 (key 3종 검증)
+- **검증**: [x] SPEC-010 AC (스탬프 계약은 WP3 초안 생성과 연동 확인)
+- **완료 증거**: PLAN-007-T-010(profile-be). Prompts와 대칭 구조(output_schema 없이 `body`만), key는 seed 3종(reference/permanent/project_baseline)만 유효(임의 key 거부). pytest 275 passed(264 baseline + 11 신규, 무회귀).
 
 ### Phase 4 — FE 설정 탭
 
-- **Status**: TODO
+- **Status**: DONE
 - **작업**:
-  - [ ] 탭 3개 + 목록/편집기/버전 히스토리 + 확인 모달
-- **검증**: [ ] page-settings.html 시안 대비 UX AC
+  - [x] 탭 3개 + 목록/편집기/버전 히스토리 + 확인 모달
+- **검증**: [x] page-settings.html 시안 대비 UX AC
+- **완료 증거**: PLAN-007-T-011(profile-fe). `/settings` 탭 3개(AI Provider/Prompts/Templates), 공통 `versioned-editor`·`confirm-dialog` 컴포넌트로 Prompts·Templates 흡수. BE↔FE 계약 정합(Templates `name`/`is_active` 포함, FE 무수정 연동). tsc/build 통과, **라이브 e2e 완료(2026-07-09)**: docker api 재빌드 후 `/settings` 3탭(AI Provider/Prompts/Templates) 라이브 — GET `/graph/chats`·`/settings/ai-provider` 등 200, provider/prompts/templates 저장·조회 왕복 정상.
 
 ## Pre-deploy Check
 
@@ -126,9 +132,9 @@ AI 실행 설정(provider/options/task_overrides)과 프롬프트·템플릿의 
 
 ## Done Criteria
 
-- [ ] 모든 Phase DONE/SUPERSEDED
-- [ ] SPEC-007/009/010 AC 반영
-- [ ] product `log.md`·`30-work/README.md` 갱신
+- [x] 모든 Phase DONE/SUPERSEDED
+- [x] SPEC-007/009/010 AC 반영
+- [x] product `log.md`·`30-work/README.md` 갱신
 
 ## Open Issues
 

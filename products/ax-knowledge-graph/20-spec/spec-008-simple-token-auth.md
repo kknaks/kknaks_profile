@@ -168,7 +168,7 @@ Out of scope:
 | Graph Chat | `/graph/chats`, `/graph/chats/{chat_id}/*` (AXKG-SPEC-006 run polling) |
 | Settings | `/settings/ai-provider`, `/prompts/*`, `/templates/*` |
 
-예외: `POST /integrations/slack/sources`는 token이 아니라 Slack signing secret 검증으로 보호한다(AXKG-SPEC-003).
+예외: `POST /api/v1/slack/commands`(Slack 슬래시 커맨드 intake)는 token이 아니라 Slack signing secret 검증으로 보호한다(AXKG-SPEC-003).
 
 ### Validation
 
