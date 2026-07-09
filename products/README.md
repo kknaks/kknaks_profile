@@ -16,3 +16,4 @@
 | study-timelapse | `products/study-timelapse/` |
 | mac-remote | `products/mac-remote/` |
 | mykakao | `products/mykakao/` |
+| cloud-file-organizer | `products/cloud-file-organizer/` |

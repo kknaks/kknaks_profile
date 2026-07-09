@@ -4,6 +4,8 @@
 
 `agent.md`가 이 프로젝트의 에이전트 진입점이다.
 
+문서 민감도, 접근권한, 승인 게이트 관련 판단을 할 때는 `agent.md`의 라우팅 이후 `context/policy.md`도 함께 읽는다.
+
 ## Agent Directory
 
 이 레포의 에이전트 설정 원천은 `.agent/`이다.

@@ -16,6 +16,7 @@
 context/
 ├── index.md                  # 최상위 context 라우터
 ├── kknaks.md                 # 회사 경험 기록과 개인사업자 영역의 구분 기준
+├── policy.md                 # 문서 민감도, 접근권한, 승인 게이트 정책
 ├── company/                  # 회사 코드 작업이 아니라 이력서/포트폴리오용 경험 기록
 │   ├── current.md            # 현재 정리 중인 회사 경험, 챌린지, 해결방안, 성과
 │   ├── projects.md           # 회사 제품/프로젝트 경험의 목록과 경계
@@ -60,6 +61,7 @@ CLAUDE.md
 
 - `context/index.md`는 라우터다. 하위 문서를 요약하지 않는다.
 - `context/kknaks.md`는 회사/개인사업자 구분이 필요할 때만 읽는다.
+- `context/policy.md`는 문서 민감도, 접근권한, 승인 게이트 관련 판단이 필요할 때만 읽는다.
 - `context/studio/workflow.md`는 개인 프로젝트의 실제 작업을 만들거나 수정할 때만 읽는다.
 - `rules/product-doc-pipeline.md`는 제품 문서를 만들거나 수정할 때만 읽는다.
 - `templates/product/**`는 새 문서를 만들 때 필요한 템플릿만 읽는다.
@@ -85,6 +87,7 @@ CLAUDE.md
 
 - 이 문서에는 최상위 분기 규칙만 둔다.
 - 회사와 개인사업자 구분 기준은 `context/kknaks.md`에 둔다.
+- 문서 민감도, 접근권한, 승인 게이트 정책은 `context/policy.md`에 둔다.
 - 회사 경험 기록의 현재 상태는 `context/company/current.md`에 둔다.
 - 회사 제품/프로젝트 경험의 경계는 `context/company/projects.md`에 둔다.
 - 개인사업체 현재 상태는 `context/studio/current.md`에 둔다.

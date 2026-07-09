@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>문서 탐색 - Cloud File Organizer</title>
+  <link rel="stylesheet" href="assets/cloud-file-organizer.css">
+</head>
+<body class="admin">
+  <div class="app">
+    <header class="topbar">
+      <a class="brand" href="page-documents.html"><span class="mark">CF</span><span>Cloud File Organizer</span></a>
+      <nav class="nav" aria-label="primary">
+        <a class="active" href="page-documents.html">문서</a>
+        <a href="page-approvals.html">승인</a>
+        <a href="page-admin-settings.html">관리</a>
+        <a href="login-rbac.html">로그인/RBAC</a>
+      </nav>
+      <div class="spacer"></div>
+      <span class="user-chip">admin · R&D / FE</span>
+      <a class="button" href="login-rbac.html">로그아웃</a>
+    </header>
+
+    <main class="shell">
+      <aside class="sidebar">
+        <div class="section">
+          <div class="section-title"><span class="label">조직 / 문서 트리</span><span class="badge info">DB path</span></div>
+          <div class="tree">
+            <div class="tree-row"><span>▾</span><span class="name">메디솔브</span></div>
+            <div class="tree-row indent-1"><span>▾</span><span class="name">R&D</span></div>
+            <div class="tree-row indent-2 active"><span>▾</span><span class="name">FE Team</span></div>
+            <div class="tree-row indent-3 active"><span>▾</span><span class="name">제품 운영</span></div>
+            <div class="tree-row indent-3 active"><span>•</span><span class="name">요구사항 정의서</span></div>
+            <div class="tree-row indent-3"><span>•</span><span class="name">회의록</span></div>
+            <div class="tree-row indent-2"><span>›</span><span class="name">BE Team</span></div>
+            <div class="tree-row indent-1 dim"><span>›</span><span class="name">Legacy Ops 비활성</span></div>
+          </div>
+          <div class="actions" style="margin-top:10px">
+            <a class="button" href="page-admin-settings.html">조직 설정</a>
+            <span class="badge dark">admin only</span>
+          </div>
+        </div>
+        <div class="section">
+          <div class="section-title"><span class="label">빈 상태 문구</span></div>
+          <p class="small muted">조직도 seed 없음: <strong>조직도가 아직 설정되지 않았습니다.</strong></p>
+        </div>
+        <div class="section">
+          <div class="callout info">
+            <strong>권한 없는 문서는 보이지 않음</strong>
+            <p class="small">잠금 카드나 마스킹 행을 만들지 않고 목록, 검색, 관계 결과에서 제거한다.</p>
+          </div>
+        </div>
+      </aside>
+
+      <section class="main">
+        <div class="page-head">
+          <div>
+            <div class="crumb">문서 / 메디솔브 / R&D / FE Team / 제품 운영 / 요구사항 정의서</div>
+            <h1>문서 탐색</h1>
+          </div>
+          <div class="actions">
+            <span class="badge dark">물리 귀속 2건</span>
+            <span class="badge">관련 문서 2건</span>
+          </div>
+        </div>
+        <div class="toolbar">
+          <input class="input" value="검색: onboarding policy" aria-label="문서 검색">
+          <div class="filters">
+            <span class="label">출처 필터</span>
+            <span class="badge dark">전체</span>
+            <span class="badge">물리 귀속</span>
+            <span class="badge">관련 문서</span>
+          </div>
+        </div>
+        <div class="content">
+
+          <section class="panel">
+            <div class="panel-head">
+              <h2>① 물리 귀속 목록 — R&D / FE Team / 제품 운영 / 요구사항 정의서</h2>
+              <div class="actions"><span class="badge dark">물리 귀속</span><button class="button">문서 이관</button></div>
+            </div>
+            <table class="table">
+              <thead><tr><th>문서명</th><th>실제 귀속</th><th>문서종류</th><th>Drive 수정</th><th>상태</th></tr></thead>
+              <tbody>
+                <tr class="selected">
+                  <td><strong>FE 온보딩 체크리스트.gdoc</strong><div class="small muted">department_match=true · position_match=true</div></td>
+                  <td>R&D / FE Team / 제품 운영</td>
+                  <td>요구사항 정의서</td>
+                  <td>2026-07-08 10:12</td>
+                  <td><span class="badge success">approved</span></td>
+                </tr>
+                <tr>
+                  <td><strong>프론트 배포 점검표.xlsx</strong><div class="small muted">read_logic=ANY</div></td>
+                  <td>R&D / FE Team / 릴리즈</td>
+                  <td>체크리스트</td>
+                  <td>2026-07-07 18:44</td>
+                  <td><span class="badge success">approved</span></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="panel-body">
+              <p class="small muted">빈 상태: <strong>이 위치에 귀속된 문서가 없습니다.</strong> · 논리 연결 문서는 이 목록에 섞이지 않는다.</p>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head">
+              <h2>② 관련 문서</h2>
+              <div class="filters">
+                <span class="label">관계 필터</span>
+                <span class="badge dark">전체</span><span class="badge">관련</span><span class="badge">참조</span><span class="badge">대체</span><span class="badge">중복 후보</span>
+              </div>
+            </div>
+            <table class="table">
+              <thead><tr><th>문서명</th><th>실제 귀속 path</th><th>출처</th><th>관계</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><strong>QA 릴리즈 검수 기준.gdoc</strong></td>
+                  <td>QA / 릴리즈 / 체크리스트</td>
+                  <td><span class="badge">관련 부서</span></td>
+                  <td><span class="badge info">관련</span></td>
+                </tr>
+                <tr>
+                  <td><strong>HR 온보딩 정책.gdoc</strong></td>
+                  <td>HR / 정책 / 운영 정책</td>
+                  <td><span class="badge">문서 관계</span></td>
+                  <td><span class="badge info">참조</span></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="panel-body">
+              <p class="small muted">빈 상태: <strong>관련 문서가 없습니다.</strong> · 문서의 실제 관리 주체는 기본 목록/path에서 확인한다. 권한 없는 관련 문서는 숨긴다.</p>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head"><h2>③ 검색 결과</h2><span class="badge info">출처 badge 필수</span></div>
+            <table class="table">
+              <thead><tr><th>문서명</th><th>실제 physical_tree_path</th><th>출처</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><strong>FE 온보딩 체크리스트.gdoc</strong></td>
+                  <td>메디솔브 / R&D / FE Team / 제품 운영 / 요구사항 정의서</td>
+                  <td><span class="badge dark">물리 귀속</span></td>
+                </tr>
+                <tr>
+                  <td><strong>HR 온보딩 정책.gdoc</strong></td>
+                  <td>메디솔브 / HR / 정책 / 운영 정책</td>
+                  <td><span class="badge">관련 문서</span></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="panel-body">
+              <p class="small muted">빈 상태: <strong>검색 결과가 없습니다.</strong> · 권한 없는 문서는 결과에서 제거된다.</p>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head"><h2>④ 선택 문서 상세</h2><div class="actions"><button class="button primary">Drive에서 열기</button><button class="button">문서 이관</button></div></div>
+            <div class="panel-body grid-2">
+              <div>
+                <div class="section-title"><span class="label">승인 metadata</span><span class="badge success">DB SoT</span></div>
+                <div class="kv">
+                  <div class="kv-row"><span>문서종류</span><strong>요구사항 정의서</strong></div>
+                  <div class="kv-row"><span>귀속부서</span><strong>R&D / FE</strong></div>
+                  <div class="kv-row"><span>민감도</span><strong>normal</strong></div>
+                  <div class="kv-row"><span>access_logic</span><strong>ANY</strong></div>
+                </div>
+              </div>
+              <div>
+                <div class="section-title"><span class="label">Drive mirror</span><span class="badge dark">Drive SoT</span></div>
+                <div class="kv">
+                  <div class="kv-row"><span>drive_file_id</span><strong class="mono">1Lk9...FEONB</strong></div>
+                  <div class="kv-row"><span>mime_type</span><strong>google-apps.document</strong></div>
+                  <div class="kv-row"><span>modified_time</span><strong>2026-07-08 10:12</strong></div>
+                  <div class="kv-row"><span>fingerprint</span><strong class="mono">fp:50af</strong></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head"><h2>⑤ 문서 연결 — 지식그래프</h2><span class="badge info">승인 relation만 표시</span></div>
+            <div class="panel-body grid-2">
+              <div class="graph">
+                <span class="edge" style="left:170px;top:118px;width:160px;transform:rotate(-18deg)"></span>
+                <span class="edge" style="left:170px;top:138px;width:190px;transform:rotate(22deg)"></span>
+                <span class="node active" style="left:48px;top:104px">FE 온보딩 체크리스트</span>
+                <span class="node" style="left:330px;top:54px">HR 온보딩 정책</span>
+                <span class="node" style="left:370px;top:196px">QA 릴리즈 검수 기준</span>
+              </div>
+              <table class="table">
+                <thead><tr><th>관계</th><th>대상</th><th>출처</th></tr></thead>
+                <tbody>
+                  <tr><td><span class="badge info">참조</span></td><td>HR 온보딩 정책</td><td><span class="badge">문서 관계</span></td></tr>
+                  <tr><td><span class="badge info">관련</span></td><td>QA 릴리즈 검수 기준</td><td><span class="badge">관련 부서</span></td></tr>
+                  <tr><td colspan="3"><span class="badge warn">unresolved 후보는 승인 전 graph 제외</span> <span class="small muted">빈 상태: 연결된 문서가 없습니다.</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head"><h2>⑥ 문서 이관 (admin modal)</h2><span class="badge warn">admin only</span></div>
+            <div class="panel-body form-grid">
+              <label>현재 path<input class="input" value="메디솔브 / R&D / FE Team / 제품 운영 / 요구사항 정의서" disabled></label>
+              <label>새 path<select><option>메디솔브 / R&D / BE Team / 제품 운영 / 요구사항 정의서</option><option disabled>Legacy Ops (비활성 — 선택 불가)</option></select></label>
+              <label class="wide">변경 사유<input class="input" value="FE→BE 운영 이관에 따른 관리 주체 변경"></label>
+              <div class="actions wide">
+                <button class="button primary">이관 저장</button>
+                <button class="button">취소</button>
+                <span class="small muted">비활성 조직은 새 귀속 대상으로 선택할 수 없습니다. 변경 사유 없으면 저장 불가. 이력은 append-only.</span>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <aside class="aside">
+        <div class="section">
+          <div class="section-title"><span class="label">현재 사용자</span><span class="badge success">readable</span></div>
+          <div class="kv">
+            <div class="kv-row"><span>role</span><strong>admin</strong></div>
+            <div class="kv-row"><span>department</span><strong>R&D / FE</strong></div>
+            <div class="kv-row"><span>admin scope</span><strong>모든 문서 읽기</strong></div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="section-title"><span class="label">화면 구성 기준</span></div>
+          <div class="kv">
+            <div class="kv-row"><span>① 물리 귀속</span><strong>SPEC-002 U-2 / SPEC-006 U-1</strong></div>
+            <div class="kv-row"><span>② 관련 문서</span><strong>SPEC-002 U-3 / SPEC-006 U-2</strong></div>
+            <div class="kv-row"><span>③ 검색</span><strong>SPEC-006 U-3</strong></div>
+            <div class="kv-row"><span>⑤ 문서 연결</span><strong>SPEC-006 U-4</strong></div>
+            <div class="kv-row"><span>⑥ 문서 이관</span><strong>SPEC-002 U-5</strong></div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="section-title"><span class="label">숨김 처리 예</span></div>
+          <div class="callout warn">
+            <strong>member 전환 시 admin 메뉴와 민감 문서가 사라짐</strong>
+            <p class="small">FE member에게 `HR_RESTRICTED` 문서는 목록/검색/관계 어디에도 렌더하지 않는다.</p>
+          </div>
+        </div>
+      </aside>
+    </main>
+  </div>
+</body>
+</html>
