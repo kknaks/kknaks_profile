@@ -2,6 +2,7 @@
 
 | Date | Entry | Links |
 |---|---|---|
+| 2026-07-11 | KDEV-SPEC-006 관리자 로그인 draft 작성. 헤더 우측 관리자 진입점 + ID/비밀번호 로그인 + httpOnly 쿠키 세션 + `/admin/*` 보호 라우트의 외부 계약. 단일 admin, 자격증명은 Postgres `admin_user` 전제(저장소 상세는 코드 SoT). OQ-1=Postgres 도입(ADR-01 DB-less 뒤집기) 별도 decision 필요·승인게이트 SPEC과 묶음. 관리자 페이지 기능(inbox 승인게이트)은 out of scope. | [[spec-006-admin-login\|KDEV-SPEC-006]] |
 | 2026-06-29 | WORK-001 그래프 빌더+검증기 report-only 완료 (255 passed, abcfbc4). probe nodes 309/edges 301, 검증 위반(ERROR 165/WARN 196)=WORK-002 worklist. | [[work-001-graph-builder-validator\|KDEV-WORK-001]] · [[spec-002-graph-schema\|KDEV-SPEC-002]] · [[spec-004-graph-validation\|KDEV-SPEC-004]] |
 | 2026-06-29 | WORK-002 검증기 정교화 완료 (260 passed, 0014790). probe L1 12→0·L2 154→34·L5 196→0, false-positive 0. 잔존 L2=34=아카이브 사본 id 충돌(version-cutoff 가 id 에 버전 prefix 미부여) → SPEC-004 §7 OPEN. 여전히 report-only. | [[work-002-validator-refinement\|KDEV-WORK-002]] · [[spec-002-graph-schema\|KDEV-SPEC-002]] · [[spec-004-graph-validation\|KDEV-SPEC-004]] |
 | 2026-06-29 | WORK-003 지식층 scaffold + agent.md 읽기범위 완료 (260 passed, 2751de0). 5개 navigational README(inbox/reference/permanent/+archive/persona·posts, type 없음=노드 아님) + agent.md +10/-0(archive cold 제외, D-005). 노드 303·L5 0 무변경, 콘텐츠 이동 0건, report-only 불변. SPEC-001/003 scaffold·규약 done(마이그레이션 004~006·강제 007 todo). | [[work-003-knowledge-layer-scaffold\|KDEV-WORK-003]] · [[spec-001-directory-structure\|KDEV-SPEC-001]] · [[spec-003-knowledge-workflow\|KDEV-SPEC-003]] |

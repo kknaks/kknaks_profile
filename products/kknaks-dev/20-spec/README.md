@@ -11,3 +11,4 @@
 | KDEV-SPEC-003 | 지식 워크플로 (분류·연결·망각) | draft | DEC-005 | — | (대기) |
 | KDEV-SPEC-004 | 그래프 검증 게이트 L1~L6 | draft | DEC-006 | — | (대기) |
 | KDEV-SPEC-005 | 블로그 그래프 시각화 | draft | DEC-007 | — | (대기) |
+| KDEV-SPEC-006 | 관리자 로그인 (인증·세션·보호 라우트) | draft | (decision 대기 — OQ-1) | — | (대기) |
