@@ -22,7 +22,7 @@ tags:
 title:
   en: Serialize and Deserialize Binary Tree
   ko: 이진 트리의 직렬화와 역직렬화
-today: true
+today: false
 type: algorithm
 updated: '2026-07-06'
 visible: true
