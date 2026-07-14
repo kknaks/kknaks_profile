@@ -6,7 +6,7 @@ status: stable
 product: ax-knowledge-graph
 version: 0.0.1
 created_at: 2026-07-07
-updated_at: 2026-07-07
+updated_at: 2026-07-09
 tags:
   - product/ax-knowledge-graph
   - doc/spec
@@ -46,6 +46,7 @@ AI 파이프라인이 사용하는 시스템 프롬프트와 그 **출력 형식
 - Storage: 프롬프트 정의(텍스트 + 출력 스키마)와 버전은 PostgreSQL(DEC-002 운영 저장소)에 둔다. 문서 SoT(Markdown)와 별개이며, 운영 설정 데이터다.
 - 프롬프트 정의 = 텍스트 + 출력 JSON schema 한 쌍. 하나의 프롬프트는 하나의 구조화된 결과(JSON)를 낸다.
 - 경계: provider·model 바인딩은 AXKG-SPEC-007 소관. 문서 뼈대(템플릿)는 AXKG-SPEC-010 소관. 이 spec은 프롬프트 텍스트 + 출력 스키마 + 버전만 다룬다. tool/workflow 정의는 범위 밖(Open Questions 참조).
+- **프롬프트 층의 정의**: 프롬프트 텍스트는 이 실행을 *어떻게 작성할지*(본문 선별·톤·밀도·출력 작성 규율)를 담는 층이다 — 성격상 자주(동적으로) 다듬는다. 자료·대상의 **정의/정책/판단 규칙**(PARA 경계 등, what the material IS)은 프롬프트가 아니라 **가이드**(worker 프로젝트 컨텍스트) 소관이며, 출력 양식은 `output_schema`(JSON stage)/템플릿(문서화③)이다. 3층 taxonomy(가이드/프롬프트/템플릿·스키마)와 경계 테스트의 SSOT는 AXKG-SPEC-011 §4 Layer Taxonomy다. 프롬프트를 "무엇을 할지(what)만" 담는 것으로 보던 종전 뉘앙스는 taxonomy에 맞춰 작성 방법(how)으로 교정한다(AXKG-DEC-005 경계 재정렬).
 
 ### Business Requirement
 
@@ -157,6 +158,8 @@ Out of scope:
 | POST | `/prompts/{key}/versions` | 본문 저장(새 버전 생성 + 활성화) | owner |
 | POST | `/prompts/{key}/rollback` | 지정 버전으로 활성 버전 전환 | owner |
 
+> 프롬프트 관리 화면과 변경 API는 설정 소관으로 **admin 전용**이다 — staff는 접근할 수 없다. 접근 경계 매트릭스 SSOT는 AXKG-SPEC-008이며 여기서는 재서술하지 않는다.
+
 ### Request / Response
 
 저장 요청은 프롬프트 `key`, 새 본문(`prompt_text`), 출력 스키마(`output_schema`)를 포함한다. 롤백 요청은 활성으로 만들 대상 `version`을 포함한다. 조회 응답은 활성 버전의 텍스트 + 스키마를 함께 반환한다. 필드는 계약 수준(`key`, `prompt_text`, `output_schema`, `version`, `is_active`, `updated_at`)으로만 정의하고, 저장 스키마 상세는 코드/migration이 SoT다.
@@ -228,7 +231,7 @@ stateDiagram-v2
 | PromptVersion | `is_active` | 활성 버전 여부 |
 | PromptVersion | `updated_at` | 저장/변경 시각 |
 
-출력 스키마는 다운스트림 소비의 계약이다. 예: 분류기 AI(②) `output_schema`의 `destination_type`·`destination_reason`·`suggested_title`·`suggested_tags`·`confidence`는 AXKG-SPEC-001 분류 게이트가 렌더하는 필드와 일치하고, 요약 AI(①) `output_schema`의 `title`·`summary`·`keywords`·`source_type`은 요약 카드/frontmatter 시드와 일치한다.
+출력 스키마는 다운스트림 소비의 계약이다. 예: 분류기 AI(②) `output_schema`의 `destination_type`·`destination_reason`·`suggested_title`·`suggested_tags`·`confidence`는 AXKG-SPEC-001 분류 게이트가 렌더하는 필드와 일치하고, 요약 AI(①) `output_schema`의 `title`·`summary`·`keywords`·`source_type`·`body_markdown`(요약 md 본문)은 요약 카드/frontmatter 시드와 일치한다. 요약은 md 본문(`body_markdown`)을 출력하되 원문 구조를 따르는 **적응형 출력**이라 고정 템플릿이 없고, 형식 규약은 프롬프트(작성 방법)가 담는다(템플릿은 문서화③ 전용, AXKG-SPEC-011 §4 Layer Taxonomy).
 
 ## 5. Implementation Rules
 

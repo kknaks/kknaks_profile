@@ -7,3 +7,4 @@
 | AXKG-DEC-003 | Graph RAG 기반 AI 채팅과 기본 Claude provider | accepted |
 | AXKG-DEC-004 | MVP 기본값과 남은 범위 결정 | accepted |
 | AXKG-DEC-005 | AI 실행 파이프라인 계약: 3자 조립·연결 후보 컨텍스트·MVP 문서화 범위 확정 | accepted |
+| AXKG-DEC-006 | 역할(admin/staff) 권한 모델과 접근 경계 | accepted |

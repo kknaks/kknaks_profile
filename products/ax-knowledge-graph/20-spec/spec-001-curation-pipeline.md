@@ -6,7 +6,7 @@ status: stable
 product: ax-knowledge-graph
 version: 0.0.1
 created_at: 2026-07-07
-updated_at: 2026-07-08
+updated_at: 2026-07-09
 tags:
   - product/ax-knowledge-graph
   - doc/spec
@@ -101,14 +101,14 @@ Out of scope:
 - **상태**: 요약 중, 요약 완료(요약 초안), 요약 실패
 - **문구**: 제목, 핵심 요약, 태그 (요약 AI ① 결과 = 노트 frontmatter 시드). 제목/요약/태그가 이후 생성될 문서의 frontmatter 시드가 된다.
 - **CTA**: 요약 초안 검토(`피드백`·`분류`)는 **AXKG-SPEC-003 U-2** 소관이다. 이 spec은 그중 `분류`가 트리거하는 분류 게이트(아래 U-3)를 다룬다. 요약이 자동으로 분류로 넘어가지 않는다 — 사용자가 `분류`를 눌러야 분류 게이트가 생성된다.
-- **기대 결과**: 사용자가 요약 초안에서 `분류`를 누르면 분류기 AI(②)가 실행되어 아래 U-3 분류 게이트가 **요약 초안과 별도 카드로** 중앙 스택에 이어 나타난다(병합 아님). 요약 초안은 `sources.summary_payload`(DB 임시)에 남는다.
+- **기대 결과**: 사용자가 요약 초안에서 `분류`를 누르는 순간 **요약이 확정되어 그 시점의 active 요약 버전이 요약 문서(md)로 생성**되고(AXKG-SPEC-003/011), 이어서 분류기 AI(②)가 실행되어 아래 U-3 분류 게이트가 **요약 초안과 별도 카드로** 중앙 스택에 나타난다(병합 아님). 요약 문서 md는 [분류] 진입(요약 확정)에서 산출되며, **분류 게이트 자체는 md를 만들지 않는다**(PARA destination metadata만 결정). 요약 draft 버전 히스토리는 `sources.summary_payload`(DB 박제)에 남는다.
 
 ### U-3. 분류 게이트 (②, 분류만)
 
 - **상태**: 게이트 없음, 승인 대기, 승인됨, 재생성됨(v2). v1은 read-only(버튼 비활성, archive 보존).
 - **문구**: PARA 목적지 후보(project/area/resource/archive), 목적지 판단 근거(destination_reason), 문서화 후보 제목(suggested_title)·태그(suggested_tags), 신뢰도(confidence). 버전 badge(`v2 | v1`).
 - **CTA**: `피드백`, `승인` (두 버튼만)
-- **기대 결과**: 분류기 AI(②)는 PARA 분류만 생성한다(연결 후보 생성 안 함). `승인`하면 source의 `destination_type`이 확정되고 아래에 문서화 승인 게이트(③, AXKG-SPEC-004)가 인라인 생성된다. 목적지가 `archive`이면 문서화 게이트 없이 종료한다. `피드백` 버튼 → 피드백 모달 열림 → 텍스트 입력 후 `재생성` → 분류 게이트 v2 재생성(v1은 read-only 보존, AXKG-SPEC-002 공통 규칙).
+- **기대 결과**: 분류기 AI(②)는 PARA 분류만 생성한다(연결 후보·md 문서 산출 없음 — destination metadata만). `승인`하면 source의 `destination_type`이 확정되고 아래에 문서화 승인 게이트(③, AXKG-SPEC-004)가 인라인 생성된다. 목적지가 `archive`이면 문서화 게이트 없이 종료한다. `피드백` 버튼 → 피드백 모달 열림 → 텍스트 입력 후 `재생성` → 분류 게이트 v2 재생성(v1은 read-only 보존, AXKG-SPEC-002 공통 규칙).
 
 ### U-3.1. PARA Destination Rules
 
@@ -132,7 +132,7 @@ Out of scope:
 | `source_summary` | 분류 판단에 필요한 짧은 요약 |
 | `confidence` | AI 판단 신뢰도 |
 
-분류 게이트는 분류만 생성한다. 연결(connection) 후보는 여기서 만들지 않고, 문서화 승인 게이트(③, AXKG-SPEC-004)의 AI 초안에서 `up:`/`[[ ]]`와 파생지식 후보로 발현된다. `archive` 목적지면 문서화 게이트로 넘어가지 않는다.
+분류 게이트는 분류(PARA destination metadata)만 생성한다. **md 문서를 만들지 않는다** — 요약 문서 md는 이미 [분류] 진입(요약 확정) 시점에 생성되었고(AXKG-SPEC-003), PARA 지식 문서 md는 문서화 게이트 승인 시 생성된다(AXKG-SPEC-004). 연결(connection) 후보도 여기서 만들지 않고, 문서화 승인 게이트(③)의 AI 초안에서 `up:`/`[[ ]]`와 파생지식 후보로 발현된다. `archive` 목적지면 문서화 게이트로 넘어가지 않는다.
 
 ### U-5. Documentation Gate 진입 (문서화 승인 게이트 = AXKG-SPEC-004)
 
@@ -282,6 +282,7 @@ stateDiagram-v2
 - 요약 AI(①)·분류기 AI(②)·재생성 작업은 AXKG-SPEC-007의 open-kknaks provider 설정을 사용한다.
 - 분류기 AI(②)는 사용자가 요약 초안(AXKG-SPEC-003 U-2)에서 `분류`를 누른 `POST /sources/{source_id}/classification-gates` 트리거로만 실행된다. 요약에 딸려 자동 실행되지 않는다(요약 검토와 분류 게이트는 분리된 표면).
 - 분류기 AI(②)는 PARA 분류만 생성한다. 연결 추천은 분류 게이트에서 만들지 않고, 문서화 게이트(③)의 AI 초안 `up:`/`[[ ]]`와 파생지식 후보로 발현한다.
+- 분류 게이트(②)는 PARA destination을 결정하는 **metadata 단계이며 md 문서를 산출하지 않는다**. 제품의 md 생성 지점은 요약 확정([분류] 진입 → 요약 문서 md, AXKG-SPEC-003)과 문서화 게이트 승인(→ PARA 지식 문서 md, AXKG-SPEC-004) 두 곳이다. 게이트(승인 단계)와 문서(md 산출물)는 별개 개념이며, "문서화 게이트만 md를 만든다"는 서술은 틀리다 — 요약 확정도 md를 만든다.
 - 분류 게이트 승인 전에는 source의 PARA 목적지를 확정하지 않는다.
 - `archive`로 승인된 source는 문서화 게이트로 넘어가지 않는다(문서·연결 생성 안 함).
 - `project`/`area`/`resource`로 승인된 source는 문서화 승인 게이트(AXKG-SPEC-004)로 진입한다. reference는 resource destination의 한 경우다.
@@ -294,6 +295,7 @@ stateDiagram-v2
 
 - [ ] `summarized` source는 요약 초안(AXKG-SPEC-003 U-2)에서 `분류`를 눌러야 분류 게이트로 진입한다(자동 아님, 요약 검토와 분류 게이트는 분리된 표면).
 - [ ] 분류 게이트는 분류기 AI가 PARA 분류만 생성한다(연결 후보 없음).
+- [ ] 분류 게이트는 md 문서를 만들지 않는다(PARA destination metadata만). 요약 문서 md는 [분류] 진입(요약 확정) 시점에 이미 생성되어 있다.
 - [ ] 분류 게이트는 `project`, `area`, `resource`, `archive` 중 하나의 목적지를 제안한다.
 - [ ] 분류 게이트에는 목적지 판단 근거, 문서화 후보 제목·태그, 신뢰도가 포함된다.
 - [ ] 분류 게이트 피드백 시 v2가 재생성되고 v1은 read-only로 보존된다.

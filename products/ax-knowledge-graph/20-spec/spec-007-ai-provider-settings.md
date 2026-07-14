@@ -6,7 +6,7 @@ status: stable
 product: ax-knowledge-graph
 version: 0.0.1
 created_at: 2026-07-07
-updated_at: 2026-07-09
+updated_at: 2026-07-10
 tags:
   - product/ax-knowledge-graph
   - doc/spec
@@ -175,6 +175,8 @@ Out of scope:
 | GET | `/settings/ai-provider/health` | Claude/Codex provider 상태 조회 | owner |
 | POST | `/ai/tasks` | open-kknaks 기반 AI task 생성 | internal |
 
+> 설정(AI provider·프롬프트·템플릿) 화면과 변경 API는 **admin 전용**이다 — staff는 접근할 수 없다. 접근 경계 매트릭스 SSOT는 AXKG-SPEC-008이며 여기서는 재서술하지 않는다.
+
 ### Data Contract
 
 | Resource | Field | 설명 |
@@ -251,6 +253,8 @@ MVP 기본값:
 
 지원 provider는 `claude`, `codex`만이다. 알 수 없는 provider는 저장할 수 없다.
 초기 seed/default provider는 `claude`다.
+
+task 정의별 seed 기본값(전역 위에 병합, U-4 Task Definition Binding)은 실측 기반으로 둔다. **문서화(`documentation_gate`) 태스크**는 `provider_options.max_turns=12`(전역 3보다 높임 — 가이드 Read·연결 후보 판단의 agentic turn 낭비를 흡수, `error_max_turns` 실측 근거)와 `options.timeout_sec=600`(전역 300 초과 — stale 재생성의 3입력[대상 permanent 전문 + 바뀐 concept 전문 + 변경 요지]·연결 후보 전문 주입 실행이 300s를 넘긴 실측 근거)을 seed 기본값으로 갖는다(2026-07-10 PLAN-009-T-035 시드 반영). 두 값은 위 Validation 범위(`max_turns` 1~20, `timeout_sec` 30~3600) 안이다.
 
 ### Validation
 

@@ -6,7 +6,7 @@ status: stable
 product: ax-knowledge-graph
 version: 0.0.1
 created_at: 2026-07-07
-updated_at: 2026-07-08
+updated_at: 2026-07-14
 tags:
   - product/ax-knowledge-graph
   - doc/spec
@@ -22,6 +22,7 @@ links:
     - "[[spec-011-ai-execution-pipeline|AXKG-SPEC-011]]"
   works:
     - "[[work-002-source-intake|AXKG-WORK-002]]"
+    - "[[work-010-inbox-md-upload-intake|AXKG-WORK-010]]"
   releases: []
   related: []
 ---
@@ -31,6 +32,8 @@ links:
 Source Inbox에 들어온 URL을 요약 AI가 읽을 수 있는 `SourceMaterial`로 변환하는 수집 adapter 계약을 정의한다. MVP에서는 YouTube, 정적 웹 article, 동적 렌더링 웹 페이지를 포함한다. PDF, RSS 등은 이 spec의 adapter 목록을 확장해 추가한다.
 
 > 이 spec은 "원문을 어떻게 가져오는가"만 다룬다. URL 수신과 상태 관리는 AXKG-SPEC-003, 수집된 원문을 프롬프트·스키마와 조립해 AI task로 실행하는 흐름은 AXKG-SPEC-011 소관이다.
+
+> **경계 — 업로드 md는 이 spec의 adapter 대상이 아니다** (2026-07-14, AXKG-SPEC-003 T-004): `source_channel=upload`(md 파일 업로드)은 URL 원문 수집 단계가 없다. 업로드된 md 본문(`raw_text`)이 곧 원문이므로 adapter를 거치지 않고 그대로 요약 스테이지(AXKG-SPEC-011 ①)의 입력이 된다. chat의 User Note Fallback과 달리 "수집 실패 시 대체"가 아니라 **원문 그 자체**다 — 따라서 아래 URL 기반 수집 실패 코드·재시도 계약(§3)은 upload에 적용되지 않는다.
 
 ## 1. Context
 
@@ -64,6 +67,7 @@ Out of scope:
 - Source Inbox row 생성과 상태 UI (AXKG-SPEC-003)
 - AI prompt 조립, output_schema 검증, ai_tasks lifecycle (AXKG-SPEC-011)
 - PDF, RSS adapter 구현 계약 (후속 확장)
+- 업로드 md 파일(`source_channel=upload`) intake — adapter 대상 아님(URL 수집 스킵, 업로드 md 본문이 곧 원문). 데이터 계약은 AXKG-SPEC-003 소관이며, 이 spec의 수집 실패/재시도 계약을 적용하지 않는다
 - 로그인·paywall·권한 필요한 source 수집
 - 사이트별 비공개 API 커스텀 adapter. 공식 API/RSS는 후속 전용 adapter로만 추가한다.
 
@@ -279,6 +283,8 @@ URL 기반 수집(youtube/static_web/dynamic_web)이 모두 실패했을 때, �
 
 위 에러 코드는 **URL 기반 수집(youtube/static_web/dynamic_web)의 실패 조건**이다. 이 실패들이 발생해도 사용자 메모가 있으면 User Note Fallback으로 수집이 성립하므로 `collection_failed`가 되지 않는다. **`sources.collection_failed`로 표면화되는 것은 "URL 원문 수집 실패 AND 메모 없음(trim 후 empty)"일 때만**이다.
 
+**업로드 md(`source_channel=upload`)는 위 실패 계약 밖이다**: URL 수집 단계가 없어 위 에러 코드가 발생하지 않는다. `.md`가 아닌 파일은 source 생성 전 intake validation에서 `UNSUPPORTED_UPLOAD_TYPE`으로 거부되며(AXKG-SPEC-003, 수집 실패 아님), 업로드된 md는 항상 원문이 존재하므로 요약 스테이지(AXKG-SPEC-011 ①)로 바로 넘어간다. 요약 실행 자체가 실패하면 다른 채널과 동일하게 요약 스테이지 실패 계약으로 표면화된다(AXKG-SPEC-011).
+
 실패한 경우(원문 수집 실패 + 메모 없음):
 
 - 실패한 `ai_tasks` row는 보존한다.
@@ -312,6 +318,8 @@ sources.received
 → sources.summary_payload
 → sources.summarized
 ```
+
+`source_channel=upload`(md)은 이 adapter 경로를 타지 않는다 — 업로드 md 본문(`raw_text`)이 곧 원문이므로 adapter collect 단계 없이 AXKG-SPEC-011 요약 입력으로 직접 넘어간다. upload md 본문을 요약 스테이지가 소비하는 표현(SourceMaterial 합성 여부·`content_format` 값)은 구현 소관이다.
 
 ## 6. Verification
 
