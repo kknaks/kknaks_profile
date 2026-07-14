@@ -20,7 +20,7 @@ tags:
 title:
   en: Implement Trie (Prefix Tree)
   ko: 트라이(접두사 트리) 구현
-today: true
+today: false
 type: algorithm
 updated: '2026-07-13'
 visible: true
