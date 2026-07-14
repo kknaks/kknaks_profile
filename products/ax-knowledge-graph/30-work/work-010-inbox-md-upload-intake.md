@@ -2,7 +2,7 @@
 type: work
 id: AXKG-WORK-010
 title: "WP9: 인박스 md 업로드 intake"
-status: todo
+status: done
 product: ax-knowledge-graph
 work_type: new-feature
 owner: kknaks
@@ -13,13 +13,13 @@ roles:
   be: kknaks
   qa: kknaks
   ops: kknaks
-progress: 0
+progress: 100
 created_at: 2026-07-14
 updated_at: 2026-07-14
 tags:
   - product/ax-knowledge-graph
   - doc/work
-  - status/todo
+  - status/done
 links:
   baselines:
     - "[[baseline-001-ax-knowledge-graph-from-curated-sources|AXKG-BL-001]]"
@@ -90,3 +90,4 @@ Source Inbox의 수동 입력 표면(U-3 Direct Inbox Modal)에 URL 외 **md 파
 | 2026-07-14 | work-add. PLAN-013-T-005 WP 분해로 신규 작성(todo). AXKG-SPEC-003/012 T-004 산출분 기준. |
 | 2026-07-14 | PLAN-013-T-010 FE: Direct Inbox Modal md 업로드 UI 구현(ax-graph apps/web). C-4 done. BE endpoint 경로·필드 정합은 T-009 리포트 대조 예정. |
 | 2026-07-14 | PLAN-013-T-009 BE: C-1~C-3 done. `POST /sources/upload`(admin, multipart `file`)·`source_channel=upload` source·`original_filename` 마이그(0021)·요약 직행(adapter 미경유). FE(T-010) 계약 정합: 경로 `/sources/upload`·필드 `file`·`UNSUPPORTED_UPLOAD_TYPE`. OQ 확정 — 크기상한 1MiB·frontmatter 보존. pytest 425 pass(신규 11). 미커밋(admin 검수 대기). |
+| 2026-07-14 | 라운드 마감: pytest 425 게이트·prod 배포(717c95e)·FE-BE 계약 정합 확인(/sources/upload·file 필드). 업로드 라이브 E2E는 미실시(pytest 검증). status done. |

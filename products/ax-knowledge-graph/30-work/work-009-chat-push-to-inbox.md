@@ -2,7 +2,7 @@
 type: work
 id: AXKG-WORK-009
 title: "WP8: 채팅→인박스 push (생각→방안→push)"
-status: todo
+status: done
 product: ax-knowledge-graph
 work_type: new-feature
 owner: kknaks
@@ -13,13 +13,13 @@ roles:
   be: kknaks
   qa: kknaks
   ops: kknaks
-progress: 0
+progress: 100
 created_at: 2026-07-14
 updated_at: 2026-07-14
 tags:
   - product/ax-knowledge-graph
   - doc/work
-  - status/todo
+  - status/done
 links:
   baselines:
     - "[[baseline-001-ax-knowledge-graph-from-curated-sources|AXKG-BL-001]]"
@@ -94,3 +94,4 @@ links:
 | 2026-07-14 | work-add. PLAN-013-T-005 WP 분해로 신규 작성(todo). AXKG-DEC-006 개정·AXKG-SPEC-006/003/008 T-002·T-003 산출분 기준. |
 | 2026-07-14 | PLAN-013-T-010 FE: 방안 push CTA + push 상태 표면 구현(ax-graph apps/web). C-5 done. BE endpoint 계약 정합은 T-008 리포트 대조 예정. |
 | 2026-07-14 | PLAN-013-T-008 BE: C-1~C-4 done. `POST /graph/chats/{chat_id}/push-to-inbox`(staff·admin, owner), 서버 대화 조립(§7 OQ 확정)·`source_channel=chat` source·요약 파이프라인 합류. source_channel enum+URL nullable 마이그(0020, upload 채널 동반). pytest 414 pass(신규 11). 미커밋(admin 검수 대기). |
+| 2026-07-14 | 라운드 마감: pytest 414 게이트·prod 배포(717c95e)·FE-BE 계약 정합 확인(서버 조립, raw_text 무시). push 라이브 E2E는 미실시(pytest 검증). status done. |

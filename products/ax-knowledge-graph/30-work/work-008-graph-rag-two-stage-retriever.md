@@ -2,7 +2,7 @@
 type: work
 id: AXKG-WORK-008
 title: "WP7: Graph RAG 2단 retriever (qmd 사이드카)"
-status: todo
+status: done
 product: ax-knowledge-graph
 work_type: new-feature
 owner: kknaks
@@ -13,13 +13,13 @@ roles:
   be: kknaks
   qa: kknaks
   ops: kknaks
-progress: 0
+progress: 100
 created_at: 2026-07-14
 updated_at: 2026-07-14
 tags:
   - product/ax-knowledge-graph
   - doc/work
-  - status/todo
+  - status/done
 links:
   baselines:
     - "[[baseline-001-ax-knowledge-graph-from-curated-sources|AXKG-BL-001]]"
@@ -94,3 +94,4 @@ Graph RAG retriever를 `keyword score + edge distance` 단일 스캔에서 **2�
 |---|---|
 | 2026-07-14 | work-add. PLAN-013-T-005 WP 분해로 신규 작성(todo). AXKG-DEC-003 개정·AXKG-SPEC-006/011 T-001 산출분 기준. |
 | 2026-07-14 | PLAN-013-T-006(profile-be) C-1~C-6 구현. C-1 스모크 실측(rerank off 하이브리드 0.3s vs CLI 186s)로 통합 형태=HTTP MCP 사이드카·리랭크 기본 off 확정. 2단 retriever(`GraphService`)+qmd 클라이언트(`services/qmd.py`)+graceful fallback+`RETRIEVER_FALLBACK_USED` 배선, dev·prod compose에 qmd 사이드카. ax-graph pytest 403 통과(신규 20). |
+| 2026-07-14 | 라운드 마감: pytest 403 게이트·prod 배포(53d50a6+CI c96ed69)·라이브 E2E(qmd 시맨틱 검색 실질문 검증, AX 방향 질문→concept/reference/permanent 교차 히트). 재인덱싱 주기 30초 유지 확정(무변경 사이클 실측 1초). status done. |
