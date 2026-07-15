@@ -20,7 +20,7 @@ tags:
 title:
   en: Design Add and Search Words Data Structure
   ko: 단어 추가 및 검색 데이터 구조 설계
-today: true
+today: false
 type: algorithm
 updated: '2026-07-14'
 visible: true
