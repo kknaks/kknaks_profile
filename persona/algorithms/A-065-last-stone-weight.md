@@ -18,7 +18,7 @@ tags:
 title:
   en: Last Stone Weight
   ko: 마지막 돌의 무게
-today: true
+today: false
 type: algorithm
 updated: '2026-07-17'
 visible: true
