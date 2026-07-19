@@ -23,7 +23,7 @@ tags:
 title:
   en: K Closest Points to Origin
   ko: 원점에서 가장 가까운 K개의 점
-today: true
+today: false
 type: algorithm
 updated: '2026-07-18'
 visible: true
