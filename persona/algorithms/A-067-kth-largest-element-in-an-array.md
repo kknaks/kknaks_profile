@@ -21,7 +21,7 @@ tags:
 title:
   en: Kth Largest Element in an Array
   ko: 배열에서 K번째 큰 원소
-today: true
+today: false
 type: algorithm
 updated: '2026-07-19'
 visible: true
