@@ -15,6 +15,7 @@
 | WP8 | AXKG-WORK-009 | 채팅→인박스 push (생각→방안→push) | AXKG-SPEC-006(push S-4), 003(chat 채널), 008(매트릭스), DEC-006 개정 | WP4+WP1+WP6 | **done** (PLAN-013 ②, prod 라이브 2026-07-14) |
 | WP9 | AXKG-WORK-010 | 인박스 md 업로드 intake | AXKG-SPEC-003(upload S-5), 012(경계) | WP1 | **done** (PLAN-013 ③, prod 라이브 2026-07-14) |
 | WP11 | AXKG-WORK-011 | 기업 프로젝트 팬아웃 (docx→회사별 origin/baseline/spec·기능 dedup) | AXKG-SPEC-014, 004, 010, 012, 011① | WP3+WP1 | **in-progress** (P1 가이드·프롬프트·템플릿 done·미커밋, P2~5 잔여) |
+| WP12 | AXKG-WORK-012 | plan-then-fanout — project 문서화 생성 재설계(요약+plan→기능별 병렬 task→fan-in 조립) | AXKG-SPEC-014, 011, 004 / AXKG-DEC-008 | WP11 | **todo** (WORK-011 Phase 4 단일-task 생성 supersede — 대용량 docx 타임아웃 대응) |
 
 WP1·WP2는 병렬 가능, WP3는 둘 다 선행 필요, WP4/WP5 병렬 가능. WP6은 WP0 뒤 독립(BE·FE 트랙 내부 병렬). PLAN-013 라운드의 WP7·WP8·WP9는 서로 병렬 가능(WP7=BE 단독, WP8·WP9=BE+FE) — 선행 WP는 모두 done이므로 착수 blocker 없음.
 
@@ -35,6 +36,7 @@ WP1·WP2는 병렬 가능, WP3는 둘 다 선행 필요, WP4/WP5 병렬 가능. 
 | AXKG-WORK-009 | WP8: 채팅→인박스 push | done | AXKG-SPEC-006, AXKG-SPEC-003, AXKG-SPEC-008 |
 | AXKG-WORK-010 | WP9: 인박스 md 업로드 intake | done | AXKG-SPEC-003, AXKG-SPEC-012 |
 | AXKG-WORK-011 | WP11: 기업 프로젝트 팬아웃 — docx→회사별 origin/baseline/spec·기능 dedup | in-progress | AXKG-SPEC-014, 004, 010, 012 |
+| AXKG-WORK-012 | WP12: plan-then-fanout — project 문서화 생성 재설계 | todo | AXKG-SPEC-014, 011, 004 |
 
 ## Spec Coverage
 

@@ -198,6 +198,8 @@ Out of scope:
 
 project로 분류된 source의 문서화 승인 게이트는 ax-graph 기존 **파생지식 모델(`main_document` + `derived_suggestions[]`, AXKG-SPEC-004)** 을 그대로 재사용한다. 이 절은 그 모델이 project destination에서 무엇으로 매핑되는지의 외부 계약이며, **파생지식 apply 규칙·경로 디렉토리 조립 주체·검증은 AXKG-SPEC-004가 SSOT**다.
 
+> **생성 방식 note (2026-07-21, AXKG-DEC-008)**: 아래 draft(원본요약 + 기능정의서 N)의 **생성 메커니즘**은 단일 문서화 task에서 **plan-then-fanout**(① 요약+plan → ② 기능별 독립 task 병렬 → ③ fan-in 조립)으로 리팩터한다(대용량 docx 타임아웃 실측 대응, 구현 AXKG-WORK-012). **이 절의 외부 계약(무엇이 나오나 = main+derived, origin·경로·3층)은 불변**이며 바뀌는 것은 어떻게 만드느냐뿐이다.
+
 - **승인 전(draft)**: 게이트가 초안 revision 1개를 생성한다.
   - `main_document` = **원본요약** → `projects/{corp}/baseline/`. document_type `baseline`, 템플릿 `project_source_summary`(AXKG-SPEC-010). 원본요약의 `## 기능 목록`은 추출된 기능 N개를 각각 `[[기능-spec-stem]]`으로 링크해 baseline↔spec 그래프를 연다.
   - `derived_suggestions[]` = **기능별 초안** → `projects/{corp}/spec/`. document_type `feature_spec`, 템플릿 `project_feature_spec`(AXKG-SPEC-010). suggestion_type은 두 가지 — 신규 기능이면 `create_feature_spec`, 같은 `{corp}`의 기존 기능과 매칭되면 `supplement_existing_feature`(기존 spec 보강).

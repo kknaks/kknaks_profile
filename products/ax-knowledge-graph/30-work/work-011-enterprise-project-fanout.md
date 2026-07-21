@@ -13,7 +13,7 @@ roles:
   be: kknaks
   qa: kknaks
   ops: kknaks
-progress: 20
+progress: 85
 created_at: 2026-07-21
 updated_at: 2026-07-21
 tags:
@@ -95,12 +95,13 @@ links:
 | Phase | 범위 | 담당 | 관련 spec | 완료조건 | Status |
 |---|---|---|---|---|---|
 | **1. 가이드·프롬프트·템플릿** | `context/`(para-classification·documentation-guide·document-link-rules) 갱신 + `seeds.py` documentation_gate project 분기 + TEMPLATE_SEEDS 2종(`project_source_summary`·`project_feature_spec`) | be | SPEC-010, SPEC-014 | project 분류 시 원본요약+기능정의서 팬아웃 초안 프롬프트/템플릿이 준비됨 | ✅ **done** (코드repo 반영·미커밋) |
-| **2. docx 텍스트 추출 어댑터** | source 수집 어댑터에 `docx_text` 추가 — 본문 텍스트만 추출(표/이미지 파싱 계약 없음), 구조화는 요약①. intake 메모(회사명 등)는 탭과 무관하게 항상 요약 컨텍스트로 동반(SPEC-003) | be | SPEC-012, SPEC-003 | `.docx` 업로드가 `adapter=docx_text`·`content_format=doc_text`로 정규화되고 메모가 요약 컨텍스트로 함께 넘어감 | ⬜ todo |
-| **3. 경로·템플릿 배선** | `document_paths.py` destination→`projects/{corp}/{origin,baseline,spec}/` 매핑, `documentation_gate.py` `DESTINATION_TEMPLATE_KEY` project→`project_source_summary` + `project_feature_spec` 고정 동봉 | be | SPEC-004, SPEC-010, SPEC-014 | project 초안이 원본요약(main)+기능정의서(derived) 템플릿으로 조립되고 경로가 3층으로 매핑됨 | ⬜ todo |
-| **4. 게이트 팬아웃 실행 로직(create-only) + corp 매칭 + origin 보관** | 분류 `project` 확정 시 intake 메모 회사명 → 기존 `projects/{corp}/` 매칭(corp 바인딩). 문서화 게이트 apply를 origin raw 보관(바인드 마운트) + `main_document`(원본요약) + `derived_suggestions[]`(기능별 **`create_feature_spec` 신규만**) 팬아웃으로 확장. **dedup 매칭·`supplement_existing_feature`·map.md 재생성 훅은 이 Phase에서 제외(후속 WP)** | be | SPEC-014, SPEC-004 | 메모 회사명이 기존 corp에 매칭되고, 승인 1회로 origin raw 보관 + baseline 1 + spec N(전부 신규 생성)이 같은 승인 단위에서 적용됨 | ⬜ todo |
-| **5. "프로젝트 추가" 수동 스캐폴드 + FE** | BE(**수동·독립** 프로젝트 추가 = 회사명 slugify + 충돌 분기 API, `projects/{corp}/{origin,baseline,spec}/` 동적 생성 — 업로드/분류와 별개, 자동 생성 아님), FE(`apps/web` 프로젝트 추가 UI·slug 미리보기·충돌 모달·corp 트리 뷰·게이트 팬아웃 표시 U-1~U-5) | be·fe | SPEC-014 §2 | 프로젝트 추가(수동)→스캐폴드 생성; 별도로 메모에 회사명 적은 docx 업로드→분류 project→corp 매칭→팬아웃 결과가 corp 트리에 가시화됨 | ⬜ todo |
+| **2. docx 텍스트 추출 어댑터** | source 수집 어댑터에 `docx_text` 추가 — 본문 텍스트만 추출(표/이미지 파싱 계약 없음), 구조화는 요약①. intake 메모(회사명 등)는 탭과 무관하게 항상 요약 컨텍스트로 동반(SPEC-003) | be | SPEC-012, SPEC-003 | `.docx` 업로드가 `adapter=docx_text`·`content_format=doc_text`로 정규화되고 메모가 요약 컨텍스트로 함께 넘어감 | ✅ **done** — `docx_text.py` 무의존(stdlib `zipfile`+`xml`) 어댑터, `.docx` 업로드 허용, intake 메모(`metadata.intake_note`) 요약 컨텍스트 동반, origin staging |
+| **3. 경로·템플릿 배선** | `document_paths.py` destination→`projects/{corp}/{origin,baseline,spec}/` 매핑, `documentation_gate.py` `DESTINATION_TEMPLATE_KEY` project→`project_source_summary` + `project_feature_spec` 고정 동봉 | be | SPEC-004, SPEC-010, SPEC-014 | project 초안이 원본요약(main)+기능정의서(derived) 템플릿으로 조립되고 경로가 3층으로 매핑됨 | ✅ **done** — `DESTINATION_TEMPLATE_KEY` project→`project_source_summary`, `project_feature_spec` 고정동봉, `projects/{corp}/{baseline,spec}/` 경로 조립, `documents.document_type`에 `feature_spec` 추가(Alembic **0022** 신규) |
+| **4. 게이트 팬아웃 실행 로직(create-only) + corp 매칭 + origin 보관** | 분류 `project` 확정 시 intake 메모 회사명 → 기존 `projects/{corp}/` 매칭(corp 바인딩). 문서화 게이트 apply를 origin raw 보관(바인드 마운트) + `main_document`(원본요약) + `derived_suggestions[]`(기능별 **`create_feature_spec` 신규만**) 팬아웃으로 확장. **dedup 매칭·`supplement_existing_feature`·map.md 재생성 훅은 이 Phase에서 제외(후속 WP)** | be | SPEC-014, SPEC-004 | 메모 회사명이 기존 corp에 매칭되고, 승인 1회로 origin raw 보관 + baseline 1 + spec N(전부 신규 생성)이 같은 승인 단위에서 적용됨 | ✅ **done** — corp 바인딩(메모 회사명→기존 프로젝트 매칭, 자동생성 X), apply create-only 팬아웃 + origin finalize(그래프 노드 아님). dedup·supplement·map.md는 v1 범위대로 미배선 |
+| **5-BE. "프로젝트 추가" API + 수동 스캐폴드** | **수동·독립** 프로젝트 추가 = 회사명 slugify + 충돌 분기 API(merge/create_new), `projects/{corp}/{origin,baseline,spec}/` 동적 생성 — 업로드/분류와 별개, 자동 생성 아님 | be | SPEC-014 §2 | slug 미리보기·충돌 분기·수동 스캐폴드·corp 트리 조회 API 동작(admin 전용) | ✅ **done** — `routes/projects.py`(slug 미리보기·충돌 분기 merge/create_new·수동 스캐폴드·corp 트리, admin 전용), `project_scaffold.py`, `schemas/projects.py` |
+| **5-FE. apps/web UI** | `apps/web` 프로젝트 추가 UI·slug 미리보기·충돌 모달·corp 트리 뷰·게이트 팬아웃 표시(U-1~U-5), intake 탭+메모 | fe | SPEC-014 §2 | 별도로 메모에 회사명 적은 docx 업로드→분류 project→corp 매칭→팬아웃 결과가 corp 트리에 가시화됨 | ⬜ **in-progress** (별도 프론트 발주 진행 중) |
 
-> Phase 1은 코드repo에 반영됐으나 미커밋 상태다(설계 확정 반영분). Phase 2~5는 미착수.
+> Phase 1~5-BE는 BE 구현 완료(코드repo 반영·**미커밋**, working tree). Phase 5-FE(apps/web UI)만 잔여로 별도 프론트 발주 진행 중.
 
 ## Domain / Schema
 
@@ -112,17 +113,19 @@ links:
 | `document_templates` | `project_source_summary`·`project_feature_spec` 2종 시드(WP5 Templates API 재사용) |
 
 - 상태 / invariant: AI는 DB/Markdown을 직접 쓰지 않는다 — executor만. 경로 디렉토리는 시스템이 조립(AI는 파일명/stem만, SPEC-004 §4). **v1은 기능정의서를 항상 create-only(신규 생성)** — dedup(`{corp}` 경계 매칭·보강)은 후속 WP. origin은 그래프 노드가 아니라 바인드 마운트 raw 파일이다.
-- Migration 필요 여부: 신규 컬럼 없음 전제(문서 타입·경로 확장은 코드 매핑). 세부는 구현 시 확정.
+- Migration: `documents.document_type`에 `feature_spec` 추가 — Alembic **`0022_document_type_feature_spec`**(head)로 반영됨.
 - SPEC에 환류: 없음 예상(SPEC-014가 SSOT).
+- **검증(2026-07-21)**: apps/api **448 tests green**(신규 **21** `test_project_fanout.py`), Migration `0022_document_type_feature_spec`(head). 코드 **미커밋**(WP 완료 후 커밋 예정).
 
 ## Acceptance
 
 - [ ] AXKG-SPEC-014 Acceptance Criteria 중 **이번 WP 범위 항목** 충족(스캐폴드·docx 텍스트추출·팬아웃 main+derived **create-only**·origin raw 보관·연결 링크·3층 트리). **기능 dedup·map.md 재생성 AC는 후속 WP**
-- [ ] Phase 1: project 분류 초안이 원본요약+기능정의서 팬아웃 형태로 산출된다(템플릿 2종 시드 반영)
-- [ ] Phase 2: `.docx` 업로드가 본문 텍스트만 추출돼 요약①로 넘어가고, intake 메모(회사명 등)가 탭과 무관하게 항상 요약 컨텍스트로 동반된다(파싱 계약 없음)
-- [ ] Phase 3: destination→`projects/{corp}/{origin,baseline,spec}/` 매핑 + project 템플릿 조립이 동작한다
-- [ ] Phase 4: 분류 `project` 확정 시 메모 회사명이 기존 `projects/{corp}/`에 매칭되고, 게이트 승인 1회로 origin raw 보관(바인드 마운트) + baseline 1 + spec N(전부 `create_feature_spec` 신규 생성) 팬아웃이 같은 승인 단위에서 적용된다(dedup·map.md 제외)
-- [ ] Phase 5: "프로젝트 추가"는 수동·독립 스캐폴딩이며 업로드/분류가 프로젝트를 자동 생성하지 않는다 — 수동 생성 후 메모에 회사명 적은 docx 업로드→corp 매칭→팬아웃 결과가 corp 트리에 가시화된다(U-1~U-5)
+- [x] Phase 1: project 분류 초안이 원본요약+기능정의서 팬아웃 형태로 산출된다(템플릿 2종 시드 반영)
+- [x] Phase 2: `.docx` 업로드가 본문 텍스트만 추출돼 요약①로 넘어가고, intake 메모(회사명 등)가 탭과 무관하게 항상 요약 컨텍스트로 동반된다(파싱 계약 없음)
+- [x] Phase 3: destination→`projects/{corp}/{origin,baseline,spec}/` 매핑 + project 템플릿 조립이 동작한다
+- [x] Phase 4: 분류 `project` 확정 시 메모 회사명이 기존 `projects/{corp}/`에 매칭되고, 게이트 승인 1회로 origin raw 보관(바인드 마운트) + baseline 1 + spec N(전부 `create_feature_spec` 신규 생성) 팬아웃이 같은 승인 단위에서 적용된다(dedup·map.md 제외)
+- [x] Phase 5-BE: "프로젝트 추가"는 수동·독립 스캐폴딩이며 업로드/분류가 프로젝트를 자동 생성하지 않는다 — slug 미리보기·충돌 분기(merge/create_new)·수동 스캐폴드·corp 트리 조회 API가 동작한다(admin 전용)
+- [ ] Phase 5-FE: apps/web에서 intake 탭+메모 및 U-1~U-5(프로젝트 추가·slug 미리보기·충돌 모달·corp 트리 뷰·게이트 팬아웃 표시)가 렌더되고, docx 업로드→corp 매칭→팬아웃 결과가 corp 트리에 가시화된다
 
 ## Rollback
 
@@ -133,4 +136,4 @@ links:
 - **기능 dedup(corp 스코핑 retriever 매칭·`supplement_existing_feature` 보강)·폴더별 `map.md` 자동 재생성은 후속 WP로 분리한다** — v1은 기능정의서를 항상 `create_feature_spec` 신규 생성. SPEC-014 설계 계약(dedup·map.md)은 유지되며 구현만 이번 라운드에서 제외한다.
 - Phase 1 note: `seeds.py` documentation_gate 프롬프트에 이미 `supplement_existing_feature` 분기가 있으나, v1은 게이트에 기존 기능 컨텍스트를 주입하지 않아(dedup 미배선) 자연히 항상 신규 생성된다 — 프롬프트 재작성은 불필요.
 - 기능 dedup 매칭 임계값(같은 기능 판정 기준)은 후속 dedup WP의 튜닝 대상 — SPEC-014 Open Questions(구현 세부 후속).
-- Migration 필요 여부(문서 타입 `feature_spec`·경로 확장)는 Phase 3 착수 시 코드 확인.
+- ~~Migration 필요 여부(문서 타입 `feature_spec`·경로 확장)는 Phase 3 착수 시 코드 확인.~~ → **해소**: Alembic `0022_document_type_feature_spec`(head)로 `documents.document_type`에 `feature_spec` 추가. 경로 확장은 코드 매핑(신규 컬럼 없음).
