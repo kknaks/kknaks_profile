@@ -1,6 +1,6 @@
 ---
 type: work
-id: WORK-001
+id: MK-WORK-001
 title: "메시지 추출 확인용 웹 데모"
 status: done
 product: mykakao

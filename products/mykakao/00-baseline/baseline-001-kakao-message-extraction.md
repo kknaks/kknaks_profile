@@ -1,6 +1,6 @@
 ---
 type: baseline
-id: BASE-001
+id: MK-BASE-001
 title: "카톡 대화 로컬 자동 추출 (내보내기 없이)"
 status: accepted
 product: mykakao

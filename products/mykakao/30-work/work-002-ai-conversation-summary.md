@@ -1,6 +1,6 @@
 ---
 type: work
-id: WORK-002
+id: MK-WORK-002
 title: "AI 요약 기능 구현 (BE 엔드포인트 2 + FE 2뷰 + 워커 기동)"
 status: todo
 product: mykakao

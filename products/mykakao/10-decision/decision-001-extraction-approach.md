@@ -1,6 +1,6 @@
 ---
 type: decision
-id: DEC-001
+id: MK-DEC-001
 title: "메시지 추출 방식 — 로컬 SQLCipher DB 복호화 (kakaocli)"
 status: accepted
 product: mykakao

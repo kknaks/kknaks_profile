@@ -1,6 +1,6 @@
 ---
 type: spec
-id: SPEC-002
+id: MK-SPEC-002
 title: "추출 대화 AI 요약 (방·날짜 선택 + 사용자 프롬프트)"
 status: draft
 product: mykakao

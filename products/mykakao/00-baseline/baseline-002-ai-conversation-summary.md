@@ -1,6 +1,6 @@
 ---
 type: baseline
-id: BASE-002
+id: MK-BASE-002
 title: "추출한 카톡 대화 AI 요약 (방·날짜 선택 + 사용자 프롬프트)"
 status: accepted
 product: mykakao

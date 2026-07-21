@@ -1,6 +1,6 @@
 ---
 type: spec
-id: SPEC-001
+id: MK-SPEC-001
 title: "카톡 메시지 로컬 추출"
 status: draft
 product: mykakao

@@ -1,6 +1,6 @@
 ---
 type: decision
-id: DEC-002
+id: MK-DEC-002
 title: "AI 요약 방식 — open_kknaks(codex) + 단일 방·단일 날짜 + SSE 스트리밍 + 2뷰 데모"
 status: accepted
 product: mykakao
