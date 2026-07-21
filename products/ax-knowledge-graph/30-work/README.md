@@ -14,6 +14,7 @@
 | WP7 | AXKG-WORK-008 | Graph RAG 2단 retriever (qmd 사이드카) | AXKG-SPEC-006(retriever), 011(공유·`RETRIEVER_FALLBACK_USED`), DEC-003 개정 | WP2+WP4 | **done** (PLAN-013 ①, prod 라이브 2026-07-14) |
 | WP8 | AXKG-WORK-009 | 채팅→인박스 push (생각→방안→push) | AXKG-SPEC-006(push S-4), 003(chat 채널), 008(매트릭스), DEC-006 개정 | WP4+WP1+WP6 | **done** (PLAN-013 ②, prod 라이브 2026-07-14) |
 | WP9 | AXKG-WORK-010 | 인박스 md 업로드 intake | AXKG-SPEC-003(upload S-5), 012(경계) | WP1 | **done** (PLAN-013 ③, prod 라이브 2026-07-14) |
+| WP11 | AXKG-WORK-011 | 기업 프로젝트 팬아웃 (docx→회사별 origin/baseline/spec·기능 dedup) | AXKG-SPEC-014, 004, 010, 012, 011① | WP3+WP1 | **in-progress** (P1 가이드·프롬프트·템플릿 done·미커밋, P2~5 잔여) |
 
 WP1·WP2는 병렬 가능, WP3는 둘 다 선행 필요, WP4/WP5 병렬 가능. WP6은 WP0 뒤 독립(BE·FE 트랙 내부 병렬). PLAN-013 라운드의 WP7·WP8·WP9는 서로 병렬 가능(WP7=BE 단독, WP8·WP9=BE+FE) — 선행 WP는 모두 done이므로 착수 blocker 없음.
 
@@ -33,6 +34,7 @@ WP1·WP2는 병렬 가능, WP3는 둘 다 선행 필요, WP4/WP5 병렬 가능. 
 | AXKG-WORK-008 | WP7: Graph RAG 2단 retriever (qmd 사이드카) | done | AXKG-SPEC-006, AXKG-SPEC-011 |
 | AXKG-WORK-009 | WP8: 채팅→인박스 push | done | AXKG-SPEC-006, AXKG-SPEC-003, AXKG-SPEC-008 |
 | AXKG-WORK-010 | WP9: 인박스 md 업로드 intake | done | AXKG-SPEC-003, AXKG-SPEC-012 |
+| AXKG-WORK-011 | WP11: 기업 프로젝트 팬아웃 — docx→회사별 origin/baseline/spec·기능 dedup | in-progress | AXKG-SPEC-014, 004, 010, 012 |
 
 ## Spec Coverage
 
@@ -49,4 +51,5 @@ WP1·WP2는 병렬 가능, WP3는 둘 다 선행 필요, WP4/WP5 병렬 가능. 
 | AXKG-SPEC-009 | AXKG-WORK-006 (WP5) | done (Prompts API — 버전/롤백/스키마 검증) |
 | AXKG-SPEC-010 | AXKG-WORK-006 (WP5) | done (Templates API — 버전/롤백) |
 | AXKG-SPEC-011 | AXKG-WORK-001(골격 done) + 002①(done) + 004②(done)·004③(in-progress)·005④(done) + 008(retriever 2단·폴백, done 2026-07-14) | in-progress (004③ 잔여) |
-| AXKG-SPEC-012 | AXKG-WORK-002 (WP1) · AXKG-WORK-010 (WP9, upload 경계) | done (adapter + upload 경계 — PLAN-013 ③ 반영 2026-07-14) |
+| AXKG-SPEC-012 | AXKG-WORK-002 (WP1) · AXKG-WORK-010 (WP9, upload 경계) · AXKG-WORK-011 (WP11, docx_text 어댑터) | done (adapter + upload 경계 — PLAN-013 ③ 반영 2026-07-14; docx_text는 WP11 잔여) |
+| AXKG-SPEC-014 | AXKG-WORK-011 (WP11) | in-progress (P1 가이드·프롬프트·템플릿 done, P2~5 잔여) |

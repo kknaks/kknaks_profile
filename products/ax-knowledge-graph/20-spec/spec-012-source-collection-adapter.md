@@ -6,7 +6,7 @@ status: stable
 product: ax-knowledge-graph
 version: 0.0.1
 created_at: 2026-07-07
-updated_at: 2026-07-14
+updated_at: 2026-07-21
 tags:
   - product/ax-knowledge-graph
   - doc/spec
@@ -17,9 +17,11 @@ links:
   decisions:
     - "[[decision-001-para-pipeline-and-approval-gates|AXKG-DEC-001]]"
     - "[[decision-005-ai-execution-assembly-and-link-context|AXKG-DEC-005]]"
+    - "[[decision-007-enterprise-project-destination-fanout|AXKG-DEC-007]]"
   specs:
     - "[[spec-003-source-inbox|AXKG-SPEC-003]]"
     - "[[spec-011-ai-execution-pipeline|AXKG-SPEC-011]]"
+    - "[[spec-014-enterprise-project-fanout|AXKG-SPEC-014]]"
   works:
     - "[[work-002-source-intake|AXKG-WORK-002]]"
     - "[[work-010-inbox-md-upload-intake|AXKG-WORK-010]]"
@@ -29,11 +31,11 @@ links:
 
 # Source Collection Adapter: YouTube·웹 원문 수집 계약
 
-Source Inbox에 들어온 URL을 요약 AI가 읽을 수 있는 `SourceMaterial`로 변환하는 수집 adapter 계약을 정의한다. MVP에서는 YouTube, 정적 웹 article, 동적 렌더링 웹 페이지를 포함한다. PDF, RSS 등은 이 spec의 adapter 목록을 확장해 추가한다.
+Source Inbox에 들어온 URL을 요약 AI가 읽을 수 있는 `SourceMaterial`로 변환하는 수집 adapter 계약을 정의한다. MVP에서는 YouTube, 정적 웹 article, 동적 렌더링 웹 페이지, 그리고 업로드된 **docx의 본문 텍스트 추출**을 포함한다. PDF, RSS 등은 이 spec의 adapter 목록을 확장해 추가한다.
 
 > 이 spec은 "원문을 어떻게 가져오는가"만 다룬다. URL 수신과 상태 관리는 AXKG-SPEC-003, 수집된 원문을 프롬프트·스키마와 조립해 AI task로 실행하는 흐름은 AXKG-SPEC-011 소관이다.
 
-> **경계 — 업로드 md는 이 spec의 adapter 대상이 아니다** (2026-07-14, AXKG-SPEC-003 T-004): `source_channel=upload`(md 파일 업로드)은 URL 원문 수집 단계가 없다. 업로드된 md 본문(`raw_text`)이 곧 원문이므로 adapter를 거치지 않고 그대로 요약 스테이지(AXKG-SPEC-011 ①)의 입력이 된다. chat의 User Note Fallback과 달리 "수집 실패 시 대체"가 아니라 **원문 그 자체**다 — 따라서 아래 URL 기반 수집 실패 코드·재시도 계약(§3)은 upload에 적용되지 않는다.
+> **경계 — 업로드 md는 이 spec의 adapter 대상이 아니다** (2026-07-14, AXKG-SPEC-003 T-004): `source_channel=upload`(md 파일 업로드)은 URL 원문 수집 단계가 없다. 업로드된 md 본문(`raw_text`)이 곧 원문이므로 adapter를 거치지 않고 그대로 요약 스테이지(AXKG-SPEC-011 ①)의 입력이 된다. chat의 User Note Fallback과 달리 "수집 실패 시 대체"가 아니라 **원문 그 자체**다 — 따라서 아래 URL 기반 수집 실패 코드·재시도 계약(§3)은 upload에 적용되지 않는다. (단 업로드 `.docx`는 md와 달리 바이너리라 본문 텍스트 추출이 필요하다 — 아래 Docx Text Extraction Adapter가 처리하며, 표/이미지 파싱 계약은 두지 않는다. AXKG-DEC-007 D5.)
 
 ## 1. Context
 
@@ -61,6 +63,7 @@ In scope:
 - `SourceMaterial` 정규화 출력
 - 수집 실패 코드와 보안 제한
 - 기존 profile YouTube 수집 코드 재사용 경로 기록
+- 업로드 `.docx` 파일의 **본문 텍스트 추출**(구조화는 어댑터가 아니라 적응형 요약①, AXKG-SPEC-011). 표 보존·이미지 파싱 계약은 두지 않음(AXKG-DEC-007 D5)
 
 Out of scope:
 
@@ -83,6 +86,7 @@ Out of scope:
 | `youtube.com/shorts/...` | `youtube` | 지원 |
 | 기타 HTTP(S) URL + `content-type: text/html` | `static_web` | 지원 |
 | `static_web` 기준 미달 + public browser render 가능 | `dynamic_web` | 지원 |
+| 업로드 `.docx` 파일(`source_channel=upload`) | `docx_text` | 지원 — 본문 텍스트만 추출(구조화는 요약①, 아래 Docx Text Extraction Adapter) |
 | PDF, RSS, 기타 non-HTML URL | `unsupported` | 후속 adapter 전까지 `UNSUPPORTED_SOURCE_TYPE` |
 
 Adapter 선택은 4단계로 한다.
@@ -106,14 +110,14 @@ Adapter 선택은 4단계로 한다.
 {
   "source_url": "https://example.com/article",
   "canonical_url": "https://example.com/article",
-  "adapter": "youtube | static_web | dynamic_web | user_note",
+  "adapter": "youtube | static_web | dynamic_web | user_note | docx_text",
   "title": "...",
   "author": "...",
   "published_at": "YYYY-MM-DD or null",
   "duration_seconds": 1234,
   "content_text": "... extracted body ...",
-  "content_format": "transcript | video_description | page_text | user_note",
-  "fetch_method": "youtube_transcript_api | youtube_metadata | static_html | playwright_chrome | user_note",
+  "content_format": "transcript | video_description | page_text | user_note | doc_text",
+  "fetch_method": "youtube_transcript_api | youtube_metadata | static_html | playwright_chrome | user_note | docx_text",
   "fetched_at": "ISO-8601",
   "external_id": "youtube video id or null",
   "metadata": {
@@ -131,7 +135,7 @@ Adapter 선택은 4단계로 한다.
 규칙:
 
 - `content_text`는 요약 AI가 읽을 원문이다.
-- `adapter`는 **수집 방식 식별자**다. 콘텐츠 유형 `source_type`(`article`/`video`/`document`/`unknown`, AXKG-SPEC-001/002 계약)과 다른 필드이며 어휘를 섞지 않는다. adapter는 요약 AI에 유형 힌트를 준다: `youtube→video`, `static_web`/`dynamic_web`→기본 `article`(요약 AI가 본문 기준으로 보정), `user_note`→기본 `unknown`(요약 AI가 메모 내용 기준으로 보정).
+- `adapter`는 **수집 방식 식별자**다. 콘텐츠 유형 `source_type`(`article`/`video`/`document`/`unknown`, AXKG-SPEC-001/002 계약)과 다른 필드이며 어휘를 섞지 않는다. adapter는 요약 AI에 유형 힌트를 준다: `youtube→video`, `static_web`/`dynamic_web`→기본 `article`(요약 AI가 본문 기준으로 보정), `user_note`→기본 `unknown`(요약 AI가 메모 내용 기준으로 보정), `docx_text`→기본 `document`(요약 AI가 본문 기준으로 보정).
 - `canonical_url`은 중복 source 판단과 trace에 사용한다. 수집 성공 시 `sources.normalized_url`을 canonical 기준으로 갱신하고 중복을 재검사한다(예: `youtu.be/X`와 `watch?v=X`는 canonical에서 합류). 갱신 결과 기존 source와 충돌하면 AXKG-SPEC-003 S-2 중복 규칙(기존 source에 연결)을 따른다.
 - `duration_seconds`는 YouTube처럼 재생 시간이 있는 source에서만 값이 있고, 정적 웹에서는 null이다.
 - `external_id`는 source provider의 안정 식별자다. YouTube는 video id, 정적 웹은 null이다.
@@ -266,6 +270,25 @@ URL 기반 수집(youtube/static_web/dynamic_web)이 모두 실패했을 때, �
 - 메모 기반 수집과 원문 기반 수집을 **구분 표기하지 않는다** — 둘 다 정상 `SourceMaterial`이고 이후 요약 스테이지·상태(`summarized`)는 동일하다. source_basis 플래그/배지 같은 구분자를 두지 않는다.
 - `canonical_url`이 원 URL 그대로이므로 중복 재검사·S-2 규칙은 URL 기준으로 동일하게 적용된다.
 
+### Docx Text Extraction Adapter (업로드 docx)
+
+기업 AX 요구사항은 `.docx`로 업로드된다(`source_channel=upload`, AXKG-SPEC-003). 업로드 `.md`는 본문(`raw_text`)이 곧 원문이라 adapter를 거치지 않지만(위 경계 각주), **`.docx`는 바이너리라 본문 텍스트 추출이 필요**하므로 이 adapter가 처리한다. 회사 프로젝트 팬아웃·정규화 계약은 AXKG-SPEC-014, project destination 결정은 AXKG-DEC-007이 SSOT다.
+
+입력:
+
+- `source_id`, `source_url`(업로드 파일 참조), `source_channel=upload`
+
+처리:
+
+1. docx 컨테이너에서 **본문 텍스트만** 추출해 `content_text`로 정규화한다.
+2. `SourceMaterial`을 반환한다(`adapter=docx_text`, `content_format=doc_text`, `fetch_method=docx_text`, `canonical_url`은 업로드 파일이라 원 참조 그대로).
+
+규칙:
+
+- **본문 텍스트 추출만 한다.** 표 보존·이미지 대체텍스트·병합셀·중첩표·스캔이미지 처리 같은 파싱 계약은 **두지 않는다**(과설계 배제, AXKG-DEC-007 D5). 표가 텍스트로 딸려 나와도 그대로 두고, 본문/노이즈 구분·구조 정리는 요약①이 한다(web adapter가 visible text만 넘기고 본문 구분을 요약 AI에 맡기는 것과 같은 원칙).
+- **기능별 구조화는 어댑터가 아니라 적응형 요약①(AXKG-SPEC-011 §4 Layer Taxonomy) 소관**이다 — 요약①이 원문(docx)의 기능 목록 구조를 그대로 따라 기능별 줄글을 산출하고, 그 산출물이 회사 프로젝트 `projects/{corp}/baseline/` 원본요약이 되어 spec 팬아웃의 입력이 된다(AXKG-SPEC-014).
+- URL 기반 수집(youtube/static_web/dynamic_web)의 실패 코드·재시도 계약(§3)은 docx에 적용되지 않는다 — 업로드 파일이라 URL 원문 수집 단계가 없다. 요약 실행 자체 실패는 요약 스테이지 실패 계약(AXKG-SPEC-011)으로 표면화된다(업로드 md와 동일).
+
 ## 3. Failure Contract
 
 | 에러 코드 | 조건 | AXKG 매핑 |
@@ -283,7 +306,7 @@ URL 기반 수집(youtube/static_web/dynamic_web)이 모두 실패했을 때, �
 
 위 에러 코드는 **URL 기반 수집(youtube/static_web/dynamic_web)의 실패 조건**이다. 이 실패들이 발생해도 사용자 메모가 있으면 User Note Fallback으로 수집이 성립하므로 `collection_failed`가 되지 않는다. **`sources.collection_failed`로 표면화되는 것은 "URL 원문 수집 실패 AND 메모 없음(trim 후 empty)"일 때만**이다.
 
-**업로드 md(`source_channel=upload`)는 위 실패 계약 밖이다**: URL 수집 단계가 없어 위 에러 코드가 발생하지 않는다. `.md`가 아닌 파일은 source 생성 전 intake validation에서 `UNSUPPORTED_UPLOAD_TYPE`으로 거부되며(AXKG-SPEC-003, 수집 실패 아님), 업로드된 md는 항상 원문이 존재하므로 요약 스테이지(AXKG-SPEC-011 ①)로 바로 넘어간다. 요약 실행 자체가 실패하면 다른 채널과 동일하게 요약 스테이지 실패 계약으로 표면화된다(AXKG-SPEC-011).
+**업로드 파일(`source_channel=upload`)은 위 URL 실패 계약 밖이다**: URL 수집 단계가 없어 위 에러 코드가 발생하지 않는다. `.md`는 본문이 곧 원문이라 요약 스테이지로 바로 가고, `.docx`는 위 Docx Text Extraction Adapter로 본문 텍스트만 추출한 뒤 요약 스테이지(AXKG-SPEC-011 ①)로 넘어간다. `.md`/`.docx`가 아닌 파일은 source 생성 전 intake validation에서 `UNSUPPORTED_UPLOAD_TYPE`으로 거부된다(AXKG-SPEC-003, 수집 실패 아님). 요약 실행 자체가 실패하면 다른 채널과 동일하게 요약 스테이지 실패 계약으로 표면화된다(AXKG-SPEC-011).
 
 실패한 경우(원문 수집 실패 + 메모 없음):
 
@@ -342,6 +365,7 @@ sources.received
 - [ ] unsupported URL은 `UNSUPPORTED_SOURCE_TYPE`으로 실패한다.
 - [ ] 수집 실패는 `sources.collection_failed`와 실패 `ai_tasks` row로 표면화된다(단, 메모가 있으면 User Note로 성립해 실패가 아니다).
 - [ ] transcript와 추출 본문 전문은 application log에 남지 않는다.
+- [ ] 업로드 `.docx`는 본문 텍스트만 추출해 `adapter=docx_text`·`content_format=doc_text`인 `SourceMaterial`로 정규화하고, 표 보존·이미지 대체텍스트 등 파싱 계약을 적용하지 않는다(기능별 구조화는 요약① 소관).
 
 ## 7. Open Questions
 

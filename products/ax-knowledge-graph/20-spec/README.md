@@ -15,6 +15,7 @@
 | AXKG-SPEC-011 | AI 실행 파이프라인: 컨텍스트 조립·구조화 출력·실패 계약 | stable | AXKG-DEC-005 |
 | AXKG-SPEC-012 | Source Collection Adapter: YouTube·웹 원문 수집 계약 | stable | AXKG-DEC-001, 005 |
 | AXKG-SPEC-013 | 문서 라이브러리: 저장 문서 트리 열람 (읽기 전용) | stable | AXKG-DEC-005, 006 |
+| AXKG-SPEC-014 | 기업 프로젝트 팬아웃: 회사별 origin·baseline·spec 문서화와 기능 dedup | stable | AXKG-DEC-007, 005, 001 |
 
 읽는 순서:
 

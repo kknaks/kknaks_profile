@@ -6,7 +6,7 @@ status: stable
 product: ax-knowledge-graph
 version: 0.0.1
 created_at: 2026-07-07
-updated_at: 2026-07-14
+updated_at: 2026-07-21
 tags:
   - product/ax-knowledge-graph
   - doc/spec
@@ -26,6 +26,7 @@ links:
     - "[[spec-006-graph-chat|AXKG-SPEC-006]]"
     - "[[spec-011-ai-execution-pipeline|AXKG-SPEC-011]]"
     - "[[spec-012-source-collection-adapter|AXKG-SPEC-012]]"
+    - "[[spec-014-enterprise-project-fanout|AXKG-SPEC-014]]"
   works:
     - "[[work-002-source-intake|AXKG-WORK-002]]"
     - "[[work-009-chat-push-to-inbox|AXKG-WORK-009]]"
@@ -36,7 +37,7 @@ links:
 
 # Source Inbox: URL 1차 수신 위치
 
-Slack으로 들어오거나 페이지에서 직접 입력한 URL, 페이지에서 업로드한 md 파일, 또는 채팅④에서 push된 방안은 처음부터 reference나 permanent로 가지 않고, 미분류 raw input queue인 Source Inbox에 저장된다.
+Slack으로 들어오거나 페이지에서 직접 입력한 URL, 페이지에서 업로드한 md·docx 파일, 또는 채팅④에서 push된 방안은 처음부터 reference나 permanent로 가지 않고, 미분류 raw input queue인 Source Inbox에 저장된다. 페이지 intake 표면은 **탭형 `[url | md | docx]` + 메모 필드(항상 존재)**이며, 메모는 항상 요약①에 함께 넘어가는 컨텍스트다(회사명 등).
 
 > Source Inbox는 PARA의 Inbox/Fleeting 역할이다. 아직 AI가 읽지 않았고, 아직 분류되지 않았고, 아직 영구 지식으로 승인되지 않은 입력만 담는다.
 
@@ -59,8 +60,9 @@ Slack으로 들어오거나 페이지에서 직접 입력한 URL, 페이지에�
 In scope:
 
 - Slack URL 1차 수신
-- 페이지 내 직접 URL 입력
-- 페이지 내 md 파일 업로드 수신 (`source_channel=upload` intake — v1은 `.md`만, 업로드 md 본문 자체가 원문·URL 수집 스킵)
+- 페이지 intake 표면 = **탭형 `[url | md | docx]` + 메모 필드(항상 존재)**. 메모는 **항상 요약① 입력 컨텍스트로 함께 전달**된다(회사명 등) — 수집 실패 시 원문 대체(User Note Fallback)이기도 하지만 fallback 전용이 아니다
+- 페이지 내 직접 URL 입력 (url 탭 = `source_channel=manual`)
+- 페이지 내 md·docx 파일 업로드 수신 (`source_channel=upload` intake — `.md`·`.docx`. md 본문 자체가 원문, docx는 본문 텍스트만 추출[AXKG-SPEC-012 `docx_text`]·구조화는 요약①. 둘 다 URL 수집 스킵)
 - 채팅④ 방안 push 수신 (`source_channel=chat` intake — URL 없이 push 시점까지의 대화 내용 전부[방안 포함]를 source로, AXKG-SPEC-006에서 push)
 - raw input metadata 저장
 - Source Inbox 상태 관리
@@ -73,7 +75,7 @@ Out of scope:
 - 분류 게이트(②)·문서화 승인 게이트(③) — `[분류]`는 여기서 트리거만, 분류 AI 실행·PARA 분류 생성·**PARA 지식 문서 md 생성**은 AXKG-SPEC-001/AXKG-WORK-004(WP3) 소관. (단 **요약 문서 md는 [분류] 확정 시점에 생성**되는 별개 지점으로, 실행·저장 계약은 AXKG-SPEC-011이다 — PARA 문서 md와 혼동하지 않는다.)
 - 영구 문서 생성
 - Slack bot 인증/배포 세부
-- md 외 포맷(pdf/docx 등) 파일 업로드 — 후속 확장(파싱 계층 필요), 이번 라운드 제외
+- md·docx 외 포맷(pdf 등) 파일 업로드 — 후속 확장(파싱 계층 필요), 이번 라운드 제외 (**docx는 이제 포함** — 본문 텍스트 추출, AXKG-SPEC-012 `docx_text`)
 
 ## 2. UX Contract
 
@@ -112,12 +114,12 @@ Source Inbox는 제품의 첫 큐 화면이다.
   - 요약이 끝나면(`summarized`) 요약 초안이 수정 가능한 형태로 뜬다. 사용자는 `피드백`으로 원하는 방향을 자연어로 남겨 재요약(v2)을 받거나, 초안이 만족스러우면 `분류`를 눌러 분류 게이트로 진입시킨다. **요약이 자동으로 분류로 넘어가지 않는다 — 사용자가 `분류`를 눌러야 진입한다.** 요약 초안 draft(v1/v2)는 `sources.summary_payload`(DB)에 박제(피드백 히스토리)되고, 재요약은 **직전 버전(v1)을 덮어쓰지 않고 새 버전(v2)을 박제(immutable)로 남긴다** — 게이트 revision과 동일한 버전 원칙이다(AXKG-SPEC-002). 사용자가 `분류`를 눌러 요약을 확정하는 순간, **그 시점의 active 요약 버전이 요약 문서(md)로 확정**된다(draft=DB 박제 / 확정=md — 요약·문서화 공통 저장 패턴, AXKG-SPEC-011). 이 md 생성은 [분류] 진입(요약 확정) 시점이며, 뒤이어 열리는 분류 게이트가 md를 만드는 것이 아니다(요약 문서 md는 `data/documents/summaries/{stem}.md`에 저장되는 보관용 side-output — §7). 피드백 재생성은 직전 초안(v1)을 참조(`parent`)로 두고 세션 resume로 원문·지침 재전송 없이 이어서 생성한다(버전·resume 규칙 AXKG-SPEC-002, 배선 AXKG-SPEC-011).
   - 요약이 실패했으면(`collection_failed`) `요약 재시도`로 다시 자동 요약을 태울 수 있다. **원문 수집이 안 되는 사이트(Cloudflare/봇 방어 등)라 `collection_failed`가 된 경우, 사용자는 메모(복붙 텍스트 등)를 추가·수정한 뒤 재요약할 수 있고, 그러면 그 메모를 원문 대신 요약 입력으로 삼아(AXKG-SPEC-012 User Note Fallback) `summarized`에 도달할 수 있다.** 메모 기반 요약과 원문 기반 요약을 UI에서 구분 표기하지 않는다.
 
-### U-3. Direct Inbox Modal
+### U-3. Direct Inbox Modal (탭형 `[url | md | docx]` + 메모)
 
-- **상태**: 닫힘, 열림, 제출 중, 제출 실패, 중복 URL, 파일 형식 오류
-- **문구**: URL, 메모, 출처 채널, 제출자, 저장, md 파일 업로드, 선택된 파일명, 허용 형식(`.md`)
-- **CTA**: `저장`, `취소`, `md 파일 업로드`
-- **기대 결과**: 이 표면은 두 입력 방식을 갖는다(같은 모달). ① 사용자가 URL을 입력하고 `저장`하면 `source_channel=manual`인 Source가 `received` 상태로 추가된다. 여기서 입력한 **메모(`note`)는 원문 수집이 실패했을 때 요약 입력으로 쓰이는 fallback 소스다**(AXKG-SPEC-012 User Note Fallback). URL 수집이 성공하면 원문을 우선하고 메모는 요약에 쓰지 않는다. ② 사용자가 md 파일을 업로드하고 `저장`하면 `source_channel=upload`인 Source가 `received`로 추가되고, **업로드한 md 본문 자체가 원문**이 되어 URL 수집 없이 그대로 요약 입력이 된다(fallback이 아니라 원문 그 자체). v1은 `.md`만 허용하며, 다른 형식은 저장하지 않고 형식 오류를 표시한다. 이 표면(수동 입력·업로드)은 **admin 전용**이다(접근 경계 SSOT AXKG-SPEC-008 — 업로드는 기존 소스 Inbox 표면의 확장이라 경계 변경 없음).
+- **상태**: 닫힘, 열림, 탭 전환(url/md/docx), 제출 중, 제출 실패, 중복 URL, 파일 형식 오류
+- **문구**: 탭 `[url | md | docx]`, (url 탭)URL, (md/docx 탭)파일 업로드·선택된 파일명·허용 형식(`.md`·`.docx`), **메모(항상 표시, 모든 탭 공통 — "회사명 등 요약에 참고할 메모")**, 출처 채널, 제출자, 저장
+- **CTA**: `저장`, `취소`, `파일 업로드`(md/docx 탭)
+- **기대 결과**: 이 표면은 탭으로 입력 방식을 고르고, **메모 필드는 탭과 무관하게 항상 존재**한다. ① **url 탭**: URL을 입력하고 `저장`하면 `source_channel=manual`인 Source가 `received`로 추가된다. ② **md 탭**: `.md`를 업로드하면 `source_channel=upload`로 추가되고 **업로드 md 본문 자체가 원문**이 되어 URL 수집 없이 요약 입력이 된다. ③ **docx 탭**: `.docx`를 업로드하면 `source_channel=upload`로 추가되고 **본문 텍스트만 추출**돼(AXKG-SPEC-012 `docx_text`, 구조화는 요약①) 요약 입력이 된다. `.md`·`.docx` 외 형식은 저장하지 않고 형식 오류를 표시한다. **메모(`note`)는 항상 요약① 입력에 함께 넘어가는 컨텍스트다**(회사명 등) — 동시에 url 탭에서 원문 수집이 실패하면 메모가 원문 대체(User Note Fallback)로도 쓰인다(AXKG-SPEC-012). URL 수집이 성공하면 원문을 요약 본문으로 우선하되 메모는 컨텍스트로 계속 동반된다. 이 표면(수동 입력·업로드)은 **admin 전용**이다(접근 경계 SSOT AXKG-SPEC-008 — 기존 소스 Inbox 표면의 확장이라 경계 변경 없음).
 
 ## 3. User Scenario
 
@@ -157,13 +159,13 @@ Source Inbox는 제품의 첫 큐 화면이다.
 4. 요약→분류→문서화 게이트 흐름과 분류 승인(admin)은 slack/manual과 동일하다(AXKG-SPEC-001/002 무변경).
 5. chat source는 push한 staff·admin이 만들지만, **Source Inbox 목록·관리 표면은 admin 전용**이므로 staff는 자신이 push한 source를 인박스 화면에서 열람·관리할 수 없다(접근 경계 SSOT AXKG-SPEC-008).
 
-### S-5. Admin — md 파일을 업로드해 Inbox에 넣는다
+### S-5. Admin — 파일(md·docx)을 업로드해 Inbox에 넣는다
 
-1. admin이 Source Inbox의 `Inbox에 넣기` 모달(U-3)에서 `md 파일 업로드`를 선택한다.
-2. admin이 `.md` 파일을 고르고 `저장`을 누른다. 파일 형식이 `.md`가 아니면 시스템은 저장하지 않고 형식 오류(`UNSUPPORTED_UPLOAD_TYPE`)를 표시한다.
-3. 시스템은 업로드 md 본문을 `raw_text`로, `source_url` 없이 `source_channel=upload`인 Source를 `received` 상태로 저장하고 원본 파일명(`original_filename`)을 보존한다.
-4. `received`가 되면 자동으로 요약 AI(①)가 실행된다. **URL 수집을 스킵하고 업로드 md 본문 자체가 원문**이 되어 그대로 요약 입력이 된다(AXKG-SPEC-012 adapter 대상 아님 — fallback이 아니라 원문 그 자체).
-5. 이후 요약→분류→문서화 게이트 흐름은 slack/manual/chat과 동일하다. 표면은 admin 전용이며 접근 경계 변경은 없다.
+1. admin이 Source Inbox의 `Inbox에 넣기` 모달(U-3)에서 `md` 또는 `docx` 탭을 골라 파일을 업로드하고, 필요하면 **메모(회사명 등)**를 함께 적는다. 메모는 탭과 무관하게 항상 요약① 컨텍스트로 동반된다.
+2. admin이 `.md`/`.docx` 파일을 고르고 `저장`을 누른다. 형식이 `.md`·`.docx`가 아니면 시스템은 저장하지 않고 형식 오류(`UNSUPPORTED_UPLOAD_TYPE`)를 표시한다.
+3. 시스템은 `source_url` 없이 `source_channel=upload`인 Source를 `received` 상태로 저장하고 원본 파일명(`original_filename`)을 보존한다. md는 본문을 `raw_text`로 그대로, docx는 첨부 원본을 보관한 뒤 본문 텍스트만 추출한다(AXKG-SPEC-012 `docx_text`).
+4. `received`가 되면 자동으로 요약 AI(①)가 실행된다. **URL 수집을 스킵하고 업로드 파일 본문(md 본문 / docx 추출 텍스트)이 원문**이 되어 요약 입력이 되며, 메모는 함께 컨텍스트로 넘어간다. docx의 기능별 구조화는 어댑터가 아니라 적응형 요약①이 담당한다.
+5. 이후 요약→분류→문서화 게이트 흐름은 slack/manual/chat과 동일하다. 분류가 `project`로 확정되면 메모의 회사명이 기존 `projects/{corp}/` 프로젝트에 매칭돼 그리로 팬아웃된다(AXKG-SPEC-014). 표면은 admin 전용이며 접근 경계 변경은 없다.
 
 ## 4. Interface Contract
 
@@ -193,10 +195,11 @@ Slack 수신 요청은 슬래시 커맨드 payload(command/text/channel_id/user_
 | `source_url` | `http` 또는 `https` URL. Slack은 커맨드 `text`에서 추출(없거나 형식 오류면 저장하지 않고 사용법 ephemeral). **`source_channel=chat`·`upload`이면 URL이 없어 `null`** — chat은 `raw_text`(대화 전부), upload는 `raw_text`(md 본문)가 요약 입력이다 |
 | `source_channel` | `slack`, `manual`, `chat`, `upload` |
 | `slack_message_ts` | 접수 후 봇이 post한 앵커 메시지 timestamp(요약 회신 스레드 기준). 수동 입력·chat·upload이면 `null` |
-| `upload file` | `source_channel=upload`은 v1에서 확장자 `.md`만 허용한다. 그 외 형식은 저장하지 않고 `UNSUPPORTED_UPLOAD_TYPE`. 업로드 파일 크기 상한은 구현 기본값(§7 OQ) |
+| `upload file` | `source_channel=upload`은 v1에서 확장자 `.md`·`.docx`만 허용한다. md는 본문 자체가 원문, docx는 본문 텍스트만 추출(AXKG-SPEC-012 `docx_text`). 그 외 형식은 저장하지 않고 `UNSUPPORTED_UPLOAD_TYPE`. 업로드 파일 크기 상한은 구현 기본값(§7 OQ) |
+| `note`(메모) | 모든 intake 탭에 항상 존재. **항상 요약① 입력 컨텍스트로 동반**된다(회사명 등). url 탭에서는 원문 수집 실패 시 원문 대체(User Note Fallback, AXKG-SPEC-012)로도 쓰인다. 저장 필드 세부는 구현 소관 |
 | `original_filename` | `source_channel=upload`에서 업로드 원본 파일명 보존. 다른 채널이면 `null` |
 | `submitted_at` | ISO timestamp |
-| `raw_text` | 수동 입력 메모, Slack 커맨드 `text`의 `<< >>` 안 텍스트, **chat push의 대화 내용 전부**(push 시점까지의 user·assistant 메시지 이력, 제시된 방안 포함), 또는 **업로드 md 파일 본문**. slack/manual에서는 원문 수집 실패 시 요약 입력이 되는 fallback 메모이고, `source_channel=chat`에서는 URL이 없으므로 이 대화 내용이 곧 요약 입력이다(AXKG-SPEC-012 User Note Fallback). `source_channel=upload`에서는 이 md 본문 자체가 원문이라 URL 수집 없이 곧 요약 입력이다(fallback 아님·원문 그 자체). "있음/없음"은 trim 후 non-empty 기준. chat·upload source는 `raw_text`가 필수. 대화 이력 직렬화 형식은 AXKG-SPEC-006 §7 OQ |
+| `raw_text` | 수동 입력 메모, Slack 커맨드 `text`의 `<< >>` 안 텍스트, **chat push의 대화 내용 전부**(push 시점까지의 user·assistant 메시지 이력, 제시된 방안 포함), 또는 **업로드 파일 본문**(md 본문 / docx 추출 텍스트). slack/manual에서는 원문 수집 실패 시 요약 입력이 되는 fallback 메모이고(단 메모는 실패와 무관하게 항상 요약 컨텍스트로 동반), `source_channel=chat`에서는 URL이 없으므로 이 대화 내용이 곧 요약 입력이다(AXKG-SPEC-012 User Note Fallback). `source_channel=upload`에서는 이 본문(md 원문 / docx 추출 텍스트)이 원문이라 URL 수집 없이 곧 요약 입력이다(fallback 아님·원문 그 자체). "있음/없음"은 trim 후 non-empty 기준. chat·upload source는 `raw_text`가 필수. 대화 이력 직렬화 형식은 AXKG-SPEC-006 §7 OQ |
 | `trigger_id` | Slack 슬래시 커맨드 멱등 키 원천(더블서밋 차단), Slack 수신 시에만 |
 
 ### Case Matrix
@@ -207,7 +210,7 @@ Slack 수신 요청은 슬래시 커맨드 payload(command/text/channel_id/user_
 | `DUPLICATE_SOURCE` | 기존 Source 존재 | 이미 받은 URL입니다. 기존 항목에 연결했습니다. | Source Inbox List |
 | `SLACK_URL_MISSING` | 커맨드 `text`에 URL 없음/형식 오류 | 사용법: `<커맨드> <URL>` 형식으로 링크를 함께 보내주세요. | Slack ephemeral |
 | `MANUAL_NOTE_TOO_LONG` | 수동 메모 길이 초과 | 메모는 2000자 이하로 입력해 주세요. | Direct Inbox Modal |
-| `UNSUPPORTED_UPLOAD_TYPE` | 업로드 파일이 `.md`가 아님(v1) | md 파일만 업로드할 수 있습니다. | Direct Inbox Modal |
+| `UNSUPPORTED_UPLOAD_TYPE` | 업로드 파일이 `.md`·`.docx`가 아님(v1) | md·docx 파일만 업로드할 수 있습니다. | Direct Inbox Modal |
 | `COLLECTION_RETRY_NOT_ALLOWED` | 재시도 불가 상태 | 현재 상태에서는 요약을 재시도할 수 없습니다. | Source Detail |
 
 ### Flow
@@ -285,8 +288,9 @@ stateDiagram-v2
 | Source | `slack_message_ts` | 접수 후 봇 앵커 메시지 timestamp(요약 회신 스레드 기준). 수동 입력·chat·upload이면 `null` |
 | Source | `submitted_at` | 수신 시각 |
 | Source | `submitted_by` | Slack 사용자 식별자 또는 제품 사용자 식별자. chat push는 push한 유저, upload는 업로드한 admin |
-| Source | `raw_text` | Slack 메시지 원문, 수동 입력 메모, chat push의 대화 내용 전부(push 시점까지, 방안 포함), 또는 업로드 md 본문. chat·upload source의 요약 입력이 된다 |
-| Source | `original_filename` | `source_channel=upload`의 업로드 원본 파일명. 다른 채널이면 `null` |
+| Source | `raw_text` | Slack 메시지 원문, 수동 입력 메모, chat push의 대화 내용 전부(push 시점까지, 방안 포함), 또는 업로드 파일 본문(md 본문 / docx 추출 텍스트). chat·upload source의 요약 입력이 된다 |
+| Source | `note`(메모) | 모든 intake 탭에 항상 존재하며 항상 요약① 컨텍스트로 동반된다(회사명 등). 저장 필드 세부(별도 컬럼 vs `raw_text` 병합)는 구현 소관 |
+| Source | `original_filename` | `source_channel=upload`의 업로드 원본 파일명(.md/.docx). 다른 채널이면 `null` |
 | Source | `status` | `received`, `summarizing`, `summarized`, `collection_failed`, `ignored`, `documented`, `archived`, `deleted` |
 | Source | `visible_in_inbox` | 기본 Inbox 목록 표시 여부. `documented`, `archived`, `deleted`는 기본 false |
 
@@ -333,7 +337,8 @@ Source Inbox 문서는 다음 내용을 넣지 않는다.
 
 - Slack URL과 페이지에서 직접 입력한 URL은 1차로 Source Inbox에만 저장한다.
 - 채팅④에서 push된 것은 `source_channel=chat`·`source_url=null`·`slack_message_ts=null`인 Source로 `received`에 저장한다. `raw_text`는 **push 시점까지의 채팅 대화 내용 전부(방안 포함)**이며 필수다(trim 후 non-empty). push 동작·endpoint·권한(staff·admin 단일 쓰기 액션)·대화 직렬화 형식은 AXKG-SPEC-006이 소유하고, 이 spec은 생성된 chat source의 데이터 계약과 이후 lifecycle을 소유한다. chat source는 URL이 없어 원문 수집 없이 `raw_text`가 요약 입력이 된다(AXKG-SPEC-012 User Note Fallback 경로 재사용). 요약 이후 흐름·분류 승인(admin)은 slack/manual과 동일하다.
-- 페이지에서 업로드한 md 파일은 `source_channel=upload`·`source_url=null`·`slack_message_ts=null`인 Source로 `received`에 저장한다. v1은 확장자 `.md`만 허용하고 그 외 형식은 저장하지 않고 `UNSUPPORTED_UPLOAD_TYPE`로 거부한다(source row를 만들지 않는 intake validation, 수집 실패와 무관). 업로드 md 본문을 `raw_text`(필수)로, 원본 파일명을 `original_filename`으로 보존한다. **업로드 md 본문 자체가 원문**이라 URL 수집을 스킵하고 `raw_text`가 곧 요약 입력이 된다 — chat의 User Note Fallback과 달리 fallback이 아니라 원문 그 자체다(AXKG-SPEC-012 adapter 대상 아님). 이 표면은 기존 수동 입력 표면의 확장이라 **admin 전용**이며 접근 경계 변경은 없다(SSOT AXKG-SPEC-008 소스 Inbox 표면 행에 포섭). 요약 이후 흐름·분류 승인(admin)은 slack/manual과 동일하다. 파일 크기 상한·저장 위치(DB vs 파일시스템)·md frontmatter 처리는 구현 소관이다(§7 OQ).
+- 페이지 intake는 **탭형 `[url | md | docx]` + 메모 필드(항상 존재)**다. url 탭=`source_channel=manual`, md·docx 탭=`source_channel=upload`. **메모(`note`)는 탭과 무관하게 항상 요약① 입력 컨텍스트로 함께 전달된다**(회사명 등) — url 탭에서는 원문 수집 실패 시 원문 대체(User Note Fallback, AXKG-SPEC-012)로도 쓰이지만 fallback 전용이 아니다. 분류가 `project`로 확정되면 이 메모의 회사명이 기존 `projects/{corp}/` 프로젝트 매칭에 쓰인다(AXKG-SPEC-014). 메모 저장 필드 세부는 구현 소관이다.
+- 페이지에서 업로드한 md·docx 파일은 `source_channel=upload`·`source_url=null`·`slack_message_ts=null`인 Source로 `received`에 저장한다. v1은 확장자 `.md`·`.docx`만 허용하고 그 외 형식은 저장하지 않고 `UNSUPPORTED_UPLOAD_TYPE`로 거부한다(source row를 만들지 않는 intake validation, 수집 실패와 무관). 원본 파일명을 `original_filename`으로 보존한다. **md는 본문 자체가 원문**이라 URL 수집을 스킵하고 `raw_text`가 곧 요약 입력이 된다(어댑터 대상 아님·원문 그 자체). **docx는 첨부 원본을 보관한 뒤 본문 텍스트만 추출**해 요약 입력으로 삼는다(AXKG-SPEC-012 `docx_text`, 표/이미지 파싱 계약 없음·구조화는 적응형 요약①). 이 표면은 기존 수동 입력 표면의 확장이라 **admin 전용**이며 접근 경계 변경은 없다(SSOT AXKG-SPEC-008 소스 Inbox 표면 행에 포섭). 요약 이후 흐름·분류 승인(admin)은 slack/manual과 동일하다. 파일 크기 상한·저장 위치(DB vs 파일시스템)·frontmatter 처리는 구현 소관이다(§7 OQ).
 - Slack intake는 슬래시 커맨드로 받는다. Slack이 등록된 Request URL(`POST /api/v1/slack/commands`, 등록 문자열과 그대로 일치)로 커맨드 payload를 POST한다. 이 경로는 토큰 로그인(AXKG-SPEC-008) 대상이 아니라 Slack signing secret 서명 검증으로 보호하며, 서버는 커맨드 이름과 무관하게 `text`의 URL로 동작한다.
 - 슬래시 커맨드 수신 시 3초 내 ephemeral ack("접수")를 반환하고, `trigger_id` 기반 합성 키로 더블서밋을 막는다. `text`에 유효한 URL이 없으면 사용법을 ephemeral로 안내하고 저장하지 않는다.
 - 접수 후 봇이 채널에 앵커 메시지를 post하고 그 `ts`를 source metadata에 저장한다. `summarized` 도달 시 앵커 스레드에 요약 결과를, `collection_failed` 시 실패 사유를 회신한다.
@@ -368,7 +373,10 @@ Source Inbox 문서는 다음 내용을 넣지 않는다.
 - [ ] chat source는 URL 원문 수집 없이 `raw_text`(대화 내용 전부)가 요약 입력이 되어 `summarized`에 도달한다.
 - [ ] 페이지에서 `.md` 파일을 업로드하면 `source_channel=upload`·URL 없이 md 본문(`raw_text`)과 원본 파일명(`original_filename`)을 담은 Source로 `received`에 저장되고, slack/manual과 동일한 요약→분류 lifecycle을 탄다.
 - [ ] upload source는 URL 수집을 스킵하고 업로드 md 본문 자체가 원문으로 요약 입력이 되어 `summarized`에 도달한다(fallback 아님).
-- [ ] `.md`가 아닌 파일 업로드는 `UNSUPPORTED_UPLOAD_TYPE`으로 거부되고 source가 생성되지 않는다.
+- [ ] intake 표면이 탭형 `[url | md | docx]` + 메모 필드(모든 탭 공통, 항상 존재)로 렌더된다.
+- [ ] docx 탭 업로드는 첨부 원본 보관 + 본문 텍스트만 추출(AXKG-SPEC-012 `docx_text`)해 요약 입력이 되고 slack/manual과 동일한 lifecycle을 탄다(구조화는 요약①).
+- [ ] 메모(`note`)는 수집 성공/실패와 무관하게 항상 요약① 입력 컨텍스트로 동반된다(회사명 등).
+- [ ] `.md`·`.docx`가 아닌 파일 업로드는 `UNSUPPORTED_UPLOAD_TYPE`으로 거부되고 source가 생성되지 않는다.
 - [ ] 업로드 표면은 admin 전용이며 접근 경계 변경이 없다(기존 소스 Inbox 표면 행에 포섭).
 - [ ] 저장된 Source에는 URL, Slack metadata, raw text, 수신 시각이 남는다.
 - [ ] Source Inbox 파일/preview는 AXKG-SPEC-003의 필수 frontmatter와 본문 섹션을 따른다.
@@ -398,4 +406,4 @@ Source Inbox 문서는 다음 내용을 넣지 않는다.
 - ~~요약 문서의 그래프 편입과 PARA 문서와의 관계(PLAN-009-T-013)~~ → **확정: 그래프 노드 아님**(2026-07-09 PLAN-009-T-015): 요약 문서(md)는 그래프 노드가 아니다 — 인덱스/retriever/`/graph/documents`에 편입되지 않고, 요약 문서 → PARA 지식 문서 lineage도 없다. 그래프 노드는 문서화 게이트가 산출하는 PARA 지식 문서(reference/permanent/baseline)뿐이다(SSOT AXKG-SPEC-005).
 - ~~요약 확정 후 재피드백/재분류 시 요약 문서 버전 갱신 흐름(PLAN-009-T-013)~~ → **확정: 현재 active 버전으로 overwrite**(2026-07-09 PLAN-009-T-015): 재피드백으로 요약 draft 버전이 바뀐 뒤 다시 확정([분류])하면 요약 문서 md는 **현재 active 버전으로 갱신(overwrite)**한다. 버전 히스토리는 DB `source_summary_revisions`가 박제하므로 md는 현재 최종본 하나만 유지한다(PARA 문서의 파일 supersede 모델과 달리 요약 md는 파일을 남기지 않고 덮어쓴다 — AXKG-SPEC-004).
 - Slack intake는 슬래시 커맨드 payload에서 URL과 metadata 중심으로 저장하고, Source Inbox는 PostgreSQL `sources` table로 관리한다.
-- (2026-07-14 PLAN-013-T-004) md 업로드 intake의 구현 미결: 업로드 파일 크기 상한, md 본문 저장 위치(DB `raw_text` vs 파일시스템 아티팩트), 업로드 md의 frontmatter 처리(보존·strip·요약 입력 반영 여부)는 계약에 박지 않고 구현 기본값으로 시작해 관찰 후 조정한다. md 외 포맷(pdf/docx 등)은 파싱 계층이 필요한 후속 확장으로 이번 라운드 제외(parking).
+- (2026-07-14 PLAN-013-T-004 / 2026-07-21 docx 편입) 파일 업로드 intake의 구현 미결: 업로드 파일 크기 상한, 본문 저장 위치(DB `raw_text` vs 파일시스템 아티팩트), 업로드 md/docx의 frontmatter 처리(보존·strip·요약 입력 반영 여부)는 계약에 박지 않고 구현 기본값으로 시작해 관찰 후 조정한다. **docx는 이번에 포함**(본문 텍스트 추출, AXKG-SPEC-012 `docx_text`)되며, pdf 등 나머지 포맷만 파싱 계층이 필요한 후속 확장으로 parking한다.

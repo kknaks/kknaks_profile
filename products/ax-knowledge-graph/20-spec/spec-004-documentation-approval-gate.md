@@ -6,7 +6,7 @@ status: stable
 product: ax-knowledge-graph
 version: 0.0.1
 created_at: 2026-07-07
-updated_at: 2026-07-10
+updated_at: 2026-07-21
 tags:
   - product/ax-knowledge-graph
   - doc/spec
@@ -19,6 +19,7 @@ links:
     - "[[decision-002-markdown-sot-postgres-storage|AXKG-DEC-002]]"
     - "[[decision-004-mvp-defaults-and-scope|AXKG-DEC-004]]"
     - "[[decision-005-ai-execution-assembly-and-link-context|AXKG-DEC-005]]"
+    - "[[decision-007-enterprise-project-destination-fanout|AXKG-DEC-007]]"
   specs:
     - "[[spec-001-curation-pipeline|AXKG-SPEC-001]]"
     - "[[spec-002-approval-gate-feedback-loop|AXKG-SPEC-002]]"
@@ -27,6 +28,7 @@ links:
     - "[[spec-007-ai-provider-settings|AXKG-SPEC-007]]"
     - "[[spec-010-document-template-management|AXKG-SPEC-010]]"
     - "[[spec-011-ai-execution-pipeline|AXKG-SPEC-011]]"
+    - "[[spec-014-enterprise-project-fanout|AXKG-SPEC-014]]"
   works:
     - "[[work-004-approval-gates|AXKG-WORK-004]]"
   releases: []
@@ -37,7 +39,7 @@ links:
 
 분류 게이트(AXKG-SPEC-001)에서 `project`/`area`/`resource`로 승인된 source를, 분류 게이트 바로 아래 인라인으로 열리는 **문서화 승인 게이트(③)**에서 destination별 AI 초안(frontmatter + 본문 + `up:`/`[[ ]]` 연결)과 그 초안에 **한 덩어리로 동반되는 파생지식**을 검토해 영구 문서로 확정하는 흐름을 보장한다. 게이트는 초안+파생지식을 **단일 단위**로 다루며, 개별 파생지식 승인 없이 게이트 레벨 `피드백`/`승인`으로만 처리한다.
 
-> `resource≡reference`: `resource`는 PARA 분류 라벨, `reference note`는 그 산출 노트 타입으로 같은 대상의 두 이름이다. 이 게이트는 destination-agnostic이며, reference는 `resource` destination의 한 경우다. 매핑: `resource→reference note`, `area→permanent note`, `project→product 문서(MVP는 baseline 후보만, decision/spec 후보는 post-MVP — AXKG-DEC-005)`, `archive→문서화 중단`.
+> `resource≡reference`: `resource`는 PARA 분류 라벨, `reference note`는 그 산출 노트 타입으로 같은 대상의 두 이름이다. 이 게이트는 destination-agnostic이며, reference는 `resource` destination의 한 경우다. 매핑: `resource→reference note`, `area→permanent note`, `project→회사 프로젝트 팬아웃(`projects/{corp}/`의 `origin/` 첨부 원본·`baseline/` 원본요약·`spec/` 기능정의서 3층 — AXKG-DEC-007, 상세 SSOT AXKG-SPEC-014)`, `archive→문서화 중단`.
 
 ## 1. Context
 
@@ -384,6 +386,17 @@ sources
                   -> document_edges
 ```
 
+### 기업 프로젝트 팬아웃과 기능 dedup (project destination — AXKG-SPEC-014 SSOT)
+
+`project`로 승인된 source(기업 AX 요구사항 docx)의 문서화 apply는 단일 `create_project_baseline` 한 장이 아니라 **회사 프로젝트 `projects/{corp}/`(origin·baseline·spec 3층)로 다중 팬아웃**된다(AXKG-DEC-007). 이 게이트는 기존 파생지식 모델(`main_document` + `derived_suggestions[]`)을 그대로 재사용하며, 승인 시 apply는 아래로 확장된다:
+
+- **팬아웃(main + derived)**: `main_document` = 원본요약 → `projects/{corp}/baseline/{원본요약}.md` 1장, `derived_suggestions[]` = 기능별 초안 → `projects/{corp}/spec/{기능}.md` N장(요구 1항목 = 기능정의서 1장). 신규 기능은 `create_feature_spec`, 같은 `{corp}`의 기존 기능과 매칭되면 `supplement_existing_feature`. 위 Apply Matrix·4층 표의 `project → baseline(projects/)` 행은 project destination에서 이 3층 구조로 확장된 것이다(단일 한 장 전제 대체). 산출 템플릿은 `project_source_summary`(원본요약)·`project_feature_spec`(기능정의서) 2종(AXKG-SPEC-010).
+- **origin 보관**: 첨부 docx 원본 파일은 요약 md와 별도로 `projects/{corp}/origin/`에 손대지 않은 raw로 보관한다.
+- **기능 dedup(부서 무관)**: 같은 `{corp}` 안에서 같은 기능이 다른 docx로 다시 들어오면 신규 문서를 만들지 않고 기존 `spec/{기능}.md` 하나로 통합·보강한다 — 파생지식 `supplement_existing_feature`(수정 전문 overwrite) 경로를 재사용한다. 기능은 프로젝트의 기능 카탈로그이며 요청부서·요청 이력을 붙이지 않는다. 매칭이 모호하면 신규 spec으로 안전 폴백한다. dedup은 같은 `{corp}` 경계 안으로 한정하며 회사를 넘는 전역 정규화는 없다(AXKG-DEC-007).
+- **map.md 자동 재생성**: 문서 apply와 **같은 승인 단위 안에서** 해당 폴더 `baseline/map.md`·`spec/map.md`(MOC)를 자동 재생성한다(문서 목록 반영). 부분 갱신으로 목록이 문서 실재와 어긋나지 않는다.
+
+이 게이트 apply 확장의 상세 UX·API·Case Matrix·Data Contract·팬아웃 메커니즘은 **AXKG-SPEC-014가 SSOT**이며 여기서는 재서술하지 않는다 — 이 spec은 project destination에서 문서화 게이트 apply가 origin 보관·main+derived 팬아웃·기능 dedup·map.md 재생성으로 확장된다는 계약 수준만 규정한다. `area`/`resource`/`archive` destination은 기존 단일 산출(area→permanent, resource→reference, archive→문서화 중단)을 그대로 유지한다.
+
 ### 경로 결정 주체 (AI=파일명/stem · 시스템=디렉토리 조립, 2026-07-10 PLAN-009-T-040)
 
 경로의 **디렉토리는 AI가 결정하지 않는다**. AI 출력(`output_schema` = `documentation_gate` v3)은 파일명/stem만 산출하고, 디렉토리 조립과 최종 `target_path`는 백엔드 빌더가 소유한다. AI가 `target_path` 디렉토리를 확률적으로 오생성하던 문제(라이브 실측 2026-07-10: `areas/`·`concepts/` 오생성 2회 — 허용 경로는 `resources/`·`permanent/`·`permanent/concepts/`·`projects/`, AXKG-SPEC-005 Path Convention)를 계약 수준에서 닫는다.
@@ -444,7 +457,7 @@ concept 새 버전이 승인되면, 그 concept를 구성 개념으로 참조하
 - 초안 생성과 파생지식 후보 생성은 AXKG-SPEC-007의 open-kknaks provider 설정을 사용한다.
 - 초안 생성의 입력 컨텍스트는 AXKG-SPEC-011의 실행 계약을 따른다: 연결 후보 컨텍스트 2단(Graph RAG retriever top-N + documents index 스냅샷)이 항상 주입되고, 활성 템플릿(AXKG-SPEC-010)+프롬프트(AXKG-SPEC-009)+output_schema를 백엔드 context builder가 조립한다. AI가 만드는 `up:`/`[[ ]]`와 `derived_suggestions.target_document_id`는 이 컨텍스트 안에서만 생성된다.
 - 초안과 파생지식 후보는 분류 승인 시 함께 생성된다(별도 수동 생성 단계 없음).
-- destination별 초안 형태는 `resource→reference note`, `area→permanent note`, `project→product 문서(MVP는 baseline 후보만)`다. 초안 `document_draft.document_type` 값은 각각 `reference`/`permanent`/`baseline`이다(AXKG-SPEC-005 document_type 어휘, `product` 값은 쓰지 않음 — AXKG-DEC-005).
+- destination별 초안 형태는 `resource→reference note`, `area→permanent note`, `project→회사 프로젝트 팬아웃(`projects/{corp}/`의 origin·baseline·spec 3층 — 원본요약 main + 기능정의서 derived, AXKG-DEC-007·AXKG-SPEC-014)`다. reference/permanent 초안 `document_draft.document_type` 값은 각각 `reference`/`permanent`다(AXKG-SPEC-005 document_type 어휘, `product` 값은 쓰지 않음 — AXKG-DEC-005). project 팬아웃 산출물(원본요약 `baseline`·기능정의서 `feature_spec`)의 document_type·구조·팬아웃 메커니즘 세부는 AXKG-SPEC-014가 SSOT다(위 기업 프로젝트 팬아웃 절).
 - `승인` 전까지 문서는 확정 문서가 아니다. `승인` 시 초안이 적용되어 문서가 생성되고 `up:`/`[[ ]]`가 그래프 연결로 반영된다.
 - `승인` 시 실행되는 변경은 `ApplyPlan`으로 표현한다. ApplyPlan은 DB action과 Markdown file action으로 나뉜다.
 - `file_actions`는 `create_markdown`(신규 문서)과 `overwrite_markdown`(기존 문서 전문 교체)을 구분한다. patch/부분 업데이트 액션은 두지 않는다(수정=전문 overwrite, 2026-07-09 PLAN-009-T-018).
