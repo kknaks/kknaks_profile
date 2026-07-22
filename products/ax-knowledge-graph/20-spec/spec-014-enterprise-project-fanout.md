@@ -1,7 +1,7 @@
 ---
 type: spec
 id: AXKG-SPEC-014
-title: "기업 프로젝트 팬아웃: 회사별 origin·baseline·spec 문서화와 기능 dedup"
+title: "기업 프로젝트 팬아웃: 회사 루트·origin·baseline·spec·context 문서화와 기능 dedup"
 status: stable
 product: ax-knowledge-graph
 version: 0.0.1
@@ -16,6 +16,7 @@ links:
     - "[[baseline-002-enterprise-requirement-project-destination|AXKG-BL-002]]"
   decisions:
     - "[[decision-007-enterprise-project-destination-fanout|AXKG-DEC-007]]"
+    - "[[decision-009-company-root-and-context|AXKG-DEC-009]]"
     - "[[decision-005-ai-execution-assembly-and-link-context|AXKG-DEC-005]]"
     - "[[decision-001-para-pipeline-and-approval-gates|AXKG-DEC-001]]"
   specs:
@@ -32,7 +33,7 @@ links:
 
 # 기업 프로젝트 팬아웃: 회사별 origin·baseline·spec 문서화와 기능 dedup
 
-기업 AX 요구사항 docx가 `project`로 분류되면, flat 한 장이 아니라 **회사 프로젝트 폴더 `projects/{corp}/`** 안의 `origin/`(첨부 원본)·`baseline/`(원본요약 1장)·`spec/`(기능정의서 N장, 요구 1항목=1장)으로 팬아웃되고, 같은 기능이 다른 docx로 다시 들어오면 신규 spec 없이 **기존 `spec/{기능}.md` 하나로 통합·보강(정규화 = 기능 dedup, 부서 무관)** 됨을 보장한다.
+기업 AX 요구사항 docx가 `project`로 분류되면, flat 한 장이 아니라 **회사 프로젝트 폴더 `projects/{corp}/`** 안의 `origin/`(첨부 원본)·`baseline/`(원본요약 1장)·`spec/`(기능정의서 N장, 요구 1항목=1장)으로 팬아웃되고, 같은 기능이 다른 docx로 다시 들어오면 신규 spec 없이 **기존 `spec/{기능}.md` 하나로 통합·보강(정규화 = 기능 dedup, 부서 무관)** 됨을 보장한다. 또한 회사 프로젝트에는 **회사 루트 문서 `{corp}.md`(회사당 1개 앵커)** 와 **회사 배경지식 `context/` 층**이 있어, 업로드된 docx가 요구사항이면 baseline+spec으로, 회사 context(조직·업무플로우 등)면 `context/`로 분기되며, **모든 산출이 `up:` 체인으로 회사 루트에 수렴**한다(AXKG-DEC-009).
 
 > 이 spec은 AXKG-DEC-007의 결정을 **외부 계약**(무엇을 보장하나)으로 내린 문서다. docx 요약①·PARA 분류②·문서화 승인 게이트③의 실행 계약은 각각 AXKG-SPEC-011/001/004가 SSOT이며 여기서 재정의하지 않는다 — 이 spec은 그 흐름 위에 얹히는 **project destination 팬아웃·기능 dedup·회사 프로젝트 스캐폴드**의 외부 계약만 규정한다.
 
@@ -42,9 +43,9 @@ links:
 
 ### Meta
 
-- Decision reference: AXKG-DEC-007(회사별 팬아웃·기능 dedup·slug·map.md 6개 결정), AXKG-DEC-005(4층 지식 아키텍처·파생지식 main+derived·연결 후보 컨텍스트·문서 lifecycle·요약① 적응형), AXKG-DEC-001(PARA 파이프라인·승인 게이트)
+- Decision reference: AXKG-DEC-007(회사별 팬아웃·기능 dedup·slug·map.md 6개 결정), AXKG-DEC-009(회사 루트 `{corp}.md`·context 층·요구/context 분기·up: 회사 루트 체인), AXKG-DEC-005(4층 지식 아키텍처·파생지식 main+derived·연결 후보 컨텍스트·문서 lifecycle·요약① 적응형), AXKG-DEC-001(PARA 파이프라인·승인 게이트)
 - Baseline reference: AXKG-BL-002
-- Domain note: `Corp Project`(회사 프로젝트, `{corp}` slug로 식별), `Origin`(첨부 docx **원본 파일** — 손대지 않은 raw, `projects/{corp}/origin/`), `Project Baseline`(원본요약 — docx를 요약①이 정리한 md, document_type `baseline`), `Project Feature Spec`(기능정의서 — 기능 단위 문서, 요구 1항목=1장, document_type `feature_spec`), `Feature Dedup`(기능 정규화 = 같은 기능 재유입 시 신규 문서 없이 기존 spec 하나로 통합·보강, **부서 무관**), `Folder Map`(`map.md` MOC = 폴더 목차)
+- Domain note: `Corp Project`(회사 프로젝트, `{corp}` slug로 식별), `Company Root`(회사 루트 문서 `projects/{corp}/{corp}.md` — 회사당 1개 안정적 앵커, 모든 산출의 `up:` 수렴점, document_type `company`(기본; 확정은 AXKG-DEC-009 OQ)), `Origin`(첨부 docx **원본 파일** — 손대지 않은 raw, `projects/{corp}/origin/`), `Project Baseline`(원본요약 — 요구 docx를 요약①이 정리한 md, document_type `baseline`), `Project Feature Spec`(기능정의서 — 기능 단위 문서, 요구 1항목=1장, document_type `feature_spec`), `Company Context`(회사 배경지식 문서 `projects/{corp}/context/{문서}.md` — 조직 org·업무플로우 vacation_flow 등, 팬아웃 안 함), `Feature Dedup`(기능 정규화 = 같은 기능 재유입 시 신규 문서 없이 기존 spec 하나로 통합·보강, **부서 무관**), `Folder Map`(`map.md` MOC = 폴더 목차)
 - Placement: 회사 프로젝트 생성은 "프로젝트 추가" 화면, 팬아웃 결과는 문서화 승인 게이트(③) 승인 후 지식 볼트 `projects/{corp}/` 트리에 나타난다.
 - 접근 경계: 문서화 게이트·큐레이션 표면은 admin 전용이다(SSOT는 AXKG-SPEC-008이며 여기서 재서술하지 않는다). 확정 문서 트리 열람 경계는 AXKG-SPEC-013/008을 따른다.
 - Corp 진입점(회사를 어떻게 아는가): 회사(`{corp}`)는 사용자가 "프로젝트 추가"로 **수동 생성**해 두고, intake 메모(AXKG-SPEC-003, 항상 요약 컨텍스트)에 적은 **회사명**이 분류 `project` 확정 시 그 기존 `projects/{corp}/`에 매칭돼 팬아웃 대상 corp가 된다. 업로드·분류가 프로젝트를 자동 생성하지 않는다.
@@ -54,12 +55,16 @@ links:
 
 기업은 AX 전환 요구사항을 docx로 준다 — 한 회사가 기능 여러 개를 한 번에, 여러 docx로 나눠, 같은 기능을 반복해서 요구한다. 기존 `project` destination은 분류 시 `projects/{파일명}.md` flat 한 장만 만들어 회사·기능 구분과 반복 요구의 정리를 담지 못했다(AXKG-BL-002 Context). 이 spec은 회사라는 컨테이너, 기능이라는 단위, 같은 기능의 반복 유입을 하나로 합치는 dedup을 제공해, "이 회사가 실제로 뭘 요구했나(원본요약)"와 "그게 어떤 기능들로 쪼개지나(기능정의서)"를 분리 추적하고 회사 안에서 재사용 가능한 **기능 카탈로그**로 키운다. 기능은 특정 부서의 소유가 아니라 프로젝트의 기능 카탈로그다 — 어느 부서가 적었는지로 기능을 빼거나 가르지 않는다. **corp 진입점**: 회사는 사용자가 "프로젝트 추가"로 미리 수동 스캐폴딩해 두고(업로드/분류와 별개), intake 메모에 적은 회사명이 분류 `project` 확정 시 그 기존 `projects/{corp}/`에 매칭돼 팬아웃 대상 corp를 정한다.
 
+**회사 앵커·배경지식(AXKG-DEC-009)**: 요구 docx마다 baseline(원본요약)이 따로 생겨 서로 안 묶이는 문제를 **회사 루트 문서 `{corp}.md`(회사당 1개 앵커)** 로 해결한다 — 모든 산출(baseline·spec·context)이 `up:` 체인으로 회사 루트에 수렴해 회사 단위로 묶인다. 또한 회사의 배경지식(조직 org·업무플로우 vacation_flow 등)은 요구사항이 아니므로 팬아웃하지 않고 `context/` 층에 따로 담는다 — project 분류가 업로드 docx를 **요구사항 vs 회사 context 2종으로 하위 분기**한다.
+
 ### Scope
 
 In scope:
 
-- **회사 프로젝트 수동 생성(독립 스캐폴딩)** — "프로젝트 추가"에서 사용자 입력 회사명을 slugify(`더에스씨→the-sc`)해 `projects/{corp}/{origin,baseline,spec}/` + `baseline/map.md`·`spec/map.md` 스캐폴드를 만든다. 이는 **업로드/분류와 별개인 수동·독립 디렉토리 생성 작업**이며 AI가 프로젝트를 자동 생성하지 않는다. slug 충돌 시 사용자 확인(기존 사용/`{corp}-2` 신규 분기).
+- **회사 프로젝트 수동 생성(독립 스캐폴딩) + 회사 루트 문서** — "프로젝트 추가"에서 사용자가 회사 **간략 정보**(회사명·도메인·한 줄 소개 등)를 입력하면 회사명을 slugify(`더에스씨→the-sc`)해 `projects/{corp}/{origin,baseline,spec,context}/` 스캐폴드와 **회사 루트 문서 `projects/{corp}/{corp}.md`**(회사당 1개 앵커)를 만든다. 이는 **업로드/분류와 별개인 수동·독립 작업**이며 AI가 프로젝트를 자동 생성하지 않는다. slug 충돌 시 사용자 확인(기존 사용/`{corp}-2` 신규 분기).
 - **corp 바인딩 = intake 메모 회사명** — intake 메모(AXKG-SPEC-003, 항상 요약 컨텍스트)에 적은 회사명이 분류 `project` 확정 시 기존(수동 생성) `projects/{corp}/`와 매칭돼 팬아웃 대상 corp를 정한다. 매칭 프로젝트가 없는 경우의 처리는 이번 범위 밖(사용자가 프로젝트를 먼저 만들어두는 전제).
+- **project 하위 분기 = 요구사항 vs 회사 context(AXKG-DEC-009)** — 업로드 docx(메모에 회사명 + 성격 힌트)를 요약①/분류가 요구사항이냐 회사 배경(context)이냐로 판단한다. 요구사항 → baseline+spec 팬아웃, 회사 context(org·vacation_flow 등) → `projects/{corp}/context/{문서}.md` 단일 문서(팬아웃 안 함).
+- **up: 회사 루트 체인(AXKG-DEC-009)** — 문서 생성 시 corp 루트 stem을 주입해 `up:` frontmatter + 본문 `[[{corp}]]`를 자동 생성한다: `baseline`·`context` → `up: [{corp}]`, `spec` → `up: [원본요약]`(원본요약이 다시 `up: [{corp}]`) → 그래프에서 회사 단위로 수렴.
 - **origin(첨부 원본) 보관** — 첨부 docx **원본 파일**은 요약 md와 별도로 `projects/{corp}/origin/`에 손대지 않은 raw로 보관한다.
 - **docx 업로드 → project 팬아웃** — inbox docx 업로드(메모에 회사명) → 요약①(적응형, 기능별 줄글) → PARA `project` 분류(메모 회사명으로 corp 매칭) → 문서화 게이트 승인 시 `baseline/{원본요약}.md` 1장 + `spec/{기능}.md` N장으로 팬아웃. docx는 텍스트 추출만, 기능 구조화는 요약①.
 - **승인 게이트 팬아웃 메커니즘(main+derived 재사용)** — 게이트가 초안 revision 1개에 `main_document`(원본요약) + `derived_suggestions[]`(기능별 초안: 신규 `create_feature_spec` / dedup 매칭 `supplement_existing_feature`)를 담아 한 화면에서 검토·승인하게 한다(§4 팬아웃 메커니즘).
@@ -84,9 +89,11 @@ Out of scope:
 
 ```text
 +-----------------------------------------------------------+
-| 프로젝트 추가                                              |
+| 프로젝트 추가 (회사 간략정보 → 회사 루트 {corp}.md 생성)    |
 +-----------------------------------------------------------+
-|  회사명  [ 더에스씨            ]                           |
+|  회사명    [ 더에스씨          ]                           |
+|  도메인    [ the-sc.co.kr      ]  (선택)                   |
+|  한 줄 소개 [ 성형외과 네트워크  ]  (선택)                  |
 |  slug 미리보기:  the-sc                                    |
 |  ( 충돌 시 )  ⚠ 이미 the-sc 프로젝트가 있습니다            |
 |              [ 기존에 추가 ]   [ 새 프로젝트로 (the-sc-2) ] |
@@ -96,23 +103,27 @@ Out of scope:
 +---------------------+-------------------------------------+
 | Projects 트리       | 선택 문서                            |
 | ▾ the-sc/           |  spec/shared-calendar-worklog.md     |
-|   ▾ origin/         |  # 부서 공유 캘린더 및 업무일지        |
-|     the-sc-req.docx |  > 한 줄 정의 …                      |
+|   the-sc.md (루트)  |  # 부서 공유 캘린더 및 업무일지        |
+|   ▾ origin/         |  > 한 줄 정의 …                      |
+|     the-sc-req.docx |  up: [[the-sc]]  ← 회사 루트 수렴     |
 |   ▾ baseline/       |  ## 3. 유저 플로우 (표)              |
 |     the-sc-요약.md   |  ## 8. 연결  [[the-sc-원본요약]] …    |
 |   ▾ spec/           |  <본문 렌더>                         |
 |     shared-cal…md   |                                     |
 |     hospital-rev…md |                                     |
+|   ▾ context/        |                                     |
+|     org.md          |                                     |
+|     vacation_flow.md|                                     |
 |   (map.md 자동)     |                                     |
 +---------------------+-------------------------------------+
 ```
 
-### U-1. 프로젝트 추가 — 회사명 입력 · slug 미리보기 (수동·독립 스캐폴딩)
+### U-1. 프로젝트 추가 — 회사 간략정보 입력 · slug 미리보기 (수동·독립 스캐폴딩 + 회사 루트 생성)
 
 - **상태**: 입력 대기 / 입력 중(slug 실시간 미리보기) / 충돌 감지 / 생성 중 / 생성 완료 / 권한없음(admin 아님)
-- **문구**: 라벨 "회사명", placeholder "회사명을 입력하세요(예: 더에스씨)", 미리보기 "slug 미리보기: `{corp}`". 빈 입력 시 "회사명을 입력해 주세요."
+- **문구**: 라벨 "회사명"(필수), "도메인"·"한 줄 소개"(선택, 회사 간략정보), placeholder "회사명을 입력하세요(예: 더에스씨)", 미리보기 "slug 미리보기: `{corp}`". 빈 입력 시 "회사명을 입력해 주세요."
 - **CTA**: `만들기`(회사명 trim 후 non-empty일 때 활성), `취소`
-- **기대 결과**: 충돌이 없으면 `projects/{corp}/{origin,baseline,spec}/` + 각 `map.md` 스캐폴드가 생성되고 Projects 트리에 `{corp}/`가 나타난다. 충돌이면 U-2 확인 분기로 전환. 이 작업은 **수동·독립 디렉토리 스캐폴딩**이다 — intake(탭+메모)·docx 업로드·분류와 분리되며, 업로드·분류가 프로젝트를 자동 생성하지 않는다. 이후 docx가 이 회사로 팬아웃되려면 intake 메모의 회사명이 이 `{corp}`에 매칭돼야 한다.
+- **기대 결과**: 충돌이 없으면 `projects/{corp}/{origin,baseline,spec,context}/` + 각 `map.md` 스캐폴드와 **회사 루트 문서 `projects/{corp}/{corp}.md`**(입력한 회사 간략정보로 채운 회사당 1개 앵커)가 생성되고 Projects 트리에 `{corp}/`가 나타난다. 충돌이면 U-2 확인 분기로 전환. 이 작업은 **수동·독립 스캐폴딩**이다 — intake(탭+메모)·docx 업로드·분류와 분리되며, 업로드·분류가 프로젝트를 자동 생성하지 않는다. 이후 docx가 이 회사로 팬아웃되려면 intake 메모의 회사명이 이 `{corp}`에 매칭돼야 한다.
 
 ### U-2. slug 충돌 확인 모달
 
@@ -124,9 +135,9 @@ Out of scope:
 ### U-3. Corp Project 트리 뷰
 
 - **상태**: 정상(문서 있음) / 빈 폴더(스캐폴드만, 문서 0) / 로딩 / 권한없음
-- **문구**: `{corp}/` 아래 `origin/`·`baseline/`·`spec/` 하위 트리와 각 항목명(origin=첨부 원본 파일, baseline=원본요약, spec=기능정의서). `map.md`는 자동 생성 항목으로 표시.
-- **CTA**: 트리 노드 선택 → 우측 렌더(baseline/spec은 Markdown 본문 렌더, origin은 첨부 원본 — 읽기/다운로드, 열람 경계는 AXKG-SPEC-013/008)
-- **기대 결과**: `{corp}` 프로젝트의 첨부 원본(origin)·원본요약(baseline)·기능정의서(spec) 목록을 한 화면에서 조망하고, 선택 문서의 본문을 읽는다. project 층위는 `origin/`+`baseline/`+`spec/` 3층만이며 area/resource는 이 트리에 나타나지 않는다(전역 PARA 흐름 그대로, AXKG-DEC-007 D3).
+- **문구**: `{corp}/` 최상위에 **회사 루트 `{corp}.md`**, 그 아래 `origin/`·`baseline/`·`spec/`·`context/` 하위 트리와 각 항목명(company root=회사 앵커, origin=첨부 원본 파일, baseline=원본요약, spec=기능정의서, context=회사 배경지식). `map.md`는 자동 생성 항목으로 표시.
+- **CTA**: 트리 노드 선택 → 우측 렌더(`{corp}.md`·baseline·spec·context는 Markdown 본문 렌더, origin은 첨부 원본 — 읽기/다운로드, 열람 경계는 AXKG-SPEC-013/008)
+- **기대 결과**: `{corp}` 프로젝트의 회사 루트(`{corp}.md`)·첨부 원본(origin)·원본요약(baseline)·기능정의서(spec)·회사 배경지식(context) 목록을 한 화면에서 조망하고, 선택 문서의 본문을 읽는다. 모든 문서는 `up:` 체인으로 회사 루트(`{corp}.md`)에 수렴한다. area/resource는 이 트리에 나타나지 않는다(전역 PARA 흐름 그대로, AXKG-DEC-007 D3).
 
 ### U-4. 팬아웃 게이트 결과 (문서화 게이트 승인 후)
 
@@ -146,14 +157,21 @@ Out of scope:
 
 ### S-1. Admin — 회사 첫 요구(프로젝트 신규 생성 + 팬아웃)
 
-1. admin이 "프로젝트 추가"에서 회사명 "더에스씨"를 입력한다(수동·독립 스캐폴딩). 시스템이 실시간으로 slug `the-sc`를 미리보기로 보여준다(U-1).
-2. `the-sc`와 충돌하는 기존 프로젝트가 없으므로 `만들기` → `projects/the-sc/{origin,baseline,spec}/` + 각 `map.md` 스캐폴드가 생성된다. 이 단계는 docx와 무관한 디렉토리 생성이다.
+1. admin이 "프로젝트 추가"에서 회사 간략정보(회사명 "더에스씨" + 도메인·한 줄 소개)를 입력한다(수동·독립 스캐폴딩). 시스템이 실시간으로 slug `the-sc`를 미리보기로 보여준다(U-1).
+2. `the-sc`와 충돌하는 기존 프로젝트가 없으므로 `만들기` → `projects/the-sc/{origin,baseline,spec,context}/` + 각 `map.md` 스캐폴드와 **회사 루트 `projects/the-sc/the-sc.md`**(입력 간략정보로 채운 앵커)가 생성된다. 이 단계는 docx와 무관한 디렉토리·앵커 생성이다.
 3. admin이 회사 요구 docx를 inbox에 업로드한다(`source_channel=upload`, docx 탭 — AXKG-SPEC-003 intake). **이때 intake 메모에 회사명("더에스씨")을 적는다**(항상 요약 컨텍스트로 동반). 첨부 원본은 손대지 않은 raw로 보관 대상이 되고(→ `origin/`), 어댑터는 docx 본문 텍스트만 추출한다(AXKG-SPEC-012, 텍스트 추출 경로).
 4. 요약①이 원문 구조를 따라 기능별 줄글(기능 1·2·3…)로 적응형 요약을 만든다(AXKG-SPEC-011 ①, AXKG-DEC-005 A). 이 산출물이 `baseline/{원본요약}.md`의 내용이 된다.
 5. 분류②에서 `project` destination으로 승인되면, **메모의 회사명("더에스씨")이 앞서 만든 기존 `projects/the-sc/`에 매칭돼 팬아웃 대상 corp가 `the-sc`로 정해지고**, 그 아래 문서화 승인 게이트(③)가 열린다(AXKG-SPEC-001/004).
 6. 게이트가 초안 revision 1개를 낸다 — `main_document` = 원본요약(→ `baseline/`), `derived_suggestions[]` = 기능별 초안 N개(→ `spec/`, 요구 1항목=1장, 전부 신규이므로 `create_feature_spec`). 각 기능 초안의 `## 8. 연결`에는 AI가 retriever + documents index로 훑은 ax-graph 기존 역량 차용 링크(예: `[[graph-chat]]`)가 들어간다. admin은 한 화면에서 원본요약 + N개 기능 초안 + 차용 링크를 함께 검토한다(U-4).
-7. admin이 게이트 `승인`을 누르면 같은 승인 단위 안에서 origin 원본 보관 + `baseline/{원본요약}.md` + `spec/{기능}.md` N장 생성 + `baseline/map.md`·`spec/map.md` 자동 재생성 + 그래프 엣지 갱신이 일어난다.
-8. Projects 트리(U-3)에 `the-sc/`와 그 origin/baseline/spec 문서들이 나타난다.
+7. admin이 게이트 `승인`을 누르면 같은 승인 단위 안에서 origin 원본 보관 + `baseline/{원본요약}.md` + `spec/{기능}.md` N장 생성 + `baseline/map.md`·`spec/map.md` 자동 재생성 + 그래프 엣지 갱신이 일어난다. 생성된 baseline은 `up: [the-sc]`(회사 루트), 각 spec은 `up: [원본요약]`으로 배선돼 **모두 회사 루트 `the-sc.md`에 수렴**한다(AXKG-DEC-009).
+8. Projects 트리(U-3)에 `the-sc/`(루트 `the-sc.md` 포함)와 그 origin/baseline/spec 문서들이 나타나고, 그래프에서 회사 단위로 묶인다.
+
+### S-1b. Admin — 회사 배경지식(context) docx 업로드
+
+1. admin이 회사 배경 docx(예: 조직도·휴가 플로우)를 inbox에 업로드하고 **intake 메모에 회사명 + 성격 힌트**("SC 회사 정보야")를 적는다(AXKG-SPEC-003).
+2. 요약①/분류가 메모 힌트 + 내용으로 이 docx를 **요구사항이 아니라 회사 context**로 판정한다(AXKG-DEC-009 Decision 2, project 하위 분기).
+3. 첨부 원본은 `projects/the-sc/origin/`에 raw 보관되고(요구/context 무관 공통), 산출물은 **팬아웃 없이** `projects/the-sc/context/{문서}.md` 단일 문서(예: `org.md`·`vacation_flow.md`)로 생성된다.
+4. context 문서는 `up: [the-sc]`(회사 루트)로 배선돼 회사 루트에 수렴한다. 기능정의서로 쪼개지 않는다(배경지식은 기능 팬아웃 대상이 아님).
 
 ### S-2. Admin — 같은 기능이 다른 docx로 다시 들어옴(기능 dedup·보강, 부서 무관)
 
@@ -185,9 +203,9 @@ Out of scope:
 | Method | Path | 요약 | 권한 |
 |---|---|---|---|
 | GET | `/projects:slug-preview?name=` | 입력 회사명 → slug 미리보기 + 충돌 여부 반환 | admin |
-| POST | `/projects` | 회사 프로젝트 스캐폴드(`{corp}/{origin,baseline,spec}/` + 각 map.md) 생성. 충돌 시 `on_conflict`로 합류/신규 분기 | admin |
+| POST | `/projects` | 회사 간략정보(회사명·도메인·한 줄 소개)로 회사 프로젝트 스캐폴드(`{corp}/{origin,baseline,spec,context}/` + 각 map.md) + 회사 루트 `{corp}.md` 생성. 충돌 시 `on_conflict`로 합류/신규 분기 | admin |
 | GET | `/projects` | 회사 프로젝트 목록(트리 루트) 조회 | admin |
-| GET | `/projects/{corp}` | 한 회사 프로젝트의 `origin/`·`baseline/`·`spec/` 트리와 문서 목록 조회 | admin |
+| GET | `/projects/{corp}` | 한 회사 프로젝트의 `{corp}.md`·`origin/`·`baseline/`·`spec/`·`context/` 트리와 문서 목록 조회 | admin |
 
 - docx 업로드는 별도 신규 엔드포인트를 두지 않고 AXKG-SPEC-003 inbox 업로드(`source_channel=upload`, docx 확장 허용)를 재사용한다.
 - **팬아웃과 기능 dedup은 별도 API가 없다** — 기존 문서화 승인 게이트(③)의 `POST /gates/{gate_id}/approve`(AXKG-SPEC-004/002 공통 게이트 API) apply 결과로 실행된다. project destination의 apply가 단일 baseline 한 장 대신 origin 보관 + `main_document`(baseline) + `derived_suggestions[]`(spec N) 팬아웃으로 확장된 것이다.
@@ -210,8 +228,8 @@ project로 분류된 source의 문서화 승인 게이트는 ax-graph 기존 **�
 ### Request / Response
 
 - `GET /projects:slug-preview?name=더에스씨` → `{ "slug": "the-sc", "conflict": false }` (또는 `conflict: true`이면 기존 프로젝트 존재).
-- `POST /projects` body → `{ "name": "더에스씨", "on_conflict": "merge" | "create_new" | null }`. 충돌 없으면 `on_conflict` 불요. 성공 → `{ "slug": "the-sc", "created": true }`(신규) / `{ "slug": "the-sc", "merged": true }`(합류) / `{ "slug": "the-sc-2", "created": true }`(suffix 신규).
-- `GET /projects/{corp}` → `origin`·`baseline`·`spec` 각 폴더의 항목 목록(문서명 요지). 트리·본문 렌더 계약은 AXKG-SPEC-013.
+- `POST /projects` body → `{ "name": "더에스씨", "domain": "the-sc.co.kr", "intro": "성형외과 네트워크", "on_conflict": "merge" | "create_new" | null }`(`domain`/`intro`는 선택 회사 간략정보 → 회사 루트 `{corp}.md` 본문에 반영). 충돌 없으면 `on_conflict` 불요. 성공 → `{ "slug": "the-sc", "created": true }`(신규) / `{ "slug": "the-sc", "merged": true }`(합류) / `{ "slug": "the-sc-2", "created": true }`(suffix 신규).
+- `GET /projects/{corp}` → `{corp}.md`(회사 루트) + `origin`·`baseline`·`spec`·`context` 각 폴더의 항목 목록(문서명 요지). 트리·본문 렌더 계약은 AXKG-SPEC-013.
 
 긴 payload schema는 내부 구현/후속 work 소관이며 여기서는 계약 필드 요지만 둔다.
 
@@ -258,19 +276,22 @@ sequenceDiagram
         FE->>Admin: 확인 모달(합류 / 새 프로젝트)
         Admin->>FE: on_conflict 선택
     end
-    FE->>BE: POST /projects (name, on_conflict?)
-    BE->>Vault: {corp}/{origin,baseline,spec}/ + map.md 스캐폴드 (수동·독립)
-    Note over Admin,Vault: 위 프로젝트 추가는 docx와 별개인 수동 스캐폴딩
-    Admin->>BE: docx inbox 업로드 (source_channel=upload, 메모=회사명)
-    BE->>AI: 텍스트 추출(SPEC-012) → 요약①(적응형 기능별 줄글, SPEC-011; 메모 동반)
-    AI-->>BE: 원본요약 + 기능 목록
+    FE->>BE: POST /projects (회사 간략정보, on_conflict?)
+    BE->>Vault: {corp}/{origin,baseline,spec,context}/ + map.md 스캐폴드 + 회사 루트 {corp}.md (수동·독립)
+    Note over Admin,Vault: 위 프로젝트 추가는 docx와 별개인 수동 스캐폴딩·앵커 생성
+    Admin->>BE: docx inbox 업로드 (source_channel=upload, 메모=회사명+성격 힌트)
+    BE->>AI: 텍스트 추출(SPEC-012) → 요약①(적응형, SPEC-011; 메모 동반)
     BE->>BE: 분류②(project) → 메모 회사명으로 기존 projects/{corp}/ 매칭
-    BE->>AI: 문서화 초안 (main_document + derived_suggestions[])
-    Note over AI: 기존 기능 매칭 → create_feature_spec / supplement_existing_feature<br/>연결 후보 컨텍스트로 차용 링크 제안
-    AI-->>BE: main=원본요약 + derived=기능 초안 N (신규/보강)
-    Admin->>BE: 문서화 게이트 approve (SPEC-004)
-    BE->>Vault: origin 원본 보관 + baseline/{원본요약}.md + spec/{기능}.md N장 생성·보강
-    BE->>Vault: baseline/map.md · spec/map.md 자동 재생성 + 그래프 엣지 갱신
+    alt 요구사항
+        BE->>AI: 문서화 초안 (main_document 원본요약 + derived_suggestions[] 기능 N)
+        Note over AI: create_feature_spec / supplement_existing_feature + 차용 링크
+        Admin->>BE: 문서화 게이트 approve (SPEC-004)
+        BE->>Vault: origin 보관 + baseline/{원본요약}.md(up:{corp}) + spec/{기능}.md N장(up:원본요약)
+        BE->>Vault: baseline/map.md · spec/map.md 자동 재생성 + 그래프 엣지 갱신
+    else 회사 context (AXKG-DEC-009)
+        BE->>Vault: origin 보관 + context/{문서}.md 단일 생성(up:{corp}, 팬아웃 없음)
+    end
+    Note over Vault: 모든 산출이 up: 체인으로 회사 루트 {corp}.md 수렴
     BE-->>FE: Projects 트리 갱신
 ```
 
@@ -286,15 +307,17 @@ sequenceDiagram
 |---|---|---|
 | CorpProject | `slug` | `{corp}` 식별자. 회사명 slugify 결과(충돌 시 `-2` 등 suffix) |
 | CorpProject | `display_name` | 사용자 입력 원본 회사명 |
-| CorpProject | `folders` | `origin/`·`baseline/`·`spec/` 3층(고정). area/resource는 포함하지 않음 |
-| Origin | `path` | `{MARKDOWN_ROOT}/projects/{corp}/origin/{원본파일}.docx` — 첨부 docx **원본 raw 파일**. markdown 문서와 **같은 바인드 마운트**(`AXKG_MARKDOWN_ROOT`=컨테이너 `/workspace`, 호스트 `AXKG_WORKSPACE_HOST_PATH` 기본 `./data/documents`)에 저장하되, **그래프 문서 노드가 아니다** — 바이너리라 `documents` 테이블/인덱스/retriever에 편입하지 않는다 |
-| ProjectBaseline | `document_type` | `baseline`(원본요약, docx를 요약①이 정리한 원본 SoT) |
+| CorpProject | `folders` | `origin/`·`baseline/`·`spec/`·`context/` + 최상위 회사 루트 `{corp}.md`. area/resource는 포함하지 않음 |
+| CompanyRoot | `path` / `document_type` | `projects/{corp}/{corp}.md` / `company`(기본; 확정은 AXKG-DEC-009 OQ). 회사당 1개 안정적 앵커, 모든 산출의 `up:` 수렴점. 회사 간략정보(회사명·도메인·한 줄 소개)로 "프로젝트 추가" 시 생성 |
+| Origin | `path` | `{MARKDOWN_ROOT}/projects/{corp}/origin/{원본파일}.docx` — 첨부 docx **원본 raw 파일**. markdown 문서와 **같은 바인드 마운트**(`AXKG_MARKDOWN_ROOT`=컨테이너 `/workspace`, 호스트 `AXKG_WORKSPACE_HOST_PATH` 기본 `./data/documents`)에 저장하되, **그래프 문서 노드가 아니다** — 바이너리라 `documents` 테이블/인덱스/retriever에 편입하지 않는다. 요구/context 어느 분기든 공통 보관 |
+| ProjectBaseline | `document_type` | `baseline`(원본요약, 요구 docx를 요약①이 정리한 원본 SoT) |
 | ProjectBaseline | `path` | `projects/{corp}/baseline/{원본요약}.md`(경로 SSOT: AXKG-SPEC-005) |
-| ProjectBaseline | `template` | `project_source_summary`(AXKG-SPEC-010). `## 기능 목록`이 각 기능을 `[[기능-spec-stem]]`으로 링크 |
+| ProjectBaseline | `template` / `up` | `project_source_summary`(AXKG-SPEC-010). `## 기능 목록`이 각 기능을 `[[기능-spec-stem]]`으로 링크. `up: [{corp}]`(회사 루트 수렴, AXKG-DEC-009) |
 | ProjectFeatureSpec | `document_type` | `feature_spec`(기능정의서, 요구 1항목=1장) |
 | ProjectFeatureSpec | `path` | `projects/{corp}/spec/{기능}.md` |
-| ProjectFeatureSpec | `template` | `project_feature_spec`(AXKG-SPEC-010) |
+| ProjectFeatureSpec | `template` / `up` | `project_feature_spec`(AXKG-SPEC-010). `up: [원본요약]`(→ 원본요약이 `up: [{corp}]`, 2단 체인으로 회사 루트 수렴, AXKG-DEC-009) |
 | ProjectFeatureSpec | `feature_id` / `status` / `priority` | `{corp}-F-NN` / draft·reviewing·confirmed / high·mid·low(frontmatter, 템플릿 계약) |
+| CompanyContext | `path` / `document_type` / `up` | `projects/{corp}/context/{문서}.md`(예: `org.md`·`vacation_flow.md`) / `context`(기본; 확정은 AXKG-DEC-009 OQ) / `up: [{corp}]`. 회사 배경지식, 팬아웃 안 함(단일 문서) |
 | DerivedSuggestion(project) | `suggestion_type` | `create_feature_spec`(신규 기능) 또는 `supplement_existing_feature`(같은 corp 기존 기능 dedup 보강). 파생지식 모델·apply는 AXKG-SPEC-004 SSOT |
 | FolderMap | `path` | `projects/{corp}/{baseline,spec}/map.md`. 문서 apply 시 자동 재생성(MOC) |
 
@@ -307,7 +330,10 @@ sequenceDiagram
 - **팬아웃 = 파생지식 main+derived 재사용** — project 문서화 게이트는 `main_document`(원본요약) + `derived_suggestions[]`(기능별 초안, `create_feature_spec`/`supplement_existing_feature`)를 한 revision에 담는다(§4 팬아웃 메커니즘). 파생지식 apply 규칙·경로 디렉토리 조립 주체·검증은 AXKG-SPEC-004가 SSOT다.
 - **기존 개념 차용 링크** — 각 기능 초안의 `## 8. 연결`에는 retriever + documents index 스냅샷(AXKG-DEC-005 연결 후보 컨텍스트)으로 훑은 ax-graph 기존 역량 차용 wikilink와 원본요약 링크가 들어간다. 그래프 엣지의 단일 소스는 본문 `[[ ]]`이며 빈 `[[ ]]`는 두지 않는다(AXKG-SPEC-005).
 - **origin 보관 = 바인드 마운트 raw 파일(non-node)** — 첨부 docx 원본 파일은 요약 md와 별도로, markdown 문서와 **같은 바인드 마운트**(`AXKG_MARKDOWN_ROOT`=컨테이너 `/workspace`, 호스트 `AXKG_WORKSPACE_HOST_PATH` 기본 `./data/documents`) 밑 `projects/{corp}/origin/{원본파일}.docx`에 손대지 않은 raw로 저장한다. origin은 **그래프 문서 노드가 아니다** — 바이너리라 `documents` 테이블/인덱스/retriever에 편입하지 않고, 요약·가공 대상이 아니라 감사·역참조용 원본이다.
-- **project 분류에서만 팬아웃** — 팬아웃·기능 dedup·`projects/{corp}/` map.md 갱신은 `project` destination으로 승인된 source에서만 발생한다. `area`/`resource`/`archive`는 기존 destination별 단일 산출을 따른다(AXKG-SPEC-004).
+- **회사 루트 앵커(AXKG-DEC-009)** — "프로젝트 추가" 시 회사 간략정보(회사명·도메인·한 줄 소개)로 `projects/{corp}/{corp}.md`(회사당 1개 안정적 앵커, document_type `company` 기본)를 생성한다. 회사 루트는 origin과 달리 **그래프 노드**이며 모든 산출의 `up:` 수렴점이다. 요구 docx가 늘어도 루트는 변하지 않는다.
+- **project 하위 분기 = 요구/context(AXKG-DEC-009)** — project로 분류된 업로드 docx를 요약①/분류가 **요구사항 vs 회사 context**로 판정한다(메모 성격 힌트 우선, 없으면 내용 판단). 요구사항 → baseline+spec 팬아웃, 회사 context(org·flow 등) → `projects/{corp}/context/{문서}.md` 단일 문서(팬아웃 안 함). 판단 모호 시 폴백은 AXKG-DEC-009 OQ.
+- **up: 회사 루트 체인(AXKG-DEC-009)** — 문서 생성 시 시스템이 corp 루트 stem을 주입해 `up:` frontmatter + 본문 `[[{corp}]]`를 자동 생성한다: `baseline`·`context` → `up: [{corp}]`, `spec` → `up: [원본요약]`(원본요약이 다시 `up: [{corp}]`). 그래프 엣지의 단일 소스는 본문 `[[ ]]`이며(AXKG-SPEC-005), 이로써 회사 프로젝트의 모든 문서가 회사 루트로 수렴한다.
+- **project 분류에서만 팬아웃** — 팬아웃·기능 dedup·`projects/{corp}/` map.md 갱신은 `project` destination으로 승인된 **요구사항** source에서만 발생한다. 회사 context는 팬아웃 없이 `context/` 단일 문서로 생성된다. `area`/`resource`/`archive`는 기존 destination별 단일 산출을 따른다(AXKG-SPEC-004).
 - **map.md 자동 갱신** — 문서 apply 시점에 해당 폴더 `map.md`(MOC)를 자동 재생성한다(문서 목록 반영). 수동 갱신이 아니며, 팬아웃/보강 apply와 같은 승인 단위 안에서 갱신된다(부분 갱신으로 목록이 문서 실재와 어긋나지 않는다).
 - **docx는 텍스트 추출만** — 어댑터는 docx 본문 텍스트만 추출하고, 기능별 구조화는 어댑터가 아니라 적응형 요약①이 담당한다. 표 보존·이미지 대체텍스트·병합셀·중첩표·스캔이미지 같은 파싱 계약은 두지 않는다(AXKG-DEC-007 D5, 어댑터 계약 SSOT는 AXKG-SPEC-012).
 - **기존 게이트 위에 얹는다** — 팬아웃·dedup은 신규 승인 표면을 만들지 않고 문서화 승인 게이트(③) apply를 확장한다. 승인 전에는 어떤 `projects/{corp}/` 문서도 파일로 만들지 않는다(제안 상태로만 존재, AXKG-SPEC-004).
@@ -321,7 +347,7 @@ sequenceDiagram
 ### Acceptance Criteria
 
 - [ ] "프로젝트 추가"에서 회사명을 입력하면 slug 미리보기가 실시간으로 보인다.
-- [ ] 충돌 없는 회사명으로 `만들기` 시 `projects/{corp}/{origin,baseline,spec}/` + 각 `map.md` 스캐폴드가 생성된다.
+- [ ] 회사 간략정보(회사명·도메인·한 줄 소개)로 `만들기` 시 `projects/{corp}/{origin,baseline,spec,context}/` + 각 `map.md` 스캐폴드와 **회사 루트 `projects/{corp}/{corp}.md`**(회사당 1개 앵커)가 생성된다.
 - [ ] 빈 회사명은 `EMPTY_CORP_NAME`으로 거부된다.
 - [ ] slug가 기존 `{corp}`와 충돌하면 확인 모달이 뜨고, `기존 사용`=기존 corp 재사용 / `새 프로젝트로`=`{corp}-2` suffix 신규로 분기된다.
 - [ ] 프로젝트 추가는 수동·독립 디렉토리 스캐폴딩이며, docx 업로드/분류가 프로젝트를 자동 생성하지 않는다.
@@ -338,9 +364,12 @@ sequenceDiagram
 - [ ] 문서 apply 시점에 `baseline/map.md`·`spec/map.md`가 자동 재생성되어 문서 목록을 반영한다.
 - [ ] 원본요약의 `## 기능 목록`이 각 기능정의서를 `[[기능-spec-stem]]`으로 링크해 baseline↔spec 그래프가 연결된다.
 - [ ] `project`가 아닌 destination으로 분류되면 팬아웃·dedup·map.md 갱신이 일어나지 않는다.
-- [ ] 회사 프로젝트 트리에 `origin/`·`baseline/`·`spec/` 3층만 나타나고 area/resource는 나타나지 않는다.
+- [ ] project로 분류된 업로드가 요약①/분류에서 **요구사항 vs 회사 context**로 분기된다(메모 성격 힌트 우선) — 요구사항은 baseline+spec 팬아웃, 회사 context는 `projects/{corp}/context/{문서}.md` 단일 문서(팬아웃 없음)로 생성된다.
+- [ ] 회사 프로젝트 트리 최상위에 회사 루트 `{corp}.md`가 있고, 그 아래 `origin/`·`baseline/`·`spec/`·`context/`가 나타나며 area/resource는 나타나지 않는다.
+- [ ] 회사 프로젝트의 모든 문서가 `up:` 체인으로 회사 루트 `{corp}.md`에 수렴한다(`baseline`·`context`→`up:[{corp}]`, `spec`→`up:[원본요약]`→`[{corp}]`), 본문 `[[{corp}]]` 링크가 자동 생성되고 빈 `[[ ]]`가 없다.
 - [ ] 회사 프로젝트 생성·문서화 게이트 표면은 admin 전용이다(staff 접근 불가).
 
 ## 7. Open Questions
 
-- 없음 — AXKG-BL-002·AXKG-DEC-007에서 slug 충돌 UX와 docx 처리 방향 OQ가 모두 종료됐다. 프롬프트 문구·DB 스키마·컬럼·라우트/컴포넌트 파일·기능 dedup 매칭 임계값 등 구현 세부는 후속 work·코드 소관이다.
+- AXKG-BL-002·AXKG-DEC-007에서 slug 충돌 UX와 docx 처리 방향 OQ는 종료됐다. 프롬프트 문구·DB 스키마·컬럼·라우트/컴포넌트 파일·기능 dedup 매칭 임계값 등 구현 세부는 후속 work·코드 소관이다.
+- **회사 루트·context 관련(AXKG-DEC-009 OQ)**: ① 회사 루트/context document_type 확정(신규 `company`/`context` vs `permanent`/`reference` 재사용·enum/마이그레이션), ② 요구/context 판단 모호 시 폴백(기본 요구 vs context vs 사용자 확인), ③ context 문서 dedup(같은 성격 context 재유입 시 통합 vs 별개) — 후속 work(AXKG-WORK-013)에서 확정.
