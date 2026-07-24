@@ -16,6 +16,7 @@
 | AXKG-SPEC-012 | Source Collection Adapter: YouTube·웹 원문 수집 계약 | stable | AXKG-DEC-001, 005 |
 | AXKG-SPEC-013 | 문서 라이브러리: 저장 문서 트리 열람 (읽기 전용) | stable | AXKG-DEC-005, 006 |
 | AXKG-SPEC-014 | 기업 프로젝트 팬아웃: 회사 루트·origin·baseline·spec·context 문서화와 기능 dedup | stable | AXKG-DEC-007, 009, 005, 001 |
+| AXKG-SPEC-015 | 문서 SoT git 동기화: 승인 커밋·pull rebase·충돌·재인덱싱 | draft | AXKG-DEC-002, 010 |
 
 읽는 순서:
 
