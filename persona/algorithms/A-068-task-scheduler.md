@@ -22,7 +22,7 @@ tags:
 title:
   en: Task Scheduler
   ko: CPU 작업 스케줄링
-today: true
+today: false
 type: algorithm
 updated: '2026-07-20'
 visible: true
