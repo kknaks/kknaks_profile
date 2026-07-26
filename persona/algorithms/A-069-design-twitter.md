@@ -20,7 +20,7 @@ tags:
 title:
   en: Design Twitter
   ko: 트위터 설계
-today: true
+today: false
 type: algorithm
 updated: '2026-07-25'
 visible: true
