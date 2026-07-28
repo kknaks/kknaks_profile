@@ -32,6 +32,7 @@ export function PageFooter() {
   }, [lang]);
 
   if (pathname?.startsWith("/print")) return null;
+  if (pathname?.startsWith("/admin")) return null; // 관리자 셸은 자체 레이아웃
 
   const user = me?.user;
   const siteMeta = site?.site;

@@ -18,6 +18,11 @@ dependencies = [
     "yt-dlp>=2024.12",             # YouTube 메타데이터 (content enrich 잡)
     "youtube-transcript-api>=0.6", # YouTube 자막 (content enrich 잡)
     "playwright>=1.49",            # PDF 생성 잡 (planning-02) — chromium headless 로 /print/* 라우트 → PDF
+    "sqlalchemy[asyncio]>=2.0",    # DB화 토대 (auth-01) — ORM 2.0 async 세션 (greenlet 포함)
+    "alembic>=1.13",               # 스키마 마이그레이션 버전 관리
+    "psycopg[binary]>=3.2",        # PostgreSQL 드라이버 (postgresql+psycopg://)
+    "bcrypt>=4.2",                 # admin 비밀번호 해시
+    "pyjwt>=2.9",                  # 쿠키 JWT 발급/검증
 ]
 
 [dependency-groups]

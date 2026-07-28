@@ -105,6 +105,53 @@ def bot_emails() -> set[str]:
     return {a["email"] for a in gh_accounts() if a.get("email")}
 
 
+def database_url() -> str:
+    """SQLAlchemy 2.0 동기 엔진용 DSN (auth-01 — DB화 토대).
+
+    docker-compose 안: postgresql+psycopg://kknaks:kknaks@postgres:5432/kknaks
+    호스트(로컬 dev): localhost:45433 로 노출.
+    """
+    return os.environ.get(
+        "DATABASE_URL",
+        "postgresql+psycopg://kknaks:kknaks@localhost:45433/kknaks",
+    )
+
+
+def admin_username() -> str:
+    """.env 로 시드하는 관리자 계정 아이디 (auth-01 §유저 시드)."""
+    return os.environ.get("ADMIN_USERNAME", "admin")
+
+
+def admin_password() -> str:
+    """.env 로 시드하는 관리자 평문 비밀번호 — 시드 시 bcrypt 해시로 저장."""
+    return os.environ.get("ADMIN_PASSWORD", "changeme")
+
+
+def jwt_secret() -> str:
+    """쿠키 JWT(HS256) 서명 시크릿. 운영은 반드시 .env 로 강한 값 주입."""
+    return os.environ.get("JWT_SECRET", "dev-insecure-jwt-secret-change-me")
+
+
+def jwt_expire_minutes() -> int:
+    """로그인 세션(JWT exp) 유효 분. 기본 12시간."""
+    return int(os.environ.get("JWT_EXPIRE_MINUTES", 720))
+
+
+def auth_cookie_name() -> str:
+    return os.environ.get("AUTH_COOKIE_NAME", "kknaks_session")
+
+
+def auth_cookie_domain() -> str | None:
+    """쿠키 domain. 로컬은 비움(host-only), 운영은 `.kknaks.cloud` 로 서브도메인 공유."""
+    raw = os.environ.get("AUTH_COOKIE_DOMAIN", "").strip()
+    return raw or None
+
+
+def auth_cookie_secure() -> bool:
+    """HTTPS 전용 여부. 로컬 http dev 는 0, 운영은 1."""
+    return os.environ.get("AUTH_COOKIE_SECURE", "0") == "1"
+
+
 def graph_json_path() -> Path:
     """KDEV-WORK-001 — 지식그래프 산출물 `_graph.json` 경로 (best-effort write).
 
@@ -112,3 +159,59 @@ def graph_json_path() -> Path:
     """
     raw = os.environ.get("GRAPH_JSON_PATH")
     return Path(raw).expanduser().resolve() if raw else PERSONA_DIR.parent / "_graph.json"
+
+
+# ── Slack 지식 캡처 (KDEV-WORK-012 — 별도 프로세스에서 back lifespan 으로 흡수) ──
+
+
+def repo_root() -> Path:
+    """레포 루트. 캡처 노트 경로 조립과 git 작업의 기준."""
+    raw = os.environ.get("REPO_ROOT")
+    return Path(raw).expanduser().resolve() if raw else PERSONA_DIR.parent
+
+
+def slack_capture_enabled() -> bool:
+    """Socket Mode 캡처 기동 여부. 기본 0 — 토큰이 없는 환경에서 부팅을 막지 않는다."""
+    return os.environ.get("SLACK_CAPTURE_ENABLED", "0") == "1"
+
+
+def slack_bot_token() -> str | None:
+    return os.environ.get("SLACK_BOT_TOKEN") or None
+
+
+def slack_app_token() -> str | None:
+    return os.environ.get("SLACK_APP_TOKEN") or None
+
+
+def _csv_env(key: str) -> set[str]:
+    return {v.strip() for v in os.environ.get(key, "").split(",") if v.strip()}
+
+
+def allowed_slack_users() -> set[str]:
+    """허용 사용자. 비어 있으면 fail-closed — 모든 입력을 무시한다(OKK-SPEC-011 §4)."""
+    return _csv_env("ALLOWED_SLACK_USERS")
+
+
+def allowed_slack_channels() -> set[str]:
+    """허용 채널. 비어 있으면 fail-closed."""
+    return _csv_env("ALLOWED_SLACK_CHANNELS")
+
+
+def capture_namespace() -> str:
+    return os.environ.get("NAMESPACE", "kknaks-portfolio")
+
+
+def capture_provider() -> str:
+    return os.environ.get("CAPTURE_PROVIDER", "claude")
+
+
+def capture_model() -> str | None:
+    return os.environ.get("CAPTURE_MODEL") or None
+
+
+def capture_work_dir() -> str:
+    return os.environ.get("CAPTURE_WORK_DIR", str(repo_root()))
+
+
+def capture_timeout_seconds() -> float:
+    return float(os.environ.get("CAPTURE_TIMEOUT_SECONDS", 600))

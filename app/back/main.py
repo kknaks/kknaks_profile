@@ -122,7 +122,14 @@ async def lifespan(app: FastAPI):
     _check_single_worker()
     load_all()
 
+    # 관리자 유저 시드 (KDEV-WORK-011) — .env admin 을 users 에 멱등 upsert.
+    # DB 미가용이면 seed_admin 이 로그만 남기고 False 반환 → 부팅 비차단(콘텐츠 API 는 DB 무관).
+    from service.seed import seed_admin
+
+    await seed_admin()
+
     # APScheduler 시작 (spec-03 §1.1). 테스트에서는 RUN_SCHEDULER=0으로 skip
+    sched = None
     if config.run_scheduler():
         from service.scheduler import init_scheduler
 
@@ -131,13 +138,23 @@ async def lifespan(app: FastAPI):
         logger.info(
             "APScheduler started — daily-activity (09:05 KST) + neetcode-canonical (23:00 UTC)"
         )
-        try:
-            yield
-        finally:
-            sched.shutdown(wait=False)
     else:
         logger.info("APScheduler disabled (RUN_SCHEDULER=0)")
+
+    # Slack 지식 캡처 (KDEV-WORK-012) — 스케줄러와 같은 자리의 in-process 장기 루프.
+    # 종전에는 별도 `slack-bridge` 컨테이너였다 (KDEV-DEC-013).
+    # SLACK_CAPTURE_ENABLED=0 이거나 토큰이 없으면 start() 가 조용히 skip 한다 — 부팅 비차단.
+    from service.slack_bridge.bootstrap import CaptureRuntime
+
+    capture = CaptureRuntime()
+    await capture.start()
+
+    try:
         yield
+    finally:
+        await capture.stop()
+        if sched is not None:
+            sched.shutdown(wait=False)
 
 
 app = FastAPI(
@@ -167,6 +184,7 @@ from api.admin import reload as admin_reload  # noqa: E402
 from api.routers import (  # noqa: E402
     activity,
     algorithms,
+    auth,
     career,
     contents,
     graph,
@@ -178,6 +196,7 @@ from api.routers import (  # noqa: E402
 )
 
 app.include_router(site.router)
+app.include_router(auth.router)
 app.include_router(me.router)
 app.include_router(activity.router)
 app.include_router(career.router)

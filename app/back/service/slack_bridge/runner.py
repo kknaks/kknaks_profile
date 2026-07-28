@@ -2,18 +2,18 @@
 
 from __future__ import annotations
 
-import inspect
 import json
-from dataclasses import replace
 from datetime import datetime
 from pathlib import Path
-from typing import Awaitable, Callable
+from typing import Callable
 
 from service.knowledge_capture import (
+    EMPTY_PREVIOUS,
+    CaptureArtifact,
     CaptureSession,
     CaptureSessionStore,
+    CaptureStore,
     RenderContext,
-    atomic_write,
     output_path,
     parse_document,
     render_document,
@@ -24,6 +24,15 @@ from .app import CaptureRequest
 
 
 class KnowledgeCaptureRunner:
+    """Slack 스레드 → 지식 노트 한 건.
+
+    이 runner 는 **무엇을 만들지**(원문 수집·AI 호출·파싱·경로 결정·렌더)까지만 책임진다.
+    **어디에 남기고 어디서 다시 읽을지**는 주입된 `store` 가 정한다 — 파일로 쓸지,
+    승인 큐에 적재할지 (KDEV-WORK-012 / KDEV-DEC-013 D2).
+
+    runner 안에 파일시스템 접근이 없어야 store 교체가 성립한다.
+    """
+
     def __init__(
         self,
         client,
@@ -35,8 +44,7 @@ class KnowledgeCaptureRunner:
         work_dir: str | None,
         known_stems: Callable[[], set[str]],
         allowed_groups: Callable[[], set[str]],
-        publish: Callable[[Path], bool | Awaitable[bool]],
-        reload_data: Callable[[], bool | Awaitable[bool]],
+        store: CaptureStore,
         now: Callable[[], datetime],
         timeout_seconds: float = 600,
     ) -> None:
@@ -48,8 +56,7 @@ class KnowledgeCaptureRunner:
         self.work_dir = work_dir
         self.known_stems = known_stems
         self.allowed_groups = allowed_groups
-        self.publish = publish
-        self.reload_data = reload_data
+        self.store = store
         self.now = now
         self.timeout_seconds = timeout_seconds
 
@@ -66,12 +73,8 @@ class KnowledgeCaptureRunner:
             urls = find_urls(request.text)
             if urls:
                 source_material = (await fetch_source(urls[0])).to_dict()
-            existing_markdown = None
-            if existing and existing.output_path:
-                path = (self.repo_root / existing.output_path).resolve()
-                if path.is_relative_to(self.repo_root.resolve()) and path.is_file():
-                    existing_markdown = path.read_text(encoding="utf-8")
-            prompt = self._prompt(request, source_material, existing_markdown, existing)
+            previous = await self.store.load_previous(existing) if existing else EMPTY_PREVIOUS
+            prompt = self._prompt(request, source_material, previous.markdown, existing)
             options = {"cwd": self.work_dir} if self.work_dir else {}
             if existing and existing.session_id:
                 options["resume"] = {"mode": "session", "session_id": existing.session_id}
@@ -97,7 +100,6 @@ class KnowledgeCaptureRunner:
             if existing and existing.kind and document.kind != existing.kind:
                 raise ValueError("follow-up cannot change capture kind")
             timestamp = self.now()
-            relative_override = Path(existing.output_path) if existing and existing.output_path else None
             context = RenderContext(
                 repo_root=self.repo_root,
                 request_id=request.request_id,
@@ -105,39 +107,36 @@ class KnowledgeCaptureRunner:
                 captured_at=timestamp,
                 group="study",
                 allowed_groups=frozenset(self.allowed_groups()),
-                output_override=relative_override,
+                output_override=previous.output_override,
             )
             path = output_path(document, context)
             rendered = render_document(document, context)
-            atomic_write(path, rendered, replace=relative_override is not None)
-            publish_result = self.publish(path)
-            publish_ok = await publish_result if inspect.isawaitable(publish_result) else publish_result
-            reload_result = self.reload_data()
-            reload_ok = await reload_result if inspect.isawaitable(reload_result) else reload_result
-            relative = path.relative_to(self.repo_root.resolve()).as_posix()
+            result = await self.store.store(CaptureArtifact(
+                path=path,
+                rendered=rendered,
+                document=document,
+                replace=previous.output_override is not None,
+                request=request,
+            ))
+
             created_at = existing.created_at if existing else timestamp.isoformat(timespec="seconds")
             await self.sessions.set(CaptureSession(
                 channel_id=request.channel_id,
                 root_thread_ts=request.root_thread_ts,
                 session_id=session_id,
                 kind=document.kind,
-                output_path=relative,
+                output_path=result.stored_ref,
                 first_prompt=existing.first_prompt if existing else request.text[:200],
                 created_at=created_at,
                 last_seen_at=timestamp.isoformat(timespec="seconds"),
             ))
-            warnings = []
-            if not publish_ok:
-                warnings.append("⚠ 파일은 저장됐지만 Git push에 실패했습니다.")
-            if not reload_ok:
-                warnings.append("⚠ 파일은 저장됐지만 그래프 reload가 거부됐습니다.")
-            warning = "".join(f"\n{item}" for item in warnings)
+            warning = "".join(f"\n{item}" for item in result.warnings)
             await slack_client.chat_update(
                 channel=request.channel_id,
                 ts=message_ts,
                 text=(
                     f"✅ 저장 완료: {document.title}\n"
-                    f"종류: {document.kind}\n경로: `{relative}`\n"
+                    f"종류: {document.kind}\n경로: `{result.location}`\n"
                     f"연결 후보: {len(document.connection_candidates)}{warning}"
                 ),
             )

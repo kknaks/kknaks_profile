@@ -61,3 +61,42 @@ export const api = {
   algorithmDetail: (id: string, lang: Lang) =>
     get<AlgorithmDetailResponse>(`/api/algorithms/${id}`, lang),
 };
+
+// ── 관리자 인증 (KDEV-SPEC-006) ────────────────────────────────────────────
+// 세션은 httpOnly 쿠키 → 브라우저가 쿠키를 붙이려면 credentials: "include" 필수.
+export type AdminUser = { username: string; role: string };
+
+export class AuthError extends Error {
+  constructor(public status: number, message: string) {
+    super(message);
+  }
+}
+
+async function authFetch<T>(path: string, init?: RequestInit): Promise<T> {
+  const res = await fetch(API_BASE + path, {
+    ...init,
+    credentials: "include",
+    cache: "no-store",
+    headers: { "Content-Type": "application/json", ...(init?.headers ?? {}) },
+  });
+  if (!res.ok) {
+    let detail = `auth ${res.status}`;
+    try {
+      detail = (await res.json())?.detail ?? detail;
+    } catch {
+      /* 본문 없음 */
+    }
+    throw new AuthError(res.status, detail);
+  }
+  return (await res.json()) as T;
+}
+
+export const authApi = {
+  login: (username: string, password: string) =>
+    authFetch<{ user: AdminUser }>("/api/auth/login", {
+      method: "POST",
+      body: JSON.stringify({ username, password }),
+    }),
+  logout: () => authFetch<{ ok: boolean }>("/api/auth/logout", { method: "POST" }),
+  me: () => authFetch<{ user: AdminUser }>("/api/auth/me"),
+};

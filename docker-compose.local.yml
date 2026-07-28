@@ -17,6 +17,15 @@ services:
       - "48000:48000"
     environment:
       REDIS_URL: redis://redis:6379
+      # 애플리케이션 DB (KDEV-WORK-011) — 크리덴셜은 .env 의 POSTGRES_* 에서 치환(커밋 파일에 비번 리터럴 금지).
+      # host = postgres (컨테이너 네트워크 호스트명, 비밀 아님). .env 의 DATABASE_URL(localhost:45433)은 호스트 alembic/pytest 용.
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-kknaks}:${POSTGRES_PASSWORD:-kknaks}@postgres:5432/${POSTGRES_DB:-kknaks}
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-admin}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-changeme}
+      JWT_SECRET: ${JWT_SECRET:-dev-insecure-jwt-secret-change-me}
+      JWT_EXPIRE_MINUTES: ${JWT_EXPIRE_MINUTES:-720}
+      AUTH_COOKIE_DOMAIN: ${AUTH_COOKIE_DOMAIN:-}
+      AUTH_COOKIE_SECURE: ${AUTH_COOKIE_SECURE:-0}   # 로컬 http dev
       PERSONA_DIR: /repo/persona
       RUN_SCHEDULER: "1"
       JOB_GIT_PUSH_DRY_RUN: "1"
@@ -29,6 +38,18 @@ services:
       GH_EMAIL_COMPANY: ${GH_EMAIL_COMPANY:-}
       GITHUB_WEBHOOK_SECRET: ${GITHUB_WEBHOOK_SECRET:-}
       SLACK_WEBHOOK_URL: ${SLACK_WEBHOOK_URL:-}
+      # Slack 지식 캡처 (KDEV-WORK-012 — 별도 slack-bridge 컨테이너에서 흡수)
+      NAMESPACE: ${NAMESPACE:-kknaks-portfolio}
+      SLACK_CAPTURE_ENABLED: ${SLACK_CAPTURE_ENABLED:-0}
+      SLACK_BOT_TOKEN: ${SLACK_BOT_TOKEN:-}
+      SLACK_APP_TOKEN: ${SLACK_APP_TOKEN:-}
+      ALLOWED_SLACK_USERS: ${ALLOWED_SLACK_USERS:-}
+      ALLOWED_SLACK_CHANNELS: ${ALLOWED_SLACK_CHANNELS:-}
+      CAPTURE_PROVIDER: ${CAPTURE_PROVIDER:-claude}
+      CAPTURE_MODEL: ${CAPTURE_MODEL:-}
+      CAPTURE_WORK_DIR: ${CAPTURE_WORK_DIR:-/repo}
+      CAPTURE_TIMEOUT_SECONDS: ${CAPTURE_TIMEOUT_SECONDS:-600}
+      REPO_ROOT: /repo
       # planning-02 — PDF 잡이 hit 할 frontend URL.
       # Mac docker → host.docker.internal:3000 (host 의 next dev). Linux 라면 host-gateway alias 필요.
       FRONTEND_URL: ${FRONTEND_URL:-http://host.docker.internal:3000}
@@ -38,7 +59,27 @@ services:
     depends_on:
       redis:
         condition: service_healthy
+      postgres:
+        condition: service_healthy
     restart: unless-stopped
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: kknaks-postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-kknaks}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-kknaks}
+      POSTGRES_DB: ${POSTGRES_DB:-kknaks}
+    ports:
+      - "45433:5432"
+    restart: unless-stopped
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-kknaks} -d ${POSTGRES_DB:-kknaks}"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
 
   redis:
     image: redis:7-alpine
@@ -76,38 +117,6 @@ services:
       - ./.claude-tools:/claude-tools:ro
     restart: unless-stopped
 
-  slack-bridge:
-    profiles: ["slack-capture"]
-    build:
-      context: .
-      dockerfile: Dockerfile.back
-    container_name: kknaks-slack-bridge
-    user: "501:20"
-    command: ["uv", "run", "--no-sync", "python", "/repo/app/slack_bridge/run.py"]
-    environment:
-      REDIS_URL: redis://redis:6379
-      NAMESPACE: kknaks-portfolio
-      REPO_ROOT: /repo
-      BACKEND_URL: http://back:48000
-      RELOAD_TOKEN: ${RELOAD_TOKEN:-changeme}
-      SLACK_CAPTURE_ENABLED: ${SLACK_CAPTURE_ENABLED:-0}
-      SLACK_BOT_TOKEN: ${SLACK_BOT_TOKEN:-}
-      SLACK_APP_TOKEN: ${SLACK_APP_TOKEN:-}
-      ALLOWED_SLACK_USERS: ${ALLOWED_SLACK_USERS:-}
-      ALLOWED_SLACK_CHANNELS: ${ALLOWED_SLACK_CHANNELS:-}
-      CAPTURE_PROVIDER: ${CAPTURE_PROVIDER:-claude}
-      CAPTURE_MODEL: ${CAPTURE_MODEL:-}
-      CAPTURE_WORK_DIR: ${CAPTURE_WORK_DIR:-/repo}
-      CAPTURE_TIMEOUT_SECONDS: ${CAPTURE_TIMEOUT_SECONDS:-600}
-    volumes:
-      - .:/repo
-    working_dir: /repo/app/back
-    depends_on:
-      back:
-        condition: service_started
-      redis:
-        condition: service_healthy
-    restart: unless-stopped
-
 volumes:
   redis-data:
+  postgres-data:

@@ -88,12 +88,11 @@ jobs:
             echo "::endgroup::"
 
             echo "::group::docker compose up"
-            if grep -qx 'SLACK_CAPTURE_ENABLED=1' .env; then
-              docker compose --profile slack-capture up -d --build back redis worker slack-bridge
-            else
-              docker compose up -d --build back redis worker
-              docker compose --profile slack-capture stop slack-bridge || true
-            fi
+            # KDEV-WORK-012 — slack-bridge 컨테이너는 back 에 흡수됐다.
+            # Slack 캡처는 .env 의 SLACK_CAPTURE_ENABLED 로 back lifespan 안에서 켜고 끈다.
+            docker compose up -d --build back redis worker
+            # 흡수 이전 배포에서 남아 있을 수 있는 컨테이너 정리 (최초 1회 이후엔 no-op)
+            docker rm -f kknaks-slack-bridge 2>/dev/null || true
             echo "::endgroup::"
 
             echo "::group::wait for back healthy (ping)"
