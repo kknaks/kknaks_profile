@@ -17,6 +17,20 @@
   005 reference 배선 ─(미러)→ 010 permanent 층 배선 ✅ (BE-only, lineage 발현 준비 — live permanent 0건이라 아직 latent)
 ```
 
+승인 파이프라인 트랙 (BL-003):
+
+```
+012 bridge 흡수 ─┐
+                 ├→ 014 큐 + route 게이트 → 015 유튜브 체인 + Executor
+013 concept 층 ─┘
+   (012·013 서로 독립 — 병렬 가능하나 **순차 권장**: 012가 프로세스를 하나로 모은 뒤 013 검증을 돌려야 원인 추적이 단순하다)
+```
+
+- **012**는 쓰기 소유권을 back으로 모으고 sink 교체 지점을 만든다. 014가 그 sink를 "큐 적재"로 갈아끼운다.
+- **013**은 목적지(`permanent/concept/`)를 실재화한다. 목적지가 없으면 route 게이트가 고를 게 없다.
+- **013 Phase 1은 report-only 측정**이다. L2 필수 필드·L4 방향 반전이 기존 406노드를 얼마나 깨는지 재고 나서 enforce로 넘긴다(WORK-001~007에서 검증된 순서).
+- **014까지만 하면 큐에 쌓이고 발행은 안 된다.** md가 나오려면 015까지 가야 한다.
+
 ## Work 목록
 
 | ID | Title | 담당 | Status | Covers Spec | Depends | File |
@@ -31,6 +45,19 @@
 | WORK-008 | 전역 그래프 /graph (_graph.json API + force-directed) | BE+FE | done | SPEC-005 | 007 | `work-008-global-graph.md` |
 | WORK-009 | 노트별 로컬 그래프 (이웃+백링크) | FE | done | SPEC-005 | 008 | `work-009-local-graph.md` |
 | WORK-010 | permanent 층 그래프 배선 — 영구노트를 _graph 에 연결 (BE-only, WORK-005 미러) | BE | done | SPEC-001·003 | 005 | `work-010-wire-permanent.md` |
+| WORK-011 | 관리자 인증 MVP — DB 토대(Postgres·async SQLAlchemy·Alembic) + 쿠키 JWT 로그인 + admin 목 | BE+FE | done | SPEC-006 | — | `work-011-admin-auth-mvp.md` |
+| WORK-012 | Slack bridge를 back에 흡수 + 쓰기 소유권 정리 (sink DI 리팩터·lifespan 흡수·compose 정리·OKK-SPEC-011 §4 개정) | BE | **done** | SPEC-007(선행분) | — | `work-012-slack-bridge-absorb.md` |
+| WORK-013 | concept 층 도입 — 4층 재편·검증 재정의·규칙/템플릿 (report-only 선행 → enforce) | BE+문서 | todo | SPEC-001·002·003·004 | — | `work-013-concept-layer.md` |
+| WORK-014 | 승인 큐 + route 게이트 MVP (스키마·접수·자동준비·게이트 공통계약·admin 큐 화면) | BE+FE | todo | SPEC-007·008(route)·009 | 012·013 | `work-014-queue-and-route-gate.md` |
+| WORK-015 | 유튜브 체인 완성 + Apply Executor (source_note·concept·derived + 원자적 발행) | BE+FE | todo | SPEC-008·010·004 | 014 | `work-015-youtube-chain-and-executor.md` |
+
+## Status Board
+
+| Track | 진행 | Next |
+|---|---|---|
+| 지식그래프 (BL-001) | WORK-001~010 done | — |
+| 앱 DB화 (BL-002) | WORK-011 done | admin 실제 관리 기능 |
+| 승인 파이프라인 (BL-003) | **012 done** · 013~015 todo | **013 착수** (concept 층) → 014 → 015 |
 
 ## Spec Coverage
 
@@ -41,3 +68,10 @@
 | SPEC-003 워크플로 | WORK-003·010 (+강제: 001·007) | 003 규약 문서화 done / 강제 007 done / 010 정제→permanent 종착 라이브화 done(빈 층 — 데이터 작성 시 발현) |
 | SPEC-004 검증 | WORK-001·002·007 | 001·002 done / 007 enforcement done |
 | SPEC-005 시각화 | WORK-008·009 | 008 전역 done / 009 로컬 done (시각화 완료) |
+| SPEC-006 관리자 인증 | WORK-011 | 011 done (DB 토대+async+로그인+admin 목 e2e 검증 — 앱 DB화 첫 트랙, 그래프 work와 독립) |
+| SPEC-007 승인 큐 | WORK-012·014 | **012 done**(sink 교체 지점 확보·쓰기 소유권 back 단독) / 014 본체 todo |
+| SPEC-008 게이트 체인 | WORK-014·015 | 014 route까지 todo / 015 나머지 스테이지 todo |
+| SPEC-009 게이트 피드백 | WORK-014 | 014에서 공통 계약 구현 todo |
+| SPEC-010 Apply Executor | WORK-015 | 015 todo |
+
+> SPEC-001·002·003·004는 DEC-010 반영으로 **개정**됐다(4층·concept·층별 검증). WORK-013이 그 개정분을 코드에 반영한다 — 기존 WORK-001~010이 구현한 것과 별개 커버리지다.

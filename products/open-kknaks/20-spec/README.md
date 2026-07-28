@@ -16,7 +16,7 @@
 | [OKK-SPEC-008](spec-008-middleware-and-operational-controls.md) | Middleware와 운영 제어 | stable | 없음 | `open_kknaks/middleware/` | 없음 |
 | [OKK-SPEC-009](spec-009-claude-codex-runner-adapter.md) | Claude/Codex Runner Adapter 계약 | draft | [OKK-DEC-001](../10-decision/decision-001-provider-based-task-execution.md) | `open_kknaks/worker/`, runner adapter 후보 | 없음 |
 | [OKK-SPEC-010](spec-010-codex-headless-runner.md) | Codex Headless Runner 실행 계약 | draft | [OKK-DEC-001](../10-decision/decision-001-provider-based-task-execution.md) | Codex runner adapter 후보 | 없음 |
-| [OKK-SPEC-011](spec-011-slack-knowledge-capture.md) | Slack 지식 수집 — inbox·reference 생성 계약 | draft | 없음 ([OKK-BL-002](../00-baseline/OKK-BL-002-slack-idea-knowledge-graph.md) 직접 구체화) | Slack adapter, capture skill, renderer/validator | 없음 |
+| [OKK-SPEC-011](spec-011-slack-knowledge-capture.md) | Slack 지식 수집 — inbox·reference 생성 계약 | draft | 없음 ([OKK-BL-002](../00-baseline/OKK-BL-002-slack-idea-knowledge-graph.md) 직접 구체화) · §4 실행 위치는 KDEV-DEC-013 | Slack adapter, capture skill, renderer/validator | 없음 |
 
 ## 읽는 순서
 

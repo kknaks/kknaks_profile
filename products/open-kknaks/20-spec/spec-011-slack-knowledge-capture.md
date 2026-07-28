@@ -5,7 +5,7 @@ title: "Slack 지식 수집 — inbox·reference 생성 계약"
 status: draft
 product: open-kknaks
 created_at: 2026-07-02
-updated_at: 2026-07-02
+updated_at: 2026-07-27
 tags:
   - product/open-kknaks
   - doc/spec
@@ -13,13 +13,15 @@ tags:
 links:
   baselines:
     - "[[OKK-BL-002-slack-idea-knowledge-graph|OKK-BL-002]]"
-  decisions: []
+  decisions:
+    - "[[decision-013-slack-bridge-into-backend|KDEV-DEC-013]]"
   specs:
     - "[[spec-001-task-model-and-lifecycle|OKK-SPEC-001]]"
     - "[[spec-003-python-client-and-streaming-api|OKK-SPEC-003]]"
     - "[[spec-008-middleware-and-operational-controls|OKK-SPEC-008]]"
     - "[[spec-003-knowledge-workflow|KDEV-SPEC-003]]"
     - "[[spec-004-graph-validation|KDEV-SPEC-004]]"
+    - "[[spec-007-approval-queue|KDEV-SPEC-007]]"
   works: []
   related: []
 ---
@@ -169,10 +171,23 @@ stateDiagram-v2
 ### Transport and Entry Point
 
 - `kknaks_profile`은 Slack Bolt `AsyncApp`과 `AsyncSocketModeHandler` 기반 bridge를
-  별도 장기 실행 프로세스로 운용한다.
+  **back 프로세스 내 백그라운드 태스크로 운용한다** (2026-07-27 개정 — 아래 주 참고).
 - 인증은 `SLACK_APP_TOKEN`과 `SLACK_BOT_TOKEN`을 사용한다.
 - 새 지식 대화의 유일한 진입점은 `app_mention`이다.
 - 공개 HTTP request URL, slash command, `response_url`은 1단계에서 사용하지 않는다.
+
+> **개정 (2026-07-27) — 실행 위치만 바뀌고 전송 계층 계약은 그대로다.**
+> 종전 *"별도 장기 실행 프로세스로 운용한다"* 는 근거 없이 단정된 문장이었고, 실측 결과 분리가
+> 사는 것이 없었다 — Socket Mode 는 아웃바운드 웹소켓이라 포트가 필요 없고(노출 0개),
+> 별도 컨테이너가 `Dockerfile.back` **같은 이미지**를 쓰고 있었으며, `slack-bolt`·`aiohttp` 는
+> 이미 back 의존성이고, AI 실행은 worker 컨테이너가 담당했고, `depends_on: back` 이라
+> 독립 배포 단위도 아니었다. 반면 분리 비용은 실재했다 — `sys.path` 해킹, 이름 충돌,
+> env 이중 관리(그 증상으로 `DATABASE_URL` 부재), repo 쓰기 마운트 2곳,
+> **git push 소유권 분산**.
+> `kknaks_profile` back 은 `--workers 1` 하드락 위에서 APScheduler 라는 장기 asyncio 루프를
+> 이미 in-process 로 돌리고 있어, Socket Mode 도 같은 자리에 둔다.
+> 근거·대안 비교는 `KDEV-DEC-013`, 실행은 `KDEV-WORK-012`.
+> **이 §4 의 나머지 계약(진입점·인가·멱등성·스레드 세션)은 변경되지 않는다.**
 
 ### Request Verification
 

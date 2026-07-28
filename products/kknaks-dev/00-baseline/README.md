@@ -7,3 +7,5 @@
 | ID | Title | Source | Status | Decision | File |
 |---|---|---|---|---|---|
 | KDEV-BL-001 | 레포를 지식그래프로 — 상향식/하향식 메모 연결 | idea | accepted | (작성 예정) | `baseline-001-repo-knowledge-graph.md` |
+| KDEV-BL-002 | md-only 운영에서 애플리케이션 DB화 + 관리자 기능 | idea | accepted | DEC-009 | `baseline-002-app-db-and-admin.md` |
+| KDEV-BL-003 | inbox 승인 게이트 파이프라인 + 원자 개념(concept) 층 | idea | accepted | DEC-010/011/012/013 | `baseline-003-inbox-approval-pipeline.md` |

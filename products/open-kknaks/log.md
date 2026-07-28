@@ -2,6 +2,7 @@
 
 | Date | Entry | Links |
 |---|---|---|
+| 2026-07-27 | OKK-SPEC-011 §4 Transport 개정 — bridge 실행 위치를 *별도 장기 실행 프로세스* → **kknaks_profile back 프로세스 내 백그라운드 태스크**로 변경. 종전 문장은 근거 없이 단정돼 있었고 실측상 분리가 사는 것이 없었다(포트 노출 0·같은 Dockerfile.back 이미지·slack-bolt 이미 back 의존성·AI 실행은 worker·`depends_on: back`). 분리 비용은 실재(`sys.path` 해킹·이름 충돌·env 이중관리로 `DATABASE_URL` 부재·repo 쓰기 마운트 2곳·**git push 소유권 분산**). §4 나머지 계약(진입점·인가·멱등성·스레드 세션)은 무변경. 근거 KDEV-DEC-013 / 실행 KDEV-WORK-012. | `20-spec/spec-011-slack-knowledge-capture.md` |
 | 2026-07-02 | WORK-006 paper PDF·source security·reference reload fixture와 feature-flagged Slack bridge 배선 완료 — backend 303 passed | `30-work/work-006-slack-knowledge-capture.md` |
 | 2026-07-02 | WORK-006 Socket Mode thread/session, AgentClient resume, source extractor, compose 배선 구현 — backend 298 passed | `30-work/work-006-slack-knowledge-capture.md` |
 | 2026-07-02 | WORK-006 Phase 2 capture skill·schema validator·Markdown renderer·atomic writer 1차 구현 | `30-work/work-006-slack-knowledge-capture.md` |

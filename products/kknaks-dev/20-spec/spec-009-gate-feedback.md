@@ -1,0 +1,287 @@
+---
+type: spec
+id: KDEV-SPEC-009
+title: "게이트 피드백과 재생성 — 버전·resume·supersede"
+status: draft
+product: kknaks-dev
+version: 0.0.1
+created_at: 2026-07-27
+updated_at: 2026-07-27
+tags:
+  - product/kknaks-dev
+  - doc/spec
+  - status/draft
+links:
+  baselines:
+    - "[[baseline-003-inbox-approval-pipeline|KDEV-BL-003]]"
+  decisions:
+    - "[[decision-011-approval-gate-chain|KDEV-DEC-011]]"
+    - "[[decision-012-draft-storage-and-publish-boundary|KDEV-DEC-012]]"
+  specs:
+    - "[[spec-008-gate-chain|KDEV-SPEC-008]]"
+    - "[[spec-007-approval-queue|KDEV-SPEC-007]]"
+  works: []
+  releases: []
+  related: []
+---
+
+# 게이트 피드백과 재생성 — 버전·resume·supersede
+
+AI 제안이 마음에 안 들 때 **내용을 직접 고치는 대신 방향을 피드백**하고 새 버전을 받는다. 이전 버전은 지우지 않고 read-only로 보존한다.
+
+> 이 규칙은 모든 게이트 스테이지에 **공통**으로 적용된다([[spec-008-gate-chain|KDEV-SPEC-008]]). 큐 항목의 자동 준비 산출물에도 같은 버전 원칙을 적용한다([[spec-007-approval-queue|KDEV-SPEC-007]]).
+
+## 1. Context
+
+### Meta
+
+- Decision reference: [[decision-011-approval-gate-chain|KDEV-DEC-011]] D4
+- Baseline reference: [[baseline-003-inbox-approval-pipeline|KDEV-BL-003]]
+- Domain note: `Gate`(컨테이너), `Revision`(실제 승인 대상 버전), `Feedback`, `AITask`.
+- Open questions: §7
+
+### Business Requirement
+
+지금 Slack 캡처의 후속 대화는 **같은 파일을 덮어쓴다.** 고치면 이전 내용이 사라지고 커밋만 하나 더 쌓인다. 어떤 지적이 무엇을 바꿨는지 추적할 수 없다.
+
+AI의 첫 제안이 틀려도 사용자가 모든 내용을 직접 고치는 부담 없이 **방향만 말하고 새 제안을 받을** 수 있어야 하고, 이전 제안은 비교와 감사를 위해 남아야 한다.
+
+동시에 재생성이 **처음부터 다시 하는 게 아니어야** 한다. 원문과 지침을 매번 재전송하면 비용과 편차가 커진다.
+
+### Scope
+
+In scope: 게이트/버전 분리, 피드백 입력, 재생성(v2), 이전 버전 보존, AI 세션 resume, 형제 버전 정리, 승인 잠금, 실패·재시도.
+Out of scope:
+- 체인 구조·스테이지가 결정하는 내용 → [[spec-008-gate-chain|KDEV-SPEC-008]]
+- 발행 → [[spec-010-apply-executor|KDEV-SPEC-010]]
+- AI 프롬프트 내용 (work)
+- 필드별 직접 편집기 — 이번 범위 밖
+
+## 2. UX Contract
+
+### Placement
+
+게이트 카드에는 **`피드백`·`승인` 두 버튼만** 둔다. 인라인 텍스트에어리어를 카드에 상주시키지 않는다 — 승인이 기본 동작이고 피드백은 예외 경로다.
+
+```text
++──────────────────────────────────────────────────+
+│ concept 게이트              badge: v2 | v1        │
+│ ── AI 제안 내용 ─────────────────────────────    │
+│ [피드백]  [승인]                                 │
++──────────────────────────────────────────────────+
+        │ 피드백 클릭
+        ▼
++──────────────────────────────────────────────────+
+│ 피드백 모달                                       │
+│ 대상: concept 게이트 · 현재 버전 v1               │
+│ [ 무엇이 잘못됐나요 / 원하는 방향 ]               │
+│ [취소]  [재생성 → v2]                            │
++──────────────────────────────────────────────────+
+```
+
+### U-1. 게이트 카드
+
+- **상태**: 검토 대기 · 재생성 중 · 승인됨 · 실패
+- **문구**: 버전 badge(`v2 | v1`), 생성 시각, AI 판단 근거, 상태
+- **CTA**: `피드백`, `승인`. 실패 상태면 `재시도`. v1 badge를 눌러 이전 버전(read-only) 조회
+- **기대 결과**: 승인하면 게이트가 잠기고 다음 스테이지가 열린다. 이전 버전은 버튼이 비활성인 read-only로 남는다.
+
+### U-2. 피드백 모달
+
+- **상태**: 닫힘 · 열림 · 작성 중 · 제출 중 · 제출 실패
+- **문구**: 대상 게이트·현재 버전 라벨, "무엇이 잘못됐나요", "원하는 방향"
+- **CTA**: `재생성`, `취소`
+- **기대 결과**: 텍스트 입력 후 `재생성` → 피드백이 저장되고 같은 게이트의 새 버전(v2) 생성이 시작되며 모달이 닫힌다. v1은 read-only로 보존된다.
+
+### U-3. 버전 badge
+
+- **상태**: 버전 1개 · 여러 버전 · 승인 버전 존재
+- **문구**: `v1`, `v2`, 승인됨, 피드백 반영
+- **CTA**: 버전 선택해 열람
+- **기대 결과**: 과거 제안과 새 제안을 비교할 수 있다. **이전 버전을 다시 승인할 수는 없다** — 승인 대상은 항상 현재 active 버전이다.
+
+## 3. User Scenario
+
+### S-1. owner — 피드백으로 새 버전을 받는다
+
+1. concept 게이트 v1을 본다. 개념 입도가 너무 잘게 쪼개져 있다고 판단한다.
+2. `피드백`을 눌러 모달을 연다. 대상과 현재 버전(v1)이 표시된다.
+3. "STT와 스트리밍 ASR을 하나로 합쳐 달라"고 적고 `재생성`을 누른다.
+4. v1이 read-only로 보존되고 모달이 닫히며 v2 생성이 시작된다.
+5. AI는 **직전 세션을 이어받아** 원문·지침 재전송 없이 피드백만 반영해 v2를 만든다.
+6. owner가 v2를 승인한다.
+
+### S-2. owner — 승인 후 다시 고치고 싶다
+
+1. 이미 승인한 게이트에 피드백하려 한다.
+2. 시스템은 승인된 게이트는 변경할 수 없다고 알린다.
+3. 목적지 판단이 틀린 경우에만 `이 목적지가 아님`으로 route를 재오픈할 수 있다([[spec-008-gate-chain|KDEV-SPEC-008]] U-6).
+
+### S-3. System — 재생성이 여러 번 트리거된다
+
+1. 사용자가 피드백을 빠르게 두 번 제출하거나 네트워크 재시도로 중복 요청이 들어온다.
+2. 새 버전이 검토 가능 상태가 되기 **직전**, 같은 게이트의 다른 검토 가능 버전을 전부 밀어냄(superseded) 처리한다.
+3. 결과적으로 **게이트당 검토 대상은 항상 하나**다. 미완성(생성 중) 버전은 건드리지 않는다.
+
+### S-4. System — AI 실행이 실패한다
+
+1. 생성 또는 재생성이 실패한다.
+2. 실행 기록에 실패 사유를 남기고 게이트를 `실패`로 전이한다.
+3. `재시도`는 기존 실패 기록을 수정하지 않고 **새 실행**을 만들며, 원래 실행을 참조로 남긴다.
+4. 성공하면 새 버전이 만들어지고 게이트가 `검토 대기`로 돌아온다. 실패 이력은 보존된다.
+
+### S-5. System — 이어받을 세션이 없다
+
+1. 재생성 시점에 직전 버전의 세션 정보가 없다(최초 실행이 세션을 반환하지 못했거나 만료).
+2. 실행 기록에서 세션을 찾아본다.
+3. 그래도 없으면 **stateless로 재생성**하되, 원문·이전 버전 내용·피드백을 모두 컨텍스트에 넣는다. 결과 품질이 떨어질 수 있으나 실패시키지 않는다.
+
+## 4. Interface Contract
+
+### API Contract
+
+| Method | Path | 요약 | 권한 |
+|---|---|---|---|
+| POST | 게이트 피드백 | 피드백 저장 | admin |
+| POST | 게이트 재생성 | 피드백 기반 새 버전 생성 | admin |
+| POST | 게이트 재시도 | 실패한 생성/재생성 재실행 | admin |
+| GET | 게이트 버전 목록 | 버전 이력 조회 | admin |
+| GET | 버전 상세 | 특정 버전 내용(read-only) | admin |
+
+승인 API는 [[spec-008-gate-chain|KDEV-SPEC-008]]이 소유한다.
+
+### Validation
+
+| 필드 | 규칙 |
+|---|---|
+| `feedback` | 필수. 최소 길이 이상 — 한 단어 피드백으로는 방향이 전달되지 않는다. 상한은 구현 기본값 |
+| 대상 게이트 | 현재 항목에 속한 게이트만 |
+| 재생성 | `검토 대기` 또는 `피드백 대기` 상태에서만 |
+| 재시도 | 게이트가 `실패`이고 마지막 실행이 실패인 경우만 |
+| 이전 버전 | 조회만 가능. 승인·피드백 대상이 될 수 없다 |
+
+### Case Matrix
+
+| 에러 코드 | 백엔드 출력 | 프론트 출력 | 표시 위치 |
+|---|---|---|---|
+| `FEEDBACK_TOO_SHORT` | 피드백 길이 부족 | 원하는 수정 방향을 조금 더 구체적으로 적어 주세요. | 피드백 모달 |
+| `GATE_ALREADY_APPROVED` | 승인된 게이트 수정 시도 | 승인된 단계는 변경할 수 없습니다. | 게이트 카드 |
+| `REGENERATION_FAILED` | AI 재생성 실패 | 새 제안을 만들지 못했습니다. 다시 시도해 주세요. | 피드백 모달 |
+| `STALE_REVISION` | 오래된 버전 대상 조작 | 최신 상태를 다시 확인해 주세요. | 게이트 카드 |
+| `RETRY_NOT_ALLOWED` | 재시도 불가 상태 | 지금은 재시도할 수 없습니다. | 게이트 카드 |
+
+### Flow
+
+```mermaid
+sequenceDiagram
+    actor Owner
+    participant FE
+    participant BE
+    participant AI as open-kknaks
+    participant Store
+
+    Owner->>FE: 피드백 작성
+    FE->>BE: 피드백 저장
+    BE->>Store: Feedback 기록
+    FE->>BE: 재생성 요청
+    BE->>Store: 직전 버전/실행의 세션 조회
+    BE->>AI: 이전 제안 + 피드백 + resume 세션
+    AI-->>BE: 새 제안 + 세션
+    BE->>Store: 실행 기록 + 새 revision 저장
+    BE->>Store: 형제 검토가능 버전 supersede
+    BE-->>FE: v2 반환 (v1은 read-only)
+    Owner->>FE: 승인
+```
+
+실패 후 재시도:
+
+```mermaid
+sequenceDiagram
+    participant BE
+    participant AI
+    participant Store
+
+    AI-->>BE: 생성 실패
+    BE->>Store: 실행=실패, 게이트=실패
+    Note over BE: 사용자 재시도
+    BE->>Store: 새 실행 생성 (원 실행 참조)
+    BE->>AI: 마지막 입력으로 재실행
+    AI-->>BE: 새 제안
+    BE->>Store: 새 revision · 게이트=검토 대기
+```
+
+### State / Lifecycle
+
+Revision 상태:
+
+```mermaid
+stateDiagram-v2
+    [*] --> drafting
+    drafting --> reviewable
+    drafting --> failed
+    reviewable --> approved
+    reviewable --> superseded
+    approved --> superseded: route 재오픈 시 마킹
+```
+
+- 게이트 상태는 [[spec-008-gate-chain|KDEV-SPEC-008]]이 소유한다. **게이트 상태와 revision 상태는 다른 것**이다 — 게이트는 사용자가 보는 단계의 상태, revision은 AI 제안 버전의 상태다.
+- AI 실행 상태(`queued`/`running`/`succeeded`/`failed`)는 또 별개다. 셋을 섞지 않는다.
+
+### Data Contract
+
+| Resource | Field | 설명 |
+|---|---|---|
+| Revision | `gate_id` | 소속 게이트 |
+| Revision | `version` | 게이트 안에서 증가하는 v1, v2, … |
+| Revision | `status` | `drafting`·`reviewable`·`approved`·`superseded`·`failed` |
+| Revision | `payload` | AI가 만든 실제 승인 대상 내용 |
+| Revision | `parent_revision_id` | 재생성 기준이 된 이전 버전 |
+| Revision | `feedback_id` | 이 버전을 유발한 피드백 |
+| Revision | `ai_task_id` | 이 버전을 만든 실행 |
+| Revision | `session_ref` | 실행이 반환한 세션 참조. 다음 재생성의 resume 원천 |
+| Feedback | `target_revision_id` | 피드백 대상 버전 |
+| Feedback | `body` | 사용자가 남긴 방향 |
+| Feedback | `status` | `submitted`·`consumed` |
+| AITask | `kind` | 어느 스테이지의 생성/재생성인가 |
+| AITask | `status` | `queued`·`running`·`succeeded`·`failed` |
+| AITask | `retry_of_task_id` | 재시도 대상 |
+| AITask | `session_ref` | 실행 결과 세션 참조 |
+| AITask | `error_code` / `error_message` | 실패 사유 |
+
+## 5. Implementation Rules
+
+- **재생성은 기존 버전을 수정하지 않는다.** 새 버전을 만들고 직전 버전은 read-only로 보존하며, 새 버전은 이전 버전을 `parent`로 참조한다.
+- **형제 정리(sweep)**: 새 버전이 `reviewable`로 전이하기 **직전**, 같은 게이트의 다른 모든 `reviewable` 버전을 `superseded`로 정리한다. 승인 확정 시점에도 같은 정리를 안전망으로 수행한다. `drafting` 버전은 건드리지 않는다.
+  - 이 규칙이 없으면 재생성이 여러 번 트리거될 때 검토 가능 버전이 병렬로 쌓이고, 하나를 승인해도 나머지가 dangling으로 남는다.
+- **승인된 버전은 불변**이며, 한 게이트에 승인 버전은 하나만 존재한다.
+- **세션 resume 순서**: ① 직전 버전의 `session_ref` → ② 그 버전을 만든 실행의 `session_ref` → ③ 둘 다 없으면 stateless(원문 + 이전 payload + 피드백을 컨텍스트에 인라인). 재생성 결과가 새 세션을 반환하면 새 실행과 새 버전에 저장한다.
+- **AI 실행 상태를 게이트/버전 상태와 섞지 않는다.** 실패한 실행 기록은 불변으로 보존하고, 재시도는 새 실행 행을 만들며 원 실행을 참조한다.
+- 같은 피드백으로 중복 재생성 요청이 오면 진행 중인 작업 또는 그 결과를 반환한다.
+- 피드백 입력은 **모달로만** 받는다. 게이트 카드에는 두 버튼만 둔다.
+- 큐 항목의 자동 준비 산출물도 **같은 버전 원칙**을 따른다 — 재준비 시 덮어쓰지 않고 새 버전을 남긴다. 다만 게이트 전용 개념(승인 잠금, 재오픈)은 적용하지 않는다.
+
+## 6. Verification
+
+### Acceptance Criteria
+
+- [ ] 게이트 카드에 `피드백`·`승인` 두 버튼만 있고 인라인 입력창이 없다.
+- [ ] `피드백`이 모달을 열고 대상 게이트·현재 버전을 표시한다.
+- [ ] 피드백 제출 후 새 버전이 생성되고 이전 버전이 read-only로 보존된다.
+- [ ] 새 버전이 이전 버전을 `parent`로 참조한다.
+- [ ] 이전 버전을 조회할 수 있고, 승인·피드백 대상이 되지 않는다.
+- [ ] 재생성이 직전 세션을 이어받는다(원문 재전송 없음).
+- [ ] 세션이 없으면 stateless로 재생성되며 실패하지 않는다.
+- [ ] 재생성이 여러 번 트리거돼도 검토 가능 버전이 **하나만** 남는다.
+- [ ] `drafting` 버전은 sweep 대상이 아니다.
+- [ ] 승인된 게이트에 피드백하면 거부된다.
+- [ ] AI 실행 실패 시 사유와 `재시도` CTA가 표시된다.
+- [ ] 재시도가 기존 실패 기록을 덮어쓰지 않고 새 실행을 만든다.
+- [ ] 실패 이력이 재시도 성공 후에도 조회 가능하다.
+- [ ] 자동 준비 재실행이 이전 산출물을 덮어쓰지 않는다.
+
+## 7. Open Questions
+
+- **(OPEN)** 피드백 최소 길이 기준. 너무 길면 귀찮고 너무 짧으면 방향이 안 전달된다. 실사용 관찰 후 조정한다.
+- **(OPEN)** 빠른 선택지(자주 쓰는 피드백 프리셋)를 자유 입력과 함께 제공할지. 반복되는 피드백 패턴이 보이면 도입한다.
+- **(OPEN)** 버전이 많이 쌓였을 때 보존 정책. 지금은 전부 보존이며 정리 규칙을 두지 않는다.
+- **(OPEN)** 재생성 중 사용자가 페이지를 떠났을 때의 알림. 지금은 화면을 다시 열어 확인하는 것을 전제한다.

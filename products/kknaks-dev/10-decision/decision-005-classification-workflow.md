@@ -16,6 +16,8 @@ links:
   decisions:
     - "[[decision-002-knowledge-pipeline-layers|KDEV-DEC-002]]"
     - "[[decision-004-edge-model-and-schema|KDEV-DEC-004]]"
+    - "[[decision-010-knowledge-graph-four-layers|KDEV-DEC-010]]"
+    - "[[decision-011-approval-gate-chain|KDEV-DEC-011]]"
   specs:
     - "[[spec-003-knowledge-workflow|KDEV-SPEC-003]]"
   works: []
@@ -26,6 +28,16 @@ links:
 # 분류 워크플로 — SSOT는 종착지 (ADR-005)
 
 아이디어가 성격에 따라 독립 SSOT(permanent / product / post)로 *분류*된다. permanent와 product/post는 평행한 독립 SSOT이며, 한쪽이 다른 쪽으로 흘러가지 않는다.
+
+> **개정 (2026-07-27) — [[decision-011-approval-gate-chain|KDEV-DEC-011]] / [[decision-010-knowledge-graph-four-layers|KDEV-DEC-010]]**
+>
+> 아래 두 조항을 개정한다. 나머지(평행 독립 SSOT, `up:`은 인용, idea 휘발, 분류=배치)는 **그대로 유효**하다.
+>
+> **① 정제 주체** — 종전 *"정제 주체 = 사람. 에이전트는 inbox 정리·연결 후보 제안까지만 보조"* 및 기각 항목 *"정제를 에이전트가 초안까지 하는 안(제텔 정신상 연결=본인 사고)"* → **AI가 초안을 만들고 사람이 승인 게이트에서 판단하는 모델로 전환**한다.
+> 기각 당시의 우려("연결은 본인 사고여야 한다")는 **승인 게이트가 흡수**한다 — AI는 제안만 하고 파일·git을 직접 건드리지 못하며([[decision-012-draft-storage-and-publish-boundary|KDEV-DEC-012]] D2), 어떤 개념을 만들지·기존 개념에 합칠지·어느 목적지에 둘지는 전부 사람이 게이트에서 결정한다. 연결 판단의 주체는 여전히 사람이고, 바뀐 것은 **초안 타이핑을 누가 하느냐**다.
+> 반대로 게이트가 없으면 이 기각의 우려가 그대로 현실이 된다 — 현재 Slack 캡처가 AI 출력을 곧바로 커밋하는 상태가 정확히 그 사례다([[baseline-003-inbox-approval-pipeline|KDEV-BL-003]]).
+>
+> **② 종착지 목록** — `permanent`/`product`/`post` 3종에 **원자 개념 `permanent/concept/`가 추가**된다([[decision-010-knowledge-graph-four-layers|KDEV-DEC-010]] D1). `inbox/`도 폐기 전용이 아니라 *"정제는 못 하지만 버리긴 아깝다"*로 승인된 idea가 머무는 **목적지**가 된다([[decision-011-approval-gate-chain|KDEV-DEC-011]] D1) — 종전 "분류 후 원본 idea 폐기"는 "분류 결과가 `inbox` 보류일 수 있다"로 완화된다.
 
 ## Context
 
