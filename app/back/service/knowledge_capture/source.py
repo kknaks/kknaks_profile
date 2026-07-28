@@ -37,7 +37,19 @@ class SourceMaterial:
 
 
 def find_urls(text: str) -> list[str]:
-    return [match.rstrip(".,;!?") for match in URL_RE.findall(text or "")]
+    """본문에서 URL 을 뽑는다.
+
+    Slack 은 링크를 `<https://example.com|example.com>` 으로 감싸 보낸다. `>` 는
+    정규식이 거르지만 **`|` 뒤의 표시 텍스트는 URL 에 그대로 붙는다** — 그러면
+    `watch?v=ID|youtube.com/...` 이 되어 영상 ID 파싱이 실패하고, 유튜브가
+    `blog` 로 판정돼 파이프라인 정의를 못 찾는다(게이트가 안 열린다).
+
+    `|` 는 URL 에서 퍼센트 인코딩돼야 하는 문자라 잘라도 안전하다.
+    """
+    urls = []
+    for match in URL_RE.findall(text or ""):
+        urls.append(match.split("|", 1)[0].rstrip(".,;!?"))
+    return urls
 
 
 def detect_source_type(url: str) -> str:

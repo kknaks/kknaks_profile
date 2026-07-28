@@ -240,3 +240,40 @@ async def test_failure_is_reported_not_swallowed(make_runner, no_filesystem_writ
     # 수집·요약이 모두 실패해도 항목은 남고 사람에게 알려진다.
     await runner.handle(Request("https://youtu.be/slacktest07 메모", thread="t7"), slack)
     assert "실패" in slack.last
+
+
+class TestSlackLinkMarkup:
+    """Slack 은 링크를 `<url|표시텍스트>` 로 감싼다 — 운영 첫 시도에서 이걸로 막혔다.
+
+    벗기지 않으면 URL 에 `|텍스트` 가 붙어 **유튜브가 `blog` 로 판정**되고,
+    파이프라인 정의를 못 찾아 게이트가 아예 안 열린다.
+    """
+
+    def test_unwrap(self):
+        from service.pipeline.slack_intake import unwrap_slack_links
+
+        assert (
+            unwrap_slack_links("<https://www.youtube.com/watch?v=ZVuHZ2Fjkl4|youtube.com/watch>")
+            == "https://www.youtube.com/watch?v=ZVuHZ2Fjkl4"
+        )
+        assert unwrap_slack_links("<https://youtu.be/abc12345678>") == "https://youtu.be/abc12345678"
+        assert unwrap_slack_links("링크 없음") == "링크 없음"
+
+    async def test_wrapped_link_still_becomes_youtube_item(
+        self, make_runner, no_filesystem_writes
+    ):
+        runner = make_runner(fetch=_fetch_ok, summarize=_summarize_ok)
+        slack = FakeSlackClient()
+        raw = "<https://www.youtube.com/watch?v=slackwrap1|youtube.com/watch?v=slackwrap1> 정리해줘"
+
+        await runner.handle(Request(raw, thread="tw1"), slack)
+
+        async with make_runner.session_factory() as db:
+            item = await db.scalar(
+                select(QueueItem).where(QueueItem.normalized_url == "youtube:slackwrap1")
+            )
+        assert item is not None
+        assert item.source_kind == "youtube"          # blog 로 떨어지면 게이트가 안 열린다
+        assert item.source_url == "https://www.youtube.com/watch?v=slackwrap1"
+        # 메모에 `< >`·`|텍스트>` 찌꺼기가 남지 않아야 한다.
+        assert item.note == "정리해줘"

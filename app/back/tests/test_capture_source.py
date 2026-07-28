@@ -4,7 +4,7 @@ import httpx
 import pytest
 
 from service.knowledge_capture import source
-from service.knowledge_capture.source import SourceFetchError, fetch_source, validate_public_url
+from service.knowledge_capture.source import SourceFetchError, fetch_source, validate_public_url, find_urls
 
 
 @pytest.mark.asyncio
@@ -66,3 +66,24 @@ async def test_oversized_source_rejected(monkeypatch):
     ))
     with pytest.raises(SourceFetchError, match="size limit"):
         await fetch_source("https://example.com/large", max_bytes=100, transport=transport)
+
+
+class TestSlackLinkFormatting:  # noqa: E301
+    """Slack 은 링크를 `<url|표시텍스트>` 로 감싸 보낸다 (운영에서 실제로 터진 버그)."""
+
+    def test_pipe_display_text_is_stripped(self):
+        text = "<https://www.youtube.com/watch?v=ZVuHZ2Fjkl4|youtube.com/watch?v=ZVuHZ2Fjkl4>"
+        assert find_urls(text) == ["https://www.youtube.com/watch?v=ZVuHZ2Fjkl4"]
+
+    def test_youtube_is_detected_after_stripping(self):
+        """이걸 놓치면 유튜브가 `blog` 로 판정돼 파이프라인 정의를 못 찾는다."""
+        from service.pipeline import detect_source_kind, normalize_url
+
+        url = find_urls("<https://www.youtube.com/watch?v=ZVuHZ2Fjkl4|보기>")[0]
+        assert detect_source_kind(url) == "youtube"
+        assert normalize_url(url) == "youtube:ZVuHZ2Fjkl4"
+
+    def test_plain_url_unaffected(self):
+        assert find_urls("보라 https://youtu.be/abc12345678 여기") == [
+            "https://youtu.be/abc12345678"
+        ]

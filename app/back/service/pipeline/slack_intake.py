@@ -14,6 +14,7 @@
 from __future__ import annotations
 
 import logging
+import re
 from datetime import datetime
 from typing import Any, Callable
 
@@ -26,6 +27,21 @@ from .intake import intake
 from .prepare import PREPARABLE_STATUSES, Fetcher, Summarizer
 
 logger = logging.getLogger("kknaks-back.pipeline.slack")
+
+
+#: Slack 은 링크를 `<url|표시텍스트>` 또는 `<url>` 로 감싸 보낸다.
+_SLACK_LINK_RE = re.compile(r"<(https?://[^|>]+)(?:\|[^>]*)?>")
+
+
+def unwrap_slack_links(text: str) -> str:
+    """Slack 링크 표기를 순수 URL 로 되돌린다.
+
+    벗기지 않으면 두 곳이 망가진다.
+    - URL 에 `|표시텍스트` 가 붙어 영상 ID 파싱이 실패한다 → 유튜브가 `blog` 로
+      판정돼 파이프라인 정의를 못 찾고 **게이트가 안 열린다.**
+    - 메모에서 URL 만 걷어내면 `< >`, `|텍스트>` 같은 찌꺼기가 남는다.
+    """
+    return _SLACK_LINK_RE.sub(r"\1", text or "")
 
 
 def _strip_urls(text: str, urls: list[str]) -> str:
@@ -87,9 +103,10 @@ class QueueIntakeRunner:
             raise
 
     async def _create(self, request) -> tuple[str, int | None]:
-        urls = find_urls(request.text)
+        text = unwrap_slack_links(request.text)
+        urls = find_urls(text)
         source_url = urls[0] if urls else None
-        note = _strip_urls(request.text, urls) or None
+        note = _strip_urls(text, urls) or None
 
         async with self.session_factory() as db:
             result = await intake(
@@ -146,6 +163,7 @@ class QueueIntakeRunner:
 
         from .intake import _merge_note
 
+        text = unwrap_slack_links(text)
         addition = _strip_urls(text, find_urls(text))
         async with self.session_factory() as db:
             item = await db.get(QueueItem, item_id)
