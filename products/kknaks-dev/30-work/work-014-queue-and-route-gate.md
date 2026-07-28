@@ -13,7 +13,7 @@ roles:
   be: kknaks
   qa: kknaks
   ops: kknaks
-progress: 25
+progress: 50
 created_at: 2026-07-27
 updated_at: 2026-07-28
 tags:
@@ -59,10 +59,10 @@ Slack 입력을 **파일이 아니라 DB 큐**로 받고, 자동 준비(수집·
 | Type | new-feature |
 | Owner | kknaks |
 | Status | doing |
-| Progress | 25% (Phase 1/4) |
+| Progress | 50% (Phase 2/4) |
 | Branch/PR | — |
 | Blocker | 없음 (WORK-012·013 완료) |
-| Next | Phase 2 접수와 자동 준비 |
+| Next | Phase 3 route 게이트 |
 
 ## Role Assignment
 
@@ -71,7 +71,7 @@ Slack 입력을 **파일이 아니라 DB 큐**로 받고, 자동 준비(수집·
 | PM | kknaks | 범위·상태기계 확정 | todo |
 | Design | kknaks | 큐 화면·게이트 카드 레이아웃 | todo |
 | FE | kknaks | admin 큐 화면 | todo |
-| BE | kknaks | 스키마·접수·준비·게이트 | doing (스키마 done) |
+| BE | kknaks | 스키마·접수·준비·게이트 | doing (스키마·접수·준비 done) |
 | QA | kknaks | 상태 전이·실패 회생 검증 | todo |
 | Ops | kknaks | 마이그레이션 적용 | done (로컬 왕복 검증) |
 
@@ -186,20 +186,56 @@ route_result = {
 
 ### Phase 2 — 접수와 자동 준비
 
-- **Status**: TODO
+- **Status**: DONE
 - **작업**:
-  - [ ] WORK-012의 sink를 **큐 적재**로 교체 (파일 쓰기·push 제거)
-  - [ ] 수동 접수 API + 중복 판정(정규화 URL)
-  - [ ] 자동 준비 스테이지: 수집(yt-dlp·자막) + 요약
-  - [ ] 준비 실패 시 `prepare_failed` + 메모 보완 재시도 경로
-  - [ ] Slack 회신을 "접수됨 / 검토 대기"로 변경
+  - [x] WORK-012의 sink를 **큐 적재**로 교체 (파일 쓰기·push 제거)
+  - [x] 수동 접수 API + 중복 판정(정규화 URL)
+  - [x] 자동 준비 스테이지: 수집(yt-dlp·자막) + 요약
+  - [x] 준비 실패 시 `prepare_failed` + 메모 보완 재시도 경로
+  - [x] Slack 회신을 "접수됨 / 검토 대기"로 변경
 - **검증**:
-  - [ ] Slack에 링크를 던지면 **레포에 파일이 생기지 않고** 큐에 적재된다
-  - [ ] 준비 완료 후 `in_review`로 전이한다
-  - [ ] 자막이 없는 영상에서 `prepare_failed` → 메모 추가 → 재시도로 `in_review` 도달
-  - [ ] 재시도가 기존 실패 기록을 덮어쓰지 않는다
-  - [ ] 발행 전 같은 URL 재투입 시 기존 항목에 합류한다
-- **완료 증거**: 미작성
+  - [x] Slack에 링크를 던지면 **레포에 파일이 생기지 않고** 큐에 적재된다
+  - [x] 준비 완료 후 `in_review`로 전이한다
+  - [x] 자막이 없는 영상에서 `prepare_failed` → 메모 추가 → 재시도로 `in_review` 도달
+  - [x] 재시도가 기존 실패 기록을 덮어쓰지 않는다
+  - [x] 발행 전 같은 URL 재투입 시 기존 항목에 합류한다
+- **완료 증거**:
+
+신규 `service/pipeline/`(urls·intake·prepare·summarize·slack_intake·runtime) + `api/routers/queue.py`. 테스트 55건 신규(`test_pipeline_intake` 31 · `test_pipeline_slack` 6 · `test_queue_api` 18). **423 passed.**
+
+**동작이 바뀐 지점** — 이 work의 목적 그 자체다.
+
+```
+종전:  Slack → 수집 → AI가 노트 전문 작성 → 렌더 → 파일 쓰기 → origin/main 커밋
+현행:  Slack → 큐 적재(received) → 자동준비(수집+요약) → in_review → (route 게이트 대기)
+```
+
+노트 전문 작성은 route 승인 뒤로 옮겼다(WORK-015). 목적지를 정하기 전에 본문을 쓰면 **폐기할 자료의 노트까지 쓰게 되고**, 무엇보다 사람이 보기 전에 결과가 확정된다.
+
+**"파일이 안 생긴다"를 사후 확인하지 않는다** — `Path.write_text`·`write_bytes`·`commit_and_push_with_retry`를 **예외를 던지게 만들어 놓고** 전 흐름을 태운다(`no_filesystem_writes` fixture). 밟으면 터진다.
+
+**URL 정규화 (OQ 해소)** — 폭이 곧 정확도다. 좁으면 같은 영상이 두 번 정리되고, **넓으면 다른 자료가 조용히 합쳐진다.** 후자가 더 위험해서(사라진 걸 알아채기 어렵다) 층을 나눴다.
+
+| 대상 | 규칙 | 근거 |
+|---|---|---|
+| 유튜브 | **영상 ID만** (`youtube:ID`) | ID가 정체성 전부. `t`·`list`·`si`·`shorts`·`embed`·`youtu.be`는 모두 같은 영상 |
+| 그 외 | **추적 파라미터만** 제거(utm_*·fbclid·gclid·si·ref…), 나머지 쿼리 보존·정렬 | 어떤 쿼리가 식별자인지 일반적으로 알 수 없다 → 지우는 쪽이 아니라 **남기는 쪽이 기본값** |
+| 공통 | host 소문자·`www.` 제거·기본포트 제거·후행 슬래시·fragment 제거 | 문서 내 위치는 정체성이 아니다 |
+| 판정 불가 | `None` (중복 검사 제외) | 틀린 키로 서로 다른 자료를 묶는 것보다 낫다 |
+
+**메모가 원문을 대체한다** — 수집이 막혀도(자막 없음·봇 차단) 사람이 한 줄 남기면 준비가 성립한다. Slack 스레드 후속 발언이 그대로 메모로 흘러가고, 항목이 `prepare_failed`면 **거기서 재시도까지 이어진다.** 준비 payload에 `material_source: fetched|note`와 `collect_error`를 남겨 **근거가 원문인지 사람 기억인지** route 판단이 구분할 수 있게 했다.
+
+**재료가 없으면 AI를 부르지 않는다** — 원문도 메모도 없으면 요약 호출 없이 `NO_SOURCE_MATERIAL`로 실패시킨다. 부르면 환각을 근거로 route를 판단하게 된다(`test_no_source_and_no_note_fails_without_calling_ai`가 AI 호출 시 실패하도록 고정).
+
+**재시도는 덮어쓰지 않는다** — 새 `item_preparations` 버전 + 새 `ai_tasks` 행, `retry_of_task_id`로 원 실패를 가리킨다. 실패 v1 + 성공 v2가 함께 남는 것을 검증했다.
+
+**큐 API** — 전 엔드포인트가 `Depends(require_admin)` 뒤에 있고 6개 경로 전부 비인증 401을 확인했다. 발행 재시도는 **만들지 않았다** — Executor가 없는데 자리만 잡아 두지 않는다(WORK-015).
+
+부수 정리:
+- `_known_stems`·`_allowed_groups`는 소비자 0이 되어 삭제(사용처가 runner 주입뿐이었다). `KnowledgeCaptureRunner`·`FileCaptureStore`는 **남긴다** — Rollback 경로이자 WORK-015가 재사용할 노트 작성 기계다.
+- **테스트가 실 Slack에 접속하고 실 AI를 호출하고 있었다.** `.env`를 source한 셸에서 돌리면 `SLACK_CAPTURE_ENABLED=1`이 그대로 들어와 TestClient lifespan이 워크스페이스에 Socket Mode로 붙었다(로그의 `⚡️ Bolt app is running!`, `[youtube] Video unavailable`이 증거). conftest에서 **덮어써서** 강제로 끈다.
+- `core/db.py`에 `new_session()` 추가 — `get_db`는 FastAPI 의존성이라 요청 밖(Slack 핸들러)에서 못 쓴다.
+- 요약기는 캡처 런타임이 연 broker 연결을 `service/pipeline/runtime.py`로 공유한다. 큐 API가 연결을 두 벌 열지 않는다. 캡처가 꺼져 있으면 재시도는 **503으로 정직하게 거절**한다 — 조용히 대체 경로를 만들지 않는다.
 
 ### Phase 3 — route 게이트 + 공통 계약
 
@@ -261,8 +297,9 @@ route_result = {
 ## Open Issues
 
 - 파이프라인 정의 저장 위치(코드 상수 vs DB) — 이 work에서 결정한다(SPEC-008 §7).
-- `normalized_url` 정규화 범위 — 중복 판정 정확도에 직결한다(database README Open).
+- ~~`normalized_url` 정규화 범위~~ — **P2에서 해소.** 유튜브=영상 ID만, 그 외=추적 파라미터만 제거(나머지 쿼리 보존). 근거는 Phase 2 완료 증거.
 - **이 work가 끝나면 큐에 항목이 쌓이지만 발행은 안 된다.** WORK-015까지 가야 md가 나온다. 그 사이 기간에 캡처를 계속 쓸지, WORK-015까지 묶어서 배포할지 판단이 필요하다.
+- **P2 배포 시점부터 Slack 캡처의 산출물이 사라진다.** 지금 배포하면 링크를 던져도 큐에만 쌓이고 노트는 안 나온다(route 게이트가 P3, 발행이 WORK-015). 캡처를 계속 쓰려면 **WORK-015까지 묶어서 배포**하는 편이 맞다.
 
 ## Related
 

@@ -19,6 +19,9 @@ class CaptureSession:
     first_prompt: str
     created_at: str
     last_seen_at: str
+    #: 이 스레드가 만든 승인 큐 항목 (KDEV-WORK-014). 스레드에 덧붙는 말을 그 항목의
+    #: 메모로 흘려보내기 위한 연결고리다. 기본값이 있어 이전 형식의 레코드도 그대로 읽힌다.
+    item_id: int | None = None
 
 
 class ThreadBusyError(RuntimeError):

@@ -45,3 +45,12 @@ async def get_db():
     """FastAPI 의존성 — 요청 스코프 async 세션. 커밋은 라우터가 명시적으로."""
     async with _sessionmaker()() as db:
         yield db
+
+
+def new_session() -> AsyncSession:
+    """요청 밖(Slack 핸들러·스케줄 잡)에서 쓰는 세션.
+
+    `get_db` 는 FastAPI 의존성이라 요청 없이는 못 쓴다. 백그라운드 작업은 자기 수명의
+    세션을 직접 열고 닫아야 한다 — `async with new_session() as db:` 로 쓴다.
+    """
+    return _sessionmaker()()

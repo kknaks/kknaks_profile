@@ -16,6 +16,13 @@ os.environ.setdefault("JOB_GIT_PUSH_DRY_RUN", "1")
 # enforcement 메커니즘 테스트는 각자 monkeypatch.setenv("GRAPH_ENFORCE","1") 로 opt-in.
 os.environ.setdefault("GRAPH_ENFORCE", "0")
 
+# Slack 캡처는 테스트에서 **강제로 끈다** (setdefault 가 아니라 덮어쓴다).
+# `.env` 를 source 한 셸에서 테스트를 돌리면 SLACK_CAPTURE_ENABLED=1 이 그대로 들어와,
+# TestClient 의 lifespan 이 **실 워크스페이스에 Socket Mode 로 접속하고** 큐 재시도가
+# **실 AI 를 호출한다**. 테스트가 외부 서비스에 부수효과를 내면 안 된다.
+# 캡처 동작을 검증하는 테스트는 런타임을 직접 조립한다(test_capture_session 등).
+os.environ["SLACK_CAPTURE_ENABLED"] = "0"
+
 
 @pytest.fixture(scope="session")
 def _persona_snapshot():

@@ -48,7 +48,7 @@
 | WORK-011 | 관리자 인증 MVP — DB 토대(Postgres·async SQLAlchemy·Alembic) + 쿠키 JWT 로그인 + admin 목 | BE+FE | done | SPEC-006 | — | `work-011-admin-auth-mvp.md` |
 | WORK-012 | Slack bridge를 back에 흡수 + 쓰기 소유권 정리 (sink DI 리팩터·lifespan 흡수·compose 정리·OKK-SPEC-011 §4 개정) | BE | **done** | SPEC-007(선행분) | — | `work-012-slack-bridge-absorb.md` |
 | WORK-013 | concept 층 도입 — 4층 재편·검증 재정의·규칙/템플릿 (report-only 선행 → enforce) | BE+문서 | **done** | SPEC-001·002·003·004 | — | `work-013-concept-layer.md` |
-| WORK-014 | 승인 큐 + route 게이트 MVP (스키마·접수·자동준비·게이트 공통계약·admin 큐 화면) | BE+FE | doing 25% (P1 스키마 done) | SPEC-007·008(route)·009 | 012·013 | `work-014-queue-and-route-gate.md` |
+| WORK-014 | 승인 큐 + route 게이트 MVP (스키마·접수·자동준비·게이트 공통계약·admin 큐 화면) | BE+FE | doing 50% (P1 스키마·P2 접수/준비 done) | SPEC-007·008(route)·009 | 012·013 | `work-014-queue-and-route-gate.md` |
 | WORK-015 | 유튜브 체인 완성 + Apply Executor (source_note·concept·derived + 원자적 발행) | BE+FE | todo | SPEC-008·010·004 | 014 | `work-015-youtube-chain-and-executor.md` |
 
 ## Status Board

@@ -11,21 +11,20 @@ bridge 가 파일을 쓰고 git push 까지 직접 했고, Postgres 에는 붙�
 from __future__ import annotations
 
 import asyncio
-import json
 import logging
 import time
 from datetime import datetime
-from pathlib import Path
 from typing import Awaitable, Callable
 from zoneinfo import ZoneInfo
 
-import yaml
-
 import config
+from core.db import new_session
 from service.knowledge_capture import CaptureSessionStore
+from service.knowledge_capture.source import fetch_source
+from service.pipeline import runtime
+from service.pipeline.slack_intake import QueueIntakeRunner
+from service.pipeline.summarize import AgentSummarizer
 from service.slack_bridge.app import create_capture_app
-from service.slack_bridge.runner import KnowledgeCaptureRunner
-from service.slack_bridge.stores import FileCaptureStore
 
 logger = logging.getLogger("kknaks-back.slack-capture")
 
@@ -117,22 +116,6 @@ async def _quiet(awaitable) -> None:
         logger.debug("Slack capture 정리 중 예외 (무시)", exc_info=True)
 
 
-def _known_stems(repo_root: Path) -> set[str]:
-    try:
-        graph = json.loads((repo_root / "_graph.json").read_text(encoding="utf-8"))
-        return {str(node["id"]) for node in graph.get("nodes", [])}
-    except (OSError, ValueError, KeyError):
-        return set()
-
-
-def _allowed_groups(repo_root: Path) -> set[str]:
-    try:
-        meta = yaml.safe_load((repo_root / "persona/_meta.yaml").read_text(encoding="utf-8"))
-        return {str(item["id"]) for item in meta["notes"]["clusters"]}
-    except (OSError, TypeError, KeyError):
-        return {"study"}
-
-
 class CaptureRuntime:
     """Socket Mode 핸들러와 그 의존(broker·redis)의 수명을 lifespan 에 묶는다."""
 
@@ -175,51 +158,29 @@ class CaptureRuntime:
         import redis.asyncio as aioredis
         from open_kknaks import AgentClient, RedisBroker
 
-        repo_root = config.repo_root()
-
         self._broker = RedisBroker(url=config.redis_url(), namespace=config.capture_namespace())
         await self._broker.connect()
         self._redis = aioredis.from_url(config.redis_url(), decode_responses=True)
         sessions = CaptureSessionStore(self._redis)
 
-        def publish_capture(path: Path) -> bool:
-            from service.jobs.git_push import commit_and_push_with_retry
-
-            relative = path.relative_to(repo_root)
-            return commit_and_push_with_retry(
-                [relative],
-                f"content: capture Slack knowledge note ({relative.as_posix()})",
-                dry_run=config.job_git_push_dry_run(),
-                repo_root=repo_root,
-            )
-
-        async def publish_async(path: Path) -> bool:
-            # git 작업은 blocking — event loop 를 막지 않도록 thread 로 뺀다.
-            return await asyncio.to_thread(publish_capture, path)
-
-        def reload_local() -> bool:
-            # 흡수 전에는 back 에 HTTP 로 /admin/reload-data 를 쳤다. 같은 프로세스가 됐으므로
-            # 직접 호출한다 (circular import 회피용 지연 import).
-            from main import reload_data
-
-            return reload_data()
-
-        runner = KnowledgeCaptureRunner(
+        # Slack 입력은 이제 **큐 항목 하나**가 된다 (KDEV-WORK-014 P2).
+        # 파일 쓰기도 git push 도 여기서 일어나지 않는다 — 노트는 route 승인 뒤에 쓴다.
+        summarizer = AgentSummarizer(
             AgentClient(self._broker),
-            sessions,
-            repo_root=repo_root,
             provider=config.capture_provider(),
             model=config.capture_model(),
             work_dir=config.capture_work_dir(),
-            known_stems=lambda: _known_stems(repo_root),
-            allowed_groups=lambda: _allowed_groups(repo_root),
-            store=FileCaptureStore(
-                repo_root=repo_root,
-                publish=publish_async,
-                reload_data=reload_local,
-            ),
-            now=lambda: datetime.now(KST),
             timeout_seconds=config.capture_timeout_seconds(),
+        )
+        # 큐 API 의 `준비 재시도` 가 이 연결을 빌려 쓴다 — 연결을 두 벌 열지 않는다.
+        runtime.set_summarizer(summarizer)
+
+        runner = QueueIntakeRunner(
+            session_factory=new_session,
+            sessions=sessions,
+            fetch=fetch_source,
+            summarize=summarizer,
+            now=lambda: datetime.now(KST),
         )
 
         bolt_app = await create_capture_app(
@@ -265,6 +226,8 @@ class CaptureRuntime:
         await supervise_connection(connect, close=close, on_giveup=announce_giveup)
 
     async def stop(self) -> None:
+        # 연결이 닫히면 요약기도 못 쓴다 — 죽은 핸들을 남겨 두면 재시도가 조용히 실패한다.
+        runtime.clear()
         if self._task is not None:
             self._task.cancel()
             try:
