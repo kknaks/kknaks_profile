@@ -23,7 +23,10 @@ services:
       AUTH_COOKIE_SECURE: ${AUTH_COOKIE_SECURE:-1}   # 운영은 HTTPS 전용
       PERSONA_DIR: /repo/persona
       RUN_SCHEDULER: "1"
-      JOB_GIT_PUSH_DRY_RUN: ${JOB_GIT_PUSH_DRY_RUN:-1}   # 운영 시 .env 에 0 박기
+      JOB_GIT_PUSH_DRY_RUN: ${JOB_GIT_PUSH_DRY_RUN:-1}   # 잔디·알고리즘·교안·PDF 잡. 운영 = 0
+      # 승인 발행(Apply Executor)만 끄는 별도 플래그 (KDEV-WORK-015).
+      # 위 플래그와 나눠야 발행만 시험하면서 기존 잡은 계속 돌릴 수 있다. 기본 = 끔.
+      PUBLISH_DRY_RUN: ${PUBLISH_DRY_RUN:-1}
       RELOAD_TOKEN: ${RELOAD_TOKEN:-changeme}
       GH_USER_PERSONAL: ${GH_USER_PERSONAL:-kknaks}
       GH_TOKEN_PERSONAL: ${GH_TOKEN_PERSONAL:-}
