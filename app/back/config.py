@@ -44,20 +44,6 @@ def web_concurrency() -> int:
 
 def job_git_push_dry_run() -> bool:
     return os.environ.get("JOB_GIT_PUSH_DRY_RUN", "1") == "1"
-
-
-def publish_dry_run() -> bool:
-    """**승인 발행**(Apply Executor)만 끄는 플래그 (KDEV-WORK-015).
-
-    `JOB_GIT_PUSH_DRY_RUN` 과 나눈 이유: 그건 잔디·알고리즘·교안·PDF 잡이 함께 쓴다.
-    발행을 시험하려고 그걸 1 로 올리면 **기존 자동화가 통째로 멈춘다.**
-
-    기본값은 **1(끔)** 이다. 키를 빠뜨렸을 때 "안 나간다"는 알아채지만
-    "잘못 나갔다"는 되돌리기 어렵다.
-    """
-    return os.environ.get("PUBLISH_DRY_RUN", "1") == "1"
-
-
 def frontend_url() -> str:
     """PDF 생성 잡 (planning-02) 이 hit 할 frontend base URL.
 

@@ -455,8 +455,7 @@ async def _publish(db: AsyncSession, item: QueueItem, *, plan=None) -> dict[str,
         item,
         repo_root=config.repo_root(),
         current_nodes=_current_nodes(),
-        # 잔디·알고리즘 잡과 **다른 플래그**다 — 그걸 끄면 기존 자동화가 멈춘다.
-        dry_run=config.publish_dry_run(),
+        dry_run=config.job_git_push_dry_run(),
         reload_data=reload_local,
         plan=plan,
     )
