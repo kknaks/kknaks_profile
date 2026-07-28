@@ -199,11 +199,13 @@ erDiagram
 | # | 리비전 | 내용 | 상태 |
 |---|---|---|---|
 | 0001 | `create_users` | 관리자 계정 | 적용됨 (WORK-011) |
-| 0002 | (예정) | `queue_items` · `item_preparations` · `ai_tasks` | 큐 work |
-| 0003 | (예정) | `gates` · `gate_revisions` · `gate_feedbacks` | 게이트 work |
+| 0002 | `create_queue` | `queue_items` · `item_preparations` · `ai_tasks` | 적용됨 (WORK-014 P1) |
+| 0003 | `create_gates` | `gates` · `gate_revisions` · `gate_feedbacks` | 적용됨 (WORK-014 P1) |
 | 0004 | (예정) | `apply_plans` · `apply_results` | Executor work |
 
-리비전 전문은 `app/back/alembic/versions/`가 SoT다.
+리비전 전문은 `app/back/alembic/versions/`가 SoT다. 모델(`core/models.py`)과 리비전은 **손으로 쓴 두 벌의 진실**이라 갈라질 수 있어, `alembic check`를 테스트로 걸어 드리프트를 상시 차단한다(`tests/test_queue_schema.py::test_models_and_migrations_agree`).
+
+0003은 **순환 FK**를 만든다(`gates ↔ gate_revisions ↔ gate_feedbacks`). 테이블을 먼저 만들고 앞을 가리키는 FK 3개를 뒤에 붙이며, downgrade는 제약부터 역순으로 뗀다.
 
 ## Open
 
