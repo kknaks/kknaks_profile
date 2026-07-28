@@ -30,12 +30,9 @@ except SQLAlchemyError:
 
 needs_db = pytest.mark.skipif(not _DB_OK, reason="Postgres 미가용")
 
-GROUPS = frozenset({"study", "ai_skills"})
-
-
-def _route_payload(*, reference=True, concept=True, derived=False, exclusive=None, group="study"):
+def _route_payload(*, reference=True, concept=True, derived=False, exclusive=None):
     destinations = {
-        "reference": {"enabled": reference, "group": group},
+        "reference": {"enabled": reference},
         "concept": {"enabled": concept},
         "derived": {"enabled": derived},
     }
@@ -47,32 +44,20 @@ def _route_payload(*, reference=True, concept=True, derived=False, exclusive=Non
 
 class TestValidateRouteResult:
     def test_normalizes_valid_payload(self):
-        result = validate_route_result(_route_payload(), groups=GROUPS)
-        assert result["destinations"]["reference"] == {"enabled": True, "group": "study"}
+        result = validate_route_result(_route_payload())
+        assert result["destinations"]["reference"] == {"enabled": True}
         assert result["destinations"]["derived"] == {"enabled": False}
         assert result["exclusive"] is None
-
-    def test_unknown_group_rejected(self):
-        """group 은 `persona/_meta.yaml` 의 clusters 값이어야 한다 — 아니면 로더가 터진다."""
-        with pytest.raises(GateError) as exc:
-            validate_route_result(_route_payload(group="없는그룹"), groups=GROUPS)
-        assert exc.value.code == "INVALID_REFERENCE_GROUP"
-
-    def test_group_not_required_when_reference_off(self):
-        payload = _route_payload(reference=False, group="")
-        assert validate_route_result(payload, groups=GROUPS)["destinations"]["reference"] == {
-            "enabled": False
-        }
 
     def test_exclusive_with_destination_rejected(self):
         """둘 다면 무엇이 우선인지 알 수 없다 — 조용히 한쪽을 고르지 않는다."""
         with pytest.raises(GateError):
-            validate_route_result(_route_payload(exclusive="discard"), groups=GROUPS)
+            validate_route_result(_route_payload(exclusive="discard"))
 
     def test_nothing_selected_requires_exclusive(self):
         with pytest.raises(GateError):
             validate_route_result(
-                _route_payload(reference=False, concept=False, derived=False), groups=GROUPS
+                _route_payload(reference=False, concept=False, derived=False)
             )
 
     def test_hold_and_discard_are_both_valid(self):
@@ -80,12 +65,12 @@ class TestValidateRouteResult:
             payload = _route_payload(
                 reference=False, concept=False, derived=False, exclusive=value
             )
-            assert validate_route_result(payload, groups=GROUPS)["exclusive"] == value
+            assert validate_route_result(payload)["exclusive"] == value
 
     @pytest.mark.parametrize("bad", [None, [], "문자열", {}, {"destinations": "x"}])
     def test_malformed_rejected(self, bad):
         with pytest.raises(GateError):
-            validate_route_result(bad, groups=GROUPS)
+            validate_route_result(bad)
 
     def test_outcome_only_discard_ends_item(self):
         """`inbox_hold` 는 끝이 아니다 — inbox 노트를 남기는 발행이 남아 있다."""

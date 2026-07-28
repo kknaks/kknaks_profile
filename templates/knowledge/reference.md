@@ -63,8 +63,8 @@ tags:
 <자료에서 언급된 추가 링크·문헌. 없으면 "(자료 내 명시 없음)".>
 
 <!--
-경로: reference/{group}/{YYYY-MM-DD}-{slug}.md
-  group 은 persona/_meta.yaml 의 notes.clusters 에 있는 값이어야 한다(없는 값이면 로드 실패).
+경로: reference/{YYYY-MM-DD}-{slug}.md — **flat**. 하위 디렉토리를 두지 않는다
+      (concept 와 같은 이유 — 분류는 폴더가 아니라 링크 그래프가 한다).
 
 `up:` 을 두지 않는다 — reference 는 출처 기록층이라 상류가 없다.
 이 자료에서 뽑은 concept 가 반대로 이 노트를 `up:` 으로 가리킨다.

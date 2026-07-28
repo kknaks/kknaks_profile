@@ -141,7 +141,7 @@ export type QueueItemDetail = QueueItem & {
 
 export type RouteResult = {
   destinations: {
-    reference: { enabled: boolean; group?: string };
+    reference: { enabled: boolean };
     concept: { enabled: boolean };
     derived: { enabled: boolean };
   };
@@ -153,7 +153,6 @@ export type RouteResult = {
 export type NotePayload = {
   filename_stem: string;
   content: string;
-  group?: string;
   /** 경로는 시스템이 조립한다 — AI 는 stem 만 낸다. */
   target_path?: string;
 };
@@ -237,10 +236,9 @@ async function queueFetch<T>(path: string, init?: RequestInit): Promise<T> {
 const QUEUE = "/api/admin/queue";
 
 export const queueApi = {
-  /** 선택지는 서버가 준다 — `persona/_meta.yaml` 이 SoT 라 프론트에 목록을 복사하지 않는다. */
+  /** 파이프라인 정의 — 정의가 코드에 있으므로 프론트에 복사해 두지 않는다. */
   meta: () =>
     queueFetch<{
-      reference_groups: string[];
       pipelines: Record<string, { name: string; kind: string; optional: boolean }[]>;
     }>(`${QUEUE}/meta`),
   list: (includeDone = false) =>

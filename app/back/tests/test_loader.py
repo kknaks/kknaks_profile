@@ -29,14 +29,13 @@ class TestLoadRealPersona:
         assert orders == sorted(orders)
 
     def test_notes_indexed_by_id(self):
-        # 구조 검증 — dict 키 = note id, 값에 group 필드 박혀있음
+        # 구조 검증 — dict 키 = note id
         data = load_persona(PERSONA)
         assert isinstance(data["notes"], dict)
         assert isinstance(data["notes"], dict)  # 노트 0건일 수 있다
         if not data["notes"]:
             pytest.skip("노트 0건 — 인덱스 계약을 검사할 대상이 없다")
         first_id = next(iter(data["notes"]))
-        assert "group" in data["notes"][first_id]
 
     def test_meta_loaded(self):
         # _meta.yaml 의 notes.clusters 가 list 로 박혀있음
@@ -80,7 +79,7 @@ class TestValidationFailures:
         persona = repo / "persona"
         persona.mkdir(parents=True)
         _scaffold_min_persona(persona)
-        ref_dir = repo / "reference" / "py"
+        ref_dir = repo / "reference"
         ref_dir.mkdir(parents=True)
         # 파일명은 foo.md 인데 frontmatter id는 bar
         (ref_dir / "foo.md").write_text(
@@ -92,25 +91,6 @@ class TestValidationFailures:
             encoding="utf-8",
         )
         with pytest.raises(PersonaError, match="filename slug"):
-            load_persona(persona)
-
-    def test_notes_group_not_in_meta_fails(self, tmp_path: Path):
-        repo = tmp_path / "repo"
-        persona = repo / "persona"
-        persona.mkdir(parents=True)
-        _scaffold_min_persona(persona)
-        ref_dir = repo / "reference" / "nosuchgroup"
-        ref_dir.mkdir(parents=True)
-        # group 은 cluster 디렉토리명(nosuchgroup)에서 auto-enrich → _meta 에 없음
-        (ref_dir / "x.md").write_text(
-            "---\n"
-            "id: x\n"
-            "title: { ko: t, en: t }\n"
-            "date: '2026.05.01'\n"
-            "---\n",
-            encoding="utf-8",
-        )
-        with pytest.raises(PersonaError, match="not in _meta"):
             load_persona(persona)
 
     def test_contents_id_filename_mismatch_fails(self, tmp_path: Path):
@@ -219,8 +199,8 @@ class TestPermanent:
         # permanent up: reference → lineage 엣지. 층 rank source(1) <= synthesis(3) →
         # L4(상류만 up) 가 동일-rank 를 ERROR 로 잡지 않는지 확인 (WORK-010 구현 주의).
         repo = self._repo(tmp_path)
-        ref = repo / "reference" / "py"
-        ref.mkdir(parents=True)
+        ref = repo / "reference"
+        ref.mkdir(parents=True, exist_ok=True)
         (ref / "asyncio-basics.md").write_text(
             "---\ntitle: asyncio\n---\n# ref\n", encoding="utf-8"
         )
@@ -401,22 +381,27 @@ class TestReferenceNotesLoading:
         persona.mkdir(parents=True)
         _scaffold_min_persona(persona)
         ref = repo / "reference"
-        (ref / "py").mkdir(parents=True)
-        # frontmatter 에 type/id/group 없음 → auto-enrich 가 주입 (157개 실노트와 동형)
-        (ref / "py" / "n1.md").write_text(
+        ref.mkdir(parents=True)
+        # **flat** — 하위 폴더 없음. frontmatter 에 type/id 없어도 auto-enrich 가 주입한다.
+        (ref / "n1.md").write_text(
             "---\ntitle: { ko: t, en: t }\ndate: '2026.05.01'\n---\n# body\n",
             encoding="utf-8",
         )
-        (ref / "py" / "n2.md").write_text("# 빈 frontmatter\n본문", encoding="utf-8")
-        # top-level navigational README 는 노트로 로드되면 안 됨 (id 없음 → dict KeyError 위험)
+        (ref / "n2.md").write_text("# 빈 frontmatter\n본문", encoding="utf-8")
+        # navigational README 는 노트로 로드되면 안 됨 (id 없음 → dict KeyError 위험)
         (ref / "README.md").write_text("# 안내\nnavigational", encoding="utf-8")
+        # 하위 폴더는 더 이상 스캔하지 않는다 — 넣어도 로드되지 않아야 한다.
+        (ref / "legacy").mkdir()
+        (ref / "legacy" / "old.md").write_text(
+            "---\ntitle: { ko: t, en: t }\ndate: '2026.05.01'\n---\n본문\n", encoding="utf-8"
+        )
 
         data = load_persona(persona)
-        assert len(data["notes"]) == 2  # README 제외
+        assert len(data["notes"]) == 2  # README·하위폴더 제외
         for nid, n in data["notes"].items():
-            assert n["type"] == "reference"  # 재타이핑 주입
-            assert n["group"] == "py"  # cluster 디렉토리명
+            assert n["type"] == "reference"
             assert n["id"] == nid
+            assert "group" not in n  # flat — group 개념이 없다
 
 
 def _scaffold_min_persona(root: Path) -> None:

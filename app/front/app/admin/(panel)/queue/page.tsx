@@ -169,12 +169,10 @@ function AddModal({ onClose, onDone }: { onClose: () => void; onDone: () => void
 function Detail({
   item,
   gates,
-  groups,
   onChanged,
 }: {
   item: QueueItemDetail;
   gates: Gate[];
-  groups: string[];
   onChanged: () => void;
 }) {
   // 무엇을 하는 중인지 담는다 — 단순 boolean 이면 "왜 멈춰 있는지"를 화면이 못 말한다.
@@ -336,7 +334,7 @@ function Detail({
         </p>
       )}
       {gates.map((g) => (
-        <GateCard key={g.id} gate={g} itemId={item.id} groups={groups} onChanged={onChanged} />
+        <GateCard key={g.id} gate={g} itemId={item.id} onChanged={onChanged} />
       ))}
 
       <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 24 }}>
@@ -358,7 +356,6 @@ export default function QueuePage() {
   const [selected, setSelected] = useState<number | null>(null);
   const [detail, setDetail] = useState<QueueItemDetail | null>(null);
   const [gates, setGates] = useState<Gate[]>([]);
-  const [groups, setGroups] = useState<string[]>([]);
   const [adding, setAdding] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -376,7 +373,6 @@ export default function QueuePage() {
   }, []);
 
   useEffect(() => {
-    queueApi.meta().then((m) => setGroups(m.reference_groups)).catch(() => setGroups([]));
     reloadList().catch(() => setLoading(false));
   }, [reloadList]);
 
@@ -485,7 +481,7 @@ export default function QueuePage() {
 
         {/* 상세 */}
         {detail ? (
-          <Detail item={detail} gates={gates} groups={groups} onChanged={onChanged} />
+          <Detail item={detail} gates={gates} onChanged={onChanged} />
         ) : (
           <div
             style={{

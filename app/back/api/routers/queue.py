@@ -26,7 +26,7 @@ from service.pipeline import gates as gates_service
 from service.pipeline import intake, prepare_and_open_gate
 from service.pipeline.gates import GateError
 from service.pipeline.prepare import PREPARABLE_STATUSES
-from service.pipeline.route import allowed_groups, route_outcome, validate_route_result
+from service.pipeline.route import route_outcome, validate_route_result
 from service.pipeline.stages.concept import apply_exclusions
 
 router = APIRouter(prefix="/api/admin/queue", tags=["queue"], dependencies=[Depends(require_admin)])
@@ -71,16 +71,10 @@ async def _get_live_item(db: AsyncSession, item_id: int) -> QueueItem:
 
 @router.get("/meta")
 async def queue_meta():
-    """화면이 선택지를 만들 때 쓰는 값들.
-
-    `reference` group 을 자유 입력으로 두면 사람이 오타를 내고 승인 시점에야 422 를
-    본다. 선택지를 서버가 주는 편이 낫다 — `persona/_meta.yaml` 이 SoT 이므로
-    프론트에 목록을 복사해 두지 않는다.
-    """
+    """화면이 쓰는 파이프라인 정의. 정의가 코드에 있으므로 프론트에 복사해 두지 않는다."""
     from service.pipeline.definitions import PIPELINES
 
     return {
-        "reference_groups": sorted(allowed_groups(config.repo_root())),
         "pipelines": {
             kind: [
                 {"name": s.name, "kind": s.kind, "optional": s.optional}
@@ -398,7 +392,7 @@ async def gate_approve(gate_id: int, body: ApproveRequest, db: AsyncSession = De
         # 사람이 고친 값도 AI 출력과 같은 검사를 통과해야 한다 —
         # 토글을 이상하게 조합한 채로 확정되면 뒤 스테이지가 헛돈다.
         try:
-            payload = validate_route_result(payload, groups=allowed_groups(config.repo_root()))
+            payload = validate_route_result(payload)
         except GateError as exc:
             raise HTTPException(
                 status_code=422, detail={"code": exc.code, "message": exc.message}

@@ -111,6 +111,20 @@ nodes 406 / edges 427
 | 층 | `layer` | 답하는 질문 | 경로 | 단위 | 수명 |
 |---|---|---|---|---|---|
 | 1. 출처 기록 | `source` | "이 자료가 뭐라고 했나" | `reference/{group}/` | 자료 하나 | 생성 후 고정 |
+
+> **개정 (2026-07-28) — `reference` 는 flat 이다.** 위 표의 `reference/{group}/` 는 폐기한다.
+>
+> `{group}` 은 옛 `persona/notes/{cluster}/` 를 WORK-005 가 그대로 옮긴 것이고, 그 cluster 목록이
+> `persona/_meta.yaml` 과 **이중 SoT** 를 이뤄 디렉토리를 바꿀 때마다 두 곳을 고쳐야 했다. 한쪽만
+> 고치면 **부팅이 막혔다.**
+>
+> 이 문서가 `concept` 에 대해 정한 근거("개념은 분류 트리가 아니라 링크 그래프로 조직된다")가
+> `reference` 에도 그대로 적용된다 — 출처 기록을 폴더로 나눌 이유가 없고, 분류는 `[[concept]]`
+> 링크가 한다. cluster 의 유일한 소비자였던 `/graph` 는 D7 에서 이미 폐기했다.
+>
+> 결과: `reference/{YYYY-MM-DD}-{slug}.md`, `group` 필드 소멸, route 게이트의 group 선택 제거,
+> `_meta.yaml` 은 표시용으로만 남는다.
+
 | 2. 원자 개념 | `concept` | "이 개념은 뭔가" | `permanent/concept/` | 개념 하나 | 출처 합류로 **성장** |
 | 3. 종합 판단 | `synthesis` | "내 판단·전략은 뭔가" | `permanent/` 루트 | 영역 하나 | 개념 유입마다 갱신 |
 | 4. 실행 | `execution` | "그래서 뭘 만드나" | `products/{제품}/` | 프로젝트 문서 | 제품 파이프라인을 따름 |

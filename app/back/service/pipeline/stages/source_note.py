@@ -56,12 +56,7 @@ class SourceNoteStage:
         self.timeout_seconds = timeout_seconds
 
     async def __call__(self, request: GenerationInput) -> GenerationResult:
-        group = _group_of(request.route)
-
-        payload: dict[str, Any] = {
-            **context_payload(request),
-            "group": group,
-        }
+        payload: dict[str, Any] = context_payload(request)
         prompt = INSTRUCTION.format(
             rules=READ_THE_RULES.format(template="reference.md"), output=OUTPUT_CONTRACT
         )
@@ -94,15 +89,10 @@ class SourceNoteStage:
             payload={
                 "filename_stem": stem,
                 "content": content,
-                "group": group,
                 # 경로는 시스템이 조립한다 — 화면이 "어디에 저장될지"를 보여줄 수 있게 함께 담는다.
-                "target_path": f"reference/{group}/{stem}.md",
+                # `reference/` 는 flat — 하위 폴더가 없다.
+                "target_path": f"reference/{stem}.md",
             },
             session_ref=getattr(task, "result_session_id", None),
             external_task_ref=str(task_id),
         )
-
-
-def _group_of(route_payload: dict[str, Any] | None) -> str:
-    destinations = (route_payload or {}).get("destinations") or {}
-    return str((destinations.get("reference") or {}).get("group") or "study")

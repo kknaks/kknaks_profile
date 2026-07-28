@@ -73,7 +73,7 @@ function Badge({ status }: { status: string }) {
 function emptyRoute(): RouteResult {
   return {
     destinations: {
-      reference: { enabled: false, group: "" },
+      reference: { enabled: false },
       concept: { enabled: false },
       derived: { enabled: false },
     },
@@ -84,12 +84,10 @@ function emptyRoute(): RouteResult {
 /** 목적지 토글 — 승인 대상은 AI 제안이 아니라 **여기서 사람이 고친 결과**다. */
 function RouteEditor({
   value,
-  groups,
   disabled,
   onChange,
 }: {
   value: RouteResult;
-  groups: string[];
   disabled: boolean;
   onChange: (next: RouteResult) => void;
 }) {
@@ -143,35 +141,6 @@ function RouteEditor({
         <span style={{ fontSize: 13, color: "var(--fg-1)", flex: 1 }}>
           자료 노트 <span style={{ color: "var(--fg-3)" }}>reference/</span>
         </span>
-        <select
-          value={d.reference.group ?? ""}
-          disabled={disabled || !d.reference.enabled}
-          onChange={(e) =>
-            onChange({
-              ...value,
-              destinations: {
-                ...d,
-                reference: { enabled: d.reference.enabled, group: e.target.value },
-              },
-            })
-          }
-          className="mono"
-          style={{
-            fontSize: 11,
-            padding: "3px 6px",
-            background: "var(--bg-0)",
-            color: "var(--fg-1)",
-            border: "1px solid var(--line-2)",
-            borderRadius: 4,
-          }}
-        >
-          <option value="">group 선택</option>
-          {groups.map((g) => (
-            <option key={g} value={g}>
-              {g}
-            </option>
-          ))}
-        </select>
       </label>
 
       <label style={row}>
@@ -600,12 +569,10 @@ export function btn(kind: "primary" | "ghost" | "danger") {
 export function GateCard({
   gate,
   itemId,
-  groups,
   onChanged,
 }: {
   gate: Gate;
   itemId: number;
-  groups: string[];
   onChanged: () => void;
 }) {
   const active =
@@ -716,12 +683,7 @@ export function GateCard({
             active?.payload &&
             !isNote(active.payload) &&
             !isConcepts(active.payload) && (
-            <RouteEditor
-              value={draft}
-              groups={groups}
-              disabled={!canAct || busy}
-              onChange={setDraft}
-            />
+            <RouteEditor value={draft} disabled={!canAct || busy} onChange={setDraft} />
             )}
 
           {isNote(active?.payload) && <NotePreview payload={active.payload} />}

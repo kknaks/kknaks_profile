@@ -24,7 +24,7 @@
 
 | 층 | 답하는 질문 | 경로 | `type` | 단위 | 수명 |
 |---|---|---|---|---|---|
-| 출처 기록 | "이 자료가 뭐라고 했나" | `reference/{group}/` | `reference` | 자료 하나 | 생성 후 고정 |
+| 출처 기록 | "이 자료가 뭐라고 했나" | `reference/` (flat) | `reference` | 자료 하나 | 생성 후 고정 |
 | 원자 개념 | "이 개념은 뭔가" | `permanent/concept/` | `concept` | 개념 하나 | 출처 합류로 **성장** |
 | 종합 판단 | "내 판단·전략은 뭔가" | `permanent/` 루트 | `permanent` | 영역 하나 | 개념 유입마다 갱신 |
 | 실행 | "그래서 뭘 만드나" | `products/{제품}/` | `baseline`·`decision`·`spec`·`work`… | 프로젝트 문서 | 제품 파이프라인 |
@@ -101,7 +101,7 @@
 | type | 필수 | 근거 |
 |---|---|---|
 | 공통 | `type` · `id`(=파일명 stem) · `title` | 노드 식별 |
-| `reference` | + `date` · `group` | group은 `persona/_meta.yaml`의 clusters 값 |
+| `reference` | + `date` | flat — 하위 디렉토리·group 없음 |
 | `concept` | + **`aliases`** · **`up`** | 개념 중복 방지 / 출처 없는 개념은 성립 안 함 |
 | `permanent` | + **`up`** | 개념을 엮지 않은 종합은 성립 안 함 |
 | `idea` | (`up` 금지) | 휘발 |
@@ -112,7 +112,7 @@
 
 - 노드 식별자 = **파일명 stem**. 전역 유일.
 - frontmatter `id`는 stem과 같아야 한다(지식 노트 한정 — 제품 문서는 `{PRODUCT}-{TYPE}-{NNN}` 형식을 쓴다).
-- `reference`는 `{YYYY-MM-DD}-{slug}` 형태를 쓴다.
+- `reference`는 `{YYYY-MM-DD}-{slug}` 형태를 쓴다. **flat이다** — `concept`와 같은 이유로 하위 디렉토리를 두지 않는다(분류는 폴더가 아니라 링크 그래프가 한다).
 - `concept`는 날짜를 붙이지 않는다 — 개념은 특정 시점에 묶이지 않는다.
 
 ## 검증

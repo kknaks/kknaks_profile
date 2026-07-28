@@ -5,7 +5,7 @@
 | 템플릿 | 대상 경로 | `type` | 층 |
 |---|---|---|---|
 | `idea.md` | `inbox/{YYYY-MM-DD}-{slug}.md` | `idea` | (층 없음) |
-| `reference.md` | `reference/{group}/{YYYY-MM-DD}-{slug}.md` | `reference` | `source` |
+| `reference.md` | `reference/{YYYY-MM-DD}-{slug}.md` | `reference` | `source` |
 | `concept.md` | `permanent/concept/{slug}.md` | `concept` | `concept` |
 | `permanent.md` | `permanent/{slug}.md` | `permanent` | `synthesis` |
 

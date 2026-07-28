@@ -69,7 +69,7 @@ rules/knowledge-note-pipeline.md     # 작성 규칙 (4층·SoT 위임·개념 �
 | 만들 것 | 템플릿 | 경로 |
 |---|---|---|
 | 미정제 생각 | `templates/knowledge/idea.md` | `inbox/{YYYY-MM-DD}-{slug}.md` |
-| 자료 정리 | `templates/knowledge/reference.md` | `reference/{group}/{YYYY-MM-DD}-{slug}.md` |
+| 자료 정리 | `templates/knowledge/reference.md` | `reference/{YYYY-MM-DD}-{slug}.md` |
 | 원자 개념 | `templates/knowledge/concept.md` | `permanent/concept/{slug}.md` |
 | 종합 판단 | `templates/knowledge/permanent.md` | `permanent/{slug}.md` |
 

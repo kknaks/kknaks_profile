@@ -36,23 +36,22 @@ def _normalize_date(d: Any) -> str:
 
 
 def _auto_enrich_note(data: dict, path: Path, persona_dir: Path) -> None:
-    """reference/{cluster}/ 안의 .md 파일에 type/id/group 자동 채움 (frontmatter 있으면 그대로).
+    """`reference/` 의 .md 에 type/id 자동 채움 (frontmatter 있으면 그대로).
 
-    KDEV-WORK-005 — notes 가 루트 `reference/`(persona_dir **밖**)로 이동. enrich 기준
-    디렉토리를 reference 루트로 재배선(boot-critical: 누락 시 validate_persona RAISE).
-    재타이핑 type=reference (D-010) — 157개 파일 무편집, 경로에서 주입.
+    **flat 이다.** 하위 디렉토리로 나누지 않는다 — 분류는 폴더가 아니라 개념 링크가
+    한다(`permanent/concept/` 와 같은 규칙). 종전에는 `reference/{cluster}/` 였고
+    그 cluster 가 `persona/_meta.yaml` 과 이중 SoT 를 이뤄 디렉토리를 바꿀 때마다
+    두 곳을 고쳐야 했다.
     """
     reference_dir = persona_dir.parent / "reference"
     try:
         rel = path.relative_to(reference_dir)
     except ValueError:
         return  # persona-내부(career/contents/daily 등)는 enrich 비대상 (무영향)
-    # 클러스터 하위(reference/<cluster>/<file>.md)만 — top-level reference/README.md(navigational) 제외
-    if len(rel.parts) < 2:
-        return
+    if path.name == "README.md":
+        return  # navigational — 노드가 아니다
     data.setdefault("type", "reference")
     data.setdefault("id", path.stem)
-    data.setdefault("group", rel.parts[0])  # reference/<cluster>/... → group = cluster
     # 빈 frontmatter도 동작하게 — title/date 없으면 파일에서 추출
     data.setdefault("title", path.stem)
     if "date" not in data:
@@ -69,7 +68,7 @@ REQUIRED_FIELDS: dict[str, set[str]] = {
     "career": {"type", "period", "display_order", "title", "org", "summary", "stack"},
     "project": {"type", "id", "title", "summary", "category", "status", "stack"},
     "note": {"type", "id", "title", "date", "group"},
-    "reference": {"type", "id", "title", "date", "group"},  # KDEV-WORK-005 — note 미러 (재타이핑)
+    "reference": {"type", "id", "title", "date"},  # flat — group 없음
     "permanent": {"type", "id", "title"},  # KDEV-WORK-010 — reference 미러 minus group/date (flat·영구노트)
     "concept": {"type", "id", "title"},    # KDEV-WORK-013 — 원자 개념. aliases/up 필수는 그래프 L2 가 검사
     "content": {"type", "id", "date", "day", "title", "summary", "youtubeId"},
@@ -119,7 +118,7 @@ def load_persona(persona_dir: Path) -> dict[str, Any]:
     # KDEV-WORK-004 — projects 는 products/*/showcase.md 에서 로드 (persona/projects 폐지).
     # dict 키 "projects" 불변 → /api/projects·print·inputs·FE 무변경.
     projects = _load_products_showcase(persona_dir.parent / "products")
-    # KDEV-WORK-005 — notes 는 루트 reference/{cluster}/ 에서 로드 (persona/notes 폐지).
+    # notes 는 루트 `reference/` 에서 flat 으로 로드한다 (persona/notes 폐지).
     # dict 키 "notes" 불변 → /api/notes·graph·edges·FE 무변경. type=reference auto-enrich.
     notes_list = _load_reference_notes(persona_dir.parent / "reference", persona_dir)
     # KDEV-WORK-010 — permanent(영구노트, flat) 를 그래프 노드로 배선. 빈 permanent → [].
@@ -290,9 +289,6 @@ def validate_persona(data: dict[str, Any]) -> None:
                 f"not in _meta.yaml/projects.categories"
             )
 
-    note_clusters = {
-        cl["id"] for cl in meta.get("notes", {}).get("clusters", [])
-    }
     for nid, n in data["notes"].items():
         _check_required(n, "reference", f"reference/{nid}.md")
         # spec-01 §6.1: reference id == 파일 slug
@@ -300,11 +296,6 @@ def validate_persona(data: dict[str, Any]) -> None:
         if path.stem != nid:
             raise PersonaError(
                 f"reference/{path.name}: frontmatter id '{nid}' != filename slug '{path.stem}'"
-            )
-        if note_clusters and n.get("group") not in note_clusters:
-            raise PersonaError(
-                f"reference/{path.name}: group '{n.get('group')}' "
-                f"not in _meta.yaml/notes.clusters"
             )
 
     # KDEV-WORK-010 — permanent(종합) + KDEV-WORK-013 — concept(원자 개념).
@@ -485,24 +476,23 @@ def _load_dir(
 
 
 def _load_reference_notes(reference_dir: Path, persona_dir: Path) -> list[dict]:
-    """reference/{cluster}/**/*.md → note dict 리스트 (KDEV-WORK-005, persona/notes 대체).
+    """`reference/*.md` → note dict 리스트. **flat 이다.**
 
-    클러스터 하위만 로드 — top-level `reference/README.md`(navigational, WORK-003)는 제외.
-    각 파일을 `_load_md(persona_dir 전달)` 로 로드 → `_auto_enrich_note` 가 type=reference/id/
-    group(cluster) 주입. dict 키 "notes" 불변 (호출부에서 id→note dict 구성).
+    `README.md`(navigational)는 `_auto_enrich_note` 가 걸러 낸다.
     """
     if not reference_dir.is_dir():
         return []
-    out: list[dict] = []
-    for cluster_dir in sorted(p for p in reference_dir.iterdir() if p.is_dir()):
-        out.extend(_load_dir(cluster_dir, persona_dir, recursive=True))
-    return out
+    return [
+        _load_md(p, persona_dir)
+        for p in sorted(reference_dir.glob("*.md"))
+        if p.name != "README.md"
+    ]
 
 
 def _enrich_permanent(data: dict, path: Path) -> dict:
     """permanent 노트 enrich — type·id=stem·title 주입(frontmatter 존중).
 
-    KDEV-WORK-010. reference 의 `_auto_enrich_note` flat 미러 — cluster 없으니 group 없음.
+    KDEV-WORK-010. reference 와 같은 flat 구조.
     archived = `archive` 경로 안 (permanent/archive/) 또는 frontmatter archived:true.
 
     KDEV-WORK-013 — `permanent/concept/` 아래면 기본 type 이 `concept`(원자 개념)다.

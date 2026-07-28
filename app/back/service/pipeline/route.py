@@ -14,7 +14,6 @@ import logging
 from pathlib import Path
 from typing import Any
 
-import yaml
 
 from .gates import GateError, GenerationInput, GenerationResult
 
@@ -24,8 +23,6 @@ DESTINATIONS = ("reference", "concept", "derived")
 #: 목적지를 하나도 안 만드는 선택. 둘은 성격이 다르다 —
 #: `inbox_hold` 는 "지금은 정제 못 하지만 버리긴 아깝다", `discard` 는 "안 남긴다".
 EXCLUSIVES = ("inbox_hold", "discard")
-
-FALLBACK_GROUPS = frozenset({"study"})
 
 PROMPT = """이 자료를 어디로 보낼지 판단하라. **본문은 쓰지 않는다** — 목적지만 정한다.
 
@@ -38,7 +35,7 @@ PROMPT = """이 자료를 어디로 보낼지 판단하라. **본문은 쓰지 �
 
 {
   "destinations": {
-    "reference": {"enabled": true, "group": "<persona/_meta.yaml 의 notes.clusters 값 중 하나>"},
+    "reference": {"enabled": true},
     "concept":   {"enabled": true},
     "derived":   {"enabled": false}
   },
@@ -47,7 +44,8 @@ PROMPT = """이 자료를 어디로 보낼지 판단하라. **본문은 쓰지 �
 }
 
 판단 기준:
-- `reference` — 자료를 기록해 둘 가치가 있는가. 대개 켠다.
+- `reference` — 자료를 기록해 둘 가치가 있는가. 대개 켠다. `reference/` 는 **flat** 이라
+  하위 폴더를 고르지 않는다 — 분류는 개념 링크가 한다.
 - `concept` — **다른 자료·다른 맥락에서 독립적으로 재등장할 개념**이 있는가.
   자료에만 붙어 있는 설명은 개념이 아니다. 없으면 끈다. 억지로 만들지 않는다.
 - `derived` — 교안(`persona/contents/`)으로 만들 만한가. 대개 끈다.
@@ -57,22 +55,7 @@ PROMPT = """이 자료를 어디로 보낼지 판단하라. **본문은 쓰지 �
   목적지를 하나라도 켰으면 반드시 `null` 이다."""
 
 
-def allowed_groups(repo_root: Path) -> frozenset[str]:
-    """`reference` 가 들어갈 수 있는 group — `persona/_meta.yaml` 이 SoT.
-
-    읽지 못하면 `study` 하나로 좁힌다. 빈 집합을 돌려주면 어떤 group 도 통과하지 못해
-    route 가 통째로 막힌다.
-    """
-    try:
-        meta = yaml.safe_load((repo_root / "persona/_meta.yaml").read_text(encoding="utf-8"))
-        groups = {str(item["id"]) for item in meta["notes"]["clusters"]}
-        return frozenset(groups) or FALLBACK_GROUPS
-    except (OSError, TypeError, KeyError, yaml.YAMLError):
-        logger.warning("persona/_meta.yaml 을 읽지 못해 group 을 %s 로 제한한다", FALLBACK_GROUPS)
-        return FALLBACK_GROUPS
-
-
-def validate_route_result(raw: Any, *, groups: frozenset[str]) -> dict[str, Any]:
+def validate_route_result(raw: Any) -> dict[str, Any]:
     """route 결과를 정규화한다. 어긋나면 `GateError`.
 
     AI 출력과 사람이 화면에서 고친 값 **양쪽**이 여기를 통과한다 — 승인 시점에도
@@ -91,15 +74,6 @@ def validate_route_result(raw: Any, *, groups: frozenset[str]) -> dict[str, Any]
         if not isinstance(entry, dict):
             raise GateError("INVALID_ROUTE_RESULT", f"destinations.{name} 이 객체가 아니다")
         destinations[name] = {"enabled": bool(entry.get("enabled"))}
-
-    if destinations["reference"]["enabled"]:
-        group = str(incoming.get("reference", {}).get("group") or "").strip()
-        if group not in groups:
-            raise GateError(
-                "INVALID_REFERENCE_GROUP",
-                f"'{group}' 는 persona/_meta.yaml 의 notes.clusters 값이 아니다",
-            )
-        destinations["reference"]["group"] = group
 
     exclusive = raw.get("exclusive")
     if exclusive is not None and exclusive not in EXCLUSIVES:
@@ -175,7 +149,6 @@ class RouteProposer:
             "material_source": (request.preparation.payload or {}).get("material_source")
             if request.preparation
             else None,
-            "allowed_groups": sorted(allowed_groups(self.repo_root)),
         }
         if request.previous_payload is not None:
             payload["previous_proposal"] = request.previous_payload
@@ -199,9 +172,7 @@ class RouteProposer:
         if task is None or not task.result:
             raise RuntimeError(getattr(task, "error", None) or "open_kknaks returned no result")
 
-        result = validate_route_result(
-            _parse(str(task.result)), groups=allowed_groups(self.repo_root)
-        )
+        result = validate_route_result(_parse(str(task.result)))
         return GenerationResult(
             payload=result,
             session_ref=getattr(task, "result_session_id", None),

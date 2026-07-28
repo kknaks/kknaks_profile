@@ -21,3 +21,13 @@
 - 작성 규칙: `rules/knowledge-note-pipeline.md`
 - 디렉토리 계약: [[spec-001-directory-structure|KDEV-SPEC-001]]
 - 생명주기/정제: [[spec-003-knowledge-workflow|KDEV-SPEC-003]]
+
+
+## 구조
+
+**flat이다.** 하위 디렉토리를 두지 않는다 — `permanent/concept/`와 같은 이유로,
+분류는 폴더가 아니라 `[[concept]]` 링크가 한다.
+
+```text
+reference/{YYYY-MM-DD}-{slug}.md
+```

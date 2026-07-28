@@ -246,7 +246,7 @@ class TestGates:
     @staticmethod
     def _payload(**over):
         destinations = {
-            "reference": {"enabled": over.get("reference", True), "group": over.get("group", "study")},
+            "reference": {"enabled": over.get("reference", True)},
             "concept": {"enabled": over.get("concept", True)},
             "derived": {"enabled": over.get("derived", False)},
         }
@@ -324,12 +324,13 @@ class TestGates:
     def test_human_edit_must_pass_the_same_validation(self, client, gated):
         """사람이 고친 값도 AI 출력과 같은 검사를 통과해야 한다."""
         _, gate_id = gated
-        bad = self._payload(group="존재하지않는그룹")
+        bad = self._payload(reference=False, concept=False, exclusive="discard")
+        bad["destinations"]["reference"]["enabled"] = True  # exclusive 와 동시 — 금지 조합
         response = client.post(
             f"/api/admin/queue/gates/{gate_id}/approve", json={"payload": bad}
         )
         assert response.status_code == 422
-        assert response.json()["detail"]["code"] == "INVALID_REFERENCE_GROUP"
+        assert response.json()["detail"]["code"] == "INVALID_ROUTE_RESULT"
 
     def test_discard_approval_ends_item_without_files(self, client, gated, tmp_path):
         """폐기 승인은 항목을 끝낸다. 파일은 만들어지지 않는다."""
@@ -368,18 +369,6 @@ class TestGates:
 
 class TestMeta:
     """화면 선택지는 서버가 준다 — 프론트에 목록을 복사해 두면 SoT 가 둘이 된다."""
-
-    def test_reference_groups_come_from_persona_meta(self, client):
-        body = client.get("/api/admin/queue/meta").json()
-        assert "study" in body["reference_groups"]
-        # `persona/_meta.yaml` 의 clusters 와 일치해야 한다.
-        import yaml
-
-        meta = yaml.safe_load(
-            (config.repo_root() / "persona/_meta.yaml").read_text(encoding="utf-8")
-        )
-        expected = sorted(str(c["id"]) for c in meta["notes"]["clusters"])
-        assert body["reference_groups"] == expected
 
     def test_pipeline_definition_is_exposed(self, client):
         stages = client.get("/api/admin/queue/meta").json()["pipelines"]["youtube"]

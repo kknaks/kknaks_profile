@@ -72,7 +72,7 @@ Out of scope:
 ### S-1. 작성자 — 새 노트를 둘 위치 결정
 
 1. 정제 안 된 생각이면 → `inbox/` (type: idea, 휘발).
-2. 외부 자료를 읽고 **그 자료가 무엇을 말했는지** 정리한 것이면 → `reference/{group}/` (type: reference, 층 `source`).
+2. 외부 자료를 읽고 **그 자료가 무엇을 말했는지** 정리한 것이면 → `reference/` (flat) (type: reference, 층 `source`).
 3. 자료에서 뽑은 **재사용 가능한 개념 하나**면 → `permanent/concept/` (type: concept, 층 `concept`).
 4. 개념들을 엮어 내린 **내 판단·전략**이면 → `permanent/` 루트 (type: permanent, 층 `synthesis`).
 5. 제품 스펙감이면 → `products/{제품}/00-baseline` (type: baseline 등, 층 `execution`, 00→20 파이프라인).
@@ -83,7 +83,7 @@ Out of scope:
 
 ### S-2. 작성자 — 같은 개념이 두 번째 자료에서 또 나온다
 
-1. 새 자료를 `reference/{group}/`에 정리한다.
+1. 새 자료를 `reference/` (flat)에 정리한다.
 2. 그 자료에서 나온 개념이 이미 `permanent/concept/`에 있는지 확인한다 — 파일명 stem과 `aliases`로 찾는다.
 3. **있으면 새 파일을 만들지 않고 기존 concept를 보충**한다. 새 자료를 `up:`과 본문 `[[]]`에 추가한다.
 4. 없으면 새 concept를 만든다.
@@ -102,7 +102,7 @@ Out of scope:
 
 | 층(`layer`) | 디렉토리 | `type` | 답하는 질문 | 단위 | 수명 |
 |---|---|---|---|---|---|
-| `source` | `reference/{group}/` | `reference` | "이 자료가 뭐라고 했나" | 자료 하나 | 생성 후 고정 |
+| `source` | `reference/` (flat) | `reference` | "이 자료가 뭐라고 했나" | 자료 하나 | 생성 후 고정 |
 | `concept` | `permanent/concept/` | `concept` | "이 개념은 뭔가" | 개념 하나 | 출처 합류로 **성장** |
 | `synthesis` | `permanent/` 루트 | `permanent` | "내 판단·전략은 뭔가" | 영역 하나 | 개념 유입마다 갱신 |
 | `execution` | `products/{제품}/` | `baseline`·`decision`·`spec`·`work`·`release`·`runbook` | "그래서 뭘 만드나" | 프로젝트 문서 | 제품 파이프라인을 따름 |
