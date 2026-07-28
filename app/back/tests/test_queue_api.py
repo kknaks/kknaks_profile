@@ -364,3 +364,34 @@ class TestGates:
         ]:
             kwargs = {"json": {}} if method == "post" else {}
             assert getattr(anon, method)(path, **kwargs).status_code == 401
+
+
+class TestMeta:
+    """화면 선택지는 서버가 준다 — 프론트에 목록을 복사해 두면 SoT 가 둘이 된다."""
+
+    def test_reference_groups_come_from_persona_meta(self, client):
+        body = client.get("/api/admin/queue/meta").json()
+        assert "study" in body["reference_groups"]
+        # `persona/_meta.yaml` 의 clusters 와 일치해야 한다.
+        import yaml
+
+        meta = yaml.safe_load(
+            (config.repo_root() / "persona/_meta.yaml").read_text(encoding="utf-8")
+        )
+        expected = sorted(str(c["id"]) for c in meta["notes"]["clusters"])
+        assert body["reference_groups"] == expected
+
+    def test_pipeline_definition_is_exposed(self, client):
+        stages = client.get("/api/admin/queue/meta").json()["pipelines"]["youtube"]
+        assert [s["name"] for s in stages] == [
+            "collect",
+            "summarize",
+            "route",
+            "source_note",
+            "concept",
+            "derived",
+        ]
+        assert [s["name"] for s in stages if s["kind"] == "gate"][0] == "route"
+
+    def test_meta_requires_auth(self, anon):
+        assert anon.get("/api/admin/queue/meta").status_code == 401

@@ -48,7 +48,7 @@
 | WORK-011 | 관리자 인증 MVP — DB 토대(Postgres·async SQLAlchemy·Alembic) + 쿠키 JWT 로그인 + admin 목 | BE+FE | done | SPEC-006 | — | `work-011-admin-auth-mvp.md` |
 | WORK-012 | Slack bridge를 back에 흡수 + 쓰기 소유권 정리 (sink DI 리팩터·lifespan 흡수·compose 정리·OKK-SPEC-011 §4 개정) | BE | **done** | SPEC-007(선행분) | — | `work-012-slack-bridge-absorb.md` |
 | WORK-013 | concept 층 도입 — 4층 재편·검증 재정의·규칙/템플릿 (report-only 선행 → enforce) | BE+문서 | **done** | SPEC-001·002·003·004 | — | `work-013-concept-layer.md` |
-| WORK-014 | 승인 큐 + route 게이트 MVP (스키마·접수·자동준비·게이트 공통계약·admin 큐 화면) | BE+FE | doing 75% (BE 전부 done, FE 남음) | SPEC-007·008(route)·009 | 012·013 | `work-014-queue-and-route-gate.md` |
+| WORK-014 | 승인 큐 + route 게이트 MVP (스키마·접수·자동준비·게이트 공통계약·admin 큐 화면) | BE+FE | done | SPEC-007·008(route)·009 | 012·013 | `work-014-queue-and-route-gate.md` |
 | WORK-015 | 유튜브 체인 완성 + Apply Executor (source_note·concept·derived + 원자적 발행) | BE+FE | todo | SPEC-008·010·004 | 014 | `work-015-youtube-chain-and-executor.md` |
 
 ## Status Board
@@ -69,7 +69,7 @@
 | SPEC-004 검증 | WORK-001·002·007·**013**·015 | 001·002·007 done / **013 — 층별 orphan·L2 필수필드·L4 반전 enforce done** / 015 발행 전 검증 todo |
 | SPEC-005 시각화 | WORK-008·009 | 008 전역 done / 009 로컬 done (시각화 완료) |
 | SPEC-006 관리자 인증 | WORK-011 | 011 done (DB 토대+async+로그인+admin 목 e2e 검증 — 앱 DB화 첫 트랙, 그래프 work와 독립) |
-| SPEC-007 승인 큐 | WORK-012·014 | **012 done**(sink 교체 지점 확보·쓰기 소유권 back 단독) / 014 본체 todo |
+| SPEC-007 승인 큐 | WORK-012·014 | **둘 다 done** — 접수·준비·재시도·삭제·큐 화면까지 구현. 발행 재시도만 WORK-015 |
 | SPEC-008 게이트 체인 | WORK-014·015 | 014 route BE done / 015 나머지 스테이지 todo |
 | SPEC-009 게이트 피드백 | WORK-014 | 014 P3 에서 공통 계약 구현 done |
 | SPEC-010 Apply Executor | WORK-015 | 015 todo |

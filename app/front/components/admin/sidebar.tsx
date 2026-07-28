@@ -15,6 +15,7 @@ type NavItem = {
 // 관리 대상 = 블로그 콘텐츠 도메인 미러. 대시보드만 우선 구현, 나머지는 준비 중.
 const NAV: NavItem[] = [
   { label: "대시보드", href: "/admin", ready: true, icon: <IconGrid /> },
+  { label: "승인 큐", href: "/admin/queue", ready: true, icon: <IconInbox /> },
   { label: "콘텐츠", href: "/admin/contents", ready: false, icon: <IconDoc /> },
   { label: "노트", href: "/admin/notes", ready: false, icon: <IconNote /> },
   { label: "프로젝트", href: "/admin/projects", ready: false, icon: <IconStack /> },
@@ -220,6 +221,14 @@ function IconGrid() {
       <rect x="14" y="3" width="7" height="7" />
       <rect x="14" y="14" width="7" height="7" />
       <rect x="3" y="14" width="7" height="7" />
+    </svg>
+  );
+}
+function IconInbox() {
+  return (
+    <svg {...svg}>
+      <path d="M22 12h-6l-2 3h-4l-2-3H2" />
+      <path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" />
     </svg>
   );
 }

@@ -2,7 +2,7 @@
 type: work
 id: KDEV-WORK-014
 title: "승인 큐 + route 게이트 MVP"
-status: doing
+status: done
 product: kknaks-dev
 work_type: new-feature
 owner: kknaks
@@ -13,13 +13,13 @@ roles:
   be: kknaks
   qa: kknaks
   ops: kknaks
-progress: 75
+progress: 100
 created_at: 2026-07-27
 updated_at: 2026-07-28
 tags:
   - product/kknaks-dev
   - doc/work
-  - status/doing
+  - status/done
 links:
   baselines:
     - "[[baseline-003-inbox-approval-pipeline|KDEV-BL-003]]"
@@ -58,19 +58,19 @@ Slack 입력을 **파일이 아니라 DB 큐**로 받고, 자동 준비(수집·
 |---|---|
 | Type | new-feature |
 | Owner | kknaks |
-| Status | doing |
-| Progress | 75% (Phase 3/4) |
+| Status | done |
+| Progress | 100% (Phase 4/4) |
 | Branch/PR | — |
 | Blocker | 없음 (WORK-012·013 완료) |
-| Next | Phase 4 admin 큐 화면 |
+| Next | WORK-015 (나머지 게이트 + 발행) |
 
 ## Role Assignment
 
 | Role | Assignee | Responsibility | Status |
 |---|---|---|---|
-| PM | kknaks | 범위·상태기계 확정 | todo |
-| Design | kknaks | 큐 화면·게이트 카드 레이아웃 | todo |
-| FE | kknaks | admin 큐 화면 | todo |
+| PM | kknaks | 범위·상태기계 확정 | done |
+| Design | kknaks | 큐 화면·게이트 카드 레이아웃 | done |
+| FE | kknaks | admin 큐 화면 | done |
 | BE | kknaks | 스키마·접수·준비·게이트 | done |
 | QA | kknaks | 상태 전이·실패 회생 검증 | done (BE 범위) |
 | Ops | kknaks | 마이그레이션 적용 | done (로컬 왕복 검증) |
@@ -300,26 +300,44 @@ P1의 CASCADE 테스트는 `ai_task_id`·`active_revision_id`를 **비워 둔 �
 
 ### Phase 4 — admin 큐 화면
 
-- **Status**: TODO
+- **Status**: DONE
 - **작업**:
-  - [ ] 사이드바에 큐 항목 추가 (현재 `ready: false` 상태)
-  - [ ] 큐 목록(상태별 묶음, 실패 강조) + 항목 상세
-  - [ ] 항목 추가 모달 (URL + 메모)
-  - [ ] 게이트 카드 (`피드백`·`승인` 2버튼) + 피드백 모달
-  - [ ] route 게이트의 목적지 토글 UI
+  - [x] 사이드바에 큐 항목 추가 (현재 `ready: false` 상태)
+  - [x] 큐 목록(상태별 묶음, 실패 강조) + 항목 상세
+  - [x] 항목 추가 모달 (URL + 메모)
+  - [x] 게이트 카드 (`피드백`·`승인` 2버튼) + 피드백 모달
+  - [x] route 게이트의 목적지 토글 UI
 - **검증**:
-  - [ ] 비인증 접근이 차단된다
-  - [ ] `publish_failed`·`prepare_failed`가 목록에서 눈에 띈다
-  - [ ] 게이트 카드에 인라인 입력창이 없고 두 버튼만 있다
-  - [ ] 승인된 게이트가 접히고 현재 검토 대상만 펼쳐진다
-- **완료 증거**: 미작성
+  - [x] 비인증 접근이 차단된다
+  - [x] `publish_failed`·`prepare_failed`가 목록에서 눈에 띈다
+  - [x] 게이트 카드에 인라인 입력창이 없고 두 버튼만 있다
+  - [x] 승인된 게이트가 접히고 현재 검토 대상만 펼쳐진다
+- **완료 증거**:
+
+`app/front/app/admin/(panel)/queue/page.tsx`, `components/admin/queue-gate.tsx`, `lib/api.ts` +`queueApi`, 사이드바 `승인 큐` 활성화. `tsc --noEmit` 통과, `next build` 성공(`/admin/queue` 6.66 kB). 백엔드 `GET /meta` 추가 + 테스트 3건. **465 passed.**
+
+**선택지를 프론트에 복사하지 않았다.** reference group 을 자유 입력으로 두면 오타를 내고 승인 시점에야 422를 본다. 그렇다고 목록을 프론트에 박으면 `persona/_meta.yaml`과 갈라진다 — `GET /api/admin/queue/meta`가 clusters를 그대로 내려주고 화면은 `<select>`로 쓴다. 테스트가 **응답과 `_meta.yaml`이 일치하는지**를 직접 비교한다.
+
+**게이트 카드에 인라인 입력창을 두지 않았다**(SPEC-008 U-3). 버튼은 `피드백`·`승인` 둘뿐이고 피드백은 모달에서 받는다. 카드 안에 입력창이 있으면 "적다 말고 승인"이 쉬워진다.
+
+**승인 대상은 AI 제안이 아니라 화면에서 고친 값**이다. 목적지 토글을 바꾸면 그 값이 `payload`로 승인 요청에 실리고, 서버가 AI 출력과 동일한 검증을 태운다. 토글 UI가 잘못된 조합을 애초에 못 만들게도 했다 — 목적지를 켜면 `보류`·`폐기`가 비활성화되고, `폐기`를 고르면 목적지가 전부 꺼진다.
+
+**폐기는 다르게 보인다.** `폐기`를 고르면 버튼이 빨간 `폐기 승인`으로 바뀌고 "승인하면 항목이 종료되고 아무 파일도 만들어지지 않습니다"가 뜬다. 되돌릴 수 없는 것을 같은 모양의 버튼으로 두지 않는다.
+
+**실패를 감추지 않는다.** 목록은 `prepare_failed`·`publish_failed`를 맨 위로 올리고 좌측 테두리를 빨강으로 표시한다. 상세에는 실패한 실행 이력을 사유와 함께 그대로 보여준다 — 재시도 판단의 근거이기 때문이다. 준비 결과에는 **근거가 원문인지 메모인지**를 명시한다.
+
+**낙관적 잠금이 화면까지 이어진다.** 승인 요청에 `expected_revision_id`를 실어 보내고, `STALE_REVISION`이 오면 "최신 상태를 다시 확인해 주세요"로 바꿔 보여준다.
+
+미검증(배포 필요): 실 브라우저 e2e. CORS는 `allow_credentials=True` + 프론트 origin 포함을 확인했다.
 
 ## Pre-deploy Check
 
-- [ ] 마이그레이션이 기존 `users` 테이블에 영향을 주지 않음
-- [ ] sink 교체 후 **기존 캡처 경로로 파일이 더 이상 생기지 않음**을 확인 — 이 시점부터 Slack 캡처는 큐를 거친다
-- [ ] 승인 전 초안이 레포에 노출되지 않음
-- [ ] 큐 API가 admin 인증 뒤에 있음
+- [x] 마이그레이션이 기존 `users` 테이블에 영향을 주지 않음 (왕복 후 2행 불변)
+- [x] sink 교체 후 **기존 캡처 경로로 파일이 더 이상 생기지 않음** — 파일 쓰기·push 를 예외로 만들어 놓고 전 흐름 검증
+- [x] 승인 전 초안이 레포에 노출되지 않음 (draft 는 전부 DB)
+- [x] 큐 API가 admin 인증 뒤에 있음 (12경로 비인증 401 확인)
+- [ ] **배포 시**: 구 `kknaks-slack-bridge` 컨테이너 정리 — compose 에서 서비스는 지웠지만 떠 있던 컨테이너는 자동으로 죽지 않는다 (WORK-012 이월)
+- [ ] **배포 시**: 운영 Postgres 에 0002~0004 적용
 
 ## Rollback
 
@@ -329,11 +347,13 @@ P1의 CASCADE 테스트는 `ai_task_id`·`active_revision_id`를 **비워 둔 �
 
 ## Done Criteria
 
-- [ ] 모든 Phase가 `DONE`이다.
-- [ ] Slack 입력이 큐에 쌓이고 route 승인까지 동작한다.
-- [ ] 승인 전에는 레포에 파일이 생기지 않는다.
-- [ ] 피드백 → v2 재생성이 동작하고 v1이 보존된다.
-- [ ] product `log.md`와 `30-work/README.md`가 갱신됐다.
+- [x] 모든 Phase가 `DONE`이다.
+- [x] Slack 입력이 큐에 쌓이고 route 승인까지 동작한다.
+- [x] 승인 전에는 레포에 파일이 생기지 않는다.
+- [x] 피드백 → v2 재생성이 동작하고 v1이 보존된다.
+- [x] product `log.md`와 `30-work/README.md`가 갱신됐다.
+
+**남은 것은 운영 검증뿐이다** — 실 Slack 토큰 e2e, 브라우저 e2e, 운영 Postgres 마이그레이션 적용. 셋 다 배포가 선행돼야 한다.
 
 ## Open Issues
 

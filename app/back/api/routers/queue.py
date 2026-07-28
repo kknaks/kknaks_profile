@@ -67,6 +67,28 @@ async def _get_live_item(db: AsyncSession, item_id: int) -> QueueItem:
     return item
 
 
+@router.get("/meta")
+async def queue_meta():
+    """화면이 선택지를 만들 때 쓰는 값들.
+
+    `reference` group 을 자유 입력으로 두면 사람이 오타를 내고 승인 시점에야 422 를
+    본다. 선택지를 서버가 주는 편이 낫다 — `persona/_meta.yaml` 이 SoT 이므로
+    프론트에 목록을 복사해 두지 않는다.
+    """
+    from service.pipeline.definitions import PIPELINES
+
+    return {
+        "reference_groups": sorted(allowed_groups(config.repo_root())),
+        "pipelines": {
+            kind: [
+                {"name": s.name, "kind": s.kind, "optional": s.optional}
+                for s in pipeline.stages
+            ]
+            for kind, pipeline in PIPELINES.items()
+        },
+    }
+
+
 @router.post("/items", status_code=201)
 async def create_item(body: CreateItemRequest, db: AsyncSession = Depends(get_db)):
     if body.source_url is None and not (body.note or "").strip():
