@@ -6,9 +6,13 @@ import pytest
 from fastapi.testclient import TestClient
 
 
-@pytest.fixture
+@pytest.fixture(scope="module")
 def client():
-    """TestClient는 lifespan을 발동시킴 → load_all() 자동."""
+    """TestClient는 lifespan을 발동시킴 → load_all() 자동.
+
+    모듈 스코프 — lifespan 이 1.1초라 매 테스트 재기동할 이유가 없다.
+    로그인·쿠키를 쓰지 않아 공유해도 client 에 상태가 남지 않는다.
+    """
     from main import app
 
     with TestClient(app) as c:

@@ -7,8 +7,14 @@ import pytest
 from fastapi.testclient import TestClient
 
 
-@pytest.fixture
+@pytest.fixture(scope="module")
 def client():
+    """모듈당 한 번만 띄운다 — lifespan(=load_all) 이 1.1초라 38건이면 40초를 쓴다.
+
+    공유해도 안전한 이유: 이 파일은 로그인·쿠키를 쓰지 않아 client 에 남는 상태가 없고,
+    `main._data` 는 conftest 의 autouse fixture 가 테스트마다 스냅샷에서 되돌린다.
+    (쿠키를 다루는 test_auth 는 함수 스코프를 유지한다 — 공유하면 세션이 샌다.)
+    """
     from main import app
 
     with TestClient(app) as c:
