@@ -1,9 +1,9 @@
 # secret
+# 실값이 들어가는 env 는 전부 제외하고, 형식 원본(.env.example)만 커밋한다.
+# 개별 나열은 새 파일(.env.prod 등)을 놓치기 쉬워 와일드카드 + 예외로 둔다.
 .env
-.env.local
-.env.*.local
-.env.production
-.env.development
+.env.*
+!.env.example
 
 # Claude Code 로컬 설정 (절대 경로 + 머신별)
 .claude/settings.local.json

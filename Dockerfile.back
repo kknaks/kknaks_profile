@@ -31,6 +31,11 @@ RUN chown -R 1000:1000 /opt/venv /tmp 2>/dev/null || true
 # 코드 복사 — compose 의 mount (.:/repo) 가 런타임에 덮어쓰지만 fallback 으로 박아둠
 COPY app/back/ .
 
+# 엔트리포인트는 **마운트 영역 밖**에 둔다. `/repo` 는 런타임에 호스트 레포로
+# 덮이므로, 거기에 두면 실행 권한·존재 여부가 호스트 상태에 좌우된다.
+COPY app/back/entrypoint.sh /usr/local/bin/back-entrypoint.sh
+RUN chmod 755 /usr/local/bin/back-entrypoint.sh
+
 ENV PYTHONUNBUFFERED=1 \
     PERSONA_DIR=/repo/persona \
     PYTHONPATH=/repo/app/back \
@@ -39,5 +44,6 @@ ENV PYTHONUNBUFFERED=1 \
 
 EXPOSE 48000
 
-# single-worker 강제 (spec-03 §1.2 — APScheduler 다중 발동 차단)
-CMD ["uv", "run", "--no-sync", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "48000", "--workers", "1"]
+# 기동 = 마이그레이션 + 서버. 스키마 없이 뜨면 관리자·큐가 조용히 죽는다.
+# (single-worker 강제는 entrypoint 안 — spec-03 §1.2)
+ENTRYPOINT ["/usr/local/bin/back-entrypoint.sh"]
