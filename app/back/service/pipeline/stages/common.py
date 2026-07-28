@@ -34,6 +34,13 @@ READ_THE_RULES = """작성 전에 레포의 규칙과 양식을 **반드시 읽�
 
 읽지 않고 쓰면 형식이 어긋나 발행 전 검증에서 거부된다."""
 
+OUTPUT_CONTRACT_LIST = """아래 JSON 하나만 출력한다. 코드펜스나 설명 문장을 붙이지 않는다.
+
+{shape}
+
+`content` 는 완성된 노트 그대로다. 요약이나 발췌가 아니다.
+경로는 시스템이 조립하므로 디렉토리를 지어내지 않는다."""
+
 OUTPUT_CONTRACT = """아래 JSON 하나만 출력한다. 코드펜스나 설명 문장을 붙이지 않는다.
 
 {
@@ -45,8 +52,8 @@ OUTPUT_CONTRACT = """아래 JSON 하나만 출력한다. 코드펜스나 설명 
 경로는 시스템이 조립하므로 디렉토리를 지어내지 않는다."""
 
 
-def parse_note_output(raw: str) -> tuple[str, str]:
-    """`{filename_stem, content}` 를 꺼낸다. 어긋나면 `GateError`."""
+def parse_json_output(raw: str) -> dict[str, Any]:
+    """모델 출력에서 JSON 객체를 꺼낸다. 코드펜스를 붙이는 경우가 있어 한 겹 벗긴다."""
     cleaned = (raw or "").strip()
     if cleaned.startswith("```"):
         cleaned = cleaned.split("\n", 1)[-1]
@@ -59,9 +66,14 @@ def parse_note_output(raw: str) -> tuple[str, str]:
         data = json.loads(cleaned)
     except ValueError as exc:
         raise GateError("INVALID_NOTE_OUTPUT", f"JSON 파싱 실패: {exc}") from exc
-
     if not isinstance(data, dict):
         raise GateError("INVALID_NOTE_OUTPUT", "출력이 객체가 아니다")
+    return data
+
+
+def parse_note_output(raw: str) -> tuple[str, str]:
+    """`{filename_stem, content}` 를 꺼낸다. 어긋나면 `GateError`."""
+    data = parse_json_output(raw)
     stem = str(data.get("filename_stem") or "").strip()
     content = data.get("content")
     if not stem:

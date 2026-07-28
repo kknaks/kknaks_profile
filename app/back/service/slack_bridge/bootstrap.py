@@ -24,7 +24,7 @@ from service.knowledge_capture.source import fetch_source
 from service.pipeline import runtime
 from service.pipeline.slack_intake import QueueIntakeRunner
 from service.pipeline.route import RouteProposer
-from service.pipeline.stages import SourceNoteStage
+from service.pipeline.stages import ConceptStage, SourceNoteStage
 from service.pipeline.summarize import AgentSummarizer
 from service.slack_bridge.app import create_capture_app
 
@@ -188,6 +188,14 @@ class CaptureRuntime:
             route_proposer=route_proposer,
             stages={
                 "source_note": SourceNoteStage(
+                    AgentClient(self._broker),
+                    repo_root=config.repo_root(),
+                    provider=config.capture_provider(),
+                    model=config.capture_model(),
+                    work_dir=config.capture_work_dir(),
+                    timeout_seconds=config.capture_timeout_seconds(),
+                ),
+                "concept": ConceptStage(
                     AgentClient(self._broker),
                     repo_root=config.repo_root(),
                     provider=config.capture_provider(),

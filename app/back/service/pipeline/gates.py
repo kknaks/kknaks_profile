@@ -57,6 +57,9 @@ class GenerationInput:
     #: 승인된 route 결과. 뒤 스테이지는 목적지·group 을 여기서 읽는다.
     #: generator 에 DB 를 넘기지 않기 위해 조립 시점에 채워 준다.
     route: dict[str, Any] | None = None
+    #: 앞 스테이지가 이미 승인받은 산출물 — concept 가 reference stem 을 `up:` 으로
+    #: 걸려면 이게 필요하다. 계보는 같은 발행 묶음 안에서 만들어진다.
+    upstream: dict[str, Any] | None = None
 
 
 @dataclass(frozen=True)
@@ -93,6 +96,25 @@ async def approved_route_payload(db: AsyncSession, item_id: int) -> dict[str, An
         return None
     revision = await db.get(GateRevision, gate.approved_revision_id)
     return revision.payload if revision else None
+
+
+async def upstream_context(db: AsyncSession, item_id: int) -> dict[str, Any]:
+    """이 항목에서 **이미 승인된** 앞 스테이지 산출물의 요약.
+
+    아직 승인 전인 것은 넣지 않는다 — 바뀔 수 있는 값을 상류로 걸면 계보가 거짓이 된다.
+    """
+    rows = (
+        await db.execute(
+            select(Gate.stage_name, GateRevision.payload)
+            .join(GateRevision, GateRevision.id == Gate.approved_revision_id)
+            .where(Gate.item_id == item_id, Gate.status == "approved")
+        )
+    ).all()
+    context: dict[str, Any] = {}
+    for stage_name, payload in rows:
+        if stage_name == "source_note" and isinstance(payload, dict):
+            context["source_note_stem"] = payload.get("filename_stem")
+    return context
 
 
 async def live_gate(db: AsyncSession, item_id: int, stage_name: str) -> Gate | None:
@@ -240,6 +262,7 @@ async def _generate(
                 feedback=feedback.body if feedback else None,
                 session_ref=await _resume_session(db, gate),
                 route=await approved_route_payload(db, gate.item_id),
+                upstream=await upstream_context(db, gate.item_id),
             )
         )
     except Exception as exc:  # noqa: BLE001 — 실패는 상태이지 예외 전파가 아니다

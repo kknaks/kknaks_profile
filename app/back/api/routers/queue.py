@@ -27,6 +27,7 @@ from service.pipeline import intake, prepare_and_open_gate
 from service.pipeline.gates import GateError
 from service.pipeline.prepare import PREPARABLE_STATUSES
 from service.pipeline.route import allowed_groups, route_outcome, validate_route_result
+from service.pipeline.stages.concept import apply_exclusions
 
 router = APIRouter(prefix="/api/admin/queue", tags=["queue"], dependencies=[Depends(require_admin)])
 
@@ -363,6 +364,15 @@ async def gate_approve(gate_id: int, body: ApproveRequest, db: AsyncSession = De
     """
     gate, item = await _get_gate(db, gate_id)
     payload = body.payload
+
+    if gate.stage_name == "concept" and payload is not None:
+        current = await db.get(GateRevision, gate.active_revision_id)
+        try:
+            payload = apply_exclusions(payload, (current.payload or {}) if current else {})
+        except GateError as exc:
+            raise HTTPException(
+                status_code=422, detail={"code": exc.code, "message": exc.message}
+            ) from exc
 
     if gate.stage_name == "route" and payload is not None:
         # 사람이 고친 값도 AI 출력과 같은 검사를 통과해야 한다 —

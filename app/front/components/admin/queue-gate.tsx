@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import {
   QueueError,
   queueApi,
+  type ConceptPayload,
+  type ConceptResult,
   type Gate,
   type GatePayload,
   type NotePayload,
@@ -309,6 +311,193 @@ function NotePreview({ payload }: { payload: NotePayload }) {
   );
 }
 
+function isConcepts(payload: GatePayload | null | undefined): payload is ConceptPayload {
+  return !!payload && "concepts" in payload;
+}
+
+/** 보충 diff — **사라지는 줄**을 눈에 띄게 한다.
+ *
+ * 보충은 덧붙이기가 아니라 다시 쓰기다. 무엇이 빠지는지가 승인 판단의 핵심이라
+ * 삭제 줄을 색으로 구분한다. */
+function Diff({ text }: { text: string }) {
+  return (
+    <pre
+      style={{
+        margin: "8px 0 0",
+        padding: 10,
+        fontSize: 11,
+        lineHeight: 1.55,
+        background: "var(--bg-0)",
+        border: "1px solid var(--line-2)",
+        borderRadius: 5,
+        overflowX: "auto",
+        maxHeight: 320,
+      }}
+    >
+      {text.split("\n").map((line, i) => {
+        const removed = line.startsWith("-") && !line.startsWith("---");
+        const added = line.startsWith("+") && !line.startsWith("+++");
+        return (
+          <div
+            key={i}
+            style={{
+              color: removed ? "#f85149" : added ? "#3fb950" : "var(--fg-3)",
+              background: removed ? "rgba(248,81,73,0.08)" : "transparent",
+              whiteSpace: "pre-wrap",
+              wordBreak: "break-all",
+            }}
+          >
+            {line || " "}
+          </div>
+        );
+      })}
+    </pre>
+  );
+}
+
+/** 개념 묶음 — **개별 승인하지 않는다.**
+ *
+ * 개념 수만큼 승인 횟수가 늘면 마찰이 폭발한다(SPEC-008). 원하지 않는 개념만
+ * 제외 토글로 빼고 게이트 하나로 승인한다. */
+function ConceptList({
+  concepts,
+  disabled,
+  onChange,
+}: {
+  concepts: ConceptResult[];
+  disabled: boolean;
+  onChange: (next: ConceptResult[]) => void;
+}) {
+  const [openStem, setOpenStem] = useState<string | null>(null);
+
+  if (concepts.length === 0) {
+    return (
+      <p style={{ fontSize: 12.5, color: "var(--fg-3)", marginTop: 10 }}>
+        뽑을 개념이 없다고 판단했습니다. 억지로 만들지 않습니다.
+      </p>
+    );
+  }
+
+  return (
+    <div style={{ marginTop: 10 }}>
+      {concepts.map((c) => {
+        const open = openStem === c.stem;
+        const supplement = c.mode === "supplement";
+        return (
+          <div
+            key={c.stem}
+            style={{
+              ...box,
+              marginBottom: 8,
+              opacity: c.excluded ? 0.45 : 1,
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 10,
+                padding: "9px 10px",
+              }}
+            >
+              <input
+                type="checkbox"
+                checked={!c.excluded}
+                disabled={disabled}
+                title={c.excluded ? "발행에서 제외됨" : "발행에 포함"}
+                onChange={(e) =>
+                  onChange(
+                    concepts.map((x) =>
+                      x.stem === c.stem ? { ...x, excluded: !e.target.checked } : x,
+                    ),
+                  )
+                }
+              />
+              <span
+                className="mono"
+                style={{
+                  fontSize: 10,
+                  padding: "1px 6px",
+                  borderRadius: 3,
+                  border: `1px solid ${supplement ? "var(--accent)" : "#3fb950"}`,
+                  color: supplement ? "var(--accent)" : "#3fb950",
+                }}
+              >
+                {supplement ? "보충" : "신규"}
+              </span>
+              <span
+                className="mono"
+                style={{ fontSize: 12, color: "var(--fg-1)", flex: 1, wordBreak: "break-all" }}
+              >
+                {c.stem}
+              </span>
+              <button
+                type="button"
+                onClick={() => setOpenStem(open ? null : c.stem)}
+                className="mono"
+                style={{
+                  fontSize: 10.5,
+                  padding: "3px 8px",
+                  border: "1px solid var(--line-2)",
+                  borderRadius: 4,
+                  background: "transparent",
+                  color: "var(--fg-2)",
+                  cursor: "pointer",
+                }}
+              >
+                {open ? "접기" : supplement ? "변경 보기" : "전문 보기"}
+              </button>
+            </div>
+
+            {supplement && c.matched_by && (
+              <div
+                style={{
+                  padding: "0 10px 8px 38px",
+                  fontSize: 11.5,
+                  color: "var(--fg-3)",
+                }}
+              >
+                기존 <b style={{ color: "var(--fg-2)" }}>{c.stem}</b> 와 같은 개념으로 봤습니다
+                {" — "}
+                <span className="mono">{c.matched_by}</span> 로 일치
+              </div>
+            )}
+
+            {open && (
+              <div style={{ padding: "0 10px 10px" }}>
+                <div className="mono" style={{ fontSize: 10.5, color: "var(--fg-4)" }}>
+                  {c.target_path}
+                </div>
+                {supplement && c.diff ? (
+                  <Diff text={c.diff} />
+                ) : (
+                  <pre
+                    style={{
+                      margin: "8px 0 0",
+                      padding: 10,
+                      fontSize: 11,
+                      lineHeight: 1.6,
+                      background: "var(--bg-0)",
+                      border: "1px solid var(--line-2)",
+                      borderRadius: 5,
+                      overflowX: "auto",
+                      maxHeight: 320,
+                      whiteSpace: "pre-wrap",
+                      wordBreak: "break-word",
+                    }}
+                  >
+                    {c.content}
+                  </pre>
+                )}
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 function FeedbackModal({
   onClose,
   onSubmit,
@@ -417,15 +606,25 @@ export function GateCard({
     gate.revisions[gate.revisions.length - 1];
   const approved = gate.status === "approved";
   const [open, setOpen] = useState(!approved);
-  const [draft, setDraft] = useState<RouteResult>(
-    isNote(active?.payload) ? emptyRoute() : (active?.payload ?? emptyRoute()),
+  const [draft, setDraft] = useState<RouteResult>(() =>
+    active?.payload && !isNote(active.payload) && !isConcepts(active.payload)
+      ? active.payload
+      : emptyRoute(),
+  );
+  const [concepts, setConcepts] = useState<ConceptResult[]>(
+    isConcepts(active?.payload) ? active.payload.concepts : [],
   );
   const [feedbackOpen, setFeedbackOpen] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    setDraft(!isNote(active?.payload) ? (active?.payload ?? emptyRoute()) : emptyRoute());
+    setDraft(
+      active?.payload && !isNote(active.payload) && !isConcepts(active.payload)
+        ? active.payload
+        : emptyRoute(),
+    );
+    setConcepts(isConcepts(active?.payload) ? active.payload.concepts : []);
     setOpen(gate.status !== "approved");
   }, [active?.id, active?.payload, gate.status]);
 
@@ -492,7 +691,7 @@ export function GateCard({
             <p style={{ fontSize: 12, color: "#f85149", margin: "4px 0 10px" }}>{failedNote}</p>
           )}
 
-          {!isNote(active?.payload) && active?.payload?.rationale && (
+          {!isNote(active?.payload) && !isConcepts(active?.payload) && active?.payload?.rationale && (
             <p
               style={{
                 fontSize: 12.5,
@@ -506,16 +705,27 @@ export function GateCard({
             </p>
           )}
 
-          {gate.stage_name === "route" && active?.payload && !isNote(active.payload) && (
+          {gate.stage_name === "route" &&
+            active?.payload &&
+            !isNote(active.payload) &&
+            !isConcepts(active.payload) && (
             <RouteEditor
               value={draft}
               groups={groups}
               disabled={!canAct || busy}
               onChange={setDraft}
             />
-          )}
+            )}
 
           {isNote(active?.payload) && <NotePreview payload={active.payload} />}
+
+          {isConcepts(active?.payload) && (
+            <ConceptList
+              concepts={concepts}
+              disabled={!canAct || busy}
+              onChange={setConcepts}
+            />
+          )}
 
           {gate.revisions.length > 1 && (
             <p className="mono" style={{ fontSize: 10.5, color: "var(--fg-4)", marginTop: 8 }}>
@@ -553,7 +763,11 @@ export function GateCard({
                     run(() =>
                       queueApi.approve(
                         gate.id,
-                        gate.stage_name === "route" ? draft : null,
+                        gate.stage_name === "route"
+                          ? draft
+                          : isConcepts(active?.payload)
+                            ? { concepts }
+                            : null,
                         active?.id ?? null,
                       ),
                     )

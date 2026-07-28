@@ -158,7 +158,22 @@ export type NotePayload = {
   target_path?: string;
 };
 
-export type GatePayload = RouteResult | NotePayload;
+/** concept 게이트 산출물. `mode` 가 신규/보충을 가른다. */
+export type ConceptResult = {
+  mode: "create" | "supplement";
+  stem: string;
+  /** 무엇 때문에 기존 개념과 같다고 봤는지. create 면 null. */
+  matched_by: string | null;
+  content: string;
+  excluded: boolean;
+  target_path?: string;
+  /** 보충일 때만. **사라지는 줄**이 승인 판단의 핵심이다. */
+  diff?: string;
+};
+
+export type ConceptPayload = { concepts: ConceptResult[] };
+
+export type GatePayload = RouteResult | NotePayload | ConceptPayload;
 
 export type Revision = {
   id: number;
