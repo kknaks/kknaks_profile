@@ -190,7 +190,17 @@ class TestIntake:
 
 
 async def _fetch_ok(url):
-    return {"url": url, "content": "원문 본문", "title": "제목"}
+    """**실물 타입**(`SourceMaterial` dataclass)을 돌려준다.
+
+    dict 를 돌려주는 가짜를 쓰면 "객체를 그대로 JSON 직렬화해서 터지는" 버그를
+    못 잡는다 — 운영 첫 시도에서 실제로 그렇게 터졌다.
+    """
+    from service.knowledge_capture.source import SourceMaterial
+
+    return SourceMaterial(
+        url=url, source_type="youtube", title="제목", content="원문 본문",
+        accessed_at="2026-07-28T00:00:00+00:00",
+    )
 
 
 async def _fetch_fail(url):
@@ -307,3 +317,32 @@ class TestPrepare:
 
         result = await prepare_item(db, created.item_id, fetch=_fetch_ok, summarize=_summarize_ok)
         assert result.status == "not_allowed"
+
+
+@needs_db
+class TestMaterialSerialization:
+    """수집기는 dataclass 를 돌려준다 — 그걸 그대로 흘리면 요약 프롬프트에서 터진다.
+
+    운영 첫 시도가 `Object of type SourceMaterial is not JSON serializable` 로 실패했다.
+    테스트 가짜가 dict 를 돌려주고 있어 못 잡았다.
+    """
+
+    async def test_summarizer_receives_json_serializable_material(self, db):
+        import json
+
+        seen = {}
+
+        async def strict_summarize(*, material, note):
+            # 실제 요약기가 하는 일 — 여기서 터지면 운영에서도 터진다.
+            json.dumps({"source_material": material, "note": note}, ensure_ascii=False)
+            seen["material"] = material
+            return SummaryResult(summary="요약본")
+
+        created = await intake(db, source_url="https://youtu.be/serialize01")
+        result = await prepare_item(
+            db, created.item_id, fetch=_fetch_ok, summarize=strict_summarize
+        )
+
+        assert result.ok
+        assert isinstance(seen["material"], dict)
+        assert seen["material"]["content"] == "원문 본문"

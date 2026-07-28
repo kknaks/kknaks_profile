@@ -126,7 +126,12 @@ async def make_runner():
 
 
 async def _fetch_ok(url):
-    return {"url": url, "content": "본문", "title": "제목"}
+    from service.knowledge_capture.source import SourceMaterial
+
+    return SourceMaterial(
+        url=url, source_type="youtube", title="제목", content="본문",
+        accessed_at="2026-07-28T00:00:00+00:00",
+    )
 
 
 async def _fetch_fail(url):

@@ -117,11 +117,14 @@ async def prepare_item(
     await db.flush()
 
     # --- 수집 -------------------------------------------------------------
-    material: Any = None
+    material: dict[str, Any] | None = None
     collect_error: str | None = None
     if item.source_url:
         try:
-            material = await fetch(item.source_url)
+            # **여기서 한 번만 dict 로 만든다.** 수집기는 dataclass 를 돌려주는데,
+            # 그걸 그대로 아래로 흘리면 요약 프롬프트를 조립할 때
+            # `Object of type SourceMaterial is not JSON serializable` 로 터진다.
+            material = _material_dict(await fetch(item.source_url))
         except Exception as exc:  # noqa: BLE001 — 수집 실패는 정상 분기다
             collect_error = f"{type(exc).__name__}: {exc}"[:500]
             logger.info("수집 실패 item=%s: %s", item_id, collect_error)
@@ -178,7 +181,7 @@ async def prepare_item(
         status="succeeded",
         ai_task_id=task.id,
         payload={
-            "source": _material_dict(material),
+            "source": material,
             "note": note or None,
             # 수집이 막혀 메모로 대체했는지는 route 판단의 재료다 —
             # 근거가 원문인지 사람 기억인지에 따라 신뢰도가 다르다.
