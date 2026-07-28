@@ -87,6 +87,19 @@ jobs:
             echo ".env 갱신 (lines=$(wc -l < .env))"
             echo "::endgroup::"
 
+            echo "::group::alembic upgrade head"
+            # KDEV-WORK-015 — 마이그레이션 단계. 이게 없으면 배포는 초록불로 끝나는데
+            # 관리자 로그인과 승인 큐가 통째로 안 된다 — `seed_admin` 이 DB 실패를
+            # 삼키고 부팅을 계속하기 때문에 **조용히** 반쯤 죽는다.
+            #
+            # back 을 띄우기 **전에** 돌린다. 스키마가 없는 상태로 lifespan 이 돌면
+            # 시드가 실패한 채로 서비스가 올라간다.
+            docker compose build back
+            docker compose up -d --wait postgres redis
+            docker compose run --rm --entrypoint "" back \
+              uv run --no-sync alembic upgrade head
+            echo "::endgroup::"
+
             echo "::group::docker compose up"
             # KDEV-WORK-012 — slack-bridge 컨테이너는 back 에 흡수됐다.
             # Slack 캡처는 .env 의 SLACK_CAPTURE_ENABLED 로 back lifespan 안에서 켜고 끈다.

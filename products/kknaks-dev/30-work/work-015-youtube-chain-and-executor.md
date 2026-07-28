@@ -270,7 +270,7 @@ AI 에 인덱스를 미리 주고도 서버가 다시 보는 이유는 **프롬�
 
 처음 구현은 8개 섹션 명세를 `derived.py` 프롬프트에 **적어 넣었다.** `content_enrich._build_prompt` 에 같은 명세가 이미 있었으므로, 이는 `reference`·`concept` 에서 없앤 이중 SoT 를 교안에서 **다시 만든 것**이었다(owner 지적으로 발견). 한쪽만 고치는 날 두 경로의 산출물이 조용히 갈라진다.
 
-`templates/content.md` 를 신설해 SoT 로 두고, 양쪽이 `service/content_format.py` 로 **불러다 쓴다.** 지식 노트처럼 "에이전트가 레포를 읽게" 하지 않은 이유는 `content_enrich` 가 `cwd` 없이 호출돼 레포에 접근할 수 없기 때문이다 — 두 경로에 서로 다른 방식을 쓰느니 한 파일을 양쪽이 싣는 편이 단순하다.
+`templates/persona/content.md` 를 신설해 SoT 로 두고, 양쪽이 `service/content_format.py` 로 **불러다 쓴다.** 지식 노트처럼 "에이전트가 레포를 읽게" 하지 않은 이유는 `content_enrich` 가 `cwd` 없이 호출돼 레포에 접근할 수 없기 때문이다 — 두 경로에 서로 다른 방식을 쓰느니 한 파일을 양쪽이 싣는 편이 단순하다.
 
 **드리프트 가드도 처음엔 무의미했다.** 첫 테스트는 프롬프트를 **테스트가 직접 조립**해 비교해서, `derived` 를 인라인 명세로 되돌려도 그대로 통과했다(역검증으로 발견). 스테이지에 가짜 클라이언트를 물려 **실제로 전송되는 프롬프트**를 가로채도록 고친 뒤 재역검증했다 — 되돌리면 실패하고, 원복하면 통과한다.
 
@@ -377,10 +377,12 @@ source: https://youtu.be/...
 
 ## Pre-deploy Check
 
+- [x] **배포 파이프라인에 마이그레이션 단계 추가** — `deploy.yml` 에 `alembic upgrade head` 가 없었다. 없으면 배포는 **초록불로 끝나는데** 관리자 로그인과 큐가 통째로 안 된다(`seed_admin` 이 DB 실패를 삼키고 부팅을 계속하므로 **조용히** 반쯤 죽는다). back 을 띄우기 **전에** 돌린다. 실 컨테이너에서 `alembic current` 로 경로·환경 확인 완료.
 - [ ] `JOB_GIT_PUSH_DRY_RUN`으로 먼저 dry-run 발행을 검증한 뒤 실발행으로 전환
 - [ ] 발행이 `origin/main`에 직접 나가므로 첫 실행은 관찰 하에 수행
 - [ ] 롤백 경로(파일·커밋)가 실제로 동작하는지 강제 실패로 확인
-- [ ] 기존 `content_enrich` 잡과 발행 대상이 겹치지 않는지 확인 (같은 `C-NNN`을 두 경로가 건드리면 충돌)
+- [x] 기존 `content_enrich` 잡과 발행 대상이 겹치지 않는지 확인 — 게이트 산출물은 `status: published` 라 그 잡의 스캔 조건(`pending`)에 안 걸린다. 실 스캔 함수로 검증 완료(P3).
+- [ ] 구 `kknaks-slack-bridge` 컨테이너 정리 — **`deploy.yml` 이 이미 `docker rm -f` 한다**(WORK-012). 배포 로그에서 확인만 하면 된다.
 
 ## Rollback
 
