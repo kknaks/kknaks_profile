@@ -15,7 +15,7 @@ from typing import Any
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from core.models import Gate, QueueItem
+from core.models import Gate, GateRevision, QueueItem
 
 from .definitions import pipeline_for
 from .gates import Generator, approved_route_payload, open_gate
@@ -64,6 +64,68 @@ def next_stage(
         if name in enabled:
             return name
     return None
+
+
+async def reopen_route(
+    db: AsyncSession, item: QueueItem, *, generator: Generator
+) -> Gate:
+    """목적지 재검토 — **유일한 역방향 전이**다 (KDEV-DEC-011 D5 / SPEC-008 U-6).
+
+    route 가 체인 길이를 정하므로, 목적지를 잘못 고르면 뒤가 전부 헛돈다. 그래서
+    여기만 되돌릴 수 있다.
+
+    되돌리는 것과 남기는 것을 구분한다.
+    - **되돌린다**: 승인 포인터, 뒤 게이트의 유효성
+    - **남긴다**: 모든 revision 내용, 실행 이력, 피드백. 기록은 불변이다.
+
+    **자동 준비 산출물은 재사용한다** — 수집·요약을 다시 돌리지 않는다. 목적지 판단이
+    틀린 것이지 원문이 바뀐 게 아니다.
+    """
+    from sqlalchemy import select
+
+    from .gates import GateError, _generate
+
+    gate = await db.scalar(
+        select(Gate)
+        .where(Gate.item_id == item.id, Gate.stage_name == "route", Gate.status != "cancelled")
+        .limit(1)
+    )
+    if gate is None:
+        raise GateError("GATE_NOT_FOUND", "재오픈할 route 게이트가 없다")
+    if item.status in ("publishing", "published"):
+        # 이미 나간 것을 되돌리는 것은 제품 기능이 아니다(DEC-012 D7).
+        raise GateError(
+            "REOPEN_NOT_ALLOWED", f"항목이 {item.status} 라 목적지를 되돌릴 수 없다"
+        )
+
+    if gate.approved_revision_id is not None:
+        approved = await db.get(GateRevision, gate.approved_revision_id)
+        if approved is not None:
+            # 내용은 그대로 두고 상태만 밀어낸다 — 무엇을 승인했었는지가 남아야 한다.
+            approved.status = "superseded"
+        gate.approved_revision_id = None
+
+    # 뒤 게이트는 전제가 사라졌으므로 무효화한다. 지우지 않는다.
+    later = (
+        await db.scalars(
+            select(Gate).where(
+                Gate.item_id == item.id,
+                Gate.stage_name != "route",
+                Gate.status != "cancelled",
+            )
+        )
+    ).all()
+    for downstream in later:
+        downstream.status = "cancelled"
+
+    if item.status == "discarded":
+        # 폐기했던 항목을 되살리는 경로이기도 하다.
+        item.status = "in_review"
+
+    gate.status = "regenerating"
+    await db.flush()
+    await _generate(db, gate, item=item, generator=generator)
+    return gate
 
 
 async def advance(

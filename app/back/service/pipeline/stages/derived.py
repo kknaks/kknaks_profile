@@ -1,0 +1,223 @@
+"""`derived` 스테이지 — 교안 (KDEV-WORK-015 P3 / SPEC-008 stage 6).
+
+`persona/contents/` 의 교안을 만든다. 프롬프트는 `content_enrich` 잡의 것을 그대로
+쓴다 — 같은 산출물을 두 벌의 지시로 만들면 결과가 갈라진다.
+
+**`status: pending` 을 쓰지 않는다.** 그것이 `content_enrich` 의 스캔 조건이라,
+쓰면 게이트가 만든 교안을 그 잡이 한 번 더 덮어쓴다. 게이트 산출물은 처음부터
+`published` 로 완성돼 나온다 — owner 결정(교안 경로 공존, WORK-015 P1).
+
+**식별자와 순번은 AI 가 정하지 않는다.** `C-NNN` 과 `Day NN` 은 기존 파일을 세어
+시스템이 매긴다 — AI 에 맡기면 중복 번호가 나온다.
+"""
+
+from __future__ import annotations
+
+import json
+import re
+from datetime import date, datetime
+from pathlib import Path
+from typing import Any
+from zoneinfo import ZoneInfo
+
+import frontmatter
+
+from ..gates import GateError, GenerationInput, GenerationResult
+from .common import OUTPUT_CONTRACT_LIST, context_payload, parse_json_output
+
+KST = ZoneInfo("Asia/Seoul")
+CONTENTS_DIR = "persona/contents"
+_ID_RE = re.compile(r"C-(\d+)")
+
+RESULT_SHAPE = """{
+  "title":   {"ko": "...", "en": "..."},
+  "summary": {"ko": "...", "en": "..."},
+  "tags":    ["#tag1", "#tag2"],
+  "concept": ["문장1", "문장2", "문장3", "문장4"],
+  "kind":    "tutorial | study | talk | review",
+  "body":    "<## 개요 부터 시작하는 markdown 전문>"
+}"""
+
+INSTRUCTION = """이 영상의 **강의 교안**을 작성하라.
+**외부 사람이 영상을 안 보고도 이 문서만으로 이해·학습할 수 있어야 한다.**
+
+- `title` — 한국어/영어 각각 60자 이내. 원본 제목보다 간결·구체적으로.
+- `summary` — 핵심 한 줄, 한국어/영어 각각 80자 이내.
+- `tags` — 기술 스택·키워드 3~7개. 소문자 + `#` 접두 (예: `#fastapi`).
+- `concept` — 핵심 개념 문장 4~6개. 본문의 설명을 한 줄씩 압축한 형태(사이트 카드용).
+- `kind` — `tutorial`(따라하면 만들어지는 hands-on) · `study`(개념·이론) ·
+  `talk`(발표·강연) · `review`(도구 평가) 중 하나. 모호하면 `study`.
+- `body` — 아래 8개 H2 섹션을 **순서대로 빠짐없이** 포함한다.
+
+  `## 개요` — 주제와 왜 중요한지 (독자가 왜 읽어야 하는지)
+  `## 배경 / 사전 지식` — 선수 지식·용어 정의 (모르는 사람도 따라올 수 있게)
+  `## 핵심 개념` — 정의 + 작동 원리 (개념별 H3 분리 권장)
+  `## 작동 원리` — 단계별 설명
+  `## 코드 예시` — 실행 가능한 코드 최소 1개 블록 + 의미 설명
+  `## 함정·실수` — 흔한 실수와 회피법
+  `## 베스트 프랙티스` — 권장 패턴·대안
+  `## 참고` — 언급된 추가 자료 (없으면 "(영상 내 명시 없음)")
+
+  영상에 없는 항목은 자막에서 합리적으로 추론하거나 일반적인 베스트 프랙티스로
+  채운다. 짧게 압축하지 말고 학습 가능한 수준으로 쓴다.
+
+`id`·`date`·`day` 는 **쓰지 않는다.** 시스템이 매긴다.
+
+{output}"""
+
+KINDS = ("tutorial", "study", "talk", "review")
+
+
+def next_content_id(repo_root: Path) -> tuple[str, int]:
+    """다음 `C-NNN` 과 Day 순번. 기존 파일을 세어 시스템이 매긴다."""
+    directory = repo_root / CONTENTS_DIR
+    highest = 0
+    count = 0
+    if directory.is_dir():
+        for path in directory.glob("C-*.md"):
+            match = _ID_RE.match(path.name)
+            if match:
+                highest = max(highest, int(match.group(1)))
+                count += 1
+    return f"C-{highest + 1:03d}", count + 1
+
+
+def video_header(preparation_payload: dict[str, Any]) -> dict[str, Any]:
+    """수집 결과 앞머리의 영상 메타(JSON) — 채널·길이가 frontmatter 에 들어간다."""
+    source = preparation_payload.get("source")
+    if not isinstance(source, dict):
+        return {}
+    content = source.get("content") or ""
+    head = content.split("\n\n", 1)[0]
+    try:
+        parsed = json.loads(head)
+        return parsed if isinstance(parsed, dict) else {}
+    except ValueError:
+        return {}
+
+
+def format_duration(seconds: Any) -> str:
+    try:
+        total = int(seconds)
+    except (TypeError, ValueError):
+        return ""
+    return f"{total // 60}:{total % 60:02d}"
+
+
+def _require(data: dict[str, Any], key: str, kind: type) -> Any:
+    value = data.get(key)
+    if not isinstance(value, kind) or (kind in (str, list, dict) and not value):
+        raise GateError("INVALID_DERIVED_OUTPUT", f"{key} 가 없거나 형식이 맞지 않는다")
+    return value
+
+
+def build_content_note(
+    data: dict[str, Any],
+    *,
+    repo_root: Path,
+    preparation_payload: dict[str, Any],
+    source_url: str | None,
+    today: date | None = None,
+) -> dict[str, Any]:
+    """AI 출력 + 시스템 값 → 완성된 교안 파일. 어긋나면 `GateError`."""
+    title = _require(data, "title", dict)
+    summary = _require(data, "summary", dict)
+    for field, value in (("title", title), ("summary", summary)):
+        if not value.get("ko") or not value.get("en"):
+            raise GateError("INVALID_DERIVED_OUTPUT", f"{field} 에 ko/en 이 모두 필요하다")
+
+    tags = _require(data, "tags", list)
+    concept = _require(data, "concept", list)
+    body = _require(data, "body", str)
+    kind = str(data.get("kind") or "").strip()
+    if kind not in KINDS:
+        raise GateError("INVALID_DERIVED_OUTPUT", f"알 수 없는 kind: {kind}")
+    if "## 개요" not in body:
+        raise GateError("INVALID_DERIVED_OUTPUT", "본문에 「개요」 섹션이 없다")
+
+    content_id, day_index = next_content_id(repo_root)
+    header = video_header(preparation_payload)
+    stamp = datetime.now(KST)
+    meta: dict[str, Any] = {
+        "type": "content",
+        "id": content_id,
+        "date": (today or stamp.date()).strftime("%Y.%m.%d"),
+        "day": f"Day {day_index:02d}",
+        "title": title,
+        "summary": summary,
+        "duration": format_duration(header.get("duration_s")),
+        "speaker": header.get("channel") or "",
+        "tags": [str(t) for t in tags],
+        "concept": [str(c) for c in concept],
+        "kind": kind,
+        "transcript": bool(preparation_payload.get("material_source") == "fetched"),
+        "enriched_at": stamp.isoformat(timespec="seconds"),
+        # `pending` 이면 content_enrich 가 한 번 더 덮어쓴다.
+        "status": "published",
+    }
+    if header.get("video_id"):
+        meta["youtubeId"] = header["video_id"]
+    elif source_url:
+        meta["source"] = source_url
+
+    rendered = frontmatter.dumps(frontmatter.Post(content=body, **meta))
+    return {
+        "filename_stem": content_id,
+        "content": rendered,
+        "target_path": f"{CONTENTS_DIR}/{content_id}.md",
+        "content_id": content_id,
+    }
+
+
+class DerivedStage:
+    """open-kknaks 로 교안 초안을 만든다."""
+
+    def __init__(
+        self,
+        client,
+        *,
+        repo_root: Path,
+        provider: str,
+        model: str | None,
+        work_dir: str | None,
+        timeout_seconds: float = 900,
+    ) -> None:
+        self.client = client
+        self.repo_root = repo_root
+        self.provider = provider
+        self.model = model
+        self.work_dir = work_dir
+        self.timeout_seconds = timeout_seconds
+
+    async def __call__(self, request: GenerationInput) -> GenerationResult:
+        preparation = (request.preparation.payload or {}) if request.preparation else {}
+        payload = {**context_payload(request), "video": video_header(preparation)}
+        prompt = INSTRUCTION.format(output=OUTPUT_CONTRACT_LIST.format(shape=RESULT_SHAPE))
+
+        options: dict[str, Any] = {"cwd": self.work_dir} if self.work_dir else {}
+        if request.session_ref:
+            options["resume"] = {"mode": "session", "session_id": request.session_ref}
+
+        task_id = await self.client.submit(
+            prompt + "\n\n" + json.dumps(payload, ensure_ascii=False),
+            provider=self.provider,
+            model=self.model,
+            options=options or None,
+            max_retries=2,
+            metadata={"source": "pipeline-derived", "item_id": request.item.id},
+        )
+        task = await self.client.result(task_id, timeout=self.timeout_seconds)
+        if task is None or not task.result:
+            raise RuntimeError(getattr(task, "error", None) or "open_kknaks returned no result")
+
+        note = build_content_note(
+            parse_json_output(str(task.result)),
+            repo_root=self.repo_root,
+            preparation_payload=preparation,
+            source_url=request.item.source_url,
+        )
+        return GenerationResult(
+            payload=note,
+            session_ref=getattr(task, "result_session_id", None),
+            external_task_ref=str(task_id),
+        )

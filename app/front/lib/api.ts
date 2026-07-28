@@ -266,6 +266,12 @@ export const queueApi = {
   remove: (id: number) =>
     queueFetch<{ id: number; status: string }>(`${QUEUE}/items/${id}`, { method: "DELETE" }),
   gates: (id: number) => queueFetch<{ gates: Gate[] }>(`${QUEUE}/items/${id}/gates`),
+  /** 목적지 재검토 — 유일한 역방향 전이(DEC-011 D5). 뒤 게이트는 무효화되지만 기록은 남는다. */
+  reopenRoute: (itemId: number) =>
+    queueFetch<{ gate_id: number; gate_status: string; item_status: string }>(
+      `${QUEUE}/items/${itemId}/reopen-route`,
+      { method: "POST" },
+    ),
   feedback: (gateId: number, body: string) =>
     queueFetch<{ feedback_id: number; gate_status: string }>(`${QUEUE}/gates/${gateId}/feedback`, {
       method: "POST",

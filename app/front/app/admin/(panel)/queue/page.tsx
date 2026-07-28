@@ -324,7 +324,7 @@ function Detail({
         </p>
       )}
       {gates.map((g) => (
-        <GateCard key={g.id} gate={g} groups={groups} onChanged={onChanged} />
+        <GateCard key={g.id} gate={g} itemId={item.id} groups={groups} onChanged={onChanged} />
       ))}
 
       <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 24 }}>

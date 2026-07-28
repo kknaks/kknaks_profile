@@ -13,7 +13,7 @@ roles:
   be: kknaks
   qa: kknaks
   ops: kknaks
-progress: 40
+progress: 60
 created_at: 2026-07-27
 updated_at: 2026-07-28
 tags:
@@ -58,10 +58,10 @@ route 뒤의 게이트 3종(`source_note`·`concept`·`derived`)을 붙이고, �
 | Type | new-feature |
 | Owner | kknaks |
 | Status | doing |
-| Progress | 40% (Phase 2/5) |
+| Progress | 60% (Phase 3/5) |
 | Branch/PR | — |
 | Blocker | 없음 (WORK-014 done) |
-| Next | Phase 3 derived 게이트 + 재오픈 |
+| Next | Phase 4 Apply Executor (실제 발행) |
 
 ## Role Assignment
 
@@ -69,8 +69,8 @@ route 뒤의 게이트 3종(`source_note`·`concept`·`derived`)을 붙이고, �
 |---|---|---|---|
 | PM | kknaks | 완주 기준 판단 | todo |
 | Design | kknaks | 게이트 스택·diff 표시 | todo |
-| FE | kknaks | 게이트 3종 UI | todo |
-| BE | kknaks | 스테이지 생성·Executor | doing (체인·source_note·concept done) |
+| FE | kknaks | 게이트 3종 UI | done |
+| BE | kknaks | 스테이지 생성·Executor | doing (게이트 3종 done, Executor 남음) |
 | QA | kknaks | 롤백·검증 거부 시나리오 | todo |
 | Ops | kknaks | 실발행 e2e | todo |
 
@@ -245,18 +245,44 @@ AI 에 인덱스를 미리 주고도 서버가 다시 보는 이유는 **프롬�
 
 ### Phase 3 — derived 게이트 + 재오픈
 
-- **Status**: TODO
+- **Status**: DONE
 - **작업**:
-  - [ ] `derived` 게이트 (교안) — route에서 켠 경우만 생성
-  - [ ] `content_enrich`의 교안 프롬프트 재사용
-  - [ ] 목적지 재검토 → route 재오픈 + 뒤 게이트 `cancelled`
-  - [ ] 재오픈 시 자동 준비 산출물 재사용
+  - [x] `derived` 게이트 (교안) — route에서 켠 경우만 생성
+  - [x] `content_enrich`의 교안 프롬프트 재사용
+  - [x] 목적지 재검토 → route 재오픈 + 뒤 게이트 `cancelled`
+  - [x] 재오픈 시 자동 준비 산출물 재사용
 - **검증**:
-  - [ ] route에서 교안을 끄면 이 게이트가 생성되지 않는다
-  - [ ] 재오픈 시 뒤 게이트가 무효화되고 **기록은 조회 가능**하다
-  - [ ] 재오픈이 수집·요약을 다시 실행하지 않는다
-  - [ ] 재오픈 후 파생 on/off를 바꾸면 체인 길이가 바뀐다
-- **완료 증거**: 미작성
+  - [x] route에서 교안을 끄면 이 게이트가 생성되지 않는다
+  - [x] 재오픈 시 뒤 게이트가 무효화되고 **기록은 조회 가능**하다
+  - [x] 재오픈이 수집·요약을 다시 실행하지 않는다
+  - [x] 재오픈 후 파생 on/off를 바꾸면 체인 길이가 바뀐다
+- **완료 증거**:
+
+신규 `stages/derived.py`, `chain.reopen_route()`, 재오픈 API·버튼. 테스트 24건 신규. **559 passed.**
+
+**`status: pending` 을 쓰지 않는다 — 이게 공존의 전제다.** `pending` 은 `content_enrich` 의 스캔 조건이라, 게이트가 만든 교안에 그걸 박으면 그 잡이 **한 번 더 덮어쓴다.** 게이트 산출물은 처음부터 `published` 로 완성돼 나온다.
+
+이걸 짐작으로 두지 않고 **실제 스캔 함수로 검증**했다 — `scan_pending_contents()` 에 게이트 산출물을 넣고 빈 목록이 나오는 것을 확인한다(`test_enrich_job_would_skip_it`). 조건이 바뀌면 이 테스트가 깨진다.
+
+**식별자와 순번은 AI 가 정하지 않는다.** `C-NNN` 과 `Day NN` 은 기존 파일을 세어 시스템이 매긴다 — AI 에 맡기면 중복 번호가 나온다. AI 가 `id` 를 우겨 넣어도 무시하는 것을 테스트로 고정했다.
+
+**교안 프롬프트는 `content_enrich` 의 것을 그대로 쓴다.** 같은 산출물을 두 벌의 지시로 만들면 결과가 갈라진다. 8개 H2 섹션 구성·`kind` 4종·`concept` 압축 문장 규칙이 동일하다.
+
+**재오픈 — 되돌리는 것과 남기는 것을 구분했다.**
+
+| | 처리 |
+|---|---|
+| 승인 포인터 | 해제 |
+| 뒤 게이트 | `cancelled` (전제가 사라졌다) |
+| 이전 승인 revision | `superseded` — **내용은 그대로 남는다** |
+| 실행 이력·피드백 | 손대지 않는다 |
+| **자동 준비 산출물** | **재사용.** 목적지 판단이 틀린 것이지 원문이 바뀐 게 아니다 |
+
+`published`·`publishing` 항목은 재오픈할 수 없다 — 이미 나간 것을 되돌리는 것은 제품 기능이 아니다(DEC-012 D7). 반대로 **`discarded` 는 되살아난다** — 폐기 판단을 물릴 경로가 필요하다.
+
+**WORK-014 의 partial unique 가 여기서 값을 한다.** `uq_gates_live_stage` 를 `status <> 'cancelled'` 조건부로 걸어둔 덕에, 무효화한 스테이지를 **다시 열 수 있다.** 조건 없이 걸었으면 재오픈 후 같은 스테이지 생성이 제약에 막혔다. 그 경로를 테스트로 고정했다(`test_cancelled_stage_can_be_reopened_later`).
+
+**화면**: 승인된 route 카드에 `이 목적지가 아님` — 누르면 무엇이 무효화되는지 확인을 받는다. 되돌릴 수 없는 것과 되돌릴 수 있는 것을 문구로 구분한다("기록은 남습니다").
 
 ### Phase 4 — Apply Executor
 

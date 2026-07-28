@@ -356,6 +356,26 @@ async def gate_retry(gate_id: int, db: AsyncSession = Depends(get_db)):
     return {"gate_status": gate.status, "revision": _revision_view(revision)}
 
 
+@router.post("/items/{item_id}/reopen-route")
+async def reopen_route(item_id: int, db: AsyncSession = Depends(get_db)):
+    """목적지 재검토 — 유일한 역방향 전이(DEC-011 D5).
+
+    뒤 게이트는 무효화되지만 **기록은 남는다.** 수집·요약은 다시 돌지 않는다.
+    """
+    item = await _get_live_item(db, item_id)
+    generator = _generator_for("route")
+    if generator is None:
+        raise HTTPException(
+            status_code=503, detail={"code": "GENERATOR_UNAVAILABLE", "stage": "route"}
+        )
+    try:
+        gate = await chain.reopen_route(db, item, generator=generator)
+    except GateError as exc:
+        raise _gate_error(exc) from exc
+    await db.commit()
+    return {"gate_id": gate.id, "gate_status": gate.status, "item_status": item.status}
+
+
 @router.post("/gates/{gate_id}/approve")
 async def gate_approve(gate_id: int, body: ApproveRequest, db: AsyncSession = Depends(get_db)):
     """승인. route 게이트는 여기서 **체인 길이가 확정된다**.

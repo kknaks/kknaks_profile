@@ -594,10 +594,12 @@ export function btn(kind: "primary" | "ghost" | "danger") {
 
 export function GateCard({
   gate,
+  itemId,
   groups,
   onChanged,
 }: {
   gate: Gate;
+  itemId: number;
   groups: string[];
   onChanged: () => void;
 }) {
@@ -736,6 +738,25 @@ export function GateCard({
           {error && <p style={{ color: "#f85149", fontSize: 12, marginTop: 8 }}>{error}</p>}
 
           <div style={{ display: "flex", gap: 8, justifyContent: "flex-end", marginTop: 12 }}>
+            {gate.stage_name === "route" && approved && (
+              <button
+                type="button"
+                disabled={busy}
+                title="뒤 단계가 무효화됩니다. 기록은 남고 수집·요약은 다시 돌지 않습니다."
+                onClick={() => {
+                  if (
+                    window.confirm(
+                      "목적지를 다시 정합니다.\n뒤 단계의 승인이 무효화됩니다 (기록은 남습니다).",
+                    )
+                  ) {
+                    run(() => queueApi.reopenRoute(itemId));
+                  }
+                }}
+                style={btn("ghost")}
+              >
+                이 목적지가 아님
+              </button>
+            )}
             {gate.status === "failed" && (
               <button
                 type="button"
