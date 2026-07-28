@@ -7,14 +7,14 @@
 
 from __future__ import annotations
 
+import os
+
 import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine, text
 from sqlalchemy.exc import SQLAlchemyError
 
 import config
-
-MARK = "apitest"
 
 try:
     _probe = create_engine(config.database_url())
@@ -28,22 +28,41 @@ except SQLAlchemyError:
 pytestmark = pytest.mark.skipif(not _DB_OK, reason="Postgres 미가용")
 
 
+#: 이 파일이 만든 항목 id. `source_kind` 를 정리용 마커로 쓰면 안 된다 —
+#: 같은 컬럼이 **파이프라인 정의 조회 키**라 게이트가 안 열린다.
+_CREATED: set[int] = set()
+
+
 @pytest.fixture(scope="module")
 def _cleanup():
     yield
+    if not _CREATED:
+        return
     engine = create_engine(config.database_url())
     with engine.begin() as conn:
-        conn.execute(text("DELETE FROM queue_items WHERE source_kind = :k"), {"k": MARK})
+        conn.execute(
+            text("DELETE FROM queue_items WHERE id = ANY(:ids)"), {"ids": list(_CREATED)}
+        )
     engine.dispose()
 
 
-@pytest.fixture
-def anon(monkeypatch):
-    monkeypatch.setenv("ADMIN_USERNAME", "admin")
-    monkeypatch.setenv("ADMIN_PASSWORD", "changeme")
-    monkeypatch.setenv("JWT_SECRET", "test-jwt-secret-at-least-32-bytes-long!!")
+@pytest.fixture(scope="module")
+def app_client():
+    """모듈당 한 번만 띄운다 — lifespan(load_all + seed_admin)이 1초를 넘는다.
+
+    인증 상태는 client 에 남는 **쿠키**뿐이라, 테스트마다 쿠키만 비우면 공유해도 안전하다.
+    """
+    os.environ["ADMIN_USERNAME"] = "admin"
+    os.environ["ADMIN_PASSWORD"] = "changeme"
+    os.environ["JWT_SECRET"] = "test-jwt-secret-at-least-32-bytes-long!!"
     with TestClient(__import__("main").app) as c:
         yield c
+
+
+@pytest.fixture
+def anon(app_client):
+    app_client.cookies.clear()
+    return app_client
 
 
 @pytest.fixture
@@ -54,8 +73,10 @@ def client(anon, _cleanup):
 
 
 def _create(client, **body):
-    body.setdefault("source_kind", MARK)
-    return client.post("/api/admin/queue/items", json=body)
+    response = client.post("/api/admin/queue/items", json=body)
+    if response.status_code == 201:
+        _CREATED.add(response.json()["item_id"])
+    return response
 
 
 class TestAuthGate:
@@ -217,3 +238,129 @@ class TestRetryPrepare:
 
         detail = client.get(f"/api/admin/queue/items/{item_id}").json()
         assert detail["preparations"][-1]["payload"]["material_source"] == "note"
+
+
+class TestGates:
+    """route 게이트 표면 (KDEV-WORK-014 P3 / SPEC-008·009)."""
+
+    @staticmethod
+    def _payload(**over):
+        destinations = {
+            "reference": {"enabled": over.get("reference", True), "group": over.get("group", "study")},
+            "concept": {"enabled": over.get("concept", True)},
+            "derived": {"enabled": over.get("derived", False)},
+        }
+        return {
+            "destinations": destinations,
+            "exclusive": over.get("exclusive"),
+            "rationale": "근거",
+        }
+
+    @pytest.fixture
+    def gated(self, client, monkeypatch, request):
+        """준비까지 끝내 route 게이트가 열린 항목을 만든다.
+
+        URL 은 테스트마다 고유해야 한다 — 같으면 두 번째부터 **기존 항목에 합류**해
+        (S-4) 이미 `in_review` 인 항목에 준비를 재시도하게 되고 409 가 난다.
+        """
+        import hashlib
+
+        video_id = hashlib.sha1(request.node.name.encode()).hexdigest()[:11]
+        from service.pipeline import SummaryResult
+        from service.pipeline.gates import GenerationResult
+
+        async def summarize(*, material, note):
+            return SummaryResult(summary="요약본", session_ref="s1")
+
+        async def fetch_ok(url):
+            return {"url": url, "content": "본문"}
+
+        async def generate(request):
+            return GenerationResult(payload=self._payload(), session_ref="gate-sess")
+
+        monkeypatch.setattr("api.routers.queue._summarizer_factory", lambda: summarize)
+        monkeypatch.setattr("api.routers.queue._generator_for", lambda stage: generate)
+        monkeypatch.setattr("service.knowledge_capture.source.fetch_source", fetch_ok)
+
+        item_id = _create(client, source_url=f"https://youtu.be/{video_id}").json()["item_id"]
+        assert client.post(f"/api/admin/queue/items/{item_id}/prepare").status_code == 200
+        gates = client.get(f"/api/admin/queue/items/{item_id}/gates").json()["gates"]
+        assert len(gates) == 1 and gates[0]["stage_name"] == "route"
+        return item_id, gates[0]["id"]
+
+    def test_gate_is_exposed_with_revisions(self, client, gated):
+        item_id, gate_id = gated
+        gates = client.get(f"/api/admin/queue/items/{item_id}/gates").json()["gates"]
+        gate = gates[0]
+        assert gate["status"] == "review_pending"
+        assert len(gate["revisions"]) == 1
+        assert gate["revisions"][0]["payload"]["destinations"]["concept"]["enabled"] is True
+
+    def test_short_feedback_is_422(self, client, gated):
+        _, gate_id = gated
+        response = client.post(f"/api/admin/queue/gates/{gate_id}/feedback", json={"body": "응"})
+        assert response.status_code == 422
+        assert response.json()["detail"]["code"] == "FEEDBACK_TOO_SHORT"
+
+    def test_approve_confirms_destinations(self, client, gated):
+        item_id, gate_id = gated
+        response = client.post(f"/api/admin/queue/gates/{gate_id}/approve", json={})
+        assert response.status_code == 200, response.text
+        body = response.json()
+        assert body["gate_status"] == "approved"
+        assert body["route_outcome"] == "publishable"
+        # 승인해도 항목은 아직 발행되지 않는다 — 발행은 WORK-015.
+        assert body["item_status"] == "in_review"
+
+    def test_approved_gate_rejects_feedback(self, client, gated):
+        _, gate_id = gated
+        client.post(f"/api/admin/queue/gates/{gate_id}/approve", json={})
+        response = client.post(
+            f"/api/admin/queue/gates/{gate_id}/feedback", json={"body": "역시 아닌 것 같다"}
+        )
+        assert response.status_code == 409
+        assert response.json()["detail"]["code"] == "GATE_ALREADY_APPROVED"
+
+    def test_human_edit_must_pass_the_same_validation(self, client, gated):
+        """사람이 고친 값도 AI 출력과 같은 검사를 통과해야 한다."""
+        _, gate_id = gated
+        bad = self._payload(group="존재하지않는그룹")
+        response = client.post(
+            f"/api/admin/queue/gates/{gate_id}/approve", json={"payload": bad}
+        )
+        assert response.status_code == 422
+        assert response.json()["detail"]["code"] == "INVALID_REFERENCE_GROUP"
+
+    def test_discard_approval_ends_item_without_files(self, client, gated, tmp_path):
+        """폐기 승인은 항목을 끝낸다. 파일은 만들어지지 않는다."""
+        item_id, gate_id = gated
+        discard = self._payload(reference=False, concept=False, exclusive="discard")
+        response = client.post(
+            f"/api/admin/queue/gates/{gate_id}/approve", json={"payload": discard}
+        )
+        assert response.status_code == 200, response.text
+        assert response.json()["route_outcome"] == "discarded"
+        assert response.json()["item_status"] == "discarded"
+
+        # 목록에서도 빠진다.
+        listed = client.get("/api/admin/queue/items").json()
+        assert item_id not in [i["id"] for i in listed["items"]]
+
+    def test_regenerate_without_ai_path_is_503(self, client, gated, monkeypatch):
+        _, gate_id = gated
+        client.post(f"/api/admin/queue/gates/{gate_id}/feedback", json={"body": "다시 판단해 달라"})
+        monkeypatch.setattr("api.routers.queue._generator_for", lambda stage: None)
+        response = client.post(f"/api/admin/queue/gates/{gate_id}/regenerate")
+        assert response.status_code == 503
+        assert response.json()["detail"]["code"] == "GENERATOR_UNAVAILABLE"
+
+    def test_gate_endpoints_require_auth(self, anon):
+        for method, path in [
+            ("get", "/api/admin/queue/items/1/gates"),
+            ("post", "/api/admin/queue/gates/1/feedback"),
+            ("post", "/api/admin/queue/gates/1/regenerate"),
+            ("post", "/api/admin/queue/gates/1/retry"),
+            ("post", "/api/admin/queue/gates/1/approve"),
+        ]:
+            kwargs = {"json": {}} if method == "post" else {}
+            assert getattr(anon, method)(path, **kwargs).status_code == 401

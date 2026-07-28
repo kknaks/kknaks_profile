@@ -4,6 +4,8 @@
 렌더)을 안다. 이쪽은 **언제 무엇을 만들지 사람이 정하는 절차**를 안다.
 """
 
+from .definitions import PIPELINES, Pipeline, Stage, pipeline_for
+from .flow import prepare_and_open_gate
 from .intake import IntakeResult, intake
 from .prepare import (
     PREPARABLE_STATUSES,
@@ -14,6 +16,11 @@ from .prepare import (
 from .urls import detect_source_kind, normalize_url, youtube_video_id
 
 __all__ = [
+    "PIPELINES",
+    "Pipeline",
+    "Stage",
+    "pipeline_for",
+    "prepare_and_open_gate",
     "IntakeResult",
     "intake",
     "PREPARABLE_STATUSES",

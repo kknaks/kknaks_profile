@@ -23,6 +23,7 @@ from service.knowledge_capture import CaptureSessionStore
 from service.knowledge_capture.source import fetch_source
 from service.pipeline import runtime
 from service.pipeline.slack_intake import QueueIntakeRunner
+from service.pipeline.route import RouteProposer
 from service.pipeline.summarize import AgentSummarizer
 from service.slack_bridge.app import create_capture_app
 
@@ -172,14 +173,23 @@ class CaptureRuntime:
             work_dir=config.capture_work_dir(),
             timeout_seconds=config.capture_timeout_seconds(),
         )
-        # 큐 API 의 `준비 재시도` 가 이 연결을 빌려 쓴다 — 연결을 두 벌 열지 않는다.
-        runtime.set_summarizer(summarizer)
+        route_proposer = RouteProposer(
+            AgentClient(self._broker),
+            repo_root=config.repo_root(),
+            provider=config.capture_provider(),
+            model=config.capture_model(),
+            work_dir=config.capture_work_dir(),
+            timeout_seconds=config.capture_timeout_seconds(),
+        )
+        # 큐 API 의 `준비 재시도`·`재생성` 이 이 연결을 빌려 쓴다 — 연결을 두 벌 열지 않는다.
+        runtime.register(summarizer=summarizer, route_proposer=route_proposer)
 
         runner = QueueIntakeRunner(
             session_factory=new_session,
             sessions=sessions,
             fetch=fetch_source,
             summarize=summarizer,
+            generator=route_proposer,
             now=lambda: datetime.now(KST),
         )
 

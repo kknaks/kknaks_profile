@@ -20,8 +20,10 @@ from typing import Any, Callable
 from service.knowledge_capture.session import CaptureSession, CaptureSessionStore
 from service.knowledge_capture.source import find_urls
 
+from .flow import prepare_and_open_gate
+from .gates import Generator
 from .intake import intake
-from .prepare import PREPARABLE_STATUSES, Fetcher, Summarizer, prepare_item
+from .prepare import PREPARABLE_STATUSES, Fetcher, Summarizer
 
 logger = logging.getLogger("kknaks-back.pipeline.slack")
 
@@ -48,12 +50,15 @@ class QueueIntakeRunner:
         fetch: Fetcher,
         summarize: Summarizer,
         now: Callable[[], datetime],
+        generator: Generator | None = None,
     ) -> None:
         self.session_factory = session_factory
         self.sessions = sessions
         self.fetch = fetch
         self.summarize = summarize
         self.now = now
+        # route 게이트 제안기. 없으면 준비까지만 하고 게이트는 열지 않는다.
+        self.generator = generator
 
     async def handle(self, request, slack_client) -> None:
         placeholder = await slack_client.chat_postMessage(
@@ -109,8 +114,12 @@ class QueueIntakeRunner:
                     result.item_id,
                 )
 
-            prepared = await prepare_item(
-                db, result.item_id, fetch=self.fetch, summarize=self.summarize
+            prepared = await prepare_and_open_gate(
+                db,
+                result.item_id,
+                fetch=self.fetch,
+                summarize=self.summarize,
+                generator=self.generator,
             )
             await db.commit()
 
@@ -149,8 +158,12 @@ class QueueIntakeRunner:
             if not retryable:
                 return f"📝 항목 #{item_id} 메모에 반영했습니다 (상태: {item.status})."
 
-            prepared = await prepare_item(
-                db, item_id, fetch=self.fetch, summarize=self.summarize
+            prepared = await prepare_and_open_gate(
+                db,
+                item_id,
+                fetch=self.fetch,
+                summarize=self.summarize,
+                generator=self.generator,
             )
             await db.commit()
 

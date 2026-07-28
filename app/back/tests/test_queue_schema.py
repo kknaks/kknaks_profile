@@ -190,13 +190,68 @@ def test_models_and_migrations_agree():
         pytest.fail(f"모델과 마이그레이션 불일치 — 리비전이 필요하다:\n{exc}")
 
 
-def test_item_delete_cascades_to_children(conn):
-    """hard delete 는 운영 경로가 아니지만(soft delete), 고아 행이 남는 구조는 두지 않는다."""
+def test_item_delete_cascades_through_a_fully_linked_graph(conn):
+    """hard delete 는 운영 경로가 아니지만(soft delete), 고아 행이 남는 구조는 두지 않는다.
+
+    **참조를 전부 채워서** 지운다. 앞선 버전은 `ai_task_id`·`active_revision_id` 를 비워 둔
+    채 지워서 통과했는데, 실제로 값이 차 있으면 CASCADE 순서가 꼬여 삭제가 통째로
+    실패했다(`fk_gate_revisions_ai_task` 위반). 0004 가 가로지르는 참조를 SET NULL 로
+    바꿔 푼 문제이고, 이 테스트가 그 재발을 막는다.
+    """
     item = _item(conn)
     gate = _gate(conn, item)
-    _revision(conn, gate, 1, "reviewable")
-    conn.execute(text("DELETE FROM queue_items WHERE id = :i"), {"i": item})
-    left = conn.execute(
-        text("SELECT count(*) FROM gate_revisions WHERE gate_id = :g"), {"g": gate}
+    task = conn.execute(
+        text(
+            "INSERT INTO ai_tasks (item_id, kind, status) "
+            "VALUES (:i, 'route', 'succeeded') RETURNING id"
+        ),
+        {"i": item},
     ).scalar_one()
-    assert left == 0
+    retry = conn.execute(
+        text(
+            "INSERT INTO ai_tasks (item_id, kind, status, retry_of_task_id) "
+            "VALUES (:i, 'route', 'succeeded', :t) RETURNING id"
+        ),
+        {"i": item, "t": task},
+    ).scalar_one()
+    conn.execute(
+        text(
+            "INSERT INTO item_preparations (item_id, version, payload, ai_task_id, status) "
+            "VALUES (:i, 1, '{}'::jsonb, :t, 'succeeded')"
+        ),
+        {"i": item, "t": task},
+    )
+    v1 = _revision(conn, gate, 1, "superseded")
+    feedback = conn.execute(
+        text(
+            "INSERT INTO gate_feedbacks (gate_id, target_revision_id, body, status) "
+            "VALUES (:g, :r, '고쳐 달라', 'consumed') RETURNING id"
+        ),
+        {"g": gate, "r": v1},
+    ).scalar_one()
+    v2 = conn.execute(
+        text(
+            "INSERT INTO gate_revisions "
+            "(gate_id, version, status, parent_revision_id, feedback_id, ai_task_id) "
+            "VALUES (:g, 2, 'approved', :p, :f, :t) RETURNING id"
+        ),
+        {"g": gate, "p": v1, "f": feedback, "t": retry},
+    ).scalar_one()
+    conn.execute(
+        text("UPDATE gates SET active_revision_id=:r, approved_revision_id=:r WHERE id=:g"),
+        {"r": v2, "g": gate},
+    )
+
+    conn.execute(text("DELETE FROM queue_items WHERE id = :i"), {"i": item})
+
+    for table, column, value in [
+        ("gate_revisions", "gate_id", gate),
+        ("gate_feedbacks", "gate_id", gate),
+        ("gates", "item_id", item),
+        ("ai_tasks", "item_id", item),
+        ("item_preparations", "item_id", item),
+    ]:
+        left = conn.execute(
+            text(f"SELECT count(*) FROM {table} WHERE {column} = :v"), {"v": value}
+        ).scalar_one()
+        assert left == 0, f"{table} 에 고아 행이 남았다"

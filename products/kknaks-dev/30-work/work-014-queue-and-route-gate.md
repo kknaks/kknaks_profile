@@ -13,7 +13,7 @@ roles:
   be: kknaks
   qa: kknaks
   ops: kknaks
-progress: 50
+progress: 75
 created_at: 2026-07-27
 updated_at: 2026-07-28
 tags:
@@ -59,10 +59,10 @@ Slack 입력을 **파일이 아니라 DB 큐**로 받고, 자동 준비(수집·
 | Type | new-feature |
 | Owner | kknaks |
 | Status | doing |
-| Progress | 50% (Phase 2/4) |
+| Progress | 75% (Phase 3/4) |
 | Branch/PR | — |
 | Blocker | 없음 (WORK-012·013 완료) |
-| Next | Phase 3 route 게이트 |
+| Next | Phase 4 admin 큐 화면 |
 
 ## Role Assignment
 
@@ -71,8 +71,8 @@ Slack 입력을 **파일이 아니라 DB 큐**로 받고, 자동 준비(수집·
 | PM | kknaks | 범위·상태기계 확정 | todo |
 | Design | kknaks | 큐 화면·게이트 카드 레이아웃 | todo |
 | FE | kknaks | admin 큐 화면 | todo |
-| BE | kknaks | 스키마·접수·준비·게이트 | doing (스키마·접수·준비 done) |
-| QA | kknaks | 상태 전이·실패 회생 검증 | todo |
+| BE | kknaks | 스키마·접수·준비·게이트 | done |
+| QA | kknaks | 상태 전이·실패 회생 검증 | done (BE 범위) |
 | Ops | kknaks | 마이그레이션 적용 | done (로컬 왕복 검증) |
 
 ## Scope
@@ -123,7 +123,7 @@ Slack 입력을 **파일이 아니라 DB 큐**로 받고, 자동 준비(수집·
 | `gate_feedbacks` | 재생성을 유발한 지시 |
 
 - 상태 / invariant: 게이트당 승인 버전 1개(partial unique) · 게이트당 검토 가능 버전 1개(앱 sweep) · 이력 테이블 불변
-- Migration 필요 여부: 필요 (0002·0003)
+- Migration 필요 여부: 필요 (0002·0003·0004)
 - SPEC에 환류해야 하는 변경: 상태값이 실제 구현에서 달라지면 SPEC-007/008로 환류
 
 ## Dependency
@@ -239,23 +239,64 @@ route_result = {
 
 ### Phase 3 — route 게이트 + 공통 계약
 
-- **Status**: TODO
+- **Status**: DONE
 - **작업**:
-  - [ ] 파이프라인 정의 등록(유튜브) + 저장 위치 결정
-  - [ ] route 게이트 생성 + 목적지 제안 AI 호출
-  - [ ] 승인 → 목적지 확정 + 체인 길이 확정(뒤 스테이지 게이트 생성은 WORK-015)
-  - [ ] 피드백 → v2 재생성 (세션 resume, v1 read-only 보존)
-  - [ ] 형제 검토가능 버전 sweep
-  - [ ] 실패 → `재시도`(새 실행 행)
+  - [x] 파이프라인 정의 등록(유튜브) + 저장 위치 결정
+  - [x] route 게이트 생성 + 목적지 제안 AI 호출
+  - [x] 승인 → 목적지 확정 + 체인 길이 확정(뒤 스테이지 게이트 생성은 WORK-015)
+  - [x] 피드백 → v2 재생성 (세션 resume, v1 read-only 보존)
+  - [x] 형제 검토가능 버전 sweep
+  - [x] 실패 → `재시도`(새 실행 행)
 - **검증**:
-  - [ ] 준비 완료 시 route 게이트가 자동 생성된다
-  - [ ] 피드백 후 v2가 생기고 v1이 read-only로 남는다
-  - [ ] 재생성을 연속 2회 트리거해도 검토 가능 버전이 1개만 남는다
-  - [ ] 세션 resume이 동작한다 (원문 재전송 없이 반영)
-  - [ ] 세션이 없을 때 stateless로 재생성되며 실패하지 않는다
-  - [ ] 승인된 게이트에 피드백하면 거부된다
-  - [ ] `폐기` 승인 시 항목이 `discarded`가 되고 파일이 생기지 않는다
-- **완료 증거**: 미작성
+  - [x] 준비 완료 시 route 게이트가 자동 생성된다
+  - [x] 피드백 후 v2가 생기고 v1이 read-only로 남는다
+  - [x] 재생성을 연속 2회 트리거해도 검토 가능 버전이 1개만 남는다
+  - [x] 세션 resume이 동작한다 (원문 재전송 없이 반영)
+  - [x] 세션이 없을 때 stateless로 재생성되며 실패하지 않는다
+  - [x] 승인된 게이트에 피드백하면 거부된다
+  - [x] `폐기` 승인 시 항목이 `discarded`가 되고 파일이 생기지 않는다
+- **완료 증거**:
+
+신규 `service/pipeline/{definitions,gates,route,flow}.py` + 큐 API 게이트 5경로. 테스트 39건 신규(`test_pipeline_gates` 31 · `test_queue_api::TestGates` 8). **462 passed.**
+
+**파이프라인 정의 저장 위치 — 코드 상수 (OQ 해소).** DB 테이블로 두면 얻는 것은 "마이그레이션 없이 스테이지 순서 변경"인데 정의를 고치는 사람이 한 명뿐이라 값을 못 한다. 테이블만 둘 는다. **옮길 시점을 미리 박아 뒀다** — 소스 종류가 3개를 넘거나, 화면에서 정의를 편집하고 싶어질 때. 그때도 데이터 마이그레이션은 없다(정의가 코드에만 있다).
+
+**절차와 내용을 분리했다.** `gates.py`는 생성·피드백·재생성·재시도·승인 **절차만** 알고, 무엇을 만들지는 주입된 generator가 안다. WORK-015의 `source_note`·`concept`·`derived` 게이트가 이 파일을 그대로 재사용한다 — 스테이지마다 만드는 건 달라도 절차는 하나다.
+
+**세 상태를 섞지 않는다.**
+
+| 컬럼 | 소유 | 예 |
+|---|---|---|
+| `gates.status` | 사람이 보는 단계 | `review_pending` |
+| `gate_revisions.status` | AI 제안 버전 | `reviewable` |
+| `ai_tasks.status` | 실행 | `succeeded` |
+
+셋이 동시에 저 값인 것이 정상이다. 합치면 *"AI가 실패한 것"*과 *"사람이 아직 안 본 것"*이 구분되지 않는다.
+
+**sweep 순서** — 새 버전이 `reviewable`이 되기 **직전**에 형제를 밀어낸다. 반대로 하면 잠시 검토 대상이 0개가 된다. `drafting`(생성 중)은 건드리지 않는다 — 밀어내면 지금 돌고 있는 재생성이 완료 시점에 이미 죽어 있다.
+
+**AI에게 규칙을 프롬프트로 주지 않는다.** route 프롬프트는 *"`rules/knowledge-note-pipeline.md`와 `templates/knowledge/`를 읽고 판단하라"*고 지시한다. 4층 모델·개념 입도 기준을 프롬프트에 복사하면 SoT가 둘이 되고 한쪽만 고쳐지는 날 조용히 어긋난다 — WORK-013에서 세운 원칙을 첫 소비자가 실제로 따르는 지점이다.
+
+**사람이 고친 값도 같은 검사를 통과한다.** 승인 시 `payload`를 넘기면 AI 출력과 동일하게 `validate_route_result`를 태운다. 토글을 이상하게 조합한 채로 확정되면 뒤 스테이지가 헛돈다. 검사 항목: group이 `persona/_meta.yaml`의 clusters 값인가 · exclusive와 목적지를 동시에 켜지 않았는가 · 아무것도 안 켰으면 exclusive를 정했는가.
+
+**낙관적 잠금** — `expected_revision_id`. 다른 탭에서 재생성이 돌았는데 옛 화면의 승인 버튼이 먹으면 **사람이 보지 않은 내용을 승인**하게 된다.
+
+**`inbox_hold`는 끝이 아니다.** `discard`만 항목을 `discarded`로 끝낸다. 보류는 `inbox/`에 idea 노트를 남기는 발행이 남아 있어 여전히 발행 대상이다(DEC-011 D1).
+
+**정의 없는 종류에 유튜브 체인을 붙이지 않는다.** 블로그·수동 항목은 게이트 없이 큐에 남고 그 상태가 화면에 보인다 — 조용히 엉뚱한 체인을 태우는 것보다 낫다. 블로그 파이프라인은 해당 work에서 등록한다.
+
+**스키마 결함을 발견하고 고쳤다 (0004).** 항목 hard delete가 **FK 순환으로 실패**했다 — `queue_items → ai_tasks·gates → gate_revisions`가 CASCADE로 지워지는데 `gate_revisions.ai_task_id → ai_tasks` 같은 참조가 그 사이를 가로질러 삭제 순서가 어긋난다.
+
+```
+ForeignKeyViolation: update or delete on table "ai_tasks" violates
+foreign key constraint "fk_gate_revisions_ai_task" on table "gate_revisions"
+```
+
+P1의 CASCADE 테스트는 `ai_task_id`·`active_revision_id`를 **비워 둔 채** 지워서 통과했다. 가로지르는 nullable 참조 8개를 `ON DELETE SET NULL`로 바꾸고(소유 관계 `item_id`·`gate_id`는 CASCADE 유지), 테스트를 **참조를 전부 채운 그래프**로 다시 썼다. CASCADE로 바꾸지 않은 이유는 실행 행 하나가 지워질 때 그걸 참조하던 제안 버전까지 사라져 이력 불변 전제가 깨지기 때문이다.
+
+부수: `retry_prepare`가 `prepare_item`만 불러 **재시도로 살아난 항목엔 게이트가 영영 안 열렸다** → `prepare_and_open_gate`로 교체.
+
+테스트 속도: 큐 API가 매 테스트 TestClient를 띄워 전체 스위트가 101초로 늘었다. 모듈 스코프 + 쿠키만 초기화로 바꿔 **59초**(해당 파일 63초→9초).
 
 ### Phase 4 — admin 큐 화면
 
@@ -296,7 +337,7 @@ route_result = {
 
 ## Open Issues
 
-- 파이프라인 정의 저장 위치(코드 상수 vs DB) — 이 work에서 결정한다(SPEC-008 §7).
+- ~~파이프라인 정의 저장 위치(코드 상수 vs DB)~~ — **P3에서 해소: 코드 상수.** 옮길 조건은 소스 종류 3개 초과 또는 화면 편집 요구. 근거는 Phase 3 완료 증거.
 - ~~`normalized_url` 정규화 범위~~ — **P2에서 해소.** 유튜브=영상 ID만, 그 외=추적 파라미터만 제거(나머지 쿼리 보존). 근거는 Phase 2 완료 증거.
 - **이 work가 끝나면 큐에 항목이 쌓이지만 발행은 안 된다.** WORK-015까지 가야 md가 나온다. 그 사이 기간에 캡처를 계속 쓸지, WORK-015까지 묶어서 배포할지 판단이 필요하다.
 - **P2 배포 시점부터 Slack 캡처의 산출물이 사라진다.** 지금 배포하면 링크를 던져도 큐에만 쌓이고 노트는 안 나온다(route 게이트가 P3, 발행이 WORK-015). 캡처를 계속 쓰려면 **WORK-015까지 묶어서 배포**하는 편이 맞다.

@@ -201,11 +201,14 @@ erDiagram
 | 0001 | `create_users` | 관리자 계정 | 적용됨 (WORK-011) |
 | 0002 | `create_queue` | `queue_items` · `item_preparations` · `ai_tasks` | 적용됨 (WORK-014 P1) |
 | 0003 | `create_gates` | `gates` · `gate_revisions` · `gate_feedbacks` | 적용됨 (WORK-014 P1) |
-| 0004 | (예정) | `apply_plans` · `apply_results` | Executor work |
+| 0004 | `fk_set_null` | 가로지르는 nullable FK 8개 → `ON DELETE SET NULL` | 적용됨 (WORK-014 P3) |
+| 0005 | (예정) | `apply_plans` · `apply_results` | Executor work |
 
 리비전 전문은 `app/back/alembic/versions/`가 SoT다. 모델(`core/models.py`)과 리비전은 **손으로 쓴 두 벌의 진실**이라 갈라질 수 있어, `alembic check`를 테스트로 걸어 드리프트를 상시 차단한다(`tests/test_queue_schema.py::test_models_and_migrations_agree`).
 
 0003은 **순환 FK**를 만든다(`gates ↔ gate_revisions ↔ gate_feedbacks`). 테이블을 먼저 만들고 앞을 가리키는 FK 3개를 뒤에 붙이며, downgrade는 제약부터 역순으로 뗀다.
+
+삭제 규칙은 두 종류다. **소유 관계**(`item_id`·`gate_id`)는 `CASCADE`, **층을 가로지르는 nullable 참조**(`gate_revisions.ai_task_id`, `gates.active_revision_id`, `ai_tasks.retry_of_task_id` 등 8개)는 `SET NULL`이다. 가로지르는 참조를 CASCADE로 두면 실행 행 하나가 지워질 때 그걸 참조하던 제안 버전까지 사라져 **이력 불변 전제가 깨진다.** 그냥 두면(RESTRICT) 항목 삭제가 FK 순환으로 실패한다 — 0004가 고친 문제다.
 
 ## Open
 

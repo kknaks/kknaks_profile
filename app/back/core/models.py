@@ -167,7 +167,9 @@ class AITask(Base):
     #: 어느 스테이지의 생성/재생성인가. 스테이지는 정의에서 오므로 CHECK 를 걸지 않는다.
     kind: Mapped[str] = mapped_column(String(32), nullable=False)
     status: Mapped[str] = mapped_column(String(16), nullable=False, default="queued")
-    retry_of_task_id: Mapped[int | None] = mapped_column(ForeignKey("ai_tasks.id"))
+    retry_of_task_id: Mapped[int | None] = mapped_column(
+        ForeignKey("ai_tasks.id", ondelete="SET NULL")
+    )
     #: 실행이 반환한 세션 참조 — 다음 재생성의 resume 원천.
     session_ref: Mapped[str | None] = mapped_column(String(128))
     external_task_ref: Mapped[str | None] = mapped_column(String(128))
@@ -201,7 +203,9 @@ class ItemPreparation(Base):
     version: Mapped[int] = mapped_column(Integer, nullable=False)
     #: 수집 원문·요약. 조회 키가 되는 값이 생기면 컬럼으로 승격한다.
     payload: Mapped[dict[str, Any]] = mapped_column(JSONB, nullable=False)
-    ai_task_id: Mapped[int | None] = mapped_column(ForeignKey("ai_tasks.id"))
+    ai_task_id: Mapped[int | None] = mapped_column(
+        ForeignKey("ai_tasks.id", ondelete="SET NULL")
+    )
     status: Mapped[str] = mapped_column(String(16), nullable=False)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), nullable=False
@@ -237,10 +241,20 @@ class Gate(Base):
     stage_no: Mapped[int] = mapped_column(Integer, nullable=False)
     status: Mapped[str] = mapped_column(String(24), nullable=False, default="not_started")
     active_revision_id: Mapped[int | None] = mapped_column(
-        ForeignKey("gate_revisions.id", use_alter=True, name="fk_gates_active_revision")
+        ForeignKey(
+            "gate_revisions.id",
+            use_alter=True,
+            name="fk_gates_active_revision",
+            ondelete="SET NULL",
+        )
     )
     approved_revision_id: Mapped[int | None] = mapped_column(
-        ForeignKey("gate_revisions.id", use_alter=True, name="fk_gates_approved_revision")
+        ForeignKey(
+            "gate_revisions.id",
+            use_alter=True,
+            name="fk_gates_approved_revision",
+            ondelete="SET NULL",
+        )
     )
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), nullable=False
@@ -278,11 +292,20 @@ class GateRevision(Base):
     version: Mapped[int] = mapped_column(Integer, nullable=False)
     status: Mapped[str] = mapped_column(String(16), nullable=False, default="drafting")
     payload: Mapped[dict[str, Any] | None] = mapped_column(JSONB)
-    parent_revision_id: Mapped[int | None] = mapped_column(ForeignKey("gate_revisions.id"))
-    feedback_id: Mapped[int | None] = mapped_column(
-        ForeignKey("gate_feedbacks.id", use_alter=True, name="fk_gate_revisions_feedback")
+    parent_revision_id: Mapped[int | None] = mapped_column(
+        ForeignKey("gate_revisions.id", ondelete="SET NULL")
     )
-    ai_task_id: Mapped[int | None] = mapped_column(ForeignKey("ai_tasks.id"))
+    feedback_id: Mapped[int | None] = mapped_column(
+        ForeignKey(
+            "gate_feedbacks.id",
+            use_alter=True,
+            name="fk_gate_revisions_feedback",
+            ondelete="SET NULL",
+        )
+    )
+    ai_task_id: Mapped[int | None] = mapped_column(
+        ForeignKey("ai_tasks.id", ondelete="SET NULL")
+    )
     session_ref: Mapped[str | None] = mapped_column(String(128))
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), nullable=False
@@ -302,7 +325,9 @@ class GateFeedback(Base):
     gate_id: Mapped[int] = mapped_column(
         ForeignKey("gates.id", ondelete="CASCADE"), nullable=False
     )
-    target_revision_id: Mapped[int | None] = mapped_column(ForeignKey("gate_revisions.id"))
+    target_revision_id: Mapped[int | None] = mapped_column(
+        ForeignKey("gate_revisions.id", ondelete="SET NULL")
+    )
     body: Mapped[str] = mapped_column(Text, nullable=False)
     status: Mapped[str] = mapped_column(String(16), nullable=False, default="submitted")
     created_at: Mapped[datetime] = mapped_column(
