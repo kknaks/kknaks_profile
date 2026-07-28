@@ -49,7 +49,7 @@ route 뒤의 게이트 3종(`source_note`·`concept`·`derived`)을 붙이고, �
 - Depends on work: WORK-014
 - Parallel work: 없음
 - Follow-up work: 스케줄 잡 편입, 트리 문서 렌더러, 나머지 파이프라인 정의
-- External dependency: open-kknaks, GitHub push 권한(기존 `GH_TOKEN_PERSONAL`), **`templates/knowledge/` (WORK-013 Phase 4 산출물 — 없으면 스테이지 프롬프트를 조립할 수 없다)**
+- External dependency: open-kknaks, GitHub push 권한(기존 `GH_TOKEN_PERSONAL`), **레포 읽기 가능한 worker 실행 환경** — 에이전트가 `rules/`·`templates/` 를 직접 읽어야 한다(WORK-013 산출물)
 
 ## Work Summary
 
@@ -102,7 +102,7 @@ route 뒤의 게이트 3종(`source_note`·`concept`·`derived`)을 붙이고, �
 | `app/back/alembic/versions/0004_*` | `apply_plans`·`apply_results` |
 | `app/back/service/pipeline/stages/` | source_note·concept·derived 스테이지 |
 | `app/back/service/pipeline/concept_match.py` | `aliases` 기반 기존 concept 매칭 |
-| `templates/knowledge/*.md` | **읽기 전용 입력** — 스테이지 프롬프트에 주입 (WORK-013 산출물) |
+| `templates/knowledge/*.md` | **형식의 SoT** — 에이전트가 `agent.md` 라우팅으로 찾아 읽는다 (주입 아님) |
 | `app/back/service/apply/executor.py` | 계획 조립·검증·쓰기·커밋·롤백 |
 | `app/back/core/graph.py` | 발행 전 가상 그래프 검증 진입점 |
 | `app/back/service/jobs/git_push.py` | 원자적 커밋·롤백 지원 확장 |
@@ -150,8 +150,8 @@ concept_result[] = {
 - **Status**: TODO
 - **작업**:
   - [ ] route 승인 후 `source_note` 게이트 자동 생성
-  - [ ] **`templates/knowledge/reference.md`를 프롬프트에 주입** (WORK-013 Phase 4 산출물)
-  - [ ] reference 초안 생성 (준비 산출물 + route 결과 + 템플릿 입력)
+  - [ ] 스테이지 프롬프트는 **"무엇을 만들라"만** 지시한다 — 형식은 에이전트가 `rules/knowledge-note-pipeline.md` + `templates/knowledge/reference.md` 를 읽어 따른다
+  - [ ] reference 초안 생성 (준비 산출물 + route 결과 입력)
   - [ ] 초안이 `up:`·본문 `[[]]`를 채우도록 프롬프트·검증
   - [ ] 게이트 카드 UI (전문 미리보기 + 저장될 경로)
 - **검증**:
@@ -167,7 +167,7 @@ concept_result[] = {
 - **설명**: 이 work의 난이도 핵심. 개념 추출보다 **기존 개념 매칭**이 어렵다.
 - **작업**:
   - [ ] 개념 추출 스테이지
-  - [ ] **`templates/knowledge/concept.md`를 프롬프트에 주입**
+  - [ ] concept 스테이지도 동일 — 프롬프트는 지시만, 형식은 레포에서 읽는다
   - [ ] 기존 concept 매칭 — stem + `aliases` 인덱스 조회
   - [ ] 신규/보충 판정 + 보충 시 수정 전문 생성
   - [ ] 보충 diff 계산 (표시용)
@@ -181,7 +181,7 @@ concept_result[] = {
   - [ ] 보충 시 대상 노트의 기존 `aliases`가 유실되지 않는다
 - **완료 증거**: 미작성
 
-> 템플릿 주입이 빠지면 AI가 매번 다른 형식으로 초안을 만들고, 그중 상당수가 Phase 4의 발행 전 검증(`aliases`·`up:` 필수)에서 거부된다. 템플릿은 참고자료가 아니라 **생성 계약의 일부**다.
+> **형식 규칙을 프롬프트에 복사하지 않는다.** 복사하면 SoT 가 둘(레포 문서 + 프롬프트)이 되고, 규칙이 바뀔 때 한쪽만 고쳐져 조용히 어긋난다. 에이전트는 레포를 읽을 수 있으므로 `agent.md` 라우팅으로 찾아가게 한다. 다만 **찾아가지 않으면 형식이 표류**하므로, 스테이지 프롬프트에 "작성 전 `rules/knowledge-note-pipeline.md` 를 읽으라"는 지시는 반드시 넣는다.
 
 ### Phase 3 — derived 게이트 + 재오픈
 

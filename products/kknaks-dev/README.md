@@ -10,9 +10,9 @@
 
 | Area | Status | Next |
 |---|---|---|
-| 지식그래프 (BL-001) | Baseline·Decision accepted, SPEC-001~005 draft, WORK-001~010 done. **BL-003으로 4층 재설계 반영됨** | — |
+| 지식그래프 (BL-001) | WORK-001~010 done + **WORK-013으로 4층 재편 완료** (`permanent/concept/` 실재화, lineage 1→4) | — |
 | 앱 DB화 + 관리자 인증 (BL-002) | BL-002·DEC-009 accepted, SPEC-006 implemented, WORK-011 done (async) | 후속 — admin 실제 관리 기능 spec |
-| inbox 승인 파이프라인 + concept 층 (BL-003) | BL-003·DEC-010~013 accepted · spec 9건 · 40-arch · **WORK-012 done** | WORK-013 (concept 층) 착수 |
+| inbox 승인 파이프라인 + concept 층 (BL-003) | BL-003·DEC-010~013 accepted · spec 9건 · 40-arch · **WORK-012·013 done** | WORK-014 (큐 + route 게이트) |
 
 ## 문서 맵
 
@@ -26,6 +26,7 @@
 
 ## 최근 로그
 
+- 2026-07-28 **WORK-013 done** — concept 층 도입. 4층 재편(`layer` 도출·rank 반전·층별 orphan), `permanent/concept/` 실재화, `rules/knowledge-note-pipeline.md` + `templates/knowledge/`, enforce 전환. 신규 규칙 위반 1건뿐이었고 lineage 1→4건. 344 passed.
 - 2026-07-27 **WORK-012 done** — Slack bridge를 back lifespan으로 흡수. sink DI 리팩터(WORK-014 교체 지점), 컨테이너 5→4개, deploy.yml의 죽은 profile 참조 제거. 309 passed. 운영 e2e는 배포 대기.
 - 2026-07-27 DEC-010~013 accepted 승격 + WORK-012~015 발주 (bridge 흡수 · concept 층 · 큐+route · 유튜브 완주). 012·013 병렬 → 014 → 015.
 - 2026-07-27 40-architecture 작성 (database·system·deploy) — SoT 경계 · ERD 9테이블 · 쓰기 소유권 경계 · 배포 환경. 종전 전부 빈 템플릿이었음.

@@ -28,7 +28,7 @@
 
 - **012**는 쓰기 소유권을 back으로 모으고 sink 교체 지점을 만든다. 014가 그 sink를 "큐 적재"로 갈아끼운다.
 - **013**은 목적지(`permanent/concept/`)를 실재화한다. 목적지가 없으면 route 게이트가 고를 게 없다.
-- **013 Phase 1은 report-only 측정**이다. L2 필수 필드·L4 방향 반전이 기존 406노드를 얼마나 깨는지 재고 나서 enforce로 넘긴다(WORK-001~007에서 검증된 순서).
+- ~~**013 Phase 1은 report-only 측정**이다.~~ **완료** — 신규 규칙 위반이 **1건**뿐이라 Phase 2(데이터 정리)가 Phase 3와 합쳐졌고, enforce 전환까지 끝났다. lineage 1건 → 4건.
 - **014까지만 하면 큐에 쌓이고 발행은 안 된다.** md가 나오려면 015까지 가야 한다.
 
 ## Work 목록
@@ -47,7 +47,7 @@
 | WORK-010 | permanent 층 그래프 배선 — 영구노트를 _graph 에 연결 (BE-only, WORK-005 미러) | BE | done | SPEC-001·003 | 005 | `work-010-wire-permanent.md` |
 | WORK-011 | 관리자 인증 MVP — DB 토대(Postgres·async SQLAlchemy·Alembic) + 쿠키 JWT 로그인 + admin 목 | BE+FE | done | SPEC-006 | — | `work-011-admin-auth-mvp.md` |
 | WORK-012 | Slack bridge를 back에 흡수 + 쓰기 소유권 정리 (sink DI 리팩터·lifespan 흡수·compose 정리·OKK-SPEC-011 §4 개정) | BE | **done** | SPEC-007(선행분) | — | `work-012-slack-bridge-absorb.md` |
-| WORK-013 | concept 층 도입 — 4층 재편·검증 재정의·규칙/템플릿 (report-only 선행 → enforce) | BE+문서 | todo | SPEC-001·002·003·004 | — | `work-013-concept-layer.md` |
+| WORK-013 | concept 층 도입 — 4층 재편·검증 재정의·규칙/템플릿 (report-only 선행 → enforce) | BE+문서 | **done** | SPEC-001·002·003·004 | — | `work-013-concept-layer.md` |
 | WORK-014 | 승인 큐 + route 게이트 MVP (스키마·접수·자동준비·게이트 공통계약·admin 큐 화면) | BE+FE | todo | SPEC-007·008(route)·009 | 012·013 | `work-014-queue-and-route-gate.md` |
 | WORK-015 | 유튜브 체인 완성 + Apply Executor (source_note·concept·derived + 원자적 발행) | BE+FE | todo | SPEC-008·010·004 | 014 | `work-015-youtube-chain-and-executor.md` |
 
@@ -57,16 +57,16 @@
 |---|---|---|
 | 지식그래프 (BL-001) | WORK-001~010 done | — |
 | 앱 DB화 (BL-002) | WORK-011 done | admin 실제 관리 기능 |
-| 승인 파이프라인 (BL-003) | **012 done** · 013~015 todo | **013 착수** (concept 층) → 014 → 015 |
+| 승인 파이프라인 (BL-003) | **012·013 done** · 014~015 todo | **014 착수** (큐 + route 게이트) → 015 |
 
 ## Spec Coverage
 
 | Spec | Covering Work | 구현 상태 |
 |---|---|---|
-| SPEC-001 디렉토리 | WORK-003·004·005·006·010 | 003 scaffold done / 004 projects done / 005 notes done / 006 contents 잔류 확정 / 010 permanent 층 실재화(배선) done |
-| SPEC-002 스키마 | WORK-001·002 | 001·002 done |
-| SPEC-003 워크플로 | WORK-003·010 (+강제: 001·007) | 003 규약 문서화 done / 강제 007 done / 010 정제→permanent 종착 라이브화 done(빈 층 — 데이터 작성 시 발현) |
-| SPEC-004 검증 | WORK-001·002·007 | 001·002 done / 007 enforcement done |
+| SPEC-001 디렉토리 | WORK-003·004·005·006·010·**013** | 003~010 done / **013 — 4층 매핑 + `permanent/concept/` 실재화 done** |
+| SPEC-002 스키마 | WORK-001·002·**013** | 001·002 done / **013 — `layer` 도출·type enum 재편·rank 반전 done** |
+| SPEC-003 워크플로 | WORK-003·010·**013** (+강제: 001·007) | 003·007·010 done / **013 — 4층 생명주기 규칙 문서화(`rules/knowledge-note-pipeline.md`) done** |
+| SPEC-004 검증 | WORK-001·002·007·**013**·015 | 001·002·007 done / **013 — 층별 orphan·L2 필수필드·L4 반전 enforce done** / 015 발행 전 검증 todo |
 | SPEC-005 시각화 | WORK-008·009 | 008 전역 done / 009 로컬 done (시각화 완료) |
 | SPEC-006 관리자 인증 | WORK-011 | 011 done (DB 토대+async+로그인+admin 목 e2e 검증 — 앱 DB화 첫 트랙, 그래프 work와 독립) |
 | SPEC-007 승인 큐 | WORK-012·014 | **012 done**(sink 교체 지점 확보·쓰기 소유권 back 단독) / 014 본체 todo |

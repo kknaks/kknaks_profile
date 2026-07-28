@@ -41,8 +41,14 @@ DEC-005는 *"정제를 에이전트가 초안까지 하는 안"*을 명시적으
 | ~~OQ-2~~ | force graph 라이브러리 선택 | DEC-010 D7에서 force-graph 자체 폐기 → 무효 |
 | ~~DEC-010 OQ-4~~ | `layer` frontmatter 명시 vs 도출 | **도출** — 중복 SoT 회피. 빌더가 `_graph.json`에 담는다 (SPEC-002 v0.0.3) |
 | ~~DEC-011 OQ-1~~ | 자동 스테이지 실패 시 회생 경로 | **메모 보완 재시도** — 메모가 있으면 원문 없이도 준비 성립 (SPEC-007 S-3) |
+| ~~DEC-013 OQ-1~~ | 웹소켓 task 반복 실패 시 back 종료 vs 캡처만 비활성화 | **캡처만 비활성화 + 백오프 재기동 + 포기 시 Slack 알림** (WORK-012) |
+| ~~DEC-013 OQ-2~~ | `slack-capture` 프로필 제거 후 로컬 기본값 | **`SLACK_CAPTURE_ENABLED=0` 유지로 충분** — 토큰 없으면 경고 후 skip (WORK-012) |
+| ~~DEC-013 OQ-3~~ | `app/scripts/run_*.py` `sys.path` 해킹 정리 | **불필요해짐** — `app/slack_bridge/` 제거로 이름 충돌이 사라졌고, `run_*.py` 는 수동 dev 러너라 유지 |
 | ~~DEC-011 OQ-2~~ | route 목적지 조합 vs 단일 | **조합** + `inbox 보류`·`폐기`는 배타 옵션 (SPEC-008 §7) |
 | ~~DEC-011 OQ-3~~ | concept 개별 vs 묶음 승인 | **묶음 승인 + 개별 제외 토글** — 개별 승인은 마찰 폭발 (SPEC-008 §7) |
+| ~~DEC-010 OQ-2~~ | concept 입도 | **잠정 규칙 — 독립 재사용 가능성** (`rules/knowledge-note-pipeline.md`). 재검토 트리거: concept 10건 또는 개념 분열 첫 사례 |
+| ~~SPEC-004 OQ~~ | L2 필수필드·L4 반전의 기존 데이터 위반 수 | **실측 1건** (WORK-013 Phase 1). enforce 전환 완료 |
+| ~~SPEC-003 OQ~~ | `reference/` 157개 소급 정제 | **하지 않는다** — 기술부채가 아니라 파이프라인 입력 백로그. 큐 크기를 경보로 쓰지 않는다 |
 
 ### 진행 전 필요 (없음)
 
@@ -52,19 +58,15 @@ work 착수를 막는 미결은 없다. 아래는 전부 work 안에서 측정�
 
 | ID | Question | Next |
 |---|---|---|
-| SPEC-004 OQ | L2 type별 필수 필드·L4 방향 반전의 기존 데이터 위반 수 (미측정) | report-only 선행 후 측정 |
 | SPEC-008 OQ | 파이프라인 정의 저장 위치 (코드 상수 vs DB vs 설정) | 게이트 체인 work |
 | SPEC-010 OQ | 가상 그래프 검증 — 전체 재조립 vs 증분 | Executor work |
 | DEC-012 OQ-1 | 발행 커밋 메시지 형식 | Executor work |
 | DEC-012 OQ-4 | 발행 실패 반복 시 Slack 알림 임계 | Executor work |
-| DEC-013 OQ-1 | 웹소켓 task 반복 실패 시 back 종료 vs 캡처만 비활성화 | 흡수 work |
-| DEC-013 OQ-2 | `slack-capture` 프로필 제거 후 로컬 개발 기본값 | 흡수 work |
 
 ### 실전 관찰 후 판단 (데이터가 있어야 답 가능)
 
 | ID | Question |
 |---|---|
-| DEC-010 OQ-2 | concept 입도 — "STT" 하나 vs "STT / 스트리밍 ASR / VAD" |
 | DEC-011 OQ-4 | 승인 3~4회의 실제 마찰 — 게이트 병합·자동승인 검토 필요 여부 |
 | DEC-012 OQ-2 | stale 거부 빈도 (concept 보충이 몰릴 때) |
 | DEC-012 OQ-3 | 보호 섹션(`## 내 메모`) 도입 필요 여부 |
@@ -76,7 +78,5 @@ work 착수를 막는 미결은 없다. 아래는 전부 work 안에서 측정�
 |---|---|
 | DEC-010 OQ-1 | `reference/` group 13종 정리 (`BackendSchool`·`bitcamp` 등 교육과정 잔재) |
 | DEC-010 OQ-3 | 제품 문서 중 `work`·`release`·`runbook`까지 그래프에 둘지 |
-| DEC-013 OQ-3 | `app/scripts/run_*.py`의 `sys.path` 해킹 정리 |
-| SPEC-003 OQ | `reference/` 157개 소급 정제 |
 | SPEC-005 OQ | 게시 판정 게이트 계약 (`persona/posts/` 배선이 선행) |
 | DEC-011 보류 | 커밋·블로그·스케줄 파이프라인 정의 (유튜브 체인 검증 후) |

@@ -214,7 +214,7 @@ class TestPermanent:
             load_persona(repo / "persona")
 
     def test_up_emits_lineage_and_l4_same_rank_ok(self, tmp_path: Path):
-        # permanent up: reference → lineage 엣지. _TYPE_RANK reference=permanent=4 동일 rank →
+        # permanent up: reference → lineage 엣지. 층 rank source(1) <= synthesis(3) →
         # L4(상류만 up) 가 동일-rank 를 ERROR 로 잡지 않는지 확인 (WORK-010 구현 주의).
         repo = self._repo(tmp_path)
         ref = repo / "reference" / "py"

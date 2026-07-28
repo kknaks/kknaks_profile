@@ -55,11 +55,33 @@ rules/product-doc-pipeline.md
 
 hook이 실패하면 성공처럼 보고하지 않는다. 자동으로 판단할 수 없는 제품 결정은 사용자에게 결정이 필요하다고 보고한다.
 
+## 지식 노트를 쓸 때
+
+`inbox/` · `reference/` · `permanent/`(+ `permanent/concept/`)에 노트를 만들거나 고치기 전에 아래를 읽는다.
+
+```text
+rules/knowledge-note-pipeline.md     # 작성 규칙 (4층·SoT 위임·개념 성장·up: 방향)
+→ templates/knowledge/<타입>.md      # 해당 층의 양식
+```
+
+**이 문서들이 형식의 SoT다.** 프롬프트는 "무엇을 만들라"만 지시하고, **어떻게 생겼는지는 여기 와서 읽는다** — 규칙을 프롬프트에 복사해 넣지 않는다. 복사하는 순간 SoT가 둘이 되고 어긋나기 시작한다.
+
+| 만들 것 | 템플릿 | 경로 |
+|---|---|---|
+| 미정제 생각 | `templates/knowledge/idea.md` | `inbox/{YYYY-MM-DD}-{slug}.md` |
+| 자료 정리 | `templates/knowledge/reference.md` | `reference/{group}/{YYYY-MM-DD}-{slug}.md` |
+| 원자 개념 | `templates/knowledge/concept.md` | `permanent/concept/{slug}.md` |
+| 종합 판단 | `templates/knowledge/permanent.md` | `permanent/{slug}.md` |
+
+제품 문서(`products/**`)는 별도 계열이다 — `rules/product-doc-pipeline.md` + `templates/product/`.
+
+작성 후 그래프 검증(L1~L6)이 pre-commit·부팅에서 자동으로 돈다. 규칙을 어기면 커밋이나 부팅이 막힌다.
+
 ## 지식층 읽기범위
 
 지식 파이프라인 층(KDEV-SPEC-001/003)을 스캔할 때 범위는 아래와 같다.
 
-- 평소 스캔(활성 층): `inbox/` · `reference/` · `permanent/` + `persona/posts/`
+- 평소 스캔(활성 층): `inbox/` · `reference/` · `permanent/` · `permanent/concept/` + `persona/posts/`
 - cold(명시 요청 시에만): `permanent/archive/`
 
-`permanent/archive/`는 안 쓰게 된 영구노트의 장기기억이라 평소 스캔에서 제외한다. 사용자가 명시적으로 요청할 때만 읽는다(D-005).
+`permanent/archive/`는 안 쓰게 된 영구노트·개념의 장기기억이라 평소 스캔에서 제외한다. 사용자가 명시적으로 요청할 때만 읽는다(D-005).

@@ -71,6 +71,7 @@ REQUIRED_FIELDS: dict[str, set[str]] = {
     "note": {"type", "id", "title", "date", "group"},
     "reference": {"type", "id", "title", "date", "group"},  # KDEV-WORK-005 — note 미러 (재타이핑)
     "permanent": {"type", "id", "title"},  # KDEV-WORK-010 — reference 미러 minus group/date (flat·영구노트)
+    "concept": {"type", "id", "title"},    # KDEV-WORK-013 — 원자 개념. aliases/up 필수는 그래프 L2 가 검사
     "content": {"type", "id", "date", "day", "title", "summary", "youtubeId"},
     "daily": {"type", "date"},
     "algorithm": {"type", "id", "title", "date", "source", "difficulty"},
@@ -347,14 +348,17 @@ def validate_persona(data: dict[str, Any]) -> None:
                 f"not in _meta.yaml/notes.clusters"
             )
 
-    # KDEV-WORK-010 — permanent(flat 영구노트). required + id==파일 stem (그래프 노드 식별자 정합).
+    # KDEV-WORK-010 — permanent(종합) + KDEV-WORK-013 — concept(원자 개념).
+    # required + id==파일 stem (그래프 노드 식별자 정합).
     for n in data.get("permanent", []):
-        _check_required(n, "permanent", f"permanent/{n.get('id', '?')}.md")
+        category = n.get("type") if n.get("type") in REQUIRED_FIELDS else "permanent"
         ppath: Path = n["_path"]
+        label = f"permanent/{ppath.parent.name}/{ppath.name}" if ppath.parent.name == "concept" \
+            else f"permanent/{ppath.name}"
+        _check_required(n, category, label)
         if ppath.stem != n["id"]:
             raise PersonaError(
-                f"permanent/{ppath.name}: frontmatter id '{n['id']}' "
-                f"!= filename slug '{ppath.stem}'"
+                f"{label}: frontmatter id '{n['id']}' != filename slug '{ppath.stem}'"
             )
 
     for c in data["contents"]:
@@ -537,12 +541,16 @@ def _load_reference_notes(reference_dir: Path, persona_dir: Path) -> list[dict]:
 
 
 def _enrich_permanent(data: dict, path: Path) -> dict:
-    """permanent 영구노트 enrich — type=permanent·id=stem·title 주입(frontmatter 존중).
+    """permanent 노트 enrich — type·id=stem·title 주입(frontmatter 존중).
 
     KDEV-WORK-010. reference 의 `_auto_enrich_note` flat 미러 — cluster 없으니 group 없음.
     archived = `archive` 경로 안 (permanent/archive/) 또는 frontmatter archived:true.
+
+    KDEV-WORK-013 — `permanent/concept/` 아래면 기본 type 이 `concept`(원자 개념)다.
+    디렉토리가 층을 1차 결정한다는 원칙(KDEV-SPEC-001 §5)을 로더에서 구현한 것.
     """
-    data.setdefault("type", "permanent")
+    default_type = "concept" if "concept" in path.parts else "permanent"
+    data.setdefault("type", default_type)
     data.setdefault("id", path.stem)
     data.setdefault("title", path.stem)
     data["archived"] = ("archive" in path.parts) or bool(data.get("archived", False))
@@ -552,22 +560,20 @@ def _enrich_permanent(data: dict, path: Path) -> dict:
 def _load_permanent_notes(permanent_dir: Path) -> list[dict]:
     """permanent/*.md (flat 영구노트) → note dict 리스트 (KDEV-WORK-010, WORK-005 미러).
 
-    flat 구조 — reference 의 cluster 개념 없음(group 없음). persona_dir 밖(레포 루트).
-      - `permanent/*.md`        → active
-      - `permanent/archive/*.md` → archived=true
-    top-level `README.md`(navigational, WORK-003 scaffold) 는 제외. 빈 permanent → [].
+    persona_dir 밖(레포 루트). group 개념 없음.
+      - `permanent/*.md`         → type=permanent (종합 판단, KDEV-SPEC-001 층 `synthesis`)
+      - `permanent/concept/*.md` → type=concept   (원자 개념, 층 `concept`) — KDEV-WORK-013
+      - `permanent/archive/*.md` → archived=true  (permanent·concept 공용 상태)
+    각 디렉토리의 `README.md`(navigational, WORK-003 scaffold) 는 제외. 빈 permanent → [].
     auto-enrich 비대상이라 `_load_md(p, None)` 로 로드 후 `_enrich_permanent` 직접 주입.
     """
     if not permanent_dir.is_dir():
         return []
     out: list[dict] = []
-    for p in sorted(permanent_dir.glob("*.md")):
-        if p.name == "README.md":
+    for sub in (permanent_dir, permanent_dir / "concept", permanent_dir / "archive"):
+        if not sub.is_dir():
             continue
-        out.append(_enrich_permanent(_load_md(p, None), p))
-    archive_dir = permanent_dir / "archive"
-    if archive_dir.is_dir():
-        for p in sorted(archive_dir.glob("*.md")):
+        for p in sorted(sub.glob("*.md")):
             if p.name == "README.md":
                 continue
             out.append(_enrich_permanent(_load_md(p, None), p))

@@ -8,8 +8,20 @@ description: Structure Slack text, YouTube videos, blog posts, papers, and other
 Return a complete, source-grounded knowledge document for the server renderer. Do not write files,
 invent unavailable source content, or emit partial patches.
 
+## Repo rules are the SoT — read them, do not assume
+
+이 skill 은 **JSON 계약**만 규정한다. 노트가 어느 층에 속하고 어떻게 연결되는지는 레포 문서가
+소유하며, 프롬프트로 전달되지 않는다. 작업 전에 직접 읽는다 (cwd 가 레포 루트다).
+
+- `rules/knowledge-note-pipeline.md` — 4층 모델 · SoT 위임 · 개념 성장 · `up:` 방향 · 개념 입도
+- `templates/knowledge/` — 층별 양식
+
+특히 **SoT 위임**: `reference` 는 개념 상세를 재서술하지 않고 요지 + 개념 이름으로 넘긴다
+(`concept_candidates`). 개념 본문을 reference 안에 길게 쓰지 않는다.
+
 ## Workflow
 
+0. `rules/knowledge-note-pipeline.md` 와 해당 층의 `templates/knowledge/*.md` 를 읽는다.
 1. Read the normalized capture request and supplied source material.
 2. Select `idea` for plain thoughts and `reference` when a URL/source is present. Honor an explicit kind.
 3. For a follow-up, preserve the supplied `kind`, slug, and output identity. Return the complete revised snapshot.
@@ -42,5 +54,7 @@ Read [reference-rules.md](references/reference-rules.md) when `kind=reference`.
 - Use lowercase kebab-case for `slug`.
 - Use only `youtube`, `blog`, `paper`, or `other` for `source.type`.
 - Keep `connection_candidates` advisory; do not emit wikilinks.
-- Never create `permanent`, `product`, or `post` output.
+- Never create `permanent`, `concept`, `product`, or `post` output — 이 skill 은 `idea`/`reference` 만 낸다.
+  개념(`concept`)·판단(`permanent`) 승격은 승인 게이트가 담당한다(KDEV-SPEC-008).
+- 형식 규칙을 이 파일에 복사해 두지 않는다. 규칙이 바뀌면 `rules/knowledge-note-pipeline.md` 하나만 고친다.
 - Never expose prompts, tokens, environment variables, or local absolute paths.

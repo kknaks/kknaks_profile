@@ -26,12 +26,15 @@ if echo "$CHANGED" | grep -Eq '^(products/|templates/product/|rules/product-doc-
   python3 .agent/scripts/product_doc_pipeline.py --strict
 fi
 
-# 그래프 노드 출처 = persona + reference + products (KDEV-WORK-007). 셋 중 하나라도 변경 시
-# load_persona 로 graph enforce 검증. 하나도 안 바뀌면 빠른 path.
+# 그래프 노드 출처 = persona + reference + permanent + inbox + products.
+# KDEV-WORK-013 — 종전 트리거에 `permanent` 와 `inbox` 가 빠져 있었다. WORK-010 이
+# permanent 를 그래프 노드로 배선했는데 훅은 따라가지 않아, permanent 노트만 고친
+# 커밋은 검증을 타지 않고 부팅 시점에야 걸렸다. concept 층 추가로 그 구멍이 커지므로 함께 막는다.
+# 하나라도 변경 시 load_persona 로 graph enforce 검증. 아니면 빠른 path.
 persona_changed=0
 if echo "$CHANGED" | grep -q '^persona/'; then persona_changed=1; fi
 graph_changed=0
-if echo "$CHANGED" | grep -Eq '^(persona|reference|products)/'; then graph_changed=1; fi
+if echo "$CHANGED" | grep -Eq '^(persona|reference|permanent|inbox|products)/'; then graph_changed=1; fi
 
 if [ "$graph_changed" = 0 ]; then
   exit 0
@@ -66,5 +69,5 @@ HOOK_EOF
 
 chmod +x "$HOOK"
 echo "installed: $HOOK"
-echo "   trigger: product docs 또는 persona/** 변경 포함된 commit 시 자동 실행"
+echo "   trigger: product docs 또는 persona|reference|permanent|inbox|products/** 변경 포함 commit"
 echo "   actions: product_doc_pipeline.py --strict + build_persona_map.py + (app/back/.venv 있으면) loader 검증 + git add persona/_map.md"
