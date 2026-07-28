@@ -209,7 +209,7 @@ class TestReopen:
 
     async def test_reopen_cancels_later_gates_but_keeps_records(self, db):
         item, route_gate = await self._prepared(db, "https://youtu.be/reopen00001", route())
-        second = await advance(db, item, route_gate, generators={"source_note": maker(NOTE)})
+        second = (await advance(db, item, route_gate, generators={"source_note": maker(NOTE)})).gate
         assert second is not None
         second_revision_id = second.active_revision_id
 
@@ -253,9 +253,9 @@ class TestReopen:
             select(Gate).where(Gate.item_id == item.id, Gate.stage_name == "route")
         )
         await gates_service.approve(db, new_route)
-        nxt = await advance(
+        nxt = (await advance(
             db, item, new_route, generators={"source_note": maker(NOTE), "derived": maker(NOTE)}
-        )
+        )).gate
         assert nxt is not None and nxt.stage_name == "derived"
 
     async def test_reopen_revives_discarded_item(self, db):
@@ -290,6 +290,6 @@ class TestReopen:
             select(Gate).where(Gate.item_id == item.id, Gate.stage_name == "route")
         )
         await gates_service.approve(db, new_route)
-        again = await advance(db, item, new_route, generators={"source_note": maker(NOTE)})
+        again = (await advance(db, item, new_route, generators={"source_note": maker(NOTE)})).gate
         assert again is not None and again.stage_name == "source_note"
         assert again.status == "review_pending"

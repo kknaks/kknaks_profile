@@ -12,7 +12,7 @@
 |---|---|---|
 | 지식그래프 (BL-001) | WORK-001~010 done + **WORK-013으로 4층 재편 완료** (`permanent/concept/` 실재화, lineage 1→4) | — |
 | 앱 DB화 + 관리자 인증 (BL-002) | BL-002·DEC-009 accepted, SPEC-006 implemented, WORK-011 done (async) | 후속 — admin 실제 관리 기능 spec |
-| inbox 승인 파이프라인 + concept 층 (BL-003) | BL-003·DEC-010~013 accepted · spec 9건 · 40-arch · **WORK-012·013 done** · **WORK-014 done** · WORK-015 P1~P3(게이트 3종·재오픈) done | WORK-015 P4 (Apply Executor — 실제 발행) |
+| inbox 승인 파이프라인 + concept 층 (BL-003) | BL-003·DEC-010~013 accepted · spec 9건 · 40-arch · **WORK-012·013 done** · **WORK-014 done** · WORK-015 P1~P4(게이트 3종·재오픈·Executor) done | WORK-015 P5 실전 e2e (**배포 필요**) |
 
 ## 문서 맵
 

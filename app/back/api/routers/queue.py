@@ -419,17 +419,83 @@ async def gate_approve(gate_id: int, body: ApproveRequest, db: AsyncSession = De
             # 폐기 승인은 항목을 끝낸다. 파일은 만들어지지 않는다.
             item.status = "discarded"
 
+    published = None
+    advanced = None
     if item.status != "discarded":
         # 중간 승인은 다음 스테이지를 열 뿐 파일을 만들지 않는다(DEC-011 D6).
-        next_gate = await chain.advance(db, item, gate, generators=_generators())
+        advanced = await chain.advance(db, item, gate, generators=_generators())
+        next_gate = advanced.gate
+        if advanced.chain_complete:
+            # 스테이지가 정말 남지 않았을 때만 발행한다. `gate is None` 으로 판단하면
+            # **생성기가 없어 못 연 경우까지 발행**되어 미완성 체인이 나간다.
+            published = await _publish(db, item)
     await db.commit()
     return {
         "gate_status": gate.status,
         "item_status": item.status,
         "route_outcome": outcome,
-        "next_stage": next_gate.stage_name if next_gate else None,
+        "next_stage": advanced.pending_stage if advanced else None,
+        "blocked": bool(advanced and advanced.blocked),
+        "published": published,
         "revision": _revision_view(revision),
     }
+
+
+async def _publish(db: AsyncSession, item: QueueItem, *, plan=None) -> dict[str, Any]:
+    """발행을 실행하고 화면이 쓸 요약을 돌려준다."""
+    from service.apply import apply_item
+
+    def reload_local() -> bool:
+        from main import reload_data
+
+        return reload_data()
+
+    outcome = await apply_item(
+        db,
+        item,
+        repo_root=config.repo_root(),
+        current_nodes=_current_nodes(),
+        dry_run=config.job_git_push_dry_run(),
+        reload_data=reload_local,
+        plan=plan,
+    )
+    return {
+        "status": outcome.status,
+        "commit_ref": outcome.commit_ref,
+        "violations": outcome.violations,
+        "error_code": outcome.error_code,
+        "error_message": outcome.error_message,
+    }
+
+
+def _current_nodes() -> dict[str, dict]:
+    """부팅 때 만든 노드 맵. 없으면 빈 맵 — 그래프 검증이 헐거워질 뿐 발행을 막지 않는다."""
+    try:
+        from main import get_data
+
+        return get_data().get("_nodes") or {}
+    except Exception:  # noqa: BLE001
+        return {}
+
+
+@router.post("/items/{item_id}/publish")
+async def retry_publish(item_id: int, db: AsyncSession = Depends(get_db)):
+    """발행 재시도 — **AI 를 다시 부르지 않는다.**
+
+    저장된 계획으로 다시 쓴다(DEC-012 D5). 게이트 승인 상태는 그대로다.
+    """
+    item = await _get_live_item(db, item_id)
+    if item.status != "publish_failed":
+        raise HTTPException(
+            status_code=409,
+            detail={"code": "PUBLISH_RETRY_NOT_ALLOWED", "status": item.status},
+        )
+    from service.apply import latest_plan
+
+    plan = await latest_plan(db, item_id)
+    result = await _publish(db, item, plan=plan)
+    await db.commit()
+    return {"item_status": item.status, **result}
 
 
 def _generators() -> dict[str, Any]:

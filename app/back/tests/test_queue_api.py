@@ -395,3 +395,50 @@ class TestMeta:
 
     def test_meta_requires_auth(self, anon):
         assert anon.get("/api/admin/queue/meta").status_code == 401
+
+
+class TestPublishTrigger:
+    """마지막 게이트 승인이 발행 트리거다 — **다만 정말 마지막일 때만.**"""
+
+    def test_blocked_chain_does_not_publish(self, client, monkeypatch):
+        """생성기가 없어 다음 게이트를 못 열었는데 발행되면, reference 만 있고
+        concept 는 없는 미완성 체인이 origin 에 나간다.
+        """
+        from service.pipeline import SummaryResult
+        from service.pipeline.gates import GenerationResult
+
+        async def summarize(*, material, note):
+            return SummaryResult(summary="요약")
+
+        async def fetch_ok(url):
+            return {"url": url, "content": "본문"}
+
+        async def route_gen(request):
+            return GenerationResult(
+                payload={
+                    "destinations": {
+                        "reference": {"enabled": True, "group": "study"},
+                        "concept": {"enabled": True},
+                        "derived": {"enabled": False},
+                    },
+                    "exclusive": None,
+                }
+            )
+
+        monkeypatch.setattr("api.routers.queue._summarizer_factory", lambda: summarize)
+        # route 만 있고 source_note 생성기는 없다.
+        monkeypatch.setattr("api.routers.queue._generators", lambda: {"route": route_gen})
+        monkeypatch.setattr("api.routers.queue._generator_for", lambda stage: route_gen)
+        monkeypatch.setattr("service.knowledge_capture.source.fetch_source", fetch_ok)
+
+        item_id = _create(client, source_url="https://youtu.be/blockchain1").json()["item_id"]
+        client.post(f"/api/admin/queue/items/{item_id}/prepare")
+        gate_id = client.get(f"/api/admin/queue/items/{item_id}/gates").json()["gates"][0]["id"]
+
+        body = client.post(f"/api/admin/queue/gates/{gate_id}/approve", json={}).json()
+
+        assert body["blocked"] is True
+        assert body["next_stage"] == "source_note"
+        # **발행이 돌지 않았다** — 이게 핵심이다.
+        assert body["published"] is None
+        assert body["item_status"] == "in_review"

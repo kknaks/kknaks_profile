@@ -11,6 +11,7 @@
 from __future__ import annotations
 
 import logging
+from dataclasses import dataclass
 from typing import Any
 
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -128,29 +129,47 @@ async def reopen_route(
     return gate
 
 
+@dataclass(frozen=True)
+class AdvanceResult:
+    """승인 뒤 무슨 일이 있었는가.
+
+    **`gate is None` 을 '체인 끝'으로 읽으면 안 된다.** 생성기가 없어 못 연 경우도
+    `None` 이기 때문이다. 그 둘을 섞으면 체인이 안 끝났는데 발행이 돌아,
+    reference 만 있고 concept 는 없는 상태가 origin 에 나간다.
+    """
+
+    gate: Gate | None
+    #: 다음에 열려야 할 스테이지. `None` 이면 **정말로 체인이 끝났다** = 발행 차례.
+    pending_stage: str | None
+    #: 스테이지는 남았는데 생성기가 없어 못 연 경우.
+    blocked: bool = False
+
+    @property
+    def chain_complete(self) -> bool:
+        return self.pending_stage is None
+
+
 async def advance(
     db: AsyncSession,
     item: QueueItem,
     gate: Gate,
     *,
     generators: dict[str, Generator],
-) -> Gate | None:
-    """방금 승인된 게이트 뒤를 잇는다.
-
-    다음 스테이지가 있으면 그 게이트를 열고, 없으면 `None` 을 돌려준다 —
-    호출자가 그것을 **발행 신호**로 읽는다.
-    """
+) -> AdvanceResult:
+    """방금 승인된 게이트 뒤를 잇는다."""
     # 방금 승인된 것이 route 게이트라도 여기서 찾힌다 — `approve()` 가 같은 세션에서
     # 상태와 승인 포인터를 이미 채웠기 때문이다.
     route_payload = await approved_route_payload(db, item.id)
     stage = next_stage(item.source_kind, route_payload, after=gate.stage_name)
     if stage is None:
-        return None
+        return AdvanceResult(gate=None, pending_stage=None)
 
     generator = generators.get(stage)
     if generator is None:
         # 없는 것을 있는 척하지 않는다. 게이트를 열어 두면 사람이 승인할 수 없는
-        # 카드가 화면에 남는다.
+        # 카드가 화면에 남고, 발행으로 넘어가면 미완성 체인이 나간다.
         logger.warning("스테이지 %s 의 생성기가 없어 게이트를 열지 않는다 item=%s", stage, item.id)
-        return None
-    return await open_gate(db, item, stage, generator=generator)
+        return AdvanceResult(gate=None, pending_stage=stage, blocked=True)
+
+    opened = await open_gate(db, item, stage, generator=generator)
+    return AdvanceResult(gate=opened, pending_stage=stage)

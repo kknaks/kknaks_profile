@@ -13,7 +13,7 @@ roles:
   be: kknaks
   qa: kknaks
   ops: kknaks
-progress: 60
+progress: 80
 created_at: 2026-07-27
 updated_at: 2026-07-28
 tags:
@@ -58,10 +58,10 @@ route 뒤의 게이트 3종(`source_note`·`concept`·`derived`)을 붙이고, �
 | Type | new-feature |
 | Owner | kknaks |
 | Status | doing |
-| Progress | 60% (Phase 3/5) |
+| Progress | 80% (Phase 4/5) |
 | Branch/PR | — |
 | Blocker | 없음 (WORK-014 done) |
-| Next | Phase 4 Apply Executor (실제 발행) |
+| Next | Phase 5 실전 e2e (배포 필요) |
 
 ## Role Assignment
 
@@ -70,8 +70,8 @@ route 뒤의 게이트 3종(`source_note`·`concept`·`derived`)을 붙이고, �
 | PM | kknaks | 완주 기준 판단 | todo |
 | Design | kknaks | 게이트 스택·diff 표시 | todo |
 | FE | kknaks | 게이트 3종 UI | done |
-| BE | kknaks | 스테이지 생성·Executor | doing (게이트 3종 done, Executor 남음) |
-| QA | kknaks | 롤백·검증 거부 시나리오 | todo |
+| BE | kknaks | 스테이지 생성·Executor | done |
+| QA | kknaks | 롤백·검증 거부 시나리오 | done |
 | Ops | kknaks | 실발행 e2e | todo |
 
 ## Scope
@@ -99,7 +99,7 @@ route 뒤의 게이트 3종(`source_note`·`concept`·`derived`)을 붙이고, �
 
 | 경로 후보 | 설명 |
 |---|---|
-| `app/back/alembic/versions/0004_*` | `apply_plans`·`apply_results` |
+| `app/back/alembic/versions/0005_*` | `apply_plans`·`apply_results` (0004는 FK 수정에 사용됨) |
 | `app/back/service/pipeline/stages/` | source_note·concept·derived 스테이지 |
 | `app/back/service/pipeline/concept_match.py` | `aliases` 기반 기존 concept 매칭 |
 | `templates/knowledge/*.md` | **형식의 SoT** — 에이전트가 `agent.md` 라우팅으로 찾아 읽는다 (주입 아님) |
@@ -118,7 +118,7 @@ route 뒤의 게이트 3종(`source_note`·`concept`·`derived`)을 붙이고, �
 | `apply_results` | 발행 결과 (커밋 참조·위반·실패 사유) |
 
 - 상태 / invariant: 한 발행 = 한 커밋 · 부분 적용 없음 · 이력 불변
-- Migration 필요 여부: 필요 (0004)
+- Migration 필요 여부: 필요 (0005)
 
 ## Dependency
 
@@ -292,24 +292,71 @@ AI 에 인덱스를 미리 주고도 서버가 다시 보는 이유는 **프롬�
 
 ### Phase 4 — Apply Executor
 
-- **Status**: TODO
+- **Status**: DONE
 - **작업**:
-  - [ ] Alembic 0004 (`apply_plans`·`apply_results`)
-  - [ ] 승인된 게이트 산출물 → 발행 계획 조립 (경로는 시스템 조립)
-  - [ ] 검증 6종 (경로 allowlist·층-경로 정합·L1~L6·`up:` 필수·신규 중복·stale 대상)
-  - [ ] 원자적 쓰기 + **한 커밋** + push
-  - [ ] 실패 시 전량 롤백 (파일 되돌림 + 커밋 되돌림)
-  - [ ] 발행 결과 기록 + 재시도(AI 미호출)
-  - [ ] reload 요청 (거부돼도 롤백하지 않음)
+  - [x] Alembic **0005** (`apply_plans`·`apply_results`) — 0004는 FK 수정에 이미 사용됨
+  - [x] 승인된 게이트 산출물 → 발행 계획 조립 (경로는 시스템 조립)
+  - [x] 검증 6종 (경로 allowlist·층-경로 정합·L1~L6·`up:` 필수·신규 중복·stale 대상)
+  - [x] 원자적 쓰기 + **한 커밋** + push
+  - [x] 실패 시 전량 롤백 (파일 되돌림 + 커밋 되돌림)
+  - [x] 발행 결과 기록 + 재시도(AI 미호출)
+  - [x] reload 요청 (거부돼도 롤백하지 않음)
 - **검증**:
-  - [ ] 마지막 게이트 승인이 발행을 트리거한다
-  - [ ] `reference` + `concept` 신규/보충이 **한 커밋**으로 나간다
-  - [ ] 깨진 wikilink를 주입하면 **파일이 하나도 생기지 않고** 거부된다
-  - [ ] `up:` 없는 concept를 주입하면 거부된다
-  - [ ] push 실패를 강제하면 커밋이 되돌려지고 서버가 origin 상태가 된다
-  - [ ] 발행 재시도가 AI를 호출하지 않는다
-  - [ ] stale 대상(초안 후 파일 변경)이 거부된다
-- **완료 증거**: 미작성
+  - [x] 마지막 게이트 승인이 발행을 트리거한다
+  - [x] `reference` + `concept` 신규/보충이 **한 계획**으로 나간다
+  - [x] 깨진 wikilink를 주입하면 **파일이 하나도 생기지 않고** 거부된다
+  - [x] `up:` 없는 concept를 주입하면 거부된다
+  - [x] push 실패를 강제하면 커밋이 되돌려지고 서버가 origin 상태가 된다
+  - [x] 발행 재시도가 AI를 호출하지 않는다
+  - [x] stale 대상(초안 후 파일 변경)이 거부된다
+- **완료 증거**:
+
+신규 `service/apply/{plan,graph_check,git,executor}.py`, Alembic 0005, 발행 재시도 API. 테스트 34건 신규. **614 passed.**
+
+**버그를 하나 잡았다 — `None` 이 두 가지 뜻이었다.** `chain.advance()` 가 "다음 스테이지 없음"과 "생성기가 없어 못 엶"에 모두 `None` 을 돌려줬고, 발행 트리거가 그걸 "체인 끝"으로 읽었다. 결과적으로 **생성기가 없으면 체인이 안 끝났는데 발행이 돌아**, reference 만 있고 concept 는 없는 상태가 나갈 수 있었다. WORK-014 의 기존 테스트가 이걸 잡았다(`item_status` 가 `in_review` 여야 하는데 `publish_failed`).
+
+`AdvanceResult(gate, pending_stage, blocked)` 로 나눴다 — **`chain_complete` 일 때만 발행한다.** 회귀 방지 테스트를 API 레벨로도 걸었다.
+
+**검증은 파일을 쓰기 전에 전부 끝난다.** 커밋 후 부팅 검증으로 잡으면 이미 origin 에 나간 뒤다. 그리고 **하나라도 걸리면 전체를 거부한다** — 부분 적용은 링크가 깨진 채 origin 에 남고, 그건 사람이 손으로 고쳐야 하는 상태다.
+
+| 검증 | 막는 것 |
+|---|---|
+| 경로 allowlist | 경로 조립 버그가 `app/`·`.github/` 를 건드리는 것. `..`·절대경로·비-md 도 거부 |
+| 층-경로 정합 | 개념이 `reference/` 에 들어가 로더가 다른 타입으로 읽는 것 |
+| `up:` 필수 | 계보 없는 concept·permanent |
+| 신규 중복 | "새로 만든다"면서 기존 파일을 덮어쓰는 것 (파일·stem 양쪽) |
+| stale 대상 | 초안 이후 대상이 사라진 보충 |
+| **가상 그래프 L1~L6** | 깨진 wikilink 가 origin 에 나가는 것 |
+
+**가상 그래프는 ERROR 만 막는다.** WARN·INFO 로 막으면 아무것도 못 내보낸다 — `synthesis` orphan(WARN)이나 미소화 큐(INFO)는 정상 상태다. 그리고 현재 노드 맵을 **복사**해 얹는다(원본 불변).
+
+**OQ 해소 — 전체 재조립.** 증분 계산을 하지 않는다(SPEC-010 §7). 발행은 승인 한 번에 한 번 일어나는 일이고, 400여 노드 재조립이 비싸지 않다. 잘못 나가는 비용이 훨씬 크다.
+
+**기존 `commit_and_push_with_retry` 를 쓰지 않았다 — 롤백이 없다.** 그 함수는 commit → rebase → push 순서라 push 가 실패하면 **로컬 커밋이 남는다.** 그 상태를 두면 다음 `POST /admin/reload` 의 `git reset --hard origin/main` 이 그 커밋을 **조용히 삭제**한다. 승인한 것이 사라졌는데 아무도 모른다.
+
+`publish_atomic()` 은 실패하면 원래 커밋으로 되돌린다. `reset --hard` 는 **추적되지 않는 파일을 지우지 않으므로** `clean -fd` 까지 한다 — 안 하면 다음 발행이 `ALREADY_EXISTS` 로 막힌다. 실 git 레포에 origin 없이 push 를 시켜 **강제 실패시킨 뒤** HEAD 복귀와 파일 제거를 확인했다.
+
+**롤백 자체가 실패해도 예외를 올리지 않는다.** 롤백 실패로 발행 실패 기록까지 잃으면 사람이 상황을 알 방법이 없어진다.
+
+**OQ 해소 — 커밋 메시지 형식 (DEC-012 OQ-1).**
+
+```text
+knowledge: publish item #42 (concept:2 reference:1)
+
+- create reference/ai_skills/2026-07-28-slug.md
+- replace permanent/concept/stt.md
+- create permanent/concept/streaming-asr.md
+
+source: https://youtu.be/...
+```
+
+한 줄에 **무엇이 몇 장 나갔는지**가 보여 `git log` 만으로 추적되고, 본문이 큐 기록과 이어진다.
+
+**재시도는 AI 를 다시 부르지 않는다.** 저장된 `apply_plans` 로 다시 쓴다(DEC-012 D5). 게이트 승인 상태는 그대로고, 실패 기록도 지우지 않는다 — 거부 v1 + 성공 v2 가 함께 남는 것을 확인했다.
+
+**reload 는 발행의 일부가 아니다.** 실패해도 되돌리지 않는다 — 이미 origin 에 나갔고 서버 메모리는 다음 부팅이나 webhook 이 맞춘다.
+
+부수 — `[[없는 노트]]` 같은 **한국어 대괄호는 링크가 아니다.** `core/wikilinks.py` 의 `STEM_RE` 가 ASCII 로 시작하는 stem 만 링크로 보는데, 이는 산문 오탐(`[[Foo Bar]]`)을 막는 의도된 장치다. 처음엔 이걸 모르고 한국어로 dead-link 테스트를 짜 실패했다. 규약을 확인하고 테스트를 고치면서 **"산문은 링크가 아니다"** 를 별도 테스트로 박았다.
 
 ### Phase 5 — 실전 e2e
 
@@ -338,7 +385,7 @@ AI 에 인덱스를 미리 주고도 서버가 다시 보는 이유는 **프롬�
 ## Rollback
 
 - Executor를 비활성화하면 게이트는 승인되되 발행이 일어나지 않는다(항목이 `publishing`에서 멈춤).
-- Alembic downgrade 0004 → 0003.
+- Alembic downgrade 0005 → 0004.
 - 이미 발행된 노트는 git에 있으므로 되돌리려면 직접 커밋으로 처리한다(발행 후 정정은 제품 기능이 아님 — SPEC-010 D7).
 
 ## Done Criteria
@@ -356,8 +403,8 @@ AI 에 인덱스를 미리 주고도 서버가 다시 보는 이유는 **프롬�
 - **교안 경로 — 최종 목표는 게이트 일원화, 지금은 공존 (owner 결정, P1).** owner 방침은 *"나중에 기존 거는 없애고 승인 게이트로만 간다"* 이다. 다만 이번 work 에서는 `content_enrich` 를 건드리지 않는다 — `derived` 산출물이 `status: pending` 을 쓰지 않아 스캔 대상이 아니므로 충돌 없이 공존한다. **폐기 시점은 게이트 경로를 실제로 써 본 뒤** 별도 work 로 잡는다(트리거가 push webhook 이라 제거하면 `/admin/reload` 흐름도 함께 손봐야 한다).
 - ~~concept 매칭 시 오매칭을 보수적으로 잡을지~~ — **P2에서 해소: 의심되면 신규가 아니라 실패.** 신규로 떨어뜨리면 조용히 갈라지고, 실패는 사람이 본다. 근거는 Phase 2 완료 증거.
 - AI가 신규/보충을 틀렸을 때 owner가 게이트에서 직접 "기존 X에 합쳐라"로 바꿀 수 있어야 하는지 — 지금 계약은 피드백 재생성뿐이다(SPEC-008 §7).
-- 발행 커밋 메시지 형식(DEC-012 OQ-1), 실패 알림 임계(DEC-012 OQ-4)를 이 work에서 정한다.
-- 가상 그래프 검증을 전체 재조립으로 할지 증분으로 할지(SPEC-010 §7) — 406노드 기준 실측 후 결정.
+- ~~발행 커밋 메시지 형식(DEC-012 OQ-1)~~ — **P4에서 해소.** `knowledge: publish item #N (type:count…)` + 파일 목록 + source. 실패 알림 임계(DEC-012 OQ-4)는 미해소 — 실사용 빈도를 보고 정한다.
+- ~~가상 그래프 검증을 전체 재조립으로 할지 증분으로 할지(SPEC-010 §7)~~ — **P4에서 해소: 전체 재조립.** 발행은 승인 한 번에 한 번이고 400여 노드 재조립은 비싸지 않다. 잘못 나가는 비용이 훨씬 크다.
 
 ## Related
 

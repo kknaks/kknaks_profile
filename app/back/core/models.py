@@ -75,6 +75,8 @@ GATE_STATUSES = (
 )
 REVISION_STATUSES = ("drafting", "reviewable", "approved", "superseded", "failed")
 FEEDBACK_STATUSES = ("submitted", "consumed")
+PLAN_VALIDATION_STATUSES = ("pending", "passed", "rejected")
+APPLY_RESULT_STATUSES = ("succeeded", "rejected", "failed")
 
 
 def _in(column: str, values: tuple[str, ...]) -> str:
@@ -330,6 +332,68 @@ class GateFeedback(Base):
     )
     body: Mapped[str] = mapped_column(Text, nullable=False)
     status: Mapped[str] = mapped_column(String(16), nullable=False, default="submitted")
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now(), nullable=False
+    )
+
+
+class ApplyPlan(Base):
+    """발행 계획 — 무엇을 어디에 쓸지 (KDEV-SPEC-010).
+
+    **AI 가 파일을 직접 건드리지 않는다.** AI 는 내용만 내고, 무엇을 어느 경로에 쓸지는
+    이 계획이 들고 있으며 Executor 만 실행한다(KDEV-DEC-012 D2).
+    """
+
+    __tablename__ = "apply_plans"
+    __table_args__ = (
+        CheckConstraint(
+            _in("validation_status", PLAN_VALIDATION_STATUSES),
+            name="ck_apply_plans_validation_status",
+        ),
+        Index("ix_apply_plans_item_id", "item_id"),
+    )
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    item_id: Mapped[int] = mapped_column(
+        ForeignKey("queue_items.id", ondelete="CASCADE"), nullable=False
+    )
+    #: `[{action, path, content, stem, layer, source_gate}]` — 경로는 시스템이 조립한 값이다.
+    file_actions: Mapped[list[Any]] = mapped_column(JSONB, nullable=False)
+    validation_status: Mapped[str] = mapped_column(
+        String(16), nullable=False, default="pending"
+    )
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now(), nullable=False
+    )
+
+
+class ApplyResult(Base):
+    """발행 결과 — 성공·거부·실패를 모두 남긴다 (KDEV-SPEC-010).
+
+    재시도는 이 행을 고치지 않고 **새 행**을 만든다. 실패를 지우면 왜 안 나갔는지를 잃는다.
+    """
+
+    __tablename__ = "apply_results"
+    __table_args__ = (
+        CheckConstraint(
+            _in("status", APPLY_RESULT_STATUSES), name="ck_apply_results_status"
+        ),
+        Index("ix_apply_results_item_id", "item_id"),
+    )
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    plan_id: Mapped[int] = mapped_column(
+        ForeignKey("apply_plans.id", ondelete="CASCADE"), nullable=False
+    )
+    item_id: Mapped[int] = mapped_column(
+        ForeignKey("queue_items.id", ondelete="CASCADE"), nullable=False
+    )
+    status: Mapped[str] = mapped_column(String(16), nullable=False)
+    commit_ref: Mapped[str | None] = mapped_column(String(64))
+    #: 검증 위반 목록. 거부 사유를 사람이 읽을 수 있어야 재시도 판단이 선다.
+    violations: Mapped[list[Any] | None] = mapped_column(JSONB)
+    error_code: Mapped[str | None] = mapped_column(String(64))
+    error_message: Mapped[str | None] = mapped_column(Text)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), nullable=False
     )

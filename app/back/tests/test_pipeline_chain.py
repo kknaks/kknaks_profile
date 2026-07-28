@@ -248,9 +248,9 @@ NOTE_PAYLOAD = {
 class TestAdvance:
     async def test_route_approval_opens_source_note(self, db):
         item, gate = await _routed(db, "https://youtu.be/chain000001", route())
-        nxt = await advance(
+        nxt = (await advance(
             db, item, gate, generators={"source_note": maker(NOTE_PAYLOAD)}
-        )
+        )).gate
         assert nxt is not None and nxt.stage_name == "source_note"
         assert nxt.status == "review_pending"
         assert nxt.stage_no == 4
@@ -260,12 +260,12 @@ class TestAdvance:
         item, gate = await _routed(
             db, "https://youtu.be/chain000002", route(reference=False)
         )
-        nxt = await advance(
+        nxt = (await advance(
             db,
             item,
             gate,
             generators={"source_note": maker(NOTE_PAYLOAD), "concept": maker({"x": 1})},
-        )
+        )).gate
         assert nxt is not None and nxt.stage_name == "concept"
 
     async def test_exclusive_opens_nothing(self, db):
@@ -274,16 +274,21 @@ class TestAdvance:
             "https://youtu.be/chain000003",
             route(reference=False, concept=False, exclusive="inbox_hold"),
         )
-        nxt = await advance(db, item, gate, generators={"source_note": maker(NOTE_PAYLOAD)})
-        assert nxt is None
+        result = await advance(db, item, gate, generators={"source_note": maker(NOTE_PAYLOAD)})
+        assert result.gate is None and result.chain_complete
         gates = (await db.scalars(select(Gate).where(Gate.item_id == item.id))).all()
         assert [g.stage_name for g in gates] == ["route"]
 
     async def test_missing_generator_does_not_open_dead_card(self, db):
-        """승인할 수 없는 카드를 화면에 남기지 않는다."""
+        """승인할 수 없는 카드를 화면에 남기지 않는다.
+
+        그리고 **체인 끝과 구분돼야 한다** — 섞으면 미완성 체인이 발행된다.
+        """
         item, gate = await _routed(db, "https://youtu.be/chain000004", route())
-        nxt = await advance(db, item, gate, generators={})
-        assert nxt is None
+        result = await advance(db, item, gate, generators={})
+        assert result.gate is None
+        assert result.blocked and not result.chain_complete
+        assert result.pending_stage == "source_note"
         gates = (await db.scalars(select(Gate).where(Gate.item_id == item.id))).all()
         assert [g.stage_name for g in gates] == ["route"]
 
@@ -292,14 +297,14 @@ class TestAdvance:
         item, gate = await _routed(db, "https://youtu.be/chain000005", route())
         generators = {"source_note": maker(NOTE_PAYLOAD), "concept": maker({"concepts": []})}
 
-        second = await advance(db, item, gate, generators=generators)
+        second = (await advance(db, item, gate, generators=generators)).gate
         await gates_service.approve(db, second)
-        third = await advance(db, item, second, generators=generators)
+        third = (await advance(db, item, second, generators=generators)).gate
         await gates_service.approve(db, third)
         end = await advance(db, item, third, generators=generators)
 
         assert [second.stage_name, third.stage_name] == ["source_note", "concept"]
-        assert end is None  # 발행 차례
+        assert end.chain_complete  # 발행 차례
 
     async def test_approval_does_not_create_files(self, db, monkeypatch):
         """중간 승인은 다음 스테이지를 열 뿐 파일을 만들지 않는다 (DEC-011 D6)."""
