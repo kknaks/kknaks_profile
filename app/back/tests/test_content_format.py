@@ -110,8 +110,8 @@ def test_editing_the_template_changes_both_prompts(tmp_path, monkeypatch):
     양쪽이 각자 명세를 들고 있으면 이 테스트가 실패한다.
     """
     marker = "## 이 줄은 템플릿에서만 왔다"
-    (tmp_path / "templates").mkdir()
-    (tmp_path / "templates/content.md").write_text(marker, encoding="utf-8")
+    (tmp_path / "templates/persona").mkdir(parents=True)
+    (tmp_path / "templates/persona/content.md").write_text(marker, encoding="utf-8")
     monkeypatch.setattr(config, "repo_root", lambda: tmp_path)
     reset_cache()
 

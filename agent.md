@@ -73,7 +73,10 @@ rules/knowledge-note-pipeline.md     # 작성 규칙 (4층·SoT 위임·개념 �
 | 원자 개념 | `templates/knowledge/concept.md` | `permanent/concept/{slug}.md` |
 | 종합 판단 | `templates/knowledge/permanent.md` | `permanent/{slug}.md` |
 
-제품 문서(`products/**`)는 별도 계열이다 — `rules/product-doc-pipeline.md` + `templates/product/`.
+별도 계열 둘:
+
+- 제품 문서(`products/**`) — `rules/product-doc-pipeline.md` + `templates/product/`
+- 교안(`persona/contents/**`) — `templates/persona/content.md`. 그래프 밖이라 4층 모델 대상이 아니다. 승인 게이트의 `derived` 스테이지와 `content_enrich` 잡이 **둘 다 이 파일을 읽는다** — 형식을 고치려면 여기만 고친다.
 
 작성 후 그래프 검증(L1~L6)이 pre-commit·부팅에서 자동으로 돈다. 규칙을 어기면 커밋이나 부팅이 막힌다.
 

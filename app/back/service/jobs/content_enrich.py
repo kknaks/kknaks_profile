@@ -106,7 +106,7 @@ def _build_prompt(
     desc_truncated = (metadata.get("description") or "")[:2000]
     return f"""YouTube 영상의 강의 교안을 작성한다.
 
-아래 양식을 그대로 따른다 — 이것이 교안 형식의 SoT(`templates/content.md`)다.
+아래 양식을 그대로 따른다 — 이것이 교안 형식의 SoT(`templates/persona/content.md`)다.
 승인 게이트의 `derived` 스테이지도 **같은 파일**을 읽는다. 형식을 고치려면 거기만 고친다.
 
 ────────────────────────────────────────

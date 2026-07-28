@@ -1,6 +1,6 @@
 """`derived` 스테이지 — 교안 (KDEV-WORK-015 P3 / SPEC-008 stage 6).
 
-`persona/contents/` 의 교안을 만든다. 형식 명세는 **`templates/content.md` 한 곳**에서
+`persona/contents/` 의 교안을 만든다. 형식 명세는 **`templates/persona/content.md` 한 곳**에서
 불러온다(`service/content_format.py`) — `content_enrich` 잡도 같은 파일을 읽는다.
 
 처음에는 8개 섹션 명세를 이 파일 프롬프트에 적었는데, 그건 `reference`·`concept` 에서
@@ -45,7 +45,7 @@ RESULT_SHAPE = """{
 
 INSTRUCTION = """이 영상의 **강의 교안**을 작성하라.
 
-아래 양식을 그대로 따른다 — 이것이 교안 형식의 SoT(`templates/content.md`)다.
+아래 양식을 그대로 따른다 — 이것이 교안 형식의 SoT(`templates/persona/content.md`)다.
 
 ────────────────────────────────────────
 {format}
