@@ -19,7 +19,7 @@ tags:
 title:
   en: Subsets
   ko: 부분집합
-today: true
+today: false
 type: algorithm
 updated: '2026-07-27'
 visible: true
