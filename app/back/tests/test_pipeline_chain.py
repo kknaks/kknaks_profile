@@ -1,0 +1,313 @@
+"""체인 진행 + source_note 초안 (KDEV-WORK-015 P1 / SPEC-008).
+
+**체인 길이는 route 승인이 확정한다.** 정의만으로는 다음 스테이지를 알 수 없고
+route 결과를 함께 봐야 한다 — 이 파일이 그 결합을 고정한다.
+"""
+
+from __future__ import annotations
+
+import pytest
+from sqlalchemy import create_engine, select, text
+from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
+
+import config
+from core.models import Gate, QueueItem
+from service.pipeline import gates as gates_service
+from service.pipeline import intake
+from service.pipeline.chain import advance, enabled_stages, next_stage
+from service.pipeline.gates import GateError, GenerationResult, open_first_gate
+from service.pipeline.stages.common import (
+    CONCEPT_STEM_RE,
+    REFERENCE_STEM_RE,
+    body_links,
+    check_note,
+    parse_note_output,
+    require_up_in_body,
+)
+
+try:
+    _probe = create_engine(config.database_url())
+    with _probe.connect() as conn:
+        conn.execute(text("SELECT 1"))
+    _probe.dispose()
+    _DB_OK = True
+except SQLAlchemyError:
+    _DB_OK = False
+
+needs_db = pytest.mark.skipif(not _DB_OK, reason="Postgres 미가용")
+
+
+def route(*, reference=True, concept=True, derived=False, exclusive=None, group="study"):
+    return {
+        "destinations": {
+            "reference": {"enabled": reference, "group": group},
+            "concept": {"enabled": concept},
+            "derived": {"enabled": derived},
+        },
+        "exclusive": exclusive,
+    }
+
+
+# --- 체인 계산 (DB 불필요) ---------------------------------------------------
+
+
+class TestChainShape:
+    def test_enabled_stages_follow_definition_order(self):
+        assert enabled_stages(route(derived=True)) == ("source_note", "concept", "derived")
+
+    def test_disabled_destination_is_skipped(self):
+        assert enabled_stages(route(concept=False)) == ("source_note",)
+
+    def test_exclusive_opens_no_gate(self):
+        """보류·폐기는 만들 것이 없으니 검토할 것도 없다."""
+        for value in ("inbox_hold", "discard"):
+            payload = route(reference=False, concept=False, exclusive=value)
+            assert enabled_stages(payload) == ()
+
+    def test_next_stage_skips_disabled(self):
+        """개념을 끄면 source_note 다음은 derived 다 — 중간이 비어도 건너뛴다."""
+        payload = route(concept=False, derived=True)
+        assert next_stage("youtube", payload, after="route") == "source_note"
+        assert next_stage("youtube", payload, after="source_note") == "derived"
+        assert next_stage("youtube", payload, after="derived") is None
+
+    def test_last_stage_returns_none(self):
+        """`None` 은 '발행 차례'라는 뜻이다."""
+        assert next_stage("youtube", route(), after="concept") is None
+
+    def test_unknown_pipeline_has_no_next(self):
+        assert next_stage("blog", route(), after="route") is None
+
+
+# --- 초안 검사 (DB 불필요) ---------------------------------------------------
+
+
+REFERENCE_MD = """---
+type: reference
+title: 샘플 자료
+date: 2026-07-28
+---
+
+# 샘플 자료
+
+## 개요
+
+내용.
+"""
+
+
+class TestNoteOutput:
+    def test_parses_json_and_code_fence(self):
+        raw = '```json\n{"filename_stem": "2026-07-28-a-b", "content": "x"}\n```'
+        assert parse_note_output(raw) == ("2026-07-28-a-b", "x")
+
+    @pytest.mark.parametrize(
+        "raw",
+        [
+            "not json",
+            '{"content": "x"}',
+            '{"filename_stem": "a"}',
+            '{"filename_stem": "a", "content": "  "}',
+            '["list"]',
+        ],
+    )
+    def test_malformed_rejected(self, raw):
+        with pytest.raises(GateError):
+            parse_note_output(raw)
+
+    @pytest.mark.parametrize("stem", ["reference/x", "x.md", "a/b/c"])
+    def test_path_in_stem_rejected(self, stem):
+        """경로를 지어내면 allowlist 밖으로 쓰는 계획이 만들어진다."""
+        import json as _json
+
+        with pytest.raises(GateError):
+            parse_note_output(_json.dumps({"filename_stem": stem, "content": "x"}))
+
+    def test_valid_reference_passes(self):
+        meta = check_note(
+            "2026-07-28-sample-source",
+            REFERENCE_MD,
+            expected_type="reference",
+            stem_pattern=REFERENCE_STEM_RE,
+            required=("title", "date"),
+        )
+        assert meta["title"] == "샘플 자료"
+
+    @pytest.mark.parametrize(
+        "stem", ["sample", "2026-7-28-x", "2026-07-28-Sample", "2026-07-28"]
+    )
+    def test_bad_reference_stem_rejected(self, stem):
+        with pytest.raises(GateError):
+            check_note(
+                stem,
+                REFERENCE_MD,
+                expected_type="reference",
+                stem_pattern=REFERENCE_STEM_RE,
+                required=("title",),
+            )
+
+    def test_missing_required_field_rejected(self):
+        with pytest.raises(GateError) as exc:
+            check_note(
+                "2026-07-28-x-y",
+                "---\ntype: reference\ntitle: 제목\n---\n본문",
+                expected_type="reference",
+                stem_pattern=REFERENCE_STEM_RE,
+                required=("title", "date"),
+            )
+        assert exc.value.code == "MISSING_NOTE_FIELD"
+
+    def test_wrong_type_rejected(self):
+        with pytest.raises(GateError):
+            check_note(
+                "2026-07-28-x-y",
+                "---\ntype: concept\ntitle: 제목\ndate: 2026-07-28\n---\n본문",
+                expected_type="reference",
+                stem_pattern=REFERENCE_STEM_RE,
+                required=("title",),
+            )
+
+    def test_id_must_match_stem(self):
+        """지식 노트는 `id` = 파일명 stem — 다르면 로더가 실패한다."""
+        with pytest.raises(GateError):
+            check_note(
+                "2026-07-28-x-y",
+                "---\ntype: reference\nid: 다른아이디\ntitle: 제목\ndate: 2026-07-28\n---\n본문",
+                expected_type="reference",
+                stem_pattern=REFERENCE_STEM_RE,
+                required=("title",),
+            )
+
+    def test_body_links_strip_alias(self):
+        assert body_links("보라 [[a-b|별칭]] 그리고 [[c-d]]") == {"a-b", "c-d"}
+
+    def test_up_must_appear_in_body(self):
+        """`up:` 은 본문 링크의 부분집합이어야 한다 (L3)."""
+        meta = {"up": ["2026-07-28-src"]}
+        require_up_in_body(meta, "본문에 [[2026-07-28-src]] 가 있다")
+        with pytest.raises(GateError) as exc:
+            require_up_in_body(meta, "본문에 링크가 없다")
+        assert exc.value.code == "UP_NOT_IN_BODY"
+
+    @pytest.mark.parametrize("stem", ["structure-content-separation", "gpt-4", "http2", "stt"])
+    def test_concept_stem_accepts_plain_slug(self, stem):
+        assert CONCEPT_STEM_RE.fullmatch(stem)
+
+    @pytest.mark.parametrize("stem", ["2026-07-28-concept", "2026-07-28"])
+    def test_concept_stem_rejects_leading_date(self, stem):
+        """개념은 특정 시점에 묶이지 않는다 — 날짜를 붙이면 자료 단위로 갈라진다."""
+        assert not CONCEPT_STEM_RE.fullmatch(stem)
+
+
+# --- 승인 → 다음 게이트 -------------------------------------------------------
+
+
+@pytest.fixture
+async def db():
+    engine = create_async_engine(config.database_url())
+    conn = await engine.connect()
+    trans = await conn.begin()
+    session = AsyncSession(bind=conn, expire_on_commit=False)
+    try:
+        yield session
+    finally:
+        await session.close()
+        await trans.rollback()
+        await conn.close()
+        await engine.dispose()
+
+
+def maker(payload):
+    async def _gen(request):
+        return GenerationResult(payload=payload, session_ref="s")
+
+    return _gen
+
+
+async def _routed(db, url: str, payload: dict) -> tuple[QueueItem, Gate]:
+    """route 게이트를 승인한 상태의 항목을 만든다."""
+    created = await intake(db, source_url=url, source_kind="youtube")
+    item = await db.get(QueueItem, created.item_id)
+    item.status = "in_review"
+    await db.flush()
+    gate = await open_first_gate(db, item, generator=maker(payload))
+    await gates_service.approve(db, gate)
+    return item, gate
+
+
+NOTE_PAYLOAD = {
+    "filename_stem": "2026-07-28-sample-source",
+    "content": REFERENCE_MD,
+    "group": "study",
+    "target_path": "reference/study/2026-07-28-sample-source.md",
+}
+
+
+@needs_db
+class TestAdvance:
+    async def test_route_approval_opens_source_note(self, db):
+        item, gate = await _routed(db, "https://youtu.be/chain000001", route())
+        nxt = await advance(
+            db, item, gate, generators={"source_note": maker(NOTE_PAYLOAD)}
+        )
+        assert nxt is not None and nxt.stage_name == "source_note"
+        assert nxt.status == "review_pending"
+        assert nxt.stage_no == 4
+
+    async def test_disabled_destination_is_not_opened(self, db):
+        """reference 를 끄면 source_note 게이트가 아예 생기지 않는다."""
+        item, gate = await _routed(
+            db, "https://youtu.be/chain000002", route(reference=False)
+        )
+        nxt = await advance(
+            db,
+            item,
+            gate,
+            generators={"source_note": maker(NOTE_PAYLOAD), "concept": maker({"x": 1})},
+        )
+        assert nxt is not None and nxt.stage_name == "concept"
+
+    async def test_exclusive_opens_nothing(self, db):
+        item, gate = await _routed(
+            db,
+            "https://youtu.be/chain000003",
+            route(reference=False, concept=False, exclusive="inbox_hold"),
+        )
+        nxt = await advance(db, item, gate, generators={"source_note": maker(NOTE_PAYLOAD)})
+        assert nxt is None
+        gates = (await db.scalars(select(Gate).where(Gate.item_id == item.id))).all()
+        assert [g.stage_name for g in gates] == ["route"]
+
+    async def test_missing_generator_does_not_open_dead_card(self, db):
+        """승인할 수 없는 카드를 화면에 남기지 않는다."""
+        item, gate = await _routed(db, "https://youtu.be/chain000004", route())
+        nxt = await advance(db, item, gate, generators={})
+        assert nxt is None
+        gates = (await db.scalars(select(Gate).where(Gate.item_id == item.id))).all()
+        assert [g.stage_name for g in gates] == ["route"]
+
+    async def test_full_chain_walks_to_the_end(self, db):
+        """route → source_note → concept → (발행 차례)."""
+        item, gate = await _routed(db, "https://youtu.be/chain000005", route())
+        generators = {"source_note": maker(NOTE_PAYLOAD), "concept": maker({"concepts": []})}
+
+        second = await advance(db, item, gate, generators=generators)
+        await gates_service.approve(db, second)
+        third = await advance(db, item, second, generators=generators)
+        await gates_service.approve(db, third)
+        end = await advance(db, item, third, generators=generators)
+
+        assert [second.stage_name, third.stage_name] == ["source_note", "concept"]
+        assert end is None  # 발행 차례
+
+    async def test_approval_does_not_create_files(self, db, monkeypatch):
+        """중간 승인은 다음 스테이지를 열 뿐 파일을 만들지 않는다 (DEC-011 D6)."""
+        import pathlib
+
+        def explode(*a, **k):
+            raise AssertionError("게이트 승인이 레포에 썼다")
+
+        monkeypatch.setattr(pathlib.Path, "write_text", explode)
+        item, gate = await _routed(db, "https://youtu.be/chain000006", route())
+        await advance(db, item, gate, generators={"source_note": maker(NOTE_PAYLOAD)})

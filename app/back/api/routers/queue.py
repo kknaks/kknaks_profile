@@ -21,6 +21,7 @@ import config
 from api.routers.auth import require_admin
 from core.db import get_db
 from core.models import AITask, Gate, GateFeedback, GateRevision, ItemPreparation, QueueItem
+from service.pipeline import chain
 from service.pipeline import gates as gates_service
 from service.pipeline import intake, prepare_and_open_gate
 from service.pipeline.gates import GateError
@@ -381,27 +382,34 @@ async def gate_approve(gate_id: int, body: ApproveRequest, db: AsyncSession = De
         raise _gate_error(exc) from exc
 
     outcome = None
+    next_gate = None
     if gate.stage_name == "route":
         outcome = route_outcome(revision.payload or {})
         if outcome == "discarded":
             # 폐기 승인은 항목을 끝낸다. 파일은 만들어지지 않는다.
             item.status = "discarded"
+
+    if item.status != "discarded":
+        # 중간 승인은 다음 스테이지를 열 뿐 파일을 만들지 않는다(DEC-011 D6).
+        next_gate = await chain.advance(db, item, gate, generators=_generators())
     await db.commit()
     return {
         "gate_status": gate.status,
         "item_status": item.status,
         "route_outcome": outcome,
+        "next_stage": next_gate.stage_name if next_gate else None,
         "revision": _revision_view(revision),
     }
 
 
-def _generator_for(stage_name: str):
-    from service.pipeline.runtime import current_route_proposer
+def _generators() -> dict[str, Any]:
+    from service.pipeline.runtime import current_generators
 
-    if stage_name == "route":
-        return current_route_proposer()
-    # source_note·concept·derived 는 WORK-015 — 없는 것을 있는 척하지 않는다.
-    return None
+    return current_generators()
+
+
+def _generator_for(stage_name: str):
+    return _generators().get(stage_name)
 
 
 @router.delete("/items/{item_id}")

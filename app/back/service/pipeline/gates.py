@@ -54,6 +54,9 @@ class GenerationInput:
     feedback: str | None
     #: 이어받을 세션. 없으면 generator 가 stateless 로 만들어야 한다(SPEC-009 S-5).
     session_ref: str | None
+    #: 승인된 route 결과. 뒤 스테이지는 목적지·group 을 여기서 읽는다.
+    #: generator 에 DB 를 넘기지 않기 위해 조립 시점에 채워 준다.
+    route: dict[str, Any] | None = None
 
 
 @dataclass(frozen=True)
@@ -77,6 +80,19 @@ async def latest_preparation(db: AsyncSession, item_id: int) -> ItemPreparation 
         .order_by(ItemPreparation.version.desc())
         .limit(1)
     )
+
+
+async def approved_route_payload(db: AsyncSession, item_id: int) -> dict[str, Any] | None:
+    """승인된 route 결과. 없으면 `None` — 아직 목적지가 안 정해진 항목이다."""
+    gate = await db.scalar(
+        select(Gate)
+        .where(Gate.item_id == item_id, Gate.stage_name == "route", Gate.status == "approved")
+        .limit(1)
+    )
+    if gate is None or gate.approved_revision_id is None:
+        return None
+    revision = await db.get(GateRevision, gate.approved_revision_id)
+    return revision.payload if revision else None
 
 
 async def live_gate(db: AsyncSession, item_id: int, stage_name: str) -> Gate | None:
@@ -223,6 +239,7 @@ async def _generate(
                 previous_payload=parent.payload if parent else None,
                 feedback=feedback.body if feedback else None,
                 session_ref=await _resume_session(db, gate),
+                route=await approved_route_payload(db, gate.item_id),
             )
         )
     except Exception as exc:  # noqa: BLE001 — 실패는 상태이지 예외 전파가 아니다

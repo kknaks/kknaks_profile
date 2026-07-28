@@ -149,11 +149,22 @@ export type RouteResult = {
   rationale?: string;
 };
 
+/** 노트를 만드는 스테이지(source_note·concept·derived)의 산출물. AI 가 md 전문을 낸다. */
+export type NotePayload = {
+  filename_stem: string;
+  content: string;
+  group?: string;
+  /** 경로는 시스템이 조립한다 — AI 는 stem 만 낸다. */
+  target_path?: string;
+};
+
+export type GatePayload = RouteResult | NotePayload;
+
 export type Revision = {
   id: number;
   version: number;
   status: string;
-  payload: RouteResult | null;
+  payload: GatePayload | null;
   parent_revision_id: number | null;
   feedback_id: number | null;
   created_at: string | null;
@@ -254,11 +265,12 @@ export const queueApi = {
     queueFetch<{ gate_status: string; revision: Revision }>(`${QUEUE}/gates/${gateId}/retry`, {
       method: "POST",
     }),
-  approve: (gateId: number, payload: RouteResult | null, expectedRevisionId: number | null) =>
+  approve: (gateId: number, payload: GatePayload | null, expectedRevisionId: number | null) =>
     queueFetch<{
       gate_status: string;
       item_status: string;
       route_outcome: string | null;
+      next_stage: string | null;
       revision: Revision;
     }>(`${QUEUE}/gates/${gateId}/approve`, {
       method: "POST",

@@ -15,11 +15,18 @@ from typing import Any
 _registry: dict[str, Any] = {}
 
 
-def register(*, summarizer: Any = None, route_proposer: Any = None) -> None:
+def register(
+    *,
+    summarizer: Any = None,
+    route_proposer: Any = None,
+    stages: dict[str, Any] | None = None,
+) -> None:
     if summarizer is not None:
         _registry["summarizer"] = summarizer
     if route_proposer is not None:
         _registry["route_proposer"] = route_proposer
+    if stages:
+        _registry.setdefault("stages", {}).update(stages)
 
 
 def current_summarizer() -> Any:
@@ -33,6 +40,18 @@ def current_summarizer() -> Any:
 
 def current_route_proposer() -> Any:
     return _registry.get("route_proposer")
+
+
+def current_generators() -> dict[str, Any]:
+    """스테이지명 → generator. route 를 포함해 체인 전체가 여기서 나온다.
+
+    없는 스테이지는 키가 없다 — 호출자가 "아직 못 만든다"를 알아야 한다.
+    """
+    generators = dict(_registry.get("stages") or {})
+    proposer = _registry.get("route_proposer")
+    if proposer is not None:
+        generators["route"] = proposer
+    return generators
 
 
 def clear() -> None:

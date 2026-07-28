@@ -1,7 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { QueueError, queueApi, type Gate, type RouteResult } from "@/lib/api";
+import {
+  QueueError,
+  queueApi,
+  type Gate,
+  type GatePayload,
+  type NotePayload,
+  type RouteResult,
+} from "@/lib/api";
 
 /* 게이트 카드 — KDEV-SPEC-008 U-3 / SPEC-009 U-4.
  *
@@ -231,6 +238,77 @@ function RouteEditor({
   );
 }
 
+function isNote(payload: GatePayload | null | undefined): payload is NotePayload {
+  return !!payload && "filename_stem" in payload;
+}
+
+/** 노트 초안 미리보기 — 전문과 **저장될 경로**를 함께 보여준다.
+ *
+ * 경로를 감추면 "어디에 생기는지 모른 채 승인"하게 된다. AI 는 stem 만 내고
+ * 디렉토리는 시스템이 조립하므로, 그 결과를 사람이 확인할 수 있어야 한다. */
+function NotePreview({ payload }: { payload: NotePayload }) {
+  const [expanded, setExpanded] = useState(false);
+  const lines = payload.content.split("\n");
+  const shown = expanded ? payload.content : lines.slice(0, 24).join("\n");
+
+  return (
+    <div style={{ marginTop: 10 }}>
+      <div
+        className="mono"
+        style={{
+          fontSize: 11,
+          color: "var(--fg-2)",
+          padding: "6px 10px",
+          border: "1px solid var(--line-2)",
+          borderRadius: "5px 5px 0 0",
+          background: "var(--bg-0)",
+          wordBreak: "break-all",
+        }}
+      >
+        {payload.target_path ?? `${payload.filename_stem}.md`}
+      </div>
+      <pre
+        style={{
+          margin: 0,
+          padding: 12,
+          fontSize: 11.5,
+          lineHeight: 1.6,
+          color: "var(--fg-1)",
+          background: "var(--bg-0)",
+          border: "1px solid var(--line-2)",
+          borderTop: "none",
+          borderRadius: expanded || lines.length <= 24 ? "0 0 5px 5px" : 0,
+          overflowX: "auto",
+          whiteSpace: "pre-wrap",
+          wordBreak: "break-word",
+        }}
+      >
+        {shown}
+      </pre>
+      {lines.length > 24 && (
+        <button
+          type="button"
+          onClick={() => setExpanded((v) => !v)}
+          className="mono"
+          style={{
+            width: "100%",
+            fontSize: 10.5,
+            padding: "5px 0",
+            border: "1px solid var(--line-2)",
+            borderTop: "none",
+            borderRadius: "0 0 5px 5px",
+            background: "var(--bg-1)",
+            color: "var(--fg-3)",
+            cursor: "pointer",
+          }}
+        >
+          {expanded ? "접기" : `전문 보기 (${lines.length}줄)`}
+        </button>
+      )}
+    </div>
+  );
+}
+
 function FeedbackModal({
   onClose,
   onSubmit,
@@ -339,13 +417,15 @@ export function GateCard({
     gate.revisions[gate.revisions.length - 1];
   const approved = gate.status === "approved";
   const [open, setOpen] = useState(!approved);
-  const [draft, setDraft] = useState<RouteResult>(active?.payload ?? emptyRoute());
+  const [draft, setDraft] = useState<RouteResult>(
+    isNote(active?.payload) ? emptyRoute() : (active?.payload ?? emptyRoute()),
+  );
   const [feedbackOpen, setFeedbackOpen] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    setDraft(active?.payload ?? emptyRoute());
+    setDraft(!isNote(active?.payload) ? (active?.payload ?? emptyRoute()) : emptyRoute());
     setOpen(gate.status !== "approved");
   }, [active?.id, active?.payload, gate.status]);
 
@@ -412,7 +492,7 @@ export function GateCard({
             <p style={{ fontSize: 12, color: "#f85149", margin: "4px 0 10px" }}>{failedNote}</p>
           )}
 
-          {active?.payload?.rationale && (
+          {!isNote(active?.payload) && active?.payload?.rationale && (
             <p
               style={{
                 fontSize: 12.5,
@@ -426,7 +506,7 @@ export function GateCard({
             </p>
           )}
 
-          {gate.stage_name === "route" && active?.payload && (
+          {gate.stage_name === "route" && active?.payload && !isNote(active.payload) && (
             <RouteEditor
               value={draft}
               groups={groups}
@@ -434,6 +514,8 @@ export function GateCard({
               onChange={setDraft}
             />
           )}
+
+          {isNote(active?.payload) && <NotePreview payload={active.payload} />}
 
           {gate.revisions.length > 1 && (
             <p className="mono" style={{ fontSize: 10.5, color: "var(--fg-4)", marginTop: 8 }}>

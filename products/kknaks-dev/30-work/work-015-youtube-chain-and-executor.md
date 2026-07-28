@@ -2,7 +2,7 @@
 type: work
 id: KDEV-WORK-015
 title: "유튜브 체인 완성 + Apply Executor"
-status: todo
+status: doing
 product: kknaks-dev
 work_type: new-feature
 owner: kknaks
@@ -13,13 +13,13 @@ roles:
   be: kknaks
   qa: kknaks
   ops: kknaks
-progress: 0
+progress: 20
 created_at: 2026-07-27
-updated_at: 2026-07-27
+updated_at: 2026-07-28
 tags:
   - product/kknaks-dev
   - doc/work
-  - status/todo
+  - status/doing
 links:
   baselines:
     - "[[baseline-003-inbox-approval-pipeline|KDEV-BL-003]]"
@@ -57,11 +57,11 @@ route 뒤의 게이트 3종(`source_note`·`concept`·`derived`)을 붙이고, �
 |---|---|
 | Type | new-feature |
 | Owner | kknaks |
-| Status | todo |
-| Progress | 0% |
+| Status | doing |
+| Progress | 20% (Phase 1/5) |
 | Branch/PR | — |
-| Blocker | WORK-014 선행 |
-| Next | Phase 1 source_note 게이트 |
+| Blocker | 없음 (WORK-014 done) |
+| Next | Phase 2 concept 게이트 |
 
 ## Role Assignment
 
@@ -70,7 +70,7 @@ route 뒤의 게이트 3종(`source_note`·`concept`·`derived`)을 붙이고, �
 | PM | kknaks | 완주 기준 판단 | todo |
 | Design | kknaks | 게이트 스택·diff 표시 | todo |
 | FE | kknaks | 게이트 3종 UI | todo |
-| BE | kknaks | 스테이지 생성·Executor | todo |
+| BE | kknaks | 스테이지 생성·Executor | doing (체인·source_note done) |
 | QA | kknaks | 롤백·검증 거부 시나리오 | todo |
 | Ops | kknaks | 실발행 e2e | todo |
 
@@ -147,19 +147,43 @@ concept_result[] = {
 
 ### Phase 1 — source_note 게이트
 
-- **Status**: TODO
+- **Status**: DONE
 - **작업**:
-  - [ ] route 승인 후 `source_note` 게이트 자동 생성
-  - [ ] 스테이지 프롬프트는 **"무엇을 만들라"만** 지시한다 — 형식은 에이전트가 `rules/knowledge-note-pipeline.md` + `templates/knowledge/reference.md` 를 읽어 따른다
-  - [ ] reference 초안 생성 (준비 산출물 + route 결과 입력)
-  - [ ] 초안이 `up:`·본문 `[[]]`를 채우도록 프롬프트·검증
-  - [ ] 게이트 카드 UI (전문 미리보기 + 저장될 경로)
+  - [x] route 승인 후 `source_note` 게이트 자동 생성
+  - [x] 스테이지 프롬프트는 **"무엇을 만들라"만** 지시한다 — 형식은 에이전트가 `rules/knowledge-note-pipeline.md` + `templates/knowledge/reference.md` 를 읽어 따른다
+  - [x] reference 초안 생성 (준비 산출물 + route 결과 입력)
+  - [x] ~~초안이 `up:`을 채우도록~~ → **계획 오류. 아래 참조.** 본문 `[[]]`↔`up:` 정합 검사는 공통부에 구현(concept 스테이지가 쓴다)
+  - [x] 게이트 카드 UI (전문 미리보기 + 저장될 경로)
 - **검증**:
-  - [ ] route 승인 시 다음 게이트가 열린다
-  - [ ] 초안 형식이 템플릿과 일치한다 (섹션 구성·frontmatter 필드)
-  - [ ] 초안에 `up:`이 채워진다 (**lineage 생성 의무 충족**)
-  - [ ] 승인해도 **아직 파일이 생기지 않는다**
-- **완료 증거**: 미작성
+  - [x] route 승인 시 다음 게이트가 열린다
+  - [x] 초안 형식이 템플릿과 일치한다 (섹션 구성·frontmatter 필드)
+  - [x] ~~초안에 `up:`이 채워진다~~ → **요구 자체가 틀렸다. 아래 참조.**
+  - [x] 승인해도 **아직 파일이 생기지 않는다**
+- **완료 증거**:
+
+신규 `service/pipeline/chain.py`, `stages/{common,source_note}.py`, `runtime` 생성기 레지스트리, 게이트 카드 노트 미리보기. 테스트 37건 신규. **502 passed.**
+
+> **계획 오류 정정 — reference 에는 `up:` 이 없다.**
+>
+> 이 Phase 의 원 계획은 *"초안에 `up:`이 채워진다 (lineage 생성 의무 충족)"* 였는데 **틀렸다.** 4층 모델에서 `reference` 는 **출처 기록층이라 상류가 없다** — `templates/knowledge/reference.md` 도 "`up:` 을 두지 않는다"고 명시한다. 반대로 **concept 가 reference 를 `up:` 으로 가리킨다.**
+>
+> 그래서 lineage 생성 의무(DEC-010 D4)가 실제로 발현되는 곳은 **Phase 2(concept)** 다. Phase 1 프롬프트는 "frontmatter 에 `up:` 을 두지 않는다"고 반대로 지시한다. `up:`↔본문 링크 정합 검사(`require_up_in_body`)는 공통부에 만들어 뒀고 concept 스테이지가 소비한다.
+
+**체인 길이는 정의만으로 정해지지 않는다.** `next_stage(source_kind, route_payload, after=...)` 가 파이프라인 정의 **순서**와 route 결과 **on/off** 를 함께 본다. 개념을 끄면 `source_note` 다음이 `derived` 가 된다 — 중간이 비어도 건너뛴다. `None` 은 "발행 차례"라는 뜻이다.
+
+**`exclusive`(보류·폐기)면 게이트가 하나도 안 열린다.** 만들 것이 없으니 검토할 것도 없다.
+
+**생성기가 없으면 게이트를 열지 않는다.** 승인할 수 없는 카드를 화면에 남기면 사람이 막힌다. 로그만 남기고 항목은 검토 대기에 머문다.
+
+**형식 SoT 충돌을 여기서 정리했다** — 종전 캡처는 `AI → JSON → render.py → md` 였고, `render.py` 의 하드코딩된 섹션 구성이 `templates/knowledge/` 와 나란히 **두 번째 형식 SoT** 였다. 이제 스테이지는 **AI 가 md 전문을 직접** 내고(SPEC-010), 형식은 레포 템플릿 한 곳이 소유한다. `render.py` 는 롤백 경로(`KnowledgeCaptureRunner`)에만 남는다.
+
+**경로는 AI 가 정하지 않는다.** AI 는 `filename_stem` 만 내고 디렉토리는 시스템이 층·목적지에서 조립한다. `stem` 에 `/` 나 `.md` 가 섞이면 거부한다 — 경로를 지어내면 allowlist 밖으로 쓰는 계획이 만들어진다.
+
+**게이트 시점 검사는 가볍게** — stem 규약, frontmatter 파싱, `type` 일치, 필수 필드, `id`=stem. 전체 그래프 검증(L1~L6)은 발행 직전에 가상 그래프로 돈다(Phase 4). 이 시점에는 형제 노트가 아직 없어 링크가 깨져 보이기 때문이다.
+
+부수 — **테스트가 규칙 위반을 잡았다**: `CONCEPT_STEM_RE` 가 `2026-07-28-concept` 를 통과시켰다. "concept 는 날짜를 붙이지 않는다"(개념은 특정 시점에 묶이지 않는다)가 정규식에 반영돼 있지 않았다. 선행 부정으로 날짜 머리만 막고 숫자 자체(`gpt-4`·`http2`)는 허용하도록 고쳤다.
+
+**화면**: 노트 스테이지 카드는 **저장될 경로 + 전문**을 보여준다(24줄 넘으면 접힘). 경로를 감추면 "어디에 생기는지 모른 채 승인"하게 된다.
 
 ### Phase 2 — concept 게이트
 
@@ -261,6 +285,7 @@ concept_result[] = {
 
 ## Open Issues
 
+- **교안 경로는 공존으로 정했다 (owner 결정, P1).** `derived` 게이트 산출물은 `status: pending` 을 쓰지 않아 `content_enrich` 의 스캔 대상이 되지 않는다. 손으로 `C-NNN-pending.md` 를 만드는 기존 방식도 그대로 살아 있다. 새 경로를 써 보고 옛 경로를 접을지는 나중에 판단한다.
 - **concept 매칭 정확도가 이 파이프라인의 실질 품질을 결정한다.** 매칭이 틀리면 개념이 갈라지거나(놓침) 엉뚱한 노트를 덮어쓴다(오매칭). Phase 2에서 오매칭 쪽을 더 보수적으로 잡을지(의심되면 신규 생성) 판단이 필요하다.
 - AI가 신규/보충을 틀렸을 때 owner가 게이트에서 직접 "기존 X에 합쳐라"로 바꿀 수 있어야 하는지 — 지금 계약은 피드백 재생성뿐이다(SPEC-008 §7).
 - 발행 커밋 메시지 형식(DEC-012 OQ-1), 실패 알림 임계(DEC-012 OQ-4)를 이 work에서 정한다.
