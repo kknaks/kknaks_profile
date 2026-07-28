@@ -490,3 +490,21 @@ button {
   font-weight: 600;
   background: var(--bg-1);
 }
+
+/* 진행 중 스피너 (KDEV-WORK-015) — 준비·발행은 AI 를 타서 30~60초 걸린다.
+   표시가 없으면 눌린 줄 모르고 다시 누르게 되고, 그러면 준비 버전이 쌓인다. */
+@keyframes kk-spin {
+  to { transform: rotate(360deg); }
+}
+
+.kk-spinner {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  margin-right: 6px;
+  vertical-align: -1px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: kk-spin 0.7s linear infinite;
+}

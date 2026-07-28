@@ -147,13 +147,16 @@ Release에 두지 않는다:
 
 제품이 한 버전으로 배포·심사에 나간 시점에 제품 문서 전체(00~70)를 `products/<product>/_archive/vX.Y.Z/`로 **동결**한다. live 문서는 다음 버전 작업으로 계속 바뀌므로, "이 버전에 무엇이 나갔는가"를 트리에서 바로 보려고 스냅샷을 남긴다. release note와는 별개다 — release note는 변경 요약, 컷오프는 문서 전체 동결.
 
+컷오프는 단순 백업이 아니라 **릴리즈 게이트**다. 기본 실행은 `product_doc_pipeline.py --strict --release-gate --product <product>`를 먼저 통과해야 한다. 즉 해당 버전의 spec은 구현 완료 상태여야 하고, 연결된 work는 `done`/`progress: 100`이어야 하며, `30-work/README.md`의 work index와 spec coverage도 완료 상태여야 한다. 개발 중 상태를 그대로 박제해야 하는 특수 상황만 `--no-release-gate`로 우회한다.
+
 규약:
 
-- 동결본은 **읽기 전용**이다. 수정하지 않는다. 갱신은 live 문서에서 하고 다음 컷오프에 반영한다.
+- 동결본은 **읽기 전용**이다. 수정하지 않는다. 갱신은 live 문서에서 하고 다음 컷오프에 반영한다. 스크립트는 컷오프 폴더에 `chmod -R a-w`를 적용한다.
 - 동결본 frontmatter는 `status: archived` + `original_status` + `archived_version` + `archived_at`로 마킹하고, `tags`의 `status/*`도 `status/archived`로 바꾼다.
 - 동결본 `.md` 파일명과 내부 링크(wikilink·마크다운 상대링크)에 버전 prefix를 단다 (`v1.0.1` → `v1_0_1-`). 동일 basename이 live와 archive에 둘 생기면 Obsidian이 wikilink를 전역 basename으로 모호하게 해석해 **live 링크까지 오염**되므로, prefix로 basename을 유니크하게 만들고 아카이브 내부 링크는 같은 버전 사본을 가리키게 한다 → 과거 버전 그래프가 자기완결적으로 탐색된다.
 - 같은 버전 폴더는 덮어쓰지 않는다.
 - **현재 트리 상태**를 현재 버전으로 동결한다. 이미 지나간 과거 버전은 live 트리에 없으므로 git tag/commit에서 복원해야 한다.
+- 기본은 live 문서를 그대로 둔다. 다음 사이클을 명확히 시작하려면 `--reset-current`를 붙인다. 이 옵션은 archive freeze 후 `30-work/README.md`의 work 행을 비우고, `Spec Coverage`를 `(carried @vX.Y.Z)`/`draft`로 전환하며, 방금 archive에 동결된 live `30-work/work-*.md` 파일을 제거한다. spec/decision/architecture/log는 carry-forward한다.
 - 검증기는 `products/` 최상위만 제품으로 순회하고 release/work/runbook 글롭이 모두 비재귀라, 중첩된 `_archive/` 동결본은 **재검증되지 않는다**. 검증기에 재귀/wikilink 검증을 추가할 때는 `_archive/`를 제외한다.
 
 실행은 `version-cutoff` skill(`.agent/scripts/product_version_cutoff.py`)로 한다.

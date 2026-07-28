@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { GateCard, btn } from "@/components/admin/queue-gate";
+import { GateCard, Spinner, btn } from "@/components/admin/queue-gate";
 import {
   QueueError,
   queueApi,
@@ -157,7 +157,7 @@ function AddModal({ onClose, onDone }: { onClose: () => void; onDone: () => void
               onClick={() => submit(false)}
               style={btn("primary")}
             >
-              {busy ? "저장 중…" : "저장"}
+              {busy ? <><Spinner />저장 중…</> : "저장"}
             </button>
           </div>
         )}
@@ -177,7 +177,9 @@ function Detail({
   groups: string[];
   onChanged: () => void;
 }) {
-  const [busy, setBusy] = useState(false);
+  // 무엇을 하는 중인지 담는다 — 단순 boolean 이면 "왜 멈춰 있는지"를 화면이 못 말한다.
+  // 준비·발행은 AI 를 타서 30~60초 걸린다. 표시가 없으면 죽은 걸로 보여 두 번 누르게 된다.
+  const [busy, setBusy] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [note, setNote] = useState(item.note ?? "");
 
@@ -186,8 +188,9 @@ function Detail({
   const lastPrep = item.preparations[item.preparations.length - 1];
   const failedTasks = item.ai_tasks.filter((t) => t.status === "failed");
 
-  async function run(fn: () => Promise<unknown>) {
-    setBusy(true);
+  async function run(label: string, fn: () => Promise<unknown>) {
+    if (busy) return; // 이미 도는 요청이 있으면 무시 — 중복 실행이 준비 버전을 쌓는다
+    setBusy(label);
     setError(null);
     try {
       await fn();
@@ -195,7 +198,7 @@ function Detail({
     } catch (e) {
       setError(e instanceof Error ? e.message : "요청에 실패했습니다.");
     } finally {
-      setBusy(false);
+      setBusy(null);
     }
   }
 
@@ -236,20 +239,20 @@ function Detail({
         <div style={{ display: "flex", gap: 8, justifyContent: "flex-end", marginTop: 8 }}>
           <button
             type="button"
-            disabled={busy || note === (item.note ?? "")}
-            onClick={() => run(() => queueApi.updateNote(item.id, note))}
+            disabled={!!busy || note === (item.note ?? "")}
+            onClick={() => run("메모 저장", () => queueApi.updateNote(item.id, note))}
             style={btn("ghost")}
           >
-            메모 저장
+            {busy === "메모 저장" ? <><Spinner />저장 중…</> : "메모 저장"}
           </button>
           {(item.status === "prepare_failed" || item.status === "received") && (
             <button
               type="button"
-              disabled={busy}
-              onClick={() => run(() => queueApi.retryPrepare(item.id))}
+              disabled={!!busy}
+              onClick={() => run("준비", () => queueApi.retryPrepare(item.id))}
               style={btn("primary")}
             >
-              준비 재시도
+              {busy === "준비" ? <><Spinner />준비 중… (최대 1분)</> : "준비 재시도"}
             </button>
           )}
         </div>
@@ -314,6 +317,15 @@ function Detail({
         </div>
       )}
 
+      {busy && (
+        <p
+          className="mono"
+          style={{ fontSize: 12, color: "var(--accent)", marginTop: 10 }}
+        >
+          <Spinner />
+          {busy} 진행 중… AI 를 타는 단계라 1분까지 걸립니다. 이 창을 닫지 마세요.
+        </p>
+      )}
       {error && <p style={{ color: "#f85149", fontSize: 12, marginTop: 10 }}>{error}</p>}
 
       {/* 게이트 스택 */}
@@ -330,11 +342,11 @@ function Detail({
       <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 24 }}>
         <button
           type="button"
-          disabled={busy || item.status === "publishing"}
-          onClick={() => run(() => queueApi.remove(item.id))}
+          disabled={!!busy || item.status === "publishing"}
+          onClick={() => run("삭제", () => queueApi.remove(item.id))}
           style={btn("danger")}
         >
-          삭제
+          {busy === "삭제" ? <><Spinner />삭제 중…</> : "삭제"}
         </button>
       </div>
     </div>

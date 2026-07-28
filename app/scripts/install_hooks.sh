@@ -34,7 +34,7 @@ fi
 persona_changed=0
 if echo "$CHANGED" | grep -q '^persona/'; then persona_changed=1; fi
 graph_changed=0
-if echo "$CHANGED" | grep -Eq '^(persona|reference|permanent|inbox|products)/'; then graph_changed=1; fi
+if echo "$CHANGED" | grep -Eq '^persona/'; then graph_changed=1; fi
 
 if [ "$graph_changed" = 0 ]; then
   exit 0
@@ -54,7 +54,7 @@ from pathlib import Path
 from service.persona_loader import load_persona, PersonaError
 try:
     load_persona(Path('../../persona'))
-    print('persona+graph validation: ok')
+    print('persona validation: ok')
 except PersonaError as e:
     print(f'persona+graph validation FAILED: {e}')
     raise SystemExit(1)

@@ -576,6 +576,11 @@ function FeedbackModal({
   );
 }
 
+/** 진행 중 표시 — 눌린 줄 모르면 다시 누르게 되고, 그러면 요청이 겹친다. */
+export function Spinner() {
+  return <span className="kk-spinner" aria-hidden />;
+}
+
 export function btn(kind: "primary" | "ghost" | "danger") {
   const base = {
     fontSize: 12,

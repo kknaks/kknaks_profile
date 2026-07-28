@@ -3,9 +3,7 @@ type: permanent
 id: ax-needs-information-coherence
 title: AX의 전제는 정보 정합성이고, 그것은 구조와 내용을 분리할 때 지켜진다
 source: https://www.youtube.com/watch?v=IIvMDB6Oxok
-up:
-  - structure-content-separation
-  - deterministic-skeleton-first
+up: [baseline-001-repo-knowledge-graph]
 ---
 
 # AX의 전제는 정보 정합성이다
@@ -19,8 +17,8 @@ AI가 문서를 요약·복사할 때 생긴 미세한 환각이 지식망 전�
 → 즉 정합성 붕괴 = 환각의 전파.
 
 ## 정합성을 지키는 구조
-1. **[[structure-content-separation]]** — 그래프=빠른 위치, 위키=깊은 내용.
-2. **[[deterministic-skeleton-first]]** — 로컬에서 팩트 뼈대를 먼저 뽑고,
+1. **구조(그래프)와 내용(위키)을 분리** — 그래프=빠른 위치, 위키=깊은 내용.
+2. **결정론적 뼈대 위에만 AI를 올린다** — 로컬에서 팩트 뼈대를 먼저 뽑고,
    그 위에서만 AI가 연결. 확률이 팩트를 오염시키지 못하게.
 
 ## 내가 만든 것과의 대조
