@@ -17,6 +17,7 @@ from open_kknaks import AgentClient, RedisBroker
 from youtube_transcript_api import YouTubeTranscriptApi
 
 import config
+from service.content_format import content_format
 from service.jobs.git_push import commit_and_push_with_retry
 from service.notify import notify_slack
 
@@ -103,7 +104,14 @@ def _build_prompt(
     intent_block = f"[사용자 의도 — 1순위]\n{user_intent}\n\n" if user_intent else ""
     tags_str = ", ".join((metadata.get("tags") or [])[:20])
     desc_truncated = (metadata.get("description") or "")[:2000]
-    return f"""YouTube 영상의 강의 교안을 작성한다. **외부 사람이 영상을 안 보고도 이 문서만으로 이해·학습할 수 있어야 한다.**
+    return f"""YouTube 영상의 강의 교안을 작성한다.
+
+아래 양식을 그대로 따른다 — 이것이 교안 형식의 SoT(`templates/content.md`)다.
+승인 게이트의 `derived` 스테이지도 **같은 파일**을 읽는다. 형식을 고치려면 거기만 고친다.
+
+────────────────────────────────────────
+{content_format()}
+────────────────────────────────────────
 
 [원본 메타]
 - title: {metadata.get('title', '')}
@@ -113,28 +121,6 @@ def _build_prompt(
 - description: {desc_truncated}
 
 {intent_block}{transcript_block}
-
-다음 6개 항목을 결정해라:
-1. title: 교안 제목 (한국어/영어 각각, 60자 이내, 원본 title 보다 간결·구체적)
-2. summary: 영상 핵심 한 줄 (한국어/영어 각각, 80자 이내)
-3. tags: 기술 스택/키워드 (3~7개, 소문자 + #prefix — 예 `#fastapi`)
-4. concept: 핵심 개념 짧은 문장 **4~6개** (한국어, 각 1~2문장, 사이트 카드용 압축 요약). body 의 풀 설명을 한 줄씩 압축한 형태. 예: ["HNSW는 다층 그래프로 ANN을 수행한다.", "상위 레이어일수록 sparse — ...", ...]
-5. body: 강의 교안 (한국어 markdown). **반드시 다음 8개 H2 섹션을 순서대로 모두 포함**:
-   - `## 개요`: 주제와 왜 중요한지 (1~2문단, 독자가 왜 이 글을 읽어야 하는지)
-   - `## 배경 / 사전 지식`: 이해에 필요한 선수 지식·용어 정의 (모르는 사람도 따라올 수 있도록)
-   - `## 핵심 개념`: 단락별 정의 + 작동 원리 (개념별 H3 분리 권장)
-   - `## 작동 원리`: 단계별 설명 (numbered list 또는 시퀀스 다이어그램 식)
-   - `## 코드 예시`: 실행 가능한 코드 (최소 1개 ```언어``` 블록) + 각 줄/블록의 의미 주석 또는 본문 설명
-   - `## 함정·실수`: 흔히 빠지는 실수 + 회피법 (영상에서 짚은 것 + 일반적인 함정)
-   - `## 베스트 프랙티스`: 권장 패턴, 대안, 더 나아가는 팁
-   - `## 참고`: 영상에서 언급된 추가 자료·링크 (없으면 "(영상 내 명시 없음)")
-   섹션은 빠짐없이 박되, 영상에 명시되지 않은 항목은 자막에서 합리적으로 추론하거나 일반적으로 알려진 베스트 프랙티스로 채운다. 분량 짧게 압축 X — 외부 사람이 학습 가능한 수준으로 풍부하게.
-6. kind: 영상 유형 — **필수 (빠뜨리지 말 것)**. 다음 4개 중 정확히 하나:
-   - `"tutorial"`: 따라하면 무언가 만들어지는 hands-on 가이드 (코드 예제 위주)
-   - `"study"`: 개념·이론 학습 (요약·해설 위주, 코드는 보조)
-   - `"talk"`: 발표·강연·인터뷰 (의견·경험 공유 위주)
-   - `"review"`: 도구·라이브러리·기술 리뷰 (장단점 평가)
-   영상 성격에 가장 가까운 거 한 개. 모호하면 `"study"`.
 
 응답 형식 — 정확히 다음 순서대로 박는다:
 

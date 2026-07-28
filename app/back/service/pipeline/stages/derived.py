@@ -1,7 +1,11 @@
 """`derived` 스테이지 — 교안 (KDEV-WORK-015 P3 / SPEC-008 stage 6).
 
-`persona/contents/` 의 교안을 만든다. 프롬프트는 `content_enrich` 잡의 것을 그대로
-쓴다 — 같은 산출물을 두 벌의 지시로 만들면 결과가 갈라진다.
+`persona/contents/` 의 교안을 만든다. 형식 명세는 **`templates/content.md` 한 곳**에서
+불러온다(`service/content_format.py`) — `content_enrich` 잡도 같은 파일을 읽는다.
+
+처음에는 8개 섹션 명세를 이 파일 프롬프트에 적었는데, 그건 `reference`·`concept` 에서
+없앤 이중 SoT 를 교안에서 다시 만드는 것이었다. 한쪽만 고치는 날 두 경로의 산출물이
+조용히 갈라진다.
 
 **`status: pending` 을 쓰지 않는다.** 그것이 `content_enrich` 의 스캔 조건이라,
 쓰면 게이트가 만든 교안을 그 잡이 한 번 더 덮어쓴다. 게이트 산출물은 처음부터
@@ -23,6 +27,7 @@ from zoneinfo import ZoneInfo
 import frontmatter
 
 from ..gates import GateError, GenerationInput, GenerationResult
+from ...content_format import content_format
 from .common import OUTPUT_CONTRACT_LIST, context_payload, parse_json_output
 
 KST = ZoneInfo("Asia/Seoul")
@@ -39,29 +44,12 @@ RESULT_SHAPE = """{
 }"""
 
 INSTRUCTION = """이 영상의 **강의 교안**을 작성하라.
-**외부 사람이 영상을 안 보고도 이 문서만으로 이해·학습할 수 있어야 한다.**
 
-- `title` — 한국어/영어 각각 60자 이내. 원본 제목보다 간결·구체적으로.
-- `summary` — 핵심 한 줄, 한국어/영어 각각 80자 이내.
-- `tags` — 기술 스택·키워드 3~7개. 소문자 + `#` 접두 (예: `#fastapi`).
-- `concept` — 핵심 개념 문장 4~6개. 본문의 설명을 한 줄씩 압축한 형태(사이트 카드용).
-- `kind` — `tutorial`(따라하면 만들어지는 hands-on) · `study`(개념·이론) ·
-  `talk`(발표·강연) · `review`(도구 평가) 중 하나. 모호하면 `study`.
-- `body` — 아래 8개 H2 섹션을 **순서대로 빠짐없이** 포함한다.
+아래 양식을 그대로 따른다 — 이것이 교안 형식의 SoT(`templates/content.md`)다.
 
-  `## 개요` — 주제와 왜 중요한지 (독자가 왜 읽어야 하는지)
-  `## 배경 / 사전 지식` — 선수 지식·용어 정의 (모르는 사람도 따라올 수 있게)
-  `## 핵심 개념` — 정의 + 작동 원리 (개념별 H3 분리 권장)
-  `## 작동 원리` — 단계별 설명
-  `## 코드 예시` — 실행 가능한 코드 최소 1개 블록 + 의미 설명
-  `## 함정·실수` — 흔한 실수와 회피법
-  `## 베스트 프랙티스` — 권장 패턴·대안
-  `## 참고` — 언급된 추가 자료 (없으면 "(영상 내 명시 없음)")
-
-  영상에 없는 항목은 자막에서 합리적으로 추론하거나 일반적인 베스트 프랙티스로
-  채운다. 짧게 압축하지 말고 학습 가능한 수준으로 쓴다.
-
-`id`·`date`·`day` 는 **쓰지 않는다.** 시스템이 매긴다.
+────────────────────────────────────────
+{format}
+────────────────────────────────────────
 
 {output}"""
 
@@ -192,7 +180,10 @@ class DerivedStage:
     async def __call__(self, request: GenerationInput) -> GenerationResult:
         preparation = (request.preparation.payload or {}) if request.preparation else {}
         payload = {**context_payload(request), "video": video_header(preparation)}
-        prompt = INSTRUCTION.format(output=OUTPUT_CONTRACT_LIST.format(shape=RESULT_SHAPE))
+        prompt = INSTRUCTION.format(
+            format=content_format(self.repo_root),
+            output=OUTPUT_CONTRACT_LIST.format(shape=RESULT_SHAPE),
+        )
 
         options: dict[str, Any] = {"cwd": self.work_dir} if self.work_dir else {}
         if request.session_ref:
