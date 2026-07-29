@@ -2,7 +2,7 @@
 type: work
 id: KDEV-WORK-016
 title: "비동기 실행 + 진행 표시 UI"
-status: in_progress
+status: done
 product: kknaks-dev
 work_type: refactor
 owner: kknaks
@@ -13,13 +13,13 @@ roles:
   be: kknaks
   qa: kknaks
   ops: kknaks
-progress: 90
+progress: 100
 created_at: 2026-07-29
 updated_at: 2026-07-29
 tags:
   - product/kknaks-dev
   - doc/work
-  - status/in_progress
+  - status/done
 links:
   baselines:
     - "[[baseline-003-inbox-approval-pipeline|KDEV-BL-003]]"
@@ -54,21 +54,21 @@ AI 호출을 사용자 요청 안에서 기다리지 않게 하고, 화면이 �
 |---|---|
 | Type | refactor |
 | Owner | kknaks |
-| Status | in_progress |
-| Progress | 90% |
+| Status | done |
+| Progress | 100% |
 | Blocker | 없음 |
-| Next | 배포 → 실운영 확인 (항목 #3 완주) |
+| Next | — |
 
 ## Role Assignment
 
 | Role | Assignee | Responsibility | Status |
 |---|---|---|---|
-| PM | kknaks | 범위 확정 | todo |
+| PM | kknaks | 범위 확정 | done |
 | Design | kknaks | 진행 표시 규칙 | done |
 | FE | kknaks | 폴링 + 스피너/비활성화 | done |
-| BE | kknaks | 제출/수확 분리 | done (P1·P2) |
-| QA | kknaks | 취소·중복·재시작 시나리오 | todo |
-| Ops | kknaks | 실운영 확인 | todo |
+| BE | kknaks | 제출/수확 분리 | done |
+| QA | kknaks | 취소·중복·재시작 시나리오 | done |
+| Ops | kknaks | 실운영 확인 | done |
 
 ## 배경 — 실운영에서 막혔다
 
@@ -129,7 +129,7 @@ concept 는 레포를 읽어 더 느려서 매번 끊겼다.
 
 ### Phase 1 — 제출/수확 분리 (BE)
 
-- **Status**: DONE (코드·테스트) / 실운영 확인 대기
+- **Status**: DONE
 - **작업**:
   - [x] 스테이지에서 `result()` 대기 제거 — `submit` 이 낸 `task_id` 반환
   - [x] `AITask` 에 `external_task_ref` + `running` 저장하고 커밋
@@ -137,7 +137,7 @@ concept 는 레포를 읽어 더 느려서 매번 끊겼다.
   - [x] 수확은 **멱등** (폴링 겹쳐도 두 번 채워지지 않음)
   - [x] 실패는 `AITask=failed` · `Gate=failed` + 기록 보존
 - **검증**:
-  - [ ] 승인 응답이 1초 안에 끝난다 — **실운영 측정은 배포 후**
+  - [x] 승인 응답이 1초 안에 끝난다 — 실운영 확인 (항목 #3·#4)
   - [x] 게이트 조회를 두 번 해도 revision 이 하나만 생긴다
   - [x] back 재시작 후에도 진행 중 작업을 이어 수확한다
 - **완료 증거**:
@@ -157,7 +157,7 @@ concept 는 레포를 읽어 더 느려서 매번 끊겼다.
 
 ### Phase 2 — 준비 단계도 비동기 (BE)
 
-- **Status**: DONE (코드·테스트) / 실운영 확인 대기
+- **Status**: DONE
 - **작업**:
   - [x] `prepare_item` 의 요약 호출을 제출/수확으로
   - [x] Slack 접수 회신을 "접수됨 — 준비 중" 으로
@@ -197,7 +197,7 @@ concept 는 레포를 읽어 더 느려서 매번 끊겼다.
 > 원래 코드의 `await client.result(task_id)` 는 버릴 것이 아니라 **요청 밖으로 옮길
 > 것**이었다. 폴링할 이유가 없다.
 
-- **Status**: DONE (코드·테스트) / 실운영 확인 대기
+- **Status**: DONE
 - **작업**:
   - [x] `PipelineDriver` — 항목 하나를 요청 밖에서 민다 (`service/pipeline/driver.py`)
   - [x] `await_execution` — 실행기 스트림으로 완료 대기 (폴링 아님)
@@ -223,7 +223,7 @@ concept 는 레포를 읽어 더 느려서 매번 끊겼다.
 
 ### Phase 3 — 화면 (FE)
 
-- **Status**: DONE (코드) / 실운영 확인 대기
+- **Status**: DONE
 - **작업**:
   - [x] `generating`·`preparing` 이면 자동 폴링(4초)
   - [x] 모든 액션 버튼에 스피너 + 진행 중 문구
@@ -232,7 +232,7 @@ concept 는 레포를 읽어 더 느려서 매번 끊겼다.
 - **검증**:
   - [x] 버튼을 눌렀는지 화면만 보고 알 수 있다 (코드 기준 — 육안은 배포 후)
   - [x] 진행 중 삭제가 눌리지 않는다 — `locked` 에 `running` 포함
-  - [ ] 폴링이 완료를 감지해 카드가 저절로 열린다 — **실운영 확인 필요**
+  - [x] 폴링이 완료를 감지해 카드가 저절로 열린다 — 실운영 확인 (항목 #4)
 - **완료 증거**:
   - **두 가지 「진행 중」을 분리했다.** `busy`(내 요청이 나가 있는 1초 남짓)와
     서버 상태(`preparing`·`generating`, 30~60초)는 다른 것이다. 섞으면 "버튼이 안
@@ -252,7 +252,7 @@ concept 는 레포를 읽어 더 느려서 매번 끊겼다.
 
 ## Pre-deploy Check
 
-- [ ] 진행 중이던 항목(#3)이 개편 후에도 이어서 승인된다
+- [x] 진행 중이던 항목(#3)이 개편 후에도 이어서 승인된다 — 마이그레이션·재시작 뒤에도 상태 무손상
 - [x] 마이그레이션 `0006` 은 `entrypoint.sh` 의 `alembic upgrade head` 가 자동 적용한다
 - [x] 부팅 시 `PipelineDriver.recover()` 가 진행 중이던 항목을 다시 따라붙는다
 
@@ -262,10 +262,49 @@ concept 는 레포를 읽어 더 느려서 매번 끊겼다.
 
 ## Done Criteria
 
-- [ ] 모든 Phase 가 `DONE` 이다.
-- [ ] `source_note` → `concept` → `derived` 승인이 끊김 없이 진행된다.
-- [ ] 버튼을 눌렀는지 화면만 보고 알 수 있다.
-- [ ] product `log.md` 와 `30-work/README.md` 가 갱신됐다.
+- [x] 모든 Phase 가 `DONE` 이다.
+- [x] `source_note` → `concept` → `derived` 승인이 끊김 없이 진행된다.
+- [x] 버튼을 눌렀는지 화면만 보고 알 수 있다.
+- [x] product `log.md` 와 `30-work/README.md` 가 갱신됐다.
+
+### 실운영 증거 (2026-07-29)
+
+**항목 #3** — 개편 전에 `source_note` 승인 대기로 멈춰 있던 것. 마이그레이션 `0006`
+적용과 컨테이너 재시작을 거쳤는데 상태가 무손상이었고, 남은 게이트를 승인해 발행까지 갔다.
+발행 커밋 `e87eb81` (reference 1 · concept 4 · content 1).
+
+**항목 #4** — Slack 투척부터 발행까지 **전 구간을 새 코드로** 완주. 이쪽이 진짜 검증이다.
+
+```text
+Slack 투척 → 즉시 회신 (수집도 기다리지 않음)
+  → [드라이버] 수집 → 요약 제출 → 완료 대기 → 수확 → in_review
+  → [드라이버] route 제출 → 완료 대기 → 수확 → 검토 대기
+  → route 승인       [즉시] → source_note 제출
+  → source_note 승인 [즉시] → concept 제출
+  → concept 승인     [즉시] → derived 제출
+  → derived 승인     [즉시] → 발행 → origin/main
+```
+
+발행 커밋 `57bbbf4` (reference 1 · concept 4 · content 1).
+**요청이 AI 를 기다린 곳이 한 군데도 없다. 폴링도 하지 않았다** — 실행기가 결과
+스트림으로 깨워 준 것을 드라이버가 받았다.
+
+`source_note` 승인은 발주 시점에 「**한 번도 성공하지 못했다**」고 적힌 단계다.
+
+### 이번 실행이 드러낸 잠복 결함 2건
+
+항목이 **발행까지 도달한 것이 처음**이라 그때까지 아무도 못 보고 있던 것들이다.
+
+1. **`permanent/ax-needs-information-coherence.md` 의 L4 위반** — `up:` 이 baseline(execution)
+   을 가리켜 synthesis → execution 이 됐다. WORK-013 이 이미 한 번 고쳤던 것을
+   reference 초기화(208be61)가 되살렸다. 기반이던 concept 가 사라져 방향만 고쳐서는
+   성립하지 않아 삭제했다.
+2. **교안 파일명 규약 위반** — `derived` 가 `C-023.md` 를 만들었는데 로더는 `{id}-` 를
+   파일명 prefix 로 요구한다(spec-01 §6.1). **파일 하나가 거부되는 데서 끝나지 않고
+   persona 로드 전체가 실패해** 사이트가 옛 데이터를 계속 서빙했다 — 콘텐츠 갱신이
+   통째로 멈춘 상태였다. `{id}-{slug}.md` 로 고치고 **발행 전 검증에 `CONTENT_FILENAME`
+   가드**를 넣었다. 그래프 검증이 `persona/contents/` 를 보지 않아(그래프 밖, DEC-008)
+   이 경로만 비어 있었다.
 
 ## Open Issues
 
