@@ -182,6 +182,8 @@ class TestDetailAndNote:
         body = detail.json()
         # 실패한 실행까지 보여야 재시도 판단이 선다.
         assert "preparations" in body and "ai_tasks" in body
+        # 발행 거부 사유도 화면이 읽을 수 있어야 한다 — 없으면 "발행 실패" 네 글자만 남는다.
+        assert body["apply_results"] == []
         assert body["status"] == "received"
 
     def test_note_update(self, client):

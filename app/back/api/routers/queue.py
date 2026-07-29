@@ -21,7 +21,15 @@ from sqlalchemy.ext.asyncio import AsyncSession
 import config
 from api.routers.auth import require_admin
 from core.db import get_db
-from core.models import AITask, Gate, GateFeedback, GateRevision, ItemPreparation, QueueItem
+from core.models import (
+    AITask,
+    ApplyResult,
+    Gate,
+    GateFeedback,
+    GateRevision,
+    ItemPreparation,
+    QueueItem,
+)
 from service.pipeline import chain
 from service.pipeline import gates as gates_service
 from service.pipeline import harvest_preparation, intake
@@ -168,6 +176,13 @@ async def get_item(item_id: int, db: AsyncSession = Depends(get_db)):
     tasks = (
         await db.scalars(select(AITask).where(AITask.item_id == item_id).order_by(AITask.id))
     ).all()
+    # 발행 결과도 준다 — **거부 사유가 화면에 없으면 재시도 판단이 서지 않는다.**
+    # 종전에는 항목이 `발행 실패` 로만 보이고 무엇이 막았는지는 DB 를 봐야 알 수 있었다.
+    applies = (
+        await db.scalars(
+            select(ApplyResult).where(ApplyResult.item_id == item_id).order_by(ApplyResult.id)
+        )
+    ).all()
     return {
         **_item_summary(item),
         "preparations": [
@@ -192,6 +207,18 @@ async def get_item(item_id: int, db: AsyncSession = Depends(get_db)):
                 "created_at": t.created_at.isoformat() if t.created_at else None,
             }
             for t in tasks
+        ],
+        "apply_results": [
+            {
+                "id": a.id,
+                "status": a.status,
+                "commit_ref": a.commit_ref,
+                "violations": a.violations,
+                "error_code": a.error_code,
+                "error_message": a.error_message,
+                "created_at": a.created_at.isoformat() if a.created_at else None,
+            }
+            for a in applies
         ],
     }
 

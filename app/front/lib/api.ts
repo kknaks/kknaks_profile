@@ -134,9 +134,21 @@ export type AiTask = {
   created_at: string | null;
 };
 
+/** 발행 결과 — 성공만이 아니라 **거부와 실패도** 남는다 (KDEV-SPEC-010). */
+export type ApplyResult = {
+  id: number;
+  status: string;
+  commit_ref: string | null;
+  violations: { rule: string; path?: string; detail?: string }[] | null;
+  error_code: string | null;
+  error_message: string | null;
+  created_at: string | null;
+};
+
 export type QueueItemDetail = QueueItem & {
   preparations: Preparation[];
   ai_tasks: AiTask[];
+  apply_results: ApplyResult[];
 };
 
 export type RouteResult = {
@@ -259,6 +271,12 @@ export const queueApi = {
   retryPrepare: (id: number) =>
     queueFetch<{ status: string; version: number | null; error_code: string | null }>(
       `${QUEUE}/items/${id}/prepare`,
+      { method: "POST" },
+    ),
+  /** 발행 재시도 — **AI 를 다시 부르지 않는다.** 저장된 계획으로 다시 쓴다(DEC-012 D5). */
+  retryPublish: (id: number) =>
+    queueFetch<{ item_status: string; status: string; error_code: string | null }>(
+      `${QUEUE}/items/${id}/publish`,
       { method: "POST" },
     ),
   remove: (id: number) =>

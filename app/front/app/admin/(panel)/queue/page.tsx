@@ -199,6 +199,7 @@ function Detail({
   useEffect(() => setNote(item.note ?? ""), [item.id, item.note]);
 
   const lastPrep = item.preparations[item.preparations.length - 1];
+  const lastApply = item.apply_results[item.apply_results.length - 1];
   const failedTasks = item.ai_tasks.filter((t) => t.status === "failed");
   const running = itemInFlight(item.status) || gates.some(gateInFlight);
   // 진행 중에는 **삭제를 포함해** 전부 잠근다. 만드는 중에 지우면 실행기 큐에는
@@ -317,6 +318,42 @@ function Detail({
           </>
         )}
       </div>
+
+      {/* 발행 결과 — **거부 사유가 없으면 재시도 판단이 안 선다.**
+          검증은 쓰기 전에 전부 돌고, 하나라도 걸리면 아무것도 쓰지 않는다. */}
+      {lastApply && lastApply.status !== "succeeded" && (
+        <div style={{ ...box, marginTop: 12, padding: 12, borderColor: "#f85149" }}>
+          <div style={{ fontSize: 12, color: "#f85149" }}>
+            발행 {lastApply.status === "rejected" ? "거부" : "실패"} ·{" "}
+            {lastApply.error_code ?? "—"}
+          </div>
+          {lastApply.error_message && (
+            <p style={{ fontSize: 12.5, color: "var(--fg-2)", margin: "6px 0 0" }}>
+              {lastApply.error_message}
+            </p>
+          )}
+          {lastApply.violations?.map((v, i) => (
+            <p
+              key={i}
+              className="mono"
+              style={{ fontSize: 11, color: "var(--fg-3)", margin: "6px 0 0", lineHeight: 1.6 }}
+            >
+              [{v.rule}] {v.path} — {v.detail}
+            </p>
+          ))}
+          <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 10 }}>
+            <button
+              type="button"
+              disabled={locked || item.status !== "publish_failed"}
+              title="AI 를 다시 부르지 않습니다. 저장된 계획으로 다시 씁니다."
+              onClick={() => run("발행", () => queueApi.retryPublish(item.id))}
+              style={btn("primary")}
+            >
+              {busy === "발행" ? <><Spinner />요청 보내는 중…</> : "발행 재시도"}
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* 실패 이력 — 재시도 판단의 근거라 감추지 않는다. */}
       {failedTasks.length > 0 && (
