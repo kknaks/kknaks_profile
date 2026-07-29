@@ -41,9 +41,21 @@ export default function AdminPanelLayout({ children }: { children: React.ReactNo
   }
 
   return (
-    <div style={{ display: "flex", minHeight: "100vh", background: "var(--bg-0)" }}>
+    // 페이지 전체가 아니라 **본문만** 스크롤한다.
+    // sticky 사이드바는 페이지가 스크롤되면 같이 밀려 올라간다 — 화면을 뷰포트에
+    // 가두고 오른쪽에 자체 스크롤을 주면 사이드바는 절대 움직이지 않는다.
+    <div
+      style={{
+        display: "flex",
+        height: "100vh",
+        overflow: "hidden",
+        background: "var(--bg-0)",
+      }}
+    >
       <AdminSidebar user={user} onLogout={onLogout} />
-      <main style={{ flex: 1, minWidth: 0 }}>{children}</main>
+      <main className="admin-scroll" style={{ flex: 1, minWidth: 0, overflowY: "auto" }}>
+        {children}
+      </main>
     </div>
   );
 }

@@ -38,15 +38,12 @@ export function AdminSidebar({
       style={{
         width: 232,
         flexShrink: 0,
-        minHeight: "100vh",
         background: "var(--bg-1)",
         borderRight: "1px solid var(--line-1)",
         display: "flex",
         flexDirection: "column",
-        position: "sticky",
-        top: 0,
-        alignSelf: "flex-start",
-        height: "100vh",
+        // 셸이 뷰포트 높이를 잡고 있다 — sticky 없이 그 높이를 그대로 채운다.
+        height: "100%",
       }}
     >
       {/* Brand */}
