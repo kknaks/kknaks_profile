@@ -18,7 +18,7 @@ tags:
 title:
   en: Combination Sum
   ko: 조합의 합
-today: true
+today: false
 type: algorithm
 updated: '2026-07-28'
 visible: true
