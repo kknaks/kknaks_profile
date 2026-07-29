@@ -34,6 +34,10 @@ from .common import OUTPUT_CONTRACT_LIST, context_payload, parse_json_output
 KST = ZoneInfo("Asia/Seoul")
 CONTENTS_DIR = "persona/contents"
 _ID_RE = re.compile(r"C-(\d+)")
+#: 파일명 slug 로 쓸 수 없는 문자.
+_SLUG_RE = re.compile(r"[^a-z0-9]+")
+#: 제목이 비거나 전부 비-ASCII 라 slug 를 못 만들 때.
+_FALLBACK_SLUG = "content"
 
 RESULT_SHAPE = """{
   "title":   {"ko": "...", "en": "..."},
@@ -93,6 +97,21 @@ def format_duration(seconds: Any) -> str:
     return f"{total // 60}:{total % 60:02d}"
 
 
+def content_slug(title_en: str) -> str:
+    """`C-023-database-selection-guide` 의 뒷부분.
+
+    **`C-023.md` 로는 안 된다.** 로더가 `{id}-` 를 파일명 prefix 로 요구한다
+    (spec-01 §6.1, `persona_loader` contents 검사). 규약을 어기면 파일이 거부되는
+    데서 끝나지 않고 **persona 로드 전체가 실패해** 사이트가 옛 데이터를 계속
+    서빙한다 — 콘텐츠 갱신이 통째로 멈춘다.
+    """
+    slug = _SLUG_RE.sub("-", (title_en or "").lower()).strip("-")
+    # 너무 길면 파일명이 다루기 어려워진다. 단어 경계에서 자른다.
+    if len(slug) > 60:
+        slug = slug[:60].rsplit("-", 1)[0]
+    return slug or _FALLBACK_SLUG
+
+
 def _require(data: dict[str, Any], key: str, kind: type) -> Any:
     value = data.get(key)
     if not isinstance(value, kind) or (kind in (str, list, dict) and not value):
@@ -125,6 +144,7 @@ def build_content_note(
         raise GateError("INVALID_DERIVED_OUTPUT", "본문에 「개요」 섹션이 없다")
 
     content_id, day_index = next_content_id(repo_root)
+    stem = f"{content_id}-{content_slug(title.get('en', ''))}"
     header = video_header(preparation_payload)
     stamp = datetime.now(KST)
     meta: dict[str, Any] = {
@@ -151,9 +171,9 @@ def build_content_note(
 
     rendered = frontmatter.dumps(frontmatter.Post(content=body, **meta))
     return {
-        "filename_stem": content_id,
+        "filename_stem": stem,
         "content": rendered,
-        "target_path": f"{CONTENTS_DIR}/{content_id}.md",
+        "target_path": f"{CONTENTS_DIR}/{stem}.md",
         "content_id": content_id,
     }
 

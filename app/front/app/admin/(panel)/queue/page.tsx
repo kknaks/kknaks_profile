@@ -39,6 +39,8 @@ const STATUS_META: Record<string, { label: string; tone: string; order: number }
   received: { label: "접수됨", tone: "var(--fg-2)", order: 3 },
   preparing: { label: "준비 중", tone: "var(--fg-2)", order: 4 },
   publishing: { label: "발행 중", tone: "var(--fg-2)", order: 5 },
+  published: { label: "발행됨", tone: "#3fb950", order: 6 },
+  discarded: { label: "폐기됨", tone: "var(--fg-4)", order: 7 },
 };
 
 const box = {
@@ -319,6 +321,23 @@ function Detail({
         )}
       </div>
 
+      {/* 발행 성공 — **끝났다는 말이 없으면 사라진 것과 구분되지 않는다.**
+          발행되면 항목이 기본 목록에서 빠지기 때문에 더욱 그렇다. */}
+      {lastApply?.status === "succeeded" && (
+        <div style={{ ...box, marginTop: 12, padding: 12, borderColor: "#3fb950" }}>
+          <div style={{ fontSize: 12, color: "#3fb950" }}>발행 완료</div>
+          <p className="mono" style={{ fontSize: 11, color: "var(--fg-3)", margin: "6px 0 0" }}>
+            {item.published_at
+              ? new Date(item.published_at).toLocaleString("ko-KR")
+              : "—"}{" "}
+            · {lastApply.commit_ref?.slice(0, 12) ?? "—"}
+          </p>
+          <p style={{ fontSize: 12.5, color: "var(--fg-2)", margin: "6px 0 0" }}>
+            레포에 커밋됐습니다. 이 항목은 완료 처리되어 기본 목록에서 빠집니다.
+          </p>
+        </div>
+      )}
+
       {/* 발행 결과 — **거부 사유가 없으면 재시도 판단이 안 선다.**
           검증은 쓰기 전에 전부 돌고, 하나라도 걸리면 아무것도 쓰지 않는다. */}
       {lastApply && lastApply.status !== "succeeded" && (
@@ -424,13 +443,16 @@ export default function QueuePage() {
   const [gates, setGates] = useState<Gate[]>([]);
   const [adding, setAdding] = useState(false);
   const [loading, setLoading] = useState(true);
+  // 발행·폐기된 항목은 기본으로 감춘다 — 끝난 것이 검토 대기와 섞이면 할 일이 안 보인다.
+  // 다만 **볼 방법은 있어야 한다.** 방금 발행한 것을 다시 열 수 없으면 사라진 것과 같다.
+  const [showDone, setShowDone] = useState(false);
 
   const reloadList = useCallback(async () => {
-    const { items } = await queueApi.list();
+    const { items } = await queueApi.list(showDone);
     setItems(items);
     setLoading(false);
     return items;
-  }, []);
+  }, [showDone]);
 
   const reloadDetail = useCallback(async (id: number) => {
     const [d, g] = await Promise.all([queueApi.detail(id), queueApi.gates(id)]);
@@ -452,11 +474,15 @@ export default function QueuePage() {
   }, [selected, reloadDetail]);
 
   const onChanged = useCallback(async () => {
-    const fresh = await reloadList();
-    if (selected !== null) {
-      // 승인·삭제로 목록에서 빠졌으면 상세를 닫는다.
-      if (!fresh.some((i) => i.id === selected)) setSelected(null);
-      else await reloadDetail(selected);
+    await reloadList();
+    if (selected === null) return;
+    // **목록에서 빠졌다고 상세를 닫지 않는다.** 발행되면 기본 목록에서 감춰지는데,
+    // 그때 화면까지 비면 "성공했다"와 "사라졌다"가 구분되지 않는다.
+    // 정말 없어진 경우(삭제)만 닫는다 — 상세 조회가 404 로 알려 준다.
+    try {
+      await reloadDetail(selected);
+    } catch {
+      setSelected(null);
     }
   }, [reloadList, reloadDetail, selected]);
 
@@ -500,9 +526,18 @@ export default function QueuePage() {
             승인 전에는 레포에 아무것도 쓰이지 않습니다.
           </p>
         </div>
-        <button type="button" onClick={() => setAdding(true)} style={btn("primary")}>
-          항목 추가
-        </button>
+        <div style={{ display: "flex", gap: 8 }}>
+          <button
+            type="button"
+            onClick={() => setShowDone((v) => !v)}
+            style={btn(showDone ? "primary" : "ghost")}
+          >
+            {showDone ? "진행 중만 보기" : "완료 항목 보기"}
+          </button>
+          <button type="button" onClick={() => setAdding(true)} style={btn("primary")}>
+            항목 추가
+          </button>
+        </div>
       </header>
 
       <div style={{ display: "flex", gap: 20, alignItems: "flex-start" }}>

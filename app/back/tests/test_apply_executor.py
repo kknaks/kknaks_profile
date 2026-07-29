@@ -179,6 +179,55 @@ class TestLayerPathMatch:
         assert any(v.rule == "UNKNOWN_TYPE" for v in violations)
 
 
+class TestContentFilename:
+    """교안은 `{id}-{slug}.md` 여야 한다 (spec-01 §6.1).
+
+    **어기면 파일 하나가 거부되는 데서 끝나지 않는다** — 로더가 예외를 던져
+    persona 로드 전체가 실패하고, 사이트는 옛 데이터를 계속 서빙한다.
+    실제로 `C-023.md` 가 그렇게 나가서 콘텐츠 갱신이 멈췄다. 이 가드는 그 재발을 막는다.
+    """
+
+    def _content(self, path: str, content_id: str = "C-001"):
+        return _action(
+            path=path,
+            content=f"---\ntype: content\nid: {content_id}\ntitle: T\n---\n본문",
+            note_type="content",
+            stem=path.rsplit("/", 1)[-1][:-3],
+        )
+
+    def test_bare_id_filename_rejected(self, repo):
+        violations = validate_plan([self._content("persona/contents/C-001.md")], repo_root=repo)
+        assert any(v.rule == "CONTENT_FILENAME" for v in violations)
+
+    def test_id_prefixed_filename_accepted(self, repo):
+        violations = validate_plan(
+            [self._content("persona/contents/C-001-database-guide.md")], repo_root=repo
+        )
+        assert not [v for v in violations if v.rule == "CONTENT_FILENAME"]
+
+    def test_mismatched_id_rejected(self, repo):
+        """파일명 번호와 frontmatter id 가 다르면 로더가 못 읽는다."""
+        violations = validate_plan(
+            [self._content("persona/contents/C-002-guide.md", content_id="C-001")],
+            repo_root=repo,
+        )
+        assert any(v.rule == "CONTENT_FILENAME" for v in violations)
+
+    def test_missing_id_rejected(self, repo):
+        violations = validate_plan(
+            [
+                _action(
+                    path="persona/contents/C-001-guide.md",
+                    content="---\ntype: content\ntitle: T\n---\n본문",
+                    note_type="content",
+                    stem="C-001-guide",
+                )
+            ],
+            repo_root=repo,
+        )
+        assert any(v.rule == "MISSING_CONTENT_ID" for v in violations)
+
+
 class TestUpAndDuplicates:
     def test_concept_without_up_rejected(self, repo):
         content = CONCEPT_MD.replace("up:\n  - 2026-07-28-sample-source\n", "")

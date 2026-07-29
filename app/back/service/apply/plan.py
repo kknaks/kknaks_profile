@@ -133,6 +133,27 @@ def build_actions(approved: dict[str, dict[str, Any]]) -> list[FileAction]:
     return actions
 
 
+def _content_filename_violations(action: FileAction, path: str) -> list[Violation]:
+    """교안 파일명이 로더 규약(`{id}-...`)을 지키는지."""
+    try:
+        meta = frontmatter.loads(action.content).metadata
+    except Exception:  # noqa: BLE001
+        meta = {}
+    content_id = str(meta.get("id") or "").strip()
+    if not content_id:
+        return [Violation("MISSING_CONTENT_ID", path, "교안에 id 가 없다")]
+    stem = path.rsplit("/", 1)[-1][: -len(".md")]
+    if not stem.startswith(f"{content_id}-"):
+        return [
+            Violation(
+                "CONTENT_FILENAME",
+                path,
+                f"파일명이 '{content_id}-' 로 시작해야 한다 — 로더가 거부하면 persona 로드 전체가 실패한다",
+            )
+        ]
+    return []
+
+
 def validate_plan(
     actions: list[FileAction],
     *,
@@ -181,6 +202,12 @@ def validate_plan(
             violations.append(
                 Violation("LAYER_PATH_MISMATCH", path, "종합 노트가 concept 디렉토리에 있다")
             )
+        elif action.note_type == "content":
+            # 교안은 `{id}-{slug}.md` 여야 한다 (spec-01 §6.1). 규약을 어기면 파일
+            # 하나가 거부되는 데서 끝나지 않고 **persona 로드 전체가 실패해** 사이트가
+            # 옛 데이터를 계속 서빙한다 — 콘텐츠 갱신이 통째로 멈춘다.
+            # 발행 뒤에야 알게 되므로 나가기 전에 잡는다.
+            violations.extend(_content_filename_violations(action, path))
 
         # 3. `up:` 필수 (concept·permanent)
         if action.note_type in ("concept", "permanent"):

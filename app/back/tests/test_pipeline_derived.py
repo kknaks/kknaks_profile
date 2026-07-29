@@ -24,6 +24,7 @@ from service.pipeline.chain import advance, reopen_route
 from service.pipeline.gates import GateError, harvest, open_first_gate
 from tests.fakes import FakeRunner
 from service.pipeline.stages.derived import (
+    content_slug,
     build_content_note,
     format_duration,
     next_content_id,
@@ -92,7 +93,48 @@ class TestSystemAssignedFields:
         assert meta["id"] == "C-001" and meta["day"] == "Day 01"
 
     def test_target_path_is_assembled(self, repo):
-        assert _build(repo)["target_path"] == "persona/contents/C-001.md"
+        assert _build(repo)["target_path"] == "persona/contents/C-001-title.md"
+
+
+class TestFilenameConvention:
+    """**`C-001.md` 로는 안 된다** — 로더가 `{id}-` 를 파일명 prefix 로 요구한다
+    (spec-01 §6.1). 어기면 파일 하나가 거부되는 데서 끝나지 않고 persona 로드
+    전체가 실패해 사이트가 옛 데이터를 계속 서빙한다.
+
+    실제로 그렇게 나갔다 — `C-023.md` 가 발행되고 콘텐츠 갱신이 멈췄다.
+    """
+
+    def test_filename_starts_with_id_and_dash(self, repo):
+        note = _build(repo, {"title": {"ko": "제목", "en": "Database Selection Guide"}})
+        assert note["target_path"] == "persona/contents/C-001-database-selection-guide.md"
+        assert note["filename_stem"] == "C-001-database-selection-guide"
+        # 로더가 실제로 요구하는 형태 그대로 확인한다.
+        assert note["filename_stem"].startswith("C-001-")
+
+    def test_loader_accepts_the_generated_name(self, repo):
+        """규약을 코드로 옮겨 적지 않고 **로더의 검사 자체**를 태운다."""
+        from pathlib import Path as _P
+
+        note = _build(repo)
+        meta = frontmatter.loads(note["content"]).metadata
+        stem = _P(note["target_path"]).stem
+        assert stem.startswith(f"{meta['id']}-")
+
+    @pytest.mark.parametrize(
+        "title_en, expected",
+        [
+            ("Title: With Punctuation!", "title-with-punctuation"),
+            ("  spaced  out  ", "spaced-out"),
+            ("한글만", "content"),  # slug 를 못 만들면 fallback
+            ("", "content"),
+        ],
+    )
+    def test_slug_is_filename_safe(self, title_en, expected):
+        assert content_slug(title_en) == expected
+
+    def test_long_title_is_cut_at_a_word_boundary(self):
+        slug = content_slug("a" * 30 + " " + "b" * 40)
+        assert len(slug) <= 60 and not slug.endswith("-")
 
 
 class TestNoPendingStatus:
