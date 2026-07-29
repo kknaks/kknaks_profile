@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { GateCard, Spinner, btn } from "@/components/admin/queue-gate";
+import { GateCard, Spinner, btn, gateInFlight } from "@/components/admin/queue-gate";
 import {
   QueueError,
   queueApi,
@@ -15,7 +15,22 @@ import {
  * 좌: 상태별로 묶인 목록. 우: 선택 항목의 준비 상태 + 게이트 스택.
  *
  * **실패가 눈에 띄어야 한다.** 조용히 묻히면 승인한 게 사라진 줄도 모른다.
+ *
+ * **진행 중이면 폴링한다** (KDEV-WORK-016 P3). 실행은 요청 밖에서 돌고 서버가 그것을
+ * 끝까지 민다 — 화면이 할 일은 그 진행을 **보여주는 것**뿐이다. 그래서 주기가 조금
+ * 느슨해도 진행이 멈추지 않는다. 창을 닫아도 서버는 계속 간다.
  */
+
+//: 폴링 주기. 서버가 스스로 밀기 때문에 이 값이 진행 속도를 정하지 않는다 —
+//: 화면이 얼마나 빨리 따라붙는지만 정한다.
+const POLL_MS = 4000;
+
+//: 서버가 무언가 하고 있는 항목 상태. 조작을 잠그고 폴링을 켠다.
+const ITEM_IN_FLIGHT = ["received", "preparing", "publishing"];
+
+function itemInFlight(status: string): boolean {
+  return ITEM_IN_FLIGHT.includes(status);
+}
 
 const STATUS_META: Record<string, { label: string; tone: string; order: number }> = {
   prepare_failed: { label: "준비 실패", tone: "#f85149", order: 0 },
@@ -175,8 +190,8 @@ function Detail({
   gates: Gate[];
   onChanged: () => void;
 }) {
-  // 무엇을 하는 중인지 담는다 — 단순 boolean 이면 "왜 멈춰 있는지"를 화면이 못 말한다.
-  // 준비·발행은 AI 를 타서 30~60초 걸린다. 표시가 없으면 죽은 걸로 보여 두 번 누르게 된다.
+  // 내 요청이 나가 있는 짧은 순간. 서버가 만드는 시간(`preparing`)과는 다른 것이다 —
+  // 섞으면 "버튼이 안 먹은 것"과 "AI 가 도는 것"이 같은 모양이 된다.
   const [busy, setBusy] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [note, setNote] = useState(item.note ?? "");
@@ -185,6 +200,10 @@ function Detail({
 
   const lastPrep = item.preparations[item.preparations.length - 1];
   const failedTasks = item.ai_tasks.filter((t) => t.status === "failed");
+  const running = itemInFlight(item.status) || gates.some(gateInFlight);
+  // 진행 중에는 **삭제를 포함해** 전부 잠근다. 만드는 중에 지우면 실행기 큐에는
+  // 남은 작업이 돌고 DB 에는 대상이 없는 상태가 된다.
+  const locked = !!busy || running;
 
   async function run(label: string, fn: () => Promise<unknown>) {
     if (busy) return; // 이미 도는 요청이 있으면 무시 — 중복 실행이 준비 버전을 쌓는다
@@ -237,20 +256,20 @@ function Detail({
         <div style={{ display: "flex", gap: 8, justifyContent: "flex-end", marginTop: 8 }}>
           <button
             type="button"
-            disabled={!!busy || note === (item.note ?? "")}
+            disabled={locked || note === (item.note ?? "")}
             onClick={() => run("메모 저장", () => queueApi.updateNote(item.id, note))}
             style={btn("ghost")}
           >
             {busy === "메모 저장" ? <><Spinner />저장 중…</> : "메모 저장"}
           </button>
-          {(item.status === "prepare_failed" || item.status === "received") && (
+          {item.status === "prepare_failed" && (
             <button
               type="button"
-              disabled={!!busy}
+              disabled={locked}
               onClick={() => run("준비", () => queueApi.retryPrepare(item.id))}
               style={btn("primary")}
             >
-              {busy === "준비" ? <><Spinner />준비 중… (최대 1분)</> : "준비 재시도"}
+              {busy === "준비" ? <><Spinner />요청 보내는 중…</> : "준비 재시도"}
             </button>
           )}
         </div>
@@ -315,13 +334,22 @@ function Detail({
         </div>
       )}
 
-      {busy && (
-        <p
-          className="mono"
-          style={{ fontSize: 12, color: "var(--accent)", marginTop: 10 }}
-        >
+      {/* 게이트 진행은 게이트 카드가 말한다 — 같은 말을 두 곳에서 하지 않는다. */}
+      {itemInFlight(item.status) && (
+        <p className="mono" style={{ fontSize: 12, color: "var(--accent)", marginTop: 10 }}>
           <Spinner />
-          {busy} 진행 중… AI 를 타는 단계라 1분까지 걸립니다. 이 창을 닫지 마세요.
+          {item.status === "preparing"
+            ? "수집과 요약이 진행 중입니다 (30~60초)."
+            : item.status === "received"
+              ? "준비를 시작하는 중입니다."
+              : "발행 중입니다."}{" "}
+          <b>창을 닫아도 서버에서 계속 진행됩니다.</b>
+        </p>
+      )}
+      {busy && !running && (
+        <p className="mono" style={{ fontSize: 12, color: "var(--accent)", marginTop: 10 }}>
+          <Spinner />
+          {busy} 요청을 보내는 중…
         </p>
       )}
       {error && <p style={{ color: "#f85149", fontSize: 12, marginTop: 10 }}>{error}</p>}
@@ -330,7 +358,7 @@ function Detail({
       <h3 style={{ fontSize: 13, color: "var(--fg-2)", margin: "22px 0 0" }}>승인 게이트</h3>
       {gates.length === 0 && (
         <p style={{ fontSize: 12.5, color: "var(--fg-3)", marginTop: 8 }}>
-          아직 게이트가 없습니다. 준비가 끝나면 목적지 게이트가 열립니다.
+          아직 게이트가 없습니다. 준비가 끝나면 목적지 게이트가 저절로 열립니다.
         </p>
       )}
       {gates.map((g) => (
@@ -340,7 +368,8 @@ function Detail({
       <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 24 }}>
         <button
           type="button"
-          disabled={!!busy || item.status === "publishing"}
+          disabled={locked}
+          title={running ? "진행 중에는 삭제할 수 없습니다." : undefined}
           onClick={() => run("삭제", () => queueApi.remove(item.id))}
           style={btn("danger")}
         >
@@ -393,6 +422,33 @@ export default function QueuePage() {
       else await reloadDetail(selected);
     }
   }, [reloadList, reloadDetail, selected]);
+
+  // 진행 중인 것이 하나라도 있으면 따라붙는다. 없으면 폴링하지 않는다 —
+  // 아무것도 안 도는데 4초마다 두드릴 이유가 없다.
+  const polling =
+    items.some((i) => itemInFlight(i.status)) ||
+    (detail !== null && itemInFlight(detail.status)) ||
+    gates.some(gateInFlight);
+
+  useEffect(() => {
+    if (!polling) return;
+    // 겹치지 않게 한 번 끝나면 다음을 잡는다. `setInterval` 은 응답이 늦으면 요청을 쌓는다.
+    let alive = true;
+    let timer: ReturnType<typeof setTimeout>;
+    const tick = async () => {
+      try {
+        await onChanged();
+      } catch {
+        // 한 번 실패해도 폴링을 멈추지 않는다 — 잠깐 끊긴 것일 수 있다.
+      }
+      if (alive) timer = setTimeout(tick, POLL_MS);
+    };
+    timer = setTimeout(tick, POLL_MS);
+    return () => {
+      alive = false;
+      clearTimeout(timer);
+    };
+  }, [polling, onChanged]);
 
   const grouped = [...items].sort(
     (a, b) => statusMeta(a.status).order - statusMeta(b.status).order,

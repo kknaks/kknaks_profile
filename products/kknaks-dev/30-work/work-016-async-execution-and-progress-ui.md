@@ -13,7 +13,7 @@ roles:
   be: kknaks
   qa: kknaks
   ops: kknaks
-progress: 80
+progress: 90
 created_at: 2026-07-29
 updated_at: 2026-07-29
 tags:
@@ -55,17 +55,17 @@ AI 호출을 사용자 요청 안에서 기다리지 않게 하고, 화면이 �
 | Type | refactor |
 | Owner | kknaks |
 | Status | in_progress |
-| Progress | 80% |
+| Progress | 90% |
 | Blocker | 없음 |
-| Next | Phase 3 화면(폴링·스피너) → 배포·실운영 확인 |
+| Next | 배포 → 실운영 확인 (항목 #3 완주) |
 
 ## Role Assignment
 
 | Role | Assignee | Responsibility | Status |
 |---|---|---|---|
 | PM | kknaks | 범위 확정 | todo |
-| Design | kknaks | 진행 표시 규칙 | todo |
-| FE | kknaks | 폴링 + 스피너/비활성화 | todo |
+| Design | kknaks | 진행 표시 규칙 | done |
+| FE | kknaks | 폴링 + 스피너/비활성화 | done |
 | BE | kknaks | 제출/수확 분리 | done (P1·P2) |
 | QA | kknaks | 취소·중복·재시작 시나리오 | todo |
 | Ops | kknaks | 실운영 확인 | todo |
@@ -223,21 +223,38 @@ concept 는 레포를 읽어 더 느려서 매번 끊겼다.
 
 ### Phase 3 — 화면 (FE)
 
-- **Status**: TODO
+- **Status**: DONE (코드) / 실운영 확인 대기
 - **작업**:
-  - [ ] `generating`·`preparing` 이면 자동 폴링(3~5초)
-  - [ ] 모든 액션 버튼에 스피너 + 진행 중 문구
-  - [ ] 진행 중에는 **삭제 포함 전 버튼 비활성화**
-  - [ ] 실패 시 사유와 `재시도` 노출
+  - [x] `generating`·`preparing` 이면 자동 폴링(4초)
+  - [x] 모든 액션 버튼에 스피너 + 진행 중 문구
+  - [x] 진행 중에는 **삭제 포함 전 버튼 비활성화**
+  - [x] 실패 시 사유와 `재시도` 노출
 - **검증**:
-  - [ ] 버튼을 눌렀는지 화면만 보고 알 수 있다
-  - [ ] 진행 중 삭제가 눌리지 않는다
-  - [ ] 폴링이 완료를 감지해 카드가 저절로 열린다
-- **완료 증거**: 미작성
+  - [x] 버튼을 눌렀는지 화면만 보고 알 수 있다 (코드 기준 — 육안은 배포 후)
+  - [x] 진행 중 삭제가 눌리지 않는다 — `locked` 에 `running` 포함
+  - [ ] 폴링이 완료를 감지해 카드가 저절로 열린다 — **실운영 확인 필요**
+- **완료 증거**:
+  - **두 가지 「진행 중」을 분리했다.** `busy`(내 요청이 나가 있는 1초 남짓)와
+    서버 상태(`preparing`·`generating`, 30~60초)는 다른 것이다. 섞으면 "버튼이 안
+    먹은 것"과 "AI 가 도는 것"이 같은 모양이 되어 사람이 다시 누른다.
+  - 종전 문구가 이제 거짓이 됐다 — 「승인 중… 다음 단계를 만드는 중입니다 (최대 1분)」,
+    「이 창을 닫지 마세요」. 요청은 1초 안에 끝나고 **창을 닫아도 서버가 계속 민다.**
+    문구를 사실에 맞췄다.
+  - 폴링은 `setTimeout` 체인이다. `setInterval` 은 응답이 늦으면 요청을 쌓는다.
+    진행 중인 것이 없으면 아예 돌지 않는다.
+  - **폴링 주기가 진행 속도를 정하지 않는다.** 서버(드라이버)가 스스로 밀기 때문에
+    4초는 "화면이 얼마나 빨리 따라붙는가"일 뿐이다. P2.5 전이었다면 이 값이 곧
+    파이프라인 속도였다.
+  - `준비 재시도` 버튼을 `prepare_failed` 에서만 띄운다 — `received` 는 드라이버가
+    자동으로 집어간다.
+  - `npm run build` green, `tsc --noEmit` green. **FE 자동 테스트는 없다**(테스트 러너
+    미설치) — 화면 동작은 배포 후 육안 확인이 유일한 검증이다.
 
 ## Pre-deploy Check
 
 - [ ] 진행 중이던 항목(#3)이 개편 후에도 이어서 승인된다
+- [x] 마이그레이션 `0006` 은 `entrypoint.sh` 의 `alembic upgrade head` 가 자동 적용한다
+- [x] 부팅 시 `PipelineDriver.recover()` 가 진행 중이던 항목을 다시 따라붙는다
 
 ## Rollback
 

@@ -18,6 +18,13 @@ import {
  * 모달에서 받는다. 카드 안에 입력창이 있으면 "적다 말고 승인"이 쉬워진다.
  *
  * 승인된 게이트는 접는다. 지금 봐야 할 것 하나만 펼쳐져 있어야 한다.
+ *
+ * **두 가지 "진행 중"을 섞지 않는다** (KDEV-WORK-016 P3).
+ *
+ *     busy            내 요청이 나가 있는 짧은 순간. 응답은 1초 안에 온다.
+ *     generating      서버가 AI 로 제안을 만드는 중. 30~60초. 폴링이 감지한다.
+ *
+ * 섞으면 "버튼이 안 먹은 것"과 "AI 가 도는 것"이 같은 모양이 되어, 사람이 다시 누른다.
  */
 
 const STAGE_LABEL: Record<string, string> = {
@@ -50,6 +57,11 @@ const box = {
   borderRadius: 6,
   background: "var(--bg-1)",
 };
+
+/** 서버가 지금 만들고 있는 게이트 — 화면은 폴링하고 조작은 잠근다. */
+export function gateInFlight(gate: { status: string }): boolean {
+  return gate.status === "generating" || gate.status === "regenerating";
+}
 
 function Badge({ status }: { status: string }) {
   const meta = STATUS_LABEL[status] ?? { text: status, tone: "idle" as const };
@@ -589,8 +601,9 @@ export function GateCard({
     isConcepts(active?.payload) ? active.payload.concepts : [],
   );
   const [feedbackOpen, setFeedbackOpen] = useState(false);
-  // 무엇을 하는 중인지 담는다 — 승인은 다음 게이트의 AI 호출까지 기다려서 1분 가까이
-  // 걸린다. boolean 이면 화면이 "왜 멈춰 있는지"를 말하지 못해 다시 누르게 된다.
+  // 무엇을 보내는 중인지 담는다. boolean 이면 화면이 "왜 멈춰 있는지"를 말하지 못한다.
+  // 요청 자체는 1초 안에 끝난다 — 오래 걸리는 것은 그 뒤 서버가 만드는 시간이고,
+  // 그건 `generating` 배지와 폴링이 말한다.
   const [busy, setBusy] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -605,6 +618,10 @@ export function GateCard({
   }, [active?.id, active?.payload, gate.status]);
 
   const canAct = gate.status === "review_pending" || gate.status === "feedback_pending";
+  const inFlight = gateInFlight(gate);
+  // 진행 중이면 손을 못 대게 한다 — 지금 만들어지는 것을 앞질러 조작하면
+  // 사람이 보지 않은 내용이 확정되거나 중복 실행이 쌓인다.
+  const locked = !!busy || inFlight;
 
   async function run(label: string, fn: () => Promise<unknown>) {
     if (busy) return; // 이미 도는 요청이 있으면 무시 — 중복 실행 차단
@@ -686,7 +703,7 @@ export function GateCard({
             active?.payload &&
             !isNote(active.payload) &&
             !isConcepts(active.payload) && (
-            <RouteEditor value={draft} disabled={!canAct || !!busy} onChange={setDraft} />
+            <RouteEditor value={draft} disabled={!canAct || locked} onChange={setDraft} />
             )}
 
           {isNote(active?.payload) && <NotePreview payload={active.payload} />}
@@ -694,7 +711,7 @@ export function GateCard({
           {isConcepts(active?.payload) && (
             <ConceptList
               concepts={concepts}
-              disabled={!canAct || !!busy}
+              disabled={!canAct || locked}
               onChange={setConcepts}
             />
           )}
@@ -705,10 +722,17 @@ export function GateCard({
             </p>
           )}
 
-          {busy && (
+          {inFlight && (
             <p className="mono" style={{ fontSize: 12, color: "var(--accent)", marginTop: 8 }}>
               <Spinner />
-              {busy} 진행 중… AI 를 타는 단계라 1분까지 걸립니다.
+              {gate.status === "regenerating" ? "새 제안을" : "제안을"} 만드는 중입니다 (30~60초).
+              끝나면 이 카드가 저절로 열립니다 — 창을 닫아도 계속 진행됩니다.
+            </p>
+          )}
+          {busy && !inFlight && (
+            <p className="mono" style={{ fontSize: 12, color: "var(--accent)", marginTop: 8 }}>
+              <Spinner />
+              {busy} 요청을 보내는 중…
             </p>
           )}
           {error && <p style={{ color: "#f85149", fontSize: 12, marginTop: 8 }}>{error}</p>}
@@ -717,7 +741,7 @@ export function GateCard({
             {gate.stage_name === "route" && approved && (
               <button
                 type="button"
-                disabled={!!busy}
+                disabled={locked}
                 title="뒤 단계가 무효화됩니다. 기록은 남고 수집·요약은 다시 돌지 않습니다."
                 onClick={() => {
                   if (
@@ -736,7 +760,7 @@ export function GateCard({
             {gate.status === "failed" && (
               <button
                 type="button"
-                disabled={!!busy}
+                disabled={locked}
                 onClick={() => run("재시도", () => queueApi.retryGate(gate.id))}
                 style={btn("ghost")}
               >
@@ -747,7 +771,7 @@ export function GateCard({
               <>
                 <button
                   type="button"
-                  disabled={!!busy}
+                  disabled={locked}
                   onClick={() => setFeedbackOpen(true)}
                   style={btn("ghost")}
                 >
@@ -755,7 +779,7 @@ export function GateCard({
                 </button>
                 <button
                   type="button"
-                  disabled={!!busy}
+                  disabled={locked}
                   onClick={() =>
                     run("승인", () =>
                       queueApi.approve(
@@ -774,7 +798,7 @@ export function GateCard({
                   {busy === "승인" ? (
                     <>
                       <Spinner />
-                      승인 중… 다음 단계를 만드는 중입니다 (최대 1분)
+                      승인 중…
                     </>
                   ) : draft.exclusive === "discard" ? (
                     "폐기 승인"
