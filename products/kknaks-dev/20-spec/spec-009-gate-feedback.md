@@ -227,6 +227,28 @@ stateDiagram-v2
 - 게이트 상태는 [[spec-008-gate-chain|KDEV-SPEC-008]]이 소유한다. **게이트 상태와 revision 상태는 다른 것**이다 — 게이트는 사용자가 보는 단계의 상태, revision은 AI 제안 버전의 상태다.
 - AI 실행 상태(`queued`/`running`/`succeeded`/`failed`)는 또 별개다. 셋을 섞지 않는다.
 
+### 실행은 비동기다 — 제출하고 폴링한다
+
+**AI 호출을 사용자 요청 안에서 기다리지 않는다.** 생성은 30~60초가 걸리고, 그동안 요청을
+붙잡고 있으면 앞단 프록시가 먼저 끊는다. 그러면 요청이 **취소되며 트랜잭션이 롤백돼
+아무것도 남지 않는다** — 사용자는 여러 번 눌러도 진행이 안 되는 것만 본다.
+
+```text
+제출   실행기에 submit → task_id 저장(`external_task_ref`) → AITask=running
+       Revision=drafting · Gate=generating → **즉시 커밋하고 응답**
+폴링   화면이 게이트를 주기적으로 조회한다
+수확   조회 시 실행 상태를 확인해 끝났으면 결과를 파싱·검증하고
+       Revision=reviewable · Gate=review_pending 으로 전이한다
+```
+
+- **작업은 실행기의 큐에 남는다.** back 컨테이너가 재시작해도 유실되지 않는다 —
+  `external_task_ref` 로 다시 찾는다.
+- **수확은 멱등이어야 한다.** 폴링이 겹쳐도 revision 이 두 번 채워지면 안 된다.
+- 실행이 실패하면 `AITask=failed` · `Gate=failed` 로 전이하고 화면에 `재시도` 를 연다.
+  실패 기록은 지우지 않는다.
+- 승인·피드백 같은 **사람의 조작은 동기**다. 이미 만들어진 것을 저장하는 일이라
+  즉시 끝난다 — 느린 것은 언제나 *다음* 제안을 만드는 쪽이다.
+
 ### Data Contract
 
 | Resource | Field | 설명 |
