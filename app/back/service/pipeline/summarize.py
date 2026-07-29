@@ -12,7 +12,7 @@ from __future__ import annotations
 import json
 from typing import Any
 
-from .executor import Execution, poll_execution
+from .executor import Execution, await_execution, poll_execution
 
 PROMPT = """다음 자료를 읽고, 이 자료를 어떻게 정리할지 사람이 판단할 수 있도록 요약하라.
 
@@ -76,6 +76,12 @@ class AgentSummarizer:
             options=options,
             max_retries=2,
             metadata={"source": "pipeline-summarize"},
+        )
+
+    async def wait(self, task_id: str) -> Execution:
+        """완료까지 기다린다 — 백그라운드에서만 부른다."""
+        return await await_execution(
+            self.client, task_id, timeout_seconds=self.timeout_seconds
         )
 
     async def poll(self, task_id: str) -> Execution:

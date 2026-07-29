@@ -14,6 +14,7 @@ from typing import Any
 
 from core.models import Gate, QueueItem
 from service.pipeline import harvest_preparation, start_preparation
+from service.pipeline.driver import PipelineDriver
 from service.pipeline.executor import Execution
 from service.pipeline.gates import harvest
 from service.pipeline.prepare import PrepareResult
@@ -62,6 +63,10 @@ class FakeRunner:
                 error_message="provider timeout",
             )
         return Execution(status="succeeded", result=self.raw, session_ref=self.session_ref)
+
+    async def wait(self, task_id: str) -> Execution:
+        """가짜는 즉시 답한다 — 실물은 실행기 스트림이 깨워 준다."""
+        return await self.poll(task_id)
 
     def parse(self, raw: str, request) -> dict[str, Any]:
         self.parsed.append(request)
@@ -121,11 +126,26 @@ class FakeSummarizer:
             status="succeeded", result=self.summary, session_ref=self.session_ref
         )
 
+    async def wait(self, task_id: str) -> Execution:
+        return await self.poll(task_id)
+
     def parse(self, raw: str) -> str:
         summary = (raw or "").strip()
         if not summary:
             raise RuntimeError("open_kknaks returned no summary")
         return summary
+
+
+class InlineDriver(PipelineDriver):
+    """드라이버를 **그 자리에서** 돌린다.
+
+    실 드라이버는 백그라운드 태스크를 만들고 돌아가므로, 테스트가 결과를 보려면
+    태스크가 끝나기를 기다려야 한다 — 그건 타이밍에 기대는 테스트가 된다.
+    가짜 실행기는 즉시 답하므로 인라인으로 돌려도 같은 경로를 그대로 태운다.
+    """
+
+    async def follow(self, item_id: int) -> None:
+        await self._drive(item_id)
 
 
 async def prepare(db, item_id: int, *, fetch, summarize, runner=None) -> PrepareResult:

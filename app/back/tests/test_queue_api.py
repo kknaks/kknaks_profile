@@ -15,6 +15,7 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.exc import SQLAlchemyError
 
 import config
+from tests.fakes import FakeRunner, FakeSummarizer
 
 try:
     _probe = create_engine(config.database_url())
@@ -70,6 +71,38 @@ def client(anon, _cleanup):
     r = anon.post("/api/auth/login", json={"username": "admin", "password": "changeme"})
     assert r.status_code == 200, r.text
     return anon
+
+
+async def _fetch_ok(url):
+    return {"url": url, "content": "본문"}
+
+
+def _install_runtime(monkeypatch, *, runner=None, stages=None, summarizer=None, fetch=None):
+    """실 런타임 레지스트리에 가짜를 꽂는다.
+
+    라우터 내부 함수를 monkeypatch 하지 않는다 — 그러면 배선이 바뀌어도 테스트가
+    통과해 버린다. 라우터도 드라이버도 같은 `runtime` 을 읽으므로 여기 한 번만 꽂는다.
+    드라이버는 인라인으로 돌려 결과를 그 자리에서 본다.
+    """
+    from core.db import new_session
+    from service.pipeline import runtime
+    from tests.fakes import InlineDriver
+
+    summarizer = summarizer or FakeSummarizer(summary="요약본", session_ref="s1")
+    if stages is None:
+        stages = {} if runner is None else {
+            name: runner for name in ("route", "source_note", "concept", "derived")
+        }
+
+    # **레지스트리를 통째로 갈아 끼운다.** 원본 dict 를 건드리면 teardown 이
+    # 되돌릴 것이 없어 가짜가 다른 테스트로 샌다.
+    monkeypatch.setattr(runtime, "_registry", {})
+    driver = InlineDriver(session_factory=new_session, fetch=fetch or _fetch_ok)
+    runtime.register(summarizer=summarizer, stages=stages, driver=driver)
+    monkeypatch.setattr(
+        "service.knowledge_capture.source.fetch_source", fetch or _fetch_ok
+    )
+    return driver
 
 
 def _create(client, **body):
@@ -217,31 +250,26 @@ class TestRetryPrepare:
     def test_retry_uses_note_when_source_unreachable(self, client, monkeypatch):
         """막힌 항목이 메모 한 줄로 풀리는 경로가 API 로도 열려 있어야 한다.
 
-        준비 응답은 **요약을 기다리지 않는다** — 제출까지만 하고 `preparing` 으로
-        돌아오며, 상세 조회가 수확한다 (WORK-016 P2).
+        준비 요청은 **수집도 요약도 하지 않는다** — 다시 대기줄에 세우고 즉시
+        돌아오며, 드라이버가 이어서 민다 (WORK-016).
         """
-        from tests.fakes import FakeSummarizer
-
-        summarizer = FakeSummarizer(summary="요약(메모)")
 
         async def fetch_fail(url):
             raise RuntimeError("no transcript")
 
-        monkeypatch.setattr("api.routers.queue._summarizer_factory", lambda: summarizer)
-        monkeypatch.setattr("service.knowledge_capture.source.fetch_source", fetch_fail)
+        driver = _install_runtime(
+            monkeypatch, summarizer=FakeSummarizer(summary="요약(메모)"), fetch=fetch_fail
+        )
 
         item_id = _create(
             client, source_url="https://youtu.be/apirescue01", note="자막 없어 직접 요약: X"
         ).json()["item_id"]
 
-        response = client.post(f"/api/admin/queue/items/{item_id}/prepare")
-        assert response.status_code == 200, response.text
-        assert response.json()["status"] == "preparing"
-
         detail = client.get(f"/api/admin/queue/items/{item_id}").json()
         assert detail["status"] == "in_review"
         assert detail["preparations"][-1]["payload"]["material_source"] == "note"
         assert detail["preparations"][-1]["payload"]["summary"] == "요약(메모)"
+        assert driver is not None
 
 
 class TestGates:
@@ -270,21 +298,12 @@ class TestGates:
         import hashlib
 
         video_id = hashlib.sha1(request.node.name.encode()).hexdigest()[:11]
-        from tests.fakes import FakeRunner, FakeSummarizer
-
-        summarize = FakeSummarizer(summary="요약본", session_ref="s1")
-
-        async def fetch_ok(url):
-            return {"url": url, "content": "본문"}
 
         runner = FakeRunner(payload=self._payload(), session_ref="gate-sess")
+        _install_runtime(monkeypatch, runner=runner)
 
-        monkeypatch.setattr("api.routers.queue._summarizer_factory", lambda: summarize)
-        monkeypatch.setattr("api.routers.queue._runner_for", lambda stage: runner)
-        monkeypatch.setattr("service.knowledge_capture.source.fetch_source", fetch_ok)
-
+        # 접수만으로 드라이버가 수집·요약·route 제안까지 민다 (WORK-016).
         item_id = _create(client, source_url=f"https://youtu.be/{video_id}").json()["item_id"]
-        assert client.post(f"/api/admin/queue/items/{item_id}/prepare").status_code == 200
         gates = client.get(f"/api/admin/queue/items/{item_id}/gates").json()["gates"]
         assert len(gates) == 1 and gates[0]["stage_name"] == "route"
         return item_id, gates[0]["id"]
@@ -394,13 +413,6 @@ class TestPublishTrigger:
         """생성기가 없어 다음 게이트를 못 열었는데 발행되면, reference 만 있고
         concept 는 없는 미완성 체인이 origin 에 나간다.
         """
-        from tests.fakes import FakeRunner, FakeSummarizer
-
-        summarize = FakeSummarizer(summary="요약")
-
-        async def fetch_ok(url):
-            return {"url": url, "content": "본문"}
-
         route_runner = FakeRunner(
             payload={
                 "destinations": {
@@ -411,17 +423,10 @@ class TestPublishTrigger:
                 "exclusive": None,
             }
         )
-
-        monkeypatch.setattr("api.routers.queue._summarizer_factory", lambda: summarize)
         # route 만 있고 source_note 실행기는 없다.
-        monkeypatch.setattr("api.routers.queue._runners", lambda: {"route": route_runner})
-        monkeypatch.setattr(
-            "api.routers.queue._runner_for", lambda stage: route_runner if stage == "route" else None
-        )
-        monkeypatch.setattr("service.knowledge_capture.source.fetch_source", fetch_ok)
+        _install_runtime(monkeypatch, stages={"route": route_runner})
 
         item_id = _create(client, source_url="https://youtu.be/blockchain1").json()["item_id"]
-        client.post(f"/api/admin/queue/items/{item_id}/prepare")
         gate_id = client.get(f"/api/admin/queue/items/{item_id}/gates").json()["gates"][0]["id"]
 
         body = client.post(f"/api/admin/queue/gates/{gate_id}/approve", json={}).json()

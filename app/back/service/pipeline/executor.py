@@ -59,16 +59,12 @@ def _age_seconds(created_at: Any) -> float | None:
     return (datetime.now(timezone.utc) - stamp).total_seconds()
 
 
-async def poll_execution(client, task_id: str, *, timeout_seconds: float) -> Execution:
-    """실행기에 상태를 물어본다. **기다리지 않는다.**
-
-    `AgentClient.result()` 는 완료를 기다리므로 여기서 쓸 수 없다. 큐에 있는 Task 를
-    그대로 읽어 지금 상태만 본다.
+def read_execution(task, *, timeout_seconds: float, task_id: str = "") -> Execution:
+    """실행기의 Task 하나를 우리 상태로 옮긴다.
 
     실행기에서 사라진 작업(`None`)은 실패로 본다 — 계속 `running` 으로 두면 게이트가
     영원히 열리지 않고, 사용자는 재시도조차 못 한다.
     """
-    task = await client.broker.get_task(task_id)
     if task is None:
         return failed("TASK_NOT_FOUND", f"실행기에 작업 {task_id} 가 없다")
 
@@ -98,6 +94,36 @@ async def poll_execution(client, task_id: str, *, timeout_seconds: float) -> Exe
         status="succeeded",
         result=str(result),
         session_ref=getattr(task, "result_session_id", None),
+    )
+
+
+async def await_execution(client, task_id: str, *, timeout_seconds: float) -> Execution:
+    """완료를 **기다린다.** 폴링이 아니다.
+
+    실행기는 실행 중 결과 스트림에 이벤트를 흘리고 끝나면 상태를 `done` 으로 바꾼다.
+    `AgentClient.result()` 가 그 스트림을 `XREAD BLOCK` 으로 대기하다 깨어난다 —
+    **워커가 우리를 깨워 준다.** 그래서 주기적으로 물어볼 이유가 없다.
+
+    이 대기를 요청 안에서 하면 안 된다. 요청 밖(백그라운드 태스크)에서 해야
+    프록시가 끊어도 트랜잭션이 롤백되지 않는다.
+    """
+    return read_execution(
+        await client.result(task_id, timeout=timeout_seconds),
+        timeout_seconds=timeout_seconds,
+        task_id=task_id,
+    )
+
+
+async def poll_execution(client, task_id: str, *, timeout_seconds: float) -> Execution:
+    """지금 상태만 본다. **기다리지 않는다.**
+
+    대기는 `await_execution` 이 한다. 이쪽은 화면이 조회할 때 쓰는 안전망이다 —
+    대기 태스크가 죽었거나 back 이 재시작한 사이에도 조회 한 번으로 따라잡는다.
+    """
+    return read_execution(
+        await client.broker.get_task(task_id),
+        timeout_seconds=timeout_seconds,
+        task_id=task_id,
     )
 
 
@@ -163,6 +189,12 @@ class AgentStage:
             options=options or None,
             max_retries=2,
             metadata={"source": self.source, "item_id": request.item.id},
+        )
+
+    async def wait(self, task_id: str) -> Execution:
+        """완료까지 기다린다 — 백그라운드에서만 부른다."""
+        return await await_execution(
+            self.client, task_id, timeout_seconds=self.timeout_seconds
         )
 
     async def poll(self, task_id: str) -> Execution:

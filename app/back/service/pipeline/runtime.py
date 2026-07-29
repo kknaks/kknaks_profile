@@ -20,6 +20,7 @@ def register(
     summarizer: Any = None,
     route_proposer: Any = None,
     stages: dict[str, Any] | None = None,
+    driver: Any = None,
 ) -> None:
     if summarizer is not None:
         _registry["summarizer"] = summarizer
@@ -27,6 +28,8 @@ def register(
         _registry["route_proposer"] = route_proposer
     if stages:
         _registry.setdefault("stages", {}).update(stages)
+    if driver is not None:
+        _registry["driver"] = driver
 
 
 def current_summarizer() -> Any:
@@ -53,6 +56,29 @@ def current_runners() -> dict[str, Any]:
     if proposer is not None:
         runners["route"] = proposer
     return runners
+
+
+def current_driver() -> Any:
+    """진행 중인 항목을 요청 밖에서 미는 드라이버.
+
+    없으면 `None` — 그래도 조회 시 수확이 남아 있어 화면을 열면 따라잡는다.
+    """
+    return _registry.get("driver")
+
+
+async def follow(item_id: int) -> None:
+    """이 항목을 드라이버가 이어서 밀게 한다. **커밋 뒤에 부른다.**
+
+    실 드라이버는 백그라운드 태스크를 만들고 곧바로 돌아온다 — 여기서 실행 완료를
+    기다리지 않는다. `async` 인 것은 테스트가 같은 자리에서 인라인으로 밀어
+    결정적으로 검증할 수 있게 하기 위해서다.
+
+    드라이버가 없으면 아무 일도 하지 않는다 — 조용히 실패하는 것이 아니라,
+    조회 시 수확이라는 다른 경로가 남아 있다.
+    """
+    driver = current_driver()
+    if driver is not None:
+        await driver.follow(item_id)
 
 
 def clear() -> None:

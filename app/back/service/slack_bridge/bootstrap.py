@@ -22,6 +22,7 @@ from core.db import new_session
 from service.knowledge_capture import CaptureSessionStore
 from service.knowledge_capture.source import fetch_source
 from service.pipeline import runtime
+from service.pipeline.driver import PipelineDriver
 from service.pipeline.slack_intake import QueueIntakeRunner
 from service.pipeline.route import RouteProposer
 from service.pipeline.stages import ConceptStage, DerivedStage, SourceNoteStage
@@ -125,6 +126,7 @@ class CaptureRuntime:
         self._task: asyncio.Task | None = None
         self._broker = None
         self._redis = None
+        self._driver: PipelineDriver | None = None
 
     async def start(self) -> bool:
         """캡처를 기동한다. 설정이 없으면 조용히 skip 하고 False 를 반환한다.
@@ -214,11 +216,14 @@ class CaptureRuntime:
             },
         )
 
+        # 제출한 실행의 완료를 요청 밖에서 기다렸다가 DB 에 반영한다 (KDEV-WORK-016).
+        # 수집도 여기서 한다 — 접수 요청이 15초를 붙잡을 이유가 없다.
+        self._driver = PipelineDriver(session_factory=new_session, fetch=fetch_source)
+        runtime.register(driver=self._driver)
+
         runner = QueueIntakeRunner(
             session_factory=new_session,
             sessions=sessions,
-            fetch=fetch_source,
-            summarize=summarizer,
             now=lambda: datetime.now(KST),
         )
 
@@ -233,6 +238,8 @@ class CaptureRuntime:
         self._task = asyncio.create_task(
             self._run_forever(bolt_app, app_token), name="slack-capture"
         )
+        # 재시작 전에 진행 중이던 것들을 다시 따라붙는다. 작업은 실행기 큐에 살아 있다.
+        await self._driver.recover()
         logger.info("Slack capture started (Socket Mode, in-process)")
 
     @staticmethod
@@ -267,6 +274,9 @@ class CaptureRuntime:
     async def stop(self) -> None:
         # 연결이 닫히면 요약기도 못 쓴다 — 죽은 핸들을 남겨 두면 재시도가 조용히 실패한다.
         runtime.clear()
+        if self._driver is not None:
+            await self._driver.stop()
+            self._driver = None
         if self._task is not None:
             self._task.cancel()
             try:

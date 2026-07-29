@@ -17,8 +17,8 @@ from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 
 import config
 from core.models import QueueItem
-from service.pipeline import harvest_preparation
-from tests.fakes import FakeSummarizer
+from service.pipeline import runtime
+from tests.fakes import FakeSummarizer, InlineDriver
 from service.pipeline.slack_intake import QueueIntakeRunner
 
 try:
@@ -102,15 +102,28 @@ async def make_runner():
 
     state: dict = {}
 
-    def build(*, fetch, summarize):
+    def build(*, fetch=None, summarize=None, drive=False):
+        """접수 runner 를 만든다.
+
+        `drive=True` 면 드라이버를 인라인으로 꽂아 수집·요약까지 그 자리에서 민다.
+        기본은 꽂지 않는다 — **접수 경로가 스스로는 아무것도 준비하지 않는다**는 것을
+        확인하는 테스트가 대부분이기 때문이다.
+        """
         sessions = FakeSessionStore()
         state["sessions"] = sessions
         state["factory"] = session_factory
+        state["summarize"] = summarize
+        if drive:
+            runtime._registry.clear()
+            runtime.register(
+                summarizer=summarize,
+                driver=InlineDriver(session_factory=session_factory, fetch=fetch),
+            )
+        else:
+            runtime._registry.clear()
         return QueueIntakeRunner(
             session_factory=session_factory,
             sessions=sessions,
-            fetch=fetch,
-            summarize=summarize,
             now=lambda: __import__("datetime").datetime.now(
                 __import__("datetime").timezone.utc
             ),
@@ -121,6 +134,7 @@ async def make_runner():
     try:
         yield build
     finally:
+        runtime._registry.clear()
         await trans.rollback()
         await conn.close()
         await engine.dispose()
@@ -144,7 +158,7 @@ def _summarize_ok():
 
 
 async def test_link_lands_in_queue_and_writes_no_file(make_runner, no_filesystem_writes):
-    runner = make_runner(fetch=_fetch_ok, summarize=_summarize_ok())
+    runner = make_runner()
     slack = FakeSlackClient()
 
     await runner.handle(Request("<@BOT> https://youtu.be/slacktest01 이거 정리해줘"), slack)
@@ -154,8 +168,8 @@ async def test_link_lands_in_queue_and_writes_no_file(make_runner, no_filesystem
             select(QueueItem).where(QueueItem.normalized_url == "youtube:slacktest01")
         )
     assert item is not None
-    # **접수 회신은 요약을 기다리지 않는다** — 이 시점에는 아직 준비 중이다 (WORK-016 P2).
-    assert (item.status, item.channel, item.source_kind) == ("preparing", "slack", "youtube")
+    # **접수는 행만 만든다** — 수집도 요약도 하지 않는다 (WORK-016).
+    assert (item.status, item.channel, item.source_kind) == ("received", "slack", "youtube")
     assert item.submitted_by == "U1"
     # 메모에는 링크가 아니라 사람의 말이 남는다.
     assert "이거 정리해줘" in item.note and "youtu.be" not in item.note
@@ -166,7 +180,7 @@ async def test_link_lands_in_queue_and_writes_no_file(make_runner, no_filesystem
 
 async def test_reply_says_nothing_was_written(make_runner, no_filesystem_writes):
     """회신 문구가 사실과 달라지면 안 된다 — 사람이 그 문구를 믿고 행동한다."""
-    runner = make_runner(fetch=_fetch_ok, summarize=_summarize_ok())
+    runner = make_runner()
     slack = FakeSlackClient()
 
     await runner.handle(Request("https://youtu.be/slacktest02", thread="t2"), slack)
@@ -175,8 +189,13 @@ async def test_reply_says_nothing_was_written(make_runner, no_filesystem_writes)
     assert "저장 완료" not in slack.last  # 흡수 전 문구가 남아 있으면 오해를 준다
 
 
-async def test_prepare_failure_is_reported_with_retry_path(make_runner, no_filesystem_writes):
-    runner = make_runner(fetch=_fetch_fail, summarize=_summarize_ok())
+async def test_collect_failure_surfaces_after_the_driver_runs(make_runner, no_filesystem_writes):
+    """수집 실패는 **접수 회신이 아니라 드라이버가** 만든다 (WORK-016).
+
+    접수는 수집을 하지 않으므로 그 시점에는 실패를 알 수 없다. 그래서 회신은
+    실패를 말하지 않고, 상태는 드라이버가 돈 뒤에 `prepare_failed` 가 된다.
+    """
+    runner = make_runner(fetch=_fetch_fail, summarize=_summarize_ok(), drive=True)
     slack = FakeSlackClient()
 
     await runner.handle(Request("https://youtu.be/slacktest03", thread="t3"), slack)
@@ -185,10 +204,9 @@ async def test_prepare_failure_is_reported_with_retry_path(make_runner, no_files
         item = await db.scalar(
             select(QueueItem).where(QueueItem.normalized_url == "youtube:slacktest03")
         )
+    # 원문도 못 받고 메모도 없으면 요약할 것이 없다 — AI 를 부르지 않는다.
     assert item.status == "prepare_failed"
-    assert "준비에 실패" in slack.last
-    # 막다른 길로 두지 않는다 — 사람이 뭘 하면 되는지 알려준다.
-    assert "스레드에" in slack.last
+    assert "준비" in slack.last
 
 
 async def test_thread_followup_supplies_note_and_unblocks(make_runner, no_filesystem_writes):
@@ -200,31 +218,25 @@ async def test_thread_followup_supplies_note_and_unblocks(make_runner, no_filesy
         raise RuntimeError("no transcript")
 
     summarize = _summarize_ok()
-    runner = make_runner(fetch=flaky_fetch, summarize=summarize)
+    runner = make_runner(fetch=flaky_fetch, summarize=summarize, drive=True)
     slack = FakeSlackClient()
 
     await runner.handle(Request("https://youtu.be/slacktest04", thread="t4"), slack)
+    assert fetch_calls["n"] == 1  # 드라이버가 수집을 시도했고 막혔다
+
     await runner.handle(Request("자막이 없어서 요약하면: 핵심은 X 다", thread="t4"), slack)
 
     async with make_runner.session_factory() as db:
         item = await db.scalar(
             select(QueueItem).where(QueueItem.normalized_url == "youtube:slacktest04")
         )
-    # 메모가 준비를 **다시 시작**시킨다. 끝냈다고 하지 않는다.
-    assert item.status == "preparing"
+    # 메모 한 줄이 막힌 항목을 끝까지 풀어 준다 (SPEC-007 S-3).
+    assert item.status == "in_review"
     assert "핵심은 X" in item.note
-    assert "준비 중" in slack.last
-
-    # 화면이 폴링하면 그때 검토 대기로 넘어간다.
-    async with make_runner.session_factory() as db:
-        live = await db.get(QueueItem, item.id)
-        result = await harvest_preparation(db, live, summarize=summarize)
-        await db.commit()
-    assert result.ok and live.status == "in_review"
 
 
 async def test_duplicate_link_joins_instead_of_creating(make_runner, no_filesystem_writes):
-    runner = make_runner(fetch=_fetch_ok, summarize=_summarize_ok())
+    runner = make_runner()
     slack = FakeSlackClient()
 
     await runner.handle(Request("https://youtu.be/slacktest05 첫 번째", thread="t5"), slack)
@@ -252,12 +264,19 @@ async def test_failure_is_reported_not_swallowed(make_runner, no_filesystem_writ
     def submit_boom(**kwargs):
         raise RuntimeError("x")
 
-    runner = make_runner(fetch=boom, summarize=FakeSummarizer(on_submit=submit_boom))
+    runner = make_runner(
+        fetch=boom, summarize=FakeSummarizer(on_submit=submit_boom), drive=True
+    )
     slack = FakeSlackClient()
 
-    # 수집·요약이 모두 실패해도 항목은 남고 사람에게 알려진다.
+    # 수집·요약이 모두 실패해도 항목은 남고 상태로 드러난다.
     await runner.handle(Request("https://youtu.be/slacktest07 메모", thread="t7"), slack)
-    assert "실패" in slack.last
+
+    async with make_runner.session_factory() as db:
+        item = await db.scalar(
+            select(QueueItem).where(QueueItem.normalized_url == "youtube:slacktest07")
+        )
+    assert item is not None and item.status == "prepare_failed"
 
 
 class TestSlackLinkMarkup:

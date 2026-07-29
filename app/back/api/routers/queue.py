@@ -24,7 +24,7 @@ from core.db import get_db
 from core.models import AITask, Gate, GateFeedback, GateRevision, ItemPreparation, QueueItem
 from service.pipeline import chain
 from service.pipeline import gates as gates_service
-from service.pipeline import harvest_preparation, intake, start_preparation
+from service.pipeline import harvest_preparation, intake
 from service.pipeline.gates import GateError
 from service.pipeline.prepare import PREPARABLE_STATUSES
 from service.pipeline.route import route_outcome, validate_route_result
@@ -112,6 +112,8 @@ async def create_item(body: CreateItemRequest, db: AsyncSession = Depends(get_db
                 "existing_item_id": result.existing_item_id,
             },
         )
+    if result.item_id is not None:
+        await _follow(result.item_id)
     return {"outcome": result.outcome, "item_id": result.item_id}
 
 
@@ -204,10 +206,13 @@ async def update_note(item_id: int, body: UpdateNoteRequest, db: AsyncSession = 
 
 @router.post("/items/{item_id}/prepare")
 async def retry_prepare(item_id: int, db: AsyncSession = Depends(get_db)):
-    """준비 재시도 — **요약을 기다리지 않는다** (KDEV-WORK-016 P2).
+    """준비 재시도 — **다시 대기줄에 세운다** (KDEV-WORK-016).
 
-    수집하고 요약을 제출한 뒤 `preparing` 으로 즉시 응답한다. 완료 전이는
-    화면이 폴링할 때 수확된다. 기존 실행 기록은 덮어쓰지 않고 새 버전이 쌓인다.
+    수집도 요약도 여기서 하지 않는다. 수집만 해도 최대 15초라 그만큼 응답이 늦고,
+    그 사이 프록시가 끊으면 트랜잭션이 롤백돼 재시도한 흔적조차 남지 않는다.
+    드라이버가 이어서 수집하고 요약을 제출한다.
+
+    기존 실행 기록은 덮어쓰지 않고 새 버전이 쌓인다.
     """
     item = await _get_live_item(db, item_id)
     if item.status not in PREPARABLE_STATUSES:
@@ -215,25 +220,19 @@ async def retry_prepare(item_id: int, db: AsyncSession = Depends(get_db)):
             status_code=409,
             detail={"code": "PREPARE_RETRY_NOT_ALLOWED", "status": item.status},
         )
-
-    from service.knowledge_capture.source import fetch_source
-
-    summarizer = _summarizer_factory()
-    if summarizer is None:
+    if _summarizer_factory() is None:
+        # 캡처가 꺼져 있으면 재시도도 불가능한 것이 사실이다. 조용히 대기줄에만
+        # 세우면 영영 안 도는 항목이 `received` 로 쌓인다.
         raise HTTPException(
             status_code=503,
             detail={"code": "SUMMARIZER_UNAVAILABLE", "message": "AI 실행 경로가 준비되지 않았다"},
         )
-    result = await start_preparation(
-        db, item_id, fetch=fetch_source, summarize=summarizer
-    )
+
+    item.status = "received"
     await db.commit()
-    return {
-        "status": result.status,
-        "version": result.version,
-        "error_code": result.error_code,
-        "error_message": result.error_message,
-    }
+    # 커밋 뒤에 넘긴다 — 커밋 전이면 드라이버가 옛 상태를 읽는다.
+    await _follow(item_id)
+    return {"status": item.status, "version": None, "error_code": None, "error_message": None}
 
 
 async def _harvest_item(db: AsyncSession, item: QueueItem) -> bool:
@@ -242,6 +241,11 @@ async def _harvest_item(db: AsyncSession, item: QueueItem) -> bool:
     준비가 끝나면 첫 게이트까지 열린다(제출까지). 실행기에 못 닿아도 조회 자체는
     실패시키지 않는다 — 화면이 통째로 비면 무엇이 진행 중인지도 못 본다.
     """
+    if item.status == "received":
+        # 읽기 경로에서 수집·요약을 하지 않는다. 드라이버를 다시 깨우기만 한다 —
+        # 드라이버가 죽었거나 재시작 사이에 접수된 항목이 여기서 살아난다.
+        await _follow(item.id)
+        return False
     if item.status != "preparing":
         return False
     summarizer = _summarizer_factory()
@@ -395,6 +399,7 @@ async def gate_regenerate(gate_id: int, db: AsyncSession = Depends(get_db)):
     except GateError as exc:
         raise _gate_error(exc) from exc
     await db.commit()
+    await _follow(gate.item_id)
     return {"gate_status": gate.status, "revision": _revision_view(revision)}
 
 
@@ -412,6 +417,7 @@ async def gate_retry(gate_id: int, db: AsyncSession = Depends(get_db)):
     except GateError as exc:
         raise _gate_error(exc) from exc
     await db.commit()
+    await _follow(gate.item_id)
     return {"gate_status": gate.status, "revision": _revision_view(revision)}
 
 
@@ -432,6 +438,7 @@ async def reopen_route(item_id: int, db: AsyncSession = Depends(get_db)):
     except GateError as exc:
         raise _gate_error(exc) from exc
     await db.commit()
+    await _follow(item.id)
     return {"gate_id": gate.id, "gate_status": gate.status, "item_status": item.status}
 
 
@@ -489,6 +496,8 @@ async def gate_approve(gate_id: int, body: ApproveRequest, db: AsyncSession = De
             # **생성기가 없어 못 연 경우까지 발행**되어 미완성 체인이 나간다.
             published = await _publish(db, item)
     await db.commit()
+    # 승인이 다음 스테이지를 제출했다. 그 완료를 기다리는 것도 요청이 아니다.
+    await _follow(item.id)
     return {
         "gate_status": gate.status,
         "item_status": item.status,
@@ -555,6 +564,12 @@ async def retry_publish(item_id: int, db: AsyncSession = Depends(get_db)):
     result = await _publish(db, item, plan=plan)
     await db.commit()
     return {"item_status": item.status, **result}
+
+
+async def _follow(item_id: int) -> None:
+    from service.pipeline.runtime import follow
+
+    await follow(item_id)
 
 
 def _runners() -> dict[str, Any]:
