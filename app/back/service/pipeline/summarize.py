@@ -12,7 +12,7 @@ from __future__ import annotations
 import json
 from typing import Any
 
-from .prepare import SummaryResult
+from .executor import Execution, poll_execution
 
 PROMPT = """다음 자료를 읽고, 이 자료를 어떻게 정리할지 사람이 판단할 수 있도록 요약하라.
 
@@ -37,7 +37,12 @@ def _trim(material: Any, limit: int) -> Any:
 
 
 class AgentSummarizer:
-    """open-kknaks 로 요약을 만든다."""
+    """open-kknaks 로 요약을 만든다 — **제출과 수확이 나뉜다** (KDEV-WORK-016 P2).
+
+    게이트 스테이지(`AgentStage`)와 같은 계약이지만 입력이 다르다. 요약은 게이트가
+    아니라서 `GenerationInput` 이 없고 수집 결과와 메모만 받는다. 그 하나 때문에
+    억지로 같은 기반 클래스에 넣지 않는다 — 폴링만 함께 쓴다.
+    """
 
     def __init__(
         self,
@@ -56,7 +61,7 @@ class AgentSummarizer:
         self.timeout_seconds = timeout_seconds
         self.content_limit = content_limit
 
-    async def __call__(self, *, material: Any, note: str | None) -> SummaryResult:
+    async def submit(self, *, material: Any, note: str | None) -> str:
         payload = {
             "source_material": _trim(material, self.content_limit),
             "note": note,
@@ -64,7 +69,7 @@ class AgentSummarizer:
             "material_source": "fetched" if material is not None else "note",
         }
         options = {"cwd": self.work_dir} if self.work_dir else None
-        task_id = await self.client.submit(
+        return await self.client.submit(
             PROMPT + "\n\n" + json.dumps(payload, ensure_ascii=False),
             provider=self.provider,
             model=self.model,
@@ -72,14 +77,15 @@ class AgentSummarizer:
             max_retries=2,
             metadata={"source": "pipeline-summarize"},
         )
-        task = await self.client.result(task_id, timeout=self.timeout_seconds)
-        if task is None or not task.result or not str(task.result).strip():
-            # 빈 결과를 성공으로 넘기면 route 게이트가 근거 없이 판단한다.
-            raise RuntimeError(
-                getattr(task, "error", None) or "open_kknaks returned no summary"
-            )
-        return SummaryResult(
-            summary=str(task.result).strip(),
-            session_ref=getattr(task, "result_session_id", None),
-            external_task_ref=str(task_id),
+
+    async def poll(self, task_id: str) -> Execution:
+        return await poll_execution(
+            self.client, task_id, timeout_seconds=self.timeout_seconds
         )
+
+    def parse(self, raw: str) -> str:
+        summary = (raw or "").strip()
+        if not summary:
+            # 빈 요약을 성공으로 넘기면 route 게이트가 근거 없이 판단한다.
+            raise RuntimeError("open_kknaks returned no summary")
+        return summary

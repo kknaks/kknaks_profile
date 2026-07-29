@@ -3,12 +3,16 @@
 `KnowledgeCaptureRunner` 를 대체한다. 둘의 차이는 **어디서 멈추는가**다.
 
     종전:  Slack → 수집 → AI 가 노트 전문 작성 → 렌더 → 파일 쓰기 → origin/main 커밋
-    현행:  Slack → 큐 적재 → 자동 준비(수집+요약) → 검토 대기
+    현행:  Slack → 큐 적재 → 수집 + 요약 제출 → **접수 회신** → (수확) → 검토 대기
 
 노트 전문은 route 승인 **뒤에** 쓴다(WORK-015). 목적지를 정하기 전에 본문을 만들면
 폐기될 자료의 노트까지 쓰게 되고, 무엇보다 **사람이 보기 전에 결과가 확정된다.**
 
 이 클래스는 파일시스템도 git 도 건드리지 않는다. 그것이 이 work 의 요점이다.
+
+**회신은 요약을 기다리지 않는다** (KDEV-WORK-016 P2). 접수 시점에 확실한 것은
+"큐에 들어갔고 준비가 시작됐다"까지다. 검토 카드가 열렸다고 미리 말하면, 요약이
+실패했을 때 Slack 에는 성공이 남고 화면에는 실패가 남는다.
 """
 
 from __future__ import annotations
@@ -21,8 +25,7 @@ from typing import Any, Callable
 from service.knowledge_capture.session import CaptureSession, CaptureSessionStore
 from service.knowledge_capture.source import find_urls
 
-from .flow import prepare_and_open_gate
-from .gates import StageRunner
+from .flow import start_preparation
 from .intake import intake
 from .prepare import PREPARABLE_STATUSES, Fetcher, Summarizer
 
@@ -66,15 +69,12 @@ class QueueIntakeRunner:
         fetch: Fetcher,
         summarize: Summarizer,
         now: Callable[[], datetime],
-        runner: StageRunner | None = None,
     ) -> None:
         self.session_factory = session_factory
         self.sessions = sessions
         self.fetch = fetch
         self.summarize = summarize
         self.now = now
-        # route 게이트 제안기. 없으면 준비까지만 하고 게이트는 열지 않는다.
-        self.runner = runner
 
     async def handle(self, request, slack_client) -> None:
         placeholder = await slack_client.chat_postMessage(
@@ -131,19 +131,19 @@ class QueueIntakeRunner:
                     result.item_id,
                 )
 
-            prepared = await prepare_and_open_gate(
+            prepared = await start_preparation(
                 db,
                 result.item_id,
                 fetch=self.fetch,
                 summarize=self.summarize,
-                runner=self.runner,
             )
             await db.commit()
 
-        if prepared.ok:
+        if prepared.running:
             return (
-                f"✅ 접수됨 — 검토 대기 (항목 #{result.item_id})\n"
-                "승인은 관리자 큐 화면에서 합니다. **아직 레포에는 아무것도 쓰이지 않았습니다.**",
+                f"✅ 접수됨 — 준비 중 (항목 #{result.item_id})\n"
+                "요약이 끝나면 관리자 큐 화면에 검토 카드가 열립니다. "
+                "**아직 레포에는 아무것도 쓰이지 않았습니다.**",
                 result.item_id,
             )
         return (
@@ -176,17 +176,16 @@ class QueueIntakeRunner:
             if not retryable:
                 return f"📝 항목 #{item_id} 메모에 반영했습니다 (상태: {item.status})."
 
-            prepared = await prepare_and_open_gate(
+            prepared = await start_preparation(
                 db,
                 item_id,
                 fetch=self.fetch,
                 summarize=self.summarize,
-                runner=self.runner,
             )
             await db.commit()
 
-        if prepared.ok:
-            return f"✅ 메모로 준비를 마쳤습니다 — 검토 대기 (항목 #{item_id})."
+        if prepared.running:
+            return f"✅ 메모로 준비를 다시 시작했습니다 — 준비 중 (항목 #{item_id})."
         return (
             f"⚠️ 메모를 반영했지만 준비가 다시 실패했습니다 (항목 #{item_id}).\n"
             f"사유: `{prepared.error_code}`"

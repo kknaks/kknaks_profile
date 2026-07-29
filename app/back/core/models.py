@@ -61,7 +61,9 @@ ITEM_PENDING_STATUSES = (
     "publishing",
     "publish_failed",
 )
-PREPARATION_STATUSES = ("succeeded", "failed")
+#: `running` 은 게이트 버전의 `drafting` 과 같은 자리다 — 수집은 끝났고 요약이
+#: 아직 실행기 큐에 있는 구간 (KDEV-WORK-016 P2).
+PREPARATION_STATUSES = ("running", "succeeded", "failed")
 AI_TASK_STATUSES = ("queued", "running", "succeeded", "failed")
 GATE_STATUSES = (
     "not_started",

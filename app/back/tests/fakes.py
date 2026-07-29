@@ -13,8 +13,10 @@ from __future__ import annotations
 from typing import Any
 
 from core.models import Gate, QueueItem
+from service.pipeline import harvest_preparation, start_preparation
 from service.pipeline.executor import Execution
 from service.pipeline.gates import harvest
+from service.pipeline.prepare import PrepareResult
 
 
 class FakeRunner:
@@ -69,3 +71,71 @@ class FakeRunner:
 async def collect(db, gate: Gate, *, item: QueueItem, runner) -> bool:
     """화면 폴링 한 번에 해당한다 — 제출해 둔 실행을 수확한다."""
     return await harvest(db, gate, item=item, runner=runner)
+
+
+class FakeSummarizer:
+    """요약 실행기를 흉내 낸다 (KDEV-WORK-016 P2).
+
+    `on_submit` 은 실제 요약기가 제출 시점에 하는 일(프롬프트 직렬화 등)을
+    끼워 넣는 자리다 — 가짜가 그걸 건너뛰면 운영에서만 터지는 결함이 남는다.
+    """
+
+    def __init__(
+        self,
+        *,
+        summary: str = "요약본",
+        session_ref: str | None = "sess-1",
+        fail_times: int = 0,
+        pending: bool = False,
+        on_submit=None,
+    ) -> None:
+        self.summary = summary
+        self.session_ref = session_ref
+        self.fail_times = fail_times
+        self.pending = pending
+        self.on_submit = on_submit
+        #: `submit` 이 받은 `(material, note)` 들.
+        self.calls: list[tuple[Any, str | None]] = []
+        self.polled: list[str] = []
+        self._issued = 0
+
+    async def submit(self, *, material: Any, note: str | None) -> str:
+        self.calls.append((material, note))
+        if self.on_submit is not None:
+            self.on_submit(material=material, note=note)
+        self._issued += 1
+        return f"sum-{self._issued}"
+
+    async def poll(self, task_id: str) -> Execution:
+        self.polled.append(task_id)
+        if self.pending:
+            return Execution(status="running")
+        if self.fail_times > 0:
+            self.fail_times -= 1
+            return Execution(
+                status="failed",
+                error_code="RuntimeError",
+                error_message="provider timeout",
+            )
+        return Execution(
+            status="succeeded", result=self.summary, session_ref=self.session_ref
+        )
+
+    def parse(self, raw: str) -> str:
+        summary = (raw or "").strip()
+        if not summary:
+            raise RuntimeError("open_kknaks returned no summary")
+        return summary
+
+
+async def prepare(db, item_id: int, *, fetch, summarize, runner=None) -> PrepareResult:
+    """준비를 제출하고 곧바로 수확한다 — 종전의 동기 `prepare_item` 한 번에 해당한다.
+
+    제출과 수확 사이를 벌려 보고 싶은 테스트는 이 헬퍼를 쓰지 않고 두 함수를
+    직접 부른다.
+    """
+    result = await start_preparation(db, item_id, fetch=fetch, summarize=summarize)
+    if not result.running:
+        return result
+    item = await db.get(QueueItem, item_id)
+    return await harvest_preparation(db, item, summarize=summarize, runner=runner)

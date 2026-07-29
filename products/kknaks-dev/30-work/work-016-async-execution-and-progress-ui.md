@@ -13,7 +13,7 @@ roles:
   be: kknaks
   qa: kknaks
   ops: kknaks
-progress: 33
+progress: 66
 created_at: 2026-07-29
 updated_at: 2026-07-29
 tags:
@@ -55,9 +55,9 @@ AI 호출을 사용자 요청 안에서 기다리지 않게 하고, 화면이 �
 | Type | refactor |
 | Owner | kknaks |
 | Status | in_progress |
-| Progress | 33% |
+| Progress | 66% |
 | Blocker | 없음 |
-| Next | Phase 1 실운영 확인(배포) → Phase 2 |
+| Next | Phase 3 화면(폴링·스피너) → 배포·실운영 확인 |
 
 ## Role Assignment
 
@@ -66,7 +66,7 @@ AI 호출을 사용자 요청 안에서 기다리지 않게 하고, 화면이 �
 | PM | kknaks | 범위 확정 | todo |
 | Design | kknaks | 진행 표시 규칙 | todo |
 | FE | kknaks | 폴링 + 스피너/비활성화 | todo |
-| BE | kknaks | 제출/수확 분리 | done (P1) |
+| BE | kknaks | 제출/수확 분리 | done (P1·P2) |
 | QA | kknaks | 취소·중복·재시작 시나리오 | todo |
 | Ops | kknaks | 실운영 확인 | todo |
 
@@ -112,10 +112,17 @@ concept 는 레포를 읽어 더 느려서 매번 끊겼다.
 
 ## Domain / Schema
 
-기존 컬럼으로 충분하다 — `ai_tasks.external_task_ref`(task_id) · `status`,
+게이트 쪽은 기존 컬럼으로 충분했다 — `ai_tasks.external_task_ref`(task_id) · `status`,
 `gates.status=generating`, `gate_revisions.status=drafting`.
 
-- Migration 필요 여부: **불필요**
+**준비 쪽은 아니었다.** `item_preparations.status` 가 `succeeded`·`failed` 뿐이라
+*"수집은 끝났고 요약이 아직 큐에 있는"* 구간을 담을 자리가 없었다. 그 행이 없으면
+수집 결과를 어디에도 두지 못해 **back 재시작 시 수확할 재료가 사라진다.**
+게이트 버전의 `drafting` 과 같은 자리를 만든다.
+
+- Migration 필요 여부: **P1 불필요 · P2 필요** — `0006_preparation_running`
+  (`ck_item_preparations_status` 에 `running` 추가). 컨테이너 기동 시
+  `entrypoint.sh` 가 `alembic upgrade head` 를 돌리므로 배포에 별도 절차는 없다.
 
 ## Execution
 
@@ -149,14 +156,34 @@ concept 는 레포를 읽어 더 느려서 매번 끊겼다.
 
 ### Phase 2 — 준비 단계도 비동기 (BE)
 
-- **Status**: TODO
+- **Status**: DONE (코드·테스트) / 실운영 확인 대기
 - **작업**:
-  - [ ] `prepare_item` 의 요약 호출을 제출/수확으로
-  - [ ] Slack 접수 회신을 "접수됨 — 준비 중" 으로
+  - [x] `prepare_item` 의 요약 호출을 제출/수확으로
+  - [x] Slack 접수 회신을 "접수됨 — 준비 중" 으로
 - **검증**:
-  - [ ] 접수 회신이 즉시 온다
-  - [ ] 준비 완료 시 `in_review` 로 전이하고 첫 게이트가 열린다
-- **완료 증거**: 미작성
+  - [x] 접수 회신이 즉시 온다 — 요약을 기다리지 않는다 (수집 시간은 남는다, 아래 주석)
+  - [x] 준비 완료 시 `in_review` 로 전이하고 첫 게이트가 열린다
+- **완료 증거**:
+  - `prepare_item` → `submit_preparation`(수집 + 요약 제출) + `harvest_preparation`(수확).
+    수집 결과는 `running` 준비 버전에 **제출 시점에 저장**된다 — 그래야 재시작 뒤에도
+    수확할 재료가 남는다.
+  - `flow.py` 가 `start_preparation` / `harvest_preparation` 둘로 갈렸다.
+    "준비가 끝나면 첫 게이트가 열린다" 는 이제 **수확 쪽**에 있다.
+  - `AgentSummarizer` 도 `submit`·`poll`·`parse` 로 나뉜다. 게이트 스테이지와 입력이
+    달라(`GenerationInput` 이 없다) 같은 기반 클래스에 넣지 않고 폴링만 공유한다.
+  - 수확 지점 셋: `GET /items` · `GET /items/{id}` · `GET /items/{id}/gates`.
+    게이트 목록도 **준비부터** 본다 — 준비 중인 항목은 게이트가 없어서, 건너뛰면
+    그 화면만 보는 사람은 영영 진행되지 않는다.
+  - `QueueIntakeRunner` 에서 `runner`(route 제안기) 인자를 뺐다. 첫 게이트를 여는 것이
+    수확 쪽으로 갔으므로 접수 경로에는 더 이상 쓰이지 않는다 — 죽은 인자는 남기지 않는다.
+  - 실패 코드를 뭉뚱그리지 않는다. `TASK_NOT_FOUND` 와 `EXECUTION_TIMEOUT` 은 사람이
+    할 일이 다르다.
+  - 611 passed / 3 skipped. 신규 `TestAsyncPreparation` 6건(제출만·수확+첫 게이트·
+    진행 중 무변화·멱등·재시작 후 수확·실패는 같은 버전을 닫는다).
+
+> **수집(`fetch`)은 여전히 제출 경로 안에서 돈다.** AI 가 아니라 HTTP 이고 상한이 15초라
+> 실행기 큐에 넣을 대상이 아니라고 봤다. 접수 회신은 그만큼 늦는다 — Slack 은 먼저
+> `⏳ 큐에 넣는 중입니다` 를 띄우므로 체감은 가려지지만, 실측해서 오래 걸리면 다시 본다.
 
 ### Phase 3 — 화면 (FE)
 
@@ -188,6 +215,10 @@ concept 는 레포를 읽어 더 느려서 매번 끊겼다.
 - [ ] product `log.md` 와 `30-work/README.md` 가 갱신됐다.
 
 ## Open Issues
+
+- **수확 지점이 화면뿐이다.** Slack 으로 던져 놓고 관리자 화면을 열지 않으면 준비가
+  `preparing` 으로 남는다. 실행기 결과 TTL(1시간)을 넘겨 열면 `TASK_NOT_FOUND` 로
+  실패해 요약을 다시 돌려야 한다. 주기 수확(스케줄러 스윕)을 둘지는 P3 이후 결정한다.
 
 - 폴링 주기와 중단 조건(무한 폴링 방지) — 실사용 후 조정한다.
 - ~~실행기 큐에 남은 작업의 만료 처리~~ — P1 에서 정했다. 실행 나이가 `capture_timeout_seconds`

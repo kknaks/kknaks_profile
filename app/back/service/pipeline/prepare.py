@@ -4,12 +4,17 @@
 여기서 만드는 요약은 노트 본문이 아니라 **route 판단의 근거**다 — 무엇을 만들지
 정하기 전에 노트 전문을 쓰면, 폐기할 자료의 노트까지 쓰게 된다.
 
-두 가지 원칙이 이 모듈의 모양을 결정한다.
+세 가지 원칙이 이 모듈의 모양을 결정한다.
 
 1. **메모는 원문을 대체할 수 있다.** 수집이 막혀도(자막 없음·봇 차단) 사람이 메모를
    남겼으면 준비가 성립한다. 수집 실패가 항목을 죽이지 않는다.
 2. **재시도는 덮어쓰지 않는다.** 새 준비 버전과 새 실행 행을 만들고 이전 실패를
    감사 이력으로 남긴다. 실패를 지우면 "왜 이렇게 됐는지"를 잃는다.
+3. **요약을 기다리지 않는다** (KDEV-WORK-016 P2). 제출하고 돌아온다. 수집 결과는
+   `running` 준비 버전에 이미 저장돼 있어, back 이 재시작해도 수확할 재료가 남는다.
+
+   수집(`fetch`)은 여전히 제출 경로 안에서 돈다. AI 가 아니라 HTTP 이고 상한이
+   15초라, 실행기 큐에 넣을 대상이 아니다.
 """
 
 from __future__ import annotations
@@ -17,12 +22,14 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass
 from datetime import datetime, timezone
-from typing import Any, Awaitable, Callable
+from typing import Any, Awaitable, Callable, Protocol
 
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.models import AITask, ItemPreparation, QueueItem
+
+from .executor import Execution
 
 logger = logging.getLogger("kknaks-back.pipeline.prepare")
 
@@ -31,16 +38,19 @@ logger = logging.getLogger("kknaks-back.pipeline.prepare")
 PREPARABLE_STATUSES = ("received", "prepare_failed")
 
 
-@dataclass(frozen=True)
-class SummaryResult:
-    summary: str
-    session_ref: str | None = None
-    external_task_ref: str | None = None
+class Summarizer(Protocol):
+    """요약 실행기 — 게이트 스테이지와 같이 **제출과 수확이 나뉘어 있다**.
 
+    `parse` 는 완료된 원문에서 요약 본문을 꺼낸다. 비어 있으면 예외 — 빈 요약을
+    성공으로 넘기면 route 게이트가 근거 없이 판단한다.
+    """
 
-#: 요약기. `material`(수집 결과 또는 None) 과 `note`(사람 메모) 를 받아 요약을 낸다.
-#: 실패는 예외로 알린다 — 빈 요약을 성공으로 넘기면 route 게이트가 근거 없이 판단한다.
-Summarizer = Callable[..., Awaitable[SummaryResult]]
+    async def submit(self, *, material: Any, note: str | None) -> str: ...
+
+    async def poll(self, task_id: str) -> Execution: ...
+
+    def parse(self, raw: str) -> str: ...
+
 
 #: 원문 수집기. 실패는 예외.
 Fetcher = Callable[[str], Awaitable[Any]]
@@ -49,7 +59,7 @@ Fetcher = Callable[[str], Awaitable[Any]]
 @dataclass(frozen=True)
 class PrepareResult:
     item_id: int
-    status: str  # in_review · prepare_failed · not_allowed
+    status: str  # preparing · in_review · prepare_failed · not_allowed
     preparation_id: int | None = None
     version: int | None = None
     error_code: str | None = None
@@ -57,7 +67,13 @@ class PrepareResult:
 
     @property
     def ok(self) -> bool:
+        """준비가 **끝났는가.** 제출만 된 상태는 아직 아니다."""
         return self.status == "in_review"
+
+    @property
+    def running(self) -> bool:
+        """요약이 실행기 큐에 있다 — 화면이 폴링해 수확한다."""
+        return self.status == "preparing"
 
 
 def _now() -> datetime:
@@ -89,17 +105,18 @@ def _material_dict(material: Any) -> dict[str, Any] | None:
     return to_dict() if callable(to_dict) else {"content": str(material)}
 
 
-async def prepare_item(
+async def submit_preparation(
     db: AsyncSession,
     item_id: int,
     *,
     fetch: Fetcher,
     summarize: Summarizer,
 ) -> PrepareResult:
-    """항목 하나를 준비한다. 커밋은 호출자가 한다.
+    """항목 하나의 준비를 **시작한다.** 커밋은 호출자가 한다.
 
-    반환값으로 결과를 알린다 — 준비 실패는 **예외가 아니라 상태**다. 사람이 메모를
-    보태 재시도하는 정상 경로의 일부이기 때문이다.
+    수집까지 하고 요약은 제출만 한 뒤 돌아온다. 반환값으로 결과를 알린다 —
+    준비 실패는 **예외가 아니라 상태**다. 사람이 메모를 보태 재시도하는 정상
+    경로의 일부이기 때문이다.
     """
     item = await db.get(QueueItem, item_id)
     if item is None or item.deleted_at is not None:
@@ -141,7 +158,7 @@ async def prepare_item(
             payload={"collect_error": collect_error},
         )
 
-    # --- 요약 -------------------------------------------------------------
+    # --- 요약 제출 ---------------------------------------------------------
     task = AITask(
         item_id=item_id,
         kind="summarize",
@@ -152,7 +169,7 @@ async def prepare_item(
     await db.flush()
 
     try:
-        result = await summarize(material=material, note=note or None)
+        task_id = await summarize.submit(material=material, note=note or None)
     except Exception as exc:  # noqa: BLE001
         task.status = "failed"
         task.error_code = type(exc).__name__
@@ -163,22 +180,19 @@ async def prepare_item(
             db,
             item,
             version=await _next_version(db, item_id),
-            error_code="SUMMARIZE_FAILED",
+            error_code="SUMMARIZE_SUBMIT_FAILED",
             error_message=str(exc)[:500],
             payload={"collect_error": collect_error},
             ai_task_id=task.id,
         )
 
-    task.status = "succeeded"
-    task.session_ref = result.session_ref
-    task.external_task_ref = result.external_task_ref
-    task.finished_at = _now()
+    task.external_task_ref = str(task_id)
 
     version = await _next_version(db, item_id)
     preparation = ItemPreparation(
         item_id=item_id,
         version=version,
-        status="succeeded",
+        status="running",
         ai_task_id=task.id,
         payload={
             "source": material,
@@ -187,18 +201,141 @@ async def prepare_item(
             # 근거가 원문인지 사람 기억인지에 따라 신뢰도가 다르다.
             "material_source": "fetched" if material is not None else "note",
             "collect_error": collect_error,
-            "summary": result.summary,
+            "summary": None,
         },
     )
     db.add(preparation)
-    item.status = "in_review"
     await db.flush()
 
     return PrepareResult(
         item_id=item_id,
-        status="in_review",
+        status="preparing",
         preparation_id=preparation.id,
         version=version,
+    )
+
+
+async def harvest_preparation(
+    db: AsyncSession, item: QueueItem, *, summarize: Summarizer
+) -> PrepareResult:
+    """제출해 둔 요약을 확인해 끝났으면 준비를 닫는다. **멱등이다.**
+
+    게이트 수확과 같은 규율이다 — `running` 행을 `FOR UPDATE` 로 잡아, 폴링이
+    겹쳐도 요약이 두 번 채워지지 않는다.
+    """
+    if item.status != "preparing":
+        return PrepareResult(item_id=item.id, status=item.status)
+
+    preparation = await db.scalar(
+        select(ItemPreparation)
+        .where(ItemPreparation.item_id == item.id, ItemPreparation.status == "running")
+        .order_by(ItemPreparation.version.desc())
+        .limit(1)
+        .with_for_update()
+    )
+    if preparation is None:
+        # 준비 중인데 진행 행이 없다. 제출이 커밋 전에 끊긴 흔적이므로
+        # 사람이 재시도할 수 있게 실패로 닫는다.
+        logger.warning("항목 %s 가 preparing 인데 running 준비가 없다", item.id)
+        item.status = "prepare_failed"
+        await db.flush()
+        return PrepareResult(
+            item_id=item.id, status="prepare_failed", error_code="PREPARATION_MISSING"
+        )
+
+    task = await db.get(AITask, preparation.ai_task_id) if preparation.ai_task_id else None
+    if task is None or not task.external_task_ref:
+        return await _close_failed(
+            db,
+            item,
+            preparation,
+            task,
+            error_code="TASK_REF_MISSING",
+            error_message="제출 기록에 실행기 작업 참조가 없다",
+        )
+
+    execution = await summarize.poll(task.external_task_ref)
+    if execution.running:
+        return PrepareResult(
+            item_id=item.id,
+            status="preparing",
+            preparation_id=preparation.id,
+            version=preparation.version,
+        )
+    if execution.status == "failed":
+        return await _close_failed(
+            db,
+            item,
+            preparation,
+            task,
+            error_code=execution.error_code or "SUMMARIZE_FAILED",
+            error_message=execution.error_message or "요약 실행이 실패했다",
+        )
+
+    try:
+        summary = summarize.parse(execution.result or "")
+    except Exception as exc:  # noqa: BLE001
+        return await _close_failed(
+            db,
+            item,
+            preparation,
+            task,
+            error_code="SUMMARIZE_FAILED",
+            error_message=str(exc)[:500],
+        )
+
+    task.status = "succeeded"
+    task.session_ref = execution.session_ref
+    task.finished_at = _now()
+
+    # **새 dict 로 갈아 끼운다.** JSONB 는 제자리 수정으로는 변경을 감지하지 못해
+    # 요약이 조용히 저장되지 않는다.
+    preparation.payload = {**(preparation.payload or {}), "summary": summary}
+    preparation.status = "succeeded"
+    item.status = "in_review"
+    await db.flush()
+
+    return PrepareResult(
+        item_id=item.id,
+        status="in_review",
+        preparation_id=preparation.id,
+        version=preparation.version,
+    )
+
+
+async def _close_failed(
+    db: AsyncSession,
+    item: QueueItem,
+    preparation: ItemPreparation,
+    task: AITask | None,
+    *,
+    error_code: str,
+    error_message: str,
+) -> PrepareResult:
+    """진행 중이던 준비를 실패로 닫는다 — 행을 새로 만들지 않는다.
+
+    이미 있는 버전이 그 실행의 기록이다. 또 만들면 같은 시도가 두 줄이 된다.
+    """
+    if task is not None and task.status == "running":
+        task.status = "failed"
+        task.error_code = error_code
+        task.error_message = error_message[:1000]
+        task.finished_at = _now()
+    preparation.payload = {
+        **(preparation.payload or {}),
+        "error_code": error_code,
+        "error_message": error_message,
+    }
+    preparation.status = "failed"
+    item.status = "prepare_failed"
+    await db.flush()
+    return PrepareResult(
+        item_id=item.id,
+        status="prepare_failed",
+        preparation_id=preparation.id,
+        version=preparation.version,
+        error_code=error_code,
+        error_message=error_message,
     )
 
 
@@ -212,7 +349,10 @@ async def _fail(
     payload: dict[str, Any],
     ai_task_id: int | None = None,
 ) -> PrepareResult:
-    """실패도 **버전으로 남긴다** — 무엇이 막혔는지 상세 화면이 보여줘야 한다."""
+    """제출 전에 막힌 경우 — 실패도 **버전으로 남긴다.**
+
+    무엇이 막혔는지 상세 화면이 보여줘야 한다.
+    """
     preparation = ItemPreparation(
         item_id=item.id,
         version=version,

@@ -5,13 +5,12 @@
 """
 
 from .definitions import PIPELINES, Pipeline, Stage, pipeline_for
-from .flow import prepare_and_open_gate
+from .flow import harvest_preparation, start_preparation
 from .intake import IntakeResult, intake
 from .prepare import (
     PREPARABLE_STATUSES,
     PrepareResult,
-    SummaryResult,
-    prepare_item,
+    Summarizer,
 )
 from .urls import detect_source_kind, normalize_url, youtube_video_id
 
@@ -20,13 +19,13 @@ __all__ = [
     "Pipeline",
     "Stage",
     "pipeline_for",
-    "prepare_and_open_gate",
+    "start_preparation",
+    "harvest_preparation",
     "IntakeResult",
     "intake",
     "PREPARABLE_STATUSES",
     "PrepareResult",
-    "SummaryResult",
-    "prepare_item",
+    "Summarizer",
     "detect_source_kind",
     "normalize_url",
     "youtube_video_id",

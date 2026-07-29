@@ -24,7 +24,7 @@ from core.db import get_db
 from core.models import AITask, Gate, GateFeedback, GateRevision, ItemPreparation, QueueItem
 from service.pipeline import chain
 from service.pipeline import gates as gates_service
-from service.pipeline import intake, prepare_and_open_gate
+from service.pipeline import harvest_preparation, intake, start_preparation
 from service.pipeline.gates import GateError
 from service.pipeline.prepare import PREPARABLE_STATUSES
 from service.pipeline.route import route_outcome, validate_route_result
@@ -130,6 +130,14 @@ async def list_items(
     stmt = stmt.order_by(desc(QueueItem.submitted_at)).limit(limit)
 
     items = (await db.scalars(stmt)).all()
+    # 목록도 수확 지점이다 — 준비 중 항목은 여기서 검토 대기로 넘어간다.
+    # 하나가 넘어갔다고 멈추지 않는다. 모두 봐야 한다.
+    harvested = False
+    for item in items:
+        harvested |= await _harvest_item(db, item)
+    if harvested:
+        await db.commit()
+
     counts = dict(
         (
             await db.execute(
@@ -145,6 +153,9 @@ async def list_items(
 @router.get("/items/{item_id}")
 async def get_item(item_id: int, db: AsyncSession = Depends(get_db)):
     item = await _get_live_item(db, item_id)
+    if await _harvest_item(db, item):
+        await db.commit()
+
     preparations = (
         await db.scalars(
             select(ItemPreparation)
@@ -193,7 +204,11 @@ async def update_note(item_id: int, body: UpdateNoteRequest, db: AsyncSession = 
 
 @router.post("/items/{item_id}/prepare")
 async def retry_prepare(item_id: int, db: AsyncSession = Depends(get_db)):
-    """준비 재시도. 기존 실행 기록은 덮어쓰지 않고 새 버전이 쌓인다."""
+    """준비 재시도 — **요약을 기다리지 않는다** (KDEV-WORK-016 P2).
+
+    수집하고 요약을 제출한 뒤 `preparing` 으로 즉시 응답한다. 완료 전이는
+    화면이 폴링할 때 수확된다. 기존 실행 기록은 덮어쓰지 않고 새 버전이 쌓인다.
+    """
     item = await _get_live_item(db, item_id)
     if item.status not in PREPARABLE_STATUSES:
         raise HTTPException(
@@ -209,13 +224,8 @@ async def retry_prepare(item_id: int, db: AsyncSession = Depends(get_db)):
             status_code=503,
             detail={"code": "SUMMARIZER_UNAVAILABLE", "message": "AI 실행 경로가 준비되지 않았다"},
         )
-    # 준비만 하고 끝내면 재시도로 살아난 항목에는 게이트가 영영 안 열린다.
-    result = await prepare_and_open_gate(
-        db,
-        item_id,
-        fetch=fetch_source,
-        summarize=summarizer,
-        runner=_runner_for("route"),
+    result = await start_preparation(
+        db, item_id, fetch=fetch_source, summarize=summarizer
     )
     await db.commit()
     return {
@@ -224,6 +234,29 @@ async def retry_prepare(item_id: int, db: AsyncSession = Depends(get_db)):
         "error_code": result.error_code,
         "error_message": result.error_message,
     }
+
+
+async def _harvest_item(db: AsyncSession, item: QueueItem) -> bool:
+    """진행 중인 준비를 수확한다. 바뀌었으면 `True`.
+
+    준비가 끝나면 첫 게이트까지 열린다(제출까지). 실행기에 못 닿아도 조회 자체는
+    실패시키지 않는다 — 화면이 통째로 비면 무엇이 진행 중인지도 못 본다.
+    """
+    if item.status != "preparing":
+        return False
+    summarizer = _summarizer_factory()
+    if summarizer is None:
+        # 수확할 방법이 없다. 상태를 지어내지 않고 그대로 둔다 —
+        # 캡처 런타임이 다시 뜨면 이어서 수확된다.
+        return False
+    try:
+        result = await harvest_preparation(
+            db, item, summarize=summarizer, runner=_runner_for("route")
+        )
+    except Exception:  # noqa: BLE001
+        logger.exception("항목 %s 준비 수확 실패 — 조회는 그대로 내려보낸다", item.id)
+        return False
+    return result.status != "preparing"
 
 
 class FeedbackRequest(BaseModel):
@@ -303,13 +336,17 @@ async def list_gates(item_id: int, db: AsyncSession = Depends(get_db)):
 
     실행은 요청 밖에서 돈다. 그 결과를 DB 에 옮기는 것은 화면이 이 목록을 폴링할 때다.
     수확은 멱등이라 폴링이 겹쳐도 revision 이 두 번 채워지지 않는다.
+
+    **준비부터 본다.** 아직 준비 중인 항목은 게이트가 하나도 없고, 그 수확이
+    첫 게이트를 연다 — 여기서 건너뛰면 이 화면만 보는 사람은 영영 진행되지 않는다.
     """
     item = await _get_live_item(db, item_id)
+    harvested = await _harvest_item(db, item)
+
     gates = (
         await db.scalars(select(Gate).where(Gate.item_id == item_id).order_by(Gate.stage_no))
     ).all()
 
-    harvested = False
     for gate in gates:
         if gate.status not in gates_service.IN_FLIGHT:
             continue

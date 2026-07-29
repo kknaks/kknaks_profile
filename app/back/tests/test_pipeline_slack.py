@@ -17,7 +17,8 @@ from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 
 import config
 from core.models import QueueItem
-from service.pipeline import SummaryResult
+from service.pipeline import harvest_preparation
+from tests.fakes import FakeSummarizer
 from service.pipeline.slack_intake import QueueIntakeRunner
 
 try:
@@ -138,12 +139,12 @@ async def _fetch_fail(url):
     raise RuntimeError("transcript unavailable")
 
 
-async def _summarize_ok(*, material, note):
-    return SummaryResult(summary="요약본", session_ref="s1")
+def _summarize_ok():
+    return FakeSummarizer(summary="요약본", session_ref="s1")
 
 
 async def test_link_lands_in_queue_and_writes_no_file(make_runner, no_filesystem_writes):
-    runner = make_runner(fetch=_fetch_ok, summarize=_summarize_ok)
+    runner = make_runner(fetch=_fetch_ok, summarize=_summarize_ok())
     slack = FakeSlackClient()
 
     await runner.handle(Request("<@BOT> https://youtu.be/slacktest01 이거 정리해줘"), slack)
@@ -153,16 +154,19 @@ async def test_link_lands_in_queue_and_writes_no_file(make_runner, no_filesystem
             select(QueueItem).where(QueueItem.normalized_url == "youtube:slacktest01")
         )
     assert item is not None
-    assert (item.status, item.channel, item.source_kind) == ("in_review", "slack", "youtube")
+    # **접수 회신은 요약을 기다리지 않는다** — 이 시점에는 아직 준비 중이다 (WORK-016 P2).
+    assert (item.status, item.channel, item.source_kind) == ("preparing", "slack", "youtube")
     assert item.submitted_by == "U1"
     # 메모에는 링크가 아니라 사람의 말이 남는다.
     assert "이거 정리해줘" in item.note and "youtu.be" not in item.note
-    assert "검토 대기" in slack.last
+    assert "준비 중" in slack.last
+    # 아직 열리지도 않은 검토 카드를 열렸다고 말하지 않는다.
+    assert "검토 대기" not in slack.last
 
 
 async def test_reply_says_nothing_was_written(make_runner, no_filesystem_writes):
     """회신 문구가 사실과 달라지면 안 된다 — 사람이 그 문구를 믿고 행동한다."""
-    runner = make_runner(fetch=_fetch_ok, summarize=_summarize_ok)
+    runner = make_runner(fetch=_fetch_ok, summarize=_summarize_ok())
     slack = FakeSlackClient()
 
     await runner.handle(Request("https://youtu.be/slacktest02", thread="t2"), slack)
@@ -172,7 +176,7 @@ async def test_reply_says_nothing_was_written(make_runner, no_filesystem_writes)
 
 
 async def test_prepare_failure_is_reported_with_retry_path(make_runner, no_filesystem_writes):
-    runner = make_runner(fetch=_fetch_fail, summarize=_summarize_ok)
+    runner = make_runner(fetch=_fetch_fail, summarize=_summarize_ok())
     slack = FakeSlackClient()
 
     await runner.handle(Request("https://youtu.be/slacktest03", thread="t3"), slack)
@@ -195,7 +199,8 @@ async def test_thread_followup_supplies_note_and_unblocks(make_runner, no_filesy
         fetch_calls["n"] += 1
         raise RuntimeError("no transcript")
 
-    runner = make_runner(fetch=flaky_fetch, summarize=_summarize_ok)
+    summarize = _summarize_ok()
+    runner = make_runner(fetch=flaky_fetch, summarize=summarize)
     slack = FakeSlackClient()
 
     await runner.handle(Request("https://youtu.be/slacktest04", thread="t4"), slack)
@@ -205,13 +210,21 @@ async def test_thread_followup_supplies_note_and_unblocks(make_runner, no_filesy
         item = await db.scalar(
             select(QueueItem).where(QueueItem.normalized_url == "youtube:slacktest04")
         )
-    assert item.status == "in_review"
+    # 메모가 준비를 **다시 시작**시킨다. 끝냈다고 하지 않는다.
+    assert item.status == "preparing"
     assert "핵심은 X" in item.note
-    assert "검토 대기" in slack.last
+    assert "준비 중" in slack.last
+
+    # 화면이 폴링하면 그때 검토 대기로 넘어간다.
+    async with make_runner.session_factory() as db:
+        live = await db.get(QueueItem, item.id)
+        result = await harvest_preparation(db, live, summarize=summarize)
+        await db.commit()
+    assert result.ok and live.status == "in_review"
 
 
 async def test_duplicate_link_joins_instead_of_creating(make_runner, no_filesystem_writes):
-    runner = make_runner(fetch=_fetch_ok, summarize=_summarize_ok)
+    runner = make_runner(fetch=_fetch_ok, summarize=_summarize_ok())
     slack = FakeSlackClient()
 
     await runner.handle(Request("https://youtu.be/slacktest05 첫 번째", thread="t5"), slack)
@@ -236,10 +249,10 @@ async def test_failure_is_reported_not_swallowed(make_runner, no_filesystem_writ
     async def boom(url):
         raise RuntimeError("x")
 
-    async def summarize_boom(*, material, note):
+    def submit_boom(**kwargs):
         raise RuntimeError("x")
 
-    runner = make_runner(fetch=boom, summarize=summarize_boom)
+    runner = make_runner(fetch=boom, summarize=FakeSummarizer(on_submit=submit_boom))
     slack = FakeSlackClient()
 
     # 수집·요약이 모두 실패해도 항목은 남고 사람에게 알려진다.
@@ -267,7 +280,7 @@ class TestSlackLinkMarkup:
     async def test_wrapped_link_still_becomes_youtube_item(
         self, make_runner, no_filesystem_writes
     ):
-        runner = make_runner(fetch=_fetch_ok, summarize=_summarize_ok)
+        runner = make_runner(fetch=_fetch_ok, summarize=_summarize_ok())
         slack = FakeSlackClient()
         raw = "<https://www.youtube.com/watch?v=slackwrap1|youtube.com/watch?v=slackwrap1> 정리해줘"
 

@@ -219,7 +219,6 @@ class CaptureRuntime:
             sessions=sessions,
             fetch=fetch_source,
             summarize=summarizer,
-            runner=route_proposer,
             now=lambda: datetime.now(KST),
         )
 

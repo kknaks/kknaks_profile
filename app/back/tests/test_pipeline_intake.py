@@ -12,14 +12,15 @@ from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 
 import config
-from core.models import AITask, ItemPreparation, QueueItem
+from core.models import AITask, Gate, ItemPreparation, QueueItem
 from service.pipeline import (
-    SummaryResult,
     detect_source_kind,
+    harvest_preparation,
     intake,
     normalize_url,
-    prepare_item,
+    start_preparation,
 )
+from tests.fakes import FakeRunner, FakeSummarizer, prepare
 
 try:
     _probe = create_engine(config.database_url())
@@ -207,19 +208,19 @@ async def _fetch_fail(url):
     raise RuntimeError("transcript unavailable")
 
 
-async def _summarize_ok(*, material, note):
-    return SummaryResult(summary="요약본", session_ref="sess-1")
+def _summarize_ok():
+    return FakeSummarizer(summary="요약본", session_ref="sess-1")
 
 
-async def _summarize_fail(*, material, note):
-    raise RuntimeError("provider timeout")
+def _summarize_fail():
+    return FakeSummarizer(fail_times=1)
 
 
 @needs_db
 class TestPrepare:
     async def test_success_moves_to_in_review(self, db):
         created = await intake(db, source_url="https://youtu.be/prepok00001")
-        result = await prepare_item(db, created.item_id, fetch=_fetch_ok, summarize=_summarize_ok)
+        result = await prepare(db, created.item_id, fetch=_fetch_ok, summarize=_summarize_ok())
 
         assert result.ok and result.version == 1
         item = await db.get(QueueItem, created.item_id)
@@ -233,7 +234,7 @@ class TestPrepare:
         created = await intake(
             db, source_url="https://youtu.be/nocaption01", note="자막이 없어 직접 요약: 핵심은 X"
         )
-        result = await prepare_item(db, created.item_id, fetch=_fetch_fail, summarize=_summarize_ok)
+        result = await prepare(db, created.item_id, fetch=_fetch_fail, summarize=_summarize_ok())
 
         assert result.ok
         prep = await db.get(ItemPreparation, result.preparation_id)
@@ -245,10 +246,15 @@ class TestPrepare:
         """요약할 것이 없으면 AI 를 부르지 않는다 — 부르면 환각을 근거로 route 를 판단한다."""
         created = await intake(db, source_url="https://youtu.be/nothing0001")
 
-        async def _must_not_run(**kwargs):
+        def _explode(**kwargs):
             raise AssertionError("요약할 재료가 없는데 AI 를 호출했다")
 
-        result = await prepare_item(db, created.item_id, fetch=_fetch_fail, summarize=_must_not_run)
+        result = await prepare(
+            db,
+            created.item_id,
+            fetch=_fetch_fail,
+            summarize=FakeSummarizer(on_submit=_explode),
+        )
 
         assert result.status == "prepare_failed"
         assert result.error_code == "NO_SOURCE_MATERIAL"
@@ -258,26 +264,36 @@ class TestPrepare:
         assert tasks == []
 
     async def test_summarize_failure_keeps_task_row(self, db):
+        """실패 사유는 **실행기가 준 코드 그대로** 올라온다.
+
+        `TASK_NOT_FOUND` 와 `EXECUTION_TIMEOUT` 은 사람이 할 일이 다르다 —
+        하나로 뭉뚱그리면 화면이 그 차이를 말하지 못한다.
+        """
         created = await intake(db, source_url="https://youtu.be/aifail0001")
-        result = await prepare_item(db, created.item_id, fetch=_fetch_ok, summarize=_summarize_fail)
+        result = await prepare(db, created.item_id, fetch=_fetch_ok, summarize=_summarize_fail())
 
         assert result.status == "prepare_failed"
-        assert result.error_code == "SUMMARIZE_FAILED"
+        assert result.error_code == "RuntimeError"
+        assert "provider timeout" in result.error_message
         task = await db.scalar(select(AITask).where(AITask.item_id == created.item_id))
         assert task.status == "failed"
         assert "provider timeout" in task.error_message
+        # 실패도 준비 버전으로 남는다 — 상세 화면이 무엇이 막혔는지 보여줘야 한다.
+        prep = await db.get(ItemPreparation, result.preparation_id)
+        assert prep.status == "failed"
+        assert prep.payload["error_code"] == "RuntimeError"
 
     async def test_retry_adds_version_and_preserves_failure(self, db):
         """재시도는 기존 실행 기록을 덮어쓰지 않는다 (SPEC-007 AC)."""
         created = await intake(db, source_url="https://youtu.be/retry000001")
-        first = await prepare_item(db, created.item_id, fetch=_fetch_ok, summarize=_summarize_fail)
+        first = await prepare(db, created.item_id, fetch=_fetch_ok, summarize=_summarize_fail())
         assert first.status == "prepare_failed"
 
         # 사람이 메모를 보태고 재시도한다.
         item = await db.get(QueueItem, created.item_id)
         item.note = "메모 보완"
         await db.flush()
-        second = await prepare_item(db, created.item_id, fetch=_fetch_ok, summarize=_summarize_ok)
+        second = await prepare(db, created.item_id, fetch=_fetch_ok, summarize=_summarize_ok())
 
         assert second.ok and second.version == 2
         preps = (
@@ -301,9 +317,9 @@ class TestPrepare:
     async def test_cannot_prepare_item_already_in_review(self, db):
         """검토 중인 항목을 다시 준비하면 사람이 보던 근거가 발밑에서 바뀐다."""
         created = await intake(db, source_url="https://youtu.be/inreview001")
-        await prepare_item(db, created.item_id, fetch=_fetch_ok, summarize=_summarize_ok)
+        await prepare(db, created.item_id, fetch=_fetch_ok, summarize=_summarize_ok())
 
-        again = await prepare_item(db, created.item_id, fetch=_fetch_ok, summarize=_summarize_ok)
+        again = await prepare(db, created.item_id, fetch=_fetch_ok, summarize=_summarize_ok())
         assert again.status == "not_allowed"
         assert again.error_code == "PREPARE_RETRY_NOT_ALLOWED"
 
@@ -315,7 +331,7 @@ class TestPrepare:
         )
         await db.flush()
 
-        result = await prepare_item(db, created.item_id, fetch=_fetch_ok, summarize=_summarize_ok)
+        result = await prepare(db, created.item_id, fetch=_fetch_ok, summarize=_summarize_ok())
         assert result.status == "not_allowed"
 
 
@@ -332,17 +348,134 @@ class TestMaterialSerialization:
 
         seen = {}
 
-        async def strict_summarize(*, material, note):
-            # 실제 요약기가 하는 일 — 여기서 터지면 운영에서도 터진다.
+        def strict(*, material, note):
+            # 실제 요약기가 제출 시점에 하는 일 — 여기서 터지면 운영에서도 터진다.
             json.dumps({"source_material": material, "note": note}, ensure_ascii=False)
             seen["material"] = material
-            return SummaryResult(summary="요약본")
 
         created = await intake(db, source_url="https://youtu.be/serialize01")
-        result = await prepare_item(
-            db, created.item_id, fetch=_fetch_ok, summarize=strict_summarize
+        result = await prepare(
+            db,
+            created.item_id,
+            fetch=_fetch_ok,
+            summarize=FakeSummarizer(on_submit=strict),
         )
 
         assert result.ok
         assert isinstance(seen["material"], dict)
         assert seen["material"]["content"] == "원문 본문"
+
+
+@needs_db
+class TestAsyncPreparation:
+    """준비도 제출/수확으로 갈린다 (KDEV-WORK-016 P2 / SPEC-009 「실행은 비동기다」).
+
+    접수 응답이 요약을 기다리면 30~60초를 붙잡게 되고, 앞단 프록시가 끊으면
+    트랜잭션이 롤백돼 **접수 자체가 사라진다.**
+    """
+
+    async def test_submit_does_not_wait_for_the_summary(self, db):
+        created = await intake(db, source_url="https://youtu.be/async000001")
+        summarize = FakeSummarizer(pending=True)
+        result = await start_preparation(
+            db, created.item_id, fetch=_fetch_ok, summarize=summarize
+        )
+
+        assert result.running and not result.ok
+        item = await db.get(QueueItem, created.item_id)
+        assert item.status == "preparing"
+
+        prep = await db.get(ItemPreparation, result.preparation_id)
+        assert prep.status == "running"
+        # 수집 결과는 **이미 저장돼 있다** — 그래야 재시작해도 수확할 재료가 남는다.
+        assert prep.payload["source"]["content"] == "원문 본문"
+        assert prep.payload["summary"] is None
+
+        task = await db.get(AITask, prep.ai_task_id)
+        assert task.status == "running" and task.external_task_ref == "sum-1"
+
+    async def test_harvest_finishes_and_opens_the_first_gate(self, db):
+        created = await intake(db, source_url="https://youtu.be/async000002")
+        summarize = FakeSummarizer(summary="요약본")
+        runner = FakeRunner(payload={"x": 1})
+        await start_preparation(db, created.item_id, fetch=_fetch_ok, summarize=summarize)
+
+        item = await db.get(QueueItem, created.item_id)
+        result = await harvest_preparation(db, item, summarize=summarize, runner=runner)
+
+        assert result.ok and item.status == "in_review"
+        prep = await db.get(ItemPreparation, result.preparation_id)
+        assert prep.status == "succeeded" and prep.payload["summary"] == "요약본"
+        # 준비가 끝나면 첫 게이트가 열린다 — 열리는 시점에는 제출까지다.
+        gate = await db.scalar(select(Gate).where(Gate.item_id == item.id))
+        assert gate is not None and gate.stage_name == "route"
+        assert gate.status == "generating"
+
+    async def test_running_summary_changes_nothing(self, db):
+        created = await intake(db, source_url="https://youtu.be/async000003")
+        summarize = FakeSummarizer(pending=True)
+        await start_preparation(db, created.item_id, fetch=_fetch_ok, summarize=summarize)
+
+        item = await db.get(QueueItem, created.item_id)
+        result = await harvest_preparation(db, item, summarize=summarize)
+
+        assert result.status == "preparing" and item.status == "preparing"
+        assert await db.scalar(select(Gate).where(Gate.item_id == item.id)) is None
+
+    async def test_harvest_is_idempotent(self, db):
+        """폴링이 겹쳐도 준비 버전도 게이트도 두 번 만들어지지 않는다."""
+        created = await intake(db, source_url="https://youtu.be/async000004")
+        summarize = FakeSummarizer()
+        runner = FakeRunner(payload={"x": 1})
+        await start_preparation(db, created.item_id, fetch=_fetch_ok, summarize=summarize)
+
+        item = await db.get(QueueItem, created.item_id)
+        first = await harvest_preparation(db, item, summarize=summarize, runner=runner)
+        second = await harvest_preparation(db, item, summarize=summarize, runner=runner)
+
+        assert first.ok and second.status == "in_review"
+        preps = (
+            await db.scalars(
+                select(ItemPreparation).where(ItemPreparation.item_id == item.id)
+            )
+        ).all()
+        gates = (await db.scalars(select(Gate).where(Gate.item_id == item.id))).all()
+        assert len(preps) == 1 and len(gates) == 1
+        assert len(runner.calls) == 1
+
+    async def test_harvest_resumes_after_restart(self, db):
+        """back 이 재시작해도 실행기 큐의 작업을 이어 수확한다."""
+        created = await intake(db, source_url="https://youtu.be/async000005")
+        await start_preparation(
+            db, created.item_id, fetch=_fetch_ok, summarize=FakeSummarizer(pending=True)
+        )
+
+        item = await db.get(QueueItem, created.item_id)
+        reborn = FakeSummarizer(summary="이어받은 요약")
+        result = await harvest_preparation(db, item, summarize=reborn)
+
+        assert reborn.polled == ["sum-1"]  # 제출 객체를 잃어도 참조로 찾는다
+        assert result.ok
+        prep = await db.get(ItemPreparation, result.preparation_id)
+        assert prep.payload["summary"] == "이어받은 요약"
+
+    async def test_failed_harvest_closes_the_same_version(self, db):
+        """실패는 진행 중이던 버전을 닫는다 — 같은 시도가 두 줄이 되면 안 된다."""
+        created = await intake(db, source_url="https://youtu.be/async000006")
+        summarize = FakeSummarizer(fail_times=1)
+        await start_preparation(db, created.item_id, fetch=_fetch_ok, summarize=summarize)
+
+        item = await db.get(QueueItem, created.item_id)
+        result = await harvest_preparation(db, item, summarize=summarize)
+
+        assert result.status == "prepare_failed" and item.status == "prepare_failed"
+        preps = (
+            await db.scalars(
+                select(ItemPreparation).where(ItemPreparation.item_id == item.id)
+            )
+        ).all()
+        assert [(p.version, p.status) for p in preps] == [(1, "failed")]
+        task = await db.get(AITask, preps[0].ai_task_id)
+        assert task.status == "failed"
+        # 수집 결과는 실패해도 남는다 — 재시도 판단의 근거다.
+        assert preps[0].payload["source"]["content"] == "원문 본문"

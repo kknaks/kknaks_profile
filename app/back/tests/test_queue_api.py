@@ -215,17 +215,19 @@ class TestRetryPrepare:
         assert response.json()["detail"]["code"] == "SUMMARIZER_UNAVAILABLE"
 
     def test_retry_uses_note_when_source_unreachable(self, client, monkeypatch):
-        """막힌 항목이 메모 한 줄로 풀리는 경로가 API 로도 열려 있어야 한다."""
+        """막힌 항목이 메모 한 줄로 풀리는 경로가 API 로도 열려 있어야 한다.
 
-        async def fake_summarize(*, material, note):
-            from service.pipeline import SummaryResult
+        준비 응답은 **요약을 기다리지 않는다** — 제출까지만 하고 `preparing` 으로
+        돌아오며, 상세 조회가 수확한다 (WORK-016 P2).
+        """
+        from tests.fakes import FakeSummarizer
 
-            return SummaryResult(summary=f"요약({note})")
+        summarizer = FakeSummarizer(summary="요약(메모)")
 
         async def fetch_fail(url):
             raise RuntimeError("no transcript")
 
-        monkeypatch.setattr("api.routers.queue._summarizer_factory", lambda: fake_summarize)
+        monkeypatch.setattr("api.routers.queue._summarizer_factory", lambda: summarizer)
         monkeypatch.setattr("service.knowledge_capture.source.fetch_source", fetch_fail)
 
         item_id = _create(
@@ -234,10 +236,12 @@ class TestRetryPrepare:
 
         response = client.post(f"/api/admin/queue/items/{item_id}/prepare")
         assert response.status_code == 200, response.text
-        assert response.json()["status"] == "in_review"
+        assert response.json()["status"] == "preparing"
 
         detail = client.get(f"/api/admin/queue/items/{item_id}").json()
+        assert detail["status"] == "in_review"
         assert detail["preparations"][-1]["payload"]["material_source"] == "note"
+        assert detail["preparations"][-1]["payload"]["summary"] == "요약(메모)"
 
 
 class TestGates:
@@ -266,11 +270,9 @@ class TestGates:
         import hashlib
 
         video_id = hashlib.sha1(request.node.name.encode()).hexdigest()[:11]
-        from service.pipeline import SummaryResult
-        from tests.fakes import FakeRunner
+        from tests.fakes import FakeRunner, FakeSummarizer
 
-        async def summarize(*, material, note):
-            return SummaryResult(summary="요약본", session_ref="s1")
+        summarize = FakeSummarizer(summary="요약본", session_ref="s1")
 
         async def fetch_ok(url):
             return {"url": url, "content": "본문"}
@@ -392,11 +394,9 @@ class TestPublishTrigger:
         """생성기가 없어 다음 게이트를 못 열었는데 발행되면, reference 만 있고
         concept 는 없는 미완성 체인이 origin 에 나간다.
         """
-        from service.pipeline import SummaryResult
-        from tests.fakes import FakeRunner
+        from tests.fakes import FakeRunner, FakeSummarizer
 
-        async def summarize(*, material, note):
-            return SummaryResult(summary="요약")
+        summarize = FakeSummarizer(summary="요약")
 
         async def fetch_ok(url):
             return {"url": url, "content": "본문"}

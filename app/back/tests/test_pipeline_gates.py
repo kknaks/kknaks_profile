@@ -18,10 +18,10 @@ from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 import config
 from core.models import AITask, Gate, GateRevision, QueueItem
 from service.pipeline import gates as gates_service
-from service.pipeline import intake, prepare_and_open_gate
+from service.pipeline import intake
 from service.pipeline.gates import GateError, harvest, open_first_gate
 from service.pipeline.route import route_outcome, validate_route_result
-from tests.fakes import FakeRunner
+from tests.fakes import FakeRunner, FakeSummarizer, prepare
 
 try:
     _probe = create_engine(config.database_url())
@@ -131,10 +131,8 @@ async def _fetch_ok(url):
     return {"url": url, "content": "본문"}
 
 
-async def _summarize_ok(*, material, note):
-    from service.pipeline import SummaryResult
-
-    return SummaryResult(summary="요약본", session_ref="prep-sess")
+def _summarize_ok():
+    return FakeSummarizer(summary="요약본", session_ref="prep-sess")
 
 
 @needs_db
@@ -146,8 +144,8 @@ class TestOpenGate:
         """
         created = await intake(db, source_url="https://youtu.be/gateopen001")
         runner = Recorder()
-        result = await prepare_and_open_gate(
-            db, created.item_id, fetch=_fetch_ok, summarize=_summarize_ok, runner=runner
+        result = await prepare(
+            db, created.item_id, fetch=_fetch_ok, summarize=_summarize_ok(), runner=runner
         )
         assert result.ok
 
@@ -169,8 +167,8 @@ class TestOpenGate:
         """폴링이 완료를 감지하면 그때 검토 대기가 된다."""
         created = await intake(db, source_url="https://youtu.be/gateharv001")
         runner = Recorder()
-        await prepare_and_open_gate(
-            db, created.item_id, fetch=_fetch_ok, summarize=_summarize_ok, runner=runner
+        await prepare(
+            db, created.item_id, fetch=_fetch_ok, summarize=_summarize_ok(), runner=runner
         )
         gate = await db.scalar(select(Gate).where(Gate.item_id == created.item_id))
         item = await db.get(QueueItem, created.item_id)
@@ -227,8 +225,8 @@ class TestOpenGate:
         """route 판단의 근거는 요약이다 — 자막 원문을 그대로 읽히지 않는다."""
         created = await intake(db, source_url="https://youtu.be/gatesumm001")
         runner = Recorder()
-        await prepare_and_open_gate(
-            db, created.item_id, fetch=_fetch_ok, summarize=_summarize_ok, runner=runner
+        await prepare(
+            db, created.item_id, fetch=_fetch_ok, summarize=_summarize_ok(), runner=runner
         )
         request = runner.calls[0]
         assert request.preparation is not None
@@ -243,8 +241,8 @@ class TestOpenGate:
     async def test_no_generator_keeps_prepare_result(self, db):
         """AI 경로가 없어도 준비 결과를 버리지 않는다 — 게이트는 나중에 열 수 있다."""
         created = await intake(db, source_url="https://youtu.be/nogen000001")
-        result = await prepare_and_open_gate(
-            db, created.item_id, fetch=_fetch_ok, summarize=_summarize_ok, runner=None
+        result = await prepare(
+            db, created.item_id, fetch=_fetch_ok, summarize=_summarize_ok(), runner=None
         )
         assert result.ok
         assert await db.scalar(select(Gate).where(Gate.item_id == created.item_id)) is None
