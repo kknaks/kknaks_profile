@@ -3,7 +3,9 @@
 
 버전 컷오프: 배포/심사 시점에 `products/<product>/` 전체(00~70)를
 `products/<product>/_archive/<version>/` 로 복사하고, 복사본의 frontmatter를
-archived 로 마킹한다. live 문서는 그대로 두고 다음 버전 작업을 이어간다.
+archived 로 마킹한다. cut 전에는 release gate를 통과해야 한다.
+기본은 live 문서를 그대로 두며, `--reset-current`를 주면 archive freeze 후
+work cycle을 다음 버전 시작 상태로 carry/reset 한다.
 
 검증기(product_doc_pipeline.py)는 `products/` 최상위만 제품으로 순회하고
 release/work/runbook 글롭이 모두 비재귀라, 중첩된 `_archive/` 복사본은
@@ -18,6 +20,8 @@ Usage:
 옵션:
     --date YYYY-MM-DD   archived_at 날짜 (기본: 오늘, KST)
     --no-assets         70-runbook/assets 등 바이너리 자산 제외 (.md/.txt/.json만)
+    --no-release-gate   release gate 검증을 건너뜀
+    --reset-current     freeze 후 live 30-work를 다음 cycle 상태로 reset
     --dry-run           복사하지 않고 무엇을 할지 출력만
 """
 
@@ -61,6 +65,18 @@ def git_short_head() -> str:
         return out.stdout.strip()
     except Exception:
         return "unknown"
+
+
+def run_release_gate(product: str) -> None:
+    cmd = [
+        sys.executable,
+        str(ROOT / ".agent/scripts/product_doc_pipeline.py"),
+        "--strict",
+        "--release-gate",
+        "--product",
+        product,
+    ]
+    subprocess.run(cmd, cwd=ROOT, check=True)
 
 
 def make_ignore(no_assets: bool):
@@ -231,6 +247,94 @@ def write_archive_index(archive_dir: Path, product: str) -> None:
     (archive_dir / "README.md").write_text("\n".join(lines), encoding="utf-8")
 
 
+def chmod_readonly(path: Path) -> None:
+    for child in path.rglob("*"):
+        mode = child.stat().st_mode
+        child.chmod(mode & ~0o222)
+    path.chmod(path.stat().st_mode & ~0o222)
+
+
+def section_bounds(lines: list[str], header: str) -> tuple[int, int] | None:
+    try:
+        start = next(i for i, line in enumerate(lines) if line.strip() == header)
+    except StopIteration:
+        return None
+    end = len(lines)
+    for i in range(start + 1, len(lines)):
+        if lines[i].startswith("## "):
+            end = i
+            break
+    return start, end
+
+
+def reset_table_section(lines: list[str], header: str) -> tuple[list[str], int]:
+    bounds = section_bounds(lines, header)
+    if bounds is None:
+        return lines, 0
+    start, end = bounds
+    out = lines[: start + 1]
+    kept_table_lines = 0
+    removed = 0
+    for line in lines[start + 1 : end]:
+        if line.lstrip().startswith("|"):
+            if kept_table_lines < 2:
+                out.append(line)
+                kept_table_lines += 1
+            else:
+                removed += 1
+            continue
+        out.append(line)
+    out.extend(lines[end:])
+    return out, removed
+
+
+def carry_spec_coverage(lines: list[str], version: str) -> tuple[list[str], int]:
+    bounds = section_bounds(lines, "## Spec Coverage")
+    if bounds is None:
+        return lines, 0
+    start, end = bounds
+    row_re = re.compile(r"^(\|\s*[^|]+\s*\|)([^|]*)\|([^|]*)\|(.*)$")
+    out = lines[: start + 1]
+    changed = 0
+    for line in lines[start + 1 : end]:
+        match = row_re.match(line)
+        if match and not re.fullmatch(r"\|?\s*-+", line.replace("|", "")):
+            first_cell = match.group(1)
+            if "Spec" in first_cell or "---" in first_cell:
+                out.append(line)
+            else:
+                out.append(f"{first_cell} (carried @{version}) | draft |{match.group(4)}")
+                changed += 1
+        else:
+            out.append(line)
+    out.extend(lines[end:])
+    return out, changed
+
+
+def reset_current(product_dir: Path, version: str) -> tuple[int, int, int]:
+    """Reset live work cycle after archive freeze.
+
+    Our repo uses `30-work/README.md` plus `30-work/work-*.md`, not the
+    mediness single-file `30-work.md` model. So the safe carry/reset is:
+    clear current work index rows, mark spec coverage carried, and remove
+    live work body files that were just frozen into the archive.
+    """
+    work_index = product_dir / "30-work/README.md"
+    removed_rows = carried_rows = removed_files = 0
+    if work_index.exists():
+        lines = work_index.read_text(encoding="utf-8").splitlines()
+        lines, removed_rows = reset_table_section(lines, "## Work 목록")
+        lines, carried_rows = carry_spec_coverage(lines, version)
+        work_index.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+    work_dir = product_dir / "30-work"
+    if work_dir.exists():
+        for path in sorted(work_dir.glob("work-*.md")):
+            path.unlink()
+            removed_files += 1
+    return removed_rows, carried_rows, removed_files
+
+
 def dir_size(path: Path) -> str:
     total = float(sum(p.stat().st_size for p in path.rglob("*") if p.is_file()))
     for unit in ("B", "K", "M"):
@@ -246,6 +350,8 @@ def main() -> int:
     parser.add_argument("version", help="버전 (예: 1.0.1)")
     parser.add_argument("--date", help="archived_at (YYYY-MM-DD, 기본 오늘 KST)")
     parser.add_argument("--no-assets", action="store_true", help="바이너리 자산 제외")
+    parser.add_argument("--no-release-gate", action="store_true", help="release gate 검증 생략")
+    parser.add_argument("--reset-current", action="store_true", help="archive freeze 후 live work cycle reset")
     parser.add_argument("--dry-run", action="store_true", help="복사 없이 계획만 출력")
     args = parser.parse_args()
 
@@ -272,20 +378,36 @@ def main() -> int:
     print(f"- dest: {dest.relative_to(ROOT)}")
     print(f"- md files (source): {md_total}")
     print(f"- assets: {'제외 (--no-assets)' if args.no_assets else '포함'}")
+    print(f"- release gate: {'생략' if args.no_release_gate else '필수'}")
+    print(f"- reset current: {'yes' if args.reset_current else 'no'}")
 
     if args.dry_run:
         print("- dry-run: 복사하지 않음")
         return 0
 
+    if not args.no_release_gate:
+        run_release_gate(args.product)
+
     archive_dir.mkdir(exist_ok=True)
     shutil.copytree(src, dest, ignore=make_ignore(args.no_assets))
     marked, renamed = process_archive(dest, version, archived_at)
     write_archive_index(archive_dir, args.product)
+    chmod_readonly(dest)
+
+    reset_summary = None
+    if args.reset_current:
+        reset_summary = reset_current(src, version)
 
     print(f"- copied: {dir_size(dest)}")
     print(f"- file prefix: {file_prefix(version)}")
     print(f"- marked archived: {marked} md files")
     print(f"- renamed (prefix): {renamed} md files")
+    print("- readonly: yes")
+    if reset_summary is not None:
+        removed_rows, carried_rows, removed_files = reset_summary
+        print(
+            f"- current reset: work rows {removed_rows}, spec coverage carried {carried_rows}, work files removed {removed_files}"
+        )
     print(f"- index: {(archive_dir / 'README.md').relative_to(ROOT)}")
     print("- done")
     return 0

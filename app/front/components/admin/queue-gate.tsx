@@ -589,7 +589,9 @@ export function GateCard({
     isConcepts(active?.payload) ? active.payload.concepts : [],
   );
   const [feedbackOpen, setFeedbackOpen] = useState(false);
-  const [busy, setBusy] = useState(false);
+  // 무엇을 하는 중인지 담는다 — 승인은 다음 게이트의 AI 호출까지 기다려서 1분 가까이
+  // 걸린다. boolean 이면 화면이 "왜 멈춰 있는지"를 말하지 못해 다시 누르게 된다.
+  const [busy, setBusy] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -604,8 +606,9 @@ export function GateCard({
 
   const canAct = gate.status === "review_pending" || gate.status === "feedback_pending";
 
-  async function run(fn: () => Promise<unknown>) {
-    setBusy(true);
+  async function run(label: string, fn: () => Promise<unknown>) {
+    if (busy) return; // 이미 도는 요청이 있으면 무시 — 중복 실행 차단
+    setBusy(label);
     setError(null);
     try {
       await fn();
@@ -619,7 +622,7 @@ export function GateCard({
           : "요청에 실패했습니다.",
       );
     } finally {
-      setBusy(false);
+      setBusy(null);
     }
   }
 
@@ -683,7 +686,7 @@ export function GateCard({
             active?.payload &&
             !isNote(active.payload) &&
             !isConcepts(active.payload) && (
-            <RouteEditor value={draft} disabled={!canAct || busy} onChange={setDraft} />
+            <RouteEditor value={draft} disabled={!canAct || !!busy} onChange={setDraft} />
             )}
 
           {isNote(active?.payload) && <NotePreview payload={active.payload} />}
@@ -691,7 +694,7 @@ export function GateCard({
           {isConcepts(active?.payload) && (
             <ConceptList
               concepts={concepts}
-              disabled={!canAct || busy}
+              disabled={!canAct || !!busy}
               onChange={setConcepts}
             />
           )}
@@ -702,13 +705,19 @@ export function GateCard({
             </p>
           )}
 
+          {busy && (
+            <p className="mono" style={{ fontSize: 12, color: "var(--accent)", marginTop: 8 }}>
+              <Spinner />
+              {busy} 진행 중… AI 를 타는 단계라 1분까지 걸립니다.
+            </p>
+          )}
           {error && <p style={{ color: "#f85149", fontSize: 12, marginTop: 8 }}>{error}</p>}
 
           <div style={{ display: "flex", gap: 8, justifyContent: "flex-end", marginTop: 12 }}>
             {gate.stage_name === "route" && approved && (
               <button
                 type="button"
-                disabled={busy}
+                disabled={!!busy}
                 title="뒤 단계가 무효화됩니다. 기록은 남고 수집·요약은 다시 돌지 않습니다."
                 onClick={() => {
                   if (
@@ -716,29 +725,29 @@ export function GateCard({
                       "목적지를 다시 정합니다.\n뒤 단계의 승인이 무효화됩니다 (기록은 남습니다).",
                     )
                   ) {
-                    run(() => queueApi.reopenRoute(itemId));
+                    run("재오픈", () => queueApi.reopenRoute(itemId));
                   }
                 }}
                 style={btn("ghost")}
               >
-                이 목적지가 아님
+                {busy === "재오픈" ? <><Spinner />재오픈 중…</> : "이 목적지가 아님"}
               </button>
             )}
             {gate.status === "failed" && (
               <button
                 type="button"
-                disabled={busy}
-                onClick={() => run(() => queueApi.retryGate(gate.id))}
+                disabled={!!busy}
+                onClick={() => run("재시도", () => queueApi.retryGate(gate.id))}
                 style={btn("ghost")}
               >
-                재시도
+                {busy === "재시도" ? <><Spinner />재시도 중…</> : "재시도"}
               </button>
             )}
             {canAct && (
               <>
                 <button
                   type="button"
-                  disabled={busy}
+                  disabled={!!busy}
                   onClick={() => setFeedbackOpen(true)}
                   style={btn("ghost")}
                 >
@@ -746,9 +755,9 @@ export function GateCard({
                 </button>
                 <button
                   type="button"
-                  disabled={busy}
+                  disabled={!!busy}
                   onClick={() =>
-                    run(() =>
+                    run("승인", () =>
                       queueApi.approve(
                         gate.id,
                         gate.stage_name === "route"
@@ -762,7 +771,16 @@ export function GateCard({
                   }
                   style={btn(draft.exclusive === "discard" ? "danger" : "primary")}
                 >
-                  {draft.exclusive === "discard" ? "폐기 승인" : "승인"}
+                  {busy === "승인" ? (
+                    <>
+                      <Spinner />
+                      승인 중… 다음 단계를 만드는 중입니다 (최대 1분)
+                    </>
+                  ) : draft.exclusive === "discard" ? (
+                    "폐기 승인"
+                  ) : (
+                    "승인"
+                  )}
                 </button>
               </>
             )}

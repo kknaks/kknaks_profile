@@ -15,6 +15,8 @@ runs_scripts:
 - 결과: `products/<product>/_archive/vX.Y.Z/`에 컷오프 시점 제품 문서 전체(00~70) 동결본 + `_archive/README.md` 인덱스
 - 동결본 frontmatter는 `status: archived` + `original_status` + `archived_version` + `archived_at`로 마킹된다 (tags의 `status/*`도 `status/archived`로)
 - 동결본 `.md` 파일명과 내부 링크(wikilink·마크다운 상대링크)에 버전 prefix `v1_0_1-`가 붙는다 → basename이 전역 유니크해져 Obsidian graph에서 live 문서와 충돌하지 않고, 아카이브 내부 링크는 같은 버전 사본을 가리켜 과거 버전 그래프가 자기완결적으로 탐색된다
+- 컷 전 `product_doc_pipeline.py --strict --release-gate --product <product>`를 통과해야 한다. 컷은 백업이 아니라 릴리즈 게이트다.
+- 기본은 live 문서를 그대로 둔다. 다음 사이클로 work를 비우려면 `--reset-current`를 명시한다.
 
 ## When NOT to use
 
@@ -29,6 +31,8 @@ runs_scripts:
 | `version` | 버전 (v 접두 자동 정규화) | `1.0.1` → `v1.0.1` |
 | `--date` | (선택) archived_at, 기본 오늘 KST | `2026-06-08` |
 | `--no-assets` | (선택) 70-runbook/assets 등 바이너리 제외, 텍스트 문서만 | — |
+| `--no-release-gate` | (선택) release gate 생략. 개발 중 박제 같은 예외에만 사용 | — |
+| `--reset-current` | (선택) freeze 후 live `30-work`를 다음 cycle 상태로 carry/reset | — |
 | `--dry-run` | (선택) 복사 없이 계획만 출력 | — |
 
 > 자산(아이콘·스크린샷)은 버전마다 중복 복사되어 용량이 커질 수 있다. 문서만 동결하면 되는 경우 `--no-assets`로 가볍게 가져간다.
@@ -39,21 +43,29 @@ runs_scripts:
    ```bash
    python3 .agent/scripts/product_version_cutoff.py mac-remote 1.0.1 --dry-run
    ```
-2. **컷오프 실행** — 전체 트리를 `_archive/vX.Y.Z/`로 복사하고 frontmatter를 archived로 마킹, 인덱스 갱신.
+2. **release gate 확인** — cut 가능한 완료 상태인지 본다.
+   ```bash
+   python3 .agent/scripts/product_doc_pipeline.py --strict --release-gate --product mac-remote
+   ```
+3. **컷오프 실행** — 전체 트리를 `_archive/vX.Y.Z/`로 복사하고 frontmatter를 archived로 마킹, 인덱스 갱신, archive를 read-only로 만든다.
    ```bash
    python3 .agent/scripts/product_version_cutoff.py mac-remote 1.0.1 --date 2026-06-08
    ```
-3. **파이프라인 검증** — 아카이브가 검증을 깨지 않는지 확인.
+4. **다음 cycle reset이 필요할 때만 실행** — archive freeze 후 live work를 비운다.
+   ```bash
+   python3 .agent/scripts/product_version_cutoff.py mac-remote 1.0.2 --reset-current
+   ```
+5. **파이프라인 검증** — 아카이브가 검증을 깨지 않는지 확인.
    ```bash
    python3 .agent/scripts/product_doc_pipeline.py --strict
    ```
-4. **보고** — 동결 버전, 복사 용량, 마킹된 문서 수, 인덱스 경로.
+6. **보고** — 동결 버전, 복사 용량, 마킹된 문서 수, 인덱스 경로.
 
 ## Rules
 
-- **읽기 전용 규약**: 동결본(`_archive/vX.Y.Z/`)은 수정하지 않는다. 오타·갱신은 live 문서에서 하고, 필요하면 다음 컷오프에 반영된다.
+- **읽기 전용 규약**: 동결본(`_archive/vX.Y.Z/`)은 수정하지 않는다. 오타·갱신은 live 문서에서 하고, 필요하면 다음 컷오프에 반영된다. 스크립트는 `chmod -R a-w`를 적용한다.
 - **덮어쓰지 않음**: 같은 버전 폴더가 이미 있으면 스크립트가 중단한다. 다시 동결하려면 기존 폴더를 의도적으로 지운 뒤 실행.
-- **live는 그대로**: 컷오프는 복사만 한다. live 문서의 `status`(implemented/released 등)는 바뀌지 않는다.
+- **live 기본은 그대로**: 컷오프는 기본적으로 복사만 한다. `--reset-current`를 붙이면 archive freeze 후 live `30-work/README.md`의 work 행을 비우고 `Spec Coverage`를 `(carried @vX.Y.Z)`/`draft`로 바꾸며 live `30-work/work-*.md`를 제거한다. spec/decision/architecture/log는 carry-forward한다.
 - **검증 안전성**: 검증기(`product_doc_pipeline.py`)는 `products/` 최상위만 제품으로 순회하고 release/work/runbook 글롭이 모두 비재귀라, 중첩된 `_archive/` 동결본은 재검증되지 않는다. 그래서 `status: archived` 마킹이 release/runbook 검증을 깨지 않는다. (검증기에 재귀/wikilink 검증을 추가할 때는 `_archive/`를 제외해야 한다.)
 
 ## Output
