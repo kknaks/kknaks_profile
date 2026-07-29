@@ -20,12 +20,12 @@ AI 에게 인덱스를 미리 주고도 서버가 다시 보는 이유는, 프�
 from __future__ import annotations
 
 import difflib
-import json
 from pathlib import Path
 from typing import Any
 
 from ..concept_index import ConceptIndex, build_index, read_concept
-from ..gates import GateError, GenerationInput, GenerationResult
+from ..executor import AgentStage
+from ..gates import GateError, GenerationInput
 from .common import (
     CONCEPT_STEM_RE,
     OUTPUT_CONTRACT_LIST,
@@ -258,73 +258,43 @@ def apply_exclusions(
     return {"concepts": merged}
 
 
-class ConceptStage:
-    """open-kknaks 로 개념 초안을 만들고 서버가 판정을 재검증한다."""
+class ConceptStage(AgentStage):
+    """open-kknaks 로 개념 초안을 만들고 서버가 판정을 재검증한다.
 
-    def __init__(
-        self,
-        client,
-        *,
-        repo_root: Path,
-        provider: str,
-        model: str | None,
-        work_dir: str | None,
-        timeout_seconds: float = 900,
-    ) -> None:
-        self.client = client
-        self.repo_root = repo_root
-        self.provider = provider
-        self.model = model
-        self.work_dir = work_dir
-        self.timeout_seconds = timeout_seconds
+    **인덱스는 수확 시점에 다시 읽는다.** 제출과 수확 사이에 다른 항목이 개념을 발행할
+    수 있어, 제출 때의 인덱스로 재검증하면 방금 생긴 개념을 못 보고 `create` 를 통과시킨다.
+    """
 
-    async def __call__(self, request: GenerationInput) -> GenerationResult:
-        index = build_index(self.repo_root)
-        reference_stem = _reference_stem(request)
+    source = "pipeline-concept"
 
-        payload: dict[str, Any] = {
-            **context_payload(request),
-            "reference_stem": reference_stem,
-            "existing_concepts": index.as_prompt_payload(),
-        }
-        prompt = INSTRUCTION.format(
+    def prompt(self, request: GenerationInput) -> str:
+        return INSTRUCTION.format(
             rules=READ_THE_RULES.format(template="concept.md"),
-            reference_stem=reference_stem or "(이번 자료의 reference 없음)",
+            reference_stem=_reference_stem(request) or "(이번 자료의 reference 없음)",
             output=OUTPUT_CONTRACT_LIST.format(shape=RESULT_SHAPE),
         )
 
-        options: dict[str, Any] = {"cwd": self.work_dir} if self.work_dir else {}
-        if request.session_ref:
-            options["resume"] = {"mode": "session", "session_id": request.session_ref}
+    def payload(self, request: GenerationInput) -> dict[str, Any]:
+        return {
+            **context_payload(request),
+            "reference_stem": _reference_stem(request),
+            "existing_concepts": build_index(self.repo_root).as_prompt_payload(),
+        }
 
-        task_id = await self.client.submit(
-            prompt + "\n\n" + json.dumps(payload, ensure_ascii=False),
-            provider=self.provider,
-            model=self.model,
-            options=options or None,
-            max_retries=2,
-            metadata={"source": "pipeline-concept", "item_id": request.item.id},
-        )
-        task = await self.client.result(task_id, timeout=self.timeout_seconds)
-        if task is None or not task.result:
-            raise RuntimeError(getattr(task, "error", None) or "open_kknaks returned no result")
-
-        data = parse_json_output(str(task.result))
+    def parse(self, raw: str, request: GenerationInput) -> dict[str, Any]:
+        data = parse_json_output(raw)
         raw_concepts = data.get("concepts")
         if not isinstance(raw_concepts, list):
             raise GateError("INVALID_CONCEPT_OUTPUT", "concepts 가 목록이 아니다")
 
-        concepts = verify_concepts(
-            raw_concepts,
-            index=index,
-            repo_root=self.repo_root,
-            reference_stem=reference_stem,
-        )
-        return GenerationResult(
-            payload={"concepts": concepts},
-            session_ref=getattr(task, "result_session_id", None),
-            external_task_ref=str(task_id),
-        )
+        return {
+            "concepts": verify_concepts(
+                raw_concepts,
+                index=build_index(self.repo_root),
+                repo_root=self.repo_root,
+                reference_stem=_reference_stem(request),
+            )
+        }
 
 
 def _reference_stem(request: GenerationInput) -> str | None:

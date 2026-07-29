@@ -56,9 +56,6 @@ class _CapturingClient:
         self.prompt = prompt
         return "task-1"
 
-    async def result(self, task_id, timeout=None):
-        raise RuntimeError("프롬프트만 확인한다")
-
 
 def _derived_prompt(repo_root: Path) -> str:
     """`DerivedStage` 가 **실제로 보내는** 프롬프트."""
@@ -82,8 +79,8 @@ def _derived_prompt(repo_root: Path) -> str:
         session_ref=None,
     )
     async def _run():
-        with pytest.raises(RuntimeError):
-            await stage(request)
+        # 제출까지만 한다 — 결과를 기다리지 않는 것이 계약이다 (KDEV-WORK-016).
+        await stage.submit(request)
 
     anyio.run(_run)
     return client.prompt

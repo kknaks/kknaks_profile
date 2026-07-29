@@ -1,7 +1,7 @@
 """게이트 공통 계약 — 생성·피드백·재생성·재시도·승인 (KDEV-WORK-014 P3 / KDEV-SPEC-008·009).
 
 스테이지마다 만드는 내용은 다르지만 **절차는 하나**다. 그래서 여기에 절차만 두고,
-무엇을 만들지는 주입된 `generator` 가 안다. WORK-015 의 `source_note`·`concept`·`derived`
+무엇을 만들지는 주입된 실행기(`StageRunner`) 가 안다. WORK-015 의 `source_note`·`concept`·`derived`
 게이트가 이 파일을 그대로 재사용한다.
 
 세 가지 상태를 섞지 않는 것이 이 모듈의 핵심 규율이다.
@@ -12,13 +12,19 @@
 
 게이트가 `review_pending` 인데 실행은 `succeeded` 이고 버전은 `reviewable` 인 것이 정상이다.
 하나로 합치면 *"AI 가 실패한 것"* 과 *"사람이 아직 안 본 것"* 이 구분되지 않는다.
+
+**실행은 비동기다** (KDEV-WORK-016 / SPEC-009). 이 모듈의 함수들은 AI 를 기다리지 않는다.
+`open_gate`·`regenerate`·`retry` 는 **제출까지만** 하고 즉시 돌아오며, 결과는 나중에
+`harvest()` 가 채운다. 사람의 조작(피드백·승인)만 동기다 — 이미 만들어진 것을 저장하는
+일이라 즉시 끝난다.
 """
 
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 from datetime import datetime, timezone
-from typing import Any, Awaitable, Callable
+from typing import Any, Protocol
 
 from sqlalchemy import func, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -26,12 +32,18 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from core.models import AITask, Gate, GateFeedback, GateRevision, ItemPreparation, QueueItem
 
 from .definitions import pipeline_for
+from .executor import Execution
+
+logger = logging.getLogger("kknaks-back.pipeline.gates")
 
 #: 한 단어 피드백으로는 방향이 전달되지 않는다 (SPEC-009 Validation).
 MIN_FEEDBACK_LENGTH = 4
 
 #: 재생성을 받을 수 있는 게이트 상태.
 REGENERATABLE = ("review_pending", "feedback_pending")
+
+#: 실행을 제출해 놓고 결과를 기다리는 게이트 상태 — 수확 대상이다.
+IN_FLIGHT = ("generating", "regenerating")
 
 
 class GateError(RuntimeError):
@@ -45,31 +57,35 @@ class GateError(RuntimeError):
 
 @dataclass(frozen=True)
 class GenerationInput:
-    """generator 가 제안을 만들 때 받는 것 전부."""
+    """실행기가 제안을 만들 때 받는 것 전부. 제출과 수확 양쪽에서 같은 것을 받는다."""
 
     item: QueueItem
     gate: Gate
     preparation: ItemPreparation | None
     previous_payload: dict[str, Any] | None
     feedback: str | None
-    #: 이어받을 세션. 없으면 generator 가 stateless 로 만들어야 한다(SPEC-009 S-5).
+    #: 이어받을 세션. 없으면 실행기가 stateless 로 만들어야 한다(SPEC-009 S-5).
     session_ref: str | None
     #: 승인된 route 결과. 뒤 스테이지는 목적지·group 을 여기서 읽는다.
-    #: generator 에 DB 를 넘기지 않기 위해 조립 시점에 채워 준다.
+    #: 실행기에 DB 를 넘기지 않기 위해 조립 시점에 채워 준다.
     route: dict[str, Any] | None = None
     #: 앞 스테이지가 이미 승인받은 산출물 — concept 가 reference stem 을 `up:` 으로
     #: 걸려면 이게 필요하다. 계보는 같은 발행 묶음 안에서 만들어진다.
     upstream: dict[str, Any] | None = None
 
 
-@dataclass(frozen=True)
-class GenerationResult:
-    payload: dict[str, Any]
-    session_ref: str | None = None
-    external_task_ref: str | None = None
+class StageRunner(Protocol):
+    """스테이지 실행기 — **제출과 수확이 나뉘어 있다** (SPEC-009 「실행은 비동기다」).
 
+    `submit` 은 큐에 넣고 `task_id` 만 돌려준다. `poll` 은 기다리지 않고 지금 상태만
+    본다. `parse` 는 완료된 원문을 payload 로 바꾸며, 어긋나면 `GateError` 를 던진다.
+    """
 
-Generator = Callable[[GenerationInput], Awaitable[GenerationResult]]
+    async def submit(self, request: GenerationInput) -> str: ...
+
+    async def poll(self, task_id: str) -> Execution: ...
+
+    def parse(self, raw: str, request: GenerationInput) -> dict[str, Any]: ...
 
 
 def _now() -> datetime:
@@ -183,10 +199,11 @@ async def open_gate(
     item: QueueItem,
     stage_name: str,
     *,
-    generator: Generator,
+    runner: StageRunner,
 ) -> Gate | None:
-    """스테이지 게이트를 열고 첫 제안을 만든다.
+    """스테이지 게이트를 열고 첫 제안을 **제출한다.**
 
+    돌아올 때 게이트는 `generating` 이다. 내용은 아직 없다 — 수확이 채운다.
     파이프라인 정의가 없는 입력 종류면 `None` — 게이트 없이 큐에 남는다.
     """
     pipeline = pipeline_for(item.source_kind)
@@ -205,31 +222,81 @@ async def open_gate(
     )
     db.add(gate)
     await db.flush()
-    await _generate(db, gate, item=item, generator=generator)
+    await _submit(db, gate, item=item, runner=runner)
     return gate
 
 
 async def open_first_gate(
-    db: AsyncSession, item: QueueItem, *, generator: Generator
+    db: AsyncSession, item: QueueItem, *, runner: StageRunner
 ) -> Gate | None:
     pipeline = pipeline_for(item.source_kind)
     stage = pipeline.first_gate() if pipeline else None
     if stage is None:
         return None
-    return await open_gate(db, item, stage.name, generator=generator)
+    return await open_gate(db, item, stage.name, runner=runner)
 
 
-async def _generate(
+async def _generation_input(
     db: AsyncSession,
     gate: Gate,
     *,
     item: QueueItem,
-    generator: Generator,
+    feedback: GateFeedback | None,
+    parent: GateRevision | None,
+) -> GenerationInput:
+    """스테이지가 받는 입력을 **DB 에서 조립한다.**
+
+    제출 시점과 수확 시점 양쪽에서 만든다. 제출 때 만든 것을 메모리에 붙잡아 두면
+    back 재시작 뒤에는 수확할 재료가 사라진다 — 실행기 큐에 작업이 남아 있어도
+    결과를 해석하지 못하게 된다.
+    """
+    return GenerationInput(
+        item=item,
+        gate=gate,
+        preparation=await latest_preparation(db, gate.item_id),
+        previous_payload=parent.payload if parent else None,
+        feedback=feedback.body if feedback else None,
+        session_ref=await _resume_session(db, gate),
+        route=await approved_route_payload(db, gate.item_id),
+        upstream=await upstream_context(db, gate.item_id),
+    )
+
+
+async def _fail(
+    db: AsyncSession,
+    gate: Gate,
+    task: AITask,
+    revision: GateRevision,
+    *,
+    error_code: str,
+    error_message: str,
+) -> GateRevision:
+    """실패해도 **행을 남긴다** — 왜 막혔는지가 재시도 판단의 근거다."""
+    task.status = "failed"
+    task.error_code = error_code
+    task.error_message = error_message[:1000]
+    task.finished_at = _now()
+    revision.status = "failed"
+    gate.status = "failed"
+    await db.flush()
+    return revision
+
+
+async def _submit(
+    db: AsyncSession,
+    gate: Gate,
+    *,
+    item: QueueItem,
+    runner: StageRunner,
     feedback: GateFeedback | None = None,
     parent: GateRevision | None = None,
     retry_of: AITask | None = None,
 ) -> GateRevision:
-    """제안 하나를 만든다. 실패해도 **행을 남긴다** — 왜 막혔는지가 재시도 판단의 근거다."""
+    """제안 하나를 **제출만** 한다 (SPEC-009 「실행은 비동기다」).
+
+    나가는 것은 `task_id` 뿐이고, 그 자리에서 커밋할 수 있는 상태로 돌아온다.
+    AI 를 여기서 기다리면 앞단 프록시가 끊고 트랜잭션이 통째로 롤백된다.
+    """
     version = await _next_version(db, gate.id)
     task = AITask(
         item_id=gate.item_id,
@@ -251,37 +318,111 @@ async def _generate(
     db.add(revision)
     await db.flush()
 
-    preparation = await latest_preparation(db, gate.item_id)
     try:
-        result = await generator(
-            GenerationInput(
-                item=item,
-                gate=gate,
-                preparation=preparation,
-                previous_payload=parent.payload if parent else None,
-                feedback=feedback.body if feedback else None,
-                session_ref=await _resume_session(db, gate),
-                route=await approved_route_payload(db, gate.item_id),
-                upstream=await upstream_context(db, gate.item_id),
-            )
+        request = await _generation_input(
+            db, gate, item=item, feedback=feedback, parent=parent
         )
+        task_id = await runner.submit(request)
     except Exception as exc:  # noqa: BLE001 — 실패는 상태이지 예외 전파가 아니다
-        task.status = "failed"
-        task.error_code = type(exc).__name__
-        task.error_message = str(exc)[:1000]
-        task.finished_at = _now()
-        revision.status = "failed"
+        return await _fail(
+            db,
+            gate,
+            task,
+            revision,
+            error_code=type(exc).__name__,
+            error_message=str(exc),
+        )
+
+    # 이 한 줄이 재시작 내성의 전부다 — 작업은 실행기 큐에 있고, 여기 참조가 남는다.
+    task.external_task_ref = str(task_id)
+    await db.flush()
+    return revision
+
+
+async def harvest(
+    db: AsyncSession, gate: Gate, *, item: QueueItem, runner: StageRunner
+) -> bool:
+    """제출해 둔 실행을 확인해 끝났으면 결과를 채운다. 바뀌었으면 `True`.
+
+    **멱등이어야 한다.** 화면 폴링이 겹쳐 두 요청이 동시에 들어와도 revision 이 두 번
+    채워지면 안 된다. 그래서 `drafting` 행을 `FOR UPDATE` 로 잡는다 — 두 번째 요청은
+    첫 번째가 끝날 때까지 기다렸다가, 조건이 더는 맞지 않으므로 그냥 돌아간다.
+
+    아직 실행 중이면 아무것도 바꾸지 않고 `False`.
+    """
+    if gate.status not in IN_FLIGHT:
+        return False
+
+    revision = await db.scalar(
+        select(GateRevision)
+        .where(GateRevision.gate_id == gate.id, GateRevision.status == "drafting")
+        .order_by(GateRevision.version.desc())
+        .limit(1)
+        .with_for_update()
+    )
+    if revision is None:
+        # 게이트는 진행 중인데 초안이 없다. 제출이 커밋 전에 끊긴 흔적이므로
+        # 사람이 재시도할 수 있게 실패로 닫는다.
+        logger.warning("게이트 %s 가 %s 인데 drafting 버전이 없다", gate.id, gate.status)
         gate.status = "failed"
         await db.flush()
-        return revision
+        return True
+
+    task = await db.get(AITask, revision.ai_task_id) if revision.ai_task_id else None
+    if task is None:
+        gate.status = "failed"
+        revision.status = "failed"
+        await db.flush()
+        return True
+    if not task.external_task_ref:
+        await _fail(
+            db,
+            gate,
+            task,
+            revision,
+            error_code="TASK_REF_MISSING",
+            error_message="제출 기록에 실행기 작업 참조가 없다",
+        )
+        return True
+
+    execution = await runner.poll(task.external_task_ref)
+    if execution.running:
+        return False
+    if execution.status == "failed":
+        await _fail(
+            db,
+            gate,
+            task,
+            revision,
+            error_code=execution.error_code or "EXECUTION_FAILED",
+            error_message=execution.error_message or "실행이 실패했다",
+        )
+        return True
+
+    feedback = (
+        await db.get(GateFeedback, revision.feedback_id) if revision.feedback_id else None
+    )
+    parent = (
+        await db.get(GateRevision, revision.parent_revision_id)
+        if revision.parent_revision_id
+        else None
+    )
+    try:
+        request = await _generation_input(
+            db, gate, item=item, feedback=feedback, parent=parent
+        )
+        payload = runner.parse(execution.result or "", request)
+    except Exception as exc:  # noqa: BLE001 — 파싱·검증 실패도 실행 실패와 같이 다룬다
+        code = exc.code if isinstance(exc, GateError) else type(exc).__name__
+        await _fail(db, gate, task, revision, error_code=code, error_message=str(exc))
+        return True
 
     task.status = "succeeded"
-    task.session_ref = result.session_ref
-    task.external_task_ref = result.external_task_ref
+    task.session_ref = execution.session_ref
     task.finished_at = _now()
 
-    revision.payload = result.payload
-    revision.session_ref = result.session_ref
+    revision.payload = payload
+    revision.session_ref = execution.session_ref
     # 검토 가능이 되기 **직전** 형제를 밀어낸다 — 순서가 반대면 잠시 0개가 된다.
     await _sweep_reviewable(db, gate.id, keep_revision_id=revision.id)
     revision.status = "reviewable"
@@ -291,7 +432,7 @@ async def _generate(
     if feedback is not None:
         feedback.status = "consumed"
     await db.flush()
-    return revision
+    return True
 
 
 async def submit_feedback(db: AsyncSession, gate: Gate, body: str) -> GateFeedback:
@@ -313,9 +454,9 @@ async def submit_feedback(db: AsyncSession, gate: Gate, body: str) -> GateFeedba
 
 
 async def regenerate(
-    db: AsyncSession, gate: Gate, *, item: QueueItem, generator: Generator
+    db: AsyncSession, gate: Gate, *, item: QueueItem, runner: StageRunner
 ) -> GateRevision:
-    """피드백을 반영한 새 버전. 이전 버전은 고치지 않고 read-only 로 남는다."""
+    """피드백을 반영한 새 버전을 **제출한다.** 이전 버전은 고치지 않고 read-only 로 남는다."""
     if gate.status == "approved":
         raise GateError("GATE_ALREADY_APPROVED", "승인된 단계는 변경할 수 없다")
     if gate.status not in REGENERATABLE:
@@ -332,13 +473,13 @@ async def regenerate(
     )
     gate.status = "regenerating"
     await db.flush()
-    return await _generate(
-        db, gate, item=item, generator=generator, feedback=feedback, parent=parent
+    return await _submit(
+        db, gate, item=item, runner=runner, feedback=feedback, parent=parent
     )
 
 
-async def retry(db: AsyncSession, gate: Gate, *, item: QueueItem, generator: Generator):
-    """실패한 생성을 다시 돌린다. 기존 실패 기록은 수정하지 않는다 (SPEC-009 S-4)."""
+async def retry(db: AsyncSession, gate: Gate, *, item: QueueItem, runner: StageRunner):
+    """실패한 생성을 다시 **제출한다.** 기존 실패 기록은 수정하지 않는다 (SPEC-009 S-4)."""
     if gate.status != "failed":
         raise GateError("RETRY_NOT_ALLOWED", f"상태가 {gate.status} 라 재시도할 수 없다")
 
@@ -366,11 +507,11 @@ async def retry(db: AsyncSession, gate: Gate, *, item: QueueItem, generator: Gen
     )
     gate.status = "generating"
     await db.flush()
-    return await _generate(
+    return await _submit(
         db,
         gate,
         item=item,
-        generator=generator,
+        runner=runner,
         feedback=feedback,
         parent=last_revision,
         retry_of=last_failed,

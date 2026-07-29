@@ -6,11 +6,10 @@
 
 from __future__ import annotations
 
-import json
-from pathlib import Path
 from typing import Any
 
-from ..gates import GenerationInput, GenerationResult
+from ..executor import AgentStage
+from ..gates import GenerationInput
 from .common import (
     OUTPUT_CONTRACT,
     READ_THE_RULES,
@@ -35,49 +34,21 @@ INSTRUCTION = """이 자료의 **출처 기록 노트**(reference) 를 작성하
 {output}"""
 
 
-class SourceNoteStage:
+class SourceNoteStage(AgentStage):
     """open-kknaks 로 reference 초안을 만든다."""
 
-    def __init__(
-        self,
-        client,
-        *,
-        repo_root: Path,
-        provider: str,
-        model: str | None,
-        work_dir: str | None,
-        timeout_seconds: float = 900,
-    ) -> None:
-        self.client = client
-        self.repo_root = repo_root
-        self.provider = provider
-        self.model = model
-        self.work_dir = work_dir
-        self.timeout_seconds = timeout_seconds
+    source = "pipeline-source-note"
 
-    async def __call__(self, request: GenerationInput) -> GenerationResult:
-        payload: dict[str, Any] = context_payload(request)
-        prompt = INSTRUCTION.format(
+    def prompt(self, request: GenerationInput) -> str:
+        return INSTRUCTION.format(
             rules=READ_THE_RULES.format(template="reference.md"), output=OUTPUT_CONTRACT
         )
 
-        options: dict[str, Any] = {"cwd": self.work_dir} if self.work_dir else {}
-        if request.session_ref:
-            options["resume"] = {"mode": "session", "session_id": request.session_ref}
+    def payload(self, request: GenerationInput) -> dict[str, Any]:
+        return context_payload(request)
 
-        task_id = await self.client.submit(
-            prompt + "\n\n" + json.dumps(payload, ensure_ascii=False),
-            provider=self.provider,
-            model=self.model,
-            options=options or None,
-            max_retries=2,
-            metadata={"source": "pipeline-source-note", "item_id": request.item.id},
-        )
-        task = await self.client.result(task_id, timeout=self.timeout_seconds)
-        if task is None or not task.result:
-            raise RuntimeError(getattr(task, "error", None) or "open_kknaks returned no result")
-
-        stem, content = parse_note_output(str(task.result))
+    def parse(self, raw: str, request: GenerationInput) -> dict[str, Any]:
+        stem, content = parse_note_output(raw)
         check_note(
             stem,
             content,
@@ -85,14 +56,10 @@ class SourceNoteStage:
             stem_pattern=REFERENCE_STEM_RE,
             required=("title", "date"),
         )
-        return GenerationResult(
-            payload={
-                "filename_stem": stem,
-                "content": content,
-                # 경로는 시스템이 조립한다 — 화면이 "어디에 저장될지"를 보여줄 수 있게 함께 담는다.
-                # `reference/` 는 flat — 하위 폴더가 없다.
-                "target_path": f"reference/{stem}.md",
-            },
-            session_ref=getattr(task, "result_session_id", None),
-            external_task_ref=str(task_id),
-        )
+        return {
+            "filename_stem": stem,
+            "content": content,
+            # 경로는 시스템이 조립한다 — 화면이 "어디에 저장될지"를 보여줄 수 있게 함께 담는다.
+            # `reference/` 는 flat — 하위 폴더가 없다.
+            "target_path": f"reference/{stem}.md",
+        }

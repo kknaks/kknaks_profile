@@ -267,7 +267,7 @@ class TestGates:
 
         video_id = hashlib.sha1(request.node.name.encode()).hexdigest()[:11]
         from service.pipeline import SummaryResult
-        from service.pipeline.gates import GenerationResult
+        from tests.fakes import FakeRunner
 
         async def summarize(*, material, note):
             return SummaryResult(summary="요약본", session_ref="s1")
@@ -275,11 +275,10 @@ class TestGates:
         async def fetch_ok(url):
             return {"url": url, "content": "본문"}
 
-        async def generate(request):
-            return GenerationResult(payload=self._payload(), session_ref="gate-sess")
+        runner = FakeRunner(payload=self._payload(), session_ref="gate-sess")
 
         monkeypatch.setattr("api.routers.queue._summarizer_factory", lambda: summarize)
-        monkeypatch.setattr("api.routers.queue._generator_for", lambda stage: generate)
+        monkeypatch.setattr("api.routers.queue._runner_for", lambda stage: runner)
         monkeypatch.setattr("service.knowledge_capture.source.fetch_source", fetch_ok)
 
         item_id = _create(client, source_url=f"https://youtu.be/{video_id}").json()["item_id"]
@@ -350,7 +349,7 @@ class TestGates:
     def test_regenerate_without_ai_path_is_503(self, client, gated, monkeypatch):
         _, gate_id = gated
         client.post(f"/api/admin/queue/gates/{gate_id}/feedback", json={"body": "다시 판단해 달라"})
-        monkeypatch.setattr("api.routers.queue._generator_for", lambda stage: None)
+        monkeypatch.setattr("api.routers.queue._runner_for", lambda stage: None)
         response = client.post(f"/api/admin/queue/gates/{gate_id}/regenerate")
         assert response.status_code == 503
         assert response.json()["detail"]["code"] == "GENERATOR_UNAVAILABLE"
@@ -394,7 +393,7 @@ class TestPublishTrigger:
         concept 는 없는 미완성 체인이 origin 에 나간다.
         """
         from service.pipeline import SummaryResult
-        from service.pipeline.gates import GenerationResult
+        from tests.fakes import FakeRunner
 
         async def summarize(*, material, note):
             return SummaryResult(summary="요약")
@@ -402,22 +401,23 @@ class TestPublishTrigger:
         async def fetch_ok(url):
             return {"url": url, "content": "본문"}
 
-        async def route_gen(request):
-            return GenerationResult(
-                payload={
-                    "destinations": {
-                        "reference": {"enabled": True, "group": "study"},
-                        "concept": {"enabled": True},
-                        "derived": {"enabled": False},
-                    },
-                    "exclusive": None,
-                }
-            )
+        route_runner = FakeRunner(
+            payload={
+                "destinations": {
+                    "reference": {"enabled": True, "group": "study"},
+                    "concept": {"enabled": True},
+                    "derived": {"enabled": False},
+                },
+                "exclusive": None,
+            }
+        )
 
         monkeypatch.setattr("api.routers.queue._summarizer_factory", lambda: summarize)
-        # route 만 있고 source_note 생성기는 없다.
-        monkeypatch.setattr("api.routers.queue._generators", lambda: {"route": route_gen})
-        monkeypatch.setattr("api.routers.queue._generator_for", lambda stage: route_gen)
+        # route 만 있고 source_note 실행기는 없다.
+        monkeypatch.setattr("api.routers.queue._runners", lambda: {"route": route_runner})
+        monkeypatch.setattr(
+            "api.routers.queue._runner_for", lambda stage: route_runner if stage == "route" else None
+        )
         monkeypatch.setattr("service.knowledge_capture.source.fetch_source", fetch_ok)
 
         item_id = _create(client, source_url="https://youtu.be/blockchain1").json()["item_id"]

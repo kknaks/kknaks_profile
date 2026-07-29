@@ -11,11 +11,10 @@ from __future__ import annotations
 
 import json
 import logging
-from pathlib import Path
 from typing import Any
 
-
-from .gates import GateError, GenerationInput, GenerationResult
+from .executor import AgentStage
+from .gates import GateError, GenerationInput
 
 logger = logging.getLogger("kknaks-back.pipeline.route")
 
@@ -113,7 +112,7 @@ def _parse(text: str) -> Any:
         raise GateError("INVALID_ROUTE_RESULT", f"JSON 파싱 실패: {exc}") from exc
 
 
-class RouteProposer:
+class RouteProposer(AgentStage):
     """open-kknaks 로 목적지 제안을 만든다.
 
     프롬프트는 "무엇을 판단하라"만 지시하고, **4층 모델과 개념 입도 기준은 레포에서 읽게**
@@ -121,63 +120,28 @@ class RouteProposer:
     한쪽만 고쳐지는 날 조용히 어긋난다 — WORK-013 에서 세운 원칙이다.
     """
 
-    def __init__(
-        self,
-        client,
-        *,
-        repo_root: Path,
-        provider: str,
-        model: str | None,
-        work_dir: str | None,
-        timeout_seconds: float = 600,
-    ) -> None:
-        self.client = client
-        self.repo_root = repo_root
-        self.provider = provider
-        self.model = model
-        self.work_dir = work_dir
-        self.timeout_seconds = timeout_seconds
+    source = "pipeline-route"
 
-    async def __call__(self, request: GenerationInput) -> GenerationResult:
-        payload = {
+    def prompt(self, request: GenerationInput) -> str:
+        return PROMPT
+
+    def payload(self, request: GenerationInput) -> dict[str, Any]:
+        preparation = (request.preparation.payload or {}) if request.preparation else {}
+        payload: dict[str, Any] = {
             "source_url": request.item.source_url,
             "source_kind": request.item.source_kind,
             "note": request.item.note,
-            "summary": (request.preparation.payload or {}).get("summary")
-            if request.preparation
-            else None,
-            "material_source": (request.preparation.payload or {}).get("material_source")
-            if request.preparation
-            else None,
+            "summary": preparation.get("summary"),
+            "material_source": preparation.get("material_source"),
         }
         if request.previous_payload is not None:
             payload["previous_proposal"] = request.previous_payload
         if request.feedback:
             payload["feedback"] = request.feedback
+        return payload
 
-        options: dict[str, Any] = {"cwd": self.work_dir} if self.work_dir else {}
-        if request.session_ref:
-            # 세션을 이어받으면 원문·지침을 다시 보내지 않아도 된다 (SPEC-009 S-1 5항).
-            options["resume"] = {"mode": "session", "session_id": request.session_ref}
-
-        task_id = await self.client.submit(
-            PROMPT + "\n\n" + json.dumps(payload, ensure_ascii=False),
-            provider=self.provider,
-            model=self.model,
-            options=options or None,
-            max_retries=2,
-            metadata={"source": "pipeline-route", "item_id": request.item.id},
-        )
-        task = await self.client.result(task_id, timeout=self.timeout_seconds)
-        if task is None or not task.result:
-            raise RuntimeError(getattr(task, "error", None) or "open_kknaks returned no result")
-
-        result = validate_route_result(_parse(str(task.result)))
-        return GenerationResult(
-            payload=result,
-            session_ref=getattr(task, "result_session_id", None),
-            external_task_ref=str(task_id),
-        )
+    def parse(self, raw: str, request: GenerationInput) -> dict[str, Any]:
+        return validate_route_result(_parse(raw))
 
 
 def route_outcome(payload: dict[str, Any]) -> str:

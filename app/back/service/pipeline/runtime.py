@@ -42,16 +42,17 @@ def current_route_proposer() -> Any:
     return _registry.get("route_proposer")
 
 
-def current_generators() -> dict[str, Any]:
-    """스테이지명 → generator. route 를 포함해 체인 전체가 여기서 나온다.
+def current_runners() -> dict[str, Any]:
+    """스테이지명 → 실행기(`StageRunner`). route 를 포함해 체인 전체가 여기서 나온다.
 
     없는 스테이지는 키가 없다 — 호출자가 "아직 못 만든다"를 알아야 한다.
+    수확도 같은 객체를 쓴다 — 제출한 쪽과 결과를 읽는 쪽이 달라지면 안 된다.
     """
-    generators = dict(_registry.get("stages") or {})
+    runners = dict(_registry.get("stages") or {})
     proposer = _registry.get("route_proposer")
     if proposer is not None:
-        generators["route"] = proposer
-    return generators
+        runners["route"] = proposer
+    return runners
 
 
 def clear() -> None:

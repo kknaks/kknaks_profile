@@ -16,7 +16,8 @@ from core.models import Gate, QueueItem
 from service.pipeline import gates as gates_service
 from service.pipeline import intake
 from service.pipeline.chain import advance, enabled_stages, next_stage
-from service.pipeline.gates import GateError, GenerationResult, open_first_gate
+from service.pipeline.gates import GateError, harvest, open_first_gate
+from tests.fakes import FakeRunner
 from service.pipeline.stages.common import (
     CONCEPT_STEM_RE,
     REFERENCE_STEM_RE,
@@ -219,10 +220,19 @@ async def db():
 
 
 def maker(payload):
-    async def _gen(request):
-        return GenerationResult(payload=payload, session_ref="s")
+    """스테이지 실행기 하나 — 제출하면 곧바로 수확 가능한 상태가 된다."""
+    return FakeRunner(payload=payload, session_ref="s")
 
-    return _gen
+
+async def _advance(db, item, gate, *, runners):
+    """승인 뒤 다음 게이트를 열고, 그 게이트를 한 번 수확한다.
+
+    실제로는 화면 폴링이 하는 일이다 — 여기서는 그 한 번을 대신 돌린다.
+    """
+    result = await advance(db, item, gate, runners=runners)
+    if result.gate is not None:
+        await harvest(db, result.gate, item=item, runner=runners[result.gate.stage_name])
+    return result
 
 
 async def _routed(db, url: str, payload: dict) -> tuple[QueueItem, Gate]:
@@ -231,7 +241,9 @@ async def _routed(db, url: str, payload: dict) -> tuple[QueueItem, Gate]:
     item = await db.get(QueueItem, created.item_id)
     item.status = "in_review"
     await db.flush()
-    gate = await open_first_gate(db, item, generator=maker(payload))
+    runner = maker(payload)
+    gate = await open_first_gate(db, item, runner=runner)
+    await harvest(db, gate, item=item, runner=runner)
     await gates_service.approve(db, gate)
     return item, gate
 
@@ -248,8 +260,8 @@ NOTE_PAYLOAD = {
 class TestAdvance:
     async def test_route_approval_opens_source_note(self, db):
         item, gate = await _routed(db, "https://youtu.be/chain000001", route())
-        nxt = (await advance(
-            db, item, gate, generators={"source_note": maker(NOTE_PAYLOAD)}
+        nxt = (await _advance(
+            db, item, gate, runners={"source_note": maker(NOTE_PAYLOAD)}
         )).gate
         assert nxt is not None and nxt.stage_name == "source_note"
         assert nxt.status == "review_pending"
@@ -260,11 +272,11 @@ class TestAdvance:
         item, gate = await _routed(
             db, "https://youtu.be/chain000002", route(reference=False)
         )
-        nxt = (await advance(
+        nxt = (await _advance(
             db,
             item,
             gate,
-            generators={"source_note": maker(NOTE_PAYLOAD), "concept": maker({"x": 1})},
+            runners={"source_note": maker(NOTE_PAYLOAD), "concept": maker({"x": 1})},
         )).gate
         assert nxt is not None and nxt.stage_name == "concept"
 
@@ -274,18 +286,18 @@ class TestAdvance:
             "https://youtu.be/chain000003",
             route(reference=False, concept=False, exclusive="inbox_hold"),
         )
-        result = await advance(db, item, gate, generators={"source_note": maker(NOTE_PAYLOAD)})
+        result = await _advance(db, item, gate, runners={"source_note": maker(NOTE_PAYLOAD)})
         assert result.gate is None and result.chain_complete
         gates = (await db.scalars(select(Gate).where(Gate.item_id == item.id))).all()
         assert [g.stage_name for g in gates] == ["route"]
 
-    async def test_missing_generator_does_not_open_dead_card(self, db):
+    async def test_missing_runner_does_not_open_dead_card(self, db):
         """승인할 수 없는 카드를 화면에 남기지 않는다.
 
         그리고 **체인 끝과 구분돼야 한다** — 섞으면 미완성 체인이 발행된다.
         """
         item, gate = await _routed(db, "https://youtu.be/chain000004", route())
-        result = await advance(db, item, gate, generators={})
+        result = await _advance(db, item, gate, runners={})
         assert result.gate is None
         assert result.blocked and not result.chain_complete
         assert result.pending_stage == "source_note"
@@ -295,13 +307,13 @@ class TestAdvance:
     async def test_full_chain_walks_to_the_end(self, db):
         """route → source_note → concept → (발행 차례)."""
         item, gate = await _routed(db, "https://youtu.be/chain000005", route())
-        generators = {"source_note": maker(NOTE_PAYLOAD), "concept": maker({"concepts": []})}
+        runners = {"source_note": maker(NOTE_PAYLOAD), "concept": maker({"concepts": []})}
 
-        second = (await advance(db, item, gate, generators=generators)).gate
+        second = (await _advance(db, item, gate, runners=runners)).gate
         await gates_service.approve(db, second)
-        third = (await advance(db, item, second, generators=generators)).gate
+        third = (await _advance(db, item, second, runners=runners)).gate
         await gates_service.approve(db, third)
-        end = await advance(db, item, third, generators=generators)
+        end = await _advance(db, item, third, runners=runners)
 
         assert [second.stage_name, third.stage_name] == ["source_note", "concept"]
         assert end.chain_complete  # 발행 차례
@@ -315,4 +327,4 @@ class TestAdvance:
 
         monkeypatch.setattr(pathlib.Path, "write_text", explode)
         item, gate = await _routed(db, "https://youtu.be/chain000006", route())
-        await advance(db, item, gate, generators={"source_note": maker(NOTE_PAYLOAD)})
+        await _advance(db, item, gate, runners={"source_note": maker(NOTE_PAYLOAD)})

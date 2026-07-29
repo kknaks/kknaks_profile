@@ -13,7 +13,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.models import QueueItem
 
-from .gates import Generator, open_first_gate
+from .gates import StageRunner, open_first_gate
 from .prepare import Fetcher, PrepareResult, Summarizer, prepare_item
 
 logger = logging.getLogger("kknaks-back.pipeline.flow")
@@ -25,23 +25,23 @@ async def prepare_and_open_gate(
     *,
     fetch: Fetcher,
     summarize: Summarizer,
-    generator: Generator | None = None,
+    runner: StageRunner | None = None,
 ) -> PrepareResult:
     """준비하고, 성공하면 첫 게이트를 연다.
 
-    `generator` 가 없으면(AI 경로 미가용) 게이트를 열지 않고 `in_review` 로 둔다.
+    `runner` 가 없으면(AI 경로 미가용) 게이트를 열지 않고 `in_review` 로 둔다.
     **준비 결과를 되돌리지는 않는다** — 수집·요약은 이미 끝났고 그건 버릴 이유가 없다.
     게이트는 나중에 열 수 있다.
     """
     result = await prepare_item(db, item_id, fetch=fetch, summarize=summarize)
-    if not result.ok or generator is None:
+    if not result.ok or runner is None:
         if result.ok:
             logger.warning("게이트 제안 경로 미가용 — item=%s 는 게이트 없이 검토 대기", item_id)
         return result
 
     item = await db.get(QueueItem, item_id)
     if item is not None:
-        gate = await open_first_gate(db, item, generator=generator)
+        gate = await open_first_gate(db, item, runner=runner)
         if gate is None:
             # 파이프라인 정의가 없는 종류(블로그·수동 등). 큐에는 남고 화면에 보인다.
             logger.info(

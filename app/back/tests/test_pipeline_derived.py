@@ -21,7 +21,8 @@ from core.models import Gate, GateRevision, ItemPreparation, QueueItem
 from service.pipeline import gates as gates_service
 from service.pipeline import intake
 from service.pipeline.chain import advance, reopen_route
-from service.pipeline.gates import GateError, GenerationResult, open_first_gate
+from service.pipeline.gates import GateError, harvest, open_first_gate
+from tests.fakes import FakeRunner
 from service.pipeline.stages.derived import (
     build_content_note,
     format_duration,
@@ -182,10 +183,22 @@ def route(*, reference=True, concept=True, derived=False, exclusive=None):
 
 
 def maker(payload):
-    async def _gen(request):
-        return GenerationResult(payload=payload, session_ref="s")
+    """스테이지 실행기 하나 — 제출하면 곧바로 수확 가능한 상태가 된다."""
+    return FakeRunner(payload=payload, session_ref="s")
 
-    return _gen
+
+async def _advance(db, item, gate, *, runners):
+    """다음 게이트를 열고 한 번 수확한다 — 화면 폴링이 하는 일이다."""
+    result = await advance(db, item, gate, runners=runners)
+    if result.gate is not None:
+        await harvest(db, result.gate, item=item, runner=runners[result.gate.stage_name])
+    return result
+
+
+async def _reopen(db, item, runner):
+    gate = await reopen_route(db, item, runner=runner)
+    await harvest(db, gate, item=item, runner=runner)
+    return gate
 
 
 NOTE = {"filename_stem": "2026-07-28-a-b", "content": "---\ntype: reference\n---\n"}
@@ -203,17 +216,19 @@ class TestReopen:
             )
         )
         await db.flush()
-        gate = await open_first_gate(db, item, generator=maker(payload))
+        runner = maker(payload)
+        gate = await open_first_gate(db, item, runner=runner)
+        await harvest(db, gate, item=item, runner=runner)
         await gates_service.approve(db, gate)
         return item, gate
 
     async def test_reopen_cancels_later_gates_but_keeps_records(self, db):
         item, route_gate = await self._prepared(db, "https://youtu.be/reopen00001", route())
-        second = (await advance(db, item, route_gate, generators={"source_note": maker(NOTE)})).gate
+        second = (await _advance(db, item, route_gate, runners={"source_note": maker(NOTE)})).gate
         assert second is not None
         second_revision_id = second.active_revision_id
 
-        await reopen_route(db, item, generator=maker(route(derived=True)))
+        await _reopen(db, item, maker(route(derived=True)))
 
         assert second.status == "cancelled"
         # 기록은 남는다 — 무엇을 만들려 했는지 조회 가능해야 한다.
@@ -224,7 +239,7 @@ class TestReopen:
         item, route_gate = await self._prepared(db, "https://youtu.be/reopen00002", route())
         old_revision_id = route_gate.approved_revision_id
 
-        await reopen_route(db, item, generator=maker(route(concept=False)))
+        await _reopen(db, item, maker(route(concept=False)))
 
         old = await db.get(GateRevision, old_revision_id)
         assert old.status == "superseded" and old.payload is not None
@@ -234,7 +249,7 @@ class TestReopen:
     async def test_reopen_does_not_rerun_preparation(self, db):
         """목적지 판단이 틀린 것이지 원문이 바뀐 게 아니다."""
         item, route_gate = await self._prepared(db, "https://youtu.be/reopen00003", route())
-        await reopen_route(db, item, generator=maker(route()))
+        await _reopen(db, item, maker(route()))
 
         preparations = (
             await db.scalars(
@@ -246,15 +261,15 @@ class TestReopen:
     async def test_chain_length_changes_after_reopen(self, db):
         """파생을 켜면 체인이 길어진다."""
         item, route_gate = await self._prepared(db, "https://youtu.be/reopen00004", route())
-        await advance(db, item, route_gate, generators={"source_note": maker(NOTE)})
+        await _advance(db, item, route_gate, runners={"source_note": maker(NOTE)})
 
-        await reopen_route(db, item, generator=maker(route(reference=False, concept=False, derived=True)))
+        await _reopen(db, item, maker(route(reference=False, concept=False, derived=True)))
         new_route = await db.scalar(
             select(Gate).where(Gate.item_id == item.id, Gate.stage_name == "route")
         )
         await gates_service.approve(db, new_route)
-        nxt = (await advance(
-            db, item, new_route, generators={"source_note": maker(NOTE), "derived": maker(NOTE)}
+        nxt = (await _advance(
+            db, item, new_route, runners={"source_note": maker(NOTE), "derived": maker(NOTE)}
         )).gate
         assert nxt is not None and nxt.stage_name == "derived"
 
@@ -267,7 +282,7 @@ class TestReopen:
         item.status = "discarded"
         await db.flush()
 
-        await reopen_route(db, item, generator=maker(route()))
+        await _reopen(db, item, maker(route()))
         assert item.status == "in_review"
 
     async def test_published_item_cannot_be_reopened(self, db):
@@ -277,19 +292,19 @@ class TestReopen:
         await db.flush()
 
         with pytest.raises(GateError) as exc:
-            await reopen_route(db, item, generator=maker(route()))
+            await _reopen(db, item, maker(route()))
         assert exc.value.code == "REOPEN_NOT_ALLOWED"
 
     async def test_cancelled_stage_can_be_reopened_later(self, db):
         """무효화한 스테이지를 다시 여는 경로 — partial unique 제약이 막지 않아야 한다."""
         item, route_gate = await self._prepared(db, "https://youtu.be/reopen00007", route())
-        await advance(db, item, route_gate, generators={"source_note": maker(NOTE)})
-        await reopen_route(db, item, generator=maker(route()))
+        await _advance(db, item, route_gate, runners={"source_note": maker(NOTE)})
+        await _reopen(db, item, maker(route()))
 
         new_route = await db.scalar(
             select(Gate).where(Gate.item_id == item.id, Gate.stage_name == "route")
         )
         await gates_service.approve(db, new_route)
-        again = (await advance(db, item, new_route, generators={"source_note": maker(NOTE)})).gate
+        again = (await _advance(db, item, new_route, runners={"source_note": maker(NOTE)})).gate
         assert again is not None and again.stage_name == "source_note"
         assert again.status == "review_pending"

@@ -22,7 +22,7 @@ from service.knowledge_capture.session import CaptureSession, CaptureSessionStor
 from service.knowledge_capture.source import find_urls
 
 from .flow import prepare_and_open_gate
-from .gates import Generator
+from .gates import StageRunner
 from .intake import intake
 from .prepare import PREPARABLE_STATUSES, Fetcher, Summarizer
 
@@ -66,7 +66,7 @@ class QueueIntakeRunner:
         fetch: Fetcher,
         summarize: Summarizer,
         now: Callable[[], datetime],
-        generator: Generator | None = None,
+        runner: StageRunner | None = None,
     ) -> None:
         self.session_factory = session_factory
         self.sessions = sessions
@@ -74,7 +74,7 @@ class QueueIntakeRunner:
         self.summarize = summarize
         self.now = now
         # route 게이트 제안기. 없으면 준비까지만 하고 게이트는 열지 않는다.
-        self.generator = generator
+        self.runner = runner
 
     async def handle(self, request, slack_client) -> None:
         placeholder = await slack_client.chat_postMessage(
@@ -136,7 +136,7 @@ class QueueIntakeRunner:
                 result.item_id,
                 fetch=self.fetch,
                 summarize=self.summarize,
-                generator=self.generator,
+                runner=self.runner,
             )
             await db.commit()
 
@@ -181,7 +181,7 @@ class QueueIntakeRunner:
                 item_id,
                 fetch=self.fetch,
                 summarize=self.summarize,
-                generator=self.generator,
+                runner=self.runner,
             )
             await db.commit()
 

@@ -2,7 +2,7 @@
 type: work
 id: KDEV-WORK-016
 title: "비동기 실행 + 진행 표시 UI"
-status: todo
+status: in_progress
 product: kknaks-dev
 work_type: refactor
 owner: kknaks
@@ -13,13 +13,13 @@ roles:
   be: kknaks
   qa: kknaks
   ops: kknaks
-progress: 0
+progress: 33
 created_at: 2026-07-29
 updated_at: 2026-07-29
 tags:
   - product/kknaks-dev
   - doc/work
-  - status/todo
+  - status/in_progress
 links:
   baselines:
     - "[[baseline-003-inbox-approval-pipeline|KDEV-BL-003]]"
@@ -54,10 +54,10 @@ AI 호출을 사용자 요청 안에서 기다리지 않게 하고, 화면이 �
 |---|---|
 | Type | refactor |
 | Owner | kknaks |
-| Status | todo |
-| Progress | 0% |
+| Status | in_progress |
+| Progress | 33% |
 | Blocker | 없음 |
-| Next | Phase 1 제출/수확 분리 |
+| Next | Phase 1 실운영 확인(배포) → Phase 2 |
 
 ## Role Assignment
 
@@ -66,7 +66,7 @@ AI 호출을 사용자 요청 안에서 기다리지 않게 하고, 화면이 �
 | PM | kknaks | 범위 확정 | todo |
 | Design | kknaks | 진행 표시 규칙 | todo |
 | FE | kknaks | 폴링 + 스피너/비활성화 | todo |
-| BE | kknaks | 제출/수확 분리 | todo |
+| BE | kknaks | 제출/수확 분리 | done (P1) |
 | QA | kknaks | 취소·중복·재시작 시나리오 | todo |
 | Ops | kknaks | 실운영 확인 | todo |
 
@@ -121,18 +121,31 @@ concept 는 레포를 읽어 더 느려서 매번 끊겼다.
 
 ### Phase 1 — 제출/수확 분리 (BE)
 
-- **Status**: TODO
+- **Status**: DONE (코드·테스트) / 실운영 확인 대기
 - **작업**:
-  - [ ] 스테이지에서 `result()` 대기 제거 — `submit` 이 낸 `task_id` 반환
-  - [ ] `AITask` 에 `external_task_ref` + `running` 저장하고 커밋
-  - [ ] 수확 함수 — `status(task_id)` 확인 → 완료면 결과 파싱·검증 → `reviewable`
-  - [ ] 수확은 **멱등** (폴링 겹쳐도 두 번 채워지지 않음)
-  - [ ] 실패는 `AITask=failed` · `Gate=failed` + 기록 보존
+  - [x] 스테이지에서 `result()` 대기 제거 — `submit` 이 낸 `task_id` 반환
+  - [x] `AITask` 에 `external_task_ref` + `running` 저장하고 커밋
+  - [x] 수확 함수 — `status(task_id)` 확인 → 완료면 결과 파싱·검증 → `reviewable`
+  - [x] 수확은 **멱등** (폴링 겹쳐도 두 번 채워지지 않음)
+  - [x] 실패는 `AITask=failed` · `Gate=failed` + 기록 보존
 - **검증**:
-  - [ ] 승인 응답이 1초 안에 끝난다
-  - [ ] 게이트 조회를 두 번 해도 revision 이 하나만 생긴다
-  - [ ] back 재시작 후에도 진행 중 작업을 이어 수확한다
-- **완료 증거**: 미작성
+  - [ ] 승인 응답이 1초 안에 끝난다 — **실운영 측정은 배포 후**
+  - [x] 게이트 조회를 두 번 해도 revision 이 하나만 생긴다
+  - [x] back 재시작 후에도 진행 중 작업을 이어 수확한다
+- **완료 증거**:
+  - 새 파일 `app/back/service/pipeline/executor.py` — `Execution`·`poll_execution`·`AgentStage`.
+    제출/폴링 절차를 한 곳에 두고, 스테이지는 `prompt`·`payload`·`parse` 셋만 채운다.
+  - `gates.py`: `_generate` → `_submit`(제출까지) + `harvest`(수확). 수확은 `drafting`
+    버전을 `FOR UPDATE` 로 잡아 폴링이 겹쳐도 한 번만 채운다.
+  - `queue.py`: `GET /items/{id}/gates` 가 진행 중 게이트를 수확한다. 실행기에 못 닿아도
+    목록은 그대로 내려간다.
+  - 스테이지 계약이 callable → `StageRunner`(submit·poll·parse) 로 바뀌었다.
+    `Generator` 타입과 `generator=` 인자는 전부 `StageRunner`·`runner=` 로 대체.
+  - 테스트 605 passed / 3 skipped. 새 테스트: `test_prepare_success_opens_route_gate`(제출만),
+    `test_harvest_fills_the_proposal`, `test_harvest_is_idempotent`,
+    `test_running_execution_changes_nothing`, `test_harvest_resumes_after_restart`,
+    `test_regeneration_responds_before_the_new_version_exists`,
+    `test_submit_failure_is_a_state_not_an_exception`, `test_generating_gate_cannot_be_approved`.
 
 ### Phase 2 — 준비 단계도 비동기 (BE)
 
@@ -177,7 +190,10 @@ concept 는 레포를 읽어 더 느려서 매번 끊겼다.
 ## Open Issues
 
 - 폴링 주기와 중단 조건(무한 폴링 방지) — 실사용 후 조정한다.
-- 실행기 큐에 남은 작업의 만료 처리 — 오래된 `running` 을 어떻게 정리할지.
+- ~~실행기 큐에 남은 작업의 만료 처리~~ — P1 에서 정했다. 실행 나이가 `capture_timeout_seconds`
+  를 넘으면 수확이 `EXECUTION_TIMEOUT` 으로 닫고 `재시도` 를 연다. 무한 `generating` 을 막는 값이다.
+- **실행기 결과 TTL 1시간**(open-kknaks `result_ttl` 기본값). 그 안에 수확하지 못하면
+  `TASK_NOT_FOUND` 로 실패한다 — 화면이 오래 닫혀 있던 경우에 걸린다. 폴링 주기와 함께 볼 값.
 
 ## Related
 

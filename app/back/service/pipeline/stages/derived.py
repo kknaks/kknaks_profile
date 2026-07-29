@@ -26,7 +26,8 @@ from zoneinfo import ZoneInfo
 
 import frontmatter
 
-from ..gates import GateError, GenerationInput, GenerationResult
+from ..executor import AgentStage
+from ..gates import GateError, GenerationInput
 from ...content_format import content_format
 from .common import OUTPUT_CONTRACT_LIST, context_payload, parse_json_output
 
@@ -157,58 +158,33 @@ def build_content_note(
     }
 
 
-class DerivedStage:
+class DerivedStage(AgentStage):
     """open-kknaks 로 교안 초안을 만든다."""
 
-    def __init__(
-        self,
-        client,
-        *,
-        repo_root: Path,
-        provider: str,
-        model: str | None,
-        work_dir: str | None,
-        timeout_seconds: float = 900,
-    ) -> None:
-        self.client = client
-        self.repo_root = repo_root
-        self.provider = provider
-        self.model = model
-        self.work_dir = work_dir
-        self.timeout_seconds = timeout_seconds
+    source = "pipeline-derived"
 
-    async def __call__(self, request: GenerationInput) -> GenerationResult:
-        preparation = (request.preparation.payload or {}) if request.preparation else {}
-        payload = {**context_payload(request), "video": video_header(preparation)}
-        prompt = INSTRUCTION.format(
+    def prompt(self, request: GenerationInput) -> str:
+        return INSTRUCTION.format(
             format=content_format(self.repo_root),
             output=OUTPUT_CONTRACT_LIST.format(shape=RESULT_SHAPE),
         )
 
-        options: dict[str, Any] = {"cwd": self.work_dir} if self.work_dir else {}
-        if request.session_ref:
-            options["resume"] = {"mode": "session", "session_id": request.session_ref}
+    def payload(self, request: GenerationInput) -> dict[str, Any]:
+        return {
+            **context_payload(request),
+            "video": video_header(_preparation(request)),
+        }
 
-        task_id = await self.client.submit(
-            prompt + "\n\n" + json.dumps(payload, ensure_ascii=False),
-            provider=self.provider,
-            model=self.model,
-            options=options or None,
-            max_retries=2,
-            metadata={"source": "pipeline-derived", "item_id": request.item.id},
-        )
-        task = await self.client.result(task_id, timeout=self.timeout_seconds)
-        if task is None or not task.result:
-            raise RuntimeError(getattr(task, "error", None) or "open_kknaks returned no result")
-
-        note = build_content_note(
-            parse_json_output(str(task.result)),
+    def parse(self, raw: str, request: GenerationInput) -> dict[str, Any]:
+        # `C-NNN` 과 Day 순번은 **수확 시점에** 매긴다 — 제출 시점에 매기면 그 사이
+        # 발행된 다른 교안과 번호가 겹친다.
+        return build_content_note(
+            parse_json_output(raw),
             repo_root=self.repo_root,
-            preparation_payload=preparation,
+            preparation_payload=_preparation(request),
             source_url=request.item.source_url,
         )
-        return GenerationResult(
-            payload=note,
-            session_ref=getattr(task, "result_session_id", None),
-            external_task_ref=str(task_id),
-        )
+
+
+def _preparation(request: GenerationInput) -> dict[str, Any]:
+    return (request.preparation.payload or {}) if request.preparation else {}

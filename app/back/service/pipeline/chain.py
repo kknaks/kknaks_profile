@@ -19,7 +19,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from core.models import Gate, GateRevision, QueueItem
 
 from .definitions import pipeline_for
-from .gates import Generator, approved_route_payload, open_gate
+from .gates import StageRunner, approved_route_payload, open_gate
 
 logger = logging.getLogger("kknaks-back.pipeline.chain")
 
@@ -68,7 +68,7 @@ def next_stage(
 
 
 async def reopen_route(
-    db: AsyncSession, item: QueueItem, *, generator: Generator
+    db: AsyncSession, item: QueueItem, *, runner: StageRunner
 ) -> Gate:
     """목적지 재검토 — **유일한 역방향 전이**다 (KDEV-DEC-011 D5 / SPEC-008 U-6).
 
@@ -84,7 +84,7 @@ async def reopen_route(
     """
     from sqlalchemy import select
 
-    from .gates import GateError, _generate
+    from .gates import GateError, _submit
 
     gate = await db.scalar(
         select(Gate)
@@ -125,7 +125,7 @@ async def reopen_route(
 
     gate.status = "regenerating"
     await db.flush()
-    await _generate(db, gate, item=item, generator=generator)
+    await _submit(db, gate, item=item, runner=runner)
     return gate
 
 
@@ -154,9 +154,9 @@ async def advance(
     item: QueueItem,
     gate: Gate,
     *,
-    generators: dict[str, Generator],
+    runners: dict[str, StageRunner],
 ) -> AdvanceResult:
-    """방금 승인된 게이트 뒤를 잇는다."""
+    """방금 승인된 게이트 뒤를 잇는다 — 다음 스테이지 실행을 **제출까지** 한다."""
     # 방금 승인된 것이 route 게이트라도 여기서 찾힌다 — `approve()` 가 같은 세션에서
     # 상태와 승인 포인터를 이미 채웠기 때문이다.
     route_payload = await approved_route_payload(db, item.id)
@@ -164,12 +164,12 @@ async def advance(
     if stage is None:
         return AdvanceResult(gate=None, pending_stage=None)
 
-    generator = generators.get(stage)
-    if generator is None:
+    runner = runners.get(stage)
+    if runner is None:
         # 없는 것을 있는 척하지 않는다. 게이트를 열어 두면 사람이 승인할 수 없는
         # 카드가 화면에 남고, 발행으로 넘어가면 미완성 체인이 나간다.
-        logger.warning("스테이지 %s 의 생성기가 없어 게이트를 열지 않는다 item=%s", stage, item.id)
+        logger.warning("스테이지 %s 의 실행기가 없어 게이트를 열지 않는다 item=%s", stage, item.id)
         return AdvanceResult(gate=None, pending_stage=stage, blocked=True)
 
-    opened = await open_gate(db, item, stage, generator=generator)
+    opened = await open_gate(db, item, stage, runner=runner)
     return AdvanceResult(gate=opened, pending_stage=stage)

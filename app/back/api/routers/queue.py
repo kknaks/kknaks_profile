@@ -9,6 +9,7 @@ WORK-015 소관이다. 없는 기능을 자리만 잡아 두지 않는다.
 
 from __future__ import annotations
 
+import logging
 from datetime import datetime, timezone
 from typing import Any
 
@@ -28,6 +29,8 @@ from service.pipeline.gates import GateError
 from service.pipeline.prepare import PREPARABLE_STATUSES
 from service.pipeline.route import route_outcome, validate_route_result
 from service.pipeline.stages.concept import apply_exclusions
+
+logger = logging.getLogger("kknaks-back.queue-api")
 
 router = APIRouter(prefix="/api/admin/queue", tags=["queue"], dependencies=[Depends(require_admin)])
 
@@ -212,7 +215,7 @@ async def retry_prepare(item_id: int, db: AsyncSession = Depends(get_db)):
         item_id,
         fetch=fetch_source,
         summarize=summarizer,
-        generator=_generator_for("route"),
+        runner=_runner_for("route"),
     )
     await db.commit()
     return {
@@ -296,10 +299,35 @@ def _gate_error(exc: GateError) -> HTTPException:
 
 @router.get("/items/{item_id}/gates")
 async def list_gates(item_id: int, db: AsyncSession = Depends(get_db)):
-    await _get_live_item(db, item_id)
+    """게이트 목록 — **조회하면서 수확한다** (KDEV-WORK-016 P1 / SPEC-009).
+
+    실행은 요청 밖에서 돈다. 그 결과를 DB 에 옮기는 것은 화면이 이 목록을 폴링할 때다.
+    수확은 멱등이라 폴링이 겹쳐도 revision 이 두 번 채워지지 않는다.
+    """
+    item = await _get_live_item(db, item_id)
     gates = (
         await db.scalars(select(Gate).where(Gate.item_id == item_id).order_by(Gate.stage_no))
     ).all()
+
+    harvested = False
+    for gate in gates:
+        if gate.status not in gates_service.IN_FLIGHT:
+            continue
+        runner = _runner_for(gate.stage_name)
+        if runner is None:
+            # 실행기가 없으면 수확할 방법이 없다. 상태를 지어내지 않고 그대로 둔다 —
+            # 캡처 런타임이 다시 뜨면 이어서 수확된다.
+            continue
+        try:
+            harvested |= await gates_service.harvest(db, gate, item=item, runner=runner)
+        except Exception:  # noqa: BLE001
+            # 실행기에 못 닿는다고 **목록 자체가 실패하면 안 된다** — 화면이 통째로
+            # 비면 사용자는 무엇이 진행 중인지도 못 본다. 게이트는 진행 중으로 남고
+            # 다음 폴링이 다시 시도한다.
+            logger.exception("게이트 %s 수확 실패 — 목록은 그대로 내려보낸다", gate.id)
+    if harvested:
+        await db.commit()
+
     return {"gates": [await _gate_view(db, g) for g in gates]}
 
 
@@ -319,14 +347,14 @@ async def gate_feedback(
 @router.post("/gates/{gate_id}/regenerate")
 async def gate_regenerate(gate_id: int, db: AsyncSession = Depends(get_db)):
     gate, item = await _get_gate(db, gate_id)
-    generator = _generator_for(gate.stage_name)
-    if generator is None:
+    runner = _runner_for(gate.stage_name)
+    if runner is None:
         raise HTTPException(
             status_code=503,
             detail={"code": "GENERATOR_UNAVAILABLE", "stage": gate.stage_name},
         )
     try:
-        revision = await gates_service.regenerate(db, gate, item=item, generator=generator)
+        revision = await gates_service.regenerate(db, gate, item=item, runner=runner)
     except GateError as exc:
         raise _gate_error(exc) from exc
     await db.commit()
@@ -336,14 +364,14 @@ async def gate_regenerate(gate_id: int, db: AsyncSession = Depends(get_db)):
 @router.post("/gates/{gate_id}/retry")
 async def gate_retry(gate_id: int, db: AsyncSession = Depends(get_db)):
     gate, item = await _get_gate(db, gate_id)
-    generator = _generator_for(gate.stage_name)
-    if generator is None:
+    runner = _runner_for(gate.stage_name)
+    if runner is None:
         raise HTTPException(
             status_code=503,
             detail={"code": "GENERATOR_UNAVAILABLE", "stage": gate.stage_name},
         )
     try:
-        revision = await gates_service.retry(db, gate, item=item, generator=generator)
+        revision = await gates_service.retry(db, gate, item=item, runner=runner)
     except GateError as exc:
         raise _gate_error(exc) from exc
     await db.commit()
@@ -357,13 +385,13 @@ async def reopen_route(item_id: int, db: AsyncSession = Depends(get_db)):
     뒤 게이트는 무효화되지만 **기록은 남는다.** 수집·요약은 다시 돌지 않는다.
     """
     item = await _get_live_item(db, item_id)
-    generator = _generator_for("route")
-    if generator is None:
+    runner = _runner_for("route")
+    if runner is None:
         raise HTTPException(
             status_code=503, detail={"code": "GENERATOR_UNAVAILABLE", "stage": "route"}
         )
     try:
-        gate = await chain.reopen_route(db, item, generator=generator)
+        gate = await chain.reopen_route(db, item, runner=runner)
     except GateError as exc:
         raise _gate_error(exc) from exc
     await db.commit()
@@ -417,7 +445,7 @@ async def gate_approve(gate_id: int, body: ApproveRequest, db: AsyncSession = De
     advanced = None
     if item.status != "discarded":
         # 중간 승인은 다음 스테이지를 열 뿐 파일을 만들지 않는다(DEC-011 D6).
-        advanced = await chain.advance(db, item, gate, generators=_generators())
+        advanced = await chain.advance(db, item, gate, runners=_runners())
         next_gate = advanced.gate
         if advanced.chain_complete:
             # 스테이지가 정말 남지 않았을 때만 발행한다. `gate is None` 으로 판단하면
@@ -492,14 +520,14 @@ async def retry_publish(item_id: int, db: AsyncSession = Depends(get_db)):
     return {"item_status": item.status, **result}
 
 
-def _generators() -> dict[str, Any]:
-    from service.pipeline.runtime import current_generators
+def _runners() -> dict[str, Any]:
+    from service.pipeline.runtime import current_runners
 
-    return current_generators()
+    return current_runners()
 
 
-def _generator_for(stage_name: str):
-    return _generators().get(stage_name)
+def _runner_for(stage_name: str):
+    return _runners().get(stage_name)
 
 
 @router.delete("/items/{item_id}")
