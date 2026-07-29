@@ -379,3 +379,59 @@ class TestRunJob:
 
         result = await run_content_enrich_job(client=None, dry_run_push=True)
         assert result == 1
+
+
+class TestSettleFilename:
+    """enrich 가 끝나면 파일명에서 `pending` 을 걷어낸다.
+
+    stub 은 제목이 없는 시점에 만들어져 `C-019-pending.md` 가 그때는 사실이다.
+    enrich 뒤에는 아니다 — 이름이 상태와 어긋난 채로 남으면 나중에 보는 사람이
+    "아직 안 된 것"으로 읽는다.
+    """
+
+    def _meta(self, **kw):
+        return {"id": "C-019", "title": {"ko": "제목", "en": "Database Guide"}, **kw}
+
+    def test_pending_name_is_settled(self, tmp_path):
+        from service.jobs.content_enrich import settle_filename
+
+        path = tmp_path / "C-019-pending.md"
+        path.write_text("x", encoding="utf-8")
+        settled = settle_filename(path, self._meta())
+
+        assert settled.name == "C-019-database-guide.md"
+        assert settled.exists() and not path.exists()
+
+    def test_id_prefix_survives(self, tmp_path):
+        """로더가 `{id}-` 를 요구한다 — 이걸 잃으면 persona 로드가 통째로 실패한다."""
+        from service.jobs.content_enrich import settle_filename
+
+        path = tmp_path / "C-019-pending.md"
+        path.write_text("x", encoding="utf-8")
+        assert settle_filename(path, self._meta()).stem.startswith("C-019-")
+
+    def test_handmade_name_is_left_alone(self, tmp_path):
+        """손으로 지은 이름을 덮어쓰지 않는다."""
+        from service.jobs.content_enrich import settle_filename
+
+        path = tmp_path / "C-019-my-own-name.md"
+        path.write_text("x", encoding="utf-8")
+        assert settle_filename(path, self._meta()) == path
+
+    def test_collision_leaves_it_as_is(self, tmp_path):
+        """이미 그 이름이 있으면 덮어쓰지 않는다 — 남의 교안을 지우는 것보다 낫다."""
+        from service.jobs.content_enrich import settle_filename
+
+        path = tmp_path / "C-019-pending.md"
+        path.write_text("x", encoding="utf-8")
+        (tmp_path / "C-019-database-guide.md").write_text("먼저 있던 것", encoding="utf-8")
+
+        assert settle_filename(path, self._meta()) == path
+        assert (tmp_path / "C-019-database-guide.md").read_text() == "먼저 있던 것"
+
+    def test_missing_id_leaves_it_as_is(self, tmp_path):
+        from service.jobs.content_enrich import settle_filename
+
+        path = tmp_path / "C-019-pending.md"
+        path.write_text("x", encoding="utf-8")
+        assert settle_filename(path, {"title": {"en": "T"}}) == path

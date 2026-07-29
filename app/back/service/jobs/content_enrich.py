@@ -18,6 +18,7 @@ from youtube_transcript_api import YouTubeTranscriptApi
 
 import config
 from service.content_format import content_format
+from service.content_format import content_stem
 from service.jobs.git_push import commit_and_push_with_retry
 from service.notify import notify_slack
 
@@ -291,8 +292,30 @@ def mark_error(md_path: Path, reason: str) -> None:
 # 잡 orchestrator (spec-06 §6)
 # ───────────────────────────────────────────────────────────────────────
 
-async def _enrich_one(md_path: Path, contents_dir: Path, client: AgentClient) -> None:
-    """파일 1개 enrich — spec-06 §6 핵심 흐름."""
+def settle_filename(md_path: Path, meta: dict) -> Path:
+    """enrich 가 끝났으면 파일명에서 `pending` 을 걷어낸다.
+
+    stub 은 제목이 없는 시점에 만들어지므로 `C-019-pending.md` 가 그때는 사실이다.
+    enrich 가 끝나면 더는 아니다 — **이름이 상태와 어긋난 채로 남는다.**
+
+    `{id}-` prefix 는 유지한다. 로더가 그것을 요구하고, 어기면 파일 하나가
+    거부되는 데서 끝나지 않고 persona 로드 전체가 실패한다(spec-01 §6.1).
+
+    이미 제 이름이면 그대로 둔다 — 손으로 지은 이름을 덮어쓰지 않는다.
+    """
+    content_id = str(meta.get("id") or "").strip()
+    if not content_id or not md_path.stem.endswith("-pending"):
+        return md_path
+    target = md_path.with_name(f"{content_stem(content_id, meta.get('title'))}.md")
+    if target == md_path or target.exists():
+        return md_path
+    md_path.rename(target)
+    logger.info("enrich 완료 — 파일명 정리 %s → %s", md_path.name, target.name)
+    return target
+
+
+async def _enrich_one(md_path: Path, contents_dir: Path, client: AgentClient) -> Path:
+    """파일 1개 enrich — spec-06 §6 핵심 흐름. 정리된 파일 경로를 돌려준다."""
     post = frontmatter.load(md_path)
     youtube_id = post.metadata.get("youtubeId")
     if not youtube_id:
@@ -316,6 +339,7 @@ async def _enrich_one(md_path: Path, contents_dir: Path, client: AgentClient) ->
         transcript_available,
     )
     write_enriched(md_path, new_meta, llm_resp["body"])
+    md_path = settle_filename(md_path, new_meta)
 
     title_ko = (llm_resp.get("title") or {}).get("ko") or md_path.stem
     await notify_slack(
@@ -323,6 +347,7 @@ async def _enrich_one(md_path: Path, contents_dir: Path, client: AgentClient) ->
         f"{title_ko}\n"
         f"https://youtu.be/{youtube_id}"
     )
+    return md_path
 
 
 async def run_content_enrich_job(
@@ -358,10 +383,12 @@ async def run_content_enrich_job(
     try:
         for md_path in pending:
             try:
-                await _enrich_one(md_path, contents_dir, client)
+                final_path = await _enrich_one(md_path, contents_dir, client)
                 commit_and_push_with_retry(
-                    paths=[md_path],
-                    message=f"chore: enrich {md_path.stem}",
+                    # 이름이 바뀌었으면 **옛 경로도 함께** 넘긴다 — 안 넘기면
+                    # 삭제가 스테이징되지 않아 같은 교안이 두 파일로 남는다.
+                    paths=[md_path, final_path] if final_path != md_path else [md_path],
+                    message=f"chore: enrich {final_path.stem}",
                     dry_run=dry_run,
                 )
                 processed += 1

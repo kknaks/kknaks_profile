@@ -23,8 +23,8 @@ from service.pipeline import intake
 from service.pipeline.chain import advance, reopen_route
 from service.pipeline.gates import GateError, harvest, open_first_gate
 from tests.fakes import FakeRunner
+from service.content_format import content_slug
 from service.pipeline.stages.derived import (
-    content_slug,
     build_content_note,
     format_duration,
     next_content_id,
