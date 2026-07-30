@@ -18,7 +18,7 @@ tags:
 title:
   en: Permutations
   ko: 순열
-today: true
+today: false
 type: algorithm
 updated: '2026-07-29'
 visible: true
