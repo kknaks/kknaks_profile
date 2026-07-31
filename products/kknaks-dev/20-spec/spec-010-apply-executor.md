@@ -4,9 +4,9 @@ id: KDEV-SPEC-010
 title: "Apply Executor — 발행 계획 검증과 원자적 발행"
 status: draft
 product: kknaks-dev
-version: 0.0.1
+version: 0.0.2
 created_at: 2026-07-27
-updated_at: 2026-07-27
+updated_at: 2026-07-31
 tags:
   - product/kknaks-dev
   - doc/spec
@@ -144,7 +144,7 @@ AI는 이 계획을 **제안**하고, executor가 검증 후 실행한다. AI가
 | ApplyPlan | `item_id` | 대상 큐 항목 |
 | ApplyPlan | `file_actions[]` | 실행할 파일 액션 목록 |
 | ApplyPlan | `validation_status` | `pending` · `passed` · `rejected` |
-| FileAction | `action` | `create`(신규) 또는 `overwrite`(전문 교체) — **부분 패치 액션은 없다** |
+| FileAction | `action` | `create`(신규) · `overwrite`(전문 교체) · **`upsert`**(있으면 교체, 없으면 생성) — **부분 패치 액션은 없다** |
 | FileAction | `target_path` | 레포 루트 기준 상대 경로. **AI가 아니라 시스템이 조립한다**(아래) |
 | FileAction | `filename_stem` | **AI 출력** — 파일명 후보 |
 | FileAction | `content` | 파일 전체 Markdown (신규=신규 전문, 수정=수정 전문) |
@@ -168,8 +168,28 @@ AI는 이 계획을 **제안**하고, executor가 검증 후 실행한다. AI가
 | `up:` 필수 | `concept`·`permanent`에 `up:` 누락 시 거부 | [[spec-004-graph-validation|KDEV-SPEC-004]] L2 |
 | 신규 중복 | `create`인데 대상 경로에 파일이 이미 있으면 거부 | 이 spec |
 | stale 대상 | 초안 생성 시점 이후 대상 파일이 바뀌었으면 거부하고 재생성 요구 | 이 spec |
+| **본인 작성 보호** | `daily` 대상 파일이 본인 작성이면 거부 | 이 spec |
+| **사람 전용 필드** | 계획이 사람 전용 필드를 담고 있으면 거부 | [[spec-012-grass-artifacts\|KDEV-SPEC-012]] |
 
 `stale 대상` 검증이 필요한 이유: `overwrite`는 승인 화면의 diff를 근거로 승인된다. 그 사이 파일이 바뀌면 **승인 근거가 무효**가 되고, 그대로 덮어쓰면 사이에 들어온 변경이 조용히 사라진다.
+
+#### 그래프 밖 산출물
+
+**모든 산출물이 지식그래프 노드인 것은 아니다.** `persona/daily/`·`persona/career/` 는 그래프 밖이라 상류 참조(`up:`)가 없고, 그대로 그래프 검증에 얹으면 필수 필드 위반으로 발행이 막힌다.
+
+| 산출물 | 그래프 검증 | `up:` 필수 |
+|---|---|---|
+| `reference` · `concept` · `permanent` · `idea` | **받는다** | concept·permanent 만 |
+| `content`(교안) | 받지 않는다(그래프 비대상) | — |
+| **`daily` · `career`** | **받지 않는다** | — |
+
+그래프 검증을 면제해도 **경로 allowlist·층-경로 정합·본인 작성 보호·사람 전용 필드**는 그대로 받는다. 면제는 "검증을 안 한다" 가 아니라 **적용할 수 없는 검증을 적용하지 않는다** 는 뜻이다.
+
+#### `upsert` 가 필요한 이유
+
+`create` 는 파일이 있으면 거부하고 `overwrite` 는 없으면 거부한다. 그런데 **주기적으로 갱신되는 산출물은 첫 회 생성과 이후 덮어쓰기가 둘 다 정상**이다(`daily`·`career`). 두 액션만으로는 매일 액션 종류가 갈리고, 그 분기를 계획 조립부가 파일 존재 여부로 판정해야 한다.
+
+`upsert` 는 **경로 allowlist·층-경로 정합만 보고 파일 존재 여부를 보지 않는다.** 대신 `stale 대상` 검증은 그대로 받는다 — 승인 근거가 무효가 되는 문제는 여전히 성립한다.
 
 ### Case Matrix
 
@@ -180,6 +200,8 @@ AI는 이 계획을 **제안**하고, executor가 검증 후 실행한다. AI가
 | `GRAPH_VALIDATION_FAILED` | L1~L6 위반 | 연결에 문제가 있어 발행할 수 없습니다. | 발행 결과 |
 | `TARGET_EXISTS` | 신규인데 파일 존재 | 같은 이름의 문서가 이미 있습니다. | 발행 결과 |
 | `STALE_TARGET` | 대상 파일이 변경됨 | 대상 문서가 그사이 바뀌었습니다. 다시 생성해 주세요. | 발행 결과 |
+| `USER_AUTHORED_DAILY` | 대상 daily 가 본인 작성 | 그날 기록은 직접 쓰신 것이라 덮어쓰지 않습니다. | 발행 결과 |
+| `PROTECTED_FIELD` | 계획에 사람 전용 필드 포함 | 자동으로 바꿀 수 없는 항목이 포함돼 있습니다. | 발행 결과 |
 | `WRITE_FAILED` | 파일 쓰기 실패 | 파일을 쓰지 못했습니다. 되돌렸습니다. | 발행 결과 |
 | `PUSH_FAILED` | push 실패(재시도 소진) | 원격 반영에 실패해 되돌렸습니다. 다시 시도해 주세요. | 발행 결과 |
 | `RELOAD_REJECTED` | reload 거부 | 발행은 됐지만 서버 반영이 지연됩니다. | 발행 결과 (경고) |

@@ -4,9 +4,9 @@ id: KDEV-SPEC-008
 title: "게이트 체인 — 파이프라인 정의와 스테이지 계약"
 status: draft
 product: kknaks-dev
-version: 0.0.1
+version: 0.0.2
 created_at: 2026-07-27
-updated_at: 2026-07-27
+updated_at: 2026-07-31
 tags:
   - product/kknaks-dev
   - doc/spec
@@ -46,14 +46,13 @@ links:
 
 입력 종류마다 산출물이 다르다.
 
-| 입력 | 산출물 |
-|---|---|
-| 유튜브 | **reference + concept** + contents(파생) |
-| 커밋(잔디) | **reference** + 제품 문서(파생) |
-| 블로그 | **reference + concept** + posts(파생, 게시 판정 시) |
-| 스케줄 | `persona/career/` 갱신 |
+| 입력 | 산출물 | 정의 |
+|---|---|---|
+| 유튜브 | **reference + concept** + contents(파생) | 확정 |
+| 커밋(잔디) | **daily + career + concept** | 확정 ([[spec-013-grass-gate\|KDEV-SPEC-013]]) |
+| 블로그 | **reference + concept** + posts(파생, 게시 판정 시) | 미정 |
 
-**`reference` + `concept`가 공통 코어이고 파생 슬롯만 다르다.** 입력이 늘 때마다 게이트 종류를 코드에 추가하는 대신, 파이프라인 정의를 하나 등록하는 구조여야 한다.
+**`concept`가 유일한 공통 코어이고 나머지는 입력마다 다르다.** 잔디를 정의하면서 종전의 "`reference` + `concept`가 공통" 가정이 깨졌다 — 커밋은 외부 자료가 아니라 출처 기록(`reference`)을 남길 대상이 없고, 대신 활동 기록(`daily`)과 경력 누적(`career`)으로 간다. 그래서 공통 코어를 전제한 구조가 아니라 **정의를 등록하는 구조**여야 한다는 요구가 더 강해졌다.
 
 동시에 **판단은 근거가 갖춰진 시점에** 이뤄져야 한다. "이건 k8s 자료다"는 요약을 보면 알지만, "이 영상에 STT 말고 VAD도 나오나"는 개념을 뽑아봐야 안다. 두 판단을 한 게이트에 묶으면 뒤쪽이 근거 없는 추측이 된다.
 
@@ -64,7 +63,8 @@ Out of scope:
 - 항목 접수·준비 → [[spec-007-approval-queue|KDEV-SPEC-007]]
 - 게이트 버전·피드백·재생성 → [[spec-009-gate-feedback|KDEV-SPEC-009]]
 - 발행 실행·검증 → [[spec-010-apply-executor|KDEV-SPEC-010]]
-- 커밋·블로그·스케줄 파이프라인 정의 (유튜브 체인 검증 후)
+- 잔디 파이프라인 상세 → [[spec-013-grass-gate|KDEV-SPEC-013]] (정의 자체는 이 spec 이 등록한다)
+- 블로그 파이프라인 정의 (미착수)
 
 ## 2. UX Contract
 
@@ -289,9 +289,42 @@ stateDiagram-v2
 | 5 | `concept` | gate | route 의존 | 개념 추출 + 신규/보충 판정 |
 | 6 | `derived` | gate | route 의존 | 교안(`persona/contents/`) |
 
+#### 잔디 파이프라인 정의 (`daily_commit`)
+
+| # | stage | kind | optional | 결정하는 것 |
+|---|---|---|---|---|
+| 1 | `collect` | auto | — | git 조사·career 귀속·`counts` (LLM 없음) |
+| 2 | `investigate` | auto | — | 레포별 상세 조사 — **N 건 fan-out** |
+| 3 | `compose` | auto | — | 취합 — daily·career·concept 초안 |
+| 4 | `daily` | gate | — | 하루 1개. **승인 = 발행** |
+
+상세 계약은 [[spec-013-grass-gate|KDEV-SPEC-013]].
+
+#### route 가 없는 파이프라인
+
+**목적지가 고정인 입력 종류는 route 게이트를 두지 않는다.** 잔디가 그렇다 — 산출물이 daily·career·concept 로 정해져 있어 사람이 고를 것이 없다.
+
+그래서 체인 진행 규칙에 분기가 하나 필요하다.
+
+| route 승인 결과 | 켜지는 게이트 |
+|---|---|
+| 목적지 조합 있음 | 켠 목적지의 스테이지만 |
+| 배타 선택(보류·폐기) | 없음 |
+| **route 게이트 자체가 없음** | **정의된 게이트 전부** |
+
+세 번째가 이번에 추가된다. "끄는 주체가 없으면 전부 켜진 것" 으로 읽는다. 이 분기가 없으면 route 없는 파이프라인은 **첫 승인에서 체인이 끝난 것으로 판정되어** 남은 게이트를 건너뛰고 발행된다 — 게이트가 하나뿐이면 우연히 맞지만 둘 이상이면 미완성 산출물이 나간다.
+
+#### fan-out 스테이지
+
+`investigate` 처럼 **한 스테이지가 N 건을 실행**하는 경우, 그 스테이지는 **반드시 `auto`** 여야 한다.
+
+게이트 스테이지는 리비전 1건과 실행 1건이 짝이고, 수확 멱등성이 그 1:1 전제 위에 서 있다. 게이트에 N 건을 매달면 그 전제가 깨진다. fan-out 결과는 자동 스테이지 산출물로 누적하고, 승인은 그것을 **취합한 결과 하나**에 건다.
+
+부분 실패는 진행한다 — N 건 중 일부가 실패해도 나머지로 다음 스테이지를 만들고, 실패분을 산출물에 남겨 화면이 표시한다. **전부 실패하면 스테이지 실패다.**
+
 ## 5. Implementation Rules
 
-- **체인 길이는 route 승인이 확정한다.** route에서 끈 산출물의 스테이지는 생성되지 않는다.
+- **체인 길이는 route 승인이 확정한다.** route에서 끈 산출물의 스테이지는 생성되지 않는다. **route 게이트가 정의에 없는 파이프라인은 정의된 게이트를 전부 켠 것으로 본다** — 끄는 주체가 없기 때문이다.
 - **마지막 게이트 승인이 발행 트리거다.** 중간 게이트 승인은 다음 스테이지를 열 뿐 파일을 만들지 않는다([[decision-011-approval-gate-chain|KDEV-DEC-011]] D6).
 - **승인은 즉시 응답한다.** 다음 스테이지 게이트를 `생성 중` 으로 만들고 실행만 제출한 뒤
   돌려준다 — 제안이 준비되기를 기다리지 않는다([[spec-009-gate-feedback|KDEV-SPEC-009]] 실행 계약).

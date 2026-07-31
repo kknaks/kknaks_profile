@@ -4,9 +4,9 @@ id: KDEV-SPEC-001
 title: "지식그래프 디렉토리 구조"
 status: draft
 product: kknaks-dev
-version: 0.0.4
+version: 0.0.5
 created_at: 2026-06-29
-updated_at: 2026-07-27
+updated_at: 2026-07-31
 tags:
   - product/kknaks-dev
   - doc/spec
@@ -114,7 +114,9 @@ Out of scope:
 | `inbox/` | `idea` | 휘발. 노드이되 층에 속하지 않고 `up:` 대상이 될 수 없다 |
 | `persona/contents/` | `content` | YouTube 요약 파이프라인. 그래프 비대상([[decision-008-contents-retention|KDEV-DEC-008]]) |
 | `persona/algorithms/` | `algorithm` | 개인 배치 산출물. 그래프 비대상 |
-| `persona/daily/` · `career/` · `profile.md` · `assets/` | `daily`·`career`·`profile` | 정체성(그래프 주변) |
+| `persona/daily/` | `daily` | 그날 활동 기록. **잔디 파이프라인이 자동 갱신**([[spec-012-grass-artifacts|KDEV-SPEC-012]]) — 승인 게이트를 거친다. `auto: false` 면 본인 작성이라 자동 갱신 대상에서 빠진다 |
+| `persona/career/` | `career` | 경력. **잔디 파이프라인이 본문·`stack` 만 자동 갱신**(`is_current: true` 항목 한정). `bullets`·`period`·`org` 등은 **사람 전용** |
+| `persona/profile.md` · `assets/` | `profile` | 정체성(그래프 주변). 사람 전용 |
 | `persona/posts/` | `post` | 발행물. **디렉토리 미존재·배선 미완**([[decision-008-contents-retention|KDEV-DEC-008]] Scope Out) |
 
 ### Data Contract — 디렉토리 레이아웃
@@ -144,6 +146,17 @@ persona/
 - `permanent/archive/`는 층이 아니라 **상태**다. 안 쓰게 된 `permanent`와 `concept`가 함께 내려간다.
 - `products/{제품}/showcase.md` frontmatter: `org: company | studio`, `category`, `status`, `visible`, `thumbnail`.
 - 회사 프로젝트 = `showcase.md`만, 개인 제품 = showcase + 파이프라인.
+- `showcase.md` 의 `links.repo` 는 **공개 표시 전용**이다. 잔디가 추적할 레포는 별도 레지스트리가 소유한다([[spec-011-commit-collection|KDEV-SPEC-011]]) — 보여주지만 안 긁는 레포, 그 반대가 모두 정당하다.
+
+**자동 갱신 경로 요약** — 발행이 쓸 수 있는 경로는 검증이 허용목록으로 강제한다([[spec-010-apply-executor|KDEV-SPEC-010]]).
+
+| 경로 | 자동 갱신 주체 | 승인 |
+|---|---|---|
+| `reference/` · `permanent/concept/` · `permanent/` · `inbox/` | 유튜브 체인 · 잔디(concept 한정) | 게이트 |
+| `persona/contents/` | 유튜브 체인(`derived`) · 교안 enrich 잡 | 게이트 / 잡 |
+| `persona/daily/` · `persona/career/` | **잔디 파이프라인** | 게이트 |
+| `persona/algorithms/` | algorithm 잡 | **없음**(후속 편입 대상) |
+| `products/**` · `persona/profile.md` · `persona/posts/` | 사람 | — |
 
 ### State / Lifecycle
 

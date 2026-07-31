@@ -4,9 +4,9 @@ id: KDEV-SPEC-003
 title: "지식 워크플로 — 4층 생명주기와 승인 기반 정제"
 status: draft
 product: kknaks-dev
-version: 0.0.2
+version: 0.0.3
 created_at: 2026-06-29
-updated_at: 2026-07-27
+updated_at: 2026-07-31
 tags:
   - product/kknaks-dev
   - doc/spec
@@ -152,6 +152,8 @@ stateDiagram-v2
 - 층 간 동일 stem 중복 금지 = SSOT 단일 — 검증 L2.
 - 아카이브 내림은 폴더 이동이며 링크는 stem 기반이라 보존된다.
 - 수동 작성 경로는 계속 유효하다. 게이트는 자동 유입에 대한 장치다.
+- **커밋도 유입 경로다.** 외부 자료(유튜브·Slack)만 지식이 되는 것이 아니라, 매일 쓰는 코드가 `concept` 후보를 낸다. 그 경로는 잔디 파이프라인이 소유하며([[spec-013-grass-gate|KDEV-SPEC-013]]), **같은 개념 성장·SoT 위임 규율을 그대로 받는다** — 커밋에서 나온 concept 라고 형식이 느슨해지지 않는다.
+- **활동 기록(`persona/daily/`)과 경력(`persona/career/`)은 4층 밖이다.** 지식이 자라는 축과 별개로, 무엇을 했는지를 누적하는 축이다. 이 둘은 그래프 노드가 아니며 `up:` 계보를 갖지 않는다([[spec-012-grass-artifacts|KDEV-SPEC-012]]).
 
 ## 6. Verification
 

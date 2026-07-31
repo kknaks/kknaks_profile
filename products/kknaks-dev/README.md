@@ -13,6 +13,7 @@
 | 지식그래프 (BL-001) | WORK-001~010 done + **WORK-013으로 4층 재편 완료** (`permanent/concept/` 실재화, lineage 1→4) | — |
 | 앱 DB화 + 관리자 인증 (BL-002) | BL-002·DEC-009 accepted, SPEC-006 implemented, WORK-011 done (async) | 후속 — admin 실제 관리 기능 spec |
 | inbox 승인 파이프라인 + concept 층 (BL-003) | BL-003·DEC-010~013 accepted · spec 9건 · 40-arch · **WORK-012·013 done** · **WORK-014 done** · WORK-015 P1~P4(게이트 3종·재오픈·Executor) done | WORK-015 P5 실전 e2e (**배포 필요**) |
+| 커밋 잔디 파이프라인 (BL-004) | BL-004 accepted · DEC-014·015·016 proposed · **SPEC-011·012·013 신규 + SPEC-001·003·008·010 개정 완료**. OQ 13→3(전부 spec 무관) | **work 발주** (레지스트리·클론 → 파이프라인 → apply 확장 → 양식) |
 
 ## 문서 맵
 
@@ -26,6 +27,10 @@
 
 ## 최근 로그
 
+- 2026-07-31 **KDEV-SPEC-011·012·013 신규 (draft) + SPEC-001·003·008·010 개정** — 011 커밋 조사(레지스트리·bare 클론·수집 규칙·drift 알림) · 012 산출물 계약(daily·career·concept, career 갱신 규율·형식 SoT) · 013 잔디 게이트(`daily_commit` 정의·fan-out 배치·발행 검증 확장). 개정: SPEC-001 에 daily·career 자동갱신 주체 + 자동갱신 경로표, SPEC-003 에 커밋 유입 경로, SPEC-008 에 잔디 정의·route 없는 체인·fan-out 규칙(공통코어 가정 정정), SPEC-010 에 `upsert`·그래프 밖 산출물·본인작성 보호·사람 전용 필드.
+- 2026-07-31 **DEC-014 OQ 실측 해소** — `mediness` bare 129M → 13개 합 ~321MB(bare full 확정). **identity 3종 발견 — `kknaks@medisolveai.com` 만 걸었으면 `kknaks_profile` 커밋 절반 유실**, D5 를 `--author=kknaks` 단일 패턴 + drift 감지로 개정. `--all` 추가분 +17.3%(본인 +7.9%) · tree-hash 중복 163건으로 D3·D6 근거 확보. 미결 13→3, 전부 spec 무관.
+- 2026-07-31 **KDEV-DEC-014·015·016 작성 (proposed)** — BL-004 미결 10건 전부 해소. 014 레지스트리 DB화 + bare full clone(`--all --numstat`, email 다중 author, tree-hash dedupe, diff 상한 32KB/8KB/30건, 회사 레포도 diff 전부 포함) · 015 목적지 3개 + `templates/persona/daily.md`·`career.md` 신규 + `## 담당 영역` 신설 + daily body 500→1200자 · 016 `daily_commit` 파이프라인 + fan-out 을 게이트 밖 auto 로 + `chain.enabled_stages` 일반화 + `apply/` 확장 6종(`upsert` 액션·graph_check 제외·`auto:false` 검증) + `publish_atomic` 전환. DEC-011 보류(커밋 파이프라인 정의) 해소.
+- 2026-07-30 **KDEV-BL-004 작성 (raw)** — 커밋 잔디 파이프라인. 잔디 잡이 BL-003 auto-commit 경로 4개 중 유일하게 게이트 미적용. 커밋 입력이 `{repo, msg}` 뿐(diff·stat·브랜치 없음)이라 서술 품질 병목이 형식이 아니라 입력, 로컬 bare 클론 + `--numstat` 으로 전환. daily body 는 미노출·career body 는 렌더된다는 비대칭이 목적지를 갈랐다 — daily·career·concept 3개, `persona/areas/` 와 work·showcase 는 폐기. 미결 10건.
 - 2026-07-28 **WORK-013 done** — concept 층 도입. 4층 재편(`layer` 도출·rank 반전·층별 orphan), `permanent/concept/` 실재화, `rules/knowledge-note-pipeline.md` + `templates/knowledge/`, enforce 전환. 신규 규칙 위반 1건뿐이었고 lineage 1→4건. 344 passed.
 - 2026-07-27 **WORK-012 done** — Slack bridge를 back lifespan으로 흡수. sink DI 리팩터(WORK-014 교체 지점), 컨테이너 5→4개, deploy.yml의 죽은 profile 참조 제거. 309 passed. 운영 e2e는 배포 대기.
 - 2026-07-27 DEC-010~013 accepted 승격 + WORK-012~015 발주 (bridge 흡수 · concept 층 · 큐+route · 유튜브 완주). 012·013 병렬 → 014 → 015.

@@ -19,6 +19,9 @@
 | KDEV-DEC-011 | 승인 게이트 체인 — 소스별 가변 스테이지와 큐 모델 | accepted | KDEV-BL-003 | SPEC-007·008·009·003 반영 완료 | 승인 큐 · 게이트 체인 · 피드백/재생성 · 워크플로 |
 | KDEV-DEC-012 | 저장·발행 경계 — draft는 DB, 확정은 md, 발행은 원자적 | accepted | KDEV-BL-003 | SPEC-010·004 반영 완료 (40-arch 대기) | Apply Executor · 검증 · database |
 | KDEV-DEC-013 | 프로세스 경계 — Slack bridge를 back에 흡수 | accepted | KDEV-BL-003 | SPEC-007/010에 반영 (OKK-SPEC-011·40-arch 대기) | OKK-SPEC-011 §4 개정 · system architecture |
+| KDEV-DEC-014 | 커밋 조사 원천 — 레포 레지스트리 DB화 + 로컬 bare 클론 | proposed | KDEV-BL-004 | spec 미작성 | 잔디 커밋 조사(신규) · SPEC-003 |
+| KDEV-DEC-015 | 잔디 착지 경로 3개와 문서 양식 — daily·career·concept | proposed | KDEV-BL-004 | spec 미작성 | 잔디 산출물 계약(신규) · SPEC-001 |
+| KDEV-DEC-016 | 잔디 승인 게이트 편입과 발행부 확장 | proposed | KDEV-BL-004 | spec 미작성 | 잔디 게이트 계약(신규) · SPEC-008 · SPEC-010 |
 
 ### 개정 관계
 
@@ -49,6 +52,7 @@ DEC-005는 *"정제를 에이전트가 초안까지 하는 안"*을 명시적으
 | ~~DEC-010 OQ-2~~ | concept 입도 | **잠정 규칙 — 독립 재사용 가능성** (`rules/knowledge-note-pipeline.md`). 재검토 트리거: concept 10건 또는 개념 분열 첫 사례 |
 | ~~SPEC-004 OQ~~ | L2 필수필드·L4 반전의 기존 데이터 위반 수 | **실측 1건** (WORK-013 Phase 1). enforce 전환 완료 |
 | ~~SPEC-003 OQ~~ | `reference/` 157개 소급 정제 | **하지 않는다** — 기술부채가 아니라 파이프라인 입력 백로그. 큐 크기를 경보로 쓰지 않는다 |
+| ~~DEC-011 보류~~ | 커밋 파이프라인 정의 | **DEC-016 D1 로 해소** — `daily_commit`(collect·investigate·compose auto + daily gate). 블로그·스케줄은 여전히 보류 |
 
 ### 진행 전 필요 (없음)
 
