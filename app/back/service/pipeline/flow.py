@@ -21,6 +21,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.models import QueueItem
 
+from .definitions import pipeline_for
 from .gates import StageRunner, open_first_gate
 from .prepare import Fetcher, PrepareResult, Summarizer
 from .prepare import harvest_preparation as _harvest
@@ -45,11 +46,16 @@ async def harvest_preparation(
     item: QueueItem,
     *,
     summarize: Summarizer,
-    runner: StageRunner | None = None,
+    runners: dict[str, StageRunner] | None = None,
 ) -> PrepareResult:
     """요약을 수확하고, 준비가 끝났으면 첫 게이트를 연다.
 
-    `runner` 가 없으면(AI 경로 미가용) 게이트를 열지 않고 `in_review` 로 둔다.
+    **첫 게이트가 무엇인지는 파이프라인 정의가 정한다** (KDEV-WORK-017 P2). 종전에는
+    호출자가 `"route"` 실행기를 집어서 넘겼는데, 그건 유튜브에서만 맞는 이름이었다 —
+    잔디의 첫 게이트는 `daily` 다. 이름을 밖에서 박으면 파이프라인이 늘 때마다 호출부가
+    같이 틀린다. 그래서 실행기 묶음을 받아 **여기서** 정의를 보고 고른다.
+
+    해당 실행기가 없으면(AI 경로 미가용) 게이트를 열지 않고 `in_review` 로 둔다.
     **준비 결과를 되돌리지는 않는다** — 수집·요약은 이미 끝났고 그건 버릴 이유가
     없다. 게이트는 나중에 열 수 있다.
     """
@@ -57,8 +63,15 @@ async def harvest_preparation(
     if not result.ok:
         return result
 
+    pipeline = pipeline_for(item.source_kind)
+    first_gate = pipeline.first_gate() if pipeline else None
+    runner = (runners or {}).get(first_gate.name) if first_gate else None
     if runner is None:
-        logger.warning("게이트 제안 경로 미가용 — item=%s 는 게이트 없이 검토 대기", item.id)
+        logger.warning(
+            "게이트 제안 경로 미가용 — item=%s 는 게이트 없이 검토 대기 (stage=%s)",
+            item.id,
+            first_gate.name if first_gate else "(정의 없음)",
+        )
         return result
 
     gate = await open_first_gate(db, item, runner=runner)

@@ -282,7 +282,7 @@ async def _harvest_item(db: AsyncSession, item: QueueItem) -> bool:
         return False
     try:
         result = await harvest_preparation(
-            db, item, summarize=summarizer, runner=_runner_for("route")
+            db, item, summarize=summarizer, runners=_runners()
         )
     except Exception:  # noqa: BLE001
         logger.exception("항목 %s 준비 수확 실패 — 조회는 그대로 내려보낸다", item.id)

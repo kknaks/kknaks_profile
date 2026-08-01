@@ -177,9 +177,8 @@ class PipelineDriver:
             return False
 
         await summarizer.wait(task_ref)  # ← 워커가 깨워 준다
-        result = await harvest_preparation(
-            db, item, summarize=summarizer, runner=runners.get("route")
-        )
+        # 첫 게이트 이름은 여기서 고르지 않는다 — 파이프라인 정의가 안다(WORK-017 P2).
+        result = await harvest_preparation(db, item, summarize=summarizer, runners=runners)
         await db.commit()
         return result.ok
 

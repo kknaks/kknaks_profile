@@ -49,11 +49,99 @@ class Summarizer(Protocol):
 
     async def poll(self, task_id: str) -> Execution: ...
 
+    #: 실행 완료까지 블록한다 — 워커가 깨워 주므로 폴링이 아니다. 선언이 빠져 있었는데
+    #: `driver` 가 계속 부르고 있었다(KDEV-WORK-017 P2 에서 실사용에 맞춰 채웠다).
+    async def wait(self, task_id: str) -> Any: ...
+
     def parse(self, raw: str) -> str: ...
 
 
 #: 원문 수집기. 실패는 예외.
 Fetcher = Callable[[str], Awaitable[Any]]
+
+
+@dataclass(frozen=True)
+class StageSubmission:
+    """auto 스테이지가 제출을 마치고 돌려주는 것 (KDEV-WORK-017 P2).
+
+    `task_refs` 가 비어 있어도 정상이다 — `collect` 처럼 **LLM 을 부르지 않는**
+    스테이지가 있다. 그 경우 기다릴 것이 없으니 곧바로 수확된다.
+
+    `investigate` 는 반대로 레포마다 하나씩 **N 건**을 낸다. 제출 건수를 0·1·N 으로
+    함께 다루는 것이 이 계약의 요점이다 — 종전 준비부는 1 만 가정했다.
+    """
+
+    task_refs: list[str]
+    #: 제출 시점에 이미 확정된 payload 조각(수집 원문 등). 실행 결과가 아니다.
+    payload: dict[str, Any]
+    #: 제출 전에 막힌 경우. 채워지면 준비가 실패로 닫힌다.
+    error_code: str | None = None
+    error_message: str | None = None
+
+
+class AutoStage(Protocol):
+    """auto 스테이지 실행기 — 게이트가 아니라 `ItemPreparation` 을 남긴다.
+
+    게이트 실행기(`gates.StageRunner`)와 계약이 다르다. 승인 리비전을 만들지 않고,
+    사람의 검토를 받지 않으며, 실패하면 재시도한다.
+
+    **`stages` 가 이 프로토콜의 핵심이다.** 실행기 하나가 정의상 스테이지 **여럿을
+    덮을 수 있다.** 유튜브의 수집+요약이 그렇다 — 정의에는 `collect`·`summarize` 로
+    둘이지만 코드에서는 한 덩어리이고, 그걸 굳이 쪼개면 얻는 것 없이 회귀면만 넓어진다.
+    잔디는 셋을 각각 따로 덮는다.
+    """
+
+    #: 이 실행기가 덮는 정의상 스테이지 이름들. 성공하면 전부 완료로 기록된다.
+    stages: tuple[str, ...]
+
+    async def submit(self, *, item: QueueItem, prior: dict[str, Any]) -> StageSubmission: ...
+
+    async def wait(self, task_ref: str) -> Any: ...
+
+    async def poll(self, task_ref: str) -> Execution: ...
+
+    def parse(
+        self, results: list[str], *, item: QueueItem, prior: dict[str, Any]
+    ) -> dict[str, Any]:
+        """실행 결과들 → 이 스테이지가 payload 에 더할 조각.
+
+        `results` 는 제출 순서대로다. 비어 있으면 LLM 을 부르지 않은 스테이지다.
+        """
+        ...
+
+
+async def completed_auto_stages(db: AsyncSession, item_id: int) -> set[str]:
+    """이 항목에서 **이미 끝난** auto 스테이지 이름들.
+
+    성공한 준비 버전에만 기록된다 — 실패한 버전은 재시도 대상이라 완료로 세지 않는다.
+    """
+    rows = (
+        await db.scalars(
+            select(ItemPreparation.payload).where(
+                ItemPreparation.item_id == item_id,
+                ItemPreparation.status == "succeeded",
+            )
+        )
+    ).all()
+    done: set[str] = set()
+    for payload in rows:
+        for name in (payload or {}).get("stages") or []:
+            done.add(str(name))
+    return done
+
+
+def next_auto_stage(pipeline, completed: set[str]) -> str | None:
+    """정의 순서에서 아직 안 끝난 첫 auto 스테이지. 없으면 `None`(= 게이트 차례).
+
+    **정의가 순서의 SoT다.** 종전에는 "수집 1회 + 요약 1회" 가 코드에 굳어 있어
+    `Stage(..., "auto")` 선언을 아무도 읽지 않았다(WORK-017 P2).
+    """
+    if pipeline is None:
+        return None
+    for stage in pipeline.auto_stages():
+        if stage.name not in completed:
+            return stage.name
+    return None
 
 
 @dataclass(frozen=True)
@@ -195,6 +283,10 @@ async def submit_preparation(
         status="running",
         ai_task_id=task.id,
         payload={
+            # 이 준비가 덮은 정의상 스테이지들(WORK-017 P2). 수집과 요약은 코드에서
+            # 한 덩어리지만 정의에서는 둘이고, 레일은 정의 기준으로 "다음이 남았나"를
+            # 판단한다. 둘 다 여기 적히므로 유튜브는 준비 한 번으로 auto 가 끝난다.
+            "stages": ["collect", "summarize"],
             "source": material,
             "note": note or None,
             # 수집이 막혀 메모로 대체했는지는 route 판단의 재료다 —

@@ -37,6 +37,16 @@ class Pipeline:
     def gate_stages(self) -> tuple[Stage, ...]:
         return tuple(s for s in self.stages if s.is_gate)
 
+    def auto_stages(self) -> tuple[Stage, ...]:
+        """게이트 앞의 자동 준비 스테이지들 — 정의 순서대로.
+
+        **이 값을 실제로 읽기 시작한 것은 WORK-017 P2 다.** 그전까지 준비부는
+        "수집 1회 + 요약 1회" 로 굳어 있어서, 여기 `auto` 가 둘 적혀 있어도
+        아무도 보지 않았다. 잔디는 셋(`collect`·`investigate`·`compose`)이라
+        정의를 읽지 않고는 돌릴 수 없다.
+        """
+        return tuple(s for s in self.stages if s.kind == "auto")
+
     def first_gate(self) -> Stage | None:
         gates = self.gate_stages()
         return gates[0] if gates else None
@@ -62,8 +72,28 @@ YOUTUBE = Pipeline(
     ),
 )
 
-#: 등록된 정의. 유튜브만 있다 — 커밋·블로그·스케줄은 해당 파이프라인을 만들 때 추가한다.
-PIPELINES: dict[str, Pipeline] = {YOUTUBE.source_kind: YOUTUBE}
+DAILY_COMMIT = Pipeline(
+    source_kind="daily_commit",
+    stages=(
+        # 조사는 LLM 이 아니다 — git 을 읽고 세는 일이다. `counts` 를 코드가 세는 이유이기도
+        # 하다(SPEC-012 §5). WORK-017 P2 단계에서는 더미가 이 자리를 채우고, P5 에서
+        # 진짜 git 조사로 갈아 끼운다. 더미가 SPEC-011 §4 계약을 통째로 내기 때문에
+        # 그 교체가 이 스테이지 하나로 끝난다.
+        Stage("collect", "auto"),
+        # 유일하게 한 스테이지가 N 건을 제출한다 — 레포마다 하나씩.
+        Stage("investigate", "auto"),
+        Stage("compose", "auto"),
+        # 게이트가 하나뿐이라 **승인이 곧 체인 종료이자 발행 트리거**다(SPEC-013).
+        # route 게이트가 없는 이유는 목적지가 고정이라 고를 것이 없기 때문이다.
+        Stage("daily", "gate"),
+    ),
+)
+
+#: 등록된 정의. 블로그·스케줄은 해당 파이프라인을 만들 때 추가한다.
+PIPELINES: dict[str, Pipeline] = {
+    YOUTUBE.source_kind: YOUTUBE,
+    DAILY_COMMIT.source_kind: DAILY_COMMIT,
+}
 
 
 def pipeline_for(source_kind: str) -> Pipeline | None:

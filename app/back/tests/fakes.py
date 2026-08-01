@@ -148,6 +148,20 @@ class InlineDriver(PipelineDriver):
         await self._drive(item_id)
 
 
+def first_gate_runners(item: QueueItem, runner) -> dict[str, Any]:
+    """실행기 하나를 **그 항목의 첫 게이트 이름**에 걸어 준다.
+
+    수확부가 실행기를 이름으로 찾게 된 뒤로(WORK-017 P2) 필요해진 번역이다.
+    테스트는 여전히 "이 게이트 실행기 하나" 만 신경 쓰면 되고, 이름이 유튜브면
+    `route`·잔디면 `daily` 라는 사실은 정의에서 나온다.
+    """
+    from service.pipeline.definitions import pipeline_for
+
+    pipeline = pipeline_for(item.source_kind)
+    stage = pipeline.first_gate() if pipeline else None
+    return {stage.name: runner} if stage and runner is not None else {}
+
+
 async def prepare(db, item_id: int, *, fetch, summarize, runner=None) -> PrepareResult:
     """준비를 제출하고 곧바로 수확한다 — 종전의 동기 `prepare_item` 한 번에 해당한다.
 
@@ -158,4 +172,6 @@ async def prepare(db, item_id: int, *, fetch, summarize, runner=None) -> Prepare
     if not result.running:
         return result
     item = await db.get(QueueItem, item_id)
-    return await harvest_preparation(db, item, summarize=summarize, runner=runner)
+    return await harvest_preparation(
+        db, item, summarize=summarize, runners=first_gate_runners(item, runner)
+    )
