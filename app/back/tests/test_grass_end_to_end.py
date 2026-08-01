@@ -36,6 +36,30 @@ from service.pipeline.stages.daily import DailyStage
 from service.pipeline.stages.investigate import AgentInvestigate
 from tests.fakes import InlineDriver
 
+#: 레포에 이미 있는 개념 — 잔디 concept 가 `up:` 으로 거는 상류다.
+#: 운영에서는 로더가 만든 노드 맵이 오지만, 테스트는 필요한 것만 세운다.
+CURRENT_NODES = {
+    # reference → concept → concept. 실제 그래프의 계보를 그대로 세운다.
+    "2026-07-01-api-design": {
+        "type": "reference",
+        "id": "2026-07-01-api-design",
+        "title": "API 설계 자료",
+        "up": None,
+        "aliases": [],
+        "body": "- [[api-contract]] — 개념",
+        "archived": False,
+    },
+    "api-contract": {
+        "type": "concept",
+        "id": "api-contract",
+        "title": "API 계약",
+        "up": ["2026-07-01-api-design"],
+        "aliases": ["api contract"],
+        "body": "## 출처\n\n- [[2026-07-01-api-design]] — 출처",
+        "archived": False,
+    },
+}
+
 try:
     _probe = create_engine(config.database_url())
     with _probe.connect() as conn:
@@ -87,24 +111,20 @@ DAILY_REPLY = {
         "stem": "medisolve-ai",
         "content": "## 무슨 일 하는지\n\n피부과 CRM 백엔드를 맡고 있다.\n\n## 챌린지\n\n- 기존 챌린지 한 줄\n- 응답 스키마가 커져 정리했다",
     },
-    # concept 는 여기서 비운다 — 잔디 concept 의 `up:` 이 무엇을 가리켜야 하는지가
-    # 정해져 있지 않다. 아래 `TestConceptGap` 이 그 공백을 고정한다.
-    "concepts": [],
-}
-
-CONCEPT_REPLY = {
-    **{k: v for k, v in DAILY_REPLY.items() if k != "concepts"},
     "concepts": [
         {
             "stem": "response-schema-trim",
             "title": "응답 스키마 정리",
-            # career 를 상류로 걸었다 — career 는 그래프 노드가 아니다.
-            "content": "---\ntype: concept\ntitle: 응답 스키마 정리\nup:\n  - medisolve-ai\n---\n\n# 응답 스키마 정리\n\n본문",
+            # **기존 개념**을 상류로 건다. daily·career 는 그래프 밖이라 걸 수 없다.
+            "content": (
+                "---\ntype: concept\ntitle: 응답 스키마 정리\n"
+                "aliases:\n  - schema trim\nup:\n  - api-contract\n---\n\n"
+                "# 응답 스키마 정리\n\n## 출처\n\n- [[api-contract]] — 상류 개념\n"
+            ),
             "mode": "create",
         }
     ],
 }
-
 
 class ReplyingClient:
     """open-kknaks 를 흉내 낸다 — 프롬프트를 받아 미리 정한 답을 돌려준다."""
@@ -158,6 +178,11 @@ def repo(tmp_path: Path) -> Path:
     (root / "persona" / "career" / "medisolve-ai.md").write_text(CAREER_MD, encoding="utf-8")
     (root / "persona" / "daily").mkdir(parents=True)
     (root / "permanent" / "concept").mkdir(parents=True)
+    # 잔디 concept 가 `up:` 으로 걸 **실재하는 상류**. 개념이 개념에서 자란다.
+    (root / "permanent" / "concept" / "api-contract.md").write_text(
+        "---\ntype: concept\ntitle: API 계약\naliases:\n  - api contract\n---\n\n# API 계약\n\n본문\n",
+        encoding="utf-8",
+    )
 
     subprocess.run(["git", "init", "-q"], cwd=root, check=True)
     subprocess.run(["git", "add", "-A"], cwd=root, check=True)
@@ -267,7 +292,7 @@ class TestFullLap:
         async with session_factory() as db:
             item = await db.get(QueueItem, received.item_id)
             outcome = await apply_item(
-                db, item, repo_root=repo, current_nodes={}, dry_run=True
+                db, item, repo_root=repo, current_nodes=CURRENT_NODES, dry_run=True
             )
             await db.commit()
 
@@ -276,8 +301,10 @@ class TestFullLap:
         # --- 관측: 파일은 생겼고 커밋은 없다 --------------------------------
         daily_path = repo / "persona" / "daily" / "2026-07-29.md"
         career_path = repo / "persona" / "career" / "medisolve-ai.md"
+        concept_path = repo / "permanent" / "concept" / "response-schema-trim.md"
 
         assert daily_path.exists()
+        assert concept_path.exists()
 
         written = daily_path.read_text(encoding="utf-8")
         # 사람이 고친 것이 발행됐다 — AI 제안 원본이 아니다.
@@ -316,7 +343,7 @@ class TestFullLap:
             )
             await gates_service.approve(db, gate)
             item = await db.get(QueueItem, received.item_id)
-            await apply_item(db, item, repo_root=repo, current_nodes={}, dry_run=True)
+            await apply_item(db, item, repo_root=repo, current_nodes=CURRENT_NODES, dry_run=True)
             await db.commit()
 
         assert (repo / "persona" / "career" / "medisolve-ai.md").read_text(
@@ -335,32 +362,3 @@ class TestFullLap:
             await db.commit()
         assert result.outcome == "blocked" and result.reason == "USER_AUTHORED_DAILY"
 
-
-@needs_db
-class TestConceptGap:
-    """**잔디가 만든 concept 는 그래프상 부모가 없다.** 정해진 것이 없는 자리다.
-
-    유튜브 concept 는 같은 발행 묶음의 reference 노트를 `up:` 으로 건다. 잔디에는
-    그런 것이 없다 — daily 도 career 도 그래프 밖이라(SPEC-013) 상류가 될 수 없고,
-    그래서 무엇을 걸든 L2(고아)에 걸린다.
-
-    SPEC-012 S-3 은 "형식·계보 규칙은 지식노트 파이프라인을 그대로 따른다" 고만 적어
-    상류가 있다는 것을 전제한다. 이 테스트는 **현재 동작을 고정**해 두는 것이지 이대로가
-    옳다는 뜻이 아니다 — 결정이 서면 함께 바뀐다.
-    """
-
-    async def test_grass_concept_is_rejected_as_orphan(self, world, repo, monkeypatch):
-        driver, session_factory, _ = world
-        monkeypatch.setattr(
-            "tests.test_grass_end_to_end.DAILY_REPLY", CONCEPT_REPLY, raising=False
-        )
-
-        from service.apply.graph_check import check_graph
-        from service.apply.plan import build_actions
-
-        actions = build_actions({"daily": CONCEPT_REPLY}, repo_root=repo)
-        concept = [a for a in actions if a.note_type == "concept"]
-        assert concept, "concept 액션은 만들어진다 — 막히는 곳은 그래프 검증이다"
-
-        violations = check_graph({}, actions)
-        assert any(v.rule == "GRAPH_L2" for v in violations), violations

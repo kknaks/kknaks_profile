@@ -225,7 +225,7 @@ class TestParse:
         stage = _stage(FakeClient(), repo)
         reply = _reply(
             concepts=[
-                {"stem": "ok", "title": "T", "content": "본문", "mode": "supplement"},
+                {"stem": "ok", "title": "T", "content": "---\ntype: concept\ntitle: T\naliases:\n  - t\nup:\n  - parent\n---\n\n본문", "mode": "supplement"},
                 {"stem": "empty", "title": "T", "content": "   "},
                 "쓰레기",
             ]
@@ -267,6 +267,6 @@ class TestSubmit:
         """
         stage = _stage(FakeClient(), repo)
         reply = _reply(
-            concepts=[{"stem": "s", "title": "T", "content": "본문", "mode": "new"}]
+            concepts=[{"stem": "s", "title": "T", "content": "---\ntype: concept\ntitle: T\naliases:\n  - t\nup:\n  - parent\n---\n\n본문", "mode": "new"}]
         )
         assert stage.parse(reply, _request())["concepts"][0]["mode"] == "create"

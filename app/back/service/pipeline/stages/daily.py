@@ -31,8 +31,10 @@ import frontmatter
 
 from service.content_format import career_format, daily_format
 
+from ..concept_index import build_index
 from ..executor import AgentStage
 from ..gates import GateError, GenerationInput
+from .common import CONCEPT_STEM_RE, READ_THE_RULES, check_note
 
 logger = logging.getLogger("kknaks-back.pipeline.daily")
 
@@ -66,8 +68,27 @@ JSON 하나로 답한다. 코드펜스로 감싸지 않는다.
 
 - `counts` 를 만들지 마라. 코드가 채운다
 - `summary` 는 활동 단위마다 한 줄이고, **활동이 0인 카테고리는 줄을 만들지 않는다**
-- `concepts` 는 재사용 가능한 개념이 보일 때만. 없으면 빈 배열. **억지로 만들지 않는다**
 - `feedback` 이 있으면 그 지적을 반영해 다시 쓴다. 조사 결과는 바뀌지 않았다
+
+## concept 는 지식그래프에 들어간다 — 규율이 다르다
+
+daily·career 와 달리 concept 는 **그래프 노드**다. 유튜브가 만드는 개념과 같은 규칙을
+받는다.
+
+{concept_rules}
+
+- **억지로 만들지 않는다.** 뽑을 것이 없으면 빈 배열이다. 그날 작업에만 붙어 있는
+  설명은 개념이 아니다
+- **이미 있는 개념인지 먼저 확인하라.** 아래 `existing_concepts` 에 stem·title·aliases 가
+  있다. 이름이 달라도 같은 개념이면 새로 만들지 말고 `mode: "supplement"` 로 그 파일을
+  직접 읽고 다시 쓴다. 기존 `aliases` 와 `up:` 은 하나도 빠뜨리지 않는다
+- `stem` 에 **날짜를 붙이지 않는다.** 개념은 특정 시점에 묶이지 않는다
+- `aliases` 는 **필수**다. 비면 다음에 같은 개념이 두 파일로 갈라진다
+- `up:` 은 **필수**이고 `existing_concepts` 나 기존 지식노트 중 **실재하는 stem** 을
+  가리켜야 한다. **daily 나 career 를 걸지 마라 — 그 둘은 그래프 노드가 아니라서
+  고아가 되고 발행이 거부된다.** 개념이 개념에서 자라는 것이 정상이다
+- `up:` 에 쓴 stem 은 **본문에도 `[[stem]]` 으로 있어야 한다.** `up:` 은 본문 링크의
+  부분집합이다 — 어긋나면 발행 직전 검증(L3)에 걸린다
 """
 
 CAREER_SHAPE_ACTIVE = """{
@@ -172,6 +193,16 @@ def _career(value: Any, targets: list[dict[str, Any]]) -> dict[str, Any]:
 
 
 def _concepts(value: Any) -> list[dict[str, Any]]:
+    """concept 는 **그래프 노드라 검사를 받는다.**
+
+    daily·career 는 그래프 밖이라 모양만 맞으면 되지만, concept 는 유튜브가 만든 것과
+    같은 계보 규율을 지켜야 한다(SPEC-012 §5). 여기서 막지 않으면 발행 직전 그래프
+    검증에 걸려 **발행 전체가 거부된다** — daily 까지 같이 막힌다. 사람이 화면에서
+    고칠 수 있는 시점에 걸러 주는 편이 낫다.
+
+    유튜브 concept 게이트와 **같은 검사기**(`check_note`)를 쓴다. 규율이 둘이 되면
+    한쪽만 고쳐지는 날 산출물이 갈라진다.
+    """
     if not isinstance(value, list):
         return []
     out: list[dict[str, Any]] = []
@@ -182,6 +213,15 @@ def _concepts(value: Any) -> list[dict[str, Any]]:
         content = str(entry.get("content") or "").strip()
         if not stem or not content:
             continue
+        check_note(
+            stem,
+            content,
+            expected_type="concept",
+            stem_pattern=CONCEPT_STEM_RE,
+            # `up:` 이 없으면 고아가 되고, `aliases` 가 없으면 다음에 같은 개념이
+            # 두 파일로 갈라진다.
+            required=("title", "aliases", "up"),
+        )
         out.append(
             {
                 "stem": stem,
@@ -208,6 +248,8 @@ class DailyStage(AgentStage):
             daily_format=daily_format(self.repo_root),
             career_format=career_format(self.repo_root),
             career_shape=CAREER_SHAPE_ACTIVE if targets else CAREER_SHAPE_NONE,
+            # 형식을 복사하지 않고 **레포를 읽게** 한다 — 유튜브 concept 게이트와 같다.
+            concept_rules=READ_THE_RULES.format(template="concept.md"),
         )
 
     def payload(self, request: GenerationInput) -> dict[str, Any]:
@@ -227,6 +269,9 @@ class DailyStage(AgentStage):
             "failed_repos": collect.get("failures") or [],
             # career 는 **전문 교체**라 기존 본문을 함께 준다. 안 주면 모델이 append 할
             # 수밖에 없고, 그러면 career 가 daily 의 복사본이 된다.
+            # 매칭을 AI 에 맡기지 않는다 — 있는지 없는지는 파일 목록을 보면 아는
+            # 사실이다. AI 는 무엇을 뽑을지만 정한다.
+            "existing_concepts": build_index(self.repo_root).as_prompt_payload(),
             "career_targets": [
                 {"stem": t["stem"], "repos": t["repos"], "current_body": t["body"]}
                 for t in targets
