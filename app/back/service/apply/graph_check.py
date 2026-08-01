@@ -18,7 +18,7 @@ import frontmatter
 
 from core.graph import validate_graph
 
-from .plan import FileAction, Violation
+from .plan import OUTSIDE_GRAPH, FileAction, Violation
 
 logger = logging.getLogger("kknaks-back.apply.graph")
 
@@ -41,12 +41,25 @@ def _node_from(action: FileAction) -> dict[str, Any]:
     }
 
 
+def graph_actions(actions: list[FileAction]) -> list[FileAction]:
+    """그래프 검증 대상만 남긴다.
+
+    `daily`·`career` 는 **지식그래프 노드가 아니다**(SPEC-013). 상류 참조가 없어
+    `up:` 을 갖지 않으므로, 검증에 얹으면 L2(고아) 같은 규칙에 걸려 발행이 막힌다.
+    빼는 것이 예외 처리가 아니라 그 문서들이 애초에 그래프 밖이라는 사실의 반영이다.
+
+    같은 발행에 섞여 있는 `concept` 는 **그대로 검증을 받는다** — 잔디가 만든 개념도
+    유튜브가 만든 것과 같은 계보 규율을 지켜야 한다.
+    """
+    return [a for a in actions if a.note_type not in OUTSIDE_GRAPH]
+
+
 def virtual_nodes(
     current: dict[str, dict], actions: list[FileAction]
 ) -> dict[str, dict]:
     """현재 노드 맵 위에 계획을 얹은 사본. **원본을 건드리지 않는다.**"""
     merged = dict(current)
-    for action in actions:
+    for action in graph_actions(actions):
         try:
             merged[action.stem] = _node_from(action)
         except Exception as exc:  # noqa: BLE001
@@ -63,7 +76,7 @@ def check_graph(
     정상 상태이고, 그것 때문에 발행을 막으면 아무것도 못 내보낸다.
     """
     nodes = virtual_nodes(current, actions)
-    by_stem = {a.stem: a.path for a in actions}
+    by_stem = {a.stem: a.path for a in graph_actions(actions)}
     violations: list[Violation] = []
     for item in validate_graph(nodes):
         if item.get("level") != "ERROR":
