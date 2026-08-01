@@ -39,6 +39,7 @@ from .flow import (
 )
 from .gates import IN_FLIGHT, harvest
 from .prepare import running_preparation, submit_auto_stage
+from .review_alert import notify_review_pending
 
 logger = logging.getLogger("kknaks-back.pipeline.driver")
 
@@ -240,6 +241,11 @@ class PipelineDriver:
         await db.commit()
         # 게이트가 채워지면 **사람 차례**다. 다음 게이트는 승인이 연다 —
         # 드라이버가 더 밀면 사람이 안 본 것을 지나치게 된다.
+        #
+        # 그래서 여기가 알림 자리다. 승인하지 않으면 아무것도 발행되지 않으므로,
+        # 이 알림이 안 가면 파이프라인이 **조용히 멈춘다**(KDEV-SPEC-013 U-2).
+        if gate.status == "review_pending":
+            await notify_review_pending(db, item)
         return False
 
 

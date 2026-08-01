@@ -13,32 +13,32 @@ P5 가 그대로 물려받는다. 갈아 끼울 자리는 "git 을 읽어 `commi
 
 from __future__ import annotations
 
-import fnmatch
 import re
 from dataclasses import dataclass
-from datetime import date, datetime, timedelta, timezone
 from typing import Any
 
 from core.models import QueueItem
 
+# **진짜 수집과 같은 함수를 쓴다** — 이 모듈이 P2 부터 "영역 분해·`counts` 산출은
+# 진짜 코드다" 라고 적어 온 것이 문자 그대로 성립하게 하는 자리다(KDEV-WORK-017 P5).
+from .collect_common import AREA_RULES, KST, area_for, decompose, has_activity
+from .collect_common import target_date as _target_date
 from .prepare import StageSubmission
 
-KST = timezone(timedelta(hours=9))
-
-#: 전역 기본 영역 규칙 (SPEC-011 「기술 영역 분해」). 레포별 예외는 P5 의 `path_rules`.
-#: 순서가 의미를 갖는다 — 먼저 맞는 규칙이 이긴다.
-AREA_RULES: tuple[tuple[str, str], ...] = (
-    ("app/back/*", "backend"),
-    ("*/backend/*", "backend"),
-    ("app/front/*", "frontend"),
-    ("*/frontend/*", "frontend"),
-    ("products/*", "docs"),
-    ("docs/*", "docs"),
-    ("*.md", "docs"),
-    ("*.yml", "infra"),
-    ("*.yaml", "infra"),
-    ("Dockerfile*", "infra"),
-)
+__all__ = [
+    "AREA_RULES",
+    "KST",
+    "area_for",
+    "decompose",
+    "has_activity",
+    "DummyCollect",
+    "SCENARIOS",
+    "TRACKED",
+    "career_attribution",
+    "investigate_payload",
+    "pick_scenario",
+    "target_date",
+]
 
 #: 추적 대상 — P5 에서 `tracked_repos` 테이블로 옮긴다. 지금 테이블을 만들면
 #: P5 전에 되돌릴 것이 생기므로 코드 안에 둔다(WORK-017 P2 더미 경계).
@@ -52,33 +52,6 @@ TRACKED = (
 )
 
 
-def area_for(path: str) -> str:
-    """파일 경로 → 기술 영역. 어디에도 안 걸리면 `other`."""
-    for pattern, area in AREA_RULES:
-        if fnmatch.fnmatch(path, pattern) or fnmatch.fnmatch(path, f"*/{pattern}"):
-            return area
-    return "other"
-
-
-def decompose(commits: list[dict[str, Any]]) -> dict[str, dict[str, int]]:
-    """커밋들 → 영역별 집계.
-
-    **한 커밋이 여러 영역에 걸치면 영역마다 계상한다**(SPEC-011). 그래서
-    `counts["commit"]` 과 영역별 `commits` 합계는 일치하지 않는다 — 영역별 활동을
-    보려는 값이지 커밋을 세려는 값이 아니다.
-    """
-    areas: dict[str, dict[str, int]] = {}
-    for commit in commits:
-        seen: set[str] = set()
-        for f in commit.get("files") or []:
-            area = area_for(str(f.get("path") or ""))
-            bucket = areas.setdefault(area, {"commits": 0, "added": 0, "deleted": 0})
-            bucket["added"] += int(f.get("added") or 0)
-            bucket["deleted"] += int(f.get("deleted") or 0)
-            if area not in seen:
-                bucket["commits"] += 1
-                seen.add(area)
-    return areas
 
 
 def career_attribution(commits: list[dict[str, Any]]) -> dict[str, list[str]]:
@@ -234,18 +207,11 @@ SCENARIOS = {
 }
 
 _SCENARIO_RE = re.compile(r"scenario:([a-z_]+)")
-_DATE_RE = re.compile(r"daily:(\d{4}-\d{2}-\d{2})")
 
 
 def target_date(item: QueueItem) -> str:
-    """조사 대상 날짜. 합성 키(`daily:{date}`)가 있으면 거기서, 없으면 어제(KST).
-
-    합성 키를 심는 접수부는 아직 P2 의 뒤쪽 작업이라, 그때까지는 어제로 떨어진다.
-    """
-    match = _DATE_RE.search(item.normalized_url or "")
-    if match:
-        return match.group(1)
-    return (datetime.now(KST).date() - timedelta(days=1)).isoformat()
+    """조사 대상 날짜 — 진짜 수집과 **같은 함수**로 정한다."""
+    return _target_date(item.normalized_url).isoformat()
 
 
 def pick_scenario(item: QueueItem) -> str:
@@ -281,15 +247,6 @@ def investigate_payload(item: QueueItem) -> dict[str, Any]:
         },
     }
 
-
-def has_activity(payload: dict[str, Any]) -> bool:
-    """활동 0이면 이후 단계를 부르지 않는다 (SPEC-011 §5).
-
-    커밋만 보지 않는다 — 노트·교안 변경도 활동이다. 전 레포 조사가 실패해도 그 둘이
-    있으면 커밋 없이 진행한다(S-5).
-    """
-    counts = payload.get("counts") or {}
-    return any(int(counts.get(k) or 0) > 0 for k in ("commit", "note", "study"))
 
 
 class DummyCollect:

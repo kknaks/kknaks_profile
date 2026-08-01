@@ -207,6 +207,25 @@ def commit_identity_patterns() -> list[str]:
     return sorted(raw) if raw else ["kknaks"]
 
 
+def known_commit_identities() -> set[str]:
+    """등록된 `name <email>`. 여기 없는 identity 가 나타나면 알린다 (SPEC-011 U-2).
+
+    **비어 있으면 알림을 끄지 않는다** — 처음 한 번은 전부 미등록으로 뜨는 것이 맞다.
+    그래야 실제 identity 가 몇 종인지 사람이 보고 등록한다(BL-004 이 실측으로 3종을
+    찾아낸 것과 같은 일을 운영에서 반복하게 두지 않는다).
+    """
+    return _csv_env("KNOWN_COMMIT_IDENTITIES")
+
+
+def commit_date_slack_days() -> int:
+    """조회 창을 대상 날짜 앞뒤로 며칠 더 넓힐지.
+
+    `--since`/`--until` 은 커밋터 날짜로 거르는데 우리가 세는 것은 author 날짜다.
+    리베이스가 커밋터 날짜를 옮기므로 넓게 받아서 정확히 거른다.
+    """
+    return int(os.environ.get("COMMIT_DATE_SLACK_DAYS", 7))
+
+
 def commit_max_per_repo() -> int:
     """레포당 커밋 상한. 넘으면 최신 순으로 자르고 `truncated` 에 남긴다."""
     return int(os.environ.get("COMMIT_MAX_PER_REPO", 30))

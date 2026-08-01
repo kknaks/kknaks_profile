@@ -22,6 +22,9 @@ from pathlib import Path
 import frontmatter
 from sqlalchemy.ext.asyncio import AsyncSession
 
+import config
+from service.notify import notify_slack
+
 from .intake import IntakeResult, intake
 
 logger = logging.getLogger("kknaks-back.pipeline.daily-intake")
@@ -99,10 +102,9 @@ async def intake_daily(
         본인 작성        `auto: true` 가 아닌 daily 가 이미 있다 (SPEC-012 S-5)
 
     **활동 0은 여기서 막지 않는다.** 활동 여부는 조사를 해 봐야 알고, 조사는 `collect`
-    스테이지의 일이다. 접수 시점에 한 번 더 조사하면 P5 에서 같은 git 작업을 두 번
-    하게 된다. `collect` 가 `NO_ACTIVITY` 로 준비를 닫으므로 결과적으로 발행되지
-    않지만, 항목 행 하나가 남는다는 점이 SPEC-013 의 "활동 0이면 항목 없음" 과 다르다
-    — 발주서 Open Issue 로 남겨 둔 차이다.
+    스테이지의 일이다. 접수 시점에 한 번 더 조사하면 bare 클론 13개를 하루에 두 번
+    훑는다. `collect` 가 `NO_ACTIVITY` 로 준비를 닫고 항목은 `no_activity` 로 종결된다
+    — 실패가 아니라 정상 결과이고, 큐 기본 목록에서는 감춰진다(SPEC-013 v0.0.3 §4).
     """
     target = target or default_target(now)
     today = (now or datetime.now(KST)).astimezone(KST).date()
@@ -132,3 +134,37 @@ async def intake_daily(
         item_id=result.item_id,
         existing_item_id=result.existing_item_id,
     )
+
+
+async def run_daily_intake_job(target: date_cls | None = None) -> dict:
+    """스케줄러가 부르는 잔디 잡 — **접수만 한다** (KDEV-WORK-017 P5).
+
+    종전 `run_daily_activity_job` 은 조사·요약·파일 쓰기·push 를 잡 안에서 다 했다.
+    이제 잡이 하는 일은 큐에 항목 하나를 넣는 것뿐이고, 조사도 작성도 발행도
+    **드라이버와 게이트**가 이어받는다 — 사람의 승인 없이 레포에 쓰이는 경로를
+    없애는 것이 이 발주의 목적이다.
+
+    `target` 을 주면 백필이다. 스케줄러는 안 주고 어제로 떨어진다.
+
+    예외를 삼키지 않는다 — 접수가 실패하면 그날 잔디가 통째로 없다. 다만 알림은
+    보내고 다시 던진다(APScheduler 가 로그에 남긴다).
+    """
+    from core.db import new_session
+
+    try:
+        async with new_session() as db:
+            result = await intake_daily(db, repo_root=config.repo_root(), target=target)
+            await db.commit()
+    except Exception as exc:  # noqa: BLE001
+        await notify_slack(
+            f":x: 잔디 접수 실패 — `{type(exc).__name__}: {str(exc)[:300]}`"
+        )
+        raise
+
+    logger.info("잔디 접수 — %s (%s)", result.date, result.outcome)
+    return {
+        "date": result.date,
+        "outcome": result.outcome,
+        "item_id": result.item_id,
+        "reason": result.reason,
+    }
