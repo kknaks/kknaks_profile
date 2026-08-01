@@ -13,7 +13,7 @@ roles:
   be: kknaks
   qa: kknaks
   ops: kknaks
-progress: 37
+progress: 50
 created_at: 2026-07-31
 updated_at: 2026-08-01
 tags:
@@ -62,10 +62,10 @@ links:
 | Type | new-feature |
 | Owner | kknaks |
 | Status | in_progress |
-| Progress | 37% (P1 done · P2 거의 완료 — 2-A 전량 닫힘, 2-B 는 접수 진입점만 남음. +2%p 는 신규 작업이 아니라 **SPEC 환류 해소**와 **게이트 계약 정정**분이다 — 아래 `1f690fb` 완료 증거) |
+| Progress | 50% (P1·P2·P3 done — **코드 Phase 셋이 전부 닫혔다.** 남은 절반은 화면 전체(P4)와 유일하게 배포가 필요한 Phase(P5)다. 세 Phase 가 닫혔다고 절반 이상으로 앞서 잡지 않는다 — P5 는 마이그레이션·볼륨·토큰·서버 클론·구 경로 제거·실발행이 한꺼번에 들어 있고, WORK-015 의 80%("BE·FE 전부 done, 실전 e2e 만 남음")가 그 눈금이다) |
 | Branch/PR | `work-017-p2` |
 | Blocker | 없음 |
-| Next | P2 잔여 — `intake()` 합성 키(`daily:{date}`) + 접수 진입점 + 백필 · `auto:false` 접수 전 차단 |
+| Next | P4 — 게이트 화면(줄/문장 단위 편집) + 더미 한 바퀴 완주(dry-run). **착수 전에 Open Issue 「활동 0 차단 위치」를 결정한다** |
 
 ## Role Assignment
 
@@ -223,7 +223,7 @@ WORK-016 스키마가 이미 받아 준다. 확인한 근거 넷:
 
 ### Phase 2 — 파이프라인 레일 + 더미 collect (BE)
 
-- **Status**: IN_PROGRESS
+- **Status**: DONE
 - **설명**: 조사 결과를 게이트에 태운다. 여기서 처음으로 승인 화면에 잔디 항목이 뜬다. **외부 연동은 하나도 하지 않는다** — 조사는 더미가 지어내고, 접수는 기존 `POST /api/admin/queue/items` 를 손으로 부른다. 스케줄러와 Slack 알림 전환은 P5 다. 구 잔디 잡은 그대로 돌게 둔다.
 
 #### 2-A. 자동 준비부 일반화 (**나머지 전부의 선행조건**)
@@ -256,16 +256,18 @@ WORK-016 스키마가 이미 받아 준다. 확인한 근거 넷:
   - [x] **`daily` 게이트 작성** — 템플릿 로드 + daily·career·concept 초안, `changed:false` 지원. **종전 계획의 `compose` auto 스테이지를 대체한다** (커밋 `d5bb3cd` 작성 로직 → `1f690fb` 게이트로 이전)
   - [x] career 결정적 skip (귀속 커밋 0이면 스테이지 미생성)
   - [x] `runtime` 등록 — `slack_bridge/bootstrap.py` 가 auto 둘 + 게이트 `daily` 를 실제로 배선한다
-  - [ ] `intake()` 시그니처 확장 + `normalized_url="daily:{date}"` 합성 키 — **읽는 쪽만 됐다.** `collect_dummy.target_date()` 가 그 키를 파싱하고 없으면 어제(KST)로 떨어진다. 키를 **쓰는** 접수 진입점이 없다
-  - [ ] 활동 0 · `auto:false` 접수 전 차단 — 활동 0 은 `collect` 가 `NO_ACTIVITY` 로 막는다(접수 **후** 차단). `auto:false` 차단은 미착수
+  - [x] `intake()` 시그니처 확장 + `normalized_url="daily:{date}"` 합성 키 — **쓰는 쪽까지 닫혔다.** `intake_daily()` 가 키를 만들어 넣고, `collect_dummy.target_date()` 가 그것을 판다
+  - [x] `auto:false` 접수 전 차단 — `user_authored()` 가 대상 daily 를 읽고 `auto: true` 가 아니면 접수 자체를 하지 않는다
+  - [x] **미래 날짜 접수 전 차단** — 발주 작업 목록에 없던 항목이다. 근거는 SPEC-013 §4 「접수 날짜」가 이미 "미지정이면 어제(KST). **지정 시 미래 날짜 불가**" 로 계약해 두고 있었다는 것이다. 백필이 날짜를 받는 순간 그 계약에 걸리는 입력이 생기므로 진입점과 같은 커밋에 들어가는 것이 맞다. 차단 방식도 나머지 둘과 같다 — 항목을 만들고 실패시키는 게 아니라 **만들지 않는다**
+  - [~] 활동 0 접수 전 차단 — **여전히 부분이다.** `collect` 의 `NO_ACTIVITY` 로 접수 **후** 막는다. 근거와 남는 차이는 아래 완료 증거와 Open Issue
 - **검증**:
-  - [ ] 수동 접수로 항목이 들어오고 요청이 AI 를 기다리지 않는다 — 합성 키 없이는 날짜를 지정할 수 없어 미검증
+  - [x] 수동 접수로 항목이 들어오고 요청이 AI 를 기다리지 않는다 — 접수는 행 하나를 만들고 끝난다(조사도 AI 호출도 하지 않고 드라이버가 이어 민다)
   - [x] `investigate` 가 레포 수만큼 돌고 부분 실패해도 게이트가 열린다
   - [x] 전 레포 실패 시 스테이지 실패로 닫히고 재시도가 열린다
   - [x] 게이트가 **하나**만 열린다
   - [x] `type=studio` 만 커밋한 날은 career 초안이 없다
   - [x] `is_current` 아닌 career 는 대상에서 빠진다
-  - [ ] 같은 날짜로 두 번 접수하면 항목이 하나다 — 합성 키가 접수에 닿지 않아 미검증
+  - [x] 같은 날짜로 두 번 접수하면 항목이 하나다 — 둘째가 `joined` 로 합류하고 큐 행은 하나다
   - [x] **기존 유튜브 파이프라인이 회귀 없이 동작한다**
 
 > **더미 경계.** 레지스트리 테이블을 만들지 않는다(마이그레이션 `0007` 은 P5 다). 대상 레포 목록은 코드 안에 하드코딩한다.
@@ -318,32 +320,59 @@ WORK-016 스키마가 이미 받아 준다. 확인한 근거 넷:
 
   **왜 안 잡혔나.** 부분 실패 경로에서 결과를 **레포와 대조하는** 단언이 없었다(개수만 셌다). 그리고 `collect` 산출물과 수확 결과가 **같은 payload 에서 만나는 지점**을 아무도 태우지 않았다. 둘 다 이번에 테스트로 덮었다(`test_partial_failure_does_not_shift_results`·`test_results_map_to_the_right_repo`·`test_payload_accumulates_across_stages`). ✅ **SPEC 환류 완료(2026-08-01)** — "결과를 어느 레포에 붙이는가"가 SPEC-013 v0.0.2 §4 「Data Contract — `investigate` 결과 귀속」에 계약으로 들어갔다. Open Issues 참조.
 
-  - **미완**: `intake()` 합성 키를 **쓰는** 접수 진입점(+백필) · `auto:false` 접수 전 차단. 이 둘이 P2 잔여 전부다.
+  - 커밋 `dac6ad9` — **접수 진입점. 이것으로 P2 가 닫힌다.** 702 → **717 passed**(신규 15). 신설 `service/pipeline/daily_intake.py`, `intake()` 에 `normalized_key` 인자 하나.
+    - **날짜가 항목을 가른다.** 자료를 정리하는 유튜브와 달리 잔디는 하루가 단위라 중복 축이 URL 이 아니라 날짜다. `normalized_url` 에 `daily:{date}` 합성 키를 넣어 **기존 중복 판정을 그대로 쓴다** — 컬럼도 인덱스도 늘지 않는다. 발주서 「`intake()` 는 시그니처가 늘어난다」 절이 예측한 그대로이고, `uq_queue_items_pending_url` 부분 유니크 인덱스가 마이그레이션 없이 하루 한 항목을 **DB 에서** 강제한다. 이미 발행된 날짜를 다시 접수하면 그 인덱스에 안 걸리고 `duplicate_published` 로 떨어지는데, 그것이 SPEC-013 S-7 3항(자동으로 막지 않고 사람에게 물어본다)이 요구하는 동작이다.
+    - **막는 것은 항목을 만들고 실패시키지 않는다.** `DailyIntakeResult.outcome` 에 `blocked` 를 따로 둔 이유가 그것이다 — 본인이 쓴 날은 만들지 않는 것이 **정상 동작**이고 미래 날짜는 사람의 오타다. 둘 다 재시도할 것이 없으므로 `prepare_failed` 행을 남기면 큐에 치울 쓰레기만 쌓인다.
+    - **`auto: true` 가 아니면 사람 것으로 본다.** `auto` 키가 아예 없는 옛 파일도 사람 소유다. 판정을 뒤집어 "명시적으로 `auto: false` 인 것만 사람 것" 으로 두면 키가 없는 과거 daily 를 잔디가 덮어쓴다. **자동 생성분만 명시적으로 표시되므로** 사람 쪽을 기본값으로 두는 것이 안전하다. 파일을 읽지 못하는 경우도 사람 작성으로 판정한다 — 읽을 수 없는 파일을 덮어쓰는 것보다 하루를 건너뛰는 편이 싸다.
+    - **활동 0 은 여기서 막지 않았다 — 의도한 판단이고, 남는 차이가 있다.** 활동 여부는 조사를 해 봐야 알고 조사는 `collect` 의 일이다. 접수 시점에 한 번 더 조사하면 **P5 에서 같은 git 작업을 하루에 두 번** 하게 된다(bare 클론 13개를 두 번 훑는다). 그래서 `collect` 의 `NO_ACTIVITY` 로 준비를 닫는 쪽을 골랐다. 결과적으로 발행되지는 않지만 **항목 행 하나가 남는다** — SPEC-013 §4 Flow 의 "항목 생성(활동 0이면 없음)"·State 의 `received: 접수 (활동>0)` 과 다르다. 스펙을 코드에 맞출지 코드를 스펙에 맞출지는 **Open Issue 로 세우고 P5 착수 전에 못박는다.**
+    - **백필 테스트가 `2026-07-29` 를 쓴다 — 지어낸 날짜가 아니다.** 그날이 실제로 비어 있다. 서버가 09:05 발동을 놓쳐 daily 가 만들어지지 않았고, 구 잔디 잡에는 되살릴 경로가 없었다. **이 진입점이 그 첫 사용처다** — 백필을 "있으면 좋은 것" 이 아니라 이미 생긴 구멍을 메우는 기능으로 넣었다.
+    - **아직 HTTP 로는 날짜를 지정할 수 없다.** `intake_daily()` 의 호출자는 테스트뿐이고, `POST /api/admin/queue/items` 는 날짜 파라미터를 받지 않는다. 이는 미완이 아니라 **발주서 Code Surface 의 배치 그대로**다 — `api/routers/queue.py` 접수 날짜 파라미터와 `scheduler.py` 접수 호출은 둘 다 P5 다. P2 의 수동 완주는 기존 엔드포인트에 `source_kind=daily_commit` + `note=scenario:<이름>` 으로 넣고 날짜는 기본값(어제 KST)에 맡기는 경로로 돈다.
+
+  **Phase 2 를 `DONE` 으로 올린 근거.** 2-A·2-B 의 작업 항목이 전부 닫혔고, P2 의 검증 방법은 애초에 **수동 접수**다(Phase 설명: "접수는 기존 `POST /api/admin/queue/items` 를 손으로 부른다"). 스케줄러 연결·API 날짜 파라미터는 발주 시점부터 P5 이므로 그것이 없다고 P2 가 열려 있는 것이 아니다. 남은 차이 하나(활동 0 차단 위치)는 **미착수 작업이 아니라 스펙과 구현의 계약 차이**라 Phase 가 아니라 Open Issue 가 들 자리다.
 
 ### Phase 3 — 발행부 확장 (BE)
 
-- **Status**: TODO
+- **Status**: DONE
 - **설명**: 승인된 것이 실제로 파일이 되게 한다. P2 와 병렬 착수 가능하지만 e2e 는 P2 완료 후다.
 - **작업**:
-  - [ ] `plan.py` — `ALLOWED_PREFIXES` 에 `persona/daily/`·`persona/career/`
-  - [ ] `LAYER_PREFIX` 에 `daily`·`career`
-  - [ ] `build_actions()` 에 daily·career 분기
-  - [ ] `upsert` 액션 신설 — 존재 여부 미검사, `stale 대상` 은 유지
-  - [ ] `graph_check` — `daily`·`career` 제외 (`concept` 는 유지)
-  - [ ] 본인 작성 보호 검증 (`USER_AUTHORED_DAILY`)
-  - [ ] 사람 전용 필드 검증 (`PROTECTED_FIELD`)
-  - [ ] 잔디 발행을 `publish_atomic` 으로 — **잔디 경로**가 `commit_and_push_with_retry` 에서 이탈한다. 함수 자체는 남는다 (`pdf_generate`·`content_enrich`·`algorithms` 가 계속 쓴다)
+  - [x] `plan.py` — `ALLOWED_PREFIXES` 에 `persona/daily/`·`persona/career/`
+  - [x] `LAYER_PREFIX` 에 `daily`·`career`
+  - [x] `build_actions()` 에 daily·career 분기
+  - [x] `upsert` 액션 신설 — 존재 검사도 stale 검사도 받지 않는다 (아래 완료 증거 — `stale 대상` 유지는 **career 쪽에서만** 성립한다)
+  - [x] `graph_check` — `daily`·`career` 제외 (`concept` 는 유지)
+  - [x] 본인 작성 보호 검증 (`USER_AUTHORED_DAILY`)
+  - [x] 사람 전용 필드 검증 (`PROTECTED_FIELD`)
+  - [x] 잔디 발행을 `publish_atomic` 으로 — **별도 작업이 없었다.** 아래 「자동 달성」
 - **검증**:
-  - [ ] `persona/daily/`·`persona/career/` 가 발행 허용된다
-  - [ ] 같은 날 두 번 승인해도 `upsert` 로 통과한다 (`ALREADY_EXISTS` 없음)
-  - [ ] daily·career 가 그래프 검증에서 빠지고 concept 는 검증을 받는다
-  - [ ] 대상 daily 가 본인 작성이면 거부된다
-  - [ ] 계획에 `bullets`·`period` 가 있으면 거부된다
-  - [ ] push 실패 시 로컬 커밋이 남지 않는다
-  - [ ] 발행 재시도가 AI 를 다시 부르지 않는다
-  - [ ] 유튜브 발행이 회귀 없이 동작한다
-  - [ ] **`dry_run` 이 어디까지 하는지가 테스트로 박혀 있다** — 파일은 써지고 커밋만 생략된다 (아래)
-- **완료 증거**: 미작성
+  - [x] `persona/daily/`·`persona/career/` 가 발행 허용된다
+  - [x] 같은 날 두 번 승인해도 `upsert` 로 통과한다 (`ALREADY_EXISTS` 없음)
+  - [x] daily·career 가 그래프 검증에서 빠지고 concept 는 검증을 받는다
+  - [x] 대상 daily 가 본인 작성이면 거부된다 — `auto: false` 와 **`auto` 키 없음**을 각각 태운다
+  - [x] ~~계획에 `bullets`·`period` 가 있으면 거부된다~~ → **검증이 아니라 구조로 막았다.** 갱신안이 본문만 내고 발행부가 기존 frontmatter 를 그대로 이므로 그 필드가 계획에 **들어올 자리가 없다.** 남은 `PROTECTED_FIELD` 검증은 반대 방향을 본다 — 필수 필드(`type`·`period`·`title`·`org`)가 **사라졌으면** 거부한다. 아래 완료 증거
+  - [x] push 실패 시 로컬 커밋이 남지 않는다 — `publish_atomic` 계약이고 WORK-015 가 이미 태워 뒀다. 잔디가 그 경로로 들어왔으므로 그대로 상속된다
+  - [x] 발행 재시도가 AI 를 다시 부르지 않는다 — 저장된 계획 재사용(DEC-012 D5). 같은 상속
+  - [x] 유튜브 발행이 회귀 없이 동작한다 — 발행부 기존 테스트 전량 통과(737 passed)
+  - [x] **`dry_run` 이 어디까지 하는지가 테스트로 박혀 있다** — 파일은 써지고 커밋만 생략된다. `apply_item(dry_run=True)` 로 태워 **파일 존재 + HEAD 불변 + `status=published`** 를 함께 단언한다. 계약이 파이프라인과 무관하므로 잔디 산출물로 다시 태울 필요는 없고, 잔디로 실제 관측하는 것은 P4 완주다
+- **완료 증거**:
+  - 커밋 `2af347f`. 717 → **737 passed**(신규 20). `service/apply/plan.py`(+190) · `graph_check.py` · `executor.py` 한 줄 · `tests/test_apply_grass.py` 신설(266줄).
+
+  - **`publish_atomic` 전환은 자동 달성이다 — 별도 작업이 없었다.** 발주는 이것을 P3 작업 항목으로 잡았지만, `apply_item()` 이 파이프라인을 가리지 않고 `publish_atomic` 하나만 부르는 구조다. 잔디가 apply 경로를 타는 순간 그리로 들어갔다. `commit_and_push_with_retry` 는 예정대로 남아 있고 소비자가 `pdf_generate`·`content_enrich`·`algorithms` 셋이다. **`main_job.py` 의 호출부(구 잔디 잡)는 P5 에서 걷힌다** — 지금 지우면 부팅이 막힌다.
+
+  - **`upsert` 를 신설한 이유는 daily 가 존재 여부로 판단할 수 없는 문서이기 때문이다.** 첫 회 생성과 이후 덮어쓰기가 **둘 다 정상**이라, `create`/`replace` 만으로는 매일 액션 종류가 갈리고 그러면 "오늘은 create 인가 replace 인가" 를 발행부가 미리 알아야 한다. 그래서 `upsert` 는 존재 검사(`ALREADY_EXISTS`·`STEM_TAKEN`)도 stale 검사(`TARGET_MISSING`)도 받지 않는다. 경로 허용·층 정합·본인 작성 보호는 그 앞에서 이미 본다.
+    - **career 만 `replace` 로 남겼다.** 같은 잔디 산출물인데 액션이 다른 이유는 성격이 다르기 때문이다 — career 는 **이미 있는 문서를 고치는 것**이라 대상이 사라졌으면 막혀야 한다. 초안 작성과 발행 사이에 파일이 없어졌다면 그건 사람이 지운 것이고, 그 위에 새로 쓰면 사람이 지운 결정을 조용히 되돌린다. `TARGET_MISSING` 이 그 자리다.
+    - concept 는 기존 규율 그대로다 — `mode=supplement` 면 `replace`, 아니면 `create`.
+
+  - **frontmatter 를 시스템이 조립한다 — 이 Phase 의 핵심 설계 판단이다.** 다른 노트 스테이지는 AI 가 md **전문**을 낸다. 그것이 규율이었다: 형식 SoT 를 렌더러와 템플릿 **둘로 만들지 않겠다**는 것. daily·career 는 그럴 수 없어서 예외를 냈고, 예외를 낸 자리마다 근거가 다르다.
+    - **daily** — `type`·`date`·`auto` 는 시스템 것이고 `counts` 는 **코드가 센 값**이라 AI 출력에 섞이면 안 된다(SPEC-012 §5 「`counts` 는 코드가 센다」). 그래서 `render_daily()` 가 frontmatter 를 짓는다. **형식 SoT 가 둘이 되지는 않는다** — AI 가 내는 `summary` 와 본문은 조립되는 값이 아니라 **그대로 실린다.** 시스템이 정하는 것은 소유가 시스템인 필드뿐이고, 형식이 걸린 부분은 여전히 템플릿 한 곳에서만 온다.
+    - **`daily` 의 `date` 는 점 표기다.** 파일명은 하이픈(`2026-08-01.md`)이고 frontmatter 는 `2026.08.01` 이다. `service/persona_loader.py` 가 둘을 대조하며, 어긋나면 **그 파일 하나가 거부되는 데서 끝나지 않는다** — `PersonaError` 가 올라와 persona 로드 **전체**가 실패하고 `reload_data` 가 기존 데이터를 그대로 두므로 사이트는 옛 데이터를 계속 서빙한다. 발행 뒤에야 알게 되는 실패라 렌더러가 표기를 바꾸는 자리에 못박아 뒀고, 테스트도 이 한 가지를 따로 태운다.
+    - **career 는 기존 frontmatter 를 그대로 이고 본문만 바꾼다.** 갱신안이 왜 본문만 내는지가 여기서 설명된다 — career frontmatter 는 `bullets`·`period` 처럼 **사람 전용 필드가 대부분**이라, 전문을 받으면 모델이 그것들을 다시 쓰게 된다. 본문만 받아 얹으면 사람 전용 필드는 **건드릴 방법 자체가 없다.** 검증으로 막기 전에 **구조로 막았다는 것이 요점**이고, 그래서 위 검증 항목이 "`bullets` 가 있으면 거부" 에서 "필수 필드가 사라졌으면 거부" 로 뒤집혔다. 남긴 `PROTECTED_FIELD` 검증은 정상 경로에서 걸릴 일이 없지만 **계획 조립 경로가 하나뿐이라고 가정하지 않기 위해** 둔다 — 저장된 계획으로 재시도하는 경로가 있고 그 계획이 다른 코드로 만들어졌을 수 있다. 파일을 쓰기 전이 마지막 기회다. (`repo_root` 없이 계획을 조립하면 기존 본문을 못 읽어 frontmatter 가 통째로 비는데, 이 검증이 그것도 같이 잡는다.)
+
+  - **그래프 검증 제외는 예외 처리가 아니라 사실의 반영이다.** `daily`·`career` 는 **상류 참조가 없어 `up:` 을 갖지 않는다.** 그런 노드를 그래프에 얹으면 L2(고아) 같은 규칙에 걸려 발행이 막힌다 — 즉 얹는 쪽이 사실과 다르고, 빼는 것이 원래 자리다. `OUTSIDE_GRAPH` 를 `plan.py` 에 두고 `graph_check` 가 그것으로 거른 것도 같은 이유다: 층 목록의 SoT 가 `LAYER_PREFIX` 옆에 있어야 새 층을 넣을 때 한 곳만 본다.
+    - 같은 발행에 섞인 `concept` 는 **그대로 검증을 받는다.** 잔디가 만든 개념도 유튜브가 만든 것과 같은 계보 규율을 지켜야 한다(SPEC-012 §5). 테스트가 "daily·career 는 가상 노드로 올라가지 않는다" 와 "같은 계획의 concept 는 검증을 받는다" 를 각각 태운다.
+
+  - **보호 검증 둘은 자리가 다르다.**
+    - `USER_AUTHORED_DAILY` — **이중이다.** 접수(`intake_daily`)가 한 번 막고 발행이 한 번 더 막는다. 중복이 아니라 **접수와 발행 사이 몇 시간의 경합**을 잡는 자리다. 그 사이에 사람이 그날 daily 를 직접 쓰는 일이 실제로 일어날 수 있고, 접수만으로는 그것을 못 본다. SPEC-012 §5 「본인 작성 보호는 이중이다」가 이로써 코드에 들어왔다.
+    - `PROTECTED_FIELD` — 위의 career 절 참조.
 
 > **`dry_run` 의 사실관계를 여기서 못박는다.** `apply_item(dry_run=True)`·`publish_atomic(dry_run=True)` 는 둘 다 **기본값**이고, dry-run 이어도 `_write_all` 이 먼저 돌아 **파일은 작업트리에 실제로 써진다.** 생략되는 것은 커밋과 push 뿐이다. `item.status` 는 `published` 가 되고 `commit_ref` 는 `None` 이다.
 >
@@ -351,7 +380,7 @@ WORK-016 스키마가 이미 받아 준다. 확인한 근거 넷:
 
 ### Phase 4 — 게이트 화면 + 더미 한 바퀴 완주 (FE/QA)
 
-- **Status**: TODO
+- **Status**: TODO — **이 갱신(P2·P3 반영) 직후 커밋 `8c2aa7a`(「P4 — 잔디 승인 화면」)가 들어왔다. 아직 이 문서에 반영되지 않았다.** 다음 갱신이 작업·검증·완료 증거를 채운다. 그 커밋이 스스로 밝힌 미검증 사항이 하나 있다 — 환경에 node·npm 이 없어 **타입검사도 빌드도 돌리지 못했다.**
 - **설명**: 사람이 실제로 승인할 수 있어야 한 바퀴다. 배포도 실발행도 하지 않는다 — 그건 P5 다. 여기서 확인하는 것은 **파이프라인이 끝에서 끝까지 돈다**는 것 하나다.
 - **작업**:
   - [ ] 조사 진행 표시 (`investigate` N건 중 진행 수, 실패 레포, 상한 적중)
@@ -448,6 +477,12 @@ P1~P4 는 배포하지 않으므로 해당 없다.
 
 ## Open Issues
 
+- **활동 0 차단이 스펙과 다른 자리에 있다 — P5 착수 전에 결정한다.** SPEC-013 §4 는 Flow 에 "항목 생성(**활동 0이면 없음**)" 을, State 에 `received: 접수 (활동>0)` 을 적어 두었다. 코드는 접수 전이 아니라 `collect` 스테이지의 `NO_ACTIVITY` 로 막는다(`dac6ad9`). **결과적으로 발행되지 않는 것은 같지만 항목 행 하나가 남는다** — 큐 화면에 실패로 닫힌 항목이 활동 없는 날마다 하나씩 쌓인다는 뜻이다.
+
+  구현이 그쪽을 고른 이유는 비용이다. 활동 여부는 조사를 해 봐야 알고, 접수 시점에 한 번 더 조사하면 **P5 에서 bare 클론 13개를 하루에 두 번** 훑는다. 조사를 두 번 하지 않으면서 "활동 0이면 항목 없음" 을 지키는 방법은 접수를 조사 뒤로 미루는 것뿐인데, 그러면 접수가 요청 안에서 조사를 기다리게 되어 SPEC-013 §5 「접수는 요청 안에서 조사·AI 호출을 기다리지 않는다」와 정면으로 부딪힌다.
+
+  **선택지 셋.** ① 스펙을 코드에 맞춘다(활동 0인 날은 `NO_ACTIVITY` 로 닫힌 항목이 남는다고 계약에 적고, 큐 화면에서 그 상태를 어떻게 보일지 U-1 에 더한다) · ② `collect` 가 활동 0을 판정하면 항목을 **폐기(soft delete)** 해 행을 지운다 · ③ 스케줄러가 접수 전에 가벼운 조사(커밋 유무만)를 한 번 더 한다. **①·② 가 유력하고 ③ 은 두 번 조사를 되살린다.** P4 화면이 이 상태를 그려야 하므로 **P4 착수 전에 고르는 것이 싸다.** 늦어도 P5 실운영 전에는 닫는다 — 실데이터에서는 활동 0인 날이 드물지 않다
+- **잔디가 만드는 `concept` 는 형식 SoT 를 읽지 않는다.** SPEC-012 「형식 SoT」 표가 `templates/knowledge/concept.md` 의 읽는 쪽에 잔디를 적어 두었고 S-3 4항도 "형식·계보 규칙은 지식노트 파이프라인 규칙과 concept 템플릿을 그대로 따른다" 인데, `stages/daily.py` 는 `daily_format`·`career_format` 둘만 싣고 concept 양식은 프롬프트에 `"노트 전문"` 이라고만 적혀 있다. 유튜브 `stages/concept.py` 는 `READ_THE_RULES.format(template="concept.md")` 로 규칙과 템플릿을 읽힌다 — **같은 목적지에 두 규율이 있는 상태다.** 발행부의 `up:` 필수·계보 검증이 잘못된 결과를 **막아 주기는 하므로** 조용히 나가지는 않지만, 승인 화면에 계속 거부당하는 초안이 올라오는 형태로 드러난다. P4 에서 초안 품질을 볼 때 함께 고른다 — 고치는 쪽이면 `daily.py` 가 유튜브와 같은 로더를 쓰면 되고 스펙은 그대로다
 - **`chain.enabled_stages` 일반화는 이번에 하지 않는다.** 지금 필요가 없다 — `next_stage` 는 `after` **다음** 게이트만 훑는데 잔디는 게이트가 `daily` 하나뿐이라 `order[1:]` 이 비고, `enabled_stages` 의 결과는 계산되기만 할 뿐 쓰이지 않은 채 `None`(= 발행 차례)이 돌아온다. 첫 게이트도 `open_first_gate` 가 `pipeline.first_gate()` 로 연다. `enabled_stages` 의 소비자는 `next_stage` 하나뿐이다(테스트 제외). 게다가 발주 당시의 제안 형태(route payload 유무로 판정)는 **두 경우를 뭉갠다** — route 스테이지가 있는데 아직 승인 전(유튜브, 켜지면 안 됨)과 route 스테이지가 애초에 없음(잔디, 켜져야 함). **게이트가 2개 이상인 파이프라인이 생길 때** 필요해지고, 그때의 판정 기준은 payload 유무가 아니라 **파이프라인 정의에 route 스테이지가 있는가** 다. 시그니처가 `enabled_stages(pipeline, route_payload)` 로 바뀌고 `tests/test_pipeline_chain.py` 가 동반 수정된다
 - ~~**SPEC-013 환류 후보 — 부분 실패 시 "결과를 어느 레포에 붙이는가".**~~ **해소 (2026-08-01) — SPEC-013 v0.0.2 §4 「Data Contract — `investigate` 결과 귀속」.** 대응표(제출 참조 → 레포)·순서 리스트 금지·빈 결과 불인정·`missing` 표시·`stage_failures` 와 `failures` 자리 분리를 표로 박고, §6 에 "부분 실패해도 결과가 원래 레포에 붙는다" 검수 항목을 더했다. **SPEC-011 §4 가 아니라 SPEC-013 에, §5 가 아니라 §4 에 둔 이유**: `failures` 는 SPEC-011 의 조사 산출물 필드지만 **귀속은 조사 산출이 아니라 fan-out 수확의 성질**이고, 그 fan-out 을 소유한 것은 SPEC-013 이다(§1 Scope 「fan-out 배치와 부분 실패 처리」). 그리고 이것은 "어떻게 만드느냐"가 아니라 **관측 가능한 결과의 형태**라 §5 Implementation Rules 가 아니라 §4 Interface Contract 층위에 있어야 한다 — §5 의 「부분 실패는 진행한다」는 이 계약을 가리키도록 문장을 늘렸다. (원문 요지: 코드는 P2 에서 `task_ref` 키로 정했고 순서 있는 리스트는 색인이 밀린다. 스펙이 침묵하는 사이 구현이 먼저 정한 상태라 **다음 구현자가 리스트로 되돌려도 정상 경로 테스트는 통과한다** — 그것이 계약으로 박아야 할 이유였다.)
 - `investigate` **순차 13회의 총 소요와 예산 실측** — `worker_budget_usd=5.0` 안에 드는지. 병렬로 돌리는 선택지는 `WORKER_CONCURRENCY` 와 부딪히므로(실운영 1) 실측 전에는 고르지 않는다. P2 에서 더미로 건수만, P5 에서 실비용

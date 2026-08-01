@@ -31,9 +31,9 @@
 ```
 016 비동기 실행 ✅ ─→ 017 잔디 커밋 파이프라인
                         P1 형식 SoT (템플릿·agent) ✅
-                          → P2 파이프라인 레일 + 더미 collect ─┬→ P4 화면 + 더미 한 바퀴 완주
-                             P3 발행부 확장 ───────────────────┘      → P5 진짜 git + 외부연동 + 실운영
-                                                     (P2·P3 병렬)
+                          → P2 파이프라인 레일 + 더미 collect ✅ ─┬→ P4 화면 + 더미 한 바퀴 완주
+                             P3 발행부 확장 ✅ ───────────────────┘      → P5 진짜 git + 외부연동 + 실운영
+                                                     (코드 Phase 셋 닫힘 — 남은 것은 화면과 배포)
 ```
 
 - **017**은 016이 세운 제출/수확 분리와 드라이버 **위에 정의만 얹는다.** 게이트·큐·API·admin FE 는 손대지 않는다 — 손대는 곳은 준비부(`prepare`·`flow`·`driver` — auto 스테이지를 여럿 돌리는 레일)와 `apply/`(경로 2개·`upsert`·그래프 밖 산출물·본인작성 보호).
@@ -65,7 +65,7 @@
 | WORK-014 | 승인 큐 + route 게이트 MVP (스키마·접수·자동준비·게이트 공통계약·admin 큐 화면) | BE+FE | done | SPEC-007·008(route)·009 | 012·013 | `work-014-queue-and-route-gate.md` |
 | WORK-016 | 비동기 실행 + 진행 표시 UI (제출/수확 분리·완료 대기·진행 표시) | BE+FE | done | SPEC-008·009 | 015 | `work-016-async-execution-and-progress-ui.md` |
 | WORK-015 | 유튜브 체인 완성 + Apply Executor (source_note·concept·derived + 원자적 발행) | BE+FE | doing 80% (BE·FE 전부 done, 실전 e2e 만 남음) | SPEC-008·010·004 | 014 | `work-015-youtube-chain-and-executor.md` |
-| WORK-017 | 잔디 커밋 파이프라인 — 형식 SoT·준비부 일반화·더미 collect·발행부·화면·진짜 git 수집 (5 phase) | BE+FE+Ops | in_progress 37% (P1 done · P2 거의 완료 — 접수 진입점만 남음) | SPEC-011·012·013·010 | 016 | `work-017-grass-commit-pipeline.md` |
+| WORK-017 | 잔디 커밋 파이프라인 — 형식 SoT·준비부 일반화·더미 collect·발행부·화면·진짜 git 수집 (5 phase) | BE+FE+Ops | in_progress 50% (P1·P2·P3 done — 코드 Phase 셋 닫힘. P4 화면 · P5 배포·실운영 남음) | SPEC-011·012·013·010 | 016 | `work-017-grass-commit-pipeline.md` |
 
 ## Status Board
 
@@ -74,7 +74,7 @@
 | 지식그래프 (BL-001) | WORK-001~010 done | — |
 | 앱 DB화 (BL-002) | WORK-011 done | admin 실제 관리 기능 |
 | 승인 파이프라인 (BL-003) | **012·013 done** · 014~015 todo | **014 착수** (큐 + route 게이트) → 015 |
-| 잔디 파이프라인 (BL-004) | **017 in_progress 37%** — P1 형식 SoT done · P2 레일·더미 `collect`·`investigate`·**`daily` 게이트 작성**·실배선 done (702 passed). `compose` auto 스테이지는 없앴다 — **재생성이 작성 주체를 게이트로 강제한다**(SPEC-013 v0.0.2) | P2 잔여 — `intake()` 합성 키(`daily:{date}`) + 접수 진입점 + 백필 · `auto:false` 접수 전 차단 |
+| 잔디 파이프라인 (BL-004) | **017 in_progress 50%** — P1 형식 SoT done · **P2 done**(레일·더미 `collect`·`investigate`·`daily` 게이트 작성·실배선 + 접수 진입점 `daily:{date}` 합성 키·백필·`auto:false`/미래 날짜 차단) · **P3 done**(발행 허용 2경로·`upsert`·그래프 검증 제외·보호 검증 둘, `publish_atomic` 은 자동 달성). **737 passed** | P4 — 게이트 화면 + 더미 한 바퀴 완주(dry-run). 착수 전 Open Issue 「활동 0 차단 위치」 결정. ⚠ **이 갱신 직후 `8c2aa7a`(P4 승인 화면)가 들어왔다 — 아직 문서에 미반영** |
 
 ## Spec Coverage
 
@@ -87,11 +87,11 @@
 | SPEC-005 시각화 | WORK-008·009 | 008 전역 done / 009 로컬 done (시각화 완료) |
 | SPEC-006 관리자 인증 | WORK-011 | 011 done (DB 토대+async+로그인+admin 목 e2e 검증 — 앱 DB화 첫 트랙, 그래프 work와 독립) |
 | SPEC-007 승인 큐 | WORK-012·014 | **둘 다 done** — 접수·준비·재시도·삭제·큐 화면까지 구현. 발행 재시도만 WORK-015 |
-| SPEC-008 게이트 체인 | WORK-014·015·**017** | 014 route BE done / 015 나머지 스테이지 todo / **017 P2 — `daily_commit` 정의 등록 + 준비부 일반화 done**(auto 스테이지 N개를 정의 순서로 돌려 `daily` 게이트까지). route 없는 체인(`enabled_stages` 일반화)은 **범위 밖으로 뺐다** — 게이트 1개인 잔디에는 필요가 없고 판정 기준도 payload 유무가 아니라 정의의 route 유무여야 한다 (017 Open Issue). ⚠ **SPEC-008 §4 의 `daily_commit` 정의 표가 아직 `compose` 를 auto 로 적고 있다** — SPEC-013 v0.0.2 와 어긋난다. 별도 개정 필요 |
+| SPEC-008 게이트 체인 | WORK-014·015·**017** | 014 route BE done / 015 나머지 스테이지 todo / **017 P2 — `daily_commit` 정의 등록 + 준비부 일반화 done**(auto 스테이지 N개를 정의 순서로 돌려 `daily` 게이트까지). route 없는 체인(`enabled_stages` 일반화)은 **범위 밖으로 뺐다** — 게이트 1개인 잔디에는 필요가 없고 판정 기준도 payload 유무가 아니라 정의의 route 유무여야 한다 (017 Open Issue). ✅ `daily_commit` 정의 표가 **SPEC-008 v0.0.3** 에서 `compose` auto 를 걷고 `daily` 게이트로 정정됐다 — 두 spec 의 모순 해소 |
 | SPEC-009 게이트 피드백 | WORK-014 | 014 P3 에서 공통 계약 구현 done |
-| SPEC-010 Apply Executor | WORK-015·**017** | 015 구현 done (검증 6종·원자 커밋·전량 롤백·재시도) / **017 P3 — `upsert`·그래프 밖 산출물·본인작성 보호 todo** |
+| SPEC-010 Apply Executor | WORK-015·**017** | 015 구현 done (검증 6종·원자 커밋·전량 롤백·재시도) / **017 P3 done — 개정분 전량 반영**: `upsert`(존재·stale 검사 둘 다 면제 — daily 는 첫 회 생성과 덮어쓰기가 둘 다 정상이라 존재 여부가 판단 근거가 못 된다) · 그래프 밖 산출물(`OUTSIDE_GRAPH` — `up:` 이 없는 문서를 얹으면 고아 규칙에 걸리므로 **빼는 것이 사실의 반영**) · 본인작성 보호(`USER_AUTHORED_DAILY` 접수·발행 이중) · `PROTECTED_FIELD`. `publish_atomic` 전환은 **별도 작업 없이 자동 달성**(`apply_item` 이 파이프라인을 가리지 않는다) |
 | SPEC-011 커밋 조사 | WORK-**017** | **P2 더미 `collect` done — §4 계약 7키 전량 + 시나리오 7종**(교체 비용을 `collect` 한 곳에 가둔다. 지어내는 것은 `commits[]` 뿐이고 영역 분해·`counts`·career 귀속은 진짜 코드) / P5 todo — 레지스트리·bare 클론·로컬 git 수집 |
-| SPEC-012 잔디 산출물 | WORK-**017** | **P1 템플릿 SoT done**(`templates/persona/daily.md`·`career.md` + `agent.md` 등록) / **P2 `daily` 게이트 작성 done — 그 SoT 를 코드가 실제로 싣는다**(프롬프트 복사 아님을 마커 테스트가 검증, `counts` 는 코드 주입, career 는 전문 교체). 싣는 주체가 `compose`(auto)에서 게이트로 바뀌었을 뿐 **형식 계약 자체는 무변경** |
-| SPEC-013 잔디 게이트 | WORK-**017** | **v0.0.2 개정 — 작성 주체를 게이트로 모았다**(`compose` auto 제거, 근거는 재생성 S-3). **P2 auto 둘 + `daily` 게이트 작성 + 실배선 done, 접수 진입점 todo** / P3 발행 todo / P4 화면 + 더미 한 바퀴 완주 todo / P5 실발행 todo. ✅ 부분 실패 **결과 귀속**이 §4 Data Contract 로 들어가 017 Open Issue 해소 |
+| SPEC-012 잔디 산출물 | WORK-**017** | **P1 템플릿 SoT done**(`templates/persona/daily.md`·`career.md` + `agent.md` 등록) / **P2 `daily` 게이트 작성 done — 그 SoT 를 코드가 실제로 싣는다**(프롬프트 복사 아님을 마커 테스트가 검증, `counts` 는 코드 주입, career 는 전문 교체). 싣는 주체가 `compose`(auto)에서 게이트로 바뀌었을 뿐 **형식 계약 자체는 무변경** / **P3 발행 done** — frontmatter 는 **시스템이 조립한다**(daily 의 `type`·`date`·`auto`·`counts` 는 AI 것이 아니고, career 는 기존 frontmatter 를 그대로 이고 본문만 바꿔 **사람 전용 필드를 건드릴 방법 자체를 없앤다** — 검증 전에 구조로 막는다). 「형식 SoT」 표의 **읽는 쪽**을 `daily` 게이트로 갱신(2026-08-01, 계약 아닌 소비자 이름표라 version 유지). ⚠ **잔디 concept 만 형식 SoT 를 읽지 않는다** — `stages/daily.py` 가 `templates/knowledge/concept.md` 를 싣지 않는다(유튜브 `concept` 게이트는 읽는다). 017 Open Issue |
+| SPEC-013 잔디 게이트 | WORK-**017** | **v0.0.2 개정 — 작성 주체를 게이트로 모았다**(`compose` auto 제거, 근거는 재생성 S-3). **P2 done** — auto 둘 + `daily` 게이트 작성 + 실배선 + 접수 진입점(`daily:{date}` 합성 키로 **기존 중복 판정을 날짜 축에서 그대로 돌린다** — 컬럼·인덱스 무증설, `uq_queue_items_pending_url` 이 마이그레이션 없이 하루 한 항목을 강제, 재접수는 S-7 3항대로 `duplicate_published`) · 백필 · `auto:false`·미래 날짜 접수 전 차단 / **P3 발행 done** / P4 화면 + 더미 한 바퀴 완주 todo / P5 실발행 todo. ✅ 부분 실패 **결과 귀속**이 §4 Data Contract 로 들어가 017 Open Issue 해소. ⚠ **활동 0 차단이 스펙과 다른 자리에 있다** — §4 Flow·State 는 "활동 0이면 항목 없음" 인데 코드는 `collect` 의 `NO_ACTIVITY` 로 접수 **후** 막아 항목 행이 남는다(조사를 두 번 하지 않으려는 판단). 017 Open Issue — P4 착수 전 결정 |
 
 > SPEC-001·002·003·004는 DEC-010 반영으로 **개정**됐다(4층·concept·층별 검증). WORK-013이 그 개정분을 코드에 반영한다 — 기존 WORK-001~010이 구현한 것과 별개 커버리지다.

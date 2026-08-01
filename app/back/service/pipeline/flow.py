@@ -122,7 +122,11 @@ async def advance_auto_stages(
         )
         return False
     await open_first_gate(db, item, runner=gate_runner)
-    return False
+    # **아직 밀 것이 남았다.** 게이트는 방금 제출됐을 뿐 내용이 없다(`generating`).
+    # 여기서 멈추면 사람이 볼 수 있는 것이 없고, 다음 폴링까지 카드가 빈 채로 있는다.
+    # 드라이버가 한 걸음 더 가서 수확하면 그때 `review_pending` 이 된다 — 유튜브
+    # 준비부가 `result.ok` 로 `True` 를 돌려주는 것과 같은 이유다.
+    return True
 
 
 async def harvest_preparation(

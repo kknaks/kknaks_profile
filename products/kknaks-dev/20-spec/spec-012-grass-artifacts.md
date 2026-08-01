@@ -6,7 +6,7 @@ status: draft
 product: kknaks-dev
 version: 0.0.1
 created_at: 2026-07-31
-updated_at: 2026-07-31
+updated_at: 2026-08-01
 tags:
   - product/kknaks-dev
   - doc/spec
@@ -194,10 +194,12 @@ type=studio                          →  career 갱신 없음 (daily·concept �
 
 | 파일 | 소유 | 읽는 쪽 |
 |---|---|---|
-| `templates/persona/daily.md` | **신규** — daily 형식 | 잔디 compose 스테이지 |
-| `templates/persona/career.md` | **신규** — career 형식 + 갱신 규율 | 잔디 compose 스테이지 |
-| `templates/knowledge/concept.md` + 지식노트 파이프라인 규칙 | 기존 — 재사용 | 잔디 compose · 유튜브 concept 게이트 |
+| `templates/persona/daily.md` | **신규** — daily 형식 | 잔디 `daily` 게이트 |
+| `templates/persona/career.md` | **신규** — career 형식 + 갱신 규율 | 잔디 `daily` 게이트 |
+| `templates/knowledge/concept.md` + 지식노트 파이프라인 규칙 | 기존 — 재사용 | 잔디 `daily` 게이트 · 유튜브 `concept` 게이트 |
 | `agent.md` | 갱신 — "별도 계열" 에 daily·career 등록 | 에이전트 진입점 |
+
+> 「읽는 쪽」이 종전에는 `compose` 자동 스테이지였다. 잔디의 **작성 주체가 `daily` 게이트로 옮겨 가면서**(SPEC-013 v0.0.2) 소비자 이름이 바뀐 것이고, **형식 계약 자체는 무변경**이다 — 어느 파일이 형식의 SoT 인지도, 그 안의 필드 소유도 그대로다.
 
 **규칙을 프롬프트에 복사하지 않는다.** 프롬프트는 "무엇을 만들라" 만 지시하고 형식은 레포에서 읽힌다. 복사하는 순간 SoT 가 둘이 되고 한쪽만 고쳐지는 날 조용히 어긋난다.
 
