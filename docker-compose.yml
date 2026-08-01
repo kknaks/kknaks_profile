@@ -47,8 +47,13 @@ services:
       REPO_ROOT: /repo
       # planning-02 — PDF 잡이 hit 할 frontend URL. 운영 = Vercel 정적 호스팅.
       FRONTEND_URL: ${FRONTEND_URL:-https://kknaks.dev}
+      # 잔디 커밋 조사 (KDEV-WORK-017 P5 / KDEV-SPEC-011).
+      # **`/repo` 밖이어야 한다** — 안에 두면 발행 경로의 작업트리 초기화가 클론을 지운다.
+      REPO_CACHE_DIR: /var/cache/repos
+      COMMIT_IDENTITY_PATTERNS: ${COMMIT_IDENTITY_PATTERNS:-}
     volumes:
       - .:/repo                                # repo root 전체 (.git + persona + app) — planning-01 §3.6 mount
+      - repo-cache:/var/cache/repos            # bare 클론 (~321MB). back 만 rw, 워커에는 노출하지 않는다
     working_dir: /repo/app/back
     depends_on:
       redis:
@@ -101,7 +106,8 @@ services:
       REDIS_URL: redis://redis:6379
       NAMESPACE: kknaks-portfolio              # content_enrich.py LLM_NAMESPACE 와 일치
       QUEUES: default
-      CONCURRENCY: "2"
+      # 조사 13회가 순차로 도는 동안 워커가 몇 개를 물고 있을지 — 실측 전에는 2 그대로.
+      CONCURRENCY: ${WORKER_CONCURRENCY:-2}
       WORK_DIR: /tmp
       CLAUDE_CODE_OAUTH_TOKEN: ${CLAUDE_CODE_OAUTH_TOKEN:-}
       # 호스트 path 그대로 컨테이너 안에서도 매핑 — npm symlink/require 깨짐 회피
@@ -116,3 +122,4 @@ services:
 volumes:
   redis-data:
   postgres-data:
+  repo-cache:

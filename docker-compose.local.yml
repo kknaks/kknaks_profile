@@ -53,8 +53,12 @@ services:
       # planning-02 — PDF 잡이 hit 할 frontend URL.
       # Mac docker → host.docker.internal:3000 (host 의 next dev). Linux 라면 host-gateway alias 필요.
       FRONTEND_URL: ${FRONTEND_URL:-http://host.docker.internal:3000}
+      # 잔디 커밋 조사 — 운영과 같은 경로. `/repo` 밖이어야 한다(KDEV-SPEC-011 §5).
+      REPO_CACHE_DIR: /var/cache/repos
+      COMMIT_IDENTITY_PATTERNS: ${COMMIT_IDENTITY_PATTERNS:-}
     volumes:
       - .:/repo
+      - repo-cache:/var/cache/repos
     working_dir: /repo/app/back
     depends_on:
       redis:
@@ -107,7 +111,7 @@ services:
       REDIS_URL: redis://redis:6379
       NAMESPACE: kknaks-portfolio
       QUEUES: default
-      CONCURRENCY: "2"
+      CONCURRENCY: ${WORKER_CONCURRENCY:-2}
       WORK_DIR: /tmp
       CLAUDE_CODE_OAUTH_TOKEN: ${CLAUDE_CODE_OAUTH_TOKEN:-}
       # ADR-04 원형 패턴 — repo 안 .claude-tools/ (Linux ARM64 node + claude CLI 박제) 를 마운트
@@ -120,3 +124,4 @@ services:
 volumes:
   redis-data:
   postgres-data:
+  repo-cache:
