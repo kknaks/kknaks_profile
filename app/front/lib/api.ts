@@ -209,11 +209,28 @@ export type CareerDraft = {
   target_path?: string;
 };
 
+/**
+ * 조사가 얼마나 온전했는지. **`counts` 와 같이 코드가 센 값**이라 화면이 고치지 않는다.
+ *
+ * 이게 없으면 서술이 얕을 때 **자료가 부족했던 것인지 그날 일이 적었던 것인지**
+ * 사람이 구분할 수 없다. `failed` 는 클론·fetch 에서 빠진 것이고 `missing` 은
+ * 조사까지 갔다가 결과가 안 돌아온 것이라 — 다른 자리의 실패다.
+ */
+export type DailyCollection = {
+  done: number;
+  total: number;
+  missing: string[];
+  failed: { repo?: string; code?: string; message?: string }[];
+  truncated: Record<string, { diff_bytes?: number; commits?: number }>;
+};
+
 /** 잔디 게이트 산출물 — 게이트 하나가 목적지 셋을 낸다. */
 export type DailyPayload = {
   daily: DailyDraft;
   career: CareerDraft;
   concepts: ConceptResult[];
+  /** 예전 리비전에는 없다 — 화면이 없으면 그리지 않는다. */
+  collection?: DailyCollection;
 };
 
 export type GatePayload = RouteResult | NotePayload | ConceptPayload | DailyPayload;

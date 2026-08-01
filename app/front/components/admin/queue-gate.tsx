@@ -7,6 +7,7 @@ import {
   type ConceptPayload,
   type ConceptResult,
   type Gate,
+  type DailyCollection,
   type DailyDraft,
   type DailyPayload,
   type GatePayload,
@@ -517,6 +518,65 @@ function joinCareer(lines: CareerLine[]): string {
     .join("\n");
 }
 
+/**
+ * 조사 진행 표시 — 승인 전에 **자료가 온전한지**를 먼저 보여준다.
+ *
+ * 편집 대상이 아니다. `counts` 와 같은 이유로 **표시만** 한다 — 코드가 센 값이라
+ * 화면이 고칠 수 있으면 안 된다. 전부 온전하면 한 줄로 접히고, 빠진 것이 있을 때만
+ * 눈에 띈다. 늘 경고를 띄우면 아무도 안 본다.
+ */
+function CollectionStatus({ collection }: { collection: DailyCollection }) {
+  const truncated = Object.entries(collection.truncated ?? {});
+  const clean =
+    collection.done === collection.total &&
+    collection.missing.length === 0 &&
+    collection.failed.length === 0 &&
+    truncated.length === 0;
+
+  return (
+    <section
+      style={{
+        padding: "6px 8px",
+        borderRadius: 4,
+        border: `1px solid ${clean ? "var(--line-2)" : "var(--warn, #b45309)"}`,
+        background: "var(--bg-2)",
+      }}
+    >
+      <p className="mono" style={{ fontSize: 11, color: "var(--fg-3)", margin: 0 }}>
+        조사 {collection.done}/{collection.total}
+        {clean && " · 빠진 레포 없음"}
+      </p>
+
+      {collection.failed.length > 0 && (
+        <p className="mono" style={{ fontSize: 11, color: "var(--fg-4)", margin: "4px 0 0" }}>
+          조사 못 함 {collection.failed.length}건 —{" "}
+          {collection.failed
+            .map((f) => `${f.repo ?? "?"}${f.code ? ` (${f.code})` : ""}`)
+            .join(", ")}
+        </p>
+      )}
+
+      {collection.missing.length > 0 && (
+        <p className="mono" style={{ fontSize: 11, color: "var(--fg-4)", margin: "4px 0 0" }}>
+          결과 안 돌아옴 {collection.missing.length}건 — {collection.missing.join(", ")}
+        </p>
+      )}
+
+      {truncated.length > 0 && (
+        <p className="mono" style={{ fontSize: 11, color: "var(--fg-4)", margin: "4px 0 0" }}>
+          입력 상한 적용 — {truncated.map(([repo]) => repo).join(", ")} (일부 diff 생략)
+        </p>
+      )}
+
+      {!clean && (
+        <p style={{ fontSize: 11, color: "var(--fg-4)", margin: "4px 0 0" }}>
+          서술이 얕다면 그날 일이 적어서가 아니라 자료가 빠져서일 수 있습니다.
+        </p>
+      )}
+    </section>
+  );
+}
+
 function DailyReview({
   payload,
   draft,
@@ -556,6 +616,9 @@ function DailyReview({
 
   return (
     <div style={{ marginTop: 10, display: "grid", gap: 14 }}>
+      {/* --- 조사 상태 (편집 불가) ------------------------------------------ */}
+      {payload.collection && <CollectionStatus collection={payload.collection} />}
+
       {/* --- daily --------------------------------------------------------- */}
       <section>
         <h4 className="mono" style={{ fontSize: 12, color: "var(--fg-3)", margin: "0 0 6px" }}>

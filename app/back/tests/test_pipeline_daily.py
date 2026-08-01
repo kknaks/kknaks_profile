@@ -177,6 +177,42 @@ class TestParse:
         )
         assert stage.parse(reply, _request())["daily"]["counts"]["commit"] == 3
 
+    def test_the_collection_status_reaches_the_screen(self, repo):
+        """조사가 온전했는지는 **승인 화면이 보는 payload** 에 있어야 한다.
+
+        프롬프트에는 이미 실려 있었지만(`payload()`), 사람이 보는 것은 `parse()` 의
+        결과다. 여기 없으면 서술이 얕을 때 자료 부족인지 그날 일이 적어서인지
+        구분할 방법이 없다.
+        """
+        stage = _stage(FakeClient(), repo)
+        request = _request()
+        request.preparation.payload["investigate"] = {
+            "repos": {"a/one": "조사문"},
+            "missing": ["b/two"],
+        }
+        request.preparation.payload["collect"]["failures"] = [
+            {"repo": "c/three", "code": "FETCH_FAILED", "message": "권한 없음"}
+        ]
+        request.preparation.payload["collect"]["truncated"] = {"a/one": {"commits": 30}}
+
+        collection = stage.parse(_reply(), request)["collection"]
+        assert collection["done"] == 1
+        assert collection["total"] == 2  # 조사한 것 + 결과가 안 온 것
+        assert collection["missing"] == ["b/two"]
+        assert collection["failed"][0]["repo"] == "c/three"
+        assert "a/one" in collection["truncated"]
+
+    def test_a_clean_run_still_carries_the_status(self, repo):
+        """빠진 것이 없어도 값은 온다 — 화면이 "전부 조사됨" 을 그릴 수 있어야 한다."""
+        collection = _stage(FakeClient(), repo).parse(_reply(), _request())["collection"]
+        assert collection == {
+            "done": 1,
+            "total": 1,
+            "missing": [],
+            "failed": [],
+            "truncated": {},
+        }
+
     def test_body_over_the_hard_limit_is_cut(self, repo):
         stage = _stage(FakeClient(), repo)
         reply = _reply(

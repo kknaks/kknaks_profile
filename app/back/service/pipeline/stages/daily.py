@@ -136,6 +136,29 @@ def _prep(request: GenerationInput) -> dict[str, Any]:
     return (request.preparation.payload or {}) if request.preparation else {}
 
 
+def _collection(prep: dict[str, Any]) -> dict[str, Any]:
+    """조사가 얼마나 온전했는지 — 승인 화면이 그린다 (KDEV-SPEC-011 S-3 4항).
+
+    **전부 코드가 센 값이다.** AI 가 세면 "조사가 잘 됐다" 는 서술과 실제 상태가
+    어긋날 수 있고, 사람이 그 둘을 구분할 방법이 없다.
+
+    `total` 은 조사를 **시도한** 레포 수다 — 성공한 것과 결과가 돌아오지 않은 것의
+    합이다. `failed` 는 그보다 앞 단계(클론·fetch)에서 빠진 것이라 `total` 에 들지
+    않는다. 두 실패가 다른 자리에서 나므로 한 숫자로 뭉개지 않는다.
+    """
+    investigate = prep.get("investigate") or {}
+    collect = prep.get("collect") or {}
+    reports = investigate.get("repos") or {}
+    missing = sorted(investigate.get("missing") or [])
+    return {
+        "done": len(reports),
+        "total": len(reports) + len(missing),
+        "missing": missing,
+        "failed": list(collect.get("failures") or []),
+        "truncated": dict(collect.get("truncated") or {}),
+    }
+
+
 def _strip_fence(raw: str) -> str:
     text = (raw or "").strip()
     if text.startswith("```"):
@@ -291,7 +314,8 @@ class DailyStage(AgentStage):
         if not isinstance(data, dict):
             raise GateError("INVALID_DAILY_OUTPUT", "출력이 객체가 아니다")
 
-        collect = _prep(request).get("collect") or {}
+        prep = _prep(request)
+        collect = prep.get("collect") or {}
         daily = data.get("daily") or {}
         body = str(daily.get("body") or "")
         if len(body) > BODY_HARD_LIMIT:
@@ -310,4 +334,9 @@ class DailyStage(AgentStage):
             },
             "career": _career(data.get("career"), targets),
             "concepts": _concepts(data.get("concepts")),
+            # **조사가 얼마나 온전했는지**를 화면까지 들고 간다. AI 프롬프트에는
+            # 이미 실려 있었지만(payload) 승인 화면이 보는 것은 이쪽이라, 여기 없으면
+            # 사람은 서술이 얕은 이유가 **자료 부족인지 그날 일이 적어서인지** 구분할
+            # 수 없다. `counts` 와 같은 규율이다 — 코드가 세고 AI 는 관여하지 않는다.
+            "collection": _collection(prep),
         }
