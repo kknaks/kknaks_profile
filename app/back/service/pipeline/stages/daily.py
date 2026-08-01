@@ -60,7 +60,7 @@ JSON 하나로 답한다. 코드펜스로 감싸지 않는다.
   }},
   "career": {career_shape},
   "concepts": [
-    {{"stem": "kebab-case", "title": "제목", "content": "노트 전문", "mode": "new"}}
+    {{"stem": "kebab-case", "title": "제목", "content": "노트 전문", "mode": "create"}}
   ]
 }}
 
@@ -145,22 +145,28 @@ def _summary(value: Any) -> dict[str, list[str]]:
     return out
 
 
-def _career(value: Any, allowed: set[str]) -> dict[str, Any]:
+def _career(value: Any, targets: list[dict[str, Any]]) -> dict[str, Any]:
     """대상이 아니면 무엇이 오든 `changed: false` 다.
 
     모델이 대상 밖 career 를 지어내는 경우를 여기서 버린다 — 대상 판정은 코드가
     결정적으로 했고, 그 판단이 모델 출력보다 우선한다.
+
+    **기존 본문을 함께 담는다.** career 는 고쳐 쓰는 문서라 승인 화면이 "무엇이
+    바뀌었는지" 를 보여줘야 하는데, 화면이 그것을 알려면 비교 대상이 있어야 한다.
+    파일을 화면이 직접 읽을 수는 없으므로 여기서 실어 보낸다.
     """
-    if not allowed or not isinstance(value, dict):
+    by_stem = {t["stem"]: t for t in targets}
+    if not by_stem or not isinstance(value, dict):
         return {"changed": False}
     stem = str(value.get("stem") or "")
     content = str(value.get("content") or "").strip()
-    if stem not in allowed or not content or not value.get("changed"):
+    if stem not in by_stem or not content or not value.get("changed"):
         return {"changed": False}
     return {
         "changed": True,
         "stem": stem,
         "content": content,
+        "previous_content": by_stem[stem]["body"],
         "target_path": f"persona/career/{stem}.md",
     }
 
@@ -181,7 +187,10 @@ def _concepts(value: Any) -> list[dict[str, Any]]:
                 "stem": stem,
                 "title": str(entry.get("title") or stem),
                 "content": content,
-                "mode": "supplement" if entry.get("mode") == "supplement" else "new",
+                # **`create`** 다 — `new` 가 아니다. 유튜브 concept 게이트가 쓰는 값과
+                # 같아야 승인 화면의 `ConceptList` 를 그대로 재사용할 수 있고,
+                # 발행부의 create/replace 분기도 한 규약으로 돈다.
+                "mode": "supplement" if entry.get("mode") == "supplement" else "create",
                 "target_path": f"permanent/concept/{stem}.md",
             }
         )
@@ -244,7 +253,7 @@ class DailyStage(AgentStage):
             logger.info("daily 본문 %d자 — %d자로 자른다", len(body), BODY_HARD_LIMIT)
             body = body[:BODY_HARD_LIMIT]
 
-        allowed = {t["stem"] for t in career_targets(collect, self.repo_root)}
+        targets = career_targets(collect, self.repo_root)
         return {
             "daily": {
                 "date": collect.get("date"),
@@ -254,6 +263,6 @@ class DailyStage(AgentStage):
                 "body": body,
                 "target_path": f"persona/daily/{collect.get('date')}.md",
             },
-            "career": _career(data.get("career"), allowed),
+            "career": _career(data.get("career"), targets),
             "concepts": _concepts(data.get("concepts")),
         }

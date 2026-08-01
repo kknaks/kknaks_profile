@@ -7,6 +7,8 @@ import {
   type ConceptPayload,
   type ConceptResult,
   type Gate,
+  type DailyDraft,
+  type DailyPayload,
   type GatePayload,
   type NotePayload,
   type RouteResult,
@@ -32,6 +34,7 @@ const STAGE_LABEL: Record<string, string> = {
   source_note: "자료 노트",
   concept: "개념",
   derived: "교안",
+  daily: "잔디",
 };
 
 const STATUS_LABEL: Record<string, { text: string; tone: "wait" | "ok" | "bad" | "idle" }> = {
@@ -479,6 +482,263 @@ function ConceptList({
   );
 }
 
+function isDaily(payload: GatePayload | null | undefined): payload is DailyPayload {
+  return !!payload && typeof payload === "object" && "daily" in payload;
+}
+
+/** 본문을 **줄 단위**로 쪼갠다. 섹션 제목(`## …`)은 토글 대상이 아니다. */
+type CareerLine = { text: string; heading: boolean; keep: boolean; added: boolean };
+
+function splitCareer(content: string, previous: string): CareerLine[] {
+  const before = new Set(
+    previous
+      .split("\n")
+      .map((l) => l.trim())
+      .filter(Boolean),
+  );
+  return content.split("\n").map((raw) => {
+    const text = raw.trimEnd();
+    const heading = text.trimStart().startsWith("#");
+    return {
+      text,
+      heading,
+      keep: true,
+      // 기존 문서에 없던 줄만 표시한다 — career 는 대개 조금씩만 바뀌므로
+      // 좌우 비교는 과하고, 바뀐 곳만 눈에 띄면 된다.
+      added: !heading && !!text.trim() && !before.has(text.trim()),
+    };
+  });
+}
+
+function joinCareer(lines: CareerLine[]): string {
+  return lines
+    .filter((l) => l.keep)
+    .map((l) => l.text)
+    .join("\n");
+}
+
+function DailyReview({
+  payload,
+  draft,
+  disabled,
+  previousCareer,
+  onChange,
+}: {
+  payload: DailyPayload;
+  draft: DailyPayload;
+  disabled: boolean;
+  previousCareer: string;
+  onChange: (next: DailyPayload) => void;
+}) {
+  const [careerLines, setCareerLines] = useState<CareerLine[]>(() =>
+    splitCareer(payload.career.content ?? "", previousCareer),
+  );
+  const [showPrevious, setShowPrevious] = useState(false);
+
+  useEffect(() => {
+    setCareerLines(splitCareer(payload.career.content ?? "", previousCareer));
+  }, [payload.career.content, previousCareer]);
+
+  function setDaily(patch: Partial<DailyDraft>) {
+    onChange({ ...draft, daily: { ...draft.daily, ...patch } });
+  }
+
+  function setLines(next: CareerLine[]) {
+    setCareerLines(next);
+    onChange({
+      ...draft,
+      career: { ...draft.career, content: joinCareer(next) },
+    });
+  }
+
+  const counts = draft.daily.counts ?? {};
+  const total = (counts.commit ?? 0) + (counts.note ?? 0) + (counts.study ?? 0);
+
+  return (
+    <div style={{ marginTop: 10, display: "grid", gap: 14 }}>
+      {/* --- daily --------------------------------------------------------- */}
+      <section>
+        <h4 className="mono" style={{ fontSize: 12, color: "var(--fg-3)", margin: "0 0 6px" }}>
+          daily · {draft.daily.date}
+        </h4>
+        <p className="mono" style={{ fontSize: 11, color: "var(--fg-4)", margin: "0 0 8px" }}>
+          commit {counts.commit ?? 0} · note {counts.note ?? 0} · study {counts.study ?? 0}
+          {"  "}(합계 {total} — 코드가 센 값이라 고칠 수 없습니다)
+        </p>
+
+        {(["ko", "en"] as const).map((lang) => (
+          <div key={lang} style={{ marginBottom: 8 }}>
+            <p className="mono" style={{ fontSize: 11, color: "var(--fg-4)", margin: "0 0 4px" }}>
+              요약 ({lang})
+            </p>
+            {(draft.daily.summary?.[lang] ?? []).length === 0 && (
+              <p style={{ fontSize: 12, color: "var(--fg-4)" }}>줄이 없습니다.</p>
+            )}
+            {(draft.daily.summary?.[lang] ?? []).map((line, i) => (
+              <div key={i} style={{ display: "flex", gap: 6, marginBottom: 4 }}>
+                <input
+                  value={line}
+                  disabled={disabled}
+                  onChange={(e) => {
+                    const next = [...(draft.daily.summary?.[lang] ?? [])];
+                    next[i] = e.target.value;
+                    setDaily({ summary: { ...draft.daily.summary, [lang]: next } });
+                  }}
+                  className="mono"
+                  style={{
+                    flex: 1,
+                    fontSize: 12,
+                    padding: "4px 6px",
+                    background: "var(--bg-2)",
+                    border: "1px solid var(--line-2)",
+                    borderRadius: 4,
+                    color: "var(--fg-1)",
+                  }}
+                />
+                <button
+                  type="button"
+                  disabled={disabled}
+                  title="이 줄을 지웁니다"
+                  onClick={() => {
+                    const next = (draft.daily.summary?.[lang] ?? []).filter((_, j) => j !== i);
+                    setDaily({ summary: { ...draft.daily.summary, [lang]: next } });
+                  }}
+                  style={{ ...btn("ghost"), padding: "2px 8px", fontSize: 12 }}
+                >
+                  ×
+                </button>
+              </div>
+            ))}
+          </div>
+        ))}
+
+        <p className="mono" style={{ fontSize: 11, color: "var(--fg-4)", margin: "8px 0 4px" }}>
+          본문 (사이트에 노출되지 않습니다 — career·concept 의 입력입니다)
+        </p>
+        <textarea
+          value={draft.daily.body ?? ""}
+          disabled={disabled}
+          onChange={(e) => setDaily({ body: e.target.value })}
+          rows={8}
+          className="mono"
+          style={{
+            width: "100%",
+            fontSize: 12,
+            padding: 8,
+            background: "var(--bg-2)",
+            border: "1px solid var(--line-2)",
+            borderRadius: 4,
+            color: "var(--fg-1)",
+            resize: "vertical",
+          }}
+        />
+      </section>
+
+      {/* --- career -------------------------------------------------------- */}
+      <section>
+        <h4 className="mono" style={{ fontSize: 12, color: "var(--fg-3)", margin: "0 0 6px" }}>
+          career{draft.career.stem ? ` · ${draft.career.stem}` : ""}
+        </h4>
+        {!payload.career.changed ? (
+          <p style={{ fontSize: 12.5, color: "var(--fg-3)" }}>
+            갱신할 것이 없다고 판단했습니다. 매일 갱신하되 대개 변경 없음이 정상입니다.
+          </p>
+        ) : (
+          <>
+            <p className="mono" style={{ fontSize: 11, color: "var(--fg-4)", margin: "0 0 6px" }}>
+              체크를 풀면 그 줄은 발행되지 않습니다. 노란 표시가 이번에 바뀐 줄입니다.
+            </p>
+            <div style={{ ...box, padding: 8 }}>
+              {careerLines.map((line, i) => (
+                <label
+                  key={i}
+                  style={{
+                    display: "flex",
+                    gap: 8,
+                    alignItems: "flex-start",
+                    padding: "2px 0",
+                    opacity: line.keep ? 1 : 0.4,
+                  }}
+                >
+                  {line.heading || !line.text.trim() ? (
+                    <span style={{ width: 13 }} />
+                  ) : (
+                    <input
+                      type="checkbox"
+                      checked={line.keep}
+                      disabled={disabled}
+                      onChange={(e) =>
+                        setLines(
+                          careerLines.map((l, j) =>
+                            j === i ? { ...l, keep: e.target.checked } : l,
+                          ),
+                        )
+                      }
+                      style={{ marginTop: 3 }}
+                    />
+                  )}
+                  <span
+                    className="mono"
+                    style={{
+                      fontSize: 12,
+                      whiteSpace: "pre-wrap",
+                      color: line.heading ? "var(--fg-2)" : "var(--fg-1)",
+                      fontWeight: line.heading ? 600 : 400,
+                      textDecoration: line.keep ? "none" : "line-through",
+                      borderLeft: line.added ? "2px solid var(--accent)" : "2px solid transparent",
+                      paddingLeft: 6,
+                    }}
+                  >
+                    {line.text || " "}
+                  </span>
+                </label>
+              ))}
+            </div>
+            {previousCareer && (
+              <>
+                <button
+                  type="button"
+                  onClick={() => setShowPrevious((v) => !v)}
+                  style={{ ...btn("ghost"), marginTop: 6, fontSize: 11.5 }}
+                >
+                  {showPrevious ? "기존 본문 접기" : "기존 본문 펼치기"}
+                </button>
+                {showPrevious && (
+                  <pre
+                    className="mono"
+                    style={{
+                      ...box,
+                      padding: 8,
+                      marginTop: 6,
+                      fontSize: 11.5,
+                      whiteSpace: "pre-wrap",
+                      color: "var(--fg-3)",
+                    }}
+                  >
+                    {previousCareer}
+                  </pre>
+                )}
+              </>
+            )}
+          </>
+        )}
+      </section>
+
+      {/* --- concept ------------------------------------------------------- */}
+      <section>
+        <h4 className="mono" style={{ fontSize: 12, color: "var(--fg-3)", margin: "0 0 6px" }}>
+          concept
+        </h4>
+        <ConceptList
+          concepts={draft.concepts ?? []}
+          disabled={disabled}
+          onChange={(next) => onChange({ ...draft, concepts: next })}
+        />
+      </section>
+    </div>
+  );
+}
+
 function FeedbackModal({
   onClose,
   onSubmit,
@@ -600,6 +860,10 @@ export function GateCard({
   const [concepts, setConcepts] = useState<ConceptResult[]>(
     isConcepts(active?.payload) ? active.payload.concepts : [],
   );
+  // 잔디는 게이트 하나가 목적지 셋을 내므로 초안 전체를 들고 편집한다.
+  const [daily, setDaily] = useState<DailyPayload | null>(
+    isDaily(active?.payload) ? active.payload : null,
+  );
   const [feedbackOpen, setFeedbackOpen] = useState(false);
   // 무엇을 보내는 중인지 담는다. boolean 이면 화면이 "왜 멈춰 있는지"를 말하지 못한다.
   // 요청 자체는 1초 안에 끝난다 — 오래 걸리는 것은 그 뒤 서버가 만드는 시간이고,
@@ -614,6 +878,7 @@ export function GateCard({
         : emptyRoute(),
     );
     setConcepts(isConcepts(active?.payload) ? active.payload.concepts : []);
+    setDaily(isDaily(active?.payload) ? active.payload : null);
     setOpen(gate.status !== "approved");
   }, [active?.id, active?.payload, gate.status]);
 
@@ -716,6 +981,16 @@ export function GateCard({
             />
           )}
 
+          {isDaily(active?.payload) && daily && (
+            <DailyReview
+              payload={active.payload}
+              draft={daily}
+              disabled={!canAct || locked}
+              previousCareer={active.payload.career.previous_content ?? ""}
+              onChange={setDaily}
+            />
+          )}
+
           {gate.revisions.length > 1 && (
             <p className="mono" style={{ fontSize: 10.5, color: "var(--fg-4)", marginTop: 8 }}>
               이전 버전 {gate.revisions.length - 1}개는 읽기 전용으로 남아 있습니다.
@@ -788,7 +1063,10 @@ export function GateCard({
                           ? draft
                           : isConcepts(active?.payload)
                             ? { concepts }
-                            : null,
+                            : // 승인 대상은 AI 제안 원본이 아니라 **사람이 고친 것**이다.
+                              isDaily(active?.payload) && daily
+                              ? daily
+                              : null,
                         active?.id ?? null,
                       ),
                     )

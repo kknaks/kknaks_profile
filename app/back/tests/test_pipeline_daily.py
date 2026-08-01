@@ -258,3 +258,15 @@ class TestSubmit:
         assert task_id == "okk-daily-1"
         assert "DAILY-FORMAT-MARKER" in client.prompts[0]
         assert "current_body" in client.prompts[0]
+
+    def test_concept_mode_matches_the_youtube_gate(self, repo):
+        """`create` 여야 한다 — `new` 면 승인 화면의 ConceptList 가 잘못 렌더한다.
+
+        같은 컴포넌트를 재사용하므로 두 게이트가 같은 값을 써야 하고, 발행부의
+        create/replace 분기도 그 규약 위에 있다.
+        """
+        stage = _stage(FakeClient(), repo)
+        reply = _reply(
+            concepts=[{"stem": "s", "title": "T", "content": "본문", "mode": "new"}]
+        )
+        assert stage.parse(reply, _request())["concepts"][0]["mode"] == "create"
