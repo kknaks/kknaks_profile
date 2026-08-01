@@ -21,6 +21,7 @@ from datetime import datetime
 from typing import Any
 
 from sqlalchemy import (
+    Boolean,
     CheckConstraint,
     DateTime,
     ForeignKey,
@@ -396,6 +397,56 @@ class ApplyResult(Base):
     violations: Mapped[list[Any] | None] = mapped_column(JSONB)
     error_code: Mapped[str | None] = mapped_column(String(64))
     error_message: Mapped[str | None] = mapped_column(Text)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now(), nullable=False
+    )
+
+
+#: 추적 레포의 성격. `company` 만 career 로 귀속된다 (KDEV-SPEC-011).
+TRACKED_REPO_TYPES = ("company", "studio")
+#: 클론·fetch 에 쓸 토큰.
+TRACKED_REPO_ACCOUNTS = ("personal", "company")
+
+
+class TrackedRepo(Base):
+    """잔디가 추적할 레포 (KDEV-WORK-017 P5 / KDEV-SPEC-011).
+
+    **"보여줄 레포" 와 "긁을 레포" 를 분리한다.** 종전에는 추적 대상이
+    `products/*/showcase.md` 에 묶여 있었는데, 그 파일은 공개 표시용이라 둘을 따로
+    정할 수 없었다 — 사이트에 안 보이지만 커밋은 세고 싶은 레포를 표현할 방법이 없다.
+
+    삭제 대신 `enabled` 를 끈다. 지우면 과거 조사 이력의 참조가 끊긴다(S-4 3항).
+    """
+
+    __tablename__ = "tracked_repos"
+    __table_args__ = (
+        CheckConstraint(_in("type", TRACKED_REPO_TYPES), name="ck_tracked_repos_type"),
+        CheckConstraint(
+            _in("account", TRACKED_REPO_ACCOUNTS), name="ck_tracked_repos_account"
+        ),
+        # `type=company` 면 `detail` 이 있어야 하고 `studio` 면 없어야 한다.
+        # 앱이 아니라 DB 가 강제한다 — 이 불변이 깨지면 career 귀속이 조용히 틀린다.
+        CheckConstraint(
+            "(type = 'company' AND detail IS NOT NULL)"
+            " OR (type = 'studio' AND detail IS NULL)",
+            name="ck_tracked_repos_detail",
+        ),
+        Index("uq_tracked_repos_slug", "slug", unique=True),
+    )
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    #: `owner/name`. 클론 URL 과 조사 결과의 키가 된다.
+    slug: Mapped[str] = mapped_column(String(160), nullable=False)
+    type: Mapped[str] = mapped_column(String(16), nullable=False)
+    #: career 파일 stem. `company` 일 때만. 실재하는 문서를 가리켜야 한다.
+    detail: Mapped[str | None] = mapped_column(String(80))
+    account: Mapped[str] = mapped_column(String(16), nullable=False, default="personal")
+    enabled: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
+    #: `{glob, area}` 목록. 비면 전역 기본 규칙이 적용된다.
+    path_rules: Mapped[list[Any] | None] = mapped_column(JSONB)
+    last_fetched_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    #: 마지막 실패 사유. 성공하면 비운다 — 남아 있으면 지금 막혀 있다는 뜻이다.
+    last_error: Mapped[str | None] = mapped_column(Text)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), nullable=False
     )
