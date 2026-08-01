@@ -24,7 +24,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from typing import Any, Awaitable, Callable, Protocol
 
-from sqlalchemy import func, select
+from sqlalchemy import func, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.models import AITask, ItemPreparation, QueueItem
@@ -191,6 +191,219 @@ def _material_dict(material: Any) -> dict[str, Any] | None:
         return material
     to_dict = getattr(material, "to_dict", None)
     return to_dict() if callable(to_dict) else {"content": str(material)}
+
+
+async def submit_auto_stage(
+    db: AsyncSession,
+    item_id: int,
+    stage_name: str,
+    *,
+    runner: AutoStage,
+) -> PrepareResult:
+    """auto 스테이지 하나를 **제출한다** (KDEV-WORK-017 P2). 커밋은 호출자가 한다.
+
+    레거시 `submit_preparation` 과 나뉘어 있는 이유는 **제출 건수**다. 저쪽은 요약
+    하나를 가정하고 `AITask` 를 `summarize.submit` **앞에서** 만든다 — 제출이 터져도
+    그 행이 남아야 무엇이 막혔는지 보이기 때문이다. 여기는 실행기가 0건(`collect`)
+    이나 N건(`investigate`)을 낼 수 있어 그 순서를 쓸 수 없다.
+
+    유튜브를 이쪽으로 옮기지 않은 것은 그래서다. 옮기면 얻는 것 없이 그 실패 기록
+    계약만 흔들린다(2-A 8번은 열어 둔다).
+
+    산출물 payload 는 **직전 스테이지 것을 물려받아 누적한다.** `latest_preparation`
+    이 가장 최근 성공분 하나만 집으므로, 누적하지 않으면 앞 스테이지 결과가 게이트
+    입력에서 사라진다.
+    """
+    item = await db.get(QueueItem, item_id)
+    if item is None or item.deleted_at is not None:
+        return PrepareResult(item_id=item_id, status="not_allowed", error_code="ITEM_NOT_FOUND")
+
+    prior = await _prior_payload(db, item_id)
+    if item.status in PREPARABLE_STATUSES:
+        item.status = "preparing"
+        await db.flush()
+
+    try:
+        submission = await runner.submit(item=item, prior=prior)
+    except Exception as exc:  # noqa: BLE001 — 제출 실패는 상태이지 예외가 아니다
+        return await _fail(
+            db,
+            item,
+            version=await _next_version(db, item_id),
+            error_code=f"{stage_name.upper()}_SUBMIT_FAILED",
+            error_message=str(exc)[:500],
+            payload={**prior, "stages": []},
+        )
+
+    if submission.error_code:
+        return await _fail(
+            db,
+            item,
+            version=await _next_version(db, item_id),
+            error_code=submission.error_code,
+            error_message=submission.error_message or submission.error_code,
+            payload={**prior, **submission.payload, "stages": []},
+        )
+
+    # 실행 건수만큼 행을 남긴다. 0건이면 `AITask` 가 없다 — LLM 을 안 부른 스테이지다.
+    task_ids: list[int] = []
+    for ref in submission.task_refs:
+        task = AITask(
+            item_id=item_id,
+            kind=stage_name,
+            status="running",
+            external_task_ref=str(ref),
+        )
+        db.add(task)
+        await db.flush()
+        task_ids.append(task.id)
+
+    version = await _next_version(db, item_id)
+    preparation = ItemPreparation(
+        item_id=item_id,
+        version=version,
+        status="running",
+        # **N 건이면 비운다.** 단일 FK 로는 fan-out 을 가리킬 수 없어서,
+        # 수확은 `AITask.item_id` + `kind` 로 되찾는다.
+        ai_task_id=task_ids[0] if len(task_ids) == 1 else None,
+        payload={
+            **prior,
+            **submission.payload,
+            "stage": stage_name,
+            # 성공해야 완료로 센다 — 지금은 진행 중이라 비워 둔다.
+            "stages": [],
+            "task_refs": [str(r) for r in submission.task_refs],
+        },
+    )
+    db.add(preparation)
+    await db.flush()
+
+    return PrepareResult(
+        item_id=item_id, status="preparing", preparation_id=preparation.id, version=version
+    )
+
+
+async def running_preparation(db: AsyncSession, item_id: int) -> ItemPreparation | None:
+    """진행 중인 준비 버전. 어느 스테이지의 것인지는 `payload["stage"]` 가 안다.
+
+    레거시 수집+요약 준비에는 그 키가 없다 — 그것으로 둘을 가른다.
+    """
+    return await db.scalar(
+        select(ItemPreparation)
+        .where(ItemPreparation.item_id == item_id, ItemPreparation.status == "running")
+        .order_by(ItemPreparation.version.desc())
+        .limit(1)
+    )
+
+
+async def _prior_payload(db: AsyncSession, item_id: int) -> dict[str, Any]:
+    """직전까지 성공한 준비의 payload. 없으면 빈 dict."""
+    payload = await db.scalar(
+        select(ItemPreparation.payload)
+        .where(ItemPreparation.item_id == item_id, ItemPreparation.status == "succeeded")
+        .order_by(ItemPreparation.version.desc())
+        .limit(1)
+    )
+    return dict(payload or {})
+
+
+async def harvest_auto_stage(
+    db: AsyncSession, item: QueueItem, *, runner: AutoStage
+) -> PrepareResult:
+    """제출해 둔 auto 스테이지를 확인해 끝났으면 닫는다. **멱등이다.**
+
+    **부분 실패는 진행한다.** N 건 중 일부만 실패해도 성공분으로 다음을 간다 —
+    레포 하나가 막혔다고 그날 조사를 통째로 버리지 않는다(SPEC-011 §5). 전부
+    실패하면 그때는 스테이지 실패다.
+    """
+    if item.status != "preparing":
+        return PrepareResult(item_id=item.id, status=item.status)
+
+    preparation = await db.scalar(
+        select(ItemPreparation)
+        .where(ItemPreparation.item_id == item.id, ItemPreparation.status == "running")
+        .order_by(ItemPreparation.version.desc())
+        .limit(1)
+        .with_for_update()
+    )
+    if preparation is None:
+        logger.warning("항목 %s 가 preparing 인데 running 준비가 없다", item.id)
+        item.status = "prepare_failed"
+        await db.flush()
+        return PrepareResult(
+            item_id=item.id, status="prepare_failed", error_code="PREPARATION_MISSING"
+        )
+
+    payload = dict(preparation.payload or {})
+    stage_name = str(payload.get("stage") or "")
+    refs = [str(r) for r in (payload.get("task_refs") or [])]
+
+    results: list[str] = []
+    failures: list[str] = []
+    for ref in refs:
+        execution = await runner.poll(ref)
+        if execution.running:
+            # 하나라도 안 끝났으면 아직 수확할 때가 아니다.
+            return PrepareResult(
+                item_id=item.id,
+                status="preparing",
+                preparation_id=preparation.id,
+                version=preparation.version,
+            )
+        if execution.status == "failed":
+            failures.append(execution.error_message or execution.error_code or "실행 실패")
+            continue
+        results.append(execution.result or "")
+
+    if refs and not results:
+        return await _close_failed(
+            db,
+            item,
+            preparation,
+            None,
+            error_code=f"{stage_name.upper()}_ALL_FAILED" if stage_name else "STAGE_ALL_FAILED",
+            error_message="; ".join(failures)[:500] or "제출한 실행이 전부 실패했다",
+        )
+
+    try:
+        piece = runner.parse(results, item=item, prior=payload)
+    except Exception as exc:  # noqa: BLE001
+        return await _close_failed(
+            db,
+            item,
+            preparation,
+            None,
+            error_code=f"{stage_name.upper()}_FAILED" if stage_name else "STAGE_FAILED",
+            error_message=str(exc)[:500],
+        )
+
+    await db.execute(
+        update(AITask)
+        .where(
+            AITask.item_id == item.id,
+            AITask.kind == stage_name,
+            AITask.status == "running",
+        )
+        .values(status="succeeded", finished_at=_now())
+    )
+
+    # **새 dict 로 갈아 끼운다.** JSONB 는 제자리 수정으로 변경을 감지하지 못한다.
+    preparation.payload = {
+        **payload,
+        **piece,
+        # 이제야 완료로 센다. 실행기가 덮는 스테이지 전부가 한 번에 닫힌다.
+        "stages": list(runner.stages),
+        "failures": failures,
+    }
+    preparation.status = "succeeded"
+    await db.flush()
+
+    return PrepareResult(
+        item_id=item.id,
+        status="preparing",
+        preparation_id=preparation.id,
+        version=preparation.version,
+    )
 
 
 async def submit_preparation(

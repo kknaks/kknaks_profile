@@ -15,9 +15,9 @@ from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 
 import config
-from core.models import Gate, GateRevision, ItemPreparation, QueueItem
+from core.models import AITask, Gate, GateRevision, ItemPreparation, QueueItem
 from service.pipeline import intake, runtime
-from tests.fakes import FakeRunner, FakeSummarizer, InlineDriver
+from tests.fakes import FakeAutoStage, FakeRunner, FakeSummarizer, InlineDriver
 
 try:
     _probe = create_engine(config.database_url())
@@ -60,14 +60,15 @@ async def world():
             bind=conn, expire_on_commit=False, join_transaction_mode="create_savepoint"
         )
 
-    def build(*, fetch=_fetch_ok, summarizer=None, runner=None):
+    def build(*, fetch=_fetch_ok, summarizer=None, runner=None, auto_stages=None, stages=None):
         summarizer = summarizer or FakeSummarizer(summary="요약본")
         runner = runner or FakeRunner(payload=ROUTE_PAYLOAD)
         runtime._registry.clear()
         driver = InlineDriver(session_factory=session_factory, fetch=fetch)
         runtime.register(
             summarizer=summarizer,
-            stages={"route": runner, "source_note": runner},
+            stages=stages or {"route": runner, "source_note": runner},
+            auto_stages=auto_stages,
             driver=driver,
         )
         return driver, summarizer, runner
@@ -207,3 +208,143 @@ class TestRecover:
         assert item.status == "in_review"
         assert [g.status for g in gates] == ["review_pending"]
         assert len(runner.calls) == submitted  # 재제출 없음
+
+
+async def _new_daily_item(session_factory, note: str) -> int:
+    async with session_factory() as db:
+        created = await intake(db, note=note, source_kind="daily_commit")
+        await db.commit()
+    return created.item_id
+
+
+def _daily_stages(**overrides):
+    """잔디의 auto 스테이지 셋. `investigate` 만 fan-out 이다."""
+    stages = {
+        "collect": FakeAutoStage(stages=("collect",), submits=0, piece={"collect": "조사"}),
+        "investigate": FakeAutoStage(
+            stages=("investigate",), submits=3, piece={"investigate": "레포별"}
+        ),
+        "compose": FakeAutoStage(stages=("compose",), submits=1, piece={"compose": "초안"}),
+    }
+    stages.update(overrides)
+    return stages
+
+
+@needs_db
+class TestDailyCommitRail:
+    """auto 스테이지 셋을 정의 순서로 지나 `daily` 게이트까지 (KDEV-WORK-017 P2).
+
+    유튜브는 준비가 한 번이라 이 경로를 밟지 않는다 — 여기서만 검증된다.
+    """
+
+    async def test_three_auto_stages_then_daily_gate(self, world):
+        auto = _daily_stages()
+        gate_runner = FakeRunner(payload={"daily": {"summary": []}})
+        driver, _, _ = world(auto_stages=auto, stages={"daily": gate_runner})
+        item_id = await _new_daily_item(world.session_factory, "2026-08-01 잔디")
+
+        await driver.follow(item_id)
+
+        async with world.session_factory() as db:
+            item = await db.get(QueueItem, item_id)
+            preps = (
+                await db.scalars(
+                    select(ItemPreparation)
+                    .where(ItemPreparation.item_id == item_id)
+                    .order_by(ItemPreparation.version)
+                )
+            ).all()
+            gates = (await db.scalars(select(Gate).where(Gate.item_id == item_id))).all()
+
+        # 스테이지마다 준비 버전 하나씩, 정의 순서대로.
+        assert [p.payload.get("stage") for p in preps] == ["collect", "investigate", "compose"]
+        assert all(p.status == "succeeded" for p in preps)
+        # 게이트는 정의에서 골라야 한다 — route 가 아니라 daily 다.
+        assert [g.stage_name for g in gates] == ["daily"]
+        assert item.status == "in_review"
+
+    async def test_payload_accumulates_across_stages(self, world):
+        """앞 스테이지 산출물이 뒤로 흘러야 한다 — `latest_preparation` 이 하나만 집는다."""
+        auto = _daily_stages()
+        driver, _, _ = world(
+            auto_stages=auto, stages={"daily": FakeRunner(payload={})}
+        )
+        item_id = await _new_daily_item(world.session_factory, "누적 확인")
+
+        await driver.follow(item_id)
+
+        # compose 가 받은 prior 에 앞 둘의 산출물이 다 들어 있다.
+        assert auto["compose"].submitted[-1]["collect"] == "조사"
+        assert auto["compose"].submitted[-1]["investigate"] == "레포별"
+
+        async with world.session_factory() as db:
+            last = await db.scalar(
+                select(ItemPreparation)
+                .where(ItemPreparation.item_id == item_id)
+                .order_by(ItemPreparation.version.desc())
+                .limit(1)
+            )
+        assert last.payload["collect"] == "조사"
+        assert last.payload["compose"] == "초안"
+
+    async def test_fan_out_submits_one_execution_per_repo(self, world):
+        """`investigate` 는 N 건을 낸다 — 단일 `ai_task_id` 로는 못 가리킨다."""
+        auto = _daily_stages()
+        driver, _, _ = world(auto_stages=auto, stages={"daily": FakeRunner(payload={})})
+        item_id = await _new_daily_item(world.session_factory, "fan-out")
+
+        await driver.follow(item_id)
+
+        async with world.session_factory() as db:
+            tasks = (
+                await db.scalars(
+                    select(AITask).where(
+                        AITask.item_id == item_id, AITask.kind == "investigate"
+                    )
+                )
+            ).all()
+            prep = await db.scalar(
+                select(ItemPreparation).where(
+                    ItemPreparation.item_id == item_id,
+                    ItemPreparation.payload["stage"].astext == "investigate",
+                )
+            )
+        assert len(tasks) == 3
+        assert all(t.status == "succeeded" for t in tasks)
+        assert prep.ai_task_id is None  # N 건이라 비운다
+        assert auto["investigate"].parsed[-1] == [f"result:investigate-{i}" for i in (1, 2, 3)]
+
+    async def test_partial_failure_still_advances(self, world):
+        """레포 하나가 막혀도 나머지로 간다 (SPEC-011 §5)."""
+        auto = _daily_stages(
+            investigate=FakeAutoStage(
+                stages=("investigate",), submits=3, fail_times=1, piece={"investigate": "일부"}
+            )
+        )
+        driver, _, _ = world(auto_stages=auto, stages={"daily": FakeRunner(payload={})})
+        item_id = await _new_daily_item(world.session_factory, "부분 실패")
+
+        await driver.follow(item_id)
+
+        async with world.session_factory() as db:
+            item = await db.get(QueueItem, item_id)
+            gates = (await db.scalars(select(Gate).where(Gate.item_id == item_id))).all()
+        assert [g.stage_name for g in gates] == ["daily"]  # 게이트는 열린다
+        assert item.status == "in_review"
+        assert len(auto["investigate"].parsed[-1]) == 2  # 성공분 둘만 넘어갔다
+
+    async def test_all_failed_closes_the_stage(self, world):
+        """전 레포 실패는 스테이지 실패다 — 재시도를 열어 둔다."""
+        auto = _daily_stages(
+            investigate=FakeAutoStage(stages=("investigate",), submits=2, fail_times=2)
+        )
+        driver, _, _ = world(auto_stages=auto, stages={"daily": FakeRunner(payload={})})
+        item_id = await _new_daily_item(world.session_factory, "전부 실패")
+
+        await driver.follow(item_id)
+
+        async with world.session_factory() as db:
+            item = await db.get(QueueItem, item_id)
+            gates = (await db.scalars(select(Gate).where(Gate.item_id == item_id))).all()
+        assert item.status == "prepare_failed"
+        assert gates == []  # 게이트를 열지 않는다

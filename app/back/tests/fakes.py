@@ -148,6 +148,66 @@ class InlineDriver(PipelineDriver):
         await self._drive(item_id)
 
 
+class FakeAutoStage:
+    """`AutoStage` 를 흉내 낸다 (KDEV-WORK-017 P2).
+
+    제출 건수를 **0·1·N 으로 바꿔 가며** 레일을 시험하는 것이 이 가짜의 목적이다.
+    `collect` 는 LLM 을 안 부르고(0), `investigate` 는 레포마다 하나씩 낸다(N).
+    한 건만 가정한 가짜를 쓰면 fan-out 경로가 검증되지 않는다.
+    """
+
+    def __init__(
+        self,
+        *,
+        stages: tuple[str, ...],
+        submits: int = 1,
+        piece: dict[str, Any] | None = None,
+        submit_payload: dict[str, Any] | None = None,
+        fail_times: int = 0,
+        error_code: str | None = None,
+    ) -> None:
+        self.stages = stages
+        self.submits = submits
+        self.piece = piece if piece is not None else {}
+        self.submit_payload = submit_payload or {}
+        #: 이 횟수만큼 개별 실행이 실패한다 — 부분 실패 경로를 만든다.
+        self.fail_times = fail_times
+        #: 제출 전에 막힌 경우를 흉내 낸다.
+        self.error_code = error_code
+        #: `submit` 이 받은 `prior` 들 — payload 가 스테이지 사이에 누적되는지 본다.
+        self.submitted: list[dict[str, Any]] = []
+        self.parsed: list[list[str]] = []
+        self.waited: list[str] = []
+        self._issued = 0
+
+    async def submit(self, *, item, prior):
+        from service.pipeline.prepare import StageSubmission
+
+        self.submitted.append(dict(prior))
+        if self.error_code:
+            return StageSubmission([], {}, error_code=self.error_code, error_message="막힘")
+        refs = []
+        for _ in range(self.submits):
+            self._issued += 1
+            refs.append(f"{self.stages[0]}-{self._issued}")
+        return StageSubmission(refs, dict(self.submit_payload))
+
+    async def wait(self, task_ref: str) -> None:
+        self.waited.append(task_ref)
+
+    async def poll(self, task_ref: str) -> Execution:
+        if self.fail_times > 0:
+            self.fail_times -= 1
+            return Execution(
+                status="failed", error_code="RuntimeError", error_message="stage boom"
+            )
+        return Execution(status="succeeded", result=f"result:{task_ref}")
+
+    def parse(self, results: list[str], *, item, prior) -> dict[str, Any]:
+        self.parsed.append(list(results))
+        return dict(self.piece)
+
+
 def first_gate_runners(item: QueueItem, runner) -> dict[str, Any]:
     """실행기 하나를 **그 항목의 첫 게이트 이름**에 걸어 준다.
 
