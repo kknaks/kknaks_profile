@@ -77,7 +77,7 @@ rules/knowledge-note-pipeline.md     # 작성 규칙 (4층·SoT 위임·개념 �
 
 - 제품 문서(`products/**`) — `rules/product-doc-pipeline.md` + `templates/product/`
 - 교안(`persona/contents/**`) — `templates/persona/content.md`. 그래프 밖이라 4층 모델 대상이 아니다. 승인 게이트의 `derived` 스테이지와 `content_enrich` 잡이 **둘 다 이 파일을 읽는다** — 형식을 고치려면 여기만 고친다.
-- 잔디 산출물(`persona/daily/**` · `persona/career/**`) — `templates/persona/daily.md` · `templates/persona/career.md`. 교안과 같이 그래프 밖이라 4층 모델 대상이 아니고 발행 시 그래프 검증도 받지 않는다. 잔디 파이프라인의 `compose` 스테이지가 두 파일을 읽어 프롬프트를 만든다 — 형식을 고치려면 여기만 고친다.
+- 잔디 산출물(`persona/daily/**` · `persona/career/**`) — `templates/persona/daily.md` · `templates/persona/career.md`. 교안과 같이 그래프 밖이라 4층 모델 대상이 아니고 발행 시 그래프 검증도 받지 않는다. 잔디 파이프라인의 `daily` 게이트 스테이지가 두 파일을 읽어 프롬프트를 만든다 — 형식을 고치려면 여기만 고친다.
 
   두 문서의 성격이 반대다. **daily 본문은 사이트에 노출되지 않고**(잔디가 쓰는 것은 `counts` 와 `summary[]` 뿐이다) 다음 단계의 입력으로만 쓰이는 반면, **career 본문은 경력 페이지에 그대로 렌더된다.** 그래서 daily 는 재료로 남기고 career 는 압축해 다시 쓴다.
 

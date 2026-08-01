@@ -13,7 +13,7 @@ roles:
   be: kknaks
   qa: kknaks
   ops: kknaks
-progress: 35
+progress: 37
 created_at: 2026-07-31
 updated_at: 2026-08-01
 tags:
@@ -62,7 +62,7 @@ links:
 | Type | new-feature |
 | Owner | kknaks |
 | Status | in_progress |
-| Progress | 35% (P1 done · P2 거의 완료 — 2-A 전량 닫힘, 2-B 는 접수 진입점만 남음) |
+| Progress | 37% (P1 done · P2 거의 완료 — 2-A 전량 닫힘, 2-B 는 접수 진입점만 남음. +2%p 는 신규 작업이 아니라 **SPEC 환류 해소**와 **게이트 계약 정정**분이다 — 아래 `1f690fb` 완료 증거) |
 | Branch/PR | `work-017-p2` |
 | Blocker | 없음 |
 | Next | P2 잔여 — `intake()` 합성 키(`daily:{date}`) + 접수 진입점 + 백필 · `auto:false` 접수 전 차단 |
@@ -84,7 +84,7 @@ links:
 
 - `templates/persona/daily.md`·`career.md` 신규 + `agent.md` 등록
 - **자동 준비부 일반화** — 정의의 `auto` 스테이지를 실제로 읽어 여러 개를 순서대로 돌린다
-- `daily_commit` 파이프라인 정의 + `investigate`(fan-out)·`compose` 스테이지
+- `daily_commit` 파이프라인 정의 + `investigate`(fan-out) 자동 스테이지 + `daily` 게이트 작성
 - **더미 `collect`** — SPEC-011 §4 계약 전량을 코드가 지어내 P1~P4 를 외부 연동 없이 돌린다
 - `apply/` 확장 6종 + `publish_atomic` 전환
 - 게이트 화면 — 줄 단위 편집 · career 문장 단위 승인
@@ -117,7 +117,7 @@ links:
 | `service/pipeline/intake.py` | **`intake()` 시그니처 확장** — 합성 키를 받는 자리 — P2 |
 | `service/pipeline/collect_dummy.py` (신규) | 더미 조사 — SPEC-011 §4 계약 전량, 시나리오 7종 — P2 |
 | `service/pipeline/stages/investigate.py` (신규) | 레포별 조사 fan-out — P2 |
-| `service/pipeline/stages/compose.py` (신규) | 취합 — daily·career·concept 초안 — P2 |
+| `service/pipeline/stages/daily.py` (신규) | **게이트 실행기** — 조사 결과를 daily·career·concept 초안으로 쓴다 — P2. 종전 계획의 `stages/compose.py`(auto)를 대체한다 |
 | `service/apply/plan.py` | allowlist 2개 · `LAYER_PREFIX` · `build_actions` 분기 · `upsert` — P3 |
 | `service/apply/graph_check.py` | `daily`·`career` 제외 — P3 |
 | `service/apply/executor.py` | 본인 작성 보호 · 사람 전용 필드 검증 — P3 |
@@ -151,7 +151,7 @@ WORK-016 스키마가 이미 받아 준다. 확인한 근거 넷:
 
 | 확인한 것 | 근거 |
 |---|---|
-| `AITask.kind` 에 새 값(`investigate`·`compose`)을 넣을 수 있다 | `models.py` 가 CHECK 를 안 걸었다. 주석이 그 이유를 밝혀 뒀다 — "스테이지는 정의에서 오므로 CHECK 를 걸지 않는다" |
+| `AITask.kind` 에 새 값(`investigate`·`daily`)을 넣을 수 있다 | `models.py` 가 CHECK 를 안 걸었다. 주석이 그 이유를 밝혀 뒀다 — "스테이지는 정의에서 오므로 CHECK 를 걸지 않는다" |
 | fan-out N 건을 항목으로 되찾을 수 있다 | `ix_ai_tasks_item_id` 인덱스가 있다 |
 | 준비 버전이 실행 1건에 묶이지 않아도 된다 | `ItemPreparation.ai_task_id` 가 nullable 이다 |
 | 스테이지별 결과를 버전 안에 쌓을 수 있다 | `ItemPreparation.payload` 가 JSONB 다 |
@@ -169,7 +169,7 @@ WORK-016 스키마가 이미 받아 준다. 확인한 근거 넷:
 
 | Consumer | Interface | 설명 |
 |---|---|---|
-| P2 `compose` 스테이지 | P1 의 템플릿 파일 | 형식 SoT 를 읽어 프롬프트를 만든다 |
+| P2 `daily` 게이트 작성 | P1 의 템플릿 파일 | 형식 SoT 를 읽어 프롬프트를 만든다 |
 | P2 나머지 전부 | P2 최선두의 준비부 일반화 | auto 스테이지를 여럿 돌릴 기계가 먼저 있어야 한다 |
 | P3 발행부 | P2 의 게이트 산출물 | 승인 payload 형태가 계획 조립 입력이다 |
 | P4 완주 | P2+P3 | 더미 한 바퀴는 레일과 발행부가 둘 다 있어야 돈다 |
@@ -177,14 +177,14 @@ WORK-016 스키마가 이미 받아 준다. 확인한 근거 넷:
 
 ## Internal Interface Contract
 
-`collect` 산출물(= `investigate`·`compose` 의 입력)은 SPEC-011 §4 Data Contract 를 따른다. 여기서 다시 적지 않는다.
+`collect` 산출물(= `investigate` 와 `daily` 게이트 작성의 입력)은 SPEC-011 §4 Data Contract 를 따른다. 여기서 다시 적지 않는다.
 
 **스테이지 실행기 계약은 두 갈래다.** 하나로 뭉뚱그리면 auto 스테이지가 승인 리비전을 만들게 된다.
 
 | 갈래 | 해당 스테이지 | 프로토콜 | 산출물 |
 |---|---|---|---|
-| 게이트 | `daily` | `gates.StageRunner` (`submit`·`poll`·`parse`) 그대로 — WORK-016 이 세운 것이다 | `GateRevision`. `open_gate`/`harvest` 경로를 탄다 |
-| auto | `collect`·`investigate`·`compose` | 준비부의 `Summarizer` 계열 (`submit`·`poll`·`parse`·`wait`) | `ItemPreparation` 버전. **`GateRevision` 을 만들지 않는다** |
+| 게이트 | `daily` | `gates.StageRunner` (`submit`·`poll`·`parse`) 그대로 — WORK-016 이 세운 것이다 | `GateRevision`. `open_gate`/`harvest` 경로를 탄다. **작성이 여기 있다** |
+| auto | `collect`·`investigate` | 준비부의 `Summarizer` 계열 (`submit`·`poll`·`parse`·`wait`) | `ItemPreparation` 버전. **`GateRevision` 을 만들지 않는다** |
 
 `investigate` 만 한 스테이지가 N 건을 제출한다. 그 N 건을 어떻게 저장하는지는 아래 P2 의 선결 항목이다 — 열어 두면 중반에 구조가 흔들린다.
 
@@ -203,14 +203,14 @@ WORK-016 스키마가 이미 받아 준다. 확인한 근거 넷:
 ### Phase 1 — 형식 SoT (문서)
 
 - **Status**: DONE
-- **설명**: `compose` 가 읽을 양식을 먼저 만든다. 코드가 아니라 문서 작업이고, 뒤 Phase 전부의 선행 조건이다.
+- **설명**: 산출물 작성이 읽을 양식을 먼저 만든다. 코드가 아니라 문서 작업이고, 뒤 Phase 전부의 선행 조건이다. (발주 당시에는 그 읽는 주체를 `compose` auto 스테이지로 적었다 — 지금은 `daily` 게이트다. 아래 Phase 2 참조. **템플릿 자체는 무영향**이다.)
 - **작업**:
   - [x] `templates/persona/daily.md` — frontmatter 필드 소유(`counts`=코드), 본문 섹션, 길이 상한 1200자
   - [x] `templates/persona/career.md` — 섹션 5종(`## 담당 영역` 포함), **append 금지·압축 재서술** 규율, 섹션당 5~7줄 상한, `stack` 판정 근거, 사람 전용 필드 격리
   - [x] `agent.md` — "별도 계열" 에 daily·career 등록 (교안과 같은 형태)
 - **검증**:
   - [x] 두 템플릿이 존재하고 `agent.md` 에서 도달 가능하다
-  - [x] 형식 명세의 SoT 가 템플릿 둘뿐이다 — 새 `compose` 는 여기를 읽는다
+  - [x] 형식 명세의 SoT 가 템플릿 둘뿐이다 — 작성 스테이지가 여기를 읽는다
   - [x] `bullets` 가 "AI 가 정하지 않는다" 로 명시돼 있다
 - **완료 증거**:
   - 커밋 `7155cd2`. `templates/persona/daily.md`·`career.md` 신설, `agent.md` 「별도 계열」에 교안 다음 **셋째 항목**으로 등록.
@@ -228,7 +228,7 @@ WORK-016 스키마가 이미 받아 준다. 확인한 근거 넷:
 
 #### 2-A. 자동 준비부 일반화 (**나머지 전부의 선행조건**)
 
-정의에 auto 스테이지를 셋 적어도 **돌릴 기계가 없었다.** 현행 준비부는 "수집 1회 + 요약 1회" 로 굳어 있다. `definitions.py` 의 `Stage("collect","auto")`·`Stage("summarize","auto")` 가 그 증거다 — 정의는 둘인데 아무도 읽지 않았다.
+정의에 auto 스테이지를 여럿 적어도 **돌릴 기계가 없었다.** 현행 준비부는 "수집 1회 + 요약 1회" 로 굳어 있다. `definitions.py` 의 `Stage("collect","auto")`·`Stage("summarize","auto")` 가 그 증거다 — 정의는 둘인데 아무도 읽지 않았다.
 
 - **작업**:
   - [x] `driver._finish_preparing` — 수확 뒤 "다음 auto 스테이지가 남았나" 분기. 남으면 제출하고 `preparing` 을 유지한 채 `True` 를 반환한다(기존 `MAX_STEPS` 루프가 다시 돈다). 없으면 `in_review` + 첫 게이트
@@ -241,7 +241,7 @@ WORK-016 스키마가 이미 받아 준다. 확인한 근거 넷:
   - [x] 유튜브 회귀 방지 — 등록된 auto 실행기가 있으면 그쪽이 이기고, 없으면 레거시 준비부가 덮는다. **감싸기 자체는 의도적 보류**다 (아래 「판정 둘」)
 - **검증**:
   - [x] 유튜브 준비 흐름에 회귀가 없다
-  - [x] `daily_commit` 이 auto 3개를 정의 순서대로 지난다
+  - [x] `daily_commit` 이 auto 스테이지를 정의 순서대로 지난다 (착수 시점 3개 → 현재 2개, `1f690fb` 이후)
   - [x] 첫 게이트가 정의에서 결정된다 (유튜브=`route`, 잔디=`daily`)
 
 > **fan-out 저장 방식은 Open Issue 가 아니라 여기서 정한다.** `_running_preparation_ref` 와 `harvest_preparation` 이 running 준비 **1건**을 `with_for_update` 로 잡고 있어서, 어느 형태를 고르든 그 두 함수를 고쳐야 한다. 열어 두면 중반에 구조가 흔들린다. 이 결정이 "조사 중 (3/13)" 진행 표시(SPEC-013 U-1)와 부분 실패 처리의 전제이기도 하다.
@@ -249,13 +249,13 @@ WORK-016 스키마가 이미 받아 준다. 확인한 근거 넷:
 #### 2-B. 잔디 파이프라인
 
 - **작업**:
-  - [x] `definitions.py` — `DAILY_COMMIT` 등록 (`collect`·`investigate`·`compose` auto + `daily` gate)
+  - [x] `definitions.py` — `DAILY_COMMIT` 등록 (`collect`·`investigate` auto + `daily` gate)
   - [x] **더미 `collect`** — SPEC-011 §4 계약 전량을 지어낸다 (아래 「더미 경계」)
   - [x] `investigate` 스테이지 — 레포별 N 건 제출·수확, 결과를 `ItemPreparation` payload 에 누적
   - [x] 부분 실패 처리 — 일부 실패는 진행, 전부 실패면 스테이지 실패
-  - [x] `compose` 스테이지 — 템플릿 로드 + daily·career·concept 초안, `changed:false` 지원
+  - [x] **`daily` 게이트 작성** — 템플릿 로드 + daily·career·concept 초안, `changed:false` 지원. **종전 계획의 `compose` auto 스테이지를 대체한다** (커밋 `d5bb3cd` 작성 로직 → `1f690fb` 게이트로 이전)
   - [x] career 결정적 skip (귀속 커밋 0이면 스테이지 미생성)
-  - [x] `runtime` 등록 — `slack_bridge/bootstrap.py` 가 셋을 실제로 배선한다
+  - [x] `runtime` 등록 — `slack_bridge/bootstrap.py` 가 auto 둘 + 게이트 `daily` 를 실제로 배선한다
   - [ ] `intake()` 시그니처 확장 + `normalized_url="daily:{date}"` 합성 키 — **읽는 쪽만 됐다.** `collect_dummy.target_date()` 가 그 키를 파싱하고 없으면 어제(KST)로 떨어진다. 키를 **쓰는** 접수 진입점이 없다
   - [ ] 활동 0 · `auto:false` 접수 전 차단 — 활동 0 은 `collect` 가 `NO_ACTIVITY` 로 막는다(접수 **후** 차단). `auto:false` 차단은 미착수
 - **검증**:
@@ -292,12 +292,19 @@ WORK-016 스키마가 이미 받아 준다. 확인한 근거 넷:
     - career 귀속은 `type=company` 만 간다. 대상이 실재해야 해서 `medisolve-ai` 하나로 모인다(`is_current: true` 가 그것뿐).
     - `collect` 는 제출 0건이라 **`AITask` 가 생기지 않는다** — 조사는 생성이 아니라 읽는 일이고 P5 에서 진짜가 되어도 그 성질은 그대로다. 활동 0(`empty`)은 `NO_ACTIVITY` 로 스테이지를 막는다.
   - 커밋 `b1a2642` — **`investigate` 스테이지 + 수확 계약 정정.** 666 → **678 passed**(신규 12). 레포마다 하나씩 제출한다 — 하루치 diff 를 한 프롬프트에 몰아넣으면 레포 하나가 다른 레포의 서술을 밀어내고, 레포 하나 때문에 그날 조사 **전체**가 날아간다. 여기서 만드는 것은 문서가 아니라 `compose` 가 읽을 **재료**라 `templates/persona/` 를 참조하지 않는다. 회사·개인 레포도 구분하지 않는다 — 조사 깊이는 균일하고 공개 통제는 게이트가 한다. 빠진 레포와 빈 조사문은 `missing` 으로 들고 간다(성공으로 넘기면 `compose` 가 근거 없이 서술한다).
-  - 커밋 `d5bb3cd` — **`compose` 스테이지.** 678 → **699 passed**(신규 21). `stages/compose.py` + `service/content_format.py` 로더.
+  - 커밋 `d5bb3cd` — **작성 로직.** 678 → **699 passed**(신규 21). 당시에는 `stages/compose.py`(auto)였다 — **이 로직은 `1f690fb` 에서 그대로 `daily` 게이트로 옮겨 갔다**(아래). `service/content_format.py` 로더는 그대로다.
     - **P1 의 형식 SoT 가 여기서 실제로 읽힌다.** `templates/persona/daily.md`·`career.md` 를 실어 프롬프트를 만들고, 테스트가 마커 문자열로 "프롬프트에 **복사돼 있지 않다**"를 검증한다(`test_format_is_loaded_from_templates_not_copied`). **P1 검증 2번("형식 명세의 SoT 가 템플릿 둘뿐이다")이 이제 코드로 증명됐다.** 로더를 교안 모듈(`content_format`)에 얹은 것은 같은 걱정거리이고 같은 캐시를 쓰기 때문이다 — 닮은 모듈을 하나 더 만들 이유가 없다.
     - `counts` 는 **코드가 주입한다** — AI 출력의 숫자는 버린다. 본문 하드 상한 초과는 자르고, 빈 `summary` 줄은 걸러낸다(활동 0 인 카테고리에 빈 줄이 오면 잔디 셀 카드에 그대로 뜬다).
     - career 는 **제출 시점에 대상 목록을 박아** 두고 모델이 대상 밖 career 를 내면 수확이 버린다. **전문 교체**라 기존 본문을 프롬프트에 함께 넣는다 — 안 주면 모델이 append 할 수밖에 없고 career 가 daily 의 복사본이 된다.
     - `summary` 모양(`{ko,en} list[str]`)을 여기서 막는다. 로더가 하드 검증하므로 통과시키면 **발행 뒤 persona 로드 전체**가 실패한다.
   - 커밋 `f36df6d` — **실배선.** 699 passed(신규 0 — 배선만). `slack_bridge/bootstrap.py` 가 `auto_stages={collect, investigate, compose}` 를 등록한다. 그전까지 셋은 존재만 하고 아무도 부르지 않았다. `collect` 는 LLM 을 안 불러 클라이언트조차 없다 — 레지스트리를 나눠 둔 것이 여기서 값을 한다.
+  - 커밋 `1f690fb` — **작성 주체를 `daily` 게이트로 옮겼다. 발주 계획의 `compose` auto 스테이지를 없앤다.** 699 → **702 passed**. `stages/compose.py`(278줄) 삭제 → `stages/daily.py`(`DailyStage`), `tests/test_pipeline_compose.py` → `test_pipeline_daily.py`, `definitions.py` 의 `DAILY_COMMIT` auto 가 셋 → 둘, `bootstrap.py` 가 `daily` 를 게이트 실행기로 등록.
+
+    **왜 되돌렸나 — 재생성이 작성 주체를 강제한다.** 발주는 `compose`(auto)가 초안을 만들고 게이트는 보여 주기만 하는 모양이었다. 그런데 SPEC-013 S-3 이 "재생성은 조사를 다시 돌리지 않는다. 원문이 바뀐 게 아니라 서술이 마음에 안 든 것이다" 로 정해 두었다. **즉 재생성이 다시 만드는 것은 서술이고, 그 일을 하는 주체는 게이트일 수밖에 없다.** 게이트가 작성 능력을 갖는 순간 `compose` 의 작성은 **첫 회에만 쓰이고** 재생성마다 게이트가 다시 만드는 중복이 된다 — 매일 LLM 호출 하나를 버리는 셈이다. 세 번째 근거는 대칭이다: 유튜브의 `summarize`(auto)도 route 판단 **재료**만 만들고 노트 작성은 게이트 스테이지(`source_note`·`concept`·`derived`)가 한다. 잔디에서 `compose` 가 작성까지 하면 같은 레일 위에 두 규율이 생긴다.
+    - **버려진 코드는 없다.** `d5bb3cd` 가 쓴 작성 로직(형식 SoT 로드·`counts` 코드 주입·`summary` 모양 검증·career 전문 교체)은 그대로 `DailyStage` 로 옮겨 갔다. 바뀐 것은 **어느 프로토콜을 구현하느냐**다 — `AutoStage`(`submit`/`wait`/`parse`, `ItemPreparation` 산출)에서 `AgentStage`(`prompt`/`payload`/`parse`, `GateRevision` 산출)로.
+    - **옮기면서 게이트 계약에 맞춰 둘을 고쳤다.** ① **career 대상 목록을 저장하지 않고 제출·수확 양쪽에서 다시 계산한다**(`career_targets()`). 입력이 같으면 결과가 같으므로 저장할 이유가 없고, 제출 시점 값을 붙잡아 두면 back 재시작 뒤 수확이 다른 판단을 한다 — `AgentStage` 가 경고하는 함정이다. ② **`target_path` 를 시스템이 조립해 payload 에 담는다.** 경로를 모델에 맡기면 allowlist 밖으로 쓰는 계획이 나온다. 기존 노트 게이트와 같은 규율이고, **P3 발행부의 입력 형태가 이로써 확정됐다.**
+    - **체인 계약은 변하지 않았다.** 게이트는 여전히 `daily` 하나이므로 "승인이 곧 체인 종료이자 발행 트리거"가 그대로다. 준비부 일반화(2-A)도 무영향 — auto 스테이지 개수는 정의에서 읽으므로 셋이 둘이 되어도 코드가 바뀌지 않는다.
+    - **SPEC 환류 완료**: SPEC-013 v0.0.2(§1 Meta·§2 Placement/U-1·§3 S-1/S-3·§4 Flow/State·§5·§6). 개정 이유를 스펙 본문 머리에 남겼다. **SPEC-011·012 는 무영향** — `collect`·`investigate` 계약과 문서 형식이 그대로다.
 
   **판정 둘 — 안 한 것과 그 근거.**
 
@@ -309,7 +316,7 @@ WORK-016 스키마가 이미 받아 준다. 확인한 근거 넷:
   1. `parse` 가 성공분만 **순서 있는 리스트**로 받았다. 부분 실패로 한 건이 빠지면 색인이 밀려 **A 레포 조사문이 B 레포 것으로** 읽힌다. `task_ref` 로 키를 잡는 dict 으로 바꿨고, 어느 레포가 빠졌는지는 `submit` 이 남긴 대응표와 맞춰 알아낸다.
   2. 수확이 `payload["failures"]` 에 **실행** 실패를 썼다. 그 키는 SPEC-011 §4 에서 **레포 fetch 실패**의 자리라 `collect` 산출물을 덮는다. `stage_failures` 로 분리했다.
 
-  **왜 안 잡혔나.** 부분 실패 경로에서 결과를 **레포와 대조하는** 단언이 없었다(개수만 셌다). 그리고 `collect` 산출물과 수확 결과가 **같은 payload 에서 만나는 지점**을 아무도 태우지 않았다. 둘 다 이번에 테스트로 덮었다(`test_partial_failure_does_not_shift_results`·`test_results_map_to_the_right_repo`·`test_payload_accumulates_across_stages`). ⚠ **SPEC 환류 후보** — SPEC-013 이 `investigate` 부분 실패를 계약으로 적으면서 "결과를 어느 레포에 붙이는가"는 적지 않았다. Open Issues 참조.
+  **왜 안 잡혔나.** 부분 실패 경로에서 결과를 **레포와 대조하는** 단언이 없었다(개수만 셌다). 그리고 `collect` 산출물과 수확 결과가 **같은 payload 에서 만나는 지점**을 아무도 태우지 않았다. 둘 다 이번에 테스트로 덮었다(`test_partial_failure_does_not_shift_results`·`test_results_map_to_the_right_repo`·`test_payload_accumulates_across_stages`). ✅ **SPEC 환류 완료(2026-08-01)** — "결과를 어느 레포에 붙이는가"가 SPEC-013 v0.0.2 §4 「Data Contract — `investigate` 결과 귀속」에 계약으로 들어갔다. Open Issues 참조.
 
   - **미완**: `intake()` 합성 키를 **쓰는** 접수 진입점(+백필) · `auto:false` 접수 전 차단. 이 둘이 P2 잔여 전부다.
 
@@ -442,7 +449,7 @@ P1~P4 는 배포하지 않으므로 해당 없다.
 ## Open Issues
 
 - **`chain.enabled_stages` 일반화는 이번에 하지 않는다.** 지금 필요가 없다 — `next_stage` 는 `after` **다음** 게이트만 훑는데 잔디는 게이트가 `daily` 하나뿐이라 `order[1:]` 이 비고, `enabled_stages` 의 결과는 계산되기만 할 뿐 쓰이지 않은 채 `None`(= 발행 차례)이 돌아온다. 첫 게이트도 `open_first_gate` 가 `pipeline.first_gate()` 로 연다. `enabled_stages` 의 소비자는 `next_stage` 하나뿐이다(테스트 제외). 게다가 발주 당시의 제안 형태(route payload 유무로 판정)는 **두 경우를 뭉갠다** — route 스테이지가 있는데 아직 승인 전(유튜브, 켜지면 안 됨)과 route 스테이지가 애초에 없음(잔디, 켜져야 함). **게이트가 2개 이상인 파이프라인이 생길 때** 필요해지고, 그때의 판정 기준은 payload 유무가 아니라 **파이프라인 정의에 route 스테이지가 있는가** 다. 시그니처가 `enabled_stages(pipeline, route_payload)` 로 바뀌고 `tests/test_pipeline_chain.py` 가 동반 수정된다
-- **SPEC-013 환류 후보 — 부분 실패 시 "결과를 어느 레포에 붙이는가".** SPEC-013 은 `investigate` 부분 실패를 계약으로 적고 있지만 **귀속 규칙**은 적지 않았다. 코드는 P2 에서 `task_ref` 키로 정했고(순서 있는 리스트는 색인이 밀린다), `stage_failures` 와 `failures`(=레포 fetch 실패, SPEC-011 §4) 도 분리했다. 스펙이 침묵하는 사이 구현이 먼저 정한 상태라 **다음 구현자가 리스트로 되돌릴 수 있다** — 되돌려도 정상 경로 테스트는 통과한다. 문구를 SPEC-013 에 넣을지, SPEC-011 §4 의 `failures` 정의 옆에 둘지는 P3 착수 전에 결정한다. (여기서 바로 스펙을 고치지 않은 것은 이번 작업이 진행 반영이고 spec 개정은 별도 변경이기 때문이다.)
+- ~~**SPEC-013 환류 후보 — 부분 실패 시 "결과를 어느 레포에 붙이는가".**~~ **해소 (2026-08-01) — SPEC-013 v0.0.2 §4 「Data Contract — `investigate` 결과 귀속」.** 대응표(제출 참조 → 레포)·순서 리스트 금지·빈 결과 불인정·`missing` 표시·`stage_failures` 와 `failures` 자리 분리를 표로 박고, §6 에 "부분 실패해도 결과가 원래 레포에 붙는다" 검수 항목을 더했다. **SPEC-011 §4 가 아니라 SPEC-013 에, §5 가 아니라 §4 에 둔 이유**: `failures` 는 SPEC-011 의 조사 산출물 필드지만 **귀속은 조사 산출이 아니라 fan-out 수확의 성질**이고, 그 fan-out 을 소유한 것은 SPEC-013 이다(§1 Scope 「fan-out 배치와 부분 실패 처리」). 그리고 이것은 "어떻게 만드느냐"가 아니라 **관측 가능한 결과의 형태**라 §5 Implementation Rules 가 아니라 §4 Interface Contract 층위에 있어야 한다 — §5 의 「부분 실패는 진행한다」는 이 계약을 가리키도록 문장을 늘렸다. (원문 요지: 코드는 P2 에서 `task_ref` 키로 정했고 순서 있는 리스트는 색인이 밀린다. 스펙이 침묵하는 사이 구현이 먼저 정한 상태라 **다음 구현자가 리스트로 되돌려도 정상 경로 테스트는 통과한다** — 그것이 계약으로 박아야 할 이유였다.)
 - `investigate` **순차 13회의 총 소요와 예산 실측** — `worker_budget_usd=5.0` 안에 드는지. 병렬로 돌리는 선택지는 `WORKER_CONCURRENCY` 와 부딪히므로(실운영 1) 실측 전에는 고르지 않는다. P2 에서 더미로 건수만, P5 에서 실비용
 - career 갱신안의 "기존과의 차이" 표시 방식 — 전문 diff 인지 섹션별 요약인지. P4 에서 판단
 - 첫 클론을 잡 밖에서 미리 돌릴지 첫 실행이 겪게 할지 — 후자면 첫날 조사가 오래 걸린다. P5

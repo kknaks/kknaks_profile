@@ -18,7 +18,7 @@
 | KDEV-SPEC-010 | Apply Executor — 발행 계획 검증과 원자적 발행 | draft | DEC-010/012/013/016 | WORK-015 | WORK-015 (todo) |
 | KDEV-SPEC-011 | 커밋 조사 — 레포 레지스트리와 로컬 git 수집 | draft | DEC-014 | — | (미발주) |
 | KDEV-SPEC-012 | 잔디 산출물 — daily·career·concept 계약 | draft | DEC-015 | — | (미발주) |
-| KDEV-SPEC-013 | 잔디 승인 게이트 — daily_commit 파이프라인과 발행 | draft | DEC-016 | — | (미발주) |
+| KDEV-SPEC-013 | 잔디 승인 게이트 — daily_commit 파이프라인과 발행 | draft (v0.0.2) | DEC-016 | WORK-017 | WORK-017 (in_progress) |
 
 ## 읽는 순서
 
