@@ -218,13 +218,17 @@ async def _new_daily_item(session_factory, note: str) -> int:
 
 
 def _daily_stages(**overrides):
-    """잔디의 auto 스테이지 셋. `investigate` 만 fan-out 이다."""
+    """잔디의 auto 스테이지 둘. `investigate` 만 fan-out 이다.
+
+    작성(`compose`)은 auto 가 아니라 **`daily` 게이트**가 한다 — 재생성이 서술을 다시
+    만들어야 해서 게이트가 작성 능력을 갖고 있어야 하고, 그러면 auto 쪽 작성은 첫 회에만
+    쓰이는 중복이 된다(KDEV-WORK-017 P2).
+    """
     stages = {
         "collect": FakeAutoStage(stages=("collect",), submits=0, piece={"collect": "조사"}),
         "investigate": FakeAutoStage(
             stages=("investigate",), submits=3, piece={"investigate": "레포별"}
         ),
-        "compose": FakeAutoStage(stages=("compose",), submits=1, piece={"compose": "초안"}),
     }
     stages.update(overrides)
     return stages
@@ -237,7 +241,7 @@ class TestDailyCommitRail:
     유튜브는 준비가 한 번이라 이 경로를 밟지 않는다 — 여기서만 검증된다.
     """
 
-    async def test_three_auto_stages_then_daily_gate(self, world):
+    async def test_auto_stages_run_in_order_then_the_daily_gate_opens(self, world):
         auto = _daily_stages()
         gate_runner = FakeRunner(payload={"daily": {"summary": []}})
         driver, _, _ = world(auto_stages=auto, stages={"daily": gate_runner})
@@ -257,7 +261,7 @@ class TestDailyCommitRail:
             gates = (await db.scalars(select(Gate).where(Gate.item_id == item_id))).all()
 
         # 스테이지마다 준비 버전 하나씩, 정의 순서대로.
-        assert [p.payload.get("stage") for p in preps] == ["collect", "investigate", "compose"]
+        assert [p.payload.get("stage") for p in preps] == ["collect", "investigate"]
         assert all(p.status == "succeeded" for p in preps)
         # 게이트는 정의에서 골라야 한다 — route 가 아니라 daily 다.
         assert [g.stage_name for g in gates] == ["daily"]
@@ -273,9 +277,8 @@ class TestDailyCommitRail:
 
         await driver.follow(item_id)
 
-        # compose 가 받은 prior 에 앞 둘의 산출물이 다 들어 있다.
-        assert auto["compose"].submitted[-1]["collect"] == "조사"
-        assert auto["compose"].submitted[-1]["investigate"] == "레포별"
+        # investigate 가 받은 prior 에 collect 산출물이 들어 있다.
+        assert auto["investigate"].submitted[-1]["collect"] == "조사"
 
         async with world.session_factory() as db:
             last = await db.scalar(
@@ -284,8 +287,9 @@ class TestDailyCommitRail:
                 .order_by(ItemPreparation.version.desc())
                 .limit(1)
             )
+        # 마지막 버전에 앞 스테이지 산출물이 남아 있어야 게이트 입력이 온전하다.
         assert last.payload["collect"] == "조사"
-        assert last.payload["compose"] == "초안"
+        assert last.payload["investigate"] == "레포별"
 
     async def test_fan_out_submits_one_execution_per_repo(self, world):
         """`investigate` 는 N 건을 낸다 — 단일 `ai_task_id` 로는 못 가리킨다."""
