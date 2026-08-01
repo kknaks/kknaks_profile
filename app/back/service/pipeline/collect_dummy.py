@@ -320,7 +320,7 @@ class DummyCollect:
         raise RuntimeError("collect 는 실행기를 쓰지 않는다")
 
     def parse(
-        self, results: list[str], *, item: QueueItem, prior: dict[str, Any]
+        self, results: dict[str, str], *, item: QueueItem, prior: dict[str, Any]
     ) -> dict[str, Any]:
         # 산출물은 이미 `submit` 이 확정했다. 여기서 더할 것이 없다.
         return {}

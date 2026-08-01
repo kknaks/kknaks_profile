@@ -203,8 +203,8 @@ class FakeAutoStage:
             )
         return Execution(status="succeeded", result=f"result:{task_ref}")
 
-    def parse(self, results: list[str], *, item, prior) -> dict[str, Any]:
-        self.parsed.append(list(results))
+    def parse(self, results: dict[str, str], *, item, prior) -> dict[str, Any]:
+        self.parsed.append(dict(results))
         return dict(self.piece)
 
 

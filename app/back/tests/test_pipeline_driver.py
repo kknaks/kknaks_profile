@@ -312,7 +312,9 @@ class TestDailyCommitRail:
         assert len(tasks) == 3
         assert all(t.status == "succeeded" for t in tasks)
         assert prep.ai_task_id is None  # N 건이라 비운다
-        assert auto["investigate"].parsed[-1] == [f"result:investigate-{i}" for i in (1, 2, 3)]
+        assert auto["investigate"].parsed[-1] == {
+            f"investigate-{i}": f"result:investigate-{i}" for i in (1, 2, 3)
+        }
 
     async def test_partial_failure_still_advances(self, world):
         """레포 하나가 막혀도 나머지로 간다 (SPEC-011 §5)."""

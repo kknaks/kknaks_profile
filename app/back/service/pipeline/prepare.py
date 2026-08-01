@@ -101,11 +101,16 @@ class AutoStage(Protocol):
     async def poll(self, task_ref: str) -> Execution: ...
 
     def parse(
-        self, results: list[str], *, item: QueueItem, prior: dict[str, Any]
+        self, results: dict[str, str], *, item: QueueItem, prior: dict[str, Any]
     ) -> dict[str, Any]:
         """실행 결과들 → 이 스테이지가 payload 에 더할 조각.
 
-        `results` 는 제출 순서대로다. 비어 있으면 LLM 을 부르지 않은 스테이지다.
+        **`task_ref` 로 키가 잡힌다.** 순서 있는 리스트가 아닌 이유는 부분 실패다 —
+        N 건 중 일부가 빠지면 색인이 밀려 `investigate` 가 A 레포 결과를 B 레포 것으로
+        읽는다. 실패한 건은 키 자체가 없으므로 `submit` 이 기록해 둔 대응표와 맞춰
+        무엇이 빠졌는지 알 수 있다.
+
+        비어 있으면 LLM 을 부르지 않은 스테이지다(`collect`).
         """
         ...
 
@@ -338,8 +343,10 @@ async def harvest_auto_stage(
     stage_name = str(payload.get("stage") or "")
     refs = [str(r) for r in (payload.get("task_refs") or [])]
 
-    results: list[str] = []
-    failures: list[str] = []
+    # **task_ref 로 키를 잡는다.** 순서 있는 리스트로 넘기면 부분 실패 때 색인이
+    # 밀려, `investigate` 가 A 레포 결과를 B 레포 것으로 읽는다.
+    results: dict[str, str] = {}
+    failures: dict[str, str] = {}
     for ref in refs:
         execution = await runner.poll(ref)
         if execution.running:
@@ -351,9 +358,9 @@ async def harvest_auto_stage(
                 version=preparation.version,
             )
         if execution.status == "failed":
-            failures.append(execution.error_message or execution.error_code or "실행 실패")
+            failures[ref] = execution.error_message or execution.error_code or "실행 실패"
             continue
-        results.append(execution.result or "")
+        results[ref] = execution.result or ""
 
     if refs and not results:
         return await _close_failed(
@@ -362,7 +369,7 @@ async def harvest_auto_stage(
             preparation,
             None,
             error_code=f"{stage_name.upper()}_ALL_FAILED" if stage_name else "STAGE_ALL_FAILED",
-            error_message="; ".join(failures)[:500] or "제출한 실행이 전부 실패했다",
+            error_message="; ".join(failures.values())[:500] or "제출한 실행이 전부 실패했다",
         )
 
     try:
@@ -393,7 +400,9 @@ async def harvest_auto_stage(
         **piece,
         # 이제야 완료로 센다. 실행기가 덮는 스테이지 전부가 한 번에 닫힌다.
         "stages": list(runner.stages),
-        "failures": failures,
+        # `failures` 를 쓰지 않는다 — 그 키는 SPEC-011 에서 **레포 fetch 실패**의
+        # 자리다. 여기 것은 실행 실패라 성격이 다르고, 겹치면 조사 결과가 덮인다.
+        "stage_failures": failures,
     }
     preparation.status = "succeeded"
     await db.flush()
