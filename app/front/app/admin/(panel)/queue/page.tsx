@@ -41,6 +41,9 @@ const STATUS_META: Record<string, { label: string; tone: string; order: number }
   publishing: { label: "발행 중", tone: "var(--fg-2)", order: 5 },
   published: { label: "발행됨", tone: "#3fb950", order: 6 },
   discarded: { label: "폐기됨", tone: "var(--fg-4)", order: 7 },
+  // 활동이 없던 날. **실패가 아니라 정상 결과**라 빨간 줄로 서지 않는다.
+  // 기본 목록에서는 서버가 감춘다 — 「완료 항목 보기」로 켜야 나온다.
+  no_activity: { label: "활동 없음", tone: "var(--fg-4)", order: 8 },
 };
 
 const box = {

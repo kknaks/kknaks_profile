@@ -52,6 +52,11 @@ ITEM_STATUSES = (
     "publish_failed",
     "discarded",
     "deleted",
+    # 활동이 0인 날 (KDEV-WORK-017 P5 / KDEV-SPEC-013 §4). **실패가 아니라 정상 결과다.**
+    # `prepare_failed` 로 두면 아무 일도 안 한 날이 매번 빨간 줄로 쌓이고, 항목을 아예
+    # 지우면 "조사가 돌았는데 활동이 0" 과 "스케줄러가 안 돌았다" 를 구분할 수 없다.
+    # 종결 상태다 — 다시 준비하지 않는다. 백필은 새 항목으로 들어온다.
+    "no_activity",
 )
 #: 아직 발행되지 않아 같은 URL 재투입 시 **합류 대상**이 되는 상태 (SPEC-007 S-4).
 ITEM_PENDING_STATUSES = (

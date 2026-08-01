@@ -350,6 +350,48 @@ class TestFullLap:
             encoding="utf-8"
         ) == before
 
+    async def test_a_day_with_no_activity_closes_without_failing(self, world, repo):
+        """**활동 0은 실패가 아니다** (KDEV-SPEC-013 §4).
+
+        스펙 원문은 "활동 0이면 항목 없음" 이었지만 그러려면 접수 전에 조사를 한 번
+        더 해야 하고, 그건 bare 클론 13개를 하루에 두 번 훑는다는 뜻이다. 그래서
+        **항목은 남기되 상태로 구분한다** — 지워 버리면 "조사가 돌았는데 활동이 0" 과
+        "스케줄러가 안 돌았다" 가 구분되지 않고, 후자는 고쳐야 할 장애다.
+
+        `prepare_failed` 로 두면 아무 일도 안 한 날마다 큐에 빨간 줄이 하나씩 쌓인다.
+        """
+        driver, session_factory, _ = world
+
+        async with session_factory() as db:
+            received = await intake_daily(
+                db, repo_root=repo, target=date(2026, 7, 26), note="scenario:empty"
+            )
+            await db.commit()
+        assert received.created
+
+        await driver.follow(received.item_id)
+
+        async with session_factory() as db:
+            item = await db.get(QueueItem, received.item_id)
+            gates = (
+                await db.scalars(select(Gate).where(Gate.item_id == received.item_id))
+            ).all()
+            preps = (
+                await db.scalars(
+                    select(ItemPreparation).where(
+                        ItemPreparation.item_id == received.item_id
+                    )
+                )
+            ).all()
+
+        assert item.status == "no_activity"
+        # 게이트는 열리지 않는다 — 사람이 볼 것이 없다.
+        assert gates == []
+        # 그래도 **조사가 돌았다는 기록은 남는다.** 준비 자체는 산출물 없이 닫혔으므로
+        # `failed` 가 맞다 — 항목 상태와 준비 상태는 다른 것을 말한다.
+        assert [p.status for p in preps] == ["failed"]
+        assert preps[0].payload.get("error_code") == "NO_ACTIVITY"
+
     async def test_user_authored_day_is_never_received(self, world, repo):
         """본인이 쓴 날은 항목 자체가 만들어지지 않는다."""
         _, session_factory, _ = world

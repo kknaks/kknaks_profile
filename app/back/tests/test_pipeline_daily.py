@@ -211,7 +211,33 @@ class TestParse:
             "missing": [],
             "failed": [],
             "truncated": {},
+            "career_missing": [],
         }
+
+    def test_a_typo_in_detail_is_surfaced_not_swallowed(self, repo):
+        """`detail` 오타는 **조용히** career 를 통째로 건너뛴다 — 그것이 위험한 지점이다.
+
+        레지스트리 CHECK 는 `detail` 이 비었는지만 막는다. 오타난 stem 은 등록되고,
+        `career_targets` 가 파일 없음으로 건너뛰며, 그 레포의 그날 작업은 **어느
+        career 에도 안 실린 채** 발행된다. 승인하는 사람이 알아야 한다.
+        """
+        stage = _stage(FakeClient(), repo)
+        request = _request()
+        request.preparation.payload["collect"]["career_map"] = {
+            "medisolveai": ["MediSolveAIDev/mediness"],  # 오타 — 실제는 medisolve-ai
+        }
+
+        payload = stage.parse(_reply(), request)
+        assert payload["collection"]["career_missing"] == ["medisolveai"]
+        # 그래도 daily 는 나간다 — career 하나 때문에 그날 전부를 버리지 않는다.
+        assert payload["daily"]["body"]
+
+    def test_an_unattributed_repo_is_not_reported_as_missing(self, repo):
+        """귀속 커밋 0은 정상이다 — 알릴 것이 없다."""
+        request = _request()
+        request.preparation.payload["collect"]["career_map"] = {"medisolveai": []}
+        collection = _stage(FakeClient(), repo).parse(_reply(), request)["collection"]
+        assert collection["career_missing"] == []
 
     def test_body_over_the_hard_limit_is_cut(self, repo):
         stage = _stage(FakeClient(), repo)

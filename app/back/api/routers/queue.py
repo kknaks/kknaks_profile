@@ -43,7 +43,10 @@ logger = logging.getLogger("kknaks-back.queue-api")
 router = APIRouter(prefix="/api/admin/queue", tags=["queue"], dependencies=[Depends(require_admin)])
 
 #: 기본 목록에서 감추는 상태 — 끝난 항목이 검토 대기와 섞이면 할 일이 안 보인다.
-HIDDEN_STATUSES = ("published", "discarded", "deleted")
+#: 기본 목록에서 감춘다. **끝난 항목이지 실패한 항목이 아니다** — `no_activity` 는
+#: 활동이 없던 날이라 사람이 할 일이 없다(KDEV-SPEC-013 §4). 「완료 항목 보기」로 켜면
+#: 보이므로 "그날 조사가 돌긴 했는가" 는 여전히 확인할 수 있다.
+HIDDEN_STATUSES = ("published", "discarded", "deleted", "no_activity")
 
 
 class CreateItemRequest(BaseModel):

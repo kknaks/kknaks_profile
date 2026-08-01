@@ -222,6 +222,8 @@ export type DailyCollection = {
   missing: string[];
   failed: { repo?: string; code?: string; message?: string }[];
   truncated: Record<string, { diff_bytes?: number; commits?: number }>;
+  /** `detail` 오타로 갈 곳이 없어진 career stem — 그 레포의 작업이 어디에도 안 실린다. */
+  career_missing?: string[];
 };
 
 /** 잔디 게이트 산출물 — 게이트 하나가 목적지 셋을 낸다. */

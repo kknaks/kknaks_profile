@@ -121,6 +121,7 @@ def career_targets(collect: dict[str, Any], repo_root: Path) -> list[dict[str, A
         if not path.exists():
             logger.info("career 대상 없음 — %s (DETAIL_NOT_FOUND)", stem)
             continue
+        # 로그만으로는 아무도 모른다 — 이 결과는 `missing_career()` 가 화면까지 들고 간다.
         try:
             post = frontmatter.load(path)
         except Exception:  # noqa: BLE001
@@ -132,11 +133,35 @@ def career_targets(collect: dict[str, Any], repo_root: Path) -> list[dict[str, A
     return targets
 
 
+def missing_career(collect: dict[str, Any], repo_root: Path) -> list[str]:
+    """`detail` 이 가리키는 career 문서가 없는 stem (KDEV-SPEC-011 `DETAIL_NOT_FOUND`).
+
+    **레지스트리의 CHECK 는 `detail` 이 비었는지만 막는다.** 오타난 stem
+    (`medisolve-ai` → `medisolveai`)은 그대로 등록되고, 그때 `career_targets` 가 조용히
+    건너뛴다 — 그 레포의 그날 작업이 **어느 career 에도 안 실린다**는 뜻인데 아무도
+    모른다. 로그는 사람이 안 본다.
+
+    **검증을 여기 두는 이유**는 등록 시점이 아니라 귀속 시점이 맞기 때문이다. 등록
+    시점에 보면 DB 계층이 레포 파일시스템을 알게 되고, 나중에 career 파일 이름이
+    바뀌면 그 검증이 무용해진다. 여기는 이미 파일을 읽는 층이고 매번 다시 본다.
+
+    `career_targets` 와 **같은 판정을 두 번 하지 않는다** — 저 함수가 거르는 셋 중
+    "파일 없음" 만 여기서 센다. `is_current` 아님이나 귀속 커밋 0은 정상이라 알릴 것이 없다.
+    """
+    missing: list[str] = []
+    for stem, repos in (collect.get("career_map") or {}).items():
+        if not repos:
+            continue
+        if not (repo_root / "persona" / "career" / f"{stem}.md").exists():
+            missing.append(stem)
+    return sorted(missing)
+
+
 def _prep(request: GenerationInput) -> dict[str, Any]:
     return (request.preparation.payload or {}) if request.preparation else {}
 
 
-def _collection(prep: dict[str, Any]) -> dict[str, Any]:
+def _collection(prep: dict[str, Any], repo_root: Path) -> dict[str, Any]:
     """조사가 얼마나 온전했는지 — 승인 화면이 그린다 (KDEV-SPEC-011 S-3 4항).
 
     **전부 코드가 센 값이다.** AI 가 세면 "조사가 잘 됐다" 는 서술과 실제 상태가
@@ -156,6 +181,9 @@ def _collection(prep: dict[str, Any]) -> dict[str, Any]:
         "missing": missing,
         "failed": list(collect.get("failures") or []),
         "truncated": dict(collect.get("truncated") or {}),
+        # `detail` 오타로 갈 곳이 없어진 career. 승인하는 사람이 **바로 지금** 알아야
+        # 한다 — 그 레포의 그날 작업이 어느 career 에도 안 실린 채 발행되기 때문이다.
+        "career_missing": missing_career(collect, repo_root),
     }
 
 
@@ -338,5 +366,5 @@ class DailyStage(AgentStage):
             # 이미 실려 있었지만(payload) 승인 화면이 보는 것은 이쪽이라, 여기 없으면
             # 사람은 서술이 얕은 이유가 **자료 부족인지 그날 일이 적어서인지** 구분할
             # 수 없다. `counts` 와 같은 규율이다 — 코드가 세고 AI 는 관여하지 않는다.
-            "collection": _collection(prep),
+            "collection": _collection(prep, self.repo_root),
         }

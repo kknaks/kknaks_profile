@@ -4,7 +4,7 @@ id: KDEV-SPEC-013
 title: "잔디 승인 게이트 — daily_commit 파이프라인과 발행"
 status: draft
 product: kknaks-dev
-version: 0.0.2
+version: 0.0.3
 created_at: 2026-07-31
 updated_at: 2026-08-01
 tags:
@@ -230,8 +230,11 @@ sequenceDiagram
     participant Slack
 
     Sch->>Q: 접수 (날짜)
-    Q-->>Sch: 항목 생성 (활동 0이면 없음)
+    Q-->>Sch: 항목 생성
     Drv->>Drv: collect (LLM 없음)
+    opt 활동 0
+        Drv->>Q: no_activity 로 종결 (게이트 없음)
+    end
     loop 레포마다 (순차)
         Drv->>AI: investigate 제출
         AI-->>Drv: 결과 수확
@@ -271,9 +274,10 @@ sequenceDiagram
 
 ```mermaid
 stateDiagram-v2
-    [*] --> received: 접수 (활동>0)
+    [*] --> received: 접수
     received --> preparing: collect·investigate
     preparing --> in_review: 게이트 열림 = 작성
+    preparing --> no_activity: 활동 0 (실패 아님)
     preparing --> prepare_failed: 전 레포 실패
     prepare_failed --> received: 재시도
     in_review --> publishing: 승인
@@ -282,8 +286,20 @@ stateDiagram-v2
     publish_failed --> publishing: 발행 재시도 (AI 재호출 없음)
     in_review --> discarded: 폐기
     published --> [*]
+    no_activity --> [*]
     discarded --> [*]
 ```
+
+**`no_activity` 는 실패가 아니다 — 접수는 활동 여부를 모른 채 일어난다.** v0.0.2 까지 이 문서는 "활동 0이면 항목 없음" 으로 적었지만, 그러려면 접수 시점에 조사를 한 번 더 해야 한다. 그러면 bare 클론 13개를 **하루에 두 번** 훑고, 조사를 미뤄 접수를 뒤로 보내면 §5 「접수는 요청 안에서 조사·AI 호출을 기다리지 않는다」와 정면으로 부딪힌다.
+
+**항목을 지우지 않는 이유는 관측 가능성이다.** 지워 버리면 "조사가 돌았는데 활동이 0" 과 "스케줄러가 안 돌았다" 가 **구분되지 않는다** — 후자는 고쳐야 할 장애인데 화면상 똑같이 빈칸으로 보인다. 대신 다음 둘을 지킨다.
+
+| 항목 | 계약 |
+|---|---|
+| 실패로 세지 않는다 | 사람이 고칠 것이 없다. 큐에서 실패 색으로 서지 않고 재시도 대상도 아니다 |
+| 기본 목록에서 감춘다 | 활동 없는 날마다 줄이 하나씩 쌓이면 큐를 못 쓴다. 「완료 항목 보기」로 켜야 나온다 |
+| 종결 상태다 | 다시 준비하지 않는다. 백필은 **새 항목**으로 들어온다 |
+| 준비 기록은 남는다 | `ItemPreparation` 은 `failed` + `error_code=NO_ACTIVITY` 다 — 준비가 산출물 없이 닫힌 것은 사실이다. **항목 상태와 준비 상태는 다른 것을 말한다** |
 
 **route 게이트가 없다.** 잔디는 목적지가 고정이라 고를 것이 없다. 게이트가 하나뿐이므로 승인이 곧 체인 종료이고 발행 트리거다.
 
@@ -344,6 +360,7 @@ stateDiagram-v2
 - [ ] 레포 하나가 실패해도 게이트가 열리고, 실패 레포가 화면에 표시된다
 - [ ] **레포 하나가 실패해도 나머지 결과가 원래 레포에 붙는다** — 색인이 밀리지 않고, 빠진 레포는 `missing` 으로 남는다
 - [ ] 전 레포 실패 시 스테이지 실패로 닫히고 재시도가 열린다
+- [ ] **활동이 0인 날은 `no_activity` 로 종결된다** — 게이트가 열리지 않고, 실패로 세지 않으며, 기본 목록에서 감춰지되 준비 기록은 남는다
 - [ ] 자동 스테이지는 `collect`·`investigate` 둘뿐이고, 조사가 끝나면 게이트가 **초안을 만든 채** 열린다
 - [ ] 재생성이 조사를 다시 돌리지 않고 **게이트의 작성만** 다시 돈다
 - [ ] 게이트가 하나이고 승인 즉시 발행된다

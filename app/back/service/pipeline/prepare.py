@@ -37,6 +37,16 @@ logger = logging.getLogger("kknaks-back.pipeline.prepare")
 #: 사람이 보고 있던 근거가 발밑에서 바뀐다.
 PREPARABLE_STATUSES = ("received", "prepare_failed")
 
+#: 준비가 산출물 없이 닫혔지만 **실패가 아닌** 경우 (KDEV-SPEC-013 §4).
+#: 지금은 활동 0 하나뿐이다. 실패와 같은 자리에서 나오지만 사람이 고칠 것이 없고,
+#: 큐 화면에서도 빨간 줄로 서면 안 된다.
+NON_FAILURE_CLOSING_CODES = {"NO_ACTIVITY": "no_activity"}
+
+
+def _closing_status(error_code: str) -> str:
+    """준비가 닫힐 때 항목이 갈 상태. 실패가 아닌 종결은 따로 표시한다."""
+    return NON_FAILURE_CLOSING_CODES.get(error_code, "prepare_failed")
+
 
 class Summarizer(Protocol):
     """요약 실행기 — 게이트 스테이지와 같이 **제출과 수확이 나뉘어 있다**.
@@ -641,11 +651,13 @@ async def _close_failed(
         "error_message": error_message,
     }
     preparation.status = "failed"
-    item.status = "prepare_failed"
+    # 준비 자체는 산출물 없이 닫히므로 `failed` 가 맞다. **항목 상태는 다를 수 있다** —
+    # 활동 0은 사람이 고칠 것이 없어서 실패로 세우면 안 된다.
+    item.status = _closing_status(error_code)
     await db.flush()
     return PrepareResult(
         item_id=item.id,
-        status="prepare_failed",
+        status=item.status,
         preparation_id=preparation.id,
         version=preparation.version,
         error_code=error_code,
@@ -675,11 +687,11 @@ async def _fail(
         payload={**payload, "error_code": error_code, "error_message": error_message},
     )
     db.add(preparation)
-    item.status = "prepare_failed"
+    item.status = _closing_status(error_code)
     await db.flush()
     return PrepareResult(
         item_id=item.id,
-        status="prepare_failed",
+        status=item.status,
         preparation_id=preparation.id,
         version=version,
         error_code=error_code,

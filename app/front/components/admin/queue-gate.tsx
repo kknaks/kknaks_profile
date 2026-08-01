@@ -527,11 +527,13 @@ function joinCareer(lines: CareerLine[]): string {
  */
 function CollectionStatus({ collection }: { collection: DailyCollection }) {
   const truncated = Object.entries(collection.truncated ?? {});
+  const careerMissing = collection.career_missing ?? [];
   const clean =
     collection.done === collection.total &&
     collection.missing.length === 0 &&
     collection.failed.length === 0 &&
-    truncated.length === 0;
+    truncated.length === 0 &&
+    careerMissing.length === 0;
 
   return (
     <section
@@ -565,6 +567,13 @@ function CollectionStatus({ collection }: { collection: DailyCollection }) {
       {truncated.length > 0 && (
         <p className="mono" style={{ fontSize: 11, color: "var(--fg-4)", margin: "4px 0 0" }}>
           입력 상한 적용 — {truncated.map(([repo]) => repo).join(", ")} (일부 diff 생략)
+        </p>
+      )}
+
+      {careerMissing.length > 0 && (
+        <p className="mono" style={{ fontSize: 11, color: "var(--warn, #b45309)", margin: "4px 0 0" }}>
+          career 대상 없음 — {careerMissing.join(", ")} (레지스트리의 `detail` 을 확인하세요).
+          이 레포들의 오늘 작업은 **어느 career 에도 실리지 않습니다.**
         </p>
       )}
 
