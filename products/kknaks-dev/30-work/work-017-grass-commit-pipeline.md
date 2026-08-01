@@ -13,7 +13,7 @@ roles:
   be: kknaks
   qa: kknaks
   ops: kknaks
-progress: 25
+progress: 35
 created_at: 2026-07-31
 updated_at: 2026-08-01
 tags:
@@ -62,10 +62,10 @@ links:
 | Type | new-feature |
 | Owner | kknaks |
 | Status | in_progress |
-| Progress | 25% (P1 done · P2 진행 중) |
+| Progress | 35% (P1 done · P2 거의 완료 — 2-A 전량 닫힘, 2-B 는 접수 진입점만 남음) |
 | Branch/PR | `work-017-p2` |
 | Blocker | 없음 |
-| Next | P2 잔여 — auto 스테이지 루프·이름별 등록·수집 전제 해제·fan-out 저장·더미 `collect`·`investigate`·`compose`·합성 키 |
+| Next | P2 잔여 — `intake()` 합성 키(`daily:{date}`) + 접수 진입점 + 백필 · `auto:false` 접수 전 차단 |
 
 ## Role Assignment
 
@@ -231,17 +231,17 @@ WORK-016 스키마가 이미 받아 준다. 확인한 근거 넷:
 정의에 auto 스테이지를 셋 적어도 **돌릴 기계가 없었다.** 현행 준비부는 "수집 1회 + 요약 1회" 로 굳어 있다. `definitions.py` 의 `Stage("collect","auto")`·`Stage("summarize","auto")` 가 그 증거다 — 정의는 둘인데 아무도 읽지 않았다.
 
 - **작업**:
-  - [ ] `driver._finish_preparing` — 수확 뒤 "다음 auto 스테이지가 남았나" 분기. 남으면 제출하고 `preparing` 을 유지한 채 `True` 를 반환한다(기존 `MAX_STEPS` 루프가 다시 돈다). 없으면 `in_review` + 첫 게이트
+  - [x] `driver._finish_preparing` — 수확 뒤 "다음 auto 스테이지가 남았나" 분기. 남으면 제출하고 `preparing` 을 유지한 채 `True` 를 반환한다(기존 `MAX_STEPS` 루프가 다시 돈다). 없으면 `in_review` + 첫 게이트
   - [x] 파이프라인 정의의 `kind="auto"` 스테이지를 실제로 읽는다
-  - [ ] `runtime.register()` 에 auto 스테이지 실행기를 **이름으로** 등록
-  - [ ] `prepare.py` — 재료 수집을 스테이지 안으로 넣어 `if item.source_url:` 전제를 푼다. 지금은 URL 없는 잔디 항목이 `NO_SOURCE_MATERIAL` 로 준비 단계에서 죽는다
+  - [x] `runtime.register()` 에 auto 스테이지 실행기를 **이름으로** 등록
+  - [x] ~~`prepare.py` — 재료 수집을 스테이지 안으로 넣어 `if item.source_url:` 전제를 푼다~~ → **불필요 판정.** 잔디는 그 전제를 아예 타지 않는다 (아래 「판정 둘」)
   - [x] 첫 게이트 러너 하드코딩 제거 — `driver.py`·`queue.py` **두 곳** 모두 `pipeline.first_gate()` 기반으로
-  - [ ] `ItemPreparation.payload` 에 어느 auto 스테이지 결과인지 기록 (유튜브분은 들어갔고 일반화가 남음)
-  - [ ] `investigate` fan-out 저장 — `ai_task_id` 를 비우고 `AITask.item_id` 로 N 건을 찾는다. `_running_preparation_ref` 의 단건 `with_for_update` 를 N 건 대응으로 바꾼다
-  - [x] 유튜브 회귀 방지 — 기존 `submit_preparation` 본문을 유튜브 준비 실행기 하나로 감싸면 1:1 로 같다
+  - [x] `ItemPreparation.payload` 에 어느 auto 스테이지 결과인지 기록 (+ 스테이지 사이 **누적**까지)
+  - [x] `investigate` fan-out 저장 — `ai_task_id` 를 비우고 `AITask.item_id` 로 N 건을 찾는다. `_running_preparation_ref` 의 단건 `with_for_update` 를 N 건 대응으로 바꾼다
+  - [x] 유튜브 회귀 방지 — 등록된 auto 실행기가 있으면 그쪽이 이기고, 없으면 레거시 준비부가 덮는다. **감싸기 자체는 의도적 보류**다 (아래 「판정 둘」)
 - **검증**:
   - [x] 유튜브 준비 흐름에 회귀가 없다
-  - [ ] `daily_commit` 이 auto 3개를 정의 순서대로 지난다
+  - [x] `daily_commit` 이 auto 3개를 정의 순서대로 지난다
   - [x] 첫 게이트가 정의에서 결정된다 (유튜브=`route`, 잔디=`daily`)
 
 > **fan-out 저장 방식은 Open Issue 가 아니라 여기서 정한다.** `_running_preparation_ref` 와 `harvest_preparation` 이 running 준비 **1건**을 `with_for_update` 로 잡고 있어서, 어느 형태를 고르든 그 두 함수를 고쳐야 한다. 열어 두면 중반에 구조가 흔들린다. 이 결정이 "조사 중 (3/13)" 진행 표시(SPEC-013 U-1)와 부분 실패 처리의 전제이기도 하다.
@@ -250,23 +250,23 @@ WORK-016 스키마가 이미 받아 준다. 확인한 근거 넷:
 
 - **작업**:
   - [x] `definitions.py` — `DAILY_COMMIT` 등록 (`collect`·`investigate`·`compose` auto + `daily` gate)
-  - [ ] **더미 `collect`** — SPEC-011 §4 계약 전량을 지어낸다 (아래 「더미 경계」)
-  - [ ] `investigate` 스테이지 — 레포별 N 건 제출·수확, 결과를 `ItemPreparation` payload 에 누적
-  - [ ] 부분 실패 처리 — 일부 실패는 진행, 전부 실패면 스테이지 실패
-  - [ ] `compose` 스테이지 — 템플릿 로드 + daily·career·concept 초안, `changed:false` 지원
-  - [ ] career 결정적 skip (귀속 커밋 0이면 스테이지 미생성)
-  - [ ] `runtime` 등록
-  - [ ] `intake()` 시그니처 확장 + `normalized_url="daily:{date}"` 합성 키
-  - [ ] 활동 0 · `auto:false` 접수 전 차단
+  - [x] **더미 `collect`** — SPEC-011 §4 계약 전량을 지어낸다 (아래 「더미 경계」)
+  - [x] `investigate` 스테이지 — 레포별 N 건 제출·수확, 결과를 `ItemPreparation` payload 에 누적
+  - [x] 부분 실패 처리 — 일부 실패는 진행, 전부 실패면 스테이지 실패
+  - [x] `compose` 스테이지 — 템플릿 로드 + daily·career·concept 초안, `changed:false` 지원
+  - [x] career 결정적 skip (귀속 커밋 0이면 스테이지 미생성)
+  - [x] `runtime` 등록 — `slack_bridge/bootstrap.py` 가 셋을 실제로 배선한다
+  - [ ] `intake()` 시그니처 확장 + `normalized_url="daily:{date}"` 합성 키 — **읽는 쪽만 됐다.** `collect_dummy.target_date()` 가 그 키를 파싱하고 없으면 어제(KST)로 떨어진다. 키를 **쓰는** 접수 진입점이 없다
+  - [ ] 활동 0 · `auto:false` 접수 전 차단 — 활동 0 은 `collect` 가 `NO_ACTIVITY` 로 막는다(접수 **후** 차단). `auto:false` 차단은 미착수
 - **검증**:
-  - [ ] 수동 접수로 항목이 들어오고 요청이 AI 를 기다리지 않는다
-  - [ ] `investigate` 가 레포 수만큼 돌고 부분 실패해도 게이트가 열린다
-  - [ ] 전 레포 실패 시 스테이지 실패로 닫히고 재시도가 열린다
-  - [ ] 게이트가 **하나**만 열린다
-  - [ ] `type=studio` 만 커밋한 날은 career 초안이 없다
-  - [ ] `is_current` 아닌 career 는 대상에서 빠진다
-  - [ ] 같은 날짜로 두 번 접수하면 항목이 하나다
-  - [ ] **기존 유튜브 파이프라인이 회귀 없이 동작한다**
+  - [ ] 수동 접수로 항목이 들어오고 요청이 AI 를 기다리지 않는다 — 합성 키 없이는 날짜를 지정할 수 없어 미검증
+  - [x] `investigate` 가 레포 수만큼 돌고 부분 실패해도 게이트가 열린다
+  - [x] 전 레포 실패 시 스테이지 실패로 닫히고 재시도가 열린다
+  - [x] 게이트가 **하나**만 열린다
+  - [x] `type=studio` 만 커밋한 날은 career 초안이 없다
+  - [x] `is_current` 아닌 career 는 대상에서 빠진다
+  - [ ] 같은 날짜로 두 번 접수하면 항목이 하나다 — 합성 키가 접수에 닿지 않아 미검증
+  - [x] **기존 유튜브 파이프라인이 회귀 없이 동작한다**
 
 > **더미 경계.** 레지스트리 테이블을 만들지 않는다(마이그레이션 `0007` 은 P5 다). 대상 레포 목록은 코드 안에 하드코딩한다.
 >
@@ -279,7 +279,39 @@ WORK-016 스키마가 이미 받아 준다. 확인한 근거 넷:
   - 들어간 것: `Pipeline.auto_stages()` 신설 · `harvest_preparation` 이 실행기 **묶음**을 받아 `pipeline.first_gate()` 로 고르게 됨(`driver.py`·`queue.py` 두 호출부의 `"route"` 하드코딩 제거) · `DAILY_COMMIT` 등록.
   - 신설된 계약: **`AutoStage` 프로토콜 + `StageSubmission`** — 제출 건수를 0·1·N 으로 **함께** 다룬다. `collect` 는 LLM 을 안 부르니 0 이고, `investigate` 는 레포마다 하나씩 내니 N 이다. 종전 준비부는 1 만 가정했다. 이어서 `completed_auto_stages()`·`next_auto_stage()`, 그리고 `Summarizer` 프로토콜에 `wait` 선언을 채웠다 — **드라이버가 계속 부르고 있었는데 선언만 빠져 있었다.**
   - **설계 판단 하나를 남긴다: 실행기 하나가 정의상 스테이지 여럿을 덮을 수 있게 했다.** 유튜브 준비는 `payload["stages"]=["collect","summarize"]` 를 적어 한 번에 둘을 닫는다. 그래서 `next_auto_stage` 가 곧바로 `None`(= 게이트 차례)을 돌려주고 **기존 코드 경로는 한 줄도 바뀌지 않았다.** 정의(둘)와 코드(한 덩어리)가 어긋난 것을 굳이 쪼개면, 얻는 것 없이 회귀면만 넓어진다. 잔디는 셋을 각각 따로 덮는다.
-  - **미완**: auto 루프 분기(`_finish_preparing`) · `runtime` 이름별 등록 · 수집 전제 해제 · payload 스테이지 기록 일반화 · fan-out 저장 · 더미 `collect` · `investigate`·`compose` · `intake()` 합성 키.
+  - 커밋 `de4d7a3` — **레일이 실제로 돈다.** 637 → **642 passed**(신규 5). 골격 위에 제출·수확·전진을 얹어 잔디 항목이 `collect`→`investigate`→`compose` 를 정의 순서로 지나 `daily` 게이트까지 간다.
+    - 분기는 `_finish_preparing` 이 아니라 **`_finish_auto_stage`** 로 들어갔고 **삼값 반환**이다 — "다음이 남았다"·"게이트 차례다" 에 더해 **"내 것이 아니다"(레거시 준비)를 `None` 으로 구분**한다. 두 값으로 두면 레거시 경로를 auto 경로가 삼킨다.
+    - 순서에 대한 지식은 `flow.advance_auto_stages` 가 갖는다 — `prepare` 도 `gates` 도 아니다.
+    - **auto 레지스트리를 게이트 레지스트리와 나눴다.** 계약이 다르고(auto 는 `GateRevision` 을 만들지 않는다) 이름이 겹칠 수 있다 — 유튜브의 `collect` 와 잔디의 `collect` 는 같은 이름이지만 하는 일이 다르다.
+    - payload 는 기록에 더해 **스테이지 사이 누적**까지 넣었다. `latest_preparation` 이 최근 성공분 **하나만** 집으므로, 누적하지 않으면 앞 산출물이 게이트 입력에서 사라진다.
+    - fan-out 은 `ai_task_id` 를 비우고 `AITask.item_id`+`kind` 로 되찾는다 — 단일 FK 로는 N 건을 가리킬 수 없다.
+    - **앞 커밋의 637 passed 는 증거가 아니었다.** 새 경로를 아무도 밟지 않아 `update` import 누락이 그대로 숨어 있었다. `FakeAutoStage` 로 스테이지 순서·payload 누적·fan-out 3건·부분 실패·전부 실패를 각각 태워서야 드러났다.
+  - 커밋 `741d176` — **더미 `collect`.** 642 → **666 passed**(신규 24). `service/pipeline/collect_dummy.py`. SPEC-011 §4 계약 **7키 전부**, 시나리오 **7종**(`normal`·`studio_only`·`career_unchanged`·`partial_failure`·`all_failed`·`truncated`·`empty`)을 메모의 `scenario:<이름>` 으로 고른다 — P2 에는 스케줄러가 없어 접수가 곧 사람의 조작이다.
+    - **지어내는 것은 `commits[]` 뿐이다.** 영역 분해·`counts` 산출·career 귀속은 진짜 코드다 → P5 는 "git 을 읽어 `commits[]` 를 만드는" 한 곳만 갈아 끼운다.
+    - 한 커밋이 여러 영역에 걸치면 영역마다 계상한다 → `counts["commit"]` 과 영역 합계는 **일치하지 않는다**(테스트가 이 사실을 박아 뒀다). `counts` 는 코드가 센다.
+    - career 귀속은 `type=company` 만 간다. 대상이 실재해야 해서 `medisolve-ai` 하나로 모인다(`is_current: true` 가 그것뿐).
+    - `collect` 는 제출 0건이라 **`AITask` 가 생기지 않는다** — 조사는 생성이 아니라 읽는 일이고 P5 에서 진짜가 되어도 그 성질은 그대로다. 활동 0(`empty`)은 `NO_ACTIVITY` 로 스테이지를 막는다.
+  - 커밋 `b1a2642` — **`investigate` 스테이지 + 수확 계약 정정.** 666 → **678 passed**(신규 12). 레포마다 하나씩 제출한다 — 하루치 diff 를 한 프롬프트에 몰아넣으면 레포 하나가 다른 레포의 서술을 밀어내고, 레포 하나 때문에 그날 조사 **전체**가 날아간다. 여기서 만드는 것은 문서가 아니라 `compose` 가 읽을 **재료**라 `templates/persona/` 를 참조하지 않는다. 회사·개인 레포도 구분하지 않는다 — 조사 깊이는 균일하고 공개 통제는 게이트가 한다. 빠진 레포와 빈 조사문은 `missing` 으로 들고 간다(성공으로 넘기면 `compose` 가 근거 없이 서술한다).
+  - 커밋 `d5bb3cd` — **`compose` 스테이지.** 678 → **699 passed**(신규 21). `stages/compose.py` + `service/content_format.py` 로더.
+    - **P1 의 형식 SoT 가 여기서 실제로 읽힌다.** `templates/persona/daily.md`·`career.md` 를 실어 프롬프트를 만들고, 테스트가 마커 문자열로 "프롬프트에 **복사돼 있지 않다**"를 검증한다(`test_format_is_loaded_from_templates_not_copied`). **P1 검증 2번("형식 명세의 SoT 가 템플릿 둘뿐이다")이 이제 코드로 증명됐다.** 로더를 교안 모듈(`content_format`)에 얹은 것은 같은 걱정거리이고 같은 캐시를 쓰기 때문이다 — 닮은 모듈을 하나 더 만들 이유가 없다.
+    - `counts` 는 **코드가 주입한다** — AI 출력의 숫자는 버린다. 본문 하드 상한 초과는 자르고, 빈 `summary` 줄은 걸러낸다(활동 0 인 카테고리에 빈 줄이 오면 잔디 셀 카드에 그대로 뜬다).
+    - career 는 **제출 시점에 대상 목록을 박아** 두고 모델이 대상 밖 career 를 내면 수확이 버린다. **전문 교체**라 기존 본문을 프롬프트에 함께 넣는다 — 안 주면 모델이 append 할 수밖에 없고 career 가 daily 의 복사본이 된다.
+    - `summary` 모양(`{ko,en} list[str]`)을 여기서 막는다. 로더가 하드 검증하므로 통과시키면 **발행 뒤 persona 로드 전체**가 실패한다.
+  - 커밋 `f36df6d` — **실배선.** 699 passed(신규 0 — 배선만). `slack_bridge/bootstrap.py` 가 `auto_stages={collect, investigate, compose}` 를 등록한다. 그전까지 셋은 존재만 하고 아무도 부르지 않았다. `collect` 는 LLM 을 안 불러 클라이언트조차 없다 — 레지스트리를 나눠 둔 것이 여기서 값을 한다.
+
+  **판정 둘 — 안 한 것과 그 근거.**
+
+  - **수집 전제 해제(`if item.source_url:`)는 불필요로 판정했다.** 더미 `collect` 가 자기 `AutoStage` 실행기라 `item.source_url` 을 **아예 타지 않는다**. 그 전제는 레거시 유튜브 준비부 안에만 남아 있고(`prepare.py:449`) 유튜브는 그 경로를 계속 쓴다. 목적은 전제를 푸는 것이 아니라 **잔디가 그 전제에 걸리지 않는 것**이었고, 그건 달성됐다.
+  - **유튜브 준비부 감싸기는 의도적으로 열어 뒀다.** 레거시 준비부는 `AITask` 를 `summarize.submit` **앞에서** 만든다. 그 순서가 "제출이 터져도 기록이 남는다"는 계약이고 `tests/test_pipeline_intake.py::test_summarize_failure_keeps_task_row` 가 검증한다. 감싸면 그 순서를 깨야 한다 — 새 레일은 실행기가 제출을 내부에서 하므로 **몇 건이 나올지 미리 몰라** 행을 먼저 만들 수 없다. 얻는 것 없이 실패 기록 계약만 흔들린다. 대신 **등록된 auto 실행기가 있으면 그쪽이 이기고 없으면 레거시가 덮는** 구조라 잔디는 막히지 않는다.
+
+  **수확 계약 결함 둘 — 앞선 커밋의 레일에서 찾아 `b1a2642` 에서 고쳤다.** 둘 다 그때까지 테스트가 **통과하고 있었다.**
+
+  1. `parse` 가 성공분만 **순서 있는 리스트**로 받았다. 부분 실패로 한 건이 빠지면 색인이 밀려 **A 레포 조사문이 B 레포 것으로** 읽힌다. `task_ref` 로 키를 잡는 dict 으로 바꿨고, 어느 레포가 빠졌는지는 `submit` 이 남긴 대응표와 맞춰 알아낸다.
+  2. 수확이 `payload["failures"]` 에 **실행** 실패를 썼다. 그 키는 SPEC-011 §4 에서 **레포 fetch 실패**의 자리라 `collect` 산출물을 덮는다. `stage_failures` 로 분리했다.
+
+  **왜 안 잡혔나.** 부분 실패 경로에서 결과를 **레포와 대조하는** 단언이 없었다(개수만 셌다). 그리고 `collect` 산출물과 수확 결과가 **같은 payload 에서 만나는 지점**을 아무도 태우지 않았다. 둘 다 이번에 테스트로 덮었다(`test_partial_failure_does_not_shift_results`·`test_results_map_to_the_right_repo`·`test_payload_accumulates_across_stages`). ⚠ **SPEC 환류 후보** — SPEC-013 이 `investigate` 부분 실패를 계약으로 적으면서 "결과를 어느 레포에 붙이는가"는 적지 않았다. Open Issues 참조.
+
+  - **미완**: `intake()` 합성 키를 **쓰는** 접수 진입점(+백필) · `auto:false` 접수 전 차단. 이 둘이 P2 잔여 전부다.
 
 ### Phase 3 — 발행부 확장 (BE)
 
@@ -410,6 +442,7 @@ P1~P4 는 배포하지 않으므로 해당 없다.
 ## Open Issues
 
 - **`chain.enabled_stages` 일반화는 이번에 하지 않는다.** 지금 필요가 없다 — `next_stage` 는 `after` **다음** 게이트만 훑는데 잔디는 게이트가 `daily` 하나뿐이라 `order[1:]` 이 비고, `enabled_stages` 의 결과는 계산되기만 할 뿐 쓰이지 않은 채 `None`(= 발행 차례)이 돌아온다. 첫 게이트도 `open_first_gate` 가 `pipeline.first_gate()` 로 연다. `enabled_stages` 의 소비자는 `next_stage` 하나뿐이다(테스트 제외). 게다가 발주 당시의 제안 형태(route payload 유무로 판정)는 **두 경우를 뭉갠다** — route 스테이지가 있는데 아직 승인 전(유튜브, 켜지면 안 됨)과 route 스테이지가 애초에 없음(잔디, 켜져야 함). **게이트가 2개 이상인 파이프라인이 생길 때** 필요해지고, 그때의 판정 기준은 payload 유무가 아니라 **파이프라인 정의에 route 스테이지가 있는가** 다. 시그니처가 `enabled_stages(pipeline, route_payload)` 로 바뀌고 `tests/test_pipeline_chain.py` 가 동반 수정된다
+- **SPEC-013 환류 후보 — 부분 실패 시 "결과를 어느 레포에 붙이는가".** SPEC-013 은 `investigate` 부분 실패를 계약으로 적고 있지만 **귀속 규칙**은 적지 않았다. 코드는 P2 에서 `task_ref` 키로 정했고(순서 있는 리스트는 색인이 밀린다), `stage_failures` 와 `failures`(=레포 fetch 실패, SPEC-011 §4) 도 분리했다. 스펙이 침묵하는 사이 구현이 먼저 정한 상태라 **다음 구현자가 리스트로 되돌릴 수 있다** — 되돌려도 정상 경로 테스트는 통과한다. 문구를 SPEC-013 에 넣을지, SPEC-011 §4 의 `failures` 정의 옆에 둘지는 P3 착수 전에 결정한다. (여기서 바로 스펙을 고치지 않은 것은 이번 작업이 진행 반영이고 spec 개정은 별도 변경이기 때문이다.)
 - `investigate` **순차 13회의 총 소요와 예산 실측** — `worker_budget_usd=5.0` 안에 드는지. 병렬로 돌리는 선택지는 `WORKER_CONCURRENCY` 와 부딪히므로(실운영 1) 실측 전에는 고르지 않는다. P2 에서 더미로 건수만, P5 에서 실비용
 - career 갱신안의 "기존과의 차이" 표시 방식 — 전문 diff 인지 섹션별 요약인지. P4 에서 판단
 - 첫 클론을 잡 밖에서 미리 돌릴지 첫 실행이 겪게 할지 — 후자면 첫날 조사가 오래 걸린다. P5

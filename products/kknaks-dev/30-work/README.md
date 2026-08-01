@@ -65,7 +65,7 @@
 | WORK-014 | 승인 큐 + route 게이트 MVP (스키마·접수·자동준비·게이트 공통계약·admin 큐 화면) | BE+FE | done | SPEC-007·008(route)·009 | 012·013 | `work-014-queue-and-route-gate.md` |
 | WORK-016 | 비동기 실행 + 진행 표시 UI (제출/수확 분리·완료 대기·진행 표시) | BE+FE | done | SPEC-008·009 | 015 | `work-016-async-execution-and-progress-ui.md` |
 | WORK-015 | 유튜브 체인 완성 + Apply Executor (source_note·concept·derived + 원자적 발행) | BE+FE | doing 80% (BE·FE 전부 done, 실전 e2e 만 남음) | SPEC-008·010·004 | 014 | `work-015-youtube-chain-and-executor.md` |
-| WORK-017 | 잔디 커밋 파이프라인 — 형식 SoT·준비부 일반화·더미 collect·발행부·화면·진짜 git 수집 (5 phase) | BE+FE+Ops | in_progress 25% (P1 done · P2 진행 중) | SPEC-011·012·013·010 | 016 | `work-017-grass-commit-pipeline.md` |
+| WORK-017 | 잔디 커밋 파이프라인 — 형식 SoT·준비부 일반화·더미 collect·발행부·화면·진짜 git 수집 (5 phase) | BE+FE+Ops | in_progress 35% (P1 done · P2 거의 완료 — 접수 진입점만 남음) | SPEC-011·012·013·010 | 016 | `work-017-grass-commit-pipeline.md` |
 
 ## Status Board
 
@@ -74,7 +74,7 @@
 | 지식그래프 (BL-001) | WORK-001~010 done | — |
 | 앱 DB화 (BL-002) | WORK-011 done | admin 실제 관리 기능 |
 | 승인 파이프라인 (BL-003) | **012·013 done** · 014~015 todo | **014 착수** (큐 + route 게이트) → 015 |
-| 잔디 파이프라인 (BL-004) | **017 in_progress 25%** — P1 형식 SoT done · P2 레일 진행 중 | P2 잔여 — auto 루프·이름별 등록·수집 전제 해제·fan-out 저장·더미 collect·`investigate`·`compose`·합성 키 |
+| 잔디 파이프라인 (BL-004) | **017 in_progress 35%** — P1 형식 SoT done · P2 레일·더미 `collect`·`investigate`·`compose`·실배선 done (699 passed) | P2 잔여 — `intake()` 합성 키(`daily:{date}`) + 접수 진입점 + 백필 · `auto:false` 접수 전 차단 |
 
 ## Spec Coverage
 
@@ -87,11 +87,11 @@
 | SPEC-005 시각화 | WORK-008·009 | 008 전역 done / 009 로컬 done (시각화 완료) |
 | SPEC-006 관리자 인증 | WORK-011 | 011 done (DB 토대+async+로그인+admin 목 e2e 검증 — 앱 DB화 첫 트랙, 그래프 work와 독립) |
 | SPEC-007 승인 큐 | WORK-012·014 | **둘 다 done** — 접수·준비·재시도·삭제·큐 화면까지 구현. 발행 재시도만 WORK-015 |
-| SPEC-008 게이트 체인 | WORK-014·015·**017** | 014 route BE done / 015 나머지 스테이지 todo / **017 P2 — `daily_commit` 정의 등록 done, 준비부 일반화 진행 중.** route 없는 체인(`enabled_stages` 일반화)은 **범위 밖으로 뺐다** — 게이트 1개인 잔디에는 필요가 없고 판정 기준도 payload 유무가 아니라 정의의 route 유무여야 한다 (017 Open Issue) |
+| SPEC-008 게이트 체인 | WORK-014·015·**017** | 014 route BE done / 015 나머지 스테이지 todo / **017 P2 — `daily_commit` 정의 등록 + 준비부 일반화 done**(auto 스테이지 N개를 정의 순서로 돌려 `daily` 게이트까지). route 없는 체인(`enabled_stages` 일반화)은 **범위 밖으로 뺐다** — 게이트 1개인 잔디에는 필요가 없고 판정 기준도 payload 유무가 아니라 정의의 route 유무여야 한다 (017 Open Issue) |
 | SPEC-009 게이트 피드백 | WORK-014 | 014 P3 에서 공통 계약 구현 done |
 | SPEC-010 Apply Executor | WORK-015·**017** | 015 구현 done (검증 6종·원자 커밋·전량 롤백·재시도) / **017 P3 — `upsert`·그래프 밖 산출물·본인작성 보호 todo** |
-| SPEC-011 커밋 조사 | WORK-**017** | **P2 더미가 §4 계약 전량을 먼저 낸다**(교체 비용을 `collect` 한 곳에 가둔다) / P5 todo — 레지스트리·bare 클론·로컬 git 수집 |
-| SPEC-012 잔디 산출물 | WORK-**017** | **P1 템플릿 SoT done**(`templates/persona/daily.md`·`career.md` + `agent.md` 등록) / P2 todo — daily·career·concept 초안(`compose`) |
-| SPEC-013 잔디 게이트 | WORK-**017** | **P2 정의 등록 done, 스테이지 todo** / P3 발행 todo / P4 화면 + 더미 한 바퀴 완주 todo / P5 실발행 todo |
+| SPEC-011 커밋 조사 | WORK-**017** | **P2 더미 `collect` done — §4 계약 7키 전량 + 시나리오 7종**(교체 비용을 `collect` 한 곳에 가둔다. 지어내는 것은 `commits[]` 뿐이고 영역 분해·`counts`·career 귀속은 진짜 코드) / P5 todo — 레지스트리·bare 클론·로컬 git 수집 |
+| SPEC-012 잔디 산출물 | WORK-**017** | **P1 템플릿 SoT done**(`templates/persona/daily.md`·`career.md` + `agent.md` 등록) / **P2 `compose` done — 그 SoT 를 코드가 실제로 싣는다**(프롬프트 복사 아님을 마커 테스트가 검증, `counts` 는 코드 주입, career 는 전문 교체) |
+| SPEC-013 잔디 게이트 | WORK-**017** | **P2 스테이지 셋 + 실배선 done, 접수 진입점 todo** / P3 발행 todo / P4 화면 + 더미 한 바퀴 완주 todo / P5 실발행 todo. ⚠ 부분 실패 시 **결과 귀속 규칙**이 스펙에 없다 — 017 Open Issue (SPEC 환류 후보) |
 
 > SPEC-001·002·003·004는 DEC-010 반영으로 **개정**됐다(4층·concept·층별 검증). WORK-013이 그 개정분을 코드에 반영한다 — 기존 WORK-001~010이 구현한 것과 별개 커버리지다.
