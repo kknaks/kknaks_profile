@@ -82,6 +82,43 @@ def content_format(repo_root: Path | None = None) -> str:
     return _read(str(repo_root / TEMPLATE_PATH))
 
 
+#: 잔디 산출물 형식도 같은 이유로 여기 둔다 (KDEV-WORK-017 P2 / KDEV-SPEC-012).
+#: `compose` 스테이지가 이 둘을 불러다 프롬프트를 만든다 — 규칙을 파이썬 문자열에
+#: 복사하면 교안에서 없앤 이중 SoT 를 daily·career 에서 다시 만드는 것이 된다.
+DAILY_TEMPLATE_PATH = "templates/persona/daily.md"
+CAREER_TEMPLATE_PATH = "templates/persona/career.md"
+
+DAILY_FALLBACK = """daily 는 frontmatter(type·date·auto·counts·summary)와 본문으로 이뤄진다.
+counts 는 코드가 채우므로 AI 가 세지 않는다. summary 는 {ko: [], en: []} 이고 활동
+단위마다 한 줄이며, 활동이 0인 카테고리는 줄을 만들지 않는다. 본문은 1200자 이내.
+"""
+
+CAREER_FALLBACK = """career 본문은 ## 무슨 일 하는지 / ## 담당 영역 / ## 챌린지 /
+## 배운 점 / ## 대표 작업 다섯 섹션이다. 갱신은 append 가 아니라 기존 줄을 더 정확하게
+만드는 것이고, ## 챌린지·## 배운 점 은 각 5~7줄을 넘지 않는다. bullets·period·
+is_current 같은 사람 전용 필드는 갱신안에 담지 않는다.
+"""
+
+
+def _persona_format(path: str, fallback: str, repo_root: Path | None) -> str:
+    if repo_root is None:
+        import config
+
+        repo_root = config.repo_root()
+    text = _read(str(repo_root / path))
+    return text if text and text != FALLBACK else fallback
+
+
+def daily_format(repo_root: Path | None = None) -> str:
+    """`templates/persona/daily.md` 전문."""
+    return _persona_format(DAILY_TEMPLATE_PATH, DAILY_FALLBACK, repo_root)
+
+
+def career_format(repo_root: Path | None = None) -> str:
+    """`templates/persona/career.md` 전문."""
+    return _persona_format(CAREER_TEMPLATE_PATH, CAREER_FALLBACK, repo_root)
+
+
 def reset_cache() -> None:
     """테스트용 — 파일을 바꾼 뒤 다시 읽게 한다."""
     _read.cache_clear()
