@@ -124,12 +124,34 @@ class TestAuthGate:
             ("patch", "/api/admin/queue/items/1"),
             ("post", "/api/admin/queue/items/1/prepare"),
             ("delete", "/api/admin/queue/items/1"),
+            ("post", "/api/admin/queue/daily"),
         ],
     )
     def test_anonymous_is_rejected(self, anon, method, path):
         kwargs = {"json": {}} if method in ("post", "patch") else {}
         response = getattr(anon, method)(path, **kwargs)
         assert response.status_code == 401
+
+
+class TestDailyBackfill:
+    """백필의 유일한 진입점 (KDEV-WORK-017 P5 / KDEV-SPEC-013 §6)."""
+
+    def test_a_future_date_is_refused(self, client):
+        """아직 오지 않은 하루를 조사할 수 없다 — 사람의 오타다."""
+        response = client.post("/api/admin/queue/daily", json={"date": "2099-01-01"})
+        assert response.status_code == 409
+        assert response.json()["detail"]["code"] == "FUTURE_DATE"
+
+    def test_a_past_date_is_accepted_and_keyed_by_day(self, client):
+        """**날짜가 항목을 가른다** — URL 이 아니라. 같은 날 두 번은 하나다."""
+        first = client.post("/api/admin/queue/daily", json={"date": "2026-06-15"})
+        assert first.status_code == 201, first.text
+        _CREATED.add(first.json()["item_id"])
+        assert first.json()["date"] == "2026-06-15"
+
+        second = client.post("/api/admin/queue/daily", json={"date": "2026-06-15"})
+        assert second.json()["outcome"] != "created"
+        assert second.json()["existing_item_id"] == first.json()["item_id"]
 
 
 class TestCreate:

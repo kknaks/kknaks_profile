@@ -10,6 +10,7 @@ WORK-015 소관이다. 없는 기능을 자리만 잡아 두지 않는다.
 from __future__ import annotations
 
 import logging
+from datetime import date as date_cls
 from datetime import datetime, timezone
 from typing import Any
 
@@ -33,6 +34,7 @@ from core.models import (
 from service.pipeline import chain
 from service.pipeline import gates as gates_service
 from service.pipeline import harvest_preparation, intake
+from service.pipeline.daily_intake import intake_daily
 from service.pipeline.gates import GateError
 from service.pipeline.prepare import PREPARABLE_STATUSES
 from service.pipeline.route import route_outcome, validate_route_result
@@ -43,9 +45,9 @@ logger = logging.getLogger("kknaks-back.queue-api")
 router = APIRouter(prefix="/api/admin/queue", tags=["queue"], dependencies=[Depends(require_admin)])
 
 #: 기본 목록에서 감추는 상태 — 끝난 항목이 검토 대기와 섞이면 할 일이 안 보인다.
-#: 기본 목록에서 감춘다. **끝난 항목이지 실패한 항목이 아니다** — `no_activity` 는
-#: 활동이 없던 날이라 사람이 할 일이 없다(KDEV-SPEC-013 §4). 「완료 항목 보기」로 켜면
-#: 보이므로 "그날 조사가 돌긴 했는가" 는 여전히 확인할 수 있다.
+#: `no_activity` 는 **끝난 항목이지 실패한 항목이 아니다** — 활동이 없던 날이라 사람이
+#: 할 일이 없다(KDEV-SPEC-013 §4). 「완료 항목 보기」로 켜면 보이므로 "그날 조사가
+#: 돌긴 했는가" 는 여전히 확인할 수 있다.
 HIDDEN_STATUSES = ("published", "discarded", "deleted", "no_activity")
 
 
@@ -55,6 +57,11 @@ class CreateItemRequest(BaseModel):
     source_kind: str | None = Field(default=None, max_length=32)
     #: "이미 발행된 자료지만 새로 정리하겠다" 는 사람의 결정.
     allow_republish: bool = False
+
+
+class DailyIntakeRequest(BaseModel):
+    #: 비우면 어제(KST) — 스케줄러와 같다. 주면 백필이다.
+    date: date_cls | None = None
 
 
 class UpdateNoteRequest(BaseModel):
@@ -126,6 +133,37 @@ async def create_item(body: CreateItemRequest, db: AsyncSession = Depends(get_db
     if result.item_id is not None:
         await _follow(result.item_id)
     return {"outcome": result.outcome, "item_id": result.item_id}
+
+
+@router.post("/daily", status_code=201)
+async def create_daily(body: DailyIntakeRequest, db: AsyncSession = Depends(get_db)):
+    """잔디 항목을 손으로 접수한다 — **백필의 유일한 진입점** (KDEV-SPEC-013 §6).
+
+    `POST /items` 로는 안 된다. 그쪽은 일반 `intake()` 라 잔디의 두 방어(미래 날짜·
+    본인 작성)와 `daily:{date}` 합성 키를 지나치고, 그러면 같은 날짜가 두 항목이 되거나
+    사람이 쓴 daily 를 덮어쓰는 계획이 만들어진다.
+
+    스케줄러와 **같은 함수**를 부른다. 손으로 넣은 날과 자동으로 들어온 날이 다르게
+    동작하면 백필로 재현한 문제가 실제 상황과 어긋난다.
+    """
+    result = await intake_daily(
+        db, repo_root=config.repo_root(), target=body.date, channel="manual"
+    )
+    await db.commit()
+
+    if result.outcome == "blocked":
+        # 실패가 아니라 **만들지 않는 것이 옳은** 경우다 — 재시도할 것이 없다.
+        raise HTTPException(
+            status_code=409, detail={"code": result.reason, "date": result.date}
+        )
+    if result.item_id is not None:
+        await _follow(result.item_id)
+    return {
+        "outcome": result.outcome,
+        "item_id": result.item_id,
+        "date": result.date,
+        "existing_item_id": result.existing_item_id,
+    }
 
 
 @router.get("/items")
