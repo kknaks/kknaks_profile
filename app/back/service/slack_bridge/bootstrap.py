@@ -22,10 +22,13 @@ from core.db import new_session
 from service.knowledge_capture import CaptureSessionStore
 from service.knowledge_capture.source import fetch_source
 from service.pipeline import runtime
+from service.pipeline.collect_dummy import DummyCollect
 from service.pipeline.driver import PipelineDriver
 from service.pipeline.slack_intake import QueueIntakeRunner
 from service.pipeline.route import RouteProposer
 from service.pipeline.stages import ConceptStage, DerivedStage, SourceNoteStage
+from service.pipeline.stages.compose import AgentCompose
+from service.pipeline.stages.investigate import AgentInvestigate
 from service.pipeline.summarize import AgentSummarizer
 from service.slack_bridge.app import create_capture_app
 
@@ -211,6 +214,27 @@ class CaptureRuntime:
                     provider=config.capture_provider(),
                     model=config.capture_model(),
                     work_dir=config.capture_work_dir(),
+                    timeout_seconds=config.capture_timeout_seconds(),
+                ),
+            },
+            # 잔디의 auto 스테이지 (KDEV-WORK-017 P2). 게이트 실행기와 레지스트리가
+            # 다르다 — 계약이 다르고(auto 는 `GateRevision` 을 만들지 않는다) 이름이
+            # 겹칠 수도 있다. `collect` 는 LLM 을 부르지 않아 클라이언트가 없다.
+            auto_stages={
+                "collect": DummyCollect(),
+                "investigate": AgentInvestigate(
+                    AgentClient(self._broker),
+                    provider=config.capture_provider(),
+                    model=config.capture_model(),
+                    work_dir=config.capture_work_dir(),
+                    timeout_seconds=config.capture_timeout_seconds(),
+                ),
+                "compose": AgentCompose(
+                    AgentClient(self._broker),
+                    provider=config.capture_provider(),
+                    model=config.capture_model(),
+                    work_dir=config.capture_work_dir(),
+                    repo_root=config.repo_root(),
                     timeout_seconds=config.capture_timeout_seconds(),
                 ),
             },
