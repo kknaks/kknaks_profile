@@ -19,12 +19,15 @@ from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 import config
 from core.models import TrackedRepo
 from service.jobs.repo_registry import (
+    UnknownCareerError,
     account_for,
     enabled_repos,
     parse_slug,
     scan_showcase,
+    seed_company_from_showcase,
     seed_from_showcase,
 )
+from tests.conftest import isolate_tables
 
 try:
     _probe = create_engine(config.database_url())
@@ -43,6 +46,7 @@ async def db():
     engine = create_async_engine(config.database_url())
     conn = await engine.connect()
     trans = await conn.begin()
+    await isolate_tables(conn, "tracked_repos")
     session = AsyncSession(
         bind=conn, expire_on_commit=False, join_transaction_mode="create_savepoint"
     )
@@ -69,6 +73,13 @@ def repo(tmp_path: Path) -> Path:
     showcase("mediness", "company", "github.com/MediSolveAIDev/mediness", "false")
     showcase("profile", "studio", "github.com/kknaks/kknaks_profile")
     showcase("mykakao", "studio", "github.com/kknaksss/mykakao", "false")
+
+    # company 시드가 `detail` 이 실재하는 career stem 인지 확인한다.
+    career = tmp_path / "persona" / "career"
+    career.mkdir(parents=True)
+    (career / "medisolve-ai.md").write_text(
+        "---\ntype: career\nis_current: true\n---\n\n## 무슨 일 하는지\n", encoding="utf-8"
+    )
     return tmp_path
 
 
@@ -153,3 +164,61 @@ class TestSeed:
         assert rows[0].slug not in {r.slug for r in active}
         # 지우지 않는다 — 과거 조사 이력의 참조가 끊긴다.
         assert (await db.scalars(select(TrackedRepo))).all()
+
+
+@needs_db
+class TestCompanySeed:
+    """`company` 를 넣는 경로 (KDEV-WORK-017 결함 ④).
+
+    `seed_from_showcase()` 가 company 를 건너뛰는 것은 옳지만, 그러면 **넣을 방법이
+    아무데도 없었다.** 프로덕션 호출부가 0이라 배포하면 레지스트리가 빈 채로 뜨고
+    잔디가 매일 `NO_ACTIVITY` 로 끝난다 — 실패로 보이지 않아서 한참 모른다.
+    """
+
+    async def test_company_lands_with_the_given_detail(self, db, repo):
+        await seed_from_showcase(db, repo)
+        result = await seed_company_from_showcase(db, repo, detail="medisolve-ai")
+
+        assert result["added"] == 1
+        row = (
+            await db.scalars(
+                select(TrackedRepo).where(TrackedRepo.type == "company")
+            )
+        ).one()
+        assert row.slug == "MediSolveAIDev/mediness"
+        assert row.detail == "medisolve-ai"
+        # 회사 레포는 회사 토큰으로 클론한다 — 개인 토큰이면 권한이 없다.
+        assert row.account == "company"
+
+    async def test_unknown_career_stem_is_refused(self, db, repo):
+        """오타는 DB CHECK 를 통과한다 — `detail IS NOT NULL` 만 보기 때문이다.
+
+        막지 않으면 조사까지 정상으로 돌다가 **발행 단계에서** 없는 문서에 쓰려다
+        그날 career 가 사라진다. 승인 화면까지 가서야 보이는 실패다.
+        """
+        with pytest.raises(UnknownCareerError):
+            await seed_company_from_showcase(db, repo, detail="medisolve-ia")
+
+        assert (await db.scalars(select(TrackedRepo))).all() == []
+
+    async def test_running_twice_adds_nothing(self, db, repo):
+        """배포 스크립트는 다시 돌려도 안전해야 한다 — 사람이 손본 값을 안 덮는다."""
+        await seed_company_from_showcase(db, repo, detail="medisolve-ai")
+        second = await seed_company_from_showcase(db, repo, detail="medisolve-ai")
+        assert second["added"] == 0
+
+    async def test_existing_detail_is_not_overwritten(self, db, repo):
+        """사람이 다른 career 로 옮겨 놨으면 그대로 둔다."""
+        await seed_company_from_showcase(db, repo, detail="medisolve-ai")
+        row = (
+            await db.scalars(select(TrackedRepo).where(TrackedRepo.type == "company"))
+        ).one()
+        row.detail = "bitcamp"
+        await db.flush()
+
+        await seed_company_from_showcase(db, repo, detail="medisolve-ai")
+
+        refreshed = (
+            await db.scalars(select(TrackedRepo).where(TrackedRepo.type == "company"))
+        ).one()
+        assert refreshed.detail == "bitcamp"

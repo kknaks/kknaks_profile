@@ -113,6 +113,55 @@ async def seed_from_showcase(db: AsyncSession, repo_root: Path) -> dict[str, int
     return {"added": added, "needs_detail": skipped_company, "existing": len(existing)}
 
 
+class UnknownCareerError(ValueError):
+    """`detail` 이 실재하지 않는 career stem 을 가리킨다."""
+
+
+async def seed_company_from_showcase(
+    db: AsyncSession, repo_root: Path, *, detail: str
+) -> dict[str, int]:
+    """`seed_from_showcase()` 가 건너뛴 `company` 를 `detail` 을 붙여 넣는다.
+
+    시드가 company 를 건너뛰는 것은 옳은 판단이지만, 그러면 **넣을 방법이 아무데도
+    없다.** 그 자리를 여기서 메운다 — 어느 career 로 갈지는 여전히 사람이 정하고,
+    이 함수는 그 값을 받아 적기만 한다.
+
+    `detail` 을 하나만 받는 이유는 지금 재직 중인 회사가 하나이기 때문이다
+    (`is_current: true` 는 `medisolve-ai` 뿐). 회사가 늘면 slug 별로 받게 바꾼다 —
+    지금 그 일반화를 하면 쓰지 않을 인자를 설계하는 것이 된다.
+
+    **실재하는 career 문서인지 먼저 본다.** 오타가 나면 DB CHECK 는 통과하고
+    (`detail IS NOT NULL` 만 본다) 조사도 정상으로 돌지만, 발행 단계에서 없는 문서에
+    쓰려다 그날 career 가 통째로 사라진다. 그 실패는 승인 화면까지 가서야 보인다.
+
+    Raises:
+        UnknownCareerError: `persona/career/{detail}.md` 가 없을 때.
+    """
+    career_path = repo_root / "persona" / "career" / f"{detail}.md"
+    if not career_path.exists():
+        raise UnknownCareerError(
+            f"career 문서가 없다 — {career_path}. `detail` 은 실재하는 stem 이어야 한다"
+        )
+
+    existing = set((await db.scalars(select(TrackedRepo.slug))).all())
+    added = 0
+    for entry in scan_showcase(repo_root):
+        if entry.type != "company" or entry.slug in existing:
+            continue
+        db.add(
+            TrackedRepo(
+                slug=entry.slug,
+                type=entry.type,
+                detail=detail,
+                account=entry.account,
+                enabled=True,
+            )
+        )
+        added += 1
+    await db.flush()
+    return {"added": added, "detail": detail}
+
+
 async def enabled_repos(db: AsyncSession) -> list[TrackedRepo]:
     """조사 대상. `enabled` 가 꺼진 것은 클론을 남긴 채 fetch 만 멈춘다."""
     return list(
