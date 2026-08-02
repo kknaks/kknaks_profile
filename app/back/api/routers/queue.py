@@ -36,7 +36,7 @@ from service.pipeline import gates as gates_service
 from service.pipeline import harvest_preparation, intake
 from service.pipeline.daily_intake import intake_daily
 from service.pipeline.gates import GateError
-from service.pipeline.prepare import PREPARABLE_STATUSES
+from service.pipeline.prepare import PREPARABLE_STATUSES, running_preparation
 from service.pipeline.route import route_outcome, validate_route_result
 from service.pipeline.stages.concept import apply_exclusions
 
@@ -303,6 +303,14 @@ async def retry_prepare(item_id: int, db: AsyncSession = Depends(get_db)):
     return {"status": item.status, "version": None, "error_code": None, "error_message": None}
 
 
+def _is_auto_stage_preparation(preparation) -> bool:
+    """auto 스테이지(잔디)의 준비인가 — `stage` 키가 표식이다.
+
+    레거시 수집+요약 준비에는 그 키가 없다(`prepare.running_preparation` 참조).
+    """
+    return bool(preparation is not None and (preparation.payload or {}).get("stage"))
+
+
 async def _harvest_item(db: AsyncSession, item: QueueItem) -> bool:
     """진행 중인 준비를 수확한다. 바뀌었으면 `True`.
 
@@ -315,6 +323,12 @@ async def _harvest_item(db: AsyncSession, item: QueueItem) -> bool:
         await _follow(item.id)
         return False
     if item.status != "preparing":
+        return False
+    if _is_auto_stage_preparation(await running_preparation(db, item.id)):
+        # auto 스테이지(잔디)는 드라이버가 민다 — 읽기 경로가 수확하면 fan-out
+        # 준비를 레거시 수확기가 죽인다(KDEV-WORK-017 결함 ⑨). 깨우기만 한다:
+        # 드라이버가 재시작 등으로 사라졌으면 여기서 다시 붙는다.
+        await _follow(item.id)
         return False
     summarizer = _summarizer_factory()
     if summarizer is None:

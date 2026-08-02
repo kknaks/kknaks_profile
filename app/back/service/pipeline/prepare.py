@@ -546,6 +546,16 @@ async def harvest_preparation(
 
     게이트 수확과 같은 규율이다 — `running` 행을 `FOR UPDATE` 로 잡아, 폴링이
     겹쳐도 요약이 두 번 채워지지 않는다.
+
+    **auto 스테이지 준비는 건드리지 않는다** (KDEV-WORK-017 결함 ⑨). 이 함수는
+    "수집+요약 한 덩어리, 실행 1건" 을 전제한 레거시 수확기라 fan-out 준비를
+    이해하지 못한다 — `ai_task_id` 가 비어 있어 곧바로 `TASK_REF_MISSING` 으로
+    닫아 버린다. 그것을 실제로 당했다: 드라이버가 investigate 2건을 정상적으로
+    기다리는 동안 **승인 큐 화면의 목록 폴링**(`_harvest_item`)이 이 함수를 불러
+    조사 중인 항목을 죽였다. 화면을 열어 둔 것이 파이프라인을 멈춘 것이다.
+
+    드라이버(`_finish_auto_stage`)는 이 구분을 갖고 있었지만 읽기 경로에는 없었다.
+    호출부마다 같은 판단을 되풀이하면 또 빠뜨리므로 **여기에 세운다.**
     """
     if item.status != "preparing":
         return PrepareResult(item_id=item.id, status=item.status)
@@ -557,6 +567,18 @@ async def harvest_preparation(
         .limit(1)
         .with_for_update()
     )
+    if preparation is not None and (preparation.payload or {}).get("stage"):
+        # `stage` 키는 auto 스테이지 준비의 표식이다 — 레거시 준비에는 없다
+        # (`running_preparation` 참조). 내 것이 아니니 그대로 두고 돌아간다.
+        # 실패로 닫지 않는다: 드라이버가 수확할 것이고, 여기서 상태를 바꾸면
+        # 그쪽이 밀고 있던 것을 빼앗는다.
+        return PrepareResult(
+            item_id=item.id,
+            status="preparing",
+            preparation_id=preparation.id,
+            version=preparation.version,
+        )
+
     if preparation is None:
         # 준비 중인데 진행 행이 없다. 제출이 커밋 전에 끊긴 흔적이므로
         # 사람이 재시도할 수 있게 실패로 닫는다.

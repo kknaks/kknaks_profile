@@ -11,6 +11,12 @@ from __future__ import annotations
 
 from typing import Any
 
+import pytest
+from sqlalchemy import create_engine, text
+from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
+
+import config
 from core.models import QueueItem
 from service.pipeline.collect_dummy import investigate_payload
 from service.pipeline.stages.investigate import (
@@ -18,6 +24,37 @@ from service.pipeline.stages.investigate import (
     group_by_repo,
     repo_prompt,
 )
+from tests.conftest import isolate_tables
+from tests.fakes import FakeSummarizer
+
+try:
+    _probe = create_engine(config.database_url())
+    with _probe.connect() as conn:
+        conn.execute(text("SELECT 1"))
+    _probe.dispose()
+    _DB_OK = True
+except SQLAlchemyError:
+    _DB_OK = False
+
+needs_db = pytest.mark.skipif(not _DB_OK, reason="Postgres 미가용")
+
+
+@pytest.fixture
+async def db():
+    engine = create_async_engine(config.database_url())
+    conn = await engine.connect()
+    trans = await conn.begin()
+    await isolate_tables(conn, "queue_items")
+    session = AsyncSession(
+        bind=conn, expire_on_commit=False, join_transaction_mode="create_savepoint"
+    )
+    try:
+        yield session
+    finally:
+        await session.close()
+        await trans.rollback()
+        await conn.close()
+        await engine.dispose()
 
 
 class FakeClient:
@@ -162,3 +199,83 @@ class TestParse:
 
         assert piece["investigate"]["repos"] == {}
         assert len(piece["investigate"]["missing"]) == 3
+
+
+@needs_db
+class TestLegacyHarvesterKeepsOff:
+    """레거시 수확기가 fan-out 준비를 건드리지 않는다 (KDEV-WORK-017 결함 ⑨).
+
+    `harvest_preparation` 은 "수집+요약 한 덩어리, 실행 1건" 을 전제한다. fan-out
+    준비는 `ai_task_id` 가 비어 있어서 그 함수에 닿는 순간 `TASK_REF_MISSING` 으로
+    닫힌다.
+
+    **실제로 승인 큐 화면이 그것을 했다.** 목록 조회(`_harvest_item`)가 `preparing`
+    항목마다 이 함수를 불렀고, 드라이버가 investigate 2건을 정상적으로 기다리는
+    동안 조사 중인 항목을 죽였다 — 화면을 열어 둔 것이 파이프라인을 멈췄다.
+    로컬 e2e 를 브라우저로 돌리기 전까지는 안 나왔다(어제는 curl 로만 봤다).
+    """
+
+    async def _preparing_item(self, db):
+        from core.models import ItemPreparation, QueueItem
+
+        item = QueueItem(
+            source_kind="daily_commit",
+            source_url=None,
+            normalized_url="daily:2026-08-01",
+            note=None,
+            channel="scheduler",
+            status="preparing",
+        )
+        db.add(item)
+        await db.flush()
+        prep = ItemPreparation(
+            item_id=item.id,
+            version=1,
+            status="running",
+            ai_task_id=None,  # fan-out 은 비운다 — N 건을 `AITask.item_id` 로 찾는다
+            payload={"stage": "investigate", "task_refs": ["ref-1", "ref-2"]},
+        )
+        db.add(prep)
+        await db.flush()
+        return item, prep
+
+    async def test_auto_stage_preparation_is_left_alone(self, db):
+        from service.pipeline.prepare import harvest_preparation
+
+        item, prep = await self._preparing_item(db)
+
+        result = await harvest_preparation(db, item, summarize=FakeSummarizer())
+
+        assert result.status == "preparing", "조사 중인 준비를 닫으면 안 된다"
+        await db.refresh(prep)
+        await db.refresh(item)
+        assert prep.status == "running"
+        assert item.status == "preparing"
+
+    async def test_legacy_preparation_is_still_harvested(self, db):
+        """레거시 경로는 그대로여야 한다 — 유튜브가 아직 그쪽이다."""
+        from core.models import ItemPreparation, QueueItem
+        from service.pipeline.prepare import harvest_preparation
+
+        item = QueueItem(
+            source_kind="youtube",
+            source_url="https://youtu.be/x",
+            normalized_url="https://youtu.be/x",
+            note=None,
+            channel="manual",
+            status="preparing",
+        )
+        db.add(item)
+        await db.flush()
+        # `stage` 키가 없다 — 레거시의 표식이다.
+        db.add(
+            ItemPreparation(
+                item_id=item.id, version=1, status="running", ai_task_id=None, payload={}
+            )
+        )
+        await db.flush()
+
+        result = await harvest_preparation(db, item, summarize=FakeSummarizer())
+
+        assert result.status == "prepare_failed"
+        assert result.error_code == "TASK_REF_MISSING"
