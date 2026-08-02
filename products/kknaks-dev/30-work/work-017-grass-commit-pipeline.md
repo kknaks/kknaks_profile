@@ -13,9 +13,9 @@ roles:
   be: kknaks
   qa: kknaks
   ops: kknaks
-progress: 88
+progress: 94
 created_at: 2026-07-31
-updated_at: 2026-08-01
+updated_at: 2026-08-03
 tags:
   - product/kknaks-dev
   - doc/work
@@ -62,10 +62,10 @@ links:
 | Type | new-feature |
 | Owner | kknaks |
 | Status | in_progress |
-| Progress | 88% (**코드가 전부 들어왔다** — P1·P2·P3 done, P4·P5 는 배포에 걸린 검증만 남았다. P5 작업 16 중 14, 786 passed, FE 타입검사·빌드 통과. **남은 12% 가 무엇인지가 이 눈금의 전부다**: 배포와 **하루치 실발행 완주** 하나. WORK-015 의 80%("BE·FE 전부 done, 실전 e2e 만 남음")를 넘어선 근거는 그쪽보다 검증이 촘촘하다는 것이다 — 한 바퀴가 테스트 경로로 완주했고 FE 도 빌드가 섰다. **그럼에도 100 이 아닌 이유는 진짜 GitHub 에서 한 번도 돈 적이 없기 때문이다** — 토큰·권한·13개 실클론·identity 3종·실비용이 전부 미검증이고, WORK-015·016 이 실운영에서 무엇이 더 나왔는지를 기억하면 그 구간을 작게 잡을 수 없다) |
+| Progress | 94% (**로컬 하루치를 dry-run 으로 완주했다** (2026-08-02) — 접수부터 발행까지 사람 승인을 포함해 한 바퀴가 실제로 돌았고, 그 과정에서 **결함 9건**을 찾아 고쳤다(⑩은 미수정). 813 passed·FE `tsc` 통과. **남은 6% 는 서버 하나다** — 배포하고 실 push 로 하루치를 완주하는 것. 그 구간이 여전히 미검증인 이유는 토큰·권한·13개 실클론·identity 3종·실비용이 로컬에서 재현되지 않기 때문이다. 이전 서술: **로컬 e2e 로 결함 5건을 찾아 고쳤다** (2026-08-02) — 그중 ①이 `daily` 게이트를 막던 blocker 였다. 798 passed·**전체 green**(⑤가 그 전제를 고쳤다). **눈금이 88 → 90 밖에 안 오른 이유**: 고친 다섯이 전부 "코드가 전부 들어왔다" 던 88% 안에 숨어 있던 것들이라 새 진도가 아니라 **밀린 빚을 갚은 것**이고, 남은 12% 의 정의(배포 + 하루치 실발행)는 그대로다. 다만 그 12% 의 **성격이 나아졌다** — 배포 체크리스트의 미검증 항목 둘(`IDLE_TIMEOUT_SEC`·시드 실행)이 이제 값과 명령까지 확정돼 있다. 이전 서술: **코드가 전부 들어왔다** — P1·P2·P3 done, P4·P5 는 배포에 걸린 검증만 남았다. P5 작업 16 중 14, 786 passed, FE 타입검사·빌드 통과. **남은 12% 가 무엇인지가 이 눈금의 전부다**: 배포와 **하루치 실발행 완주** 하나. WORK-015 의 80%("BE·FE 전부 done, 실전 e2e 만 남음")를 넘어선 근거는 그쪽보다 검증이 촘촘하다는 것이다 — 한 바퀴가 테스트 경로로 완주했고 FE 도 빌드가 섰다. **그럼에도 100 이 아닌 이유는 진짜 GitHub 에서 한 번도 돈 적이 없기 때문이다** — 토큰·권한·13개 실클론·identity 3종·실비용이 전부 미검증이고, WORK-015·016 이 실운영에서 무엇이 더 나왔는지를 기억하면 그 구간을 작게 잡을 수 없다) |
 | Branch/PR | `work-017-p2` |
 | Blocker | 없음 |
-| Next | **코드 검토.** 그 다음이 배포이고 **넣을 값은 전부 확정돼 있다**(P5 「배포 준비물」) — ① compose 볼륨·env(`REPO_CACHE_DIR`·`GH_TOKEN_COMPANY`, `KNOWN_COMMIT_IDENTITIES` 는 **비운 채로**) ② 마이그레이션 `0007`·`0008` ③ showcase 시드 1회 + company 5개에 `detail=medisolve-ai` ④ 13개 최초 클론(~321MB) ⑤ 하루치 실발행 완주. **⚠ 머지 전까지 `kknaks-back` 재시작 금지** — dev DB 가 `0008` 이라 main 코드로는 부팅이 막힌다 |
+| Next | **커밋 → PR #6 머지 → 배포.** 로컬 완주는 끝났다. 배포 전에 ⑩(career frontmatter 재작성)을 닫을지 정해야 한다 — 서버는 dry-run 이 아니라 그 손실이 `origin/main` 에 커밋된다. 넣을 값은 **넣을 값은 전부 확정돼 있다**(P5 「배포 준비물」) — ① compose 볼륨·env(`REPO_CACHE_DIR`·`GH_TOKEN_COMPANY`, `KNOWN_COMMIT_IDENTITIES` 는 **비운 채로**) ② 마이그레이션 `0007`·`0008` ③ showcase 시드 1회 + company 5개에 `detail=medisolve-ai` ④ 13개 최초 클론(~321MB) ⑤ 하루치 실발행 완주. **⚠ 머지 전까지 `kknaks-back` 재시작 금지** — dev DB 가 `0008` 이라 main 코드로는 부팅이 막힌다 |
 
 ## Role Assignment
 
@@ -457,6 +457,8 @@ WORK-016 스키마가 이미 받아 준다. 확인한 근거 넷:
   - [x] Slack 알림 전환 — 발행 완료 → 승인 대기(발동 시 1회, 미승인 2건 이상 재알림)
   - [x] 구 잔디 경로 제거 — `inputs.py` 의 세 함수 + `main_job.py`·`llm.py`·`upsert.py` **파일째**
   - [x] `tests/test_jobs.py` 정리 — `TestWriteDaily`·`TestLLM*` 계열을 통째로 지웠다
+  - [x] **로컬 e2e 에서 드러난 결함 5건 수정** — 발주 시점에 없던 항목이다. 아래 「로컬 e2e 결함」 참조
+  - [x] **레지스트리 시드 진입점** — `app/scripts/seed_repo_registry.py`. 발주 목록에 없었다: 시드 **함수**는 있었지만 프로덕션 호출부가 0이었다
   - [ ] 배포 — 볼륨·env 반영, 서버에서 13개 최초 클론 (~321MB). **코드 검토 뒤로 미뤘다.** 절차와 넣을 값은 아래 「배포 준비물」에 확정돼 있다
   - [ ] 하루치 실발행 완주
 - **검증**:
@@ -514,11 +516,106 @@ WORK-016 스키마가 이미 받아 준다. 확인한 근거 넷:
 
   - **커밋 `66f8894` — 백필 진입점.** `POST /api/admin/queue/daily`. **`POST /items` 로는 안 된다** — 그쪽은 일반 `intake()` 라 잔디의 두 방어(미래 날짜·본인 작성)와 `daily:{date}` 합성 키를 지나치고, 그러면 같은 날짜가 두 항목이 되거나 사람이 쓴 daily 를 덮어쓰는 계획이 만들어진다. 스케줄러와 **같은 함수**를 부른다 — 손으로 넣은 날과 자동으로 들어온 날이 다르게 동작하면 백필로 재현한 문제가 실제 상황과 어긋난다. 783 → **786 passed**.
 
+### 로컬 e2e 결함 10건 (2026-08-02~03)
+
+로컬 스택으로 한 바퀴를 돌려 **테스트가 잡지 못한 결함 10건**을 찾았다. 접수 4852(2026-08-01)가 `collect ✓ → investigate ×2 ✓ → daily ✗` 로 멎은 것이 출발점이다.
+
+**공통점이 이것들을 묶는다: fake 를 쓰는 테스트로는 하나도 안 잡힌다.** ①은 실행기를 fake 로 갈면 워커를 안 지나고, ②는 스케줄러 잡을 부르는 테스트가 없었고, ③④는 애초에 호출부가 없어 테스트할 대상이 없었고, ⑤는 테스트 자신의 전제였다. ⑥⑧⑨는 **실 LLM 출력·실 브라우저**가 있어야만 재현된다.
+
+**그리고 셋(⑥⑧⑨)은 앞의 것을 고쳐야 비로소 드러났다.** ①이 30초에 죽는 동안 ⑥은 보이지 않았고, ⑥으로 게이트가 열려야 ⑧에 닿았다. **결함이 줄지어 있었다** — 한 번에 다 보이지 않는다는 것이 이 발주에서 e2e 를 완료 조건에 넣은 값이다.
+
+| | 결함 | 고친 곳 | 어떻게 드러났나 |
+|---|---|---|---|
+| ① | `daily` 게이트가 안 열린다 — 워커 무출력 상한 30초 | `app/worker/run.py` `apply_idle_timeout()` | 실 워커 |
+| ② | 스케줄러가 드라이버를 안 깨운다 | `daily_intake.run_daily_intake_job` | 코드 대조 |
+| ③ | `app/scripts/run_daily_activity.py` 가 죽은 import | 삭제 | 코드 대조 |
+| ④ | 레지스트리 시드를 돌릴 방법이 없다 | `app/scripts/seed_repo_registry.py` | 호출부 조사 |
+| ⑤ | DB 테스트가 빈 테이블을 전제한다 | `tests/conftest.isolate_tables` | e2e 가 DB 를 채우자 12건 실패 |
+| ⑥ | 모델이 JSON 앞에 산문을 붙이면 파싱이 죽는다 | `stages/common.extract_json_object` | **실 LLM 출력** |
+| ⑦ | 큐 화면 CSS 경고(`border`/`borderLeft` 혼용) | 미수정 — 경미 | 브라우저 콘솔 |
+| ⑧ | **승인이 사람의 daily·career 편집을 삼킨다** | `queue-gate.tsx` + `gates.approve` 가드 | **실 브라우저 승인** |
+| ⑨ | **큐 화면을 열어 두면 조사 중 항목이 죽는다** | `prepare.harvest_preparation` 가드 | **실 브라우저 폴링** |
+| ⑩ | career 발행이 frontmatter 를 통째로 재작성한다 | `apply/plan.render_career` | 발행 산출물 육안 확인 |
+
+**⑥ JSON 머리말.** ①을 고쳐 159초를 완주했는데 그 다음이 `INVALID_DAILY_OUTPUT · char 0` 이었다. 결과 3179자는 멀쩡한 JSON 인데 앞에 설명 두 줄이 붙어 있었다. 프롬프트는 이미 "JSON 하나로 답한다" 였고 모델이 안 지켰다 — **프롬프트를 조이는 것만으로는 안 된다.** 계약 문구를 조이고(`첫 글자가 { 여야 한다`) 파서에 관용성을 넣었다.
+
+같은 로직의 복사본이 셋이었다(`daily._strip_fence`·`common.parse_json_output`·`route._parse`). 전부 펜스만 벗기고 머리말은 못 벗겼다 — **유튜브 게이트도 같은 취약점**이었고 아직 안 터졌을 뿐이다. `extract_json_object()` 하나로 합치고 에러 코드만 스테이지별로 남겼다. 첫 `{` 부터 **괄호 균형**까지 자른다(문자열 안의 괄호·이스케이프는 세지 않는다) — `rfind("}")` 로 자르면 꼬리말 안의 `}` 에 걸린다.
+
+**⑧ 승인이 편집을 삼킨다 — 가장 값비싼 발견이다.** `queue-gate.tsx` 의 타입 가드가 거짓말을 했다.
+
+```ts
+function isConcepts(p): p is ConceptPayload { return !!p && "concepts" in p; }
+```
+
+**잔디 게이트 payload 는 `{daily, career, concepts, collection}` 이라 `concepts` 를 가진다.** 그래서 concept 로 오판돼 승인이 `{concepts}` 만 보냈고 daily·career 가 버려졌다. 화면에는 「승인됨」이 뜨고 **발행에서 `EMPTY_PLAN` 을 만나서야** 드러난다. 타입 술어가 거짓을 단언하면 `tsc` 는 그대로 믿으므로 **타입검사로는 절대 안 잡힌다.**
+
+BE 에도 가드를 세웠다. `revision.payload = payload_override` 가 통째 교체라 화면이 무엇을 빠뜨리든 받는다 — 화면만 고치면 같은 함정이 다음 게이트에서 다시 열린다(`REQUIRED_PAYLOAD_KEYS`). route 는 `validate_route_result` 가 빈 `rationale` 을 정당하게 떨어뜨려 대상에서 뺐다.
+
+**⑨ 화면을 열어 두면 조사 중 항목이 죽는다.** `_harvest_item()` 이 목록 조회마다 `preparing` 항목에 **무조건 레거시 단건 수확기**를 불렀다. 그 수확기는 실행 1건을 전제해서 fan-out 준비(`ai_task_id` 가 비어 있다)를 만나면 `TASK_REF_MISSING` 으로 닫는다. 드라이버(`_finish_auto_stage`)는 auto/레거시를 갈랐지만 **읽기 경로에는 그 분기가 없었다.**
+
+실증: 접수 몇 초 만에 `prepare_failed` 인데 워커는 조사 2건을 정상 완료했다(`done`, 1153·1712자). **파이프라인이 아니라 조회가 죽인 것이다.** ②를 고쳐 드라이버가 즉시 돌기 시작하자 노출 구간이 넓어져 드러났다.
+
+판별 기준을 새로 만들지 않았다 — `running_preparation` 의 docstring 이 이미 "레거시 준비에는 `stage` 키가 없다" 고 적어 두고 있었다. 그 규약을 **수확기 자체**에 세웠다. 호출부마다 되풀이하면 또 빠뜨린다.
+
+**⑩ career 발행이 frontmatter 를 재작성한다.** 값은 보존되는데 **주석이 사라지고 키가 알파벳순으로 재정렬됐다.** 본문만 바뀌어야 할 발행이 42 insertions / 38 deletions 를 냈고, `# 이력서 PDF — 비면 PDF 미표시` 주석이 없어졌다.
+
+원인은 `render_career` 가 `frontmatter.loads()` → `dumps()` 로 **YAML 을 왕복**한 것이다. 함수의 docstring 은 진작부터 "기존 frontmatter 를 **그대로 이고** 본문만 바꾼다" 고 적고 있었다 — **의도는 맞았고 구현이 그것을 못 지켰다.**
+
+이제 파싱하지 않는다. 여는 `---` 부터 닫는 `---` 까지를 **문자 그대로** 떼어 본문만 이어 붙인다. 종전에 개행 없이 끝나던 것(`\ No newline at end of file`)도 같이 고쳤다 — 매 발행마다 diff 에 남던 잡음이다.
+
+**"사람 전용 필드를 건드리지 않는다" 는 규율은 값이 같으면 되는 것이 아니다.** 사람이 적어 둔 주석과 순서도 그 사람의 것이다. 기존 테스트가 **파싱된 값**만 단언해서 이 결함을 통과시켰다(`meta["bullets"]["ko"] == [...]`) — 새 테스트는 텍스트를 본다.
+
+**배포 전에 닫은 이유**: 로컬은 dry-run 이라 `git checkout` 으로 되돌렸지만, 서버는 첫 발행에 그 손실이 `origin/main` 에 커밋되고 손으로 복구해야 한다(사용자 결정 2026-08-03).
+
+**① 무출력 상한 — open-kknaks 를 고치지 않고 우리 부팅부에서 덮는다.**
+
+`daily` 프롬프트가 investigate 산출물 79KB + 템플릿 9KB 를 물어 첫 토큰까지 30초를 넘겼고, `IdleTimeoutError` 로 재시도 3회를 소진했다. `investigate` 도 실측 25·32초로 **같은 벽 바로 앞**이었다.
+
+open-kknaks 는 timeout 을 둘로 나눠 잰다. 전체 데드라인(`options.timeout_sec`)은 태스크별로 넘길 수 있지만 **무출력 상한은 `executor.IDLE_TIMEOUT` 모듈 상수라 넘길 자리가 없다** — `ClaudeConfig`·`Task` 어디에도 없고 env 도 안 읽는다. `ClaudeWorker` 가 executor 를 인자로 받지 않고 안에서 만들어 인스턴스 교체도 안 된다.
+
+**open-kknaks 를 고치는 대신 부팅 시 모듈 속성을 덮는다**(사용자 결정 2026-08-02). open-kknaks 는 PyPI 로 나가는 별도 제품이라 이 레포의 결함 하나로 릴리스·핀 bump·OKK-SPEC 개정을 끌어오지 않는다. 성립 근거는 executor 가 그 상수를 **루프 안에서 매 회전 다시 읽는다**는 것이다(기본인자 캡처가 아니다).
+
+- back 쪽 `timeout_seconds`(600·900초)는 **무관하다** — 그건 back 이 결과를 기다리는 상한이고 워커가 먼저 죽인다
+- `TimeoutMiddleware` 로도 안 된다 — `task.options["timeout_sec"]` 만 만지고 idle 은 못 만진다
+- 값은 **180초**. 전체 데드라인(기본 600초)이 뒤에서 받치므로 멈춘 프로세스가 방치되지 않는다
+- **입자가 워커 전역이라는 것이 이 방식의 한계다.** 이 워커가 우리 파이프라인만 돌려서 지금은 무해하다. 태스크별 조정이 필요해지면 그때 OKK 에 `options.idle_timeout_sec` 을 내는 것이 정공법이다 — Open Issue 로 세운다
+- **조용한 회귀를 둘로 막았다.** 상수가 사라지면 `apply_idle_timeout()` 이 부팅에서 `RuntimeError` 를 던지고, `TestInstalledContract` 가 설치본 소스의 참조를 검사한다. 없으면 다음 버전 bump 가 이 결함을 그대로 되살린다
+
+**② 접수 뒤 `follow()`.** `api/routers/queue.py` 의 수동 접수는 커밋 뒤 `_follow()` 를 부르는데 스케줄러 잡에 그 대칭이 없었다. 실증에서 120초간 `received` 정지 후 목록 API 한 번에 진행했다(조회 시 수확 안전망). **화면을 안 열면 매일 09:05 에 항목만 쌓인다.** `follow()` 실패는 다시 던지지 않는다 — 접수는 이미 커밋됐고, 여기서 던지면 성공한 접수가 잡 실패로 보고된다.
+
+**④ 시드 함수는 있는데 부르는 곳이 없었다.** `seed_from_showcase()` 의 호출부가 테스트 4곳뿐이었다. 배포하면 `tracked_repos` 가 빈 채로 떠서 매일 `NO_ACTIVITY` 로 끝난다 — **실패로 보이지 않는다.** 그리고 company 5건은 함수가 일부러 건너뛰므로 `detail` 을 넣을 경로가 따로 필요했다. `seed_company_from_showcase()` 를 더해 스크립트가 둘을 순서대로 돈다. **admin 엔드포인트가 아니라 스크립트인 이유**는 배포 때 한 번 돌리는 일회성 작업이고, 발주서가 레지스트리 관리 화면을 범위 제외로 두고 있어서다.
+
+여기서 검증 하나가 같이 닫혔다 — **`detail` 이 실재하는 career stem 인지 본다**(`UnknownCareerError`). DB CHECK 는 `detail IS NOT NULL` 만 보므로 오타는 통과하고, 조사까지 정상으로 돌다가 **발행 단계에서** 없는 문서에 쓰려다 그날 career 가 사라진다. P5 검증의 "오타난 stem 은 지금 그대로 들어간다" 구멍이 이것이다.
+
+**⑤ 테스트가 빈 dev DB 에 기대고 있었다.** e2e 로 `tracked_repos` 13행과 큐 항목 하나가 들어오자 **12건이 깨졌다.** 즉 786 passed 는 레지스트리가 빈 상태에서만 참이었고, **레지스트리가 채워진 것이 정상 운영 상태**다 — 배포하면 반드시 만나는 종류다. `isolate_tables()` 가 이미 열려 있는 트랜잭션 안에서 해당 테이블을 비운다. 바깥 트랜잭션이 teardown 에서 롤백되므로 **커밋된 데이터는 안전하다**(수정 후 `tracked_repos=13`·company 5 그대로임을 확인했다).
+
+### 로컬 하루치 완주 (2026-08-02) — **dry-run**
+
+결함 9건을 고친 코드로 **레지스트리를 비운 상태에서** 처음부터 한 바퀴를 돌렸다. 이것이 "하루치 실발행 완주" 의 로컬판이다 — 남은 것은 서버에서 같은 것을 **실 push** 로 하는 일이다.
+
+| 단계 | 결과 |
+|---|---|
+| 시드 | `tracked_repos` 0 → 스크립트 1회 → **13건**(studio 8 + company 5/`medisolve-ai`). 손으로 넣었던 것과 동일 |
+| 접수 | 날짜 미지정 → 어제(KST) `2026-08-01`, 항목 5881 |
+| 드라이버 | **무개입 전진** — `collect ✓ → investigate ✓✓ → daily` |
+| investigate | 25.9초 / **60.8초**. 어제 25·32초에서 늘었다 — **30초였으면 둘째가 죽었다** |
+| daily 게이트 | `review_pending`, 본문 1411자(상한 1500 미만, 잘림 없음) |
+| 사람 승인 | 요약 4줄→**3줄**, career 924자→**727자**(문단 하나 제외) |
+| 발행 | `apply: succeeded`, `commit_ref: null` |
+| 산출물 | `persona/daily/2026-08-01.md` 신규 + `persona/career/medisolve-ai.md` 수정 |
+| 되돌림 | `git checkout` + 신규 파일 삭제. **로컬 레포에 커밋하지 않았다** |
+
+**concept 는 0건이었다** — 두 판 모두. 모델이 "`up:` 이 가리킬 stem 이 없어 만들지 않는다" 고 판단했고 이는 설계상 정당하다(억지로 만들지 않는다). **그래서 `permanent/concept/` 목적지의 발행 경로는 이번에 검증되지 않았다.** 서버 완주 때 확인할 것으로 남긴다.
+
+**본문 잘림은 결함이 아니었다.** 첫 판 1738자(잘림), 둘째 판 1411자(정상). 편차이지 계통적 문제가 아니라 현 설계(상한 초과 시 절단)를 그대로 둔다.
+
+**⑨ 검증에는 화면을 열어 둔 것이 필요했다.** 같은 조건에서 이전 항목(5739)은 몇 초 만에 죽었고, 고친 뒤에는 같은 폴링이 도는 동안 investigate 2건이 살아서 완주했다.
+
 ### 배포 준비물 — 사람만 아는 값 (2026-08-01 확정)
 
 배포일에 정할 것을 남겨 두지 않는다. **그날 결정하면 그날 틀린다.**
 
-**① `company` 레포 5개의 `detail` — 전부 `medisolve-ai`.** 시드를 실제 `products/*/showcase.md` 에 돌려 본 결과 13개 중 **studio 8개는 자동으로 들어가고 company 5개는 건너뛴다**(`needs_detail=5`). 다섯 다 `MediSolveAIDev` 조직이고 `persona/career/` 에서 `is_current: true` 는 `medisolve-ai` 하나뿐이다 — `career_targets` 가 `is_current` 아닌 문서를 거르므로 다른 stem 을 넣으면 그 레포의 작업이 어디에도 안 실린다.
+**① `company` 레포 5개의 `detail` — 전부 `medisolve-ai`.** 넣는 방법은 `app/scripts/seed_repo_registry.py --company-detail medisolve-ai` 다(결함 ④). 시드를 실제 `products/*/showcase.md` 에 돌려 본 결과 13개 중 **studio 8개는 자동으로 들어가고 company 5개는 건너뛴다**(`needs_detail=5`). 다섯 다 `MediSolveAIDev` 조직이고 `persona/career/` 에서 `is_current: true` 는 `medisolve-ai` 하나뿐이다 — `career_targets` 가 `is_current` 아닌 문서를 거르므로 다른 stem 을 넣으면 그 레포의 작업이 어디에도 안 실린다.
 
 ```
 MediSolveAIDev/CENTURION-CHARTY   MediSolveAIDev/centurion_mso
@@ -540,6 +637,8 @@ P1~P4 는 배포하지 않으므로 해당 없다.
 - [ ] `GH_TOKEN_COMPANY` 가 설정돼 있다 (없으면 회사 레포 5개가 조용히 빠지고 `medisolve-ai` career 가 갱신되지 않는다)
 - [ ] 디스크 여유가 321MB 이상이다
 - [ ] 워커 `:ro` 마운트가 그대로다 — 클론 볼륨을 워커에 붙이지 않았다
+- [ ] **`IDLE_TIMEOUT_SEC` 이 워커에 반영됐다** — compose 기본값 180. **안 들어가면 `daily` 게이트가 열리지 않는다**(결함 ①). 워커 부팅 로그의 `idle_timeout=180s` 로 확인한다
+- [ ] **레지스트리 시드를 돌렸다** — `python ../scripts/seed_repo_registry.py --company-detail medisolve-ai`. 안 돌리면 조사 대상이 0건이라 매일 `NO_ACTIVITY` 로 끝난다. **실패로 보이지 않는다**(결함 ④). `--dry-run` 으로 먼저 본다
 - [ ] `WORKER_CONCURRENCY` 가 실운영 값(1)으로 반영됐다 — **기본값은 2 다.** `CONCURRENCY: "2"` 는 워커 서비스 env 이고 유튜브 캡처가 쓰는 값이라, `${WORKER_CONCURRENCY:-2}` 로 두고 서버 `.env` 에서만 1로 내린다. 기본값을 1로 바꾸면 기존 동작이 바뀐다
 - [ ] 예산(`worker_budget_usd=5.0` / `global_budget_usd=20.0`) 안에서 하루치가 끝난다
 - [ ] 회사 레포 diff 가 프롬프트로 나가는 것을 알고 있다 (조사 균일·공개 통제는 게이트)
@@ -571,6 +670,14 @@ P1~P4 는 배포하지 않으므로 해당 없다.
 > SPEC-008 개정분의 "route 없는 체인"(`chain.enabled_stages` 일반화)은 **이번 범위 밖**이다. 아래 Open Issue 참조.
 
 ## Open Issues
+
+- **워커 무출력 상한이 태스크별이 아니라 프로세스 전역이다.** 결함 ① 을 open-kknaks 를 고치지 않고 `app/worker/run.py` 에서 모듈 상수를 덮어 해결했다(사용자 결정 2026-08-02). 그래서 `daily`(180초가 필요)와 유튜브 요약(30초면 충분)이 **같은 값을 쓴다.**
+
+  **지금은 무해하다.** idle 은 "출력이 멎은 시간" 이라 정상 태스크는 애초에 안 걸리고, 이 워커가 우리 파이프라인만 돌린다. 상한을 늘리는 것은 느려지게 만드는 것이 아니라 **죽이지 않게** 만드는 것이다. 전체 데드라인(600초)이 뒤에서 받쳐 멈춘 프로세스도 방치되지 않는다.
+
+  **닫아야 할 때는 둘이다.** ① 다른 성격의 워크로드가 같은 워커 큐에 들어올 때 ② 어느 스테이지가 180초로도 부족해질 때. 그때의 정공법은 open-kknaks 에 `options.idle_timeout_sec` 을 내는 것이다 — `options.timeout_sec` 이 이미 `task.options` 로 들어가는 경로가 있어 그 패턴을 그대로 베끼면 되고, 우리 쪽은 `AgentStage` 에 스테이지별 값을 두면 된다. **비용은 코드가 아니라 절차다**: PyPI 릴리스 + 핀 bump 2곳(`app/back/pyproject.toml`·`Dockerfile.worker`) + OKK-SPEC-001/004/008 개정.
+
+  ⚠ **덮어쓰기가 조용히 죽는 것이 이 방식의 유일한 실질 위험**이라 가드 둘을 세워 뒀다(부팅 `RuntimeError` + `TestInstalledContract`). open-kknaks 를 올릴 때 그 둘이 울면 여기를 읽는다.
 
 > **spec-코드 차이는 전부 닫혔다 (2026-08-01).** `investigate` 결과 귀속(SPEC-013 v0.0.2 §4) · 잔디 concept 형식 SoT(`ead2ceb`) · career 차이 표시 방식(`8c2aa7a`) · `chain.enabled_stages` 일반화(범위 밖으로 확정) · **활동 0 차단 위치**(SPEC-013 v0.0.3) · **`detail` 실재 stem 검증**(`missing_career`). 마지막 둘은 아래에 결정 근거와 함께 남긴다 — 어느 쪽으로 갈렸는지가 다음 구현자에게 필요하다.
 
