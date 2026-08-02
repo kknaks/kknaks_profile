@@ -143,16 +143,52 @@ def render_daily(payload: dict[str, Any]) -> str:
     return frontmatter.dumps(post)
 
 
+def _split_frontmatter(existing: str) -> tuple[str, bool]:
+    """원문에서 frontmatter 블록을 **문자 그대로** 떼어 낸다. `(블록, 찾았나)`.
+
+    블록은 여는 `---` 부터 닫는 `---` 까지를 포함한다. 파싱하지 않으므로 주석·키
+    순서·따옴표·들여쓰기가 원문 그대로 남는다.
+    """
+    if not existing.startswith("---"):
+        return "", False
+    lines = existing.splitlines(keepends=True)
+    if lines[0].strip() != "---":
+        return "", False
+    for i in range(1, len(lines)):
+        if lines[i].strip() == "---":
+            return "".join(lines[: i + 1]), True
+    # 닫는 구분자가 없다 — frontmatter 가 아니다.
+    return "", False
+
+
 def render_career(payload: dict[str, Any], existing: str) -> str:
     """career 파일 전문 — **기존 frontmatter 를 그대로 이고 본문만 바꾼다.**
 
     갱신안이 본문만 내는 이유가 여기 있다. career frontmatter 는 `bullets`·`period`
     처럼 사람이 정하는 값이 대부분이라, AI 가 전문을 내면 그것들을 다시 쓰게 된다.
     본문만 받아 얹으면 사람 전용 필드는 **건드릴 방법 자체가 없다.**
+
+    **frontmatter 를 파싱하지 않는다** (KDEV-WORK-017 결함 ⑩). 종전에는
+    `frontmatter.loads()` → `dumps()` 로 왕복했는데, 값은 보존되지만 **주석이
+    사라지고 키가 알파벳순으로 재정렬된다.** 본문만 바뀌어야 할 발행이 42 insertions
+    / 38 deletions 를 냈고 `# 이력서 PDF — 비면 PDF 미표시` 주석이 없어졌다.
+    dry-run 이라 되돌렸지만 운영에서는 그것이 그대로 `origin/main` 에 커밋된다.
+
+    "사람 전용 필드를 건드리지 않는다" 는 규율은 **값이 같으면 되는 것이 아니다** —
+    사람이 적어 둔 주석과 순서도 그 사람의 것이다. 그래서 텍스트를 그대로 이어 붙인다.
     """
-    post = frontmatter.loads(existing)
-    post.content = str(payload.get("content") or "")
-    return frontmatter.dumps(post)
+    body = str(payload.get("content") or "")
+    block, found = _split_frontmatter(existing)
+    if not found:
+        # frontmatter 가 없는 career 는 정상이 아니다. 여기서 지어내지 않는다 —
+        # `_career_violations` 가 필수 필드 부재로 잡아 발행을 막는다.
+        return body if body.endswith("\n") else body + "\n"
+    if not block.endswith("\n"):
+        block += "\n"
+    if not body.endswith("\n"):
+        # 종전 구현은 파일을 개행 없이 끝냈다(`\ No newline at end of file`).
+        body += "\n"
+    return f"{block}\n{body}"
 
 
 def build_actions(

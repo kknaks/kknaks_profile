@@ -37,6 +37,7 @@ summary:
   ko: "요약"
 stack:
   - Python
+# 이력서 PDF — 비면 PDF 미표시 (planning-02 §3.2).
 bullets:
   ko:
     - "이력서 문장 1"
@@ -105,6 +106,40 @@ class TestRenderCareer:
         rendered = render_career({"content": "## 무슨 일 하는지\n\n새 서술"}, CAREER_EXISTING)
         assert "새 서술" in frontmatter.loads(rendered).content
         assert "TBD" not in frontmatter.loads(rendered).content
+
+    def test_frontmatter_text_is_byte_identical(self):
+        """**값이 같은 것으로 부족하다** (KDEV-WORK-017 결함 ⑩).
+
+        종전 구현은 `frontmatter.loads()` → `dumps()` 로 왕복했다. 값은 보존됐지만
+        주석이 사라지고 키가 알파벳순으로 재정렬돼, 본문만 바뀌어야 할 발행이
+        42 insertions / 38 deletions 를 냈다. 운영에서는 그것이 그대로
+        `origin/main` 에 커밋된다.
+
+        기존 테스트가 **파싱된 값**만 봐서 이 결함을 통과시켰다. 여기서는 텍스트를 본다.
+        """
+        rendered = render_career({"content": "## 무슨 일 하는지\n\n새 서술"}, CAREER_EXISTING)
+        original_block = CAREER_EXISTING.split("---\n", 2)[1]
+        assert rendered.startswith("---\n" + original_block + "---\n")
+
+    def test_comment_survives(self):
+        """사람이 적어 둔 주석도 그 사람의 것이다 — 값만 지키는 것이 아니다."""
+        rendered = render_career({"content": "본문"}, CAREER_EXISTING)
+        assert "# 이력서 PDF — 비면 PDF 미표시 (planning-02 §3.2)." in rendered
+
+    def test_key_order_is_untouched(self):
+        """알파벳순으로 재정렬되면 첫 키가 `bullets` 가 된다."""
+        rendered = render_career({"content": "본문"}, CAREER_EXISTING)
+        assert rendered.splitlines()[1] == "type: career"
+
+    def test_file_ends_with_a_newline(self):
+        """종전 구현은 개행 없이 끝냈다 — 매 발행마다 diff 에 잡음이 남는다."""
+        assert render_career({"content": "본문"}, CAREER_EXISTING).endswith("\n")
+        assert not render_career({"content": "본문"}, CAREER_EXISTING).endswith("\n\n\n")
+
+    def test_no_frontmatter_yields_body_only(self):
+        """frontmatter 를 지어내지 않는다 — 필수 필드 검사가 발행을 막게 둔다."""
+        rendered = render_career({"content": "본문"}, "그냥 텍스트\n")
+        assert rendered == "본문\n"
 
 
 class TestBuildActions:
