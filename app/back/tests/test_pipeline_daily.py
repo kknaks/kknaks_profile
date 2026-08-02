@@ -20,6 +20,7 @@ from core.models import QueueItem
 from service import content_format
 from service.pipeline.collect_dummy import investigate_payload
 from service.pipeline.gates import GateError, GenerationInput
+from service.pipeline.stages.common import extract_json_object
 from service.pipeline.stages.daily import BODY_HARD_LIMIT, DailyStage, career_targets
 
 
@@ -332,3 +333,72 @@ class TestSubmit:
             concepts=[{"stem": "s", "title": "T", "content": "---\ntype: concept\ntitle: T\naliases:\n  - t\nup:\n  - parent\n---\n\n본문", "mode": "new"}]
         )
         assert stage.parse(reply, _request())["concepts"][0]["mode"] == "create"
+
+
+class TestExtractJsonObject:
+    """모델 출력에서 JSON 을 꺼내는 관용성 (KDEV-WORK-017 결함 ⑥).
+
+    로컬 e2e 에서 `daily` 게이트가 **두 번째로** 막힌 자리다. 무출력 상한(①)을 지나
+    159초를 완주하고 exit 0 으로 끝났는데, 모델이 JSON 앞에 설명 두 줄을 붙여
+    `json.loads` 가 char 0 에서 죽었다 — `INVALID_DAILY_OUTPUT`.
+
+    **프롬프트를 조이는 것으로는 부족하다.** 그 프롬프트는 이미 "JSON 하나로 답한다"
+    였고 모델이 안 지켰다. 재시도 3회를 태우고 게이트가 안 열리는 대가가 크다.
+    """
+
+    def test_the_output_that_actually_broke_the_gate(self):
+        """실제로 게이트를 막은 출력 형태 그대로."""
+        raw = (
+            "두 레포 보고서와 career 현황을 확인했습니다. concept는 `up:`이 가리킬 "
+            "reference stem이 레포에 없어 생성하지 않습니다.\n\n"
+            '{\n  "daily": {"summary": {"ko": ["한 줄"], "en": ["a line"]}}\n}'
+        )
+        assert json.loads(extract_json_object(raw))["daily"]["summary"]["ko"] == ["한 줄"]
+
+    def test_bare_json_is_untouched(self):
+        assert json.loads(extract_json_object('{"a": 1}')) == {"a": 1}
+
+    def test_code_fence_still_works(self):
+        """종전 동작 — 펜스 벗기기가 회귀하면 유튜브 게이트가 같이 깨진다."""
+        assert json.loads(extract_json_object('```json\n{"a": 1}\n```')) == {"a": 1}
+
+    def test_fence_with_preamble(self):
+        raw = '설명입니다.\n\n```json\n{"a": 1}\n```'
+        assert json.loads(extract_json_object(raw)) == {"a": 1}
+
+    def test_trailing_prose_is_dropped(self):
+        """`rfind("}")` 로 자르면 꼬리말 안의 `}` 에 걸린다 — 균형을 세야 한다."""
+        raw = '{"a": 1}\n\n이상입니다. 참고로 `}` 는 닫는 괄호입니다.'
+        assert json.loads(extract_json_object(raw)) == {"a": 1}
+
+    def test_nested_objects_are_not_cut_short(self):
+        """첫 `}` 에서 끊으면 중첩이 깨진다."""
+        raw = 'note:\n{"a": {"b": {"c": 1}}, "d": 2}'
+        assert json.loads(extract_json_object(raw)) == {"a": {"b": {"c": 1}}, "d": 2}
+
+    def test_braces_inside_strings_are_not_structure(self):
+        """daily 본문에 `{` 가 들어 있어도 구조로 세지 않는다.
+
+        `{{` 를 쓰는 템플릿 이야기를 본문에 적으면 실제로 들어온다.
+        """
+        raw = '머리말\n{"body": "템플릿은 {placeholder} 를 쓴다", "n": 1}'
+        assert json.loads(extract_json_object(raw)) == {
+            "body": "템플릿은 {placeholder} 를 쓴다",
+            "n": 1,
+        }
+
+    def test_escaped_quote_before_brace(self):
+        raw = r'{"body": "따옴표 \" 뒤의 }", "n": 1}'
+        assert json.loads(extract_json_object(raw))["n"] == 1
+
+    def test_no_json_at_all_is_left_alone(self):
+        """판단은 호출부의 `json.loads` 가 한다 — 여기서 삼키지 않는다."""
+        assert extract_json_object("JSON 을 못 만들었습니다") == "JSON 을 못 만들었습니다"
+
+
+class TestParseTolerance:
+    async def test_gate_parse_accepts_a_preamble(self, repo):
+        """스테이지의 `parse` 까지 이어지는지 — 추출기만 고치고 배선을 빠뜨리면 안 된다."""
+        stage = _stage(FakeClient(), repo)
+        raw = "확인했습니다.\n\n" + _reply()
+        assert stage.parse(raw, _request())["daily"]["summary"]["ko"] == ["[a/b] 했다"]

@@ -97,17 +97,11 @@ def validate_route_result(raw: Any) -> dict[str, Any]:
 
 
 def _parse(text: str) -> Any:
-    """모델이 코드펜스를 붙이는 경우가 있어 한 겹 벗겨 본다."""
-    cleaned = (text or "").strip()
-    if cleaned.startswith("```"):
-        cleaned = cleaned.split("\n", 1)[-1]
-        if cleaned.endswith("```"):
-            cleaned = cleaned[: -3]
-        cleaned = cleaned.strip()
-        if cleaned.startswith("json"):
-            cleaned = cleaned[4:].strip()
+    """코드펜스와 머리말을 벗겨 낸다 — 추출은 `stages.common` 한 곳이 안다."""
+    from .stages.common import extract_json_object
+
     try:
-        return json.loads(cleaned)
+        return json.loads(extract_json_object(text))
     except ValueError as exc:
         raise GateError("INVALID_ROUTE_RESULT", f"JSON 파싱 실패: {exc}") from exc
 

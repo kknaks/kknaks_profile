@@ -34,7 +34,12 @@ from service.content_format import career_format, daily_format
 from ..concept_index import build_index
 from ..executor import AgentStage
 from ..gates import GateError, GenerationInput
-from .common import CONCEPT_STEM_RE, READ_THE_RULES, check_note
+from .common import (
+    CONCEPT_STEM_RE,
+    READ_THE_RULES,
+    check_note,
+    extract_json_object,
+)
 
 logger = logging.getLogger("kknaks-back.pipeline.daily")
 
@@ -53,7 +58,8 @@ PROMPT = """하루치 커밋 조사와 레포별 정리를 읽고 문서 초안�
 
 ## 만들 것
 
-JSON 하나로 답한다. 코드펜스로 감싸지 않는다.
+JSON 하나로 답한다. 코드펜스로 감싸지 않고, **앞뒤에 설명 문장을 붙이지 않는다** —
+첫 글자가 `{{` 여야 한다. 무엇을 왜 그렇게 판단했는지는 JSON 안의 자리에 적는다.
 
 {{
   "daily": {{
@@ -187,16 +193,6 @@ def _collection(prep: dict[str, Any], repo_root: Path) -> dict[str, Any]:
     }
 
 
-def _strip_fence(raw: str) -> str:
-    text = (raw or "").strip()
-    if text.startswith("```"):
-        text = text.split("\n", 1)[-1]
-        if text.endswith("```"):
-            text = text[:-3]
-        text = text.strip()
-        if text.startswith("json"):
-            text = text[4:].strip()
-    return text
 
 
 def _summary(value: Any) -> dict[str, list[str]]:
@@ -336,7 +332,7 @@ class DailyStage(AgentStage):
 
     def parse(self, raw: str, request: GenerationInput) -> dict[str, Any]:
         try:
-            data = json.loads(_strip_fence(raw))
+            data = json.loads(extract_json_object(raw))
         except ValueError as exc:
             raise GateError("INVALID_DAILY_OUTPUT", f"JSON 파싱 실패: {exc}") from exc
         if not isinstance(data, dict):
