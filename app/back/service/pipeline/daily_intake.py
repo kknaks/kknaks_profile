@@ -26,6 +26,7 @@ import config
 from service.notify import notify_slack
 
 from .intake import IntakeResult, intake
+from .runtime import follow
 
 logger = logging.getLogger("kknaks-back.pipeline.daily-intake")
 
@@ -148,6 +149,12 @@ async def run_daily_intake_job(target: date_cls | None = None) -> dict:
 
     예외를 삼키지 않는다 — 접수가 실패하면 그날 잔디가 통째로 없다. 다만 알림은
     보내고 다시 던진다(APScheduler 가 로그에 남긴다).
+
+    **접수한 뒤 드라이버를 깨우는 것까지가 이 잡의 일이다.** 수동 접수
+    (`api/routers/queue.py`)가 커밋 뒤 `_follow()` 를 부르는 것과 같은 대칭이고,
+    그것이 빠지면 항목이 `received` 로 멎는다. 조회 시 수확이라는 안전망이 있어
+    화면을 한 번 열면 따라잡지만, **아무도 안 열면 매일 09:05 에 항목만 쌓인다** —
+    사람이 보러 오는 것을 전제하는 스케줄 잡은 스케줄 잡이 아니다.
     """
     from core.db import new_session
 
@@ -162,6 +169,21 @@ async def run_daily_intake_job(target: date_cls | None = None) -> dict:
         raise
 
     logger.info("잔디 접수 — %s (%s)", result.date, result.outcome)
+
+    if result.item_id is not None:
+        # 커밋 **뒤**에 부른다 — 드라이버가 다른 세션으로 이 항목을 읽는다.
+        #
+        # 실패해도 다시 던지지 않는다. 접수는 이미 커밋됐고, 미는 것은 조회 시
+        # 수확이 대신할 수 있다. 여기서 던지면 성공한 접수가 잡 실패로 보고된다.
+        try:
+            await follow(result.item_id)
+        except Exception as exc:  # noqa: BLE001
+            logger.warning(
+                "잔디 접수 후 드라이버 기동 실패 item=%s — %s: %s",
+                result.item_id,
+                type(exc).__name__,
+                exc,
+            )
     return {
         "date": result.date,
         "outcome": result.outcome,

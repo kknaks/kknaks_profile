@@ -21,11 +21,13 @@ import config
 from core.models import QueueItem
 from service.pipeline.daily_intake import (
     KST,
+    DailyIntakeResult,
     default_target,
     intake_daily,
     synthetic_key,
     user_authored,
 )
+from tests.conftest import isolate_tables
 
 try:
     _probe = create_engine(config.database_url())
@@ -50,6 +52,7 @@ async def db():
     engine = create_async_engine(config.database_url())
     conn = await engine.connect()
     trans = await conn.begin()
+    await isolate_tables(conn, "queue_items")
     session = AsyncSession(
         bind=conn, expire_on_commit=False, join_transaction_mode="create_savepoint"
     )
@@ -180,3 +183,86 @@ class TestIntake:
         now = datetime(2026, 8, 1, 9, 5, tzinfo=KST)
         result = await intake_daily(db, repo_root=repo, now=now)
         assert result.date == "2026-07-31"
+
+
+class TestJobWakesTheDriver:
+    """스케줄러 잡이 접수 뒤 드라이버를 깨우는지 (KDEV-WORK-017 결함 ②).
+
+    수동 접수(`api/routers/queue.py`)는 커밋 뒤 `_follow()` 를 부른다. 그 대칭이
+    빠져서 매일 09:05 에 항목이 `received` 로 멎었다 — 실증에서 120초간 정지해
+    있다가 목록 API 를 한 번 치니 그제서야 진행했다(조회 시 수확 안전망).
+
+    **DB 없이 돈다.** 잡의 배선만 보는 것이라 실 세션이 필요 없고, 그래야 이 검증이
+    Postgres 유무에 걸리지 않는다.
+    """
+
+    @pytest.fixture
+    def job(self, monkeypatch):
+        """`run_daily_intake_job` 을 세션·접수·드라이버를 다 가짜로 두고 부른다."""
+        import contextlib
+
+        import core.db
+
+        from service.pipeline import daily_intake as mod
+
+        followed: list[int] = []
+
+        class _StubSession:
+            async def commit(self) -> None:
+                return None
+
+        @contextlib.asynccontextmanager
+        async def _fake_session():
+            yield _StubSession()
+
+        monkeypatch.setattr(core.db, "new_session", _fake_session)
+        monkeypatch.setattr(config, "repo_root", lambda: Path("/nonexistent"))
+
+        def _install(result, *, follow_error: Exception | None = None):
+            async def _fake_intake(db, **kwargs):
+                return result
+
+            async def _fake_follow(item_id: int) -> None:
+                if follow_error is not None:
+                    raise follow_error
+                followed.append(item_id)
+
+            monkeypatch.setattr(mod, "intake_daily", _fake_intake)
+            monkeypatch.setattr(mod, "follow", _fake_follow)
+            return mod.run_daily_intake_job
+
+        return _install, followed
+
+    async def test_accepted_item_is_handed_to_the_driver(self, job):
+        install, followed = job
+        run = install(DailyIntakeResult(outcome="created", date="2026-08-01", item_id=4852))
+
+        result = await run()
+
+        assert result["item_id"] == 4852
+        assert followed == [4852], "접수만 하고 끝나면 항목이 received 로 멎는다"
+
+    async def test_blocked_intake_has_nothing_to_follow(self, job):
+        """본인 작성·미래 날짜는 항목을 만들지 않는다 — 밀 것이 없다."""
+        install, followed = job
+        run = install(
+            DailyIntakeResult(
+                outcome="blocked", date="2026-08-01", reason="USER_AUTHORED_DAILY"
+            )
+        )
+
+        assert (await run())["outcome"] == "blocked"
+        assert followed == []
+
+    async def test_driver_failure_does_not_fail_the_accepted_intake(self, job):
+        """접수는 이미 커밋됐다. 미는 데 실패했다고 잡 실패로 보고하면 안 된다.
+
+        조회 시 수확이 남아 있어 화면을 열면 따라잡는다 — 되돌릴 이유가 없다.
+        """
+        install, _ = job
+        run = install(
+            DailyIntakeResult(outcome="created", date="2026-08-01", item_id=1),
+            follow_error=RuntimeError("드라이버 없음"),
+        )
+
+        assert (await run())["item_id"] == 1
