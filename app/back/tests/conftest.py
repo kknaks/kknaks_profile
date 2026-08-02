@@ -57,3 +57,23 @@ def _reset_persona_data(_persona_snapshot):
 
         main._data = copy.deepcopy(_persona_snapshot)
     yield
+
+
+async def isolate_tables(conn, *tables: str) -> None:
+    """열려 있는 트랜잭션 안에서 테이블을 비운다 (KDEV-WORK-017 결함 ⑤).
+
+    DB 를 쓰는 테스트들이 **해당 테이블이 비어 있다고 전제하고** 있었다. dev DB 가
+    실제로 비어 있는 동안은 통과했지만, e2e 로 `tracked_repos` 13행과 큐 항목이
+    들어오자 12건이 깨졌다. **레지스트리가 채워진 것이 정상 운영 상태다** — 그때
+    깨지는 테스트는 배포하면 반드시 깨진다.
+
+    호출부의 바깥 트랜잭션이 teardown 에서 롤백되므로 **커밋된 데이터는 안전하다.**
+    이 DELETE 도 같이 되돌아간다.
+
+    `conn`(세션이 아니라 커넥션)을 받는 이유는 세션 savepoint 보다 바깥에서 지워야
+    테스트가 만드는 savepoint 와 얽히지 않기 때문이다.
+    """
+    from sqlalchemy import text
+
+    for table in tables:
+        await conn.execute(text(f"DELETE FROM {table}"))

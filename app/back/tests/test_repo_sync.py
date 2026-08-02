@@ -25,6 +25,7 @@ from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 import config
 from core.models import TrackedRepo
 from service.jobs import repos as repo_sync
+from tests.conftest import isolate_tables
 
 try:
     _probe = create_engine(config.database_url())
@@ -209,6 +210,7 @@ async def db():
     engine = create_async_engine(config.database_url())
     conn = await engine.connect()
     trans = await conn.begin()
+    await isolate_tables(conn, "tracked_repos")
     session = AsyncSession(
         bind=conn, expire_on_commit=False, join_transaction_mode="create_savepoint"
     )

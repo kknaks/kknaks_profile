@@ -24,6 +24,7 @@ from core.models import QueueItem, TrackedRepo
 from service.pipeline import collect_git
 from service.pipeline.collect_dummy import investigate_payload
 from service.pipeline.collect_git import GitCollect
+from tests.conftest import isolate_tables
 
 TARGET = date(2026, 7, 29)
 WHEN = "2026-07-29T09:00:00+09:00"
@@ -107,6 +108,7 @@ async def session_factory():
     engine = create_async_engine(config.database_url())
     conn = await engine.connect()
     trans = await conn.begin()
+    await isolate_tables(conn, "tracked_repos")
 
     def factory():
         return AsyncSession(
