@@ -296,8 +296,18 @@ function NotePreview({ payload }: { payload: NotePayload }) {
   );
 }
 
+/** concept **게이트**의 payload 인가 (KDEV-WORK-017 결함 ⑧).
+ *
+ * `"concepts" in payload` 만으로는 안 된다. **잔디 게이트 payload 도 `concepts` 를
+ * 가진다** — `{daily, career, concepts, collection}` 이라 개념은 그 셋 중 하나일 뿐이다.
+ * 키 하나만 보면 잔디가 concept 로 잘못 판정되고, 승인이 `{concepts}` 만 보내
+ * **사람이 고친 daily·career 가 조용히 버려진다.** 계획이 비어 `EMPTY_PLAN` 으로
+ * 발행이 거부되는 것으로만 드러난다 — 화면에는 「승인됨」이 떠 있는 채로.
+ *
+ * 타입 술어라 `tsc` 는 이 거짓말을 잡지 못한다. 배타 조건을 여기 둔다.
+ */
 function isConcepts(payload: GatePayload | null | undefined): payload is ConceptPayload {
-  return !!payload && "concepts" in payload;
+  return !!payload && "concepts" in payload && !("daily" in payload);
 }
 
 /** 보충 diff — **사라지는 줄**을 눈에 띄게 한다.
@@ -1133,11 +1143,13 @@ export function GateCard({
                         gate.id,
                         gate.stage_name === "route"
                           ? draft
-                          : isConcepts(active?.payload)
-                            ? { concepts }
-                            : // 승인 대상은 AI 제안 원본이 아니라 **사람이 고친 것**이다.
-                              isDaily(active?.payload) && daily
-                              ? daily
+                          : // 승인 대상은 AI 제안 원본이 아니라 **사람이 고친 것**이다.
+                            // 잔디를 **먼저** 본다 — 그 payload 가 concept 의 상위집합이라
+                            // 순서가 뒤집히면 daily·career 가 버려진다(결함 ⑧).
+                            isDaily(active?.payload) && daily
+                            ? daily
+                            : isConcepts(active?.payload)
+                              ? { concepts }
                               : null,
                         active?.id ?? null,
                       ),
