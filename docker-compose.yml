@@ -108,6 +108,9 @@ services:
       QUEUES: default
       # 조사 13회가 순차로 도는 동안 워커가 몇 개를 물고 있을지 — 실측 전에는 2 그대로.
       CONCURRENCY: ${WORKER_CONCURRENCY:-2}
+      # 무출력 상한(초). open-kknaks 기본 30 으로는 잔디 `daily` 게이트가 첫 토큰
+      # 전에 끊긴다 — 근거는 app/worker/run.py 의 `apply_idle_timeout`.
+      IDLE_TIMEOUT_SEC: ${IDLE_TIMEOUT_SEC:-180}
       WORK_DIR: /tmp
       CLAUDE_CODE_OAUTH_TOKEN: ${CLAUDE_CODE_OAUTH_TOKEN:-}
       # 호스트 path 그대로 컨테이너 안에서도 매핑 — npm symlink/require 깨짐 회피
