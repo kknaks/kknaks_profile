@@ -24,9 +24,6 @@ export function TopNav() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  if (pathname?.startsWith("/print")) return null;
-  if (pathname?.startsWith("/admin")) return null; // 관리자 셸은 자체 레이아웃
-
   useEffect(() => {
     const onResize = () => setIsMobile(window.innerWidth <= 720);
     onResize();
@@ -37,6 +34,13 @@ export function TopNav() {
   useEffect(() => {
     setMenuOpen(false);
   }, [pathname]);
+
+  // **훅을 전부 부른 뒤에 반환한다.** 종전에는 이 두 줄이 `useEffect` 앞에 있어서
+  // `/admin`·`/print` 에서 훅 4개만 실행되고 끝났고, React 가 6개를 기대해
+  // `Rendered fewer hooks than expected` 로 **런타임이 죽었다**. 조건부 반환 자체는
+  // 괜찮지만 그 위치가 훅 사이면 안 된다(Rules of Hooks).
+  if (pathname?.startsWith("/print")) return null;
+  if (pathname?.startsWith("/admin")) return null; // 관리자 셸은 자체 레이아웃
 
   const withLang = (href: string) => (lang === DEFAULT_LANG ? href : `${href}?lang=${lang}`);
   const langSwitchHref = (target: Lang) => {

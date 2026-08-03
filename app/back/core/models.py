@@ -445,6 +445,15 @@ class TrackedRepo(Base):
     type: Mapped[str] = mapped_column(String(16), nullable=False)
     #: career 파일 stem. `company` 일 때만. 실재하는 문서를 가리켜야 한다.
     detail: Mapped[str | None] = mapped_column(String(80))
+    #: `products/` 디렉토리명. 레포를 제품 문서·공개 카드로 잇는 유일한 키다
+    #: (KDEV-DEC-017 D1). `detail` 과 달리 **`type` 에 묶지 않는다** — 회사 레포도
+    #: 제품 문서를 가질 수 있다.
+    #:
+    #: **CHECK 를 걸지 않는다.** 실재하는 디렉토리인지는 DB 가 알 수 없고, 알게 하면
+    #: 디렉토리명이 바뀔 때마다 마이그레이션이 따라붙는다. 오타는 조회 응답의 실재
+    #: 여부 플래그가 화면에서 드러낸다 — `detail` 오타를 `missing_career()` 가 승인
+    #: 화면까지 들고 가는 것과 같은 방식이다(D7).
+    product_slug: Mapped[str | None] = mapped_column(String(64))
     account: Mapped[str] = mapped_column(String(16), nullable=False, default="personal")
     enabled: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
     #: `{glob, area}` 목록. 비면 전역 기본 규칙이 적용된다.

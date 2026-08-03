@@ -73,9 +73,12 @@ rules/knowledge-note-pipeline.md     # 작성 규칙 (4층·SoT 위임·개념 �
 | 원자 개념 | `templates/knowledge/concept.md` | `permanent/concept/{slug}.md` |
 | 종합 판단 | `templates/knowledge/permanent.md` | `permanent/{slug}.md` |
 
-별도 계열 셋:
+별도 계열 넷:
 
 - 제품 문서(`products/**`) — `rules/product-doc-pipeline.md` + `templates/product/`
+- 프로젝트 카드(`products/*/showcase.md`) — `templates/product/showcase.md`. 제품 문서와 같은 폴더에 있지만 **성격이 반대다** — 제품 문서는 내부 결정을 쌓는 곳이고 카드는 공개 사이트와 포트폴리오 PDF 에 나가는 한 장이다. 그래서 그래프 노드가 아니고(`persona_loader` 가 제외한다) 4층 모델 대상도 아니다. 관리 화면의 제품 등록이 그 파일을 읽어 카드를 렌더한다 — 형식을 고치려면 여기만 고친다.
+
+  **`category` 만 이 템플릿이 아니라 `persona/_meta.yaml` 이 소유한다.** 목록 밖의 값이 들어가면 파일 하나가 거부되는 게 아니라 persona 로드 전체가 실패하고 사이트가 옛 데이터를 계속 서빙한다.
 - 교안(`persona/contents/**`) — `templates/persona/content.md`. 그래프 밖이라 4층 모델 대상이 아니다. 승인 게이트의 `derived` 스테이지와 `content_enrich` 잡이 **둘 다 이 파일을 읽는다** — 형식을 고치려면 여기만 고친다.
 - 잔디 산출물(`persona/daily/**` · `persona/career/**`) — `templates/persona/daily.md` · `templates/persona/career.md`. 교안과 같이 그래프 밖이라 4층 모델 대상이 아니고 발행 시 그래프 검증도 받지 않는다. 잔디 파이프라인의 `daily` 게이트 스테이지가 두 파일을 읽어 프롬프트를 만든다 — 형식을 고치려면 여기만 고친다.
 

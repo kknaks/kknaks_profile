@@ -7,8 +7,9 @@
 두 단계로 나뉘는 이유는 `company` 의 `detail`(career 귀속) 을 시드가 지어낼 수 없기
 때문이다. `showcase.md` 에 그 정보가 없고 어느 career 문서로 갈지는 사람이 정한다.
 
-    1. studio  — `showcase.md` 에서 긁어 그대로 넣는다
-    2. company — `--company-detail` 로 받은 stem 을 붙여 넣는다
+    1. studio  — `showcase.md` 스캔 + 카드 없는 레포 목록(`CARDLESS_REPOS`)
+    2. company — `COMPANY_REPOS` 에 `--company-detail` 로 받은 stem 을 붙여 넣는다
+    3. product — 기존 행의 빈 `product_slug` 를 채운다 (KDEV-WORK-018 P2)
 
 **다시 돌려도 안전하다.** 이미 있는 slug 는 건드리지 않는다 — `detail`·`enabled`·
 `path_rules` 가 사람이 손본 값이라 덮어쓰면 안 된다. 새 레포만 들어온다.
@@ -25,7 +26,7 @@
     ... (--company-detail 생략)
 
 전제:
-- DB 가 떠 있고 마이그레이션이 `0007` 이상 (레지스트리 테이블)
+- DB 가 떠 있고 마이그레이션이 `0009` 이상 (레지스트리 테이블 + `product_slug`)
 - `--company-detail` 은 `persona/career/{stem}.md` 가 실재해야 한다
 """
 
@@ -43,6 +44,7 @@ sys.path.insert(0, str(BACK_DIR))
 import config  # noqa: E402
 from service.jobs.repo_registry import (  # noqa: E402
     UnknownCareerError,
+    backfill_product_slug,
     seed_company_from_showcase,
     seed_from_showcase,
 )
@@ -98,6 +100,14 @@ async def main() -> int:
                 f"\ncompany {studio['needs_detail']}건이 남아 있다 — "
                 "`--company-detail <stem>` 으로 다시 돌린다"
             )
+
+        # 컬럼이 `0009` 로 새로 생겨 기존 행은 전부 비어 있다. 새로 넣은 행은 이미
+        # 채워져 있으므로 여기서 채워지는 것은 **먼저 시드된 13행**뿐이다.
+        product = await backfill_product_slug(db)
+        print(
+            f"product — filled={product['filled']} kept={product['kept']} "
+            f"no_product={product['no_product']}"
+        )
 
         if args.dry_run:
             await db.rollback()

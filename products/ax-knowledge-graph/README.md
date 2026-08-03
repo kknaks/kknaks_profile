@@ -8,7 +8,7 @@ AX 관련 기사, 영상, 링크를 수집하고 개념·사례·도구 사이�
 
 | 항목 | 경로 |
 |---|---|
-| Remote | TBD |
+| Remote | `https://github.com/kknaks/ax-graph` |
 | Local clone | `/Users/kknaks/git/toy_pr2/ax-graph` |
 | 문서 SoT | `/Users/kknaks/git/toy_pr2/kknaks_profile/products/ax-knowledge-graph` |
 
