@@ -117,7 +117,7 @@ class TestNoteOutput:
         with pytest.raises(GateError):
             parse_note_output(raw)
 
-    @pytest.mark.parametrize("stem", ["reference/x", "x.md", "a/b/c"])
+    @pytest.mark.parametrize("stem", ["resources/source/x", "x.md", "a/b/c"])
     def test_path_in_stem_rejected(self, stem):
         """경로를 지어내면 allowlist 밖으로 쓰는 계획이 만들어진다."""
         import json as _json
@@ -252,7 +252,7 @@ NOTE_PAYLOAD = {
     "filename_stem": "2026-07-28-sample-source",
     "content": REFERENCE_MD,
     "group": "study",
-    "target_path": "reference/study/2026-07-28-sample-source.md",
+    "target_path": "resources/source/2026-07-28-sample-source.md",
 }
 
 

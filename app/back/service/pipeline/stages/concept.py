@@ -169,7 +169,7 @@ def verify_concepts(
                     "matched_by": None,
                     "content": content,
                     "excluded": False,
-                    "target_path": f"permanent/concept/{stem}.md",
+                    "target_path": f"resources/concept/{stem}.md",
                 }
             )
             continue

@@ -46,12 +46,12 @@ def _concept_md(
 
 @pytest.fixture
 def repo(tmp_path: Path) -> Path:
-    (tmp_path / "permanent/concept").mkdir(parents=True)
+    (tmp_path / "resources/concept").mkdir(parents=True)
     return tmp_path
 
 
 def _write_existing(repo: Path, stem: str, **kw) -> None:
-    (repo / "permanent/concept" / f"{stem}.md").write_text(
+    (repo / "resources/concept" / f"{stem}.md").write_text(
         _concept_md(stem=stem, **kw), encoding="utf-8"
     )
 
@@ -89,7 +89,7 @@ class TestIndex:
         assert matched == "speech to text"
 
     def test_readme_is_not_a_concept(self, repo):
-        (repo / "permanent/concept/README.md").write_text("# 안내", encoding="utf-8")
+        (repo / "resources/concept/README.md").write_text("# 안내", encoding="utf-8")
         assert build_index(repo).entries == {}
 
     def test_alias_conflict_keeps_first_and_does_not_crash(self, repo):
@@ -112,7 +112,7 @@ class TestCreate:
         results = _verify(repo, [{"filename_stem": "new-idea", "mode": "create",
                                   "names": ["새 개념"], "content": _concept_md(stem="new-idea")}])
         assert results[0]["mode"] == "create"
-        assert results[0]["target_path"] == "permanent/concept/new-idea.md"
+        assert results[0]["target_path"] == "resources/concept/new-idea.md"
         assert results[0]["excluded"] is False
 
     def test_create_over_existing_is_rejected(self, repo):

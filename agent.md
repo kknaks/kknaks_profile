@@ -57,7 +57,7 @@ hook이 실패하면 성공처럼 보고하지 않는다. 자동으로 판단할
 
 ## 지식 노트를 쓸 때
 
-`inbox/` · `reference/` · `permanent/`(+ `permanent/concept/`)에 노트를 만들거나 고치기 전에 아래를 읽는다.
+`inbox/` · `resources/{source,concept,synthesis}/` 에 노트를 만들거나 고치기 전에 아래를 읽는다.
 
 ```text
 rules/knowledge-note-pipeline.md     # 작성 규칙 (4층·SoT 위임·개념 성장·up: 방향)
@@ -69,9 +69,9 @@ rules/knowledge-note-pipeline.md     # 작성 규칙 (4층·SoT 위임·개념 �
 | 만들 것 | 템플릿 | 경로 |
 |---|---|---|
 | 미정제 생각 | `templates/knowledge/idea.md` | `inbox/{YYYY-MM-DD}-{slug}.md` |
-| 자료 정리 | `templates/knowledge/reference.md` | `reference/{YYYY-MM-DD}-{slug}.md` |
-| 원자 개념 | `templates/knowledge/concept.md` | `permanent/concept/{slug}.md` |
-| 종합 판단 | `templates/knowledge/permanent.md` | `permanent/{slug}.md` |
+| 자료 정리 | `templates/knowledge/reference.md` | `resources/source/{YYYY-MM-DD}-{slug}.md` |
+| 원자 개념 | `templates/knowledge/concept.md` | `resources/concept/{slug}.md` |
+| 종합 판단 | `templates/knowledge/permanent.md` | `resources/synthesis/{slug}.md` |
 
 별도 계열 넷:
 
@@ -86,11 +86,26 @@ rules/knowledge-note-pipeline.md     # 작성 규칙 (4층·SoT 위임·개념 �
 
 작성 후 그래프 검증(L1~L6)이 pre-commit·부팅에서 자동으로 돈다. 규칙을 어기면 커밋이나 부팅이 막힌다.
 
+## 그래프 밖 디렉토리
+
+지식층도 제품 문서도 아닌 것 둘이 레포 루트에 있다. **주인이 있으니 지우지 않는다.**
+
+| 디렉토리 | 무엇 | 주인 |
+|---|---|---|
+| `downloads/` | **운영 자산.** 백엔드가 `/download/*` 로 정적 서빙하고 DeskDeck 랜딩이 링크한다. **지우면 다운로드가 죽는다** | mac-remote RB-001 |
+| `persona/assets/` | 프로필 이미지 등 | persona |
+
+제품별 작업 보고는 `products/{제품}/30-work/reports/` 에 둔다 — 루트에 두면 어느 제품 것인지 문서로 알 수 없다.
+
 ## 지식층 읽기범위
 
 지식 파이프라인 층(KDEV-SPEC-001/003)을 스캔할 때 범위는 아래와 같다.
 
-- 평소 스캔(활성 층): `inbox/` · `reference/` · `permanent/` · `permanent/concept/` + `persona/posts/`
-- cold(명시 요청 시에만): `permanent/archive/`
+- 평소 스캔(활성 층): `inbox/` · `resources/source/` · `resources/concept/` · `resources/synthesis/` + `persona/posts/`
+- cold(명시 요청 시에만): `archive/`
 
-`permanent/archive/`는 안 쓰게 된 영구노트·개념의 장기기억이라 평소 스캔에서 제외한다. 사용자가 명시적으로 요청할 때만 읽는다(D-005).
+`archive/`는 안 쓰게 된 노트·개념의 장기기억이라 평소 스캔에서 제외한다. 사용자가 명시적으로 요청할 때만 읽는다(D-005).
+
+**폴더 이름은 층 이름이고 `type` 이름과 다르다** — `resources/source/` 에 `type: reference` 가 들어간다. 폴더는 층을, `type` 은 frontmatter 계약을 가리켜 축이 다르기 때문이다(KDEV-DEC-018 D1).
+
+`archive/` 가 `resources/` 밖인 것은 **층이 아니라 상태**여서다. `products/{제품}/_archive/`(버전 컷오프 동결본)와는 다른 것이다.

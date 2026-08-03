@@ -301,7 +301,7 @@ class TestFullLap:
         # --- 관측: 파일은 생겼고 커밋은 없다 --------------------------------
         daily_path = repo / "persona" / "daily" / "2026-07-29.md"
         career_path = repo / "persona" / "career" / "medisolve-ai.md"
-        concept_path = repo / "permanent" / "concept" / "response-schema-trim.md"
+        concept_path = repo / "resources" / "concept" / "response-schema-trim.md"
 
         assert daily_path.exists()
         assert concept_path.exists()

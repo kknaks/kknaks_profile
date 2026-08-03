@@ -60,6 +60,6 @@ class SourceNoteStage(AgentStage):
             "filename_stem": stem,
             "content": content,
             # 경로는 시스템이 조립한다 — 화면이 "어디에 저장될지"를 보여줄 수 있게 함께 담는다.
-            # `reference/` 는 flat — 하위 폴더가 없다.
-            "target_path": f"reference/{stem}.md",
+            # `resources/source/` 는 flat — 하위 폴더가 없다.
+            "target_path": f"resources/source/{stem}.md",
         }

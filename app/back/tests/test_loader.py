@@ -79,7 +79,7 @@ class TestValidationFailures:
         persona = repo / "persona"
         persona.mkdir(parents=True)
         _scaffold_min_persona(persona)
-        ref_dir = repo / "reference"
+        ref_dir = repo / "resources" / "source"
         ref_dir.mkdir(parents=True)
         # 파일명은 foo.md 인데 frontmatter id는 bar
         (ref_dir / "foo.md").write_text(
@@ -148,12 +148,12 @@ class TestPermanent:
         persona = repo / "persona"
         persona.mkdir(parents=True)
         _scaffold_min_persona(persona)
-        (repo / "permanent").mkdir()
+        (repo / "resources" / "synthesis").mkdir(parents=True)
         return repo
 
     def test_loaded_as_permanent_nodes(self, tmp_path: Path):
         repo = self._repo(tmp_path)
-        perm = repo / "permanent"
+        perm = repo / "resources" / "synthesis"
         # active 영구노트 + navigational README(제외)
         (perm / "concurrency-model.md").write_text(
             "---\ntitle: 동시성 모델\n---\n# 본문\n", encoding="utf-8"
@@ -169,7 +169,7 @@ class TestPermanent:
 
     def test_archive_subdir_is_archived(self, tmp_path: Path):
         repo = self._repo(tmp_path)
-        archive = repo / "permanent" / "archive"
+        archive = repo / "archive"
         archive.mkdir()
         (archive / "old-idea.md").write_text(
             "---\ntitle: 폐기 노트\n---\n# old\n", encoding="utf-8"
@@ -189,7 +189,7 @@ class TestPermanent:
     def test_id_filename_mismatch_fails(self, tmp_path: Path):
         # id == 파일 stem 강제 (그래프 노드 식별자 정합) — reference 미러
         repo = self._repo(tmp_path)
-        (repo / "permanent" / "foo.md").write_text(
+        (repo / "resources" / "synthesis" / "foo.md").write_text(
             "---\nid: bar\ntitle: t\n---\n# body\n", encoding="utf-8"
         )
         with pytest.raises(PersonaError, match="filename slug"):
@@ -199,12 +199,12 @@ class TestPermanent:
         # permanent up: reference → lineage 엣지. 층 rank source(1) <= synthesis(3) →
         # L4(상류만 up) 가 동일-rank 를 ERROR 로 잡지 않는지 확인 (WORK-010 구현 주의).
         repo = self._repo(tmp_path)
-        ref = repo / "reference"
+        ref = repo / "resources" / "source"
         ref.mkdir(parents=True, exist_ok=True)
         (ref / "asyncio-basics.md").write_text(
             "---\ntitle: asyncio\n---\n# ref\n", encoding="utf-8"
         )
-        (repo / "permanent" / "concurrency-model.md").write_text(
+        (repo / "resources" / "synthesis" / "concurrency-model.md").write_text(
             "---\ntitle: 동시성\nup: [asyncio-basics]\n---\n"
             "정제 출처: [[asyncio-basics]]\n",
             encoding="utf-8",
@@ -373,14 +373,14 @@ class TestProductsShowcaseLoading:
 
 
 class TestReferenceNotesLoading:
-    """KDEV-WORK-005 — notes 는 reference/{cluster}/ 에서 로드 + type=reference auto-enrich."""
+    """KDEV-WORK-005 — notes 는 `resources/source/` (flat) 에서 로드 + type=reference auto-enrich."""
 
     def test_reference_notes_loaded_and_retyped(self, tmp_path: Path):
         repo = tmp_path / "repo"
         persona = repo / "persona"
         persona.mkdir(parents=True)
         _scaffold_min_persona(persona)
-        ref = repo / "reference"
+        ref = repo / "resources" / "source"
         ref.mkdir(parents=True)
         # **flat** — 하위 폴더 없음. frontmatter 에 type/id 없어도 auto-enrich 가 주입한다.
         (ref / "n1.md").write_text(

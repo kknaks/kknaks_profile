@@ -22,10 +22,15 @@ logger = logging.getLogger("kknaks-back.apply.plan")
 
 #: 발행이 쓸 수 있는 디렉토리. **이 밖은 전부 거부한다** —
 #: 경로 조립에 버그가 있어도 `app/` 이나 `.github/` 를 건드리지 못하게 한다.
+#:
+#: KDEV-WORK-019 이관으로 지식층이 `resources/` 한 접두로 모였다. 종전에는
+#: `permanent/` 가 `permanent/concept/` 를 **삼키는** 구조라 "종합 노트가 concept
+#: 디렉토리에 있다" 를 잡는 별도 분기가 필요했는데, 셋이 형제가 되면서 `LAYER_PREFIX`
+#: 의 정확 일치만으로 충분해졌다 — 그 분기는 제거됐다.
 ALLOWED_PREFIXES = (
-    "reference/",
-    "permanent/",
+    "resources/",
     "inbox/",
+    "archive/",
     "persona/contents/",
     # 잔디 산출물 (KDEV-WORK-017 P3). 지식층이 아니라 그래프 밖이다.
     "persona/daily/",
@@ -34,9 +39,11 @@ ALLOWED_PREFIXES = (
 
 #: 층과 경로의 정합. 개념이 `reference/` 에 들어가면 로더가 다른 타입으로 읽는다.
 LAYER_PREFIX = {
-    "reference": "reference/",
-    "concept": "permanent/concept/",
-    "permanent": "permanent/",
+    # **폴더 이름은 층 이름이다** (KDEV-DEC-018 D1). `type` 이름과 다른 것은 의도로,
+    # 폴더는 층을 가리키고 `type` 은 frontmatter 계약이라 축이 다르다.
+    "reference": "resources/source/",
+    "concept": "resources/concept/",
+    "permanent": "resources/synthesis/",
     "idea": "inbox/",
     "content": "persona/contents/",
     "daily": "persona/daily/",
@@ -409,10 +416,6 @@ def validate_plan(
                     path,
                     f"type={action.note_type} 는 {expected} 아래여야 한다",
                 )
-            )
-        elif action.note_type == "permanent" and path.startswith("permanent/concept/"):
-            violations.append(
-                Violation("LAYER_PATH_MISMATCH", path, "종합 노트가 concept 디렉토리에 있다")
             )
         elif action.note_type == "content":
             # 교안은 `{id}-{slug}.md` 여야 한다 (spec-01 §6.1). 규약을 어기면 파일

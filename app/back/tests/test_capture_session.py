@@ -244,8 +244,8 @@ async def test_runner_writes_reference_and_requests_reload(tmp_path):
         entrypoint="app_mention",
     )
     await runner.handle(request, FakeSlack())
-    assert (tmp_path / "reference/study/2026-07-02-knowledge-graph-source.md").is_file()
-    assert published == ["reference/study/2026-07-02-knowledge-graph-source.md"]
+    assert (tmp_path / "resources/source/2026-07-02-knowledge-graph-source.md").is_file()
+    assert published == ["resources/source/2026-07-02-knowledge-graph-source.md"]
     assert reloaded == [True]
 
 

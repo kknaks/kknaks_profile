@@ -23,7 +23,7 @@ import frontmatter
 
 logger = logging.getLogger("kknaks-back.pipeline.concept-index")
 
-CONCEPT_DIR = "permanent/concept"
+CONCEPT_DIR = "resources/concept"
 
 #: 공백·하이픈·밑줄만 무시한다. 어간 추출이나 부분 일치는 하지 않는다 —
 #: "스트리밍 ASR" 과 "ASR" 은 다른 개념일 수 있다.
@@ -103,7 +103,7 @@ def _aliases_of(meta: dict) -> tuple[str, ...]:
 
 
 def build_index(repo_root: Path) -> ConceptIndex:
-    """`permanent/concept/` 를 훑어 인덱스를 만든다. flat 이라 재귀하지 않는다."""
+    """`resources/concept/` 를 훑어 인덱스를 만든다. flat 이라 재귀하지 않는다."""
     index = ConceptIndex()
     directory = repo_root / CONCEPT_DIR
     if not directory.is_dir():
