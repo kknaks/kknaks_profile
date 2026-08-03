@@ -11,8 +11,11 @@ links:
   baselines: []
   decisions:
     - "[[decision-018-resources-layout-and-sot-naming|KDEV-DEC-018]]"
-  specs: []
-  works: []
+  specs:
+    - "[[spec-001-directory-structure|KDEV-SPEC-001]]"
+    - "[[spec-005-graph-visualization|KDEV-SPEC-005]]"
+  works:
+    - "[[work-019-resources-layout-migration|KDEV-WORK-019]]"
   releases: []
   related:
     - "[[baseline-001-repo-knowledge-graph|KDEV-BL-001]]"
