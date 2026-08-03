@@ -20,7 +20,7 @@ stack:
   - Redis
   - APScheduler
   - Docker
-visible: true
+visible: false
 thumbnail: /assets/projects/P-02/cover.png
 links:
   repo: "github.com/kknaks/kknaks_profile"
