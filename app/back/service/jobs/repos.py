@@ -21,8 +21,9 @@ from pathlib import Path
 from sqlalchemy.ext.asyncio import AsyncSession
 
 import config
-from core.models import TrackedRepo
+import repository.tracked_repos as tracked_repos_repo
 from service.notify import notify_slack
+from service.products.dto import TrackedRepoDTO
 
 # `_build_auth_args` 는 이름만 private 이고 이미 `apply/git.py`·`admin/reload.py` 가
 # 같은 방식으로 가져다 쓴다. git-over-HTTPS 인증은 한 군데서만 조립해야 하는 값이라
@@ -193,7 +194,7 @@ def sync_repo(slug: str, account: str, *, root: Path | None = None) -> SyncResul
 
 
 async def sync_all(
-    db: AsyncSession, repos: list[TrackedRepo], *, root: Path | None = None
+    db: AsyncSession, repos: list[TrackedRepoDTO], *, root: Path | None = None
 ) -> list[SyncResult]:
     """레지스트리 항목들을 순서대로 동기화하고 결과를 레지스트리에 남긴다.
 
@@ -202,6 +203,10 @@ async def sync_all(
 
     실패한 레포는 결과에서 `ok=False` 로 남고 **예외는 올라가지 않는다.** 하나의 실패가
     나머지를 막지 않는 것이 이 함수의 계약이다(SPEC-011 §5 「부분 실패」).
+
+    **DTO 를 받고 상태 기록은 repository 에 맡긴다** (KDEV-WORK-018 P2). 종전에는 ORM
+    객체를 받아 `repo.last_fetched_at` 을 직접 대입했는데, 그러면 ORM 이 도메인 코드로
+    새어 세션 수명과 lazy load 를 이 함수가 알아야 한다.
     """
     results: list[SyncResult] = []
     now = datetime.now(timezone.utc)
@@ -210,14 +215,13 @@ async def sync_all(
         result = await asyncio.to_thread(sync_repo, repo.slug, repo.account, root=root)
         results.append(result)
         if result.ok:
-            repo.last_fetched_at = now
-            # 성공하면 비운다 — 남아 있으면 "지금 막혀 있다" 는 뜻이어야 한다.
-            repo.last_error = None
+            await tracked_repos_repo.mark_synced(db, repo.id, now)
         else:
-            repo.last_error = f"{result.code}: {result.message}"
+            await tracked_repos_repo.mark_failed(
+                db, repo.id, result.code or "FETCH_FAILED", result.message
+            )
             logger.warning("레포 동기화 실패 — %s (%s)", repo.slug, result.code)
 
-    await db.flush()
     await _notify_failures(results)
     return results
 

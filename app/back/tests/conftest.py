@@ -24,6 +24,26 @@ os.environ.setdefault("GRAPH_ENFORCE", "0")
 os.environ["SLACK_CAPTURE_ENABLED"] = "0"
 
 
+@pytest.fixture(scope="session", autouse=True)
+def _no_real_slack():
+    """테스트가 **진짜 Slack 으로 나가지 못하게** 막는다 (KDEV-WORK-018 P2).
+
+    `service.notify.notify_slack` 은 `SLACK_WEBHOOK_URL` 이 비면 no-op 이다. 그런데
+    `.env` 를 통째로 export 한 채 스위트를 돌리면 그 값이 채워지고, `notify_slack` 을
+    monkeypatch 하지 않은 테스트들이 **실제 워크스페이스로 메시지를 보낸다.**
+
+    실제로 그렇게 나갔다 — `kknaks/gone CLONE_FAILED` 와 `C-001-test` 같은 픽스처
+    내용이 운영 채널에 실렸다. 알림은 부수효과라 테스트가 실패하지 않고, 그래서
+    **아무도 모른 채 반복된다.**
+
+    개별 테스트의 monkeypatch 를 대체하지 않는다. 그쪽은 "무엇을 보냈나" 를 검증하고,
+    이것은 "밖으로 나가지 않는다" 를 보장한다 — 새 테스트가 patch 를 잊어도 샌 적이
+    없어야 한다.
+    """
+    os.environ["SLACK_WEBHOOK_URL"] = ""
+    yield
+
+
 @pytest.fixture(scope="session")
 def _persona_snapshot():
     """실 persona/ 를 **세션당 한 번만** 읽어 원본 스냅샷을 만든다.

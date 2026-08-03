@@ -13,7 +13,7 @@ roles:
   be: kknaks
   qa: kknaks
   ops: kknaks
-progress: 20
+progress: 40
 created_at: 2026-08-03
 updated_at: 2026-08-03
 tags:
@@ -58,10 +58,10 @@ links:
 | Type | new-feature |
 | Owner | kknaks |
 | Status | in_progress |
-| Progress | 20% (P1 done — 형식 SoT + 트리 정리. 제품 18→12, showcase 13→8, `visible` 6 불변) |
+| Progress | 40% (P1·P2 done — 트리 정리 + 컬럼·repository 계층·17행 시드. 825 passed) |
 | Branch/PR | `work-018-db` |
 | Blocker | 없음 |
-| Next | P2 — `product_slug` 컬럼 + `repository/` 계층 신설 + 17행 시드 |
+| Next | P3 — service + API (등록·스캐폴딩 / CRU·재동기화·미등록 발견) |
 
 ## Role Assignment
 
@@ -70,7 +70,7 @@ links:
 | PM | kknaks | 범위와 요구사항 | done — DEC-017 D1~D17, OQ 0 |
 | Design | kknaks | 등록 폼·표·배너 UX | todo |
 | FE | kknaks | 프로젝트 슬롯 화면 | todo |
-| BE | kknaks | 컬럼·repository·service·API | todo |
+| BE | kknaks | 컬럼·repository·service·API | in_progress — 컬럼·repository·DTO done, service·API 는 P3 |
 | QA | kknaks | 검증과 완료 판단 | todo |
 | Ops | kknaks | 배포·클론·실운영 관측 | todo |
 
@@ -234,24 +234,35 @@ core/models.py              TrackedRepo
 
 ### Phase 2 — 스키마 + repository 계층 (BE)
 
-- **Status**: TODO
+- **Status**: DONE
 - **설명**: 컬럼 하나를 추가하고, **`repository/` 계층을 신설한다.** 이 발주에서 계층 규약이 실제로 서는 지점이라 첫 입주자가 본이 된다.
 - **작업**:
-  - [ ] `alembic/versions/0009_*.py` — `tracked_repos.product_slug` nullable 추가
-  - [ ] `core/models.py` — `TrackedRepo` 컬럼
-  - [ ] **`service/products/dto.py`** — 도메인 DTO(pydantic). `TrackedRepoDTO` 가 계층을 넘는 유일한 형태
-  - [ ] **`repository/` 신설** — `tracked_repos.py` 에 조회·생성·수정·클론상태 갱신. `select()` 가 사는 유일한 자리이고 **ORM → DTO 변환을 여기서 끝낸다**
-  - [ ] `service/jobs/repo_registry.py`·`repos.py` 의 **기존 `select()` 를 repository 로 옮긴다** — 이 도메인은 이번에 만지므로 규약 ②에 해당한다
-  - [ ] `sync_all` 의 **ORM 직접 대입을 `mark_synced`/`mark_failed` 로 교체** — ORM 이 계층 밖으로 새던 자리다
-  - [ ] `app/scripts/seed_repo_registry.py` — 기존 13행에 `product_slug` 매핑 + **신규 4행 추가**(`ax-graph`·`gcs_demo`·`lunch_game`·`mac-remote`, 전부 studio·personal)
+  - [x] `alembic/versions/0009_*.py` — `tracked_repos.product_slug` nullable 추가
+  - [x] `core/models.py` — `TrackedRepo` 컬럼
+  - [x] **`service/products/dto.py`** — 도메인 DTO(pydantic). `TrackedRepoDTO` 가 계층을 넘는 유일한 형태
+  - [x] **`repository/` 신설** — `tracked_repos.py` 에 조회·생성·수정·클론상태 갱신. `select()` 가 사는 유일한 자리이고 **ORM → DTO 변환을 여기서 끝낸다**
+  - [x] `service/jobs/repo_registry.py`·`repos.py` 의 **기존 `select()` 를 repository 로 옮긴다** — 이 도메인은 이번에 만지므로 규약 ②에 해당한다
+  - [x] `sync_all` 의 **ORM 직접 대입을 `mark_synced`/`mark_failed` 로 교체** — ORM 이 계층 밖으로 새던 자리다
+  - [x] `app/scripts/seed_repo_registry.py` — 기존 13행에 `product_slug` 매핑 + **신규 4행 추가**(`ax-graph`·`gcs_demo`·`lunch_game`·`mac-remote`, 전부 studio·personal)
 - **검증**:
-  - [ ] `alembic check` 드리프트 없음 (`test_models_and_migrations_agree`)
-  - [ ] 시드 후 17행, `product_slug` 가 전부 실재 디렉토리를 가리킨다
-  - [ ] `kknaks/kknaks_profile` → `kknaks-dev` (P1 통합 결과)
-  - [ ] **잔디 경로 회귀 없음** — `collect_git` 가 17개를 조사하고 `career_map` 이 종전과 같다
-  - [ ] `repository` 밖에서 `TrackedRepo` 를 `select()` 하는 코드가 없다 (테스트로 고정)
-  - [ ] **`repository` 밖으로 ORM 객체가 나가지 않는다** — 반환 타입이 전부 DTO 다
-- **완료 증거**: 미작성
+  - [x] `alembic check` 드리프트 없음 (`test_models_and_migrations_agree`)
+  - [x] 시드 후 17행, `product_slug` 가 전부 실재 디렉토리를 가리킨다
+  - [x] `kknaks/kknaks_profile` → `kknaks-dev` (P1 통합 결과)
+  - [x] **잔디 경로 회귀 없음** — `collect_git` 가 17개를 조사하고 `career_map` 이 종전과 같다
+  - [x] `repository` 밖에서 `TrackedRepo` 를 `select()` 하는 코드가 없다 (테스트로 고정)
+  - [x] **`repository` 밖으로 ORM 객체가 나가지 않는다** — 반환 타입이 전부 DTO 다
+- **완료 증거**:
+  - 마이그레이션 `0009` 적용. 로컬 DB 에 `product_slug varchar(64) NULL` 확인, `alembic check` 드리프트 없음.
+  - **`repository/` 계층 신설.** `tracked_repos.py` 가 `select()`·ORM 을 독점하고 `_to_dto()` 한 곳에서 변환이 끝난다. `list_all`·`list_enabled`·`get_by_id`·`get_by_slug`·`existing_slugs`·`create`·`patch`·`mark_synced`·`mark_failed`.
+  - **`sync_all` 의 ORM 유출을 끊었다.** 종전에는 `enabled_repos()` 가 `list[TrackedRepo]` 를 돌려주고 `sync_all` 이 `repo.last_fetched_at` 을 직접 대입했다. 이제 DTO 를 받고 `mark_synced`/`mark_failed` 로 기록한다. 실측 확인 — `enabled_repos` 반환 타입이 `TrackedRepoDTO` 이고 잔디 조사 대상 17건·career 귀속 `medisolve-ai` 로 종전과 같다.
+  - `patch()` 에 **`exclude_unset=True`** 를 걸었다. 없으면 `detail` 을 안 보낸 요청이 `detail=None` 으로 해석돼 **company 행의 career 귀속이 조용히 지워진다** — DB CHECK 가 `detail IS NOT NULL` 만 보므로 그 순간 flush 가 실패하거나, studio 로 바뀐 행이면 실패도 안 한다.
+  - **시드 원천을 showcase 스캔에서 명시 목록으로 바꿨다 — 이건 계획에 없던 발견이다.** P1 이 회사 `showcase.md` 5개를 지웠는데(D9) `seed_company_from_showcase()` 가 **바로 그 파일들을 스캔하고 있었다.** 그대로 뒀으면 새 배포에서 회사 레포가 0건 시드되고 잔디는 매일 정상 종료한다 — WORK-017 결함 ④와 같은 침묵이다. `COMPANY_REPOS`(5) · `CARDLESS_REPOS`(4) · `PRODUCT_BY_SLUG`(12) 세 상수로 전환했다.
+  - **`product_slug` 는 문자열로 유도할 수 없다는 것을 테스트로 박았다.** `kknaks/kknaks_profile` → `kknaks-dev`(D2 전에는 `kknaks-profile` 이었다) · `kknaks/ax-graph` → `ax-knowledge-graph` · `kknaks/lunch_game` → `mini-game`. 규칙을 지어냈으면 전부 틀린 곳을 가리켰다.
+  - `backfill_product_slug()` — 컬럼이 새로 생겨 기존 행이 전부 `NULL` 이라, 비어 있는 자리에만 쓰는 것이 "사람이 손본 값을 안 덮는다" 는 시드 규율과 충돌하지 않는다.
+  - **시드 실행 결과 17행.** `studio added=4`(카드 없는 레포) · `company added=0`(이미 있음) · `product filled=8 kept=4 no_product=5`. `product_slug` 12건이 **전부 실재 디렉토리**를 가리키는 것을 확인했고, 회사 5건은 제품 문서가 없어 정상적으로 비어 있다.
+  - **계층 회귀 테스트 신설**(`tests/test_layering.py`) — 신규 도메인에 대해 `select()` 직접 호출 금지 · ORM import 금지 · `fastapi` import 금지(service) · 외부 I/O 금지(repository) · 반환 타입에 ORM 금지. **대상 목록을 명시해 레거시를 제외한 것이 경계다** — 일괄 리팩터를 안 하기로 한 결정을 테스트가 뒤집지 않는다.
+  - **테스트가 진짜 Slack 으로 나가던 것을 막았다.** `.env` 를 export 한 채 스위트를 돌리면 `SLACK_WEBHOOK_URL` 이 채워져 `notify_slack` 을 patch 안 한 테스트들이 **실제 워크스페이스로 메시지를 보낸다.** 실제로 나갔다(`kknaks/gone CLONE_FAILED` 에 pytest tmp 경로가 그대로, `C-001-test`·`kknaks@example.com` 픽스처). **알림은 부수효과라 테스트가 실패하지 않아 아무도 모른 채 반복된다.** conftest 세션 fixture 로 봉했다 — 개별 patch 는 "무엇을 보냈나" 를, 이 가드는 "밖으로 안 나간다" 를 맡는다.
+  - **825 passed** (베이스라인 818 → 계층 5 + 레지스트리 2 신규).
 
 ### Phase 3 — service + API (BE)
 

@@ -18,7 +18,9 @@ from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 
 import config
 from core.models import TrackedRepo
-from service.jobs.repo_registry import (
+from service.jobs.repo_registry import (  # noqa: I001
+    CARDLESS_REPOS,
+    COMPANY_REPOS,
     UnknownCareerError,
     account_for,
     enabled_repos,
@@ -126,12 +128,44 @@ class TestSeed:
     async def test_company_is_skipped_and_counted(self, db, repo):
         """`detail` 을 지어내지 않는다 — 어느 career 로 갈지는 사람이 정한다."""
         result = await seed_from_showcase(db, repo)
-        assert result["added"] == 2  # studio 둘
         assert result["needs_detail"] == 1  # company 하나
 
         rows = (await db.scalars(select(TrackedRepo))).all()
-        assert {r.slug for r in rows} == {"kknaks/kknaks_profile", "kknaksss/mykakao"}
+        # 카드에서 긁은 studio 둘 + 카드가 없어 목록으로 들어오는 레포(D12).
+        assert {"kknaks/kknaks_profile", "kknaksss/mykakao"} <= {r.slug for r in rows}
+        assert set(CARDLESS_REPOS) <= {r.slug for r in rows}
+        assert result["added"] == 2 + len(CARDLESS_REPOS)
         assert all(r.type == "studio" and r.detail is None for r in rows)
+
+    async def test_cardless_repos_are_seeded_with_their_product(self, db, repo):
+        """**카드가 없어도 추적한다** (KDEV-DEC-017 D12).
+
+        showcase 스캔만 쓰던 시절 이 레포들이 통째로 빠져 있었고, 실측으로 최근 30일
+        본인 커밋 57건이 잔디에 안 잡히고 있었다. 잡은 매일 정상 종료했다.
+        """
+        await seed_from_showcase(db, repo)
+        rows = {
+            r.slug: r for r in (await db.scalars(select(TrackedRepo))).all()
+        }
+        assert rows["kknaks/ax-graph"].product_slug == "ax-knowledge-graph"
+        assert rows["kknaksss/gcs_demo"].product_slug == "cloud-file-organizer"
+        # 소유자가 갈린다 — `kknaksss` 도 개인 토큰으로 클론한다.
+        assert rows["kknaksss/gcs_demo"].account == "personal"
+
+    async def test_product_slug_is_not_derived_from_the_slug(self, db, repo):
+        """`kknaks/kknaks_profile` → `kknaks-dev`. 문자열로는 나오지 않는다.
+
+        D2 통합 전에는 `kknaks-profile` 이었다. 규칙을 지어내면 조용히 틀린 곳에 붙는다.
+        """
+        await seed_from_showcase(db, repo)
+        row = (
+            await db.scalars(
+                select(TrackedRepo).where(
+                    TrackedRepo.slug == "kknaks/kknaks_profile"
+                )
+            )
+        ).one()
+        assert row.product_slug == "kknaks-dev"
 
     async def test_seeding_twice_adds_nothing(self, db, repo):
         """사람이 손본 detail·enabled 를 덮지 않는다."""
@@ -179,16 +213,18 @@ class TestCompanySeed:
         await seed_from_showcase(db, repo)
         result = await seed_company_from_showcase(db, repo, detail="medisolve-ai")
 
-        assert result["added"] == 1
-        row = (
+        assert result["added"] == len(COMPANY_REPOS)
+        rows = (
             await db.scalars(
                 select(TrackedRepo).where(TrackedRepo.type == "company")
             )
-        ).one()
-        assert row.slug == "MediSolveAIDev/mediness"
-        assert row.detail == "medisolve-ai"
+        ).all()
+        assert {r.slug for r in rows} == set(COMPANY_REPOS)
+        assert all(r.detail == "medisolve-ai" for r in rows)
         # 회사 레포는 회사 토큰으로 클론한다 — 개인 토큰이면 권한이 없다.
-        assert row.account == "company"
+        assert all(r.account == "company" for r in rows)
+        # 제품 문서가 없으니 조인할 곳도 없다 (D9).
+        assert all(r.product_slug is None for r in rows)
 
     async def test_unknown_career_stem_is_refused(self, db, repo):
         """오타는 DB CHECK 를 통과한다 — `detail IS NOT NULL` 만 보기 때문이다.
@@ -211,14 +247,20 @@ class TestCompanySeed:
         """사람이 다른 career 로 옮겨 놨으면 그대로 둔다."""
         await seed_company_from_showcase(db, repo, detail="medisolve-ai")
         row = (
-            await db.scalars(select(TrackedRepo).where(TrackedRepo.type == "company"))
-        ).one()
+            await db.scalars(
+                select(TrackedRepo)
+                .where(TrackedRepo.type == "company")
+                .order_by(TrackedRepo.slug)
+            )
+        ).first()
         row.detail = "bitcamp"
         await db.flush()
 
         await seed_company_from_showcase(db, repo, detail="medisolve-ai")
 
         refreshed = (
-            await db.scalars(select(TrackedRepo).where(TrackedRepo.type == "company"))
+            await db.scalars(
+                select(TrackedRepo).where(TrackedRepo.slug == row.slug)
+            )
         ).one()
         assert refreshed.detail == "bitcamp"

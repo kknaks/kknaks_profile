@@ -23,6 +23,7 @@ from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 
 import config
+import repository.tracked_repos as tracked_repos_repo
 from core.models import TrackedRepo
 from service.jobs import repos as repo_sync
 from tests.conftest import isolate_tables
@@ -74,6 +75,16 @@ def origin(tmp_path: Path, monkeypatch) -> Path:
 @pytest.fixture
 def cache(tmp_path: Path) -> Path:
     return tmp_path / "cache"
+
+
+async def _dtos(db, *slugs):
+    """ORM 을 그대로 넘기지 않는다 — `sync_all` 은 DTO 를 받는다 (KDEV-WORK-018 P2).
+
+    오리 타이핑으로는 ORM 도 통과하지만, 그러면 "ORM 이 repository 밖으로 나가지
+    않는다" 는 계약을 테스트가 검증하지 못한다.
+    """
+    by_slug = {d.slug: d for d in await tracked_repos_repo.list_all(db)}
+    return [by_slug[slug] for slug in slugs]
 
 
 class TestCloneLayout:
@@ -242,13 +253,22 @@ class TestSyncAll:
             db.add(row)
         await db.flush()
 
-        results = await repo_sync.sync_all(db, rows, root=cache)
+        results = await repo_sync.sync_all(
+            db,
+            await _dtos(db, "kknaks/does_not_exist", "kknaks/wine_log"),
+            root=cache,
+        )
 
         assert [r.ok for r in results] == [False, True]
-        assert rows[0].last_error and rows[0].last_error.startswith("CLONE_FAILED")
-        assert rows[0].last_fetched_at is None
-        assert rows[1].last_error is None
-        assert rows[1].last_fetched_at is not None
+        after = {d.slug: d for d in await tracked_repos_repo.list_all(db)}
+        failed = after["kknaks/does_not_exist"]
+        ok = after["kknaks/wine_log"]
+        assert failed.last_error and failed.last_error.startswith("CLONE_FAILED")
+        # 실패는 `last_fetched_at` 을 건드리지 않는다 — 마지막 성공 시점이 실패
+        # 사유만큼 중요하다.
+        assert failed.last_fetched_at is None
+        assert ok.last_error is None
+        assert ok.last_fetched_at is not None
 
     async def test_success_clears_a_stale_error(self, db, origin, cache, monkeypatch):
         """`last_error` 가 남아 있으면 **지금 막혀 있다**는 뜻이어야 한다."""
@@ -262,8 +282,9 @@ class TestSyncAll:
         db.add(row)
         await db.flush()
 
-        await repo_sync.sync_all(db, [row], root=cache)
-        assert row.last_error is None
+        await repo_sync.sync_all(db, await _dtos(db, "kknaks/wine_log"), root=cache)
+        after = {d.slug: d for d in await tracked_repos_repo.list_all(db)}
+        assert after["kknaks/wine_log"].last_error is None
 
     async def test_failures_are_one_slack_message(self, db, cache, monkeypatch):
         """13개가 한꺼번에 죽으면 13통이 온다 — 묶어서 한 통으로."""
@@ -281,7 +302,7 @@ class TestSyncAll:
             db.add(row)
         await db.flush()
 
-        await repo_sync.sync_all(db, rows, root=cache)
+        await repo_sync.sync_all(db, await _dtos(db, "a/one", "b/two"), root=cache)
 
         assert len(sent) == 1
         assert "a/one" in sent[0] and "b/two" in sent[0]
@@ -295,7 +316,7 @@ class TestSyncAll:
         db.add(row)
         await db.flush()
 
-        await repo_sync.sync_all(db, [row], root=cache)
+        await repo_sync.sync_all(db, await _dtos(db, "kknaks/wine_log"), root=cache)
         assert sent == []
 
 
