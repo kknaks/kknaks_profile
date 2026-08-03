@@ -109,7 +109,7 @@ async def apply_item(
     계획으로 다시 시도한다(DEC-012 D5).
     """
     if plan is None:
-        actions = build_actions(await approved_payloads(db, item.id))
+        actions = build_actions(await approved_payloads(db, item.id), repo_root=repo_root)
         plan = ApplyPlan(item_id=item.id, file_actions=[a.as_dict() for a in actions])
         db.add(plan)
         await db.flush()

@@ -24,7 +24,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from typing import Any, Awaitable, Callable, Protocol
 
-from sqlalchemy import func, select
+from sqlalchemy import func, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.models import AITask, ItemPreparation, QueueItem
@@ -36,6 +36,16 @@ logger = logging.getLogger("kknaks-back.pipeline.prepare")
 #: 준비를 시작할 수 있는 항목 상태. 이미 검토 중이거나 발행된 항목을 다시 준비하면
 #: 사람이 보고 있던 근거가 발밑에서 바뀐다.
 PREPARABLE_STATUSES = ("received", "prepare_failed")
+
+#: 준비가 산출물 없이 닫혔지만 **실패가 아닌** 경우 (KDEV-SPEC-013 §4).
+#: 지금은 활동 0 하나뿐이다. 실패와 같은 자리에서 나오지만 사람이 고칠 것이 없고,
+#: 큐 화면에서도 빨간 줄로 서면 안 된다.
+NON_FAILURE_CLOSING_CODES = {"NO_ACTIVITY": "no_activity"}
+
+
+def _closing_status(error_code: str) -> str:
+    """준비가 닫힐 때 항목이 갈 상태. 실패가 아닌 종결은 따로 표시한다."""
+    return NON_FAILURE_CLOSING_CODES.get(error_code, "prepare_failed")
 
 
 class Summarizer(Protocol):
@@ -49,11 +59,104 @@ class Summarizer(Protocol):
 
     async def poll(self, task_id: str) -> Execution: ...
 
+    #: 실행 완료까지 블록한다 — 워커가 깨워 주므로 폴링이 아니다. 선언이 빠져 있었는데
+    #: `driver` 가 계속 부르고 있었다(KDEV-WORK-017 P2 에서 실사용에 맞춰 채웠다).
+    async def wait(self, task_id: str) -> Any: ...
+
     def parse(self, raw: str) -> str: ...
 
 
 #: 원문 수집기. 실패는 예외.
 Fetcher = Callable[[str], Awaitable[Any]]
+
+
+@dataclass(frozen=True)
+class StageSubmission:
+    """auto 스테이지가 제출을 마치고 돌려주는 것 (KDEV-WORK-017 P2).
+
+    `task_refs` 가 비어 있어도 정상이다 — `collect` 처럼 **LLM 을 부르지 않는**
+    스테이지가 있다. 그 경우 기다릴 것이 없으니 곧바로 수확된다.
+
+    `investigate` 는 반대로 레포마다 하나씩 **N 건**을 낸다. 제출 건수를 0·1·N 으로
+    함께 다루는 것이 이 계약의 요점이다 — 종전 준비부는 1 만 가정했다.
+    """
+
+    task_refs: list[str]
+    #: 제출 시점에 이미 확정된 payload 조각(수집 원문 등). 실행 결과가 아니다.
+    payload: dict[str, Any]
+    #: 제출 전에 막힌 경우. 채워지면 준비가 실패로 닫힌다.
+    error_code: str | None = None
+    error_message: str | None = None
+
+
+class AutoStage(Protocol):
+    """auto 스테이지 실행기 — 게이트가 아니라 `ItemPreparation` 을 남긴다.
+
+    게이트 실행기(`gates.StageRunner`)와 계약이 다르다. 승인 리비전을 만들지 않고,
+    사람의 검토를 받지 않으며, 실패하면 재시도한다.
+
+    **`stages` 가 이 프로토콜의 핵심이다.** 실행기 하나가 정의상 스테이지 **여럿을
+    덮을 수 있다.** 유튜브의 수집+요약이 그렇다 — 정의에는 `collect`·`summarize` 로
+    둘이지만 코드에서는 한 덩어리이고, 그걸 굳이 쪼개면 얻는 것 없이 회귀면만 넓어진다.
+    잔디는 셋을 각각 따로 덮는다.
+    """
+
+    #: 이 실행기가 덮는 정의상 스테이지 이름들. 성공하면 전부 완료로 기록된다.
+    stages: tuple[str, ...]
+
+    async def submit(self, *, item: QueueItem, prior: dict[str, Any]) -> StageSubmission: ...
+
+    async def wait(self, task_ref: str) -> Any: ...
+
+    async def poll(self, task_ref: str) -> Execution: ...
+
+    def parse(
+        self, results: dict[str, str], *, item: QueueItem, prior: dict[str, Any]
+    ) -> dict[str, Any]:
+        """실행 결과들 → 이 스테이지가 payload 에 더할 조각.
+
+        **`task_ref` 로 키가 잡힌다.** 순서 있는 리스트가 아닌 이유는 부분 실패다 —
+        N 건 중 일부가 빠지면 색인이 밀려 `investigate` 가 A 레포 결과를 B 레포 것으로
+        읽는다. 실패한 건은 키 자체가 없으므로 `submit` 이 기록해 둔 대응표와 맞춰
+        무엇이 빠졌는지 알 수 있다.
+
+        비어 있으면 LLM 을 부르지 않은 스테이지다(`collect`).
+        """
+        ...
+
+
+async def completed_auto_stages(db: AsyncSession, item_id: int) -> set[str]:
+    """이 항목에서 **이미 끝난** auto 스테이지 이름들.
+
+    성공한 준비 버전에만 기록된다 — 실패한 버전은 재시도 대상이라 완료로 세지 않는다.
+    """
+    rows = (
+        await db.scalars(
+            select(ItemPreparation.payload).where(
+                ItemPreparation.item_id == item_id,
+                ItemPreparation.status == "succeeded",
+            )
+        )
+    ).all()
+    done: set[str] = set()
+    for payload in rows:
+        for name in (payload or {}).get("stages") or []:
+            done.add(str(name))
+    return done
+
+
+def next_auto_stage(pipeline, completed: set[str]) -> str | None:
+    """정의 순서에서 아직 안 끝난 첫 auto 스테이지. 없으면 `None`(= 게이트 차례).
+
+    **정의가 순서의 SoT다.** 종전에는 "수집 1회 + 요약 1회" 가 코드에 굳어 있어
+    `Stage(..., "auto")` 선언을 아무도 읽지 않았다(WORK-017 P2).
+    """
+    if pipeline is None:
+        return None
+    for stage in pipeline.auto_stages():
+        if stage.name not in completed:
+            return stage.name
+    return None
 
 
 @dataclass(frozen=True)
@@ -103,6 +206,223 @@ def _material_dict(material: Any) -> dict[str, Any] | None:
         return material
     to_dict = getattr(material, "to_dict", None)
     return to_dict() if callable(to_dict) else {"content": str(material)}
+
+
+async def submit_auto_stage(
+    db: AsyncSession,
+    item_id: int,
+    stage_name: str,
+    *,
+    runner: AutoStage,
+) -> PrepareResult:
+    """auto 스테이지 하나를 **제출한다** (KDEV-WORK-017 P2). 커밋은 호출자가 한다.
+
+    레거시 `submit_preparation` 과 나뉘어 있는 이유는 **제출 건수**다. 저쪽은 요약
+    하나를 가정하고 `AITask` 를 `summarize.submit` **앞에서** 만든다 — 제출이 터져도
+    그 행이 남아야 무엇이 막혔는지 보이기 때문이다. 여기는 실행기가 0건(`collect`)
+    이나 N건(`investigate`)을 낼 수 있어 그 순서를 쓸 수 없다.
+
+    유튜브를 이쪽으로 옮기지 않은 것은 그래서다. 옮기면 얻는 것 없이 그 실패 기록
+    계약만 흔들린다(2-A 8번은 열어 둔다).
+
+    산출물 payload 는 **직전 스테이지 것을 물려받아 누적한다.** `latest_preparation`
+    이 가장 최근 성공분 하나만 집으므로, 누적하지 않으면 앞 스테이지 결과가 게이트
+    입력에서 사라진다.
+    """
+    item = await db.get(QueueItem, item_id)
+    if item is None or item.deleted_at is not None:
+        return PrepareResult(item_id=item_id, status="not_allowed", error_code="ITEM_NOT_FOUND")
+
+    prior = await _prior_payload(db, item_id)
+    if item.status in PREPARABLE_STATUSES:
+        item.status = "preparing"
+        await db.flush()
+
+    try:
+        submission = await runner.submit(item=item, prior=prior)
+    except Exception as exc:  # noqa: BLE001 — 제출 실패는 상태이지 예외가 아니다
+        return await _fail(
+            db,
+            item,
+            version=await _next_version(db, item_id),
+            error_code=f"{stage_name.upper()}_SUBMIT_FAILED",
+            error_message=str(exc)[:500],
+            payload={**prior, "stages": []},
+        )
+
+    if submission.error_code:
+        return await _fail(
+            db,
+            item,
+            version=await _next_version(db, item_id),
+            error_code=submission.error_code,
+            error_message=submission.error_message or submission.error_code,
+            payload={**prior, **submission.payload, "stages": []},
+        )
+
+    # 실행 건수만큼 행을 남긴다. 0건이면 `AITask` 가 없다 — LLM 을 안 부른 스테이지다.
+    task_ids: list[int] = []
+    for ref in submission.task_refs:
+        task = AITask(
+            item_id=item_id,
+            kind=stage_name,
+            status="running",
+            external_task_ref=str(ref),
+        )
+        db.add(task)
+        await db.flush()
+        task_ids.append(task.id)
+
+    version = await _next_version(db, item_id)
+    preparation = ItemPreparation(
+        item_id=item_id,
+        version=version,
+        status="running",
+        # **N 건이면 비운다.** 단일 FK 로는 fan-out 을 가리킬 수 없어서,
+        # 수확은 `AITask.item_id` + `kind` 로 되찾는다.
+        ai_task_id=task_ids[0] if len(task_ids) == 1 else None,
+        payload={
+            **prior,
+            **submission.payload,
+            "stage": stage_name,
+            # 성공해야 완료로 센다 — 지금은 진행 중이라 비워 둔다.
+            "stages": [],
+            "task_refs": [str(r) for r in submission.task_refs],
+        },
+    )
+    db.add(preparation)
+    await db.flush()
+
+    return PrepareResult(
+        item_id=item_id, status="preparing", preparation_id=preparation.id, version=version
+    )
+
+
+async def running_preparation(db: AsyncSession, item_id: int) -> ItemPreparation | None:
+    """진행 중인 준비 버전. 어느 스테이지의 것인지는 `payload["stage"]` 가 안다.
+
+    레거시 수집+요약 준비에는 그 키가 없다 — 그것으로 둘을 가른다.
+    """
+    return await db.scalar(
+        select(ItemPreparation)
+        .where(ItemPreparation.item_id == item_id, ItemPreparation.status == "running")
+        .order_by(ItemPreparation.version.desc())
+        .limit(1)
+    )
+
+
+async def _prior_payload(db: AsyncSession, item_id: int) -> dict[str, Any]:
+    """직전까지 성공한 준비의 payload. 없으면 빈 dict."""
+    payload = await db.scalar(
+        select(ItemPreparation.payload)
+        .where(ItemPreparation.item_id == item_id, ItemPreparation.status == "succeeded")
+        .order_by(ItemPreparation.version.desc())
+        .limit(1)
+    )
+    return dict(payload or {})
+
+
+async def harvest_auto_stage(
+    db: AsyncSession, item: QueueItem, *, runner: AutoStage
+) -> PrepareResult:
+    """제출해 둔 auto 스테이지를 확인해 끝났으면 닫는다. **멱등이다.**
+
+    **부분 실패는 진행한다.** N 건 중 일부만 실패해도 성공분으로 다음을 간다 —
+    레포 하나가 막혔다고 그날 조사를 통째로 버리지 않는다(SPEC-011 §5). 전부
+    실패하면 그때는 스테이지 실패다.
+    """
+    if item.status != "preparing":
+        return PrepareResult(item_id=item.id, status=item.status)
+
+    preparation = await db.scalar(
+        select(ItemPreparation)
+        .where(ItemPreparation.item_id == item.id, ItemPreparation.status == "running")
+        .order_by(ItemPreparation.version.desc())
+        .limit(1)
+        .with_for_update()
+    )
+    if preparation is None:
+        logger.warning("항목 %s 가 preparing 인데 running 준비가 없다", item.id)
+        item.status = "prepare_failed"
+        await db.flush()
+        return PrepareResult(
+            item_id=item.id, status="prepare_failed", error_code="PREPARATION_MISSING"
+        )
+
+    payload = dict(preparation.payload or {})
+    stage_name = str(payload.get("stage") or "")
+    refs = [str(r) for r in (payload.get("task_refs") or [])]
+
+    # **task_ref 로 키를 잡는다.** 순서 있는 리스트로 넘기면 부분 실패 때 색인이
+    # 밀려, `investigate` 가 A 레포 결과를 B 레포 것으로 읽는다.
+    results: dict[str, str] = {}
+    failures: dict[str, str] = {}
+    for ref in refs:
+        execution = await runner.poll(ref)
+        if execution.running:
+            # 하나라도 안 끝났으면 아직 수확할 때가 아니다.
+            return PrepareResult(
+                item_id=item.id,
+                status="preparing",
+                preparation_id=preparation.id,
+                version=preparation.version,
+            )
+        if execution.status == "failed":
+            failures[ref] = execution.error_message or execution.error_code or "실행 실패"
+            continue
+        results[ref] = execution.result or ""
+
+    if refs and not results:
+        return await _close_failed(
+            db,
+            item,
+            preparation,
+            None,
+            error_code=f"{stage_name.upper()}_ALL_FAILED" if stage_name else "STAGE_ALL_FAILED",
+            error_message="; ".join(failures.values())[:500] or "제출한 실행이 전부 실패했다",
+        )
+
+    try:
+        piece = runner.parse(results, item=item, prior=payload)
+    except Exception as exc:  # noqa: BLE001
+        return await _close_failed(
+            db,
+            item,
+            preparation,
+            None,
+            error_code=f"{stage_name.upper()}_FAILED" if stage_name else "STAGE_FAILED",
+            error_message=str(exc)[:500],
+        )
+
+    await db.execute(
+        update(AITask)
+        .where(
+            AITask.item_id == item.id,
+            AITask.kind == stage_name,
+            AITask.status == "running",
+        )
+        .values(status="succeeded", finished_at=_now())
+    )
+
+    # **새 dict 로 갈아 끼운다.** JSONB 는 제자리 수정으로 변경을 감지하지 못한다.
+    preparation.payload = {
+        **payload,
+        **piece,
+        # 이제야 완료로 센다. 실행기가 덮는 스테이지 전부가 한 번에 닫힌다.
+        "stages": list(runner.stages),
+        # `failures` 를 쓰지 않는다 — 그 키는 SPEC-011 에서 **레포 fetch 실패**의
+        # 자리다. 여기 것은 실행 실패라 성격이 다르고, 겹치면 조사 결과가 덮인다.
+        "stage_failures": failures,
+    }
+    preparation.status = "succeeded"
+    await db.flush()
+
+    return PrepareResult(
+        item_id=item.id,
+        status="preparing",
+        preparation_id=preparation.id,
+        version=preparation.version,
+    )
 
 
 async def submit_preparation(
@@ -195,6 +515,10 @@ async def submit_preparation(
         status="running",
         ai_task_id=task.id,
         payload={
+            # 이 준비가 덮은 정의상 스테이지들(WORK-017 P2). 수집과 요약은 코드에서
+            # 한 덩어리지만 정의에서는 둘이고, 레일은 정의 기준으로 "다음이 남았나"를
+            # 판단한다. 둘 다 여기 적히므로 유튜브는 준비 한 번으로 auto 가 끝난다.
+            "stages": ["collect", "summarize"],
             "source": material,
             "note": note or None,
             # 수집이 막혀 메모로 대체했는지는 route 판단의 재료다 —
@@ -222,6 +546,16 @@ async def harvest_preparation(
 
     게이트 수확과 같은 규율이다 — `running` 행을 `FOR UPDATE` 로 잡아, 폴링이
     겹쳐도 요약이 두 번 채워지지 않는다.
+
+    **auto 스테이지 준비는 건드리지 않는다** (KDEV-WORK-017 결함 ⑨). 이 함수는
+    "수집+요약 한 덩어리, 실행 1건" 을 전제한 레거시 수확기라 fan-out 준비를
+    이해하지 못한다 — `ai_task_id` 가 비어 있어 곧바로 `TASK_REF_MISSING` 으로
+    닫아 버린다. 그것을 실제로 당했다: 드라이버가 investigate 2건을 정상적으로
+    기다리는 동안 **승인 큐 화면의 목록 폴링**(`_harvest_item`)이 이 함수를 불러
+    조사 중인 항목을 죽였다. 화면을 열어 둔 것이 파이프라인을 멈춘 것이다.
+
+    드라이버(`_finish_auto_stage`)는 이 구분을 갖고 있었지만 읽기 경로에는 없었다.
+    호출부마다 같은 판단을 되풀이하면 또 빠뜨리므로 **여기에 세운다.**
     """
     if item.status != "preparing":
         return PrepareResult(item_id=item.id, status=item.status)
@@ -233,6 +567,18 @@ async def harvest_preparation(
         .limit(1)
         .with_for_update()
     )
+    if preparation is not None and (preparation.payload or {}).get("stage"):
+        # `stage` 키는 auto 스테이지 준비의 표식이다 — 레거시 준비에는 없다
+        # (`running_preparation` 참조). 내 것이 아니니 그대로 두고 돌아간다.
+        # 실패로 닫지 않는다: 드라이버가 수확할 것이고, 여기서 상태를 바꾸면
+        # 그쪽이 밀고 있던 것을 빼앗는다.
+        return PrepareResult(
+            item_id=item.id,
+            status="preparing",
+            preparation_id=preparation.id,
+            version=preparation.version,
+        )
+
     if preparation is None:
         # 준비 중인데 진행 행이 없다. 제출이 커밋 전에 끊긴 흔적이므로
         # 사람이 재시도할 수 있게 실패로 닫는다.
@@ -327,11 +673,13 @@ async def _close_failed(
         "error_message": error_message,
     }
     preparation.status = "failed"
-    item.status = "prepare_failed"
+    # 준비 자체는 산출물 없이 닫히므로 `failed` 가 맞다. **항목 상태는 다를 수 있다** —
+    # 활동 0은 사람이 고칠 것이 없어서 실패로 세우면 안 된다.
+    item.status = _closing_status(error_code)
     await db.flush()
     return PrepareResult(
         item_id=item.id,
-        status="prepare_failed",
+        status=item.status,
         preparation_id=preparation.id,
         version=preparation.version,
         error_code=error_code,
@@ -361,11 +709,11 @@ async def _fail(
         payload={**payload, "error_code": error_code, "error_message": error_message},
     )
     db.add(preparation)
-    item.status = "prepare_failed"
+    item.status = _closing_status(error_code)
     await db.flush()
     return PrepareResult(
         item_id=item.id,
-        status="prepare_failed",
+        status=item.status,
         preparation_id=preparation.id,
         version=version,
         error_code=error_code,

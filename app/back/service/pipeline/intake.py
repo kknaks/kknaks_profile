@@ -60,13 +60,21 @@ async def intake(
     submitted_by: str | None = None,
     source_kind: str | None = None,
     allow_republish: bool = False,
+    normalized_key: str | None = None,
 ) -> IntakeResult:
     """항목을 접수하거나 기존 항목에 합류시킨다.
 
     `allow_republish=True` 는 "이미 발행된 자료지만 새로 정리하겠다"는 **사람의 결정**이
     내려온 경우다. 기본값이 아니어야 한다 — 기본이면 중복 경고가 무의미해진다.
+
+    `normalized_key` 는 **URL 이 없는 입력의 중복 축**이다 (KDEV-WORK-017 P2). 잔디는
+    자료가 아니라 날짜가 항목을 가르므로 `daily:{date}` 를 키로 쓴다. 그러면 아래 중복
+    판정이 그대로 날짜 축에서 돌고, `uq_queue_items_pending_url` 부분 유니크 인덱스가
+    **마이그레이션 없이** 하루 한 항목을 DB 에서 강제한다. 이미 발행된 날짜를 다시
+    접수하면 `duplicate_published` 로 떨어지는데, 그것이 SPEC-013 S-7 3항(사람이
+    확인하고 다시 만든다)이 요구하는 동작이다.
     """
-    normalized = normalize_url(source_url)
+    normalized = normalized_key or normalize_url(source_url)
     kind = source_kind or detect_source_kind(source_url)
 
     if normalized:

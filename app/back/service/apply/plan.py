@@ -27,6 +27,9 @@ ALLOWED_PREFIXES = (
     "permanent/",
     "inbox/",
     "persona/contents/",
+    # 잔디 산출물 (KDEV-WORK-017 P3). 지식층이 아니라 그래프 밖이다.
+    "persona/daily/",
+    "persona/career/",
 )
 
 #: 층과 경로의 정합. 개념이 `reference/` 에 들어가면 로더가 다른 타입으로 읽는다.
@@ -36,14 +39,38 @@ LAYER_PREFIX = {
     "permanent": "permanent/",
     "idea": "inbox/",
     "content": "persona/contents/",
+    "daily": "persona/daily/",
+    "career": "persona/career/",
 }
+
+#: 그래프 노드가 아닌 층. 상류 참조가 없어 `up:` 검사와 그래프 검증에서 빠진다
+#: (KDEV-SPEC-013 「그래프 검증 제외」).
+OUTSIDE_GRAPH = ("daily", "career")
+
+#: career frontmatter 중 **사람만 정하는** 필드 (KDEV-SPEC-012).
+#: 갱신안에 담기면 발행을 거부한다 — 무시하는 것이 아니라 애초에 담기지 않아야 한다.
+PROTECTED_CAREER_FIELDS = (
+    "bullets",
+    "period",
+    "is_current",
+    "display_order",
+    "title",
+    "org",
+    "summary",
+    "location",
+)
 
 _TRAVERSAL = re.compile(r"(^/)|(\.\.)")
 
 
 @dataclass
 class FileAction:
-    action: str  # create | replace
+    #: `create` 신규 · `replace` 기존 교체 · `upsert` **둘 다 정상**
+    #:
+    #: `upsert` 가 필요한 이유는 daily·career 가 첫 회 생성과 이후 덮어쓰기가 둘 다
+    #: 정상이기 때문이다(SPEC-013). `create`/`replace` 만으로는 매일 액션 종류가
+    #: 갈리고, 그러면 "오늘은 create 인가 replace 인가" 를 발행부가 알아야 한다.
+    action: str  # create | replace | upsert
     path: str
     content: str
     note_type: str
@@ -91,7 +118,82 @@ def _note_type(content: str) -> str:
         return ""
 
 
-def build_actions(approved: dict[str, dict[str, Any]]) -> list[FileAction]:
+def render_daily(payload: dict[str, Any]) -> str:
+    """daily 파일 전문 — **frontmatter 는 시스템이 조립한다.**
+
+    다른 노트 스테이지는 AI 가 md 전문을 낸다(형식 SoT 를 둘로 만들지 않으려고). daily
+    는 그럴 수 없다 — `type`·`date`·`auto` 는 시스템 것이고 `counts` 는 코드가 센 값이라
+    AI 출력에 섞이면 안 된다(SPEC-012 §5). AI 가 내는 것은 `summary` 와 본문뿐이고,
+    그 둘은 여기서 조립되는 값이 아니라 그대로 실린다 — 형식 SoT 가 둘이 되지 않는다.
+
+    `date` 를 **점 표기**로 쓴다. 로더가 파일명(하이픈)과 대조하며, 어긋나면 파일 하나가
+    거부되는 게 아니라 persona 로드 전체가 실패한다.
+    """
+    date = str(payload.get("date") or "")
+    post = frontmatter.Post(
+        str(payload.get("body") or ""),
+        **{
+            "type": "daily",
+            "date": date.replace("-", "."),
+            "auto": True,
+            "counts": payload.get("counts") or {},
+            "summary": payload.get("summary") or {"ko": [], "en": []},
+        },
+    )
+    return frontmatter.dumps(post)
+
+
+def _split_frontmatter(existing: str) -> tuple[str, bool]:
+    """원문에서 frontmatter 블록을 **문자 그대로** 떼어 낸다. `(블록, 찾았나)`.
+
+    블록은 여는 `---` 부터 닫는 `---` 까지를 포함한다. 파싱하지 않으므로 주석·키
+    순서·따옴표·들여쓰기가 원문 그대로 남는다.
+    """
+    if not existing.startswith("---"):
+        return "", False
+    lines = existing.splitlines(keepends=True)
+    if lines[0].strip() != "---":
+        return "", False
+    for i in range(1, len(lines)):
+        if lines[i].strip() == "---":
+            return "".join(lines[: i + 1]), True
+    # 닫는 구분자가 없다 — frontmatter 가 아니다.
+    return "", False
+
+
+def render_career(payload: dict[str, Any], existing: str) -> str:
+    """career 파일 전문 — **기존 frontmatter 를 그대로 이고 본문만 바꾼다.**
+
+    갱신안이 본문만 내는 이유가 여기 있다. career frontmatter 는 `bullets`·`period`
+    처럼 사람이 정하는 값이 대부분이라, AI 가 전문을 내면 그것들을 다시 쓰게 된다.
+    본문만 받아 얹으면 사람 전용 필드는 **건드릴 방법 자체가 없다.**
+
+    **frontmatter 를 파싱하지 않는다** (KDEV-WORK-017 결함 ⑩). 종전에는
+    `frontmatter.loads()` → `dumps()` 로 왕복했는데, 값은 보존되지만 **주석이
+    사라지고 키가 알파벳순으로 재정렬된다.** 본문만 바뀌어야 할 발행이 42 insertions
+    / 38 deletions 를 냈고 `# 이력서 PDF — 비면 PDF 미표시` 주석이 없어졌다.
+    dry-run 이라 되돌렸지만 운영에서는 그것이 그대로 `origin/main` 에 커밋된다.
+
+    "사람 전용 필드를 건드리지 않는다" 는 규율은 **값이 같으면 되는 것이 아니다** —
+    사람이 적어 둔 주석과 순서도 그 사람의 것이다. 그래서 텍스트를 그대로 이어 붙인다.
+    """
+    body = str(payload.get("content") or "")
+    block, found = _split_frontmatter(existing)
+    if not found:
+        # frontmatter 가 없는 career 는 정상이 아니다. 여기서 지어내지 않는다 —
+        # `_career_violations` 가 필수 필드 부재로 잡아 발행을 막는다.
+        return body if body.endswith("\n") else body + "\n"
+    if not block.endswith("\n"):
+        block += "\n"
+    if not body.endswith("\n"):
+        # 종전 구현은 파일을 개행 없이 끝냈다(`\ No newline at end of file`).
+        body += "\n"
+    return f"{block}\n{body}"
+
+
+def build_actions(
+    approved: dict[str, dict[str, Any]], *, repo_root: Path | None = None
+) -> list[FileAction]:
     """승인된 게이트 산출물 → 파일 액션 목록.
 
     `approved` 는 `{stage_name: payload}`. **경로는 payload 의 `target_path` 를 쓰되**,
@@ -112,6 +214,61 @@ def build_actions(approved: dict[str, dict[str, Any]]) -> list[FileAction]:
                 note_type=_note_type(content),
                 stem=str(payload.get("filename_stem") or ""),
                 source_gate=stage,
+            )
+        )
+
+    # --- 잔디 (KDEV-WORK-017 P3) -------------------------------------------
+    # 게이트 하나가 목적지 셋을 낸다. 유튜브는 스테이지마다 하나씩이라 모양이 다르다.
+    grass = approved.get("daily") or {}
+    daily = grass.get("daily") or {}
+    if daily.get("target_path"):
+        content = render_daily(daily)
+        actions.append(
+            FileAction(
+                # 첫 회 생성과 덮어쓰기가 **둘 다 정상**이다.
+                action="upsert",
+                path=str(daily.get("target_path") or ""),
+                content=content,
+                note_type=_note_type(content),
+                stem=str(daily.get("date") or ""),
+                source_gate="daily",
+            )
+        )
+
+    career = grass.get("career") or {}
+    if career.get("changed") and career.get("target_path"):
+        path = str(career.get("target_path") or "")
+        existing = ""
+        if repo_root is not None:
+            target = repo_root / path
+            if target.exists():
+                existing = target.read_text(encoding="utf-8")
+        content = render_career(career, existing)
+        actions.append(
+            FileAction(
+                # career 는 이미 있는 문서를 고치는 것이라 `replace` 다 — 대상이
+                # 사라졌으면 `TARGET_MISSING` 으로 막혀야 한다.
+                action="replace",
+                path=path,
+                content=content,
+                note_type=_note_type(content),
+                stem=str(career.get("stem") or ""),
+                source_gate="daily",
+            )
+        )
+
+    for concept in (grass.get("concepts") or []):
+        if concept.get("excluded"):
+            continue
+        content = str(concept.get("content") or "")
+        actions.append(
+            FileAction(
+                action="replace" if concept.get("mode") == "supplement" else "create",
+                path=str(concept.get("target_path") or ""),
+                content=content,
+                note_type=_note_type(content),
+                stem=str(concept.get("stem") or ""),
+                source_gate="daily",
             )
         )
 
@@ -149,6 +306,61 @@ def _content_filename_violations(action: FileAction, path: str) -> list[Violatio
                 "CONTENT_FILENAME",
                 path,
                 f"파일명이 '{content_id}-' 로 시작해야 한다 — 로더가 거부하면 persona 로드 전체가 실패한다",
+            )
+        ]
+    return []
+
+
+def _daily_violations(action: FileAction, path: str, repo_root: Path) -> list[Violation]:
+    """대상 daily 가 **본인 작성**이면 덮어쓰지 않는다 (SPEC-012 S-5 / SPEC-013 S-6).
+
+    보호는 이중이다 — 접수 단계가 한 번 막고(`intake_daily`) 여기가 한 번 더 막는다.
+    접수 뒤에 사람이 직접 쓴 경합을 잡는 자리가 이쪽이다. 그 사이가 몇 시간이라
+    실제로 일어날 수 있다.
+
+    `auto: true` 가 아니면 사람 것으로 본다 — 자동 생성분만 명시적으로 표시되므로
+    이쪽이 안전한 기본값이다.
+    """
+    target = repo_root / path
+    if not target.exists():
+        return []
+    try:
+        meta = frontmatter.loads(target.read_text(encoding="utf-8")).metadata
+    except Exception:  # noqa: BLE001 — 읽을 수 없으면 건드리지 않는 편이 안전하다
+        return [
+            Violation("USER_AUTHORED_DAILY", path, "대상 daily 를 읽을 수 없다")
+        ]
+    if meta.get("auto") is not True:
+        return [
+            Violation(
+                "USER_AUTHORED_DAILY",
+                path,
+                "그날 daily 는 본인 작성이다 — 덮어쓰지 않는다",
+            )
+        ]
+    return []
+
+
+def _career_violations(action: FileAction, path: str) -> list[Violation]:
+    """사람 전용 필드가 **바뀌었으면** 거부한다 (SPEC-012 / SPEC-013 `PROTECTED_FIELD`).
+
+    계획의 career 내용은 기존 frontmatter 를 그대로 이고 본문만 바꾼 것이라, 정상
+    경로에서는 이 검사가 걸릴 일이 없다. 그래도 두는 이유는 **계획이 조립되는 경로가
+    하나뿐이라고 가정하지 않기 위해서다** — 저장된 계획으로 재시도하는 경로가 있고,
+    그 계획이 다른 코드로 만들어졌을 수 있다. 파일을 쓰기 전이 마지막 기회다.
+    """
+    try:
+        meta = frontmatter.loads(action.content).metadata
+    except Exception:  # noqa: BLE001
+        return [Violation("PROTECTED_FIELD", path, "career frontmatter 를 읽을 수 없다")]
+    missing = [f for f in ("type", "period", "title", "org") if f not in meta]
+    if missing:
+        # 로더 필수 필드다. 빠지면 파일 하나가 아니라 persona 로드 전체가 실패한다.
+        return [
+            Violation(
+                "PROTECTED_FIELD",
+                path,
+                f"career 필수 필드가 사라졌다: {', '.join(missing)}",
             )
         ]
     return []
@@ -209,6 +421,12 @@ def validate_plan(
             # 발행 뒤에야 알게 되므로 나가기 전에 잡는다.
             violations.extend(_content_filename_violations(action, path))
 
+        # 2-b. 잔디 전용 검증 (KDEV-WORK-017 P3 / SPEC-013)
+        if action.note_type == "daily":
+            violations.extend(_daily_violations(action, path, repo_root))
+        elif action.note_type == "career":
+            violations.extend(_career_violations(action, path))
+
         # 3. `up:` 필수 (concept·permanent)
         if action.note_type in ("concept", "permanent"):
             try:
@@ -222,6 +440,10 @@ def validate_plan(
         exists = target.exists()
 
         # 4. 신규 중복 — 새로 만든다면서 이미 있으면 덮어쓰는 것이다
+        #
+        # `upsert` 는 이 검사도 아래 stale 검사도 받지 않는다. 첫 회 생성과 덮어쓰기가
+        # 둘 다 정상이라 존재 여부가 판단 근거가 못 된다(SPEC-013). 경로 허용과 층 매핑은
+        # 위에서 이미 봤다.
         if action.action == "create":
             if exists:
                 violations.append(

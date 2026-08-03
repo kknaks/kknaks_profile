@@ -28,6 +28,14 @@ RUN UV_PROJECT_ENVIRONMENT=/opt/venv uv run playwright install --with-deps chrom
 # compose 의 `user: "1000:1000"` 가 venv 갱신 시 root 소유 파일을 못 지워서 부팅 실패하던 이슈 영구 차단.
 RUN chown -R 1000:1000 /opt/venv /tmp 2>/dev/null || true
 
+# 잔디 bare 클론 캐시 (KDEV-WORK-017 P5 / KDEV-SPEC-011). compose 의 named volume 이
+# 여기 붙는다 — **이미지에 디렉터리가 없으면 볼륨이 root:root 로 생겨** 비루트 유저가
+# 못 쓴다. 미리 만들어 두면 fresh volume 이 이 소유·모드를 물려받는다.
+# 1777 인 이유는 로컬 compose 가 다른 uid(501:20)로 도는데 볼륨 소유는 하나뿐이기 때문이다.
+RUN mkdir -p /var/cache/repos \
+    && chown 1000:1000 /var/cache/repos \
+    && chmod 1777 /var/cache/repos
+
 # 코드 복사 — compose 의 mount (.:/repo) 가 런타임에 덮어쓰지만 fallback 으로 박아둠
 COPY app/back/ .
 

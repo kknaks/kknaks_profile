@@ -52,8 +52,27 @@ OUTPUT_CONTRACT = """아래 JSON 하나만 출력한다. 코드펜스나 설명 
 경로는 시스템이 조립하므로 디렉토리를 지어내지 않는다."""
 
 
-def parse_json_output(raw: str) -> dict[str, Any]:
-    """모델 출력에서 JSON 객체를 꺼낸다. 코드펜스를 붙이는 경우가 있어 한 겹 벗긴다."""
+def extract_json_object(raw: str) -> str:
+    """모델 출력에서 JSON 본문만 꺼낸다 (KDEV-WORK-017 결함 ⑥).
+
+    두 가지를 벗긴다.
+
+        ① 코드펜스 — ```` ```json ... ``` ````
+        ② **머리말** — JSON 앞에 붙는 산문 문단
+
+    ②가 이번에 실제로 게이트를 막았다. 프롬프트가 "JSON 하나로 답한다" 고 적어
+    두었는데도 모델이 앞에 설명 두 줄을 붙였고, `json.loads` 가 char 0 에서 죽어
+    **재시도 3회를 태우고 게이트가 열리지 않았다.** 프롬프트를 조여도 이 관용성은
+    있어야 한다 — 모델이 매번 지킨다는 보장에 기대면 같은 자리에서 또 멎는다.
+
+    **첫 `{` 부터 괄호 균형이 맞는 곳까지**를 잘라낸다. 단순히 마지막 `}` 를 찾으면
+    본문 뒤에 붙은 꼬리말 안의 `}` 에 걸리고, 첫 `}` 를 찾으면 중첩 객체에서 끊긴다.
+    문자열 리터럴 안의 괄호와 이스케이프는 세지 않는다 — daily 본문에 `{` 가 들어
+    있으면 그것을 구조로 오인한다.
+
+    꺼낼 것이 없으면 원문을 그대로 돌려준다. 판단은 호출부의 `json.loads` 가 하고,
+    그 에러 메시지가 스테이지별 코드로 올라간다.
+    """
     cleaned = (raw or "").strip()
     if cleaned.startswith("```"):
         cleaned = cleaned.split("\n", 1)[-1]
@@ -62,8 +81,40 @@ def parse_json_output(raw: str) -> dict[str, Any]:
         cleaned = cleaned.strip()
         if cleaned.startswith("json"):
             cleaned = cleaned[4:].strip()
+    # `{` 로 시작해도 지름길로 빠지지 않는다 — 꼬리말이 붙어 있으면 그것도 잘라야
+    # 하고, `json.loads` 는 뒤에 남은 산문을 `Extra data` 로 거부한다.
+    start = cleaned.find("{")
+    if start < 0:
+        return cleaned
+
+    depth = 0
+    in_string = False
+    escaped = False
+    for i in range(start, len(cleaned)):
+        ch = cleaned[i]
+        if in_string:
+            if escaped:
+                escaped = False
+            elif ch == "\\":
+                escaped = True
+            elif ch == '"':
+                in_string = False
+            continue
+        if ch == '"':
+            in_string = True
+        elif ch == "{":
+            depth += 1
+        elif ch == "}":
+            depth -= 1
+            if depth == 0:
+                return cleaned[start : i + 1]
+    return cleaned
+
+
+def parse_json_output(raw: str) -> dict[str, Any]:
+    """모델 출력에서 JSON 객체를 꺼낸다. 코드펜스·머리말을 벗긴다."""
     try:
-        data = json.loads(cleaned)
+        data = json.loads(extract_json_object(raw))
     except ValueError as exc:
         raise GateError("INVALID_NOTE_OUTPUT", f"JSON 파싱 실패: {exc}") from exc
     if not isinstance(data, dict):

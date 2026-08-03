@@ -20,7 +20,7 @@ from service.pipeline import (
     normalize_url,
     start_preparation,
 )
-from tests.fakes import FakeRunner, FakeSummarizer, prepare
+from tests.fakes import FakeRunner, FakeSummarizer, first_gate_runners, prepare
 
 try:
     _probe = create_engine(config.database_url())
@@ -401,7 +401,9 @@ class TestAsyncPreparation:
         await start_preparation(db, created.item_id, fetch=_fetch_ok, summarize=summarize)
 
         item = await db.get(QueueItem, created.item_id)
-        result = await harvest_preparation(db, item, summarize=summarize, runner=runner)
+        result = await harvest_preparation(
+            db, item, summarize=summarize, runners=first_gate_runners(item, runner)
+        )
 
         assert result.ok and item.status == "in_review"
         prep = await db.get(ItemPreparation, result.preparation_id)
@@ -430,8 +432,12 @@ class TestAsyncPreparation:
         await start_preparation(db, created.item_id, fetch=_fetch_ok, summarize=summarize)
 
         item = await db.get(QueueItem, created.item_id)
-        first = await harvest_preparation(db, item, summarize=summarize, runner=runner)
-        second = await harvest_preparation(db, item, summarize=summarize, runner=runner)
+        first = await harvest_preparation(
+            db, item, summarize=summarize, runners=first_gate_runners(item, runner)
+        )
+        second = await harvest_preparation(
+            db, item, summarize=summarize, runners=first_gate_runners(item, runner)
+        )
 
         assert first.ok and second.status == "in_review"
         preps = (

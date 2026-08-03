@@ -31,8 +31,15 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from core.models import Gate, QueueItem
 
 from . import runtime
-from .flow import harvest_preparation, start_preparation
+from .flow import (
+    advance_auto_stages,
+    harvest_preparation,
+    next_auto_runner,
+    start_preparation,
+)
 from .gates import IN_FLIGHT, harvest
+from .prepare import running_preparation, submit_auto_stage
+from .review_alert import notify_review_pending
 
 logger = logging.getLogger("kknaks-back.pipeline.driver")
 
@@ -133,12 +140,24 @@ class PipelineDriver:
             if item is None or item.deleted_at is not None:
                 return False
 
+            auto_runners = runtime.current_auto_stages()
+
             if item.status == "received":
+                # 등록된 auto 실행기가 있으면 그쪽이 이긴다. 없으면 레거시 수집+요약이
+                # 그 스테이지를 덮는다 — 유튜브가 아직 그쪽이다(WORK-017 P2).
+                stage, runner = await next_auto_runner(db, item, auto_runners)
+                if runner is not None:
+                    result = await submit_auto_stage(db, item.id, stage, runner=runner)
+                    await db.commit()
+                    return result.running
                 if summarizer is None:
                     return False
                 return await self._prepare(db, item, summarizer)
 
             if item.status == "preparing":
+                handled = await self._finish_auto_stage(db, item, auto_runners, runners)
+                if handled is not None:
+                    return handled
                 if summarizer is None:
                     return False
                 return await self._finish_preparing(db, item, summarizer, runners)
@@ -166,6 +185,32 @@ class PipelineDriver:
         await db.commit()
         return result.running
 
+    async def _finish_auto_stage(
+        self, db: AsyncSession, item: QueueItem, auto_runners, runners
+    ) -> bool | None:
+        """진행 중인 준비가 **등록된 auto 스테이지의 것이면** 수확하고 다음으로 민다.
+
+        `None` 은 "내 것이 아니다" 다 — 레거시 수집+요약 준비라 호출자가 그쪽으로
+        보내야 한다. `True`/`False` 와 구분되어야 해서 삼값이다.
+        """
+        preparation = await running_preparation(db, item.id)
+        if preparation is None:
+            return None
+        payload = preparation.payload or {}
+        runner = auto_runners.get(str(payload.get("stage") or ""))
+        if runner is None:
+            return None
+
+        # 워커가 깨워 준다 — 주기적으로 물어보지 않는다. 0건이면 기다릴 것이 없다.
+        for ref in payload.get("task_refs") or []:
+            await runner.wait(str(ref))
+
+        moved = await advance_auto_stages(
+            db, item, auto_runners=auto_runners, runners=runners
+        )
+        await db.commit()
+        return moved
+
     async def _finish_preparing(
         self, db: AsyncSession, item: QueueItem, summarizer, runners
     ) -> bool:
@@ -177,9 +222,8 @@ class PipelineDriver:
             return False
 
         await summarizer.wait(task_ref)  # ← 워커가 깨워 준다
-        result = await harvest_preparation(
-            db, item, summarize=summarizer, runner=runners.get("route")
-        )
+        # 첫 게이트 이름은 여기서 고르지 않는다 — 파이프라인 정의가 안다(WORK-017 P2).
+        result = await harvest_preparation(db, item, summarize=summarizer, runners=runners)
         await db.commit()
         return result.ok
 
@@ -197,6 +241,11 @@ class PipelineDriver:
         await db.commit()
         # 게이트가 채워지면 **사람 차례**다. 다음 게이트는 승인이 연다 —
         # 드라이버가 더 밀면 사람이 안 본 것을 지나치게 된다.
+        #
+        # 그래서 여기가 알림 자리다. 승인하지 않으면 아무것도 발행되지 않으므로,
+        # 이 알림이 안 가면 파이프라인이 **조용히 멈춘다**(KDEV-SPEC-013 U-2).
+        if gate.status == "review_pending":
+            await notify_review_pending(db, item)
         return False
 
 

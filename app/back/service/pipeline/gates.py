@@ -518,6 +518,39 @@ async def retry(db: AsyncSession, gate: Gate, *, item: QueueItem, runner: StageR
     )
 
 
+#: 스테이지별로 **승인이 지워서는 안 되는** 최상위 키.
+#:
+#: `payload_override` 는 통째 교체다. 화면이 키를 빠뜨리면 그 산출물이 조용히
+#: 사라지고, 사람은 「승인됨」을 본 채로 발행에서야 `EMPTY_PLAN` 을 만난다.
+#: 실제로 잔디 게이트가 그렇게 당했다 — 화면의 concept 판정이 잔디 payload 를
+#: 삼켜 `{concepts}` 만 보냈고 `daily`·`career` 가 버려졌다(결함 ⑧).
+#:
+#: **route 는 넣지 않는다.** `validate_route_result` 가 비어 있는 `rationale` 을
+#: 정당하게 떨어뜨리므로 여기 걸면 멀쩡한 승인이 막힌다.
+REQUIRED_PAYLOAD_KEYS: dict[str, tuple[str, ...]] = {"daily": ("daily",)}
+
+
+def _check_override_keeps_outputs(
+    gate: Gate, revision: GateRevision, override: dict[str, Any]
+) -> None:
+    """사람이 고친 payload 가 산출물을 통째로 지우지 않았는지.
+
+    값이 바뀌는 것은 편집이고 정상이다. **키가 사라지는 것은 편집이 아니다.**
+    """
+    required = REQUIRED_PAYLOAD_KEYS.get(gate.stage_name)
+    if not required or not isinstance(revision.payload, dict):
+        return
+    missing = [
+        key for key in required if key in revision.payload and key not in override
+    ]
+    if missing:
+        raise GateError(
+            "PAYLOAD_KEYS_DROPPED",
+            f"승인 payload 에서 산출물이 빠졌다 — {', '.join(missing)}. "
+            "편집은 값을 바꾸는 것이지 산출물을 지우는 것이 아니다",
+        )
+
+
 async def approve(
     db: AsyncSession,
     gate: Gate,
@@ -547,6 +580,7 @@ async def approve(
         raise GateError("STALE_REVISION", "화면이 보고 있는 버전이 최신이 아니다")
 
     if payload_override is not None:
+        _check_override_keeps_outputs(gate, revision, payload_override)
         revision.payload = payload_override
     revision.status = "approved"
     gate.status = "approved"

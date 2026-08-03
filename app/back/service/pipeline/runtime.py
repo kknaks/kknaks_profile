@@ -20,6 +20,7 @@ def register(
     summarizer: Any = None,
     route_proposer: Any = None,
     stages: dict[str, Any] | None = None,
+    auto_stages: dict[str, Any] | None = None,
     driver: Any = None,
 ) -> None:
     if summarizer is not None:
@@ -28,6 +29,8 @@ def register(
         _registry["route_proposer"] = route_proposer
     if stages:
         _registry.setdefault("stages", {}).update(stages)
+    if auto_stages:
+        _registry.setdefault("auto_stages", {}).update(auto_stages)
     if driver is not None:
         _registry["driver"] = driver
 
@@ -56,6 +59,19 @@ def current_runners() -> dict[str, Any]:
     if proposer is not None:
         runners["route"] = proposer
     return runners
+
+
+def current_auto_stages() -> dict[str, Any]:
+    """스테이지명 → auto 스테이지 실행기(`prepare.AutoStage`) (KDEV-WORK-017 P2).
+
+    게이트 실행기(`current_runners`)와 **레지스트리가 다르다.** 둘은 계약이 다르고
+    (auto 는 `GateRevision` 을 만들지 않는다) 이름이 겹칠 수도 있다 — 유튜브의
+    `collect` 와 잔디의 `collect` 는 같은 이름이지만 하는 일이 다르다.
+
+    비어 있는 이름은 키가 없다. 그 경우 준비부는 **레거시 수집+요약 경로**로 간다 —
+    유튜브가 아직 그쪽이다. 등록된 실행기가 있으면 그쪽이 이긴다.
+    """
+    return dict(_registry.get("auto_stages") or {})
 
 
 def current_driver() -> Any:

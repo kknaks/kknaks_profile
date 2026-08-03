@@ -13,7 +13,8 @@ def get_projects(lang: str = Query("ko", pattern="^(ko|en)$")):
     from main import get_data
 
     data = get_data()
-    # spec-01 §3.3 — visible: false 박힌 항목은 사이트 미표시 (잔디 잡 추적은 별도 — extract_tracked_repos 가 다 봄)
+    # spec-01 §3.3 — visible: false 박힌 항목은 사이트 미표시. 잔디 추적은 완전히
+    # 별개다 — `tracked_repos` 레지스트리가 SoT 이고 이 파일을 보지 않는다(SPEC-011).
     items = [p for p in data.get("projects", []) if p.get("visible", True)]
     meta_categories = data.get("_meta", {}).get("projects", {}).get("categories", [])
 

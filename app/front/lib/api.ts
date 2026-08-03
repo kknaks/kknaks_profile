@@ -184,7 +184,58 @@ export type ConceptResult = {
 
 export type ConceptPayload = { concepts: ConceptResult[] };
 
-export type GatePayload = RouteResult | NotePayload | ConceptPayload;
+/** 잔디 daily 초안. `counts` 는 **코드가 센 값**이라 화면이 고치지 않는다. */
+export type DailyDraft = {
+  date: string;
+  counts: { commit?: number; note?: number; study?: number };
+  /** 활동 단위마다 한 줄. 활동이 0인 카테고리는 줄이 없다. */
+  summary: { ko: string[]; en: string[] };
+  body: string;
+  target_path?: string;
+};
+
+/**
+ * career 갱신안. **본문 전문**이 온다 — 문장으로 나뉘어 있지 않다.
+ *
+ * 줄 단위 승인은 화면이 쪼개고 승인 시 남은 줄만 다시 합쳐 보낸다. 쪼개는 것은
+ * 보여주기 위한 일이라 서버가 알 이유가 없고, 서버는 이미 "본문 전문 교체"로 서 있다.
+ */
+export type CareerDraft = {
+  changed: boolean;
+  stem?: string;
+  content?: string;
+  /** 기존 본문. **무엇이 바뀌었는지** 를 보여주려면 비교 대상이 있어야 한다. */
+  previous_content?: string;
+  target_path?: string;
+};
+
+/**
+ * 조사가 얼마나 온전했는지. **`counts` 와 같이 코드가 센 값**이라 화면이 고치지 않는다.
+ *
+ * 이게 없으면 서술이 얕을 때 **자료가 부족했던 것인지 그날 일이 적었던 것인지**
+ * 사람이 구분할 수 없다. `failed` 는 클론·fetch 에서 빠진 것이고 `missing` 은
+ * 조사까지 갔다가 결과가 안 돌아온 것이라 — 다른 자리의 실패다.
+ */
+export type DailyCollection = {
+  done: number;
+  total: number;
+  missing: string[];
+  failed: { repo?: string; code?: string; message?: string }[];
+  truncated: Record<string, { diff_bytes?: number; commits?: number }>;
+  /** `detail` 오타로 갈 곳이 없어진 career stem — 그 레포의 작업이 어디에도 안 실린다. */
+  career_missing?: string[];
+};
+
+/** 잔디 게이트 산출물 — 게이트 하나가 목적지 셋을 낸다. */
+export type DailyPayload = {
+  daily: DailyDraft;
+  career: CareerDraft;
+  concepts: ConceptResult[];
+  /** 예전 리비전에는 없다 — 화면이 없으면 그리지 않는다. */
+  collection?: DailyCollection;
+};
+
+export type GatePayload = RouteResult | NotePayload | ConceptPayload | DailyPayload;
 
 export type Revision = {
   id: number;

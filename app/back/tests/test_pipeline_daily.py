@@ -1,0 +1,404 @@
+"""`daily` 게이트 스테이지 (KDEV-WORK-017 P2 / KDEV-SPEC-012·013).
+
+여기서 고정하는 것은 넷이다.
+
+    1. 형식은 `templates/persona/` 에서 실려 온다 — 프롬프트에 복사돼 있지 않다
+    2. `counts` 는 코드가 넣는다 — AI 출력의 숫자를 쓰지 않는다
+    3. career 는 **결정적으로** 빠진다 — 대상 판정이 모델 출력보다 앞선다
+    4. 대상이 아닌데 모델이 career 를 지어내면 버린다
+"""
+
+from __future__ import annotations
+
+import json
+from pathlib import Path
+from typing import Any
+
+import pytest
+
+from core.models import QueueItem
+from service import content_format
+from service.pipeline.collect_dummy import investigate_payload
+from service.pipeline.gates import GateError, GenerationInput
+from service.pipeline.stages.common import extract_json_object
+from service.pipeline.stages.daily import BODY_HARD_LIMIT, DailyStage, career_targets
+
+
+class FakeClient:
+    def __init__(self) -> None:
+        self.prompts: list[str] = []
+
+    async def submit(self, prompt, *, provider, model, options, max_retries, metadata):
+        self.prompts.append(prompt)
+        return "okk-daily-1"
+
+
+@pytest.fixture
+def repo(tmp_path: Path) -> Path:
+    """템플릿과 career 문서를 갖춘 최소 레포."""
+    (tmp_path / "templates" / "persona").mkdir(parents=True)
+    (tmp_path / "templates" / "persona" / "daily.md").write_text(
+        "DAILY-FORMAT-MARKER", encoding="utf-8"
+    )
+    (tmp_path / "templates" / "persona" / "career.md").write_text(
+        "CAREER-FORMAT-MARKER", encoding="utf-8"
+    )
+    (tmp_path / "persona" / "career").mkdir(parents=True)
+    (tmp_path / "persona" / "career" / "medisolve-ai.md").write_text(
+        "---\ntype: career\nis_current: true\n---\n\n## 무슨 일 하는지\n\n(TBD)\n",
+        encoding="utf-8",
+    )
+    (tmp_path / "persona" / "career" / "quantus.md").write_text(
+        "---\ntype: career\nis_current: false\n---\n\n## 무슨 일 하는지\n\n끝난 곳\n",
+        encoding="utf-8",
+    )
+    content_format.reset_cache()
+    yield tmp_path
+    content_format.reset_cache()
+
+
+def _item(note: str = "scenario:normal") -> QueueItem:
+    return QueueItem(
+        source_kind="daily_commit",
+        source_url=None,
+        normalized_url=None,
+        note=note,
+        channel="manual",
+        status="in_review",
+    )
+
+
+class _Prep:
+    def __init__(self, payload: dict[str, Any]) -> None:
+        self.payload = payload
+
+
+def _prep_payload(note: str = "scenario:normal") -> dict[str, Any]:
+    return {
+        "collect": investigate_payload(_item(note)),
+        "investigate": {"repos": {"MediSolveAIDev/mediness": "조사문"}, "missing": []},
+    }
+
+
+def _request(note: str = "scenario:normal", *, feedback=None, previous=None):
+    return GenerationInput(
+        item=_item(note),
+        gate=None,
+        preparation=_Prep(_prep_payload(note)),
+        previous_payload=previous,
+        feedback=feedback,
+        session_ref=None,
+    )
+
+
+def _stage(client, repo: Path) -> DailyStage:
+    return DailyStage(client, repo_root=repo, provider="claude", model=None, work_dir=None)
+
+
+def _reply(**overrides) -> str:
+    data = {
+        "daily": {
+            "summary": {"ko": ["[a/b] 했다"], "en": ["[a/b] did"]},
+            "body": "본문",
+        },
+        "career": {"changed": True, "stem": "medisolve-ai", "content": "## 무슨 일\n\n새 서술"},
+        "concepts": [],
+    }
+    data.update(overrides)
+    return json.dumps(data, ensure_ascii=False)
+
+
+class TestCareerTargets:
+    def test_current_company_target_is_selected(self, repo):
+        assert [t["stem"] for t in career_targets(_prep_payload()["collect"], repo)] == [
+            "medisolve-ai"
+        ]
+
+    def test_studio_only_day_has_no_target(self, repo):
+        """`type=studio` 만 커밋한 날은 career 갱신안이 없다 (SPEC-012 AC)."""
+        collect = _prep_payload("scenario:studio_only")["collect"]
+        assert career_targets(collect, repo) == []
+
+    def test_not_current_career_is_skipped(self, repo):
+        """끝난 재직 기간을 오늘 커밋으로 고치지 않는다."""
+        assert career_targets({"career_map": {"quantus": ["r"]}}, repo) == []
+
+    def test_missing_file_is_skipped(self, repo):
+        assert career_targets({"career_map": {"ghost": ["r"]}}, repo) == []
+
+
+class TestPrompt:
+    def test_format_is_loaded_from_templates_not_copied(self, repo):
+        """형식 명세가 프롬프트에 **복사돼 있지 않다** — 파일에서 실려 온다."""
+        prompt = _stage(FakeClient(), repo).prompt(_request())
+        assert "DAILY-FORMAT-MARKER" in prompt
+        assert "CAREER-FORMAT-MARKER" in prompt
+
+    def test_prompt_forbids_ai_counting(self, repo):
+        assert "코드가 채운다" in _stage(FakeClient(), repo).prompt(_request())
+
+    def test_no_target_tells_the_model_to_return_null(self, repo):
+        prompt = _stage(FakeClient(), repo).prompt(_request("scenario:studio_only"))
+        assert "null" in prompt
+
+
+class TestPayload:
+    def test_existing_career_body_travels_as_input(self, repo):
+        """전문 교체라 기존 본문을 줘야 한다 — 없으면 append 가 된다."""
+        payload = _stage(FakeClient(), repo).payload(_request())
+        assert payload["career_targets"][0]["current_body"].strip().startswith("##")
+
+    def test_repo_reports_come_from_investigate(self, repo):
+        payload = _stage(FakeClient(), repo).payload(_request())
+        assert payload["repo_reports"] == {"MediSolveAIDev/mediness": "조사문"}
+
+    def test_feedback_and_previous_draft_travel_on_regeneration(self, repo):
+        """재생성은 조사를 다시 돌리지 않고 서술만 다시 만든다 (SPEC-013 S-3)."""
+        request = _request(feedback="회사 서술을 덜어내라", previous={"daily": {}})
+        payload = _stage(FakeClient(), repo).payload(request)
+        assert payload["feedback"] == "회사 서술을 덜어내라"
+        assert payload["previous_draft"] == {"daily": {}}
+        # 조사 결과가 그대로 실린다 — 다시 돌지 않았다는 뜻이다.
+        assert payload["repo_reports"]
+
+    def test_studio_only_day_carries_no_career_target(self, repo):
+        payload = _stage(FakeClient(), repo).payload(_request("scenario:studio_only"))
+        assert payload["career_targets"] == []
+
+
+class TestParse:
+    def test_counts_come_from_collect_not_the_model(self, repo):
+        stage = _stage(FakeClient(), repo)
+        reply = _reply(
+            daily={
+                "summary": {"ko": [], "en": []},
+                "body": "본문",
+                "counts": {"commit": 999, "note": 999, "study": 999},
+            }
+        )
+        assert stage.parse(reply, _request())["daily"]["counts"]["commit"] == 3
+
+    def test_the_collection_status_reaches_the_screen(self, repo):
+        """조사가 온전했는지는 **승인 화면이 보는 payload** 에 있어야 한다.
+
+        프롬프트에는 이미 실려 있었지만(`payload()`), 사람이 보는 것은 `parse()` 의
+        결과다. 여기 없으면 서술이 얕을 때 자료 부족인지 그날 일이 적어서인지
+        구분할 방법이 없다.
+        """
+        stage = _stage(FakeClient(), repo)
+        request = _request()
+        request.preparation.payload["investigate"] = {
+            "repos": {"a/one": "조사문"},
+            "missing": ["b/two"],
+        }
+        request.preparation.payload["collect"]["failures"] = [
+            {"repo": "c/three", "code": "FETCH_FAILED", "message": "권한 없음"}
+        ]
+        request.preparation.payload["collect"]["truncated"] = {"a/one": {"commits": 30}}
+
+        collection = stage.parse(_reply(), request)["collection"]
+        assert collection["done"] == 1
+        assert collection["total"] == 2  # 조사한 것 + 결과가 안 온 것
+        assert collection["missing"] == ["b/two"]
+        assert collection["failed"][0]["repo"] == "c/three"
+        assert "a/one" in collection["truncated"]
+
+    def test_a_clean_run_still_carries_the_status(self, repo):
+        """빠진 것이 없어도 값은 온다 — 화면이 "전부 조사됨" 을 그릴 수 있어야 한다."""
+        collection = _stage(FakeClient(), repo).parse(_reply(), _request())["collection"]
+        assert collection == {
+            "done": 1,
+            "total": 1,
+            "missing": [],
+            "failed": [],
+            "truncated": {},
+            "career_missing": [],
+        }
+
+    def test_a_typo_in_detail_is_surfaced_not_swallowed(self, repo):
+        """`detail` 오타는 **조용히** career 를 통째로 건너뛴다 — 그것이 위험한 지점이다.
+
+        레지스트리 CHECK 는 `detail` 이 비었는지만 막는다. 오타난 stem 은 등록되고,
+        `career_targets` 가 파일 없음으로 건너뛰며, 그 레포의 그날 작업은 **어느
+        career 에도 안 실린 채** 발행된다. 승인하는 사람이 알아야 한다.
+        """
+        stage = _stage(FakeClient(), repo)
+        request = _request()
+        request.preparation.payload["collect"]["career_map"] = {
+            "medisolveai": ["MediSolveAIDev/mediness"],  # 오타 — 실제는 medisolve-ai
+        }
+
+        payload = stage.parse(_reply(), request)
+        assert payload["collection"]["career_missing"] == ["medisolveai"]
+        # 그래도 daily 는 나간다 — career 하나 때문에 그날 전부를 버리지 않는다.
+        assert payload["daily"]["body"]
+
+    def test_an_unattributed_repo_is_not_reported_as_missing(self, repo):
+        """귀속 커밋 0은 정상이다 — 알릴 것이 없다."""
+        request = _request()
+        request.preparation.payload["collect"]["career_map"] = {"medisolveai": []}
+        collection = _stage(FakeClient(), repo).parse(_reply(), request)["collection"]
+        assert collection["career_missing"] == []
+
+    def test_body_over_the_hard_limit_is_cut(self, repo):
+        stage = _stage(FakeClient(), repo)
+        reply = _reply(
+            daily={"summary": {"ko": [], "en": []}, "body": "가" * (BODY_HARD_LIMIT + 500)}
+        )
+        assert len(stage.parse(reply, _request())["daily"]["body"]) == BODY_HARD_LIMIT
+
+    def test_blank_summary_lines_are_dropped(self, repo):
+        """활동이 0인 카테고리는 줄이 없어야 한다 — 빈 줄이 셀 카드에 뜬다."""
+        stage = _stage(FakeClient(), repo)
+        reply = _reply(
+            daily={"summary": {"ko": ["[a] 있음", "  "], "en": ["[a] yes"]}, "body": "b"}
+        )
+        assert stage.parse(reply, _request())["daily"]["summary"]["ko"] == ["[a] 있음"]
+
+    def test_paths_are_assembled_by_the_system(self, repo):
+        """경로를 모델에 맡기지 않는다 — allowlist 밖으로 쓰는 계획이 나온다."""
+        payload = _stage(FakeClient(), repo).parse(_reply(), _request())
+        date = payload["daily"]["date"]
+        assert payload["daily"]["target_path"] == f"persona/daily/{date}.md"
+        assert payload["career"]["target_path"] == "persona/career/medisolve-ai.md"
+
+    def test_career_is_dropped_when_there_was_no_target(self, repo):
+        """대상이 없는데 모델이 지어내면 버린다."""
+        stage = _stage(FakeClient(), repo)
+        assert stage.parse(_reply(), _request("scenario:studio_only"))["career"] == {
+            "changed": False
+        }
+
+    def test_career_for_an_unlisted_stem_is_dropped(self, repo):
+        stage = _stage(FakeClient(), repo)
+        reply = _reply(career={"changed": True, "stem": "quantus", "content": "x"})
+        assert stage.parse(reply, _request())["career"] == {"changed": False}
+
+    def test_career_survives_when_the_target_matches(self, repo):
+        career = _stage(FakeClient(), repo).parse(_reply(), _request())["career"]
+        assert career["changed"] is True and career["stem"] == "medisolve-ai"
+
+    def test_changed_false_is_a_normal_answer(self, repo):
+        stage = _stage(FakeClient(), repo)
+        assert stage.parse(_reply(career={"changed": False}), _request())["career"] == {
+            "changed": False
+        }
+
+    def test_concepts_without_content_are_dropped(self, repo):
+        stage = _stage(FakeClient(), repo)
+        reply = _reply(
+            concepts=[
+                {"stem": "ok", "title": "T", "content": "---\ntype: concept\ntitle: T\naliases:\n  - t\nup:\n  - parent\n---\n\n본문", "mode": "supplement"},
+                {"stem": "empty", "title": "T", "content": "   "},
+                "쓰레기",
+            ]
+        )
+        concepts = stage.parse(reply, _request())["concepts"]
+        assert [c["stem"] for c in concepts] == ["ok"]
+        assert concepts[0]["mode"] == "supplement"
+        assert concepts[0]["target_path"] == "permanent/concept/ok.md"
+
+    def test_fenced_json_is_accepted(self, repo):
+        stage = _stage(FakeClient(), repo)
+        assert stage.parse(f"```json\n{_reply()}\n```", _request())["daily"]["body"] == "본문"
+
+    def test_non_json_fails_loudly(self, repo):
+        with pytest.raises(GateError):
+            _stage(FakeClient(), repo).parse("그냥 산문", _request())
+
+    def test_bad_summary_shape_fails(self, repo):
+        """로더가 {ko, en} list[str] 을 강제한다 — 여기서 막지 않으면 발행 뒤에 터진다."""
+        stage = _stage(FakeClient(), repo)
+        reply = _reply(daily={"summary": {"ko": "문자열", "en": []}, "body": "b"})
+        with pytest.raises(GateError):
+            stage.parse(reply, _request())
+
+
+class TestSubmit:
+    async def test_submit_sends_prompt_and_material(self, repo):
+        client = FakeClient()
+        task_id = await _stage(client, repo).submit(_request())
+        assert task_id == "okk-daily-1"
+        assert "DAILY-FORMAT-MARKER" in client.prompts[0]
+        assert "current_body" in client.prompts[0]
+
+    def test_concept_mode_matches_the_youtube_gate(self, repo):
+        """`create` 여야 한다 — `new` 면 승인 화면의 ConceptList 가 잘못 렌더한다.
+
+        같은 컴포넌트를 재사용하므로 두 게이트가 같은 값을 써야 하고, 발행부의
+        create/replace 분기도 그 규약 위에 있다.
+        """
+        stage = _stage(FakeClient(), repo)
+        reply = _reply(
+            concepts=[{"stem": "s", "title": "T", "content": "---\ntype: concept\ntitle: T\naliases:\n  - t\nup:\n  - parent\n---\n\n본문", "mode": "new"}]
+        )
+        assert stage.parse(reply, _request())["concepts"][0]["mode"] == "create"
+
+
+class TestExtractJsonObject:
+    """모델 출력에서 JSON 을 꺼내는 관용성 (KDEV-WORK-017 결함 ⑥).
+
+    로컬 e2e 에서 `daily` 게이트가 **두 번째로** 막힌 자리다. 무출력 상한(①)을 지나
+    159초를 완주하고 exit 0 으로 끝났는데, 모델이 JSON 앞에 설명 두 줄을 붙여
+    `json.loads` 가 char 0 에서 죽었다 — `INVALID_DAILY_OUTPUT`.
+
+    **프롬프트를 조이는 것으로는 부족하다.** 그 프롬프트는 이미 "JSON 하나로 답한다"
+    였고 모델이 안 지켰다. 재시도 3회를 태우고 게이트가 안 열리는 대가가 크다.
+    """
+
+    def test_the_output_that_actually_broke_the_gate(self):
+        """실제로 게이트를 막은 출력 형태 그대로."""
+        raw = (
+            "두 레포 보고서와 career 현황을 확인했습니다. concept는 `up:`이 가리킬 "
+            "reference stem이 레포에 없어 생성하지 않습니다.\n\n"
+            '{\n  "daily": {"summary": {"ko": ["한 줄"], "en": ["a line"]}}\n}'
+        )
+        assert json.loads(extract_json_object(raw))["daily"]["summary"]["ko"] == ["한 줄"]
+
+    def test_bare_json_is_untouched(self):
+        assert json.loads(extract_json_object('{"a": 1}')) == {"a": 1}
+
+    def test_code_fence_still_works(self):
+        """종전 동작 — 펜스 벗기기가 회귀하면 유튜브 게이트가 같이 깨진다."""
+        assert json.loads(extract_json_object('```json\n{"a": 1}\n```')) == {"a": 1}
+
+    def test_fence_with_preamble(self):
+        raw = '설명입니다.\n\n```json\n{"a": 1}\n```'
+        assert json.loads(extract_json_object(raw)) == {"a": 1}
+
+    def test_trailing_prose_is_dropped(self):
+        """`rfind("}")` 로 자르면 꼬리말 안의 `}` 에 걸린다 — 균형을 세야 한다."""
+        raw = '{"a": 1}\n\n이상입니다. 참고로 `}` 는 닫는 괄호입니다.'
+        assert json.loads(extract_json_object(raw)) == {"a": 1}
+
+    def test_nested_objects_are_not_cut_short(self):
+        """첫 `}` 에서 끊으면 중첩이 깨진다."""
+        raw = 'note:\n{"a": {"b": {"c": 1}}, "d": 2}'
+        assert json.loads(extract_json_object(raw)) == {"a": {"b": {"c": 1}}, "d": 2}
+
+    def test_braces_inside_strings_are_not_structure(self):
+        """daily 본문에 `{` 가 들어 있어도 구조로 세지 않는다.
+
+        `{{` 를 쓰는 템플릿 이야기를 본문에 적으면 실제로 들어온다.
+        """
+        raw = '머리말\n{"body": "템플릿은 {placeholder} 를 쓴다", "n": 1}'
+        assert json.loads(extract_json_object(raw)) == {
+            "body": "템플릿은 {placeholder} 를 쓴다",
+            "n": 1,
+        }
+
+    def test_escaped_quote_before_brace(self):
+        raw = r'{"body": "따옴표 \" 뒤의 }", "n": 1}'
+        assert json.loads(extract_json_object(raw))["n"] == 1
+
+    def test_no_json_at_all_is_left_alone(self):
+        """판단은 호출부의 `json.loads` 가 한다 — 여기서 삼키지 않는다."""
+        assert extract_json_object("JSON 을 못 만들었습니다") == "JSON 을 못 만들었습니다"
+
+
+class TestParseTolerance:
+    async def test_gate_parse_accepts_a_preamble(self, repo):
+        """스테이지의 `parse` 까지 이어지는지 — 추출기만 고치고 배선을 빠뜨리면 안 된다."""
+        stage = _stage(FakeClient(), repo)
+        raw = "확인했습니다.\n\n" + _reply()
+        assert stage.parse(raw, _request())["daily"]["summary"]["ko"] == ["[a/b] 했다"]

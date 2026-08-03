@@ -4,9 +4,9 @@ id: KDEV-SPEC-011
 title: "커밋 조사 — 레포 레지스트리와 로컬 git 수집"
 status: draft
 product: kknaks-dev
-version: 0.0.1
+version: 0.0.2
 created_at: 2026-07-31
-updated_at: 2026-07-31
+updated_at: 2026-08-01
 tags:
   - product/kknaks-dev
   - doc/spec
@@ -221,7 +221,9 @@ stateDiagram-v2
 ### Data Contract — 조사 산출물
 
 ```text
-commits[]   { repo, sha, tree, message, files[]{path, added, deleted}, areas[] }
+commits[]   { repo, sha, tree, author, authored_at, message,
+              files[]{path, added, deleted}, areas[],
+              diff, diff_truncated }                   ← diff 는 상한에 걸리면 잘린다
 areas       { <area>: {commits, added, deleted} }     ← path_rules 분해 결과
 career_map  { <career stem>: [repo slug, ...] }       ← type=company 귀속
 counts      { commit, note, study }                   ← 코드가 센다
@@ -235,7 +237,8 @@ identities  { <repo slug>: ["name <email>", ...] }    ← drift 판정용
 | 항목 | 계약 |
 |---|---|
 | 대상 브랜치 | **전 브랜치**. default branch 만 보면 실측 기준 17.3%(본인 커밋 7.9%)가 누락된다 |
-| 시간 경계 | KST `{date}T00:00:00+09:00` ~ 다음날 동시각 |
+| 머지 커밋 | **세지 않는다.** 남의 작업이 내 것으로 들어오고, `--numstat` 이 합쳐진 diff 를 내놓아 증감이 부풀려진다. 머지가 한 일은 그 안의 커밋들이 이미 말한다 |
+| 시간 경계 | KST `{date}T00:00:00+09:00` ~ 다음날 동시각. **author 날짜 기준이다** — 아래 참조 |
 | author 매칭 | **identity 패턴 부분매칭**(현행 `kknaks`). 고정 email 목록을 쓰지 않는다 |
 | 중복 제거 | `(repo, tree-hash)`. 실측 기준 163건이 여기서 걸린다 |
 | diff 상한 | 레포당 32KB · 커밋당 8KB · 레포당 커밋 30건 |
@@ -255,6 +258,25 @@ identities  { <repo slug>: ["name <email>", ...] }    ← drift 판정용
 
 한 커밋이 여러 영역에 걸치면 **영역마다 계상한다** — 커밋 수가 아니라 영역별 활동을 보기 위한 값이다. `counts["commit"]` 은 중복 제거된 커밋의 총수이며 영역 합계와 일치하지 않는다.
 
+### 시간 경계 — author 날짜로 센다
+
+`git log --since/--until` 은 **커밋터 날짜**로 거른다. 그런데 우리가 세려는 것은 **일한 날**이고, 리베이스는 커밋터 날짜를 리베이스한 날로 바꾼다. 커밋터 날짜로 자르면 **지난주 작업이 오늘 잔디에 찍힌다.**
+
+| 항목 | 계약 |
+|---|---|
+| 판정 기준 | **author 날짜**를 KST 로 변환한 날짜가 대상 날짜와 같아야 한다 |
+| 조회 창 | `--since`/`--until` 은 대상 날짜 앞뒤로 **여유를 두고** 넓게 잡는다. 좁히면 리베이스된 커밋이 창 밖으로 밀려 나간다 |
+| 남는 한계 | 여유 밖으로 밀려난 리베이스는 놓친다. 이것은 **알고 받아들이는 손실**이다 — 창을 무한히 넓히면 조사 비용이 그만큼 는다 |
+
+### diff 본문
+
+`commits[]` 는 파일 목록·증감뿐 아니라 **diff 본문**을 싣는다. 「상세 조사가 가능한 입력을 만든다」(§1 Business Requirement)의 실체가 이것이고, 아래 상한이 존재하는 이유도 본문이 있기 때문이다.
+
+| 항목 | 계약 |
+|---|---|
+| 상한 초과 시 | **본문만** 자른다. `files[]`(파일명·증감 라인)은 어떤 경우에도 남는다 — 무엇을 건드렸는지는 남고 어떻게 고쳤는지만 사라진다 |
+| 잘림 표시 | 커밋 단위로 `diff_truncated`, 레포 단위로 `truncated` |
+
 ## 5. Implementation Rules
 
 - **멱등성** — 같은 날짜로 두 번 조사해도 결과가 같다. 조사는 읽기 전용이고 레지스트리의 `last_fetched_at`·`last_error` 만 갱신한다.
@@ -271,10 +293,12 @@ identities  { <repo slug>: ["name <email>", ...] }    ← drift 판정용
 - [ ] `enabled=false` 인 레포가 조사에서 빠진다
 - [ ] `type=company` 항목의 `detail` 이 실재 career stem 이 아니면 등록이 거부된다
 - [ ] feature 브랜치에만 있는 본인 커밋이 결과에 포함된다
+- [ ] **머지 커밋이 결과에 포함되지 않는다**
+- [ ] **리베이스로 커밋터 날짜가 바뀐 커밋이 author 날짜의 날에 잡힌다**
 - [ ] 같은 tree 를 갖는 커밋 두 건이 하나로 집계된다
 - [ ] 레포 하나의 fetch 실패가 나머지 레포 조사를 막지 않고, Slack 알림과 `last_error` 가 남는다
 - [ ] 등록되지 않은 identity 가 나타나면 알림이 나가고 조사는 계속된다
-- [ ] diff 상한 초과 시 파일명·증감 라인이 남고 `truncated` 에 기록된다
+- [ ] diff 상한 초과 시 **본문만 잘리고** 파일명·증감 라인이 남으며 `truncated`·`diff_truncated` 에 기록된다
 - [ ] 커밋·노트·교안이 모두 0인 날은 조사 결과가 만들어지지 않는다
 - [ ] 같은 날짜로 두 번 실행해도 결과가 동일하다
 

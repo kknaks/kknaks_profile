@@ -127,6 +127,26 @@ async def _ready_item(db, *, url: str, kind: str = "youtube") -> QueueItem:
     return item
 
 
+async def _reviewable_gate(db, stage_name: str, payload: dict):
+    """`reviewable` 리비전 하나를 가진 게이트를 직접 만든다.
+
+    실행기를 태우지 않는다 — 여기서 보는 것은 **승인이 payload 를 어떻게 다루는가**
+    한 가지라, 생성 경로를 끼우면 검증 대상이 흐려진다.
+    """
+    item = await _ready_item(db, url=f"https://x.test/{stage_name}-{len(payload)}")
+    gate = Gate(item_id=item.id, stage_name=stage_name, stage_no=1, status="review_pending")
+    db.add(gate)
+    await db.flush()
+    revision = GateRevision(
+        gate_id=gate.id, version=1, status="reviewable", payload=payload
+    )
+    db.add(revision)
+    await db.flush()
+    gate.active_revision_id = revision.id
+    await db.flush()
+    return gate, revision
+
+
 async def _fetch_ok(url):
     return {"url": url, "content": "본문"}
 
@@ -464,3 +484,43 @@ class TestApprove:
         gate = await _open(db, item, runner=Recorder(fail_times=1))
         with pytest.raises(GateError):
             await gates_service.approve(db, gate)
+
+
+class TestApproveKeepsOutputs:
+    """승인이 산출물을 통째로 지우지 못하게 (KDEV-WORK-017 결함 ⑧).
+
+    실제로 잔디 게이트가 이렇게 당했다. 화면의 concept 판정이 `"concepts" in payload`
+    였는데 **잔디 payload 도 `concepts` 를 가진다** — `{daily, career, concepts,
+    collection}`. 그래서 승인이 `{concepts}` 만 보냈고 `daily`·`career` 가 버려졌다.
+
+    화면에는 「승인됨」이 떴고, 사람은 **발행에서 `EMPTY_PLAN` 을 만나서야** 알았다.
+    사람이 고친 것이 조용히 사라지는 경로라 화면만 고치고 넘어가지 않는다.
+    """
+
+    async def test_dropping_the_daily_output_is_refused(self, db):
+        gate, revision = await _reviewable_gate(
+            db, "daily", {"daily": {"summary": {"ko": ["줄"]}}, "career": {}, "concepts": []}
+        )
+        with pytest.raises(GateError) as exc:
+            await gates_service.approve(db, gate, payload_override={"concepts": []})
+        assert exc.value.code == "PAYLOAD_KEYS_DROPPED"
+        assert gate.status != "approved"
+
+    async def test_editing_values_is_still_allowed(self, db):
+        """값을 바꾸는 것은 편집이다 — 막으면 승인 화면이 무의미해진다."""
+        gate, revision = await _reviewable_gate(
+            db, "daily", {"daily": {"summary": {"ko": ["원본"]}}, "concepts": []}
+        )
+        edited = {"daily": {"summary": {"ko": ["사람이 고친 줄"]}}, "concepts": []}
+        approved = await gates_service.approve(db, gate, payload_override=edited)
+        assert approved.payload["daily"]["summary"]["ko"] == ["사람이 고친 줄"]
+
+    async def test_other_stages_are_untouched(self, db):
+        """route 는 `rationale` 이 정당하게 빠질 수 있어 이 가드 대상이 아니다."""
+        gate, revision = await _reviewable_gate(
+            db, "route", {"destinations": ["a"], "exclusive": None, "rationale": "근거"}
+        )
+        approved = await gates_service.approve(
+            db, gate, payload_override={"destinations": ["a"], "exclusive": None}
+        )
+        assert "rationale" not in approved.payload

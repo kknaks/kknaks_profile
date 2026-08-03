@@ -4,9 +4,9 @@ id: KDEV-SPEC-008
 title: "게이트 체인 — 파이프라인 정의와 스테이지 계약"
 status: draft
 product: kknaks-dev
-version: 0.0.2
+version: 0.0.3
 created_at: 2026-07-27
-updated_at: 2026-07-31
+updated_at: 2026-08-01
 tags:
   - product/kknaks-dev
   - doc/spec
@@ -295,8 +295,12 @@ stateDiagram-v2
 |---|---|---|---|---|
 | 1 | `collect` | auto | — | git 조사·career 귀속·`counts` (LLM 없음) |
 | 2 | `investigate` | auto | — | 레포별 상세 조사 — **N 건 fan-out** |
-| 3 | `compose` | auto | — | 취합 — daily·career·concept 초안 |
-| 4 | `daily` | gate | — | 하루 1개. **승인 = 발행** |
+| 3 | `daily` | gate | — | 하루 1개. **작성 + 검토**, 승인 = 발행 |
+
+**자동 스테이지는 재료까지만 만든다.** 서술을 쓰는 것은 게이트다 — 재생성이 조사를
+다시 돌리지 않고 서술만 다시 만들기 때문에(SPEC-013 §3 S-3) 게이트가 작성 능력을
+가져야 하고, 그러면 자동 쪽 작성은 첫 회에만 쓰이는 중복이 된다. 유튜브도 같다:
+`summarize`(auto)는 route 판단 재료만 만들고 노트 작성은 게이트가 한다.
 
 상세 계약은 [[spec-013-grass-gate|KDEV-SPEC-013]].
 

@@ -80,6 +80,16 @@ def gh_accounts() -> list[dict]:
     return accounts
 
 
+def gh_token(account: str) -> str | None:
+    """`tracked_repos.account` → 클론·fetch 토큰 (KDEV-SPEC-011 §5 「토큰」).
+
+    `gh_accounts()` 와 달리 **user/email 이 없어도 토큰만 있으면 준다.** 클론에 필요한
+    것은 토큰뿐이고, user/email 은 커밋 author 를 정할 때 쓰는 값이라 조사는 쓰지 않는다.
+    """
+    key = "GH_TOKEN_COMPANY" if account == "company" else "GH_TOKEN_PERSONAL"
+    return os.environ.get(key, "").strip() or None
+
+
 def bot_identity() -> dict | None:
     """서버가 git pull/commit/push 시 사용할 identity (planning-01 §3.6 ③/④ 채널).
 
@@ -157,6 +167,83 @@ def graph_json_path() -> Path:
     """
     raw = os.environ.get("GRAPH_JSON_PATH")
     return Path(raw).expanduser().resolve() if raw else PERSONA_DIR.parent / "_graph.json"
+
+
+# ── 잔디 커밋 조사 (KDEV-WORK-017 P5 / KDEV-SPEC-011) ──
+
+
+def repo_cache_dir() -> Path:
+    """bare 클론을 두는 곳. **레포 작업트리 밖이어야 한다**(SPEC-011 §5 「클론 위치」).
+
+    안에 두면 발행 경로의 작업트리 초기화가 클론을 통째로 지운다 — 321MB 를 매번
+    다시 받는다는 뜻이다. 그 불변은 `service/jobs/repos.py` 가 실행 시점에 확인한다.
+
+    컨테이너는 `/var/cache/repos`(compose 볼륨), 로컬은 `~/.cache/kknaks/repos`.
+    """
+    raw = os.environ.get("REPO_CACHE_DIR")
+    if raw:
+        return Path(raw).expanduser().resolve()
+    return Path.home().joinpath(".cache", "kknaks", "repos").resolve()
+
+
+def github_clone_base() -> str:
+    """클론 URL 의 앞부분. `{base}{slug}.git` 로 조립한다.
+
+    바꿀 일은 사실상 없고 **테스트가 로컬 레포를 원격처럼 쓰기 위한 이음매다.**
+    이 seam 이 없으면 「`clone --bare` 는 refspec 을 남기지 않는다」 같은 결함을
+    네트워크 없이 재현할 방법이 없다.
+    """
+    return os.environ.get("GITHUB_CLONE_BASE", "https://github.com/")
+
+
+def commit_identity_patterns() -> list[str]:
+    """author 매칭 패턴. **고정 email 목록을 쓰지 않는다**(SPEC-011 §4 수집 규칙).
+
+    `git log --author` 는 부분매칭이라 `kknaks` 하나로 name·email 여러 형태를 잡는다.
+    BL-004 이 실측한 identity 3종(`kknaks@medisolveai.com`·`benesia93@naver.com`·
+    `*@*.local`)이 전부 이 한 패턴에 걸린다 — 목록으로 두면 새 identity 가 조용히 샌다.
+    """
+    raw = _csv_env("COMMIT_IDENTITY_PATTERNS")
+    return sorted(raw) if raw else ["kknaks"]
+
+
+def known_commit_identities() -> set[str]:
+    """등록된 `name <email>`. 여기 없는 identity 가 나타나면 알린다 (SPEC-011 U-2).
+
+    **비어 있으면 알림을 끄지 않는다** — 처음 한 번은 전부 미등록으로 뜨는 것이 맞다.
+    그래야 실제 identity 가 몇 종인지 사람이 보고 등록한다(BL-004 이 실측으로 3종을
+    찾아낸 것과 같은 일을 운영에서 반복하게 두지 않는다).
+    """
+    return _csv_env("KNOWN_COMMIT_IDENTITIES")
+
+
+def commit_date_slack_days() -> int:
+    """조회 창을 대상 날짜 앞뒤로 며칠 더 넓힐지.
+
+    `--since`/`--until` 은 커밋터 날짜로 거르는데 우리가 세는 것은 author 날짜다.
+    리베이스가 커밋터 날짜를 옮기므로 넓게 받아서 정확히 거른다.
+    """
+    return int(os.environ.get("COMMIT_DATE_SLACK_DAYS", 7))
+
+
+def commit_max_per_repo() -> int:
+    """레포당 커밋 상한. 넘으면 최신 순으로 자르고 `truncated` 에 남긴다."""
+    return int(os.environ.get("COMMIT_MAX_PER_REPO", 30))
+
+
+def commit_diff_bytes_per_repo() -> int:
+    """레포당 diff 총량 상한(바이트)."""
+    return int(os.environ.get("COMMIT_DIFF_BYTES_PER_REPO", 32 * 1024))
+
+
+def commit_diff_bytes_per_commit() -> int:
+    """커밋당 diff 상한(바이트)."""
+    return int(os.environ.get("COMMIT_DIFF_BYTES_PER_COMMIT", 8 * 1024))
+
+
+def git_timeout_seconds() -> float:
+    """클론·fetch 한 번의 상한. 걸리면 그 레포만 실패로 남고 나머지는 계속한다."""
+    return float(os.environ.get("GIT_TIMEOUT_SECONDS", 600))
 
 
 # ── Slack 지식 캡처 (KDEV-WORK-012 — 별도 프로세스에서 back lifespan 으로 흡수) ──
