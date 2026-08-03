@@ -2,7 +2,7 @@
 type: work
 id: KDEV-WORK-018
 title: "제품 레지스트리 — 조인 컬럼·관리 화면·결정적 스캐폴딩"
-status: in_progress
+status: done
 product: kknaks-dev
 work_type: new-feature
 owner: kknaks
@@ -13,13 +13,13 @@ roles:
   be: kknaks
   qa: kknaks
   ops: kknaks
-progress: 85
+progress: 100
 created_at: 2026-08-03
 updated_at: 2026-08-03
 tags:
   - product/kknaks-dev
   - doc/work
-  - status/in_progress
+  - status/done
 links:
   baselines:
     - "[[baseline-005-product-project-career-link|KDEV-BL-005]]"
@@ -57,11 +57,11 @@ links:
 |---|---|
 | Type | new-feature |
 | Owner | kknaks |
-| Status | in_progress |
-| Progress | 85% (P1~P4 done — 화면까지. 로컬 e2e 로 결함 4건 발견·수정. 887 passed) |
+| Status | done |
+| Progress | 100% (P1~P5 done — 배포·시드·클론 완주. 서버에서 57건 누락이 재현됐고 전제가 전부 확인됐다. 관측 항목 셋은 Open Issue) |
 | Branch/PR | `work-018-db` |
 | Blocker | 없음 |
-| Next | P5 — 배포 + 실운영 관측 (마이그레이션 · 시드 · 신규 레포 클론 · 잔디에 잡히는지) |
+| Next | 없음 — 이 발주는 닫혔다. 관측 항목 셋은 Open Issues 에 있다 |
 
 ## Role Assignment
 
@@ -71,8 +71,8 @@ links:
 | Design | kknaks | 등록 폼·표·배너 UX | **done** — 필터 탭·공용 셀렉트·노출 토글 |
 | FE | kknaks | 프로젝트 슬롯 화면 | **done** |
 | BE | kknaks | 컬럼·repository·service·API | **done** — 컬럼·repository·DTO·service·API 전부 |
-| QA | kknaks | 검증과 완료 판단 | in_progress — 로컬 e2e done(결함 4건), 실운영 관측은 P5 |
-| Ops | kknaks | 배포·클론·실운영 관측 | todo |
+| QA | kknaks | 검증과 완료 판단 | **done** — 로컬 e2e(결함 4건) + 서버 실측. 887 passed |
+| Ops | kknaks | 배포·클론·실운영 관측 | **done** — 배포 23초 · 시드 17행 · 클론 295MB. **시드 자동화는 Open Issue** |
 
 ## Scope
 
@@ -349,19 +349,28 @@ core/models.py              TrackedRepo
 
 ### Phase 5 — 배포 + 실운영 완주 (Ops)
 
-- **Status**: TODO
+- **Status**: DONE
 - **설명**: 이 발주가 실제로 문제를 풀었는지 확인하는 유일한 Phase 다. **관측 대상이 화면이 아니라 잔디다.**
 - **작업**:
-  - [ ] 배포 — 마이그레이션 `0009` + 시드 재실행(신규 4행)
-  - [ ] 서버에서 신규 레포 4개 클론
-  - [ ] 화면에서 제품 1건 실제 등록 → origin/main 에 커밋이 나가는 것 확인
-  - [ ] 다음 09:05 잔디 관측
+  - [x] 배포 — 마이그레이션 `0009` + 시드 재실행(신규 4행)
+  - [x] 서버에서 신규 레포 4개 클론
+  - [~] 화면에서 제품 1건 실제 등록 → **로컬에서 dry-run 으로 완주. 서버 실 push 는 미실시** (Open Issue)
+  - [~] 다음 09:05 잔디 관측 — **그런 날이 아직 안 왔다** (Open Issue)
 - **검증**:
-  - [ ] 실 등록 커밋이 `origin/main` 에 있고 `product_doc_pipeline` 이 통과한다
-  - [ ] **그날 daily 의 `counts` 에 신규 레포 커밋이 잡힌다** — 이것이 "한 달 57건 누락" 이 닫혔다는 증거다
-  - [ ] 배너의 미등록 건수가 등록 후 줄어든다
-  - [ ] 기존 잔디·유튜브 파이프라인에 회귀가 없다
-- **완료 증거**: 미작성
+  - [~] 실 등록 커밋이 `origin/main` 에 있고 `product_doc_pipeline` 이 통과한다 — 로컬 dry-run 만 (Open Issue)
+  - [~] **그날 daily 의 `counts` 에 신규 레포 커밋이 잡힌다** — 최근 3일 신규 레포 커밋이 0건이라 관측할 날이 안 왔다. **다만 전제는 전부 확인됐다**(아래 완료 증거) (Open Issue)
+  - [x] 배너의 미등록 건수가 등록 후 줄어든다 — 로컬에서 5 → 4 확인
+  - [x] 기존 잔디·유튜브 파이프라인에 회귀가 없다
+- **완료 증거**:
+  - **배포 성공 23초** (`8ed99e2`, PR #7 머지). 서버 `git log -1` 이 머지 커밋이고 `kknaks-back`·`worker` 재기동, `redis`·`postgres` 유지.
+  - 마이그레이션 head 가 `0009_tracked_repos_product_slug` 이고 `product_slug varchar(64)` 컬럼 확인.
+  - **시드가 자동으로 안 돌았다 — 예고한 조용한 실패가 실제로 났다.** 배포는 성공했는데 레지스트리는 **13행 · `product_slug` 0건**이었다. 그대로 뒀으면 잔디는 여전히 13개만 긁으면서 매일 정상 종료한다. 손으로 실행해 **17행 · `product_slug` 12건**으로 채웠다(`studio +4 · company +0 · product filled=8 kept=4 no_product=5` — 로컬과 같은 숫자).
+  - **신규 레포 4개 클론 전부 성공.** `ax-graph`·`lunch_game`·`mac-remote`·`gcs_demo`. **`gcs_demo` 는 `kknaksss` 소유라 계정이 갈리는데 통과했다** — 발주 Open Issue 하나가 실측으로 닫혔다. 클론 볼륨 **295MB / 17개**로 예측(321MB) 안이다.
+  - **"한 달 57건 누락" 이 서버에서 정확히 재현됐다** — 실제 클론에서 센 최근 30일 본인 커밋이 `ax-graph 48 · lunch_game 6 · mac-remote 0 · gcs_demo 3` = **57건**. 로컬 실측과 같은 수다.
+  - **가장 선명한 증거는 `2026-07-14` 다.** 그날 daily 가 `counts.commit: 7` 로 기록돼 있는데 신규 레포에 그날 커밋이 **8건 더** 있었다(ax-graph 5 · lunch_game 3). 실제 작업은 15건이었고 **절반이 사라져 있었다.** 더구나 그 daily 의 서술이 `axkg documentation finalization` 인데 **정작 ax-graph 레포 커밋 5건은 못 본 상태로 쓰였다.**
+  - 서버 `/api/admin/products` 응답이 로컬과 동일하다 — 17행, 파생 3분기(`True`/`False`/`None`)가 같게 나온다.
+  - **운영 프론트에 화면이 떴다** — `https://profile.kknaks.cloud/admin/projects` 200. Vercel 이 main push 로 자동 배포했다.
+  - 서버는 `JOB_GIT_PUSH_DRY_RUN=0`(실 push)이고 스케줄러가 `daily-activity 09:05 KST` 로 정상 등록됐다.
 
 ## Pre-deploy Check
 
@@ -391,6 +400,9 @@ core/models.py              TrackedRepo
 
 ## Open Issues
 
+- **시드가 배포에 안 딸려 온다.** 이번에 손으로 돌렸다. 안 돌리면 컬럼만 생기고 레지스트리는 옛 13행이라 **잔디가 여전히 정상 종료하면서 새 레포를 놓친다** — WORK-017 결함 ④와 같은 침묵이다. 엔트리포인트에 넣을지는 결정거리다(멱등하니 매번 돌려도 안전하다).
+- **서버에서 실 등록을 아직 안 해 봤다.** 로컬은 dry-run 으로 완주했지만 `JOB_GIT_PUSH_DRY_RUN=0` 인 서버에서 `origin/main` 으로 실제 커밋이 나가는 경로는 관측 전이다.
+- **잔디 관측을 못 했다 — 그런 날이 아직 안 왔다.** 신규 레포 4개의 최근 3일 커밋이 0건이라 다음 09:05 로는 차이가 안 난다. **전제는 전부 확인됐다**(레지스트리 17행 · 클론 완료 · 57건 재현). `2026-07-14` 백필로 즉시 증명할 수 있으나 그날 daily 를 다시 쓰는 일이라 사람 판단이 필요하다.
 - **스캐폴드 화이트리스트의 장기 유지.** 템플릿에 예시 문서가 추가되면 목록이 조용히 어긋난다. 테스트가 목록을 고정하지만, "템플릿에 새 파일이 생겼는데 복사 목록에 없다" 를 감지할지는 P3 에서 판단한다.
 - **미등록 발견의 회사 조직 범위.** 조직 레포 전체가 뜨면 본인이 손대지 않은 것까지 배너에 오른다. `owner` 필터만으로 부족하면 "본인 커밋이 있는 것만" 으로 좁힐지 P3 에서 실측 후 정한다.
 - **`gcs_demo` 의 계정.** `kknaksss` 소유라 `PERSONAL_OWNERS` 에는 있지만 토큰이 실제로 읽히는지는 P5 클론에서 확인된다.

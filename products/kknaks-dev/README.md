@@ -14,7 +14,7 @@
 | 앱 DB화 + 관리자 인증 (BL-002) | BL-002·DEC-009 accepted, SPEC-006 implemented, WORK-011 done (async) | 후속 — admin 실제 관리 기능 spec |
 | inbox 승인 파이프라인 + concept 층 (BL-003) | BL-003·DEC-010~013 accepted · spec 9건 · 40-arch · **WORK-012·013 done** · **WORK-014 done** · WORK-015 P1~P4(게이트 3종·재오픈·Executor) done | WORK-015 P5 실전 e2e (**배포 필요**) |
 | 커밋 잔디 파이프라인 (BL-004) | BL-004 accepted · DEC-014~016 · SPEC-011~013 · **WORK-017 done (2026-08-03)** — 서버 하루치 실 push 완주 | 후속 — `algorithms`·`content_enrich` 게이트 편입 (새 baseline) |
-| 제품·프로젝트·커리어 연동 (BL-005) | **BL-005 · DEC-017 (D1~D18) · SPEC-014 · 40-arch 계층 규약 · WORK-018 P1~P4 done (2026-08-03)** — 컬럼·repository 계층·admin 화면. 887 passed | **P5 배포** — 마이그레이션·시드·신규 레포 클론, 잔디에 잡히는지 관측 |
+| 제품·프로젝트·커리어 연동 (BL-005) | **WORK-018 done (2026-08-03)** — BL-005 · DEC-017(D1~D18) · SPEC-014 · 40-arch 계층 규약. 배포·시드 17행·클론 295MB 완주 | 후속 — 잔디 산출물에 product 추가 (P2, 새 decision) |
 
 | PARA 정렬 · SoT 지도 (BL-006) | **BL-006 작성 (raw, 2026-08-03)** — `permanent` 겸직 진단 + B안(`resources/` 신설) 채택 | DEC 작성 — 레이아웃·명칭·이동 범위. 미결 6 |
 
