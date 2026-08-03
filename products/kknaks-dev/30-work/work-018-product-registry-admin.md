@@ -13,7 +13,7 @@ roles:
   be: kknaks
   qa: kknaks
   ops: kknaks
-progress: 40
+progress: 65
 created_at: 2026-08-03
 updated_at: 2026-08-03
 tags:
@@ -58,10 +58,10 @@ links:
 | Type | new-feature |
 | Owner | kknaks |
 | Status | in_progress |
-| Progress | 40% (P1·P2 done — 트리 정리 + 컬럼·repository 계층·17행 시드. 825 passed) |
+| Progress | 65% (P1~P3 done — 트리 정리 · 컬럼·repository 계층 · service+API 6 엔드포인트. 887 passed) |
 | Branch/PR | `work-018-db` |
 | Blocker | 없음 |
-| Next | P3 — service + API (등록·스캐폴딩 / CRU·재동기화·미등록 발견) |
+| Next | P4 — 화면 (프로젝트 슬롯: 배너·표·등록 폼·행 편집·재동기화) |
 
 ## Role Assignment
 
@@ -70,7 +70,7 @@ links:
 | PM | kknaks | 범위와 요구사항 | done — DEC-017 D1~D17, OQ 0 |
 | Design | kknaks | 등록 폼·표·배너 UX | todo |
 | FE | kknaks | 프로젝트 슬롯 화면 | todo |
-| BE | kknaks | 컬럼·repository·service·API | in_progress — 컬럼·repository·DTO done, service·API 는 P3 |
+| BE | kknaks | 컬럼·repository·service·API | **done** — 컬럼·repository·DTO·service·API 전부 |
 | QA | kknaks | 검증과 완료 판단 | todo |
 | Ops | kknaks | 배포·클론·실운영 관측 | todo |
 
@@ -266,46 +266,57 @@ core/models.py              TrackedRepo
 
 ### Phase 3 — service + API (BE)
 
-- **Status**: TODO
+- **Status**: DONE
 - **설명**: 등록·CRU·발견을 만든다. **LLM 을 호출하지 않는다** — 전부 복사·치환·검증이고 비동기로 도는 것은 클론뿐이다.
 
 #### 3-A. 등록과 스캐폴딩
 
 - **작업**:
-  - [ ] `utils/slug.py` — 레포/제품 slug 파싱·정규화 (순수 함수, 도메인·DB 무지)
-  - [ ] `service/products/validate.py` — 사전 검증 7종 + 도메인 예외. **분류는 `_meta.yaml` 목록과 대조**
-  - [ ] `service/products/scaffold.py` — **화이트리스트 6 파일** 복사 · 카드 렌더 · `P-NN` 채번(max+1)
-  - [ ] `service/products/registry.py` — 등록 오케스트레이션. studio/company 분기, 커밋 1개, **push 실패 시 커밋 롤백**
-  - [ ] `products/README.md` 행 자동 추가 (같은 커밋)
-  - [ ] 클론은 `BackgroundTasks` 로 예약하고 **즉시 응답**
+  - [x] `utils/slug.py` — 레포/제품 slug 파싱·정규화 (순수 함수, 도메인·DB 무지)
+  - [x] `service/products/validate.py` — 사전 검증 7종 + 도메인 예외. **분류는 `_meta.yaml` 목록과 대조**
+  - [x] `service/products/scaffold.py` — **화이트리스트 6 파일** 복사 · 카드 렌더 · `P-NN` 채번(max+1)
+  - [x] `service/products/registry.py` — 등록 오케스트레이션. studio/company 분기, 커밋 1개, **push 실패 시 커밋 롤백**
+  - [x] `products/README.md` 행 자동 추가 (같은 커밋)
+  - [x] 클론은 `BackgroundTasks` 로 예약하고 **즉시 응답**
 - **검증**:
-  - [ ] `studio` 등록이 골격 6 + 카드 + README 행을 **한 커밋**으로 만든다
-  - [ ] `company` 등록이 **파일을 하나도 만들지 않는다**
-  - [ ] **제품 2개를 연속 등록해도 부팅·그래프 검증이 통과한다** — 예시 문서가 복사되지 않았다는 회귀 테스트
-  - [ ] 화이트리스트가 코드 상수이고 테스트가 목록을 고정한다
-  - [ ] 검증 실패 시 파일이 하나도 생기지 않는다 (7종 각각)
-  - [ ] 허용 목록 밖 분류가 거부된다 — 통과했다면 persona 로드 전체가 죽는다
-  - [ ] push 실패 시 로컬 커밋이 남지 않는다
-  - [ ] `P-NN` 이 max+1 이고 결번을 재사용하지 않는다
+  - [x] `studio` 등록이 골격 6 + 카드 + README 행을 **한 커밋**으로 만든다
+  - [x] `company` 등록이 **파일을 하나도 만들지 않는다**
+  - [x] **제품 2개를 연속 등록해도 부팅·그래프 검증이 통과한다** — 예시 문서가 복사되지 않았다는 회귀 테스트
+  - [x] 화이트리스트가 코드 상수이고 테스트가 목록을 고정한다
+  - [x] 검증 실패 시 파일이 하나도 생기지 않는다 (7종 각각)
+  - [x] 허용 목록 밖 분류가 거부된다 — 통과했다면 persona 로드 전체가 죽는다
+  - [x] push 실패 시 로컬 커밋이 남지 않는다
+  - [x] `P-NN` 이 max+1 이고 결번을 재사용하지 않는다
 
 #### 3-B. CRU · 재동기화 · 미등록 발견
 
 - **작업**:
-  - [ ] `service/products/discover.py` — 계정·조직 레포 목록 → `owner`·`fork`·`archived` 필터 → 레지스트리 diff
-  - [ ] **`api/schemas/products.py`** — 요청·응답 pydantic. **도메인 DTO 와 별개 클래스다**
-  - [ ] `api/routers/products.py` — 엔드포인트 6 · 도메인 예외 → HTTP 매핑(`_gate_error` 형태)
-  - [ ] 목록 응답의 파생 둘 — 제품 디렉토리 실재 여부 · 카드 노출 값(읽기 전용). **DB 에 저장하지 않는다**
-  - [ ] `main.py` 라우터 등록
+  - [x] `service/products/discover.py` — 계정·조직 레포 목록 → `owner`·`fork`·`archived` 필터 → 레지스트리 diff
+  - [x] **`api/schemas/products.py`** — 요청·응답 pydantic. **도메인 DTO 와 별개 클래스다**
+  - [x] `api/routers/products.py` — 엔드포인트 6 · 도메인 예외 → HTTP 매핑(`_gate_error` 형태)
+  - [x] 목록 응답의 파생 둘 — 제품 디렉토리 실재 여부 · 카드 노출 값(읽기 전용). **DB 에 저장하지 않는다**
+  - [x] `main.py` 라우터 등록
 - **검증**:
-  - [ ] 미등록 조회가 fork·아카이브·타인 레포를 거른다
-  - [ ] **미등록 조회가 실패해도 목록 API 는 200 이다**
-  - [ ] `enabled` 를 껐다 켜도 행·클론이 유지된다
-  - [ ] `product_slug` 가 실재하지 않아도 저장되고 응답에 경고가 실린다
-  - [ ] 잘못된 레포 등록 시 `last_error` 에 사유 코드가 남는다
-  - [ ] **라우터에 `select()` 가 없다** (계층 규약 테스트)
-  - [ ] service 가 `HTTPException` 을 던지지 않는다
-  - [ ] **응답 모델과 도메인 DTO 가 별개 클래스다** — 라우터가 DTO 를 그대로 반환하지 않는다
-- **완료 증거**: 미작성
+  - [x] 미등록 조회가 fork·아카이브·타인 레포를 거른다
+  - [x] **미등록 조회가 실패해도 목록 API 는 200 이다**
+  - [x] `enabled` 를 껐다 켜도 행·클론이 유지된다
+  - [x] `product_slug` 가 실재하지 않아도 저장되고 응답에 경고가 실린다
+  - [x] 잘못된 레포 등록 시 `last_error` 에 사유 코드가 남는다
+  - [x] **라우터에 `select()` 가 없다** (계층 규약 테스트)
+  - [x] service 가 `HTTPException` 을 던지지 않는다
+  - [x] **응답 모델과 도메인 DTO 가 별개 클래스다** — 라우터가 DTO 를 그대로 반환하지 않는다
+- **완료 증거**:
+  - 계층이 파일로 갈렸다 — `utils/slug.py`(순수) · `service/products/{validate,scaffold,registry,discover,errors,dto}.py` · `repository/tracked_repos.py` · `api/schemas/products.py` · `api/routers/products.py`. 라우트 6개 등록 확인.
+  - **화이트리스트 회귀 테스트가 실제로 걸린다.** `test_two_products_keep_the_graph_valid` 가 제품 둘을 만들고 `type` 을 가진 파일의 stem 이 중복되지 않음을 본다 — 통째 복사였다면 `baseline`·`decision`·`spec` 이 각각 둘이 되어 L2 ERROR → enforce raise → **백엔드 미부팅**이다. `SCAFFOLD_FILES` ∩ `NEVER_COPY` = ∅ 도 함께 고정했다.
+  - **커밋 실패가 파일을 남기지 않는다.** `publish_atomic` 을 재사용했다(`commit_and_push_with_retry` 에는 롤백이 없다). push 를 강제로 실패시키는 테스트에서 `products/alpha/` 가 사라지고 레지스트리 행도 안 생기는 것을 확인했다 — **행보다 커밋이 먼저**라서 가능한 결과다.
+  - **`company` 는 파일을 하나도 만들지 않는다**(D9). 등록 전후로 `products/` 하위 파일 집합이 동일함을 단언한다.
+  - `PATCH` 의 `model_fields_set` 이 계약의 일부다 — `enabled` 만 토글하는 요청이 company 행의 `detail` 을 지우지 않는 것을 테스트가 지킨다.
+  - **파생 둘은 저장하지 않는다.** `product_exists` 는 디렉토리를 지우면 즉시 `False` 가 되고, `card_visible` 은 `False`(숨김)와 `None`(카드 없음)을 구분한다 — 화면이 둘을 다르게 보여야 한다.
+  - **미등록 발견은 실패해도 200 이다.** 배너 하나 때문에 레지스트리 표가 안 뜨면 안 되므로 오류를 본문(`error`)에 싣는다. fork·archived·타인 소유를 거른다 — 소음이 되면 아무도 안 본다.
+  - 등록 응답은 클론을 기다리지 않는다. `BackgroundTasks` + **새 세션**으로 돌린다(요청 세션은 응답과 함께 닫힌다).
+  - 예외 매핑을 코드로 나눴다 — 검증 실패 **422**(입력이 계약을 어겼다), 파일·git 실패 **500**(입력은 옳았고 서버가 못 했다). 사람이 고칠 곳이 다르다.
+  - **계층 테스트가 24개로 늘었다**(P2 5 → P3 24). `GOVERNED_API` 에 실제 파일이 생기면서 라우터의 `select()` 금지·ORM import 금지가 비로소 걸린다.
+  - **887 passed** (825 → 스캐폴드/검증 29 + 등록 14 + 계층 19 신규).
 
 ### Phase 4 — 화면 (FE)
 
