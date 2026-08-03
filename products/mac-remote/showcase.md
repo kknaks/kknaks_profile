@@ -13,7 +13,7 @@ title:
   en: DeskDeck
   ko: DeskDeck
 type: project
-visible: false
+visible: true
 ---
 
 # 개요
