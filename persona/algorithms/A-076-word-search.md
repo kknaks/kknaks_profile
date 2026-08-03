@@ -21,7 +21,7 @@ tags:
 title:
   en: Word Search
   ko: 단어 검색
-today: true
+today: false
 type: algorithm
 updated: '2026-08-01'
 visible: true
