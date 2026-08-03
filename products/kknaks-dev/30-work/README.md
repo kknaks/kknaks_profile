@@ -36,6 +36,21 @@
                                                      (코드 Phase 셋 닫힘 — 남은 것은 화면과 배포)
 ```
 
+제품 레지스트리 트랙 (BL-005):
+
+```
+017 잔디 파이프라인 ✅ ─→ 018 제품 레지스트리
+                            P1 형식 SoT + 제품 트리 정리 (코드 0)
+                              → P2 컬럼 + repository 계층 신설
+                                → P3 service + API (스캐폴드·검증·발견)
+                                  → P4 화면 → P5 배포 + 실운영 관측
+```
+
+- **018 은 017 의 `tracked_repos`·`sync_repo`·시드 스크립트 위에 컬럼 하나와 관리 표면을 얹는다.** 잔디 파이프라인 코드는 손대지 않는다.
+- **P1 이 코드 0줄인데 맨 앞이다.** 스캐폴드가 읽을 카드 양식이 없으면 P3 가 형식을 지어내 SoT 가 둘이 되고(017 P1 과 같은 이유), 시드 매핑은 `kknaks-profile` 통합 **뒤의** 제품 목록을 기준으로 해야 한다.
+- **P2 가 `repository/` 계층의 첫 입주자다.** 레거시 일괄 리팩터는 하지 않는다 — 규약과 경계는 `40-architecture/system/README.md`.
+- **완료 판정이 화면이 아니라 잔디다.** P5 에서 신규 레포 커밋이 그날 `counts` 에 잡혀야 이 발주가 푼 문제(한 달 57건 누락)가 닫힌다.
+
 - **017**은 016이 세운 제출/수확 분리와 드라이버 **위에 정의만 얹는다.** 게이트·큐·API·admin FE 는 손대지 않는다 — 손대는 곳은 준비부(`prepare`·`flow`·`driver` — auto 스테이지를 여럿 돌리는 레일)와 `apply/`(경로 2개·`upsert`·그래프 밖 산출물·본인작성 보호).
 - **Phase 순서를 walking skeleton 으로 뒤집었다.** 제일 무거운 것(bare 클론 321MB·볼륨·토큰·배포)을 앞에 두면 파이프라인이 한 번도 안 돌아 본 채로 인프라 작업을 하게 된다. **깃은 더미로 가져오고 한 바퀴를 먼저 완주**시킨 뒤, 진짜 수집을 마지막에 `collect` 한 곳에서 갈아 끼운다.
 - **P5가 가장 무겁고 유일하게 배포가 필요하다** — 마이그레이션 + compose 볼륨 + 서버 최초 클론(~321MB) + 구 잔디 경로 제거가 전부 여기다. **P1~P4 내내 구 잔디 잡이 그대로 돈다.**
@@ -66,13 +81,15 @@
 | WORK-016 | 비동기 실행 + 진행 표시 UI (제출/수확 분리·완료 대기·진행 표시) | BE+FE | done | SPEC-008·009 | 015 | `work-016-async-execution-and-progress-ui.md` |
 | WORK-015 | 유튜브 체인 완성 + Apply Executor (source_note·concept·derived + 원자적 발행) | BE+FE | doing 80% (BE·FE 전부 done, 실전 e2e 만 남음) | SPEC-008·010·004 | 014 | `work-015-youtube-chain-and-executor.md` |
 | WORK-017 | 잔디 커밋 파이프라인 — 형식 SoT·준비부 일반화·더미 collect·발행부·화면·진짜 git 수집 (5 phase) | BE+FE+Ops | **done (2026-08-03)** — 서버 하루치 실 push 완주(`a8c44b4`). 로컬 e2e 가 결함 10건을 꺼내 9건 수정, 818 passed | SPEC-011·012·013·010 | 016 | `work-017-grass-commit-pipeline.md` |
+| WORK-018 | 제품 레지스트리 — 형식 SoT+트리 정리 · `product_slug` 컬럼 + **`repository/` 계층 신설** · 결정적 스캐폴딩 · 미등록 발견 · 관리 화면 (5 phase) | BE+FE+Ops | **todo (2026-08-03 발주)** | SPEC-014·011·001 | 017 | `work-018-product-registry-admin.md` |
 
 ## Status Board
 
 | Track | 진행 | Next |
 |---|---|---|
 | 지식그래프 (BL-001) | WORK-001~010 done | — |
-| 앱 DB화 (BL-002) | WORK-011 done | admin 실제 관리 기능 |
+| 앱 DB화 (BL-002) | WORK-011 done | admin 실제 관리 기능 → **WORK-018 이 첫 사례** |
+| 제품 레지스트리 (BL-005) | **018 todo (발주 2026-08-03)** — BL-005 · DEC-017(D1~D17, OQ 0) · SPEC-014 · 40-arch 계층 규약 | **P1 착수** — `templates/product/showcase.md` + 제품 트리 정리(코드 0줄) |
 | 승인 파이프라인 (BL-003) | **012·013 done** · 014~015 todo | **014 착수** (큐 + route 게이트) → 015 |
 | 잔디 파이프라인 (BL-004) | **017 in_progress 50%** — P1 형식 SoT done · **P2 done**(레일·더미 `collect`·`investigate`·`daily` 게이트 작성·실배선 + 접수 진입점 `daily:{date}` 합성 키·백필·`auto:false`/미래 날짜 차단) · **P3 done**(발행 허용 2경로·`upsert`·그래프 검증 제외·보호 검증 둘, `publish_atomic` 은 자동 달성). **737 passed** | P4 — 게이트 화면 + 더미 한 바퀴 완주(dry-run). 착수 전 Open Issue 「활동 0 차단 위치」 결정. ⚠ **이 갱신 직후 `8c2aa7a`(P4 승인 화면)가 들어왔다 — 아직 문서에 미반영** |
 
@@ -80,6 +97,7 @@
 
 | Spec | Covering Work | 구현 상태 |
 |---|---|---|
+| SPEC-014 제품 레지스트리 | WORK-**018** | **발주 (todo, 2026-08-03)** — P1 형식 SoT(`templates/product/showcase.md`) + 제품 트리 정리(`kknaks-profile`→`kknaks-dev` 통합·회사 5개 삭제·README 정정) / P2 `product_slug` 컬럼 + **`repository/` 계층 신설**(계층 규약 첫 적용) + 17행 시드 / P3 service+API(스캐폴드 화이트리스트·사전 검증 7종·커밋 1개+롤백·미등록 발견) / P4 화면 / P5 배포+실운영. **관측 대상이 화면이 아니라 잔디다** — 신규 레포 커밋이 그날 `counts` 에 잡혀야 "한 달 57건 누락" 이 닫힌다 |
 | SPEC-001 디렉토리 | WORK-003·004·005·006·010·**013** | 003~010 done / **013 — 4층 매핑 + `permanent/concept/` 실재화 done** |
 | SPEC-002 스키마 | WORK-001·002·**013** | 001·002 done / **013 — `layer` 도출·type enum 재편·rank 반전 done** |
 | SPEC-003 워크플로 | WORK-003·010·**013** (+강제: 001·007) | 003·007·010 done / **013 — 4층 생명주기 규칙 문서화(`rules/knowledge-note-pipeline.md`) done** |
