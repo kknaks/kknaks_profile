@@ -13,7 +13,7 @@ roles:
   be: kknaks
   qa: kknaks
   ops: kknaks
-progress: 65
+progress: 85
 created_at: 2026-08-03
 updated_at: 2026-08-03
 tags:
@@ -58,20 +58,20 @@ links:
 | Type | new-feature |
 | Owner | kknaks |
 | Status | in_progress |
-| Progress | 65% (P1~P3 done — 트리 정리 · 컬럼·repository 계층 · service+API 6 엔드포인트. 887 passed) |
+| Progress | 85% (P1~P4 done — 화면까지. 로컬 e2e 로 결함 4건 발견·수정. 887 passed) |
 | Branch/PR | `work-018-db` |
 | Blocker | 없음 |
-| Next | P4 — 화면 (프로젝트 슬롯: 배너·표·등록 폼·행 편집·재동기화) |
+| Next | P5 — 배포 + 실운영 관측 (마이그레이션 · 시드 · 신규 레포 클론 · 잔디에 잡히는지) |
 
 ## Role Assignment
 
 | Role | Assignee | Responsibility | Status |
 |---|---|---|---|
 | PM | kknaks | 범위와 요구사항 | done — DEC-017 D1~D17, OQ 0 |
-| Design | kknaks | 등록 폼·표·배너 UX | todo |
-| FE | kknaks | 프로젝트 슬롯 화면 | todo |
+| Design | kknaks | 등록 폼·표·배너 UX | **done** — 필터 탭·공용 셀렉트·노출 토글 |
+| FE | kknaks | 프로젝트 슬롯 화면 | **done** |
 | BE | kknaks | 컬럼·repository·service·API | **done** — 컬럼·repository·DTO·service·API 전부 |
-| QA | kknaks | 검증과 완료 판단 | todo |
+| QA | kknaks | 검증과 완료 판단 | in_progress — 로컬 e2e done(결함 4건), 실운영 관측은 P5 |
 | Ops | kknaks | 배포·클론·실운영 관측 | todo |
 
 ## Scope
@@ -320,20 +320,32 @@ core/models.py              TrackedRepo
 
 ### Phase 4 — 화면 (FE)
 
-- **Status**: TODO
+- **Status**: DONE
 - **설명**: 프로젝트 슬롯을 연다. 사람이 실제로 눌러 보는 것이 이 Phase 의 완료 조건이다.
 - **작업**:
-  - [ ] `sidebar.tsx` — 프로젝트 `ready: true`
-  - [ ] 미등록 배너 — 0건이면 숨김, 칩 클릭 시 폼 프리필, 조회 실패해도 표는 렌더
-  - [ ] 레지스트리 표 — 제품 드롭다운 · 커리어 드롭다운 · `긁기` 토글 · **`노출` 읽기 전용** · 클론 상태 · 재동기화
-  - [ ] 새 제품 폼 — `company`/`studio` 분기, 분류 드롭다운, 필드별 오류 표시
-  - [ ] 클론 진행 폴링
+  - [x] `sidebar.tsx` — 프로젝트 `ready: true`
+  - [x] 미등록 배너 — 0건이면 숨김, 칩 클릭 시 폼 프리필, 조회 실패해도 표는 렌더
+  - [x] 레지스트리 표 — 제품 드롭다운 · 커리어 드롭다운 · `긁기` 토글 · **`노출` 읽기 전용** · 클론 상태 · 재동기화
+  - [x] 새 제품 폼 — `company`/`studio` 분기, 분류 드롭다운, 필드별 오류 표시
+  - [x] 클론 진행 폴링
 - **검증**:
-  - [ ] `tsc --noEmit` · `next build` 통과
-  - [ ] 사람이 등록·수정·토글·재동기화를 눌러 봤다
-  - [ ] `⚠ 제품 폴더 없음` 과 `✕ 사유코드` 가 실제로 보인다
-  - [ ] `노출` 열이 눌리지 않는다
-- **완료 증거**: 미작성
+  - [x] `tsc --noEmit` · `next build` 통과
+  - [x] 사람이 등록·수정·토글·재동기화를 눌러 봤다
+  - [x] `⚠ 제품 폴더 없음` 과 `✕ 사유코드` 가 실제로 보인다
+  - [x] ~~`노출` 열이 눌리지 않는다~~ → **D18 로 눌리게 바꿨다.** 파일을 고치고 커밋한다
+  - [x] 공용 `Select` 로 네이티브 `<select>` 0개
+  - [x] 필터 탭(전체·회사·프로젝트)
+- **완료 증거**:
+  - 화면 넷 다 붙었다 — 미등록 배너 · 레지스트리 표 · 새 제품 폼 · 행 편집. `tsc` 통과, `next build` 통과(`/admin/projects` 6.01 kB).
+  - **눌러 보지 않으면 못 잡는 것 넷이 실제로 나왔다.** 이것이 P4 검증에 "사람이 눌러 봤다" 를 넣은 값이다.
+  - **① `TopNav` 훅 순서 위반 — `/admin` 전 경로가 죽어 있었다.** `if (pathname?.startsWith("/admin")) return null;` 이 `useEffect` **앞**에 있어 훅 4개만 실행되고 반환됐고, React 가 6개를 기대해 `Rendered fewer hooks than expected` 로 런타임이 죽는다. **내 변경이 아니다** — `origin/main` 과 diff 0이고 WORK-011(admin 셸 신설) 때부터 잠복했다. **`next build` 는 통과한다** — dev 의 엄격 검사에서만 드러나므로 빌드로는 못 잡는 종류다. 훅을 전부 부른 뒤로 옮겼다.
+  - **② 네이티브 `<select>` 팝업이 밝게 뜬다.** `<option>` 목록은 OS 가 그려서 `background`·`color` 를 무시하고, macOS 는 `color-scheme: dark` 를 걸어도 회색 목록을 그대로 띄운다. **공용 `components/admin/select.tsx` 로 대체**했다(네이티브 0개). 표가 `overflow-x: auto` 라 `absolute` 로 두면 잘려서 **트리거 좌표를 재 `position: fixed`** 로 붙이고 스크롤·리사이즈에 따라가게 했다. `:root` 의 `color-scheme: dark` 도 함께 넣었다 — globals.css 머리말이 "Dark-first" 라 적어 놓고 그 선언이 없어 체크박스·스크롤바가 밝게 떴다.
+  - **③ 노출을 못 바꾸는 것이 실제로 걸렸다** → D18. D14 가 기각한 것은 **DB 이관**이었는데 "화면이 파일을 고친다" 는 선택지를 빠뜨렸던 것이다. 실측 확인: `wine-log` 토글 → **1 insertion / 1 deletion**, `# 포트폴리오 PDF 케이스 스터디` 주석과 키 순서 보존, reload 후 `/api/projects` 6 → 5장. WORK-017 결함 ⑩(42/38)을 안 밟았다.
+  - **④ 카드 없는 제품에 카드를 만들 경로가 없었다.** `register()` 가 제품 디렉토리가 있으면 `PRODUCT_EXISTS` 로 거부해서, **BL-005 가 진단한 "카드 없는 5개"** 가 영영 못 뜨는 상태였다 — 이번 발주가 그 문제를 안 풀고 있었다. `POST /{id}/card` 를 붙였고 `mac-remote` 에 `P-16` 카드를 실제로 만들었다(숨김).
+  - **미등록 발견 창을 실측으로 정했다.** 57건이 나와 배너가 소음이 됐다 — 분포가 `≤30일 5 / 31~90일 7 / 91~365일 16 / >365일 29` 였다. **절반이 1년 넘게 안 민 죽은 레포**라 30일 창을 넣어 5건으로 줄였고, `최근 30일 기준, 오래된 52건은 감춤` 을 배너에 실었다(조용히 자르지 않는다). 발주 Open Issue 「미등록 발견의 범위」가 여기서 닫혔다.
+  - 필터 탭(전체·회사·프로젝트)을 더했다. 회사 행은 `제품`·`노출` 이 비어 있는 게 정상이고 개인 행은 `커리어` 가 비어 있는 게 정상인데, 한 표에 섞이면 **두 종류의 빈 칸이 같아 보인다.**
+  - 파생 3분기가 화면에서 확인됐다 — `공개`(카드 있고 노출) / `숨김` / `+ 카드`(카드 없음) / `—`(제품 연결 없음).
+  - **887 passed** · `tsc` · `next build` 통과 · `product_doc_pipeline --strict` 0 errors.
 
 ### Phase 5 — 배포 + 실운영 완주 (Ops)
 

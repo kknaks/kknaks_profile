@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
+from datetime import datetime, timedelta, timezone
 
 import httpx
 
@@ -27,6 +28,14 @@ _PER_PAGE = 100
 #: 페이지를 무한히 넘기지 않는다. 개인 레포가 300개를 넘으면 그때 페이징을 손본다.
 _MAX_PAGES = 3
 
+#: 배너에 올릴 최근성 창(일). **실측으로 정했다** — 미등록 57건 중 29건이 1년 넘게
+#: 안 민 것이고, 30일 안쪽은 5건이다. 그 5건이 전부 실제로 손대고 있는 레포였다.
+#:
+#: 오래된 것을 거르는 근거는 이 배너가 막으려는 실패가 **"팠는데 등록을 잊었다"** 이기
+#: 때문이다. 그건 작업을 시작한 직후에 드러나고, 다시 손대면 창 안으로 돌아온다.
+#: 57건을 다 띄우면 배너가 소음이 되고, 소음이 되면 아무도 안 본다.
+DISCOVERY_WINDOW_DAYS = 30
+
 
 @dataclass(frozen=True)
 class DiscoveredRepo:
@@ -34,6 +43,17 @@ class DiscoveredRepo:
     account: str
     pushed_at: str | None = None
     private: bool = False
+
+
+@dataclass(frozen=True)
+class Discovery:
+    """발견 결과. **잘린 수를 함께 낸다.**
+
+    조용히 자르면 "미등록이 0건" 과 "오래돼서 감춘 게 29건" 이 화면에서 같아 보인다.
+    """
+
+    items: list[DiscoveredRepo]
+    hidden_old: int = 0
 
 
 class DiscoveryError(RuntimeError):
@@ -78,7 +98,19 @@ def _keep(item: dict, *, owners: tuple[str, ...]) -> bool:
     return owner in owners
 
 
-async def list_undiscovered(known: set[str]) -> list[DiscoveredRepo]:
+def _within_window(pushed_at: str | None, *, days: int) -> bool:
+    if not pushed_at:
+        return False
+    try:
+        when = datetime.fromisoformat(pushed_at.replace("Z", "+00:00"))
+    except ValueError:
+        return False
+    return (datetime.now(timezone.utc) - when) <= timedelta(days=days)
+
+
+async def list_undiscovered(
+    known: set[str], *, window_days: int = DISCOVERY_WINDOW_DAYS
+) -> Discovery:
     """계정·조직 레포에서 레지스트리에 없는 것을 찾는다.
 
     **화면 진입 시 부른다.** 스케줄 잡으로 만들지 않는 이유는 배너가 볼 사람이 화면에
@@ -116,4 +148,6 @@ async def list_undiscovered(known: set[str]) -> list[DiscoveredRepo]:
                 )
 
     # 최근에 민 것이 위로. 등록할 만한 것이 대개 그쪽이다.
-    return sorted(found.values(), key=lambda r: r.pushed_at or "", reverse=True)
+    ordered = sorted(found.values(), key=lambda r: r.pushed_at or "", reverse=True)
+    fresh = [r for r in ordered if _within_window(r.pushed_at, days=window_days)]
+    return Discovery(items=fresh, hidden_old=len(ordered) - len(fresh))

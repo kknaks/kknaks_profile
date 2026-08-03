@@ -242,3 +242,122 @@ async def _sync_one(row: TrackedRepoDTO, *, root: Path | None):
     from service.jobs import repos as repo_sync
 
     return await asyncio.to_thread(repo_sync.sync_repo, row.slug, row.account, root=root)
+
+
+async def set_visible(
+    db: AsyncSession,
+    repo_id: int,
+    value: bool,
+    *,
+    repo_root: Path | None = None,
+    dry_run: bool | None = None,
+) -> TrackedRepoDTO:
+    """공개 카드의 노출을 바꾼다 (KDEV-DEC-017 D18).
+
+    **DB 가 아니라 파일을 고친다.** 값이 사는 곳은 그대로 `showcase.md` 이고, 공개
+    API 는 계속 in-memory dict 만 읽는다 — `/api/projects` 에 DB 의존이 생기지 않는다.
+    바꾼 이력이 git 에 남는 것은 덤이다(DB 였으면 마지막 값만 남는다).
+
+    등록과 같은 기계를 쓴다 — 한 커밋, 실패하면 되돌린다.
+
+    Raises:
+        ProductError: 연결된 제품이 없다.
+        ScaffoldError: 카드가 없거나 형태가 깨졌거나 커밋에 실패했다.
+    """
+    root = repo_root or config.repo_root()
+    dry = config.job_git_push_dry_run() if dry_run is None else dry_run
+
+    row = await tracked_repos_repo.get_by_id(db, repo_id)
+    if row is None:
+        raise ProductNotFound(f"레지스트리 행이 없다 — id={repo_id}")
+    if not row.product_slug:
+        raise ProductError(
+            "NO_PRODUCT", "제품이 연결돼 있지 않아 카드가 없다", field="product_slug"
+        )
+
+    before = apply_git.head_ref(root)
+    try:
+        path = scaffold.set_card_visible(row.product_slug, value, root)
+    except ScaffoldError:
+        apply_git.rollback(root, before)
+        raise
+
+    state = "공개" if value else "비공개"
+    outcome = apply_git.publish_atomic(
+        [path],
+        f"chore(products): {row.product_slug} 카드 {state}",
+        repo_root=root,
+        dry_run=dry,
+    )
+    if not outcome.ok:
+        raise ScaffoldError(
+            outcome.error_code or "GIT_FAILED",
+            outcome.error_message or "커밋·푸시에 실패했다",
+        )
+    logger.info("카드 노출 변경 — %s → %s", row.product_slug, state)
+    return row
+
+
+async def add_card(
+    db: AsyncSession,
+    repo_id: int,
+    card: dict[str, Any],
+    *,
+    repo_root: Path | None = None,
+    dry_run: bool | None = None,
+) -> TrackedRepoDTO:
+    """**이미 있는 제품에 공개 카드를 붙인다** (KDEV-WORK-018 P4).
+
+    `register()` 는 "새 레포 + 새 제품" 만 상정해 제품 디렉토리가 있으면 `PRODUCT_EXISTS`
+    로 거부한다. 그래서 **문서 트리는 있는데 카드가 없는 제품**은 사이트에 뜰 방법이
+    없었다 — BL-005 가 진단한 그 5개이고, 최근 작업이 전부 거기 있다.
+
+    카드는 `visible: false` 로 만든다(`render_card`). 본문이 빈 채로 사이트에 올라가지
+    않게 하려는 것이고, 채운 뒤 노출 토글로 켠다(D18).
+    """
+    root = repo_root or config.repo_root()
+    dry = config.job_git_push_dry_run() if dry_run is None else dry_run
+
+    row = await tracked_repos_repo.get_by_id(db, repo_id)
+    if row is None:
+        raise ProductNotFound(f"레지스트리 행이 없다 — id={repo_id}")
+    if not row.product_slug:
+        raise ProductError(
+            "NO_PRODUCT", "제품이 연결돼 있지 않다 — 먼저 제품을 고른다", field="product_slug"
+        )
+    if not (root / product_dir(row.product_slug)).is_dir():
+        raise ProductError(
+            "PRODUCT_MISSING",
+            f"제품 디렉토리가 없다 — {product_dir(row.product_slug)}",
+            field="product_slug",
+        )
+    if (root / product_dir(row.product_slug) / "showcase.md").exists():
+        raise ProductError(
+            "CARD_EXISTS", "이미 카드가 있다 — 노출 토글로 켜고 끈다", field="product_slug"
+        )
+    validate.check_card(card, root)
+
+    before = apply_git.head_ref(root)
+    try:
+        path, content = scaffold.render_card(
+            slug=row.product_slug, card=card, repo_root=root, org=row.type
+        )
+        (root / path).write_text(content, encoding="utf-8")
+    except Exception as exc:  # noqa: BLE001
+        apply_git.rollback(root, before)
+        raise ScaffoldError("WRITE_FAILED", f"카드 생성에 실패했다 — {exc}") from exc
+
+    outcome = apply_git.publish_atomic(
+        [path],
+        f"feat(products): {row.product_slug} 공개 카드 추가",
+        repo_root=root,
+        dry_run=dry,
+    )
+    if not outcome.ok:
+        raise ScaffoldError(
+            outcome.error_code or "GIT_FAILED",
+            outcome.error_message or "커밋·푸시에 실패했다",
+        )
+    logger.info("공개 카드 추가 — %s", row.product_slug)
+    return row
+

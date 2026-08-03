@@ -53,6 +53,12 @@ class PatchRequest(BaseModel):
     enabled: bool | None = None
 
 
+class VisibleRequest(BaseModel):
+    """카드 노출 변경. **DB 가 아니라 `showcase.md` 를 고친다**(KDEV-DEC-017 D18)."""
+
+    value: bool
+
+
 class RegistryRow(BaseModel):
     """레지스트리 표 한 줄."""
 
@@ -102,6 +108,9 @@ class DiscoveredResponse(BaseModel):
     """
 
     items: list[DiscoveredRow] = Field(default_factory=list)
+    #: 최근성 창 밖이라 감춘 수. **조용히 자르지 않는다** — 0건과 구분돼야 한다.
+    hidden_old: int = 0
+    window_days: int = 0
     error: str | None = None
 
 

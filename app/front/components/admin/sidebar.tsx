@@ -18,7 +18,7 @@ const NAV: NavItem[] = [
   { label: "승인 큐", href: "/admin/queue", ready: true, icon: <IconInbox /> },
   { label: "콘텐츠", href: "/admin/contents", ready: false, icon: <IconDoc /> },
   { label: "노트", href: "/admin/notes", ready: false, icon: <IconNote /> },
-  { label: "프로젝트", href: "/admin/projects", ready: false, icon: <IconStack /> },
+  { label: "프로젝트", href: "/admin/projects", ready: true, icon: <IconStack /> },
   { label: "알고리즘", href: "/admin/algorithms", ready: false, icon: <IconCode /> },
   { label: "커리어", href: "/admin/career", ready: false, icon: <IconBriefcase /> },
   { label: "설정", href: "/admin/settings", ready: false, icon: <IconGear /> },

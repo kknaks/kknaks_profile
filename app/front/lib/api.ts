@@ -365,3 +365,98 @@ export const queueApi = {
       body: JSON.stringify({ payload, expected_revision_id: expectedRevisionId }),
     }),
 };
+
+/* ── 제품 레지스트리 (KDEV-WORK-018 P4 / KDEV-SPEC-014) ────────────────────
+ *
+ * 표면이 admin 뒤에 있는 이유는 큐와 같다 — 추적 대상과 토큰 종류가 드러난다.
+ */
+
+const PRODUCTS = "/api/admin/products";
+
+export type RegistryRow = {
+  id: number;
+  slug: string;
+  type: "company" | "studio";
+  detail: string | null;
+  product_slug: string | null;
+  account: string;
+  enabled: boolean;
+  last_fetched_at: string | null;
+  last_error: string | null;
+  /** `product_slug` 가 가리키는 디렉토리가 실재하는가. **경고이지 차단이 아니다.** */
+  product_exists: boolean;
+  /** 공개 카드 노출 값. 파일이 SoT 라 읽기 전용이고, 카드가 없으면 `null`. */
+  card_visible: boolean | null;
+};
+
+export type ProductOptions = {
+  products: string[];
+  categories: string[];
+  statuses: string[];
+  careers: string[];
+};
+
+export type DiscoveredRow = {
+  slug: string;
+  account: string;
+  pushed_at: string | null;
+  private: boolean;
+};
+
+export type CardInput = {
+  title: { ko: string; en: string };
+  summary: { ko: string; en: string };
+  category: string;
+  status: string;
+  stack: string[];
+  date?: string | null;
+};
+
+export type RegisterBody = {
+  repo: string;
+  type: "company" | "studio";
+  detail?: string | null;
+  product_slug?: string | null;
+  card?: CardInput | null;
+};
+
+export const productsApi = {
+  list: () => queueFetch<{ items: RegistryRow[] }>(PRODUCTS),
+  options: () => queueFetch<ProductOptions>(`${PRODUCTS}/options`),
+  /** 실패해도 200 이다 — 배너만 실패하고 표는 정상 표시된다. */
+  undiscovered: () =>
+    queueFetch<{
+      items: DiscoveredRow[];
+      hidden_old: number;
+      window_days: number;
+      error: string | null;
+    }>(`${PRODUCTS}/undiscovered`),
+  register: (body: RegisterBody) =>
+    queueFetch<RegistryRow>(PRODUCTS, {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+  /** **보낼 필드만 담는다** — 안 보낸 것과 `null` 을 보낸 것은 다르다. */
+  patch: (id: number, body: Partial<Pick<RegistryRow, "detail" | "product_slug" | "enabled">>) =>
+    queueFetch<RegistryRow>(`${PRODUCTS}/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(body),
+    }),
+  /** 이미 있는 제품에 공개 카드를 붙인다. 등록과 달리 **제품 디렉토리가 있어야** 한다. */
+  addCard: (id: number, card: CardInput) =>
+    queueFetch<RegistryRow>(`${PRODUCTS}/${id}/card`, {
+      method: "POST",
+      body: JSON.stringify(card),
+    }),
+  /** **DB 가 아니라 `showcase.md` 를 고친다** — 파일이 SoT 다(KDEV-DEC-017 D18). */
+  setVisible: (id: number, value: boolean) =>
+    queueFetch<RegistryRow>(`${PRODUCTS}/${id}/visible`, {
+      method: "POST",
+      body: JSON.stringify({ value }),
+    }),
+  sync: (id: number) =>
+    queueFetch<{ row: RegistryRow; ok: boolean; code: string | null; message: string | null }>(
+      `${PRODUCTS}/${id}/sync`,
+      { method: "POST" },
+    ),
+};

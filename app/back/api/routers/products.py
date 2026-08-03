@@ -25,8 +25,10 @@ from api.schemas.products import (
     PatchRequest,
     RegisterRequest,
     RegistryList,
+    CardInput,
     RegistryRow,
     SyncResponse,
+    VisibleRequest,
 )
 from core.db import get_db, new_session
 from service.products import discover, registry, validate
@@ -111,8 +113,10 @@ async def undiscovered(db: AsyncSession = Depends(get_db)) -> DiscoveredResponse
             DiscoveredRow(
                 slug=r.slug, account=r.account, pushed_at=r.pushed_at, private=r.private
             )
-            for r in found
-        ]
+            for r in found.items
+        ],
+        hidden_old=found.hidden_old,
+        window_days=discover.DISCOVERY_WINDOW_DAYS,
     )
 
 
@@ -196,3 +200,42 @@ async def sync_product(
     return SyncResponse(
         row=_row(row, root), ok=ok, code=code, message=row.last_error
     )
+
+
+@router.post("/{repo_id}/visible", response_model=RegistryRow)
+async def set_visible(
+    repo_id: int, body: VisibleRequest, db: AsyncSession = Depends(get_db)
+) -> RegistryRow:
+    """카드 노출 토글 (KDEV-DEC-017 D18).
+
+    DB 를 안 바꾸므로 응답의 `card_visible` 은 **다시 읽은 파일에서** 나온다 —
+    쓰기가 실제로 반영됐는지가 응답으로 확인된다.
+    """
+    root = config.repo_root()
+    try:
+        row = await registry.set_visible(db, repo_id, body.value, repo_root=root)
+    except ProductNotFound as exc:
+        raise HTTPException(404, detail=str(exc)) from exc
+    except (ProductError, ScaffoldError) as exc:
+        raise _http_error(exc) from exc
+    return _row(row, root)
+
+
+@router.post("/{repo_id}/card", response_model=RegistryRow)
+async def add_card(
+    repo_id: int, body: CardInput, db: AsyncSession = Depends(get_db)
+) -> RegistryRow:
+    """이미 있는 제품에 공개 카드를 붙인다.
+
+    등록(`POST ""`)과 나눠 둔 이유는 상황이 다르기 때문이다 — 등록은 제품 디렉토리가
+    **없어야** 하고, 이쪽은 **있어야** 한다.
+    """
+    root = config.repo_root()
+    try:
+        row = await registry.add_card(db, repo_id, body.model_dump(), repo_root=root)
+    except ProductNotFound as exc:
+        raise HTTPException(404, detail=str(exc)) from exc
+    except (ProductError, ScaffoldError) as exc:
+        raise _http_error(exc) from exc
+    return _row(row, root)
+

@@ -15,6 +15,7 @@ frontmatter `type` 을 갖고 있어 **지식 그래프 노드가 된다.** 제�
 from __future__ import annotations
 
 import logging
+import re
 from pathlib import Path
 from typing import Any
 
@@ -174,3 +175,47 @@ def append_product_index(slug: str, repo_root: Path) -> str | None:
     lines.insert(last_row + 1, row)
     index.write_text("\n".join(lines) + "\n", encoding="utf-8")
     return "products/README.md"
+
+
+#: frontmatter 안의 `visible:` 한 줄. **블록 안에서만 찾는다** — 본문에 같은 문자열이
+#: 있어도 건드리지 않기 위해서다.
+_VISIBLE_LINE = re.compile(r"^(\s*visible\s*:\s*)(true|false)\s*$", re.IGNORECASE)
+
+
+def set_card_visible(slug: str, value: bool, repo_root: Path) -> str:
+    """카드의 `visible` **한 줄만** 바꾼다. 레포 상대 경로를 돌려준다.
+
+    **`frontmatter.loads()` → `dumps()` 왕복을 쓰지 않는다.** 값은 보존되지만 주석이
+    사라지고 키가 알파벳순으로 재정렬된다 — WORK-017 결함 ⑩ 에서 한 줄을 바꾸려던
+    발행이 42 insertions / 38 deletions 를 냈고 `# 이력서 PDF — 비면 PDF 미표시` 주석이
+    없어졌다. 사람이 적어 둔 주석과 순서도 그 사람의 것이다.
+
+    `visible` 키가 없으면 **추가한다.** 로더 기본값이 `true` 라(`projects.py:18`)
+    없는 상태에서 끄려면 줄이 생겨야 한다.
+    """
+    path = repo_root / product_dir(slug) / "showcase.md"
+    if not path.exists():
+        raise ScaffoldError("CARD_MISSING", f"공개 카드가 없다 — {product_dir(slug)}/showcase.md")
+
+    lines = path.read_text(encoding="utf-8").splitlines(keepends=True)
+    if not lines or lines[0].strip() != "---":
+        raise ScaffoldError("CARD_MALFORMED", "카드에 frontmatter 가 없다")
+
+    close = next(
+        (i for i in range(1, len(lines)) if lines[i].strip() == "---"), None
+    )
+    if close is None:
+        raise ScaffoldError("CARD_MALFORMED", "frontmatter 가 닫히지 않았다")
+
+    literal = "true" if value else "false"
+    for i in range(1, close):
+        match = _VISIBLE_LINE.match(lines[i].rstrip("\n"))
+        if match:
+            lines[i] = f"{match.group(1)}{literal}\n"
+            break
+    else:
+        # 키가 없다 — 닫는 `---` 바로 앞에 넣는다. 순서를 흩지 않는 자리다.
+        lines.insert(close, f"visible: {literal}\n")
+
+    path.write_text("".join(lines), encoding="utf-8")
+    return f"{product_dir(slug)}/showcase.md"
