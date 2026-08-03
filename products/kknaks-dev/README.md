@@ -13,7 +13,7 @@
 | 지식그래프 (BL-001) | WORK-001~010 done + **WORK-013으로 4층 재편 완료** (`permanent/concept/` 실재화, lineage 1→4) | — |
 | 앱 DB화 + 관리자 인증 (BL-002) | BL-002·DEC-009 accepted, SPEC-006 implemented, WORK-011 done (async) | 후속 — admin 실제 관리 기능 spec |
 | inbox 승인 파이프라인 + concept 층 (BL-003) | BL-003·DEC-010~013 accepted · spec 9건 · 40-arch · **WORK-012·013 done** · **WORK-014 done** · WORK-015 P1~P4(게이트 3종·재오픈·Executor) done | WORK-015 P5 실전 e2e (**배포 필요**) |
-| 커밋 잔디 파이프라인 (BL-004) | BL-004 accepted · DEC-014~016 · SPEC-011~013 신규 + SPEC-001·003·008·010 개정 · **WORK-017 발주 (5 phase, todo)** | **P1 착수** — 레지스트리 + bare 클론 + collect (배포 필요) |
+| 커밋 잔디 파이프라인 (BL-004) | BL-004 accepted · DEC-014~016 · SPEC-011~013 · **WORK-017 done (2026-08-03)** — 서버 하루치 실 push 완주 | 후속 — `algorithms`·`content_enrich` 게이트 편입 (새 baseline) |
 
 ## 문서 맵
 

@@ -65,7 +65,7 @@
 | WORK-014 | 승인 큐 + route 게이트 MVP (스키마·접수·자동준비·게이트 공통계약·admin 큐 화면) | BE+FE | done | SPEC-007·008(route)·009 | 012·013 | `work-014-queue-and-route-gate.md` |
 | WORK-016 | 비동기 실행 + 진행 표시 UI (제출/수확 분리·완료 대기·진행 표시) | BE+FE | done | SPEC-008·009 | 015 | `work-016-async-execution-and-progress-ui.md` |
 | WORK-015 | 유튜브 체인 완성 + Apply Executor (source_note·concept·derived + 원자적 발행) | BE+FE | doing 80% (BE·FE 전부 done, 실전 e2e 만 남음) | SPEC-008·010·004 | 014 | `work-015-youtube-chain-and-executor.md` |
-| WORK-017 | 잔디 커밋 파이프라인 — 형식 SoT·준비부 일반화·더미 collect·발행부·화면·진짜 git 수집 (5 phase) | BE+FE+Ops | in_progress 50% (P1·P2·P3 done — 코드 Phase 셋 닫힘. P4 화면 · P5 배포·실운영 남음) | SPEC-011·012·013·010 | 016 | `work-017-grass-commit-pipeline.md` |
+| WORK-017 | 잔디 커밋 파이프라인 — 형식 SoT·준비부 일반화·더미 collect·발행부·화면·진짜 git 수집 (5 phase) | BE+FE+Ops | **done (2026-08-03)** — 서버 하루치 실 push 완주(`a8c44b4`). 로컬 e2e 가 결함 10건을 꺼내 9건 수정, 818 passed | SPEC-011·012·013·010 | 016 | `work-017-grass-commit-pipeline.md` |
 
 ## Status Board
 
