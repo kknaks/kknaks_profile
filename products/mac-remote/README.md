@@ -5,7 +5,7 @@
 iPhone을 리모컨으로 써서 Mac의 창 전환과 단축키 매크로를 전송하는 제품. **DeskDeck로 App Store 출시 완료 (1.0.1, 2026-06-10)** — [App Store](https://apps.apple.com/app/id6772868137). 5.2.5 거절 대응으로 `MacRemote`→`DeskDeck` 개명, 헬퍼는 `DeskDeckHelper`(공증 DMG). 경위: `70-runbook/runbook-002` §4, [release-003](60-release/release-003-deskdeck-appstore.md).
 
 > 제품 전체 지도. 상세는 각 단계 문서에 두고, 여기에는 현재 상태와 진입점만 둔다.
-> 코드는 별도 레포 `mac-remote`(Swift)에 있고, 이 디렉토리는 제품 문서 SoT다.
+> 코드는 별도 레포 [`kknaks/mac-remote`](https://github.com/kknaks/mac-remote)(Swift)에 있고, 이 디렉토리는 제품 문서 SoT다.
 
 ## 현재 상태
 

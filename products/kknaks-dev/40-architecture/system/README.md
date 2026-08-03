@@ -84,6 +84,24 @@ core/         횡단.       db.py(세션·엔진) · models.py(ORM) · security.
 
 **예외는 도메인 예외로 올리고 라우터가 HTTP 로 바꾼다.** 선례가 이미 있다 — `service/pipeline/gates.py` 의 `GateError` 를 `api/routers/queue.py:414 _gate_error()` 가 `HTTPException` 으로 매핑한다. `PersonaError`·`SourceFetchError`·`UnknownCareerError` 도 같은 형태다. 이 규약은 그 관행을 전 계층으로 넓힌 것이다.
 
+### 계층 간 데이터 이동 — DTO
+
+**계층을 넘는 데이터는 pydantic 모델로 옮긴다.** dict 를 그대로 넘기지 않는다 — 키 오타가 런타임까지 살아남고, 어느 계층이 무엇을 넣었는지 추적이 안 된다.
+
+| 경계 | 무엇이 오가나 | 정의 위치 |
+|---|---|---|
+| client ↔ `api` | 요청·응답 모델 | `api/schemas/{domain}.py` |
+| `api` ↔ `service` | 도메인 DTO | `service/{domain}/dto.py` |
+| `service` ↔ `repository` | 도메인 DTO | 같은 곳 |
+| `repository` ↔ DB | **ORM** (`core/models.py`) | **밖으로 나가지 않는다** |
+
+두 규칙이 핵심이다.
+
+1. **ORM 객체는 `repository` 밖으로 나가지 않는다.** repository 가 ORM ↔ DTO 변환을 책임진다. ORM 이 service 로 새면 lazy load·세션 수명·`expire_on_commit` 이 도메인 코드로 번지고, service 가 DB 세션을 알아야 하는 상태로 되돌아간다.
+2. **요청·응답 모델과 도메인 DTO 를 같은 클래스로 겸하지 않는다.** 겸하면 HTTP 표면을 바꿀 때 도메인이 따라 바뀌고, 반대로 도메인 필드가 의도치 않게 API 로 새어 나간다.
+
+`api/schemas/` 는 `queue.py` 가 라우터 파일 안에 `BaseModel` 을 두던 방식을 대체한다 — 신규 도메인만 해당하고, 레거시는 아래 적용 경계대로 그대로 둔다.
+
 ### 현행 실측 (2026-08-03)
 
 **`repository` 계층이 없다.** DB 접근이 api 와 service 양쪽에 흩어져 있다.

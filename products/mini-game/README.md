@@ -8,7 +8,7 @@
 
 | 항목 | 경로 |
 |---|---|
-| Remote | TBD |
+| Remote | `https://github.com/kknaks/lunch_game` |
 | Local clone | `/Users/kknaks/git/toy_pr2/lunch_game` |
 | 문서 SoT | `/Users/kknaks/git/toy_pr2/kknaks_profile/products/mini-game` |
 

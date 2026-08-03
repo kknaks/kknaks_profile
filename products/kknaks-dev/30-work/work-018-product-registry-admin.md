@@ -2,7 +2,7 @@
 type: work
 id: KDEV-WORK-018
 title: "제품 레지스트리 — 조인 컬럼·관리 화면·결정적 스캐폴딩"
-status: todo
+status: in_progress
 product: kknaks-dev
 work_type: new-feature
 owner: kknaks
@@ -13,13 +13,13 @@ roles:
   be: kknaks
   qa: kknaks
   ops: kknaks
-progress: 0
+progress: 20
 created_at: 2026-08-03
 updated_at: 2026-08-03
 tags:
   - product/kknaks-dev
   - doc/work
-  - status/todo
+  - status/in_progress
 links:
   baselines:
     - "[[baseline-005-product-project-career-link|KDEV-BL-005]]"
@@ -57,11 +57,11 @@ links:
 |---|---|
 | Type | new-feature |
 | Owner | kknaks |
-| Status | todo |
-| Progress | 0% |
+| Status | in_progress |
+| Progress | 20% (P1 done — 형식 SoT + 트리 정리. 제품 18→12, showcase 13→8, `visible` 6 불변) |
 | Branch/PR | `work-018-db` |
 | Blocker | 없음 |
-| Next | P1 — `templates/product/showcase.md` 작성 |
+| Next | P2 — `product_slug` 컬럼 + `repository/` 계층 신설 + 17행 시드 |
 
 ## Role Assignment
 
@@ -109,11 +109,13 @@ links:
 | `core/models.py` | `TrackedRepo` 컬럼 1줄 — P2 |
 | **`repository/__init__.py` · `repository/tracked_repos.py`** (신규) | **DB 접근 전담 계층 신설** — P2 |
 | `app/scripts/seed_repo_registry.py` | 시드에 `product_slug` + 신규 4행 — P2 |
+| **`service/products/dto.py`** (신규) | **도메인 DTO (pydantic)** — api↔service↔repository 경계 — P2 |
 | `service/products/registry.py` (신규) | 등록 오케스트레이션 · CRU — P3 |
 | `service/products/scaffold.py` (신규) | 골격 복사 **화이트리스트** · 카드 렌더 · 채번 — P3 |
 | `service/products/validate.py` (신규) | 사전 검증 7종 · 도메인 예외 — P3 |
 | `service/products/discover.py` (신규) | 미등록 레포 발견 — P3 |
 | `utils/slug.py` (신규) | 레포/제품 slug 파싱·정규화 (순수) — P3 |
+| **`api/schemas/products.py`** (신규) | **요청·응답 모델 (pydantic)** — HTTP 표면 — P3 |
 | `api/routers/products.py` (신규) | 엔드포인트 6 · 예외→HTTP 매핑 — P3 |
 | `main.py` | `include_router` 1줄 — P3 |
 | `app/front/app/admin/(panel)/projects/page.tsx` (신규) | 화면 — P4 |
@@ -170,6 +172,32 @@ links:
 
 **이 목록은 코드 상수이고 테스트가 고정한다.** 템플릿에 새 예시 문서가 추가될 때 복사 목록이 조용히 어긋나는 것이 이 발주의 가장 조용한 실패 모드다.
 
+### 계층과 DTO 배치
+
+규약 자체는 `40-architecture/system/README.md` 가 SoT 다. 이 발주에서 **어느 파일이 어느 계층인지**만 고정한다.
+
+```text
+api/schemas/products.py     요청·응답 (pydantic)      ← HTTP 표면
+api/routers/products.py     엔드포인트 · 예외→HTTP     ← select() 없음
+        ↕  도메인 DTO
+service/products/dto.py     도메인 DTO (pydantic)
+service/products/*.py       규칙 · 오케스트레이션       ← HTTPException 없음, select() 없음
+        ↕  도메인 DTO
+repository/tracked_repos.py DB 접근                    ← ORM 이 여기서 끝난다
+        ↕  ORM
+core/models.py              TrackedRepo
+```
+
+**`sync_all` 이 ORM 을 밖으로 흘리던 것을 이번에 끊는다.** 지금 `enabled_repos()` 가 `list[TrackedRepo]` 를 돌려주고 `sync_all` 이 그 객체의 `last_fetched_at`·`last_error` 를 직접 대입한다. P2 에서 **repository 가 DTO 를 돌려주고, 상태 기록은 repository 메서드로** 바꾼다.
+
+| 종전 | 이후 |
+|---|---|
+| `enabled_repos(db) -> list[TrackedRepo]` | `repository.list_enabled(db) -> list[TrackedRepoDTO]` |
+| `repo.last_fetched_at = now` (ORM 직접 대입) | `repository.mark_synced(db, id, at)` |
+| `repo.last_error = f"{code}: {msg}"` | `repository.mark_failed(db, id, code, msg)` |
+
+**잔디 경로가 이 변경을 지난다.** `collect_git.py:91-101` 이 유일한 소비자이므로 회귀면이 좁지만, P2 검증에 회귀 항목을 둔 이유가 이것이다.
+
 ## Execution
 
 > **P1 이 맨 앞인 이유가 둘이다.** ① 스캐폴드가 읽을 카드 양식이 없으면 P3 가 형식을 지어내게 되고, 그 순간 SoT 가 둘이 된다(WORK-017 P1 이 같은 이유로 맨 앞이었다). ② 시드 매핑은 **정리된 뒤의** 제품 목록을 기준으로 해야 한다 — `kknaks-profile` 이 남아 있으면 `kknaks/kknaks_profile` 을 어디로 보낼지 코드가 정할 수 없다.
@@ -178,23 +206,31 @@ links:
 
 ### Phase 1 — 형식 SoT + 제품 트리 정리 (문서·파일)
 
-- **Status**: TODO
+- **Status**: DONE
 - **설명**: 카드 양식을 만들고, 제품 트리의 어긋남 셋을 정리한다. 코드 변경이 없어 배포도 마이그레이션도 필요 없다.
 - **작업**:
-  - [ ] `templates/product/showcase.md` 신설 — 로더 필수 7 필드 · 표시 필드 · **PDF 전용 블록은 "필요할 때 추가" 로 표시** · 본문 필수 3섹션 + 선택 4섹션 · `links.repo` 는 표시 전용이고 추적은 레지스트리 소유(DEC-014 D1)
-  - [ ] `products/kknaks-profile/showcase.md` → `products/kknaks-dev/showcase.md` (git mv) · 빈 디렉토리 삭제
-  - [ ] 회사 5개 디렉토리 삭제 — `centurion-charty`·`centurion-mso`·`linky`·`mediness`·`nexus`
-  - [ ] `products/README.md` 제품 목록 정정 — 정리 후 13개 기준
-  - [ ] 제품 README 3곳 `Remote: TBD` → 실제 값 (`ax-knowledge-graph`=`kknaks/ax-graph` · `mini-game`=`kknaks/lunch_game` · `mac-remote`=`kknaks/mac-remote`)
-  - [ ] `agent.md` 「별도 계열」에 showcase 템플릿 등록 (daily·career 와 같은 형태)
+  - [x] `templates/product/showcase.md` 신설 — 로더 필수 7 필드 · 표시 필드 · **PDF 전용 블록은 "필요할 때 추가" 로 표시** · 본문 필수 3섹션 + 선택 4섹션 · `links.repo` 는 표시 전용이고 추적은 레지스트리 소유(DEC-014 D1)
+  - [x] `products/kknaks-profile/showcase.md` → `products/kknaks-dev/showcase.md` (git mv) · 빈 디렉토리 삭제
+  - [x] 회사 5개 디렉토리 삭제 — `centurion-charty`·`centurion-mso`·`linky`·`mediness`·`nexus`
+  - [x] `products/README.md` 제품 목록 정정 — 정리 후 13개 기준
+  - [x] 제품 README 3곳 `Remote: TBD` → 실제 값 (`ax-knowledge-graph`=`kknaks/ax-graph` · `mini-game`=`kknaks/lunch_game` · `mac-remote`=`kknaks/mac-remote`)
+  - [x] `agent.md` 「별도 계열」에 showcase 템플릿 등록 (daily·career 와 같은 형태)
 - **검증**:
-  - [ ] `product_doc_pipeline.py --strict` 통과 — **빈 디렉토리가 남지 않았다**
-  - [ ] 부팅 그래프 검증 ERROR 0
-  - [ ] `/api/projects` 모집단 13 → 8, **`visible:true` 6개는 그대로** (화면 무변경)
-  - [ ] `/api/print` 포트폴리오 PDF 대상이 안 줄었다 (`visible` 기준이라 동일)
-  - [ ] `id: P-02` 가 유지된다 (경로만 바뀌었다)
-  - [ ] `products/kknaks-profile` 참조가 레포에 0건
-- **완료 증거**: 미작성
+  - [x] `product_doc_pipeline.py --strict` 통과 — **빈 디렉토리가 남지 않았다**
+  - [x] 부팅 그래프 검증 ERROR 0
+  - [x] `/api/projects` 모집단 13 → 8, **`visible:true` 6개는 그대로** (화면 무변경)
+  - [x] `/api/print` 포트폴리오 PDF 대상이 안 줄었다 (`visible` 기준이라 동일)
+  - [x] `id: P-02` 가 유지된다 (경로만 바뀌었다)
+  - [x] `products/kknaks-profile` 참조가 레포에 0건
+- **완료 증거**:
+  - `templates/product/showcase.md` 신설. **같은 디렉토리의 다른 템플릿과 형태가 다르다** — `baseline.md` 등은 손으로 복사하는 골격이지만 showcase 는 등록 화면이 입력값으로 **렌더**하므로, `templates/persona/daily.md`·`career.md` 와 같은 **형식 SoT 문서**로 썼다. 머리에 "이 파일은 복사 대상이 아니다" 를 못박아 D3 화이트리스트와 어긋나지 않게 했다.
+  - **템플릿에 담은 것 넷.** ① `id: P-NN` 채번이 코드 소유이고 **결번을 재사용하지 않는** 이유(자산 경로 `/assets/projects/P-NN/` 가 그 번호를 쓴다 — 재사용하면 과거 이미지가 새 프로젝트에 붙는다) ② **`category` 는 이 템플릿이 아니라 `persona/_meta.yaml` 이 소유한다**는 것과 어겼을 때의 결과(파일 하나가 아니라 persona 로드 전체 실패 → 사이트가 옛 데이터 서빙) ③ `links.repo` 는 표시 전용이고 추적은 레지스트리 소유(DEC-014 D1) ④ PDF 케이스 스터디 블록은 **새 카드에 넣지 않는다** — 빈 필드를 미리 깔면 "채워야 할 것" 과 "안 쓰기로 한 것" 이 구분되지 않는다.
+  - 제품 트리 정리 실측: **18개 → 12개**, showcase **13 → 8**. `git mv` 로 `P-02` 가 `products/kknaks-dev/showcase.md` 로 이동했고 회사 5개는 디렉토리째 제거했다(`showcase.md` 하나뿐이라 파일만 지우면 빈 디렉토리가 검증 에러가 된다).
+  - **로더 실측으로 무영향 확인**: `projects` 8건 로드 · `visible` **6건 그대로**(`P-02`·`P-03`·`P-04`·`P-05`·`P-06`·`P-10`) · `P-02` 경로가 `kknaks-dev/showcase.md` 로 바뀐 것 확인 · 그래프 **nodes 284 / ERROR 0 / WARN 0** · 빈 디렉토리 0. `visible` 이 안 줄었으므로 `/api/projects` 와 포트폴리오 PDF 양쪽에 **화면 변화가 없다.**
+  - `products/kknaks-profile` 경로를 가리키는 살아 있는 참조 0건. 남은 문자열은 WORK-004 의 과거 기록과 무관한 User-Agent 뿐이다.
+  - `products/README.md` 를 **9행 → 12행**으로 맞추고, 갱신 주체(D15)와 **회사 제품이 여기 없는 이유**(D9 — 회사 레포는 문서 트리도 카드도 없이 레지스트리에만 산다)를 명시했다.
+  - `agent.md` 「별도 계열」이 셋 → **넷**. 카드가 제품 문서와 같은 폴더에 있으면서 **성격이 반대**라는 것(내부 결정 vs 공개 한 장)과, 그래서 그래프 노드가 아니라는 것을 적었다.
+  - 스캐폴드가 읽을 양식과 시드가 기준 삼을 목록이 둘 다 확정됐다 — **P2 의 전제가 닫혔다.**
 
 ### Phase 2 — 스키마 + repository 계층 (BE)
 
@@ -203,8 +239,10 @@ links:
 - **작업**:
   - [ ] `alembic/versions/0009_*.py` — `tracked_repos.product_slug` nullable 추가
   - [ ] `core/models.py` — `TrackedRepo` 컬럼
-  - [ ] **`repository/` 신설** — `tracked_repos.py` 에 조회·생성·수정·클론상태 갱신. `select()` 가 사는 유일한 자리
+  - [ ] **`service/products/dto.py`** — 도메인 DTO(pydantic). `TrackedRepoDTO` 가 계층을 넘는 유일한 형태
+  - [ ] **`repository/` 신설** — `tracked_repos.py` 에 조회·생성·수정·클론상태 갱신. `select()` 가 사는 유일한 자리이고 **ORM → DTO 변환을 여기서 끝낸다**
   - [ ] `service/jobs/repo_registry.py`·`repos.py` 의 **기존 `select()` 를 repository 로 옮긴다** — 이 도메인은 이번에 만지므로 규약 ②에 해당한다
+  - [ ] `sync_all` 의 **ORM 직접 대입을 `mark_synced`/`mark_failed` 로 교체** — ORM 이 계층 밖으로 새던 자리다
   - [ ] `app/scripts/seed_repo_registry.py` — 기존 13행에 `product_slug` 매핑 + **신규 4행 추가**(`ax-graph`·`gcs_demo`·`lunch_game`·`mac-remote`, 전부 studio·personal)
 - **검증**:
   - [ ] `alembic check` 드리프트 없음 (`test_models_and_migrations_agree`)
@@ -212,6 +250,7 @@ links:
   - [ ] `kknaks/kknaks_profile` → `kknaks-dev` (P1 통합 결과)
   - [ ] **잔디 경로 회귀 없음** — `collect_git` 가 17개를 조사하고 `career_map` 이 종전과 같다
   - [ ] `repository` 밖에서 `TrackedRepo` 를 `select()` 하는 코드가 없다 (테스트로 고정)
+  - [ ] **`repository` 밖으로 ORM 객체가 나가지 않는다** — 반환 타입이 전부 DTO 다
 - **완료 증거**: 미작성
 
 ### Phase 3 — service + API (BE)
@@ -242,6 +281,7 @@ links:
 
 - **작업**:
   - [ ] `service/products/discover.py` — 계정·조직 레포 목록 → `owner`·`fork`·`archived` 필터 → 레지스트리 diff
+  - [ ] **`api/schemas/products.py`** — 요청·응답 pydantic. **도메인 DTO 와 별개 클래스다**
   - [ ] `api/routers/products.py` — 엔드포인트 6 · 도메인 예외 → HTTP 매핑(`_gate_error` 형태)
   - [ ] 목록 응답의 파생 둘 — 제품 디렉토리 실재 여부 · 카드 노출 값(읽기 전용). **DB 에 저장하지 않는다**
   - [ ] `main.py` 라우터 등록
@@ -253,6 +293,7 @@ links:
   - [ ] 잘못된 레포 등록 시 `last_error` 에 사유 코드가 남는다
   - [ ] **라우터에 `select()` 가 없다** (계층 규약 테스트)
   - [ ] service 가 `HTTPException` 을 던지지 않는다
+  - [ ] **응답 모델과 도메인 DTO 가 별개 클래스다** — 라우터가 DTO 를 그대로 반환하지 않는다
 - **완료 증거**: 미작성
 
 ### Phase 4 — 화면 (FE)
