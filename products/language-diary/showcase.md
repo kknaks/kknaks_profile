@@ -21,7 +21,7 @@ stack:
   - OpenAI
   - ElevenLabs
   - Docker
-visible: true
+visible: false
 thumbnail: /assets/projects/P-05/cover.png
 links:
   repo: "github.com/kknaks/language_diary"
