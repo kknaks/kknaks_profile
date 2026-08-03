@@ -12,7 +12,7 @@ category: backend
 status: wip
 date: "2026.06"
 stack: []
-visible: false
+visible: true
 links:
   repo: "github.com/kknaksss/mykakao"
 # 포트폴리오 PDF 케이스 스터디 (planning-02 §3.3) — 비면 PDF 에 미표시.
