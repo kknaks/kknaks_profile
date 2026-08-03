@@ -39,7 +39,14 @@ def output_path(document: CaptureDocument, context: RenderContext) -> Path:
     else:
         if context.group not in context.allowed_groups:
             raise CaptureValidationError(f"unknown reference group: {context.group}")
-        relative = Path("reference") / context.group / f"{date}-{document.slug}.md"
+        # **flat 이다.** 종전에는 `reference/{group}/` 이었는데 WORK-005/013 이 층을
+        # flat 으로 바꾼 뒤로도 여기만 남아 있었다 — 로더가 `*.md` 를 **재귀 없이**
+        # 훑으므로 하위 폴더에 쓰면 그 노트가 **아예 안 읽힌다.** 롤백 경로라 실행될
+        # 일이 드물어 드러나지 않았다 (KDEV-WORK-019 에서 발견).
+        #
+        # `group` 검사는 남긴다 — 경로에는 안 쓰이지만 입력이 알려진 값인지 보는
+        # 방어로는 여전히 쓸모가 있다.
+        relative = Path("resources") / "source" / f"{date}-{document.slug}.md"
     path = (root / relative).resolve()
     if not path.is_relative_to(root):
         raise CaptureValidationError("output path escapes repository")

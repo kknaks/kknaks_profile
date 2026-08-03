@@ -36,14 +36,14 @@ def _normalize_date(d: Any) -> str:
 
 
 def _auto_enrich_note(data: dict, path: Path, persona_dir: Path) -> None:
-    """`reference/` 의 .md 에 type/id 자동 채움 (frontmatter 있으면 그대로).
+    """`resources/source/` 의 .md 에 type/id 자동 채움 (frontmatter 있으면 그대로).
 
     **flat 이다.** 하위 디렉토리로 나누지 않는다 — 분류는 폴더가 아니라 개념 링크가
     한다(`permanent/concept/` 와 같은 규칙). 종전에는 `reference/{cluster}/` 였고
     그 cluster 가 `persona/_meta.yaml` 과 이중 SoT 를 이뤄 디렉토리를 바꿀 때마다
     두 곳을 고쳐야 했다.
     """
-    reference_dir = persona_dir.parent / "reference"
+    reference_dir = persona_dir.parent / "resources" / "source"
     try:
         rel = path.relative_to(reference_dir)
     except ValueError:
@@ -120,9 +120,11 @@ def load_persona(persona_dir: Path) -> dict[str, Any]:
     projects = _load_products_showcase(persona_dir.parent / "products")
     # notes 는 루트 `reference/` 에서 flat 으로 로드한다 (persona/notes 폐지).
     # dict 키 "notes" 불변 → /api/notes·graph·edges·FE 무변경. type=reference auto-enrich.
-    notes_list = _load_reference_notes(persona_dir.parent / "reference", persona_dir)
+    notes_list = _load_reference_notes(
+        persona_dir.parent / "resources" / "source", persona_dir
+    )
     # KDEV-WORK-010 — permanent(영구노트, flat) 를 그래프 노드로 배선. 빈 permanent → [].
-    permanent_list = _load_permanent_notes(persona_dir.parent / "permanent")
+    permanent_list = _load_permanent_notes(persona_dir.parent)
     contents = _load_dir(persona_dir / "contents", persona_dir)
     contents.sort(key=lambda c: c.get("id", ""), reverse=True)
     daily = _load_dir(persona_dir / "daily")
@@ -227,7 +229,7 @@ def _build_graph_nodes(
             "up": n.get("up"),
             "aliases": n.get("aliases"),
             "archived": bool(n.get("archived", False)),
-        }, f"permanent/{stem}")
+        }, f"{n['_path'].parent.name}/{stem}")
 
     # products/**/*.md — 노드 자격 = frontmatter `type` 보유 (KDEV-WORK-002 Phase 2).
     # type 없는 navigational/legal 파일(README/log/privacy/support)은 노드가 아니다.
@@ -290,12 +292,12 @@ def validate_persona(data: dict[str, Any]) -> None:
             )
 
     for nid, n in data["notes"].items():
-        _check_required(n, "reference", f"reference/{nid}.md")
+        _check_required(n, "reference", f"resources/source/{nid}.md")
         # spec-01 §6.1: reference id == 파일 slug
         path: Path = n["_path"]
         if path.stem != nid:
             raise PersonaError(
-                f"reference/{path.name}: frontmatter id '{nid}' != filename slug '{path.stem}'"
+                f"resources/source/{path.name}: frontmatter id '{nid}' != filename slug '{path.stem}'"
             )
 
     # KDEV-WORK-010 — permanent(종합) + KDEV-WORK-013 — concept(원자 개념).
@@ -303,8 +305,8 @@ def validate_persona(data: dict[str, Any]) -> None:
     for n in data.get("permanent", []):
         category = n.get("type") if n.get("type") in REQUIRED_FIELDS else "permanent"
         ppath: Path = n["_path"]
-        label = f"permanent/{ppath.parent.name}/{ppath.name}" if ppath.parent.name == "concept" \
-            else f"permanent/{ppath.name}"
+        # 층 폴더 이름을 그대로 라벨에 쓴다 — 오류 메시지가 실제 경로와 같아야 한다.
+        label = f"{ppath.parent.name}/{ppath.name}"
         _check_required(n, category, label)
         if ppath.stem != n["id"]:
             raise PersonaError(
@@ -476,7 +478,7 @@ def _load_dir(
 
 
 def _load_reference_notes(reference_dir: Path, persona_dir: Path) -> list[dict]:
-    """`reference/*.md` → note dict 리스트. **flat 이다.**
+    """`resources/source/*.md` → note dict 리스트. **flat 이다.**
 
     `README.md`(navigational)는 `_auto_enrich_note` 가 걸러 낸다.
     """
@@ -493,10 +495,14 @@ def _enrich_permanent(data: dict, path: Path) -> dict:
     """permanent 노트 enrich — type·id=stem·title 주입(frontmatter 존중).
 
     KDEV-WORK-010. reference 와 같은 flat 구조.
-    archived = `archive` 경로 안 (permanent/archive/) 또는 frontmatter archived:true.
+    archived = `archive` 경로 안 (최상위 `archive/`) 또는 frontmatter archived:true.
 
-    KDEV-WORK-013 — `permanent/concept/` 아래면 기본 type 이 `concept`(원자 개념)다.
+    KDEV-WORK-013 — `concept` 디렉토리 아래면 기본 type 이 `concept`(원자 개념)다.
     디렉토리가 층을 1차 결정한다는 원칙(KDEV-SPEC-001 §5)을 로더에서 구현한 것.
+
+    **KDEV-WORK-019 이관 후에도 이 판정은 그대로다.** `resources/concept/` 와
+    `archive/` 가 여전히 `path.parts` 에 그 이름을 남기기 때문이다 — 경로 전체가
+    아니라 조각을 보는 구현이라 이동에 견딘다.
     """
     default_type = "concept" if "concept" in path.parts else "permanent"
     data.setdefault("type", default_type)
@@ -506,20 +512,26 @@ def _enrich_permanent(data: dict, path: Path) -> dict:
     return data
 
 
-def _load_permanent_notes(permanent_dir: Path) -> list[dict]:
-    """permanent/*.md (flat 영구노트) → note dict 리스트 (KDEV-WORK-010, WORK-005 미러).
+def _load_permanent_notes(repo_root: Path) -> list[dict]:
+    """개념·종합 노트 → note dict 리스트 (KDEV-WORK-010 · KDEV-WORK-019 경로 이관).
 
-    persona_dir 밖(레포 루트). group 개념 없음.
-      - `permanent/*.md`         → type=permanent (종합 판단, KDEV-SPEC-001 층 `synthesis`)
-      - `permanent/concept/*.md` → type=concept   (원자 개념, 층 `concept`) — KDEV-WORK-013
-      - `permanent/archive/*.md` → archived=true  (permanent·concept 공용 상태)
-    각 디렉토리의 `README.md`(navigational, WORK-003 scaffold) 는 제외. 빈 permanent → [].
+    레포 루트를 받아 아래 셋을 훑는다. **폴더 이름은 층 이름**이고 `type` 이름과
+    다른 것은 의도다(KDEV-DEC-018 D1) — 폴더는 층을, `type` 은 frontmatter 계약을
+    가리켜 축이 다르다.
+      - `resources/concept/*.md`   → type=concept   (원자 개념, 층 `concept`)
+      - `resources/synthesis/*.md` → type=permanent (종합 판단, 층 `synthesis`)
+      - `archive/*.md`             → archived=true  (**층이 아니라 상태**라 최상위)
+    각 디렉토리의 `README.md`(navigational, WORK-003 scaffold) 는 제외. 빈 층 → [].
     auto-enrich 비대상이라 `_load_md(p, None)` 로 로드 후 `_enrich_permanent` 직접 주입.
     """
-    if not permanent_dir.is_dir():
+    if not repo_root.is_dir():
         return []
     out: list[dict] = []
-    for sub in (permanent_dir, permanent_dir / "concept", permanent_dir / "archive"):
+    for sub in (
+        repo_root / "resources" / "concept",
+        repo_root / "resources" / "synthesis",
+        repo_root / "archive",
+    ):
         if not sub.is_dir():
             continue
         for p in sorted(sub.glob("*.md")):

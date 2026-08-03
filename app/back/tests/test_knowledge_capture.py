@@ -100,7 +100,8 @@ def test_reference_render_contract_and_candidate_filter(tmp_path):
     document = parse_document(_reference(), known_stems={"known-note"})
     rendered = render_document(document, _context(tmp_path, group="ai_skills"))
     assert len(document.connection_candidates) == 1
-    assert "reference/ai_skills/2026-07-02-agent-memory-paper.md" == (
+    # flat — `group` 은 검증에만 쓰이고 경로에는 안 들어간다 (KDEV-WORK-019).
+    assert "resources/source/2026-07-02-agent-memory-paper.md" == (
         output_path(document, _context(tmp_path, group="ai_skills")).relative_to(tmp_path).as_posix()
     )
     headings = [

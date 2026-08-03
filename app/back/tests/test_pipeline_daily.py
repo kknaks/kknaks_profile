@@ -296,7 +296,7 @@ class TestParse:
         concepts = stage.parse(reply, _request())["concepts"]
         assert [c["stem"] for c in concepts] == ["ok"]
         assert concepts[0]["mode"] == "supplement"
-        assert concepts[0]["target_path"] == "permanent/concept/ok.md"
+        assert concepts[0]["target_path"] == "resources/concept/ok.md"
 
     def test_fenced_json_is_accepted(self, repo):
         stage = _stage(FakeClient(), repo)

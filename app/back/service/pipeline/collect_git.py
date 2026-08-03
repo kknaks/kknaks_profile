@@ -152,10 +152,10 @@ class GitCollect:
     def _counts_from_repo(self, target: date) -> tuple[int, int]:
         """노트·교안 변경 수. **커밋만 활동이 아니다**(SPEC-011 S-5 3항).
 
-        프로필 레포 자신의 작업트리에서 읽는다 — 그날 `reference/` 와
+        프로필 레포 자신의 작업트리에서 읽는다 — 그날 `resources/source/` 와
         `persona/contents/` 에 무엇이 바뀌었는지는 여기 있고, bare 클론에는 없다.
         """
-        notes = read_changed_files_today("reference/", target, self.repo_root)
+        notes = read_changed_files_today("resources/source/", target, self.repo_root)
         contents = read_changed_files_today("persona/contents/", target, self.repo_root)
         return len(notes), len(contents)
 

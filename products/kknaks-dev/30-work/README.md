@@ -36,6 +36,18 @@
                                                      (코드 Phase 셋 닫힘 — 남은 것은 화면과 배포)
 ```
 
+지식층 재편 트랙 (BL-006):
+
+```
+013 concept 층 ✅ ─→ 019 디렉토리 이관
+                      P1 이동 + 코드 (atomic)  ← 위험 전부가 여기 있다
+                        → P2 문서 정합 → P3 「양식 원천」 → P4 배포·부팅
+```
+
+- **P1 이 원자적인 이유가 둘이다.** 파일과 코드가 다른 커밋에 들어가면 그 사이에서 로더가 없는 경로를 보고 **부팅이 막히고**(DEC-018 D9), 되돌릴 때도 한 커밋이라야 원상태가 된다. WORK-004 가 `projects → products/showcase` 를 같은 이유로 atomic 하게 했다.
+- **문서를 코드보다 뒤에 둔다** — 반대면 문서가 아직 없는 경로를 가리키는 구간이 생긴다.
+- **마이그레이션 0건이다.** 지식층은 파일 SoT 라 DB 를 안 건드린다.
+
 제품 레지스트리 트랙 (BL-005):
 
 ```
@@ -81,7 +93,8 @@
 | WORK-016 | 비동기 실행 + 진행 표시 UI (제출/수확 분리·완료 대기·진행 표시) | BE+FE | done | SPEC-008·009 | 015 | `work-016-async-execution-and-progress-ui.md` |
 | WORK-015 | 유튜브 체인 완성 + Apply Executor (source_note·concept·derived + 원자적 발행) | BE+FE | doing 80% (BE·FE 전부 done, 실전 e2e 만 남음) | SPEC-008·010·004 | 014 | `work-015-youtube-chain-and-executor.md` |
 | WORK-017 | 잔디 커밋 파이프라인 — 형식 SoT·준비부 일반화·더미 collect·발행부·화면·진짜 git 수집 (5 phase) | BE+FE+Ops | **done (2026-08-03)** — 서버 하루치 실 push 완주(`a8c44b4`). 로컬 e2e 가 결함 10건을 꺼내 9건 수정, 818 passed | SPEC-011·012·013·010 | 016 | `work-017-grass-commit-pipeline.md` |
-| WORK-018 | 제품 레지스트리 — 형식 SoT+트리 정리 · `product_slug` 컬럼 + **`repository/` 계층 신설** · 결정적 스캐폴딩 · 미등록 발견 · 관리 화면 (5 phase) | BE+FE+Ops | **todo (2026-08-03 발주)** | SPEC-014·011·001 | 017 | `work-018-product-registry-admin.md` |
+| WORK-019 | 지식층 디렉토리 이관 — `resources/{source,concept,synthesis}/` · `archive/` 최상위 · 「양식 원천」 명칭 전환 (4 phase) | BE+문서+Ops | **todo (2026-08-03 발주)** | SPEC-001·005 | 013 | `work-019-resources-layout-migration.md` |
+| WORK-018 | 제품 레지스트리 — 형식 SoT+트리 정리 · `product_slug` 컬럼 + **`repository/` 계층 신설** · 결정적 스캐폴딩 · 미등록 발견 · 관리 화면 (5 phase) | BE+FE+Ops | **done (2026-08-03)** — 배포·시드 17행·클론 295MB 완주. 로컬 e2e 가 결함 4건을 꺼냈고 **서버에서 "한 달 57건 누락" 이 재현됐다**. 887 passed | SPEC-014·011·001 | 017 | `work-018-product-registry-admin.md` |
 
 ## Status Board
 
@@ -89,7 +102,8 @@
 |---|---|---|
 | 지식그래프 (BL-001) | WORK-001~010 done | — |
 | 앱 DB화 (BL-002) | WORK-011 done | admin 실제 관리 기능 → **WORK-018 이 첫 사례** |
-| 제품 레지스트리 (BL-005) | **018 todo (발주 2026-08-03)** — BL-005 · DEC-017(D1~D17, OQ 0) · SPEC-014 · 40-arch 계층 규약 | **P1 착수** — `templates/product/showcase.md` + 제품 트리 정리(코드 0줄) |
+| 제품 레지스트리 (BL-005) | **018 done (2026-08-03)** — P1~P5 완주. `repository/` 계층 신설이 규약의 첫 적용 | 관측 3건(시드 자동화·서버 실 등록·잔디)만 Open Issue |
+| PARA 정렬 (BL-006) | BL-006 · DEC-018(D1~D9) · **SPEC-001 v0.0.6 · SPEC-005 v0.0.4 개정 완료** | **WORK-019 착수** — P1 atomic 이동(선행: 절대경로 전수 검사) |
 | 승인 파이프라인 (BL-003) | **012·013 done** · 014~015 todo | **014 착수** (큐 + route 게이트) → 015 |
 | 잔디 파이프라인 (BL-004) | **017 in_progress 50%** — P1 형식 SoT done · **P2 done**(레일·더미 `collect`·`investigate`·`daily` 게이트 작성·실배선 + 접수 진입점 `daily:{date}` 합성 키·백필·`auto:false`/미래 날짜 차단) · **P3 done**(발행 허용 2경로·`upsert`·그래프 검증 제외·보호 검증 둘, `publish_atomic` 은 자동 달성). **737 passed** | P4 — 게이트 화면 + 더미 한 바퀴 완주(dry-run). 착수 전 Open Issue 「활동 0 차단 위치」 결정. ⚠ **이 갱신 직후 `8c2aa7a`(P4 승인 화면)가 들어왔다 — 아직 문서에 미반영** |
 
@@ -97,7 +111,8 @@
 
 | Spec | Covering Work | 구현 상태 |
 |---|---|---|
-| SPEC-014 제품 레지스트리 | WORK-**018** | **발주 (todo, 2026-08-03)** — P1 형식 SoT(`templates/product/showcase.md`) + 제품 트리 정리(`kknaks-profile`→`kknaks-dev` 통합·회사 5개 삭제·README 정정) / P2 `product_slug` 컬럼 + **`repository/` 계층 신설**(계층 규약 첫 적용) + 17행 시드 / P3 service+API(스캐폴드 화이트리스트·사전 검증 7종·커밋 1개+롤백·미등록 발견) / P4 화면 / P5 배포+실운영. **관측 대상이 화면이 아니라 잔디다** — 신규 레포 커밋이 그날 `counts` 에 잡혀야 "한 달 57건 누락" 이 닫힌다 |
+| SPEC-001 디렉토리 (v0.0.6) · SPEC-005 (v0.0.4) | WORK-**019** | **발주 (todo, 2026-08-03)** — `resources/{source,concept,synthesis}/` + `archive/` 최상위. spec 은 이미 개정됐고 **코드·파일이 아직 옛 구조**라 지금은 문서가 앞서 있다. P1 atomic 이동이 그 간극을 닫는다 |
+| SPEC-014 제품 레지스트리 | WORK-**018** | **done (2026-08-03)** — 수용조건 14 중 11 검증, 3은 관측 대기(Open Issue). 원 계획: P1 형식 SoT(`templates/product/showcase.md`) + 제품 트리 정리(`kknaks-profile`→`kknaks-dev` 통합·회사 5개 삭제·README 정정) / P2 `product_slug` 컬럼 + **`repository/` 계층 신설**(계층 규약 첫 적용) + 17행 시드 / P3 service+API(스캐폴드 화이트리스트·사전 검증 7종·커밋 1개+롤백·미등록 발견) / P4 화면 / P5 배포+실운영. **관측 대상이 화면이 아니라 잔디다** — 신규 레포 커밋이 그날 `counts` 에 잡혀야 "한 달 57건 누락" 이 닫힌다 |
 | SPEC-001 디렉토리 | WORK-003·004·005·006·010·**013** | 003~010 done / **013 — 4층 매핑 + `permanent/concept/` 실재화 done** |
 | SPEC-002 스키마 | WORK-001·002·**013** | 001·002 done / **013 — `layer` 도출·type enum 재편·rank 반전 done** |
 | SPEC-003 워크플로 | WORK-003·010·**013** (+강제: 001·007) | 003·007·010 done / **013 — 4층 생명주기 규칙 문서화(`rules/knowledge-note-pipeline.md`) done** |

@@ -38,7 +38,7 @@ tags:
 **이 섹션이 살아 있는 한 이 노트는 계속 자란다.** 비어 있으면 대개 덜 판단한 것이다.>
 
 <!--
-경로: permanent/{slug}.md (flat)
+경로: resources/synthesis/{slug}.md (flat)
 
 `up:` 대상은 **concept** 다. reference 를 직접 up 하지 않는다 —
   자료에서 개념을 거쳐 판단으로 오는 것이 4층 모델의 방향이다.
@@ -48,7 +48,7 @@ tags:
 
 개념이 새로 들어오면 이 노트의 판단이 낡을 수 있다. 그때 다시 쓴다.
 
-안 쓰게 되면 permanent/archive/ 로 내린다(파일명 유지 → inbound 링크 보존).
+안 쓰게 되면 archive/ 로 내린다(파일명 유지 → inbound 링크 보존).
 
 검증: `up` 누락은 L2 ERROR. `up` 의 stem 이 본문 `[[]]` 에 없으면 L3 ERROR.
 -->

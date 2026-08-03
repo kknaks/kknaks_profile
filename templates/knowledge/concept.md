@@ -48,7 +48,7 @@ tags:
 - [[<reference stem>]] — <그 자료가 이 개념에 대해 말한 것 한 줄>
 
 <!--
-경로: permanent/concept/{slug}.md — **flat**. 하위 디렉토리를 두지 않는다
+경로: resources/concept/{slug}.md — **flat**. 하위 디렉토리를 두지 않는다
       (개념은 분류 트리가 아니라 링크 그래프로 조직된다).
 
 입도 판단: 다른 자료·다른 맥락에서 이 개념만 따로 등장할 수 있으면 별개 개념이다.

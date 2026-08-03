@@ -49,7 +49,7 @@ up:
 def _action(**kw) -> FileAction:
     base = dict(
         action="create",
-        path="reference/study/2026-07-28-sample-source.md",
+        path="resources/source/2026-07-28-sample-source.md",
         content=REFERENCE_MD,
         note_type="reference",
         stem="2026-07-28-sample-source",
@@ -60,8 +60,8 @@ def _action(**kw) -> FileAction:
 
 @pytest.fixture
 def repo(tmp_path: Path) -> Path:
-    (tmp_path / "reference/study").mkdir(parents=True)
-    (tmp_path / "permanent/concept").mkdir(parents=True)
+    (tmp_path / "resources/source").mkdir(parents=True)
+    (tmp_path / "resources/concept").mkdir(parents=True)
     return tmp_path
 
 
@@ -72,7 +72,7 @@ class TestBuildActions:
                 "source_note": {
                     "filename_stem": "2026-07-28-a-b",
                     "content": REFERENCE_MD,
-                    "target_path": "reference/study/2026-07-28-a-b.md",
+                    "target_path": "resources/source/2026-07-28-a-b.md",
                 },
                 "concept": {
                     "concepts": [
@@ -80,14 +80,14 @@ class TestBuildActions:
                             "stem": "c-one",
                             "mode": "create",
                             "content": CONCEPT_MD,
-                            "target_path": "permanent/concept/c-one.md",
+                            "target_path": "resources/concept/c-one.md",
                             "excluded": False,
                         },
                         {
                             "stem": "c-two",
                             "mode": "supplement",
                             "content": CONCEPT_MD,
-                            "target_path": "permanent/concept/c-two.md",
+                            "target_path": "resources/concept/c-two.md",
                             "excluded": False,
                         },
                     ]
@@ -107,14 +107,14 @@ class TestBuildActions:
                             "stem": "kept",
                             "mode": "create",
                             "content": CONCEPT_MD,
-                            "target_path": "permanent/concept/kept.md",
+                            "target_path": "resources/concept/kept.md",
                             "excluded": False,
                         },
                         {
                             "stem": "dropped",
                             "mode": "create",
                             "content": CONCEPT_MD,
-                            "target_path": "permanent/concept/dropped.md",
+                            "target_path": "resources/concept/dropped.md",
                             "excluded": True,
                         },
                     ]
@@ -132,7 +132,7 @@ class TestPathAllowlist:
             ".github/workflows/deploy.yml",
             "../outside.md",
             "/etc/passwd.md",
-            "reference/../../escape.md",
+            "resources/source/../../escape.md",
             "products/kknaks-dev/log.md",
         ],
     )
@@ -142,7 +142,7 @@ class TestPathAllowlist:
         assert violations and violations[0].rule in ("PATH_NOT_ALLOWED", "PATH_SHAPE")
 
     def test_non_markdown_rejected(self, repo):
-        assert validate_plan([_action(path="reference/study/x.txt")], repo_root=repo)
+        assert validate_plan([_action(path="resources/source/x.txt")], repo_root=repo)
 
     def test_duplicate_path_in_one_publish_rejected(self, repo):
         violations = validate_plan([_action(), _action()], repo_root=repo)
@@ -151,9 +151,9 @@ class TestPathAllowlist:
 
 class TestLayerPathMatch:
     def test_concept_outside_concept_dir_rejected(self, repo):
-        """개념이 `reference/` 에 들어가면 로더가 다른 타입으로 읽는다."""
+        """개념이 `resources/source/` 에 들어가면 로더가 다른 타입으로 읽는다."""
         violations = validate_plan(
-            [_action(path="reference/study/x.md", content=CONCEPT_MD, note_type="concept")],
+            [_action(path="resources/source/x.md", content=CONCEPT_MD, note_type="concept")],
             repo_root=repo,
         )
         assert any(v.rule == "LAYER_PATH_MISMATCH" for v in violations)
@@ -162,7 +162,7 @@ class TestLayerPathMatch:
         violations = validate_plan(
             [
                 _action(
-                    path="permanent/concept/x.md",
+                    path="resources/concept/x.md",
                     content="---\ntype: permanent\nup:\n  - a\n---\n[[a]]",
                     note_type="permanent",
                     stem="x",
@@ -234,7 +234,7 @@ class TestUpAndDuplicates:
         violations = validate_plan(
             [
                 _action(
-                    path="permanent/concept/x.md",
+                    path="resources/concept/x.md",
                     content=content,
                     note_type="concept",
                     stem="x",
@@ -245,7 +245,7 @@ class TestUpAndDuplicates:
         assert any(v.rule == "MISSING_UP" for v in violations)
 
     def test_creating_over_existing_file_rejected(self, repo):
-        (repo / "reference/study/2026-07-28-sample-source.md").write_text("기존", encoding="utf-8")
+        (repo / "resources/source/2026-07-28-sample-source.md").write_text("기존", encoding="utf-8")
         violations = validate_plan([_action()], repo_root=repo)
         assert any(v.rule == "ALREADY_EXISTS" for v in violations)
 
@@ -261,7 +261,7 @@ class TestUpAndDuplicates:
             [
                 _action(
                     action="replace",
-                    path="permanent/concept/gone.md",
+                    path="resources/concept/gone.md",
                     content=CONCEPT_MD,
                     note_type="concept",
                     stem="gone",
@@ -278,7 +278,7 @@ class TestUpAndDuplicates:
         actions = [
             _action(),
             _action(
-                path="permanent/concept/sample-concept.md",
+                path="resources/concept/sample-concept.md",
                 content=CONCEPT_MD,
                 note_type="concept",
                 stem="sample-concept",
@@ -293,7 +293,7 @@ class TestVirtualGraph:
         return [
             _action(),
             _action(
-                path="permanent/concept/sample-concept.md",
+                path="resources/concept/sample-concept.md",
                 content=CONCEPT_MD,
                 note_type="concept",
                 stem="sample-concept",
@@ -327,7 +327,7 @@ class TestVirtualGraph:
     def test_concept_without_source_is_blocked(self):
         """`up:` 대상이 없으면 L1 이 잡는다 — 계보가 거짓이 된다."""
         lonely = _action(
-            path="permanent/concept/x.md", content=CONCEPT_MD, note_type="concept", stem="x"
+            path="resources/concept/x.md", content=CONCEPT_MD, note_type="concept", stem="x"
         )
         assert check_graph({}, [lonely])
 
@@ -347,8 +347,8 @@ def git_repo_with_dirs(tmp_path: Path) -> Path:
     run("git", "init", "-b", "main")
     run("git", "config", "user.email", "t@example.com")
     run("git", "config", "user.name", "t")
-    (tmp_path / "reference/study").mkdir(parents=True)
-    (tmp_path / "permanent/concept").mkdir(parents=True)
+    (tmp_path / "resources/source").mkdir(parents=True)
+    (tmp_path / "resources/concept").mkdir(parents=True)
     (tmp_path / "seed.md").write_text("seed", encoding="utf-8")
     run("git", "add", "-A")
     run("git", "commit", "-m", "seed")
@@ -475,7 +475,7 @@ class TestApplyItem:
                 {
                     "filename_stem": "2026-07-28-sample-source",
                     "content": REFERENCE_MD,
-                    "target_path": "reference/study/2026-07-28-sample-source.md",
+                    "target_path": "resources/source/2026-07-28-sample-source.md",
                 },
             ),
             (
@@ -487,7 +487,7 @@ class TestApplyItem:
                             "stem": "sample-concept",
                             "mode": "create",
                             "content": concept_content,
-                            "target_path": "permanent/concept/sample-concept.md",
+                            "target_path": "resources/concept/sample-concept.md",
                             "excluded": False,
                         }
                     ]
@@ -519,8 +519,8 @@ class TestApplyItem:
 
         assert outcome.ok, outcome.violations or outcome.error_message
         # dry_run 이라 커밋은 안 되지만 파일은 작업트리에 쓰인다.
-        assert (repo / "reference/study/2026-07-28-sample-source.md").exists()
-        assert (repo / "permanent/concept/sample-concept.md").exists()
+        assert (repo / "resources/source/2026-07-28-sample-source.md").exists()
+        assert (repo / "resources/concept/sample-concept.md").exists()
         assert head_ref(repo) == before
         assert item.status == "published"
 
@@ -539,8 +539,8 @@ class TestApplyItem:
         assert outcome.status == "rejected"
         assert any(v["rule"] == "MISSING_UP" for v in outcome.violations)
         # reference 는 멀쩡했지만 그것도 안 쓴다.
-        assert not (repo / "reference/study/2026-07-28-sample-source.md").exists()
-        assert not (repo / "permanent/concept/sample-concept.md").exists()
+        assert not (repo / "resources/source/2026-07-28-sample-source.md").exists()
+        assert not (repo / "resources/concept/sample-concept.md").exists()
         assert item.status == "publish_failed"
 
     async def test_retry_reuses_plan_without_ai(self, db, git_repo_with_dirs):
@@ -559,7 +559,7 @@ class TestApplyItem:
         plan.file_actions = [
             {
                 "action": "create",
-                "path": "reference/study/2026-07-28-sample-source.md",
+                "path": "resources/source/2026-07-28-sample-source.md",
                 "content": REFERENCE_MD,
                 "note_type": "reference",
                 "stem": "2026-07-28-sample-source",
@@ -567,7 +567,7 @@ class TestApplyItem:
             },
             {
                 "action": "create",
-                "path": "permanent/concept/sample-concept.md",
+                "path": "resources/concept/sample-concept.md",
                 "content": CONCEPT_MD,
                 "note_type": "concept",
                 "stem": "sample-concept",
@@ -599,5 +599,5 @@ class TestApplyItem:
 
         assert message.startswith(f"knowledge: publish item #{item.id}")
         assert "concept:1" in message and "reference:1" in message
-        assert "reference/study/2026-07-28-sample-source.md" in message
+        assert "resources/source/2026-07-28-sample-source.md" in message
         assert "https://youtu.be/applytest1" in message

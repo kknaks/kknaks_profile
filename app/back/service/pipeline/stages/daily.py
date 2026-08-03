@@ -278,7 +278,7 @@ def _concepts(value: Any) -> list[dict[str, Any]]:
                 # 같아야 승인 화면의 `ConceptList` 를 그대로 재사용할 수 있고,
                 # 발행부의 create/replace 분기도 한 규약으로 돈다.
                 "mode": "supplement" if entry.get("mode") == "supplement" else "create",
-                "target_path": f"permanent/concept/{stem}.md",
+                "target_path": f"resources/concept/{stem}.md",
             }
         )
     return out

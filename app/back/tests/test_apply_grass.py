@@ -178,7 +178,7 @@ class TestBuildActions:
                         "stem": "fan-out",
                         "content": "---\ntype: concept\nup: x\n---\n\n본문",
                         "mode": "new",
-                        "target_path": "permanent/concept/fan-out.md",
+                        "target_path": "resources/concept/fan-out.md",
                     }
                 ]
             ),
@@ -213,7 +213,7 @@ class TestValidate:
 
     def test_layer_mismatch_is_caught(self, repo):
         action = self._daily_action(repo)
-        action.path = "reference/2026-08-01.md"
+        action.path = "resources/source/2026-08-01.md"
         rules = {v.rule for v in validate_plan([action], repo_root=repo)}
         assert "LAYER_PATH_MISMATCH" in rules
 
@@ -287,7 +287,7 @@ class TestGraphExclusion:
             self._action("daily", "persona/daily/a.md", "---\ntype: daily\n---\n"),
             self._action("career", "persona/career/b.md", "---\ntype: career\n---\n"),
             self._action(
-                "concept", "permanent/concept/c.md", "---\ntype: concept\nup: x\n---\n"
+                "concept", "resources/concept/c.md", "---\ntype: concept\nup: x\n---\n"
             ),
         ]
         assert [a.note_type for a in graph_actions(actions)] == ["concept"]

@@ -11,3 +11,4 @@
 | KDEV-BL-003 | inbox 승인 게이트 파이프라인 + 원자 개념(concept) 층 | idea | accepted | DEC-010/011/012/013 | `baseline-003-inbox-approval-pipeline.md` |
 | KDEV-BL-004 | 커밋 잔디 파이프라인 — 로컬 클론 상세조사 + 승인 게이트 + career 누적 | idea | accepted | DEC-014/015/016 | `baseline-004-commit-pipeline-and-career.md` |
 | KDEV-BL-005 | 제품·프로젝트·커리어 연동 + 레지스트리 관리 화면 | idea | raw | DEC-017 | `baseline-005-product-project-career-link.md` |
+| KDEV-BL-006 | PARA 정렬과 SoT 지도 — 지식층 디렉토리 재편 | idea | raw | DEC-018 | `baseline-006-para-alignment-and-sot-map.md` |

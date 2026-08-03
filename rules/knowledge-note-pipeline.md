@@ -24,9 +24,9 @@
 
 | 층 | 답하는 질문 | 경로 | `type` | 단위 | 수명 |
 |---|---|---|---|---|---|
-| 출처 기록 | "이 자료가 뭐라고 했나" | `reference/` (flat) | `reference` | 자료 하나 | 생성 후 고정 |
-| 원자 개념 | "이 개념은 뭔가" | `permanent/concept/` | `concept` | 개념 하나 | 출처 합류로 **성장** |
-| 종합 판단 | "내 판단·전략은 뭔가" | `permanent/` 루트 | `permanent` | 영역 하나 | 개념 유입마다 갱신 |
+| 출처 기록 | "이 자료가 뭐라고 했나" | `resources/source/` (flat) | `reference` | 자료 하나 | 생성 후 고정 |
+| 원자 개념 | "이 개념은 뭔가" | `resources/concept/` | `concept` | 개념 하나 | 출처 합류로 **성장** |
+| 종합 판단 | "내 판단·전략은 뭔가" | `resources/synthesis/` | `permanent` | 영역 하나 | 개념 유입마다 갱신 |
 | 실행 | "그래서 뭘 만드나" | `products/{제품}/` | `baseline`·`decision`·`spec`·`work`… | 프로젝트 문서 | 제품 파이프라인 |
 
 층 밖:
@@ -34,7 +34,7 @@
 | 경로 | `type` | 성격 |
 |---|---|---|
 | `inbox/` | `idea` | 미정제 보류함. 노드이되 층 없음, `up:` 대상이 될 수 없다 |
-| `permanent/archive/` | (원 타입 유지) | 층이 아니라 **상태**. `permanent`·`concept` 공용 |
+| `archive/` | (원 타입 유지) | 층이 아니라 **상태**. `permanent`·`concept` 공용 |
 | `persona/contents/` · `algorithms/` | `content`·`algorithm` | 그래프 밖 (KDEV-DEC-008) |
 
 ### 왜 나누나
@@ -150,9 +150,11 @@ AI 에이전트는 레포를 읽을 수 있는 상태로 실행된다(worker 가
 레포 문서  →  "어떻게 생겼는가"  ← 이 문서와 templates/knowledge/
 ```
 
-진입 경로는 `CLAUDE.md → agent.md → 이 문서 → templates/knowledge/`다. 규칙이 바뀌면 **이 문서 하나만** 고치면 사람과 AI가 같은 것을 본다. 프롬프트나 skill 에 복사해 두면 그 순간 SoT 가 둘이 되고, 한쪽만 고쳐지는 날 조용히 어긋난다.
+진입 경로는 `CLAUDE.md → agent.md → 이 문서 → templates/knowledge/`다. 규칙이 바뀌면 **이 문서 하나만** 고치면 사람과 AI가 같은 것을 본다. 프롬프트나 skill 에 복사해 두면 그 순간 양식 원천이 둘이 되고, 한쪽만 고쳐지는 날 조용히 어긋난다.
 
-`templates/knowledge/`의 템플릿은 사람용 참고자료가 아니라 **형식의 SoT**다. 템플릿이 검증을 통과하지 못하면 AI 산출물도 통과하지 못한다.
+`templates/knowledge/`의 템플릿은 사람용 참고자료가 아니라 **양식 원천**이다. 템플릿이 검증을 통과하지 못하면 AI 산출물도 통과하지 못한다.
+
+> **「양식 원천」과 「SoT」를 가른다**(KDEV-DEC-018 D8). 양식 원천은 *문서가 어떻게 생겼나*를 정하고, SoT 는 *데이터가 어디 사나*를 가리킨다. 종전에는 둘 다 `SoT` 라 불러서 어느 축인지 매번 다시 읽어야 했다. 이 문서의 「SoT 위임」 절은 **데이터** 쪽이라 그대로 `SoT` 다.
 
 손으로 직접 쓰는 경로는 계속 유효하다. 게이트는 자동 유입에 대한 장치다.
 
