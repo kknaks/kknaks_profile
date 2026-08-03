@@ -43,6 +43,6 @@ inbox 는 **미정제만 보유**한다. 승인 대기열이 아니라
 
 본문 `[[]]` 연결은 자유다 — 엣지는 생기되 계보는 아니다.
 
-나중에 정제되면 reference/concept/permanent 로 간다. 그때 이 파일을 지울지
+나중에 정제되면 `resources/` 의 source·concept·synthesis 로 간다. 그때 이 파일을 지울지
   보류함에 남길지는 그때 판단한다.
 -->

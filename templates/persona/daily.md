@@ -1,9 +1,9 @@
 # 일일 기록 양식
 
-`persona/daily/{YYYY-MM-DD}.md` 의 형식을 정의한다. **이 파일이 daily 형식의 SoT다.**
+`persona/daily/{YYYY-MM-DD}.md` 의 형식을 정의한다. **이 파일이 daily 의 양식 원천이다.**
 
 잔디 파이프라인의 `compose` 스테이지가 여기를 읽어 프롬프트를 만든다. 형식을 고치려면
-**이 파일만** 고친다 — 프롬프트에 규칙을 복사하지 않는다. 복사하는 순간 SoT 가 둘이 되고
+**이 파일만** 고친다 — 프롬프트에 규칙을 복사하지 않는다. 복사하는 순간 양식 원천이 둘이 되고
 한쪽만 고쳐지는 날 조용히 어긋난다.
 
 > 지식 노트(`reference`·`concept`·`permanent`)는 계열이 다르다 — `templates/knowledge/` 와
