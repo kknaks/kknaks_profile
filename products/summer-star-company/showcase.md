@@ -24,7 +24,7 @@ stack:
   - pyscard
   - Docker
   - Raspberry Pi
-visible: false
+visible: true
 thumbnail:
 links:
   repo: "github.com/kknaks/summer_star_company"
