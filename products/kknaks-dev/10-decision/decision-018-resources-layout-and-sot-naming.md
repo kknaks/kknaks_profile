@@ -183,7 +183,9 @@ reports/PLAN-013-T-009-profile-be.md  →  (같은 곳)
 
 | Spec | Action | Notes |
 |---|---|---|
-| [[spec-001-directory-structure\|KDEV-SPEC-001]] | update | 층 매핑 디렉토리 열 · 레이아웃 트리 · `{group}` 낡은 줄 정정 · `downloads/`·`reports/` 소유 명시 |
-| [[spec-004-graph-validation\|KDEV-SPEC-004]] | update | 검증 대상 경로 |
-| [[spec-005-graph-visualization\|KDEV-SPEC-005]] | update | 열람 표면 경로 |
-| [[spec-010-apply-executor\|KDEV-SPEC-010]] | update | `ALLOWED_PREFIXES`·`LAYER_PREFIX` 계약 |
+| [[spec-001-directory-structure\|KDEV-SPEC-001]] | **update (완료 v0.0.6)** | 층 매핑 · 레이아웃 트리 · 시나리오 · 자동 갱신 경로 · 체크리스트 · `downloads`·`reports` 소유 명시 · `{group}` 낡은 OQ 무효 처리 |
+| [[spec-005-graph-visualization\|KDEV-SPEC-005]] | **update (완료 v0.0.4)** | 트리 렌더 경로. **렌더 규칙은 무변경** — 트리가 디렉토리를 그대로 비추므로 폴더가 바뀌면 따라간다 |
+| [[spec-004-graph-validation\|KDEV-SPEC-004]] | **불필요** | 경로 언급 2건이 전부 **과거 기록**이다(WORK-005 서술 · 해소된 OPEN). 검증 규칙은 `type`·`layer` 로 쓰여 있고 디렉토리를 안 본다 |
+| [[spec-010-apply-executor\|KDEV-SPEC-010]] | **불필요** | 경로 계약을 **SPEC-001 에 위임**한다(§검증 표: *"층-경로 정합 · `type`이 디렉토리와 일치 · KDEV-SPEC-001"*). 허용목록의 구체 경로를 이 spec 이 갖고 있지 않다 |
+
+**계약을 위임해 둔 값이 여기서 나왔다.** 넷을 고칠 줄 알았는데 둘로 끝났다 — SPEC-010 이 경로를 자기 문서에 복사하지 않고 SPEC-001 을 가리켜 뒀고, SPEC-004 는 규칙을 `type`/`layer` 로 썼기 때문이다. **디렉토리를 아는 문서가 하나뿐이라 디렉토리를 바꾸는 비용이 하나다.**

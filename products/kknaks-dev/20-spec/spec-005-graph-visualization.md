@@ -4,7 +4,7 @@ id: KDEV-SPEC-005
 title: "지식 열람 표면 — 트리 문서 렌더러와 공개 경계"
 status: draft
 product: kknaks-dev
-version: 0.0.3
+version: 0.0.4
 created_at: 2026-06-29
 updated_at: 2026-07-27
 tags:
@@ -31,6 +31,8 @@ links:
 쌓인 지식을 **디렉토리 트리 + 본문 렌더**로 읽는다. 내부 지식(reference·concept·permanent)은 admin 전용이고, 공개 블로그에는 게시 판정을 통과한 것만 나간다.
 
 > v0.0.3 — [[decision-010-knowledge-graph-four-layers|KDEV-DEC-010]] D7 반영. **force-directed 그래프 시각화를 폐기하고 트리 문서 렌더러로 전환**한다. [[decision-007-blog-graph-visualization|KDEV-DEC-007]]의 시각화 방식 결정을 대체하며, "지식 연결을 볼 수 있어야 한다"는 목적은 유지한다. §7의 미해소 OPEN 2건을 해소한다.
+
+> v0.0.4 — [[decision-018-resources-layout-and-sot-naming|KDEV-DEC-018]] 반영. 트리 경로를 `resources/{source,concept,synthesis}/` 로 바꿨다. **렌더 규칙은 무변경** — 트리는 디렉토리를 그대로 비추므로 폴더가 바뀌면 따라간다.
 
 ## 1. Context
 
@@ -75,13 +77,13 @@ Out of scope:
 +──────────────┬───────────────────────────────────+
 │ 문서 트리    │ 문서 본문                          │
 │              │                                    │
-│ reference/   │  # STT (Speech-to-Text)            │
-│  ├ ai_skills/│  ...본문 렌더...                   │
-│  └ k8s/      │                                    │
-│ permanent/   │  ── 연결 ────────────────────      │
-│  ├ concept/  │  상류(up:) · 인용 · 백링크         │
-│  └ *.md      │                                    │
+│ resources/   │  # STT (Speech-to-Text)            │
+│  ├ source/   │  ...본문 렌더...                   │
+│  ├ concept/  │                                    │
+│  └ synthesis/│  ── 연결 ────────────────────      │
+│              │  상류(up:) · 인용 · 백링크         │
 │ products/    │                                    │
+│ archive/     │                                    │
 +──────────────┴───────────────────────────────────+
 │ [전체] [source] [concept] [synthesis] [execution] │
 +──────────────────────────────────────────────────+
@@ -127,13 +129,13 @@ Out of scope:
 ### S-1. owner — 쌓인 지식 훑기
 
 1. admin에서 열람 화면에 들어간다.
-2. 트리에 `reference/`·`permanent/`(+`concept/`)·`products/`가 디렉토리 구조대로 보인다.
+2. 트리에 `resources/{source,concept,synthesis}/`·`products/`가 디렉토리 구조대로 보인다.
 3. `layer` 필터를 `concept`로 건다 → 개념 노트만 남는다.
 4. 하나를 고르면 우측에 본문이 렌더되고, 하단 연결 패널에 상류(출처 reference)·백링크(이 개념을 쓰는 permanent)가 목록으로 뜬다.
 
 ### S-2. owner — 개념에서 제품으로 건너가기
 
-1. `permanent/concept/stt.md`를 연다.
+1. `resources/concept/stt.md`를 연다.
 2. 연결 패널의 백링크에서 `execution` 배지가 붙은 항목을 본다 — 이 개념을 근거로 삼은 제품 문서다.
 3. 클릭해 이동한다. "이 개념을 어디에 적용했는지"가 한 번에 확인된다.
 
