@@ -9,6 +9,7 @@ aliases:
   - Gradle Wrapper
 up:
   - 2024-05-29-Day04
+  - 2024-06-04-Day08
 tags:
   - gradle
   - 빌드
@@ -33,6 +34,36 @@ Gradle 이 하는 일은 태스크 단위로 나뉘어 있다.
 | `gradle clean` | 빌드 산출물을 지운다 |
 
 `gradle init` 이 처음에 오는 이유는, 표준 구조를 사람이 만들지 않아도 되게 해 주기 때문이다. 소스와 컴파일 결과물이 어느 폴더에 가는지가 정해지면 [[classpath]] 를 손으로 지정할 일이 없어진다.
+
+### 플러그인이 태스크를 더한다
+
+**태스크 목록은 고정이 아니다.** `build.gradle` 의 `plugins` 에 무엇을 넣었는지에 따라 쓸 수 있는 태스크가 달라진다.
+
+```groovy
+plugins {
+    id 'java'      // 자바 컴파일 도구. .classpath, .settings/* 생성에도 쓰인다
+    id 'eclipse'   // 이클립스 관련 파일(.project) 을 다루는 도구
+}
+
+eclipse {
+    project {
+        name = "java-lang"   // 지정하지 않으면 폴더 이름(예: app)을 쓴다
+    }
+    jdt {
+        sourceCompatibility = 21
+        targetCompatibility = 21
+        javaRuntimeName = "JavaSE-21"
+    }
+}
+```
+
+`eclipse` 플러그인을 넣었기 때문에 `gradle eclipse`·`gradle cleanEclipse` 태스크가 생긴다. 지금 무엇을 쓸 수 있는지는 `gradle tasks` 로 확인한다.
+
+| 명령 | 하는 일 |
+|---|---|
+| `gradle tasks` | 지금 쓸 수 있는 태스크 목록 |
+| `gradle eclipse` | IDE 설정 파일(`.project`·`.classpath`·`.settings/*`) 생성 |
+| `gradle cleanEclipse` | 그 설정 파일 삭제 (설정이 잘못됐을 때) |
 
 ## 사용 예시
 
@@ -64,6 +95,7 @@ $ ./gradlew [task]
 - **`gradle` ≠ `./gradlew`** — 앞은 내 컴퓨터에 깐 Gradle 이고, 뒤는 프로젝트가 지정한 Gradle 이다. 팀 작업에서는 `./gradlew` 를 쓰는 것이 기본이다.
 - **`gradle build` ≠ `gradle run`** — 빌드는 산출물을 만드는 것까지고, 실행은 그 다음이다. 빌드가 됐다는 것이 동작한다는 뜻은 아니다.
 - **Gradle 이 컴파일하는 것이 아니다** — [[jdk]] 의 `javac` 를 대신 호출한다. JDK 없이 Gradle 만 깔면 빌드되지 않는다.
+- **IDE 설정 파일은 빌드 산출물로 볼 수 있다** — `.project`·`.classpath` 를 손으로 만들지 않고 `gradle eclipse` 로 생성한다. 그러면 IDE 설정의 원천이 `build.gradle` 한 곳이 되고, 잘못되면 `cleanEclipse` 후 다시 만들면 된다.
 
 ## 함께 보는 개념
 
@@ -74,3 +106,4 @@ $ ./gradlew [task]
 ## 출처
 
 - [[2024-05-29-Day04]] — `brew install gradle` 설치, `init`/`build`/`run`/`compileJava`/`clean` 태스크, 그리고 Gradle 없는 컴퓨터에서 쓰는 `./gradlew` 를 배웠다
+- [[2024-06-04-Day08]] — `plugins` 에 넣은 것에 따라 태스크가 늘어난다는 것(`eclipse` 플러그인 → `gradle eclipse`), `gradle tasks` 로 확인한다는 것을 배웠다
