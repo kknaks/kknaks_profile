@@ -7,7 +7,7 @@
 | AXKG-SPEC-002 | 승인 게이트 피드백과 재생성 루프 | stable | AXKG-DEC-001, 004 |
 | AXKG-SPEC-004 | 문서화 승인 게이트: destination별 AI 초안과 파생지식 | stable | AXKG-DEC-001, 002, 004, 005 |
 | AXKG-SPEC-005 | 문서 링크와 그래프 연결 계약 | stable | AXKG-DEC-001, 002, 005 |
-| AXKG-SPEC-006 | 그래프 탐색과 Graph RAG 기반 AI 채팅 | stable | AXKG-DEC-001, 002, 003, 006 |
+| AXKG-SPEC-006 | 그래프 탐색과 Graph RAG 기반 AI 채팅 | stable (v0.0.2) | AXKG-DEC-001, 002, 003, 006 |
 | AXKG-SPEC-007 | 내부 AI 실행 설정과 provider 선택 | stable | AXKG-DEC-001, 003, 004 |
 | AXKG-SPEC-008 | 토큰 로그인 · 유저 · 역할 권한 경계 | stable | AXKG-DEC-001, 004, 006 |
 | AXKG-SPEC-009 | AI 프롬프트·출력 스키마 동적 관리와 버전 롤백 | stable | AXKG-DEC-002, AXKG-DEC-005 |
