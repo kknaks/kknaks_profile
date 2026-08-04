@@ -3,6 +3,7 @@ type: concept
 id: distributed-processing
 title: 분산 처리 (Distributed Processing)
 aliases:
+  - 분산 처리
   - distributed processing
   - 분산 시스템
   - 데이터 분산

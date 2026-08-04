@@ -3,6 +3,7 @@ type: concept
 id: db-normalization
 title: 정규화 (Normalization)
 aliases:
+  - 정규화
   - normalization
   - 데이터 정규화
   - DB 정규화

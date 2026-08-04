@@ -3,6 +3,7 @@ type: concept
 id: search-index
 title: 검색 인덱스 (Search Index)
 aliases:
+  - 검색 인덱스
   - search index
   - 인덱스
   - index

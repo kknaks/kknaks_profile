@@ -3,6 +3,7 @@ type: concept
 id: connection-lifetime-mismatch
 title: 커넥션 수명 미스매치 (Connection Lifetime Mismatch)
 aliases:
+  - 커넥션 수명 미스매치
   - connection lifetime mismatch
   - maxLifetime 미스매치
   - maxLifetime mismatch

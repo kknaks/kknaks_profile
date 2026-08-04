@@ -3,6 +3,7 @@ type: concept
 id: connection-pool-sizing-formula
 title: 커넥션 풀 사이징 공식 (Connection Pool Sizing Formula)
 aliases:
+  - 커넥션 풀 사이징 공식
   - connection pool sizing formula
   - 커넥션 풀 사이징
   - DB 풀 사이징 공식

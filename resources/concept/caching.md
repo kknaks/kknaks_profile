@@ -3,6 +3,7 @@ type: concept
 id: caching
 title: 캐싱 (Caching)
 aliases:
+  - 캐싱
   - cache
   - 캐시
   - 캐쉬
