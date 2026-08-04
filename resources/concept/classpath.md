@@ -8,6 +8,7 @@ aliases:
   - cp
 up:
   - 2024-05-29-Day04
+  - 2024-05-31-Day06
 tags:
   - java
   - jvm
@@ -40,6 +41,14 @@ $ java -classpath bin Hello    # bin/ 에서 Hello.class 를 찾아 실행
 
 두 번째 줄에서 `Hello` 는 파일명이 아니라 **클래스 이름**이다. `Hello.class` 라고 쓰지 않는다 — 파일을 지정하는 게 아니라 클래스패스 안에서 그 이름의 클래스를 찾으라고 하는 것이다.
 
+[[package]] 에 속한 클래스라면 패키지를 붙인 **전체 이름**을 준다. 클래스패스는 최상위 폴더까지고, 그 아래 경로는 이름에서 나온다.
+
+```bash
+$ java -cp app/build/classes/java/main study2.lang2.Test
+```
+
+`study2.lang2` 의 `.` 이 폴더 구분으로 바뀌어 `app/build/classes/java/main/study2/lang2/Test.class` 를 찾는다.
+
 ## 왜 중요한가
 
 **`ClassNotFoundException`·`NoClassDefFoundError` 의 자리가 여기다.** 코드가 맞아도 클래스패스가 틀리면 실행되지 않고, 반대로 클래스패스만 맞춰 주면 코드를 고치지 않고 해결된다. 그래서 "코드 문제인가 경로 문제인가"를 먼저 가르는 것이 진단의 첫 단계가 된다.
@@ -57,7 +66,9 @@ $ java -classpath bin Hello    # bin/ 에서 Hello.class 를 찾아 실행
 - [[jvm]] — 클래스패스를 보고 클래스를 찾는 주체
 - [[bytecode]] — 클래스패스에서 찾는 대상
 - [[build]] — 클래스패스 관리를 대신하는 도구
+- [[package]] — 클래스 이름을 폴더 경로로 바꾸는 규칙
 
 ## 출처
 
 - [[2024-05-29-Day04]] — `-d` 로 `.class` 경로를 정하고 `-classpath` 로 JVM 에 알려준다는 짝, 그리고 소스와 컴파일 파일을 분리하는 표준 디렉토리 구조를 배웠다
+- [[2024-05-31-Day06]] — 패키지에 속한 클래스는 `-cp` 에 최상위만 주고 전체 이름으로 지정한다는 것을 배웠다

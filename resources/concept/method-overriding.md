@@ -64,6 +64,7 @@ public static class Child extends Parent {
 - [[inheritance]] — 오버라이딩의 전제
 - [[polymorphism]] — 오버라이딩이 만드는 성질
 - [[abstract-class]] — 오버라이딩을 강제하는 장치
+- [[annotation]] — `@Override` 가 속한 문법
 
 ## 출처
 
