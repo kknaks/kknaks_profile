@@ -10,6 +10,7 @@ aliases:
 up:
   - 2024-05-29-Day04
   - 2024-06-04-Day08
+  - 2024-06-05-Day09
 tags:
   - gradle
   - 빌드
@@ -65,6 +66,24 @@ eclipse {
 | `gradle eclipse` | IDE 설정 파일(`.project`·`.classpath`·`.settings/*`) 생성 |
 | `gradle cleanEclipse` | 그 설정 파일 삭제 (설정이 잘못됐을 때) |
 
+### 실행 환경도 빌드 스크립트가 정한다
+
+`gradle run` 이 무엇을 어떻게 실행할지가 `build.gradle` 에 적혀 있다.
+
+```groovy
+application {
+    mainClass = 'bitcamp.myapp.App'   // 어느 클래스의 main() 을 실행할지
+}
+
+run {
+    standardInput = System.in         // 키보드 입력을 프로그램에 넘긴다
+}
+```
+
+`gradle init` 이 만들어 준 기본값은 `mainClass = 'org.example.App'` 이라, 패키지를 바꿨으면 여기도 고쳐야 실행된다 → [[main-method]]
+
+`standardInput` 설정이 없으면 [[standard-input]] 을 읽는 프로그램이 `gradle run` 에서 오류가 난다. **코드가 맞아도 실행 설정 때문에 안 되는 종류의 오류다.**
+
 ## 사용 예시
 
 macOS 에서는 Homebrew 로 깐다.
@@ -107,3 +126,4 @@ $ ./gradlew [task]
 
 - [[2024-05-29-Day04]] — `brew install gradle` 설치, `init`/`build`/`run`/`compileJava`/`clean` 태스크, 그리고 Gradle 없는 컴퓨터에서 쓰는 `./gradlew` 를 배웠다
 - [[2024-06-04-Day08]] — `plugins` 에 넣은 것에 따라 태스크가 늘어난다는 것(`eclipse` 플러그인 → `gradle eclipse`), `gradle tasks` 로 확인한다는 것을 배웠다
+- [[2024-06-05-Day09]] — `mainClass` 기본값이 `org.example.App` 이라 고쳐야 실행된다는 것, `run { standardInput = System.in }` 이 없으면 키보드 입력이 닿지 않는다는 것을 실습에서 겪었다
