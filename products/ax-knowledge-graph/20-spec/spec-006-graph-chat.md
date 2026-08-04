@@ -4,9 +4,9 @@ id: AXKG-SPEC-006
 title: "그래프 탐색과 Graph RAG 기반 AI 채팅"
 status: stable
 product: ax-knowledge-graph
-version: 0.0.1
+version: 0.0.2
 created_at: 2026-07-07
-updated_at: 2026-07-14
+updated_at: 2026-08-04
 tags:
   - product/ax-knowledge-graph
   - doc/spec
@@ -222,7 +222,7 @@ Out of scope:
 
 | Field | Required | 설명 |
 |---|---|---|
-| `raw_text` | yes | Source Inbox로 push할 텍스트 = **push 시점까지의 채팅 대화 내용 전부(user·assistant 메시지 이력, 제시된 방안 포함)를 직렬화한 것**. 요약 입력이 된다. 대화 이력의 직렬화 형식(role 구분 표기 등)과 클라이언트 직렬화 vs 서버가 `chat_id`로 조립하는지는 구현 소관이다(§7 OQ) |
+| `raw_text` | **no** | Source Inbox로 push할 텍스트 = **push 시점까지의 채팅 대화 내용 전부(user·assistant 메시지 이력, 제시된 방안 포함)를 직렬화한 것**. 요약 입력이 된다. **서버가 `chat_id` 로 조립하므로 request 가 보내도 무시한다** — 형식과 조립 위치는 §7.1 확정값 참조 |
 | `run_id` | optional | push 시점(대화 컷오프)을 가리키는 run — provenance 기록 및 "push 시점까지" 경계용 |
 
 응답:
@@ -349,4 +349,19 @@ sequenceDiagram
 ## 7. Open Questions
 
 - (2026-07-14 PLAN-013-T-001) 2단 retriever 튜닝 숫자(edge 타입 가중치·hop 감쇠 함수·qmd top-K)와 qmd 사이드카 통합 형태(subprocess CLI vs MCP)·클래스/파일 경로는 구현 기본값으로 시작하고 관찰 후 조정한다. 상세 SSOT는 AXKG-SPEC-011 §7 OQ다. pgvector는 계속 파킹(qmd 개정으로 대체). (2026-07-14 PLAN-013-T-007 실측 수용) 리랭크 on/off 기본값은 이 튜닝 OQ에서 빠졌다 — CPU 실측으로 **기본 off 확정**(설정 표면 AXKG-SPEC-007으로 on, GPU 배포 시 on 권장).
-- (2026-07-14 PLAN-013-T-003) chat push `raw_text`(대화 내용 전부)의 **직렬화 형식**(role 구분 표기·메시지 구분자 등)과 **조립 위치**(클라이언트가 직렬화해 보내는지 vs 서버가 `chat_id` + push 컷오프로 대화를 조립하는지)는 구현 소관으로 둔다. **대화 길이 상한/truncation 정책**은 이번 라운드에서 정하지 않는다 — 필요해지면 관찰 후 별도로 결정한다.
+- ~~(2026-07-14 PLAN-013-T-003) chat push `raw_text` 의 직렬화 형식과 조립 위치~~ → **해소 (2026-07-14 PLAN-013-T-008 구현 확정).** 아래 §7.1 참조. **대화 길이 상한/truncation 정책은 여전히 미결**이다 — 이번 라운드에서 도입하지 않았고, 필요해지면 관찰 후 별도로 결정한다.
+
+### 7.1. chat push `raw_text` 직렬화 — 확정값
+
+> OQ 로 열어 뒀던 것을 구현이 확정했고, 그 결과를 여기 옮긴다. 근거가 결과 보고서에만
+> 남아 있으면 보고서가 사라질 때 "왜 이렇게 정했는지" 가 함께 사라진다.
+
+**조립 위치 = 서버다.** 채팅 이력의 SoT 가 서버이므로 클라이언트 직렬화를 신뢰하지 않고 서버가 `chat_id` 로 대화를 authoritative 하게 조립한다. 그래야 *"push 시점까지의 대화 전부"* 를 위·변조 없이 보장하고, 직렬화 형식을 백엔드 한 곳에 고정할 수 있다.
+
+**직렬화 형식 = role heading.** 각 메시지를 `## {Role}` + 본문 블록으로 쓰고 블록 사이는 빈 줄로 구분한다. Role 라벨은 `User`·`Assistant`·`System`. 근거는 `raw_text` 를 요약①(LLM)이 소비하기 때문이다 — role 이 명확한 markdown 이 파싱·정제에 유리하다. **공백뿐인 메시지는 잡음이라 건너뛴다.**
+
+**`run_id` 는 컷오프이자 provenance 다.** 주어지면 그 run 의 응답(assistant, 없으면 user 질문)까지를 경계로 삼고, 없으면 세션 전체를 담는다.
+
+**request 의 `raw_text` 는 optional 이다.** 서버 조립으로 확정하면서 §4 Request 의 `raw_text(required)` 를 optional 로 정리했다 — request 에서 의미를 갖는 것은 `run_id` 뿐이고, `raw_text` 가 와도 **무시하고 서버 조립본을 authoritative 로 쓴다.**
+
+조립 결과가 trim 후 빈 문자열이면 `EMPTY_PUSH_TEXT` 로 거부한다(Case Matrix).

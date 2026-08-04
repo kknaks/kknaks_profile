@@ -5,7 +5,7 @@ title: "지식층 디렉토리 재편 — resources/ 신설과 SoT 명칭 분리
 status: proposed
 product: kknaks-dev
 created_at: 2026-08-03
-updated_at: 2026-08-03
+updated_at: 2026-08-04
 tags:
   - product/kknaks-dev
   - doc/decision
@@ -125,7 +125,13 @@ reports/PLAN-013-T-008-profile-be.md  →  products/ax-knowledge-graph/30-work/r
 reports/PLAN-013-T-009-profile-be.md  →  (같은 곳)
 ```
 
-`products/ax-knowledge-graph/log.md` 와 `30-work/` 가 이미 참조한다 — **주인이 명확한데 루트에 놓여 있었다.** 지우지 않는 이유는 WORK-009/010 의 완료 근거이기 때문이다.
+`products/ax-knowledge-graph/log.md` 와 `30-work/` 가 이미 참조한다 — **주인이 명확한데 루트에 놓여 있었다.**
+
+> **2026-08-04 개정 — 이동 후 삭제했다.** 이 결정은 *"WORK-009/010 의 완료 근거라 지우지 않는다"* 였는데, 옮긴 뒤 내용을 대조해 보니 **근거가 이미 work 문서에 흡수돼 있었다.** 참조도 마크다운 링크가 아니라 `PLAN-013-T-008` 태스크 ID 언급뿐이었고, 완료 요약(`pytest 414/425 pass` 포함)은 WORK-009/010 의 변경 로그 행에 들어 있다.
+>
+> **다만 그냥 지우면 잃는 것이 하나 있었다.** T-008 보고서의 「C-2 대화 직렬화 — OQ 확정값」이 `AXKG-SPEC-006 §7` OQ 의 해소 근거인데, **spec 은 아직 그것을 미결로 적고 있었다.** 지우면 spec 이 "미결" 이라 말하는데 그 답이 어디에도 없는 상태가 된다. 그래서 **SPEC-006 §7.1 로 확정값을 환류한 뒤에 삭제했다**(v0.0.2).
+>
+> 이 순서가 이 결정에서 배울 점이다 — **파일을 지워도 되는지는 "참조가 있나" 가 아니라 "그 안에만 있는 사실이 있나" 로 판단한다.**
 
 두 파일은 frontmatter `type` 이 없어 **그래프 노드가 아니다**(navigational). 제품 폴더로 들어가도 노드가 늘지 않는다 — `_build_graph_nodes` 가 `type` 없는 파일을 건너뛴다.
 
@@ -154,7 +160,7 @@ reports/PLAN-013-T-009-profile-be.md  →  (같은 곳)
 - **`resources/` flat** — 14개일 땐 되지만 늘면 층이 섞이고, 그때 다시 나누는 비용이 지금보다 크다.
 - **`type` enum 까지 `synthesis` 로 개명** — 그래프 계약(SPEC-002)까지 번지는데 이 결정이 푸는 문제는 거기 없다.
 - **`downloads/` 삭제·이동** — 운영 자산이고 서빙 경로가 코드에 박혀 있다. 문제는 위치가 아니라 선언 부재였다.
-- **`reports/` 삭제** — WORK-009/010 의 완료 근거다.
+- ~~**`reports/` 삭제**~~ — **2026-08-04 뒤집혔다.** 완료 근거가 work 문서에 흡수돼 있었고, 유일하게 그 안에만 있던 OQ 확정값을 SPEC-006 §7.1 로 환류한 뒤 삭제했다(D7 개정 노트).
 - **`products/*/_archive/` 를 `archive/` 로 합치기** — 제품 버전 스냅샷이라 성격이 다르다.
 
 ## Rationale
