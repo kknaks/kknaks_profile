@@ -19,7 +19,7 @@ tags:
 title:
   en: Palindrome Partitioning
   ko: 팰린드롬 분할
-today: true
+today: false
 type: algorithm
 updated: '2026-08-03'
 visible: true
