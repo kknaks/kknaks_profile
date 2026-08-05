@@ -12,6 +12,7 @@ aliases:
   - 복합키
 up:
   - 2024-08-06-Day51
+  - 2024-08-13-Day55
 tags:
   - database
   - SQL
@@ -55,6 +56,17 @@ kor int);
 constraint primary key (name, age)
 ```
 
+**이미 만든 테이블에 나중에 붙일 수도 있다.** 7일 뒤 Day55 가 그 형태를 쓴다 — 외래키와 **같은 `alter table` 한 문장 안에서** 붙인다.
+
+```sql
+alter table myapp_project_members
+    add constraint myapp_project_members_fk1 foreign key (user_id) references myapp_users (user_id),
+    add constraint myapp_project_members_fk2 foreign key (project_id) references myapp_projects (project_id),
+    add constraint primary key (user_id, project_id);
+```
+
+`add constraint ... primary key` 는 `unique`·`foreign key` 와 **같은 문법 계열**이고([[ddl]] 의 `alter table ... add`), 그래서 세 제약이 콤마로 이어진다. **Day55 가 외래키 둘에는 이름을 주고 기본키에는 주지 않은 것이 정확하다** — 기본키 이름은 어차피 버려진다(아래 「경계와 오해」).
+
 **`primary key` 를 거는 것 하나가 세 가지를 동시에 켠다.**
 
 | 켜지는 것 | 뜻 |
@@ -86,6 +98,8 @@ Query OK, 1 row affected (0.01 sec)
 
 **조회가 계산으로 돌아온다.** [[surrogate-key]] 를 배운 Day19 에서 「번호로 찾기」가 계산(`users[no-1]`)에서 탐색(전부 훑기)으로 바뀌었고, 그때 「나중에 인덱스·DB 를 배우는 동기가 여기서 생긴다」로 남겨 두었다. **7주 뒤 그 답이 이 자리에 온다** — 기본키를 걸면 그 컬럼에 인덱스가 자동으로 생겨 `where no = 3` 이 다시 훑지 않는다 → [[linear-search]] · [[database-index]]
 
+**그리고 발급을 서버에 넘기면 「번호를 언제 아는가」가 문제로 바뀐다.** 자바에서 번호를 직접 매겼을 때는 저장하기 전에 이미 그 값을 들고 있었지만, `auto_increment` 기본키는 `insert` 가 성공한 뒤에만 존재한다. 그래서 이 값을 참조하는 자식 행을 넣으려면 **부모의 키를 되받아 오는 단계**가 코드에 하나 더 생긴다 → [[generated-keys]] · [[surrogate-key]]
+
 **그리고 다른 테이블이 이 값을 적어 두고 참조한다.** 「이 게시글의 작성자」를 저장하는 방법이 회원 정보를 복사하는 것이 아니라 **회원의 기본키를 적는 것**이며, 정규화가 성립하는 것이 이 한 가지에 얹혀 있다. 그래서 **기본키는 바뀌면 안 되는 값**이다 — 바뀌면 그것을 적어 둔 모든 곳을 함께 고쳐야 한다 → [[db-normalization]] · [[immutability]]
 
 ## 경계와 오해
@@ -95,7 +109,9 @@ Query OK, 1 row affected (0.01 sec)
 - **`{jumin}` 을 기본키로 고른 예는 오늘 기준으로 최악의 선택이다** — 주민번호는 위 세 조건을 다 만족하는 것처럼 보여 교과서에서 오래 예로 쓰였지만, **법으로 수집 자체가 제한되고**(주민번호 수집 법정주의) 외국인·미등록자에게 없고, 유출되면 바꿀 수 없다. 「구분할 수 있으니 좋은 키」와 「저장해도 되는 값」이 다른 문제이고, 그래서 실무의 기본형이 같은 절의 마지막 줄인 **artificial key** 다 → [[surrogate-key]]
 - **alternate key(대체키) ≠ surrogate key(대리키·인공키)** — 같은 절에 나란히 적혀 있고 우리말 번역이 「대체」와 「대리」로 한 글자만 다르다. **alternate 는 이미 있던 컬럼**(기본키가 되지 못한 후보키)이고 **surrogate 는 없던 컬럼을 새로 만든 것**이다. 이 레포의 [[surrogate-key]] 노트가 `대체키` 라는 별칭을 갖고 있으므로 `[[대체키]]` 라고 쓰면 그쪽으로 풀린다 — **찾을 때 그 구별을 기억해야 하는 자리**다.
 - **복합키 예제는 실행되지 않는다 — 콤마가 빠졌다** — Day51 의 그룹 지정 예제는 `kor int` 다음 줄에 콤마 없이 `constraint primary key (name,age)` 가 온다. MySQL 은 `kor int constraint ...` 를 한 컬럼 정의로 읽다가 문법 오류를 낸다(`You have an error in your SQL syntax`). **컬럼 목록과 제약 목록이 같은 괄호 안에서 콤마로 이어진다**는 것이 `create table` 문법의 성질이고, 제약을 「따로 적는 것」으로 읽으면 이 콤마를 빠뜨린다. 바로 뒤 [[unique-key]] 절의 예제는 콤마가 다 붙어 있어 **같은 노트 안에 맞는 형태가 있다.**
-- **복합키에 준 제약 이름은 무시된다** — `constraint 제약조건이름 primary key (...)` 로 이름을 적을 수 있지만, MySQL 은 **기본키의 이름을 언제나 `PRIMARY` 로 고정**하고 적어 준 이름을 버린다. `unique` 는 이름을 지켜 주므로(Day51 의 `test1_uk`) 두 제약이 같은 문법으로 보이면서 다르게 동작한다.
+- **복합키에 준 제약 이름은 무시된다** — `constraint 제약조건이름 primary key (...)` 로 이름을 적을 수 있지만, MySQL 은 **기본키의 이름을 언제나 `PRIMARY` 로 고정**하고 적어 준 이름을 버린다. `unique` 는 이름을 지켜 주므로(Day51 의 `test1_uk`) 두 제약이 같은 문법으로 보이면서 다르게 동작한다. **Day55 의 `alter` 문이 그 셋을 한 문장에 나란히 놓아 차이를 그대로 보여 준다** — 외래키 둘에는 `myapp_project_members_fk1`·`fk2` 를 붙였고(그쪽은 이름이 지켜지며 **스키마 전체에서 유일해야 한다**) 기본키에는 이름을 주지 않았다. 같은 `add constraint` 문법이 제약 종류에 따라 이름을 지키는지·버리는지·유일 범위가 어디까지인지를 **셋 다 다르게** 갖는다 → [[foreign-key]] · [[unique-key]]
+- **복합키가 정당한 자리의 실제 예가 7일 뒤에 온다 — 그리고 Day51 의 예와 무엇이 갈리는지가 거기서 보인다** — 위에 적어 둔 「관계 자체를 담는 테이블」이 Day55 의 `myapp_project_members(user_id, project_id)` 다. Day51 의 `(name, age)` 와 문법은 똑같은데 판정이 갈리는 기준은 **그 조합이 「같으면 같은 것」인지**다. 동명이인 동갑은 **다른 사람**이므로 `(name, age)` 를 키로 걸면 저장할 수 없는 사람이 생기지만, 「3번 회원이 5번 프로젝트에 속한다」는 사실은 **두 번 존재할 수 없다** — 두 번 넣으려는 것은 실수이고 그것을 막는 것이 이득이다. **키가 막는 중복이 실수인가 현실인가**가 복합키를 고르는 기준이고, 컬럼 수나 문법으로는 갈리지 않는다.
+- **복합키는 「컬럼 순서」까지 정하는 결정이다** — `(user_id, project_id)` 로 걸면 InnoDB 는 그 순서로 정렬된 인덱스 하나를 만든다. 그래서 **`user_id` 로 찾는 조회는 이 인덱스를 쓰지만 `project_id` 하나로 찾는 조회는 쓸 수 없다**(전화번호부를 이름순으로 정렬해 두고 번호로 찾는 것과 같다). Day55 의 `getMembers` 는 정확히 `where pm.project_id = ?` 로 조회하므로 **복합키가 도움이 되지 않는 방향**인데, 같은 `alter` 문에서 `project_id` 에 외래키를 걸었고 InnoDB 가 외래키 컬럼에 인덱스를 자동으로 만들어 주기 때문에 그 자리가 우연히 채워진다. **설계가 아니라 부산물이 구제한 것**이고, 외래키가 없는 중간 테이블이라면 조회 방향과 키 순서가 어긋난 채 남는다 → [[database-index]] · [[foreign-key]] · [[sql-join]]
 - **복합 기본키 `(name, age)` 는 그 앞 절과 어긋난다** — 같은 노트가 몇 줄 위에서 「이름과 나이와 성적이 같아도 다른 데이터일 수 있다」고 확인했는데, 복합키 예제는 그 `name, age` 를 기본키로 걸어 **동명이인 동갑을 저장할 수 없게** 만든다. 문법을 보이기 위한 예제이지 설계 예가 아니다. **복합키가 정당한 곳은 「관계 자체」를 담는 테이블**(수강: 학생번호+과목번호)이다.
 - **기본키가 없어도 테이블은 만들어진다** — Day51 의 첫 실험 테이블들이 그렇다. 그러면 InnoDB 는 **보이지 않는 6바이트 행 ID** 를 스스로 붙여 정렬 기준으로 쓴다. 「없어도 되는구나」가 아니라 **「내가 안 고르면 DB 가 고르고, 그 값은 내가 볼 수 없다」**가 정확한 이해다 → [[database-index]]
 - **기본키는 「등록 순서」가 아니다** — 자동 증가 번호를 기본키로 쓰면 값이 커지는 순서가 등록 순서와 대개 같아서 「번호로 정렬 = 시간순」으로 믿게 되는데, 번호는 **발급 시각**이 아니라 발급 순서이고 트랜잭션이 겹치면 커밋 순서와 어긋난다. 시간이 필요하면 시간 컬럼을 따로 둔다 → [[sql-data-type]] · [[surrogate-key]]
@@ -107,6 +123,9 @@ Query OK, 1 row affected (0.01 sec)
 - [[sql-null]] — 기본키가 `not null` 을 함께 켜는 이유
 - [[database-index]] — 기본키가 자동으로 만드는 것
 - [[db-normalization]] — 다른 테이블이 이 값을 참조하는 구조
+- [[foreign-key]] — 이 값을 다른 테이블에서 검사하는 제약
+- [[generated-keys]] — 서버가 발급한 이 값을 애플리케이션이 되받는 자리
+- [[sql-join]] — 복합키의 컬럼 순서가 조회 방향과 맞는지 드러나는 자리
 - [[object-equality]] · [[hash-code]] — 「같은 데이터인가」를 자바에서 정하던 자리
 - [[linear-search]] — 키 없이 찾을 때 하는 일
 - [[immutability]] — 기본키가 바뀌면 안 되는 이유
@@ -116,3 +135,4 @@ Query OK, 1 row affected (0.01 sec)
 ## 출처
 
 - [[2024-08-06-Day51]] — 「key column : 데이터를 구분하는 기준」 절에서 key·candidate key·primary key·alternate key·artificial key 다섯을 회원 테이블 예로 층을 세워 정리했고, `no int primary key` 와 `constraint primary key (name,age)` 두 문법을 실행 결과와 함께 적었다. `no` 가 1인 행을 두 번 넣어 거절되는 것을 확인한 뒤, **`no` 만 다르고 나머지가 같은 행은 통과한다는 것을 「데이터의 중복성을 가중시킨다」로 남긴 것**이 다음 절 `unique` 로 넘어가는 근거다. 기본키의 정의(「후보키 중에서 데이터를 구분하는 키」)는 후보키의 조건을 되풀이해 고르는 기준을 말하지 않으며, 복합키 예제는 `kor int` 뒤에 콤마가 없어 그대로는 문법 오류다
+- [[2024-08-13-Day55]] — **복합 기본키가 정당한 자리에 처음 쓰인다.** 실습 프로젝트의 중간 테이블 `myapp_project_members` 에 `add constraint primary key (user_id, project_id)` 를 걸어, Day51 이 문법을 보이기 위해 `(name, age)` 로 들었던 예가 **관계 테이블에서는 설계가 된다**는 것이 드러난다. 문법 쪽으로도 이 회차가 더한 것이 있다 — `create table` 안이 아니라 **`alter table ... add constraint` 로 나중에 붙이는 형태**이고, 외래키 둘과 한 문장에 나란히 놓여 **기본키만 이름이 버려진다는 차이**가 같은 자리에서 보인다(필기는 기본키에 이름을 주지 않았다). 다만 복합키의 컬럼 순서(`user_id` 가 앞)와 실제 조회 방향(`where project_id = ?`)이 어긋나는 것은 다루지 않았고, `auto_increment` 기본키를 `insert` 뒤에 되받아야 하는 문제는 같은 노트의 다른 절이 맡는다(→ [[generated-keys]])

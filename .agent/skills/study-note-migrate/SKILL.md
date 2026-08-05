@@ -129,13 +129,17 @@ links: [...]           # 원본에 있으면 유지
   것은 다르다. 폴더와 제목이 알려주는 것(`bitcamp`, 그 노트가 Java 노트라면 `java`)까지가
   「아는 사실」이다.
 
-  **`stack` 에 있는 것을 `tags` 로 옮기지 않는다.** 판단이 들어가서가 아니라
-  **이중 집계가 되기 때문이다.** `app/back/api/routers/notes.py` 가 두 필드를 **각각 다른
-  축으로** 세어 응답에 따로 담는다 — `tags` → `topics`, `stack` → `stacks`. 같은 값을
-  양쪽에 두면 한 사실이 두 축에 잡히고, 이는 이 규칙의 「한 곳 원칙」에 걸린다.
+  **`tags` 와 `stack` 에 같은 값을 두지 않는다.** `app/back/api/routers/notes.py` 가 두
+  필드를 **각각 다른 축으로** 세어 응답에 따로 담는다 — `tags` → `topics`,
+  `stack` → `stacks`. 같은 값을 양쪽에 두면 한 사실이 두 축에 잡힌다(「한 곳 원칙」).
 
-  그래서 `tags: [bitcamp]` + `stack: [MySQL, SQL]` 가 **이미 맞는 형태**다. MySQL 노트가
-  태그로 안 걸리는 것이 아니라 `stacks` 축으로 걸린다.
+  **`stack` 에 이미 있는 값은 `tags` 에서 뺀다.** 원본 `tags` 에 있던 것이라도 그렇다 —
+  옛 노트는 `tags: [bitcamp, git, java]` + `stack: [Java]` 처럼 겹쳐 쓴 것이 41건이었고
+  전부 정리했다. 결과적으로 `tags` 는 `bitcamp` 중심으로 남고 주제는 `stacks` 축이 갖는다.
+
+  > 처음에는 이 규칙을 「`stack` 을 `tags` 로 **옮기지** 마라」로 적었는데, 워커가 그것을
+  > 「원본에 있는 것도 겹치면 지워라」로 읽어 DB 노트에서만 `java`·`SQL` 이 사라지고
+  > Java 노트 41건은 남는 **엇갈린 상태**가 됐다. 지금 문장은 양쪽을 같게 처리한다.
 
   `stack` 은 규칙상 필수 필드가 아니고 `templates/knowledge/reference.md` 에도 없지만
   **읽는 코드가 있으므로 원본에 있으면 지우지 않는다.**
