@@ -13,6 +13,7 @@ aliases:
   - type token
 up:
   - 2024-07-22-Day40
+  - 2024-08-20-Day59
 tags:
   - java
   - 타입
@@ -115,6 +116,44 @@ boardList.addAll(new Gson().fromJson(strBuilder.toString(), new TypeToken<List<B
 
 `E` 가 실행 시점에 없으므로 **`new TypeToken<List<E>>() {}` 로는 쓸 수 없다** — 그렇게 쓰면 익명 클래스에 박히는 것이 `List<E>` 라는 「지워진 이름」이라 Gson 이 원소 타입을 알 수 없다. 그래서 `Class<E>` 를 받아 `getParameterized(List.class, elementType)` 로 **타입을 값으로 조립한다.** 필기가 이 줄에 도달한 것이 제네릭을 제대로 쓴 증거이고, 앞의 `Class<E> elementType` 매개변수가 왜 필요한지에 대한 답이다 → [[json]] · [[generics]]
 
+### 29일 뒤 Day59 — 「남는 쪽」을 실제로 읽어 낸다
+
+위 표의 둘째 줄(「메서드 시그니처의 제네릭 표기는 클래스 파일에 메타데이터로 남는다」)을 **읽는 API 가 Day59 에 나온다.** 필기는 그 절에 소제목만 붙이고 **설명을 한 줄도 쓰지 않았다** — 코드만 있다.
+
+```java
+public ArrayList<String> m3(File file, String name) { return null; }
+public Map<String,File> m5() { return null; }
+public char[] m2() { return null; }
+public void m4() {}
+```
+
+```java
+Method[] methods = clazz.getDeclaredMethods();
+for (Method m : methods) {
+  // 메서드의 제네릭 리턴 타입 가져오기
+  Type returnType = m.getGenericReturnType();
+  System.out.printf("    리턴: %s\n", returnType.getTypeName());
+  if (returnType instanceof ParameterizedType) {
+    Type[] actualTypes = ((ParameterizedType) returnType).getActualTypeArguments();
+    for (Type actualType : actualTypes) {
+      System.out.print(actualType.getTypeName() + ", ");
+    }
+  }
+}
+```
+
+**빈 소제목에 들어갈 답은 두 메서드가 서로 다른 것을 준다는 것이다.**
+
+| 메서드 | `m3` 의 반환형 | `m5` | `m2` | `m4` |
+|---|---|---|---|---|
+| `getReturnType()` | `java.util.ArrayList` | `java.util.Map` | `char[]` | `void` |
+| `getGenericReturnType()` | **`java.util.ArrayList<java.lang.String>`** | **`java.util.Map<java.lang.String, java.io.File>`** | `char[]` | `void` |
+| `ParameterizedType` 인가 | **예** → 인자 하나 | **예** → 인자 둘 | 아니오 | 아니오 |
+
+**`instanceof` 검사가 코드에 있는 이유가 뒤의 두 칸이다** — `char[]` 과 `void` 의 반환형은 `Class` 이지 `ParameterizedType` 이 아니므로, 검사 없이 캐스팅하면 `ClassCastException` 이다. 필기가 그 검사를 쓰고도 이유를 적지 않았다 → [[instanceof-operator]] · [[reflective-invocation]]
+
+그리고 **이것이 이 노트의 첫 「경계와 오해」가 API 이름으로 확인되는 자리다.** 「소거 ≠ 제네릭 정보가 전부 사라진다」의 남는 쪽이 `getGenericReturnType()` 으로 손에 잡히고, `TypeToken` 트릭이 쓰는 `getGenericSuperclass()` 도 같은 계열이다.
+
 ## 왜 중요한가
 
 **제네릭이 「컴파일 시점 검사」에 그치는 이유가 설명된다.** 넣을 때 막아 주는 것이 전부이고, 어떤 경로로든 검사를 우회해서 넣은 값은 실행 중에 아무도 잡지 않는다. `(List<E>)` 같은 unchecked 캐스팅이 경고를 내는 것이 그래서다 — 컴파일러가 「여기서부터는 내가 보증하지 않는다」고 말하는 자리다 → [[type-casting]]
@@ -134,6 +173,10 @@ boardList.addAll(new Gson().fromJson(strBuilder.toString(), new TypeToken<List<B
 - **`static` 필드는 타입 인자마다 따로 있지 않다** — `Box<String>` 과 `Box<Integer>` 가 같은 `static` 필드를 공유한다. 클래스는 하나뿐이기 때문이고, 그래서 타입 파라미터를 `static` 필드 타입으로 쓸 수도 없다 → [[static-member]]
 - **`new TypeToken<List<Board>>()` 에서 `{}` 를 지우면 컴파일되지 않는다** — Gson 의 `TypeToken` 은 추상 클래스라 직접 인스턴스화할 수 없고, 그 「불편함」이 실수 방지 장치다. 반대로 **`{}` 가 있는데 타입 인자에 타입 변수(`E`)를 넣으면 컴파일은 되고 결과만 틀린다** — 그 경우는 `getParameterized` 를 써야 한다. 오류가 나는 쪽보다 **컴파일되는 쪽이 위험하다** → [[anonymous-class]]
 - **소거는 성능 최적화가 아니라 호환성 결정이다** — 「지우면 빠르니까」가 아니라 **제네릭 이전에 쓰인 클래스 파일과 같은 형태를 유지해야 했기 때문**이다. C# 은 다른 선택(실체화 제네릭)을 해서 `List<int>` 가 박싱 없이 돌아가고 `typeof(List<int>)` 도 된다. **같은 문법으로 보이는 기능이 언어마다 다른 것이 이 지점** → [[wrapper-class]] · [[platform-dependency]]
+- **`getReturnType()` 과 `getGenericReturnType()` 이 다른 것을 준다 — 그 갈림이 소거의 경계선이다** — 앞은 소거된 뒤의 타입(`java.util.ArrayList`), 뒤는 **시그니처에 적힌 그대로**(`ArrayList<String>`)다. Day59 가 「리턴 타입」 절과 「제네릭 타입」 절에서 각각 하나씩 쓰면서 **왜 둘인지는 적지 않았다.** 두 값이 갈리는 이유가 이 노트의 첫 항목(인스턴스에는 없고 시그니처에는 남는다)이고, 그래서 「제네릭 타입」 절의 소제목이 비어 있는 자리에 들어갈 답이 그 문장이다 → [[reflective-invocation]]
+- **시그니처를 읽는다는 것이 「인스턴스의 타입 인자를 안다」는 뜻은 아니다** — `m3()` 의 선언이 `ArrayList<String>` 이라는 것은 읽히지만, `m3()` 를 **실제로 불러서 받은 그 `ArrayList` 인스턴스**에 물어보면 `String` 이 나오지 않는다. 즉 알 수 있는 것은 **「누가 무엇을 돌려준다고 적어 두었나」**이고 「지금 손에 든 것에 무엇이 들었나」가 아니다. Day59 가 두 사실을 나란히 놓고도 갈라 적지 않았다 — **이 구분이 없으면 「소거인데 왜 읽히지?」에서 멈춘다.**
+- **읽을 수 있는 것은 「적힌 것」뿐이다 — 타입 변수는 이름으로만 나온다** — `List<String>` 은 `java.lang.String` 이 나오지만 `List<E>` 는 `E` 라는 `TypeVariable` 이 나온다. 그 `E` 가 실제로 무엇인지는 시그니처에 없으므로, Day40 의 `loadJson` 이 `Class<E> elementType` 을 따로 받아야 했던 이유가 **여기서 API 로 확인된다** — 읽어 봐야 `E` 라고만 적혀 있다 → [[generics]] · [[class-metadata]]
+- **`Type` 은 `Class` 가 아니다** — `getGenericReturnType()` 의 반환형이 인터페이스 `Type` 이고 `Class` 가 그것을 구현한다. 그래서 `getName()` 이 없고 필기 코드가 `getTypeName()` 을 쓴다 — **메서드 이름이 갈린 이유가 반환형에 있다.** `ParameterizedType`·`TypeVariable`·`WildcardType`·`GenericArrayType` 이 나머지 구현이고, 「제네릭 표기를 읽는다」는 곧 이 네 갈래를 갈라 보는 일이다 → [[wildcard-type]] · [[instanceof-operator]]
 - **필기의 「컴파일 과정에서 T가 결정되면 바꿀수 없다」는 맞지만 이유가 소거와 반대편이다** — `Box<String>` 을 `Box<Object>` 에 대입할 수 없는 것은 정보가 지워져서가 아니라 **컴파일러가 정보를 엄격하게 쓰기 때문**이다. 소거는 실행 시점의 이야기이고 그 규칙은 컴파일 시점의 이야기다 → [[wildcard-type]]
 
 ## 함께 보는 개념
@@ -151,7 +194,9 @@ boardList.addAll(new Gson().fromJson(strBuilder.toString(), new TypeToken<List<B
 - [[class-file-format]] — 지워지지 않고 남는 시그니처가 적히는 자리
 - [[json]] — `TypeToken` 이 실제로 필요해진 자리
 - [[serialization]] — `(List<User>) readObject()` 가 검사되지 않던 자리
+- [[reflective-invocation]] — 시그니처의 제네릭 표기를 실제로 읽어 내는 자리
 
 ## 출처
 
 - [[2024-07-22-Day40]] — 소거라는 이름은 나오지 않지만 그 결과가 세 곳에 나타난다. 「배열 만들기」 절이 `new T[10]` 이 컴파일 오류인 것과 우회로 넷(`Arrays.copyOf` 로 견본 복제 · `Array.newInstance(Class, 10)` · `getComponentType()` 으로 원소 타입 추출)을 보여 주고, `(T[])` unchecked 캐스팅을 그대로 둔다. Gson 쪽에서는 `new TypeToken<List<Board>>() {}` 의 익명 서브클래스로 원소 타입을 넘기고, 제네릭 메서드로 합친 `loadJson` 에서는 `E` 가 실행 시점에 없어 `TypeToken.getParameterized(List.class, elementType)` 와 `Class<E> elementType` 매개변수로 갈아탄다 — **타입을 컴파일 시점 표기에서 실행 시점 값으로 옮기는 이행이 한 노트 안에서 일어난다**
+- [[2024-08-20-Day59]] — 29일 뒤. **소거되지 않고 남는 쪽을 읽는 API 가 처음 나온다** — 「타입정보 추출」의 「제네릭 타입」 절이 `m.getGenericReturnType()` 으로 `ArrayList<String>`·`Map<String,File>` 을 꺼내고, `returnType instanceof ParameterizedType` 으로 걸러 `getActualTypeArguments()` 로 타입 인자 목록을 얻는다. 바로 앞 절의 `getReturnType()` 이 같은 메서드에서 `java.util.ArrayList` 만 주므로 **두 값의 차이가 곧 이 노트가 말하는 경계선**인데, 이 절에는 **소제목과 코드만 있고 설명이 한 줄도 없다** — 왜 메서드가 둘인지, `instanceof` 검사가 왜 있는지(`char[]`·`void` 는 `ParameterizedType` 이 아니다), 반환형이 `Class` 가 아니라 `Type` 이라 `getTypeName()` 을 쓰는 것인지가 전부 비어 있어 이 노트가 채웠다. Day40 의 `Class<E> elementType` 매개변수가 필요했던 이유(시그니처를 읽어도 `E` 라고만 적혀 있다)도 이 API 로 확인된다 → [[reflective-invocation]]

@@ -19,6 +19,8 @@ tags:
 up:
   - 2024-08-07-Day52
   - 2024-08-13-Day55
+  - 2024-08-16-Day57
+  - 2024-08-20-Day59
 ---
 
 # 트랜잭션과 autocommit (commit · rollback)
@@ -93,6 +95,95 @@ Day52 의 실험은 `mysql` 창 두 개였다. Day55 에서 실습 프로젝트�
 
 그리고 이것은 가정이 아니다 — 같은 회차의 `insertMembers` 는 SQL 이 문법 오류라 **매번 실패한다**(컬럼 이름을 따옴표로 감쌌다 → [[foreign-key]]). 즉 **등록은 팀원 없는 프로젝트를 남기고, 변경은 팀원을 지운 뒤 다시 넣지 못한다.** 트랜잭션이 있었다면 두 경우 다 「등록 실패」로 끝나고 데이터는 그대로였을 것이다 — 경계가 없는 것이 **버그를 부분 성공으로 바꾼다.**
 
+### 사흘 뒤 Day57 — 같은 스위치가 자바 메서드로 온다
+
+Day52 는 `mysql` 창에서 `set autocommit = false` 를 쳤고, Day55 는 그것이 필요한 코드를 쓰면서 쓰지 않았다. **Day57 이 그 사이를 잇는다** — 같은 스위치가 [[jdbc]] 의 메서드 셋으로 나타나고, 실습 프로젝트의 등록 화면이 그것으로 감싸인다.
+
+| Day52 의 SQL | Day57 의 자바 |
+|---|---|
+| `set autocommit = false` | `con.setAutoCommit(false)` |
+| `commit` | `con.commit()` |
+| `rollback` | `con.rollback()` |
+| (창을 닫으면 원래대로) | `con.setAutoCommit(true)` — **직접 되돌려야 한다** |
+
+필기가 순서를 한 줄로 적었다 — 「setAutoCommit(false) -> 각 작업수행 -> 모든 작업 완료시 commit()/ 오류 발생시 rollback(); -> 최종적으로 setAutoCommit(true)」. **네 번째 걸음이 SQL 쪽에는 없던 것**이고, 왜 필요한지는 아래 「경계와 오해」가 답한다.
+
+그리고 그 순서가 [[exception-handling]] 의 세 블록에 정확히 대응한다 — 이것이 이 회차의 형태다.
+
+```java
+try {
+  con.setAutoCommit(false);
+  /* 한개의 단위 작업 시작 */
+  DAO.insert(쿼리문을 전송하는 작업);
+  DAO.update(쿼리문을 전송하는 작업);
+  DAO.select(쿼리문을 전송하는 작업);
+  /* 한개의 단위 작업 종료 */
+  con.commit();
+
+  } catch (Exception e) {
+    try {
+    con.rollback(); //실패시 롤백
+    } catch (Exception e2) { }
+
+  } finally {
+    try {
+    con.setAutoCommit(true);
+    con.close();
+  } catch (Exception e2) {}
+}
+```
+
+| 블록 | 무엇이 들어가나 | 왜 거기인가 |
+|---|---|---|
+| `try` | 경계 열기 + 작업 + `commit` | 성공 경로에서만 확정된다 |
+| `catch` | `rollback` | **예외가 곧 「전부 취소」의 신호**다 |
+| `finally` | `setAutoCommit(true)` (+ `close`) | 어느 경로로 나가든 **연결을 원래 상태로** 돌려놔야 한다 |
+
+**「어느 예외에서 롤백하나」를 고를 필요가 없다는 것**이 이 형태의 요점이다. 단위 작업 안에서 무엇이 터지든 데이터는 시작 시점으로 돌아간다 — 그래서 `catch (Exception e)` 라는 가장 넓은 잡기가 여기서는 게으름이 아니다.
+
+### 그리고 실습 프로젝트에서 등록 화면 하나가 감싸인다
+
+Day55 가 경계를 필요로 한 화면은 셋이었다(등록·변경·삭제). **Day57 §2.2 가 감싼 것은 그중 등록 하나**다.
+
+```java
+System.out.println("팀원:");
+memberHandler.addMembers(project);
+//수동커밋 시작
+con.setAutoCommit(false);
+projectDao.insert(project);
+projectDao.insertMembers(project.getNo(), project.getMembers());
+con.commit();
+```
+
+**경계가 사용자 입력 뒤에 시작하는 것이 맞다.** 프로젝트명·설명·기간·팀원을 묻는 `Prompt.input` 이 전부 끝난 뒤에 `setAutoCommit(false)` 가 오므로, 사람이 생각하는 동안 트랜잭션이 열려 있지 않다 — 아래 「경계와 오해」의 `Lock wait timeout` 이 여기서 생기지 않는 이유다.
+
+감싼 두 문장이 **[[generated-keys]] 로 이어진 둘**이라는 점도 우연이 아니다. `insert` 가 되받은 번호를 `insertMembers` 가 값으로 쓰므로 **앞이 성공해야 뒤가 성립하고**, 뒤가 실패하면 앞의 번호는 쓸 곳이 없어진다. Day55 표의 첫 줄(「팀원 없는 프로젝트가 남는다」)이 이 여섯 줄로 닫힌다 → [[foreign-key]]
+
+**변경과 삭제 화면은 그대로다.** 필기에 그 두 화면이 나오지 않으므로, Day55 표의 둘째 줄(변경이 삭제로 끝나는 것)과 셋째 줄은 이 회차 기준으로도 **아직 열려 있다.**
+
+### 나흘 뒤 Day59 — 같은 스위치가 세션을 여는 인수가 된다
+
+MyBatis 를 얹으면 네 걸음이 세 걸음으로 줄고, **줄어든 자리가 정확히 Day57 이 가장 어려웠던 자리다** → [[mybatis]]
+
+| Day52 의 SQL | Day57 의 자바 | Day59 의 MyBatis |
+|---|---|---|
+| `set autocommit = false` | `con.setAutoCommit(false)` | **`sqlSessionFactory.openSession(false)`** |
+| `commit` | `con.commit()` | `sqlSession.commit()` |
+| `rollback` | `con.rollback()` | `sqlSession.rollback()` |
+| (창을 닫으면 원래대로) | `con.setAutoCommit(true)` — **직접 되돌려야 한다** | **`sqlSession.close()` 하나** |
+
+**네 번째 걸음이 없어진다.** 세션을 닫으면 미확정 트랜잭션이 롤백되고, 연결은 `<dataSource type="POOLED">` 의 풀로 돌아가며 그때 상태가 되돌려진다 — 아래 「`setAutoCommit(true)` 는 원래대로 돌려놓기가 아니라 커밋이다」가 지적한 **가장 위험한 경로가 이 층에서는 사라진다.** Day57 의 `finally` 세 줄이 없어지는 것이 이 프레임워크가 실제로 갚는 것 중 하나다 → [[connection-lifetime-mismatch]]
+
+**그런데 Day59 는 경계를 열고 닫지 않는다.**
+
+```java
+SqlSession sqlSession = sqlSessionFactory.openSession(false);   // autocommit off
+...
+sqlSession.insert("aaa.sql2", user);      // commit() 이 없다
+```
+
+필기의 `insert`·`update`·`delete` 다섯 절 어디에도 `commit()` 이 없으므로 **그 예제들은 DB 에 아무것도 남기지 않는다.** 그리고 이것이 이 노트에서 가장 조용한 실패다 — `insert()` 가 **변경된 행 수 1 을 돌려주고**, 같은 세션에서 `select` 하면 위 표 첫 줄대로 **내 변경이 보이고**, 예외도 경고도 없다. **화면은 「등록됨」이라 말하고 테이블은 비어 있는 상태**이며, 확인이 다른 세션(mysql 창)에서 조회할 때까지 미뤄진다. Day57 §2.2 가 `setAutoCommit(false)` → `commit()` 짝을 정확히 썼던 것이 **앞쪽만 옮겨 온 셈**이다.
+
 ## 왜 중요한가
 
 **「절반만 실행된 상태」를 만들지 않을 수 있다.** 계좌에서 빼고 다른 계좌에 넣는 두 `update` 사이에서 연결이 끊기면, 자동 커밋에서는 **돈이 사라진 상태**가 남는다. 두 문장을 한 트랜잭션으로 묶으면 그 중간 상태가 저장되지 않는다 — 이것이 원자성(atomicity)이고, **DB 를 파일 저장과 가르는 첫 성질**이다 → [[serialization]]
@@ -116,7 +207,16 @@ Day52 의 실험은 `mysql` 창 두 개였다. Day55 에서 실습 프로젝트�
 - **한 문장은 자동 커밋에서도 원자적이다** — `insert` 하나로 100행을 넣다가 하나가 제약을 어기면 **전부 들어가지 않는다.** 「autocommit=true 면 원자성이 없다」가 아니라 **원자성의 단위가 문장 하나**인 것이다 → [[dml]]
 - **그래서 「반복문으로 넣기」와 「한 문장으로 넣기」가 갈린다** — Day55 의 `insertMembers` 는 팀원마다 `executeUpdate` 를 부르는 `for` 루프다. 자동 커밋에서 이것은 **문장 셋이 각자 확정되는 것**이므로, 세 번째 팀원이 외래키에 걸리면 **앞의 두 명만 들어간 상태로 남는다.** 값 묶음을 콤마로 이어 붙인 `insert` 한 문장이었다면 같은 실패가 「아무도 안 들어감」이 된다. 코드 모양이 루프인지 한 문장인지가 **실패했을 때 남는 데이터를 정하고**, 루프를 고르면 그때부터 트랜잭션이 선택이 아니게 된다 → [[dml]] · [[for-loop]]
 - **「지운 뒤 다시 넣기」는 트랜잭션 없이는 변경이 아니라 삭제다** — Day55 의 변경 화면이 `deleteMembers` → `insertMembers` 순서다. 이 형태는 목록을 통째로 맞추는 가장 간단한 방법이지만, **두 문장 사이가 「팀원이 아무도 없는 상태」**이고 자동 커밋에서는 그 상태가 **실제로 저장되며 다른 세션에도 보인다.** 뒤가 실패하면 그대로 남는다. 「변경」이라는 말이 데이터에서는 **삭제와 등록 두 개**라는 것이 이 자리에서 드러나고, 그래서 둘을 한 덩어리로 묶을 경계가 필요하다 → [[crud]] · [[dml]]
+- **`setAutoCommit(true)` 는 「원래대로 돌려놓기」가 아니라 커밋이다** — Day57 이 `finally` 에 둔 마지막 걸음인데, JDBC 명세는 **트랜잭션이 열려 있는 상태에서 이 메서드를 부르면 그 트랜잭션을 커밋한다**고 정한다. 그래서 이 코드에는 조용한 경로가 하나 있다: `catch` 안의 `con.rollback()` 이 실패하면(연결이 끊겼거나 `con` 이 `null` 이거나) 그 예외는 **빈 `catch (Exception e2) { }` 가 삼키고**, 곧바로 `finally` 의 `setAutoCommit(true)` 가 **절반만 실행된 작업을 확정한다.** 즉 롤백을 시도한 코드가 커밋으로 끝나고 화면에는 「등록 중 오류 발생!」이 찍힌다 — **오류 메시지와 저장된 데이터가 서로 다른 말을 하는 상태**다. 순서를 `rollback` → `setAutoCommit(true)` 로 둔 것 자체는 맞고, 위험은 **그 사이의 실패를 무시한 것**에 있다 → [[exception-handling]]
+- **`setAutoCommit(true)` 를 되돌려 놓는 이유는 연결을 남이 쓰기 때문이다** — 콘솔 프로그램에서 연결을 곧 닫는다면 이 줄은 할 일이 없어 보인다(Day57 §1.5.3 은 실제로 바로 `close()` 한다). 필요해지는 것은 **연결이 재사용될 때**다 — 실습 프로젝트의 `con` 은 여러 Command 가 함께 쓰는 필드이므로, 되돌려 놓지 않으면 **다음 화면이 자기도 모르게 수동 커밋 상태**로 돌아가고 그 화면의 `insert` 는 커밋되지 않은 채 남는다. 커넥션 풀에서 빌려 쓰는 구조에서는 같은 문제가 남의 요청으로 넘어간다 — **연결에 남는 설정이 있다는 것**이 이 한 줄의 존재 이유다 → [[connection-lifetime-mismatch]] · [[connection-pool-sizing-formula]]
+- **`try-with-resources` 는 `close()` 만 해 준다 — `setAutoCommit` 은 되돌리지 않는다** — 그래서 `try (Connection con = ...)` 로 감싸도 위 항목의 문제가 사라지지 않고, 그 안에서 `setAutoCommit(false)` 를 했으면 나가기 전에 손으로 되돌려야 한다. **자원 반납과 상태 복구가 다른 축**이라는 것이 [[try-with-resources]] 를 배운 뒤 처음 걸리는 자리다. 다만 닫히는 연결의 미확정 트랜잭션은 롤백되므로, 잊었을 때 기우는 방향은 안전한 쪽이다 → [[try-with-resources]]
 - **`try-with-resources` 가 닫아 주는 것은 연결이고 되돌려 주는 것은 없다** — Day55 의 DAO 는 `try (Statement stmt = ...)` 로 감싸여 있어 **자원 정리는 예외가 나도 보장된다.** 그것을 「예외 처리를 했다」로 읽으면 데이터 쪽이 비어 있다 — 자원을 닫는 일과 변경을 취소하는 일은 **다른 축**이고, 후자는 `catch` 에서 `rollback()` 을 부르는 코드가 따로 있어야 한다. 오히려 연결이 닫힐 때 커밋되지 않은 트랜잭션은 롤백되므로, **수동 커밋으로 바꾸는 것이 이 실수를 안전한 쪽으로 기울인다** → [[try-with-resources]] · [[exception-handling]] · [[jdbc]]
+- **Day57 §1.5.3 의 예제는 컴파일되지 않는다 — 그리고 그 이유가 이 형태의 본질적인 부담이다** — `Connection con = DriverManager.getConnection(...)` 이 `try` 블록 **안에서** 선언되어 있어서, `catch` 의 `con.rollback()` 과 `finally` 의 `con.setAutoCommit(true)` 는 그 변수를 볼 수 없다(`cannot find symbol`). 고치는 방법은 선언을 `try` 앞으로 올리는 것인데, 그러면 **`getConnection` 자체가 실패한 경우 `con` 이 `null`** 이라 `catch`·`finally` 에 `if (con != null)` 이 붙는다. 즉 「연결 얻기」를 단위 작업 안에 넣을 수 없고 **경계를 여는 코드와 되돌리는 코드가 같은 변수를 봐야 한다**는 제약이 이 구조를 정한다. 실습 §2.2 가 이 문제를 겪지 않는 것은 `con` 이 **이미 필드로 있는 공용 연결**이라서다 — 그래서 예제와 실제 코드는 같은 형태가 아니다 → [[variable-scope]] · [[exception-handling]]
+- **`executeQuery` 로는 `insert`·`update`·`delete` 를 보낼 수 없다 — 자동 커밋의 위험을 보이는 예제가 실행되지 않는다** — Day57 §1.5.1 은 「한개의 프로세스」 안에서 `executeQuery("쿼리문1")` ~ `executeQuery("쿼리문5")` 를 부른다. 그런데 커밋이 문제가 되는 문장은 [[dml]] 이고, MySQL 드라이버는 `executeQuery` 에 변경 문장이 오면 **`Can not issue data manipulation statements with executeQuery()`** 로 거절한다. 그림대로라면 **첫 문장부터 실패**해서 「쿼리문이 1~3까지는 수행되어 데이터가 바뀌고 이후로는 데이터가 바뀌지 않는다」는 상태 자체가 만들어지지 않는다. 같은 회차 §1.1 이 두 메서드를 정확히 갈라 적었는데도 이 절에서 뒤바뀐 것이라, **결론(부분 성공이 남는다)은 맞고 예제만 틀린 자리**다 → [[jdbc]] · [[dql]]
+- **「mysql의 기본값은 true」가 프레임워크 층에서 뒤집힌다 (Day59 기준)** — 이 노트의 시작 문장이 그것이고 [[jdbc]] 연결도 그 기본값을 물려받는데, **MyBatis 의 `openSession()`(인수 없음)은 autocommit 이 `false`** 다. 즉 층을 하나 올라가면서 기본값이 반대가 되므로, Day52 에서 외운 「아무 설정도 안 하면 문장마다 확정된다」가 **여기서는 「아무 설정도 안 하면 아무것도 확정되지 않는다」**가 된다. Day59 가 `openSession(false)` 로 명시했으니 그 코드는 뜻이 분명하지만, **인수를 지우면 동작이 같다**는 것을 모르면 「기본값으로 돌렸다」고 믿으며 같은 사고를 반복한다 → [[mybatis]]
+- **`transactionManager type="JDBC"` 는 커밋을 누가 하는지의 선언이다** — Day59 의 설정 파일에 있는 한 줄인데 필기가 설명하지 않았다. `JDBC` 는 「`Connection` 의 `commit`/`rollback` 을 그대로 쓴다」이고, `MANAGED` 는 「컨테이너에 맡기니 세션의 `commit()` 은 **아무 일도 하지 않는다**」다. 즉 **같은 자바 코드가 설정 한 줄에 따라 커밋을 하기도 안 하기도 하며**, 「`commit()` 을 불렀는데 저장이 안 된다」의 첫 확인 지점이 이 줄이다 → [[mybatis]] · [[xml]]
+- **`type="POOLED"` 는 이 노트가 경고한 구조를 실제로 들여온다 — 그리고 그 문제를 함께 가져간다** — 위의 「`setAutoCommit(true)` 를 되돌려 놓는 이유는 연결을 남이 쓰기 때문이다」가 「커넥션 풀에서 빌려 쓰는 구조에서는 같은 문제가 남의 요청으로 넘어간다」로 끝났는데, Day59 의 설정이 바로 그 구조다. 다만 MyBatis 의 풀은 연결을 반납할 때 **미확정 트랜잭션을 롤백하고 autocommit 설정을 되돌린다** — 손으로 하던 네 번째 걸음을 프레임워크가 맡은 것이다. **위험이 커진 것이 아니라 책임이 옮겨간 것**이고, 그래서 확인할 곳이 「내 `finally`」에서 「그 풀 구현이 무엇을 되돌리나」로 바뀐다 → [[connection-pool-sizing-formula]] · [[connection-lifetime-mismatch]]
+- **`rollback` 이 취소하는 것은 「이 연결의 미확정 변경」이다** — Day57 의 형태를 보고 「예외가 나면 프로그램이 한 일이 다 취소된다」로 읽기 쉬운데, 되돌아가는 것은 **`setAutoCommit(false)` 이후 그 연결에서 한 변경**뿐이다. 그 앞에서 자동 커밋으로 이미 확정한 것, 다른 연결에서 한 것, 화면에 출력한 것, 파일에 쓴 것은 그대로 남는다. §2.2 의 `memberHandler.addMembers(project)` 가 경계 밖에 있는 것이 그래서 읽을 거리다 — 그 안에서 DB 를 바꿨다면 그 변경은 롤백 대상이 아니다 → [[socket]] · [[io-stream]]
 
 ## 함께 보는 개념
 
@@ -132,10 +232,18 @@ Day52 의 실험은 `mysql` 창 두 개였다. Day55 에서 실습 프로젝트�
 - [[crud]] — 등록·변경·삭제 화면이 어디서 커밋할지 정해야 하는 문제
 - [[exception-handling]] — 중간에 실패했을 때 `rollback` 을 부르는 자리
 - [[jdbc]] · [[try-with-resources]] — 이 경계를 자바 코드에서 여닫는 자리
+- [[variable-scope]] — 경계를 여는 코드와 되돌리는 코드가 같은 변수를 봐야 하는 제약
+- [[prepared-statement]] — 같은 회차에서 함께 고쳐지지만 다른 축인 것
+- [[connection-lifetime-mismatch]] · [[connection-pool-sizing-formula]] — 연결에 남은 설정이 남에게 넘어가는 자리
 - [[db-normalization]] · [[foreign-key]] — 화면 하나가 문장 여럿이 되는 이유
 - [[generated-keys]] — 그 문장들을 잇는 값이 확정 전이라는 문제
+- [[mybatis]] · [[sql-session]] — 같은 스위치가 세션을 여는 인수가 되는 층
+- [[dao-pattern]] — 이 경계가 놓일 수 없는 층
+- [[xml]] — `transactionManager`·`dataSource` 설정이 사는 곳
 
 ## 출처
 
 - [[2024-08-07-Day52]] — 「mysql은 autocommit의 기본 값이 true이다」에서 시작해 `set autocommit = false` 로 바꾸고 `commit`/`rollback` 을 확인했다. 창을 두 개 열어 **커밋 전 변경은 상대에게 보이지 않고, 상대가 커밋한 변경도 내 쪽에 보이지 않는다**는 것을 화면으로 남긴 회차다. 다만 「임시저장소」·「다른 서버」·「커밋이후에 조회가 불가능」이라는 설명은 각각 실제 구조(undo log)·세션 개념·격리 수준(REPEATABLE READ)과 어긋나고, `true` 쪽의 동작은 「차이」라는 소제목만 두고 채우지 않았다
 - [[2024-08-13-Day55]] — **이 개념이 필요한 코드가 처음 나오는데, 이 개념이 쓰이지 않은 회차**다. 팀원 관리를 중간 테이블로 옮기면서 등록이 `insert` + `insertMembers`, 변경이 `update` + `deleteMembers` + `insertMembers`, 삭제가 `deleteMembers` + `delete` 로 갈렸고, `insertMembers` 자체도 팀원마다 `executeUpdate` 를 부르는 루프다. **어디에도 `setAutoCommit(false)`·`commit`·`rollback` 이 없어** 문장마다 즉시 확정되며, 특히 변경 화면은 「지운 뒤 다시 넣기」라 중간 상태가 「팀원 없음」이다. 필기는 트랜잭션을 언급하지 않는다 — Day52 에서 콘솔로 배운 것이 코드로 옮겨 오지 않은 자리로 읽는다. `try-with-resources` 로 자원은 닫지만 실패한 변경을 되돌리는 코드는 없다
+- [[2024-08-16-Day57]] — 사흘 뒤, **Day52 의 콘솔 실험이 자바 메서드로 옮겨 온 회차**다. 「1.5 AutoCommit옵션」이 기본 동작과 그 위험(여러 문장 중간에 실패하면 앞만 반영된다)을 세우고, 「1.5.2 explicit commit」이 수동 커밋의 개념을, 「1.5.3 트랜잭션」이 정의(「연속적으로 수행하는 여러 개 insert/update/delete 작업을 한 단위의 작업으로 묶는것」)와 네 걸음 순서(`setAutoCommit(false)` → 작업 → `commit()`/`rollback()` → `setAutoCommit(true)`)를 적었고, 그 순서가 `try`/`catch`/`finally` 세 블록에 대응하는 코드까지 나온다. **`setAutoCommit(true)` 로 되돌리는 네 번째 걸음은 SQL 쪽에 없던 것**이고, 실습 §2.2 가 등록 화면의 `insert` + `insertMembers` 두 문장을 실제로 감싸 Day55 표의 첫 줄을 닫는다. 다만 §1.5.1 의 예제는 변경 문장을 `executeQuery` 로 보내 그대로는 실행되지 않고, §1.5.3 의 코드는 `Connection con` 을 `try` 안에서 선언해 `catch`·`finally` 에서 볼 수 없으며, 빈 `catch (Exception e2) { }` 가 롤백 실패를 삼킨 뒤 `finally` 의 `setAutoCommit(true)` 가 미확정 변경을 **커밋해 버리는** 경로가 남아 있다. 변경·삭제 화면은 감싸지 않았고, 격리 수준·잠금은 이 회차에도 나오지 않는다
+- [[2024-08-20-Day59]] — 나흘 뒤, **같은 스위치가 프레임워크의 인수 하나로 옮겨 온 회차**다. `sqlSessionFactory.openSession(false)` 가 Day57 의 `con.setAutoCommit(false)` 자리이고, 되돌리는 네 번째 걸음(`setAutoCommit(true)`)은 `close()` 와 커넥션 풀이 맡아 **사라진다** — 설정의 `<transactionManager type="JDBC"/>` 와 `<dataSource type="POOLED">` 가 그 두 가지를 정하는 줄인데 필기는 값만 적고 설명하지 않았다. **그리고 이 회차에는 `commit()` 이 한 번도 나오지 않는다** — `openSession(false)` 로 경계를 열어 놓고 닫지 않으므로 `insert`·`update`·`delete` 예제가 전부 세션 종료 시 롤백되며, `insert()` 가 행 수 1 을 돌려주고 같은 세션의 조회에는 변경이 보이기 때문에 **오류 없이 「저장된 것처럼」 보인다.** Day55 가 「이 개념이 필요한 코드가 나오는데 쓰지 않은 회차」였다면 Day59 는 **「경계를 열기만 하고 닫지 않은 회차」**다. MyBatis 의 기본 autocommit 이 `false` 라서 이 노트가 시작하는 「mysql의 기본값은 true」가 이 층에서 뒤집히는 것도 필기에 없다 → [[mybatis]] · [[sql-session]]
