@@ -52,6 +52,29 @@ def listfield(fm: str, key: str) -> list[str]:
     return []
 
 
+def twin_basenames(all_notes: dict[str, dict]) -> dict[str, list[str]]:
+    """stem 이 같은 레포 내 다른 `.md` 를 찾는다.
+
+    `notes()` 의 skip 목록에 든 디렉토리(`templates/` 등)는 링크 해산 대상이
+    아니지만 **옵시디언은 그것도 본다.** `resources/concept/reference.md` 와
+    `templates/knowledge/reference.md` 처럼 부딪히면 `[[reference]]` 가 어느
+    쪽으로 풀릴지 모호해진다 — 검사기가 링크는 통과시켜도 옵시디언에서 깨지는
+    자리라 별도로 잡는다.
+    """
+    skip = {".git", "node_modules", ".venv", "__pycache__"}
+    out: dict[str, list[str]] = {}
+    for p in ROOT.rglob("*.md"):
+        if any(s in p.parts for s in skip):
+            continue
+        if p.stem not in all_notes:
+            continue
+        rel = str(p.relative_to(ROOT))
+        known = str(all_notes[p.stem]["path"])
+        if rel != known:
+            out.setdefault(p.stem, []).append(rel)
+    return out
+
+
 def main() -> int:
     target = sys.argv[1] if len(sys.argv) > 1 else None
     all_notes = notes()
@@ -60,6 +83,8 @@ def main() -> int:
     resolvable = set(all_notes)
     for n in all_notes.values():
         resolvable.update(listfield(n["fm"], "aliases"))
+
+    twins = twin_basenames(all_notes)
 
     scope = {
         stem: n
@@ -79,15 +104,31 @@ def main() -> int:
     bad: list[str] = []
     for stem, n in sorted(scope.items()):
         fm, body = n["fm"], n["body"]
-        targets = set(LINK.findall(FENCE.sub("", body))) | set(listfield(fm, "up"))
+        links = set(LINK.findall(FENCE.sub("", body)))
+        ups = listfield(fm, "up")
+        targets = links | set(ups)
         for t in sorted(targets):
             if t.strip() not in resolvable:
                 bad.append(f"L1 dead link  {stem} → [[{t.strip()}]]")
 
         if field(fm, "type") != "concept":
             continue
-        if not listfield(fm, "up"):
+        if not ups:
             bad.append(f"출처 누락      {stem} → up: 비어 있음")
+
+        # L3 — `up:` 은 본문 링크의 부분집합이어야 한다(오버레이). 본문이 엣지의 단일
+        # 소스이고 `up:` 은 그중 계보인 것을 마킹하는 것이므로, 본문에 없는 `up:` 은
+        # 계보를 주장하면서 근거를 대지 않는 상태다. 개념 성장 때 「출처」줄 추가를
+        # 빠뜨리면 정확히 이 모양이 되고, 링크는 살아 있어 L1 으로는 안 잡힌다.
+        for u in ups:
+            if u.strip() not in links:
+                bad.append(f"L3 up 미기재    {stem} → up: {u.strip()} 이 본문 [[]] 에 없음")
+
+        # 옵시디언은 basename 으로 링크를 푼다. skip 목록(templates 등) 밖의
+        # 같은 이름 파일과 부딪히면 [[stem]] 이 어느 쪽인지 모호해진다 —
+        # 링크 해산 범위에는 넣지 않으면서 이름 충돌만 잡는다.
+        for other in twins.get(stem, ()):
+            bad.append(f"이름 충돌      {stem} ↔ {other} (옵시디언에서 [[{stem}]] 이 모호)")
 
     label = f"{target} 묶음" if target else "resources/ 전체"
     print(f"{label} — 노트 {len(scope)}건, 위반 {len(bad)}건")

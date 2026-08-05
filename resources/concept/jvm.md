@@ -51,6 +51,7 @@ Java 프로그램이 도는 경로는 두 단계로 갈라져 있다.
 - [[bytecode]] — JVM 이 실행하는 입력
 - [[platform-dependency]] — JVM 이 흡수하는 문제
 - [[jdk]] — JVM 을 포함하는 개발 꾸러미
+- [[jvm-stack]] — JVM 이 메서드 호출을 위해 쓰는 메모리 영역
 
 ## 출처
 
