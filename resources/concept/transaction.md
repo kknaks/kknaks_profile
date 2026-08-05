@@ -22,6 +22,7 @@ up:
   - 2024-08-16-Day57
   - 2024-08-20-Day59
   - 2024-08-23-Day62
+  - 2024-08-29-Day66
 ---
 
 # 트랜잭션과 autocommit (commit · rollback)
@@ -218,6 +219,26 @@ sqlSessionFactory.openSession(false).commit();   // DAO 가 쓴 세션과 같은
 
 **그리고 「내가 보는 데이터」에 시점이 생긴다.** 조회가 지금 이 순간의 테이블이 아니라 **내 트랜잭션이 잡은 시점**을 보므로, 한 트랜잭션 안에서 같은 조회를 두 번 하면 남이 무엇을 하든 같은 답이 온다. 화면 하나를 만들며 조회를 다섯 번 해도 서로 어긋나지 않는 것이 이 성질에 얹혀 있다.
 
+### 엿새 뒤 — 커밋이 분기 안으로 들어가면서 실패 경로가 열린다
+
+Day66 의 서블릿들이 성공했을 때만 커밋한다.
+
+```java
+projectDao.deleteMembers(projectNo);
+if (projectDao.delete(projectNo)) {
+  sqlSessionFactory.openSession(false).commit();
+  out.println("<p>삭제 했습니다.</p>");
+} else {
+  out.println("<p>없는 프로젝트입니다.</p>");     // ← 커밋도 롤백도 없다
+}
+```
+
+**`else` 로 가면 `deleteMembers` 가 이미 실행됐는데 확정도 취소도 되지 않는다.** 세션은 [[thread-local]] 에 남아 있으므로 그 변경이 **다음에 이 쓰레드를 쓰는 요청의 `commit()` 에 얹혀 확정된다.** 컨테이너가 쓰레드를 재사용하기 때문이다 → [[servlet-container]]
+
+프로젝트 변경도 같은 모양이다 — `update` → `deleteMembers` → `insertMembers` 세 문장 중 가운데서 예외가 나면 앞의 둘이 미확정으로 남는다.
+
+**Day62 가 「경계에 주인이 생겼다」로 얻은 것이 여기서 절반 무너진다** — 주인은 있는데 **끝내는 책임이 분기마다 흩어졌다.**
+
 ## 경계와 오해
 
 - **DB 의 `commit` ≠ git 의 `commit`** — 이름이 같고 「확정한다」는 느낌도 같아서 그대로 겹쳐 읽게 되는데, 세 가지가 다르다. ① git 의 `commit` 은 **로컬에 버전을 남기는 것**이고 남에게 보이려면 `push` 가 더 필요하지만, DB 의 `commit` 은 **그 순간 모든 세션에 보인다.** ② git 은 `commit` 뒤에도 되돌릴 수 있지만(`reset`·`revert`) DB 는 **`commit` 전까지만** `rollback` 이다. ③ git 은 `add` 로 담을 것을 고르는데 DB 에는 고르는 단계가 없다 — 트랜잭션 안의 변경 **전부**가 함께 확정되거나 함께 취소된다 → [[git]] · [[staging-area]]
@@ -278,4 +299,5 @@ sqlSessionFactory.openSession(false).commit();   // DAO 가 쓴 세션과 같은
 - [[2024-08-13-Day55]] — **이 개념이 필요한 코드가 처음 나오는데, 이 개념이 쓰이지 않은 회차**다. 팀원 관리를 중간 테이블로 옮기면서 등록이 `insert` + `insertMembers`, 변경이 `update` + `deleteMembers` + `insertMembers`, 삭제가 `deleteMembers` + `delete` 로 갈렸고, `insertMembers` 자체도 팀원마다 `executeUpdate` 를 부르는 루프다. **어디에도 `setAutoCommit(false)`·`commit`·`rollback` 이 없어** 문장마다 즉시 확정되며, 특히 변경 화면은 「지운 뒤 다시 넣기」라 중간 상태가 「팀원 없음」이다. 필기는 트랜잭션을 언급하지 않는다 — Day52 에서 콘솔로 배운 것이 코드로 옮겨 오지 않은 자리로 읽는다. `try-with-resources` 로 자원은 닫지만 실패한 변경을 되돌리는 코드는 없다
 - [[2024-08-16-Day57]] — 사흘 뒤, **Day52 의 콘솔 실험이 자바 메서드로 옮겨 온 회차**다. 「1.5 AutoCommit옵션」이 기본 동작과 그 위험(여러 문장 중간에 실패하면 앞만 반영된다)을 세우고, 「1.5.2 explicit commit」이 수동 커밋의 개념을, 「1.5.3 트랜잭션」이 정의(「연속적으로 수행하는 여러 개 insert/update/delete 작업을 한 단위의 작업으로 묶는것」)와 네 걸음 순서(`setAutoCommit(false)` → 작업 → `commit()`/`rollback()` → `setAutoCommit(true)`)를 적었고, 그 순서가 `try`/`catch`/`finally` 세 블록에 대응하는 코드까지 나온다. **`setAutoCommit(true)` 로 되돌리는 네 번째 걸음은 SQL 쪽에 없던 것**이고, 실습 §2.2 가 등록 화면의 `insert` + `insertMembers` 두 문장을 실제로 감싸 Day55 표의 첫 줄을 닫는다. 다만 §1.5.1 의 예제는 변경 문장을 `executeQuery` 로 보내 그대로는 실행되지 않고, §1.5.3 의 코드는 `Connection con` 을 `try` 안에서 선언해 `catch`·`finally` 에서 볼 수 없으며, 빈 `catch (Exception e2) { }` 가 롤백 실패를 삼킨 뒤 `finally` 의 `setAutoCommit(true)` 가 미확정 변경을 **커밋해 버리는** 경로가 남아 있다. 변경·삭제 화면은 감싸지 않았고, 격리 수준·잠금은 이 회차에도 나오지 않는다
 - [[2024-08-20-Day59]] — 나흘 뒤, **같은 스위치가 프레임워크의 인수 하나로 옮겨 온 회차**다. `sqlSessionFactory.openSession(false)` 가 Day57 의 `con.setAutoCommit(false)` 자리이고, 되돌리는 네 번째 걸음(`setAutoCommit(true)`)은 `close()` 와 커넥션 풀이 맡아 **사라진다** — 설정의 `<transactionManager type="JDBC"/>` 와 `<dataSource type="POOLED">` 가 그 두 가지를 정하는 줄인데 필기는 값만 적고 설명하지 않았다. **그리고 이 회차에는 `commit()` 이 한 번도 나오지 않는다** — `openSession(false)` 로 경계를 열어 놓고 닫지 않으므로 `insert`·`update`·`delete` 예제가 전부 세션 종료 시 롤백되며, `insert()` 가 행 수 1 을 돌려주고 같은 세션의 조회에는 변경이 보이기 때문에 **오류 없이 「저장된 것처럼」 보인다.** Day55 가 「이 개념이 필요한 코드가 나오는데 쓰지 않은 회차」였다면 Day59 는 **「경계를 열기만 하고 닫지 않은 회차」**다. MyBatis 의 기본 autocommit 이 `false` 라서 이 노트가 시작하는 「mysql의 기본값은 true」가 이 층에서 뒤집히는 것도 필기에 없다 → [[mybatis]] · [[sql-session]]
+- [[2024-08-29-Day66]] — 엿새 뒤. 변경·삭제 서블릿이 `if (dao.update(...)) { commit(); }` 형태로 **커밋을 성공 분기 안에** 둔다. 실패 분기에는 롤백이 없어 앞서 실행한 문장이 미확정으로 남고, 세션이 쓰레드에 붙어 있으므로 **다음 요청의 커밋에 얹힌다.** 「연산 하나가 문장 여럿」인 프로젝트 변경(`update`+`deleteMembers`+`insertMembers`)이 그 위험이 가장 큰 자리인데 필기는 세 문장을 나란히 적고 넘어간다 → [[crud]]
 - [[2024-08-23-Day62]] — 사흘 더 뒤. **경계에 처음 주인이 생기는 회차**다. Day61 이 접속마다 쓰레드를 붙이면서 세션 하나를 공유하게 된 상태를 「하나의 클라이언트에서 커밋을 하면 전체 캐시가 데이터베이스에 업데이트된다」·「다른 클라이언트에서 오류가 발생해도 롤백되지 않는다」로 문제로 적고, `SqlSessionFactory` 에 프록시를 씌워 [[thread-local]] 로 **쓰레드마다 세션**을 갖게 해서 경계를 접속 단위로 나눈다. `sqlSessionFactory.openSession(false).commit()` / `.rollback()` 이 `try`·`catch` 에 각각 놓여 **Day57 의 형태가 프레임워크 위에서 복원되고**, Day59 가 열어만 두었던 경계가 이 회차에 닫힌다. 다만 남는 것이 셋이다 — ① 세션을 `close()` 하지 않으므로 경계가 「작업」이 아니라 **「접속」**이고 사람이 메뉴를 고르는 동안에도 트랜잭션이 열려 있다(Day57 §2.2 가 지켰던 「경계는 사용자 입력 뒤에」가 뒤집힌다), ② 커밋 뒤에도 같은 세션이 이어지므로 **한 화면이 커밋을 빼먹으면 다음 화면의 커밋에 얹히고 다음 화면의 롤백에 함께 사라진다** — Day61 의 「남의 작업이 섞인다」가 「같은 사람의 다른 작업이 섞인다」로 줄어든 형태다, ③ `openSession(false).commit()` 이라는 표현식은 **프록시의 바뀐 동작에 전적으로 의존**해서, 대리자를 빼면 빈 세션에 커밋하는 코드가 되어 조용히 아무것도 저장되지 않는다. 격리 수준·잠금은 이 회차에도 나오지 않고, 필기의 세 번째 줄은 롤백의 두 방향(남의 것이 되돌려지는 것과 이미 커밋된 것을 되돌릴 수 없는 것)을 한 문장으로 뭉쳐 놓았다

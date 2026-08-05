@@ -10,6 +10,7 @@ aliases:
   - input 태그
 up:
   - 2024-08-28-Day65
+  - 2024-08-29-Day66
 tags:
   - web
   - HTML
@@ -106,6 +107,37 @@ out.println("        </ul>");
 
 **`method` 하나가 보안·중복·기록을 동시에 정한다.** 아래 「경계와 오해」의 앞 세 항목이 전부 이 회차가 그 속성을 적지 않은 결과이고, 셋 다 **오류 없이** 나타난다.
 
+### 하루 뒤 — 폼이 값을 들고 나타나고, 버튼이 폼을 벗어난다
+
+조회 화면이 그대로 변경 폼이 된다. **`value` 에 현재 값을 찍고 `readonly` 로 못 고칠 칸을 막는다.**
+
+```java
+out.println("<form action='/board/update'>");
+out.printf("        번호: <input readonly name='no' type='text' value='%d'><br>\n", board.getNo());
+out.printf("        제목: <input name='title' type='text' value='%s'><br>\n", board.getTitle());
+out.printf("        내용: <textarea name='content'>%s</textarea><br>\n", board.getContent());
+out.println("        <button>변경</button>");
+out.println("</form>");
+```
+
+체크박스는 **켜진 상태까지 그려야** 한다 — 참여 중인 팀원에 `checked` 를 붙인다.
+
+```java
+out.printf("<li><input %s name='member' value='%d' type='checkbox'> %s</li>\n",
+  isMember(project.getMembers(), user) ? "checked" : "", user.getNo(), user.getName());
+```
+
+**조회 폼과 변경 폼이 같은 모양인 것이 이 형태의 값이다** — 화면이 하나면 되고, 「지금 값」과 「보낼 값」이 같은 자리에 있다 → [[ternary-operator]]
+
+그리고 **버튼이 폼 제출을 안 하게 만드는 법**이 나온다.
+
+```java
+out.printf("<button type='button' onclick='location.href=\"/project/delete?no=%d\"'>삭제</button>\n",
+  project.getNo());
+```
+
+`type='button'` 이 제출 기능을 끄고 `onclick` 이 **주소를 갈아 치운다.** 필기의 설명대로 「submit 기능을 제거하고 다른 동작을 하게」 하는 것인데, 그 다른 동작이 **GET 요청**이라는 점이 문제가 된다(아래).
+
 ## 경계와 오해
 
 - **필기의 `atction` 은 `action` 의 오기이고, 그 오타는 화면을 「아무 일도 안 일어난 것처럼」 만든다** — 실습 코드에는 `action="/user/add"` 로 맞게 적혀 있고 설명 줄만 틀렸다. 그런데 만약 실제로 그렇게 적으면 증상이 조용하다 — **브라우저는 모르는 속성을 무시하고, `action` 이 없는 폼은 「현재 페이지의 URL」로 제출한다.** 즉 `/user/form.html` 이 `?name=…&email=…` 을 달고 다시 열려서 **빈 폼이 다시 뜬다.** 오류도 404 도 없고 「등록 버튼이 안 먹는다」로만 보이므로, 원인을 서블릿 쪽에서 찾게 된다 → [[url]]
@@ -134,4 +166,5 @@ out.println("        </ul>");
 
 ## 출처
 
+- [[2024-08-29-Day66]] — 하루 뒤. 조회 화면이 `value`·`readonly` 로 **값을 들고 있는 변경 폼**이 되고, 체크박스에 `checked` 를 조건부로 찍어 현재 상태까지 그린다. `<button type='button' onclick='location.href=...'>` 로 **제출이 아닌 버튼**을 만드는 법도 나온다. 다만 **변경 폼에도 `method` 가 없어 Day65 의 문제가 그대로 이어지고**, 이제 새는 것이 암호가 아니라 「변경」과 「삭제」라는 동작 자체다 — 같은 노트 끝의 HTTP 메서드 표가 GET 을 「안전」으로 분류해 둔 것과 어긋난다 → [[http-method]]
 - [[2024-08-28-Day65]] — 「AddServlet 만들기 > form.html만들기」 절이 이 개념이다. 「정적HTMl을 만들어서 브라우저에 보낼수도 있다」로 시작해 `<form atction="url" method="GET|POST">`·`<link>`·`<input name type>`·`<input type="submit">` 을 한 줄씩 설명하고, **`method` 두 값의 차이를 「URL의 쿼리 스트링으로 전송」 대 「HTTP 요청의 본문에 포함되어 전송」으로 정확히 적었다.** `name` 에 대한 「태그가 req로 반환될 때 파라미터 명이다」와 `type` 에 대한 「type에 따라 입력창이 다르게 출력된다. (특히 모바일)」도 정확하다. 등록 폼(`/user/add`)과 로그인 폼(`/auth/login`) 두 개의 전문이 실려 있고, 「project member 받아오기」 절에서 회원 목록을 돌며 `<input name='member' value='%d' type='checkbox'>` 를 찍어 **폼을 동적으로 만드는** 형태가 나온다. 다만 **두 폼 모두 `method` 를 적지 않아 기본값 GET 으로 제출되며, 그래서 암호가 쿼리 스트링에 실려 히스토리·로그·리퍼러에 남는다** — 바로 위 줄에 POST 의 설명을 적어 두고 쓰지 않은 자리다. 등록을 GET 으로 하면 새로고침·뒤로가기·크롤러가 재등록한다는 것(안전·멱등), 설명 줄의 `atction` 오기가 「현재 URL 로 제출」이라는 조용한 증상을 낸다는 것, `<input type="submit">` 은 입력창이 아니라 버튼이라는 것, `type="email"` 은 검증이 아니라 브라우저의 도움일 뿐이라는 것, 선택되지 않은 체크박스는 아예 전송되지 않아 `null` 이 온다는 것(코드는 `if (memberNos != null)` 로 맞게 다뤘지만 이유가 없다), `enctype` 의 기본값이 폼 값에도 퍼센트 인코딩을 적용한다는 것은 다루지 않았다

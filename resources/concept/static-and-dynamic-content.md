@@ -11,6 +11,7 @@ aliases:
   - dynamic content
 up:
   - 2024-08-26-Day63
+  - 2024-08-29-Day66
 tags:
   - web
   - 아키텍처
@@ -43,6 +44,29 @@ Day63 이 두 쪽에 든 예를 나란히 세우면 기준이 하나로 좁아�
 
 **그리고 「어디를 고쳐야 하나」가 갈린다.** 정적 콘텐츠가 틀렸으면 파일을 바꾸면 되고, 동적 콘텐츠가 틀렸으면 **코드를 고치고 다시 올려야** 한다. 배포의 단위가 갈리는 자리이기도 하다 → [[web-application-deployment]]
 
+### 사흘 뒤 — 정적이던 것이 동적으로 옮겨간다
+
+Day65 의 등록 폼은 `form.html` 파일이었다. Day66 이 그것을 서블릿으로 바꾼다.
+
+```java
+@WebServlet("/user/form")
+public class UserFormServlet extends GenericServlet {
+  @Override
+  public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+    res.setContentType("text/html;charset=UTF-8");
+    PrintWriter out = res.getWriter();
+
+    req.getRequestDispatcher("/header").include(req, res);   // ← 이것 때문에 옮겼다
+
+    out.println("<h1>회원 등록</h1>");
+    out.println("<form action='/user/add'>");
+    ...
+```
+
+`index.html` 도 `HomeServlet` 이 된다. **옮긴 이유가 「내용이 변해서」가 아니다** — 머리말을 끼워 넣으려면 코드가 필요하고, 정적 파일은 그것을 할 수 없다.
+
+**즉 「정적/동적」의 경계가 내용이 아니라 「누가 조립하나」로 옮겨간다.** 화면에 보이는 것은 Day65 와 한 글자도 다르지 않은데 만드는 방법이 바뀌었다 → [[request-dispatcher]]
+
 ## 경계와 오해
 
 - **정적 ≠ 변하지 않는 것** — 낱말이 「고정」처럼 읽히지만 파일을 바꿔 올리면 정적 콘텐츠도 바뀐다. 기준은 **변하는가**가 아니라 **요청을 받고 나서 만들어지는가**다. 「자주 바뀌는 페이지라서 동적」으로 읽으면, 하루에 한 번 만들어 파일로 놓아 두는 방식(정적 생성)이 후보에서 아예 사라진다.
@@ -64,4 +88,5 @@ Day63 이 두 쪽에 든 예를 나란히 세우면 기준이 하나로 좁아�
 
 ## 출처
 
+- [[2024-08-29-Day66]] — 사흘 뒤. 「동적으로 HTML관리하기」 절이 `form.html`·`index.html` 을 `UserFormServlet`·`HomeServlet` 으로 옮긴다. **내용이 변해서가 아니라 머리말을 `include` 로 끼우려고 옮긴 것**이라, 이 축의 실질이 「변하는가」에서 「조립이 필요한가」로 이동하는 자리다
 - [[2024-08-26-Day63]] — 낱말을 정의하지 않고 **분업의 기준으로만** 쓴다. 웹 서버는 「클라이언트(브라우저)에서 요청한 정적 콘텐츠(HTML, CSS, 이미지, JavaScript 파일 등)를 제공하는 서버」이고 WAS 는 「동적인 콘텐츠를 생성하는 서버」로, 비교 표의 「주로 사용하는 콘텐츠」 칸이 「정적 콘텐츠 (HTML, CSS, JavaScript, 이미지)」 대 「동적 콘텐츠 (서블릿, JSP, PHP, ASP.NET)」다. **JavaScript 파일을 정적 쪽에 둔 것이 이 회차에서 가장 정확한 한 칸**인데, 같은 노트의 Tomcat 구조 절은 「Web Brower : 정적자원을 실행하는 주체이다」·「Java App : Servlet을 수행하며 동적자원을 관리한다」로 축을 「누가 실행하나」로 바꿔 적어 두 설명이 갈린다. 왜 이 구분이 성능·캐시·배포를 정하는지는 다루지 않았고, 「자체적으로 웹 서버 기능도 포함」이라는 칸이 이 구분을 능력의 경계로 읽으면 안 된다는 단서로만 남아 있다
