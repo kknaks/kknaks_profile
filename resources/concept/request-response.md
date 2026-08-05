@@ -10,6 +10,7 @@ aliases:
   - 요청·응답 객체
 up:
   - 2024-08-27-Day64
+  - 2024-08-28-Day65
 tags:
   - web
   - java
@@ -108,7 +109,18 @@ out.println("</html>");
 
 ## 경계와 오해
 
-- **`ServletRequest` 에는 HTTP 가 없다 — 「헤더 정보 등을 추출할 수 있다」가 이 타입에는 해당하지 않는다** — `getMethod()`·`getHeader()`·`getSession()`·`getCookies()`·`getRequestURI()` 는 전부 **`HttpServletRequest`** 의 메서드다. 이 타입에 있는 것은 파라미터·속성·인코딩·입력 스트림처럼 **프로토콜과 무관한 것들**이다. 필기의 설명이 상위 타입에 하위 타입의 능력을 붙여 적은 셈이고, **이 회차의 서블릿이 `req` 를 아예 쓰지 않아 그 어긋남이 드러나지 않는다.** 다음 걸음(`HttpServlet`)이 정확히 그 타입을 받는 자리다 → [[generic-servlet]] · [[servlet]]
+- **`ServletRequest` 에는 HTTP 가 없다 — 하루 뒤 그 어긋남이 코드로 드러난다** — `getMethod()`·`getHeader()`·`getSession()`·`getCookies()`·`getRequestURI()` 는 전부 **`HttpServletRequest`** 의 메서드다. 이 타입에 있는 것은 파라미터·속성·인코딩·입력 스트림처럼 **프로토콜과 무관한 것들**이다. 필기의 설명이 상위 타입에 하위 타입의 능력을 붙여 적은 셈이고, **Day64 의 서블릿은 `req` 를 아예 쓰지 않아 그 어긋남이 드러나지 않았다.** Day65 가 `getSession()` 을 부르려 하는 순간 드러난다 — 이 타입에 없으므로 **손으로 내려야 한다.**
+
+```java
+// HTTP 프로토콜 관련 기능을 사용하려면
+// 파라미터로 받은 ServletRequest 객체를 원래 타입으로 형변환 해야 한다.
+HttpServletRequest httpReq = (HttpServletRequest) req;
+HttpSession session = httpReq.getSession();
+```
+
+**컨테이너가 넣어 주는 것은 처음부터 `HttpServletRequest` 다** — 선언 타입만 상위였을 뿐이라 이 다운캐스팅은 언제나 성공한다. 즉 이 줄은 **없던 능력을 얻는 것이 아니라 가려져 있던 것을 다시 보는 것**이고, `instanceof` 검사가 없어도 되는 이유가 그것이다 → [[type-casting]] · [[http-session]]
+
+같은 회차가 응답 쪽에서도 같은 일을 한다 — `((HttpServletResponse) res).setHeader("Refresh", "1;url=/user/list")`. **다운캐스팅이 네 자리에 흩어져 있는 것이 다음 걸음(`HttpServlet`)의 동기**다 → [[generic-servlet]] · [[servlet]]
 - **`getWriter()` 와 `getOutputStream()` 은 한 응답에서 둘 중 하나만** — 문자로 쓰는 통로와 바이트로 쓰는 통로를 같은 응답에 겹쳐 열면 `IllegalStateException` 이다. HTML 은 앞쪽, 이미지·파일 내려주기는 뒤쪽이다. 두 개를 다 쓰려 하는 코드는 대개 **한 서블릿이 두 가지 응답을 만들려는 것**이고 자리가 잘못 잡힌 신호다 → [[io-stream]] · [[character-stream]]
 - **헤더는 본문보다 먼저 나간다 — 그래서 「먼저 정하고 쓴다」가 규칙이다** — `setContentType`·상태 코드·리다이렉트는 **첫 출력 전에** 해야 하고, 응답이 커밋된 뒤에는 무시된다. Day64 의 코드는 순서가 맞는데 **왜 그 순서인지가 적혀 있지 않아서**, 줄을 옮기면 깨진다는 것을 아무도 모른다. [[tomcat]] 노트의 「`setPort` 와 `getConnector` 의 순서가 뜻을 갖는다」와 **같은 종류의 함정이고 이번에는 요청마다 걸린다** → [[character-encoding]] · [[servlet-filter]]
 - **요청 인코딩과 응답 인코딩은 다른 축이다 — 이 회차는 응답만 정했다** — `setContentType(...charset=UTF-8)` 은 **나가는 것**을 정하고, 브라우저가 보낸 파라미터를 한글로 읽으려면 `request.setCharacterEncoding("UTF-8")` 을 **파라미터를 처음 읽기 전에** 불러야 한다. 「인코딩을 UTF-8 로 설정했다」가 한쪽만 한 것이 되는 자리이고, 요청 쪽은 「읽기 전에」라는 시점 제약이 있어 **서블릿마다 첫 줄에 넣게 되는 것**이 곧 필터가 있는 이유다 → [[character-encoding]] · [[servlet-filter]]
@@ -136,4 +148,5 @@ out.println("</html>");
 
 ## 출처
 
+- [[2024-08-28-Day65]] — 하루 뒤. Day64 가 「`req` 가 코드에서 한 번도 쓰이지 않는다」로 남긴 자리가 채워지고, **그 순간 상위 타입의 한계가 드러난다.** 로그인 서블릿이 「HTTP 프로토콜 관련 기능을 사용하려면 파라미터로 받은 `ServletRequest` 객체를 원래 타입으로 형변환 해야 한다」는 주석과 함께 `(HttpServletRequest) req` 를 쓰고, 응답 쪽도 `((HttpServletResponse) res).setHeader("Refresh", ...)` 로 같은 캐스팅을 두 자리에서 한다. 필기의 「즉 req 레퍼런스는 실제 `HttpServletRequest` 객체를 가리키고 있다」가 그 캐스팅이 안전한 이유를 정확히 적은 문장이다. 다만 그 캐스팅이 반복된다는 것 자체가 `HttpServlet` 을 쓸 이유라는 연결은 이 회차에 없다
 - [[2024-08-27-Day64]] — 「서블릿 구현체의 메서드」 절의 `service` 항목이 두 타입을 정의한다 — 「`ServletRequest req`: 클라이언트로부터 전달된 요청 데이터를 담고 있는 객체. 요청 파라미터, 헤더 정보 등을 추출할 수 있다」·「`ServletResponse res`: 서버에서 클라이언트로 보낼 응답 데이터를 담는 객체. 응답의 콘텐츠 타입, 출력 스트림 등을 설정할 수 있다」. 그리고 「문자열 출력시 글자 깨짐」 절이 `ServletResponse.setContentType("MIME타입;문자집합")` 골격을 남기고, `UserListServlet` 의 `service` 가 `setContentType("text/html;charset=UTF-8")` → `getWriter()` → `out.println`/`out.printf` 로 HTML 한 장을 만든다. 다만 **`req` 는 코드에서 한 번도 쓰이지 않고**, 「헤더 정보를 추출할 수 있다」는 실제로 `HttpServletRequest` 의 능력이라 이 타입에는 해당하지 않는다. `setContentType` 을 `getWriter()` 앞에 두어야 하는 이유, `getWriter()`/`getOutputStream()` 을 겹쳐 쓸 수 없다는 것, 요청 쪽 인코딩(`setCharacterEncoding`)은 따로 정해야 한다는 것, 이 객체를 필드에 보관하면 안 되는 이유, 값을 태그 사이에 그대로 끼워 넣는 것의 위험은 다루지 않았다

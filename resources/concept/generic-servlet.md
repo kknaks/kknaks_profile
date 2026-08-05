@@ -8,6 +8,7 @@ aliases:
   - generic servlet
 up:
   - 2024-08-27-Day64
+  - 2024-08-28-Day65
 tags:
   - web
   - java
@@ -61,6 +62,40 @@ public void destroy() { }                           // ← 빈 구현
 
 `GenericServlet` 은 그 위에 편의 메서드도 얹는다 — `getServletContext()`·`getInitParameter(name)`·`log(msg)`. 그러면 `config.getServletContext().getAttribute("userDao")` 가 `getServletContext().getAttribute("userDao")` 로 줄고, **`config` 라는 중간 객체가 부르는 쪽 코드에서 사라진다** → [[servlet-context]]
 
+## 사용 예시
+
+**하루 뒤 회차가 이 클래스를 실제로 상속한다.** Day64 가 코드 없이 설명만 했던 자리에 코드가 온다.
+
+```java
+@WebServlet("/user/view")
+public class UserViewServlet extends GenericServlet {
+
+  private UserDao userDao;
+
+  @Override
+  public void init() throws ServletException {
+    // 서블릿 컨테이너 ---> init(ServletConfig) ---> init() 호출한다.
+    userDao = (UserDao) this.getServletContext().getAttribute("userDao");
+  }
+
+  @Override
+  public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+    res.setContentType("text/html;charset=UTF-8");
+    PrintWriter out = res.getWriter();
+    ...
+  }
+}
+```
+
+**남긴 것이 둘, 사라진 것이 셋이다.** 재정의한 것은 `init()` 과 `service()` 뿐이고,
+`init(ServletConfig)`·`getServletConfig()`·`getServletInfo()`·`destroy()` 는 쓰지 않았다.
+
+그리고 **인수 없는 `init()` 을 골랐다** — 위 「경계와 오해」가 「그쪽을 오버라이드하면
+super 를 부를 자리가 없어 잊을 수도 없다」고 적은 그 선택이고, 필기의 주석이
+`init(ServletConfig) ---> init()` 순서를 정확히 적어 두었다. `getServletContext()` 가
+바로 다음 줄에서 동작하는 것이 **`super.init(config)` 이 이미 불렸다는 증거**다
+→ [[servlet-context]] · [[servlet-lifecycle]]
+
 ## 왜 중요한가
 
 **「인터페이스를 구현하라」와 「추상 클래스를 상속하라」의 차이가 실물로 갈리는 첫 자리다.** [[interface]]·[[abstract-class]] 를 배울 때의 차이(구현이 있나 없나)가 여기서는 **매 서블릿마다 열 줄 남짓의 차이**로 나타난다. 인터페이스는 「무엇을 채워야 하는가」만 말하고, 추상 클래스는 **「대개 이렇게 채운다」까지 들고 있다** → [[default-method]]
@@ -76,7 +111,7 @@ public void destroy() { }                           // ← 빈 구현
 - **「기본 구현을 제공한다」가 「빈 메서드를 넣어 준다」와 다르다** — `getServletConfig()` 는 빈 구현이 아니라 **계약을 지키는 구현**(보관한 `config` 를 돌려준다)이고, `getServletInfo()` 는 빈 문자열을 돌려주는 진짜 빈 구현이다. 둘을 같은 것으로 읽으면 「어차피 비어 있으니 내가 다시 써도 된다」가 되는데, 앞쪽을 다시 쓰면 위 항목의 사고가 난다 → [[default-initialization]]
 - **역할 세 항목 중 둘이 한 사실이다** — 1번(「기본 구현 제공 … 필요한 메서드만 오버라이드」)과 3번(「필수 메서드 구현: 개발자는 service()만」)이 같은 말이다. 실제로 이 클래스가 주는 것은 **둘**이다 — 반복 구현의 제거와 프로토콜 중립. 셋으로 세면 얻은 것이 하나 더 있는 것처럼 읽힌다.
 - **「서블릿 프로토콜에 종속되지 않고」의 「서블릿 프로토콜」이라는 것은 없다** — 서블릿은 프로토콜이 아니라 규격이다. 뜻한 것은 **HTTP 에 종속되지 않는다**이고, 같은 문단 앞뒤가 그렇게 적혀 있다. 본문의 표현은 그대로 두었다.
-- **이 절에 코드가 없다 — 그래서 「줄어든다」가 얼마나인지 안 보인다** — 앞 절의 열 몇 줄이 `extends GenericServlet` + `service` 하나로 줄어드는 것이 이 절의 값 전부인데, 그 비교가 화면에 없다. 그리고 앞 절 코드의 실제 결함(인수 받는 생성자, 빠진 `config` 필드) 중 **뒤쪽이 이 클래스로 해소되고 앞쪽은 그대로 남는다** — 컨테이너가 기본 생성자로 만든다는 제약은 어느 부모를 상속해도 같다 → [[servlet-lifecycle]]
+- **Day64 의 이 절에는 코드가 없어 「줄어든다」가 얼마나인지 안 보였다 — 하루 뒤 Day65 가 그 코드를 준다**(위 「사용 예시」) — 앞 절의 열 몇 줄이 `extends GenericServlet` + `service` 하나로 줄어드는 것이 이 절의 값 전부인데, 그 비교가 화면에 없다. 그리고 앞 절 코드의 실제 결함(인수 받는 생성자, 빠진 `config` 필드) 중 **뒤쪽이 이 클래스로 해소되고 앞쪽은 그대로 남는다** — 컨테이너가 기본 생성자로 만든다는 제약은 어느 부모를 상속해도 같다 → [[servlet-lifecycle]]
 
 ## 함께 보는 개념
 
@@ -94,4 +129,5 @@ public void destroy() { }                           // ← 빈 구현
 
 ## 출처
 
+- [[2024-08-28-Day65]] — 하루 뒤. **이 클래스를 실제로 상속한 첫 코드**다. `UserViewServlet extends GenericServlet` 이 `init()`(인수 없는 쪽)과 `service()` 둘만 재정의하고 나머지 넷을 물려받는데, Day64 가 「필요한 메서드만 오버라이드」로 설명만 하고 코드로 보이지 못한 자리를 이 회차가 채운다. 다만 이 회차도 `doGet`/`doPost` 는 쓰지 않는다 — GET·POST 가 같은 `service()` 로 들어오고, 로그인 폼이 `method` 없이 GET 으로 제출되는 것과 겹쳐 **요청 방식을 구별할 자리가 아예 없다** → [[html-form]]
 - [[2024-08-27-Day64]] — 「GenericServlet 활용 > GenericServlet이란?」 절이 이 개념이다. 「서블릿 API에서 제공하는 추상 클래스 … **Servlet** 인터페이스를 구현하고, HTTP 외의 프로토콜을 사용하는 서블릿을 만들 때 사용된다」로 정의하고, 역할 셋(기본 구현 제공 / 프로토콜 독립 / 개발자는 `service()` 만)과 주요 메서드 다섯(`init`·`service`·`getServletConfig`·`getServletInfo`·`destroy`)을 적었다. **코드가 없다** — 그래서 같은 노트 앞 절의 `UserListServlet` 이 손으로 쓴 `config` 필드·`init` 의 보관·`getServletConfig()` 의 반환·빈 `destroy()` 가 정확히 이 클래스가 하는 일이라는 대비가 화면에 없고, `extends GenericServlet` 이 실제로 어떤 모양인지도 나오지 않는다. 「HTTP 외의 프로토콜을 사용하는 서블릿을 만들 때」라는 설명은 **`HttpServlet` 이 이 클래스를 상속한다**는 사실과 합치면 오해를 만들고, 이 클래스를 상속해도 `doGet`·`doPost` 는 없다는 것, `init(ServletConfig)` 를 오버라이드할 때 `super.init(config)` 를 불러야 한다는 것(그래서 인수 없는 `init()` 이 따로 있다는 것), 추상 클래스라 단일 상속 한 칸을 쓴다는 것도 다루지 않았다. 역할 1번과 3번은 같은 사실을 두 번 적은 것이다
