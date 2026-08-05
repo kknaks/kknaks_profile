@@ -13,6 +13,7 @@ up:
   - 2024-07-19-Day39
   - 2024-07-23-Day41
   - 2024-07-24-Day42
+  - 2024-08-22-Day61
 tags:
   - 설계
   - 디자인패턴
@@ -231,6 +232,40 @@ public class Mocha extends Decorator{
 
 `FilterInputStream` 의 필드가 `protected volatile InputStream in` 이다 — **`Decorator` 의 `protected Beverage beverage` 와 같은 자리**이고, Day41 의 「Data I/O stream은 File I/O stream을 상속받아 사용한다」가 왜 틀렸는지의 답이 그 한 줄에 다 있다. 확인하는 방법도 짧다 — `DataInputStream(InputStream in)` 이라는 생성자가 「감쌀 것을 받는다」고 말하고 있으니, 상속이라면 그 자리에 파일 이름이 있어야 한다. **소제목을 세운 것까지가 「볼 것을 알아본 것」이고, 본문이 비어 있어 대조는 하지 않았다** → [[buffered-stream]] · [[data-io-stream]] · [[io-stream]]
 
+### 한 달 뒤 Day61 — 필기가 스스로 이 패턴의 이름을 붙인다
+
+Day61 의 서버 `Prompt` 는 화면 문자열을 모아 두어야 한다. 그 자리에서 필기가 이렇게 적는다 — 「**StringWriter 객체를 PrintWriter에 데코레이터로 사용한다**」.
+
+```java
+StringWriter strWriter = new StringWriter();
+PrintWriter printWriter = new PrintWriter(strWriter);
+
+public void print(String str) {
+  printWriter.print(str);
+}
+
+public void printf(String format, Object... args) {
+  printWriter.printf(format, args);
+}
+
+public void println(String str) {
+  printWriter.println(str);
+}
+```
+
+**Day41 이 상속으로 읽었던 관계를 이번에는 데코레이터로 읽었다 — 다만 역할 이름이 뒤집혀 있다.** 「StringWriter 를 PrintWriter 에 사용한다」가 아니라 **`PrintWriter` 가 `StringWriter` 를 감싼다** — 판정 기준은 이 노트가 이미 세워 둔 것이고, `new PrintWriter(strWriter)` 에서 **`new` 의 바깥이 감싸는 쪽**이다. 관계는 맞게 봤고 방향만 어긋난 상태이므로, Day41 의 「상속받아 사용한다」와는 다른 종류의 어긋남이다 — **그때는 관계가 틀렸고 이번에는 이름 순서가 틀렸다.**
+
+그리고 이 겹은 앞의 셋과 성질이 하나 다르다 — **감싸이는 쪽이 통로가 아니라 목적지다.**
+
+| | Day39·Day41 | Day61 |
+|---|---|---|
+| ConcreteComponent | `FileInputStream` — 파일로 가는 통로 | `StringWriter` — **메모리에 쌓이는 그릇** |
+| 결과를 어디서 얻나 | 파일이나 소켓 저쪽 | **`strWriter.toString()`** — 사슬 밖에서 읽는다 |
+
+**「어디로 흘려보낼까」가 아니라 「모아 두었다가 한 번에 꺼낸다」가 되는 것**이고, 그것이 필요해진 이유는 프로토콜이 「데이터를 1회씩 주고 받는다」이기 때문이다 → [[network-protocol]] · [[character-stream]] · [[byte-array-stream]]
+
+`PrintWriter` 를 씌우는 이유도 분명하다 — **`print`·`printf`·`println` 을 얻으려고**다. 필기의 목적 문장이 「menu에서 사용하는 System.out.의 기능은 Prompt 객체로 이관한다」이므로, 화면을 만드는 코드를 **한 글자도 고치지 않고** 출력지만 바꾸는 것이 목표다. `System.out` 이 `PrintStream` 인 것과 같은 자리에 `PrintWriter` 를 두면 그 세 메서드가 그대로 통한다 — **데코레이터가 「계약을 유지한 채 뒤를 바꾸는」 도구로 쓰인 이 필기의 첫 사례**다 → [[io-stream]]
+
 ## 왜 중요한가
 
 **기능을 더하는 일이 새 파일 하나로 끝난다.** 「밑줄 찍기」를 더하려면 `PrinterDecorator` 를 상속한 클래스 하나를 만들면 되고, `Printer`·`ContentPrinter`·기존 데코레이터·부르는 쪽 중 아무것도 열지 않는다. 반대로 상속으로 조합했다면 새 기능이 **기존 조합 전부와 다시 곱해진다** → [[open-closed-principle]]
@@ -246,7 +281,7 @@ public class Mocha extends Decorator{
 - **그 상속 모형은 하루만 서 있었다 — Day41 을 「이해가 후퇴한 상태」로 못 박으면 틀린다** — 바로 다음 회차 Day42 가 「상속을 사용하여 객체들을 추가하면 **컴파일 단계에서 결정이 되며**」·「상속을 이용한 강결합은 OCP 원칙을 위배한다」로 시작하고, 「I/O Stream 데코레이터 살펴보기」라는 소제목을 세워 그 겹을 다시 보려 한다. **Day41 의 상속 읽기는 고정된 오해가 아니라 하루짜리 흔들림**이었고, 남은 것은 다른 종류의 미완이다 — **그 소제목의 본문이 비어 있어 자기가 하루 전에 쓴 문장과 대조하지는 않았다.** 개념을 다시 정의하는 것과 전에 쓴 것을 고치는 것이 별개의 일이라는 표시다.
 - **「순서가 상관있는 경우 27가지」는 3³ 이고, 실제로 세야 하는 것은 16이다** — 순서 없는 8은 맞다(부분집합 `2³`, 아무 기능도 안 쓰는 경우 포함). 순서를 세면 **서로 다른 기능을 최대 3개까지 늘어놓는 경우**이므로 `1 + 3 + 3·2 + 3·2·1 = 16` 이다. 27 은 「세 자리를 세 기능 중 하나로 채운다」 즉 **같은 기능이 중복돼도 되고 길이가 반드시 3인** 계산이다. 다만 이 착오가 결론을 약하게 만들지 않는다 — **데코레이터는 실제로 같은 기능을 두 번 씌우는 것을 허용하고, 중복을 허용하면 조합의 상한이 아예 없다.** 미리 클래스로 만들 수 없다는 논거는 16보다 이쪽이 강하다.
 - **데코레이터 ≠ 컴포짓 — 둘 다 자기 타입을 품는데 품는 개수와 목적이 다르다** — [[composite-pattern]] 의 `MenuGroup` 은 `List<Menu> children` 으로 **여럿**을 품어 「부분-전체」를 만들고 부르는 쪽이 잎과 가지를 구별하지 않게 한다. `PrinterDecorator` 는 `Printer origin` 으로 **하나**를 품어 그 하나의 동작을 바꾼다. Day35 의 트리는 **구조**를 나타내고 Day39 의 겹은 **행동**을 쌓는다. 둘이 헷갈리는 이유는 코드 모양(같은 타입 필드 + 위임 호출)이 거의 같아서인데, **`List` 인지 단일 참조인지가 그 자리에서 갈리는 표시**다.
-- **데코레이터 ≠ 프록시** — 모양이 같다(같은 인터페이스, 안쪽 하나를 품고 위임). 갈리는 것은 목적이다 — 프록시는 **접근을 통제하거나 대신 만들어 주려고**(지연 생성·권한·원격 호출) 끼고, 데코레이터는 **동작을 더하려고** 낀다. 코드로는 구별되지 않고 이름과 의도로만 구별되므로, 클래스 이름을 「…Decorator」로 두는 것이 문서 역할을 한다.
+- **데코레이터 ≠ 프록시 — 코드로 갈리는 자리가 하나 있다** — 모양이 같다(같은 인터페이스, 안쪽 하나를 품고 위임). 갈리는 것은 대개 목적이다 — 프록시는 **접근을 통제하거나 대신 만들어 주려고**(지연 생성·권한·원격 호출) 끼고, 데코레이터는 **동작을 더하려고** 낀다. 그래서 클래스 이름을 「…Decorator」로 두는 것이 문서 역할을 한다. **다만 완전히 구별 불가능한 것은 아니다** — 데코레이터는 감쌀 것을 생성자로 받으므로 안쪽이 반드시 있고 위임을 빼먹으면 기능이 사라지는데(아래 「위임을 잊으면」 항목), 프록시는 **위임을 안 하는 것이 기능**일 수 있고 안쪽이 아직 없어도 성립한다. 한 달 뒤 Day61 이 그 프록시 쪽을 배운다 → [[proxy-pattern]] · [[dynamic-proxy]]
 - **씌우는 순서가 결과를 바꾼다 — 그래서 순서도 형식의 일부다** — `HeaderPrinter(FooterPrinter(content))` 와 `FooterPrinter(HeaderPrinter(content))` 는 둘 다 컴파일되고 둘 다 머릿말·내용·꼬릿말을 찍는다. 하지만 `SignPrinter` 처럼 **위임 뒤에 찍는 것들끼리는 순서가 출력에 그대로 나타난다** — Day39 의 `printer6` 은 `HeaderPrinter(SignPrinter(content))` 라 「머릿말 → 내용 → by naknak」이 되고, 뒤집으면 서명이 머릿말보다 먼저 나온다. **「필요한 기능을 선택적으로 사용 가능하다」에는 순서를 고르는 것도 들어 있고, 잘못 고른 순서는 예외가 아니라 이상한 출력으로만 나타난다.**
 - **`printer6` 은 `printer6` 을 감싸지 않는다 — 원본 코드의 오류다** — `SignPrinter printer6S = new SignPrinter(printer5, "naknak");` 이 `printer6` 대신 **`printer5` 를 감싼다.** 앞 다섯 줄의 형태(`printerN` 을 만들고 그것을 감싼다)와 어긋나고, `ContentPrinter printer6` 은 만들어져서 아무도 쓰지 않는다. **출력은 우연히 맞는다** — `ContentPrinter` 가 상태가 없고 둘 다 `System.out` 에 찍으므로 `printer5` 를 감싸도 결과가 같다. 그래서 실행으로는 절대 드러나지 않고, **감싸는 대상이 파일이나 소켓처럼 상태를 가진 것이었다면 엉뚱한 곳으로 출력된다.** 데코레이터 코드에서 가장 흔한 실수 형태 — 「무엇을 감쌌는지」가 변수 이름에만 있고 타입에는 없다 → [[object-reference]]
 - **감싼 뒤에는 원래 구체 타입으로 되돌릴 수 없다** — `printer3F` 의 타입은 `FooterPrinter` 이고, 그 안의 `ContentPrinter` 에만 있는 메서드를 부를 방법이 없다(`origin` 은 `Printer` 타입이고 `protected` 다). **데코레이터는 인터페이스에 선언된 것만 통과시키는 벽**이라, 구현 클래스에 특화된 기능을 쓰던 코드는 겹을 씌우는 순간 끊긴다. `instanceof ContentPrinter` 도 거짓이 된다 → [[instanceof-operator]] · [[interface]]
@@ -269,6 +304,7 @@ public class Mocha extends Decorator{
 - [[template-method-pattern]] — 골격을 물려주고 일부만 채우게 하는 다른 방향
 - [[open-closed-principle]] — 이 패턴이 지키는 원칙
 - [[coupling]] — 겹을 늘려도 호출부가 모르는 이유
+- [[proxy-pattern]] · [[dynamic-proxy]] — 성립 조건이 같고 의도가 갈리는 쪽
 - [[io-stream]] — 이 패턴으로 조립되어 있는 표준 라이브러리
 - [[data-io-stream]] — 실제로 감싸는 데코레이터의 예
 - [[character-stream]] — `Scanner(new FileReader(...))` 로 겹치는 쪽
@@ -282,3 +318,4 @@ public class Mocha extends Decorator{
 - [[2024-07-19-Day39]] — 「객체에 동적으로 새로운 행동(기능)을 추가할 수 있는 패턴」으로 정의하고 Component·ConcreteComponent·Decorator·ConcreteDecorator 네 역할을 나열했다. 「사용 전」 절에서 상속으로 기능 3가지를 조합하면 순서 무관 8가지·순서 유관 27가지 클래스가 필요하고 생성자 매개변수의 일관성도 깨진다는 것을 세고(뒤쪽 숫자는 3³ 이라 어긋난다), 「사용 후」에서 `Printer` 인터페이스 · `ContentPrinter` · `PrinterDecorator`(추상, `protected Printer origin`) · `HeaderPrinter`·`FooterPrinter`·`SignPrinter` 로 구현한다. `Test01` 이 여섯 조합을 만들어 보는데 마지막 것이 `printer6` 대신 `printer5` 를 감싸는 오류가 있고 **출력이 같아 드러나지 않는다.** 같은 노트의 뒤쪽에서 `new DataInputStream(new FileInputStream(...))`·`new Scanner(new FileReader(...))` 를 쓰며 「Data I/O Stream처럼 데코레이터 패턴을 통해」로 표준 라이브러리와 스스로 이어 붙인다
 - [[2024-07-23-Day41]] — 같은 두 껍데기(`DataOutputStream`·`BufferedInputStream`)를 다루면서 관계를 **상속으로 적는다** — 「Data I/O stream은 File I/O stream을 상속받아 사용한다」·「BufferedFileInputStream의 read() 메서드는 FileInputStream에서 상속 받은 메서드를 이용하여」. 나흘 전에 이 패턴의 정의(「주로 상속 대신 사용되며」)를 정확히 옮겨 적고 표준 입출력에 스스로 이어 붙였던 것과 어긋나는 자리다. 그 모형이 코드의 모양까지 바꿔 **존재하지 않는 `DataFileOutputStream`·`BufferedFileInputStream` 에 파일 이름을 넘기는** 형태가 되고(실제 생성자는 감쌀 스트림을 받는다), 그렇게 되면 「통로 종류 × 형식 종류」마다 클래스가 필요해져 **Day39 가 센 조합 폭발이 표준 라이브러리에서 되살아난다.** 자기가 짠 코드에서는 `implements` + `protected Printer origin` 이 눈에 있었고 라이브러리에서는 그것을 열어 보지 않은 차이다
 - [[2024-07-24-Day42]] — 같은 패턴을 **커피 메뉴판으로 처음부터 다시 만들며 하루 만에 모형을 되돌린다.** 「객체에 추가 요소를 동적으로 더하는 기능」으로 정의하고 근거를 두 줄로 압축한다 — 「상속을 사용하여 객체들을 추가하면 컴파일 단계에서 결정이 되며 기능이 추가 될 수록 코드가 복잡해진다」·「상속을 이용한 강결합은 유지보수 측면에서 OCP 원칙을 위배한다」. 이번 Component 는 인터페이스가 아니라 추상 클래스(`Beverage`)이고 `Decorator extends Beverage` 가 `protected Beverage beverage` 를 품어 **Day39 의 `implements` + 필드와 같은 형태를 두 번째 문법으로** 보여 준다. `getDescription()`(문자열 잇기)과 `cost()`(가격 더하기)로 **사슬이 처음 둘이 되고**, `cafemocha = new Mocha(cafemocha)` 재대입이 하루 전 `FileWriter` 재대입과 모양이 같고 결과가 반대다. 코드에는 컴파일되지 않는 두 곳이 있다 — `public abstract cost();`(반환 타입 없음)와 `beverage.getDescription`(`()` 없음). 실행 절차 설명은 `getDescription` 이 가격을 더한다고 적어 두 사슬을 한 줄에 섞었고, `%f` 로 찍어 「100.000000원」이 되는 것과 구성요소 목록에 ConcreteDecorator 가 빠진 것은 짚지 않았다. **「I/O Stream 데코레이터 살펴보기」라는 소제목을 세워 놓고 본문을 비워 둔 것**이 이 회차의 미완이며, Day41 이 상속으로 읽은 그 겹을 다시 볼 자리였다
+- [[2024-08-22-Day61]] — 한 달 뒤. **필기가 스스로 이 패턴의 이름을 붙이는 첫 자리**다 — 서버 쪽 `Prompt` 를 만들며 「StringWriter 객체를 PrintWriter에 데코레이터로 사용한다」로 적고 `new PrintWriter(strWriter)` 로 겹을 만든다. Day41 이 같은 종류의 겹을 「상속받아 사용한다」로 읽었던 것에 비하면 관계를 맞게 본 것이지만 **역할 이름이 뒤집혀 있다** — 감싸는 쪽은 `PrintWriter` 이고 감싸이는 쪽이 `StringWriter` 다(`new` 의 바깥이 데코레이터다). 그리고 이 겹은 앞의 세 회차와 성질이 하나 다르다 — ConcreteComponent 가 파일이나 소켓 같은 **통로가 아니라 메모리 그릇**이라, 결과를 사슬 밖에서 `toString()` 으로 꺼낸다. 씌우는 이유도 명확하다 — 「menu에서 사용하는 System.out.의 기능은 Prompt 객체로 이관한다」이므로 `print`·`printf`·`println` 세 메서드를 그대로 유지한 채 **출력지만 소켓으로 바꾸는** 것이고, 「계약을 유지한 채 뒤를 바꾼다」가 이 필기에서 실제로 쓰인 첫 사례다. 다만 왜 모아 두어야 하는지(프로토콜이 「1회씩 주고 받는다」이기 때문)는 다른 절에 있고 두 절이 이어지지 않으며, `PrintWriter` 가 자체 버퍼를 가질 수 있다는 것·`StringWriter` 를 비우지 않으면 화면이 누적된다는 것도 다루지 않는다(그 자리를 `prompt.end()` 가 맡는 것으로 보이지만 코드가 없다) → [[network-protocol]]

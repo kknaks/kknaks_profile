@@ -9,6 +9,7 @@ aliases:
   - 애노테이션 적용 대상
 up:
   - 2024-08-21-Day60
+  - 2024-08-22-Day61
 tags:
   - java
   - 메타데이터
@@ -130,13 +131,24 @@ public class MyClass4 {
 - **`FIELD` 소절의 코드가 `TYPE` 소절의 코드와 완전히 같다 — 주석까지 그대로다** — 「// TYPE 타입(인터페이스와 클래스)에만 붙일 수 있다.」로 시작하고 살아 있는 애노테이션도 클래스 선언에 붙은 것이다. **즉 다섯 소절 중 `FIELD` 만 예시가 없다** — 붙여넣기하고 살릴 줄을 옮기지 않은 자리이고, 그래서 「필드 타입에만 가능하다」는 한 줄만 남는다. 이 노트가 그 자리를 채운다: `@Target(ElementType.FIELD)` 이면 `int i;`·`static int i2;` 앞의 애노테이션이 살아나고 **클래스 선언 쪽이 컴파일 오류**가 된다 — `static` 인지는 상관없다.
 - **그 두 소절의 코드는 그대로 컴파일되지 않는다 — 중괄호가 하나 남는다** — `// public void m(…) {` 의 여는 중괄호가 **주석 안에** 있어서, 뒤따르는 `}` 가 클래스를 닫고 마지막 `}` 가 짝 없이 남는다. 「컴파일 오류!」를 보이려고 주석 처리한 것이 **의도하지 않은 컴파일 오류**를 만든 자리다 — 메서드 선언 전체를 주석으로 막을 때 닫는 중괄호까지 함께 막지 않으면 이렇게 된다.
 - **`PARAMETER` 소절의 주석과 소제목이 어긋난다** — 「@MyAnnotation5는 로컬 변수, 파라미터, 필드에만 붙일 수 있다」라고 적혀 있는데 **필드와 지역 변수 쪽은 주석으로 막혀 있고** 매개변수만 살아 있다. 즉 주석이 말하는 셋 중 둘이 「붙일 수 없다」로 표시된 상태다. 셋 다 허용하려면 `@Target({ElementType.FIELD, ElementType.PARAMETER, ElementType.LOCAL_VARIABLE})` 이고 그러면 그 두 줄이 살아 있어야 한다 — **주석은 여러 값을 준 경우를 말하고 코드는 하나만 준 경우를 보이는** 어긋남이다. 그리고 소제목 「매개만 사용 가능하다」는 「매개변수」가 잘린 것이다.
-- **`@Target` 은 붙일 자리만 정하고 「누가 읽는가」는 정하지 않는다** — `@Target(ElementType.METHOD)` 로 좁혀도 실행 중에 읽으려면 [[annotation-retention]] 이 `RUNTIME` 이어야 한다. 두 메타 애노테이션은 **직교하는 두 축**이고, 그래서 둘 다 붙는 것이 보통이다. 필기가 두 절을 이어 배우면서 둘을 함께 쓴 예를 한 번도 보이지 않아 **둘 중 하나만 있으면 되는 것처럼 읽힌다** → [[reflective-annotation-access]]
+- **`@Target` 은 붙일 자리만 정하고 「누가 읽는가」는 정하지 않는다 — 둘을 함께 쓴 예가 하루 뒤에 온다** — `@Target(ElementType.METHOD)` 로 좁혀도 실행 중에 읽으려면 [[annotation-retention]] 이 `RUNTIME` 이어야 한다. 두 메타 애노테이션은 **직교하는 두 축**이고, 그래서 둘 다 붙는 것이 보통이다. Day60 은 두 절을 이어 배우면서도 **둘을 함께 쓴 예를 한 번도 보이지 않아** 하나만 있으면 되는 것처럼 읽히는데, **Day61 의 `@Param` 이 그 첫 예다.**
+
+  ```java
+  @Retention(RetentionPolicy.RUNTIME)
+  @Target(ElementType.PARAMETER)
+  public @interface Param{
+    String value();
+  }
+  ```
+
+  두 줄이 각각 없으면 무엇이 안 되는지가 그 회차에서 갈린다 — `PARAMETER` 가 없으면 **매개변수 앞에 붙이는 것 자체가 컴파일 오류**이고, `RUNTIME` 이 없으면 붙기는 하는데 `invoke` 가 실행 중에 읽을 때 **`null`** 이다. **한쪽은 코드를 쓰는 순간 막고 한쪽은 돌려 본 뒤에야 안다** — 두 축이 직교한다는 것의 실질이 그 시점 차이다 → [[reflective-annotation-access]] · [[dynamic-proxy]]
 - **`ElementType.TYPE` 과 `RetentionPolicy.CLASS` 는 서로의 낱말을 쓴다** — 하나는 「붙는 자리가 타입 선언」이고 하나는 「`.class` 파일까지 남는다」인데, 이름만 보면 앞의 것이 파일 이야기 같고 뒤의 것이 클래스 선언 이야기 같다. 두 메타 애노테이션을 나란히 배우는 자리에서 값 이름이 교차하는 함정이다 → [[annotation-retention]]
 
 ## 함께 보는 개념
 
 - [[annotation]] — 이 제약이 붙는 대상
 - [[annotation-retention]] — 직교하는 다른 축
+- [[dynamic-proxy]] — `@Target(PARAMETER)` 를 실제로 쓴 자리
 - [[reflective-annotation-access]] — 붙인 것을 실제로 읽는 쪽
 - [[compilation]] — 이 검사가 일어나는 시점
 - [[interface]] — 애노테이션 선언이 `TYPE` 에 들어가는 이유
@@ -149,3 +161,4 @@ public class MyClass4 {
 ## 출처
 
 - [[2024-08-21-Day60]] — 「target」 절과 그 아래 다섯 소절(`TYPE`·`FIELD`·`METHOD`·`LOCAL_VARIABLE`·`PARAMETER`)이 이 개념이다. 「@Target을 사용하여 애노테이션을 붙일 수 있는 범위를 제어할 수 있다」로 목적을 적고, `@Target(value = {ElementType.TYPE})`·`@Target(value = ElementType.TYPE)`·`@Target(ElementType.TYPE)` 세 표기가 같다는 것으로 **중괄호 생략·`value` 이름 생략** 규칙을 다시 보였다. 다섯 소절이 **같은 골격의 클래스에 다섯 자리(클래스 선언·필드 둘·매개변수·지역 변수)를 놓고 허용되는 줄만 살려 두는 방식**이라 「어디에 붙고 어디에 안 붙는가」가 주석 처리 여부로 읽힌다 — 「컴파일 오류!」라고 적힌 주석들이 이 문법의 검사 시점이 컴파일이라는 것을 그대로 보인다. 다만 **`FIELD` 소절의 코드가 `TYPE` 소절의 것과 주석까지 똑같이 복사되어 필드 예시가 아예 없고**, 그 두 소절의 코드는 메서드 선언의 여는 중괄호가 주석 안에 있어 중괄호가 하나 남아 컴파일되지 않으며, `PARAMETER` 소절은 주석이 「로컬 변수, 파라미터, 필드에만」이라 말하면서 그중 둘을 막아 두었다. `@Target` 을 안 붙이면 거의 모든 선언에 붙는다는 기본 상태, `@Target({})` 의 뜻, 목록에서 빠진 `CONSTRUCTOR`·`ANNOTATION_TYPE`·`TYPE_USE`, `@Retention` 과 함께 써야 실행 중에 읽힌다는 것은 다루지 않았다
+- [[2024-08-22-Day61]] — 하루 뒤. **Day60 의 다섯 소절 중 `PARAMETER` 가 실제로 쓰이는 회차**다 — `@Retention(RetentionPolicy.RUNTIME)` 과 `@Target(ElementType.PARAMETER)` 를 **함께 붙인 `@Param`** 을 선언해 DAO 메서드의 매개변수에 달고(`void updateViewCount(@Param("no") int boardNo, @Param("count") int count)`), 실행 중에 `method.getParameters()` 로 그 이름을 되찾으려 한다. Day60 이 두 메타 애노테이션을 각각 배우면서 **함께 쓴 예를 한 번도 보이지 않았던 자리**가 여기서 채워지고, 둘이 없으면 무엇이 안 되는지도 갈린다 — `PARAMETER` 가 없으면 붙이는 순간 컴파일 오류, `RUNTIME` 이 없으면 실행 중에 `null` 이다. Day60 의 `PARAMETER` 소절이 주석과 코드가 어긋난 채로 남아 있었던 것(「로컬 변수, 파라미터, 필드에만」이라 적고 둘을 막아 둔 것)에 비하면 **값 하나만 정확히 쓴 형태**이며, 붙일 자리를 좁히는 것이 왜 필요한지는 이 회차에도 설명되지 않는다 → [[dynamic-proxy]] · [[reflective-annotation-access]]

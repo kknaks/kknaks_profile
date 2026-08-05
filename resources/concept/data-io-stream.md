@@ -14,6 +14,7 @@ aliases:
 up:
   - 2024-07-19-Day39
   - 2024-07-23-Day41
+  - 2024-08-22-Day61
 tags:
   - java
   - 입출력
@@ -137,6 +138,27 @@ Day41 은 목록도 예외 처리도 없이 **필드 셋을 순서대로 쓰고 
 
 대가는 **`User` 가 자기 형식을 모르게 됐다**는 것이다. Day38 의 `getBytes()` 는 「내 필드를 바이트로 만드는 법」을 `User` 안에 두었는데, 이제 필드를 하나 더하면 `saveUser`·`loadUser` 두 곳을 고쳐야 한다. **표준 도구를 쓰면서 응집이 한 칸 내려간 자리**이고, 필기는 이 교환을 적지 않았다 → [[cohesion]]
 
+### 30일 뒤 Day61 — 같은 껍데기가 파일이 아닌 소켓에 씌워진다
+
+```java
+try (Socket socket = new Socket(host, port);
+    DataInputStream in = new DataInputStream(socket.getInputStream());
+    DataOutputStream out = new DataOutputStream(socket.getOutputStream())) {
+```
+
+**이 세 줄이 Day41 의 상속 모형에 대한 결정적인 반증이다.** 「Data I/O stream은 File I/O stream을 상속받아 사용한다」가 맞았다면 소켓에 씌울 수 있는 클래스는 **따로** 있어야 한다(`DataSocketInputStream` 같은 것). 실제로는 **같은 `DataInputStream` 하나**가 파일에도 소켓에도 씌워진다 — 감싸기이기 때문이다. Day41 의 코드가 상상해 낸 `DataFileInputStream` 이라는 이름이 왜 성립하지 않는지가, 그 이름 자리에 `Socket` 을 넣어 보는 순간 드러난다 → [[decorator-pattern]] · [[socket]]
+
+그리고 쓰임이 바뀐다 — **저장이 아니라 대화다.**
+
+| | Day39·Day41 (파일) | Day61 (소켓) |
+|---|---|---|
+| 쓰는 목적 | 나중에 되읽기 | **상대가 지금 읽는다** |
+| 짝이 되는 코드 | 같은 프로그램의 `load`/`save` | **다른 프로그램** → [[network-protocol]] |
+| `flush()` | 닫을 때 밀려 나가면 된다 | **없으면 상대가 계속 기다린다** |
+| 끝 | 파일이 끝났다 | **상대가 끊었다** |
+
+**`out.flush()` 가 이 층에서 처음 필요해지는 자리다.** 파일에서는 「언젠가 나가면」 됐지만 여기서는 나가는 시점이 프로토콜의 일부다 → [[buffered-stream]] · [[io-stream]]
+
 ## 왜 중요한가
 
 **대칭을 사람이 아니라 클래스가 보증한다.** Day38 의 위험은 「쓰는 쪽과 읽는 쪽이 어긋나면 조용히 밀린다」였고 그 대칭은 두 메서드에 흩어져 있었다. `writeInt`↔`readInt`, `writeUTF`↔`readUTF` 는 **이름이 짝이라 눈으로 대조된다** — 형식이 코드의 순서에서 **메서드 이름의 나열**로 올라온다 → [[serialization]]
@@ -147,6 +169,8 @@ Day41 은 목록도 예외 처리도 없이 **필드 셋을 순서대로 쓰고 
 
 ## 경계와 오해
 
+- **소켓에서는 `EOFException` 의 뜻이 반대다 — 파일에서는 결함이고 소켓에서는 정상 종료다** — 파일에서 이 예외는 「잘린 파일」이라는 결함의 신호였고 이 노트가 그 뒤처리를 문제로 지적했다. 소켓에서는 **상대가 연결을 닫았다**는 뜻이고, 대화가 끝나면 반드시 오는 값이다. Day61 의 클라이언트는 그것을 `catch (Exception e)` 로 잡아 「실행오류」와 스택트레이스를 찍으므로 **정상 종료가 오류로 보인다** — 종료 조건이 어긋나 `break` 를 못 하기 때문에 그 자리까지 흘러간 것이고(→ [[network-protocol]]), 고칠 곳은 `catch` 가 아니라 종료 규약이다. **같은 예외 타입이 통로에 따라 다른 뜻을 갖는다**는 것이 두 회차를 나란히 놓아야 보이는 자리다 → [[exception-handling]] · [[socket]]
+- **`writeUTF` 의 65535바이트 한계가 Day61 에서 실제 상한이 된다** — 파일에 쓰던 이름·이메일에는 넉넉한 한계였는데, Day61 의 서버는 **화면 한 장 전체**를 `StringWriter` 에 모아 `writeUTF` 한 번으로 보낸다. 한글이 수정 UTF-8 로 3바이트이므로 **약 2만 자에서 `UTFDataFormatException`** 이다 — 프로젝트 목록이 길어지면 그 화면에서만 서버가 예외를 내고 그 접속이 끊긴다. 「데이터를 1회씩 주고 받는다」는 프로토콜 규칙이 **메시지 하나의 크기 상한을 그대로 물려받는다**는 뜻이고, 목록을 쪼개 보내는 것(페이지)이 그 답이다. 같은 한계가 파일에서는 필드 하나에 걸렸고 여기서는 **화면 하나에** 걸린다 → [[length-prefix-framing]] · [[network-protocol]] · [[overflow]]
 - **`writeUTF` 의 UTF 는 표준 UTF-8 이 아니다 (수정 UTF-8)** — 두 곳이 다르다. 문자 `U+0000` 을 1바이트 `00` 이 아니라 2바이트로 적고, 보조 평면 문자(이모지 등)를 4바이트 하나가 아니라 **서로게이트 쌍을 각각 3바이트씩 6바이트로** 적는다. 그래서 `writeUTF` 로 쓴 바이트를 다른 언어의 UTF-8 디코더에 그대로 넣으면 이모지에서 깨진다. **`readUTF` 로 되읽는 한 문제가 없다** — Java 안에서 왕복하는 형식이라 그렇다. 「UTF 라고 적혀 있으니 UTF-8 이다」가 통하지 않는 대표적인 자리 → [[character-encoding]] · [[unicode]]
 - **`writeUTF` 의 한계가 65535 바이트이고, 이번에는 그것이 예외로 드러난다** — 길이 접두사가 2바이트이므로 Day38 의 손코드와 **한계가 똑같다.** 다른 것은 넘겼을 때다 — Day38 은 `out.write(len >> 8)` 이 상위 비트를 말없이 버려 **저장은 되고 못 읽는 파일**이 남았고, `writeUTF` 는 `UTFDataFormatException` 을 던진다. **같은 형식의 같은 한계인데 한쪽은 조용하고 한쪽은 알려 준다** — 표준 도구를 쓰는 값의 절반이 이 「알려 준다」다 → [[length-prefix-framing]] · [[overflow]]
 - **개수 접두사가 2바이트에서 4바이트로 올라갔다** — Day38 은 회원 수를 `out.write(userLength >> 8); out.write(userLength);` 로 2바이트에 적어 65536명째부터 조용히 어긋났다. `out.writeInt(userList.size())` 는 4바이트라 그 한계가 사라진다. **고친 것이 아니라 표준 메서드의 크기가 그런 것**이고, 필기에 이 차이는 적혀 있지 않다.
@@ -166,6 +190,7 @@ Day41 은 목록도 예외 처리도 없이 **필드 셋을 순서대로 쓰고 
 ## 함께 보는 개념
 
 - [[io-stream]] — 이 껍데기가 끼워지는 통로
+- [[socket]] · [[network-protocol]] — 파일이 아닌 통로에 씌운 자리
 - [[decorator-pattern]] — 껍데기로 끼우는 구조 자체
 - [[binary-io]] — 이 층이 만들어 내는 형식의 성격
 - [[length-prefix-framing]] — `writeUTF` 가 안에서 쓰는 규칙
@@ -184,3 +209,4 @@ Day41 은 목록도 예외 처리도 없이 **필드 셋을 순서대로 쓰고 
 
 - [[2024-07-19-Day39]] — 「File I/O Stream을 Dataa I/O Stream에 장착하여 Int,UTF,IEE-754를 읽어온다」로 이 층의 쓰임을 적고, `loadUser`/`saveUser` 를 `readInt`·`readUTF`/`writeInt`·`writeUTF` 로 다시 썼다. **Day38 이 손으로 짠 `User.getBytes()`·`User.valueOf(byte[])` 는 이 회차에 삭제된다**(「user.java에 valueOf, getBytes는 삭제」) — 비트 시프트로 `int` 를 쪼개던 코드와 레코드 길이 접두사가 함께 사라진다. `try (FileInputStream in0 = …; DataInputStream in = new DataInputStream(in0))` 로 통로와 껍데기를 나란히 선언하는 형태가 나오고, 회원 수 접두사가 2바이트에서 `writeInt` 의 4바이트로 바뀐다. **수정 UTF-8·65535 한계·`EOFException` 이후에 반쪽 목록이 남는 문제는 필기에 없다**
 - [[2024-07-23-Day41]] — 실습에서 떼어 낸 **최소 형태**로 이 층을 다시 본다 — 목록·예외 처리 없이 `writeUTF`/`writeInt`/`writeBoolean` 셋과 그 거울인 `readUTF`/`readInt`/`readBoolean` 셋만 남겨, 두 조각이 대칭이라는 것이 가장 짧게 보인다. 주석의 「(4바이트)」·「(1바이트)」가 타입별 크기를 필기가 직접 적어 둔 것이다. 다만 이 층의 구조를 **「Data I/O stream은 File I/O stream을 상속받아 사용한다」로 잘못 적었고**, 그 모형이 코드의 모양으로 그대로 나타난다 — 존재하지 않는 `DataFileOutputStream`·`DataFileInputStream` 에 **파일 이름을 넘기는** 형태다(실제 생성자는 `OutputStream` 하나만 받는다). Day39 가 이미 `new DataInputStream(in0)` 로 쓴 형태인데도 관계를 상속으로 읽은 자리다. 설명 줄의 `writeboolean`·`readboolean` 은 소문자라 존재하지 않는 메서드이고, `Member` 클래스는 필드 이름(`member` 선언 / `.name` 사용)과 `static` 없는 내부 클래스라는 두 가지 이유로 컴파일되지 않는다. 개수 접두사·`EOFException`·버퍼 겹은 이 회차에도 다루지 않았다
+- [[2024-08-22-Day61]] — 30일 뒤. **같은 껍데기를 파일이 아니라 소켓에 씌운다** — `new DataInputStream(socket.getInputStream())`·`new DataOutputStream(socket.getOutputStream())` 이고, 이 세 줄이 Day41 의 「File I/O stream을 상속받아 사용한다」에 대한 결정적인 반증이다(상속이라면 소켓용 클래스가 따로 있어야 한다). `readUTF`/`writeUTF` 짝이 이번에는 저장과 되읽기가 아니라 **두 프로그램의 대화**를 이루고, 그래서 이 층에서 처음 `out.flush()` 가 나온다 — 나가는 시점이 프로토콜의 일부가 되기 때문이다(→ [[network-protocol]]). 다만 이 회차에서 두 성질이 뜻을 바꾼다: `EOFException` 이 「잘린 파일」이 아니라 **「상대가 끊었다」**인데 코드가 그것을 「실행오류」로 찍고, 접두사 2바이트가 만드는 65535바이트 한계가 필드 하나가 아니라 **화면 한 장 전체**에 걸려 목록이 길어지면 `UTFDataFormatException` 이 된다. 필기는 이 층을 「in.readUTF로 읽어온다」·「out.writeUTF()로 내보낸다」 두 줄로만 적어 **파일에서 쓰던 것과 무엇이 달라졌는지는 다루지 않는다**

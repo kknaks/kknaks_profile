@@ -10,6 +10,7 @@ aliases:
   - 애노테이션 유지 정책
 up:
   - 2024-08-21-Day60
+  - 2024-08-22-Day61
 tags:
   - java
   - 메타데이터
@@ -93,6 +94,18 @@ System.out.println(obj.v1());  // 가나다
 
 **이 예제가 `@Retention(RetentionPolicy.RUNTIME)` 을 붙인 이유가 필기에 적혀 있지 않다.** 지우면 컴파일도 실행도 되는데 `getAnnotation` 이 **`null`** 을 돌려주고 다음 줄이 `NullPointerException` 이다 — 기본값이 `CLASS` 이므로 애노테이션이 파일에는 있고 메모리에는 없다. **이 한 줄이 예제가 도는지 안 도는지를 정하는데 설명이 없는 자리**이고, 같은 노트의 `@Target` 절 예제들에는 그 줄이 없다(그쪽은 읽지 않으니 필요 없다) — **그 비대칭도 설명되지 않는다** → [[reflective-annotation-access]] · [[exception-handling]]
 
+**하루 뒤 Day61 이 그 이유를 코드로 만든다.** 이번에는 애노테이션이 예제가 아니라 실제로 일을 한다 — `@Param` 을 매개변수에 붙이고 [[dynamic-proxy]] 의 `invoke` 가 **실행 중에** 그것을 읽어 매퍼에 넘길 키를 만든다.
+
+```java
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.PARAMETER)
+public @interface Param{
+  String value();
+}
+```
+
+**읽는 주체가 처음으로 「내가 지금 쓰는 코드」다.** Day60 에서는 예제 프로그램이 자기가 붙인 것을 자기가 읽어 보는 형태였는데, 여기서는 DAO 를 부르는 화면 코드와 애노테이션을 읽는 `invoke` 가 **다른 자리에** 있다 — 그래서 이 한 줄을 빼면 「등록은 되는데 값이 안 들어간다」로 나타나고, 원인을 애노테이션 선언에서 찾아야 한다. **「누가 이 애노테이션을 읽는가」가 곧 「어디까지 남겨야 하는가」**라는 이 노트의 첫 문장이 실물을 얻는 자리다 → [[dynamic-proxy]] · [[mybatis]]
+
 ## 왜 중요한가
 
 **애노테이션이 「아무 일도 하지 않는」 첫 번째 원인이 이것이다.** [[annotation]] 이 「아무도 안 읽는 애노테이션은 정말 아무 일도 하지 않는다」고 적었는데, 그보다 앞선 실패가 있다 — **읽으려는 쪽이 있는데도 볼 수 없는 상태.** 직접 만든 애노테이션에 `@Retention` 을 안 붙이면 프레임워크가 아무리 찾아도 없고, 오류 메시지에는 애노테이션 이야기가 한 줄도 나오지 않는다(`null` 이거나 「해당 없음」으로 조용히 지나간다). **「붙였는데 안 먹는다」의 첫 확인 지점**이 이 한 줄이다 → [[reflective-annotation-access]]
@@ -116,6 +129,7 @@ System.out.println(obj.v1());  // 가나다
 
 - [[annotation]] — 이 정책이 붙는 대상
 - [[annotation-target]] — 같은 회차의 짝이 되는 메타 애노테이션
+- [[dynamic-proxy]] — `RUNTIME` 이 실제로 필요해지는 자리
 - [[reflective-annotation-access]] — `RUNTIME` 이어야 성립하는 읽기
 - [[class-file-format]] · [[bytecode]] — `CLASS` 정책이 남기는 자리
 - [[classpath]] — 남긴 것이 실행 시점 의존이 되는 이유
@@ -129,3 +143,4 @@ System.out.println(obj.v1());  // 가나다
 ## 출처
 
 - [[2024-08-21-Day60]] — 「RetentionPolicy」 절이 이 개념이다. `CLASS`·`SOURCE`·`RUNTIME` 세 값의 뜻을 각각 한 줄로 정확히 적고 **`CLASS` 가 기본값**임을 `<default>` 로 표시했으며, 「RetentionPolicy는 annotation을 만들때 설정한다」로 이것이 쓰는 쪽이 아니라 **만드는 쪽의 선택**이라는 것을 짚었다. 같은 노트의 「property 값 추출」·「배열 property 추출」 예제가 실제로 `@Retention(RetentionPolicy.RUNTIME)` 을 달고 있어 이 절이 그 예제들의 전제인데, **왜 붙였는지는 적혀 있지 않고**(빼면 `getAnnotation` 이 `null` 이다) `@Target` 절 예제에는 없는 비대칭도 설명되지 않는다. 코드로 실린 `@RETENTION(value = RetentionPolicy."PolicySetting")` 은 이름이 전부 대문자인 오기이고 값 자리는 문법이 아니라 자리표시자다. `CLASS` 정책을 읽는 주체가 누구인지, 애노테이션 타입이 실행 시점에 없으면 조용히 무시된다는 것, 로컬 변수 애노테이션은 `RUNTIME` 이어도 읽을 수 없다는 것은 다루지 않았다
+- [[2024-08-22-Day61]] — 하루 뒤. **`RUNTIME` 을 왜 붙이는지가 코드로 드러나는 회차**다. `@Retention(RetentionPolicy.RUNTIME)` + `@Target(ElementType.PARAMETER)` 로 `@Param` 을 선언해 DAO 메서드의 매개변수에 붙이고, [[dynamic-proxy]] 의 `invoke` 가 **실행 중에** 그것을 읽어 매퍼에 넘길 `Map` 의 키를 만든다 — 필기의 표현이 「Annotation을 사용하면 Runtime중에 매개변수명에 태그 값을 가져올 수 있다」이고, 「Runtime중에」라는 한정이 이 정책의 이름과 정확히 맞는다. Day60 에서는 예제가 자기가 붙인 것을 자기가 읽어 보는 형태여서 이 줄이 없어도 손해가 눈에 안 보였는데, 여기서는 **읽는 코드와 붙이는 코드가 다른 자리에 있어** 이 한 줄을 빼면 「값이 안 들어간다」로만 나타난다. 두 메타 애노테이션을 함께 쓴 첫 예이기도 하다(→ [[annotation-target]]). 다만 정책을 고르는 이유(`CLASS`·`SOURCE` 였다면 무엇이 안 되는가)는 이 회차에도 적혀 있지 않다

@@ -12,6 +12,7 @@ aliases:
 up:
   - 2024-07-30-Day45
   - 2024-07-30-Day46
+  - 2024-08-22-Day61
 tags:
   - 네트워크
   - java
@@ -103,19 +104,50 @@ Socket socket = new Socket("127.0.0.1", 8888);
 
 **두 코드에서 같아야 하는 값은 포트 번호 하나이고, 클라이언트만 IP 를 안다.** 서버는 자기 IP 를 코드에 쓰지 않는다 — 어느 주소로 들어오든 그 포트로 온 것을 받는다. 「서버측 포트 번호는 App에서 설정한다」와 「클라이언트측 포트 번호는 운영체제가 저장한다」가 갈리는 이유가 이 비대칭이다 → [[port-number]]
 
-Day45 의 코드에 **없는 것이 셋**인데, 그 셋이 소켓을 실제로 쓸 때 반드시 나온다.
+Day45·Day46 의 코드에 **없는 것이 셋**인데, 그 셋이 소켓을 실제로 쓸 때 반드시 나온다. **그리고 23일 뒤 Day61 의 클라이언트가 정확히 그 셋을 갖춘 실물이다** — 아래 코드는 이 노트가 지어낸 형태가 아니라 그 회차의 것이다.
 
 ```java
-try (Socket socket = new Socket("127.0.0.1", 8888);
-     DataInputStream in = new DataInputStream(socket.getInputStream());
-     DataOutputStream out = new DataOutputStream(socket.getOutputStream())) {
-  out.writeUTF("명령");
-  out.flush();
-  String result = in.readUTF();
+try (Socket socket = new Socket(host, port);
+    DataInputStream in = new DataInputStream(socket.getInputStream());
+    DataOutputStream out = new DataOutputStream(socket.getOutputStream())) {
+
+  while (true) {
+    String message = in.readUTF();
+    ...
+    out.writeUTF(input);
+    out.flush();
+  }
 }
 ```
 
-(1) **스트림을 꺼내는 두 메서드** — 소켓은 통로 자체가 아니라 통로 **두 개**(읽기·쓰기)를 갖고 있고 그것을 `getInputStream()`·`getOutputStream()` 으로 꺼낸다. (2) **껍데기** — 바이트만 흐르므로 문자열·숫자를 실으려면 Day39·Day41 에 배운 층을 씌운다 → [[data-io-stream]] · [[decorator-pattern]]. (3) **닫기** — `Socket` 은 `Closeable` 이라 `try-with-resources` 에 들어간다 → [[try-with-resources]]
+(1) **스트림을 꺼내는 두 메서드** — 소켓은 통로 자체가 아니라 통로 **두 개**(읽기·쓰기)를 갖고 있고 그것을 `getInputStream()`·`getOutputStream()` 으로 꺼낸다. (2) **껍데기** — 바이트만 흐르므로 문자열·숫자를 실으려면 Day39·Day41 에 배운 층을 씌운다 → [[data-io-stream]] · [[decorator-pattern]]. (3) **닫기** — `Socket` 은 `Closeable` 이라 `try-with-resources` 에 들어가고, 껍데기 둘도 같은 괄호에 나란히 선언된다 → [[try-with-resources]]
+
+**`out.flush()` 가 Day61 에서 처음 나오는 넷째다.** 파일에서는 닫을 때 밀려 나가면 됐지만 여기서는 **상대가 그것을 기다리고 있다** — 버퍼에 남아 있으면 양쪽이 서로를 기다리며 멈춘다. 「호출은 같고 성질은 다르다」의 가장 짧은 사례이고, 「누가 먼저 말하나」가 규칙이 되는 이유다 → [[io-stream]] · [[network-protocol]]
+
+### 23일 뒤 Day61 — 「서버」가 되려면 필요했던 두 줄이 온다
+
+Day45·Day46 의 서버는 `accept()` 를 한 번 부르고 끝났다. Day61 이 그것을 두 줄로 고친다.
+
+```java
+ServerSocket serverSocket = new ServerSocket(8888);
+System.out.println("서버 실행 중...");
+
+while (true) {
+  service(serverSocket.accept());
+}
+```
+
+```java
+private void service(Socket socket) {
+  new Thread(() -> {
+    // 이 연결과의 대화 전부
+  }).start();
+}
+```
+
+**`while(true)` 하나로는 부족하고 `new Thread` 가 함께 있어야 한다.** 루프만 두면 앞 손님과 대화하는 동안 `accept()` 로 돌아오지 못하므로 다음 접속이 대기열에 쌓이기만 한다 — Day45 의 「대기열크기」가 그 줄이다. 접속마다 쓰레드를 붙이면 **`accept()` 로 돌아오는 것과 대화하는 것이 다른 흐름**이 되어 둘이 동시에 진행된다 → [[thread]] · [[queue]] · [[client-server-model]]
+
+그리고 이 형태에서 **자원의 수명이 처음으로 블록을 넘어간다.** `serverSocket.accept()` 가 만든 `Socket` 을 만든 쪽이 아니라 **넘겨받은 쓰레드가** 닫는다. 그래서 서버 쪽 소켓은 `try-with-resources` 에 넣을 수 없다 — 넣으면 `service()` 가 돌아오는 순간 닫혀 버리고, 방금 시작한 쓰레드가 죽은 소켓을 쥔다. **클라이언트 쪽이 `try(...)` 로 깔끔한 것과 서버 쪽이 그렇지 못한 것이 취향 차이가 아니다** → [[try-with-resources]]
 
 ## 왜 중요한가
 
@@ -133,9 +165,11 @@ try (Socket socket = new Socket("127.0.0.1", 8888);
 - **`import java.net.ServerSocket;` 만 있어서 두 조각 다 컴파일되지 않는다 — 원본 코드의 실제 결함이다** — 서버 조각은 `Socket socket = serverSocket.accept();` 를 쓰는데 `Socket` 을 import 하지 않았고, 클라이언트 조각은 `Socket` 만 만드는데 **import 는 `ServerSocket`** 이다. 두 조각에 **똑같은 import 한 줄**이 적혀 있는 것이 원인을 말해 준다 — 앞 조각을 복사해 뒤를 만들었고 클래스 이름만 안 고쳤다. 명령 클래스를 복사해 늘리던 CRUD 실습에서 「골격을 복사하면 `import` 도 따라온다」로 이미 나온 자리이고, 그쪽은 컴파일이 막혀 최종 코드에서 고쳐졌다 — **여기는 고쳐지지 않은 채로 남은 형태다.** 필요한 것은 `import java.net.Socket;` 이고 둘 다 쓰는 조각은 두 줄(또는 `java.net.*`)이다 → [[package]] · [[crud]]
 - **`(int) 포트번호` 는 캐스팅이 아니라 타입 표기로 쓴 것이다** — 자바에서 `(int) x` 는 「x 를 int 로 바꿔라」인데 여기서는 「이 자리에 int 를 넣어라」의 뜻으로 적혀 있다. 헷갈리는 이유는 **그대로도 컴파일될 수 있다는 것**이다 — 자바 식별자는 유니코드를 허용하므로 `int 포트번호 = 8888;` 이 합법이고, 그러면 `(int) 포트번호` 는 아무 일도 안 하는 캐스팅이 된다. **문법으로 읽어도 통하고 설명으로 읽어도 통해서** 나중에 이 줄을 코드로 복사하면 「선언한 적 없는 변수」에서 막힌다 → [[type-casting]] · [[parameter-and-argument]]
 - **소켓 스트림은 파일 스트림과 호출만 같고 성질이 다르다** — 셋이 갈린다. (1) `read(byte[])` 가 **요청한 만큼 안 채운다** — 로컬 파일에서는 대개 다 채워지지만 네트워크는 패킷 단위로 도착하므로 짧게 읽히는 것이 정상이다. (2) **끝이 없다** — 파일은 다 읽으면 `-1` 인데 소켓은 상대가 아직 안 보낸 것과 끝난 것이 같은 「읽을 것 없음」으로 보이고, `read()` 는 `-1` 을 주지 않고 **막는다.** (3) **되돌아가지 못한다** — 파일은 다시 열어 처음부터 읽을 수 있지만 흘러간 바이트는 사라진다. 그래서 「어디까지가 한 메시지인가」를 보내는 쪽이 알려 줘야 하고, Day38 이 파일에 손으로 만든 길이 접두사 형식이 정확히 그 답이다 → [[length-prefix-framing]] · [[io-stream]] · [[binary-io]]
-- **`accept()` 가 막힌다는 것은 그 스레드가 다른 일을 못 한다는 뜻이다** — Day45 의 서버는 `accept()` 한 번 → 통신 → 끝이므로 **클라이언트 하나를 받고 프로그램이 죽는다.** 「서버」가 되려면 `while(true)` 안에서 `accept()` 를 돌려야 하고, 그러면 **한 클라이언트와 대화하는 동안 다음 클라이언트를 받지 못한다**는 다음 문제가 바로 나온다(그 답이 접속마다 스레드를 주는 것이다). Day45 의 「대기열크기」가 왜 필요한 값인지도 여기서 드러난다 — 서버가 앞 손님을 상대하는 사이에 온 접속이 줄을 선다.
+- **`accept()` 가 막힌다는 것은 그 스레드가 다른 일을 못 한다는 뜻이다 — Day45 기준으로 남겨 둔 「다음 문제」가 Day61 에 풀린다** — Day45 의 서버는 `accept()` 한 번 → 통신 → 끝이므로 **클라이언트 하나를 받고 프로그램이 죽는다.** 「서버」가 되려면 `while(true)` 안에서 `accept()` 를 돌려야 하고, 그러면 **한 클라이언트와 대화하는 동안 다음 클라이언트를 받지 못한다**는 문제가 바로 따라온다. Day45 의 「대기열크기」가 왜 필요한 값인지도 여기서 드러난다 — 서버가 앞 손님을 상대하는 사이에 온 접속이 줄을 선다. **23일 뒤 Day61 이 `while(true) { service(serverSocket.accept()); }` + 접속마다 `new Thread` 로 그 답을 쓴다**(위 절). 그리고 그때 대기열의 역할이 정확해진다 — 쓰레드를 붙이면 `accept()` 로 즉시 돌아오므로 줄이 짧게 유지되고, **대기열은 「동시 접속 수」가 아니라 「`accept()` 두 번 사이의 틈」을 흡수하는 것**이라는 아래 항목이 코드로 확인된다 → [[thread]]
 - **막히는 것은 생성이 아니라 `accept()` 다 — Day46 이 잘못 배운 자리다** — Day46 은 「ServerSocket을 생성하면 client Socket의 연결을 수락하기 전까지 블로킹이 된다」로 적었는데, **생성(과 바인딩)은 자리를 잡고 바로 돌아온다.** 멈추는 것은 그 다음 줄 `accept()` 다. 두 문장이 붙어 있어 결과가 같아 보이지만 갈리는 지점이 있다 — 포트가 이미 쓰이고 있으면 **생성에서 `BindException` 이 나고 `accept()` 까지 가지 못한다.** 「생성이 막힌다」로 배우면 그 예외를 「접속을 기다리다 실패한 것」으로 읽게 된다. 순서를 정확히 쓰면 **자리 잡기(즉시) → 듣기(즉시) → 수락(막힘)** 이다 → [[socket-binding]] · [[exception-handling]]
-- **서버가 닫을 것은 하나가 아니라 둘이다** — Day46 은 「연결이 종료되면 serverSocket을 close 해야한다」로 `serverSocket.close()` 만 적는데, `accept()` 가 돌려준 `Socket` 도 각각 닫아야 한다. **`ServerSocket` 을 닫는 것은 새 접속을 안 받겠다는 뜻이고 이미 붙은 연결을 끊는 것이 아니다.** 연결마다 생기는 `Socket` 을 놓치면 접속이 늘 때마다 자원이 쌓이고, 서버는 오래 도는 프로그램이라 **그 누수가 실행 중에 드러난다** → [[try-with-resources]]
+- **서버가 닫을 것은 하나가 아니라 둘이다 — Day61 은 둘 중 하나만 닫고, 그 선택이 맞다** — Day46 은 「연결이 종료되면 serverSocket을 close 해야한다」로 `serverSocket.close()` 만 적는데, `accept()` 가 돌려준 `Socket` 도 각각 닫아야 한다. **`ServerSocket` 을 닫는 것은 새 접속을 안 받겠다는 뜻이고 이미 붙은 연결을 끊는 것이 아니다.** 연결마다 생기는 `Socket` 을 놓치면 접속이 늘 때마다 자원이 쌓이고, 서버는 오래 도는 프로그램이라 **그 누수가 실행 중에 드러난다.** Day61 은 정확히 반대로 한다 — 연결마다의 `Socket` 은 `prompt.close()` 로 닫고 `ServerSocket` 은 **한 번도 닫지 않는다.** 이번에는 그것이 맞다: `while(true)` 라 서버가 끝나는 시점이 없으므로 닫을 자리도 없고, 누수가 되는 쪽은 **수가 늘어나는 것**뿐이다. **닫아야 하는지는 개수와 수명으로 정해진다** — 하나이고 프로그램과 같이 사는 것은 OS 가 정리하고, 접속마다 생기는 것은 반드시 손으로 닫아야 한다 → [[try-with-resources]]
+- **Day61 의 서버에는 정상 종료 경로가 아예 없다 — 주석 처리가 컴파일 오류를 가리고 있다** — `while(true)` 뒤에 종료 리스너를 부르는 블록이 있는데 **전체가 주석으로 막혀 있다.** 막은 이유가 취향이 아니다 — 조건 없는 `while(true)` 안에 `break` 가 없으면 그 뒤 문장은 도달할 수 없고, 자바는 그것을 `unreachable statement` **컴파일 오류**로 잡는다. 즉 **그 코드는 주석을 지우는 순간 컴파일이 막히고, 주석인 채로는 `onShutdown` 이 절대 불리지 않는다.** 리스너 짝 중 `onStart` 만 사는 상태이며, 고치려면 종료 조건을 만들어야 한다(`while(!stopped)` 나 `serverSocket.close()` 로 `accept()` 를 깨우는 것). **「서버는 안 끝난다」와 「끝날 때 할 일을 적어 두었다」가 한 메서드 안에서 모순인 자리**이고, 컴파일러가 그것을 알려 주려 했는데 주석으로 덮였다 → [[comment]] · [[observer-pattern]] · [[exception-handling]]
+- **포트 번호가 한쪽은 코드에 박히고 한쪽은 사람에게 묻는다** — Day61 의 서버는 `new ServerSocket(8888)` 로 상수이고 클라이언트는 `Prompt.inputInt("포트번호? ")` 로 사용자에게 받는다. 위의 「두 코드에서 같아야 하는 값은 포트 번호 하나」가 그래서 **한쪽만 고칠 수 있는 값**이 된다 — 서버 포트를 바꾸면 다시 빌드해야 하고, 사용자는 바뀐 번호를 어딘가에서 들어야 한다. 「서버측 포트 번호는 App에서 설정한다」가 맞는 서술이지만 **상수로 박는 것과 설정으로 두는 것은 다르다** → [[port-number]] · [[socket-binding]]
 - **같은 문장이 클라이언트 절에도 복사돼 주체가 어긋나 있다** — Day46 의 TCP클라이언트 절도 「연결이 종료되면 serverSocket을 close 해야한다」로 적혀 있고 코드는 `socket.close()` 다. **클라이언트에는 `serverSocket` 이 존재하지 않는다** — 앞 절을 복사해 코드만 고친 흔적이고, 같은 노트에서 `import` 를 안 고쳐 남은 Day45 의 자리와 같은 종류다. 설명 문장은 컴파일되지 않으므로 **이 어긋남은 나중에 이 필기를 읽는 사람만 걸린다.**
 - **`UnknownHostException` 과 `IOException` 은 나란한 둘이 아니다** — Day46 이 「두가지 예외」로 적어 형제처럼 보이는데 **`UnknownHostException` 이 `IOException` 의 하위 타입**이다(`ConnectException` 도 그렇다). 그래서 순서를 반대로 쓰면 컴파일이 막힌다 — `catch (IOException)` 을 먼저 두면 뒤의 `catch (UnknownHostException)` 은 「이미 잡힌 예외」가 된다. **넓은 것을 먼저 잡으면 좁은 것을 구별할 기회가 없어진다**는 것이 이 관계의 실질이고, 「두 가지」로 외우면 그 순서가 왜 강제되는지가 설명되지 않는다 → [[exception-handling]] · [[inheritance]]
 - **소켓을 닫지 않으면 포트가 바로 풀리지 않는다** — Day45 의 코드에는 `close()` 가 없고 **Day46 이 같은 날 그 한 줄을 채운다**(「연결이 종료되면 serverSocket을 close 해야한다」). 프로그램이 죽으면 OS 가 정리하지만, `ServerSocket` 이 쓰던 포트는 TCP 규칙상 잠깐 잠겨 있어(`TIME_WAIT`) 곧바로 다시 띄우면 「Address already in use」가 난다. **파일을 안 닫으면 내 데이터가 안 나가는 것과 달리, 소켓을 안 닫으면 다음 실행이 막힌다** → [[try-with-resources]] · [[port-number]]
@@ -146,6 +180,7 @@ try (Socket socket = new Socket("127.0.0.1", 8888);
 ## 함께 보는 개념
 
 - [[io-stream]] — 연결 뒤로 흐르는 것과 그것을 읽는 호출
+- [[thread]] — 접속마다 붙여 `accept()` 로 돌아오게 하는 것
 - [[tcp]] — 이 두 클래스가 쓰는 전송 프로토콜
 - [[socket-binding]] — 연결을 받을 자리를 정하는 단계
 - [[domain-name-system]] — 이름으로 접속할 때 앞에 끼는 조회
@@ -165,3 +200,4 @@ try (Socket socket = new Socket("127.0.0.1", 8888);
 
 - [[2024-07-30-Day45]] — 「클라이언트 : Socket을 생성하여 통신 / 서버 : ServerSocket을 생성하고 Socket을 통해 통신」으로 양쪽이 쓰는 클래스가 다른 것을 배우고, `new ServerSocket(포트번호, 대기열크기)` → `serverSocket.accept()` → `new Socket("IP주소", 포트번호)` 세 줄을 코드로 적었다. 「실제 데이터 전송은 OutStream -> 랜카드 -> InputStream으로 이루어진다」로 Day12 의 「소켓입력스트림」이 실물이 되는 자리이기도 하다. 다만 **「대기열크기 : 클라이언트 최대 접속수」는 잘못 배운 것**이고(대기열은 아직 `accept()` 되지 않은 연결의 줄이다), 두 코드 조각 모두 `import java.net.ServerSocket;` 한 줄만 갖고 있어 **그대로는 컴파일되지 않는다**(클라이언트 조각은 `Socket` 을, 서버 조각은 `Socket` 을 import 하지 않았다). `getInputStream()`·`getOutputStream()`·`close()`·`accept()` 반복이 전부 빠져 있어 **연결을 만드는 것까지만 다룬 회차**이고, `(int) 포트번호` 는 캐스팅 문법을 타입 표기로 쓴 것이다. `ServerSocker`·`Socker` 오타와 `OutStream` 표기도 그대로 남아 있다
 - [[2024-07-30-Day46]] — 같은 날 Day45 의 두 줄을 **단계로 펼친다.** 서버 쪽은 바인딩 세 형태 → `accept()` → `getRemotSocketAddress()` 로 상대 IP·포트 확인 → `close()` 이고, 클라이언트 쪽은 IP+포트 · 도메인 · `new Socket()` 후 `connect()` 세 형태와 「연결 요청 시 두가지 예외 UnknownHostException/ IOException」이다. Day45 에 없던 `close()` 가 여기서 채워지고, 「생성자가 곧 접속」이 규칙이 아니라 형태의 성질이었다는 것도 `connect()` 로 드러난다. 다만 **막히는 지점을 「ServerSocket을 생성하면 …블로킹이 된다」로 잘못 짚었고**(막히는 것은 `accept()` 다), 닫아야 할 것을 `serverSocket` 하나로만 적었으며(`accept()` 가 준 `Socket` 이 남는다), TCP클라이언트 절의 close 설명은 앞 절에서 복사돼 **클라이언트에 없는 `serverSocket` 을 가리킨다.** 「두가지 예외」도 실제로는 상하 관계다. 여전히 `getInputStream()`·`getOutputStream()` 과 실제 송수신은 나오지 않아 **두 회차 모두 통로를 만드는 것까지**다
+- [[2024-08-22-Day61]] — 23일 뒤. **두 회차가 「통로를 만드는 것까지」로 남겨 둔 뒤쪽 전부가 여기서 온다.** 클라이언트가 `try (Socket socket = new Socket(host, port); DataInputStream in = …; DataOutputStream out = …)` 로 소켓과 껍데기 둘을 한 괄호에 선언하고 `in.readUTF()` ↔ `out.writeUTF(input)` + `out.flush()` 로 실제 송수신을 하며, 서버는 `new ServerSocket(8888)` 뒤에 `while (true) { service(serverSocket.accept()); }` 로 반복 수락을 돌리고 `service()` 가 접속마다 `new Thread(…).start()` 를 붙인다 — **Day45 노트가 「다음 문제」로 적어 둔 「한 클라이언트와 대화하는 동안 다음 접속을 못 받는다」의 답이 이 두 줄이다**(→ [[thread]]). `accept()` 가 준 `Socket` 을 다른 쓰레드에 넘기므로 **서버 쪽 소켓은 `try-with-resources` 에 들어갈 수 없고**, 자원의 수명이 만든 블록을 넘어가는 첫 사례가 된다. 닫는 쪽도 Day46 과 반대다 — 연결마다의 `Socket` 은 `prompt.close()` 로 닫고 `ServerSocket` 은 한 번도 닫지 않는데, 끝나지 않는 서버에서는 그것이 맞다. 다만 `while(true)` 뒤의 종료 리스너 블록이 **주석으로 막혀 있고 주석을 지우면 `unreachable statement` 컴파일 오류**라서 이 서버에는 정상 종료 경로가 없으며, 포트가 서버에서는 `8888` 상수이고 클라이언트에서는 사용자 입력이라 **한쪽만 고칠 수 있는 값**이다. 종료 신호를 읽는 클라이언트 쪽 조건이 어긋나 대화가 정상적으로 끝나지 않는 것은 프로토콜 쪽 문제다 → [[network-protocol]] · [[data-io-stream]]

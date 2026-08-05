@@ -14,6 +14,7 @@ aliases:
   - getDeclaredMethods
 up:
   - 2024-08-20-Day59
+  - 2024-08-22-Day61
 tags:
   - java
   - 리플렉션
@@ -122,6 +123,19 @@ for (Method m : methods) {
 
 **여기서 나오는 값이 `getMethod` 에 넣는 값과 같은 종류다** — `p.getType()` 이 `Class` 이고 그것이 곧 `getMethod` 의 뒤 인수 자리에 서는 것이다. 즉 **메서드를 읽어 낸 결과로 다시 메서드를 찾을 수 있다.** 제네릭 반환형은 이 자리에서 따로 물어야 한다 → [[type-erasure]]
 
+**이 절이 Day59 에서는 정보를 출력하는 예제였는데, 이틀 뒤 Day61 에서 조건문이 된다.**
+
+```java
+Class<?> returnType = method.getReturnType();
+if (returnType == List.class) { … } else if (returnType == int.class || …) { … }
+```
+
+```java
+Parameter[] params = method.getParameters();
+```
+
+Day61 의 `DaoFactory` 가 두 메서드로 **어느 `sqlSession` 메서드를 부를지**와 **파라미터를 어떤 모양으로 넘길지**를 정한다 — 시그니처를 읽는 일이 「무엇이 선언되어 있나 찍어 보기」에서 **실행 경로를 고르는 근거**로 올라간 것이다. 그리고 방향이 이 노트의 나머지와 반대다: 여기서 손에 온 `Method` 를 `invoke` 하지 않는다 → [[dynamic-proxy]] · [[dispatch-table]]
+
 ## 사용 예시
 
 Day59 의 「메서드 파라미터」 절이 인수를 넘기는 두 형태를 나란히 적었다.
@@ -171,7 +185,7 @@ m.invoke(null, new Object[]{ values });      // 인수 하나 = 그 배열
 - **`invoke(obj, null)` 은 「인수 없음」으로 읽힌다** — `null` 이 `Object[]` 로 해석되기 때문이다. 인수 하나로 `null` 을 넘기려면 `new Object[]{null}` 이어야 한다. [[varargs]] 노트가 「인수 하나로 `null` 을 넘기면 배열 자체가 `null` 이 된다」고 적은 것과 같은 문법인데, `invoke` 쪽에서는 그것이 오히려 **통하는 형태**(인수 없는 메서드 호출)라서 실수가 오류로 드러나지 않는다.
 - **`getMethods()` 에 `Object` 의 메서드가 섞이는 것을 필기가 짚었다 — 그래서 목록을 쓰는 목적이 갈린다** — 「이 클래스가 무엇을 하는가」를 보려면 `getDeclaredMethods()` 이고, 「이 객체에 무엇을 부를 수 있는가」를 보려면 `getMethods()` 다. 앞의 것으로 화면을 만들면 상속받은 기능이 빠지고, 뒤의 것으로 만들면 `wait`·`notify`·`hashCode` 가 끼어든다 → [[object-class]] · [[inheritance]]
 - **목록의 순서는 보장되지 않는다** — `getDeclaredMethods()` 가 소스의 선언 순서를 준다는 보장이 명세에 없다. 필기의 예제들은 순서를 쓰지 않으므로 문제가 없지만, 이 목록으로 화면 항목이나 파일 헤더를 만들면 **컴파일러나 JVM 을 바꿨을 때 순서가 달라진다** → [[reflective-field-access]]
-- **파라미터 「이름」은 기본적으로 지워져 있다** — `p.getName()` 이 `name`·`age` 가 아니라 **`arg0`·`arg1`** 을 찍는다. 컴파일 옵션 `-parameters` 를 켜야 이름이 클래스 파일에 남는다. 필기의 「파라미터 타입」 예제 출력이 그 형태가 되며, **타입은 남고 이름만 지워지는 것**이라 [[type-erasure]] 와는 다른 축인데 증상이 닮았다. Spring 이 옛날에 `@Param`·`@RequestParam` 으로 이름을 다시 적게 했던 이유가 이것이다 → [[class-file-format]] · [[mybatis]]
+- **파라미터 「이름」은 기본적으로 지워져 있다 — 그래서 이틀 뒤 필기가 `@Param` 을 직접 만든다** — `p.getName()` 이 `name`·`age` 가 아니라 **`arg0`·`arg1`** 을 찍는다. 컴파일 옵션 `-parameters` 를 켜야 이름이 클래스 파일에 남는다. 필기의 「파라미터 타입」 예제 출력이 그 형태가 되며, **타입은 남고 이름만 지워지는 것**이라 [[type-erasure]] 와는 다른 축인데 증상이 닮았다. **Day61 이 이 벽에 정면으로 부딪힌다** — 매퍼의 `#{no}` 가 이름으로 값을 찾는데 `method.getParameters()` 로는 그 이름을 알 수 없으므로, `@Retention(RUNTIME)` + `@Target(PARAMETER)` 로 **이름을 한 번 더 적는 애노테이션**을 만든다. 이 노트가 「Spring 이 옛날에 `@Param`·`@RequestParam` 으로 이름을 다시 적게 했던 이유가 이것이다」로 예고했던 것을 **이틀 뒤 필기가 스스로 재발명한 것**이고, 그래서 「애노테이션으로 이름을 적는 프레임워크들」이 왜 그렇게 생겼는지가 관례가 아니라 **제약의 결과**로 남는다 → [[class-file-format]] · [[mybatis]] · [[dynamic-proxy]] · [[annotation-target]]
 - **`.class` 로 시작하는 코드는 「동적」이 아니다** — 이 절의 예제는 전부 `Exam0110.class`·`Exam0320.class` 로 클래스를 컴파일 시점에 적는다. 즉 메서드 이름만 문자열이고 클래스는 고정이라 **반쯤만 동적이다.** 진짜 동적 호출은 클래스 이름과 메서드 이름이 둘 다 밖에서 오는 것이고, 그 첫 칸이 같은 회차의 [[class-loading]] 절이다 — **두 절이 이어지는데 필기는 이어 붙이지 않았다.**
 - **`getMethods()` 예제의 중괄호가 어긋나 있다** — `Class<?> clazz = Exam0110.class;` 다음 `for` 문이 끝난 뒤 `}` 가 하나 더 있어 그대로는 컴파일되지 않는다. 코드를 메서드 안에서 잘라 붙인 자리다.
 - **`m2` 를 찾는 세 줄이 같은 결과라 셋 다 필요한 것처럼 읽힌다** — 필기가 `parameterType` 변수·`String.class`·`Class.forName("java.lang.String")` 을 차례로 쓰고 매번 이름을 출력한다. 셋은 **같은 것을 보이는 세 표기**이고, 실제 코드에 셋을 함께 쓸 이유는 없다. 특히 세 번째는 `String.class` 로 될 일을 검사 예외까지 달고 하는 것이라 **문자열로 지목해야 하는 이유가 없을 때는 쓰지 않는다** → [[class-loading]]
@@ -191,6 +205,7 @@ m.invoke(null, new Object[]{ values });      // 인수 하나 = 그 배열
 - [[static-member]] — 첫 인수가 `null` 이 되는 근거
 - [[annotation]] — 「무엇을 부를지」를 표시하는 짝 문법
 - [[dispatch-table]] · [[command-pattern]] — 타입을 지키면서 이름으로 고르는 다른 답
+- [[dynamic-proxy]] — 같은 `Method` 객체가 반대 방향으로 오는 자리
 - [[type-erasure]] — 제네릭 시그니처를 되읽는 자리
 - [[mybatis]] — 이 도구로 남의 클래스의 getter 를 부르는 실물
 - [[object-class]] — `getMethods()` 에 섞여 오는 것들의 출처
@@ -198,3 +213,4 @@ m.invoke(null, new Object[]{ values });      // 인수 하나 = 그 배열
 ## 출처
 
 - [[2024-08-20-Day59]] — 「메소드 정보 추출」·「메서드 호출」·「타입정보 추출」 세 절이 이 개념을 이룬다. `getMethods()`/`getDeclaredMethods()`/`getMethod()`/`getDeclaredMethod()` 넷을 코드로 갈라 **상속 포함 여부와 접근 범위가 서로 다른 두 축**이라는 것을 보였고(`getMethod("m3")` 는 `private` 이라 못 찾고 `getDeclaredMethod("toString")` 은 상속이라 못 찾는다), 오버로딩 때문에 파라미터 타입 목록을 순서까지 맞춰 넘겨야 한다는 것을 `getMethod("m3", String.class, int.class)` 와 주석으로 막은 반대 순서로 확인했다. 호출은 `static` 이면 `invoke(null, …)`·인스턴스면 `invoke(obj, …)` 로 갈리고, `m.invoke(obj, 10, 20)` 과 `obj.minus(10, 20)` 을 나란히 놓아 같은 일의 두 경로를 보였다. 인수를 낱개로 넘기는 것과 `new Object[]{…}` 로 담아 넘기는 것이 같다는 것, 배열·가변 파라미터는 감싸야 한다는 것도 이 회차의 것이다. 다만 예제가 `invoke` 의 반환값을 한 번도 쓰지 않아 결과를 받는 형태가 나오지 않고, `private` 메서드는 찾기만 하고 `invoke` 하지 않아 `setAccessible` 이 필요한 벽에 닿지 않으며, `InvocationTargetException`·`getMethods()` 예제의 남는 중괄호·파라미터 이름이 `arg0` 으로 지워진다는 것·`static` 쪽이 첫 인수를 무시한다는 비대칭은 다루지 않았다
+- [[2024-08-22-Day61]] — 이틀 뒤. **같은 `Method` 객체를 반대 방향으로 쓴다** — 이름으로 찾아 부르는 것이 아니라, [[dynamic-proxy]] 가 만든 구현체에 남이 호출한 메서드가 `invoke(Object proxy, Method method, Object[] args)` 로 **손에 들어온다.** 그래서 Day59 의 「타입정보 추출」 절이 출력용으로 배웠던 `method.getReturnType()`·`method.getParameters()` 가 여기서 **디스패치 조건**이 된다(반환형이 `List` 면 `selectList`, 매개변수가 하나면 `args[0]`). 그리고 이 노트가 지적한 「파라미터 이름은 `arg0` 으로 지워져 있다」에 정면으로 부딪혀 **`@Param` 애노테이션을 직접 만들어 이름을 한 번 더 적는다** — Spring·MyBatis 가 그렇게 생긴 이유를 제약에서 다시 도출한 자리다. 다만 `params.getAnnotation(…)` 을 배열에 대고 부르고 `anno.value()` 를 꺼내지 않아 이름을 얻는 걸음이 완성되지 않으며(→ [[reflective-annotation-access]]), `invoke` 안에서 `method.invoke(…)` 를 부르지 않으므로 **위임할 실제 객체가 없다**는 것이 이 회차의 구조다. `Object` 의 메서드까지 같은 경로로 들어온다는 것·`InvocationTargetException` 도 다루지 않는다
