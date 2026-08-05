@@ -9,6 +9,7 @@ aliases:
   - forward
 up:
   - 2024-08-29-Day66
+  - 2024-08-30-Day67
 tags:
   - web
   - servlet
@@ -68,6 +69,29 @@ public class UserFormServlet extends GenericServlet {
 
 그리고 머리말이 **로그인 상태를 스스로 읽는다.** `HeaderServlet` 안에서 [[http-session]] 을 꺼내 로그인 버튼과 사용자 이름을 갈라 그리므로, 각 화면은 「누가 로그인했나」를 몰라도 된다 — 부르는 쪽이 아무것도 넘기지 않는데 상태가 반영되는 것은 **`req` 를 그대로 넘겼기 때문**이다.
 
+### 하루 뒤 — `forward` 가 처음 쓰이고, JSP 쪽 표기가 하나 더 온다
+
+Day66 은 `include` 만 썼다. Day67 이 **오류 화면으로 넘길 때** `forward` 를 쓴다.
+
+```java
+} catch (Exception e) {
+  req.setAttribute("exception", e);
+  req.getRequestDispatcher("/error.jsp").forward(req, res);
+}
+```
+
+「넘긴다」가 맞는 자리다 — 오류 화면을 보일 때 앞서 쓴 것은 버려야 한다.
+
+JSP 안에서는 액션 태그로 같은 일을 한다.
+
+```jsp
+<jsp:include page="/header.jsp"/>
+```
+
+**`req.getRequestDispatcher("/header").include(req, res)` 와 같은 장치다** — 문법만 다르다 → [[jsp]]
+
+**다만 이 `forward` 는 자주 실패한다.** `try` 가 `include(...)` 까지 감싸고 있어서, JSP 가 그리는 중에 예외가 나면 **응답이 이미 나가기 시작한 뒤**다. 그 상태에서 `forward` 는 버릴 수 없어 `IllegalStateException` 이 되고, 사용자는 반쯤 그려진 화면과 그 뒤에 붙은 오류를 함께 본다 — **오류 화면이 정작 필요한 경우에 못 나온다** → [[exception-handling]]
+
 ## 경계와 오해
 
 - **`include` ≠ 새 요청** — 브라우저는 이 일이 있었는지 모른다. 주소창도 바뀌지 않고 요청 횟수도 하나다. 「서블릿을 부른다」로 읽으면 두 번 왕복하는 것처럼 오해한다.
@@ -88,4 +112,5 @@ public class UserFormServlet extends GenericServlet {
 
 ## 출처
 
+- [[2024-08-30-Day67]] — 하루 뒤. `forward` 가 처음 쓰이고(오류 화면), JSP 쪽 표기 `<jsp:include page="..."/>` 가 같은 장치라는 것이 드러난다. 서블릿이 데이터를 `setAttribute` 로 담고 JSP 를 `include` 하는 형태가 회차 전체의 골격이 된다. 다만 `try` 가 `include` 까지 감싸고 있어 **JSP 렌더링 중에 난 예외는 `forward` 로 넘길 수 없다**(응답이 이미 나갔다)는 것은 다루지 않았다
 - [[2024-08-29-Day66]] — 「HeaderServlet 만들기」 절이 「중복된 코드 head 를 servlet 클래스로 만든다」로 시작하고 `req.getRequestDispatcher("/header").include(req, res)` 로 부른다. 그 서블릿이 `<!DOCTYPE html>` 부터 `</header>` 까지만 쓰고 로그인 여부에 따라 버튼을 갈라 그리는 것까지가 한 벌이다. 이어지는 「동적으로 HTML관리하기」에서 `form.html`·`index.html` 이 서블릿이 되면서 그 둘도 같은 한 줄로 머리말을 끼운다. 다만 `include` 로 불린 쪽이 응답 헤더를 바꿀 수 없다는 것, `forward` 와의 차이, `setContentType` 이 `include` 앞이어야 하는 이유는 다루지 않았다

@@ -15,6 +15,7 @@ up:
   - 2024-07-18-Day38
   - 2024-07-19-Day39
   - 2024-08-05-Day48
+  - 2024-08-30-Day67
 tags:
   - java
   - 예외
@@ -217,6 +218,34 @@ System.out.println("1~100 합: " + sumThread.getSum());   // 안 기다렸는데
 
 더 값 있는 것은 **예외를 잡는 것과 예외가 남긴 상태를 정리하는 것이 다른 일**이라는 발견이다. `catch` 는 흐름만 돌려놓고 **상태는 되돌려 주지 않는다** — 버퍼는 그대로, `menuNo` 는 갱신되지 않은 채다. 이 필기가 `keyboard.next()` 를 부르며 실제로 만난 것이 그것이고, "잡았으니 해결됐다"로 넘어가면 무한 루프가 된다.
 
+### 오류를 화면으로 넘기는 형태
+
+Day67 이 모든 서블릿을 같은 골격으로 감싼다 — **잡아서 화면에 넘긴다.**
+
+```java
+} catch (Exception e) {
+  req.setAttribute("exception", e);
+  req.getRequestDispatcher("/error.jsp").forward(req, res);
+}
+```
+
+```jsp
+<pre>
+<%
+Exception e = (Exception) request.getAttribute("exception");
+if (e != null) {
+    e.printStackTrace(new PrintWriter(out));
+}
+%>
+</pre>
+```
+
+**Day61~66 이 `out.println("<p>오류!</p>")` 로 한 줄 찍던 것에서 스택 트레이스 전체로 바뀌었다.** 개발 중에는 이게 훨씬 낫다 — 원인이 화면에 그대로 나온다.
+
+**그리고 그것이 그대로 배포되면 문제가 된다.** 스택 트레이스에는 클래스 이름·파일 경로·SQL 문장·때로는 값까지 들어 있어서, **공격자에게 시스템 구조를 알려 주는 화면**이 된다. 「개발에서 편한 것」과 「사용자에게 보일 것」이 갈리는 자리이고, 필기는 그 구분을 두지 않는다 → [[sql-injection]]
+
+**게다가 이 `forward` 는 자주 실패한다** — `try` 가 JSP `include` 까지 감싸므로, 렌더링 중에 난 예외는 응답이 이미 나간 뒤라 넘길 수 없다 → [[request-dispatcher]]
+
 ## 경계와 오해
 
 - **예외를 잡는 것이 고치는 것은 아니다** — 원인이 남아 있으면 다음 회차에 같은 예외가 다시 난다. 위 예시에서 버퍼를 비우지 않으면 정확히 그렇게 된다. `catch` 블록에서 물어야 하는 것은 "무엇을 출력할까"가 아니라 **"어떤 상태를 되돌려야 다시 시도할 수 있는가"** 다.
@@ -261,5 +290,6 @@ System.out.println("1~100 합: " + sumThread.getSum());   // 안 기다렸는데
 - [[2024-06-11-Day12]] — 입력을 줄 단위로 받고 `Integer.parseInt` 로 해석하도록 바꾸면서 잡는 예외가 `NumberFormatException` 으로 바뀌고 `catch` 에서 버퍼를 비우는 줄이 필요 없어진다는 것을 배웠다
 - [[2024-06-13-Day14]] — 서브메뉴 루프를 만들면서 `try` 가 루프 본문 전체를 감싸던 초안을 특별 명령 처리(`menu`·`9`)를 밖으로 내보내고 숫자 해석과 조회만 남기도록 좁혔다
 - [[2024-07-18-Day38]] — 파일 입출력 실습에서 **잡거나 선언하지 않으면 컴파일되지 않는 예외(`IOException`)를 처음 만난다.** `getBytes`·`valueOf` 는 `throws IOException` 으로 넘기고 `saveUser`·`loadUser` 는 `catch (IOException e)` 로 잡아 메시지를 찍는데, **두 답이 한 노트 안에 나란히 있어 「어디서 잡을지」가 「어디서 뭘 할 수 있나」로 정해지는 것**이 드러난다. `try` 괄호에 자원을 선언하는 형태도 이 회차가 처음이고 `catch` 없이 쓰는 예가 함께 있다. 다만 그 `catch` 가 실패를 부른 쪽에 전달하지 않고, 첫 실행의 `FileNotFoundException` 이 오류 메시지로 나오며, 파일이 깨졌을 때 나는 `NegativeArraySizeException`·`IndexOutOfBoundsException` 은 `IOException` 이 아니라 이 `catch` 를 통과한다 — 필기는 이 셋을 다루지 않았다
+- [[2024-08-30-Day67]] — 서블릿 전체가 `try` / `catch (Exception e)` 로 감싸이고, `catch` 가 예외를 요청 속성에 담아 `error.jsp` 로 `forward` 한다. `error.jsp` 는 `e.printStackTrace(new PrintWriter(out))` 로 스택 트레이스를 화면에 그대로 찍는다 — 개발 중에는 유용하지만 배포되면 시스템 구조가 노출된다. 그리고 `try` 가 `include` 까지 감싸고 있어 **렌더링 중에 난 예외는 그 `forward` 자체가 실패한다**
 - [[2024-08-05-Day48]] — **`catch` 블록이 비어 있는 형태가 처음 나온다** — `try { Thread.sleep(500); } catch(Exception e) {}` 가 여섯 번, `join()` 쪽 `catch (InterruptedException e) { }` 가 한 번이다. 그리고 잡히는 것이 오류가 아니라 **「멈춰라」는 신호**여서 삼킨 대가가 앞선 회차들과 종류가 다르다 — `InterruptedException` 은 던져질 때 인터럽트 표시가 지워지므로 **빈 `catch` 는 신호를 없애고 계속 돈다.** 같은 노트의 「쓰레드 안전종료 - interrupt()메서드 이용」 절이 제목만 남아 있는데, 그 절이 쓸 도구가 나머지 코드에서 이미 무력화돼 있다. `join()` 쪽 빈 블록은 **기다림이 중단됐는데 결과를 읽는** 경로를 만든다. 필기는 「실행 대기 중에 메서드가 호출되면 InerruptedException이 발생한다」로 **누가 왜 던지는지**를 흐리게 적었고, 잡은 뒤에 무엇을 해야 하는지는 다루지 않았다
 - [[2024-07-19-Day39]] — 예외의 쓰임이 셋 늘어난다. ① **흐름 제어** — CSV 로딩이 `while (true)` 안에서 `catch (Exception e) { break; }` 로 파일 끝을 판정해, 형식 오류까지 같은 문으로 들어와 뒤의 회원을 조용히 버린다. ② **멀티 catch** — `catch (IOException | ClassNotFoundException e)` 로 두 예외를 묶고, 그 `catch` 가 `userList = new ArrayList<>()` 로 **처음으로 상태를 되돌린다.** ③ **끝을 알리는 방식의 변화** — `readInt`·`readUTF` 가 부족한 입력에서 `EOFException` 을 던져 Day38 의 `RuntimeException` 경로가 없어지는데, 잡힌 뒤에도 반쪽 목록이 남아 다음 저장이 그것을 확정한다. 필기는 예외를 쓰기만 하고 이 셋 중 어느 것도 설명하지 않았다
