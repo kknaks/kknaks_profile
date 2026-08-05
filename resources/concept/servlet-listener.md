@@ -10,6 +10,7 @@ aliases:
   - ContextLoaderListener
 up:
   - 2024-08-27-Day64
+  - 2024-09-02-Day68
 tags:
   - web
   - java
@@ -115,6 +116,26 @@ public class ContextLoaderListener implements ServletContextListener {
 
 **흐름을 갖지 않는 코드가 순서를 얻는다.** 「리스너 → 서블릿」이 규격이 정한 순서이므로, 서블릿은 자기가 필요한 것이 이미 준비돼 있다고 가정해도 된다. 이 가정이 없으면 모든 서블릿이 「없으면 만들기」를 각자 해야 하고 그것이 곧 여러 벌이 생기는 길이다 → [[caching]]
 
+### 엿새 뒤 — 필기가 스스로 패턴 이름을 붙인다
+
+Day68 의 「Listener 만들기」 절이 한 줄로 정의를 다시 쓴다.
+
+> 「서블릿 컨테이너 또는 서블릿, 세션 등의 객체 상태가 변경되었을 때 보고 받는 **옵저버패턴**이다.」
+
+**Day44 에서 손으로 만든 것이 규격 안에 이미 있었다는 것이 여기서 이름으로 이어진다** →
+[[observer-pattern]]
+
+다만 두 가지가 다르다.
+
+| | Day44 의 손으로 만든 옵저버 | 서블릿 리스너 |
+|---|---|---|
+| 등록 | `registerObserver(this)` 를 코드로 부른다 | **설정 파일이나 애노테이션** → [[web-xml]] |
+| 목록 | `List<Observer>` 를 내가 들고 있다 | **컨테이너가 들고 있어 볼 수 없다** |
+| 통지 | 내가 `notifyObservers()` 를 부른다 | 컨테이너가 이벤트 시점에 부른다 |
+
+**「등록이 스키마에 박힌다」는 것이 이 형태의 성질이다** — 무엇이 듣고 있는지 코드를 읽어서는
+알 수 없고 설정을 봐야 한다.
+
 ## 경계와 오해
 
 - **`contextDestroyed` 가 없다 — 그리고 `setReloadable(true)` 때문에 그 부재가 개발 중에 바로 걸린다** — Day64 는 이 메서드의 용도를 「열려 있는 데이터베이스 연결을 닫거나」로 정확히 적어 두고 **코드에는 넣지 않았다.** 끝까지 따라가면 이렇게 된다: 클래스 파일이 바뀌면 톰캣이 컨텍스트를 다시 시작하는데(Day63 의 `ctx.setReloadable(true)`), 그때 컨테이너는 `contextDestroyed` → `contextInitialized` 를 부른다. 정리 코드가 없으므로 **옛 `SqlSessionFactory` 가 들고 있던 커넥션 풀이 회수되지 않은 채 새 풀이 또 생긴다.** 저장을 몇 번 하면 DB 쪽 연결 수만 늘어나고, MyBatis `POOLED` 의 활성 상한(기본 10)과 MySQL 의 `max_connections` 가 순서대로 걸린다. **증상이 「코드를 여러 번 고친 뒤부터 화면이 멈춘다」라서 방금 고친 코드를 의심하게 된다** — 원인은 그 코드가 아니라 재시작 횟수다 → [[connection-lifetime-mismatch]] · [[tomcat]] · [[try-with-resources]]
@@ -147,4 +168,5 @@ public class ContextLoaderListener implements ServletContextListener {
 
 ## 출처
 
+- [[2024-09-02-Day68]] — 엿새 뒤. 「Listener 만들기」 절이 리스너를 **「객체 상태가 변경되었을 때 보고 받는 옵저버패턴이다」**로 정의해, Day44 에서 손으로 만든 패턴이 규격 안에 이미 있다는 것을 이름으로 잇는다. `web.xml` 의 `<listener>` 태그가 **매핑 없이 등록만 있는** 것도 같은 회차에 나오는데, 이벤트를 받는 것이라 URL 이 필요 없다는 이유는 적혀 있지 않다. 리스너 구현 코드는 이 회차에도 없다
 - [[2024-08-27-Day64]] — 「리스너」 절과 「Web Component의 활용 > ServletContextListener」 절이 이 개념이다. 「특정 이벤트가 발생할 때 자동으로 실행되는 객체」·「서블릿 컨테이너에서 발생하는 이벤트에 반응한다」·「주로 애플리케이션, 세션, 또는 요청 수준의 이벤트를 처리」로 정의하고 역할을 셋(리소스 초기화·해제 / 요청 로깅·감사 / 세션 추적) 적었으며, `ServletContextListener` 의 `contextInitialized`·`contextDestroyed` 를 짝으로 설명하고 구동원리를 여섯 단계(`Tomcat.start()` → 컨테이너 실행 → `web.xml`·`@WebListener` 탐색 → 인스턴스화와 `contextInitialized` 호출 → `ServletContextEvent` 전달 → 초기 설정 완료 → 요청 처리 준비)로 적었다. **실습 코드가 프로젝트의 부팅 코드 전체**다 — `mybatis-config.xml` 을 읽어 `SqlSessionFactory` 를 만들고 `SqlSessionFactoryProxy` 를 씌워 `DaoFactory` 에 넘긴 뒤 DAO 셋을 만들어 `ServletContext` 속성 네 개로 올린다. 다만 **소제목이 「정의와 종류」인데 종류가 열거되지 않고**(세 수준의 인터페이스 이름이 없다), **`contextDestroyed` 가 코드에 없어** 정리 없이 재시작될 때 커넥션 풀이 겹치며, `catch (Exception e) { e.printStackTrace(); }` 가 초기화 실패를 삼켜 **기동은 성공하고 첫 요청이 NPE 로 죽는** 형태를 만든다. 여러 리스너의 순서 문제, 컨텍스트마다 한 번이라는 것, 「연결 풀을 설정한다」가 실제로는 첫 요청에 채워진다는 것도 다루지 않았다

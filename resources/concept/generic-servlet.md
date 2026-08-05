@@ -9,6 +9,7 @@ aliases:
 up:
   - 2024-08-27-Day64
   - 2024-08-28-Day65
+  - 2024-09-02-Day68
 tags:
   - web
   - java
@@ -102,6 +103,36 @@ super 를 부를 자리가 없어 잊을 수도 없다」고 적은 그 선택�
 
 **그리고 이 필기의 다음 걸음이 이 클래스의 자식이다.** `HttpServlet` 이 `GenericServlet` 을 상속해 `service(ServletRequest, ServletResponse)` 를 구현하고, 그 안에서 요청 방식을 보고 `doGet`·`doPost` 로 갈라 준다. 즉 「기본 구현을 얹어 남길 것을 줄인다」가 **한 번 더 반복되는 구조**이고, 그 사슬을 알면 뒤에 나오는 `doGet` 이 어디서 온 것인지가 설명된다 → [[inheritance]] · [[method-overriding]]
 
+### 닷새 뒤 — 「HTTP 가 아닐 때 쓴다」는 오해가 상속 사슬로 풀린다
+
+Day64 노트가 「`HttpServlet` 이 이 클래스를 상속하므로 HTTP 를 쓸 때도 이 클래스를 쓰고 있다」로
+짚어 둔 것이 Day68 에서 **필기 자신의 문장으로 확인된다.**
+
+> 「`javax.servlet.GenericServlet` 추상 클래스를 상속 받았다」 — `HttpServlet` 설명 첫 줄
+
+그리고 이 클래스가 추상으로 남긴 `service(ServletRequest, ServletResponse)` 를
+`HttpServlet` 이 **구현해 채운다** — 그 안에서 캐스팅을 하고 HTTP 타입을 받는 쪽으로 넘긴다.
+
+```java
+public void service(ServletRequest req, ServletResponse res) ... {
+    request = (HttpServletRequest) req;      // ← 여기로 모였다
+    response = (HttpServletResponse) res;
+    service(request, response);
+}
+```
+
+**즉 이 클래스는 「HTTP 가 아닐 때」가 아니라 「HTTP 를 다루기 전 칸」이다** → [[http-servlet]]
+
+같은 회차가 `init(ServletConfig)` 의 실제 코드도 인용해, 인수 없는 `init()` 이 왜 있는지를
+문법으로 보인다.
+
+```java
+public void init(ServletConfig config) throws ServletException {
+    this.config = config;
+    this.init();          // ← 보관한 뒤 인수 없는 쪽을 부른다
+}
+```
+
 ## 경계와 오해
 
 - **「HTTP 외의 프로토콜을 사용하는 서블릿을 만들 때 사용된다」 — 이 회차에서 가장 오해를 만드는 문장이다** — 「HTTP 에 종속되지 않는다」는 맞지만 **「HTTP 가 아닐 때 쓰는 것」이 아니다.** 실제로는 **`HttpServlet` 이 이 클래스를 상속하므로 HTTP 를 쓸 때도 이 클래스를 쓰고 있다.** 그리고 HTTP 아닌 서블릿은 사실상 존재하지 않는다 — 규격이 프로토콜 중립으로 설계되었을 뿐 쓰이는 곳은 웹이다. 이 문장을 그대로 믿으면 「우리는 HTTP 니까 이건 볼 필요 없다」가 되는데, **바로 다음에 배울 것이 이 클래스의 자식**이다 → [[generalization]] · [[inheritance]]
@@ -129,5 +160,6 @@ super 를 부를 자리가 없어 잊을 수도 없다」고 적은 그 선택�
 
 ## 출처
 
+- [[2024-09-02-Day68]] — 닷새 뒤. 「`GenericServlet` 상속 받기」 절이 「`service()` 메서드만 남겨두고 나머지 메서드들은 모두 구현하였다」로 이 클래스의 역할을 한 줄로 정리하고, `init(ServletConfig)` 가 `config` 를 보관한 뒤 인수 없는 `init()` 을 부르는 **실제 코드를 인용한다** — Day64 노트가 추론으로 적었던 것이 소스로 확인되는 자리다. 그리고 바로 다음 절이 `HttpServlet` 이 이 클래스를 상속한다는 것을 밝혀, **「HTTP 가 아닐 때 쓰는 것」이라는 Day64 의 문장이 왜 오해인지가 사슬로 드러난다** → [[http-servlet]]
 - [[2024-08-28-Day65]] — 하루 뒤. **이 클래스를 실제로 상속한 첫 코드**다. `UserViewServlet extends GenericServlet` 이 `init()`(인수 없는 쪽)과 `service()` 둘만 재정의하고 나머지 넷을 물려받는데, Day64 가 「필요한 메서드만 오버라이드」로 설명만 하고 코드로 보이지 못한 자리를 이 회차가 채운다. 다만 이 회차도 `doGet`/`doPost` 는 쓰지 않는다 — GET·POST 가 같은 `service()` 로 들어오고, 로그인 폼이 `method` 없이 GET 으로 제출되는 것과 겹쳐 **요청 방식을 구별할 자리가 아예 없다** → [[html-form]]
 - [[2024-08-27-Day64]] — 「GenericServlet 활용 > GenericServlet이란?」 절이 이 개념이다. 「서블릿 API에서 제공하는 추상 클래스 … **Servlet** 인터페이스를 구현하고, HTTP 외의 프로토콜을 사용하는 서블릿을 만들 때 사용된다」로 정의하고, 역할 셋(기본 구현 제공 / 프로토콜 독립 / 개발자는 `service()` 만)과 주요 메서드 다섯(`init`·`service`·`getServletConfig`·`getServletInfo`·`destroy`)을 적었다. **코드가 없다** — 그래서 같은 노트 앞 절의 `UserListServlet` 이 손으로 쓴 `config` 필드·`init` 의 보관·`getServletConfig()` 의 반환·빈 `destroy()` 가 정확히 이 클래스가 하는 일이라는 대비가 화면에 없고, `extends GenericServlet` 이 실제로 어떤 모양인지도 나오지 않는다. 「HTTP 외의 프로토콜을 사용하는 서블릿을 만들 때」라는 설명은 **`HttpServlet` 이 이 클래스를 상속한다**는 사실과 합치면 오해를 만들고, 이 클래스를 상속해도 `doGet`·`doPost` 는 없다는 것, `init(ServletConfig)` 를 오버라이드할 때 `super.init(config)` 를 불러야 한다는 것(그래서 인수 없는 `init()` 이 따로 있다는 것), 추상 클래스라 단일 상속 한 칸을 쓴다는 것도 다루지 않았다. 역할 1번과 3번은 같은 사실을 두 번 적은 것이다

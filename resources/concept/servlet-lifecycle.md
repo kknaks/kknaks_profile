@@ -11,6 +11,7 @@ aliases:
   - ServletConfig
 up:
   - 2024-08-27-Day64
+  - 2024-09-02-Day68
 tags:
   - web
   - java
@@ -146,6 +147,28 @@ public class UserListServlet implements Servlet {
 
 **대신 실패의 시점이 셋으로 갈린다.** 클래스를 만들 수 없어 실패하는 것 · `init` 에서 실패하는 것 · `service` 에서 실패하는 것이 **다 다른 증상**이고, 셋 중 앞의 둘은 로그를 보지 않으면 「요청하면 500」으로만 보인다. 아래 첫 두 항목이 이 회차 코드에서 실제로 그 둘이다 → [[exception-handling]]
 
+### 엿새 뒤 — 구동 과정이 일곱 걸음으로 적힌다
+
+Day64 는 메서드 다섯의 기능을 적었다. Day68 이 **컨테이너가 그것을 부르는 순서**를 적는다.
+
+1. 클라이언트 요청 수신
+2. 컨테이너가 URL 로 **어느 서블릿인지 결정** (`web.xml` 또는 `@WebServlet`) → [[web-xml]]
+3. 인스턴스 **생성 또는 재사용** — 첫 요청이면 로드·생성, 그 뒤로는 재사용
+4. 새로 생성됐으면 `init()` — **한 번만**
+5. `service()` — 요청마다
+6. 응답 전송
+7. 컨테이너 종료·서블릿 제거 시 `destroy()`
+
+**3번이 이 목록의 핵심이다** — 「생성 또는 재사용」이라 적혀 있고, 이어지는 절이 그 뜻을 못 박는다.
+
+> 「서블릿 인스턴스는 오직 클래스 마다 한 개만 생성된다.」
+> 「클라이언트마다 구분되어야 할 데이터는 서블릿 인스턴스 변수에 보관해서는 안된다.」
+> 「인스턴스는 모든 클라이언트가 공유하기 때문에 config 와 같은 공유하는 데이터만 필드에 사용해야한다.」
+
+**Day64 노트가 「인스턴스 1개 공유 사실(필기에 없음)」이라고 적어 둔 자리가 여기서 채워진다.**
+그리고 그 규칙이 Day63~67 실습의 `private UserDao userDao;` 를 정당화한다 — DAO 는
+클라이언트마다 다를 것이 없으므로 필드에 두어도 된다 → [[thread]] · [[servlet-context]]
+
 ## 경계와 오해
 
 - **`public UserListServlet(UserDao userDao)` 하나 때문에 이 서블릿은 절대 뜨지 않는다 — 컴파일도 되고 서버도 정상 기동한다** — 컨테이너는 `@WebServlet` 으로 찾은 클래스를 **인수 없는 생성자로** 만든다. 자바는 생성자를 하나라도 명시하면 기본 생성자를 만들어 주지 않으므로 이 클래스에는 no-arg 생성자가 **없다.** 그러면 컨테이너의 인스턴스화가 실패하고(`InstantiationException`/`NoSuchMethodException`), 톰캣은 그것을 `ServletException` 으로 감싸 **`/user/list` 요청에 500** 을 낸다. 끝까지 세면 이렇다 — 컴파일 통과, `tomcat.start()` 성공, 다른 URL 정상, **이 화면만 500**, 그리고 원인은 목록 코드가 아니라 **쓰이지 않는 생성자**다. 더 나쁜 것은 **그 생성자가 필요조차 없다**는 점이다 — `init()` 이 이미 같은 `userDao` 를 컨텍스트에서 꺼내므로 생성자를 지우면 그 자리에서 고쳐진다. 즉 **한 필드를 두 경로로 채우려 한 코드가 남아 그중 절대 실행되지 않는 쪽이 클래스 전체를 막는다.** [[servlet-container]] 노트가 Day63 을 두고 「생성자에 인수를 줄 수 없다」고 적어 둔 것이 **하루 뒤 코드에 그대로 남아 있는** 형태다 → [[constructor]] · [[dependency-injection]] · [[reflective-instantiation]]
@@ -180,4 +203,5 @@ public class UserListServlet implements Servlet {
 
 ## 출처
 
+- [[2024-09-02-Day68]] — 엿새 뒤. 「Servlet의 구동과정」 절이 컨테이너의 일곱 걸음을 적고, 3번에서 **「인스턴스 생성 또는 재사용」**을 명시한다. 이어지는 「서블릿 인스턴스와 클래스의 관계」가 「인스턴스는 오직 클래스 마다 한 개」·「클라이언트마다 구분되어야 할 데이터는 인스턴스 변수에 보관해서는 안된다」·「`config` 와 같은 공유하는 데이터만 필드에 사용해야한다」로 그 규칙을 못 박는다 — **Day64 노트가 「필기에 없다」고 적어 둔 사실이 채워진 자리**다
 - [[2024-08-27-Day64]] — 「서블릿으로 리스트 만들기」·「서블릿 구현체의 메서드」 두 절이 이 개념이다. `implements Servlet` 골격 코드로 `@Override` 다섯 개(각 메서드의 용도를 주석으로)를 보이고, 이어 다섯 메서드를 **기능과 매개변수**로 하나씩 적었다 — `init(ServletConfig)`, `service(ServletRequest, ServletResponse)`, `getServletConfig()`, `getServletInfo()`, `destroy()`. 그리고 `UserListServlet` 실물로 `init` 에서 `config.getServletContext().getAttribute("userDao")` 로 DAO 를 받아 `service` 에서 `out.println` 으로 HTML 표를 그리는 코드를 실었다. 다만 **그 코드에 인수를 받는 생성자가 남아 있어 컨테이너가 클래스를 인스턴스화할 수 없고**(그 URL 만 500), 골격 코드는 `config` 필드가 없어 `return this.config;` 가 컴파일되지 않으며, `catch` 절이 예외를 응답 본문에 적고 200 으로 끝낸다. `init` 이 실제로 도는 시점(기본은 첫 요청), 인스턴스가 하나이고 `service` 가 동시에 여러 번 돈다는 것, 그래서 필드에 무엇을 담아도 되는지, `getServletConfig()` 가 `init` 의 인수를 돌려주어야 한다는 계약, `destroy()` 를 왜 채워야 하는지는 다루지 않았다. 같은 노트의 다른 절이 「요청에 따라 `doGet()`, `doPost()` 등이 실행된다」·「`GET`, `POST`, `PUT`, `DELETE` 등을 지원한다」고 적었지만 **`Servlet` 인터페이스에는 그 메서드가 없어** 이 코드에서는 일어나지 않는다
