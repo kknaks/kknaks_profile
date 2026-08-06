@@ -19,7 +19,7 @@ tags:
 title:
   en: Letter Combinations of a Phone Number
   ko: 전화 번호의 글자 조합
-today: true
+today: false
 type: algorithm
 updated: '2026-08-05'
 visible: true
