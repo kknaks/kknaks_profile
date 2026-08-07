@@ -12,6 +12,7 @@
 |---|---|
 | ax-knowledge-graph | `products/ax-knowledge-graph/` |
 | cloud-file-organizer | `products/cloud-file-organizer/` |
+| kknaks-agents | `products/kknaks-agents/` — provider-neutral LLM runtime 라이브러리. 코드는 `kknaks_agents` 레포 |
 | kknaks-dev | `products/kknaks-dev/` — kknaks.dev 사이트 + 이 레포 |
 | language-diary | `products/language-diary/` |
 | mac-remote | `products/mac-remote/` |
