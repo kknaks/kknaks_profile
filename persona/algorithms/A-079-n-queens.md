@@ -19,7 +19,7 @@ tags:
 title:
   en: N-Queens
   ko: N-퀸 문제
-today: true
+today: false
 type: algorithm
 updated: '2026-08-06'
 visible: true
