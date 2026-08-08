@@ -21,7 +21,7 @@ tags:
 title:
   en: Number of Islands
   ko: 섬의 개수
-today: true
+today: false
 type: algorithm
 updated: '2026-08-07'
 visible: true
