@@ -2,7 +2,7 @@
 type: baseline
 id: KAG-BL-001
 title: "Provider-neutral LLM runtime 라이브러리"
-status: reviewing
+status: accepted
 product: kknaks-agents
 source:
   type: reference
@@ -20,7 +20,7 @@ updated_at: 2026-08-08
 tags:
   - product/kknaks-agents
   - doc/baseline
-  - status/reviewing
+  - status/accepted
   - llm-runtime
   - provider-neutral
 ---
@@ -162,4 +162,4 @@ decision으로 내리기 전에 판단이 필요한 것들이다. 아직 답을 
 
 ## Next
 
-첫 decision(`KAG-DEC-001` — 디렉터리 구조와 의존 경계)이 `10-decision/`에 `proposed`로 올라와 사용자 리뷰를 기다린다. 이 baseline은 그동안 `reviewing`이고, decision이 `accepted`가 되기 전에는 `accepted`로 바꾸지 않는다. decision 없이 spec·work·코드로 내려가지 않는다.
+첫 decision(`KAG-DEC-001` — 디렉터리 구조와 의존 경계)이 2026-08-08 사용자 확정으로 `accepted`가 되어, 이 baseline도 `accepted`다. 다만 반영된 것은 **디렉터리 구조와 의존 방향까지**이고, 위 Possible Direction의 나머지(동작 구조, 등록/허용 분리, session·context 분리, Codex CLI provider, 첫 vertical slice)와 Open Questions는 아직 decision으로 내려가지 않았다. 다음은 동작 구조 decision이며, decision 없이 spec·work·코드로 내려가지 않는다.

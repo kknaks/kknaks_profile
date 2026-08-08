@@ -8,7 +8,7 @@
 
 > ID prefix: frontmatter `id`는 전역 유일성을 위해 `KAG-` prefix를 쓴다 (`KAG-BL-001`, 이후 `KAG-DEC-001` 등). MRT/CFO/AXKG 컨벤션과 동일하다.
 
-> 현재는 **decision 단계**다. 첫 decision(KAG-DEC-001)이 `proposed`로 사용자 리뷰 대기 중이고, spec·work는 아직 없으며 코드 저장소도 첫 커밋 전이다.
+> 현재는 **decision 단계**다. 첫 decision(KAG-DEC-001 — 디렉터리 구조와 의존 경계)이 `accepted`로 확정됐고, 다음은 동작 구조 decision이다. spec·work는 아직 없으며 코드 저장소도 첫 커밋 전이다.
 
 ## 코드 레포
 
@@ -20,14 +20,14 @@
 | Local clone | `/Users/kknaks/git/library/kknaks_agents` |
 | 문서 SoT | `/Users/kknaks/git/toy_pr2/kknaks_profile/products/kknaks-agents` |
 
-> Python import package 이름은 KAG-DEC-001이 `kknaks_agents`를 **제안**한 상태이며(설계 노트의 `llm_runtime`은 가칭이었다), decision이 accepted가 되기 전에는 확정이 아니다. PyPI 배포명은 여전히 미결이다.
+> Python import package 이름은 KAG-DEC-001에서 `kknaks_agents`로 **확정**됐다(설계 노트의 `llm_runtime`은 가칭이었다). PyPI 배포명과 public import 표면의 안정성 약속은 여전히 미결이다 (KAG-DEC-001 OQ-1·OQ-2).
 
 ## 현재 상태
 
 | Area | Status | Next |
 |---|---|---|
-| Baseline | KAG-BL-001 reviewing | KAG-DEC-001 확정 후 accepted 판단 |
-| Decision | KAG-DEC-001 proposed | 사용자 리뷰 (**현재 단계**) → accepted → 동작 구조 decision |
+| Baseline | KAG-BL-001 accepted | 남은 Possible Direction·Open Questions를 이후 decision으로 |
+| Decision | KAG-DEC-001 accepted | 동작 구조 decision 작성 (**다음 단계**, 문서 미생성) |
 | Spec | 없음 | 동작 구조 decision 확정 후 |
 | Work | 없음 | spec 확정 + 사용자 리뷰 후 |
 | Architecture | 없음 | 여러 spec/work가 공유할 구조가 생기면 |
@@ -63,3 +63,4 @@
 - 2026-08-07 제품 문서 스캐폴딩 생성 (README, log, 00~40 index) 및 `products/README.md` 등록
 - 2026-08-07 KAG-BL-001 작성 — provider-neutral LLM runtime 라이브러리 baseline
 - 2026-08-08 KAG-DEC-001 작성(proposed) — runtime 디렉터리 구조와 의존 경계. KAG-BL-001은 `reviewing`으로 전환
+- 2026-08-08 사용자 확정 — KAG-DEC-001 `accepted`(Option B 책임별 package), KAG-BL-001 `accepted`

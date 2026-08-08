@@ -2,14 +2,14 @@
 type: decision
 id: KAG-DEC-001
 title: "Runtime 디렉터리 구조와 의존 경계"
-status: proposed
+status: accepted
 product: kknaks-agents
 created_at: 2026-08-08
 updated_at: 2026-08-08
 tags:
   - product/kknaks-agents
   - doc/decision
-  - status/proposed
+  - status/accepted
   - llm-runtime
   - provider-neutral
 links:
@@ -24,12 +24,12 @@ links:
 
 # Runtime 디렉터리 구조와 의존 경계
 
-KAG-BL-001이 가안으로 남긴 책임 분해를 **책임별 package 구조**로 정리해 권고하고, 각 상위 디렉터리의 단일 책임과 package 사이의 허용/금지 의존 방향을 함께 제안한다.
+KAG-BL-001이 가안으로 남긴 책임 분해를 **책임별 package 구조**로 확정하고, 각 상위 디렉터리의 단일 책임과 package 사이의 허용/금지 의존 방향을 함께 정한다.
 
 > baseline의 날것 입력을 spec으로 내리기 전에 적용 방향을 정하는 문서.
 > 기능 계약 상세는 `20-spec/`, 실제 작업 순서는 `30-work/`에 둔다.
 
-> **상태 `proposed`.** 이 문서의 내용은 전부 **권고안**이며 사용자 확정 전에는 결정이 아니다. 아래에서 “권고”는 확정 시 채택할 안, “비권고”는 확정 시 기각할 안을 뜻한다. 확정되면 상태를 `accepted`로 올리고 그때 결정으로 읽는다.
+> **상태 `accepted` (2026-08-08 사용자 확정).** planner가 `proposed`로 올린 권고안을 사용자가 Option B로 확정했다. 아래 내용은 이제 이 제품의 결정이며, 바꾸려면 새 decision으로 supersede한다. 다만 §Open Questions에 남은 항목은 여전히 미결이고, 이 결정이 명시적으로 Out으로 둔 범위(파일·클래스·signature·동작 state machine 등)는 확정되지 않았다.
 
 ## Context
 
@@ -48,21 +48,21 @@ KAG-BL-001이 가안으로 남긴 책임 분해를 **책임별 package 구조**�
 
 | Option | Description | Pros | Cons | Notes |
 |---|---|---|---|---|
-| A. Flat package | `src/kknaks_agents/` 아래에 `models.py`, `runner.py`, `registry.py`, `codex.py` 등을 계층 없이 평면으로 둔다 | 초기 복잡도 최저. 파일 수가 적을 때 탐색이 빠름. 첫 vertical slice까지 가장 빠름 | 의존 방향을 표현할 자리가 없다 — 모든 모듈이 서로를 부를 수 있고 순환이 자연 발생한다. provider 전용 코드가 공통 코드와 같은 층에 섞여 “교체 가능” 여부를 파일 구조로 증명할 수 없다. 파일이 늘면 재배치가 강제된다 | 비권고 |
-| B. 책임별 package | `core` / `runtime` / `providers` / `tools` / `sessions` / `context` / `skills` / `process`를 package로 나누고 package 사이의 의존 방향을 규칙으로 고정한다 | 경계가 곧 디렉터리라서 위반이 import 한 줄로 드러난다. provider 종속 코드가 `providers/`에 갇힌다. 계층 수가 얕아 학습 부담이 낮다. baseline이 이미 쓰는 어휘와 이름이 같다 | package 8개는 첫 slice에 필요한 것보다 많고, 일부는 한동안 파일 1~2개로 비어 보인다. 경계 규칙을 사람이 지켜야 한다(자동 검증은 별도) | **권고** |
-| C. Ports/adapters 중심 깊은 계층 | `domain/` / `application/` / `ports/` / `adapters/` / `infrastructure/`로 나누고 모든 외부 접점을 port 인터페이스 뒤에 둔다 | 의존 역전이 구조로 강제된다. 교체 가능성이 가장 엄격하게 보장된다. 대규모 팀·장기 유지보수에 유리 | 파일 하나를 이해하려고 4~5개 디렉터리를 왕복해야 한다. 이름이 도메인 어휘(`tools`, `sessions`)가 아니라 아키텍처 어휘라서 baseline과 문서 어휘가 어긋난다. port 개수가 실제 구현(현재 1개)보다 많아지는 과설계 | 비권고 |
+| A. Flat package | `src/kknaks_agents/` 아래에 `models.py`, `runner.py`, `registry.py`, `codex.py` 등을 계층 없이 평면으로 둔다 | 초기 복잡도 최저. 파일 수가 적을 때 탐색이 빠름. 첫 vertical slice까지 가장 빠름 | 의존 방향을 표현할 자리가 없다 — 모든 모듈이 서로를 부를 수 있고 순환이 자연 발생한다. provider 전용 코드가 공통 코드와 같은 층에 섞여 “교체 가능” 여부를 파일 구조로 증명할 수 없다. 파일이 늘면 재배치가 강제된다 | 기각 |
+| B. 책임별 package | `core` / `runtime` / `providers` / `tools` / `sessions` / `context` / `skills` / `process`를 package로 나누고 package 사이의 의존 방향을 규칙으로 고정한다 | 경계가 곧 디렉터리라서 위반이 import 한 줄로 드러난다. provider 종속 코드가 `providers/`에 갇힌다. 계층 수가 얕아 학습 부담이 낮다. baseline이 이미 쓰는 어휘와 이름이 같다 | package 8개는 첫 slice에 필요한 것보다 많고, 일부는 한동안 파일 1~2개로 비어 보인다. 경계 규칙을 사람이 지켜야 한다(자동 검증은 별도) | **채택** |
+| C. Ports/adapters 중심 깊은 계층 | `domain/` / `application/` / `ports/` / `adapters/` / `infrastructure/`로 나누고 모든 외부 접점을 port 인터페이스 뒤에 둔다 | 의존 역전이 구조로 강제된다. 교체 가능성이 가장 엄격하게 보장된다. 대규모 팀·장기 유지보수에 유리 | 파일 하나를 이해하려고 4~5개 디렉터리를 왕복해야 한다. 이름이 도메인 어휘(`tools`, `sessions`)가 아니라 아키텍처 어휘라서 baseline과 문서 어휘가 어긋난다. port 개수가 실제 구현(현재 1개)보다 많아지는 과설계 | 기각 |
 
 핵심 trade-off를 숨기지 않는다: **B는 C만큼 엄격하지 않다.** B에서 의존 방향은 디렉터리가 “표현”할 뿐 언어가 “강제”하지 않는다. Python은 어떤 package든 import할 수 있으므로, 아래 §Decision의 금지 의존은 코드 리뷰와(도입한다면) 정적 검사가 지켜야 하는 규약이다. 대신 B는 C가 요구하는 왕복 비용 없이 baseline의 학습 목적(“loop를 소유해야 학습이 된다”)을 유지한다.
 
 ## Decision
 
-아래는 planner의 권고이고, 확정 권한은 사용자에게 있다. 확정 전에는 어느 항목도 채택·기각으로 읽지 않는다.
+사용자가 2026-08-08에 Option B로 확정했다.
 
-- 권고(확정 시 채택): **Option B — 책임별 package + 명시적 의존 방향.**
-- 비권고(확정 시 기각): Option A(flat), Option C(ports/adapters 깊은 계층).
+- 채택: **Option B — 책임별 package + 명시적 의존 방향.**
+- 기각: Option A(flat), Option C(ports/adapters 깊은 계층).
 - 보류: 배포 package 이름, public import 표면, CLI/queue/web adapter의 최초 구현 시점 (→ §Open Questions).
 
-이하 §1~§6은 Option B를 확정했을 때 적용할 구조를 서술한 것이다.
+이하 §1~§6이 Option B의 확정 구조다.
 
 ### 1. 저장소 구조
 
@@ -118,7 +118,7 @@ src/kknaks_agents/
 
 ### 3. Package 이름
 
-Python import package 이름으로 **`kknaks_agents`**를 제안한다. 설계 노트의 `llm_runtime`은 가칭이었고, 제품 slug(`kknaks-agents`)와 저장소 이름과 import 이름을 하나로 맞추면 “이 문서가 저 코드다”를 추적하는 비용이 사라진다.
+Python import package 이름은 **`kknaks_agents`**로 정한다. 설계 노트의 `llm_runtime`은 가칭이었고, 제품 slug(`kknaks-agents`)와 저장소 이름과 import 이름을 하나로 맞추면 “이 문서가 저 코드다”를 추적하는 비용이 사라진다.
 
 단, 다음 두 가지는 **이 결정에 포함하지 않는다**: PyPI 배포명(import 이름과 다를 수 있다)과, `__init__.py`가 재수출할 public import 표면의 안정성 약속. 배포 시점에 별도로 판단한다(→ OQ-1, OQ-2).
 
@@ -203,7 +203,7 @@ provider 종속 코드는 **`src/kknaks_agents/providers/` 아래에만** 존재
 
 ### 6. Core library 바깥의 adapter/application layer
 
-CLI, queue/worker, web server는 **라이브러리가 아니라 라이브러리를 부르는 쪽**이다. 셋 다 “turn 하나를 어떤 입구로 시작할 것인가”를 정할 뿐이고, loop·tool·session의 소유권을 바꾸지 않는다. 따라서 `src/kknaks_agents/`의 8개 package 안에 두지 않는다. 설계 노트가 package 루트에 `cli.py`를 두었던 가안은 이 권고에서 뒤집는다(확정 시 적용).
+CLI, queue/worker, web server는 **라이브러리가 아니라 라이브러리를 부르는 쪽**이다. 셋 다 “turn 하나를 어떤 입구로 시작할 것인가”를 정할 뿐이고, loop·tool·session의 소유권을 바꾸지 않는다. 따라서 `src/kknaks_agents/`의 8개 package 안에 두지 않는다. 설계 노트가 package 루트에 `cli.py`를 두었던 가안은 이 결정으로 뒤집는다.
 
 이번 결정이 정하지 않는 것: 셋 중 무엇을 **언제** 만들 것인지, 그리고 만들 때 같은 저장소의 별도 top-level package에 둘지 별도 배포물로 둘지. 최초 구현 범위에 포함할지 여부는 결정하지 않는다(→ OQ-3). queue·multi-worker·production 배포는 KAG-BL-001 OQ-11대로 여전히 MVP 범위 밖이다.
 
