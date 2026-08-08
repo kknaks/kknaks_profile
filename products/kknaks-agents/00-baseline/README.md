@@ -10,8 +10,8 @@ baseline 문서를 만들거나 상태가 바뀌면 이 표를 갱신한다.
 
 | ID | Title | Source | Status | Decision | File |
 |---|---|---|---|---|---|
-| KAG-BL-001 | Provider-neutral LLM runtime 라이브러리 | REF-0007 설계 노트 + 운영 사례/clean-room 관찰 | raw | - | [baseline-001-provider-neutral-llm-runtime.md](baseline-001-provider-neutral-llm-runtime.md) |
+| KAG-BL-001 | Provider-neutral LLM runtime 라이브러리 | REF-0007 설계 노트 + 운영 사례/clean-room 관찰 | accepted | KAG-DEC-001 | [baseline-001-provider-neutral-llm-runtime.md](baseline-001-provider-neutral-llm-runtime.md) |
 
 ## Next
 
-KAG-BL-001은 아직 어떤 decision으로도 승격되지 않았다. 사용자 리뷰 후 `10-decision/`에 첫 결정을 작성한다.
+KAG-BL-001의 첫 decision인 KAG-DEC-001(디렉터리 구조와 의존 경계)이 2026-08-08 사용자 확정으로 `accepted`가 되어 baseline도 `accepted`다. 반영 범위는 디렉터리 구조와 의존 방향까지이며, baseline에 남은 동작 구조·계약·Open Questions는 이후 decision에서 하나씩 다룬다.
