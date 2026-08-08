@@ -2,24 +2,25 @@
 type: baseline
 id: KAG-BL-001
 title: "Provider-neutral LLM runtime 라이브러리"
-status: raw
+status: reviewing
 product: kknaks-agents
 source:
   type: reference
   ref: "REF-0007 provider-neutral LLM runtime 설계 노트 (오케스트레이션 설정 레포, read-only)"
 links:
   baselines: []
-  decisions: []
+  decisions:
+    - "[[decision-001-runtime-directory-boundaries|KAG-DEC-001]]"
   specs: []
   works: []
   releases: []
   related: []
 created_at: 2026-08-07
-updated_at: 2026-08-07
+updated_at: 2026-08-08
 tags:
   - product/kknaks-agents
   - doc/baseline
-  - status/raw
+  - status/reviewing
   - llm-runtime
   - provider-neutral
 ---
@@ -161,4 +162,4 @@ decision으로 내리기 전에 판단이 필요한 것들이다. 아직 답을 
 
 ## Next
 
-`10-decision/`에 첫 decision을 작성한다. decision 없이 spec·work·코드로 내려가지 않는다.
+첫 decision(`KAG-DEC-001` — 디렉터리 구조와 의존 경계)이 `10-decision/`에 `proposed`로 올라와 사용자 리뷰를 기다린다. 이 baseline은 그동안 `reviewing`이고, decision이 `accepted`가 되기 전에는 `accepted`로 바꾸지 않는다. decision 없이 spec·work·코드로 내려가지 않는다.

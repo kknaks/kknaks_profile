@@ -4,20 +4,28 @@
 
 > baseline을 제품에 어떻게 적용할지 판단한 결정 목록과 아직 풀어야 할 질문을 관리한다.
 
-**아직 decision 문서가 없다.** 현재 제품은 baseline 수집 단계이며, `10-decision/`이 **다음 단계**다. 미래 decision ID를 미리 선점하지 않는다.
+첫 decision인 KAG-DEC-001이 `proposed` 상태다. 아래 Result 열은 **planner 권고**이며 사용자 확정 전에는 채택/기각으로 읽지 않는다. 사용자 리뷰 전에는 `accepted`로 바꾸지 않고, spec·work로 내려가지 않는다. 미래 decision ID를 미리 선점하지 않는다.
 
 ## 결정 로그
 
 decision 문서를 만들거나 상태가 바뀌면 이 표를 갱신한다.
 
-| ID | Title | Status | Baseline | Result | Spec |
+| ID | Title | Status | Baseline | Result (권고, 미확정) | Spec |
 |---|---|---|---|---|---|
-| - | (없음) | - | - | - | - |
+| KAG-DEC-001 | [Runtime 디렉터리 구조와 의존 경계](decision-001-runtime-directory-boundaries.md) | proposed | KAG-BL-001 | 책임별 package 권고 (flat / ports-adapters 비권고) — 확정 시 채택 | - |
 
 ## 미결 사항
 
-decision으로 내리기 전에 판단해야 하는 질문은 [KAG-BL-001의 Open Questions](../00-baseline/baseline-001-provider-neutral-llm-runtime.md#open-questions)에 있다. 여기에 복사하지 않고, 결정이 시작되면 해당 항목을 이 표로 옮긴다.
+KAG-DEC-001이 다루기로 한 질문은 그 문서의 Open Questions 표가 owning view다. 아래에는 이 index가 추적할 항목만 요약하고 본문을 복사하지 않는다. 아직 어떤 decision에도 들어가지 않은 질문은 [KAG-BL-001의 Open Questions](../00-baseline/baseline-001-provider-neutral-llm-runtime.md#open-questions)에 남아 있다.
 
 | ID | Question | Owner | Next |
 |---|---|---|---|
-| - | (KAG-BL-001 Open Questions 참조) | - | - |
+| KAG-DEC-001 OQ-1 | PyPI 배포명을 import 이름과 같게 갈지 | 사용자 | 첫 배포 검토 시점 |
+| KAG-DEC-001 OQ-3 | CLI·queue worker·web server를 언제·어디에 둘지 | 사용자 | 첫 vertical slice 이후 |
+| KAG-DEC-001 OQ-8 | `products/open-kknaks/`와의 관계 | 사용자 | 별도 decision |
+| (그 외) | KAG-DEC-001 OQ-2·4·5·6·7 | planner | [decision-001](decision-001-runtime-directory-boundaries.md#open-questions) 참조 |
+| (미착수) | turn 동작 구조, tool/provider 공개 계약, Codex CLI 격리 옵션 등 | - | KAG-BL-001 Open Questions 참조 |
+
+## Next
+
+사용자 리뷰 → KAG-DEC-001 `accepted` → 동작 구조를 다루는 다음 decision. 그 전에는 spec을 열지 않는다.
