@@ -11,6 +11,7 @@ links:
   baselines: []
   decisions:
     - "[[decision-001-runtime-directory-boundaries|KAG-DEC-001]]"
+    - "[[decision-002-turn-runtime-flow|KAG-DEC-002]]"
   specs: []
   works: []
   releases: []
@@ -162,4 +163,8 @@ decision으로 내리기 전에 판단이 필요한 것들이다. 아직 답을 
 
 ## Next
 
-첫 decision(`KAG-DEC-001` — 디렉터리 구조와 의존 경계)이 2026-08-08 사용자 확정으로 `accepted`가 되어, 이 baseline도 `accepted`다. 다만 반영된 것은 **디렉터리 구조와 의존 방향까지**이고, 위 Possible Direction의 나머지(동작 구조, 등록/허용 분리, session·context 분리, Codex CLI provider, 첫 vertical slice)와 Open Questions는 아직 decision으로 내려가지 않았다. 다음은 동작 구조 decision이며, decision 없이 spec·work·코드로 내려가지 않는다.
+첫 decision(`KAG-DEC-001` — 디렉터리 구조와 의존 경계)이 2026-08-08 사용자 확정으로 `accepted`가 되어, 이 baseline도 `accepted`다. 다만 반영된 것은 **디렉터리 구조와 의존 방향까지**다.
+
+두 번째 decision(`KAG-DEC-002` — 최소 headless turn runtime 동작 구조)이 2026-08-08 `proposed`로 올라와 있다. 한 turn의 상태 전이, side effect 순서, 반복·종료 조건을 다루며 **아직 사용자 확정 전**이다. proposed인 동안 이 baseline의 `accepted`는 바뀌지 않고, 위 Possible Direction의 “책임 분해” 중 동작 흐름 부분이 그 문서에서 판단되는 중이라고 읽는다.
+
+아직 decision으로 내려가지 않은 것: 등록/허용 분리의 계약 표면, session 원본과 model context 분리의 구체 계약, Codex CLI provider 격리 옵션, 첫 vertical slice 범위, 그리고 위 Open Questions 대부분. decision 없이 spec·work·코드로 내려가지 않는다.
