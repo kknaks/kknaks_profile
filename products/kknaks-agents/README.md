@@ -8,7 +8,7 @@
 
 > ID prefix: frontmatter `id`는 전역 유일성을 위해 `KAG-` prefix를 쓴다 (`KAG-BL-001`, 이후 `KAG-DEC-001` 등). MRT/CFO/AXKG 컨벤션과 동일하다.
 
-> 현재는 **decision 단계**다. 첫 decision(KAG-DEC-001 — 디렉터리 구조와 의존 경계)이 `accepted`로 확정됐고, 다음은 동작 구조 decision이다. spec·work는 아직 없으며 코드 저장소도 첫 커밋 전이다.
+> 현재는 **decision 단계**다. 첫 decision(KAG-DEC-001 — 디렉터리 구조와 의존 경계)과 두 번째 decision(KAG-DEC-002 — 최소 headless turn runtime 동작 구조)이 모두 2026-08-08 사용자 확정으로 `accepted`가 됐다. 다음은 공개 계약(요청·응답·tool·event) decision이며, spec·work는 아직 없고 코드 저장소도 첫 커밋 전이다.
 
 ## 코드 레포
 
@@ -27,8 +27,8 @@
 | Area | Status | Next |
 |---|---|---|
 | Baseline | KAG-BL-001 accepted | 남은 Possible Direction·Open Questions를 이후 decision으로 |
-| Decision | KAG-DEC-001 accepted | 동작 구조 decision 작성 (**다음 단계**, 문서 미생성) |
-| Spec | 없음 | 동작 구조 decision 확정 후 |
+| Decision | KAG-DEC-001 accepted · KAG-DEC-002 accepted | **공개 계약(요청·응답·tool·event) decision** (다음 게이트). 문서는 아직 없음 |
+| Spec | 없음 | 공개 계약 decision 확정 후 |
 | Work | 없음 | spec 확정 + 사용자 리뷰 후 |
 | Architecture | 없음 | 여러 spec/work가 공유할 구조가 생기면 |
 
@@ -64,3 +64,5 @@
 - 2026-08-07 KAG-BL-001 작성 — provider-neutral LLM runtime 라이브러리 baseline
 - 2026-08-08 KAG-DEC-001 작성(proposed) — runtime 디렉터리 구조와 의존 경계. KAG-BL-001은 `reviewing`으로 전환
 - 2026-08-08 사용자 확정 — KAG-DEC-001 `accepted`(Option B 책임별 package), KAG-BL-001 `accepted`
+- 2026-08-08 KAG-DEC-002 작성(proposed) — 최소 headless turn runtime 동작 구조. 사용자 리뷰 대기
+- 2026-08-08 사용자 확정 — KAG-DEC-002 `accepted`(Option B deterministic turn loop). Open Questions 9건은 미결 유지
