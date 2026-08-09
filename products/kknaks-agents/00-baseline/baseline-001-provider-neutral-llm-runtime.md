@@ -13,6 +13,7 @@ links:
     - "[[decision-001-runtime-directory-boundaries|KAG-DEC-001]]"
     - "[[decision-002-turn-runtime-flow|KAG-DEC-002]]"
     - "[[decision-003-core-contract-boundaries|KAG-DEC-003]]"
+    - "[[decision-004-process-boundaries|KAG-DEC-004]]"
   specs: []
   works: []
   releases: []
@@ -169,5 +170,7 @@ decision으로 내리기 전에 판단이 필요한 것들이다. 아직 답을 
 두 번째 decision(`KAG-DEC-002` — 최소 headless turn runtime 동작 구조)도 2026-08-08 사용자 확정으로 `accepted`가 됐다. 한 turn의 진행 phase 9 + 종료 state 4 전이, side effect 순서와 불변식, 반복 진입·종료 조건이 확정되면서 위 Possible Direction의 “책임 분해” 중 **동작 흐름 부분까지** 반영 범위가 넓어졌다. 이 baseline의 `accepted`는 그대로이고, KAG-DEC-002의 Open Questions 9건은 여전히 미결이다.
 
 세 번째 decision(`KAG-DEC-003` — core package 계약 경계)은 2026-08-09 `proposed`로 올라가 사용자 리뷰를 기다린다. 위 Possible Direction의 “책임 분해” 중 `core`가 담을 계약의 **파일·타입 범주와 공개 표면**을 제안하는 단계이며, 아직 확정이 아니므로 이 baseline의 반영 범위는 넓어지지 않았다. 이 baseline의 `accepted`도 그대로다.
+
+네 번째 decision(`KAG-DEC-004` — process package 실행 격리 경계)도 2026-08-09 `proposed`로 올라가 사용자 리뷰를 기다린다. 위 Possible Direction의 “Codex CLI subprocess를 첫 provider로”가 나열한 격리 항목(cwd·환경 allowlist·timeout·출력 상한·stdout/stderr 분리·종료 코드)을 **provider-neutral한 실행 격리 계약**으로 일반화하고, 파일 배치와 lifecycle과 fail-closed 원칙을 제안하는 단계다. provider 제품명·실행 파일·flag·wire 형식은 여전히 `providers`의 몫으로 남으므로, Open Question 4(Codex CLI의 정확한 격리 옵션과 출력 protocol)는 풀리지 않았다. 확정이 아니므로 이 baseline의 반영 범위는 넓어지지 않았고 `accepted`도 그대로다.
 
 아직 decision으로 내려가지 않은 것: 등록/허용 분리의 계약 표면, session 원본과 model context 분리의 구체 계약, Codex CLI provider 격리 옵션, 첫 vertical slice 범위, 그리고 위 Open Questions 대부분. decision 없이 spec·work·코드로 내려가지 않는다.
