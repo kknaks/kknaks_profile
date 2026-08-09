@@ -6,7 +6,7 @@
 
 첫 decision인 KAG-DEC-001이 2026-08-08 사용자 확정으로 `accepted`가 됐다. 확정 범위는 디렉터리 구조와 의존 방향까지다.
 
-두 번째 decision인 KAG-DEC-002(최소 headless turn runtime 동작 구조)는 2026-08-08 `proposed`로 올라와 **사용자 리뷰 대기 중**이다. 본문은 전부 권고안이며 확정 전에는 `accepted`로 올리지 않는다. 세 번째 decision(공개 계약 표면)은 아직 만들지 않는다 — 미래 decision ID를 미리 선점하지 않는다.
+두 번째 decision인 KAG-DEC-002(최소 headless turn runtime 동작 구조)도 2026-08-08 사용자 확정으로 `accepted`가 됐다. 확정 범위는 한 turn의 진행 phase 9 + 종료 state 4 전이, side effect 순서와 불변식, 반복 진입·종료 조건까지이며, 각 문서의 Open Questions는 여전히 미결이다. 세 번째 decision(공개 계약 표면)은 아직 만들지 않는다 — 미래 decision ID를 미리 선점하지 않는다.
 
 ## 결정 로그
 
@@ -15,7 +15,7 @@ decision 문서를 만들거나 상태가 바뀌면 이 표를 갱신한다.
 | ID | Title | Status | Baseline | Result | Spec |
 |---|---|---|---|---|---|
 | KAG-DEC-001 | [Runtime 디렉터리 구조와 의존 경계](decision-001-runtime-directory-boundaries.md) | accepted | KAG-BL-001 | 책임별 package 채택 (flat / ports-adapters 기각). package 이름 `kknaks_agents`, 4단 의존 계층 확정 | - |
-| KAG-DEC-002 | [최소 headless turn runtime 동작 구조](decision-002-turn-runtime-flow.md) | proposed | KAG-BL-001 | (권고안) 명시적 phase/state transition을 가진 deterministic turn loop 권고. 불투명 `run()` / middleware-hook pipeline 비권고. 진행 phase 9 + 종료 state 4, side effect 순서 불변식 3, tool call 직렬 실행, 종료 원인 10종의 terminal/recoverable 판정. `query/` 디렉터리 없이 `runtime`이 흡수. 미결 9건 | - |
+| KAG-DEC-002 | [최소 headless turn runtime 동작 구조](decision-002-turn-runtime-flow.md) | accepted | KAG-BL-001 | 명시적 phase/state transition을 가진 deterministic turn loop 채택 (불투명 `run()` / middleware-hook pipeline 기각, hook은 후속 확장 후보로 보존). 진행 phase 9 + 종료 state 4, side effect 순서 불변식 3, tool call 직렬 실행, 종료 원인 10종의 terminal/recoverable 판정. `query/` 디렉터리 없이 `runtime`이 흡수. 미결 9건 | - |
 
 ## 미결 사항
 
@@ -33,4 +33,4 @@ KAG-DEC-001이 다루기로 한 질문은 그 문서의 Open Questions 표가 ow
 
 ## Next
 
-KAG-DEC-001 `accepted` 완료. KAG-DEC-002는 `proposed` — **사용자 리뷰가 다음 게이트**다. 확정되면 그 위에 공개 계약(요청·응답·tool·event) decision을 열고, spec은 그 뒤에 연다. 확정 전에는 spec·work·코드로 내려가지 않는다.
+KAG-DEC-001·KAG-DEC-002 모두 `accepted` 완료. 다음 게이트는 확정된 turn 순서 위에 **공개 계약(요청·응답·tool·event) decision**을 여는 것이고, spec은 그 뒤에 연다. 그 decision 문서는 아직 만들지 않았으며, 확정 전에는 spec·work·코드로 내려가지 않는다.

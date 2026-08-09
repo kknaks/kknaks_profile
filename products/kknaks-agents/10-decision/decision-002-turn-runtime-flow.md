@@ -2,14 +2,14 @@
 type: decision
 id: KAG-DEC-002
 title: "최소 headless turn runtime 동작 구조"
-status: proposed
+status: accepted
 product: kknaks-agents
 created_at: 2026-08-08
 updated_at: 2026-08-08
 tags:
   - product/kknaks-agents
   - doc/decision
-  - status/proposed
+  - status/accepted
   - llm-runtime
   - provider-neutral
   - turn-loop
@@ -31,7 +31,7 @@ KAG-DEC-001이 확정한 `runtime` package 안에서, **사용자 입력 하나�
 > baseline의 날것 입력을 spec으로 내리기 전에 적용 방향을 정하는 문서.
 > 기능 계약 상세는 `20-spec/`, 실제 작업 순서는 `30-work/`에 둔다.
 
-> **상태 `proposed`.** 아래 §Decision 이하는 전부 **권고안**이며 확정된 제품 결정이 아니다. 사용자 리뷰 전에는 `accepted`로 올리지 않는다. KAG-DEC-001과 KAG-BL-001의 `accepted`는 이 문서가 바꾸지 않는다 — 이 제안은 그 위에 쌓일 뿐 되돌리지 않는다.
+> **상태 `accepted` (2026-08-08 사용자 확정).** planner가 `proposed`로 올린 권고안을 사용자가 확정했다. 아래 §Decision 이하는 이제 이 제품의 결정이며, 바꾸려면 새 decision으로 supersede한다. 다만 §Open Questions에 남은 9건은 여전히 미결이고, 이 결정이 명시적으로 Out으로 둔 범위(식별자·schema·공개 계약 표면 등)는 확정되지 않았다. KAG-DEC-001과 KAG-BL-001의 `accepted`는 이 문서가 바꾸지 않는다 — 이 결정은 그 위에 쌓일 뿐 되돌리지 않는다.
 
 ## Context
 
@@ -52,21 +52,23 @@ KAG-DEC-001이 확정한 `runtime` package 안에서, **사용자 입력 하나�
 
 | Option | Description | Pros | Cons | Notes |
 |---|---|---|---|---|
-| A. 불투명한 단일 `run()` 절차 | turn 전체를 하나의 절차로 구현한다. 내부 단계는 코드 흐름으로만 존재하고 이름도 관찰 지점도 없다 | 초기 복잡도 최저. 첫 vertical slice까지 가장 빠름. 읽을 것이 한 곳뿐 | 어디까지 진행했는지 바깥에서 알 수 없어 실패 원인을 “실패”로만 구분한다. 순서를 어긴 구현(검증 전 실행, 기록 전 재요청)을 지적할 근거가 문서에도 코드에도 없다. 테스트가 “입력 → 최종 결과”만 검증하게 되어 중간 순서 회귀를 잡지 못한다 | 비권고 |
-| B. 명시적 phase/state transition을 가진 deterministic turn loop | turn을 이름 붙은 **진행 phase**와 **종료 state**의 유한 전이로 정의하고, 각 전이가 만드는 side effect와 그 순서를 규칙으로 고정한다 | phase 이름이 곧 관찰 지점이자 테스트 단위다. “검증 먼저·기록 먼저”를 전이 조건으로 표현할 수 있어 보안 규칙이 구조에 박힌다. 같은 입력·같은 snapshot이면 같은 전이 열이 나와 재현 가능하다. 종료 원인을 종료 state로 구분해 fail-closed를 증명할 수 있다 | phase·종료 state와 전이를 문서와 코드 두 곳에서 맞춰야 한다. 단순한 turn에도 전이 판정 비용이 든다. phase를 잘못 나누면 나중에 쪼개거나 합치는 비용이 A보다 크다 | **권고** |
-| C. middleware/hook pipeline | turn을 교체 가능한 단계의 체인으로 두고, 각 단계를 hook으로 등록·삽입·치환한다 | 확장 지점이 구조적으로 열려 있다. 로깅·정책·관측을 본체 수정 없이 붙인다. 호스트가 loop를 부분적으로 바꿀 수 있다 | 실행 순서가 등록 순서에 의존해 **재현성이 조립에 종속**된다. hook이 검증 단계를 앞지르거나 건너뛸 수 있어 “model 출력은 실행 요청일 뿐”이라는 보안 경계가 조립 실수 하나로 무너진다. 실제 순서를 알려면 체인을 조립해봐야 해서 테스트가 전부 통합 테스트가 된다. 확장 지점이 실제 요구보다 먼저 생기는 과설계 | 비권고 |
+| A. 불투명한 단일 `run()` 절차 | turn 전체를 하나의 절차로 구현한다. 내부 단계는 코드 흐름으로만 존재하고 이름도 관찰 지점도 없다 | 초기 복잡도 최저. 첫 vertical slice까지 가장 빠름. 읽을 것이 한 곳뿐 | 어디까지 진행했는지 바깥에서 알 수 없어 실패 원인을 “실패”로만 구분한다. 순서를 어긴 구현(검증 전 실행, 기록 전 재요청)을 지적할 근거가 문서에도 코드에도 없다. 테스트가 “입력 → 최종 결과”만 검증하게 되어 중간 순서 회귀를 잡지 못한다 | 기각 |
+| B. 명시적 phase/state transition을 가진 deterministic turn loop | turn을 이름 붙은 **진행 phase**와 **종료 state**의 유한 전이로 정의하고, 각 전이가 만드는 side effect와 그 순서를 규칙으로 고정한다 | phase 이름이 곧 관찰 지점이자 테스트 단위다. “검증 먼저·기록 먼저”를 전이 조건으로 표현할 수 있어 보안 규칙이 구조에 박힌다. 같은 입력·같은 snapshot이면 같은 전이 열이 나와 재현 가능하다. 종료 원인을 종료 state로 구분해 fail-closed를 증명할 수 있다 | phase·종료 state와 전이를 문서와 코드 두 곳에서 맞춰야 한다. 단순한 turn에도 전이 판정 비용이 든다. phase를 잘못 나누면 나중에 쪼개거나 합치는 비용이 A보다 크다 | **채택** |
+| C. middleware/hook pipeline | turn을 교체 가능한 단계의 체인으로 두고, 각 단계를 hook으로 등록·삽입·치환한다 | 확장 지점이 구조적으로 열려 있다. 로깅·정책·관측을 본체 수정 없이 붙인다. 호스트가 loop를 부분적으로 바꿀 수 있다 | 실행 순서가 등록 순서에 의존해 **재현성이 조립에 종속**된다. hook이 검증 단계를 앞지르거나 건너뛸 수 있어 “model 출력은 실행 요청일 뿐”이라는 보안 경계가 조립 실수 하나로 무너진다. 실제 순서를 알려면 체인을 조립해봐야 해서 테스트가 전부 통합 테스트가 된다. 확장 지점이 실제 요구보다 먼저 생기는 과설계 | 기각 (후속 확장 후보로 보존) |
 
-핵심 trade-off를 숨기지 않는다: **B는 A보다 확실히 무겁다.** 진행 phase 9개 + 종료 state 4개짜리 loop(§1)를 위해 이름·전이 조건·불변식을 따로 관리해야 하고, 첫 slice에서는 A로도 같은 결과가 나온다. B를 권고하는 이유는 결과가 아니라 **결과를 어떻게 신뢰하는가**에 있다. KAG-BL-001이 이 라이브러리를 만드는 이유로 든 세 가지(재현성, 권한을 내가 집행함, loop를 소유해야 학습이 됨)는 전부 “중간 상태를 볼 수 있는가”에 걸려 있고, A는 그것을 구조적으로 제공하지 않는다.
+핵심 trade-off를 숨기지 않는다: **B는 A보다 확실히 무겁다.** 진행 phase 9개 + 종료 state 4개짜리 loop(§1)를 위해 이름·전이 조건·불변식을 따로 관리해야 하고, 첫 slice에서는 A로도 같은 결과가 나온다. B를 채택한 이유는 결과가 아니라 **결과를 어떻게 신뢰하는가**에 있다. KAG-BL-001이 이 라이브러리를 만드는 이유로 든 세 가지(재현성, 권한을 내가 집행함, loop를 소유해야 학습이 됨)는 전부 “중간 상태를 볼 수 있는가”에 걸려 있고, A는 그것을 구조적으로 제공하지 않는다.
 
-C도 B를 부정하지 않는다. C는 B 위에 나중에 얹을 수 있는 확장 방식이고, 반대로 B 없이 C부터 가면 고정해야 할 순서 자체가 없는 상태에서 확장 지점부터 만드는 셈이 된다. 그래서 C는 기각이 아니라 **후속 확장 후보**로 §Scope에 남긴다.
+C도 B를 부정하지 않는다. C는 B 위에 나중에 얹을 수 있는 확장 방식이고, 반대로 B 없이 C부터 가면 고정해야 할 순서 자체가 없는 상태에서 확장 지점부터 만드는 셈이 된다. 그래서 C는 이번 state machine의 구조로는 기각하되 **후속 확장 후보**로 §Scope에 남긴다.
 
 ## Decision
 
-> 아래는 사용자 확정 전 **권고안**이다.
+사용자가 2026-08-08에 Option B로 확정했다.
 
-- 권고: **Option B — 명시적 phase/state transition을 가진 deterministic turn loop.**
-- 비권고: Option A(불투명 단일 절차), Option C(middleware/hook pipeline 중심 구조).
+- 채택: **Option B — 명시적 phase/state transition을 가진 deterministic turn loop.**
+- 기각: Option A(불투명 단일 절차), Option C(middleware/hook pipeline 중심 구조). C는 §6의 추후 확장 후보로만 남는다.
 - 보류: phase·종료 state·event의 식별자와 schema, provider 오류 재시도 정책, malformed 응답 복구 step (→ §Open Questions).
+
+이하 §0~§6이 Option B의 확정 구조다.
 
 ### 0. 이 결정의 표기 규칙
 
@@ -354,7 +356,7 @@ step 회계 단위는 **provider 호출 1회 = 1 step**이다. tool 실행 횟�
   - skills 선택/loader, slash commands, UI, coordinator·multi-agent (§6)
   - 고급 compaction, token budget, lifecycle hooks, durable store, queue/worker, tool transport 확장 (§6)
   - KAG-DEC-001이 확정한 디렉터리·의존 방향의 변경 — 이 결정은 그것을 소비할 뿐 바꾸지 않는다
-- 영향을 받는 spec 후보: 없음. 이 decision은 spec을 직접 만들지 않는다. 사용자 확정 후 공개 계약 decision 또는 첫 spec을 연다. 미래 decision/spec ID를 미리 선점하지 않는다.
+- 영향을 받는 spec 후보: 없음. 이 decision은 spec을 직접 만들지 않는다. 확정된 이 순서 위에 공개 계약(요청·응답·tool·event) decision을 먼저 열고, 첫 spec은 그 뒤에 연다. 미래 decision/spec ID를 미리 선점하지 않는다.
 
 ## Open Questions
 
@@ -374,4 +376,4 @@ step 회계 단위는 **provider 호출 1회 = 1 step**이다. tool 실행 횟�
 
 | Spec | Action | Notes |
 |---|---|---|
-| (없음) | - | 이 decision은 spec을 만들지 않는다. 동작 순서만 정하고, 그 순서를 실현할 공개 계약(요청·응답·tool·event)이 결정된 뒤 첫 spec을 연다. 미래 decision/spec ID를 미리 선점하지 않는다 |
+| (없음) | - | 이 decision은 spec을 만들지 않는다. 동작 순서만 확정하고, 그 순서를 실현할 공개 계약(요청·응답·tool·event)이 결정된 뒤 첫 spec을 연다. 미래 decision/spec ID를 미리 선점하지 않는다 |
