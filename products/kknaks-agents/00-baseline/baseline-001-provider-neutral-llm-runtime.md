@@ -17,6 +17,7 @@ links:
     - "[[decision-005-provider-boundaries|KAG-DEC-005]]"
     - "[[decision-006-tools-boundaries|KAG-DEC-006]]"
     - "[[decision-007-sessions-boundaries|KAG-DEC-007]]"
+    - "[[decision-008-skills-boundaries|KAG-DEC-008]]"
   specs: []
   works: []
   releases: []
@@ -181,5 +182,7 @@ decision으로 내리기 전에 판단이 필요한 것들이다. 아직 답을 
 여섯 번째 decision(`KAG-DEC-006` — tools package 등록·허용·검증·실행 경계)도 2026-08-09 `proposed`로 올라가 사용자 리뷰를 기다린다. 위 Possible Direction의 “등록과 허용의 분리”를 **registry / turn 허용 subset / model 공개 표면 세 값의 분리 규칙**으로 내리고, 운영 사례에서 관찰한 패턴(노출과 실행의 동일 계산, 접근 축과 승인 축의 분리, 접근 선언 무기본값, 거부의 축 구분)을 provider-neutral한 판정 계약으로 일반화하며, 파일 배치와 tool call 하나의 처리 국면과 fail-closed 원칙을 제안하는 단계다. 다만 schema validator 선택을 묻는 Open Question 3과 공개 API의 sync/async 형태를 묻는 Open Question 2는 이 문서가 풀지 않았고, 역할·권한 모델과 승인 lifecycle은 호스트 애플리케이션의 몫으로 남겼다. 확정이 아니므로 이 baseline의 반영 범위는 넓어지지 않았고 `accepted`도 그대로다.
 
 일곱 번째 decision(`KAG-DEC-007` — sessions package event 저장·조회 경계)도 2026-08-09 `proposed`로 올라가 사용자 리뷰를 기다린다. 위 Possible Direction의 “session 원본과 model context의 분리” 중 **원본 쪽 절반**을 계약으로 내리는 단계다 — append-only와 손실 없음이 무엇을 뜻하는지(순서·원자성·중복·unknown fail-closed), memory store와 향후 durable store가 함께 만족할 계약이 무엇인지, 되읽기가 무엇이고 무엇이 아닌지를 제안한다. 나머지 절반인 **model context 쪽(투영·compaction·요약 취급)은 이 문서가 다루지 않고 `context` 상세 decision으로 남는다.** 관찰 사례의 durable turn·event folding 중 흡수한 것은 “원장이 진실이고 알림은 나중”과 “같은 event를 두 번 접어도 같은 결과가 나오려면 안정된 순서와 중복 없는 원본이 필요하다”까지이고, 큐·리스·워커 운영은 흡수하지 않았다(Open Question 11 유지). provider 원문을 event에 보관할지를 묻는 Open Question 8도 풀리지 않았다. 확정이 아니므로 이 baseline의 반영 범위는 넓어지지 않았고 `accepted`도 그대로다.
+
+여덟 번째 decision(`KAG-DEC-008` — skills package 등록·선택·prompt 투영 경계)도 2026-08-09 `proposed`로 올라가 사용자 리뷰를 기다린다. 위 Possible Direction의 “책임 분해” 중 `skills`가 담을 계약을 제안하되, **이 문서가 skills를 최소 runtime의 필수 요소로 바꾸지는 않는다** — REF-0007과 KAG-DEC-002 §6이 skills를 “이번에 넣을 것”이 아니라 “**추후에 넣으면 좋을 것**”, 즉 조립 가능한 독립 확장 모듈로 분류한 것을 그대로 유지하고, 그 분류가 문서에만 남지 않도록 “`skills/`를 지워도 첫 vertical slice가 그대로 돈다”를 검증 가능한 성공 조건으로 적었다. 제안의 본체는 셋이다 — (1) skill의 출처를 **호스트의 명시적 등록 하나로** 좁히고 filesystem scan·plugin·marketplace·원격 registry·dynamic discovery·model 자기설치 경로를 만들지 않는다(설계 노트의 `loader.py` 가안을 뒤집는다), (2) 등록 registry / turn 선택 set / prompt projection 세 값을 나누고 선택은 호스트 입력에서만 오며 turn 시작에 고정돼 turn 내내 불변이다, (3) skill 본문은 model prompt에 그대로 들어가는 자유 텍스트이므로 **그 텍스트가 tool 권한·정책·선택·한도를 바꾸지 못한다**는 경계를 원칙과 injection 경로별 판정으로 못박되, 간접 injection과 “신뢰할 수 없는 등록”은 라이브러리가 막지 못한다는 사실도 함께 적는다. skill 선택 주체를 묻는 Open Question 7은 **풀지 않았고**, skill 자산의 거처(KAG-DEC-001 OQ-6)도 열어 두되 **권고 구조가 “호스트가 본문을 채워 넘긴다”를 전제한다는 사실과, 다른 안을 고를 때 함께 뒤집어야 할 항목은 닫아 두었다.** 확정이 아니므로 이 baseline의 반영 범위는 넓어지지 않았고 `accepted`도 그대로다.
 
 아직 decision으로 내려가지 않은 것: session 원본과 model context 분리 중 **context 쪽 계약**, Codex CLI provider 격리 옵션, 첫 vertical slice 범위, 그리고 위 Open Questions 대부분. decision 없이 spec·work·코드로 내려가지 않는다.
