@@ -14,6 +14,7 @@ links:
     - "[[decision-002-turn-runtime-flow|KAG-DEC-002]]"
     - "[[decision-003-core-contract-boundaries|KAG-DEC-003]]"
     - "[[decision-004-process-boundaries|KAG-DEC-004]]"
+    - "[[decision-005-provider-boundaries|KAG-DEC-005]]"
   specs: []
   works: []
   releases: []
@@ -172,5 +173,7 @@ decision으로 내리기 전에 판단이 필요한 것들이다. 아직 답을 
 세 번째 decision(`KAG-DEC-003` — core package 계약 경계)은 2026-08-09 `proposed`로 올라가 사용자 리뷰를 기다린다. 위 Possible Direction의 “책임 분해” 중 `core`가 담을 계약의 **파일·타입 범주와 공개 표면**을 제안하는 단계이며, 아직 확정이 아니므로 이 baseline의 반영 범위는 넓어지지 않았다. 이 baseline의 `accepted`도 그대로다.
 
 네 번째 decision(`KAG-DEC-004` — process package 실행 격리 경계)도 2026-08-09 `proposed`로 올라가 사용자 리뷰를 기다린다. 위 Possible Direction의 “Codex CLI subprocess를 첫 provider로”가 나열한 격리 항목(cwd·환경 allowlist·timeout·출력 상한·stdout/stderr 분리·종료 코드)을 **provider-neutral한 실행 격리 계약**으로 일반화하고, 파일 배치와 lifecycle과 fail-closed 원칙을 제안하는 단계다. provider 제품명·실행 파일·flag·wire 형식은 여전히 `providers`의 몫으로 남으므로, Open Question 4(Codex CLI의 정확한 격리 옵션과 출력 protocol)는 풀리지 않았다. 확정이 아니므로 이 baseline의 반영 범위는 넓어지지 않았고 `accepted`도 그대로다.
+
+다섯 번째 decision(`KAG-DEC-005` — providers package 변환 경계)도 2026-08-09 `proposed`로 올라가 사용자 리뷰를 기다린다. 위 경계 한 줄(“provider는 한 번의 공통 요청을 한 번의 공통 응답으로 바꾸는 adapter다”)을 **파일 배치·호출 lifecycle·실패 소유권·capability 계약**으로 내리고, subprocess adapter와 향후 raw API/HTTP adapter가 한 package에서 공존할 구조를 제안하는 단계다. 다만 “Codex CLI subprocess를 첫 provider로”가 요구하는 정확한 실행 옵션과 출력 protocol은 이 문서가 정하지 않았으므로 Open Question 4는 여전히 미결이고, provider capability 표준을 묻는 Open Question 5도 축의 **후보**만 적혀 확정되지 않았다. 확정이 아니므로 이 baseline의 반영 범위는 넓어지지 않았고 `accepted`도 그대로다.
 
 아직 decision으로 내려가지 않은 것: 등록/허용 분리의 계약 표면, session 원본과 model context 분리의 구체 계약, Codex CLI provider 격리 옵션, 첫 vertical slice 범위, 그리고 위 Open Questions 대부분. decision 없이 spec·work·코드로 내려가지 않는다.
