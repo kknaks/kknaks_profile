@@ -16,6 +16,7 @@ links:
     - "[[decision-004-process-boundaries|KAG-DEC-004]]"
     - "[[decision-005-provider-boundaries|KAG-DEC-005]]"
     - "[[decision-006-tools-boundaries|KAG-DEC-006]]"
+    - "[[decision-007-sessions-boundaries|KAG-DEC-007]]"
   specs: []
   works: []
   releases: []
@@ -179,4 +180,6 @@ decision으로 내리기 전에 판단이 필요한 것들이다. 아직 답을 
 
 여섯 번째 decision(`KAG-DEC-006` — tools package 등록·허용·검증·실행 경계)도 2026-08-09 `proposed`로 올라가 사용자 리뷰를 기다린다. 위 Possible Direction의 “등록과 허용의 분리”를 **registry / turn 허용 subset / model 공개 표면 세 값의 분리 규칙**으로 내리고, 운영 사례에서 관찰한 패턴(노출과 실행의 동일 계산, 접근 축과 승인 축의 분리, 접근 선언 무기본값, 거부의 축 구분)을 provider-neutral한 판정 계약으로 일반화하며, 파일 배치와 tool call 하나의 처리 국면과 fail-closed 원칙을 제안하는 단계다. 다만 schema validator 선택을 묻는 Open Question 3과 공개 API의 sync/async 형태를 묻는 Open Question 2는 이 문서가 풀지 않았고, 역할·권한 모델과 승인 lifecycle은 호스트 애플리케이션의 몫으로 남겼다. 확정이 아니므로 이 baseline의 반영 범위는 넓어지지 않았고 `accepted`도 그대로다.
 
-아직 decision으로 내려가지 않은 것: session 원본과 model context 분리의 구체 계약, Codex CLI provider 격리 옵션, 첫 vertical slice 범위, 그리고 위 Open Questions 대부분. decision 없이 spec·work·코드로 내려가지 않는다.
+일곱 번째 decision(`KAG-DEC-007` — sessions package event 저장·조회 경계)도 2026-08-09 `proposed`로 올라가 사용자 리뷰를 기다린다. 위 Possible Direction의 “session 원본과 model context의 분리” 중 **원본 쪽 절반**을 계약으로 내리는 단계다 — append-only와 손실 없음이 무엇을 뜻하는지(순서·원자성·중복·unknown fail-closed), memory store와 향후 durable store가 함께 만족할 계약이 무엇인지, 되읽기가 무엇이고 무엇이 아닌지를 제안한다. 나머지 절반인 **model context 쪽(투영·compaction·요약 취급)은 이 문서가 다루지 않고 `context` 상세 decision으로 남는다.** 관찰 사례의 durable turn·event folding 중 흡수한 것은 “원장이 진실이고 알림은 나중”과 “같은 event를 두 번 접어도 같은 결과가 나오려면 안정된 순서와 중복 없는 원본이 필요하다”까지이고, 큐·리스·워커 운영은 흡수하지 않았다(Open Question 11 유지). provider 원문을 event에 보관할지를 묻는 Open Question 8도 풀리지 않았다. 확정이 아니므로 이 baseline의 반영 범위는 넓어지지 않았고 `accepted`도 그대로다.
+
+아직 decision으로 내려가지 않은 것: session 원본과 model context 분리 중 **context 쪽 계약**, Codex CLI provider 격리 옵션, 첫 vertical slice 범위, 그리고 위 Open Questions 대부분. decision 없이 spec·work·코드로 내려가지 않는다.
