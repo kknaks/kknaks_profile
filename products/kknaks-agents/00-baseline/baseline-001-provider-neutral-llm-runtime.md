@@ -12,12 +12,13 @@ links:
   decisions:
     - "[[decision-001-runtime-directory-boundaries|KAG-DEC-001]]"
     - "[[decision-002-turn-runtime-flow|KAG-DEC-002]]"
+    - "[[decision-003-core-contract-boundaries|KAG-DEC-003]]"
   specs: []
   works: []
   releases: []
   related: []
 created_at: 2026-08-07
-updated_at: 2026-08-08
+updated_at: 2026-08-09
 tags:
   - product/kknaks-agents
   - doc/baseline
@@ -166,5 +167,7 @@ decision으로 내리기 전에 판단이 필요한 것들이다. 아직 답을 
 첫 decision(`KAG-DEC-001` — 디렉터리 구조와 의존 경계)이 2026-08-08 사용자 확정으로 `accepted`가 되어, 이 baseline도 `accepted`다. 반영된 것은 **디렉터리 구조와 의존 방향까지**였다.
 
 두 번째 decision(`KAG-DEC-002` — 최소 headless turn runtime 동작 구조)도 2026-08-08 사용자 확정으로 `accepted`가 됐다. 한 turn의 진행 phase 9 + 종료 state 4 전이, side effect 순서와 불변식, 반복 진입·종료 조건이 확정되면서 위 Possible Direction의 “책임 분해” 중 **동작 흐름 부분까지** 반영 범위가 넓어졌다. 이 baseline의 `accepted`는 그대로이고, KAG-DEC-002의 Open Questions 9건은 여전히 미결이다.
+
+세 번째 decision(`KAG-DEC-003` — core package 계약 경계)은 2026-08-09 `proposed`로 올라가 사용자 리뷰를 기다린다. 위 Possible Direction의 “책임 분해” 중 `core`가 담을 계약의 **파일·타입 범주와 공개 표면**을 제안하는 단계이며, 아직 확정이 아니므로 이 baseline의 반영 범위는 넓어지지 않았다. 이 baseline의 `accepted`도 그대로다.
 
 아직 decision으로 내려가지 않은 것: 등록/허용 분리의 계약 표면, session 원본과 model context 분리의 구체 계약, Codex CLI provider 격리 옵션, 첫 vertical slice 범위, 그리고 위 Open Questions 대부분. decision 없이 spec·work·코드로 내려가지 않는다.

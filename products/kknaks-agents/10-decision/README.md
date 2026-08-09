@@ -6,7 +6,9 @@
 
 첫 decision인 KAG-DEC-001이 2026-08-08 사용자 확정으로 `accepted`가 됐다. 확정 범위는 디렉터리 구조와 의존 방향까지다.
 
-두 번째 decision인 KAG-DEC-002(최소 headless turn runtime 동작 구조)도 2026-08-08 사용자 확정으로 `accepted`가 됐다. 확정 범위는 한 turn의 진행 phase 9 + 종료 state 4 전이, side effect 순서와 불변식, 반복 진입·종료 조건까지이며, 각 문서의 Open Questions는 여전히 미결이다. 세 번째 decision(공개 계약 표면)은 아직 만들지 않는다 — 미래 decision ID를 미리 선점하지 않는다.
+두 번째 decision인 KAG-DEC-002(최소 headless turn runtime 동작 구조)도 2026-08-08 사용자 확정으로 `accepted`가 됐다. 확정 범위는 한 turn의 진행 phase 9 + 종료 state 4 전이, side effect 순서와 불변식, 반복 진입·종료 조건까지이며, 각 문서의 Open Questions는 여전히 미결이다.
+
+세 번째 decision인 KAG-DEC-003(core package 계약 경계)은 2026-08-09 `proposed`로 올라가 **사용자 리뷰 대기** 중이다. 공개 계약을 package 하나씩 내려가기로 해서 이번 대상은 `core/` 하나이며, `tools`·`providers`·`sessions`·`context`·`skills`·`process`·`runtime`의 내부 구조는 다루지 않는다. 확정 전에는 spec·work·코드로 내려가지 않는다.
 
 ## 결정 로그
 
@@ -16,6 +18,7 @@ decision 문서를 만들거나 상태가 바뀌면 이 표를 갱신한다.
 |---|---|---|---|---|---|
 | KAG-DEC-001 | [Runtime 디렉터리 구조와 의존 경계](decision-001-runtime-directory-boundaries.md) | accepted | KAG-BL-001 | 책임별 package 채택 (flat / ports-adapters 기각). package 이름 `kknaks_agents`, 4단 의존 계층 확정 | - |
 | KAG-DEC-002 | [최소 headless turn runtime 동작 구조](decision-002-turn-runtime-flow.md) | accepted | KAG-BL-001 | 명시적 phase/state transition을 가진 deterministic turn loop 채택 (불투명 `run()` / middleware-hook pipeline 기각, hook은 후속 확장 후보로 보존). 진행 phase 9 + 종료 state 4, side effect 순서 불변식 3, tool call 직렬 실행, 종료 원인 10종의 terminal/recoverable 판정. `query/` 디렉터리 없이 `runtime`이 흡수. 미결 9건 | - |
+| KAG-DEC-003 | [core package 계약 경계 — 파일·타입 범주와 공개 표면](decision-003-core-contract-boundaries.md) | **proposed** (리뷰 대기) | KAG-BL-001 | 단일 `contracts.py` / 관심사별 평면 module / 도메인별 중첩 package+`ports` 3안 비교 후 **평면 module 분리 권고**(나머지 둘 비권고, 중첩은 승격 경로로 보존). core 소유 계약 범주 10종, 파일 후보 10개 + `__init__.py`, 파일별 producer/consumer, core 내부 6단 총순서(`events → responses` 단방향), protocol은 “소비자가 구현 package를 import할 수 없을 때만” 판정(`protocols.py` 후보 2 = 필수 1 model 호출 경계 + 권고 1 tool handler. session store는 `runtime → sessions` 허용이라 core 제외), `core/__init__.py` 선별 재수출 권고, 호환성 원칙 7개(선택적 값 추가와 새 판별값 추가를 구분), DEC-002 phase 매핑. 미결 8건 | - |
 
 ## 미결 사항
 
@@ -29,8 +32,13 @@ KAG-DEC-001이 다루기로 한 질문은 그 문서의 Open Questions 표가 ow
 | (그 외) | KAG-DEC-001 OQ-2·4·5·6·7 | planner | [decision-001](decision-001-runtime-directory-boundaries.md#open-questions) 참조 |
 | KAG-DEC-002 OQ-8 | 한 응답의 tool call 일부가 거부됐을 때 남은 호출을 계속 실행할지 | 사용자 | 첫 vertical slice 실행 결과 후 |
 | (그 외) | KAG-DEC-002 OQ-1~7·9 (malformed repair, provider 재시도, 취소 전파, tool timeout, final 검증 기준, loop 방어, snapshot 기록, 공개 진입점) | planner | [decision-002](decision-002-turn-runtime-flow.md#open-questions) 참조 |
+| KAG-DEC-003 OQ-1 | 재수출 이름의 안정 API 약속 수준과 버전 표기·deprecation | 사용자 | 첫 배포 검토 시점. KAG-DEC-001 OQ-1과 함께 |
+| KAG-DEC-003 OQ-5 | `core/tooling.py` 이름이 형제 package `tools/`와 충분히 구분되는지 | 사용자 | 첫 파일 생성 직전 |
+| (그 외) | KAG-DEC-003 OQ-2·3·4·6·7·8 (session event 저장 경계 형태 → `sessions` 상세 decision, turn 결과 타입 소유, package-root 재수출, evidence 계약, 신뢰 등급 부착 시점, tier 정적 검사) | planner | [decision-003](decision-003-core-contract-boundaries.md#open-questions) 참조 |
 | (미착수) | tool/provider 공개 계약, Codex CLI 격리 옵션 등 | - | KAG-BL-001 Open Questions 참조 |
+
+> KAG-DEC-001 OQ-2(공개 import 표면)는 KAG-DEC-003 §5.2에서 세 조각으로 쪼개졌다. (a) `core/__init__.py` 재수출은 KAG-DEC-003이 권고안으로 다루고, (b) package-root 재수출은 KAG-DEC-003 OQ-4로, (c) 안정 API 약속은 KAG-DEC-003 OQ-1로 이관 제안됐다. KAG-DEC-003이 확정되기 전까지 owning view는 여전히 [decision-001](decision-001-runtime-directory-boundaries.md#open-questions)이다.
 
 ## Next
 
-KAG-DEC-001·KAG-DEC-002 모두 `accepted` 완료. 다음 게이트는 확정된 turn 순서 위에 **공개 계약(요청·응답·tool·event) decision**을 여는 것이고, spec은 그 뒤에 연다. 그 decision 문서는 아직 만들지 않았으며, 확정 전에는 spec·work·코드로 내려가지 않는다.
+KAG-DEC-001·KAG-DEC-002는 `accepted` 완료. 현재 게이트는 **KAG-DEC-003(core package 계약 경계) 사용자 리뷰**다. 공개 계약은 디렉터리 하나씩 내려가기로 했고, core가 확정되면 `tools`·`providers`·`sessions`·`context`·`runtime` 상세 decision이 차례로 남는다. spec은 그 뒤에 연다. 확정 전에는 spec·work·코드로 내려가지 않으며, KAG-DEC-004 이후의 ID를 미리 선점하지 않는다.
