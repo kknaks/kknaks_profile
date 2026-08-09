@@ -8,7 +8,7 @@
 
 > ID prefix: frontmatter `id`는 전역 유일성을 위해 `KAG-` prefix를 쓴다 (`KAG-BL-001`, 이후 `KAG-DEC-001` 등). MRT/CFO/AXKG 컨벤션과 동일하다.
 
-> 현재는 **decision 단계**다. 첫 decision(KAG-DEC-001 — 디렉터리 구조와 의존 경계)과 두 번째 decision(KAG-DEC-002 — 최소 headless turn runtime 동작 구조)이 모두 2026-08-08 사용자 확정으로 `accepted`가 됐다. 다음은 공개 계약(요청·응답·tool·event) decision이며, spec·work는 아직 없고 코드 저장소도 첫 커밋 전이다.
+> 현재는 **decision 단계**다. 첫 decision(KAG-DEC-001 — 디렉터리 구조와 의존 경계)과 두 번째 decision(KAG-DEC-002 — 최소 headless turn runtime 동작 구조)이 모두 2026-08-08 사용자 확정으로 `accepted`가 됐다. 세 번째 decision(KAG-DEC-003 — core package 계약 경계)은 2026-08-09 `proposed`로 **사용자 리뷰 대기** 중이다. 공개 계약은 디렉터리 하나씩 내려가며, 이번 대상은 `core/`다. spec·work는 아직 없고 코드 저장소도 첫 커밋 전이다.
 
 ## 코드 레포
 
@@ -20,15 +20,15 @@
 | Local clone | `/Users/kknaks/git/library/kknaks_agents` |
 | 문서 SoT | `/Users/kknaks/git/toy_pr2/kknaks_profile/products/kknaks-agents` |
 
-> Python import package 이름은 KAG-DEC-001에서 `kknaks_agents`로 **확정**됐다(설계 노트의 `llm_runtime`은 가칭이었다). PyPI 배포명과 public import 표면의 안정성 약속은 여전히 미결이다 (KAG-DEC-001 OQ-1·OQ-2).
+> Python import package 이름은 KAG-DEC-001에서 `kknaks_agents`로 **확정**됐다(설계 노트의 `llm_runtime`은 가칭이었다). PyPI 배포명과 public import 표면의 안정성 약속은 여전히 미결이다 (KAG-DEC-001 OQ-1·OQ-2). OQ-2 중 `core/__init__.py` 재수출 범위는 KAG-DEC-003이 권고안으로 다루는 중이고, package-root 재수출과 안정 API 약속은 계속 미결이다.
 
 ## 현재 상태
 
 | Area | Status | Next |
 |---|---|---|
 | Baseline | KAG-BL-001 accepted | 남은 Possible Direction·Open Questions를 이후 decision으로 |
-| Decision | KAG-DEC-001 accepted · KAG-DEC-002 accepted | **공개 계약(요청·응답·tool·event) decision** (다음 게이트). 문서는 아직 없음 |
-| Spec | 없음 | 공개 계약 decision 확정 후 |
+| Decision | KAG-DEC-001 accepted · KAG-DEC-002 accepted · **KAG-DEC-003 proposed** | **KAG-DEC-003(core 계약 경계) 사용자 리뷰** (현재 게이트). 확정되면 `tools`·`providers`·`sessions`·`context`·`runtime` 상세 decision이 차례로 |
+| Spec | 없음 | package별 계약 decision이 정리된 후 |
 | Work | 없음 | spec 확정 + 사용자 리뷰 후 |
 | Architecture | 없음 | 여러 spec/work가 공유할 구조가 생기면 |
 
@@ -66,3 +66,4 @@
 - 2026-08-08 사용자 확정 — KAG-DEC-001 `accepted`(Option B 책임별 package), KAG-BL-001 `accepted`
 - 2026-08-08 KAG-DEC-002 작성(proposed) — 최소 headless turn runtime 동작 구조. 사용자 리뷰 대기
 - 2026-08-08 사용자 확정 — KAG-DEC-002 `accepted`(Option B deterministic turn loop). Open Questions 9건은 미결 유지
+- 2026-08-09 KAG-DEC-003 작성(proposed) — core package 계약 경계(파일·타입 범주·공개 표면). 사용자 리뷰 대기
