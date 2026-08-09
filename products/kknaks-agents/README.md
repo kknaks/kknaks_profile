@@ -8,7 +8,7 @@
 
 > ID prefix: frontmatter `id`는 전역 유일성을 위해 `KAG-` prefix를 쓴다 (`KAG-BL-001`, 이후 `KAG-DEC-001` 등). MRT/CFO/AXKG 컨벤션과 동일하다.
 
-> 현재는 **decision 단계**다. 첫 decision(KAG-DEC-001 — 디렉터리 구조와 의존 경계)과 두 번째 decision(KAG-DEC-002 — 최소 headless turn runtime 동작 구조)이 모두 2026-08-08 사용자 확정으로 `accepted`가 됐다. 세 번째 decision(KAG-DEC-003 — core package 계약 경계), 네 번째 decision(KAG-DEC-004 — process package 실행 격리 경계), 다섯 번째 decision(KAG-DEC-005 — providers package 변환 경계), 여섯 번째 decision(KAG-DEC-006 — tools package 등록·허용·검증·실행 경계)은 2026-08-09 `proposed`로 **사용자 리뷰 대기** 중이다. 공개 계약은 디렉터리 하나씩 의존 그래프 아래에서 위로 내려가며, 지금까지 제안된 것은 `core/`(L0)·`process/`(L1)·`providers/`(L2)·`tools/`(L2)다. spec·work는 아직 없고 코드 저장소도 첫 커밋 전이다.
+> 현재는 **decision 단계**다. 첫 decision(KAG-DEC-001 — 디렉터리 구조와 의존 경계)과 두 번째 decision(KAG-DEC-002 — 최소 headless turn runtime 동작 구조)이 모두 2026-08-08 사용자 확정으로 `accepted`가 됐다. 세 번째 decision(KAG-DEC-003 — core package 계약 경계), 네 번째 decision(KAG-DEC-004 — process package 실행 격리 경계), 다섯 번째 decision(KAG-DEC-005 — providers package 변환 경계), 여섯 번째 decision(KAG-DEC-006 — tools package 등록·허용·검증·실행 경계), 일곱 번째 decision(KAG-DEC-007 — sessions package event 저장·조회 경계)은 2026-08-09 `proposed`로 **사용자 리뷰 대기** 중이다. 공개 계약은 디렉터리 하나씩 의존 그래프 아래에서 위로 내려가며, 지금까지 제안된 것은 `core/`(L0)·`process/`(L1)·`providers/`(L2)·`tools/`(L2)·`sessions/`(L2)다. spec·work는 아직 없고 코드 저장소도 첫 커밋 전이다.
 
 ## 코드 레포
 
@@ -27,7 +27,7 @@
 | Area | Status | Next |
 |---|---|---|
 | Baseline | KAG-BL-001 accepted | 남은 Possible Direction·Open Questions를 이후 decision으로 |
-| Decision | KAG-DEC-001 accepted · KAG-DEC-002 accepted · **KAG-DEC-003 proposed** · **KAG-DEC-004 proposed** · **KAG-DEC-005 proposed** · **KAG-DEC-006 proposed** | **KAG-DEC-003(core 계약 경계)·KAG-DEC-004(process 실행 격리 경계)·KAG-DEC-005(providers 변환 경계)·KAG-DEC-006(tools 등록·허용·검증·실행 경계) 사용자 리뷰** (현재 게이트). 이후 raw 작성 순서는 `sessions` → `skills` → `context` → `runtime` |
+| Decision | KAG-DEC-001 accepted · KAG-DEC-002 accepted · **KAG-DEC-003 proposed** · **KAG-DEC-004 proposed** · **KAG-DEC-005 proposed** · **KAG-DEC-006 proposed** · **KAG-DEC-007 proposed** | **KAG-DEC-003(core 계약 경계)·KAG-DEC-004(process 실행 격리 경계)·KAG-DEC-005(providers 변환 경계)·KAG-DEC-006(tools 등록·허용·검증·실행 경계)·KAG-DEC-007(sessions event 저장·조회 경계) 사용자 리뷰** (현재 게이트). 이후 raw 작성 순서는 `skills` → `context` → `runtime` |
 | Spec | 없음 | package별 계약 decision이 정리된 후 |
 | Work | 없음 | spec 확정 + 사용자 리뷰 후 |
 | Architecture | 없음 | 여러 spec/work가 공유할 구조가 생기면 |
@@ -70,3 +70,5 @@
 - 2026-08-09 KAG-DEC-004 작성(proposed) — process package 실행 격리 경계(보안 경계 13항목·파일 배치·실행 lifecycle·fail-closed). 사용자 리뷰 대기
 - 2026-08-09 KAG-DEC-005 작성(proposed) — providers package 변환 경계(공용/전용 판정·adapter 파일 배치·호출 lifecycle 6국면·실패 소유권·capability 계약). 사용자 리뷰 대기
 - 2026-08-09 KAG-DEC-006 작성(proposed) — tools package 등록·허용·검증·실행 경계(등록/허용/공개 표면 세 값 분리·파일 배치·tool call 국면 8개·거부 5계열·handler 주입 표면). 사용자 리뷰 대기
+- 2026-08-09 KAG-DEC-007 작성(proposed) — sessions package event 저장·조회 경계(store 계약과 구현의 파일 분리·순서/원자성/중복/read-your-write 불변식·거부 6계열·memory와 durable 확장 seam·되읽기와 재생의 구분). KAG-DEC-003 OQ-2에 대한 답을 함께 제안. 사용자 리뷰 대기
+- 2026-08-09 KAG-DEC-007 검수 보정(상태 `proposed` 유지) — 표현 복원(허용)과 의미·정책 분기(금지)의 경계를 §6.3에 표로 신설하고 구조 검사 기준을 “종류 이름 부재”에서 “종류를 보는 코드의 국소화”로 교정, SR3를 SR3′·SR3″로 갈라 canonical event 무손실 저장을 KAG-DEC-002 I1과 맞춤, 불변식에 SI10 추가(10개)
