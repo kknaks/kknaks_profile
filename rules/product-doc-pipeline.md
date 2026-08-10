@@ -61,7 +61,7 @@ products/<product>/
 | `00-baseline/README.md` | baseline index | 아이디어 목록, 상태, decision 연결 | 결정 내용 본문 |
 | `00-baseline/baseline-*.md` | 날것 입력 1건 | 원문, 배경, 중요성, 가능한 방향 | 확정 결정, 구현 지시 |
 | `10-decision/README.md` | decision index | 결정 로그, 미결 사항, baseline/spec 연결 | 기능 계약 본문, 작업 계획 |
-| `10-decision/decision-*.md` | 결정 1건 | 선택지, 결정, 미결, 영향 범위 | 상세 구현 단계 |
+| `10-decision/decision-*.md` | 결정 1건 | 선택지, 결정, 미결, 영향 범위, **근거 개념(`up:` + 「근거 개념」 절)** | 상세 구현 단계, 개념 상세 |
 | `20-spec/README.md` | spec index | spec 목록, 상태, decision 연결, 영역별 읽는 순서 | work 진행률 상세, owner, blocker, PR |
 | `20-spec/spec-*.md` | 기능 계약 1건 | user flow, state machine, UI/UX, API, 데이터 계약, acceptance criteria | PR 계획, 작업 순서, 구현 완료 체크리스트, 특정 work ID 참조 |
 | `30-work/README.md` | work index | Status Board, work 목록, spec coverage, release gate | spec 본문 복사 |
@@ -428,7 +428,7 @@ tags:
 | 작업 | 반드시 갱신 |
 |---|---|
 | baseline 추가/수정 | `00-baseline/README.md`, `log.md` |
-| decision 추가/수정 | `10-decision/README.md`, 연결된 baseline index, `log.md` |
+| decision 추가/수정 | `10-decision/README.md`, 연결된 baseline index, `log.md`, **「근거 개념」 절 + `up:`** |
 | spec 추가/수정 | `20-spec/README.md`, 연결된 decision index, `log.md` |
 | spec HTML 시안 추가/수정 | `log.md` |
 | work 추가/수정 | `30-work/README.md`, spec coverage, `log.md` |
