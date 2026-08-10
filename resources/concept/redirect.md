@@ -8,6 +8,7 @@ aliases:
   - redirect
 up:
   - 2024-08-29-Day66
+  - 2024-09-05-Day70
 tags:
   - web
   - servlet
@@ -84,4 +85,5 @@ public class LogoutServlet extends GenericServlet {
 
 ## 출처
 
+- [[2024-09-05-Day70]] — 「refresh와 redirect」 절이 둘 다 브라우저에게 다음 URL을 요청하게 한다는 공통점과, `Refresh` 헤더/`<meta http-equiv="Refresh">`는 본문을 보인 뒤 지연 이동하고 `sendRedirect("/s100")`는 즉시 이동한다는 차이를 코드로 적었다. 다만 `Refresh`는 HTTP 표준 헤더가 아니고, `sendRedirect`가 지우는 것은 커밋 전 버퍼이지 응답 자체가 아니며 실제로는 3xx와 `Location`을 보낸다는 점은 없다
 - [[2024-08-29-Day66]] — 「LoginOutServlet만들기」 절이 「Session 을 초기화 한다」·「sendRedirect 을 통해 기존 버퍼에 있던 res 을 삭제하고 버퍼에 새롭게 담고 리턴한다」로 두 줄을 적고, `getSession().invalidate()` + `sendRedirect("/")` 두 문장뿐인 서블릿을 보인다. 같은 회차의 변경·삭제 처리는 `setHeader("Refresh", "1;url=...")` 를 쓰는데, 두 방법을 언제 갈라 쓰는지는 적혀 있지 않다. `sendRedirect` 뒤 코드가 계속 실행된다는 것, 본문을 보낸 뒤에는 못 쓴다는 것, 요청 속성이 넘어가지 않는다는 것도 다루지 않았다

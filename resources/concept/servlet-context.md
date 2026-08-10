@@ -9,6 +9,7 @@ aliases:
   - ServletContextEvent
 up:
   - 2024-08-27-Day64
+  - 2024-09-06-Day71
 tags:
   - web
   - java
@@ -87,6 +88,7 @@ userDao = (UserDao) config.getServletContext().getAttribute("userDao");
 - **`getAttribute` 가 `Object` 를 돌려주므로 타입 검사도 실행 시점이다** — `(UserDao)` 캐스팅이 그 증거다. 엉뚱한 것을 담아도 컴파일되고, 꺼내는 쪽에서 `ClassCastException` 이 난다. 제네릭이 이 자리를 도와주지 못하는 것은 **규격이 자바 5 이전 API** 이기 때문이고, 그래서 프레임워크의 주입은 이 통로를 쓰지 않는다 → [[type-casting]] · [[generics]] · [[raw-type]]
 - **`"sqlSessionFactory"` 라는 이름에 든 것이 원본이 아니라 프록시다** — 값은 `SqlSessionFactoryProxy` 이고, 그것이 의도다(프록시를 거치지 않으면 쓰레드마다 세션이 갈리지 않는다). 그런데 **이름도 타입도 그 사실을 말하지 않는다** — 꺼내는 쪽은 `SqlSessionFactory` 로 받고 이름은 원본처럼 읽힌다. [[proxy-pattern]] 노트가 「이 프록시는 갈아 끼울 수 없다 — 빼면 컴파일은 되고 커밋만 조용히 사라진다」고 적은 위험이, 여기서 **부팅 코드 한 줄 + 문자열 키 뒤로 옮겨졌다.** 좁혀진 것은 좋고 눈에 덜 띄는 자리로 간 것은 나쁘다 → [[proxy-pattern]] · [[thread-local]]
 - **컨텍스트 속성은 모든 쓰레드가 함께 보는 값이다 — 요청 처리 중에 넣으면 공유 변수를 쓰는 것과 같다** — 이 코드가 안전한 이유는 **부팅에 한 번만 넣고 그 뒤로 읽기만 하기 때문**이고, 규격이 막아 주는 것이 아니다. `service` 안에서 `setAttribute` 를 부르면 그 순간 남의 요청이 보는 값을 바꾼다 — 「앱 전체가 공유한다」의 다른 면이다 → [[thread]] · [[read-side-effect]]
+- **「데이터베이스 연결 정보를 저장한다」 ≠ 연결 하나를 모두가 함께 쓴다** — Day71 이 애플리케이션 수준의 설정·DB 연결 정보를 이 범위의 예로 든 것은 범위를 설명하려는 말이다. URL·계정·`DataSource`처럼 공유하도록 만든 설정·공장은 둘 수 있지만, 요청마다 달라지는 트랜잭션·`Connection`을 여기에 넣으면 모든 사용자가 같은 작업 단위를 공유한다. 연결 풀과 요청별 연결은 수명이 달라 같은 저장소에 둘 수 없다 → [[connection-lifetime-mismatch]]
 - **「설정과 리소스를 관리하는 객체」는 절반이다 — 실제로는 컨테이너에게 묻는 창구다** — 속성 저장 말고도 `getRealPath`(웹 자원의 실제 경로) · `getResourceAsStream`(앱 안의 파일 읽기) · `log`(컨테이너 로그에 쓰기) · `getInitParameter`(앱 단위 파라미터) 가 이 객체에 있다. 즉 「내가 담은 것을 보관해 주는 곳」이면서 **「컨테이너에게 물어볼 것이 있을 때 가는 곳」**이고, 뒤쪽이 필기에 없다 → [[filesystem-path]] · [[servlet-container]]
 - **컨텍스트가 소멸할 때 담긴 것을 정리해 주지는 않는다** — 「종료될 때 소멸된다」는 컨텍스트 객체의 이야기이고, 그 안에 든 `SqlSessionFactory` 가 들고 있는 커넥션 풀은 **누군가 닫아 주어야** 한다. 그 자리가 `contextDestroyed` 이고 Day64 의 리스너에는 없다 → [[servlet-listener]] · [[connection-lifetime-mismatch]] · [[garbage-collection]]
 - **「애플리케이션 전체」가 톰캣 전체는 아니다 — 컨텍스트 경로마다 하나다** — 같은 서버에 앱을 둘 올리면 컨텍스트도 둘이고 속성도 따로다. 그러면 DB 커넥션 풀도 앱 수만큼 생긴다는 뜻이라, 「전역이니 하나뿐」으로 세면 연결 수 계산이 틀린다 → [[web-application-deployment]] · [[connection-pool-sizing-formula]]
@@ -111,4 +113,5 @@ userDao = (UserDao) config.getServletContext().getAttribute("userDao");
 
 ## 출처
 
+- [[2024-09-06-Day71]] — 열흘 뒤. 「Web 보관소」가 `ServletContext`를 웹 애플리케이션 실행 동안 모든 서블릿·JSP가 공유하는 공간으로 다시 적고, `getServletContext().setAttribute("key", "value")` 예와 앱 시작부터 종료까지라는 수명을 보탠다. 설정·DB 연결 정보를 예로 들지만, 공유 가능한 설정·공장과 요청별 연결 자체를 가르는 기준은 적지 않았다
 - [[2024-08-27-Day64]] — 「ServletContextListener」 절의 두 번째 줄이 이 개념의 정의다 — 「`ServletContext`는 웹 애플리케이션 전체에 걸쳐 공유되는 설정과 리소스를 관리하는 객체로, 애플리케이션이 시작될 때 생성되고 종료될 때 소멸된다」. 실습 코드가 이 객체를 **두 방향으로** 쓴다 — 리스너에서 `sce.getServletContext()` 로 얻어 `setAttribute` 네 번(`userDao`·`boardDao`·`projectDao`·`sqlSessionFactory`)으로 부팅 산출물을 올리고, 서블릿의 `init` 에서 `config.getServletContext().getAttribute("userDao")` 로 꺼내 캐스팅한다. 구동원리 4번이 `ServletContextEvent` 안에 이 객체가 들어 있다는 것을 적었다. 다만 **`ServletConfig` 와의 구별**, **세션과 API 가 같아서 생기는 스코프 혼동**, 키가 문자열이고 값이 `Object` 라 검사가 전부 실행 시점으로 내려간다는 것, `"sqlSessionFactory"` 라는 이름에 실제로는 프록시가 담긴다는 것, 요청 처리 중에 `setAttribute` 를 부르면 공유 값이 바뀐다는 것, 이 객체가 속성 저장 말고도 `getRealPath`·`getResourceAsStream`·`log` 같은 컨테이너 창구라는 것은 다루지 않았다

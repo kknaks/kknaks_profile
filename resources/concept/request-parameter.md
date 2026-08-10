@@ -9,6 +9,7 @@ aliases:
   - getParameterValues
   - 쿼리 파라미터
 up:
+  - 2024-09-04-Day69
   - 2024-08-28-Day65
 tags:
   - web
@@ -127,4 +128,5 @@ if (memberNos != null) {
 
 ## 출처
 
+- [[2024-09-04-Day69]] — 이레 뒤. 「클라이언트가 보낸 값 꺼내기」가 `ServletRequest.getParameter("파라미터명")`을 다시 적는다. Servlet 기본 API의 multipart 처리에서는 일반 폼 필드를 `getParameter`로, 파일을 `getPart`로 읽고, Apache Commons 예제에서는 `FileItem.isFormField()` 뒤 일반 필드를 `getString("UTF-8")`으로 읽는다. POST 한글을 읽기 전에 `req.setCharacterEncoding("UTF-8")`을 둬야 한다는 시점은 맞게 짚었지만, **POST의 인코딩을 ISO-8859-1로 일반화한 것은 틀렸다.** 요청의 실제 `Content-Type`과 바이트를 기준으로 읽어야 한다.
 - [[2024-08-28-Day65]] — 세 자리에서 이 개념이 나온다. ① 「ViewServlet 만들기」의 「req를 통해 조회할 no를 받아온다」와 「웹브라우저에서 `/user/view?no=xx`를 컨테이너에 request하면 컨테이너는 /user/view url을 가진 클래스를 호출 하고 no를 매개변수로 넘긴다」 — 코드는 `int userNo = Integer.parseInt(req.getParameter("no"));` 다. ② 「AddServlet만들기」의 「query string에서 값을 받아오는 방법은 다음과 같다」 — 폼의 `name` 넷을 `req.getParameter` 로 그대로 꺼내 `User` 에 담는다. ③ 「project member 받아오기」의 「`AddServlet에서는 req.getParameterValuse("memeber")`을 통해서 user_id의 배열 받아온다」 — 체크박스 여러 개를 `String[]` 으로 받아 `new User(Integer.parseInt(memberNo))` 로 번호만 든 객체를 만든다. **설명 줄의 `getParameterValuse`·`memeber` 는 오기이고**(코드 블록에는 `member` 로 맞게 적혀 있다) 앞은 컴파일 오류, 뒤는 컴파일되어 **팀원 없이 등록이 성공하는** 조용한 결과를 낸다. 없는 파라미터가 `null` 로 온다는 것, 그래서 `Integer.parseInt` 가 `NumberFormatException` 을 던지고 그것이 「조회 중 오류 발생!」 한 줄로 덮인다는 것, `getParameter` 로 체크박스를 읽으면 첫 값만 조용히 저장된다는 것, 선택하지 않은 체크박스는 `null` 이라 `setMembers` 가 아예 불리지 않는다는 것, 요청 쪽 인코딩(`setCharacterEncoding`)은 응답과 별도이고 GET 은 그것으로도 안 된다는 것, 파라미터와 속성(`getAttribute`)이 다른 것이라는 것, 빈 칸은 `null` 이 아니라 `""` 로 온다는 것은 다루지 않았다

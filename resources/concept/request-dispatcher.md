@@ -10,6 +10,8 @@ aliases:
 up:
   - 2024-08-29-Day66
   - 2024-08-30-Day67
+  - 2024-09-05-Day70
+  - 2024-09-10-Day73
 tags:
   - web
   - servlet
@@ -37,6 +39,11 @@ req.getRequestDispatcher("/header").include(req, res);
 | `include` | 상대의 출력을 **끼워 넣는다** | 내 코드가 이어서 쓴다 |
 | `forward` | 응답 만들기를 **넘긴다** | 내가 쓴 것은 버려진다 |
 | `sendRedirect` | 브라우저에게 **다시 요청하라고 답한다** | 요청이 새로 시작된다 → [[redirect]] |
+
+Day70 은 같은 세 칸을 「기존 `res` 결과를 남겨 두는 `include` / 최종 대상으로 넘기는
+`forward`」로 다시 갈랐다. 정확히는 `forward`가 **아직 전송되지 않은 호출자 쪽 버퍼**를
+비우고 대상에게 응답 생성을 맡기는 것이며, `req`·`res` 객체 자체는 여전히 같은 것이다.
+`include`는 대상의 **본문 출력**을 그 버퍼에 덧붙인다.
 
 ## 사용 예시
 
@@ -100,6 +107,17 @@ JSP 안에서는 액션 태그로 같은 일을 한다.
 - **`forward` 를 쓰면 앞서 쓴 것이 버려진다** — 버퍼가 이미 나갔으면 버릴 수 없어 예외가 된다. `include` 와 바꿔 쓸 수 있는 것이 아니다.
 - **경로는 컨텍스트 안의 것이다** — `"/header"` 는 서블릿 매핑이고 파일 경로가 아니다. 같은 애플리케이션 밖은 부를 수 없다.
 - **HTML 태그가 두 파일에 걸쳐 열리고 닫힌다** — `HeaderServlet` 이 `<body>` 를 열고 부르는 쪽이 닫으므로, **한쪽만 보면 문서가 깨져 보인다.** 끼워 넣는 것을 잊으면 `</body>` 만 있는 응답이 나가고 브라우저가 조용히 고쳐 그려서 알아차리기 어렵다.
+- **`forward` ≠ `res` 객체를 새것으로 바꾸는 일** — Day70 은 `req,res`를 전달한다고 적어 두고도 「기존과 앞으로 담길 값을 무시한다」고 썼다. 실제로 같은 객체를 넘기되, 아직 커밋되지 않은 호출자 버퍼만 비우고 대상의 출력을 최종 응답으로 삼는다. 호출자가 `forward` 뒤에 계속 응답을 쓰면 소유권이 흐려지므로 바로 `return`해 흐름을 끝내는 것이 안전하다.
+- **`getRequestDispacher`는 호출할 수 없다** — 원문의 철자가 `Dispatcher`의 `t`를 빠뜨렸다. 그 코드 그대로면 메서드를 찾지 못해 컴파일이 멈추고, `include`·`forward`의 차이를 실행으로 확인할 수 없다.
+- **「include」라는 이름이 셋이고 시점이 다르다** — Day73 이 「RequestDispatcher의 include()와 다르다」고만 적고 넘어간 자리다.
+
+  | | 시점 | 무엇을 합치나 | 대상 |
+  |---|---|---|---|
+  | `<%@ include %>` | **번역** | 소스를 붙여 넣어 **한 개** 클래스가 된다 | 텍스트 파일이면 된다 → [[jsp-directive]] |
+  | `<jsp:include>` | 실행 | 대상을 실행한 **결과**를 끼운다 | 서블릿/JSP → [[jsp-action-tag]] |
+  | `RequestDispatcher.include()` | 실행 | 같은 일을 자바 코드로 | 서블릿/JSP |
+
+  아래 둘은 같은 장치이고, 맨 위만 **다른 종류**다. 번역 시점에 붙여 넣으므로 포함되는 쪽의 변수가 포함하는 쪽과 같은 메서드에 살고, 이름이 겹치면 컴파일 오류가 난다 — 실행 시점 포함에서는 없는 일이다.
 
 ## 함께 보는 개념
 
@@ -109,8 +127,12 @@ JSP 안에서는 액션 태그로 같은 일을 한다.
 - [[request-parameter]] — 넘겨진 `req` 가 그대로 들고 있는 것
 - [[static-and-dynamic-content]] — 정적 파일이던 것이 서블릿이 되는 자리
 - [[cohesion]] — 중복을 한 곳으로 모으는 축
+- [[jsp-action-tag]] — JSP 문법으로 같은 일을 하는 표기
+- [[jsp-directive]] — 이름만 같고 시점이 다른 `<%@ include %>`
 
 ## 출처
 
+- [[2024-09-10-Day73]] — 「Include(Directive element)」 절이 `<%@ include %>` 를 「지정한 파일을 JSP로 **포함시킨 후에** 자바 서블릿 클래스를 생성한다」로 적어 **번역 시점 포함**임을 짚고, 「일반 텍스트 파일이면 된다. JSP 파일일 필요가 없다」로 그 결과까지 보인다. 그리고 「RequestDispatcher의 include()와 다르다」고 명시했다 — **다르다는 것만 적고 무엇이 다른지는 적지 않은 자리**라 위 표가 그것을 채운다. 같은 노트의 액션 태그 절이 `jsp:include`(제어권이 되돌아온다)와 `jsp:forward`(되돌아오지 않는다)를 가르는데, 이는 Day67 에서 자바 API 로 본 구별과 같은 것이다
+- [[2024-09-05-Day70]] — 「include와 forward」 절이 `getRequestDispatcher(...)`로 위임 객체를 얻어 `forward(req, res)`·`include(req, res)`를 고르는 두 예시를 적었다. `forward`는 앞서 쓴 미커밋 버퍼를 버리고 최종 대상의 결과를 쓰며, `include`는 여러 서블릿의 본문을 합친다는 구별을 보인다. 다만 원문 코드의 `getRequestDispacher`는 오타라 컴파일되지 않고, 「앞으로 담기는 값도 무시한다」는 설명은 같은 `res` 객체와 대상의 출력을 혼동한다
 - [[2024-08-30-Day67]] — 하루 뒤. `forward` 가 처음 쓰이고(오류 화면), JSP 쪽 표기 `<jsp:include page="..."/>` 가 같은 장치라는 것이 드러난다. 서블릿이 데이터를 `setAttribute` 로 담고 JSP 를 `include` 하는 형태가 회차 전체의 골격이 된다. 다만 `try` 가 `include` 까지 감싸고 있어 **JSP 렌더링 중에 난 예외는 `forward` 로 넘길 수 없다**(응답이 이미 나갔다)는 것은 다루지 않았다
 - [[2024-08-29-Day66]] — 「HeaderServlet 만들기」 절이 「중복된 코드 head 를 servlet 클래스로 만든다」로 시작하고 `req.getRequestDispatcher("/header").include(req, res)` 로 부른다. 그 서블릿이 `<!DOCTYPE html>` 부터 `</header>` 까지만 쓰고 로그인 여부에 따라 버튼을 갈라 그리는 것까지가 한 벌이다. 이어지는 「동적으로 HTML관리하기」에서 `form.html`·`index.html` 이 서블릿이 되면서 그 둘도 같은 한 줄로 머리말을 끼운다. 다만 `include` 로 불린 쪽이 응답 헤더를 바꿀 수 없다는 것, `forward` 와의 차이, `setContentType` 이 `include` 앞이어야 하는 이유는 다루지 않았다

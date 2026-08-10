@@ -9,6 +9,7 @@ aliases:
   - UTF-8
   - 문자셋
 up:
+  - 2024-09-04-Day69
   - 2024-05-29-Day04
   - 2024-05-31-Day06
   - 2024-06-03-Day07
@@ -253,6 +254,7 @@ ServletResponse.setContentType("MIME타입;문자집합")
 
 ## 출처
 
+- [[2024-09-04-Day69]] — 이레 뒤. POST로 온 한글을 `req.setCharacterEncoding("UTF-8")`으로 읽는 코드와 multipart 문자열 Part의 UTF-8 처리를 보태며, **파라미터를 꺼내기 전에 설정해야 한다는 순서**를 실제 요청 쪽에 붙였다. 다만 "POST 요청은 ISO-8859-1"은 요청의 문자셋이 아니라 옛 컨테이너 기본값을 보편 규칙처럼 쓴 오류다. 응답의 `Content-Type`과 요청 본문의 문자셋은 다른 축이며, 현재 HTML 폼의 기본 인코딩도 그 문장 하나로 정해지지 않는다 → [[request-parameter]] · [[multipart-form-data]]
 - [[2024-05-29-Day04]] — `javac` 기본값 UTF-8 과 Windows 기본값 MS949 가 어긋나 문자 집합 오류가 난다는 것, `-encoding` 옵션을 배웠다
 - [[2024-05-31-Day06]] — `javadoc` 이 `-encoding`(읽을 때)과 `-charset`(쓸 때)을 따로 받는다는 것을 배웠다
 - [[2024-06-03-Day07]] — ASCII 부터 MS949 까지 방식이 덧붙어 온 과정과 각각의 한계, 완성형과 조합형의 차이를 배웠다

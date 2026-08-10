@@ -11,6 +11,7 @@ aliases:
 up:
   - 2024-08-27-Day64
   - 2024-08-28-Day65
+  - 2024-09-06-Day71
 tags:
   - web
   - java
@@ -34,6 +35,17 @@ tags:
 | 누가 만드나 | **컨테이너** — 내가 `new` 하지 않는다 | **컨테이너** |
 
 **둘 다 인터페이스이고 내가 만들지 않는다는 것이 이 개념의 성격을 정한다** — 「받았으니 내 것」이 성립하지 않고(→ 아래 「경계와 오해」), 시험 코드에서 이 자리를 채우는 것이 따로 문제가 된다 → [[interface]]
+
+### 요청 속성은 서버 안에서만 같은 요청을 따라간다
+
+`ServletRequest`에는 클라이언트가 보낸 파라미터 말고, 서버 컴포넌트가 넣는 속성도 있다.
+
+```java
+request.setAttribute("key", value);
+Object value = request.getAttribute("key");
+```
+
+이 값은 요청 하나에 속하고, `forward`·`include`가 같은 `request` 객체를 넘길 때만 함께 간다. Day71 의 설명처럼 다른 서블릿과 JSP가 꺼낼 수 있는 이유는 **새 요청을 만들지 않기 때문**이다 → [[request-dispatcher]].
 
 ### `ServletResponse` 는 두 단계로 쓴다
 
@@ -124,6 +136,7 @@ HttpSession session = httpReq.getSession();
 - **`getWriter()` 와 `getOutputStream()` 은 한 응답에서 둘 중 하나만** — 문자로 쓰는 통로와 바이트로 쓰는 통로를 같은 응답에 겹쳐 열면 `IllegalStateException` 이다. HTML 은 앞쪽, 이미지·파일 내려주기는 뒤쪽이다. 두 개를 다 쓰려 하는 코드는 대개 **한 서블릿이 두 가지 응답을 만들려는 것**이고 자리가 잘못 잡힌 신호다 → [[io-stream]] · [[character-stream]]
 - **헤더는 본문보다 먼저 나간다 — 그래서 「먼저 정하고 쓴다」가 규칙이다** — `setContentType`·상태 코드·리다이렉트는 **첫 출력 전에** 해야 하고, 응답이 커밋된 뒤에는 무시된다. Day64 의 코드는 순서가 맞는데 **왜 그 순서인지가 적혀 있지 않아서**, 줄을 옮기면 깨진다는 것을 아무도 모른다. [[tomcat]] 노트의 「`setPort` 와 `getConnector` 의 순서가 뜻을 갖는다」와 **같은 종류의 함정이고 이번에는 요청마다 걸린다** → [[character-encoding]] · [[servlet-filter]]
 - **요청 인코딩과 응답 인코딩은 다른 축이다 — 이 회차는 응답만 정했다** — `setContentType(...charset=UTF-8)` 은 **나가는 것**을 정하고, 브라우저가 보낸 파라미터를 한글로 읽으려면 `request.setCharacterEncoding("UTF-8")` 을 **파라미터를 처음 읽기 전에** 불러야 한다. 「인코딩을 UTF-8 로 설정했다」가 한쪽만 한 것이 되는 자리이고, 요청 쪽은 「읽기 전에」라는 시점 제약이 있어 **서블릿마다 첫 줄에 넣게 되는 것**이 곧 필터가 있는 이유다 → [[character-encoding]] · [[servlet-filter]]
+- **요청 속성 ≠ 요청 파라미터 — 둘 다 `request`에 있고 이름이 문자열이라 섞인다** — 파라미터는 클라이언트가 보낸 문자열을 `getParameter`로 **읽는** 것이고, 속성은 서버가 객체를 `setAttribute`로 **넣어** 다음 컴포넌트에 건네는 것이다. `forward`에서 남는 것은 같은 요청 객체에 든 속성이지, 브라우저가 새로 보낸 값이 아니다 → [[request-parameter]] · [[request-dispatcher]]
 - **요청·응답 객체를 필드에 보관하면 그 요청이 끝난 뒤에 무엇을 만지는지 보장되지 않는다** — 컨테이너는 이 객체를 **재사용하거나 되돌려 놓을 수 있다.** 서블릿 인스턴스는 하나이므로 필드에 담는 순간 다음 요청과 섞이고, 응답을 다 보낸 뒤에 붙들고 있으면 이미 남의 것이 되어 있을 수 있다. 「객체를 받았으니 내 것」이 성립하지 않는 자리다 → [[servlet-lifecycle]] · [[thread]] · [[object-reference]]
 - **HTML 을 문자열로 만드는 것이 이 코드의 형태이고 그것이 다음 기술이 나오는 이유다** — `out.println("<html>")` 처럼 태그를 문자열로 적으므로 **컴파일러가 태그 짝을 검사하지 않고**, 화면 구조를 바꾸는 일이 자바 코드를 바꾸는 일이 된다. 게다가 `out.printf("<td>%s</td>", user.getName())` 은 **값을 그대로 태그 사이에 끼워 넣는다** — 이름에 `<` 가 들어 있으면 표가 깨지고, 그 자리에 스크립트를 넣을 수도 있다. [[sql-injection]] 이 「데이터를 문법으로 읽는 자리」에서 생겼던 것과 **같은 형태의 문제가 출력 쪽에서** 반복되고, 답도 같다 — 값과 문법을 섞지 않는다 → [[format-string]] · [[static-and-dynamic-content]]
 - **`res.setContentType(...)` 의 인수가 문자열이라 오타가 컴파일에서 안 걸린다** — `"text/html;charset=UTF-8"` 에서 `charset` 을 `charest` 로 적어도 컴파일된다. [[character-encoding]] 노트의 「인코딩을 문자열로 넘기면 오타가 컴파일에서 안 걸린다」가 이 층에서 다시 나타나고, 여기서는 상수를 넘길 타입조차 없다 → [[literal]]
@@ -148,5 +161,6 @@ HttpSession session = httpReq.getSession();
 
 ## 출처
 
+- [[2024-09-06-Day71]] — 열흘 뒤. 「Web 보관소」가 `ServletRequest`를 요청마다 새로 생성되는 저장소로 두고 `request.setAttribute("key", "value")`·`getAttribute("key")` 예와 `forward`·`include` 뒤에도 꺼낼 수 있다는 점을 적었다. 다만 세 `String value = ...` 줄을 한 코드 블록에 그대로 두면 같은 지역 변수 선언이 겹치고 각 줄 끝 세미콜론도 없어 컴파일되지 않는다. 세 저장소의 **사용법 비교**로 읽어야 하며, 실제로는 보관소별로 한 줄씩 따로 써야 한다
 - [[2024-08-28-Day65]] — 하루 뒤. Day64 가 「`req` 가 코드에서 한 번도 쓰이지 않는다」로 남긴 자리가 채워지고, **그 순간 상위 타입의 한계가 드러난다.** 로그인 서블릿이 「HTTP 프로토콜 관련 기능을 사용하려면 파라미터로 받은 `ServletRequest` 객체를 원래 타입으로 형변환 해야 한다」는 주석과 함께 `(HttpServletRequest) req` 를 쓰고, 응답 쪽도 `((HttpServletResponse) res).setHeader("Refresh", ...)` 로 같은 캐스팅을 두 자리에서 한다. 필기의 「즉 req 레퍼런스는 실제 `HttpServletRequest` 객체를 가리키고 있다」가 그 캐스팅이 안전한 이유를 정확히 적은 문장이다. 다만 그 캐스팅이 반복된다는 것 자체가 `HttpServlet` 을 쓸 이유라는 연결은 이 회차에 없다
 - [[2024-08-27-Day64]] — 「서블릿 구현체의 메서드」 절의 `service` 항목이 두 타입을 정의한다 — 「`ServletRequest req`: 클라이언트로부터 전달된 요청 데이터를 담고 있는 객체. 요청 파라미터, 헤더 정보 등을 추출할 수 있다」·「`ServletResponse res`: 서버에서 클라이언트로 보낼 응답 데이터를 담는 객체. 응답의 콘텐츠 타입, 출력 스트림 등을 설정할 수 있다」. 그리고 「문자열 출력시 글자 깨짐」 절이 `ServletResponse.setContentType("MIME타입;문자집합")` 골격을 남기고, `UserListServlet` 의 `service` 가 `setContentType("text/html;charset=UTF-8")` → `getWriter()` → `out.println`/`out.printf` 로 HTML 한 장을 만든다. 다만 **`req` 는 코드에서 한 번도 쓰이지 않고**, 「헤더 정보를 추출할 수 있다」는 실제로 `HttpServletRequest` 의 능력이라 이 타입에는 해당하지 않는다. `setContentType` 을 `getWriter()` 앞에 두어야 하는 이유, `getWriter()`/`getOutputStream()` 을 겹쳐 쓸 수 없다는 것, 요청 쪽 인코딩(`setCharacterEncoding`)은 따로 정해야 한다는 것, 이 객체를 필드에 보관하면 안 되는 이유, 값을 태그 사이에 그대로 끼워 넣는 것의 위험은 다루지 않았다
