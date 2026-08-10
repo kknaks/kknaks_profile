@@ -12,6 +12,7 @@ up:
   - 2024-08-16-Day57
   - 2024-08-20-Day59
   - 2024-08-22-Day61
+  - 2024-09-26-Day83
 tags:
   - 설계
   - database
@@ -170,10 +171,14 @@ boolean delete(int no) throws Exception;
 - [[interface]] · [[dependency-injection]] · [[dependency-inversion-principle]] · [[open-closed-principle]] — 「바꿔 끼운다」가 성립하는 조건
 - [[cohesion]] · [[coupling]] · [[encapsulation]] — 층을 나눈 값을 재는 축
 - [[command-pattern]] — 이 층을 부르는 위쪽
+- [[mybatis-spring]] — 인터페이스만으로 이 층을 얻는 방법
+- [[service-layer]] — 이 층을 엮어 트랜잭션을 긋는 위층
 - [[connection-lifetime-mismatch]] — 연결을 필드로 공유한 대가
 - [[dml]] — `boolean` 으로 접힌 행 수
 
 ## 출처
+
+- [[2024-09-26-Day83]] — 다섯 주 뒤. Day61 이 「클래스를 지우고 인터페이스만 남긴다」로 만든 상태가 **스프링에서 그대로 성립한다** — `sqlSessionTemplate.getMapper(UserDao.class)` 가 그 인터페이스로 빈을 만들고, 매퍼 XML 의 `namespace` 를 인터페이스의 풀 패키지 이름으로 맞추는 것이 둘을 잇는 열쇠다. 마지막에는 `@MapperScan("bitcamp.myapp.dao")` 한 줄이 DAO 등록을 통째로 대신한다 → [[mybatis-spring]]
 
 - [[2024-08-16-Day57]] — 실습 프로젝트의 `ProjectDao` 를 다섯 메서드(`insert`·`list`·`findBy`·`update`·`delete`)로 보이고, 같은 다섯 개의 `Statement` 판과 `PreparedStatement` 판을 나란히 놓았다. **반환형에 JDBC 의 낱말이 하나도 없고**(`List<Project>`·`Project`·`boolean`) 커서를 다 읽어 담아 돌려주는 형태가 이 층의 계약을 그대로 보인다. 다만 DAO 에 대한 설명은 「Dao의 Statement의 구조는 다음과 같다」 한 줄뿐이고 **그 클래스가 어느 층을 맡는지는 적히지 않았다.** §2.2 가 커밋 경계를 DAO 밖(등록 화면)에 둔 것도 이 회차의 것이며, 코드는 `stmt.set(?,values)`·`rs.get(컬럼명)` 처럼 실제로 없는 메서드를 쓴 스케치다
 - [[2024-08-20-Day59]] — 나흘 뒤. 「Dao 기능분리」 세 줄이 **이 층의 책임 경계를 처음 말로 적는다** — 「기존 Dao 소스는 java상에서 JDBC를 활용하여 쿼리문을 전송하고 결과를 리턴 받는다」(맡는 일)·「유지보수 측면에서 Java코드와 SQL쿼리가 혼재되어 불리하다」(안에 섞인 두 가지)·「Mybatis를 사용해서 JDBC API의 역할을 이전하고 소스에서는 자바코드만 작성한다」(떼어 낼 쪽). 그 말이 필요해진 계기가 **저장소 접근 방식을 바꾸려 한 것**이라, 이 회차에서 다섯 메서드의 시그니처는 그대로 두고 몸통만 `sqlSession.delete("UserDao.delete", no)` 로 줄어든다 — 계약이 남고 구현이 갈리는 것이 코드로 확인되는 자리다. 다만 인터페이스와 구현을 나누지 않아 「이전」이 파일을 고쳐 쓰는 형태이고, DAO 위의 서비스 층·트랜잭션 경계의 소속은 이 회차에도 다루지 않는다

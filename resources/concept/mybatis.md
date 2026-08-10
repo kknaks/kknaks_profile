@@ -15,6 +15,7 @@ up:
   - 2024-08-21-Day60
   - 2024-08-22-Day61
   - 2024-08-23-Day62
+  - 2024-09-26-Day83
 tags:
   - java
   - database
@@ -232,6 +233,7 @@ sqlSession.delete("UserDao.delete", no);
 - [[sql-injection]] — `${}` 를 쓰면 되돌아가는 위험
 - [[transaction]] — `openSession(false)` 가 여는 것
 - [[jdbc]] — 이 층 밑에 그대로 있는 API
+- [[mybatis-spring]] — 이 설정을 스프링 컨테이너로 옮기는 연동
 - [[result-set]] · [[dql]] · [[dml]] · [[crud]] — 다섯 메서드가 맡는 문장들
 - [[generated-keys]] — 설정 없이는 여전히 못 되받는 값
 - [[class-loading]] — `resultType` 문자열이 클래스가 되는 통로
@@ -242,6 +244,8 @@ sqlSession.delete("UserDao.delete", no);
 - [[classpath]] · [[build]] — 설정과 매퍼 파일이 읽히는 조건
 
 ## 출처
+
+- [[2024-09-26-Day83]] — 다섯 주 뒤. **`mybatis-config.xml` 이 사라지고 `AppConfig` 의 `@Bean` 메서드가 그 자리를 받는다.** `SqlSessionFactoryBean` 의 `setDataSource`·`setTypeAliasesPackage`·`setMapperLocations` 세 줄이 XML 의 `<environment>`·`<typeAliases>`·`<mappers>` 와 그대로 대응하고, 매퍼의 `namespace` 를 **DAO 인터페이스의 풀 패키지 이름**으로 바꿔 `getMapper(UserDao.class)` 가 그 둘을 잇게 한다. 직접 만든 `@Param` 을 MyBatis 것으로 교체하는 것까지가 한 벌이다 → [[mybatis-spring]]
 
 - [[2024-08-20-Day59]] — 「MyBatis」 절 전체가 이 개념이다. `mybatis-config.xml` 전문(`<properties>`·`<environments>`·`<transactionManager type="JDBC">`·`<dataSource type="POOLED">`·`<mappers>`)을 실어 설정 층을 세우고, `SqlSessionFactoryBuilder` → `SqlSessionFactory` → `openSession(false)` 사다리 세 줄로 세션을 얻고, `selectList`·`insert`·`selectOne`·`update`·`delete` 다섯 절에서 **자바 한 줄과 매퍼 XML 한 조각을 짝지어** 실었다. 「java에서는 XML에 태그를 넘기면서 sqlSession의 메서드를 호출한다」가 다섯 절에 반복되고, 「Dao 기능분리」 절이 「Mybatis를 사용해서 JDBC API의 역할을 이전하고 소스에서는 자바코드만 작성한다」로 이 층의 목적을 적었다. `user_id as no` 로 컬럼 라벨을 프로퍼티 이름에 맞추는 것, `pwd=sha1(#{password})` 로 컬럼명과 프로퍼티명이 갈리는 것, 파라미터가 하나면 `#{ok}` 처럼 이름을 아무렇게나 써도 되는 것, `selectOne` 의 결과가 반드시 하나여야 한다는 것이 이 회차에서 실제로 확인한 규칙들이다. 다만 **`#{}` 를 「getter 를 불러 sql구문을 완성한다」로 설명해 `${}` 의 동작으로 적었고**(실제로는 `?` + `PreparedStatement`), `openSession(false)` 로 autocommit 을 껐는데 **`commit()` 이 어디에도 없어 변경이 저장되지 않으며**, 문장 id 가 `slq2`·`sql3.findBy` 두 곳에서 어긋나고 네임스페이스가 `aaa`·`sql3`·`UserDao` 로 갈리며, `parameterType="user"` 는 등록되지 않은 별칭이고, `<mapper namespace="…">` 루트 태그·`useGeneratedKeys`·`<resultMap>`·`${}` 는 나오지 않는다. 「SqlSession 객체 생성」 절 코드 위에 `ㅌ` 한 글자가 남아 있다
 - [[2024-08-21-Day60]] — 하루 뒤. **Day59 가 열어 둔 구멍 셋을 각각 메우는 회차**다. 「resultMap」 절이 컬럼과 프로퍼티의 대응을 문장 밖으로 빼내고 `<association javaType>`·`<collection ofType>` 으로 조인 결과를 객체 안의 객체·목록으로 접는 형태를 보이며(→ [[result-map]]), 「forEach 사용하기」 절이 `<foreach collection item separator>` 로 값의 개수가 정해지지 않은 문장을 만드는 법을 보이고(→ [[dynamic-sql]]), 「typeAliases」 절이 `<typeAlias type alias>`·`<package name>` 으로 **전날 `parameterType="user"` 가 실패한 이유**를 닫는다(→ [[type-alias]]). 그래서 이 회차를 지나면 이 프레임워크의 네 층 중 설정과 문장 두 층이 채워지고, **문자열 이름들이 걸리는 시점이 갈린다는 것**(별칭·`<resultMap>` id 는 시작할 때, 문장 id·프로퍼티 이름은 부를 때)도 여기서 보인다. 다만 세 절 모두 조각만 실려 있어 `<select resultMap="…">` 로 매핑을 문장에 붙이는 줄·`insert into` 의 컬럼 목록·감싸는 `<typeAliases>` 태그가 전부 빠져 있고, `<foreach>` 가 만드는 문장을 「vaule(1,11,12...)와 같이」로 잘못 읽었다. 같은 노트 후반의 애노테이션 절들이 이 설정을 XML 없이 적는 다른 길(`@Alias`·매퍼 인터페이스)의 문법인데 두 주제가 이어지지 않는다 → [[annotation]] · [[reflective-annotation-access]]
