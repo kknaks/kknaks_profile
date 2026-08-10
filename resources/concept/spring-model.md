@@ -9,6 +9,7 @@ aliases:
   - SessionStatus
 up:
   - 2024-09-25-Day82
+  - 2024-10-16-Day94
 tags:
   - spring
   - web
@@ -104,7 +105,10 @@ public String add(@ModelAttribute Project project, SessionStatus sessionStatus) 
 - [[expression-language]] — 뷰에서 꺼내는 표기법
 - [[http-session]] — 요청을 넘어 값을 들고 갈 때
 - [[mvc-pattern]] — 컨트롤러와 뷰를 잇는 자리
+- [[handler-method-argument]] — 모델이 아규먼트로 들어오는 규칙
+- [[response-body]] — 모델 대신 본문을 돌려주는 쪽
 
 ## 출처
 
+- [[2024-10-16-Day94]] — 삼 주 뒤. 같은 값을 담는 방법이 **넷으로 늘어난다** — `ServletRequest.setAttribute()` · `Map` · `Model` · `ModelAndView`. 그중 `Map` 에 대해 「맵 객체에 값을 담아 놓으면 프론트 컨트롤러가 JSP 를 실행하기 전에 **`ServletRequest` 로 복사한다**」고 적어, **결국 전부 요청 보관소로 간다**는 것을 짚었다 — Day82 가 세 방법만 보이고 넘어간 자리를 채운다 → [[attribute-scope]]
 - [[2024-09-25-Day82]] — 「PageController 클래스 변경」 절이 **같은 메서드를 `Map` · `Model` · `ModelAndView` 세 가지로 다시 쓴 코드**를 나란히 실었다 — 이 대비가 이 개념의 몸통이다. 이어서 「Session 대체」가 form2 → form3 → add 흐름을 **`HttpSession` 을 직접 쓰는 버전**과 **`ModelAndView` + `@ModelAttribute` + `SessionStatus.setComplete()` 버전**으로 두 번 보여, 컨트롤러에서 서블릿 API 를 걷어내는 과정을 코드로 남겼다. `setComplete()` 에 붙은 주석이 `@SessionAttributes` 를 언급하지만 **그 애노테이션이 붙은 클래스 선언은 노트에 없어**, 이 코드만 보면 값이 어디에 보관되는지가 설명되지 않는다. 코드에 `model.setAttribute`(실제로는 `addAttribute`)·`mb.setViewName` 오타가 있다

@@ -9,6 +9,7 @@ aliases:
   - 프로퍼티 에디터
 up:
   - 2024-10-04-Day88
+  - 2024-10-16-Day94
 tags:
   - spring
   - 설정
@@ -89,7 +90,9 @@ public class CustomDateEditor extends PropertyEditorSupport {
 - [[externalized-configuration]] — 문자열로 들어오는 값의 출처
 - [[type-casting]] · [[number-parsing]] — 같은 문제의 자바 쪽 이름
 - [[date-time]] — 기본 변환기가 없어 문제가 드러난 타입
+- [[handler-method-argument]] — 웹 요청 쪽에서 이 변환이 필요한 자리
 
 ## 출처
 
+- [[2024-10-16-Day94]] — 열이틀 뒤. **같은 장치가 웹 계층에서 다시 필요해진다.** 요청 파라미터도 결국 문자열이라, `Date` 나 값 객체를 아규먼트로 받으려면 변환기가 있어야 한다. 등록 방법이 IoC 쪽과 다르다 — `@InitBinder` 를 붙인 메서드에서 `WebDataBinder.registerCustomEditor(타입, 에디터)` 를 부르고, **핸들러를 부르기 전에 매번 실행된다.** 컨트롤러마다 쓰는 대신 `@ControllerAdvice` 클래스로 빼면 전역이 된다. `CarPropertyEditor` 가 콤마로 구분된 문자열(`"소나타,5,true,2024-10-16"`)을 객체로 만드는 예가 이 장치의 쓸모를 잘 보인다
 - [[2024-10-04-Day88]] — 「property 설정」 절이 **「Spring IoC 는 property Editor 가 내장되어 있어 String 과 Primitive Type 을 자동 형 변환한다 / Editor 에 등록되어 있지 않으면 CustomEditor 에 등록해야 한다」**로 이 개념의 경계를 한 줄에 담았다. XML 예시가 String·int·boolean 은 되고 **`Date` 는 주석 처리해 두어** 안 된다는 것을 보이고, 이어서 두 가지 해법을 순서대로 제시한다 — `factory-method` 로 객체를 만들어 넣는 방법과 `PropertyEditorSupport` 를 상속한 `CustomDateEditor` 를 `CustomEditorConfigurer` 에 등록하는 방법. 등록 XML 의 주석이 **key 는 「어떤 타입으로 바꿀 것인지」, value 는 「변환기 클래스 이름」**이라고 정확히 적혀 있다. 다만 두 방법 중 어느 쪽이 언제 맞는지, 에디터가 타입당 하나라는 제약은 다루지 않았다

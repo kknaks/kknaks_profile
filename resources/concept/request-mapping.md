@@ -10,6 +10,7 @@ aliases:
   - 핸들러 매핑
 up:
   - 2024-09-25-Day82
+  - 2024-10-16-Day94
 tags:
   - spring
   - web
@@ -84,7 +85,11 @@ public class ProjectController {
 - [[view-resolver]] — 반환한 이름이 화면이 되는 과정
 - [[http-method]] — GET·POST 를 가르는 축
 - [[front-controller]] — 이 표식이 대신하는 분배 코드
+- [[handler-method-argument]] — 고른 메서드의 매개변수를 채우는 규칙
+- [[response-body]] — 그 메서드의 리턴값을 해석하는 규칙
+- [[http-message]] — `produces`·`consumes` 가 보는 헤더
 
 ## 출처
 
+- [[2024-10-16-Day94]] — 삼 주 뒤. **URL 만으로 고르는 것이 아니라는 것이 드러난다.** 같은 URL 에 여러 핸들러를 두고 조건으로 가르는 네 가지가 나온다 — `params`(쿼리스트링에 그 이름이 있는가) · `headers`(그 헤더가 있는가) · `produces`(클라이언트의 `Accept` 와 맞는가) · `consumes`(요청의 `Content-Type` 이 맞는가). 각각을 컨트롤러 하나에 핸들러 넷씩 두고 실험한 코드가 실려 있고, **조건이 겹치면 호출이 모호해져 에러가 난다**는 것(`params="name"` 과 `params="age"` 만 있는데 둘 다 오는 경우)과 그 해법(`params={"age","name"}` 을 하나 더 두기)까지 적었다. 「URL 당 한 개의 핸들러에만 연결할 수 있다 / 한 개의 request handler 에 여러 개의 URL 을 매핑할 수 있다」는 방향 구별과 `@RequestMapping({"h5","h6","h7"})` 예시도 이 회차의 것이다 → [[handler-method-argument]] · [[response-body]]
 - [[2024-09-25-Day82]] — 「annotation 교체」 절이 `@RequestMapping("URL")` 과 `@GetMapping`·`@PostMapping` 을 한 줄씩 설명하고 **「요청 파라미터와 요청 파라미터 핸들러와 동일하게 사용」**이라 적어, 앞 회차에서 직접 만든 매핑 처리와 같은 것임을 짚었다. 「PageController 클래스 변경」 절의 코드들이 이 표식의 실제 쓰임을 보인다 — `@RequestParam("no") int projectNo` 로 시작해 `int no` 로 생략형이 되고, `@RequestMapping` 이 `@PostMapping` 으로 좁혀지며, 반환값으로 `"/project/view.jsp"` 와 `"redirect:list"` 두 종류가 나온다. 다만 매핑 충돌, 애노테이션 문자열이 검사되지 않는다는 것은 다루지 않았다

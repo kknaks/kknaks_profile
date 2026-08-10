@@ -9,6 +9,7 @@ aliases:
   - 브라우저 쿠키
 up:
   - 2024-09-06-Day71
+  - 2024-10-16-Day94
 tags:
   - web
   - http
@@ -93,6 +94,8 @@ HTTP 요청은 각각 독립적이라 브라우저가 **어제와 같은 클라�
 
 ## 함께 보는 개념
 
+- [[handler-method-argument]] — `@CookieValue` 로 받는 자리
+
 - [[http-session]] — 쿠키의 세션 ID로 서버 쪽 상태를 다시 찾는 자리
 - [[request-response]] — `Set-Cookie`와 `Cookie` 헤더가 오가는 요청·응답
 - [[url]] · [[character-encoding]] — 값의 ASCII 표현과 되돌릴 문자집합
@@ -101,4 +104,5 @@ HTTP 요청은 각각 독립적이라 브라우저가 **어제와 같은 클라�
 
 ## 출처
 
+- [[2024-10-16-Day94]] — 여섯 주 뒤. **꺼내는 코드가 선언이 된다** — 쿠키 배열을 순회하며 이름을 비교하던 것이 `@CookieValue(value="age", defaultValue="0") int age` 한 줄이고, `String → int` 변환까지 해 준다. 보내는 쪽은 여전히 `response.addCookie(new Cookie(...))` 이고, 같은 노트가 **「쿠키의 값이 ASCII 가 아니라면 URL 인코딩 해야만 데이터가 깨지지 않는다. 하지 않으면 `?` 문자로 변환된다」**를 인코딩한 것과 안 한 것을 나란히 보내는 코드로 확인한다 → [[handler-method-argument]] · [[character-encoding]]
 - [[2024-09-06-Day71]] — 「Cookie」 절이 응답 헤더로 보낸 값을 브라우저가 지정 URL의 요청 헤더에 다시 싣는 흐름, `response.addCookie`·`request.getCookies()` 코드, 세션 쿠키와 `setMaxAge`, 기본 경로와 `setPath`의 세 예를 적었다. 한글 쿠키 값에는 URL 인코딩을 쓰고 받는 쪽에서 직접 디코딩해야 한다는 주석도 있다. 다만 `new Cookie("name2", "홍길동")`을 이어서 보내는 코드는 현대 쿠키 값 제약을 깨고, 반복문은 모든 값을 무조건 디코딩하며, 마지막 `getSesssion()`은 오타라 호출할 수 없다. 쿠키 값의 신뢰성·`HttpOnly`·`Secure`·`SameSite`와 쿠키와 서버 세션의 구별도 다루지 않았다.
