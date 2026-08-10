@@ -12,6 +12,7 @@ aliases:
 up:
   - 2024-08-20-Day59
   - 2024-08-21-Day60
+  - 2025-01-02-Day03
 tags:
   - database
   - 프레임워크
@@ -84,6 +85,8 @@ tags:
 
 ## 함께 보는 개념
 
+- [[osiv]] — JPA 를 웹에서 쓸 때 따라오는 설정
+
 - [[mybatis]] — 이 갈래 중 SQL Mapper 쪽의 실물
 - [[result-map]] — SQL Mapper 가 그래프를 「읽어 만드는」 자리
 - [[dynamic-sql]] — 문장을 사람이 적는다는 것의 경계가 흐려지는 자리
@@ -103,5 +106,6 @@ tags:
 
 ## 출처
 
+- [[2025-01-02-Day03]] — 넉 달 뒤. **이 노트가 갈라 둔 두 갈래 중 OR Mapper 쪽으로 실제로 넘어간다** — MyBatis 가 아니라 JPA/Hibernate 를 쓰고, `@Entity`·`@MappedSuperclass`·`@GeneratedValue(strategy = IDENTITY)` 로 클래스가 테이블에 대응하며, `@CreatedDate`·`@LastModifiedDate` 와 Auditing 이 생성·수정 시각을 자동으로 채운다. **SQL 을 사람이 쓰지 않는다**는 그 갈림이 코드로 확인되는 자리이고, 동시에 그 대가도 처음 나온다 — 영속성 컨텍스트를 언제까지 열어 둘 것인가(OSIV), 그리고 `default_batch_fetch_size` 가 필요한 N+1 문제 → [[osiv]]
 - [[2024-08-20-Day59]] — MyBatis 를 배우기 직전 「Persistence Framework」 절에서 **SQL Mapper 와 OR Mapper 두 줄**로 이 갈래를 세웠다. 「개발자가 직접 쿼리문을 만들고 프레임워크에서 결과를 리턴 받는다」/「쿼리문을 자동으로 생성해서 결과를 리턴 받는다」가 이 개념의 축(SQL 을 누가 쓰는가)을 정확히 가른 두 문장이고, 그 뒤 절 전체가 앞쪽(MyBatis)의 실습이다. 다만 두 줄 중 뒤쪽에는 주체가 비어 있어 「대응 규칙을 어디에 적는가」라는 다음 질문으로 이어지지 않고, OR Mapper 의 구현체 이름·두 갈래를 섞어 쓰는 형태·MyBatis 가 스스로를 ORM 이라 부르지 않는다는 것은 나오지 않는다. 같은 회차 앞부분의 Reflection API 가 이 층의 구현 원리라는 연결도 적혀 있지 않다
 - [[2024-08-21-Day60]] — 하루 뒤. **SQL Mapper 쪽이 겉모습에서 OR Mapper 에 가까워지는 회차**이고, 그래서 이 노트의 갈림 기준이 시험받는다. 「resultMap」 절의 `<association>`·`<collection>` 이 조인 결과를 **객체 안의 객체·객체 안의 목록**으로 접어 그래프를 조립하고, 매핑 규칙이 문장에서 빠져 별도 선언이 되므로 ORM 의 매핑 파일과 모양이 닮는다 — 그런데 그 선언은 조회에만 쓰이고 변경 문장은 여전히 사람이 쓴다. 그래서 위 표의 「객체 그래프 저장」이라는 칸을 **「그래프를 읽어 만드는 것」과 「그래프의 변경을 문장으로 되돌리는 것」으로 쪼개야** 하고, 갈림은 뒤쪽에만 남는다. 「typeAliases」 절과 같은 노트 후반의 애노테이션 절들은 이 노트가 「대응 규칙을 어디에 적는가」로 남겨 둔 질문의 두 답(XML · 애노테이션)이 **한 회차 안에 나란히 놓인 자리**이기도 하다 → [[result-map]] · [[type-alias]] · [[annotation]]
