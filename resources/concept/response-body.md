@@ -9,6 +9,7 @@ aliases:
   - HttpHeaders
 up:
   - 2024-10-16-Day94
+  - 2025-01-03-Day04_1
 tags:
   - spring
   - web
@@ -69,7 +70,10 @@ return new ResponseEntity<>("<h1>abc가각간</h1>", headers, HttpStatus.OK);
 - [[request-response]] · [[http-message]] — 응답의 세 부분
 - [[character-encoding]] — charset 을 정하는 자리
 - [[json]] — 객체를 돌려줄 때 개입하는 변환
+- [[api-response-envelope]] — 돌려줄 것을 한 겹 감싸는 선택
+- [[dto]] — 돌려줄 모양을 정의하는 것
 
 ## 출처
 
+- [[2025-01-03-Day04_1]] — 두 달 뒤. **`@RestController` 가 나온다** — 이 노트가 「모든 메서드에 `@ResponseBody` 를 붙인 것과 같다」고 적어 둔 그 표식이고, REST 로 넘어가면서 기본이 된다. 그리고 돌려주는 것이 문자열이 아니라 **객체**여서 메시지 컨버터가 실제로 개입한다 — `RsData<List<ArticleDto>>` 가 JSON 으로 바뀌어 나가고, `@JsonIgnore` 로 **나가지 않을 것**을 고르는 자리도 함께 생긴다 → [[api-response-envelope]] · [[json]]
 - [[2024-10-16-Day94]] — 「요청핸들러의 리턴값」 절이 `@ResponseBody` 부터 `ResponseEntity` 까지 **일곱 개의 핸들러를 한 클래스에 나란히** 놓아 차이를 보인다. 그중 `handler3` 이 **`response.setContentType(...)` 을 불러 봐야 소용없다**는 것을 주석으로 확인한 자리가 특히 값지다 — 왜 `produces` 를 써야 하는지를 실패로 보였다. `HttpEntity` 는 「리턴 타입으로 콘텐트임을 알 수 있기 때문에 `@ResponseBody` 를 붙이지 않아도 된다」고 정확히 적었고, `HttpHeaders` 로 `Content-Type` 과 커스텀 헤더(`BIT-OK`)를 넣는 것, `HttpStatus.OK` 로 상태 코드를 정하는 것까지 이어진다. 이어지는 「view 컴포넌트(JSP) 쪽에 데이터 전달하기」 절은 같은 값을 `ServletRequest`·`Map`·`Model`·`ModelAndView` 네 방식으로 담아 보인다 → [[spring-model]]

@@ -9,6 +9,7 @@ aliases:
   - 리소스 중심 URL
 up:
   - 2025-01-03-Day04
+  - 2025-01-03-Day04_1
 tags:
   - web
   - api
@@ -68,7 +69,11 @@ tags:
 - [[template-engine]] — 서버가 화면을 그리던 반대편
 - [[request-mapping]] — 스프링에서 이 규칙을 적는 표식
 - [[html-form]] — 메서드가 둘뿐인 제약의 출처
+- [[dto]] — 주고받을 모양을 따로 정의하는 것
+- [[api-response-envelope]] — 응답 껍데기를 통일하는 선택
+- [[api-documentation]] — 계약을 문서로 뽑는 자리
 
 ## 출처
 
+- [[2025-01-03-Day04_1]] — 같은 날. **표로 배운 것을 그대로 만들어 본다** — `GET/POST /articles`, `GET/PUT/PATCH/DELETE /articles/1` 로 요청 체계를 먼저 적고 `@RestController` + `@RequestMapping("/api/v1/articles")` 로 구현한다. 경로에 **버전(`/api/v1`)** 이 붙는 것이 이 회차에서 처음 나오는데, 계약이 바뀔 때를 대비한 관례다. 다만 요청 체계 목록에서도 **PATCH 를 「전체」, PUT 을 「부분」**으로 적어 앞 노트의 뒤바뀜이 그대로 이어진다 → [[dto]] · [[api-response-envelope]]
 - [[2025-01-03-Day04]] — 「REST API」 절이 정의를 **한 줄로 압축**했다: 「행위를 HTTP 매서드로 구분」. 그리고 「SSR방식과 REST API의 차이」 표가 다섯 축(HTTP 메서드 · 행위를 적는 곳 · URL 구조 · 용도 · 목적)으로 둘을 대비하는데, 특히 **「별도의 폼 엔드포인트 없이 데이터만 처리」**와 **「행위중심의 구조 ↔ 리소스 중심의 구조」**가 이 방식이 바꾸는 것을 정확히 짚었다. 앞 회차들의 `/board/list`·`/board/add` 같은 주소가 왜 그런 모양이었는지, 그리고 왜 바뀌는지가 이 표 하나로 설명된다. 다만 메서드 설명에서 **PUT 과 PATCH 의 뜻이 서로 바뀌어** 적혀 있고, 상태 코드는 다루지 않는다

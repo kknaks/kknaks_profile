@@ -12,6 +12,7 @@ aliases:
   - WebDataBinder
 up:
   - 2024-10-16-Day94
+  - 2025-01-03-Day04_1
 tags:
   - spring
   - web
@@ -115,7 +116,9 @@ public void initBinder(WebDataBinder binder) {
 - [[spring-model]] — 뷰에 값을 넘기는 아규먼트
 - [[cookie]] · [[http-message]] — 헤더·쿠키를 받는 자리
 - [[ognl]] — 중첩 객체의 프로퍼티를 가리키는 표기
+- [[dto]] — `@RequestBody` 로 받는 그릇
 
 ## 출처
 
+- [[2025-01-03-Day04_1]] — 두 달 뒤. **REST 로 오면서 아규먼트 두 개가 더 쓰인다** — 경로의 일부를 받는 `@PathVariable("id")` 와 **본문 JSON 을 객체로 받는 `@RequestBody`** 다. 앞 회차의 `@RequestParam` 이 쿼리스트링·폼을 받았다면 이쪽은 **본문 전체를 객체 하나로** 매핑하는 것이라, 「이름이 같은 프로퍼티에 채운다」는 규칙이 JSON 필드로 옮겨 간다. 필기가 부딪힌 기본 생성자 문제도 그 과정에서 나온다 → [[dto]] · [[json]]
 - [[2024-10-16-Day94]] — 「요청핸들러의 아규먼트」 절이 **받을 수 있는 타입 목록**(`ServletRequest`·`HttpSession`·`Map`·`Model`·`PrintWriter`)부터 시작해 `ServletContext` 만 예외라는 것까지 코드 주석으로 남겼다. `@RequestParam` 은 `value`/`name`/생략 세 표기와 **`required`·`defaultValue` 의 조합을 네 줄로 나란히** 보이고, 「애노테이션을 붙이면 필수 항목, 붙이지 않으면 선택 항목」이라는 대비를 주석에 적었다 — 이 회차에서 가장 실전적인 관찰이다. 도메인 객체 바인딩에서는 **`boolean` 변환 규칙(`1`→true, `0`→false, 그 외 숫자는 예외)**까지 적혀 있고, `@InitBinder` + `WebDataBinder.registerCustomEditor` 로 `Date` 와 `Car`(콤마 구분 문자열)를 변환하는 에디터 둘을 실제로 구현했다. `@ControllerAdvice` 로 그것을 전역화하는 절도 이어진다. `@RequestHeader` 로 `User-Agent` 를 받아 브라우저를 판별하는 예제, `@CookieValue` 로 쿠키를 받으며 **URL 인코딩이 필요한 이유**를 주석에 적은 예제가 함께 있다. 다만 `handler2` 의 `originBytes` 는 선언되지 않은 변수다
