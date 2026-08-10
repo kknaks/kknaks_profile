@@ -11,6 +11,7 @@ aliases:
 up:
   - 2024-09-26-Day83
   - 2024-09-30-Day85
+  - 2025-01-07-Day06
 tags:
   - spring
   - database
@@ -98,8 +99,10 @@ try {
 - [[annotation]] — 표식이 실행 시점에 읽히는 원리
 - [[spring-framework]] — 프록시를 만들어 주는 것
 - [[transaction-propagation]] — 이 표식의 범위를 정하는 속성
+- [[database-lock]] — 이 표식의 수명과 함께 가는 것
 
 ## 출처
 
+- [[2025-01-07-Day06]] — 석 달 뒤. **표식이 있고 없고가 로그로 확인된다.** 스프링 데이터의 기본 메서드(`findById`)는 `set autocommit=0 … COMMIT` 이 찍히는데, **리포지토리에 직접 만든 커스텀 메서드는 그 감싸는 줄이 없다** — 필기가 「Repository 에 커스텀한 메서드는 트랜젝션이 없다」로 적고 로그로 보인 자리다. 서비스에 `@Transactional` 을 붙이면 다시 한 단위로 묶이는 것까지 로그가 증명한다. 「자기 호출에서는 안 걸린다」 같은 조용한 실패를 **로그로 확인하는 법**이 여기서 생긴다 → [[database-lock]]
 - [[2024-09-30-Day85]] — 나흘 뒤. 표식을 붙이는 것만으로 끝나지 않는다는 것이 드러난다 — **서비스가 서비스를 부르면 트랜잭션이 어떻게 되는가**라는 질문이 「Transjaction Propagation」 절로 나오고, 여섯 정책의 표가 그 답이다. 이 절이 나온 계기가 「기존 사진제거의 문제점」이라는 것도 중요하다: DB 수정과 스토리지 삭제가 따로 놀아 엉뚱한 파일이 지워지는 문제인데, **필기의 해법(같은 트랜잭션으로 묶기)은 DB 쪽만 묶는다** → [[transaction-propagation]] · [[object-storage]]
 - [[2024-09-26-Day83]] — 「transjection 설정」 절이 `DataSourceTransactionManager` 를 `PlatformTransactionManager` 타입 빈으로 등록하고, 「transjection 적용」 절이 `@Transactional` 을 서비스 메서드에 붙인 예와 함께 **「`AppConfig` 에 `@EnableTransactionManagement` 를 붙여서 Proxy 클래스를 자동 생성하게 한다」**를 적었다 — **프록시가 만들어진다는 것을 필기가 명시한 것**이 이 개념에서 가장 중요한 문장이다. 앞 회차에서 트랜잭션 프록시를 손으로 만들어 봤기 때문에(→ [[dynamic-proxy]]) 「자동 생성」이 무엇을 대신하는지 알고 읽게 된다. 다만 자기 호출에서 안 걸린다는 것, 검사 예외에서는 기본이 커밋이라는 것은 다루지 않았고, 예시 메서드가 `throws Exception` 이라 그 함정 위에 서 있다

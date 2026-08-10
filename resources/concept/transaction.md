@@ -25,6 +25,7 @@ up:
   - 2024-08-23-Day62
   - 2024-08-29-Day66
   - 2024-08-30-Day67
+  - 2025-01-07-Day06
 ---
 
 # 트랜잭션과 autocommit (commit · rollback)
@@ -313,6 +314,7 @@ try {
 - [[variable-scope]] — 경계를 여는 코드와 되돌리는 코드가 같은 변수를 봐야 하는 제약
 - [[declarative-transaction]] — 이 경계를 표식으로 옮기는 쪽
 - [[service-layer]] — 경계가 놓이는 층
+- [[database-lock]] — 이 경계 안에서 잡히고 풀리는 것
 - [[prepared-statement]] — 같은 회차에서 함께 고쳐지지만 다른 축인 것
 - [[connection-lifetime-mismatch]] · [[connection-pool-sizing-formula]] — 연결에 남은 설정이 남에게 넘어가는 자리
 - [[db-normalization]] · [[foreign-key]] — 화면 하나가 문장 여럿이 되는 이유
@@ -325,6 +327,7 @@ try {
 
 ## 출처
 
+- [[2025-01-07-Day06]] — **경계를 눈으로 본다.** MariaDB 의 `general_log` 를 켜고 `tail -f` 로 들여다보면 JPA 가 보내는 것이 그대로 찍힌다 — `set autocommit=0` → 조회 → `COMMIT` → `set autocommit=1`. **트랜잭션이 열리고 닫히는 자리가 로그의 네 줄로 나타나는 것**이 이 회차의 가장 값진 확인이고, 「추측하지 말고 실제로 나가는 쿼리를 보라」는 방법이 함께 남는다. 그리고 락이 **이 경계와 같은 수명**을 갖는다는 것도 여기서 드러난다 → [[database-lock]]
 - [[2024-09-26-Day83]] — 여섯 주 뒤. **경계를 긋는 코드가 사라지는 회차**다. `con.setAutoCommit(false)` → `commit()`/`rollback()` 으로 손수 쓰던 뼈대가 서비스 메서드 위의 `@Transactional` 한 줄이 되고, 대신 `DataSourceTransactionManager` 를 빈으로 등록하고 `@EnableTransactionManagement` 로 **프록시를 자동 생성**하게 한다. 경계가 어디인가라는 질문의 답이 「이 메서드」로 코드에 적히는 자리이고, Day75 가 「로직과 트랜잭션 제어를 서비스로 분리한다」고 적었던 그 층에 정확히 붙는다. 다만 스프링의 기본 롤백 조건이 `RuntimeException` 이라는 것은 다루지 않아, 예시의 `throws Exception` 은 롤백되지 않는 모양이다 → [[declarative-transaction]]
 - [[2024-08-07-Day52]] — 「mysql은 autocommit의 기본 값이 true이다」에서 시작해 `set autocommit = false` 로 바꾸고 `commit`/`rollback` 을 확인했다. 창을 두 개 열어 **커밋 전 변경은 상대에게 보이지 않고, 상대가 커밋한 변경도 내 쪽에 보이지 않는다**는 것을 화면으로 남긴 회차다. 다만 「임시저장소」·「다른 서버」·「커밋이후에 조회가 불가능」이라는 설명은 각각 실제 구조(undo log)·세션 개념·격리 수준(REPEATABLE READ)과 어긋나고, `true` 쪽의 동작은 「차이」라는 소제목만 두고 채우지 않았다
 - [[2024-08-13-Day55]] — **이 개념이 필요한 코드가 처음 나오는데, 이 개념이 쓰이지 않은 회차**다. 팀원 관리를 중간 테이블로 옮기면서 등록이 `insert` + `insertMembers`, 변경이 `update` + `deleteMembers` + `insertMembers`, 삭제가 `deleteMembers` + `delete` 로 갈렸고, `insertMembers` 자체도 팀원마다 `executeUpdate` 를 부르는 루프다. **어디에도 `setAutoCommit(false)`·`commit`·`rollback` 이 없어** 문장마다 즉시 확정되며, 특히 변경 화면은 「지운 뒤 다시 넣기」라 중간 상태가 「팀원 없음」이다. 필기는 트랜잭션을 언급하지 않는다 — Day52 에서 콘솔로 배운 것이 코드로 옮겨 오지 않은 자리로 읽는다. `try-with-resources` 로 자원은 닫지만 실패한 변경을 되돌리는 코드는 없다
