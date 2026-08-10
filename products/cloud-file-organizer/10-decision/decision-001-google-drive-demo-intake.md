@@ -25,7 +25,7 @@ links:
     - "https://developers.google.com/workspace/events/guides/events-drive"
     - "https://developers.google.com/workspace/events/guides/create-subscription"
 up:
-  - human-in-the-loop
+  - ai-proposes-human-approves
   - polling
 ---
 
@@ -46,7 +46,7 @@ up:
 
 이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
 
-- [[human-in-the-loop]] — **AI 는 제안만 하고 승인된 값만 제품 메타데이터가 된다** — 자동화의 상한을 처음부터 그은 것이 이 제품의 뼈대다
+- [[ai-proposes-human-approves]] — 「AI 는 생성/제안만, 승인된 값만 제품 메타데이터」가 그 판단의 이 제품 표현이다. 이 판단의 SoT 는 synthesis 노트이고, 개념 상세는 그 노트가 [[human-in-the-loop]] 로 위임한다
 - [[polling]] — `changes.watch` 로 알림을 받고 `changes.list` 로 **바뀐 것만** 조회한다. 전체를 다시 훑지 않는 증분 조회가 수집 비용을 정한다
 
 ## Options

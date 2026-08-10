@@ -27,7 +27,7 @@ links:
   releases: []
   related: []
 up:
-  - human-in-the-loop
+  - ai-proposes-human-approves
   - workflow-orchestration
   - ai-agent
   - data-pipeline
@@ -82,7 +82,7 @@ AX 관련 자료를 AI가 탐색·정리하되, 분류와 연결은 사용자가
 
 이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
 
-- [[human-in-the-loop]] — 이 제품의 뼈대다 — AI가 제안하고 **사람이 승인해야 다음 단계로 간다.** 2-게이트가 곧 두 개의 정지점이고, 「자동 승인 / 일시 정지」의 분기가 여기서는 `summarized` 여부와 destination 으로 나타난다
+- [[ai-proposes-human-approves]] — 이 제품의 2-게이트가 그 판단의 구현이다 — 자동 스테이지와 게이트 스테이지를 나눈 자리. 이 판단의 SoT 는 synthesis 노트이고, 개념 상세는 그 노트가 [[human-in-the-loop]] 로 위임한다
 - [[workflow-orchestration]] — `요약 → 분류 게이트 → 문서화 승인 게이트 → 영구 문서화` 가 단계 체인이다. **게이트에서 멈췄다 이어갈 수 있어야** 성립하므로 단계마다 상태가 밖에 남는다
 - [[ai-agent]] — 요약 AI·분류기 AI 를 2-stage 로 나눈 것. 각 단계가 판단만 하고 **쓰기는 승인 뒤에** 일어난다는 경계가 이 개념의 「툴이 경계를 넘는 지점」에 해당한다
 - [[data-pipeline]] — 수집→요약→분류→문서화가 상태(`received`·`summarizing`·`summarized`)를 따라 흐르고 실패 시 재시도로 돌아온다
