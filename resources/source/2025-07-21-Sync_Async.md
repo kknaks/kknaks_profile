@@ -1,8 +1,13 @@
 ---
+type: reference
+id: 2025-07-21-Sync_Async
 title: '[네트워크] 동기처리와 비동기처리'
+summary: 동기·비동기 처리를 파이썬 코드로 나란히 비교하고, FastAPI 의 Controller·Service·Repository 각 층에서 asyncio.gather 와 Semaphore 로 병렬 호출을 조합하는 방법까지 정리한 필기
+author: 이건학
 date: 2025.07.21
 tags:
-- CS지식, 네트워크
+  - CS지식
+  - 네트워크
 stack: []
 links: []
 ---

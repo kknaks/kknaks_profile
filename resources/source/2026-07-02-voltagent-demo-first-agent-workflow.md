@@ -46,24 +46,12 @@ VoltAgent 공동창업자 Nati가 직접 진행한 채널 공식 데모 영상(2
 
 ## 주요 개념
 
-### VoltAgent
+- [[ai-agent]] — 툴(Tool)이 에이전트가 텍스트 생성 외의 실제 액션(API 호출, DB 조회 등)을 수행하는 단위라는 것을, 날씨 툴 데모로 호출 흐름까지 보인다
+- [[workflow-orchestration]] — `createWorkflowChain` 으로 정의하는 순차 단계 실행 구조. 각 단계의 결과가 다음 단계로 전달되고, 타임라인 UI 에서 단계별로 들여다볼 수 있다
+- [[human-in-the-loop]] — 조건에 따라 자동 승인하거나 일시 정지(suspend)했다가 승인 후 재개(resume)하는 내장 메커니즘. 지출 승인 시나리오로 시연된다
+- [[monitoring]] — VoltOps 가 에이전트 상태·입출력·시스템 프롬프트·비용·트레이스를 시각화하는 부분. 서버 모니터링과 같은 구조가 LLM 층에 나타난다
 
-CLI 기반 AI 에이전트 프레임워크. 프로젝트 부트스트랩, 에이전트 등록, 워크플로우 연결, VoltOps 연동을 제공한다.
-### VoltOps
-
-VoltAgent와 연동되는 LLM 관측(observability) 플랫폼. 에이전트 상태, 입출력, 비용, 트레이스를 시각화한다.
-### Tool (에이전트 툴)
-
-에이전트가 텍스트 생성 외의 실제 액션(API 호출, DB 조회 등)을 수행하기 위해 등록하는 함수 단위.
-### Workflow Chain
-
-`createWorkflowChain`으로 정의하는 순차 단계 실행 구조. 각 단계의 결과가 다음 단계로 전달된다.
-### Human-in-the-loop
-
-특정 조건에서 워크플로우를 일시 정지하고 인간의 판단·승인을 기다린 뒤 재개하는 패턴. 영상에서는 지출 승인 시나리오로 시연된다.
-### Suspend / Resume
-
-워크플로우가 외부 입력을 기다릴 때 실행을 중단(suspend)하고, 승인 후 재개(resume)하는 VoltAgent 내장 메커니즘.
+**VoltAgent** 는 이 셋을 묶은 CLI 기반 프레임워크(프로젝트 부트스트랩·에이전트 등록·워크플로우 연결·VoltOps 연동)이고, **VoltOps** 는 그와 연동되는 관측 플랫폼이다.
 
 ## 근거와 사례
 
@@ -90,7 +78,9 @@ VoltAgent와 연동되는 LLM 관측(observability) 플랫폼. 에이전트 상�
 
 ## 내 지식과의 연결 후보
 
-- 확인된 연결 후보 없음
+- [[monitoring]] — VoltOps 의 입출력·비용 추적이 [[2025-07-21-Prometheus]] 의 메트릭 수집과 같은 자리에 있다. 대상만 서버에서 에이전트로 바뀐다
+- [[workflow-orchestration]] — 단계 체인의 순차 실행은 한 단계 안에서 겹쳐 부르는 것과 다른 축이다 → [[async-io]]
+- [[human-in-the-loop]] — 승인 대기 상태를 어디에 저장하는가는 [[distributed-session]] 과 같은 문제다
 
 ## 참고
 

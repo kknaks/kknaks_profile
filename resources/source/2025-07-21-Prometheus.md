@@ -1,8 +1,13 @@
 ---
+type: reference
+id: 2025-07-21-Prometheus
 title: '[모니터링] 프로메테우스 메트릭'
+summary: Prometheus 의 메트릭 타입 네 가지(Counter·Gauge·Histogram·Summary)와 인프라·애플리케이션에서 기본으로 보는 메트릭 목록, 그리고 그 메트릭을 성능·장애·용량·비즈니스 관점에서 쓰는 방향을 정리한 필기
+author: 이건학
 date: 2025.07.21
 tags:
-- CS지식, 메트릭
+  - CS지식
+  - 메트릭
 stack: [Prometheus]
 links: []
 ---
