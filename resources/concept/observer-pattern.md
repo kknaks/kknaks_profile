@@ -12,6 +12,7 @@ aliases:
 up:
   - 2024-07-26-Day44
   - 2024-08-06-Day51
+  - 2025-02-19-Day32
 tags:
   - 설계
   - 디자인패턴
@@ -172,6 +173,8 @@ public class CurrentConditionsDisplay implements Observer, DisplyElement {
 
 ## 함께 보는 개념
 
+- [[application-event]] — 프레임워크가 이 패턴을 기능으로 제공하는 자리
+
 - [[interface]] — 부르는 방향이 뒤집힌 약속이 나오는 자리
 - [[coupling]] — Subject 쪽만 풀린 결합을 세는 축
 - [[dependency-inversion-principle]] — 옵저버가 구체 Subject 를 아는 것이 걸리는 원칙
@@ -197,5 +200,6 @@ public class CurrentConditionsDisplay implements Observer, DisplyElement {
 
 ## 출처
 
+- [[2025-02-19-Day32]] — **이 패턴이 프레임워크 기능으로 나온다.** 스프링의 `ApplicationEventPublisher`(주제)와 `@EventListener`(관찰자)가 그것인데, 손으로 만들 때 필요했던 **등록 목록·통지 루프가 없다** — 컨테이너가 리스너를 모아 두고 부른다. 그래서 **발행하는 쪽은 구독자 목록조차 들고 있지 않고**, 관찰자를 더하는 것이 클래스 하나를 추가하는 일이 된다 → [[application-event]]
 - [[2024-07-26-Day44]] — 「한 객체의 상태가 바뀌면 그 객체에 의존하는 다른 객체에게 연락이 가고 자동으로 내용이 갱신되는 방식」·「일대다 의존성(one to many)을 기반으로」로 정의하고, `Subject`(등록·삭제·알림)·`Observer`(`update(Weather)`)·`DisplyElement`(`display()`) 세 인터페이스와 `WeatherData`·`CurrentConditionsDisplay` 구현체를 직접 만들었다. 상태 변경 한 줄(`setMeasurements`)이 `measurementsChanged` → `notifyObservers` → `update` → `display` 로 이어지는 사슬을 코드로 확인한 회차다. 다만 `WeatherData` 의 생성자가 받은 `weather` 를 버리고 `new Weather()` 를 넣는 버그가 있고(다음 줄의 `setMeasurements` 가 덮어써서 드러나지 않는다), 옵저버의 `weather` 필드는 첫 알림 전까지 `null` 이라 `display()` 를 먼저 부르면 `NullPointerException` 이다. `removeObserver` 는 만들어 놓고 부르는 곳이 없고, 옵저버가 `WeatherData` 를 구체 타입으로 들고 있어 **결합이 Subject 쪽에서만 풀렸다.** 인터페이스 이름의 오타(`DisplyElement`)와 필드 오타(`obsevers`), `%n` 없는 `printf` 도 그대로 남아 있다
 - [[2024-08-06-Day51]] — 이 패턴을 **DB 쪽에서 다시 만난다.** MySQL 의 DDL 대상 객체를 늘어놓으며 「트리거(trigger=listener)」를 「특정 조건에서 자동으로 호출되는 함수」·「특정 조건? SQL 실행 전/후 등」·「OOP 디자인 패턴에서 옵저버에 해당한다」 세 줄로 적었다. 이 대응을 스스로 적어 둔 것이 값이고, 트리거의 실제 문법(`create trigger`)이나 예제는 나오지 않아 **이름과 대응만 남은 상태**다
