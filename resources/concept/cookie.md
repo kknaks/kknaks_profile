@@ -10,6 +10,7 @@ aliases:
 up:
   - 2024-09-06-Day71
   - 2024-10-16-Day94
+  - 2025-01-10-Day09
 tags:
   - web
   - http
@@ -95,6 +96,7 @@ HTTP 요청은 각각 독립적이라 브라우저가 **어제와 같은 클라�
 ## 함께 보는 개념
 
 - [[handler-method-argument]] — `@CookieValue` 로 받는 자리
+- [[jwt]] — 쿠키에 실려 다니는 자격 증명
 
 - [[http-session]] — 쿠키의 세션 ID로 서버 쪽 상태를 다시 찾는 자리
 - [[request-response]] — `Set-Cookie`와 `Cookie` 헤더가 오가는 요청·응답
@@ -104,5 +106,6 @@ HTTP 요청은 각각 독립적이라 브라우저가 **어제와 같은 클라�
 
 ## 출처
 
+- [[2025-01-10-Day09]] — 넉 달 뒤. **쿠키가 세션 ID 가 아니라 토큰 자체를 나른다.** 그래서 보호 옵션이 실전 문제가 된다 — `setHttpOnly(true)`(자바스크립트가 못 읽게)·`setSecure(true)`(HTTPS 에서만)·`setMaxAge`. 앞 회차들이 쿠키를 「값 보관」으로만 썼다면 여기서는 **탈취되면 곧 신분 도용**이라 옵션 하나하나가 의미를 갖는다. 다만 필기의 코드가 옵션 없는 쿠키를 먼저 한 번 더 추가해, 보호가 무력해지는 상태다 → [[jwt]]
 - [[2024-10-16-Day94]] — 여섯 주 뒤. **꺼내는 코드가 선언이 된다** — 쿠키 배열을 순회하며 이름을 비교하던 것이 `@CookieValue(value="age", defaultValue="0") int age` 한 줄이고, `String → int` 변환까지 해 준다. 보내는 쪽은 여전히 `response.addCookie(new Cookie(...))` 이고, 같은 노트가 **「쿠키의 값이 ASCII 가 아니라면 URL 인코딩 해야만 데이터가 깨지지 않는다. 하지 않으면 `?` 문자로 변환된다」**를 인코딩한 것과 안 한 것을 나란히 보내는 코드로 확인한다 → [[handler-method-argument]] · [[character-encoding]]
 - [[2024-09-06-Day71]] — 「Cookie」 절이 응답 헤더로 보낸 값을 브라우저가 지정 URL의 요청 헤더에 다시 싣는 흐름, `response.addCookie`·`request.getCookies()` 코드, 세션 쿠키와 `setMaxAge`, 기본 경로와 `setPath`의 세 예를 적었다. 한글 쿠키 값에는 URL 인코딩을 쓰고 받는 쪽에서 직접 디코딩해야 한다는 주석도 있다. 다만 `new Cookie("name2", "홍길동")`을 이어서 보내는 코드는 현대 쿠키 값 제약을 깨고, 반복문은 모든 값을 무조건 디코딩하며, 마지막 `getSesssion()`은 오타라 호출할 수 없다. 쿠키 값의 신뢰성·`HttpOnly`·`Secure`·`SameSite`와 쿠키와 서버 세션의 구별도 다루지 않았다.
