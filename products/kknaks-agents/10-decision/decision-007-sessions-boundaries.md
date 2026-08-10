@@ -27,6 +27,10 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - application-event
+  - transaction
+  - serialization
 ---
 
 # sessions package 경계 — event 저장·조회 계약, 순서·원자성 불변식, memory/durable 확장 seam
@@ -82,6 +86,14 @@ KAG-DEC-001이 `sessions`에 배정한 “session event의 손실 없는 저장�
 | KAG-DEC-006 | **proposed** | 확정 사실로 쓰지 않는다. 소비하는 것은 경계의 성질 둘 — `tools`는 아무것도 기록하지 않고 값만 반환하며(TI6), 거부도 실패도 **결과로 반환되어** 기록 재료가 된다(TI1·TR7). 그 값이 `runtime`을 거쳐 이 package에 도달한다 |
 | REF-0007 설계 노트 | read-only | 초기 범위의 근거. “memory store와 append-only turn event”, “영속 store를 추가해도 계약과 turn 실행은 유지”, “session 원본과 model context 분리”가 이 문서의 입력이다. 노트의 코드 예시·이름 가안·event 종류 목록은 **확정 계약이 아니다** |
 | 사내 운영 서비스의 durable turn 구현 | read-only | **구조 패턴만** 일반화했다. 원장이 진실이고 알림은 재조회 힌트라는 것, 외부 효과 이전에 체크포인트를 남겨 재개 시 두 번 내지 않는 것, 실패 표면화가 실패해도 원장은 닫는 것, 저장 어휘와 문서 어휘가 갈라지면 조회 술어가 갈라진다는 것이 그것이다. 조직·업무·데이터와 코드·식별자는 옮기지 않았고, **그쪽의 큐·리스·워커 운영은 이 라이브러리가 흡수하지 않는다**(§1) |
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[application-event]] — session 을 상태가 아니라 **event 의 나열**로 저장한다 — 순서와 손실 없음이 이 층의 계약이 되는 이유다
+- [[transaction]] — append 의 **원자성**과 부분 실패 판정. 반쯤 쓰인 event 가 남으면 되읽기가 무의미해진다
+- [[serialization]] — 저장 format 과 version 을 정하고 **모르는 필드는 fail-closed** 로 막는다 — 나중 버전이 지금 코드를 조용히 통과하지 못하게 한다
 
 ## Options
 

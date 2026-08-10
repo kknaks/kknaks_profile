@@ -23,6 +23,9 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - interface
+  - interface-segregation-principle
 ---
 
 # core package 계약 경계 — 파일·타입 범주와 공개 표면
@@ -46,6 +49,13 @@ KAG-DEC-001이 `core`에 배정한 “공통 계약과 교체 지점 protocol”
 - 결정이 필요한 이유
   - `core`는 의존 그래프의 바닥이라 **여기서 틀리면 전 package가 같이 틀린다.** 위 계층은 나중에 고쳐도 core만 열면 되지만, core를 고치면 전부 열린다. 그래서 코드보다 문서가 먼저 와야 하는 자리 중 가장 앞이다.
   - 사용자가 디렉터리 상세를 하나씩 보고 확정하기로 했고, 이번 대상은 `core/` 하나다. 나머지 7개 package의 내부 구조는 이 문서가 정하지 않는다.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[interface]] — `core` 가 갖는 것은 구현이 아니라 **계약(protocol)** 이다 — 교체 지점을 타입으로 선언해 둔 자리다
+- [[interface-segregation-principle]] — 계약을 관심사별 module 로 **쪼개 담는다.** 하나의 큰 `contracts.py` 를 기각한 이유가 이것이다
 
 ## Options
 

@@ -21,6 +21,9 @@ links:
     - MG-WORK-001
   releases: []
   related: []
+up:
+  - date-time
+  - unique-key
 ---
 
 # Daily game platform MVP
@@ -32,6 +35,13 @@ links:
 - 관련 baseline: BL-001
 - 문제/기회: 회사 커피 내기용으로 매일 짧게 참여할 수 있는 모바일 웹 게임이 필요하다.
 - 결정이 필요한 이유: 게임이 매일 바뀌어도 결과 기록과 꼴찌 탐색은 공통으로 유지되어야 한다.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[date-time]] — 마감을 **`Asia/Seoul` 12:30** 으로 못박았다 — 「오늘」의 경계를 서버가 정해야 참여 공정성이 성립한다
+- [[unique-key]] — **하루 active game 에 1회만 제출** — 사용자·게임·날짜 조합이 한 번만 존재해야 한다는 제약이다
 
 ## Options
 

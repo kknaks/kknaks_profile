@@ -19,6 +19,10 @@ links:
     - "[[spec-010-codex-headless-runner|OKK-SPEC-010]]"
   works: []
   related: []
+up:
+  - dispatch-table
+  - polymorphism
+  - queue
 ---
 
 # OKK-DEC-001 Provider 기반 task 실행 모델 도입
@@ -30,6 +34,14 @@ links:
 - 관련 baseline: `OKK-BL-001 Codex headless runner 확장 아이디어`
 - 문제/기회: Codex headless runner를 붙이려면 기존 Claude PTY 실행 계약과 다른 stdio/JSONL 실행 계약을 받아들여야 한다.
 - 결정이 필요한 이유: Codex를 단순 예외 케이스로 붙이면 task, worker, stream, session 모델이 Claude 중심으로 굳어진다.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[dispatch-table]] — `provider` 값으로 **registry 에서 runner adapter 를 찾아** 부른다 — worker 안에 `if claude … elif codex` 분기를 두지 않기 위한 구조다
+- [[polymorphism]] — `claude` 와 `codex` 를 **같은 Task 계약**으로 다룬다. 공통 옵션과 provider 별 옵션을 가른 것이 그 계약의 모양이다
+- [[queue]] — 실행 모델 자체가 **task 를 쌓아 두고 worker 가 꺼내 도는** 큐다
 
 ## Options
 

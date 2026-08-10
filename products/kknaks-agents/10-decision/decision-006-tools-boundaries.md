@@ -26,6 +26,9 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - dispatch-table
+  - ai-agent
 ---
 
 # tools package 경계 — 등록·허용 분리, 검증·정책 순서, handler 실행과 결과 정규화
@@ -74,6 +77,13 @@ KAG-DEC-001이 `tools`에 배정한 “호스트가 바깥에서 주입한 tool 
 | KAG-DEC-005 | **proposed** | 확정 사실로 쓰지 않는다. 소비하는 것은 **경계의 성질** 하나다 — provider는 tool call을 복원만 하고 실행하지 않으며(PI7), 중복 식별자나 텍스트 혼재를 감추지 않고 그대로 넘긴다(§5.2). 그 결과가 `runtime`의 판정을 거쳐 이 package에 도달한다 |
 | REF-0007 설계 노트 | read-only | 초기 범위의 근거. “등록과 허용을 분리한다”(§2.3)와 “tool registry/executor” 배정이 이 문서의 입력이다. 노트의 코드 예시와 이름 가안은 **확정 API가 아니다** |
 | 사내 운영 서비스의 server-owned tool loop | read-only | **구조 패턴만** 일반화했다. 접근 축과 승인 축의 분리, 노출과 실행의 동일 계산, 접근 선언 무기본값, 거부의 축 구분 기록, 등록 시점 중복 거부가 그것이다. 조직·업무·데이터와 코드·식별자는 옮기지 않았고, 그쪽의 역할·권한 모델은 **이 라이브러리가 발명하지 않는다**(§6.2) |
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[dispatch-table]] — 등록된 tool 정의와 handler 를 **이름으로 찾아 부르는** 구조. 등록(전체)과 허용(이번 turn subset)을 가른 것이 이 표의 두 겹이다
+- [[ai-agent]] — tool 은 모델이 **텍스트 밖의 일을 하게** 하는 지점이라, 검증·정책·fail-closed 가 전부 여기에 붙는다
 
 ## Options
 

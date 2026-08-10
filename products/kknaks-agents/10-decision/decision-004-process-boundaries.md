@@ -24,6 +24,9 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - process
+  - exception-handling
 ---
 
 # process package 실행 격리 경계 — 파일·보안 불변식·실행 계약
@@ -65,6 +68,13 @@ KAG-DEC-001이 `process`에 배정한 “외부 프로세스 실행 격리”라
 | KAG-DEC-002 | accepted | **변경하지 않는다.** timeout·취소·provider 실패·종료 판정의 소유자는 `runtime`이고, 이 문서는 그 아래 하위 책임만 정의한다 (§5) |
 | KAG-DEC-003 | **proposed** | 확정 사실로 쓰지 않는다. `core`의 파일·타입 범주는 “제안된 배치”로만 인용하고, 이 문서의 어떤 권고도 KAG-DEC-003이 뒤집히면 같이 무너지지 않도록 **범주 수준으로만** 연결한다 (§3.3) |
 | REF-0007 설계 노트 | read-only | 초기 범위의 근거. 노트의 파일 가안(`process/subprocess_runner.py`)과 코드 예시는 **확정 API가 아니다**. 이 문서는 그 가안을 Option A로 명시 비교한다 (§Options) |
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[process]] — 외부 프로세스 실행을 **격리 경계**로 두고 그 안에서만 다룬다 — 실행 lifecycle 과 보안 불변식이 이 경계에 붙는다
+- [[exception-handling]] — **fail-closed** — 판정하지 못하면 막는다. 실패를 누가 해석하는지까지 정한 것이 이 결정의 절반이다
 
 ## Options
 

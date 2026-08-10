@@ -20,6 +20,11 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - cohesion
+  - coupling
+  - package
+  - dependency-inversion-principle
 ---
 
 # Runtime 디렉터리 구조와 의존 경계
@@ -41,6 +46,15 @@ KAG-BL-001이 가안으로 남긴 책임 분해를 **책임별 package 구조**�
 - 결정이 필요한 이유
   - 첫 파일을 만들기 전에 “무엇을 어디에 두는가”와 “무엇이 무엇을 부를 수 있는가”가 있어야 이후 decision(동작 구조)과 spec(계약 표면)이 놓일 자리가 생긴다.
   - 이 결정은 **디렉터리와 의존 방향**만 다룬다. 그 안에 들어갈 파일·클래스·API·state machine은 뒤 단계다.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[cohesion]] — 디렉터리를 **책임별로** 가른 것이 이 결정 전부다 — 무엇이 한 package 에 들어가야 하는지의 기준이 곧 응집도다
+- [[coupling]] — package **사이의 허용·금지 의존 방향**을 함께 정했다. 구조만 나누고 방향을 안 정하면 결국 서로를 부른다
+- [[package]] — 경계를 물리적으로 강제하는 단위. 이름공간이 아니라 **의존이 어디까지 닿는지**를 정하는 장치로 썼다
+- [[dependency-inversion-principle]] — 교체 지점을 protocol 로 두고 **구체가 계약을 향하게** 한 배치. 안쪽이 바깥쪽을 모르게 하는 방향이 의존 규칙의 근거다
 
 ## Options
 

@@ -25,6 +25,10 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - polymorphism
+  - open-closed-principle
+  - interface
 ---
 
 # providers package 변환 경계 — adapter 파일 배치·호출 lifecycle·capability 계약
@@ -71,6 +75,14 @@ KAG-DEC-001이 `providers`에 배정한 “공통 요청 ↔ provider별 입출�
 | KAG-DEC-003 | **proposed** | 확정 사실로 쓰지 않는다. 공통 요청/응답·capability 값·오류 표현·model 호출 Protocol을 “제안된 배치”로만 인용하고, **파일 이름이 아니라 범주 수준으로만** 연결한다. KAG-DEC-003이 뒤집혀도 이 문서의 §3 배치와 §4 lifecycle은 그대로 성립해야 한다 |
 | KAG-DEC-004 | **proposed** | 확정 사실로 쓰지 않는다. subprocess 실행 요청·구조화된 실행 결과·13개 보안 경계를 “제안된 입력”으로 참조한다. 이 문서가 소비하는 것은 **경계의 성질**(격리 조건을 호출자가 채운다 / 결과는 사실이고 해석은 우리 몫이다)이지 그 문서의 파일명이 아니다 |
 | REF-0007 설계 노트 | read-only | 초기 범위의 근거. 노트의 파일 가안(`providers/base.py` · `providers/codex_cli.py`)과 코드 예시는 **확정 API가 아니다**. 이 문서는 그 가안을 Option A·D로 명시 비교한다 (§Options) |
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[polymorphism]] — provider 마다 다른 입출력을 **같은 요청 타입**으로 다루기 위한 변환 층이다 — 부르는 쪽은 무엇이 붙었는지 모른다
+- [[open-closed-principle]] — 새 provider 는 adapter 를 **더해서** 붙인다. 공용 표면과 adapter 전용 표면을 가른 것이 그 확장 지점이다
+- [[interface]] — capability 선언이 곧 **무엇을 약속하고 무엇을 약속하지 않는지**의 계약이다
 
 ## Options
 

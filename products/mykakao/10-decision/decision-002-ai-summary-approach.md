@@ -19,6 +19,9 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - ai-agent
+  - server-sent-events
 ---
 
 # AI 요약 방식 — open_kknaks(codex) + 단일 방·단일 날짜 + SSE 스트리밍 + 2뷰 데모
@@ -33,6 +36,13 @@ links:
 - 관련 baseline: [[baseline-002-ai-conversation-summary]]
 - 문제/기회: 추출된 대화(BASE-001/DEC-001 체인 완료)에서 "이 방·이 날짜에 뭐가 중요했나"를 LLM으로 요약하는 첫 체인을 연다.
 - 결정이 필요한 이유: LLM을 어떻게 부르고(직접 vs 라이브러리), 한 번에 얼마를 보내고(범위), 결과를 어떻게 그리고(출력), 어떤 provider로, 데모를 어떻게 구성할지를 spec으로 내리기 전에 고정해야 한다.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[ai-agent]] — 요약 호출을 직접 subprocess 로 하지 않고 **provider runner 를 가진 라이브러리**에 맡긴다 — 본진과 같은 패턴이다
+- [[server-sent-events]] — 요약 결과를 **서버가 밀어 보내며** 화면에 이어 붙인다. 긴 생성에서 다 끝날 때까지 기다리지 않게 하는 방식이다
 
 ## Options
 

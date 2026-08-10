@@ -20,6 +20,10 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - websocket
+  - polling
+  - client-server-model
 ---
 
 # WebSocket을 통신 프로토콜로 선택 (ADR-001)
@@ -33,6 +37,14 @@ iOS ↔ Mac 간 실시간 양방향 통신에 WebSocket(JSON payload)을 사용�
 - 관련 baseline: [[baseline-001-iphone-mac-remote-idea|MRT-BL-001]]
 - iOS ↔ Mac 간 실시간 양방향 통신이 필요하다.
 - 창 목록 갱신을 서버에서 push 해야 한다.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[websocket]] — **한 번 맺고 양쪽이 아무 때나 보내는** 연결. 실시간 양방향이 필요해서 고른 것이고, Mac 이 서버·iOS 가 클라이언트다
+- [[polling]] — 기각한 대안이 HTTP 폴링이다 — 주기적으로 물어보는 방식은 **간격만큼 늦고 빈 응답이 낭비**라 실시간 제어에 안 맞는다
+- [[client-server-model]] — 누가 듣고 누가 거는지를 정한 것 — 창 목록을 가진 쪽(Mac)이 서버가 된다
 
 ## Options
 

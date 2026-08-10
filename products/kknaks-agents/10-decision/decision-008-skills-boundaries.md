@@ -28,6 +28,9 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - ai-agent
+  - sql-injection
 ---
 
 # skills package 경계 — 명시적 등록·선택 입력, prompt projection, turn 고정과 신뢰 경계
@@ -82,6 +85,13 @@ KAG-DEC-001이 `skills`에 배정한 “skill 등록, 선택, 버전 관리, pro
 | REF-0007 설계 노트 | read-only | 초기 범위의 근거. “skills = 추후에 넣으면 좋을 것 · 독립 확장 모듈”, “호스트가 skill을 명시적으로 등록하고 `context`에 prompt projection만 제공”, “provider 내장 skill과 자동 탐색은 사용하지 않음”이 이 문서의 입력이다. 노트의 파일 가안(`definitions`·`registry`·`loader`)은 **확정 API가 아니며, 이 문서는 그중 `loader`를 명시적으로 뒤집는다**(§4.1) |
 | 사내 운영 서비스의 server-owned tool loop | read-only | 이 문서에서는 **거의 쓰지 않는다.** 그쪽 사례에는 skill 축이 없다. 일반화해 옮기는 것은 “접근 선언에 기본값을 두지 않는다”와 “거부는 축을 구분해 남긴다”라는 성질 둘뿐이고, 조직·업무·데이터와 코드·식별자는 옮기지 않았다 |
 | 개인 clean-room 연구 아카이브 | read-only, 개념만 | 실행하지 않았고 코드·문자열·식별자·비공개 protocol을 옮기지 않았으며 이 문서에서 출처로 인용하지 않는다. 이 제품 언어로 다시 쓴 개념은 하나다 — **대화에 걸쳐 남는 상태와 turn마다 새로 잡는 상태를 나누지 않으면 turn이 쌓일수록 무한히 커진다.** 이 문서에서는 “선택 set은 turn의 것이고 registry는 turn의 것이 아니다”(§3)로 나타난다 |
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[ai-agent]] — skill 이 model 에 닿는 **투영 값**이 되는 경로. skill 이 실행 표면·권한을 넓히지 못하게 막는 것이 경계의 핵심이다
+- [[sql-injection]] — prompt injection 은 **데이터가 명령으로 해석되는** 같은 부류의 문제다 — 투영되는 값에 provenance 와 신뢰 등급을 붙인 이유가 이것이다
 
 ## Options
 

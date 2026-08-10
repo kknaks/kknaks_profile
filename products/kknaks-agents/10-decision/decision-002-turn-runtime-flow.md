@@ -22,6 +22,8 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - command-loop
 ---
 
 # 최소 headless turn runtime 동작 구조
@@ -45,6 +47,12 @@ KAG-DEC-001이 확정한 `runtime` package 안에서, **사용자 입력 하나�
 - 결정이 필요한 이유
   - 첫 spec(공개 계약 표면)을 열려면 “그 계약이 어떤 순서로 호출되는가”가 먼저 있어야 한다. 계약을 먼저 쓰면 순서를 계약이 암묵적으로 정해버린다.
   - 이 결정은 **phase 전이와 순서**만 다룬다. 그 순서를 실현할 타입·API·event schema는 다음 단계다(§Scope Out).
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[command-loop]] — 입력 하나가 **phase 를 거쳐 종료 state 로 끝나는** 반복 구조. 언제 다시 돌고 언제 멈추는지를 정하는 것이 이 결정이다
 
 ## Options
 
