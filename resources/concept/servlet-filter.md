@@ -9,6 +9,7 @@ aliases:
 up:
   - 2024-08-27-Day64
   - 2024-09-02-Day68
+  - 2024-10-17-Day95
 tags:
   - spring
   - web
