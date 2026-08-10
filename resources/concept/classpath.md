@@ -9,6 +9,7 @@ aliases:
 up:
   - 2024-05-29-Day04
   - 2024-05-31-Day06
+  - 2024-10-01-Day86
 tags:
   - java
   - jvm
@@ -70,5 +71,7 @@ $ java -cp app/build/classes/java/main study2.lang2.Test
 
 ## 출처
 
+- [[2024-10-01-Day86]] — 넉 달 뒤. **클래스패스가 `.class` 만의 것이 아니라는 것이 드러난다.** `ClassPathXmlApplicationContext("com/eomcs/spring/ioc/ex01/a/application-context.xml")` 는 설정 **XML** 을 같은 경로 규칙으로 찾고, 이것이 `FileSystemXmlApplicationContext` 의 절대 경로(`file:///Users/...`)와 갈리는 지점이다 — 필기가 뒤쪽을 두고 「XML 파일의 위치가 바뀌면, 코드를 다시 수정해야 한다. 사용빈도는 낮다」고 적은 이유가 그것이다. 같은 논리가 스프링의 `classpath:` 접두어 전반에 걸린다 → [[java-config]] · [[externalized-configuration]]
 - [[2024-05-29-Day04]] — `-d` 로 `.class` 경로를 정하고 `-classpath` 로 JVM 에 알려준다는 짝, 그리고 소스와 컴파일 파일을 분리하는 표준 디렉토리 구조를 배웠다
 - [[2024-05-31-Day06]] — 패키지에 속한 클래스는 `-cp` 에 최상위만 주고 전체 이름으로 지정한다는 것을 배웠다
+

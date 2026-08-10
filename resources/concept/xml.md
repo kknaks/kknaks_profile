@@ -13,6 +13,7 @@ aliases:
   - 문서 타입 정의
 up:
   - 2024-08-20-Day59
+  - 2024-10-01-Day86
 tags:
   - 데이터형식
   - 설정
@@ -147,7 +148,9 @@ Day59 의 `mybatis-config.xml` 이 위의 조각을 다 쓴다.
 - [[serialization]] — 객체를 텍스트로 적는 다른 층
 - [[sql-operator]] — `<` 가 XML 에서 걸리는 자리
 - [[web-application]] — XML 설정이 가장 많이 쓰였던 층
+- [[java-config]] — 같은 설정을 자바로 적는 반대편
 
 ## 출처
 
+- [[2024-10-01-Day86]] — 여섯 주 뒤. **네임스페이스와 스키마가 왜 있는지가 나온다.** 스프링 설정 XML 의 `xmlns="http://www.springframework.org/schema/beans"` 와 `xsi:schemaLocation="네임스페이스명 명세서URL"` 을 필기가 **「java의 기본 패키지 처럼 xml의 기본 네임 스페이스」**로 옮긴 것이 정확한 비유다 — `<context:component-scan>` 을 쓰려면 `xmlns:context` 를 따로 선언해야 하고, 태그 이름이 어느 명세의 것인지를 그것이 정한다. 동시에 이 회차는 그 XML 이 자바 클래스로 대체되는 쪽도 나란히 보여 준다 → [[java-config]]
 - [[2024-08-20-Day59]] — MyBatis 「사용준비」 절에서 DTD 를 「태그 사용규칙을 담은 문서」로, XML 을 「데이터를 구조화 시켜 저장하는 파일」·「`<tag> value </tag>` tag로 시작해서 끝나는 언어」로 세 줄씩 정의했다. 그리고 `mybatis-config.xml` 전문을 실어 선언·`<!DOCTYPE>`·요소·속성·중첩·주석과 `${}` 치환까지 한 파일에서 다 보이고, 매퍼 XML 에서는 **태그의 값이 SQL 문장**인 쓰임까지 나온다. 다만 well-formed 와 valid 의 두 층 구분, DTD 가 요소의 순서까지 정한다는 것, `&`·`<` 를 값으로 쓸 수 없어 SQL 의 부등호가 걸린다는 것, DTD 의 URL 이 실제로 내려받히지 않는다는 것, `${}` 가 XML 문법이 아니라 MyBatis 의 것이라는 것은 다루지 않았다. 절의 순서가 DTD → XML 이라 제약을 먼저 보고 대상을 나중에 보는 형태다
