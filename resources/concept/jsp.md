@@ -10,6 +10,7 @@ aliases:
 up:
   - 2024-08-30-Day67
   - 2024-09-10-Day73
+  - 2024-10-22-Day99
 tags:
   - web
   - jsp
@@ -145,8 +146,10 @@ private boolean isMember(List<User> members, User user) {
 - [[request-dispatcher]] — 서블릿과 JSP 를 잇는 장치
 - [[character-encoding]] — `contentType`·`pageEncoding` 이 갈리는 축
 - [[static-and-dynamic-content]] — 정적 HTML 과의 경계
+- [[thymeleaf]] — 이 기술을 대체하는 다음 세대
 
 ## 출처
 
+- [[2024-10-22-Day99]] — 일곱 주 뒤. **이 기술이 대체되는 자리**다. Thymeleaf 는 같은 일(틀 + 데이터 → HTML)을 하지만 **파일이 `.html` 그대로**여서 브라우저로 열면 화면이 보인다 — JSP 파일이 `<% %>` 때문에 그렇게 안 되는 것과 정면으로 갈린다. 이 노트가 「HTML 이 바깥이고 자바가 안쪽」이라고 적은 뒤집기를 **한 번 더 뒤집어 자바를 아예 파일 밖으로** 내보낸 형태다 → [[thymeleaf]] · [[template-engine]]
 - [[2024-08-30-Day67]] — 「JSP(JavaServer Pages)」 절이 정의·특징·실행 과정(요청 → 서블릿 변환 → `.class` 생성 → 응답)을 정리하고, 「JSP태그의 종류」가 디렉티브와 액션 태그를 가른다. `<%@ page %>` 의 `language`·`contentType`·`pageEncoding`·`trimDirectiveWhitespaces` 를 한 줄씩 설명하고 **`contentType` 과 `pageEncoding` 이 각각 응답과 파일 쪽이라는 것을 정확히 적었다.** `<% %>`·`<%= %>`·`<%! %>` 세 태그와 `<%@ page import %>` 가 실습 코드에 전부 나오며, `list.jsp`·`view.jsp`·`form.jsp`·`error.jsp` 네 파일이 실려 있다. 다만 「HTML 코드와 Java 코드를 분리하여 사용할 수 있어」는 JSP 문법이 아니라 MVC2 배치의 공로이고, 같은 노트의 JSP 파일들이 스크립틀릿으로 둘을 섞어 놓아 스스로 반증한다. 선언 태그가 서블릿의 멤버가 되어 인스턴스를 공유한다는 것, 암시 객체(`request`·`out`)가 어디서 오는지, 첫 요청만 변환된다는 것은 다루지 않았다
 - [[2024-09-10-Day73]] — 열하루 뒤. **번역 과정을 안쪽에서 다시 본 회차**다. 「JSP의 구동원리」가 컨테이너의 분기(서블릿 객체가 있으면 `service()` → `_jspService()`, 없으면 컴파일 후 호출)를 적고 **「Python이나 PHP 처럼 직접 그 스크립트가 인터프리팅이 아니다」**로 Day67 이 남겨 둔 「첫 요청만 변환된다」의 이유를 채운다 — 인터프리터가 아니라 **class 파일을 생성하는 template 기술**이라는 것, 그리고 구현해야 할 인터페이스가 `HttpJspPage` 라는 것이 여기서 나온다. 「JSP의 구성요소」가 Day67 의 태그 표를 **JSP 코드 ↔ 번역된 Java.class 대조**로 펼쳐 각 태그가 생성 클래스의 어느 자리에 놓이는지를 보이고, `<%@ page %>` 에 `buffer`·`autoFlush` 가 더해지며 `include`·`taglib` 지시자와 액션 태그 넷이 처음 나온다 → [[jsp-scripting-element]] · [[jsp-directive]] · [[jsp-action-tag]]
