@@ -23,6 +23,10 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - git
+  - remote-repository
+  - ci-cd
 ---
 
 # 문서 SoT git 버전관리와 승인 커밋·사람 교정 루프
@@ -69,6 +73,14 @@ Markdown 문서 SoT(DEC-002)를 `ax-graph` 코드 레포 하위 `documents/` 폴
 - 판단 기준: 백업 확보, 이력/되돌리기, 사람 교정 반영, 앱 변경 최소, 코드-문서 이력 통합.
 - 대안 대비: (A)는 교정 루프가 없고, (B)는 운영이 단순하나 코드-문서 한 레포 이력을 잃는다. commit-on-approval 구조에서는 (C)의 sparse-checkout·크리덴셜 부담이 유일한 대가이며, CI 경로 필터로 재빌드 위험이 없음을 확인해 수용 가능하다.
 - 리스크: ① 서버 SoT가 git 트리가 되어 sparse-checkout·safe.directory·push 크리덴셜이 필요. ② 사람 교정을 서버가 pull 한 뒤 **그래프 인덱스 재빌드**가 없으면 교정이 그래프에 반영되지 않는다(정합) → SPEC-015가 재인덱싱을 계약에 포함. ③ push 실패는 비치명으로 처리해 승인 트랜잭션을 깨지 않는다.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[git]] — 문서 SoT 를 git 트리로 만들어 **이력·백업·되돌리기**를 얻는다. 「덮어쓰기만 되고 되돌릴 수 없다」가 이 결정을 부른 문제였다
+- [[remote-repository]] — 서버는 승인마다 `commit → pull --rebase → push`, 사람은 로컬 clone 에서 `pull → 수정 → push`. **원격 하나를 두 곳이 공유**하는 구조라 충돌 처리가 결정 항목이 된다
+- [[ci-cd]] — `documents/**` 를 CI 트리거에서 빼 **문서 push 가 이미지 재빌드를 유발하지 않게** 한 것. 무엇이 배포를 촉발하는지를 고르는 판단이다
 
 ## Scope
 

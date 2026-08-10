@@ -26,6 +26,9 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - data-modeling
+  - identifying-relationship
 ---
 
 # 기업 project destination 회사별 팬아웃과 회사 내부 공통기능 정규화
@@ -107,6 +110,13 @@ PARA `project` destination을 flat 한 장에서 **회사별 프로젝트 폴더
 - 문서화 게이트의 project 팬아웃 로직과 회사 내부 기능 dedup(`supplement_existing_feature` 방식 통합·보강) 배선.
 - origin 첨부 원본 보관(요약 md와 별도) + 문서 apply 시 폴더별 map.md 자동 재생성 훅.
 - "프로젝트 추가" 액션의 회사명 slugify → `projects/{corp}/{origin,baseline,spec}/` + map.md 스캐폴드 동적 생성.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[data-modeling]] — **회사라는 컨테이너 · 기능이라는 단위**를 먼저 세운 것이 이 결정의 전부다. flat 한 장이 안 되는 이유가 곧 모델이 없었다는 뜻이다
+- [[identifying-relationship]] — 기능정의서는 **회사 없이 존재할 수 없다** — `projects/{corp}/spec/` 아래에서만 의미를 갖는 종속 관계라, 회사가 식별자의 일부가 된다
 
 ## Open Questions
 

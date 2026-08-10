@@ -17,6 +17,9 @@ links:
   works: []
   releases: []
   related: []
+# 이 결정의 근거가 된 concept stem (resources/concept/). 아래 「근거 개념」에도 [[]] 로 적는다.
+# `links:` 버킷과 달리 `up:` 만 그래프 엣지가 된다 — rules/knowledge-note-pipeline.md
+up: []
 ---
 
 # Title
@@ -58,6 +61,15 @@ links:
 - 판단 기준:
 - 대안 대비 이유:
 - 리스크:
+
+## 근거 개념
+
+이 결정이 기대는 개념(`resources/concept/`). 개념 상세는 여기 쓰지 않고 링크로 위임한다 — 상세의 SoT는 concept 노트다.
+
+- [[concept-stem]] — 이 결정에서 그 개념이 한 역할 한 줄
+
+> `up:`에 넣은 stem은 이 절에도 `[[]]`로 있어야 한다(그래프 L3 오버레이).
+> 근거가 아니라 단순 참조면 `up:`에 넣지 말고 본문 링크로만 둔다.
 
 ## Scope
 

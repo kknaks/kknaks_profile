@@ -26,6 +26,11 @@ links:
   related:
     - "[[decision-001-provider-based-task-execution|OKK-DEC-001]]"
     - "[[spec-009-claude-codex-runner-adapter|OKK-SPEC-009]]"
+up:
+  - search-index
+  - time-complexity
+  - polling
+  - performance-testing
 ---
 
 # Graph RAG 기반 AI 채팅과 기본 Claude provider
@@ -75,6 +80,15 @@ Graph Chat은 단순 LLM 채팅이 아니라, 제품의 문서 그래프를 검�
 - AI task에는 question, selected node, retrieved documents, retrieved edges, edge paths를 context로 넘긴다.
 - 응답에는 answer, evidence_documents, evidence_edges, used_paths, confidence, missing_context를 포함한다.
 - 기본 설정 seed는 `provider=claude`로 생성한다.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[search-index]] — qmd 사이드카가 BM25 + 벡터를 융합해 후보를 뽑는 1단. **검색을 위해 따로 만들어 두는 자료구조**가 있어야 한다는 것이 keyword 스캔에서 옮겨 온 이유다
+- [[time-complexity]] — 폴백으로 남은 keyword 스캔이 **O(전체 문서)** 라 문서가 늘면 역전된다는 것이 전환의 근거로 명시돼 있다
+- [[polling]] — 리랭크의 추가 지연을 **run polling UX 가 흡수한다**는 판단. 단발 API 대신 `POST /graph/chats` + run polling 으로 간 것도 같은 이유다
+- [[performance-testing]] — 리랭크 기본값을 on 에서 off 로 뒤집은 것이 **CPU-only 실측 60초+** 였다. 결정이 추정이 아니라 측정으로 정정된 자리
 
 ## Open Questions
 

@@ -25,6 +25,9 @@ links:
     - "[[work-009-chat-push-to-inbox|AXKG-WORK-009]]"
   releases: []
   related: []
+up:
+  - role-based-entity
+  - jwt
 ---
 
 # 역할(admin/staff) 권한 모델과 접근 경계
@@ -65,6 +68,13 @@ MVP는 단일 seed 계정으로 로그인 여부만 가드했다(AXKG-DEC-004: a
 **근거**: staff가 그래프를 탐색하다 떠오른 방안을 잃지 않고 큐레이션 큐로 흘려보내려면 push 쓰기는 열어야 하지만, 인박스 운영(무엇을 채택/폐기)은 여전히 admin의 일이므로 읽기·관리는 닫는다. 자동 침투 없이 사용자 명시 CTA 기반 push만 허용한다.
 
 **정합 대상**: AXKG-SPEC-008 §4 접근 경계 매트릭스(이 액션 행 추가 — 경계 SSOT), AXKG-SPEC-006(방안 제시→push flow·push API 계약), AXKG-SPEC-003(`source_channel=chat` intake 데이터 계약). 인박스 열람 권한 확대·staff 본인 제출분 열람·자동 push·프로젝트 전용 별도 인박스 신설은 하지 않는다.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[role-based-entity]] — `admin`/`staff` 두 값을 **별도 테이블이 아니라 `users.role` 로** 두고 권한을 가른 선택. 역할이 늘면 어떻게 되는지의 경계도 여기 있다
+- [[jwt]] — 토큰 로그인 위에 역할을 얹는 구조. 토큰이 신원을 나르고 **권한 판정은 서버 라우트가** 한다는 이중 강제가 이 결정의 2항이다
 
 ## Open Questions
 

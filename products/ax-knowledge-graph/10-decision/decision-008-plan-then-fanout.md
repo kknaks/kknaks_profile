@@ -23,6 +23,10 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - divide-and-conquer
+  - workflow-orchestration
+  - async-io
 ---
 
 # project 문서화 생성 아키텍처: 단일 task에서 plan-then-fanout으로 전환
@@ -72,6 +76,14 @@ project 문서화 생성을 **3단계 plan-then-fanout 아키텍처**로 전환�
   - **진행률·부분 실패 처리** — N개 중 M개 완료 표시, 일부 기능 task 실패 시 정책(아래 Open Questions).
   - apply_executor(main+derived 팬아웃)·파생지식 apply 규칙은 불변(AXKG-SPEC-004 SSOT).
 - **후속 구현은 AXKG-WORK-012**(plan-then-fanout)로 발주한다.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[divide-and-conquer]] — **① plan 으로 쪼개고 ② 기능별로 각각 풀고 ③ fan-in 으로 합친다** — 한 번에 통째로 생성하다 타임아웃 나던 것을 쪼개는 쪽으로 뒤집은 것이라, 나누는 방법(plan)과 합치는 방법(조립)을 정한 것이 결정의 내용이다
+- [[workflow-orchestration]] — plan 이 곧 **발주서**가 되어 다음 단계의 입력이 된다. 단계 사이로 결과가 넘어가는 구조가 아니면 이 전환이 성립하지 않는다
+- [[async-io]] — 기능별 task 를 **병렬로 발주**해 전체 시간을 「합」이 아니라 「가장 긴 하나」로 만든다
 
 ## Open Questions
 

@@ -26,6 +26,8 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - caching
 ---
 
 # Markdown 문서 SoT와 PostgreSQL 운영 저장소
@@ -71,6 +73,12 @@ links:
 - 판단 기준: Obsidian 호환, git 추적, 승인 상태 관리, 앱 조회 성능, 추후 확장성.
 - 대안 대비 이유: Markdown만으로는 gate/draft/thread 상태 관리가 약하고, DB만으로는 Obsidian/파일 기반 그래프의 장점이 사라진다.
 - 리스크: 파일과 DB가 불일치할 수 있다. 이를 줄이기 위해 확정 문서는 file write 성공 후 `documents` row를 갱신하고, graph cache는 markdown에서 재빌드 가능해야 한다.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[caching]] — **Markdown 이 원천, PostgreSQL edge table 은 cache** 라는 이 결정의 핵심 구도. 원천에서 파생을 다시 만들 수 있으니 캐시를 버려도 되고, 그래서 둘이 어긋날 때 어느 쪽이 맞는지가 정해져 있다
 
 ## Scope
 

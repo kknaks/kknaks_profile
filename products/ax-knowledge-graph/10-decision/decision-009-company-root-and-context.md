@@ -23,6 +23,9 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - identifying-relationship
+  - data-modeling
 ---
 
 # 회사 루트 문서 + 회사 context 층: 요구사항을 회사 하나로 묶는 앵커
@@ -81,6 +84,13 @@ links:
   - **up: 배선**: 문서 생성 시 corp 루트 stem 주입 → `up:` frontmatter + 본문 `[[{corp}]]` 자동 생성(요약/팬아웃/context 생성 경로 공통).
   - **기존 baseline/spec**: `up:`을 회사 루트 체인으로 정합(spec→원본요약→{corp}).
 - **후속 구현은 AXKG-WORK-013**(회사 루트 + context)으로 발주한다. 생성 메커니즘은 AXKG-DEC-008(plan-then-fanout)과 정합한다(요구사항 팬아웃 경로는 그대로).
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[identifying-relationship]] — 회사 루트 `{corp}.md` 를 앵커로 두고 **모든 산출이 `up:` 으로 수렴**한다. 부모 없이는 고립되던 baseline 들에 식별 부모를 준 것이다
+- [[data-modeling]] — 요구사항과 회사 context 를 **다른 것으로 가른** 분기. 같은 destination 안에서 성격이 다른 둘을 나눠 저장한다
 
 ## Open Questions
 
