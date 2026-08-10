@@ -21,7 +21,7 @@ tags:
 title:
   en: Max Area of Island
   ko: 섬의 최대 넓이
-today: true
+today: false
 type: algorithm
 updated: '2026-08-09'
 visible: true
