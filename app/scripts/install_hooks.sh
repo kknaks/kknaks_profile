@@ -26,15 +26,18 @@ if echo "$CHANGED" | grep -Eq '^(products/|templates/product/|rules/product-doc-
   python3 .agent/scripts/product_doc_pipeline.py --strict
 fi
 
-# 그래프 노드 출처 = persona + reference + permanent + inbox + products.
-# KDEV-WORK-013 — 종전 트리거에 `permanent` 와 `inbox` 가 빠져 있었다. WORK-010 이
-# permanent 를 그래프 노드로 배선했는데 훅은 따라가지 않아, permanent 노트만 고친
-# 커밋은 검증을 타지 않고 부팅 시점에야 걸렸다. concept 층 추가로 그 구멍이 커지므로 함께 막는다.
+# 그래프 노드 출처 = persona + resources(source·concept·synthesis) + products.
 # 하나라도 변경 시 load_persona 로 graph enforce 검증. 아니면 빠른 path.
+#
+# KDEV-DEC-018 로 `reference/`·`permanent/` 는 `resources/` 아래로 옮겨졌는데 트리거가
+# 옛 경로에 머물러 있었다. 그래서 **지식노트만 고친 커밋은 검증을 타지 않았다** —
+# 이관 149건이 그 상태로 들어왔고 사람이 `knowledge_bundle_check.py` 를 손으로 돌려 메웠다.
+# `inbox/` 는 넣지 않는다: 규칙상 `idea` 는 노드지만 `persona_loader` 가 읽지 않아
+# 지금은 그래프에 없다(문서와 코드가 갈린 자리 — 배선되면 여기도 함께 넣는다).
 persona_changed=0
 if echo "$CHANGED" | grep -q '^persona/'; then persona_changed=1; fi
 graph_changed=0
-if echo "$CHANGED" | grep -Eq '^persona/'; then graph_changed=1; fi
+if echo "$CHANGED" | grep -Eq '^(persona|resources|products)/'; then graph_changed=1; fi
 
 if [ "$graph_changed" = 0 ]; then
   exit 0
@@ -69,5 +72,5 @@ HOOK_EOF
 
 chmod +x "$HOOK"
 echo "installed: $HOOK"
-echo "   trigger: product docs 또는 persona|reference|permanent|inbox|products/** 변경 포함 commit"
+echo "   trigger: product docs 또는 persona|resources|products/** 변경 포함 commit"
 echo "   actions: product_doc_pipeline.py --strict + build_persona_map.py + (app/back/.venv 있으면) loader 검증 + git add persona/_map.md"
