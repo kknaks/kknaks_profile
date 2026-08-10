@@ -35,11 +35,19 @@ products/
 ├── README.md                 # 여름별컴퍼니 제품별 SSOT 진입점
 └── <product>/README.md       # 특정 제품의 문서 map
 
+resources/
+├── source/                   # 자료 기록 (type: reference)
+└── concept/                  # 원자 개념 (type: concept)
+
 rules/
-└── product-doc-pipeline.md   # 제품 문서 파이프라인 운영 규칙
+├── product-doc-pipeline.md   # 제품 문서 파이프라인 운영 규칙
+├── knowledge-note-pipeline.md # 지식 노트(inbox·resources) 작성 규칙
+└── persona-artifacts.md      # showcase·교안·잔디 (그래프 밖 계열)
 
 templates/
-└── product/                  # 제품 문서 작성 템플릿
+├── product/                  # 제품 문서 작성 템플릿
+├── knowledge/                # 지식 노트 작성 템플릿
+└── persona/                  # 교안·잔디 템플릿
 
 .agent/
 ├── hooks/product-doc-pipeline.md
@@ -64,6 +72,8 @@ CLAUDE.md
 - `context/policy.md`는 문서 민감도, 접근권한, 승인 게이트 관련 판단이 필요할 때만 읽는다.
 - `context/studio/workflow.md`는 개인 프로젝트의 실제 작업을 만들거나 수정할 때만 읽는다.
 - `rules/product-doc-pipeline.md`는 제품 문서를 만들거나 수정할 때만 읽는다.
+- `rules/knowledge-note-pipeline.md`는 `inbox/`·`resources/`에 노트를 만들거나 수정할 때 읽는다. **제품 결정(`10-decision/`)을 쓸 때도 읽는다** — 근거 개념이 없으면 그 턴에 만들어야 하기 때문이다.
+- `rules/persona-artifacts.md`는 `showcase.md`·교안·잔디 산출물을 건드릴 때만 읽는다.
 - `templates/product/**`는 새 문서를 만들 때 필요한 템플릿만 읽는다.
 - `products/<product>/`는 요청 대상 제품이 확정된 뒤에 읽는다.
 

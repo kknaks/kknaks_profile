@@ -42,6 +42,27 @@
 
 수명도 다르다. `reference`는 박제(그 영상이 한 말은 변하지 않는다), `concept`는 출처가 합류할 때마다 성장.
 
+## 무엇을 어디에 만드나
+
+| 만들 것 | 템플릿 | 경로 |
+|---|---|---|
+| 미정제 생각 | `templates/knowledge/idea.md` | `inbox/{YYYY-MM-DD}-{slug}.md` |
+| 자료 정리 | `templates/knowledge/reference.md` | `resources/source/{YYYY-MM-DD}-{slug}.md` |
+| 원자 개념 | `templates/knowledge/concept.md` | `resources/concept/{slug}.md` |
+
+**폴더 이름은 층 이름이고 `type` 이름과 다르다** — `resources/source/` 에 `type: reference` 가 들어간다. 폴더는 층을, `type` 은 frontmatter 계약을 가리켜 축이 다르기 때문이다(KDEV-DEC-018 D1).
+
+> **「양식 원천」은 `SoT` 와 다른 말이다**(KDEV-DEC-018 D8). 양식 원천은 *문서가 어떻게 생겼나*, `SoT` 는 *데이터가 어디 사나*를 가리킨다. 한 문서 안에서 둘을 같은 단어로 부르지 않는다.
+
+## 읽기 범위
+
+지식 파이프라인 층(KDEV-SPEC-001/003)을 스캔할 때 범위는 아래와 같다.
+
+- 평소 스캔(활성 층): `inbox/` · `resources/source/` · `resources/concept/` + `persona/posts/`
+- cold(명시 요청 시에만): `archive/`
+
+`archive/` 는 안 쓰게 된 노트·개념의 장기기억이라 평소 스캔에서 제외한다. 사용자가 명시적으로 요청할 때만 읽는다(D-005). `resources/` 밖에 있는 것은 **층이 아니라 상태**여서다 — `products/{제품}/_archive/`(버전 컷오프 동결본)와는 다른 것이다.
+
 ## 핵심 규율
 
 ### SoT 위임 — 개념 상세는 한 곳에만
