@@ -57,7 +57,7 @@ hook이 실패하면 성공처럼 보고하지 않는다. 자동으로 판단할
 
 ## 지식 노트를 쓸 때
 
-`inbox/` · `resources/{source,concept,synthesis}/` 에 노트를 만들거나 고치기 전에 아래를 읽는다.
+`inbox/` · `resources/{source,concept}/` 에 노트를 만들거나 고치기 전에 아래를 읽는다.
 
 ```text
 rules/knowledge-note-pipeline.md     # 작성 규칙 (4층·SoT 위임·개념 성장·up: 방향)
@@ -73,7 +73,6 @@ rules/knowledge-note-pipeline.md     # 작성 규칙 (4층·SoT 위임·개념 �
 | 미정제 생각 | `templates/knowledge/idea.md` | `inbox/{YYYY-MM-DD}-{slug}.md` |
 | 자료 정리 | `templates/knowledge/reference.md` | `resources/source/{YYYY-MM-DD}-{slug}.md` |
 | 원자 개념 | `templates/knowledge/concept.md` | `resources/concept/{slug}.md` |
-| 종합 판단 | `templates/knowledge/permanent.md` | `resources/synthesis/{slug}.md` |
 
 별도 계열 넷:
 
@@ -103,7 +102,7 @@ rules/knowledge-note-pipeline.md     # 작성 규칙 (4층·SoT 위임·개념 �
 
 지식 파이프라인 층(KDEV-SPEC-001/003)을 스캔할 때 범위는 아래와 같다.
 
-- 평소 스캔(활성 층): `inbox/` · `resources/source/` · `resources/concept/` · `resources/synthesis/` + `persona/posts/`
+- 평소 스캔(활성 층): `inbox/` · `resources/source/` · `resources/concept/` + `persona/posts/`
 - cold(명시 요청 시에만): `archive/`
 
 `archive/`는 안 쓰게 된 노트·개념의 장기기억이라 평소 스캔에서 제외한다. 사용자가 명시적으로 요청할 때만 읽는다(D-005).
