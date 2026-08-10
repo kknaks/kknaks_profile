@@ -15,6 +15,7 @@ up:
   - 2024-07-24-Day42
   - 2024-08-14-Day56
 tags:
+  - spring
   - gradle
   - 빌드
   - java
@@ -190,6 +191,8 @@ $ ./gradlew [task]
 
 ## 함께 보는 개념
 
+- [[spring-boot]] — 스타터와 버전 관리 플러그인이 쓰이는 자리
+
 - [[build]] — Gradle 이 구현하는 개념
 - [[classpath]] — 표준 구조로 Gradle 이 대신 관리하는 것
 - [[jdk]] — Gradle 이 호출하는 컴파일러가 든 곳
@@ -201,6 +204,7 @@ $ ./gradlew [task]
 
 ## 출처
 
+- [[2024-10-18-Day96]] — **의존성 선언이 두 가지로 달라진다.** 하나는 `spring-boot-starter-*` 처럼 **묶음 하나가 여러 라이브러리를 끌고 오는 것**이고, 다른 하나는 `io.spring.dependency-management` 플러그인이 **버전을 대신 정해 줘서 스타터에 버전을 안 적는 것**이다. 그리고 `implementation`·`runtimeOnly`·`developmentOnly`·`annotationProcessor`·`testImplementation` 다섯 범위가 한 파일에 나란히 나와, 「언제 필요한 의존성인가」가 선언에 적힌다는 것이 드러난다 → [[spring-boot]]
 - [[2024-05-29-Day04]] — `brew install gradle` 설치, `init`/`build`/`run`/`compileJava`/`clean` 태스크, 그리고 Gradle 없는 컴퓨터에서 쓰는 `./gradlew` 를 배웠다
 - [[2024-06-04-Day08]] — `plugins` 에 넣은 것에 따라 태스크가 늘어난다는 것(`eclipse` 플러그인 → `gradle eclipse`), `gradle tasks` 로 확인한다는 것을 배웠다
 - [[2024-06-05-Day09]] — `mainClass` 기본값이 `org.example.App` 이라 고쳐야 실행된다는 것, `run { standardInput = System.in }` 이 없으면 키보드 입력이 닿지 않는다는 것을 실습에서 겪었다

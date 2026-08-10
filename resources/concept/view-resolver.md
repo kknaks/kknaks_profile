@@ -10,6 +10,7 @@ aliases:
 up:
   - 2024-09-25-Day82
   - 2024-10-17-Day95
+  - 2024-10-18-Day96
 tags:
   - spring
   - web
@@ -65,8 +66,10 @@ public ViewResolver viewResolver() {
 - [[mvc-pattern]] — `/WEB-INF/` 배치가 지키는 원칙
 - [[web-application-deployment]] — `/WEB-INF/` 의 성격
 - [[handler-interceptor]] — 뷰 실행 전후에 끼어드는 장치
+- [[spring-boot]] — 이 설정이 속성 두 줄이 되는 자리
 
 ## 출처
 
+- [[2024-10-18-Day96]] — 하루 뒤. **빈 등록이 속성 두 줄이 된다** — `spring.mvc.view.prefix=/WEB-INF/jsp/` 와 `spring.mvc.view.suffix=.jsp`. `@Bean public ViewResolver viewResolver()` 메서드가 통째로 사라지지만 **결정한 내용은 똑같다** → [[spring-boot]]
 - [[2024-10-17-Day95]] — 삼 주 뒤. **뷰 이름을 안 돌려줘도 된다는 것이 나온다** — 리턴이 `void` 거나 `Map`·`ModelAndView` 에 뷰 이름이 없으면 **요청 핸들러의 URL 자체가 뷰 이름이 된다.** `@GetMapping("h2")` 인 핸들러가 아무것도 안 돌려주면 `/WEB-INF/jsp2/c01_2/h2.jsp` 를 찾는 식이라, 「이름을 안 정하면 규칙이 정한다」는 관례가 성립한다. 실행 과정도 네 걸음으로 정리됐다: 핸들러가 이름을 리턴 → 프론트 컨트롤러가 뷰 리졸버에 전달 → 리졸버가 자기 정책으로 URL 을 만듦 → JSP 를 찾음. 접두사·접미사를 **생성자로 넘기는 표기**(`new InternalResourceViewResolver("/WEB-INF/jsp2/", ".jsp")`)도 이 회차의 것이다
 - [[2024-09-25-Day82]] — 「AppConfig 클래스 변경」 절이 `InternalResourceViewResolver` 를 `@Bean` 으로 등록하는 코드와 `setPrefix("/WEB-INF/jsp/")`·`setSuffix(".jsp")` 를 보이고, 그 목적을 **「JSP 외부접근 차단」**이라고 한 줄로 적었다 — 뷰 리졸버를 「경로 짧게 쓰기」가 아니라 **접근 통제**의 관점에서 잡은 것이 정확하다. 같은 절이 `MultipartResolver` 등록도 함께 다룬다(설명 문장은 「`viewResolver` 메서드를 통해」로 적혀 있으나 코드는 `multipartResolver` 다) → [[multipart-form-data]]. 구동원리는 이미지로만 있고, 접두사·접미사가 붙은 뒤 앞선 코드들의 반환값(`"/project/view.jsp"`)이 어떻게 바뀌어야 하는지는 다루지 않았다

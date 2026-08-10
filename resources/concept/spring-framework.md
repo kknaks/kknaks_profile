@@ -9,6 +9,7 @@ aliases:
   - spring-webmvc
 up:
   - 2024-09-25-Day82
+  - 2024-10-18-Day96
 tags:
   - java
   - web
@@ -68,7 +69,9 @@ implementation 'org.springframework:spring-webmvc:5.3.39'
 - [[dependency-injection]] — 이 프레임워크가 성립시키는 원리
 - [[java-ee]] — `javax`/`jakarta` 가 갈리는 근거
 - [[front-controller]] — 스프링이 대신 구현해 주는 패턴
+- [[spring-boot]] — 이 프레임워크의 설정을 기본값으로 미는 위층
 
 ## 출처
 
+- [[2024-10-18-Day96]] — 삼 주 뒤. **이 노트의 「스프링 = 부트가 아니다」가 뒤집히는 자리**다. `web.xml`·`AppConfig`·`ContextLoaderListener` 를 직접 쓰던 것이 `build.gradle` 의 스타터 몇 줄과 `application.properties` 한 파일이 된다. **Day82~95 에서 손으로 만든 것이 무엇이었는지 알고 나서 그것이 사라지는** 순서라, 「자동으로 된다」가 무엇을 대신하는지가 보인다 → [[spring-boot]]
 - [[2024-09-25-Day82]] — 「Spring Framework」 절이 `spring-webmvc:5.3.39` 의존성 한 줄과 **버전-EE 대응(6.x ↔ Jakarta EE 9, 5.x ↔ Java EE 8)**을 적고, 「스프링 프레임워크 적용」이 일곱 걸음에 걸쳐 **직접 만든 클래스를 지우고 스프링 것으로 바꾸는 과정**을 기록한다 — IOC 컨테이너 · Front Controller · Filter · 애노테이션 · Service · PageController · AppConfig 순이다. 「기존 ~ 클래스 삭제」라는 문장이 반복되는 것이 이 회차의 성격을 그대로 보인다. 다만 프레임워크와 라이브러리의 차이, `@EnableWebMvc` 가 실제로 무엇을 등록하는지는 다루지 않았고, 코드에 오타가 여럿 있다(`serSevletContext`, `@EnableWebMVC`, `mb.setViewName`)
