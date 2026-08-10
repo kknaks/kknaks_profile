@@ -19,6 +19,7 @@ links:
   works: []
   releases: []
   related: []
+up: []
 ---
 
 # Anonymous paywall 로그인 유도 + 약관 양쪽 노출 (ADR-13)
@@ -31,6 +32,10 @@ Anonymous 사용자가 paywall 도달 시 로그인 화면으로 redirect. 약�
 
 - Phase 1 결제는 인증 사용자만. Anonymous 의 paywall 도달은 Free 한도 초과 시 이론상 가능.
 - 한국 전자상거래법: 결제 전 약관 동의·개인정보처리방침 표시 필수.
+
+## 근거 개념
+
+없음 — 로그인 유도 흐름과 약관 노출 위치를 정한 UX 결정이다.
 
 ## Options
 

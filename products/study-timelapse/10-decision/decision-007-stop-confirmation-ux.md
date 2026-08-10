@@ -19,6 +19,7 @@ links:
   works: []
   releases: []
   related: []
+up: []
 ---
 
 # 정지 확인 UX — 실시간 인디케이터 + 정지 확인 모달 (ADR-07)
@@ -31,6 +32,10 @@ links:
 
 - sqrt 스케줄([[decision-005-capture-schedule-function|STL-DEC-005]]) 특성상 정지 시점에 따라 결과 길이가 크게 달라짐 (4h 설정·30분 정지 ≈ 16.7초, 2시간 정지 ≈ 42.4초).
 - 현행 `focus.tsx` 는 정지 버튼 탭 시 즉시 정지(확인 없음) + 결과 길이 미표시.
+
+## 근거 개념
+
+없음 — 정지 흐름의 화면 구성을 정한 UX 결정이다.
 
 ## Options
 

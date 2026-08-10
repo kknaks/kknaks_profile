@@ -29,6 +29,7 @@ links:
   works: []
   releases: []
   related: []
+up: []
 ---
 
 # MVP 기본값과 남은 범위 결정
@@ -47,6 +48,10 @@ links:
 - auth token은 MVP에서 `localStorage`에 저장한다.
 - 그래프 시각화는 기존 `kknaks_profile`의 `/graph` 구현을 참고해 AX 제품에 맞게 새로 구현한다.
 - 참고 구현의 기반은 `app/front/app/graph`, `app/front/components/graph/*`, `react-force-graph-2d`, `d3-force`다.
+
+## 근거 개념
+
+없음 — MVP 기본값과 범위를 나열해 닫은 문서다. 개별 값의 선택이라 기댄 개념이 없다.
 
 ## Rationale
 

@@ -18,6 +18,7 @@ links:
   works: []
   releases: []
   related: []
+up: []
 ---
 
 # 백그라운드 녹화 정책 — keep-awake + 백그라운드 진입 시 자동 정지 (ADR-06)
@@ -30,6 +31,10 @@ iOS 카메라 제약 하에서 idle timer 비활성(화면 꺼짐 방지) + 백�
 
 - `AVCaptureSession` 은 백그라운드 전환·화면 잠금 시 중단. `multitasking-camera-access` entitlement 는 일반 앱 미제공(심사 탈락 위험).
 - 현행 `focus.tsx` 는 AppState listener·idle timer 비활성 미구현 → 백그라운드 전환 시 타이머는 증가하나 캡처 중단 → 데이터 불일치.
+
+## 근거 개념
+
+없음 — iOS 정책 제약 안에서 고를 수 있는 것을 고른 결정이다.
 
 ## Options
 

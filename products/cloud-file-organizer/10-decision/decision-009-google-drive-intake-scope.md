@@ -23,6 +23,7 @@ links:
   works: []
   releases: []
   related: []
+up: []
 ---
 
 # Google Drive intake scope
@@ -55,6 +56,10 @@ v1 데모의 Google Drive 수집 범위는 선택 폴더 1개로 제한한다. �
   - 여러 폴더 감시.
   - Shared Drive 전체 감시.
   - 파일 타입별 정교한 parser/OCR 정책.
+
+## 근거 개념
+
+없음 — 수집 범위(폴더 1개)와 OAuth scope 후보를 정한 범위 결정이다.
 
 ## Scope Policy
 

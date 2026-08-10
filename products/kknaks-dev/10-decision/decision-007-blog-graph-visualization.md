@@ -22,6 +22,7 @@ links:
   works: []
   releases: []
   related: []
+up: []
 ---
 
 # 블로그 그래프 시각화 (ADR-007)
@@ -37,6 +38,10 @@ links:
 - 관련 baseline: [[baseline-001-repo-knowledge-graph|KDEV-BL-001]]
 - 목표는 관계를 블로그에서 시각화하는 것. 데이터는 빌더가 노드+엣지+타입+방향을 산출.
 - backlink는 `build_graph`가 이미 산출 → 로컬 그래프 추가 비용 작음.
+
+## 근거 개념
+
+없음 — KDEV-DEC-010 D7 이 대체(superseded)한 결정이라 근거를 새로 잇지 않는다.
 
 ## Options
 

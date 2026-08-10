@@ -19,6 +19,7 @@ links:
   works: []
   releases: []
   related: []
+up: []
 ---
 
 # 녹화 패러다임 — 프레임 샘플링(음성 제외) + Native 모듈 재작성 (ADR-04)
@@ -31,6 +32,10 @@ links:
 
 - 현행: VisionCamera 연속 30fps 녹화(`audio=true`) + `scaleTimeRange` 배속 변환 + CALayer 오버레이.
 - 문제: 4시간 녹화 원본 4~8GB, 변환 수 분, 발열·배터리 부담. RN preview 와 Swift 합성본 불일치(WYSIWYG 버그).
+
+## 근거 개념
+
+없음 — 녹화 방식을 고른 제품 결정이다. 음성을 포기해 얻는 지표가 근거이고 기댄 개념은 없다.
 
 ## Options
 

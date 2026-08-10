@@ -20,6 +20,7 @@ links:
   works: []
   releases: []
   related: []
+up: []
 ---
 
 # 월 only $1.99 — 연 플랜 폐기 (ADR-11)
@@ -33,6 +34,10 @@ links:
 - 기존 권장: 월+연 2-tier(월 $2.99/연 $19.99 잠정). `paywall.tsx` 도 동일 하드코딩.
 - 연 가격 미확정 → Phase 2 App Store Connect 등록 차단 요소.
 - 사용자 비즈니스 결정: 연 플랜 미운영 확정.
+
+## 근거 개념
+
+없음 — 플랜과 가격을 정한 제품 결정이다.
 
 ## Options
 

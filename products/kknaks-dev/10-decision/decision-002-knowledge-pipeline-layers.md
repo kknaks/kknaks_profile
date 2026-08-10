@@ -21,6 +21,7 @@ links:
   works: []
   releases: []
   related: []
+up: []
 ---
 
 # 지식 파이프라인 층을 루트 레벨로 (ADR-002)
@@ -33,6 +34,10 @@ links:
 - persona는 노드는 많은데 가로 연결이 비어 있었다. 빠진 층: 아이디어 inbox(fleeting), 영구노트(permanent), 참고노트의 명확한 위치.
 - `persona/daily/`는 `auto:true` 커밋 기반 활동 로그라 fleeting 역할을 못 함.
 - `persona/notes/` 168개는 참고노트(외부 자료 정리) → reference 종착. (~~`persona/contents/` 22개 중 21개도 외부자료~~ — **오판이었음**: contents는 live YouTube 요약 파이프라인으로 잔류 확정. [[decision-008-contents-retention|KDEV-DEC-008]] 참조.)
+
+## 근거 개념
+
+없음 — 층을 루트 레벨에 두는 배치 결정이다. 4층 모델의 근거는 [[decision-010-knowledge-graph-four-layers|KDEV-DEC-010]] 이 갖는다.
 
 ## Options
 

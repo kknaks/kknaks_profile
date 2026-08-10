@@ -416,6 +416,12 @@ tags:
 - `links.decisions` 같은 관계 필드에는 ID 문자열이 아니라 Obsidian wikilink를 둔다.
 - pipeline은 wikilink 대상 파일의 frontmatter `id`를 읽어 BASE → DEC → SPEC → WORK 관계를 검증한다.
 - 관계 링크는 frontmatter `links`에만 둔다.
+- **`decision`은 근거 개념 검토 흔적을 남긴다** — frontmatter `up:` 키와 본문 「근거 개념」 절.
+  **결론이 「없음」이어도 통과한다**(`up: []` + `없음 — 사유` 한 줄). 요구하는 것은 개념을
+  반드시 잇는 것이 아니라 **검토했다는 사실이 문서에 남는 것**이다. 값·범위·UX 결정처럼
+  기댈 개념이 없는 문서가 실제로 27건이고, 그것을 억지로 이으면 계보가 거짓이 된다.
+  판단 기준은 `rules/knowledge-note-pipeline.md`의 「결정을 쓰다 새 개념이 나오면」.
+  `product_doc_pipeline.py`가 error로 막고, pre-commit이 `products/**` 변경마다 그것을 부른다.
 - **`spec`의 `links.works`는 비워 둔다.** SPEC → WORK 추적은 위 「문서 관계」의 단방향
   규정대로 work의 `links.specs`가 소유하고, spec 중심의 목록은 `30-work/README.md`의
   Spec Coverage가 **derived view**로 만든다. 원본에 복사해 두면 WP가 늘 때마다 두 곳을

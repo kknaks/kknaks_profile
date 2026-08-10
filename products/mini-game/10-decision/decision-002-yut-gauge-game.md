@@ -21,6 +21,7 @@ links:
     - MG-WORK-001
   releases: []
   related: []
+up: []
 ---
 
 # Yut gauge first game
@@ -32,6 +33,10 @@ links:
 - 관련 baseline: BL-001
 - 문제/기회: 누구나 이해하는 `도/개/걸/윷/모` 결과를 짧은 조작으로 만든다.
 - 결정이 필요한 이유: 윷놀이 결과 확률과 플랫폼 공통 ranking 값이 필요하다.
+
+## 근거 개념
+
+없음 — 게임 규칙과 확률 분포를 정한 제품 결정이다.
 
 ## Options
 

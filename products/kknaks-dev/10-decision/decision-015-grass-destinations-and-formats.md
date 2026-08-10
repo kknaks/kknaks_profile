@@ -23,6 +23,7 @@ links:
   releases: []
   related:
     - "[[baseline-003-inbox-approval-pipeline|KDEV-BL-003]]"
+up: []
 ---
 
 # 잔디 착지 경로 3개와 문서 양식 — daily·career·concept (ADR-015)
@@ -49,6 +50,10 @@ links:
 - **career 는 조직 단위다.** 5개 — `medisolve-ai`(`is_current: true`) · `quantus` · `likelion` · `dowha-eng` · `bitcamp`. 반면 `showcase.md` 의 `org` 분포는 `company` 5 / `studio` 8 이다.
 - **길이 상한.** `llm.py:21 BODY_HARD_LIMIT = 600`, 프롬프트는 `≤500자`.
 - **그래프는 이번 범위 밖이다.** owner 결정 — 그래프 정합은 이 파이프라인을 구축한 뒤 별도로 손본다.
+
+## 근거 개념
+
+없음 — 산출물이 어느 경로로 가는지 정한 배치 표다.
 
 ## Options
 

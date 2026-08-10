@@ -18,6 +18,7 @@ links:
   works: []
   releases: []
   related: []
+up: []
 ---
 
 # 카메라 점유 통합 — VisionCamera frame processor plugin (ADR-09)
@@ -30,6 +31,10 @@ links:
 
 - [[decision-004-recording-paradigm|STL-DEC-004]] 는 "얼마나 자주" 만 결정, "어떻게 1장을" 은 미명시.
 - 자체 `AVCapturePhotoOutput` 구현 결과 3가지 치명 문제: 셔터음 강제(8초×4h=1,800회), VisionCamera 와 device 점유 충돌(preview 멈춤), `DispatchSourceTimer` resume 누락 crash.
+
+## 근거 개념
+
+없음 — 카메라 점유 방식을 고른 구현 선택이다.
 
 ## Options
 

@@ -20,6 +20,7 @@ links:
   works: []
   releases: []
   related: []
+up: []
 ---
 
 # contents 잔류 — YouTube 요약 파이프라인은 그래프 무관 (ADR-008)
@@ -37,6 +38,10 @@ links:
   - 전용 파이프라인 강결합: `app/back/service/jobs/content_enrich.py`(scan_pending→LLM enrich), `api/routers/contents.py`(`/api/contents`·`/{id}`), FE `/contents`(목록·상세·landing-preview·topnav), `main_job.py` git-diff 추적.
   - type=content는 별도 dict 키(`contents`)로 로드되어 `_build_graph_nodes`에 **전달되지 않음** → 지식그래프 노드 아님(`persona_loader.py`: contents/career/daily는 persona-내부 enrich 비대상).
   - C-019~C-022 최근 실투입 = **live**.
+
+## 근거 개념
+
+없음 — 앞선 결정의 조항을 철회하는 범위 결정이다.
 
 ## Options
 

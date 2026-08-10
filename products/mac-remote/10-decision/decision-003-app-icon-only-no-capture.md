@@ -20,6 +20,7 @@ links:
   works: []
   releases: []
   related: []
+up: []
 ---
 
 # 화면 캡처 대신 앱 아이콘만 표시 (ADR-003)
@@ -33,6 +34,10 @@ iOS 앱에서 창을 식별할 시각 요소로 창 썸네일/스크린샷 대�
 - 관련 baseline: [[baseline-001-iphone-mac-remote-idea|MRT-BL-001]]
 - iOS 앱에서 창을 식별할 시각적 요소가 필요하다.
 - 핵심 제약: 화면 캡처/썸네일 금지.
+
+## 근거 개념
+
+없음 — 화면에 무엇을 보일지 정한 UX 결정이다.
 
 ## Options
 

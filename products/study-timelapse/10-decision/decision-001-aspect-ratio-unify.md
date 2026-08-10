@@ -17,6 +17,7 @@ links:
   works: []
   releases: []
   related: []
+up: []
 ---
 
 # 비율 4:5 통일 — 백엔드 VALID_ASPECT_RATIOS 수정 (ADR-01)
@@ -31,6 +32,10 @@ links:
 - 백엔드(FastAPI) 세션 API의 `VALID_ASPECT_RATIOS` 는 `9:16 / 16:9 / 1:1 / 4:3 / 3:4` 라 `4:5` 를 허용하지 않았다.
 - 결과: `4:5` 로 `createSession` 호출 시 400 → 세션 메타 기록 누락. (타임랩스 영상 자체는 로컬 생성)
 - 인스타그램 세로 포맷(`4:5`)이 핵심 SNS 공유 시나리오라 즉시 해소 대상.
+
+## 근거 개념
+
+없음 — 허용 비율 상수 집합을 고친 값 결정이다.
 
 ## Options
 

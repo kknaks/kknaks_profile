@@ -19,6 +19,7 @@ links:
   works: []
   releases: []
   related: []
+up: []
 ---
 
 # 환불 정책 — Apple/Google 스토어 위임 (ADR-17)
@@ -31,6 +32,10 @@ Phase 2 환불은 Apple/Google 스토어 정책에 전면 위임한다. 회사�
 
 - in-app purchase(RevenueCat SDK → Apple/Google 결제 시트) 의 환불은 스토어가 처리하는 것이 표준. 스토어 외 결제 수단이 없으면 회사 직접 환불은 현실적으로 불가.
 - Phase 1 `policy-05-subscription-refund` 초안의 일할 환불 조항은 미확정.
+
+## 근거 개념
+
+없음 — 환불을 스토어에 위임한 정책 결정이다.
 
 ## Options
 

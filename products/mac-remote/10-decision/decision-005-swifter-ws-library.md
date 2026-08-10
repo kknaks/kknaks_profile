@@ -20,6 +20,7 @@ links:
   works: []
   releases: []
   related: []
+up: []
 ---
 
 # Swifter를 Mac WebSocket 서버 라이브러리로 선택 (ADR-005)
@@ -33,6 +34,10 @@ Mac 헬퍼의 WebSocket 서버로 Swifter(httpswift/swifter)를 사용한다.
 - 관련 baseline: [[baseline-001-iphone-mac-remote-idea|MRT-BL-001]]
 - [[decision-001-websocket-protocol|MRT-DEC-001]]에 따라 Mac 헬퍼에 WebSocket 서버가 필요하다.
 - 핵심 제약: 외부 의존성 최소화.
+
+## 근거 개념
+
+없음 — WebSocket 서버 라이브러리를 고른 선택이다. 프로토콜의 근거는 [[decision-001-websocket-protocol|MRT-DEC-001]] 이 갖는다.
 
 ## Options
 

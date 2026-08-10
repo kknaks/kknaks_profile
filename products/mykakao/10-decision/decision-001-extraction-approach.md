@@ -19,6 +19,7 @@ links:
   works: []
   releases: []
   related: []
+up: []
 ---
 
 # 메시지 추출 방식 — 로컬 SQLCipher DB 복호화 (kakaocli)
@@ -32,6 +33,10 @@ links:
 - 관련 baseline: [[baseline-001-kakao-message-extraction]]
 - 문제/기회: 내보내기 없이, 여러 단톡방 전체 히스토리를 자동으로 한 번에 긁어야 한다.
 - 결정이 필요한 이유: 메시지 DB가 암호화되어 있어 접근 경로 자체를 먼저 정해야 후속 작업이 가능하다.
+
+## 근거 개념
+
+없음 — 메시지를 어디서 어떻게 얻을지 고른 방식 선택이다.
 
 ## Options
 

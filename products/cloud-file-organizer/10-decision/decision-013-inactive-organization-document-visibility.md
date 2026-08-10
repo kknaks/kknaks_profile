@@ -23,6 +23,7 @@ links:
   works: []
   releases: []
   related: []
+up: []
 ---
 
 # 비활성 조직의 기존 문서 노출 기준
@@ -60,6 +61,10 @@ links:
 | 조직도 노드 | `inactive` | 기존 문서 조회 가능, 새 귀속 불가 |
 | 기존 문서 | active document | `physical_tree_path` 유지 |
 | 신규 문서 | approval candidate | inactive 조직 선택 불가 |
+
+## 근거 개념
+
+없음 — 비활성 조직의 기존 문서를 어떻게 보일지 정한 노출 규칙이다.
 
 ## Resulting Spec Direction
 

@@ -26,6 +26,7 @@ links:
   related:
     - "[[baseline-001-repo-knowledge-graph|KDEV-BL-001]]"
     - "[[decision-017-product-registry-and-admin-scaffold|KDEV-DEC-017]]"
+up: []
 ---
 
 # 지식층 디렉토리 재편 — `resources/` 신설과 SoT 명칭 분리 (ADR-018)
@@ -44,6 +45,10 @@ R(Resources) 버킷을 `resources/` 로 신설하고 **하위 폴더 이름을 �
 - 코드 접점은 셋뿐이다 — `persona_loader` 로드 경로와 경로 기반 `type` 기본값 · `apply/plan.py` 의 `ALLOWED_PREFIXES`/`LAYER_PREFIX`/층-경로 정합 · `agent.md` 경로표.
 - **`downloads/` 와 `reports/` 는 잔재가 아니었다.** `main.py:180` 이 `downloads/` 를 `/download/*` 로 정적 서빙하고 DeskDeck 랜딩이 그걸 링크한다(MRT-RB-001). `reports/PLAN-013-T-008·009.md` 는 `products/ax-knowledge-graph/` 의 `log.md`·`30-work/` 가 참조한다. **선언이 없을 뿐 소유자가 있다.**
 - `SPEC-001` 레이아웃이 `reference/{group}/` 로 적혀 있으나 **실제는 flat** 이다(WORK-005/013 에서 바뀌었고 spec 이 안 따라왔다).
+
+## 근거 개념
+
+없음 — 디렉토리 이름과 용어를 정리한 결정이다. 「양식 원천 / SoT」 구분은 이 문서가 원천이다.
 
 ## Options
 

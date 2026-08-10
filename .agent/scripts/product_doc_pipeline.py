@@ -8,7 +8,8 @@ Implemented:
   (target exists · label == target frontmatter `id`)
 - validate SPEC -> WORK single direction (`spec.works` must stay empty — the
   spec-centric view is derived from work `links.specs`, see rules §정합성)
-- warn on specs with no covering work (status implemented/released/stable)
+- warn on specs with no covering work (status implemented/released)
+- validate decision 근거 개념 검토 흔적 (`up:` key + 「근거 개념」 section)
 - release gate (--release-gate)
 
 Not implemented yet:
@@ -262,6 +263,23 @@ def validate_links(
             # 실제로는 커버된 스펙이 미커버로 잡힌다.
             if doc_type in ("work", "bugfix"):
                 covered_specs.update(stem for stem, _ in links.get("specs", []))
+
+            # decision 은 근거 개념 검토 흔적을 남긴다 — `up:` 키 + 「근거 개념」 절.
+            # 결론이 「없음」이어도 통과한다(`up: []` + 사유 한 줄). 요구하는 것은
+            # 개념을 반드시 잇는 것이 아니라 **검토했다는 사실이 문서에 남는 것**이다.
+            # rules/knowledge-note-pipeline.md 「결정을 쓰다 새 개념이 나오면」 참조.
+            if doc_type == "decision":
+                text = md.read_text(encoding="utf-8")
+                fm_end = text.find("\n---\n", 4)
+                fm_text = text[4:fm_end] if fm_end != -1 else ""
+                if not re.search(r"^up:", fm_text, re.M):
+                    errors.append(
+                        f"decision missing `up:` (근거 개념 미검토 — 없으면 `up: []`): {rel}"
+                    )
+                if "## 근거 개념" not in text:
+                    errors.append(
+                        f"decision missing 「근거 개념」 절 (없으면 '없음 — 사유' 한 줄): {rel}"
+                    )
 
             if doc_type == "spec" and links.get("works"):
                 errors.append(

@@ -21,6 +21,7 @@ links:
   works: []
   releases: []
   related: []
+up: []
 ---
 
 # Phase 1 실행 전략 — 1a 완료 후 1b/1c 병렬 + DoD 단일 디바이스 (ADR-14)
@@ -32,6 +33,10 @@ Phase 1a(backend DB + API) 완료 후 1b(paywall 연동) + 1c(약관 UI)를 병�
 ## Context
 
 - Phase 1 sub-phase: 1a(backend) / 1b(paywall) / 1c(약관). 직렬 vs 병렬, DoD 에 "다중 디바이스 동일 상태" 포함 여부 결정 필요.
+
+## 근거 개념
+
+없음 — 작업 순서와 완료 기준을 정한 일정 결정이다.
 
 ## Options
 

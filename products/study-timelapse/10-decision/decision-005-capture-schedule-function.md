@@ -20,6 +20,7 @@ links:
   works: []
   releases: []
   related: []
+up: []
 ---
 
 # 캡처 스케줄 함수 — Sqrt 스케줄 채택 (ADR-05)
@@ -33,6 +34,10 @@ links:
 - 프레임 샘플링 채택 후 "언제 찍을지" 스케줄 함수 필요.
 - 입력: `goalSec`, `outputSec`, `outputFps`(기본 30), `N_total = outputSec × outputFps`.
 - 6 보장 속성: 입력 의존 / 종점 정확 / 단조 증가 / 짧은 녹화 보호 / 연속 수식 / 인터벌 floor 가드.
+
+## 근거 개념
+
+없음 — 캡처 시점을 정하는 수식을 고른 결정이다.
 
 ## Options
 

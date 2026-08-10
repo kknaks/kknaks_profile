@@ -23,6 +23,7 @@ links:
   works: []
   releases: []
   related: []
+up: []
 ---
 
 # 데모 v1 Google Drive readonly scope
@@ -62,6 +63,10 @@ links:
 | 원문 저장 | DB 저장 안 함 |
 | 저장 데이터 | mirror, summary, 후보 metadata, 승인 metadata |
 | 민감 문서 | preset 후보 + 관리자 승인 |
+
+## 근거 개념
+
+없음 — 데모 v1 의 OAuth scope 값을 확정한 범위 결정이다.
 
 ## Resulting Spec Direction
 

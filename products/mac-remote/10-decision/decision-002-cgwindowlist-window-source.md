@@ -20,6 +20,7 @@ links:
   works: []
   releases: []
   related: []
+up: []
 ---
 
 # CGWindowListCopyWindowInfo를 창 목록 수집에 사용 (ADR-002)
@@ -33,6 +34,10 @@ Mac에서 현재 열린 창 목록을 `CGWindowListCopyWindowInfo`로 수집한�
 - 관련 baseline: [[baseline-001-iphone-mac-remote-idea|MRT-BL-001]]
 - Mac에서 현재 열린 창 목록을 수집해야 한다.
 - "deprecated 아니냐"는 흔한 오해를 정리할 필요가 있다.
+
+## 근거 개념
+
+없음 — macOS API 둘 중 하나를 고른 선택이다.
 
 ## Options
 

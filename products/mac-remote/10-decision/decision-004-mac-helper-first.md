@@ -19,6 +19,7 @@ links:
     - "[[work-001-cli-prototype|MRT-WORK-001]]"
   releases: []
   related: []
+up: []
 ---
 
 # Mac 헬퍼를 먼저 개발 (ADR-004)
@@ -31,6 +32,10 @@ links:
 
 - 관련 baseline: [[baseline-001-iphone-mac-remote-idea|MRT-BL-001]]
 - 두 컴포넌트(Mac 헬퍼, iOS 앱)의 개발 순서를 정해야 한다.
+
+## 근거 개념
+
+없음 — 무엇을 먼저 만들지 정한 순서 결정이다.
 
 ## Options
 

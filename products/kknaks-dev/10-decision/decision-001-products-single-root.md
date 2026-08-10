@@ -20,6 +20,7 @@ links:
   works: []
   releases: []
   related: []
+up: []
 ---
 
 # 제품·프로젝트를 products/ 단일 루트로 통합 (ADR-001)
@@ -32,6 +33,10 @@ links:
 - 같은 제품이 두 곳에 흩어져 있었다: `persona/projects/{x}.md`(블로그 렌더용 showcase 카드)와 `products/{x}/`(실제 코드 작업용 개발 SSOT).
 - showcase 카드: frontmatter `thumbnail`/`visible`/`problem`/`approach`/`impact`, 회고적, 블로그/PDF 렌더, 회사+개인 13개.
 - products: 00-baseline~60-release 파이프라인, 능동적 개발, 개인 제품 8개.
+
+## 근거 개념
+
+없음 — 디렉토리를 어디에 둘지 정한 배치 결정이다. 판단 기준(회사/개인 구분을 폴더가 아니라 `org` 로)은 이 문서가 그대로 갖는다.
 
 ## Options
 
