@@ -43,7 +43,6 @@ LAYER_PREFIX = {
     # 폴더는 층을 가리키고 `type` 은 frontmatter 계약이라 축이 다르다.
     "reference": "resources/source/",
     "concept": "resources/concept/",
-    "permanent": "resources/synthesis/",
     "idea": "inbox/",
     "content": "persona/contents/",
     "daily": "persona/daily/",
@@ -430,8 +429,8 @@ def validate_plan(
         elif action.note_type == "career":
             violations.extend(_career_violations(action, path))
 
-        # 3. `up:` 필수 (concept·permanent)
-        if action.note_type in ("concept", "permanent"):
+        # 3. `up:` 필수 (concept) — KDEV-DEC-019 로 permanent 는 폐기됐다
+        if action.note_type == "concept":
             try:
                 meta = frontmatter.loads(action.content).metadata
             except Exception:  # noqa: BLE001

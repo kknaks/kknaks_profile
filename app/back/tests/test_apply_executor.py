@@ -158,7 +158,23 @@ class TestLayerPathMatch:
         )
         assert any(v.rule == "LAYER_PATH_MISMATCH" for v in violations)
 
-    def test_permanent_in_concept_dir_rejected(self, repo):
+    def test_reference_in_concept_dir_rejected(self, repo):
+        """자료가 `resources/concept/` 에 들어가면 로더가 개념으로 읽는다."""
+        violations = validate_plan(
+            [
+                _action(
+                    path="resources/concept/x.md",
+                    content="---\ntype: reference\ndate: 2026.08.10\n---\n본문",
+                    note_type="reference",
+                    stem="x",
+                )
+            ],
+            repo_root=repo,
+        )
+        assert any(v.rule == "LAYER_PATH_MISMATCH" for v in violations)
+
+    def test_dropped_permanent_type_rejected(self, repo):
+        """KDEV-DEC-019 로 폐기된 `permanent` 는 미지 타입으로 거부된다."""
         violations = validate_plan(
             [
                 _action(
@@ -170,7 +186,7 @@ class TestLayerPathMatch:
             ],
             repo_root=repo,
         )
-        assert any(v.rule == "LAYER_PATH_MISMATCH" for v in violations)
+        assert violations
 
     def test_unknown_type_rejected(self, repo):
         violations = validate_plan(

@@ -138,32 +138,35 @@ class TestGraphNodeQualification:
         assert dups == []
 
 
-class TestPermanent:
-    """KDEV-WORK-010 — permanent(영구노트, flat) loader + 그래프 배선."""
+class TestConcept:
+    """KDEV-WORK-010/013 — concept(원자 개념, flat) loader + 그래프 배선.
+
+    KDEV-DEC-019 로 판단층(`resources/synthesis/`)이 폐기돼 이 테스트가 concept 를 본다.
+    """
 
     @staticmethod
     def _repo(tmp_path: Path) -> Path:
-        """repo/persona(min) + repo/permanent 격리 레이아웃 (WORK-005 미러)."""
+        """repo/persona(min) + repo/resources/concept 격리 레이아웃 (WORK-005 미러)."""
         repo = tmp_path / "repo"
         persona = repo / "persona"
         persona.mkdir(parents=True)
         _scaffold_min_persona(persona)
-        (repo / "resources" / "synthesis").mkdir(parents=True)
+        (repo / "resources" / "concept").mkdir(parents=True)
         return repo
 
-    def test_loaded_as_permanent_nodes(self, tmp_path: Path):
+    def test_loaded_as_concept_nodes(self, tmp_path: Path):
         repo = self._repo(tmp_path)
-        perm = repo / "resources" / "synthesis"
-        # active 영구노트 + navigational README(제외)
-        (perm / "concurrency-model.md").write_text(
+        conc = repo / "resources" / "concept"
+        # active 개념 + navigational README(제외)
+        (conc / "concurrency-model.md").write_text(
             "---\ntitle: 동시성 모델\n---\n# 본문\n", encoding="utf-8"
         )
-        (perm / "README.md").write_text("# 안내\nnavigational", encoding="utf-8")
+        (conc / "README.md").write_text("# 안내\nnavigational", encoding="utf-8")
 
         data = load_persona(repo / "persona")
-        assert len(data["permanent"]) == 1  # README 제외
+        assert len(data["permanent"]) == 1  # 로더 내부 키. README 제외
         node = next(n for n in data["_graph"]["nodes"] if n["id"] == "concurrency-model")
-        assert node["type"] == "permanent"
+        assert node["type"] == "concept"
         assert node["archived"] is False
         assert "README" not in {n["id"] for n in data["_graph"]["nodes"]}
 
@@ -178,34 +181,32 @@ class TestPermanent:
         node = next(n for n in data["_graph"]["nodes"] if n["id"] == "old-idea")
         assert node["archived"] is True
 
-    def test_empty_permanent_no_nodes(self, tmp_path: Path):
+    def test_empty_concept_no_nodes(self, tmp_path: Path):
         repo = self._repo(tmp_path)
         data = load_persona(repo / "persona")
         assert data["permanent"] == []
-        assert not any(
-            n["type"] == "permanent" for n in data["_graph"]["nodes"]
-        )
+        assert not any(n["type"] == "concept" for n in data["_graph"]["nodes"])
 
     def test_id_filename_mismatch_fails(self, tmp_path: Path):
         # id == 파일 stem 강제 (그래프 노드 식별자 정합) — reference 미러
         repo = self._repo(tmp_path)
-        (repo / "resources" / "synthesis" / "foo.md").write_text(
+        (repo / "resources" / "concept" / "foo.md").write_text(
             "---\nid: bar\ntitle: t\n---\n# body\n", encoding="utf-8"
         )
         with pytest.raises(PersonaError, match="filename slug"):
             load_persona(repo / "persona")
 
-    def test_up_emits_lineage_and_l4_same_rank_ok(self, tmp_path: Path):
-        # permanent up: reference → lineage 엣지. 층 rank source(1) <= synthesis(3) →
-        # L4(상류만 up) 가 동일-rank 를 ERROR 로 잡지 않는지 확인 (WORK-010 구현 주의).
+    def test_up_emits_lineage_and_l4_lower_rank_ok(self, tmp_path: Path):
+        # concept up: reference → lineage 엣지. 층 rank source(1) <= concept(2) →
+        # L4(상류만 up) 가 ERROR 로 잡지 않는지 확인.
         repo = self._repo(tmp_path)
         ref = repo / "resources" / "source"
         ref.mkdir(parents=True, exist_ok=True)
         (ref / "asyncio-basics.md").write_text(
             "---\ntitle: asyncio\n---\n# ref\n", encoding="utf-8"
         )
-        (repo / "resources" / "synthesis" / "concurrency-model.md").write_text(
-            "---\ntitle: 동시성\nup: [asyncio-basics]\n---\n"
+        (repo / "resources" / "concept" / "concurrency-model.md").write_text(
+            "---\ntitle: 동시성\naliases: [동시성]\nup: [asyncio-basics]\n---\n"
             "정제 출처: [[asyncio-basics]]\n",
             encoding="utf-8",
         )
@@ -217,7 +218,6 @@ class TestPermanent:
         )
         assert edge["type"] == "lineage"
         assert edge["dir"] == "up"
-        # 동일-rank up(permanent→reference)은 L4 ERROR 아님
         l4 = [
             v for v in data["_graph_violations"]
             if v["rule"] == "L4" and v["node"] == "concurrency-model"

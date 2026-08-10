@@ -27,7 +27,7 @@ links:
 
 # 잔디 산출물 — daily·career·concept 계약
 
-커밋 조사 결과가 어떤 문서가 되는지 정한다. 착지는 셋이다 — **`persona/daily/`(그날) · `persona/career/`(누적) · `permanent/concept/`(개념)**.
+커밋 조사 결과가 어떤 문서가 되는지 정한다. 착지는 셋이다 — **`persona/daily/`(그날) · `persona/career/`(누적) · `resources/concept/`(개념)**.
 
 > 조사 입력은 [[spec-011-commit-collection|KDEV-SPEC-011]], 승인·발행 절차는 [[spec-013-grass-gate|KDEV-SPEC-013]].
 
@@ -143,7 +143,7 @@ Out of scope:
 |---|---|---|---|
 | `persona/daily/{YYYY-MM-DD}.md` | `daily` | upsert | 활동 > 0 · 기존 파일이 본인 작성이 아님 |
 | `persona/career/{stem}.md` | `career` | replace | `type=company` 커밋 있음 · `is_current: true` · `changed: true` |
-| `permanent/concept/{slug}.md` | `concept` | upsert | 개념 후보 + 승인 |
+| `resources/concept/{slug}.md` | `concept` | upsert | 개념 후보 + 승인 |
 
 ### Data Contract — daily
 

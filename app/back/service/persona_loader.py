@@ -148,6 +148,8 @@ def load_persona(persona_dir: Path) -> dict[str, Any]:
         "daily": daily,
         "algorithms": algorithms,
         "activity": activity,
+        # KDEV-DEC-019 로 판단층이 폐기돼 이 리스트는 이제 concept 만 담는다.
+        # 키 이름은 소비처(API·테스트)가 아직 쓰고 있어 그대로 둔다.
         "permanent": permanent_list,
         "_meta": meta,
     }
@@ -223,7 +225,7 @@ def _build_graph_nodes(
         stem = n["_path"].stem
         _add(stem, {
             "id": n.get("id", stem),
-            "type": n.get("type", "permanent"),
+            "type": n.get("type", "concept"),
             "title": n.get("title"),
             "body": n.get("body", ""),
             "up": n.get("up"),
@@ -303,7 +305,7 @@ def validate_persona(data: dict[str, Any]) -> None:
     # KDEV-WORK-010 — permanent(종합) + KDEV-WORK-013 — concept(원자 개념).
     # required + id==파일 stem (그래프 노드 식별자 정합).
     for n in data.get("permanent", []):
-        category = n.get("type") if n.get("type") in REQUIRED_FIELDS else "permanent"
+        category = n.get("type") if n.get("type") in REQUIRED_FIELDS else "concept"
         ppath: Path = n["_path"]
         # 층 폴더 이름을 그대로 라벨에 쓴다 — 오류 메시지가 실제 경로와 같아야 한다.
         label = f"{ppath.parent.name}/{ppath.name}"

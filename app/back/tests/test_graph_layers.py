@@ -47,10 +47,11 @@ def _check(mapping, rule=None):
 
 
 class TestLayerDerivation:
-    def test_four_layers_map_from_type(self):
+    def test_three_layers_map_from_type(self):
         assert layer_of("reference") == "source"
         assert layer_of("concept") == "concept"
-        assert layer_of("permanent") == "synthesis"
+        # KDEV-DEC-019 — 판단층 폐기. `permanent` 는 더 이상 층에 속하지 않는다.
+        assert layer_of("permanent") is None
         for t in ("baseline", "decision", "spec", "work", "release", "runbook", "bugfix"):
             assert layer_of(t) == "execution", t
 
@@ -107,14 +108,14 @@ class TestLayerDirection:
         assert len(found) == 1
         assert found[0]["node"] == "whisper"
 
-    def test_synthesis_may_not_reference_execution(self):
-        """종합 판단이 제품 문서를 기반으로 삼을 수는 없다 (라이브 데이터의 유일한 위반 형태)."""
+    def test_concept_may_not_reference_execution(self):
+        """개념이 제품 문서를 기반으로 삼을 수는 없다 — 방향이 거꾸로다."""
         found = _check({
             "baseline-001-x": _node("baseline"),
-            "strategy": _node("permanent", body="[[baseline-001-x]]", up=["baseline-001-x"]),
+            "stt": _node("concept", body="[[baseline-001-x]]", up=["baseline-001-x"]),
         }, "L4")
         assert len(found) == 1
-        assert found[0]["node"] == "strategy"
+        assert found[0]["node"] == "stt"
 
     def test_same_layer_is_allowed(self):
         assert _check({
@@ -157,8 +158,8 @@ class TestRequiredFields:
             "stt": _node("concept", aliases=["ASR"], up=["whisper"], body="[[whisper]]"),
         }, "L2") == []
 
-    def test_permanent_requires_up(self):
-        found = _check({"strategy": _node("permanent")}, "L2")
+    def test_concept_requires_up(self):
+        found = _check({"stt": _node("concept", aliases=["STT"])}, "L2")
         assert any("'up' 필수" in v["detail"] for v in found)
 
     def test_reference_needs_neither(self):
@@ -178,9 +179,10 @@ class TestLayeredOrphan:
         assert orphans[0]["level"] == "INFO"
         assert unsourced_queue(v) == ["whisper"]
 
-    def test_synthesis_orphan_is_warn(self):
+    def test_layerless_type_orphan_is_not_checked(self):
+        """KDEV-DEC-019 — `permanent` 는 층이 없어져 orphan 판정 대상이 아니다."""
         v = validate_graph(_graph({"strategy": _node("permanent", up=["x"])}))
-        assert [x["level"] for x in v if x["rule"] == "L5"] == ["WARN"]
+        assert [x for x in v if x["rule"] == "L5"] == []
 
     def test_execution_orphan_is_not_checked(self):
         """제품 문서는 제품 파이프라인이 관리한다."""

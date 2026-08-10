@@ -20,11 +20,11 @@ import pytest
 from core.graph import validate_graph
 
 TEMPLATE_DIR = Path(__file__).resolve().parents[3] / "templates" / "knowledge"
-LAYER_TEMPLATES = ("idea.md", "reference.md", "concept.md", "permanent.md")
+# KDEV-DEC-019 — 판단층 폐기로 `permanent.md` 템플릿이 사라졌다.
+LAYER_TEMPLATES = ("idea.md", "reference.md", "concept.md")
 
 REFERENCE_STEM = "2026-07-28-sample-source"
 CONCEPT_STEM = "sample-concept"
-PERMANENT_STEM = "sample-synthesis"
 IDEA_STEM = "2026-07-28-sample-idea"
 
 
@@ -66,13 +66,13 @@ def test_template_frontmatter_parses(name):
 def test_template_declares_expected_type(name):
     """`reference` 는 로더가 type 을 주입하므로 frontmatter 에 없어도 된다."""
     post = frontmatter.loads(TEMPLATE_DIR.joinpath(name).read_text(encoding="utf-8"))
-    expected = {"idea.md": "idea", "concept.md": "concept", "permanent.md": "permanent"}
+    expected = {"idea.md": "idea", "concept.md": "concept"}
     if name in expected:
         assert post.metadata.get("type") == expected[name]
 
 
 def _filled_graph() -> dict:
-    """네 템플릿을 채워 4층 체인을 만든다 — reference ← concept ← permanent."""
+    """세 템플릿을 채워 층 체인을 만든다 — reference ← concept."""
     ref_meta, ref_body = _load("reference.md", REFERENCE_STEM)
     ref_meta["type"] = "reference"          # 로더가 주입하는 값
     ref_body += f"\n- [[{CONCEPT_STEM}]] — 개념 위임\n"
@@ -82,17 +82,12 @@ def _filled_graph() -> dict:
     con_meta["up"] = [REFERENCE_STEM]
     con_body += f"\n- [[{REFERENCE_STEM}]] — 출처\n"
 
-    per_meta, per_body = _load("permanent.md", PERMANENT_STEM)
-    per_meta["up"] = [CONCEPT_STEM]
-    per_body += f"\n1. **[[{CONCEPT_STEM}]]** — 근거\n"
-
     idea_meta, idea_body = _load("idea.md", IDEA_STEM)
     idea_meta.pop("up", None)
 
     return {
         REFERENCE_STEM: _node(ref_meta, ref_body),
         CONCEPT_STEM: _node(con_meta, con_body),
-        PERMANENT_STEM: _node(per_meta, per_body),
         IDEA_STEM: _node(idea_meta, idea_body),
     }
 
@@ -107,7 +102,7 @@ def test_filled_templates_pass_validation():
     assert blocking == [], [f"{v['rule']} {v['node']}: {v['detail']}" for v in blocking]
 
 
-def test_filled_templates_form_the_four_layer_chain():
+def test_filled_templates_form_the_layer_chain():
     """계보가 실제로 발현되는지 — 템플릿이 `up:` 을 제대로 안내하는가."""
     from core.graph import build_knowledge_graph
 
@@ -117,10 +112,8 @@ def test_filled_templates_form_the_four_layer_chain():
         for e in graph["edges"] if e["type"] == "lineage"
     }
     assert (CONCEPT_STEM, REFERENCE_STEM) in lineage      # 개념 → 출처
-    assert (PERMANENT_STEM, CONCEPT_STEM) in lineage      # 판단 → 개념
 
     layers = {n["id"]: n["layer"] for n in graph["nodes"]}
     assert layers[REFERENCE_STEM] == "source"
     assert layers[CONCEPT_STEM] == "concept"
-    assert layers[PERMANENT_STEM] == "synthesis"
     assert layers[IDEA_STEM] is None                      # 노드이되 층 없음
