@@ -405,6 +405,18 @@ def main() -> int:
     print(f"- errors: {len(errors)}")
     for error in errors:
         print(f"  - {error}")
+    # 판단층(synthesis) 후보 — **위반이 아니라 신호**라 errors/warnings 가 아니다.
+    # 같은 개념이 여러 제품 결정의 근거로 반복되면 그 위에 우리 입장이 있을 수 있다.
+    # 같은 판단의 반복인지 같은 개념의 다른 적용인지는 사람이 본문을 읽어야 안다.
+    try:
+        from synthesis_candidates import find_candidates
+
+        n = len(find_candidates())
+        if n:
+            print(f"- synthesis 후보: {n}건 — `python3 .agent/scripts/synthesis_candidates.py`")
+    except Exception:
+        pass  # 후보 탐지는 부가 정보다. 실패해도 검사 결과를 막지 않는다.
+
     print("- needs_user_decision: none")
 
     if args.strict and errors:

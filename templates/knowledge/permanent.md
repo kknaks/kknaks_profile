@@ -72,9 +72,11 @@ tags:
 반복을 세는 법:
 
 ```bash
-# decision 이 up: 한 concept 을 제품별로 묶어 본다
-grep -A8 '^up:' products/*/10-decision/decision-*.md
+python3 .agent/scripts/synthesis_candidates.py     # 후보 목록 + 결정별 근거 한 줄
+python3 .agent/scripts/synthesis_candidates.py --min 2   # 문턱을 낮춰 보기
 ```
+
+`product_doc_pipeline.py` 가 후보 **개수**를 한 줄로 알린다(막지는 않는다 — 위반이 아니다).
 
 ## 링크 방향
 
