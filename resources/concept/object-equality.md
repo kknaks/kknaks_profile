@@ -15,6 +15,7 @@ up:
   - 2024-07-08-Day30
   - 2024-07-15-Day35
 tags:
+  - 도구
   - java
   - 객체지향
   - 비교
@@ -207,6 +208,8 @@ if (cursor.value == value) {
 
 ## 함께 보는 개념
 
+- [[lombok]] — 이 두 메서드를 대신 만들어 주는 도구
+
 - [[hash-code]] — 함께 재정의해야 하는 짝
 - [[hash-based-collection]] — 이 판정을 실제로 쓰는 곳
 - [[string-comparison]] — 같은 구분을 문자열에서 만나는 자리
@@ -228,6 +231,7 @@ if (cursor.value == value) {
 
 ## 출처
 
+- [[2024-10-21-Day98]] — **손으로 쓰지 않는 선택지가 생긴다.** `@EqualsAndHashCode` 가 두 메서드를 함께 만들어 주므로 「하나만 재정의해서 어긋나는」 고전적인 실수가 원천적으로 없어지고, `of={필드,필드}` 로 **무엇을 같음의 기준으로 삼을지**를 선언으로 적는다. 다만 기본값이 「모든 필드」라, 식별자만 봐야 하는 객체에서는 그 옵션을 반드시 써야 한다 → [[lombok]]
 - [[2024-06-24-Day21]] — `Object.equals` 의 기본 구현이 주소 비교라 내용이 같은 두 인스턴스도 `false` 라는 것을 확인한 뒤, `this == obj` → `obj == null` → `getClass()` 비교 → 다운캐스팅 → 필드 비교의 다섯 단계 골격으로 재정의해 `equals` 만 `true` 로 뒤집는 것을 배웠다. 「같은 클래스를 확인하기 위해 getClass()를 사용한다」와 「대표적으로 String.equals()가 Override를 활용한 경우이다」도 이 자리다
 - [[2024-07-08-Day30]] — 이 판정이 **없어서 프로그램의 절반이 죽은 코드**가 남았다. 리팩터링 회차의 Command 들이 `userList.get(userList.indexOf(new User(userNo)))` 로 조회하는데, 같은 노트의 `ArrayList.indexOf` 는 Day23 의 `list[i].equals(obj)` 에서 `list[i] == obj` 로 바뀌었고 `LinkedList.indexOf` 도 `cursor.value == value` 다. 방금 `new` 한 열쇠 객체는 주소가 절대 같지 않으므로 `indexOf` 가 항상 `-1` 이고, **회원·프로젝트·게시글의 조회·변경·삭제 아홉 기능이 모두 「없는 회원입니다」로 끝난다.** Day19 의 `findByNo` 우회로를 버리고 정면으로 갔는데 정면에 필요한 것이 빠진 형태이며, 필기에는 이 사실이 적혀 있지 않다
 - [[2024-07-15-Day35]] — 메뉴 트리의 공통 부모 `AbstractMenu` 가 `equals`·`hashCode` 를 **처음부터 함께** 재정의한다(Day21 은 따로 만들었다가 합쳤다). Day21 의 다섯 단계가 세 줄로 줄고 그 줄어든 자리가 전부 **`getClass()` 대신 `instanceof AbstractMenu that` 을 고른 결과**다 — `null` 검사와 다운캐스팅 줄이 그 한 줄에 흡수된다. 대가는 제목이 같은 `MenuGroup` 과 `MenuItem` 이 같다고 판정되는 것이고, 가지와 잎을 구별하지 않는 것이 목적인 구조에서는 의도로 볼 수 있으나 필기는 그것을 결정으로 적지 않았다. **필기가 적은 이유(「트리노드에서 부모노드의 객체와 같은 확인하는」)에 해당하는 코드는 없고**, 실제로 `equals` 를 부를 수 있는 자리는 `children.remove(child)` 하나인데 **그 `remove` 를 호출하는 코드도 없다** — 규약을 먼저 갖췄지만 한 번도 불리지 않는 쌍이다. `Objects.equals`·`Objects.hashCode` 로 `null` 을 양쪽 다 막았고 `import java.util.Objects;` 도 이번엔 빠지지 않았다
