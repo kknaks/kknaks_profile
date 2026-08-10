@@ -13,6 +13,7 @@ aliases:
   - poll
 up:
   - 2024-07-09-Day31
+  - 2025-02-18-Day31
 tags:
   - 자료구조
   - java
@@ -123,6 +124,8 @@ public class HistoryCommand implements Command{
 
 ## 함께 보는 개념
 
+- [[message-broker]] — 이 자료구조가 인프라가 된 것
+
 - [[stack]] — 반대 순서의 짝
 - [[linked-list]] — 이 큐가 상속한 구현
 - [[dispatch-table]] — 기록 화면을 명령으로 붙이는 자리
@@ -138,4 +141,5 @@ public class HistoryCommand implements Command{
 
 ## 출처
 
+- [[2025-02-18-Day31]] — **이 자료구조가 서버 사이의 인프라가 된다.** 카프카의 토픽은 「먼저 넣은 것을 먼저 꺼낸다」는 성질을 **프로세스 밖에, 여러 대에 걸쳐, 보관 기간 동안 남겨 두고** 제공한다 — 「메시지를 버퍼링하고 컨슈머 그룹을 통해 부하를 분산한다」가 그 쓸모다. 메모리 안의 큐가 하던 「생산자와 소비자의 속도 차이를 흡수한다」가 그대로 확대된 형태다 → [[message-broker]]
 - [[2024-07-09-Day31]] — 「FIFO(First In, First Out)」와 「줄을 서서 기다리는 형태」로 개념을 배우고, 14일 전에 만든 `LinkedList` 를 상속해 `offer`(= `add`) · `poll`(= `remove(0)`) · `isEmpty` 를 얹어 구현했다. `Stack` 과 코드가 같고 `pop`/`poll` 의 인덱스만 다르다. 실습에서는 `Prompt.input()` 안에 한 줄을 넣어 모든 입력을 큐에 모으고 20개를 넘으면 `poll` 로 버리는 「최근 N개」를 만들고, `printHistory()` 와 `HistoryCommand` 로 화면까지 붙였다. 그런데 `promptTitle` 이 `String.format(format + " ", args)` 로 **항상 공백으로 끝나** `endsWith(">")` 가 영원히 거짓이고, **기능 전체가 아무것도 기록하지 않는다.** 상한 검사가 넣는 블록 밖에 있고, `HistoryCommand` 를 `commandMap` 에 등록하는 코드도 노트에 없다
