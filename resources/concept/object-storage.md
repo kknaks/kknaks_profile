@@ -11,6 +11,7 @@ aliases:
   - AmazonS3
 up:
   - 2024-09-29-Day84
+  - 2024-09-30-Day85
 tags:
   - 클라우드
   - 저장
@@ -97,7 +98,9 @@ in.close();
 - [[service-layer]] — 이 저장소를 감싸는 층
 - [[remote-procedure-call]] — 네트워크 너머의 호출이라는 성격
 - [[static-and-dynamic-content]] — 파일 서빙을 넘기는 자리
+- [[transaction-propagation]] — 파일 삭제가 들어오지 않는 경계
 
 ## 출처
 
+- [[2024-09-30-Day85]] — 하루 뒤. **올린 파일을 실제로 꺼내 쓰는 자리**가 나온다 — 화면의 `<img src="https://....edge.naverncp.com/.../user/${user.photo}?type=f&w=100&h=100">` 가 그것이고, 파일 요청이 우리 서버를 아예 지나지 않는다는 것이 코드로 보인다(`?type=f&w=100&h=100` 은 스토리지 쪽이 크기를 바꿔 주는 파라미터다). DB 에는 `photo varchar(100)` 컬럼에 **UUID 파일명만** 저장하고 주소는 화면이 붙인다. 그리고 「기존 사진제거의 문제점」이 이 배치의 약한 고리를 짚는다 — 사진을 바꿀 때 **DB 갱신과 스토리지 삭제가 한 단위가 아니라서** 엉뚱한 파일이 지워질 수 있다는 것. 필기의 답은 트랜잭션으로 묶는 것인데, 스토리지 호출은 그 안에 들어오지 않는다 → [[transaction-propagation]]
 - [[2024-09-29-Day84]] — 「Storage Object 설정하기」 절 전체. **NCP 의 오브젝트 스토리지를 AWS 의 `aws-java-sdk-s3` 로 붙인다**는 것(「ncp의 Starage Object는 aws의 s3라이브러리를 사용한다」)이 S3 API 가 표준 자리를 차지했음을 보인다. 엔드포인트·리전·버킷명·액세스 키·시크릿 키 다섯 값을 properties 로 빼고, `AmazonS3ClientBuilder` 로 클라이언트를 만드는 생성자 코드가 실려 있다. upload·delete·download 세 조작을 **NCP 가이드 코드 → 우리 코드 적용** 순으로 나란히 놓아, 가이드가 로컬 파일에 저장하던 것을 `OutputStream` 매개변수로 바꾸는 이행이 보인다. 「폴더 생성」이 길이 0 객체를 올리는 것이라는 점도 코드로 남았다. 다만 `PublicRead` 의 의미, 키 충돌, DB 와의 트랜잭션 불일치는 다루지 않았고, 예제 코드는 예외를 `printStackTrace()` 로만 처리한다
