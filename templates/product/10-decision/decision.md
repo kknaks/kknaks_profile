@@ -72,9 +72,10 @@ up: []
 > 근거가 아니라 단순 참조면 `up:`에 넣지 말고 본문 링크로만 둔다.
 
 **쓰다가 새 개념이 나오면** 먼저 있는지 찾고(`ls resources/concept/` + `aliases` grep),
-없으면 셋으로 가른다 — **세상에 있는 개념**이면 자료를 `resources/source/`에 먼저 남기고 개념을
-만들고, **여기서 처음 세운 판단**이면 `resources/synthesis/`이며, **이 결정 안에서만 쓰는 말**이면
-개념이 아니다. 판단 기준은 `rules/knowledge-note-pipeline.md`의 「결정을 쓰다 새 개념이 나오면」.
+없으면 둘로 가른다 — **세상에 있는 개념**이면 `resources/source/`에 출처 노트를 만들고 그것을
+`up:`으로 `resources/concept/`를 만든다. **이 결정에서 처음 세운 판단**이거나 **여기서만 쓰는
+말**이면 개념이 아니라 이 문서가 그대로 갖는다(`up: []` + 「없음 — 사유」).
+판단 기준은 `rules/knowledge-note-pipeline.md`의 「결정을 쓰다 새 개념이 나오면」.
 개념은 결정 문서를 `up:`으로 가리킬 수 없다(층 방향).
 **개념을 만드는 것은 이 결정을 쓰는 쪽의 일이다** — 같은 턴에 `resources/source/` 와
 `resources/concept/` 를 만들어 잇는다. 미루면 그 개념은 만들어지지 않는다.

@@ -29,6 +29,7 @@ links:
   related: []
 up:
   - application-event
+  - idempotency
   - transaction
   - serialization
 ---
@@ -93,6 +94,7 @@ KAG-DEC-001이 `sessions`에 배정한 “session event의 손실 없는 저장�
 
 - [[application-event]] — session 을 상태가 아니라 **event 의 나열**로 저장한다 — 순서와 손실 없음이 이 층의 계약이 되는 이유다
 - [[transaction]] — append 의 **원자성**과 부분 실패 판정. 반쯤 쓰인 event 가 남으면 되읽기가 무의미해진다
+- [[idempotency]] — append 의 **중복 판정**이 이 성질이다. 재시도된 append 가 event 를 둘로 늘리면 순서도 되읽기도 무의미해지므로, 같은 event 는 몇 번 들어와도 하나여야 한다
 - [[serialization]] — 저장 format 과 version 을 정하고 **모르는 필드는 fail-closed** 로 막는다 — 나중 버전이 지금 코드를 조용히 통과하지 못하게 한다
 
 ## Options

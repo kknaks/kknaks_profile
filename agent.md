@@ -77,6 +77,12 @@ rules/knowledge-note-pipeline.md     # 작성 규칙 (4층·SoT 위임·개념 �
 별도 계열 넷:
 
 - 제품 문서(`products/**`) — `rules/product-doc-pipeline.md` + `templates/product/`
+
+  **`10-decision/` 을 쓸 때는 지식층까지 같이 간다.** 결정의 근거가 되는 개념이
+  `resources/concept/` 에 없으면 **그 결정을 쓰는 턴에** `resources/source/` 출처 노트와
+  `resources/concept/` 개념 노트를 만들어 잇는다 — 「나중에」·「사용자가」로 넘기지 않는다.
+  넘긴 개념은 만들어지지 않는다. `product_doc_pipeline.py` 가 `up:` 과 「근거 개념」 절을,
+  그래프 L1 이 없는 개념을 가리키는 것을 각각 error 로 막는다.
 - 프로젝트 카드(`products/*/showcase.md`) — `templates/product/showcase.md`. 제품 문서와 같은 폴더에 있지만 **성격이 반대다** — 제품 문서는 내부 결정을 쌓는 곳이고 카드는 공개 사이트와 포트폴리오 PDF 에 나가는 한 장이다. 그래서 그래프 노드가 아니고(`persona_loader` 가 제외한다) 4층 모델 대상도 아니다. 관리 화면의 제품 등록이 그 파일을 읽어 카드를 렌더한다 — 형식을 고치려면 여기만 고친다.
 
   **`category` 만 이 템플릿이 아니라 `persona/_meta.yaml` 이 소유한다.** 목록 밖의 값이 들어가면 파일 하나가 거부되는 게 아니라 persona 로드 전체가 실패하고 사이트가 옛 데이터를 계속 서빙한다.
