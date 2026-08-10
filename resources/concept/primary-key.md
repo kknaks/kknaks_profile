@@ -13,6 +13,7 @@ aliases:
 up:
   - 2024-08-06-Day51
   - 2024-08-13-Day55
+  - 2024-10-07-Day89
 tags:
   - database
   - SQL
@@ -118,6 +119,9 @@ Query OK, 1 row affected (0.01 sec)
 
 ## 함께 보는 개념
 
+- [[data-modeling]] — 키 선정이 놓이는 절차
+- [[identifying-relationship]] — 부모 키를 기본키에 넣을지의 선택
+
 - [[unique-key]] — 기본키가 막지 못한 중복을 막는 제약
 - [[surrogate-key]] — 후보키가 없을 때 만드는 인공키
 - [[sql-null]] — 기본키가 `not null` 을 함께 켜는 이유
@@ -134,5 +138,6 @@ Query OK, 1 row affected (0.01 sec)
 
 ## 출처
 
+- [[2024-10-07-Day89]] — 두 달 뒤. **같은 네 층이 「문법」이 아니라 「절차」로 다시 나온다** — 모델링의 3·4·5 단계가 각각 슈퍼키 식별 → 후보키(최소키) 선정 → 기본키 선정이고, 대안키가 그 나머지다. Day51 이 회원 테이블 하나로 예를 들었다면 여기서는 **설계 과정의 순서**로 놓여, 키를 고르는 것이 테이블을 만든 뒤가 아니라 만들기 전의 일이라는 것이 드러난다. 그리고 이어지는 정규화에서 그 키가 **부모-자식 관계의 재료**가 된다 → [[data-modeling]] · [[identifying-relationship]]
 - [[2024-08-06-Day51]] — 「key column : 데이터를 구분하는 기준」 절에서 key·candidate key·primary key·alternate key·artificial key 다섯을 회원 테이블 예로 층을 세워 정리했고, `no int primary key` 와 `constraint primary key (name,age)` 두 문법을 실행 결과와 함께 적었다. `no` 가 1인 행을 두 번 넣어 거절되는 것을 확인한 뒤, **`no` 만 다르고 나머지가 같은 행은 통과한다는 것을 「데이터의 중복성을 가중시킨다」로 남긴 것**이 다음 절 `unique` 로 넘어가는 근거다. 기본키의 정의(「후보키 중에서 데이터를 구분하는 키」)는 후보키의 조건을 되풀이해 고르는 기준을 말하지 않으며, 복합키 예제는 `kor int` 뒤에 콤마가 없어 그대로는 문법 오류다
 - [[2024-08-13-Day55]] — **복합 기본키가 정당한 자리에 처음 쓰인다.** 실습 프로젝트의 중간 테이블 `myapp_project_members` 에 `add constraint primary key (user_id, project_id)` 를 걸어, Day51 이 문법을 보이기 위해 `(name, age)` 로 들었던 예가 **관계 테이블에서는 설계가 된다**는 것이 드러난다. 문법 쪽으로도 이 회차가 더한 것이 있다 — `create table` 안이 아니라 **`alter table ... add constraint` 로 나중에 붙이는 형태**이고, 외래키 둘과 한 문장에 나란히 놓여 **기본키만 이름이 버려진다는 차이**가 같은 자리에서 보인다(필기는 기본키에 이름을 주지 않았다). 다만 복합키의 컬럼 순서(`user_id` 가 앞)와 실제 조회 방향(`where project_id = ?`)이 어긋나는 것은 다루지 않았고, `auto_increment` 기본키를 `insert` 뒤에 되받아야 하는 문제는 같은 노트의 다른 절이 맡는다(→ [[generated-keys]])
