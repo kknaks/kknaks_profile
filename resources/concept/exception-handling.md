@@ -17,6 +17,7 @@ up:
   - 2024-08-05-Day48
   - 2024-08-30-Day67
 tags:
+  - spring
   - java
   - 예외
   - 문법
@@ -269,6 +270,8 @@ if (e != null) {
 
 ## 함께 보는 개념
 
+- [[exception-handler]] — 웹에서 이 처리를 표식으로 옮긴 장치
+
 - [[standard-input]] — 예외를 던지는 `nextInt()` 가 있는 곳
 - [[while-loop]] — 잡고 다시 시도하는 흐름을 만드는 짝
 - [[object-reference]] — `NullPointerException` 이 나는 자리
@@ -286,6 +289,7 @@ if (e != null) {
 
 ## 출처
 
+- [[2024-10-17-Day95]] — **`try-catch` 가 표식으로 바뀌는 자리.** 스프링 MVC 에서는 컨트롤러를 감싸는 대신 `@ExceptionHandler` 를 붙인 메서드를 두면 되고, 던져진 예외 타입에 맞는 메서드가 선택된다 — **catch 절의 타입 매칭이 메서드 선택으로 옮겨간 형태**다. 그리고 처리 주체가 넷으로 계층을 이룬다(페이지 컨트롤러 → `@ControllerAdvice` → `web.xml` → 서블릿 컨테이너) → [[exception-handler]]
 - [[2024-06-11-Day11]] — `try` / `catch` 구조와 `nextInt()` 의 `InputMismatchException` 을 잡는 것, 그리고 `catch` 에서 `keyboard.next()` 로 키보드 버퍼를 비워야 같은 예외가 반복되지 않는다는 것을 실습으로 배웠다
 - [[2024-06-11-Day12]] — 입력을 줄 단위로 받고 `Integer.parseInt` 로 해석하도록 바꾸면서 잡는 예외가 `NumberFormatException` 으로 바뀌고 `catch` 에서 버퍼를 비우는 줄이 필요 없어진다는 것을 배웠다
 - [[2024-06-13-Day14]] — 서브메뉴 루프를 만들면서 `try` 가 루프 본문 전체를 감싸던 초안을 특별 명령 처리(`menu`·`9`)를 밖으로 내보내고 숫자 해석과 조회만 남기도록 좁혔다
