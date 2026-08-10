@@ -22,6 +22,9 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - externalized-configuration
+  - db-normalization
 ---
 
 # 민감 문서 정책의 전역 단일 원장
@@ -60,6 +63,13 @@ links:
 | `policy_versions` | 정책 변경 이력 |
 
 이 경우에도 `context/policy.md`는 원장이 아니라 agent가 참조할 정책 설명/프롬프트 가이드로 전환한다.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[externalized-configuration]] — 정책을 코드 밖 원장에 두되 **제품별로 쪼개지 않고 전역 하나**로 유지한다. 나중에 DB 로 승격해도 원장은 하나다
+- [[db-normalization]] — 같은 정책이 제품마다 복사되면 어느 것이 맞는지 정할 수 없다 — 원장을 하나로 두는 근거가 이것이다
 
 ## Resulting Spec Direction
 

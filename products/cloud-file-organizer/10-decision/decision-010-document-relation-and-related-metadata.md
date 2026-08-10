@@ -22,6 +22,9 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - object-graph
+  - surrogate-key
 ---
 
 # 문서 relation과 related metadata 승인 기준
@@ -84,6 +87,13 @@ UI/AI에서는 `[[문서명]]` 스타일 링크 표현을 허용하지만, 문�
 - 같은 wikilink 후보가 여러 번 생성되어도 후보 fingerprint가 같으면 중복 생성하지 않는다.
 - 문서 title이 바뀌어도 승인된 relation은 유지한다.
 - target 문서가 삭제/removed 상태가 되면 relation은 삭제하지 않고 broken/removed 상태로 표시할 수 있다.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[object-graph]] — `[[문서명]]` 표기는 입출력의 편의이고 **확정 연결의 SoT 는 relation 테이블**이다 — 표기와 그래프를 가른 것이 이 결정의 핵심이다
+- [[surrogate-key]] — 연결을 **이름이 아니라 문서 id 로** 저장해, 문서명이 바뀌어도 관계가 끊기지 않게 한다
 
 ## Resulting Spec Direction
 

@@ -23,6 +23,10 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - hash-code
+  - object-equality
+  - optimistic-lock
 ---
 
 # Drive composite fingerprint 기준
@@ -74,6 +78,14 @@ candidate.fingerprint != current_drive_mirror.fingerprint
 ```
 
 비교는 spec에서 필드별로 구체화한다. 예를 들어 `drive_name` 변경은 제목 후보에 영향을 줄 수 있으므로 stale로 본다.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[hash-code]] — 여러 필드를 묶어 **fingerprint 하나로** 같음을 판정한다. 값이 같으면 같은 것으로 보되, 다르면 확실히 다르다는 성질에 기댄다
+- [[object-equality]] — **무엇이 같으면 같은 파일인가**를 정하는 결정이다 — 단일 revision 필드로는 파일 타입마다 답이 달라서 필수값·선택값·본문 fingerprint 를 조합했다
+- [[optimistic-lock]] — 승인 시점에 저장해 둔 fingerprint 와 현재 값을 비교한다 — 버전 비교로 충돌을 검출하는 그 자리다
 
 ## Resulting Spec Direction
 

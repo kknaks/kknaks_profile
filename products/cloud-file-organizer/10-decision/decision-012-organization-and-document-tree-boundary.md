@@ -21,6 +21,8 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - cohesion
 ---
 
 # 조직도와 문서 트리 설정의 경계
@@ -74,6 +76,12 @@ links:
 |     |- 개발문서
 |        |- API 문서
 ```
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[cohesion]] — 조직도는 `회사 > 부서 > 팀`까지, 문서 트리는 `업무 > 문서종류` — **바뀌는 이유가 다른 둘**을 한 설정에 두지 않는다
 
 ## Resulting Spec Direction
 

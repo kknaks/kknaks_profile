@@ -22,6 +22,9 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - composite-pattern
+  - data-modeling
 ---
 
 # 부서별 UI 트리와 조직도 DB 관리
@@ -93,6 +96,13 @@ links:
 - 같은 문서가 같은 트리 경로에 여러 번 귀속되어도 UI에는 한 번만 표시된다.
 - Drive 폴더 이동만으로 승인된 트리 귀속을 자동 변경하지 않는다.
 - 조직도 이름 변경은 같은 조직 id를 유지한 채 UI 표시명만 바꾼다.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[composite-pattern]] — `회사 > 부서 > 팀 > 문서종류` 가 **같은 것을 담는 같은 것**의 재귀 구조다 — 노드와 잎을 같게 다루므로 깊이가 늘어도 탐색 코드가 그대로다
+- [[data-modeling]] — 조직도를 DB 가 갖고 문서종류는 제품 설정이 갖는다 — **트리 한 축을 두 원천이 나눠 만드는** 구조다
 
 ## Resulting Spec Direction
 

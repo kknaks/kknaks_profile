@@ -23,6 +23,10 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - caching
+  - unique-key
+  - change-data-capture
 ---
 
 # Google Drive 문서 SoT와 DB 동기화 기준
@@ -114,6 +118,14 @@ links:
 | DB mirror | Drive의 현재 상태를 제품 DB에 반영한 값 |
 | 승인 메타데이터 | AI 후보를 사람이 승인/수정해 확정한 제품 내부 데이터 |
 | 문서 record | `drive_file_id`에 대응되는 DB row. 파일 원본은 아님 |
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[caching]] — **Drive 가 원본, DB 는 그 최신 상태를 반영하는 저장소**라는 구도. 원본에서 다시 만들 수 있으니 어긋날 때 어느 쪽이 맞는지가 정해져 있다
+- [[unique-key]] — `drive_file_id` 를 unique key 로 삼아 **멱등 upsert** 한다 — 같은 알림이 두 번 와도 행이 둘로 늘지 않는 근거다
+- [[change-data-capture]] — 변경 알림을 받아 **바뀐 것만** DB 에 반영한다. 주기적 전량 대조가 아니라 변경분을 따라가는 방식이다
 
 ## Resulting Spec Direction
 

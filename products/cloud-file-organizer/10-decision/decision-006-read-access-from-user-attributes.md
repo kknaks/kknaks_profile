@@ -22,6 +22,8 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - role-based-entity
 ---
 
 # 사용자 속성 기반 문서 읽기 권한
@@ -90,6 +92,12 @@ links:
 - 읽기 권한이 없으면 잠금 표시가 아니라 숨김 처리한다.
 - 민감 문서는 기본적으로 같은 규칙을 따르며, 별도 예외가 필요하면 후속 spec에서 더 좁게 제한한다.
 - AI는 read policy 후보를 제안할 수 있지만, 최종 권한은 사람이 승인해야 한다.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[role-based-entity]] — 부서·직급·role 을 **사용자 속성으로** 두고 그것으로 권한을 판정한다. 사람마다 권한을 따로 붙이지 않는다
 
 ## Resulting Spec Direction
 

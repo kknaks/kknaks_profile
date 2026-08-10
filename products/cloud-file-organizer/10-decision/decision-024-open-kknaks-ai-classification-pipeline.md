@@ -33,6 +33,9 @@ links:
     - "[[spec-002-redis-broker-queue-contract]]"
     - "[[spec-003-python-client-and-streaming-api]]"
     - "[[spec-009-claude-codex-runner-adapter]]"
+up:
+  - ai-agent
+  - queue
 ---
 
 # open-kknaks 기반 AI 문서 분류 파이프라인
@@ -79,6 +82,13 @@ AI 문서 분류/메타데이터 후보 생성은 제품 내부 ad-hoc worker가
 - 제품 DB credential은 open-kknaks task payload에 넣지 않는다.
 - AI 결과는 후보일 뿐 승인값이 아니다.
 - task payload/result retention은 구현 spec에서 원문 저장 정책과 충돌하지 않게 제한한다.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[ai-agent]] — 분류·메타데이터 후보 생성을 제품 안의 ad-hoc worker 가 아니라 **provider runner 를 실행하는 별도 실행 모델**에 맡긴다
+- [[queue]] — Drive sync 는 **분석 job 을 넣기만** 하고 실행은 따로 돈다 — 수집과 분석의 속도를 분리하는 구조다
 
 ## Resulting Spec Direction
 

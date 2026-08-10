@@ -23,6 +23,9 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - foreign-key
+  - object-graph
 ---
 
 # target 없는 relation 후보 처리
@@ -60,6 +63,13 @@ AI가 `[[문서명]]` 같은 링크를 만들었지만 대상 문서가 DB에 �
 | 보류 | unresolved 후보로 유지 |
 | 제거 | 후보를 rejected/removed 처리 |
 | 재매칭 | 새 Drive 문서 수집 후 title/drive_name 기반으로 후보 target 재검색 |
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[foreign-key]] — **대상 없는 참조를 확정 그래프에 넣지 않는다** — 없는 문서를 자동 생성하지도 않고, 보류 상태로 두었다가 사람이 대상을 지정한다
+- [[object-graph]] — 해소되지 않은 후보를 그래프 밖에 두어, 확정 그래프에는 **실존하는 노드끼리의 엣지만** 남긴다
 
 ## Resulting Spec Direction
 

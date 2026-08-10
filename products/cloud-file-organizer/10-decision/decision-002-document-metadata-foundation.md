@@ -33,6 +33,8 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - data-modeling
 ---
 
 # 문서 메타데이터 기본 정의
@@ -117,6 +119,12 @@ DB에 기록하는 문서 메타데이터는 Google Drive mirror, 제품 관리 
 - role 최종 enum은 spec에서 현재 회사 사용자 모델에 맞춰 구체화한다.
 - 민감 문서(계약서, 인사, 재무)는 [[decision-008-sensitive-policy-context]]와 `context/policy.md`를 기준으로 추천한다.
 - 권한 policy의 원장은 named policy이고, boolean vector는 판정 결과/log로만 사용한다.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[data-modeling]] — Drive mirror · 제품 관리값 · policy · AI 후보 · relation 을 **다른 축으로 갈라** 한 record 에 담는다. 어느 값이 누구 소유인지가 곧 갱신 규칙이 된다
 
 ## Resulting Spec Direction
 

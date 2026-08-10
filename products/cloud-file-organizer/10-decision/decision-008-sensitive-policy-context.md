@@ -22,6 +22,9 @@ links:
   releases: []
   related:
     - "../../../context/policy.md"
+up:
+  - externalized-configuration
+  - human-in-the-loop
 ---
 
 # 민감 문서 정책 컨텍스트와 Claude 진입 흐름
@@ -59,6 +62,13 @@ CLAUDE.md
 -> context/policy.md (문서 민감도/권한/승인 게이트 판단 시)
 -> 사용자 프롬프트
 ```
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[externalized-configuration]] — 민감 문서 기준을 **코드에 하드코딩하지 않고 `context/policy.md`** 로 뺀다. 정책이 바뀌면 배포가 아니라 문서를 고친다
+- [[human-in-the-loop]] — AI 는 `needs_human_review=true` 로 **표시만** 하고 최종 권한은 사람이 승인한다
 
 ## Resulting Spec Direction
 

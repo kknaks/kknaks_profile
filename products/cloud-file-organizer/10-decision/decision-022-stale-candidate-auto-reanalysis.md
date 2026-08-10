@@ -22,6 +22,9 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - queue
+  - optimistic-lock
 ---
 
 # stale 후보 자동 재분석
@@ -78,6 +81,13 @@ pending candidate
 | `reanalyzing` | 최신 파일 기준 재분석 중 |
 | `new_candidate_ready` | 새 후보 검토 가능 |
 | `reanalysis_failed` | 실패 사유와 수동 재분석 버튼 |
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[queue]] — stale 이 되면 재분석 **job 을 enqueue** 한다 — 요청 경로에서 바로 처리하지 않고 쌓아 두고 처리하는 구조다
+- [[optimistic-lock]] — stale 검출 뒤의 처리를 정한 것이라 DEC-011 과 한 쌍이다 — 충돌을 막지 않고 **검출한 뒤 다시 만든다**
 
 ## Resulting Spec Direction
 

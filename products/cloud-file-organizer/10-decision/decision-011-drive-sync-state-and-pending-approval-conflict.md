@@ -23,6 +23,8 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - optimistic-lock
 ---
 
 # Drive sync 상태와 승인 대기 중 변경 처리
@@ -92,6 +94,12 @@ Drive 파일이 삭제되면 DB row를 hard delete하지 않고 soft delete 상�
 | `content_fingerprint` | 본문을 읽은 경우 분석 대상 변경 감지 |
 
 승인 시 현재 document mirror가 후보 fingerprint와 다르면 후보는 stale이다. stale 판정은 승인 action의 필수 precondition이다.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[optimistic-lock]] — **승인 대기 중 원본이 바뀌면 기존 후보를 `stale` 로 만들어 그대로 승인할 수 없게 한다** — 읽은 시점과 쓰는 시점 사이의 변경을 막지 않고 검출하는 방식 그대로다
 
 ## Resulting Spec Direction
 

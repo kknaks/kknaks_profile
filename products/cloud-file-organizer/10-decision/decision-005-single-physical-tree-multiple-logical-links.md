@@ -22,6 +22,9 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - db-normalization
+  - object-graph
 ---
 
 # 문서 귀속: 단일 물리 트리와 다중 논리 연결
@@ -92,6 +95,13 @@ related_products:
 - 같은 부서가 `related_departments`에 여러 번 들어와도 한 번만 저장/노출한다.
 - 같은 물리 경로와 논리 연결을 여러 번 추천받아도 결과는 중복되지 않는다.
 - 물리 위치 변경은 명시적 승인 action이어야 한다.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[db-normalization]] — 문서의 관리 주체를 **정확히 하나**로 두고 나머지 관련성은 연결로 뺀다. 물리 위치를 여럿 두면 어느 것이 맞는지 정할 수 없다
+- [[object-graph]] — 여러 부서와의 관련은 **트리가 아니라 그래프**로 표현한다 — 계층 하나로 담기지 않는 관계가 링크로 간다
 
 ## Resulting Spec Direction
 

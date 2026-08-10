@@ -22,6 +22,8 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - modifier-flags
 ---
 
 # 읽기 권한 policy와 boolean vector 사용 범위
@@ -80,6 +82,12 @@ role_match / department_match / position_match
 ```
 
 이 값은 문서별 고정 metadata가 아니라 특정 사용자 요청에 대한 계산 결과다.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[modifier-flags]] — `1/0/1` 같은 **비트 압축 표현**을 원장에 두지 않는다는 결정. 압축된 플래그는 기계가 읽기엔 싸지만 사람이 읽을 수 없어, 판정 결과와 로그에서만 쓴다
 
 ## Resulting Spec Direction
 

@@ -22,6 +22,8 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - object-graph
 ---
 
 # v1 문서 relation type 기본 목록
@@ -60,6 +62,12 @@ v1의 문서 relation type은 `related`, `references`, `supersedes`, `duplicate_
 | `references` | source가 target을 참조 | source -> target |
 | `supersedes` | source가 target을 대체 | source -> target |
 | `duplicate_candidate` | 중복/유사 후보 | 약한 방향성 |
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[object-graph]] — 엣지에 **타입을 준다**(`related`·`references`·`supersedes`·`duplicate_candidate`). 연결의 종류가 곧 나중에 무엇을 물어볼 수 있는지를 정한다
 
 ## Resulting Spec Direction
 

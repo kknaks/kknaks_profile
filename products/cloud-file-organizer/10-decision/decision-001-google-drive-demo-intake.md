@@ -24,6 +24,9 @@ links:
     - "https://developers.google.com/workspace/drive/api/guides/manage-changes"
     - "https://developers.google.com/workspace/events/guides/events-drive"
     - "https://developers.google.com/workspace/events/guides/create-subscription"
+up:
+  - human-in-the-loop
+  - polling
 ---
 
 # Google Drive 데모 수집/메타데이터 승인 구조
@@ -38,6 +41,13 @@ links:
 - 관련 baseline: [[baseline-001-cloud-file-metadata-structuring]]
 - 문제/기회: 사용자에게 사전 폴더/트리 정리를 요구하면 업로드 자체가 막힌다. 데모는 Google Drive에 파일을 넣기만 해도 제품이 후보 구조화를 시작하는 경험을 보여줘야 한다.
 - 결정이 필요한 이유: 입력원, 실시간 후킹 방식, AI/사람 승인 경계, 트리 설정 책임, 저장 위치를 정해야 후속 spec으로 내릴 수 있다.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[human-in-the-loop]] — **AI 는 제안만 하고 승인된 값만 제품 메타데이터가 된다** — 자동화의 상한을 처음부터 그은 것이 이 제품의 뼈대다
+- [[polling]] — `changes.watch` 로 알림을 받고 `changes.list` 로 **바뀐 것만** 조회한다. 전체를 다시 훑지 않는 증분 조회가 수집 비용을 정한다
 
 ## Options
 

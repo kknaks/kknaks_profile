@@ -21,6 +21,9 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - db-normalization
+  - foreign-key
 ---
 
 # 전사 공통 문서종류 카탈로그와 승인 게이트 추가
@@ -85,6 +88,13 @@ links:
 - 대소문자/공백/간단한 표기 차이는 정규화 후 중복 검사한다.
 - 같은 승인 요청이 재시도되어도 문서종류는 하나만 생성된다.
 - 문서종류가 rename되어도 문서 record는 stable type id를 참조해야 한다.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[db-normalization]] — 문서종류를 문자열로 흩어 두지 않고 **전사 공통 카탈로그 한 곳**에 둔다 — 같은 뜻의 값이 여러 표기로 갈리는 것을 막는다
+- [[foreign-key]] — 문서가 그 카탈로그를 **참조**하므로, 카탈로그에 없는 값은 들어올 수 없다. 드롭다운과 관리자 추가 권한이 그 제약의 UI 표현이다
 
 ## Resulting Spec Direction
 

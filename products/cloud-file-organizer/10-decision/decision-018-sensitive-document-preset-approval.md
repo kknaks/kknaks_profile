@@ -24,6 +24,8 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - human-in-the-loop
 ---
 
 # 민감 문서 preset 추천과 승인 기준
@@ -71,6 +73,12 @@ v1에서는 민감 문서 권한 preset을 AI가 자동 확정하지 않는다. 
 | 관리자가 preset 승인 | read policy로 확정 저장 |
 | 관리자가 preset 수정 | 수정된 named policy/read policy 저장 |
 | 관리자가 민감 아님으로 판단 | preset 후보 제거 후 일반 policy로 승인 |
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[human-in-the-loop]] — 민감 문서일수록 **자동 확정하지 않는다** — AI 는 preset 을 추천하고 관리자가 게이트에서 확정한다. 위험이 큰 자리에 사람을 세우는 판단이다
 
 ## Resulting Spec Direction
 

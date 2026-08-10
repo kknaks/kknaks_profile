@@ -22,6 +22,9 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - immutability
+  - application-event
 ---
 
 # physical_tree_path 변경 이력 보존
@@ -60,6 +63,13 @@ links:
 | `changed_by` | 변경자 |
 | `changed_reason` | 변경 사유 |
 | `changed_at` | 변경 시각 |
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[immutability]] — 이력을 **append-only** 로 쌓는다 — 지난 기록을 고쳐 쓰지 않기 때문에 언제 누가 왜 옮겼는지가 사후에도 남는다
+- [[application-event]] — 경로 변경을 **사건으로** 남긴다(이전·이후·변경자·사유·시각). 현재 값만 두면 알 수 없는 것을 이력이 갖는다
 
 ## Resulting Spec Direction
 
