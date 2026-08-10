@@ -19,6 +19,9 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - http-message
+  - externalized-configuration
 ---
 
 # RevenueCat Webhook 인증 — Authorization Bearer (ADR-20)
@@ -30,6 +33,13 @@ RevenueCat webhook 수신 시 `Authorization: Bearer <token>` 헤더를 검증�
 ## Context
 
 - `POST /api/subscription/webhook`([[decision-015-receipt-verification-dual-path|STL-DEC-015]]) 무인증 시 외부 위변조 이벤트 수신 가능.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[http-message]] — `Authorization: Bearer <token>` 헤더로 발신자를 확인한다 — 본문이 아니라 **헤더가 신원을 나르는** 자리다
+- [[externalized-configuration]] — 토큰을 코드가 아니라 ENV·`secret.env` 에 두고 로그에 남기지 않으며, 유출 시 대시보드와 함께 로테이션한다
 
 ## Options
 

@@ -20,6 +20,9 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - sql-null
+  - database-migration
 ---
 
 # Grace Period 처리 — pro 유지 + grace_until 컬럼 (ADR-19)
@@ -32,6 +35,13 @@ links:
 
 - RevenueCat `BILLING_ISSUE_DETECTED_EVENT`/`in_grace_period` 발생 시 grace period 시작. 가이드라인상 grace 동안 Pro 유지 권장.
 - Phase 1 마이그레이션 0 원칙 — Phase 2 스키마 변경 최소화.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[sql-null]] — `grace_until TIMESTAMP NULL` 을 더해 **「해당 없음」을 NULL 로** 표현한다. `ADD COLUMN DEFAULT NULL` 이라 기존 행을 건드리지 않는 것이 이 선택의 값이다
+- [[database-migration]] — ENUM 을 늘리는 대신 컬럼을 더한 판단 — **기존 데이터와 코드 분기에 미치는 영향**으로 두 방식을 비교했다
 
 ## Options
 

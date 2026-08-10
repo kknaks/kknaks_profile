@@ -17,6 +17,8 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - cohesion
 ---
 
 # 세션 업데이트 단일화 — saving 에서만 completed 처리 (ADR-02)
@@ -29,6 +31,12 @@ links:
 
 - `updateSession`(PATCH `/sessions/{id}`) 이 변환 완료(generating)와 갤러리 저장 완료(saving) 두 시점에서 호출됨.
 - 동일 `sessionId` 에 두 번 PATCH → status 덮어쓰기, API 중복, 저장 실패 케이스도 `completed` 로 오기록될 위험.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[cohesion]] — 「세션 완료」를 기록하는 자리를 **한 곳(`saving.tsx`)으로 모은다.** 두 화면이 같은 상태를 쓰면 어느 쪽이 진실인지 정할 수 없다
 
 ## Options
 

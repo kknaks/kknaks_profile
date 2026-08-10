@@ -19,6 +19,8 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - date-time
 ---
 
 # 구독 상태 모델 — 5상태 머신 + timezone 리셋 + 트라이얼 재사용 방지 deferred (ADR-10)
@@ -31,6 +33,12 @@ links:
 
 - 현행 `User.subscription_status` 는 3상태(free/trial/pro). Phase 2 RevenueCat 이벤트(active/expired/cancelled/in_grace_period)를 같은 머신으로 매핑해야 함.
 - `daily_focus.session_count` 와 일일 한도 체크 연계 필요.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[date-time]] — 일일 한도 리셋을 **사용자 로컬 자정(`User.timezone`)** 기준으로 두고 **클라이언트 시계를 신뢰하지 않는다.** 「언제가 오늘인가」를 누가 정하느냐가 한도의 공정성을 정한다
 
 ## Options
 

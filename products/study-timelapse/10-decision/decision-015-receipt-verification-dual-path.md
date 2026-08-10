@@ -20,6 +20,8 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - unique-key
 ---
 
 # 영수증 검증 이중 경로 — client verify + RevenueCat webhook (ADR-15)
@@ -32,6 +34,12 @@ RevenueCat 결제 후 backend 상태 갱신 경로를 client `POST /api/subscrip
 
 - Phase 1 mock-purchase → Phase 2 RevenueCat SDK 영수증 검증 흐름 전환.
 - 결제 직후 즉시 Pro unlock UX 와 환불·취소·갱신·grace-period 라이프사이클 모두 충족 필요.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[unique-key]] — **같은 `transaction_id` 는 두 번 들어오지 않는다** — 경로가 둘(client verify · webhook)이라 중복이 필연이므로, 멱등을 유일 제약으로 보장한다
 
 ## Options
 

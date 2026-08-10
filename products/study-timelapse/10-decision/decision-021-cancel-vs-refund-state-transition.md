@@ -21,6 +21,8 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - date-time
 ---
 
 # 취소 vs 환불 상태 전환 (ADR-21)
@@ -33,6 +35,12 @@ RevenueCat 이벤트 유형에 따라 상태 전환을 분기한다. 환불(`REF
 
 - 5상태 ENUM 의 `cancelled` 하나로 환불과 자발적 취소를 동일 처리하면 사용자 경험 차이 발생.
 - 자발적 취소는 만료일까지 Pro 유지가 스토어 표준. 환불은 영수증 무효 → 즉시 전환 원칙.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[date-time]] — 자발적 취소는 상태만 기록하고 **`pro_until` 이 지날 때 비로소 만료**로 본다(lazy expiry) — 시각을 저장해 두고 물어볼 때 비교하는 방식이다
 
 ## Options
 

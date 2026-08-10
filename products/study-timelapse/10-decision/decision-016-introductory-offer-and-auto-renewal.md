@@ -20,6 +20,8 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - db-normalization
 ---
 
 # 트라이얼 — RevenueCat introductory offer 7일 + 자동 갱신 (ADR-16)
@@ -32,6 +34,12 @@ Phase 2 트라이얼 = RevenueCat introductory offer 7일 무료 → 자동 결�
 
 - Phase 1: 가입 즉시 backend 7일 trial 자동 시작(`subscription_status='trial'`, `trial_start_date`).
 - Phase 2: 스토어 표준 introductory offer 로 전환. 트라이얼 재사용 방지·자동 결제 법적 고지 처리 필요.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[db-normalization]] — 트라이얼의 원장을 **RevenueCat 한 곳**으로 옮기고 backend 는 개입하지 않는다. 양쪽이 각자 trial 을 시작하면 어느 것이 맞는지 정할 수 없다
 
 ## Options
 

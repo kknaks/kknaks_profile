@@ -19,6 +19,9 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - terminal-state-ttl
+  - caching
 ---
 
 # 캐시 파일 생명주기 — stitch 즉시 삭제 + 캡처 프레임 5분 TTL (ADR-08)
@@ -31,6 +34,13 @@ saving 완료 즉시 stitch MP4 를 정리하고, 캡처 프레임은 5분 재�
 
 - 프레임 샘플링으로 캡처 프레임(JPEG ~1.8GB/4h)과 stitch MP4(~50~150MB) 캐시 발생. 현행 cleanup 호출 없음 → 세션마다 누적 → 디스크 부족(E3).
 - "녹화본은 saving 완료 전까지 삭제되지 않는다" 신뢰성 원칙.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[terminal-state-ttl]] — 캡처 프레임을 **5분 뒤 자동 삭제**한다 — 재시도 창과 디스크 회수 사이를 시간으로 가른 것이라, 끝난 것을 얼마나 들고 있을지의 문제 그대로다
+- [[caching]] — stitch MP4 는 즉시, 프레임은 TTL 로 정리한다. **다시 만들 수 있는 것**이라 버려도 되지만 재시도 동안은 남겨 둔다
 
 ## Options
 

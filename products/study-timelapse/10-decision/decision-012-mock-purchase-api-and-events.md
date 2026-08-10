@@ -19,6 +19,10 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - application-event
+  - immutability
+  - externalized-configuration
 ---
 
 # mock-purchase API + 이벤트 소싱 (ADR-12)
@@ -31,6 +35,14 @@ Phase 1 결제 트리거는 전용 `POST /api/subscription/mock-purchase`. 결�
 
 - Phase 1: 스토어 SDK 없이 backend 가 직접 구독 상태 mock. Phase 2: RevenueCat webhook → 동일 테이블.
 - 결제 이력 보존(감사·환불 분쟁), debug 강제 전환 API 의 prod 노출 위험 방지.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[application-event]] — 결제 이력을 상태가 아니라 **일어난 사건의 나열**로 쌓는다(`event_type`·`occurred_at`·`raw_payload`). 현재 상태만 두면 어떻게 그렇게 됐는지 알 수 없다
+- [[immutability]] — `subscription_events` 는 **append-only** — UPDATE·DELETE 를 금지해 이력이 사후에 바뀌지 않게 한다
+- [[externalized-configuration]] — 디버그 엔드포인트를 `ENABLE_DEBUG_SUBSCRIPTION` 로 끄고 운영에서 404 로 만든다 — 코드가 아니라 환경이 노출 여부를 정한다
 
 ## Options
 

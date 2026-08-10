@@ -21,6 +21,8 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - caching
 ---
 
 # subscription_status 신뢰원 — backend 캐시 + webhook sync (ADR-22)
@@ -32,6 +34,12 @@ links:
 ## Context
 
 - Phase 1: `GET /users/me` 로 구독 상태 반환. Phase 2 에서 앱이 RevenueCat SDK 를 직접 조회하면 Phase 1 API 구조 변경 필요 + 오프라인 fallback 복잡.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[caching]] — 앱은 **backend 캐시**를 보고, webhook 이 그것을 최신으로 유지한다. 캐시가 낡을 수 있다는 것을 인정하고 **강제 sync 로 해소**하는 경로를 따로 둔 것이 이 결정이다
 
 ## Options
 

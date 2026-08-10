@@ -19,6 +19,8 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - surrogate-key
 ---
 
 # RevenueCat app_user_id ↔ backend user_id 매핑 — 가입 즉시 logIn (ADR-18)
@@ -31,6 +33,12 @@ RevenueCat `app_user_id` 를 backend `user_id` 와 1:1 매핑한다. 가입 직�
 
 - RevenueCat SDK 는 `app_user_id` 로 구독 이력 추적. 미설정 시 anonymous ID 자동 생성 → backend user_id 와 불일치, 디바이스 변경 시 복원 불가.
 - Phase 1 인증 필수 paywall([[decision-013-anonymous-paywall-and-terms|STL-DEC-013]]).
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[surrogate-key]] — 외부 시스템과의 연결을 **바뀌지 않는 내부 식별자(`User.id`)** 로 잡는다. 이메일이나 계정처럼 바뀔 수 있는 값으로 이으면 디바이스 변경에서 끊긴다
 
 ## Options
 
