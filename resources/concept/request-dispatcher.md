@@ -12,6 +12,7 @@ up:
   - 2024-08-30-Day67
   - 2024-09-05-Day70
   - 2024-09-10-Day73
+  - 2024-10-23-Day100
 tags:
   - web
   - servlet
@@ -129,9 +130,11 @@ JSP 안에서는 액션 태그로 같은 일을 한다.
 - [[cohesion]] — 중복을 한 곳으로 모으는 축
 - [[jsp-action-tag]] — JSP 문법으로 같은 일을 하는 표기
 - [[jsp-directive]] — 이름만 같고 시점이 다른 `<%@ include %>`
+- [[template-fragment]] — 템플릿 엔진 안에서 같은 문제를 푸는 네 번째 답
 
 ## 출처
 
+- [[2024-10-23-Day100]] — 여섯 주 뒤. **「같은 것을 여러 화면에서 쓴다」의 네 번째 답**이 나온다 — Thymeleaf 의 `th:fragment`/`th:replace` 다. 앞의 셋(`<%@ include %>`·`<jsp:include>`·`c:import`)이 **다른 자원을 부르는 것**인 반면 이것은 **템플릿 트리 안에서 조각을 찾아 바꿔 넣는 것**이라, 서블릿 호출도 요청도 없다. Day66 이 `HeaderServlet` 을 만들어 `include` 하던 그 문제가 여기서는 `header.html` 의 조각 하나가 된다 → [[template-fragment]]
 - [[2024-09-10-Day73]] — 「Include(Directive element)」 절이 `<%@ include %>` 를 「지정한 파일을 JSP로 **포함시킨 후에** 자바 서블릿 클래스를 생성한다」로 적어 **번역 시점 포함**임을 짚고, 「일반 텍스트 파일이면 된다. JSP 파일일 필요가 없다」로 그 결과까지 보인다. 그리고 「RequestDispatcher의 include()와 다르다」고 명시했다 — **다르다는 것만 적고 무엇이 다른지는 적지 않은 자리**라 위 표가 그것을 채운다. 같은 노트의 액션 태그 절이 `jsp:include`(제어권이 되돌아온다)와 `jsp:forward`(되돌아오지 않는다)를 가르는데, 이는 Day67 에서 자바 API 로 본 구별과 같은 것이다
 - [[2024-09-05-Day70]] — 「include와 forward」 절이 `getRequestDispatcher(...)`로 위임 객체를 얻어 `forward(req, res)`·`include(req, res)`를 고르는 두 예시를 적었다. `forward`는 앞서 쓴 미커밋 버퍼를 버리고 최종 대상의 결과를 쓰며, `include`는 여러 서블릿의 본문을 합친다는 구별을 보인다. 다만 원문 코드의 `getRequestDispacher`는 오타라 컴파일되지 않고, 「앞으로 담기는 값도 무시한다」는 설명은 같은 `res` 객체와 대상의 출력을 혼동한다
 - [[2024-08-30-Day67]] — 하루 뒤. `forward` 가 처음 쓰이고(오류 화면), JSP 쪽 표기 `<jsp:include page="..."/>` 가 같은 장치라는 것이 드러난다. 서블릿이 데이터를 `setAttribute` 로 담고 JSP 를 `include` 하는 형태가 회차 전체의 골격이 된다. 다만 `try` 가 `include` 까지 감싸고 있어 **JSP 렌더링 중에 난 예외는 `forward` 로 넘길 수 없다**(응답이 이미 나갔다)는 것은 다루지 않았다
