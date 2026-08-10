@@ -10,6 +10,7 @@ aliases:
   - 환경 설정 분리
 up:
   - 2024-09-29-Day84
+  - 2024-10-04-Day88
 tags:
   - spring
   - 설정
@@ -81,7 +82,10 @@ public NcpObjectStorageService(@Value("${ncp.accesskey}") String accessKey, ...)
 - [[dependency-injection]] — 필드 주입과 생성자 주입이 갈리는 축
 - [[web-application-deployment]] — 환경마다 값이 달라지는 축
 - [[git]] · [[remote-repository]] — 비밀이 남으면 안 되는 곳
+- [[java-config]] — `@PropertySource` 를 붙이는 자리
+- [[autowired]] — `Environment` 를 주입받는 방법
 
 ## 출처
 
+- [[2024-10-04-Day88]] — 닷새 뒤. **읽은 값을 꺼내는 방법이 셋으로 정리된다.** `@PropertySource` 에 파일을 **여럿** 지정할 수 있고(배열), 그 값을 ① `@Autowired Environment env` 로 주입받아 `env.getProperty("jdbc.username")` 으로 꺼내기 ② 필드에 `@Value("${jdbc.url}")` ③ `@Bean` 메서드의 매개변수에 `@Value` — 세 자리를 한 `AppConfig` 안에 나란히 놓은 예제가 실려 있다. `Environment` 쪽은 **이름을 실행 중에 정할 수 있다**는 점에서 `@Value` 와 성격이 다른데, 그 구별은 적혀 있지 않다
 - [[2024-09-29-Day84]] — 「Spring에 불러오기」가 `@PropertySource("classpath:config/jdvc.properties")` 로 DB 접속 정보를 빼고, 「bucket 생성」이 스토리지 정보를 **`@PropertySource("file:${user.home}/config/ncp.properties")`** 로 뺀다 — **같은 노트에서 `classpath:` 와 `file:` 두 접두어가 나란히 쓰이는 것**이 이 개념의 핵심 대비다(다만 왜 갈라 쓰는지는 적혀 있지 않다). `NcpObjectStorageService` 의 코드가 `@Value` 를 **필드와 생성자 매개변수 두 자리**에 쓰는 예도 함께 보인다. 파일명 `jdvc.properties` 는 `jdbc` 의 오기로 보이고, 예시 클래스에 `@Service` 가 두 번 붙어 있다

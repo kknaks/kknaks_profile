@@ -12,6 +12,7 @@ aliases:
   - ComponentScan
 up:
   - 2024-09-25-Day82
+  - 2024-10-04-Day88
 tags:
   - spring
   - 설계
@@ -78,7 +79,10 @@ public class ProjectServiceImpl implements ProjectService {
 - [[service-layer]] · [[dao-pattern]] — 표식이 가리키는 층
 - [[request-mapping]] — `@Controller` 에 이어지는 표식
 - [[spring-framework]] — 이 표식을 정의한 곳
+- [[autowired]] — 담긴 빈들을 서로 잇는 표식
+- [[bean-post-processor]] — 이 표식들을 읽는 장치
 
 ## 출처
 
+- [[2024-10-04-Day88]] — 아흐레 뒤. 넷에 **`@RestController`**(REST API 컨트롤러)가 더해져 다섯이 되고, 각각이 어느 역할에 붙는지가 한 줄씩 정리된다. 그리고 스캔의 **범위를 좁히는 법**이 나온다 — `<context:include-filter>`·`<context:exclude-filter>` 로 정규식이나 애노테이션 종류를 지정해 특정 클래스·패키지를 넣거나 빼고, 자바 설정에서는 `@ComponentScan(excludeFilters = @Filter(type = FilterType.REGEX, ...))` 가 같은 일을 한다. **「component-scan 태그를 추가하면 내부적으로 annotation-config 태그가 자동으로 추가된다」**는 관계도 이 회차의 것이다 → [[bean-post-processor]]
 - [[2024-09-25-Day82]] — 「annotation 교체」 절이 `@ComponentScan("bitcamp.myapp")` 을 설명하면서 **`@Component`, `@Service`, `@Repository`, `@Controller` 를 한 묶음으로 나열**하고, 「Service 클래스 변경」 절이 그 교체가 실제로는 **import 한 줄 바꾸기**(`bitcamp.myapp.annotation.Component` → `org.springframework.stereotype.Component`)임을 코드로 남겼다 — 앞 회차에서 애노테이션을 직접 만들어 리플렉션으로 읽어 봤기 때문에 성립하는 대비다. 다만 넷의 차이가 무엇인지, 빈이 싱글턴이라는 것은 다루지 않았다

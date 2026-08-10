@@ -11,6 +11,7 @@ aliases:
 up:
   - 2024-10-01-Day86
   - 2024-10-02-Day87
+  - 2024-10-04-Day88
 tags:
   - spring
   - 설정
@@ -70,8 +71,11 @@ public Car c1() {   // ← 빈 이름이 "c1"
 - [[classpath]] — XML 설정을 찾는 경로의 근거
 - [[bean-definition]] — XML 쪽 문법의 전모
 - [[factory-bean]] — XML 이 문법 셋을 쓰던 자리
+- [[autowired]] — 설정에서 연결선을 지우는 표식
+- [[bean-post-processor]] — `@Configuration` 을 처리하는 장치
 
 ## 출처
 
+- [[2024-10-04-Day88]] — 이틀 뒤. **`@Configuration` 이 왜 필요한지가 나온다** — `AnnotationConfigApplicationContext` 에 클래스를 넘길 때는 없어도 되지만 **패키지 이름을 넘기면** 그 클래스를 설정으로 알아보게 하려고 이 표식이 필요하고, 그때는 같은 패키지의 `@Component` 들도 함께 등록된다. `@Bean("이름")` 으로 빈 이름을 직접 주는 법(생략하면 메서드 이름), `@ComponentScan(basePackages = {...}, excludeFilters = ...)` 의 세 가지 사용법, 그리고 `@PropertySource` 로 읽은 값을 **`Environment` 주입 · 필드 `@Value` · 매개변수 `@Value`** 세 방식으로 꺼내는 예제가 함께 실렸다 → [[autowired]] · [[externalized-configuration]]
 - [[2024-10-02-Day87]] — 하루 뒤. **XML 쪽을 끝까지 밀어 본 회차**라 이 노트의 비교표가 실물로 채워진다. 별명 구분자, `type` 생략 시 String 우선, `value`/`ref` 의 갈림, `c:`·`p:` 네임스페이스 축약, 팩토리 세 형태 — **전부 XML 이 자바 코드를 쓸 수 없어서 필요해진 문법**이고, Java Config 에서는 `@Bean` 메서드 본문의 평범한 자바 한 줄로 접힌다. 그 대비를 보고 나면 왜 설정이 자바로 옮겨 갔는지가 설명된다 → [[bean-definition]] · [[factory-bean]]
 - [[2024-10-01-Day86]] — 「XML파일과 AppConfig.java파일」 절이 **같은 일을 두 방식으로 나란히 적어** 비교한다 — 빈 등록(`<bean id="c1" class="...Car"/>` ↔ `@Bean public Car c1()`), 컴포넌트 스캔(`<context:component-scan base-package="...">` ↔ `@ComponentScan("...")`), 그리고 컨테이너 생성 코드까지. **「XML파일은 0개의 Bean을 생성하지만 AppConfig는 기본 갯수의 Bean을 생성한다」**는 관찰이 이 노트에서 가장 값진 한 줄이고, 실행 결과 스크린샷 둘이 그 근거로 붙어 있다. 「자바 클래스로 설정 정보를 다루는 것을 'Java Config' 라 부른다」로 이름도 명시했다. 다만 예시의 `AppConfig` 에는 `@Configuration` 이 붙어 있지 않고, 빈 이름이 메서드 이름이라는 것의 함의(이름을 바꾸면 깨진다)는 다루지 않았다
