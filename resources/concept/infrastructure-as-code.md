@@ -9,6 +9,7 @@ aliases:
   - Infrastructure as Code
 up:
   - 2025-01-03-Day04
+  - 2025-01-13-Day10
 tags:
   - 인프라
   - 배포
@@ -82,7 +83,10 @@ rm -rf ~/.aws          # 지우기
 - [[externalized-configuration]] — 키와 환경별 값을 다루는 문제
 - [[computer-network]] · [[ip-address]] — 선언하는 대상의 실체
 - [[build]] — 절차를 파일로 적는다는 같은 성격
+- [[ci-cd]] — 만들어 둔 인프라에 코드를 올리는 쪽
+- [[computer-network]] — VPC·서브넷·보안그룹이 선언하는 대상
 
 ## 출처
 
+- [[2025-01-13-Day10]] — 열흘 뒤. **VPC 하나에서 서비스 한 벌로 커진다.** `aws_vpc` → 서브넷 → 보안 그룹 → IAM 역할·정책 → EC2 인스턴스 → User Data 스크립트까지가 한 `main.tf` 에 선언되고, **인스턴스가 뜨면서 실행할 초기화 스크립트(User Data)까지 코드에 들어간다** — 서버를 만드는 것과 서버 안을 준비하는 것이 같은 파일에 있다. `var.region` 처럼 변수를 쓰는 것도 이 회차에서 나온다. 그리고 IAM 역할을 붙여 둔 덕에 나중에 **SSM 으로 원격 명령을 실행**할 수 있게 되는데, 인프라 설계가 배포 방식을 정하는 자리다 → [[ci-cd]]
 - [[2025-01-03-Day04]] — 「Terraform」 절이 **설치부터 첫 리소스까지 한 줄로 이어진다** — AWS CLI 설치(`curl` + `installer`), `aws configure` 로 액세스 키 등록(리전 `ap-northeast-2` 가 서울이라는 주석 포함), 테라폼 CLI 설치, 그리고 `required_providers`·`provider`·`resource` 세 블록으로 VPC 하나를 선언하는 예제. **`terraform` 블록을 「자바의 import 와 비슷함」**이라고 옮겨 적은 주석이 이 문법을 처음 볼 때의 감각을 잘 남겼다. 네 명령(`init`·`plan`·`apply`·`destroy`)에 각각 한 줄 설명이 붙어 있고, 특히 **`plan` 이 「실제 리소스 생성을 하는 것은 아니고 현재 소스코드가 실행 가능한지 검사」**라는 구별이 명확하다. `rm -rf ~/.aws` 로 키를 지우는 방법까지 적은 것도 실전적이다. 다만 상태 파일과 여럿이 함께 쓸 때의 문제는 다루지 않는다
