@@ -20,10 +20,7 @@ links:
     - "[[spec-003-python-client-and-streaming-api|OKK-SPEC-003]]"
     - "[[spec-004-pty-worker-runtime|OKK-SPEC-004]]"
     - "[[spec-010-codex-headless-runner|OKK-SPEC-010]]"
-  works:
-    - "[[work-001-provider-task-model-client-broker|OKK-WORK-001]]"
-    - "[[work-002-provider-worker-and-claude-adapter|OKK-WORK-002]]"
-    - "[[work-003-codex-headless-runner|OKK-WORK-003]]"
+  works: []
   related: []
 ---
 

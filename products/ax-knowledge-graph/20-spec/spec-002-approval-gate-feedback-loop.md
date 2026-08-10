@@ -22,8 +22,7 @@ links:
     - "[[spec-003-source-inbox|AXKG-SPEC-003]]"
     - "[[spec-004-documentation-approval-gate|AXKG-SPEC-004]]"
     - "[[spec-011-ai-execution-pipeline|AXKG-SPEC-011]]"
-  works:
-    - "[[work-004-approval-gates|AXKG-WORK-004]]"
+  works: []
   releases: []
   related: []
 ---

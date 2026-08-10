@@ -1,16 +1,20 @@
 #!/usr/bin/env python3
 """Product document pipeline checker/updater.
 
-This script is intentionally a scaffold for now.
-
-Expected responsibilities:
-- detect changed product docs
-- validate frontmatter and IDs
-- validate BASE -> DEC -> SPEC -> WORK mappings
-- validate optional SPEC -> Architecture -> WORK mappings
+Implemented:
+- validate required/optional stage READMEs
+- validate 60-release / 70-runbook frontmatter and required sections
 - validate Obsidian wikilinks in frontmatter links fields
+  (target exists · label == target frontmatter `id`)
+- validate SPEC -> WORK single direction (`spec.works` must stay empty — the
+  spec-centric view is derived from work `links.specs`, see rules §정합성)
+- warn on specs with no covering work (status implemented/released/stable)
+- release gate (--release-gate)
+
+Not implemented yet:
+- detect changed product docs
+- validate optional SPEC -> Architecture -> WORK mappings
 - validate optional 40-architecture structure when present
-- validate optional 60-release structure when present
 - validate product/doc/status tag patterns
 - sync stage README indexes
 - sync product README maps
@@ -175,6 +179,110 @@ def validate_release_gate(product_dir: Path, errors: list[str]) -> None:
                     )
 
 
+LINK_BUCKETS = ("baselines", "decisions", "specs", "works", "releases", "related")
+WIKILINK_ITEM_RE = re.compile(r'^    - "?\[\[([^\]|]+)(?:\|([^\]]+))?\]\]"?\s*$')
+COVERED_SPEC_STATUS = {"implemented", "released", "stable"}
+
+
+def read_links(path: Path) -> dict[str, list[tuple[str, str]]]:
+    """frontmatter `links:` 버킷 → {버킷: [(대상 stem, 표시 라벨), ...]}.
+
+    `links` 는 중첩 dict 라 read_frontmatter() 가 못 읽는다(들여쓴 줄을 건너뛴다).
+    """
+    text = path.read_text(encoding="utf-8")
+    if not text.startswith("---\n"):
+        return {}
+    end = text.find("\n---\n", 4)
+    if end == -1:
+        return {}
+
+    out: dict[str, list[tuple[str, str]]] = {}
+    bucket: str | None = None
+    for line in text[4:end].splitlines():
+        header = re.fullmatch(r"  (\w+):\s*(\[\])?", line)
+        if header:
+            bucket = header.group(1) if header.group(1) in LINK_BUCKETS else None
+            if bucket:
+                out.setdefault(bucket, [])
+            continue
+        if not line.startswith("    "):
+            if not line.startswith(" "):
+                bucket = None
+            continue
+        item = WIKILINK_ITEM_RE.match(line)
+        if bucket and item:
+            out[bucket].append((item.group(1).strip(), (item.group(2) or "").strip()))
+    return out
+
+
+def validate_links(
+    product_dirs: list[Path], errors: list[str], warnings: list[str]
+) -> None:
+    """frontmatter `links` 검증 — 대상 실존 · id 일치 · SPEC→WORK 단방향 · spec coverage.
+
+    rules/product-doc-pipeline.md:
+      - "관계 필드에는 ID 문자열이 아니라 Obsidian wikilink를 둔다"
+      - "pipeline은 wikilink 대상 파일의 frontmatter `id`를 읽어 관계를 검증한다"
+      - "SPEC → WORK 추적은 ... work frontmatter `links.specs` 와 Spec Coverage 에서
+         **단방향으로** 관리한다" → `spec.works` 는 derived view 를 원본에 복사한 것이라
+         금지한다(「한 곳 원칙」).
+    """
+    # 링크 대상은 제품 문서가 기본이고, `related` 는 지식노트로도 나간다.
+    index: dict[str, tuple[Path, str]] = {}
+    for md in ROOT.glob("products/**/*.md"):
+        if "_archive" in md.parts:
+            continue
+        index[md.stem] = (md, read_frontmatter(md).get("id", ""))
+    for layer in ("source", "concept", "synthesis"):
+        for md in ROOT.glob(f"resources/{layer}/*.md"):
+            index.setdefault(md.stem, (md, read_frontmatter(md).get("id", "")))
+
+    covered_specs: set[str] = set()
+    specs: list[tuple[Path, str, str]] = []  # (path, id, status)
+
+    for product_dir in product_dirs:
+        for md in sorted(product_dir.glob("**/*.md")):
+            if "_archive" in md.parts or md.name == "README.md":
+                continue
+            meta = read_frontmatter(md)
+            doc_type = meta.get("type", "")
+            if not doc_type:
+                continue
+            rel = md.relative_to(ROOT)
+            links = read_links(md)
+
+            if doc_type == "spec":
+                specs.append((md, meta.get("id", md.stem), meta.get("status", "")))
+            if doc_type == "work":
+                covered_specs.update(stem for stem, _ in links.get("specs", []))
+
+            if doc_type == "spec" and links.get("works"):
+                errors.append(
+                    f"spec must not link works (SPEC→WORK is single-direction, "
+                    f"rules/product-doc-pipeline.md): {rel}"
+                )
+
+            for bucket, items in links.items():
+                for stem, label in items:
+                    target = index.get(stem)
+                    if target is None:
+                        errors.append(f"dead wikilink: {rel} links.{bucket} -> [[{stem}]]")
+                        continue
+                    target_id = target[1]
+                    if label and target_id and label != target_id:
+                        errors.append(
+                            f"wikilink label != target id: {rel} links.{bucket} "
+                            f"-> [[{stem}|{label}]] (id={target_id})"
+                        )
+
+    for path, spec_id, status in specs:
+        if status in COVERED_SPEC_STATUS and path.stem not in covered_specs:
+            warnings.append(
+                f"spec has no covering work: {path.relative_to(ROOT)} "
+                f"({spec_id}, status={status})"
+            )
+
+
 def main() -> int:
     args = parse_args()
 
@@ -260,6 +368,8 @@ def main() -> int:
 
             if args.release_gate and not is_showcase_only:
                 validate_release_gate(product_dir, errors)
+
+        validate_links(product_dirs, errors, warnings)
 
     print("Product Doc Pipeline")
     print(f"- checked: {PRODUCTS_DIR}")

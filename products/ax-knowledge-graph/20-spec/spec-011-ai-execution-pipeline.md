@@ -29,12 +29,7 @@ links:
     - "[[spec-009-prompt-dynamic-management|AXKG-SPEC-009]]"
     - "[[spec-010-document-template-management|AXKG-SPEC-010]]"
     - "[[spec-012-source-collection-adapter|AXKG-SPEC-012]]"
-  works:
-    - "[[work-001-mvp-pipeline-scaffold|AXKG-WORK-001]]"
-    - "[[work-002-source-intake|AXKG-WORK-002]]"
-    - "[[work-004-approval-gates|AXKG-WORK-004]]"
-    - "[[work-005-graph-chat|AXKG-WORK-005]]"
-    - "[[work-008-graph-rag-two-stage-retriever|AXKG-WORK-008]]"
+  works: []
   releases: []
   related: []
 ---

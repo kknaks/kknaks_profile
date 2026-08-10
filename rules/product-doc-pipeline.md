@@ -416,6 +416,10 @@ tags:
 - `links.decisions` 같은 관계 필드에는 ID 문자열이 아니라 Obsidian wikilink를 둔다.
 - pipeline은 wikilink 대상 파일의 frontmatter `id`를 읽어 BASE → DEC → SPEC → WORK 관계를 검증한다.
 - 관계 링크는 frontmatter `links`에만 둔다.
+- **`spec`의 `links.works`는 비워 둔다.** SPEC → WORK 추적은 위 「문서 관계」의 단방향
+  규정대로 work의 `links.specs`가 소유하고, spec 중심의 목록은 `30-work/README.md`의
+  Spec Coverage가 **derived view**로 만든다. 원본에 복사해 두면 WP가 늘 때마다 두 곳을
+  맞춰야 하고 반드시 어긋난다(「한 곳 원칙」). `product_doc_pipeline.py`가 error로 막는다.
 
 ## 작업 후 갱신 규칙
 

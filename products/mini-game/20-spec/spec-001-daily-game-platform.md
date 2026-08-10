@@ -18,8 +18,7 @@ links:
     - MG-DEC-001
   specs:
     - MG-SPEC-002
-  works:
-    - MG-WORK-001
+  works: []
   releases: []
   related: []
 ---

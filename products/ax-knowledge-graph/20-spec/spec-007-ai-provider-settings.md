@@ -26,8 +26,7 @@ links:
   related:
     - "[[decision-001-provider-based-task-execution|OKK-DEC-001]]"
     - "[[spec-009-claude-codex-runner-adapter|OKK-SPEC-009]]"
-  works:
-    - "[[work-006-settings|AXKG-WORK-006]]"
+  works: []
   releases: []
 ---
 

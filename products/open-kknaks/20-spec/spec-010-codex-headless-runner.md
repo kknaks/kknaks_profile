@@ -19,8 +19,7 @@ links:
     - "[[spec-009-claude-codex-runner-adapter|OKK-SPEC-009]]"
     - "[[spec-001-task-model-and-lifecycle|OKK-SPEC-001]]"
     - "[[spec-003-python-client-and-streaming-api|OKK-SPEC-003]]"
-  works:
-    - "[[work-003-codex-headless-runner|OKK-WORK-003]]"
+  works: []
   related: []
 ---
 

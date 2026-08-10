@@ -24,8 +24,7 @@ links:
     - "[[spec-002-approval-gate-feedback-loop|AXKG-SPEC-002]]"
     - "[[spec-004-documentation-approval-gate|AXKG-SPEC-004]]"
     - "[[spec-007-ai-provider-settings|AXKG-SPEC-007]]"
-  works:
-    - "[[work-004-approval-gates|AXKG-WORK-004]]"
+  works: []
   releases: []
   related: []
 ---

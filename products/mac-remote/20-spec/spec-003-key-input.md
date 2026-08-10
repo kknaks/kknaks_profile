@@ -14,10 +14,7 @@ links:
   baselines: []
   decisions: []
   specs: []
-  works:
-    - "[[work-003-key-input|MRT-WORK-003]]"
-    - "[[work-017-hold-modifiers|MRT-WORK-017]]"
-    - "[[work-005-websocket-server|MRT-WORK-005]]"
+  works: []
   releases:
     - "[[release-001-v1-0-0|MRT-REL-001]]"
   related: []

@@ -27,10 +27,7 @@ links:
     - "[[spec-011-ai-execution-pipeline|AXKG-SPEC-011]]"
     - "[[spec-012-source-collection-adapter|AXKG-SPEC-012]]"
     - "[[spec-014-enterprise-project-fanout|AXKG-SPEC-014]]"
-  works:
-    - "[[work-002-source-intake|AXKG-WORK-002]]"
-    - "[[work-009-chat-push-to-inbox|AXKG-WORK-009]]"
-    - "[[work-010-inbox-md-upload-intake|AXKG-WORK-010]]"
+  works: []
   releases: []
   related: []
 ---

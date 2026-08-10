@@ -19,8 +19,7 @@ links:
   specs:
     - "[[spec-011-commit-collection|KDEV-SPEC-011]]"
     - "[[spec-001-directory-structure|KDEV-SPEC-001]]"
-  works:
-    - "[[work-018-product-registry-admin|KDEV-WORK-018]]"
+  works: []
   releases: []
   related:
     - "[[spec-006-admin-auth|KDEV-SPEC-006]]"

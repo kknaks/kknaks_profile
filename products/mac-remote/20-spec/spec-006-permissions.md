@@ -14,9 +14,7 @@ links:
   baselines: []
   decisions: []
   specs: []
-  works:
-    - "[[work-001-cli-prototype|MRT-WORK-001]]"
-    - "[[work-006-menubar-app|MRT-WORK-006]]"
+  works: []
   releases:
     - "[[release-001-v1-0-0|MRT-REL-001]]"
   related: []

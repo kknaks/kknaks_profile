@@ -16,8 +16,7 @@ links:
     - "[[decision-001-provider-based-task-execution|OKK-DEC-001]]"
   specs:
     - "[[spec-009-claude-codex-runner-adapter|OKK-SPEC-009]]"
-  works:
-    - "[[work-001-provider-task-model-client-broker|OKK-WORK-001]]"
+  works: []
   related: []
 ---
 

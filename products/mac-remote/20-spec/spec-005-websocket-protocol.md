@@ -20,9 +20,7 @@ links:
     - "[[spec-002-window-focus|MRT-SPEC-002]]"
     - "[[spec-003-key-input|MRT-SPEC-003]]"
     - "[[spec-004-app-icon|MRT-SPEC-004]]"
-  works:
-    - "[[work-005-websocket-server|MRT-WORK-005]]"
-    - "[[work-009-ws-client|MRT-WORK-009]]"
+  works: []
   releases:
     - "[[release-001-v1-0-0|MRT-REL-001]]"
     - "[[release-002-v1-0-1|MRT-REL-002]]"

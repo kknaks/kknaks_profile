@@ -17,8 +17,7 @@ links:
   specs:
     - "[[spec-003-python-client-and-streaming-api|OKK-SPEC-003]]"
     - "[[spec-009-claude-codex-runner-adapter|OKK-SPEC-009]]"
-  works:
-    - "[[work-004-batch-cli-mcp-provider-surface|OKK-WORK-004]]"
+  works: []
   related: []
 ---
 

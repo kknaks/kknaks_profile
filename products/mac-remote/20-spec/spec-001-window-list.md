@@ -15,9 +15,7 @@ links:
   decisions:
     - "[[decision-002-cgwindowlist-window-source|MRT-DEC-002]]"
   specs: []
-  works:
-    - "[[work-001-cli-prototype|MRT-WORK-001]]"
-    - "[[work-005-websocket-server|MRT-WORK-005]]"
+  works: []
   releases:
     - "[[release-001-v1-0-0|MRT-REL-001]]"
   related: []

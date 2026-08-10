@@ -15,9 +15,7 @@ links:
   decisions: []
   specs:
     - "[[spec-005-websocket-protocol|MRT-SPEC-005]]"
-  works:
-    - "[[work-007-pairing-qr|MRT-WORK-007]]"
-    - "[[work-012-settings-ui|MRT-WORK-012]]"
+  works: []
   releases:
     - "[[release-001-v1-0-0|MRT-REL-001]]"
     - "[[release-002-v1-0-1|MRT-REL-002]]"

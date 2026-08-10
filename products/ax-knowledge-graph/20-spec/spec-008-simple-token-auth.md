@@ -23,9 +23,7 @@ links:
     - "[[spec-006-graph-chat|AXKG-SPEC-006]]"
     - "[[spec-007-ai-provider-settings|AXKG-SPEC-007]]"
     - "[[spec-013-document-library|AXKG-SPEC-013]]"
-  works:
-    - "[[work-001-mvp-pipeline-scaffold|AXKG-WORK-001]]"
-    - "[[work-009-chat-push-to-inbox|AXKG-WORK-009]]"
+  works: []
   releases: []
   related: []
 ---

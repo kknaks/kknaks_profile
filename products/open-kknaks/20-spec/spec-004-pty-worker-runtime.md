@@ -18,8 +18,7 @@ links:
     - "[[spec-001-task-model-and-lifecycle|OKK-SPEC-001]]"
     - "[[spec-002-redis-broker-queue-contract|OKK-SPEC-002]]"
     - "[[spec-009-claude-codex-runner-adapter|OKK-SPEC-009]]"
-  works:
-    - "[[work-002-provider-worker-and-claude-adapter|OKK-WORK-002]]"
+  works: []
   related: []
 ---
 

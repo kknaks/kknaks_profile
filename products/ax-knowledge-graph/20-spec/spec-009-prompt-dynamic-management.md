@@ -23,8 +23,7 @@ links:
     - "[[spec-007-ai-provider-settings|AXKG-SPEC-007]]"
     - "[[spec-010-document-template-management|AXKG-SPEC-010]]"
     - "[[spec-011-ai-execution-pipeline|AXKG-SPEC-011]]"
-  works:
-    - "[[work-006-settings|AXKG-WORK-006]]"
+  works: []
   releases: []
   related: []
 ---

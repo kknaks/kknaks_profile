@@ -15,9 +15,7 @@ links:
   decisions: []
   specs:
     - "[[spec-001-window-list|MRT-SPEC-001]]"
-  works:
-    - "[[work-002-window-focus|MRT-WORK-002]]"
-    - "[[work-005-websocket-server|MRT-WORK-005]]"
+  works: []
   releases:
     - "[[release-001-v1-0-0|MRT-REL-001]]"
   related: []

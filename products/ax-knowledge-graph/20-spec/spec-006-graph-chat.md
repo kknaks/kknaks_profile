@@ -23,10 +23,7 @@ links:
     - "[[spec-003-source-inbox|AXKG-SPEC-003]]"
     - "[[spec-005-document-link-graph-contract|AXKG-SPEC-005]]"
     - "[[spec-007-ai-provider-settings|AXKG-SPEC-007]]"
-  works:
-    - "[[work-005-graph-chat|AXKG-WORK-005]]"
-    - "[[work-008-graph-rag-two-stage-retriever|AXKG-WORK-008]]"
-    - "[[work-009-chat-push-to-inbox|AXKG-WORK-009]]"
+  works: []
   releases: []
   related: []
 ---

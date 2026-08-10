@@ -25,8 +25,7 @@ links:
     - "[[spec-005-document-link-graph-contract|AXKG-SPEC-005]]"
     - "[[spec-011-ai-execution-pipeline|AXKG-SPEC-011]]"
     - "[[spec-014-enterprise-project-fanout|AXKG-SPEC-014]]"
-  works:
-    - "[[work-006-settings|AXKG-WORK-006]]"
+  works: []
   releases: []
   related: []
 ---

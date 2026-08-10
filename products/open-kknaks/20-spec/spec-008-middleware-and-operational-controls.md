@@ -16,9 +16,7 @@ links:
   specs:
     - "[[spec-001-task-model-and-lifecycle|OKK-SPEC-001]]"
     - "[[spec-004-pty-worker-runtime|OKK-SPEC-004]]"
-  works:
-    - "[[work-002-provider-worker-and-claude-adapter|OKK-WORK-002]]"
-    - "[[work-004-batch-cli-mcp-provider-surface|OKK-WORK-004]]"
+  works: []
   related: []
 ---
 

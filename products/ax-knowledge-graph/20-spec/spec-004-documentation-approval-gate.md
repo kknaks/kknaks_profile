@@ -29,8 +29,7 @@ links:
     - "[[spec-010-document-template-management|AXKG-SPEC-010]]"
     - "[[spec-011-ai-execution-pipeline|AXKG-SPEC-011]]"
     - "[[spec-014-enterprise-project-fanout|AXKG-SPEC-014]]"
-  works:
-    - "[[work-004-approval-gates|AXKG-WORK-004]]"
+  works: []
   releases: []
   related: []
 ---

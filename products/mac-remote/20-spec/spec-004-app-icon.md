@@ -16,9 +16,7 @@ links:
     - "[[decision-003-app-icon-only-no-capture|MRT-DEC-003]]"
   specs:
     - "[[spec-001-window-list|MRT-SPEC-001]]"
-  works:
-    - "[[work-004-app-icon|MRT-WORK-004]]"
-    - "[[work-005-websocket-server|MRT-WORK-005]]"
+  works: []
   releases:
     - "[[release-001-v1-0-0|MRT-REL-001]]"
     - "[[release-002-v1-0-1|MRT-REL-002]]"
