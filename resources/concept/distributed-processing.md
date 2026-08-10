@@ -11,6 +11,7 @@ aliases:
   - 수평 확장
 up:
   - 2026-07-29-database-selection-guide
+  - 2024-10-25-Day102
 tags:
   - distributed-systems
   - scalability
@@ -40,8 +41,12 @@ tags:
 
 ## 함께 보는 개념
 
+- [[container]] — 같은 것을 여러 개 띄우는 단위
+- [[microservice-architecture]] — 나누는 단위를 기능으로 잡는 배치
+
 - [[db-normalization]] — 정규화를 포기(비정규화)하면 분산 구성이 쉬워지는 관계
 
 ## 출처
 
+- [[2024-10-25-Day102]] — 나누는 축이 하나 더 나온다 — **기능 단위로 쪼개 서로 다른 서비스로 두는 것**(마이크로서비스)이다. 필기가 「시스템의 복잡도는 증가하지만 유지보수가 용이하다」로 대가를 함께 적은 것이 이 노트의 주제와 맞닿는다: **나누면 얻는 것과 잃는 것이 항상 같이 온다** → [[microservice-architecture]] · [[container]]
 - [[2026-07-29-database-selection-guide]] — 도큐먼트 DB·컬럼 패밀리 DB의 특성으로 소개; 대량 입출력 서비스에 적합하지만 DB 간 정확도가 떨어질 수 있다는 트레이드오프로 설명
