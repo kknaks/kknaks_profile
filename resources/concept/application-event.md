@@ -10,6 +10,7 @@ aliases:
   - 스프링 이벤트
 up:
   - 2025-02-19-Day32
+  - 2025-02-20-Day33
 tags:
   - spring
   - 설계
@@ -107,4 +108,5 @@ public class NotiEventListener {
 
 ## 출처
 
+- [[2025-02-20-Day33]] — 하루 뒤. **이 장치와 메시지 브로커가 같은 자리에 나란히 놓인다** — `PostService.write()` 안에서 스프링 이벤트를 발행한 바로 다음 줄에 `kafkaTemplate.send(...)` 가 있고, 리스너 클래스에도 `@EventListener` 와 `@KafkaListener` 가 함께 있다. **한 프로세스 안에서 끊어 둔 결합을 프로세스 밖으로 옮기는 것이 얼마나 짧은 거리인지**가 이 대비로 드러난다 — 발행하는 쪽 코드는 거의 그대로다 → [[message-broker]]
 - [[2025-02-19-Day32]] — 「스프링 이벤트」 절이 **전후 코드를 나란히** 놓았다 — `PostService` 가 `notiService.postCreated(post)` 를 직접 부르던 것이 `eventPublisher.publishEvent(new PostCreatedEvent(this, post))` 가 되고, 알림 쪽에 `@EventListener` 를 붙인 `NotiEventListener` 가 생긴다. `PostCreatedEvent` 를 **`global/event` 패키지**에 두어 어느 모듈에도 속하지 않게 한 것도 의도가 분명하다. 마지막에 `@EnableAsync`+`@Async` 로 비동기 처리를 붙이는 방법이 인용으로 붙어 있다. 이 절 전체가 **「모놀리식 → 마이크로서비스」 전환의 세 번째 단계(종속성 분리)** 로 자리매김돼 있는 것이 이 노트의 구성이다 → [[microservice-architecture]]

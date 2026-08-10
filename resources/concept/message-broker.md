@@ -13,6 +13,7 @@ aliases:
   - 발행-구독
 up:
   - 2025-02-18-Day31
+  - 2025-02-20-Day33
 tags:
   - 인프라
   - 통신
@@ -85,7 +86,10 @@ rpk topic consume  order-created           # 소비
 - [[websocket]] — 브로커라는 낱말이 겹치는 자리
 - [[transaction]] — 비동기가 되면 깨지는 보장
 - [[distributed-processing]] — 여러 서비스가 나뉜 환경
+- [[application-event]] — 같은 구조를 한 프로세스 안에서 하던 방법
+- [[json]] — 메시지에 객체를 실을 때의 형식
 
 ## 출처
 
+- [[2025-02-20-Day33]] — 이틀 뒤. **스프링 이벤트와 카프카 발행이 한 메서드에 나란히 놓인다** — 같은 자리에서 `eventPublisher.publishEvent(...)` 와 `kafkaTemplate.send("post-created-1", ...)` 을 둘 다 부르고, 받는 쪽도 `@EventListener` 와 `@KafkaListener` 를 한 클래스에 둔다. **프로세스 안의 이벤트와 프로세스 밖의 메시지가 같은 모양**이라는 것이 코드로 보이는 자리다. 그리고 **문자열에서 객체로** 넘어가며 직렬화 문제가 드러난다 — `PostDto` 를 만들고 `JsonMessageConverter` 를 빈으로 등록해야 프로듀서와 컨슈머가 같은 것을 주고받는다(`@Data` 가 필요한 이유도 「직렬화를 위해 Getter 가 필요하다」로 적혔다). `groupId` 와 `auto-offset-reset: earliest` 도 설정에 나온다 → [[application-event]] · [[json]]
 - [[2025-02-18-Day31]] — 「Http 방식과 Kafka 방식의 차이점」 표가 **열 가지 축으로 둘을 대비**한 것이 이 노트의 핵심이다 — 통신 방식·데이터 저장·처리 방식·확장성·전달 보장·부하 처리·실시간성·데이터 순서·에러 처리·사용 사례. 특히 **「데이터를 토픽에 저장하고 설정된 보관 기간 동안 유지한다」**와 **「파티션 내에서 메시지 순서를 보장한다」**는 두 줄이 이 도구의 성질을 정확히 짚는다. 이어지는 모놀리식·마이크로서비스 표는 Day102 의 두 줄짜리 정리를 **열 축으로 확장**한 것이라, 왜 이 통신 방식이 필요해지는지가 앞뒤로 이어진다. 실습은 레드판다를 docker-compose 로 띄우고 `rpk topic create`/`produce`/`consume` 세 명령으로 **토픽·프로듀서·컨슈머를 손으로 돌려 본** 것이다 → [[microservice-architecture]]
