@@ -13,6 +13,7 @@ aliases:
 up:
   - 2024-08-06-Day51
   - 2026-07-29-database-selection-guide
+  - 2025-01-20-Day15
 tags:
   - search
   - Elasticsearch
@@ -50,11 +51,14 @@ fulltext index test1_name_idx (name)     -- MySQL 안에 만드는 역인덱스
 
 ## 함께 보는 개념
 
+- [[elasticsearch]] — 이 구조를 제품으로 만든 것
+
 - [[caching]] — 원본 저장소 외에 고속 조회를 위한 별도 계층을 두는 유사한 구조
 - [[database-index]] — 같은 이름으로 불리는 관계형 DB 안의 인덱스
 - [[linear-search]] — 인덱스가 없을 때 하는 전체 순회
 
 ## 출처
 
+- [[2025-01-20-Day15]] — **색인을 직접 만드는 것과 엔진에 맡기는 것이 나란히 놓인다.** 필기의 「2세대」가 `postKeyword`·`postTag` 브릿지 테이블로 **검색어를 사람이 미리 색인하는** 방식이고, 「3세대」가 「모든 단어를 index 화하여 별도의 테이블에 저장」하는 자동 색인이다. 같은 아이디어의 수작업 판과 자동 판을 SQL 로 대비한 것이 이 개념을 손에 잡히게 한다 → [[elasticsearch]]
 - [[2024-08-06-Day51]] — 이 개념을 **DB 안쪽에서** 처음 만나는 회차다. `create table` 안에 `fulltext index test1_name_idx (name)` 를 적어 전문 인덱스를 만들고, 인덱스 일반의 교환(「조회는 빨라지고 입력/변경/삭제는 느려진다」·「값이 바뀌면 인덱스 정보도 갱신한다」)을 네 줄로 정리했다. 다만 그 뒤 조회를 `MATCH ... AGAINST` 로 하지 않아 **만든 역인덱스를 쓰지 않고 갱신 비용만 내는 형태**로 남았다
 - [[2026-07-29-database-selection-guide]] — Elasticsearch·Amazon CloudSearch를 예로 들어, 기존 DB 데이터를 입력받아 인덱스를 생성하고 빠른 검색·추천·오타 교정을 제공하는 보조 저장소로 소개
