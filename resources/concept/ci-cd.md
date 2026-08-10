@@ -10,6 +10,7 @@ aliases:
   - 컨테이너 레지스트리
 up:
   - 2025-01-13-Day10
+  - 2025-01-17-Day14
 tags:
   - 배포
   - 자동화
@@ -101,7 +102,9 @@ command: |
 - [[externalized-configuration]] — 비밀을 다루는 자리
 - [[git]] — 이벤트가 나오는 곳
 - [[reverse-proxy]] — 배포된 것 앞에 서는 것
+- [[kubernetes]] — 배포 대상이 클러스터가 될 때
 
 ## 출처
 
+- [[2025-01-17-Day14]] — 나흘 뒤. **배포하는 방법이 바뀐다** — AWS SSM 으로 서버에 명령을 보내던 것이 **kubeconfig 로 클러스터 API 에 붙어 `kubectl set image` 를 부르는 것**이 된다. 필기가 그 이행을 명시했다(「기존 방식은 aws ssm 을 이용하여 접속하는 방식이었다 / 이번에는 github actions 를 이용하여 마스터 노드에 접근하여 자동배포를 진행한다」). `~/.kube/config` 의 구조(clusters·users·contexts)를 풀어 적고 **그 파일을 통째로 Secrets 에 넣는다**는 것까지 나오는데, 그것은 곧 **클러스터 전체 권한을 워크플로우에 준다**는 뜻이다. 이미지 태그로 앞 잡의 출력(`needs.makeTagAndRelease.outputs.tag_name`)을 쓰는 것도 잡 사이 값 전달의 예다 → [[kubernetes]]
 - [[2025-01-13-Day10]] — 「깃허브 액션을 통한 CI/CD 파이프라인 구축」 절이 **여섯 단계를 먼저 글로 적고** 워크플로우 YAML 을 잡 단위로 나눠 실었다 — `makeTagAndRelease`(태그·릴리즈 자동 생성) → `buildImageAndPush`(Buildx·ghcr 로그인·이미지 푸시) → `deploy`(AWS SSM 으로 원격 스크립트 실행). `needs` 로 잡을 잇는 것과 `${{ secrets.* }}` 로 키를 참조하는 것이 코드에 그대로 있다. 앞의 「도커 컨테이너 실행 및 배포(수동)」 절이 **같은 일을 손으로 하는 일곱 단계**를 남겨 둔 것이 이 노트의 값이다 — 자동화가 무엇을 대신하는지가 나란히 보인다. 그중 「docker 에서 접속 시에 `172.17.0.1` 로 접속을 하는데 spring 내부에서 이 아이피에 대한 권한을 설정해줘야 한다」는 **컨테이너 안에서 호스트 DB 에 붙을 때의 실전 함정**이다 → [[container]]
