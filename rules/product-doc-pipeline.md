@@ -421,6 +421,8 @@ tags:
   반드시 잇는 것이 아니라 **검토했다는 사실이 문서에 남는 것**이다. 값·범위·UX 결정처럼
   기댈 개념이 없는 문서가 실제로 27건이고, 그것을 억지로 이으면 계보가 거짓이 된다.
   판단 기준은 `rules/knowledge-note-pipeline.md`의 「결정을 쓰다 새 개념이 나오면」.
+  **개념이 필요하면 그 결정을 쓰는 쪽이 같은 턴에 만든다** — 에이전트가 결정을 쓰면
+  에이전트가 `resources/source/` + `resources/concept/` 까지 만들어 잇는다.
   `product_doc_pipeline.py`가 error로 막고, pre-commit이 `products/**` 변경마다 그것을 부른다.
 - **`spec`의 `links.works`는 비워 둔다.** SPEC → WORK 추적은 위 「문서 관계」의 단방향
   규정대로 work의 `links.specs`가 소유하고, spec 중심의 목록은 `30-work/README.md`의

@@ -81,6 +81,24 @@ class PersonaError(ValueError):
     """페르소나 형식 위반. 부팅 시 fail-fast."""
 
 
+class GraphEnforcementError(PersonaError):
+    """그래프 ERROR 위반. `GRAPH_ENFORCE=1` 일 때만 raise 한다.
+
+    KDEV-WORK-007 이 이 자리를 주석으로만 남기고 구현하지 않아, **검증이 위반을
+    찾아 놓고도 아무것도 막지 않았다.** pre-commit 이 `GRAPH_ENFORCE=1` 을 넘기고
+    「persona validation: ok」를 찍는 동안 dead link 가 그대로 커밋됐다 —
+    결정에서 없는 개념을 가리켜도 통과했고, 그래서 개념이 만들어지지 않았다.
+    """
+
+
+def _graph_enforce() -> bool:
+    """기본은 report-only다 — 런타임 reload 가 위반 하나로 죽지 않게.
+
+    막는 자리는 **pre-commit 과 부팅**이고, 거기서만 `GRAPH_ENFORCE=1` 을 준다.
+    """
+    return os.environ.get("GRAPH_ENFORCE") == "1"
+
+
 def load_persona(persona_dir: Path) -> dict[str, Any]:
     """persona/ 전체 로드 → in-memory dict. 위반 시 PersonaError raise.
 
@@ -176,6 +194,16 @@ def load_persona(persona_dir: Path) -> dict[str, Any]:
 
     # KDEV-WORK-007 — report 산출(위 try) 뒤에 enforcement. 그래프 try/except 밖이라
     # 빌드 except 가 이 raise 를 삼키지 않는다. ERROR-level 위반/빌드예외 시 raise(fail-fast).
+    if _graph_enforce():
+        if data.get("_graph_error"):
+            raise GraphEnforcementError(f"그래프 빌드 실패 — {data['_graph_error']}")
+        errors = [v for v in data["_graph_violations"] if v["level"] == "ERROR"]
+        if errors:
+            shown = "\n".join(
+                f"  {v['rule']} {v['node']}: {v['detail']}" for v in errors[:20]
+            )
+            more = f"\n  … 외 {len(errors) - 20}건" if len(errors) > 20 else ""
+            raise GraphEnforcementError(f"그래프 위반 {len(errors)}건\n{shown}{more}")
 
     return data
 

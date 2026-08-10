@@ -76,6 +76,8 @@ up: []
 만들고, **여기서 처음 세운 판단**이면 `resources/synthesis/`이며, **이 결정 안에서만 쓰는 말**이면
 개념이 아니다. 판단 기준은 `rules/knowledge-note-pipeline.md`의 「결정을 쓰다 새 개념이 나오면」.
 개념은 결정 문서를 `up:`으로 가리킬 수 없다(층 방향).
+**개념을 만드는 것은 이 결정을 쓰는 쪽의 일이다** — 같은 턴에 `resources/source/` 와
+`resources/concept/` 를 만들어 잇는다. 미루면 그 개념은 만들어지지 않는다.
 
 ## Scope
 
