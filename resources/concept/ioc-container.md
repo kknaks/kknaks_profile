@@ -13,6 +13,7 @@ aliases:
   - Bean
 up:
   - 2024-09-25-Day82
+  - 2024-09-29-Day84
 tags:
   - 설계
   - 프레임워크
@@ -86,6 +87,7 @@ public class AppConfig {
 - **`@ComponentScan` 은 패키지를 훑는 것이지 클래스를 아는 게 아니다** — 지정한 패키지 **바깥**에 있는 클래스는 표식을 붙여도 안 담긴다. 「분명히 `@Service` 를 붙였는데 없다」의 대부분이 이 자리다
 - **`@Bean` 과 `@Component` 는 대상이 다르다** — 내 소스를 고칠 수 있으면 표식을 붙이고(스캔), 라이브러리 클래스처럼 고칠 수 없으면 `@Bean` 메서드로 만들어 등록한다. **둘 다 되는 경우에 아무거나 쓰는 것이 혼란을 만든다**
 - **컨테이너가 있다고 `new` 가 사라지지 않는다** — 값 객체(VO·DTO)는 여전히 `new` 로 만든다. 컨테이너에 담을 것은 **수명이 길고 상태가 없는 협력 객체**다
+- **같은 타입 빈이 둘이면 주입이 애매해진다** — 인터페이스 하나에 구현이 둘이면 「어느 것을 넣을지」를 정해 줘야 한다. `@Primary` 로 기본을 정하거나, `@Service("name")` 으로 이름을 붙이고 받는 쪽에서 `@Qualifier("name")` 로 고른다. **구현이 하나일 때는 안 보이다가 둘이 되는 날 기동이 실패한다**
 - **웹 애플리케이션에는 컨테이너가 둘일 수 있다** — 루트 컨테이너와 서블릿용 컨테이너가 부모-자식으로 갈리는 구성이 흔하다. 이 회차는 하나만 쓰지만, 「빈이 안 보인다」의 원인이 되는 자리다 → [[dispatcher-servlet]]
 
 ## 함께 보는 개념
@@ -97,7 +99,9 @@ public class AppConfig {
 - [[singleton-pattern]] — 빈의 기본 수명
 - [[reflective-instantiation]] — 컨테이너가 객체를 만드는 방법
 - [[dependency-inversion-principle]] — 이 배치가 성립시키는 원칙
+- [[externalized-configuration]] — 빈에 넣을 값을 파일에서 읽는 자리
 
 ## 출처
 
+- [[2024-09-29-Day84]] — 나흘 뒤. 같은 컨테이너에 **설정 파일을 붙이는 자리**(`@PropertySource`)와 **구현이 둘일 때 고르는 법**이 더해진다. 필기가 「하나의 구현체의 여러개의 Service를 사용하려면 `@Primary` 를 지정하거나 구현체 `Service("name")` 과 컨트롤러에 `Qualifier("name")` 을 설정 해야한다」로 짚은 자리인데, 이 회차의 스토리지 서비스는 구현이 하나뿐이라 **문제가 드러나기 전에 답만 적힌 상태**다 → [[externalized-configuration]]
 - [[2024-09-25-Day82]] — 「IOC 컨테이너 교체」 절이 직접 만든 `ApplicationContext` 를 지우고 `AnnotationConfigWebApplicationContext` 를 세우는 네 줄(`register` → `setServletContext` → `refresh`)을 그대로 남겼다 — **등록과 생성이 갈려 있다는 것**이 이 코드에 드러난다. 「annotation 교체」 절이 `@ComponentScan("bitcamp.myapp")` 을 「패키지 내에 있는 모든 클래스에서 `@Component`, `@Service`, `@Repository`, `@Controller` 와 같은 애노테이션이 붙은 클래스들을 자동으로 스캔하고 빈으로 등록」으로 설명하고, 「AppConfig 클래스 변경」이 `@Bean` 메서드로 `MultipartResolver`·`ViewResolver` 를 등록하는 두 예를 보인다 — **스캔과 등록 두 길이 한 노트에 나란히 있다.** 다만 빈이 싱글턴이라는 것, IoC 와 DI 의 관계, `refresh()` 가 하는 일은 설명되지 않았고 코드에 `serSevletContext` 오타가 있다

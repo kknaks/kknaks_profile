@@ -9,6 +9,7 @@ aliases:
   - "@Value"
 up:
   - 2024-09-26-Day83
+  - 2024-09-29-Day84
 tags:
   - database
   - java
@@ -67,7 +68,9 @@ public DataSource dataSource(
 - [[declarative-transaction]] — 같은 DataSource 를 공유해야 하는 쪽
 - [[mybatis-spring]] — 이것을 받아 세션 팩토리를 만드는 쪽
 - [[web-application-deployment]] — 환경마다 값이 갈리는 축
+- [[externalized-configuration]] — 접속 정보를 파일로 빼는 방법
 
 ## 출처
 
+- [[2024-09-29-Day84]] — 사흘 뒤. 같은 `dataSource` 빈이 그대로 다시 나오는데 **읽어 오는 곳이 바뀐다** — `mybatis-config.xml` 이 아니라 `@PropertySource("classpath:config/jdvc.properties")` 가 가리키는 파일이다. 그리고 접속 대상이 로컬 MySQL 에서 **NCP 에 띄운 서버**로 옮겨 가면서, 「접속 정보가 환경마다 다르다」가 실제 문제가 되는 자리다 → [[externalized-configuration]]
 - [[2024-09-26-Day83]] — 「dataSource 메서드 생성」 절이 `config.xml` 의 `${jdbc.driver}`·`${jdbc.url}`·`${jdbc.username}`·`${jdbc.password}` 네 값을 `@Value` 로 받아 `DriverManagerDataSource` 를 세우는 `@Bean` 메서드를 그대로 실었다 — **MyBatis 설정 파일에 있던 접속 정보가 스프링 빈의 매개변수로 옮겨 오는 자리**다. 앞 회차들에서 `mybatis-config.xml` 이 들고 있던 것을 스프링이 대신 읽게 되는 이행이라, 이후 `SqlSessionFactoryBean`·`DataSourceTransactionManager` 가 모두 이 하나의 빈을 받아 간다. 다만 `DriverManagerDataSource` 가 커넥션 풀이 아니라는 것, `@Value` 의 값이 없을 때 무슨 일이 나는지는 다루지 않았다

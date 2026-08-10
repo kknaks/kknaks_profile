@@ -9,6 +9,7 @@ aliases:
   - Servlet Part
 up:
   - 2024-09-04-Day69
+  - 2024-09-29-Day84
 tags:
   - web
   - servlet
@@ -79,7 +80,9 @@ public class UploadServlet extends HttpServlet {
 - [[filesystem-path]] — 서버 저장 경로를 검증하는 자리
 - [[web-xml]] · [[annotation]] — multipart 설정의 두 등록 방식
 - [[ioc-container]] — 프레임워크에서 이 처리를 빈으로 등록하는 자리
+- [[object-storage]] — 받은 파일이 서버 디스크 대신 가는 곳
 
 ## 출처
 
+- [[2024-09-29-Day84]] — 여덟 주 뒤. **받은 파일이 서버 디스크에 안 남는다.** 「클라이언트가 `Multipart/form-data` 형태로 Post요청을 보내면 서버측에서 `MultipartFile[]` 로 받는다」로 스프링 쪽 수신 타입이 나오고, 그 스트림을 그대로 오브젝트 스토리지에 흘려 보낸다 — Day69 의 `Part.write("/uploadDir" + filename)` 이 하던 로컬 저장이 사라지는 것이다. 파일명 충돌을 UUID 로 피하고 원래 이름을 `AttachFile` 에 따로 담는 처리도 이 회차에서 나온다 → [[object-storage]]
 - [[2024-09-04-Day69]] — "파일 업로드" 절이 일반 GET·기본 POST는 파일 바이트를 보내지 못하고 `multipart/form-data`가 필요하다고 갈랐다. `<multipart-config>`·`@MultipartConfig`, `getPart()`·`Part.write()`와 Apache Commons FileUpload의 `FileItem` 순회까지 실제 코드로 적었다. 다만 Servlet API 예시의 `filename`은 선언되지 않았고 `"/uploadDir" + filename`에는 경로 구분자가 없으며, 클라이언트 파일명과 저장 경로 검증·크기 제한의 범위는 다루지 않았다.
