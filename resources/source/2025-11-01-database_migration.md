@@ -1,8 +1,14 @@
 ---
+type: reference
+id: 2025-11-01-database_migration
 title: Database Migration(AWS RDS -> Azure MySQL)
+summary: DB를 다른 클라우드로 옮기는 세 방안(Dump&Load · DMS+CDC · Dual write)을 장단점으로 비교하고, binlog 기반 CDC로 Full Load 뒤 실시간 변경을 따라붙여 짧은 중단만으로 전환하는 절차를 정리한 실무 기록
+author: 이건학
 date: 2025.11.01
 tags:
-- mysql, DMS, CDC
+  - mysql
+  - DMS
+  - CDC
 stack: [MySQL, AWS, Azure]
 links: [2025-10-01-insight, 2025-11-01-migration_detail]
 ---
@@ -100,7 +106,7 @@ INSERT/UPDATE/DELETE 이벤트 캡처
 **AWS RDS에서 쿼리 실행:**
 
 ```sql
-INSERT INTO users (name, email) 
+INSERT INTO users (name, email)
 VALUES ('John', 'john@example.com');
 ```
 
