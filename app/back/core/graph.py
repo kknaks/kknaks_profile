@@ -4,7 +4,8 @@ KDEV-SPEC-002 §4 (그래프 스키마) · KDEV-SPEC-004 (검증 게이트 L1~L6
 검증은 위반 리스트를 반환만 하고 **절대 raise 하지 않는다** — 차단 판정은
 `persona_loader._enforce_graph` 가 ERROR-level 만 보고 수행한다(KDEV-WORK-007).
 
-KDEV-WORK-013 — 지식을 4층(source → concept → synthesis → execution)으로 재편했다.
+KDEV-WORK-013 — 지식을 4층으로 재편했고, KDEV-DEC-019 가 판단층(synthesis)을 걷어내
+3층(source → concept → execution)으로 줄였다.
 `layer` 는 frontmatter 가 아니라 `type` 에서 도출한다(KDEV-DEC-010 D3).
 
 노드 식별자 = 파일명 stem (spec-002 §4). 노드 dict 기대 키:
@@ -22,7 +23,7 @@ from core.wikilinks import extract_wikilinks
 # spec-002 §4 + spec-001/007 (persona) + products frontmatter type 합집합.
 ALLOWED_NODE_TYPES: set[str] = {
     # 지식 4층 (KDEV-DEC-010 D3)
-    "reference", "concept", "permanent",
+    "reference", "concept",
     "baseline", "decision", "spec", "work", "release", "runbook", "bugfix",
     # 노드이되 층 없음
     "idea",
@@ -43,7 +44,6 @@ DEPRECATED_NODE_TYPES: set[str] = {"note", "product", "project"}
 _TYPE_LAYER: dict[str, str] = {
     "reference": "source",
     "concept": "concept",
-    "permanent": "synthesis",
     "baseline": "execution",
     "decision": "execution",
     "spec": "execution",
@@ -63,7 +63,6 @@ _TYPE_LAYER: dict[str, str] = {
 _LAYER_RANK: dict[str, int] = {
     "source": 1,
     "concept": 2,
-    "synthesis": 3,
     "execution": 4,
 }
 
@@ -71,7 +70,6 @@ _LAYER_RANK: dict[str, int] = {
 # `idea` 의 `up` 금지는 L4 가 담당한다(기존 가드) — 여기서 중복 보고하지 않는다.
 _REQUIRED_FIELDS: dict[str, tuple[str, ...]] = {
     "concept": ("aliases", "up"),   # aliases=개념 중복 생성 방지 / up=출처 없는 개념은 성립 안 함
-    "permanent": ("up",),           # 개념을 엮지 않은 종합은 성립 안 함
 }
 
 
@@ -219,7 +217,7 @@ def validate_graph(
     L2 노드 스키마/유일  ERROR  id/type 필수, type 허용값, stem/alias 전역 유일
     L3 오버레이 정합     ERROR  `up:` stem 이 본문 `[[]]` 에도 존재
     L4 방향 정합         ERROR  up 타겟이 상류(같거나 낮은 층), idea up 금지
-    L5 orphan            층별   source=INFO(미소화 큐) / synthesis=WARN / concept=ERROR
+    L5 orphan            층별   source=INFO(미소화 큐) / concept=ERROR
     L6 archive 참조      WARN   활성 노트가 archived 를 up 의존
 
     **신규 4층 규칙(L2 필수필드·L4 방향·L5 concept·폐기 type)은 `GRAPH_LAYER_ENFORCE=1`
@@ -322,8 +320,6 @@ def validate_graph(
             violations.append(_v(
                 "L5", "INFO", stem, "[layer] 미소화 — 아직 개념으로 정리되지 않은 자료",
             ))
-        elif layer == "synthesis":
-            violations.append(_v("L5", "WARN", stem, "[layer] orphan — 개념을 엮지 않은 종합 노트"))
         elif layer == "concept":
             # concept 는 up 필수(L2)라 정상 경로로는 여기 도달하지 않는다.
             violations.append(_v(

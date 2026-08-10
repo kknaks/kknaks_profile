@@ -4,9 +4,9 @@ id: KDEV-SPEC-001
 title: "지식그래프 디렉토리 구조"
 status: draft
 product: kknaks-dev
-version: 0.0.6
+version: 0.0.7
 created_at: 2026-06-29
-updated_at: 2026-07-31
+updated_at: 2026-08-10
 tags:
   - product/kknaks-dev
   - doc/spec
@@ -31,6 +31,8 @@ links:
 
 레포의 모든 노트가 어느 디렉토리에 사는지, 각 디렉토리가 그래프에서 어떤 **층(layer)**과 노드 타입을 담는지에 대한 계약. 작성자·에이전트·빌더가 이 문서만으로 노트 위치를 판단할 수 있어야 한다.
 
+> v0.0.7 — [[decision-019-drop-synthesis-layer|KDEV-DEC-019]] 반영. **판단층(`synthesis`/`permanent`)을 폐기**하고 지식층을 `source → concept → execution` 3층으로 줄인다.
+>
 > v0.0.6 — [[decision-018-resources-layout-and-sot-naming|KDEV-DEC-018]] 반영. 지식층을 `resources/{source,concept,synthesis}/` 로 모으고 **하위 폴더명을 층 이름으로 통일**한다(`permanent` 겸직 해소). `archive/` 를 최상위로 올린다 — 층이 아니라 상태이기 때문이다. `downloads/`·`reports/` 의 소유를 명시한다.
 >
 > v0.0.4 — [[decision-010-knowledge-graph-four-layers|KDEV-DEC-010]] 반영. 지식 층을 **출처 → 원자 개념 → 종합 판단 → 실행** 4층으로 재편하고 `permanent/concept/`를 신설한다.
@@ -41,7 +43,7 @@ links:
 
 - Decision reference: [[decision-001-products-single-root|KDEV-DEC-001]], [[decision-002-knowledge-pipeline-layers|KDEV-DEC-002]], [[decision-008-contents-retention|KDEV-DEC-008]], [[decision-010-knowledge-graph-four-layers|KDEV-DEC-010]]
 - Baseline reference: [[baseline-001-repo-knowledge-graph|KDEV-BL-001]], [[baseline-003-inbox-approval-pipeline|KDEV-BL-003]]
-- Domain note: 지식 층 = `source`/`concept`/`synthesis`/`execution`. 노드 타입과 `layer` 축의 스키마 상세는 [[spec-002-graph-schema|KDEV-SPEC-002]].
+- Domain note: 지식 층 = `source`/`concept`/`execution`. 노드 타입과 `layer` 축의 스키마 상세는 [[spec-002-graph-schema|KDEV-SPEC-002]].
 - Open questions: §7
 
 ### Business Requirement
@@ -53,7 +55,7 @@ links:
 ### Scope
 
 In scope:
-- 지식 4층과 디렉토리 매핑(`source`/`concept`/`synthesis`/`execution`)
+- 지식 3층과 디렉토리 매핑(`source`/`concept`/`execution`)
 - `resources/concept/` 신설과 그 작성 규약
 - 루트 레벨 지식 파이프라인 층(`inbox/` · `resources/` · `archive/`)
 - products 제품 레이아웃(showcase + 파이프라인)
@@ -76,12 +78,12 @@ Out of scope:
 1. 정제 안 된 생각이면 → `inbox/` (type: idea, 휘발).
 2. 외부 자료를 읽고 **그 자료가 무엇을 말했는지** 정리한 것이면 → `resources/source/` (flat) (type: reference, 층 `source`).
 3. 자료에서 뽑은 **재사용 가능한 개념 하나**면 → `resources/concept/` (type: concept, 층 `concept`).
-4. 개념들을 엮어 내린 **내 판단·전략**이면 → `resources/synthesis/` (type: permanent, 층 `synthesis`).
+4. 개념들을 엮어 내린 **제품 판단**이면 → 그 제품의 `products/{제품}/10-decision/` 이 갖는다(KDEV-DEC-019).
 5. 제품 스펙감이면 → `products/{제품}/00-baseline` (type: baseline 등, 층 `execution`, 00→20 파이프라인).
 6. 발행할 글이면 → `persona/posts/` (type: post).
 7. 안 쓰게 된 노트·개념은 → `archive/` (cold). **층이 아니라 상태라 최상위에 둔다.**
 
-3과 4를 가르는 기준은 **"사실이냐 판단이냐"**다. "STT는 음성을 텍스트로 바꾸는 기술이고 이런 구조로 동작한다"는 concept이고, "우리 제품에 STT를 붙일지, 붙인다면 어느 지점에"는 synthesis다.
+3과 4를 가르는 기준은 **"사실이냐 판단이냐"**다. "STT는 음성을 텍스트로 바꾸는 기술이고 이런 구조로 동작한다"는 concept이고, "우리 제품에 STT를 붙일지, 붙인다면 어느 지점에"는 그 제품의 decision이다.
 
 ### S-2. 작성자 — 같은 개념이 두 번째 자료에서 또 나온다
 
@@ -106,7 +108,6 @@ Out of scope:
 |---|---|---|---|---|---|
 | `source` | `resources/source/` (flat) | `reference` | "이 자료가 뭐라고 했나" | 자료 하나 | 생성 후 고정 |
 | `concept` | `resources/concept/` | `concept` | "이 개념은 뭔가" | 개념 하나 | 출처 합류로 **성장** |
-| `synthesis` | `resources/synthesis/` (flat) | `permanent` | "내 판단·전략은 뭔가" | 영역 하나 | 개념 유입마다 갱신 |
 | `execution` | `products/{제품}/` | `baseline`·`decision`·`spec`·`work`·`release`·`runbook` | "그래서 뭘 만드나" | 프로젝트 문서 | 제품 파이프라인을 따름 |
 
 그래프 밖에 남는 디렉토리:
@@ -128,7 +129,6 @@ inbox/                 # type: idea (휘발, 미정제). 층에 속하지 않는
 resources/             # R — 지식 자산. 하위는 **층 이름**이다
 ├── source/            # 층: source     — type: reference (자료 정리, flat)
 ├── concept/           # 층: concept    — type: concept   (원자 개념, flat)
-└── synthesis/         # 층: synthesis  — type: permanent (종합 판단, flat)
 archive/               # 층이 아니라 **상태** (cold) — 위 셋 공용
 products/              # 층: execution
 └── {제품}/
@@ -147,8 +147,8 @@ reports/               # (없음) — 제품별 작업 보고는 products/{제�
 ```
 
 - `resources/` 하위 셋은 모두 **flat**이다. 하위 디렉토리를 두지 않는다 — 개념도 자료도 분류 트리가 아니라 링크 그래프로 조직된다.
-- **폴더명은 층 이름이다**([[decision-018-resources-layout-and-sot-naming|KDEV-DEC-018]] D1). `type` 이름(`reference`·`permanent`)과 다른 것은 의도적이다 — 폴더는 층을 가리키고 `type` 은 frontmatter 계약이라 축이 다르다. 섞으면 한 단어가 두 뜻을 갖는다.
-- `archive/` 는 층이 아니라 **상태**라 `resources/` 밖 최상위에 둔다. 안 쓰게 된 `reference`·`concept`·`permanent` 가 함께 내려간다. `products/{제품}/_archive/`(버전 컷오프 동결본)와는 다른 것이다 — 그쪽은 제품 버전 스냅샷이라 제품 폴더 안에 남는다.
+- **폴더명은 층 이름이다**([[decision-018-resources-layout-and-sot-naming|KDEV-DEC-018]] D1). `type` 이름(`reference`)과 다른 것은 의도적이다 — 폴더는 층을 가리키고 `type` 은 frontmatter 계약이라 축이 다르다. 섞으면 한 단어가 두 뜻을 갖는다.
+- `archive/` 는 층이 아니라 **상태**라 `resources/` 밖 최상위에 둔다. 안 쓰게 된 `reference`·`concept` 가 함께 내려간다. `products/{제품}/_archive/`(버전 컷오프 동결본)와는 다른 것이다 — 그쪽은 제품 버전 스냅샷이라 제품 폴더 안에 남는다.
 - `products/{제품}/showcase.md` frontmatter: `org: company | studio`, `category`, `status`, `visible`, `thumbnail`.
 - 회사 프로젝트 = `showcase.md`만, 개인 제품 = showcase + 파이프라인.
 - **`downloads/` 는 지식층이 아니라 운영 자산이다.** `main.py` 가 레포 루트의 이 디렉토리를 `/download/*` 로 정적 서빙하고 DeskDeck 랜딩이 링크한다(mac-remote RB-001). **지우면 다운로드가 죽는다.** 서빙 경로가 코드에 있어 옮기지 않고, 여기 적어 주인을 남긴다.
@@ -159,7 +159,7 @@ reports/               # (없음) — 제품별 작업 보고는 products/{제�
 
 | 경로 | 자동 갱신 주체 | 승인 |
 |---|---|---|
-| `resources/source/` · `resources/concept/` · `resources/synthesis/` · `inbox/` | 유튜브 체인 · 잔디(concept 한정) | 게이트 |
+| `resources/source/` · `resources/concept/` · `inbox/` | 유튜브 체인 · 잔디(concept 한정) | 게이트 |
 | `persona/contents/` | 유튜브 체인(`derived`) · 교안 enrich 잡 | 게이트 / 잡 |
 | `persona/daily/` · `persona/career/` | **잔디 파이프라인** | 게이트 |
 | `persona/algorithms/` | algorithm 잡 | **없음**(후속 편입 대상) |
@@ -183,7 +183,6 @@ reports/               # (없음) — 제품별 작업 보고는 products/{제�
 - **`up:` 필수.** concept는 자신이 나온 출처(`reference`)를 `up:`으로 가리킨다. 출처 없는 concept는 성립하지 않는다.
 - **SoT 위임.** 개념 상세의 SoT는 concept 노트 한 곳이다.
   - `reference`는 개념을 재서술하지 않고 **요지 + `[[concept]]` 링크**로 위임한다.
-  - `permanent` 종합 노트도 개념을 재서술하지 않고 **엮은 판단만** 소유하며, 구성 개념은 `[[concept]]`로 참조한다.
   - "재서술하지 않는다"는 **개념의 상세 설명 섹션을 복사하지 않는다**는 뜻이다. 판단 문장 안에 개념 요지가 인용되는 것은 허용하며 필연적이다.
 - **개념 성장.** 같은 개념에 두 번째 출처가 오면 새 파일을 만들지 않고 기존 concept를 **보충**한다. 보충 시 새 출처를 `up:`과 본문 `[[]]`에 추가한다.
 - 안 쓰게 된 concept는 `archive/`로 내린다(다른 층과 동일 규칙).
@@ -195,8 +194,7 @@ reports/               # (없음) — 제품별 작업 보고는 products/{제�
 | 노트 | `up:` 대상 | 의미 |
 |---|---|---|
 | `concept` | `reference` | 이 개념이 나온 출처 |
-| `permanent`(synthesis) | `concept` | 이 판단을 구성하는 개념 |
-| `execution` | `concept` · `permanent` | 이 제품 결정의 근거 |
+| `execution` | `concept` | 이 제품 결정의 근거 |
 | `idea` | — | `up:` 금지(휘발) |
 
 방향 판정의 구현 규칙은 [[spec-002-graph-schema|KDEV-SPEC-002]]와 [[spec-004-graph-validation|KDEV-SPEC-004]] L4가 소유한다.

@@ -4,9 +4,9 @@ id: KDEV-SPEC-002
 title: "그래프 스키마 — 노드·식별자·엣지·빌더 산출물"
 status: draft
 product: kknaks-dev
-version: 0.0.3
+version: 0.0.4
 created_at: 2026-06-29
-updated_at: 2026-07-27
+updated_at: 2026-08-10
 tags:
   - product/kknaks-dev
   - doc/spec
@@ -31,6 +31,8 @@ links:
 
 지식그래프의 노드/엣지/식별자 규약과 빌더 산출물(`_graph.json`)의 외부 계약. 작성자·빌더·시각화가 이 문서를 단일 기준으로 따른다. medi_docs 구 spec-02(wikilinks)/spec-04(persona-map)를 계승한다.
 
+> v0.0.4 — [[decision-019-drop-synthesis-layer|KDEV-DEC-019]] 반영. **판단층(`synthesis`/`permanent`)을 폐기**하고 지식층을 `source → concept → execution` 3층으로 줄인다.
+>
 > v0.0.3 — [[decision-010-knowledge-graph-four-layers|KDEV-DEC-010]] 반영. `layer` 축 도입, `concept` 타입 추가, **rank 비교 방향 반전**, `note` 제거, `up:` 생성 의무. §7의 미해소 OPEN 2건(products 문서 포함 여부 · lineage 0건) 해소.
 
 ## 1. Context
@@ -65,7 +67,7 @@ Out of scope: 빌더 함수 구현(work), 검증 규칙([[spec-004-graph-validat
 2. "이 노트가 무엇을 기반으로 했는지"(계보)면, 본문에 `[[stem]]`을 적고 **추가로** frontmatter `up: [stem]`에 그 stem을 넣는다 (엣지 type=`lineage`, 방향=상류→이 노트).
 3. id로 링크하고 싶으면 `[[KDEV-SPEC-001]]`처럼 쓴다 — 대상의 `aliases`에 id가 있으면 resolve.
 
-`up:` 대상은 **자기 층과 같거나 낮은 층**이어야 한다(§4 rank). concept는 reference를, permanent는 concept를, 제품 문서는 concept·permanent를 가리킨다.
+`up:` 대상은 **자기 층과 같거나 낮은 층**이어야 한다(§4 rank). concept는 reference를, 제품 문서는 concept를 가리킨다.
 
 ### S-2. 빌더 — 그래프 조립
 
@@ -77,7 +79,7 @@ Out of scope: 빌더 함수 구현(work), 검증 규칙([[spec-004-graph-validat
 
 ### S-3. 파이프라인 — 지식 노트를 생성
 
-1. 승인 게이트가 발행하는 concept·permanent 노트는 **`up:`을 반드시 채운다.**
+1. 승인 게이트가 발행하는 concept 노트는 **`up:`을 반드시 채운다.**
 2. `up:`에 넣은 stem은 본문 `[[]]`에도 넣는다 (오버레이 전제 — L3).
 3. concept는 `aliases`도 반드시 채운다 (개념 중복 생성 방지 — §5).
 4. 이 중 하나라도 빠지면 Apply Executor가 발행을 거부한다([[decision-012-draft-storage-and-publish-boundary|KDEV-DEC-012]] D6).
@@ -93,7 +95,7 @@ Out of scope: 빌더 함수 구현(work), 검증 규칙([[spec-004-graph-validat
 | `id` | ✓ | 전역 유일. `{PRODUCT}-{TYPE}-{NNN}` 등 prefix 형태 (예: `KDEV-SPEC-002`) |
 | `type` | ✓ | 아래 type enum 중 하나. `layer`는 여기서 도출된다 |
 | `aliases` | type별 | `[[id]]`·`[[다른 이름]]` resolve용. **`concept`는 필수**, 그 외는 선택 |
-| `up` | type별 | lineage 상류 stem 리스트 (본문 `[[]]`의 부분집합). **`concept`·`permanent`는 필수**, `idea`는 금지 |
+| `up` | type별 | lineage 상류 stem 리스트 (본문 `[[]]`의 부분집합). **`concept`는 필수**, `idea`는 금지 |
 | `source` | 선택 | 외부 자료 URL (노드 아님, 속성) |
 
 - **식별자 = 파일명 stem** (옵시디언이 `[[X]]`를 파일명/aliases로 resolve). 전역 유일.
@@ -105,7 +107,6 @@ Out of scope: 빌더 함수 구현(work), 검증 규칙([[spec-004-graph-validat
 |---|---|---|---|
 | 지식 층 | `source` | 1 | `reference` |
 | | `concept` | 2 | `concept` |
-| | `synthesis` | 3 | `permanent` |
 | | `execution` | 4 | `baseline` · `decision` · `spec` · `work` · `release` · `runbook` · `bugfix` |
 | 노드이되 층 없음 | `null` | — | `idea` |
 | 그래프 밖 (노드 아님) | — | — | `content` · `algorithm` · `daily` · `career` · `profile` |
@@ -121,15 +122,14 @@ Out of scope: 빌더 함수 구현(work), 검증 규칙([[spec-004-graph-validat
 `rank`는 `layer`에서 나오며 **지식의 성장 방향**을 뜻한다. `up:` 타겟의 rank는 **자기 rank보다 작거나 같아야** 한다 — 즉 상류(출처 방향)만 가리킨다.
 
 ```text
-source(1) → concept(2) → synthesis(3) → execution(4)
+source(1) → concept(2) → execution(3)
              up: 은 이 화살표의 역방향만 허용
 ```
 
 | 노트 | `up:` 대상 | 판정 |
 |---|---|---|
 | `concept`(2) | `reference`(1) | 1 ≤ 2 ✓ |
-| `permanent`(3) | `concept`(2) | 2 ≤ 3 ✓ |
-| `baseline`(4) | `concept`(2) · `permanent`(3) | ✓ |
+| `baseline`(3) | `concept`(2) | 2 ≤ 3 ✓ |
 | `reference`(1) | `concept`(2) | 2 > 1 ✗ — 자료가 개념을 기반으로 할 수 없다 |
 | `idea` | 무엇이든 | ✗ — 휘발은 상류를 가질 수 없다 |
 
@@ -156,7 +156,7 @@ source(1) → concept(2) → synthesis(3) → execution(4)
 }
 ```
 - **확정**(WORK-001, abcfbc4): 위 필드가 빌더 산출물의 외부 계약이다. `edges[source,target,type,dir]`(assoc는 `dir=null`, lineage는 `dir="up"`) / `backlinks{stem:[source-stem]}`. 검증 함수 시그니처 = `validate_graph(nodes, duplicate_stems=None) -> list[{rule,level,node,detail}]`.
-- **v0.0.3 추가**: `nodes[]`에 **`layer`** 필드가 들어간다(`source`/`concept`/`synthesis`/`execution`, `idea`는 `null`). frontmatter에는 없고 빌더가 `type`에서 계산해 담는다 — 소비자(트리 렌더러의 층 필터, 검증기의 층별 orphan 판정)가 매번 매핑을 다시 구현하지 않게 하기 위함이다.
+- **v0.0.3 추가**: `nodes[]`에 **`layer`** 필드가 들어간다(`source`/`concept`/`execution`, `idea`는 `null`). frontmatter에는 없고 빌더가 `type`에서 계산해 담는다 — 소비자(트리 렌더러의 층 필터, 검증기의 층별 orphan 판정)가 매번 매핑을 다시 구현하지 않게 하기 위함이다.
 
 ### Flow
 

@@ -10,7 +10,7 @@
 
 ## 여기 두지 않는 것
 - "이 자료가 뭐라고 했나" → `resources/source/`.
-- "내 판단·전략" → `resources/synthesis/`.
+- "내 판단·전략" → 그 제품의 `products/{제품}/10-decision/` (KDEV-DEC-019 로 판단층 폐기).
 - 안 쓰게 된 개념 → `archive/`.
 
 ## quick-rule

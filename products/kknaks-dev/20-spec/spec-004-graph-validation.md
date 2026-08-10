@@ -4,9 +4,9 @@ id: KDEV-SPEC-004
 title: "그래프 검증 게이트 — L1~L6"
 status: draft
 product: kknaks-dev
-version: 0.0.5
+version: 0.0.6
 created_at: 2026-06-29
-updated_at: 2026-07-27
+updated_at: 2026-08-10
 tags:
   - product/kknaks-dev
   - doc/spec
@@ -32,6 +32,8 @@ links:
 
 지식그래프는 SoT라 정합성이 자동 검증되어야 한다. lint 규칙 6개와 실행 지점, report-only→enforce 순서에 대한 계약.
 
+> v0.0.6 — [[decision-019-drop-synthesis-layer|KDEV-DEC-019]] 반영. **판단층(`synthesis`/`permanent`)을 폐기**하고 지식층을 `source → concept → execution` 3층으로 줄인다.
+>
 > v0.0.5 — [[decision-010-knowledge-graph-four-layers|KDEV-DEC-010]] D5(층별 orphan 재정의)·D4(`up:` 생성 의무)와 [[decision-012-draft-storage-and-publish-boundary|KDEV-DEC-012]] D6(발행 전 검증 지점) 반영. **L5가 층마다 다른 의미를 갖게 되고, orphan 156건이 위반이 아니라 작업 큐로 뒤집힌다.**
 
 ## 1. Context
@@ -104,7 +106,6 @@ Out of scope:
 | type | 추가 필수 필드 | 근거 |
 |---|---|---|
 | `concept` | `aliases`, `up` | 개념 중복 방지 + 출처 없는 개념은 성립하지 않음 |
-| `permanent` | `up` | 개념을 엮지 않은 종합은 성립하지 않음 |
 | `idea` | (`up` **금지**) | 휘발이라 상류가 될 수 없음 |
 
 `up:` 생성 의무([[decision-010-knowledge-graph-four-layers|KDEV-DEC-010]] D4)는 파이프라인 생성 계약이자 **여기 L2 규칙으로도 강제**된다. 손으로 쓴 노트든 AI가 만든 노트든 같은 기준을 받는다.
@@ -115,7 +116,6 @@ Out of scope:
 |---|---|---|
 | `source` (`reference`) | 아직 개념으로 올라가지 않은 자료 | **INFO** — 위반이 아니라 **미소화 큐**로 집계 |
 | `concept` | — | **L2가 커버**(아래 주) |
-| `synthesis` (`permanent`) | 개념을 엮지 않은 종합 노트 | WARN |
 | `execution` | 제품 파이프라인이 관리 | 검사 제외 |
 | 층 없음 (`idea`) | 휘발이라 연결 의무 없음 | 검사 제외 |
 | 그래프 밖 | — | 노드가 아님 |
@@ -138,7 +138,7 @@ Out of scope:
 
 - L1~L4 = ERROR(차단), L6 = WARN(리포트). **L5는 층별**(§4).
 - **enforcement 적용 순서 (라이브 서버 brick 방지)**: 검증기는 먼저 **report-only**로 도입 → 레포 데이터 정리 후 → **맨 마지막에** ERROR/fail-fast 전환. report-only 출력이 마이그레이션 작업목록이 된다. **v0.0.5의 L2 type별 필수 필드와 L4 방향 반전에도 같은 순서를 적용한다** — 기존 데이터가 새 규칙을 통과하지 못할 수 있으므로 report-only로 먼저 측정한다.
-- **L4 rank 비교 방향**(v0.0.5): `up:` 타겟의 rank가 자기 rank **이하**여야 한다. rank는 [[spec-002-graph-schema|KDEV-SPEC-002]]의 층 순서에서 나온다(`source 1 → concept 2 → synthesis 3 → execution 4`). **현행 코드는 `reference=4`에 `>=` 비교라 방향이 반대다** — rank 테이블만 교체하면 L4가 조용히 역동작하므로 비교 연산자까지 함께 바꾼다.
+- **L4 rank 비교 방향**(v0.0.5): `up:` 타겟의 rank가 자기 rank **이하**여야 한다. rank는 [[spec-002-graph-schema|KDEV-SPEC-002]]의 층 순서에서 나온다(`source 1 → concept 2 → execution 3`). **현행 코드는 `reference=4`에 `>=` 비교라 방향이 반대다** — rank 테이블만 교체하면 L4가 조용히 역동작하므로 비교 연산자까지 함께 바꾼다.
 - **L2 노드 자격**(WORK-002 확정, 0014790): 그래프 노드 자격 = frontmatter `type` 보유. `type` 없는 navigational/legal 파일(README/log/privacy/support 및 그 아카이브 사본)은 노드가 아니다 → 중복 stem(L2)·orphan(L5) 검사 대상에서도 제외. (persona notes 는 항상 type 보유 → 무영향.)
 - **L5 orphan 대상**(v0.0.5 개정): 층이 있는 노드만 대상이며 판정은 층별이다(§4). `idea`(층 없음)·`daily`·`algorithm`·`career`·`profile`·`content` 등은 제외한다. `note`는 type enum에서 제거됐다([[spec-002-graph-schema|KDEV-SPEC-002]] v0.0.3). 종전 "대상 = `reference`/`permanent`/`post`/`product` 전체에 동일 WARN" 규칙을 대체한다.
 - **미소화 큐 집계**(v0.0.5 신규): `source` orphan은 위반 목록이 아니라 별도 지표로 낸다. 검증 결과 소비자(부팅·pre-commit)는 이 값으로 차단하지 않는다.
@@ -156,11 +156,9 @@ Out of scope:
 - [ ] idea를 up하면 L4 ERROR.
 - [ ] enforcement는 데이터 green 이후에 켜진다(부팅 brick 없음).
 - [ ] `concept`에 `aliases` 또는 `up`이 없으면 L2 ERROR.
-- [ ] `permanent`에 `up`이 없으면 L2 ERROR.
 - [ ] `reference`가 `concept`를 `up`하면 L4 ERROR (rank 1 < 2, 상류 아님).
 - [ ] `concept`가 `reference`를 `up`하면 통과한다.
 - [ ] `reference` orphan은 위반 목록에 안 들어가고 미소화 큐 지표로만 집계된다.
-- [ ] `permanent` orphan은 WARN이다.
 - [ ] 발행 계획이 dead link를 만들면 파일을 쓰기 **전에** 거부된다.
 - [ ] 발행 거부 시 부분 적용된 파일이 남지 않는다.
 

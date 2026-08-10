@@ -24,6 +24,7 @@
 | KDEV-DEC-016 | 잔디 승인 게이트 편입과 발행부 확장 | proposed | KDEV-BL-004 | spec 미작성 | 잔디 게이트 계약(신규) · SPEC-008 · SPEC-010 |
 | KDEV-DEC-017 | 제품 레지스트리 조인 + 관리자 제품 등록(결정적 스캐폴딩) | proposed | KDEV-BL-005 | SPEC-014 작성 · WORK-018 P1~P4 done | SPEC-014 · SPEC-011 · SPEC-001 |
 | KDEV-DEC-018 | 지식층 디렉토리 재편 — `resources/` 신설과 SoT 명칭 분리 | proposed | KDEV-BL-006 | spec 미작성 | SPEC-001 · 004 · 005 · 010 |
+| KDEV-DEC-019 | 판단층(synthesis) 폐기 — 지식을 3층으로 줄인다 | accepted | KDEV-BL-006 | DEC-010 D1 부분 supersede | SPEC-001 · 002 · 003 · 004 |
 
 ### 개정 관계
 

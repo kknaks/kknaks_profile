@@ -112,6 +112,12 @@ nodes 406 / edges 427
 | force-graph 유지 | 현행 `/graph` canvas | 구현됨 | lineage 1건이라 그릴 게 없고, 406노드에서 탐색이 안 됨 | 기각 |
 | **트리 문서 렌더러** | 좌측 디렉토리 트리 + 우측 md 렌더 (AXKG-SPEC-013 형태) | 읽기·탐색이 실제로 됨 | 신규 구현 | **채택** |
 
+> **부분 supersede (2026-08-10) — [[decision-019-drop-synthesis-layer|KDEV-DEC-019]]**
+>
+> 아래 D1 의 4층 중 **판단층(`resources/synthesis/`, `type: permanent`)은 폐기**됐다.
+> 지식층은 `source → concept → execution` 3층이다. 층 축 도입·층별 orphan 판정·
+> 파일명 stem 식별자·본문 `[[]]` 단일 소스 + `up:` 오버레이는 **그대로 유효**하다.
+
 ## Decision
 
 ### D1. 지식 4층 모델

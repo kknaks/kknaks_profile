@@ -504,7 +504,7 @@ def _enrich_permanent(data: dict, path: Path) -> dict:
     `archive/` 가 여전히 `path.parts` 에 그 이름을 남기기 때문이다 — 경로 전체가
     아니라 조각을 보는 구현이라 이동에 견딘다.
     """
-    default_type = "concept" if "concept" in path.parts else "permanent"
+    default_type = "concept"   # KDEV-DEC-019 — 지식층은 source·concept 둘뿐이다
     data.setdefault("type", default_type)
     data.setdefault("id", path.stem)
     data.setdefault("title", path.stem)
@@ -519,7 +519,7 @@ def _load_permanent_notes(repo_root: Path) -> list[dict]:
     다른 것은 의도다(KDEV-DEC-018 D1) — 폴더는 층을, `type` 은 frontmatter 계약을
     가리켜 축이 다르다.
       - `resources/concept/*.md`   → type=concept   (원자 개념, 층 `concept`)
-      - `resources/synthesis/*.md` → type=permanent (종합 판단, 층 `synthesis`)
+      KDEV-DEC-019 로 `resources/synthesis/`(판단층)는 폐기됐다 — 개념만 로드한다.
       - `archive/*.md`             → archived=true  (**층이 아니라 상태**라 최상위)
     각 디렉토리의 `README.md`(navigational, WORK-003 scaffold) 는 제외. 빈 층 → [].
     auto-enrich 비대상이라 `_load_md(p, None)` 로 로드 후 `_enrich_permanent` 직접 주입.
@@ -529,7 +529,6 @@ def _load_permanent_notes(repo_root: Path) -> list[dict]:
     out: list[dict] = []
     for sub in (
         repo_root / "resources" / "concept",
-        repo_root / "resources" / "synthesis",
         repo_root / "archive",
     ):
         if not sub.is_dir():
