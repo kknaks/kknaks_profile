@@ -1,4 +1,4 @@
-# permanent/concept
+# concept
 
 지식의 최소 단위. 여기 놓이는 노트의 타입: `concept`, 층: `concept`.
 
@@ -9,9 +9,9 @@
 - 여러 자료에 걸쳐 나오는 재사용 가능한 개념.
 
 ## 여기 두지 않는 것
-- "이 자료가 뭐라고 했나" → `reference/`.
-- "내 판단·전략" → `permanent/` 루트.
-- 안 쓰게 된 개념 → `permanent/archive/`.
+- "이 자료가 뭐라고 했나" → `resources/source/`.
+- "내 판단·전략" → `resources/synthesis/`.
+- 안 쓰게 된 개념 → `archive/`.
 
 ## quick-rule
 - **`aliases` 필수.** 같은 개념의 다른 이름을 모두 적는다(`stt` → `[Speech-to-Text, 음성인식, ASR]`). 없으면 같은 개념이 두 파일로 갈라져 SoT가 둘이 된다.

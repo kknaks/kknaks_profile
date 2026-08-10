@@ -1,4 +1,4 @@
-# permanent
+# synthesis
 
 개념들을 엮어 세운 **종합 판단**. 타입: `permanent`, 층: `synthesis`.
 
@@ -9,9 +9,9 @@
 
 ## 여기 두지 않는 것
 - 미정제 생각 → `inbox/`.
-- 외부 자료 정리 → `reference/`.
-- **재사용 가능한 개념 자체 → `permanent/concept/`** (여기는 그 개념들을 엮은 판단만).
-- 안 쓰게 된 노트 → `permanent/archive/` (permanent·concept 공용).
+- 외부 자료 정리 → `resources/source/`.
+- **재사용 가능한 개념 자체 → `resources/concept/`** (여기는 그 개념들을 엮은 판단만).
+- 안 쓰게 된 노트 → `archive/` (synthesis·concept 공용).
 
 ## quick-rule
 - **`up:` 대상은 `concept` 다.** reference 를 직접 up 하지 않는다 — 자료에서 개념을 거쳐 판단으로 오는 것이 4층 모델의 방향이다.

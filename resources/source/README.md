@@ -1,4 +1,4 @@
-# reference
+# source
 
 외부 자료(영상·책·아티클)를 정리한 **출처 기록층**. 타입: `reference`, 층: `source`.
 
@@ -8,7 +8,7 @@
 - 읽고/본 외부 자료의 정리 노트. 출처는 frontmatter `source: <url>` 속성으로 둔다.
 
 ## 여기 두지 않는 것
-- 내 언어로 재서술한 영구 생각 → `permanent/` (reference는 종착지가 아니다).
+- 내 언어로 재서술한 영구 생각 → `resources/synthesis/` (source는 종착지가 아니다).
 - 미정제 생각 → `inbox/`.
 
 ## quick-rule
@@ -25,9 +25,9 @@
 
 ## 구조
 
-**flat이다.** 하위 디렉토리를 두지 않는다 — `permanent/concept/`와 같은 이유로,
+**flat이다.** 하위 디렉토리를 두지 않는다 — `resources/concept/`와 같은 이유로,
 분류는 폴더가 아니라 `[[concept]]` 링크가 한다.
 
 ```text
-reference/{YYYY-MM-DD}-{slug}.md
+resources/source/{YYYY-MM-DD}-{slug}.md
 ```
