@@ -9,6 +9,7 @@ aliases:
   - 서블릿 조기 로딩
 up:
   - 2024-09-05-Day70
+  - 2024-10-14-Day92
 tags:
   - web
   - servlet
@@ -56,6 +57,8 @@ public class ExampleServlet extends HttpServlet { }
 
 ## 함께 보는 개념
 
+- [[servlet-container-initializer]] — 세 번째 설정 방식이 나오는 자리
+
 - [[servlet-lifecycle]] — 앞당겨지는 `init()`과 기본 첫 요청 생성 시점
 - [[servlet-container]] — 실제로 서블릿을 만들고 호출하는 주체
 - [[web-xml]] — XML로 설정하는 자리
@@ -64,4 +67,5 @@ public class ExampleServlet extends HttpServlet { }
 
 ## 출처
 
+- [[2024-10-14-Day92]] — 여섯 주 뒤. 같은 설정의 **세 번째 표기**가 나온다 — `@WebServlet(loadOnStartup = 1)` 도 `<load-on-startup>` 도 아닌 `registration.setLoadOnStartup(1)` 이다. 서블릿을 코드로 등록하는 방식에서는 등록과 이 설정이 **같은 자리에서 이어진다** → [[servlet-container-initializer]]
 - [[2024-09-05-Day70]] — 「서블릿의 생성시기」가 기본 첫 요청 생성, 늦은 오류 검증, 첫 호출 지연을 적고, 「load on startup」이 `@WebServlet(..., loadOnStartup = 1)`과 XML `<load-on-startup>1</load-on-startup>` 두 설정 방식을 보인다

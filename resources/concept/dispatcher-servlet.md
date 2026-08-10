@@ -8,6 +8,7 @@ aliases:
   - HandlerMapping
 up:
   - 2024-09-25-Day82
+  - 2024-10-14-Day92
 tags:
   - web
   - spring
@@ -56,7 +57,10 @@ DispatcherServlet dispatcherServlet = new DispatcherServlet(iocContainer);
 - [[request-mapping]] — 어느 메서드를 고를지의 근거
 - [[view-resolver]] — 돌려받은 이름을 화면으로 바꾸는 쪽
 - [[request-dispatcher]] — 이름이 겹치는 서블릿 API
+- [[servlet-container-initializer]] — 이것을 등록하는 방법
+- [[context-hierarchy]] — 여러 개를 둘 때의 컨테이너 구조
 
 ## 출처
 
+- [[2024-10-14-Day92]] — 삼 주 뒤. **이 서블릿을 등록하는 코드 자체가 주제가 된다.** Day82 의 `new DispatcherServlet(iocContainer)` + `ctx.addServlet(...)` 이 `AbstractAnnotationConfigDispatcherServletInitializer` 를 상속해 메서드 넷을 채우는 형태로 줄어들고, 그 과정에서 이 서블릿의 설정 항목이 드러난다 — **이름**(`getServletName()`, 기본값 `"dispatcher"`), **URL 패턴**(`getServletMappings()`), **자기 IoC 컨테이너**(`getServletConfigClasses()`). 그리고 **여러 개를 등록할 수 있다**는 것이 처음 나온다: `/app/*` 과 `/admin/*` 을 각각 맡는 둘을 두고 루트 컨테이너 하나를 공유하는 구성이다 → [[context-hierarchy]]
 - [[2024-09-25-Day82]] — 「Front Controller 교체」 절이 직접 만든 `DispatcherServlet` 클래스를 지우고 스프링 것으로 바꾸며, **「클라이언트 요청이 들어오면 pageController에서 controller를 선택 후 requestHandler를 통해 실행할 메서드 선택」**이라는 한 줄로 이 서블릿의 두 단계(컨트롤러 고르기 → 메서드 고르기)를 적었다. `new DispatcherServlet(iocContainer)` 로 **컨테이너를 넘겨 세운다**는 것이 코드에 남아 있다. 클래스 이름이 앞 회차에서 손으로 만든 것과 같아서, 교체가 이름 그대로 일어난 자리다. 다만 매핑 실패와 뷰 해석 실패의 구별, 컨테이너가 둘일 때의 문제는 다루지 않았다

@@ -15,6 +15,7 @@ up:
   - 2024-07-09-Day31
   - 2024-07-10-Day32
   - 2024-07-15-Day35
+  - 2024-10-14-Day92
 tags:
   - 설계
   - 객체지향
@@ -213,6 +214,7 @@ public abstract class AbstractMenu implements Menu {
 - [[interface-segregation-principle]] — 골격의 인자가 형제들에게 번지는 것을 재는 원칙
 - [[stack]] — 골격이 새로 받게 된 협력자
 - [[iterator-pattern]] — 부모가 만든 객체가 자식을 부르는 변형
+- [[servlet-container-initializer]] — 프레임워크가 이 형태로 설정을 받는 자리
 - [[nested-class]] — 그 객체를 부모 안에 두는 방법
 - [[composite-pattern]] — 골격이 상속에서 조합으로 옮겨 간 뒤의 구조
 - [[command-pattern]] — 훅이 객체가 된 결과
@@ -220,6 +222,7 @@ public abstract class AbstractMenu implements Menu {
 
 ## 출처
 
+- [[2024-10-14-Day92]] — 석 달 뒤. **프레임워크가 이 패턴으로 설정을 받는다는 것이 드러난다.** `WebApplicationInitializer` 를 직접 구현하면 컨테이너 생성·서블릿 등록·매핑을 전부 우리가 쓰지만, `AbstractAnnotationConfigDispatcherServletInitializer` 를 상속하면 **순서와 절차는 부모가 갖고 우리는 `getRootConfigClasses()`·`getServletConfigClasses()`·`getServletMappings()` 세 값만 돌려준다.** 같은 노트가 「`onStartup()` 을 오버라이딩했으면 **원래의 메서드를 반드시 호출해줘야 한다**」고 두 번 적은 것도 이 패턴의 전형적인 함정이다 → [[servlet-container-initializer]] · [[method-overriding]]
 - [[2024-07-08-Day30]] — 세 Command 의 `execute()` 를 `AbstractCommand` 로 올리고 `processMenu`·`getMenus` 를 추상 메서드로 남겨 이 구조를 만들었다. 필기는 패턴 이름을 쓰지 않고 「수퍼클래스에서 결정되지 못하는 메소드는 추상메소드로 만든다」로만 적었다. `AbstractCommand` 의 코드 자체는 노트에 없지만, 일반화 전 `execute()` 가 `menus` 필드를 세 메서드에서 읽고 있었고 그것이 부모로 올라가며 `getMenus()` 가 생겼다는 것에서 호출 방향이 드러난다. 값이 다른 `menuTitle` 은 추상 메서드가 아니라 `super(menuTitle)` 로 처리해 두 방법이 한 클래스에 나란히 있으며, `HelpCommand` 는 이 틀에 들어가지 못하고 `App` 의 `switch` 안에서 직접 출력되는 쪽으로 남았다
 - [[2024-07-09-Day31]] — 이 구조가 하루 만에 두 가지로 검증된다. 하나 — 전날 틀 밖에 있던 `HelpCommand` 가 `extends AbstractCommand` 가 아니라 **`implements Command` 로** 들어와 `commandMap` 에 등록된다. 「서브메뉴가 없어 골격에 넣을 것이 없는 명령」의 답이 「약속만 지키고 골격은 안 물려받는다」였고, 인터페이스와 추상 클래스를 둘 다 둔 이유가 여기서 값을 낸다. 둘 — 메뉴 경로를 쌓기 위해 `execute()` 가 `execute(Stack menuPath)` 로 바뀌면서 부모의 골격이 `menuPath.push(menuTitle)` 로 시작하고 「9」에서 `menuPath.pop()` 으로 나가게 되었는데, **인자를 쓰지 않는 형제 구현들까지 시그니처가 번졌다.** 그리고 경로를 문자열로 조립하는 `getMenuTitle(Stack)` 이 `AbstractCommand` 와 `App` 두 곳에 복사되어, 골격을 부모로 올린 다음 날에 공통 부모가 없는 두 클래스 사이 중복이 새로 생겼다
 - [[2024-07-10-Day32]] — **Day30 시점에 「자식의 무엇도 부르지 않는다」로 갈라 두었던 `AbstractList` 가 이 회차에 부르는 쪽으로 넘어간다.** 반복자를 내주는 `iterator()` 가 부모에 놓이고 그 반복자의 `next()` 가 `list.get(cursor++)` 로 자식 구현을 부르기 때문이다. 다만 훅이 부모의 메서드 안에서 불리지 않고 **부모가 만들어 돌려준 객체가 나중에** 부르는 형태라, 「생성자에서 훅을 부르면 `null` 을 받는다」 같은 시점 문제는 없어지고 대신 「반복자를 만든 뒤 컬렉션이 바뀌면 어긋난다」가 새로 생긴다. 그리고 이 회차는 `iterator()` 를 `AbstractList` **한 곳에만** 두어 자식이 자기 구조에 맞는 반복자를 줄 여지를 쓰지 않았다 — 연결 리스트에서 순회가 O(n²) 이 되는 것이 그 대가다

@@ -9,6 +9,7 @@ aliases:
   - WebServlet
 up:
   - 2024-09-02-Day68
+  - 2024-10-14-Day92
 tags:
   - web
   - servlet
@@ -77,6 +78,8 @@ tags:
 
 ## 함께 보는 개념
 
+- [[servlet-container-initializer]] — 이 파일을 자바 코드가 대신하는 방법
+
 - [[servlet]] · [[servlet-filter]] · [[servlet-listener]] — 등록 대상 셋
 - [[web-component]] — 그 셋을 묶는 이름
 - [[annotation]] — `@WebServlet` 이 속한 문법
@@ -86,4 +89,5 @@ tags:
 
 ## 출처
 
+- [[2024-10-14-Day92]] — 여섯 주 뒤. **이 파일이 없어도 되는 이유가 나온다.** 서블릿 컨테이너가 시작할 때 `/WEB-INF/lib/*.jar` 의 `/META-INF/services/javax.servlet.ServletContainerInitializer` 를 읽어 구현체를 부르는 통로가 있고, 스프링이 거기에 자기를 올려 두었기 때문에 **`<servlet>`·`<servlet-mapping>`·`<listener>` 를 자바 클래스로 적을 수 있다.** Day68 이 「등록할 class 파일의 별명과 URL Path」로 정리했던 두 단계가 `getServletName()` 과 `getServletMappings()` 두 메서드가 되고, `<load-on-startup>` 은 `registration.setLoadOnStartup(1)` 이 된다 — **결정은 그대로이고 적는 곳만 바뀐다** → [[servlet-container-initializer]]
 - [[2024-09-02-Day68]] — 「Servlet 등록하기」 절이 두 방법을 갈라 놓는다. `web.xml` 을 「서블릿의 배포 설명자(deployment descriptor) 파일」로 정의하고 `WEB-INF` 안에 있다는 것, **「등록할 class 파일의 별명과 패키지명을 등록하고, 해당 별명에 대한 URL Path 를 설정한다」로 두 단계 구조를 정확히 적었다.** 리스너·서블릿·필터 셋의 태그가 다 들어 있는 전문이 실려 있고, `@WebServlet` 쪽은 `value`·`urlPatterns`·기본형·배열까지 네 표기를 나란히 보였다. 다만 `metadata-complete` 의 뜻, 둘을 섞을 때의 충돌, 리스너에 매핑이 없는 이유는 다루지 않았다
