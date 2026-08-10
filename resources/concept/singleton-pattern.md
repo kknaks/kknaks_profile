@@ -10,6 +10,7 @@ aliases:
   - getInstance
 up:
   - 2024-07-03-Day28
+  - 2024-10-02-Day87
 tags:
   - oop
   - java
@@ -97,6 +98,8 @@ Car car = Car.getInstance();     // new Car() 는 컴파일이 막힌다
 
 ## 함께 보는 개념
 
+- [[bean-scope]] — 프레임워크가 같은 이름으로 부르는 다른 것
+
 - [[constructor]] — 닫는 대상
 - [[access-modifier]] — 닫는 문법이자 클래스 단위라는 성질이 쓰이는 자리
 - [[static-member]] — 「클래스당 하나」를 담는 장치
@@ -109,4 +112,5 @@ Car car = Car.getInstance();     // new Car() 는 컴파일이 막힌다
 
 ## 출처
 
+- [[2024-10-02-Day87]] — **이름이 겹치는 다른 것이 나온다.** 스프링의 `scope="singleton"` 은 「JVM 에 인스턴스가 하나」가 아니라 **「그 컨테이너 안에 이름당 하나」**다 — 컨테이너가 둘이면 객체도 둘이고, 같은 클래스를 다른 `id` 로 두 번 등록하면 그것도 둘이다. 이 패턴이 생성자를 막아 강제하던 것을 **컨테이너가 관리로 대신하는** 형태라, `private` 생성자도 `getInstance()` 도 필요 없어진다 → [[bean-scope]] · [[ioc-container]]
 - [[2024-07-03-Day28]] — 캡슐화 장의 마지막 절에서 `Car` 예제로 배웠다. 「클래스의 생성자의 접근을 제한하며 static 메서드를 통해 하나의 인스턴스만 생성」이 정의이고, 주석 세 줄이 `private` 생성자 · `private static` 필드 · `getInstance()` 의 역할을 각각 적어 두었다. 코드의 `private Car();` 는 몸통이 없어 컴파일되지 않으며, `static` 필드를 「전역변수」로 부른 것은 Day19 에 이어 두 번째다

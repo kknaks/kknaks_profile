@@ -15,6 +15,7 @@ up:
   - 2024-09-25-Day82
   - 2024-09-29-Day84
   - 2024-10-01-Day86
+  - 2024-10-02-Day87
 tags:
   - 설계
   - 프레임워크
@@ -123,9 +124,11 @@ public class AppConfig {
 - [[dependency-inversion-principle]] — 이 배치가 성립시키는 원칙
 - [[externalized-configuration]] — 빈에 넣을 값을 파일에서 읽는 자리
 - [[java-config]] — 이 컨테이너에 무엇을 담을지 적는 방식
+- [[bean-definition]] · [[bean-scope]] · [[factory-bean]] — 빈 하나를 어떻게 적는가
 
 ## 출처
 
+- [[2024-10-02-Day87]] — 하루 뒤. **컨테이너에 담기는 빈 하나를 끝까지 파고든 회차**다. 이름(`id`/`name`/별명/익명)·스코프·생성자·세터·참조·컬렉션·팩토리가 XML 예시로 차례로 나오고, 그중 몇 가지가 이 노트의 빈 곳을 채운다 — 「singleton 객체는 IoC 컨테이너가 생성될 때 미리 준비된다」가 즉시 로딩의 실제 모양이고, `getBean(변수.class)` 가 **같은 타입 빈이 여럿이면 실패한다**는 것이 `@Qualifier` 가 필요한 이유의 XML 판이다 → [[bean-definition]] · [[bean-scope]] · [[factory-bean]]
 - [[2024-10-01-Day86]] — 사흘 뒤. **컨테이너를 실습이 아니라 개념으로 다시 본다.** 「IOC Cotainer의 종류」가 `BeanFactory`(지연 로딩) · `AutowireCapableBeanFactory` · `ApplicationContext`(즉시 로딩)를 장단점과 함께 갈랐고, 「ApplicationCeontext 종류」가 설정을 읽는 곳에 따라 네 구현을 나열해 **Day82 에서 쓴 `AnnotationConfigWebApplicationContext` 가 그중 하나였다는 것**을 자리매김한다. 「DI컨테이너, IOC컨테이너, Bean컨테이너의 관계」 절이 세 이름이 같은 것을 가리킨다고 정리한 것도 이 노트의 몫이다. 다만 「IoC의 상속관계」 절은 제목만 있고 비어 있다 → [[java-config]]
 - [[2024-09-29-Day84]] — 나흘 뒤. 같은 컨테이너에 **설정 파일을 붙이는 자리**(`@PropertySource`)와 **구현이 둘일 때 고르는 법**이 더해진다. 필기가 「하나의 구현체의 여러개의 Service를 사용하려면 `@Primary` 를 지정하거나 구현체 `Service("name")` 과 컨트롤러에 `Qualifier("name")` 을 설정 해야한다」로 짚은 자리인데, 이 회차의 스토리지 서비스는 구현이 하나뿐이라 **문제가 드러나기 전에 답만 적힌 상태**다 → [[externalized-configuration]]
 - [[2024-09-25-Day82]] — 「IOC 컨테이너 교체」 절이 직접 만든 `ApplicationContext` 를 지우고 `AnnotationConfigWebApplicationContext` 를 세우는 네 줄(`register` → `setServletContext` → `refresh`)을 그대로 남겼다 — **등록과 생성이 갈려 있다는 것**이 이 코드에 드러난다. 「annotation 교체」 절이 `@ComponentScan("bitcamp.myapp")` 을 「패키지 내에 있는 모든 클래스에서 `@Component`, `@Service`, `@Repository`, `@Controller` 와 같은 애노테이션이 붙은 클래스들을 자동으로 스캔하고 빈으로 등록」으로 설명하고, 「AppConfig 클래스 변경」이 `@Bean` 메서드로 `MultipartResolver`·`ViewResolver` 를 등록하는 두 예를 보인다 — **스캔과 등록 두 길이 한 노트에 나란히 있다.** 다만 빈이 싱글턴이라는 것, IoC 와 DI 의 관계, `refresh()` 가 하는 일은 설명되지 않았고 코드에 `serSevletContext` 오타가 있다
