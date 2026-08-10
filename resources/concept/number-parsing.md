@@ -12,6 +12,7 @@ aliases:
 up:
   - 2024-06-11-Day12
   - 2024-06-18-Day17
+  - 2025-05-08-Pr1620
 tags:
   - java
   - 입출력
@@ -107,6 +108,8 @@ int projectNo = Prompt.inputInt("프로젝트번호?");           // ProjectComm
 
 ## 함께 보는 개념
 
+- [[hash-based-collection]] — 변환한 값으로 찾아가는 자리
+
 - [[standard-input]] — 파싱할 문자열을 받아 오는 곳
 - [[exception-handling]] — 실패를 다루는 방법
 - [[type-casting]] — 「변환」이라 불리지만 다른 일
@@ -118,5 +121,6 @@ int projectNo = Prompt.inputInt("프로젝트번호?");           // ProjectComm
 
 ## 출처
 
+- [[2025-05-08-Pr1620]] — 포켓몬 도감. 입력이 **이름인지 번호인지 모르는 상태**에서 판별해야 해서 변환 함수의 성질이 그대로 문제가 된다 — 「`atoi(string.c_str())` : string 이 저장된 주소를 가져와서 변환 / `stoi(string)` : string 을 int 로 변환 / **숫자인지 아닌지 판별 시에는 atoi 를 사용(문자는 0을 반환)**」. 실패를 예외로 알리는 쪽과 **0 으로 알리는 쪽**이 갈리고, 그 차이가 판별 코드의 모양을 정한다
 - [[2024-06-11-Day12]] — `nextInt()` 대신 한 줄을 문자열로 받아 `Integer.parseInt` 로 해석하도록 실습 코드를 바꾸며, 잡아야 하는 예외가 `InputMismatchException` 에서 `NumberFormatException` 으로 바뀐다는 것을 배웠다
 - [[2024-06-18-Day17]] — 파싱을 `Prompt.inputInt(String, Object...)` 로 감싸 호출부를 짧게 만드는 것을 실습으로 배웠다. 그 과정에서 앞 회차들의 `try`/`catch` 가 사라져 번호 자리에 숫자가 아닌 입력이 오면 프로그램이 죽는 상태가 된 자리이기도 하다
