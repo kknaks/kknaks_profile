@@ -12,6 +12,7 @@ aliases:
   - Kibana
 up:
   - 2025-01-20-Day15
+  - 2025-01-21-Day16
 tags:
   - search
   - 검색엔진
@@ -90,7 +91,9 @@ SELECT P.* FROM postKeyword PK
 - [[rest-api]] — 이 엔진을 다루는 통로
 - [[container]] — docker-compose 로 띄우는 방식
 - [[data-modeling]] — 원본을 어디에 둘 것인가
+- [[aop]] — 같은 회차에서 응답 처리를 걷어낸 장치
 
 ## 출처
 
+- [[2025-01-21-Day16]] — 하루 뒤. **쿼리를 눈으로 보고 코드로 옮기는 순서**가 나온다 — Kibana 를 docker-compose 로 띄우고(`ELASTICSEARCH_HOSTS` 로 엔진을 가리키고 5601 포트) **dev-tools 에서 `GET /app1_posts/_search` 에 `match` 쿼리를 직접 던져 본 뒤**, 스프링의 `PostDocs`·`PostDocRepository` 로 같은 검색을 붙인다. **MySQL 과 Elasticsearch 를 동시에 쓰는 구성**(원본은 JPA, 검색은 문서)이 이 회차에서 실물이 되는데, 둘을 맞추는 문제는 「새로운 Post 도메인을 만든다」로만 적히고 넘어간다
 - [[2025-01-20-Day15]] — 「검색 알고리즘」 절이 **세 세대를 SQL 로 나란히 보여** 왜 검색 엔진이 필요한지를 설명한다 — `LIKE '%...%'` 의 전수 조회, 브릿지 테이블(`postKeyword`·`postTag`) 조인, 그리고 「모든 단어를 index 화하여 별도의 테이블에 저장」하는 방식. **2세대의 「중간 테이블을 직접 만들어야 한다」가 3세대의 자동화와 정확히 대비**된다. 구조 쪽은 도큐먼트·인덱스·샤드를 관계형 DB 의 행·데이터베이스와 짝지어 설명했고, 「하나의 인덱스가 여러 노드에 분산저장」된다는 것을 그림으로 남겼다. ELK 세 구성요소의 역할(저장·수집/변환·시각화)도 한 줄씩 갈렸다. 뒤쪽은 `docker-compose.yml` 로 띄우고 Document·Repository·Service 를 만들어 조회까지 가는 실습이다. 다만 DB 와 색인의 동기화 문제, 한국어 분석기는 다루지 않았다

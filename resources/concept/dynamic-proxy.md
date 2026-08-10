@@ -14,6 +14,7 @@ up:
   - 2024-08-22-Day61
   - 2024-09-26-Day83
   - 2024-08-23-Day62
+  - 2025-01-21-Day16
 tags:
   - java
   - 리플렉션
@@ -220,12 +221,14 @@ if (returnType == List.class){
 - [[interface]] — 이 도구가 요구하는 유일한 조건
 - [[object-class]] · [[object-equality]] · [[hash-code]] — 걸러내지 않으면 함께 가로채지는 것들
 - [[declarative-transaction]] — 프레임워크가 같은 일을 자동으로 하는 자리
+- [[aop]] — 이 장치에 이름과 문법을 붙인 것
 - [[transaction]] — 호출을 가로채 앞뒤에 붙이는 대표적인 일
 - [[exception-handling]] — `throws Throwable` 이 있는 이유
 - [[type-casting]] — `Object` 로 납작해진 반환값을 되돌리는 자리
 
 ## 출처
 
+- [[2025-01-21-Day16]] — **이 장치가 무엇이었는지 이름이 붙는다.** 손으로 만든 프록시(Day61)와 `@Transactional` 의 자동 프록시(Day83)가 하던 일이 **AOP** 라는 이름으로 정리되고, `@Aspect`·`@Around`·포인트컷이라는 문법이 나온다 — 「무엇을 끼울지」(어드바이스)와 「어디에 끼울지」(포인트컷)를 갈라 적는 형태다. 이 회차의 `ResponseAspect` 가 모든 `@RestController` 메서드의 반환값을 가로채 상태 코드를 설정하는데, **프록시가 메서드를 감싼다**는 원리가 그대로 쓰인다 → [[aop]]
 - [[2024-09-26-Day83]] — 다섯 주 뒤. **손으로 만든 프록시가 프레임워크의 것으로 대체된다.** 「`AppConfig` 에 `@EnableTransactionManagement` 를 붙여서 **Proxy 클래스를 자동 생성**하게 한다」는 한 줄이 그 이행을 그대로 적었고, 같은 노트의 `getMapper(UserDao.class)` 도 **구현 클래스 없는 인터페이스**에서 객체를 얻는다 — 이 회차에 프록시가 두 군데 쓰이는데 둘 다 「자동」이라 안이 안 보인다. 직접 만들어 본 것이 그 안을 아는 근거가 되는 자리다 → [[declarative-transaction]] · [[mybatis-spring]]
 - [[2024-08-22-Day61]] — 「호출하기」(`newProxyInstance`·`InvocationHandler`·「method 값 호출하기, args 호출하기」)와 「Dao객체 만들기」 절들이 이 개념이다. `Proxy.newProxyInstance` 의 세 인수(클래스로더 · 구현할 인터페이스 목록 · 호출 관리자)와 `invoke` 의 세 인수(`proxy`·`method`·`args`)를 각각 한 줄씩 정확히 적고, 그것으로 `UserDao`·`BoardDao`·`ProjectDao` 를 **제네릭 메서드 `<T> T createObject(Class<T> daoType)` 하나로 만드는** 형태를 세웠다. `invoke` 는 축이 둘이다 — 매개변수 개수(0개는 `null`·1개는 `args[0]`·2개 이상은 `Map`)와 리턴 타입(`List`→`selectList`, `int`·`void`·`boolean`→`insert`, 그 밖→`selectOne`)이고, `boolean` 을 `count > 0` 으로 접고 `void` 에 `null` 을 돌려주는 것으로 DAO 다섯 시그니처를 흡수한다. 매퍼의 `#{property}` 가 이름으로 값을 찾는데 `args[n]` 에는 이름이 없다는 문제를 짚고 **`@Retention(RUNTIME)` + `@Target(ElementType.PARAMETER)` 로 `@Param` 을 직접 만들어** `void updateViewCount(@Param("no") int boardNo, @Param("count") int count)` 에 붙였다 — 이 필기에서 애노테이션이 처음 일을 하는 자리이고 두 메타 애노테이션이 함께 쓰인 첫 예다. 다만 **코드는 한 줄도 실행되지 않는다** — `return new Proxy.newProxyInstance(…)` 가 정적 메서드에 `new` 를 붙인 문법 오류이고(반환형도 `Object` 라 `T` 로 못 돌려준다), `this.class.getClassLoader()`·`agrs.length ==1{`·`params.getAnnotation(…)`(배열에 대고 호출)·`map.put(anno, args[i])`(키가 이름이 아니라 애노테이션 객체 — **애노테이션을 만든 이유인 `anno.value()` 를 꺼내지 않았다**)·세미콜론 없는 `return null` 이 이어진다. 문장 id 는 `"sql.method"` 자리표시자로 남아 **메서드 이름이 곧 문장 id 가 되는 규약**이 코드에 없고, `Object` 의 `toString`·`equals`·`hashCode` 를 걸러내지 않아 **객체를 출력하는 것만으로 `selectOne`·`insert` 가 실행되는** 상태다. `returnType == List.class` 의 `==` 비교가 `ArrayList` 선언을 놓치는 것, `insert`·`update`·`delete` 가 반환 타입으로 구별되지 않는 것, 인터페이스만 감쌀 수 있다는 제약, `throws Throwable` 누락도 다루지 않았다. 「invoke의 함수가 길기 때문에」로 문장 하나가 끊겨 있다
 - [[2024-08-23-Day62]] — 하루 뒤. 이 도구 자체는 다시 나오지 않지만 **핸들러가 고쳐진다** — 「DaoFactory 클래스 변경」 절이 `SqlSession` 필드를 버리고 생성자로 `SqlSessionFactory` 를 받아 `invoke` 안에서 `sqlSessionFactory.openSession(false)` 로 세션을 얻게 바꾼다. 접속마다 쓰레드가 붙는 서버에서 **핸들러 한 벌을 모든 쓰레드가 공유하므로**, 핸들러가 세션을 필드로 들면 그것이 곧 공유 자원이 된다는 것이 이 변경의 이유다(→ [[thread-local]]). 같은 회차가 `SqlSessionFactory` 에는 **손으로 쓴** 프록시를 세우는데, 그쪽은 오버로드 여덟 개 중 하나만 가로채서 이 도구와 **가로채는 범위가 반대로 어긋난다** — 이 노트의 「`Object` 의 메서드도 `invoke` 로 온다」와 짝이 되는 자리다 → [[proxy-pattern]]
