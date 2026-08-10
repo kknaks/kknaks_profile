@@ -23,6 +23,10 @@ links:
   releases: []
   related:
     - "[[spec-011-slack-knowledge-capture|OKK-SPEC-011]]"
+up:
+  - process
+  - async-io
+  - exception-handling
 ---
 
 # 프로세스 경계 — Slack bridge를 back에 흡수 (ADR-013)
@@ -64,6 +68,14 @@ back은 `Dockerfile.back`의 `--workers 1`과 `main.py`의 `_check_single_worker
 - **git push 소유권이 두 프로세스로 쪼개져 있다** — `runner.py:112-114`가 `atomic_write` → `publish()`(=`commit_and_push_with_retry`) → back에 HTTP reload 순으로 직접 수행한다
 
 마지막 항목이 결정적이다. [[decision-012-draft-storage-and-publish-boundary|KDEV-DEC-012]] D2가 *"AI는 파일과 DB를 직접 건드리지 않는다"*로 정했는데, 현재 bridge는 정확히 그 반대다.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[process]] — 별도 컨테이너로 떠 있던 bridge 를 **back 프로세스 안으로** 흡수한다. 경계를 어디에 그을지가 곧 DB 접근 가능 여부를 갈랐다
+- [[async-io]] — Socket Mode 를 lifespan 에서 **asyncio task** 로 띄운다 — APScheduler 와 같은 자리·같은 패턴이다
+- [[exception-handling]] — 웹소켓 루프의 예외가 **back 전체를 죽이지 않도록** task 를 감싼다. 격리 범위를 정하는 것이 예외 처리의 설계다
 
 ## Options
 

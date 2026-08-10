@@ -27,6 +27,9 @@ links:
   related:
     - "[[baseline-003-inbox-approval-pipeline|KDEV-BL-003]]"
     - "[[work-016-async-execution-and-progress-ui|KDEV-WORK-016]]"
+up:
+  - workflow-orchestration
+  - async-io
 ---
 
 # 잔디 승인 게이트 편입과 발행부 확장 (ADR-016)
@@ -53,6 +56,13 @@ links:
 - **발행부가 지식 4층 전용이다.** `ALLOWED_PREFIXES`(`plan.py:25`)에 `persona/daily/`·`persona/career/` 없음 → `PATH_NOT_ALLOWED`. `LAYER_PREFIX`(`plan.py:32-39`)에 `daily`·`career` 없음 → `UNKNOWN_TYPE`. `build_actions()`(`plan.py:102·118`)는 `source_note`·`derived`·`concept` 하드코딩. `create` 는 파일 있으면 `ALREADY_EXISTS`, `replace` 는 없으면 `TARGET_MISSING`. `graph_check.virtual_nodes()`(`graph_check.py:44-54`)는 모든 액션을 그래프 노드로 얹는다. `_write_all()` 에 `auto:false` 보호가 없다.
 - **중복 판정 축이 다르다.** `QueueItem` unique index 는 `normalized_url` 기준(`models.py:116-124`)인데 잔디는 URL 이 없고 날짜가 축이다.
 - **스케줄러용 접수 진입점이 없다.** `intake()` 는 source_url/note 를 받는 사람·Slack 전제다.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[workflow-orchestration]] — `daily_commit` 을 **Stage 목록으로 등록**해 기존 게이트·드라이버·화면을 그대로 재사용한다 — 파이프라인이 데이터라서 가능한 일이다
+- [[async-io]] — `investigate` 스테이지가 레포별로 **×N fan-out** 한다 — 겹쳐 돌려야 전체 시간이 「합」이 아니라 「가장 긴 하나」가 된다
 
 ## Options
 

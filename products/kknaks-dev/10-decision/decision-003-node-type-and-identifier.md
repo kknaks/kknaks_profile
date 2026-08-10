@@ -21,6 +21,9 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - primary-key
+  - unique-key
 ---
 
 # 노드 타입 + 식별자 (ADR-003)
@@ -35,6 +38,13 @@ links:
   - persona 링크 = 경로형 `[[notes/...]]`. 빌더 regex가 `|`·`/`·대문자 미파싱 → 현재 그래프 거의 안 그려짐.
   - 파일명 stem은 ~99% 전역 유일(충돌 3개: Day01·copy·v1_0_1-README). frontmatter `id`는 prefix로 전역 유일.
 - 옵시디언은 순정(community 플러그인 0). `[[X]]`를 파일명/`aliases`로만 resolve.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[primary-key]] — **파일명 stem 이 노드의 식별자**라는 결정. 값을 새로 만들지 않고 이미 있는 것(파일명)을 키로 삼은 선택이라, 자연키를 쓸 때의 이점과 대가가 그대로 따라온다
+- [[unique-key]] — 그 stem 이 **전역 유일**이어야 그래프가 성립한다 — L2 가 검사하는 제약이 곧 이 결정의 전제다
 
 ## Options
 

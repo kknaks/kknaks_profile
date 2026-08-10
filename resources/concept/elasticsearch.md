@@ -8,7 +8,6 @@ aliases:
   - ELK
   - 샤드
   - shard
-  - Logstash
   - Kibana
 up:
   - 2025-01-20-Day15

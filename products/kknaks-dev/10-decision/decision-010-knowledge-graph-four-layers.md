@@ -27,6 +27,9 @@ links:
     - "[[work-013-concept-layer|KDEV-WORK-013]]"
   releases: []
   related: []
+up:
+  - cohesion
+  - object-graph
 ---
 
 # 지식 그래프 재설계 — 4층 모델과 원자 개념(concept) 층 (ADR-010)
@@ -69,6 +72,13 @@ nodes 406 / edges 427
 - `core/graph.py:36` `_TYPE_RANK` — `reference/permanent/baseline/product = 4`로 동급. 실사용 0건인 `note`가 rank 1로 남아 있다.
 - `core/graph.py:44` `build_alias_index` — frontmatter `aliases`를 stem으로 매핑한다. **개념 매칭에 쓸 재료가 이미 있다.**
 - [[decision-008-contents-retention|KDEV-DEC-008]] — `persona/contents/`는 `_build_graph_nodes`에 전달되지 않는다. 그래프 노드가 아니므로 `[[C-012]]`는 L1 dead link ERROR가 된다.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[cohesion]] — **층을 가르는 기준이 곧 응집도**다 — 「이 자료가 뭐라 했나」와 「이 개념은 뭔가」는 수명도 갱신 이유도 다르므로 한 노트에 두면 안 된다는 것이 4층의 근거다
+- [[object-graph]] — 층이 생겨도 연결은 여전히 링크 그래프가 한다 — 폴더가 분류를 갖지 않는다는 전제가 유지된다
 
 ## Options
 

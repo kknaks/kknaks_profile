@@ -25,6 +25,9 @@ links:
   related:
     - "[[baseline-004-commit-pipeline-and-career|KDEV-BL-004]]"
     - "[[work-017-grass-commit-pipeline|KDEV-WORK-017]]"
+up:
+  - foreign-key
+  - sql-join
 ---
 
 # 제품 레지스트리 조인 + 관리자 제품 등록(결정적 스캐폴딩) (ADR-017)
@@ -46,6 +49,13 @@ links:
 - **`showcase.md` 템플릿이 없다.** `templates/product/` 에 없고, 형식을 정의한 문서도 없다.
 - **`id: P-NN` 채번 주체가 없다.** 현재 `P-02`~`P-14` 13개(`P-01` 결번).
 - 회사 5개(`centurion-charty`·`centurion-mso`·`linky`·`mediness`·`nexus`) 디렉토리는 **`showcase.md` 하나뿐**이고 전부 `visible:false` + `(TBD)` 다.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[foreign-key]] — 레포와 제품을 잇는 키를 **`tracked_repos.product_slug` 컬럼 하나**로 뒀다. 조인 키를 어디에 두느냐가 이 결정의 D1 전부다
+- [[sql-join]] — 그 컬럼으로 레포 축(company)과 제품 축(studio)을 **한 테이블에서 함께 끌어온다**
 
 ## Options
 

@@ -23,6 +23,8 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - db-normalization
 ---
 
 # 분류 워크플로 — SSOT는 종착지 (ADR-005)
@@ -44,6 +46,12 @@ links:
 - 관련 baseline: [[baseline-001-repo-knowledge-graph|KDEV-BL-001]]
 - "정제 안 된 아이디어 → 정제 → 영구/참고노트 → 프로덕트/페르소나" 흐름에서, 영구노트와 제품의 관계를 정의해야 함.
 - 핵심 질문: permanent가 product로 "승격(이동)"하나? 아니면 별개인가?
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[db-normalization]] — **한 사실은 한 곳에** — permanent·product·post 를 평행 독립 SoT 로 두고 「이동이 아니라 분류」로 본 판단이 이 원리다. `up:` 인용은 중복이 아니라는 구별도 같은 자리에서 나온다
 
 ## Options
 

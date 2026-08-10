@@ -5,7 +5,6 @@ title: CI/CD 파이프라인 (GitHub Actions)
 aliases:
   - CI/CD
   - GitHub Actions
-  - 워크플로우
   - 파이프라인
   - 컨테이너 레지스트리
 up:

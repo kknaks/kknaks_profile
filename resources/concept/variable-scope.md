@@ -9,7 +9,6 @@ aliases:
   - 유효 범위
   - scope
   - variable scope
-  - 이름 해석
   - name resolution
   - 변수 가리기
 up:

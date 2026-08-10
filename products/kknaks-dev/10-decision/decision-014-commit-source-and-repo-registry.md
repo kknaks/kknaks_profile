@@ -22,6 +22,9 @@ links:
   releases: []
   related:
     - "[[baseline-003-inbox-approval-pipeline|KDEV-BL-003]]"
+up:
+  - git
+  - remote-repository
 ---
 
 # 커밋 조사 원천 — 레포 레지스트리 DB화 + 로컬 bare 클론 (ADR-014)
@@ -40,6 +43,13 @@ links:
 - **레포 루트 아래에 클론을 둘 수 없다.** compose 가 `.:/repo` 를 rw 로 마운트하고, `reload.py` 의 `git reset --hard origin/main` 과 `apply/git.py rollback()` 의 `git clean -fd` 가 그 아래를 쓸어낸다.
 - **워커는 `/repo:ro`** — "capture worker 가 repo-local skill 을 읽되 파일은 쓰지 못하게 한다"가 명시된 설계다.
 - **예산이 실질 상한이다.** `worker/run.py:36-39` `CostMiddleware(worker_budget_usd=5.0, global_budget_usd=20.0)`. 매일 도는 잡이다.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[git]] — 커밋을 무엇으로 조사할지를 **서버에 클론한 레포**로 바꿨다 — API 호출이 아니라 로컬 이력에서 직접 읽는다
+- [[remote-repository]] — bare 클론이 원격을 그대로 들고 있는 사본이라 조사에 쓸 수 있다. 「보여줄 링크」와 「긁을 대상」을 갈라 둔 것도 원격을 어떻게 쓰느냐의 문제다
 
 ## Options
 

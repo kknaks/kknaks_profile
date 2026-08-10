@@ -21,6 +21,9 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - object-graph
+  - foreign-key
 ---
 
 # 엣지 모델 + 스키마 SSOT (ADR-004)
@@ -33,6 +36,13 @@ links:
 - DB 없음, 파일(frontmatter)이 SoT. `build_graph()`가 본문 `[[]]` + frontmatter `links:`를 엣지로 조립.
 - 파이프라인에 성격이 다른 두 관계: 정제 계보(방향 O) vs 연상 연결(방향 X).
 - 순정 옵시디언 그래프는 본문 `[[]]`만 엣지로 그림(frontmatter property-link는 버전 의존, `showArrow:false`라 방향/타입 구분 안 됨).
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[object-graph]] — 노트가 서로를 `[[]]` 로 가리켜 이루는 그물. **엣지의 단일 소스를 본문으로 두고** `up:` 은 그중 계보를 마킹하는 오버레이로 얹은 구조다
+- [[foreign-key]] — 링크는 **대상이 실존해야** 의미가 있다 — dead link 검사가 참조 무결성과 같은 일을 한다. 대상 없는 참조를 허용하지 않는 것이 그래프를 믿을 수 있게 만든다
 
 ## Options
 

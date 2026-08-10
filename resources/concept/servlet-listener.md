@@ -7,7 +7,6 @@ aliases:
   - servlet listener
   - 웹 리스너
   - ServletContextListener
-  - ContextLoaderListener
 up:
   - 2024-08-27-Day64
   - 2024-09-02-Day68

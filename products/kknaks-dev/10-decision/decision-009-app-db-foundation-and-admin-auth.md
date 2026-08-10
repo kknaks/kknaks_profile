@@ -20,6 +20,11 @@ links:
   releases: []
   related:
     - "[[baseline-001-repo-knowledge-graph|KDEV-BL-001]]"
+up:
+  - jwt
+  - cookie
+  - async-io
+  - database-migration
 ---
 
 # 애플리케이션 DB화 토대 + 관리자 인증 방식 (ADR-009)
@@ -58,6 +63,15 @@ md-only 운영에서 관계형 DB 도입을 시작한다. 이 결정은 (1) DB �
 - 세션은 **httpOnly 쿠키에 담은 JWT(HS256)**. FE는 토큰을 직접 만지지 않는다(XSS 노출 최소화).
 - 쿠키 속성은 환경별: 로컬 dev는 host-only·`Secure=0`, 운영은 `Domain=.kknaks.cloud`·`Secure=1`·`SameSite=Lax`(프론트·백이 같은 site라 Lax로 전송됨).
 - 회원가입·다중 유저·역할(role) 세분화·비밀번호 재설정은 범위 밖. `role` 컬럼은 두되 값은 `admin` 고정으로 시작.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[jwt]] — 세션을 **JWT(HS256)** 로 담되 프론트가 토큰을 직접 만지지 않게 했다 — 토큰이 신원을 나르는 방식과 그 노출 위험을 함께 다룬 결정이다
+- [[cookie]] — 그 JWT 를 **httpOnly 쿠키**에 넣고 환경별로 `Domain`·`Secure`·`SameSite` 를 나눴다. 「스크립트가 못 읽게 한다」가 XSS 노출을 줄이는 근거다
+- [[async-io]] — DB 접근을 **동기에서 async 세션으로 전환**한 개정. 기다리는 동안 워커를 놓아 주는 것이 요청 처리량을 정한다
+- [[database-migration]] — Alembic 으로 스키마 변경을 버전으로 남긴다 — 손으로 DDL 을 치지 않고 되돌릴 수 있게 하는 장치다
 
 ## Options
 

@@ -24,6 +24,8 @@ links:
     - "[[work-015-youtube-chain-and-executor|KDEV-WORK-015]]"
   releases: []
   related: []
+up:
+  - transaction
 ---
 
 # 저장·발행 경계 — draft는 DB, 확정은 md, 발행은 원자적 (ADR-012)
@@ -40,6 +42,12 @@ links:
 - **커밋됐지만 push되지 않은 것도 같은 위험에 놓인다.** 같은 `reset --hard`가 origin에 없는 로컬 커밋을 지운다. 현재 `commit_and_push_with_retry`는 3회 재시도 후 `False`를 반환하고 호출자는 로그만 남긴다(`git_push.py:134`, `content_enrich.py:376` 등) — **승인분이 조용히 소실될 수 있는 경로가 열려 있다.**
 - 현재 잡들은 **파일당 1커밋**이다(`content_enrich.py:376`은 enrich 실패분까지 `status: error`로 커밋한다).
 - owner 요구(BL-003 Raw): *"최종 승인이 나면 업데이트하면서 push해야 로컬 노트북에서도 받아볼 수 있다."* 발행 = 로컬 옵시디언 볼트에 도달하는 것.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[transaction]] — **전부 성공하거나 전부 되돌린다** — 반쪽 발행도, origin 에 없는 커밋도 남기지 않는다는 원자성 요구가 이 결정의 뼈대다
 
 ## Options
 

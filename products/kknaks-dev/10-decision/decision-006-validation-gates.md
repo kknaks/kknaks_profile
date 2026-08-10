@@ -21,6 +21,10 @@ links:
   works: []
   releases: []
   related: []
+up:
+  - foreign-key
+  - unique-key
+  - ci-cd
 ---
 
 # 검증 게이트 L1~L6 (ADR-006)
@@ -32,6 +36,14 @@ links:
 - 관련 baseline: [[baseline-001-repo-knowledge-graph|KDEV-BL-001]]
 - 기존 인프라: `wikilinks.dead_links()`(깨진 링크 검출), `persona_loader` 부팅 fail-fast, `_map.md` pre-commit+부팅 빌드, `product_doc_pipeline.py`.
 - "깨진 링크를 수동으로 어떻게 추적하나", "분류/계보를 어떻게 검증하나"가 핵심 요구.
+
+## 근거 개념
+
+이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
+
+- [[foreign-key]] — L1 dead link 는 **참조 무결성 검사** 그 자체다 — 가리키는 대상이 없으면 막는다
+- [[unique-key]] — L2 의 「파일명 stem·alias 전역 유일」이 유일 제약이고, 그것이 곧 SoT 중복 금지다
+- [[ci-cd]] — 여섯 규칙을 **pre-commit·CI·부팅 세 지점에서 자동 차단**한다. 사람이 기억해서 지키는 것이 아니라 통과 못 하면 못 들어가게 만든 것이 이 결정의 핵심이다
 
 ## Options
 
