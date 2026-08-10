@@ -25,7 +25,7 @@ links:
   releases: []
   related: []
 up:
-  - ai-proposes-human-approves
+  - human-in-the-loop
 ---
 
 # 민감 문서 preset 추천과 승인 기준
@@ -78,7 +78,7 @@ v1에서는 민감 문서 권한 preset을 AI가 자동 확정하지 않는다. 
 
 이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
 
-- [[ai-proposes-human-approves]] — 위험이 큰 자리일수록 자동 확정하지 않는다 — 그 판단을 민감 문서 preset 에 적용한 것. 이 판단의 SoT 는 synthesis 노트이고, 개념 상세는 그 노트가 [[human-in-the-loop]] 로 위임한다
+- [[human-in-the-loop]] — 민감 문서일수록 **자동 확정하지 않는다** — AI 는 preset 을 추천하고 관리자가 게이트에서 확정한다. 위험이 큰 자리에 사람을 세우는 판단이다
 
 ## Resulting Spec Direction
 

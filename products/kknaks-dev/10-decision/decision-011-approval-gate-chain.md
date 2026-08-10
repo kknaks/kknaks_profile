@@ -25,7 +25,7 @@ links:
   releases: []
   related: []
 up:
-  - ai-proposes-human-approves
+  - human-in-the-loop
   - workflow-orchestration
   - queue
 ---
@@ -61,7 +61,7 @@ owner가 그린 전체 그림(2026-07-27):
 
 이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
 
-- [[ai-proposes-human-approves]] — 「승인 전에는 레포에 파일이 생기지 않는다」가 그 판단의 가장 뾰족한 문장이다. 이 판단의 SoT 는 synthesis 노트이고, 개념 상세는 그 노트가 [[human-in-the-loop]] 로 위임한다
+- [[human-in-the-loop]] — AI 산출물을 **바로 커밋하지 않고 게이트에서 멈춰 사람을 기다린다.** 자동 스테이지와 게이트 스테이지를 나눈 것이 「어디까지 자동인가」의 눈금이다
 - [[workflow-orchestration]] — 게이트를 고정 enum 이 아니라 **파이프라인 정의(스테이지 목록)** 로 표현한 것. 소스 종류가 체인 길이를 정하고, 각 스테이지가 멈춤·관측의 단위가 된다
 - [[queue]] — 승인 큐를 **DB 에** 두고 작업트리에 파일을 만들지 않는다 — 대기하는 일감을 어디에 쌓느냐가 이 결정의 첫 항목이다
 

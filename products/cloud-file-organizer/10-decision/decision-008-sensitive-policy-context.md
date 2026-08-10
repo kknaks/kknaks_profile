@@ -24,7 +24,7 @@ links:
     - "../../../context/policy.md"
 up:
   - externalized-configuration
-  - ai-proposes-human-approves
+  - human-in-the-loop
 ---
 
 # 민감 문서 정책 컨텍스트와 Claude 진입 흐름
@@ -68,7 +68,7 @@ CLAUDE.md
 이 결정이 기대는 개념. 상세는 concept 노트가 갖는다.
 
 - [[externalized-configuration]] — 민감 문서 기준을 **코드에 하드코딩하지 않고 `context/policy.md`** 로 뺀다. 정책이 바뀌면 배포가 아니라 문서를 고친다
-- [[ai-proposes-human-approves]] — 민감도 판정도 AI 는 `needs_human_review` 로 표시만 하고 확정은 사람이 한다. 이 판단의 SoT 는 synthesis 노트이고, 개념 상세는 그 노트가 [[human-in-the-loop]] 로 위임한다
+- [[human-in-the-loop]] — AI 는 `needs_human_review=true` 로 **표시만** 하고 최종 권한은 사람이 승인한다
 
 ## Resulting Spec Direction
 
