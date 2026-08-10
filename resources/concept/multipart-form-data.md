@@ -78,6 +78,7 @@ public class UploadServlet extends HttpServlet {
 - [[character-encoding]] — 텍스트 Part를 해석할 문자셋
 - [[filesystem-path]] — 서버 저장 경로를 검증하는 자리
 - [[web-xml]] · [[annotation]] — multipart 설정의 두 등록 방식
+- [[ioc-container]] — 프레임워크에서 이 처리를 빈으로 등록하는 자리
 
 ## 출처
 

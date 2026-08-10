@@ -12,6 +12,7 @@ aliases:
 up:
   - 2024-07-09-Day31
   - 2024-08-27-Day64
+  - 2024-09-25-Day82
 tags:
   - 설계
   - 객체지향
@@ -154,8 +155,11 @@ Day64 의 답은 **자리를 옮기고 형태를 바꾸는 것**이다.
 - [[servlet-lifecycle]] — 생성자로 받을 수 없게 되는 이유
 - [[servlet-container]] — 최상단을 대신 갖는 쪽
 - [[type-casting]] · [[sql-null]] — 정적 검사를 잃은 대가
+- [[ioc-container]] — 주입을 전담하는 저장소
+- [[spring-framework]] — 그 저장소를 제공하는 것
 
 ## 출처
 
+- [[2024-09-25-Day82]] — 넉 달 뒤. **넣어 주는 일을 프레임워크가 맡는 자리**다. Day64 가 「놓아 두고 꺼내 온다」로 방향이 뒤집혀 있던 것이, `AnnotationConfigWebApplicationContext` 가 `@ComponentScan` 으로 클래스를 모아 객체를 만들고 서로에게 넣어 주면서 **다시 「넣어 준다」로 돌아온다** — 그리고 이번에는 최상단이 `App` 도 리스너도 아니라 컨테이너다. Day31 의 「외부에서 객체를 생성해서 대입을 받는다」가 그대로 성립하는데 그 「외부」가 라이브러리인 것이라, **이 개념이 왜 프레임워크의 기둥이 되는지**가 드러나는 회차다 → [[ioc-container]] · [[stereotype-annotation]]
 - [[2024-07-09-Day31]] — 램프/스위치 예제 5단계에서 「인터페이스를 직접적으로 생성하지 않는다( = 의존객체를 만들지 않는다) / 외부에서 객체를 생성해서 대입을 받는다」로 이 개념을 배우고, 실습에서 각 `Command` 가 스스로 만들던 목록을 `App` 이 만들어 생성자로 넘기는 쪽으로 옮겼다(「App()에서 List를 생성하고 매개변수로 Comman에 넘긴다」). 그 과정에서 2단계 코드가 `UserCommand` 를 두 번 만들어 `ProjectCommand` 가 맵에 없는 인스턴스의 목록을 받는 상태를 만들고, 4단계에서 `App` 이 목록을 소유하며 해소된다. 넘기는 타입이 `List` 가 아니라 `ArrayList`·`LinkedList` 구현 클래스이고, `ProjectCommand` 의 제목 인자가 「회원」으로 잘못 들어가 있다. 필기는 이 이동을 DIP 와 「(OCP원칙)」 두 이름으로 부르며 DI 라는 이름은 쓰지 않았다
 - [[2024-08-27-Day64]] — 일곱 주 뒤. 이 개념을 이름으로 다루지는 않지만 **최상단이 옮겨가는 것을 코드로 보여 준다.** 서블릿을 컨테이너가 만들기 때문에 생성자로 넣어 줄 사람이 없어지고, 그 답으로 `@WebListener` 가 붙은 `ContextLoaderListener.contextInitialized` 가 `SqlSessionFactory`·`SqlSessionFactoryProxy`·`DaoFactory`·DAO 셋을 만들어 `ServletContext` 속성 네 개로 올리며, 서블릿은 `init()` 에서 `config.getServletContext().getAttribute("userDao")` 로 받는다. Day31 의 `App` 생성자가 하던 일을 **컨테이너가 부르는 이벤트가 대신 하는** 형태다. 다만 형태가 「넣어 준다」가 아니라 **「놓아 두고 꺼내 온다」**여서 방향이 반대이고(받는 쪽이 저장소와 키를 알아야 한다), 키가 문자열이고 값이 `Object` 라 이름·타입 검사가 전부 실행 시점으로 내려간다. 그리고 같은 코드에 `public UserListServlet(UserDao userDao)` 생성자가 남아 있어 **컨테이너가 그 클래스를 인스턴스화할 수 없다** — 생성자 주입의 장점이 부르는 쪽이 컨테이너일 때는 쓸 수 없다는 것을 값을 치르며 보여 준 자리다(→ [[servlet-lifecycle]]). 필기는 DI 라는 이름도, 조회 방식이 주입과 다르다는 것도 적지 않았다

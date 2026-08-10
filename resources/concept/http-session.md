@@ -103,6 +103,7 @@ if (loginUser == null) {
 - [[thread-local]] — 소켓 시절에 같은 문제를 풀던 자리
 - [[servlet-filter]] — 로그인 확인을 한 곳에 두는 장치
 - [[cookie]] — 이 보관소를 다시 찾게 하는 세션 ID의 운반자
+- [[spring-model]] — 세션을 직접 만지지 않고 같은 일을 하는 쪽
 
 ## 출처
 
