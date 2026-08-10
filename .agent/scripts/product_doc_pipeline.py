@@ -181,7 +181,11 @@ def validate_release_gate(product_dir: Path, errors: list[str]) -> None:
 
 LINK_BUCKETS = ("baselines", "decisions", "specs", "works", "releases", "related")
 WIKILINK_ITEM_RE = re.compile(r'^    - "?\[\[([^\]|]+)(?:\|([^\]]+))?\]\]"?\s*$')
-COVERED_SPEC_STATUS = {"implemented", "released", "stable"}
+# 「구현됐다」고 선언한 spec 만 커버리지를 요구한다.
+# `stable` 은 제외한다 — rules 의 spec status 열거(draft/ready/in_dev/implemented/
+# deprecated)에 없는 값이고, 실제로 ax-knowledge-graph 는 「계약 확정」의 뜻으로 쓴다
+# (SPEC-001 이 stable 인데 Spec Coverage 는 in-progress). 구현 여부와 무관하다.
+COVERED_SPEC_STATUS = {"implemented", "released"}
 
 
 def read_links(path: Path) -> dict[str, list[tuple[str, str]]]:
@@ -253,7 +257,10 @@ def validate_links(
 
             if doc_type == "spec":
                 specs.append((md, meta.get("id", md.stem), meta.get("status", "")))
-            if doc_type == "work":
+            # 스펙을 구현으로 내리는 문서는 `work` 만이 아니다 — `30-work/` 의
+            # `bugfix` 도 links.specs 로 스펙을 가리킨다. 타입을 좁게 잡으면
+            # 실제로는 커버된 스펙이 미커버로 잡힌다.
+            if doc_type in ("work", "bugfix"):
                 covered_specs.update(stem for stem, _ in links.get("specs", []))
 
             if doc_type == "spec" and links.get("works"):

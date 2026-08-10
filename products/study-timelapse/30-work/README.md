@@ -50,6 +50,14 @@ work 문서를 만들거나 상태, owner, branch, 다음 작업이 바뀌면 �
 | STL-SPEC-010 | STL-WORK-001, STL-WORK-003 | todo |
 | STL-SPEC-012 | STL-WORK-001, STL-WORK-003 | todo |
 | STL-SPEC-013 | STL-WORK-003 | todo |
+| STL-SPEC-004 | — (이관 전 구현) | implemented |
+| STL-SPEC-006 | — (이관 전 구현) | in_dev |
+| STL-SPEC-007 | — (이관 전 구현) | implemented |
+
+> `— (이관 전 구현)` 은 **이 레포에 WP 문서가 없는** spec 이다. 2026-06-09 medi_docs
+> 이관이 「계약 표면만(구현 본문 제외)」 옮겼기 때문에 구현을 담은 work 문서가 없다
+> (`log.md` 2026-06-09). 추적을 빠뜨린 것이 아니므로 소급 WP 를 만들지 않는다.
+> `product_doc_pipeline.py` 는 이 둘을 「커버하는 work 없음」 warning 으로 계속 보고한다.
 
 ## Release Gate
 
