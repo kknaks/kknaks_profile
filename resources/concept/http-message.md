@@ -12,6 +12,7 @@ aliases:
   - HTTP 헤더
 up:
   - 2024-09-04-Day69
+  - 2024-10-31-chapter7-application
 tags:
   - web
   - 프로토콜
@@ -60,6 +61,9 @@ Content-Type: application/json
 
 ## 함께 보는 개념
 
+- [[application-layer]] — 이 프로토콜이 사는 층
+- [[osi-model]] — 이 메시지가 감싸여 내려가는 구조
+
 - [[network-protocol]] — 메시지 형식을 미리 합의하는 상위 규칙
 - [[request-response]] — 컨테이너가 이 메시지를 객체로 바꿔 넘기는 자리
 - [[http-method]] — 요청 줄의 메서드가 뜻하는 작업
@@ -69,4 +73,5 @@ Content-Type: application/json
 
 ## 출처
 
+- [[2024-10-31-chapter7-application]] — 구조를 **시작라인 · 헤더 · 공백 한 줄 · 바디**로 정리하고, 시작라인이 **메서드/경로/버전** 셋으로 구성된다는 것(`GET /index.html HTTP/1.1`)을 보인다. 상태 코드를 **1xx~5xx 다섯 갈래의 뜻**으로 표에 정리한 것과, **버전이 왜 올라갔는지**를 적은 것이 이 장의 값이다 — 초기 버전은 매번 연결을 새로 맺어 서버에 부담이었고, 1.0 의 KeepAlive 가 연결을 유지하며, 2.0 은 **바이너리 프레임**으로 텍스트를 나눠 보내 속도와 안정성을 얻는다 → [[application-layer]]
 - [[2024-09-04-Day69]] — 요청 줄·상태 줄·헤더·본문의 구조를 먼저 세우고, General·Entity·Request·Response 헤더별로 `Cache-Control`·`Content-Type`·`Accept`·`Location` 등 예를 넓게 모았다. `Payload vs. Body` 절이 둘의 구분을 묻는 빈자리를 남겼고, `no-cache`·`Content-MD5`·낡은 헤더 분류의 범위는 교정이 필요하다.

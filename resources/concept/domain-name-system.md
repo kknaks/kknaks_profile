@@ -11,6 +11,7 @@ aliases:
   - 이름 해석
 up:
   - 2024-07-30-Day46
+  - 2024-10-31-chapter7-application
 tags:
   - 네트워크
   - 통신
@@ -70,6 +71,8 @@ Socket socket = new Socket(InetAddress.getByName("domainName"),50001);
 
 ## 함께 보는 개념
 
+- [[application-layer]] — 이 프로토콜이 사는 층
+
 - [[ip-address]] — 이름이 바뀌어 도착하는 값
 - [[socket]] — 조회 결과를 받아 연결을 만드는 클래스
 - [[socket-binding]] — 원격 주소를 이름으로 지정하는 자리
@@ -81,4 +84,5 @@ Socket socket = new Socket(InetAddress.getByName("domainName"),50001);
 
 ## 출처
 
+- [[2024-10-31-chapter7-application]] — **한 대가 다 아는 것이 아니라는 것**이 드러난다. 질의가 **네 단계**를 밟는다 — ① 로컬·컴퓨터의 **캐시** 확인 ② 없으면 **루트 DNS**(`.`)에 물어 TLD 서버 위치를 받고 ③ **TLD 서버**(`.com`·`.kr`)에 물어 권한 있는 네임서버를 받고 ④ 그 **권한 네임서버**에서 실제 IP 를 받는다. 「DNS 서버가 IP 를 모르면 다른 DNS 에 접속해서 요청한다」는 앞 절의 한 줄이 이 계층 구조로 구체화되고, **첫 단계가 캐시**라는 것이 실제 조회 대부분이 그 앞에서 끝나는 이유를 설명한다 → [[caching]] · [[application-layer]]
 - [[2024-07-30-Day46]] — 「IP 주소를 모르면 DNS서버에 접근하여 IP주소를 검색한다」로 이름 해석이 통신 전에 끼는 단계라는 것을 배우고, `InetAddress.getByName(도메인)`·`getAllByName(도메인)` 과 `new Socket(InetAddress.getByName("domainName"),50001)` 을 코드로 적었다. **`getAllByName` 이 배열을 돌려주는 이유(이름 하나에 주소 여럿)는 코드에만 있고 설명은 없고**, 캐시·`hosts` 파일·역방향 조회·조회 실패 예외(`UnknownHostException` 은 「연결 요청 시 두가지 예외」 항목에서 이름만 나온다)는 다루지 않는다. 즉 이 회차는 **이름으로 접속하는 문법까지**이고 이름을 쓰는 대가는 뒤로 남는다
