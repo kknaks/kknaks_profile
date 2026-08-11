@@ -63,8 +63,43 @@ tags:
 | 2 | 유튜브 콘텐츠 | Slack URL·업로드 → DB 큐 | `resources/source/` · `resources/concept/` · `persona/contents/` · `inbox/`(보류) · 폐기 | 돈다 |
 | 3 | 블로그 글 | — | `persona/posts/` | **미구현** |
 
-- 1은 **route 게이트가 없다** — 스케줄이 시작하므로 목적지가 고정이다([[decision-015-grass-destinations-and-formats|KDEV-DEC-015]] D1).
+- 1은 **route 게이트가 없다** — 목적지가 고정이라 고를 것이 없다([[decision-015-grass-destinations-and-formats|KDEV-DEC-015]] D1).
 - 2는 route 게이트가 **목적지 조합**을 고른다([[spec-008-gate-chain|KDEV-SPEC-008]]).
+
+#### 1. 잔디잡 워크플로우
+
+```mermaid
+flowchart TD
+    S(["09:05 KST 스케줄<br/>daily-activity"]) --> I["intake<br/>어제 날짜 item 접수"]
+    I --> Q[("DB 큐<br/>item + stage")]
+
+    Q --> C["collect · auto<br/>LLM 없음 — git 을 읽고 센다"]
+    C --> C1["tracked_repos 조회<br/>slug · type · detail · product_slug · enabled"]
+    C1 --> C2["레포별 커밋 수집"]
+    C2 --> C3["career 귀속 판정<br/>type=company → detail = career stem"]
+    C3 --> C4["counts 집계<br/>commit · note · study"]
+
+    C4 --> V["investigate · auto<br/>레포마다 1건 — 유일한 N 제출 스테이지"]
+    V --> V1["레포별 diff 조사<br/>무엇을 왜 했나"]
+
+    V1 --> G{{"daily · gate<br/>사람 승인"}}
+    G -->|"작성도 여기서 한다"| G1["daily 본문 · summary<br/>career 갱신안 · concept 후보"]
+    G1 --> G2{"승인?"}
+    G2 -->|"재생성"| G1
+    G2 -->|"거절"| X(["종료 — 발행 없음"])
+    G2 -->|"승인"| A["Apply Executor<br/>원자적 발행"]
+
+    A --> D1["persona/daily/{YYYY-MM-DD}.md<br/>upsert · 활동 &gt; 0 · auto:false 아님"]
+    A --> D2["persona/career/{stem}.md<br/>replace · type=company 커밋 있음 · is_current · changed"]
+    A --> D3["resources/concept/{slug}.md<br/>upsert · 개념 후보 + 승인"]
+    A --> D4["git commit + push"]
+```
+
+**세 가지가 통념과 다르다.**
+
+1. **스케줄 잡은 접수만 한다.** 조사·작성·발행은 드라이버와 게이트가 이어받는다 — 종전에는 잡 안에서 다 해서 **사람 승인 없이 레포에 쓰였다**(`scheduler.py` 주석, KDEV-WORK-017 P5).
+2. **`compose` auto 스테이지가 없다. 작성은 게이트가 한다.** 재생성이 「서술만 다시 만든다」라 게이트도 작성 능력이 필요했고, auto 쪽 작성은 첫 회에만 쓰여 중복이 되기 때문이다(`definitions.py` 주석).
+3. **게이트가 하나뿐이라 승인이 곧 체인 종료이자 발행 트리거**다.
 
 ### 로컬 — 사람·에이전트
 
