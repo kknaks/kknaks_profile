@@ -239,7 +239,7 @@ flowchart TD
 - **`inbox/` 는 입구다 — 목적지가 아니다.** [[decision-011-approval-gate-chain|KDEV-DEC-011]] D1 이 「보류함(목적지)」으로 정한 것을 뒤집는다(아래 「DEC-011 D1 개정」).
 - **트리거가 파일 존재다.** 스케줄(잔디)도 URL 수신(유튜브·블로그)도 아니다. **FastAPI 시작 프로세스(lifespan)** 에서 `inbox/` 를 스캔한다 — push 로 파일이 들어온 뒤 서버가 뜨면 집는다.
 - **`inbox/` 는 서버에서 항상 비어 있다.** 접수할 때 본문을 DB 큐로 옮기고 파일을 지운다 — **파일이 있으면 곧 미처리**다. 승인 전 초안이 DB 에만 있는 것은 [[decision-012-draft-storage-and-publish-boundary|KDEV-DEC-012]] D1 그대로다.
-- **비우기는 정상 경로이고, 방어선은 큐 조회다.** 접수 전에 DB 큐를 보고 **이미 있으면 skip** 한다 — 승인이 늦어 큐에 머무는 동안 같은 파일이 다시 push 돼도 두 번 접수되지 않는다. [[idempotency]] 그대로이고, 잔디의 「email 기준 멱등」·Drive 의 `drive_file_id` unique 와 같은 자리다. **무엇을 자연키로 쓸지는 미결이다**(OQ-11).
+- **비우기는 정상 경로이고, 방어선은 큐 조회다.** 접수 전에 DB 큐를 보고 **이미 있으면 skip** 한다 — 승인이 늦어 큐에 머무는 동안 같은 파일이 다시 push 돼도 두 번 접수되지 않는다. [[idempotency]] 그대로이고, 잔디의 「email 기준 멱등」·Drive 의 `drive_file_id` unique 와 같은 자리다. 자연키는 **파일명(slug)** 이다 — `inbox/` 가 접수 때 비워지므로 같은 경로의 재등장이 곧 같은 노트다.
 
 ## Context
 
@@ -280,6 +280,7 @@ flowchart TD
 | ~~OQ-9~~ | `source_kind` 이름 | URL 이 없으면 **실패**다. 공부 노트는 URL 축이 아니므로 `detect_source_kind` 를 거치지 않고 별도 kind 를 쓴다 |
 | ~~OQ-1~~ | `render.py` 의 `inbox/` 직접 쓰기 | **잔재였다. 지웠다.** KDEV-DEC-013 D2 가 없애기로 한 3단(`atomic_write`+`publish`+`reload_data`)이 코드에 남아 있었다 — `bootstrap` 은 이미 `QueueIntakeRunner` 를 조립하고 있어 라이브 참조가 0이었다 |
 | ~~OQ-2~~ | 게이트가 `products/` 를 만드나 | **만들 수 없다.** `ALLOWED_PREFIXES` 에 `products/` 가 없어 발행이 거부되고, `DESTINATION_STAGE` 에도 항목이 없다. 자료(유튜브·블로그)에서 제품 문서가 나올 일도 없다 — **P 는 로컬만 만든다** |
+| ~~OQ-11~~ | 접수 멱등의 자연키 | **파일명(slug)**. `inbox/` 는 접수 때 비워지므로 **같은 경로가 다시 나타나면 같은 노트를 다시 넣은 것**이다 |
 | ~~OQ-10~~ | 「미처리」를 무엇으로 판정하나 | `inbox/` 는 서버에서 **항상 비어 있는 상태**를 유지한다(접수 때 DB 로 옮기고 지운다). 그리고 접수 전에 **DB 큐를 조회해 이미 있으면 skip** 한다 — 승인이 늦어 큐에 머무는 동안 같은 파일이 다시 push 돼도 겹치지 않는다 |
 
 ### DEC-011 D1 개정이 필요하다
@@ -299,5 +300,4 @@ flowchart TD
 
 | ID | 질문 |
 |---|---|
-| OQ-11 | 접수 멱등의 **자연키** — 파일명(slug)인가 내용 해시인가. 파일명이면 이름을 고쳐 다시 넣은 것이 새 항목이 되고, 해시면 오탈자 하나에 새 항목이 된다 |
 
