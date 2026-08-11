@@ -28,6 +28,9 @@ DESTINATION_STAGE = {
     "reference": "source_note",
     "concept": "concept",
     "derived": "derived",
+    # 공개 글 (KDEV-DEC-020 D3). `derived`(교안)와 다른 자리다 — 교안은 학습용
+    # 장문이고 글은 핵심 압축이다. 유튜브는 교안을, 블로그·공부 노트는 글을 만든다.
+    "post": "post",
 }
 
 

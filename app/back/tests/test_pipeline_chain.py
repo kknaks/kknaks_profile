@@ -77,7 +77,7 @@ class TestChainShape:
         assert next_stage("youtube", route(), after="concept") is None
 
     def test_unknown_pipeline_has_no_next(self):
-        assert next_stage("blog", route(), after="route") is None
+        assert next_stage("없는_소스", route(), after="route") is None
 
 
 # --- 초안 검사 (DB 불필요) ---------------------------------------------------
@@ -327,3 +327,31 @@ class TestAdvance:
         monkeypatch.setattr(pathlib.Path, "write_text", explode)
         item, gate = await _routed(db, "https://youtu.be/chain000006", route())
         await _advance(db, item, gate, runners={"source_note": maker(NOTE_PAYLOAD)})
+
+
+class TestBlogAndStudyNotePipelines:
+    """KDEV-BL-007 케이스 3·5 — 유튜브와 같은 모양, `collect` 와 산출만 다르다."""
+
+    def test_blog_mirrors_youtube_but_makes_posts(self):
+        from service.pipeline.definitions import pipeline_for
+
+        blog = [s.name for s in pipeline_for("blog").stages]
+        youtube = [s.name for s in pipeline_for("youtube").stages]
+        # 앞의 셋(수집·요약·라우팅)은 같다.
+        assert blog[:3] == youtube[:3] == ["collect", "summarize", "route"]
+        # 갈리는 것은 산출이다 — 유튜브는 교안, 블로그는 공개 글.
+        assert "derived" in youtube and "derived" not in blog
+        assert "post" in blog and "post" not in youtube
+
+    def test_study_note_has_no_collect(self):
+        """본문이 이미 있어 수집할 것이 없다 (KDEV-DEC-021)."""
+        from service.pipeline.definitions import pipeline_for
+
+        stages = [s.name for s in pipeline_for("study_note").stages]
+        assert "collect" not in stages
+        assert stages[0] == "summarize"
+
+    def test_post_destination_opens_the_post_gate(self):
+        assert enabled_stages(
+            {"destinations": {"post": {"enabled": True}}, "exclusive": None}
+        ) == ("post",)

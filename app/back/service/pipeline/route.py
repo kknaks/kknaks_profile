@@ -18,7 +18,8 @@ from .gates import GateError, GenerationInput
 
 logger = logging.getLogger("kknaks-back.pipeline.route")
 
-DESTINATIONS = ("reference", "concept", "derived")
+#: `post` 는 KDEV-DEC-020 D3 로 더해졌다 — 블로그·공부 노트의 산출이다.
+DESTINATIONS = ("reference", "concept", "derived", "post")
 #: 목적지를 하나도 안 만드는 선택. 둘은 성격이 다르다 —
 #: `discard` 는 "안 남긴다". **`inbox_hold` 는 KDEV-DEC-021 로 폐기됐다** —
 #: `inbox/` 는 목적지가 아니라 공부 노트의 **입구**이고, 그 옵션은 0건 쓰였다.
@@ -37,7 +38,8 @@ PROMPT = """이 자료를 어디로 보낼지 판단하라. **본문은 쓰지 �
   "destinations": {
     "reference": {"enabled": true},
     "concept":   {"enabled": true},
-    "derived":   {"enabled": false}
+    "derived":   {"enabled": false},
+    "post":      {"enabled": false}
   },
   "exclusive": null,
   "rationale": "<왜 이렇게 판단했는지 2~4문장. 특히 concept 를 켜거나 끈 이유>"
@@ -48,8 +50,10 @@ PROMPT = """이 자료를 어디로 보낼지 판단하라. **본문은 쓰지 �
   하위 폴더를 고르지 않는다 — 분류는 개념 링크가 한다.
 - `concept` — **다른 자료·다른 맥락에서 독립적으로 재등장할 개념**이 있는가.
   자료에만 붙어 있는 설명은 개념이 아니다. 없으면 끈다. 억지로 만들지 않는다.
-- `derived` — 교안(`persona/contents/`)으로 만들 만한가. 대개 끈다.
-- `exclusive` — 위 셋을 전부 끄는 경우에만 쓴다.
+- `derived` — **교안**(`persona/contents/`)으로 만들 만한가. 학습 가능한 장문이다. 대개 끈다.
+- `post` — **공개 글**(`persona/posts/`)로 낼 만한가. 교안과 다르다 — 핵심만 압축한 한 편이고
+  `resources/source/` 와 1:1 이다. 영상은 대개 `derived`, 글·문서는 대개 `post` 다.
+- `exclusive` — 위 넷을 전부 끄는 경우에만 쓴다.
   `"discard"` = 남길 가치가 없다.
   목적지를 하나라도 켰으면 반드시 `null` 이다."""
 

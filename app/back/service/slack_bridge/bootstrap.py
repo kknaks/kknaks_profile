@@ -26,7 +26,12 @@ from service.pipeline.collect_git import GitCollect
 from service.pipeline.driver import PipelineDriver
 from service.pipeline.slack_intake import QueueIntakeRunner
 from service.pipeline.route import RouteProposer
-from service.pipeline.stages import ConceptStage, DerivedStage, SourceNoteStage
+from service.pipeline.stages import (
+    ConceptStage,
+    DerivedStage,
+    PostStage,
+    SourceNoteStage,
+)
 from service.pipeline.stages.daily import DailyStage
 from service.pipeline.stages.investigate import AgentInvestigate
 from service.pipeline.summarize import AgentSummarizer
@@ -193,6 +198,14 @@ class CaptureRuntime:
             route_proposer=route_proposer,
             stages={
                 "source_note": SourceNoteStage(
+                    AgentClient(self._broker),
+                    repo_root=config.repo_root(),
+                    provider=config.capture_provider(),
+                    model=config.capture_model(),
+                    work_dir=config.capture_work_dir(),
+                    timeout_seconds=config.capture_timeout_seconds(),
+                ),
+                "post": PostStage(
                     AgentClient(self._broker),
                     repo_root=config.repo_root(),
                     provider=config.capture_provider(),

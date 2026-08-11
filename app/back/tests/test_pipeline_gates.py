@@ -529,3 +529,56 @@ class TestApproveKeepsOutputs:
             db, gate, payload_override={"destinations": ["a"], "exclusive": None}
         )
         assert "rationale" not in approved.payload
+
+
+class TestPostStage:
+    """공개 글은 `resources/source/` 와 **1:1** 이다 (KDEV-DEC-020 D3)."""
+
+    POST = (
+        "---\n"
+        "type: post_note\n"
+        "id: idempotency-basics\n"
+        "title: 멱등성\n"
+        "date: 2026.08.11\n"
+        "up:\n"
+        "  - 2026-08-10-idempotency-in-our-decisions\n"
+        "---\n\n## 주제\n\n본문\n"
+    )
+
+    def test_single_up_passes(self):
+        from service.pipeline.stages.post import check_post
+
+        assert check_post("idempotency-basics", self.POST)["type"] == "post_note"
+
+    def test_multiple_up_is_rejected(self):
+        """여러 자료를 묶는 글은 이 계열이 아니다 — `up:` 하나가 그 제약이다."""
+        from service.pipeline.stages.post import check_post
+
+        two = self.POST.replace(
+            "  - 2026-08-10-idempotency-in-our-decisions\n",
+            "  - a\n  - b\n",
+        )
+        with pytest.raises(GateError):
+            check_post("idempotency-basics", two)
+
+    def test_missing_up_is_rejected(self):
+        from service.pipeline.stages.post import check_post
+
+        none = self.POST.replace(
+            "up:\n  - 2026-08-10-idempotency-in-our-decisions\n", ""
+        )
+        with pytest.raises(GateError):
+            check_post("idempotency-basics", none)
+
+    def test_wrong_type_is_rejected(self):
+        from service.pipeline.stages.post import check_post
+
+        with pytest.raises(GateError):
+            check_post("idempotency-basics", self.POST.replace("post_note", "concept"))
+
+    def test_dated_stem_is_rejected(self):
+        """자료의 날짜는 `up:` 이 가리키는 source 가 갖는다."""
+        from service.pipeline.stages.post import check_post
+
+        with pytest.raises(GateError):
+            check_post("2026-08-11-idempotency", self.POST)

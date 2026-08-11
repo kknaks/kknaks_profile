@@ -2,6 +2,7 @@
 
 from .concept import ConceptStage
 from .derived import DerivedStage
+from .post import PostStage
 from .source_note import SourceNoteStage
 
-__all__ = ["ConceptStage", "DerivedStage", "SourceNoteStage"]
+__all__ = ["ConceptStage", "DerivedStage", "PostStage", "SourceNoteStage"]

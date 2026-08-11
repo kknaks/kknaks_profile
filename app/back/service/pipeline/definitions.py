@@ -72,6 +72,35 @@ YOUTUBE = Pipeline(
     ),
 )
 
+#: 블로그·문서 URL. **유튜브와 같은 모양이고 `collect` 의 수집 방식만 다르다** —
+#: 저쪽은 자막, 이쪽은 본문 크롤링(정적 → 동적 → 안 되면 최종 실패)이다.
+#: 산출도 갈린다: 유튜브는 `derived`(교안), 블로그는 `post`(공개 글).
+BLOG = Pipeline(
+    source_kind="blog",
+    stages=(
+        Stage("collect", "auto"),
+        Stage("summarize", "auto"),
+        Stage("route", "gate"),
+        Stage("source_note", "gate", optional=True),
+        Stage("concept", "gate", optional=True),
+        Stage("post", "gate", optional=True),
+    ),
+)
+
+#: 공부 노트 — `inbox/` 에 넣고 push 한 것 (KDEV-DEC-021).
+#: **`collect` 가 없다.** URL 이 아니라 본문이 이미 있어 수집할 것이 없다 —
+#: 업로드 md 를 「`raw_text` 가 곧 원문이라 adapter 를 거치지 않는다」로 둔 것과 같다.
+STUDY_NOTE = Pipeline(
+    source_kind="study_note",
+    stages=(
+        Stage("summarize", "auto"),
+        Stage("route", "gate"),
+        Stage("source_note", "gate", optional=True),
+        Stage("concept", "gate", optional=True),
+        Stage("post", "gate", optional=True),
+    ),
+)
+
 DAILY_COMMIT = Pipeline(
     source_kind="daily_commit",
     stages=(
@@ -97,6 +126,8 @@ DAILY_COMMIT = Pipeline(
 #: 등록된 정의. 블로그·스케줄은 해당 파이프라인을 만들 때 추가한다.
 PIPELINES: dict[str, Pipeline] = {
     YOUTUBE.source_kind: YOUTUBE,
+    BLOG.source_kind: BLOG,
+    STUDY_NOTE.source_kind: STUDY_NOTE,
     DAILY_COMMIT.source_kind: DAILY_COMMIT,
 }
 
