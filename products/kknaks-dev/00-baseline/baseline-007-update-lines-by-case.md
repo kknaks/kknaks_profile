@@ -195,10 +195,47 @@ flowchart TD
 | #   | 케이스        | 입구  | 종착지                                                                                | 상태      |
 | --- | ---------- | --- | ---------------------------------------------------------------------------------- | ------- |
 | 4   | product 작업 | 직접  | `products/{제품}/{00-baseline…70-runbook}` + 근거 개념이 없으면 `resources/{source,concept}` | 돈다      |
-| 5   | 공부 노트      | 직접  | `resources/source/` → `resources/concept/`                                         | **미구현** |
+| 5 | 공부 노트 | `inbox/` 에 넣고 push (또는 로컬 스킬) → 감지 → DB 큐 | `resources/source/` · `resources/concept/` · `persona/posts/`(`post_note`) | **미구현** |
 
 
 - 4는 pre-commit 이 강제한다 — decision 의 `up:`·「근거 개념」 절, 그래프 L1~L6.
+
+#### 5. 공부 노트 워크플로우
+
+**입구가 `inbox/` 인 유일한 케이스다.** 나머지는 URL·스케줄이 시작한다.
+
+```mermaid
+flowchart TD
+    W(["공부하며 노트를 쓴다"]) --> P1["inbox/{slug}.md 에 넣고 push"]
+    W --> P2["또는 로컬 스킬로 작성"]
+    P1 --> T{{"트리거<br/>서버 실행 중 + inbox 에 미처리 파일 있음"}}
+    P2 --> T
+    T --> Q[("DB 큐<br/>source_kind=note?")]
+
+    Q --> C["collect · auto<br/>수집 없음 — 본문이 곧 원문"]
+    C --> S["summarize · auto<br/>판단 재료"]
+
+    S --> R{{"route · gate<br/>무엇을 만들지 고른다"}}
+    R --> G1{{"source_note · gate<br/>이건 source 로"}}
+    R --> G2{{"concept · gate<br/>이건 concept 으로"}}
+    R --> G3{{"post · gate<br/>이건 note 로"}}
+
+    G1 --> A["Apply Executor"]
+    G2 --> A
+    G3 --> A
+
+    A --> D1["resources/source/{날짜}-{slug}.md"]
+    A --> D2["resources/concept/{slug}.md"]
+    A --> D3["persona/posts/{slug}.md · post_note"]
+    A --> D4["원본 inbox 파일 정리"]
+    A --> D5["git commit + push"]
+```
+
+**유튜브·블로그와 다른 점.**
+
+- **수집 단계가 없다.** URL 이 아니라 본문이 이미 있다 — `collect` 가 할 일이 없거나 아주 얇다. AXKG 가 업로드 md 를 두고 「`raw_text` 가 곧 원문이므로 adapter 를 거치지 않는다」고 정한 것과 같은 자리다([[spec-012-source-collection-adapter|AXKG-SPEC-012]] 경계).
+- **`inbox/` 가 입구다.** [[decision-011-approval-gate-chain|KDEV-DEC-011]] D1 은 `inbox/` 를 **목적지(보류함)** 로 정했다. 이 케이스는 거기에 **입구 역할을 하나 더** 얹는다 — 두 역할이 공존하는지, 갈라야 하는지가 결정 대상이다.
+- **트리거가 파일 존재다.** 스케줄(잔디)도 URL 수신(유튜브·블로그)도 아니다. 「서버 실행 중 + `inbox/` 에 미처리 파일」을 어떻게 감지할지가 미결이다.
 
 ## Context
 
@@ -226,14 +263,21 @@ flowchart TD
 
 ## 미결
 
+**닫힌 것** (2026-08-11 사용자 확정)
 
-| ID   | 질문                                                                |
-| ---- | ----------------------------------------------------------------- |
+| ID | 질문 | 결론 |
+|---|---|---|
+| ~~OQ-3~~ | `persona/posts/` 를 누가 만드나 | **게이트**. 블로그(3)와 공부 노트(5)가 만든다 |
+| ~~OQ-4~~ | 공부 노트가 게이트를 타나 | **탄다.** `inbox/` 에 넣고 push 하면 감지 → 큐 |
+| ~~OQ-5~~ | 유튜브도 posts 를 만드나 | **아니다.** 유튜브는 **콘텐츠**(교안)다 |
+| ~~OQ-6~~ | 수집 어댑터 경계 | **정적 → 동적 → 안 되면 최종 실패** |
+
+**열린 것**
+
+| ID | 질문 |
+|---|---|
 | OQ-1 | `knowledge_capture/render.py` 의 `inbox/` 직접 쓰기가 현행인가, 게이트 이전 잔재인가 |
-| OQ-2 | 게이트 목적지에 `products/` 가 없다 — P 는 로컬만 만드는 것이 맞나                     |
-| OQ-3 | `persona/posts/` 를 누가 만드나 — 게이트(3)인가 로컬인가                         |
-| OQ-4 | 케이스 5(공부 노트)가 게이트를 타야 하나, 로컬로 끝내야 하나                              |
-| OQ-5 | **유튜브도 `posts` 를 만드나** — 지금은 `derived` 가 교안만 만든다. 영상도 스크랩 글이 될 수 있다 |
-| OQ-6 | `blog` 의 `collect` 를 AXKG-SPEC-012 에서 이식할 때 경계 — 어디까지 가져오나(정적·동적·docx) |
-
-
+| OQ-2 | 게이트 목적지에 `products/` 가 없다 — P 는 로컬만 만드는 것이 맞나 |
+| OQ-7 | **`inbox/` 의 두 역할** — 목적지(보류함, DEC-011 D1)와 입구(공부 노트)가 공존하는가, 갈라야 하는가 |
+| OQ-8 | **공부 노트의 트리거를 어떻게 감지하나** — 폴링·push 훅·부팅 스캔 중 무엇인가. 「미처리」를 무엇으로 판정하나 |
+| OQ-9 | 공부 노트의 `source_kind` 이름. `detect_source_kind` 는 URL 없으면 `manual` 을 낸다 — 그것을 쓰나 새로 두나 |
