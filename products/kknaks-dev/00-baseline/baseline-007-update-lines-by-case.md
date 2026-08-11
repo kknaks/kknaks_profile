@@ -101,6 +101,49 @@ flowchart TD
 2. **`compose` auto 스테이지가 없다. 작성은 게이트가 한다.** 재생성이 「서술만 다시 만든다」라 게이트도 작성 능력이 필요했고, auto 쪽 작성은 첫 회에만 쓰여 중복이 되기 때문이다(`definitions.py` 주석).
 3. **게이트가 하나뿐이라 승인이 곧 체인 종료이자 발행 트리거**다.
 
+#### 2. 유튜브 콘텐츠 워크플로우
+
+```mermaid
+flowchart TD
+    IN1(["Slack URL 수신"]) --> N["normalize_url<br/>detect_source_kind"]
+    IN2(["제품 화면 URL 입력"]) --> N
+    IN3(["inbox md 업로드"]) --> N
+    N --> Q[("DB 큐<br/>source_kind=youtube")]
+
+    Q --> C["collect · auto<br/>원문·자막 수집"]
+    C --> S["summarize · auto<br/>판단 재료만 만든다 — 노트 작성 아님"]
+
+    S --> R{{"route · gate<br/>★ 목적지 조합을 고른다"}}
+    R --> R1{"exclusive?"}
+    R1 -->|"보류"| H["inbox/{날짜}-{slug}.md<br/>idea 1장 발행하고 종료"]
+    R1 -->|"폐기"| X(["종료 — 이후 스테이지 없음"])
+    R1 -->|"아니오"| E["enabled_stages()<br/>켠 목적지만 게이트를 연다"]
+
+    E -.->|"reference on"| G1{{"source_note · gate"}}
+    E -.->|"concept on"| G2{{"concept · gate"}}
+    E -.->|"derived on"| G3{{"derived · gate"}}
+
+    G1 --> A["Apply Executor<br/>원자적 발행"]
+    G2 --> A
+    G3 --> A
+
+    A --> D1["resources/source/{날짜}-{slug}.md"]
+    A --> D2["resources/concept/{slug}.md<br/>concept_index 로 기존 개념 매칭"]
+    A --> D3["persona/contents/**"]
+    A --> D4["git commit + push"]
+
+    G2 -.->|"이 목적지가 아님"| R
+```
+
+**잔디와 다른 점 넷.**
+
+1. **입구가 사람이다.** Slack·화면 입력·업로드 셋 다 사람이 시작한다. 잔디만 스케줄이 시작한다.
+2. **`route` 게이트가 체인 길이를 정한다.** `enabled_stages()` 가 켠 목적지만 뒤 게이트를 연다 — 아무것도 안 켜면 게이트가 없다.
+3. **배타 옵션이 있다.** 보류(`inbox/` 1장 발행 후 종료)와 폐기(즉시 종료)는 뒤 게이트를 만들지 않는다.
+4. **유일한 역방향 전이가 있다.** 뒤 게이트에서 「이 목적지가 아님」을 내면 `route` 가 재오픈된다. 자동 스테이지(수집·요약) 결과는 재사용한다 — 목적지 오판 때문에 자막을 다시 받지 않는다.
+
+`summarize` 는 **판단 재료만** 만들고 **노트 작성은 게이트가 한다** — 잔디의 `daily` 게이트가 작성하는 것과 같은 대칭이다.
+
 ### 로컬 — 사람·에이전트
 
 | # | 케이스 | 입구 | 종착지 | 상태 |
