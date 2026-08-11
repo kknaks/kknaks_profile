@@ -173,6 +173,6 @@ stateDiagram-v2
 ## 7. Open Questions
 
 - 아카이브로 내리는 트리거 기준(수동 판단 vs 미참조 기간). 운영하며 정한다.
-- **(OPEN, v0.0.2)** `reference/` 157개의 소급 정제. 대부분 개념으로 올라가지 않은 상태이며, [[spec-004-graph-validation|KDEV-SPEC-004]]의 미소화 큐로 집계된다. 일괄 처리할지 자연 소모에 맡길지 정하지 않았다.
+- ~~(OPEN, v0.0.2) `reference/` 157개의 소급 정제.~~ **해소(2026-08-10)** — `study-note-migrate` 로 전량 이관했다. `resources/source/` 146건 · `resources/concept/` 363건이 되었고 **미소화 큐는 0**이다.
 - ~~(OPEN, v0.0.2) `synthesis` 층을 사람이 쓴다는 규칙의 실효성.~~ **해소(v0.0.4)** — [[decision-019-drop-synthesis-layer|KDEV-DEC-019]] 로 그 층 자체를 폐기했다.
 - **(OPEN, v0.0.2)** `inbox` 보류 항목을 다시 큐에 태우는 경로. 지금은 수동 재접수를 전제한다.

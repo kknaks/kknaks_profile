@@ -21,7 +21,7 @@ Redis          = 휘발성 큐/락/세션. 영속 워크플로 SoT로 쓰지 않
 
 | 데이터 | SoT | 비고 |
 |---|---|---|
-| 발행된 노트 본문 | Markdown 파일 | `reference/` · `permanent/` · `permanent/concept/` · `inbox/` · `products/` |
+| 발행된 노트 본문 | Markdown 파일 | `resources/source/` · `resources/concept/` · `persona/{contents,daily,career,posts}/` · `inbox/`(입구) |
 | 그래프 엣지 | Markdown (`[[]]` / `up:`) | `_graph.json`은 재생성 가능한 캐시 |
 | 관리자 계정 | PostgreSQL `users` | 세션은 쿠키 JWT(무상태) |
 | 승인 큐 항목 | PostgreSQL `queue_items` | **승인 전에는 레포에 파일이 없다** |

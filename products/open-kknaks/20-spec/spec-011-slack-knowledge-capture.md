@@ -2,14 +2,14 @@
 type: spec
 id: OKK-SPEC-011
 title: "Slack 지식 수집 — inbox·reference 생성 계약"
-status: draft
+status: deprecated
 product: open-kknaks
 created_at: 2026-07-02
-updated_at: 2026-07-27
+updated_at: 2026-08-11
 tags:
   - product/open-kknaks
   - doc/spec
-  - status/draft
+  - status/deprecated
 links:
   baselines:
     - "[[OKK-BL-002-slack-idea-knowledge-graph|OKK-BL-002]]"
@@ -27,6 +27,18 @@ links:
 ---
 
 # OKK-SPEC-011 Slack 지식 수집 — inbox·reference 생성 계약
+
+> **폐기됨 (2026-08-11).** 이 계약은 **슬랙이 레포에 직접 파일을 쓰는** 설계다 —
+> 「서버는 `reference/<group>/<date>-<slug>.md` 를 생성하고 graph reload 를 요청한다」.
+> 그 경로는 `kknaks_profile` 에서 대체됐다:
+>
+> - **KDEV-DEC-011** — 승인 큐를 DB 에 두고, 승인 전에는 레포에 파일이 생기지 않는다
+> - **KDEV-DEC-013** — 슬랙 bridge 를 back 에 흡수하고 **쓰기 소유권을 Apply Executor 로** 모은다
+> - 2026-08-11 그 구현(`render.py`·`writer.py`·`store.py`·`slack_bridge/runner.py`)을 **삭제했다**
+>
+> 지금 슬랙은 **URL 을 큐에 넣는 입구**이고 파일 쓰기·커밋은 승인 뒤 Apply Executor 가 단독으로 한다.
+> 본문의 경로(`reference/`·`permanent/`)도 `resources/source/`·`resources/concept/` 로 옮겨졌다
+> (KDEV-DEC-018·019). **읽을 때는 기록으로만 본다.**
 
 Slack에서 봇을 mention해 일반 텍스트나 외부 자료 URL을 전달하면
 `open_kknaks`로 구조화하고, `kknaks_profile`의 `inbox/` 또는 `reference/`에
