@@ -1,13 +1,13 @@
 # 일일 기록 양식
 
-`journal/{YYYY-MM-DD}.md` 의 형식을 정의한다. **이 파일이 daily 의 양식 원천이다.**
+`persona/daily/{YYYY-MM-DD}.md` 의 형식을 정의한다. **이 파일이 daily 의 양식 원천이다.**
 
 잔디 파이프라인의 `compose` 스테이지가 여기를 읽어 프롬프트를 만든다. 형식을 고치려면
 **이 파일만** 고친다 — 프롬프트에 규칙을 복사하지 않는다. 복사하는 순간 양식 원천이 둘이 되고
 한쪽만 고쳐지는 날 조용히 어긋난다.
 
 > 지식 노트(`reference`·`concept`·`permanent`)는 계열이 다르다 — `templates/knowledge/` 와
-> `rules/knowledge-note-pipeline.md` 를 따른다. daily 는 그래프 밖(`journal/`)이라
+> `rules/knowledge-note-pipeline.md` 를 따른다. daily 는 그래프 밖(`persona/daily/`)이라
 > 4층 모델의 적용 대상이 아니고 발행 시 그래프 검증도 받지 않는다.
 
 ## 목표

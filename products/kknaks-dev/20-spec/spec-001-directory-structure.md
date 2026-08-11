@@ -117,7 +117,7 @@ Out of scope:
 | `inbox/` | `idea` | 휘발. 노드이되 층에 속하지 않고 `up:` 대상이 될 수 없다 |
 | `persona/contents/` | `content` | YouTube 요약 파이프라인. 그래프 비대상([[decision-008-contents-retention|KDEV-DEC-008]]) |
 | `persona/algorithms/` | `algorithm` | 개인 배치 산출물. 그래프 비대상 |
-| `journal/` | `daily` | 그날 활동 기록(KDEV-DEC-020 로 `persona/` 밖으로 나왔다 — 공개 표면이 아니라 **작업 축의 재료**다). **잔디 파이프라인이 자동 갱신**([[spec-012-grass-artifacts|KDEV-SPEC-012]]) — 승인 게이트를 거친다. `auto: false` 면 본인 작성이라 자동 갱신 대상에서 빠진다 |
+| `persona/daily/` | `daily` | 그날 활동 기록. **잔디 파이프라인이 자동 갱신**([[spec-012-grass-artifacts|KDEV-SPEC-012]]) — 승인 게이트를 거친다. `auto: false` 면 본인 작성이라 자동 갱신 대상에서 빠진다 |
 | `persona/career/` | `career` | 경력. **잔디 파이프라인이 본문·`stack` 만 자동 갱신**(`is_current: true` 항목 한정). `bullets`·`period`·`org` 등은 **사람 전용** |
 | `persona/profile.md` · `assets/` | `profile` | 정체성(그래프 주변). 사람 전용 |
 | `persona/posts/` | `post` | 발행물. **디렉토리 미존재·배선 미완**([[decision-008-contents-retention|KDEV-DEC-008]] Scope Out) |
@@ -161,7 +161,7 @@ reports/               # (없음) — 제품별 작업 보고는 products/{제�
 |---|---|---|
 | `resources/source/` · `resources/concept/` · `inbox/` | 유튜브 체인 · 잔디(concept 한정) | 게이트 |
 | `persona/contents/` | 유튜브 체인(`derived`) · 교안 enrich 잡 | 게이트 / 잡 |
-| `journal/` · `persona/career/` | **잔디 파이프라인** | 게이트 |
+| `persona/daily/` · `persona/career/` | **잔디 파이프라인** | 게이트 |
 | `persona/algorithms/` | algorithm 잡 | **없음**(후속 편입 대상) |
 | `products/**` · `persona/profile.md` · `persona/posts/` | 사람 | — |
 
