@@ -12,3 +12,4 @@
 | KDEV-BL-004 | 커밋 잔디 파이프라인 — 로컬 클론 상세조사 + 승인 게이트 + career 누적 | idea | accepted | DEC-014/015/016 | `baseline-004-commit-pipeline-and-career.md` |
 | KDEV-BL-005 | 제품·프로젝트·커리어 연동 + 레지스트리 관리 화면 | idea | raw | DEC-017 | `baseline-005-product-project-career-link.md` |
 | KDEV-BL-006 | PARA 정렬과 SoT 지도 — 지식층 디렉토리 재편 | idea | raw | DEC-018 | `baseline-006-para-alignment-and-sot-map.md` |
+| KDEV-BL-007 | 업데이트 라인 케이스 정리 — 서버 승인 게이트 · 로컬 작업 | idea | raw | — | `baseline-007-update-lines-by-case.md` |
