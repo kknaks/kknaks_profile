@@ -20,7 +20,7 @@ tags:
 title:
   en: Pacific Atlantic Water Flow
   ko: 태평양과 대서양으로의 물의 흐름
-today: true
+today: false
 type: algorithm
 updated: '2026-08-10'
 visible: true
