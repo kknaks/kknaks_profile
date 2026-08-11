@@ -4,7 +4,7 @@ id: KDEV-SPEC-008
 title: "게이트 체인 — 파이프라인 정의와 스테이지 계약"
 status: draft
 product: kknaks-dev
-version: 0.0.4
+version: 0.0.5
 created_at: 2026-07-27
 updated_at: 2026-08-11
 tags:
@@ -17,6 +17,7 @@ links:
   decisions:
     - "[[decision-011-approval-gate-chain|KDEV-DEC-011]]"
     - "[[decision-010-knowledge-graph-four-layers|KDEV-DEC-010]]"
+    - "[[decision-021-inbox-is-an-entry|KDEV-DEC-021]]"
   specs:
     - "[[spec-007-approval-queue|KDEV-SPEC-007]]"
     - "[[spec-009-gate-feedback|KDEV-SPEC-009]]"
@@ -58,13 +59,12 @@ links:
 
 ### Scope
 
-In scope: 파이프라인 정의 모델, 스테이지 종류, 유튜브 체인, 각 게이트가 결정하는 것, 체인 길이 확정, 역방향 전이, 발행 트리거.
+In scope: 파이프라인 정의 모델, 스테이지 종류, 유튜브·블로그·공부 노트 체인, 각 게이트가 결정하는 것, 체인 길이 확정, 역방향 전이, 발행 트리거.
 Out of scope:
 - 항목 접수·준비 → [[spec-007-approval-queue|KDEV-SPEC-007]]
 - 게이트 버전·피드백·재생성 → [[spec-009-gate-feedback|KDEV-SPEC-009]]
 - 발행 실행·검증 → [[spec-010-apply-executor|KDEV-SPEC-010]]
 - 잔디 파이프라인 상세 → [[spec-013-grass-gate|KDEV-SPEC-013]] (정의 자체는 이 spec 이 등록한다)
-- 블로그 파이프라인 정의 (미착수)
 
 ## 2. UX Contract
 
@@ -100,7 +100,7 @@ Out of scope:
 - **문구**: 자동 요약(판단 근거), AI가 제안한 **목적지 조합**과 근거
   - `reference` 생성 여부 + **group 선택**(13종)
   - `concept` 생성 여부
-  - 파생 산출물 생성 여부(유튜브면 교안)
+  - 파생 산출물 생성 여부 — **유튜브면 교안(`derived`), 글·문서면 공개 글(`post`)**
   - 또는 배타 옵션: **폐기** (KDEV-DEC-021 로 `inbox 보류` 폐기)
 - **CTA**: `피드백`, `승인`. 각 항목은 토글로 조정 가능
 - **기대 결과**: **승인하는 순간 체인 길이가 확정된다.** 파생을 끄면 그 스테이지가 아예 생성되지 않는다. `폐기`면 이후 스테이지 없이 항목이 종료된다.
@@ -267,7 +267,7 @@ stateDiagram-v2
 | Pipeline | `source_kind` | 이 정의가 적용되는 입력 종류 |
 | Pipeline | `stages[]` | 순서 있는 스테이지 목록 |
 | Stage | `kind` | `auto` 또는 `gate` |
-| Stage | `name` | `collect`·`summarize`·`route`·`source_note`·`concept`·`derived` |
+| Stage | `name` | `collect`·`summarize`·`route`·`source_note`·`concept`·`derived`·`post`·`investigate`·`daily` |
 | Stage | `optional` | `true`면 route 판단에 따라 생성되지 않을 수 있다 |
 | Gate | `item_id` | 소속 큐 항목 |
 | Gate | `stage_name` | 어느 스테이지인가 |
@@ -288,6 +288,46 @@ stateDiagram-v2
 | 4 | `source_note` | gate | route 의존 | reference 초안 |
 | 5 | `concept` | gate | route 의존 | 개념 추출 + 신규/보충 판정 |
 | 6 | `derived` | gate | route 의존 | 교안(`persona/contents/`) |
+
+#### 블로그 파이프라인 정의 (`blog`)
+
+**유튜브와 앞의 셋이 같고 산출만 갈린다.** 유튜브는 교안(`derived`, 학습 가능한 장문)을 만들고, 블로그는 공개 글(`post`, 핵심 압축 한 편)을 만든다.
+
+| # | stage | kind | optional | 결정하는 것 |
+|---|---|---|---|---|
+| 1 | `collect` | auto | — | 본문 크롤링 — **정적 → 동적 → 최종 실패** |
+| 2 | `summarize` | auto | — | 판단 근거용 요약 |
+| 3 | `route` | gate | — | 목적지 조합 |
+| 4 | `source_note` | gate | route 의존 | reference 초안 |
+| 5 | `concept` | gate | route 의존 | 개념 추출 |
+| 6 | `post` | gate | route 의존 | 공개 글(`persona/posts/`) |
+
+`collect` 가 세 단계인 이유는 **실패의 종류가 다르기** 때문이다. 정적 HTTP 로 대부분 끝나고, 본문을 JS 로 그리는 페이지만 chromium headless 로 올라간다. 올라가도 결과가 같은 실패(로그인·유료 장벽·크기 초과·timeout)는 올라가지 않는다. 둘 다 안 되면 **빈 본문으로 요약을 부르지 않고 항목을 실패로 남긴다.**
+
+#### 공부 노트 파이프라인 정의 (`study_note`)
+
+**`collect` 가 없다.** URL 이 아니라 본문이 이미 손에 있어 수집할 것이 없다 — 사람이 `inbox/` 에 넣고 push 한 파일이 그대로 원문이다(KDEV-DEC-021).
+
+| # | stage | kind | optional | 결정하는 것 |
+|---|---|---|---|---|
+| 1 | `summarize` | auto | — | 판단 근거용 요약 (본문은 `note` 에 있다) |
+| 2 | `route` | gate | — | 목적지 조합 |
+| 3 | `source_note` | gate | route 의존 | reference 초안 |
+| 4 | `concept` | gate | route 의존 | 개념 추출 |
+| 5 | `post` | gate | route 의존 | 공개 글(`persona/posts/`) |
+
+접수는 **FastAPI lifespan 의 `inbox/` 스캔**이다. 스케줄이 아닌 이유는 트리거가 push 이기 때문이다 — 노트를 넣고 push 하면 배포가 돌고 서버가 다시 뜬다.
+
+멱등의 자연키는 **파일명(slug)** 이고 `normalized_url` 에 `study:{slug}` 합성 키로 들어간다(잔디의 `daily:{date}` 와 같은 자리). 접수되면 파일을 지우므로 **입구에 파일이 있다는 것은 곧 미처리**다. 다만 지우지 **않는** 경우가 둘 있다 — 이미 발행된 slug, 그리고 본문이 비었거나 파일명이 키로 쓸 수 없는 모양일 때. 둘 다 사람이 봐야 하는 상태이고, 입구에 남아 있는 것 자체가 그 신호다.
+
+발행은 산출물과 **같은 커밋으로** `inbox/{slug}.md` 를 회수한다. 나눠 커밋하면 「노트는 발행됐는데 입구에 원본이 남은」 중간 상태가 생긴다.
+
+#### post 게이트
+
+- **`up:` 이 정확히 하나여야 한다.** 이것이 「한 글 = 한 자료」의 제약이고, 여럿을 묶는 글은 이 계열이 아니다(`INVALID_POST_UP`).
+- `type` 은 `post_article`(스크랩 — 자료가 말한 요지) 또는 `post_note`(공부 — 내가 이해한 것). 가르는 기준은 **누가 말한 것인가**다.
+- stem 에 날짜를 붙이지 않는다 — 자료의 날짜는 `up:` 이 가리키는 source 가 갖는다.
+- 양식 원천은 `templates/persona/post-article.md`·`post-note.md` 두 곳이고, 프롬프트에 복사하지 않는다.
 
 #### 잔디 파이프라인 정의 (`daily_commit`)
 

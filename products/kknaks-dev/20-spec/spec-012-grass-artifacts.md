@@ -4,7 +4,7 @@ id: KDEV-SPEC-012
 title: "잔디 산출물 — daily·career·concept 계약"
 status: draft
 product: kknaks-dev
-version: 0.0.1
+version: 0.0.2
 created_at: 2026-07-31
 updated_at: 2026-08-11
 tags:
@@ -27,7 +27,7 @@ links:
 
 # 잔디 산출물 — daily·career·concept 계약
 
-커밋 조사 결과가 어떤 문서가 되는지 정한다. 착지는 셋이다 — **`persona/daily/`(그날) · `persona/career/`(누적) · `resources/concept/`(개념)**.
+커밋 조사 결과가 어떤 문서가 되는지 정한다. 착지는 넷이다 — **`persona/daily/`(그날) · `persona/career/`(누적) · `resources/concept/`(개념) · `context/{company,studio}/current.md`(지금 무엇을 하고 있나)**. 넷째는 [[decision-022-grass-updates-current|KDEV-DEC-022]] 로 더해졌고, 파일 전체가 아니라 **`## 진행 중` 표 하나만** 갈아 끼운다.
 
 > 조사 입력은 [[spec-011-commit-collection|KDEV-SPEC-011]], 승인·발행 절차는 [[spec-013-grass-gate|KDEV-SPEC-013]].
 

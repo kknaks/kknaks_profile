@@ -4,7 +4,7 @@ id: KDEV-SPEC-001
 title: "지식그래프 디렉토리 구조"
 status: draft
 product: kknaks-dev
-version: 0.0.7
+version: 0.0.8
 created_at: 2026-06-29
 updated_at: 2026-08-10
 tags:
@@ -31,6 +31,8 @@ links:
 
 레포의 모든 노트가 어느 디렉토리에 사는지, 각 디렉토리가 그래프에서 어떤 **층(layer)**과 노드 타입을 담는지에 대한 계약. 작성자·에이전트·빌더가 이 문서만으로 노트 위치를 판단할 수 있어야 한다.
 
+> v0.0.8 — [[decision-021-inbox-is-an-entry|KDEV-DEC-021]] 반영. `persona/posts/` 를 **배선한다** — 블로그·공부 노트 체인의 `post` 게이트가 만들고, `type` 은 `post_article`·`post_note` 둘이다. `inbox/` 는 목적지가 아니라 **입구**다. DEC-019 이후 남아 있던 `synthesis` 잔재도 정리한다.
+>
 > v0.0.7 — [[decision-019-drop-synthesis-layer|KDEV-DEC-019]] 반영. **판단층(`synthesis`/`permanent`)을 폐기**하고 지식층을 `source → concept → execution` 3층으로 줄인다.
 >
 > v0.0.6 — [[decision-018-resources-layout-and-sot-naming|KDEV-DEC-018]] 반영. 지식층을 `resources/{source,concept,synthesis}/` 로 모으고 **하위 폴더명을 층 이름으로 통일**한다(`permanent` 겸직 해소). `archive/` 를 최상위로 올린다 — 층이 아니라 상태이기 때문이다. `downloads/`·`reports/` 의 소유를 명시한다.
@@ -80,7 +82,7 @@ Out of scope:
 3. 자료에서 뽑은 **재사용 가능한 개념 하나**면 → `resources/concept/` (type: concept, 층 `concept`).
 4. 개념들을 엮어 내린 **제품 판단**이면 → 그 제품의 `products/{제품}/10-decision/` 이 갖는다(KDEV-DEC-019).
 5. 제품 스펙감이면 → `products/{제품}/00-baseline` (type: baseline 등, 층 `execution`, 00→20 파이프라인).
-6. 발행할 글이면 → `persona/posts/` (type: post).
+6. 자료 하나를 압축한 **공개 글**이면 → `persona/posts/` (type: `post_article` 또는 `post_note`). 자료가 말한 요지면 article, 내가 이해한 것이면 note다.
 7. 안 쓰게 된 노트·개념은 → `archive/` (cold). **층이 아니라 상태라 최상위에 둔다.**
 
 3과 4를 가르는 기준은 **"사실이냐 판단이냐"**다. "STT는 음성을 텍스트로 바꾸는 기술이고 이런 구조로 동작한다"는 concept이고, "우리 제품에 STT를 붙일지, 붙인다면 어느 지점에"는 그 제품의 decision이다.
@@ -102,7 +104,7 @@ Out of scope:
 
 ### Data Contract — 층 매핑
 
-지식 그래프에 편입되는 4층. 방향은 **출처 → 개념 → 판단 → 실행**이다.
+지식 그래프에 편입되는 3층. 방향은 **출처 → 개념 → 실행**이다 (판단층은 KDEV-DEC-019 로 폐기).
 
 | 층(`layer`) | 디렉토리 | `type` | 답하는 질문 | 단위 | 수명 |
 |---|---|---|---|---|---|
@@ -120,7 +122,7 @@ Out of scope:
 | `persona/daily/` | `daily` | 그날 활동 기록. **잔디 파이프라인이 자동 갱신**([[spec-012-grass-artifacts|KDEV-SPEC-012]]) — 승인 게이트를 거친다. `auto: false` 면 본인 작성이라 자동 갱신 대상에서 빠진다 |
 | `persona/career/` | `career` | 경력. **잔디 파이프라인이 본문·`stack` 만 자동 갱신**(`is_current: true` 항목 한정). `bullets`·`period`·`org` 등은 **사람 전용** |
 | `persona/profile.md` · `assets/` | `profile` | 정체성(그래프 주변). 사람 전용 |
-| `persona/posts/` | `post` | 발행물. **디렉토리 미존재·배선 미완**([[decision-008-contents-retention|KDEV-DEC-008]] Scope Out) |
+| `persona/posts/` | `post_article` · `post_note` | 공개 글. `resources/source/` 와 **1:1** 이고 `up:` 하나로 그것을 가리킨다. 블로그·공부 노트 파이프라인의 `post` 게이트가 만든다([[spec-008-gate-chain|KDEV-SPEC-008]]). 그래프 비대상 |
 
 ### Data Contract — 디렉토리 레이아웃
 
@@ -137,7 +139,7 @@ products/              # 층: execution
     ├── 00-baseline/ … 60-release/   # 개인 제품만 채움
     └── log.md
 persona/
-├── posts/             # type: post (발행물, 미배선)
+├── posts/             # type: post_article · post_note (공개 글, source 와 1:1)
 ├── career/ · profile.md · daily/ · assets/   # 정체성(그래프 주변 노드)
 ├── algorithms/        # 그래프 무관, 잔류
 └── contents/          # type: content — YouTube 요약 파이프라인, 그래프 무관, 잔류 (DEC-008)
@@ -146,7 +148,7 @@ downloads/             # 운영 자산 — 백엔드가 /download/* 로 서빙. 
 reports/               # (없음) — 제품별 작업 보고는 products/{제품}/30-work/reports/ 에 둔다
 ```
 
-- `resources/` 하위 셋은 모두 **flat**이다. 하위 디렉토리를 두지 않는다 — 개념도 자료도 분류 트리가 아니라 링크 그래프로 조직된다.
+- `resources/` 하위 둘은 모두 **flat**이다. 하위 디렉토리를 두지 않는다 — 개념도 자료도 분류 트리가 아니라 링크 그래프로 조직된다.
 - **폴더명은 층 이름이다**([[decision-018-resources-layout-and-sot-naming|KDEV-DEC-018]] D1). `type` 이름(`reference`)과 다른 것은 의도적이다 — 폴더는 층을 가리키고 `type` 은 frontmatter 계약이라 축이 다르다. 섞으면 한 단어가 두 뜻을 갖는다.
 - `archive/` 는 층이 아니라 **상태**라 `resources/` 밖 최상위에 둔다. 안 쓰게 된 `reference`·`concept` 가 함께 내려간다. `products/{제품}/_archive/`(버전 컷오프 동결본)와는 다른 것이다 — 그쪽은 제품 버전 스냅샷이라 제품 폴더 안에 남는다.
 - `products/{제품}/showcase.md` frontmatter: `org: company | studio`, `category`, `status`, `visible`, `thumbnail`.
@@ -163,7 +165,8 @@ reports/               # (없음) — 제품별 작업 보고는 products/{제�
 | `persona/contents/` | 유튜브 체인(`derived`) · 교안 enrich 잡 | 게이트 / 잡 |
 | `persona/daily/` · `persona/career/` | **잔디 파이프라인** | 게이트 |
 | `persona/algorithms/` | algorithm 잡 | **없음**(후속 편입 대상) |
-| `products/**` · `persona/profile.md` · `persona/posts/` | 사람 | — |
+| `persona/posts/` | 블로그 · 공부 노트 체인(`post`) | 게이트 |
+| `products/**` · `persona/profile.md` | 사람 | — |
 
 ### State / Lifecycle
 
@@ -203,12 +206,12 @@ reports/               # (없음) — 제품별 작업 보고는 products/{제�
 
 ### Acceptance Criteria
 
-- [ ] `inbox/` · `resources/{source,concept,synthesis}/` · `archive/` 루트 층 존재.
-- [ ] `resources/` 하위 셋이 존재하고 모두 flat이다.
+- [x] `inbox/` · `resources/{source,concept}/` · `archive/` 루트 층 존재.
+- [x] `resources/` 하위 둘이 존재하고 모두 flat이다 (`synthesis` 는 KDEV-DEC-019 로 폐기).
 - [ ] products/{제품}/에 showcase.md 규약 적용, org 필드로 회사/개인 구분.
-- [ ] persona/posts 신설, projects→products·notes→reference 재편 완료 (contents 잔류 — DEC-008).
+- [x] persona/posts 신설·배선 완료(KDEV-DEC-021 `post` 게이트), projects→products·notes→reference 재편 완료 (contents 잔류 — DEC-008).
 - [ ] 각 디렉토리의 노드 타입이 frontmatter `type`과 일치.
-- [ ] 4층(`source`/`concept`/`synthesis`/`execution`)이 디렉토리에서 일의적으로 도출된다.
+- [x] 3층(`source`/`concept`/`execution`)이 디렉토리에서 일의적으로 도출된다.
 - [ ] concept 노트가 `aliases`와 `up:`을 모두 갖는다.
 - [ ] concept의 `up:` 대상이 `reference`이고, `permanent` 종합 노트의 `up:` 대상이 `concept`다.
 - [ ] `reference`·`permanent` 본문에 개념 상세 설명 섹션이 복사되지 않고 `[[concept]]` 링크로 위임된다.
