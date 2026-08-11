@@ -38,6 +38,7 @@ CLAUDE.md
 | [[resources/README\|resources]] | [[knowledge-note-pipeline]] | `templates/knowledge/` |
 | [[products/README\|products]] | [[rules/product-doc-pipeline\|product-doc-pipeline]] | `templates/product/` |
 | `products/*/showcase.md` · `persona/{contents,career,daily}/**` | [[persona-artifacts]] | `templates/persona/` 등 |
+| `context/*/current.md` | [[decision-022-grass-updates-current\|KDEV-DEC-022]] | `templates/context/current.md` |
 
 **규칙과 양식은 레포에 있다. 프롬프트에 복사하지 않는다** — 복사하는 순간 원천이 둘이 되고 한쪽만 고쳐지는 날 조용히 어긋난다.
 

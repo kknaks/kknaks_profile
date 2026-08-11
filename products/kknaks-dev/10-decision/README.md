@@ -27,6 +27,7 @@
 | KDEV-DEC-019 | 판단층(synthesis) 폐기 — 지식을 3층으로 줄인다 | accepted | KDEV-BL-006 | DEC-010 D1 부분 supersede | SPEC-001 · 002 · 003 · 004 |
 | KDEV-DEC-020 | PARA 정렬 마무리 — 개인 영역 신설, A는 귀결, daily 는 개인 이력 | accepted | KDEV-BL-006 | BL-006 의 미결 A 판정 해소 | SPEC-001 · 012 |
 | KDEV-DEC-021 | inbox 는 입구다 — 보류 목적지를 없앤다 | accepted | KDEV-BL-007 | DEC-011 D1 부분 supersede | SPEC-008 |
+| KDEV-DEC-022 | 잔디가 current.md 의 「진행 중」만 갱신한다 | accepted | KDEV-BL-007 | DEC-015 D1 착지 확장 | SPEC-012 |
 
 ### 개정 관계
 

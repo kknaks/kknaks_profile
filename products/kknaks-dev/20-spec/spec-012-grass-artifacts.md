@@ -6,7 +6,7 @@ status: draft
 product: kknaks-dev
 version: 0.0.1
 created_at: 2026-07-31
-updated_at: 2026-08-01
+updated_at: 2026-08-11
 tags:
   - product/kknaks-dev
   - doc/spec
@@ -144,6 +144,7 @@ Out of scope:
 | `persona/daily/{YYYY-MM-DD}.md` | `daily` | upsert | 활동 > 0 · 기존 파일이 본인 작성이 아님 |
 | `persona/career/{stem}.md` | `career` | replace | `type=company` 커밋 있음 · `is_current: true` · `changed: true` |
 | `resources/concept/{slug}.md` | `concept` | upsert | 개념 후보 + 승인 |
+| `context/{company,studio}/current.md` | `current` | **섹션 replace** | 해당 `type` 커밋 있음 — `## 진행 중` 표만(KDEV-DEC-022) |
 
 ### Data Contract — daily
 
