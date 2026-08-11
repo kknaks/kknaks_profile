@@ -36,4 +36,4 @@
 
 - 여름별컴퍼니 조직 정보는 이 문서에 둔다.
 - 현재 진행 상태는 `context/studio/current.md`에 둔다.
-- 프로젝트 목록과 경계는 `context/studio/projects.md`에 둔다.
+- 제품 목록의 원장은 `tracked_repos` DB 다(KDEV-DEC-014 D1). 문서로 두지 않는다.

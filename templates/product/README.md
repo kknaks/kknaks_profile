@@ -8,7 +8,7 @@
 
 ## 코드 레포
 
-코드가 별도 레포에 있으면 위치를 적는다. remote URL의 SSOT는 `context/studio/projects.md`이고, 여기에는 작업용 local clone 경로를 함께 둔다.
+코드가 별도 레포에 있으면 위치를 적는다. remote URL 의 SSOT 는 `tracked_repos.slug` 다(KDEV-DEC-014 D1). 여기에는 작업용 local clone 경로를 둔다.
 
 | 항목 | 경로 |
 |---|---|

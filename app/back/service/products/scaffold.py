@@ -151,32 +151,6 @@ def render_card(
     return f"{product_dir(slug)}/showcase.md", content
 
 
-def append_product_index(slug: str, repo_root: Path) -> str | None:
-    """`products/README.md` 제품 목록에 행을 더한다 (KDEV-DEC-017 D15).
-
-    **표를 재생성하지 않고 행만 넣는다** — `Context` 열에 사람이 적은 메모가 있다.
-    이미 있으면 건드리지 않는다.
-    """
-    index = repo_root / "products" / "README.md"
-    if not index.exists():
-        return None
-    text = index.read_text(encoding="utf-8")
-    row = f"| {slug} | `products/{slug}/` |"
-    if f"| {slug} |" in text:
-        return None
-
-    lines = text.splitlines()
-    last_row = max(
-        (i for i, line in enumerate(lines) if line.startswith("| ") and "|" in line[2:]),
-        default=None,
-    )
-    if last_row is None:
-        return None
-    lines.insert(last_row + 1, row)
-    index.write_text("\n".join(lines) + "\n", encoding="utf-8")
-    return "products/README.md"
-
-
 #: frontmatter 안의 `visible:` 한 줄. **블록 안에서만 찾는다** — 본문에 같은 문자열이
 #: 있어도 건드리지 않기 위해서다.
 _VISIBLE_LINE = re.compile(r"^(\s*visible\s*:\s*)(true|false)\s*$", re.IGNORECASE)

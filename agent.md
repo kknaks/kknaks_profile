@@ -35,7 +35,7 @@ CLAUDE.md
 
 | 건드리는 곳 | 규칙 | 양식 |
 |---|---|---|
-| [[inbox/README\|inbox]] · [[resources/README\|resources]] | [[knowledge-note-pipeline]] | `templates/knowledge/` |
+| [[resources/README\|resources]] | [[knowledge-note-pipeline]] | `templates/knowledge/` |
 | [[products/README\|products]] | [[rules/product-doc-pipeline\|product-doc-pipeline]] | `templates/product/` |
 | `products/*/showcase.md` · `persona/{contents,career,daily}/**` | [[persona-artifacts]] | `templates/persona/` 등 |
 

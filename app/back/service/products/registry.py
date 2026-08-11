@@ -147,9 +147,9 @@ def _write_and_commit(
         (root / card_path).write_text(content, encoding="utf-8")
         paths.append(card_path)
 
-        index_path = scaffold.append_product_index(slug, root)
-        if index_path:
-            paths.append(index_path)
+        # 제품 목록은 `tracked_repos` 가 원장이다 — `products/README.md` 에
+        # 행을 더하던 것을 제거했다(KDEV-DEC-017 D15 철회). 같은 사실을 DB 와
+        # 파일 두 곳에 두면 어느 쪽이 맞는지 정할 수 없다.
     except ScaffoldError:
         apply_git.rollback(root, before)
         raise

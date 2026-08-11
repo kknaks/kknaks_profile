@@ -47,6 +47,6 @@
 ## 운영 원칙
 
 - 개인사업자의 현재 상태는 이 문서에만 둔다.
-- 프로젝트의 안정적인 목록과 경계는 `context/studio/projects.md`에 둔다.
+- 제품 목록의 원장은 `tracked_repos` DB 다(KDEV-DEC-014 D1). 이 문서는 **지금 무엇을 하고 있나**만 둔다.
 - 작업 흐름은 `context/studio/workflow.md`를 따른다.
 - 앱을 회사처럼 운영하기 위해 current, projects, release 기준을 분리한다.

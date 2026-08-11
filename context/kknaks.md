@@ -11,7 +11,7 @@
 | 영역 | 이름 | 설명 | 하위 context |
 |---|---|---|---|
 | 회사 | 회사 경험 기록 | 회사에서 겪은 챌린지, 해결방안, 성과를 이력서/포트폴리오로 환류하기 위한 정보 | [[context/company/current\|현황]] · [[context/company/projects\|프로젝트]] · [[context/company/org\|조직도]] |
-| 개인사업자 | 여름별컴퍼니 | 개인 앱/서비스를 회사처럼 기획, 개발, 출시, 운영하는 사업체 | [[context/studio/current\|현황]] · [[context/studio/projects\|프로젝트]] · [[context/studio/org\|조직도]] · [[context/studio/workflow\|작업흐름]] |
+| 개인사업자 | 여름별컴퍼니 | 개인 앱/서비스를 회사처럼 기획, 개발, 출시, 운영하는 사업체 | [[context/studio/current\|현황]] · [[products/README\|제품]] · [[context/studio/org\|조직도]] · [[context/studio/workflow\|작업흐름]] |
 | 개인 | 개인 (사람 본인) | 회사·여름별컴퍼니가 **역할**이라면 개인은 **사람 본인**이다. **배움**(자료·개념)과 **이력**(그날 한 일 전부)을 갖는다 | [[context/personal/current\|현황]] · [[context/personal/projects\|학습 갈래]] |
 
 ## 회사 정보
@@ -64,7 +64,7 @@
 - 조직도와 사람/역할 정보는 각 영역의 `org.md`에 둔다.
 - 회사 경험 기록의 현재 상태는 `context/company/current.md`에 둔다.
 - 개인사업자의 현재 상태는 `context/studio/current.md`에 둔다.
-- 프로젝트 목록은 각 영역의 `projects.md`에 둔다.
+- 회사 제품/프로젝트 경계는 `context/company/projects.md`에 둔다. **여름별컴퍼니 제품 목록은 `tracked_repos` DB 가 원장**이라 문서로 두지 않는다(KDEV-DEC-014 D1).
 - 개인 영역의 현재 상태는 `context/personal/current.md`에, 학습 갈래는 `context/personal/projects.md`에 둔다.
 - 그날의 기록은 `persona/daily/`가 원장이다 — context 는 상태와 경계만 둔다.
 - 학습으로 쌓인 지식 자체의 SSOT는 [[resources/README|resources]]다 — context 는 상태와 경계만 둔다.

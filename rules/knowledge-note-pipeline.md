@@ -32,7 +32,7 @@
 
 | 경로 | `type` | 성격 |
 |---|---|---|
-| `inbox/` | `idea` | 미정제 보류함. 노드이되 층 없음, `up:` 대상이 될 수 없다 |
+| `inbox/` | `idea` | **공부 노트 입구**(KDEV-BL-007 케이스 5). 접수되면 비워지므로 평소에는 없다. 노드이되 층 없음, `up:` 대상이 될 수 없다 |
 | `archive/` | (원 타입 유지) | 층이 아니라 **상태**
 | `persona/contents/` · `algorithms/` | `content`·`algorithm` | 그래프 밖 (KDEV-DEC-008) |
 
@@ -58,7 +58,7 @@
 
 지식 파이프라인 층(KDEV-SPEC-001/003)을 스캔할 때 범위는 아래와 같다.
 
-- 평소 스캔(활성 층): `inbox/` · `resources/source/` · `resources/concept/` + `persona/posts/`
+- 평소 스캔(활성 층): `resources/source/` · `resources/concept/` + `persona/posts/`
 - cold(명시 요청 시에만): `archive/`
 
 `archive/` 는 안 쓰게 된 노트·개념의 장기기억이라 평소 스캔에서 제외한다. 사용자가 명시적으로 요청할 때만 읽는다(D-005). `resources/` 밖에 있는 것은 **층이 아니라 상태**여서다 — `products/{제품}/_archive/`(버전 컷오프 동결본)와는 다른 것이다.

@@ -136,18 +136,6 @@ class TestCardRendering:
         assert "# 개요" in body and "# 기술스택" in body and "# 주요기능" in body
 
 
-class TestProductIndex:
-    def test_row_is_appended_not_regenerated(self, repo: Path) -> None:
-        """`Context` 열의 사람 메모가 날아가면 안 된다(D15)."""
-        scaffold.append_product_index("alpha", repo)
-        text = (repo / "products" / "README.md").read_text(encoding="utf-8")
-        assert "| alpha | `products/alpha/` |" in text
-        assert "| existing | `products/existing/` |" in text
-
-    def test_existing_row_is_left_alone(self, repo: Path) -> None:
-        assert scaffold.append_product_index("existing", repo) is None
-
-
 class TestValidation:
     def test_repo_slug_forms(self) -> None:
         assert parse_repo_slug("https://github.com/kknaks/ax-graph.git") == "kknaks/ax-graph"

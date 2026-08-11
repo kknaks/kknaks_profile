@@ -12,7 +12,7 @@
 
 ## 코드 레포
 
-코드는 이 레포가 아니라 별도 저장소에서 관리한다. 아래 값은 오케스트레이션 설정(`config/projects/kknaks-agents.json`) 기준이며, 이 제품은 아직 `context/studio/projects.md`에 등록돼 있지 않다.
+코드는 이 레포가 아니라 별도 저장소에서 관리한다. 아래 값은 오케스트레이션 설정(`config/projects/kknaks-agents.json`) 기준이다. 제품 등록의 원장은 `tracked_repos` DB 다(KDEV-DEC-014 D1).
 
 | 항목 | 경로 |
 |---|---|
