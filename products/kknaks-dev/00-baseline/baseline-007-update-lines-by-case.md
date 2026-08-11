@@ -59,7 +59,7 @@ tags:
 
 | # | 케이스 | 입구 | 종착지 | 상태 |
 |---|---|---|---|---|
-| 1 | 잔디잡 | 21시 스케줄 → DB 큐 | `persona/daily/` · `persona/career/{회사}` · `resources/concept/` | 돈다 |
+| 1 | 잔디잡 | **09:05 KST** 스케줄 → 접수 → DB 큐 | `persona/daily/` · `persona/career/{회사}` · `resources/concept/` | 돈다 |
 | 2 | 유튜브 콘텐츠 | Slack URL·업로드 → DB 큐 | `resources/source/` · `resources/concept/` · `persona/contents/` · `inbox/`(보류) · 폐기 | 돈다 |
 | 3 | 블로그 글 | — | `persona/posts/` | **미구현** |
 
