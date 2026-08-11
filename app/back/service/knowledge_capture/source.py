@@ -88,6 +88,20 @@ async def fetch_source(
 ) -> SourceMaterial:
     if detect_source_type(url) == "youtube":
         return await _fetch_youtube(url)
+    if detect_source_type(url) == "blog":
+        # 글·문서는 **정적 → 동적 → 최종 실패**를 탄다 (KDEV-BL-007 케이스 3).
+        # 아래 경로는 태그를 정규식으로 전부 지워 페이지를 한 덩어리로 만들기 때문에
+        # JS 로 그리는 페이지가 조용히 "본문 100자" 로 성공한다. `paper`(PDF)는
+        # 스트리밍 추출이라 그대로 아래를 쓴다.
+        from .web import collect_web
+
+        return await collect_web(
+            url,
+            timeout=timeout,
+            max_bytes=max_bytes,
+            max_redirects=max_redirects,
+            transport=transport,
+        )
     current = url
     async with httpx.AsyncClient(
         timeout=timeout,

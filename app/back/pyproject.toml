@@ -14,6 +14,7 @@ dependencies = [
     "slack-bolt>=1.28",            # Socket Mode knowledge capture bridge
     "aiohttp>=3.13.5",             # slack-bolt AsyncApp/Socket Mode runtime
     "pypdf>=5.0",                  # paper PDF text extraction
+    "beautifulsoup4>=4.12",        # 웹 본문 추출 (KDEV-BL-007 케이스 3) — UI 태그 제거 후 남는 것이 본문
     "apscheduler>=3.10",
     "yt-dlp>=2024.12",             # YouTube 메타데이터 (content enrich 잡)
     "youtube-transcript-api>=0.6", # YouTube 자막 (content enrich 잡)

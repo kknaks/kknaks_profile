@@ -4,6 +4,7 @@ import httpx
 import pytest
 
 from service.knowledge_capture import source
+from service.knowledge_capture import web
 from service.knowledge_capture.source import SourceFetchError, fetch_source, validate_public_url, find_urls
 
 
@@ -18,11 +19,12 @@ async def test_html_fetch_is_bounded_and_readable(monkeypatch):
     async def allow(_url):
         return None
 
-    monkeypatch.setattr(source, "validate_public_url", allow)
+    # 글 URL 은 `web.collect_web` 을 탄다 — 가드도 그쪽 이름을 봐야 한다.
+    monkeypatch.setattr(web, "validate_public_url", allow)
     transport = httpx.MockTransport(lambda request: httpx.Response(
         200,
         headers={"content-type": "text/html; charset=utf-8"},
-        text="<html><title>Example</title><body>" + ("useful text " * 20) + "</body></html>",
+        text="<html><title>Example</title><body>" + ("useful text " * 60) + "</body></html>",
     ))
     material = await fetch_source("https://example.com/post", transport=transport)
     assert material.source_type == "blog"
@@ -38,7 +40,7 @@ async def test_redirect_target_is_revalidated(monkeypatch):
     async def record(url):
         seen.append(url)
 
-    monkeypatch.setattr(source, "validate_public_url", record)
+    monkeypatch.setattr(web, "validate_public_url", record)
 
     def handler(request):
         if request.url.path == "/start":
@@ -46,7 +48,7 @@ async def test_redirect_target_is_revalidated(monkeypatch):
         return httpx.Response(
             200,
             headers={"content-type": "text/html"},
-            text="<title>Final</title><body>" + ("content " * 30) + "</body>",
+            text="<title>Final</title><body>" + ("content " * 80) + "</body>",
         )
 
     await fetch_source("https://example.com/start", transport=httpx.MockTransport(handler))
@@ -58,14 +60,17 @@ async def test_oversized_source_rejected(monkeypatch):
     async def allow(_url):
         return None
 
-    monkeypatch.setattr(source, "validate_public_url", allow)
+    monkeypatch.setattr(web, "validate_public_url", allow)
     transport = httpx.MockTransport(lambda request: httpx.Response(
         200,
-        headers={"content-type": "text/plain"},
+        headers={"content-type": "text/html"},
         content=b"x" * 101,
     ))
-    with pytest.raises(SourceFetchError, match="size limit"):
+    with pytest.raises(web.WebCollectError) as exc:
         await fetch_source("https://example.com/large", max_bytes=100, transport=transport)
+    # `WebCollectError` 는 `SourceFetchError` 다 — 호출자 계약은 그대로이고 코드만 늘었다.
+    assert isinstance(exc.value, SourceFetchError)
+    assert exc.value.code == web.SOURCE_TOO_LARGE
 
 
 class TestSlackLinkFormatting:  # noqa: E301
