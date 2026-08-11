@@ -1,8 +1,8 @@
 # persona/_map.md
 
-> 자동 생성 (build_persona_map.py, 2026-07-29 13:07 KST). 수동 편집 X.
+> 자동 생성 (build_persona_map.py, 2026-08-11 10:04 KST). 수동 편집 X.
 
-_총 132 파일 (profile 1 / career 5 / projects 13 / notes 0 / contents 24 / daily 89)_
+_총 139 파일 (profile 1 / career 5 / projects 9 / notes 0 / contents 24 / daily 100)_
 
 ## profile
 
@@ -15,20 +15,16 @@ _총 132 파일 (profile 1 / career 5 / projects 13 / notes 0 / contents 24 / da
 - [[career/bitcamp]] 비트캠프 (2024.06 — 2024.12)
 - [[career/dowha-eng]] 도화 엔지니어링 (2020.01 — 2023.12)
 
-## projects (web 2 · frontend 0 · backend 6 · mobile 4 · ai 0 · cli 1 · bot 0)
-- [[products/kknaks-profile/showcase]] kknaks.dev (web · wip)
+## projects (web 2 · frontend 0 · backend 1 · mobile 5 · ai 0 · cli 1 · bot 0)
+- [[products/kknaks-dev/showcase]] kknaks.dev (web · wip)
 - [[products/summer-star-company/showcase]] Summer Star — 사무실 NFC 출퇴근 (web · wip)
 - [[products/persona-counselor/showcase]] Persona Counselor (mobile · wip)
 - [[products/language-diary/showcase]] Language Diary (mobile · wip)
 - [[products/study-timelapse/showcase]] Study Timelapse (mobile · wip)
 - [[products/wine-log/showcase]] Wine Log (mobile · live)
+- [[products/mac-remote/showcase]] DeskDeck (mobile · live)
 - [[products/open-kknaks/showcase]] open-kknaks (cli · live)
 - [[products/mykakao/showcase]] mykakao (backend · wip)
-- [[products/centurion-charty/showcase]] Centurion Charty (backend · wip)
-- [[products/centurion-mso/showcase]] Centurion MSO (backend · wip)
-- [[products/linky/showcase]] Linky (backend · wip)
-- [[products/mediness/showcase]] Mediness (backend · wip)
-- [[products/nexus/showcase]] NEXUS (backend · wip)
 
 ## notes (ai_skills 0 · airflow 0 · SpringBoot 0 · React 0 · NCPcloud 0 · network 0 · codingTest 0 · interview 0 · BackendSchool 0 · bitcamp 0 · study 0 · work 0 · k8s 0)
 
@@ -60,17 +56,17 @@ _총 132 파일 (profile 1 / career 5 / projects 13 / notes 0 / contents 24 / da
 - [[contents/C-002-modulo-bias-in-game-probability-systems]] Day 02 — 모듈로 편향으로 인한 게임 확률 버그 (2026.05.02)
 - [[contents/C-001-fastapi-di]] Day 01 — FastAPI Dependency Injection — 진짜 쓸 수 있게 (2026.05.01)
 
-## daily (총 89개, 최근 10)
-- [[daily/2026-07-28]] (2026.07.28)
-- [[daily/2026-07-27]] (2026.07.27)
-- [[daily/2026-07-26]] (2026.07.26)
-- [[daily/2026-07-25]] (2026.07.25)
-- [[daily/2026-07-24]] (2026.07.24)
-- [[daily/2026-07-23]] (2026.07.23)
-- [[daily/2026-07-22]] (2026.07.22)
-- [[daily/2026-07-21]] (2026.07.21)
-- [[daily/2026-07-20]] (2026.07.20)
-- [[daily/2026-07-19]] (2026.07.19)
+## daily (총 100개, 최근 10)
+- [[daily/2026-08-09]] (2026.08.09)
+- [[daily/2026-08-08]] (2026.08.08)
+- [[daily/2026-08-07]] (2026.08.07)
+- [[daily/2026-08-06]] (2026.08.06)
+- [[daily/2026-08-05]] (2026.08.05)
+- [[daily/2026-08-04]] (2026.08.04)
+- [[daily/2026-08-03]] (2026.08.03)
+- [[daily/2026-08-02]] (2026.08.02)
+- [[daily/2026-08-01]] (2026.08.01)
+- [[daily/2026-07-31]] (2026.07.31)
 
 ## 위키링크 그래프 (notes)
 
