@@ -68,24 +68,28 @@ def _load_dir(category: str, recursive: bool = False) -> list:
 
 
 def _load_reference() -> list:
-    """reference/{cluster}/**/*.md → frontmatter.Post 리스트 (persona/notes 대체, KDEV-WORK-005).
+    """`resources/source/*.md` → frontmatter.Post 리스트.
 
-    클러스터 하위만 로드 — top-level reference/README.md(navigational)는 제외.
-    id=stem, group=cluster, title 자동 추출(frontmatter 무편집 전제). 디덥 안 함
-    (loader 는 Day01 중복 stem 1개 dedup 하지만, map 은 prior 동작대로 전 파일 렌더).
+    **flat 이다.** 종전에는 `reference/{cluster}/**` 를 훑었는데 KDEV-DEC-018 이
+    지식층을 `resources/` 로 옮기며 하위 폴더를 없앴다. 그 뒤로도 여기만 옛 경로를
+    보고 있어 **자료가 146건인데 `notes 0` 을 냈다** — 없는 디렉토리라 조용히 빈
+    리스트를 돌려줬기 때문이다.
+
+    `group` 도 사라졌다(flat). 종전 13종 클러스터 요약은 총계로 대체한다.
+    `README.md` 는 navigational 이라 제외한다.
     """
-    reference_dir = REPO / "reference"
-    if not reference_dir.is_dir():
+    source_dir = REPO / "resources" / "source"
+    if not source_dir.is_dir():
         return []
     posts = []
-    for cluster_dir in sorted(p for p in reference_dir.iterdir() if p.is_dir()):
-        for md_path in sorted(cluster_dir.glob("**/*.md")):
-            post = frontmatter.load(md_path)
-            post.path = md_path  # type: ignore[attr-defined]
-            post.metadata.setdefault("id", md_path.stem)
-            post.metadata.setdefault("group", cluster_dir.name)
-            post.metadata.setdefault("title", md_path.stem)
-            posts.append(post)
+    for md_path in sorted(source_dir.glob("*.md")):
+        if md_path.name == "README.md":
+            continue
+        post = frontmatter.load(md_path)
+        post.path = md_path  # type: ignore[attr-defined]
+        post.metadata.setdefault("id", md_path.stem)
+        post.metadata.setdefault("title", md_path.stem)
+        posts.append(post)
     return posts
 
 
@@ -196,29 +200,22 @@ def _section_projects(projects: list, meta: dict) -> str:
 
 
 def _section_notes(notes: list, meta: dict) -> str:
-    grp_counts = Counter(n.metadata.get("group", "") for n in notes)
-    grp_summary = " · ".join(
-        f"{cl['id']} {grp_counts.get(cl['id'], 0)}"
-        for cl in sorted(
-            meta.get("notes", {}).get("clusters", []),
-            key=lambda c: c.get("order", 999),
-        )
-    )
-    lines = [f"## notes ({grp_summary or 'no clusters'})"]
+    """자료(`resources/source/`) 목록. **flat 이라 그룹 요약이 없다**(KDEV-DEC-018).
+
+    링크는 stem 그대로다 — 옵시디언이 basename 으로 푼다.
+    """
+    lines = [f"## notes (resources/source · 총 {len(notes)}건)"]
     if not notes:
         lines.append("\n(없음)")
         return "\n".join(lines)
     sorted_notes = sorted(
-        notes,
-        key=lambda n: (n.metadata.get("group", ""), n.metadata.get("id", "")),
+        notes, key=lambda n: str(n.metadata.get("date", "")), reverse=True
     )
     for n in sorted_notes:
         m = n.metadata
-        slug = n.path.stem
         title = _i18n_label(m.get("title", ""))
-        grp = m.get("group", "")
         date = m.get("date", "")
-        lines.append(f"- [[reference/{slug}]] {title} ({grp} · {date})")
+        lines.append(f"- [[{n.path.stem}]] {title} ({date})")
     return "\n".join(lines)
 
 
