@@ -1,3 +1,34 @@
+---
+type: baseline
+id: KDEV-BL-007
+title: "업데이트 라인 케이스 정리 — 서버 승인 게이트 · 로컬 작업"
+status: raw
+product: kknaks-dev
+source:
+  type: idea
+  ref: "PARA 연결(KDEV-DEC-020) 뒤 「이걸 규칙에 맞게 업데이트하는 라인」을 케이스별로 정리하려는 작업"
+links:
+  baselines:
+    - "[[baseline-003-inbox-approval-pipeline|KDEV-BL-003]]"
+    - "[[baseline-006-para-alignment-and-sot-map|KDEV-BL-006]]"
+  decisions:
+    - "[[decision-011-approval-gate-chain|KDEV-DEC-011]]"
+    - "[[decision-015-grass-destinations-and-formats|KDEV-DEC-015]]"
+    - "[[decision-020-para-alignment-area-and-personal|KDEV-DEC-020]]"
+  specs:
+    - "[[spec-008-gate-chain|KDEV-SPEC-008]]"
+    - "[[spec-012-grass-artifacts|KDEV-SPEC-012]]"
+  works: []
+  releases: []
+  related: []
+created_at: 2026-08-11
+updated_at: 2026-08-11
+tags:
+  - product/kknaks-dev
+  - doc/baseline
+  - status/raw
+---
+
 # 업데이트 라인 케이스 정리 — 서버 승인 게이트 · 로컬 작업
 
 > 아직 결정하지 않은 날것의 입력이다. 정리보다 보존이 우선이다.
@@ -31,7 +62,7 @@
 | --- | ------- | ----------------------------- | ------------------------------------------------------------------------------------ | ------- |
 | 1   | 잔디잡     | **09:05 KST** 스케줄 → 접수 → DB 큐 | `persona/daily/` · `persona/career/{회사}` · `resources/concept/`                      | 돈다      |
 | 2   | 유튜브 콘텐츠 | Slack URL·업로드 → DB 큐          | `resources/source/` · `resources/concept/` · `persona/contents/` · `inbox/`(보류) · 폐기 | 돈다      |
-| 3   | 블로그 글   | —                             | `persona/posts/`                                                                     | **미구현** |
+| 3 | 블로그 글 | URL → DB 큐 (`source_kind=blog`) | `resources/source/` · `resources/concept/` · `persona/posts/` | **판별만 됨** — 파이프라인 정의 없음 |
 
 
 - 1은 **route 게이트가 없다** — 목적지가 고정이라 고를 것이 없다([[decision-015-grass-destinations-and-formats|KDEV-DEC-015]] D1).
@@ -67,6 +98,96 @@ flowchart TD
 ```
 
 
+
+#### 2. 유튜브 콘텐츠 워크플로우
+
+```mermaid
+flowchart TD
+    IN1(["Slack URL 수신"]) --> N["normalize_url<br/>detect_source_kind"]
+    IN2(["제품 화면 URL 입력"]) --> N
+    IN3(["inbox md 업로드"]) --> N
+    N --> Q[("DB 큐<br/>source_kind=youtube")]
+
+    Q --> C["collect · auto<br/>원문·자막 수집"]
+    C --> S["summarize · auto<br/>판단 재료만 만든다 — 노트 작성 아님"]
+
+    S --> R{{"route · gate<br/>★ 목적지 조합을 고른다"}}
+    R --> R1{"exclusive?"}
+    R1 -->|"보류"| H["inbox/{날짜}-{slug}.md<br/>idea 1장 발행하고 종료"]
+    R1 -->|"폐기"| X(["종료 — 이후 스테이지 없음"])
+    R1 -->|"아니오"| E["enabled_stages()<br/>켠 목적지만 게이트를 연다"]
+
+    E -.->|"reference on"| G1{{"source_note · gate"}}
+    E -.->|"concept on"| G2{{"concept · gate"}}
+    E -.->|"derived on"| G3{{"derived · gate"}}
+
+    G1 --> A["Apply Executor<br/>원자적 발행"]
+    G2 --> A
+    G3 --> A
+
+    A --> D1["resources/source/{날짜}-{slug}.md"]
+    A --> D2["resources/concept/{slug}.md<br/>concept_index 로 기존 개념 매칭"]
+    A --> D3["persona/contents/**"]
+    A --> D4["git commit + push"]
+
+    G2 -.->|"이 목적지가 아님"| R
+```
+
+**잔디와 다른 점 넷.**
+
+1. **입구가 사람이다.** Slack·화면 입력·업로드 셋 다 사람이 시작한다. 잔디만 스케줄이 시작한다.
+2. **`route` 게이트가 체인 길이를 정한다.** `enabled_stages()` 가 켠 목적지만 뒤 게이트를 연다 — 아무것도 안 켜면 게이트가 없다.
+3. **배타 옵션이 있다.** 보류(`inbox/` 1장 발행 후 종료)와 폐기(즉시 종료)는 뒤 게이트를 만들지 않는다.
+4. **유일한 역방향 전이가 있다.** 뒤 게이트에서 「이 목적지가 아님」을 내면 `route` 가 재오픈된다. 자동 스테이지(수집·요약) 결과는 재사용한다 — 목적지 오판 때문에 자막을 다시 받지 않는다.
+
+`summarize` 는 **판단 재료만** 만들고 **노트 작성은 게이트가 한다** — 잔디의 `daily` 게이트가 작성하는 것과 같은 대칭이다.
+
+#### 3. 블로그 글 워크플로우
+
+**유튜브와 파이프라인이 같다.** 다른 것은 `collect` 의 수집 방식과 종착지뿐이다.
+
+```mermaid
+flowchart TD
+    IN(["블로그·문서 URL"]) --> N["normalize_url<br/>추적 파라미터만 제거 · 쿼리는 보존"]
+    N --> K["detect_source_kind → 'blog'<br/>urls.py:124 — 이미 구현돼 있다"]
+    K --> Q[("DB 큐<br/>source_kind=blog")]
+
+    Q --> C["collect · auto<br/>본문 크롤링"]
+    C --> C1["정적 article 추출"]
+    C --> C2["동적 렌더링 페이지"]
+    C1 --> S["summarize · auto<br/>판단 재료"]
+    C2 --> S
+
+    S --> R{{"route · gate<br/>목적지 조합"}}
+    R -->|"보류·폐기"| X(["inbox 1장 또는 종료"])
+    R --> G1{{"source_note · gate"}}
+    R --> G2{{"concept · gate"}}
+    R --> G3{{"post · gate ★ 신설 필요"}}
+
+    G1 --> A["Apply Executor"]
+    G2 --> A
+    G3 --> A
+
+    A --> D1["resources/source/{날짜}-{slug}.md<br/>원본 정리 전문 · 비공개"]
+    A --> D2["resources/concept/{slug}.md"]
+    A --> D3["persona/posts/{slug}.md<br/>post_article | post_note · source 와 1:1"]
+    A --> D4["git commit + push"]
+```
+
+**이미 있는 것.**
+
+- `urls.py:124` 가 유튜브 아닌 http(s) URL 을 **`blog` 로 판별**한다. 정규화도 층을 나눠 뒀다 — 유튜브는 영상 ID 만 남기고, 블로그는 `?p=1`·`?p=2` 가 다른 글이라 쿼리를 보존한다.
+- 수집 계약은 [[spec-012-source-collection-adapter|AXKG-SPEC-012]] 가 갖고 있다 — 정적 article·동적 렌더링·docx 텍스트 추출. **ax-knowledge-graph 에서 실제로 돌고 있는 구현**이다.
+- 종착지 양식도 있다 — `templates/persona/post-article.md` · `post-note.md`.
+
+**없는 것.**
+
+- `PIPELINES` 에 `blog` 정의가 없다. `pipeline_for("blog")` → `None` — **판별은 되는데 태울 파이프라인이 없다.**
+- `post` 목적지를 만드는 게이트 스테이지가 없다. `DESTINATION_STAGE` 는 `reference`·`concept`·`derived` 셋뿐이다.
+
+**유튜브와 갈리는 지점 하나.**
+
+유튜브는 `derived` 가 **교안**(`persona/contents/`)을 만들고, 블로그는 **공개 글**(`persona/posts/`)을 만든다. 둘 다 「자료를 사람이 읽을 것으로 바꾼 것」인데 산출이 다르다 — 교안은 학습용 장문이고 글은 핵심 압축이다.
 
 ### 로컬 — 사람·에이전트
 
@@ -112,5 +233,7 @@ flowchart TD
 | OQ-2 | 게이트 목적지에 `products/` 가 없다 — P 는 로컬만 만드는 것이 맞나                     |
 | OQ-3 | `persona/posts/` 를 누가 만드나 — 게이트(3)인가 로컬인가                         |
 | OQ-4 | 케이스 5(공부 노트)가 게이트를 타야 하나, 로컬로 끝내야 하나                              |
+| OQ-5 | **유튜브도 `posts` 를 만드나** — 지금은 `derived` 가 교안만 만든다. 영상도 스크랩 글이 될 수 있다 |
+| OQ-6 | `blog` 의 `collect` 를 AXKG-SPEC-012 에서 이식할 때 경계 — 어디까지 가져오나(정적·동적·docx) |
 
 
