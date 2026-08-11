@@ -12,6 +12,15 @@
 
 배운 것은 자료(`resources/source/`)로 남기고 개념(`resources/concept/`)으로 자란다. 그 개념이 제품 결정의 근거가 되거나 글(`persona/posts/`)로 나가는 것이 이 영역의 산출이다.
 
+## 이 영역이 갖는 것
+
+| | 무엇 | 어디 |
+|---|---|---|
+| **배움** | 자료와 개념 | [[resources/README\|resources]] |
+| **이력** | 그날 한 일 전부 (회사·제품·개인이 섞인다) | `persona/daily/` 100건 |
+
+`daily` 는 **사람 단위 원장**이라 역할별로 갈리지 않는다. 회사 부분은 `persona/career/` 가 추려 간다([[decision-020-para-alignment-area-and-personal|KDEV-DEC-020]] D5).
+
 ## 현재 우선순위
 
 | Priority | 무엇 | State | Next |
