@@ -279,6 +279,7 @@ flowchart TD
 | ~~OQ-8~~ | 트리거 감지 | **FastAPI 시작 프로세스**(lifespan)에서 스캔한다. push 로 파일이 들어온 뒤 서버가 뜨면 집는다 |
 | ~~OQ-9~~ | `source_kind` 이름 | URL 이 없으면 **실패**다. 공부 노트는 URL 축이 아니므로 `detect_source_kind` 를 거치지 않고 별도 kind 를 쓴다 |
 | ~~OQ-1~~ | `render.py` 의 `inbox/` 직접 쓰기 | **잔재였다. 지웠다.** KDEV-DEC-013 D2 가 없애기로 한 3단(`atomic_write`+`publish`+`reload_data`)이 코드에 남아 있었다 — `bootstrap` 은 이미 `QueueIntakeRunner` 를 조립하고 있어 라이브 참조가 0이었다 |
+| ~~OQ-2~~ | 게이트가 `products/` 를 만드나 | **만들 수 없다.** `ALLOWED_PREFIXES` 에 `products/` 가 없어 발행이 거부되고, `DESTINATION_STAGE` 에도 항목이 없다. 자료(유튜브·블로그)에서 제품 문서가 나올 일도 없다 — **P 는 로컬만 만든다** |
 | ~~OQ-10~~ | 「미처리」를 무엇으로 판정하나 | `inbox/` 는 서버에서 **항상 비어 있는 상태**를 유지한다(접수 때 DB 로 옮기고 지운다). 그리고 접수 전에 **DB 큐를 조회해 이미 있으면 skip** 한다 — 승인이 늦어 큐에 머무는 동안 같은 파일이 다시 push 돼도 겹치지 않는다 |
 
 ### DEC-011 D1 개정이 필요하다
@@ -298,6 +299,5 @@ flowchart TD
 
 | ID | 질문 |
 |---|---|
-| OQ-2 | 게이트 목적지에 `products/` 가 없다 — P 는 로컬만 만드는 것이 맞나 |
 | OQ-11 | 접수 멱등의 **자연키** — 파일명(slug)인가 내용 해시인가. 파일명이면 이름을 고쳐 다시 넣은 것이 새 항목이 되고, 해시면 오탈자 하나에 새 항목이 된다 |
 
