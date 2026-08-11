@@ -206,6 +206,52 @@ def render_career(payload: dict[str, Any], existing: str) -> str:
     return f"{block}\n{body}"
 
 
+#: 잔디가 갱신하는 `current.md` 섹션. **이 하나뿐이다** (KDEV-DEC-022 D2).
+CURRENT_MANAGED_SECTION = "## 진행 중"
+
+
+def replace_section(existing: str, header: str, body: str) -> str:
+    """`header` 로 시작하는 섹션의 **본문만** 갈아 끼운다. 나머지는 문자 그대로 남는다.
+
+    `render_career` 가 겪은 것을 반복하지 않는다 (KDEV-DEC-022 D3) — 종전에
+    frontmatter 를 파싱해 왕복했더니 **값은 보존되지만 주석이 사라지고 키가
+    재정렬**돼, 본문만 바뀌어야 할 발행이 42 insertions / 38 deletions 를 냈다.
+    사람이 적어 둔 주석·빈 칸·순서도 그 사람의 것이다.
+
+    헤더가 없으면 `ValueError` 다 — **조용히 멈추지 않는다.** 사람이 헤더 이름을
+    바꾸면 갱신이 안 되는데, 그것을 모른 채 지나가면 문서가 다시 죽는다.
+    """
+    lines = existing.splitlines(keepends=True)
+    start = None
+    for i, line in enumerate(lines):
+        if line.strip() == header:
+            start = i
+            break
+    if start is None:
+        raise ValueError(f"섹션 없음: {header}")
+
+    end = len(lines)
+    for i in range(start + 1, len(lines)):
+        if lines[i].startswith("## "):
+            end = i
+            break
+
+    body = body.strip("\n")
+    block = [lines[start], "\n", body + "\n"]
+    if end < len(lines):
+        block.append("\n")
+    return "".join(lines[:start] + block + lines[end:])
+
+
+def render_current(payload: dict[str, Any], existing: str) -> str:
+    """`context/{영역}/current.md` — **`## 진행 중` 섹션만** 갈아 끼운다.
+
+    갱신안이 담는 것은 그 표 하나다. 우선순위·이번 주 목표·Blockers 는 판단이라
+    사람 소유이고, 담기면 `_current_violations` 가 발행을 막는다.
+    """
+    return replace_section(existing, CURRENT_MANAGED_SECTION, str(payload.get("content") or ""))
+
+
 def build_actions(
     approved: dict[str, dict[str, Any]], *, repo_root: Path | None = None
 ) -> list[FileAction]:
@@ -268,6 +314,30 @@ def build_actions(
                 content=content,
                 note_type=_note_type(content),
                 stem=str(career.get("stem") or ""),
+                source_gate="daily",
+            )
+        )
+
+    current = grass.get("current") or {}
+    if current.get("changed") and current.get("target_path"):
+        path = str(current.get("target_path") or "")
+        existing = ""
+        if repo_root is not None:
+            target = repo_root / path
+            if target.exists():
+                existing = target.read_text(encoding="utf-8")
+        try:
+            content = render_current(current, existing)
+        except ValueError:
+            # 섹션이 없다 — 그대로 넘겨 `_current_violations` 가 잡게 한다.
+            content = existing
+        actions.append(
+            FileAction(
+                action="replace",
+                path=path,
+                content=content,
+                note_type="current",
+                stem=str(current.get("stem") or ""),
                 source_gate="daily",
             )
         )
@@ -356,6 +426,67 @@ def _daily_violations(action: FileAction, path: str, repo_root: Path) -> list[Vi
     return []
 
 
+def _current_violations(action: FileAction, path: str, repo_root: Path) -> list[Violation]:
+    """`current.md` 는 **`## 진행 중` 만** 바뀌어야 한다 (KDEV-DEC-022 D2).
+
+    사람 소유 섹션(우선순위·이번 주 목표·Blockers·운영 원칙)이 갱신안에 담기면
+    **무시하는 것이 아니라 거부한다** — `PROTECTED_CAREER_FIELDS` 와 같은 규율이다.
+    무시하면 다음 사람이 「담아도 되는구나」로 읽는다.
+    """
+    violations: list[Violation] = []
+    target = repo_root / path
+    if not target.exists():
+        # `replace` 인데 대상이 없다 — 상위 검증이 TARGET_MISSING 으로 잡는다.
+        return violations
+
+    existing = target.read_text(encoding="utf-8")
+    if CURRENT_MANAGED_SECTION not in existing:
+        violations.append(
+            Violation(
+                "CURRENT_SECTION_MISSING",
+                path,
+                f"{CURRENT_MANAGED_SECTION} 섹션이 없다 — 헤더 이름이 바뀌었나",
+            )
+        )
+        return violations
+
+    def _sections(text: str) -> dict[str, str]:
+        out: dict[str, str] = {}
+        cur = None
+        buf: list[str] = []
+        for line in text.splitlines(keepends=True):
+            if line.startswith("## "):
+                if cur is not None:
+                    out[cur] = "".join(buf)
+                cur = line.strip()
+                buf = []
+            elif cur is not None:
+                buf.append(line)
+        if cur is not None:
+            out[cur] = "".join(buf)
+        return out
+
+    before, after = _sections(existing), _sections(action.content)
+    if set(before) != set(after):
+        violations.append(
+            Violation("CURRENT_SECTIONS_CHANGED", path, "섹션 구성이 바뀌었다 — 사람 소유다")
+        )
+        return violations
+
+    for name in before:
+        if name == CURRENT_MANAGED_SECTION:
+            continue
+        if before[name] != after[name]:
+            violations.append(
+                Violation(
+                    "CURRENT_PROTECTED_SECTION",
+                    path,
+                    f"{name} 은 사람 소유다 — 갱신안이 건드렸다",
+                )
+            )
+    return violations
+
+
 def _career_violations(action: FileAction, path: str) -> list[Violation]:
     """사람 전용 필드가 **바뀌었으면** 거부한다 (SPEC-012 / SPEC-013 `PROTECTED_FIELD`).
 
@@ -437,6 +568,8 @@ def validate_plan(
             violations.extend(_daily_violations(action, path, repo_root))
         elif action.note_type == "career":
             violations.extend(_career_violations(action, path))
+        elif action.note_type == "current":
+            violations.extend(_current_violations(action, path, repo_root))
 
         # 3. `up:` 필수 (concept) — KDEV-DEC-019 로 permanent 는 폐기됐다
         if action.note_type == "concept":

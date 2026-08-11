@@ -617,3 +617,45 @@ class TestApplyItem:
         assert "concept:1" in message and "reference:1" in message
         assert "resources/source/2026-07-28-sample-source.md" in message
         assert "https://youtu.be/applytest1" in message
+
+
+class TestCurrentSectionGuard:
+    """`current.md` 는 `## 진행 중` 만 바뀐다 — 나머지는 사람 소유다 (KDEV-DEC-022 D2)."""
+
+    @staticmethod
+    def _repo(tmp_path: Path) -> Path:
+        (tmp_path / "context" / "studio").mkdir(parents=True)
+        (tmp_path / "context" / "studio" / "current.md").write_text(
+            "# Studio Current\n\n## 진행 중\n\n| a |\n\n## Blockers\n\n- 사람 것\n",
+            encoding="utf-8",
+        )
+        return tmp_path
+
+    def test_managed_section_only_passes(self, tmp_path: Path):
+        repo = self._repo(tmp_path)
+        good = "# Studio Current\n\n## 진행 중\n\n| b |\n\n## Blockers\n\n- 사람 것\n"
+        violations = validate_plan(
+            [_action(action="replace", path="context/studio/current.md", content=good, note_type="current", stem="studio")],
+            repo_root=repo,
+        )
+        assert [v.rule for v in violations] == []
+
+    def test_touching_a_human_section_is_rejected(self, tmp_path: Path):
+        repo = self._repo(tmp_path)
+        bad = "# Studio Current\n\n## 진행 중\n\n| b |\n\n## Blockers\n\n- AI 가 고쳤다\n"
+        violations = validate_plan(
+            [_action(action="replace", path="context/studio/current.md", content=bad, note_type="current", stem="studio")],
+            repo_root=repo,
+        )
+        assert any(v.rule == "CURRENT_PROTECTED_SECTION" for v in violations)
+
+    def test_missing_managed_header_is_rejected(self, tmp_path: Path):
+        repo = self._repo(tmp_path)
+        (repo / "context" / "studio" / "current.md").write_text(
+            "# Studio Current\n\n## 하는 중\n\n| a |\n", encoding="utf-8"
+        )
+        violations = validate_plan(
+            [_action(action="replace", path="context/studio/current.md", content="x", note_type="current", stem="studio")],
+            repo_root=repo,
+        )
+        assert any(v.rule == "CURRENT_SECTION_MISSING" for v in violations)

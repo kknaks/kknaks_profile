@@ -299,3 +299,59 @@ class TestGraphExclusion:
             self._action("career", "persona/career/b.md", "---\ntype: career\n---\n"),
         ]
         assert check_graph({}, actions) == []
+
+
+CURRENT_MD = """# Studio Current
+
+## 목적
+
+여름별컴퍼니의 개인 프로젝트 운영 상태를 관리한다.
+
+## 현재 우선순위
+
+| Priority | Project |
+|---|---|
+| P0 | kknaks.dev |
+
+## 진행 중
+
+| Project | Work |
+|---|---|
+| kknaks.dev | 옛 작업 |
+
+## Blockers
+
+- 아직 없다
+
+## 운영 원칙
+
+- 사람이 쓴다.  <!-- 주석도 사람의 것이다 -->
+"""
+
+
+class TestReplaceSection:
+    """`## 진행 중` 만 바뀌고 나머지는 **문자 그대로** 남는다 (KDEV-DEC-022 D3)."""
+
+    def test_only_the_managed_section_changes(self):
+        from service.apply.plan import CURRENT_MANAGED_SECTION, replace_section
+
+        out = replace_section(CURRENT_MD, CURRENT_MANAGED_SECTION, "| Project | Work |\n|---|---|\n| kknaks.dev | 새 작업 |")
+        assert "새 작업" in out and "옛 작업" not in out
+        # 사람 소유는 주석·빈 칸까지 그대로다.
+        assert "- 사람이 쓴다.  <!-- 주석도 사람의 것이다 -->" in out
+        assert "| P0 | kknaks.dev |" in out
+        assert "- 아직 없다" in out
+
+    def test_missing_header_raises_instead_of_silently_skipping(self):
+        """헤더 이름을 바꾸면 **조용히 멈추지 않는다** — 그러면 문서가 다시 죽는다."""
+        from service.apply.plan import replace_section
+
+        with pytest.raises(ValueError):
+            replace_section(CURRENT_MD, "## 없는 섹션", "x")
+
+    def test_last_section_is_replaceable(self):
+        from service.apply.plan import replace_section
+
+        out = replace_section(CURRENT_MD, "## 운영 원칙", "- 바뀐 원칙")
+        assert out.endswith("- 바뀐 원칙\n")
+        assert "| P0 | kknaks.dev |" in out
