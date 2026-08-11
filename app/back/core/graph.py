@@ -29,8 +29,9 @@ ALLOWED_NODE_TYPES: set[str] = {
     "idea",
     # persona (그래프 밖이지만 type 자체는 유효)
     "profile", "career", "content", "daily", "algorithm",
-    # 층 배정 보류 (KDEV-DEC-010 — posts 배선 미완)
-    "post",
+    # 공개 글 (KDEV-DEC-020 D3 — A 의 귀결). 층은 없다 — persona 계열은 그래프 밖이다.
+    # `post` 하나였던 것을 둘로 가른다: 자료가 말한 요지(article) / 내가 이해한 것(note).
+    "post_article", "post_note",
 }
 
 # KDEV-DEC-010 D3 로 폐기 예정인 type. Phase 5 에서 ALLOWED 에서 완전히 뺀다.

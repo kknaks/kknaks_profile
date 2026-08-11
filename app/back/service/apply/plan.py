@@ -35,6 +35,7 @@ ALLOWED_PREFIXES = (
     # 잔디 산출물 (KDEV-WORK-017 P3). 지식층이 아니라 그래프 밖이다.
     "persona/daily/",
     "persona/career/",
+    "persona/posts/",
     # 영역 현황 (KDEV-DEC-022). **`## 진행 중` 섹션만** 갈아 끼운다 — 나머지는
     # 사람 소유다. `context/` 는 여전히 계보 밖이고 그래프 노드가 아니다(DEC-020 D4).
     "context/",
@@ -50,13 +51,16 @@ LAYER_PREFIX = {
     "content": "persona/contents/",
     "daily": "persona/daily/",
     "career": "persona/career/",
+    # 공개 글 — 자료 하나를 1:1 로 받아 압축한 것. 양식은 `templates/persona/post-*.md`.
+    "post_article": "persona/posts/",
+    "post_note": "persona/posts/",
     # `current` 는 영역마다 경로가 달라(`company`/`studio`) 접두만 고정한다.
     "current": "context/",
 }
 
 #: 그래프 노드가 아닌 층. 상류 참조가 없어 `up:` 검사와 그래프 검증에서 빠진다
 #: (KDEV-SPEC-013 「그래프 검증 제외」).
-OUTSIDE_GRAPH = ("daily", "career", "current")
+OUTSIDE_GRAPH = ("daily", "career", "current", "post_article", "post_note")
 
 #: career frontmatter 중 **사람만 정하는** 필드 (KDEV-SPEC-012).
 #: 갱신안에 담기면 발행을 거부한다 — 무시하는 것이 아니라 애초에 담기지 않아야 한다.
