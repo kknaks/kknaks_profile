@@ -14,6 +14,8 @@
 | 교안 | `templates/persona/content.md` | `persona/contents/**` |
 | 잔디 — 그날 | `templates/persona/daily.md` | `persona/daily/{YYYY-MM-DD}.md` |
 | 잔디 — 누적 | `templates/persona/career.md` | `persona/career/{stem}.md` |
+| 공개 글 — 스크랩 | `templates/persona/post-article.md` | `persona/posts/{slug}.md` (`type: post_article`) |
+| 공개 글 — 공부 | `templates/persona/post-note.md` | `persona/posts/{slug}.md` (`type: post_note`) |
 
 ## 프로젝트 카드 (`showcase.md`)
 
@@ -26,6 +28,19 @@
 ## 교안 (`persona/contents/**`)
 
 승인 게이트의 `derived` 스테이지와 `content_enrich` 잡이 **둘 다 이 파일을 읽는다** — 형식을 고치려면 여기만 고친다.
+
+## 공개 글 (`persona/posts/**`)
+
+자료를 읽고 **핵심만 가독성 있게** 정리한 공개 글이다. `resources/source/` 와 **1:1** 이고 `up:` 으로 그것을 가리킨다 — `up:` 이 하나라는 것이 「한 글 = 한 자료」의 제약이다.
+
+| 타입 | 무엇 | 누가 말한 것인가 |
+|---|---|---|
+| `post_article` | 스크랩 | **자료**가 말한 요지 |
+| `post_note` | 공부 | **내가** 이해한 것 |
+
+본문 뼈대는 둘이 같다 — `주제 · 개념(mermaid) · 사용 예시 · 리스크 · 비슷한 개념`. 채우는 결이 달라 템플릿을 나눴다.
+
+**개념 상세는 여기 쓰지 않는다** — `resources/concept/` 가 SoT 다. 요지만 쓰고 `[[]]` 로 위임한다.
 
 ## 잔디 산출물 (`persona/daily/**` · `persona/career/**`)
 
