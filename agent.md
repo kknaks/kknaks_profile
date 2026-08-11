@@ -9,11 +9,13 @@
 ```text
 CLAUDE.md
 → agent.md            # 여기 — 무엇을 하려는지에 따라 아래로 분기
-→ context/index.md    # 최상위 context 라우터 (회사 / 개인사업자)
-→ context/kknaks.md   # 두 영역을 가르는 기준
+→ context/index.md    # 최상위 context 라우터
+→ context/kknaks.md   # 회사 · 여름별컴퍼니 · 개인 세 영역을 가르는 기준
 ```
 
-문서 민감도·접근권한·승인 게이트를 판단할 때는 `context/policy.md` 를 추가로 읽는다.
+[[context/index|context/index]] → [[kknaks]] 로 내려간다. **경로 문자열이 아니라 링크로** 걸어 옵시디언에서도 같은 길이 보이게 한다.
+
+문서 민감도·접근권한·승인 게이트를 판단할 때는 [[policy]] 를 추가로 읽는다.
 
 ## 목적
 
@@ -33,9 +35,9 @@ CLAUDE.md
 
 | 건드리는 곳 | 규칙 | 양식 |
 |---|---|---|
-| `inbox/` · `resources/{source,concept}/` | `rules/knowledge-note-pipeline.md` | `templates/knowledge/` |
-| `products/**` | `rules/product-doc-pipeline.md` | `templates/product/` |
-| `products/*/showcase.md` · `persona/{contents,daily,career}/**` | `rules/persona-artifacts.md` | `templates/persona/` 등 |
+| [[inbox/README\|inbox]] · [[resources/README\|resources]] | [[knowledge-note-pipeline]] | `templates/knowledge/` |
+| [[products/README\|products]] | [[rules/product-doc-pipeline\|product-doc-pipeline]] | `templates/product/` |
+| `products/*/showcase.md` · `persona/{contents,career}/**` · `journal/**` | [[persona-artifacts]] | `templates/persona/` 등 |
 
 **규칙과 양식은 레포에 있다. 프롬프트에 복사하지 않는다** — 복사하는 순간 원천이 둘이 되고 한쪽만 고쳐지는 날 조용히 어긋난다.
 

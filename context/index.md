@@ -54,6 +54,17 @@ templates/
 └── scripts/product_doc_pipeline.py
 ```
 
+PARA 버킷의 루트는 아래 넷이다 — 코드블록 안 경로는 옵시디언이 링크로 읽지 않으므로 여기 따로 건다([[decision-020-para-alignment-area-and-personal|KDEV-DEC-020]] D2).
+
+| 버킷 | 루트 | 소속 영역 |
+|---|---|---|
+| **P** | [[products/README\|products]] | 여름별컴퍼니 |
+| **R** | [[resources/README\|resources]] | 개인 |
+| **A** | `persona/` | 세 영역의 **귀결** — 공개 표면 |
+| **Archive** | [[archive/README\|archive]] | 상태(비어 있음) |
+
+보류함은 [[inbox/README\|inbox]]다 — 목적지가 아직 안 정해진 것.
+
 ## 기본 진입 흐름
 
 항상 모든 context를 읽지 않는다.
@@ -67,15 +78,15 @@ CLAUDE.md
 
 ## 읽기 범위 원칙
 
-- `context/index.md`는 라우터다. 하위 문서를 요약하지 않는다.
-- `context/kknaks.md`는 회사/개인사업자 구분이 필요할 때만 읽는다.
-- `context/policy.md`는 문서 민감도, 접근권한, 승인 게이트 관련 판단이 필요할 때만 읽는다.
-- `context/studio/workflow.md`는 개인 프로젝트의 실제 작업을 만들거나 수정할 때만 읽는다.
-- `rules/product-doc-pipeline.md`는 제품 문서를 만들거나 수정할 때만 읽는다.
-- `rules/knowledge-note-pipeline.md`는 `inbox/`·`resources/`에 노트를 만들거나 수정할 때 읽는다. **제품 결정(`10-decision/`)을 쓸 때도 읽는다** — 근거 개념이 없으면 그 턴에 만들어야 하기 때문이다.
-- `rules/persona-artifacts.md`는 `showcase.md`·교안·잔디 산출물을 건드릴 때만 읽는다.
+- [[context/index|context/index]] (이 문서)는 라우터다. 하위 문서를 요약하지 않는다.
+- [[kknaks]]는 회사/개인사업자/개인 구분이 필요할 때만 읽는다. **세 영역의 진입점**이다.
+- [[policy]]는 문서 민감도, 접근권한, 승인 게이트 관련 판단이 필요할 때만 읽는다.
+- [[context/studio/workflow|studio/workflow]]는 개인 프로젝트의 실제 작업을 만들거나 수정할 때만 읽는다.
+- [[rules/product-doc-pipeline|product-doc-pipeline]]은 제품 문서를 만들거나 수정할 때만 읽는다.
+- [[knowledge-note-pipeline]]은 [[inbox/README|inbox]]·[[resources/README|resources]]에 노트를 만들거나 수정할 때 읽는다. **제품 결정(`10-decision/`)을 쓸 때도 읽는다** — 근거 개념이 없으면 그 턴에 만들어야 하기 때문이다.
+- [[persona-artifacts]]는 `showcase.md`·교안·잔디 산출물을 건드릴 때만 읽는다.
 - `templates/product/**`는 새 문서를 만들 때 필요한 템플릿만 읽는다.
-- `products/<product>/`는 요청 대상 제품이 확정된 뒤에 읽는다.
+- [[products/README|products]]의 개별 제품은 요청 대상이 확정된 뒤에 읽는다.
 
 ## context의 역할
 
@@ -96,11 +107,11 @@ CLAUDE.md
 ## 작성 원칙
 
 - 이 문서에는 최상위 분기 규칙만 둔다.
-- 회사와 개인사업자 구분 기준은 `context/kknaks.md`에 둔다.
-- 문서 민감도, 접근권한, 승인 게이트 정책은 `context/policy.md`에 둔다.
-- 회사 경험 기록의 현재 상태는 `context/company/current.md`에 둔다.
-- 회사 제품/프로젝트 경험의 경계는 `context/company/projects.md`에 둔다.
-- 개인사업체 현재 상태는 `context/studio/current.md`에 둔다.
-- 개인 프로젝트 목록과 경계는 `context/studio/projects.md`에 둔다.
-- 개인 프로젝트 작업 흐름은 `context/studio/workflow.md`에 둔다.
+- 회사·개인사업자·개인 구분 기준은 [[kknaks]]에 둔다.
+- 문서 민감도, 접근권한, 승인 게이트 정책은 [[policy]]에 둔다.
+- 회사 경험 기록의 현재 상태는 [[context/company/current|company/current]]에 둔다.
+- 회사 제품/프로젝트 경험의 경계는 [[context/company/projects|company/projects]]에 둔다.
+- 개인사업체 현재 상태는 [[context/studio/current|studio/current]]에 둔다.
+- 개인 프로젝트 목록과 경계는 [[context/studio/projects|studio/projects]]에 둔다.
+- 개인 프로젝트 작업 흐름은 [[context/studio/workflow|studio/workflow]]에 둔다.
 - 새로운 도메인을 추가하기 전에는 기존 `company/`, `studio/` 중 하나에 속하는지 먼저 판단한다.
