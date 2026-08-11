@@ -210,7 +210,7 @@ flowchart TD
     W --> P2["또는 로컬 스킬로 작성"]
     P1 --> T{{"트리거<br/>서버 실행 중 + inbox 에 미처리 파일 있음"}}
     P2 --> T
-    T --> Q[("DB 큐<br/>source_kind=note?")]
+    T --> Q[("DB 큐<br/>본문을 옮기고 inbox 파일은 지운다")]
 
     Q --> C["collect · auto<br/>수집 없음 — 본문이 곧 원문"]
     C --> S["summarize · auto<br/>판단 재료"]
@@ -227,7 +227,7 @@ flowchart TD
     A --> D1["resources/source/{날짜}-{slug}.md"]
     A --> D2["resources/concept/{slug}.md"]
     A --> D3["persona/posts/{slug}.md · post_note"]
-    A --> D4["원본 inbox 파일 정리"]
+    A --> D4["inbox 는 이미 비어 있다<br/>접수 때 DB 로 옮기고 지웠다"]
     A --> D5["git commit + push"]
 ```
 
@@ -236,6 +236,7 @@ flowchart TD
 - **수집 단계가 없다.** URL 이 아니라 본문이 이미 있다 — `collect` 가 할 일이 없거나 아주 얇다. AXKG 가 업로드 md 를 두고 「`raw_text` 가 곧 원문이므로 adapter 를 거치지 않는다」고 정한 것과 같은 자리다([[spec-012-source-collection-adapter|AXKG-SPEC-012]] 경계).
 - **`inbox/` 는 입구다 — 목적지가 아니다.** [[decision-011-approval-gate-chain|KDEV-DEC-011]] D1 이 「보류함(목적지)」으로 정한 것을 뒤집는다(아래 「DEC-011 D1 개정」).
 - **트리거가 파일 존재다.** 스케줄(잔디)도 URL 수신(유튜브·블로그)도 아니다. **FastAPI 시작 프로세스(lifespan)** 에서 `inbox/` 를 스캔한다 — push 로 파일이 들어온 뒤 서버가 뜨면 집는다.
+- **`inbox/` 는 서버에서 항상 비어 있다.** 접수할 때 본문을 DB 큐로 옮기고 파일을 지운다. 그래서 「미처리」를 따로 판정할 필요가 없다 — **파일이 있으면 곧 미처리**다. 승인 전 초안이 DB 에만 있는 것은 [[decision-012-draft-storage-and-publish-boundary|KDEV-DEC-012]] D1 그대로다.
 
 ## Context
 
@@ -274,6 +275,7 @@ flowchart TD
 | ~~OQ-7~~ | `inbox/` 의 두 역할 | **입구 하나다.** 목적지가 아니다 — 아래 「DEC-011 D1 개정」 참조 |
 | ~~OQ-8~~ | 트리거 감지 | **FastAPI 시작 프로세스**(lifespan)에서 스캔한다. push 로 파일이 들어온 뒤 서버가 뜨면 집는다 |
 | ~~OQ-9~~ | `source_kind` 이름 | URL 이 없으면 **실패**다. 공부 노트는 URL 축이 아니므로 `detect_source_kind` 를 거치지 않고 별도 kind 를 쓴다 |
+| ~~OQ-10~~ | 「미처리」를 무엇으로 판정하나 | **판정이 필요 없다.** `inbox/` 는 서버에서 **항상 비어 있는 상태**를 유지한다 — 파일이 있으면 곧 미처리다 |
 
 ### DEC-011 D1 개정이 필요하다
 
@@ -285,7 +287,8 @@ flowchart TD
 
 1. route 게이트의 목적지 목록에서 **「inbox 보류」를 뺀다** — 배타 옵션이 「폐기」 하나만 남는다.
 2. `inbox/README.md` 의 「보류함」 규정을 **「입구」로** 고친다.
-3. 지금 있는 4건(`type: idea` 3건 + frontmatter 없는 1건)의 처리를 정한다 — 보류로 들어온 것이라면 입구로 다시 태울지, 그대로 둘지.
+3. 지금 있는 4건(`type: idea` 3건 + frontmatter 없는 1건)의 처리를 정한다 — `inbox/` 가 **항상 비어 있어야** 하므로 그대로 둘 수 없다. 입구로 다시 태우거나 목적지로 내보내야 한다.
+4. **접수가 파일을 지우므로 커밋이 따라온다.** 서버가 `inbox/` 를 비우고 그것을 push 해야 로컬 작업트리도 비워진다 — 발행 커밋과 별개의 쓰기가 하나 더 생긴다.
 
 **열린 것**
 
@@ -293,4 +296,4 @@ flowchart TD
 |---|---|
 | OQ-1 | `knowledge_capture/render.py` 의 `inbox/` 직접 쓰기가 현행인가, 게이트 이전 잔재인가 |
 | OQ-2 | 게이트 목적지에 `products/` 가 없다 — P 는 로컬만 만드는 것이 맞나 |
-| OQ-10 | 시작 프로세스 스캔에서 **「미처리」를 무엇으로 판정하나** — 파일 존재만으로는 이미 큐에 들어간 것과 구별되지 않는다 |
+
