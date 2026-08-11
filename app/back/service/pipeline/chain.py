@@ -34,8 +34,8 @@ DESTINATION_STAGE = {
 def enabled_stages(route_payload: dict[str, Any] | None) -> tuple[str, ...]:
     """route 결과가 켠 게이트 스테이지들 — 파이프라인 정의 순서를 따른다.
 
-    `exclusive`(보류·폐기)면 뒤 게이트가 하나도 없다. 만들 것이 없으니
-    검토할 것도 없다 — 보류는 route 승인만으로 발행 대상이 된다.
+    `exclusive`(폐기)면 뒤 게이트가 하나도 없다. 만들 것이 없으니 검토할 것도 없다.
+    (`inbox_hold` 는 KDEV-DEC-021 로 폐기됐다 — `inbox/` 는 목적지가 아니라 입구다.)
     """
     if not route_payload or route_payload.get("exclusive"):
         return ()

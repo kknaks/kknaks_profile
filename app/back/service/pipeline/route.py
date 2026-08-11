@@ -20,8 +20,9 @@ logger = logging.getLogger("kknaks-back.pipeline.route")
 
 DESTINATIONS = ("reference", "concept", "derived")
 #: 목적지를 하나도 안 만드는 선택. 둘은 성격이 다르다 —
-#: `inbox_hold` 는 "지금은 정제 못 하지만 버리긴 아깝다", `discard` 는 "안 남긴다".
-EXCLUSIVES = ("inbox_hold", "discard")
+#: `discard` 는 "안 남긴다". **`inbox_hold` 는 KDEV-DEC-021 로 폐기됐다** —
+#: `inbox/` 는 목적지가 아니라 공부 노트의 **입구**이고, 그 옵션은 0건 쓰였다.
+EXCLUSIVES = ("discard",)
 
 PROMPT = """이 자료를 어디로 보낼지 판단하라. **본문은 쓰지 않는다** — 목적지만 정한다.
 
@@ -49,7 +50,6 @@ PROMPT = """이 자료를 어디로 보낼지 판단하라. **본문은 쓰지 �
   자료에만 붙어 있는 설명은 개념이 아니다. 없으면 끈다. 억지로 만들지 않는다.
 - `derived` — 교안(`persona/contents/`)으로 만들 만한가. 대개 끈다.
 - `exclusive` — 위 셋을 전부 끄는 경우에만 쓴다.
-  `"inbox_hold"` = 지금은 정제 못 하지만 버리긴 아깝다.
   `"discard"` = 남길 가치가 없다.
   목적지를 하나라도 켰으면 반드시 `null` 이다."""
 
@@ -141,7 +141,7 @@ class RouteProposer(AgentStage):
 def route_outcome(payload: dict[str, Any]) -> str:
     """승인된 route 가 항목을 어디로 보내는가.
 
-    `discard` 만 항목을 끝낸다. `inbox_hold` 는 **끝이 아니다** — `inbox/` 에 idea 노트를
-    남기는 발행이 남아 있어 여전히 발행 대상이다(KDEV-DEC-011 D1).
+    `discard` 만 항목을 끝낸다 — 그것이 유일한 배타 옵션이다(KDEV-DEC-021 D2).
+    나머지는 켠 산출물이 있으므로 발행 대상이다.
     """
     return "discarded" if payload.get("exclusive") == "discard" else "publishable"

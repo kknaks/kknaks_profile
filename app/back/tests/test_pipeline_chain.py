@@ -61,10 +61,9 @@ class TestChainShape:
         assert enabled_stages(route(concept=False)) == ("source_note",)
 
     def test_exclusive_opens_no_gate(self):
-        """보류·폐기는 만들 것이 없으니 검토할 것도 없다."""
-        for value in ("inbox_hold", "discard"):
-            payload = route(reference=False, concept=False, exclusive=value)
-            assert enabled_stages(payload) == ()
+        """폐기는 만들 것이 없으니 검토할 것도 없다."""
+        payload = route(reference=False, concept=False, exclusive="discard")
+        assert enabled_stages(payload) == ()
 
     def test_next_stage_skips_disabled(self):
         """개념을 끄면 source_note 다음은 derived 다 — 중간이 비어도 건너뛴다."""
@@ -284,7 +283,7 @@ class TestAdvance:
         item, gate = await _routed(
             db,
             "https://youtu.be/chain000003",
-            route(reference=False, concept=False, exclusive="inbox_hold"),
+            route(reference=False, concept=False, exclusive="discard"),
         )
         result = await _advance(db, item, gate, runners={"source_note": maker(NOTE_PAYLOAD)})
         assert result.gate is None and result.chain_complete

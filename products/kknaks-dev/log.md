@@ -2,6 +2,7 @@
 
 | Date | Entry | Links |
 |---|---|---|
+| 2026-08-11 | decision-add | KDEV-DEC-021 | inbox 를 「보류함(목적지)」에서 **공부 노트 입구**로. route 배타 옵션에서 `inbox_hold` 제거(0건 사용). 서버에서 항상 비어 있고 접수 전 큐 조회로 중복을 막는다 | `10-decision/decision-021-inbox-is-an-entry.md`, `inbox/README.md`, `service/pipeline/route.py` |
 | 2026-08-11 | baseline-add | KDEV-BL-007 | 업데이트 라인을 케이스별로 정리하기 위한 날것 입력. 서버(잔디잡·유튜브·블로그글) 3건 · 로컬(product·공부노트) 2건의 입구와 종착지를 늘어놓았다. 입구가 inbox 가 아니라 DB 큐라는 것(DEC-011 D1) 확인 | `00-baseline/baseline-007-update-lines-by-case.md` |
 | 2026-08-11 | decision-add | KDEV-DEC-020 | PARA 정렬 마무리 — context/personal 신설(R 이 붙을 영역), A=persona 를 「귀결」로 판정, up: 은 귀결이 건다, daily 는 개인 영역의 이력으로 제자리(한 번 journal 로 뺐다가 되돌림). 그래프 배선·A 의 up: 은 D7 로 미룸 | `10-decision/decision-020-para-alignment-area-and-personal.md`, `context/personal/`, `journal/` |
 | 2026-08-10 | decision-add | KDEV-DEC-019 | 판단층(synthesis) 폐기 — 1건도 안 쓰이면서 규칙·템플릿·판정 절차만 만들어 지식층을 source→concept→execution 3층으로 줄였다. SPEC-001/002/003/004 개정, graph.py·persona_loader 정합 | `10-decision/decision-019-drop-synthesis-layer.md`, `20-spec/`, `app/back/core/graph.py` |

@@ -64,12 +64,19 @@ class TestValidateRouteResult:
                 _route_payload(reference=False, concept=False, derived=False)
             )
 
-    def test_hold_and_discard_are_both_valid(self):
-        for value in ("inbox_hold", "discard"):
-            payload = _route_payload(
-                reference=False, concept=False, derived=False, exclusive=value
+    def test_discard_is_the_only_exclusive(self):
+        """`inbox_hold` 는 KDEV-DEC-021 로 폐기됐다 — `inbox/` 는 입구다."""
+        payload = _route_payload(
+            reference=False, concept=False, derived=False, exclusive="discard"
+        )
+        assert validate_route_result(payload)["exclusive"] == "discard"
+
+        with pytest.raises(GateError):
+            validate_route_result(
+                _route_payload(
+                    reference=False, concept=False, derived=False, exclusive="inbox_hold"
+                )
             )
-            assert validate_route_result(payload)["exclusive"] == value
 
     @pytest.mark.parametrize("bad", [None, [], "문자열", {}, {"destinations": "x"}])
     def test_malformed_rejected(self, bad):
@@ -77,9 +84,7 @@ class TestValidateRouteResult:
             validate_route_result(bad)
 
     def test_outcome_only_discard_ends_item(self):
-        """`inbox_hold` 는 끝이 아니다 — inbox 노트를 남기는 발행이 남아 있다."""
         assert route_outcome({"exclusive": "discard"}) == "discarded"
-        assert route_outcome({"exclusive": "inbox_hold"}) == "publishable"
         assert route_outcome({"exclusive": None}) == "publishable"
 
 
