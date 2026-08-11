@@ -119,6 +119,23 @@ def career_format(repo_root: Path | None = None) -> str:
     return _persona_format(CAREER_TEMPLATE_PATH, CAREER_FALLBACK, repo_root)
 
 
+CURRENT_TEMPLATE_PATH = "templates/context/current.md"
+
+#: `context/*/current.md` 에서 **시스템이 소유하는 유일한 섹션** (KDEV-DEC-022 D2).
+#: 나머지는 사람 것이다. 여기 두는 이유는 게이트(갱신안을 만드는 쪽)와 발행부(섹션을
+#: 갈아 끼우고 나머지가 안 바뀌었는지 보는 쪽)가 **같은 문자열**을 봐야 하기 때문이다 —
+#: 갈리면 갱신안이 매번 발행 직전에 거부된다.
+CURRENT_MANAGED_SECTION = "## 진행 중"
+
+CURRENT_FALLBACK = """current.md 는 `## 진행 중` 표만 시스템이 갱신한다.
+표 열은 Project · Work · Status · Blocker · Next 다."""
+
+
+def current_format(repo_root: Path | None = None) -> str:
+    """`templates/context/current.md` 전문."""
+    return _persona_format(CURRENT_TEMPLATE_PATH, CURRENT_FALLBACK, repo_root)
+
+
 def reset_cache() -> None:
     """테스트용 — 파일을 바꾼 뒤 다시 읽게 한다."""
     _read.cache_clear()

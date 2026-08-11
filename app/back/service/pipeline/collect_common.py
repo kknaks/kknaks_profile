@@ -107,3 +107,37 @@ def has_activity(payload: dict[str, Any]) -> bool:
     """
     counts = payload.get("counts") or {}
     return any(int(counts.get(k) or 0) > 0 for k in ("commit", "note", "study"))
+
+
+#: `context/` 아래 현황 문서를 갖는 영역. `tracked_repos.type` 의 값이자 디렉토리명이다.
+#: **`personal` 은 없다** — 개인 영역은 커밋 축이 아니라 배움 축이라 사람이 쓴다
+#: (`templates/context/current.md`).
+CONTEXT_AREAS = ("company", "studio")
+
+
+def context_attribution(
+    commits: list[dict[str, Any]], meta_by_repo: dict[str, dict[str, Any]]
+) -> dict[str, dict[str, list[str]]]:
+    """커밋 → `context/{영역}/current.md` 귀속 (KDEV-DEC-022 D1).
+
+    `career_attribution` 과 **같은 자리에 있지만 축이 다르다.** 저쪽은 회사 커밋만
+    골라 이력으로 보내고, 이쪽은 회사·개인사업자 **양쪽**을 각자의 현황 문서로 보낸다.
+    귀속 기준은 둘 다 `tracked_repos.type` 이다.
+
+    안쪽 키는 **제품**이다 — `## 진행 중` 표의 `Project` 열이 그것이다. 제품에 안
+    묶인 레포는 slug 를 그대로 쓴다. 없는 제품명을 지어내지 않는다.
+
+        {"studio": {"kknaks.dev": ["kknaks/kknaks_profile"]}}
+    """
+    out: dict[str, dict[str, list[str]]] = {}
+    for commit in commits:
+        repo = str(commit.get("repo") or "")
+        meta = meta_by_repo.get(repo) or {}
+        area = str(meta.get("type") or "")
+        if area not in CONTEXT_AREAS:
+            continue
+        project = str(meta.get("product_slug") or "").strip() or repo
+        repos = out.setdefault(area, {}).setdefault(project, [])
+        if repo not in repos:
+            repos.append(repo)
+    return out

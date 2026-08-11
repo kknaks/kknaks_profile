@@ -21,7 +21,14 @@ from core.models import QueueItem
 
 # **진짜 수집과 같은 함수를 쓴다** — 이 모듈이 P2 부터 "영역 분해·`counts` 산출은
 # 진짜 코드다" 라고 적어 온 것이 문자 그대로 성립하게 하는 자리다(KDEV-WORK-017 P5).
-from .collect_common import AREA_RULES, KST, area_for, decompose, has_activity
+from .collect_common import (
+    AREA_RULES,
+    KST,
+    area_for,
+    context_attribution,
+    decompose,
+    has_activity,
+)
 from .collect_common import target_date as _target_date
 from .prepare import StageSubmission
 
@@ -35,6 +42,7 @@ __all__ = [
     "SCENARIOS",
     "TRACKED",
     "career_attribution",
+    "context_attribution",
     "investigate_payload",
     "pick_scenario",
     "target_date",
@@ -50,6 +58,13 @@ TRACKED = (
     ("kknaks/kknaks_profile", "studio", None),
     ("kknaks/open_kknaks", "studio", None),
 )
+
+#: 레포 → 제품. `## 진행 중` 표의 `Project` 열이 이 값이다 (KDEV-DEC-022 D1).
+#: 진짜 수집은 `tracked_repos.product_slug` 에서 읽는다.
+PRODUCTS = {
+    "kknaks/kknaks_profile": "kknaks.dev",
+    "MediSolveAIDev/mediness": "mediness",
+}
 
 
 
@@ -225,6 +240,14 @@ def pick_scenario(item: QueueItem) -> str:
     return name if name in SCENARIOS else "normal"
 
 
+def _meta_by_repo() -> dict[str, dict[str, Any]]:
+    """진짜 수집이 레지스트리에서 만드는 것과 **같은 모양**으로 낸다."""
+    return {
+        slug: {"type": kind, "product_slug": PRODUCTS.get(slug)}
+        for slug, kind, _ in TRACKED
+    }
+
+
 def investigate_payload(item: QueueItem) -> dict[str, Any]:
     """SPEC-011 §4 조사 산출물 — 키를 하나도 빠뜨리지 않는다."""
     scenario = SCENARIOS[pick_scenario(item)]()
@@ -234,6 +257,7 @@ def investigate_payload(item: QueueItem) -> dict[str, Any]:
         "commits": commits,
         "areas": decompose(commits),
         "career_map": career_attribution(commits),
+        "context_map": context_attribution(commits, _meta_by_repo()),
         "counts": {
             # **코드가 센다.** AI 출력의 숫자를 쓰지 않는다(SPEC-012 §5).
             "commit": len(commits),

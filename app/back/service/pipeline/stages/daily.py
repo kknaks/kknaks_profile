@@ -29,8 +29,14 @@ from typing import Any
 
 import frontmatter
 
-from service.content_format import career_format, daily_format
+from service.content_format import (
+    CURRENT_MANAGED_SECTION,
+    career_format,
+    current_format,
+    daily_format,
+)
 
+from ..collect_common import CONTEXT_AREAS
 from ..concept_index import build_index
 from ..executor import AgentStage
 from ..gates import GateError, GenerationInput
@@ -56,6 +62,9 @@ PROMPT = """하루치 커밋 조사와 레포별 정리를 읽고 문서 초안�
 === career 형식 ===
 {career_format}
 
+=== current 형식 ===
+{current_format}
+
 ## 만들 것
 
 JSON 하나로 답한다. 코드펜스로 감싸지 않고, **앞뒤에 설명 문장을 붙이지 않는다** —
@@ -67,6 +76,7 @@ JSON 하나로 답한다. 코드펜스로 감싸지 않고, **앞뒤에 설명 �
     "body": "마크다운 본문"
   }},
   "career": {career_shape},
+  "currents": {current_shape},
   "concepts": [
     {{"stem": "kebab-case", "title": "제목", "content": "노트 전문", "mode": "create"}}
   ]
@@ -75,6 +85,18 @@ JSON 하나로 답한다. 코드펜스로 감싸지 않고, **앞뒤에 설명 �
 - `counts` 를 만들지 마라. 코드가 채운다
 - `summary` 는 활동 단위마다 한 줄이고, **활동이 0인 카테고리는 줄을 만들지 않는다**
 - `feedback` 이 있으면 그 지적을 반영해 다시 쓴다. 조사 결과는 바뀌지 않았다
+
+## current 는 「지금 무엇을 하고 있나」다 — 그날 일지가 아니다
+
+`currents` 의 `content` 는 **`## 진행 중` 표 본문만**이다. 헤더(`## 진행 중`)를 담지
+않는다 — 시스템이 붙인다.
+
+- **아래 `current_targets` 의 `current_section` 이 지금 적혀 있는 표다.** 그것을
+  **고쳐 쓴다.** 처음부터 다시 쓰면 어제 남긴 `todo` 행이 조용히 사라진다
+- 그날 커밋이 있는 제품은 행을 **갱신**하고, 커밋이 없던 제품 행은 **그대로 둔다** —
+  오늘 안 건드렸다는 것이 그 일이 끝났다는 뜻은 아니다
+- `Blocker` 는 **커밋에서 드러난 것만** 쓴다. 없으면 비운다. 지어내지 않는다
+- 우선순위·이번 주 목표·Blockers 절을 담지 마라. **사람 소유라 담기면 발행이 거부된다**
 
 ## concept 는 지식그래프에 들어간다 — 규율이 다르다
 
@@ -104,6 +126,12 @@ CAREER_SHAPE_ACTIVE = """{
   }"""
 
 CAREER_SHAPE_NONE = """null   (이번엔 career 대상이 없다. null 로 둔다)"""
+
+CURRENT_SHAPE_ACTIVE = """[
+    {"area": "<대상 area>", "changed": true, "content": "| Project | Work | Status | Blocker | Next |\\n|---|---|---|---|---|\\n| ... |"}
+  ]"""
+
+CURRENT_SHAPE_NONE = """[]   (이번엔 current 대상이 없다. 빈 배열로 둔다)"""
 
 
 def career_targets(collect: dict[str, Any], repo_root: Path) -> list[dict[str, Any]]:
@@ -161,6 +189,110 @@ def missing_career(collect: dict[str, Any], repo_root: Path) -> list[str]:
         if not (repo_root / "persona" / "career" / f"{stem}.md").exists():
             missing.append(stem)
     return sorted(missing)
+
+
+def current_targets(collect: dict[str, Any], repo_root: Path) -> list[dict[str, Any]]:
+    """갱신 대상 `context/{영역}/current.md` (KDEV-DEC-022 D1).
+
+    `career_targets` 와 같은 규율이다 — **결정적으로 고른다.** 모델은 표를 어떻게
+    쓸지만 정하고, 어느 문서를 건드릴지는 코드가 정한다.
+
+        커밋 0        그 영역에 커밋이 없으면 대상이 아니다
+        파일 없음      만들지 않는다. `current.md` 는 사람이 세운 문서다
+        섹션 없음      헤더를 바꿨다는 뜻이다. **조용히 지나가지 않고 대상에서 뺀다**
+
+    셋째가 중요하다. 섹션이 없는 채로 갱신안을 만들면 발행 직전 `CURRENT_SECTION_MISSING`
+    으로 **잔디 전체가 거부된다** — daily 까지 같이 막힌다. 사람이 헤더를 바꾼 것은
+    그 사람의 자유이고, 그 대가가 그날 잔디 실패여서는 안 된다.
+    """
+    targets: list[dict[str, Any]] = []
+    for area in CONTEXT_AREAS:
+        projects = (collect.get("context_map") or {}).get(area) or {}
+        if not projects:
+            continue
+        path = repo_root / "context" / area / "current.md"
+        if not path.exists():
+            logger.info("current 대상 없음 — context/%s/current.md 가 없다", area)
+            continue
+        try:
+            existing = path.read_text(encoding="utf-8")
+        except OSError:
+            logger.warning("context/%s/current.md 를 읽지 못했다", area)
+            continue
+        if CURRENT_MANAGED_SECTION not in existing:
+            logger.warning(
+                "context/%s/current.md 에 %s 섹션이 없다 — 갱신 대상에서 뺀다",
+                area,
+                CURRENT_MANAGED_SECTION,
+            )
+            continue
+        targets.append(
+            {
+                "area": area,
+                "projects": projects,
+                "current_section": _section_body(existing, CURRENT_MANAGED_SECTION),
+            }
+        )
+    return targets
+
+
+def _section_body(text: str, header: str) -> str:
+    """`header` 섹션의 본문. 없으면 빈 문자열.
+
+    갱신안을 만들려면 **지금 뭐라고 적혀 있는지**를 모델이 봐야 한다. 안 주면 매일
+    표를 처음부터 다시 써서 어제 남긴 `todo` 행이 조용히 사라진다.
+    """
+    lines = text.splitlines(keepends=True)
+    for i, line in enumerate(lines):
+        if line.strip() != header:
+            continue
+        end = len(lines)
+        for j in range(i + 1, len(lines)):
+            if lines[j].startswith("## "):
+                end = j
+                break
+        return "".join(lines[i + 1 : end]).strip()
+    return ""
+
+
+def _currents(value: Any, targets: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """대상 밖 영역은 무엇이 오든 버린다 — `_career` 와 같은 규율이다.
+
+    **목록인 이유**는 하루에 회사·개인사업자 커밋이 둘 다 있는 것이 보통이기
+    때문이다. 하나만 담을 수 있으면 그런 날 한쪽이 조용히 갱신되지 않는다.
+    """
+    by_area = {t["area"]: t for t in targets}
+    if not by_area or not isinstance(value, list):
+        return []
+    out: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for entry in value:
+        if not isinstance(entry, dict):
+            continue
+        area = str(entry.get("area") or "")
+        content = str(entry.get("content") or "").strip()
+        if area not in by_area or area in seen or not content:
+            continue
+        if not entry.get("changed", True):
+            continue
+        if content.lstrip().startswith("## "):
+            # 헤더까지 담아 오면 `replace_section` 이 헤더를 한 번 더 넣는다.
+            raise GateError(
+                "INVALID_CURRENT_OUTPUT",
+                f"{area} 갱신안이 헤더를 담았다 — 표 본문만이다",
+            )
+        seen.add(area)
+        out.append(
+            {
+                "changed": True,
+                "area": area,
+                "stem": area,
+                "content": content,
+                "previous_content": by_area[area]["current_section"],
+                "target_path": f"context/{area}/current.md",
+            }
+        )
+    return out
 
 
 def _prep(request: GenerationInput) -> dict[str, Any]:
@@ -290,11 +422,15 @@ class DailyStage(AgentStage):
     source = "pipeline-daily"
 
     def prompt(self, request: GenerationInput) -> str:
-        targets = career_targets(_prep(request).get("collect") or {}, self.repo_root)
+        collect = _prep(request).get("collect") or {}
+        targets = career_targets(collect, self.repo_root)
+        currents = current_targets(collect, self.repo_root)
         return PROMPT.format(
             daily_format=daily_format(self.repo_root),
             career_format=career_format(self.repo_root),
+            current_format=current_format(self.repo_root),
             career_shape=CAREER_SHAPE_ACTIVE if targets else CAREER_SHAPE_NONE,
+            current_shape=CURRENT_SHAPE_ACTIVE if currents else CURRENT_SHAPE_NONE,
             # 형식을 복사하지 않고 **레포를 읽게** 한다 — 유튜브 concept 게이트와 같다.
             concept_rules=READ_THE_RULES.format(template="concept.md"),
         )
@@ -323,6 +459,10 @@ class DailyStage(AgentStage):
                 {"stem": t["stem"], "repos": t["repos"], "current_body": t["body"]}
                 for t in targets
             ],
+            # **지금 표에 뭐라고 적혀 있는지**를 함께 준다. 안 주면 매일 표를 처음부터
+            # 다시 써서 어제 남긴 `todo` 행이 조용히 사라진다 — career 에 기존 본문을
+            # 주는 것과 같은 이유다.
+            "current_targets": current_targets(collect, self.repo_root),
         }
         if request.previous_payload is not None:
             payload["previous_draft"] = request.previous_payload
@@ -357,6 +497,7 @@ class DailyStage(AgentStage):
                 "target_path": f"persona/daily/{collect.get('date')}.md",
             },
             "career": _career(data.get("career"), targets),
+            "currents": _currents(data.get("currents"), current_targets(collect, self.repo_root)),
             "concepts": _concepts(data.get("concepts")),
             # **조사가 얼마나 온전했는지**를 화면까지 들고 간다. AI 프롬프트에는
             # 이미 실려 있었지만(payload) 승인 화면이 보는 것은 이쪽이라, 여기 없으면

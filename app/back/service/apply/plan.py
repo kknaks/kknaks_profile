@@ -18,6 +18,10 @@ from typing import Any
 
 import frontmatter
 
+# 섹션 이름은 **양식이 갖는다.** 게이트가 갱신안을 만들 때 보는 것과 같은 문자열이라야
+# 하고, 두 곳에 적으면 한쪽만 고쳐지는 날 갱신안이 매번 발행 직전에 거부된다.
+from service.content_format import CURRENT_MANAGED_SECTION
+
 logger = logging.getLogger("kknaks-back.apply.plan")
 
 #: 발행이 쓸 수 있는 디렉토리. **이 밖은 전부 거부한다** —
@@ -210,10 +214,6 @@ def render_career(payload: dict[str, Any], existing: str) -> str:
     return f"{block}\n{body}"
 
 
-#: 잔디가 갱신하는 `current.md` 섹션. **이 하나뿐이다** (KDEV-DEC-022 D2).
-CURRENT_MANAGED_SECTION = "## 진행 중"
-
-
 def replace_section(existing: str, header: str, body: str) -> str:
     """`header` 로 시작하는 섹션의 **본문만** 갈아 끼운다. 나머지는 문자 그대로 남는다.
 
@@ -329,8 +329,11 @@ def build_actions(
             )
         )
 
-    current = grass.get("current") or {}
-    if current.get("changed") and current.get("target_path"):
+    # **목록이다.** 회사·개인사업자 커밋이 하루에 둘 다 있는 것이 보통이라, 하나만
+    # 담을 수 있으면 그런 날 한쪽 `current.md` 가 조용히 갱신되지 않는다.
+    for current in (grass.get("currents") or []):
+        if not (current.get("changed") and current.get("target_path")):
+            continue
         path = str(current.get("target_path") or "")
         existing = ""
         if repo_root is not None:

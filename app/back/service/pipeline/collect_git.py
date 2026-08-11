@@ -25,7 +25,13 @@ from service.jobs.collect_commits import collect_repo, identities
 from service.jobs.inputs import read_changed_files_today
 from service.notify import notify_slack
 
-from .collect_common import decompose, has_activity, rules_for, target_date
+from .collect_common import (
+    context_attribution,
+    decompose,
+    has_activity,
+    rules_for,
+    target_date,
+)
 from .prepare import StageSubmission
 
 logger = logging.getLogger("kknaks-back.pipeline.collect-git")
@@ -96,6 +102,10 @@ class GitCollect:
                 {
                     "slug": r.slug,
                     "detail": r.detail if r.type == "company" else None,
+                    # `## 진행 중` 귀속에 쓴다 (KDEV-DEC-022 D1). `detail` 과 달리
+                    # `type` 에 묶지 않는다 — 회사 레포도 제품 문서를 가질 수 있다.
+                    "type": r.type,
+                    "product_slug": r.product_slug,
                     "rules": rules_for(r.path_rules),
                 }
                 for r in rows
@@ -132,12 +142,16 @@ class GitCollect:
         await self._notify_drift(found_identities)
 
         detail_by_repo = {p["slug"]: p["detail"] for p in plan if p["detail"]}
+        meta_by_repo = {
+            p["slug"]: {"type": p["type"], "product_slug": p["product_slug"]} for p in plan
+        }
         notes, study = self._counts_from_repo(target)
         return {
             "date": target.isoformat(),
             "commits": commits,
             "areas": decompose(commits, rules_by_repo),
             "career_map": career_attribution(commits, detail_by_repo),
+            "context_map": context_attribution(commits, meta_by_repo),
             "counts": {
                 # **코드가 센다.** AI 출력의 숫자를 쓰지 않는다(SPEC-012 §5).
                 "commit": len(commits),
