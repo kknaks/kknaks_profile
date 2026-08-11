@@ -10,14 +10,14 @@
 
 | Project | Type | State | Role | Repo/Path | Product SSOT | Notes |
 |---|---|---|---|---|---|---|
-| kknaks.dev | web / profile product | building | owner / developer | `github.com/kknaks/kknaks_profile` | `products/kknaks-dev/` | 블로그, 공개 정보, 포트폴리오 역할을 하는 studio 제품 |
-| Wine Log | mobile app | live | owner / developer | `github.com/kknaks/wine_log` | `products/wine-log/` | 와인 기록·관리 앱 |
-| open-kknaks | library / cli | live | owner / developer | `github.com/kknaks/open_kknaks` | `products/open-kknaks/` | Claude Code CLI 기반 작업 큐 라이브러리 |
-| Language Diary | mobile app | building | owner / developer | `github.com/kknaks/language_diary` | `products/language-diary/` | AI 음성 대화 기반 영어 일기 앱 |
-| Persona Counselor | mobile app | building | owner / developer | `github.com/kknaks/persona_counselor` | `products/persona-counselor/` | 개인화 AI 상담사 앱 |
-| Study Timelapse | mobile app | building | owner / developer | `github.com/kknaks/study_timelapse` | `products/study-timelapse/` | 공부 타임랩스 앱 |
+| kknaks.dev | web / profile product | building | owner / developer | `github.com/kknaks/kknaks_profile` | [[products/kknaks-dev/README\|kknaks-dev]] | 블로그, 공개 정보, 포트폴리오 역할을 하는 studio 제품 |
+| Wine Log | mobile app | live | owner / developer | `github.com/kknaks/wine_log` | [[products/wine-log/README\|wine-log]] | 와인 기록·관리 앱 |
+| open-kknaks | library / cli | live | owner / developer | `github.com/kknaks/open_kknaks` | [[products/open-kknaks/README\|open-kknaks]] | Claude Code CLI 기반 작업 큐 라이브러리 |
+| Language Diary | mobile app | building | owner / developer | `github.com/kknaks/language_diary` | [[products/language-diary/README\|language-diary]] | AI 음성 대화 기반 영어 일기 앱 |
+| Persona Counselor | mobile app | building | owner / developer | `github.com/kknaks/persona_counselor` | [[products/persona-counselor/README\|persona-counselor]] | 개인화 AI 상담사 앱 |
+| Study Timelapse | mobile app | building | owner / developer | `github.com/kknaks/study_timelapse` | [[products/study-timelapse/README\|study-timelapse]] | 공부 타임랩스 앱 |
 | Summer Star Company | internal tool | building | owner / developer | `github.com/kknaks/summer_star_company` |  | 사무실 NFC 출퇴근 관리 도구 |
-| mykakao | backend / tool | building | owner / developer | `github.com/kknaksss/mykakao` | `products/mykakao/` | 카톡 대화 로컬 추출(SQLCipher 복호화) → 향후 일정 파싱·캘린더 |
+| mykakao | backend / tool | building | owner / developer | `github.com/kknaksss/mykakao` | [[products/mykakao/README\|mykakao]] | 카톡 대화 로컬 추출(SQLCipher 복호화) → 향후 일정 파싱·캘린더 |
 
 ## 상태 값
 

@@ -1,6 +1,6 @@
 # Products
 
-여름별컴퍼니에서 운영하거나 출시하려는 제품별 SSOT 공간이다.
+여름별컴퍼니에서 운영하거나 출시하려는 제품별 SSOT 공간이다. **P(Projects)** 버킷이고 [[context/studio/current|여름별컴퍼니 영역]]에 속한다([[decision-020-para-alignment-area-and-personal|KDEV-DEC-020]] D2).
 
 규칙: `rules/product-doc-pipeline.md`
 
