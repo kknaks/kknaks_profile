@@ -10,9 +10,9 @@
 
 | 영역 | 이름 | 설명 | 하위 context |
 |---|---|---|---|
-| 회사 | 회사 경험 기록 | 회사에서 겪은 챌린지, 해결방안, 성과를 이력서/포트폴리오로 환류하기 위한 정보 | `context/company/` |
-| 개인사업자 | 여름별컴퍼니 | 개인 앱/서비스를 회사처럼 기획, 개발, 출시, 운영하는 사업체 | `context/studio/` |
-| 개인 | 개인 학습 | 회사 업무도 제품 개발도 아닌 배우는 일. 자료와 개념이 쌓이는 영역 | `context/personal/` |
+| 회사 | 회사 경험 기록 | 회사에서 겪은 챌린지, 해결방안, 성과를 이력서/포트폴리오로 환류하기 위한 정보 | [[context/company/current\|현황]] · [[context/company/projects\|프로젝트]] · [[context/company/org\|조직도]] |
+| 개인사업자 | 여름별컴퍼니 | 개인 앱/서비스를 회사처럼 기획, 개발, 출시, 운영하는 사업체 | [[context/studio/current\|현황]] · [[context/studio/projects\|프로젝트]] · [[context/studio/org\|조직도]] · [[context/studio/workflow\|작업흐름]] |
+| 개인 | 개인 학습 | 회사 업무도 제품 개발도 아닌 배우는 일. 자료와 개념이 쌓이는 영역 | [[context/personal/current\|현황]] · [[context/personal/projects\|학습 갈래]] |
 
 ## 회사 정보
 
@@ -46,8 +46,8 @@
 |---|---|
 | 영역명 | 개인 학습 |
 | 역할 | 배우고, 자료로 남기고, 개념으로 세운다 |
-| 산출 | `resources/source/` 자료 · `resources/concept/` 개념 |
-| 지식 SSOT | `resources/` — 이 영역의 결과물은 전부 여기 산다 |
+| 산출 | [[resources/README\|resources]] — `source/` 자료 · `concept/` 개념 |
+| 지식 SSOT | [[resources/README\|resources]] — 이 영역의 결과물은 전부 여기 산다 |
 | 현재 상태 | `context/personal/current.md` |
 | 학습 갈래 | `context/personal/projects.md` |
 
@@ -66,4 +66,4 @@
 - 개인사업자의 현재 상태는 `context/studio/current.md`에 둔다.
 - 프로젝트 목록은 각 영역의 `projects.md`에 둔다.
 - 개인 학습의 현재 상태는 `context/personal/current.md`에, 학습 갈래는 `context/personal/projects.md`에 둔다.
-- 학습으로 쌓인 지식 자체의 SSOT는 `resources/`다 — context 는 상태와 경계만 둔다.
+- 학습으로 쌓인 지식 자체의 SSOT는 [[resources/README|resources]]다 — context 는 상태와 경계만 둔다.
