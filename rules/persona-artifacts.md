@@ -12,7 +12,7 @@
 |---|---|---|
 | 프로젝트 카드 | `templates/product/showcase.md` | `products/{제품}/showcase.md` |
 | 교안 | `templates/persona/content.md` | `persona/contents/**` |
-| 잔디 — 그날 | `templates/persona/daily.md` | `persona/daily/{YYYY-MM-DD}.md` |
+| 잔디 — 그날 | `templates/persona/daily.md` | `journal/{YYYY-MM-DD}.md` — **여기만 persona 밖이다**(KDEV-DEC-020) |
 | 잔디 — 누적 | `templates/persona/career.md` | `persona/career/{stem}.md` |
 
 ## 프로젝트 카드 (`showcase.md`)
@@ -27,9 +27,11 @@
 
 승인 게이트의 `derived` 스테이지와 `content_enrich` 잡이 **둘 다 이 파일을 읽는다** — 형식을 고치려면 여기만 고친다.
 
-## 잔디 산출물 (`persona/daily/**` · `persona/career/**`)
+## 잔디 산출물 (`journal/**` · `persona/career/**`)
 
 잔디 파이프라인의 `daily` 게이트 스테이지가 두 템플릿을 읽어 프롬프트를 만든다 — 형식을 고치려면 여기만 고친다.
+
+**`journal/` 은 `persona/` 밖에 있다**(KDEV-DEC-020). daily 는 공개 표면이 아니라 **career 가 정리해 쓰는 재료**이고, 하루에 여러 영역이 섞여 어느 영역에도 귀속되지 않기 때문이다. career 가 `up:` 으로 daily 를 가리킨다 — 반대가 아니다.
 
 **두 문서의 성격이 반대다.**
 
