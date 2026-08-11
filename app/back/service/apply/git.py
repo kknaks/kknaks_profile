@@ -64,6 +64,11 @@ def publish_atomic(
 
     identity = config.bot_identity()
     if identity is None:
+        # **여기서도 되돌린다.** 호출자는 이미 작업트리에 파일을 써 놓고 들어온다 —
+        # 그냥 실패로 돌아가면 커밋되지 않은 산출물이 남고, 다음 `reset --hard` 가
+        # 조용히 지울 때까지 미완성 트리가 보인다. "어느 단계에서 실패하든 원래
+        # 상태로" 가 이 함수의 계약이고, 설정 누락도 그 단계 중 하나다.
+        rollback(repo_root, before)
         return PublishOutcome(
             ok=False,
             error_code="BOT_IDENTITY_MISSING",

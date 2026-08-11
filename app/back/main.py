@@ -86,6 +86,14 @@ async def lifespan(app: FastAPI):
 
     await seed_admin()
 
+    # 공부 노트 접수 (KDEV-DEC-021 D1) — `inbox/` 를 훑어 큐로 옮기고 비운다.
+    # **스케줄이 아니라 부팅인 이유**는 트리거가 push 이기 때문이다. 노트를 넣고
+    # push 하면 배포가 돌고 서버가 다시 뜬다 — 그 시점이 곧 "새 노트가 왔다" 다.
+    # 예외를 삼키므로 입구가 이상해도 부팅을 막지 않는다.
+    from service.pipeline.study_intake import run_inbox_scan
+
+    await run_inbox_scan()
+
     # APScheduler 시작 (spec-03 §1.1). 테스트에서는 RUN_SCHEDULER=0으로 skip
     sched = None
     if config.run_scheduler():

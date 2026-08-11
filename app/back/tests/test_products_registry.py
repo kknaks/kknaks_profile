@@ -114,7 +114,16 @@ class TestRegisterStudio:
         card = frontmatter.load(base / "showcase.md").metadata
         assert card["type"] == "project" and card["visible"] is False
 
-    async def test_index_row_is_added(self, db, repo: Path) -> None:
+    async def test_index_is_not_touched(self, db, repo: Path) -> None:
+        """제품 목록은 `tracked_repos` 가 원장이다 (KDEV-DEC-017 D15 철회).
+
+        종전에는 등록이 `products/README.md` 에 행을 더했고 이 테스트가 그것을
+        요구했다. 같은 사실을 DB 와 파일 두 곳에 두면 어느 쪽이 맞는지 정할 수
+        없어 파일 쪽을 없앴다 — 이제 **안 건드리는 것**이 계약이다.
+        """
+        index = repo / "products" / "README.md"
+        before = index.read_text(encoding="utf-8")
+
         await registry.register(
             db,
             repo="kknaks/ax-graph",
@@ -124,8 +133,7 @@ class TestRegisterStudio:
             repo_root=repo,
             dry_run=True,
         )
-        text_ = (repo / "products" / "README.md").read_text(encoding="utf-8")
-        assert "| ax-knowledge-graph | `products/ax-knowledge-graph/` |" in text_
+        assert index.read_text(encoding="utf-8") == before
 
 
 @needs_db

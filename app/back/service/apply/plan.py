@@ -80,12 +80,16 @@ _TRAVERSAL = re.compile(r"(^/)|(\.\.)")
 
 @dataclass
 class FileAction:
-    #: `create` 신규 · `replace` 기존 교체 · `upsert` **둘 다 정상**
+    #: `create` 신규 · `replace` 기존 교체 · `upsert` **둘 다 정상** · `remove` 삭제
     #:
     #: `upsert` 가 필요한 이유는 daily·career 가 첫 회 생성과 이후 덮어쓰기가 둘 다
     #: 정상이기 때문이다(SPEC-013). `create`/`replace` 만으로는 매일 액션 종류가
     #: 갈리고, 그러면 "오늘은 create 인가 replace 인가" 를 발행부가 알아야 한다.
-    action: str  # create | replace | upsert
+    #:
+    #: `remove` 는 **입구를 비우는 데만** 쓴다(KDEV-DEC-021 D1). 발행이 파일을 지우는
+    #: 유일한 경우이고, 지우는 것은 공부 노트가 큐로 옮겨 간 뒤 남은 `inbox/` 원본이다.
+    #: `content` 는 비어 있다 — 지울 때 쓸 내용이 없다.
+    action: str  # create | replace | upsert | remove
     path: str
     content: str
     note_type: str
@@ -253,16 +257,23 @@ def render_current(payload: dict[str, Any], existing: str) -> str:
 
 
 def build_actions(
-    approved: dict[str, dict[str, Any]], *, repo_root: Path | None = None
+    approved: dict[str, dict[str, Any]],
+    *,
+    repo_root: Path | None = None,
+    source_key: str | None = None,
 ) -> list[FileAction]:
     """승인된 게이트 산출물 → 파일 액션 목록.
 
     `approved` 는 `{stage_name: payload}`. **경로는 payload 의 `target_path` 를 쓰되**,
     그것도 시스템이 조립한 값이지 AI 가 낸 값이 아니다(스테이지에서 stem 만 받는다).
+
+    `source_key` 는 항목의 `normalized_url` 이다. 공부 노트면 `study:{slug}` 라
+    **어느 입구 파일에서 왔는지**를 그 값 하나가 안다 — 그래서 발행이 그 파일을
+    회수할 수 있다(아래 `remove`).
     """
     actions: list[FileAction] = []
 
-    for stage in ("source_note", "derived"):
+    for stage in ("source_note", "derived", "post"):
         payload = approved.get(stage)
         if not payload:
             continue
@@ -372,6 +383,32 @@ def build_actions(
                 source_gate="concept",
             )
         )
+
+    # --- 입구 회수 (KDEV-DEC-021 D1) ---------------------------------------
+    # 공부 노트는 `inbox/{slug}.md` 에서 왔다. 접수 때 작업트리에서는 이미 지웠지만
+    # **그 삭제가 커밋되지 않으면** `reset --hard` 한 번에 파일이 되살아나고, 입구가
+    # 비어 있다는 약속이 깨진다. 산출물과 **같은 커밋**으로 묶는 이유이기도 하다 —
+    # 나눠 커밋하면 「노트는 발행됐는데 입구에 원본이 남은」 중간 상태가 생긴다.
+    #
+    # 산출이 하나도 없으면 붙이지 않는다. 지우기만 하는 커밋은 발행이 아니다.
+    #
+    # 접두는 접수부에서 가져온다 — 여기 `"study:"` 를 다시 적으면 SoT 가 둘이 되고,
+    # 한쪽만 고쳐지는 날 입구 파일이 조용히 회수되지 않는다.
+    from service.pipeline.study_intake import KEY_PREFIX as STUDY_KEY_PREFIX
+
+    if actions and (source_key or "").startswith(STUDY_KEY_PREFIX):
+        slug = source_key[len(STUDY_KEY_PREFIX) :]
+        if slug:
+            actions.append(
+                FileAction(
+                    action="remove",
+                    path=f"inbox/{slug}.md",
+                    content="",
+                    note_type="idea",
+                    stem=slug,
+                    source_gate="intake",
+                )
+            )
     return actions
 
 

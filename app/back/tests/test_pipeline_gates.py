@@ -258,8 +258,12 @@ class TestOpenGate:
         assert request.preparation.payload["summary"] == "요약본"
 
     async def test_unknown_pipeline_leaves_item_without_gate(self, db):
-        """정의 없는 종류에 유튜브 체인을 갖다 붙이지 않는다."""
-        item = await _ready_item(db, url="https://blog.example.com/x", kind="blog")
+        """정의 없는 종류에 유튜브 체인을 갖다 붙이지 않는다.
+
+        종전에는 `blog` 로 썼는데 그것이 진짜 정의가 되면서(KDEV-DEC-021) 테스트가
+        「정의 없음」을 더는 재현하지 못했다. 아직 없는 이름으로 바꾼다.
+        """
+        item = await _ready_item(db, url="https://blog.example.com/x", kind="없는_소스")
         gate = await open_first_gate(db, item, runner=Recorder())
         assert gate is None
 

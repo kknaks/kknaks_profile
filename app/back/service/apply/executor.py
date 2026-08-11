@@ -65,6 +65,11 @@ def _write_all(repo_root: Path, actions: list[FileAction]) -> None:
     """계획을 작업트리에 쓴다. 원자적 교체로 반쯤 쓰인 파일을 남기지 않는다."""
     for action in actions:
         target = repo_root / action.path
+        if action.action == "remove":
+            # **없어도 정상이다.** 공부 노트는 접수 때 이미 입구에서 지워졌고, 여기서
+            # 하는 일은 그 삭제를 커밋에 싣는 것뿐이다(`git add --` 가 삭제를 stage 한다).
+            target.unlink(missing_ok=True)
+            continue
         target.parent.mkdir(parents=True, exist_ok=True)
         handle, temp = tempfile.mkstemp(dir=str(target.parent), suffix=".tmp")
         try:
@@ -84,6 +89,10 @@ def commit_message(item: QueueItem, actions: list[FileAction]) -> str:
     """
     kinds: dict[str, int] = {}
     for action in actions:
+        if action.action == "remove":
+            # 회수는 **나간 장수가 아니다.** 제목의 숫자는 "무엇이 몇 장 나갔나" 이고,
+            # 지워진 입구 원본이 거기 섞이면 그 숫자가 거짓말을 한다. 본문 줄에는 남는다.
+            continue
         kinds[action.note_type or "unknown"] = kinds.get(action.note_type or "unknown", 0) + 1
     summary = " ".join(f"{k}:{v}" for k, v in sorted(kinds.items()))
     title = f"knowledge: publish item #{item.id} ({summary})"
@@ -109,7 +118,11 @@ async def apply_item(
     계획으로 다시 시도한다(DEC-012 D5).
     """
     if plan is None:
-        actions = build_actions(await approved_payloads(db, item.id), repo_root=repo_root)
+        actions = build_actions(
+            await approved_payloads(db, item.id),
+            repo_root=repo_root,
+            source_key=item.normalized_url,
+        )
         plan = ApplyPlan(item_id=item.id, file_actions=[a.as_dict() for a in actions])
         db.add(plan)
         await db.flush()
