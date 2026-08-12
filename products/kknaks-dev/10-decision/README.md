@@ -28,6 +28,7 @@
 | KDEV-DEC-020 | PARA 정렬 마무리 — 개인 영역 신설, A는 귀결, daily 는 개인 이력 | accepted | KDEV-BL-006 | BL-006 의 미결 A 판정 해소 | SPEC-001 · 012 |
 | KDEV-DEC-021 | inbox 는 입구다 — 보류 목적지를 없앤다 | accepted | KDEV-BL-007 | DEC-011 D1 부분 supersede | SPEC-008 |
 | KDEV-DEC-022 | 잔디가 current.md 의 「진행 중」만 갱신한다 | accepted | KDEV-BL-007 | DEC-015 D1 착지 확장 | SPEC-012 |
+| KDEV-DEC-023 | 개념 후보를 그래프로 좁힌다 — 전량 투입을 끝낸다 | accepted | KDEV-BL-007 | — | SPEC-008 |
 
 ### 개정 관계
 

@@ -4,7 +4,7 @@ id: KDEV-SPEC-008
 title: "게이트 체인 — 파이프라인 정의와 스테이지 계약"
 status: draft
 product: kknaks-dev
-version: 0.0.5
+version: 0.0.6
 created_at: 2026-07-27
 updated_at: 2026-08-11
 tags:
@@ -18,6 +18,7 @@ links:
     - "[[decision-011-approval-gate-chain|KDEV-DEC-011]]"
     - "[[decision-010-knowledge-graph-four-layers|KDEV-DEC-010]]"
     - "[[decision-021-inbox-is-an-entry|KDEV-DEC-021]]"
+    - "[[decision-023-concept-candidate-retrieval|KDEV-DEC-023]]"
   specs:
     - "[[spec-007-approval-queue|KDEV-SPEC-007]]"
     - "[[spec-009-gate-feedback|KDEV-SPEC-009]]"
@@ -375,6 +376,11 @@ stateDiagram-v2
   기다리면 프록시 타임아웃에 요청이 취소되고 **승인 자체가 롤백된다.**
 - 자동 스테이지는 승인 대상이 아니다. 실패 시 재시도하며 항목 status로 관리한다([[spec-007-approval-queue|KDEV-SPEC-007]]).
 - **concept는 묶음 승인**이다. 개념 N개를 개별 승인하지 않고 게이트 승인 하나에 묶으며, 원하지 않는 개념은 제외 토글로 뺀다. 개별 승인하면 승인 횟수가 개념 수만큼 늘어 마찰이 폭발한다.
+- **concept 게이트 입력은 전량이 아니다**([[decision-023-concept-candidate-retrieval|KDEV-DEC-023]]). `existing_concepts` 는 **alias 사전으로 찾은 seed + 그래프 1홉**만 담는다. 전량 투입은 개념 수에 선형이라 363건에서 이미 32k 토큰이었다.
+  - **홉은 1이 상한이다.** 그래프가 조밀해(개념 이웃 중앙값 18) 2홉이면 358/363 — 자르는 의미가 없다.
+  - **seed 0건이면 전량**을 넘긴다. 새 영역인지 사전이 놓친 것인지 구분할 수 없고, 놓친 쪽이면 좁히는 순간 SoT 가 갈라진다.
+  - **좁힌 결과가 전량의 60% 를 넘으면 전량**을 넘긴다. 그 지점부터는 목록을 두 벌 만드는 비용만 남는다.
+  - 잔디 게이트도 같은 함수를 쓴다 — 규칙이 두 벌이 되면 잔디만 계속 전량을 받는다.
 - **역방향은 route 재오픈 하나뿐이다.** 재오픈 시 기존 승인 revision을 밀어냄 처리하고 승인 포인터를 해제하며, 뒤 게이트를 `cancelled`로 전이한다. **revision 내용은 불변으로 남긴다.**
 - 재오픈해도 자동 준비 산출물은 재사용한다.
 - 게이트 생성/재생성의 AI 실행 상태는 게이트 상태와 섞지 않고 별도로 관리한다([[spec-009-gate-feedback|KDEV-SPEC-009]]).
