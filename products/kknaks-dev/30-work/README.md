@@ -95,6 +95,7 @@
 | WORK-017 | 잔디 커밋 파이프라인 — 형식 SoT·준비부 일반화·더미 collect·발행부·화면·진짜 git 수집 (5 phase) | BE+FE+Ops | **done (2026-08-03)** — 서버 하루치 실 push 완주(`a8c44b4`). 로컬 e2e 가 결함 10건을 꺼내 9건 수정, 818 passed | SPEC-011·012·013·010 | 016 | `work-017-grass-commit-pipeline.md` |
 | WORK-019 | 지식층 디렉토리 이관 — `resources/{source,concept,synthesis}/` · `archive/` 최상위 · 「양식 원천」 명칭 전환 (4 phase) | BE+문서+Ops | **done (2026-08-03)** — 이동 전후 그래프 동일(`nodes 287·ERROR 0`), 서버 실측도 같다. 잠복 버그 1건 발견·수정. 887 passed | SPEC-001·005 | 013 | `work-019-resources-layout-migration.md` |
 | WORK-018 | 제품 레지스트리 — 형식 SoT+트리 정리 · `product_slug` 컬럼 + **`repository/` 계층 신설** · 결정적 스캐폴딩 · 미등록 발견 · 관리 화면 (5 phase) | BE+FE+Ops | **done (2026-08-03)** — 배포·시드 17행·클론 295MB 완주. 로컬 e2e 가 결함 4건을 꺼냈고 **서버에서 "한 달 57건 누락" 이 재현됐다**. 887 passed | SPEC-014·011·001 | 017 | `work-018-product-registry-admin.md` |
+| WORK-020 | 개념 후보 좁히기 — alias seed + 그래프 1홉 (`concept`·`daily` 게이트 입력에서 전량 투입 제거, 5 phase) | BE | todo | SPEC-008 | — | `work-020-concept-candidate-retrieval.md` |
 
 ## Status Board
 
