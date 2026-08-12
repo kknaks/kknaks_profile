@@ -15,7 +15,7 @@
 
 ## 진행 중
 
-| Project | Experience | Status | Blocker | Next |
+| Project | Work | Status | Blocker | Next |
 |---|---|---|---|---|
 | Charty |  | collecting |  | 챌린지/해결방안/성과 정리 |
 | Linky |  | collecting |  | 챌린지/해결방안/성과 정리 |

@@ -297,3 +297,34 @@ class TestPublishBothAreas:
     def test_the_plan_passes_validation(self, repo: Path):
         actions = build_actions(self._grass(), repo_root=repo)
         assert validate_plan(actions, repo_root=repo) == []
+
+
+class TestTemplateCarriesTheRules:
+    """프롬프트는 규칙을 **가리키기만** 한다 — 실물은 템플릿에 있다.
+
+    `PROMPT` 가 「위 current 형식의 「행의 수명」 표를 그대로 따른다」고만 말하므로,
+    템플릿에서 그 표가 사라지면 **프롬프트는 멀쩡한데 규칙만 없어진다.** 형식을
+    프롬프트에 복사하지 않기로 한 대가라 여기서 지킨다 (KDEV-DEC-022 D6·D7).
+    """
+
+    def _read(self, *parts: str) -> str:
+        import config
+
+        return (config.repo_root().joinpath(*parts)).read_text(encoding="utf-8")
+
+    def test_columns_are_unified(self):
+        text = self._read("templates", "context", "current.md")
+        assert "| Project | Work | Status | Blocker | Next |" in text
+        # `Experience` 는 career 가 갖는 축이다 — 여기 되살아나면 SoT 가 둘이 된다.
+        assert "Experience" not in text
+
+    def test_row_lifecycle_is_documented(self):
+        text = self._read("templates", "context", "current.md")
+        assert "행의 수명" in text
+        assert "다음 갱신에서 뺀다" in text
+
+    def test_both_areas_use_the_unified_columns(self):
+        """실물이 템플릿을 따르는지 — company 가 오래 어긋나 있었다."""
+        for area in ("company", "studio"):
+            body = self._read("context", area, "current.md")
+            assert "| Project | Work | Status | Blocker | Next |" in body, area
