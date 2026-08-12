@@ -566,6 +566,10 @@ async def gate_approve(gate_id: int, body: ApproveRequest, db: AsyncSession = De
         if outcome == "discarded":
             # 폐기 승인은 항목을 끝낸다. 파일은 만들어지지 않는다.
             item.status = "discarded"
+            # 다만 **입구 원본은 회수한다** — 공부 노트는 접수 때 작업트리에서 이미
+            # 지워졌고, 그 삭제를 커밋할 자리가 발행뿐이었다. 폐기는 갈 곳이 없어
+            # 발행을 안 타므로 여기서 회수 커밋 하나를 낸다(KDEV-DEC-021 D1).
+            _reclaim(item)
 
     published = None
     advanced = None
@@ -589,6 +593,15 @@ async def gate_approve(gate_id: int, body: ApproveRequest, db: AsyncSession = De
         "published": published,
         "revision": _revision_view(revision),
     }
+
+
+def _reclaim(item: QueueItem) -> None:
+    """종결된 공부 노트의 입구 원본을 회수한다. 그 외 항목엔 아무 일도 안 한다."""
+    from service.apply import reclaim_inbox
+
+    reclaim_inbox(
+        item, repo_root=config.repo_root(), dry_run=config.job_git_push_dry_run()
+    )
 
 
 async def _publish(db: AsyncSession, item: QueueItem, *, plan=None) -> dict[str, Any]:
@@ -675,6 +688,8 @@ async def delete_item(item_id: int, db: AsyncSession = Depends(get_db)):
         )
     item.status = "deleted"
     item.deleted_at = datetime.now(timezone.utc)
+    # 폐기와 같다 — 종결이라 발행을 안 타고, 입구 원본의 삭제가 커밋될 자리가 없다.
+    _reclaim(item)
     await db.commit()
     return {"id": item.id, "status": item.status}
 

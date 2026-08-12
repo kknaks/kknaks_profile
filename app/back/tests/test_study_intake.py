@@ -10,6 +10,7 @@
 
 from __future__ import annotations
 
+import subprocess
 from pathlib import Path
 
 import pytest
@@ -223,3 +224,144 @@ class TestPostIsPublished:
         assert [(a.action, a.path, a.note_type) for a in actions] == [
             ("create", "persona/posts/http-cache.md", "post_note")
         ]
+
+
+class TestReclaimOnTermination:
+    """회수는 **종결 시점의 일**이다 (KDEV-DEC-021 D1).
+
+    발행은 산출물과 같은 커밋으로 지우고(`TestInboxReclaim`), 갈 곳이 없는 종결
+    (폐기·삭제)은 회수 커밋 하나를 낸다. 그러지 않으면 접수가 지운 파일의 삭제가
+    커밋될 자리가 없어 `reset --hard` 한 번에 되살아난다.
+
+    **진짜 git 을 쓴다.** 원격까지 둔 이유는 `publish_atomic` 이 커밋 뒤 fetch·rebase·
+    push 를 하기 때문이다 — 원격이 없으면 fetch 가 실패해 롤백으로 끝나고, 그러면
+    「회수가 커밋에 실렸는가」를 못 본다.
+    """
+
+    @pytest.fixture
+    def repo(self, tmp_path: Path, monkeypatch) -> Path:
+        from service.apply import git as apply_git
+
+        monkeypatch.setattr(
+            apply_git.config,
+            "bot_identity",
+            lambda: {"user": "t", "email": "t@example.com", "token": "x"},
+        )
+
+        origin = tmp_path / "origin.git"
+        subprocess.run(
+            ["git", "init", "-q", "--bare", "-b", "main", str(origin)],
+            check=True,
+            capture_output=True,
+        )
+
+        work = tmp_path / "work"
+        (work / "inbox").mkdir(parents=True)
+        (work / "inbox" / "http-cache.md").write_text("본문\n", encoding="utf-8")
+        for args in (
+            ["git", "init", "-q", "-b", "main"],
+            ["git", "config", "user.email", "t@example.com"],
+            ["git", "config", "user.name", "t"],
+            ["git", "remote", "add", "origin", str(origin)],
+            ["git", "add", "-A"],
+            ["git", "commit", "-qm", "init"],
+            ["git", "push", "-q", "origin", "main"],
+        ):
+            subprocess.run(args, cwd=work, check=True, capture_output=True)
+        return work
+
+    def _item(self, key: str | None, status: str = "discarded") -> QueueItem:
+        item = QueueItem(
+            source_kind="study_note",
+            source_url=None,
+            normalized_url=key,
+            note="본문",
+            channel="inbox",
+            status=status,
+        )
+        item.id = 7
+        return item
+
+    def _tracked(self, repo: Path) -> str:
+        return subprocess.run(
+            ["git", "ls-files", "inbox/"], cwd=repo, capture_output=True, text=True
+        ).stdout
+
+    def test_the_deletion_reaches_git(self, repo: Path):
+        from service.apply.reclaim import reclaim_inbox
+
+        (repo / "inbox" / "http-cache.md").unlink()  # 접수가 지운 상태
+        assert "http-cache.md" in self._tracked(repo)  # 아직 커밋에는 살아 있다
+
+        outcome = reclaim_inbox(
+            self._item(synthetic_key("http-cache")), repo_root=repo, dry_run=False
+        )
+
+        assert outcome is not None and outcome.ok, outcome
+        assert "http-cache.md" not in self._tracked(repo)
+
+    def test_a_leftover_file_is_removed_too(self, repo: Path):
+        """접수가 `delete=False` 였어도 종결이면 입구는 비어야 한다."""
+        from service.apply.reclaim import reclaim_inbox
+
+        reclaim_inbox(
+            self._item(synthetic_key("http-cache")), repo_root=repo, dry_run=False
+        )
+        assert not (repo / "inbox" / "http-cache.md").exists()
+        assert "http-cache.md" not in self._tracked(repo)
+
+    def test_other_sources_reclaim_nothing(self, repo: Path):
+        """유튜브 항목의 `normalized_url` 은 URL 이다 — 입구와 무관하다."""
+        from service.apply.reclaim import reclaim_inbox
+
+        assert (
+            reclaim_inbox(
+                self._item("https://youtu.be/abc"), repo_root=repo, dry_run=False
+            )
+            is None
+        )
+        assert (repo / "inbox" / "http-cache.md").exists()
+
+    def test_git_failure_does_not_undo_the_termination(self, repo: Path, monkeypatch):
+        """폐기는 이미 확정된 사람의 결정이다 — git 이 죽었다고 되돌리지 않는다."""
+        from service.apply import reclaim as reclaim_mod
+
+        def boom(*a, **kw):
+            raise RuntimeError("git 이 죽었다")
+
+        monkeypatch.setattr(reclaim_mod, "publish_atomic", boom)
+        assert (
+            reclaim_mod.reclaim_inbox(
+                self._item(synthetic_key("http-cache")), repo_root=repo, dry_run=False
+            )
+            is None
+        )
+
+    def test_untracked_path_never_reaches_git(self, repo: Path):
+        """지울 커밋 이력이 없으면 **git 을 부르지 않는다.**
+
+        그냥 넘기면 `git add` 가 `did not match any files` 로 죽고, `publish_atomic`
+        이 그것을 발행 실패로 보아 레포 전체에 `reset --hard` + `clean -fd` 를 건다 —
+        남의 미커밋 작업까지 날아간다.
+        """
+        from service.apply.reclaim import reclaim_inbox
+
+        (repo / "미커밋.txt").write_text("남의 작업", encoding="utf-8")
+
+        assert (
+            reclaim_inbox(
+                self._item(synthetic_key("없던-노트")), repo_root=repo, dry_run=False
+            )
+            is None
+        )
+        assert (repo / "미커밋.txt").exists()  # clean -fd 가 안 돌았다
+
+    def test_dry_run_touches_no_commit(self, repo: Path):
+        """운영 기본값이 dry_run 이다 — 그때는 작업트리만 정리되고 커밋은 없다."""
+        from service.apply.reclaim import reclaim_inbox
+
+        outcome = reclaim_inbox(
+            self._item(synthetic_key("http-cache")), repo_root=repo, dry_run=True
+        )
+        assert outcome is not None and outcome.dry_run
+        assert "http-cache.md" in self._tracked(repo)
