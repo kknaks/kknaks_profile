@@ -64,66 +64,19 @@ class TestProjects:
         assert d["projects"]["totalCount"] >= 1
 
 
-class TestNotesGraph:
-    def test_includes_clusters(self, client):
-        d = client.get("/api/notes/graph").json()
-        clusters = d["notes"]["graph"]["clusters"]
-        assert isinstance(clusters, list)
-        assert len(clusters) >= 1
+class TestNotesRemoved:
+    """`/api/notes/*` 는 없앴다 — `resources/` 는 R(개인 지식)이고 공개 표면이 아니다.
 
-    def test_nodes_have_title(self, client):
-        """노트가 0건일 수 있다 — 개수가 아니라 **노드 계약**을 검사한다."""
-        d = client.get("/api/notes/graph").json()
-        nodes = d["notes"]["graph"]["nodes"]
-        assert isinstance(nodes, list)
-        assert all("title" in n and "id" in n for n in nodes[:5])
+    화면이 안 쓰는데 열려 있으면 **다음 사람이 그것을 보고 다시 붙인다.** 없는 것이
+    닫힌 것보다 확실하다.
+    """
 
-    def test_edges_from_wikilinks(self, client):
-        # edges 는 list. 위키링크 박힌 note 가 있어야 entry 생성. 데이터 의존이라 list shape 만 검증.
-        d = client.get("/api/notes/graph").json()
-        edges = d["notes"]["graph"]["edges"]
-        assert isinstance(edges, list)
-        for e in edges[:5]:
-            assert "source" in e and "target" in e
-
-
-class TestNotesRecent:
-    def test_returns_recent_notes(self, client):
-        """노트가 0건이어도 **응답 형태**는 지켜져야 한다 — 개수 단정은 데이터에 의존한다."""
-        d = client.get("/api/notes/recent?limit=5").json()
-        assert isinstance(d["notes.recent[]"], list)
-
-
-class TestNotesDetail:
-    def test_returns_existing_note(self, client):
-        # 실 persona 의 첫 note id 동적 조회 → detail 응답 검증.
-        # 노트가 없으면 검증할 대상이 없다 — 단정이 아니라 skip 이 맞다.
-        recent = client.get("/api/notes/recent?limit=1").json()["notes.recent[]"]
-        if not recent:
-            pytest.skip("노트 0건 — 상세 계약을 검사할 대상이 없다")
-        nid = recent[0]["id"]
-        d = client.get(f"/api/notes/{nid}").json()
-        assert d["notes.detail"]["id"] == nid
-        assert "body" in d["notes.detail"]
-
-    def test_404_for_unknown_note(self, client):
-        r = client.get("/api/notes/nonexistent")
-        assert r.status_code == 404
-
-
-class TestNotesSearch:
-    def test_search_returns_list(self, client):
-        # 실 persona 의 첫 note title 의 첫 단어로 검색 — 최소 1건 hit
-        recent = client.get("/api/notes/recent?limit=1").json()["notes.recent[]"]
-        if not recent:
-            pytest.skip("노트 0건 — 검색할 대상이 없다")
-        keyword = recent[0]["title"].split()[0][:3] if recent[0]["title"] else "Day"
-        d = client.get(f"/api/notes/search?q={keyword}").json()
-        assert isinstance(d["notes.recent[]"], list)
-
-    def test_empty_query_rejected(self, client):
-        r = client.get("/api/notes/search?q=")
-        assert r.status_code == 422
+    @pytest.mark.parametrize(
+        "path",
+        ["/api/notes/graph", "/api/notes/recent", "/api/notes/search?q=x", "/api/notes/x"],
+    )
+    def test_gone(self, client, path):
+        assert client.get(path).status_code == 404
 
 
 class TestContents:

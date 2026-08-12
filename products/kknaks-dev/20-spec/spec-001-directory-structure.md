@@ -162,6 +162,8 @@ reports/               # (없음) — 제품별 작업 보고는 products/{제�
 | 경로 | 자동 갱신 주체 | 승인 |
 |---|---|---|
 | `resources/source/` · `resources/concept/` · `inbox/` | 유튜브 체인 · 잔디(concept 한정) | 게이트 |
+
+**`resources/` 는 공개 표면이 아니다**([[decision-020-para-alignment-area-and-personal|KDEV-DEC-020]]). R(개인 지식)이고, 블로그가 내세우는 것은 A(`persona/`)다. 종전에는 `/api/notes/*` 가 `resources/source` 를 인증 없이 서빙하고 랜딩이 「옵시디언 vault 미러 · 146+ 노트」로 그 건수를 광고했다 — 둘 다 없앴다.
 | `persona/contents/` | 유튜브 체인(`derived`) · 교안 enrich 잡 | 게이트 / 잡 |
 | `persona/daily/` · `persona/career/` | **잔디 파이프라인** | 게이트 |
 | `persona/algorithms/` | algorithm 잡 | **없음**(후속 편입 대상) |

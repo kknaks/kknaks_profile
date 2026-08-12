@@ -154,7 +154,6 @@ from api.routers import (  # noqa: E402
     career,
     contents,
     me,
-    notes,
     posts,
     print as print_router,
     products,
@@ -169,7 +168,6 @@ app.include_router(me.router)
 app.include_router(activity.router)
 app.include_router(career.router)
 app.include_router(projects.router)
-app.include_router(notes.router)
 app.include_router(contents.router)
 app.include_router(posts.router)
 app.include_router(algorithms.router)
