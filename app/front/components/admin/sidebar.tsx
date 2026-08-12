@@ -131,11 +131,38 @@ export function AdminSidebar({
         })}
       </nav>
 
+      {/*
+        블로그로 나가는 문. 관리자 셸에는 이것 말고 밖으로 가는 링크가 없어서,
+        들어오면 주소를 직접 고치거나 뒤로가기를 눌러야 나갈 수 있었다.
+        로그아웃 옆이 아니라 **위**에 두는 이유는 둘이 다른 일이기 때문이다 —
+        나가는 것과 세션을 끊는 것을 나란히 두면 눌러야 할 쪽을 헷갈린다.
+      */}
+      <Link
+        href="/"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 10,
+          // `auto` 가 위쪽을 밀어 하단에 붙인다. 좌우 10px 은 nav 항목과 같은 선.
+          margin: "auto 10px 0",
+          padding: "9px 12px",
+          borderRadius: 6,
+          fontSize: 13,
+          color: "var(--fg-1)",
+          textDecoration: "none",
+        }}
+      >
+        <span style={{ display: "flex", width: 16, height: 16 }}>
+          <IconExternal />
+        </span>
+        <span style={{ flex: 1 }}>블로그로 가기</span>
+      </Link>
+
       {/* User + logout */}
       <div
         style={{
-          marginTop: "auto",
           padding: "14px 16px",
+          marginTop: 12,
           borderTop: "1px solid var(--line-1)",
           display: "flex",
           alignItems: "center",
@@ -272,6 +299,14 @@ function IconGear() {
     <svg {...svg}>
       <circle cx="12" cy="12" r="3" />
       <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+    </svg>
+  );
+}
+function IconExternal() {
+  return (
+    <svg {...svg}>
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+      <path d="M15 3h6v6M10 14 21 3" />
     </svg>
   );
 }
