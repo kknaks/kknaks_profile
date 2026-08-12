@@ -442,6 +442,12 @@ class DailyStage(AgentStage):
         collect = prep.get("collect") or {}
         investigate = prep.get("investigate") or {}
         targets = career_targets(collect, self.repo_root)
+        # 잔디도 **같은 함수**를 쓴다(KDEV-DEC-023 D6). 한쪽에만 넣으면 규칙이 두
+        # 벌이 되고 잔디 프롬프트만 계속 전량을 받는다. seed 는 그날 조사 결과에서
+        # 뽑는다 — 레포별 정리문이 무엇을 했는지 말하고 있다.
+        concepts, narrowing = build_index(self.repo_root).narrowed_payload(
+            " ".join(str(v) for v in (investigate.get("repos") or {}).values())
+        )
         payload: dict[str, Any] = {
             "date": collect.get("date"),
             "counts": collect.get("counts"),
@@ -456,7 +462,8 @@ class DailyStage(AgentStage):
             # 수밖에 없고, 그러면 career 가 daily 의 복사본이 된다.
             # 매칭을 AI 에 맡기지 않는다 — 있는지 없는지는 파일 목록을 보면 아는
             # 사실이다. AI 는 무엇을 뽑을지만 정한다.
-            "existing_concepts": build_index(self.repo_root).as_prompt_payload(),
+            "existing_concepts": concepts,
+            "concept_narrowing": narrowing,
             "career_targets": [
                 {"stem": t["stem"], "repos": t["repos"], "current_body": t["body"]}
                 for t in targets

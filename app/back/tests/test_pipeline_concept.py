@@ -104,7 +104,9 @@ class TestIndex:
         """전문을 다 넣으면 프롬프트가 터진다 — 필요하면 에이전트가 직접 읽는다."""
         _write_existing(repo, "abc")
         payload = build_index(repo).as_prompt_payload()
-        assert set(payload[0]) == {"stem", "title", "aliases", "path"}
+        # `path` 는 빠졌다 — `stem` 에서 나오는 값이라 363건이면 12,000자가
+        # 중복이었다 (KDEV-DEC-023 D5). 엔트리에는 남아 보충 흐름이 쓴다.
+        assert set(payload[0]) == {"stem", "title", "aliases"}
 
 
 class TestCreate:
@@ -326,3 +328,96 @@ class TestApprovalGuard:
         with pytest.raises(GateError) as exc:
             apply_exclusions(approved, self._proposed())
         assert exc.value.code == "ALL_CONCEPTS_EXCLUDED"
+
+
+class TestNeighbors:
+    """이웃은 **양방향**이다 (KDEV-WORK-020 P1).
+
+    나가는 링크만 보면 「A 가 B 를 딛는다」에서 B 로부터 A 를 못 찾는다. 개념은
+    나중에 만들어진 쪽이 먼저 것을 가리키므로, 상류만 따라가면 최근에 자란 가지가
+    통째로 안 보인다.
+    """
+
+    def test_outgoing_and_incoming(self, repo):
+        _write_existing(repo, "inheritance", aliases=("상속",))
+        _write_existing(
+            repo, "polymorphism", aliases=("다형성",),
+            body_extra="[[inheritance]] 위에서 자란다.",
+        )
+        index = build_index(repo)
+
+        assert "polymorphism" in index.neighbors("inheritance")  # 들어오는 링크
+        assert "inheritance" in index.neighbors("polymorphism")  # 나가는 링크
+
+    def test_alias_link_resolves_to_stem(self, repo):
+        _write_existing(repo, "stt", aliases=("STT",))
+        _write_existing(repo, "asr", aliases=("ASR",), body_extra="[[STT]] 와 같다.")
+        assert index_neighbors(repo, "asr") == {"stt"}
+
+    def test_dead_link_is_not_a_neighbor(self, repo):
+        """프롬프트에 없는 개념을 실을 수 없다."""
+        _write_existing(repo, "asr", body_extra="[[없는-개념]] 을 가리킨다.")
+        assert index_neighbors(repo, "asr") == set()
+
+
+def index_neighbors(repo: Path, stem: str) -> set:
+    return build_index(repo).neighbors(stem)
+
+
+class TestSeeds:
+    """seed 는 사전이 찾는다 — 사실 판단이라 AI 에 맡기지 않는다."""
+
+    def test_alias_in_text_becomes_a_seed(self, repo):
+        _write_existing(repo, "servlet", title="서블릿", aliases=("서블릿",))
+        assert build_index(repo).seeds("오늘 서블릿 필터를 봤다") == {"servlet"}
+
+    def test_spacing_does_not_matter(self, repo):
+        """「추상 클래스」와 「추상클래스」는 같은 것을 가리킨다."""
+        _write_existing(repo, "abstract-class", aliases=("추상 클래스",))
+        assert build_index(repo).seeds("추상클래스를 배웠다") == {"abstract-class"}
+
+    def test_one_character_alias_is_skipped(self, repo):
+        """`락`·`빈`·`큐` 는 아무 글에나 걸리고, 그 seed 가 이웃 20건을 끌고 온다."""
+        _write_existing(repo, "queue", aliases=("큐",))
+        assert build_index(repo).seeds("큐레이션 도구를 만들었다") == set()
+
+    def test_unrelated_text_has_no_seed(self, repo):
+        _write_existing(repo, "servlet", aliases=("서블릿",))
+        assert build_index(repo).seeds("점심으로 국수를 먹었다") == set()
+
+
+class TestNarrowing:
+    """의심스러우면 **안 자른다** (KDEV-DEC-023 D3·D4)."""
+
+    def _many(self, repo, n: int) -> None:
+        for i in range(n):
+            _write_existing(repo, f"c{i:03d}", title=f"개념{i:03d}", aliases=(f"별칭{i:03d}",))
+
+    def test_seed_itself_is_always_included(self, repo):
+        _write_existing(repo, "servlet", aliases=("서블릿",))
+        self._many(repo, 20)
+        payload, meta = build_index(repo).narrowed_payload("서블릿을 봤다")
+        assert meta["mode"] == "narrowed"
+        assert "servlet" in {e["stem"] for e in payload}
+
+    def test_no_seed_falls_back_to_everything(self, repo):
+        """새 영역인지 사전이 놓친 것인지 **구분할 수 없다.**"""
+        self._many(repo, 20)
+        payload, meta = build_index(repo).narrowed_payload("아무 관련 없는 문장")
+        assert meta["mode"] == "all" and meta["reason"] == "no_seed"
+        assert len(payload) == 20
+
+    def test_over_ceiling_falls_back_to_everything(self, repo):
+        """seed 가 많은 날은 자르는 값이 없다 — 목록을 두 벌 만드는 비용만 남는다."""
+        self._many(repo, 10)
+        text = " ".join(f"별칭{i:03d}" for i in range(9))  # 90% 가 seed
+        payload, meta = build_index(repo).narrowed_payload(text)
+        assert meta["mode"] == "all" and meta["reason"] == "over_ceiling"
+        assert len(payload) == 10
+
+    def test_reason_is_reported(self, repo):
+        """좁히기는 조용히 실패한다 — 판단 근거가 없으면 알 방법이 없다."""
+        self._many(repo, 20)
+        _, meta = build_index(repo).narrowed_payload("아무 관련 없는 문장")
+        assert set(meta) == {"mode", "reason", "seeds", "picked", "total"}
+        assert meta["total"] == 20

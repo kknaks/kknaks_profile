@@ -275,10 +275,19 @@ class ConceptStage(AgentStage):
         )
 
     def payload(self, request: GenerationInput) -> dict[str, Any]:
+        base = context_payload(request)
+        # seed 는 **요약에서** 뽑는다. 수집 원문은 길어 흔한 말이 다 걸린다
+        # (KDEV-DEC-023 OQ-1 — 요약으로 시작하고 놓친 사례가 나오면 넓힌다).
+        concepts, narrowing = build_index(self.repo_root).narrowed_payload(
+            _seed_text(base)
+        )
         return {
-            **context_payload(request),
+            **base,
             "reference_stem": _reference_stem(request),
-            "existing_concepts": build_index(self.repo_root).as_prompt_payload(),
+            "existing_concepts": concepts,
+            # **판단 근거를 화면까지 들고 간다.** 좁히기는 조용히 실패한다 —
+            # seed 0 으로 매번 전량이 나가도 응답 모양이 같다.
+            "concept_narrowing": narrowing,
         }
 
     def parse(self, raw: str, request: GenerationInput) -> dict[str, Any]:
@@ -295,6 +304,17 @@ class ConceptStage(AgentStage):
                 reference_stem=_reference_stem(request),
             )
         }
+
+
+def _seed_text(payload: dict[str, Any]) -> str:
+    """seed 를 찾을 텍스트 — 요약과 제목·메모까지.
+
+    본문(`source_excerpt`)은 넣지 않는다. 수만 자라 `if`·`구현` 같은 흔한 별칭이
+    전부 걸리고, 그러면 seed 가 폭발해 60% 상한에 부딪혀 전량으로 떨어진다 —
+    좁히려다 안 좁히는 결과가 된다.
+    """
+    parts = [payload.get("summary"), payload.get("source_title"), payload.get("note")]
+    return " ".join(str(p) for p in parts if p)
 
 
 def _reference_stem(request: GenerationInput) -> str | None:
