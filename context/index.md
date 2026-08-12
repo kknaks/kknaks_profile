@@ -21,11 +21,18 @@ context/
 │   ├── current.md            # 현재 정리 중인 회사 경험, 챌린지, 해결방안, 성과
 │   ├── projects.md           # 회사 제품/프로젝트 경험의 목록과 경계
 │   └── org.md                # 회사 조직도, 사람, 역할, 협업 관계
-└── studio/                   # 여름별컴퍼니 개인사업자 프로젝트 운영
-    ├── current.md            # 현재 우선순위, 진행 중 작업, blocker
-        ├── org.md                # 여름별컴퍼니 조직 구조와 역할
-    └── workflow.md           # 작업 종류와 공통 작업 흐름
+├── studio/                   # 여름별컴퍼니 개인사업자 프로젝트 운영
+│   ├── current.md            # 현재 우선순위, 진행 중 작업, blocker
+│   ├── org.md                # 여름별컴퍼니 조직 구조와 역할
+│   └── workflow.md           # 작업 종류와 공통 작업 흐름
+└── personal/                 # 사람 본인 — 배움(자료·개념)과 이력(그날 한 일)
+    ├── current.md            # 지금 무엇을 배우고 있나
+    └── projects.md           # 학습 갈래
 ```
+
+**영역이 셋이다** — 회사·여름별컴퍼니는 **역할**이고 개인은 **사람 본인**이다([[decision-020-para-alignment-area-and-personal|KDEV-DEC-020]] D1). 구분 기준은 [[kknaks]] 가 갖는다.
+
+`personal/current.md` 는 **잔디 대상이 아니다.** 회사·studio 의 `## 진행 중` 은 커밋이 말하지만 개인은 커밋 축이 아니라 배움 축이라 사람이 쓴다([[decision-022-grass-updates-current|KDEV-DEC-022]]).
 
 ## 연결 계층
 
