@@ -14,13 +14,12 @@ export default async function HomePage({
   const lang: Lang = rawLang && isLang(rawLang) ? rawLang : DEFAULT_LANG;
 
   try {
-    const [me, career, projects, notesGraph, notesRecent, contents] =
+    const [me, career, projects, posts, contents] =
       await Promise.all([
         api.me(lang),
         api.career(lang),
         api.projects(lang),
-        api.notesGraph(),
-        api.notesRecent(lang, 5),
+        api.posts(lang, 5),
         api.contents(lang, 5),
       ]);
 
@@ -32,8 +31,7 @@ export default async function HomePage({
           me={me}
           career={career}
           projects={projects}
-          notesGraph={notesGraph}
-          notesRecent={notesRecent["notes.recent[]"]}
+          posts={posts}
           contents={contents}
         />
       </main>

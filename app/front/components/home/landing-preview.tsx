@@ -4,8 +4,7 @@ import type {
   CareerResponse,
   ContentsResponse,
   MeResponse,
-  NoteRecent,
-  NotesGraphResponse,
+  PostsResponse,
   ProjectsResponse,
 } from "@/lib/types";
 import { YouTubeThumbnail } from "@/components/contents/youtube-thumbnail";
@@ -16,8 +15,7 @@ interface Props {
   me: MeResponse;
   career: CareerResponse;
   projects: ProjectsResponse;
-  notesGraph: NotesGraphResponse;
-  notesRecent: NoteRecent[];
+  posts: PostsResponse;
   contents: ContentsResponse;
 }
 
@@ -90,8 +88,7 @@ export function LandingPreview({
   me,
   career,
   projects,
-  notesGraph,
-  notesRecent,
+  posts,
   contents,
 }: Props) {
   const t = (ko: string, en: string) => (lang === "en" ? en : ko);
@@ -106,8 +103,16 @@ export function LandingPreview({
   const projectsDone = projectsSorted.filter((p) => p.status !== "wip");
   const projectsWip = projectsSorted.filter((p) => p.status === "wip");
   const projectItems = [...projectsDone, ...projectsWip].slice(0, 4);
-  const recentNotes = notesRecent.slice(0, 5);
-  const stacks = notesGraph.notes.stacks.slice(0, 10);
+  const recentPosts = posts["posts[]"].slice(0, 5);
+  // 스택 집계는 **글에서** 낸다. 종전에는 `/api/notes/graph` 가 `resources/source`
+  // 를 세어 줬는데, resources 는 R(개인 지식)이라 공개 표면에 오면 안 된다.
+  const stackCount = new Map<string, number>();
+  for (const p of posts["posts[]"])
+    for (const s of p.stack ?? []) stackCount.set(s, (stackCount.get(s) ?? 0) + 1);
+  const stacks = [...stackCount]
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 10);
   const contentItems = contents["contents[]"];
   const latestContent = contentItems[0];
   const olderContents = contentItems.slice(1, 5);
@@ -381,8 +386,8 @@ export function LandingPreview({
         id="notes"
         title="Notes"
         sub={t(
-          `옵시디언 vault 미러 · ${notesGraph.notes.totalCount}+ 노트`,
-          `obsidian vault mirror · ${notesGraph.notes.totalCount}+ notes`,
+          `읽고 정리한 것 · ${posts.posts.totalCount}편`,
+          `what I read and wrote up · ${posts.posts.totalCount}`,
         )}
         langSuffix={langSuffix}
         viewAllLabel={viewAllLabel}
@@ -401,7 +406,7 @@ export function LandingPreview({
               recent
             </div>
             <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
-              {recentNotes.map((n) => (
+              {recentPosts.map((n) => (
                 <li
                   key={n.id}
                   style={{
@@ -421,7 +426,7 @@ export function LandingPreview({
                     {n.date ?? ""}
                   </span>
                   <Link
-                    href={`/notes${langSuffix}#${n.id}`}
+                    href={`/notes/${n.id}${langSuffix}`}
                     style={{ color: "var(--fg-0)" }}
                   >
                     {n.title}
@@ -434,7 +439,9 @@ export function LandingPreview({
                       textAlign: "right",
                     }}
                   >
-                    {n.path}
+                    {n.type === "post_note"
+                      ? t("공부", "note")
+                      : t("스크랩", "scrap")}
                   </span>
                 </li>
               ))}
@@ -477,7 +484,7 @@ export function LandingPreview({
             >
               <NotesGraphPreview
                 stacks={stacks.slice(0, 5)}
-                noteCount={notesGraph.notes.totalCount}
+                noteCount={posts.posts.totalCount}
               />
               <div
                 className="mono"
