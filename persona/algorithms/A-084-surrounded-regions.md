@@ -21,7 +21,7 @@ tags:
 title:
   en: Surrounded Regions
   ko: 둘러싸인 영역
-today: true
+today: false
 type: algorithm
 updated: '2026-08-11'
 visible: true
