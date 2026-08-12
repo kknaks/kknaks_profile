@@ -73,6 +73,9 @@ REQUIRED_FIELDS: dict[str, set[str]] = {
     "concept": {"type", "id", "title"},    # KDEV-WORK-013 — 원자 개념. aliases/up 필수는 그래프 L2 가 검사
     "content": {"type", "id", "date", "day", "title", "summary", "youtubeId"},
     "daily": {"type", "date"},
+    # 공개 글 (KDEV-DEC-021). `up:` 은 `post` 게이트가 발행 전에 「정확히 하나」로
+    # 검사한다 — 여기서 또 보면 같은 규칙이 두 곳에 산다.
+    "post": {"type", "id", "title", "date"},
     "algorithm": {"type", "id", "title", "date", "source", "difficulty"},
 }
 
@@ -148,6 +151,11 @@ def load_persona(persona_dir: Path) -> dict[str, Any]:
     daily = _load_dir(persona_dir / "daily")
     daily.sort(key=lambda d: d.get("date", ""), reverse=True)
 
+    # 공개 글 (KDEV-DEC-021 / KDEV-SPEC-001). **그래프 노드가 아니다** — `up:` 으로
+    # source 를 가리키지만 계보 검증은 받지 않는다(`OUTSIDE_GRAPH`).
+    posts = [p for p in _load_dir(persona_dir / "posts", persona_dir) if p.get("id")]
+    posts.sort(key=lambda p: (p.get("date", ""), p.get("id", "")), reverse=True)
+
     algorithms = _load_algorithms_dir(persona_dir / "algorithms", persona_dir)
     algorithms.sort(key=lambda a: a.get("date", ""), reverse=True)
 
@@ -164,6 +172,7 @@ def load_persona(persona_dir: Path) -> dict[str, Any]:
         "notes": notes,
         "contents": contents,
         "daily": daily,
+        "posts": posts,
         "algorithms": algorithms,
         "activity": activity,
         # KDEV-DEC-019 로 판단층이 폐기돼 이 리스트는 이제 concept 만 담는다.
@@ -351,6 +360,15 @@ def validate_persona(data: dict[str, Any]) -> None:
         if not path.stem.startswith(f"{cid}-"):
             raise PersonaError(
                 f"contents/{path.name}: id '{cid}' must be prefix of filename"
+            )
+
+    for p in data["posts"]:
+        _check_required(p, "post", _path_label(p))
+        # 파일명이 곧 id 다 — 링크가 stem 으로 걸리므로 어긋나면 조용히 404 가 된다.
+        ppath: Path = p["_path"]
+        if ppath.stem != p["id"]:
+            raise PersonaError(
+                f"posts/{ppath.name}: frontmatter id '{p['id']}' != filename slug '{ppath.stem}'"
             )
 
     for d in data["daily"]:

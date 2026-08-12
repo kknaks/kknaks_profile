@@ -469,3 +469,82 @@ def _write_algo_file(
         "```\n"
     )
     path.write_text(fm + body, encoding="utf-8")
+
+
+class TestPostsAreLoaded:
+    """공개 글이 **읽히는지** (KDEV-DEC-021).
+
+    발행부는 어제 붙였는데 로더가 `persona/posts/` 를 안 읽어서, 발행하면 파일은
+    쌓이는데 사이트에는 안 나왔다. 그 구멍을 여기서 지킨다.
+    """
+
+    POST = (
+        "---\ntype: post_note\nid: {stem}\ntitle: 멱등성\n"
+        "date: 2026.08.12\n---\n\n## 주제\n\n본문\n"
+    )
+
+    def _repo(self, tmp_path: Path) -> Path:
+        (tmp_path / "persona" / "posts").mkdir(parents=True)
+        (tmp_path / "persona" / "profile.md").write_text(
+            "---\ntype: profile\nhandle: kknaks\nname: 이건학\nrole: be\n"
+            "email: a@b.c\ntagline: t\nintro: i\nstack: [Python]\n---\n",
+            encoding="utf-8",
+        )
+        return tmp_path
+
+    def _write(self, repo: Path, stem: str) -> None:
+        (repo / "persona" / "posts" / f"{stem}.md").write_text(
+            self.POST.format(stem=stem), encoding="utf-8"
+        )
+
+    def test_posts_land_in_the_payload(self, tmp_path: Path):
+        repo = self._repo(tmp_path)
+        self._write(repo, "idempotency-basics")
+
+        data = load_persona(repo / "persona")
+
+        assert [p["id"] for p in data["posts"]] == ["idempotency-basics"]
+        assert data["posts"][0]["body"].strip().startswith("## 주제")
+
+    def test_readme_is_not_a_post(self, tmp_path: Path):
+        """디렉토리 설명 문서는 글이 아니다 — frontmatter 가 없어 `id` 로 걸러진다."""
+        repo = self._repo(tmp_path)
+        (repo / "persona" / "posts" / "README.md").write_text(
+            "# posts\n\n설명\n", encoding="utf-8"
+        )
+        assert load_persona(repo / "persona")["posts"] == []
+
+    def test_newest_first(self, tmp_path: Path):
+        repo = self._repo(tmp_path)
+        for stem, date in (("old", "2026.08.01"), ("new", "2026.08.12")):
+            (repo / "persona" / "posts" / f"{stem}.md").write_text(
+                self.POST.format(stem=stem).replace("2026.08.12", date), encoding="utf-8"
+            )
+        assert [p["id"] for p in load_persona(repo / "persona")["posts"]] == ["new", "old"]
+
+    def test_id_must_match_filename(self, tmp_path: Path):
+        """링크가 stem 으로 걸린다 — 어긋나면 조용히 404 가 된다."""
+        repo = self._repo(tmp_path)
+        (repo / "persona" / "posts" / "http-cache.md").write_text(
+            self.POST.format(stem="다른-이름"), encoding="utf-8"
+        )
+        with pytest.raises(PersonaError, match="filename slug"):
+            load_persona(repo / "persona")
+
+    def test_missing_required_field_is_refused(self, tmp_path: Path):
+        repo = self._repo(tmp_path)
+        (repo / "persona" / "posts" / "http-cache.md").write_text(
+            "---\ntype: post_note\nid: http-cache\n---\n\n본문\n", encoding="utf-8"
+        )
+        with pytest.raises(PersonaError):
+            load_persona(repo / "persona")
+
+    def test_no_posts_directory_is_fine(self, tmp_path: Path):
+        """옛 클론·신규 환경에서 부팅이 막히면 안 된다."""
+        (tmp_path / "persona").mkdir()
+        (tmp_path / "persona" / "profile.md").write_text(
+            "---\ntype: profile\nhandle: k\nname: n\nrole: r\nemail: a@b.c\n"
+            "tagline: t\nintro: i\nstack: [Python]\n---\n",
+            encoding="utf-8",
+        )
+        assert load_persona(tmp_path / "persona")["posts"] == []

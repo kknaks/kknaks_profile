@@ -1,6 +1,6 @@
 import { api } from "@/lib/api";
 import { DEFAULT_LANG, isLang, type Lang } from "@/lib/i18n";
-import { NotesGraphView } from "@/components/notes/notes-graph-view";
+import { PostsList } from "@/components/notes/posts-list";
 
 export const dynamic = "force-dynamic";
 
@@ -13,9 +13,9 @@ export default async function NotesPage({
   const lang: Lang = rawLang && isLang(rawLang) ? rawLang : DEFAULT_LANG;
   const t = (ko: string, en: string) => (lang === "en" ? en : ko);
 
-  let graph;
+  let data;
   try {
-    graph = await api.notesGraph();
+    data = await api.posts(lang);
   } catch (err) {
     return (
       <main className="pad-x" style={{ padding: "56px 80px" }}>
@@ -26,6 +26,8 @@ export default async function NotesPage({
       </main>
     );
   }
+
+  const posts = data["posts[]"];
 
   return (
     <main>
@@ -46,7 +48,7 @@ export default async function NotesPage({
             marginBottom: 12,
           }}
         >
-          04 / Notes · {t("학습 vault", "learning vault")}
+          04 / Notes · {data.posts.subtitle}
         </div>
         <div style={{ display: "flex", alignItems: "baseline", gap: 16, flexWrap: "wrap" }}>
           <h1
@@ -62,12 +64,12 @@ export default async function NotesPage({
             Notes
           </h1>
           <span className="mono" style={{ fontSize: 12, color: "var(--fg-3)" }}>
-            {graph.notes.totalCount} {t("노트", "notes")} · {graph.notes.edgeCount} {t("연결", "edges")}
+            {data.posts.totalCount} {t("글", "posts")}
           </span>
         </div>
       </header>
 
-      <NotesGraphView graphData={graph.notes} lang={lang} />
+      <PostsList items={posts} lang={lang} />
     </main>
   );
 }

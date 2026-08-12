@@ -122,7 +122,7 @@ Out of scope:
 | `persona/daily/` | `daily` | 그날 활동 기록. **잔디 파이프라인이 자동 갱신**([[spec-012-grass-artifacts|KDEV-SPEC-012]]) — 승인 게이트를 거친다. `auto: false` 면 본인 작성이라 자동 갱신 대상에서 빠진다 |
 | `persona/career/` | `career` | 경력. **잔디 파이프라인이 본문·`stack` 만 자동 갱신**(`is_current: true` 항목 한정). `bullets`·`period`·`org` 등은 **사람 전용** |
 | `persona/profile.md` · `assets/` | `profile` | 정체성(그래프 주변). 사람 전용 |
-| `persona/posts/` | `post_article` · `post_note` | 공개 글. `resources/source/` 와 **1:1** 이고 `up:` 하나로 그것을 가리킨다. 블로그·공부 노트 파이프라인의 `post` 게이트가 만든다([[spec-008-gate-chain|KDEV-SPEC-008]]). 그래프 비대상 |
+| `persona/posts/` | `post_article` · `post_note` | 공개 글. `resources/source/` 와 **1:1** 이고 `up:` 하나로 그것을 가리킨다. 블로그·공부 노트 파이프라인의 `post` 게이트가 만들고([[spec-008-gate-chain|KDEV-SPEC-008]]), 로더 → `/api/posts` → 블로그 `/notes` 로 읽힌다. **`up:` 을 갖지만 그래프 비대상**이다 — 계보 검증(L1~L6)을 받지 않는다 |
 
 ### Data Contract — 디렉토리 레이아웃
 
@@ -209,7 +209,7 @@ reports/               # (없음) — 제품별 작업 보고는 products/{제�
 - [x] `inbox/` · `resources/{source,concept}/` · `archive/` 루트 층 존재.
 - [x] `resources/` 하위 둘이 존재하고 모두 flat이다 (`synthesis` 는 KDEV-DEC-019 로 폐기).
 - [ ] products/{제품}/에 showcase.md 규약 적용, org 필드로 회사/개인 구분.
-- [x] persona/posts 신설·배선 완료(KDEV-DEC-021 `post` 게이트), projects→products·notes→reference 재편 완료 (contents 잔류 — DEC-008).
+- [x] persona/posts 신설·**쓰기·읽기 양쪽 배선 완료** — `post` 게이트가 쓰고(KDEV-DEC-021), 로더·`/api/posts`·`/notes` 가 읽는다. projects→products·notes→reference 재편 완료 (contents 잔류 — DEC-008).
 - [ ] 각 디렉토리의 노드 타입이 frontmatter `type`과 일치.
 - [x] 3층(`source`/`concept`/`execution`)이 디렉토리에서 일의적으로 도출된다.
 - [ ] concept 노트가 `aliases`와 `up:`을 모두 갖는다.

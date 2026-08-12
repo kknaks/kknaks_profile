@@ -182,6 +182,37 @@ export interface ContentDetailResponse {
   "contents.detail": ContentDetail;
 }
 
+/* ---------- 공개 글 (KDEV-DEC-021) — persona/posts, source 와 1:1 ---------- */
+
+export type PostType = "post_article" | "post_note";
+
+export interface PostItem {
+  id: string;
+  type: PostType;
+  title: string;
+  date: string;
+  summary?: string;
+  tags?: string[];
+  stack?: string[];
+  // 이 글이 압축한 source stem. **정확히 하나다** — 「한 글 = 한 자료」의 제약.
+  up?: string[];
+}
+
+export interface PostsResponse {
+  posts: { subtitle: string; totalCount: number };
+  "posts[]": PostItem[];
+}
+
+export interface PostDetail extends PostItem {
+  body: string;
+  newer: ContentDetailNeighbor | null;
+  older: ContentDetailNeighbor | null;
+}
+
+export interface PostDetailResponse {
+  "posts.detail": PostDetail;
+}
+
 export interface ActivityEntry {
   date: string;
   count: number;                                              // = sum(counts.values()) — 잔디 색 강도 호환

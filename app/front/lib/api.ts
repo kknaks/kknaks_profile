@@ -16,6 +16,8 @@ import type {
   NoteDetail,
   NoteRecent,
   NotesGraphResponse,
+  PostDetailResponse,
+  PostsResponse,
   ProjectsResponse,
   SiteResponse,
 } from "./types";
@@ -57,6 +59,10 @@ export const api = {
     get<ContentsResponse>(`/api/contents?limit=${limit}`, lang),
   contentDetail: (id: string, lang: Lang) =>
     get<ContentDetailResponse>(`/api/contents/${id}`, lang),
+  posts: (lang: Lang, limit = 50) =>
+    get<PostsResponse>(`/api/posts?limit=${limit}`, lang),
+  postDetail: (id: string, lang: Lang) =>
+    get<PostDetailResponse>(`/api/posts/${id}`, lang),
   algorithms: (lang: Lang) => get<AlgorithmsResponse>("/api/algorithms", lang),
   algorithmDetail: (id: string, lang: Lang) =>
     get<AlgorithmDetailResponse>(`/api/algorithms/${id}`, lang),
