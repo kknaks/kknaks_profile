@@ -21,9 +21,16 @@ COPY app/back/pyproject.toml app/back/uv.lock ./
 RUN uv sync --frozen --no-install-project \
     && chmod -R a+rX /opt/venv
 
-# playwright chromium + system deps (planning-02 — PDF 생성 잡)
+# playwright chromium + system deps (planning-02 — PDF 생성 잡 · KDEV-SPEC-016 동적 수집)
 # --with-deps 가 chromium 실행에 필요한 OS 라이브러리 (libnss, libatk 등) 자동 설치.
-RUN UV_PROJECT_ENVIRONMENT=/opt/venv uv run playwright install --with-deps chromium
+#
+# **설치 위치를 명시한다.** 기본값은 `$HOME/.cache/ms-playwright` 인데 빌드는 root,
+# 런타임은 `user: "1000:1000"` + `HOME=/tmp` 라 서로 다른 곳을 본다 — 브라우저가
+# 이미지 안에 있는데도 `Executable doesn't exist at /tmp/.cache/...` 로 죽었다.
+# HOME 에 안 묶인 고정 경로에 두고 모두가 읽게 한다.
+ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+RUN UV_PROJECT_ENVIRONMENT=/opt/venv uv run playwright install --with-deps chromium \
+    && chmod -R a+rX /ms-playwright
 
 # compose 의 `user: "1000:1000"` 가 venv 갱신 시 root 소유 파일을 못 지워서 부팅 실패하던 이슈 영구 차단.
 RUN chown -R 1000:1000 /opt/venv /tmp 2>/dev/null || true
