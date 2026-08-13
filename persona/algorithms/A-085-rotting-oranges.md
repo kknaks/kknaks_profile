@@ -19,7 +19,7 @@ tags:
 title:
   en: Rotting Oranges
   ko: 썩은 오렌지
-today: true
+today: false
 type: algorithm
 updated: '2026-08-12'
 visible: true
