@@ -98,18 +98,19 @@ date: 2026-07-28
 
 
 class TestNoteOutput:
-    def test_parses_json_and_code_fence(self):
-        raw = '```json\n{"filename_stem": "2026-07-28-a-b", "content": "x"}\n```'
+    def test_parses_record_and_code_fence(self):
+        raw = "```text\nfilename_stem: 2026-07-28-a-b\n---8<---\nx\n---8<--- end\n```"
         assert parse_note_output(raw) == ("2026-07-28-a-b", "x")
 
     @pytest.mark.parametrize(
         "raw",
         [
-            "not json",
-            '{"content": "x"}',
-            '{"filename_stem": "a"}',
-            '{"filename_stem": "a", "content": "  "}',
-            '["list"]',
+            "not a record",
+            # 옛 JSON 계약. 조용히 받아 주지 않는다 — 두 형식을 다 받으면 SoT 가 둘이 된다.
+            '{"filename_stem": "a", "content": "x"}',
+            "---8<---\nx",  # stem 없음
+            "filename_stem: a\n---8<---\n   ",  # 본문 빔
+            "filename_stem: a",  # 구분자 없음
         ],
     )
     def test_malformed_rejected(self, raw):
@@ -119,10 +120,8 @@ class TestNoteOutput:
     @pytest.mark.parametrize("stem", ["resources/source/x", "x.md", "a/b/c"])
     def test_path_in_stem_rejected(self, stem):
         """경로를 지어내면 allowlist 밖으로 쓰는 계획이 만들어진다."""
-        import json as _json
-
         with pytest.raises(GateError):
-            parse_note_output(_json.dumps({"filename_stem": stem, "content": "x"}))
+            parse_note_output(f"filename_stem: {stem}\n---8<---\nx")
 
     def test_valid_reference_passes(self):
         meta = check_note(
@@ -327,6 +326,71 @@ class TestAdvance:
         monkeypatch.setattr(pathlib.Path, "write_text", explode)
         item, gate = await _routed(db, "https://youtu.be/chain000006", route())
         await _advance(db, item, gate, runners={"source_note": maker(NOTE_PAYLOAD)})
+
+
+@needs_db
+class TestSessionInheritance:
+    """스테이지 사이 세션 승계 (KDEV-DEC-024 / SPEC-009 S-6·S-7).
+
+    **체인 하나가 한 대화다.** 그전까지는 스테이지가 넘어가면 무조건 새 세션이라
+    매 스테이지가 규칙·양식을 다시 읽고 원문을 다시 받았다.
+    """
+
+    async def test_next_gate_resumes_previous_stage_session(self, db):
+        item, gate = await _routed(db, "https://youtu.be/sess000001", route())
+        note_runner = FakeRunner(payload=NOTE_PAYLOAD, session_ref="note-sess")
+        concept_runner = FakeRunner(payload={"concepts": []}, session_ref="con-sess")
+        runners = {"source_note": note_runner, "concept": concept_runner}
+
+        second = (await _advance(db, item, gate, runners=runners)).gate
+        await gates_service.approve(db, second)
+        third = (await _advance(db, item, second, runners=runners)).gate
+
+        # route 가 남긴 세션을 자료 노트가, 자료 노트의 세션을 개념이 문다.
+        assert note_runner.calls[-1].session_ref == "s"
+        assert concept_runner.calls[-1].session_ref == "note-sess"
+        assert third.stage_name == "concept"
+
+    async def test_first_gate_has_nothing_to_resume(self, db):
+        """앞이 없으면 `None` — stateless 다. 실패시키지 않는다 (D4)."""
+        created = await intake(db, source_url="https://youtu.be/sess000002")
+        item = await db.get(QueueItem, created.item_id)
+        item.status = "in_review"
+        await db.flush()
+        runner = maker(route())
+        await open_first_gate(db, item, runner=runner)
+        assert runner.calls[-1].session_ref is None
+
+    async def test_cancelled_gate_session_is_not_resumed(self, db):
+        """재오픈은 「앞의 판단이 틀렸다」는 선언이다 (D2).
+
+        그 선언 뒤에 틀린 판단의 세션이 조용히 살아 있으면, 사람은 되돌렸다고 믿는데
+        시스템은 안 되돌린 상태가 된다.
+        """
+        from service.pipeline.chain import reopen_route
+
+        item, gate = await _routed(db, "https://youtu.be/sess000003", route())
+        stale = FakeRunner(payload=NOTE_PAYLOAD, session_ref="stale-note-sess")
+        await _advance(db, item, gate, runners={"source_note": stale})
+
+        # 목적지가 틀렸다 — route 를 다시 연다. 뒤 게이트는 cancelled.
+        reopened = FakeRunner(payload=route(), session_ref="route-2-sess")
+        await reopen_route(db, item, runner=reopened)
+        await harvest(db, gate, item=item, runner=reopened)
+        await gates_service.approve(db, gate)
+
+        fresh = FakeRunner(payload=NOTE_PAYLOAD, session_ref="note-2-sess")
+        again = (await _advance(db, item, gate, runners={"source_note": fresh})).gate
+
+        assert again.id != stale.parsed[0].gate.id  # 새 게이트다
+        # 취소된 자료 노트가 아니라 **다시 승인된 route** 를 문다.
+        assert fresh.calls[-1].session_ref == "route-2-sess"
+
+        # 한 칸 더 간다 — 앞 스테이지를 훑을 때도 취소된 쪽이 아니라 산 쪽을 봐야 한다.
+        await gates_service.approve(db, again)
+        concept = FakeRunner(payload={"concepts": []}, session_ref="con-2-sess")
+        await _advance(db, item, again, runners={"concept": concept})
+        assert concept.calls[-1].session_ref == "note-2-sess"
 
 
 class TestBlogAndStudyNotePipelines:

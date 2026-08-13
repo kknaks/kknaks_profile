@@ -28,11 +28,12 @@ from ..executor import AgentStage
 from ..gates import GateError, GenerationInput
 from .common import (
     CONCEPT_STEM_RE,
+    MARKER,
     OUTPUT_CONTRACT_LIST,
     READ_THE_RULES,
     check_note,
     context_payload,
-    parse_json_output,
+    parse_records,
     require_up_in_body,
     up_targets,
 )
@@ -62,16 +63,15 @@ INSTRUCTION = """이 자료에서 **원자 개념**을 뽑아 concept 노트를 
 
 {output}"""
 
-RESULT_SHAPE = """{
-  "concepts": [
-    {
-      "filename_stem": "<날짜 없는 소문자-하이픈 slug>",
-      "mode": "create" 또는 "supplement",
-      "names": ["<이 개념을 부르는 이름들 — 매칭 확인용>"],
-      "content": "<frontmatter 를 포함한 markdown 전문>"
-    }
-  ]
-}"""
+#: 헤더 키. 여기 없는 키는 파서가 버린다.
+CONCEPT_KEYS = frozenset({"filename_stem", "mode", "names"})
+
+RESULT_SHAPE = f"""{MARKER} note
+filename_stem: <날짜 없는 소문자-하이픈 slug>
+mode: create 또는 supplement
+names: <이 개념을 부르는 이름들. 쉼표로 나열 — 매칭 확인용>
+{MARKER}
+<frontmatter 를 포함한 markdown 전문>"""
 
 
 def _diff(before: str, after: str, stem: str) -> str:
@@ -291,10 +291,17 @@ class ConceptStage(AgentStage):
         }
 
     def parse(self, raw: str, request: GenerationInput) -> dict[str, Any]:
-        data = parse_json_output(raw)
-        raw_concepts = data.get("concepts")
-        if not isinstance(raw_concepts, list):
-            raise GateError("INVALID_CONCEPT_OUTPUT", "concepts 가 목록이 아니다")
+        # 레코드를 `verify_concepts` 가 받던 모양으로 옮기기만 한다. **재검증은 손대지
+        # 않는다** — 신규/보충 판정을 서버가 다시 보는 것이 이 스테이지의 값이다.
+        raw_concepts = [
+            {
+                "filename_stem": record.one("filename_stem"),
+                "mode": record.one("mode"),
+                "names": record.many("names", split=","),
+                "content": record.body,
+            }
+            for record in parse_records(raw, keys=CONCEPT_KEYS)
+        ]
 
         return {
             "concepts": verify_concepts(

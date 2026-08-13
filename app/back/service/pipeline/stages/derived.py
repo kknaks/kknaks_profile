@@ -29,20 +29,29 @@ import frontmatter
 from ..executor import AgentStage
 from ..gates import GateError, GenerationInput
 from ...content_format import content_format, content_stem
-from .common import OUTPUT_CONTRACT_LIST, context_payload, parse_json_output
+from .common import MARKER, OUTPUT_CONTRACT_ONE, Record, context_payload, parse_records
 
 KST = ZoneInfo("Asia/Seoul")
 CONTENTS_DIR = "persona/contents"
 _ID_RE = re.compile(r"C-(\d+)")
 
-RESULT_SHAPE = """{
-  "title":   {"ko": "...", "en": "..."},
-  "summary": {"ko": "...", "en": "..."},
-  "tags":    ["#tag1", "#tag2"],
-  "concept": ["문장1", "문장2", "문장3", "문장4"],
-  "kind":    "tutorial | study | talk | review",
-  "body":    "<## 개요 부터 시작하는 markdown 전문>"
-}"""
+#: 헤더 키. 여기 없는 키는 파서가 버린다.
+DERIVED_KEYS = frozenset(
+    {"title_ko", "title_en", "summary_ko", "summary_en", "tags", "concept", "kind"}
+)
+
+RESULT_SHAPE = f"""title_ko: <한국어 제목>
+title_en: <영문 제목>
+summary_ko: <한국어 한 줄 요약>
+summary_en: <영문 한 줄 요약>
+tags: #tag1, #tag2
+concept: <핵심 문장 1>
+concept: <핵심 문장 2>
+concept: <핵심 문장 3>
+concept: <핵심 문장 4>
+kind: tutorial | study | talk | review 중 하나
+{MARKER}
+<`## 개요` 부터 시작하는 markdown 전문>"""
 
 INSTRUCTION = """이 영상의 **강의 교안**을 작성하라.
 
@@ -91,6 +100,26 @@ def format_duration(seconds: Any) -> str:
     except (TypeError, ValueError):
         return ""
     return f"{total // 60}:{total % 60:02d}"
+
+
+def record_fields(record: Record) -> dict[str, Any]:
+    """구분자 레코드를 `build_content_note` 가 받던 모양으로 옮긴다.
+
+    **헤더 값은 전부 짧은 단일행**이고 여러 줄이 필요한 것은 본문뿐이다 — 그것이
+    JSON 을 뺀 이유다(SPEC-008 §4). `concept` 는 문장 목록이라 **쉼표로 나누지
+    않는다**(문장 안에 쉼표가 들어간다). `tags` 는 `#tag` 토큰이라 나눈다.
+
+    빈 값도 그대로 담아 `_require` 가 판정하게 둔다 — 여기서 미리 거르면 오류 메시지가
+    「무엇이 없었나」를 못 말한다.
+    """
+    return {
+        "title": {"ko": record.one("title_ko"), "en": record.one("title_en")},
+        "summary": {"ko": record.one("summary_ko"), "en": record.one("summary_en")},
+        "tags": record.many("tags", split=","),
+        "concept": record.many("concept"),
+        "kind": record.one("kind"),
+        "body": record.body,
+    }
 
 
 def _require(data: dict[str, Any], key: str, kind: type) -> Any:
@@ -167,7 +196,7 @@ class DerivedStage(AgentStage):
     def prompt(self, request: GenerationInput) -> str:
         return INSTRUCTION.format(
             format=content_format(self.repo_root),
-            output=OUTPUT_CONTRACT_LIST.format(shape=RESULT_SHAPE),
+            output=OUTPUT_CONTRACT_ONE.format(shape=RESULT_SHAPE),
         )
 
     def payload(self, request: GenerationInput) -> dict[str, Any]:
@@ -177,10 +206,15 @@ class DerivedStage(AgentStage):
         }
 
     def parse(self, raw: str, request: GenerationInput) -> dict[str, Any]:
+        records = parse_records(raw, keys=DERIVED_KEYS)
+        if len(records) != 1:
+            raise GateError(
+                "INVALID_DERIVED_OUTPUT", f"교안 하나여야 하는데 {len(records)}건이 왔다"
+            )
         # `C-NNN` 과 Day 순번은 **수확 시점에** 매긴다 — 제출 시점에 매기면 그 사이
         # 발행된 다른 교안과 번호가 겹친다.
         return build_content_note(
-            parse_json_output(raw),
+            record_fields(records[0]),
             repo_root=self.repo_root,
             preparation_payload=_preparation(request),
             source_url=request.item.source_url,

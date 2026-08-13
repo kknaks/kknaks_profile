@@ -31,11 +31,15 @@ class FakeRunner:
         fail_times: int = 0,
         pending: bool = False,
         raw: str = "{}",
+        parse_error: str | None = None,
     ) -> None:
         self.payload = payload if payload is not None else {}
         self.session_ref = session_ref
         #: 이 횟수만큼 실행이 실패한다 — 재시도 경로를 만든다.
         self.fail_times = fail_times
+        #: 한 번 `parse` 에서 실패한다 — **실행은 성공한** 형식 오류 경로다.
+        #: 실행 실패와 다른 자리다: 이쪽은 세션이 손에 있다(KDEV-DEC-024 D3).
+        self.parse_error = parse_error
         #: True 면 폴링이 계속 `running` — 아직 안 끝난 실행을 흉내 낸다.
         self.pending = pending
         self.raw = raw
@@ -70,6 +74,11 @@ class FakeRunner:
 
     def parse(self, raw: str, request) -> dict[str, Any]:
         self.parsed.append(request)
+        if self.parse_error:
+            from service.pipeline.gates import GateError
+
+            message, self.parse_error = self.parse_error, None
+            raise GateError("INVALID_NOTE_OUTPUT", message)
         return self.payload
 
 

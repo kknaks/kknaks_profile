@@ -381,6 +381,52 @@ class TestFeedbackAndRegenerate:
         assert runner.calls[-1].session_ref is None
         assert revision.status == "reviewable"
 
+    async def test_format_failure_keeps_session_and_retry_resumes_it(self, db):
+        """형식이 틀려 죽은 실행은 **세션이 손에 있다** (KDEV-DEC-024 D3).
+
+        재시도가 물고 싶은 것이 정확히 그 세션이다 — 자료를 처음부터 다시 읽는 대신
+        방금 낸 출력을 고치게 된다. #3880 의 309초가 이 자리였다.
+        """
+        item = await _ready_item(db, url="https://youtu.be/parsefail01")
+        runner = FakeRunner(
+            payload=_route_payload(),
+            session_ref="live-sess",
+            parse_error="JSON 이 아니다: line 3 column 840",
+        )
+        gate = await _open(db, item, runner=runner)
+        assert gate.status == "failed"
+
+        failed = await db.scalar(
+            select(AITask)
+            .where(AITask.item_id == item.id, AITask.status == "failed")
+            .order_by(AITask.id.desc())
+        )
+        # 실행은 성공했으므로 세션을 버리지 않는다.
+        assert failed.session_ref == "live-sess"
+
+        await gates_service.retry(db, gate, item=item, runner=runner)
+        assert runner.calls[-1].session_ref == "live-sess"
+        # 사람 피드백과 **다른 자리**다 — 사람이 하지 않은 말이 지적으로 남으면 안 된다.
+        assert "column 840" in runner.calls[-1].retry_error
+        assert runner.calls[-1].feedback is None
+
+    async def test_execution_failure_starts_a_new_session(self, db):
+        """실행 자체가 실패하면 물 세션이 없다 — 사유 목록으로 분기하지 않는다."""
+        item = await _ready_item(db, url="https://youtu.be/execfail001")
+        runner = Recorder(fail_times=1, session_ref="never-used")
+        gate = await _open(db, item, runner=runner)
+        assert gate.status == "failed"
+
+        failed = await db.scalar(
+            select(AITask)
+            .where(AITask.item_id == item.id, AITask.status == "failed")
+            .order_by(AITask.id.desc())
+        )
+        assert failed.session_ref is None
+
+        await gates_service.retry(db, gate, item=item, runner=runner)
+        assert runner.calls[-1].session_ref is None
+
 
 @needs_db
 class TestConcurrentHarvest:

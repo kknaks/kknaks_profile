@@ -477,6 +477,10 @@ class DailyStage(AgentStage):
             payload["previous_draft"] = request.previous_payload
         if request.feedback:
             payload["feedback"] = request.feedback
+        if request.retry_error:
+            # 잔디는 자체 payload 를 만들지만 재시도 규약은 한 벌이어야 한다
+            # (KDEV-DEC-024 D3). 여기 없으면 잔디만 사유 없이 재시도한다.
+            payload["previous_error"] = request.retry_error
         return payload
 
     def parse(self, raw: str, request: GenerationInput) -> dict[str, Any]:

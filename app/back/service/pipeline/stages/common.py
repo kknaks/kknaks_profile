@@ -9,12 +9,28 @@
 
 AI 가 내는 것은 `filename_stem` 과 본문뿐이다. **디렉토리는 시스템이 층·목적지에서
 조립한다**(SPEC-010) — 경로 결정을 AI 에 맡기면 allowlist 밖으로 쓰는 계획이 나온다.
+
+**출력은 JSON 이 아니다** (KDEV-WORK-021 / SPEC-008 §4). 종전 계약은 markdown 전문을
+JSON 문자열 값에 넣게 돼 있었는데, 그러면 본문의 따옴표·줄바꿈·백슬래시를 수천 자에
+걸쳐 하나도 안 틀리고 이스케이프해야 통과한다. **확률이 본문 길이에 비례**한다.
+
+실제로 막혔다 — 항목 #3880 의 `source_note` 1차가
+`INVALID_NOTE_OUTPUT: JSON 파싱 실패: Expecting ',' delimiter: line 3 column 840`
+으로 죽었고(95초), 재시도(309초)와 사람의 개입이 한 번씩 더 들었다. 컬럼 840 은
+본문 한가운데다 — 모델이 못 쓴 것이 아니라 **이스케이프가 어긋났을 뿐**이다.
+
+그래서 이스케이프가 필요한 자리를 없앤다. **짧은 단일행 헤더 + 손대지 않은 본문**이다.
+
+    filename_stem: 2026-08-13-mcp-spec
+    ---8<---
+    <markdown 전문 그대로>
+    ---8<--- end
 """
 
 from __future__ import annotations
 
-import json
 import re
+from dataclasses import dataclass
 from typing import Any
 
 import frontmatter
@@ -34,26 +50,179 @@ READ_THE_RULES = """작성 전에 레포의 규칙과 양식을 **반드시 읽�
 
 읽지 않고 쓰면 형식이 어긋나 발행 전 검증에서 거부된다."""
 
-OUTPUT_CONTRACT_LIST = """아래 JSON 하나만 출력한다. 코드펜스나 설명 문장을 붙이지 않는다.
+#: 구분자. 뒤에 역할(`note`·`content`·`end`·`none`)이 붙을 수 있고, 없으면 `content` 다.
+MARKER = "---8<---"
 
-{shape}
+MARKER_RE = re.compile(rf"^\s*{re.escape(MARKER)}(?:\s+(note|content|end|none))?\s*$")
+#: 헤더 한 줄. 값은 **전부 짧은 단일행**이라 이스케이프가 필요한 자리가 없다.
+HEADER_RE = re.compile(r"^\s*([A-Za-z_][A-Za-z0-9_]*)\s*:\s?(.*)$")
 
-`content` 는 완성된 노트 그대로다. 요약이나 발췌가 아니다.
+_CONTRACT_HEAD = """아래 형식 그대로 출력한다. **JSON 이 아니다** — 본문을 따옴표로 감싸거나
+이스케이프하지 않는다. 코드펜스나 설명 문장을 붙이지 않는다."""
+
+_CONTRACT_TAIL = """`---8<---` 아랫줄부터는 **손대지 않은 markdown** 이다. 따옴표·줄바꿈·백슬래시를
+있는 그대로 쓴다. 본문은 완성된 노트 그대로이고 요약이나 발췌가 아니다.
+헤더 값은 전부 **한 줄**이다 — 여러 줄이 필요한 것은 본문뿐이다.
 경로는 시스템이 조립하므로 디렉토리를 지어내지 않는다."""
 
-OUTPUT_CONTRACT = """아래 JSON 하나만 출력한다. 코드펜스나 설명 문장을 붙이지 않는다.
+NOTE_SHAPE = """filename_stem: <파일명 stem. 확장자·디렉토리 없이>
+---8<---
+<frontmatter 를 포함한 markdown 전문>"""
 
-{
-  "filename_stem": "<파일명 stem. 확장자·디렉토리 없이>",
-  "content": "<frontmatter 를 포함한 markdown 전문>"
-}
+#: 노트 하나를 내는 스테이지 (`source_note`·`post`).
+OUTPUT_CONTRACT = f"""{_CONTRACT_HEAD}
 
-`content` 는 완성된 노트 그대로다. 요약이나 발췌가 아니다.
-경로는 시스템이 조립하므로 디렉토리를 지어내지 않는다."""
+{NOTE_SHAPE}
+{MARKER} end
+
+{_CONTRACT_TAIL}"""
+
+#: 노트 하나를 내되 헤더 키가 여럿인 스테이지 (`derived`).
+OUTPUT_CONTRACT_ONE = f"""{_CONTRACT_HEAD}
+
+{{shape}}
+{MARKER} end
+
+{_CONTRACT_TAIL}"""
+
+#: 노트를 0..N 건 내는 스테이지 (`concept`).
+OUTPUT_CONTRACT_LIST = f"""{_CONTRACT_HEAD}
+
+{{shape}}
+{MARKER} end
+
+레코드는 `{MARKER} note` 로 시작하고 **필요한 만큼 반복한다.** 마지막에 `{MARKER} end` 를 둔다.
+낼 것이 하나도 없으면 레코드 없이 `{MARKER} none` 한 줄만 낸다.
+
+{_CONTRACT_TAIL}"""
+
+
+@dataclass(frozen=True)
+class Record:
+    """구분자 레코드 하나 — 짧은 헤더 값들과 손대지 않은 본문."""
+
+    header: dict[str, list[str]]
+    body: str
+
+    def one(self, key: str) -> str:
+        """헤더 값 하나. 없으면 빈 문자열 — 판정은 호출부가 한다."""
+        values = self.header.get(key) or []
+        return values[0].strip() if values else ""
+
+    def many(self, key: str, *, split: str | None = None) -> list[str]:
+        """반복해서 쓴 헤더 줄들.
+
+        `split` 을 주면 한 줄 안에서 또 나눈다 — `names`·`tags` 처럼 쉼표로 늘어놓는
+        값이다. **문장 목록(`concept`)에는 쓰지 않는다** — 문장 안에 쉼표가 들어간다.
+        """
+        out: list[str] = []
+        for raw in self.header.get(key) or []:
+            parts = raw.split(split) if split else [raw]
+            out.extend(part.strip() for part in parts)
+        return [value for value in out if value]
+
+
+def _strip_fence(raw: str) -> str:
+    """출력 전체를 감싼 코드펜스를 벗긴다.
+
+    프롬프트가 "코드펜스를 붙이지 않는다" 고 적어 둬도 모델이 붙이는 일이 실제로
+    있었다(종전 `extract_json_object` 가 같은 것을 벗겼다). 형식이 바뀌었다고 이
+    관용이 필요 없어지지는 않는다.
+    """
+    text = (raw or "").strip()
+    if not text.startswith("```"):
+        return text
+    text = text.split("\n", 1)[1] if "\n" in text else ""
+    stripped = text.rstrip()
+    if stripped.endswith("```"):
+        text = stripped[:-3]
+    return text.strip()
+
+
+def parse_records(raw: str, *, keys: frozenset[str]) -> list[Record]:
+    """모델 출력에서 구분자 레코드를 꺼낸다 (SPEC-008 §4).
+
+    **`keys` 를 받는 이유**는 머리말을 어디서 자를지 판단하기 위해서다. 「이 줄이
+    헤더인가 산문인가」는 아는 키가 나왔는지로만 갈린다 — 없으면 `참고:` 로 시작하는
+    설명 문장이 헤더로 읽힌다.
+
+    관용은 종전 JSON 파서가 갖고 있던 것과 **같은 급**이다.
+
+        ① 출력 전체를 감싼 코드펜스를 벗긴다
+        ② 첫 마커나 아는 헤더 키 앞의 산문을 버린다
+        ③ `---8<--- end` 뒤의 산문을 버린다
+        ④ 본문의 앞뒤 빈 줄을 다듬는다 — frontmatter 는 첫 줄에서 시작해야 한다
+
+    **관용은 여기까지다.** 마커가 없거나 본문이 비면 통과시키지 않는다 — 조용히
+    넘기면 형식이 깨진 노트가 사람의 승인 화면까지 올라간다.
+
+    본문 안의 `---8<---` (역할 없는 마커)는 **본문 글자로 읽는다.** 경계를 여는 일은
+    이미 끝났고, 구조로 읽으면 노트가 조용히 잘린다 — 잘리는 쪽이 더 나쁘다.
+    """
+    text = _strip_fence(raw)
+    records: list[Record] = []
+    header: dict[str, list[str]] = {}
+    body: list[str] | None = None
+    declared_none = False
+
+    def flush() -> None:
+        nonlocal header, body
+        if body is None and not header:
+            return
+        records.append(
+            Record(header=header, body="\n".join(body or []).strip())
+        )
+        header, body = {}, None
+
+    for line in text.splitlines():
+        marker = MARKER_RE.match(line)
+        if marker:
+            role = marker.group(1) or "content"
+            if role == "end":
+                break
+            if role == "none":
+                flush()
+                declared_none = True
+                continue
+            if role == "note":
+                flush()
+                continue
+            if body is None:  # content — 경계를 연다
+                body = []
+                continue
+            # 이미 본문 안이다. 구조가 아니라 글자다.
+        if body is not None:
+            body.append(line)
+            continue
+        field = HEADER_RE.match(line)
+        if field and field.group(1) in keys:
+            header.setdefault(field.group(1), []).append(field.group(2))
+        # 그 밖의 줄은 버린다 — 머리말·설명 문장·모르는 키.
+
+    flush()
+
+    if not records:
+        if declared_none:
+            return []
+        raise GateError(
+            "INVALID_NOTE_OUTPUT",
+            f"구분자({MARKER})를 찾지 못했다 — 받은 앞부분: {text[:200]!r}",
+        )
+    for record in records:
+        if not record.body:
+            raise GateError(
+                "INVALID_NOTE_OUTPUT",
+                f"본문이 비었다 — 헤더만 왔다: {sorted(record.header)}",
+            )
+    return records
 
 
 def extract_json_object(raw: str) -> str:
     """모델 출력에서 JSON 본문만 꺼낸다 (KDEV-WORK-017 결함 ⑥).
+
+    **노트 스테이지는 더는 이것을 쓰지 않는다** (KDEV-WORK-021). 남은 소비자는
+    본문이 없는 `route` 와, 산출물이 넷으로 중첩돼 레코드 하나로 안 떨어지는
+    잔디(`daily`)다. 잔디도 같은 이스케이프 위험을 갖고 있다 — SPEC-008 §7 OPEN.
 
     두 가지를 벗긴다.
 
@@ -111,30 +280,33 @@ def extract_json_object(raw: str) -> str:
     return cleaned
 
 
-def parse_json_output(raw: str) -> dict[str, Any]:
-    """모델 출력에서 JSON 객체를 꺼낸다. 코드펜스·머리말을 벗긴다."""
-    try:
-        data = json.loads(extract_json_object(raw))
-    except ValueError as exc:
-        raise GateError("INVALID_NOTE_OUTPUT", f"JSON 파싱 실패: {exc}") from exc
-    if not isinstance(data, dict):
-        raise GateError("INVALID_NOTE_OUTPUT", "출력이 객체가 아니다")
-    return data
+#: 노트 하나짜리 스테이지의 헤더 키.
+NOTE_KEYS = frozenset({"filename_stem"})
+
+
+def check_stem(stem: str) -> str:
+    """경로·확장자가 섞이지 않았는지. 섞이면 allowlist 밖으로 쓰는 계획이 만들어진다."""
+    if not stem:
+        raise GateError("INVALID_NOTE_OUTPUT", "filename_stem 이 없다")
+    if "/" in stem or stem.endswith(".md"):
+        raise GateError("INVALID_NOTE_OUTPUT", f"stem 에 경로나 확장자가 들어갔다: {stem}")
+    return stem
 
 
 def parse_note_output(raw: str) -> tuple[str, str]:
-    """`{filename_stem, content}` 를 꺼낸다. 어긋나면 `GateError`."""
-    data = parse_json_output(raw)
-    stem = str(data.get("filename_stem") or "").strip()
-    content = data.get("content")
-    if not stem:
-        raise GateError("INVALID_NOTE_OUTPUT", "filename_stem 이 없다")
-    if not isinstance(content, str) or not content.strip():
-        raise GateError("INVALID_NOTE_OUTPUT", "content 가 비었다")
-    if "/" in stem or stem.endswith(".md"):
-        # 경로를 지어내면 allowlist 밖으로 쓰는 계획이 만들어진다.
-        raise GateError("INVALID_NOTE_OUTPUT", f"stem 에 경로나 확장자가 들어갔다: {stem}")
-    return stem, content
+    """레코드 하나에서 `(stem, 본문)` 을 꺼낸다. 어긋나면 `GateError`.
+
+    **레코드가 둘 이상이면 실패다.** 노트 하나를 만드는 스테이지이므로, 여럿이 왔다는
+    것은 모델이 형식을 다르게 이해했다는 뜻이다 — 첫 건만 조용히 쓰면 나머지가 소리
+    없이 버려진다.
+    """
+    records = parse_records(raw, keys=NOTE_KEYS)
+    if len(records) != 1:
+        raise GateError(
+            "INVALID_NOTE_OUTPUT", f"노트 하나여야 하는데 {len(records)}건이 왔다"
+        )
+    record = records[0]
+    return check_stem(record.one("filename_stem")), record.body
 
 
 def check_note(
@@ -206,7 +378,16 @@ def require_up_in_body(meta: dict[str, Any], content: str) -> None:
 
 
 def context_payload(request: GenerationInput) -> dict[str, Any]:
-    """모든 노트 스테이지가 공통으로 넘기는 입력."""
+    """모든 노트 스테이지가 공통으로 넘기는 입력.
+
+    **세션을 이어받으면 원문을 다시 보내지 않는다** (KDEV-DEC-024 D5). SPEC-009 S-1
+    5항이 「이어받으면 원문·지침을 다시 보내지 않아도 된다」고 적어 뒀는데, 실행기가
+    프롬프트 뒤에 payload 전문을 붙이기 때문에 **코드는 매번 4만 자를 다시 보내고
+    있었다.** 문서와 코드가 갈려 있던 자리다.
+
+    **요약은 항상 보낸다.** 짧고, 뒤 스테이지의 판단 축이며, 세션이 압축돼 앞부분을
+    잃었을 때의 마지막 방어선이다.
+    """
     preparation = (request.preparation.payload or {}) if request.preparation else {}
     payload: dict[str, Any] = {
         "source_url": request.item.source_url,
@@ -221,9 +402,16 @@ def context_payload(request: GenerationInput) -> dict[str, Any]:
     source = preparation.get("source")
     if isinstance(source, dict):
         payload["source_title"] = source.get("title")
-        payload["source_excerpt"] = (source.get("content") or "")[:40_000] or None
+        if request.session_ref:
+            # 원문은 이 대화 위쪽에 이미 있다. 안 알려 주면 「자료를 안 줬다」고 읽는다.
+            payload["resumed_session"] = True
+        else:
+            payload["source_excerpt"] = (source.get("content") or "")[:40_000] or None
     if request.previous_payload is not None:
         payload["previous_draft"] = request.previous_payload
     if request.feedback:
         payload["feedback"] = request.feedback
+    if request.retry_error:
+        # 사람 피드백과 **다른 키**다. 섞으면 사람이 하지 않은 말이 지적으로 남는다.
+        payload["previous_error"] = request.retry_error
     return payload

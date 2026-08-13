@@ -13,8 +13,8 @@
 | KDEV-SPEC-005 | 지식 열람 표면 — 트리 문서 렌더러와 공개 경계 | draft (**v0.0.4**) | DEC-007(대체)/010/**018** | — | (미발주) |
 | KDEV-SPEC-006 | 관리자 인증 — 로그인/세션/admin 진입 | implemented | DEC-009 | WORK-011 | WORK-011 (done) |
 | KDEV-SPEC-007 | 승인 큐 — 지식 입력 접수와 항목 상태기계 | draft | DEC-011/012/013 | WORK-012·014 | WORK-012·014 (todo) |
-| KDEV-SPEC-008 | 게이트 체인 — 파이프라인 정의와 스테이지 계약 | draft | DEC-010/011/016 | WORK-014·015 | WORK-014·015 (todo) |
-| KDEV-SPEC-009 | 게이트 피드백과 재생성 — 버전·resume·supersede | draft | DEC-011/012 | WORK-014 | WORK-014 (todo) |
+| KDEV-SPEC-008 | 게이트 체인 — 파이프라인 정의와 스테이지 계약 | draft (**v0.0.7**) | DEC-010/011/016/**021**/**023** | WORK-014·015·020·**021** | WORK-014·015 (todo) · WORK-021 (todo) |
+| KDEV-SPEC-009 | 게이트 피드백과 재생성 — 버전·resume·supersede | draft (**v0.0.3**) | DEC-011/012/**024** | WORK-014·**022** | WORK-014 (todo) · WORK-022 (todo) |
 | KDEV-SPEC-010 | Apply Executor — 발행 계획 검증과 원자적 발행 | draft | DEC-010/012/013/016 | WORK-015 | WORK-015 (todo) |
 | KDEV-SPEC-011 | 커밋 조사 — 레포 레지스트리와 로컬 git 수집 | draft | DEC-014 | — | (미발주) |
 | KDEV-SPEC-012 | 잔디 산출물 — daily·career·concept 계약 | draft | DEC-015 | — | (미발주) |

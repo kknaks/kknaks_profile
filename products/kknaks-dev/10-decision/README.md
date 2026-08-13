@@ -29,6 +29,7 @@
 | KDEV-DEC-021 | inbox 는 입구다 — 보류 목적지를 없앤다 | accepted | KDEV-BL-007 | DEC-011 D1 부분 supersede | SPEC-008 · **015** |
 | KDEV-DEC-022 | 잔디가 current.md 의 「진행 중」만 갱신한다 | accepted | KDEV-BL-007 | DEC-015 D1 착지 확장 | SPEC-012 |
 | KDEV-DEC-023 | 개념 후보를 그래프로 좁힌다 — 전량 투입을 끝낸다 | accepted | KDEV-BL-007 | — | SPEC-008 |
+| KDEV-DEC-024 | 스테이지 사이 세션을 이어받는다 — 체인 하나가 한 대화다 | accepted | KDEV-BL-003 | SPEC-009 반영 · WORK-022 발주 | SPEC-009 |
 
 ### 개정 관계
 
@@ -82,6 +83,9 @@ work 착수를 막는 미결은 없다. 아래는 전부 work 안에서 측정�
 | DEC-012 OQ-2 | stale 거부 빈도 (concept 보충이 몰릴 때) |
 | DEC-012 OQ-3 | 보호 섹션(`## 내 메모`) 도입 필요 여부 |
 | SPEC-009 OQ | 피드백 최소 길이 기준, 프리셋 도입 여부 |
+| DEC-024 OQ-2 | 긴 체인에서 세션 압축으로 원문 세부가 사라지는지 |
+| DEC-024 OQ-3 | 스테이지 승계가 실제로 몇 초를 줄였는지 (표본 1건으로는 판정 불가) |
+| SPEC-008 OPEN | 잔디(`daily`) 게이트를 구분자 레코드로 옮길지 |
 
 ### 이번 범위 밖 (후속)
 
@@ -91,3 +95,4 @@ work 착수를 막는 미결은 없다. 아래는 전부 work 안에서 측정�
 | DEC-010 OQ-3 | 제품 문서 중 `work`·`release`·`runbook`까지 그래프에 둘지 |
 | SPEC-005 OQ | 게시 판정 게이트 계약 (`persona/posts/` 배선이 선행) |
 | DEC-011 보류 | 커밋·블로그·스케줄 파이프라인 정의 (유튜브 체인 검증 후) |
+| DEC-024 OQ-1 | `summarize`(auto) 세션까지 `route` 가 이어받을지 |

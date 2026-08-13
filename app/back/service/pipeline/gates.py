@@ -65,6 +65,7 @@ class GenerationInput:
     previous_payload: dict[str, Any] | None
     feedback: str | None
     #: 이어받을 세션. 없으면 실행기가 stateless 로 만들어야 한다(SPEC-009 S-5).
+    #: **앞 스테이지의 것일 수 있다** — 체인 하나가 한 대화다(KDEV-DEC-024 D1).
     session_ref: str | None
     #: 승인된 route 결과. 뒤 스테이지는 목적지·group 을 여기서 읽는다.
     #: 실행기에 DB 를 넘기지 않기 위해 조립 시점에 채워 준다.
@@ -72,6 +73,10 @@ class GenerationInput:
     #: 앞 스테이지가 이미 승인받은 산출물 — concept 가 reference stem 을 `up:` 으로
     #: 걸려면 이게 필요하다. 계보는 같은 발행 묶음 안에서 만들어진다.
     upstream: dict[str, Any] | None = None
+    #: 직전 실패 사유. **재시도에서만** 채워진다 (KDEV-DEC-024 D3).
+    #: 사람 피드백(`feedback`)과 섞지 않는다 — 출처가 다르고, 섞으면 사람이 하지 않은
+    #: 말이 「사용자 지적」으로 화면에 남는다.
+    retry_error: str | None = None
 
 
 class StageRunner(Protocol):
@@ -148,14 +153,19 @@ async def _next_version(db: AsyncSession, gate_id: int) -> int:
     return (current or 0) + 1
 
 
-async def _resume_session(db: AsyncSession, gate: Gate) -> str | None:
-    """이어받을 세션을 찾는다 — 버전에 없으면 실행 기록까지 뒤진다 (SPEC-009 S-5 2단계).
+async def _gate_session(db: AsyncSession, gate_id: int) -> str | None:
+    """게이트 하나가 남긴 최신 세션 — 버전에 없으면 그 게이트의 실행 기록까지.
 
-    끝내 없으면 `None`. 호출자는 실패시키지 않고 stateless 로 만든다.
+    **실행 기록을 게이트로 좁혀 찾는다.** 종전에는 `AITask.kind == stage_name` 으로
+    찾았는데 그 축은 **게이트가 살아 있는지를 모른다** — route 재오픈으로 취소된
+    옛 게이트의 세션이 그대로 걸렸다(KDEV-DEC-024 D2).
+
+    실패한 실행의 세션도 여기서 걸린다. 그게 의도다 — 형식이 틀려 죽은 실행은 세션이
+    남아 있고, 재시도가 물고 싶은 것이 정확히 그것이다(D3).
     """
     from_revision = await db.scalar(
         select(GateRevision.session_ref)
-        .where(GateRevision.gate_id == gate.id, GateRevision.session_ref.is_not(None))
+        .where(GateRevision.gate_id == gate_id, GateRevision.session_ref.is_not(None))
         .order_by(GateRevision.version.desc())
         .limit(1)
     )
@@ -163,14 +173,50 @@ async def _resume_session(db: AsyncSession, gate: Gate) -> str | None:
         return from_revision
     return await db.scalar(
         select(AITask.session_ref)
-        .where(
-            AITask.item_id == gate.item_id,
-            AITask.kind == gate.stage_name,
-            AITask.session_ref.is_not(None),
-        )
+        .join(GateRevision, GateRevision.ai_task_id == AITask.id)
+        .where(GateRevision.gate_id == gate_id, AITask.session_ref.is_not(None))
         .order_by(AITask.id.desc())
         .limit(1)
     )
+
+
+async def _resume_session(db: AsyncSession, gate: Gate, *, source_kind: str) -> str | None:
+    """이어받을 세션을 찾는다 (SPEC-009 S-5·S-6 / KDEV-DEC-024 D1).
+
+        ① 이 게이트의 최신 버전 세션        재생성
+        ② 이 게이트의 최신 실행 세션        재시도 — 형식 실패의 세션이 여기 있다
+        ③ **앞 게이트의 세션**              정의 역순, 가장 가까운 것부터
+        ④ 없으면 None                       호출자가 stateless 로 만든다
+
+    ③이 이 함수의 새 몫이다. 그전까지는 스테이지가 넘어가면 무조건 새 세션이라
+    매 스테이지가 규칙·양식을 다시 읽고 원문을 다시 받았다 — 13분의 상당 부분이
+    거기였다. 이제 `concept` 는 「방금 내가 쓴 자료 노트」를 딛는다.
+
+    **`cancelled` 게이트는 건너뛴다.** 재오픈으로 무효화된 대화는 틀린 목적지 위에서
+    쓴 것이고, 그것을 물면 재오픈이 한 일이 반쯤 취소된다(D2).
+
+    끝내 없으면 `None`. **실패시키지 않는다** — 웜을 전제로만 도는 경로를 만들지
+    않는다(D4).
+    """
+    own = await _gate_session(db, gate.id)
+    if own:
+        return own
+
+    pipeline = pipeline_for(source_kind)
+    if pipeline is None:
+        return None
+    order = [stage.name for stage in pipeline.gate_stages()]
+    if gate.stage_name not in order:
+        return None
+
+    for name in reversed(order[: order.index(gate.stage_name)]):
+        earlier = await live_gate(db, gate.item_id, name)
+        if earlier is None:
+            continue
+        session = await _gate_session(db, earlier.id)
+        if session:
+            return session
+    return None
 
 
 async def _sweep_reviewable(db: AsyncSession, gate_id: int, keep_revision_id: int) -> int:
@@ -243,12 +289,16 @@ async def _generation_input(
     item: QueueItem,
     feedback: GateFeedback | None,
     parent: GateRevision | None,
+    retry_error: str | None = None,
 ) -> GenerationInput:
     """스테이지가 받는 입력을 **DB 에서 조립한다.**
 
     제출 시점과 수확 시점 양쪽에서 만든다. 제출 때 만든 것을 메모리에 붙잡아 두면
     back 재시작 뒤에는 수확할 재료가 사라진다 — 실행기 큐에 작업이 남아 있어도
     결과를 해석하지 못하게 된다.
+
+    `retry_error` 만 예외적으로 **제출 쪽에서만** 온다. 수확이 쓰는 것은 `parse` 뿐이고
+    그쪽은 이 값을 보지 않는다 — 재조립 대상이 아니다.
     """
     return GenerationInput(
         item=item,
@@ -256,9 +306,10 @@ async def _generation_input(
         preparation=await latest_preparation(db, gate.item_id),
         previous_payload=parent.payload if parent else None,
         feedback=feedback.body if feedback else None,
-        session_ref=await _resume_session(db, gate),
+        session_ref=await _resume_session(db, gate, source_kind=item.source_kind),
         route=await approved_route_payload(db, gate.item_id),
         upstream=await upstream_context(db, gate.item_id),
+        retry_error=retry_error,
     )
 
 
@@ -270,11 +321,21 @@ async def _fail(
     *,
     error_code: str,
     error_message: str,
+    session_ref: str | None = None,
 ) -> GateRevision:
-    """실패해도 **행을 남긴다** — 왜 막혔는지가 재시도 판단의 근거다."""
+    """실패해도 **행을 남긴다** — 왜 막혔는지가 재시도 판단의 근거다.
+
+    **세션도 남긴다** (KDEV-DEC-024 D3). 파싱·검증 실패는 실행이 성공한 **뒤에** 나는
+    것이라 세션이 손에 있고, 재시도가 물고 싶은 것이 정확히 그것이다 — 자료를 처음부터
+    다시 읽는 대신 방금 낸 출력을 고치게 된다.
+
+    실행 자체가 실패한 경우(timeout·작업 소실)에는 값이 안 들어와 자연히 새 세션이
+    된다. **사유 목록으로 분기하지 않는다** — 「세션이 저장돼 있는가」가 곧 그 판정이다.
+    """
     task.status = "failed"
     task.error_code = error_code
     task.error_message = error_message[:1000]
+    task.session_ref = session_ref
     task.finished_at = _now()
     revision.status = "failed"
     gate.status = "failed"
@@ -291,6 +352,7 @@ async def _submit(
     feedback: GateFeedback | None = None,
     parent: GateRevision | None = None,
     retry_of: AITask | None = None,
+    retry_error: str | None = None,
 ) -> GateRevision:
     """제안 하나를 **제출만** 한다 (SPEC-009 「실행은 비동기다」).
 
@@ -320,7 +382,7 @@ async def _submit(
 
     try:
         request = await _generation_input(
-            db, gate, item=item, feedback=feedback, parent=parent
+            db, gate, item=item, feedback=feedback, parent=parent, retry_error=retry_error
         )
         task_id = await runner.submit(request)
     except Exception as exc:  # noqa: BLE001 — 실패는 상태이지 예외 전파가 아니다
@@ -432,7 +494,16 @@ async def harvest(
         payload = runner.parse(execution.result or "", request)
     except Exception as exc:  # noqa: BLE001 — 파싱·검증 실패도 실행 실패와 같이 다룬다
         code = exc.code if isinstance(exc, GateError) else type(exc).__name__
-        await _fail(db, gate, task, revision, error_code=code, error_message=str(exc))
+        # 실행은 끝났으므로 세션이 있다. 재시도가 그것을 물고 사유를 받는다(DEC-024 D3).
+        await _fail(
+            db,
+            gate,
+            task,
+            revision,
+            error_code=code,
+            error_message=str(exc),
+            session_ref=execution.session_ref,
+        )
         return True
 
     task.status = "succeeded"
@@ -533,6 +604,9 @@ async def retry(db: AsyncSession, gate: Gate, *, item: QueueItem, runner: StageR
         feedback=feedback,
         parent=last_revision,
         retry_of=last_failed,
+        # **직전 실패 사유를 들려 보낸다** (KDEV-DEC-024 D3). 형식이 틀렸다면 그 세션을
+        # 물고 시작하므로, 자료를 다시 읽는 대신 방금 낸 출력을 고치는 일이 된다.
+        retry_error=(last_failed.error_message if last_failed else None),
     )
 
 
