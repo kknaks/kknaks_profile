@@ -58,11 +58,45 @@ async def next_auto_runner(
 
     이름은 있는데 실행기가 없다는 것은 **레거시 경로가 그 스테이지를 덮는다**는 뜻이다
     (유튜브의 수집+요약). 없는 것을 있는 척하지 않으려고 이름은 그대로 돌려준다.
+
+    **이름만으로 고르지 않는다.** 레지스트리가 `{스테이지: 실행기}` 평면이라 이름이
+    겹치면 남의 파이프라인 실행기가 잡힌다 — 실제로 유튜브 항목이 잔디의 `GitCollect`
+    를 타고 커밋 33건을 수집한 뒤, 요약 실행기가 없어 게이트 없이 멎었다. 그러고도
+    준비는 `succeeded` 라 화면에는 정상으로 보였다.
     """
     stage = next_auto_stage(
         pipeline_for(item.source_kind), await completed_auto_stages(db, item.id)
     )
-    return stage, (auto_runners.get(stage) if stage else None)
+    if stage is None:
+        return None, None
+    runner = auto_runners.get(stage)
+    if runner is not None and not _serves(runner, item.source_kind):
+        logger.debug(
+            "auto 실행기 %s 는 %s 의 것이 아니다 — 레거시 경로로 보낸다",
+            type(runner).__name__,
+            item.source_kind,
+        )
+        return stage, None
+    return stage, runner
+
+
+def _serves(runner: Any, source_kind: str) -> bool:
+    """이 실행기가 이 입력 종류를 담당하는가.
+
+    선언이 없으면 **담당하지 않는 것으로 본다.** 반대로 두면(선언 없음 = 전부 담당)
+    지금 겪은 사고가 그대로 재발한다 — 새 파이프라인이 같은 스테이지 이름을 쓰는
+    순간 조용히 남의 실행기를 탄다. 없는 쪽으로 떨어지면 레거시 경로가 받거나,
+    받을 것이 없으면 `advance_auto_stages` 가 경고를 남기고 검토 대기로 둔다.
+    """
+    kinds = getattr(runner, "source_kinds", None)
+    if not kinds:
+        logger.warning(
+            "auto 실행기 %s 가 `source_kinds` 를 선언하지 않았다 — 어느 파이프라인의 "
+            "것인지 알 수 없어 쓰지 않는다",
+            type(runner).__name__,
+        )
+        return False
+    return source_kind in kinds
 
 
 async def advance_auto_stages(

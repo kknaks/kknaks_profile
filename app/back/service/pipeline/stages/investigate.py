@@ -71,6 +71,10 @@ class AgentInvestigate:
     """레포별 조사 — `AutoStage` 중 유일하게 **N 건**을 제출한다."""
 
     stages = ("investigate",)
+    #: **이 실행기가 어느 파이프라인의 것인가** — 레포별 조사 — 잔디 전용이다.
+    #: 스테이지 이름만 보면 유튜브·블로그의 `collect` 가 여기로 샌다
+    #: (실제로 샜다 — 유튜브 항목이 커밋 33건을 수집했다).
+    source_kinds = ("daily_commit",)
 
     def __init__(
         self,

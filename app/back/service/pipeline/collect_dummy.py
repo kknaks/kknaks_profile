@@ -282,6 +282,10 @@ class DummyCollect:
     """
 
     stages = ("collect",)
+    #: **이 실행기가 어느 파이프라인의 것인가** — 더미도 잔디 전용이다.
+    #: 스테이지 이름만 보면 유튜브·블로그의 `collect` 가 여기로 샌다
+    #: (실제로 샜다 — 유튜브 항목이 커밋 33건을 수집했다).
+    source_kinds = ("daily_commit",)
 
     async def submit(self, *, item: QueueItem, prior: dict[str, Any]) -> StageSubmission:
         payload = investigate_payload(item)

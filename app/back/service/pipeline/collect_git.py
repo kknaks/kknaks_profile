@@ -74,6 +74,10 @@ class GitCollect:
     """
 
     stages = ("collect",)
+    #: **이 실행기가 어느 파이프라인의 것인가** — 진짜 git 조사 — 잔디 전용이다.
+    #: 스테이지 이름만 보면 유튜브·블로그의 `collect` 가 여기로 샌다
+    #: (실제로 샜다 — 유튜브 항목이 커밋 33건을 수집했다).
+    source_kinds = ("daily_commit",)
 
     def __init__(self, *, session_factory, repo_root: Path | None = None) -> None:
         self.session_factory = session_factory

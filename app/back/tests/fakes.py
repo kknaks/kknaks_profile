@@ -160,6 +160,7 @@ class FakeAutoStage:
         self,
         *,
         stages: tuple[str, ...],
+        source_kinds: tuple[str, ...] = ("daily_commit",),
         submits: int = 1,
         piece: dict[str, Any] | None = None,
         submit_payload: dict[str, Any] | None = None,
@@ -167,6 +168,7 @@ class FakeAutoStage:
         error_code: str | None = None,
     ) -> None:
         self.stages = stages
+        self.source_kinds = source_kinds
         self.submits = submits
         self.piece = piece if piece is not None else {}
         self.submit_payload = submit_payload or {}

@@ -354,3 +354,72 @@ class TestDailyCommitRail:
             gates = (await db.scalars(select(Gate).where(Gate.item_id == item_id))).all()
         assert item.status == "prepare_failed"
         assert gates == []  # 게이트를 열지 않는다
+
+
+@needs_db
+class TestRunnerOwnership:
+    """auto 실행기는 **자기 파이프라인의 것만** 잡는다.
+
+    레지스트리가 `{스테이지: 실행기}` 평면이라 이름이 겹치면 남의 실행기가 잡힌다.
+    운영에서 그랬다 — 유튜브 항목이 잔디의 `GitCollect` 를 타고 **커밋 33건을 수집**한
+    뒤, 요약 실행기가 없어 게이트 없이 멎었다. 준비는 `succeeded` 라 화면에는 정상으로
+    보였고 사람은 「왜 아무것도 안 되냐」만 알 수 있었다.
+    """
+
+    async def test_youtube_ignores_the_grass_collector_and_reaches_its_gate(self, world):
+        """잔디 수집기가 등록돼 있어도 유튜브는 제 경로로 간다."""
+        grass_only = FakeAutoStage(
+            stages=("collect",),
+            source_kinds=("daily_commit",),
+            submit_payload={"collect": {"counts": {"commit": 33}}},
+        )
+        driver, summarizer, _ = world(auto_stages={"collect": grass_only})
+        item_id = await _new_item(world.session_factory, "https://youtu.be/owns00001")
+
+        await driver.follow(item_id)
+
+        async with world.session_factory() as db:
+            item = await db.get(QueueItem, item_id)
+            gate = await db.scalar(select(Gate).where(Gate.item_id == item_id))
+            prep = await db.scalar(
+                select(ItemPreparation).where(ItemPreparation.item_id == item_id)
+            )
+
+        # 잔디 수집기는 손도 안 댔다.
+        assert grass_only.submitted == []
+        # 유튜브 레거시 경로(수집 + 요약)가 받았다.
+        assert prep.payload.get("summary") == "요약본"
+        assert "collect" not in prep.payload
+        # 그리고 **게이트가 열렸다** — 이것이 운영에서 안 되던 것이다.
+        assert item.status == "in_review"
+        assert gate is not None and gate.stage_name == "route"
+
+    async def test_grass_still_uses_its_own_collector(self, world):
+        """반대로 막으면 안 된다 — 잔디는 그 실행기로 가야 한다."""
+        grass_only = FakeAutoStage(stages=("collect",), source_kinds=("daily_commit",))
+        driver, _, _ = world(
+            auto_stages={"collect": grass_only},
+            stages={"daily": FakeRunner(payload={"daily": {}})},
+        )
+        async with world.session_factory() as db:
+            created = await intake(
+                db, source_kind="daily_commit", normalized_key="daily:2026-08-13"
+            )
+            await db.commit()
+
+        await driver.follow(created.item_id)
+
+        assert grass_only.submitted, "잔디는 자기 수집기를 타야 한다"
+
+    async def test_undeclared_runner_is_refused(self, world):
+        """선언이 없으면 **안 쓴다.** 반대로 두면 이 사고가 그대로 재발한다."""
+        undeclared = FakeAutoStage(stages=("collect",), source_kinds=())
+        driver, _, _ = world(auto_stages={"collect": undeclared})
+        item_id = await _new_item(world.session_factory, "https://youtu.be/owns00002")
+
+        await driver.follow(item_id)
+
+        assert undeclared.submitted == []
+        async with world.session_factory() as db:
+            gate = await db.scalar(select(Gate).where(Gate.item_id == item_id))
+        assert gate is not None and gate.stage_name == "route"
