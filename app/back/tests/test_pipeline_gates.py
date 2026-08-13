@@ -11,7 +11,7 @@
 from __future__ import annotations
 
 import pytest
-from sqlalchemy import create_engine, select, text
+from sqlalchemy import create_engine, delete, select, text
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 
@@ -383,6 +383,55 @@ class TestFeedbackAndRegenerate:
 
 
 @needs_db
+class TestConcurrentHarvest:
+    """수확이 **두 번** 와도 성공한 게이트가 뒤집히지 않는다.
+
+    화면 폴링과 드라이버가 같은 게이트를 함께 민다. 앞선 쪽이 `drafting` 을
+    `reviewable` 로 바꾸고 나면 늦은 쪽에는 초안이 안 보이는데, 그걸 「제출이 끊겼다」
+    로 읽어 **성공한 게이트를 failed 로 닫았다.**
+
+    운영에서 그랬다 — 개념 게이트가 `failed` 인데 그 버전은 `reviewable` 이고 AI
+    작업도 `succeeded` 라, 화면은 「검토 대기」로 그리면서 승인 버튼은
+    「상태가 failed 라 승인할 수 없다」로 막혔다.
+    """
+
+    async def test_second_harvest_does_not_undo_the_first(self, db):
+        """운영에서 남은 그 상태를 그대로 만든다 — **게이트는 아직 `generating`,
+        버전은 이미 `reviewable`.** 앞선 수확이 버전을 넘겼지만 이 트랜잭션에는
+        게이트 상태가 아직 안 보이는 순간이다.
+        """
+        item = await _ready_item(db, url="https://youtu.be/harvest0001")
+        runner = Recorder()
+        gate = await _open(db, item, runner=runner)          # 1차 수확
+        assert gate.status == "review_pending"
+        first_revision_id = gate.active_revision_id
+
+        gate.status = "generating"      # 늦게 온 쪽이 보는 게이트
+        await db.flush()
+
+        handled = await harvest(db, gate, item=item, runner=runner)
+
+        assert handled is True
+        assert gate.status == "review_pending", "성공한 게이트가 failed 로 뒤집혔다"
+        assert gate.active_revision_id == first_revision_id
+        revision = await db.get(GateRevision, first_revision_id)
+        assert revision.status == "reviewable"
+
+    async def test_still_fails_when_there_is_really_nothing(self, db):
+        """진짜로 초안도 결과도 없으면 실패로 닫아야 한다 — 사람이 재시도할 수 있게."""
+        item = await _ready_item(db, url="https://youtu.be/harvest0002")
+        gate = await open_first_gate(db, item, runner=Recorder(pending=True))
+        # 제출만 된 상태에서 초안을 지운다 = 커밋 전에 끊긴 흔적
+        await db.execute(
+            delete(GateRevision).where(GateRevision.gate_id == gate.id)
+        )
+        await db.flush()
+
+        await harvest(db, gate, item=item, runner=Recorder(pending=True))
+
+        assert gate.status == "failed"
+
+
 class TestFailureAndRetry:
     async def test_failure_marks_gate_and_keeps_rows(self, db):
         item = await _ready_item(db, url="https://youtu.be/genfail0001")

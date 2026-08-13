@@ -361,8 +361,26 @@ async def harvest(
         .with_for_update()
     )
     if revision is None:
-        # 게이트는 진행 중인데 초안이 없다. 제출이 커밋 전에 끊긴 흔적이므로
-        # 사람이 재시도할 수 있게 실패로 닫는다.
+        # **먼저 온 수확이 이미 끝냈을 수 있다.** 화면 폴링과 드라이버가 같은 게이트를
+        # 함께 민다 — 앞선 쪽이 `drafting` 을 `reviewable` 로 바꾸고 나면 늦은 쪽에는
+        # 초안이 안 보인다. 그걸 실패로 읽으면 **성공한 게이트가 failed 로 뒤집힌다.**
+        #
+        # 운영에서 그랬다. 개념 게이트가 `failed` 인데 그 버전은 `reviewable` 이고
+        # AI 작업도 `succeeded` 라, 화면은 「검토 대기」로 그리면서 승인은
+        # 「상태가 failed 라 승인할 수 없다」로 막혔다.
+        done = await db.scalar(
+            select(GateRevision)
+            .where(GateRevision.gate_id == gate.id, GateRevision.status == "reviewable")
+            .order_by(GateRevision.version.desc())
+            .limit(1)
+        )
+        if done is not None:
+            gate.status = "review_pending"
+            gate.active_revision_id = done.id
+            await db.flush()
+            return True
+
+        # 정말로 없다 — 제출이 커밋 전에 끊긴 흔적이므로 사람이 재시도할 수 있게 닫는다.
         logger.warning("게이트 %s 가 %s 인데 drafting 버전이 없다", gate.id, gate.status)
         gate.status = "failed"
         await db.flush()
