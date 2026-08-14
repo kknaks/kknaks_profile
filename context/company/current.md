@@ -19,6 +19,7 @@
 |---|---|---|---|---|
 | Charty |  | collecting |  | 챌린지/해결방안/성과 정리 |
 | Linky |  | collecting |  | 챌린지/해결방안/성과 정리 |
+| MediSolveAIDev/mediness | 회의록 근거 축(evidence_ts) 스펙 신설, 화면정의서 렌더 WP-111 마감, 문서 동기화 | in_progress |  | 다음 WP 착수 |
 
 ## 이번 주 목표
 

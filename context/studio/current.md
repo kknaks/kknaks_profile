@@ -27,12 +27,11 @@
 
 | Project | Work | Status | Blocker | Next |
 |---|---|---|---|---|
-| kknaks.dev | 회사/개인사업자 context 라우팅 구조 정리 | in_progress |  | company/studio current, projects 정리 |
+| kknaks.dev | 파이프라인 신뢰성 버그 수정(레이스 컨디션·실행기 소유권)과 세션 상속 설계(KDEV-DEC-024) 도입 | in_progress |  | 세션 상속 적용 범위 확장 점검 |
 | Wine Log | 운영 상태 정리 | todo |  | 현재 이슈 확인 |
 | Language Diary | MVP 정리 | todo |  | 핵심 사용자 흐름 정의 |
 | Persona Counselor | MVP 정리 | todo |  | 상담/코칭/저널링 범위 선택 |
 | Study Timelapse | 출시 범위 정리 | todo |  | 앱 출시 체크리스트 작성 |
-| mykakao | 메시지 추출 웹 데모 (WORK-001) | done |  | 일정 파싱 단계 spec/work |
 
 ## 이번 주 목표
 
