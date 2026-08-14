@@ -19,7 +19,7 @@ tags:
 title:
   en: Walls and Gates
   ko: 벽과 문
-today: true
+today: false
 type: algorithm
 updated: '2026-08-13'
 visible: true
