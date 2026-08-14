@@ -146,6 +146,25 @@ class TestNoteOutput:
                 required=("title",),
             )
 
+    def test_missing_type_rejected(self):
+        """**없는 type 도 막는다** — 종전에는 *틀린* type 만 막았다.
+
+        그래프 빌더가 노드 종류를 이 필드에서 읽으므로 없으면 발행 직전에
+        `UNKNOWN_TYPE` 으로 거부된다. 즉 게이트를 넷 다 승인한 **뒤에** 막힌다 —
+        item #3881 이 실제로 그랬다. 여기서 막으면 그 게이트 하나가 실패하고
+        재시도가 그 자리에서 고친다.
+        """
+        with pytest.raises(GateError) as exc:
+            check_note(
+                "2026-07-28-x-y",
+                "---\ntitle: 제목\ndate: 2026.07.28\n---\n본문",
+                expected_type="reference",
+                stem_pattern=REFERENCE_STEM_RE,
+                required=("title", "date"),
+            )
+        assert exc.value.code == "MISSING_NOTE_FIELD"
+        assert "type" in exc.value.message
+
     def test_missing_required_field_rejected(self):
         with pytest.raises(GateError) as exc:
             check_note(

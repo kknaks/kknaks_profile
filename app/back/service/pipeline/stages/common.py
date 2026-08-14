@@ -332,7 +332,13 @@ def check_note(
 
     meta = post.metadata
     declared = meta.get("type")
-    if declared is not None and declared != expected_type:
+    if declared is None:
+        # **없는 것도 막는다.** 종전에는 *틀린* type 만 막았는데, 그래프 빌더는 노드
+        # 종류를 이 필드에서 읽으므로 없으면 발행 직전에 `UNKNOWN_TYPE` 으로 거부된다.
+        # 즉 게이트를 넷 다 승인한 **뒤에야** 막힌다 — item #3881 이 그랬다.
+        # 여기서 막으면 그 게이트 하나가 실패하고 재시도가 그 자리에서 고친다.
+        raise GateError("MISSING_NOTE_FIELD", f"필수 필드 누락: type ({expected_type})")
+    if declared != expected_type:
         raise GateError(
             "INVALID_NOTE_OUTPUT", f"type 이 {declared} 다 — {expected_type} 이어야 한다"
         )
