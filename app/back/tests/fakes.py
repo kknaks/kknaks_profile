@@ -32,7 +32,10 @@ class FakeRunner:
         pending: bool = False,
         raw: str = "{}",
         parse_error: str | None = None,
+        fail_message: str = "provider timeout",
     ) -> None:
+        #: 실행 실패의 문구. 「세션이 사라졌다」 경로는 여기로 만든다.
+        self.fail_message = fail_message
         self.payload = payload if payload is not None else {}
         self.session_ref = session_ref
         #: 이 횟수만큼 실행이 실패한다 — 재시도 경로를 만든다.
@@ -64,7 +67,7 @@ class FakeRunner:
             return Execution(
                 status="failed",
                 error_code="RuntimeError",
-                error_message="provider timeout",
+                error_message=self.fail_message,
             )
         return Execution(status="succeeded", result=self.raw, session_ref=self.session_ref)
 

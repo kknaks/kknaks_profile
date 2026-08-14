@@ -12,7 +12,7 @@ from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 
 import config
-from core.models import Gate, QueueItem
+from core.models import AITask, Gate, QueueItem
 from service.pipeline import gates as gates_service
 from service.pipeline import intake
 from service.pipeline.chain import advance, enabled_stages, next_stage
@@ -410,6 +410,82 @@ class TestSessionInheritance:
         concept = FakeRunner(payload={"concepts": []}, session_ref="con-2-sess")
         await _advance(db, item, again, runners={"concept": concept})
         assert concept.calls[-1].session_ref == "note-2-sess"
+
+
+@needs_db
+class TestDeadSession:
+    """이어받을 세션이 실행기에서 사라졌을 때 (KDEV-DEC-024 D4 / OQ-4).
+
+    **세션은 실행기 컨테이너의 파일시스템에 산다 — 배포 한 번이면 전부 사라진다.**
+    승계가 들어온 뒤로는 그것이 진행 중 항목 **전부**를 막았다. 실제로 item #3881 이
+    재배포 뒤 `No conversation found with session ID: …` 로 멎었다.
+    """
+
+    DEAD = "Error: No conversation found with session ID: 506af245-d111-4f33-9d67-89126fef8015"
+
+    async def test_dead_session_is_forgotten_and_resubmitted_stateless(self, db):
+        item, gate = await _routed(db, "https://youtu.be/dead00001", route())
+        # 첫 실행은 죽은 세션으로 실패하고, 다음 제출은 성공한다.
+        runner = FakeRunner(
+            payload=NOTE_PAYLOAD, session_ref="note-sess", fail_times=1, fail_message=self.DEAD
+        )
+        opened = (await advance(db, item, gate, runners={"source_note": runner})).gate
+        assert runner.calls[0].session_ref == "s"  # route 세션을 물고 나갔다
+
+        # 수확이 죽은 세션을 알아채고 **지운 뒤 다시 제출**한다 — 실패로 닫지 않는다.
+        assert await harvest(db, opened, item=item, runner=runner) is True
+        assert opened.status == "generating"
+        assert len(runner.calls) == 2
+        assert runner.calls[1].session_ref is None  # 이번엔 stateless
+
+        # 실패 기록은 남는다 (SPEC-009 S-4).
+        failed = (
+            await db.scalars(
+                select(AITask).where(AITask.item_id == item.id, AITask.status == "failed")
+            )
+        ).all()
+        assert [t.error_code for t in failed] == ["SESSION_LOST"]
+
+        # 두 번째 수확에서 정상적으로 검토 대기가 된다.
+        assert await harvest(db, opened, item=item, runner=runner) is True
+        assert opened.status == "review_pending"
+
+    async def test_forgetting_does_not_rely_on_parsing_the_id(self, db):
+        """**메시지에서 뽑은 id 에만 기대지 않는다.**
+
+        이 픽스처의 실제 세션은 `s` 인데 실패 메시지에는 다른 uuid 가 들어 있다 —
+        실행기가 다른 표기를 쓰거나 세션이 내부적으로 갈린 경우를 흉내 낸 것이다.
+        파싱한 id 만 지우면 재제출이 **같은 세션을 또 물어** 되돌이표가 된다.
+        """
+        item, gate = await _routed(db, "https://youtu.be/dead00002", route())
+        runner = FakeRunner(
+            payload=NOTE_PAYLOAD, session_ref="note-sess", fail_times=1, fail_message=self.DEAD
+        )
+        opened = (await advance(db, item, gate, runners={"source_note": runner})).gate
+        await harvest(db, opened, item=item, runner=runner)
+
+        # 이 항목에는 물릴 세션이 남아 있지 않다 — 다음 스테이지도 stateless 로 간다.
+        left = (
+            await db.scalars(
+                select(AITask.session_ref).where(
+                    AITask.item_id == item.id, AITask.session_ref.is_not(None)
+                )
+            )
+        ).all()
+        assert left == []
+
+    async def test_unrelated_failure_keeps_the_session(self, db):
+        """문구가 다르면 건드리지 않는다 — 무관한 실패에서 세션을 버리면 안 된다."""
+        item, gate = await _routed(db, "https://youtu.be/dead00003", route())
+        runner = FakeRunner(
+            payload=NOTE_PAYLOAD, session_ref="note-sess", fail_times=1,
+            fail_message="provider timeout",
+        )
+        opened = (await advance(db, item, gate, runners={"source_note": runner})).gate
+        await harvest(db, opened, item=item, runner=runner)
+
+        assert opened.status == "failed"  # 평소대로 실패로 닫힌다
+        assert len(runner.calls) == 1  # 자동 재제출 없음
 
 
 class TestBlogAndStudyNotePipelines:

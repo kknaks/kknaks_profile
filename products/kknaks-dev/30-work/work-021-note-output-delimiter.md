@@ -13,9 +13,9 @@ roles:
   be: kknaks
   qa: kknaks
   ops: —
-progress: 80
+progress: 90
 created_at: 2026-08-13
-updated_at: 2026-08-13
+updated_at: 2026-08-14
 tags:
   - product/kknaks-dev
   - doc/work
@@ -54,10 +54,10 @@ links:
 | Type | refactor |
 | Owner | kknaks |
 | Status | in_progress |
-| Progress | 80% |
+| Progress | 90% |
 | Branch/PR |  |
 | Blocker |  |
-| Next | P5 — 배포 후 실전 1건 무재시도 완주 |
+| Next | P5 — 실전 완주는 확인됐고 **발행 마무리만 남았다**(OQ-3) |
 
 ## Role Assignment
 

@@ -22,6 +22,7 @@
 from __future__ import annotations
 
 import logging
+import re
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from typing import Any, Protocol
@@ -44,6 +45,14 @@ REGENERATABLE = ("review_pending", "feedback_pending")
 
 #: 실행을 제출해 놓고 결과를 기다리는 게이트 상태 — 수확 대상이다.
 IN_FLIGHT = ("generating", "regenerating")
+
+#: 실행기가 「그 세션 없다」고 답할 때의 신호 (KDEV-DEC-024 OQ-4).
+#:
+#: **구조화된 코드가 없어 메시지로 판정한다.** 실행기가 문구를 바꾸면 이 판정이 조용히
+#: 멎으므로, 아래 `_session_lost` 는 세션 id 를 함께 뽑아 **정말 우리가 물린 세션인지**
+#: 확인한 뒤에만 움직인다 — 문구만 보고 지우면 무관한 실패에서도 세션을 버린다.
+DEAD_SESSION_MARKER = "no conversation found"
+_SESSION_ID_RE = re.compile(r"session id:\s*([0-9a-fA-F-]{8,})", re.IGNORECASE)
 
 
 class GateError(RuntimeError):
@@ -217,6 +226,42 @@ async def _resume_session(db: AsyncSession, gate: Gate, *, source_kind: str) -> 
         if session:
             return session
     return None
+
+
+def _session_lost(message: str | None) -> str | None:
+    """실행 실패가 「세션이 사라졌다」인가. 맞으면 그 세션 id (KDEV-DEC-024 OQ-4)."""
+    text = message or ""
+    if DEAD_SESSION_MARKER not in text.lower():
+        return None
+    found = _SESSION_ID_RE.search(text)
+    return found.group(1) if found else None
+
+
+async def _forget_sessions(db: AsyncSession, item_id: int, refs: set[str]) -> None:
+    """죽은 세션 참조를 이 항목에서 지운다 — 다음 조회가 stateless 로 떨어지게.
+
+    **항목 전체를 지우는 이유**는 세션이 실행기의 파일시스템 하나에 살기 때문이다.
+    한 게이트에서 사라진 세션은 그 항목의 다른 게이트에도 없다. 하나만 지우면
+    다음 스테이지가 같은 죽은 세션을 또 문다.
+
+    **payload 는 건드리지 않는다.** 지우는 것은 운영 포인터뿐이고 승인된 내용은
+    불변이다(SPEC-009 §5).
+    """
+    targets = {ref for ref in refs if ref}
+    if not targets:
+        return
+    gate_ids = select(Gate.id).where(Gate.item_id == item_id).scalar_subquery()
+    await db.execute(
+        update(AITask)
+        .where(AITask.item_id == item_id, AITask.session_ref.in_(targets))
+        .values(session_ref=None)
+    )
+    await db.execute(
+        update(GateRevision)
+        .where(GateRevision.gate_id.in_(gate_ids), GateRevision.session_ref.in_(targets))
+        .values(session_ref=None)
+    )
+    await db.flush()
 
 
 async def _sweep_reviewable(db: AsyncSession, gate_id: int, keep_revision_id: int) -> int:
@@ -468,6 +513,56 @@ async def harvest(
     execution = await runner.poll(task.external_task_ref)
     if execution.running:
         return False
+
+    dead_session = (
+        _session_lost(execution.error_message) if execution.status == "failed" else None
+    )
+    if dead_session:
+        # **이어받을 세션이 사라졌다** (KDEV-DEC-024 D4 / OQ-4). 실행기의 세션은
+        # 그쪽 컨테이너 파일시스템에 살아서 **배포 한 번이면 전부 사라진다.**
+        #
+        # D4 는 「세션이 없으면 stateless 로 만들고 실패시키지 않는다」인데, 종전
+        # 구현은 **DB 에 ref 가 없을 때만** 그렇게 했다. ref 는 있는데 저쪽이 비면
+        # 실행이 실패하고, 재시도가 같은 죽은 세션을 다시 물어 영영 못 넘어갔다.
+        # 승계가 들어온 뒤로는 그것이 **진행 중 항목 전부**를 막았다.
+        #
+        # 그래서 여기서 참조를 지우고 **한 번 다시 제출한다.** 지운 뒤에는
+        # `_resume_session` 이 `None` 을 돌려주므로 이번엔 stateless 로 나가고,
+        # 같은 사유로 또 실패할 수 없다 — 되돌이표가 구조적으로 막힌다.
+        logger.warning(
+            "게이트 %s 의 세션 %s 가 실행기에 없다 — 지우고 stateless 로 다시 제출한다",
+            gate.id,
+            dead_session,
+        )
+        await _fail(
+            db,
+            gate,
+            task,
+            revision,
+            error_code="SESSION_LOST",
+            error_message=f"이어받을 세션이 실행기에 없다({dead_session}) — stateless 로 다시 만든다",
+        )
+        # **메시지에서 뽑은 id 에만 기대지 않는다.** 실행기가 다른 표기를 쓰거나
+        # 세션이 내부적으로 갈렸으면 그 id 가 우리가 물고 나간 것과 다를 수 있고,
+        # 그러면 지워도 재제출이 같은 세션을 또 문다. 그래서 **지금 이 게이트가
+        # 이어받게 되어 있는 값**(= 방금 보낸 값)도 함께 지운다.
+        used = await _resume_session(db, gate, source_kind=item.source_kind)
+        await _forget_sessions(db, gate.item_id, {dead_session, used or ""})
+        feedback = (
+            await db.get(GateFeedback, revision.feedback_id) if revision.feedback_id else None
+        )
+        parent = (
+            await db.get(GateRevision, revision.parent_revision_id)
+            if revision.parent_revision_id
+            else None
+        )
+        gate.status = "generating"
+        await db.flush()
+        await _submit(
+            db, gate, item=item, runner=runner, feedback=feedback, parent=parent, retry_of=task
+        )
+        return True
+
     if execution.status == "failed":
         await _fail(
             db,
