@@ -21,7 +21,7 @@ tags:
 title:
   en: Course Schedule
   ko: 코스 스케줄
-today: true
+today: false
 type: algorithm
 updated: '2026-08-14'
 visible: true
