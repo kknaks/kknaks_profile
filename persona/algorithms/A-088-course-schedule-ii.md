@@ -20,7 +20,7 @@ tags:
 title:
   en: Course Schedule II
   ko: 강의 일정 II
-today: true
+today: false
 type: algorithm
 updated: '2026-08-15'
 visible: true
