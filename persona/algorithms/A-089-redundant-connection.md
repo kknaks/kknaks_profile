@@ -20,7 +20,7 @@ tags:
 title:
   en: Redundant Connection
   ko: 중복된 연결
-today: true
+today: false
 type: algorithm
 updated: '2026-08-16'
 visible: true
