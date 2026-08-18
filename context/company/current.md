@@ -19,7 +19,7 @@
 |---|---|---|---|---|
 | Charty |  | collecting |  | 챌린지/해결방안/성과 정리 |
 | Linky |  | collecting |  | 챌린지/해결방안/성과 정리 |
-| MediSolveAIDev/mediness | 회의록 근거 축(evidence_ts) 스펙 신설, 화면정의서 렌더 WP-111 마감, 문서 동기화 | in_progress |  | 다음 WP 착수 |
+| MediSolveAIDev/mediness | Task 칸반보드 spec-154에 시각 규칙(반복 태그 제거·공통값 생략·밀도) 계약 7건 추가해 실기동 반려 정정, 조직 활동 자동 브리핑 적재 | in_progress |  | 정정된 시각 규칙 계약 구현 반영 확인 |
 
 ## 이번 주 목표
 
