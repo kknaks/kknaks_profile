@@ -27,7 +27,7 @@
 
 | Project | Work | Status | Blocker | Next |
 |---|---|---|---|---|
-| kknaks.dev | 파이프라인 신뢰성 버그 수정(레이스 컨디션·실행기 소유권)과 세션 상속 설계(KDEV-DEC-024) 도입 | in_progress |  | 세션 상속 적용 범위 확장 점검 |
+| kknaks.dev | 알고리즘 학습 콘텐츠 파이프라인의 "오늘의 문제" 슬롯을 A-087(Course Schedule, 위상정렬)로 회전, 정답/함정 슬롯형 문제 콘텐츠 저작 | in_progress |  | 다음 문제 슬롯 저작 |
 | Wine Log | 운영 상태 정리 | todo |  | 현재 이슈 확인 |
 | Language Diary | MVP 정리 | todo |  | 핵심 사용자 흐름 정의 |
 | Persona Counselor | MVP 정리 | todo |  | 상담/코칭/저널링 범위 선택 |
