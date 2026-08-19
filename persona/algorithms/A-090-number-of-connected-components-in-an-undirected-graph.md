@@ -20,7 +20,7 @@ tags:
 title:
   en: Number of Connected Components in an Undirected Graph
   ko: 무방향 그래프의 연결 요소 개수
-today: true
+today: false
 type: algorithm
 updated: '2026-08-18'
 visible: true
