@@ -20,7 +20,7 @@ tags:
 title:
   en: Graph Valid Tree
   ko: 그래프 유효 트리
-today: true
+today: false
 type: algorithm
 updated: '2026-08-19'
 visible: true
