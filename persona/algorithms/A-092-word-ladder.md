@@ -20,7 +20,7 @@ tags:
 title:
   en: Word Ladder
   ko: 단어 사다리
-today: true
+today: false
 type: algorithm
 updated: '2026-08-20'
 visible: true
