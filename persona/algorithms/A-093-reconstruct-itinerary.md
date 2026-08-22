@@ -25,7 +25,7 @@ tags:
 title:
   en: Reconstruct Itinerary
   ko: 여행 경로 재구성
-today: true
+today: false
 type: algorithm
 updated: '2026-08-21'
 visible: true
