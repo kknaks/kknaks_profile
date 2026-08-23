@@ -1,0 +1,437 @@
+# Database
+
+**표면에 보이는 것은 DB, 문서는 md.** 이 문서는 표면이 필요로 하는 컬럼을 페이지 단위로
+쌓아 나가는 자리다. 다 뽑은 뒤에 정규화 여부를 정한다 — **지금은 정규화하지 않는다.**
+
+원천은 md 가 아니다. 표면 정보는 DB 가 원천이고 어드민에서 고친다.
+문서(`para/**`)는 md 가 원천이고 DB 로 가지 않는다.
+
+**한국어 하나만 담는다.** 옛 구조는 모든 텍스트가 `{ko, en}` 이었고 그만큼 컬럼이
+두 배였다. 영문 표면이 필요해지면 그때 번역 축을 얹는다.
+
+## 지금 잡는 것
+
+**블로그 표면의 뼈대 테이블까지다.**
+
+```
+users  info  career  education  product  project     ← 뼈대
+repo   commit                                        ← 잔디 원료. 모양만 잡아 둔다
+```
+
+잔디를 실제로 채우는 일 — 수집 잡·요약 생성·스케줄링 — 은 뼈대가 선 뒤에 본다.
+테이블 모양은 여기 적어 두되 파이프라인은 나중이다.
+
+## 진행
+
+| 페이지 | 테이블 | 상태 |
+|---|---|---|
+| `/about` | `info` · `commit`(파생) | 뽑음 |
+| `/career` | `career` · `education` | 뽑음 |
+| `/projects` | `product` · `project` | 뽑음 |
+| `/` (home) | 새 테이블 없음 | 뽑음 |
+
+---
+
+## `users` · `info`
+
+**인증과 프로필을 가른다.** 둘 다 1행이지만 섞으면 `GET /api/info` 가 `password_hash` 가
+있는 행을 조회하게 된다 — 컬럼 지정으로 막을 수 있어도 ORM 직렬화 한 번 실수하면 샌다.
+수명도 다르다. 인증 스키마는 OAuth·2FA 가 붙으면 바뀌고 프로필은 표시 데이터다.
+
+**`role` 이 둘이라 이름을 갈랐다** — 권한은 `users.system_role`, 직함은 `info.role`.
+
+### `users` — 인증
+
+표면에 절대 안 나간다.
+
+```sql
+CREATE TABLE users (
+    id              serial       PRIMARY KEY,
+    username        varchar(64)  NOT NULL UNIQUE,       -- 로그인 ID
+    password_hash   varchar(255) NOT NULL,
+    system_role     varchar(32)  NOT NULL DEFAULT 'admin',  -- 권한. 직함과 다르다
+
+    created_at      timestamptz  NOT NULL DEFAULT now(),
+    updated_at      timestamptz  NOT NULL DEFAULT now()
+);
+```
+
+### `info` — 나
+
+`/about` 과 home 히어로가 읽는다. **한 행뿐이다.**
+
+```sql
+CREATE TABLE info (
+    id              serial       PRIMARY KEY,
+    user_id         int          NOT NULL UNIQUE        -- UNIQUE 가 1:1 을 강제한다
+                                 REFERENCES users(id) ON DELETE CASCADE,
+
+    -- 신원. /about 상단.
+    handle          varchar(64)  NOT NULL,              -- kknaks
+    name            varchar(64)  NOT NULL,              -- 이건학
+    role            varchar(64)  NOT NULL,              -- 백엔드 엔지니어 — 직함
+    years           varchar(32),                        -- 1년차
+    location        varchar(64),                        -- 서울, 대한민국
+    focus           varchar(128),                       -- AI · Python · Infra
+    avatar_url      varchar(255),
+
+    -- 연락. /about + footer.
+    email           varchar(255) NOT NULL,
+    github          varchar(255),
+    linkedin        varchar(255),
+
+    -- 문구. 문단이라 text.
+    tagline         text,                               -- 한 줄 소개. /about + home
+    intro           text,                               -- 소개 1문단
+    intro2          text,                               -- 소개 2문단 — 지금 하는 일
+
+    -- 히어로. home 전용 연출.
+    hero_headline   jsonb,                              -- [{text, tone}] — 줄마다 강조가 다르다
+    hero_subline    text,
+    hero_terminal   jsonb,                              -- [{prompt, output[]}] — 중첩이라 컬럼으로 못 푼다
+
+    stack           text[],                             -- 기술 뱃지. 문자열 목록뿐이라 jsonb 불필요
+    cards           jsonb,                              -- [{title, body}] — /about 카드 4개
+
+    updated_at      timestamptz  NOT NULL DEFAULT now()
+);
+```
+
+`user_id` 에 UNIQUE 를 걸어 한 사람에 프로필 하나를 DB 가 강제한다. 지금은 1행이지만
+사람이 늘어도 스키마가 그대로 산다.
+
+**FK 가 있다고 공개 조회가 인증 테이블을 건드리는 것은 아니다** — `SELECT * FROM info`
+면 끝이고 FK 는 참조 무결성만 본다. 테이블을 가른 이유는 조인이 아니라 **`password_hash`
+가 프로필 행에 같이 앉아 있지 않게 하려는 것**이다.
+
+### 왜 이렇게 나눴나
+
+**스칼라와 문단은 컬럼이다.** 어드민에서 `tagline` 하나 고칠 때 `UPDATE info SET tagline`
+로 끝나야 한다. jsonb 면 통째로 다시 써야 하고 폼을 필드 단위로 못 그린다.
+
+**jsonb 는 순서 있는 목록에만 쓴다.** `hero_headline`·`hero_terminal`·`cards` 는 항목 수가
+가변이라 컬럼으로 풀 수 없다. 어드민이 배열 편집기를 그린다 — 항목이 서넛이라 통째
+rewrite 가 부담이 아니다.
+
+`hero_terminal` 만 중첩(배열 안에 배열)이라 나중에 테이블로 풀 후보다. 지금은 화면
+연출 데이터라 통째로 읽고 통째로 쓴다.
+
+---
+
+## 잔디 — 나중
+
+수집·요약·스케줄은 뼈대가 선 뒤에 본다. 테이블 모양만 남겨 둔다.
+
+**테이블이 없다.** `/about` 아래 잔디는 전부 `commit` 에서 파생된다.
+
+| 표면 | 어디서 |
+|---|---|
+| 칸 색 농도 | `COUNT(*) GROUP BY authored_at::date` |
+| 칸에 뜨는 줄 | 그날 커밋들의 `summary` |
+| 상단 총계·기간 | 365일 롤링 집계 |
+
+옛 구조는 `persona/daily/*.md` 에 날짜별 파일을 두고 `counts` 와 `summary` 를 저장했다.
+**저장할 이유가 없었다** — `counts` 는 세면 나오고 `summary` 는 커밋마다 한 줄씩이라
+커밋 행에 붙으면 그만이다. 실제로 옛 파일도 `counts.commit: 3` 에 `summary` 3줄이었다.
+
+날짜 집계를 저장하지 않으니 **커밋이 늦게 들어와도 잔디가 저절로 맞는다.** 저장했다면
+집계를 다시 돌려야 하고, 안 돌리면 조용히 어긋난다.
+
+---
+
+## `career`
+
+한 행 = **직장에서의 역할 하나**. 회사가 아니라 역할이 단위다.
+교육과정은 여기 두지 않는다 — [[#education]] 이 갖는다.
+
+같은 회사에서 직무가 바뀌면 행이 하나 더 생긴다 — `org` 가 겹치는 건 문제가 아니다.
+겹쳐도 되는 값에 UNIQUE 를 걸지 않는다.
+
+```sql
+CREATE TABLE career (
+    id           serial       PRIMARY KEY,
+
+    org          varchar(64)  NOT NULL,             -- 메디솔브 AI. 겹칠 수 있다
+    title        varchar(64)  NOT NULL,             -- 백엔드 개발자 / AI 리서처
+    location     varchar(64),                       -- 서울
+
+    -- 기간. 월 단위라 1일로 박는다.
+    started_on   date         NOT NULL,             -- 2026-02-01
+    ended_on     date,                              -- NULL 이면 현재 역할
+
+    summary      text,                              -- 한 줄 요약
+    body         text,                              -- 상세 서술 — 무슨 일 하는지 · 담당 영역
+    stack        text[],                            -- 그 역할에서 쓴 기술
+
+    created_at   timestamptz  NOT NULL DEFAULT now(),
+    updated_at   timestamptz  NOT NULL DEFAULT now()
+);
+```
+
+### UNIQUE 를 안 거는 것
+
+`org` 도 `title` 도 겹칠 수 있다. **커밋 귀속은 `commit.career_id` FK 가 하지 문자열 키가
+하지 않는다.** 옛 구조가 `slug` 를 둔 건 파일 stem 이 키였기 때문이고, DB 로 오면
+`id` 가 그 역할을 한다.
+
+### 파생으로 뺀 것 셋
+
+옛 frontmatter 에 있던 셋을 컬럼으로 두지 않는다. **저장하면 서로 어긋난다.**
+
+| 옛 필드 | 어떻게 | 왜 |
+|---|---|---|
+| `is_current` | `ended_on IS NULL` | 퇴사일을 넣었는데 플래그를 안 내리면 조용히 틀린다 |
+| `period` | `started_on`·`ended_on` 으로 렌더 | `2026.02 — present` 는 표시 형식이다 |
+| `display_order` | `started_on DESC` | 손으로 매기면 경력이 늘 때마다 다시 매겨야 한다 |
+
+옛 구조는 `period` 를 `"2026.02 — present"` 문자열로 들고 있어서 **정렬을 못 했다.**
+그래서 `display_order` 를 따로 뒀던 것이다.
+
+### 화면
+
+`/career` 는 `started_on DESC` 로 나열한다. 같은 회사의 역할이 연달아 뜨면 화면에서
+`org` 로 묶어 보여주면 된다 — **묶는 건 표시의 일이지 스키마의 일이 아니다.**
+
+---
+
+## `education`
+
+한 행 = 교육과정 하나. 비트캠프 · 멋쟁이사자처럼 같은 부트캠프와 학력.
+
+`career` 와 모양이 거의 같지만 **`repos` 가 없다.** 교육과정에서 만든 결과물은
+`project` 로 가지 과정 자체에 커밋이 귀속되지 않는다.
+
+```sql
+CREATE TABLE education (
+    id           serial       PRIMARY KEY,
+
+    org          varchar(64)  NOT NULL,             -- 멋쟁이사자처럼 / 비트캠프
+    title        varchar(64)  NOT NULL,             -- 풀스택 엔지니어 심화과정
+    location     varchar(64),
+
+    started_on   date         NOT NULL,             -- 2024-12-01
+    ended_on     date,
+
+    summary      text,                              -- 2개 프로젝트, 자바 및 인프라 심화과정
+    body         text,                              -- 상세 서술
+    stack        text[],                            -- 그 과정에서 쓴 기술
+
+    created_at   timestamptz  NOT NULL DEFAULT now(),
+    updated_at   timestamptz  NOT NULL DEFAULT now()
+);
+```
+
+### 화면에서는 합친다
+
+`/career` 타임라인은 **`career` 와 `education` 을 합쳐 `started_on DESC` 로 나열한다.**
+화면은 둘을 구분해 보여주지 않는다 — 「풀스택 엔지니어 심화과정 · 멋쟁이사자처럼」이
+「백엔드 개발자 · 퀀터스」와 같은 모양으로 뜬다.
+
+**나누는 이유는 표시가 아니라 셈이다.** 경력 연차를 셀 때 부트캠프 기간이 섞이면 안 되고,
+`repos` 처럼 한쪽에만 있는 속성이 다른 쪽에서 늘 비어 있게 된다.
+
+---
+
+## `product`
+
+한 행 = **제품 하나.** 회사에서 만들어 파는 것. `career` 에 속한다.
+
+`project`(혼자 만든 것)와 이름을 가른다 — 소속과 목적이 다르다.
+
+```sql
+CREATE TABLE product (
+    id           serial       PRIMARY KEY,
+    career_id    int          NOT NULL REFERENCES career(id) ON DELETE CASCADE,
+
+    slug         varchar(64)  NOT NULL UNIQUE,      -- mediness. 에셋 경로·앵커
+    title        varchar(64)  NOT NULL,             -- 메디니스
+    summary      text,                              -- 한 줄 요약
+    body         text,                              -- 상세
+
+    category     varchar(32),                       -- crm / mso
+    status       varchar(16),                       -- live / wip / archived
+    started_on   date,
+
+    stack        text[],                            -- 기술
+    thumbnail    varchar(255),                      -- 커버 이미지
+    links        jsonb,                             -- {site, docs}
+    visible      boolean      NOT NULL DEFAULT true,
+
+    created_at   timestamptz  NOT NULL DEFAULT now(),
+    updated_at   timestamptz  NOT NULL DEFAULT now()
+);
+```
+
+`category` 별 개수는 컬럼이 아니라 `GROUP BY category` 다.
+
+---
+
+## `project`
+
+한 행 = **혼자 만든 것 하나.** 여름별컴퍼니 제품과 개인 작업.
+`product`(회사에서 만들어 파는 것)와 테이블을 가른다.
+
+```sql
+CREATE TABLE project (
+    id           serial       PRIMARY KEY,
+
+    slug         varchar(64)  NOT NULL UNIQUE,      -- wine-log. 에셋 경로·앵커
+    title        varchar(64)  NOT NULL,             -- Wine Log
+    summary      text,                              -- 한 줄 요약
+    body         text,                              -- 개요·기술스택 상세
+
+    category     varchar(32),                       -- mobile / web / cli
+    status       varchar(16),                       -- live / wip / archived
+    started_on   date,
+
+    stack        text[],                            -- 기술
+    thumbnail    varchar(255),                      -- 커버 이미지
+    links        jsonb,                             -- {repo, site, store}
+    visible      boolean      NOT NULL DEFAULT true,
+
+    created_at   timestamptz  NOT NULL DEFAULT now(),
+    updated_at   timestamptz  NOT NULL DEFAULT now()
+);
+```
+
+`career_id` 가 없다. 혼자 하는 것이라 소속이 없고, **합쳐서 nullable 로 두면 NULL 에
+「회사 아님」이라는 뜻이 실린다** — 그런 스키마는 반드시 새는 지점이 생긴다.
+
+`product` 와 컬럼이 거의 같지만 나누는 이유는 셋이다.
+
+- **표면이 다르다.** `/projects` 는 「혼자 만든 것들」이고 회사 제품은 거기 안 뜬다
+- **문서 구조가 다르다.** 회사 것은 스펙의 원천이 회사 레포라 여기 경험만 남는다
+  (`para/projects/company/` ↔ `para/projects/summer-star/` 도 같은 이유로 갈렸다)
+- **공개 범위가 다르다**
+
+---
+
+## `repo`
+
+한 행 = 레포 하나. `product` 또는 `project` 에 속한다. **하나에 레포가 여럿이다** —
+mediness 만 해도 `mediness-mediness`(스펙)와 `mediness-app`(코드) 둘이다.
+
+```sql
+CREATE TABLE repo (
+    id               serial       PRIMARY KEY,
+    product_id       int          REFERENCES product(id) ON DELETE CASCADE,
+    project_id       int          REFERENCES project(id) ON DELETE CASCADE,
+
+    slug             varchar(160) NOT NULL UNIQUE,  -- owner/name. 클론 URL 의 키
+    role             varchar(32),                   -- spec / app / infra — 이 레포가 뭘 담나
+
+    enabled          boolean      NOT NULL DEFAULT true,   -- 끄기. 지우지 않는다
+
+    -- 수집 상태. 레포마다 따로 막힌다.
+    last_fetched_at  timestamptz,
+    last_error       text,                          -- 성공하면 비운다. 남아 있으면 지금 막혀 있다
+
+    created_at       timestamptz  NOT NULL DEFAULT now(),
+    updated_at       timestamptz  NOT NULL DEFAULT now(),
+
+    -- 둘 중 정확히 하나에만 속한다. 둘 다 비거나 둘 다 차는 것을 DB 가 막는다.
+    CHECK ((product_id IS NULL) <> (project_id IS NULL))
+);
+```
+
+**부모가 둘인데 FK 는 살린다.** `owner_type`+`owner_id` 로 polymorphic 하게 두면 FK 를
+아예 못 건다. nullable 둘 + CHECK 가 무결성을 지키면서 같은 일을 한다.
+
+**`enabled` 로 끄고 지우지 않는다.** 지우면 그 레포에서 온 과거 커밋의 참조가 끊긴다.
+
+**수집 상태가 레포에 붙는 이유** — 잡이 레포별로 실패한다. 부모에 하나만 두면
+레포 둘 중 어느 쪽이 막혔는지 알 수 없다.
+
+**사이트에 보이는 것과 긁는 것은 다르다.** 공개 링크는 `product.links`·`project.links` 가 갖고, 여기는
+커밋을 긁을 대상이다. 사이트에 안 뜨지만 커밋은 세고 싶은 레포가 있다.
+
+---
+
+## `commit`
+
+한 행 = 커밋 하나. `repo` 에 속한다.
+
+```sql
+CREATE TABLE commit (
+    id           bigserial    PRIMARY KEY,
+    repo_id      int          NOT NULL REFERENCES repo(id) ON DELETE CASCADE,
+
+    sha          varchar(40)  NOT NULL,
+    tree         varchar(40)  NOT NULL,             -- 트리 해시. 중복 제거의 진짜 키
+    author       varchar(128),                      -- identity 매칭용
+    authored_at  timestamptz  NOT NULL,             -- author 날짜. 커밋터 날짜가 아니다
+    message      text,                              -- 커밋 제목 원문. 공개하지 않는다
+    summary      text,                              -- 한 줄 요약. 잔디에 뜨는 것
+
+
+    created_at   timestamptz  NOT NULL DEFAULT now(),
+
+    UNIQUE (repo_id, tree)
+);
+
+CREATE INDEX ix_commit_authored ON commit (authored_at DESC);
+```
+
+### 중복 제거가 `sha` 가 아니라 `tree` 인 이유
+
+**리베이스가 같은 작업을 새 sha 로 되풀이한다.** 옛 잡에서 실측 163건이 그렇게 중복
+집계됐다. sha 로 막으면 같은 변경이 두 번 세어진다. 트리 해시는 내용이 같으면 같으므로
+`(repo_id, tree)` 가 진짜 중복 제거 키다.
+
+### `authored_at` 이 author 날짜인 이유
+
+**리베이스는 커밋터 날짜를 오늘로 바꾼다.** 커밋터 날짜로 자르면 며칠 전 작업이 오늘
+칸에 들어오거나 그 반대가 된다. 잔디는 「그날 무엇을 했나」라 author 날짜가 맞다.
+
+수집할 때는 KST 하루보다 **넓게 받아서 author 날짜로 정확히 자른다** — 좁게 자르면
+경계의 커밋을 놓친다.
+
+### `message` 와 `summary` 를 나누는 이유
+
+`message` 는 커밋 제목 원문이다. **공개 사이트에 그대로 띄우지 않는다** — 회사 레포면
+`spec-154` 같은 사내 스펙 번호와 레포명이 그대로 박혀 있다.
+
+`summary` 는 그걸 한 줄로 다시 쓴 것이고 **잔디에 뜨는 것은 이쪽**이다. 요약이 읽기
+좋게 만드는 일뿐 아니라 **사내 정보를 추상화하는 일**도 겸한다.
+
+원료는 커밋 메시지만이 아니다. `SUMMARY.md §2`(사람이 쓴 회고)가 같이 들어간다 —
+커밋만 보고 쓰면 「무엇을 완성했다」 수준에 머문다(CLAUDE.md 5번).
+
+### 원본을 저장하는 이유
+
+매번 다시 긁지 않는다. **회사 레포는 접근이 사라질 수 있고**, 리베이스로 히스토리가
+다시 쓰이면 과거를 재현할 수 없다.
+
+---
+
+## 테이블이 필요 없는 표면
+
+| 표면 | 왜 |
+|---|---|
+| `/` (home) | `users`(hero·hero_terminal·tagline·stack) + 각 목록의 최근 N건 |
+
+---
+
+## 이번 리뉴얼에서 뺀 표면
+
+| 표면 | 처리 |
+|---|---|
+| `/print` (이력서) | **없앤다.** 이력서는 이 사이트 밖에서 관리한다 |
+| `/contents` (영상+교안) | 뺀다 |
+| `/algorithms` (94건) | 뺀다 |
+| `/notes` (공개 글) | 뺀다 |
+
+빠지면서 컬럼도 같이 사라졌다 — `skills` · `education` · `awards` · `stack_short`(이력서),
+`career.bullets`, `project` 의 PDF 케이스 5종.
+
+**`/print` 가 빠지면서 i18n 제약이 풀렸다.** KO+EN 합본 PDF 때문에 두 언어를 동시에
+꺼내야 했는데, 이제 `?lang` 단일 응답이면 된다.
+
+---
+
+## 정할 것
+
+- **i18n 을 어떻게 담나** — 컬럼 쌍(`name_ko`/`name_en`) · JSON `{ko, en}` · 별도 번역 테이블
+- **배열을 어떻게 담나** — JSON · 별도 테이블. `hero_terminal` 은 중첩(배열 안에 배열)이라
+  테이블로 풀면 둘이 된다
+- **`education` · `awards` 가 빈 배열이다** — 지금 실물이 없다. 표면에서 뺄지 채울지
