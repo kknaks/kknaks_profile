@@ -1,0 +1,163 @@
+{
+  "_doc": "mediness 오케스트레이션 설정 SSOT. scripts/new-work.sh 가 읽는 유일한 곳. CLAUDE.md·브리프·스크립트에 여기 값을 하드코딩하지 말 것.",
+  "project": "mediness",
+  "worktree_root": "/Users/kknaks/orca/workspaces",
+  "use_worktree": true,
+
+  "repos": {
+    "spec": {
+      "orca_name": "mediness-mediness",
+      "canonical_path": "/Users/kknaks/git/harness_works/mediness-mediness",
+      "remote": "https://github.com/MediSolveAIDev/mediness.git",
+      "base": "origin/mediness",
+      "pr_base": "mediness",
+      "worktree_suffix": "-spec",
+      "notes": [
+        "canonical 은 사용자가 직접 쓰는 더티 체크아웃 — pull/checkout 금지. fetch 만 하고 base 는 origin/ ref 를 쓴다.",
+        "pre-commit 이 docs lint. 무관한 타 제품 드리프트로 막히면 --no-verify."
+      ]
+    },
+    "app": {
+      "orca_name": "mediness-app",
+      "canonical_path": "/Users/kknaks/git/harness_works/mediness-app",
+      "remote": "https://github.com/MediSolveAIDev/mediness-app.git",
+      "base": "origin/dev",
+      "pr_base": "dev",
+      "worktree_suffix": "",
+      "notes": [
+        "canonical 은 사용자 피처 브랜치 체크아웃 중 — 건드리지 말 것.",
+        "릴리스는 dev→main fast-forward(git push origin origin/dev:main)."
+      ]
+    },
+    "app_main": {
+      "orca_name": "mediness-app",
+      "canonical_path": "/Users/kknaks/git/harness_works/mediness-app",
+      "remote": "https://github.com/MediSolveAIDev/mediness-app.git",
+      "base": "origin/main",
+      "pr_base": "main",
+      "worktree_suffix": "-hotfix",
+      "notes": [
+        "main 기반 핫픽스 전용 변형 (app 과 같은 리포, base/pr_base 만 main). 머지 후 main→dev 반영을 잊지 말 것."
+      ]
+    }
+  },
+
+  "workers": {
+    "planner": {
+      "repo": "spec",
+      "agent": "claude",
+      "brief_suffix": "spec",
+      "roles_dir": "roles/mediness/planner",
+      "allowed_paths": ["products/mediness/", "context/"]
+    },
+    "backend": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "be",
+      "roles_dir": "roles/mediness/backend",
+      "allowed_paths": ["back/", "mcp/", "docker-compose.yml", "docker-compose.local.yml"],
+      "verify": "cd back && pytest -q <네가 만들거나 고친 테스트 파일만> (전체 스위트 금지 — 사용자 방침. DATABASE_URL 은 back/pyproject.toml 의 테스트 DB = localhost:25434/mediness_test). 검증은 1회만 — 통과하면 반복하지 마라"
+    },
+    "frontend": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "fe",
+      "roles_dir": "roles/mediness/frontend",
+      "allowed_paths": ["front/"],
+      "verify": "cd front && npx tsc --noEmit (네가 만진 파일 0 에러) + prettier --check <네가 만진 파일만>. 전체 빌드·전체 포맷 검사 금지 — 사용자 방침. 검증은 1회만"
+    },
+    "frontend_hotfix": {
+      "repo": "app_main",
+      "agent": "claude",
+      "brief_suffix": "fe-hotfix",
+      "roles_dir": "roles/mediness/frontend",
+      "allowed_paths": ["front/"],
+      "verify": "cd front && npx tsc --noEmit (네가 만진 파일 0 에러) + prettier --check <네가 만진 파일만>. 전체 빌드·전체 포맷 검사 금지 — 사용자 방침. 검증은 1회만"
+    },
+    "infra": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "infra",
+      "roles_dir": "roles/mediness/infra",
+      "allowed_paths": []
+    },
+    "reviewer_spec": {
+      "repo": "spec",
+      "agent": "claude",
+      "brief_suffix": "review-spec",
+      "roles_dir": "roles/mediness/reviewer",
+      "allowed_paths": ["(read-only — 리포 파일 수정·생성 금지. 산출물은 브리프가 지정한 리뷰 리포트 파일 1개뿐)"],
+      "verify": "python3 scripts/lint-pipeline.py --strict 실행 → 이번 제품 범위 ERROR 0 확인 (타 제품 기존 WARN/ERROR 는 '무관'으로 분리 보고). 리뷰는 read-only — 문서를 고치지 않는다"
+    },
+    "reviewer_code": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "review-code",
+      "roles_dir": "roles/mediness/reviewer",
+      "allowed_paths": ["(read-only — 리포 파일 수정·생성 금지. 산출물은 브리프가 지정한 리뷰 리포트 파일 1개뿐)"],
+      "verify": "리뷰는 read-only — 코드를 고치지 않고 테스트도 돌리지 않는다. git diff <base>...HEAD + untracked 로 범위를 산정하고, 판정(PASS/WARN/FAIL)과 위반 목록(파일:줄 + 근거 규칙)을 리포트에 남긴다"
+    }
+  },
+
+  "default_workers": ["backend", "frontend"],
+
+  "local_dev": {
+    "_doc": "로컬 개발 환경 기동법 SSOT (2026-08-04 정리). compose 는 반드시 canonical 에서 — 워크트리에서 통째로 띄우면 안 된다.",
+    "compose_dir": "canonical(= repos.app.canonical_path). 이유: back 이 `..:/mediness:ro` 로 부모 디렉토리를 docs root 마운트(harness_works/ 에만 mediness-mediness 존재) + back/.env 도 canonical 에만 있음",
+    "up": {
+      "db_only_keep_data": "docker compose up -d postgres redis  (볼륨 유지 — 절대 recreate 하지 않음)",
+      "backend": "docker compose up -d --build back mcp  (worker 실호출까지 필요하면 -f docker-compose.yml -f docker-compose.local.yml 추가)",
+      "front_container": "docker compose up -d front  (canonical 소스 기준일 때만)"
+    },
+    "front_from_worktree": "피처 브랜치 front 확인용: canonical 에서 postgres/redis/back/mcp 만 올리고, 워크트리 front 에서 `cp <canonical>/front/.env.local . && npm ci && npm run dev` (:23001, CORS 는 23001 허용돼 있음)",
+    "back_from_worktree": "피처 브랜치 back/mcp/worker 실기동: canonical 에서 3-파일 체인(-f docker-compose.yml -f docker-compose.local.yml -f <override>) + override 로 워크트리 경로 마운트(back: app·alembic·tests·test_support + harness_works:/mediness:ro + canonical back/.env / worker: +codex-tools PATH 두 벌 / mcp: app / DATABASE_URL 3서비스 주입). 표본 = work/_archive/mediness/workflow-task-shorout 시절 scratchpad docker-compose.wp106-worktree.yml 꼴 — 경로만 sed 치환해 재사용",
+    "ports": { "front": 23001, "back": 28080, "mcp": 28081, "postgres": 25433, "redis": 25380, "grafana": 23000, "prometheus": 29090 },
+    "gotchas": [
+      "비어 보이는 조직/관리자 탭 = DB 조직 데이터 공백일 수 있음 — organization·organization_member 확인, 복구는 0058 테넌트 시드 SQL + back 컨테이너에서 app.seeds.medi_users.seed_medi_users() (멱등)",
+      "회의록 등 권한 필드 부재 증상 = canonical dev 가 origin/dev 보다 뒤처진 구소스 마운트 — pull --ff-only 후 docker compose restart back (alembic 재실행 포함)",
+      "워크트리 front 에서 node_modules/node_modules 심링크(타 워크트리行)가 남아 있으면 dev 서버 500 — 삭제"
+    ]
+  },
+
+  "environments": {
+    "_doc": "배포 환경 SSOT (2026-08-04 탐색 기록). 코디가 VM 재탐색 없이 여기서 읽는다.",
+    "ssh_host": "medi-me",
+    "kubectl": "/opt/homebrew/bin/kubectl (비대화 ssh 는 PATH 최소라 절대경로 필수. k8s 는 lima VM master/worker-1,2 위)",
+    "deploy_ops": {
+      "_doc": "배포 후 운영 명령 (2026-08-13 R8·R9 두 사이클 실측)",
+      "pod_python": "/app/.venv/bin/python — 파드 기본 python 은 의존성 없음, uv run 은 test_support 부재로 실패",
+      "prompt_seed_promote": "kubectl -n <ns> exec deploy/back -- /app/.venv/bin/python -m app.seeds.prompts (멱등 — 어드민 수정 body 는 skip, 손 안 댄 구 시드만 promoted)",
+      "prompt_seed_verify": "active 행 지문: select key,version,(body like '%<마커>%') from prompt where domain='meeting' and is_active",
+      "alembic_check": "kubectl -n <ns> exec deploy/back -- /app/.venv/bin/python -m alembic current",
+      "gotcha_back_pull": "prod back 이미지 첫 풀 ~10분 — PodInitializing+Pulling 은 장애 아님(이벤트 에러 0 이면 대기)"
+    },
+    "gitops": {
+      "repo": "MediSolveAIDev/k8s_infra_mac",
+      "chart": "charts/mediness",
+      "values": { "dev": "values-dev.yaml", "prod": "values-prod.yaml" },
+      "tag_writeback": "mediness-app CI(build-k8s.yml)가 push 마다 <sha>-{dev|main}-arm64 태그를 values 에 커밋(mediness-ci) → ArgoCD 폴링 sync(수 분). 배포 확인 = deploy 이미지 태그가 대상 sha 인지"
+    },
+    "dev": {
+      "namespace": "mediness-dev",
+      "argocd_app": "mediness-dev",
+      "front": "https://mediness-dev.medisolveai.xyz",
+      "api": "https://mediness-dev-api.medisolveai.xyz",
+      "mcp": "https://mediness-dev-mcp.medisolveai.xyz",
+      "source_branch": "dev"
+    },
+    "prod": {
+      "namespace": "mediness-prod",
+      "argocd_app": "mediness-prod",
+      "front": "https://mediness.medisolveai.xyz",
+      "api": "https://mediness-api.medisolveai.xyz",
+      "mcp": "https://mediness-mcp.medisolveai.xyz",
+      "source_branch": "main"
+    }
+  },
+
+  "rules": {
+    "spec_and_app_use_separate_prs": true,
+    "workers_commit_or_push": false,
+    "coordinator_verifies_before_pr": true
+  }
+}

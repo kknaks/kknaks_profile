@@ -1,0 +1,21 @@
+{
+  "_doc": "워커를 띄우는 실행 명령 정의. orca terminal create --command 에 그대로 들어간다. 리드는 사용자가 직접 생성하며 여기서 관리하지 않는다. 여기 밖에 명령 문자열을 하드코딩하지 말 것.",
+  "default": "claude",
+  "agents": {
+    "claude": {
+      "command": "claude --model opus --permission-mode bypassPermissions",
+      "notes": [
+        "--model opus 를 빼면 CLI 기본 모델로 떨어진다(opus 보장 안 됨).",
+        "--permission-mode bypassPermissions 를 빼면 워커가 파일 수정·검증 명령 권한 프롬프트에서 무한 대기한다.",
+        "워크트리 생성 시 orca worktree create --agent 를 쓰지 말 것 — 설정된 모델·권한 플래그를 넘길 수 없다. 워크트리는 agent 없이 만들고 terminal create 로 이 명령을 준다."
+      ]
+    },
+    "codex": {
+      "command": "codex --model gpt-5.6-sol -c model_reasoning_effort=\"medium\" --sandbox danger-full-access --ask-for-approval never",
+      "notes": [
+        "워커는 gpt-5.6-sol / reasoning medium 으로 고정하고 명령 실행 권한을 묻지 않는 auto 모드로 시작한다.",
+        "권한 승인은 묻지 않되 요구사항·제품 판단이 불명확하면 Orca 완료/질문 채널로 리드에게 확인한다."
+      ]
+    }
+  }
+}
