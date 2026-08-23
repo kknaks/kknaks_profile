@@ -1,7 +1,9 @@
 # Database
 
-**표면에 보이는 것은 DB, 문서는 md.** 이 문서는 표면이 필요로 하는 컬럼을 페이지 단위로
-쌓아 나가는 자리다. 다 뽑은 뒤에 정규화 여부를 정한다 — **지금은 정규화하지 않는다.**
+**표면에 보이는 것은 DB, 문서는 md.** 이 문서는 표면이 페이지 단위로 무엇을 요구하는지
+뽑고, 스키마를 그렇게 정한 **근거**를 남기는 자리다.
+
+**스키마 정본은 [[erd]] 다.** 여기에 DDL 을 두지 않는다 — 두 곳에 두면 한쪽만 고쳐진다.
 
 원천은 md 가 아니다. 표면 정보는 DB 가 원천이고 어드민에서 고친다.
 문서(`para/**`)는 md 가 원천이고 DB 로 가지 않는다.
@@ -14,8 +16,9 @@
 **블로그 표면의 뼈대 테이블까지다.**
 
 ```
-users  info  career  education  product  project     ← 뼈대
-repo   commit                                        ← 잔디 원료. 모양만 잡아 둔다
+profile  users  career  education  product  project           ← 나와 만든 것
+note     content  algorithm                                ← 쓴 것
+repo     commit                                                      ← 잔디 원료. 모양만
 ```
 
 잔디를 실제로 채우는 일 — 수집 잡·요약 생성·스케줄링 — 은 뼈대가 선 뒤에 본다.
@@ -28,6 +31,9 @@ repo   commit                                        ← 잔디 원료. 모양�
 | `/about` | `info` · `commit`(파생) | 뽑음 |
 | `/career` | `career` · `education` | 뽑음 |
 | `/projects` | `product` · `project` | 뽑음 |
+| `/contents` | `content` | 뽑음 |
+| `/notes` | `note` | 뽑음 |
+| `/algorithms` | `algorithm` | 뽑음 |
 | `/` (home) | 새 테이블 없음 | 뽑음 |
 
 ---
@@ -44,58 +50,9 @@ repo   commit                                        ← 잔디 원료. 모양�
 
 표면에 절대 안 나간다.
 
-```sql
-CREATE TABLE users (
-    id              serial       PRIMARY KEY,
-    username        varchar(64)  NOT NULL UNIQUE,       -- 로그인 ID
-    password_hash   varchar(255) NOT NULL,
-    system_role     varchar(32)  NOT NULL DEFAULT 'admin',  -- 권한. 직함과 다르다
-
-    created_at      timestamptz  NOT NULL DEFAULT now(),
-    updated_at      timestamptz  NOT NULL DEFAULT now()
-);
-```
-
 ### `info` — 나
 
 `/about` 과 home 히어로가 읽는다. **한 행뿐이다.**
-
-```sql
-CREATE TABLE info (
-    id              serial       PRIMARY KEY,
-    user_id         int          NOT NULL UNIQUE        -- UNIQUE 가 1:1 을 강제한다
-                                 REFERENCES users(id) ON DELETE CASCADE,
-
-    -- 신원. /about 상단.
-    handle          varchar(64)  NOT NULL,              -- kknaks
-    name            varchar(64)  NOT NULL,              -- 이건학
-    role            varchar(64)  NOT NULL,              -- 백엔드 엔지니어 — 직함
-    years           varchar(32),                        -- 1년차
-    location        varchar(64),                        -- 서울, 대한민국
-    focus           varchar(128),                       -- AI · Python · Infra
-    avatar_url      varchar(255),
-
-    -- 연락. /about + footer.
-    email           varchar(255) NOT NULL,
-    github          varchar(255),
-    linkedin        varchar(255),
-
-    -- 문구. 문단이라 text.
-    tagline         text,                               -- 한 줄 소개. /about + home
-    intro           text,                               -- 소개 1문단
-    intro2          text,                               -- 소개 2문단 — 지금 하는 일
-
-    -- 히어로. home 전용 연출.
-    hero_headline   jsonb,                              -- [{text, tone}] — 줄마다 강조가 다르다
-    hero_subline    text,
-    hero_terminal   jsonb,                              -- [{prompt, output[]}] — 중첩이라 컬럼으로 못 푼다
-
-    stack           text[],                             -- 기술 뱃지. 문자열 목록뿐이라 jsonb 불필요
-    cards           jsonb,                              -- [{title, body}] — /about 카드 4개
-
-    updated_at      timestamptz  NOT NULL DEFAULT now()
-);
-```
 
 `user_id` 에 UNIQUE 를 걸어 한 사람에 프로필 하나를 DB 가 강제한다. 지금은 1행이지만
 사람이 늘어도 스키마가 그대로 산다.
@@ -147,27 +104,6 @@ rewrite 가 부담이 아니다.
 같은 회사에서 직무가 바뀌면 행이 하나 더 생긴다 — `org` 가 겹치는 건 문제가 아니다.
 겹쳐도 되는 값에 UNIQUE 를 걸지 않는다.
 
-```sql
-CREATE TABLE career (
-    id           serial       PRIMARY KEY,
-
-    org          varchar(64)  NOT NULL,             -- 메디솔브 AI. 겹칠 수 있다
-    title        varchar(64)  NOT NULL,             -- 백엔드 개발자 / AI 리서처
-    location     varchar(64),                       -- 서울
-
-    -- 기간. 월 단위라 1일로 박는다.
-    started_on   date         NOT NULL,             -- 2026-02-01
-    ended_on     date,                              -- NULL 이면 현재 역할
-
-    summary      text,                              -- 한 줄 요약
-    body         text,                              -- 상세 서술 — 무슨 일 하는지 · 담당 영역
-    stack        text[],                            -- 그 역할에서 쓴 기술
-
-    created_at   timestamptz  NOT NULL DEFAULT now(),
-    updated_at   timestamptz  NOT NULL DEFAULT now()
-);
-```
-
 ### UNIQUE 를 안 거는 것
 
 `org` 도 `title` 도 겹칠 수 있다. **커밋 귀속은 `commit.career_id` FK 가 하지 문자열 키가
@@ -201,26 +137,6 @@ CREATE TABLE career (
 `career` 와 모양이 거의 같지만 **`repos` 가 없다.** 교육과정에서 만든 결과물은
 `project` 로 가지 과정 자체에 커밋이 귀속되지 않는다.
 
-```sql
-CREATE TABLE education (
-    id           serial       PRIMARY KEY,
-
-    org          varchar(64)  NOT NULL,             -- 멋쟁이사자처럼 / 비트캠프
-    title        varchar(64)  NOT NULL,             -- 풀스택 엔지니어 심화과정
-    location     varchar(64),
-
-    started_on   date         NOT NULL,             -- 2024-12-01
-    ended_on     date,
-
-    summary      text,                              -- 2개 프로젝트, 자바 및 인프라 심화과정
-    body         text,                              -- 상세 서술
-    stack        text[],                            -- 그 과정에서 쓴 기술
-
-    created_at   timestamptz  NOT NULL DEFAULT now(),
-    updated_at   timestamptz  NOT NULL DEFAULT now()
-);
-```
-
 ### 화면에서는 합친다
 
 `/career` 타임라인은 **`career` 와 `education` 을 합쳐 `started_on DESC` 로 나열한다.**
@@ -238,30 +154,6 @@ CREATE TABLE education (
 
 `project`(혼자 만든 것)와 이름을 가른다 — 소속과 목적이 다르다.
 
-```sql
-CREATE TABLE product (
-    id           serial       PRIMARY KEY,
-    career_id    int          NOT NULL REFERENCES career(id) ON DELETE CASCADE,
-
-    slug         varchar(64)  NOT NULL UNIQUE,      -- mediness. 에셋 경로·앵커
-    title        varchar(64)  NOT NULL,             -- 메디니스
-    summary      text,                              -- 한 줄 요약
-    body         text,                              -- 상세
-
-    category     varchar(32),                       -- crm / mso
-    status       varchar(16),                       -- live / wip / archived
-    started_on   date,
-
-    stack        text[],                            -- 기술
-    thumbnail    varchar(255),                      -- 커버 이미지
-    links        jsonb,                             -- {site, docs}
-    visible      boolean      NOT NULL DEFAULT true,
-
-    created_at   timestamptz  NOT NULL DEFAULT now(),
-    updated_at   timestamptz  NOT NULL DEFAULT now()
-);
-```
-
 `category` 별 개수는 컬럼이 아니라 `GROUP BY category` 다.
 
 ---
@@ -270,29 +162,6 @@ CREATE TABLE product (
 
 한 행 = **혼자 만든 것 하나.** 여름별컴퍼니 제품과 개인 작업.
 `product`(회사에서 만들어 파는 것)와 테이블을 가른다.
-
-```sql
-CREATE TABLE project (
-    id           serial       PRIMARY KEY,
-
-    slug         varchar(64)  NOT NULL UNIQUE,      -- wine-log. 에셋 경로·앵커
-    title        varchar(64)  NOT NULL,             -- Wine Log
-    summary      text,                              -- 한 줄 요약
-    body         text,                              -- 개요·기술스택 상세
-
-    category     varchar(32),                       -- mobile / web / cli
-    status       varchar(16),                       -- live / wip / archived
-    started_on   date,
-
-    stack        text[],                            -- 기술
-    thumbnail    varchar(255),                      -- 커버 이미지
-    links        jsonb,                             -- {repo, site, store}
-    visible      boolean      NOT NULL DEFAULT true,
-
-    created_at   timestamptz  NOT NULL DEFAULT now(),
-    updated_at   timestamptz  NOT NULL DEFAULT now()
-);
-```
 
 `career_id` 가 없다. 혼자 하는 것이라 소속이 없고, **합쳐서 nullable 로 두면 NULL 에
 「회사 아님」이라는 뜻이 실린다** — 그런 스키마는 반드시 새는 지점이 생긴다.
@@ -311,29 +180,6 @@ CREATE TABLE project (
 한 행 = 레포 하나. `product` 또는 `project` 에 속한다. **하나에 레포가 여럿이다** —
 mediness 만 해도 `mediness-mediness`(스펙)와 `mediness-app`(코드) 둘이다.
 
-```sql
-CREATE TABLE repo (
-    id               serial       PRIMARY KEY,
-    product_id       int          REFERENCES product(id) ON DELETE CASCADE,
-    project_id       int          REFERENCES project(id) ON DELETE CASCADE,
-
-    slug             varchar(160) NOT NULL UNIQUE,  -- owner/name. 클론 URL 의 키
-    role             varchar(32),                   -- spec / app / infra — 이 레포가 뭘 담나
-
-    enabled          boolean      NOT NULL DEFAULT true,   -- 끄기. 지우지 않는다
-
-    -- 수집 상태. 레포마다 따로 막힌다.
-    last_fetched_at  timestamptz,
-    last_error       text,                          -- 성공하면 비운다. 남아 있으면 지금 막혀 있다
-
-    created_at       timestamptz  NOT NULL DEFAULT now(),
-    updated_at       timestamptz  NOT NULL DEFAULT now(),
-
-    -- 둘 중 정확히 하나에만 속한다. 둘 다 비거나 둘 다 차는 것을 DB 가 막는다.
-    CHECK ((product_id IS NULL) <> (project_id IS NULL))
-);
-```
-
 **부모가 둘인데 FK 는 살린다.** `owner_type`+`owner_id` 로 polymorphic 하게 두면 FK 를
 아예 못 건다. nullable 둘 + CHECK 가 무결성을 지키면서 같은 일을 한다.
 
@@ -350,27 +196,6 @@ CREATE TABLE repo (
 ## `commit`
 
 한 행 = 커밋 하나. `repo` 에 속한다.
-
-```sql
-CREATE TABLE commit (
-    id           bigserial    PRIMARY KEY,
-    repo_id      int          NOT NULL REFERENCES repo(id) ON DELETE CASCADE,
-
-    sha          varchar(40)  NOT NULL,
-    tree         varchar(40)  NOT NULL,             -- 트리 해시. 중복 제거의 진짜 키
-    author       varchar(128),                      -- identity 매칭용
-    authored_at  timestamptz  NOT NULL,             -- author 날짜. 커밋터 날짜가 아니다
-    message      text,                              -- 커밋 제목 원문. 공개하지 않는다
-    summary      text,                              -- 한 줄 요약. 잔디에 뜨는 것
-
-
-    created_at   timestamptz  NOT NULL DEFAULT now(),
-
-    UNIQUE (repo_id, tree)
-);
-
-CREATE INDEX ix_commit_authored ON commit (authored_at DESC);
-```
 
 ### 중복 제거가 `sha` 가 아니라 `tree` 인 이유
 
@@ -417,9 +242,6 @@ CREATE INDEX ix_commit_authored ON commit (authored_at DESC);
 | 표면 | 처리 |
 |---|---|
 | `/print` (이력서) | **없앤다.** 이력서는 이 사이트 밖에서 관리한다 |
-| `/contents` (영상+교안) | 뺀다 |
-| `/algorithms` (94건) | 뺀다 |
-| `/notes` (공개 글) | 뺀다 |
 
 빠지면서 컬럼도 같이 사라졌다 — `skills` · `education` · `awards` · `stack_short`(이력서),
 `career.bullets`, `project` 의 PDF 케이스 5종.
