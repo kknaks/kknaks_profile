@@ -23,7 +23,7 @@ tags:
 title:
   en: Min Cost to Connect All Points
   ko: 모든 점을 연결하는 최소 비용
-today: true
+today: false
 type: algorithm
 updated: '2026-08-22'
 visible: true
