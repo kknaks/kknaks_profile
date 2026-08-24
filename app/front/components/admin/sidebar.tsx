@@ -187,6 +187,10 @@ export function AdminSidebar({
               borderBottom: "1px solid var(--line-1)",
               padding: "8px 0",
               boxShadow: "var(--shadow-pop)",
+              // 항목이 화면보다 길다 — 헤더(sticky) 아래 남은 높이 안에서 자체 스크롤.
+              maxHeight: "calc(100dvh - 60px)",
+              overflowY: "auto",
+              WebkitOverflowScrolling: "touch",
             }}
           >
             {NAV.map((section) => (
