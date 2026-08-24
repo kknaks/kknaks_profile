@@ -22,7 +22,7 @@ tags:
 title:
   en: Network Delay Time
   ko: 네트워크 지연 시간
-today: true
+today: false
 type: algorithm
 updated: '2026-08-23'
 visible: true
