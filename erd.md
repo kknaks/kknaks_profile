@@ -12,12 +12,15 @@
 erDiagram
     profile ||--o{ users     : "로그인 계정"
     profile ||--o{ career    : "직장에서의 역할"
+    company ||--o{ career    : "그 회사에서의 역할"
+    company ||--o{ product   : "그 회사의 제품"
+    career  ||--o{ problem   : "해결한 문제"
+    product ||--o{ problem   : "어느 제품에서"
     profile ||--o{ education : "교육과정"
     profile ||--o{ project   : "혼자 만든 것"
     profile ||--o{ note      : "내가 쓴 글"
     profile ||--o{ content   : "영상 + 교안"
     profile ||--o{ algorithm : "문제 풀이"
-    career  ||--o{ product   : "회사에서 만든 제품"
     product ||--o{ repo      : "제품의 레포"
     project ||--o{ repo      : "개인 것의 레포"
     repo    ||--o{ commit    : "수집한 커밋"
@@ -55,17 +58,39 @@ erDiagram
         timestamptz updated_at
     }
 
+    company {
+        serial id PK
+        varchar slug UK "medisolve-ai"
+        varchar name "메디솔브 AI"
+        text description "회사 소개"
+        varchar location "서울"
+        varchar site
+        varchar logo_url
+        timestamptz created_at
+        timestamptz updated_at
+    }
+
     career {
         serial id PK
         int profile_id FK
-        varchar org "메디솔브 AI — 겹칠 수 있다"
-        varchar title "백엔드 개발자"
-        varchar location
+        int company_id FK
+        varchar title "백엔드 개발자 / AI 리서처"
         date started_on
         date ended_on "NULL 이면 현재"
-        text summary
-        varchar detail_path "상세 md 경로"
+        text summary "카드에 뜨는 한 줄"
+        text description "맡은 역할"
         text_array stack
+        timestamptz created_at
+        timestamptz updated_at
+    }
+
+    problem {
+        serial id PK
+        int career_id FK
+        int product_id FK "어느 제품에서. NULL 가능"
+        varchar title "무엇을 풀었나"
+        text body "어떻게 풀었나"
+        int display_order
         timestamptz created_at
         timestamptz updated_at
     }
@@ -87,7 +112,7 @@ erDiagram
 
     product {
         serial id PK
-        int career_id FK
+        int company_id FK
         varchar slug UK "mediness"
         varchar title
         text summary
@@ -152,12 +177,20 @@ erDiagram
         timestamptz updated_at
     }
 
+    site_config {
+        varchar key PK "about.subtitle · footer.tagline"
+        text value
+        text note "어디에 쓰이는지"
+        timestamptz updated_at
+    }
+
     algorithm {
         serial id PK
         int profile_id FK
         varchar slug UK "a-001-two-sum"
         varchar title "Two Sum"
         varchar difficulty "easy / medium / hard"
+        text summary "카드에 뜨는 한 줄"
         varchar source_platform "leetcode"
         int source_number
         varchar source_url
@@ -212,7 +245,6 @@ erDiagram
 DB 는 `detail_path` 로 가리키기만 한다.
 
 ```text
-career.detail_path      para/areas/personal/company/medisolve-ai.md
 product.detail_path     para/projects/company/mediness/README.md
 project.detail_path     para/projects/summer-star/wine-log/README.md
 note.detail_path        para/resources/note/2024-05-28-day03.md
@@ -290,7 +322,30 @@ CREATE TABLE users (
 );
 ```
 
-### `career` — 직장
+### `company` — 어디에 있었나
+
+`career` 에서 뗀다. **회사 소개와 제품은 회사 속성이지 역할 속성이 아니다** — 같은
+회사에서 직무가 바뀌면 `career` 행이 둘인데 회사 소개가 두 번 저장된다.
+
+```sql
+CREATE TABLE company (
+    id           serial       PRIMARY KEY,
+
+    slug         varchar(64)  NOT NULL UNIQUE,              -- medisolve-ai
+    name         varchar(64)  NOT NULL,                     -- 메디솔브 AI
+    description  text,                                      -- 피부과 전용 CRM·MSO 를 만드는 AI 회사
+    location     varchar(64),                               -- 서울
+    site         varchar(255),
+    logo_url     varchar(255),
+
+    created_at   timestamptz  NOT NULL DEFAULT now(),
+    updated_at   timestamptz  NOT NULL DEFAULT now()
+);
+```
+
+재직 기간은 컬럼이 아니다 — 그 회사 `career` 행들의 최소·최대다.
+
+### `career` — 직장에서의 역할
 
 한 행 = 역할 하나. 같은 회사에서 직무가 바뀌면 행이 하나 더 생긴다.
 
@@ -298,16 +353,15 @@ CREATE TABLE users (
 CREATE TABLE career (
     id           serial       PRIMARY KEY,
     profile_id   int          NOT NULL REFERENCES profile(id) ON DELETE CASCADE,
+    company_id   int          NOT NULL REFERENCES company(id) ON DELETE CASCADE,
 
-    org          varchar(64)  NOT NULL,                     -- 메디솔브 AI. 겹칠 수 있다
     title        varchar(64)  NOT NULL,                     -- 백엔드 개발자 / AI 리서처
-    location     varchar(64),                               -- 서울
 
     started_on   date         NOT NULL,                     -- 2026-02-01. 월 단위라 1일로
     ended_on     date,                                      -- NULL 이면 현재 역할
 
     summary      text,                                      -- 카드에 뜨는 한 줄
-    detail_path  varchar(255),                              -- 상세 md. NULL 이면 상세 없음
+    description  text,                                      -- 맡은 역할. 펼쳤을 때 뜬다
     stack        text[],
 
     created_at   timestamptz  NOT NULL DEFAULT now(),
@@ -317,8 +371,37 @@ CREATE TABLE career (
 CREATE INDEX ix_career_started ON career (started_on DESC);
 ```
 
+**`detail_path` 를 두지 않는다.** 다른 표와 달리 여기는 md 원장이 없다 —
+펼친 화면의 대부분을 `company.description` 과 `product` 카드와 `problem` 이 채우므로
+역할 서술이 두세 문단으로 짧다. 짧은 글은 컬럼이 낫다. **md 원장은 긴 글의 것이다.**
+
 `is_current` · `period` · `display_order` 는 컬럼이 아니다 — 각각 `ended_on IS NULL`,
 두 날짜의 렌더, `started_on DESC` 다.
+
+### `problem` — 해결한 문제
+
+이력서의 알맹이다. 한 행 = 푼 문제 하나.
+
+```sql
+CREATE TABLE problem (
+    id            serial       PRIMARY KEY,
+    career_id     int          NOT NULL REFERENCES career(id) ON DELETE CASCADE,
+    product_id    int          REFERENCES product(id) ON DELETE SET NULL,
+
+    title         varchar(128) NOT NULL,                    -- 무엇을 풀었나
+    body          text,                                     -- 어떻게 풀었나
+    display_order int          NOT NULL DEFAULT 0,
+
+    created_at    timestamptz  NOT NULL DEFAULT now(),
+    updated_at    timestamptz  NOT NULL DEFAULT now()
+);
+```
+
+**컬럼이나 jsonb 로 접지 않는 이유는 원료가 따로 있기 때문이다.**
+`para/projects/company/<제품>/log/` 에 쌓이는 `SUMMARY.md §3`(막혔던 것)이 여기로
+올라온다. 행이면 하나씩 옮길 수 있고 어느 제품에서 나온 것인지도 잇는다.
+
+`product_id` 는 NULL 을 허용한다 — 제품에 매이지 않는 문제(조직·프로세스)도 있다.
 
 ### `education` — 교육과정
 
@@ -351,10 +434,14 @@ CREATE INDEX ix_education_started ON education (started_on DESC);
 
 ### `product` — 회사에서 만들어 파는 것
 
+**`career` 가 아니라 `company` 에 속한다.** 제품은 회사 것이지 내 역할 것이 아니다 —
+내가 직무를 바꿔도 제품은 그대로 있다. 역할 카드에 띄울 때는 재직 기간이 겹치는
+제품을 고른다.
+
 ```sql
 CREATE TABLE product (
     id           serial       PRIMARY KEY,
-    career_id    int          NOT NULL REFERENCES career(id) ON DELETE CASCADE,
+    company_id   int          NOT NULL REFERENCES company(id) ON DELETE CASCADE,
 
     slug         varchar(64)  NOT NULL UNIQUE,              -- mediness
     title        varchar(64)  NOT NULL,
@@ -465,6 +552,38 @@ CREATE INDEX ix_content_published ON content (published_on DESC);
 
 이전/다음 글도 컬럼이 아니다. `published_on` 정렬의 이웃이다.
 
+### `site_config` — 사이트에 박힌 문구
+
+페이지 머리말과 footer. **어디에도 속하지 않는 값들**이라 key-value 로 둔다.
+
+```sql
+CREATE TABLE site_config (
+    key         varchar(64)  PRIMARY KEY,             -- about.subtitle · contents.intro
+    value       text         NOT NULL,
+    note        text,                                 -- 어디에 쓰이는지. 어드민 목록에 뜬다
+
+    updated_at  timestamptz  NOT NULL DEFAULT now()
+);
+```
+
+컬럼으로 펴지 않는 이유는 **페이지가 늘면 컬럼이 는다**는 것이다. 7 페이지 × (subtitle,
+intro) 만 해도 14 컬럼이고, 페이지를 하나 붙일 때마다 마이그레이션이 따라온다.
+조인도 검색도 하지 않는 값이라 정규화의 이득이 없다.
+
+옛 구조에서는 이 값들이 라우터에 하드코딩돼 있거나 `persona/_meta.yaml` 에 있었다.
+둘 다 고치려면 배포가 필요했다.
+
+**여기 두지 않는 것**
+
+| 값 | 왜 |
+|---|---|
+| `version` | 빌드 정보다. 배포가 정한다 |
+| `uptime` | 런타임 값이다. 서버가 센다 |
+| `career.totalRoles` · `contents.totalCount` | 행 수를 센 것이다. 저장하면 낡는다 |
+
+`career.subtitle` 처럼 「5개 역할」이 들어가는 문구는 **틀만 담고 수는 채워 넣는다** —
+`{n}개 역할` 로 저장하고 렌더할 때 센다.
+
 ### `algorithm` — 문제 풀이
 
 `/algorithms`. 원장은 `para/resources/algorithms/` 다. 지금 94건.
@@ -477,6 +596,7 @@ CREATE TABLE algorithm (
     slug             varchar(64)  NOT NULL UNIQUE,          -- a-001-two-sum
     title            varchar(128) NOT NULL,                 -- Two Sum
     difficulty       varchar(8)   NOT NULL,                 -- easy / medium / hard
+    summary          text,                                  -- 카드에 뜨는 한 줄
 
     -- 출처. jsonb 로 접지 않는다 — 플랫폼·번호로 거르고 싶어진다.
     source_platform  varchar(32)  NOT NULL,                 -- leetcode
@@ -500,7 +620,8 @@ CREATE UNIQUE INDEX uq_algorithm_today ON algorithm (today) WHERE today;
 CREATE INDEX ix_algorithm_published ON algorithm (published_on DESC);
 ```
 
-**4 단계(Clarifying → Approach → Trace → Solution)는 컬럼이 아니다.** md 본문의
+**단계(Problem → Clarifying → Approach → Logic → Trace → Solution)는 컬럼이 아니다.**
+`Logic` 은 슬롯 퀴즈다. md 본문의
 `## Data` fenced yaml 이 갖고, 서버가 그것을 읽어 렌더한다. 다른 표의 `body` 와 같은
 자리이므로 같은 규칙을 따른다 — **정보는 DB, 상세는 md.**
 
@@ -555,3 +676,18 @@ CREATE INDEX ix_commit_authored ON commit (authored_at DESC);
 
 리베이스가 같은 작업을 새 sha 로 되풀이하므로 중복 제거 키가 `sha` 가 아니라
 `(repo_id, tree)` 다. `authored_at` 이 커밋터 날짜가 아닌 것도 같은 이유다.
+
+---
+
+## 미결
+
+`case_flow.md` 를 채우면서 정해진다. **지금 추측으로 메우지 않는다.**
+
+| # | 미결 | 걸리는 곳 |
+|---|---|---|
+| 1 | `product` 가 어느 표면에 뜨나 | `/career` 상세 안 · 별도 페이지 · 안 띄움. 지금 표면이 없다 |
+| 2 | 잔디가 커밋만 세나 | 옛 잔디는 `note`·`study` 도 셌다. 지금은 `commit` 뿐이다 |
+| 3 | `visible` 을 응답에 담나 | 공개 API 가 걸러 준다고 프론트가 가정했다 |
+| 4 | 같은 자료를 두 번 넣으면 | `content.youtube_id` 등에 UNIQUE 를 걸어 막을지 |
+| 5 | `id` 채번과 파일명 규칙 | DB 시퀀스로 매기되 파일명에 번호를 넣을지 |
+| 6 | `detail_path` 가 끊기면 | 파일을 옮기거나 지웠을 때 DB 가 모른다 |

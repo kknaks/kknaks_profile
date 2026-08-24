@@ -1,0 +1,636 @@
+"use client";
+
+import { useCallback, useEffect, useState } from "react";
+import { GateCard, Spinner, btn, gateInFlight } from "@/components/admin/queue-gate";
+import {
+  QueueError,
+  queueApi,
+  type Gate,
+  type QueueItem,
+  type QueueItemDetail,
+} from "@/lib/api";
+
+/* 승인 큐 — KDEV-SPEC-007 U-1~U-3 / WORK-014 P4.
+ *
+ * 좌: 상태별로 묶인 목록. 우: 선택 항목의 준비 상태 + 게이트 스택.
+ *
+ * **실패가 눈에 띄어야 한다.** 조용히 묻히면 승인한 게 사라진 줄도 모른다.
+ *
+ * **진행 중이면 폴링한다** (KDEV-WORK-016 P3). 실행은 요청 밖에서 돌고 서버가 그것을
+ * 끝까지 민다 — 화면이 할 일은 그 진행을 **보여주는 것**뿐이다. 그래서 주기가 조금
+ * 느슨해도 진행이 멈추지 않는다. 창을 닫아도 서버는 계속 간다.
+ */
+
+//: 폴링 주기. 서버가 스스로 밀기 때문에 이 값이 진행 속도를 정하지 않는다 —
+//: 화면이 얼마나 빨리 따라붙는지만 정한다.
+const POLL_MS = 4000;
+
+//: 서버가 무언가 하고 있는 항목 상태. 조작을 잠그고 폴링을 켠다.
+const ITEM_IN_FLIGHT = ["received", "preparing", "publishing"];
+
+function itemInFlight(status: string): boolean {
+  return ITEM_IN_FLIGHT.includes(status);
+}
+
+const STATUS_META: Record<string, { label: string; tone: string; order: number }> = {
+  prepare_failed: { label: "준비 실패", tone: "#f85149", order: 0 },
+  publish_failed: { label: "발행 실패", tone: "#f85149", order: 1 },
+  in_review: { label: "검토 대기", tone: "var(--accent)", order: 2 },
+  received: { label: "접수됨", tone: "var(--fg-2)", order: 3 },
+  preparing: { label: "준비 중", tone: "var(--fg-2)", order: 4 },
+  publishing: { label: "발행 중", tone: "var(--fg-2)", order: 5 },
+  published: { label: "발행됨", tone: "#3fb950", order: 6 },
+  discarded: { label: "폐기됨", tone: "var(--fg-4)", order: 7 },
+  // 활동이 없던 날. **실패가 아니라 정상 결과**라 빨간 줄로 서지 않는다.
+  // 기본 목록에서는 서버가 감춘다 — 「완료 항목 보기」로 켜야 나온다.
+  no_activity: { label: "활동 없음", tone: "var(--fg-4)", order: 8 },
+};
+
+const box = {
+  border: "1px solid var(--line-2)",
+  borderRadius: 6,
+  background: "var(--bg-1)",
+};
+
+function statusMeta(status: string) {
+  return STATUS_META[status] ?? { label: status, tone: "var(--fg-3)", order: 9 };
+}
+
+function AddModal({ onClose, onDone }: { onClose: () => void; onDone: () => void }) {
+  const [url, setUrl] = useState("");
+  const [note, setNote] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [duplicate, setDuplicate] = useState<number | null>(null);
+
+  async function submit(allowRepublish = false) {
+    setBusy(true);
+    setError(null);
+    try {
+      await queueApi.create({
+        source_url: url.trim() || null,
+        note: note.trim() || null,
+        allow_republish: allowRepublish,
+      });
+      onDone();
+      onClose();
+    } catch (e) {
+      if (e instanceof QueueError && e.code === "DUPLICATE_PUBLISHED") {
+        // 막지 않는다 — 같은 자료의 재정리가 정당한 경우가 있다(S-4).
+        const detail = e.detail as { existing_item_id?: number } | undefined;
+        setDuplicate(detail?.existing_item_id ?? 0);
+      } else {
+        setError(e instanceof Error ? e.message : "저장에 실패했습니다.");
+      }
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  const field = {
+    width: "100%",
+    padding: 9,
+    fontSize: 13,
+    background: "var(--bg-0)",
+    color: "var(--fg-1)",
+    border: "1px solid var(--line-2)",
+    borderRadius: 5,
+    marginTop: 6,
+  } as const;
+
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: "fixed",
+        inset: 0,
+        background: "rgba(0,0,0,0.55)",
+        display: "grid",
+        placeItems: "center",
+        zIndex: 50,
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{ ...box, width: 520, maxWidth: "92vw", padding: 18 }}
+      >
+        <h3 style={{ margin: 0, fontSize: 15, color: "var(--fg-0)" }}>항목 추가</h3>
+
+        <label style={{ display: "block", marginTop: 14, fontSize: 12, color: "var(--fg-2)" }}>
+          URL
+          <input
+            autoFocus
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            placeholder="https://youtu.be/..."
+            style={field}
+          />
+        </label>
+
+        <label style={{ display: "block", marginTop: 12, fontSize: 12, color: "var(--fg-2)" }}>
+          메모
+          <textarea
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+            rows={4}
+            placeholder="왜 남기는지, 어디에 쓸 생각인지"
+            style={{ ...field, resize: "vertical" }}
+          />
+          <span style={{ fontSize: 11, color: "var(--fg-4)" }}>
+            메모는 항상 요약에 함께 넘어갑니다. 원문 수집이 막히면 <b>원문 대신</b> 쓰입니다.
+          </span>
+        </label>
+
+        {duplicate !== null && (
+          <div
+            style={{
+              marginTop: 12,
+              padding: 10,
+              border: "1px solid var(--accent)",
+              borderRadius: 5,
+              fontSize: 12,
+              color: "var(--fg-1)",
+            }}
+          >
+            이미 발행된 자료입니다{duplicate ? ` (항목 #${duplicate})` : ""}. 새로 진행할까요?
+            <div style={{ display: "flex", gap: 8, marginTop: 10, justifyContent: "flex-end" }}>
+              <button type="button" onClick={onClose} style={btn("ghost")}>
+                취소
+              </button>
+              <button type="button" onClick={() => submit(true)} style={btn("primary")}>
+                새로 진행
+              </button>
+            </div>
+          </div>
+        )}
+
+        {error && <p style={{ color: "#f85149", fontSize: 12, marginTop: 10 }}>{error}</p>}
+
+        {duplicate === null && (
+          <div style={{ display: "flex", gap: 8, justifyContent: "flex-end", marginTop: 14 }}>
+            <button type="button" onClick={onClose} style={btn("ghost")}>
+              취소
+            </button>
+            <button
+              type="button"
+              disabled={busy || (!url.trim() && !note.trim())}
+              onClick={() => submit(false)}
+              style={btn("primary")}
+            >
+              {busy ? <><Spinner />저장 중…</> : "저장"}
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function Detail({
+  item,
+  gates,
+  onChanged,
+}: {
+  item: QueueItemDetail;
+  gates: Gate[];
+  onChanged: () => void;
+}) {
+  // 내 요청이 나가 있는 짧은 순간. 서버가 만드는 시간(`preparing`)과는 다른 것이다 —
+  // 섞으면 "버튼이 안 먹은 것"과 "AI 가 도는 것"이 같은 모양이 된다.
+  const [busy, setBusy] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [note, setNote] = useState(item.note ?? "");
+
+  useEffect(() => setNote(item.note ?? ""), [item.id, item.note]);
+
+  const lastPrep = item.preparations[item.preparations.length - 1];
+  const lastApply = item.apply_results[item.apply_results.length - 1];
+  const failedTasks = item.ai_tasks.filter((t) => t.status === "failed");
+  const running = itemInFlight(item.status) || gates.some(gateInFlight);
+  // 진행 중에는 **삭제를 포함해** 전부 잠근다. 만드는 중에 지우면 실행기 큐에는
+  // 남은 작업이 돌고 DB 에는 대상이 없는 상태가 된다.
+  const locked = !!busy || running;
+
+  async function run(label: string, fn: () => Promise<unknown>) {
+    if (busy) return; // 이미 도는 요청이 있으면 무시 — 중복 실행이 준비 버전을 쌓는다
+    setBusy(label);
+    setError(null);
+    try {
+      await fn();
+      onChanged();
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "요청에 실패했습니다.");
+    } finally {
+      setBusy(null);
+    }
+  }
+
+  return (
+    <div style={{ flex: 1, minWidth: 0, padding: "4px 4px 40px" }}>
+      <header style={{ display: "flex", alignItems: "baseline", gap: 10 }}>
+        <span className="mono" style={{ fontSize: 11, color: "var(--fg-4)" }}>
+          #{item.id}
+        </span>
+        <h2 style={{ margin: 0, fontSize: 17, color: "var(--fg-0)", wordBreak: "break-all" }}>
+          {item.source_url ?? "(URL 없음 — 메모 항목)"}
+        </h2>
+      </header>
+      <p className="mono" style={{ fontSize: 11, color: "var(--fg-3)", marginTop: 6 }}>
+        {item.source_kind} · {item.channel} ·{" "}
+        {item.submitted_at ? new Date(item.submitted_at).toLocaleString("ko-KR") : "—"}
+        {item.submitted_by ? ` · ${item.submitted_by}` : ""}
+      </p>
+
+      {/* 메모 */}
+      <div style={{ ...box, marginTop: 14, padding: 12 }}>
+        <div style={{ fontSize: 12, color: "var(--fg-2)", marginBottom: 6 }}>메모</div>
+        <textarea
+          value={note}
+          onChange={(e) => setNote(e.target.value)}
+          rows={3}
+          style={{
+            width: "100%",
+            padding: 9,
+            fontSize: 13,
+            background: "var(--bg-0)",
+            color: "var(--fg-1)",
+            border: "1px solid var(--line-2)",
+            borderRadius: 5,
+            resize: "vertical",
+          }}
+        />
+        <div style={{ display: "flex", gap: 8, justifyContent: "flex-end", marginTop: 8 }}>
+          <button
+            type="button"
+            disabled={locked || note === (item.note ?? "")}
+            onClick={() => run("메모 저장", () => queueApi.updateNote(item.id, note))}
+            style={btn("ghost")}
+          >
+            {busy === "메모 저장" ? <><Spinner />저장 중…</> : "메모 저장"}
+          </button>
+          {item.status === "prepare_failed" && (
+            <button
+              type="button"
+              disabled={locked}
+              onClick={() => run("준비", () => queueApi.retryPrepare(item.id))}
+              style={btn("primary")}
+            >
+              {busy === "준비" ? <><Spinner />요청 보내는 중…</> : "준비 재시도"}
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* 준비 상태 */}
+      <div style={{ ...box, marginTop: 12, padding: 12 }}>
+        <div style={{ fontSize: 12, color: "var(--fg-2)" }}>자동 준비 (수집 → 요약)</div>
+        {!lastPrep && (
+          <p style={{ fontSize: 12.5, color: "var(--fg-3)", margin: "8px 0 0" }}>
+            아직 준비가 실행되지 않았습니다.
+          </p>
+        )}
+        {lastPrep && (
+          <>
+            <p className="mono" style={{ fontSize: 10.5, color: "var(--fg-4)", margin: "6px 0" }}>
+              v{lastPrep.version} · {lastPrep.status}
+              {typeof lastPrep.payload?.material_source === "string" && (
+                <>
+                  {" · 근거: "}
+                  {lastPrep.payload.material_source === "note"
+                    ? "메모 (원문 수집 실패)"
+                    : "원문"}
+                </>
+              )}
+            </p>
+            {typeof lastPrep.payload?.summary === "string" && (
+              <p
+                style={{
+                  fontSize: 12.5,
+                  color: "var(--fg-2)",
+                  lineHeight: 1.65,
+                  whiteSpace: "pre-wrap",
+                  margin: 0,
+                }}
+              >
+                {lastPrep.payload.summary}
+              </p>
+            )}
+            {typeof lastPrep.payload?.error_message === "string" && (
+              <p style={{ fontSize: 12.5, color: "#f85149", margin: 0 }}>
+                {lastPrep.payload.error_message}
+              </p>
+            )}
+          </>
+        )}
+      </div>
+
+      {/* 발행 성공 — **끝났다는 말이 없으면 사라진 것과 구분되지 않는다.**
+          발행되면 항목이 기본 목록에서 빠지기 때문에 더욱 그렇다. */}
+      {lastApply?.status === "succeeded" && (
+        <div style={{ ...box, marginTop: 12, padding: 12, borderColor: "#3fb950" }}>
+          <div style={{ fontSize: 12, color: "#3fb950" }}>발행 완료</div>
+          <p className="mono" style={{ fontSize: 11, color: "var(--fg-3)", margin: "6px 0 0" }}>
+            {item.published_at
+              ? new Date(item.published_at).toLocaleString("ko-KR")
+              : "—"}{" "}
+            · {lastApply.commit_ref?.slice(0, 12) ?? "—"}
+          </p>
+          <p style={{ fontSize: 12.5, color: "var(--fg-2)", margin: "6px 0 0" }}>
+            레포에 커밋됐습니다. 이 항목은 완료 처리되어 기본 목록에서 빠집니다.
+          </p>
+        </div>
+      )}
+
+      {/* 발행 결과 — **거부 사유가 없으면 재시도 판단이 안 선다.**
+          검증은 쓰기 전에 전부 돌고, 하나라도 걸리면 아무것도 쓰지 않는다. */}
+      {lastApply && lastApply.status !== "succeeded" && (
+        <div style={{ ...box, marginTop: 12, padding: 12, borderColor: "#f85149" }}>
+          <div style={{ fontSize: 12, color: "#f85149" }}>
+            발행 {lastApply.status === "rejected" ? "거부" : "실패"} ·{" "}
+            {lastApply.error_code ?? "—"}
+          </div>
+          {lastApply.error_message && (
+            <p style={{ fontSize: 12.5, color: "var(--fg-2)", margin: "6px 0 0" }}>
+              {lastApply.error_message}
+            </p>
+          )}
+          {lastApply.violations?.map((v, i) => (
+            <p
+              key={i}
+              className="mono"
+              style={{ fontSize: 11, color: "var(--fg-3)", margin: "6px 0 0", lineHeight: 1.6 }}
+            >
+              [{v.rule}] {v.path} — {v.detail}
+            </p>
+          ))}
+          <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 10 }}>
+            <button
+              type="button"
+              disabled={locked || item.status !== "publish_failed"}
+              title="AI 를 다시 부르지 않습니다. 저장된 계획으로 다시 씁니다."
+              onClick={() => run("발행", () => queueApi.retryPublish(item.id))}
+              style={btn("primary")}
+            >
+              {busy === "발행" ? <><Spinner />요청 보내는 중…</> : "발행 재시도"}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* 실패 이력 — 재시도 판단의 근거라 감추지 않는다. */}
+      {failedTasks.length > 0 && (
+        <div style={{ ...box, marginTop: 12, padding: 12 }}>
+          <div style={{ fontSize: 12, color: "#f85149" }}>실패한 실행 {failedTasks.length}건</div>
+          {failedTasks.map((t) => (
+            <p
+              key={t.id}
+              className="mono"
+              style={{ fontSize: 11, color: "var(--fg-3)", margin: "6px 0 0" }}
+            >
+              {t.kind} · {t.error_code} · {t.error_message?.slice(0, 160)}
+            </p>
+          ))}
+        </div>
+      )}
+
+      {/* 게이트 진행은 게이트 카드가 말한다 — 같은 말을 두 곳에서 하지 않는다. */}
+      {itemInFlight(item.status) && (
+        <p className="mono" style={{ fontSize: 12, color: "var(--accent)", marginTop: 10 }}>
+          <Spinner />
+          {item.status === "preparing"
+            ? "수집과 요약이 진행 중입니다 (30~60초)."
+            : item.status === "received"
+              ? "준비를 시작하는 중입니다."
+              : "발행 중입니다."}{" "}
+          <b>창을 닫아도 서버에서 계속 진행됩니다.</b>
+        </p>
+      )}
+      {busy && !running && (
+        <p className="mono" style={{ fontSize: 12, color: "var(--accent)", marginTop: 10 }}>
+          <Spinner />
+          {busy} 요청을 보내는 중…
+        </p>
+      )}
+      {error && <p style={{ color: "#f85149", fontSize: 12, marginTop: 10 }}>{error}</p>}
+
+      {/* 게이트 스택 */}
+      <h3 style={{ fontSize: 13, color: "var(--fg-2)", margin: "22px 0 0" }}>승인 게이트</h3>
+      {gates.length === 0 && (
+        <p style={{ fontSize: 12.5, color: "var(--fg-3)", marginTop: 8 }}>
+          아직 게이트가 없습니다. 준비가 끝나면 목적지 게이트가 저절로 열립니다.
+        </p>
+      )}
+      {gates.map((g) => (
+        <GateCard key={g.id} gate={g} itemId={item.id} onChanged={onChanged} />
+      ))}
+
+      <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 24 }}>
+        <button
+          type="button"
+          disabled={locked}
+          title={running ? "진행 중에는 삭제할 수 없습니다." : undefined}
+          onClick={() => run("삭제", () => queueApi.remove(item.id))}
+          style={btn("danger")}
+        >
+          {busy === "삭제" ? <><Spinner />삭제 중…</> : "삭제"}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default function QueuePage() {
+  const [items, setItems] = useState<QueueItem[]>([]);
+  const [selected, setSelected] = useState<number | null>(null);
+  const [detail, setDetail] = useState<QueueItemDetail | null>(null);
+  const [gates, setGates] = useState<Gate[]>([]);
+  const [adding, setAdding] = useState(false);
+  const [loading, setLoading] = useState(true);
+  // 발행·폐기된 항목은 기본으로 감춘다 — 끝난 것이 검토 대기와 섞이면 할 일이 안 보인다.
+  // 다만 **볼 방법은 있어야 한다.** 방금 발행한 것을 다시 열 수 없으면 사라진 것과 같다.
+  const [showDone, setShowDone] = useState(false);
+
+  const reloadList = useCallback(async () => {
+    const { items } = await queueApi.list(showDone);
+    setItems(items);
+    setLoading(false);
+    return items;
+  }, [showDone]);
+
+  const reloadDetail = useCallback(async (id: number) => {
+    const [d, g] = await Promise.all([queueApi.detail(id), queueApi.gates(id)]);
+    setDetail(d);
+    setGates(g.gates);
+  }, []);
+
+  useEffect(() => {
+    reloadList().catch(() => setLoading(false));
+  }, [reloadList]);
+
+  useEffect(() => {
+    if (selected === null) {
+      setDetail(null);
+      setGates([]);
+      return;
+    }
+    reloadDetail(selected).catch(() => setDetail(null));
+  }, [selected, reloadDetail]);
+
+  const onChanged = useCallback(async () => {
+    await reloadList();
+    if (selected === null) return;
+    // **목록에서 빠졌다고 상세를 닫지 않는다.** 발행되면 기본 목록에서 감춰지는데,
+    // 그때 화면까지 비면 "성공했다"와 "사라졌다"가 구분되지 않는다.
+    // 정말 없어진 경우(삭제)만 닫는다 — 상세 조회가 404 로 알려 준다.
+    try {
+      await reloadDetail(selected);
+    } catch {
+      setSelected(null);
+    }
+  }, [reloadList, reloadDetail, selected]);
+
+  // 진행 중인 것이 하나라도 있으면 따라붙는다. 없으면 폴링하지 않는다 —
+  // 아무것도 안 도는데 4초마다 두드릴 이유가 없다.
+  const polling =
+    items.some((i) => itemInFlight(i.status)) ||
+    (detail !== null && itemInFlight(detail.status)) ||
+    gates.some(gateInFlight);
+
+  useEffect(() => {
+    if (!polling) return;
+    // 겹치지 않게 한 번 끝나면 다음을 잡는다. `setInterval` 은 응답이 늦으면 요청을 쌓는다.
+    let alive = true;
+    let timer: ReturnType<typeof setTimeout>;
+    const tick = async () => {
+      try {
+        await onChanged();
+      } catch {
+        // 한 번 실패해도 폴링을 멈추지 않는다 — 잠깐 끊긴 것일 수 있다.
+      }
+      if (alive) timer = setTimeout(tick, POLL_MS);
+    };
+    timer = setTimeout(tick, POLL_MS);
+    return () => {
+      alive = false;
+      clearTimeout(timer);
+    };
+  }, [polling, onChanged]);
+
+  const grouped = [...items].sort(
+    (a, b) => statusMeta(a.status).order - statusMeta(b.status).order,
+  );
+
+  return (
+    <div style={{ padding: "28px 32px", maxWidth: 1180, margin: "0 auto" }}>
+      <header style={{ display: "flex", alignItems: "center", marginBottom: 20 }}>
+        <div style={{ flex: 1 }}>
+          <h1 style={{ fontSize: 22, color: "var(--fg-0)", margin: 0 }}>승인 큐</h1>
+          <p className="mono" style={{ fontSize: 12, color: "var(--fg-3)", marginTop: 6 }}>
+            승인 전에는 레포에 아무것도 쓰이지 않습니다.
+          </p>
+        </div>
+        <div style={{ display: "flex", gap: 8 }}>
+          <button
+            type="button"
+            onClick={() => setShowDone((v) => !v)}
+            style={btn(showDone ? "primary" : "ghost")}
+          >
+            {showDone ? "진행 중만 보기" : "완료 항목 보기"}
+          </button>
+          <button type="button" onClick={() => setAdding(true)} style={btn("primary")}>
+            항목 추가
+          </button>
+        </div>
+      </header>
+
+      <div style={{ display: "flex", gap: 20, alignItems: "flex-start" }}>
+        {/* 목록 */}
+        <div style={{ width: 320, flexShrink: 0 }}>
+          {loading && (
+            <p className="mono" style={{ fontSize: 12, color: "var(--fg-3)" }}>
+              불러오는 중…
+            </p>
+          )}
+          {!loading && grouped.length === 0 && (
+            <div
+              style={{
+                border: "1px dashed var(--line-2)",
+                borderRadius: 8,
+                padding: 28,
+                textAlign: "center",
+                color: "var(--fg-3)",
+                fontSize: 12.5,
+              }}
+            >
+              비어 있습니다.
+              <br />
+              Slack에 링크를 던지거나 항목을 추가하세요.
+            </div>
+          )}
+          {grouped.map((item) => {
+            const meta = statusMeta(item.status);
+            const active = item.id === selected;
+            return (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => setSelected(item.id)}
+                style={{
+                  display: "block",
+                  width: "100%",
+                  textAlign: "left",
+                  marginBottom: 8,
+                  padding: "10px 12px",
+                  borderRadius: 6,
+                  cursor: "pointer",
+                  background: active ? "var(--bg-3)" : "var(--bg-1)",
+                  border: `1px solid ${active ? "var(--accent)" : "var(--line-2)"}`,
+                  borderLeft: `3px solid ${meta.tone}`,
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: 12.5,
+                    color: "var(--fg-1)",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {item.source_url ?? item.note ?? "(제목 없음)"}
+                </div>
+                <div
+                  className="mono"
+                  style={{ fontSize: 10, color: meta.tone, marginTop: 5 }}
+                >
+                  {meta.label} · {item.source_kind}
+                </div>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* 상세 */}
+        {detail ? (
+          <Detail item={detail} gates={gates} onChanged={onChanged} />
+        ) : (
+          <div
+            style={{
+              flex: 1,
+              border: "1px dashed var(--line-2)",
+              borderRadius: 8,
+              padding: 60,
+              textAlign: "center",
+              color: "var(--fg-3)",
+              fontSize: 13,
+            }}
+          >
+            왼쪽에서 항목을 선택하세요.
+          </div>
+        )}
+      </div>
+
+      {adding && <AddModal onClose={() => setAdding(false)} onDone={reloadList} />}
+    </div>
+  );
+}
