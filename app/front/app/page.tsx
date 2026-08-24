@@ -6,8 +6,9 @@ export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   try {
-    const [profile, career, projects, notes, contents] = await Promise.all([
+    const [profile, site, career, projects, notes, contents] = await Promise.all([
       api.profile(),
+      api.site(),
       api.career(),
       api.projects(),
       api.notes(5),
@@ -16,9 +17,10 @@ export default async function HomePage() {
 
     return (
       <main className="page-fade">
-        <HeroTerminal profile={profile} />
+        <HeroTerminal profile={profile} site={site} />
         <LandingPreview
           profile={profile}
+          site={site}
           career={career}
           projects={projects}
           notes={notes}

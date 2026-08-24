@@ -1,9 +1,9 @@
 # 재개 노트 — kknaks_profile 리뉴얼
 
-**지금**: 이관이 끝났다. `para/` 가 찼고(1,100+ 파일) 버킷마다 규칙 문서가 섰다.
-**다음**: `app/back/` 구현 — 프론트가 요구하는 계약은 확정됨, 스키마는 `erd.md`.
+**지금**: `app/back/` 이 섰다. 어드민 CRUD 11메뉴 + 시드 전체가 로컬에서 돈다.
+**다음**: 공개 API(블로그 페이지 살리기) 또는 수집함(queue — erd §미결 7 부터).
 
-브랜치 `renewal` · 원격 `origin/renewal` 은 `5c0ab54` (로컬이 10 커밋 앞섬, **push 안 함**)
+브랜치 `renewal` · 원격 `origin/renewal` 은 `5c0ab54` (**push 안 함**)
 
 > **이 문서의 규칙 — 절마다 수명이 다르다**
 >
@@ -20,12 +20,15 @@
 
 ## 1. 지금
 
-- [ ] **`app/back/`** — 다음 세션 여기부터. 계층 규약(CLAUDE.md 4번)을 먼저 정하고 짠다.
-      스키마는 `erd.md`(단, `queue` 표 미정의 — §미결 7), 씨드 원료는 `para/resources/`
-      의 frontmatter 와 `showcase.md` 들
-- [ ] 어드민 CRUD — 표 13 개 중 사람이 고치는 것
-- [ ] `.agent/` — 규칙·훅·스킬·템플릿. 케이스 2 의 pre-commit, 케이스 4 의 스킬이 여기
-- [ ] 회사 showcase 3건 검토 — `visible: false` 로 생성됨. 내용 확인 후 사람이 켠다
+- [ ] **공개 API** — 어드민만 섰다. `/api/career`·`/api/projects`·`/api/notes`·
+      `/api/contents`·`/api/algorithms`·`/api/activity` 공개 GET 이 없어 블로그
+      페이지들이 죽어 있다 (`/`·`/about` 만 산다). 상세 md 렌더(detail_path 읽기)도 여기
+- [ ] **수집함** — 케이스 1(자료 캡처)·케이스 6(problem 게이트). `queue` 표(erd §미결 7)를
+      먼저 정한다. 어드민 자리(`/admin/capture`·`/admin/approvals`)는 공란으로 서 있음
+- [ ] `.agent/` — 규칙·훅·스킬·템플릿. 케이스 2 의 pre-commit, 케이스 4 의 스킬이 여기.
+      **코드 계층 규약 문서화도 여기** — 지금은 코드(company·career 슬라이스)가 모범일 뿐
+- [ ] mediness 검토 — `visible=false`. 내용 확인 후 켜고, AI 개발자 역할을 나누면
+      제품의 역할 재연결
 - [!] push 를 아직 안 했다
 
 ## 2. CLAUDE.md 「정할 것」 상태
@@ -35,7 +38,7 @@
 | 1 | 작업 주체 경계 | 정해짐 — `case_flow.md` 「세 방향」 |
 | 2 | 문서 ↔ DB SSOT | 정해짐 — `erd.md` · `database.md` |
 | 3 | 자동화 승인 게이트 | 정해짐 — `case_flow.md` 케이스 7 |
-| 4 | 코드 규약 | **미착수** — 다음 세션 |
+| 4 | 코드 규약 | 정해짐(구현으로) — router→service→repo · DTO(내부)/schemas(계약) 분리 · 도메인 예외 · 요청 단위 트랜잭션. **문서화 미작성**(`.agent/` 몫) |
 | 5 | 기록의 층 | 정해짐 — 케이스 3 · 6 · 7 |
 | 6 | 디렉토리 · 에이전트 규칙 | 디렉토리 ○ · **문서 라우팅 ○** / 훅·스킬 ✗ (`.agent/` 미착수) |
 
@@ -92,6 +95,14 @@
 
 ## 6. 이력
 
+- `2026-08-24` **`app/back/` 구축** — FastAPI·SQLAlchemy 2.0 async·uv·alembic·compose(postgres).
+  계층: router→service→repo, dto(내부)/schemas(front 계약, camelCase alias), 도메인 예외,
+  get_db 가 요청 단위 commit. 인증은 레거시 쿠키 JWT 계약 그대로. 표 12개 모델+어드민
+  CRUD 11메뉴(수집함 2는 공란) + 시드(profile·site_config 8키·company 3·career 3·
+  product 1·education 2·content 25·algorithm 94·note 144). **erd 개정 2건** —
+  ① profile 은 신원·연락·스택만, 문구는 전부 site_config(jsonb value)로 ② product 를
+  company→career 종속으로(재직기간 파생은 경계 판정 불가라 폐기). 어드민 모바일(햄버거),
+  케이스 2 디렉토리 게이트·역할/회사 삭제 가드·today 단일 강제 구현
 - `2026-08-24` **`_archive/` → `para/` 이관 완료** — concept 366(아홉 영역, 워커 10 분류)
   · products 486(13 제품 통째) · note 144(8 폴더) · youtube 25(C-026 신규, 상태 5종 제거,
   개념 up: 14건 C-0NN 재지정) · algorithms 94 · context 는 표 하나만 흡수하고 종결.

@@ -30,7 +30,7 @@ export function PageFooter() {
   if (pathname?.startsWith("/admin")) return null; // 관리자 셸은 자체 레이아웃
 
   const user = me?.profile;
-  const siteMeta = site?.site;
+  const copy = site?.site;
 
   const linkHref = (value: string | undefined) =>
     value ? (value.startsWith("http") ? value : `https://${value}`) : "#";
@@ -64,7 +64,7 @@ export function PageFooter() {
             }}
           >
             <span style={{ width: 8, height: 8, background: "var(--accent)", borderRadius: 2 }} />
-            {user?.handle ?? "kknaks"}
+            {user?.handle}
             <span style={{ color: "var(--fg-3)" }}>.dev</span>
           </div>
           <p
@@ -76,7 +76,7 @@ export function PageFooter() {
               maxWidth: 320,
             }}
           >
-            {siteMeta?.footerTagline ?? ""}
+            {copy?.footer?.tagline}
           </p>
         </div>
 
@@ -136,15 +136,12 @@ export function PageFooter() {
           <div className="caps" style={{ marginBottom: 10 }}>
             현재
           </div>
+          {/* version·uptime 은 DB 에 없다 — 빌드/런타임 값이라(erd.md §site_config). */}
           <div
             className="mono"
             style={{ fontSize: 12, color: "var(--fg-2)", lineHeight: 1.7 }}
           >
-            {siteMeta?.location && <div>{siteMeta.location}</div>}
-            {siteMeta?.version && <div>v{siteMeta.version}</div>}
-            {siteMeta?.uptime && (
-              <div style={{ color: "var(--accent)" }}>● uptime {siteMeta.uptime}</div>
-            )}
+            {user?.location && <div>{user.location}</div>}
           </div>
         </div>
       </div>
@@ -160,7 +157,7 @@ export function PageFooter() {
         }}
       >
         <span style={{ fontSize: 11, color: "var(--fg-3)" }}>
-          © {siteMeta?.year ?? ""} {user?.handle ?? "kknaks"} · all systems nominal
+          © {new Date().getFullYear()} {user?.handle} · all systems nominal
         </span>
         <span style={{ fontSize: 11, color: "var(--fg-3)" }}>
           built with next.js + python

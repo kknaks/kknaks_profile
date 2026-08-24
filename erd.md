@@ -13,7 +13,7 @@ erDiagram
     profile ||--o{ users     : "로그인 계정"
     profile ||--o{ career    : "직장에서의 역할"
     company ||--o{ career    : "그 회사에서의 역할"
-    company ||--o{ product   : "그 회사의 제품"
+    career  ||--o{ product   : "그 역할에서 만든 제품"
     career  ||--o{ problem   : "해결한 문제"
     product ||--o{ problem   : "어느 제품에서"
     profile ||--o{ education : "교육과정"
@@ -47,14 +47,7 @@ erDiagram
         varchar email
         varchar github
         varchar linkedin
-        text tagline "한 줄 소개"
-        text intro "소개 1문단"
-        text intro2 "소개 2문단"
-        jsonb hero_headline "[{text, tone}]"
-        text hero_subline
-        jsonb hero_terminal "[{prompt, output[]}]"
         text_array stack "기술 뱃지"
-        jsonb cards "[{title, body}] 4개"
         timestamptz updated_at
     }
 
@@ -112,7 +105,7 @@ erDiagram
 
     product {
         serial id PK
-        int company_id FK
+        int career_id FK "어느 역할에서 만들었나"
         varchar slug UK "mediness"
         varchar title
         text summary
@@ -178,8 +171,8 @@ erDiagram
     }
 
     site_config {
-        varchar key PK "about.subtitle · footer.tagline"
-        text value
+        varchar key PK "home.hero_headline · about.intro · footer.tagline"
+        jsonb value "문자열이든 구조든 한 컬럼"
         text note "어디에 쓰이는지"
         timestamptz updated_at
     }
@@ -267,7 +260,9 @@ algorithm.detail_path   para/resources/algorithms/A-001-two-sum.md
 
 ### `profile` — 나
 
-**루트다.** 다른 표를 이 사람이 소유한다. `/about` 과 home 히어로가 읽는다.
+**루트다.** 다른 표를 이 사람이 소유한다. **신원과 연락만 갖는다** — 1인 사이트라
+「사람 속성 vs 페이지 속성」 구분이 무의미해서, 표면에 뜨는 문구는 전부
+`site_config` 로 갔다. 여기는 내 개인 정보다.
 
 ```sql
 CREATE TABLE profile (
@@ -287,18 +282,7 @@ CREATE TABLE profile (
     github          varchar(255),
     linkedin        varchar(255),
 
-    -- 문구. 문단이라 text.
-    tagline         text,                                   -- 한 줄 소개
-    intro           text,                                   -- 소개 1문단
-    intro2          text,                                   -- 소개 2문단 — 지금 하는 일
-
-    -- 히어로. home 전용 연출.
-    hero_headline   jsonb,                                  -- [{text, tone}]
-    hero_subline    text,
-    hero_terminal   jsonb,                                  -- [{prompt, output[]}]
-
-    stack           text[],                                 -- 기술 뱃지
-    cards           jsonb,                                  -- [{title, body}] — /about 카드 4개
+    stack           text[],                                 -- 기술 뱃지 — 내 스택이라 개인 정보
 
     created_at      timestamptz  NOT NULL DEFAULT now(),
     updated_at      timestamptz  NOT NULL DEFAULT now()
@@ -432,16 +416,19 @@ CREATE INDEX ix_education_started ON education (started_on DESC);
 
 `/career` 타임라인은 `career` 와 `education` 을 합쳐 `started_on DESC` 로 나열한다.
 
-### `product` — 회사에서 만들어 파는 것
+### `product` — 회사에서 만든 것
 
-**`career` 가 아니라 `company` 에 속한다.** 제품은 회사 것이지 내 역할 것이 아니다 —
-내가 직무를 바꿔도 제품은 그대로 있다. 역할 카드에 띄울 때는 재직 기간이 겹치는
-제품을 고른다.
+**`company` 가 아니라 `career` 에 속한다.** 이 표는 회사의 제품 카탈로그가 아니라
+**내가 그 역할에서 만든 것**의 기록이다 — 같은 회사에서 백엔드 개발자로 링키·차티를,
+AI 개발자로 mediness 를 만들었다면 제품마다 어느 역할이었는지가 사실이고, 그것을
+컬럼으로 박는다. 재직 기간으로 파생하는 안은 버렸다 — 월 단위 저장이라 역할 전환
+달에 시작한 제품은 양쪽에 걸려 판정이 안 된다. 회사는 `career.company_id` 를 거쳐
+닿는다.
 
 ```sql
 CREATE TABLE product (
     id           serial       PRIMARY KEY,
-    company_id   int          NOT NULL REFERENCES company(id) ON DELETE CASCADE,
+    career_id    int          NOT NULL REFERENCES career(id) ON DELETE CASCADE,
 
     slug         varchar(64)  NOT NULL UNIQUE,              -- mediness
     title        varchar(64)  NOT NULL,
@@ -552,23 +539,41 @@ CREATE INDEX ix_content_published ON content (published_on DESC);
 
 이전/다음 글도 컬럼이 아니다. `published_on` 정렬의 이웃이다.
 
-### `site_config` — 사이트에 박힌 문구
+### `site_config` — 사이트에 뜨는 문구 전부
 
-페이지 머리말과 footer. **어디에도 속하지 않는 값들**이라 key-value 로 둔다.
+히어로·소개·카드·페이지 머리말·footer. **1인 사이트라 문구는 전부 여기다** —
+`profile` 은 신원·연락만 갖는다. key 는 `<표면>.<자리>` 로 짓는다.
 
 ```sql
 CREATE TABLE site_config (
-    key         varchar(64)  PRIMARY KEY,             -- about.subtitle · contents.intro
-    value       text         NOT NULL,
+    key         varchar(64)  PRIMARY KEY,             -- home.hero_headline · about.intro
+    value       jsonb        NOT NULL,                -- 문자열이든 구조든 한 컬럼
     note        text,                                 -- 어디에 쓰이는지. 어드민 목록에 뜬다
 
     updated_at  timestamptz  NOT NULL DEFAULT now()
 );
 ```
 
-컬럼으로 펴지 않는 이유는 **페이지가 늘면 컬럼이 는다**는 것이다. 7 페이지 × (subtitle,
-intro) 만 해도 14 컬럼이고, 페이지를 하나 붙일 때마다 마이그레이션이 따라온다.
-조인도 검색도 하지 않는 값이라 정규화의 이득이 없다.
+`value` 가 `text` 가 아니라 `jsonb` 인 이유 — `home.hero_headline`(`[{text, tone}]`) ·
+`home.hero_terminal`(`[{prompt, output[]}]`) · `about.cards`(`[{title, body}]`) 처럼
+구조를 갖는 문구가 있다. 문자열은 JSON string 으로 담고, 어드민 폼은 값 모양을 보고
+타입별로 그린다.
+
+시드가 넣는 키:
+
+| key | 모양 | 어디 |
+|---|---|---|
+| `home.hero_headline` | `[{text, tone}]` | home 히어로 |
+| `home.hero_subline` | string | home 히어로 |
+| `home.hero_terminal` | `[{prompt, output[]}]` | home 터미널 연출 |
+| `about.tagline` | string | /about 한 줄 소개 |
+| `about.intro` | string | /about 1문단 |
+| `about.intro2` | string | /about 2문단 |
+| `about.cards` | `[{title, body}]` | /about 카드 4개 |
+| `footer.tagline` | string | footer 한 줄 |
+
+컬럼으로 펴지 않는 이유는 **페이지가 늘면 컬럼이 는다**는 것이다. 페이지를 하나 붙일
+때마다 마이그레이션이 따라온다. 조인도 검색도 하지 않는 값이라 정규화의 이득이 없다.
 
 옛 구조에서는 이 값들이 라우터에 하드코딩돼 있거나 `persona/_meta.yaml` 에 있었다.
 둘 다 고치려면 배포가 필요했다.

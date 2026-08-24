@@ -1,0 +1,27 @@
+[project]
+name = "kknaks-back"
+version = "0.1.0"
+description = "kknaks.dev backend — FastAPI + SQLAlchemy async"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+    "sqlalchemy[asyncio]>=2.0",    # ORM 2.0 async 세션 (greenlet 포함)
+    "psycopg[binary]>=3.2",        # PostgreSQL 드라이버 (postgresql+psycopg://)
+    "alembic>=1.13",               # 스키마 마이그레이션 — 정본은 erd.md
+    "pydantic-settings>=2.5",      # config.py — env 로드
+    "bcrypt>=4.2",                 # admin 비밀번호 해시
+    "pyjwt>=2.9",                  # 쿠키 JWT 발급/검증
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+    "httpx>=0.27",                 # FastAPI TestClient/AsyncClient
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+pythonpath = ["."]

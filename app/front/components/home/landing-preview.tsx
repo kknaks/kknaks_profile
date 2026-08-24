@@ -5,12 +5,14 @@ import type {
   NotesResponse,
   ProfileResponse,
   ProjectsResponse,
+  SiteResponse,
 } from "@/lib/types";
 import { YouTubeThumbnail } from "@/components/contents/youtube-thumbnail";
 import { StatusTag } from "@/components/projects/status-tag";
 
 interface Props {
   profile: ProfileResponse;
+  site: SiteResponse;
   career: CareerResponse;
   projects: ProjectsResponse;
   notes: NotesResponse;
@@ -27,7 +29,8 @@ function Section({
   idx: string;
   id: string;
   title: string;
-  sub: string;
+  /** DB(site_config 등)에서 온 값 — 없으면 안 그린다. 화면 기본 문구를 두지 않는다. */
+  sub?: string;
   children: React.ReactNode;
 }) {
   return (
@@ -61,9 +64,11 @@ function Section({
         >
           {title}
         </h2>
-        <span style={{ color: "var(--fg-3)", fontSize: 14, marginLeft: 4 }}>
-          · {sub}
-        </span>
+        {sub && (
+          <span style={{ color: "var(--fg-3)", fontSize: 14, marginLeft: 4 }}>
+            · {sub}
+          </span>
+        )}
         <Link
           href={`/${id}`}
           className="btn ghost"
@@ -79,12 +84,14 @@ function Section({
 
 export function LandingPreview({
   profile,
+  site,
   career,
   projects,
   notes,
   contents,
 }: Props) {
   const user = profile.profile;
+  const copy = site.site;
 
   const careerItems = career["career[]"].slice(0, 2);
   const projectsSorted = [...projects["projects[]"]].sort((a, b) =>
@@ -116,7 +123,7 @@ export function LandingPreview({
         idx="01"
         id="about"
         title="About"
-        sub={profile.about?.subtitle ?? "만드는 사람"}
+        sub={copy.about?.subtitle}
       >
         <div
           className="m-stack"
@@ -136,7 +143,7 @@ export function LandingPreview({
               maxWidth: 640,
             }}
           >
-            {user.tagline}
+            {copy.about?.tagline}
           </p>
           <dl style={{ margin: 0, fontSize: 13 }}>
             {[
@@ -169,7 +176,7 @@ export function LandingPreview({
         idx="02"
         id="career"
         title="Career"
-        sub={career.career?.subtitle ?? "최근 이력"}
+        sub={career.career?.subtitle}
       >
         <div style={{ position: "relative", paddingLeft: 28, maxWidth: 720 }}>
           <div
@@ -250,7 +257,7 @@ export function LandingPreview({
         idx="03"
         id="projects"
         title="Projects"
-        sub={projects.projects?.subtitle ?? "혼자 만든 것들"}
+        sub={projects.projects?.subtitle}
       >
         <div
           className="landing-projects-grid m-stack"
@@ -487,7 +494,7 @@ export function LandingPreview({
         idx="05"
         id="contents"
         title="Contents"
-        sub={contents.contents?.subtitle ?? "매일 업로드 · 영상 + 교안"}
+        sub={contents.contents?.subtitle}
       >
         {latestContent && (
           <div

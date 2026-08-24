@@ -540,3 +540,52 @@ button {
   background-color: var(--fg-4);
   background-clip: content-box;
 }
+
+/* admin 모바일 — ≤720 에서 셸이 세로로 눕는다.
+   사이드바는 상단 바가 되고 nav 는 가로 스크롤 칩, 본문은 문서 흐름대로 스크롤. */
+@media (max-width: 720px) {
+  .admin-shell {
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: 100vh;
+    overflow: visible !important;
+  }
+  .admin-scroll {
+    overflow-y: visible !important;
+  }
+  .admin-sidebar {
+    width: 100% !important;
+    height: auto !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--line-1);
+  }
+  .admin-nav {
+    flex-direction: row !important;
+    align-items: center;
+    overflow-x: auto;
+    gap: 10px !important;
+    padding: 8px 12px !important;
+    scrollbar-width: none;
+  }
+  .admin-nav::-webkit-scrollbar {
+    display: none;
+  }
+  .admin-nav-section {
+    flex-direction: row !important;
+    align-items: center;
+    gap: 2px !important;
+  }
+  .admin-nav-section-title {
+    display: none !important;
+  }
+  .admin-nav-item {
+    white-space: nowrap;
+  }
+  .admin-user-row {
+    margin-top: 0 !important;
+    padding: 10px 16px !important;
+  }
+  .admin-page {
+    padding: 20px 16px !important;
+  }
+}

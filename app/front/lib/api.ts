@@ -10,15 +10,37 @@
 
 import type {
   ActivityResponse,
+  AdminCareer,
+  AdminCompany,
+  AdminContent,
+  ContentInput,
+  AdminEducation,
+  EducationInput,
+  AdminProduct,
+  AdminAlgorithm,
+  AlgorithmInput,
   AlgorithmDetailResponse,
   AlgorithmsResponse,
+  CareerInput,
   CareerResponse,
+  Company,
+  CompanyInput,
   ContentDetailResponse,
   ContentsResponse,
   NoteDetailResponse,
   NotesResponse,
+  AdminNote,
+  NoteInput,
+  NoteFileCandidate,
+  AdminProblem,
+  AdminProject,
+  ProblemInput,
+  ProductInput,
+  Profile,
+  ProjectInput,
   ProfileResponse,
   ProjectsResponse,
+  SiteConfigItem,
   SiteResponse,
 } from "./types";
 
@@ -87,6 +109,169 @@ export const authApi = {
     }),
   logout: () => authFetch<{ ok: boolean }>("/api/auth/logout", { method: "POST" }),
   me: () => authFetch<{ user: AdminUser }>("/api/auth/me"),
+};
+
+// ── 어드민 CRUD ─────────────────────────────────────────────────────────────
+export const adminApi = {
+  /** site_config 행 그대로 — 공개 GET(/api/site)과 달리 key·note 가 보인다. */
+  siteConfig: () => authFetch<{ items: SiteConfigItem[] }>("/api/admin/site-config"),
+  /** **보낼 필드만 담는다** — 안 보낸 것과 `null` 을 보낸 것은 다르다. */
+  patchProfile: (body: Partial<Omit<Profile, "id">>) =>
+    authFetch<ProfileResponse>("/api/admin/profile", {
+      method: "PATCH",
+      body: JSON.stringify(body),
+    }),
+  /** key 는 경로로만 — 변경 불가. value 는 jsonb 그대로라 어떤 형이든 된다. */
+  patchSiteConfig: (key: string, body: { value?: unknown; note?: string | null }) =>
+    authFetch<SiteConfigItem>(
+      `/api/admin/site-config/${encodeURIComponent(key)}`,
+      { method: "PATCH", body: JSON.stringify(body) },
+    ),
+  /** 회사 — careerCount·period 는 career 에서 온 파생 표시값. */
+  companies: () => authFetch<{ items: AdminCompany[] }>("/api/admin/companies"),
+  createCompany: (body: CompanyInput) =>
+    authFetch<Company>("/api/admin/companies", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+  patchCompany: (id: number, body: CompanyInput) =>
+    authFetch<Company>(`/api/admin/companies/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(body),
+    }),
+  /** 역할이 붙어 있으면 서버가 409 로 막는다 — CASCADE 오발 방지. */
+  deleteCompany: (id: number) =>
+    authFetch<{ ok: boolean }>(`/api/admin/companies/${id}`, { method: "DELETE" }),
+  /** 역할 — isCurrent·period 는 백엔드가 계산해 내려준 파생값. 재계산하지 않는다. */
+  careers: () => authFetch<{ items: AdminCareer[] }>("/api/admin/careers"),
+  createCareer: (body: CareerInput) =>
+    authFetch<AdminCareer>("/api/admin/careers", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+  /** **바뀐 필드만 담는다** — 안 보낸 것과 `null`(endedOn 을 「현재」로) 은 다르다. */
+  patchCareer: (id: number, body: CareerInput) =>
+    authFetch<AdminCareer>(`/api/admin/careers/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(body),
+    }),
+  /** 제품이 붙어 있으면 서버가 409 로 막는다 — CASCADE 오발 방지. */
+  deleteCareer: (id: number) =>
+    authFetch<{ ok: boolean }>(`/api/admin/careers/${id}`, { method: "DELETE" }),
+  /** 교육 — isCurrent·period 는 백엔드가 계산해 내려준 파생값. 재계산하지 않는다. */
+  education: () => authFetch<{ items: AdminEducation[] }>("/api/admin/education"),
+  createEducation: (body: EducationInput) =>
+    authFetch<AdminEducation>("/api/admin/education", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+  /** **바뀐 필드만 담는다** — 안 보낸 것과 `null`(endedOn 을 「현재」로) 은 다르다. */
+  patchEducation: (id: number, body: EducationInput) =>
+    authFetch<AdminEducation>(`/api/admin/education/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(body),
+    }),
+  /** 가드 없음 — education 에는 아무것도 붙지 않는다. */
+  deleteEducation: (id: number) =>
+    authFetch<{ ok: boolean }>(`/api/admin/education/${id}`, { method: "DELETE" }),
+  /** 회사 제품 — careerTitle·companyName 은 2단 조인 파생 표시값. 재계산하지 않는다. */
+  products: () => authFetch<{ items: AdminProduct[] }>("/api/admin/products"),
+  createProduct: (body: ProductInput) =>
+    authFetch<AdminProduct>("/api/admin/products", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+  /** **바뀐 필드만 담는다** — 안 보낸 것과 `null` 을 보낸 것은 다르다. */
+  patchProduct: (id: number, body: ProductInput) =>
+    authFetch<AdminProduct>(`/api/admin/products/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(body),
+    }),
+  deleteProduct: (id: number) =>
+    authFetch<{ ok: boolean }>(`/api/admin/products/${id}`, { method: "DELETE" }),
+  /** 해결한 문제 — careerTitle·companyName·productTitle 은 조인 파생 표시값. */
+  problems: () => authFetch<{ items: AdminProblem[] }>("/api/admin/problems"),
+  createProblem: (body: ProblemInput) =>
+    authFetch<AdminProblem>("/api/admin/problems", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+  /** **바뀐 필드만 담는다** — 안 보낸 것과 `null`(productId 연결 해제) 은 다르다. */
+  patchProblem: (id: number, body: ProblemInput) =>
+    authFetch<AdminProblem>(`/api/admin/problems/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(body),
+    }),
+  deleteProblem: (id: number) =>
+    authFetch<{ ok: boolean }>(`/api/admin/problems/${id}`, { method: "DELETE" }),
+  /** 개인 프로젝트 — slug 는 para/projects/summer-star/ 의 디렉토리명. */
+  projects: () => authFetch<{ items: AdminProject[] }>("/api/admin/projects"),
+  /** 디렉토리가 없으면 서버가 422 로 막는다 — md 가 먼저, DB 가 나중(케이스 2). */
+  createProject: (body: ProjectInput) =>
+    authFetch<AdminProject>("/api/admin/projects", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+  /** **바뀐 필드만 담는다** — 안 보낸 것과 `null` 을 보낸 것은 다르다. */
+  patchProject: (id: number, body: ProjectInput) =>
+    authFetch<AdminProject>(`/api/admin/projects/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(body),
+    }),
+  deleteProject: (id: number) =>
+    authFetch<{ ok: boolean }>(`/api/admin/projects/${id}`, { method: "DELETE" }),
+  /** 콘텐츠(영상 + 교안) — detailPath 는 para/resources/youtube/ 하위의 원장 md. */
+  contents: () => authFetch<{ items: AdminContent[] }>("/api/admin/contents"),
+  /** 원장 md 가 없으면 서버가 422 로 막는다 — 정보는 DB, 상세는 md. */
+  createContent: (body: ContentInput) =>
+    authFetch<AdminContent>("/api/admin/contents", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+  /** **바뀐 필드만 담는다** — 안 보낸 것과 `null` 을 보낸 것은 다르다. */
+  patchContent: (id: number, body: ContentInput) =>
+    authFetch<AdminContent>(`/api/admin/contents/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(body),
+    }),
+  deleteContent: (id: number) =>
+    authFetch<{ ok: boolean }>(`/api/admin/contents/${id}`, { method: "DELETE" }),
+  /** 노트 — 원장은 para/resources/note/ 의 md. 등록해야 사이트에 뜬다(케이스 4). */
+  notes: () => authFetch<{ items: AdminNote[] }>("/api/admin/notes"),
+  /** 등록 후보 파일 — 미등록 md + frontmatter 프리필 값. 서버는 읽기만 한다. */
+  noteFiles: () =>
+    authFetch<{ items: NoteFileCandidate[] }>("/api/admin/notes/files"),
+  /** 실존 md 가 아니면 서버가 422 로 막는다 — 원장이 먼저, 등록이 나중(케이스 4). */
+  createNote: (body: NoteInput) =>
+    authFetch<AdminNote>("/api/admin/notes", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+  /** **바뀐 필드만 담는다** — 안 보낸 것과 `null` 을 보낸 것은 다르다. */
+  patchNote: (id: number, body: NoteInput) =>
+    authFetch<AdminNote>(`/api/admin/notes/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(body),
+    }),
+  /** 등록 해제일 뿐 — md 파일은 건드리지 않는다. 가드 없음. */
+  deleteNote: (id: number) =>
+    authFetch<{ ok: boolean }>(`/api/admin/notes/${id}`, { method: "DELETE" }),
+  /** 알고리즘 — 메타만. 본문 단계는 detailPath 의 md 몫. today 행이 맨 앞에 온다. */
+  algorithms: () => authFetch<{ items: AdminAlgorithm[] }>("/api/admin/algorithms"),
+  /** detailPath 의 md 가 없으면 서버가 422 로 막는다 — md 가 먼저, DB 가 나중. */
+  createAlgorithm: (body: AlgorithmInput) =>
+    authFetch<AdminAlgorithm>("/api/admin/algorithms", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+  /** **바뀐 필드만 담는다.** today=true 는 서버가 이전 today 행을 내리고 올린다. */
+  patchAlgorithm: (id: number, body: AlgorithmInput) =>
+    authFetch<AdminAlgorithm>(`/api/admin/algorithms/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(body),
+    }),
+  deleteAlgorithm: (id: number) =>
+    authFetch<{ ok: boolean }>(`/api/admin/algorithms/${id}`, { method: "DELETE" }),
 };
 
 // ── 승인 큐 (KDEV-SPEC-007/008/009 · WORK-014 P4) ──────────────────────────
@@ -352,99 +537,4 @@ export const queueApi = {
       method: "POST",
       body: JSON.stringify({ payload, expected_revision_id: expectedRevisionId }),
     }),
-};
-
-/* ── 제품 레지스트리 (KDEV-WORK-018 P4 / KDEV-SPEC-014) ────────────────────
- *
- * 표면이 admin 뒤에 있는 이유는 큐와 같다 — 추적 대상과 토큰 종류가 드러난다.
- */
-
-const PRODUCTS = "/api/admin/products";
-
-export type RegistryRow = {
-  id: number;
-  slug: string;
-  type: "company" | "studio";
-  detail: string | null;
-  product_slug: string | null;
-  account: string;
-  enabled: boolean;
-  last_fetched_at: string | null;
-  last_error: string | null;
-  /** `product_slug` 가 가리키는 디렉토리가 실재하는가. **경고이지 차단이 아니다.** */
-  product_exists: boolean;
-  /** 공개 카드 노출 값. 파일이 SoT 라 읽기 전용이고, 카드가 없으면 `null`. */
-  card_visible: boolean | null;
-};
-
-export type ProductOptions = {
-  products: string[];
-  categories: string[];
-  statuses: string[];
-  careers: string[];
-};
-
-export type DiscoveredRow = {
-  slug: string;
-  account: string;
-  pushed_at: string | null;
-  private: boolean;
-};
-
-export type CardInput = {
-  title: string;
-  summary: string;
-  category: string;
-  status: string;
-  stack: string[];
-  date?: string | null;
-};
-
-export type RegisterBody = {
-  repo: string;
-  type: "company" | "studio";
-  detail?: string | null;
-  product_slug?: string | null;
-  card?: CardInput | null;
-};
-
-export const productsApi = {
-  list: () => queueFetch<{ items: RegistryRow[] }>(PRODUCTS),
-  options: () => queueFetch<ProductOptions>(`${PRODUCTS}/options`),
-  /** 실패해도 200 이다 — 배너만 실패하고 표는 정상 표시된다. */
-  undiscovered: () =>
-    queueFetch<{
-      items: DiscoveredRow[];
-      hidden_old: number;
-      window_days: number;
-      error: string | null;
-    }>(`${PRODUCTS}/undiscovered`),
-  register: (body: RegisterBody) =>
-    queueFetch<RegistryRow>(PRODUCTS, {
-      method: "POST",
-      body: JSON.stringify(body),
-    }),
-  /** **보낼 필드만 담는다** — 안 보낸 것과 `null` 을 보낸 것은 다르다. */
-  patch: (id: number, body: Partial<Pick<RegistryRow, "detail" | "product_slug" | "enabled">>) =>
-    queueFetch<RegistryRow>(`${PRODUCTS}/${id}`, {
-      method: "PATCH",
-      body: JSON.stringify(body),
-    }),
-  /** 이미 있는 제품에 공개 카드를 붙인다. 등록과 달리 **제품 디렉토리가 있어야** 한다. */
-  addCard: (id: number, card: CardInput) =>
-    queueFetch<RegistryRow>(`${PRODUCTS}/${id}/card`, {
-      method: "POST",
-      body: JSON.stringify(card),
-    }),
-  /** **DB 가 아니라 `showcase.md` 를 고친다** — 파일이 SoT 다(KDEV-DEC-017 D18). */
-  setVisible: (id: number, value: boolean) =>
-    queueFetch<RegistryRow>(`${PRODUCTS}/${id}/visible`, {
-      method: "POST",
-      body: JSON.stringify({ value }),
-    }),
-  sync: (id: number) =>
-    queueFetch<{ row: RegistryRow; ok: boolean; code: string | null; message: string | null }>(
-      `${PRODUCTS}/${id}/sync`,
-      { method: "POST" },
-    ),
 };

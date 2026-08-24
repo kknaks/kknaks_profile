@@ -36,6 +36,11 @@ export interface ProfileCard {
   body: string;
 }
 
+/**
+ * 신원·연락·스택만 — **내 개인 정보**다. 표면에 뜨는 문구(히어로·소개·카드)는
+ * 전부 `site_config`(`SiteResponse`)로 갔다. 1인 사이트라 사람/페이지 구분이
+ * 무의미해서 그렇게 갈랐다(erd.md §profile · §site_config).
+ */
 export interface Profile {
   id: number;
 
@@ -54,27 +59,11 @@ export interface Profile {
   github?: string | null;
   linkedin?: string | null;
 
-  // 문구.
-  tagline?: string | null;
-  intro?: string | null;
-  intro2?: string | null;
-
-  // 히어로 — home 전용 연출. erd 에서는 profile 의 컬럼이라 여기서도 평평하게 둔다.
-  heroHeadline?: HeadlineLine[] | null;
-  heroSubline?: string | null;
-  heroTerminal?: HeroTerminalLine[] | null;
-
   stack: string[];
-  cards?: ProfileCard[] | null;
 }
 
 export interface ProfileResponse {
   profile: Profile;
-  /**
-   * **erd.md 에 대응 컬럼 없음.** /about 머리말에 붙는 표시 문구다.
-   * 백엔드가 안 내려주면 화면이 대체 문구를 쓴다.
-   */
-  about?: { subtitle?: string };
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
@@ -452,12 +441,328 @@ export interface ActivityResponse {
  * 옛 `files`(이력서·포트폴리오 PDF)는 `/print` 와 함께 빠졌다.
  * ══════════════════════════════════════════════════════════════════════════ */
 
+/**
+ * `site_config` — 사이트에 뜨는 문구 전부(erd.md §site_config).
+ * DB key `<그룹>.<필드>` 를 백엔드가 `site.<그룹>.<camelField>` 로 접어 내려준다.
+ * 키가 늘 수 있어 전부 optional — 없으면 화면이 대체 문구를 쓴다.
+ */
 export interface SiteResponse {
   site: {
-    footerTagline?: string;
-    location?: string;
-    version?: string;
-    uptime?: string;
-    year?: string;
+    home?: {
+      heroHeadline?: HeadlineLine[];
+      heroSubline?: string;
+      heroTerminal?: HeroTerminalLine[];
+    };
+    about?: {
+      subtitle?: string;
+      tagline?: string;
+      intro?: string;
+      intro2?: string;
+      cards?: ProfileCard[];
+    };
+    footer?: {
+      tagline?: string;
+    };
   };
 }
+
+/** 어드민 site_config 목록의 행 — DB 행 그대로 (key · value · note). */
+export interface SiteConfigItem {
+  key: string;
+  value: unknown;
+  note?: string | null;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * company — erd.md §company. 어드민 회사 화면.
+ * ══════════════════════════════════════════════════════════════════════════ */
+
+export interface Company {
+  id: number;
+  slug: string;
+  name: string;
+  description?: string | null;
+  location?: string | null;
+  site?: string | null;
+  logoUrl?: string | null;
+}
+
+/**
+ * 회사 + career 파생값. `careerCount` 와 `period` 는 **컬럼이 아니다** —
+ * 그 회사 career 행들의 개수·최소·최대다(erd.md §company). 읽기 전용 표시.
+ */
+export interface AdminCompany extends Company {
+  careerCount: number;
+  period?: string | null;
+}
+
+/** 등록·수정 폼이 보내는 필드 — 보낼 필드만 담는다. */
+export type CompanyInput = Partial<Omit<Company, "id">>;
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * career (admin) — erd.md §career. 어드민 역할 화면.
+ * ══════════════════════════════════════════════════════════════════════════ */
+
+/**
+ * 역할 한 행 + 회사 이름. `isCurrent` · `period` 는 **컬럼이 아니다** —
+ * `ended_on IS NULL` 과 두 날짜의 렌더다(erd.md §career). 백엔드가 계산해
+ * 내려주고 프론트는 재계산하지 않는다(위 `TimelineEntryBase` 와 같은 규약).
+ */
+export interface AdminCareer {
+  id: number;
+  companyId: number;
+  /** `company.name` 조인 — 읽기 전용 표시. 수정은 `companyId` 로 한다. */
+  companyName: string;
+  title: string;
+  startedOn: string;
+  endedOn?: string | null;
+  isCurrent: boolean;
+  /** 예: `2026.02 — 현재`. */
+  period: string;
+  summary?: string | null;
+  description?: string | null;
+  stack: string[];
+}
+
+/** 등록·수정 폼이 보내는 필드 — 보낼 필드만 담는다. 파생값·companyName 은 못 보낸다. */
+export type CareerInput = Partial<
+  Omit<AdminCareer, "id" | "companyName" | "isCurrent" | "period">
+>;
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * education (admin) — erd.md §education. 어드민 교육 화면.
+ *
+ * career 와 컬럼이 같지만 회사 조인이 없다 — org 가 컬럼이다. profile_id 는
+ * 서버가 첫 profile 로 채우므로 계약에 없다.
+ * ══════════════════════════════════════════════════════════════════════════ */
+
+/**
+ * 교육과정 한 행. `isCurrent` · `period` 는 **컬럼이 아니다** —
+ * `ended_on IS NULL` 과 두 날짜의 렌더다(erd.md §education 은 컬럼만 갖는다).
+ * 백엔드가 계산해 내려주고 프론트는 재계산하지 않는다(`AdminCareer` 와 같은 규약).
+ */
+export interface AdminEducation {
+  id: number;
+  org: string;
+  title: string;
+  location?: string | null;
+  startedOn: string;
+  endedOn?: string | null;
+  isCurrent: boolean;
+  /** 예: `2024.12 — 2025.03`. */
+  period: string;
+  summary?: string | null;
+  /** 상세 md 경로. 본문은 DB 에 없다 — 정보는 DB, 상세는 md. */
+  detailPath?: string | null;
+  stack: string[];
+}
+
+/** 등록·수정 폼이 보내는 필드 — 보낼 필드만 담는다. 파생값은 못 보낸다. */
+export type EducationInput = Partial<
+  Omit<AdminEducation, "id" | "isCurrent" | "period">
+>;
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * product (admin) — erd.md §product. 어드민 회사 제품 화면.
+ *
+ * product 는 company 가 아니라 **career 에 속한다** — 「내가 그 역할에서 만든 것」의
+ * 기록이다. 회사는 career.company_id 를 거쳐 닿는다.
+ * ══════════════════════════════════════════════════════════════════════════ */
+
+/**
+ * 제품 한 행 + 역할·회사 이름. `careerTitle` · `companyName` 은 **컬럼이 아니다** —
+ * product → career → company 2단 조인의 읽기 전용 표시. 수정은 `careerId` 로 한다.
+ * `visible` 은 어드민이라 거르지 않고 그대로 온다.
+ */
+export interface AdminProduct {
+  id: number;
+  careerId: number;
+  /** `career.title` 조인 — 읽기 전용 표시. */
+  careerTitle: string;
+  /** `company.name` 2단 조인 — 읽기 전용 표시. */
+  companyName: string;
+  slug: string;
+  title: string;
+  summary?: string | null;
+  /** 상세 md 경로. 본문은 DB 에 없다 — 정보는 DB, 상세는 md. */
+  detailPath?: string | null;
+  category?: string | null;
+  status?: WorkStatus | null;
+  startedOn?: string | null;
+  stack: string[];
+  thumbnail?: string | null;
+  /** `product.links` jsonb — `{site, docs}`. */
+  links?: { site?: string; docs?: string } | null;
+  visible: boolean;
+}
+
+/** 등록·수정 폼이 보내는 필드 — 보낼 필드만 담는다. 파생 표시값은 못 보낸다. */
+export type ProductInput = Partial<
+  Omit<AdminProduct, "id" | "careerTitle" | "companyName">
+>;
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * problem (admin) — erd.md §problem. 어드민 해결한 문제 화면.
+ *
+ * 이력서의 알맹이다. career 에 속하고(NOT NULL) product 에는 매일 수도
+ * 안 매일 수도 있다(NULL 허용 — 조직·프로세스 문제). body 는 Text 컬럼
+ * 그대로다 — 이 표는 detail_path 없이 본문을 행에 담는다.
+ * ══════════════════════════════════════════════════════════════════════════ */
+
+/**
+ * 문제 한 행 + 이름들. `careerTitle` · `companyName` 은 **컬럼이 아니다** —
+ * problem → career → company 2단 조인의 읽기 전용 표시. `productTitle` 은
+ * 선택 조인 — `productId` 가 null 이면 null. 수정은 `careerId` · `productId` 로 한다.
+ */
+export interface AdminProblem {
+  id: number;
+  careerId: number;
+  /** `career.title` 조인 — 읽기 전용 표시. */
+  careerTitle: string;
+  /** `company.name` 2단 조인 — 읽기 전용 표시. */
+  companyName: string;
+  /** null = 제품에 매이지 않은 문제. */
+  productId?: number | null;
+  /** `product.title` 조인 — 읽기 전용 표시. */
+  productTitle?: string | null;
+  /** 무엇을 풀었나. */
+  title: string;
+  /** 어떻게 풀었나. */
+  body?: string | null;
+  displayOrder: number;
+}
+
+/** 등록·수정 폼이 보내는 필드 — 보낼 필드만 담는다. `productId: null` 은 연결 해제. */
+export type ProblemInput = Partial<
+  Omit<AdminProblem, "id" | "careerTitle" | "companyName" | "productTitle">
+>;
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * project (admin) — erd.md §project. 어드민 개인 프로젝트 화면.
+ *
+ * project 는 career 없이 **profile 에 바로 붙는다** — 혼자 만든 것이라 소속이
+ * 없다. profile_id 는 서버가 채우므로 계약에 없다. slug 는 **디렉토리명**이다 —
+ * para/projects/summer-star/<slug>/ 가 없으면 등록이 422 로 막힌다(케이스 2).
+ * ══════════════════════════════════════════════════════════════════════════ */
+
+export interface AdminProject {
+  id: number;
+  /** para/projects/summer-star/ 하위 디렉토리명 — wine-log. */
+  slug: string;
+  title: string;
+  summary?: string | null;
+  /** 상세 md 경로. 안 보내면 서버가 showcase.md 경로로 채운다. */
+  detailPath?: string | null;
+  category?: string | null;
+  status?: WorkStatus | null;
+  startedOn?: string | null;
+  stack: string[];
+  thumbnail?: string | null;
+  /** `project.links` jsonb — `{repo, site, store}`. */
+  links?: { repo?: string; site?: string; store?: string } | null;
+  visible: boolean;
+}
+
+/** 등록·수정 폼이 보내는 필드 — 보낼 필드만 담는다. */
+export type ProjectInput = Partial<Omit<AdminProject, "id">>;
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * algorithm (admin) — erd.md §algorithm. 어드민 알고리즘 화면.
+ *
+ * 메타만 다룬다 — 본문 단계(Problem→…→Solution)는 detailPath 의 md 몫이다.
+ * profile_id 는 서버가 첫 profile 로 채우므로 계약에 없다. today 는 DB 의
+ * partial unique index(uq_algorithm_today)가 하나만 허용한다 — today=true 를
+ * 보내면 서버가 한 트랜잭션에서 이전 today 행을 먼저 내린다.
+ * ══════════════════════════════════════════════════════════════════════════ */
+
+export interface AdminAlgorithm {
+  id: number;
+  /** UK — frontmatter 의 `id` (A-001). */
+  slug: string;
+  title: string;
+  difficulty: AlgoDifficulty;
+  summary?: string | null;
+  sourcePlatform: string;
+  sourceNumber?: number | null;
+  sourceUrl?: string | null;
+  /** `neetcode150` · `blind75`. */
+  curatedIn: string[];
+  tags: string[];
+  /** 「오늘의 문제」 — DB 가 하나뿐임을 강제한다. */
+  today: boolean;
+  /** 상세 md 경로 — para/resources/algorithms/*.md. 본문은 DB 에 없다. */
+  detailPath: string;
+  publishedOn?: string | null;
+  visible: boolean;
+}
+
+/** 등록·수정 폼이 보내는 필드 — 보낼 필드만 담는다. */
+export type AlgorithmInput = Partial<Omit<AdminAlgorithm, "id">>;
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * note (admin) — erd.md §note. 어드민 노트 화면.
+ *
+ * 원장은 para/resources/note/ 의 md 다. **공개는 선택이다** — 글을 쓴다고
+ * 사이트에 뜨지 않고, 어드민이 파일을 골라 등록해야 뜬다(케이스 4).
+ * profile_id 는 서버가 첫 profile 로 채우므로 계약에 없다.
+ * ══════════════════════════════════════════════════════════════════════════ */
+
+export interface AdminNote {
+  id: number;
+  slug: string;
+  title: string;
+  summary?: string | null;
+  /** 상세 md 경로 — para/resources/note/ 하위의 실존 파일만 등록된다. */
+  detailPath: string;
+  tags: string[];
+  publishedOn?: string | null;
+  visible: boolean;
+}
+
+/** 등록·수정 폼이 보내는 필드 — 보낼 필드만 담는다. */
+export type NoteInput = Partial<Omit<AdminNote, "id">>;
+
+/**
+ * 등록 후보 파일 하나 — **DB 행이 아니다.** para/resources/note/ 의 미등록 md 를
+ * 서버가 훑어 frontmatter(title·summary·date·tags)를 뽑아 준 것. 폼 프리필용.
+ */
+export interface NoteFileCandidate {
+  /** repo 루트 기준 상대경로 — para/resources/note/... */
+  path: string;
+  /** 파일명 stem — slug 프리필 후보. */
+  stem: string;
+  title?: string | null;
+  summary?: string | null;
+  /** frontmatter date — publishedOn 프리필. `YYYY-MM-DD`. */
+  date?: string | null;
+  tags: string[];
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * content (admin) — erd.md §content. 어드민 콘텐츠(영상 + 교안) 화면.
+ *
+ * 원장은 para/resources/youtube/ 의 md — detail_path 가 가리키는 파일이
+ * 없으면 등록이 422 로 막힌다(정보는 DB, 상세는 md). profile_id 는 서버가
+ * 첫 profile 로 채우므로 계약에 없다. visible 은 어드민이라 그대로 온다.
+ * ══════════════════════════════════════════════════════════════════════════ */
+
+export interface AdminContent {
+  id: number;
+  /** UK. 예: `C-025`. */
+  slug: string;
+  title: string;
+  summary?: string | null;
+  /** 상세 md 경로 — para/resources/youtube/ 하위. 본문은 DB 에 없다. */
+  detailPath: string;
+  youtubeId: string;
+  /** 예: `3:58`. */
+  duration?: string | null;
+  /** 출처 채널. */
+  speaker?: string | null;
+  tags: string[];
+  publishedOn?: string | null;
+  visible: boolean;
+}
+
+/** 등록·수정 폼이 보내는 필드 — 보낼 필드만 담는다. */
+export type ContentInput = Partial<Omit<AdminContent, "id">>;

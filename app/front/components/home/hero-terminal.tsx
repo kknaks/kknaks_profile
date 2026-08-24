@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import type { HeadlineTone, ProfileResponse } from "@/lib/types";
+import type { HeadlineTone, ProfileResponse, SiteResponse } from "@/lib/types";
 
 const TONE_COLOR: Record<HeadlineTone, string> = {
   muted: "var(--fg-3)",
@@ -10,12 +10,19 @@ const TONE_COLOR: Record<HeadlineTone, string> = {
   accent: "var(--accent)",
 };
 
-export function HeroTerminal({ profile }: { profile: ProfileResponse }) {
+export function HeroTerminal({
+  profile,
+  site,
+}: {
+  profile: ProfileResponse;
+  site: SiteResponse;
+}) {
   const user = profile.profile;
+  const copy = site.site;
 
-  // 히어로는 `profile` 의 jsonb 컬럼이다 — 별도 표가 아니다(erd.md §profile).
-  const headline = user.heroHeadline ?? [];
-  const lines = user.heroTerminal ?? [];
+  // 히어로 문구는 site_config 다 — profile 은 신원·연락만(erd.md §site_config).
+  const headline = copy.home?.heroHeadline ?? [];
+  const lines = copy.home?.heroTerminal ?? [];
 
   const [step, setStep] = useState(0);
   useEffect(() => {
@@ -53,16 +60,11 @@ export function HeroTerminal({ profile }: { profile: ProfileResponse }) {
             fontWeight: 600,
           }}
         >
-          {headline.length
-            ? headline.map((line, i) => (
-                <span
-                  key={i}
-                  style={{ color: TONE_COLOR[line.tone], display: "block" }}
-                >
-                  {line.text}
-                </span>
-              ))
-            : user.tagline}
+          {headline.map((line, i) => (
+            <span key={i} style={{ color: TONE_COLOR[line.tone], display: "block" }}>
+              {line.text}
+            </span>
+          ))}
         </h1>
         <p
           style={{
@@ -73,7 +75,7 @@ export function HeroTerminal({ profile }: { profile: ProfileResponse }) {
             maxWidth: 480,
           }}
         >
-          {user.heroSubline ?? user.intro}
+          {copy.home?.heroSubline}
         </p>
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
           <Link href="/projects" className="btn primary">
