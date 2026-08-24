@@ -8,7 +8,7 @@
 
 | 루트 | 담는 것 | 계약 |
 |---|---|---|
-| `para/` | 문서 — 사실과 판단 | [[architecture]] |
+| `para/` | 문서 — 사실과 판단 | [[para\|para/para.md]] |
 | `app/` | 코드 — 그것을 서빙하는 것 | [[architecture]] |
 | `orchestration/` | 자동화 — 워커 발주와 검증 | [[orchestration/runbook\|runbook]] |
 
@@ -18,11 +18,28 @@
 
 | 하려는 것 | 읽을 것 |
 |---|---|
+| **문서를 쓰거나 고친다** | [[para\|para/para.md]] — 네 버킷 중 어디인지부터 가른다 |
 | **코드·문서 작업을 워커에게 발주** | [[orchestration/runbook\|orchestration/runbook.md]] |
 | 구조를 바꾸거나 루트를 추가 | [[architecture]] |
 | 리뉴얼이 왜 시작됐는지 · 무엇을 정해야 하는지 | [[CLAUDE]] |
 
 발주는 직접 하지 않는다. 코디네이터가 `runbook.md` 절차를 따라 워커를 띄우고, 워커는 브리프 한 장만 받는다.
+
+## 문서를 쓸 때 — 어디로 내려가나
+
+**규칙은 각 버킷 문서가 갖고, 양식은 `templates/` 가 갖는다.** 여기에 복사하지 않는다.
+
+```text
+para/para.md              네 버킷 중 어디인가
+├── areas/area.md         personal/ 이냐 concept/ 이냐 · 아홉 영역 중 어디냐 · 개념 규약
+│                         양식 → templates/areas/concept.md
+├── projects/project.md   company/ 냐 summer-star/ 냐 · 단계 00~70 · 무엇을 어디에 두나
+│                         양식 → templates/projects/
+└── resources/resource.md 어느 출처냐 · note 하위 · 불변 규약
+                          양식 → templates/resources/
+```
+
+`archive/` 만 아직 자기 문서가 없다. `para.md` 가 직접 갖고 있다.
 
 ## 정할 것 — 첫 갈래는 「어느 레포를 건드리나」
 
@@ -43,11 +60,14 @@
 
 두 레포에 걸치면 **밖이 우선**이다 — 발주 절차를 타고, 이 레포 쪽 변경은 코디가 직접 한다.
 
-아직 이 갈래를 문서 본문에 세우지 않았다. `para/`·`app/` 내부 구조가 정해지면
+아직 이 갈래를 문서 본문에 세우지 않았다. `app/` 내부 구조가 정해지면
 **이 문서를 처음부터 다시 쓴다.** 지금은 기록만 해 둔다.
 
 ## 아직 없는 것
 
-`para/` 와 `app/` 은 비어 있다. 내부 구조는 정해지지 않았다 — [[architecture]] 「아직 정하지 않은 것」 참고.
+`app/` 은 비어 있다 — [[architecture]] 「아직 정하지 않은 것」 참고.
+
+옛 규칙 중 `persona-artifacts.md` 의 공개 글(`posts`) 규정이 아직 새 자리를 못 찾았다 —
+발행물의 자리가 미정이다.
 
 이전 레포 전체는 `_archive/` 에 동결돼 있다. **읽기 전용이다.** 새 구조에 필요한 것은 거기서 끌어올리되, 그대로 복사하지 않는다.

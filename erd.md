@@ -187,7 +187,7 @@ erDiagram
     algorithm {
         serial id PK
         int profile_id FK
-        varchar slug UK "a-001-two-sum"
+        varchar slug UK "A-001"
         varchar title "Two Sum"
         varchar difficulty "easy / medium / hard"
         text summary "카드에 뜨는 한 줄"
@@ -247,9 +247,9 @@ DB 는 `detail_path` 로 가리키기만 한다.
 ```text
 product.detail_path     para/projects/company/mediness/README.md
 project.detail_path     para/projects/summer-star/wine-log/README.md
-note.detail_path        para/resources/note/2024-05-28-day03.md
-content.detail_path     para/resources/youtube/c-025-mcp-stateless.md
-algorithm.detail_path   para/resources/algorithms/a-001-two-sum.md
+note.detail_path        para/resources/note/2024-05-28-Day03.md
+content.detail_path     para/resources/youtube/C-025-mcp-s-new-spec-from-stateful-sessions-to-stateless.md
+algorithm.detail_path   para/resources/algorithms/A-001-two-sum.md
 ```
 
 **사본을 만들지 않는다.** 본문을 컬럼에 복사해 두면 md 를 고쳤을 때 조용히 낡는다 —
@@ -593,7 +593,7 @@ CREATE TABLE algorithm (
     id               serial       PRIMARY KEY,
     profile_id       int          NOT NULL REFERENCES profile(id) ON DELETE CASCADE,
 
-    slug             varchar(64)  NOT NULL UNIQUE,          -- a-001-two-sum
+    slug             varchar(64)  NOT NULL UNIQUE,          -- A-001
     title            varchar(128) NOT NULL,                 -- Two Sum
     difficulty       varchar(8)   NOT NULL,                 -- easy / medium / hard
     summary          text,                                  -- 카드에 뜨는 한 줄
@@ -691,3 +691,4 @@ CREATE INDEX ix_commit_authored ON commit (authored_at DESC);
 | 4 | 같은 자료를 두 번 넣으면 | `content.youtube_id` 등에 UNIQUE 를 걸어 막을지 |
 | 5 | `id` 채번과 파일명 규칙 | DB 시퀀스로 매기되 파일명에 번호를 넣을지 |
 | 6 | `detail_path` 가 끊기면 | 파일을 옮기거나 지웠을 때 DB 가 모른다 |
+| 7 | **`queue` 표가 없다** | `case_flow.md` 케이스 1 이 「모달 생성 → `queue` 행」을 쓰고 게이트 승인·거절도 「DB 기록」인데, 그 표가 여기 정의돼 있지 않다. 옛 구조는 md frontmatter(`status: pending`)가 이 자리를 대신했고 그걸 없애는 게 리뉴얼이라, 이 표 없이는 케이스 1 이 돌지 않는다 |
