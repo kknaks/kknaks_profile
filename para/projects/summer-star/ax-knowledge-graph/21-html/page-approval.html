@@ -1,0 +1,701 @@
+<!doctype html>
+<!--
+---
+type: spec-html
+product: ax-knowledge-graph
+output_mode: ui-mockup
+spec_mode: multi-spec
+spec_ids: [AXKG-SPEC-001, AXKG-SPEC-002, AXKG-SPEC-003, AXKG-SPEC-004, AXKG-SPEC-007]
+title: "요약 → 분류 게이트 → 문서화 승인 게이트 2-게이트 승인 워크플로우 시안"
+summary: |
+  Source Inbox(SPEC-003) 에서 받은 URL 을 received 시 자동 요약하고(요약 AI ①),
+  중앙 세로 스택에서 요약 초안 검토 카드(SPEC-003 U-2: 수정 가능 형태 + [피드백] 세션 resume 재요약 · [분류] 트리거)
+  → ② 분류 게이트(PARA only, 분류기 AI ② — [분류] 눌러야 생성, 자동 아님)
+  → ③ 문서화 승인 게이트(SPEC-004: destination별 AI 초안 + up:/[[ ]] 연결 + 파생지식 + apply plan, 인라인)
+  로 이어진다. 요약 검토와 분류 게이트는 분리된 표면이다(병합 아님). approval_gates 는 gate 묶음이고 approval_gate_revisions 가 실제 AI 제안(v1/v2)이다.
+  요약 초안은 summary_payload(DB 임시)에 저장되고 피드백 재요약으로 v2 갱신된다. 두 게이트 모두 버전 관리(v2 | v1 read-only) + 피드백/승인(SPEC-002), 실패 시 ai_tasks 기반 재시도 CTA 를 가진다.
+  연결은 별도 게이트가 아니라 문서화 초안에서 발현. 우측 사이드바 없음. AI 제안은 DB/파일을 직접 바꾸지 않고
+  Apply Executor 가 승인된 apply_plan 을 검증 후 적용한다.
+sections:
+  - spec_id: AXKG-SPEC-003
+    anchor: "#section-spec-003"
+    role: "Source Inbox 큐 + Direct Inbox 모달"
+  - spec_id: AXKG-SPEC-003
+    anchor: "#section-summary-draft"
+    role: "요약 초안 검토 카드 (U-2): 수정 가능 형태 + [피드백] 세션 resume 재요약 · [분류] 트리거"
+  - spec_id: AXKG-SPEC-001
+    anchor: "#section-spec-001"
+    role: "분류 게이트(PARA only) — [분류] 트리거로만 생성"
+  - spec_id: AXKG-SPEC-004
+    anchor: "#section-spec-004"
+    role: "문서화 승인 게이트: AI 초안 접기/펴기 + 파생지식 + apply plan (인라인)"
+references:
+  - "claude_design/kknaks_profile_v2.1.0/design-system.html"
+  - "claude_design/kknaks_profile_v2.1.0/styles/tokens.css"
+tags:
+  - product/ax-knowledge-graph
+  - doc/spec-html
+generated_at: 2026-07-07
+generated_by: spec-to-html
+---
+-->
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AX Knowledge Graph — 승인 워크플로우</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // shadcn 기본 규약: CSS 변수 → Tailwind color 매핑
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            border: 'hsl(var(--border))', input: 'hsl(var(--input))', ring: 'hsl(var(--ring))',
+            background: 'hsl(var(--background))', foreground: 'hsl(var(--foreground))',
+            primary: { DEFAULT: 'hsl(var(--primary))', foreground: 'hsl(var(--primary-foreground))' },
+            secondary: { DEFAULT: 'hsl(var(--secondary))', foreground: 'hsl(var(--secondary-foreground))' },
+            muted: { DEFAULT: 'hsl(var(--muted))', foreground: 'hsl(var(--muted-foreground))' },
+            accent: { DEFAULT: 'hsl(var(--accent))', foreground: 'hsl(var(--accent-foreground))' },
+            destructive: { DEFAULT: 'hsl(var(--destructive))', foreground: 'hsl(var(--destructive-foreground))' },
+            card: { DEFAULT: 'hsl(var(--card))', foreground: 'hsl(var(--card-foreground))' },
+            popover: { DEFAULT: 'hsl(var(--popover))', foreground: 'hsl(var(--popover-foreground))' },
+          },
+          borderRadius: { lg: 'var(--radius)', md: 'calc(var(--radius) - 2px)', sm: 'calc(var(--radius) - 4px)' },
+          fontFamily: { sans: ['Inter', 'Pretendard', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --background: 0 0% 100%; --foreground: 0 0% 3.9%;
+      --card: 0 0% 100%; --card-foreground: 0 0% 3.9%;
+      --popover: 0 0% 100%; --popover-foreground: 0 0% 3.9%;
+      --primary: 0 0% 9%; --primary-foreground: 0 0% 98%;
+      --secondary: 0 0% 96.1%; --secondary-foreground: 0 0% 9%;
+      --muted: 0 0% 96.1%; --muted-foreground: 0 0% 45.1%;
+      --accent: 0 0% 96.1%; --accent-foreground: 0 0% 9%;
+      --destructive: 0 84.2% 60.2%; --destructive-foreground: 0 0% 98%;
+      --border: 0 0% 89.8%; --input: 0 0% 89.8%; --ring: 0 0% 3.9%;
+      --radius: 0.5rem;
+      --tier-ok: 142 71% 45%; --tier-caution: 38 92% 50%; --tier-risk: 0 84% 60%;
+      --tier-project: 217 91% 60%; --tier-area: 262 83% 62%; --tier-resource: 142 71% 45%; --tier-archive: 0 0% 45%;
+    }
+    html, body { background: hsl(var(--muted)); color: hsl(var(--foreground)); }
+    .demo-hidden { display: none !important; }
+    .row.demo-active { border-color: hsl(var(--ring)); background: hsl(var(--secondary)); }
+    .scroll-thin::-webkit-scrollbar { width: 8px; }
+    .scroll-thin::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 9999px; }
+    details.draft > summary { list-style: none; cursor: pointer; }
+    details.draft > summary::-webkit-details-marker { display: none; }
+    details.draft[open] .draft-chevron { transform: rotate(90deg); }
+    .draft-chevron { transition: transform .15s ease; }
+    .diff-line { display: block; padding: 0 10px; }
+    .diff-add { background: hsl(var(--tier-ok) / .10); color: hsl(var(--tier-ok)); }
+    .diff-del { background: hsl(var(--destructive) / .08); color: hsl(var(--destructive)); }
+    .diff-meta { color: hsl(var(--muted-foreground)); }
+  </style>
+</head>
+<body class="font-sans antialiased">
+
+  <!-- shadcn: App shell — Tabs (그래프 | 승인 | 설정). active=승인 -->
+  <header class="sticky top-0 z-30 h-14 border-b border-border bg-background/95 backdrop-blur">
+    <div class="flex h-full w-full items-center gap-6 px-6">
+      <a href="#" class="flex items-center gap-2 font-semibold tracking-tight">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="6" height="6" rx="1"/><rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="3" width="6" height="6" rx="1"/><rect x="3" y="15" width="6" height="6" rx="1"/><rect x="15" y="15" width="6" height="6" rx="1"/><path d="M6 9v6M18 9v6M9 6h6M9 18h6"/></svg>
+        <span>AX Knowledge Graph</span>
+      </a>
+      <nav class="ml-2 flex items-center gap-1 text-sm" aria-label="주요 화면">
+        <a href="page-graph.html" class="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-muted-foreground hover:bg-secondary/60">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3M12 12V8"/></svg>
+          그래프
+        </a>
+        <a href="page-approval.html" class="inline-flex items-center gap-1.5 rounded-md bg-secondary px-3 py-1.5 font-medium text-secondary-foreground">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
+          승인
+        </a>
+        <a href="page-settings.html" class="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-muted-foreground hover:bg-secondary/60">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+          설정
+        </a>
+      </nav>
+      <div class="ml-auto flex items-center gap-3">
+        <span class="inline-flex items-center gap-1.5 rounded-full border border-border bg-background px-2.5 py-1 text-xs text-muted-foreground">
+          <span class="h-1.5 w-1.5 rounded-full" style="background:hsl(var(--tier-ok))"></span> provider · claude · timeout 300s · max_turns 3 · effort medium
+        </span>
+        <div class="flex items-center gap-2 text-sm">
+          <span class="grid h-7 w-7 place-items-center rounded-full bg-primary text-xs font-medium text-primary-foreground">K</span>
+          <span class="text-muted-foreground">kknaks@medisolveai.com</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="w-full px-6 py-5">
+    <div class="mb-4">
+      <h1 class="text-xl font-semibold tracking-tight">승인 워크플로우</h1>
+    </div>
+
+    <!-- 좌: Source Inbox 큐 (300px) / 우: 중앙 세로 스택 (1fr). 사이드바 없음 = 2컬럼 -->
+    <div class="grid grid-cols-[300px_1fr] gap-4">
+
+      <!-- ============================================================ -->
+      <!-- SECTION SPEC-003: Source Inbox 큐 -->
+      <!-- shadcn: Card + ScrollArea, 아이템은 Button(ghost) 형태 row -->
+      <!-- ============================================================ -->
+      <section id="section-spec-003" class="h-fit rounded-lg border border-border bg-card text-card-foreground shadow-sm">
+        <div class="flex items-center justify-between border-b border-border px-4 py-3">
+          <div class="flex items-center gap-2">
+            <svg class="h-4 w-4 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
+            <h2 class="text-sm font-semibold">Source Inbox</h2>
+          </div>
+          <!-- shadcn: Button variant=outline size=sm — Direct Inbox modal 열기 (SPEC-003 U-3) -->
+          <button id="open-inbox-modal" class="inline-flex items-center gap-1 rounded-md border border-border px-2 py-1 text-[11px] font-medium hover:bg-secondary/60">
+            <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5v14"/></svg>
+            Inbox에 넣기
+          </button>
+        </div>
+        <div class="scroll-thin max-h-[640px] space-y-2 overflow-y-auto p-3">
+          <!-- Slack 수신 source (SPEC-003 S-1) — 선택/진행되는 대상. received → (자동) summarizing → summarized -->
+          <button class="row demo-active w-full rounded-md border border-border p-2.5 text-left transition" id="src-graphrag-video">
+            <div class="flex items-center justify-between">
+              <span class="inline-flex items-center gap-1 text-[10px] font-medium text-muted-foreground">
+                <svg class="h-3 w-3" viewBox="0 0 24 24" fill="currentColor"><path d="M6 15c-.9 0-1.7.5-2.1 1.3L2 20h4a2 2 0 0 0 2-2v-1a2 2 0 0 0-2-2z"/></svg>
+                slack · #ax-links
+              </span>
+              <!-- 상태 Badge: demo step 에 따라 전환. 요약은 received 시 자동 트리거 -->
+              <span class="rounded-full px-1.5 py-0.5 text-[10px] font-medium demo-hidden" data-step="1" data-status="received" style="background:hsl(var(--secondary));color:hsl(var(--secondary-foreground))">received</span>
+              <span class="rounded-full px-1.5 py-0.5 text-[10px] font-medium demo-hidden" data-step="2" data-status="summarized" style="background:hsl(var(--tier-ok) / .15);color:hsl(var(--tier-ok))">summarized</span>
+            </div>
+            <div class="mt-1 truncate text-xs font-medium">youtube.com/watch · Graph RAG 실전 설계</div>
+            <div class="mt-0.5 truncate font-mono text-[10px] text-muted-foreground">submitted_by @kknaks · 09:41</div>
+          </button>
+          <!-- 다른 inbox 아이템들 -->
+          <div class="rounded-md border border-dashed border-border bg-secondary/30 px-2.5 py-2 text-[10px] leading-relaxed text-muted-foreground">
+            기본 목록은 <span class="font-mono">visible_in_inbox=true</span> 만 표시합니다. <span class="font-mono">documented</span>, <span class="font-mono">deleted</span> 는 hard delete 가 아니라 숨김/soft delete 입니다.
+          </div>
+          <button class="row w-full rounded-md border border-border p-2.5 text-left">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-medium text-muted-foreground">manual</span>
+              <span class="rounded-full px-1.5 py-0.5 text-[10px] font-medium" style="background:hsl(var(--tier-ok) / .15);color:hsl(var(--tier-ok))">summarized</span>
+            </div>
+            <div class="mt-1 truncate text-xs font-medium">anthropic.com/research · Agentic patterns</div>
+            <div class="mt-0.5 truncate font-mono text-[10px] text-muted-foreground">submitted_by @kknaks · 08:12</div>
+          </button>
+          <button class="row w-full rounded-md border border-border p-2.5 text-left">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-medium text-muted-foreground">slack · #ax-links</span>
+              <span class="rounded-full px-1.5 py-0.5 text-[10px] font-medium" style="background:hsl(var(--tier-caution) / .15);color:hsl(var(--tier-caution))">collection_failed</span>
+            </div>
+            <div class="mt-1 truncate text-xs font-medium">notion.so/private · 접근 불가</div>
+            <div class="mt-0.5 truncate font-mono text-[10px] text-muted-foreground">요약 실패 · 요약 재시도 가능</div>
+            <div class="mt-2 flex items-center justify-between rounded-md bg-secondary/50 px-2 py-1">
+              <span class="font-mono text-[10px] text-muted-foreground">ai_task failed · collect_summary · retry_of_task_id=null</span>
+              <span class="rounded-md border border-border bg-background px-2 py-0.5 text-[10px] font-medium">요약 재시도</span>
+            </div>
+          </button>
+          <button class="row w-full rounded-md border border-border p-2.5 text-left opacity-60">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-medium text-muted-foreground">slack · DM</span>
+              <span class="rounded-full bg-secondary px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">ignored</span>
+            </div>
+            <div class="mt-1 truncate text-xs font-medium">중복 링크 · Graph RAG 실전 설계</div>
+            <div class="mt-0.5 truncate font-mono text-[10px] text-muted-foreground">DUPLICATE_SOURCE · 기존 항목 연결</div>
+          </button>
+          <button class="row w-full rounded-md border border-border p-2.5 text-left opacity-55">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-medium text-muted-foreground">slack · #ax-links</span>
+              <span class="rounded-full px-1.5 py-0.5 text-[10px] font-medium" style="background:hsl(var(--tier-ok) / .12);color:hsl(var(--tier-ok))">documented · hidden</span>
+            </div>
+            <div class="mt-1 truncate text-xs font-medium">Graph RAG Q&A 설계 사례</div>
+            <div class="mt-0.5 truncate font-mono text-[10px] text-muted-foreground">visible_in_inbox=false · documented_at 10:18</div>
+          </button>
+        </div>
+      </section>
+
+      <!-- 중앙 세로 스택: 요약 초안 검토(SPEC-003 U-2) → ② 분류 게이트 → 공통 버전 규칙 → ③ 문서화 게이트 -->
+      <div class="space-y-4">
+
+        <!-- ============================================================ -->
+        <!-- SUMMARY DRAFT (SPEC-003 U-2): 요약 초안 검토 카드 — [피드백]|[분류]. 분류 게이트와 분리(병합 아님) -->
+        <!-- shadcn: Card > CardHeader/CardContent, Button(피드백=모달 트리거 / 분류=게이트 트리거) -->
+        <!-- ============================================================ -->
+        <section id="section-summary-draft" class="rounded-lg border border-border bg-card text-card-foreground shadow-sm demo-hidden" data-step="2">
+
+          <!-- 요약 초안부 (SPEC-003 U-2) — 요약 자동 생성 후 수정 가능 형태(요약 md/폼). summary_payload(DB 임시) -->
+          <div class="p-4">
+            <div class="mb-2 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="inline-flex items-center gap-1 rounded-full bg-secondary px-2 py-0.5 text-[10px] font-medium text-secondary-foreground">
+                  <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+                  요약 AI ① · 초안
+                </span>
+                <span class="font-mono text-[11px] text-muted-foreground">status · summarized</span>
+              </div>
+              <span class="font-mono text-[10px] text-muted-foreground">summary_payload · DB 임시</span>
+            </div>
+            <!-- 수정 가능 형태: 제목/요약/키워드 폼 (문서보기 모달·폼 두 표면 중 폼) -->
+            <h3 class="text-sm font-semibold" contenteditable="true">Graph RAG 실전 설계 — 문서 그래프를 검색 context 로 쓰는 법</h3>
+            <p class="mt-1.5 text-xs leading-relaxed text-muted-foreground" contenteditable="true">
+              문서 노드와 엣지를 retriever context 로 삼아 LLM 답변 근거를 명시하는 Graph RAG 접근을 정리한 영상.
+              keyword score 와 edge distance 를 조합한 MVP ranking, evidence document 노출을 다룬다.
+            </p>
+            <div class="mt-2 flex flex-wrap gap-1.5">
+              <span class="rounded-md bg-secondary px-2 py-0.5 text-[10px] text-secondary-foreground">#graph-rag</span>
+              <span class="rounded-md bg-secondary px-2 py-0.5 text-[10px] text-secondary-foreground">#retriever</span>
+              <span class="rounded-md bg-secondary px-2 py-0.5 text-[10px] text-secondary-foreground">#evidence</span>
+            </div>
+            <p class="mt-2 font-mono text-[10px] text-muted-foreground">제목·요약·태그 = 생성될 노트 frontmatter 시드 · 수정 가능 형태(폼/문서보기 모달) · summary_payload(DB 임시), 확정 md 는 문서화 후(WP3)</p>
+          </div>
+
+          <!-- CTA (SPEC-003 U-2): [피드백](세션 resume 재요약, summary_payload v2) · [분류](분류 게이트 트리거). 요약이 자동으로 분류로 넘어가지 않음 -->
+          <div class="flex items-center justify-end gap-2 border-t border-border p-3">
+            <!-- shadcn: Button variant=outline size=sm — 피드백 모달(자연어 입력 → 세션 resume 재요약) -->
+            <button data-open-modal="feedback-modal" data-gate-label="요약 초안 ①" data-gate-version="v1" class="inline-flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-xs font-medium hover:bg-secondary">
+              <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+              피드백
+            </button>
+            <!-- shadcn: Button variant=default size=sm — [분류]: 분류 게이트 트리거(POST /sources/{id}/classification-gates, SPEC-001) -->
+            <button class="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground hover:opacity-90">
+              <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              분류
+            </button>
+          </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION SPEC-001: ② 분류 게이트 (PARA only) — 요약 초안에서 [분류] 눌러야 생성(자동 아님, 별도 카드) -->
+        <!-- shadcn: Card > CardHeader/CardContent, RadioGroup(destination), Badge(confidence) -->
+        <!-- ============================================================ -->
+        <section id="section-spec-001" class="rounded-lg border border-border bg-card text-card-foreground shadow-sm demo-hidden" data-step="3">
+
+          <!-- ② 분류 게이트 (SPEC-001 U-3, 분류만) — v2 | v1(read-only) badge + PARA RadioGroup -->
+          <div class="p-4">
+            <div class="mb-3 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <h3 class="text-sm font-semibold">분류 게이트 <span class="font-normal text-muted-foreground">· 분류기 AI ②</span></h3>
+                <!-- SPEC-002 버전 badge: v2 활성 | v1 read-only(비활성) -->
+                <span class="rounded-full bg-secondary px-1.5 py-0.5 text-[10px] font-medium text-secondary-foreground">v2</span>
+                <button disabled class="cursor-not-allowed rounded-full border border-border px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground opacity-50" title="read-only">v1</button>
+              </div>
+              <span class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-medium" style="background:hsl(var(--tier-ok) / .15);color:hsl(var(--tier-ok))">confidence 0.86</span>
+            </div>
+            <div class="mb-3 grid grid-cols-3 gap-2 rounded-md border border-border bg-secondary/30 p-2 text-[10px]">
+              <div>
+                <div class="font-medium text-foreground">approval_gates</div>
+                <div class="font-mono text-muted-foreground">gate_kind=classification · status=review_pending</div>
+              </div>
+              <div>
+                <div class="font-medium text-foreground">active revision</div>
+                <div class="font-mono text-muted-foreground">approval_gate_revisions.v2 · reviewable</div>
+              </div>
+              <div>
+                <div class="font-medium text-foreground">last ai_task</div>
+                <div class="font-mono text-muted-foreground">regenerate_classification_gate · succeeded</div>
+              </div>
+            </div>
+            <!-- PARA 4후보 (project/area/resource/archive). resource 선택됨. 연결 후보 없음(분류만) -->
+            <div class="grid grid-cols-4 gap-2">
+              <div class="rounded-md border border-border p-2 text-center">
+                <div class="text-[11px] font-medium">project</div>
+                <span class="mt-1 inline-block h-1.5 w-1.5 rounded-full" style="background:hsl(var(--tier-project))"></span>
+              </div>
+              <div class="rounded-md border border-border p-2 text-center">
+                <div class="text-[11px] font-medium">area</div>
+                <span class="mt-1 inline-block h-1.5 w-1.5 rounded-full" style="background:hsl(var(--tier-area))"></span>
+              </div>
+              <!-- 선택된 destination_type=resource (resource ≡ reference) -->
+              <div class="rounded-md border-2 p-2 text-center" style="border-color:hsl(var(--tier-resource))">
+                <div class="text-[11px] font-semibold" style="color:hsl(var(--tier-resource))">resource</div>
+                <svg class="mx-auto mt-1 h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="hsl(var(--tier-resource))" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              </div>
+              <div class="rounded-md border border-border p-2 text-center">
+                <div class="text-[11px] font-medium">archive</div>
+                <span class="mt-1 inline-block h-1.5 w-1.5 rounded-full" style="background:hsl(var(--tier-archive))"></span>
+              </div>
+            </div>
+            <div class="mt-3 space-y-1.5 rounded-md bg-secondary/50 p-2.5 text-[11px]">
+              <div><span class="font-medium">destination_reason ·</span> 외부 영상 자료로 나중에 참고할 reference 성격. 지금 진행할 project 작업이 아님.</div>
+              <div><span class="font-medium">suggested_title ·</span> Graph RAG 실전 설계 노트</div>
+              <div><span class="font-medium">suggested_tags ·</span> graph-rag, retriever, ai-transformation</div>
+            </div>
+            <div class="mt-3 rounded-md border border-dashed p-2.5 text-[11px]" style="border-color:hsl(var(--tier-caution) / .45);background:hsl(var(--tier-caution) / .06)">
+              <div class="flex items-center justify-between gap-3">
+                <div>
+                  <div class="font-medium" style="color:hsl(var(--tier-caution))">실패 상태 예시 · 분류 게이트 생성/재생성 실패</div>
+                  <div class="mt-0.5 font-mono text-[10px] text-muted-foreground">ai_tasks.status=failed · retry creates new ai_task with retry_of_task_id=task_cls_018</div>
+                </div>
+                <button class="shrink-0 rounded-md border border-border bg-background px-2.5 py-1 text-[11px] font-medium hover:bg-secondary">분류 재시도</button>
+              </div>
+            </div>
+            <!-- 피드백/승인 (SPEC-002). 게이트 CTA는 피드백·승인 2개만. 피드백 = 모달 트리거 -->
+            <div class="mt-3 flex items-center justify-end gap-2">
+              <!-- shadcn: Button variant=outline size=sm — 피드백 모달 열기 -->
+              <button data-open-modal="feedback-modal" data-gate-label="분류 게이트 ②" data-gate-version="v2" class="inline-flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-xs font-medium hover:bg-secondary">
+                <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+                피드백
+              </button>
+              <!-- shadcn: Button variant=default size=sm -->
+              <button class="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground hover:opacity-90">
+                <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                승인
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION SPEC-004: ③ 문서화 승인 게이트 (destination별 AI 초안 + 파생지식, 인라인) -->
+        <!-- shadcn: Card + Collapsible(details, 초안 전문 접기/펴기) + Badge + Button -->
+        <!-- ============================================================ -->
+        <section id="section-spec-004" class="rounded-lg border border-border bg-card text-card-foreground shadow-sm demo-hidden" data-step="4">
+          <div class="flex items-center justify-between border-b border-border px-4 py-3">
+            <div class="flex items-center gap-2">
+              <h2 class="text-sm font-semibold">문서화 승인 게이트</h2>
+              <!-- 제목 = 확정 destination -->
+              <span class="rounded-full px-1.5 py-0.5 text-[10px] font-medium" style="background:hsl(var(--tier-resource) / .15);color:hsl(var(--tier-resource))">destination · resource → reference note</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <span class="rounded-full bg-secondary px-1.5 py-0.5 text-[10px] font-medium text-secondary-foreground">v1</span>
+              <button disabled class="cursor-not-allowed rounded-full border border-border px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground opacity-50" title="v2는 피드백 시 생성">v2</button>
+            </div>
+          </div>
+
+          <div class="space-y-3 p-4">
+            <div class="grid grid-cols-4 gap-2 rounded-md border border-border bg-secondary/30 p-2 text-[10px]">
+              <div>
+                <div class="font-medium text-foreground">approval_gates</div>
+                <div class="font-mono text-muted-foreground">gate_kind=documentation · status=review_pending</div>
+              </div>
+              <div>
+                <div class="font-medium text-foreground">active revision</div>
+                <div class="font-mono text-muted-foreground">approval_gate_revisions.v1 · reviewable</div>
+              </div>
+              <div>
+                <div class="font-medium text-foreground">draft payload</div>
+                <div class="font-mono text-muted-foreground">draft + derived_suggestions + apply_plan</div>
+              </div>
+              <div>
+                <div class="font-medium text-foreground">last ai_task</div>
+                <div class="font-mono text-muted-foreground">generate_documentation_gate · succeeded</div>
+              </div>
+            </div>
+            <div class="rounded-md border border-dashed p-2.5 text-[11px]" style="border-color:hsl(var(--tier-caution) / .45);background:hsl(var(--tier-caution) / .06)">
+              <div class="flex items-center justify-between gap-3">
+                <div>
+                  <div class="font-medium" style="color:hsl(var(--tier-caution))">실패 상태 예시 · 문서화 초안 생성/재생성 실패</div>
+                  <div class="mt-0.5 font-mono text-[10px] text-muted-foreground">ai_tasks.status=failed · retry creates new ai_task with retry_of_task_id=task_doc_031 · 기존 failed task 보존</div>
+                </div>
+                <button class="shrink-0 rounded-md border border-border bg-background px-2.5 py-1 text-[11px] font-medium hover:bg-secondary">초안 생성 재시도</button>
+              </div>
+            </div>
+            <!-- AI 초안 preview (SPEC-004 U-2) — 접기/펴기(details). frontmatter + 본문 + up:/[[ ]] -->
+            <details class="draft rounded-lg border border-border bg-secondary/30 demo-hidden" data-step="5">
+              <summary class="flex items-center justify-between px-3 py-2.5">
+                <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold">
+                  <svg class="draft-chevron h-3.5 w-3.5 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                  신규 문서 preview · create_markdown <span class="font-mono font-normal text-muted-foreground">reference/2026-07-07-graph-rag-practical-design.md</span>
+                </span>
+                <span class="font-mono text-[10px] text-muted-foreground">펼치기/접기</span>
+              </summary>
+              <div class="border-t border-border px-3 py-2.5">
+                <pre class="scroll-thin max-h-[280px] overflow-y-auto whitespace-pre-wrap font-mono text-[10px] leading-relaxed text-foreground/80">---
+type: reference
+id: AXKG-REF-014
+title: "Graph RAG 실전 설계 노트"
+aliases: [graph-rag-practical-design]
+up: [agent-experience]
+source: https://youtube.com/watch?v=…
+tags: [graph-rag, retriever, ai-transformation]
+---
+
+# Graph RAG 실전 설계 노트
+
+## 요약
+문서 그래프를 검색 context 로 삼아 LLM 답변 근거를 명시하는 접근.
+
+## 핵심 설계
+- retriever ranking = keyword score + edge distance (MVP)
+- evidence document 를 답변에 함께 노출
+- 근거 부족 시 단정하지 않고 수집 제안
+
+## 우리 적용점
+[[agent-experience]] 를 설계 기준점으로, [[axkg-baseline]] 근거로 연결.
+</pre>
+                <p class="mt-1.5 font-mono text-[10px] text-muted-foreground">연결 = 초안 본문 [[ ]] + frontmatter up: (별도 연결 게이트 아님, SPEC-005) · 승인 시 그래프 엣지로 반영</p>
+              </div>
+            </details>
+
+            <!-- 파생지식 (SPEC-004 U-3) — 초안과 한 덩어리. 읽기용 목록, 개별 승인/보류 버튼 없음. 게이트 승인/피드백에 딸림 -->
+            <div class="rounded-lg border border-border p-3 demo-hidden" data-step="6">
+              <div class="mb-2 flex items-center justify-between">
+                <div class="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">파생지식 · 초안과 한 덩어리 (개별 승인 없음)</div>
+                <span class="font-mono text-[10px] text-muted-foreground">gate approval/feedback 에 함께 묶임</span>
+              </div>
+              <div class="space-y-2">
+                <details class="draft rounded-md border border-border bg-background">
+                  <summary class="flex items-center justify-between px-2.5 py-2">
+                    <span class="inline-flex items-center gap-1.5 text-[11px] font-medium">
+                      <svg class="draft-chevron h-3.5 w-3.5 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                      supplement_existing_concept · 기존 concept/permanent 보충
+                    </span>
+                    <span class="font-mono text-[10px] text-muted-foreground">patch_markdown · permanent/concepts/agent-experience.md</span>
+                  </summary>
+                  <pre class="border-t border-border py-2 font-mono text-[10px] leading-relaxed"><span class="diff-line diff-meta">@@ permanent/concepts/agent-experience.md</span><span class="diff-line diff-del">- Graph RAG 활용 방향은 별도 정리 예정.</span><span class="diff-line diff-add">+ Graph RAG 는 AX 지식그래프에서 evidence document 를 드러내는 답변 UX의 핵심 패턴이다.</span><span class="diff-line diff-add">+ 관련 reference: [[Graph RAG 실전 설계 노트]]</span></pre>
+                </details>
+                <details class="draft rounded-md border border-border bg-background">
+                  <summary class="flex items-center justify-between px-2.5 py-2">
+                    <span class="inline-flex items-center gap-1.5 text-[11px] font-medium">
+                      <svg class="draft-chevron h-3.5 w-3.5 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                      create_new_concept · 신규 concept/permanent
+                    </span>
+                    <span class="font-mono text-[10px] text-muted-foreground">create_markdown · permanent/concepts/evidence-first-rag.md</span>
+                  </summary>
+                  <pre class="scroll-thin max-h-[180px] overflow-y-auto whitespace-pre-wrap border-t border-border px-2.5 py-2 font-mono text-[10px] leading-relaxed">---
+type: concept
+title: "Evidence-first RAG"
+up: [agent-experience]
+tags: [graph-rag, evidence]
+---
+
+# Evidence-first RAG
+
+답변보다 먼저 근거 문서와 연결 경로를 사용자에게 드러내는 RAG 설계 원칙.
+관련 reference: [[Graph RAG 실전 설계 노트]]
+</pre>
+                </details>
+                <details class="draft rounded-md border border-border bg-background">
+                  <summary class="flex items-center justify-between px-2.5 py-2">
+                    <span class="inline-flex items-center gap-1.5 text-[11px] font-medium">
+                      <svg class="draft-chevron h-3.5 w-3.5 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                      create_project_baseline · product baseline 후보
+                    </span>
+                    <span class="font-mono text-[10px] text-muted-foreground">create_markdown · products/ax-knowledge-graph/00-baseline/baseline-002-graph-rag-qa-product.md</span>
+                  </summary>
+                  <pre class="scroll-thin max-h-[180px] overflow-y-auto whitespace-pre-wrap border-t border-border px-2.5 py-2 font-mono text-[10px] leading-relaxed">---
+type: baseline
+product: ax-knowledge-graph
+title: "Graph RAG QA product baseline"
+---
+
+# Graph RAG QA product baseline
+
+AXKG 답변은 검색된 문서 path, graph edge, source evidence 를 함께 노출한다.
+</pre>
+                </details>
+              </div>
+              <p class="mt-2 font-mono text-[10px] text-muted-foreground">파생지식은 반드시 target_path/file_action/render 방식을 표시합니다. 부적절하면 개별 보류가 아니라 게이트 피드백으로 초안+파생지식 통째 v2 재생성.</p>
+            </div>
+
+            <!-- Apply Plan Preview (SPEC-004 U-5) — AI는 제안만, Apply Executor가 검증 후 실행 -->
+            <div class="rounded-lg border border-border p-3 demo-hidden" data-step="6">
+              <div class="mb-2 flex items-center justify-between">
+                <div class="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">apply_plan preview · executor 검증 후 적용</div>
+                <span class="rounded-full px-1.5 py-0.5 text-[10px] font-medium" style="background:hsl(var(--tier-ok) / .15);color:hsl(var(--tier-ok))">validation_status · valid</span>
+              </div>
+              <div class="grid grid-cols-2 gap-3">
+                <div class="rounded-md bg-secondary/40 p-2">
+                  <div class="text-[11px] font-medium">db_actions</div>
+                  <ul class="mt-1 space-y-1 font-mono text-[10px] text-muted-foreground">
+                    <li>update sources.status=documented, visible_in_inbox=false</li>
+                    <li>update approval_gates.approved_revision_id=rev_doc_v1</li>
+                    <li>insert documents rows for new markdown files</li>
+                    <li>rebuild document_edges from up:/[[ ]]</li>
+                  </ul>
+                </div>
+                <div class="rounded-md bg-secondary/40 p-2">
+                  <div class="text-[11px] font-medium">file_actions</div>
+                  <ul class="mt-1 space-y-1 font-mono text-[10px] text-muted-foreground">
+                    <li>create_markdown · reference/2026-07-07-graph-rag-practical-design.md</li>
+                    <li>patch_markdown · permanent/concepts/agent-experience.md</li>
+                    <li>create_markdown · permanent/concepts/evidence-first-rag.md</li>
+                    <li>create_markdown · products/ax-knowledge-graph/00-baseline/*.md</li>
+                  </ul>
+                </div>
+              </div>
+              <p class="mt-2 font-mono text-[10px] text-muted-foreground">AI 는 draft + apply_plan 만 생성합니다. DB action 과 Markdown file action 은 승인 후 Apply Executor 가 path/state/schema validation 을 통과한 경우에만 적용합니다.</p>
+            </div>
+
+            <!-- 게이트 액션 (SPEC-004 U-4) — 게이트 CTA는 피드백·승인 2개만. 피드백 = 모달 트리거 -->
+            <div class="flex items-center justify-end gap-2 demo-hidden" data-step="5">
+              <!-- shadcn: Button variant=outline size=sm — 피드백 모달 열기(초안+파생지식 통째 v2) -->
+              <button data-open-modal="feedback-modal" data-gate-label="문서화 승인 게이트 ③ · resource" data-gate-version="v1" class="inline-flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-xs font-medium hover:bg-secondary">
+                <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+                피드백
+              </button>
+              <button class="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground hover:opacity-90">
+                <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                승인 · 초안+파생지식 문서 생성 + 그래프 연결
+              </button>
+            </div>
+
+            <!-- 승인 결과 (SPEC-004 S-1) — 문서 생성 + up:/[[ ]] 그래프 반영 → documented -->
+            <div class="rounded-lg border p-3 demo-hidden" data-step="7" style="border-color:hsl(var(--tier-ok) / .4); background:hsl(var(--tier-ok) / .07)">
+              <div class="flex items-center gap-1.5 text-[11px] font-medium" style="color:hsl(var(--tier-ok))">
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                문서 생성 완료 · status → documented · up:/[[ ]] 그래프 엣지 반영
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============================================================ -->
+  <!-- shadcn: Dialog — Direct Inbox Modal (SPEC-003 U-3) -->
+  <!-- ============================================================ -->
+  <div id="inbox-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/40 p-4">
+    <div class="w-full max-w-md rounded-xl border border-border bg-background p-5 shadow-xl">
+      <div class="mb-3 flex items-center justify-between">
+        <h3 class="text-sm font-semibold">Inbox에 URL 넣기</h3>
+        <button data-close-modal="inbox-modal" class="grid h-7 w-7 place-items-center rounded-md text-muted-foreground hover:bg-secondary"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      </div>
+      <label class="text-[11px] font-medium text-muted-foreground">URL</label>
+      <input class="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring/40" placeholder="https://…" />
+      <label class="mt-3 block text-[11px] font-medium text-muted-foreground">메모 (선택 · 2000자 이하)</label>
+      <textarea class="mt-1 h-16 w-full resize-none rounded-md border border-input bg-background p-2 text-sm outline-none focus:ring-2 focus:ring-ring/40" placeholder="왜 담아두는지 한 줄"></textarea>
+      <div class="mt-4 flex justify-end gap-2">
+        <button data-close-modal="inbox-modal" class="rounded-md px-3 py-1.5 text-sm font-medium text-muted-foreground hover:bg-secondary">취소</button>
+        <button data-close-modal="inbox-modal" class="rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90">저장</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- shadcn: Dialog — 피드백 모달 (SPEC-002 U-2 공통: 요약 초안 ① · 분류 게이트 ② · 문서화 게이트 ③) -->
+  <!-- `피드백` 버튼 → 이 모달. 대상/현재 버전 표시 + 텍스트 입력 + [취소] [재생성→v2]. 세션 resume 재생성(원문·지침 재전송 없음) -->
+  <!-- ============================================================ -->
+  <div id="feedback-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/40 p-4">
+    <div class="w-full max-w-md rounded-xl border border-border bg-background p-5 shadow-xl">
+      <div class="mb-3 flex items-center justify-between">
+        <h3 class="text-sm font-semibold">피드백 남기기</h3>
+        <button data-close-modal="feedback-modal" class="grid h-7 w-7 place-items-center rounded-md text-muted-foreground hover:bg-secondary"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      </div>
+      <!-- 대상 게이트/현재 버전 라벨 (피드백 버튼의 data-* 로 채움) -->
+      <div class="flex items-center gap-2 rounded-md bg-secondary/50 px-2.5 py-1.5 text-[11px]">
+        <span class="font-medium text-foreground">대상</span>
+        <span id="feedback-gate-label" class="text-muted-foreground">게이트</span>
+        <span id="feedback-gate-version" class="ml-auto rounded-full bg-secondary px-1.5 py-0.5 font-mono text-[10px] font-medium text-secondary-foreground">v1</span>
+      </div>
+      <label class="mt-3 block text-[11px] font-medium text-muted-foreground">무엇이 잘못됐나요 · 원하는 방향 (10자 이상)</label>
+      <textarea class="mt-1 h-24 w-full resize-none rounded-md border border-input bg-background p-2 text-sm outline-none placeholder:text-muted-foreground focus:ring-2 focus:ring-ring/40" placeholder="예: 요약이 핵심을 놓쳤어요, 서론 말고 방법론 위주로 다시 / 도구가 아니라 사례로 분류해 주세요 / 초안·파생지식 어디든 지적 → 통째 v2 재생성"></textarea>
+      <div class="mt-2 flex flex-wrap gap-1.5">
+        <button class="rounded-md border border-border px-2 py-1 text-[10px] font-medium hover:bg-secondary">목적지 변경</button>
+        <button class="rounded-md border border-border px-2 py-1 text-[10px] font-medium hover:bg-secondary">초안 보강</button>
+        <button class="rounded-md border border-border px-2 py-1 text-[10px] font-medium hover:bg-secondary">이 destination이 아님</button>
+      </div>
+      <div class="mt-4 flex justify-end gap-2">
+        <button data-close-modal="feedback-modal" class="rounded-md px-3 py-1.5 text-sm font-medium text-muted-foreground hover:bg-secondary">취소</button>
+        <button data-close-modal="feedback-modal" class="rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90">재생성</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Demo Player (SPEC-001 S-1 2-게이트 흐름, 7 steps) -->
+  <div id="demo-player" class="fixed bottom-5 right-5 z-40 w-[340px] rounded-xl border border-border bg-card/95 p-3 shadow-lg backdrop-blur">
+    <div class="mb-2 flex items-center justify-between">
+      <span class="text-xs font-semibold">시나리오 데모 · 요약 → 2-게이트</span>
+      <span id="demo-counter" class="font-mono text-[11px] text-muted-foreground">7 / 7 단계</span>
+    </div>
+    <div class="h-1.5 w-full overflow-hidden rounded-full bg-secondary">
+      <div id="demo-bar" class="h-full rounded-full bg-primary transition-all" style="width:100%"></div>
+    </div>
+    <p id="demo-label" class="mt-2 h-8 text-[11px] leading-tight text-muted-foreground"></p>
+    <div class="mt-1 flex items-center justify-between">
+      <div class="flex items-center gap-1">
+        <button data-action="first" class="grid h-7 w-7 place-items-center rounded-md hover:bg-secondary" title="처음"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m17 18-6-6 6-6M7 6v12"/></svg></button>
+        <button data-action="prev" class="grid h-7 w-7 place-items-center rounded-md hover:bg-secondary" title="이전"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+        <button data-action="play" class="grid h-8 w-8 place-items-center rounded-md bg-primary text-primary-foreground hover:opacity-90" title="다시보기/재생"><svg id="demo-play-icon" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+        <button data-action="next" class="grid h-7 w-7 place-items-center rounded-md hover:bg-secondary" title="다음"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+      </div>
+      <div class="flex items-center gap-0.5 text-[10px]">
+        <button data-speed="0.5" class="rounded px-1.5 py-0.5 text-muted-foreground hover:bg-secondary">0.5x</button>
+        <button data-speed="1" class="rounded bg-secondary px-1.5 py-0.5 font-medium">1x</button>
+        <button data-speed="1.5" class="rounded px-1.5 py-0.5 text-muted-foreground hover:bg-secondary">1.5x</button>
+        <button data-speed="2" class="rounded px-1.5 py-0.5 text-muted-foreground hover:bg-secondary">2x</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 모달 open/close (데모 흐름과 독립)
+    document.getElementById('open-inbox-modal').addEventListener('click', function () { toggleModal('inbox-modal', true); });
+    // 게이트 `피드백` 버튼 → 피드백 모달. 버튼 data-* 로 대상 게이트/버전 라벨 주입 (SPEC-002 U-2)
+    document.querySelectorAll('[data-open-modal]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var id = b.getAttribute('data-open-modal');
+        if (id === 'feedback-modal') {
+          var lbl = document.getElementById('feedback-gate-label');
+          var ver = document.getElementById('feedback-gate-version');
+          if (lbl) lbl.textContent = b.getAttribute('data-gate-label') || '게이트';
+          if (ver) ver.textContent = b.getAttribute('data-gate-version') || 'v1';
+        }
+        toggleModal(id, true);
+      });
+    });
+    document.querySelectorAll('[data-close-modal]').forEach(function (b) { b.addEventListener('click', function () { toggleModal(b.getAttribute('data-close-modal'), false); }); });
+    function toggleModal(id, on) { var m = document.getElementById(id); if (!m) return; m.classList.toggle('hidden', !on); m.classList.toggle('flex', on); }
+
+    (function () {
+      var TOTAL = 7;
+      var LABELS = [
+        '1 · Source Inbox — Slack URL 수신(received) (SPEC-003 S-1)',
+        '2 · received → 자동 요약(summarized) — 요약 초안 검토 카드 · 수정 가능 + [피드백] resume 재요약 | [분류] 트리거 (SPEC-003 U-2, 요약 AI ①)',
+        '3 · [분류] 클릭 → 분류 게이트 생성(자동 아님) — PARA only, resource 제안 · v2 | v1 read-only (SPEC-001 U-3, 분류기 AI ②)',
+        '4 · 분류 승인 → resource 확정 → 문서화 승인 게이트 인라인 생성 (SPEC-001 S-1)',
+        '5 · 문서화 게이트 — AI 초안 접기/펴기(frontmatter + 본문 + up:/[[ ]]) + 피드백/승인 (SPEC-004 U-2/U-4)',
+        '6 · 파생지식 — 초안과 한 덩어리, 읽기용 (개별 승인 없음) (SPEC-004 U-3)',
+        '7 · 승인 → 초안+파생지식 문서 생성 + 그래프 연결 → documented (SPEC-004 S-1)'
+      ];
+      var currentStep = TOTAL, speed = 1, playing = false, timer = null;
+      var stepEls = Array.prototype.slice.call(document.querySelectorAll('[data-step]'));
+      var counter = document.getElementById('demo-counter');
+      var bar = document.getElementById('demo-bar');
+      var label = document.getElementById('demo-label');
+      var playIcon = document.getElementById('demo-play-icon');
+
+      function render() {
+        stepEls.forEach(function (el) {
+          var n = +el.getAttribute('data-step');
+          // status Badge(received/summarized)는 상호배타 → 정확 단계에서만. 그 외 요소는 누적 표시
+          var status = el.getAttribute('data-status');
+          if (status === 'received') el.classList.toggle('demo-hidden', currentStep !== 1);
+          else if (status === 'summarized') el.classList.toggle('demo-hidden', currentStep < 2);
+          else el.classList.toggle('demo-hidden', currentStep < n);
+        });
+        counter.textContent = currentStep + ' / ' + TOTAL + ' 단계';
+        bar.style.width = (currentStep / TOTAL * 100) + '%';
+        label.textContent = LABELS[currentStep - 1] || '';
+      }
+      function setPlaying(v) { playing = v; playIcon.innerHTML = v ? '<path d="M6 4h4v16H6zM14 4h4v16h-4z"/>' : '<path d="M8 5v14l11-7z"/>'; }
+      function stop() { if (timer) { clearTimeout(timer); timer = null; } setPlaying(false); }
+      function tick() { if (currentStep < TOTAL) { currentStep++; render(); timer = setTimeout(tick, 1600 / speed); } else { stop(); } }
+      function play() { stop(); if (currentStep >= TOTAL) { currentStep = 1; } render(); setPlaying(true); timer = setTimeout(tick, 1600 / speed); }
+
+      document.querySelectorAll('[data-action]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var a = btn.getAttribute('data-action');
+          if (a === 'first') { stop(); currentStep = 1; render(); }
+          else if (a === 'prev') { stop(); currentStep = Math.max(1, currentStep - 1); render(); }
+          else if (a === 'next') { stop(); currentStep = Math.min(TOTAL, currentStep + 1); render(); }
+          else if (a === 'play') { playing ? stop() : play(); }
+        });
+      });
+      document.querySelectorAll('[data-speed]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          speed = +btn.getAttribute('data-speed');
+          document.querySelectorAll('[data-speed]').forEach(function (b) { b.classList.remove('bg-secondary', 'font-medium'); b.classList.add('text-muted-foreground'); });
+          btn.classList.add('bg-secondary', 'font-medium'); btn.classList.remove('text-muted-foreground');
+        });
+      });
+      render();
+    })();
+  </script>
+</body>
+</html>

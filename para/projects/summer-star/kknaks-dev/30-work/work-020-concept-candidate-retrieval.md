@@ -1,0 +1,241 @@
+---
+type: work
+id: KDEV-WORK-020
+title: "개념 후보 좁히기 — alias seed + 그래프 1홉"
+status: done
+product: kknaks-dev
+work_type: new-feature
+owner: kknaks
+roles:
+  pm: kknaks
+  design: —
+  fe: —
+  be: kknaks
+  qa: kknaks
+  ops: —
+progress: 100
+created_at: 2026-08-12
+updated_at: 2026-08-12
+tags:
+  - product/kknaks-dev
+  - doc/work
+  - status/done
+links:
+  baselines:
+    - "[[baseline-007-update-lines-by-case|KDEV-BL-007]]"
+  decisions:
+    - "[[decision-023-concept-candidate-retrieval|KDEV-DEC-023]]"
+  specs:
+    - "[[spec-008-gate-chain|KDEV-SPEC-008]]"
+  works: []
+  releases: []
+  related: []
+---
+
+# 개념 후보 좁히기 — alias seed + 그래프 1홉
+
+`concept` 게이트가 개념 전량(363건 · 32k 토큰)을 프롬프트에 싣는 것을 멈추고, alias 사전으로 찾은 seed 와 그 1홉 이웃만 넘긴다.
+
+**만들지 않는 것**: 임베딩 검색, 그래프의 화면 노출, 개념 병합·정리.
+
+## Meta
+
+- Baseline: [[baseline-007-update-lines-by-case|KDEV-BL-007]]
+- Covers spec: [[spec-008-gate-chain|KDEV-SPEC-008]] (concept 게이트 입력 계약)
+- Depends on work: 없음
+- Parallel work: 없음
+- Follow-up work: 좁히기가 부족하면 임베딩(DEC-023 옵션 C) — 지금은 열지 않는다
+- External dependency: 없음
+
+## Work Summary
+
+| Field | Value |
+|---|---|
+| Type | new-feature |
+| Owner | kknaks |
+| Status | done |
+| Progress | 100% |
+| Branch/PR |  |
+| Blocker |  |
+| Next | — |
+
+## Role Assignment
+
+| Role | Assignee | Responsibility | Status |
+|---|---|---|---|
+| PM | kknaks | 범위와 요구사항 | done |
+| Design | — | 화면 없음 | — |
+| FE | — | 프론트 변경 없음 | — |
+| BE | kknaks | 인덱스·좁히기·스테이지 배선 | done |
+| QA | kknaks | 좁힘 비율 실측과 회귀 | done |
+| Ops | — | 배포 절차 변경 없음 | — |
+
+## Scope
+
+포함:
+
+- `ConceptIndex` 에 **이웃**을 싣는다 (`up:` + 본문 `[[]]`)
+- 텍스트 하나에서 **seed** 를 결정적으로 뽑는다 (alias 정확 매칭)
+- 1홉 확장 + 폴백 규칙(seed 0 → 전량, 60% 초과 → 전량)
+- `concept`·`daily` 두 스테이지 배선
+- `path` 필드 제거 (DEC-023 D5)
+
+제외:
+
+- 임베딩·벡터 저장 (DEC-023 옵션 C, 보류)
+- `_graph` 를 HTTP 로 내보내기 — 사람이 보는 시각화는 다른 일이다
+- seed 를 수집 원문까지 넓히는 것 (DEC-023 OQ-1 — 요약으로 시작한다)
+
+## Code Surface
+
+- Repo / module: `app/back` (백엔드 전용)
+
+| 경로 후보 | 설명 |
+|---|---|
+| `service/pipeline/concept_index.py` | **주 변경.** 이웃 저장 · seed 추출 · 좁히기 · `path` 제거 |
+| `service/pipeline/stages/concept.py` | `existing_concepts` 를 좁힌 것으로 (281·293행) |
+| `service/pipeline/stages/daily.py` | 〃 (459행). seed 는 커밋 조사 결과에서 |
+| `core/wikilinks.py` | `extract_wikilinks` 재사용 — 본문 `[[]]` 파싱 |
+| `core/graph.py` | `build_alias_index`·`_resolve` 의 별칭 해석 규약 참고 |
+| `tests/test_concept_index.py` | 기존 테스트 + 좁히기 케이스 |
+
+- Domain / schema note: **DB 변경 없음.** 인덱스는 요청 시 파일에서 만든다(지금과 같다).
+
+## Domain / Schema
+
+해당 없음 — 저장하는 것이 없다.
+
+## Dependency
+
+| Consumer | Interface | 설명 |
+|---|---|---|
+| `stages/concept.py` | `ConceptIndex.narrowed_payload(seed_text)` | 프롬프트에 실을 개념 목록 |
+| `stages/daily.py` | 〃 | 잔디도 같은 함수를 쓴다 (DEC-023 D6) |
+
+## Internal Interface Contract
+
+```python
+# 이웃 — 별칭 해석까지 끝난 stem 집합
+ConceptIndex.neighbors(stem: str) -> set[str]
+
+# seed — 텍스트에서 정확 매칭으로 찾은 개념 stem 들
+ConceptIndex.seeds(text: str) -> set[str]
+
+# 좁힌 목록 — 폴백 규칙을 여기서 적용한다
+ConceptIndex.narrowed_payload(text: str) -> tuple[list[dict], dict]
+#   반환 둘째는 왜 그렇게 됐는지: {"mode": "narrowed"|"all", "seeds": n, "picked": n, "total": n}
+```
+
+**둘째 반환값이 있는 이유**: 좁히기는 조용히 실패하면 알 방법이 없다. seed 0 으로 매번 전량이 나가고 있어도 응답은 똑같다 — 그래서 판단 근거를 로그와 준비 payload 에 남긴다.
+
+## Execution
+
+### Phase 1 — 인덱스에 이웃을 싣는다
+
+- **Status**: DONE
+- **설명**: 좁히기의 재료를 만든다. `build_index` 가 이미 `frontmatter.load` 로 파일을 여니 **본문도 이미 손에 있다** — 지금은 버리고 있을 뿐이라 추가 I/O 가 없다.
+- **작업**:
+  - [x] `ConceptEntry` 에 `up: tuple[str, ...]` 과 `links: tuple[str, ...]`(본문 `[[]]`) 추가
+  - [x] `build_index` 에서 `post.content` 를 `extract_wikilinks` 로 파싱해 채운다
+  - [x] `ConceptIndex.neighbors(stem)` — `up` + `links` 를 **별칭 해석 후** stem 으로 정규화, 양방향(들어오는 링크도 이웃이다)
+  - [x] `as_prompt_payload` 에서 `path` 제거 (DEC-023 D5)
+- **검증**:
+  - [x] `path` 제거로 payload 문자 수가 줄어든 것을 측정해 기록
+  - [x] `neighbors` 가 별칭으로 걸린 링크도 stem 으로 돌려주는지 (`[[STT]]` → `speech-to-text`)
+  - [x] 없는 대상(dead link)은 이웃에 안 들어가는지
+  - [x] 기존 테스트 전부 통과 — `match`·`match_any` 계약은 안 바뀐다
+- **완료 증거**: `ConceptEntry` 에 `up`·`links` 추가, `refs`·`neighbors`(양방향)·`resolve` 신설. 역방향 인덱스는 **전부 등록된 뒤에** 만든다 — 등록 중에 풀면 뒤에 나올 개념을 가리키는 링크가 dead 로 보인다. `path` 는 payload 에서만 뺐다(엔트리에는 남는다 — 보충 흐름이 `target_path` 로 쓴다. 처음에 필드째 지웠다가 테스트 4건이 잡아냈다). **payload 70,554자 → 53,684자, 24% 감소.**
+
+### Phase 2 — seed 추출
+
+- **Status**: DONE
+- **설명**: 텍스트에서 진입점을 찾는다. **AI 에 맡기지 않는다** — 이름이 사전에 있느냐는 사실 판단이다.
+- **작업**:
+  - [x] `ConceptIndex.seeds(text)` — 등록된 이름·별칭이 텍스트에 나타나는지 본다
+  - [x] 정규화는 기존 `normalize` 를 쓴다(공백·하이픈·밑줄만). **부분 일치를 넣지 않는다**
+  - [x] 짧은 별칭의 오탐을 막는다 — 한 글자·두 글자 별칭이 우연히 걸리는 경우
+- **검증**:
+  - [x] 자료 하나(요약문)를 넣어 seed 가 사람이 보기에 맞는지 육안 확인 3건
+  - [x] 오탐 케이스 테스트 — 짧은 별칭이 다른 단어 안에서 걸리지 않는다
+  - [x] seed 가 0인 텍스트(무관한 문장)에서 빈 집합
+- **완료 증거**: `seeds(text, min_key=2)`. **OQ-1 을 실측으로 닫았다** — 정규화 키 길이 분포에서 1자가 5건(`락`·`깃`·`빈`·`힙`·`큐`)이고, 자료 25건으로 임계값을 비교했다.
+
+| `min_key` | seed 중앙값 | 후보 중앙값 | 전량 폴백 |
+|---|---|---|---|
+| 1 | 4 | 77/363 | 3/25 |
+| **2** | **4** | **77/363** | **3/25** |
+| 3 | 3 | 77/363 | 6/25 |
+| 4 | 2 | 67/363 | 5/25 |
+
+**2 를 고른 이유**: 1과 결과가 같으면서 한 글자 별칭만 뺀다. 3으로 올리면 seed 를 놓쳐 **전량 폴백이 오히려 는다**(3→6건) — 좁히려다 안 좁히는 결과다.
+
+### Phase 3 — 좁히기와 폴백
+
+- **Status**: DONE
+- **설명**: 1홉 확장과 「의심스러우면 안 자른다」 규칙. **DEC-023 D2·D3·D4 가 여기서 코드가 된다.**
+- **작업**:
+  - [x] `narrowed_payload(text)` — seed → 1홉 → payload
+  - [x] seed 0 이면 전량 (D3)
+  - [x] 결과가 전량의 60% 초과면 전량 (D4)
+  - [x] 두 폴백이 발동하면 `mode: "all"` 과 사유를 남긴다
+  - [x] **홉은 1 고정.** 파라미터로 열지 않는다 — 2홉은 99% 라 열어 두면 언젠가 켜진다
+- **검증**:
+  - [x] seed 5건 → 결과가 전량보다 유의하게 작다
+  - [x] seed 0 → 전량, `mode == "all"`
+  - [x] 60% 경계 양쪽 테스트
+  - [x] 좁힌 목록에 **seed 자신이 반드시 들어간다**
+- **완료 증거**: `narrowed_payload(text)` 가 `(목록, 근거)` 를 돌려준다. 홉은 상수로 고정했다 — 파라미터로 열지 않았다. 테스트 5건이 seed 포함·seed 0 폴백·60% 초과 폴백·근거 키 구성을 고정한다.
+
+### Phase 4 — 스테이지 배선
+
+- **Status**: DONE
+- **설명**: 두 스테이지가 같은 함수를 쓴다. 한쪽만 바꾸면 규칙이 두 벌이 되고 잔디만 계속 전량을 받는다(DEC-023 D6).
+- **작업**:
+  - [x] `stages/concept.py` — seed 텍스트는 `summarize` 산출(요약·제목·태그)
+  - [x] `stages/daily.py` — seed 텍스트는 그날 커밋 조사 결과(레포별 정리·영역)
+  - [x] 두 곳의 준비 payload 에 좁히기 판단 근거를 싣는다 — 승인 화면이 「왜 이 개념들만 보였나」를 답할 수 있어야 한다
+- **검증**:
+  - [x] 게이트 프롬프트 스냅샷 테스트 — 전량이 아니라 좁힌 목록이 실린다
+  - [x] 잔디 게이트도 같은 경로를 탄다
+  - [x] 전체 스위트 통과
+- **완료 증거**: `stages/concept.py` 는 `summary`+`source_title`+`note` 를, `stages/daily.py` 는 레포별 조사문을 seed 텍스트로 쓴다. 둘 다 `concept_narrowing` 을 준비 payload 에 싣는다. **본문(`source_excerpt`)은 넣지 않는다** — P5 가 그 이유를 수치로 보여 준다.
+
+### Phase 5 — 실측
+
+- **Status**: DONE
+- **설명**: 계획한 효과가 실제로 나는지 본다. **DEC-023 이 「363 → 110 안팎, 약 1/3」로 예측했고, 그 예측이 맞는지가 이 work 의 완료 조건이다.**
+- **작업**:
+  - [x] 실제 자료 5건(유튜브·블로그·공부 노트 섞어)으로 seed 수·좁힌 수·토큰 수를 잰다
+  - [x] 결과를 이 문서 완료 증거에 표로 남긴다
+  - [x] 좁힘이 예측보다 나쁘면 **사유를 적는다.** 수치를 맞추려고 규칙을 비틀지 않는다
+- **검증**:
+  - [x] 5건 중 seed 0 으로 떨어진 건수와 그 자료의 성격
+  - [x] 좁힌 목록에서 **빠졌지만 있어야 했던 개념**이 있는지 육안 확인 — 이것이 이 설계의 유일한 실패 모드다
+- **완료 증거**:
+
+**좁힘 (자료 5건)** — 전량 53,684자 대비 좁힌 중앙값 11,359자, **21%**. `path` 제거까지 합치면 70,554 → 11,359 로 **84% 감소**, 32k → 약 5k 토큰. DEC-023 예측(「363 → 110 안팎, 약 1/3」)보다 좋다 — 후보 중앙값이 74/363(20%)였다.
+
+**회수율 (자료 20건)** — 그 자료가 실제로 낳은 개념이 후보에 드는가:
+
+| seed 텍스트 | 회수율 | 후보 중앙값 | 전량 폴백 |
+|---|---|---|---|
+| **요약만 (채택)** | **87%** (127/145) | **61/363** | 1/20 |
+| +본문 1,000자 | 93% | 182/363 | 5/20 |
+| +본문 3,000자 | 100% | **363/363** | 17/20 |
+
+**본문을 넣으면 회수율은 100%가 되지만 후보가 전량이 된다.** 흔한 별칭(`if`·`구현`·`문장`)이 전부 걸려 60% 상한에 부딪힌다 — 좁히려다 안 좁히는 결과라 채택하지 않았다.
+
+**놓친 13% 의 실제 비용** — 조용히 갈라지지 않는다. `verify_concepts` 는 **좁히지 않은 전체 인덱스**로 재검증하고(`stages/concept.py:302`), AI 가 이미 있는 개념을 `create` 로 내면 `CONCEPT_ALREADY_EXISTS` 로 막는다. 그 메시지에 **기존 개념 이름이 들어가고**(`'문자 인코딩' 는 이미 character-encoding 로 존재한다`) `_fail` 이 revision·task 에 남겨 사람이 본다. 좁히기는 *보여 주는 것*만 줄이고 *판정*은 그대로 전량 기준이다.
+
+**놓치는 자료의 성격** — `2024-06-03-Day07` 이 5건 전부 놓쳤는데 `summary` 가 `"Java프로그래밍 기초(문자집합, 수)"` 한 줄이고 `문자집합` 이 어느 개념의 별칭도 아니었다. 운영의 seed 는 요약 스테이지가 쓴 글이라 이보다 두껍다 — **이 측정은 하한이다.**
+
+## Rollback
+
+코드 변경만이고 DB·파일 산출이 없다. `narrowed_payload` 를 `as_prompt_payload` 로 되돌리면 종전 동작이다 — 커밋 revert 하나로 끝난다.
+
+## Open Questions
+
+| ID | Question | Owner | Next |
+|---|---|---|---|
+| ~~OQ-1~~ | 짧은 별칭의 오탐을 어떻게 막을지 | kknaks | **닫힘 — `min_key=2`.** P2 완료 증거의 실측 표 참조 |
+| OQ-2 | 회수율 87% 의 나머지를 seed 텍스트를 두껍게 해서 올릴지 | kknaks | 운영 요약으로 다시 재 본다. 본문 투입은 P5 가 기각했다 |

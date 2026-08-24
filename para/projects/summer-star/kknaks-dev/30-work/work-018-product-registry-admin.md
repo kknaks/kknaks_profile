@@ -1,0 +1,414 @@
+---
+type: work
+id: KDEV-WORK-018
+title: "제품 레지스트리 — 조인 컬럼·관리 화면·결정적 스캐폴딩"
+status: done
+product: kknaks-dev
+work_type: new-feature
+owner: kknaks
+roles:
+  pm: kknaks
+  design: kknaks
+  fe: kknaks
+  be: kknaks
+  qa: kknaks
+  ops: kknaks
+progress: 100
+created_at: 2026-08-03
+updated_at: 2026-08-03
+tags:
+  - product/kknaks-dev
+  - doc/work
+  - status/done
+links:
+  baselines:
+    - "[[baseline-005-product-project-career-link|KDEV-BL-005]]"
+  decisions:
+    - "[[decision-017-product-registry-and-admin-scaffold|KDEV-DEC-017]]"
+  specs:
+    - "[[spec-014-product-registry-and-admin|KDEV-SPEC-014]]"
+    - "[[spec-011-commit-collection|KDEV-SPEC-011]]"
+    - "[[spec-001-directory-structure|KDEV-SPEC-001]]"
+  works:
+    - "[[work-017-grass-commit-pipeline|KDEV-WORK-017]]"
+  releases: []
+  related:
+    - "[[work-011-admin-auth-mvp|KDEV-WORK-011]]"
+---
+
+# 제품 레지스트리 — 조인 컬럼·관리 화면·결정적 스캐폴딩
+
+레포와 제품을 잇는 컬럼 하나를 만들고, 관리 화면에서 제품을 등록·연결·발견한다. 등록은 **LLM 없이** 제품 골격과 공개 카드를 만들고 레포를 즉시 클론한다. **백엔드 신규 코드는 `api → service → repository` 3계층으로 짓는다** — 이 발주가 그 규약의 첫 적용이다.
+
+**만들지 않는 것**: 잔디 산출물에 product 추가(후속) · 공개 카드 본문 편집 · `visible` DB 이관 · 제품 문서 삭제 · 레거시 계층 리팩터.
+
+## Meta
+
+- Baseline: [[baseline-005-product-project-career-link|KDEV-BL-005]]
+- Covers spec: [[spec-014-product-registry-and-admin|KDEV-SPEC-014]] (전량) + SPEC-011·001 개정분
+- Depends on work: [[work-017-grass-commit-pipeline|KDEV-WORK-017]] — `tracked_repos`·`sync_repo`·시드 스크립트가 전제다. 이 발주는 그 위에 컬럼 하나와 관리 표면을 얹는다
+- Parallel work: 없음
+- Follow-up work: 잔디 산출물에 product 추가 (P2 — 후속 decision)
+- External dependency: **P3·P5 에만 있다** — GitHub 토큰(`gh_accounts()`, 이미 `.env` 에 있다) · 신규 레포 4개 클론 디스크 · P5 는 서버 재배포. **P1·P2·P4 는 외부 의존이 없다.**
+
+## Work Summary
+
+| Field | Value |
+|---|---|
+| Type | new-feature |
+| Owner | kknaks |
+| Status | done |
+| Progress | 100% (P1~P5 done — 배포·시드·클론 완주. 서버에서 57건 누락이 재현됐고 전제가 전부 확인됐다. 관측 항목 셋은 Open Issue) |
+| Branch/PR | `work-018-db` |
+| Blocker | 없음 |
+| Next | 없음 — 이 발주는 닫혔다. 관측 항목 셋은 Open Issues 에 있다 |
+
+## Role Assignment
+
+| Role | Assignee | Responsibility | Status |
+|---|---|---|---|
+| PM | kknaks | 범위와 요구사항 | done — DEC-017 D1~D17, OQ 0 |
+| Design | kknaks | 등록 폼·표·배너 UX | **done** — 필터 탭·공용 셀렉트·노출 토글 |
+| FE | kknaks | 프로젝트 슬롯 화면 | **done** |
+| BE | kknaks | 컬럼·repository·service·API | **done** — 컬럼·repository·DTO·service·API 전부 |
+| QA | kknaks | 검증과 완료 판단 | **done** — 로컬 e2e(결함 4건) + 서버 실측. 887 passed |
+| Ops | kknaks | 배포·클론·실운영 관측 | **done** — 배포 23초 · 시드 17행 · 클론 295MB. **시드 자동화는 Open Issue** |
+
+## Scope
+
+포함:
+
+- `templates/product/showcase.md` 신설 (형식 SoT)
+- `kknaks-profile` → `kknaks-dev` 통합 · 회사 5개 디렉토리 삭제
+- `products/README.md` 목록 1회 정정 · 제품 README 3곳 `Remote: TBD` 정정
+- `tracked_repos.product_slug` 컬럼 + 마이그레이션 + 17행 시드
+- **`repository/` 계층 신설** (계층 규약 첫 적용)
+- 제품 등록 service — 스캐폴드·카드 렌더·사전 검증·채번·커밋/롤백
+- 레지스트리 CRU · 수동 재동기화 · 미등록 레포 발견
+- admin 프로젝트 슬롯 화면
+- 실운영 완주 — 실제 제품 1건 등록 + 잔디에 새 레포가 잡히는지 관측
+
+제외:
+
+- 잔디 산출물에 product 추가 → 후속 decision
+- `visible` DB 이관 → DEC-017 D14 기각
+- showcase 그래프 노드 승격 → D16 기각
+- 공개 카드 본문 편집 · 제품 문서 삭제 → 로컬에서 한다
+- **레거시 계층 리팩터** → `queue.py`·`auth.py`·`service/**` 는 손대지 않는다
+
+## Code Surface
+
+- Repo / module: `app/back` (주) · `app/front` (화면) · 루트(`templates/`·`products/`)
+
+| 경로 후보 | 설명 |
+|---|---|
+| `templates/product/showcase.md` (신규) | 카드 형식 SoT — P1 |
+| `products/kknaks-dev/showcase.md` | `kknaks-profile` 에서 이동 — P1 |
+| `products/README.md` | 제품 목록 정정 — P1 |
+| `alembic/versions/0009_*.py` (신규) | `product_slug` 컬럼 — P2 |
+| `core/models.py` | `TrackedRepo` 컬럼 1줄 — P2 |
+| **`repository/__init__.py` · `repository/tracked_repos.py`** (신규) | **DB 접근 전담 계층 신설** — P2 |
+| `app/scripts/seed_repo_registry.py` | 시드에 `product_slug` + 신규 4행 — P2 |
+| **`service/products/dto.py`** (신규) | **도메인 DTO (pydantic)** — api↔service↔repository 경계 — P2 |
+| `service/products/registry.py` (신규) | 등록 오케스트레이션 · CRU — P3 |
+| `service/products/scaffold.py` (신규) | 골격 복사 **화이트리스트** · 카드 렌더 · 채번 — P3 |
+| `service/products/validate.py` (신규) | 사전 검증 7종 · 도메인 예외 — P3 |
+| `service/products/discover.py` (신규) | 미등록 레포 발견 — P3 |
+| `utils/slug.py` (신규) | 레포/제품 slug 파싱·정규화 (순수) — P3 |
+| **`api/schemas/products.py`** (신규) | **요청·응답 모델 (pydantic)** — HTTP 표면 — P3 |
+| `api/routers/products.py` (신규) | 엔드포인트 6 · 예외→HTTP 매핑 — P3 |
+| `main.py` | `include_router` 1줄 — P3 |
+| `app/front/app/admin/(panel)/projects/page.tsx` (신규) | 화면 — P4 |
+| `app/front/components/admin/product-registry.tsx` (신규) | 표·폼·배너 — P4 |
+| `app/front/components/admin/sidebar.tsx` | `ready: true` 1줄 — P4 |
+| `app/front/lib/api.ts` | 클라이언트 함수 — P4 |
+| `tests/` | 계층 경계 · 스캐폴드 화이트리스트 · 검증 7종 · 마이그레이션 드리프트 |
+
+- Domain / schema note: **마이그레이션 1건**(컬럼 추가, P2). 기존 테이블 구조 변경 없음. `tracked_repos` 외 다른 테이블은 무변경.
+
+## Domain / Schema
+
+| Entity | 역할 |
+|---|---|
+| `tracked_repos.product_slug` | 레포 → 제품 디렉토리 조인. nullable |
+
+- 상태 / invariant: `product_slug` 는 **CHECK 를 걸지 않는다**(DEC-017 D7). `detail` 처럼 `type` 에 묶지도 않는다 — company·studio 둘 다 가질 수 있다. 실재 여부는 응답 시점에 판정해 화면이 경고한다.
+- Migration 필요 여부: **필요** — 컬럼 1개 추가. 기존 13행은 `NULL` 로 시작하고 시드가 채운다.
+- SPEC 환류: 없음 — SPEC-014 가 이미 계약을 담고 있다.
+
+### 왜 CHECK 를 안 거는지
+
+`daily.py:151` 이 같은 판단의 근거를 남겨 뒀다 — *"DB 계층이 레포 파일시스템을 알게 되고, 나중에 career 파일 이름이 바뀌면…"*. `detail` 오타를 CHECK 가 아니라 `missing_career()` 가 승인 화면까지 들고 가는 방식이 이미 서 있다. `product_slug` 도 같은 형태를 따른다.
+
+## Dependency
+
+| Consumer | Interface | 설명 |
+|---|---|---|
+| P2 시드 | P1 의 정리된 제품 목록 | `kknaks-profile` 통합·회사 5개 삭제 **후의** 상태가 매핑 기준이다 |
+| P3 스캐폴드 | P1 의 `templates/product/showcase.md` | 형식 SoT 를 읽어 카드를 만든다 |
+| P3 전부 | P2 의 `repository/tracked_repos.py` | service 는 DB 를 직접 만지지 않는다 |
+| P4 화면 | P3 의 엔드포인트 6 | — |
+| P5 완주 | P3+P4 | 등록이 실제로 커밋·push 되고 클론이 붙어야 관측이 된다 |
+| 후속(잔디 product) | P2 의 `product_slug` | `product_map` 을 만들 재료 |
+
+## Internal Interface Contract
+
+**계층 계약은 `40-architecture/system/README.md` 「백엔드 계층 규약」이 SoT 다.** 여기서 다시 적지 않는다.
+
+이 발주에서 새로 고정하는 것은 **스캐폴드 화이트리스트** 하나다.
+
+```text
+복사한다        templates/product/README.md              → products/{slug}/README.md
+                templates/product/log.md                 → products/{slug}/log.md
+                templates/product/00-baseline/README.md  → products/{slug}/00-baseline/README.md
+                templates/product/10-decision/README.md  → products/{slug}/10-decision/README.md
+                templates/product/20-spec/README.md      → products/{slug}/20-spec/README.md
+                templates/product/30-work/README.md      → products/{slug}/30-work/README.md
+
+복사하지 않는다  baseline.md · decision.md · spec.md · work.md · work-release.md
+                release.md · runbook.md · domain.md          ← frontmatter 를 가진 예시 문서 8개
+                40-architecture/** · 60-release/** · 70-runbook/**   ← optional
+```
+
+**이 목록은 코드 상수이고 테스트가 고정한다.** 템플릿에 새 예시 문서가 추가될 때 복사 목록이 조용히 어긋나는 것이 이 발주의 가장 조용한 실패 모드다.
+
+### 계층과 DTO 배치
+
+규약 자체는 `40-architecture/system/README.md` 가 SoT 다. 이 발주에서 **어느 파일이 어느 계층인지**만 고정한다.
+
+```text
+api/schemas/products.py     요청·응답 (pydantic)      ← HTTP 표면
+api/routers/products.py     엔드포인트 · 예외→HTTP     ← select() 없음
+        ↕  도메인 DTO
+service/products/dto.py     도메인 DTO (pydantic)
+service/products/*.py       규칙 · 오케스트레이션       ← HTTPException 없음, select() 없음
+        ↕  도메인 DTO
+repository/tracked_repos.py DB 접근                    ← ORM 이 여기서 끝난다
+        ↕  ORM
+core/models.py              TrackedRepo
+```
+
+**`sync_all` 이 ORM 을 밖으로 흘리던 것을 이번에 끊는다.** 지금 `enabled_repos()` 가 `list[TrackedRepo]` 를 돌려주고 `sync_all` 이 그 객체의 `last_fetched_at`·`last_error` 를 직접 대입한다. P2 에서 **repository 가 DTO 를 돌려주고, 상태 기록은 repository 메서드로** 바꾼다.
+
+| 종전 | 이후 |
+|---|---|
+| `enabled_repos(db) -> list[TrackedRepo]` | `repository.list_enabled(db) -> list[TrackedRepoDTO]` |
+| `repo.last_fetched_at = now` (ORM 직접 대입) | `repository.mark_synced(db, id, at)` |
+| `repo.last_error = f"{code}: {msg}"` | `repository.mark_failed(db, id, code, msg)` |
+
+**잔디 경로가 이 변경을 지난다.** `collect_git.py:91-101` 이 유일한 소비자이므로 회귀면이 좁지만, P2 검증에 회귀 항목을 둔 이유가 이것이다.
+
+## Execution
+
+> **P1 이 맨 앞인 이유가 둘이다.** ① 스캐폴드가 읽을 카드 양식이 없으면 P3 가 형식을 지어내게 되고, 그 순간 SoT 가 둘이 된다(WORK-017 P1 이 같은 이유로 맨 앞이었다). ② 시드 매핑은 **정리된 뒤의** 제품 목록을 기준으로 해야 한다 — `kknaks-profile` 이 남아 있으면 `kknaks/kknaks_profile` 을 어디로 보낼지 코드가 정할 수 없다.
+>
+> **P1 은 코드가 한 줄도 없다.** 문서와 파일 이동뿐이라 되돌리기 쉽고, 그러면서 P2~P5 의 전제를 전부 만든다.
+
+### Phase 1 — 형식 SoT + 제품 트리 정리 (문서·파일)
+
+- **Status**: DONE
+- **설명**: 카드 양식을 만들고, 제품 트리의 어긋남 셋을 정리한다. 코드 변경이 없어 배포도 마이그레이션도 필요 없다.
+- **작업**:
+  - [x] `templates/product/showcase.md` 신설 — 로더 필수 7 필드 · 표시 필드 · **PDF 전용 블록은 "필요할 때 추가" 로 표시** · 본문 필수 3섹션 + 선택 4섹션 · `links.repo` 는 표시 전용이고 추적은 레지스트리 소유(DEC-014 D1)
+  - [x] `products/kknaks-profile/showcase.md` → `products/kknaks-dev/showcase.md` (git mv) · 빈 디렉토리 삭제
+  - [x] 회사 5개 디렉토리 삭제 — `centurion-charty`·`centurion-mso`·`linky`·`mediness`·`nexus`
+  - [x] `products/README.md` 제품 목록 정정 — 정리 후 13개 기준
+  - [x] 제품 README 3곳 `Remote: TBD` → 실제 값 (`ax-knowledge-graph`=`kknaks/ax-graph` · `mini-game`=`kknaks/lunch_game` · `mac-remote`=`kknaks/mac-remote`)
+  - [x] `agent.md` 「별도 계열」에 showcase 템플릿 등록 (daily·career 와 같은 형태)
+- **검증**:
+  - [x] `product_doc_pipeline.py --strict` 통과 — **빈 디렉토리가 남지 않았다**
+  - [x] 부팅 그래프 검증 ERROR 0
+  - [x] `/api/projects` 모집단 13 → 8, **`visible:true` 6개는 그대로** (화면 무변경)
+  - [x] `/api/print` 포트폴리오 PDF 대상이 안 줄었다 (`visible` 기준이라 동일)
+  - [x] `id: P-02` 가 유지된다 (경로만 바뀌었다)
+  - [x] `products/kknaks-profile` 참조가 레포에 0건
+- **완료 증거**:
+  - `templates/product/showcase.md` 신설. **같은 디렉토리의 다른 템플릿과 형태가 다르다** — `baseline.md` 등은 손으로 복사하는 골격이지만 showcase 는 등록 화면이 입력값으로 **렌더**하므로, `templates/persona/daily.md`·`career.md` 와 같은 **형식 SoT 문서**로 썼다. 머리에 "이 파일은 복사 대상이 아니다" 를 못박아 D3 화이트리스트와 어긋나지 않게 했다.
+  - **템플릿에 담은 것 넷.** ① `id: P-NN` 채번이 코드 소유이고 **결번을 재사용하지 않는** 이유(자산 경로 `/assets/projects/P-NN/` 가 그 번호를 쓴다 — 재사용하면 과거 이미지가 새 프로젝트에 붙는다) ② **`category` 는 이 템플릿이 아니라 `persona/_meta.yaml` 이 소유한다**는 것과 어겼을 때의 결과(파일 하나가 아니라 persona 로드 전체 실패 → 사이트가 옛 데이터 서빙) ③ `links.repo` 는 표시 전용이고 추적은 레지스트리 소유(DEC-014 D1) ④ PDF 케이스 스터디 블록은 **새 카드에 넣지 않는다** — 빈 필드를 미리 깔면 "채워야 할 것" 과 "안 쓰기로 한 것" 이 구분되지 않는다.
+  - 제품 트리 정리 실측: **18개 → 12개**, showcase **13 → 8**. `git mv` 로 `P-02` 가 `products/kknaks-dev/showcase.md` 로 이동했고 회사 5개는 디렉토리째 제거했다(`showcase.md` 하나뿐이라 파일만 지우면 빈 디렉토리가 검증 에러가 된다).
+  - **로더 실측으로 무영향 확인**: `projects` 8건 로드 · `visible` **6건 그대로**(`P-02`·`P-03`·`P-04`·`P-05`·`P-06`·`P-10`) · `P-02` 경로가 `kknaks-dev/showcase.md` 로 바뀐 것 확인 · 그래프 **nodes 284 / ERROR 0 / WARN 0** · 빈 디렉토리 0. `visible` 이 안 줄었으므로 `/api/projects` 와 포트폴리오 PDF 양쪽에 **화면 변화가 없다.**
+  - `products/kknaks-profile` 경로를 가리키는 살아 있는 참조 0건. 남은 문자열은 WORK-004 의 과거 기록과 무관한 User-Agent 뿐이다.
+  - `products/README.md` 를 **9행 → 12행**으로 맞추고, 갱신 주체(D15)와 **회사 제품이 여기 없는 이유**(D9 — 회사 레포는 문서 트리도 카드도 없이 레지스트리에만 산다)를 명시했다.
+  - `agent.md` 「별도 계열」이 셋 → **넷**. 카드가 제품 문서와 같은 폴더에 있으면서 **성격이 반대**라는 것(내부 결정 vs 공개 한 장)과, 그래서 그래프 노드가 아니라는 것을 적었다.
+  - 스캐폴드가 읽을 양식과 시드가 기준 삼을 목록이 둘 다 확정됐다 — **P2 의 전제가 닫혔다.**
+
+### Phase 2 — 스키마 + repository 계층 (BE)
+
+- **Status**: DONE
+- **설명**: 컬럼 하나를 추가하고, **`repository/` 계층을 신설한다.** 이 발주에서 계층 규약이 실제로 서는 지점이라 첫 입주자가 본이 된다.
+- **작업**:
+  - [x] `alembic/versions/0009_*.py` — `tracked_repos.product_slug` nullable 추가
+  - [x] `core/models.py` — `TrackedRepo` 컬럼
+  - [x] **`service/products/dto.py`** — 도메인 DTO(pydantic). `TrackedRepoDTO` 가 계층을 넘는 유일한 형태
+  - [x] **`repository/` 신설** — `tracked_repos.py` 에 조회·생성·수정·클론상태 갱신. `select()` 가 사는 유일한 자리이고 **ORM → DTO 변환을 여기서 끝낸다**
+  - [x] `service/jobs/repo_registry.py`·`repos.py` 의 **기존 `select()` 를 repository 로 옮긴다** — 이 도메인은 이번에 만지므로 규약 ②에 해당한다
+  - [x] `sync_all` 의 **ORM 직접 대입을 `mark_synced`/`mark_failed` 로 교체** — ORM 이 계층 밖으로 새던 자리다
+  - [x] `app/scripts/seed_repo_registry.py` — 기존 13행에 `product_slug` 매핑 + **신규 4행 추가**(`ax-graph`·`gcs_demo`·`lunch_game`·`mac-remote`, 전부 studio·personal)
+- **검증**:
+  - [x] `alembic check` 드리프트 없음 (`test_models_and_migrations_agree`)
+  - [x] 시드 후 17행, `product_slug` 가 전부 실재 디렉토리를 가리킨다
+  - [x] `kknaks/kknaks_profile` → `kknaks-dev` (P1 통합 결과)
+  - [x] **잔디 경로 회귀 없음** — `collect_git` 가 17개를 조사하고 `career_map` 이 종전과 같다
+  - [x] `repository` 밖에서 `TrackedRepo` 를 `select()` 하는 코드가 없다 (테스트로 고정)
+  - [x] **`repository` 밖으로 ORM 객체가 나가지 않는다** — 반환 타입이 전부 DTO 다
+- **완료 증거**:
+  - 마이그레이션 `0009` 적용. 로컬 DB 에 `product_slug varchar(64) NULL` 확인, `alembic check` 드리프트 없음.
+  - **`repository/` 계층 신설.** `tracked_repos.py` 가 `select()`·ORM 을 독점하고 `_to_dto()` 한 곳에서 변환이 끝난다. `list_all`·`list_enabled`·`get_by_id`·`get_by_slug`·`existing_slugs`·`create`·`patch`·`mark_synced`·`mark_failed`.
+  - **`sync_all` 의 ORM 유출을 끊었다.** 종전에는 `enabled_repos()` 가 `list[TrackedRepo]` 를 돌려주고 `sync_all` 이 `repo.last_fetched_at` 을 직접 대입했다. 이제 DTO 를 받고 `mark_synced`/`mark_failed` 로 기록한다. 실측 확인 — `enabled_repos` 반환 타입이 `TrackedRepoDTO` 이고 잔디 조사 대상 17건·career 귀속 `medisolve-ai` 로 종전과 같다.
+  - `patch()` 에 **`exclude_unset=True`** 를 걸었다. 없으면 `detail` 을 안 보낸 요청이 `detail=None` 으로 해석돼 **company 행의 career 귀속이 조용히 지워진다** — DB CHECK 가 `detail IS NOT NULL` 만 보므로 그 순간 flush 가 실패하거나, studio 로 바뀐 행이면 실패도 안 한다.
+  - **시드 원천을 showcase 스캔에서 명시 목록으로 바꿨다 — 이건 계획에 없던 발견이다.** P1 이 회사 `showcase.md` 5개를 지웠는데(D9) `seed_company_from_showcase()` 가 **바로 그 파일들을 스캔하고 있었다.** 그대로 뒀으면 새 배포에서 회사 레포가 0건 시드되고 잔디는 매일 정상 종료한다 — WORK-017 결함 ④와 같은 침묵이다. `COMPANY_REPOS`(5) · `CARDLESS_REPOS`(4) · `PRODUCT_BY_SLUG`(12) 세 상수로 전환했다.
+  - **`product_slug` 는 문자열로 유도할 수 없다는 것을 테스트로 박았다.** `kknaks/kknaks_profile` → `kknaks-dev`(D2 전에는 `kknaks-profile` 이었다) · `kknaks/ax-graph` → `ax-knowledge-graph` · `kknaks/lunch_game` → `mini-game`. 규칙을 지어냈으면 전부 틀린 곳을 가리켰다.
+  - `backfill_product_slug()` — 컬럼이 새로 생겨 기존 행이 전부 `NULL` 이라, 비어 있는 자리에만 쓰는 것이 "사람이 손본 값을 안 덮는다" 는 시드 규율과 충돌하지 않는다.
+  - **시드 실행 결과 17행.** `studio added=4`(카드 없는 레포) · `company added=0`(이미 있음) · `product filled=8 kept=4 no_product=5`. `product_slug` 12건이 **전부 실재 디렉토리**를 가리키는 것을 확인했고, 회사 5건은 제품 문서가 없어 정상적으로 비어 있다.
+  - **계층 회귀 테스트 신설**(`tests/test_layering.py`) — 신규 도메인에 대해 `select()` 직접 호출 금지 · ORM import 금지 · `fastapi` import 금지(service) · 외부 I/O 금지(repository) · 반환 타입에 ORM 금지. **대상 목록을 명시해 레거시를 제외한 것이 경계다** — 일괄 리팩터를 안 하기로 한 결정을 테스트가 뒤집지 않는다.
+  - **테스트가 진짜 Slack 으로 나가던 것을 막았다.** `.env` 를 export 한 채 스위트를 돌리면 `SLACK_WEBHOOK_URL` 이 채워져 `notify_slack` 을 patch 안 한 테스트들이 **실제 워크스페이스로 메시지를 보낸다.** 실제로 나갔다(`kknaks/gone CLONE_FAILED` 에 pytest tmp 경로가 그대로, `C-001-test`·`kknaks@example.com` 픽스처). **알림은 부수효과라 테스트가 실패하지 않아 아무도 모른 채 반복된다.** conftest 세션 fixture 로 봉했다 — 개별 patch 는 "무엇을 보냈나" 를, 이 가드는 "밖으로 안 나간다" 를 맡는다.
+  - **825 passed** (베이스라인 818 → 계층 5 + 레지스트리 2 신규).
+
+### Phase 3 — service + API (BE)
+
+- **Status**: DONE
+- **설명**: 등록·CRU·발견을 만든다. **LLM 을 호출하지 않는다** — 전부 복사·치환·검증이고 비동기로 도는 것은 클론뿐이다.
+
+#### 3-A. 등록과 스캐폴딩
+
+- **작업**:
+  - [x] `utils/slug.py` — 레포/제품 slug 파싱·정규화 (순수 함수, 도메인·DB 무지)
+  - [x] `service/products/validate.py` — 사전 검증 7종 + 도메인 예외. **분류는 `_meta.yaml` 목록과 대조**
+  - [x] `service/products/scaffold.py` — **화이트리스트 6 파일** 복사 · 카드 렌더 · `P-NN` 채번(max+1)
+  - [x] `service/products/registry.py` — 등록 오케스트레이션. studio/company 분기, 커밋 1개, **push 실패 시 커밋 롤백**
+  - [x] `products/README.md` 행 자동 추가 (같은 커밋)
+  - [x] 클론은 `BackgroundTasks` 로 예약하고 **즉시 응답**
+- **검증**:
+  - [x] `studio` 등록이 골격 6 + 카드 + README 행을 **한 커밋**으로 만든다
+  - [x] `company` 등록이 **파일을 하나도 만들지 않는다**
+  - [x] **제품 2개를 연속 등록해도 부팅·그래프 검증이 통과한다** — 예시 문서가 복사되지 않았다는 회귀 테스트
+  - [x] 화이트리스트가 코드 상수이고 테스트가 목록을 고정한다
+  - [x] 검증 실패 시 파일이 하나도 생기지 않는다 (7종 각각)
+  - [x] 허용 목록 밖 분류가 거부된다 — 통과했다면 persona 로드 전체가 죽는다
+  - [x] push 실패 시 로컬 커밋이 남지 않는다
+  - [x] `P-NN` 이 max+1 이고 결번을 재사용하지 않는다
+
+#### 3-B. CRU · 재동기화 · 미등록 발견
+
+- **작업**:
+  - [x] `service/products/discover.py` — 계정·조직 레포 목록 → `owner`·`fork`·`archived` 필터 → 레지스트리 diff
+  - [x] **`api/schemas/products.py`** — 요청·응답 pydantic. **도메인 DTO 와 별개 클래스다**
+  - [x] `api/routers/products.py` — 엔드포인트 6 · 도메인 예외 → HTTP 매핑(`_gate_error` 형태)
+  - [x] 목록 응답의 파생 둘 — 제품 디렉토리 실재 여부 · 카드 노출 값(읽기 전용). **DB 에 저장하지 않는다**
+  - [x] `main.py` 라우터 등록
+- **검증**:
+  - [x] 미등록 조회가 fork·아카이브·타인 레포를 거른다
+  - [x] **미등록 조회가 실패해도 목록 API 는 200 이다**
+  - [x] `enabled` 를 껐다 켜도 행·클론이 유지된다
+  - [x] `product_slug` 가 실재하지 않아도 저장되고 응답에 경고가 실린다
+  - [x] 잘못된 레포 등록 시 `last_error` 에 사유 코드가 남는다
+  - [x] **라우터에 `select()` 가 없다** (계층 규약 테스트)
+  - [x] service 가 `HTTPException` 을 던지지 않는다
+  - [x] **응답 모델과 도메인 DTO 가 별개 클래스다** — 라우터가 DTO 를 그대로 반환하지 않는다
+- **완료 증거**:
+  - 계층이 파일로 갈렸다 — `utils/slug.py`(순수) · `service/products/{validate,scaffold,registry,discover,errors,dto}.py` · `repository/tracked_repos.py` · `api/schemas/products.py` · `api/routers/products.py`. 라우트 6개 등록 확인.
+  - **화이트리스트 회귀 테스트가 실제로 걸린다.** `test_two_products_keep_the_graph_valid` 가 제품 둘을 만들고 `type` 을 가진 파일의 stem 이 중복되지 않음을 본다 — 통째 복사였다면 `baseline`·`decision`·`spec` 이 각각 둘이 되어 L2 ERROR → enforce raise → **백엔드 미부팅**이다. `SCAFFOLD_FILES` ∩ `NEVER_COPY` = ∅ 도 함께 고정했다.
+  - **커밋 실패가 파일을 남기지 않는다.** `publish_atomic` 을 재사용했다(`commit_and_push_with_retry` 에는 롤백이 없다). push 를 강제로 실패시키는 테스트에서 `products/alpha/` 가 사라지고 레지스트리 행도 안 생기는 것을 확인했다 — **행보다 커밋이 먼저**라서 가능한 결과다.
+  - **`company` 는 파일을 하나도 만들지 않는다**(D9). 등록 전후로 `products/` 하위 파일 집합이 동일함을 단언한다.
+  - `PATCH` 의 `model_fields_set` 이 계약의 일부다 — `enabled` 만 토글하는 요청이 company 행의 `detail` 을 지우지 않는 것을 테스트가 지킨다.
+  - **파생 둘은 저장하지 않는다.** `product_exists` 는 디렉토리를 지우면 즉시 `False` 가 되고, `card_visible` 은 `False`(숨김)와 `None`(카드 없음)을 구분한다 — 화면이 둘을 다르게 보여야 한다.
+  - **미등록 발견은 실패해도 200 이다.** 배너 하나 때문에 레지스트리 표가 안 뜨면 안 되므로 오류를 본문(`error`)에 싣는다. fork·archived·타인 소유를 거른다 — 소음이 되면 아무도 안 본다.
+  - 등록 응답은 클론을 기다리지 않는다. `BackgroundTasks` + **새 세션**으로 돌린다(요청 세션은 응답과 함께 닫힌다).
+  - 예외 매핑을 코드로 나눴다 — 검증 실패 **422**(입력이 계약을 어겼다), 파일·git 실패 **500**(입력은 옳았고 서버가 못 했다). 사람이 고칠 곳이 다르다.
+  - **계층 테스트가 24개로 늘었다**(P2 5 → P3 24). `GOVERNED_API` 에 실제 파일이 생기면서 라우터의 `select()` 금지·ORM import 금지가 비로소 걸린다.
+  - **887 passed** (825 → 스캐폴드/검증 29 + 등록 14 + 계층 19 신규).
+
+### Phase 4 — 화면 (FE)
+
+- **Status**: DONE
+- **설명**: 프로젝트 슬롯을 연다. 사람이 실제로 눌러 보는 것이 이 Phase 의 완료 조건이다.
+- **작업**:
+  - [x] `sidebar.tsx` — 프로젝트 `ready: true`
+  - [x] 미등록 배너 — 0건이면 숨김, 칩 클릭 시 폼 프리필, 조회 실패해도 표는 렌더
+  - [x] 레지스트리 표 — 제품 드롭다운 · 커리어 드롭다운 · `긁기` 토글 · **`노출` 읽기 전용** · 클론 상태 · 재동기화
+  - [x] 새 제품 폼 — `company`/`studio` 분기, 분류 드롭다운, 필드별 오류 표시
+  - [x] 클론 진행 폴링
+- **검증**:
+  - [x] `tsc --noEmit` · `next build` 통과
+  - [x] 사람이 등록·수정·토글·재동기화를 눌러 봤다
+  - [x] `⚠ 제품 폴더 없음` 과 `✕ 사유코드` 가 실제로 보인다
+  - [x] ~~`노출` 열이 눌리지 않는다~~ → **D18 로 눌리게 바꿨다.** 파일을 고치고 커밋한다
+  - [x] 공용 `Select` 로 네이티브 `<select>` 0개
+  - [x] 필터 탭(전체·회사·프로젝트)
+- **완료 증거**:
+  - 화면 넷 다 붙었다 — 미등록 배너 · 레지스트리 표 · 새 제품 폼 · 행 편집. `tsc` 통과, `next build` 통과(`/admin/projects` 6.01 kB).
+  - **눌러 보지 않으면 못 잡는 것 넷이 실제로 나왔다.** 이것이 P4 검증에 "사람이 눌러 봤다" 를 넣은 값이다.
+  - **① `TopNav` 훅 순서 위반 — `/admin` 전 경로가 죽어 있었다.** `if (pathname?.startsWith("/admin")) return null;` 이 `useEffect` **앞**에 있어 훅 4개만 실행되고 반환됐고, React 가 6개를 기대해 `Rendered fewer hooks than expected` 로 런타임이 죽는다. **내 변경이 아니다** — `origin/main` 과 diff 0이고 WORK-011(admin 셸 신설) 때부터 잠복했다. **`next build` 는 통과한다** — dev 의 엄격 검사에서만 드러나므로 빌드로는 못 잡는 종류다. 훅을 전부 부른 뒤로 옮겼다.
+  - **② 네이티브 `<select>` 팝업이 밝게 뜬다.** `<option>` 목록은 OS 가 그려서 `background`·`color` 를 무시하고, macOS 는 `color-scheme: dark` 를 걸어도 회색 목록을 그대로 띄운다. **공용 `components/admin/select.tsx` 로 대체**했다(네이티브 0개). 표가 `overflow-x: auto` 라 `absolute` 로 두면 잘려서 **트리거 좌표를 재 `position: fixed`** 로 붙이고 스크롤·리사이즈에 따라가게 했다. `:root` 의 `color-scheme: dark` 도 함께 넣었다 — globals.css 머리말이 "Dark-first" 라 적어 놓고 그 선언이 없어 체크박스·스크롤바가 밝게 떴다.
+  - **③ 노출을 못 바꾸는 것이 실제로 걸렸다** → D18. D14 가 기각한 것은 **DB 이관**이었는데 "화면이 파일을 고친다" 는 선택지를 빠뜨렸던 것이다. 실측 확인: `wine-log` 토글 → **1 insertion / 1 deletion**, `# 포트폴리오 PDF 케이스 스터디` 주석과 키 순서 보존, reload 후 `/api/projects` 6 → 5장. WORK-017 결함 ⑩(42/38)을 안 밟았다.
+  - **④ 카드 없는 제품에 카드를 만들 경로가 없었다.** `register()` 가 제품 디렉토리가 있으면 `PRODUCT_EXISTS` 로 거부해서, **BL-005 가 진단한 "카드 없는 5개"** 가 영영 못 뜨는 상태였다 — 이번 발주가 그 문제를 안 풀고 있었다. `POST /{id}/card` 를 붙였고 `mac-remote` 에 `P-16` 카드를 실제로 만들었다(숨김).
+  - **미등록 발견 창을 실측으로 정했다.** 57건이 나와 배너가 소음이 됐다 — 분포가 `≤30일 5 / 31~90일 7 / 91~365일 16 / >365일 29` 였다. **절반이 1년 넘게 안 민 죽은 레포**라 30일 창을 넣어 5건으로 줄였고, `최근 30일 기준, 오래된 52건은 감춤` 을 배너에 실었다(조용히 자르지 않는다). 발주 Open Issue 「미등록 발견의 범위」가 여기서 닫혔다.
+  - 필터 탭(전체·회사·프로젝트)을 더했다. 회사 행은 `제품`·`노출` 이 비어 있는 게 정상이고 개인 행은 `커리어` 가 비어 있는 게 정상인데, 한 표에 섞이면 **두 종류의 빈 칸이 같아 보인다.**
+  - 파생 3분기가 화면에서 확인됐다 — `공개`(카드 있고 노출) / `숨김` / `+ 카드`(카드 없음) / `—`(제품 연결 없음).
+  - **887 passed** · `tsc` · `next build` 통과 · `product_doc_pipeline --strict` 0 errors.
+
+### Phase 5 — 배포 + 실운영 완주 (Ops)
+
+- **Status**: DONE
+- **설명**: 이 발주가 실제로 문제를 풀었는지 확인하는 유일한 Phase 다. **관측 대상이 화면이 아니라 잔디다.**
+- **작업**:
+  - [x] 배포 — 마이그레이션 `0009` + 시드 재실행(신규 4행)
+  - [x] 서버에서 신규 레포 4개 클론
+  - [~] 화면에서 제품 1건 실제 등록 → **로컬에서 dry-run 으로 완주. 서버 실 push 는 미실시** (Open Issue)
+  - [~] 다음 09:05 잔디 관측 — **그런 날이 아직 안 왔다** (Open Issue)
+- **검증**:
+  - [~] 실 등록 커밋이 `origin/main` 에 있고 `product_doc_pipeline` 이 통과한다 — 로컬 dry-run 만 (Open Issue)
+  - [~] **그날 daily 의 `counts` 에 신규 레포 커밋이 잡힌다** — 최근 3일 신규 레포 커밋이 0건이라 관측할 날이 안 왔다. **다만 전제는 전부 확인됐다**(아래 완료 증거) (Open Issue)
+  - [x] 배너의 미등록 건수가 등록 후 줄어든다 — 로컬에서 5 → 4 확인
+  - [x] 기존 잔디·유튜브 파이프라인에 회귀가 없다
+- **완료 증거**:
+  - **배포 성공 23초** (`8ed99e2`, PR #7 머지). 서버 `git log -1` 이 머지 커밋이고 `kknaks-back`·`worker` 재기동, `redis`·`postgres` 유지.
+  - 마이그레이션 head 가 `0009_tracked_repos_product_slug` 이고 `product_slug varchar(64)` 컬럼 확인.
+  - **시드가 자동으로 안 돌았다 — 예고한 조용한 실패가 실제로 났다.** 배포는 성공했는데 레지스트리는 **13행 · `product_slug` 0건**이었다. 그대로 뒀으면 잔디는 여전히 13개만 긁으면서 매일 정상 종료한다. 손으로 실행해 **17행 · `product_slug` 12건**으로 채웠다(`studio +4 · company +0 · product filled=8 kept=4 no_product=5` — 로컬과 같은 숫자).
+  - **신규 레포 4개 클론 전부 성공.** `ax-graph`·`lunch_game`·`mac-remote`·`gcs_demo`. **`gcs_demo` 는 `kknaksss` 소유라 계정이 갈리는데 통과했다** — 발주 Open Issue 하나가 실측으로 닫혔다. 클론 볼륨 **295MB / 17개**로 예측(321MB) 안이다.
+  - **"한 달 57건 누락" 이 서버에서 정확히 재현됐다** — 실제 클론에서 센 최근 30일 본인 커밋이 `ax-graph 48 · lunch_game 6 · mac-remote 0 · gcs_demo 3` = **57건**. 로컬 실측과 같은 수다.
+  - **가장 선명한 증거는 `2026-07-14` 다.** 그날 daily 가 `counts.commit: 7` 로 기록돼 있는데 신규 레포에 그날 커밋이 **8건 더** 있었다(ax-graph 5 · lunch_game 3). 실제 작업은 15건이었고 **절반이 사라져 있었다.** 더구나 그 daily 의 서술이 `axkg documentation finalization` 인데 **정작 ax-graph 레포 커밋 5건은 못 본 상태로 쓰였다.**
+  - 서버 `/api/admin/products` 응답이 로컬과 동일하다 — 17행, 파생 3분기(`True`/`False`/`None`)가 같게 나온다.
+  - **운영 프론트에 화면이 떴다** — `https://profile.kknaks.cloud/admin/projects` 200. Vercel 이 main push 로 자동 배포했다.
+  - 서버는 `JOB_GIT_PUSH_DRY_RUN=0`(실 push)이고 스케줄러가 `daily-activity 09:05 KST` 로 정상 등록됐다.
+
+## Pre-deploy Check
+
+- [ ] 마이그레이션 `0009` 가 **컬럼 추가뿐**이고 기존 13행 데이터를 건드리지 않는다
+- [ ] 신규 레포 4개 클론 디스크 여유 (기존 ~290M 위에 추가분)
+- [ ] `GH_TOKEN` 계정 권한이 신규 레포 4개를 읽을 수 있다 (`gcs_demo` 는 `kknaksss` 소유 — 계정이 갈린다)
+- [ ] admin API 응답에 토큰·경로 절대값이 실리지 않는다 (`_scrub` 경유)
+- [ ] 미등록 발견이 **회사 조직 레포를 화면에 노출**하는데, 그것이 의도한 범위인지 확인
+- [ ] 스캐폴드가 쓰는 경로가 `products/` 밖으로 나갈 수 없다 (traversal 차단)
+- [ ] P1 의 파일 삭제가 `/api/projects`·PDF 에 영향 없음을 배포 전 로컬에서 확인
+
+## Rollback
+
+- **P1** — git revert. 파일 이동·삭제뿐이라 되돌리면 원상태다.
+- **P2** — `alembic downgrade` 로 컬럼 제거. 컬럼이 nullable 이라 **기존 잔디 경로는 컬럼이 없어도 돈다**(아무도 안 읽는다).
+- **P3** — 라우터를 `main.py` 에서 미등록하면 표면이 사라진다. service·repository 는 호출자가 없으면 무해하다.
+- **P4** — `sidebar.tsx` 의 `ready: false` 로 되돌리면 진입점이 닫힌다.
+- **P5** — 등록으로 생긴 제품 디렉토리는 git revert. 클론은 볼륨에서 지우면 다음 조사에서 다시 받는다.
+- 부분 revert 시 영향: **P2 만 남기고 P3 이후를 되돌려도 안전하다** — 컬럼은 아무도 안 읽는다. 반대로 P1 만 되돌리면 P2 시드 매핑이 깨진다.
+
+## Done Criteria
+
+- [ ] 모든 Phase 가 `DONE` 또는 `SUPERSEDED` 다.
+- [ ] SPEC-014 의 수용 조건 14개가 전부 검증됐다.
+- [ ] 계층 규약이 신규 코드에 지켜졌다 — 라우터에 `select()` 없음, service 에 `HTTPException` 없음이 테스트로 고정됐다.
+- [ ] `log.md` 와 `30-work/README.md` 가 갱신됐다.
+
+## Open Issues
+
+- **시드가 배포에 안 딸려 온다.** 이번에 손으로 돌렸다. 안 돌리면 컬럼만 생기고 레지스트리는 옛 13행이라 **잔디가 여전히 정상 종료하면서 새 레포를 놓친다** — WORK-017 결함 ④와 같은 침묵이다. 엔트리포인트에 넣을지는 결정거리다(멱등하니 매번 돌려도 안전하다).
+- **서버에서 실 등록을 아직 안 해 봤다.** 로컬은 dry-run 으로 완주했지만 `JOB_GIT_PUSH_DRY_RUN=0` 인 서버에서 `origin/main` 으로 실제 커밋이 나가는 경로는 관측 전이다.
+- **잔디 관측을 못 했다 — 그런 날이 아직 안 왔다.** 신규 레포 4개의 최근 3일 커밋이 0건이라 다음 09:05 로는 차이가 안 난다. **전제는 전부 확인됐다**(레지스트리 17행 · 클론 완료 · 57건 재현). `2026-07-14` 백필로 즉시 증명할 수 있으나 그날 daily 를 다시 쓰는 일이라 사람 판단이 필요하다.
+- **스캐폴드 화이트리스트의 장기 유지.** 템플릿에 예시 문서가 추가되면 목록이 조용히 어긋난다. 테스트가 목록을 고정하지만, "템플릿에 새 파일이 생겼는데 복사 목록에 없다" 를 감지할지는 P3 에서 판단한다.
+- **미등록 발견의 회사 조직 범위.** 조직 레포 전체가 뜨면 본인이 손대지 않은 것까지 배너에 오른다. `owner` 필터만으로 부족하면 "본인 커밋이 있는 것만" 으로 좁힐지 P3 에서 실측 후 정한다.
+- **`gcs_demo` 의 계정.** `kknaksss` 소유라 `PERSONAL_OWNERS` 에는 있지만 토큰이 실제로 읽히는지는 P5 클론에서 확인된다.
+- **P1 의 회사 5개 삭제가 되돌릴 수 없는 유일한 항목이다.** git 이력에는 남지만, 되살릴 이유가 생기면 `showcase.md` 를 새로 쓰는 편이 빠르다.
+
+## Related
+
+- SPEC: frontmatter `links.specs` 참조
+- 계층 규약: `40-architecture/system/README.md` 「백엔드 계층 규약」

@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>관리 설정 - Cloud File Organizer</title>
+  <link rel="stylesheet" href="assets/cloud-file-organizer.css">
+</head>
+<body class="admin">
+  <div class="app">
+    <header class="topbar">
+      <a class="brand" href="page-documents.html"><span class="mark">CF</span><span>Cloud File Organizer</span></a>
+      <nav class="nav" aria-label="primary">
+        <a href="page-documents.html">문서</a>
+        <a href="page-approvals.html">승인</a>
+        <a class="active" href="page-admin-settings.html">관리</a>
+        <a href="login-rbac.html">로그인/RBAC</a>
+      </nav>
+      <div class="spacer"></div>
+      <span class="user-chip">admin · R&D / FE</span>
+      <a class="button" href="login-rbac.html">로그아웃</a>
+    </header>
+
+    <main class="shell">
+      <aside class="sidebar">
+        <div class="section">
+          <div class="section-title"><span class="label">관리 메뉴</span><span class="badge dark">admin</span></div>
+          <div class="tree">
+            <div class="tree-row active"><span>•</span><span class="name">Google Drive 연동</span></div>
+            <div class="tree-row"><span>•</span><span class="name">조직도</span></div>
+            <div class="tree-row"><span>•</span><span class="name">문서 트리 설정</span></div>
+            <div class="tree-row"><span>•</span><span class="name">문서종류</span></div>
+            <div class="tree-row"><span>•</span><span class="name">사용자 RBAC 매핑</span></div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="callout info">
+            <strong>member에게는 관리 탭 자체를 렌더하지 않음</strong>
+            <p class="small">route guard와 navigation 조건부 렌더링을 같은 기준으로 맞춘다.</p>
+          </div>
+        </div>
+      </aside>
+
+      <section class="main">
+        <div class="page-head">
+          <div>
+            <div class="crumb">관리 / Drive 연동 · 조직/트리 · 문서종류 · RBAC</div>
+            <h1>관리 설정</h1>
+          </div>
+          <button class="button">상태 새로고침</button>
+        </div>
+        <div class="content">
+
+          <section class="grid-2">
+            <div class="panel">
+              <div class="panel-head"><h2>① Google Drive 연동</h2><span class="badge success">연결됨</span></div>
+              <div class="panel-body kv">
+                <div class="kv-row"><span>scope</span><strong>drive.readonly</strong></div>
+                <div class="kv-row"><span>감시 폴더</span><strong>Cloud Intake Demo</strong></div>
+                <div class="kv-row"><span>watch channel</span><strong>2026-07-12 만료</strong></div>
+                <div class="kv-row"><span>상태 표기</span><strong>연결됨 · 설정 필요 · 갱신 필요 · 오류</strong></div>
+              </div>
+              <div class="panel-body" style="padding-top:0">
+                <div class="actions">
+                  <button class="button">watch 갱신</button>
+                  <span class="badge warn">갱신 필요 시 노출</span>
+                </div>
+                <p class="small muted" style="margin-top:10px">v1 감시 폴더 선택/변경은 관리자 화면이 아니라 `GOOGLE_DRIVE_SELECTED_FOLDER_ID` env 변경으로 수행한다. 이전 폴더에만 속한 문서는 out_of_scope로 숨긴다.</p>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-head"><h2>② Sync Activity</h2><span class="badge info">idle</span></div>
+              <div class="panel-body kv">
+                <div class="kv-row"><span>마지막 동기화</span><strong>2026-07-08 16:42</strong></div>
+                <div class="kv-row"><span>마지막 변경 토큰</span><strong class="mono">pageToken:8841</strong></div>
+                <div class="kv-row"><span>처리된 변경 수</span><strong>14</strong></div>
+              </div>
+              <div class="panel-body" style="padding-top:0">
+                <div class="callout danger">
+                  <strong>실패 상태 예</strong>
+                  <p class="small">Drive 변경 처리에 실패했습니다.</p>
+                </div>
+                <div class="actions" style="margin-top:10px">
+                  <button class="button">다시 처리</button>
+                  <span class="small muted">같은 change 중복 처리에도 최종 상태는 같아야 한다</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head"><h2>③ 문서 수집 결과</h2><a class="button primary" href="page-approvals.html">승인 게이트로 이동</a></div>
+            <table class="table">
+              <thead><tr><th>구분</th><th>건수</th><th>설명</th></tr></thead>
+              <tbody>
+                <tr><td><span class="badge success">새 문서</span></td><td>3</td><td>새 Drive file이 document record로 등록됨</td></tr>
+                <tr><td><span class="badge info">갱신된 문서</span></td><td>2</td><td>기존 document mirror가 갱신됨</td></tr>
+                <tr><td><span class="badge danger">숨김 처리</span></td><td>1</td><td>trashed / removed / out_of_scope</td></tr>
+                <tr><td><span class="badge warn">본문 분석 없음</span></td><td>1</td><td>본문 분석 없이 metadata 후보만 생성됨</td></tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section class="grid-2">
+            <div class="panel">
+              <div class="panel-head"><h2>④ 조직도</h2><span class="badge dark">회사/부서/팀</span></div>
+              <table class="table">
+                <thead><tr><th>노드</th><th>type</th><th>상태</th><th>action</th></tr></thead>
+                <tbody>
+                  <tr><td>메디솔브</td><td>company</td><td><span class="badge success">active</span></td><td><button class="button">이름 변경</button></td></tr>
+                  <tr><td>R&D / FE Team</td><td>team</td><td><span class="badge success">active</span></td><td><div class="actions"><button class="button">이름 변경</button><button class="button">비활성화</button></div></td></tr>
+                  <tr><td>Legacy Ops</td><td>department</td><td><span class="badge">비활성</span></td><td class="small muted">새 귀속 대상 선택 불가</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="panel">
+              <div class="panel-head"><h2>⑤ 문서 트리 설정</h2><span class="badge dark">업무/문서종류</span></div>
+              <table class="table">
+                <thead><tr><th>노드</th><th>type</th><th>부모</th><th>action</th></tr></thead>
+                <tbody>
+                  <tr><td>제품 운영</td><td>work</td><td>FE Team</td><td><button class="button">업무 추가</button></td></tr>
+                  <tr><td>요구사항 정의서</td><td>document_type</td><td>제품 운영</td><td><button class="button">문서종류 추가</button></td></tr>
+                </tbody>
+              </table>
+              <div class="panel-body">
+                <p class="small muted">조직도 변경은 소속/관리 주체 기준을 바꾸고, 업무/문서종류 변경은 문서 탐색 분류만 바꾼다.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="grid-2">
+            <div class="panel">
+              <div class="panel-head"><h2>⑥ 문서종류 추가</h2><span class="badge warn">전사 공통 catalog</span></div>
+              <div class="panel-body form-grid">
+                <label>표시 이름<input class="input" value="보안 예외 신청서"></label>
+                <label>stable key<input class="input" value="security_exception_request"></label>
+                <label class="wide">중복 상태<input class="input" value="unique — 추가 가능"></label>
+                <div class="actions wide"><button class="button primary">추가</button><button class="button">취소</button></div>
+                <p class="small muted wide">중복 시: <strong>이미 존재하는 문서종류입니다.</strong> · 기존 문서의 문서종류는 자동 변경되지 않는다.</p>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-head"><h2>⑦ 사용자/RBAC 보정</h2><span class="badge warn">매핑 필요 1명</span></div>
+              <table class="table">
+                <thead><tr><th>사용자</th><th>source role</th><th>제품 노드</th><th>처리</th></tr></thead>
+                <tbody>
+                  <tr><td>new.staff@medisolve.internal</td><td>member</td><td><span class="badge danger">미매핑</span></td><td><button class="button">조직 연결</button></td></tr>
+                  <tr><td>qa.lead@medisolve.internal</td><td>qa</td><td>메디솔브 / QA</td><td><span class="badge success">정상</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <aside class="aside">
+        <div class="section">
+          <div class="section-title"><span class="label">SoT 경계</span></div>
+          <div class="kv">
+            <div class="kv-row"><span>파일 원본</span><strong>Google Drive</strong></div>
+            <div class="kv-row"><span>Drive mirror</span><strong>DB mirror</strong></div>
+            <div class="kv-row"><span>metadata</span><strong>승인 후 DB</strong></div>
+            <div class="kv-row"><span>job state</span><strong>ai_queue_jobs</strong></div>
+            <div class="kv-row"><span>relation</span><strong>document_relations</strong></div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="section-title"><span class="label">Connector 상태</span><span class="badge dark">SPEC-004</span></div>
+          <div class="kv">
+            <div class="kv-row"><span>connected</span><strong>연결됨</strong></div>
+            <div class="kv-row"><span>disconnected</span><strong>설정 필요</strong></div>
+            <div class="kv-row"><span>watch_expiring</span><strong>갱신 필요</strong></div>
+            <div class="kv-row"><span>error</span><strong>오류</strong></div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="section-title"><span class="label">화면 구성 기준</span></div>
+          <div class="kv">
+            <div class="kv-row"><span>①②③</span><strong>SPEC-004 U-1 / U-2 / U-3</strong></div>
+            <div class="kv-row"><span>④⑤⑥</span><strong>SPEC-002 U-4</strong></div>
+            <div class="kv-row"><span>⑦</span><strong>SPEC-001 RBAC 보정</strong></div>
+          </div>
+        </div>
+      </aside>
+    </main>
+  </div>
+</body>
+</html>
