@@ -36,6 +36,11 @@ export function CareerTimeline({ items }: { items: TimelineItem[] }) {
       />
       {items.map((it, i) => {
         const open = expanded.has(i);
+        // career 항목만 products·problems 를 갖는다 — education 은 body 뿐이다.
+        const products = "products" in it ? it.products : [];
+        const problems = "problems" in it ? it.problems : [];
+        const hasBody = !!it.body && it.body.trim().length > 0;
+        const hasDetail = hasBody || products.length > 0 || problems.length > 0;
         return (
           <div key={i} style={{ position: "relative", marginBottom: 36 }}>
             <span
@@ -122,7 +127,7 @@ export function CareerTimeline({ items }: { items: TimelineItem[] }) {
               </div>
             )}
 
-            {it.body && it.body.trim().length > 0 && (
+            {hasDetail && (
               <>
                 <button
                   type="button"
@@ -240,8 +245,169 @@ export function CareerTimeline({ items }: { items: TimelineItem[] }) {
                         ),
                       }}
                     >
-                      {it.body}
+                      {it.body ?? ""}
                     </ReactMarkdown>
+
+                    {products.length > 0 && (
+                      <div style={{ marginTop: hasBody ? 20 : 0 }}>
+                        <div
+                          className="mono"
+                          style={{
+                            fontSize: 11,
+                            color: "var(--accent)",
+                            marginBottom: 10,
+                          }}
+                        >
+                          // 만든 것
+                        </div>
+                        <div
+                          style={{
+                            display: "grid",
+                            gridTemplateColumns:
+                              "repeat(auto-fill, minmax(220px, 1fr))",
+                            gap: 12,
+                          }}
+                        >
+                          {products.map((p) => (
+                            <div
+                              key={p.id}
+                              style={{
+                                padding: 14,
+                                background: "var(--bg-0)",
+                                border: "1px solid var(--line-1)",
+                                borderRadius: 6,
+                              }}
+                            >
+                              <div
+                                style={{
+                                  display: "flex",
+                                  alignItems: "baseline",
+                                  gap: 8,
+                                  marginBottom: 6,
+                                }}
+                              >
+                                <span style={{ fontSize: 15, fontWeight: 600 }}>
+                                  {p.title}
+                                </span>
+                                {p.status && (
+                                  <span
+                                    className="mono"
+                                    style={{ fontSize: 10, color: "var(--fg-3)" }}
+                                  >
+                                    {p.status}
+                                  </span>
+                                )}
+                              </div>
+                              {p.summary && (
+                                <p
+                                  style={{
+                                    margin: 0,
+                                    fontSize: 13,
+                                    lineHeight: 1.6,
+                                    color: "var(--fg-1)",
+                                  }}
+                                >
+                                  {p.summary}
+                                </p>
+                              )}
+                              {(p.links?.site || p.links?.docs) && (
+                                <div
+                                  className="mono"
+                                  style={{
+                                    marginTop: 8,
+                                    fontSize: 11,
+                                    display: "flex",
+                                    gap: 10,
+                                  }}
+                                >
+                                  {p.links?.site && (
+                                    <a
+                                      href={p.links.site}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      style={{ color: "var(--accent)" }}
+                                    >
+                                      site ↗
+                                    </a>
+                                  )}
+                                  {p.links?.docs && (
+                                    <a
+                                      href={p.links.docs}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      style={{ color: "var(--accent)" }}
+                                    >
+                                      docs ↗
+                                    </a>
+                                  )}
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {problems.length > 0 && (
+                      <div
+                        style={{
+                          marginTop: hasBody || products.length > 0 ? 20 : 0,
+                        }}
+                      >
+                        <div
+                          className="mono"
+                          style={{
+                            fontSize: 11,
+                            color: "var(--accent)",
+                            marginBottom: 4,
+                          }}
+                        >
+                          // 해결한 문제
+                        </div>
+                        {problems.map((pr) => (
+                          <div
+                            key={pr.id}
+                            style={{
+                              padding: "10px 0",
+                              borderTop: "1px solid var(--line-1)",
+                            }}
+                          >
+                            <div
+                              style={{
+                                display: "flex",
+                                alignItems: "baseline",
+                                gap: 8,
+                                flexWrap: "wrap",
+                              }}
+                            >
+                              <span style={{ fontSize: 14, fontWeight: 600 }}>
+                                {pr.title}
+                              </span>
+                              {pr.productTitle && (
+                                <span
+                                  className="mono"
+                                  style={{ fontSize: 10, color: "var(--fg-3)" }}
+                                >
+                                  @ {pr.productTitle}
+                                </span>
+                              )}
+                            </div>
+                            {pr.body && (
+                              <p
+                                style={{
+                                  margin: "6px 0 0",
+                                  fontSize: 13,
+                                  lineHeight: 1.65,
+                                  color: "var(--fg-1)",
+                                }}
+                              >
+                                {pr.body}
+                              </p>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 )}
               </>

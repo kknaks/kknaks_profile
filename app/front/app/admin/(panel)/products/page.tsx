@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { adminApi, AuthError } from "@/lib/api";
+import { RepoSection } from "@/components/admin/repo-section";
 import type { AdminCareer, AdminProduct, ProductInput, WorkStatus } from "@/lib/types";
 
 // 회사 제품 — 등록·수정·삭제. product 는 career 에 속한다(erd.md §product) —
@@ -536,6 +537,9 @@ function ProductForm({
           </span>
         )}
       </div>
+
+      {/* 레포는 제품의 속성 — 이 폼 안에서 등록한다. 행 조작은 저장 버튼과 무관하게 즉시 반영. */}
+      {product && <RepoSection productId={product.id} />}
     </div>
   );
 }

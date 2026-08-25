@@ -22,10 +22,10 @@ type NavSection = {
 const NAV: NavSection[] = [
   {
     // 케이스 1(자료 캡처)·케이스 6(problem 게이트)의 자리 — 잔디잡 만들 때 채운다.
+    // 승인도 인박스 행 펼침에서 한다 — 넣는 곳·보는 곳·승인하는 곳이 한 페이지.
     title: "수집함",
     items: [
-      { label: "자료 캡처", href: "/admin/capture", ready: true, icon: <IconInbox /> },
-      { label: "승인 대기", href: "/admin/approvals", ready: true, icon: <IconCheck /> },
+      { label: "인박스", href: "/admin/capture", ready: true, icon: <IconInbox /> },
     ],
   },
   {
@@ -33,6 +33,7 @@ const NAV: NavSection[] = [
     items: [
       { label: "기본 정보", href: "/admin/profile", ready: true, icon: <IconUser /> },
       { label: "사이트 문구", href: "/admin/site-config", ready: true, icon: <IconDoc /> },
+      { label: "커밋 히스토리", href: "/admin/commits", ready: true, icon: <IconCommit /> },
     ],
   },
   {
@@ -57,6 +58,12 @@ const NAV: NavSection[] = [
       { label: "노트", href: "/admin/notes", ready: true, icon: <IconNote /> },
       { label: "콘텐츠", href: "/admin/contents", ready: true, icon: <IconPlay /> },
       { label: "알고리즘", href: "/admin/algorithms", ready: true, icon: <IconCode /> },
+    ],
+  },
+  {
+    title: "설정",
+    items: [
+      { label: "깃 토큰", href: "/admin/git-tokens", ready: true, icon: <IconGear /> },
     ],
   },
 ];
@@ -532,14 +539,6 @@ const svg = {
   strokeLinejoin: "round" as const,
 };
 
-function IconCheck() {
-  return (
-    <svg {...svg}>
-      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-      <path d="m9 11 3 3L22 4" />
-    </svg>
-  );
-}
 function IconPlay() {
   return (
     <svg {...svg}>
@@ -642,6 +641,14 @@ function IconGear() {
     <svg {...svg}>
       <circle cx="12" cy="12" r="3" />
       <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+    </svg>
+  );
+}
+function IconCommit() {
+  return (
+    <svg {...svg}>
+      <circle cx="12" cy="12" r="4" />
+      <path d="M1.05 12H8M16 12h6.95" />
     </svg>
   );
 }

@@ -107,15 +107,51 @@ interface TimelineEntryBase {
   period: string;
 }
 
-/** 한 행 = 직장에서의 역할 하나. 같은 회사에서 직무가 바뀌면 행이 하나 더 생긴다. */
-export type CareerItem = TimelineEntryBase;
+/** 펼침 안의 「만든 것」 카드 — `product` 의 공개 추출. `visible` 은 백엔드가 걸렀다. */
+export interface CareerProduct {
+  id: number;
+  slug: string;
+  title: string;
+  summary?: string | null;
+  category?: string | null;
+  status?: WorkStatus | null;
+  startedOn?: string | null;
+  stack: string[];
+  thumbnail?: string | null;
+  /** `product.links` jsonb — `{site, docs}`. */
+  links?: { site?: string; docs?: string } | null;
+}
+
+/** 펼침 안의 「해결한 문제」 — 이력서의 알맹이(erd.md §problem). */
+export interface CareerProblem {
+  id: number;
+  /** 무엇을 풀었나. */
+  title: string;
+  /** 어떻게 풀었나. */
+  body?: string | null;
+  /** `product.title` 선택 조인 — 제품에 매이지 않은 문제(조직·프로세스)면 null. */
+  productTitle?: string | null;
+}
+
+/**
+ * 한 행 = 직장에서의 역할 하나. 같은 회사에서 직무가 바뀌면 행이 하나 더 생긴다.
+ *
+ * 펼침 = `body`(career.description) + `products` + `problems` (erd.md §career —
+ * career 에는 md 원장이 없다. 짧은 글은 컬럼이 낫다).
+ */
+export interface CareerItem extends TimelineEntryBase {
+  /** `company.description` — 펼침 상단의 회사 한 줄. */
+  orgDescription?: string | null;
+  products: CareerProduct[];
+  problems: CareerProblem[];
+}
 
 /** 한 행 = 교육과정 하나. 부트캠프·학력. */
 export type EducationItem = TimelineEntryBase;
 
 /**
- * `/career` 타임라인은 `career` 와 `education` 을 **합쳐** `startedOn DESC` 로
- * 나열한다(database.md §화면에서는 합친다). 화면은 둘을 구분해 보여주지 않는다.
+ * `/career` 는 career 섹션과 education 섹션을 **나눠** 각각 `startedOn DESC` 로
+ * 나열한다(database.md §화면에서는 섹션으로 나눈다). 행 모양은 둘이 같다.
  */
 export type TimelineItem = CareerItem | EducationItem;
 
@@ -208,6 +244,11 @@ export interface NoteItem {
   summary?: string | null;
   tags: string[];
   publishedOn?: string | null;
+  /**
+   * **컬럼이 아니다** — `detail_path` 의 `para/resources/note/` 이하 첫 디렉토리명
+   * (backend·bitcamp·…). 탐색기 트리가 이 값으로 묶는다. 백엔드가 파생해 내려준다.
+   */
+  folder: string;
 }
 
 export interface NoteDetail extends NoteItem {
@@ -485,6 +526,8 @@ export interface Company {
   location?: string | null;
   site?: string | null;
   logoUrl?: string | null;
+  /** GitHub 조직(owner) — 레포 등록 화면의 owner 드롭다운 후보. */
+  githubOrg?: string | null;
 }
 
 /**
@@ -677,7 +720,7 @@ export type ProjectInput = Partial<Omit<AdminProject, "id">>;
 
 export interface AdminAlgorithm {
   id: number;
-  /** UK — frontmatter 의 `id` (A-001). */
+  /** UK — detail_path 파일명 stem 소문자 (a-001-two-sum). */
   slug: string;
   title: string;
   difficulty: AlgoDifficulty;
@@ -766,3 +809,264 @@ export interface AdminContent {
 
 /** 등록·수정 폼이 보내는 필드 — 보낼 필드만 담는다. */
 export type ContentInput = Partial<Omit<AdminContent, "id">>;
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * queue (admin) — erd.md §queue · inbox.md. 인박스(/admin/capture) 화면.
+ *
+ * 행이 갖는 건 넣은 것 그대로 — 종류·URL·메모·상태·error. 제목 같은 파생물은
+ * 초안(gate.payload)의 것이지 목록의 것이 아니다(inbox.md Step 2 정책).
+ * book·session 은 모달 버튼만 있고(v1 구멍) 여기로 안 온다.
+ * ══════════════════════════════════════════════════════════════════════════ */
+
+export type QueueKind = "youtube" | "docs" | "article" | "blog";
+
+/** queued → processing → review → done. 실패는 failed(재시도 가능). */
+export type QueueStatus = "queued" | "processing" | "review" | "done" | "failed";
+
+export interface AdminQueueItem {
+  id: number;
+  kind: QueueKind;
+  sourceUrl?: string | null;
+  note?: string | null;
+  status: QueueStatus;
+  /** 실패 사유 한 줄 — 재시도가 성공하면 비워져 온다. */
+  error?: string | null;
+  createdAt: string;
+}
+
+export interface AdminQueueResponse {
+  /** 최신순 — 방금 넣은 행이 맨 위. */
+  items: AdminQueueItem[];
+  /** 상태별 행 수 — 다섯 상태 모두 키가 있다(0 포함). */
+  counts: Record<QueueStatus, number>;
+}
+
+/** 인박스 모달의 넣기 — 필수는 URL 하나, 메모는 선택. */
+export interface QueueCreateInput {
+  kind: QueueKind;
+  sourceUrl: string;
+  note?: string;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * gate (admin) — erd.md §gate · inbox.md Step 4·5. 승인 대기(/admin/approvals).
+ *
+ * payload 모양은 stage 가 정한다. 승인은 다듬은 payload 를 그대로 보낸다 —
+ * 그게 저장되고 그대로 착지한다. 게이트 2 는 체크된 항목만 concepts 에 담는다.
+ * 2026-08-25 개정 — document 는 서버 검증 통과 시 자동 착지: 사람 승인 UI 는
+ * concept 하나고, document 행은 auto-approved 이력으로만 내려온다.
+ * ══════════════════════════════════════════════════════════════════════════ */
+
+export type GateStage = "document" | "concept";
+
+export type GateStatus = "open" | "approved" | "rejected";
+
+/** 게이트 1 · youtube 의 카드 메타 — 승인 확정 시 content 행이 된다. */
+export interface GateDocumentMeta {
+  title: string;
+  summary: string;
+  youtubeId: string;
+  /** M:SS / H:MM:SS. */
+  duration: string;
+  /** 출처 채널. */
+  speaker: string;
+  tags: string[];
+  /** YYYY-MM-DD. */
+  publishedOn: string;
+}
+
+/** 게이트 1(document) payload — stem·본문 md 전문 + (youtube 만) 카드 메타. */
+export interface GateDocumentPayload {
+  stem: string;
+  body: string;
+  meta?: GateDocumentMeta | null;
+}
+
+/** 게이트 2 개념 항목 — create 는 새 본문, supplement 는 보강 전문 + 표시용 diff. */
+export interface GateConceptItem {
+  mode: "create" | "supplement";
+  /** 아홉 영역 — ai/back/cs/db/design/front/infra/pm/qa. */
+  area: string;
+  stem: string;
+  /** 착지할 파일 전문 — supplement 도 전문이다(diff 는 표시용). */
+  body: string;
+  diff?: string | null;
+}
+
+export interface GateConceptPayload {
+  concepts: GateConceptItem[];
+}
+
+export type GatePayload = GateDocumentPayload | GateConceptPayload;
+
+export interface AdminGateItem {
+  id: number;
+  queueId: number;
+  stage: GateStage;
+  status: GateStatus;
+  /** queue 행에서 온 표시값 — 종류·URL·메모. */
+  kind: QueueKind;
+  sourceUrl?: string | null;
+  note?: string | null;
+  /** 목록 한 줄 제목 — payload 파생(meta.title → stem). */
+  title: string;
+  payload: GatePayload;
+  /** 푸시 성공의 증거 — approved 인데 null 이면 푸시 실패, [재시도] 대상.
+   *  dev dry-run 확정은 "dry-run" 문자열 — 커밋 자체가 없다(실패 아님). */
+  commitRef?: string | null;
+  /** 확정 기록 — contentId · 착지 경로. */
+  result?: Record<string, unknown> | null;
+  /** 확정 게이트가 만든 콘텐츠 — result.contentId 조인(scope=all 이력용). */
+  contentTitle?: string | null;
+  contentSlug?: string | null;
+  decidedAt?: string | null;
+  createdAt: string;
+  /** 이번 요청의 푸시 실패 사유 — 응답에만 실린다. */
+  pushError?: string | null;
+}
+
+export interface AdminGateResponse {
+  /** 기본: open + 승인됨·푸시 실패분 — 오래 기다린 것이 위.
+   *  scope=all 이면 닫힌 게이트(자동 착지 기록 · 거절)까지 전부 — 이력용. */
+  items: AdminGateItem[];
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * repo (admin) — erd.md §repo. 어드민 레포(/admin/repos) 화면.
+ *
+ * 커밋을 긁을 레포. 부모는 product / project **둘 중 정확히 하나**(DB CHECK) —
+ * 잔디(GET /api/activity)의 원천이 여기서 수집된 commit 행이다(케이스 6·7).
+ * 삭제하면 커밋이 CASCADE 로 쓸려간다 — 잔디를 남기려면 enabled=false 로 끈다.
+ * ══════════════════════════════════════════════════════════════════════════ */
+
+export interface AdminRepo {
+  id: number;
+  /** 연결 — 둘 중 하나만 채워진다. */
+  productId?: number | null;
+  projectId?: number | null;
+  /** `product.title` / `project.title` 선택 조인 — 읽기 전용 표시. */
+  productTitle?: string | null;
+  projectTitle?: string | null;
+  /** GitHub `owner/name`. */
+  slug: string;
+  /** spec / app / infra. */
+  role?: string | null;
+  /** 수집 토큰(git_token 행 id). null = 무토큰(공개 레포만). */
+  gitTokenId?: number | null;
+  /** false = 수집에서 뺀다. 지우는 대신 이걸 끈다. */
+  enabled: boolean;
+  /** 수집기 상태 — 마지막으로 돈 시각. 증분 수집의 since 이기도 하다. */
+  lastFetchedAt?: string | null;
+  /** 마지막 수집 실패 사유 — 성공하면 비워져 온다. */
+  lastError?: string | null;
+}
+
+/** 등록·수정 폼이 보내는 필드 — 보낼 필드만 담는다. 파생·수집 상태는 못 보낸다. */
+export type RepoInput = Partial<
+  Omit<AdminRepo, "id" | "productTitle" | "projectTitle" | "lastFetchedAt" | "lastError">
+>;
+
+/** 깃 토큰 행의 표시용 메타 — 토큰 원문·암호문은 어떤 응답에도 없다. */
+export interface GitTokenMeta {
+  id: number;
+  /** 구분 — personal / company. */
+  kind: string;
+  /** 깃 계정 id — kknaks / kknaksss. */
+  account: string;
+  /** 착지 커밋의 git 신원(user.email)에 쓴다. */
+  email: string;
+  /** kind=company 토큰의 소속 회사. personal 은 null, 미연결도 null. */
+  companyId?: number | null;
+  /** `company.name` 조인 — 읽기 전용 표시. 수정은 `companyId` 로 한다. */
+  companyName?: string | null;
+  /** false = 수집에서 무토큰 취급(공개 범위만). 지우는 대신 이걸 끈다. */
+  enabled: boolean;
+  createdAt?: string | null;
+}
+
+/* ── GitHub 조회 — 레포 연결 모달(GET /api/admin/github/*) ──────────────
+ * DB 행이 아니라 조회 시점의 스냅샷 — 저장 계약은 여전히 RepoInput 이다.
+ * 후보는 폼 스코프대로만 온다: 회사 제품 폼은 그 회사 것만, 개인 폼은 personal 만. */
+
+/** owner 라디오 한 항목 — owner 가 토큰(tokenId)을 데리고 온다. */
+export interface GithubOwnerOption {
+  owner: string;
+  /** 「medisolve-ai — 회사 조직」 같은 표시문 — 백엔드가 만든다. */
+  label: string;
+  /** org(회사 조직) / account(토큰 계정). */
+  source: "org" | "account";
+  /** 조회·저장에 쓸 git_token 행. null — 그 회사에 연결된 토큰이 없다(무토큰 조회). */
+  tokenId?: number | null;
+}
+
+/** GitHub 레포 한 줄 — 체크박스 목록용. slug 가 repo.slug 로 저장될 값이다. */
+export interface GithubRepoOption {
+  slug: string;
+  name: string;
+  private: boolean;
+  /** GitHub ISO 문자열 그대로 — 표시용. */
+  updatedAt?: string | null;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * commit (admin) — erd.md §commit. 어드민 커밋 히스토리(/admin/commits) 화면.
+ *
+ * **조회 전용** — 커밋은 수집기 소유라 수정·삭제 계약이 없다. 날짜 묶음의
+ * 기준은 authored_at 의 KST 날짜(/about 잔디 파생과 같은 기준)다.
+ * message 원문은 어드민 전용 — 공개 표면에는 어떤 형태로도 안 나간다.
+ * ══════════════════════════════════════════════════════════════════════════ */
+
+export interface AdminCommitCalendarDay {
+  /** 그 달의 일(1~31) — KST 기준. */
+  day: number;
+  count: number;
+  /** 하루 요약(daily) 상태 — "error" 면 스트립에 빨간 점. null/없음 = 행 없음(미요약). */
+  dailyStatus?: "ok" | "error" | null;
+  /** 하루 요약 불릿 배열 — 데일리 카드 본문. */
+  dailySummary?: string[] | null;
+  /** 실패 사유 — dailyStatus=="error" 일 때. */
+  dailyError?: string | null;
+  /** 요약/실패 시각 — KST ISO 문자열. */
+  dailyAt?: string | null;
+}
+
+export interface AdminCommitCalendarRepo {
+  /** repo.id — repo_id 필터에 그대로 쓴다. */
+  id: number;
+  /** GitHub `owner/name`. */
+  slug: string;
+  /** 그 달 커밋 수. */
+  count: number;
+}
+
+export interface AdminCommitCalendar {
+  /** 그 달 전체 건수 — repo 필터와 무관. */
+  total: number;
+  /** KST 날짜별 건수 — repo 필터 적용. 커밋 없는 날은 안 온다. */
+  days: AdminCommitCalendarDay[];
+  /** 그 달에 커밋이 있는 레포만 — 필터 무관, 건수 내림차순. */
+  repos: AdminCommitCalendarRepo[];
+}
+
+export interface AdminCommitItem {
+  id: number;
+  /** GitHub `owner/name` — 표에는 name 부분만 띄운다. */
+  repoSlug: string;
+  author?: string | null;
+  /** KST 로 변환된 ISO 문자열 — 예: `2026-08-25T06:16:36+09:00`. */
+  authoredAt: string;
+  /** 한 줄 요약 — 잔디에 뜨는 값. */
+  summary?: string | null;
+  /** 원문 전문 — 행 펼침 전용. 공개 표면 금지. */
+  message?: string | null;
+  sha: string;
+}
+
+export interface AdminCommitsPage {
+  items: AdminCommitItem[];
+  /** 필터(달·레포·날짜) 안의 전체 건수 — 페이지네이션 분모. */
+  total: number;
+  page: number;
+  /** 50 고정. */
+  pageSize: number;
+}

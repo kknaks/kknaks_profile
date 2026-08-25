@@ -19,12 +19,11 @@ export default async function CareerPage() {
     );
   }
 
-  // 타임라인은 `career` 와 `education` 을 합쳐 `startedOn DESC` 로 나열한다
-  // (database.md §education). 화면은 둘을 구분해 보여주지 않는다.
-  const roles = career["career[]"];
-  const items: TimelineItem[] = [...roles, ...career["education[]"]].sort((a, b) =>
-    b.startedOn.localeCompare(a.startedOn),
-  );
+  // career 와 education 을 **섹션으로 나눠** 각각 `startedOn DESC` 로 나열한다.
+  const sortDesc = (arr: TimelineItem[]) =>
+    [...arr].sort((a, b) => b.startedOn.localeCompare(a.startedOn));
+  const roles = sortDesc(career["career[]"]);
+  const education = sortDesc(career["education[]"]);
   const meta = career.career;
   const totalRoles = meta?.totalRoles ?? `${roles.length} role`;
   const focusLines = meta?.focus ? meta.focus.split("\n") : [];
@@ -64,42 +63,60 @@ export default async function CareerPage() {
         </h1>
       </header>
 
-      <div className="pad-x" style={{ padding: "48px 80px" }}>
-        <div
-          className="m-stack"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "180px 1fr",
-            gap: 48,
-          }}
-        >
+      {/* 커리어 | 교육 — 2열. 모바일(m-stack)에서는 세로로 쌓인다. */}
+      <div
+        className="pad-x m-stack"
+        style={{
+          padding: "48px 80px",
+          display: "grid",
+          gridTemplateColumns: "minmax(0, 1.6fr) minmax(0, 1fr)",
+          gap: 64,
+          alignItems: "start",
+        }}
+      >
+        <section style={{ minWidth: 0 }}>
           <div
             className="mono"
             style={{
               fontSize: 11,
-              color: "var(--fg-3)",
               textTransform: "uppercase",
               letterSpacing: "0.12em",
+              marginBottom: 24,
+              paddingBottom: 12,
+              borderBottom: "1px solid var(--line-1)",
             }}
           >
-            {meta?.totalYears && <div>// {meta.totalYears}</div>}
-            <div>// {totalRoles}</div>
-            {focusLines.length > 0 && (
-              <div style={{ marginTop: 16, color: "var(--fg-2)" }}>
-                focus
-                <br />
-                {focusLines.map((line, i) => (
-                  <span key={i}>
-                    <span style={{ color: "var(--fg-0)" }}>{line}</span>
-                    {i < focusLines.length - 1 && <br />}
-                  </span>
-                ))}
-              </div>
-            )}
+            <span style={{ color: "var(--accent)" }}>{"// career"}</span>
+            <span style={{ color: "var(--fg-3)", marginLeft: 12 }}>
+              {meta?.totalYears ? `${meta.totalYears} · ` : ""}
+              {totalRoles}
+              {focusLines.length > 0 ? ` · ${focusLines.join(" ")}` : ""}
+            </span>
           </div>
+          <CareerTimeline items={roles} />
+        </section>
 
-          <CareerTimeline items={items} />
-        </div>
+        {education.length > 0 && (
+          <section style={{ minWidth: 0 }}>
+            <div
+              className="mono"
+              style={{
+                fontSize: 11,
+                textTransform: "uppercase",
+                letterSpacing: "0.12em",
+                marginBottom: 24,
+                paddingBottom: 12,
+                borderBottom: "1px solid var(--line-1)",
+              }}
+            >
+              <span style={{ color: "var(--accent)" }}>{"// education"}</span>
+              <span style={{ color: "var(--fg-3)", marginLeft: 12 }}>
+                {education.length} course{education.length !== 1 ? "s" : ""}
+              </span>
+            </div>
+            <CareerTimeline items={education} />
+          </section>
+        )}
       </div>
     </main>
   );

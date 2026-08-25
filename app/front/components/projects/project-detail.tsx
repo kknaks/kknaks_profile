@@ -1,6 +1,7 @@
 import Link from "next/link";
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown, { defaultUrlTransform } from "react-markdown";
 
+import { assetUrl } from "@/lib/api";
 import type { Neighbor, ProjectItem } from "@/lib/types";
 
 import { StatusTag } from "./status-tag";
@@ -137,7 +138,19 @@ export function ProjectDetail({
       <section className="pad-x" style={{ padding: "48px 80px 32px" }}>
         {item.body && item.body.trim().length > 0 ? (
           <article className="contents-body" style={{ maxWidth: 900 }}>
-            <ReactMarkdown>{item.body}</ReactMarkdown>
+            {/* 이미지 상대참조(assets/…)는 원장(showcase.md) 디렉토리 기준이다 —
+                para 를 서빙하는 백엔드 /api/assets 로 풀어 준다. */}
+            <ReactMarkdown
+              urlTransform={(url, key) =>
+                key === "src" && !/^(https?:|data:|\/)/.test(url)
+                  ? assetUrl(
+                      `para/projects/summer-star/${item.slug}/${url.replace(/^\.\//, "")}`,
+                    )
+                  : defaultUrlTransform(url)
+              }
+            >
+              {item.body}
+            </ReactMarkdown>
           </article>
         ) : (
           <div

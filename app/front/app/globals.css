@@ -463,6 +463,21 @@ button {
   font-size: inherit;
   color: var(--fg-0);
 }
+.contents-body img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 16px 0 20px;
+  border: 1px solid var(--line-1);
+  border-radius: var(--r-3);
+}
+/* 넓은 표는 본문 폭을 밀지 않고 자기 안에서 가로 스크롤한다. */
+.contents-body table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
 .contents-body blockquote {
   margin: 16px 0;
   padding: 4px 0 4px 16px;

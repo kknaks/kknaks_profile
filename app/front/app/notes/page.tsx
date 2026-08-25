@@ -1,12 +1,17 @@
 import { api } from "@/lib/api";
-import { NotesList } from "@/components/notes/notes-list";
+import { NotesExplorer } from "@/components/notes/notes-explorer";
+import { NotesHeader } from "@/components/notes/notes-header";
 
 export const dynamic = "force-dynamic";
 
+/**
+ * 공개 글 — 탐색기형. 목록은 전체가 필요하다 — 트리가 폴더별 전량을 그리므로
+ * 기본 limit(50)보다 큰 값을 보낸다. 노트 선택 전이므로 initialDetail 은 null.
+ */
 export default async function NotesPage() {
   let data;
   try {
-    data = await api.notes();
+    data = await api.notes(500);
   } catch (err) {
     return (
       <main className="pad-x" style={{ padding: "56px 80px" }}>
@@ -22,45 +27,11 @@ export default async function NotesPage() {
 
   return (
     <main>
-      <header
-        className="pad-x m-pad-h"
-        style={{
-          padding: "56px 80px 32px",
-          borderBottom: "1px solid var(--line-1)",
-        }}
-      >
-        <div
-          className="mono"
-          style={{
-            fontSize: 11,
-            color: "var(--fg-3)",
-            textTransform: "uppercase",
-            letterSpacing: "0.14em",
-            marginBottom: 12,
-          }}
-        >
-          04 / Notes · {data.notes?.subtitle ?? "읽고 정리한 것"}
-        </div>
-        <div style={{ display: "flex", alignItems: "baseline", gap: 16, flexWrap: "wrap" }}>
-          <h1
-            className="m-h1"
-            style={{
-              fontSize: 56,
-              lineHeight: 1.05,
-              letterSpacing: "-0.025em",
-              margin: 0,
-              fontWeight: 600,
-            }}
-          >
-            Notes
-          </h1>
-          <span className="mono" style={{ fontSize: 12, color: "var(--fg-3)" }}>
-            {data.notes?.totalCount ?? notes.length} 글
-          </span>
-        </div>
-      </header>
-
-      <NotesList items={notes} />
+      <NotesHeader
+        subtitle={data.notes?.subtitle}
+        totalCount={data.notes?.totalCount ?? notes.length}
+      />
+      <NotesExplorer items={notes} initialDetail={null} />
     </main>
   );
 }

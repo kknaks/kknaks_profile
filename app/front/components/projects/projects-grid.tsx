@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { assetUrl } from "@/lib/api";
 import type { ProjectItem, ProjectsResponse } from "@/lib/types";
 
 import { StatusTag } from "./status-tag";
@@ -114,11 +115,14 @@ function Group({
         className="projects-grid m-stack"
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
+          gridTemplateColumns: "repeat(5, 1fr)",
           gap: 12,
         }}
       >
         <style>{`
+          @media (max-width: 1400px) {
+            .projects-grid { grid-template-columns: repeat(4, 1fr) !important; }
+          }
           @media (max-width: 1024px) {
             .projects-grid { grid-template-columns: repeat(2, 1fr) !important; }
           }
@@ -151,7 +155,7 @@ function ProjectCard({ p }: { p: ProjectItem }) {
         {showImg ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={p.thumbnail!}
+            src={assetUrl(p.thumbnail!)}
             alt={`${p.title} cover`}
             style={{
               width: "100%",

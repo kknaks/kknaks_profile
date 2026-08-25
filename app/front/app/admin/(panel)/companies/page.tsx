@@ -184,13 +184,22 @@ function CompanyCard({
 
 /* ── 폼 — 등록·수정 겸용 ────────────────────────────────────────────── */
 
-type DraftKey = "slug" | "name" | "description" | "location" | "site" | "logoUrl";
+type DraftKey =
+  | "slug"
+  | "name"
+  | "description"
+  | "location"
+  | "site"
+  | "logoUrl"
+  | "githubOrg";
 const FIELDS: { key: DraftKey; label: string; required?: boolean; textarea?: boolean }[] = [
   { key: "slug", label: "slug", required: true },
   { key: "name", label: "이름", required: true },
   { key: "location", label: "위치" },
   { key: "site", label: "site" },
   { key: "logoUrl", label: "로고 경로" },
+  // GitHub 조직(owner) — 레포 등록 화면의 owner 드롭다운 후보. 선택 입력.
+  { key: "githubOrg", label: "GitHub 조직" },
   { key: "description", label: "소개", textarea: true },
 ];
 
@@ -210,6 +219,7 @@ function CompanyForm({
     location: company?.location ?? "",
     site: company?.site ?? "",
     logoUrl: company?.logoUrl ?? "",
+    githubOrg: company?.githubOrg ?? "",
   });
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);

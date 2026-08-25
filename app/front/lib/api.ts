@@ -11,6 +11,8 @@
 import type {
   ActivityResponse,
   AdminCareer,
+  AdminCommitCalendar,
+  AdminCommitsPage,
   AdminCompany,
   AdminContent,
   ContentInput,
@@ -32,8 +34,19 @@ import type {
   AdminNote,
   NoteInput,
   NoteFileCandidate,
+  AdminGateItem,
+  AdminGateResponse,
+  GatePayload,
   AdminProblem,
   AdminProject,
+  AdminQueueItem,
+  AdminQueueResponse,
+  AdminRepo,
+  RepoInput,
+  GitTokenMeta,
+  GithubOwnerOption,
+  GithubRepoOption,
+  QueueCreateInput,
   ProblemInput,
   ProductInput,
   Profile,
@@ -46,6 +59,17 @@ import type {
 
 const API_BASE =
   process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:48000";
+
+/**
+ * para 자산 경로 → 백엔드 `/api/assets` URL.
+ *
+ * 원장(md)이 자기 옆 `assets/` 에 이미지를 갖는다 — DB thumbnail 도 showcase.md
+ * 의 상대참조도 para 상대경로다. para 밖(프론트 public 의 `/assets/profile/...`)은
+ * 그대로 둔다.
+ */
+export function assetUrl(path: string): string {
+  return path.startsWith("para/") ? `${API_BASE}/api/assets/${path}` : path;
+}
 
 async function get<T>(path: string): Promise<T> {
   const res = await fetch(API_BASE + path, { cache: "no-store" });
@@ -272,269 +296,127 @@ export const adminApi = {
     }),
   deleteAlgorithm: (id: number) =>
     authFetch<{ ok: boolean }>(`/api/admin/algorithms/${id}`, { method: "DELETE" }),
-};
-
-// ── 승인 큐 (KDEV-SPEC-007/008/009 · WORK-014 P4) ──────────────────────────
-// 큐 표면 전체가 admin 뒤에 있다 — 승인 전 초안이 여기 있기 때문이다.
-export type QueueItem = {
-  id: number;
-  source_kind: string;
-  source_url: string | null;
-  note: string | null;
-  channel: string;
-  status: string;
-  submitted_by: string | null;
-  submitted_at: string | null;
-  published_at: string | null;
-  commit_ref: string | null;
-};
-
-export type Preparation = {
-  id: number;
-  version: number;
-  status: string;
-  payload: Record<string, unknown> | null;
-  created_at: string | null;
-};
-
-export type AiTask = {
-  id: number;
-  kind: string;
-  status: string;
-  retry_of_task_id: number | null;
-  error_code: string | null;
-  error_message: string | null;
-  created_at: string | null;
-};
-
-/** 발행 결과 — 성공만이 아니라 **거부와 실패도** 남는다 (KDEV-SPEC-010). */
-export type ApplyResult = {
-  id: number;
-  status: string;
-  commit_ref: string | null;
-  violations: { rule: string; path?: string; detail?: string }[] | null;
-  error_code: string | null;
-  error_message: string | null;
-  created_at: string | null;
-};
-
-export type QueueItemDetail = QueueItem & {
-  preparations: Preparation[];
-  ai_tasks: AiTask[];
-  apply_results: ApplyResult[];
-};
-
-export type RouteResult = {
-  destinations: {
-    reference: { enabled: boolean };
-    concept: { enabled: boolean };
-    derived: { enabled: boolean };
-  };
-  exclusive: null | "inbox_hold" | "discard";
-  rationale?: string;
-};
-
-/** 노트를 만드는 스테이지(source_note·concept·derived)의 산출물. AI 가 md 전문을 낸다. */
-export type NotePayload = {
-  filename_stem: string;
-  content: string;
-  /** 경로는 시스템이 조립한다 — AI 는 stem 만 낸다. */
-  target_path?: string;
-};
-
-/** concept 게이트 산출물. `mode` 가 신규/보충을 가른다. */
-export type ConceptResult = {
-  mode: "create" | "supplement";
-  stem: string;
-  /** 무엇 때문에 기존 개념과 같다고 봤는지. create 면 null. */
-  matched_by: string | null;
-  content: string;
-  excluded: boolean;
-  target_path?: string;
-  /** 보충일 때만. **사라지는 줄**이 승인 판단의 핵심이다. */
-  diff?: string;
-};
-
-export type ConceptPayload = { concepts: ConceptResult[] };
-
-/** 잔디 daily 초안. `counts` 는 **코드가 센 값**이라 화면이 고치지 않는다. */
-export type DailyDraft = {
-  date: string;
-  counts: { commit?: number; note?: number; study?: number };
-  /** 활동 단위마다 한 줄. 활동이 0인 카테고리는 줄이 없다. 한국어 하나만 담는다. */
-  summary: string[];
-  body: string;
-  target_path?: string;
-};
-
-/**
- * career 갱신안. **본문 전문**이 온다 — 문장으로 나뉘어 있지 않다.
- *
- * 줄 단위 승인은 화면이 쪼개고 승인 시 남은 줄만 다시 합쳐 보낸다. 쪼개는 것은
- * 보여주기 위한 일이라 서버가 알 이유가 없고, 서버는 이미 "본문 전문 교체"로 서 있다.
- */
-export type CareerDraft = {
-  changed: boolean;
-  stem?: string;
-  content?: string;
-  /** 기존 본문. **무엇이 바뀌었는지** 를 보여주려면 비교 대상이 있어야 한다. */
-  previous_content?: string;
-  target_path?: string;
-};
-
-/**
- * 조사가 얼마나 온전했는지. **`counts` 와 같이 코드가 센 값**이라 화면이 고치지 않는다.
- *
- * 이게 없으면 서술이 얕을 때 **자료가 부족했던 것인지 그날 일이 적었던 것인지**
- * 사람이 구분할 수 없다. `failed` 는 클론·fetch 에서 빠진 것이고 `missing` 은
- * 조사까지 갔다가 결과가 안 돌아온 것이라 — 다른 자리의 실패다.
- */
-export type DailyCollection = {
-  done: number;
-  total: number;
-  missing: string[];
-  failed: { repo?: string; code?: string; message?: string }[];
-  truncated: Record<string, { diff_bytes?: number; commits?: number }>;
-  /** `detail` 오타로 갈 곳이 없어진 career stem — 그 레포의 작업이 어디에도 안 실린다. */
-  career_missing?: string[];
-};
-
-/** 잔디 게이트 산출물 — 게이트 하나가 목적지 셋을 낸다. */
-export type DailyPayload = {
-  daily: DailyDraft;
-  career: CareerDraft;
-  concepts: ConceptResult[];
-  /** 예전 리비전에는 없다 — 화면이 없으면 그리지 않는다. */
-  collection?: DailyCollection;
-};
-
-export type GatePayload = RouteResult | NotePayload | ConceptPayload | DailyPayload;
-
-export type Revision = {
-  id: number;
-  version: number;
-  status: string;
-  payload: GatePayload | null;
-  parent_revision_id: number | null;
-  feedback_id: number | null;
-  created_at: string | null;
-};
-
-export type Gate = {
-  id: number;
-  stage_name: string;
-  stage_no: number;
-  status: string;
-  active_revision_id: number | null;
-  approved_revision_id: number | null;
-  revisions: Revision[];
-  feedbacks: { id: number; target_revision_id: number | null; body: string; status: string }[];
-};
-
-/** 백엔드가 `{code, message}` 로 주는 실패를 그대로 들고 온다 — 화면 문구가 코드별로 다르다. */
-export class QueueError extends Error {
-  constructor(
-    public status: number,
-    public code: string,
-    message: string,
-    public detail?: unknown,
-  ) {
-    super(message);
-  }
-}
-
-async function queueFetch<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(API_BASE + path, {
-    ...init,
-    credentials: "include",
-    cache: "no-store",
-    headers: { "Content-Type": "application/json", ...(init?.headers ?? {}) },
-  });
-  if (!res.ok) {
-    let code = `HTTP_${res.status}`;
-    let message = `요청에 실패했습니다 (${res.status})`;
-    let detail: unknown;
-    try {
-      detail = (await res.json())?.detail;
-      if (typeof detail === "string") message = detail;
-      else if (detail && typeof detail === "object") {
-        code = (detail as { code?: string }).code ?? code;
-        message = (detail as { message?: string }).message ?? message;
-      }
-    } catch {
-      /* 본문 없음 */
-    }
-    throw new QueueError(res.status, code, message, detail);
-  }
-  return (await res.json()) as T;
-}
-
-const QUEUE = "/api/admin/queue";
-
-export const queueApi = {
-  /** 파이프라인 정의 — 정의가 코드에 있으므로 프론트에 복사해 두지 않는다. */
-  meta: () =>
-    queueFetch<{
-      pipelines: Record<string, { name: string; kind: string; optional: boolean }[]>;
-    }>(`${QUEUE}/meta`),
-  list: (includeDone = false) =>
-    queueFetch<{ items: QueueItem[]; counts: Record<string, number> }>(
-      `${QUEUE}/items?include_done=${includeDone}`,
-    ),
-  detail: (id: number) => queueFetch<QueueItemDetail>(`${QUEUE}/items/${id}`),
-  create: (body: { source_url?: string | null; note?: string | null; allow_republish?: boolean }) =>
-    queueFetch<{ outcome: string; item_id: number }>(`${QUEUE}/items`, {
+  /** 인박스(queue) — 최신순 목록 + 상태별 counts. 행은 done 이 돼도 남는다(erd §queue). */
+  queue: () => authFetch<AdminQueueResponse>("/api/admin/queue"),
+  /** 캡처 — queue 행 생성(queued). kind 는 사람이 고른다(케이스 1). 중복 검사 없음. */
+  createQueueItem: (body: QueueCreateInput) =>
+    authFetch<AdminQueueItem>("/api/admin/queue", {
       method: "POST",
       body: JSON.stringify(body),
     }),
-  updateNote: (id: number, note: string) =>
-    queueFetch<QueueItem>(`${QUEUE}/items/${id}`, {
+  /** failed → queued 되돌림 + 처리를 처음부터 다시 건다. 삭제는 없다(v1). */
+  retryQueueItem: (id: number) =>
+    authFetch<AdminQueueItem>(`/api/admin/queue/${id}/retry`, { method: "POST" }),
+  /** 게이트 목록 — 기본은 열린 것 + 「승인됨·푸시 실패」(commitRef null).
+   *  scope="all" 은 닫힌 게이트(자동 착지 기록·거절)까지 전부 — done 행 펼침 이력용. */
+  gates: (scope?: "all") =>
+    authFetch<AdminGateResponse>(
+      scope === "all" ? "/api/admin/gates?scope=all" : "/api/admin/gates",
+    ),
+  gateDetail: (id: number) => authFetch<AdminGateItem>(`/api/admin/gates/${id}`),
+  /** 승인 — 다듬은 payload 그대로. 착지·commit·push 까지 이 요청이 한다.
+   *  응답의 pushError 가 차 있으면 푸시 실패 — [재시도] 대기다. */
+  approveGate: (id: number, payload: GatePayload) =>
+    authFetch<AdminGateItem>(`/api/admin/gates/${id}/approve`, {
+      method: "POST",
+      body: JSON.stringify({ payload }),
+    }),
+  /** 거절 — rejected 기록, queue 는 done. 이유는 안 적는다(v1). */
+  rejectGate: (id: number) =>
+    authFetch<AdminGateItem>(`/api/admin/gates/${id}/reject`, { method: "POST" }),
+  /** 푸시 실패분 재시도 — 저장된 payload 로 착지부터 다시. */
+  retryGatePush: (id: number) =>
+    authFetch<AdminGateItem>(`/api/admin/gates/${id}/retry-push`, { method: "POST" }),
+  /** 레포 — productTitle·projectTitle 은 선택 조인 파생 표시값. 수집 상태 포함. */
+  repos: () => authFetch<{ items: AdminRepo[] }>("/api/admin/repos"),
+  /** 연결은 product/project 둘 중 정확히 하나 — 아니면 서버가 422 로 막는다. */
+  createRepo: (body: RepoInput) =>
+    authFetch<AdminRepo>("/api/admin/repos", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+  /** **바뀐 필드만 담는다** — 안 보낸 것과 `null` 을 보낸 것은 다르다. */
+  patchRepo: (id: number, body: RepoInput) =>
+    authFetch<AdminRepo>(`/api/admin/repos/${id}`, {
       method: "PATCH",
-      body: JSON.stringify({ note }),
+      body: JSON.stringify(body),
     }),
-  retryPrepare: (id: number) =>
-    queueFetch<{ status: string; version: number | null; error_code: string | null }>(
-      `${QUEUE}/items/${id}/prepare`,
-      { method: "POST" },
-    ),
-  /** 발행 재시도 — **AI 를 다시 부르지 않는다.** 저장된 계획으로 다시 쓴다(DEC-012 D5). */
-  retryPublish: (id: number) =>
-    queueFetch<{ item_status: string; status: string; error_code: string | null }>(
-      `${QUEUE}/items/${id}/publish`,
-      { method: "POST" },
-    ),
-  remove: (id: number) =>
-    queueFetch<{ id: number; status: string }>(`${QUEUE}/items/${id}`, { method: "DELETE" }),
-  gates: (id: number) => queueFetch<{ gates: Gate[] }>(`${QUEUE}/items/${id}/gates`),
-  /** 목적지 재검토 — 유일한 역방향 전이(DEC-011 D5). 뒤 게이트는 무효화되지만 기록은 남는다. */
-  reopenRoute: (itemId: number) =>
-    queueFetch<{ gate_id: number; gate_status: string; item_status: string }>(
-      `${QUEUE}/items/${itemId}/reopen-route`,
-      { method: "POST" },
-    ),
-  feedback: (gateId: number, body: string) =>
-    queueFetch<{ feedback_id: number; gate_status: string }>(`${QUEUE}/gates/${gateId}/feedback`, {
-      method: "POST",
-      body: JSON.stringify({ body }),
-    }),
-  regenerate: (gateId: number) =>
-    queueFetch<{ gate_status: string; revision: Revision }>(
-      `${QUEUE}/gates/${gateId}/regenerate`,
-      { method: "POST" },
-    ),
-  retryGate: (gateId: number) =>
-    queueFetch<{ gate_status: string; revision: Revision }>(`${QUEUE}/gates/${gateId}/retry`, {
+  /** 커밋이 CASCADE 로 쓸려간다 — 잔디를 남기려면 삭제 대신 enabled=false. */
+  deleteRepo: (id: number) =>
+    authFetch<{ ok: boolean }>(`/api/admin/repos/${id}`, { method: "DELETE" }),
+  /** 「지금 수집」 — 백그라운드로 걸고 202. started=false 면 이미 돌고 있다. */
+  collectRepos: () =>
+    authFetch<{ ok: boolean; started: boolean }>("/api/admin/repos/collect", {
       method: "POST",
     }),
-  approve: (gateId: number, payload: GatePayload | null, expectedRevisionId: number | null) =>
-    queueFetch<{
-      gate_status: string;
-      item_status: string;
-      route_outcome: string | null;
-      next_stage: string | null;
-      revision: Revision;
-    }>(`${QUEUE}/gates/${gateId}/approve`, {
+  /** 레포 연결 모달의 owner 후보 — 폼 스코프대로만 온다(회사 제품 폼은 그 회사 것만).
+   *  빈 items = 그 스코프에 쓸 토큰이 없다 — 설정 › 깃 토큰 안내를 띄운다. */
+  githubOwners: (scope: { productId?: number; projectId?: number }) =>
+    authFetch<{ items: GithubOwnerOption[] }>(
+      scope.productId != null
+        ? `/api/admin/github/owners?product_id=${scope.productId}`
+        : `/api/admin/github/owners?project_id=${scope.projectId}`,
+    ),
+  /** GitHub 의 owner 레포 목록 — 최근 갱신순. tokenId 는 owner 후보가 데려온 토큰. */
+  githubRepos: (owner: string, tokenId?: number | null) =>
+    authFetch<{ items: GithubRepoOption[] }>(
+      `/api/admin/github/repos?owner=${encodeURIComponent(owner)}${
+        tokenId != null ? `&token_id=${tokenId}` : ""
+      }`,
+    ),
+  /** 깃 토큰 — 응답에 토큰 원문·암호문은 절대 없다. 원문은 등록·교체 요청에만. */
+  gitTokens: () => authFetch<{ items: GitTokenMeta[] }>("/api/admin/git-tokens"),
+  createGitToken: (body: {
+    kind: string;
+    account: string;
+    email: string;
+    token: string;
+    /** kind=company 면 필수 — 서버가 422 로 막는다. personal 은 무시. */
+    companyId?: number | null;
+  }) =>
+    authFetch<GitTokenMeta>("/api/admin/git-tokens", {
       method: "POST",
-      body: JSON.stringify({ payload, expected_revision_id: expectedRevisionId }),
+      body: JSON.stringify(body),
     }),
+  /** 토큰 값 교체 — 이직·만료 갱신. 행(레포 연결)은 유지된다. */
+  replaceGitToken: (id: number, token: string) =>
+    authFetch<{ ok: boolean }>(`/api/admin/git-tokens/${id}`, {
+      method: "PUT",
+      body: JSON.stringify({ token }),
+    }),
+  /** 부분 수정 — 보낸 필드만. enabled 토글 · companyId 연결(null = 해제). */
+  patchGitToken: (id: number, body: { enabled?: boolean; companyId?: number | null }) =>
+    authFetch<GitTokenMeta>(`/api/admin/git-tokens/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(body),
+    }),
+  /** 삭제 — 붙어 있던 레포는 무토큰이 된다(FK SET NULL). */
+  deleteGitToken: (id: number) =>
+    authFetch<{ ok: boolean }>(`/api/admin/git-tokens/${id}`, { method: "DELETE" }),
+  /** 커밋 월 달력 — total·repos 는 그 달 전체, days 만 repoId 필터를 탄다. */
+  commitCalendar: (year: number, month: number, repoId?: number | null) =>
+    authFetch<AdminCommitCalendar>(
+      `/api/admin/commits/calendar?year=${year}&month=${month}${
+        repoId != null ? `&repo_id=${repoId}` : ""
+      }`,
+    ),
+  /** 커밋 목록 — authored_at DESC 50행. day 는 KST 날짜(1~31) 필터. */
+  commits: (q: {
+    year: number;
+    month: number;
+    repoId?: number | null;
+    day?: number | null;
+    page?: number;
+  }) =>
+    authFetch<AdminCommitsPage>(
+      `/api/admin/commits?year=${q.year}&month=${q.month}${
+        q.repoId != null ? `&repo_id=${q.repoId}` : ""
+      }${q.day != null ? `&day=${q.day}` : ""}&page=${q.page ?? 1}`,
+    ),
+  /** 하루 요약 재실행 — 백그라운드 202. 몇 초 뒤 달력 재조회로 결과를 본다. */
+  summarizeDaily: (date: string) =>
+    authFetch<{ ok: boolean; started: boolean }>(
+      `/api/admin/daily/${date}/summarize`,
+      { method: "POST" },
+    ),
 };
