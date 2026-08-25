@@ -5,6 +5,8 @@
 
 - 한국어 하나만 담는다. i18n 축은 없다.
 - 표면에 보이는 것만 DB 다. 문서는 `para/**` 에 md 로 있고 여기 오지 않는다.
+- 예외가 셋 있다 — `queue`·`gate`·`git_token`. 표면이 아니라 수집 파이프라인의
+  것이다. 동작 정본은 `case_flow.md` 케이스 1·6·7, 화면·플로우는 `inbox.md`.
 
 ## 관계
 
@@ -24,6 +26,9 @@ erDiagram
     product ||--o{ repo      : "제품의 레포"
     project ||--o{ repo      : "개인 것의 레포"
     repo    ||--o{ commit    : "수집한 커밋"
+    git_token ||--o{ repo    : "수집 토큰"
+    company ||--o{ git_token : "회사 토큰의 소속"
+    queue   ||--o{ gate      : "승인 지점"
 
     users {
         serial id PK
@@ -59,6 +64,7 @@ erDiagram
         varchar location "서울"
         varchar site
         varchar logo_url
+        varchar github_org "레포 owner 드롭다운 후보"
         timestamptz created_at
         timestamptz updated_at
     }
@@ -180,7 +186,7 @@ erDiagram
     algorithm {
         serial id PK
         int profile_id FK
-        varchar slug UK "A-001"
+        varchar slug UK "a-001-two-sum"
         varchar title "Two Sum"
         varchar difficulty "easy / medium / hard"
         text summary "카드에 뜨는 한 줄"
@@ -203,6 +209,7 @@ erDiagram
         int project_id FK "둘 중 하나만"
         varchar slug UK "owner/name"
         varchar role "spec / app / infra"
+        int git_token_id FK "수집 토큰. NULL 무토큰"
         boolean enabled "끄기. 지우지 않는다"
         timestamptz last_fetched_at
         text last_error
@@ -218,8 +225,42 @@ erDiagram
         varchar author
         timestamptz authored_at "author 날짜"
         text message "원문. 공개하지 않는다"
-        text summary "한 줄 요약. 잔디에 뜬다"
+        text summary "한 줄 요약. AI 가 덮는다"
+        timestamptz summarized_at "NULL 이면 미요약"
         timestamptz created_at
+    }
+
+    daily {
+        date date PK "KST 날짜"
+        text summary "하루 요약 불릿. 잔디 hover"
+        text error "요약 실패 사유. 성공하면 비운다"
+        timestamptz created_at
+        timestamptz updated_at
+    }
+
+    queue {
+        serial id PK
+        varchar kind "youtube / docs / article / blog"
+        varchar source_url "book·session 은 NULL"
+        text note "모달 메모"
+        varchar status "queued / processing / review / failed / done"
+        text error "실패 사유. 성공하면 비운다"
+        varchar ai_session_id "codex 세션. 개념 생성이 이어받는다"
+        timestamptz created_at
+        timestamptz updated_at
+    }
+
+    gate {
+        serial id PK
+        int queue_id FK
+        varchar stage "document / concept"
+        jsonb payload "초안. md 는 승인 시점에 생긴다"
+        varchar status "open / approved / rejected"
+        varchar commit_ref "푸시 성공의 증거"
+        jsonb result "content_id · 파일 경로"
+        timestamptz decided_at
+        timestamptz created_at
+        timestamptz updated_at
     }
 ```
 
@@ -229,7 +270,12 @@ erDiagram
 `education` 에는 `repo` 가 붙지 않는다 — 교육과정에서 만든 결과물은 `project` 로 가지
 과정 자체에 커밋이 귀속되지 않는다.
 
-`/about` 의 잔디는 테이블이 없다. `commit` 을 날짜로 묶은 것이다.
+`/about` 의 잔디 **격자**는 테이블이 없다 — `commit` 을 KST 날짜로 묶은 파생이다.
+hover 문구만 `daily` 가 갖는다(AI 하루 요약). 옛 구조의 `persona/daily/` md 가
+DB 행으로 돌아온 자리다 — 파생물이 md 로 앉아 원천이 둘이 되던 문제(CLAUDE.md 2번)의 착지.
+
+`queue`·`gate` 는 `profile` 에 매달리지 않는다 — 사람의 것이 아니라 파이프라인의
+기록이라서다. 옛 구조의 md frontmatter(`status: pending`)가 하던 일이 여기로 왔다.
 
 ## 상세 본문은 DB 에 없다
 
@@ -244,6 +290,11 @@ note.detail_path        para/resources/note/2024-05-28-Day03.md
 content.detail_path     para/resources/youtube/C-025-mcp-s-new-spec-from-stateful-sessions-to-stateless.md
 algorithm.detail_path   para/resources/algorithms/A-001-two-sum.md
 ```
+
+**이미지도 같은 규약이다(2026-08-25).** 원장 md 옆 `assets/` 가 원장이고
+(`para/projects/summer-star/<slug>/assets/cover.png`), DB `thumbnail` 은 그 para
+상대경로만 갖는다. 서빙은 `GET /api/assets/{path}` — para 하위의 이미지 확장자만
+내려주고, md 본문의 상대참조(`assets/…`)도 여기로 풀린다.
 
 **사본을 만들지 않는다.** 본문을 컬럼에 복사해 두면 md 를 고쳤을 때 조용히 낡는다 —
 이번 리뉴얼이 없애려는 것이 정확히 그것이다.
@@ -321,6 +372,8 @@ CREATE TABLE company (
     location     varchar(64),                               -- 서울
     site         varchar(255),
     logo_url     varchar(255),
+    github_org   varchar(64),                               -- GitHub 조직 owner — 레포 등록
+                                                            -- 드롭다운 후보. NULL 이면 없음
 
     created_at   timestamptz  NOT NULL DEFAULT now(),
     updated_at   timestamptz  NOT NULL DEFAULT now()
@@ -598,7 +651,7 @@ CREATE TABLE algorithm (
     id               serial       PRIMARY KEY,
     profile_id       int          NOT NULL REFERENCES profile(id) ON DELETE CASCADE,
 
-    slug             varchar(64)  NOT NULL UNIQUE,          -- A-001
+    slug             varchar(64)  NOT NULL UNIQUE,          -- a-001-two-sum (파일명 stem 소문자, §미결 5)
     title            varchar(128) NOT NULL,                 -- Two Sum
     difficulty       varchar(8)   NOT NULL,                 -- easy / medium / hard
     summary          text,                                  -- 카드에 뜨는 한 줄
@@ -642,6 +695,8 @@ CREATE TABLE repo (
 
     slug             varchar(160) NOT NULL UNIQUE,          -- owner/name
     role             varchar(32),                           -- spec / app / infra
+    git_token_id     int          REFERENCES git_token(id)  -- 수집 토큰. NULL 무토큰(공개)
+                                  ON DELETE SET NULL,
 
     enabled          boolean      NOT NULL DEFAULT true,    -- 끄기. 지우지 않는다
 
@@ -657,6 +712,32 @@ CREATE TABLE repo (
 );
 ```
 
+### `git_token` — 커밋 수집용 GitHub 토큰
+
+표면에 안 뜬다(`queue`·`gate` 와 같은 예외 — 파이프라인의 것). **토큰은 암호문으로만
+저장한다** — 복호 키는 `.env` 의 `GIT_TOKEN_KEY` 하나다. 해시가 아니라 암호화인 이유는
+수집기가 GitHub 호출에 원문을 써야 해서다. 개인 n개·회사 n개 전부 행이고, 이직하면
+회사 토큰 행의 값만 교체한다(PUT) — `repo` 연결은 안 바뀐다.
+
+`users` 에 붙이지 않는다 — `users` 는 로그인 계정(1행)이고 토큰은 n개라 자리가 다르다.
+
+```sql
+CREATE TABLE git_token (
+    id            serial       PRIMARY KEY,
+    company_id    int          REFERENCES company(id)      -- kind=company 토큰의 소속.
+                               ON DELETE SET NULL,         -- personal 은 NULL
+
+    kind          varchar(16)  NOT NULL,                   -- 구분 — personal / company
+    account       varchar(64)  NOT NULL,                   -- 깃 계정 id — kknaks / kknaksss
+    email         varchar(255) NOT NULL,                   -- 착지 커밋의 git 신원(user.email)
+    token_cipher  text         NOT NULL,                   -- Fernet 암호문. 원문·응답 노출 없음
+    enabled       boolean      NOT NULL DEFAULT true,      -- 끄면 무토큰 취급(공개 범위만 수집)
+
+    created_at    timestamptz  NOT NULL DEFAULT now(),
+    updated_at    timestamptz  NOT NULL DEFAULT now()
+);
+```
+
 ### `commit` — 수집한 커밋
 
 ```sql
@@ -669,7 +750,9 @@ CREATE TABLE commit (
     author       varchar(128),
     authored_at  timestamptz  NOT NULL,                     -- author 날짜
     message      text,                                      -- 원문. 공개하지 않는다
-    summary      text,                                      -- 한 줄 요약. 잔디에 뜬다
+    summary      text,                                      -- 한 줄 요약 — 수집 때 메시지 첫 줄,
+                                                            -- AI 요약이 덮는다(사내 정보 추상화)
+    summarized_at timestamptz,                              -- AI 요약 시각. NULL = 미요약
 
     created_at   timestamptz  NOT NULL DEFAULT now(),
 
@@ -682,6 +765,84 @@ CREATE INDEX ix_commit_authored ON commit (authored_at DESC);
 리베이스가 같은 작업을 새 sha 로 되풀이하므로 중복 제거 키가 `sha` 가 아니라
 `(repo_id, tree)` 다. `authored_at` 이 커밋터 날짜가 아닌 것도 같은 이유다.
 
+### `daily` — 하루 요약
+
+한 행 = 하루(KST). 수집 뒤 날짜당 codex 1호출이 커밋별 `summary` 와 이 행을 같이
+만든다(최근 7일 창 자동 · 과거는 `scripts/backfill_daily.py` 로 하나씩). `/about`
+잔디 hover 가 이 `summary` 불릿을 쓴다 — 미요약 날은 빈 채로 두고 커밋 첫 줄로
+메우지 않는다(사내 정보 원문 노출 방지).
+
+```sql
+CREATE TABLE daily (
+    date        date         PRIMARY KEY,                  -- KST 날짜
+    summary     text,                                      -- 레포별 불릿, 줄바꿈 구분
+    error       text,                                      -- 실패 사유. 성공하면 비운다
+
+    created_at  timestamptz  NOT NULL DEFAULT now(),
+    updated_at  timestamptz  NOT NULL DEFAULT now()
+);
+```
+
+### `queue` — 인박스 파이프라인 한 건
+
+표면에 안 뜬다. 모달에서 넣은 것(종류·URL·메모)과 처리 상태가 전부다 —
+파이프라인 상태는 문서가 아니라 DB 가 갖는다(리뉴얼 결정). 행은 `done` 이 돼도
+안 지우므로 넣은 URL 의 기록이 여기 영구히 남는다.
+
+```sql
+CREATE TABLE queue (
+    id           serial       PRIMARY KEY,
+
+    kind         varchar(16)  NOT NULL,               -- youtube / docs / article / blog
+    source_url   varchar(512),                        -- book·session 은 NULL
+    note         text,                                -- 모달 메모
+
+    status       varchar(16)  NOT NULL DEFAULT 'queued',
+                 -- queued → processing → review → done. 실패는 failed(재시도 가능)
+    error        text,                                -- 실패 사유. 성공하면 비운다
+
+    ai_session_id varchar(64),                        -- codex 세션. 문서 생성이 남기고
+                                                      -- 개념 생성이 resume 으로 이어받는다
+
+    created_at   timestamptz  NOT NULL DEFAULT now(),
+    updated_at   timestamptz  NOT NULL DEFAULT now()
+);
+```
+
+중복은 안 막는다 — 같은 링크를 또 넣으면 또 돈다(§미결 4 는 미결로 유지).
+거절 종결도 `done` 이다 — 어떻게 끝났는지는 `gate` 가 갖는다.
+
+### `gate` — 승인 지점
+
+한 행 = 게이트 하나. 케이스 1 은 건마다 둘이다 — `document`(문서 초안) 승인 후
+`concept`(개념 보강안).
+
+```sql
+CREATE TABLE gate (
+    id           serial       PRIMARY KEY,
+    queue_id     int          NOT NULL REFERENCES queue(id) ON DELETE CASCADE,
+
+    stage        varchar(16)  NOT NULL,               -- document / concept
+    payload      jsonb        NOT NULL,               -- 초안. 승인 때 다듬은 것으로 덮인다
+    status       varchar(16)  NOT NULL DEFAULT 'open',-- open / approved / rejected
+    commit_ref   varchar(40),                         -- 푸시 성공의 증거
+    result       jsonb,                               -- content_id · 파일 경로
+    decided_at   timestamptz,
+
+    created_at   timestamptz  NOT NULL DEFAULT now(),
+    updated_at   timestamptz  NOT NULL DEFAULT now(),
+
+    UNIQUE (queue_id, stage)
+);
+```
+
+- **초안이 jsonb 에 사는 이유** — md 는 승인 시점에 생긴다. 승인 전 초안은 원장이
+  될 수 없으니 DB 에만 있다. payload 의 모양(stage 별)은 DDL 이 아니라 코드
+  (`schemas/`)가 정한다
+- **`commit_ref` 가 확정의 증거** — 푸시가 성공해야 DB 를 확정한다(케이스 1).
+  `approved` + `commit_ref NULL` = 푸시 실패로 걸린 상태, 화면에서 다시 누르면
+  재시도한다. 상태 값을 하나 더 두지 않는다
+
 ---
 
 ## 미결
@@ -691,9 +852,9 @@ CREATE INDEX ix_commit_authored ON commit (authored_at DESC);
 | # | 미결 | 걸리는 곳 |
 |---|---|---|
 | 1 | `product` 가 어느 표면에 뜨나 | `/career` 상세 안 · 별도 페이지 · 안 띄움. 지금 표면이 없다 |
-| 2 | 잔디가 커밋만 세나 | 옛 잔디는 `note`·`study` 도 셌다. 지금은 `commit` 뿐이다 |
-| 3 | `visible` 을 응답에 담나 | 공개 API 가 걸러 준다고 프론트가 가정했다 |
+| 2 | ~~잔디가 커밋만 세나~~ | **정해짐(2026-08-25)** — 커밋만 센다. `counts` 는 `{commit: n}` 하나. note·study 를 다시 세게 되면 그때 원천부터 정한다 |
+| 3 | ~~`visible` 을 응답에 담나~~ | **정해짐(2026-08-25)** — 담지 않는다. 공개 API 가 `visible=true` 만 걸러 내려준다(`/api/career` 의 product 가 첫 구현) |
 | 4 | 같은 자료를 두 번 넣으면 | `content.youtube_id` 등에 UNIQUE 를 걸어 막을지 |
-| 5 | `id` 채번과 파일명 규칙 | DB 시퀀스로 매기되 파일명에 번호를 넣을지 |
+| 5 | ~~`id` 채번과 파일명 규칙~~ | **정해짐(2026-08-25, slug 한정)** — `algorithm.slug` 는 detail_path 파일명 stem 소문자(`a-001-two-sum`)로 파생한다. 시드도 같은 파생이라 재실행이 값을 안 되돌린다. id 채번 자체는 DB 시퀀스 그대로 |
 | 6 | `detail_path` 가 끊기면 | 파일을 옮기거나 지웠을 때 DB 가 모른다 |
-| 7 | **`queue` 표가 없다** | `case_flow.md` 케이스 1 이 「모달 생성 → `queue` 행」을 쓰고 게이트 승인·거절도 「DB 기록」인데, 그 표가 여기 정의돼 있지 않다. 옛 구조는 md frontmatter(`status: pending`)가 이 자리를 대신했고 그걸 없애는 게 리뉴얼이라, 이 표 없이는 케이스 1 이 돌지 않는다 |
+| 7 | ~~`queue` 표가 없다~~ | **정해짐(2026-08-25)** — `queue`·`gate` 두 표로 선다(위 DDL). 초안은 `gate.payload`(jsonb), md 는 승인 시점에 착지, 푸시 성공이 DB 확정 조건. 화면·플로우는 `inbox.md` |
