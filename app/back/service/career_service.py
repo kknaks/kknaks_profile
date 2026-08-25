@@ -7,10 +7,14 @@ from typing import Any
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from core.detail import read_detail
 from core.exceptions import ConflictError, NotFoundError, ValidationError
-from dto.career import CareerDTO
+from dto.career import CareerDTO, PublicCareerBundle
 from repository.career_repo import CareerRepository
 from repository.company_repo import CompanyRepository
+from repository.education_repo import EducationRepository
+from repository.problem_repo import ProblemRepository
+from repository.product_repo import ProductRepository
 from repository.profile_repo import ProfileRepository
 
 # DB 에서 NOT NULL — null 로 지우려는 요청은 여기서 막는다.
@@ -28,10 +32,16 @@ class CareerService:
         career_repo: CareerRepository,
         company_repo: CompanyRepository,
         profile_repo: ProfileRepository,
+        product_repo: ProductRepository,
+        problem_repo: ProblemRepository,
+        education_repo: EducationRepository,
     ) -> None:
         self._career_repo = career_repo
         self._company_repo = company_repo
         self._profile_repo = profile_repo
+        self._product_repo = product_repo
+        self._problem_repo = problem_repo
+        self._education_repo = education_repo
 
     async def _require_company(self, session: AsyncSession, company_id: int) -> None:
         if await self._company_repo.get_by_id(session, company_id) is None:
@@ -39,6 +49,42 @@ class CareerService:
 
     async def list_careers(self, session: AsyncSession) -> list[CareerDTO]:
         return await self._career_repo.list_with_company(session)
+
+    async def get_public(self, session: AsyncSession) -> PublicCareerBundle:
+        """공개 /career 한 벌 — 역할별 펼침(product 카드 · problem)까지 조립한다.
+
+        visible=false 인 제품은 여기서 걸러진다 — 응답에 visible 필드는 없다
+        (erd §미결 3 의 확정: 공개 API 가 걸러서 내려준다).
+        """
+        careers = await self._career_repo.list_public(session)
+
+        products_by_career: dict[int, list] = {}
+        for p in await self._product_repo.list_with_career(session):
+            if p.visible:
+                products_by_career.setdefault(p.career_id, []).append(p)
+
+        problems_by_career: dict[int, list] = {}
+        for pr in await self._problem_repo.list_with_names(session):
+            problems_by_career.setdefault(pr.career_id, []).append(pr)
+
+        education = await self._education_repo.list_all(session)
+        # 상세는 md — detail_path 를 읽어 본문으로 내려준다(core/detail.py).
+        education_bodies: dict[int, str] = {}
+        for e in education:
+            body = read_detail(e.detail_path)
+            if body is not None:
+                education_bodies[e.id] = body
+
+        profile = await self._profile_repo.get_first(session)
+        return PublicCareerBundle(
+            careers=careers,
+            products_by_career=products_by_career,
+            problems_by_career=problems_by_career,
+            education=education,
+            education_bodies=education_bodies,
+            total_years=profile.years if profile else None,
+            focus=profile.focus if profile else None,
+        )
 
     async def create(self, session: AsyncSession, fields: dict[str, Any]) -> CareerDTO:
         _check_dates(fields["started_on"], fields.get("ended_on"))
@@ -92,4 +138,11 @@ class CareerService:
             raise NotFoundError(f"career not found: {career_id}")
 
 
-career_service = CareerService(CareerRepository(), CompanyRepository(), ProfileRepository())
+career_service = CareerService(
+    CareerRepository(),
+    CompanyRepository(),
+    ProfileRepository(),
+    ProductRepository(),
+    ProblemRepository(),
+    EducationRepository(),
+)

@@ -22,6 +22,32 @@ class NoteDTO:
 
 
 @dataclass(frozen=True)
+class NoteNeighbor:
+    """이전/다음 글 — **컬럼이 아니다.** published_on 정렬의 이웃이다(erd.md §content)."""
+
+    slug: str
+    title: str
+
+
+@dataclass(frozen=True)
+class PublicNoteList:
+    """공개 목록 한 벌 — visible=true 만 담고, total_count 는 자르기 전 전체 수."""
+
+    items: list[NoteDTO]
+    total_count: int
+
+
+@dataclass(frozen=True)
+class PublicNoteDetail:
+    """공개 상세 한 벌 — 행 + md 전문 + 정렬 이웃."""
+
+    dto: NoteDTO
+    body: str
+    newer: NoteNeighbor | None
+    older: NoteNeighbor | None
+
+
+@dataclass(frozen=True)
 class NoteFileDTO:
     """등록 후보 md 파일 — para/resources/note/ 의 미등록 파일 하나.
 

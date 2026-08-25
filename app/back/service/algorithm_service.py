@@ -10,14 +10,22 @@
 
 from __future__ import annotations
 
+import re
 from pathlib import Path
 from typing import Any
 
+import yaml
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from config import get_settings
+from core.detail import read_detail
 from core.exceptions import ConflictError, NotFoundError, ValidationError
-from dto.algorithm import AlgorithmDTO
+from dto.algorithm import (
+    AlgorithmDTO,
+    AlgorithmNeighbor,
+    PublicAlgorithmDetail,
+    PublicAlgorithmList,
+)
 from repository.algorithm_repo import AlgorithmRepository
 from repository.profile_repo import ProfileRepository
 
@@ -59,6 +67,146 @@ def _require_detail_file(detail_path: str) -> None:
         )
 
 
+# ── 공개 상세 — md 의 `## Data` fenced yaml 을 계약 모양으로 정규화 ──────────
+#
+# 단계 구조(Problem → Clarifying → Approach → Logic → Trace → Solution)는
+# **컬럼이 아니다** — md 본문의 `## Data` fenced yaml 이 갖는다(erd.md §algorithm).
+# 원장 yaml 은 표면 문자열을 {ko, en} 이중 축으로 갖는데 표면은 한국어 하나다
+# (database.md 서두) — 여기서 ko 로 접는다(없으면 en). 프론트는 접힌 값을 그대로
+# 그린다(lib/types.ts AlgorithmDetail).
+#
+# yaml 이 없거나 깨져도 500 을 내지 않는다 — 단계별 빈 구조로 내려서 컴포넌트의
+# 빈 상태 문구(「LLM 이 아직 …」)가 그리게 둔다.
+
+_DATA_YAML = re.compile(r"^##\s*Data\s*\n+```yaml\n(.*?)\n```", re.MULTILINE | re.DOTALL)
+
+
+def _ko(value: Any) -> str:
+    """{ko, en} 이중 축을 한국어 하나로 접는다. 이미 문자열이면 그대로."""
+    if isinstance(value, dict):
+        for key in ("ko", "en"):
+            v = value.get(key)
+            if isinstance(v, str) and v.strip():
+                return v
+        return ""
+    return value if isinstance(value, str) else ""
+
+
+def _str_list(value: Any) -> list[str]:
+    if not isinstance(value, list):
+        return []
+    return [v for v in value if isinstance(v, str)]
+
+
+def _ko_list(value: Any) -> list[str]:
+    """{ko, en} 항목이 섞인 리스트 — 각 항목을 ko 로 접는다."""
+    if not isinstance(value, list):
+        return []
+    return [_ko(v) for v in value]
+
+
+def _quiz_type(value: Any) -> str:
+    """good/distractor 두 값만 — 오값은 distractor 로. 퀴즈 채점이 type 을 본다."""
+    return value if value in ("good", "distractor") else "distractor"
+
+
+def _load_stage_data(detail_path: str) -> dict:
+    """detail_path md 에서 `## Data` fenced yaml 을 파싱. 없거나 깨지면 빈 dict."""
+    body = read_detail(detail_path)
+    if not body:
+        return {}
+    match = _DATA_YAML.search(body)
+    if not match:
+        return {}
+    try:
+        data = yaml.safe_load(match.group(1))
+    except yaml.YAMLError:
+        return {}
+    return data if isinstance(data, dict) else {}
+
+
+def _problem(raw: Any) -> dict:
+    src = raw if isinstance(raw, dict) else {}
+    io = [
+        {"input": _ko(ex.get("input")), "output": _ko(ex.get("output"))}
+        for ex in (src.get("io") or [])
+        if isinstance(ex, dict)
+    ]
+    return {
+        "title": _ko(src.get("title")) or None,
+        "statement": _ko(src.get("statement")),
+        "constraints": _str_list(src.get("constraints")),
+        "io": io,
+    }
+
+
+def _quiz_group(raw: Any) -> dict:
+    """clarifying·approach 공용 — clarifying 항목은 q, approach 항목은 name 을 갖는다."""
+    src = raw if isinstance(raw, dict) else {}
+    items = []
+    for it in src.get("items") or []:
+        if not isinstance(it, dict):
+            continue
+        entry: dict[str, Any] = {"type": _quiz_type(it.get("type")), "why": _ko(it.get("why"))}
+        if "q" in it:
+            entry["q"] = _ko(it["q"])
+        if "name" in it:
+            entry["name"] = _ko(it["name"])
+        if isinstance(it.get("complexity"), str):
+            entry["complexity"] = it["complexity"]
+        items.append(entry)
+    return {"items": items}
+
+
+def _logic(raw: Any) -> dict:
+    """슬롯 퀴즈 — format 은 원장 값을 지나가게 두되 기본은 slot(화면이 slot 만 지원)."""
+    src = raw if isinstance(raw, dict) else {}
+    fmt = src.get("format") if isinstance(src.get("format"), str) else "slot"
+    slots = []
+    for slot in src.get("slots") or []:
+        if not isinstance(slot, dict):
+            continue
+        options = [
+            {"code": _ko(opt.get("code")), "type": _quiz_type(opt.get("type")), "why": _ko(opt.get("why"))}
+            for opt in (slot.get("options") or [])
+            if isinstance(opt, dict)
+        ]
+        slots.append(
+            {
+                "label": _ko(slot.get("label")),
+                "indent": slot["indent"] if isinstance(slot.get("indent"), int) else 0,
+                "options": options,
+            }
+        )
+    return {"format": fmt, "slots": slots}
+
+
+def _trace(raw: Any) -> dict:
+    src = raw if isinstance(raw, dict) else {}
+    cases = [
+        {"input": _ko(c.get("input")), "expected": _ko(c.get("expected"))}
+        for c in (src.get("cases") or [])
+        if isinstance(c, dict)
+    ]
+    we = src.get("worked_example")
+    worked = (
+        {"input": _ko(we.get("input")), "steps": _ko_list(we.get("steps")), "answer": _ko(we.get("answer"))}
+        if isinstance(we, dict)
+        else None  # 없으면 null — 화면이 펼침 버튼 자체를 그리지 않는다
+    )
+    return {"code": _str_list(src.get("code")), "cases": cases, "worked_example": worked}
+
+
+def _solution(raw: Any) -> dict:
+    src = raw if isinstance(raw, dict) else {}
+    comp = src.get("complexity") if isinstance(src.get("complexity"), dict) else {}
+    return {
+        "code": _ko(src.get("code")),
+        "complexity": {"time": _ko(comp.get("time")), "space": _ko(comp.get("space"))},
+        "followup": _ko_list(src.get("followup")),
+    }
+
+
 class AlgorithmService:
     def __init__(
         self, algorithm_repo: AlgorithmRepository, profile_repo: ProfileRepository
@@ -75,6 +223,53 @@ class AlgorithmService:
 
     async def list_algorithms(self, session: AsyncSession) -> list[AlgorithmDTO]:
         return await self._algorithm_repo.list_all(session)
+
+    async def _list_visible(self, session: AsyncSession) -> list[AlgorithmDTO]:
+        """공개 목록의 원천 — published_on DESC NULLS LAST, id DESC 에서 visible 만.
+
+        visible=false 는 여기서 걸러진다 — 응답에 visible 필드는 없다
+        (erd §미결 3 의 확정: 공개 API 가 걸러서 내려준다).
+        """
+        return [a for a in await self._algorithm_repo.list_published(session) if a.visible]
+
+    async def get_public(self, session: AsyncSession) -> PublicAlgorithmList:
+        """공개 /algorithms 목록 — 전체 + today 한 건(meta 로 따로 내려간다).
+
+        today 는 DB 가 하나뿐임을 강제한다(uq_algorithm_today). 그 한 건이
+        visible=false 면 오늘의 문제 없음 — 숨긴 문제를 meta 로 드러내지 않는다.
+        """
+        visible = await self._list_visible(session)
+        today = next((a for a in visible if a.today), None)
+        return PublicAlgorithmList(items=visible, total_count=len(visible), today=today)
+
+    async def get_public_detail(
+        self, session: AsyncSession, slug: str
+    ) -> PublicAlgorithmDetail:
+        """공개 상세 한 벌 — 메타 + `## Data` yaml 의 단계 구조 + 이웃.
+
+        이웃(newer/older)은 컬럼이 아니라 published_on 정렬의 이웃이다(erd.md).
+        없는 slug 도, visible=false 도 같은 404 다 — 숨긴 문제의 존재를 드러내지 않는다.
+        detail_path 가 끊기거나 yaml 이 깨지면 단계별 빈 구조로 내린다 — 500 이 아니다.
+        """
+        visible = await self._list_visible(session)
+        idx = next((i for i, a in enumerate(visible) if a.slug == slug), None)
+        if idx is None:
+            raise NotFoundError(f"algorithm not found: {slug}")
+        dto = visible[idx]
+        newer = visible[idx - 1] if idx > 0 else None
+        older = visible[idx + 1] if idx + 1 < len(visible) else None
+        data = _load_stage_data(dto.detail_path)
+        return PublicAlgorithmDetail(
+            dto=dto,
+            problem=_problem(data.get("problem")),
+            clarifying=_quiz_group(data.get("clarifying")),
+            approach=_quiz_group(data.get("approach")),
+            logic=_logic(data.get("logic")),
+            trace=_trace(data.get("trace")),
+            solution=_solution(data.get("solution")),
+            newer=AlgorithmNeighbor(slug=newer.slug, title=newer.title) if newer else None,
+            older=AlgorithmNeighbor(slug=older.slug, title=older.title) if older else None,
+        )
 
     async def create(
         self, session: AsyncSession, fields: dict[str, Any]

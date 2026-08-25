@@ -5,7 +5,8 @@ bitcamp·likelion 은 여기 없다 — erd 기준 education 몫이라 교육 �
 어드민에서 채운다.
 
 멱등 upsert(slug 기준): 없으면 넣고, 있으면 시드 값으로 덮어쓴다.
-어드민에서 고치기 시작한 뒤에는 돌리지 않는다.
+2026-08-25 실 DB 상태로 동기 — 어드민에서 고친 값(medisolve-ai github_org,
+백엔드 개발자 ended_on, AX 리더 신설)을 반영했다. 재실행이 값을 안 되돌린다.
 
 실행:  uv run python -m seed.seed_companies
 """
@@ -26,18 +27,21 @@ COMPANIES = [
         "name": "메디솔브 AI",
         "description": "피부과 의료 ai 솔루션",
         "location": "서울",
+        "github_org": "MediSolveAIDev",  # 어드민 입력(2026-08-25) — 레포 owner 후보
     },
     {
         "slug": "quantus",
         "name": "퀀터스",
         "description": None,
         "location": "서울",
+        "github_org": None,
     },
     {
         "slug": "dowha-eng",
         "name": "도화 엔지니어링",
         "description": None,
         "location": "서울",
+        "github_org": None,
     },
 ]
 
@@ -48,7 +52,7 @@ CAREERS: list[tuple[str, dict]] = [
         {
             "title": "백엔드 개발자",
             "started_on": date(2026, 2, 1),
-            "ended_on": None,
+            "ended_on": date(2026, 6, 1),  # 어드민 입력 — 6월부터 AX 리더로 역할 전환
             "summary": "피부과 전용 CRM, MSO 제작, 사내 하네스 엔지니어링",
             "description": (
                 "피부과 전용 CRM과 MSO(Multi-Site Operation) 백엔드를 맡고 있으며, "
@@ -57,6 +61,18 @@ CAREERS: list[tuple[str, dict]] = [
                 "함께 주도하고 있다."
             ),
             "stack": ["Python", "FastAPI", "Postgres", "Vite", "LangChain"],
+        },
+    ),
+    (
+        # 어드민 입력(2026-08-25) — 같은 회사 두 번째 역할. product 시드가 이 행에 건다.
+        "medisolve-ai",
+        {
+            "title": "AX 리더",
+            "started_on": date(2026, 6, 1),
+            "ended_on": None,
+            "summary": "사내 AX 전환 프로젝트 리더, B2B AX 솔루션 개발",
+            "description": None,
+            "stack": ["FastAPI", "NextJS", "AI"],
         },
     ),
     (

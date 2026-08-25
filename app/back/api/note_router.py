@@ -1,5 +1,7 @@
-"""노트(note) — 1층. 전부 어드민 뒤다 — 공개 표면은 아직 안 정해졌다.
+"""노트(note) — 1층.
 
+- GET    /api/notes              — 공개. visible=true 목록 + totalCount. ?limit= (기본 50)
+- GET    /api/notes/{slug}       — 공개. 상세 — md 전문(body) + 정렬 이웃(newer/older)
 - GET    /api/admin/notes        — 목록. published_on DESC NULLS LAST
 - GET    /api/admin/notes/files  — 등록 후보 md 파일 (frontmatter 프리필 포함)
 - POST   /api/admin/notes        — 등록. 실존 md 아니면 422(케이스 4), slug 중복 409
@@ -9,7 +11,7 @@
 
 from __future__ import annotations
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from api.deps import get_db, require_admin
@@ -20,14 +22,38 @@ from schemas.note import (
     NoteFileItem,
     NoteFilesResponse,
     NoteUpdate,
+    PublicNoteDetailItem,
+    PublicNoteDetailResponse,
+    PublicNotesResponse,
 )
 from service.note_service import note_service
 
+router = APIRouter(prefix="/api/notes", tags=["note"])
 admin_router = APIRouter(
     prefix="/api/admin/notes",
     tags=["note"],
     dependencies=[Depends(require_admin)],
 )
+
+
+@router.get("", response_model=PublicNotesResponse, response_model_by_alias=True)
+async def get_notes(
+    limit: int = Query(default=50, ge=1),
+    db: AsyncSession = Depends(get_db),
+) -> PublicNotesResponse:
+    """목록 화면은 전체가 필요하다 — 클라이언트가 큰 limit 을 보낸다(lib/api.ts)."""
+    bundle = await note_service.get_public(db, limit)
+    return PublicNotesResponse.from_bundle(bundle)
+
+
+@router.get(
+    "/{slug}", response_model=PublicNoteDetailResponse, response_model_by_alias=True
+)
+async def get_note(
+    slug: str, db: AsyncSession = Depends(get_db)
+) -> PublicNoteDetailResponse:
+    detail = await note_service.get_public_detail(db, slug)
+    return PublicNoteDetailResponse(detail=PublicNoteDetailItem.from_public(detail))
 
 
 @admin_router.get("", response_model=AdminNotesResponse, response_model_by_alias=True)

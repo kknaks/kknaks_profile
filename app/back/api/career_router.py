@@ -1,5 +1,7 @@
-"""역할(career) — 1층. 전부 어드민 뒤다 — 공개 표면은 /career 가 서면 그때 뚫는다.
+"""역할(career) — 1층.
 
+- GET    /api/career             — 공개. career+education 타임라인 한 벌 —
+                                   역할 펼침(product 카드·problem)까지 담는다
 - GET    /api/admin/careers      — 목록. started_on DESC, 회사 이름·파생값 포함
 - POST   /api/admin/careers      — 등록. profile_id 는 서버가 첫 profile 로 채운다
 - PATCH  /api/admin/careers/{id} — 부분 수정. 보낸 필드만
@@ -17,14 +19,22 @@ from schemas.career import (
     AdminCareersResponse,
     CareerCreate,
     CareerUpdate,
+    PublicCareerResponse,
 )
 from service.career_service import career_service
 
+router = APIRouter(prefix="/api/career", tags=["career"])
 admin_router = APIRouter(
     prefix="/api/admin/careers",
     tags=["career"],
     dependencies=[Depends(require_admin)],
 )
+
+
+@router.get("", response_model=PublicCareerResponse, response_model_by_alias=True)
+async def get_career(db: AsyncSession = Depends(get_db)) -> PublicCareerResponse:
+    bundle = await career_service.get_public(db)
+    return PublicCareerResponse.from_bundle(bundle)
 
 
 @admin_router.get("", response_model=AdminCareersResponse, response_model_by_alias=True)

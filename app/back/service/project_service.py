@@ -14,8 +14,9 @@ from typing import Any
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from config import get_settings
+from core.detail import read_detail
 from core.exceptions import ConflictError, NotFoundError, ValidationError
-from dto.project import ProjectDTO
+from dto.project import ProjectDTO, PublicProject
 from repository.profile_repo import ProfileRepository
 from repository.project_repo import ProjectRepository
 
@@ -59,6 +60,20 @@ class ProjectService:
 
     async def list_projects(self, session: AsyncSession) -> list[ProjectDTO]:
         return await self._project_repo.list_all(session)
+
+    async def get_public(self, session: AsyncSession) -> list[PublicProject]:
+        """공개 /projects 목록 — visible=true 만, 각 항목에 md 전문(body)을 싣는다.
+
+        visible=false 는 여기서 걸러진다 — 응답에 visible 필드는 없다
+        (erd §미결 3 의 확정: 공개 API 가 걸러서 내려준다).
+        상세 페이지는 별도 API 없이 이 body 를 쓴다 — detail_path 가 끊기면
+        상세 없음(None)으로 내려간다(core/detail.py).
+        """
+        return [
+            PublicProject(dto=p, body=read_detail(p.detail_path))
+            for p in await self._project_repo.list_all(session)
+            if p.visible
+        ]
 
     async def create(self, session: AsyncSession, fields: dict[str, Any]) -> ProjectDTO:
         slug = fields["slug"]

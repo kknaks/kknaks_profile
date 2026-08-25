@@ -45,6 +45,20 @@ class AlgorithmRepository:
         rows = (await session.execute(stmt)).scalars().all()
         return [_to_dto(row) for row in rows]
 
+    async def list_published(self, session: AsyncSession) -> list[AlgorithmDTO]:
+        """공개 목록 순서 — published_on DESC NULLS LAST, id DESC.
+
+        어드민(list_all)과 달리 today 를 앞세우지 않는다 — 공개 응답에서 today 는
+        meta 로 따로 내려가고, 이웃(newer/older)도 이 정렬의 이웃이라서다.
+        visible 필터는 service 몫이다(erd §미결 3 확정과 같은 규약).
+        """
+        stmt = select(Algorithm).order_by(
+            Algorithm.published_on.desc().nulls_last(),
+            Algorithm.id.desc(),
+        )
+        rows = (await session.execute(stmt)).scalars().all()
+        return [_to_dto(row) for row in rows]
+
     async def get(self, session: AsyncSession, algorithm_id: int) -> AlgorithmDTO | None:
         row = await session.get(Algorithm, algorithm_id)
         return _to_dto(row) if row else None

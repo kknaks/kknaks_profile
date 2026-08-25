@@ -12,6 +12,13 @@ dependencies = [
     "pydantic-settings>=2.5",      # config.py — env 로드
     "bcrypt>=4.2",                 # admin 비밀번호 해시
     "pyjwt>=2.9",                  # 쿠키 JWT 발급/검증
+    "pyyaml>=6.0.3",
+    "httpx>=0.27",
+    "open-kknaks>=2.1.2",
+    "youtube-transcript-api>=1.2.4",
+    "trafilatura>=2.2.0",
+    "cryptography>=50.0.0",
+    "playwright>=1.62.0",
 ]
 
 [dependency-groups]

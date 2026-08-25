@@ -1,5 +1,7 @@
-"""알고리즘(algorithm) — 1층. 전부 어드민 뒤다 — 메타 관리 + today 토글.
+"""알고리즘(algorithm) — 1층.
 
+- GET    /api/algorithms            — 공개. visible=true 목록 + totalCount + today 한 건(meta)
+- GET    /api/algorithms/{slug}     — 공개. 상세 — 단계 구조(md `## Data` yaml) + 정렬 이웃(newer/older)
 - GET    /api/admin/algorithms      — 목록. today 행 맨 앞, 그 뒤 published_on DESC NULLS LAST
 - POST   /api/admin/algorithms      — 등록. difficulty 오값·md 부재 422, slug 중복 409
 - PATCH  /api/admin/algorithms/{id} — 부분 수정. today=true 면 기존 today 를 먼저 내린다
@@ -17,14 +19,37 @@ from schemas.algorithm import (
     AdminAlgorithmsResponse,
     AlgorithmCreate,
     AlgorithmUpdate,
+    PublicAlgorithmDetailItem,
+    PublicAlgorithmDetailResponse,
+    PublicAlgorithmsResponse,
 )
 from service.algorithm_service import algorithm_service
 
+router = APIRouter(prefix="/api/algorithms", tags=["algorithm"])
 admin_router = APIRouter(
     prefix="/api/admin/algorithms",
     tags=["algorithm"],
     dependencies=[Depends(require_admin)],
 )
+
+
+@router.get("", response_model=PublicAlgorithmsResponse, response_model_by_alias=True)
+async def get_algorithms(db: AsyncSession = Depends(get_db)) -> PublicAlgorithmsResponse:
+    """목록 화면은 전체가 필요하다 — 94건 규모라 페이지네이션 없이 다 내린다."""
+    bundle = await algorithm_service.get_public(db)
+    return PublicAlgorithmsResponse.from_bundle(bundle)
+
+
+@router.get(
+    "/{slug}", response_model=PublicAlgorithmDetailResponse, response_model_by_alias=True
+)
+async def get_algorithm(
+    slug: str, db: AsyncSession = Depends(get_db)
+) -> PublicAlgorithmDetailResponse:
+    detail = await algorithm_service.get_public_detail(db, slug)
+    return PublicAlgorithmDetailResponse(
+        detail=PublicAlgorithmDetailItem.from_public(detail)
+    )
 
 
 @admin_router.get("", response_model=AdminAlgorithmsResponse, response_model_by_alias=True)

@@ -37,9 +37,36 @@ class ContentRepository:
         rows = (await session.execute(stmt)).scalars().all()
         return [_to_dto(row) for row in rows]
 
+    async def list_visible(self, session: AsyncSession) -> list[ContentDTO]:
+        """공개 목록. visible=true 만, published_on DESC NULLS LAST.
+
+        이 정렬이 곧 이웃(newer/older)의 기준이다 — 정렬을 바꾸면 이웃도 바뀐다.
+        """
+        stmt = (
+            select(Content)
+            .where(Content.visible.is_(True))
+            .order_by(Content.published_on.desc().nulls_last(), Content.id.desc())
+        )
+        rows = (await session.execute(stmt)).scalars().all()
+        return [_to_dto(row) for row in rows]
+
+    async def list_slugs(self, session: AsyncSession) -> list[str]:
+        """slug 만 전부 — 인박스 채번(C-NNN 최대값)이 쓴다. visible 무관."""
+        return list((await session.execute(select(Content.slug))).scalars().all())
+
     async def get(self, session: AsyncSession, content_id: int) -> ContentDTO | None:
         row = await session.get(Content, content_id)
         return _to_dto(row) if row else None
+
+    async def get_by_ids(
+        self, session: AsyncSession, content_ids: list[int]
+    ) -> dict[int, ContentDTO]:
+        """id 묶음 조회 — 게이트 이력이 result.contentId 로 콘텐츠를 붙일 때 쓴다."""
+        if not content_ids:
+            return {}
+        stmt = select(Content).where(Content.id.in_(content_ids))
+        rows = (await session.execute(stmt)).scalars().all()
+        return {row.id: _to_dto(row) for row in rows}
 
     async def get_by_slug(self, session: AsyncSession, slug: str) -> ContentDTO | None:
         row = (

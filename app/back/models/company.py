@@ -23,3 +23,4 @@ class Company(Base, TimestampMixin):
     location: Mapped[str | None] = mapped_column(String(64))            # 서울
     site: Mapped[str | None] = mapped_column(String(255))
     logo_url: Mapped[str | None] = mapped_column(String(255))
+    github_org: Mapped[str | None] = mapped_column(String(64))          # GitHub 조직(owner) — 레포 owner 드롭다운 후보

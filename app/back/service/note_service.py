@@ -16,8 +16,15 @@ from typing import Any
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from config import get_settings
+from core.detail import read_detail
 from core.exceptions import ConflictError, NotFoundError, ValidationError
-from dto.note import NoteDTO, NoteFileDTO
+from dto.note import (
+    NoteDTO,
+    NoteFileDTO,
+    NoteNeighbor,
+    PublicNoteDetail,
+    PublicNoteList,
+)
 from repository.note_repo import NoteRepository
 from repository.profile_repo import ProfileRepository
 
@@ -123,6 +130,42 @@ class NoteService:
 
     async def list_notes(self, session: AsyncSession) -> list[NoteDTO]:
         return await self._note_repo.list_all(session)
+
+    async def _list_visible(self, session: AsyncSession) -> list[NoteDTO]:
+        """공개 목록의 원천 — published_on DESC NULLS LAST(repo 정렬) 에서 visible 만.
+
+        visible=false 는 여기서 걸러진다 — 응답에 visible 필드는 없다
+        (erd §미결 3 의 확정: 공개 API 가 걸러서 내려준다).
+        """
+        return [n for n in await self._note_repo.list_all(session) if n.visible]
+
+    async def get_public(self, session: AsyncSession, limit: int) -> PublicNoteList:
+        """공개 /notes 목록 — 앞에서 limit 개. total_count 는 자르기 전 전체 수."""
+        visible = await self._list_visible(session)
+        return PublicNoteList(items=visible[:limit], total_count=len(visible))
+
+    async def get_public_detail(
+        self, session: AsyncSession, slug: str
+    ) -> PublicNoteDetail:
+        """공개 상세 한 벌 — md 전문 + 이웃.
+
+        이웃(newer/older)은 컬럼이 아니라 published_on 정렬의 이웃이다(erd.md).
+        없는 slug 도, visible=false 도 같은 404 다 — 숨긴 글의 존재를 드러내지 않는다.
+        detail_path 가 끊기면 상세 없음 — 빈 본문으로 그린다(_RESUME.md §4).
+        """
+        visible = await self._list_visible(session)
+        idx = next((i for i, n in enumerate(visible) if n.slug == slug), None)
+        if idx is None:
+            raise NotFoundError(f"note not found: {slug}")
+        dto = visible[idx]
+        newer = visible[idx - 1] if idx > 0 else None
+        older = visible[idx + 1] if idx + 1 < len(visible) else None
+        return PublicNoteDetail(
+            dto=dto,
+            body=read_detail(dto.detail_path) or "",
+            newer=NoteNeighbor(slug=newer.slug, title=newer.title) if newer else None,
+            older=NoteNeighbor(slug=older.slug, title=older.title) if older else None,
+        )
 
     async def list_file_candidates(self, session: AsyncSession) -> list[NoteFileDTO]:
         """등록 후보 — para/resources/note/ 재귀의 *.md 중 아직 등록 안 된 것.

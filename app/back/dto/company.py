@@ -15,6 +15,7 @@ class CompanyDTO:
     location: str | None
     site: str | None
     logo_url: str | None
+    github_org: str | None       # GitHub 조직(owner) — 레포 owner 드롭다운 후보
 
 
 @dataclass(frozen=True)

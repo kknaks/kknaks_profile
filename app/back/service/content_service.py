@@ -13,8 +13,9 @@ from typing import Any
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from config import get_settings
+from core.detail import read_detail
 from core.exceptions import ConflictError, NotFoundError, ValidationError
-from dto.content import ContentDTO
+from dto.content import ContentDTO, PublicContentDetail, PublicContentList
 from repository.content_repo import ContentRepository
 from repository.profile_repo import ProfileRepository
 
@@ -60,6 +61,38 @@ class ContentService:
 
     async def list_contents(self, session: AsyncSession) -> list[ContentDTO]:
         return await self._content_repo.list_all(session)
+
+    async def get_public(self, session: AsyncSession, limit: int) -> PublicContentList:
+        """공개 /contents 목록 — visible=true 만, limit 개.
+
+        visible=false 는 여기서 걸러진다 — 응답에 visible 필드는 없다
+        (erd §미결 3 의 확정: 공개 API 가 걸러서 내려준다).
+        totalCount 는 limit 전의 전체 행 수 — 저장하지 않고 센다(erd §content).
+        """
+        rows = await self._content_repo.list_visible(session)
+        return PublicContentList(items=rows[:limit], total_count=len(rows))
+
+    async def get_public_detail(
+        self, session: AsyncSession, slug: str
+    ) -> PublicContentDetail:
+        """공개 /contents/{slug} — md 전문 + published_on 정렬의 이웃.
+
+        이전/다음 글은 컬럼이 아니다(erd §content) — visible=true 목록의
+        정렬 이웃을 매번 센다. 없는 slug 도 visible=false 도 같은 404 —
+        숨긴 것을 「있는데 안 보여준다」로 드러내지 않는다.
+        detail_path 가 끊기면 본문 없이 그린다 — 계약상 body 는 문자열이라
+        빈 문자열로 내려간다(core/detail.py 는 None).
+        """
+        rows = await self._content_repo.list_visible(session)
+        idx = next((i for i, row in enumerate(rows) if row.slug == slug), None)
+        if idx is None:
+            raise NotFoundError(f"content not found: {slug}")
+        return PublicContentDetail(
+            dto=rows[idx],
+            body=read_detail(rows[idx].detail_path) or "",
+            newer=rows[idx - 1] if idx > 0 else None,  # DESC — 앞이 더 최신
+            older=rows[idx + 1] if idx + 1 < len(rows) else None,
+        )
 
     async def create(self, session: AsyncSession, fields: dict[str, Any]) -> ContentDTO:
         _require_detail_path(fields["detail_path"])

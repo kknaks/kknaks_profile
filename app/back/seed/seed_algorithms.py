@@ -1,7 +1,8 @@
 """algorithm 시드 — 원료는 para/resources/algorithms/*.md 의 frontmatter (94건).
 
 매핑 (원료에 없는 필드는 비운다 — 추측으로 메우지 않는다):
-- slug            = `id` (A-001)
+- slug            = 파일명 stem 소문자 (A-001-two-sum.md → a-001-two-sum) —
+                    공개 URL 키다. frontmatter `id` 가 아니다(2026-08-25 결정)
 - title           = `title.ko` (없으면 `title.en`)
 - difficulty      = `difficulty`
 - summary         = `summary` (frontmatter 에 있으면 — 현재 원료엔 없다)
@@ -81,16 +82,15 @@ def _str_list(value: object) -> list[str] | None:
 
 def _fields_from(md: Path) -> dict | None:
     fm = _frontmatter(md)
-    slug = fm.get("id")
-    if not isinstance(slug, str) or not slug.strip():
-        print(f"건너뜀 — id 없음: {md.name}")
-        return None
+    # slug 는 파일명 stem 소문자 — frontmatter `id`(A-001)가 아니라 URL 키다.
+    # DB 의 slug 도 같은 파생이라 시드 재실행이 값을 되돌리지 않는다.
+    slug = md.stem.lower()
     source = fm.get("source") if isinstance(fm.get("source"), dict) else {}
     number = source.get("number")
     summary = fm.get("summary")
     return {
-        "slug": slug.strip(),
-        "title": _title(fm.get("title")) or slug.strip(),
+        "slug": slug,
+        "title": _title(fm.get("title")) or slug,
         "difficulty": fm.get("difficulty"),
         "summary": summary.strip() if isinstance(summary, str) and summary.strip() else None,
         "source_platform": source.get("platform"),

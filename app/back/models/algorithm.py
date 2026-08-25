@@ -22,7 +22,7 @@ class Algorithm(Base, TimestampMixin):
         ForeignKey("profile.id", ondelete="CASCADE")
     )
 
-    slug: Mapped[str] = mapped_column(String(64), unique=True)          # A-001
+    slug: Mapped[str] = mapped_column(String(64), unique=True)          # a-001-two-sum (파일명 stem 소문자)
     title: Mapped[str] = mapped_column(String(128))                     # Two Sum
     difficulty: Mapped[str] = mapped_column(String(8))                  # easy / medium / hard
     summary: Mapped[str | None] = mapped_column(Text)

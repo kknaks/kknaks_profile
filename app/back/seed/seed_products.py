@@ -1,15 +1,17 @@
-"""product 시드 — 원료는 para/projects/company/<slug>/showcase.md 의 frontmatter.
+"""product 시드 — 2026-08-25 실 DB 상태를 값으로 박는다.
 
-- title·summary 는 ko 값만 담는다(database.md 서두 — 한국어 하나).
-- detail_path 는 그 제품의 showcase.md 를 리포 루트 기준 상대경로로 가리킨다 —
-  본문을 복사하지 않는다(정보는 DB, 상세는 md).
-- **visible 은 무조건 False 로 시드한다** — 사람이 검토 후 어드민에서 켠다(_RESUME 방침).
-- 원료에 없는 필드(links 등)는 비워 둔다 — 추측으로 메우지 않는다.
-- career 연결은 아래 CAREER_OF 명시 매핑 — 지금 medisolve-ai 의 career 행이
-  「백엔드 개발자」 하나뿐이라 거기 건다. 역할이 나뉘면 어드민에서 재연결한다.
+원래는 para/projects/company/<slug>/showcase.md frontmatter 를 파싱했지만,
+메타 SoT 는 DB 로 갔다(templates/projects/showcase.md — frontmatter 를 두지
+않는다). 원료는 이제 어드민이 관리하는 DB 그 자체이고, 시드는 그 시점 상태의
+스냅샷이다. 상세 본문은 detail_path 의 md 가 갖는다(정보는 DB, 상세는 md).
+
+- career 연결은 CAREER_OF 명시 매핑 — mediness 는 「AX 리더」 역할의 산출물이다
+  (어드민에서 재연결한 실값, 2026-08-25).
+- visible 도 어드민에서 정한 실값 그대로 — 첫 시드의 「무조건 False」는
+  검토 전 상태였고, 검토가 끝나 켜졌다.
 
 멱등 upsert(slug 기준): 없으면 넣고, 있으면 시드 값으로 덮어쓴다.
-어드민에서 고치기 시작한 뒤에는 돌리지 않는다.
+재실행이 값을 안 되돌린다 — 시드 값이 곧 현 DB 값이라서다.
 
 실행:  uv run python -m seed.seed_products
 """
@@ -18,78 +20,42 @@ from __future__ import annotations
 
 import asyncio
 from datetime import date
-from pathlib import Path
 
-import yaml
 from sqlalchemy import select
 
 from core.db import SessionLocal
 from models import Career, Company, Product
 
-# app/back/seed/ → 리뉴얼 루트
-_ROOT = Path(__file__).resolve().parents[3]
-_COMPANY_DIR = _ROOT / "para" / "projects" / "company"
-
-# 제품 slug → (company slug, career title). 원료 frontmatter 에 역할 정보가 없어
-# 여기 명시한다 — 추측이 아니라 현재 career 행이 하나뿐이라는 사실에 기댄 매핑.
+# 제품 slug → (company slug, career title). seed_companies 가 먼저 돌아야 한다.
 CAREER_OF: dict[str, tuple[str, str]] = {
-    "mediness": ("medisolve-ai", "백엔드 개발자"),
+    "mediness": ("medisolve-ai", "AX 리더"),
 }
 
-
-def _ko(value: object) -> str | None:
-    """frontmatter 의 {ko, en} 또는 단일 문자열에서 ko 만 뽑는다."""
-    if isinstance(value, dict):
-        value = value.get("ko")
-    if isinstance(value, str) and value.strip():
-        return value.strip()
-    return None
-
-
-def _month_to_date(value: object) -> date | None:
-    """`"2026.05"` → date(2026, 5, 1). 월 단위라 1일로 박는다."""
-    if not isinstance(value, str) or not value.strip():
-        return None
-    parts = value.strip().replace("-", ".").split(".")
-    if len(parts) < 2:
-        return None
-    return date(int(parts[0]), int(parts[1]), 1)
-
-
-def _frontmatter(path: Path) -> dict:
-    text = path.read_text(encoding="utf-8")
-    if not text.startswith("---"):
-        return {}
-    _, fm, _ = text.split("---", 2)
-    loaded = yaml.safe_load(fm)
-    return loaded if isinstance(loaded, dict) else {}
-
-
-def _fields_from(slug: str, showcase: Path) -> dict:
-    fm = _frontmatter(showcase)
-    links = fm.get("links")
-    return {
-        "slug": slug,
-        "title": _ko(fm.get("title")) or slug,
-        "summary": _ko(fm.get("summary")),
-        "detail_path": str(showcase.relative_to(_ROOT)),
-        "category": fm.get("category") or None,
-        "status": fm.get("status") or None,
-        "started_on": _month_to_date(fm.get("date")),
-        "stack": fm.get("stack") or None,
-        "thumbnail": fm.get("thumbnail") or None,
-        "links": links if isinstance(links, dict) and links else None,
-        "visible": False,  # 사람이 검토 후 켠다 — frontmatter 값과 무관하게 강제
-    }
+PRODUCTS: list[dict] = [
+    {
+        "slug": "mediness",
+        "title": "Mediness",
+        "summary": "문서·회의·의사결정·업무를 한 자리에 모은 사내 AX 워크스페이스",
+        "detail_path": "para/projects/company/mediness/showcase.md",
+        "category": "web",
+        "status": "live",
+        "started_on": date(2026, 5, 1),
+        "stack": [
+            "FastAPI", "PostgreSQL", "Redis", "SQLAlchemy", "Alembic",
+            "Next.js", "TypeScript", "Tailwind CSS", "WebSocket", "MCP",
+            "Docker Compose", "Prometheus", "Grafana", "Tauri",
+        ],
+        "thumbnail": None,
+        "links": None,
+        "visible": True,
+    },
+]
 
 
 async def seed() -> None:
     async with SessionLocal() as session:
-        for showcase in sorted(_COMPANY_DIR.glob("*/showcase.md")):
-            slug = showcase.parent.name
-            if slug not in CAREER_OF:
-                print(f"건너뜀 — {slug}: CAREER_OF 매핑이 없다. 매핑을 먼저 정한다")
-                continue
+        for fields in PRODUCTS:
+            slug = fields["slug"]
             company_slug, career_title = CAREER_OF[slug]
             career = (
                 await session.execute(
@@ -104,8 +70,7 @@ async def seed() -> None:
                     "seed_companies 를 먼저 돌린다"
                 )
 
-            fields = _fields_from(slug, showcase)
-            fields["career_id"] = career.id
+            fields = {**fields, "career_id": career.id}
 
             row = (
                 await session.execute(select(Product).where(Product.slug == slug))

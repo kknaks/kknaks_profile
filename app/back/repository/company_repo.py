@@ -20,6 +20,7 @@ def _to_dto(row: Company) -> CompanyDTO:
         location=row.location,
         site=row.site,
         logo_url=row.logo_url,
+        github_org=row.github_org,
     )
 
 

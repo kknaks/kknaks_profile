@@ -15,6 +15,7 @@ class CompanyOut(BaseModel):
     location: str | None = None
     site: str | None = None
     logo_url: str | None = Field(default=None, serialization_alias="logoUrl")
+    github_org: str | None = Field(default=None, serialization_alias="githubOrg")
 
     @classmethod
     def from_dto(cls, dto: CompanyDTO) -> CompanyOut:
@@ -26,6 +27,7 @@ class CompanyOut(BaseModel):
             location=dto.location,
             site=dto.site,
             logo_url=dto.logo_url,
+            github_org=dto.github_org,
         )
 
 
@@ -63,6 +65,9 @@ class CompanyCreate(BaseModel):
     location: str | None = None
     site: str | None = None
     logo_url: str | None = Field(default=None, validation_alias="logoUrl")
+    github_org: str | None = Field(
+        default=None, max_length=64, validation_alias="githubOrg"
+    )
 
 
 class CompanyUpdate(BaseModel):
@@ -76,3 +81,6 @@ class CompanyUpdate(BaseModel):
     location: str | None = None
     site: str | None = None
     logo_url: str | None = Field(default=None, validation_alias="logoUrl")
+    github_org: str | None = Field(
+        default=None, max_length=64, validation_alias="githubOrg"
+    )

@@ -37,6 +37,32 @@ class CareerRepository:
         rows = (await session.execute(stmt)).all()
         return [_to_dto(career, name) for career, name in rows]
 
+    async def list_public(self, session: AsyncSession) -> list[CareerDTO]:
+        """공개 /career 용 — 회사 location·description 까지 실어 온다."""
+        stmt = (
+            select(Career, Company)
+            .join(Company, Company.id == Career.company_id)
+            .order_by(Career.started_on.desc(), Career.id.desc())
+        )
+        rows = (await session.execute(stmt)).all()
+        return [
+            CareerDTO(
+                id=career.id,
+                profile_id=career.profile_id,
+                company_id=career.company_id,
+                company_name=company.name,
+                title=career.title,
+                started_on=career.started_on,
+                ended_on=career.ended_on,
+                summary=career.summary,
+                description=career.description,
+                stack=career.stack,
+                company_location=company.location,
+                company_description=company.description,
+            )
+            for career, company in rows
+        ]
+
     async def get(self, session: AsyncSession, career_id: int) -> CareerDTO | None:
         stmt = (
             select(Career, Company.name)

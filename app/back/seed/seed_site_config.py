@@ -3,7 +3,8 @@
 원료는 _archive/persona/profile.md + _meta.yaml (ko 값만).
 
 멱등 upsert: 키가 없으면 넣고, 있으면 시드 값으로 덮어쓴다.
-어드민에서 문구를 고치기 시작한 뒤에는 돌리지 않는다.
+2026-08-25 실 DB 상태로 동기 — 어드민에서 고친 about.cards 를 반영했다.
+재실행이 값을 안 되돌린다.
 
 실행:  uv run python -m seed.seed_site_config
 """
@@ -87,23 +88,24 @@ SEED: list[tuple[str, Any, str]] = [
         "/about 소개 2문단 — 지금 하는 일",
     ),
     (
+        # 어드민에서 고친 실값(2026-08-25) — 시드는 그 상태를 재현한다
         "about.cards",
         [
             {
                 "title": "지금 일하는 곳",
-                "body": "AI 회사에서 피부과 전용 CRM·MSO 의 백엔드와 사내 하네스 엔지니어링을 맡고 있습니다.",
+                "body": "AI 회사에서 피부과 AI서비스 구축과 AX리더로 사내 및 고객사 AX전환 사업을 맡고 있습니다.",
             },
             {
                 "title": "만들고 있는 것",
-                "body": "홈서버에서 직접 호스팅하는 작은 포트폴리오 사이트(이 사이트). 페르소나 md를 SoT로 둔 declarative 시스템.",
+                "body": "홈서버에서 직접 호스팅하는 작은 포트폴리오 사이트. AI를 활용한 툴, 제품",
             },
             {
                 "title": "관심 있는 기술",
-                "body": "LLM·RAG·벡터 DB 같은 AI 인프라. 그리고 셀프호스팅·systemd·nginx 같은 인프라 운영 자체.",
+                "body": "LLM·RAG·벡터 DB 같은 AI 인프라. Loop Engineering 같은 LLM 기반 자동화 구조",
             },
             {
                 "title": "일하는 방식",
-                "body": "문서로 합의를 만들고 코드로 풀어냅니다. 매일의 학습은 노트와 영상으로 남깁니다.",
+                "body": "문서로 기획, 스펙을 작성하고 코드로 풀어냅니다.",
             },
         ],
         "/about 카드 4개 — [{title, body}]",
