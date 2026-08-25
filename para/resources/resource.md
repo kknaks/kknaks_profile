@@ -65,10 +65,12 @@ Day 파일이 두 계열이다 — **2024-12-30 에 Day01 이 다시 시작**한
 - 영상 하나 = 교안 하나(`C-NNN-<slug>.md`). 영상을 안 보고도 이 문서만으로 학습할 수 있게 쓴다.
 - **유튜브 개념의 출처층이다.** 유튜브에서 자란 개념의 `up:` 이 C-NNN stem 을 가리킨다.
 
-**DB** — `content` 표의 씨드다. frontmatter(`id` · `title` · `summary` · `youtubeId` ·
-`duration` · `speaker` · `tags` · `date`)가 컬럼으로 들어가고 파일 경로가 `detail_path` 가 된다.
+**DB** — 카드 메타(`title` · `summary` · `youtube_id` · `duration` · `speaker` · `tags` ·
+`published_on`)는 인박스 승인 시점에 `content` 행으로 들어가고, 파일 경로가 `detail_path` 가
+된다. md 는 frontmatter 없이 H1 제목 + 출처 줄 + 본문만 갖는다 — 시드의 frontmatter
+읽기는 이관용으로 종결.
 
-**파이프라인 상태를 frontmatter 에 두지 않는다.** 처리 상태는 DB `queue` 가 갖는다.
+**파이프라인 상태를 문서에 두지 않는다.** 처리 상태는 DB `queue` 가 갖는다.
 
 양식은 `templates/resources/youtube.md`.
 
@@ -89,6 +91,8 @@ Day 파일이 두 계열이다 — **2024-12-30 에 Day01 이 다시 시작**한
 ## 5. 비어 있는 것 — docs · book · article · blog · session
 
 자료 캡처(어드민 모달 → `queue` → 게이트 승인)의 도착지다. 승인 시점에 md 가 생긴다.
+양식은 `templates/resources/` 의 `docs` · `article` · `blog`. 이 셋은 DB 행이 없다 —
+출처는 md 머리의 출처 줄이 갖는다.
 
 `book` 과 `session` 은 v1 에서 로직 없이 버튼만 둔다 — 가져올 원문이 없어서 메모와
 현장 노트가 유일한 입력이다.
@@ -101,8 +105,11 @@ Day 파일이 두 계열이다 — **2024-12-30 에 Day01 이 다시 시작**한
   `areas/concept/` 의 개념을 보강한다.
 - **개념을 재서술하지 않는다.** 자료 노트는 요지만 갖고 상세는 `[[개념 stem]]` 으로
   위임한다 — 상세의 SoT 는 개념 노트다.
-- **파이프라인 상태를 frontmatter 에 두지 않는다.** 옛 구조의 `status: pending` 문제.
-  상태는 DB 가 갖는다.
+- **리소스 md 는 frontmatter 를 갖지 않는다.** H1 제목 + 출처 줄 + 본문뿐이다. 카드
+  메타는 인박스 승인 시점에 DB 로 들어간다 — md 에도 두면 같은 메타의 둘째 원천이 된다.
+  `note/` 만 예외다 — 사람이 직접 쓰는 층이라 별개 규약을 따른다.
+- **파이프라인 상태를 문서에 두지 않는다.** 옛 구조의 `status: pending` 문제.
+  상태는 DB `queue` 가 갖는다.
 - **stem 을 바꾸지 않는다.** 개념의 `up:` 이 여기 stem 을 가리킨다.
 
 회사 회의록은 여기 두지 않는다. 밖에서 들어온 자료가 아니라 내 일이라
@@ -114,5 +121,4 @@ Day 파일이 두 계열이다 — **2024-12-30 에 Day01 이 다시 시작**한
 
 - **note 신규 글이 어느 하위로 가나** — 지금 여덟 폴더는 이관하면서 생긴 것이다.
   새 주제가 오면 폴더를 만들지, 몇 건부터 가르는지 안 정했다.
-- **`docs` · `article` · `blog` 의 양식** — 캡처 파이프라인(케이스 1)을 만들 때 정한다.
 - **`book` · `session` 캡처 로직** — v1 은 버튼만.

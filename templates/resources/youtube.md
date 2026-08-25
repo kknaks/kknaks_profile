@@ -3,41 +3,24 @@
 **외부 사람이 영상을 안 보고도 이 문서만으로 이해·학습할 수 있어야 한다.**
 영상 요약이 아니라 교안이다. 짧게 압축하지 말고 학습 가능한 수준으로 쓴다.
 
-DB `content` 표가 이 파일의 frontmatter 를 씨드로 읽고, `detail_path` 로 본문을 가리킨다.
-**본문의 원장은 이 파일이다** — DB 에 복사하지 않는다.
+카드 메타(`title` · `summary` · `youtube_id` · `duration` · `speaker` · `tags` ·
+`published_on`)는 **인박스 승인 시점에 DB `content` 행으로 들어가고**, `detail_path` 가
+이 파일을 가리킨다. **본문의 원장은 이 파일이다** — DB 에 본문을 복사하지 않고,
+md 에 frontmatter 로 같은 메타를 두지도 않는다. 두면 원천이 둘이 된다.
 
-## frontmatter
+## 머리
 
-```yaml
----
-type: content
-id: C-NNN                # 기존 최대값 + 1. 결번을 재사용하지 않는다
-date: YYYY.MM.DD         # → DB published_on
-duration: "M:SS"
-speaker: 출처 채널
-kind: study              # tutorial · study · talk · review
-youtubeId: xxxxxxxxxxx   # → DB youtube_id
-title:
-  ko: "60자 이내. 원본 제목보다 간결·구체적으로"
-  en: "same"
-summary:
-  ko: "핵심 한 줄. 80자 이내"
-  en: "same"
-tags:
-  - "#소문자-키워드"     # 3~7개
----
+```markdown
+# 제목
+
+> 출처: <유튜브 url> · <채널> · M:SS · YYYY-MM-DD
 ```
 
-`kind` 판정 — 모호하면 `study`.
+- 제목은 본문 H1 이 갖는다. 원본 제목보다 간결·구체적으로
+- 출처 줄이 이 문서의 유일한 메타다 — 어디서 왔고, 누가 말했고, 얼마나 길고, 언제 것인지
+- 파일명의 `C-NNN` 은 기존 최대값 + 1. 결번을 재사용하지 않는다
 
-| 값 | 무엇 |
-| --- | --- |
-| `tutorial` | 따라하면 무언가 만들어지는 hands-on 가이드 |
-| `study` | 개념 · 이론 학습. 코드는 보조 |
-| `talk` | 발표 · 강연 · 인터뷰 |
-| `review` | 도구 · 라이브러리 평가 |
-
-**파이프라인 상태를 frontmatter 에 두지 않는다.** 옛 구조의 `status` · `enriched_at` ·
+**파이프라인 상태를 문서에 두지 않는다.** 옛 구조의 `status` · `enriched_at` ·
 `transcript` · `day` 는 전부 걷어냈다 — 처리 상태는 DB `queue` 가 갖고, 문서는 내용만 갖는다.
 
 ## 본문 — 순서대로
