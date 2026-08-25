@@ -25,7 +25,7 @@ tags:
 title:
   en: Swim in Rising Water
   ko: 상승하는 물에서 수영하기
-today: true
+today: false
 type: algorithm
 updated: '2026-08-24'
 visible: true
