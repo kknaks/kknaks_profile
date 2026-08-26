@@ -22,17 +22,19 @@ problem 0건·career description 공백. 페이지 하나씩).
 
 ## 1. 지금
 
-- [ ] **상세 내용 채우기** — 표면은 다 섰는데 알맹이가 비었다. `problem` 0건,
-      career `description` 공백 다수, education `detail_path` 공백 2건.
-      이력서 원료가 되게 페이지 하나씩 사람이 채운다(메인 세션)
-- [ ] **수집함** — 케이스 1(자료 캡처)·케이스 6(problem 게이트). `queue` 표(erd §미결 7)를
-      먼저 정한다. 어드민 자리(`/admin/capture`·`/admin/approvals`)는 공란으로 서 있음.
-      잔디(commit 수집)와 함께 백그라운드 발주 예정
-- [ ] `.agent/` — 규칙·훅·스킬·템플릿. 케이스 2 의 pre-commit, 케이스 4 의 스킬이 여기.
-      **코드 계층 규약 문서화도 여기** — 지금은 코드(company·career 슬라이스)가 모범일 뿐
-- [ ] mediness 검토 — `visible=false`. 내용 확인 후 켜고, AI 개발자 역할을 나누면
-      제품의 역할 재연결
-- [!] push 를 아직 안 했다
+- [ ] **상세 내용 채우기(다음)** — 표면·수집은 다 섰고 알맹이가 비었다. `problem` 0건,
+      career `description` 공백 다수, education `detail_path` 공백 2건. 이력서 원료가
+      되게 `/career` 부터 한 역할씩 인터뷰로 채운다(메인 세션). 원료는
+      `para/projects/company/*/log/` SUMMARY 들
+- [ ] **과거 커밋 복구** — 잔디 수집이 `git_token` 의 (account,email) 로 「내 커밋」을
+      거른다. 2026-08-03 신원 통일 이전 커밋은 옛 이메일이라 잘렸다(mac-remote 129→17
+      등). 옛 이메일들을 신원 집합에 더하는 방식 — 이메일 확보 후 발주
+- [ ] `.agent/` — 규칙·훅·스킬·템플릿. 케이스 2 pre-commit, 케이스 4 스킬. **코드 계층
+      규약 문서화도 여기** — 지금은 코드가 모범일 뿐
+- [ ] mediness 검토 — `visible=false`. 내용 확인 후 켜고, AI 개발자 역할 재연결
+- [ ] **prod 배포** — push 켜기(`JOB_GIT_PUSH_DRY_RUN=0`)·홈서버(profile-api)·워커
+      systemd·`.env` 경로 서버 기준(`AI_CWD`·`AI_SCHEMA_DIR`·`LEDGER_PATH`). 배포하는 날
+- [!] push 를 아직 안 했다 (로컬 커밋만, `origin/renewal` 은 `5c0ab54`)
 
 ## 2. CLAUDE.md 「정할 것」 상태
 
@@ -70,16 +72,16 @@ problem 0건·career description 공백. 페이지 하나씩).
 
 ## 4. 열린 것
 
-`erd.md` §미결 7 과 `case_flow.md` 의 「아직 안 정한 것」이 정본이다. 큰 것만:
+`erd.md` §미결 과 `case_flow.md` 의 「아직 안 정한 것」이 정본이다. 큰 것만:
 
-- **`queue` 표가 스키마에 없다** — 케이스 1 이 쓰는데 `erd.md` 에 정의가 없다 (§미결 7)
 - `app/back/` 계층 규약 — CLAUDE.md 4 번
 - `product` 가 어느 표면에 뜨나 — 지금 `/career` 펼침 안에만 있다
 - `detail_path` 가 끊기면 — 파일을 옮기거나 지웠을 때 DB 가 모른다
-- 개인 프로젝트에 회고가 필요한가 — 잔디잡이 읽을 것이 커밋 메시지뿐이다
 - `personal/` 이 갖는 md — SoT 는 DB. 시드 넣고 나서 정한다
 - 발행물(이력서·공개 글)의 자리 — `persona-artifacts.md` 의 posts 규정이 갈 곳 없음
 - `category` 목록의 소유자 — 옛 `_meta.yaml` 이 없어졌고 DB 는 `varchar(32)` 로 안 막는다
+- **codex stem 채번을 못 믿는다** — 서버가 max+1 로 강제 중(youtube). 근본은 프롬프트가
+  원장을 못 읽던 것(해결)이나, 강제 레이어는 남겨 둔다
 
 ## 5. 하지 않기로 한 것
 
@@ -98,6 +100,28 @@ problem 0건·career description 공백. 페이지 하나씩).
 
 ## 6. 이력
 
+- `2026-08-26` **인박스 크롤링 완결 — 네 종류가 다 선다** — docs·article·blog 를
+  레거시 `web.py` 3단계로: 정적(httpx+trafilatura) → JS 마커·본문 500자 미만이면
+  playwright chromium 동적 렌더 → 실패(단계·사유 코드). **페이월·봇 차단(Cloudflare
+  403)은 우회 없이 즉시 failed**(wikidocs 실측). Dockerfile 에 chromium. E2E:
+  GeekNews blog 착지 성공. **케이스 1 개정 — 문서 게이트 제거**: 서버 검증(양식 절 ·
+  실행 실패 흔적 · 채번 강제) 통과 시 **자동 착지**, 승인은 concept 하나. 실측 버그
+  둘 잡음 — ① 컨테이너 안 codex sandbox(bwrap) 초기화 실패로 셸 전부 죽어 실패문이
+  초안으로 나옴 → `sandbox=danger-full-access`(격리는 컨테이너+ro 마운트가 맡음),
+  resume 호출은 `--sandbox` 를 거부해 `-c sandbox_mode` config 로 ② **dry-run 재정의**:
+  「커밋·푸시 둘 다 안 함」(md 파일만, `commit_ref="dry-run"` 마커). published_on 은
+  착지일 KST 강제(영상 게시일 아님 — 목록 정렬). 인박스·승인 대기 한 화면(행 펼침)
+- `2026-08-25` **잔디 완결 — 수집·AI 요약·`/about`** — repo 어드민(제품/프로젝트 폼
+  안 레포 섹션 + GitHub 불러오기 모달, owner 는 `product→career→company` 로 스코프)
+  · `git_token`(Fernet 암호화, 키는 `.env GIT_TOKEN_KEY`, 회사 연결·활성 토글) ·
+  GitHub 수집기(**내 신원 필터**=git_token (account,email) · **전 브랜치** · 매일 KST
+  08:00 · 레포별 격리) · **커밋 AI 요약 → `daily` 표**(날짜당 codex 1호출, 최근 7일 창
+  자동, `scripts/backfill_daily.py` 로 과거 하나씩, 실패는 daily.error) · 어드민 커밋
+  히스토리(월 스트립 잔디·동적 레포 칩·데일리 카드). 회사 커밋은 사내 정보 추상화.
+  **워커 컨테이너화**(compose worker, codex 는 이미지에 안 굽고 리눅스 CLI 번들 런타임
+  마운트 — mediness action-runtime-review 패턴). **erd 4표 신설**: `queue`·`gate`·
+  `git_token`·`daily` + `repo.git_token_id`·`commit.summarized_at`·`company.github_org`.
+  §미결 7 해소. back 도커화(48000, `docker-compose.local.yml`)
 - `2026-08-25` **`GET /api/algorithms` + `/algorithms` 완결 — 공개 API 여섯이 다 섰다** —
   **slug 결정: detail_path 파일명 stem 소문자(`a-001-two-sum`)**, frontmatter `id`(A-001)가
   아니다. DB 94행 UPDATE + 시드의 slug 파생도 stem 소문자로 동기(재실행이 안 되돌린다).
