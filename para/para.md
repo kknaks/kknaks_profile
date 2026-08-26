@@ -95,6 +95,8 @@ status: active | done
 
 그래서 `projects/` 에는 지금 살아 있는 것만 남고 목록이 선명해진다.
 
+**어디로** — [[archive|archive/archive.md]]
+
 **되돌릴 수 있다.** 다시 그 일을 맡게 되면 `projects/` 로 이관한다. 지우는 게 아니라
 자리를 옮기는 것이다.
 

@@ -237,7 +237,7 @@ frontmatter `work_type: release`, 양식은 `templates/projects/30-work/work-rel
 
 | 구분 | 소속 | 제품 | 내용 | 비고 |
 | --- | --- | --- | --- | --- |
-| 1 | `company` | `mediness` | 피부과 전용 CRM · MSO | 스펙은 회사 레포 |
+| 1 | `company` | `mediness` | 사내전용 AX 프로젝트 | 스펙은 회사 레포 |
 | 2 | `summer-star` | `ax-knowledge-graph` | AX 기사 · 영상 · 링크를 모아 개념 · 사례 · 도구 관계를 지식그래프로 전환 |  |
 | 3 | `summer-star` | `cloud-file-organizer` | Google Drive 파일을 AI 가 메타데이터 후보를 내고 사람이 승인하는 부서 문서 관리 |  |
 | 4 | `summer-star` | `kknaks-agents` | LLM 을 교체 가능한 추론 모듈로 쓰는 최소 Python 런타임 라이브러리 |  |
