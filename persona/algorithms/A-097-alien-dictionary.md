@@ -23,7 +23,7 @@ tags:
 title:
   en: Alien Dictionary
   ko: 외계인 사전
-today: true
+today: false
 type: algorithm
 updated: '2026-08-25'
 visible: true
