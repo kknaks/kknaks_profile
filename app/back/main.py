@@ -27,13 +27,21 @@ async def _lifespan(app: FastAPI):
     # 잔디 스케줄러 — 매일 KST 08:00 전체 수집(케이스 6·7). 가벼운 asyncio 루프.
     from service.collect_service import collect_service
 
-    task = asyncio.create_task(collect_service.run_scheduler())
+    # persona 스케줄러 — 매일 KST 08:10 역할별 persona md(DB 파생) 재렌더.
+    from service.persona_service import persona_service
+
+    tasks = [
+        asyncio.create_task(collect_service.run_scheduler()),
+        asyncio.create_task(persona_service.run_scheduler()),
+    ]
     try:
         yield
     finally:
-        task.cancel()
-        with contextlib.suppress(asyncio.CancelledError):
-            await task
+        for task in tasks:
+            task.cancel()
+        for task in tasks:
+            with contextlib.suppress(asyncio.CancelledError):
+                await task
 
 
 def create_app() -> FastAPI:
@@ -70,6 +78,7 @@ def create_app() -> FastAPI:
     from api.github_router import admin_router as github_admin_router
     from api.note_router import admin_router as note_admin_router
     from api.note_router import router as note_router
+    from api.persona_router import admin_router as persona_admin_router
     from api.problem_router import admin_router as problem_admin_router
     from api.product_router import admin_router as product_admin_router
     from api.profile_router import admin_router as profile_admin_router
@@ -109,6 +118,7 @@ def create_app() -> FastAPI:
     app.include_router(repo_admin_router)
     app.include_router(git_token_admin_router)
     app.include_router(github_admin_router)
+    app.include_router(persona_admin_router)
 
     @app.get("/api/health")
     async def health() -> dict:

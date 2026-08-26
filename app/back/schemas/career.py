@@ -89,9 +89,10 @@ class CareerProductOut(BaseModel):
     stack: list[str] = []
     thumbnail: str | None = None
     links: dict[str, Any] | None = None
+    body: str | None = None  # detail_path(showcase.md) 전문 — 클릭 모달이 그린다. 끊기면 None
 
     @classmethod
-    def from_dto(cls, dto: ProductDTO) -> CareerProductOut:
+    def from_dto(cls, dto: ProductDTO, body: str | None = None) -> CareerProductOut:
         return cls(
             id=dto.id,
             slug=dto.slug,
@@ -103,6 +104,7 @@ class CareerProductOut(BaseModel):
             stack=dto.stack or [],
             thumbnail=dto.thumbnail,
             links=dto.links,
+            body=body,
         )
 
 
@@ -145,7 +147,9 @@ class PublicCareerItem(BaseModel):
         dto: CareerDTO,
         products: list[ProductDTO],
         problems: list[ProblemDTO],
+        product_bodies: dict[int, str] | None = None,
     ) -> PublicCareerItem:
+        bodies = product_bodies or {}
         return cls(
             id=dto.id,
             org=dto.company_name,
@@ -159,7 +163,7 @@ class PublicCareerItem(BaseModel):
             body=dto.description,
             org_description=dto.company_description,
             stack=dto.stack or [],
-            products=[CareerProductOut.from_dto(p) for p in products],
+            products=[CareerProductOut.from_dto(p, bodies.get(p.id)) for p in products],
             problems=[CareerProblemOut.from_dto(p) for p in problems],
         )
 
@@ -216,6 +220,7 @@ class PublicCareerResponse(BaseModel):
                     c,
                     bundle.products_by_career.get(c.id, []),
                     bundle.problems_by_career.get(c.id, []),
+                    bundle.product_bodies,
                 )
                 for c in bundle.careers
             ],

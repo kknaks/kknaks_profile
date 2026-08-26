@@ -59,9 +59,15 @@ class CareerService:
         careers = await self._career_repo.list_public(session)
 
         products_by_career: dict[int, list] = {}
+        # 제품 상세(showcase.md)는 클릭 모달이 그린다 — detail_path 를 읽어 body 로
+        # 내려준다(교육과 같은 규약). 끊긴 detail_path 는 None → 응답에서 빈 본문.
+        product_bodies: dict[int, str] = {}
         for p in await self._product_repo.list_with_career(session):
             if p.visible:
                 products_by_career.setdefault(p.career_id, []).append(p)
+                body = read_detail(p.detail_path)
+                if body is not None:
+                    product_bodies[p.id] = body
 
         problems_by_career: dict[int, list] = {}
         for pr in await self._problem_repo.list_with_names(session):
@@ -79,6 +85,7 @@ class CareerService:
         return PublicCareerBundle(
             careers=careers,
             products_by_career=products_by_career,
+            product_bodies=product_bodies,
             problems_by_career=problems_by_career,
             education=education,
             education_bodies=education_bodies,

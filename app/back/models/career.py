@@ -37,4 +37,8 @@ class Career(Base, TimestampMixin):
     description: Mapped[str | None] = mapped_column(Text)               # 맡은 역할. 펼쳤을 때
     stack: Mapped[list[str] | None] = mapped_column(ARRAY(Text))
 
+    # 역할별 persona md(DB 파생물)의 위치. 원장(detail_path)이 아니다 — DB 를 통째로
+    # 렌더해 매일 덮어쓰는 파생 md 다. 비어 있으면 렌더가 회사 slug·역할 title 로 파생.
+    persona_path: Mapped[str | None] = mapped_column(String(255))
+
     __table_args__ = (Index("ix_career_started", started_on.desc()),)

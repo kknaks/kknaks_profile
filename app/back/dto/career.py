@@ -27,6 +27,9 @@ class CareerDTO:
     description: str | None
     stack: list[str] | None
 
+    # 역할별 persona md(DB 파생물)의 위치. 비어 있으면 렌더가 경로를 파생한다.
+    persona_path: str | None = None
+
     # 공개 /career 가 쓰는 회사 속성 — career 에는 location 컬럼이 없어 회사 것을
     # 쓰고, 펼침의 회사 소개도 여기서 온다(erd.md §career). 어드민 경로는 안 채운다.
     company_location: str | None = None
@@ -42,6 +45,7 @@ class PublicCareerBundle:
 
     careers: list[CareerDTO]
     products_by_career: dict[int, list[ProductDTO]] = field(default_factory=dict)
+    product_bodies: dict[int, str] = field(default_factory=dict)     # product id → detail_path md 전문
     problems_by_career: dict[int, list[ProblemDTO]] = field(default_factory=dict)
     education: list[EducationDTO] = field(default_factory=list)
     education_bodies: dict[int, str] = field(default_factory=dict)  # id → detail_path md 전문

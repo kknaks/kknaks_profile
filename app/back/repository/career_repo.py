@@ -23,6 +23,7 @@ def _to_dto(row: Career, company_name: str) -> CareerDTO:
         summary=row.summary,
         description=row.description,
         stack=row.stack,
+        persona_path=row.persona_path,
     )
 
 
@@ -57,6 +58,7 @@ class CareerRepository:
                 summary=career.summary,
                 description=career.description,
                 stack=career.stack,
+                persona_path=career.persona_path,
                 company_location=company.location,
                 company_description=company.description,
             )
