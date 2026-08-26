@@ -4,10 +4,15 @@
 「잔디는 자동이어도 된다」). summary 는 우선 커밋 메시지 첫 줄 — 수집 완료 뒤
 summarize_service 가 연쇄되어 최근 7일 창을 AI 한 줄로 덮는다.
 
-잔디는 「내가 한 일」이다 — **내 커밋만 담는다**(케이스 6). 신원 집합은
-git_token 표의 (account, email) 전부(enabled 무관 — 신원은 신원이다)를 수집
-시작 때 한 번 읽고, GitHub item 의 author.login 이나 commit.author.email 이
-집합에 있어야(대소문자 무시) 통과한다. 회사 레포의 팀원 커밋은 여기서 걸린다.
+잔디는 「내가 한 일」이다(케이스 6). 「내 커밋」 판정은 **레포 종류로 갈린다**:
+- **회사 레포(product_id)**: 팀원이 섞이므로 신원 필터를 건다. 신원 집합은
+  git_token 표의 (account, email) 전부(enabled 무관 — 신원은 신원이다)를 수집
+  시작 때 한 번 읽고, GitHub item 의 author.login 이나 commit.author.email 이
+  집합에 있어야(대소문자 무시) 통과한다. 팀원 커밋은 여기서 걸린다.
+- **개인 레포(project_id)**: 혼자 쓰는 레포라 push 된 커밋 전부가 내 것이다 —
+  필터를 걸지 않는다. 옛 커밋의 author 이메일이 맥 기본값(kknaks@…​.local,
+  GitHub login=null)이라 신원 필터에 잘리던 문제를 이렇게 푼다. Claude
+  co-author 커밋도 그 레포에 있으면 담는다(개인 프로젝트니 무방).
 
 기본 브랜치만 보지 않는다 — **브랜치 전부**를 훑는다: /branches 로 목록을 받아
 브랜치마다 /commits?sha= 로 긁는다. 브랜치 간 중복은 tree 로 한 실행 안에서
@@ -160,13 +165,16 @@ class CollectService:
         # 새 last_fetched_at 은 수집 시작 시각 — 도는 동안 푸시된 것을 다음 판이 줍는다.
         started = datetime.now(timezone.utc)
         auth = {"Authorization": f"Bearer {token}"} if token else {}
+        # 신원 필터는 회사 레포(product_id)에만 — 팀원 커밋을 걸러야 한다.
+        # 개인 레포(project_id)는 혼자 쓰니 push 된 것 전부가 내 것이라 필터 없음.
+        filter_mine = repo.product_id is not None
         branches = await self._fetch_branches(client, repo, auth)
         # 브랜치 간 중복은 tree 로 한 실행 안에서 걸러 insert 양을 줄인다.
         # DB 의 (repo_id, tree) UNIQUE + insert_ignore 가 실행 간 중복을 막는다.
         rows_by_tree: dict[str, dict[str, Any]] = {}
         for branch in branches:
             for row in await self._fetch_commits(
-                client, repo, auth, branch, accounts, emails
+                client, repo, auth, branch, accounts, emails, filter_mine
             ):
                 rows_by_tree.setdefault(row["tree"], row)
         rows = list(rows_by_tree.values())
@@ -229,10 +237,12 @@ class CollectService:
         branch: str,
         accounts: frozenset[str],
         emails: frozenset[str],
+        filter_mine: bool,
     ) -> list[dict[str, Any]]:
         """GET /repos/{slug}/commits?sha={branch} — pagination. 증분은 since=last_fetched_at.
 
-        내 커밋만 남긴다(_is_mine) — 잔디는 「내가 한 일」이다(케이스 6).
+        filter_mine=True(회사 레포)면 내 커밋만 남긴다(_is_mine) — 팀원 제외.
+        filter_mine=False(개인 레포)면 전량 수집 — 혼자 쓰니 다 내 것이다(케이스 6).
         """
         params: dict[str, Any] = {"per_page": _PER_PAGE, "sha": branch}
         if repo.last_fetched_at is not None:
@@ -255,8 +265,8 @@ class CollectService:
                 raise RuntimeError(f"GitHub {res.status_code} — {detail or res.text[:200]}")
             batch = res.json()
             for item in batch:
-                if not _is_mine(item, accounts, emails):
-                    continue  # 남의 커밋 — 잔디에 안 담는다
+                if filter_mine and not _is_mine(item, accounts, emails):
+                    continue  # 회사 레포의 남의 커밋 — 잔디에 안 담는다
                 commit = item.get("commit") or {}
                 author = commit.get("author") or {}
                 authored_at = author.get("date")
