@@ -1,154 +1,102 @@
 # 개요
 
-와인을 기록·관리하는 모바일 앱. 사용자는 와인 라벨을 카메라로 촬영해 데이터베이스에 등록하고, 시음 다이어리 (바디·타닌·산도·당도·알콜 + 아로마/맛/피니쉬 태그) 를 남긴다. 백엔드는 FastAPI + Postgres (pgvector) 로 사용자 취향과 와인 임베딩을 저장하고, AI 서버 (LangGraph MCP) 가 라벨 OCR + 와인 정보 enrich + 추천을 비동기 처리한다. 관리자 웹 (Next.js) 으로 와인/배너/문의/통계를 운영한다.
+Wine Log 는 마신 와인을 기록하고 다음에 마실 와인을 찾는 모바일 앱이다. 와인 이름과 정보는 라벨에만 적혀 있고, 어떤 맛이었는지는 기억에만 남고, 다음에 뭘 마실지는 매번 검색해야 했다. 라벨을 카메라로 찍으면 와인 정보가 채워지고, 시음 기록이 쌓이면 그게 취향이 되고, 그 취향으로 다음 와인을 추천받는다 — 이 흐름을 앱 하나에 모았다.
 
-# 기술스택
+모바일 앱에서 시작해, 와인 정보를 채우고 추천하는 AI 서버와, 와인·문의·통계를 다루는 관리자 웹까지 붙였다. 네 컴포넌트를 한 레포에 두고 데이터 모델과 배포를 공유한다.
 
-**모바일 (`frontend/`)**
-- React Native + **Expo (SDK 54)** — iOS/Android 단일 코드베이스, OTA 업데이트
-- expo-router — 파일 기반 라우팅 + tabs 네비게이션
-- expo-camera + expo-image-picker — 라벨 촬영 / 갤러리 업로드
-- 소셜 로그인 — Google / Apple / Kakao (`@react-native-google-signin`, `expo-apple-authentication`, `@react-native-seoul/kakao-login`)
-- Firebase Analytics — 앱 사용 추적
+> 컴포넌트 4 — 모바일 앱 · 관리자 웹 · 백엔드 · AI 서버
 
-**관리자 웹 (`frontend_admin/`)**
-- Next.js 16 (App Router) + React 19
-- TanStack Query — 서버 상태
-- Zustand — 클라이언트 상태
-- TipTap — rich text editor (배너 / 약관)
-- Tailwind CSS + Radix UI
-- Recharts — 통계 차트
-
-**백엔드 (`backend/`)**
-- FastAPI + SQLAlchemy (async) + asyncpg + Alembic
-- Pydantic v2 — 검증 / 설정
-- python-jose + bcrypt + pyjwt — 인증
-- Dramatiq + Redis — 비동기 작업 큐 (이미지 업로드 후처리, 크롤링)
-- BeautifulSoup + lxml + requests — 와인 정보 크롤링
-- Pillow + opencv-python-headless — 이미지 처리
-- pgvector — 벡터 검색
-- google-analytics-data — GA 통계 fetch
-
-**AI (`ai/`)**
-- LangGraph + LangChain (OpenAI / Google GenAI) — agent workflow
-- MCP (Model Context Protocol) — 와인 라벨 분석 server
-- LangSmith — 관측 / 디버깅
-- Dramatiq + Redis — backend 와 동일 큐 공유 (비동기 enrich)
-
-**DB / 인프라**
-- PostgreSQL 16 + pgvector (`pgvector/pgvector:pg16`)
-- Redis 7
-- Docker Compose — 로컬 dev + prod 분리 (`docker-compose.yml` / `docker-compose.prod.yml`)
-- GitHub Actions — CI/CD
+![Wine Log — 홈 화면](assets/cover.png)
 
 # 주요기능
 
-**모바일 (Expo)** — `(tabs)` 5탭 + 상세
+## 기록한다
 
-- **홈** (`(tabs)/index`) — 추천 와인 + 최근 다이어리 피드
-- **발견** (`(tabs)/discover`) — 와인 검색·둘러보기
-- **추가** (`(tabs)/add`) — 카메라로 와인 라벨 촬영 → AI 분석 트리거
-- **다이어리** (`(tabs)/diary`) — 본인 시음 기록 list
-- **마이페이지** (`(tabs)/my`) — 프로필 / 설정
-- **와인 상세** (`/wine/[id]`) — 와인 정보 + 관련 다이어리
-- **다이어리 상세 / 작성 / 수정** (`/diary/[id]`, `/diary/new`, `/diary/edit`)
-- **공지사항** (`/notices/`) · **1:1 문의** (`/inquiry/`)
-- **설정** (`/settings/nickname`) · **로그인** (`/login`)
+| 구분 | 내용 |
+|---|---|
+| **기능** | 라벨을 찍어 와인을 등록하고 시음 기록을 남긴다 |
+| **목적** | 라벨에만 있던 와인 정보와 기억에만 남던 맛을 한곳에 붙잡는다 |
+| **효과** | 마신 와인이 기록으로 쌓여 다시 찾을 수 있다 |
 
-**관리자 웹 (Next.js)** — `(dashboard)` 그룹
+![라벨 촬영과 시음 다이어리](assets/feat-record.png)
 
-- **다이어리 관리** (`/diaries`) — 사용자 다이어리 모니터
-- **와인 관리** (`/wines`) + 크롤러 (`/wines/crawler`) — Vivino 등 외부 사이트 크롤링
-- **문의 응답** (`/inquiries/answer`)
-- **배너 관리** (`/banners`, `/banners/new`)
-- **사용자 관리** (`/users`)
-- **약관 관리** (`/legal`)
-- **통계** (`/stats/diaries`, `/stats/wines`, `/stats/recommendation`) — GA + 자체 메트릭
+- **라벨 촬영** — 카메라로 라벨을 찍거나 갤러리에서 고르면 AI 분석이 돌아 와인 정보가 채워진다. 이름을 몰라도 등록된다
+- **시음 다이어리** — 바디·타닌·산도·당도·알콜을 눈금으로 남기고, 아로마·맛·피니쉬를 태그로 붙인다. 한 병의 기록이 뒤에 취향 추천의 재료가 된다
 
-**백엔드 API** (`/api/v1/`) — auth, users, wines, diaries, banners, home, recommendations, feed, inquiries, legal + 관리자 admin_*
+## 발견한다
+
+| 구분 | 내용 |
+|---|---|
+| **기능** | 취향에 맞는 와인을 추천하고 둘러본다 |
+| **목적** | 다음에 뭘 마실지 매번 검색하던 것을 취향 기반 추천으로 바꾼다 |
+| **효과** | 기록이 쌓일수록 추천이 내 쪽으로 맞아 온다 |
+
+![홈 피드와 와인 검색](assets/feat-discover.png)
+
+- **홈 피드** — 추천 와인과 최근 시음 기록을 한 화면에 모아 연다
+- **발견** — 와인을 검색하고 둘러본다. 와인 상세에서는 그 와인의 정보와 다른 사람들의 시음 기록을 함께 본다
+- **취향 추천** — 내 시음 기록에서 만들어진 취향과 와인을 벡터로 비교해, 태그가 아니라 결이 가까운 와인을 올린다
+
+## 운영한다
+
+| 구분 | 내용 |
+|---|---|
+| **기능** | 와인·문의·배너·통계를 관리자 웹에서 다룬다 |
+| **목적** | 앱 뒤에서 도는 데이터와 사용자 응대를 한 화면에 모은다 |
+| **효과** | 개발자가 아니어도 운영 화면에서 바로 처리한다 |
+
+![관리자 웹 — 와인 관리와 통계](assets/feat-admin.png)
+
+- **와인 관리 · 크롤러** — 와인 목록을 다루고, Vivino 같은 외부 사이트에서 정보를 긁어와 채운다
+- **문의 · 배너 · 약관** — 1:1 문의에 답하고, 배너와 약관을 편집기로 직접 고친다
+- **통계** — 다이어리·와인·추천 지표를 Google Analytics 와 자체 메트릭을 합쳐 차트로 본다
+
+# 핵심 설계
+
+**AI 처리를 큐로 떼어냈다.** 라벨 촬영은 즉시 응답해야 하는데 OCR·정보 검색·임베딩 생성은 몇 초씩 걸린다. 백엔드는 이미지를 저장하고 작업만 큐에 발행하고 바로 응답한다. AI 워커가 큐를 consume 해 처리를 끝내고 DB 에 직접 쓴다. 앱은 완료를 폴링이나 알림으로 확인한다 — 무거운 처리가 요청을 붙잡지 않는다.
+
+**AI 를 LangGraph + MCP 로 분리했다.** 라벨 OCR → 외부 검색으로 정보 enrich → 임베딩 생성을 하나의 agent 워크플로우로 묶고, 백엔드와는 Redis 큐로만 이어 뒀다. 모델이나 워크플로우를 바꿔도 백엔드를 다시 설계하지 않는다. LangSmith 로 흐름을 추적한다.
+
+**추천을 벡터 유사도로 풀었다.** 사용자 취향과 와인을 각각 임베딩해 두고(`user_vectors` ↔ `wine_vectors`), pgvector 의 코사인 유사도로 가까운 와인을 찾는다. 태그 규칙을 손으로 짜는 대신 기록이 쌓일수록 취향 벡터가 갱신되어 추천이 따라온다.
+
+**네 컴포넌트를 한 모노레포에 뒀다.** 모바일·관리자 웹·백엔드·AI 를 한 레포에 두고 데이터 모델·환경 변수·Docker Compose 를 공유한다. 컴포넌트가 넷이라 작업량은 크지만, 경계를 큐와 DB 스키마로 명확히 그어 운영 부담을 줄였다.
 
 # 아키텍처
 
-```
-wine_log/
-├─ frontend/         ← React Native (Expo) — iOS/Android 모바일 앱
-├─ frontend_admin/   ← Next.js — 관리자 웹
-├─ backend/          ← FastAPI — REST API + 인증 + 비동기 작업 발행
-│  ├─ app/api/v1/    ← 라우터 20+개 (사용자 + 관리자)
-│  ├─ app/models/    ← SQLAlchemy 모델 (users, wines, diaries, tags, vectors)
-│  ├─ app/services/  ← 비즈니스 로직
-│  └─ alembic/       ← DB migration
-├─ ai/               ← LangGraph MCP server — 와인 라벨 OCR + enrich + 추천
-├─ docs/             ← 설계 문서 (PROJECT_PLAN, DIARY_FLOW, SOCIAL_LOGIN_PLAN 등)
-├─ scripts/          ← 운영 스크립트
-├─ docker-compose.yml          ← dev (db, redis, backend, ai-worker)
-└─ docker-compose.prod.yml     ← prod
-```
+네 컴포넌트로 나뉜다. 핵심은 **백엔드가 AI 를 직접 부르지 않는다는 점** — 라벨이 올라오면 백엔드는 이미지 저장과 작업 발행까지만 하고, 실제 OCR·enrich·임베딩은 AI 워커가 큐를 consume 해 처리한 뒤 DB 에 직접 쓴다. 백엔드와 AI 는 같은 Redis 큐와 Postgres 를 공유할 뿐 서로를 호출하지 않는다.
 
-**데이터 흐름**:
+```mermaid
+flowchart LR
+    Mobile["모바일 앱<br/>(React Native · Expo)"]
+    Admin["관리자 웹<br/>(Next.js)"]
+    API["백엔드<br/>(FastAPI · REST)"]
+    Redis[("Redis<br/>작업 큐")]
+    Worker["AI 워커<br/>(LangGraph · MCP)"]
+    DB[("PostgreSQL<br/>+ pgvector")]
 
-1. 모바일 → 라벨 촬영 → 이미지 업로드 (`POST /api/v1/wines`)
-2. 백엔드 → 이미지 저장 + Dramatiq 작업 발행 (Redis enqueue)
-3. AI worker → 큐 consume → LangGraph agent (OCR → 와인 정보 검색 → embedding 생성)
-4. AI worker → DB 직접 write (와인 정보 + `wine_vectors`)
-5. 모바일 → polling 또는 push 알림으로 enrich 완료 확인
-6. 추천 — 사용자 `user_vectors` ↔ `wine_vectors` 코사인 유사도 (pgvector)
+    Mobile -->|REST| API
+    Admin -->|REST| API
+    API -->|이미지 저장·작업 발행| Redis
+    API --- DB
+    Worker -->|큐 consume| Redis
+    Worker -->|OCR·enrich·임베딩 write| DB
 
-**DB 스키마 (CLAUDE.md §Database Schema)**:
-- `users` 1:N `diaries` · 1:1 `user_vectors`
-- `wines` 1:N `diaries` · 1:1 `wine_vectors`
-- `wines` N:M `tags` (via `wine_tags`)
-- `diaries` N:M `tags` (via `diary_tags`)
-- 모든 테이블에 `id (BIGINT PK)` + `created_at` + `updated_at` (BaseModel)
-
-**외부 의존**:
-- OpenAI / Google GenAI (LangChain)
-- Google Analytics (관리자 통계)
-- Firebase Analytics (모바일)
-- 외부 와인 사이트 (Vivino 등) — 크롤러
-
-# 핵심 구현
-
-**백엔드 API 라우터 (`backend/app/api/v1/`)** — 20+ 엔드포인트, 사용자 + 관리자 분리:
-
-```
-auth.py             ← 소셜 로그인 (Google/Apple/Kakao) — 6 endpoints
-users.py            ← 프로필 CRUD, 탈퇴
-wines.py            ← 와인 등록 (이미지) + 조회 + 검색
-diaries.py          ← 다이어리 CRUD + 태그 연결
-recommendations.py  ← pgvector 기반 추천
-feed.py · home.py   ← 메인 피드
-banners.py          ← 사용자용 배너 / 공지
-inquiries.py        ← 1:1 문의
-legal.py            ← 약관
-
-admin_*.py          ← 관리자 — banner / legal / crawler / ga / inquiry / stats / upload
+    classDef core fill:#1f6feb22,stroke:#1f6feb;
+    class API,DB core
 ```
 
-응답은 `SuccessResponse[T]` 통일 형식.
+- **모바일 앱** — 라벨 촬영·시음 기록·추천을 보는 메인 화면. 소셜 로그인으로 들어온다
+- **관리자 웹** — 와인·문의·배너·통계를 다루는 운영 화면
+- **백엔드** — REST API 와 인증, 이미지 저장, 작업 발행을 맡는다. AI 는 호출하지 않는다
+- **AI 워커** — 큐를 consume 해 라벨 OCR·정보 enrich·임베딩 생성을 처리하고 DB 에 쓴다
 
-**AI MCP server (`ai/`)** — LangGraph workflow:
-- 와인 라벨 OCR → Vivino 등 외부 검색 → 정보 enrich → embedding 생성 → DB write
-- Dramatiq actor 가 backend 의 작업 큐를 consume
-- LangSmith 로 trace
+# 기술스택
 
-**모바일 인증** (`frontend/`):
-- expo-secure-store 에 token 저장
-- (tabs) 진입 전 `_layout.tsx` 가 로그인 체크 후 `/login` 리다이렉트
-
-# 마주친 문제
-
-> 자동 추론 결과 — 사용자 검토 필수.
-
-- **(자동 추론)** 카메라 포커스 — `git log` 에 "카메라 포커스 개선 및 Android 설정" 커밋. iOS/Android 카메라 동작 차이 + 라벨 인식 정확도 튜닝.
-- **(자동 추론)** 관리자 패키지 API 정합 — `fix/admin package api` 커밋. 관리자 라우트 분리 시 발생한 path/스키마 mismatch.
-- **(자동 추론)** 비동기 작업 큐 운영 — backend 와 ai 컨테이너가 같은 Redis 를 공유. 작업 멱등성 + 실패 재시도 처리가 핵심 challenge 였을 가능성.
-- **(자동 추론)** pgvector 인덱스 튜닝 — 사용자 취향 ↔ 와인 임베딩 검색 성능. (확인 필요)
-
-# 회고
-
-> 자동 추론 결과 — 사용자 검토·교체 필수.
-
-- **(자동 추론)** 4개 컴포넌트 (mobile / admin / backend / ai) 를 모노레포로 묶은 결정 — 작업량은 크지만 데이터 모델 / 환경 변수 / Docker compose 공유로 운영 부담은 줄음.
-- **(자동 추론)** AI 컴포넌트를 LangGraph + MCP 로 분리한 것 — 백엔드와 큐로 디커플링되어 모델 교체 / 워크플로우 변경 부담이 적음.
-- **(자동 추론)** 다음에 시도한다면 — embedding 모델 선택 vs 벡터 DB 별도 분리 (Qdrant / Weaviate) 비교, 추천 알고리즘 A/B 테스트 인프라.
+| 영역 | 스택 |
+|---|---|
+| 모바일 | React Native · Expo (SDK 54) · expo-router · expo-camera · 소셜 로그인 (Google · Apple · Kakao) · Firebase Analytics |
+| 관리자 웹 | Next.js 16 (App Router) · React 19 · TanStack Query · Zustand · TipTap · Tailwind · Radix UI · Recharts |
+| 백엔드 | FastAPI · SQLAlchemy (async) · asyncpg · Alembic · Pydantic v2 · Dramatiq · Redis |
+| AI | LangGraph · LangChain (OpenAI · Google GenAI) · MCP · LangSmith |
+| 크롤링·이미지 | BeautifulSoup · lxml · Pillow · opencv |
+| DB·인프라 | PostgreSQL 16 + pgvector · Redis 7 · Docker Compose · GitHub Actions |

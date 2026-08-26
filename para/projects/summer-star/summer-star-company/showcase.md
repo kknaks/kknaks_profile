@@ -1,128 +1,89 @@
 # 개요
 
-NFC 카드 기반 사무실 출퇴근 트래킹 시스템. **개인 사무실용** (admin 1명 + 직원 소수, 리더기 1대) — 멀티테넌트/SaaS 아님, RBAC·조직 모델·OTA 배포 같은 기업용 패턴은 명시적으로 도입 금지.
+Summer Star 는 사무실 문 앞에서 NFC 카드를 찍어 출퇴근을 자동으로 남기는 시스템이다. 직원이 카드를 대면 리더기가 UID 를 읽어 백엔드로 보내고, 관리자는 웹에서 누가 언제 오갔는지 본다. 출퇴근을 손으로 적거나 엑셀에 옮기지 않아도 된다.
 
-ACR122U USB 리더기를 라즈베리파이 (Orange Pi Zero 3) 에 꽂아 NFC 카드를 감시하는 Python 에이전트 + FastAPI 백엔드 (Postgres) + Next.js 관리자 웹의 4 컴포넌트 구조.
+개인 사무실 한 곳을 위한 도구다 — 관리자 한 명, 직원 소수, 리더기 한 대. 멀티테넌트·조직 모델·RBAC·OTA 배포 같은 기업용 패턴은 처음부터 넣지 않기로 못박았고, 그 전제가 인증부터 배포까지 모든 결정을 단순하게 만들었다. 지금은 Orange Pi Zero 3 에 리더기를 붙이는 배포를 마무리하는 중이다.
 
-# 기술스택
+> 컴포넌트 4 · 리더기 2대(감시·등록) · 백엔드 4계층
 
-**Frontend (admin)**
-- Next.js 16 + React 19 + TypeScript 5
-- Tailwind CSS v4 + Radix UI Slot + class-variance-authority + lucide-react
-- axios — 백엔드 호출
-- Vercel 배포 가정 (port 43000 — 사내 한정)
-
-**Agent (Pi)**
-- Python 3.12 + uv
-- `pyscard` — PC/SC 인터페이스 (ACR122U 리더기)
-- `httpx` — 백엔드 push
-- `pydantic-settings` — config
-- systemd 서비스 등록 (`agent/systemd/`)
-
-**Backend**
-- FastAPI 0.115 (standard) + SQLAlchemy 2 (asyncio) + asyncpg
-- Alembic 마이그레이션
-- `bcrypt` (passlib) + PyJWT — 관리자 인증 (JWT 30일 + localStorage, sessions 테이블 없음 = stateless)
-- `pyscard` — 등록 리더(#2) PC/SC 인터페이스 (백엔드도 카드 등록 시점에 직접 읽음)
-- 4 계층 (api/services/repos/models)
-
-**인증 / 보안**
-- 관리자 웹: 비밀번호 → JWT 30일 (stateless)
-- 에이전트 → 백엔드: 정적 API 키 (`X-Agent-Key` 헤더)
-- OAuth/세션쿠키 사용 안 함
-
-**인프라 / 배포**
-- Postgres (집 서버 자호스팅, Docker)
-- `docker-compose.yml` + `docker-compose.prod.yml`
-- Pi 에 systemd 로 agent 데몬 등록
+![Summer Star — NFC 출퇴근 관리](assets/cover.png)
 
 # 주요기능
 
-- **카드 등록** (`/users` + `cards` API) — 등록 리더(#2) 로 카드 UID 읽음 → 사용자 1:1 매핑. UID 직접 입력도 지원 (최근 commit `34fe129`)
-- **출입 감시** — Pi 의 NFC agent 가 카드 태그 감시 → 백엔드 `/access` 로 push
-- **출퇴근 해석** — KST 04:00 컷오프 기준 출/퇴근 (`domain/access-log`)
-- **로그 뷰** (`/logs`) — 출입 이벤트 시계열
-- **통계 대시보드** (`/stats`) — 출퇴근 집계
-- **관리자 로그인** (`/login`) — 비밀번호 → JWT
+## 카드로 출퇴근을 찍는다
+
+| 구분 | 내용 |
+|---|---|
+| **기능** | 카드를 대면 출입이 기록되고 출근·퇴근으로 해석된다 |
+| **목적** | 출퇴근을 손으로 적고 옮기던 일을 카드 한 번으로 |
+| **효과** | 사람이 기록을 만들지 않아도 출입 시계열이 쌓인다 |
+
+![카드 등록 · 출입 감시](assets/feat-tracking.png)
+
+- **카드 등록** — 등록 리더에 카드를 대면 UID 를 읽어 직원과 1:1 로 묶는다. 리더가 없을 땐 UID 를 직접 입력해도 등록된다
+- **출입 감시** — Pi 에 꽂힌 리더기를 NFC 에이전트가 상시 감시해, 카드가 닿는 순간 백엔드로 보낸다. 리더기 LED·비프로 찍힌 것을 알려준다
+- **출퇴근 해석** — 하루 경계를 KST 04:00 으로 잡아, 그날 첫 태그를 출근·다음을 퇴근으로 나눈다
+
+## 기록을 본다
+
+| 구분 | 내용 |
+|---|---|
+| **기능** | 관리자가 웹에서 출입 로그와 출퇴근 집계를 본다 |
+| **목적** | 흩어질 출입 이벤트를 한 화면에 모아 확인 |
+| **효과** | 누가 언제 오갔는지 물어보지 않고 화면에서 본다 |
+
+![로그 뷰 · 통계 대시보드](assets/feat-admin.png)
+
+- **로그 뷰** — 출입 이벤트를 시간순으로 훑는다
+- **통계 대시보드** — 출퇴근을 집계해 보여준다. 데이터가 쌓이는 대로 다듬는 중이다
+- **관리자 로그인** — 비밀번호로 들어오면 JWT 를 받아, 인증된 화면만 열린다
+
+# 핵심 설계
+
+**스코프를 개인 사무실로 못박았다.** 관리자 한 명·직원 소수·리더기 한 대라는 전제를 CLAUDE.md 에 박고, 멀티테넌트·조직 모델·RBAC·OTA 배포를 도입 금지로 명시했다. 덕분에 sessions 테이블·OAuth·권한 매트릭스가 전부 빠지고, 필요한 것만 남았다.
+
+**어드민 인증은 stateless JWT 하나로.** 사용자가 사실상 한 명이라 세션을 서버에 두지 않았다. 비밀번호로 30일 JWT 를 발급해 localStorage 에 두고, 서버는 토큰만 검증한다. sessions 테이블이 없다.
+
+**에이전트–백엔드는 정적 API 키로 묶었다.** 리더기가 한 대뿐이라 mTLS·키 로테이션 같은 복잡도를 넣지 않았다. 에이전트는 `X-Agent-Key` 헤더 하나로 백엔드에 붙는다.
+
+**결정마다 주인 문서를 정했다(SSOT).** `docs/MAP.md` 를 진입점으로, 도메인 결정은 `docs/domain`, 컴포넌트 구현은 `docs/spec`, 인증·네트워크 같은 크로스컷팅은 `docs/architecture` 가 갖는다. 결정이 바뀌면 owner 문서만 고치고 나머지는 위키링크로 따라온다.
 
 # 아키텍처
 
-```
-[ACR122U] ─USB─ [Pi: Python Agent] ─HTTP─> [FastAPI Backend] ─SQL─> [Postgres]
-                                                  ↑
-                                          [Next.js 관리자 웹]
-```
+네 컴포넌트로 나뉜다. 카드를 읽는 곳(리더기+에이전트), 상태를 갖는 곳(백엔드+DB), 사람이 보는 곳(어드민 웹)이 분리돼 있다. 상시 감시는 Pi 에이전트가 맡고, 카드 등록만은 백엔드가 두 번째 리더기를 직접 읽는다.
 
-```
-summer_star_company/
-├─ backend/                      ← FastAPI (4계층)
-│  ├─ app/
-│  │  ├─ api/                    ← access · auth · cards · logs · stats · users
-│  │  ├─ services/               ← *_service.py (auth/access/card/log/stats/user) + card_reader
-│  │  ├─ repos/                  ← DB 접근
-│  │  ├─ db/                     ← models, base
-│  │  ├─ schemas/                ← Pydantic
-│  │  └─ dtos/                   ← API DTO
-│  ├─ alembic/                   ← 마이그레이션
-│  └─ Dockerfile
-├─ admin/                        ← Next.js 어드민 (Vercel)
-│  ├─ app/
-│  │  ├─ login/                  ← 비밀번호 → JWT
-│  │  └─ (authed)/               ← logs · stats · users
-│  ├─ components/  lib/
-│  └─ package.json (next 16, react 19, tailwind v4)
-├─ agent/                        ← Pi NFC 에이전트
-│  ├─ nfc_agent/                 ← reader · client · feedback · main
-│  ├─ systemd/                   ← Pi 서비스 유닛
-│  └─ Dockerfile
-├─ docs/                         ← MAP.md 진입점, architecture/domain/spec/plan/conventions
-└─ docker-compose.yml + .prod.yml
+```mermaid
+flowchart LR
+    Card["NFC 카드"]
+    Reader1["ACR122U #1<br/>(감시 리더)"]
+    Agent["Pi NFC 에이전트<br/>(Python · systemd)"]
+    API["FastAPI 백엔드<br/>(상태 · 인증 · 해석)"]
+    DB[("PostgreSQL")]
+    Reader2["ACR122U #2<br/>(등록 리더)"]
+    Admin["Next.js 어드민<br/>(관리자 웹)"]
+
+    Card -->|태그| Reader1
+    Reader1 -->|USB · PC/SC| Agent
+    Agent -->|HTTP · X-Agent-Key| API
+    Reader2 -->|등록 시 직접 읽음| API
+    Admin -->|REST · JWT| API
+    API --- DB
+
+    classDef server fill:#1f6feb22,stroke:#1f6feb;
+    class API,DB server
 ```
 
-**도메인 모델**: `User` (admin/직원) — `Card` (UID 정규화, 1:1 사용자) — `AccessLog` (이벤트 시계열, KST 04:00 컷오프 출/퇴근 해석).
+- **ACR122U 리더기** — 카드 UID 를 읽는 USB 장치. 감시용 #1 은 Pi 에, 등록용 #2 는 백엔드가 직접 읽는다
+- **Pi NFC 에이전트** — 리더기를 상시 폴링해 태그를 백엔드로 보낸다. systemd 로 부팅 시 자동 기동
+- **FastAPI 백엔드** — 상태·인증·해석을 갖는 4계층(api·service·repo·model). 출입을 받아 출퇴근으로 해석한다
+- **Next.js 어드민** — 관리자가 로그·통계를 보는 얇은 웹
 
-**SSOT 룰** (CLAUDE.md):
-- 도메인 결정 → `docs/domain/*`
-- 컴포넌트 구현 → `docs/spec/*`
-- 크로스컷팅 (인증/보안/네트워크) → `docs/architecture/*`
+# 기술스택
 
-# 핵심 구현
-
-**Backend API** (`backend/app/api/`):
-- `auth.py` — 비밀번호 → JWT 30일
-- `users.py` — 직원 등록/조회
-- `cards.py` — NFC 카드 등록 (등록 리더로 UID 캡처) + UID 직접 입력
-- `access.py` — agent → 백엔드 카드 태그 push (`X-Agent-Key` 헤더 인증)
-- `logs.py` — 출입 이벤트 조회
-- `stats.py` — 출퇴근 집계
-
-**Agent** (`agent/nfc_agent/`):
-- `reader.py` — pyscard PC/SC 폴링
-- `client.py` — httpx 로 백엔드 push
-- `feedback.py` — 리더기 LED/Beep 등 사용자 피드백
-- `main.py` — 데몬 entrypoint
-- systemd 유닛으로 Pi 부팅 시 자동 기동
-
-**Admin** (`admin/app/`):
-- `login/` — 비밀번호 → JWT → localStorage
-- `(authed)/` — JWT 검증된 라우트 그룹 (logs · stats · users)
-- axios 인터셉터로 토큰 헤더 부착
-
-# 마주친 문제
-
-> (자동 추론 — 검토 필요. commit log 패턴 기반)
-
-- **prod 배포 단독화**: prod compose 와 ssh 한 번에 raw 다운로드되도록 정리 (`4f03103`)
-- **NPM 컨테이너 도달**: backend 포트 58000 + 0.0.0.0 바인딩으로 NPM (Nginx Proxy Manager) 컨테이너에서 도달 가능하게 (`7c373f8`)
-- **카드 UID 직접 입력**: 등록 리더가 없어도 운영자가 UID 입력으로 카드 등록 가능하게 (`34fe129`) — 운영/포트 보정 함께
-- **Orange Pi Zero 3 배포 진행**: `architecture/deployment-pi` 가 진행 중 — Pi 셋업 + systemd 등록 작업
-
-# 회고
-
-> (자동 추론 — 검토 필요)
-
-- **스코프 경계의 명시적 차단**: CLAUDE.md 의 "기업용 패턴 도입 금지" (RBAC·조직·OTA·SaaS) 가 처음부터 박혀있음. 1명 admin + 직원 소수 + 리더기 1대 전제가 모든 결정을 단순화시킴 — 멀티테넌트 모델, sessions 테이블, OAuth 등 다 빠짐.
-- **stateless JWT 채택**: 30일 JWT + localStorage 만으로 어드민 인증. 사용자 1명 시나리오라 가능한 단순화.
-- **에이전트-백엔드 정적 API 키**: 리더기 1대 전제로 mTLS·rotation 등 복잡도 안 박음. `X-Agent-Key` 한 개.
-- **SSOT 문서 룰**: docs/MAP.md + 위키링크 그래프 (옵시디언 호환) 로 결정 owner 문서 명시. 결정 바뀔 때 owner 만 수정 → 다른 문서는 자동 추종.
-- **다음 단계**: Orange Pi Zero 3 배포 마무리 + 운영 안정화. 통계 대시보드는 출퇴근 데이터 누적되는 대로 다듬는 방향.
+| 영역 | 스택 |
+|---|---|
+| 백엔드 | FastAPI · SQLAlchemy 2 (asyncio) · asyncpg · Alembic · PostgreSQL |
+| 에이전트 | Python 3.12 · pyscard (PC/SC) · httpx · pydantic-settings · systemd |
+| 프론트 | Next.js 16 · React 19 · TypeScript · Tailwind v4 · Radix UI · axios |
+| 인증 | JWT (30일 · stateless) · bcrypt · 정적 API 키(`X-Agent-Key`) |
+| 인프라·운영 | Docker Compose (dev·prod) · Postgres 자호스팅 · Nginx Proxy Manager · Vercel(어드민) |
