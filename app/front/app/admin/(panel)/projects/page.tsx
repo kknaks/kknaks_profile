@@ -94,7 +94,7 @@ const STATUS_COLOR: Record<WorkStatus, string> = {
   archived: "var(--fg-4)",
 };
 
-const LINK_KEYS = ["repo", "site", "store"] as const;
+const LINK_KEYS = ["repo", "site", "ios", "android", "pypi", "docs"] as const;
 
 function ProjectCard({
   project,
@@ -286,9 +286,15 @@ type Draft = {
   thumbnail: string;
   linkRepo: string;
   linkSite: string;
-  linkStore: string;
+  linkIos: string;
+  linkAndroid: string;
+  linkPypi: string;
+  linkDocs: string;
   detailPath: string;
 };
+
+/** links jsonb 의 폼 필드 — Draft 키 ↔ links 키 대응. store 는 옛 키라 뺐다. */
+type LinkKey = (typeof LINK_KEYS)[number];
 
 /** date 컬럼은 YYYY-MM-DD, 입력은 월 단위 — 잘라서 채우고 붙여서 보낸다. */
 const toMonth = (d?: string | null) => (d ? d.slice(0, 7) : "");
@@ -298,14 +304,13 @@ const parseStack = (s: string) =>
 
 /** links jsonb — 빈 입력은 키를 만들지 않고, 다 비면 null 로 지운다. */
 function buildLinks(
-  repo: string,
-  site: string,
-  store: string,
-): { repo?: string; site?: string; store?: string } | null {
-  const links: { repo?: string; site?: string; store?: string } = {};
-  if (repo.trim()) links.repo = repo.trim();
-  if (site.trim()) links.site = site.trim();
-  if (store.trim()) links.store = store.trim();
+  values: Record<LinkKey, string>,
+): Partial<Record<LinkKey, string>> | null {
+  const links: Partial<Record<LinkKey, string>> = {};
+  for (const k of LINK_KEYS) {
+    const v = values[k].trim();
+    if (v) links[k] = v;
+  }
   return Object.keys(links).length > 0 ? links : null;
 }
 
@@ -329,7 +334,10 @@ function ProjectForm({
     thumbnail: project?.thumbnail ?? "",
     linkRepo: project?.links?.repo ?? "",
     linkSite: project?.links?.site ?? "",
-    linkStore: project?.links?.store ?? "",
+    linkIos: project?.links?.ios ?? "",
+    linkAndroid: project?.links?.android ?? "",
+    linkPypi: project?.links?.pypi ?? "",
+    linkDocs: project?.links?.docs ?? "",
     detailPath: project?.detailPath ?? "",
   });
   const [saving, setSaving] = useState(false);
@@ -366,13 +374,23 @@ function ProjectForm({
     const thumbnail = draft.thumbnail.trim() || null;
     if (project ? thumbnail !== (project.thumbnail ?? null) : thumbnail !== null)
       body.thumbnail = thumbnail;
-    const links = buildLinks(draft.linkRepo, draft.linkSite, draft.linkStore);
+    const links = buildLinks({
+      repo: draft.linkRepo,
+      site: draft.linkSite,
+      ios: draft.linkIos,
+      android: draft.linkAndroid,
+      pypi: draft.linkPypi,
+      docs: draft.linkDocs,
+    });
     const prevLinks = project
-      ? buildLinks(
-          project.links?.repo ?? "",
-          project.links?.site ?? "",
-          project.links?.store ?? "",
-        )
+      ? buildLinks({
+          repo: project.links?.repo ?? "",
+          site: project.links?.site ?? "",
+          ios: project.links?.ios ?? "",
+          android: project.links?.android ?? "",
+          pypi: project.links?.pypi ?? "",
+          docs: project.links?.docs ?? "",
+        })
       : null;
     if (JSON.stringify(links) !== JSON.stringify(prevLinks)) body.links = links;
     const detailPath = draft.detailPath.trim() || null;
@@ -483,10 +501,37 @@ function ProjectForm({
           />
         </label>
         <label style={{ display: "block" }}>
-          <span style={labelStyle}>links.store</span>
+          <span style={labelStyle}>links.ios — App Store</span>
           <input
-            value={draft.linkStore}
-            onChange={(e) => set("linkStore", e.target.value)}
+            value={draft.linkIos}
+            onChange={(e) => set("linkIos", e.target.value)}
+            placeholder="https://apps.apple.com/…"
+            style={input}
+          />
+        </label>
+        <label style={{ display: "block" }}>
+          <span style={labelStyle}>links.android — Google Play</span>
+          <input
+            value={draft.linkAndroid}
+            onChange={(e) => set("linkAndroid", e.target.value)}
+            placeholder="https://play.google.com/…"
+            style={input}
+          />
+        </label>
+        <label style={{ display: "block" }}>
+          <span style={labelStyle}>links.pypi — PyPI</span>
+          <input
+            value={draft.linkPypi}
+            onChange={(e) => set("linkPypi", e.target.value)}
+            placeholder="https://pypi.org/project/…"
+            style={input}
+          />
+        </label>
+        <label style={{ display: "block" }}>
+          <span style={labelStyle}>links.docs — 문서</span>
+          <input
+            value={draft.linkDocs}
+            onChange={(e) => set("linkDocs", e.target.value)}
             placeholder="https://…"
             style={input}
           />

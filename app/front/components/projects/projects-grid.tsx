@@ -159,8 +159,9 @@ function ProjectCard({ p }: { p: ProjectItem }) {
             alt={`${p.title} cover`}
             style={{
               width: "100%",
-              aspectRatio: "16/9",
+              aspectRatio: "1024 / 500",
               objectFit: "cover",
+              objectPosition: "center",
               display: "block",
               background: "var(--bg-2)",
             }}
@@ -169,7 +170,7 @@ function ProjectCard({ p }: { p: ProjectItem }) {
         ) : (
           <div
             className="placeholder-hatch"
-            style={{ aspectRatio: "16/9", fontSize: 10 }}
+            style={{ aspectRatio: "1024 / 500", fontSize: 10 }}
           >
             [ {p.title} ]
           </div>

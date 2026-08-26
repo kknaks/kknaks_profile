@@ -1,6 +1,6 @@
 import { api } from "@/lib/api";
-import { CareerTimeline } from "@/components/career/career-timeline";
-import type { TimelineItem } from "@/lib/types";
+import { CareerView } from "@/components/career/career-view";
+import type { CareerItem, EducationItem } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
@@ -19,11 +19,11 @@ export default async function CareerPage() {
     );
   }
 
-  // career 와 education 을 **섹션으로 나눠** 각각 `startedOn DESC` 로 나열한다.
-  const sortDesc = (arr: TimelineItem[]) =>
+  // career 와 education 을 각각 `startedOn DESC` 로 나열한다(가장 최근이 위).
+  const sortDesc = <T extends { startedOn: string }>(arr: T[]) =>
     [...arr].sort((a, b) => b.startedOn.localeCompare(a.startedOn));
-  const roles = sortDesc(career["career[]"]);
-  const education = sortDesc(career["education[]"]);
+  const roles: CareerItem[] = sortDesc(career["career[]"]);
+  const education: EducationItem[] = sortDesc(career["education[]"]);
   const meta = career.career;
   const totalRoles = meta?.totalRoles ?? `${roles.length} role`;
   const focusLines = meta?.focus ? meta.focus.split("\n") : [];
@@ -63,60 +63,18 @@ export default async function CareerPage() {
         </h1>
       </header>
 
-      {/* 커리어 | 교육 — 2열. 모바일(m-stack)에서는 세로로 쌓인다. */}
-      <div
-        className="pad-x m-stack"
-        style={{
-          padding: "48px 80px",
-          display: "grid",
-          gridTemplateColumns: "minmax(0, 1.6fr) minmax(0, 1fr)",
-          gap: 64,
-          alignItems: "start",
-        }}
-      >
-        <section style={{ minWidth: 0 }}>
-          <div
-            className="mono"
-            style={{
-              fontSize: 11,
-              textTransform: "uppercase",
-              letterSpacing: "0.12em",
-              marginBottom: 24,
-              paddingBottom: 12,
-              borderBottom: "1px solid var(--line-1)",
-            }}
-          >
-            <span style={{ color: "var(--accent)" }}>{"// career"}</span>
-            <span style={{ color: "var(--fg-3)", marginLeft: 12 }}>
-              {meta?.totalYears ? `${meta.totalYears} · ` : ""}
-              {totalRoles}
-              {focusLines.length > 0 ? ` · ${focusLines.join(" ")}` : ""}
-            </span>
-          </div>
-          <CareerTimeline items={roles} />
-        </section>
-
-        {education.length > 0 && (
-          <section style={{ minWidth: 0 }}>
-            <div
-              className="mono"
-              style={{
-                fontSize: 11,
-                textTransform: "uppercase",
-                letterSpacing: "0.12em",
-                marginBottom: 24,
-                paddingBottom: 12,
-                borderBottom: "1px solid var(--line-1)",
-              }}
-            >
-              <span style={{ color: "var(--accent)" }}>{"// education"}</span>
-              <span style={{ color: "var(--fg-3)", marginLeft: 12 }}>
-                {education.length} course{education.length !== 1 ? "s" : ""}
-              </span>
-            </div>
-            <CareerTimeline items={education} />
-          </section>
-        )}
+      {/* 3열 — 사이드 | 타임라인 | 상세. 선택 상태가 필요해 client 로 넘긴다. */}
+      <div className="pad-x m-pad-h" style={{ padding: "48px 80px" }}>
+        <CareerView
+          roles={roles}
+          education={education}
+          meta={{
+            totalYears: meta?.totalYears,
+            totalRoles,
+            focusLines,
+            educationCount: education.length,
+          }}
+        />
       </div>
     </main>
   );

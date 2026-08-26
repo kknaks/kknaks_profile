@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import ReactMarkdown, { defaultUrlTransform } from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 import { api, assetUrl } from "@/lib/api";
 import type { NoteDetail, NoteItem } from "@/lib/types";
@@ -234,6 +235,7 @@ export function NotesExplorer({
                 원장(md) 디렉토리 기준 — para 를 서빙하는 백엔드 /api/assets 로 푼다. */}
             <article className="contents-body" style={{ maxWidth: 860 }}>
               <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
                 urlTransform={(url, key) =>
                   key === "src" && !/^(https?:|data:|\/)/.test(url)
                     ? assetUrl(

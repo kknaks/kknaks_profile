@@ -120,6 +120,8 @@ export interface CareerProduct {
   thumbnail?: string | null;
   /** `product.links` jsonb — `{site, docs}`. */
   links?: { site?: string; docs?: string } | null;
+  /** `detail_path`(showcase.md) 전문 — 카드 클릭 모달이 md 로 그린다. 끊기면 null. */
+  body?: string | null;
 }
 
 /** 펼침 안의 「해결한 문제」 — 이력서의 알맹이(erd.md §problem). */
@@ -206,8 +208,16 @@ export interface ProductItem extends WorkBase {
 
 /** 혼자 만든 것. `career_id` 가 없다 — 소속이 없어서지 비어 있는 게 아니다. */
 export interface ProjectItem extends WorkBase {
-  /** `project.links` jsonb — `{repo, site, store}`. */
-  links?: { repo?: string; site?: string; store?: string } | null;
+  /** `project.links` jsonb — repo·site·docs·ios·android·pypi 등 자유 키. */
+  links?: {
+    repo?: string;
+    site?: string;
+    docs?: string;
+    store?: string;
+    ios?: string;
+    android?: string;
+    pypi?: string;
+  } | null;
 }
 
 /**
@@ -701,8 +711,16 @@ export interface AdminProject {
   startedOn?: string | null;
   stack: string[];
   thumbnail?: string | null;
-  /** `project.links` jsonb — `{repo, site, store}`. */
-  links?: { repo?: string; site?: string; store?: string } | null;
+  /** `project.links` jsonb — repo·site·docs·ios·android·pypi 등 자유 키. */
+  links?: {
+    repo?: string;
+    site?: string;
+    docs?: string;
+    store?: string;
+    ios?: string;
+    android?: string;
+    pypi?: string;
+  } | null;
   visible: boolean;
 }
 

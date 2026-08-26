@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 import type { ContentDetail } from "@/lib/types";
 
@@ -145,7 +146,7 @@ export function ContentsDetail({ item }: { item: ContentDetail }) {
           title={"학습 자료"}
         />
         <article className="contents-body">
-          <ReactMarkdown>{item.body}</ReactMarkdown>
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{item.body}</ReactMarkdown>
         </article>
       </section>
 

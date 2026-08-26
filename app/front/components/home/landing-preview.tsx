@@ -8,6 +8,7 @@ import type {
   SiteResponse,
 } from "@/lib/types";
 import { YouTubeThumbnail } from "@/components/contents/youtube-thumbnail";
+import { assetUrl } from "@/lib/api";
 import { StatusTag } from "@/components/projects/status-tag";
 
 interface Props {
@@ -287,12 +288,13 @@ export function LandingPreview({
               {p.thumbnail ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
-                  src={p.thumbnail}
+                  src={assetUrl(p.thumbnail)}
                   alt={`${p.title} cover`}
                   style={{
                     width: "100%",
-                    aspectRatio: "16/9",
+                    aspectRatio: "1024 / 500",
                     objectFit: "cover",
+                    objectPosition: "center",
                     display: "block",
                     background: "var(--bg-2)",
                   }}
@@ -300,7 +302,7 @@ export function LandingPreview({
               ) : (
                 <div
                   className="placeholder-hatch"
-                  style={{ aspectRatio: "16/9", fontSize: 10 }}
+                  style={{ aspectRatio: "1024 / 500", fontSize: 10 }}
                 >
                   [ {p.title} ]
                 </div>
