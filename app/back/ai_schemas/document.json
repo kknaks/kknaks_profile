@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "stem": {
+      "type": "string",
+      "description": "파일명 stem — 영문 kebab-case. 확장자·경로 없이."
+    },
+    "body": {
+      "type": "string",
+      "description": "md 전문 — 템플릿의 머리(H1 + 출처 줄)부터 끝까지."
+    }
+  },
+  "required": ["stem", "body"],
+  "additionalProperties": false
+}

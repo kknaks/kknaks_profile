@@ -3,7 +3,7 @@
  * proto-algorithms.jsx 의 diffBadge / platformChip / curationChip 이식.
  */
 
-import type { AlgorithmSource } from "@/lib/types";
+import type { AlgoDifficulty, AlgorithmSource } from "@/lib/types";
 
 const DIFF_MAP = {
   easy: { color: "#7fdb8a", label: "easy" },
@@ -11,7 +11,7 @@ const DIFF_MAP = {
   hard: { color: "#ff8b6e", label: "hard" },
 } as const;
 
-export function DiffBadge({ level }: { level: "easy" | "medium" | "hard" }) {
+export function DiffBadge({ level }: { level: AlgoDifficulty }) {
   const m = DIFF_MAP[level] ?? DIFF_MAP.medium;
   return (
     <span
@@ -50,8 +50,8 @@ export function PlatformChip({ source }: { source?: AlgorithmSource }) {
 }
 
 export function CurationChip({ source }: { source?: AlgorithmSource }) {
-  if (!source?.curated_in?.length) return null;
-  const c = source.curated_in[0];
+  if (!source?.curatedIn?.length) return null;
+  const c = source.curatedIn[0];
   return (
     <span
       className="mono"

@@ -3,21 +3,17 @@
  * 지문 카드 (statement + constraints) + 입출력 예시.
  */
 
-import type { Lang } from "@/lib/i18n";
 import type { AlgoProblem, AlgorithmSource } from "@/lib/types";
 
 export function ProblemPanel({
-  algoId,
+  algoSlug,
   problem,
   source,
-  lang,
 }: {
-  algoId: string;
+  algoSlug: string;
   problem: AlgoProblem;
   source: AlgorithmSource;
-  lang: Lang;
 }) {
-  const t = (ko: string, en: string) => (lang === "en" ? en : ko);
 
   return (
     <div
@@ -35,7 +31,7 @@ export function ProblemPanel({
           }}
         >
           <span className="mono" style={{ fontSize: 11, color: "var(--fg-3)" }}>
-            P.{algoId.replace("A-", "")}
+            P.{algoSlug}
           </span>
           {problem.title && (
             <h3 style={{ margin: 0, fontSize: 18, fontWeight: 600, letterSpacing: "-0.01em" }}>
@@ -43,7 +39,7 @@ export function ProblemPanel({
             </h3>
           )}
           <a
-            href={source.url}
+            href={source.url ?? undefined}
             target="_blank"
             rel="noreferrer"
             className="mono"
@@ -67,7 +63,7 @@ export function ProblemPanel({
         {problem.constraints?.length > 0 && (
           <>
             <div className="caps" style={{ marginTop: 22, marginBottom: 8 }}>
-              {t("제약", "constraints")}
+              {"제약"}
             </div>
             <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
               {problem.constraints.map((c, i) => (
@@ -89,13 +85,13 @@ export function ProblemPanel({
         )}
 
         <div className="mono" style={{ fontSize: 10, color: "var(--fg-3)", marginTop: 14, lineHeight: 1.6 }}>
-          // {t("지문은 본인 언어 요약 — 원문은 위 링크에서", "paraphrased summary — see source for full text")}
+          // {"지문은 본인 언어 요약 — 원문은 위 링크에서"}
         </div>
       </div>
 
       <div>
         <div className="caps" style={{ marginBottom: 8 }}>
-          {t("입출력 예시", "examples")}
+          {"입출력 예시"}
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
           {(problem.io ?? []).map((ex, i) => (

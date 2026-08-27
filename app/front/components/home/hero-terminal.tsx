@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import type { Lang } from "@/lib/i18n";
-import type { HeadlineTone, MeResponse } from "@/lib/types";
+import type { HeadlineTone, ProfileResponse, SiteResponse } from "@/lib/types";
 
 const TONE_COLOR: Record<HeadlineTone, string> = {
   muted: "var(--fg-3)",
@@ -12,17 +11,18 @@ const TONE_COLOR: Record<HeadlineTone, string> = {
 };
 
 export function HeroTerminal({
-  lang,
-  me,
+  profile,
+  site,
 }: {
-  lang: Lang;
-  me: MeResponse;
+  profile: ProfileResponse;
+  site: SiteResponse;
 }) {
-  const t = (ko: string, en: string) => (lang === "en" ? en : ko);
-  const { user, hero } = me;
-  const langSuffix = lang === "ko" ? "" : `?lang=${lang}`;
+  const user = profile.profile;
+  const copy = site.site;
 
-  const lines = me.heroTerminal ?? [];
+  // 히어로 문구는 site_config 다 — profile 은 신원·연락만(erd.md §site_config).
+  const headline = copy.home?.heroHeadline ?? [];
+  const lines = copy.home?.heroTerminal ?? [];
 
   const [step, setStep] = useState(0);
   useEffect(() => {
@@ -48,7 +48,7 @@ export function HeroTerminal({
           className="mono"
           style={{ fontSize: 12, color: "var(--fg-3)", marginBottom: 16 }}
         >
-          // {t("포트폴리오", "portfolio")} · v0.1.0
+          // {"포트폴리오"} · v0.1.0
         </div>
         <h1
           className="m-display"
@@ -60,16 +60,11 @@ export function HeroTerminal({
             fontWeight: 600,
           }}
         >
-          {hero?.headline?.length
-            ? hero.headline.map((line, i) => (
-                <span
-                  key={i}
-                  style={{ color: TONE_COLOR[line.tone], display: "block" }}
-                >
-                  {line.text}
-                </span>
-              ))
-            : user.tagline}
+          {headline.map((line, i) => (
+            <span key={i} style={{ color: TONE_COLOR[line.tone], display: "block" }}>
+              {line.text}
+            </span>
+          ))}
         </h1>
         <p
           style={{
@@ -80,19 +75,11 @@ export function HeroTerminal({
             maxWidth: 480,
           }}
         >
-          {hero?.subline ?? user.intro}
+          {copy.home?.heroSubline}
         </p>
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noreferrer"
-            className="btn primary"
-          >
-            {t("이력서 다운로드", "Resume")} <span className="arrow">↓</span>
-          </a>
-          <Link href={`/projects${langSuffix}`} className="btn">
-            {t("프로젝트 보기", "See projects")} <span className="arrow">→</span>
+          <Link href="/projects" className="btn primary">
+            프로젝트 보기 <span className="arrow">→</span>
           </Link>
           {user.github && (
             <a

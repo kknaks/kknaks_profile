@@ -1,21 +1,22 @@
 import Link from "next/link";
-import type { Lang } from "@/lib/i18n";
 import type {
   CareerResponse,
   ContentsResponse,
-  MeResponse,
-  PostsResponse,
+  NotesResponse,
+  ProfileResponse,
   ProjectsResponse,
+  SiteResponse,
 } from "@/lib/types";
 import { YouTubeThumbnail } from "@/components/contents/youtube-thumbnail";
+import { assetUrl } from "@/lib/api";
 import { StatusTag } from "@/components/projects/status-tag";
 
 interface Props {
-  lang: Lang;
-  me: MeResponse;
+  profile: ProfileResponse;
+  site: SiteResponse;
   career: CareerResponse;
   projects: ProjectsResponse;
-  posts: PostsResponse;
+  notes: NotesResponse;
   contents: ContentsResponse;
 }
 
@@ -24,16 +25,13 @@ function Section({
   id,
   title,
   sub,
-  langSuffix,
-  viewAllLabel,
   children,
 }: {
   idx: string;
   id: string;
   title: string;
-  sub: string;
-  langSuffix: string;
-  viewAllLabel: string;
+  /** DB(site_config 등)에서 온 값 — 없으면 안 그린다. 화면 기본 문구를 두지 않는다. */
+  sub?: string;
   children: React.ReactNode;
 }) {
   return (
@@ -67,15 +65,17 @@ function Section({
         >
           {title}
         </h2>
-        <span style={{ color: "var(--fg-3)", fontSize: 14, marginLeft: 4 }}>
-          · {sub}
-        </span>
+        {sub && (
+          <span style={{ color: "var(--fg-3)", fontSize: 14, marginLeft: 4 }}>
+            · {sub}
+          </span>
+        )}
         <Link
-          href={`/${id}${langSuffix}`}
+          href={`/${id}`}
           className="btn ghost"
           style={{ marginLeft: "auto", padding: "6px 10px", fontSize: 12 }}
         >
-          {viewAllLabel} <span className="arrow">→</span>
+          전체 보기 <span className="arrow">→</span>
         </Link>
       </div>
       {children}
@@ -84,32 +84,32 @@ function Section({
 }
 
 export function LandingPreview({
-  lang,
-  me,
+  profile,
+  site,
   career,
   projects,
-  posts,
+  notes,
   contents,
 }: Props) {
-  const t = (ko: string, en: string) => (lang === "en" ? en : ko);
-  const langSuffix = lang === "ko" ? "" : `?lang=${lang}`;
-  const viewAllLabel = t("전체 보기", "View all");
-  const { user } = me;
+  const user = profile.profile;
+  const copy = site.site;
 
   const careerItems = career["career[]"].slice(0, 2);
   const projectsSorted = [...projects["projects[]"]].sort((a, b) =>
-    (b.date ?? "").localeCompare(a.date ?? ""),
+    (b.startedOn ?? "").localeCompare(a.startedOn ?? ""),
   );
   const projectsDone = projectsSorted.filter((p) => p.status !== "wip");
   const projectsWip = projectsSorted.filter((p) => p.status === "wip");
   const projectItems = [...projectsDone, ...projectsWip].slice(0, 4);
-  const recentPosts = posts["posts[]"].slice(0, 5);
-  // 스택 집계는 **글에서** 낸다. 종전에는 `/api/notes/graph` 가 `resources/source`
-  // 를 세어 줬는데, resources 는 R(개인 지식)이라 공개 표면에 오면 안 된다.
-  const stackCount = new Map<string, number>();
-  for (const p of posts["posts[]"])
-    for (const s of p.stack ?? []) stackCount.set(s, (stackCount.get(s) ?? 0) + 1);
-  const stacks = [...stackCount]
+  const noteItems = notes["notes[]"];
+  const noteCount = notes.notes?.totalCount ?? noteItems.length;
+  const recentNotes = noteItems.slice(0, 5);
+  // 태그 집계는 **글에서** 낸다. 종전에는 `/api/notes/graph` 가 `resources/source`
+  // 를 세어 줬는데, resources 는 개인 지식이라 공개 표면에 오면 안 된다.
+  const tagCount = new Map<string, number>();
+  for (const n of noteItems)
+    for (const s of n.tags ?? []) tagCount.set(s, (tagCount.get(s) ?? 0) + 1);
+  const stacks = [...tagCount]
     .map(([name, count]) => ({ name, count }))
     .sort((a, b) => b.count - a.count)
     .slice(0, 10);
@@ -124,9 +124,7 @@ export function LandingPreview({
         idx="01"
         id="about"
         title="About"
-        sub={me.about?.subtitle ?? t("만드는 사람", "who builds it")}
-        langSuffix={langSuffix}
-        viewAllLabel={viewAllLabel}
+        sub={copy.about?.subtitle}
       >
         <div
           className="m-stack"
@@ -146,13 +144,13 @@ export function LandingPreview({
               maxWidth: 640,
             }}
           >
-            {user.tagline}
+            {copy.about?.tagline}
           </p>
           <dl style={{ margin: 0, fontSize: 13 }}>
             {[
               ["location", user.location ?? "—"],
               ["focus", user.focus ?? "—"],
-              ["stack", user.stackShort ?? user.stack.slice(0, 3).join(" · ")],
+              ["stack", user.stack.slice(0, 3).join(" · ")],
               ["email", user.email],
             ].map(([k, v]) => (
               <div
@@ -179,9 +177,7 @@ export function LandingPreview({
         idx="02"
         id="career"
         title="Career"
-        sub={career.career?.subtitle ?? t("최근 이력", "recent roles")}
-        langSuffix={langSuffix}
-        viewAllLabel={viewAllLabel}
+        sub={career.career?.subtitle}
       >
         <div style={{ position: "relative", paddingLeft: 28, maxWidth: 720 }}>
           <div
@@ -206,9 +202,9 @@ export function LandingPreview({
                   borderRadius: 2,
                   background: "var(--bg-0)",
                   border: `1px solid ${
-                    it.is_current ? "var(--accent)" : "var(--line-3)"
+                    it.isCurrent ? "var(--accent)" : "var(--line-3)"
                   }`,
-                  boxShadow: it.is_current
+                  boxShadow: it.isCurrent
                     ? "0 0 0 3px var(--accent-soft)"
                     : "none",
                 }}
@@ -222,7 +218,7 @@ export function LandingPreview({
                 }}
               >
                 {it.period}
-                {it.is_current && (
+                {it.isCurrent && (
                   <span style={{ color: "var(--accent)", marginLeft: 8 }}>
                     ● now
                   </span>
@@ -262,9 +258,7 @@ export function LandingPreview({
         idx="03"
         id="projects"
         title="Projects"
-        sub={projects.projects?.subtitle ?? t("혼자 만든 것들", "solo work")}
-        langSuffix={langSuffix}
-        viewAllLabel={viewAllLabel}
+        sub={projects.projects?.subtitle}
       >
         <div
           className="landing-projects-grid m-stack"
@@ -281,8 +275,8 @@ export function LandingPreview({
           `}</style>
           {projectItems.map((p) => (
             <Link
-              key={p.id}
-              href={`/projects/${p.id}${langSuffix}`}
+              key={p.slug}
+              href={`/projects/${p.slug}`}
               className="card"
               style={{
                 overflow: "hidden",
@@ -294,12 +288,13 @@ export function LandingPreview({
               {p.thumbnail ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
-                  src={p.thumbnail}
+                  src={assetUrl(p.thumbnail)}
                   alt={`${p.title} cover`}
                   style={{
                     width: "100%",
-                    aspectRatio: "16/9",
+                    aspectRatio: "1024 / 500",
                     objectFit: "cover",
+                    objectPosition: "center",
                     display: "block",
                     background: "var(--bg-2)",
                   }}
@@ -307,7 +302,7 @@ export function LandingPreview({
               ) : (
                 <div
                   className="placeholder-hatch"
-                  style={{ aspectRatio: "16/9", fontSize: 10 }}
+                  style={{ aspectRatio: "1024 / 500", fontSize: 10 }}
                 >
                   [ {p.title} ]
                 </div>
@@ -325,10 +320,10 @@ export function LandingPreview({
                     className="mono"
                     style={{ fontSize: 10, color: "var(--fg-3)" }}
                   >
-                    {p.id}
+                    {p.slug}
                   </span>
                   <StatusTag s={p.status} />
-                  {p.date && (
+                  {p.startedOn && (
                     <span
                       className="mono"
                       style={{
@@ -337,7 +332,7 @@ export function LandingPreview({
                         marginLeft: "auto",
                       }}
                     >
-                      {p.date}
+                      {p.startedOn}
                     </span>
                   )}
                 </div>
@@ -385,12 +380,7 @@ export function LandingPreview({
         idx="04"
         id="notes"
         title="Notes"
-        sub={t(
-          `읽고 정리한 것 · ${posts.posts.totalCount}편`,
-          `what I read and wrote up · ${posts.posts.totalCount}`,
-        )}
-        langSuffix={langSuffix}
-        viewAllLabel={viewAllLabel}
+        sub={`읽고 정리한 것 · ${noteCount}편`}
       >
         <div
           className="m-stack"
@@ -406,12 +396,12 @@ export function LandingPreview({
               recent
             </div>
             <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
-              {recentPosts.map((n) => (
+              {recentNotes.map((n) => (
                 <li
-                  key={n.id}
+                  key={n.slug}
                   style={{
                     display: "grid",
-                    gridTemplateColumns: "88px 1fr 110px",
+                    gridTemplateColumns: "88px 1fr",
                     gap: 16,
                     padding: "10px 0",
                     borderTop: "1px solid var(--line-1)",
@@ -423,10 +413,10 @@ export function LandingPreview({
                     className="mono"
                     style={{ fontSize: 11, color: "var(--fg-3)" }}
                   >
-                    {n.date ?? ""}
+                    {n.publishedOn ?? ""}
                   </span>
                   <Link
-                    href={`/notes/${n.id}${langSuffix}`}
+                    href={`/notes/${n.slug}`}
                     style={{ color: "var(--fg-0)" }}
                   >
                     {n.title}
@@ -439,9 +429,7 @@ export function LandingPreview({
                       textAlign: "right",
                     }}
                   >
-                    {n.type === "post_note"
-                      ? t("공부", "note")
-                      : t("스크랩", "scrap")}
+
                   </span>
                 </li>
               ))}
@@ -484,7 +472,7 @@ export function LandingPreview({
             >
               <NotesGraphPreview
                 stacks={stacks.slice(0, 5)}
-                noteCount={posts.posts.totalCount}
+                noteCount={noteCount}
               />
               <div
                 className="mono"
@@ -508,9 +496,7 @@ export function LandingPreview({
         idx="05"
         id="contents"
         title="Contents"
-        sub={contents.contents?.subtitle ?? t("매일 업로드 · 영상 + 교안", "daily uploads · video + notes")}
-        langSuffix={langSuffix}
-        viewAllLabel={viewAllLabel}
+        sub={contents.contents?.subtitle}
       >
         {latestContent && (
           <div
@@ -523,7 +509,7 @@ export function LandingPreview({
             }}
           >
             <Link
-              href={`/contents/${latestContent.id}${langSuffix}`}
+              href={`/contents/${latestContent.slug}`}
               className="card"
               style={{
                 overflow: "hidden",
@@ -618,9 +604,7 @@ export function LandingPreview({
                     gap: 12,
                   }}
                 >
-                  <span>{latestContent.date}</span>
-                  <span>·</span>
-                  <span>{latestContent.day}</span>
+                  <span>{latestContent.publishedOn ?? ""}</span>
                 </div>
                 <div
                   style={{
@@ -641,17 +625,17 @@ export function LandingPreview({
               </div>
               {olderContents.length === 0 ? (
                 <p style={{ color: "var(--fg-3)", fontSize: 13 }}>
-                  {t("회차 추가 예정", "more episodes coming")}
+                  {"회차 추가 예정"}
                 </p>
               ) : (
                 <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
                   {olderContents.map((c) => (
-                    <li key={c.id}>
+                    <li key={c.slug}>
                       <Link
-                        href={`/contents/${c.id}${langSuffix}`}
+                        href={`/contents/${c.slug}`}
                         style={{
                           display: "grid",
-                          gridTemplateColumns: "64px 1fr 56px",
+                          gridTemplateColumns: "88px 1fr 56px",
                           gap: 16,
                           padding: "12px 0",
                           borderTop: "1px solid var(--line-1)",
@@ -663,7 +647,7 @@ export function LandingPreview({
                           className="mono"
                           style={{ fontSize: 11, color: "var(--fg-3)" }}
                         >
-                          {c.day}
+                          {c.publishedOn ?? ""}
                         </span>
                         <span style={{ color: "var(--fg-0)" }}>{c.title}</span>
                         <span
@@ -689,14 +673,14 @@ export function LandingPreview({
                 }}
               >
                 <Link
-                  href={`/contents${langSuffix}`}
+                  href={`/contents`}
                   className="mono"
                   style={{
                     color: "var(--fg-2)",
                     fontSize: 12,
                   }}
                 >
-                  {t("전체 회차 보기 →", "all episodes →")}
+                  {"전체 회차 보기 →"}
                 </Link>
               </div>
             </div>

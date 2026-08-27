@@ -1,24 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { DEFAULT_LANG, isLang, SUPPORTED_LANGS, type Lang } from "@/lib/i18n";
 
 const NAV_ITEMS = [
-  { id: "about", label: { ko: "About", en: "About" }, href: "/about" },
-  { id: "career", label: { ko: "Career", en: "Career" }, href: "/career" },
-  { id: "projects", label: { ko: "Projects", en: "Projects" }, href: "/projects" },
-  { id: "notes", label: { ko: "Notes", en: "Notes" }, href: "/notes" },
-  { id: "contents", label: { ko: "Contents", en: "Contents" }, href: "/contents" },
-  { id: "algorithms", label: { ko: "Algorithms", en: "Algorithms" }, href: "/algorithms" },
+  { id: "about", label: "About", href: "/about" },
+  { id: "career", label: "Career", href: "/career" },
+  { id: "projects", label: "Projects", href: "/projects" },
+  { id: "notes", label: "Notes", href: "/notes" },
+  { id: "contents", label: "Contents", href: "/contents" },
+  { id: "algorithms", label: "Algorithms", href: "/algorithms" },
 ];
 
 export function TopNav() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const rawLang = searchParams.get("lang") ?? DEFAULT_LANG;
-  const lang: Lang = isLang(rawLang) ? rawLang : DEFAULT_LANG;
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -34,21 +30,11 @@ export function TopNav() {
     setMenuOpen(false);
   }, [pathname]);
 
-  // **훅을 전부 부른 뒤에 반환한다.** 종전에는 이 두 줄이 `useEffect` 앞에 있어서
-  // `/admin`·`/print` 에서 훅 4개만 실행되고 끝났고, React 가 6개를 기대해
+  // **훅을 전부 부른 뒤에 반환한다.** 종전에는 이 줄이 `useEffect` 앞에 있어서
+  // `/admin` 에서 훅 일부만 실행되고 끝났고, React 가 나머지를 기대해
   // `Rendered fewer hooks than expected` 로 **런타임이 죽었다**. 조건부 반환 자체는
   // 괜찮지만 그 위치가 훅 사이면 안 된다(Rules of Hooks).
-  if (pathname?.startsWith("/print")) return null;
   if (pathname?.startsWith("/admin")) return null; // 관리자 셸은 자체 레이아웃
-
-  const withLang = (href: string) => (lang === DEFAULT_LANG ? href : `${href}?lang=${lang}`);
-  const langSwitchHref = (target: Lang) => {
-    const sp = new URLSearchParams(searchParams);
-    if (target === DEFAULT_LANG) sp.delete("lang");
-    else sp.set("lang", target);
-    const qs = sp.toString();
-    return qs ? `${pathname}?${qs}` : pathname;
-  };
 
   const activeId = pathname === "/" ? "home" : pathname.split("/")[1];
 
@@ -69,7 +55,7 @@ export function TopNav() {
       }}
     >
       <Link
-        href={withLang("/")}
+        href="/"
         className="mono"
         style={{
           color: "var(--fg-0)",
@@ -89,7 +75,7 @@ export function TopNav() {
           return (
             <Link
               key={item.id}
-              href={withLang(item.href)}
+              href={item.href}
               style={{
                 fontFamily: "var(--font-mono)",
                 fontSize: 12,
@@ -102,7 +88,7 @@ export function TopNav() {
               }}
             >
               <span style={{ color: "var(--fg-3)" }}>0{idx + 1} </span>
-              {item.label[lang]}
+              {item.label}
             </Link>
           );
         })}
@@ -130,31 +116,6 @@ export function TopNav() {
           />
           online
         </span>
-        <div
-          style={{
-            display: "flex",
-            border: "1px solid var(--line-2)",
-            borderRadius: 4,
-            overflow: "hidden",
-          }}
-        >
-          {SUPPORTED_LANGS.map((l) => (
-            <Link
-              key={l}
-              href={langSwitchHref(l)}
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: 11,
-                padding: "4px 8px",
-                background: lang === l ? "var(--bg-3)" : "transparent",
-                color: lang === l ? "var(--fg-0)" : "var(--fg-3)",
-              }}
-            >
-              {l.toUpperCase()}
-            </Link>
-          ))}
-        </div>
-
         <Link
           href="/admin"
           aria-label="admin"
@@ -257,7 +218,7 @@ export function TopNav() {
             return (
               <Link
                 key={item.id}
-                href={withLang(item.href)}
+                href={item.href}
                 style={{
                   fontFamily: "var(--font-mono)",
                   fontSize: 14,
@@ -274,7 +235,7 @@ export function TopNav() {
                 }}
               >
                 <span style={{ color: "var(--fg-3)" }}>0{idx + 1}</span>
-                <span>{item.label[lang]}</span>
+                <span>{item.label}</span>
               </Link>
             );
           })}

@@ -1,191 +1,130 @@
-"""FastAPI 앱 — 부팅 시 페르소나 로드 + 라우터 등록 (spec-02, ADR-01)."""
+"""FastAPI 앱 팩토리 — 조립만 한다. 로직 없음.
+
+여기서 하는 일 세 가지뿐이다: 미들웨어(CORS) · 예외 핸들러 · 라우터 등록.
+"""
 
 from __future__ import annotations
 
-import json
+import asyncio
+import contextlib
 import logging
-import os
 from contextlib import asynccontextmanager
-from typing import Any
 
-# kknaks-back.* 로거가 컨테이너 stdout 으로 흐르게 — uvicorn 기본 설정만으론 묻힘
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+from config import get_settings
+from core.exceptions import register_exception_handlers
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s %(name)s %(levelname)s %(message)s",
 )
 
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
-
-import config
-from service.persona_loader import load_persona
-
-logger = logging.getLogger("kknaks-back")
-
-PERSONA_DIR = config.PERSONA_DIR
-
-# 글로벌 메모리 캐시 (spec-03 §6 패턴 — 잡이 `from main import load_all`로 reload 셀프 호출)
-_data: dict[str, Any] = {}
-
-
-def load_all() -> None:
-    """페르소나 reload. 멱등 — 같은 입력이면 같은 결과."""
-    global _data
-    _data = load_persona(PERSONA_DIR)
-    logger.info(
-        "persona loaded: %d career, %d projects, %d notes, %d contents, %d daily, %d algorithms",
-        len(_data["career"]),
-        len(_data["projects"]),
-        len(_data["notes"]),
-        len(_data["contents"]),
-        len(_data["daily"]),
-        len(_data.get("algorithms", [])),
-    )
-
-
-def reload_data() -> bool:
-    """런타임 reload 안전 래퍼 (webhook/worker job 용).
-
-    로드가 실패하면 `_data` 는 미재할당이라 기존 데이터가 그대로 살아 계속 서빙된다.
-    실패를 로그하고 False 를 반환한다 — reload 하나 때문에 서비스를 죽이지 않는다.
-
-    Returns True=성공, False=실패(구 데이터 유지).
-    """
-    try:
-        load_all()
-        return True
-    except Exception as e:  # noqa: BLE001
-        logger.error("persona reload 실패 — 기존 데이터 유지: %s", e)
-        return False
-
-
-def get_data() -> dict[str, Any]:
-    """라우터에서 메모리 dict 접근."""
-    return _data
-
-
-def _check_single_worker() -> None:
-    """spec-03 §1.2 — multi-worker 시 APScheduler 다중 발동 위험 차단."""
-    workers = config.web_concurrency()
-    if workers > 1:
-        raise RuntimeError(
-            f"Multi-worker deployment 금지 — APScheduler가 {workers}번 발동 위험 "
-            f"(spec-03 §1.2). single-worker로 띄우거나 distributed lock 적용."
-        )
-
 
 @asynccontextmanager
-async def lifespan(app: FastAPI):
-    _check_single_worker()
-    load_all()
+async def _lifespan(app: FastAPI):
+    # 잔디 스케줄러 — 매일 KST 08:00 전체 수집(케이스 6·7). 가벼운 asyncio 루프.
+    from service.collect_service import collect_service
 
-    # 관리자 유저 시드 (KDEV-WORK-011) — .env admin 을 users 에 멱등 upsert.
-    # DB 미가용이면 seed_admin 이 로그만 남기고 False 반환 → 부팅 비차단(콘텐츠 API 는 DB 무관).
-    from service.seed import seed_admin
+    # persona 스케줄러 — 매일 KST 08:10 역할별 persona md(DB 파생) 재렌더.
+    from service.persona_service import persona_service
 
-    await seed_admin()
-
-    # 공부 노트 접수 (KDEV-DEC-021 D1) — `inbox/` 를 훑어 큐로 옮기고 비운다.
-    # **스케줄이 아니라 부팅인 이유**는 트리거가 push 이기 때문이다. 노트를 넣고
-    # push 하면 배포가 돌고 서버가 다시 뜬다 — 그 시점이 곧 "새 노트가 왔다" 다.
-    # 예외를 삼키므로 입구가 이상해도 부팅을 막지 않는다.
-    from service.pipeline.study_intake import run_inbox_scan
-
-    await run_inbox_scan()
-
-    # APScheduler 시작 (spec-03 §1.1). 테스트에서는 RUN_SCHEDULER=0으로 skip
-    sched = None
-    if config.run_scheduler():
-        from service.scheduler import init_scheduler
-
-        sched = init_scheduler()
-        sched.start()
-        logger.info(
-            "APScheduler started — daily-activity (09:05 KST) + neetcode-canonical (23:00 UTC)"
-        )
-    else:
-        logger.info("APScheduler disabled (RUN_SCHEDULER=0)")
-
-    # Slack 지식 캡처 (KDEV-WORK-012) — 스케줄러와 같은 자리의 in-process 장기 루프.
-    # 종전에는 별도 `slack-bridge` 컨테이너였다 (KDEV-DEC-013).
-    # SLACK_CAPTURE_ENABLED=0 이거나 토큰이 없으면 start() 가 조용히 skip 한다 — 부팅 비차단.
-    from service.slack_bridge.bootstrap import CaptureRuntime
-
-    capture = CaptureRuntime()
-    await capture.start()
-
+    tasks = [
+        asyncio.create_task(collect_service.run_scheduler()),
+        asyncio.create_task(persona_service.run_scheduler()),
+    ]
     try:
         yield
     finally:
-        await capture.stop()
-        if sched is not None:
-            sched.shutdown(wait=False)
+        for task in tasks:
+            task.cancel()
+        for task in tasks:
+            with contextlib.suppress(asyncio.CancelledError):
+                await task
 
 
-app = FastAPI(
-    title="kknaks.dev API",
-    version="0.1.0",
-    lifespan=lifespan,
-)
+def create_app() -> FastAPI:
+    settings = get_settings()
+    app = FastAPI(title="kknaks-back", docs_url="/docs", lifespan=_lifespan)
 
-# CORS — client component fetch (browser) 대응. dev/운영 origin 허용.
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[
-        # dev
-        "http://localhost:3000",
-        "http://localhost:48000",
-        # 운영
-        "https://profile.kknaks.cloud",
-        "https://profile-api.kknaks.cloud",
-    ],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+    # 쿠키 인증(credentials: include)이라 origin 을 * 로 열 수 없다.
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=settings.cors_origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
-# Routers (지연 import로 circular 회피)
-from api.admin import reload as admin_reload  # noqa: E402
-from api.routers import (  # noqa: E402
-    activity,
-    algorithms,
-    auth,
-    career,
-    contents,
-    me,
-    posts,
-    print as print_router,
-    products,
-    projects,
-    queue,
-    site,
-)
+    register_exception_handlers(app)
 
-app.include_router(site.router)
-app.include_router(auth.router)
-app.include_router(me.router)
-app.include_router(activity.router)
-app.include_router(career.router)
-app.include_router(projects.router)
-app.include_router(contents.router)
-app.include_router(posts.router)
-app.include_router(algorithms.router)
-app.include_router(print_router.router)
-app.include_router(admin_reload.router)
-app.include_router(queue.router)
-app.include_router(products.router)
+    # 라우터 등록 — 층이 생길 때마다 여기 한 줄씩 는다.
+    from api.activity_router import router as activity_router
+    from api.algorithm_router import admin_router as algorithm_admin_router
+    from api.algorithm_router import router as algorithm_router
+    from api.asset_router import router as asset_router
+    from api.auth_router import router as auth_router
+    from api.career_router import admin_router as career_admin_router
+    from api.career_router import router as career_router
+    from api.commit_router import admin_router as commit_admin_router
+    from api.company_router import admin_router as company_admin_router
+    from api.content_router import admin_router as content_admin_router
+    from api.content_router import router as content_router
+    from api.daily_router import admin_router as daily_admin_router
+    from api.education_router import admin_router as education_admin_router
+    from api.gate_router import admin_router as gate_admin_router
+    from api.git_token_router import admin_router as git_token_admin_router
+    from api.github_router import admin_router as github_admin_router
+    from api.note_router import admin_router as note_admin_router
+    from api.note_router import router as note_router
+    from api.persona_router import admin_router as persona_admin_router
+    from api.problem_router import admin_router as problem_admin_router
+    from api.product_router import admin_router as product_admin_router
+    from api.profile_router import admin_router as profile_admin_router
+    from api.profile_router import router as profile_router
+    from api.project_router import admin_router as project_admin_router
+    from api.project_router import router as project_router
+    from api.queue_router import admin_router as queue_admin_router
+    from api.repo_router import admin_router as repo_admin_router
+    from api.site_router import admin_router as site_admin_router
+    from api.site_router import router as site_router
 
-# 정적 자산 서빙 — persona/assets/<category>/... 를 /assets/* 로 노출 (spec-01 §2.5, spec-02 §2)
-app.mount(
-    "/assets",
-    StaticFiles(directory=PERSONA_DIR / "assets", check_dir=False),
-    name="assets",
-)
+    app.include_router(auth_router)
+    app.include_router(asset_router)
+    app.include_router(profile_router)
+    app.include_router(profile_admin_router)
+    app.include_router(site_router)
+    app.include_router(site_admin_router)
+    app.include_router(activity_router)
+    app.include_router(commit_admin_router)
+    app.include_router(daily_admin_router)
+    app.include_router(company_admin_router)
+    app.include_router(career_router)
+    app.include_router(career_admin_router)
+    app.include_router(education_admin_router)
+    app.include_router(product_admin_router)
+    app.include_router(problem_admin_router)
+    app.include_router(project_router)
+    app.include_router(project_admin_router)
+    app.include_router(algorithm_router)
+    app.include_router(algorithm_admin_router)
+    app.include_router(note_router)
+    app.include_router(note_admin_router)
+    app.include_router(content_router)
+    app.include_router(content_admin_router)
+    app.include_router(queue_admin_router)
+    app.include_router(gate_admin_router)
+    app.include_router(repo_admin_router)
+    app.include_router(git_token_admin_router)
+    app.include_router(github_admin_router)
+    app.include_router(persona_admin_router)
 
-# DeskDeck(헬퍼 DeskDeckHelper) DMG 다운로드 — repo 루트 downloads/ 를 /download/* 로 노출 (mac-remote RB-001 §배포)
-app.mount(
-    "/download",
-    StaticFiles(directory=PERSONA_DIR.parent / "downloads", check_dir=False),
-    name="download",
-)
+    @app.get("/api/health")
+    async def health() -> dict:
+        return {"ok": True}
+
+    return app
+
+
+app = create_app()

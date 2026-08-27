@@ -1,21 +1,12 @@
 import { api } from "@/lib/api";
-import { DEFAULT_LANG, isLang, type Lang } from "@/lib/i18n";
 import { ContribGrass } from "@/components/about/contrib-grass";
 
 export const dynamic = "force-dynamic";
 
-export default async function AboutPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ lang?: string }>;
-}) {
-  const { lang: rawLang } = await searchParams;
-  const lang: Lang = rawLang && isLang(rawLang) ? rawLang : DEFAULT_LANG;
-  const t = (ko: string, en: string) => (lang === "en" ? en : ko);
-
-  let me, activity;
+export default async function AboutPage() {
+  let me, site;
   try {
-    [me, activity] = await Promise.all([api.me(lang), api.activity(lang)]);
+    [me, site] = await Promise.all([api.profile(), api.site()]);
   } catch (err) {
     return (
       <main className="pad-x" style={{ padding: "56px 80px" }}>
@@ -27,7 +18,12 @@ export default async function AboutPage({
     );
   }
 
-  const { user, about } = me;
+  const user = me.profile;
+  // 문구는 site_config 다 — profile 은 신원·연락만(erd.md §site_config).
+  const about = site.site.about;
+
+  // 잔디는 commit 수집(케이스 6·7)이 서기 전까지 없다 — 실패해도 페이지는 산다.
+  const activity = await api.activity().catch(() => null);
 
   return (
     <main>
@@ -48,7 +44,7 @@ export default async function AboutPage({
             marginBottom: 12,
           }}
         >
-          01 / About · {about.subtitle}
+          01 / About{about?.subtitle ? ` · ${about.subtitle}` : ""}
         </div>
         <div
           className="about-id"
@@ -162,7 +158,7 @@ export default async function AboutPage({
               fontWeight: 500,
             }}
           >
-            {user.tagline}
+            {about?.tagline}
           </p>
           <p
             style={{
@@ -172,9 +168,9 @@ export default async function AboutPage({
               marginTop: 24,
             }}
           >
-            {user.intro}
+            {about?.intro}
           </p>
-          {user.intro2 && (
+          {about?.intro2 && (
             <p
               style={{
                 fontSize: 15,
@@ -182,11 +178,11 @@ export default async function AboutPage({
                 color: "var(--fg-1)",
               }}
             >
-              {user.intro2}
+              {about.intro2}
             </p>
           )}
 
-          {user.cards && user.cards.length > 0 && (
+          {about?.cards && about.cards.length > 0 && (
             <div
               className="m-stack"
               style={{
@@ -196,7 +192,7 @@ export default async function AboutPage({
                 marginTop: 36,
               }}
             >
-              {user.cards.map((card, i) => (
+              {about.cards.map((card, i) => (
                 <div
                   key={i}
                   style={{
@@ -289,9 +285,11 @@ export default async function AboutPage({
         </aside>
       </div>
 
-      <div className="pad-x" style={{ padding: "8px 80px 64px" }}>
-        <ContribGrass lang={lang} activity={activity} />
-      </div>
+      {activity && (
+        <div className="pad-x" style={{ padding: "8px 80px 64px" }}>
+          <ContribGrass activity={activity} />
+        </div>
+      )}
     </main>
   );
 }

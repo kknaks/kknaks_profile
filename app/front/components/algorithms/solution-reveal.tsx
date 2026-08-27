@@ -3,25 +3,21 @@
  * 정답 코드 + 복잡도 + follow-up.
  */
 
-import type { Lang } from "@/lib/i18n";
 import type { AlgoSolution } from "@/lib/types";
 
 export function SolutionReveal({
   solution,
-  lang,
   onHide,
 }: {
   solution: AlgoSolution;
-  lang: Lang;
   onHide: () => void;
 }) {
-  const t = (ko: string, en: string) => (lang === "en" ? en : ko);
 
   if (!solution) {
     return (
       <div className="card" style={{ padding: 16 }}>
         <div className="mono" style={{ fontSize: 12, color: "var(--fg-3)" }}>
-          {t("LLM 이 아직 solution 을 생성하지 않음.", "LLM has not generated solution yet.")}
+          {"LLM 이 아직 solution 을 생성하지 않음."}
         </div>
       </div>
     );
@@ -64,7 +60,7 @@ export function SolutionReveal({
             borderRadius: 3,
           }}
         >
-          ↑ {t("접기", "hide")}
+          ↑ {"접기"}
         </button>
       </div>
       <pre
@@ -85,7 +81,7 @@ export function SolutionReveal({
       {solution.followup && solution.followup.length > 0 && (
         <div style={{ padding: "14px 16px", borderTop: "1px solid var(--line-1)" }}>
           <div className="caps" style={{ marginBottom: 8 }}>
-            {t("Follow-up", "follow-up")}
+            {"Follow-up"}
           </div>
           <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
             {solution.followup.map((f, i) => (

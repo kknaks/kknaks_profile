@@ -5,23 +5,19 @@
 
 import Link from "next/link";
 
-import type { Lang } from "@/lib/i18n";
 import type { AlgorithmListItem } from "@/lib/types";
 
 import { CurationChip, DiffBadge, PlatformChip } from "./algo-chips";
 
 export function AlgorithmsList({
-  meta,
+  today,
   items,
-  lang,
 }: {
-  meta: { subtitle: string; intro: string; totalCount: number; today: AlgorithmListItem | null };
+  /** `today = true` 인 한 건. 목록 상단에 고정된다(erd.md `uq_algorithm_today`). */
+  today: AlgorithmListItem | null;
   items: AlgorithmListItem[];
-  lang: Lang;
 }) {
-  const t = (ko: string, en: string) => (lang === "en" ? en : ko);
-  const today = meta.today;
-  const rest = today ? items.filter((a) => a.id !== today.id) : items;
+  const rest = today ? items.filter((a) => a.slug !== today.slug) : items;
 
   return (
     <div>
@@ -41,10 +37,10 @@ export function AlgorithmsList({
                 boxShadow: "0 0 0 3px var(--accent-soft)",
               }}
             />
-            {t("오늘의 항목", "today's entry")}
+            {"오늘의 항목"}
           </div>
           <Link
-            href={`/algorithms/${today.id}${lang === "en" ? "?lang=en" : ""}`}
+            href={`/algorithms/${today.slug}`}
             style={{ textDecoration: "none", color: "inherit" }}
           >
             <article
@@ -78,9 +74,8 @@ export function AlgorithmsList({
                     marginBottom: 14,
                   }}
                 >
-                  <span>{today.id}</span>
-                  {today.day && <span style={{ color: "var(--accent)" }}>● {today.day}</span>}
-                  <span style={{ marginLeft: "auto" }}>{today.date}</span>
+                  <span>{today.slug}</span>
+                  <span style={{ marginLeft: "auto" }}>{today.publishedOn ?? ""}</span>
                 </div>
                 <div
                   className="mono"
@@ -118,7 +113,7 @@ export function AlgorithmsList({
               {/* Right — summary + 4 stages preview */}
               <div style={{ padding: "28px 32px", display: "flex", flexDirection: "column" }}>
                 <div className="mono" style={{ fontSize: 11, color: "var(--fg-3)", marginBottom: 10 }}>
-                  {t("주제", "topic")}
+                  {"주제"}
                 </div>
                 <h2
                   style={{
@@ -139,7 +134,7 @@ export function AlgorithmsList({
                   className="mono"
                   style={{ fontSize: 11, color: "var(--fg-3)", marginTop: 6, marginBottom: 8 }}
                 >
-                  {t("4단계 도장", "four stages")}
+                  {"4단계 도장"}
                 </div>
                 <div
                   className="mono"
@@ -152,23 +147,23 @@ export function AlgorithmsList({
                     gap: 4,
                   }}
                 >
-                  <span>· clarifying — {t("좋은 질문 골라내기", "pick the right questions")}</span>
-                  <span>· approach — {t("맞는 후보·복잡도 고르기", "pick the right approach·complexity")}</span>
+                  <span>· clarifying — {"좋은 질문 골라내기"}</span>
+                  <span>· approach — {"맞는 후보·복잡도 고르기"}</span>
                   <span>
                     · logic —{" "}
                     <span style={{ color: "var(--accent)" }}>
-                      {t("코드 합성 (slot quiz)", "code synthesis (slot quiz)")}
+                      {"코드 합성 (slot quiz)"}
                     </span>
                   </span>
-                  <span>· trace — {t("머릿속 dry-run", "mental dry-run")}</span>
+                  <span>· trace — {"머릿속 dry-run"}</span>
                 </div>
 
                 <div style={{ marginTop: "auto", display: "flex", alignItems: "center", gap: 12 }}>
                   <span className="mono" style={{ fontSize: 11, color: "var(--fg-3)" }}>
-                    {t("지하철에서 한 손으로", "one-thumb subway dojo")}
+                    {"지하철에서 한 손으로"}
                   </span>
                   <span className="mono" style={{ fontSize: 11, color: "var(--accent)", marginLeft: "auto" }}>
-                    {t("풀러가기", "enter")} →
+                    {"풀러가기"} →
                   </span>
                 </div>
               </div>
@@ -183,9 +178,9 @@ export function AlgorithmsList({
           className="caps"
           style={{ marginBottom: 16, display: "flex", alignItems: "center", gap: 12 }}
         >
-          <span>{t("회차 로그", "log")}</span>
+          <span>{"회차 로그"}</span>
           <span className="mono" style={{ fontSize: 10, color: "var(--fg-3)", marginLeft: "auto" }}>
-            {rest.length} {t("회차", "entries")}
+            {rest.length} {"회차"}
           </span>
         </div>
         <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
@@ -193,7 +188,7 @@ export function AlgorithmsList({
             className="mono m-hide"
             style={{
               display: "grid",
-              gridTemplateColumns: "76px 80px 1fr 80px 110px 160px 80px",
+              gridTemplateColumns: "160px 80px 1fr 110px 160px 80px",
               gap: 20,
               padding: "8px 12px",
               fontSize: 10,
@@ -203,20 +198,19 @@ export function AlgorithmsList({
               borderBottom: "1px solid var(--line-1)",
             }}
           >
-            <span>id</span>
-            <span>day</span>
-            <span>{t("주제", "topic")}</span>
+            <span>slug</span>
             <span>diff</span>
+            <span>{"주제"}</span>
             <span>source</span>
             <span>tags</span>
             <span style={{ textAlign: "right" }}>date</span>
           </li>
           {rest.map((a) => (
             <li
-              key={a.id}
+              key={a.slug}
               style={{
                 display: "grid",
-                gridTemplateColumns: "76px 80px 1fr 80px 110px 160px 80px",
+                gridTemplateColumns: "160px 80px 1fr 110px 160px 80px",
                 gap: 20,
                 padding: 0,
                 borderTop: "1px solid var(--line-1)",
@@ -224,7 +218,7 @@ export function AlgorithmsList({
               }}
             >
               <Link
-                href={`/algorithms/${a.id}${lang === "en" ? "?lang=en" : ""}`}
+                href={`/algorithms/${a.slug}`}
                 style={{
                   display: "contents",
                   textDecoration: "none",
@@ -232,17 +226,14 @@ export function AlgorithmsList({
                 }}
               >
                 <span className="mono" style={{ fontSize: 11, color: "var(--fg-3)", padding: "18px 12px" }}>
-                  {a.id}
+                  {a.slug}
                 </span>
-                <span className="mono" style={{ fontSize: 11, color: "var(--fg-2)", padding: "18px 0" }}>
-                  {a.day ?? ""}
-                </span>
+                <div style={{ padding: "18px 0" }}>
+                  <DiffBadge level={a.difficulty} />
+                </div>
                 <div style={{ padding: "18px 0" }}>
                   <div style={{ fontSize: 15, color: "var(--fg-0)", marginBottom: 4 }}>{a.title}</div>
                   <div style={{ fontSize: 13, color: "var(--fg-2)", lineHeight: 1.5 }}>{a.summary}</div>
-                </div>
-                <div style={{ padding: "18px 0" }}>
-                  <DiffBadge level={a.difficulty} />
                 </div>
                 <div style={{ padding: "18px 0" }}>
                   <PlatformChip source={a.source} />
@@ -258,7 +249,7 @@ export function AlgorithmsList({
                   className="mono"
                   style={{ fontSize: 11, color: "var(--fg-3)", textAlign: "right", padding: "18px 12px" }}
                 >
-                  {a.date}
+                  {a.publishedOn ?? ""}
                 </span>
               </Link>
             </li>

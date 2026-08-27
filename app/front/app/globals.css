@@ -463,6 +463,23 @@ button {
   font-size: inherit;
   color: var(--fg-0);
 }
+.contents-body img {
+  max-width: 100%;
+  max-height: 460px; /* 세로로 긴 스크린샷(폰 프리뷰)이 카드 안에서 커지지 않게 */
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 16px 0 20px;
+  border: 1px solid var(--line-1);
+  border-radius: var(--r-3);
+}
+/* 넓은 표는 본문 폭을 밀지 않고 자기 안에서 가로 스크롤한다. */
+.contents-body table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
 .contents-body blockquote {
   margin: 16px 0;
   padding: 4px 0 4px 16px;
@@ -494,6 +511,25 @@ button {
   color: var(--fg-2);
   font-weight: 600;
   background: var(--bg-1);
+}
+
+/* career 「만든 것」 카드 — 클릭하면 그 아래로 showcase 본문이 펼쳐진다. 눌리는 것임을 알린다. */
+.career-product-card {
+  transition: border-color 0.12s ease, transform 0.12s ease;
+}
+.career-product-card:hover {
+  border-color: var(--accent) !important;
+  transform: translateY(-1px);
+}
+
+/* mermaid SVG 다이어그램 — 넓으면 자기 안에서 가로 스크롤. */
+.mermaid-diagram {
+  margin: 16px 0 20px;
+  overflow-x: auto;
+}
+.mermaid-diagram svg {
+  max-width: 100%;
+  height: auto;
 }
 
 /* 진행 중 스피너 (KDEV-WORK-015) — 준비·발행은 AI 를 타서 30~60초 걸린다.
@@ -539,4 +575,179 @@ button {
 .admin-scroll::-webkit-scrollbar-thumb:hover {
   background-color: var(--fg-4);
   background-clip: content-box;
+}
+
+/* admin 모바일 — ≤720 에서 셸이 세로로 눕는다.
+   사이드바는 상단 바가 되고 nav 는 가로 스크롤 칩, 본문은 문서 흐름대로 스크롤. */
+@media (max-width: 720px) {
+  .admin-shell {
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: 100vh;
+    overflow: visible !important;
+  }
+  .admin-scroll {
+    overflow-y: visible !important;
+  }
+  .admin-sidebar {
+    width: 100% !important;
+    height: auto !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--line-1);
+  }
+  .admin-nav {
+    flex-direction: row !important;
+    align-items: center;
+    overflow-x: auto;
+    gap: 10px !important;
+    padding: 8px 12px !important;
+    scrollbar-width: none;
+  }
+  .admin-nav::-webkit-scrollbar {
+    display: none;
+  }
+  .admin-nav-section {
+    flex-direction: row !important;
+    align-items: center;
+    gap: 2px !important;
+  }
+  .admin-nav-section-title {
+    display: none !important;
+  }
+  .admin-nav-item {
+    white-space: nowrap;
+  }
+  .admin-user-row {
+    margin-top: 0 !important;
+    padding: 10px 16px !important;
+  }
+  .admin-page {
+    padding: 20px 16px !important;
+  }
+}
+
+/* /career — 3열: 사이드 | 타임라인 | 상세.
+   상세 칸이 나머지 폭(minmax(0,1fr))을 먹어 넓은 화면의 오른쪽 여백을 채운다. */
+/* 바깥 2열 — [왼쪽 블록] | [상세]. 컨테이너를 화면 높이에 고정하고
+   왼쪽·오른쪽이 각자 자기 안에서 스크롤한다(body sticky 가 안 먹어서 명시적으로). */
+.career-2col {
+  display: grid;
+  grid-template-columns: 4fr 5fr;
+  gap: 48px;
+  height: calc(100vh - 84px - 48px); /* nav ≈ 84 · 위 padding 48 */
+  min-height: 0;
+}
+
+/* 왼쪽 블록 — 자체 스크롤(스크롤바 숨김, 사이트 톤에 맞춤) */
+.career-left {
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+/* 섹션마다 [라벨 | 타임라인] 2열. 라벨이 그 섹션 타임라인 옆에 고정. */
+.career-section {
+  display: grid;
+  grid-template-columns: 130px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+/* 오른쪽 · 상세 — 자체 스크롤(스크롤바 숨김). 왼쪽과 완전히 독립. */
+.career-detail-col {
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.career-left::-webkit-scrollbar,
+.career-detail-col::-webkit-scrollbar { display: none; }
+
+/* 2열 세로 레일 — 각 그룹(career/education) 안의 노드를 잇는다. */
+.career-rail {
+  position: absolute;
+  left: 5px;
+  top: 12px;
+  bottom: 12px;
+  width: 1px;
+  background: var(--line-2);
+}
+
+/* compact row — 행 전체가 클릭 가능. 선택 시 왼쪽 accent 바 + 배경. */
+.career-row {
+  position: relative;
+  padding: 12px 14px 14px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  border-left: 2px solid transparent;
+  cursor: pointer;
+  transition: background 0.12s ease, border-color 0.12s ease;
+}
+.career-row:hover {
+  background: var(--bg-1);
+  border-color: var(--line-1);
+}
+.career-row--active {
+  background: var(--bg-1);
+  border-color: var(--line-1);
+  border-left-color: var(--accent);
+}
+.career-row-summary {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 타임라인 노드 — 레일 위의 점. 행 padding 을 가로질러 레일(left:5px) 위에 얹는다. */
+.career-node {
+  position: absolute;
+  left: -30px;
+  top: 16px;
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  background: var(--bg-0);
+}
+
+/* ≤900px — 3열이 세로로 눕는다. 사이드는 위, 상세는 선택 행 아래(JS 가 인라인 렌더). */
+@media (max-width: 900px) {
+  .career-2col {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    height: auto;
+  }
+  .career-left,
+  .career-detail-col {
+    height: auto;
+    overflow: visible;
+    padding-right: 0;
+  }
+  .career-section {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+/* /projects 상세 헤더 — 왼쪽 본문 | 오른쪽 끝 스토어 배지 */
+.project-head-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+}
+.project-head-main { min-width: 0; }
+.project-head-store {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 12px;
+  flex-shrink: 0;
+}
+@media (max-width: 720px) {
+  .project-head-row { flex-direction: column; gap: 20px; }
 }

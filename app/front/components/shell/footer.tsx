@@ -1,42 +1,36 @@
 "use client";
 
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { api } from "@/lib/api";
-import { DEFAULT_LANG, isLang, type Lang } from "@/lib/i18n";
-import type { MeResponse, SiteResponse } from "@/lib/types";
+import type { ProfileResponse, SiteResponse } from "@/lib/types";
 
 export function PageFooter() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const rawLang = searchParams.get("lang") ?? DEFAULT_LANG;
-  const lang: Lang = isLang(rawLang) ? rawLang : DEFAULT_LANG;
 
-  const [me, setMe] = useState<MeResponse | null>(null);
+  const [me, setMe] = useState<ProfileResponse | null>(null);
   const [site, setSite] = useState<SiteResponse | null>(null);
 
   useEffect(() => {
     let cancelled = false;
-    Promise.all([api.me(lang), api.site(lang)])
+    Promise.all([api.profile(), api.site()])
       .then(([meData, siteData]) => {
         if (cancelled) return;
         setMe(meData);
         setSite(siteData);
       })
       .catch(() => {
-        // 네트워크 실패 시 hardcode fallback 안 함 — 빈 footer 보여줌 (md SoT 원칙).
+        // 네트워크 실패 시 hardcode fallback 안 함 — 빈 footer 보여줌 (DB SoT 원칙).
       });
     return () => {
       cancelled = true;
     };
-  }, [lang]);
+  }, []);
 
-  if (pathname?.startsWith("/print")) return null;
   if (pathname?.startsWith("/admin")) return null; // 관리자 셸은 자체 레이아웃
 
-  const user = me?.user;
-  const siteMeta = site?.site;
-  const files = site?.files;
+  const user = me?.profile;
+  const copy = site?.site;
 
   const linkHref = (value: string | undefined) =>
     value ? (value.startsWith("http") ? value : `https://${value}`) : "#";
@@ -54,7 +48,7 @@ export function PageFooter() {
         className="m-stack"
         style={{
           display: "grid",
-          gridTemplateColumns: "1.4fr 1fr 1fr 1fr",
+          gridTemplateColumns: "1.4fr 1fr 1fr",
           gap: 32,
         }}
       >
@@ -70,7 +64,7 @@ export function PageFooter() {
             }}
           >
             <span style={{ width: 8, height: 8, background: "var(--accent)", borderRadius: 2 }} />
-            {user?.handle ?? "kknaks"}
+            {user?.handle}
             <span style={{ color: "var(--fg-3)" }}>.dev</span>
           </div>
           <p
@@ -82,13 +76,13 @@ export function PageFooter() {
               maxWidth: 320,
             }}
           >
-            {siteMeta?.footerTagline ?? ""}
+            {copy?.footer?.tagline}
           </p>
         </div>
 
         <div>
           <div className="caps" style={{ marginBottom: 10 }}>
-            {lang === "en" ? "Contact" : "연락"}
+            연락
           </div>
           {user?.email && (
             <a
@@ -140,49 +134,14 @@ export function PageFooter() {
 
         <div>
           <div className="caps" style={{ marginBottom: 10 }}>
-            {lang === "en" ? "Files" : "자료"}
+            현재
           </div>
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noreferrer"
-            style={{
-              display: "block",
-              fontSize: 13,
-              color: "var(--fg-1)",
-              padding: "4px 0",
-            }}
-          >
-            {files?.resumeLabel ?? ""} ↓
-          </a>
-          <a
-            href="/portfolio.pdf"
-            target="_blank"
-            rel="noreferrer"
-            style={{
-              display: "block",
-              fontSize: 13,
-              color: "var(--fg-1)",
-              padding: "4px 0",
-            }}
-          >
-            {files?.portfolioLabel ?? ""}
-          </a>
-        </div>
-
-        <div>
-          <div className="caps" style={{ marginBottom: 10 }}>
-            {lang === "en" ? "Now" : "현재"}
-          </div>
+          {/* version·uptime 은 DB 에 없다 — 빌드/런타임 값이라(erd.md §site_config). */}
           <div
             className="mono"
             style={{ fontSize: 12, color: "var(--fg-2)", lineHeight: 1.7 }}
           >
-            {siteMeta?.location && <div>{siteMeta.location}</div>}
-            {siteMeta?.version && <div>v{siteMeta.version}</div>}
-            {siteMeta?.uptime && (
-              <div style={{ color: "var(--accent)" }}>● uptime {siteMeta.uptime}</div>
-            )}
+            {user?.location && <div>{user.location}</div>}
           </div>
         </div>
       </div>
@@ -198,7 +157,7 @@ export function PageFooter() {
         }}
       >
         <span style={{ fontSize: 11, color: "var(--fg-3)" }}>
-          © {siteMeta?.year ?? ""} {user?.handle ?? "kknaks"} · all systems nominal
+          © {new Date().getFullYear()} {user?.handle} · all systems nominal
         </span>
         <span style={{ fontSize: 11, color: "var(--fg-3)" }}>
           built with next.js + python

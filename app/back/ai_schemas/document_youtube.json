@@ -1,0 +1,30 @@
+{
+  "type": "object",
+  "properties": {
+    "stem": {
+      "type": "string",
+      "description": "파일명 stem — C-NNN-<slug>. NNN 은 para/resources/youtube/ 기존 최대값 + 1."
+    },
+    "body": {
+      "type": "string",
+      "description": "교안 md 전문 — 템플릿의 머리(H1 + 출처 줄)부터 끝까지."
+    },
+    "meta": {
+      "type": "object",
+      "description": "content 행 카드 메타 — youtube 만.",
+      "properties": {
+        "title": { "type": "string" },
+        "summary": { "type": "string" },
+        "youtubeId": { "type": "string" },
+        "duration": { "type": "string", "description": "M:SS 또는 H:MM:SS" },
+        "speaker": { "type": "string", "description": "출처 채널" },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "publishedOn": { "type": "string", "description": "YYYY-MM-DD" }
+      },
+      "required": ["title", "summary", "youtubeId", "duration", "speaker", "tags", "publishedOn"],
+      "additionalProperties": false
+    }
+  },
+  "required": ["stem", "body", "meta"],
+  "additionalProperties": false
+}

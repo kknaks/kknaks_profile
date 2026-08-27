@@ -1,27 +1,18 @@
 import { api } from "@/lib/api";
-import { DEFAULT_LANG, isLang, type Lang } from "@/lib/i18n";
 import { ContentsList } from "@/components/contents/contents-list";
 
 export const dynamic = "force-dynamic";
 
-export default async function ContentsPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ lang?: string }>;
-}) {
-  const { lang: rawLang } = await searchParams;
-  const lang: Lang = rawLang && isLang(rawLang) ? rawLang : DEFAULT_LANG;
-  const t = (ko: string, en: string) => (lang === "en" ? en : ko);
-
+export default async function ContentsPage() {
   let data;
   try {
-    data = await api.contents(lang, 100);
+    data = await api.contents(100);
   } catch (err) {
     return (
       <main className="pad-x" style={{ padding: "56px 80px" }}>
         <h1>Contents</h1>
         <p style={{ color: "var(--danger)" }}>
-          {t("백엔드 응답 실패", "Backend error")}: {(err as Error).message}
+          백엔드 응답 실패: {(err as Error).message}
         </p>
       </main>
     );
@@ -49,7 +40,7 @@ export default async function ContentsPage({
             marginBottom: 12,
           }}
         >
-          05 / Contents · {meta.subtitle}
+          05 / Contents · {meta?.subtitle ?? "영상 + 교안"}
         </div>
         <div
           style={{ display: "flex", alignItems: "baseline", gap: 16, flexWrap: "wrap" }}
@@ -79,11 +70,11 @@ export default async function ContentsPage({
             lineHeight: 1.6,
           }}
         >
-          {meta.intro}
+          {meta?.intro}
         </p>
       </header>
 
-      <ContentsList items={items} lang={lang} />
+      <ContentsList items={items} />
     </main>
   );
 }

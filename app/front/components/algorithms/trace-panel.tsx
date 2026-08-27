@@ -8,7 +8,6 @@
 
 import { useState } from "react";
 
-import type { Lang } from "@/lib/i18n";
 import type { AlgoSolution, AlgoTrace } from "@/lib/types";
 
 import { SolutionReveal } from "./solution-reveal";
@@ -16,13 +15,10 @@ import { SolutionReveal } from "./solution-reveal";
 export function TracePanel({
   trace,
   solution,
-  lang,
 }: {
   trace: AlgoTrace;
   solution: AlgoSolution;
-  lang: Lang;
 }) {
-  const t = (ko: string, en: string) => (lang === "en" ? en : ko);
   const [exampleOpen, setExampleOpen] = useState(false);
   const [solutionOpen, setSolutionOpen] = useState(false);
 
@@ -30,7 +26,7 @@ export function TracePanel({
     return (
       <div className="card" style={{ padding: 24 }}>
         <div className="mono" style={{ fontSize: 12, color: "var(--fg-3)" }}>
-          {t("LLM 이 아직 trace 를 생성하지 않음.", "LLM has not generated trace yet.")}
+          {"LLM 이 아직 trace 를 생성하지 않음."}
         </div>
       </div>
     );
@@ -109,13 +105,10 @@ export function TracePanel({
 
       {/* Cases list */}
       <div className="caps" style={{ marginBottom: 6 }}>
-        {t("머릿속 dry-run 케이스", "mental dry-run cases")}
+        {"머릿속 dry-run 케이스"}
       </div>
       <div className="mono" style={{ fontSize: 11, color: "var(--fg-3)", marginBottom: 12, lineHeight: 1.6 }}>
-        // {t(
-          "각 케이스를 머릿속으로 따라가보세요. 막히면 아래 worked example 펼침.",
-          "walk each case in your head; expand the worked example below if stuck."
-        )}
+        // {"각 케이스를 머릿속으로 따라가보세요. 막히면 아래 worked example 펼침."}
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: 6, marginBottom: 18 }}>
         {cases.map((c, i) => (
@@ -189,7 +182,7 @@ export function TracePanel({
               }}
             >
               <span style={{ color: "var(--accent)", fontSize: 14 }}>▾</span>
-              {t("예시 walked-through 보기 (답안지)", "show worked-through example (answer key)")}
+              {"예시 walked-through 보기 (답안지)"}
               <span style={{ marginLeft: "auto", fontSize: 11, color: "var(--fg-3)" }}>{worked.input}</span>
             </button>
           ) : (
@@ -230,7 +223,7 @@ export function TracePanel({
                     borderRadius: 3,
                   }}
                 >
-                  ↑ {t("접기", "hide")}
+                  ↑ {"접기"}
                 </button>
               </div>
               <ol style={{ margin: 0, paddingLeft: 20, listStyle: "decimal" }}>
@@ -255,7 +248,7 @@ export function TracePanel({
                 }}
               >
                 <span className="mono" style={{ fontSize: 11, color: "var(--fg-3)" }}>
-                  {t("정답", "answer")}
+                  {"정답"}
                 </span>
                 <span className="mono" style={{ fontSize: 13, color: "var(--accent)" }}>
                   {worked.answer}
@@ -288,18 +281,15 @@ export function TracePanel({
             }}
           >
             <span style={{ color: "var(--accent)", fontSize: 14 }}>▾</span>
-            {t("복잡도 · Follow-up 보기", "show complexity · follow-up")}
+            {"복잡도 · Follow-up 보기"}
           </button>
         ) : (
-          <SolutionReveal solution={solution} lang={lang} onHide={() => setSolutionOpen(false)} />
+          <SolutionReveal solution={solution} onHide={() => setSolutionOpen(false)} />
         )}
       </div>
 
       <div className="mono" style={{ fontSize: 10, color: "var(--fg-3)", marginTop: 14, lineHeight: 1.6 }}>
-        // {t(
-          "UI 가 walk-through 안 함 — 학습자가 머릿속으로. 막히면 worked example 펼침.",
-          "UI does not walk-through — you do the dry-run mentally. Expand the worked example if stuck."
-        )}
+        // {"UI 가 walk-through 안 함 — 학습자가 머릿속으로. 막히면 worked example 펼침."}
       </div>
     </div>
   );

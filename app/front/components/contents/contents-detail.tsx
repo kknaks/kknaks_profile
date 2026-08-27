@@ -1,7 +1,7 @@
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
-import type { Lang } from "@/lib/i18n";
 import type { ContentDetail } from "@/lib/types";
 
 import { YouTubeFrame } from "./youtube-frame";
@@ -10,15 +10,7 @@ import { YouTubeFrame } from "./youtube-frame";
  * Contents detail — 시안 proto-contents.jsx ContentsDetail 패턴.
  * 03 영역 (Applied example) 자리에 8섹션 강의 교안 markdown 렌더 (spec-06, adr-05).
  */
-export function ContentsDetail({
-  item,
-  lang,
-}: {
-  item: ContentDetail;
-  lang: Lang;
-}) {
-  const t = (ko: string, en: string) => (lang === "en" ? en : ko);
-  const langSuffix = lang === "en" ? "?lang=en" : "";
+export function ContentsDetail({ item }: { item: ContentDetail }) {
 
   return (
     <>
@@ -30,7 +22,7 @@ export function ContentsDetail({
         }}
       >
         <Link
-          href={`/contents${langSuffix}`}
+          href="/contents"
           className="mono"
           style={{
             color: "var(--fg-3)",
@@ -40,7 +32,7 @@ export function ContentsDetail({
             marginBottom: 20,
           }}
         >
-          ← {t("전체 회차", "all contents")}
+          ← {"전체 회차"}
         </Link>
         <div
           className="mono"
@@ -54,9 +46,8 @@ export function ContentsDetail({
             gap: 12,
           }}
         >
-          <span>{item.id}</span>
-          <span style={{ color: "var(--accent)" }}>● {item.day}</span>
-          <span>{item.date}</span>
+          <span>{item.slug}</span>
+          <span>{item.publishedOn ?? ""}</span>
         </div>
         <h1
           className="m-h1"
@@ -91,7 +82,9 @@ export function ContentsDetail({
         </div>
       </header>
 
-      {/* 01 video + 02 concept (시안 동일) */}
+      {/* 01 video + 02 speaker.
+          옛 02 자리에는 `concept[]`(요지 6문장) 카드가 있었다. **컬럼이 아니다** —
+          본문에 속하므로 `body` 안에 있다(erd.md §content). 화면이 다시 조립하지 않는다. */}
       <div
         className="pad-x m-stack"
         style={{
@@ -103,7 +96,7 @@ export function ContentsDetail({
         }}
       >
         <div>
-          <SectionHeader idx="01" label="video" title={t("영상", "Video")} />
+          <SectionHeader idx="01" label="video" title={"영상"} />
           <YouTubeFrame id={item.youtubeId} title={item.title} />
           <div
             className="mono"
@@ -121,47 +114,10 @@ export function ContentsDetail({
         </div>
 
         <aside>
-          <SectionHeader
-            idx="02"
-            label="concept"
-            title={t("개념 설명", "Concept")}
-          />
-          <div className="card" style={{ padding: 24 }}>
-            <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
-              {item.concept.map((line, i) => (
-                <li
-                  key={i}
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "24px 1fr",
-                    gap: 8,
-                    padding: "10px 0",
-                    borderTop: i === 0 ? "none" : "1px solid var(--line-1)",
-                  }}
-                >
-                  <span
-                    className="mono"
-                    style={{ fontSize: 11, color: "var(--fg-3)", paddingTop: 3 }}
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span
-                    style={{
-                      fontSize: 14,
-                      lineHeight: 1.6,
-                      color: "var(--fg-1)",
-                    }}
-                  >
-                    {line}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <SectionHeader idx="02" label="speaker" title={"출처"} />
           {item.speaker && (
             <div
               style={{
-                marginTop: 16,
                 padding: "16px 20px",
                 border: "1px solid var(--line-1)",
                 borderRadius: 6,
@@ -169,7 +125,7 @@ export function ContentsDetail({
               }}
             >
               <div className="caps" style={{ marginBottom: 8 }}>
-                {t("발표", "speaker")}
+                {"발표"}
               </div>
               <div className="mono" style={{ fontSize: 13, color: "var(--fg-0)" }}>
                 {item.speaker}
@@ -187,10 +143,10 @@ export function ContentsDetail({
         <SectionHeader
           idx="03"
           label="material"
-          title={t("학습 자료", "Study material")}
+          title={"학습 자료"}
         />
         <article className="contents-body">
-          <ReactMarkdown>{item.body}</ReactMarkdown>
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{item.body}</ReactMarkdown>
         </article>
       </section>
 
@@ -198,8 +154,6 @@ export function ContentsDetail({
       <ContentsPrevNext
         newer={item.newer}
         older={item.older}
-        langSuffix={langSuffix}
-        t={t}
       />
     </>
   );
@@ -246,13 +200,9 @@ function SectionHeader({
 function ContentsPrevNext({
   newer,
   older,
-  langSuffix,
-  t,
 }: {
   newer: ContentDetail["newer"];
   older: ContentDetail["older"];
-  langSuffix: string;
-  t: (ko: string, en: string) => string;
 }) {
   return (
     <nav
@@ -267,7 +217,7 @@ function ContentsPrevNext({
     >
       {newer ? (
         <Link
-          href={`/contents/${newer.id}${langSuffix}`}
+          href={`/contents/${newer.slug}`}
           className="card"
           style={{
             padding: "20px 24px",
@@ -279,7 +229,7 @@ function ContentsPrevNext({
           }}
         >
           <div className="mono" style={{ fontSize: 11, color: "var(--fg-3)", marginBottom: 6 }}>
-            ← {t("다음 회차", "newer")}
+            ← {"다음 회차"}
           </div>
           <div style={{ fontSize: 14, color: "var(--fg-0)" }}>{newer.title}</div>
         </Link>
@@ -288,7 +238,7 @@ function ContentsPrevNext({
       )}
       {older ? (
         <Link
-          href={`/contents/${older.id}${langSuffix}`}
+          href={`/contents/${older.slug}`}
           className="card"
           style={{
             padding: "20px 24px",
@@ -300,7 +250,7 @@ function ContentsPrevNext({
           }}
         >
           <div className="mono" style={{ fontSize: 11, color: "var(--fg-3)", marginBottom: 6 }}>
-            {t("이전 회차", "older")} →
+            {"이전 회차"} →
           </div>
           <div style={{ fontSize: 14, color: "var(--fg-0)" }}>{older.title}</div>
         </Link>

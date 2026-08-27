@@ -2,26 +2,19 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import type { Lang } from "@/lib/i18n";
+import { assetUrl } from "@/lib/api";
 import type { ProjectItem, ProjectsResponse } from "@/lib/types";
 
 import { StatusTag } from "./status-tag";
 
-export function ProjectsGrid({
-  projects,
-  lang,
-}: {
-  projects: ProjectsResponse;
-  lang: Lang;
-}) {
-  const t = (ko: string, en: string) => (lang === "en" ? en : ko);
+export function ProjectsGrid({ projects }: { projects: ProjectsResponse }) {
   const items = projects["projects[]"];
-  const cats = projects.projects.categories;
+  const cats = projects.projects?.categories ?? [];
   const [active, setActive] = useState<string>("all");
-  const langSuffix = lang === "en" ? "?lang=en" : "";
 
+  // `started_on DESC` — 정렬은 컬럼이 아니라 날짜에서 나온다.
   const sorted = [...items].sort((a, b) =>
-    (b.date ?? "").localeCompare(a.date ?? ""),
+    (b.startedOn ?? "").localeCompare(a.startedOn ?? ""),
   );
   const filtered = active === "all" ? sorted : sorted.filter((p) => p.category === active);
   const wipList = filtered.filter((p) => p.status === "wip");
@@ -45,7 +38,7 @@ export function ProjectsGrid({
           className={active === "all" ? "btn" : "btn ghost"}
           style={{ padding: "4px 10px", fontSize: 11 }}
         >
-          {t("전체", "All")}{" "}
+          {"전체"}{" "}
           <span style={{ color: "var(--fg-3)", marginLeft: 4 }}>
             {items.length}
           </span>
@@ -74,19 +67,17 @@ export function ProjectsGrid({
 
       {doneList.length > 0 && (
         <Group
-          eyebrow={t("완성된 것", "done")}
+          eyebrow={"완성된 것"}
           count={doneList.length}
           items={doneList}
-          langSuffix={langSuffix}
         />
       )}
       {wipList.length > 0 && (
         <Group
-          eyebrow={t("만들고 있는 것", "in progress")}
+          eyebrow={"만들고 있는 것"}
           count={wipList.length}
           items={wipList}
           marginTop={doneList.length > 0 ? 40 : 0}
-          langSuffix={langSuffix}
         />
       )}
     </>
@@ -98,13 +89,11 @@ function Group({
   count,
   items,
   marginTop = 0,
-  langSuffix,
 }: {
   eyebrow: string;
   count: number;
   items: ProjectItem[];
   marginTop?: number;
-  langSuffix: string;
 }) {
   return (
     <div style={{ marginTop }}>
@@ -126,36 +115,33 @@ function Group({
         className="projects-grid m-stack"
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
+          gridTemplateColumns: "repeat(5, 1fr)",
           gap: 12,
         }}
       >
         <style>{`
+          @media (max-width: 1400px) {
+            .projects-grid { grid-template-columns: repeat(4, 1fr) !important; }
+          }
           @media (max-width: 1024px) {
             .projects-grid { grid-template-columns: repeat(2, 1fr) !important; }
           }
         `}</style>
         {items.map((p) => (
-          <ProjectCard key={p.id} p={p} langSuffix={langSuffix} />
+          <ProjectCard key={p.slug} p={p} />
         ))}
       </div>
     </div>
   );
 }
 
-function ProjectCard({
-  p,
-  langSuffix,
-}: {
-  p: ProjectItem;
-  langSuffix: string;
-}) {
+function ProjectCard({ p }: { p: ProjectItem }) {
   const [imgError, setImgError] = useState(false);
   const showImg = !!p.thumbnail && !imgError;
 
   return (
     <Link
-      href={`/projects/${p.id}${langSuffix}`}
+      href={`/projects/${p.slug}`}
       className="card"
       style={{
         overflow: "hidden",
@@ -169,12 +155,13 @@ function ProjectCard({
         {showImg ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={p.thumbnail!}
+            src={assetUrl(p.thumbnail!)}
             alt={`${p.title} cover`}
             style={{
               width: "100%",
-              aspectRatio: "16/9",
+              aspectRatio: "1024 / 500",
               objectFit: "cover",
+              objectPosition: "center",
               display: "block",
               background: "var(--bg-2)",
             }}
@@ -183,7 +170,7 @@ function ProjectCard({
         ) : (
           <div
             className="placeholder-hatch"
-            style={{ aspectRatio: "16/9", fontSize: 10 }}
+            style={{ aspectRatio: "1024 / 500", fontSize: 10 }}
           >
             [ {p.title} ]
           </div>
@@ -198,10 +185,10 @@ function ProjectCard({
             }}
           >
             <span className="mono" style={{ fontSize: 10, color: "var(--fg-3)" }}>
-              {p.id}
+              {p.slug}
             </span>
             <StatusTag s={p.status} />
-            {p.date && (
+            {p.startedOn && (
               <span
                 className="mono"
                 style={{
@@ -210,7 +197,7 @@ function ProjectCard({
                   marginLeft: "auto",
                 }}
               >
-                {p.date}
+                {p.startedOn}
               </span>
             )}
           </div>

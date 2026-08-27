@@ -1,0 +1,35 @@
+{
+  "type": "object",
+  "properties": {
+    "concepts": {
+      "type": "array",
+      "description": "개념 후보 — 신규(create) 또는 기존 보강(supplement). 없으면 빈 배열.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "mode": { "type": "string", "enum": ["create", "supplement"] },
+          "area": {
+            "type": "string",
+            "enum": ["ai", "back", "cs", "db", "design", "front", "infra", "pm", "qa"]
+          },
+          "stem": {
+            "type": "string",
+            "description": "개념 파일명 stem — 영문 kebab-case. supplement 는 기존 파일의 stem 그대로."
+          },
+          "body": {
+            "type": "string",
+            "description": "착지할 파일 전문. create 는 새 본문, supplement 는 보강을 녹인 **파일 전체**."
+          },
+          "diff": {
+            "type": "string",
+            "description": "supplement 만 — 기존 파일 대비 unified diff (사람 확인용 표시)."
+          }
+        },
+        "required": ["mode", "area", "stem", "body", "diff"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["concepts"],
+  "additionalProperties": false
+}

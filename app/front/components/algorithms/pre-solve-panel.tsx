@@ -8,7 +8,6 @@
 
 import { useState } from "react";
 
-import type { Lang } from "@/lib/i18n";
 import type { AlgoQuizItem } from "@/lib/types";
 
 type Kind = "clarifying" | "approach";
@@ -16,18 +15,15 @@ type Kind = "clarifying" | "approach";
 export function PreSolvePanel({
   clarifying,
   approach,
-  lang,
 }: {
   clarifying: { items: AlgoQuizItem[] };
   approach: { items: AlgoQuizItem[] };
-  lang: Lang;
 }) {
-  const t = (ko: string, en: string) => (lang === "en" ? en : ko);
   const [tab, setTab] = useState<Kind>("clarifying");
 
   const tabs: { id: Kind; label: string }[] = [
-    { id: "clarifying", label: t("Clarifying — 어떤 질문을 던질까", "Clarifying — what to ask") },
-    { id: "approach", label: t("Approach — 어떤 접근이 맞을까", "Approach — which approach") },
+    { id: "clarifying", label: "Clarifying — 어떤 질문을 던질까" },
+    { id: "approach", label: "Approach — 어떤 접근이 맞을까" },
   ];
 
   return (
@@ -63,9 +59,9 @@ export function PreSolvePanel({
       </div>
 
       {tab === "clarifying" ? (
-        <Quiz key="clarifying" items={clarifying.items} kind="clarifying" lang={lang} />
+        <Quiz key="clarifying" items={clarifying.items} kind="clarifying" />
       ) : (
-        <Quiz key="approach" items={approach.items} kind="approach" lang={lang} />
+        <Quiz key="approach" items={approach.items} kind="approach" />
       )}
     </div>
   );
@@ -74,13 +70,10 @@ export function PreSolvePanel({
 function Quiz({
   items,
   kind,
-  lang,
 }: {
   items: AlgoQuizItem[];
   kind: Kind;
-  lang: Lang;
 }) {
-  const t = (ko: string, en: string) => (lang === "en" ? en : ko);
   const [selected, setSelected] = useState<Set<number>>(new Set());
   const [revealed, setRevealed] = useState(false);
   const [expandedSet, setExpandedSet] = useState<Set<number>>(new Set());
@@ -116,7 +109,7 @@ function Quiz({
     return (
       <div className="card" style={{ padding: 24 }}>
         <div className="mono" style={{ fontSize: 12, color: "var(--fg-3)" }}>
-          {t("LLM 이 아직 항목을 생성하지 않음.", "LLM has not generated items yet.")}
+          {"LLM 이 아직 항목을 생성하지 않음."}
         </div>
       </div>
     );
@@ -138,13 +131,13 @@ function Quiz({
         }}
       >
         <span style={{ color: "var(--accent)" }}>● 1</span>
-        <span>{t("리스트 출력", "list shown")}</span>
+        <span>{"리스트 출력"}</span>
         <span style={{ marginLeft: 4 }}>→</span>
         <span style={{ color: revealed || selected.size > 0 ? "var(--accent)" : "var(--fg-3)" }}>● 2</span>
-        <span>{t("선택", "select")}</span>
+        <span>{"선택"}</span>
         <span style={{ marginLeft: 4 }}>→</span>
         <span style={{ color: revealed ? "var(--accent)" : "var(--fg-3)" }}>● 3</span>
-        <span>{t("정답 공개", "reveal")}</span>
+        <span>{"정답 공개"}</span>
         {revealed && (
           <span
             className="mono"
@@ -157,7 +150,7 @@ function Quiz({
               borderRadius: 3,
             }}
           >
-            {correctCount} / {total} {t("정답", "correct")}
+            {correctCount} / {total} {"정답"}
           </span>
         )}
       </div>
@@ -254,7 +247,7 @@ function Quiz({
                     }}
                   >
                     <span className="mono" style={{ marginRight: 6, color: "var(--fg-3)" }}>
-                      {isGood ? t("// 좋은 이유", "// why good") : t("// 안 좋은 이유", "// why bad")}
+                      {isGood ? "// 좋은 이유" : "// 안 좋은 이유"}
                     </span>
                     {it.why}
                   </div>
@@ -291,8 +284,8 @@ function Quiz({
           <>
             <span className="mono" style={{ fontSize: 11, color: "var(--fg-3)" }}>
               {selected.size === 0
-                ? t("던질 질문에 체크하고 확인을 누르세요", "check the items you would ask, then press confirm")
-                : `${selected.size} ${t("개 선택", "selected")}`}
+                ? "던질 질문에 체크하고 확인을 누르세요"
+                : `${selected.size} ${"개 선택"}`}
             </span>
             <button
               onClick={reveal}
@@ -310,15 +303,15 @@ function Quiz({
                 fontWeight: 600,
               }}
             >
-              {t("확인", "confirm")}
+              {"확인"}
             </button>
           </>
         ) : (
           <>
             <span className="mono" style={{ fontSize: 11, color: "var(--fg-3)" }}>
               {correctCount === total
-                ? t("완벽 — 모두 맞혔어요. ▾ 로 이유 확인", "perfect — all correct. tap ▾ to see why")
-                : t("▾ 로 각 카드의 이유 펼쳐보기", "tap ▾ on each card to see why")}
+                ? "완벽 — 모두 맞혔어요. ▾ 로 이유 확인"
+                : "▾ 로 각 카드의 이유 펼쳐보기"}
             </span>
             <button
               onClick={reset}
@@ -334,17 +327,14 @@ function Quiz({
                 borderRadius: 3,
               }}
             >
-              ↺ {t("다시", "reset")}
+              ↺ {"다시"}
             </button>
           </>
         )}
       </div>
 
       <div className="mono" style={{ fontSize: 10, color: "var(--fg-3)", marginTop: 8, lineHeight: 1.6 }}>
-        // {t(
-          "결과는 세션 메모리만 — 새로고침하면 초기화됩니다 (반복 학습)",
-          "session-only state — refresh resets (repeatable practice)"
-        )}
+        // {"결과는 세션 메모리만 — 새로고침하면 초기화됩니다 (반복 학습)"}
       </div>
     </div>
   );

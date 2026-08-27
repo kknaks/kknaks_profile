@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "properties": {
+    "commits": {
+      "type": "array",
+      "description": "입력의 모든 커밋 — id 는 입력 그대로, summary 는 한국어 한 줄(80자 이내).",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "summary": { "type": "string" }
+        },
+        "required": ["id", "summary"],
+        "additionalProperties": false
+      }
+    },
+    "daily": {
+      "type": "array",
+      "description": "하루 요약 불릿 — 레포(제품/프로젝트) 단위, 한 줄 80자 이내, 최대 4줄, 끝에 커밋 수.",
+      "items": { "type": "string" }
+    }
+  },
+  "required": ["commits", "daily"],
+  "additionalProperties": false
+}

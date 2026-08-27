@@ -1,0 +1,100 @@
+# 서버(홈서버) — back + postgres + redis + worker 전부 한 파일.
+#
+#   docker compose up -d --build
+#
+# 서버 준비물 (이 파일이 전제하는 것):
+#   1. 레포 — /home/kknaks/kknaks_profile 에 renewal 브랜치 일반 clone(.git 포함).
+#      back 이 /ledger rw 마운트로 착지 커밋·push 를 직접 한다(core/git.py).
+#   2. .env — 이 디렉토리(app/back/.env). 접속 주소는 컨테이너 기준
+#      (postgres:5432 · redis:6379), JOB_GIT_PUSH_DRY_RUN=0, GIT_TOKEN_KEY 필수.
+#   3. codex CLI — 서버 nvm 의 node 디렉토리를 통째로 마운트한다(이미 있음):
+#      /home/kknaks/.nvm/versions/node/v24.19.0 (bin/codex → lib/node_modules 심링크
+#      포함). 이미지에 굽지 않는다(Dockerfile.worker 머리 주석). node 버전을 올리면
+#      아래 volumes 경로만 바꾼다.
+#   4. codex 인증 — /home/kknaks/.codex/auth.json (파일 하나만 ro 마운트).
+#   5. push 자격 — prod DB 어드민에서 personal git_token 등록(케이스 착지 push 용).
+#
+# 포트 컨벤션 — 호스트 4-prefix. NPM(리버스프록시)이 48000 을 profile-api 로 물린다.
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: kknaks-postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-kknaks}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD 를 .env 에 설정하라}
+      POSTGRES_DB: ${POSTGRES_DB:-kknaks}
+    ports:
+      - "127.0.0.1:45433:5432"   # 호스트 로컬 전용 — psql·백업용. 외부 비노출
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-kknaks} -d ${POSTGRES_DB:-kknaks}"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: kknaks-redis
+    # 포트 비노출 — prod 는 호스트 폴백 워커·셸 디버깅이 없다. 필요하면 exec 로.
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+
+  back:
+    build: .
+    container_name: kknaks-back
+    env_file: .env
+    ports:
+      - "48000:8000"
+    volumes:
+      # rw — 승인 착지가 md 를 쓰고 커밋·push 한다. 일반 clone 이라 .git 이
+      # 레포 안에 있어 이 마운트 하나로 끝난다(로컬의 worktree 보조 마운트 불필요).
+      - ../..:/ledger
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    container_name: kknaks-worker
+    environment:
+      REDIS_URL: redis://redis:6379/0
+      AI_NAMESPACE: kknaks_profile
+      AI_QUEUE: default
+      AI_CWD: /ledger
+      CONCURRENCY: ${WORKER_CONCURRENCY:-1}
+      CODEX_HOME: /root/.codex
+      PATH: /claude-tools/node/bin:/usr/local/bin:/usr/bin:/bin
+    volumes:
+      - ../..:/ledger:ro
+      # 서버 nvm 의 node 전체(bin/codex 심링크가 lib/node_modules 를 가리켜서 통째로)
+      - /home/kknaks/.nvm/versions/node/v24.19.0:/claude-tools/node:ro
+      # codex 세션 영속 — resume(mode=session)이 워커 재시작을 넘겨 살아남는 조건.
+      - codex-sessions:/root/.codex
+      # 인증 — 파일 하나만. 세션 디렉터리를 통째로 내주지 않는다(로컬과 같은 규율).
+      - /home/kknaks/.codex/auth.json:/root/.codex/auth.json:ro
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "codex", "--version"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  postgres-data:
+  codex-sessions:

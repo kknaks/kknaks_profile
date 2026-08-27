@@ -7,6 +7,7 @@ const STATUS_COLOR: Record<string, string> = {
 };
 
 export function StatusTag({ s }: { s: ProjectItem["status"] }) {
+  if (!s) return null;
   const isLive = s === "live";
   return (
     <span

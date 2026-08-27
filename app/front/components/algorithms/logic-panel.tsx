@@ -8,30 +8,24 @@
 
 import { useState } from "react";
 
-import type { Lang } from "@/lib/i18n";
 import type { AlgoLogic } from "@/lib/types";
 
-export function LogicPanel({ logic, lang }: { logic: AlgoLogic; lang: Lang }) {
-  const t = (ko: string, en: string) => (lang === "en" ? en : ko);
+export function LogicPanel({ logic }: { logic: AlgoLogic }) {
 
   if (logic?.format !== "slot") {
     return (
       <div className="card" style={{ padding: 24 }}>
         <div className="mono" style={{ fontSize: 12, color: "var(--fg-3)" }}>
-          {t(
-            `format='${logic?.format ?? "?"}' 은 후속 버전 지원 (ADR-08).`,
-            `format='${logic?.format ?? "?"}' will be supported in later version (ADR-08).`
-          )}
+          {`format='${logic?.format ?? "?"}' 은 후속 버전 지원 (ADR-08).`}
         </div>
       </div>
     );
   }
 
-  return <SlotQuiz slots={logic.slots} lang={lang} />;
+  return <SlotQuiz slots={logic.slots} />;
 }
 
-function SlotQuiz({ slots, lang }: { slots: AlgoLogic["slots"]; lang: Lang }) {
-  const t = (ko: string, en: string) => (lang === "en" ? en : ko);
+function SlotQuiz({ slots }: { slots: AlgoLogic["slots"] }) {
   const [picks, setPicks] = useState<Record<number, number>>({});
   const [revealed, setRevealed] = useState(false);
   const [expandedSet, setExpandedSet] = useState<Set<string>>(new Set());
@@ -66,7 +60,7 @@ function SlotQuiz({ slots, lang }: { slots: AlgoLogic["slots"]; lang: Lang }) {
     return (
       <div className="card" style={{ padding: 24 }}>
         <div className="mono" style={{ fontSize: 12, color: "var(--fg-3)" }}>
-          {t("LLM 이 아직 논리 구조를 생성하지 않음.", "LLM has not generated the logic structure yet.")}
+          {"LLM 이 아직 논리 구조를 생성하지 않음."}
         </div>
       </div>
     );
@@ -87,13 +81,13 @@ function SlotQuiz({ slots, lang }: { slots: AlgoLogic["slots"]; lang: Lang }) {
         }}
       >
         <span style={{ color: "var(--accent)" }}>● 1</span>
-        <span>{t("슬롯 출력", "slots shown")}</span>
+        <span>{"슬롯 출력"}</span>
         <span style={{ marginLeft: 4 }}>→</span>
         <span style={{ color: filledCount > 0 || revealed ? "var(--accent)" : "var(--fg-3)" }}>● 2</span>
-        <span>{t("슬롯별 선택", "pick per slot")}</span>
+        <span>{"슬롯별 선택"}</span>
         <span style={{ marginLeft: 4 }}>→</span>
         <span style={{ color: revealed ? "var(--accent)" : "var(--fg-3)" }}>● 3</span>
-        <span>{t("정답 공개", "reveal")}</span>
+        <span>{"정답 공개"}</span>
         {revealed && (
           <span
             className="mono"
@@ -106,16 +100,13 @@ function SlotQuiz({ slots, lang }: { slots: AlgoLogic["slots"]; lang: Lang }) {
               borderRadius: 3,
             }}
           >
-            {correctSlots} / {totalSlots} {t("정답", "correct")}
+            {correctSlots} / {totalSlots} {"정답"}
           </span>
         )}
       </div>
 
       <div className="mono" style={{ fontSize: 11, color: "var(--fg-3)", marginBottom: 14, lineHeight: 1.6 }}>
-        // {t(
-          "각 슬롯에 들어갈 코드 한 줄을 골라 알고리즘 흐름을 합성해보세요. 코드는 안 짜지만 논리 뼈대는 직접.",
-          "pick one code line per slot to assemble the algorithm flow. no typing — just the logic skeleton."
-        )}
+        // {"각 슬롯에 들어갈 코드 한 줄을 골라 알고리즘 흐름을 합성해보세요. 코드는 안 짜지만 논리 뼈대는 직접."}
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
@@ -148,7 +139,7 @@ function SlotQuiz({ slots, lang }: { slots: AlgoLogic["slots"]; lang: Lang }) {
                 {(slot.indent ?? 0) > 0 && (
                   <span style={{ marginLeft: 6, color: "var(--fg-3)" }}>
                     {"│ ".repeat(slot.indent ?? 0)}
-                    {t("중첩", "nested")}
+                    {"중첩"}
                   </span>
                 )}
               </div>
@@ -252,7 +243,7 @@ function SlotQuiz({ slots, lang }: { slots: AlgoLogic["slots"]; lang: Lang }) {
                             }}
                           >
                             <span className="mono" style={{ marginRight: 6, color: "var(--fg-3)" }}>
-                              {isGood ? t("// 정답 이유", "// why correct") : t("// distractor", "// distractor")}
+                              {isGood ? "// 정답 이유" : "// distractor"}
                             </span>
                             {opt.why}
                           </div>
@@ -293,8 +284,8 @@ function SlotQuiz({ slots, lang }: { slots: AlgoLogic["slots"]; lang: Lang }) {
           <>
             <span className="mono" style={{ fontSize: 11, color: "var(--fg-3)" }}>
               {filledCount === 0
-                ? t("각 슬롯에 한 줄씩 골라보세요", "pick one option per slot")
-                : `${filledCount} / ${totalSlots} ${t("슬롯 채움", "slots filled")}`}
+                ? "각 슬롯에 한 줄씩 골라보세요"
+                : `${filledCount} / ${totalSlots} ${"슬롯 채움"}`}
             </span>
             <button
               onClick={reveal}
@@ -312,15 +303,15 @@ function SlotQuiz({ slots, lang }: { slots: AlgoLogic["slots"]; lang: Lang }) {
                 fontWeight: 600,
               }}
             >
-              {t("확인", "confirm")}
+              {"확인"}
             </button>
           </>
         ) : (
           <>
             <span className="mono" style={{ fontSize: 11, color: "var(--fg-3)" }}>
               {correctSlots === totalSlots
-                ? t("완벽 — 논리 뼈대 잘 잡았음. ▾ 로 이유 확인", "perfect — solid skeleton. tap ▾ to see why")
-                : t("▾ 로 각 옵션의 이유 펼쳐보기", "tap ▾ on options to see why")}
+                ? "완벽 — 논리 뼈대 잘 잡았음. ▾ 로 이유 확인"
+                : "▾ 로 각 옵션의 이유 펼쳐보기"}
             </span>
             <button
               onClick={reset}
@@ -336,17 +327,14 @@ function SlotQuiz({ slots, lang }: { slots: AlgoLogic["slots"]; lang: Lang }) {
                 borderRadius: 3,
               }}
             >
-              ↺ {t("다시", "reset")}
+              ↺ {"다시"}
             </button>
           </>
         )}
       </div>
 
       <div className="mono" style={{ fontSize: 10, color: "var(--fg-3)", marginTop: 8, lineHeight: 1.6 }}>
-        // {t(
-          "format: slot — 다른 패턴(재귀·DP 등) 은 ordering·state-first 등 별도 format. ADR-08 후속.",
-          "format: slot — recursive / DP patterns use ordering / state-first formats. ADR-08 follow-up."
-        )}
+        // {"format: slot — 다른 패턴(재귀·DP 등) 은 ordering·state-first 등 별도 format. ADR-08 후속."}
       </div>
     </div>
   );

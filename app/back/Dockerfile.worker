@@ -1,0 +1,40 @@
+# worker — open-kknaks 데몬. back 이 redis 에 제출한 AI 태스크(provider=codex)를
+# dequeue 해서 codex CLI 를 실행한다 (inbox.md Step 6·7, service/ai_service.py).
+#
+# codex CLI 는 **이미지에 굽지 않는다** — 실행 파일은 런타임 마운트로 온다
+# (mediness Dockerfile.worker 패턴 차용, 2026-08-25).
+#   - open-kknaks 는 codex 를 `shutil.which("codex")` 로만 찾는다(전용 env 없음)
+#     → 마운트한 번들 경로를 PATH 선두에 두면 그 본이 잡힌다.
+#   - 로컬(맥): docker-compose.local.yml 이 호스트의 리눅스용 CLI 번들
+#     (~/.cache/axkg-live/.claude-tools — node + @openai/codex)을 ro 마운트.
+#   - 굽지 않는 이득: 버전 올리기가 이미지 재빌드가 아니라 호스트 준비물 교체로
+#     끝나고, 이미지가 얇아지며, 빌드가 외부 다운로드에 의존하지 않는다.
+#
+# 인증도 굽지 않는다 — `CODEX_HOME` 아래로 런타임 주입한다(compose 참고).
+
+FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim
+
+# ca-certificates — 마운트된 codex 가 api.openai.com 으로 HTTPS 호출할 때 필요.
+# git — codex cwd(/ledger)가 git 레포라 저장소 탐지·조회에 쓴다(back 이미지와 동일).
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends ca-certificates git \
+    && rm -rf /var/lib/apt/lists/*
+
+# open-kknaks (PyPI). back 의 uv.lock 이 2.1.2 로 해소돼 있다 — **lockstep 정확 핀**.
+# 한쪽만 올리면 broker payload 계약이 갈린다. 올릴 땐 back pyproject/uv.lock 과 함께.
+RUN uv pip install --system "open-kknaks==2.1.2"
+
+# codex 의 세션·설정·인증 루트. compose 가 이 한 경로만 세션 볼륨으로 잡고,
+# 인증(auth.json)도 이 경로 아래로 마운트된다. ⚠ 인증을 여기 굽지 않는다.
+ENV CODEX_HOME=/root/.codex
+
+# 기동 파라미터 — compose environment 로 덮는다 (scripts/run-worker.sh 와 동일 항목).
+ENV REDIS_URL=redis://redis:6379/0 \
+    AI_NAMESPACE=kknaks_profile \
+    AI_QUEUE=default \
+    AI_CWD=/ledger \
+    CONCURRENCY=1
+
+WORKDIR /app
+
+CMD ["sh", "-c", "exec open-kknaks worker run --broker \"$REDIS_URL\" --namespace \"$AI_NAMESPACE\" --queues \"$AI_QUEUE\" --work-dir \"$AI_CWD\" --concurrency \"$CONCURRENCY\""]

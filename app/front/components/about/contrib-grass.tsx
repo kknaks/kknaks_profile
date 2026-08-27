@@ -1,14 +1,13 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import type { Lang } from "@/lib/i18n";
 import type { ActivityEntry, ActivityResponse } from "@/lib/types";
 
 interface Cell {
   date: Date;
   count: number;
   counts: ActivityEntry["counts"];
-  summary: string | string[] | null;
+  summary: string[] | null;
   future: boolean;
 }
 
@@ -34,14 +33,7 @@ function parseDateDot(s: string): Date {
   return new Date(y, m - 1, d);
 }
 
-export function ContribGrass({
-  lang,
-  activity,
-}: {
-  lang: Lang;
-  activity: ActivityResponse;
-}) {
-  const t = (ko: string, en: string) => (lang === "en" ? en : ko);
+export function ContribGrass({ activity }: { activity: ActivityResponse }) {
   const items = activity["activity[]"];
   const total = activity.activity.totalCount;
 
@@ -84,22 +76,17 @@ export function ContribGrass({
       "1월", "2월", "3월", "4월", "5월", "6월",
       "7월", "8월", "9월", "10월", "11월", "12월",
     ];
-    const monthsEn = [
-      "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
-    ];
-    const arr = lang === "en" ? monthsEn : monthsKo;
     const ml: { wi: number; label: string }[] = [];
     w.forEach((wk, wi) => {
       const first = wk[0];
       if (!first) return;
       if (first.date.getDate() <= 7) {
-        ml.push({ wi, label: arr[first.date.getMonth()] });
+        ml.push({ wi, label: monthsKo[first.date.getMonth()] });
       }
     });
 
     return { weeks: w, monthLabels: ml };
-  }, [items, activity.activity.until, lang]);
+  }, [items, activity.activity.until]);
 
   const [hover, setHover] = useState<{ wi: number; di: number } | null>(null);
   const [selected, setSelected] =
@@ -118,10 +105,7 @@ export function ContribGrass({
     }
   }, [weeks, selected]);
 
-  const dayLabels =
-    lang === "en"
-      ? ["", "Mon", "", "Wed", "", "Fri", ""]
-      : ["", "월", "", "수", "", "금", ""];
+  const dayLabels = ["", "월", "", "수", "", "금", ""];
 
   return (
     <div
@@ -160,7 +144,7 @@ export function ContribGrass({
             // activity
           </div>
           <div className="mono" style={{ fontSize: 10, color: "var(--fg-3)" }}>
-            {total} {t("회 · 지난 1년", "events · past year")}
+            {total} {"회 · 지난 1년"}
           </div>
         </div>
         <div
@@ -172,10 +156,7 @@ export function ContribGrass({
             lineHeight: 1.4,
           }}
         >
-          {t(
-            "AI가 분류한 커밋 · 노트 · 학습 활동",
-            "AI-classified commits · notes · study",
-          )}
+          {"AI가 분류한 커밋 · 노트 · 학습 활동"}
         </div>
 
         <div className="grass-board-scroll" style={{ paddingBottom: 4 }}>
@@ -296,7 +277,7 @@ export function ContribGrass({
           }}
         >
           <span className="mono" style={{ color: "var(--fg-3)" }}>
-            {t("적음", "less")}
+            {"적음"}
           </span>
           {[0, 1, 3, 5, 9].map((c) => (
             <span
@@ -311,7 +292,7 @@ export function ContribGrass({
             />
           ))}
           <span className="mono" style={{ color: "var(--fg-3)" }}>
-            {t("많음", "more")}
+            {"많음"}
           </span>
         </div>
       </div>
@@ -340,7 +321,7 @@ export function ContribGrass({
               style={{ fontSize: 10, color: "var(--fg-3)", marginBottom: 14 }}
             >
               {fmtDateDot(selected.cell.date)} · {selected.cell.count}{" "}
-              {t("회", "events")}
+              {"회"}
             </div>
             {selected.cell.summary && (
               <div
@@ -355,22 +336,13 @@ export function ContribGrass({
                   gap: 4,
                 }}
               >
-                {Array.isArray(selected.cell.summary) ? (
-                  selected.cell.summary.length > 0 ? (
-                    selected.cell.summary.map((line, i) => (
-                      <div key={i}>{line}</div>
-                    ))
-                  ) : null
-                ) : (
-                  <div>{selected.cell.summary}</div>
-                )}
+                {selected.cell.summary.map((line, i) => (
+                  <div key={i}>{line}</div>
+                ))}
               </div>
             )}
             <p style={{ margin: 0, fontSize: 12, lineHeight: 1.65, color: "var(--fg-2)" }}>
-              {t(
-                "AI가 그날 작성한 노트·커밋·세션을 모아 한 줄로 요약하고, 관련 링크를 표시해요.",
-                "AI summarises the day's notes/commits/sessions into one line and surfaces related links.",
-              )}
+              {"AI가 그날 작성한 노트·커밋·세션을 모아 한 줄로 요약하고, 관련 링크를 표시해요."}
             </p>
           </div>
         ) : (
@@ -385,13 +357,10 @@ export function ContribGrass({
               className="mono"
               style={{ fontSize: 10, color: "var(--fg-3)", marginBottom: 14 }}
             >
-              {total} {t("회 · 지난 1년", "events · past year")}
+              {total} {"회 · 지난 1년"}
             </div>
             <p style={{ margin: 0, fontSize: 12, lineHeight: 1.65, color: "var(--fg-2)" }}>
-              {t(
-                "잔디는 그날 AI가 가공한 활동 기록이에요. 셀을 클릭하면 그날 뭐를 했는지 볼 수 있어요.",
-                "Each cell is an AI-curated record of that day's activity. Click a cell to see what happened.",
-              )}
+              {"잔디는 그날 AI가 가공한 활동 기록이에요. 셀을 클릭하면 그날 뭐를 했는지 볼 수 있어요."}
             </p>
           </div>
         )}

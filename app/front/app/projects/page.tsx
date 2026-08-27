@@ -1,21 +1,12 @@
 import { api } from "@/lib/api";
-import { DEFAULT_LANG, isLang, type Lang } from "@/lib/i18n";
 import { ProjectsGrid } from "@/components/projects/projects-grid";
 
 export const dynamic = "force-dynamic";
 
-export default async function ProjectsPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ lang?: string }>;
-}) {
-  const { lang: rawLang } = await searchParams;
-  const lang: Lang = rawLang && isLang(rawLang) ? rawLang : DEFAULT_LANG;
-  const t = (ko: string, en: string) => (lang === "en" ? en : ko);
-
+export default async function ProjectsPage() {
   let projects;
   try {
-    projects = await api.projects(lang);
+    projects = await api.projects();
   } catch (err) {
     return (
       <main className="pad-x" style={{ padding: "56px 80px" }}>
@@ -27,7 +18,7 @@ export default async function ProjectsPage({
     );
   }
 
-  const subtitle = projects.projects?.subtitle ?? t("혼자 만든 것들", "solo work");
+  const subtitle = projects.projects?.subtitle ?? "혼자 만든 것들";
 
   return (
     <main>
@@ -65,7 +56,7 @@ export default async function ProjectsPage({
       </header>
 
       <div className="pad-x" style={{ padding: "32px 80px 64px" }}>
-        <ProjectsGrid projects={projects} lang={lang} />
+        <ProjectsGrid projects={projects} />
       </div>
     </main>
   );

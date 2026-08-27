@@ -1,37 +1,29 @@
 import { api } from "@/lib/api";
-import { DEFAULT_LANG, isLang, type Lang } from "@/lib/i18n";
 import { HeroTerminal } from "@/components/home/hero-terminal";
 import { LandingPreview } from "@/components/home/landing-preview";
 
 export const dynamic = "force-dynamic";
 
-export default async function HomePage({
-  searchParams,
-}: {
-  searchParams: Promise<{ lang?: string }>;
-}) {
-  const { lang: rawLang } = await searchParams;
-  const lang: Lang = rawLang && isLang(rawLang) ? rawLang : DEFAULT_LANG;
-
+export default async function HomePage() {
   try {
-    const [me, career, projects, posts, contents] =
-      await Promise.all([
-        api.me(lang),
-        api.career(lang),
-        api.projects(lang),
-        api.posts(lang, 5),
-        api.contents(lang, 5),
-      ]);
+    const [profile, site, career, projects, notes, contents] = await Promise.all([
+      api.profile(),
+      api.site(),
+      api.career(),
+      api.projects(),
+      api.notes(5),
+      api.contents(5),
+    ]);
 
     return (
       <main className="page-fade">
-        <HeroTerminal lang={lang} me={me} />
+        <HeroTerminal profile={profile} site={site} />
         <LandingPreview
-          lang={lang}
-          me={me}
+          profile={profile}
+          site={site}
           career={career}
           projects={projects}
-          posts={posts}
+          notes={notes}
           contents={contents}
         />
       </main>

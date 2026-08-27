@@ -1,7 +1,8 @@
-"""비밀번호 해시(bcrypt) · 쿠키 JWT(HS256) (auth-01 — 인증 토대).
+"""비밀번호 해시(bcrypt) · 쿠키 JWT(HS256).
 
-- bcrypt 는 salt 내장 — password_hash 컬럼에 그대로 저장.
-- JWT payload: {sub: username, uid, role, exp}. HS256, 시크릿은 config.jwt_secret().
+- bcrypt 는 salt 내장 — users.password_hash 컬럼에 그대로 저장한다.
+- JWT payload: {sub: username, uid, role, iat, exp}. 시크릿은 Settings.jwt_secret.
+- 계약은 레거시와 동일 — 프론트 쿠키(kknaks_session)를 그대로 쓴다.
 """
 
 from __future__ import annotations
@@ -11,7 +12,7 @@ from datetime import datetime, timedelta, timezone
 import bcrypt
 import jwt
 
-import config
+from config import get_settings
 
 
 def hash_password(plain: str) -> str:
@@ -29,20 +30,21 @@ def verify_password(plain: str, hashed: str) -> bool:
 
 def create_access_token(*, username: str, uid: int, role: str) -> str:
     """로그인 성공 시 발급하는 세션 JWT."""
+    settings = get_settings()
     now = datetime.now(timezone.utc)
     payload = {
         "sub": username,
         "uid": uid,
         "role": role,
         "iat": int(now.timestamp()),
-        "exp": int((now + timedelta(minutes=config.jwt_expire_minutes())).timestamp()),
+        "exp": int((now + timedelta(minutes=settings.jwt_expire_minutes)).timestamp()),
     }
-    return jwt.encode(payload, config.jwt_secret(), algorithm="HS256")
+    return jwt.encode(payload, settings.jwt_secret, algorithm="HS256")
 
 
 def decode_access_token(token: str) -> dict | None:
     """유효하면 payload dict, 만료/위조면 None."""
     try:
-        return jwt.decode(token, config.jwt_secret(), algorithms=["HS256"])
+        return jwt.decode(token, get_settings().jwt_secret, algorithms=["HS256"])
     except jwt.PyJWTError:
         return None
