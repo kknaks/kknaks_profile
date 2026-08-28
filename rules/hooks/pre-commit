@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# pre-commit — 커밋에 올라오는 개념 파일 ↔ area.md §3.4 맵 정합 (rules/rules.md).
+# 설치: git config core.hooksPath rules/hooks   (체크아웃마다 1회, 서버 클론은 설정하지 않는다)
+set -euo pipefail
+
+ROOT="$(git rev-parse --show-toplevel)"
+
+if ! python3 "$ROOT/rules/check-concept-map.py" --staged; then
+  echo "" >&2
+  echo "pre-commit 실패: 개념 ↔ 맵 정합 위반 (rules/rules.md)." >&2
+  echo "맵을 고칠 수 없는 비상시에만: git commit --no-verify" >&2
+  exit 1
+fi

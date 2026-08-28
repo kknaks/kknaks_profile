@@ -16,7 +16,7 @@ set -euo pipefail
 
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 CONFIG_DIR="$HERE/config"
-TEMPLATE="$HERE/templates/worker-brief.md"
+TEMPLATE="$HERE/../templates/orchestration/worker-brief.md"
 
 die() { echo "ERROR: $*" >&2; exit 1; }
 say() { echo "  $*"; }
@@ -263,12 +263,12 @@ sys.stdout.write(t)
   say "브리프 생성: $(basename "$dst")  (역할·allowed_paths·워크트리·검증 채워짐)"
 done <<< "$PLAN"
 
-# ── _RESUME.md (templates/resume.md 렌더) ────────────────────────────────────
+# ── _RESUME.md (루트 templates/orchestration/resume.md 렌더) ────────────────────────────────────
 # 종전에는 이 스켈레톤을 스크립트 안 heredoc 으로 찍었다. 그러면 양식을 고칠 때
-# 스크립트를 고쳐야 해서 「양식은 templates/ 에 둔다」는 규칙이 _RESUME 에만 안 지켜졌다.
+# 스크립트를 고쳐야 해서 「양식은 루트 templates/ 에 둔다」는 규칙이 _RESUME 에만 안 지켜졌다.
 # worker-brief 와 같은 방식(안내 블록 절단 + <TOKEN> 치환)으로 통일한다.
 RESUME="$WORK_DIR/_RESUME.md"
-RESUME_TEMPLATE="$HERE/templates/resume.md"
+RESUME_TEMPLATE="$HERE/../templates/orchestration/resume.md"
 [ -f "$RESUME_TEMPLATE" ] || die "템플릿 없음: $RESUME_TEMPLATE"
 if [ ! -f "$RESUME" ]; then
   WORKTREES_MD="$(printf '%s\n' "$RESOLVED" \
@@ -286,7 +286,7 @@ for k, v in {
     t = t.replace(k, v)
 sys.stdout.write(t)
 " > "$RESUME"
-  say "_RESUME.md 생성 (templates/resume.md — 브리프 채울 것:$BRIEFS)"
+  say "_RESUME.md 생성 (templates/orchestration/resume.md — 브리프 채울 것:$BRIEFS)"
 else
   say "_RESUME.md 이미 있음 — 유지"
 fi
