@@ -55,3 +55,9 @@ workspace/
 
 # 디자인 시안 작업 폴더 (정본은 별도 보관, repo 트래킹 X)
 claude_design/
+
+# macOS 파인더 부산물
+.DS_Store
+
+# md 에서 뽑아내는 파생물 — 원천은 para/resources/session/ 의 md 다(CLAUDE.md §2)
+output/
