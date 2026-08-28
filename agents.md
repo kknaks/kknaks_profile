@@ -28,6 +28,7 @@
 ## 문서를 쓸 때 — 어디로 내려가나
 
 **규칙은 각 버킷 문서가 갖고, 양식은 `templates/` 가 갖는다.** 여기에 복사하지 않는다.
+기계 검사 가능한 정합(개념 ↔ 맵)은 `rules/` 가 갖는다 — pre-commit 으로 돈다. 설치는 [[rules/rules|rules/rules.md]].
 
 ```text
 para/para.md              네 버킷 중 어디인가
