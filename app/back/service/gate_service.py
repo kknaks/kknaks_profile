@@ -26,7 +26,13 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from config import get_settings
 from core.crypto import decrypt_token
 from core.exceptions import ConflictError, NotFoundError, ValidationError
-from core.git import GitIdentity, GitPushCredentials, GitPushError, commit_and_push
+from core.git import (
+    GitIdentity,
+    GitPushCredentials,
+    GitPushError,
+    commit_and_push,
+    pull_ledger,
+)
 from dto.gate import ConceptSeed, GateDTO, GateWithQueue
 from dto.queue import QueueDTO
 from repository.content_repo import ContentRepository
@@ -169,7 +175,11 @@ class GateService:
     async def _land_and_push(
         self, session: AsyncSession, gate: GateDTO, queue: QueueDTO, payload: dict
     ) -> tuple[str, list[str]]:
-        """md 착지 → 착지 직전 pull → commit·push. (sha, 상대경로들) 반환.
+        """착지 직전 pull → md 착지 → commit·push. (sha, 상대경로들) 반환.
+
+        **pull 이 md 쓰기보다 먼저다** — 순서를 뒤집으면 착지가 자기가 쓴 파일 때문에
+        pull 에서 죽고, 그 파일이 워킹트리에 남아 다음 착지까지 막는다(core.git
+        `pull_ledger` 주석 — 2026-08-28 실사고).
 
         커밋 신원은 git_token personal 행(account·email) — 없으면 422 (사용자 결정).
         JOB_GIT_PUSH_DRY_RUN=1(dev)이면 **커밋·푸시 둘 다 안 한다**(사용자 결정
@@ -211,6 +221,10 @@ class GateService:
             ]
             bodies = [item["body"] for item in payload["concepts"]]
             message = f"fix/concept - {doc_stem}"
+
+        if not dry_run:
+            # 반드시 write 앞 — 여기서 실패하면 워킹트리를 건드리지 않은 채로 끝난다.
+            await pull_ledger(str(ledger), credentials=credentials)
 
         for rel, body in zip(rel_paths, bodies):
             target = ledger / rel
