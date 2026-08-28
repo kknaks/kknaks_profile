@@ -34,6 +34,16 @@ async def _lifespan(app: FastAPI):
         asyncio.create_task(collect_service.run_scheduler()),
         asyncio.create_task(persona_service.run_scheduler()),
     ]
+
+    # 채팅 기동 스윕 — 재시작으로 끊긴 답변(pending)을 재부착하거나 실패로 마감한다
+    # (SPEC-017 §5 · WORK-023 P4). 실패해도 앱은 뜬다 — 복구가 기동을 막지 않는다.
+    from service.chat.consumer import recover_pending_turns
+
+    try:
+        await recover_pending_turns()
+    except Exception:  # noqa: BLE001
+        logging.getLogger(__name__).exception("chat 기동 복구 실패 — 계속 기동한다")
+
     try:
         yield
     finally:
@@ -67,6 +77,9 @@ def create_app() -> FastAPI:
     from api.auth_router import router as auth_router
     from api.career_router import admin_router as career_admin_router
     from api.career_router import router as career_router
+    from api.chat_router import admin_router as chat_admin_router
+    from api.chat_router import router as chat_router
+    from api.chat_tool_router import router as chat_tool_router
     from api.commit_router import admin_router as commit_admin_router
     from api.company_router import admin_router as company_admin_router
     from api.content_router import admin_router as content_admin_router
@@ -119,6 +132,10 @@ def create_app() -> FastAPI:
     app.include_router(git_token_admin_router)
     app.include_router(github_admin_router)
     app.include_router(persona_admin_router)
+    # 채팅 — 공개 4종 · 어드민 토글 · MCP 가 부르는 chat-tool(turn Bearer).
+    app.include_router(chat_router)
+    app.include_router(chat_admin_router)
+    app.include_router(chat_tool_router)
 
     @app.get("/api/health")
     async def health() -> dict:

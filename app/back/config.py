@@ -75,6 +75,28 @@ class Settings(BaseSettings):
         """AUTH_COOKIE_DOMAIN= (빈 값) → None — 빈 Domain 속성을 쿠키에 싣지 않는다."""
         return v or None
 
+    # ── 채용담당자 채팅 (SPEC-017 · DEC-026 · DEC-027) ────
+    # 익명 세션 쿠키. **secure · domain 은 admin 쿠키(auth_cookie_*)를 그대로 쓴다** —
+    # 같은 사이트·같은 배포라 두 벌로 두면 한쪽만 갱신되고 조용히 갈린다.
+    chat_cookie_name: str = "chat_sid"
+    chat_cookie_max_age_sec: int = 30 * 24 * 3600      # 30일 sliding (DEC-026 D1)
+
+    # 제출 계약 — DEC-027 OQ-5 에서 닫힌 값들이다.
+    # ⚠ 모델은 **정식 표기만** 유효하다. 축약형(`terra`)은 metadata 조회 실패로 400 이
+    #   되고 에러 문구가 인증 문제처럼 읽힌다(레퍼런스 실측 — mediness submission.py).
+    # ⚠ 모델과 reasoning effort 는 짝이다 — 모델을 바꾸면 허용 effort 를 다시 잰다.
+    chat_model: str = "gpt-5.6-terra"
+    chat_queue: str = "chat"                            # 전용 큐 — default 와 줄을 안 세운다
+    chat_timeout_sec: int = 180
+    chat_reasoning_effort: str = "low"
+
+    # MCP — 별도 HTTP 서버(DEC-027 D5). 컨테이너 기준 주소를 compose 가 덮는다.
+    chat_mcp_url: str = "http://mcp:28081/mcp"
+    chat_mcp_server_key: str = "kknaks"                  # `-c mcp_servers.<key>.…` 의 key
+    # turn 전용 Bearer 토큰의 수명. turn 상한(180초)보다 넉넉히 길게 둔다 —
+    # 마감 때 해시를 지우는 것이 실제 폐기이고, 이 값은 그마저 실패했을 때의 자연 만료다.
+    chat_turn_token_ttl_sec: int = 900
+
     # ── 시드 — admin 계정 (seed/seed_users.py 만 읽는다) ──
     admin_username: str = "admin"
     admin_password: str = "changeme"

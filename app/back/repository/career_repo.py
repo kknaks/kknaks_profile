@@ -24,6 +24,7 @@ def _to_dto(row: Career, company_name: str) -> CareerDTO:
         description=row.description,
         stack=row.stack,
         persona_path=row.persona_path,
+        chat_exposed=row.chat_exposed,
     )
 
 

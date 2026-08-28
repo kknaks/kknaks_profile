@@ -59,6 +59,24 @@ services:
       # 계속 갱신하므로 access token 이 낡기 전에 자연 회전된다.
       - "${HOME}/Library/Application Support/orca/codex-runtime-home/home/auth.json:/root/.codex/auth.json:ro"
 
+  chat-worker:
+    # 로컬(맥) 전용 오버레이 — 위 worker 와 같은 이유로 리눅스용 codex 번들을
+    # 마운트하고 PATH 최우선으로 잡는다. **원장(/ledger)은 여기서도 안 준다.**
+    environment:
+      PATH: /claude-tools/node/bin:/claude-tools/node_modules/.bin:/usr/local/bin:/usr/bin:/bin
+    volumes:
+      - /Users/kknaks/.cache/axkg-live/.claude-tools:/claude-tools:ro
+      # base 의 prod 마운트(/home/kknaks/.nvm/...)를 **같은 타깃**으로 덮는다 —
+      # compose 병합은 타깃 기준이라, 타깃이 다르면 prod 경로가 남아 맥에서
+      # mounts denied 가 난다(2026-08-28 통합 검증 실측).
+      - /Users/kknaks/.cache/axkg-live/.claude-tools/node:/claude-tools/node:ro
+      - chat-codex-sessions:/root/.codex-chat
+      # 로컬 검증 한정 — 살아 있는 codex 로그인(orca 가 관리하는 CODEX_HOME).
+      # 경로 근거는 위 worker 의 같은 줄 주석 참조.
+      - "${HOME}/Library/Application Support/orca/codex-runtime-home/home/auth.json:/root/.codex-chat/auth.json:ro"
+
 volumes:
   # 워커의 codex 세션(문서→개념 resume) — 재시작을 넘겨 살아남아야 한다.
   codex-sessions:
+  # 채팅 대화의 codex 세션 — 파이프라인과 분리(DEC-027 D5).
+  chat-codex-sessions:

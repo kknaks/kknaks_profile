@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { adminApi, AuthError } from "@/lib/api";
+import { ChatExposureToggle } from "@/components/admin/chat-exposure-toggle";
 import type { AdminCareer, CareerInput, Company } from "@/lib/types";
 
 // 커리어 · 역할 — 등록·수정·삭제. 회사 이름·isCurrent·period 는 백엔드 파생값이라
@@ -154,6 +155,8 @@ function CareerCard({
           </div>
         </div>
         <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 8 }}>
+          {/* 채팅 노출 — 켠 것만 AI tool 응답에 실린다(SPEC-017 U-7). */}
+          <ChatExposureToggle kind="career" id={career.id} exposed={career.chatExposed} />
           <button type="button" onClick={() => setEditing(true)} style={ghostBtn}>
             수정
           </button>

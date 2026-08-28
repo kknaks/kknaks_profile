@@ -26,3 +26,6 @@ class ProductDTO:
     thumbnail: str | None
     links: dict[str, Any] | None
     visible: bool
+
+    # 채팅 AI 노출(DEC-027 D4 · spec v0.0.8). 어드민 목록이 토글 현재값을 그리는 데 쓴다.
+    chat_exposed: bool = False

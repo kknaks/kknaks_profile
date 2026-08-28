@@ -751,3 +751,814 @@ button {
 @media (max-width: 720px) {
   .project-head-row { flex-direction: column; gap: 20px; }
 }
+
+/* ===========================================
+   채용담당자 채팅 (KDEV-SPEC-017 · 시안 21-html/chat-home-mockup.html)
+
+   시안의 마크업·값을 그대로 옮긴다. 색·폰트는 위 토큰뿐 — 새로 들이지 않는다.
+   구조는 인라인 style 이 아니라 클래스로 둔다 — :hover · :focus-within ·
+   ::placeholder · @keyframes 는 인라인으로 못 쓴다.
+   =========================================== */
+
+:root {
+  /* topnav 실측 높이(padding 14 + 내용 ~31.6 + border 1). 히어로가 「정확히 한 화면」
+     이려면 여기서 이 값을 빼야 한다 — 시안의 60px 자리다. */
+  --nav-h: 61px;
+}
+
+/* ── 히어로 · /chat 빈 상태 — 한 화면 ─────────────────────────── */
+.chat-hero {
+  height: calc(100vh - var(--nav-h));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 24px;
+  position: relative;
+}
+
+.chat-greet {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.chat-greet .eyebrow-line {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.chat-greet h1 {
+  margin: 0 0 14px;
+  font-size: clamp(30px, 5vw, 44px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  text-wrap: balance;
+}
+.chat-greet h1 .em {
+  color: var(--accent);
+}
+.chat-greet p {
+  margin: 0;
+  color: var(--fg-2);
+  font-size: 16px;
+}
+
+/* ── 입력 터미널 — 히어로·빈 상태·컴포저가 같이 쓴다 ──────────── */
+.chat-ask {
+  width: min(720px, 100%);
+  background: var(--bg-1);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-4);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  transition: border-color var(--dur-2) var(--ease);
+}
+.chat-ask:focus-within {
+  border-color: var(--accent-line);
+}
+.chat-ask .bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line-1);
+  background: var(--bg-2);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--fg-3);
+}
+.chat-ask .bar .dots {
+  display: flex;
+  gap: 6px;
+  margin-right: 6px;
+}
+.chat-ask .bar .dots i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--bg-4);
+}
+.chat-ask .row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px;
+}
+.chat-ask .prompt {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  color: var(--accent);
+  user-select: none;
+}
+.chat-ask input {
+  flex: 1;
+  min-width: 0;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--fg-0);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  caret-color: var(--accent);
+}
+.chat-ask input::placeholder {
+  color: var(--fg-3);
+}
+.chat-ask input:disabled {
+  color: var(--fg-2);
+}
+.chat-ask button {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border: none;
+  border-radius: var(--r-3);
+  padding: 8px 16px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity var(--dur-1) var(--ease);
+}
+.chat-ask button:hover {
+  opacity: 0.88;
+}
+.chat-ask button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+.chat-ask button:focus-visible {
+  outline: 2px solid var(--accent-line);
+  outline-offset: 2px;
+}
+
+.chat-hint {
+  margin-top: 28px;
+  color: var(--fg-3);
+  font-size: 12.5px;
+  font-family: var(--font-mono);
+  text-align: center;
+}
+.chat-hint .k {
+  color: var(--fg-2);
+}
+
+/* 422 · 실패 안내 — 컴포저 아래(§4 Case Matrix) */
+.chat-error {
+  width: min(760px, 100%);
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--danger);
+}
+
+/* 스크롤 큐 — 히어로 하단(홈에만 있다) */
+.chat-scroll-cue {
+  position: absolute;
+  bottom: 22px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+}
+.chat-scroll-cue a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--fg-3);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+}
+.chat-scroll-cue a:hover {
+  color: var(--fg-1);
+}
+.chat-scroll-cue .arr {
+  animation: chat-bob 2s infinite var(--ease);
+}
+@keyframes chat-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+/* ── /chat — 사이드바 + 스레드 ────────────────────────────────── */
+/* 스크롤 계약(§2 U-5) — `/chat` 은 문서(body)가 스크롤하지 않는다. 네비·사이드바·
+   컴포저는 제자리에 남고 **스레드만 자체 스크롤 컨테이너**다. 홈(`/`)에는 걸리지
+   않는다 — `.chat-stage` 는 `/chat` 에만 있다. */
+body:has(.chat-stage) {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.chat-stage {
+  display: flex;
+  height: calc(100vh - var(--nav-h));
+  min-height: 0;
+  overflow: hidden;
+  /* 좁은 화면의 문서 패널 오버레이가 여기 붙는다(아래 `.chat-doc`). `position:
+     fixed` 를 안 쓰는 이유는 `.page-fade` 의 `animation … forwards` 가 keyframe 에
+     transform 을 갖고 있어 **이 요소가 fixed 의 컨테이닝 블록이 되기 때문**이다 —
+     뷰포트 기준인 줄 알고 `top: var(--nav-h)` 를 주면 nav 높이만큼 두 번 밀린다. */
+  position: relative;
+}
+
+.chat-side {
+  width: 230px;
+  flex-shrink: 0;
+  border-right: 1px solid var(--line-1);
+  padding: 20px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+  min-height: 0;
+}
+.chat-side .newchat {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid var(--accent-line);
+  border-radius: var(--r-3);
+  padding: 9px 12px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  cursor: pointer;
+  text-align: left;
+  transition: background var(--dur-1) var(--ease);
+}
+.chat-side .newchat:hover {
+  background: var(--accent-line);
+}
+.chat-side .caps-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--fg-4);
+  margin: 12px 4px 2px;
+}
+/* 대화 목록이 길면 사이드바 안쪽만 따로 스크롤한다 — `＋ 새 대화` 와 `← 홈으로`
+   는 제자리에 남는다. `min-height: 0` 이 없으면 flex 자식이 줄지 않아 안 먹는다. */
+.chat-side .convlist {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.chat-side .convlist button {
+  padding: 8px 10px;
+  border: none;
+  border-radius: 5px;
+  background: transparent;
+  font-size: 13px;
+  color: var(--fg-2);
+  text-align: left;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.chat-side .convlist button:hover,
+.chat-side .convlist button.active {
+  background: var(--bg-2);
+  color: var(--fg-0);
+}
+.chat-side .homelink {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--fg-3);
+  padding: 8px 4px;
+}
+.chat-side .homelink:hover {
+  color: var(--fg-1);
+}
+
+.chat-main {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 이 페이지에서 유일하게 스크롤하는 자리. 스레드 본문(`.chat-thread`)은 그 안에서
+   가운데 정렬된 내용 상자로 남는다. */
+.chat-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.chat-thread {
+  width: min(760px, 100%);
+  margin: 0 auto;
+  padding: 40px 24px 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* 질문 — `$ ask "…"` 커맨드 줄 */
+.chat-msg-q {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  color: var(--fg-0);
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  overflow-wrap: anywhere;
+}
+.chat-msg-q .prompt {
+  color: var(--accent);
+}
+.chat-msg-q .cmd {
+  color: var(--fg-2);
+}
+
+/* 답변 — 좌측 액센트 보더 출력 블록 */
+.chat-msg-a {
+  border-left: 2px solid var(--accent-line);
+  padding: 2px 0 2px 20px;
+  color: var(--fg-1);
+  font-size: 15.5px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.chat-msg-a p {
+  margin: 0 0 14px;
+  white-space: pre-wrap;
+}
+.chat-msg-a p:last-of-type {
+  margin-bottom: 0;
+}
+.chat-msg-a .failed {
+  color: var(--fg-2);
+}
+
+.chat-retry {
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--accent-line);
+  border-radius: var(--r-2);
+  padding: 5px 12px;
+  cursor: pointer;
+}
+.chat-retry:hover {
+  background: var(--accent-soft);
+}
+
+/* 근거 카드 */
+.chat-sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+/* 세 모양이 같다 — 패널로 여는 유형은 button, 페이지로 가는 유형은 a, url 도 없는
+   유형은 span(링크만 없다). 방문자에게는 셋이 같은 카드로 보여야 한다. */
+.chat-sources a,
+.chat-sources button,
+.chat-sources > span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-1);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-3);
+  padding: 8px 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--fg-2);
+  text-align: left;
+  transition: border-color var(--dur-1) var(--ease), color var(--dur-1) var(--ease);
+}
+.chat-sources button {
+  cursor: pointer;
+}
+.chat-sources a:hover,
+.chat-sources button:hover {
+  border-color: var(--accent-line);
+  color: var(--fg-0);
+}
+.chat-sources .tag-type {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: 3px;
+  padding: 1px 6px;
+  font-size: 11px;
+}
+.chat-sources .arrow {
+  color: var(--fg-4);
+}
+
+/* 타이핑 인디케이터 — 부분 텍스트가 오기 전 */
+.chat-typing {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  height: 1em;
+}
+.chat-typing i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--fg-3);
+  animation: chat-blink 1.2s infinite var(--ease);
+}
+.chat-typing i:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.chat-typing i:nth-child(3) {
+  animation-delay: 0.4s;
+}
+@keyframes chat-blink {
+  0%,
+  60%,
+  100% {
+    opacity: 0.25;
+  }
+  30% {
+    opacity: 1;
+  }
+}
+
+/* tool 단계 박스 (U-5a) — pending 중에도 쌓이고, 완료 후엔 접힌다 */
+.chat-steps {
+  margin-bottom: 12px;
+  border: 1px solid var(--line-1);
+  border-radius: var(--r-3);
+  background: var(--bg-1);
+  overflow: hidden;
+}
+.chat-steps > .head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 12px;
+  background: transparent;
+  border: none;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--fg-2);
+  cursor: pointer;
+  text-align: left;
+}
+.chat-steps > .head:hover {
+  color: var(--fg-0);
+}
+.chat-steps > .head .badge {
+  margin-left: auto;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  border-radius: 3px;
+  padding: 1px 7px;
+  color: var(--fg-3);
+  border: 1px solid var(--line-2);
+}
+.chat-steps > .head .badge.running {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-color: var(--accent-line);
+}
+.chat-steps .body {
+  border-top: 1px solid var(--line-1);
+  padding: 6px 12px 10px;
+}
+.chat-steps .step {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 4px 0;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--fg-2);
+}
+.chat-steps .step .name {
+  color: var(--fg-1);
+}
+.chat-steps .step .args {
+  color: var(--fg-3);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.chat-steps .step .ms {
+  margin-left: auto;
+  color: var(--fg-4);
+  flex-shrink: 0;
+}
+
+/* 하단 고정 컴포저 — 사이드바 폭만큼 밀어서 정렬 */
+.chat-composer {
+  position: fixed;
+  left: 230px;
+  right: 0;
+  bottom: 0;
+  padding: 16px 24px 24px;
+  background: linear-gradient(to top, var(--bg-0) 70%, transparent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 5;
+}
+.chat-composer .chat-ask {
+  width: min(760px, 100%);
+}
+
+/* ── 컴포저 글자는 스레드 본문과 같은 급으로 (U-6 · owner 피드백) ────
+   히어로와 컴포저가 같은 `.chat-ask` 를 쓰는데, 히어로는 **무대**라 크게 서도
+   되지만 컴포저는 스레드에 이어 붙는 줄이라 본문보다 크면 겉돈다.
+
+   같은 15px 라도 mono 가 sans 보다 커 보인다 — 입력창은 mono 15px, 스레드 본문
+   `.chat-msg-a` 는 sans 15.5px 이라 숫자만 보면 입력창이 작은데 눈에는 더 크다.
+   그래서 14px 로 내려 시각적 크기를 맞추고, 줄 여백도 함께 줄인다.
+   **히어로(`/` · `/chat` 빈 상태)는 그대로다** — 선택자를 `.chat-composer` 로
+   가둔 것이 그 경계다. */
+.chat-composer .chat-ask .row {
+  padding: 13px 16px;
+  gap: 10px;
+}
+.chat-composer .chat-ask .prompt {
+  font-size: 14px;
+}
+.chat-composer .chat-ask input {
+  font-size: 14px;
+}
+
+/* ── /chat 문서 패널 — 3열의 셋째 칸 (§2 U-5, spec v0.0.12) ────── */
+/* 근거 카드를 누르면 여기가 열린다. 스크롤 계약은 스레드와 같다 — **본문 칸만**
+   자체 스크롤이고 머리(닫기)와 바닥(보조 링크)은 붙박이다. */
+.chat-doc {
+  width: 480px;
+  flex-shrink: 0;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--line-1);
+  background: var(--bg-1);
+}
+
+.chat-doc-head {
+  position: relative;
+  flex: none;
+  padding: 18px 54px 14px 22px;
+  border-bottom: 1px solid var(--line-1);
+}
+.chat-doc-title {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.chat-doc-title .tag-type {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: 3px;
+  padding: 1px 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+.chat-doc-title .t {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--fg-0);
+}
+.chat-doc-sub {
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--fg-3);
+}
+.chat-doc-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--line-2);
+  border-radius: 6px;
+  background: var(--bg-2);
+  color: var(--fg-2);
+  cursor: pointer;
+}
+.chat-doc-close:hover {
+  color: var(--fg-0);
+  border-color: var(--accent-line);
+}
+
+.chat-doc-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 22px;
+}
+
+/* ── 패널 안의 md 는 패널 스케일로 읽는다 (U-5 · owner 피드백) ──────
+   `.contents-body` 는 본문 폭 700~900px 짜리 페이지에 맞춘 스케일이라(본문 15px,
+   h1 은 UA 기본 2em = 30px) 480px 칸에 그대로 들어오면 제목이 화면을 먹는다.
+
+   **공용 렌더러(`DocBody`)는 건드리지 않고 여기서만 내린다** — 같은 컴포넌트를
+   career 페이지 모달도 쓰는데 거긴 860px 라 지금 스케일이 맞다. 선택자를
+   `.chat-doc-body` 로 가둔 것이 그 경계다. */
+.chat-doc-body .contents-body {
+  font-size: 13.5px;
+  line-height: 1.7;
+}
+.chat-doc-body .contents-body h1 {
+  font-size: 17px; /* 페이지의 h3 급 — 한 단계 아래로 */
+  margin: 0 0 12px;
+  line-height: 1.35;
+}
+.chat-doc-body .contents-body h2 {
+  font-size: 15px;
+  margin: 26px 0 10px;
+  padding-top: 14px;
+  line-height: 1.35;
+}
+.chat-doc-body .contents-body h3 {
+  font-size: 13.5px;
+  margin: 18px 0 8px;
+}
+.chat-doc-body .contents-body h4 {
+  font-size: 13px;
+  margin: 14px 0 6px;
+}
+.chat-doc-body .contents-body p,
+.chat-doc-body .contents-body ul,
+.chat-doc-body .contents-body ol {
+  margin: 0 0 12px;
+}
+.chat-doc-body .contents-body ul,
+.chat-doc-body .contents-body ol {
+  padding-left: 20px;
+}
+.chat-doc-body .contents-body blockquote {
+  margin: 12px 0;
+  padding: 2px 0 2px 12px;
+}
+.chat-doc-body .contents-body table {
+  font-size: 12px;
+  margin: 12px 0;
+}
+.chat-doc-body .contents-body th,
+.chat-doc-body .contents-body td {
+  padding: 7px 9px;
+}
+.chat-doc-body .contents-body pre {
+  font-size: 11.5px;
+  margin: 12px 0 14px;
+  padding: 12px 14px;
+}
+.chat-doc-body .contents-body img {
+  max-height: 280px;
+  margin: 12px 0 14px;
+}
+.chat-doc-body .contents-body hr {
+  margin: 22px 0;
+}
+
+.chat-doc-foot {
+  flex: none;
+  border-top: 1px solid var(--line-1);
+  padding: 12px 22px;
+}
+.chat-doc-foot a {
+  font-size: 12px;
+  color: var(--accent);
+}
+
+/* 넓은 화면에서는 패널이 자리를 차지하므로 막이 필요 없다. */
+.chat-doc-scrim {
+  display: none;
+}
+
+/* 고정 컴포저가 패널 밑에 깔리지 않게 패널 폭만큼 물러난다. */
+.chat-stage.doc-open .chat-composer {
+  right: 480px;
+}
+
+/* 패널을 나란히 놓을 폭이 없으면 오버레이로 바꾼다 — 230(사이드바) + 480(스레드가
+   읽을 만한 최소) + 480(패널) = 1190 이 경계다. */
+@media (max-width: 1200px) {
+  /* `.chat-stage` 기준이다 — 스테이지가 이미 nav 아래에서 시작해 뷰포트 바닥까지라
+     `inset` 0 이 곧 「nav 빼고 화면 전부」다. nav 는 위에 그대로 보인다. */
+  .chat-doc {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: min(560px, 100%);
+    z-index: 30;
+    box-shadow: var(--shadow-pop);
+  }
+  .chat-doc-scrim {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 29;
+    background: rgba(0, 0, 0, 0.45);
+  }
+  /* 오버레이는 자리를 뺏지 않는다 — 컴포저도 물러날 이유가 없다. */
+  .chat-stage.doc-open .chat-composer {
+    right: 0;
+  }
+}
+
+/* 햄버거 — /chat 한정, 모바일에서만 보인다. topnav 오른쪽의 사이트 메뉴와 자리가
+   갈려 섞이지 않는다(저쪽은 사이트 이동, 이쪽은 대화 목록). */
+.chat-navbtn {
+  display: none;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 12;
+  width: 36px;
+  height: 32px;
+  padding: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: var(--bg-1);
+  border: 1px solid var(--line-2);
+  border-radius: 4px;
+  cursor: pointer;
+}
+.chat-navbtn i {
+  display: block;
+  width: 16px;
+  height: 1.5px;
+  background: var(--fg-1);
+}
+.chat-nav-scrim {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  /* 사이드바는 숨기지 않고 **좌측 드로어**로 선다(U-4, owner 확정 — 종전 v1 은
+     `display: none` 이었다). 문서 패널의 우측 드로어와 대칭이고, 둘 다
+     `.chat-stage` 기준 absolute 다 — `.page-fade` 의 transform 때문에 fixed 는
+     뷰포트가 아니라 스테이지를 잡는다(fix5 에서 확인). */
+  .chat-navbtn {
+    display: flex;
+  }
+  .chat-side {
+    display: flex;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: min(280px, 82%);
+    z-index: 31;
+    background: var(--bg-0);
+    border-right: 1px solid var(--line-2);
+    box-shadow: var(--shadow-pop);
+    transform: translateX(-100%);
+    transition: transform var(--dur-2) var(--ease);
+  }
+  .chat-stage.nav-open .chat-side {
+    transform: none;
+  }
+  .chat-stage.nav-open .chat-nav-scrim {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 30;
+    background: rgba(0, 0, 0, 0.45);
+  }
+
+  /* 문서 패널 — 화면 대부분을 덮되 막을 누를 자리는 남긴다. */
+  .chat-doc {
+    width: min(560px, 92%);
+  }
+
+  .chat-composer {
+    left: 0;
+  }
+  /* 햄버거가 첫 줄을 가리지 않게 위를 비운다. */
+  .chat-thread {
+    padding: 52px 20px 150px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chat-scroll-cue .arr,
+  .chat-typing i {
+    animation: none !important;
+  }
+}

@@ -95,6 +95,60 @@ services:
       retries: 3
       start_period: 10s
 
+  # ── 채용담당자 채팅 (SPEC-017 · DEC-027) ─────────────────────────────
+  # 위 `worker` 는 **한 줄도 바꾸지 않는다.** 채팅은 전용 큐·전용 세션 홈으로 따로 뜬다.
+
+  mcp:
+    build:
+      context: ../mcp
+    container_name: kknaks-mcp
+    environment:
+      CHAT_BACK_URL: http://back:8000
+      # Streamable HTTP 의 DNS rebinding 보호 — 워커가 붙는 Host 를 명시한다.
+      MCP_ALLOWED_HOSTS: mcp,mcp:28081
+    # 포트 비노출 — 부르는 것은 같은 네트워크의 채팅 워커뿐이다. 외부에 열 이유가 없다.
+    depends_on:
+      - back
+    restart: unless-stopped
+
+  chat-worker:
+    # 이미지·기동 방식은 기존 워커와 같다(Dockerfile.worker). 다른 것은 큐와
+    # CODEX_HOME 뿐이다 — 파이프라인 세션을 채팅이 resume 하는 축을 없앤다(D5).
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    container_name: kknaks-chat-worker
+    environment:
+      REDIS_URL: redis://redis:6379/0
+      AI_NAMESPACE: kknaks_profile
+      AI_QUEUE: chat                      # 전용 큐 — default 와 줄을 안 세운다(D1)
+      # 채팅 에이전트는 파일을 만지지 않는다(sandbox=read-only · shell off). cwd 는
+      # codex 가 뜰 자리일 뿐이라 컨테이너 안의 빈 디렉토리면 된다.
+      AI_CWD: /app
+      CONCURRENCY: ${CHAT_WORKER_CONCURRENCY:-2}
+      CODEX_HOME: /root/.codex-chat
+      PATH: /claude-tools/node/bin:/usr/local/bin:/usr/bin:/bin
+    volumes:
+      # ⚠ **원장 마운트가 없다.** 익명 방문자의 입력이 들어오는 에이전트라
+      #   `/ledger` 를 주지 않는다 — 데이터는 MCP tool 로만 온다(DEC-027 Context ②).
+      - /home/kknaks/.nvm/versions/node/v24.19.0:/claude-tools/node:ro
+      # 채팅 전용 세션 볼륨 — 대화 resume 이 워커 재시작을 넘겨 살아남는 조건이다.
+      # 기존 워커의 codex-sessions 와 **다른 볼륨**이다.
+      - chat-codex-sessions:/root/.codex-chat
+      - /home/kknaks/.codex/auth.json:/root/.codex-chat/auth.json:ro
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "codex", "--version"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
 volumes:
   postgres-data:
   codex-sessions:
+  # 채팅 전용 — 파이프라인 세션과 섞이지 않는다(DEC-027 D5).
+  chat-codex-sessions:

@@ -1,5 +1,5 @@
 import { api } from "@/lib/api";
-import { HeroTerminal } from "@/components/home/hero-terminal";
+import { ChatHero } from "@/components/home/chat-hero";
 import { LandingPreview } from "@/components/home/landing-preview";
 
 export const dynamic = "force-dynamic";
@@ -17,7 +17,9 @@ export default async function HomePage() {
 
     return (
       <main className="page-fade">
-        <HeroTerminal profile={profile} site={site} />
+        {/* 첫 화면은 채팅 히어로 한 화면 — 아래로 스크롤하면 기존 프리뷰가 이어진다
+            (KDEV-DEC-025 D1. 히어로 터미널은 폐기했다). */}
+        <ChatHero />
         <LandingPreview
           profile={profile}
           site={site}

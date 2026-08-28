@@ -10,7 +10,7 @@ from __future__ import annotations
 from datetime import date
 from typing import Any
 
-from sqlalchemy import Date, ForeignKey, String, Text
+from sqlalchemy import Boolean, Date, ForeignKey, String, Text
 from sqlalchemy.dialects.postgresql import ARRAY, JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -38,3 +38,10 @@ class Product(Base, TimestampMixin):
     thumbnail: Mapped[str | None] = mapped_column(String(255))
     links: Mapped[dict[str, Any] | None] = mapped_column(JSONB)         # {site, docs}
     visible: Mapped[bool] = mapped_column(default=True, server_default="true")
+
+    # 채팅 AI 노출 — **기본 false 옵트인**(DEC-027 D4 · spec v0.0.8 로 product 확장).
+    # `visible`(사이트 표면)과 다른 축이다. 회사에서 만든 것이라 승인 경계가 특히
+    # 중요하다 — 켠 제품의 showcase.md 만 AI 에게 존재한다.
+    chat_exposed: Mapped[bool] = mapped_column(
+        Boolean, default=False, server_default="false", nullable=False
+    )

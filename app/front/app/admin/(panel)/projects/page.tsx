@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { adminApi, AuthError } from "@/lib/api";
+import { ChatExposureToggle } from "@/components/admin/chat-exposure-toggle";
 import { RepoSection } from "@/components/admin/repo-section";
 import type { AdminProject, ProjectInput, WorkStatus } from "@/lib/types";
 
@@ -206,6 +207,8 @@ function ProjectCard({
           >
             {project.visible ? "visible" : "hidden"}
           </button>
+          {/* 채팅 노출 — 켠 것만 AI tool 응답에 실린다(SPEC-017 U-7). visible 과 별개다. */}
+          <ChatExposureToggle kind="project" id={project.id} exposed={project.chatExposed} />
           <button type="button" onClick={() => setEditing(true)} style={ghostBtn}>
             수정
           </button>

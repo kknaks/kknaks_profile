@@ -24,6 +24,7 @@ def _to_dto(
         title=row.title,
         body=row.body,
         display_order=row.display_order,
+        chat_exposed=row.chat_exposed,
     )
 
 

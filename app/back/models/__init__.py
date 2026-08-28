@@ -3,6 +3,7 @@
 from models.algorithm import Algorithm
 from models.base import Base
 from models.career import Career
+from models.chat import ChatMessage, ChatSession, Conversation
 from models.commit import Commit
 from models.company import Company
 from models.content import Content
@@ -24,9 +25,12 @@ __all__ = [
     "Algorithm",
     "Base",
     "Career",
+    "ChatMessage",
+    "ChatSession",
     "Commit",
     "Company",
     "Content",
+    "Conversation",
     "Daily",
     "Education",
     "Gate",

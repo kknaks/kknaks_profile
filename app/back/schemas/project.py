@@ -28,6 +28,8 @@ class AdminProjectItem(BaseModel):
     thumbnail: str | None = None
     links: dict[str, Any] | None = None
     visible: bool
+    # 채팅 노출 토글의 현재값(SPEC-017 U-7) — `visible` 과 다른 축이다.
+    chat_exposed: bool = Field(default=False, serialization_alias="chatExposed")
 
     @classmethod
     def from_dto(cls, dto: ProjectDTO) -> AdminProjectItem:
@@ -44,6 +46,7 @@ class AdminProjectItem(BaseModel):
             thumbnail=dto.thumbnail,
             links=dto.links,
             visible=dto.visible,
+            chat_exposed=dto.chat_exposed,
         )
 
 

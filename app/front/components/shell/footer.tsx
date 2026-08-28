@@ -28,6 +28,8 @@ export function PageFooter() {
   }, []);
 
   if (pathname?.startsWith("/admin")) return null; // 관리자 셸은 자체 레이아웃
+  // /chat 은 한 화면짜리 대화 표면이다 — 하단이 고정 컴포저 자리라 푸터를 두지 않는다.
+  if (pathname?.startsWith("/chat")) return null;
 
   const user = me?.profile;
   const copy = site?.site;

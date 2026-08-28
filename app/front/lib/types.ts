@@ -575,11 +575,13 @@ export interface AdminCareer {
   summary?: string | null;
   description?: string | null;
   stack: string[];
+  /** 채팅 노출(KDEV-SPEC-017 U-7). 토글은 전용 엔드포인트다 — 폼이 보내지 않는다. */
+  chatExposed?: boolean;
 }
 
 /** 등록·수정 폼이 보내는 필드 — 보낼 필드만 담는다. 파생값·companyName 은 못 보낸다. */
 export type CareerInput = Partial<
-  Omit<AdminCareer, "id" | "companyName" | "isCurrent" | "period">
+  Omit<AdminCareer, "id" | "companyName" | "isCurrent" | "period" | "chatExposed">
 >;
 
 /* ══════════════════════════════════════════════════════════════════════════
@@ -647,11 +649,13 @@ export interface AdminProduct {
   /** `product.links` jsonb — `{site, docs}`. */
   links?: { site?: string; docs?: string } | null;
   visible: boolean;
+  /** 채팅 노출(KDEV-SPEC-017 U-7). 토글은 전용 엔드포인트다 — 폼이 보내지 않는다. */
+  chatExposed?: boolean;
 }
 
 /** 등록·수정 폼이 보내는 필드 — 보낼 필드만 담는다. 파생 표시값은 못 보낸다. */
 export type ProductInput = Partial<
-  Omit<AdminProduct, "id" | "careerTitle" | "companyName">
+  Omit<AdminProduct, "id" | "careerTitle" | "companyName" | "chatExposed">
 >;
 
 /* ══════════════════════════════════════════════════════════════════════════
@@ -683,11 +687,13 @@ export interface AdminProblem {
   /** 어떻게 풀었나. */
   body?: string | null;
   displayOrder: number;
+  /** 채팅 노출(KDEV-SPEC-017 U-7). 토글은 전용 엔드포인트다 — 폼이 보내지 않는다. */
+  chatExposed?: boolean;
 }
 
 /** 등록·수정 폼이 보내는 필드 — 보낼 필드만 담는다. `productId: null` 은 연결 해제. */
 export type ProblemInput = Partial<
-  Omit<AdminProblem, "id" | "careerTitle" | "companyName" | "productTitle">
+  Omit<AdminProblem, "id" | "careerTitle" | "companyName" | "productTitle" | "chatExposed">
 >;
 
 /* ══════════════════════════════════════════════════════════════════════════
@@ -722,10 +728,18 @@ export interface AdminProject {
     pypi?: string;
   } | null;
   visible: boolean;
+  /** 채팅 노출(KDEV-SPEC-017 U-7). 토글은 전용 엔드포인트다 — 폼이 보내지 않는다. */
+  chatExposed?: boolean;
 }
 
 /** 등록·수정 폼이 보내는 필드 — 보낼 필드만 담는다. */
-export type ProjectInput = Partial<Omit<AdminProject, "id">>;
+export type ProjectInput = Partial<Omit<AdminProject, "id" | "chatExposed">>;
+
+/**
+ * 채팅 노출 토글의 대상 종류 — `PATCH /api/admin/chat-exposure/{kind}/{id}`
+ * (KDEV-SPEC-017 §4). 켠 것만 AI tool 응답에 실린다(DEC-027 D4).
+ */
+export type ChatExposureKind = "career" | "project" | "problem" | "product";
 
 /* ══════════════════════════════════════════════════════════════════════════
  * algorithm (admin) — erd.md §algorithm. 어드민 알고리즘 화면.
