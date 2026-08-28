@@ -30,6 +30,9 @@
 | KDEV-DEC-022 | 잔디가 current.md 의 「진행 중」만 갱신한다 | accepted | KDEV-BL-007 | DEC-015 D1 착지 확장 | SPEC-012 |
 | KDEV-DEC-023 | 개념 후보를 그래프로 좁힌다 — 전량 투입을 끝낸다 | accepted | KDEV-BL-007 | — | SPEC-008 |
 | KDEV-DEC-024 | 스테이지 사이 세션을 이어받는다 — 체인 하나가 한 대화다 | accepted | KDEV-BL-003 | SPEC-009 반영 · WORK-022 발주 | SPEC-009 |
+| KDEV-DEC-025 | 홈 전면 재구성 — 채팅 퍼스트 히어로와 /chat 페이지 | accepted | KDEV-BL-008 | SPEC-017 작성 | SPEC-017 |
+| KDEV-DEC-026 | 비회원 방문자 식별 — 서버 발급 익명 세션 쿠키 | accepted | KDEV-BL-008 | SPEC-017 작성 | SPEC-017 |
+| KDEV-DEC-027 | 채팅 AI 실행 경로와 tool 노출 경계 — 전용 큐 · MCP · chat_exposed 옵트인 | accepted | KDEV-BL-008 | SPEC-017 작성 | SPEC-017 |
 
 ### 개정 관계
 

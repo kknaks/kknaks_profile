@@ -98,6 +98,8 @@
 | WORK-020 | 개념 후보 좁히기 — alias seed + 그래프 1홉 (`concept`·`daily` 게이트 입력에서 전량 투입 제거, 5 phase) | BE | **done (2026-08-12)** — payload 70,554 → 11,359자(84% 감소), 회수율 87%. 문서 행이 `todo` 로 남아 있던 것을 2026-08-13 에 바로잡았다 | SPEC-008 | — | `work-020-concept-candidate-retrieval.md` |
 | WORK-021 | 노트 출력 계약에서 JSON 을 뺀다 — 구분자 레코드 (`source_note`·`concept`·`derived`·`post`, 6 phase) | BE | **in_progress 90%** — P1~P4·P6 done. **실전(#3881)에서 다섯 스테이지 전부 1차 통과·재시도 0** — 이 발주가 풀려던 문제는 닫혔다. 발행은 다른 사유(`type` 누락·dead link)로 거부됐고 하나는 P6 로 닫았다(OQ-3) | SPEC-008 | — | `work-021-note-output-delimiter.md` |
 | WORK-022 | 스테이지 사이 세션 이어받기 — 앞 게이트 승계 · `cancelled` 제외 · 실패 세션 보존 · 원문 재전송 제거 · **죽은 세션 복구** (6 phase) | BE | **in_progress 85%** — P1~P4·P6 done. 실전(#3881)에서 게이트 넷이 한 세션임을 확인했고, **배포가 세션을 죽여 항목이 멎는 구멍**을 P6 로 닫았다. P5 재측정만 남았다 | SPEC-009 | — | `work-022-stage-session-inheritance.md` |
+| WORK-023 | 채용담당자 채팅 BE — 세션·대화 API · MCP 서버 · 제출·소비자 (4 phase) | BE | **done (2026-08-28)** — 워커 구현 + 리뷰 fix1 + e2e 실측 fix2(제출-커밋 순서). back 133·mcp 24 passed, 로컬 compose e2e 완주(15~20초). PR 대기 | SPEC-017 | — | `work-023-recruiter-chat-backend.md` |
+| WORK-024 | 채용담당자 채팅 FE — 홈 재구성 · /chat · 폴링 대화 표면 (3 phase) | FE | **done (2026-08-28)** — 워커 구현 + fix1(retry·색). tsc 0, 로컬 dev 실 API 연동 확인. PR 대기 | SPEC-017 | WORK-023 | `work-024-recruiter-chat-frontend.md` |
 
 ## Status Board
 
@@ -108,6 +110,7 @@
 | 제품 레지스트리 (BL-005) | **018 done (2026-08-03)** — P1~P5 완주. `repository/` 계층 신설이 규약의 첫 적용 | 관측 3건(시드 자동화·서버 실 등록·잔디)만 Open Issue |
 | PARA 정렬 (BL-006) | **019 done (2026-08-03)** — `resources/` 이관 완주. P·R·Archive 가 폴더로 섰다 | 후속 — `persona/` A 판정 (DEC-018 OQ-1) |
 | 승인 파이프라인 (BL-003) | **012·013 done** · 014~015 todo | **014 착수** (큐 + route 게이트) → 015 |
+| 채용담당자 채팅 (BL-008) | **023·024 done (2026-08-28)** — 리뷰 WARN 전건 해소 + e2e 완주(첫 질문 15초·resume·retry·근거·tool 단계) | PR(코드·문서 분리) → 배포. **배포 전 레이트리밋 결정 필수** |
 | 잔디 파이프라인 (BL-004) | **017 in_progress 50%** — P1 형식 SoT done · **P2 done**(레일·더미 `collect`·`investigate`·`daily` 게이트 작성·실배선 + 접수 진입점 `daily:{date}` 합성 키·백필·`auto:false`/미래 날짜 차단) · **P3 done**(발행 허용 2경로·`upsert`·그래프 검증 제외·보호 검증 둘, `publish_atomic` 은 자동 달성). **737 passed** | P4 — 게이트 화면 + 더미 한 바퀴 완주(dry-run). 착수 전 Open Issue 「활동 0 차단 위치」 결정. ⚠ **이 갱신 직후 `8c2aa7a`(P4 승인 화면)가 들어왔다 — 아직 문서에 미반영** |
 
 ## Spec Coverage
