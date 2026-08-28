@@ -21,7 +21,7 @@
 
 1. **값은 `config/` 밖에 적지 않는다.** 이 런북·스크립트·브리프에 경로·브랜치·모델명을 하드코딩하지 않는다. 바꿀 일이 생기면 `config/` 를 고친다.
 2. **워커는 브리프 1장만 받는다.** 워커가 `config/` 를 읽게 하지 않는다 — 스크립트가 config 를 브리프에 렌더링해 넣는다.
-3. **양식은 `templates/` 에 둔다.** 스크립트 안에 스켈레톤을 찍지 않는다.
+3. **양식은 루트 `templates/orchestration/` 에 둔다.** 스크립트 안에 스켈레톤을 찍지 않는다. 레포의 모든 양식이 루트 `templates/` 한 곳에서 관리된다 — para 양식(`areas/`·`projects/`·`resources/`)과 나란히 산다.
 4. **새 프로젝트 = `config/projects/<이름>.json` 하나.** 스크립트도 커맨드도 복사하지 않는다.
 
 ### 디렉토리
@@ -30,10 +30,11 @@
 config/agents.json            워커 실행 명령 (claude/codex). 명령 문자열의 유일한 출처
 config/projects/<p>.json      프로젝트별 repos·workers·allowed_paths·verify·검증 설정
 roles/<p>/<worker>/           워커 역할 문서 (role·rules·skills·tools·workflow)
-templates/worker-brief.md     브리프 표준형. <TOKEN> 은 스크립트가 config 로 치환
-templates/resume.md           재개 노트 표준형 — 다음 세션이 할 일
-templates/work-summary.md     작업 요약 표준형 — 끝난 뒤 회고. 잔디 원료
-templates/pr-body.md          PR 본문 표준형
+../templates/orchestration/   양식 전부 (루트 templates/ 통합 관리)
+  worker-brief.md             브리프 표준형. <TOKEN> 은 스크립트가 config 로 치환
+  resume.md                   재개 노트 표준형 — 다음 세션이 할 일
+  work-summary.md             작업 요약 표준형 — 끝난 뒤 회고. 잔디 원료
+  pr-body.md                  PR 본문 표준형
 scripts/new-work.sh           config 읽어 워크트리 + 브리프 + _RESUME.md 생성
 scripts/archive-work.sh       종료 안전검사 → SUMMARY 게이트 → 정리 → 아카이브
 work/<slug>/                  진행 중 작업 — 브리프 + _RESUME.md
@@ -107,7 +108,7 @@ orca orchestration reset --all --json    # 이전 잔여 태스크/메시지 (�
 scripts/new-work.sh <project> <slug> [--workers a,b] [--agent worker=agent ...]
 ```
 config 로드 → canonical `fetch`(**pull/checkout 금지** — canonical 은 사용자가 쓰는 체크아웃이다) →
-워크트리 생성 → `work/<slug>/` 에 **config 값이 채워진 브리프** + `templates/resume.md` 로 렌더한 `_RESUME.md` 생성.
+워크트리 생성 → `work/<slug>/` 에 **config 값이 채워진 브리프** + `templates/orchestration/resume.md` 로 렌더한 `_RESUME.md` 생성.
 마지막에 워커 터미널 생성 명령을 그대로 출력한다.
 
 ### STEP 3 — 소스 문서 읽기
@@ -140,7 +141,7 @@ orca orchestration dispatch --task <task_id> --to <handle> --inject --json
 
 ### STEP 7 — PR
 검증 통과 후 코디네이터가 `pr_base`(config) 기준으로 PR. spec 과 code 는 분리.
-**PR 제목·본문은 `templates/pr-body.md` 표준형을 따른다.** 해당 없는 섹션은 지우되 「배포 주의」는 없어도 "동형 — 공지 없음" 으로 판단을 남긴다.
+**PR 제목·본문은 `templates/orchestration/pr-body.md` 표준형을 따른다.** 해당 없는 섹션은 지우되 「배포 주의」는 없어도 "동형 — 공지 없음" 으로 판단을 남긴다.
 
 **PR 을 올리기 전에 base 대비 위치부터 본다** — `git rev-list --count HEAD..origin/<base>`. 0 이면 rebase 불필요, 아니면 rebase 후 push.
 
