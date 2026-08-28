@@ -65,10 +65,10 @@ fix2 뒤 순차) → 회사 제품 질문 e2e 재확인 → rebase(origin/main 2
 
 ## 4. 산출물
 
-- spec PR: (문서 — agent 브랜치에서 별도)
-- code PR: (검증 후)
-- 리포트: —
-- 커밋: —
+- code PR: https://github.com/kknaks/kknaks_profile/pull/23 (recruiter-chat → main, rebase 완료·169 passed)
+- docs PR: https://github.com/kknaks/kknaks_profile/pull/24 (docs/recruiter-chat — agent 의 이번 세션 범위만 추출. agent 브랜치의 이전 세션 드리프트 14파일은 범위 밖으로 제외)
+- 리포트: `review-code-report.md`
+- 머지 후: 홈서버 pull → compose up --build back mcp chat-worker → alembic upgrade head(2건) → 어드민 노출 ON → 실질문 확인. **공개 전 레이트리밋 필수**
 
 - [!] **로컬 검증 스택이 워크트리에서 떠 있다**(kknaks-postgres/redis/back/mcp/chat-worker,
   워크트리 compose) — archive 전에 `docker compose down` 필수. `.env` 는 canonical 에서
