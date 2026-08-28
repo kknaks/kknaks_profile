@@ -112,6 +112,14 @@ async def pull_ledger(
     pull 은 --rebase — 사람이 옵시디언에서 같은 레포를 밀기 때문(inbox.md Step 7).
     그 이상의 동기화 장치는 두지 않는다.
 
+    **--autostash 인 이유** (2026-08-28 게이트 50 실사고):
+    같은 이유로 **사람이 편집 중인 파일이 워킹트리에 있는 것도 정상**이다. 그런데
+    `--rebase` 는 tracked 변경이 하나라도 있으면 fetch 전에 거부해서, 사람이 개념과
+    무관한 개인 노트를 쓰다 만 것만으로 **착지 전체가 멈췄다.** autostash 가 그
+    변경을 넣어 두고 rebase 한 뒤 되돌려 놓는다 — 사람의 작업물은 그대로 남고
+    착지는 진행된다. 파이프라인은 `para/areas/concept/` 만 쓰므로 사람이 만지는
+    파일과 겹칠 일이 드물다.
+
     **신원이 여기도 필요하다** (2026-08-28 게이트 43 실사고):
     푸시가 실패해 로컬 커밋이 남은 상태에서 재시도하면 rebase 가 커밋을 새로 만든다.
     컨테이너에는 전역 gitconfig 가 없어 `unable to auto-detect email address
@@ -138,7 +146,7 @@ async def pull_ledger(
         "-c", f"credential.helper={_CRED_HELPER}",
         "-c", f"user.name={identity.name}",   # rebase 가 커밋을 만들 수 있다
         "-c", f"user.email={identity.email}",
-        "pull", "--rebase", url, branch, env=_push_env(credentials),
+        "pull", "--rebase", "--autostash", url, branch, env=_push_env(credentials),
     )
     if code != 0:
         raise GitPushError(f"git pull 실패: {out.splitlines()[-1] if out else code}")
