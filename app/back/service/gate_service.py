@@ -224,7 +224,8 @@ class GateService:
 
         if not dry_run:
             # 반드시 write 앞 — 여기서 실패하면 워킹트리를 건드리지 않은 채로 끝난다.
-            await pull_ledger(str(ledger), credentials=credentials)
+            assert identity is not None
+            await pull_ledger(str(ledger), identity, credentials=credentials)
 
         for rel, body in zip(rel_paths, bodies):
             target = ledger / rel

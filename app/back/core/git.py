@@ -102,12 +102,22 @@ def _push_env(credentials: GitPushCredentials) -> dict[str, str]:
 
 
 async def pull_ledger(
-    ledger: str, *, credentials: GitPushCredentials | None = None
+    ledger: str,
+    identity: GitIdentity,
+    *,
+    credentials: GitPushCredentials | None = None,
 ) -> None:
     """착지 파일을 **쓰기 전에** 원격을 당긴다. 실패면 GitPushError.
 
     pull 은 --rebase — 사람이 옵시디언에서 같은 레포를 밀기 때문(inbox.md Step 7).
     그 이상의 동기화 장치는 두지 않는다.
+
+    **신원이 여기도 필요하다** (2026-08-28 게이트 43 실사고):
+    푸시가 실패해 로컬 커밋이 남은 상태에서 재시도하면 rebase 가 커밋을 새로 만든다.
+    컨테이너에는 전역 gitconfig 가 없어 `unable to auto-detect email address
+    (root@<컨테이너>.(none))` 로 죽는다 — 「커밋은 됐는데 푸시가 실패」한 게이트의
+    복구 경로가 통째로 막힌다. 평소엔 로컬 커밋이 없어 fast-forward 라 안 걸렸다.
+    commit 과 같은 방식으로 명령 단위 주입한다.
 
     **왜 write 앞인가** (2026-08-28 실사고, 게이트 29·43):
     `git pull --rebase` 는 tracked 파일에 스테이징 안 된 변경이 있으면 fetch 전에
@@ -126,6 +136,8 @@ async def pull_ledger(
     code, out = await _run(
         ledger, "-c", "credential.helper=",  # 저장된 helper 무시 — 이 자격만 쓴다
         "-c", f"credential.helper={_CRED_HELPER}",
+        "-c", f"user.name={identity.name}",   # rebase 가 커밋을 만들 수 있다
+        "-c", f"user.email={identity.email}",
         "pull", "--rebase", url, branch, env=_push_env(credentials),
     )
     if code != 0:
