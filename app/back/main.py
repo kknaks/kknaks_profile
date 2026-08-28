@@ -27,7 +27,7 @@ async def _lifespan(app: FastAPI):
     # 잔디 스케줄러 — 매일 KST 08:00 전체 수집(케이스 6·7). 가벼운 asyncio 루프.
     from service.collect_service import collect_service
 
-    # persona 스케줄러 — 매일 KST 08:10 역할별 persona md(DB 파생) 재렌더.
+    # persona 스케줄러 — 매일 KST 08:10 프로필·역할 persona md(DB 파생) 재렌더.
     from service.persona_service import persona_service
 
     tasks = [

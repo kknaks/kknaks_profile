@@ -1,10 +1,11 @@
-"""역할별 persona md 렌더 — DB 파생물. SoT 는 DB(career·product·problem).
+"""personal persona md 렌더 — DB 파생물.
 
-erd 의 personal/company 규약: 표면에 보이는 것은 DB, md 는 파생. 이 서비스는
-career 한 행을 읽어 그 역할의 persona md 를 **통째로 덮어쓴다**(append 아님) —
-md 는 순수 DB 파생이라 손으로 안 고치고, 매일 다시 렌더해도 같은 결과가 나온다.
+SoT 는 DB(profile·career·product·problem)다. 이 서비스는 여름별컴퍼니 프로필과
+회사 역할별 persona md 를 **통째로 덮어쓴다**(append 아님). md 는 순수 DB
+파생물이라 손으로 고치지 않고, 매일 다시 렌더해도 같은 결과가 나온다.
 
-경로는 career.persona_path 가 있으면 그 경로, 없으면
+프로필은 `para/areas/personal/summer-star/profile.md` 에 쓴다. 회사 역할은
+career.persona_path 가 있으면 그 경로, 없으면
 `para/areas/personal/company/<회사 slug>/<역할 title kebab>.md` 로 파생한다.
 쓰기 기준은 LEDGER_PATH(승인 착지와 같은 원장 루트).
 
@@ -25,10 +26,12 @@ from config import get_settings
 from core.db import SessionLocal
 from dto.career import CareerDTO
 from dto.problem import ProblemDTO
+from dto.profile import ProfileDTO
 from dto.product import ProductDTO
 from repository.career_repo import CareerRepository
 from repository.company_repo import CompanyRepository
 from repository.problem_repo import ProblemRepository
+from repository.profile_repo import ProfileRepository
 from repository.product_repo import ProductRepository
 
 logger = logging.getLogger(__name__)
@@ -37,11 +40,16 @@ _KST = ZoneInfo("Asia/Seoul")
 _SCHEDULE_HOUR = 8        # 매일 KST 08:10 — 잔디(08:00) 뒤에 돈다
 _SCHEDULE_MINUTE = 10
 
-# 견본 두 장(ax-lead·backend-dev)의 머리 주석 그대로.
-_HEADER = (
+# company 역할 문서 머리 주석.
+_CAREER_HEADER = (
     "<!-- DB 파생 · 자동 생성 — 손으로 고치지 않는다. "
     "SoT 는 DB(career·product·problem·commit).\n"
     "     스케줄이 career.persona_path 를 따라 이 파일을 매일 덮어쓴다. -->"
+)
+_PROFILE_PATH = "para/areas/personal/summer-star/profile.md"
+_PROFILE_HEADER = (
+    "<!-- DB 파생 · 자동 생성 — 손으로 고치지 않는다. SoT 는 DB(profile).\n"
+    "     persona 스케줄이 이 파일을 매일 덮어쓴다. -->"
 )
 _NO_PROBLEM = "_(아직 없음 — 이력서 알맹이. 회고에서 올라온다)_"
 
@@ -65,11 +73,13 @@ class PersonaService:
         product_repo: ProductRepository,
         problem_repo: ProblemRepository,
         company_repo: CompanyRepository,
+        profile_repo: ProfileRepository,
     ) -> None:
         self._career_repo = career_repo
         self._product_repo = product_repo
         self._problem_repo = problem_repo
         self._company_repo = company_repo
+        self._profile_repo = profile_repo
         self._running = False
 
     # ── 트리거 ──────────────────────────────────────────────────────────
@@ -81,13 +91,14 @@ class PersonaService:
         return True
 
     async def render_all(self) -> list[str]:
-        """모든 career 의 persona md 를 다시 렌더한다 — 반환은 쓴 상대경로 목록."""
+        """프로필과 모든 career persona md 를 렌더한다 — 쓴 상대경로를 반환한다."""
         if self._running:
             logger.info("persona: already running — skip")
             return []
         self._running = True
         try:
             async with SessionLocal() as session:
+                profile = await self._profile_repo.get_first(session)
                 careers = await self._career_repo.list_public(session)
                 products = await self._product_repo.list_with_career(session)
                 problems = await self._problem_repo.list_with_names(session)
@@ -109,6 +120,16 @@ class PersonaService:
 
             ledger = Path(get_settings().ledger_path)
             written: list[str] = []
+            if profile is None:
+                logger.warning("persona: profile not found — skip %s", _PROFILE_PATH)
+            else:
+                profile_target = ledger / _PROFILE_PATH
+                profile_target.parent.mkdir(parents=True, exist_ok=True)
+                profile_target.write_text(
+                    self._render_profile(profile), encoding="utf-8"
+                )
+                written.append(_PROFILE_PATH)
+
             for career in careers:
                 rel = self._resolve_path(career, slug_by_company)
                 text = self._render(
@@ -140,7 +161,12 @@ class PersonaService:
         products: list[ProductDTO],
         problems: list[ProblemDTO],
     ) -> str:
-        lines: list[str] = [_HEADER, "", f"# {career.title} · {career.company_name}", ""]
+        lines: list[str] = [
+            _CAREER_HEADER,
+            "",
+            f"# {career.title} · {career.company_name}",
+            "",
+        ]
 
         status = "재직 중" if career.ended_on is None else "퇴임"
         meta = f"`{_period(career)}` · {status}"
@@ -178,6 +204,38 @@ class PersonaService:
 
         return "\n".join(lines).rstrip() + "\n"
 
+    def _render_profile(self, profile: ProfileDTO) -> str:
+        """profile 한 행을 summer-star/profile.md 전문으로 렌더한다."""
+        lines = [
+            _PROFILE_HEADER,
+            "",
+            f"# {profile.name} · 프로필",
+            "",
+            "## 기본 정보",
+            "",
+            "| 항목 | 내용 |",
+            "| --- | --- |",
+            f"| 핸들 | `{profile.handle}` |",
+            f"| 역할 | {profile.role} |",
+            f"| 연차 | {profile.years or '-'} |",
+            f"| 위치 | {profile.location or '-'} |",
+            f"| 집중 분야 | {profile.focus or '-'} |",
+            f"| 프로필 이미지 | {profile.avatar_url or '-'} |",
+            "",
+            "## 연락처",
+            "",
+            "| 항목 | 내용 |",
+            "| --- | --- |",
+            f"| 이메일 | {profile.email} |",
+            f"| GitHub | {profile.github or '-'} |",
+            f"| LinkedIn | {profile.linkedin or '-'} |",
+            "",
+            "## 기술",
+            "",
+            " · ".join(profile.stack) if profile.stack else "_(아직 없음)_",
+        ]
+        return "\n".join(lines).rstrip() + "\n"
+
     # ── 스케줄 — 매일 KST 08:10 ─────────────────────────────────────────
     async def run_scheduler(self) -> None:
         """가벼운 asyncio 루프 — 다음 08:10 까지 자고 전체를 재렌더한다."""
@@ -205,4 +263,5 @@ persona_service = PersonaService(
     ProductRepository(),
     ProblemRepository(),
     CompanyRepository(),
+    ProfileRepository(),
 )

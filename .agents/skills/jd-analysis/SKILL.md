@@ -10,6 +10,7 @@ description: 공개 채용공고 URL을 원문으로 박제하고 회사·요구
 
 > 세트 구성 — [template.md](./template.md) 분석 문서 양식 ·
 > [resume-template.md](./resume-template.md) 이력서 양식 ·
+> [cover-letter-template.md](./cover-letter-template.md) 자기소개서 양식 ·
 > [checklist.md](./checklist.md) 진행 체크리스트 ·
 > [scripts/fetch_jd.py](./scripts/fetch_jd.py) 공고 크롤러 ·
 > [scripts/build_pdf.py](./scripts/build_pdf.py) resume.md → A4 PDF
@@ -21,7 +22,9 @@ resume/YYYY-MM-DD-<회사slug>/
 ├── jd.md                                  원문 박제 — frontmatter 메타 + 원문 그대로
 ├── YYYY-MM-DD-<회사slug>-jd-analysis.md   분석 — template.md 양식 (§1~§4)
 ├── resume.md                              이력서 — resume-template.md 양식
-└── resume.pdf                             제출본 — build_pdf.py 산출
+├── resume.pdf                             제출본 — build_pdf.py 산출
+├── cover-letter.md                        자기소개서 — 지원 폼에서 필수일 때만
+└── cover-letter.pdf                       자기소개서 제출본 — 필수일 때만
 ```
 
 ## 절차
@@ -33,7 +36,8 @@ resume/YYYY-MM-DD-<회사slug>/
    스크립트가 브라우저 UA로 재시도하고, SPA(GreetingHR류)면 `__NEXT_DATA__`
    JSON에서 본문·메타를 파싱한다. frontmatter에 회사(법인명)·포지션·고용형태·
    근무지·게시~마감·조회일을 적고, 본문은 원문 그대로 수정·요약하지 않는다.
-   마감일 등 메타는 페이지 데이터가 정본이다.
+   마감일 등 메타는 페이지 데이터가 정본이다. 지원 폼의 `docsInfo`도 확인해 이력서·
+   자기소개서·포트폴리오 각각의 필수 여부, 파일 형식, 별도 문항과 글자 수를 기록한다.
 2. **§1 개요** — `jd.md` frontmatter를 표로 옮긴다.
 3. **§2 회사 정보** — 아래 「회사 정보 수집」 방법으로 모은다. **자사 서술과
    외부 확인을 출처로 가른다.** 제품 구조에는 「기술 함의」를 달아 JD의 기술
@@ -56,7 +60,13 @@ resume/YYYY-MM-DD-<회사slug>/
    - **약점 경합** — 숨길 수 없는 미달은 선제 재프레임하고, 실물 없는 기술은 침묵한다.
    - **배치** — 이력서 절과 요구 항목의 대응표를 만든다.
 8. **resume.md 작성** — §4 확정 후에만 `resume-template.md` 양식으로 쓴다. 링크는
-   DB의 `project.links`·`product.links`에서 가져온다.
+   DB의 `project.links`·`product.links`에서 가져온다. 이름·기본 직함·연차·지역·email·
+   github·linkedin·기본 기술은 DB 파생 문서인
+   `para/areas/personal/summer-star/profile.md`를 정본으로 읽는다. 현재 회사 역할을
+   병기할 때만 career DB 파생 문서를 함께 본다. `seed_profile.py`, 옛 이력서,
+   분석 문서의 연락처를 재사용하지 않는다.
+   문장 밀도와 카드 구성은 `resume/2026-08-26-allosta/resume.md`를 **톤 참고용으로만**
+   본다. 그 문서의 사실·수치·링크는 현재 원장 확인 없이 가져오지 않는다.
 9. **한글화** — `$korean-humanizer`를 `resume.md`에 적용한다. 이력서 특칙:
    - 산문 문장 안의 줄표(`—`)는 문장 분리나 어미 연결로 푼다.
    - 제목의 `—` 구분자는 보존한다. h3 회사·역할·기간과 bullet 카드 제목 서식이 의존한다.
@@ -64,6 +74,11 @@ resume/YYYY-MM-DD-<회사slug>/
    - 수치·고유명사 보존을 확인하고 한글화 등급을 보고한다.
 10. **PDF** — `scripts/build_pdf.py resume.md`로 A4 PDF를 만든다. frontmatter는 자동
     제외한다. 생성 후 헤더 연락처, 기간 우측 정렬, 링크 행, 페이지 나눔을 렌더링해 확인한다.
+11. **자기소개서** — 지원 폼에서 필수일 때 `cover-letter-template.md` 양식으로 작성한다.
+    별도 문항이 있으면 문항별로 답하고, 없으면 1페이지 자유양식으로 쓴다. 이력서의 경력 카드를
+    반복하지 않고 지원 이유 → 대표 문제 해결 방식 → 제품 E2E 경험 → 약점과 입사 후 접근 순으로
+    잇는다. `$korean-humanizer` 적용 후 `scripts/build_pdf.py cover-letter.md`로 PDF를 만들고
+    렌더링한다.
 
 ## 회사 정보 수집
 
@@ -92,6 +107,8 @@ resume/YYYY-MM-DD-<회사slug>/
 - 번역체, 과장 어휘, 결산 상투구를 걷어낸다.
 - 요구 사유는 기술의 일반적 중요성이 아니라 이 회사의 제품 구조·팀 규모·성장 단계에
   근거해 쓴다.
+- 이력서는 설명문이 아니라 증거 카드다. 결과가 있는 제목을 먼저 쓰고, 본문은 문제·판단·
+  결과만 1~2문장으로 닫는다. 배경 설명, 기능 소개, 기술 선택의 일반론은 덜어낸다.
 
 ## 규칙
 

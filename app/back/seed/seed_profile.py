@@ -27,7 +27,7 @@ SEED = {
     "focus": "AI · Python · Infra · mobile",
     "avatar_url": "/assets/profile/me.png",
     # 연락
-    "email": "kknaks@gmail.com",
+    "email": "dh221009@naver.com",
     "github": "github.com/kknaks",
     "linkedin": "linkedin.com/in/kknaks",
     # 스택

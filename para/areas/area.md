@@ -37,6 +37,16 @@ para/areas/
 
 **SoT 는 DB 다.** 여기 md 는 원장이 아니다. 시드 데이터를 넣고 나서 무엇이 md 로 남을지 다시 본다.
 
+**DB 파생 문서**
+
+| 경로 | DB 원천 | 갱신 |
+| --- | --- | --- |
+| `personal/company/<회사>/<역할>.md` | `career` · `product` · `problem` · `commit` | 매일 KST 08:10 전체 재렌더 |
+| `personal/summer-star/profile.md` | `profile` | 매일 KST 08:10 전체 재렌더 |
+
+두 경로의 md 는 손으로 고치지 않는다. 서버의 persona 스케줄이 전문을 덮어쓰며,
+수동 재생성이 필요하면 `POST /api/admin/persona/render`도 같은 렌더 경로를 사용한다.
+
 ---
 
 ## 3. concept/
