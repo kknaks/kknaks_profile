@@ -1,0 +1,679 @@
+<title>kknaks.dev — 채팅 퍼스트 홈 시안</title>
+<style>
+  :root {
+    /* kknaks portfolio tokens (globals.css 이식) */
+    --bg-0: #0a0b0d;
+    --bg-1: #101216;
+    --bg-2: #14171c;
+    --bg-3: #1a1e24;
+    --bg-4: #232830;
+    --line-1: rgba(255, 255, 255, 0.06);
+    --line-2: rgba(255, 255, 255, 0.10);
+    --line-3: rgba(255, 255, 255, 0.16);
+    --fg-0: #f4f5f7;
+    --fg-1: #c8ccd3;
+    --fg-2: #8b919b;
+    --fg-3: #5a606b;
+    --fg-4: #3a3f48;
+    --accent: oklch(0.78 0.14 145);
+    --accent-soft: oklch(0.78 0.14 145 / 0.14);
+    --accent-line: oklch(0.78 0.14 145 / 0.32);
+    --accent-ink: oklch(0.18 0.02 145);
+    --warn: oklch(0.82 0.13 80);
+    --font-sans: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --shadow-card: 0 1px 0 rgba(255,255,255,0.03) inset, 0 8px 24px rgba(0,0,0,0.4);
+    --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+    color-scheme: dark;
+  }
+
+  html { scroll-behavior: smooth; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg-0);
+    color: var(--fg-0);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mono { font-family: var(--font-mono); }
+
+  /* ── Top nav (기존 사이트 유지) ─────────────────── */
+  .nav {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; align-items: center; gap: 32px;
+    padding: 0 40px; height: 60px;
+    border-bottom: 1px solid var(--line-1);
+    background: color-mix(in srgb, var(--bg-0) 92%, transparent);
+    backdrop-filter: blur(8px);
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.02em;
+  }
+  .nav .brand { display: flex; align-items: center; gap: 8px; color: var(--fg-0); font-weight: 600; }
+  .nav .brand .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 2px; }
+  .nav .brand .tld { color: var(--fg-3); }
+  .nav .menu { display: flex; gap: 24px; flex: 1; }
+  .nav .menu a { color: var(--fg-2); text-decoration: none; }
+  .nav .menu a:hover, .nav .menu a:focus-visible { color: var(--fg-0); }
+  .nav .menu a .num { color: var(--fg-4); margin-right: 6px; }
+  .nav .status { display: flex; align-items: center; gap: 8px; color: var(--fg-2); }
+  .nav .status .live { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+
+  /* ── Hero (채팅) — 정확히 한 화면 ─────────────────── */
+  .stage.idle {
+    height: calc(100vh - 60px);
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    padding: 0 24px;
+    position: relative;
+  }
+
+  .greet { text-align: center; margin-bottom: 40px; }
+  .greet .eyebrow {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em;
+    color: var(--accent); text-transform: uppercase; margin-bottom: 20px;
+  }
+  .greet h1 {
+    margin: 0 0 14px; font-size: clamp(30px, 5vw, 44px); line-height: 1.15;
+    letter-spacing: -0.02em; font-weight: 700; text-wrap: balance;
+  }
+  .greet h1 .em { color: var(--accent); }
+  .greet p { margin: 0; color: var(--fg-2); font-size: 16px; }
+
+  /* ── 입력 터미널 ─────────────────────────────────── */
+  .ask {
+    width: min(720px, 100%);
+    background: var(--bg-1);
+    border: 1px solid var(--line-2);
+    border-radius: 10px;
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+    transition: border-color 200ms var(--ease);
+  }
+  .ask:focus-within { border-color: var(--accent-line); }
+  .ask .bar {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--line-1);
+    background: var(--bg-2);
+    font-family: var(--font-mono); font-size: 11px; color: var(--fg-3);
+  }
+  .ask .bar .dots { display: flex; gap: 6px; margin-right: 6px; }
+  .ask .bar .dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--bg-4); }
+  .ask .row { display: flex; align-items: center; gap: 12px; padding: 18px 18px; }
+  .ask .prompt { font-family: var(--font-mono); font-size: 16px; color: var(--accent); user-select: none; }
+  .ask input {
+    flex: 1; background: none; border: none; outline: none;
+    color: var(--fg-0); font-family: var(--font-mono); font-size: 15px;
+    caret-color: var(--accent);
+  }
+  .ask input::placeholder { color: var(--fg-3); }
+  .ask button {
+    background: var(--accent); color: var(--accent-ink);
+    border: none; border-radius: 6px; padding: 8px 16px;
+    font-family: var(--font-mono); font-size: 13px; font-weight: 600;
+    cursor: pointer; transition: opacity 120ms var(--ease);
+  }
+  .ask button:hover { opacity: 0.88; }
+  .ask button:focus-visible { outline: 2px solid var(--accent-line); outline-offset: 2px; }
+
+  .hint {
+    margin-top: 28px; color: var(--fg-3); font-size: 12.5px;
+    font-family: var(--font-mono); text-align: center;
+  }
+  .hint .k { color: var(--fg-2); }
+
+  /* 스크롤 큐 — 히어로 하단 */
+  .scroll-cue {
+    position: absolute; bottom: 22px; left: 0; right: 0;
+    display: flex; justify-content: center;
+  }
+  .scroll-cue a {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    color: var(--fg-3); text-decoration: none;
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em;
+  }
+  .scroll-cue a:hover { color: var(--fg-1); }
+  .scroll-cue .arr { animation: bob 2s infinite var(--ease); }
+  @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+
+  /* ── 아래 프리뷰 섹션들 ───────────────────────────── */
+  .section {
+    padding: 56px 80px;
+    border-top: 1px solid var(--line-1);
+  }
+  .section .head {
+    display: flex; align-items: baseline; gap: 16px; margin-bottom: 28px; flex-wrap: wrap;
+  }
+  .section .head .idx { font-family: var(--font-mono); font-size: 12px; color: var(--fg-3); }
+  .section .head h2 { font-size: 32px; letter-spacing: -0.02em; margin: 0; font-weight: 600; }
+  .section .head .sub { color: var(--fg-3); font-size: 14px; }
+  .section .head .all {
+    margin-left: auto; padding: 6px 10px; font-size: 12px;
+    font-family: var(--font-mono); color: var(--fg-2); text-decoration: none;
+    border: 1px solid var(--line-2); border-radius: 4px;
+  }
+  .section .head .all:hover { color: var(--fg-0); border-color: var(--line-3); }
+
+  /* About */
+  .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: start; }
+  .about-grid .tagline { font-size: 19px; line-height: 1.6; color: var(--fg-0); margin: 0; max-width: 640px; }
+  .about-grid dl { margin: 0; font-size: 13px; }
+  .about-grid dl > div {
+    display: grid; grid-template-columns: 90px 1fr; padding: 8px 0;
+    border-top: 1px solid var(--line-1);
+  }
+  .about-grid dt { font-family: var(--font-mono); color: var(--fg-3); }
+  .about-grid dd { margin: 0; color: var(--fg-1); }
+
+  /* Career */
+  .career { position: relative; padding-left: 28px; max-width: 720px; }
+  .career .rail { position: absolute; left: 5px; top: 8px; bottom: 8px; width: 1px; background: var(--line-2); }
+  .career .item { position: relative; margin-bottom: 24px; }
+  .career .node {
+    position: absolute; left: -28px; top: 8px; width: 11px; height: 11px; border-radius: 2px;
+    background: var(--bg-0); border: 1px solid var(--line-3);
+  }
+  .career .item.now .node { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .career .period { font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); margin-bottom: 4px; }
+  .career .period .nowtag { color: var(--accent); margin-left: 8px; }
+  .career .titleline { display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px; }
+  .career h3 { margin: 0; font-size: 17px; font-weight: 500; }
+  .career .org { color: var(--fg-1); }
+  .career .sep { color: var(--fg-3); }
+  .career p { margin: 0; color: var(--fg-1); font-size: 14px; line-height: 1.6; }
+
+  /* Projects */
+  .proj-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .proj-card {
+    display: block; text-decoration: none; color: inherit; overflow: hidden;
+    background: var(--bg-1); border: 1px solid var(--line-1); border-radius: 6px;
+    transition: border-color 120ms var(--ease);
+  }
+  .proj-card:hover { border-color: var(--line-3); }
+  .proj-card .thumb {
+    aspect-ratio: 1024 / 500; background: var(--bg-2);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono); font-size: 10px; color: var(--fg-3);
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 6px, rgba(255,255,255,0.02) 6px, rgba(255,255,255,0.02) 7px);
+  }
+  .proj-card .body { padding: 12px; border-top: 1px solid var(--line-1); }
+  .proj-card .metaline { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+  .proj-card .slug { font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); }
+  .proj-card .status {
+    font-family: var(--font-mono); font-size: 9px; padding: 1px 5px; border-radius: 3px;
+    color: var(--accent); background: var(--accent-soft);
+  }
+  .proj-card .status.wip { color: var(--warn); background: oklch(0.82 0.13 80 / 0.14); }
+  .proj-card .date { font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); margin-left: auto; }
+  .proj-card h3 { margin: 0 0 4px; font-size: 13px; letter-spacing: -0.01em; font-weight: 500; }
+  .proj-card .summary { margin: 0 0 8px; font-size: 11px; color: var(--fg-2); line-height: 1.5; }
+  .proj-card .tags { display: flex; gap: 4px; flex-wrap: wrap; }
+  .proj-card .tag {
+    font-family: var(--font-mono); font-size: 9px; padding: 1px 5px;
+    border: 1px solid var(--line-2); border-radius: 3px; color: var(--fg-2);
+  }
+
+  /* Notes / Contents — 요약 표현 */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; padding-top: 8px; }
+  .caps {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--fg-3); margin-bottom: 12px;
+  }
+  .list { margin: 0; padding: 0; list-style: none; }
+  .list li {
+    display: grid; grid-template-columns: 88px 1fr; gap: 16px;
+    padding: 10px 0; border-top: 1px solid var(--line-1);
+    align-items: baseline; font-size: 14px;
+  }
+  .list .d { font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); }
+  .list a { color: var(--fg-0); text-decoration: none; }
+  .list a:hover { color: var(--accent); }
+  .tagcloud { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tagcloud span {
+    font-family: var(--font-mono); font-size: 11px; padding: 2px 8px;
+    border: 1px solid oklch(0.82 0.13 80 / 0.3); border-radius: 3px; color: var(--warn);
+  }
+  .tagcloud span b { color: var(--fg-3); margin-left: 4px; font-weight: 400; }
+
+  .footer {
+    padding: 40px 80px; border-top: 1px solid var(--line-1);
+    font-family: var(--font-mono); font-size: 11px; color: var(--fg-4);
+    display: flex; justify-content: space-between;
+  }
+
+  /* ── 대화 상태 ───────────────────────────────────── */
+  .stage.chat { display: none; }
+  body.in-chat .stage.idle, body.in-chat .below { display: none; }
+  /* /chat 페이지 (빈 상태): 히어로만, 스크롤 섹션·큐 없음 */
+  body.page-chat .below, body.page-chat .scroll-cue { display: none; }
+  body.page-chat .nav .menu a.ask-tab { color: var(--accent); }
+  body.in-chat .stage.chat { display: flex; min-height: calc(100vh - 60px); }
+
+  /* 대화 사이드바 — + 새 대화 · 이 방문자(세션)의 대화 목록 */
+  .chat-side {
+    width: 230px; flex-shrink: 0;
+    border-right: 1px solid var(--line-1);
+    padding: 20px 14px;
+    display: flex; flex-direction: column; gap: 8px;
+    position: sticky; top: 60px; height: calc(100vh - 60px);
+    box-sizing: border-box;
+  }
+  .chat-side .newchat {
+    background: var(--accent-soft); color: var(--accent);
+    border: 1px solid var(--accent-line); border-radius: 6px;
+    padding: 9px 12px; font-family: var(--font-mono); font-size: 12.5px;
+    cursor: pointer; text-align: left;
+    transition: background 120ms var(--ease);
+  }
+  .chat-side .newchat:hover { background: var(--accent-line); }
+  .chat-side .caps-label {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--fg-4); margin: 12px 4px 2px;
+  }
+  .chat-side .convlist { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 2px; }
+  .chat-side .convlist a {
+    padding: 8px 10px; border-radius: 5px;
+    font-size: 13px; color: var(--fg-2); text-decoration: none; cursor: pointer;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .chat-side .convlist a:hover { background: var(--bg-2); color: var(--fg-0); }
+  .chat-side .convlist a.active { background: var(--bg-2); color: var(--fg-0); }
+  .chat-side .homelink {
+    font-family: var(--font-mono); font-size: 12px; color: var(--fg-3);
+    text-decoration: none; cursor: pointer; padding: 8px 4px;
+  }
+  .chat-side .homelink:hover { color: var(--fg-1); }
+
+  .chat-main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+
+  .thread {
+    flex: 1;
+    width: min(760px, 100%);
+    margin: 0 auto;
+    padding: 40px 24px 160px;
+    display: flex; flex-direction: column; gap: 28px;
+    box-sizing: border-box;
+  }
+
+  .msg-q {
+    font-family: var(--font-mono); font-size: 15px; color: var(--fg-0);
+    display: flex; gap: 10px; align-items: baseline;
+  }
+  .msg-q .prompt { color: var(--accent); }
+  .msg-q .cmd { color: var(--fg-2); }
+
+  .msg-a {
+    border-left: 2px solid var(--accent-line);
+    padding: 2px 0 2px 20px;
+    color: var(--fg-1); font-size: 15.5px; line-height: 1.7;
+  }
+  .msg-a p { margin: 0 0 14px; }
+  .msg-a p:last-of-type { margin-bottom: 0; }
+  .msg-a strong { color: var(--fg-0); font-weight: 600; }
+
+  .sources { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  .sources a {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--bg-1); border: 1px solid var(--line-2); border-radius: 6px;
+    padding: 8px 14px; text-decoration: none;
+    font-family: var(--font-mono); font-size: 12px; color: var(--fg-2);
+    transition: border-color 120ms var(--ease), color 120ms var(--ease);
+  }
+  .sources a:hover { border-color: var(--accent-line); color: var(--fg-0); }
+  .sources a .tag {
+    color: var(--accent); background: var(--accent-soft);
+    border-radius: 3px; padding: 1px 6px; font-size: 11px;
+  }
+  .sources a .arrow { color: var(--fg-4); }
+
+  .typing { display: inline-flex; gap: 4px; align-items: center; height: 1em; }
+  .typing i {
+    width: 5px; height: 5px; border-radius: 50%; background: var(--fg-3);
+    animation: blink 1.2s infinite var(--ease);
+  }
+  .typing i:nth-child(2) { animation-delay: 0.2s; }
+  .typing i:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes blink { 0%, 60%, 100% { opacity: 0.25; } 30% { opacity: 1; } }
+
+  /* 하단 고정 입력 (대화 상태) — 사이드바 폭만큼 밀어서 정렬 */
+  .composer {
+    position: fixed; left: 230px; right: 0; bottom: 0;
+    padding: 16px 24px 24px;
+    background: linear-gradient(to top, var(--bg-0) 70%, transparent);
+    display: none; justify-content: center;
+  }
+  body.in-chat .composer { display: flex; }
+  .composer .ask { width: min(760px, 100%); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
+  }
+  @media (max-width: 1024px) {
+    .proj-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 720px) {
+    .nav { padding: 0 20px; gap: 16px; }
+    .nav .menu { display: none; }
+    .section { padding: 40px 24px; }
+    .footer { padding: 32px 24px; }
+    .about-grid, .two-col { grid-template-columns: 1fr; }
+    .proj-grid { grid-template-columns: 1fr; }
+    .chat-side { display: none; }   /* 모바일 사이드바는 spec OQ (DEC-025 OQ-3) */
+    .composer { left: 0; }
+  }
+</style>
+
+<nav class="nav">
+  <span class="brand" style="cursor:pointer" onclick="gotoHome()"><span class="dot"></span>kknaks<span class="tld">.dev</span></span>
+  <span class="menu">
+    <a href="#" class="ask-tab" onclick="gotoAsk(event)"><span class="num">00</span>Ask</a>
+    <a href="#about" onclick="gotoHome()"><span class="num">01</span>About</a>
+    <a href="#career"><span class="num">02</span>Career</a>
+    <a href="#projects"><span class="num">03</span>Projects</a>
+    <a href="#notes"><span class="num">04</span>Notes</a>
+    <a href="#contents"><span class="num">05</span>Contents</a>
+    <a href="#"><span class="num">06</span>Algorithms</a>
+  </span>
+  <span class="status"><span class="live"></span>online</span>
+</nav>
+
+<!-- ══ 상태 1: 채팅 히어로 (한 화면) ══ -->
+<main class="stage idle">
+  <div class="greet">
+    <div class="eyebrow">// ask kknaks · v0.2.0</div>
+    <h1>안녕하세요, <span class="em">이건학</span>입니다.<br>무엇이든 물어보세요.</h1>
+    <p>제 커리어·프로젝트·문제 해결 기록이 직접 대답합니다.</p>
+  </div>
+
+  <div class="ask">
+    <div class="bar">
+      <span class="dots"><i></i><i></i><i></i></span>
+      ~/kknaks — ask
+    </div>
+    <div class="row">
+      <span class="prompt">$</span>
+      <input id="q-idle" type="text" placeholder='이 사람, FastAPI 실무 경험 있나요?' />
+      <button onclick="send('idle')">전송 ↵</button>
+    </div>
+  </div>
+
+  <div class="hint">답변은 실제 이력 데이터(<span class="k">career · projects · problem</span>)를 근거로 생성됩니다</div>
+
+  <div class="scroll-cue">
+    <a href="#about">scroll<span class="arr">↓</span></a>
+  </div>
+</main>
+
+<!-- ══ 아래: 기존 프리뷰 섹션들 ══ -->
+<div class="below">
+
+  <section class="section" id="about">
+    <div class="head">
+      <span class="idx">01</span><h2>About</h2>
+      <a class="all" href="#">전체 보기 →</a>
+    </div>
+    <div class="about-grid">
+      <p class="tagline">호기심으로 시작해서, 도전으로 만들고, 개발로 풀어냅니다.</p>
+      <dl>
+        <div><dt>location</dt><dd>서울, 대한민국</dd></div>
+        <div><dt>focus</dt><dd>AI · Python · Infra · mobile</dd></div>
+        <div><dt>stack</dt><dd>Python · FastAPI · Postgres</dd></div>
+        <div><dt>email</dt><dd>kknaks@medisolveai.com</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section" id="career">
+    <div class="head">
+      <span class="idx">02</span><h2>Career</h2>
+      <a class="all" href="#">전체 보기 →</a>
+    </div>
+    <div class="career">
+      <div class="rail"></div>
+      <div class="item now">
+        <span class="node"></span>
+        <div class="period">2025.03 — <span class="nowtag">● now</span></div>
+        <div class="titleline"><h3>AX팀 리더 · 백엔드 개발자</h3><span class="sep">·</span><span class="org">메디솔브 AI</span></div>
+        <p>의료 AI 서비스 백엔드 개발, 사내 AI 도입(AX) 리딩</p>
+      </div>
+      <div class="item">
+        <span class="node"></span>
+        <div class="period">2024</div>
+        <div class="titleline"><h3>백엔드 개발자</h3><span class="sep">·</span><span class="org">퀀터스</span></div>
+        <p>퀀트 투자 플랫폼 백엔드 개발</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="head">
+      <span class="idx">03</span><h2>Projects</h2>
+      <a class="all" href="#">전체 보기 →</a>
+    </div>
+    <div class="proj-grid">
+      <a class="proj-card" href="#">
+        <div class="thumb">[ kknaks.dev ]</div>
+        <div class="body">
+          <div class="metaline"><span class="slug">kknaks-dev</span><span class="status">live</span><span class="date">2025-07</span></div>
+          <h3>kknaks.dev · This Site</h3>
+          <p class="summary">포트폴리오 + AI 채팅. FastAPI 백엔드 직접 운영</p>
+          <div class="tags"><span class="tag">FastAPI</span><span class="tag">Next.js</span><span class="tag">Postgres</span></div>
+        </div>
+      </a>
+      <a class="proj-card" href="#">
+        <div class="thumb">[ Wine.Log ]</div>
+        <div class="body">
+          <div class="metaline"><span class="slug">wine-log</span><span class="status">live</span><span class="date">2025-04</span></div>
+          <h3>Wine.Log · iOS/Android</h3>
+          <p class="summary">와인 기록 모바일 앱</p>
+          <div class="tags"><span class="tag">React Native</span><span class="tag">FastAPI</span></div>
+        </div>
+      </a>
+      <a class="proj-card" href="#">
+        <div class="thumb">[ open-kknaks ]</div>
+        <div class="body">
+          <div class="metaline"><span class="slug">open-kknaks</span><span class="status">live</span><span class="date">2025-06</span></div>
+          <h3>open-kknaks · CLI · MCP</h3>
+          <p class="summary">LLM 게이트웨이 CLI / MCP 서버 (PyPI)</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">MCP</span></div>
+        </div>
+      </a>
+      <a class="proj-card" href="#">
+        <div class="thumb">[ DeskDeck ]</div>
+        <div class="body">
+          <div class="metaline"><span class="slug">deskdeck</span><span class="status wip">wip</span><span class="date">2025-08</span></div>
+          <h3>DeskDeck. · iOS App</h3>
+          <p class="summary">데스크 셋업 공유 앱</p>
+          <div class="tags"><span class="tag">Swift</span></div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="section" id="notes">
+    <div class="head">
+      <span class="idx">04</span><h2>Notes</h2><span class="sub">· 읽고 정리한 것 · 159편</span>
+      <a class="all" href="#">전체 보기 →</a>
+    </div>
+    <div class="two-col">
+      <div>
+        <div class="caps">recent</div>
+        <ul class="list">
+          <li><span class="d">2026-08-27</span><a href="#">openai-agents-js approval flow</a></li>
+          <li><span class="d">2026-08-26</span><a href="#">mastra workflow suspend / resume</a></li>
+          <li><span class="d">2026-08-25</span><a href="#">mastra workflows overview</a></li>
+          <li><span class="d">2026-08-24</span><a href="#">mastra request context</a></li>
+          <li><span class="d">2026-08-22</span><a href="#">loop engineering — self-improving agentic loops</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="caps">tech stack</div>
+        <div class="tagcloud">
+          <span>python<b>42</b></span><span>fastapi<b>28</b></span><span>llm<b>24</b></span>
+          <span>postgres<b>18</b></span><span>docker<b>14</b></span><span>next.js<b>11</b></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contents">
+    <div class="head">
+      <span class="idx">05</span><h2>Contents</h2>
+      <a class="all" href="#">전체 보기 →</a>
+    </div>
+    <div class="two-col">
+      <div>
+        <div class="caps">// latest</div>
+        <div style="aspect-ratio:16/9;background:var(--bg-2);border:1px solid var(--line-1);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--fg-3);font-family:var(--font-mono);font-size:11px;">
+          [ youtube thumbnail ]
+        </div>
+      </div>
+      <div>
+        <div class="caps">recent episodes</div>
+        <ul class="list">
+          <li><span class="d">2026-08-20</span><a href="#">C-041 · loop engineering</a></li>
+          <li><span class="d">2026-08-13</span><a href="#">C-040 · agent memory patterns</a></li>
+          <li><span class="d">2026-08-06</span><a href="#">C-039 · mcp server from scratch</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <span>© 2026 kknaks.dev</span>
+    <span>built with FastAPI · Next.js</span>
+  </footer>
+</div>
+
+<!-- ══ 상태 2: 대화 — 사이드바 + 스레드 ══ -->
+<main class="stage chat">
+  <aside class="chat-side">
+    <button class="newchat" onclick="gotoAsk()">＋ 새 대화</button>
+    <div class="caps-label">대화</div>
+    <div class="convlist" id="convlist"></div>
+    <a class="homelink" onclick="reset()">← 홈으로</a>
+  </aside>
+  <div class="chat-main">
+    <div class="thread" id="thread"></div>
+  </div>
+</main>
+
+<div class="composer">
+  <div class="ask">
+    <div class="row">
+      <span class="prompt">$</span>
+      <input id="q-chat" type="text" placeholder="이어서 물어보세요" />
+      <button onclick="send('chat')">전송 ↵</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const DEMO_ANSWER = [
+    '네, 실무 경험이 있습니다. 현재 <strong>메디솔브 AI</strong>에서 백엔드 개발자로 일하며 FastAPI · Python · Postgres 스택으로 의료 AI 서비스의 백엔드를 개발하고 있습니다. AX팀 리더로 사내 AI 도입도 이끌었습니다.',
+    '지금 보고 계신 이 사이트(<strong>kknaks.dev</strong>)도 FastAPI 백엔드로 직접 만들었습니다 — router → service → repository 계층 구조, Alembic 마이그레이션, Docker 배포까지 혼자 운영합니다.'
+  ];
+  const DEMO_SOURCES = [
+    { tag: 'career', label: '메디솔브 AI · 백엔드 개발자' },
+    { tag: 'project', label: 'kknaks.dev · This Site' }
+  ];
+
+  function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+  // 대화 목록 — 실제로는 chat_session 1:N conversation (DEC-026 D2)
+  let convs = [];      // {title, html}
+  let cur = -1;        // 현재 conversation index. -1 = 새 대화 전
+
+  function send(which) {
+    const input = document.getElementById(which === 'idle' ? 'q-idle' : 'q-chat');
+    const q = input.value.trim() || input.placeholder;
+    input.value = '';
+    ask(q);
+  }
+
+  // 목업에선 상태 전환이지만, 실제로는 /chat 으로 라우팅되는 지점
+  function gotoAsk(e) {
+    if (e) e.preventDefault();
+    cur = -1;
+    document.body.classList.remove('in-chat');
+    document.body.classList.add('page-chat');
+    document.getElementById('thread').innerHTML = '';
+    window.scrollTo(0, 0);
+  }
+  function gotoHome() {
+    document.body.classList.remove('in-chat', 'page-chat');
+    document.getElementById('thread').innerHTML = '';
+  }
+
+  function renderSidebar() {
+    const list = document.getElementById('convlist');
+    list.innerHTML = '';
+    convs.forEach((c, i) => {
+      const a = document.createElement('a');
+      a.textContent = c.title;
+      a.className = i === cur ? 'active' : '';
+      a.onclick = () => openConv(i);
+      list.appendChild(a);
+    });
+  }
+
+  function openConv(i) {
+    cur = i;
+    document.body.classList.add('in-chat', 'page-chat');
+    document.getElementById('thread').innerHTML = convs[i].html;
+    renderSidebar();
+    window.scrollTo(0, 0);
+  }
+
+  function ask(q) {
+    document.body.classList.add('in-chat', 'page-chat');
+    window.scrollTo(0, 0);
+    const thread = document.getElementById('thread');
+
+    if (cur === -1) {                       // 새 대화 — 제목은 첫 질문에서 딴다
+      convs.push({ title: q, html: '' });
+      cur = convs.length - 1;
+      thread.innerHTML = '';
+    }
+    renderSidebar();
+
+    const qEl = document.createElement('div');
+    qEl.className = 'msg-q';
+    qEl.innerHTML = '<span class="prompt">$</span><span>ask <span class="cmd">"' + esc(q) + '"</span></span>';
+    thread.appendChild(qEl);
+
+    const aEl = document.createElement('div');
+    aEl.className = 'msg-a';
+    aEl.innerHTML = '<span class="typing"><i></i><i></i><i></i></span>';
+    thread.appendChild(aEl);
+    aEl.scrollIntoView({ behavior: 'smooth', block: 'end' });
+
+    const my = cur;
+    setTimeout(() => {
+      aEl.innerHTML = DEMO_ANSWER.map(p => '<p>' + p + '</p>').join('') +
+        '<div class="sources">' +
+        DEMO_SOURCES.map(s =>
+          '<a href="#"><span class="tag">' + s.tag + '</span>' + s.label + '<span class="arrow">→</span></a>'
+        ).join('') + '</div>';
+      if (my === cur) {                      // 답변 오기 전에 다른 대화로 안 옮겼을 때만
+        aEl.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        convs[my].html = thread.innerHTML;   // 대화 전환 시 복원용
+      }
+    }, 1100);
+  }
+
+  function reset() {
+    cur = -1;
+    document.body.classList.remove('in-chat', 'page-chat');
+    document.getElementById('thread').innerHTML = '';
+    window.scrollTo(0, 0);
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Enter') return;
+    if (e.target.id === 'q-idle') send('idle');
+    if (e.target.id === 'q-chat') send('chat');
+  });
+</script>

@@ -176,6 +176,20 @@ if [ -f "$SUMMARY" ] && grep -q '<기술·개념 이름>' "$SUMMARY"; then
   → 정말 쓸 게 없으면 §2 자리표시자를 지우고 「없음」이라고 적어라 (판단을 남기는 것이다)."
 fi
 
+# ── SUMMARY 착지 (config `summary_dest` — 회고를 원장(para)에 축적) ────────────
+# summary_dest 가 있으면 그 디렉토리가 **원본**이다(YYYY-MM-DD-<slug>.md).
+# _archive 에는 포인터 한 줄만 남긴다 — 같은 사실을 두 곳에 두지 않는다.
+# 없으면 종전대로 _archive 안에 원본이 남는다(분리형 프로젝트).
+SUMMARY_DEST="$(python3 -c "import json,sys;print(json.load(open(sys.argv[1])).get('summary_dest',''))" "$PROJECT_JSON")"
+if [ -n "$SUMMARY_DEST" ] && [ -f "$SUMMARY" ]; then
+  mkdir -p "$SUMMARY_DEST"
+  SUMMARY_FINAL="$SUMMARY_DEST/$(date +%Y-%m-%d)-$SLUG.md"
+  [ -f "$SUMMARY_FINAL" ] && die "회고가 이미 있다: $SUMMARY_FINAL — 덮어쓰지 않는다"
+  mv "$SUMMARY" "$SUMMARY_FINAL"
+  printf '원본: %s\n(작업 회고는 para 원장에 축적한다 — config summary_dest)\n' "$SUMMARY_FINAL" > "$SUMMARY"
+  say "SUMMARY 착지: $SUMMARY_FINAL (원본. _archive 에는 포인터만)"
+fi
+
 # ── 파괴 단계 ─────────────────────────────────────────────────────────────────
 for H in $TERMS; do orca terminal close --terminal "$H" >/dev/null 2>&1 && say "closed $H" || say "⚠ close 실패(이미 닫힘?): $H"; done
 

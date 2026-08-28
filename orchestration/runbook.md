@@ -15,7 +15,7 @@
 | **orca**(스크립트) | repo·base·PR 대상·워크트리 명명·에이전트 실행 명령·워커별 allowed_paths | `config/` | JSON |
 | **워커** | 너는 누구다 · 이번 작업 · allowed_paths · 완료 보고법 | `work/<slug>/*-brief.md` | md **1장만** |
 | **코디네이터** | 언제 발주 · 어떻게 검증 · 지금 어디까지 | 이 문서 + `work/<slug>/_RESUME.md` | md |
-| **잔디 잡** | 이 작업에서 무엇을 했고 어떤 기술·개념을 적용했나 | `work/_archive/<project>/<slug>/SUMMARY.md` | md |
+| **잔디 잡** | 이 작업에서 무엇을 했고 어떤 기술·개념을 적용했나 | config `summary_dest` 가 있으면 **para 원장** `<제품>/log/YYYY-MM-DD-<slug>.md` (아카이브엔 포인터), 없으면 `work/_archive/<project>/<slug>/SUMMARY.md` | md |
 
 **절대 규칙**
 
@@ -69,6 +69,22 @@ work/_archive/<p>/<slug>/     종료된 작업 — 위 전부 + SUMMARY.md
 - spec 변경과 code 변경은 **분리된 PR**.
 - 워커는 `allowed_paths` 밖을 건드리지 않는다. **워커는 커밋·push·PR 하지 않는다** — 검증과 PR 은 코디네이터 몫.
 - **발주 스펙은 반드시 `work/<slug>/` 아래 `.md` 로 남긴다** (`/tmp` 금지). 이게 발주 내역의 영구 기록이다.
+
+### 프로젝트 유형 — 문서가 어디 사는가 (2026-08-28, kknaks-dev 첫 발주에서 정리)
+
+config 의 `repos` 에 spec 전용 레포가 있으면 분리형, 없으면 단일 레포형이다.
+직렬 규칙(스펙 → WP → 코드)은 둘 다 같고, **문서 단계의 주체와 참조 경로**가 갈린다.
+
+| | 분리형 (mediness) | 단일 레포형 (kknaks-dev) |
+|---|---|---|
+| 문서 | 별도 spec 레포 — planner 워커 발주 | 같은 레포 `para/` — **코디네이터가 직접** 쓴다 (baseline→decision→spec→work, 사용자와 문답으로 닫는다) |
+| 워커의 SSOT 참조 | spec 레포 워크트리 | **코디 워크트리 절대경로(read-only)** — 워커 base(`origin/main`)에는 새 문서가 아직 없다. 브리프 §1 에 절대경로로 박는다 |
+| PR | spec / code 가 레포부터 다름 | 같은 레포에서 브랜치 분리 — 문서는 코디 브랜치, 코드는 `<slug>` 브랜치. **분리 PR 규칙은 동일** |
+| allowed_paths | 코드 레포 경로만 | 문서 경로(`para/`·`orchestration/`)를 **반드시 배제** — 문서는 코디 소유. 워커가 work 문서의 Phase Status 도 갱신하지 않는다(보고로 대신) |
+
+단일 레포형에서 코디 브랜치의 문서가 미커밋이면 워커 참조가 코디 워크트리의
+**작업 중 상태**를 읽게 된다 — 발주 전에 spec 을 닫고(버전 확정), 발주 후에는
+계약 절을 함부로 고치지 않는다. 고치면 워커에게 즉시 전파한다.
 
 ### 완료 보고는 2채널 — 둘 다 해야 한다
 
