@@ -13,3 +13,4 @@
 | KDEV-BL-005 | 제품·프로젝트·커리어 연동 + 레지스트리 관리 화면 | idea | raw | DEC-017 | `baseline-005-product-project-career-link.md` |
 | KDEV-BL-006 | PARA 정렬과 SoT 지도 — 지식층 디렉토리 재편 | idea | raw | DEC-018 | `baseline-006-para-alignment-and-sot-map.md` |
 | KDEV-BL-007 | 업데이트 라인 케이스 정리 — 서버 승인 게이트 · 로컬 작업 | idea | raw | — | `baseline-007-update-lines-by-case.md` |
+| KDEV-BL-008 | 채용담당자 채팅 — 홈에서 질문하면 이력 데이터가 대답한다 | idea | accepted | DEC-025/026/027 | `baseline-008-recruiter-chat.md` |

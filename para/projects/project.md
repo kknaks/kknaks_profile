@@ -67,6 +67,7 @@ summer-star/<제품>/
 ├── README.md          제품 전체 지도
 ├── showcase.md        공개 카드가 가리키는 상세
 ├── log.md             제품 통합 변경 로그
+├── log/               작업 회고 — YYYY-MM-DD-<slug>.md (오케스트레이션 SUMMARY 착지)
 ├── 00-baseline/       날것 입력 — 아이디어 · 요구 · 레퍼런스 · 문제 · 관찰
 ├── 10-decision/       baseline 을 어떻게 적용할지의 결정
 ├── 20-spec/           user flow · state machine · UI/UX · API 계약
@@ -111,6 +112,7 @@ summer-star/<제품>/
 | --- | --- | --- | --- |
 | `README.md` | 제품 전체 지도 | 현재 상태 · 문서 맵 · 코드 레포 위치 · 최근 로그 링크 | 상세 아이디어 · 결정 근거 · spec 본문 · 작업 지시 |
 | `log.md` | 통합 변경 로그 | 문서 변경 이력 · 상태 변경 · 연결 변경 | 단계별 본문 복사 |
+| `log/` | 작업 회고 1건 (`company/` 의 `log/` 와 같은 층) | 오케스트레이션 작업 종료 시 SUMMARY — 새로 쓴 것 · 판단이 갈린 것 · 막혔다가 푼 것. 잔디·concept·problem 의 원료 | 「무엇을 완성했다」식 나열 · 문서 변경 이력(`log.md` 몫) |
 | `00-baseline/baseline-*.md` | 날것 입력 1건 | 원문 · 배경 · 중요성 · 가능한 방향 | 확정 결정 · 구현 지시 |
 | `10-decision/decision-*.md` | 결정 1건 | 선택지 · 결정 · 미결 · 영향 범위 · **근거 개념** | 상세 구현 단계 · 개념 상세 |
 | `20-spec/spec-*.md` | 기능 계약 1건 | user flow · state machine · UI/UX · API · acceptance criteria | PR 계획 · 작업 순서 · 특정 work ID 참조 |
@@ -259,5 +261,8 @@ frontmatter `work_type: release`, 양식은 `templates/projects/30-work/work-rel
 - **검증기 · pre-commit 이 없다.** 옛 구조는 파이프라인 스크립트가 3.3~3.5 를 기계로
   검증하고 pre-commit 이 `products/**` 변경마다 불렀다. `.agent/` 미착수라 지금은
   전부 사람이 지킨다. 버전 컷오프 스크립트(`version-cutoff` 스킬)도 미이관.
-- **개인 프로젝트의 회고** — `company/` 는 `log/` 가 있는데 여기는 없다.
-  잔디가 읽을 것이 커밋 메시지뿐이다.
+- ~~**개인 프로젝트의 회고** — `company/` 는 `log/` 가 있는데 여기는 없다.
+  잔디가 읽을 것이 커밋 메시지뿐이다.~~ **해소 (2026-08-28)** — summer-star 에도
+  `log/` 를 도입했다. 오케스트레이션 작업 종료 시 SUMMARY 가
+  `<제품>/log/YYYY-MM-DD-<slug>.md` 로 착지한다(`orchestration/scripts/archive-work.sh`
+  + config `summary_dest`). 첫 사례는 kknaks-dev recruiter-chat 예정.

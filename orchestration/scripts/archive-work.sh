@@ -9,7 +9,7 @@
 #   3. [검사] 각 워크트리의 브랜치: upstream/pr_base 에 미머지 커밋 있으면 중단
 #      (detached HEAD 는 브랜치 검사 생략)
 #   4. [검사] 로컬 docker 스택이 이 워크트리를 마운트 중이면 중단 (스택 먼저 옮겨라)
-#   5. SUMMARY.md 스켈레톤 생성 (루트 templates/orchestration/work-summary.md, 기간·커밋 자동) —
+#   5. SUMMARY.md 스켈레톤 생성 (templates/work-summary.md, 기간·커밋 자동) —
 #      워크트리 제거 전에 만든다. §2 가 안 채워져 있으면 여기서 멈춘다
 #   6. 워크트리에 붙은 orca 터미널 전부 close
 #   7. git worktree remove (+ 로컬 브랜치 삭제, 원격 브랜치는 --yes 일 때만 삭제)
@@ -106,12 +106,12 @@ while IFS=$'\t' read -r CANON WT PRBASE; do
   TARGETS+=("$CANON"$'\t'"$WT"$'\t'"$BR"$'\t'"$PRBASE")
 done <<< "$PLAN"
 
-# ── SUMMARY.md 스켈레톤 (루트 templates/orchestration/work-summary.md 렌더) ──────────────────────
+# ── SUMMARY.md 스켈레톤 (templates/work-summary.md 렌더) ──────────────────────
 # 잔디 잡이 읽는 회고다. **워크트리를 지우기 전에** 만든다 — 커밋 목록이 워크트리에 있다.
 # 스크립트는 사실값(기간·커밋)만 채우고 멈춘다. §2 「적용한 기술·개념」은 판단이라
 # 기계가 못 쓴다. 코디네이터가 채우기 전에는 아카이브로 넘어가지 않는다(아래 게이트).
 SUMMARY="$WORK_DIR/SUMMARY.md"
-SUMMARY_TEMPLATE="$HERE/../templates/orchestration/work-summary.md"
+SUMMARY_TEMPLATE="$HERE/templates/work-summary.md"
 if [ -d "$WORK_DIR" ] && [ ! -f "$SUMMARY" ]; then
   [ -f "$SUMMARY_TEMPLATE" ] || die "템플릿 없음: $SUMMARY_TEMPLATE"
   START="$(git -C "$HERE" log --diff-filter=A --format=%ad --date=short -1 -- "work/$SLUG" 2>/dev/null | head -1)"
@@ -174,6 +174,20 @@ if [ -f "$SUMMARY" ] && grep -q '<기술·개념 이름>' "$SUMMARY"; then
   die "SUMMARY.md §2 「적용한 기술·개념」이 비어 있다: $SUMMARY
   → 이 작업에서 새로 쓴 것·판단이 갈린 것·막혔다가 푼 것을 채우고 다시 실행하라.
   → 정말 쓸 게 없으면 §2 자리표시자를 지우고 「없음」이라고 적어라 (판단을 남기는 것이다)."
+fi
+
+# ── SUMMARY 착지 (config `summary_dest` — 회고를 원장(para)에 축적) ────────────
+# summary_dest 가 있으면 그 디렉토리가 **원본**이다(YYYY-MM-DD-<slug>.md).
+# _archive 에는 포인터 한 줄만 남긴다 — 같은 사실을 두 곳에 두지 않는다.
+# 없으면 종전대로 _archive 안에 원본이 남는다(분리형 프로젝트).
+SUMMARY_DEST="$(python3 -c "import json,sys;print(json.load(open(sys.argv[1])).get('summary_dest',''))" "$PROJECT_JSON")"
+if [ -n "$SUMMARY_DEST" ] && [ -f "$SUMMARY" ]; then
+  mkdir -p "$SUMMARY_DEST"
+  SUMMARY_FINAL="$SUMMARY_DEST/$(date +%Y-%m-%d)-$SLUG.md"
+  [ -f "$SUMMARY_FINAL" ] && die "회고가 이미 있다: $SUMMARY_FINAL — 덮어쓰지 않는다"
+  mv "$SUMMARY" "$SUMMARY_FINAL"
+  printf '원본: %s\n(작업 회고는 para 원장에 축적한다 — config summary_dest)\n' "$SUMMARY_FINAL" > "$SUMMARY"
+  say "SUMMARY 착지: $SUMMARY_FINAL (원본. _archive 에는 포인터만)"
 fi
 
 # ── 파괴 단계 ─────────────────────────────────────────────────────────────────
