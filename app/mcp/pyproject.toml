@@ -1,0 +1,29 @@
+[project]
+name = "kknaks-mcp"
+version = "0.1.0"
+description = "채용담당자 채팅용 MCP 서버 — back chat-tool API 의 얇은 래퍼 (KDEV-SPEC-017 §4)"
+requires-python = ">=3.12"
+dependencies = [
+    # 공식 SDK 의 FastMCP — Streamable HTTP transport.
+    # ⚠ **1.x 로 핀한다.** 2.x 는 `FastMCP` 를 `MCPServer` 로 개명하고 API 를 바꿨다
+    #   (`mcp.server.fastmcp` 자체가 없다). 이 서버를 1.x 로 고른 근거가 「레퍼런스
+    #   (harness_works/mediness-app/mcp)에서 codex 와 이미 검증된 조합」인데, 2.x 로
+    #   올리면 그 실측치가 다시 재야 하는 값이 된다. 올리는 것은 별도 작업이다.
+    "mcp>=1.9,<2",
+    "httpx>=0.27",
+    "pydantic>=2.0",
+    "pydantic-settings>=2.0",
+    "uvicorn[standard]>=0.30",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.24",
+    "respx>=0.21",       # httpx mock
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+pythonpath = ["."]

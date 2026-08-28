@@ -25,6 +25,10 @@ class ProjectDTO:
     links: dict[str, Any] | None
     visible: bool
 
+    # 채팅 AI 노출(DEC-027 D4) — `visible` 과 다른 축이다. 어드민 목록이 토글 현재값을
+    # 그리는 데 쓴다.
+    chat_exposed: bool = False
+
 
 @dataclass(frozen=True)
 class PublicProject:

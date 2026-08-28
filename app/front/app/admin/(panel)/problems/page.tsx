@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { adminApi, AuthError } from "@/lib/api";
+import { ChatExposureToggle } from "@/components/admin/chat-exposure-toggle";
 import type { AdminCareer, AdminProblem, AdminProduct, ProblemInput } from "@/lib/types";
 
 // 해결한 문제 — 등록·수정·삭제. problem 은 career 에 속한다(erd.md §problem) —
@@ -222,6 +223,8 @@ function ProblemCard({
           </div>
         </div>
         <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 8 }}>
+          {/* 채팅 노출 — 켠 것만 AI tool 응답에 실린다(SPEC-017 U-7). */}
+          <ChatExposureToggle kind="problem" id={problem.id} exposed={problem.chatExposed} />
           <button type="button" onClick={() => setEditing(true)} style={ghostBtn}>
             수정
           </button>

@@ -1,10 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import ReactMarkdown, { defaultUrlTransform } from "react-markdown";
-import remarkGfm from "remark-gfm";
-import { assetUrl } from "@/lib/api";
-import { Mermaid } from "@/components/markdown/mermaid";
+import { DocBody } from "@/components/markdown/doc-body";
+import { ProseBody } from "@/components/markdown/prose-body";
 import type {
   CareerItem,
   CareerProduct,
@@ -313,110 +311,7 @@ function DetailPanel({
         <span style={{ color: "var(--fg-1)", fontSize: 16 }}>{it.org}</span>
       </div>
 
-      {hasBody && (
-        <ReactMarkdown
-          remarkPlugins={[remarkGfm]}
-          components={{
-            h1: ({ children }) => (
-              <h2
-                style={{
-                  fontSize: 20,
-                  fontWeight: 600,
-                  marginTop: 0,
-                  marginBottom: 12,
-                  letterSpacing: "-0.01em",
-                }}
-              >
-                {children}
-              </h2>
-            ),
-            h2: ({ children }) => (
-              <h3
-                style={{
-                  fontSize: 15,
-                  fontWeight: 500,
-                  color: "var(--fg-0)",
-                  marginTop: 20,
-                  marginBottom: 8,
-                }}
-              >
-                {children}
-              </h3>
-            ),
-            h3: ({ children }) => (
-              <h4
-                style={{
-                  fontSize: 14,
-                  fontWeight: 500,
-                  color: "var(--fg-1)",
-                  marginTop: 16,
-                  marginBottom: 6,
-                }}
-              >
-                {children}
-              </h4>
-            ),
-            p: ({ children }) => (
-              <p
-                style={{
-                  fontSize: 14,
-                  lineHeight: 1.7,
-                  color: "var(--fg-1)",
-                  margin: "0 0 12px",
-                }}
-              >
-                {children}
-              </p>
-            ),
-            ul: ({ children }) => (
-              <ul
-                style={{
-                  fontSize: 14,
-                  lineHeight: 1.7,
-                  color: "var(--fg-1)",
-                  paddingLeft: 20,
-                  margin: "0 0 12px",
-                }}
-              >
-                {children}
-              </ul>
-            ),
-            li: ({ children }) => (
-              <li style={{ marginBottom: 4 }}>{children}</li>
-            ),
-            strong: ({ children }) => (
-              <strong style={{ color: "var(--accent)", fontWeight: 600 }}>
-                {children}
-              </strong>
-            ),
-            code: ({ children }) => (
-              <code
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: 12,
-                  background: "var(--bg-2)",
-                  padding: "1px 6px",
-                  borderRadius: 3,
-                }}
-              >
-                {children}
-              </code>
-            ),
-            a: ({ href, children }) => (
-              <a
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: "var(--accent)" }}
-              >
-                {children}
-              </a>
-            ),
-          }}
-        >
-          {it.body ?? ""}
-        </ReactMarkdown>
-      )}
+      {hasBody && <ProseBody body={it.body} />}
 
       {products.length > 0 && (
         <div style={{ marginTop: hasBody ? 20 : 0 }}>
@@ -681,45 +576,11 @@ function ProductModal({
  * ══════════════════════════════════════════════════════════════════════════ */
 
 function ShowcaseBody({ product }: { product: CareerProduct }) {
-  const hasBody = !!product.body && product.body.trim().length > 0;
-
-  if (!hasBody) {
-    return (
-      <div className="mono" style={{ fontSize: 13, color: "var(--fg-3)" }}>
-        // {"상세 — 준비 중"}
-      </div>
-    );
-  }
-
+  // 이미지 상대참조의 기준은 그 제품의 원장 디렉토리다.
   return (
-    <article className="contents-body">
-      <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
-        urlTransform={(url, key) =>
-          key === "src" && !/^(https?:|data:|\/)/.test(url)
-            ? assetUrl(
-                `para/projects/company/${product.slug}/${url.replace(/^\.\//, "")}`,
-              )
-            : defaultUrlTransform(url)
-        }
-        components={{
-          // ```mermaid 블록은 SVG 다이어그램으로. 그 외 코드블록은 그대로 pre.
-          pre: ({ node, children, ...rest }) => {
-            const child = Array.isArray(children) ? children[0] : children;
-            const cls =
-              (child as { props?: { className?: string } })?.props
-                ?.className ?? "";
-            if (/language-mermaid/.test(cls)) {
-              const raw = (child as { props?: { children?: unknown } })
-                ?.props?.children;
-              return <Mermaid code={String(raw).replace(/\n$/, "")} />;
-            }
-            return <pre {...rest}>{children}</pre>;
-          },
-        }}
-      >
-        {product.body ?? ""}
-      </ReactMarkdown>
-    </article>
+    <DocBody
+      body={product.body}
+      assetBase={`para/projects/company/${product.slug}/`}
+    />
   );
 }

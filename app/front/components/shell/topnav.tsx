@@ -4,7 +4,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
+// 첫 메뉴는 `00 Ask` — 채팅이 이 사이트의 셀링 포인트다(KDEV-DEC-025 D2).
+// 번호는 배열 순서에서 나온다: 00 Ask · 01 About … 06 Algorithms.
 const NAV_ITEMS = [
+  { id: "chat", label: "Ask", href: "/chat" },
   { id: "about", label: "About", href: "/about" },
   { id: "career", label: "Career", href: "/career" },
   { id: "projects", label: "Projects", href: "/projects" },
@@ -80,14 +83,19 @@ export function TopNav() {
                 fontFamily: "var(--font-mono)",
                 fontSize: 12,
                 padding: "6px 10px",
-                color: active ? "var(--fg-0)" : "var(--fg-2)",
+                // `/chat` 의 Ask 탭만 액센트 색으로 켠다(SPEC-017 U-2 · 시안).
+                color: active
+                  ? item.id === "chat"
+                    ? "var(--accent)"
+                    : "var(--fg-0)"
+                  : "var(--fg-2)",
                 borderBottom: active
                   ? "1px solid var(--accent)"
                   : "1px solid transparent",
                 transition: "color 120ms",
               }}
             >
-              <span style={{ color: "var(--fg-3)" }}>0{idx + 1} </span>
+              <span style={{ color: "var(--fg-3)" }}>0{idx} </span>
               {item.label}
             </Link>
           );
@@ -234,7 +242,7 @@ export function TopNav() {
                   gap: 12,
                 }}
               >
-                <span style={{ color: "var(--fg-3)" }}>0{idx + 1}</span>
+                <span style={{ color: "var(--fg-3)" }}>0{idx}</span>
                 <span>{item.label}</span>
               </Link>
             );

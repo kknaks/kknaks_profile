@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from datetime import date
 
-from sqlalchemy import Date, ForeignKey, Index, String, Text
+from sqlalchemy import Boolean, Date, ForeignKey, Index, String, Text
 from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -40,5 +40,12 @@ class Career(Base, TimestampMixin):
     # 역할별 persona md(DB 파생물)의 위치. 원장(detail_path)이 아니다 — DB 를 통째로
     # 렌더해 매일 덮어쓰는 파생 md 다. 비어 있으면 렌더가 회사 slug·역할 title 로 파생.
     persona_path: Mapped[str | None] = mapped_column(String(255))
+
+    # 채팅 AI 의 tool 이 이 행을 볼 수 있나 — **기본 false 옵트인**(DEC-027 D4).
+    # 판정은 매 tool 호출마다 DB 에서 돈다(캐시·export 없음). 공개 /career 표면과는
+    # 별개 축이다 — 사이트에 떠 있어도 AI 에게는 꺼져 있을 수 있다.
+    chat_exposed: Mapped[bool] = mapped_column(
+        Boolean, default=False, server_default="false", nullable=False
+    )
 
     __table_args__ = (Index("ix_career_started", started_on.desc()),)
