@@ -4,7 +4,7 @@ id: KDEV-SPEC-017
 title: "채용담당자 채팅 — 홈 히어로 · /chat · 익명 세션 · tool 경계 실행"
 status: draft
 product: kknaks-dev
-version: 0.0.14
+version: 0.0.15
 created_at: 2026-08-28
 updated_at: 2026-08-28
 tags:
@@ -167,6 +167,19 @@ Out of scope:
 - **기대 결과**: 토글 즉시 반영(export · 캐시 없음). 진행 중 대화에도 다음 tool
   호출부터 적용된다.
 
+### U-8. 어드민 — 대화 열람·인사이트 (2026-08-29 신설, OQ-4 해소)
+
+시각 정본: `21-html/admin-chat-mockup.html` (owner 확정 2026-08-29).
+
+- **상태**: 어드민 **사이드바에 「채팅」 탭 추가**(기존 admin 패널 네비 관례) → 상단 인사이트 3위젯 — ① 최근 질문 피드(질문
+  원문·시각·대화 링크) ② 일별 질문 수(최근 30일) ③ 근거로 많이 읽힌 문서 Top N
+  (sources 집계 — type·제목·횟수). 아래 대화 목록 — 세션(익명 id)·시작 질문(=제목)·
+  메시지 수·시작/최근 시각, 최신순, 페이지네이션.
+- **CTA**: 대화 행 클릭 → 대화 상세 — 방문자 스레드와 같은 렌더(질문 줄·답변·tool
+  단계·근거 카드). 읽기 전용 — 어드민이 대화에 개입하는 기능은 없다.
+- **기대 결과**: 「채용담당자가 무엇을 궁금해하는가」를 질문 피드와 문서 Top 으로
+  본다. 개인정보는 애초에 없다(익명 세션 — DEC-026 D3).
+
 ## 3. User Scenario
 
 ### S-1. 방문자 — 홈에서 첫 질문
@@ -251,6 +264,21 @@ Out of scope:
 | POST | `/api/chat/conversations/{id}/messages` | 이어서 질문 | 공개(소유 세션만) |
 | POST | `/api/chat/conversations/{id}/messages/{message_id}/retry` | 실패한 답변 재시도 | 공개(소유 세션만) |
 | PATCH | `/api/admin/chat-exposure/{kind}/{id}` | `chat_exposed` 토글 | admin |
+| GET | `/api/admin/chat/conversations` | 대화 목록(페이지네이션·최신순) | admin |
+| GET | `/api/admin/chat/conversations/{id}` | 대화 상세(메시지 전체 — 소유 세션 무관) | admin |
+| GET | `/api/admin/chat/insights` | 최근 질문 피드 · 일별 질문 수 · 근거 문서 Top | admin |
+
+어드민 chat API 응답 계약(2026-08-29):
+- 목록 → `{items: [{id, sessionId, title, messageCount, createdAt, lastMessageAt}],
+  total, page, size}` — 최신순, `page`/`size` 쿼리(기본 1/20)
+- 상세 → 공개 상세와 같은 shape(`{conversation, messages[]}` — content·steps·sources
+  포함). `sessionId` 는 **`conversation` 객체 안**(2026-08-29 구현으로 확정 — 봉투
+  바깥 아님). 소유 세션 무관, admin 인증만
+- 인사이트 → `{totals: {conversations, questions, last7d},
+  recentQuestions: [{question, askedAt, conversationId}] (최근 20),
+  daily: [{date, count}] (최근 30일, 빈 날 0 포함),
+  topSources: [{type, slug, title, count}] (Top 5)}` — 집계는 요청 시 계산
+  (사전 집계 테이블 없음 — 데이터 규모가 작다)
 
 ### Request / Response
 
@@ -442,7 +470,8 @@ problem = `problem-<problem.id>`. 나머지(project·note·content·algorithm)�
 - OQ-2: 폴링(2초) 유지 vs SSE 승격 — 응답 지연 실측(DEC-027 OQ-2)과 함께 판단
 - OQ-3: 시스템 프롬프트 상시 주입 범위 — 프로필 + 커리어 개요 1단락으로 시작,
   tool 호출 횟수 실측 후 조정(DEC-027 OQ-3)
-- OQ-4: 어드민 대화 열람 표면(목록 · 검색) — 후속 work
+- ~~OQ-4~~: 어드민 대화 열람 표면 — **닫힘 (2026-08-29)** — U-8 + admin API 3종으로
+  계약 확정, WORK-025 로 구현
 - OQ-5: 근거 카드는 생성 시점 스냅샷 — 어드민이 나중에 항목을 숨기면 저장된 카드
   링크가 404 로 남는다(2026-08-28 fix8 감사에서 명시). **v1 수용** — 발생 조건이
   드물고(숨김 + 과거 대화 재열람), 렌더 시점 생존 확인은 폴링마다 추가 조회라
