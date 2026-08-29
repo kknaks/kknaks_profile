@@ -14,10 +14,14 @@ export function ChatThread({
   onOpenSource,
 }: {
   messages: ChatMessage[];
-  /** 실패한 답변의 「다시 시도」 — 그 메시지를 그 자리에서 되살린다(§3 S-8 3항). */
-  onRetry: (messageId: ChatId) => void;
-  /** 근거 카드 클릭 — 패널로 여는 유형만 온다(§2 U-5). */
-  onOpenSource: (source: ChatSource) => void;
+  /**
+   * 실패한 답변의 「다시 시도」 — 그 메시지를 그 자리에서 되살린다(§3 S-8 3항).
+   * **없으면 「다시 시도」를 그리지 않는다** — 어드민 열람(§2 U-8)처럼 대화에
+   * 개입하지 않는 읽기 전용 자리가 그렇다.
+   */
+  onRetry?: (messageId: ChatId) => void;
+  /** 근거 카드 클릭 — 패널로 여는 유형만 온다(§2 U-5). 없으면 링크만 그린다. */
+  onOpenSource?: (source: ChatSource) => void;
 }) {
   return (
     <>
@@ -28,7 +32,7 @@ export function ChatThread({
           <AnswerBlock
             key={String(m.id)}
             message={m}
-            onRetry={() => onRetry(m.id)}
+            onRetry={onRetry ? () => onRetry(m.id) : undefined}
             onOpenSource={onOpenSource}
           />
         ),
@@ -54,8 +58,8 @@ function AnswerBlock({
   onOpenSource,
 }: {
   message: ChatMessage;
-  onRetry: () => void;
-  onOpenSource: (source: ChatSource) => void;
+  onRetry?: () => void;
+  onOpenSource?: (source: ChatSource) => void;
 }) {
   const pending = message.status === "pending";
   const failed = message.status === "failed";
@@ -69,9 +73,11 @@ function AnswerBlock({
         {failed ? (
           <>
             <p className="failed">답변 생성에 실패했습니다. 다시 시도해 주세요.</p>
-            <button type="button" className="chat-retry" onClick={onRetry}>
-              다시 시도
-            </button>
+            {onRetry && (
+              <button type="button" className="chat-retry" onClick={onRetry}>
+                다시 시도
+              </button>
+            )}
           </>
         ) : (
           <>

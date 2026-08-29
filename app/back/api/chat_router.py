@@ -5,6 +5,9 @@
 - GET  /api/chat/conversations/{id}         — 대화 상세(폴링 대상)
 - POST /api/chat/conversations/{id}/messages — 이어서 질문
 - PATCH /api/admin/chat-exposure/{kind}/{id} — chat_exposed 토글 (admin)
+- GET  /api/admin/chat/conversations        — 전 세션 대화 목록 (admin · U-8)
+- GET  /api/admin/chat/conversations/{id}   — 대화 상세, 소유 무관 (admin · U-8)
+- GET  /api/admin/chat/insights             — 위젯 3종 집계 (admin · U-8)
 
 ## 쿠키를 굽는 곳은 여기 하나다
 
@@ -30,14 +33,17 @@ teardown 의 commit 은 그 뒤 no-op 이므로 이중 커밋은 무해하다. �
 
 from __future__ import annotations
 
-from fastapi import APIRouter, BackgroundTasks, Depends, Request, Response
+from fastapi import APIRouter, BackgroundTasks, Depends, Query, Request, Response
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from api.deps import get_db, require_admin
 from config import get_settings
 from schemas.chat import (
+    AdminConversationDetailResponse,
+    AdminConversationsResponse,
     ChatExposureResponse,
     ChatExposureUpdate,
+    ChatInsightsResponse,
     ChatMessageItem,
     ConversationDetailResponse,
     ConversationItem,
@@ -45,6 +51,11 @@ from schemas.chat import (
     MessageResponse,
     MessagesResponse,
     QuestionRequest,
+)
+from service.chat.admin_service import (
+    DEFAULT_PAGE_SIZE,
+    MAX_PAGE_SIZE,
+    chat_admin_service,
 )
 from service.chat.chat_service import chat_service
 from service.chat.runtime import start_turn
@@ -54,6 +65,13 @@ from service.chat.tool_service import chat_tool_service
 router = APIRouter(prefix="/api/chat", tags=["chat"])
 admin_router = APIRouter(
     prefix="/api/admin/chat-exposure",
+    tags=["chat"],
+    dependencies=[Depends(require_admin)],
+)
+# 어드민 열람·인사이트(U-8). 노출 토글과 표면이 달라 라우터를 가른다 —
+# 하나는 쓰기(토글), 이쪽은 읽기 전용이다. 게이트는 같은 `require_admin` 하나다.
+admin_chat_router = APIRouter(
+    prefix="/api/admin/chat",
     tags=["chat"],
     dependencies=[Depends(require_admin)],
 )
@@ -218,6 +236,46 @@ async def patch_chat_exposure(
     """`chat_exposed` 토글(U-7). 다음 tool 호출부터 그대로 반영된다 — 캐시가 없다."""
     value = await chat_tool_service.set_exposure(db, kind, item_id, body.chat_exposed)
     return ChatExposureResponse(kind=kind, id=item_id, chat_exposed=value)
+
+
+@admin_chat_router.get(
+    "/conversations",
+    response_model=AdminConversationsResponse,
+    response_model_by_alias=True,
+)
+async def admin_list_conversations(
+    page: int = Query(default=1, ge=1),
+    size: int = Query(default=DEFAULT_PAGE_SIZE, ge=1, le=MAX_PAGE_SIZE),
+    db: AsyncSession = Depends(get_db),
+) -> AdminConversationsResponse:
+    """전 세션의 대화 목록 — 최신순 · 페이지네이션(§4 어드민 응답 계약)."""
+    dto = await chat_admin_service.list_conversations(db, page=page, size=size)
+    return AdminConversationsResponse.from_dto(dto)
+
+
+@admin_chat_router.get(
+    "/insights",
+    response_model=ChatInsightsResponse,
+    response_model_by_alias=True,
+)
+async def admin_chat_insights(
+    db: AsyncSession = Depends(get_db),
+) -> ChatInsightsResponse:
+    """위젯 3종 — 요청 시 집계다(사전 집계 표 없음)."""
+    return ChatInsightsResponse.from_dto(await chat_admin_service.insights(db))
+
+
+@admin_chat_router.get(
+    "/conversations/{conversation_id}",
+    response_model=AdminConversationDetailResponse,
+    response_model_by_alias=True,
+)
+async def admin_get_conversation(
+    conversation_id: int, db: AsyncSession = Depends(get_db)
+) -> AdminConversationDetailResponse:
+    """대화 상세 — **소유 세션 무관**. 읽기 전용이라 쿠키를 굽지도 밀지도 않는다."""
+    bundle = await chat_admin_service.get_conversation(db, conversation_id)
+    return AdminConversationDetailResponse.from_bundle(bundle)
 
 
 async def _queue_turn(

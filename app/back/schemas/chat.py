@@ -10,11 +10,20 @@
 
 from __future__ import annotations
 
+# `date` 는 인사이트의 **필드 이름**이기도 하다 — 애너테이션이 필드에 가리지 않게 별칭으로 든다.
+from datetime import date as _Date
 from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from dto.chat import ChatMessageDTO, ConversationBundle, ConversationDTO
+from dto.chat import (
+    AdminConversationDTO,
+    AdminConversationPageDTO,
+    ChatInsightsDTO,
+    ChatMessageDTO,
+    ConversationBundle,
+    ConversationDTO,
+)
 
 # 질문 길이 — §4 Validation. FE 의 QUESTION_MAX_LENGTH 와 같은 수다.
 QUESTION_MAX_LENGTH = 1000
@@ -139,6 +148,139 @@ class ChatExposureUpdate(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
     chat_exposed: bool = Field(alias="chatExposed")
+
+
+# ── 어드민 열람·인사이트 (SPEC-017 §2 U-8 · §4 어드민 응답 계약) ──
+#
+# 필드명은 spec §4 「어드민 chat API 응답 계약」 그대로다. FE 가 이 이름으로 mock 을
+# 세워 병행했으므로 하나만 갈려도 위젯이 조용히 빈다.
+
+
+class AdminConversationItem(BaseModel):
+    """목록 한 줄. `sessionId` 는 **정수 id 뿐**이다 — 쿠키 토큰·해시는 나가지 않는다."""
+
+    id: int
+    session_id: int = Field(serialization_alias="sessionId")
+    title: str
+    message_count: int = Field(serialization_alias="messageCount")
+    created_at: datetime = Field(serialization_alias="createdAt")
+    last_message_at: datetime = Field(serialization_alias="lastMessageAt")
+
+    @classmethod
+    def from_dto(cls, dto: AdminConversationDTO) -> AdminConversationItem:
+        return cls(
+            id=dto.id,
+            session_id=dto.session_id,
+            title=dto.title,
+            message_count=dto.message_count,
+            created_at=dto.created_at,
+            last_message_at=dto.last_message_at,
+        )
+
+
+class AdminConversationsResponse(BaseModel):
+    """`{items, total, page, size}` — 커밋 목록의 `pageSize` 가 아니라 spec 의 `size` 다."""
+
+    items: list[AdminConversationItem]
+    total: int
+    page: int
+    size: int
+
+    @classmethod
+    def from_dto(cls, dto: AdminConversationPageDTO) -> AdminConversationsResponse:
+        return cls(
+            items=[AdminConversationItem.from_dto(i) for i in dto.items],
+            total=dto.total,
+            page=dto.page,
+            size=dto.size,
+        )
+
+
+class AdminConversationInfo(ConversationItem):
+    """공개 상세의 conversation + `sessionId`(§4). `ai_session_id` 는 여전히 안 나간다."""
+
+    session_id: int = Field(serialization_alias="sessionId")
+
+    @classmethod
+    def from_dto(cls, dto: ConversationDTO) -> AdminConversationInfo:
+        return cls(
+            id=dto.id,
+            title=dto.title,
+            created_at=dto.created_at,
+            session_id=dto.session_id,
+        )
+
+
+class AdminConversationDetailResponse(BaseModel):
+    """공개 상세와 같은 shape — 스레드 렌더를 그대로 재사용하기 위해서다(U-8 CTA)."""
+
+    conversation: AdminConversationInfo
+    messages: list[ChatMessageItem]
+
+    @classmethod
+    def from_bundle(cls, bundle: ConversationBundle) -> AdminConversationDetailResponse:
+        return cls(
+            conversation=AdminConversationInfo.from_dto(bundle.conversation),
+            messages=[ChatMessageItem.from_dto(m) for m in bundle.messages],
+        )
+
+
+class ChatTotalsItem(BaseModel):
+    conversations: int
+    questions: int
+    last7d: int
+
+
+class RecentQuestionItem(BaseModel):
+    question: str
+    asked_at: datetime = Field(serialization_alias="askedAt")
+    conversation_id: int = Field(serialization_alias="conversationId")
+
+
+class DailyQuestionItem(BaseModel):
+    """하루 한 칸. `date` 는 KST 날짜(`YYYY-MM-DD`) — 빈 날도 0 으로 온다."""
+
+    date: _Date
+    count: int
+
+
+class TopSourceItem(BaseModel):
+    type: str
+    slug: str
+    title: str
+    count: int
+
+
+class ChatInsightsResponse(BaseModel):
+    totals: ChatTotalsItem
+    recent_questions: list[RecentQuestionItem] = Field(
+        serialization_alias="recentQuestions"
+    )
+    daily: list[DailyQuestionItem]
+    top_sources: list[TopSourceItem] = Field(serialization_alias="topSources")
+
+    @classmethod
+    def from_dto(cls, dto: ChatInsightsDTO) -> ChatInsightsResponse:
+        return cls(
+            totals=ChatTotalsItem(
+                conversations=dto.conversations,
+                questions=dto.questions,
+                last7d=dto.last7d,
+            ),
+            recent_questions=[
+                RecentQuestionItem(
+                    question=q.question,
+                    asked_at=q.asked_at,
+                    conversation_id=q.conversation_id,
+                )
+                for q in dto.recent_questions
+            ],
+            daily=[DailyQuestionItem(date=d.day, count=d.count) for d in dto.daily],
+            top_sources=[
+                TopSourceItem(type=s.type, slug=s.slug, title=s.title, count=s.count)
+                for s in dto.top_sources
+            ],
+        )
 
 
 def _source_fields(raw: dict) -> dict:
