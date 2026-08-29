@@ -1,0 +1,226 @@
+<title>어드민 — 채팅 인사이트 시안</title>
+<style>
+  :root {
+    --bg-0:#0a0b0d; --bg-1:#101216; --bg-2:#14171c; --bg-3:#1a1e24; --bg-4:#232830;
+    --line-1:rgba(255,255,255,.06); --line-2:rgba(255,255,255,.1); --line-3:rgba(255,255,255,.16);
+    --fg-0:#f4f5f7; --fg-1:#c8ccd3; --fg-2:#8b919b; --fg-3:#5a606b; --fg-4:#3a3f48;
+    --accent:oklch(.78 .14 145); --accent-soft:oklch(.78 .14 145/.14); --accent-line:oklch(.78 .14 145/.32);
+    --warn:oklch(.82 .13 80); --danger:oklch(.72 .16 25);
+    --mono:"JetBrains Mono","IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:"Pretendard",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    color-scheme: dark;
+  }
+  html,body{margin:0;padding:0;background:var(--bg-0);color:var(--fg-0);font-family:var(--sans);font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .mono{font-family:var(--mono)}
+  .wrap{max-width:1180px;margin:0 auto;padding:28px 32px 80px}
+
+  /* 어드민 헤더 */
+  .head{display:flex;align-items:baseline;gap:14px;margin-bottom:22px}
+  .head .crumb{font-family:var(--mono);font-size:12px;color:var(--fg-3)}
+  .head h1{margin:0;font-size:22px;letter-spacing:-.02em}
+  .head .count{font-family:var(--mono);font-size:12px;color:var(--fg-2)}
+
+  /* 위젯 행 */
+  .widgets{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:12px;margin-bottom:20px}
+  .card{background:var(--bg-1);border:1px solid var(--line-1);border-radius:8px;padding:16px 18px;min-width:0}
+  .card .caps{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-3);margin-bottom:12px;display:flex;justify-content:space-between}
+  .card .caps .sub{letter-spacing:0;text-transform:none}
+
+  /* ① 최근 질문 피드 */
+  .feed{margin:0;padding:0;list-style:none;display:flex;flex-direction:column}
+  .feed li{display:grid;grid-template-columns:44px 1fr;gap:10px;padding:7px 0;border-top:1px solid var(--line-1);align-items:baseline;cursor:pointer}
+  .feed li:hover .q{color:var(--accent)}
+  .feed .t{font-family:var(--mono);font-size:10.5px;color:var(--fg-3)}
+  .feed .q{font-size:13px;color:var(--fg-1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+  /* ② 일별 질문 수 — 단일 시리즈 바 */
+  .chart{position:relative;height:132px;display:flex;align-items:flex-end;gap:3px;padding-top:6px}
+  .chart .bar{flex:1;min-width:0;background:var(--accent);border-radius:4px 4px 0 0;position:relative;cursor:pointer;opacity:.85}
+  .chart .bar:hover{opacity:1}
+  .chart .bar.zero{background:var(--bg-3);height:2px!important;border-radius:1px}
+  .chart .tip{position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:var(--bg-4);border:1px solid var(--line-3);border-radius:5px;padding:4px 9px;font-family:var(--mono);font-size:11px;color:var(--fg-0);white-space:nowrap;display:none;z-index:2}
+  .chart .bar:hover .tip{display:block}
+  .axis{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:var(--fg-4);margin-top:6px}
+  .stat-line{display:flex;gap:18px;margin-top:10px;padding-top:10px;border-top:1px solid var(--line-1)}
+  .stat-line b{font-family:var(--mono);font-size:17px;font-weight:600;color:var(--fg-0);display:block}
+  .stat-line span{font-size:11px;color:var(--fg-3)}
+
+  /* ③ 근거 문서 Top */
+  .top{margin:0;padding:0;list-style:none}
+  .top li{padding:7px 0;border-top:1px solid var(--line-1)}
+  .top .row1{display:flex;gap:8px;align-items:baseline;margin-bottom:4px}
+  .top .tag{font-family:var(--mono);font-size:10px;padding:1px 6px;border-radius:3px;color:var(--accent);background:var(--accent-soft)}
+  .top .name{font-size:13px;color:var(--fg-1);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .top .n{font-family:var(--mono);font-size:11px;color:var(--fg-2)}
+  .top .track{height:5px;background:var(--bg-3);border-radius:3px;overflow:hidden}
+  .top .fill{height:100%;background:var(--accent);border-radius:3px;opacity:.85}
+
+  /* 대화 목록 */
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  thead th{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-3);text-align:left;padding:10px 12px;border-bottom:1px solid var(--line-2);font-weight:500}
+  tbody td{padding:11px 12px;border-bottom:1px solid var(--line-1);color:var(--fg-1)}
+  tbody tr{cursor:pointer}
+  tbody tr:hover td{background:var(--bg-2)}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  .sid{font-family:var(--mono);font-size:11px;color:var(--fg-3)}
+  .tt{font-family:var(--mono);font-size:11px;color:var(--fg-3)}
+  .pager{display:flex;gap:8px;justify-content:flex-end;padding:14px 4px;font-family:var(--mono);font-size:12px;color:var(--fg-3)}
+  .pager a{color:var(--fg-2);text-decoration:none;padding:2px 8px;border:1px solid var(--line-2);border-radius:4px}
+  .pager a.on{color:var(--accent);border-color:var(--accent-line)}
+
+  /* 상세 뷰 */
+  #detail{display:none}
+  body.detail #list-view{display:none}
+  body.detail #detail{display:block}
+  .back{font-family:var(--mono);font-size:12px;color:var(--fg-3);cursor:pointer;text-decoration:none}
+  .back:hover{color:var(--fg-1)}
+  .meta{display:flex;gap:20px;font-family:var(--mono);font-size:11px;color:var(--fg-3);margin:10px 0 24px}
+  .thread{display:flex;flex-direction:column;gap:22px;max-width:820px}
+  .msg-q{font-family:var(--mono);font-size:14px}
+  .msg-q .p{color:var(--accent)}
+  .msg-q .c{color:var(--fg-2)}
+  .msg-a{border-left:2px solid var(--accent-line);padding:2px 0 2px 18px;color:var(--fg-1);font-size:14px;line-height:1.7}
+  .msg-a p{margin:0 0 10px}
+  .steps{background:var(--bg-1);border:1px solid var(--line-2);border-radius:7px;padding:8px 12px;font-family:var(--mono);font-size:11px;color:var(--fg-3);margin-bottom:10px;max-width:560px}
+  .steps summary{cursor:pointer;color:var(--fg-2)}
+  .steps li{display:flex;justify-content:space-between;padding:3px 0;color:var(--fg-2)}
+  .steps .ms{color:var(--fg-4)}
+  .srcs{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .srcs span{display:inline-flex;gap:7px;align-items:center;background:var(--bg-1);border:1px solid var(--line-2);border-radius:5px;padding:5px 11px;font-family:var(--mono);font-size:11px;color:var(--fg-2)}
+  .srcs .tag{color:var(--accent);background:var(--accent-soft);border-radius:3px;padding:0 5px;font-size:10px}
+
+  @media (max-width:900px){.widgets{grid-template-columns:1fr}}
+</style>
+
+<div class="wrap">
+
+  <!-- ══ 목록 + 인사이트 ══ -->
+  <div id="list-view">
+    <div class="head">
+      <span class="crumb">admin /</span><h1>채팅</h1>
+      <span class="count">대화 47 · 질문 128 · 최근 7일 +31</span>
+    </div>
+
+    <div class="widgets">
+      <!-- ① 최근 질문 피드 -->
+      <div class="card">
+        <div class="caps">최근 질문 <span class="sub">→ 클릭 시 해당 대화</span></div>
+        <ul class="feed">
+          <li onclick="openDetail()"><span class="t">10:12</span><span class="q">FastAPI 실무 경험 있나요? 회사에서는 어떤 제품을…</span></li>
+          <li onclick="openDetail()"><span class="t">09:58</span><span class="q">퀀터스에서 뭘 했어?</span></li>
+          <li onclick="openDetail()"><span class="t">09:31</span><span class="q">가장 어려웠던 기술적 문제 하나만 얘기해줘</span></li>
+          <li onclick="openDetail()"><span class="t">어제</span><span class="q">Mediness가 뭐야? 네가 뭘 만들었는데?</span></li>
+          <li onclick="openDetail()"><span class="t">어제</span><span class="q">비동기 처리 경험 있어?</span></li>
+          <li onclick="openDetail()"><span class="t">어제</span><span class="q">쿠버네티스 써봤나요?</span></li>
+        </ul>
+      </div>
+
+      <!-- ② 일별 질문 수 (30일, 단일 시리즈 — 액센트 단일 색) -->
+      <div class="card">
+        <div class="caps">일별 질문 수 <span class="sub">최근 30일</span></div>
+        <div class="chart" id="chart"></div>
+        <div class="axis"><span>07-30</span><span>08-14</span><span>08-29</span></div>
+        <div class="stat-line">
+          <div><b>128</b><span>총 질문</span></div>
+          <div><b>4.3</b><span>일평균</span></div>
+          <div><b>19</b><span>최다(08-28)</span></div>
+        </div>
+      </div>
+
+      <!-- ③ 근거 문서 Top -->
+      <div class="card">
+        <div class="caps">근거로 많이 읽힌 문서 <span class="sub">sources 집계</span></div>
+        <ul class="top">
+          <li><div class="row1"><span class="tag">product</span><span class="name">메디니스 · 의료 AI 서비스</span><span class="n">23</span></div><div class="track"><div class="fill" style="width:100%"></div></div></li>
+          <li><div class="row1"><span class="tag">career</span><span class="name">메디솔브 AI · 백엔드 개발자</span><span class="n">18</span></div><div class="track"><div class="fill" style="width:78%"></div></div></li>
+          <li><div class="row1"><span class="tag">product</span><span class="name">퀀터스 · 실시간 시세 파이프라인</span><span class="n">14</span></div><div class="track"><div class="fill" style="width:61%"></div></div></li>
+          <li><div class="row1"><span class="tag">problem</span><span class="name">고부하에서 무너지던 뉴스·공시 조회</span><span class="n">9</span></div><div class="track"><div class="fill" style="width:39%"></div></div></li>
+          <li><div class="row1"><span class="tag">project</span><span class="name">Wine Log</span><span class="n">6</span></div><div class="track"><div class="fill" style="width:26%"></div></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 대화 목록 -->
+    <div class="card" style="padding:6px 6px 0">
+      <table>
+        <thead><tr>
+          <th>시작 질문</th><th>세션</th><th class="num">메시지</th><th>시작</th><th>최근</th>
+        </tr></thead>
+        <tbody>
+          <tr onclick="openDetail()"><td>FastAPI 실무 경험 있나요? 회사에서는 어떤 제품을 만들…</td><td class="sid">s#41 (신규)</td><td class="num">6</td><td class="tt">08-29 10:03</td><td class="tt">10:12</td></tr>
+          <tr onclick="openDetail()"><td>퀀터스에서 뭘 했어?</td><td class="sid">s#38</td><td class="num">4</td><td class="tt">08-29 09:52</td><td class="tt">09:58</td></tr>
+          <tr onclick="openDetail()"><td>Mediness가 뭐야?</td><td class="sid">s#38</td><td class="num">2</td><td class="tt">08-28 22:41</td><td class="tt">22:42</td></tr>
+          <tr onclick="openDetail()"><td>비동기 처리 경험 있어?</td><td class="sid">s#35</td><td class="num">8</td><td class="tt">08-28 18:07</td><td class="tt">18:31</td></tr>
+          <tr onclick="openDetail()"><td>쿠버네티스 써봤나요?</td><td class="sid">s#35</td><td class="num">2</td><td class="tt">08-28 17:55</td><td class="tt">17:56</td></tr>
+          <tr onclick="openDetail()"><td>이력서 PDF 어디서 받아요?</td><td class="sid">s#31</td><td class="num">2</td><td class="tt">08-28 14:20</td><td class="tt">14:21</td></tr>
+        </tbody>
+      </table>
+      <div class="pager"><a class="on">1</a><a>2</a><a>3</a><span style="align-self:center">… 8</span></div>
+    </div>
+  </div>
+
+  <!-- ══ 대화 상세 (읽기 전용) ══ -->
+  <div id="detail">
+    <a class="back" onclick="closeDetail()">← 목록으로</a>
+    <div class="head" style="margin-top:10px"><span class="crumb">admin / 채팅 /</span><h1 style="font-size:17px">FastAPI 실무 경험 있나요? 회사에서는…</h1></div>
+    <div class="meta"><span>세션 s#41</span><span>2026-08-29 10:03 시작</span><span>메시지 6 · tool 호출 10 · 근거 8</span><span>읽기 전용</span></div>
+
+    <div class="thread">
+      <div class="msg-q"><span class="p">$</span> ask <span class="c">"FastAPI 실무 경험 있나요? 회사에서는 어떤 제품을 만들었나요?"</span></div>
+      <div>
+        <details class="steps"><summary>⚡ tool · 10단계 · 완료</summary>
+          <ul style="margin:6px 0 2px;padding:0;list-style:none">
+            <li><span>list_company_products</span><span class="ms">166ms</span></li>
+            <li><span>list_career</span><span class="ms">32ms</span></li>
+            <li><span>get_career(medisolve-ai-5)</span><span class="ms">58ms</span></li>
+            <li><span>get_company_product(mediness)</span><span class="ms">35ms</span></li>
+            <li><span>… 6개 더</span><span class="ms"></span></li>
+          </ul>
+        </details>
+        <div class="msg-a">
+          <p>네, FastAPI 실무 경험이 있습니다. 메디솔브 AI와 퀀터스에서 Python·FastAPI 기반 백엔드를 개발했고, WebSocket·Redis·RabbitMQ·PostgreSQL/MySQL을 함께 활용했습니다.</p>
+          <p>회사에서는 다음 제품을 만들었습니다 — Charty(실시간 전사·통역·AI 차트), Linky(6개 메신저 통합 다국어 상담), Mediness(사내 AX 워크스페이스)…</p>
+          <div class="srcs">
+            <span><i class="tag">career</i> 메디솔브 AI · 백엔드 개발자</span>
+            <span><i class="tag">product</i> 메디니스</span>
+            <span><i class="tag">product</i> Charty</span>
+            <span><i class="tag">career</i> 퀀터스 · 백엔드 개발자</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="msg-q"><span class="p">$</span> ask <span class="c">"그 중에 제일 어려웠던 문제 하나만"</span></div>
+      <div>
+        <details class="steps"><summary>⚡ tool · 2단계 · 완료</summary>
+          <ul style="margin:6px 0 2px;padding:0;list-style:none">
+            <li><span>list_problems</span><span class="ms">41ms</span></li>
+            <li><span>get_problem(problem-4)</span><span class="ms">37ms</span></li>
+          </ul>
+        </details>
+        <div class="msg-a">
+          <p>가장 어려웠던 문제는 퀀터스의 실시간 시세 파이프라인 안정화였습니다. ETF 60종의 웹소켓 시세를 자동트레이딩 서버로 전달해야 했고…</p>
+          <div class="srcs"><span><i class="tag">problem</i> 고부하에서 무너지던 뉴스·공시 조회</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ② 30일 바 — 단일 시리즈(사이트 액센트 단일 색), hover 툴팁
+  const days = [2,0,1,3,2,4,1,0,2,3,5,2,1,4,3,2,6,4,3,1,0,2,5,7,4,3,8,19,12,9];
+  const start = new Date(2026,6,30); // 07-30
+  const chart = document.getElementById('chart');
+  const max = Math.max(...days);
+  days.forEach((v,i)=>{
+    const d = new Date(start); d.setDate(start.getDate()+i);
+    const label = String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    const b = document.createElement('div');
+    b.className = 'bar'+(v===0?' zero':'');
+    b.style.height = v===0 ? '2px' : Math.max(6, v/max*118)+'px';
+    b.innerHTML = `<div class="tip">${label} · ${v}건</div>`;
+    chart.appendChild(b);
+  });
+  function openDetail(){document.body.classList.add('detail');window.scrollTo(0,0)}
+  function closeDetail(){document.body.classList.remove('detail');window.scrollTo(0,0)}
+</script>
