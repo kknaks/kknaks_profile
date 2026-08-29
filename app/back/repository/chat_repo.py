@@ -7,20 +7,38 @@ ORM 은 여기를 넘지 않는다. 위층은 DTO 만 본다 — 단, **소비�
 
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import date, datetime
 from typing import Any
 
-from sqlalchemy import func, select, update
+from sqlalchemy import Date, case, cast, column, func, select, true, update
+from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from dto.chat import ChatMessageDTO, ConversationDTO
+from dto.chat import (
+    AdminConversationDTO,
+    ChatMessageDTO,
+    ConversationDTO,
+    DailyQuestionDTO,
+    RecentQuestionDTO,
+    TopSourceDTO,
+)
 from models.chat import (
     ROLE_ASSISTANT,
+    ROLE_USER,
     STATUS_PENDING,
     ChatMessage,
     ChatSession,
     Conversation,
 )
+
+# 날짜 집계의 기준 시간대. DB 세션 TZ 에 기대지 않고 식에 못박는다 —
+# `commit_repo` 의 어드민 달력과 같은 규약이다.
+_KST = "Asia/Seoul"
+
+
+def _kst_day():
+    """`chat_message.created_at` 의 KST 날짜."""
+    return cast(func.timezone(_KST, ChatMessage.created_at), Date)
 
 
 def _conversation_dto(row: Conversation) -> ConversationDTO:
@@ -199,6 +217,169 @@ class ChatRepository:
             .all()
         )
         return [_message_dto(row) for row in rows]
+
+    # ── 어드민 열람·인사이트 (U-8 · WORK-025) ────────────
+    async def list_conversations_page(
+        self, session: AsyncSession, *, limit: int, offset: int
+    ) -> tuple[list[AdminConversationDTO], int]:
+        """세션을 가리지 않는 한 페이지 + 전체 건수.
+
+        정렬은 **`created_at DESC, id DESC`** — 방문자 사이드바(`list_conversations`)와
+        같은 「최신순」이다. 「최근 메시지순」으로 바꾸면 오래된 대화가 새 질문 하나로
+        맨 위에 올라와 페이지 경계가 요청 사이에 흔들린다.
+
+        메시지 수 · 최근 시각은 집계 서브쿼리로 한 번에 붙인다 — 페이지당 N+1 조회를
+        만들지 않는다. 메시지가 없는 대화(있을 수 없지만)는 `last_message_at` 이
+        대화 생성 시각으로 떨어진다.
+        """
+        agg = (
+            select(
+                ChatMessage.conversation_id.label("conversation_id"),
+                func.count(ChatMessage.id).label("message_count"),
+                func.max(ChatMessage.created_at).label("last_message_at"),
+            )
+            .group_by(ChatMessage.conversation_id)
+            .subquery()
+        )
+        total = (
+            await session.execute(select(func.count()).select_from(Conversation))
+        ).scalar_one()
+        rows = (
+            await session.execute(
+                select(
+                    Conversation,
+                    func.coalesce(agg.c.message_count, 0),
+                    func.coalesce(agg.c.last_message_at, Conversation.created_at),
+                )
+                .outerjoin(agg, agg.c.conversation_id == Conversation.id)
+                .order_by(Conversation.created_at.desc(), Conversation.id.desc())
+                .limit(limit)
+                .offset(offset)
+            )
+        ).all()
+        return [
+            AdminConversationDTO(
+                id=row[0].id,
+                session_id=row[0].session_id,
+                title=row[0].title,
+                message_count=row[1],
+                created_at=row[0].created_at,
+                last_message_at=row[2],
+            )
+            for row in rows
+        ], total
+
+    async def count_conversations(self, session: AsyncSession) -> int:
+        return (
+            await session.execute(select(func.count()).select_from(Conversation))
+        ).scalar_one()
+
+    async def count_questions(
+        self, session: AsyncSession, *, since_day: date | None = None
+    ) -> int:
+        """질문(user 메시지) 수. `since_day` 를 주면 그 KST 날짜부터 센다."""
+        stmt = select(func.count()).select_from(ChatMessage).where(
+            ChatMessage.role == ROLE_USER
+        )
+        if since_day is not None:
+            stmt = stmt.where(_kst_day() >= since_day)
+        return (await session.execute(stmt)).scalar_one()
+
+    async def recent_questions(
+        self, session: AsyncSession, *, limit: int
+    ) -> list[RecentQuestionDTO]:
+        """최근 질문 피드 — 최신순(U-8 위젯 ①)."""
+        rows = (
+            await session.execute(
+                select(
+                    ChatMessage.content,
+                    ChatMessage.created_at,
+                    ChatMessage.conversation_id,
+                )
+                .where(ChatMessage.role == ROLE_USER)
+                .order_by(ChatMessage.created_at.desc(), ChatMessage.id.desc())
+                .limit(limit)
+            )
+        ).all()
+        return [
+            RecentQuestionDTO(question=r[0], asked_at=r[1], conversation_id=r[2])
+            for r in rows
+        ]
+
+    async def daily_questions(
+        self, session: AsyncSession, *, since_day: date
+    ) -> list[DailyQuestionDTO]:
+        """KST 날짜별 질문 수 — **있는 날만** 돌려준다.
+
+        빈 날 채우기는 서비스가 한다. 여기서 채우려면 날짜 시리즈를 SQL 로 만들어야
+        하는데, 30칸을 파이썬에서 채우는 편이 읽기 쉽고 결과가 같다.
+        """
+        day = _kst_day()
+        rows = (
+            await session.execute(
+                select(day.label("day"), func.count().label("count"))
+                .where(ChatMessage.role == ROLE_USER, day >= since_day)
+                .group_by(day)
+                .order_by(day)
+            )
+        ).all()
+        return [DailyQuestionDTO(day=r[0], count=r[1]) for r in rows]
+
+    async def top_sources(
+        self, session: AsyncSession, *, limit: int
+    ) -> list[TopSourceDTO]:
+        """근거로 많이 읽힌 문서 Top N — assistant 메시지의 `sources` jsonb 를 전개해 센다.
+
+        같은 문서가 한 답변 안에 두 번 실리면 두 번 센다 — 「몇 번 근거로 실렸나」가
+        세는 대상이고, 소비자 폴딩이 중복을 만들지 않는다(멱등 upsert).
+
+        동수일 때는 `type` · `slug` 순으로 갈라 결과를 결정적으로 만든다 — 안 그러면
+        같은 데이터에 매 요청 다른 Top 이 나온다.
+
+        **배열이 아닌 값은 join 안에서 빈 배열로 접는다.** `sources` 에 파이썬 `None` 을
+        넣으면 SQL NULL 이 아니라 **JSONB `'null'`** 이 저장되고(JSONB 기본 동작 —
+        재시도가 `sources: None` 으로 초기화하는 경로가 실제로 그렇다),
+        `jsonb_array_elements('null')` 는 「cannot extract elements from a scalar」로
+        터진다. WHERE 로는 못 막는다 — LATERAL 은 WHERE 보다 먼저 돈다.
+        """
+        elem = (
+            func.jsonb_array_elements(
+                case(
+                    (
+                        func.jsonb_typeof(ChatMessage.sources) == "array",
+                        ChatMessage.sources,
+                    ),
+                    else_=func.jsonb_build_array(),
+                )
+            )
+            .table_valued(column("value", JSONB))
+            .lateral()
+        )
+        type_ = elem.c.value["type"].astext
+        slug_ = elem.c.value["slug"].astext
+        title_ = elem.c.value["title"].astext
+        rows = (
+            await session.execute(
+                select(
+                    type_.label("type"),
+                    slug_.label("slug"),
+                    title_.label("title"),
+                    func.count().label("count"),
+                )
+                .select_from(ChatMessage)
+                .join(elem, true())
+                .where(ChatMessage.role == ROLE_ASSISTANT)
+                .group_by(type_, slug_, title_)
+                .order_by(func.count().desc(), type_, slug_)
+                .limit(limit)
+            )
+        ).all()
+        return [
+            TopSourceDTO(
+                type=r[0] or "", slug=r[1] or "", title=r[2] or "", count=r[3]
+            )
+            for r in rows
+        ]
 
     # ── turn 토큰 ───────────────────────────────────────
     async def find_by_turn_token(

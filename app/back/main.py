@@ -77,6 +77,7 @@ def create_app() -> FastAPI:
     from api.auth_router import router as auth_router
     from api.career_router import admin_router as career_admin_router
     from api.career_router import router as career_router
+    from api.chat_router import admin_chat_router as chat_admin_view_router
     from api.chat_router import admin_router as chat_admin_router
     from api.chat_router import router as chat_router
     from api.chat_tool_router import router as chat_tool_router
@@ -135,6 +136,7 @@ def create_app() -> FastAPI:
     # 채팅 — 공개 4종 · 어드민 토글 · MCP 가 부르는 chat-tool(turn Bearer).
     app.include_router(chat_router)
     app.include_router(chat_admin_router)
+    app.include_router(chat_admin_view_router)
     app.include_router(chat_tool_router)
 
     @app.get("/api/health")

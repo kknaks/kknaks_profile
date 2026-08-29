@@ -29,6 +29,15 @@ const NAV: NavSection[] = [
     ],
   },
   {
+    // 채용담당자가 남긴 대화를 읽는 자리(SPEC-017 U-8). 읽기 전용 — 여기서
+    // 대화에 개입하지 않는다. 「수집함」과 나눠 둔 건 주체가 달라서다 —
+    // 저쪽은 내가 넣은 것, 이쪽은 방문자가 물은 것.
+    title: "방문자",
+    items: [
+      { label: "채팅", href: "/admin/chats", ready: true, icon: <IconChat /> },
+    ],
+  },
+  {
     title: "프로필",
     items: [
       { label: "기본 정보", href: "/admin/profile", ready: true, icon: <IconUser /> },
@@ -595,6 +604,13 @@ function IconInbox() {
     <svg {...svg}>
       <path d="M22 12h-6l-2 3h-4l-2-3H2" />
       <path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" />
+    </svg>
+  );
+}
+function IconChat() {
+  return (
+    <svg {...svg}>
+      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
     </svg>
   );
 }
