@@ -72,6 +72,7 @@ CALL mysql.rds_set_configuration('binlog retention hours', 168);  -- 로그가 �
 ## 함께 보는 개념
 
 - [[database-migration]] — 이 장치가 쓰이는 대표 자리
+- [[medallion-architecture]] — 원천의 변경을 브론즈 레이어로 흘려 넣는 자리. 실버의 증분 갱신에도 쓰인다
 - [[data-pipeline]] — 주기적으로 물어보는 반대편
 - [[elasticsearch]] — 색인을 원본과 맞춰야 하는 쪽
 - [[message-broker]] — 변경을 사건으로 흘려보내는 쪽
