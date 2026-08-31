@@ -312,194 +312,195 @@ para/areas/
 | 201 | `back` | `class-loading` | .class를 읽어 JVM 안에 클래스를 세우고 static을 초기화하는 시점 |  |
 | 202 | `back` | `class-metadata` | 실행 중에 인스턴스의 타입 정보를 객체로 받아 다루는 리플렉션 진입점 |  |
 | 203 | `back` | `classpath` | JVM에 .class 파일이 어디 있는지 알려주는 탐색 경로 옵션 |  |
-| 204 | `back` | `connection-lifetime-mismatch` | 풀의 커넥션 수명이 중간 계층 유휴 타임아웃보다 길어 죽은 연결을 재사용하는 장애 |  |
-| 205 | `back` | `connection-pool-sizing-formula` | 커넥션 풀 최대 크기 시작점을 코어 수로 계산하는 경험칙 |  |
-| 206 | `back` | `constant-pool` | .class 안에서 이름·문자열·참조를 한 번만 두고 인덱스로 가리키는 표 |  |
-| 207 | `back` | `context-hierarchy` | 스프링 IoC 컨테이너를 루트와 서블릿별 자식으로 나눠 빈을 공유하는 구조 |  |
-| 208 | `back` | `data-io-stream` | 바이트 스트림을 감싸 int·문자열 같은 타입 단위로 읽고 쓰게 하는 층 |  |
-| 209 | `back` | `data-source` | 커넥션 획득 방법을 감싼 인터페이스 — 직접 생성인지 풀인지 숨긴다 |  |
-| 210 | `back` | `date-time` | 시각을 문자열이 아니라 전용 타입으로 담고 표시할 때 형식을 입히는 것 |  |
-| 211 | `back` | `declarative-transaction` | 트랜잭션 경계를 코드 대신 애너테이션 표식으로 적고 프록시가 처리하는 것 |  |
-| 212 | `back` | `default-initialization` | new로 확보한 메모리는 타입별 기본값으로 자동 채워지고 지역변수는 아니다 |  |
-| 213 | `back` | `default-method` | 인터페이스가 몸통을 미리 구현해 두어 구현체가 안 채워도 되게 하는 문법 |  |
-| 214 | `back` | `dispatcher-servlet` | 모든 요청을 받아 처리할 컨트롤러·메서드를 고르는 프론트 컨트롤러 |  |
-| 215 | `back` | `distributed-session` | 서버가 여러 대가 되면 깨지는 메모리 세션을 외부 저장소로 빼는 것 |  |
-| 216 | `back` | `dynamic-proxy` | 인터페이스만으로 실행 중에 구현체를 만들고 호출을 한 곳으로 모으는 것 |  |
-| 217 | `back` | `dynamic-sql` | 넘어온 값에 따라 SQL 문장 조각을 XML 태그로 만들어 내는 것 |  |
-| 218 | `back` | `exception-handler` | 요청 처리 중 난 예외를 어디서 잡아 무엇을 보여 줄지 정하는 장치 |  |
-| 219 | `back` | `expression-language` | JSP에서 보관소의 값을 자바 코드 없이 꺼내는 표기법 |  |
-| 220 | `back` | `externalized-configuration` | 환경마다 다르거나 비밀인 값을 코드 밖 파일에 두고 실행 시 주입하는 것 |  |
-| 221 | `back` | `factory-bean` | 생성자로 못 만드는 객체를 메서드 호출 결과로 스프링 컨테이너에 담는 법 |  |
-| 222 | `back` | `file-class` | 파일 내용이 아니라 존재·속성·목록을 다루는 자바 표준 객체 |  |
-| 223 | `back` | `functional-interface` | 추상메서드가 하나뿐인 인터페이스. 람다가 채울 자리를 컴파일러가 특정하는 근거 |  |
-| 224 | `back` | `garbage-collection` | 아무도 가리키지 않게 된 인스턴스의 메모리를 런타임이 알아서 회수하는 것 |  |
-| 225 | `back` | `generated-keys` | insert 뒤 서버가 발급한 auto_increment 값을 그 문장으로부터 되받는 법 |  |
-| 226 | `back` | `generic-servlet` | Servlet 인터페이스의 다섯 중 넷을 미리 구현하고 service만 남긴 추상 클래스 |  |
-| 227 | `back` | `handler-interceptor` | 요청 처리의 앞·뒤·끝 세 지점에 공통 코드를 끼워 넣는 스프링 장치 |  |
-| 228 | `back` | `handler-method-argument` | 컨트롤러 메서드의 매개변수를 프레임워크가 타입과 표식을 보고 채워 주는 규칙 |  |
-| 229 | `back` | `http-servlet` | GenericServlet을 상속해 HTTP 캐스팅까지 채워 doGet·doPost만 재정의하게 한 클래스 |  |
-| 230 | `back` | `http-session` | 서버가 클라이언트 한 명당 하나씩 들고 요청보다 오래 살아야 할 값을 담는 보관소 |  |
-| 231 | `back` | `io-stream` | 통로 끝이 무엇이든 같은 메서드로 읽고 쓰는 단방향 데이터 통로 |  |
-| 232 | `back` | `ioc-container` | 객체를 대신 만들어 두고 필요한 곳에 넣어 주는 스프링 저장소 |  |
-| 233 | `back` | `java-compilation-unit` | 소스 하나가 들어가고 클래스마다 class 파일 하나가 나오는 단위 |  |
-| 234 | `back` | `java-config` | 스프링 설정을 XML 대신 자바 클래스에 애노테이션으로 적는 방식 |  |
-| 235 | `back` | `java-ee` | 기업용 기술을 인터페이스 규격으로 적어 둔 명세 문서 묶음 |  |
-| 236 | `back` | `javadoc` | 선언 앞 주석에서 HTML API 문서를 뽑아내는 도구와 태그 문법 |  |
-| 237 | `back` | `jdbc` | 자바가 DB 에 접속·질의할 때 부르는 표준 인터페이스와 드라이버 |  |
-| 238 | `back` | `jdk` | 실행에 필요한 꾸러미와 개발까지 되는 꾸러미의 포함 관계 |  |
-| 239 | `back` | `jsp-action-tag` | 실행 시점에 보관소 객체를 꺼내거나 실행을 넘기는 jsp 전용 태그 |  |
-| 240 | `back` | `jsp-directive` | 번역 시점에 이 파일을 어떻게 서블릿으로 만들지 지시하는 문법 |  |
-| 241 | `back` | `jsp-scripting-element` | JSP 각 조각이 번역된 서블릿의 어느 자리에 놓이는지 정하는 문법 |  |
-| 242 | `back` | `jsp` | HTML 에 자바를 섞어 쓰고 컨테이너가 서블릿으로 번역해 실행 |  |
-| 243 | `back` | `jstl-core-tag` | 출력·변수·흐름 제어·URL 을 태그로 처리하는 JSTL 기본 모듈 |  |
-| 244 | `back` | `jstl-format-tag` | 날짜·숫자를 문자열과 오가게 바꾸는 JSTL 형식 지정 모듈 |  |
-| 245 | `back` | `jstl` | JSP 의 자바 코드를 태그로 대체하는 표준 태그 라이브러리 |  |
-| 246 | `back` | `jvm-stack` | 메서드 호출마다 프레임을 쌓고 끝나면 버리는 스택 메모리 영역 |  |
-| 247 | `back` | `jvm` | 바이트코드를 OS 위에서 실행해 한 번 짜서 어디서나 돌게 하는 층 |  |
-| 248 | `back` | `jwt` | 정보를 담고 서명해 서버 저장 없이 위조 여부를 확인하는 토큰 |  |
-| 249 | `back` | `load-on-startup` | 서블릿을 첫 요청이 아닌 앱 기동 때 미리 초기화하는 설정 |  |
-| 250 | `back` | `lombok` | 애노테이션 프로세서로 getter·setter 를 컴파일 때 생성 |  |
-| 251 | `back` | `main-method` | JVM 이 실행 시 찾아 부르는 고정 형식의 프로그램 진입점 |  |
-| 252 | `back` | `method-reference` | 기존 메서드 하나를 함수형 인터페이스 구현으로 쓰는 :: 표기 |  |
-| 253 | `back` | `modifier-flags` | public·static 지정자가 정수 비트로 저장되고 리플렉션이 읽음 |  |
-| 254 | `back` | `multipart-form-data` | 파일 바이트와 문자열을 경계로 나눠 한 요청에 싣는 본문 형식 |  |
-| 255 | `back` | `mybatis-spring` | MyBatis 설정과 객체 생성을 스프링 컨테이너에 넘기는 연동 |  |
-| 256 | `back` | `mybatis` | SQL 을 XML 로 빼고 id 로 불러 실행하는 SQL 매퍼 |  |
-| 257 | `back` | `n-plus-one` | 목록 조회 뒤 연관 데이터를 항목마다 다시 질의하는 문제 |  |
-| 258 | `back` | `object-class` | 모든 클래스가 물려받는 상속 계층의 뿌리와 기본 메서드 여섯 |  |
-| 259 | `back` | `odbc` | DB 종류가 달라도 같은 함수로 접속하게 만든 드라이버 표준 API |  |
-| 260 | `back` | `ognl` | 점으로 이은 문자열 경로로 객체 안의 값을 읽고 쓰는 표현 언어 |  |
-| 261 | `back` | `optimistic-lock` | 잠그지 않고 읽되 저장 시점에 버전 컬럼으로 충돌을 확인하는 방식 |  |
-| 262 | `back` | `osiv` | 영속성 컨텍스트를 요청이 끝날 때까지 열어 두고 커넥션을 붙드는 패턴 |  |
-| 263 | `back` | `output-escaping` | 값을 문서에 꽂을 때 문법 문자로 읽히지 않게 치환해 XSS 를 막는 것 |  |
-| 264 | `back` | `package` | 클래스를 폴더 구조와 대응시켜 묶고 이름을 구분하는 문법 |  |
-| 265 | `back` | `page-context` | JSP 페이지 하나의 실행 상태와 다른 보관소들로 가는 입구를 겸하는 객체 |  |
-| 266 | `back` | `pagination` | 전체를 한 번에 안 보내고 시작 행과 개수로 끊어 가져오는 것 |  |
-| 267 | `back` | `persistence-context` | 엔티티를 DB 에 보내기 전까지 들고 캐시와 변경 감지를 하는 메모리 공간 |  |
-| 268 | `back` | `persistence-framework` | 객체와 테이블 사이 반복을 대신하는 층 SQL 을 사람이 쓰나 기계가 쓰나로 갈림 |  |
-| 269 | `back` | `prepared-statement` | SQL 뼈대와 값을 따로 보내 인젝션을 막는 JDBC 문장 객체 |  |
-| 270 | `back` | `property-editor` | 설정 파일의 문자열을 자바 타입으로 바꿔 주는 스프링 변환기 |  |
-| 271 | `back` | `raw-type` | 제네릭 클래스를 타입 인자 없이 써서 검사가 사라진 하위 호환용 상태 |  |
-| 272 | `back` | `redirect` | 응답 대신 다른 주소로 다시 요청하라고 답해 요청이 두 번 일어나게 하는 것 |  |
-| 273 | `back` | `reflective-annotation-access` | 선언에 붙은 애노테이션을 실행 중에 꺼내 값을 읽는 자바 API |  |
-| 274 | `back` | `reflective-field-access` | 필드를 이름으로 찾아 private 이어도 값을 읽고 쓰는 자바 API |  |
-| 275 | `back` | `reflective-instantiation` | new 없이 실행 중에 고른 생성자로 인스턴스를 만드는 자바 API |  |
-| 276 | `back` | `reflective-invocation` | 메서드를 이름으로 찾아 Method 객체로 호출하는 자바 API |  |
-| 277 | `back` | `request-dispatcher` | 한 서블릿이 다른 서블릿을 불러 같은 응답에 끼워 넣는 장치 |  |
-| 278 | `back` | `request-mapping` | URL·HTTP 메서드와 컨트롤러 메서드를 잇는 스프링 표식 |  |
-| 279 | `back` | `request-parameter` | 클라이언트가 실어 보낸 이름=값 쌍을 서블릿이 꺼내는 통로 |  |
-| 280 | `back` | `request-response` | 컨테이너가 요청마다 만들어 넘기는 입력·출력 두 객체 |  |
-| 281 | `back` | `response-body` | 컨트롤러 리턴값을 뷰 이름이 아닌 응답 본문으로 해석시키는 규칙 |  |
-| 282 | `back` | `result-map` | 컬럼과 자바 프로퍼티 대응을 따로 선언해 조인 결과를 객체로 조립 |  |
-| 283 | `back` | `result-set` | 조회 결과 위에 놓인 커서로 한 행씩 옮겨 가며 값을 꺼내는 것 |  |
-| 284 | `back` | `servlet-container-initializer` | 컨테이너 시작 때 jar 안의 클래스를 찾아 불러 주는 등록 규약 |  |
-| 285 | `back` | `servlet-container` | 서블릿을 만들고 부르고 정리하며 흐름을 대신 갖는 실행 환경 |  |
-| 286 | `back` | `servlet-context` | 앱마다 하나씩 있는 공용 저장소 겸 컨테이너와의 창구 객체 |  |
-| 287 | `back` | `servlet-filter` | 요청이 서블릿에 닿기 전과 응답이 나가기 전에 끼어드는 부품 |  |
-| 288 | `back` | `servlet-lifecycle` | 컨테이너가 서블릿을 만들고 준비시키고 부르고 버리는 정해진 순서 |  |
-| 289 | `back` | `servlet-listener` | 컨테이너 안에서 생기고 없어지는 이벤트를 통보받는 객체 |  |
-| 290 | `back` | `servlet` | HTTP 요청 하나를 받아 응답 하나를 만드는 서버 측 자바 컴포넌트 |  |
-| 291 | `back` | `slack-bot` | 반복 작업 프로그램의 명령과 결과를 Slack 에서 주고받게 만든 업무 인터페이스 |  |
-| 292 | `back` | `spring-boot` | 스프링 설정을 기본값으로 밀어 넣고 서버까지 품은 위층 |  |
-| 293 | `back` | `spring-framework` | 애플리케이션 뼈대를 미리 만들어 두고 그 안에 내 클래스를 끼우게 하는 자바 프레임워크 |  |
-| 294 | `back` | `spring-model` | 컨트롤러가 뷰에게 값을 넘기는 통로. request.setAttribute 자리를 대신한다 |  |
-| 295 | `back` | `spring-security` | 모든 요청 앞에 필터를 세워 누구인가(인증)와 해도 되는가(인가)를 검사 |  |
-| 296 | `back` | `sql-injection` | 입력 문자열이 SQL 문장의 일부로 파싱되어 의도 밖 문장이 실행되는 것 |  |
-| 297 | `back` | `sql-session` | 연결 하나를 품고 SQL 문자열과 값을 받아 실행해 주는 객체. JDBC 반복을 감춘다 |  |
-| 298 | `back` | `stereotype-annotation` | 이 클래스를 컨테이너에 담으라는 표식. 스캔이 훑어 빈으로 만든다 |  |
-| 299 | `back` | `string-builder` | 문자열을 새로 만들지 않고 그 자리에서 고쳐 쓰는 가변 버퍼 |  |
-| 300 | `back` | `string-comparison` | ==는 주소를 equals는 내용을 비교한다. 문자열 풀이 그 차이를 흐린다 |  |
-| 301 | `back` | `template-engine` | 틀과 데이터를 합쳐 문서를 만들어 주는 도구. 코드와 화면을 가른다 |  |
-| 302 | `back` | `template-fragment` | 여러 화면이 함께 쓰는 부분을 한 파일에 두고 이름으로 끼워 넣는 것 |  |
-| 303 | `back` | `terminal-state-ttl` | 진행 중인 큐 키에는 만료를 안 걸고 작업이 끝난 시점에만 TTL을 주는 방식 |  |
-| 304 | `back` | `thymeleaf` | HTML 파일 그대로가 템플릿인 엔진. 브라우저로 열어도 화면이 보인다 |  |
-| 305 | `back` | `tomcat` | 서블릿 규격 구현체. 웹서버와 웹컨테이너를 한 프로세스에 가진 WAS |  |
-| 306 | `back` | `transaction-propagation` | 트랜잭션 메서드가 다른 트랜잭션 안에서 불릴 때의 합류·분리 규칙 |  |
-| 307 | `back` | `try-with-resources` | 블록을 어떤 경로로 나가든 선언한 자원의 close 를 자동 호출하는 문법 |  |
-| 308 | `back` | `type-alias` | 패키지 포함 정규 클래스명에 짧은 별칭을 등록해 XML 에서 그 이름으로 가리킴 |  |
-| 309 | `back` | `type-erasure` | 제네릭 타입 인자가 컴파일 후 지워져 런타임에는 구분이 사라지는 것 |  |
-| 310 | `back` | `type-promotion` | 산술 연산 시 피연산자 타입을 자동으로 맞추는 규칙. 정수 최소 단위는 int |  |
-| 311 | `back` | `varargs` | 점 셋으로 인수 개수를 호출 쪽이 정하게 하고 받는 쪽은 배열로 받는 문법 |  |
-| 312 | `back` | `view-resolver` | 컨트롤러가 돌려준 뷰 이름에 접두·접미사를 붙여 실제 화면 파일로 바꾸는 것 |  |
-| 313 | `back` | `web-application-server` | 요청을 받아 내 코드를 실행해 동적 응답을 만드는 서버. 실행 주인이 서버로 넘어감 |  |
-| 314 | `back` | `web-component` | 컨테이너가 직접 생성해 호출하는 서버측 부품 묶음. 리스너 필터 서블릿 셋 |  |
-| 315 | `back` | `web-xml` | 어떤 클래스를 어떤 URL 로 부를지 적어 컨테이너가 기동 때 읽는 설정 파일 |  |
-| 316 | `back` | `webhook` | 사건이 난 쪽이 미리 등록된 URL 로 HTTP 요청을 보내 알리는 연동 방식. 폴링의 반대 |  |
-| 317 | `back` | `wildcard-type` | 제네릭이 상속을 타지 않는 벽을 뚫으려 타입 인자 자리에 범위를 적는 문법 |  |
-| 318 | `back` | `wrapper-class` | 기본 타입 값 하나를 객체로 감싸 객체를 요구하는 자리에 넣게 해 주는 클래스 |  |
-| 319 | `db` | `aggregate-function` | 여러 행을 값 하나로 접는 SQL 함수. NULL 은 세지 않는다 |  |
-| 320 | `db` | `change-data-capture` | DB가 남기는 binlog를 읽어 변경을 스트림으로 따라가는 동기화 방식 |  |
-| 321 | `db` | `data-modeling` | 무엇을 저장할지 엔티티와 관계로 그려 중복 없는 표 구조를 만드는 일 |  |
-| 322 | `db` | `database-index` | 검색 조건 컬럼을 미리 정렬해 따로 들고 조회를 빠르게 하는 구조 |  |
-| 323 | `db` | `database-lock` | 같은 데이터를 동시에 만지는 트랜잭션의 순서를 강제하는 장치 |  |
-| 324 | `db` | `database-migration` | 돌고 있는 DB를 계속 바뀌는 채로 다른 곳으로 옮기는 일 |  |
-| 325 | `db` | `database-partitioning` | 한 테이블을 같은 인스턴스 안의 여러 저장 단위로 나누되 하나로 보이게 하는 DB 내부 최적화 |  |
-| 326 | `db` | `database-schema` | 테이블을 담는 이름공간과 그 인코딩·정렬 기본값 |  |
-| 327 | `db` | `database-sharding` | 데이터를 여러 인스턴스에 나눠 담아 단일 서버 한계를 넘는 수평 확장. 라우팅이 설계의 핵심 |  |
-| 328 | `db` | `database-user` | 접속 자격과 접속 후 권한을 따로 정하는 계정 체계 |  |
-| 329 | `db` | `db-normalization` | 중복을 없애려고 테이블을 논리 단위로 쪼개고 외래키로 잇는 설계 원칙 |  |
-| 330 | `db` | `ddl` | 값이 아니라 값이 들어갈 틀(DB 객체)을 만들고 고치는 SQL 부류 |  |
-| 331 | `db` | `dml` | 틀이 아니라 그 안에 든 값을 넣고 고치고 지우는 SQL 부류 |  |
-| 332 | `db` | `dql` | 테이블에서 원하는 행과 컬럼을 골라 읽어 오는 select 계열 SQL |  |
-| 333 | `db` | `elasticsearch` | 모든 단어를 미리 색인해 두고 색인만 뒤지는 검색 전용 저장소 |  |
-| 334 | `db` | `foreign-key` | 한 테이블의 값이 다른 테이블의 실재하는 행을 가리키도록 양방향으로 검사하는 제약 |  |
-| 335 | `db` | `functional-dependency` | A가 정해지면 B도 하나로 정해지는 관계. 정규화가 떼어낼 대상을 찾는 잣대 |  |
-| 336 | `db` | `identifying-relationship` | 부모 키를 자식 기본키에 넣는지 외래키로만 두는지의 선택과 그 종속 강도 |  |
-| 337 | `db` | `primary-key` | 행을 구분하려 고른 컬럼 그리고 슈퍼키 후보키 대체키로 갈리는 층 |  |
-| 338 | `db` | `search-index` | 원본과 별도로 두어 키워드로 문서를 빨리 찾게 하는 색인 구조 |  |
-| 339 | `db` | `sql-data-type` | 컬럼 하나가 어떤 값을 얼마만큼 담을 수 있는지 서버에 선언해 두는 것 |  |
-| 340 | `db` | `sql-date-function` | 날짜를 서버 쪽에서 읽고 꺼내고 옮기고 재고 형식을 바꾸는 함수들 |  |
-| 341 | `db` | `sql-join` | 여러 테이블의 행을 짝지어 한 행으로 잇는 것. 쪼갠 테이블을 다시 붙인다 |  |
-| 342 | `db` | `sql-like` | 문자열을 정확히 같은가가 아니라 이런 모양인가로 비교하는 연산자 |  |
-| 343 | `db` | `sql-null` | 컬럼마다 값 없음을 허용할지와 값을 생략하면 무엇이 들어갈지를 정하는 것 |  |
-| 344 | `db` | `sql-operator` | where 조건 하나를 만들어 내는 비교·논리·범위 기호들 |  |
-| 345 | `db` | `sql-set-operation` | 조회 결과 두 개를 위아래로 합치거나 서로 빼서 하나로 만드는 것 |  |
-| 346 | `db` | `surrogate-key` | 몇 번째인가가 아니라 몇 번인가를 데이터가 필드로 들고 있게 하는 것 |  |
-| 347 | `db` | `transaction` | 여러 문장을 전부 되거나 전부 안 되게 묶는 단위와 autocommit 경계 설정 |  |
-| 348 | `db` | `unique-key` | 기본키가 아니면서 값 중복을 막아야 하는 컬럼에 거는 유일성 제약 |  |
-| 349 | `infra` | `build` | 소스에서 배포 산출물이 나오기까지의 컴파일·의존성·테스트 단계 전체와 그걸 명령으로 묶는 도구 |  |
-| 350 | `infra` | `ci-cd` | 푸시 한 번으로 빌드부터 배포까지 잇는 GitHub Actions 자동화 절차 |  |
-| 351 | `infra` | `cold-start` | 준비된 상태 없이 시작한 실행이 준비 비용부터 다시 치르는 문제 |  |
-| 352 | `infra` | `container` | 한 커널 위에서 게스트 OS 없이 격리돼 도는 프로세스 실행 단위 |  |
-| 353 | `infra` | `data-pipeline` | 한 저장소를 주기적으로 읽어 다듬고 다른 저장소로 옮기는 장치 |  |
-| 354 | `infra` | `distributed-lock` | 여러 프로세스·서버가 외부 공통 저장소에서 처리 권한을 조정해 공유 자원 동시 진입을 막는 락 |  |
-| 355 | `infra` | `distributed-processing` | 데이터와 처리를 여러 노드에 나눠 처리량을 올리고 일관성을 내주는 방식 |  |
-| 356 | `infra` | `git` | 변경마다 식별자를 붙여 어느 시점으로든 되돌아갈 수 있게 하는 형상관리 도구 |  |
-| 357 | `infra` | `gradle` | 컴파일·테스트·산출물 묶기를 태스크로 나눠 명령 하나로 부르는 빌드 도구 |  |
-| 358 | `infra` | `infrastructure-as-code` | 서버·네트워크를 클릭 대신 파일로 선언해 만드는 방식 (Terraform) |  |
-| 359 | `infra` | `kubernetes-workload` | 버전 전환·개수 유지·실행을 나눠 맡은 세 층의 배포 리소스 |  |
-| 360 | `infra` | `kubernetes` | 컨테이너를 여러 서버에 걸쳐 자동 배포·확장·관리하는 플랫폼 |  |
-| 361 | `infra` | `little-law` | 처리량 = 동시 처리 수 ÷ 처리 시간 이라는 큐잉이론 공식 |  |
-| 362 | `infra` | `load-balancer` | 여러 서버에 요청을 나눠 보내 부하를 분산하는 장치 |  |
-| 363 | `infra` | `message-broker` | 송수신 사이에 저장소를 둬 비동기로 주고받는 발행-구독 |  |
-| 364 | `infra` | `metric-type` | 지표를 Counter·Gauge·Histogram 으로 나눠 읽는 법을 정함 |  |
-| 365 | `infra` | `microservice-architecture` | 배포 단위를 하나로 둘지 작은 서비스 여럿으로 쪼갤지의 선택 |  |
-| 366 | `infra` | `monitoring` | 수집·저장·시각화·알림으로 돌아가는 것을 밖에서 보는 일 |  |
-| 367 | `infra` | `npm` | 자바스크립트 의존성·개발서버·번들을 Node 위에서 다루는 도구 |  |
-| 368 | `infra` | `object-storage` | 파일을 경로가 아닌 키로 찾는 객체로 저장하고 HTTP 로 접근 |  |
-| 369 | `infra` | `remote-repository` | 호스팅서버에 둔 git 저장소와 clone·push·pull 로 주고받기 |  |
-| 370 | `infra` | `reverse-proxy` | 바깥 요청을 먼저 받아 도메인·SSL 을 정리하고 내부로 넘기는 서버 |  |
-| 371 | `infra` | `staging-area` | 다음 커밋에 담을 파일을 미리 등록해 두는 중간 자리 |  |
-| 372 | `infra` | `web-application-deployment` | 코드를 실행하는 게 아니라 돌고 있는 서버가 찾아갈 자리에 war 를 놓는 일 |  |
-| 373 | `infra` | `zero-downtime-deployment` | 새 버전을 옆에 띄워 두고 준비되면 트래픽만 돌려 빈 시간을 없애는 배포 |  |
-| 374 | `ai` | `ai-agent` | 모델이 문장만 내놓는 데서 그치지 않고 툴을 호출해 실제 동작을 일으키게 만드는 구조 |  |
-| 375 | `ai` | `data-fabric` | 여러 시스템에 흩어진 데이터를 공통 의미·메타데이터·접근 규칙으로 묶어 일관되게 제공하는 데이터 운영 구조 |  |
-| 376 | `ai` | `deterministic-first-ai-enrichment` | 파서·규칙으로 확인 가능한 구조를 먼저 뽑고 해석 작업에만 AI 를 후속 적용하는 투패스 처리 |  |
-| 377 | `ai` | `entity-resolution` | 다른 이름·레코드가 현실의 같은 개체인지 판별해 하나의 표준 식별자로 잇는 과정 |  |
-| 378 | `ai` | `human-in-the-loop` | 자동화를 위험한 자리에서 멈춰 사람 승인을 기다렸다가 그 지점부터 재개하는 것 |  |
-| 379 | `ai` | `knowledge-graph-assisted-retrieval` | 그래프로 관련 개체·관계를 먼저 좁히고 그 결과가 가리키는 원문만 후속 처리에 쓰는 검색 |  |
-| 380 | `ai` | `loop-engineering` | 목표 달성까지 발견·계획·실행·검증을 반복하는 외부 제어 루프 설계. 종료 조건의 기계 판정이 핵심 |  |
-| 381 | `ai` | `mrtr` | 서버가 역호출 대신 정보 필요 응답을 주고 재요청받는 패턴 |  |
-| 382 | `ai` | `prompt-injection` | 프롬프트에 실린 데이터가 명령으로 읽히는 위험. 문구가 아니라 실행권 격리·경로 분리로 막는다 |  |
-| 383 | `ai` | `react-agent-loop` | 모델 판단→도구 실행→관찰을 반복해 정보를 모으고, 도구 요청이 없으면 끝나는 에이전트 실행 구조 |  |
-| 384 | `ai` | `request-context` | 한 요청을 실행하는 구성 요소들이 사용자·테넌트 같은 런타임 값을 공유하는 요청 범위 컨테이너 |  |
-| 385 | `ai` | `semantic-search` | 단어 일치가 아니라 임베딩 벡터의 의미 유사도로 결과를 찾는 검색 |  |
-| 386 | `ai` | `text-embedding` | 텍스트를 의미 관계를 비교할 수 있는 수치 벡터로 바꾼 표현 |  |
-| 387 | `ai` | `workflow-orchestration` | 작업을 함수 호출이 아니라 단계로 선언해 이음매와 상태를 밖에 드러내는 것 |  |
-| 388 | `front` | `html-form` | 사용자 입력에 이름표를 달아 한 URL로 묶어 보내는 브라우저 표준 장치 |  |
-| 389 | `front` | `script-loading` | 브라우저가 script 태그를 만나면 멈추고 실행하는 순서와 배치 문제 |  |
-| 390 | `pm` | `gamification` | 게임이 아닌 일에 재화·진행도·보상·실패조건을 붙여 다시 열게 만드는 설계 |  |
-| 391 | `qa` | `performance-testing` | 얼마나 견디는지 재는 것 정상 성능 확인과 무너지는 지점 찾기 |  |
+| 204 | `back` | `compensating-transaction` | 트랜잭션에 못 들어오는 외부 쓰기를 실패 시 «되돌리는 쓰기» 로 짝지어 all-or-nothing 처럼 만드는 것 |  |
+| 205 | `back` | `connection-lifetime-mismatch` | 풀의 커넥션 수명이 중간 계층 유휴 타임아웃보다 길어 죽은 연결을 재사용하는 장애 |  |
+| 206 | `back` | `connection-pool-sizing-formula` | 커넥션 풀 최대 크기 시작점을 코어 수로 계산하는 경험칙 |  |
+| 207 | `back` | `constant-pool` | .class 안에서 이름·문자열·참조를 한 번만 두고 인덱스로 가리키는 표 |  |
+| 208 | `back` | `context-hierarchy` | 스프링 IoC 컨테이너를 루트와 서블릿별 자식으로 나눠 빈을 공유하는 구조 |  |
+| 209 | `back` | `data-io-stream` | 바이트 스트림을 감싸 int·문자열 같은 타입 단위로 읽고 쓰게 하는 층 |  |
+| 210 | `back` | `data-source` | 커넥션 획득 방법을 감싼 인터페이스 — 직접 생성인지 풀인지 숨긴다 |  |
+| 211 | `back` | `date-time` | 시각을 문자열이 아니라 전용 타입으로 담고 표시할 때 형식을 입히는 것 |  |
+| 212 | `back` | `declarative-transaction` | 트랜잭션 경계를 코드 대신 애너테이션 표식으로 적고 프록시가 처리하는 것 |  |
+| 213 | `back` | `default-initialization` | new로 확보한 메모리는 타입별 기본값으로 자동 채워지고 지역변수는 아니다 |  |
+| 214 | `back` | `default-method` | 인터페이스가 몸통을 미리 구현해 두어 구현체가 안 채워도 되게 하는 문법 |  |
+| 215 | `back` | `dispatcher-servlet` | 모든 요청을 받아 처리할 컨트롤러·메서드를 고르는 프론트 컨트롤러 |  |
+| 216 | `back` | `distributed-session` | 서버가 여러 대가 되면 깨지는 메모리 세션을 외부 저장소로 빼는 것 |  |
+| 217 | `back` | `dynamic-proxy` | 인터페이스만으로 실행 중에 구현체를 만들고 호출을 한 곳으로 모으는 것 |  |
+| 218 | `back` | `dynamic-sql` | 넘어온 값에 따라 SQL 문장 조각을 XML 태그로 만들어 내는 것 |  |
+| 219 | `back` | `exception-handler` | 요청 처리 중 난 예외를 어디서 잡아 무엇을 보여 줄지 정하는 장치 |  |
+| 220 | `back` | `expression-language` | JSP에서 보관소의 값을 자바 코드 없이 꺼내는 표기법 |  |
+| 221 | `back` | `externalized-configuration` | 환경마다 다르거나 비밀인 값을 코드 밖 파일에 두고 실행 시 주입하는 것 |  |
+| 222 | `back` | `factory-bean` | 생성자로 못 만드는 객체를 메서드 호출 결과로 스프링 컨테이너에 담는 법 |  |
+| 223 | `back` | `file-class` | 파일 내용이 아니라 존재·속성·목록을 다루는 자바 표준 객체 |  |
+| 224 | `back` | `functional-interface` | 추상메서드가 하나뿐인 인터페이스. 람다가 채울 자리를 컴파일러가 특정하는 근거 |  |
+| 225 | `back` | `garbage-collection` | 아무도 가리키지 않게 된 인스턴스의 메모리를 런타임이 알아서 회수하는 것 |  |
+| 226 | `back` | `generated-keys` | insert 뒤 서버가 발급한 auto_increment 값을 그 문장으로부터 되받는 법 |  |
+| 227 | `back` | `generic-servlet` | Servlet 인터페이스의 다섯 중 넷을 미리 구현하고 service만 남긴 추상 클래스 |  |
+| 228 | `back` | `handler-interceptor` | 요청 처리의 앞·뒤·끝 세 지점에 공통 코드를 끼워 넣는 스프링 장치 |  |
+| 229 | `back` | `handler-method-argument` | 컨트롤러 메서드의 매개변수를 프레임워크가 타입과 표식을 보고 채워 주는 규칙 |  |
+| 230 | `back` | `http-servlet` | GenericServlet을 상속해 HTTP 캐스팅까지 채워 doGet·doPost만 재정의하게 한 클래스 |  |
+| 231 | `back` | `http-session` | 서버가 클라이언트 한 명당 하나씩 들고 요청보다 오래 살아야 할 값을 담는 보관소 |  |
+| 232 | `back` | `io-stream` | 통로 끝이 무엇이든 같은 메서드로 읽고 쓰는 단방향 데이터 통로 |  |
+| 233 | `back` | `ioc-container` | 객체를 대신 만들어 두고 필요한 곳에 넣어 주는 스프링 저장소 |  |
+| 234 | `back` | `java-compilation-unit` | 소스 하나가 들어가고 클래스마다 class 파일 하나가 나오는 단위 |  |
+| 235 | `back` | `java-config` | 스프링 설정을 XML 대신 자바 클래스에 애노테이션으로 적는 방식 |  |
+| 236 | `back` | `java-ee` | 기업용 기술을 인터페이스 규격으로 적어 둔 명세 문서 묶음 |  |
+| 237 | `back` | `javadoc` | 선언 앞 주석에서 HTML API 문서를 뽑아내는 도구와 태그 문법 |  |
+| 238 | `back` | `jdbc` | 자바가 DB 에 접속·질의할 때 부르는 표준 인터페이스와 드라이버 |  |
+| 239 | `back` | `jdk` | 실행에 필요한 꾸러미와 개발까지 되는 꾸러미의 포함 관계 |  |
+| 240 | `back` | `jsp-action-tag` | 실행 시점에 보관소 객체를 꺼내거나 실행을 넘기는 jsp 전용 태그 |  |
+| 241 | `back` | `jsp-directive` | 번역 시점에 이 파일을 어떻게 서블릿으로 만들지 지시하는 문법 |  |
+| 242 | `back` | `jsp-scripting-element` | JSP 각 조각이 번역된 서블릿의 어느 자리에 놓이는지 정하는 문법 |  |
+| 243 | `back` | `jsp` | HTML 에 자바를 섞어 쓰고 컨테이너가 서블릿으로 번역해 실행 |  |
+| 244 | `back` | `jstl-core-tag` | 출력·변수·흐름 제어·URL 을 태그로 처리하는 JSTL 기본 모듈 |  |
+| 245 | `back` | `jstl-format-tag` | 날짜·숫자를 문자열과 오가게 바꾸는 JSTL 형식 지정 모듈 |  |
+| 246 | `back` | `jstl` | JSP 의 자바 코드를 태그로 대체하는 표준 태그 라이브러리 |  |
+| 247 | `back` | `jvm-stack` | 메서드 호출마다 프레임을 쌓고 끝나면 버리는 스택 메모리 영역 |  |
+| 248 | `back` | `jvm` | 바이트코드를 OS 위에서 실행해 한 번 짜서 어디서나 돌게 하는 층 |  |
+| 249 | `back` | `jwt` | 정보를 담고 서명해 서버 저장 없이 위조 여부를 확인하는 토큰 |  |
+| 250 | `back` | `load-on-startup` | 서블릿을 첫 요청이 아닌 앱 기동 때 미리 초기화하는 설정 |  |
+| 251 | `back` | `lombok` | 애노테이션 프로세서로 getter·setter 를 컴파일 때 생성 |  |
+| 252 | `back` | `main-method` | JVM 이 실행 시 찾아 부르는 고정 형식의 프로그램 진입점 |  |
+| 253 | `back` | `method-reference` | 기존 메서드 하나를 함수형 인터페이스 구현으로 쓰는 :: 표기 |  |
+| 254 | `back` | `modifier-flags` | public·static 지정자가 정수 비트로 저장되고 리플렉션이 읽음 |  |
+| 255 | `back` | `multipart-form-data` | 파일 바이트와 문자열을 경계로 나눠 한 요청에 싣는 본문 형식 |  |
+| 256 | `back` | `mybatis-spring` | MyBatis 설정과 객체 생성을 스프링 컨테이너에 넘기는 연동 |  |
+| 257 | `back` | `mybatis` | SQL 을 XML 로 빼고 id 로 불러 실행하는 SQL 매퍼 |  |
+| 258 | `back` | `n-plus-one` | 목록 조회 뒤 연관 데이터를 항목마다 다시 질의하는 문제 |  |
+| 259 | `back` | `object-class` | 모든 클래스가 물려받는 상속 계층의 뿌리와 기본 메서드 여섯 |  |
+| 260 | `back` | `odbc` | DB 종류가 달라도 같은 함수로 접속하게 만든 드라이버 표준 API |  |
+| 261 | `back` | `ognl` | 점으로 이은 문자열 경로로 객체 안의 값을 읽고 쓰는 표현 언어 |  |
+| 262 | `back` | `optimistic-lock` | 잠그지 않고 읽되 저장 시점에 버전 컬럼으로 충돌을 확인하는 방식 |  |
+| 263 | `back` | `osiv` | 영속성 컨텍스트를 요청이 끝날 때까지 열어 두고 커넥션을 붙드는 패턴 |  |
+| 264 | `back` | `output-escaping` | 값을 문서에 꽂을 때 문법 문자로 읽히지 않게 치환해 XSS 를 막는 것 |  |
+| 265 | `back` | `package` | 클래스를 폴더 구조와 대응시켜 묶고 이름을 구분하는 문법 |  |
+| 266 | `back` | `page-context` | JSP 페이지 하나의 실행 상태와 다른 보관소들로 가는 입구를 겸하는 객체 |  |
+| 267 | `back` | `pagination` | 전체를 한 번에 안 보내고 시작 행과 개수로 끊어 가져오는 것 |  |
+| 268 | `back` | `persistence-context` | 엔티티를 DB 에 보내기 전까지 들고 캐시와 변경 감지를 하는 메모리 공간 |  |
+| 269 | `back` | `persistence-framework` | 객체와 테이블 사이 반복을 대신하는 층 SQL 을 사람이 쓰나 기계가 쓰나로 갈림 |  |
+| 270 | `back` | `prepared-statement` | SQL 뼈대와 값을 따로 보내 인젝션을 막는 JDBC 문장 객체 |  |
+| 271 | `back` | `property-editor` | 설정 파일의 문자열을 자바 타입으로 바꿔 주는 스프링 변환기 |  |
+| 272 | `back` | `raw-type` | 제네릭 클래스를 타입 인자 없이 써서 검사가 사라진 하위 호환용 상태 |  |
+| 273 | `back` | `redirect` | 응답 대신 다른 주소로 다시 요청하라고 답해 요청이 두 번 일어나게 하는 것 |  |
+| 274 | `back` | `reflective-annotation-access` | 선언에 붙은 애노테이션을 실행 중에 꺼내 값을 읽는 자바 API |  |
+| 275 | `back` | `reflective-field-access` | 필드를 이름으로 찾아 private 이어도 값을 읽고 쓰는 자바 API |  |
+| 276 | `back` | `reflective-instantiation` | new 없이 실행 중에 고른 생성자로 인스턴스를 만드는 자바 API |  |
+| 277 | `back` | `reflective-invocation` | 메서드를 이름으로 찾아 Method 객체로 호출하는 자바 API |  |
+| 278 | `back` | `request-dispatcher` | 한 서블릿이 다른 서블릿을 불러 같은 응답에 끼워 넣는 장치 |  |
+| 279 | `back` | `request-mapping` | URL·HTTP 메서드와 컨트롤러 메서드를 잇는 스프링 표식 |  |
+| 280 | `back` | `request-parameter` | 클라이언트가 실어 보낸 이름=값 쌍을 서블릿이 꺼내는 통로 |  |
+| 281 | `back` | `request-response` | 컨테이너가 요청마다 만들어 넘기는 입력·출력 두 객체 |  |
+| 282 | `back` | `response-body` | 컨트롤러 리턴값을 뷰 이름이 아닌 응답 본문으로 해석시키는 규칙 |  |
+| 283 | `back` | `result-map` | 컬럼과 자바 프로퍼티 대응을 따로 선언해 조인 결과를 객체로 조립 |  |
+| 284 | `back` | `result-set` | 조회 결과 위에 놓인 커서로 한 행씩 옮겨 가며 값을 꺼내는 것 |  |
+| 285 | `back` | `servlet-container-initializer` | 컨테이너 시작 때 jar 안의 클래스를 찾아 불러 주는 등록 규약 |  |
+| 286 | `back` | `servlet-container` | 서블릿을 만들고 부르고 정리하며 흐름을 대신 갖는 실행 환경 |  |
+| 287 | `back` | `servlet-context` | 앱마다 하나씩 있는 공용 저장소 겸 컨테이너와의 창구 객체 |  |
+| 288 | `back` | `servlet-filter` | 요청이 서블릿에 닿기 전과 응답이 나가기 전에 끼어드는 부품 |  |
+| 289 | `back` | `servlet-lifecycle` | 컨테이너가 서블릿을 만들고 준비시키고 부르고 버리는 정해진 순서 |  |
+| 290 | `back` | `servlet-listener` | 컨테이너 안에서 생기고 없어지는 이벤트를 통보받는 객체 |  |
+| 291 | `back` | `servlet` | HTTP 요청 하나를 받아 응답 하나를 만드는 서버 측 자바 컴포넌트 |  |
+| 292 | `back` | `slack-bot` | 반복 작업 프로그램의 명령과 결과를 Slack 에서 주고받게 만든 업무 인터페이스 |  |
+| 293 | `back` | `spring-boot` | 스프링 설정을 기본값으로 밀어 넣고 서버까지 품은 위층 |  |
+| 294 | `back` | `spring-framework` | 애플리케이션 뼈대를 미리 만들어 두고 그 안에 내 클래스를 끼우게 하는 자바 프레임워크 |  |
+| 295 | `back` | `spring-model` | 컨트롤러가 뷰에게 값을 넘기는 통로. request.setAttribute 자리를 대신한다 |  |
+| 296 | `back` | `spring-security` | 모든 요청 앞에 필터를 세워 누구인가(인증)와 해도 되는가(인가)를 검사 |  |
+| 297 | `back` | `sql-injection` | 입력 문자열이 SQL 문장의 일부로 파싱되어 의도 밖 문장이 실행되는 것 |  |
+| 298 | `back` | `sql-session` | 연결 하나를 품고 SQL 문자열과 값을 받아 실행해 주는 객체. JDBC 반복을 감춘다 |  |
+| 299 | `back` | `stereotype-annotation` | 이 클래스를 컨테이너에 담으라는 표식. 스캔이 훑어 빈으로 만든다 |  |
+| 300 | `back` | `string-builder` | 문자열을 새로 만들지 않고 그 자리에서 고쳐 쓰는 가변 버퍼 |  |
+| 301 | `back` | `string-comparison` | ==는 주소를 equals는 내용을 비교한다. 문자열 풀이 그 차이를 흐린다 |  |
+| 302 | `back` | `template-engine` | 틀과 데이터를 합쳐 문서를 만들어 주는 도구. 코드와 화면을 가른다 |  |
+| 303 | `back` | `template-fragment` | 여러 화면이 함께 쓰는 부분을 한 파일에 두고 이름으로 끼워 넣는 것 |  |
+| 304 | `back` | `terminal-state-ttl` | 진행 중인 큐 키에는 만료를 안 걸고 작업이 끝난 시점에만 TTL을 주는 방식 |  |
+| 305 | `back` | `thymeleaf` | HTML 파일 그대로가 템플릿인 엔진. 브라우저로 열어도 화면이 보인다 |  |
+| 306 | `back` | `tomcat` | 서블릿 규격 구현체. 웹서버와 웹컨테이너를 한 프로세스에 가진 WAS |  |
+| 307 | `back` | `transaction-propagation` | 트랜잭션 메서드가 다른 트랜잭션 안에서 불릴 때의 합류·분리 규칙 |  |
+| 308 | `back` | `try-with-resources` | 블록을 어떤 경로로 나가든 선언한 자원의 close 를 자동 호출하는 문법 |  |
+| 309 | `back` | `type-alias` | 패키지 포함 정규 클래스명에 짧은 별칭을 등록해 XML 에서 그 이름으로 가리킴 |  |
+| 310 | `back` | `type-erasure` | 제네릭 타입 인자가 컴파일 후 지워져 런타임에는 구분이 사라지는 것 |  |
+| 311 | `back` | `type-promotion` | 산술 연산 시 피연산자 타입을 자동으로 맞추는 규칙. 정수 최소 단위는 int |  |
+| 312 | `back` | `varargs` | 점 셋으로 인수 개수를 호출 쪽이 정하게 하고 받는 쪽은 배열로 받는 문법 |  |
+| 313 | `back` | `view-resolver` | 컨트롤러가 돌려준 뷰 이름에 접두·접미사를 붙여 실제 화면 파일로 바꾸는 것 |  |
+| 314 | `back` | `web-application-server` | 요청을 받아 내 코드를 실행해 동적 응답을 만드는 서버. 실행 주인이 서버로 넘어감 |  |
+| 315 | `back` | `web-component` | 컨테이너가 직접 생성해 호출하는 서버측 부품 묶음. 리스너 필터 서블릿 셋 |  |
+| 316 | `back` | `web-xml` | 어떤 클래스를 어떤 URL 로 부를지 적어 컨테이너가 기동 때 읽는 설정 파일 |  |
+| 317 | `back` | `webhook` | 사건이 난 쪽이 미리 등록된 URL 로 HTTP 요청을 보내 알리는 연동 방식. 폴링의 반대 |  |
+| 318 | `back` | `wildcard-type` | 제네릭이 상속을 타지 않는 벽을 뚫으려 타입 인자 자리에 범위를 적는 문법 |  |
+| 319 | `back` | `wrapper-class` | 기본 타입 값 하나를 객체로 감싸 객체를 요구하는 자리에 넣게 해 주는 클래스 |  |
+| 320 | `db` | `aggregate-function` | 여러 행을 값 하나로 접는 SQL 함수. NULL 은 세지 않는다 |  |
+| 321 | `db` | `change-data-capture` | DB가 남기는 binlog를 읽어 변경을 스트림으로 따라가는 동기화 방식 |  |
+| 322 | `db` | `data-modeling` | 무엇을 저장할지 엔티티와 관계로 그려 중복 없는 표 구조를 만드는 일 |  |
+| 323 | `db` | `database-index` | 검색 조건 컬럼을 미리 정렬해 따로 들고 조회를 빠르게 하는 구조 |  |
+| 324 | `db` | `database-lock` | 같은 데이터를 동시에 만지는 트랜잭션의 순서를 강제하는 장치 |  |
+| 325 | `db` | `database-migration` | 돌고 있는 DB를 계속 바뀌는 채로 다른 곳으로 옮기는 일 |  |
+| 326 | `db` | `database-partitioning` | 한 테이블을 같은 인스턴스 안의 여러 저장 단위로 나누되 하나로 보이게 하는 DB 내부 최적화 |  |
+| 327 | `db` | `database-schema` | 테이블을 담는 이름공간과 그 인코딩·정렬 기본값 |  |
+| 328 | `db` | `database-sharding` | 데이터를 여러 인스턴스에 나눠 담아 단일 서버 한계를 넘는 수평 확장. 라우팅이 설계의 핵심 |  |
+| 329 | `db` | `database-user` | 접속 자격과 접속 후 권한을 따로 정하는 계정 체계 |  |
+| 330 | `db` | `db-normalization` | 중복을 없애려고 테이블을 논리 단위로 쪼개고 외래키로 잇는 설계 원칙 |  |
+| 331 | `db` | `ddl` | 값이 아니라 값이 들어갈 틀(DB 객체)을 만들고 고치는 SQL 부류 |  |
+| 332 | `db` | `dml` | 틀이 아니라 그 안에 든 값을 넣고 고치고 지우는 SQL 부류 |  |
+| 333 | `db` | `dql` | 테이블에서 원하는 행과 컬럼을 골라 읽어 오는 select 계열 SQL |  |
+| 334 | `db` | `elasticsearch` | 모든 단어를 미리 색인해 두고 색인만 뒤지는 검색 전용 저장소 |  |
+| 335 | `db` | `foreign-key` | 한 테이블의 값이 다른 테이블의 실재하는 행을 가리키도록 양방향으로 검사하는 제약 |  |
+| 336 | `db` | `functional-dependency` | A가 정해지면 B도 하나로 정해지는 관계. 정규화가 떼어낼 대상을 찾는 잣대 |  |
+| 337 | `db` | `identifying-relationship` | 부모 키를 자식 기본키에 넣는지 외래키로만 두는지의 선택과 그 종속 강도 |  |
+| 338 | `db` | `primary-key` | 행을 구분하려 고른 컬럼 그리고 슈퍼키 후보키 대체키로 갈리는 층 |  |
+| 339 | `db` | `search-index` | 원본과 별도로 두어 키워드로 문서를 빨리 찾게 하는 색인 구조 |  |
+| 340 | `db` | `sql-data-type` | 컬럼 하나가 어떤 값을 얼마만큼 담을 수 있는지 서버에 선언해 두는 것 |  |
+| 341 | `db` | `sql-date-function` | 날짜를 서버 쪽에서 읽고 꺼내고 옮기고 재고 형식을 바꾸는 함수들 |  |
+| 342 | `db` | `sql-join` | 여러 테이블의 행을 짝지어 한 행으로 잇는 것. 쪼갠 테이블을 다시 붙인다 |  |
+| 343 | `db` | `sql-like` | 문자열을 정확히 같은가가 아니라 이런 모양인가로 비교하는 연산자 |  |
+| 344 | `db` | `sql-null` | 컬럼마다 값 없음을 허용할지와 값을 생략하면 무엇이 들어갈지를 정하는 것 |  |
+| 345 | `db` | `sql-operator` | where 조건 하나를 만들어 내는 비교·논리·범위 기호들 |  |
+| 346 | `db` | `sql-set-operation` | 조회 결과 두 개를 위아래로 합치거나 서로 빼서 하나로 만드는 것 |  |
+| 347 | `db` | `surrogate-key` | 몇 번째인가가 아니라 몇 번인가를 데이터가 필드로 들고 있게 하는 것 |  |
+| 348 | `db` | `transaction` | 여러 문장을 전부 되거나 전부 안 되게 묶는 단위와 autocommit 경계 설정 |  |
+| 349 | `db` | `unique-key` | 기본키가 아니면서 값 중복을 막아야 하는 컬럼에 거는 유일성 제약 |  |
+| 350 | `infra` | `build` | 소스에서 배포 산출물이 나오기까지의 컴파일·의존성·테스트 단계 전체와 그걸 명령으로 묶는 도구 |  |
+| 351 | `infra` | `ci-cd` | 푸시 한 번으로 빌드부터 배포까지 잇는 GitHub Actions 자동화 절차 |  |
+| 352 | `infra` | `cold-start` | 준비된 상태 없이 시작한 실행이 준비 비용부터 다시 치르는 문제 |  |
+| 353 | `infra` | `container` | 한 커널 위에서 게스트 OS 없이 격리돼 도는 프로세스 실행 단위 |  |
+| 354 | `infra` | `data-pipeline` | 한 저장소를 주기적으로 읽어 다듬고 다른 저장소로 옮기는 장치 |  |
+| 355 | `infra` | `distributed-lock` | 여러 프로세스·서버가 외부 공통 저장소에서 처리 권한을 조정해 공유 자원 동시 진입을 막는 락 |  |
+| 356 | `infra` | `distributed-processing` | 데이터와 처리를 여러 노드에 나눠 처리량을 올리고 일관성을 내주는 방식 |  |
+| 357 | `infra` | `git` | 변경마다 식별자를 붙여 어느 시점으로든 되돌아갈 수 있게 하는 형상관리 도구 |  |
+| 358 | `infra` | `gradle` | 컴파일·테스트·산출물 묶기를 태스크로 나눠 명령 하나로 부르는 빌드 도구 |  |
+| 359 | `infra` | `infrastructure-as-code` | 서버·네트워크를 클릭 대신 파일로 선언해 만드는 방식 (Terraform) |  |
+| 360 | `infra` | `kubernetes-workload` | 버전 전환·개수 유지·실행을 나눠 맡은 세 층의 배포 리소스 |  |
+| 361 | `infra` | `kubernetes` | 컨테이너를 여러 서버에 걸쳐 자동 배포·확장·관리하는 플랫폼 |  |
+| 362 | `infra` | `little-law` | 처리량 = 동시 처리 수 ÷ 처리 시간 이라는 큐잉이론 공식 |  |
+| 363 | `infra` | `load-balancer` | 여러 서버에 요청을 나눠 보내 부하를 분산하는 장치 |  |
+| 364 | `infra` | `message-broker` | 송수신 사이에 저장소를 둬 비동기로 주고받는 발행-구독 |  |
+| 365 | `infra` | `metric-type` | 지표를 Counter·Gauge·Histogram 으로 나눠 읽는 법을 정함 |  |
+| 366 | `infra` | `microservice-architecture` | 배포 단위를 하나로 둘지 작은 서비스 여럿으로 쪼갤지의 선택 |  |
+| 367 | `infra` | `monitoring` | 수집·저장·시각화·알림으로 돌아가는 것을 밖에서 보는 일 |  |
+| 368 | `infra` | `npm` | 자바스크립트 의존성·개발서버·번들을 Node 위에서 다루는 도구 |  |
+| 369 | `infra` | `object-storage` | 파일을 경로가 아닌 키로 찾는 객체로 저장하고 HTTP 로 접근 |  |
+| 370 | `infra` | `remote-repository` | 호스팅서버에 둔 git 저장소와 clone·push·pull 로 주고받기 |  |
+| 371 | `infra` | `reverse-proxy` | 바깥 요청을 먼저 받아 도메인·SSL 을 정리하고 내부로 넘기는 서버 |  |
+| 372 | `infra` | `staging-area` | 다음 커밋에 담을 파일을 미리 등록해 두는 중간 자리 |  |
+| 373 | `infra` | `web-application-deployment` | 코드를 실행하는 게 아니라 돌고 있는 서버가 찾아갈 자리에 war 를 놓는 일 |  |
+| 374 | `infra` | `zero-downtime-deployment` | 새 버전을 옆에 띄워 두고 준비되면 트래픽만 돌려 빈 시간을 없애는 배포 |  |
+| 375 | `ai` | `ai-agent` | 모델이 문장만 내놓는 데서 그치지 않고 툴을 호출해 실제 동작을 일으키게 만드는 구조 |  |
+| 376 | `ai` | `data-fabric` | 여러 시스템에 흩어진 데이터를 공통 의미·메타데이터·접근 규칙으로 묶어 일관되게 제공하는 데이터 운영 구조 |  |
+| 377 | `ai` | `deterministic-first-ai-enrichment` | 파서·규칙으로 확인 가능한 구조를 먼저 뽑고 해석 작업에만 AI 를 후속 적용하는 투패스 처리 |  |
+| 378 | `ai` | `entity-resolution` | 다른 이름·레코드가 현실의 같은 개체인지 판별해 하나의 표준 식별자로 잇는 과정 |  |
+| 379 | `ai` | `human-in-the-loop` | 자동화를 위험한 자리에서 멈춰 사람 승인을 기다렸다가 그 지점부터 재개하는 것 |  |
+| 380 | `ai` | `knowledge-graph-assisted-retrieval` | 그래프로 관련 개체·관계를 먼저 좁히고 그 결과가 가리키는 원문만 후속 처리에 쓰는 검색 |  |
+| 381 | `ai` | `loop-engineering` | 목표 달성까지 발견·계획·실행·검증을 반복하는 외부 제어 루프 설계. 종료 조건의 기계 판정이 핵심 |  |
+| 382 | `ai` | `mrtr` | 서버가 역호출 대신 정보 필요 응답을 주고 재요청받는 패턴 |  |
+| 383 | `ai` | `prompt-injection` | 프롬프트에 실린 데이터가 명령으로 읽히는 위험. 문구가 아니라 실행권 격리·경로 분리로 막는다 |  |
+| 384 | `ai` | `react-agent-loop` | 모델 판단→도구 실행→관찰을 반복해 정보를 모으고, 도구 요청이 없으면 끝나는 에이전트 실행 구조 |  |
+| 385 | `ai` | `request-context` | 한 요청을 실행하는 구성 요소들이 사용자·테넌트 같은 런타임 값을 공유하는 요청 범위 컨테이너 |  |
+| 386 | `ai` | `semantic-search` | 단어 일치가 아니라 임베딩 벡터의 의미 유사도로 결과를 찾는 검색 |  |
+| 387 | `ai` | `text-embedding` | 텍스트를 의미 관계를 비교할 수 있는 수치 벡터로 바꾼 표현 |  |
+| 388 | `ai` | `workflow-orchestration` | 작업을 함수 호출이 아니라 단계로 선언해 이음매와 상태를 밖에 드러내는 것 |  |
+| 389 | `front` | `html-form` | 사용자 입력에 이름표를 달아 한 URL로 묶어 보내는 브라우저 표준 장치 |  |
+| 390 | `front` | `script-loading` | 브라우저가 script 태그를 만나면 멈추고 실행하는 순서와 배치 문제 |  |
+| 391 | `pm` | `gamification` | 게임이 아닌 일에 재화·진행도·보상·실패조건을 붙여 다시 열게 만드는 설계 |  |
+| 392 | `qa` | `performance-testing` | 얼마나 견디는지 재는 것 정상 성능 확인과 무너지는 지점 찾기 |  |
 
 ---
 
