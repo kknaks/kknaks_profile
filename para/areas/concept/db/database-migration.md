@@ -11,6 +11,7 @@ aliases:
 up:
   - 2025-11-01-database_migration
   - 2025-11-01-migration_detail
+  - 2026-08-31-task-redesign
 tags:
   - database
   - 인프라
@@ -58,6 +59,15 @@ CALL mysql.rds_set_configuration('binlog retention hours', 168); -- 7일로
 
 **그리고 되돌릴 수 있는지가 방안을 가른다.** Dual write 는 양쪽이 다 살아 있으므로 되돌리기 쉽고, Dump→Load 는 옮긴 뒤 들어온 데이터가 새 DB 에만 있어 **되돌리면 그것을 잃는다** → [[transaction]]
 
+## 스키마 이전 — enum 어휘를 바꾸는 일 (같은 DB 안의 이전)
+
+DB 를 옮기지 않아도 **돌고 있는 스키마의 어휘를 바꾸는 것**은 같은 문제 구조다 — 바꾸는 동안에도 그 값을 읽고 쓰는 코드가 살아 있다.
+
+- **PG native enum 은 값을 뺄 수 없다** — 더하는 건 되지만 제거 문법이 없다. 그래서 어휘 축소는 **rename → 새 타입 생성 → `USING` 캐스트 → 구 타입 drop** 네 걸음으로 «타입을 갈아끼우는» 수밖에 없다
+- **동형 계약인 enum 은 같은 migration 에서 함께 바꾼다** — 두 테이블이 「값이 문자열까지 같다」는 계약으로 묶여 있으면, 따로 바꾸는 순간 그 계약이 잠깐이라도 깨진다. 원자성의 단위는 테이블이 아니라 **계약**이다
+- **drop 전에 사전 가드(RAISE)를 세운다** — 컬럼을 지우면 값이 영영 사라지므로, 「지워도 되는 상태인가」를 migration 안에서 세어 보고 아니면 **배포를 멈춘다**. 운영 DB 를 미리 실측할 수 없을 때, 가드는 리스크가 아니라 **배포 시점의 실측 수단**이 된다 → [[fail-fast]]
+- **지우기 전에 옮긴다(backfill)** — 컬럼의 값이 다른 원장(이벤트 테이블)에 있어야 할 사실이라면, drop 전에 소급 insert 로 이사시키고 가드는 재발 방지로 남긴다. 이력은 지워지는 게 아니라 **자리를 옮기는 것**
+
 ## 경계와 오해
 
 - **「짧은 중단」도 중단이다** — 주소를 바꾸는 순간 진행 중이던 연결은 끊긴다. 커넥션 풀이 새 주소로 다시 맺을 때까지의 실패를 어떻게 다룰지가 남는다 → [[connection-pool-sizing-formula]] · [[data-source]]
@@ -79,4 +89,5 @@ CALL mysql.rds_set_configuration('binlog retention hours', 168); -- 7일로
 ## 출처
 
 - [[2025-11-01-database_migration]] — 「마이그레이션 방안」 절이 **세 가지를 장단점 한 줄씩으로 나란히** 놓은 것이 이 개념의 뼈대다 — Dump→Load(쉽지만 손실), DMS+CDC(짧은 중단, 비용), Dual write(손실 없지만 점검 두 번). **「CDC 를 활용하여 실시간 데이터베이스를 업데이트 후 원하는 시점에 DB 주소를 변경하면 된다」**는 한 줄이 왜 두 번째를 골랐는지를 설명한다. 「마이그레이션 단계」가 **Full Load → CDC** 두 단계를 그림으로 갈랐고, 그 전에 원본 쪽 binlog 를 확인·설정하는 SQL(`log_bin` 확인, `binlog retention hours` 를 168시간으로)이 실려 있다. 다만 전환 후 검증 절차와 롤백 계획은 다루지 않았다
+- [[2026-08-31-task-redesign]] — mediness 태스크 상태 어휘를 6값→5값으로 접은 실전. 동형 enum 2개(`runtime_task_status`·`version_wbs_task_status`)를 한 migration 에서 4단 캐스트로 동시 교체했고, `accepted_at` drop 앞에 「이벤트 없는 스탬프」를 세는 RAISE 가드를 뒀다가 — 로컬 기동에서 가드가 실제로 발화(고아 60건, 전부 레거시 이관분)해 **backfill 후 drop** 으로 확정했다. 가드 덕에 «지웠는데 이력이 없더라» 가 원리적으로 불가능했다
 - [[2025-11-01-migration_detail]] — Azure DB 배포와 DMS 서비스 등록의 **화면 절차**를 스크린샷으로 남긴 짧은 노트다. 이미지가 함께 복구되지 않아 링크가 비어 있고, 남은 것은 **단계의 순서**(Azure DB 배포 → DMS 서비스 등록 → 새 프로젝트 생성)뿐이다

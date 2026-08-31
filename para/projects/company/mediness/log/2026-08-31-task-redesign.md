@@ -10,7 +10,7 @@ mediness 의 업무 태스크가 세 원장(`tasks` 정본 / `version_wbs_task` 
 
 ## 2. 적용한 기술·개념
 
-- **PG enum 동시 cutover + 사전 가드 마이그레이션 (0136)** — 값이 동형 계약인 enum 2개(`runtime_task_status`·`version_wbs_task_status`)를 한 migration 에서 5값으로 접고 `accepted_at` 을 drop
+- **PG enum 동시 cutover + 사전 가드 마이그레이션 (0136)** → [[database-migration]] 보강 — 값이 동형 계약인 enum 2개(`runtime_task_status`·`version_wbs_task_status`)를 한 migration 에서 5값으로 접고 `accepted_at` 을 drop
   - 왜 이걸 골랐나: PG 는 enum 값 제거 문법이 없어 rename→새 타입→USING 캐스트→drop 4단(0108 선례)이 유일한 길. 두 enum 을 따로 바꾸면 「6=6」 동형 계약이 순간적으로 깨진다
   - 무엇이 어려웠나: 운영 DB 실측 불가(P0) → 검증을 **migration 안 RAISE 가드**로 옮겼고, 로컬 기동에서 가드가 실제 발화(고아 60건 — 전부 레거시 decision 이관분)해 backfill(이벤트 소급 후 drop) 설계로 확정. "가드가 배포를 멈춘다"를 리스크가 아니라 실측 수단으로 쓴 사례
   - 근거: `back/alembic/versions/0136_task_status_five_value_cutover.py` · mediness-app#136 · dev 실배포 alembic head 확인
@@ -20,14 +20,14 @@ mediness 의 업무 태스크가 세 원장(`tasks` 정본 / `version_wbs_task` 
 - **라운드 종결 판정 수렴 (4벌→1벌)** — 같은 판정이 4곳에 다른 모수로 구현돼 「이전 라운드 비terminal 1건 = 루프 영구 정지」. `round_rule.active_round_complete` 정본 1벌 + 전이 seam 안쪽 호출로 완료 표면 4개가 전부 워크플로를 깨우게
   - 무엇이 어려웠나: 판정 트리거에 CANCELED 누락(마지막 태스크를 취소로 닫으면 라운드 미종결)이라는 잠복 실버그를 P0 실측이 발견 — 스펙의 「취소도 terminal」 계약 착지로 함께 수리
   - 근거: `back/app/services/action_runtime/tasks/round_rule.py` · reviewer 리포트(review-code-wp126-report.md)
-- **fail-loud 원칙 (조용한 no-op 폐기)** — Slack 토큰 미설정 시 채널 생성을 건너뛰고 성공 처리하던 것을 503 실패로 전환. 커널에 `ExecutionUnavailable` seam(실패 원장 커밋 후 재-raise)
+- **fail-loud 원칙 (조용한 no-op 폐기)** → [[fail-fast]] 신설 — Slack 토큰 미설정 시 채널 생성을 건너뛰고 성공 처리하던 것을 503 실패로 전환. 커널에 `ExecutionUnavailable` seam(실패 원장 커밋 후 재-raise)
   - 왜 이걸 골랐나: `responding` 의 유일한 출구가 그 채널이라 조용한 no-op = run 영구 매장. 웹 완료 버튼 대안은 사용자가 기각(대응 대화가 회고의 유일한 입력)
   - 근거: spec-152 §U-2 · `engine/runtime.py` · test_wp126_fail_loud.py
 - **슬랙 에러 채널 어댑터 — 실물 우선 계약** — 형식 문서가 없는 인바운드를 사용자 제공 샘플 2종(HTTP/TASKIQ)으로 계약화(IB-1~9). 파서는 예외 불투과·파싱 실패여도 raw 로 raise(유실 금지), 제품명→슬러그 검색 해소(부분 일치 거부)
   - 무엇이 어려웠나: 검수가 파서 헬퍼의 예외 누출(불가능 시각 '24:00' → 500 → Slack 재전송이 duplicate 로 접혀 **알림 유실**)을 격리 재현으로 잡음 — 유실 금지 계약의 정면 구멍이라 R2 정정
   - 근거: `incident/slack_error_adapter.py` · spec-152 §인바운드 트리거 · review-adapter-report.md
 - **squash-merge 후 브랜치 위생** — squash 된 브랜치는 `git log` 로 미머지처럼 보인다(런북 기지). 아카이브 안전검사가 이를 잡았을 때 tree-diff 로 내용 동일성을 증명하고 origin 으로 reset 해 원인 제거(검사 우회 금지 규율)
-- **셀프호스트 러너 긴급 CD 우회** — GitHub 결제 장애로 호스팅 러너 전면 차단 → build 를 `medisolve-arm64`(사내 ARC)로 전환해 배포 완주. az CLI 부재는 설치가 아니라 **`az acr login` = docker login 치환**으로 해소(ephemeral pod 라 설치 무의미)
+- **셀프호스트 러너 긴급 CD 우회** → [[ci-cd]] 보강 — GitHub 결제 장애로 호스팅 러너 전면 차단 → build 를 `medisolve-arm64`(사내 ARC)로 전환해 배포 완주. az CLI 부재는 설치가 아니라 **`az acr login` = docker login 치환**으로 해소(ephemeral pod 라 설치 무의미)
   - 근거: mediness-app `e0748f66` · CHARTY stg run 33389477922 전 잡 성공 · k8s_infra_mac docs/self-hosted-ci.md 갱신분
 
 ## 3. 막혔던 것 / 사고
