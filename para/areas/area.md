@@ -465,6 +465,8 @@ para/areas/
 | 364 | `front` | `script-loading` | 브라우저가 script 태그를 만나면 멈추고 실행하는 순서와 배치 문제 |  |
 | 365 | `pm` | `gamification` | 게임이 아닌 일에 재화·진행도·보상·실패조건을 붙여 다시 열게 만드는 설계 |  |
 | 366 | `qa` | `performance-testing` | 얼마나 견디는지 재는 것 정상 성능 확인과 무너지는 지점 찾기 |  |
+| 367 | `db` | `derived-predicate` | 새 개념을 저장하지 않고 기존 컬럼 조합식으로 정의하는 것. 원장 이원화·migration 파급을 막는다 |  |
+| 368 | `cs` | `contract-surface-enumeration` | 계약을 바꿀 때 닿는 자리를 코드에서 전수 세고 시작하는 것. 반려 1호는 범위 누락 신호다 |  |
 
 ---
 
