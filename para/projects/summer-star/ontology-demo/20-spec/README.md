@@ -59,7 +59,7 @@ spec 문서를 만들거나 상태가 바뀌면 이 표를 갱신한다. work �
 
 | ID | Title | Area | Status | Decision | File |
 |---|---|---|---|---|---|
-| SPEC-001 | 데이터 계층 계약 — 메달리온 전 계층 DB · 마스킹 뷰 · 적재 게이트 | data | **ready** (v0.0.3) | DEC-001 · DEC-002 | [spec-001-data-layer-contract.md](spec-001-data-layer-contract.md) |
+| SPEC-001 | 데이터 계층 계약 — 메달리온 전 계층 DB · 마스킹 뷰 · 적재 게이트 | data | **ready** (v0.0.4) | DEC-001 · DEC-002 | [spec-001-data-layer-contract.md](spec-001-data-layer-contract.md) |
 | SPEC-002 | 조회 도구 계약 — MCP 4종 | agent | **ready** (v0.0.3) | DEC-002 · DEC-003 | [spec-002-mcp-tools-contract.md](spec-002-mcp-tools-contract.md) |
 | SPEC-003 | FE↔BE API 계약 — 계층·KPI·그래프·예보·채팅·접속 게이트 | api | **ready** (v0.0.3) | DEC-003 · DEC-004 · DEC-005 | [spec-003-api-and-chat-contract.md](spec-003-api-and-chat-contract.md) |
 | SPEC-004 | 화면 계약 3페이지 — 모니터링 · 채팅 · 데이터 | ui | draft (v0.0.2) | DEC-004 · DEC-002 · DEC-005 | [spec-004-three-screens.md](spec-004-three-screens.md) |
@@ -85,7 +85,6 @@ FEASIBLE-WITH-CHANGES · BLOCKED 0건) 결과를 받아 작성했다. `draft` �
 
 | ID | Question | Owner | Next |
 |---|---|---|---|
-| SPEC-001 OQ-3 | `gold_retention_monthly` · `gold_kpi_monthly` 기대 행수 | kknaks | 빌드 실측해 대조값 등재 |
 | SPEC-003 OQ-8 | 컬럼 값 분포 엔드포인트를 둘 것인가 | kknaks | 분포 바 제거 권고 — 유지 시 엔드포인트 추가 |
 | SPEC-004 OQ-1 | KPI 카드 클릭의 목적지 | kknaks | 그래프 노드 선택 제안 |
 | SPEC-004 OQ-2 | 「그 외 KPI」 카드 표기 | kknaks | 상태별 내역 파생 |

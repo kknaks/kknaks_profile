@@ -4,7 +4,7 @@ id: SPEC-001
 title: "데이터 계층 계약 — 메달리온 전 계층 DB · 마스킹 뷰 · 적재 게이트"
 status: ready
 product: ontology-demo
-version: 0.0.3
+version: 0.0.4
 created_at: 2026-09-02
 updated_at: 2026-09-02
 tags:
@@ -206,9 +206,9 @@ Out of scope:
 |---|---|---|
 | `gold_kpi_daily` | **235** | `resv_date` 일별 1행. 2026-02-17 행 없음(0 채움 없음) |
 | `gold_kpi_weekly` | **34** | ISO 주 1행. 부분 주 플래그 보유 |
-| `gold_kpi_monthly` | — | 달력 월 1행. **빌드가 일별에서 집계해 생성한다**(2026-09-02 확정) |
+| `gold_kpi_monthly` | **8** | 달력 월 1행. **빌드가 일별에서 집계해 생성한다**(2026-09-02 확정) |
 | `gold_promo_calendar` | **57** | 프로모션 1건 = 이벤트 1행(생존만, v1 23 + v2 34) |
-| `gold_retention_monthly` | — | 신환 코호트 월 1행 (기록 05 4b — 행수는 기록에 없음) |
+| `gold_retention_monthly` | **8** | 신환 코호트 월 1행 (기록 05 4b — 행수는 빌드 실측으로 확정) |
 
 **`gold_kpi_monthly` (2026-09-02 확정)** — 월 단위 집계는 **골드 View 가 소유한다.**
 조회 도구·API 가 실행 시점에 합산하지 않는다(S-002 — 집계는 View 가 한다). 산출 규칙은
@@ -273,7 +273,7 @@ Out of scope:
 | 8 | `reservations` | 예약 수 | `kpi` | 355, 270 |
 | 9 | `cancels` | 취소 수 | `kpi` | 355, 330 |
 | 10 | `noshows` | 부도 수 | `kpi` | 355, 390 |
-| 11 | `visits` | 총 내원 | `kpi` | 미배정 |
+| 11 | `visits` | 총 내원 수 | `kpi` | 미배정 |
 | 12 | `cancel_rate` | 취소율 | `kpi` | 625, 130 |
 | 13 | `noshow_rate` | 노쇼율 | `kpi` | 625, 190 |
 | 14 | `new_patients` | 신환 수 | `kpi` | 625, 250 |
@@ -309,7 +309,7 @@ Out of scope:
 | 삭제 | `review_campaign`(리뷰 요청 캠페인) | 정본에 없다 |
 | 삭제 | `organic_new`(자연 유입 신환) | 정본에 없다 |
 | 삭제 | `review_positive_rate`(리뷰 긍정 비율) | 정본에 없다 |
-| 신규 | — | `visits`(총 내원) |
+| 신규 | — | `visits`(총 내원 수) |
 | 신규 | — | `new_patients_domestic`(한국인 신환 수) |
 | 신규 | — | `sales_foreign_est`(외국인 추정 매출) |
 
@@ -436,7 +436,8 @@ stateDiagram-v2
       대조값: 매출 합 **2,615,555,218원**(예외 1건 제외) · 결제 내원 **5,428** ·
       신환 **3,447** · 총 내원 실버 기준 **47,537**(브론즈 47,602 와는 「47,537 + 내원 중복
       65 = 47,602」로 대사) · `gold_kpi_daily` **235행**(2026-02-17 행 없음) ·
-      `gold_kpi_weekly` **34행** · `gold_promo_calendar` **57행** ·
+      `gold_kpi_weekly` **34행** · `gold_kpi_monthly` **8행** ·
+      `gold_retention_monthly` **8행** · `gold_promo_calendar` **57행** ·
       `silver_reservations` **75,479** · `silver_reviews` **1,962** ·
       `silver_catalog` **6,198** · `silver_promotions` **73** · `silver_mappings` **9,689**.
 - [ ] **AC-3 (내원 대사)** 전 일자에서 **신환 수 + 재진 수 = 총 내원 수** 성립(235일 오차 0).
@@ -448,7 +449,7 @@ stateDiagram-v2
       **`node_id` 는 전건 snake_case 이고 §4 의 25종 표와 1:1 대응**한다 — 대응하지 않는 행이
       1건이라도 있으면 적재를 실패시키고 어긋난 id·라벨을 보고한다(표를 조용히 맞추지 않는다).
       `lag` 는 **정본 문자열 원형**이다 — 형식 강제 검사를 하지 않는다(`2w`·빈 값 허용).
-- [ ] **AC-6b (월 View)** `gold_kpi_monthly` 가 빌드 산출물로 존재하고, 월 합계 =
+- [ ] **AC-6b (월 View)** `gold_kpi_monthly` 가 빌드 산출물로 **8행** 존재하고, 월 합계 =
       해당 월 일별 합계(오차 0), 비율형 지표는 일별 평균이 아니라 월 합계 재계산값이다.
 - [ ] **AC-7 (게이트 3 — PII 마스킹)** 마스킹 뷰 산출 어디에도 `patientName`·`phone`·
       `birthday` 원값 검색 **0건**. 이름 `김○○` · 전화 `010-****-1234` · 생년월일
@@ -464,7 +465,7 @@ stateDiagram-v2
 |---|---|---|---|
 | ~~OQ-1~~ | 브론즈 테이블 이름 규약 — `bronze_<원천>_<원본테이블>` | **확정 (2026-09-02 승인)** | — |
 | ~~OQ-2~~ | 마스킹 뷰 이름 규약 — `v_<대상테이블>` | **확정 (2026-09-02 승인)** | — |
-| OQ-3 | `gold_retention_monthly` · `gold_kpi_monthly` 의 기대 행수 | **미상 — 빌드 실측 등재** | 기록 05 에 행수가 없다. 빌드 시 실측해 §6 AC-2 대조값에 등재한다 |
+| ~~OQ-3~~ | `gold_retention_monthly` · `gold_kpi_monthly` 의 기대 행수 | **닫힘 (2026-09-02)** — WORK-001 P4 빌드 실측: 둘 다 **8행** | §4 골드 표 · §6 AC-2·AC-6b 에 등재 완료 |
 | ~~OQ-4~~ | 실버 마스킹 뷰(`v_silver_*`)를 둘 것인가 | **확정 (2026-09-02 승인)** — 둔다 | 「소비자는 항상 뷰를 본다」는 규칙을 단일화한다 |
 | ~~OQ-5~~ | 브론즈 리뷰 본문 마스킹을 뷰에서 다시 하는가 | **확정 (2026-09-02 승인)** — 뷰에서도 같은 실명 사전으로 마스킹한다 | 브론즈 드릴다운이 본문을 보여주기 때문 |
 | ~~OQ-6~~ | `node_id` 25종의 정본 라벨·유형 | **닫힘 (2026-09-02)** — WORK-001 backend 실측으로 전건 대조, 어긋난 8건을 정본 기준으로 정정(§4 정정 이력 표) | 잔여는 신규 3노드의 **좌표 미배정**뿐 — SPEC-004 좌표 자산 재키잉 시 배정 |
