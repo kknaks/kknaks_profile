@@ -4,7 +4,7 @@ id: SPEC-003
 title: "FE↔BE API 계약 — 계층 조회 · KPI · 그래프 · 예보 · 채팅 스트림 · 접속 게이트"
 status: ready
 product: ontology-demo
-version: 0.0.3
+version: 0.0.4
 created_at: 2026-09-02
 updated_at: 2026-09-02
 tags:
@@ -307,8 +307,10 @@ Out of scope:
   - 판정별 엣지 구분(채택/자동 확정/선언/보류/기각)은 응답 필드가 갖는다. 보류·기각은
     `verdicts` 를 명시해야 온다.
   - 노드 상태색 기준은 `/api/kpi/cards` 와 **같은 규칙**을 쓴다.
-  - **`edge_id`** — 안정 식별자. `used_edges[]`(SPEC-005) · URL `?edge=`(SPEC-004)가 같은
-    값을 쓴다. `(from, to)` 쌍도 유일하지만 URL 에 싣기 위해 id 를 둔다.
+  - **`edge_id`** — 안정 식별자이고 형식은 **`<from>__<to>`**(밑줄 2개)다.
+    예: `cancel_rate__reservations`. `used_edges[]`(SPEC-005) · URL `?edge=`(SPEC-004)가
+    같은 값을 쓴다. `(from, to)` 쌍이 유일하므로 파생 가능하지만 **응답이 문자열로 실어 준다**
+    — 소비자가 조립하지 않는다.
   - **`kind`** — `causal` · `derivation` · `exogenous` · `candidate` · `rejected`.
     인스펙터 배지가 이 값을 쓴다.
   - **`note`** — 사람이 읽는 설명 한두 줄. `evidence`(근거 수식)·`reason`(기각 사유)과

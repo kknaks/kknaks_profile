@@ -59,15 +59,15 @@ spec 문서를 만들거나 상태가 바뀌면 이 표를 갱신한다. work �
 
 | ID | Title | Area | Status | Decision | File |
 |---|---|---|---|---|---|
-| SPEC-001 | 데이터 계층 계약 — 메달리온 전 계층 DB · 마스킹 뷰 · 적재 게이트 | data | **ready** (v0.0.4) | DEC-001 · DEC-002 | [spec-001-data-layer-contract.md](spec-001-data-layer-contract.md) |
+| SPEC-001 | 데이터 계층 계약 — 메달리온 전 계층 DB · 마스킹 뷰 · 적재 게이트 | data | **ready** (v0.0.5) | DEC-001 · DEC-002 | [spec-001-data-layer-contract.md](spec-001-data-layer-contract.md) |
 | SPEC-002 | 조회 도구 계약 — MCP 4종 | agent | **ready** (v0.0.3) | DEC-002 · DEC-003 | [spec-002-mcp-tools-contract.md](spec-002-mcp-tools-contract.md) |
-| SPEC-003 | FE↔BE API 계약 — 계층·KPI·그래프·예보·채팅·접속 게이트 | api | **ready** (v0.0.3) | DEC-003 · DEC-004 · DEC-005 | [spec-003-api-and-chat-contract.md](spec-003-api-and-chat-contract.md) |
-| SPEC-004 | 화면 계약 3페이지 — 모니터링 · 채팅 · 데이터 | ui | draft (v0.0.2) | DEC-004 · DEC-002 · DEC-005 | [spec-004-three-screens.md](spec-004-three-screens.md) |
+| SPEC-003 | FE↔BE API 계약 — 계층·KPI·그래프·예보·채팅·접속 게이트 | api | **ready** (v0.0.4) | DEC-003 · DEC-004 · DEC-005 | [spec-003-api-and-chat-contract.md](spec-003-api-and-chat-contract.md) |
+| SPEC-004 | 화면 계약 3페이지 — 모니터링 · 채팅 · 데이터 | ui | **ready** (v0.1.0) | DEC-004 · DEC-002 · DEC-005 | [spec-004-three-screens.md](spec-004-three-screens.md) |
 | SPEC-005 | 에이전트 루프와 게이트 — `used_edges` · 게이트 5종 · 회귀 3본 | agent | **ready** (v0.0.3) | DEC-003 | [spec-005-agent-loop-and-gates.md](spec-005-agent-loop-and-gates.md) |
 
-**SPEC-004 는 결번이 아니다** — 2026-09-02 디자인 실현성 검토(전 페이지
-FEASIBLE-WITH-CHANGES · BLOCKED 0건) 결과를 받아 작성했다. `draft` 인 이유는 사용자 리뷰
-대기이고, 화면 시각 상세 중 일부는 **디자인 조정 대기**(SPEC-004 §7.2, 20건)다.
+**SPEC-004 `ready` (2026-09-02)** — 디자인 실현성 검토(전 페이지 FEASIBLE-WITH-CHANGES ·
+BLOCKED 0건) 후 작성했고, design-fix 세션이 **조정 20건을 전건 해소**해 `ready` 로 올렸다.
+정정 이력은 SPEC-004 §7.2, 답변 예문 소재는 §7.3.
 
 ## Reading Order
 
@@ -89,17 +89,21 @@ FEASIBLE-WITH-CHANGES · BLOCKED 0건) 결과를 받아 작성했다. `draft` �
 | SPEC-004 OQ-1 | KPI 카드 클릭의 목적지 | kknaks | 그래프 노드 선택 제안 |
 | SPEC-004 OQ-2 | 「그 외 KPI」 카드 표기 | kknaks | 상태별 내역 파생 |
 | SPEC-004 OQ-3 | 좌표 자산 보관 위치·형식 | kknaks | 구현 재량 |
-| SPEC-004 OQ-4 | 최소 폭 안내 문구 | kknaks | 디자인 조정 대기 |
 | SPEC-005 OQ-6 | timeout·재시도 확정값 | kknaks | 실측 후 조정 |
 
 **닫힌 것 (2026-09-02)** — SPEC-005 OQ-4(게이트 5-③ 검증 대상 = **모니터링 그래프 단일**) ·
 SPEC-002 OQ-2(`grain=monthly` = **골드 월 View 조회**) · SPEC-003 OQ-4(가드 위치 = 프론트
-미들웨어 + 백 API) · SPEC-003 OQ-5(`node_state` 산정식) · SPEC-001 OQ-1·2·4·5.
+미들웨어 + 백 API) · SPEC-003 OQ-5(`node_state` 산정식) · SPEC-001 OQ-1·2·3·4·5·6 ·
+**SPEC-004 OQ-4**(최소 폭 문구 — design-fix).
 
-## 디자인 조정 대기
+## 디자인 조정 — 전건 해소
 
-SPEC-004 §7.2 에 20건이 표로 있다 — 마스킹 표기(`19**-**-**`) · 중립 바 카피 · 브론즈
-테이블 수 · 계층별 행수 · `noshow_rate` 계산식 · `visit_status` enum · 그래프 노드·엣지
-구성 · 예보 예시 수치 · 답변 패턴 A·B 예문 · 메시지 상태 5종의 시각 설계 · 접속 게이트
-화면 · 라우팅 표 · Responsive · 채팅 레이아웃 · 분포 바 · 시작 카드 · 골드 표 컬럼.
-**spec 이 대신 그리지 않는다** — 정정본이 오면 SPEC-004 를 개정한다.
+design-fix 세션(2026-09-02)이 SPEC-004 §7.2 의 **20건을 전건 해소**했다 — 마스킹 표기 ·
+중립 바 카피 · 브론즈 테이블 수 · 계층별 행수 · `noshow_rate` 계산식 · `visit_status` enum ·
+그래프 노드·엣지 구성 · 예보 예시 수치 · 답변 패턴 A·B 예문 · 메시지 상태 5종 시각 설계 ·
+접속 게이트 화면 · 라우팅 표 · Responsive · 채팅 레이아웃 · 분포 바 · 시작 카드 ·
+골드 표 컬럼. 정정 이력은 SPEC-004 §7.2, 답변 예문 소재는 §7.3 이다.
+
+**남은 비고 하나** — 프로토타입 4종(`Monitoring`·`Data`·`Frames`·`DesignSystem`.dc.html)은
+정정 이전 값을 일부 품고 있다. **참조물이라 정정 대상이 아니며**, 값이 갈리면
+문서(`01`~`08`)와 `data/*.json` 이 맞다(SPEC-004 §7.2 말미).

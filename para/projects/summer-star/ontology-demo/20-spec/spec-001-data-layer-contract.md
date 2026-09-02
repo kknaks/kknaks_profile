@@ -4,7 +4,7 @@ id: SPEC-001
 title: "데이터 계층 계약 — 메달리온 전 계층 DB · 마스킹 뷰 · 적재 게이트"
 status: ready
 product: ontology-demo
-version: 0.0.4
+version: 0.0.5
 created_at: 2026-09-02
 updated_at: 2026-09-02
 tags:
@@ -273,18 +273,18 @@ Out of scope:
 | 8 | `reservations` | 예약 수 | `kpi` | 355, 270 |
 | 9 | `cancels` | 취소 수 | `kpi` | 355, 330 |
 | 10 | `noshows` | 부도 수 | `kpi` | 355, 390 |
-| 11 | `visits` | 총 내원 수 | `kpi` | 미배정 |
+| 11 | `visits` | 총 내원 수 | `kpi` | 355, 460 |
 | 12 | `cancel_rate` | 취소율 | `kpi` | 625, 130 |
 | 13 | `noshow_rate` | 노쇼율 | `kpi` | 625, 190 |
 | 14 | `new_patients` | 신환 수 | `kpi` | 625, 250 |
-| 15 | `new_patients_domestic` | 한국인 신환 수 | `kpi` | 미배정 |
+| 15 | `new_patients_domestic` | 한국인 신환 수 | `kpi` | 355, 210 |
 | 16 | `new_patients_foreign_est` | 외국인 추정 신환 수 | `kpi` | 625, 430 |
 | 17 | `revisits` | 재진 수 | `kpi` | 625, 310 |
 | 18 | `payment_visits` | 결제 내원 수 | `kpi` | 625, 370 |
 | 19 | `new_churns` | 신규 이탈 수 | `kpi` | 625, 490 |
 | 20 | `avg_ticket` | 객단가 | `kpi` | 895, 180 |
 | 21 | `sales_total` | 매출 | `kpi` | 895, 250 |
-| 22 | `sales_foreign_est` | 외국인 추정 매출 | `kpi` | 미배정 |
+| 22 | `sales_foreign_est` | 외국인 추정 매출 | `kpi` | 895, 490 |
 | 23 | `foreign_sales_share` | 외국인 매출 비중 | `kpi` | 895, 410 |
 | 24 | `retention_rate_60d` | 재방문 전환율(60일) | `kpi` | 895, 330 |
 | 25 | `foreign_inflow_channel` | 외국인 유입 채널 | `unobserved` | 1055, 480 |
@@ -317,10 +317,10 @@ Out of scope:
 유형 합계(§ 위 표)가 그렇게만 성립하고, 기록 07 이 네이버 리뷰를 「개입·조작 가능」,
 강남언니 리뷰를 유기 신호로 판정한 것과 일치한다.
 
-**좌표 미배정 3건** — 신규 노드(`visits` · `new_patients_domestic` · `sales_foreign_est`)는
-디자인 `data/nodes.json` 에 대응 좌표가 없다. 삭제된 3건의 자리를 그대로 물려받을지
-재배치할지는 **좌표 자산 재키잉 시** 정한다([[spec-004-three-screens|SPEC-004]] §4 ·
-AC-10 — 좌표 자산은 25행 전건이어야 한다).
+**좌표 배정 완료 (2026-09-02 design-fix)** — 신규 노드 3건의 좌표가 디자인
+`data/nodes.json` 에 배정됐다: `visits`(355, 460) · `new_patients_domestic`(355, 210) ·
+`sales_foreign_est`(895, 490). **25행 전건에 좌표가 있다**
+([[spec-004-three-screens|SPEC-004]] §4 · AC-10).
 
 #### 마스킹 뷰 — `v_*`
 
@@ -468,4 +468,4 @@ stateDiagram-v2
 | ~~OQ-3~~ | `gold_retention_monthly` · `gold_kpi_monthly` 의 기대 행수 | **닫힘 (2026-09-02)** — WORK-001 P4 빌드 실측: 둘 다 **8행** | §4 골드 표 · §6 AC-2·AC-6b 에 등재 완료 |
 | ~~OQ-4~~ | 실버 마스킹 뷰(`v_silver_*`)를 둘 것인가 | **확정 (2026-09-02 승인)** — 둔다 | 「소비자는 항상 뷰를 본다」는 규칙을 단일화한다 |
 | ~~OQ-5~~ | 브론즈 리뷰 본문 마스킹을 뷰에서 다시 하는가 | **확정 (2026-09-02 승인)** — 뷰에서도 같은 실명 사전으로 마스킹한다 | 브론즈 드릴다운이 본문을 보여주기 때문 |
-| ~~OQ-6~~ | `node_id` 25종의 정본 라벨·유형 | **닫힘 (2026-09-02)** — WORK-001 backend 실측으로 전건 대조, 어긋난 8건을 정본 기준으로 정정(§4 정정 이력 표) | 잔여는 신규 3노드의 **좌표 미배정**뿐 — SPEC-004 좌표 자산 재키잉 시 배정 |
+| ~~OQ-6~~ | `node_id` 25종의 정본 라벨·유형 | **닫힘 (2026-09-02)** — WORK-001 backend 실측으로 전건 대조, 어긋난 8건을 정본 기준으로 정정(§4 정정 이력 표) | **잔여 없음** — 신규 3노드 좌표도 design-fix 로 배정 완료(25행 전건) |
