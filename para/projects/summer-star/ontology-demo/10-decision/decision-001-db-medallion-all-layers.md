@@ -15,7 +15,8 @@ links:
     - "[[baseline-001-demo-agent-app|BASE-001]]"
   decisions:
     - "[[decision-002-pii-masking-boundary|DEC-002]]"
-  specs: []
+  specs:
+    - "[[spec-001-data-layer-contract|SPEC-001]]"
   works: []
   releases: []
   related: []
@@ -111,4 +112,4 @@ SQLite 한 DB 에 `bronze_*`(원형) · `silver_*` · `gold_*` · `ontology_*`(n
 
 | Spec | Action | Notes |
 |---|---|---|
-| (미정 — 채번은 `20-spec` 단계) | create | DB 계층 스키마 · 적재 계약 · 게이트 기준 |
+| [[spec-001-data-layer-contract\|SPEC-001]] | create — **작성됨 (2026-09-02, v0.0.2 ready)** | 계층별 테이블 목록 · 계층 경계 · 행수 대조값 · 적재/재현 게이트 · **골드 월 View** · `node_id` 25종 |

@@ -16,7 +16,9 @@ links:
   decisions:
     - "[[decision-002-pii-masking-boundary|DEC-002]]"
     - "[[decision-004-web-three-pages-in-front|DEC-004]]"
-  specs: []
+  specs:
+    - "[[spec-003-api-and-chat-contract|SPEC-003]]"
+    - "[[spec-004-three-screens|SPEC-004]]"
   works: []
   releases: []
   related: []
@@ -109,10 +111,11 @@ redis + open-kknaks codex 워커는 홈서버(docker + NPM 서브도메인). 접
 
 | ID | Question | Owner | Next |
 |---|---|---|---|
-| OQ-1 | 비밀번호 가드를 어디에 두나(프론트 미들웨어 · 백 API · NPM 중 어디) | kknaks | spec 에서 확정 |
+| ~~OQ-1~~ | 비밀번호 가드를 어디에 두나(프론트 미들웨어 · 백 API · NPM 중 어디) | kknaks | **닫힘 (2026-09-02 확정)** — env 난수 비밀번호 1개(값은 배포 시 주입) · 가드는 **프론트 미들웨어 + 백 API 양쪽**. NPM Basic Auth 는 쓰지 않는다(폴링·쿠키와 어긋난다). 계약은 SPEC-003 §4·§5, 화면은 SPEC-004 U-2 |
 
 ## Resulting Spec
 
 | Spec | Action | Notes |
 |---|---|---|
-| (미정 — 채번은 `20-spec` 단계) | create | 배포 구성 · 접근 가드 계약 |
+| [[spec-003-api-and-chat-contract\|SPEC-003]] | create — **작성됨 (2026-09-02, v0.0.2 ready)** | 접속 게이트 계약(env 비밀번호 1개 · 세션 `ontology_demo_sid` 30일) · rate limit 부재 명시 |
+| [[spec-004-three-screens\|SPEC-004]] | create — **작성됨 (2026-09-02, v0.0.1 draft)** | 접속 게이트 **화면**(U-2) |

@@ -16,7 +16,10 @@ links:
   decisions:
     - "[[decision-001-db-medallion-all-layers|DEC-001]]"
     - "[[decision-005-internal-demo-deploy|DEC-005]]"
-  specs: []
+  specs:
+    - "[[spec-001-data-layer-contract|SPEC-001]]"
+    - "[[spec-002-mcp-tools-contract|SPEC-002]]"
+    - "[[spec-004-three-screens|SPEC-004]]"
   works: []
   releases: []
   related: []
@@ -106,10 +109,12 @@ PII 소거 사본을 만들지 않는다. **전제가 바뀌면(외부 공개로
 
 | ID | Question | Owner | Next |
 |---|---|---|---|
-| OQ-1 | 마스킹 표기 형식(어느 자리까지 남길지 — 이름 성만, 전화 뒷자리 등) | kknaks | spec 에서 확정 |
+| ~~OQ-1~~ | 마스킹 표기 형식(어느 자리까지 남길지) | kknaks | **닫힘 (2026-09-02 사용자 확정)** — 이름 `김○○`(성만) · 전화 `010-****-1234`(가운데) · 생년월일 `1990-**-**`(연도만). 리뷰 본문 직원 실명은 기록 03·04 규칙 그대로. 계약은 [[spec-001-data-layer-contract\|SPEC-001]] §4 |
 
 ## Resulting Spec
 
 | Spec | Action | Notes |
 |---|---|---|
-| (미정 — 채번은 `20-spec` 단계) | create | 마스킹 뷰 정의 · 도구의 뷰 경유 계약 · 노출 0건 검증 방법 |
+| [[spec-001-data-layer-contract\|SPEC-001]] | create — **작성됨 (2026-09-02, v0.0.1)** | 마스킹 뷰 정의 · 마스킹 표기 형식 · 노출 0건 게이트 |
+| [[spec-002-mcp-tools-contract\|SPEC-002]] | create — **작성됨 (2026-09-02, v0.0.1)** | 도구의 뷰 경유 강제 · PII 필드 거부 |
+| [[spec-004-three-screens\|SPEC-004]] | create — **작성됨 (2026-09-02, v0.0.1 draft)** | 화면의 마스킹 바 · 언마스킹 UI 부재 · 원값 0건 |

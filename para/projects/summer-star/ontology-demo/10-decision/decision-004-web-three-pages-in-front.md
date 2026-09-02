@@ -16,7 +16,9 @@ links:
   decisions:
     - "[[decision-003-llm-via-open-kknaks-mcp|DEC-003]]"
     - "[[decision-005-internal-demo-deploy|DEC-005]]"
-  specs: []
+  specs:
+    - "[[spec-003-api-and-chat-contract|SPEC-003]]"
+    - "[[spec-004-three-screens|SPEC-004]]"
   works: []
   releases: []
   related: []
@@ -105,11 +107,11 @@ up: []
 | ID | Question | Owner | Next |
 |---|---|---|---|
 | OQ-1 | 화면 상세(레이아웃 · 컴포넌트 · 카피) | kknaks | **디자인 별도 세션 진행 중** — 귀환 후 spec 에서 확정 |
-| OQ-2 | 채팅 답변의 `used_edges` 를 그래프에 하이라이트하는 방식(페이지 간 상태 공유 · 이동 여부) | kknaks | spec 에서 확정 |
+| ~~OQ-2~~ | 채팅 답변의 `used_edges` 를 그래프에 하이라이트하는 방식(페이지 간 상태 공유 · 이동 여부) | kknaks | **닫힘 (2026-09-02 확정)** — 채팅에는 그래프 패널을 두지 않는다. 답변 안 **칩** + 칩 클릭 시 `/ontology/monitoring?edge=<edge_id>` **점프**로 일원화. 게이트 5-③ 검증 대상 화면 = **모니터링 그래프 단일**. 페이지 간 상태 공유는 **URL 쿼리뿐**(전역 스토어 없음) — [[spec-004-three-screens\|SPEC-004]] U-11 · §4 |
 
 ## Resulting Spec
 
 | Spec | Action | Notes |
 |---|---|---|
-| (미정 — 채번은 `20-spec` 단계) | create | 화면 spec — 디자인 세션 귀환 대기 |
-| (미정 — 채번은 `20-spec` 단계) | create | 프론트↔백 API 계약 |
+| [[spec-004-three-screens\|SPEC-004]] | create — **작성됨 (2026-09-02, v0.0.1 draft)** | 화면 3페이지 · 라우트 `/ontology/*` · 토큰 레이어 · 파생 카운트 · 디자인 조정 대기 20건 |
+| [[spec-003-api-and-chat-contract\|SPEC-003]] | create — **작성됨 (2026-09-02, v0.0.1)** | 프론트↔백 API 계약 · 화면 7종 ↔ 엔드포인트 매핑 |

@@ -16,7 +16,10 @@ links:
   decisions:
     - "[[decision-002-pii-masking-boundary|DEC-002]]"
     - "[[decision-004-web-three-pages-in-front|DEC-004]]"
-  specs: []
+  specs:
+    - "[[spec-002-mcp-tools-contract|SPEC-002]]"
+    - "[[spec-005-agent-loop-and-gates|SPEC-005]]"
+    - "[[spec-003-api-and-chat-contract|SPEC-003]]"
   works: []
   releases: []
   related:
@@ -126,10 +129,12 @@ provider 는 codex(`gpt-5.6-terra`)다. 조회 도구 4종은 `app/ontology-agen
 
 | ID | Question | Owner | Next |
 |---|---|---|---|
-| OQ-1 | 도구 4종의 파라미터·응답 스키마 (특히 `trace_ontology` 의 판정 구분 표현) | kknaks | spec 에서 확정 |
+| ~~OQ-1~~ | 도구 4종의 파라미터·응답 스키마 (특히 `trace_ontology` 의 판정 구분 표현) | kknaks | **닫힘 (2026-09-02 승인)** — [[spec-002-mcp-tools-contract\|SPEC-002]] §4 확정(v0.0.2 ready). `grain=monthly` 는 골드 월 View 조회, `lag` 는 `<정수>d`, 응답에 `edge_id` |
 
 ## Resulting Spec
 
 | Spec | Action | Notes |
 |---|---|---|
-| (미정 — 채번은 `20-spec` 단계) | create | 에이전트 실행 경로 · 도구 4종 계약 · 응답 스키마(`used_edges` 포함) |
+| [[spec-002-mcp-tools-contract\|SPEC-002]] | create — **작성됨 (2026-09-02, v0.0.1)** | 도구 4종 파라미터·응답·에러 · 자유 SQL 부재 |
+| [[spec-005-agent-loop-and-gates\|SPEC-005]] | create — **작성됨 (2026-09-02, v0.0.1)** | 루프 3단계 · 응답 스키마(`used_edges`·`citations`) · 게이트 5종 · 회귀 3본 |
+| [[spec-003-api-and-chat-contract\|SPEC-003]] | create — **작성됨 (2026-09-02, v0.0.1)** | 채팅 API · 진행 표시 · 실행 경로 배선 |
