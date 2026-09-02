@@ -26,7 +26,13 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from config import get_settings
 from core.crypto import decrypt_token
 from core.exceptions import ConflictError, NotFoundError, ValidationError
-from core.git import GitIdentity, GitPushCredentials, GitPushError, commit_and_push
+from core.git import (
+    GitIdentity,
+    GitPushCredentials,
+    GitPushError,
+    commit_and_push,
+    pull_ledger,
+)
 from dto.gate import ConceptSeed, GateDTO, GateWithQueue
 from dto.queue import QueueDTO
 from repository.content_repo import ContentRepository
@@ -77,6 +83,60 @@ def validate_document_payload(payload: dict, kind: str) -> dict:
             raise ValidationError("youtube 는 카드 메타(meta.title)가 필요합니다")
         clean["meta"] = meta
     return clean
+
+
+class ConceptStaleError(Exception):
+    """보강안이 현재 파일보다 낡았다 — 착지하면 남의 보강이 조용히 지워진다.
+
+    게이트는 approved + commit_ref NULL 로 남는다(푸시 실패와 같은 자리) —
+    다만 [재시도]로는 풀리지 않는다. 낡은 payload 를 다시 착지시킬 뿐이라
+    **개념 단계를 재생성**해야 한다.
+    """
+
+
+def _up_sources(text: str) -> set[str]:
+    """frontmatter 의 `up:` 목록. 형식이 어긋나면 빈 집합 — 판정을 포기한다.
+
+    개념 파일의 출처는 **덧붙기만 한다** — 문서 하나가 개념을 보강할 때마다 자기
+    stem 을 더한다. 그래서 「현재 파일에 있던 출처가 제안본에 없다」는 것은
+    제안본이 그 출처가 더해지기 전 상태를 보고 쓰였다는 뜻이다.
+    """
+    lines = text.splitlines()
+    if not lines or lines[0].strip() != "---":
+        return set()
+    out: set[str] = set()
+    in_up = False
+    for line in lines[1:]:
+        if line.strip() == "---":
+            break
+        if in_up:
+            stripped = line.strip()
+            if stripped.startswith("- "):
+                out.add(stripped[2:].strip())
+                continue
+            in_up = False  # 다음 키로 넘어갔다
+        if line.startswith("up:"):
+            in_up = True
+    return out
+
+
+def _check_not_stale(current: str, proposed: str, stem: str) -> None:
+    """현재 파일의 출처가 제안본에서 사라졌으면 낡은 제안이다 → ConceptStaleError.
+
+    개념 단계는 문서 생성 세션을 resume 하고 **파일 전체**를 새로 쓴다
+    (ai_service `_concept_prompt`). 그래서 모델이 문서 단계에서 읽어 둔 옛 내용을
+    기준으로 쓰면, 그 사이 다른 게이트가 넣은 보강을 통째로 덮어쓴다 —
+    에러도 충돌도 없이 사라진다(2026-08-28 게이트 50 실사고: workflow-orchestration
+    과 human-in-the-loop 에서 출처 1개와 「사용 예시」 절 전체가 지워질 뻔했다).
+
+    출처 집합만 본다 — 문장 단위 비교는 정당한 다듬기까지 막는다.
+    """
+    lost = _up_sources(current) - _up_sources(proposed)
+    if lost:
+        raise ConceptStaleError(
+            f"개념 {stem} 보강안이 낡았습니다 — 현재 파일의 출처가 빠집니다: "
+            f"{', '.join(sorted(lost))}. 개념 단계를 다시 생성해야 합니다"
+        )
 
 
 def _validate_concept_payload(payload: dict) -> dict:
@@ -169,7 +229,11 @@ class GateService:
     async def _land_and_push(
         self, session: AsyncSession, gate: GateDTO, queue: QueueDTO, payload: dict
     ) -> tuple[str, list[str]]:
-        """md 착지 → 착지 직전 pull → commit·push. (sha, 상대경로들) 반환.
+        """착지 직전 pull → md 착지 → commit·push. (sha, 상대경로들) 반환.
+
+        **pull 이 md 쓰기보다 먼저다** — 순서를 뒤집으면 착지가 자기가 쓴 파일 때문에
+        pull 에서 죽고, 그 파일이 워킹트리에 남아 다음 착지까지 막는다(core.git
+        `pull_ledger` 주석 — 2026-08-28 실사고).
 
         커밋 신원은 git_token personal 행(account·email) — 없으면 422 (사용자 결정).
         JOB_GIT_PUSH_DRY_RUN=1(dev)이면 **커밋·푸시 둘 다 안 한다**(사용자 결정
@@ -211,6 +275,21 @@ class GateService:
             ]
             bodies = [item["body"] for item in payload["concepts"]]
             message = f"fix/concept - {doc_stem}"
+
+        if not dry_run:
+            # 반드시 write 앞 — 여기서 실패하면 워킹트리를 건드리지 않은 채로 끝난다.
+            assert identity is not None
+            await pull_ledger(str(ledger), identity, credentials=credentials)
+
+        # 낡음 판정은 **pull 뒤 · write 앞**이다 — 남이 방금 민 보강까지 반영된
+        # 진짜 현재 파일과 대야 하고, 걸리면 아무것도 안 쓴 채로 끝나야 한다.
+        if gate.stage == "concept":
+            for rel, body in zip(rel_paths, bodies):
+                target = ledger / rel
+                if target.exists():
+                    _check_not_stale(
+                        target.read_text(encoding="utf-8"), body, Path(rel).stem
+                    )
 
         for rel, body in zip(rel_paths, bodies):
             target = ledger / rel
@@ -355,7 +434,7 @@ class GateService:
 
         try:
             sha, rel_paths = await self._land_and_push(session, updated, queue, clean)
-        except GitPushError as exc:
+        except (GitPushError, ConceptStaleError) as exc:
             # 파일이 먼저, DB 가 나중 — 푸시 실패면 approved 만 남기고 확정하지 않는다
             return updated, queue, None, str(exc)
 
@@ -392,7 +471,7 @@ class GateService:
 
         try:
             sha, rel_paths = await self._land_and_push(session, gate, queue, gate.payload)
-        except GitPushError as exc:
+        except (GitPushError, ConceptStaleError) as exc:
             return gate, queue, None, str(exc)
 
         gate_final, seed = await self._finalize(
@@ -414,7 +493,7 @@ class GateService:
         """
         try:
             sha, rel_paths = await self._land_and_push(session, gate, queue, gate.payload)
-        except GitPushError as exc:
+        except (GitPushError, ConceptStaleError) as exc:
             return gate, None, str(exc)
         gate_final, seed = await self._finalize(
             session, gate, queue, gate.payload, sha, rel_paths

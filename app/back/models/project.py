@@ -10,7 +10,7 @@ from __future__ import annotations
 from datetime import date
 from typing import Any
 
-from sqlalchemy import Date, ForeignKey, String, Text
+from sqlalchemy import Boolean, Date, ForeignKey, String, Text
 from sqlalchemy.dialects.postgresql import ARRAY, JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -38,3 +38,9 @@ class Project(Base, TimestampMixin):
     thumbnail: Mapped[str | None] = mapped_column(String(255))
     links: Mapped[dict[str, Any] | None] = mapped_column(JSONB)         # {repo, site, store}
     visible: Mapped[bool] = mapped_column(default=True, server_default="true")
+
+    # 채팅 AI 노출 — **기본 false 옵트인**(DEC-027 D4). `visible`(사이트 표면)과 다른
+    # 축이다: 사이트에 떠 있어도 AI 에게는 꺼져 있을 수 있다. 둘 다 켜져야 tool 이 본다.
+    chat_exposed: Mapped[bool] = mapped_column(
+        Boolean, default=False, server_default="false", nullable=False
+    )

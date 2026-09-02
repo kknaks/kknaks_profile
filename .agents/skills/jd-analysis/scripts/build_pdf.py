@@ -45,6 +45,10 @@ body {
   font-size: 11.5px; line-height: 1.65;
   counter-reset: sec;
 }
+body.cover-letter { font-size: 12.5px; line-height: 1.85; }
+body.cover-letter h2 { font-size: 10.5px; margin: 24px 0 12px; }
+body.cover-letter p { margin: 8px 0; }
+body.cover-letter header.hd { margin-bottom: 20px; }
 .mono { font-family: var(--font-mono); }
 
 /* ── header ─────────────────────────────── */
@@ -126,8 +130,8 @@ footer.ft {
 """
 
 HTML_SHELL = """<!doctype html><html lang="ko"><head><meta charset="utf-8">
-<style>{css}</style></head><body>{body}
-<footer class="ft"><span>generated from resume.md · kknaks jd-analysis kit</span><span>kknaks.dev</span></footer>
+<style>{css}</style></head><body class="{body_class}">{body}
+<footer class="ft"><span>generated from {source_name} · kknaks jd-analysis kit</span><span>kknaks.dev</span></footer>
 </body></html>"""
 
 
@@ -138,7 +142,7 @@ def strip_frontmatter(md: str) -> str:
 LABEL_KO = {"email": "이메일", "github": "깃허브", "blog": "블로그", "site": "블로그"}
 
 
-def themed_header(html: str) -> str:
+def themed_header(html: str, document_label: str = "resume") -> str:
     """h1 + 직후 p 를 테마 헤더로 재구성.
 
     p 형식: 직함 줄 / 지역 줄 / `email : …`·`github : …`·`blog : …` 줄들.
@@ -173,7 +177,7 @@ def themed_header(html: str) -> str:
     header = (
         '<header class="hd">'
         '<div class="hd-main">'
-        '<div class="hd-caps">resume · 한국어</div>'
+        f'<div class="hd-caps">{document_label} · 한국어</div>'
         f"<h1>{name} <span class=\"handle\">· kknaks</span></h1>"
         f'<div class="hd-role">{role_line}</div>'
         "</div>"
@@ -210,8 +214,15 @@ def main() -> None:
         ["pandoc", "--from", "gfm", "--to", "html", "--wrap=none"],
         input=md, capture_output=True, text=True, check=True,
     ).stdout
-    body = mark_linklines(split_h3_period(themed_header(body)))
-    html = HTML_SHELL.format(css=CSS, body=body)
+    is_cover_letter = src.stem == "cover-letter"
+    label = "cover letter" if is_cover_letter else "resume"
+    body = mark_linklines(split_h3_period(themed_header(body, label)))
+    html = HTML_SHELL.format(
+        css=CSS,
+        body=body,
+        body_class="cover-letter" if is_cover_letter else "resume",
+        source_name=src.name,
+    )
 
     from playwright.sync_api import sync_playwright
 

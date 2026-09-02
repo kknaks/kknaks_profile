@@ -26,6 +26,7 @@ def _to_dto(row: Project) -> ProjectDTO:
         thumbnail=row.thumbnail,
         links=row.links,
         visible=row.visible,
+        chat_exposed=row.chat_exposed,
     )
 
 

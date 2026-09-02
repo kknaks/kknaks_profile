@@ -30,6 +30,10 @@ class CareerDTO:
     # 역할별 persona md(DB 파생물)의 위치. 비어 있으면 렌더가 경로를 파생한다.
     persona_path: str | None = None
 
+    # 채팅 AI 노출(DEC-027 D4). 어드민 목록이 토글 현재값을 그리려면 조회에도 실려야
+    # 한다 — PATCH 만으로는 화면이 항상 off 로 보인다. 공개 표면은 안 쓴다.
+    chat_exposed: bool = False
+
     # 공개 /career 가 쓰는 회사 속성 — career 에는 location 컬럼이 없어 회사 것을
     # 쓰고, 펼침의 회사 소개도 여기서 온다(erd.md §career). 어드민 경로는 안 채운다.
     company_location: str | None = None

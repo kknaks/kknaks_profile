@@ -25,6 +25,7 @@ import type {
   AlgorithmsResponse,
   CareerInput,
   CareerResponse,
+  ChatExposureKind,
   Company,
   CompanyInput,
   ContentDetailResponse,
@@ -413,6 +414,13 @@ export const adminApi = {
         q.repoId != null ? `&repo_id=${q.repoId}` : ""
       }${q.day != null ? `&day=${q.day}` : ""}&page=${q.page ?? 1}`,
     ),
+  /** 채팅 노출 토글(KDEV-SPEC-017 U-7) — 켠 행만 AI tool 응답에 실린다(DEC-027 D4).
+   *  즉시 반영이다 — export·캐시 없음. 진행 중 대화에도 다음 tool 호출부터 적용된다. */
+  patchChatExposure: (kind: ChatExposureKind, id: number, chatExposed: boolean) =>
+    authFetch<{ chatExposed: boolean }>(`/api/admin/chat-exposure/${kind}/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify({ chatExposed }),
+    }),
   /** 하루 요약 재실행 — 백그라운드 202. 몇 초 뒤 달력 재조회로 결과를 본다. */
   summarizeDaily: (date: string) =>
     authFetch<{ ok: boolean; started: boolean }>(

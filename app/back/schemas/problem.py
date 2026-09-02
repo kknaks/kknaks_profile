@@ -23,6 +23,8 @@ class AdminProblemItem(BaseModel):
     title: str
     body: str | None = None
     display_order: int = Field(serialization_alias="displayOrder")
+    # 채팅 노출 토글의 현재값(SPEC-017 U-7).
+    chat_exposed: bool = Field(default=False, serialization_alias="chatExposed")
 
     @classmethod
     def from_dto(cls, dto: ProblemDTO) -> AdminProblemItem:
@@ -36,6 +38,7 @@ class AdminProblemItem(BaseModel):
             title=dto.title,
             body=dto.body,
             display_order=dto.display_order,
+            chat_exposed=dto.chat_exposed,
         )
 
 

@@ -35,6 +35,8 @@ class AdminCareerItem(BaseModel):
     summary: str | None = None
     description: str | None = None
     stack: list[str] = []
+    # 채팅 노출 토글의 현재값(SPEC-017 U-7). PATCH 만 있으면 화면이 항상 off 로 보인다.
+    chat_exposed: bool = Field(default=False, serialization_alias="chatExposed")
 
     @classmethod
     def from_dto(cls, dto: CareerDTO) -> AdminCareerItem:
@@ -50,6 +52,7 @@ class AdminCareerItem(BaseModel):
             summary=dto.summary,
             description=dto.description,
             stack=dto.stack or [],
+            chat_exposed=dto.chat_exposed,
         )
 
 

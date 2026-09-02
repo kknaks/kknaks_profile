@@ -5,27 +5,21 @@
 
 ## 시작
 
-```text
-CLAUDE.md      ← 여기. 왜 다시 세우는지
-→ _RESUME.md   지금 어디까지 왔고 다음에 뭘 하나. 작업하면서 갱신한다
-→ 필요한 문서  아래 지도에서 고른다
-```
-
-**작업을 시작하기 전에 `_RESUME.md` 를 읽는다.** 무엇이 이미 정해졌고 무엇이 열려 있는지가
-거기 있다. 정해진 것을 다시 논의하지 않고, 열린 것을 추측으로 메우지 않는다.
+**오케스트레이션 작업이면 진행 상태는 `orchestration/work/<slug>/_RESUME.md` 가 정본이다.**
+무엇이 이미 정해졌고 무엇이 열려 있는지가 거기 있다. 정해진 것을 다시 논의하지 않고,
+열린 것을 추측으로 메우지 않는다.
 
 ## 문서 지도
 
 | 문서 | 무엇 | 언제 읽나 |
 |---|---|---|
-| `_RESUME.md` | 진행 상태 · 열린 것 · 하지 않기로 한 것 | **항상** |
-| `architecture.md` | 루트 계약 — `para/` · `app/` · `orchestration/` | 구조를 건드릴 때 |
 | `para/para.md` | 네 버킷의 경계 | 문서를 놓을 자리를 정할 때 |
 | `para/areas/area.md` | `areas/` 하위와 `concept/` 아홉 영역 | 개념을 쓸 때 |
-| `erd.md` | **스키마 정본** — mermaid + DDL | DB 를 건드릴 때 |
-| `database.md` | 표면별 컬럼 추출과 그 근거 | 왜 그 컬럼인지 물을 때 |
-| `case_flow.md` | **동작 정본** — 케이스 7 | 파이프라인을 건드릴 때 |
 | `orchestration/runbook.md` | 코디네이터 런북 | 워커를 발주할 때 |
+| `orchestration/config/projects/*.json` | 프로젝트별 설정 SSOT (repos·workers·summary_dest) | 발주·아카이브 때 |
+
+⚠ 구 지도에 있던 `_RESUME.md`(루트)·`architecture.md`·`erd.md`·`database.md`·`case_flow.md` 는
+**작성되지 않았다** — 참조하지 마라. 그 자리의 답은 리뉴얼 결정으로만 남아 있다(아래 서사).
 
 ## 왜 다시 세우나
 

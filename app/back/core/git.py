@@ -1,5 +1,8 @@
 """원장 레포 git 조작 — 승인 착지(inbox.md Step 5)의 pull · add · commit · push.
 
+**순서가 계약이다: pull → write → add · commit · push.** pull 은 파일을 쓰기 전에
+끝나 있어야 한다(`pull_ledger`) — 이유는 그 함수 주석에 있다.
+
 케이스 1 정본: 파일이 먼저 착지하고, **푸시가 성공해야 DB 를 확정한다.**
 dry-run(JOB_GIT_PUSH_DRY_RUN=1, dev)은 **여기까지 안 온다** — 커밋·푸시 둘 다
 안 하고 md 파일만 워킹트리에 쓴다(사용자 결정 2026-08-25). 분기는
@@ -90,6 +93,65 @@ async def _resolve_push_target(ledger: str) -> tuple[str, str]:
     return url, branch
 
 
+def _push_env(credentials: GitPushCredentials) -> dict[str, str]:
+    return {
+        **os.environ,
+        "KKNAKS_GIT_PUSH_USER": credentials.account,
+        "KKNAKS_GIT_PUSH_TOKEN": credentials.token,
+    }
+
+
+async def pull_ledger(
+    ledger: str,
+    identity: GitIdentity,
+    *,
+    credentials: GitPushCredentials | None = None,
+) -> None:
+    """착지 파일을 **쓰기 전에** 원격을 당긴다. 실패면 GitPushError.
+
+    pull 은 --rebase — 사람이 옵시디언에서 같은 레포를 밀기 때문(inbox.md Step 7).
+    그 이상의 동기화 장치는 두지 않는다.
+
+    **--autostash 인 이유** (2026-08-28 게이트 50 실사고):
+    같은 이유로 **사람이 편집 중인 파일이 워킹트리에 있는 것도 정상**이다. 그런데
+    `--rebase` 는 tracked 변경이 하나라도 있으면 fetch 전에 거부해서, 사람이 개념과
+    무관한 개인 노트를 쓰다 만 것만으로 **착지 전체가 멈췄다.** autostash 가 그
+    변경을 넣어 두고 rebase 한 뒤 되돌려 놓는다 — 사람의 작업물은 그대로 남고
+    착지는 진행된다. 파이프라인은 `para/areas/concept/` 만 쓰므로 사람이 만지는
+    파일과 겹칠 일이 드물다.
+
+    **신원이 여기도 필요하다** (2026-08-28 게이트 43 실사고):
+    푸시가 실패해 로컬 커밋이 남은 상태에서 재시도하면 rebase 가 커밋을 새로 만든다.
+    컨테이너에는 전역 gitconfig 가 없어 `unable to auto-detect email address
+    (root@<컨테이너>.(none))` 로 죽는다 — 「커밋은 됐는데 푸시가 실패」한 게이트의
+    복구 경로가 통째로 막힌다. 평소엔 로컬 커밋이 없어 fast-forward 라 안 걸렸다.
+    commit 과 같은 방식으로 명령 단위 주입한다.
+
+    **왜 write 앞인가** (2026-08-28 실사고, 게이트 29·43):
+    `git pull --rebase` 는 tracked 파일에 스테이징 안 된 변경이 있으면 fetch 전에
+    거부한다. 착지가 파일을 먼저 쓰면 **자기가 쓴 파일이 자기 pull 을 막는다** —
+    기존 개념 파일을 보강하는 게이트 2 는 그래서 한 번도 착지하지 못했다(새 파일을
+    만드는 게이트 1 은 untracked 라 우연히 통과했다). 게다가 실패한 파일이 워킹트리에
+    남아 **그 뒤의 모든 착지가 같이 죽었다.**
+
+    pull 을 앞에 두면 실패해도 워킹트리가 그대로다 — 재시도가 깨끗하고, 실패가
+    다음 게이트로 번지지 않는다.
+    """
+    if credentials is None:
+        raise GitPushError("push 자격이 없습니다 — personal 토큰을 등록하세요")
+    # pull 도 push 와 같은 자격을 쓴다 — 컨테이너에는 저장된 자격이 없다.
+    url, branch = await _resolve_push_target(ledger)
+    code, out = await _run(
+        ledger, "-c", "credential.helper=",  # 저장된 helper 무시 — 이 자격만 쓴다
+        "-c", f"credential.helper={_CRED_HELPER}",
+        "-c", f"user.name={identity.name}",   # rebase 가 커밋을 만들 수 있다
+        "-c", f"user.email={identity.email}",
+        "pull", "--rebase", "--autostash", url, branch, env=_push_env(credentials),
+    )
+    if code != 0:
+        raise GitPushError(f"git pull 실패: {out.splitlines()[-1] if out else code}")
+
+
 async def commit_and_push(
     ledger: str,
     paths: list[str],
@@ -98,30 +160,19 @@ async def commit_and_push(
     *,
     credentials: GitPushCredentials | None = None,
 ) -> GitPushResult:
-    """착지 직전 pull → add(파일 단위) → commit → push. 어느 단계든 실패면 GitPushError.
+    """add(파일 단위) → commit → push. 어느 단계든 실패면 GitPushError.
+
+    **pull 은 여기서 하지 않는다** — 파일이 써지기 전에 `pull_ledger` 로 끝나 있어야
+    한다(호출자 책임). 이유는 `pull_ledger` 주석.
 
     - add 는 **넘겨받은 경로만** — 워킹트리의 다른 변경이 커밋에 섞이면 안 된다.
-    - pull 은 --rebase — 사람이 옵시디언에서 같은 레포를 밀기 때문(inbox.md Step 7).
-      그 이상의 동기화 장치는 두지 않는다.
     - 변경이 없으면(푸시 실패 재시도에서 파일이 이미 같음) 커밋을 만들지 않고
       HEAD 를 그대로 쓴다 — 게이트 하나 = 커밋 하나가 유지된다.
     """
     if credentials is None:
         raise GitPushError("push 자격이 없습니다 — personal 토큰을 등록하세요")
-    # pull 도 같은 자격을 쓴다 — 컨테이너에는 저장된 자격이 없다.
     push_url, branch = await _resolve_push_target(ledger)
-    push_env = {
-        **os.environ,
-        "KKNAKS_GIT_PUSH_USER": credentials.account,
-        "KKNAKS_GIT_PUSH_TOKEN": credentials.token,
-    }
-    code, out = await _run(
-        ledger, "-c", "credential.helper=",  # 저장된 helper 무시 — 이 자격만 쓴다
-        "-c", f"credential.helper={_CRED_HELPER}",
-        "pull", "--rebase", push_url, branch, env=push_env,
-    )
-    if code != 0:
-        raise GitPushError(f"git pull 실패: {out.splitlines()[-1] if out else code}")
+    push_env = _push_env(credentials)
 
     code, out = await _run(ledger, "add", "--", *paths)
     if code != 0:
@@ -141,7 +192,7 @@ async def commit_and_push(
         committed = True
 
     code, out = await _run(
-        ledger, "-c", "credential.helper=",  # pull 과 동일 — 이 자격만 쓴다
+        ledger, "-c", "credential.helper=",  # pull_ledger 와 동일 — 이 자격만 쓴다
         "-c", f"credential.helper={_CRED_HELPER}",
         "push", push_url, f"HEAD:{branch}", env=push_env,
     )

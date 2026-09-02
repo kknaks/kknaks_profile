@@ -31,6 +31,8 @@ class AdminProductItem(BaseModel):
     thumbnail: str | None = None
     links: dict[str, Any] | None = None
     visible: bool
+    # 채팅 노출 토글의 현재값(U-7 — product 확장). PATCH 만 있으면 화면이 항상 off 로 보인다.
+    chat_exposed: bool = Field(default=False, serialization_alias="chatExposed")
 
     @classmethod
     def from_dto(cls, dto: ProductDTO) -> AdminProductItem:
@@ -50,6 +52,7 @@ class AdminProductItem(BaseModel):
             thumbnail=dto.thumbnail,
             links=dto.links,
             visible=dto.visible,
+            chat_exposed=dto.chat_exposed,
         )
 
 
