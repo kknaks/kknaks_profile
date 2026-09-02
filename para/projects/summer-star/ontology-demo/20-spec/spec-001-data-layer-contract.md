@@ -4,7 +4,7 @@ id: SPEC-001
 title: "데이터 계층 계약 — 메달리온 전 계층 DB · 마스킹 뷰 · 적재 게이트"
 status: ready
 product: ontology-demo
-version: 0.0.2
+version: 0.0.3
 created_at: 2026-09-02
 updated_at: 2026-09-02
 tags:
@@ -235,17 +235,24 @@ Out of scope:
 
 | 필드 | 허용값 |
 |---|---|
-| `node_type` | kpi(17) · 개입(2) · 유기(1) · 외생(3) · 미관측(1) · 속성(1) |
+| `node_type` | **영문 enum 그대로** — `kpi`(17) · `intervention`(2) · `organic`(1) · `exogenous`(3) · `unobserved`(1) · `attribute`(1) |
 | 엣지 종류 | causal · derivation · exogenous · candidate · rejected |
-| 엣지 판정 | 채택(4) · 산출0(14) · 외생(3) · 보류(3) · 기각(3) |
-| 신뢰도 | 높음 · 중간 · 낮음 (산출0·외생은 해당 없음) |
-| 시차(lag) 표기 | **`"0d"` · `"1d"` · `"7d"` · `"60d"`** — `<정수>d` 형식. `ontology_edges` 원천 형식을 전 spec·화면이 그대로 쓴다(2026-09-02 통일) |
+| 엣지 판정 | **한글 정본값 그대로** — `채택`(4) · `자동 확정`(14) · `선언`(3) · `보류`(3) · `기각`(3) |
+| 신뢰도 | 높음 · 중간 · 낮음 (`자동 확정`·`선언`은 해당 없음) |
+| 시차(`lag`) | **정본 문자열 원형 보존** — `"0d"` · `"1d"` · `"7d"` · `"60d"` · **`"2w"`** · **빈 값** 등. 형식을 강제하지 않는다 |
 
-- **lag 는 문자열 그대로 흐른다.** 「동시점」·「2주」 같은 재서술을 만들지 않는다 — 화면
-  배지가 이 문자열을 그대로 표시하므로 표기가 갈리면 같은 엣지가 다른 값으로 보인다.
+- **`node_type` 은 영문 enum 이 정본이다.** 적재·도구·API 가 이 값을 그대로 노출한다.
+  한글 표기(개입 · 유기 · 외생 · 미관측 · 속성)는 **화면 카피 매핑**이며
+  [[spec-004-three-screens|SPEC-004]] 가 갖는다 — 계약 값으로 쓰지 않는다.
+- **엣지 판정은 한글 정본값이 그대로 계약 값이다.** 이전 판(`산출0`·`외생`)은 spec 이
+  만든 표기였고 정본과 어긋나 폐기했다(2026-09-02 정정).
+  **인과 서술에 쓸 수 있는 것은 `채택` · `자동 확정` · `선언` 3종**이다.
+- **`lag` 는 정본 문자열을 그대로 보존한다.** 적재가 형식을 바꾸지 않는다 — `2w` 는
+  `14d` 로 고쳐 넣지 않고, 빈 값은 빈 값으로 둔다. 일 단위가 필요한 소비자를 위해
+  **API·도구가 `lag_days`(정수)를 병기**한다(SPEC-002 · SPEC-003).
 - **기각·보류도 행으로 남는다.** 「왜 그리지 않았나」가 조회 가능해야 같은 질문이 반복되지
   않는다 — 기각 행은 사유 필드가 필수다.
-- 외생 노드(요일·계절·연휴)는 **들어오는 엣지가 0** 이어야 한다.
+- `exogenous` 노드(요일·계절·연휴)는 **들어오는 엣지가 0** 이어야 한다.
 - 인스턴스 레벨은 강남 지점(`CERAMIQUE-GN-001`) 단일이다.
 
 #### `node_id` 25종 — 표기 규약과 확정 목록
@@ -256,48 +263,64 @@ Out of scope:
 
 | # | `node_id` | 라벨 | `node_type` | 좌표 (x, y) |
 |---|---|---|---|---|
-| 1 | `dow` | 요일 | 외생 | 95, 60 |
-| 2 | `season` | 계절(월) | 외생 | 95, 145 |
-| 3 | `holiday` | 연휴·공휴일 | 외생 | 95, 230 |
-| 4 | `promo_event` | 프로모션 이벤트 | 개입 | 95, 320 |
-| 5 | `review_campaign` | 리뷰 요청 캠페인 | 개입 | 95, 400 |
-| 6 | `promo_avg_discount` | 프로모션 평균 할인율 | 속성 | 95, 480 |
-| 7 | `naver_reviews` | 네이버 리뷰 수 | kpi | 355, 90 |
-| 8 | `gu_reviews` | 강남언니 리뷰 수 | 유기 ※ | 355, 150 |
-| 9 | `organic_new` | 자연 유입 신환 | 유기 ※ | 355, 210 |
-| 10 | `reservations` | 예약 수 | kpi | 355, 270 |
-| 11 | `cancels` | 취소 수 | kpi | 355, 330 |
-| 12 | `noshows` | 부도 수 ※ | kpi | 355, 390 |
-| 13 | `review_positive_rate` | 리뷰 긍정 비율 ※ | kpi | 355, 460 |
-| 14 | `cancel_rate` | 취소율 | kpi | 625, 130 |
-| 15 | `noshow_rate` | 노쇼율 | kpi | 625, 190 |
-| 16 | `new_patients` | 신환 수 | kpi | 625, 250 |
-| 17 | `revisits` | 재진 수 | kpi | 625, 310 |
-| 18 | `payment_visits` | 결제 내원 수 | kpi | 625, 370 |
-| 19 | `new_patients_foreign_est` | 외국인 추정 신환 수 | kpi | 625, 430 |
-| 20 | `new_churns` | 신규 이탈 수 | kpi | 625, 490 |
-| 21 | `avg_ticket` | 객단가 | kpi | 895, 180 |
-| 22 | `sales` | 매출 | kpi | 895, 250 |
-| 23 | `retention_rate` | 재방문 전환율(60일) ※ | kpi | 895, 330 |
-| 24 | `foreign_sales_share` | 외국인 매출 비중 | kpi | 895, 410 |
-| 25 | `foreign_channel` | 외국인 유입 채널 | 미관측 | 1055, 480 |
+| 1 | `weekday` | 요일 | `exogenous` | 95, 60 |
+| 2 | `season` | 계절(월) | `exogenous` | 95, 145 |
+| 3 | `holiday` | 연휴·공휴일 | `exogenous` | 95, 230 |
+| 4 | `promo_event` | 프로모션 이벤트 | `intervention` | 95, 320 |
+| 5 | `naver_reviews` | 네이버 리뷰 수 | `intervention` | 355, 90 |
+| 6 | `discount_rate` | 프로모션 평균 할인율 | `attribute` | 95, 480 |
+| 7 | `gu_reviews` | 강남언니 리뷰 수 | `organic` | 355, 150 |
+| 8 | `reservations` | 예약 수 | `kpi` | 355, 270 |
+| 9 | `cancels` | 취소 수 | `kpi` | 355, 330 |
+| 10 | `noshows` | 부도 수 | `kpi` | 355, 390 |
+| 11 | `visits` | 총 내원 | `kpi` | 미배정 |
+| 12 | `cancel_rate` | 취소율 | `kpi` | 625, 130 |
+| 13 | `noshow_rate` | 노쇼율 | `kpi` | 625, 190 |
+| 14 | `new_patients` | 신환 수 | `kpi` | 625, 250 |
+| 15 | `new_patients_domestic` | 한국인 신환 수 | `kpi` | 미배정 |
+| 16 | `new_patients_foreign_est` | 외국인 추정 신환 수 | `kpi` | 625, 430 |
+| 17 | `revisits` | 재진 수 | `kpi` | 625, 310 |
+| 18 | `payment_visits` | 결제 내원 수 | `kpi` | 625, 370 |
+| 19 | `new_churns` | 신규 이탈 수 | `kpi` | 625, 490 |
+| 20 | `avg_ticket` | 객단가 | `kpi` | 895, 180 |
+| 21 | `sales_total` | 매출 | `kpi` | 895, 250 |
+| 22 | `sales_foreign_est` | 외국인 추정 매출 | `kpi` | 미배정 |
+| 23 | `foreign_sales_share` | 외국인 매출 비중 | `kpi` | 895, 410 |
+| 24 | `retention_rate_60d` | 재방문 전환율(60일) | `kpi` | 895, 330 |
+| 25 | `foreign_inflow_channel` | 외국인 유입 채널 | `unobserved` | 1055, 480 |
+
+유형 합계 — `kpi` 17 · `intervention` 2 · `organic` 1 · `exogenous` 3 · `unobserved` 1 ·
+`attribute` 1 = **25**.
 
 좌표는 `viewBox 0 0 1130 560` 기준 고정값이며 **레이아웃 참조물**이다(디자인
 `data/nodes.json`). 값의 정본은 `ontology_nodes` 이고, 이 표는 **id 표기 규약과 좌표
 키잉의 SoT** 다.
 
-**※ 정본 대조가 필요한 행 (적재 시 확인)** — 유형·개수 총계(25 = kpi 17 · 개입 2 · 유기 1 ·
-외생 3 · 미관측 1 · 속성 1)는 기록 07 과 일치하지만, 개별 라벨·유형에서 다음이 갈린다.
-**이 문서가 임의로 정하지 않는다** — 적재 게이트가 `ontology_nodes` 25행과 1:1 대응을
-검사하고, 어긋나면 적재를 실패시킨다(§6 AC-6).
+**2026-09-02 정정 — 정본 대조 완료 (OQ-6 닫힘).** WORK-001 backend 실측으로
+`ontology_nodes` 원본과 전건 대조했고, 어긋난 8건을 **정본 기준으로** 고쳤다.
 
-- 8·9 — 「유기 1」이 `gu_reviews`(기록 07 의 유기 신호)인지 `organic_new`(디자인이 유기로
-  둔 노드)인지. 둘 중 하나만 유기다.
-- 12 — 라벨 「노쇼 수」(디자인) vs enum 정본 「부도」(기록 03·SPEC-001 enum). **부도**로 적는다.
-- 13 · 23 — `review_positive_rate` · `retention_rate` 는 디자인에는 있으나 기록 07 의 확정
-  그래프에서 확인되지 않았다.
-- 기록 07 에는 있으나 이 표에 없는 후보 — 총 내원 · 한국인 신환 수 · 외국인 추정 매출.
-  정본이 이 셋을 노드로 갖는다면 8·9·13·23 중 같은 수만큼이 노드가 아니다.
+| 구분 | 이전(spec) | 정정(정본) |
+|---|---|---|
+| 표기 | `dow` | `weekday` |
+| 표기 | `sales` | `sales_total` |
+| 표기 | `retention_rate` | `retention_rate_60d` |
+| 표기 | `foreign_channel` | `foreign_inflow_channel` |
+| 표기 | `promo_avg_discount` | `discount_rate` |
+| 삭제 | `review_campaign`(리뷰 요청 캠페인) | 정본에 없다 |
+| 삭제 | `organic_new`(자연 유입 신환) | 정본에 없다 |
+| 삭제 | `review_positive_rate`(리뷰 긍정 비율) | 정본에 없다 |
+| 신규 | — | `visits`(총 내원) |
+| 신규 | — | `new_patients_domestic`(한국인 신환 수) |
+| 신규 | — | `sales_foreign_est`(외국인 추정 매출) |
+
+`naver_reviews` 는 `kpi` 가 아니라 **`intervention`**, `gu_reviews` 는 **`organic`** 이다 —
+유형 합계(§ 위 표)가 그렇게만 성립하고, 기록 07 이 네이버 리뷰를 「개입·조작 가능」,
+강남언니 리뷰를 유기 신호로 판정한 것과 일치한다.
+
+**좌표 미배정 3건** — 신규 노드(`visits` · `new_patients_domestic` · `sales_foreign_est`)는
+디자인 `data/nodes.json` 에 대응 좌표가 없다. 삭제된 3건의 자리를 그대로 물려받을지
+재배치할지는 **좌표 자산 재키잉 시** 정한다([[spec-004-three-screens|SPEC-004]] §4 ·
+AC-10 — 좌표 자산은 25행 전건이어야 한다).
 
 #### 마스킹 뷰 — `v_*`
 
@@ -421,10 +444,10 @@ stateDiagram-v2
 - [ ] **AC-5 (fail-fast 작동)** enum 밖 `visit_status`·음수 금액을 주입한 오염 표본에서
       빌드가 **실제로 중단**(exit ≠ 0)됨을 확인.
 - [ ] **AC-6 (온톨로지 무결성)** `ontology_nodes` 25행 · `ontology_edges` 27행, **고아 엣지
-      0**, 외생 노드 3종의 들어오는 엣지 0, 기각·보류 행에 사유 필드 존재.
+      0**, `exogenous` 노드 3종의 들어오는 엣지 0, 기각·보류 행에 사유 필드 존재.
       **`node_id` 는 전건 snake_case 이고 §4 의 25종 표와 1:1 대응**한다 — 대응하지 않는 행이
       1건이라도 있으면 적재를 실패시키고 어긋난 id·라벨을 보고한다(표를 조용히 맞추지 않는다).
-      `lag` 는 전건 `<정수>d` 형식이다.
+      `lag` 는 **정본 문자열 원형**이다 — 형식 강제 검사를 하지 않는다(`2w`·빈 값 허용).
 - [ ] **AC-6b (월 View)** `gold_kpi_monthly` 가 빌드 산출물로 존재하고, 월 합계 =
       해당 월 일별 합계(오차 0), 비율형 지표는 일별 평균이 아니라 월 합계 재계산값이다.
 - [ ] **AC-7 (게이트 3 — PII 마스킹)** 마스킹 뷰 산출 어디에도 `patientName`·`phone`·
@@ -444,4 +467,4 @@ stateDiagram-v2
 | OQ-3 | `gold_retention_monthly` · `gold_kpi_monthly` 의 기대 행수 | **미상 — 빌드 실측 등재** | 기록 05 에 행수가 없다. 빌드 시 실측해 §6 AC-2 대조값에 등재한다 |
 | ~~OQ-4~~ | 실버 마스킹 뷰(`v_silver_*`)를 둘 것인가 | **확정 (2026-09-02 승인)** — 둔다 | 「소비자는 항상 뷰를 본다」는 규칙을 단일화한다 |
 | ~~OQ-5~~ | 브론즈 리뷰 본문 마스킹을 뷰에서 다시 하는가 | **확정 (2026-09-02 승인)** — 뷰에서도 같은 실명 사전으로 마스킹한다 | 브론즈 드릴다운이 본문을 보여주기 때문 |
-| OQ-6 | `node_id` 25종 중 ※ 표시 행의 정본 라벨·유형 | **정본 대조 대기** | 적재 시 `ontology_nodes` 와 1:1 검사(AC-6). 어긋나면 이 표를 정정한다 |
+| ~~OQ-6~~ | `node_id` 25종의 정본 라벨·유형 | **닫힘 (2026-09-02)** — WORK-001 backend 실측으로 전건 대조, 어긋난 8건을 정본 기준으로 정정(§4 정정 이력 표) | 잔여는 신규 3노드의 **좌표 미배정**뿐 — SPEC-004 좌표 자산 재키잉 시 배정 |

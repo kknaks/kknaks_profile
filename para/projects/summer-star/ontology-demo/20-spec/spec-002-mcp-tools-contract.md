@@ -4,7 +4,7 @@ id: SPEC-002
 title: "조회 도구 계약 — MCP 4종(query_kpi · query_layer · trace_ontology · get_definition)"
 status: ready
 product: ontology-demo
-version: 0.0.2
+version: 0.0.3
 created_at: 2026-09-02
 updated_at: 2026-09-02
 tags:
@@ -46,7 +46,7 @@ links:
   4종 · 자유 SQL 금지) · [[decision-002-pii-masking-boundary|DEC-002]](뷰 경유 강제)
 - Baseline reference: [[baseline-001-demo-agent-app|BASE-001]]
 - 사실의 SoT: 기록 05(KPI 컬럼·상태 경계) · 07(nodes/edges·판정 체계) · 08(실제 조회 사용례)
-- Domain note: 도구 4종 · 판정 5종(채택·산출0·외생·보류·기각) · 상태 3종(양호·주의·경고)
+- Domain note: 도구 4종 · 판정 5종(채택·자동 확정·선언·보류·기각) · 상태 3종(양호·주의·경고)
 - Open questions: §7
 
 ### Business Requirement
@@ -96,7 +96,7 @@ Out of scope:
 ### S-3. 에이전트 — 엣지 역추적
 
 1. `trace_ontology(node="매출", direction="in")` 로 들어오는 엣지를 받는다.
-2. 결과에 **판정 구분**이 붙어 온다 — 채택/산출0/외생은 인과 서술에 쓰고, **보류·기각은
+2. 결과에 **판정 구분**이 붙어 온다 — 채택/자동 확정/선언은 인과 서술에 쓰고, **보류·기각은
    쓰지 않는다.** 기각 행은 배제 근거로만 인용한다.
 3. 미관측 노드(외국인 유입 채널)는 `?` 표지와 함께 온다 — 답할 수 없음을 답한다.
 
@@ -241,44 +241,45 @@ Out of scope:
 | `node` | string | — | 노드 이름 또는 `node_id`. 생략 시 전체 그래프 |
 | `direction` | enum | — | `in`(원인 쪽) · `out`(결과 쪽) · `both`. 기본 `both` |
 | `depth` | int | — | 1~3, 기본 1 |
-| `verdicts` | enum[] | — | `채택` · `산출0` · `외생` · `보류` · `기각`. 기본은 **`채택`·`산출0`·`외생`** |
+| `verdicts` | enum[] | — | `채택` · `자동 확정` · `선언` · `보류` · `기각`. 기본은 **`채택`·`자동 확정`·`선언`** |
 
 응답
 
 ```json
 {
   "nodes": [
-    {"node_id": "sales", "name": "매출", "node_type": "kpi",
+    {"node_id": "sales_total", "name": "매출", "node_type": "kpi",
      "controllable": true, "grain": "일", "source": "gold_kpi_daily.sales_total"},
-    {"node_id": "foreign_channel", "name": "외국인 유입 채널",
-     "node_type": "미관측", "controllable": true, "observed": false}
+    {"node_id": "foreign_inflow_channel", "name": "외국인 유입 채널",
+     "node_type": "unobserved", "controllable": true, "observed": false}
   ],
   "edges": [
-    {"edge_id": "payment_visits__sales",
-     "from": "payment_visits", "to": "sales", "sign": "+", "lag": "0d",
-     "kind": "derivation", "verdict": "산출0", "confidence": null,
+    {"edge_id": "payment_visits__sales_total",
+     "from": "payment_visits", "to": "sales_total", "sign": "+", "lag": "0d", "lag_days": 0,
+     "kind": "derivation", "verdict": "자동 확정", "confidence": null,
      "evidence": "항등식 — 결제 내원 × 객단가", "reason": null,
      "usable_for_causal_claim": true},
-    {"edge_id": "promo_event__sales",
-     "from": "promo_event", "to": "sales", "sign": null, "lag": null,
+    {"edge_id": "promo_event__sales_total",
+     "from": "promo_event", "to": "sales_total", "sign": null, "lag": null, "lag_days": null,
      "kind": "rejected", "verdict": "기각", "confidence": null,
      "evidence": "전후 ±14일 변화율 ±6% 이내 (23건)",
      "reason": "효과 미검출 — 프로모션이 월 단위로 연쇄해 「없는 구간」이 없다는 구조적 한계",
      "usable_for_causal_claim": false}
   ],
-  "counts": {"채택": 4, "산출0": 14, "외생": 3, "보류": 3, "기각": 3}
+  "counts": {"채택": 4, "자동 확정": 14, "선언": 3, "보류": 3, "기각": 3}
 }
 ```
 
-- **`lag` 표기는 `<정수>d` 형식**(`"0d"`·`"1d"`·`"7d"`·`"60d"`)이다 — `ontology_edges`
-  원천 형식을 그대로 흘린다(SPEC-001 §4). 「동시점」·「2주」로 재서술하지 않는다.
+- **`lag` 는 정본 문자열 원형**(`"0d"`·`"1d"`·`"7d"`·`"60d"`·`"2w"`·빈 값)을 그대로 흘리고,
+  **`lag_days`(일 단위 정수)를 병기**한다 — `"2w"` → `14`, 빈 값 → `null`.
+  형식을 강제하지 않는다(SPEC-001 §4). 「동시점」·「2주」 같은 재서술을 만들지 않는다.
 - **`edge_id` 를 함께 싣는다** — 안정 식별자이며 `used_edges[]`(SPEC-005)·`/api/graph`
   (SPEC-003)·URL `?edge=`(SPEC-004)가 같은 값을 쓴다.
 - **판정과 사유가 응답에 항상 실린다.** 기각 행은 `reason` 이 필수이고,
   `usable_for_causal_claim: false` 로 인과 서술 사용을 막는다.
 - 보류 엣지도 같다 — 조회는 되지만 인과 서술에 쓰지 않는다.
 - 미관측 노드는 `observed: false` 로 온다. 화면의 `?` 표시와 답변의 「모른다」가 여기서 온다.
-- 외생 노드(요일·계절·연휴)는 들어오는 엣지가 없다 — `direction=in` 조회는 빈 배열이다.
+- `exogenous` 노드(요일·계절·연휴)는 들어오는 엣지가 없다 — `direction=in` 조회는 빈 배열이다.
 
 #### `get_definition` — 글로서리 조회
 
@@ -400,7 +401,7 @@ sequenceDiagram
       `1990-**-**`)로만 오고 `masked_fields` 가 동봉된다 — 원값 노출 **0건**.
 - [ ] **AC-5** `trace_ontology` 응답의 모든 엣지에 `verdict` 가 있고, 기각·보류 행은
       `reason` 이 비어 있지 않으며 `usable_for_causal_claim: false` 다.
-- [ ] **AC-6** 기본 호출(`verdicts` 미지정)이 채택·산출0·외생만 돌려준다 — 보류·기각은
+- [ ] **AC-6** 기본 호출(`verdicts` 미지정)이 채택·자동 확정·선언만 돌려준다 — 보류·기각은
       명시 요청해야 온다.
 - [ ] **AC-7** `query_kpi` 응답의 수치가 골드 테이블 재조회값과 **오차 0**으로 일치하고,
       계산식·상태 경계가 함께 온다.

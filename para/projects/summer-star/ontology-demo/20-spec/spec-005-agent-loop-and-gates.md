@@ -4,7 +4,7 @@ id: SPEC-005
 title: "에이전트 루프와 게이트 — 전제 검증 · used_edges 응답 스키마 · 게이트 5종 · 회귀 3본"
 status: ready
 product: ontology-demo
-version: 0.0.2
+version: 0.0.3
 created_at: 2026-09-02
 updated_at: 2026-09-02
 tags:
@@ -152,16 +152,16 @@ Out of scope:
     "restated_question": "내원·예약은 왜 떨어졌고 매출은 왜 버텼나"
   },
   "used_edges": [
-    {"edge_id": "payment_visits__sales",
-     "from": "payment_visits", "to": "sales", "verdict": "산출0",
-     "sign": "+", "lag": "0d", "role": "매출이 버틴 경로"},
+    {"edge_id": "payment_visits__sales_total",
+     "from": "payment_visits", "to": "sales_total", "verdict": "자동 확정",
+     "sign": "+", "lag": "0d", "lag_days": 0, "role": "매출이 버틴 경로"},
     {"edge_id": "cancel_rate__reservations",
      "from": "cancel_rate", "to": "reservations", "verdict": "채택",
-     "sign": "-", "lag": "0d", "confidence": "중간", "role": "예약 하락 원인 후보 1"}
+     "sign": "-", "lag": "0d", "lag_days": 0, "confidence": "중간", "role": "예약 하락 원인 후보 1"}
   ],
   "excluded_edges": [
-    {"edge_id": "promo_event__sales",
-     "from": "promo_event", "to": "sales", "verdict": "기각",
+    {"edge_id": "promo_event__sales_total",
+     "from": "promo_event", "to": "sales_total", "verdict": "기각",
      "reason": "효과 미검출 — 전후 ±14일 변화율 ±6% 이내(23건)"}
   ],
   "citations": [
@@ -205,7 +205,7 @@ Out of scope:
 | `followups` | — | 이 답변 맥락에서 이어질 후속 질문 문자열. 정적 목록이 아니다 |
 | `unknowns` | — | 미관측·데이터 부재로 답할 수 없는 것 |
 
-- **`used_edges` ⊆ 확정 엣지.** 확정은 판정 `채택` · `산출0` · `외생` 이다.
+- **`used_edges` ⊆ 확정 엣지.** 확정은 판정 `채택` · `자동 확정` · `선언` 이다.
   `보류` · `기각` 은 `used_edges` 에 들어갈 수 없다 — `excluded_edges` 로만 간다.
 - **`citations` 는 역추적 가능해야 한다.** `source.table` · `source.column` 으로 재조회했을
   때 같은 값이 나와야 한다(게이트 5).
@@ -213,8 +213,9 @@ Out of scope:
   않는다. 하이라이트가 일어나는 화면은 **모니터링 그래프 하나**다(§6 G5-③).
 - **`edge_id` 는 안정 식별자**다. `used_edges[]` · `excluded_edges[]` · `/api/graph`
   (SPEC-003) · URL `?edge=`(SPEC-004)가 같은 값을 쓴다.
-- **`lag` 는 `<정수>d` 형식**(`"0d"`·`"1d"`·`"7d"`·`"60d"`)이다 — `ontology_edges` 원천
-  형식 그대로(SPEC-001 §4). 「동시점」·「2주」로 재서술하지 않는다.
+- **`lag` 는 정본 문자열 원형**(`"0d"`·`"1d"`·`"7d"`·`"60d"`·`"2w"`·빈 값)이고 도구·API 가
+  **`lag_days`(정수)를 병기**한다 — `ontology_edges` 원천 형식 그대로(SPEC-001 §4).
+  「동시점」·「2주」 같은 재서술을 만들지 않는다.
 - **`drilldown.rows` 는 마스킹 뷰 산출 그대로**다. 표시 상한(화면 5행)은 화면 계약이고,
   `total` 이 항상 실려 「몇 중 몇」이 드러난다.
 
@@ -225,7 +226,7 @@ Out of scope:
 | `used_edges[]` | `ontology_edges` 에 존재하는 `edge_id`(및 (from, to) 쌍)여야 한다 — 없는 엣지 0건 |
 | `drilldown.rows[]` | 마스킹 뷰 산출이어야 한다 — 원 테이블 조회 결과를 실을 수 없다 |
 | `followups[]` | 0~3개. 이 답변의 맥락에서 나온 질문일 것 |
-| `used_edges[].verdict` | `채택` · `산출0` · `외생` 만 |
+| `used_edges[].verdict` | `채택` · `자동 확정` · `선언` 만 |
 | `citations[].value` | DB 재조회값과 일치(허용 오차 0 — 반올림 표기는 `claim` 문자열에서만) |
 | `citations[].source` | `tool` · `table` · `column` 이 전부 채워질 것 |
 | `premise_correction` | `corrected: true` 면 `claimed` · `actual` · `restated_question` 필수 |
@@ -315,7 +316,7 @@ sequenceDiagram
       답변 본문·`citations`·드릴다운 행 전부 포함.
 - [ ] **G4 회귀 3본** — 아래 R-1·R-2·R-3 전부 통과.
 - [ ] **G5 근거 무결성** — ① 답변 수치 = DB 재조회 일치(오차 0). **도구가 주지 않은
-      추정치가 답변에 0건**일 것 ② `used_edges` ⊆ 확정 엣지(`채택`·`산출0`·`외생`)
+      추정치가 답변에 0건**일 것 ② `used_edges` ⊆ 확정 엣지(`채택`·`자동 확정`·`선언`)
       ③ **모니터링 그래프**(`/ontology/monitoring`)의 하이라이트 = `used_edges`
       — 집합이 정확히 같을 것. **검증 대상 화면은 모니터링 그래프 단일**이다
       (2026-09-02 확정 — 채팅에는 하이라이트 대상 그래프를 두지 않는다. OQ-4 닫힘).
@@ -332,7 +333,7 @@ sequenceDiagram
       기대: ① `premise_correction.corrected = true` — 8월 매출 **3.69억**(7월 2.91억 대비
       **+27%**)으로 하락하지 않았음을 먼저 교정 ② 실제 하락은 **내원 5,428 → 4,196** ·
       **예약 9,057 → 6,852**(둘 다 기간 최저) ③ `used_edges` 에 확정 엣지만 —
-      결제 내원 →(산출0) 매출 · 취소율 →(채택, −) 예약 · 네이버 리뷰 →(채택, +) 예약
+      결제 내원 →(자동 확정) 매출 · 취소율 →(채택, −) 예약 · 네이버 리뷰 →(채택, +) 예약
       ④ 근거 수치 병기: 결제 내원 **+23%**(641건) · 객단가 **58만 원** 유지 · 취소율 7월
       **36.3%**(기간 피크) → 8월 **35.5%** · 주별 네이버 리뷰 7월 말 **96 → 12 → 8 → 4건**
       ⑤ 보류·기각 엣지가 `used_edges` 에 **없을 것**.

@@ -37,7 +37,9 @@ SPEC에는 Product, QA, frontend, 외부 연동자가 알아야 하는 도메인
 |---|---|
 | 계층 | 브론즈(원형) → 실버(표준화) → 골드(KPI) → 온톨로지(관계). 상위는 바로 아래만 읽는다 |
 | 마스킹 뷰 | `v_*` — 소비자(화면·API·에이전트)가 브론즈·실버에 닿는 유일한 경로 |
-| 판정 | 엣지의 확정 상태 — 채택 · 산출0 · 외생 · 보류 · 기각. 인과 서술에는 앞 3종만 |
+| 판정 | 엣지의 확정 상태 — **채택 · 자동 확정 · 선언 · 보류 · 기각**(정본 한글값). 인과 서술에는 앞 3종만 |
+| 노드 타입 | `kpi` · `intervention` · `organic` · `exogenous` · `unobserved` · `attribute`(정본 영문 enum). 한글 카피 매핑은 SPEC-004 |
+| `lag` | 정본 문자열 원형(`0d`·`2w`·빈 값 등). API·도구는 `lag_days`(정수) 병기 |
 | KPI 상태 | 그 시점 값의 판정 — 양호 · 주의 · 경고 (전 기간 백분위 25%/10%) |
 | 노드 상태 | 최근 7일 빈도 — 정상 · 관찰(≥1) · 알림(≥3) |
 | `used_edges` | 답변이 실제로 밟은 확정 엣지. 그래프 하이라이트의 유일한 입력 |
@@ -57,11 +59,11 @@ spec 문서를 만들거나 상태가 바뀌면 이 표를 갱신한다. work �
 
 | ID | Title | Area | Status | Decision | File |
 |---|---|---|---|---|---|
-| SPEC-001 | 데이터 계층 계약 — 메달리온 전 계층 DB · 마스킹 뷰 · 적재 게이트 | data | **ready** (v0.0.2) | DEC-001 · DEC-002 | [spec-001-data-layer-contract.md](spec-001-data-layer-contract.md) |
-| SPEC-002 | 조회 도구 계약 — MCP 4종 | agent | **ready** (v0.0.2) | DEC-002 · DEC-003 | [spec-002-mcp-tools-contract.md](spec-002-mcp-tools-contract.md) |
-| SPEC-003 | FE↔BE API 계약 — 계층·KPI·그래프·예보·채팅·접속 게이트 | api | **ready** (v0.0.2) | DEC-003 · DEC-004 · DEC-005 | [spec-003-api-and-chat-contract.md](spec-003-api-and-chat-contract.md) |
-| SPEC-004 | 화면 계약 3페이지 — 모니터링 · 채팅 · 데이터 | ui | draft (v0.0.1) | DEC-004 · DEC-002 · DEC-005 | [spec-004-three-screens.md](spec-004-three-screens.md) |
-| SPEC-005 | 에이전트 루프와 게이트 — `used_edges` · 게이트 5종 · 회귀 3본 | agent | **ready** (v0.0.2) | DEC-003 | [spec-005-agent-loop-and-gates.md](spec-005-agent-loop-and-gates.md) |
+| SPEC-001 | 데이터 계층 계약 — 메달리온 전 계층 DB · 마스킹 뷰 · 적재 게이트 | data | **ready** (v0.0.3) | DEC-001 · DEC-002 | [spec-001-data-layer-contract.md](spec-001-data-layer-contract.md) |
+| SPEC-002 | 조회 도구 계약 — MCP 4종 | agent | **ready** (v0.0.3) | DEC-002 · DEC-003 | [spec-002-mcp-tools-contract.md](spec-002-mcp-tools-contract.md) |
+| SPEC-003 | FE↔BE API 계약 — 계층·KPI·그래프·예보·채팅·접속 게이트 | api | **ready** (v0.0.3) | DEC-003 · DEC-004 · DEC-005 | [spec-003-api-and-chat-contract.md](spec-003-api-and-chat-contract.md) |
+| SPEC-004 | 화면 계약 3페이지 — 모니터링 · 채팅 · 데이터 | ui | draft (v0.0.2) | DEC-004 · DEC-002 · DEC-005 | [spec-004-three-screens.md](spec-004-three-screens.md) |
+| SPEC-005 | 에이전트 루프와 게이트 — `used_edges` · 게이트 5종 · 회귀 3본 | agent | **ready** (v0.0.3) | DEC-003 | [spec-005-agent-loop-and-gates.md](spec-005-agent-loop-and-gates.md) |
 
 **SPEC-004 는 결번이 아니다** — 2026-09-02 디자인 실현성 검토(전 페이지
 FEASIBLE-WITH-CHANGES · BLOCKED 0건) 결과를 받아 작성했다. `draft` 인 이유는 사용자 리뷰
@@ -84,7 +86,6 @@ FEASIBLE-WITH-CHANGES · BLOCKED 0건) 결과를 받아 작성했다. `draft` �
 | ID | Question | Owner | Next |
 |---|---|---|---|
 | SPEC-001 OQ-3 | `gold_retention_monthly` · `gold_kpi_monthly` 기대 행수 | kknaks | 빌드 실측해 대조값 등재 |
-| SPEC-001 OQ-6 | `node_id` 25종 중 ※ 행의 정본 라벨·유형 | kknaks | 적재 시 `ontology_nodes` 1:1 대조(AC-6) |
 | SPEC-003 OQ-8 | 컬럼 값 분포 엔드포인트를 둘 것인가 | kknaks | 분포 바 제거 권고 — 유지 시 엔드포인트 추가 |
 | SPEC-004 OQ-1 | KPI 카드 클릭의 목적지 | kknaks | 그래프 노드 선택 제안 |
 | SPEC-004 OQ-2 | 「그 외 KPI」 카드 표기 | kknaks | 상태별 내역 파생 |

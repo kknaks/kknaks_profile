@@ -4,7 +4,7 @@ id: SPEC-003
 title: "FE↔BE API 계약 — 계층 조회 · KPI · 그래프 · 예보 · 채팅 스트림 · 접속 게이트"
 status: ready
 product: ontology-demo
-version: 0.0.2
+version: 0.0.3
 created_at: 2026-09-02
 updated_at: 2026-09-02
 tags:
@@ -289,22 +289,22 @@ Out of scope:
 
 #### 그래프
 
-- `GET /api/graph` — 쿼리 `verdicts`(기본 채택·산출0·외생) · `as_of` → 200
+- `GET /api/graph` — 쿼리 `verdicts`(기본 채택·자동 확정·선언) · `as_of` → 200
   ```json
   {"nodes": [{"node_id": "reservations", "name": "예약 수", "node_type": "kpi",
               "controllable": true, "observed": true,
               "node_state": "관찰", "alert_days": 2,
               "source": "gold_kpi_daily.reservations"}],
    "edges": [{"edge_id": "cancel_rate__reservations",
-              "from": "cancel_rate", "to": "reservations", "sign": "-", "lag": "0d",
+              "from": "cancel_rate", "to": "reservations", "sign": "-", "lag": "0d", "lag_days": 0,
               "verdict": "채택", "kind": "causal", "confidence": "중간",
               "evidence": "r=−0.583 · Granger 방향 분리(취소율→예약만 p<0.001)",
               "note": "취소율 상승은 예약 하락의 조기 경보다.",
               "reason": null, "usable_for_causal_claim": true}],
-   "counts": {"채택": 4, "산출0": 14, "외생": 3, "보류": 3, "기각": 3}}
+   "counts": {"채택": 4, "자동 확정": 14, "선언": 3, "보류": 3, "기각": 3}}
   ```
   - 미관측 노드는 `observed: false` — 화면의 `?` 표시가 여기서 온다.
-  - 판정별 엣지 구분(채택/산출0/외생/보류/기각)은 응답 필드가 갖는다. 보류·기각은
+  - 판정별 엣지 구분(채택/자동 확정/선언/보류/기각)은 응답 필드가 갖는다. 보류·기각은
     `verdicts` 를 명시해야 온다.
   - 노드 상태색 기준은 `/api/kpi/cards` 와 **같은 규칙**을 쓴다.
   - **`edge_id`** — 안정 식별자. `used_edges[]`(SPEC-005) · URL `?edge=`(SPEC-004)가 같은
@@ -315,7 +315,8 @@ Out of scope:
     별개 필드다. 정본은 기록 07 이다.
   - **노드 `source`** — 그 노드가 어느 테이블·컬럼에서 오는지. 인스펙터의 「원본 데이터
     보기」 목적지가 여기서 파생된다(SPEC-004 U-6).
-  - `lag` 는 **`<정수>d`** 형식이다(SPEC-001 §4).
+  - **`lag` 는 정본 문자열 원형**(`"2w"`·빈 값 포함)이고, **`lag_days`(정수)를 병기**한다
+    — `"2w"` → `14`, 빈 값 → `null`. 형식을 강제하지 않는다(SPEC-001 §4).
 
 #### 예보
 
@@ -328,7 +329,7 @@ Out of scope:
       "message": "취소율이 경고 구간에 머물고 있습니다. 채택 엣지 「취소율 → 예약 수 (−)」 기준으로 예약 수 하락이 예상됩니다.",
       "edge": {"edge_id": "cancel_rate__reservations",
                "from": "cancel_rate", "to": "reservations", "verdict": "채택",
-               "sign": "-", "lag": "0d", "confidence": "중간",
+               "sign": "-", "lag": "0d", "lag_days": 0, "confidence": "중간",
                "evidence": "r=−0.583 · Granger 방향 분리(취소율→예약만 p<0.001)"},
       "trigger": "취소율이 경고 구간에 머무름",
       "target": "reservations", "horizon": "0d",
@@ -340,7 +341,7 @@ Out of scope:
       "message": "강남언니 유기 리뷰가 8월 거의 0입니다. 「리뷰 수 → 신환 수 (+)」 엣지 기준으로 2주 뒤 신환 유입 감소가 예상됩니다.",
       "edge": {"edge_id": "gu_reviews__new_patients",
                "from": "gu_reviews", "to": "new_patients", "verdict": "채택",
-               "sign": "+", "lag": "14d", "confidence": "낮음",
+               "sign": "+", "lag": "2w", "lag_days": 14, "confidence": "낮음",
                "evidence": "r=0.691 · n=30"},
       "trigger": "유기 리뷰가 8월 거의 0",
       "target": "new_patients", "horizon": "14d",
@@ -392,7 +393,7 @@ Out of scope:
 | `metrics` | SPEC-002 허용 지표 목록 안, 1~8개 |
 | `grain` | `daily` · `weekly` · `monthly` · `retention_monthly` |
 | `start` · `end` | `YYYY-MM-DD`, `start ≤ end` |
-| `verdicts` | `채택` · `산출0` · `외생` · `보류` · `기각` |
+| `verdicts` | `채택` · `자동 확정` · `선언` · `보류` · `기각` |
 
 ### Case Matrix
 
@@ -520,9 +521,9 @@ stateDiagram-v2
       `spark[7]`·`node_id` 를 싣고, `period`·`has_next_period` 로 기간 스테퍼가 그려진다.
       미관측 카드는 `spark: null` 이다.
 - [ ] **AC-14** `/api/graph` 엣지가 `edge_id`·`kind`·`note` 를, 노드가 `source` 를 싣고,
-      `lag` 가 전건 `<정수>d` 형식이다.
+      `lag`(정본 원형)와 **`lag_days`**(정수, `2w`=14, 빈 값=`null`)를 **병기**한다.
 - [ ] **AC-15** `/api/forecast` 가 `title`·`message`·`edge.evidence` 를 싣고, 수치·신뢰도·
-      `lag` 가 기록 07 정본값과 일치한다(취소율→예약 `0d`·중간, 강남언니→신환 `14d`·낮음).
+      `lag` 가 기록 07 정본값과 일치한다(취소율→예약 `0d`/`lag_days` 0·중간, 강남언니→신환 **`2w`**/`lag_days` **14**·낮음).
 - [ ] **AC-16** `lineage` 가 `rule_id`·`gate`·`downstream`·`is_provisional` 을, `tables` 가
       `flows_to[]` 를 싣는다. `is_provisional` 과 `null`(관측 없음)이 구분된다.
 - [ ] **AC-17** 채팅 `result` 가 `used_edges[].edge_id`·`citations[].row_count`·`drilldown`·
