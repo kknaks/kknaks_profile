@@ -19,3 +19,10 @@
 | 2026-06-15 | work-add | WORK-002 | AI 요약 작업 지시서(W-1 BE 2엔드포인트 / W-2 FE 2뷰 / W-3 redis+codex 기동) + acceptance/test. status todo | work-002 |
 | 2026-06-15 | work-change | WORK-002 | 인프라 개정 = docker(redis 7-alpine + codex worker, open-kknaks examples 미러) + backend 호스트 스크립트(`redis://localhost:6379`) + 결과 저장(DB) 스킵. DEC/SPEC 본문 불변 | work-002 |
 | 2026-06-15 | work-change | WORK-002 | docker codex 실측 메커니즘 3개 정정(T-006 E2E `c5d4b97`): node 런처 멀티스테이지 / cwd 상속 chdir / config.toml trust. `skip_git_repo_check`=submit-side·미사용 명시. 40-architecture 승격 후보 표기 | work-002 |
+| 2026-09-02 | spike | — | Windows 키유도 탐색 3회(poc-windows-key-derivation/-re/-recover): (1)macOS 모델 이식불가 C+D → (2)passive read 로 대화 로컬 존재 확증(D 정정) → (3)메모리 SQLCipher raw key 회수 + chatLogs 실복호(1455행). 파생식 미회수. PR 없음(spike) | orchestration/work/ |
+| 2026-09-02 | baseline-add | BASE-003 | Windows V2 아이디어 등록 — 트레이 앱 + 방 선택 + 과거 복호 + 실시간 파일감시 축적(SQLite) + 대화 패턴 추출. 키=메모리 회수. status draft | baseline-003 |
+| 2026-09-02 | baseline-add | BASE-004 | 오프라인 키 파생식 회수(RE) 백로그 등록 — spike3 관찰(가설 전수 불일치) + 남은 경로(Ghidra 언패킹 / WinDbg). status deferred | baseline-004 |
+| 2026-09-02 | decision-add | DEC-003 | Windows V2 방식 4결정: 키=실행중 메모리 회수 / 저장=로컬 SQLite / 실시간=파일감시(-wal)→델타복호→append→SSE / UI=트레이+localhost HTML. status accepted | decision-003 |
+| 2026-09-02 | decision-change | DEC-003 | 결정5 추가 = 구현 Rust(axum·rusqlite bundled-sqlcipher·notify·windows·tray-icon), 같은 레포 win_app/ 디렉토리. spike 코드는 참조 포팅. SAC는 언어 무관(서명 문제) | decision-003 |
+| 2026-09-02 | spec-add | SPEC-003 | Windows V2 기능 계약(UX 3섹션+2pane / axum API 6개 / BE 메커니즘: 메모리 키회수·rusqlite 복호·notify 파일감시 / SQLite 스키마 / P1~3 / win_app 레이아웃). status draft | spec-003 |
+| 2026-09-02 | baseline-change | BASE-003 | UX 구조 확정(트레이→설정 3섹션, 2pane) + Rust/win_app 반영 + status accepted, links→DEC/SPEC-003 | baseline-003 |

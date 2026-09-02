@@ -12,6 +12,7 @@ decision 문서를 만들거나 상태가 바뀌면 이 표를 갱신한다.
 |---|---|---|---|---|---|
 | DEC-001 | 메시지 추출 방식 — 로컬 SQLCipher DB 복호화 (kakaocli) | accepted | BASE-001 | B 채택 (로컬 복호화) | SPEC-001 |
 | DEC-002 | AI 요약 방식 — open_kknaks(codex) + 단일 방·단일 날짜 + SSE + 2뷰 | accepted | BASE-002 | 확정 5개 채택 | SPEC-002 |
+| DEC-003 | Windows V2 방식 — 메모리 키 회수 + SQLite 축적 + 파일감시 실시간 + Rust/트레이/HTML | accepted | BASE-003 | 4결정 채택(Rust·axum·win_app) | SPEC-003 |
 
 ## 미결 사항
 
