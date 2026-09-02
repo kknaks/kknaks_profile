@@ -22,9 +22,9 @@
 
 | Area | Status | Next |
 |---|---|---|
-| Baseline | 스캐폴딩만 | BASE-001 작성 (발주됨) |
-| Decision | 없음 | baseline 닫힌 뒤 |
-| Spec | 없음 | decision 닫힌 뒤. SPEC-004(화면)는 디자인 핸드오프 귀환 대기 |
+| Baseline | BASE-001 `accepted` — 기록 09 등재 | 닫힘 (DEC-001~005 로 내려감) |
+| Decision | DEC-001~005 `accepted` — DB · PII · LLM 경로 · 웹 형태 · 배포 | 미결 5건은 spec 에서 확정 (`10-decision/README.md`) |
+| Spec | 없음 | decision 닫혔다 — 분할안 리뷰. 화면 spec 은 디자인 핸드오프 귀환 대기 |
 | Work | 없음 | spec 닫힌 뒤 분할안 리뷰 |
 
 ## 문서 맵
@@ -38,4 +38,6 @@
 
 ## 최근 로그
 
+- 2026-09-02 DEC-001~005 확정 · BASE-001 `accepted`.
+- 2026-09-02 BASE-001 등재 — 기록 09(데모 에이전트 앱 구축 계획)를 날것 입력으로.
 - 2026-09-02 제품 디렉토리 스캐폴딩. 전체 이력은 `log.md`.
