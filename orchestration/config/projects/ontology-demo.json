@@ -47,6 +47,14 @@
       "allowed_paths": ["app/ontology-agent/"],
       "verify": "cd app/ontology-agent && uv run pytest -q <네가 만들거나 고친 테스트 파일만> (전체 스위트 금지 — 사용자 방침). 검증은 1회만 — 통과하면 반복하지 마라"
     },
+    "frontend": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "fe",
+      "roles_dir": "roles/ontology-demo/frontend",
+      "allowed_paths": ["app/front/"],
+      "verify": "cd app/front && npx tsc --noEmit && npm run build (1회 — 통과하면 반복하지 마라). 시각 확인은 dev 서버 기동 후 라우트 3종 렌더 확인"
+    },
     "reviewer_code": {
       "repo": "app",
       "agent": "claude",
