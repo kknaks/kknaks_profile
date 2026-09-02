@@ -77,10 +77,10 @@ config 의 `repos` 에 spec 전용 레포가 있으면 분리형, 없으면 단�
 
 | | 분리형 (mediness) | 단일 레포형 (kknaks-dev) |
 |---|---|---|
-| 문서 | 별도 spec 레포 — planner 워커 발주 | 같은 레포 `para/` — **코디네이터가 직접** 쓴다 (baseline→decision→spec→work, 사용자와 문답으로 닫는다) |
+| 문서 | 별도 spec 레포 — planner 워커 발주 | 같은 레포 `para/` — **코디는 스캐폴딩만**(제품 디렉토리·index·log 깔기). 문서 본문(baseline→decision→spec→work)은 **docs 워커 발주**, 산출물은 사용자 리뷰로 닫는다 (2026-09-02 개정 — 코디는 스캐폴딩·설정·검증만 한다) |
 | 워커의 SSOT 참조 | spec 레포 워크트리 | **코디 워크트리 절대경로(read-only)** — 워커 base(`origin/main`)에는 새 문서가 아직 없다. 브리프 §1 에 절대경로로 박는다 |
 | PR | spec / code 가 레포부터 다름 | 같은 레포에서 브랜치 분리 — 문서는 코디 브랜치, 코드는 `<slug>` 브랜치. **분리 PR 규칙은 동일** |
-| allowed_paths | 코드 레포 경로만 | 문서 경로(`para/`·`orchestration/`)를 **반드시 배제** — 문서는 코디 소유. 워커가 work 문서의 Phase Status 도 갱신하지 않는다(보고로 대신) |
+| allowed_paths | 코드 레포 경로만 | 코드 워커는 문서 경로 배제. **docs 워커는 해당 제품 문서 디렉토리만** 허용. `orchestration/` 은 항상 코디 소유. 코드 워커가 work 문서의 Phase Status 도 갱신하지 않는다(보고로 대신) |
 
 단일 레포형에서 코디 브랜치의 문서가 미커밋이면 워커 참조가 코디 워크트리의
 **작업 중 상태**를 읽게 된다 — 발주 전에 spec 을 닫고(버전 확정), 발주 후에는
