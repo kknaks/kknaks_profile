@@ -15,7 +15,7 @@
       "notes": [
         "canonical(main)은 사용자 체크아웃 — pull/checkout 금지, fetch 만.",
         "base 가 main 이 아니다 — 기록 문서·스캐폴드가 ontology-demo 브랜치에 있어 워커는 여기서 분기한다. 데모 완주 후 ontology-demo → main PR 은 코디네이터가 마지막에 한 번.",
-        "단일 레포형(2026-09-02 개정): 코디는 스캐폴딩·설정·검증만. 문서 본문은 docs 워커 발주 — allowed_paths 는 제품 문서 디렉토리만. orchestration/ 은 항상 코디 소유. 워커 브리프의 SSOT 참조는 코디 워크트리(workspaces/kknaks_profile/ontology-demo) 절대경로(read-only).",
+        "이 프로젝트 한정 예외(2026-09-02): 런북 기본(단일 레포형 문서는 코디 직접)과 달리 문서 본문도 docs 워커 발주 — 코디는 스캐폴딩·설정·검증만. allowed_paths 는 제품 문서 디렉토리만. orchestration/ 은 항상 코디 소유. 워커 브리프의 SSOT 참조는 코디 워크트리(workspaces/kknaks_profile/ontology-demo) 절대경로(read-only).",
         "PR 분리: 코드 = <slug> → ontology-demo. 문서 = docs 워커 <slug> 브랜치 → ontology-demo (spec/code 분리 PR 규칙 동일). orchestration/ 변경은 코디가 직접 커밋."
       ]
     }
