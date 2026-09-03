@@ -57,9 +57,9 @@ class NodeIdMismatch(BuildError):
     code = "NODE_ID_MISMATCH"
 
 
-# --- Case Matrix 미등재 코드 (코디에게 등재 요청) --------------------------
-# 아래 3종은 SPEC-001 §4 Case Matrix 에 아직 없다. `ENUM_VIOLATION` 은 spec 상
-# `visit_status` 전용이라 다른 원인을 그 코드로 올리면 로그가 원인을 가리키지 못한다.
+# --- WORK-001 신설 코드 5종 (SPEC-001 v0.0.7 Case Matrix 등재 완료) --------
+# `ENUM_VIOLATION` 은 spec 상 `visit_status` 전용이라 다른 원인을 그 코드로 올리면
+# 로그가 원인을 가리키지 못한다. 그래서 아래로 갈랐다.
 
 
 class ReviewScoreViolation(BuildError):

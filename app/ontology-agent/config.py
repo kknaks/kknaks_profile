@@ -76,14 +76,33 @@ class Settings(BaseSettings):
     ai_model: str = "gpt-5.6-terra"
     ai_timeout_sec: int = 180
 
+    # 접속 게이트 — 내부 공유용 비밀번호 하나(DEC-005 D2 · SPEC-003 §4).
+    # **기본값을 두지 않는다.** 값은 배포 시 env 로만 주입하고 코드·문서·응답 어디에도 적지 않는다.
+    # 미주입이면 인증 엔드포인트가 기동 시점에 명시적으로 거부한다(빈 비밀번호로 열리지 않게).
+    demo_password: str = ""
+    session_cookie_name: str = "ontology_demo_sid"
+    session_max_age_sec: int = 60 * 60 * 24 * 30  # 30일 (SPEC-003 OQ-3)
+    session_cookie_secure: bool = True
+
+    # MCP 도구 서버 (research §5.2)
+    mcp_host: str = "0.0.0.0"
+    mcp_port: int = 28081
+    mcp_server_key: str = "ontology"
+    mcp_allowed_hosts: list[str] = ["*"]
+    mcp_allowed_origins: list[str] = ["*"]
+
     @property
     def resolved_db_path(self) -> Path:
         return self.db_path or (self.data_dir / "db" / "ontology_demo.db")
 
     @property
     def sources(self) -> SourcePaths:
-        """원천 경로 묶음 — 규약은 `SourcePaths` 하나가 갖는다."""
-        return SourcePaths(self.data_dir)
+        """원천 경로 묶음 — 규약은 `SourcePaths` 하나가 갖는다.
+
+        진입점은 `sources_for()` 하나다. 이 프로퍼티는 그쪽에 위임한다 —
+        같은 규약을 두 번 조립하지 않는다(WORK-001 W9).
+        """
+        return sources_for(self.data_dir)
 
 
 settings = Settings()

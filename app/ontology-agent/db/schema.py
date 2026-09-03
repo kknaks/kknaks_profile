@@ -267,6 +267,24 @@ ONTOLOGY_DDL = [
 
 ONTOLOGY_TABLES = ["ontology_nodes", "ontology_edges"]
 
+# --- 빌드 표식 -------------------------------------------------------------
+# 「한 번도 안 만든 DB」와 「빌드가 실패한 DB」를 소비자가 구분할 수 있게 하는 1행 테이블.
+# 파일 존재만 보면 둘이 같아 보여서, 빈 골드를 「데이터 없음」으로 오독할 수 있다
+# (WORK-001 재검수 관찰). **전 게이트 통과 시에만** 채택 트랜잭션 안에서 찍힌다.
+
+BUILD_META_DDL = [
+    """CREATE TABLE IF NOT EXISTS build_meta (
+  id INTEGER PRIMARY KEY CHECK (id = 1),
+  built_at TEXT NOT NULL,
+  gates_passed TEXT NOT NULL,
+  daily_rows INTEGER NOT NULL,
+  node_count INTEGER NOT NULL,
+  edge_count INTEGER NOT NULL
+)""",
+]
+
+BUILD_META_TABLE = "build_meta"
+
 
 def bootstrap(conn: sqlite3.Connection) -> None:
     """빈 DB 에 계층 스키마를 세운다. 이미 있으면 그대로 둔다(파괴적 마이그레이션 없음).
@@ -274,7 +292,7 @@ def bootstrap(conn: sqlite3.Connection) -> None:
     **커밋하지 않는다** — 호출자의 트랜잭션에 참여한다. 여기서 커밋하면 바깥
     savepoint 가 통째로 풀려 「게이트 실패 시 이전 DB 유지」가 깨진다.
     """
-    for stmt in bronze_ddl() + SILVER_DDL + ONTOLOGY_DDL + SILVER_INDEX_DDL:
+    for stmt in bronze_ddl() + SILVER_DDL + ONTOLOGY_DDL + BUILD_META_DDL + SILVER_INDEX_DDL:
         conn.execute(stmt)
 
 

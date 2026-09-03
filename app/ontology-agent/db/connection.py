@@ -57,11 +57,50 @@ def atomic(conn: sqlite3.Connection, name: str = "step"):
     conn.execute(f'RELEASE "{sp}"')
 
 
-def connect_ro(db_path: Path | str | None = None) -> sqlite3.Connection:
-    """읽기 전용 커넥션 — 소비자용. INSERT/UPDATE/DDL 이 전부 실패한다."""
+class BuildIncomplete(RuntimeError):
+    """빌드가 전 게이트를 통과하지 않은 DB — 서빙하면 안 된다."""
+
+
+def connect_ro(
+    db_path: Path | str | None = None, *, require_build: bool = True
+) -> sqlite3.Connection:
+    """읽기 전용 커넥션 — 소비자용. INSERT/UPDATE/DDL 이 전부 실패한다.
+
+    기본으로 **빌드 표식(`build_meta`)을 확인**한다. 파일 존재만 보면 「한 번도 안 만든 DB」와
+    「빌드가 실패해 빈 스키마만 남은 DB」가 같아 보이고, 소비자가 빈 골드를 「데이터 없음」으로
+    오독한다(WORK-001 재검수 관찰). 표식은 전 게이트 통과 시에만 찍힌다.
+
+    `require_build=False` 는 빌드 도중·테스트처럼 아직 표식이 없는 DB 를 열 때만 쓴다.
+    """
     path = resolved_db_path(db_path)
     if not path.exists():
         raise FileNotFoundError(f"DB 가 없다: {path} — 먼저 빌드해야 한다")
     conn = sqlite3.connect(f"file:{path}?mode=ro", uri=True)
     conn.row_factory = sqlite3.Row
+    if require_build:
+        try:
+            assert_build_complete(conn)
+        except BuildIncomplete:
+            conn.close()
+            raise
     return conn
+
+
+def build_stamp(conn: sqlite3.Connection) -> sqlite3.Row | None:
+    """빌드 표식 1행. 없으면 None(미빌드 또는 실패 빌드)."""
+    has_table = conn.execute(
+        "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='build_meta'"
+    ).fetchone()[0]
+    if not has_table:
+        return None
+    return conn.execute("SELECT * FROM build_meta WHERE id = 1").fetchone()
+
+
+def assert_build_complete(conn: sqlite3.Connection) -> sqlite3.Row:
+    stamp = build_stamp(conn)
+    if stamp is None:
+        raise BuildIncomplete(
+            "빌드 표식(build_meta)이 없다 — 미빌드이거나 게이트를 통과하지 못한 DB 다. "
+            "`uv run python -m build all` 로 전 게이트를 통과시켜야 서빙할 수 있다"
+        )
+    return stamp

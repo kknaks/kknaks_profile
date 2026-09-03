@@ -19,6 +19,7 @@ from __future__ import annotations
 import re
 import sqlite3
 
+from db.connection import atomic
 from db.schema import REVIEW_HEADER_MAP, VEGAS_COLUMNS
 
 MASK_TOKEN = "[직원]"
@@ -142,8 +143,6 @@ def view_ddl(conn: sqlite3.Connection) -> list[str]:
 
 
 def build(conn: sqlite3.Connection) -> list[str]:
-    from db.connection import atomic
-
     with atomic(conn, "views"):
         for stmt in view_ddl(conn):
             conn.execute(stmt)

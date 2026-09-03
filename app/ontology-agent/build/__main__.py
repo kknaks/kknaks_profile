@@ -11,6 +11,7 @@ SPEC-001 §4 Case Matrix 의 코드와 기대·실측값을 로그로 남긴다.
 from __future__ import annotations
 
 import argparse
+import datetime
 import sys
 
 from config import settings
@@ -118,7 +119,54 @@ def _all(conn) -> None:
         for step in (_bronze, _silver, _views, _gold, _ontology, _gate1, _gate2, _gate3):
             print(f"\n--- {step.__name__.lstrip('_')} ---")
             step(conn)
+        _stamp_build(conn)
     print("\n전 게이트 통과 — 산출물 채택")
+
+
+def _stamp_build(conn) -> None:
+    """빌드 표식 — 채택 트랜잭션 **안에서** 찍는다.
+
+    게이트가 하나라도 실패하면 이 줄에 닿지 못하고, 닿았더라도 롤백에 함께 되감긴다.
+    그래서 표식의 존재가 곧 「전 게이트를 통과한 산출물」이다. 소비자(`connect_ro`)가
+    이것으로 미빌드·실패빌드를 정상 서빙과 구분한다.
+    """
+    daily = conn.execute("SELECT COUNT(*) FROM gold_kpi_daily").fetchone()[0]
+    nodes = conn.execute("SELECT COUNT(*) FROM ontology_nodes").fetchone()[0]
+    edges = conn.execute("SELECT COUNT(*) FROM ontology_edges").fetchone()[0]
+    built_at = datetime.datetime.now(datetime.UTC).isoformat(timespec="seconds")
+    conn.execute("DELETE FROM build_meta")
+    conn.execute(
+        "INSERT INTO build_meta (id, built_at, gates_passed, daily_rows, node_count, edge_count) "
+        "VALUES (1, ?, ?, ?, ?, ?)",
+        (built_at, "1,2,3", daily, nodes, edges),
+    )
+    print(f"\n빌드 표식: built_at={built_at} · 게이트 1,2,3 통과 "
+          f"· 일별 {daily}행 · 노드 {nodes} · 엣지 {edges}")
+
+
+#: DB 를 바꾸는 단계. 이것들을 **단독으로** 돌리면 전 게이트 통과 보장이 깨지므로
+#: 빌드 표식을 무효화한다 — 게이트 없이 골드를 다시 쓴 뒤에도 표식이 「1,2,3 통과」라고
+#: 말하면 **표식이 거짓을 말하는 유일한 경로**가 된다(WORK-002 검수 W5).
+#: 게이트 단독 재실행(`gate1`~`gate3`)은 읽기만 하므로 표식을 건드리지 않는다.
+MUTATING_STAGES = frozenset({"bootstrap", "bronze", "views", "silver", "gold", "ontology"})
+
+
+def _invalidate_build_stamp(conn, stage: str) -> None:
+    """단계 단독 실행 시 표식을 지운다 — 채택 경로는 `all` 하나뿐이다.
+
+    핸들러보다 **먼저** 지운다. 단계가 롤백돼도 표식은 돌아오지 않는데, 그 방향이 안전하다 —
+    「서빙하지 않음」으로 틀리는 편이 「게이트 안 거친 산출물을 서빙함」으로 틀리는 것보다 낫다.
+    표식을 되살리려면 `all` 로 전 게이트를 다시 통과시켜야 한다.
+    """
+    has_table = conn.execute(
+        "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='build_meta'"
+    ).fetchone()[0]
+    if not has_table:
+        return
+    removed = conn.execute("DELETE FROM build_meta").rowcount
+    if removed:
+        print(f"\n빌드 표식 무효화 — 단계 단독 실행({stage})은 게이트를 거치지 않는다. "
+              "서빙하려면 `build all` 로 전 게이트를 다시 통과시켜야 한다")
 
 
 HANDLERS = {
@@ -148,6 +196,8 @@ def main(argv: list[str] | None = None) -> int:
     print(f"DB: {args.db or settings.resolved_db_path}")
     print(f"원천: {settings.data_dir}")
     try:
+        if args.stage in MUTATING_STAGES:
+            _invalidate_build_stamp(conn, args.stage)
         for handler in HANDLERS[args.stage]:
             print(f"\n--- {handler.__name__.lstrip('_')} ---")
             handler(conn)

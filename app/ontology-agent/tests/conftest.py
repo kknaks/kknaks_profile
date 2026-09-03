@@ -52,6 +52,47 @@ def built_db(tmp_path_factory) -> sqlite3.Connection:
     conn.close()
 
 
+@pytest.fixture(scope="session")
+def built_db_path(tmp_path_factory):
+    """전 게이트를 통과한 DB 파일 하나 — **빌드 표식까지 찍힌** 서빙 가능 상태.
+
+    `built_db`(커넥션)와 달리 API 테스트는 앱이 자기 커넥션을 열어야 해서 경로가 필요하다.
+    CLI `all` 을 그대로 태우므로 표식도 실제 경로로 찍힌다.
+    """
+    if not _source_available():
+        pytest.skip("원천 데이터 없음")
+    from build.__main__ import main as build_main
+
+    path = tmp_path_factory.mktemp("serving") / "ontology_demo.db"
+    assert build_main(["all", "--db", str(path)]) == 0
+    return path
+
+
+#: 로컬 검증용 임시값 — 배포 값과 무관하고 레포의 어느 기본값도 아니다.
+TEST_PASSWORD = "test-only-not-a-real-secret"
+
+
+@pytest.fixture
+def client(monkeypatch, built_db_path):
+    """게이트를 통과하지 않은 API 클라이언트. 401 경로를 보는 데 쓴다."""
+    from fastapi.testclient import TestClient
+
+    monkeypatch.setattr(settings, "demo_password", TEST_PASSWORD)
+    monkeypatch.setattr(settings, "db_path", built_db_path)
+    monkeypatch.setattr(settings, "session_cookie_secure", False)  # TestClient 는 http 다
+    import main
+
+    with TestClient(main.app) as c:
+        yield c
+
+
+@pytest.fixture
+def auth_client(client):
+    r = client.post("/api/auth/session", json={"password": TEST_PASSWORD})
+    assert r.status_code == 200
+    return client
+
+
 @pytest.fixture
 def empty_db(tmp_path) -> sqlite3.Connection:
     conn = sqlite3.connect(tmp_path / "empty.db")

@@ -4,9 +4,18 @@
 소비자(도구·API·에이전트)는 `connect_ro()` + 마스킹 뷰로만 닿는다 — DEC-002.
 """
 
-from .connection import atomic, connect, connect_ro, resolved_db_path
+from .connection import (
+    BuildIncomplete,
+    assert_build_complete,
+    atomic,
+    build_stamp,
+    connect,
+    connect_ro,
+    resolved_db_path,
+)
 from .schema import BRONZE_TABLES, bootstrap
 
 __all__ = [
     "connect", "connect_ro", "atomic", "resolved_db_path", "bootstrap", "BRONZE_TABLES",
+    "BuildIncomplete", "assert_build_complete", "build_stamp",
 ]

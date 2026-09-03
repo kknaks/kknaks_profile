@@ -24,7 +24,8 @@ def test_읽기전용_커넥션은_쓰기를_거부한다(tmp_path):
     write.commit()
     write.close()
 
-    ro = connect_ro(path)
+    # 빌드 표식이 없는 생 DB 라 `require_build=False` — 여기서 보는 것은 쓰기 거부다
+    ro = connect_ro(path, require_build=False)
     assert ro.execute("SELECT COUNT(*) FROM t").fetchone()[0] == 0
     with pytest.raises(sqlite3.OperationalError):
         ro.execute("INSERT INTO t VALUES (1)")
@@ -36,6 +37,23 @@ def test_읽기전용_커넥션은_쓰기를_거부한다(tmp_path):
 def test_읽기전용_커넥션은_없는_DB_를_열지_않는다(tmp_path):
     with pytest.raises(FileNotFoundError):
         connect_ro(tmp_path / "없다.db")
+
+
+def test_빌드_표식이_없으면_기본적으로_열리지_않는다(tmp_path):
+    """「한 번도 안 만든 DB」와 「빌드가 실패한 DB」를 파일 존재만으로는 구분할 수 없다 —
+    표식이 그 구분을 만든다(WORK-001 재검수 관찰 · WORK-002 도입)."""
+    from db.connection import BuildIncomplete
+    from db.schema import bootstrap
+
+    path = tmp_path / "unbuilt.db"
+    conn = sqlite3.connect(path)
+    bootstrap(conn)
+    conn.commit()
+    conn.close()
+
+    with pytest.raises(BuildIncomplete):
+        connect_ro(path)
+    connect_ro(path, require_build=False).close()   # 명시하면 열린다
 
 
 def test_CLI_가_단계별_실행과_게이트_단독_재실행을_노출한다(capsys):
