@@ -4,7 +4,7 @@ id: SPEC-003
 title: "FE↔BE API 계약 — 계층 조회 · KPI · 그래프 · 예보 · 채팅 스트림 · 접속 게이트"
 status: ready
 product: ontology-demo
-version: 0.0.10
+version: 0.0.11
 created_at: 2026-09-02
 updated_at: 2026-09-03
 tags:
@@ -205,6 +205,18 @@ Out of scope:
   직접 넣으며 **문서·레포·기본값 어디에도 적지 않는다.**
 - 백엔드 API 는 같은 env 값을 공유하는 단순 토큰 검증이다. 계정·권한 등급·rate limit 은
   두지 않는다(DEC-005 D2).
+
+**교차 오리진 계약 (2026-09-03 확정 — WORK-005 실측)** — 배포 토폴로지가 프론트 Vercel ·
+백 홈서버라 **브라우저에서 보면 교차 오리진**이다(DEC-005 D1). 쿠키를 실어 보내는 요청이라
+아래가 없으면 **게이트 화면부터 브라우저가 막는다.**
+
+- **CORS 는 명시 오리진 목록**이다 — env `ONTOLOGY_ALLOWED_ORIGINS`. 자격 증명을 함께
+  보내므로(`credentials`) **와일드카드 `*` 는 쓸 수 없다**(브라우저가 거부한다).
+  **미설정이면 기동을 거부**한다 — 조용히 열린 채로 뜨거나 조용히 막힌 채로 뜨는 것보다
+  안 뜨는 게 낫다.
+- **세션 쿠키의 `SameSite` 는 `secure` 에서 파생**한다 — https 배포면 `SameSite=None` +
+  `Secure`, 로컬 http 면 `SameSite=Lax`. 교차 오리진에서 쿠키가 실리려면 `None`+`Secure`
+  조합이어야 하고, 그 조합은 https 에서만 성립한다. 값을 손으로 두 곳에 적지 않는다.
 
 #### 계층 조회
 
@@ -520,9 +532,11 @@ stateDiagram-v2
 - **동시성**: 같은 대화는 한 번에 한 태스크만 돈다(`CONVERSATION_BUSY`). 다른 대화끼리는
   병렬이어도 된다.
 - **timeout**: 180초 초과 시 `failed` 로 마감한다. 재시도는 재제출이다.
-- **세션**: 쿠키 이름 `ontology_demo_sid`, httpOnly · SameSite=Lax · Secure, 만료 30일.
-  가드는 **프론트 미들웨어(화면)와 백 API 양쪽**에 둔다 — NPM Basic Auth 는 쓰지 않는다
-  (폴링·쿠키와 어긋난다).
+- **세션**: 쿠키 이름 `ontology_demo_sid`, httpOnly, 만료 30일.
+  **`SameSite`·`Secure` 는 배포 스킴에서 파생**한다(§4 교차 오리진 계약) — https 면
+  `None`+`Secure`, http 면 `Lax`. 가드는 **프론트 미들웨어(화면)와 백 API 양쪽**에 둔다 —
+  NPM Basic Auth 는 쓰지 않는다(폴링·쿠키와 어긋난다).
+- **CORS**: 허용 오리진은 env 목록이고 와일드카드를 쓰지 않는다. 미설정 시 기동 거부.
 - **비밀번호 값을 코드·문서·기본값에 넣지 않는다.** 환경변수로만 주입한다.
 - 「실시간」이라고 표기하지 않는다 — 데이터는 일 1회 갱신이다(DEC-005 D4).
 
@@ -571,6 +585,10 @@ stateDiagram-v2
       로 표시된다 — 단계 실패가 곧 메시지 `failed` 는 아니다.
 - [ ] **AC-21** `done`·`pending` 메시지에 retry 를 부르면 400 `RETRY_NOT_ALLOWED` 이고,
       `failed` 에만 성공한다.
+- [ ] **AC-22** `ONTOLOGY_ALLOWED_ORIGINS` 미설정 시 백엔드가 **기동을 거부**하고, 설정 시
+      목록 밖 오리진의 요청이 차단된다. 응답의 허용 오리진에 와일드카드가 **0건**이다.
+- [ ] **AC-23** 배포(https)에서 세션 쿠키가 `SameSite=None`+`Secure` 로, 로컬(http)에서
+      `SameSite=Lax` 로 나가고, **프론트에서 게이트 통과 후 API 왕복에 쿠키가 실린다**.
 
 ## 7. Open Questions
 
