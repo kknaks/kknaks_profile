@@ -4,7 +4,7 @@ id: SPEC-003
 title: "FE↔BE API 계약 — 계층 조회 · KPI · 그래프 · 예보 · 채팅 스트림 · 접속 게이트"
 status: ready
 product: ontology-demo
-version: 0.0.11
+version: 0.0.12
 created_at: 2026-09-02
 updated_at: 2026-09-03
 tags:
@@ -331,6 +331,10 @@ Out of scope:
   - 미관측 노드는 `observed: false` — 화면의 `?` 표시가 여기서 온다.
   - 판정별 엣지 구분(채택/자동 확정/선언/보류/기각)은 응답 필드가 갖는다. 보류·기각은
     `verdicts` 를 명시해야 온다.
+  - **`verdicts` 전송 형식** — **콤마 구분 단일 쿼리 파라미터가 정본**이다:
+    `?verdicts=채택,자동 확정,선언`. 반복 파라미터(`?verdicts=채택&verdicts=선언`)도
+    **허용**한다 — 서버가 둘 다 받는다. 값에 공백이 들어가므로(`자동 확정`) URL 인코딩은
+    필수다. 형식을 정하지 않아 FE·BE 가 갈라진 적이 있다(2026-09-03 E2E 실측).
   - 노드 상태색 기준은 `/api/kpi/cards` 와 **같은 규칙**을 쓴다.
   - **`edge_id`** — 안정 식별자이고 형식은 **`<from>__<to>`**(밑줄 2개)다.
     예: `cancel_rate__reservations`. `used_edges[]`(SPEC-005) · URL `?edge=`(SPEC-004)가
@@ -431,7 +435,7 @@ Out of scope:
 | `metrics` | SPEC-002 허용 지표 목록 안, 1~8개 |
 | `grain` | `daily` · `weekly` · `monthly` · `retention_monthly` |
 | `start` · `end` | `YYYY-MM-DD`, `start ≤ end` |
-| `verdicts` | `채택` · `자동 확정` · `선언` · `보류` · `기각` |
+| `verdicts` | `채택` · `자동 확정` · `선언` · `보류` · `기각`. **콤마 구분 단일 파라미터가 정본**(반복 파라미터도 허용), 값은 URL 인코딩 |
 
 ### Case Matrix
 
