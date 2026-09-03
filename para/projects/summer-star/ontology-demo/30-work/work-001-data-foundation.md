@@ -137,10 +137,13 @@ SQLite 한 파일에 `bronze_*` → `silver_*` → `gold_*` → `ontology_*` 를
 
 - 빌드 진입점은 CLI 다 — 단계별 실행(`bronze` / `silver` / `gold` / `ontology` / `all`)과
   게이트 단독 재실행을 지원한다. **WORK-005 의 전건 재실행이 이 인터페이스를 쓴다.**
-- 게이트 실패는 **exit code ≠ 0** 이고, SPEC-001 §4 Case Matrix 의 코드
-  (`BRONZE_ROWCOUNT_MISMATCH` · `ENUM_VIOLATION` · `NEGATIVE_AMOUNT` ·
-  `CLOSED_LIST_VIOLATION` · `REBUILD_MISMATCH` · `ORPHAN_EDGE` · `PII_LEAK`)와
-  기대·실측값을 로그로 남긴다.
+- 게이트 실패는 **exit code ≠ 0** 이고, SPEC-001 §4 Case Matrix 의 코드 **13종**과
+  기대·실측값을 로그로 남긴다 — 빌드 순서대로
+  `BRONZE_ROWCOUNT_MISMATCH` · `ENUM_VIOLATION` · `NEGATIVE_AMOUNT` ·
+  `SILVER_ROWCOUNT_MISMATCH` · `UNKNOWN_BRANCH` · `CLOSED_LIST_VIOLATION` ·
+  `REVIEW_SCORE_VIOLATION` · `AGREEMENT_BELOW_THRESHOLD` · `MASKING_RESIDUE` ·
+  `REBUILD_MISMATCH` · `ORPHAN_EDGE` · `NODE_ID_MISMATCH` · `PII_LEAK`.
+  **`ENUM_VIOLATION` 은 `visit_status` 전용**이다 — 다른 원인을 이 코드로 올리지 않는다.
 - 읽기 전용 커넥션 헬퍼를 여기서 만들고 WORK-002 가 그대로 쓴다.
 
 ## Execution

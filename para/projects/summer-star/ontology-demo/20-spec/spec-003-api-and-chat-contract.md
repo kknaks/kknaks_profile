@@ -4,7 +4,7 @@ id: SPEC-003
 title: "FE↔BE API 계약 — 계층 조회 · KPI · 그래프 · 예보 · 채팅 스트림 · 접속 게이트"
 status: ready
 product: ontology-demo
-version: 0.0.7
+version: 0.0.8
 created_at: 2026-09-02
 updated_at: 2026-09-03
 tags:
@@ -212,11 +212,17 @@ Out of scope:
   ```json
   {"layer": "silver",
    "tables": [{"table": "reservations", "row_count": 75479,
-               "masked": false, "source_group": null,
+               "masked": false, "source_group": null, "columns_note": null,
                "note_ref": "기록 04 실버 빌드",
                "flows_to": [{"layer": "gold", "table": "gold_kpi_daily",
                              "note": "일별 KPI 의 주 원천"}]}]}
   ```
+  - **`columns_note`** — **컬럼 목록이 계약에 없는 테이블**의 사유 문자열이다. 대상은
+    브론즈 `nexus_*` **14종**과 `gold_promo_calendar` — 원형·이벤트 그레인이라 SPEC-001 이
+    컬럼을 고정하지 않았다. 그 밖의 테이블은 `null`.
+    **화면은 빈 컬럼을 침묵으로 두지 않고 이 사유를 표기한다** — 소리 없는 절단 금지의
+    연장이다([[spec-004-three-screens|SPEC-004]] U-14 · §5). 컬럼이 안 보이는 것과
+    「계약에 없어서 안 보이는 것」은 사용자에게 다른 사실이다.
   - **`source_group`** — 브론즈 테이블의 **원천 축**이다. 허용값 `"vegas"` · `"review"` ·
     `"nexus"`, **실버·골드는 `null`**. 데이터 화면의 브론즈 2단 칩(원천 3 → nexus 하위 14)이
     이 값으로 묶인다([[spec-004-three-screens|SPEC-004]] U-13) — 화면이 테이블 이름을
@@ -548,6 +554,8 @@ stateDiagram-v2
       `followups` 를 실어 나른다(정의는 SPEC-005).
 - [ ] **AC-18** `/api/layers/bronze/tables` 가 테이블마다 `source_group`(`vegas`·`review`·
       `nexus`)을 싣고, 실버·골드는 `null` 이다.
+- [ ] **AC-18b** 컬럼 목록이 계약에 없는 테이블(`nexus_*` 14종 · `gold_promo_calendar`)이
+      `columns_note` 에 사유를 싣고 화면이 그것을 표기한다. 그 밖의 테이블은 `null`.
 - [ ] **AC-19** `status: failed` 메시지가 `error_code`(`AI_TIMEOUT`·`AI_FAILED`)를 싣고,
       `pending`·`done` 은 `null` 이다.
 
