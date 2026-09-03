@@ -61,7 +61,7 @@ spec 문서를 만들거나 상태가 바뀌면 이 표를 갱신한다. work �
 |---|---|---|---|---|---|
 | SPEC-001 | 데이터 계층 계약 — 메달리온 전 계층 DB · 마스킹 뷰 · 적재 게이트 | data | **ready** (v0.0.7) | DEC-001 · DEC-002 | [spec-001-data-layer-contract.md](spec-001-data-layer-contract.md) |
 | SPEC-002 | 조회 도구 계약 — MCP 4종 | agent | **ready** (v0.0.3) | DEC-002 · DEC-003 | [spec-002-mcp-tools-contract.md](spec-002-mcp-tools-contract.md) |
-| SPEC-003 | FE↔BE API 계약 — 계층·KPI·그래프·예보·채팅·접속 게이트 | api | **ready** (v0.0.4) | DEC-003 · DEC-004 · DEC-005 | [spec-003-api-and-chat-contract.md](spec-003-api-and-chat-contract.md) |
+| SPEC-003 | FE↔BE API 계약 — 계층·KPI·그래프·예보·채팅·접속 게이트 | api | **ready** (v0.0.5) | DEC-003 · DEC-004 · DEC-005 | [spec-003-api-and-chat-contract.md](spec-003-api-and-chat-contract.md) |
 | SPEC-004 | 화면 계약 3페이지 — 모니터링 · 채팅 · 데이터 | ui | **ready** (v0.1.0) | DEC-004 · DEC-002 · DEC-005 | [spec-004-three-screens.md](spec-004-three-screens.md) |
 | SPEC-005 | 에이전트 루프와 게이트 — `used_edges` · 게이트 5종 · 회귀 3본 | agent | **ready** (v0.0.3) | DEC-003 | [spec-005-agent-loop-and-gates.md](spec-005-agent-loop-and-gates.md) |
 

@@ -4,9 +4,9 @@ id: SPEC-003
 title: "FE↔BE API 계약 — 계층 조회 · KPI · 그래프 · 예보 · 채팅 스트림 · 접속 게이트"
 status: ready
 product: ontology-demo
-version: 0.0.4
+version: 0.0.5
 created_at: 2026-09-02
-updated_at: 2026-09-02
+updated_at: 2026-09-03
 tags:
   - product/ontology-demo
   - doc/spec
@@ -259,7 +259,7 @@ Out of scope:
 - `GET /api/kpi/cards` — 쿼리 `period`(`YYYY-MM`, 기본 최신) · `window_days`(기본 7) → 200
   ```json
   {"as_of": "2026-08-30", "period": "2026-08", "window_days": 7,
-   "has_next_period": false,
+   "has_prev_period": true, "has_next_period": false,
    "cards": [{"metric": "noshow_rate", "label": "노쇼율", "grain": "daily",
               "latest": 0.05, "unit": "%p", "format": "percent",
               "dod": 0.009, "dod_pct": 0.22,
@@ -279,8 +279,10 @@ Out of scope:
     이 값으로 조립한다.
   - **`spark`** — 최근 7개 값. 없으면 `null`(미관측 카드는 스파크라인을 그리지 않는다).
   - **`node_id`** — 그래프 노드와 잇는 키(SPEC-001 §4 25종). 카드 → 그래프 이동에 쓴다.
-  - **`period`·`has_next_period`** — 기간 스테퍼가 이 값으로 그려진다. 다음 기간이 없으면
-    화살표를 비활성한다.
+  - **`period`·`has_prev_period`·`has_next_period`** — 기간 스테퍼가 이 값으로 그려진다.
+    **양쪽 화살표의 비활성 근거를 서버가 준다** — 이전 기간이 없으면 `has_prev_period: false`,
+    다음 기간이 없으면 `has_next_period: false` 이고 해당 화살표를 비활성한다.
+    화면이 데이터 범위(2026-01-07 ~ 2026-08-30)를 알고 있다가 스스로 판정하지 않는다.
   - 개입 신호(`naver_reviews`)는 `status`·`node_state` 를 갖지 않는다(방향 없는 변수).
 - `GET /api/kpi/series` — 쿼리 `metrics` · `grain`(daily/weekly/monthly/retention_monthly) ·
   `start` · `end` ·
@@ -520,8 +522,8 @@ stateDiagram-v2
 - [ ] **AC-11** 상한 초과 `limit` 이 거부되고, 응답 `total` 로 전체 건수가 드러난다.
 - [ ] **AC-12** 어느 화면·응답에도 「실시간」 표기가 없다.
 - [ ] **AC-13** `/api/kpi/cards` 가 카드마다 `grain`·`dod`·`dod_pct`·`unit`·`format`·
-      `spark[7]`·`node_id` 를 싣고, `period`·`has_next_period` 로 기간 스테퍼가 그려진다.
-      미관측 카드는 `spark: null` 이다.
+      `spark[7]`·`node_id` 를 싣고, `period`·**`has_prev_period`**·`has_next_period` 로 기간
+      스테퍼의 **양쪽 화살표**가 그려진다. 미관측 카드는 `spark: null` 이다.
 - [ ] **AC-14** `/api/graph` 엣지가 `edge_id`·`kind`·`note` 를, 노드가 `source` 를 싣고,
       `lag`(정본 원형)와 **`lag_days`**(정수, `2w`=14, 빈 값=`null`)를 **병기**한다.
 - [ ] **AC-15** `/api/forecast` 가 `title`·`message`·`edge.evidence` 를 싣고, 수치·신뢰도·
