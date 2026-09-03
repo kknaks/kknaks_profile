@@ -10,7 +10,11 @@ decision 문서를 만들거나 상태가 바뀌면 이 표를 갱신한다.
 
 | ID | Title | Status | Baseline | Result | Spec |
 |---|---|---|---|---|---|
-|  |  |  |  |  |  |
+| DEC-001 | DB = 메달리온 전 계층 — 브론즈까지 한 DB 에 담고 빌드를 DB 로 이식 | accepted | BASE-001 | 전 계층 SQLite 적재 + 빌드 입출력만 DB 로(규칙·게이트는 기록 04·05 그대로) | SPEC-001 |
+| DEC-002 | PII 경계 — 원값은 DB 보존, 표시·응답에서 마스킹 | accepted | BASE-001 | 마스킹 뷰 경유만(에이전트 포함) · 노출 0건 게이트 · 소거 사본 안 만듦 | SPEC-001 · SPEC-002 · SPEC-004 |
+| DEC-003 | LLM 경로 — open-kknaks 경유 + 조회 도구 4종 MCP | accepted | BASE-001 | SDK 직접 import 금지(ADR-04) · codex(gpt-5.6-terra) · FastMCP 서버 · 자유 SQL 금지 | SPEC-002 · SPEC-005 · SPEC-003 |
+| DEC-004 | 웹 = `app/front` 통합 3페이지 | accepted | BASE-001 | 단일 페이지·Streamlit 안 폐기 → 채팅·모니터링·데이터 3면, 백은 API 서버 | SPEC-003 · SPEC-004 |
+| DEC-005 | 배포 = 내부 공유용 데모 | accepted | BASE-001 | 프론트 Vercel · 백/redis/워커 홈서버(NPM) · 가드는 공유 비밀번호 하나 | SPEC-003 · SPEC-004 |
 
 ## 미결 사항
 
@@ -18,4 +22,11 @@ spec으로 내리기 전에 판단해야 하는 질문을 적는다.
 
 | ID | Question | Owner | Next |
 |---|---|---|---|
-|  |  |  |  |
+| ~~DEC-002 OQ-1~~ | 마스킹 표기 형식 | kknaks | **닫힘 (2026-09-02)** — `김○○` · `010-****-1234` · `1990-**-**`. 계약은 SPEC-001 §4 |
+| ~~DEC-003 OQ-1~~ | 조회 도구 4종의 파라미터·응답 스키마 | kknaks | **닫힘 (2026-09-02 승인)** — SPEC-002 §4 (v0.0.2 ready) |
+| DEC-004 OQ-1 | 화면 상세(레이아웃·컴포넌트·카피) | kknaks | **부분 해소** — 계약은 SPEC-004. 잔여는 그 문서 §7.2 「디자인 조정 대기」 **20건** |
+| ~~DEC-004 OQ-2~~ | 채팅 `used_edges` → 그래프 하이라이트 방식 | kknaks | **닫힘 (2026-09-02 확정)** — 채팅에 그래프 패널 없음. 칩 + `?edge=` 점프로 일원화, 게이트 5-③ 대상은 **모니터링 그래프 단일**(SPEC-004 U-11 · SPEC-005 G5-③) |
+| ~~DEC-005 OQ-1~~ | 비밀번호 가드 위치 | kknaks | **닫힘 (2026-09-02 확정)** — 프론트 미들웨어 + 백 API 양쪽. NPM Basic Auth 미사용 |
+
+**미결 총계 (2026-09-02 기준)** — decision 단계 미결은 DEC-004 OQ-1 하나이고, 그 실체는
+SPEC-004 §7.2 의 디자인 조정 대기 20건이다. spec 단계 미결 8건은 `20-spec/README.md`.
