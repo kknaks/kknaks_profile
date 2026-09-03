@@ -75,6 +75,19 @@ class Settings(BaseSettings):
     ai_provider: str = "codex"
     ai_model: str = "gpt-5.6-terra"
     ai_timeout_sec: int = 180
+    #: 모델과 **짝**이다 — 허용 effort 는 CLI 가 아니라 모델별로 갈린다. 모델을 바꾸면
+    #: 그 모델이 받는 값인지 다시 재야 한다. `gpt-5.6-terra` + `low` 가 레퍼런스 통과
+    #: 조합이다(조사 리포트 §5.6-3). `none` 은 금지 — 툴 연결 판단이 죽는다.
+    ai_reasoning_effort: str = "low"
+    #: 스키마 위반 시 재시도 횟수 (SPEC-005 OQ-5 — 1회 재시도 후 실패)
+    ai_schema_retry: int = 1
+
+    #: 워커 컨테이너에서 본 MCP 도구 서버 주소. `-c mcp_servers.<key>.url` 에 그대로 박힌다.
+    mcp_url: str = "http://ontology-mcp:28081/mcp"
+
+    #: 채팅 저장소 — **온톨로지 DB 와 다른 파일**이다(WORK-003 Domain 주석).
+    #: 대화 기록이 브론즈~골드와 같은 파일에 앉으면 데이터 계층이 오염된다.
+    chat_db_path: Path | None = None  # 미지정 시 온톨로지 DB 옆 ontology_chat.db
 
     # 접속 게이트 — 내부 공유용 비밀번호 하나(DEC-005 D2 · SPEC-003 §4).
     # **기본값을 두지 않는다.** 값은 배포 시 env 로만 주입하고 코드·문서·응답 어디에도 적지 않는다.
@@ -94,6 +107,12 @@ class Settings(BaseSettings):
     @property
     def resolved_db_path(self) -> Path:
         return self.db_path or (self.data_dir / "db" / "ontology_demo.db")
+
+    @property
+    def resolved_chat_db_path(self) -> Path:
+        """채팅 저장소 경로. 온톨로지 DB 와 **다른 파일**이다 — 같은 파일에 두면
+        빌드가 DB 를 다시 만들 때 대화 기록이 함께 날아간다."""
+        return self.chat_db_path or (self.resolved_db_path.parent / "ontology_chat.db")
 
     @property
     def sources(self) -> SourcePaths:
