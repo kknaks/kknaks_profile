@@ -10,8 +10,14 @@
  * - 답변 객체(`result`)    → SPEC-005 §4
  */
 
-/** 데이터 화면이 다루는 계층. 온톨로지 계층은 제외한다(SPEC-004 U-13). */
+/** 데이터 화면이 다루는 계층. 온톨로지 계층은 제외한다(SPEC-004 U-13 · AC-18). */
 export type Layer = "bronze" | "silver" | "gold";
+
+/**
+ * `/api/layers/{layer}` 가 받는 계층 — **온톨로지를 포함한다**(SPEC-003 §4).
+ * 화면 탭이 3계층인 것과 API 표면이 4계층인 것은 다른 층이다.
+ */
+export type ApiLayer = Layer | "ontology";
 
 /** 노드 상태 — 최근 window_days 의 빈도 판정(SPEC-003 OQ-5). */
 export type NodeState = "정상" | "관찰" | "알림" | "미관측";
@@ -89,7 +95,15 @@ export interface GraphNode {
   observed: boolean;
   node_state: NodeState | null;
   alert_days: number | null;
-  /** 「원본 데이터 보기」 목적지의 출처. `<table>.<column>` 또는 `<table>`. */
+  /**
+   * 그 노드가 관측되는 그레인(`daily` · `weekly` · `monthly` · `monthly_cohort` ·
+   * `event` · `promo` · `unknown`). 카드의 `grain` 과 같은 축이다.
+   */
+  grain: string;
+  /**
+   * 「원본 데이터 보기」 목적지의 출처. 테이블 이름이거나, 테이블이 아닌 출처면
+   * 사람이 읽는 문자열이다(예: 「달력」·「데이터 부재 — 담당자 확인 항목」).
+   */
   source: string | null;
 }
 
@@ -115,6 +129,8 @@ export interface GraphEdge {
 }
 
 export interface GraphResponse {
+  /** 기준일 — 그래프도 일 배치 산출물이다. */
+  as_of: string;
   nodes: GraphNode[];
   edges: GraphEdge[];
   counts: Record<string, number>;
@@ -171,8 +187,12 @@ export type SourceGroup = "vegas" | "review" | "nexus";
 
 export interface LayerTable {
   table: string;
+  /** 소비자가 실제로 읽는 뷰·테이블 이름. 마스킹 대상은 `v_` 뷰다(SPEC-001 §4). */
+  view: string;
   row_count: number;
   masked: boolean;
+  /** 마스킹 컬럼 이름. 마스킹 바의 개수·이름이 여기서 파생된다. */
+  masked_fields: string[];
   note_ref: string;
   flows_to: FlowTarget[];
   /**
@@ -189,14 +209,14 @@ export interface LayerTable {
 }
 
 export interface LayerTablesResponse {
-  layer: Layer;
+  layer: ApiLayer;
   tables: LayerTable[];
 }
 
 export type RowValue = string | number | boolean | null;
 
 export interface LayerRowsResponse {
-  layer: Layer;
+  layer: ApiLayer;
   table: string;
   view: string;
   total: number;
@@ -205,6 +225,8 @@ export interface LayerRowsResponse {
   masked_fields: string[];
   columns: string[];
   rows: Record<string, RowValue>[];
+  /** 이 행들이 어느 경로로 나왔는지 — 「마스킹 뷰 경유」임을 응답이 스스로 밝힌다. */
+  source_note: string;
   // `columns_note` 는 **테이블 목록 응답**이 갖는다(`LayerTable`) — 행 조회 응답에는
   // 없다(SPEC-003 §4 · AC-18b). 같은 사실을 두 응답에 싣지 않는다.
 }

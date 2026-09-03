@@ -266,6 +266,7 @@ export function DataView() {
         <div style={{ display: "flex", gap: 16, flex: 1, minHeight: 480 }}>
           {rows ? (
             <TablePanel
+              layer={layer}
               rows={rows}
               table={activeTableMeta}
               selectedColumn={selectedColumn}

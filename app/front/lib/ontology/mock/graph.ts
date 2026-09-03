@@ -11,7 +11,7 @@
  */
 
 import type { Confidence, EdgeKind, GraphEdge, GraphNode, GraphResponse, NodeType, Verdict } from "../types";
-import { mockNodeStates } from "./kpi";
+import { MOCK_AS_OF, mockNodeStates } from "./kpi";
 
 interface NodeSeed {
   node_id: string;
@@ -19,36 +19,41 @@ interface NodeSeed {
   node_type: NodeType;
   controllable: boolean;
   observed: boolean;
-  /** 「원본 데이터 보기」 목적지의 출처. 테이블이 없는 노드는 null 이다. */
+  /** 그 노드가 관측되는 그레인 — `ontology_nodes` 정본 컬럼. */
+  grain: string;
+  /**
+   * 출처. 테이블 이름이거나, 테이블이 아닌 출처면 사람이 읽는 문자열이다
+   * (외생 3종은 「달력」, 미관측은 「데이터 부재 — 담당자 확인 항목」).
+   */
   source: string | null;
 }
 
 const NODES: NodeSeed[] = [
-  { node_id: "weekday", name: "요일", node_type: "exogenous", controllable: false, observed: true, source: null },
-  { node_id: "season", name: "계절(월)", node_type: "exogenous", controllable: false, observed: true, source: null },
-  { node_id: "holiday", name: "연휴·공휴일", node_type: "exogenous", controllable: false, observed: true, source: null },
-  { node_id: "promo_event", name: "프로모션 이벤트", node_type: "intervention", controllable: true, observed: true, source: "gold_promo_calendar" },
-  { node_id: "discount_rate", name: "프로모션 평균 할인율", node_type: "attribute", controllable: true, observed: true, source: "silver_promotions.discount_rate" },
-  { node_id: "naver_reviews", name: "네이버 리뷰 수", node_type: "intervention", controllable: true, observed: true, source: "gold_kpi_daily.naver_reviews" },
-  { node_id: "gu_reviews", name: "강남언니 리뷰 수", node_type: "organic", controllable: false, observed: true, source: "gold_kpi_weekly.gu_reviews" },
-  { node_id: "new_patients_domestic", name: "한국인 신환 수", node_type: "kpi", controllable: false, observed: true, source: "gold_kpi_daily.new_patients_domestic" },
-  { node_id: "reservations", name: "예약 수", node_type: "kpi", controllable: false, observed: true, source: "gold_kpi_daily.reservations" },
-  { node_id: "cancels", name: "취소 수", node_type: "kpi", controllable: false, observed: true, source: "gold_kpi_daily.cancels" },
-  { node_id: "noshows", name: "부도 수", node_type: "kpi", controllable: false, observed: true, source: "gold_kpi_daily.noshows" },
-  { node_id: "visits", name: "총 내원 수", node_type: "kpi", controllable: false, observed: true, source: "gold_kpi_daily.visits" },
-  { node_id: "cancel_rate", name: "취소율", node_type: "kpi", controllable: false, observed: true, source: "gold_kpi_daily.cancel_rate" },
-  { node_id: "noshow_rate", name: "노쇼율", node_type: "kpi", controllable: false, observed: true, source: "gold_kpi_daily.noshow_rate" },
-  { node_id: "new_patients", name: "신환 수", node_type: "kpi", controllable: false, observed: true, source: "gold_kpi_daily.new_patients" },
-  { node_id: "revisits", name: "재진 수", node_type: "kpi", controllable: false, observed: true, source: "gold_kpi_daily.revisits" },
-  { node_id: "payment_visits", name: "결제 내원 수", node_type: "kpi", controllable: false, observed: true, source: "gold_kpi_daily.payment_visits" },
-  { node_id: "new_patients_foreign_est", name: "외국인 추정 신환 수", node_type: "kpi", controllable: false, observed: true, source: "gold_kpi_daily.new_patients_foreign_est" },
-  { node_id: "new_churns", name: "신규 이탈 수", node_type: "kpi", controllable: false, observed: true, source: "gold_kpi_daily.new_churns" },
-  { node_id: "avg_ticket", name: "객단가", node_type: "kpi", controllable: false, observed: true, source: "gold_kpi_daily.avg_ticket" },
-  { node_id: "sales_total", name: "매출", node_type: "kpi", controllable: false, observed: true, source: "gold_kpi_daily.sales_total" },
-  { node_id: "retention_rate_60d", name: "재방문 전환율(60일)", node_type: "kpi", controllable: false, observed: true, source: "gold_retention_monthly.revisit_rate" },
-  { node_id: "foreign_sales_share", name: "외국인 매출 비중", node_type: "kpi", controllable: false, observed: true, source: "gold_kpi_daily.foreign_sales_share" },
-  { node_id: "sales_foreign_est", name: "외국인 추정 매출", node_type: "kpi", controllable: false, observed: true, source: "gold_kpi_daily.sales_foreign_est" },
-  { node_id: "foreign_inflow_channel", name: "외국인 유입 채널", node_type: "unobserved", controllable: false, observed: false, source: null },
+  { node_id: "weekday", name: "요일", node_type: "exogenous", controllable: false, observed: true, grain: "daily", source: "달력" },
+  { node_id: "season", name: "계절(월)", node_type: "exogenous", controllable: false, observed: true, grain: "monthly", source: "달력" },
+  { node_id: "holiday", name: "연휴·공휴일", node_type: "exogenous", controllable: false, observed: true, grain: "daily", source: "달력" },
+  { node_id: "promo_event", name: "프로모션 이벤트", node_type: "intervention", controllable: true, observed: true, grain: "event", source: "gold_promo_calendar" },
+  { node_id: "discount_rate", name: "프로모션 평균 할인율", node_type: "attribute", controllable: true, observed: true, grain: "promo", source: "gold_promo_calendar" },
+  { node_id: "naver_reviews", name: "네이버 리뷰 수", node_type: "intervention", controllable: true, observed: true, grain: "daily", source: "gold_kpi_daily" },
+  { node_id: "gu_reviews", name: "강남언니 리뷰 수", node_type: "organic", controllable: false, observed: true, grain: "weekly", source: "gold_kpi_weekly" },
+  { node_id: "new_patients_domestic", name: "한국인 신환 수", node_type: "kpi", controllable: false, observed: true, grain: "daily", source: "gold_kpi_daily" },
+  { node_id: "reservations", name: "예약 수", node_type: "kpi", controllable: false, observed: true, grain: "daily", source: "gold_kpi_daily" },
+  { node_id: "cancels", name: "취소 수", node_type: "kpi", controllable: false, observed: true, grain: "daily", source: "gold_kpi_daily" },
+  { node_id: "noshows", name: "부도 수", node_type: "kpi", controllable: false, observed: true, grain: "daily", source: "gold_kpi_daily" },
+  { node_id: "visits", name: "총 내원 수", node_type: "kpi", controllable: false, observed: true, grain: "daily", source: "gold_kpi_daily" },
+  { node_id: "cancel_rate", name: "취소율", node_type: "kpi", controllable: false, observed: true, grain: "daily", source: "gold_kpi_daily" },
+  { node_id: "noshow_rate", name: "노쇼율", node_type: "kpi", controllable: false, observed: true, grain: "daily", source: "gold_kpi_daily" },
+  { node_id: "new_patients", name: "신환 수", node_type: "kpi", controllable: false, observed: true, grain: "daily", source: "gold_kpi_daily" },
+  { node_id: "revisits", name: "재진 수", node_type: "kpi", controllable: false, observed: true, grain: "daily", source: "gold_kpi_daily" },
+  { node_id: "payment_visits", name: "결제 내원 수", node_type: "kpi", controllable: false, observed: true, grain: "daily", source: "gold_kpi_daily" },
+  { node_id: "new_patients_foreign_est", name: "외국인 추정 신환 수", node_type: "kpi", controllable: false, observed: true, grain: "daily", source: "gold_kpi_daily" },
+  { node_id: "new_churns", name: "신규 이탈 수", node_type: "kpi", controllable: false, observed: true, grain: "daily", source: "gold_kpi_daily" },
+  { node_id: "avg_ticket", name: "객단가", node_type: "kpi", controllable: false, observed: true, grain: "daily", source: "gold_kpi_daily" },
+  { node_id: "sales_total", name: "매출", node_type: "kpi", controllable: false, observed: true, grain: "daily", source: "gold_kpi_daily" },
+  { node_id: "retention_rate_60d", name: "재방문 전환율(60일)", node_type: "kpi", controllable: false, observed: true, grain: "monthly_cohort", source: "gold_retention_monthly" },
+  { node_id: "foreign_sales_share", name: "외국인 매출 비중", node_type: "kpi", controllable: false, observed: true, grain: "daily", source: "gold_kpi_daily" },
+  { node_id: "sales_foreign_est", name: "외국인 추정 매출", node_type: "kpi", controllable: false, observed: true, grain: "daily", source: "gold_kpi_daily" },
+  { node_id: "foreign_inflow_channel", name: "외국인 유입 채널", node_type: "unobserved", controllable: false, observed: false, grain: "unknown", source: "데이터 부재 — 담당자 확인 항목" },
 ];
 
 interface EdgeSeed {
@@ -149,7 +154,41 @@ export function mockGraph(): GraphResponse {
     acc[edge.verdict] = (acc[edge.verdict] ?? 0) + 1;
     return acc;
   }, {});
-  return { nodes: buildNodes(), edges, counts };
+  return { as_of: MOCK_AS_OF, nodes: buildNodes(), edges, counts };
+}
+
+/**
+ * `/api/layers/ontology/ontology_nodes` 의 행.
+ *
+ * 그래프와 **같은 시드**에서 만든다 — 온톨로지 계층 표와 모니터링 그래프가 서로 다른
+ * 노드를 보는 일이 없어야 한다. 컬럼 이름은 정본 테이블 그대로다(`name_ko` 등).
+ */
+export function mockOntologyNodeRows(): Record<string, string>[] {
+  return NODES.map((node) => ({
+    node_id: node.node_id,
+    name_ko: node.name,
+    node_type: node.node_type,
+    // 정본 테이블이 문자열로 싣는다 — 화면이 형변환하지 않는다.
+    controllable: String(node.controllable),
+    grain: node.grain,
+    source: node.source ?? "",
+  }));
+}
+
+/** `/api/layers/ontology/ontology_edges` 의 행 — 원인·결과는 `cause`·`effect` 다. */
+export function mockOntologyEdgeRows(): Record<string, string | number | null>[] {
+  return EDGES.map((edge) => ({
+    cause: edge.from,
+    effect: edge.to,
+    sign: edge.sign,
+    lag: edge.lag,
+    lag_days: toLagDays(edge.lag),
+    edge_kind: edge.kind,
+    confidence: edge.confidence ?? "",
+    evidence: edge.evidence,
+    verdict: edge.verdict,
+    rationale: edge.note,
+  }));
 }
 
 /** 노드 라벨 조회 — 칩·인스펙터가 id 대신 이름을 쓰기 위해(디자인 05). */

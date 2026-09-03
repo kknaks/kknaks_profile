@@ -11,6 +11,7 @@
  */
 
 import type {
+  ApiLayer,
   ConversationResponse,
   ForecastResponse,
   GraphResponse,
@@ -186,12 +187,12 @@ export const ontologyApi = {
     return request<ForecastResponse>("/api/forecast");
   },
 
-  async layerTables(layer: Layer): Promise<LayerTablesResponse> {
+  async layerTables(layer: ApiLayer): Promise<LayerTablesResponse> {
     if (isMockMode) return delay({ layer, tables: mockLayerTables(layer) });
     return request<LayerTablesResponse>(`/api/layers/${layer}/tables`);
   },
 
-  async layerRows(layer: Layer, table: string, query: LayerRowsQuery = {}): Promise<LayerRowsResponse> {
+  async layerRows(layer: ApiLayer, table: string, query: LayerRowsQuery = {}): Promise<LayerRowsResponse> {
     const limit = query.limit ?? 50;
     const offset = query.offset ?? 0;
     if (isMockMode) {
@@ -206,7 +207,7 @@ export const ontologyApi = {
     return request<LayerRowsResponse>(`/api/layers/${layer}/${table}?${params.toString()}`);
   },
 
-  async lineage(layer: Layer, table: string): Promise<LineageResponse> {
+  async lineage(layer: ApiLayer, table: string): Promise<LineageResponse> {
     if (isMockMode) return delay(mockLineage(layer, table));
     return request<LineageResponse>(`/api/layers/${layer}/${table}/lineage`);
   },

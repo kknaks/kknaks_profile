@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { LayerRowsResponse, LayerTable, RowValue } from "@/lib/ontology/types";
+import type { Layer, LayerRowsResponse, LayerTable, RowValue } from "@/lib/ontology/types";
 import { formatCount, rangeLabel } from "@/lib/ontology/encoding";
 import { LayerBadge, StateNote } from "../primitives";
 
@@ -16,11 +16,14 @@ import { LayerBadge, StateNote } from "../primitives";
 const VISIBLE_COLUMN_CAP = 10;
 
 export function TablePanel({
+  layer,
   rows,
   table,
   selectedColumn,
   onSelectColumn,
 }: {
+  /** 화면이 보고 있는 계층. 응답의 `layer` 는 온톨로지도 될 수 있어 배지는 이 값을 쓴다. */
+  layer: Layer;
   rows: LayerRowsResponse;
   table: LayerTable | undefined;
   selectedColumn: string | null;
@@ -30,7 +33,6 @@ export function TablePanel({
   const [selectedRow, setSelectedRow] = useState<number | null>(null);
 
   const columns = expandColumns ? rows.columns : rows.columns.slice(0, VISIBLE_COLUMN_CAP);
-  const truncated = rows.columns.length > columns.length;
   const partial = rows.columns.length > VISIBLE_COLUMN_CAP;
 
   return (
@@ -57,7 +59,7 @@ export function TablePanel({
           borderBottom: "1px solid var(--ont-border)",
         }}
       >
-        <LayerBadge layer={rows.layer} />
+        <LayerBadge layer={layer} />
         <span style={{ fontSize: 15, fontWeight: 700 }}>{rows.table}</span>
         <span className="ont-mono" style={{ fontSize: 12, color: "var(--ont-muted)" }}>
           {rows.view}
@@ -108,6 +110,21 @@ export function TablePanel({
         </div>
       )}
 
+      {table?.columns_note && (
+        <div
+          style={{
+            flexShrink: 0,
+            padding: "8px 16px",
+            borderBottom: "1px solid var(--ont-border)",
+            fontSize: 12,
+            lineHeight: 1.6,
+            color: "var(--ont-muted)",
+          }}
+        >
+          {table.columns_note}
+        </div>
+      )}
+
       {partial && (
         <div
           style={{
@@ -143,8 +160,7 @@ export function TablePanel({
       )}
 
       {rows.columns.length === 0 ? (
-        // 사유는 **테이블 목록 응답**이 갖는다(SPEC-003 AC-18b) — 빈 컬럼을 침묵으로 두지 않는다.
-        <StateNote>{table?.columns_note ?? "표시할 컬럼이 없습니다."}</StateNote>
+        <StateNote>표시할 컬럼이 없습니다.</StateNote>
       ) : rows.rows.length === 0 ? (
         <StateNote>해당 조건의 행이 없습니다.</StateNote>
       ) : (

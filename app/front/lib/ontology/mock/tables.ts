@@ -9,12 +9,20 @@
  * (nexus 14테이블 · `gold_promo_calendar` — 디자인 08 규칙 8). 지어내지 않는다.
  */
 
-import type { Layer, LayerTable, LayerRowsResponse, RowValue, SourceGroup } from "../types";
+import type { ApiLayer, Layer, LayerTable, LayerRowsResponse, RowValue, SourceGroup } from "../types";
+import { mockOntologyEdgeRows, mockOntologyNodeRows } from "./graph";
 
 /* ─────────────────────────── 컬럼 스펙 ─────────────────────────── */
 
 type ColumnKind =
   | "date"
+  /** 브론즈 원형의 `YYYYMMDD` 문자열 — 실버에서 표준화된다. */
+  | "compact_date"
+  | "timestamp"
+  | "review_pk"
+  | "score"
+  /** 원천이 이미 마스킹한 닉네임(`tls****`) — 우리가 다시 가리지 않는다. */
+  | "masked_handle"
   | "week"
   | "month"
   | "int"
@@ -37,7 +45,7 @@ interface ColumnSpec {
 }
 
 interface TableSpec {
-  layer: Layer;
+  layer: ApiLayer;
   table: string;
   view: string;
   row_count: number;
@@ -47,14 +55,22 @@ interface TableSpec {
   flows_to: { layer: Layer; table: string; note?: string }[];
   source_group?: SourceGroup;
   columns_note?: string;
+  /** 컬럼 스펙으로 생성하지 않고 **정본 그대로** 싣는 행(온톨로지 계층). */
+  fixedRows?: Record<string, RowValue>[];
 }
 
 const SURNAMES = ["김", "이", "박", "최", "정", "강", "조", "윤", "장", "임", "한", "오", "신", "권", "서"];
 const CONCEPTS = ["제모", "리프팅", "스킨케어", "주사", "색소", "여드름", "체형"];
 const PLATFORMS = ["네이버 플레이스", "강남언니"];
 
-const UNKNOWN_COLUMNS_NOTE =
-  "정본(빌드 실측)에 이 테이블의 컬럼 목록이 없어 비워 두었습니다 — 화면이 지어내지 않습니다. 행수는 응답값입니다.";
+/** 「이 행들이 어디를 지나 나왔는가」 — 전 표면 공통(SPEC-001 뷰 경유 강제). */
+const SOURCE_NOTE = "마스킹 뷰 경유 — 원 테이블 직접 조회 경로 없음";
+
+const NEXUS_COLUMNS_NOTE =
+  "nexus 원천 스키마를 원형 그대로 반입한 테이블이라 컬럼별 변환 규칙이 없다 — 글로서리(기록 03)가 판정한 용어가 아니라 외부 시스템의 컬럼이다";
+
+const PROMO_COLUMNS_NOTE =
+  "프로모션 이벤트 속성은 실버 스키마를 그대로 옮긴 것이라 KPI 계산식이 없다 — 구성 특성 4컬럼만 매핑 사슬에서 파생된다(기록 05 4장 개정 1)";
 
 /* ─────────────────────────── 브론즈 16 ─────────────────────────── */
 
@@ -75,6 +91,20 @@ const NEXUS_CHILDREN: { table: string; rows: number }[] = [
   { table: "nexus_promotion_v2_group_mappings", rows: 0 },
 ];
 
+/** nexus 원천 스키마 표본 — 이름은 실 API 덤프 그대로다(값은 픽스처). */
+const NEXUS_BRANCHES_COLUMNS: ColumnSpec[] = [
+  { key: "id", kind: "code" },
+  { key: "branch_id", kind: "enum", values: ["CERAMIQUE-GN-001"] },
+  { key: "slug", kind: "enum", values: ["gangnam", "sinsa", "hongdae"] },
+  { key: "subdomain", kind: "enum", values: ["gangnam", "sinsa", "hongdae"] },
+  { key: "domain", kind: "text", values: ["gangnam.example-clinic.com"] },
+  { key: "name", kind: "enum", values: ["강남점", "신사점", "홍대점"] },
+  { key: "status", kind: "enum", values: ["ACTIVE", "INACTIVE"] },
+  { key: "group_id", kind: "code" },
+  { key: "created_at", kind: "timestamp" },
+  { key: "updated_at", kind: "timestamp" },
+];
+
 const BRONZE: TableSpec[] = [
   {
     layer: "bronze",
@@ -84,14 +114,19 @@ const BRONZE: TableSpec[] = [
     masked_fields: ["patientName", "phone", "birthday"],
     source_group: "vegas",
     note_ref: "기록 02 브론즈 실사",
+    // 컬럼 이름·순서는 실 API(`v_bronze_vegas_reservations`) 그대로다. 브론즈는 원형이라
+    // 날짜도 `YYYYMMDD` 문자열이고 실버에서 `resv_date` 로 표준화된다.
     columns: [
-      { key: "resvDate", kind: "date" },
+      { key: "branch", kind: "enum", values: ["세라미크의원 강남"] },
+      { key: "resvDate", kind: "compact_date" },
       { key: "chartNo", kind: "code" },
       { key: "patientName", kind: "masked_name" },
-      { key: "phone", kind: "masked_phone" },
       { key: "birthday", kind: "masked_birth" },
-      { key: "ageBand", kind: "enum", values: ["20대", "30대", "40대", "50대", "60대+"] },
+      { key: "phone", kind: "masked_phone" },
+      { key: "staff", kind: "enum", values: ["미지정"] },
       { key: "sales", kind: "money" },
+      { key: "receipt", kind: "money" },
+      { key: "visitCount", kind: "int", range: [1, 12] },
       { key: "visitStatus", kind: "enum", values: ["내원", "취소", "부도"] },
     ],
     flows_to: [
@@ -108,10 +143,12 @@ const BRONZE: TableSpec[] = [
     masked_fields: ["authorName", "body"],
     source_group: "review",
     note_ref: "기록 02 브론즈 실사",
+    // `authorName` 은 원천이 이미 마스킹 닉네임이라 그 표기를 유지한다(SPEC-001 §4).
+    // 본문의 직원 실명은 `[직원]` 토큰으로 가려진 채로 온다.
     columns: [
-      { key: "date", kind: "date" },
       { key: "platform", kind: "enum", values: PLATFORMS },
-      { key: "authorName", kind: "masked_name" },
+      { key: "reviewDate", kind: "date" },
+      { key: "authorName", kind: "masked_handle" },
       { key: "rating", kind: "int", range: [1, 5] },
       {
         key: "body",
@@ -121,11 +158,12 @@ const BRONZE: TableSpec[] = [
           "대기 시간이 길었습니다",
           "시술 후 관리 안내가 좋았어요",
           "가격 대비 만족합니다",
-          "예약 변경이 번거로웠어요",
-          "설명이 이해하기 쉬웠습니다",
-          "○○ 실장님이 친절했어요",
+          "[직원]실장님 통해 진행했어요. 잘 설명해주시니 감사합니다",
         ],
       },
+      { key: "reviewPk", kind: "review_pk" },
+      { key: "replyStatus", kind: "enum", values: ["replied", "none"] },
+      { key: "collectedAt", kind: "timestamp" },
     ],
     flows_to: [
       { layer: "silver", table: "reviews", note: "감성·신호 유형 부여 — G-021·G-022" },
@@ -136,13 +174,16 @@ const BRONZE: TableSpec[] = [
   ...NEXUS_CHILDREN.map<TableSpec>((child) => ({
     layer: "bronze" as const,
     table: child.table,
-    view: `v_bronze_${child.table}`,
+    view: `bronze_${child.table}`,
     row_count: child.rows,
     masked_fields: [],
     source_group: "nexus",
     note_ref: "기록 02 브론즈 실사",
-    columns: [],
-    columns_note: UNKNOWN_COLUMNS_NOTE,
+    // 표본이 있는 것은 `nexus_branches` 하나뿐이다(WORK-005 실 API 덤프). 나머지 13종은
+    // 원천 스키마를 모르므로 **비워 두고** 그 사실을 `columns_note` 가 말한다 —
+    // 지어내지 않는다(디자인 08 규칙 8).
+    columns: child.table === "nexus_branches" ? NEXUS_BRANCHES_COLUMNS : [],
+    columns_note: NEXUS_COLUMNS_NOTE,
     flows_to: [
       { layer: "silver" as const, table: "catalog", note: "시술 개념 매핑" },
       { layer: "silver" as const, table: "mappings", note: "코드 ↔ 개념" },
@@ -161,15 +202,22 @@ const SILVER: TableSpec[] = [
     row_count: 75479,
     masked_fields: [],
     note_ref: "기록 04 실버 빌드 — 브론즈 78,216 − 완전 동일 중복 2,737",
+    // 실버는 snake_case 로 표준화된다 — `resv_date` · `visit_status` · 0/1 플래그.
+    // 시술 개념은 이 표가 아니라 `reviews`·`catalog` 축에 있다.
     columns: [
-      { key: "date", kind: "date" },
+      { key: "branch_code", kind: "enum", values: ["CERAMIQUE-GN-001"] },
+      { key: "resv_date", kind: "date" },
       { key: "chart_no", kind: "code" },
       { key: "age_band", kind: "enum", values: ["20대", "30대", "40대", "50대", "60대+", "미상"] },
       { key: "staff", kind: "enum", values: ["미지정"] },
       { key: "sales", kind: "money" },
+      { key: "receipt", kind: "money" },
+      { key: "visit_count", kind: "int", range: [1, 12] },
       { key: "visit_status", kind: "enum", values: ["내원", "취소", "부도"] },
-      { key: "is_new", kind: "enum", values: ["신환", "재진"] },
-      { key: "concept", kind: "enum", values: CONCEPTS },
+      { key: "is_new", kind: "int", range: [0, 1] },
+      { key: "is_revisit", kind: "int", range: [0, 1] },
+      { key: "is_payment_visit", kind: "int", range: [0, 1] },
+      { key: "is_foreign_est", kind: "int", range: [0, 1] },
     ],
     flows_to: [
       { layer: "gold", table: "gold_kpi_daily", note: "일별 KPI 의 주 원천" },
@@ -184,16 +232,16 @@ const SILVER: TableSpec[] = [
     masked_fields: [],
     note_ref: "기록 04 실버 빌드 — 전건 채점, 판정불가 4건",
     columns: [
-      { key: "date", kind: "date" },
+      { key: "review_pk", kind: "review_pk" },
       { key: "platform", kind: "enum", values: PLATFORMS },
-      { key: "concept", kind: "enum", values: CONCEPTS },
+      { key: "review_date", kind: "date" },
+      { key: "rating", kind: "int", range: [1, 5] },
+      { key: "body_masked", kind: "text", values: ["[직원]실장님 통해 진행했어요", "대기 시간이 길었습니다", "가격 대비 만족합니다"] },
+      { key: "procedure_concept", kind: "enum", values: CONCEPTS },
+      { key: "predicted_score", kind: "score" },
+      { key: "score_evidence", kind: "text", values: ["잘 설명해주시니 감사합니다", "대기 시간 언급", "가격 만족"] },
       { key: "sentiment", kind: "enum", values: ["긍정", "중립", "부정", "판정불가"] },
-      { key: "signal_type", kind: "enum", values: ["유기(강남언니)", "개입(네이버)"] },
-      {
-        key: "evidence",
-        kind: "text",
-        values: ["상담 품질 언급", "대기 시간 언급", "사후 관리 안내", "가격 만족", "예약 변경 절차"],
-      },
+      { key: "signal_type", kind: "enum", values: ["유기", "개입"] },
     ],
     flows_to: [
       { layer: "gold", table: "gold_kpi_daily", note: "naver_reviews" },
@@ -203,7 +251,7 @@ const SILVER: TableSpec[] = [
   {
     layer: "silver",
     table: "catalog",
-    view: "v_silver_catalog",
+    view: "silver_catalog",
     row_count: 6198,
     masked_fields: [],
     note_ref: "기록 04 실버 빌드 — 개념 13 + 그룹 ko 1,010 + 상품 5,175",
@@ -219,7 +267,7 @@ const SILVER: TableSpec[] = [
   {
     layer: "silver",
     table: "promotions",
-    view: "v_silver_promotions",
+    view: "silver_promotions",
     row_count: 73,
     masked_fields: [],
     note_ref: "기록 04 실버 빌드 — v1 24 + v2 ko 49",
@@ -235,7 +283,7 @@ const SILVER: TableSpec[] = [
   {
     layer: "silver",
     table: "mappings",
-    view: "v_silver_mappings",
+    view: "silver_mappings",
     row_count: 9689,
     masked_fields: [],
     note_ref: "기록 04 실버 빌드 — 매핑 3종(5,632 + 3,199 + 858)",
@@ -251,7 +299,7 @@ const SILVER: TableSpec[] = [
   {
     layer: "silver",
     table: "branch_alias",
-    view: "v_silver_branch_alias",
+    view: "silver_branch_alias",
     row_count: 11,
     masked_fields: [],
     note_ref: "기록 04 실버 빌드 — 표기 → CERAMIQUE-GN-001",
@@ -284,10 +332,17 @@ const GOLD_DAILY_COLUMNS: ColumnSpec[] = [
   { key: "new_churns", kind: "int", range: [3, 10] },
   { key: "naver_reviews", kind: "int", range: [0, 3] },
   { key: "new_patients_domestic", kind: "int", range: [8, 16] },
-  { key: "new_patients_foreign_est", kind: "int", range: [2, 5] },
-  { key: "visits_foreign_est", kind: "int", range: [18, 32] },
-  { key: "sales_foreign_est", kind: "money" },
   { key: "foreign_sales_share", kind: "rate" },
+  { key: "sales_foreign_est", kind: "money" },
+  { key: "visits_foreign_est", kind: "int", range: [18, 32] },
+  { key: "new_patients_foreign_est", kind: "int", range: [2, 5] },
+  // 지표마다 `_dod`·`_dod_pct`·`_ma7`·`_status` 파생이 붙는다(SPEC-001 §4). 실 API 는
+  // 전 지표분 60여 컬럼을 주고, 픽스처는 **한 지표 몫만 표본**으로 든다 —
+  // 「N개 컬럼 중 M개 표시」 규칙이 성립하는지 보기 위한 자리다.
+  { key: "sales_total_dod", kind: "money" },
+  { key: "sales_total_dod_pct", kind: "rate" },
+  { key: "sales_total_ma7", kind: "money" },
+  { key: "sales_total_status", kind: "enum", values: ["양호", "주의", "경고"] },
 ];
 
 const GOLD: TableSpec[] = [
@@ -347,8 +402,7 @@ const GOLD: TableSpec[] = [
     masked_fields: [],
     note_ref: "기록 05 골드 — 프로모션 1건 = 이벤트 1행(생존만, v1 23 + v2 34)",
     columns: [],
-    columns_note:
-      "그레인이 일별 → 이벤트로 바뀌면서 이전 컬럼(date·promo_count·is_promo_day)이 성립하지 않습니다. 정본에 이벤트 그레인의 컬럼 목록이 없어 비워 두었습니다 — 빌드 실측 후 채웁니다.",
+    columns_note: PROMO_COLUMNS_NOTE,
     flows_to: [],
   },
   {
@@ -368,15 +422,70 @@ const GOLD: TableSpec[] = [
   },
 ];
 
-const ALL_TABLES: TableSpec[] = [...BRONZE, ...SILVER, ...GOLD];
+/* ─────────────────────────── 온톨로지 2 ─────────────────────────── */
+
+/**
+ * **데이터 화면에는 나오지 않는 계층**이다(SPEC-004 U-13 · AC-18) — 모니터링 그래프가
+ * 이미 그 표면이다. 그래도 `/api/layers/ontology/*` 는 실 API 가 서빙하므로 픽스처를
+ * 둔다: 계약 대조와 드릴다운 URL 이 이 계층을 가리킬 수 있기 때문이다.
+ *
+ * 행은 그래프 픽스처와 **같은 시드**에서 만든다(`mock/graph.ts`) — 표와 그래프가 서로
+ * 다른 노드를 보는 일이 없다.
+ */
+const ONTOLOGY: TableSpec[] = [
+  {
+    layer: "ontology",
+    table: "ontology_nodes",
+    view: "ontology_nodes",
+    row_count: 25,
+    masked_fields: [],
+    note_ref: "기록 07 온톨로지",
+    columns: [
+      { key: "node_id", kind: "code" },
+      { key: "name_ko", kind: "text" },
+      { key: "node_type", kind: "text" },
+      { key: "controllable", kind: "text" },
+      { key: "grain", kind: "text" },
+      { key: "source", kind: "text" },
+    ],
+    fixedRows: mockOntologyNodeRows(),
+    flows_to: [],
+  },
+  {
+    layer: "ontology",
+    table: "ontology_edges",
+    view: "ontology_edges",
+    row_count: 27,
+    masked_fields: [],
+    note_ref: "기록 07 온톨로지",
+    columns: [
+      { key: "cause", kind: "code" },
+      { key: "effect", kind: "code" },
+      { key: "sign", kind: "text" },
+      { key: "lag", kind: "text" },
+      { key: "lag_days", kind: "int" },
+      { key: "edge_kind", kind: "text" },
+      { key: "confidence", kind: "text" },
+      { key: "evidence", kind: "text" },
+      { key: "verdict", kind: "text" },
+      { key: "rationale", kind: "text" },
+    ],
+    fixedRows: mockOntologyEdgeRows(),
+    flows_to: [],
+  },
+];
+
+const ALL_TABLES: TableSpec[] = [...BRONZE, ...SILVER, ...GOLD, ...ONTOLOGY];
 
 const BY_KEY = new Map(ALL_TABLES.map((spec) => [`${spec.layer}:${spec.table}`, spec]));
 
-export function mockLayerTables(layer: Layer): LayerTable[] {
+export function mockLayerTables(layer: ApiLayer): LayerTable[] {
   return ALL_TABLES.filter((spec) => spec.layer === layer).map<LayerTable>((spec) => ({
     table: spec.table,
+    view: spec.view,
     row_count: spec.row_count,
     masked: spec.masked_fields.length > 0,
+    masked_fields: spec.masked_fields,
     note_ref: spec.note_ref,
     flows_to: spec.flows_to,
     // 계약은 두 필드를 **항상** 싣는다 — 해당 없으면 `null`(SPEC-003 AC-18·AC-18b).
@@ -414,6 +523,14 @@ function cellValue(spec: ColumnSpec, rnd: () => number, index: number): RowValue
   switch (spec.kind) {
     case "date":
       return dateAt(Math.floor(index / 3));
+    case "compact_date":
+      return dateAt(Math.floor(index / 3)).replaceAll("-", "");
+    case "timestamp":
+      return `${dateAt(Math.floor(index / 3))} ${String(9 + (index % 9)).padStart(2, "0")}:${String((index * 7) % 60).padStart(2, "0")}:00`;
+    case "review_pk":
+      return `naver_dom_${2_000_000_000 + Math.floor(rnd() * 99_999_999)}_${Math.floor(rnd() * 0xffffff).toString(16).padStart(6, "0")}`;
+    case "score":
+      return Number(((Math.floor(rnd() * 9) + 1) * 0.5).toFixed(1));
     case "week": {
       const week = 34 - Math.floor(index);
       return `2026-W${String(Math.max(week, 1)).padStart(2, "0")}`;
@@ -442,6 +559,9 @@ function cellValue(spec: ColumnSpec, rnd: () => number, index: number): RowValue
     // ── PII 는 마스킹 표기로만 만든다. 원값을 픽스처에도 두지 않는다. ──
     case "masked_name":
       return `${SURNAMES[Math.floor(rnd() * SURNAMES.length)]}○○`;
+    case "masked_handle":
+      // 원천 닉네임 자체가 마스킹본이다 — 앞 3자 + `****`.
+      return `${"abcdefghijklmnopqrstuvwxyz"[Math.floor(rnd() * 26)]}${"abcdefghijklmnopqrstuvwxyz"[Math.floor(rnd() * 26)]}${"abcdefghijklmnopqrstuvwxyz"[Math.floor(rnd() * 26)]}****`;
     case "masked_phone":
       return `010-****-${String(1000 + Math.floor(rnd() * 9000))}`;
     case "masked_birth":
@@ -457,7 +577,7 @@ export interface MockRowQuery {
 }
 
 export function mockLayerRows(
-  layer: Layer,
+  layer: ApiLayer,
   table: string,
   query: MockRowQuery,
 ): LayerRowsResponse | null {
@@ -476,6 +596,24 @@ export function mockLayerRows(
       masked_fields: spec.masked_fields,
       columns: [],
       rows: [],
+      source_note: SOURCE_NOTE,
+    };
+  }
+
+  // 정본 그대로 싣는 표(온톨로지) — 생성기를 태우지 않고 잘라서 준다.
+  if (spec.fixedRows) {
+    const page = spec.fixedRows.slice(query.offset, query.offset + query.limit);
+    return {
+      layer,
+      table,
+      view: spec.view,
+      total: spec.fixedRows.length,
+      returned: page.length,
+      offset: query.offset,
+      masked_fields: spec.masked_fields,
+      columns,
+      rows: page,
+      source_note: SOURCE_NOTE,
     };
   }
 
@@ -512,13 +650,14 @@ export function mockLayerRows(
     masked_fields: spec.masked_fields,
     columns,
     rows,
+    source_note: SOURCE_NOTE,
   };
 }
 
-export function mockTableExists(layer: Layer, table: string): boolean {
+export function mockTableExists(layer: ApiLayer, table: string): boolean {
   return BY_KEY.has(`${layer}:${table}`);
 }
 
-export function mockTableSpecColumns(layer: Layer, table: string): string[] {
+export function mockTableSpecColumns(layer: ApiLayer, table: string): string[] {
   return BY_KEY.get(`${layer}:${table}`)?.columns.map((c) => c.key) ?? [];
 }

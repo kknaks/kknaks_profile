@@ -7,7 +7,7 @@
  * 왔다. **`source_columns` 가 골드 → 실버 → 브론즈 역추적의 사다리**다(SPEC-004 U-15).
  */
 
-import type { LineageColumn, LineageResponse, Layer } from "../types";
+import type { ApiLayer, LineageColumn, LineageResponse } from "../types";
 
 type LineageSeed = Omit<
   LineageColumn,
@@ -70,7 +70,7 @@ const LINEAGE: Record<string, LineageColumn[]> = {
       note: "본문 내 직원 실명을 실명 토큰 사전으로 가린다. 원문은 마스킹본으로만 보관한다.",
       gate: "게이트 3(마스킹) — 실명 토큰 검색 0건",
       note_ref: BRONZE_REF,
-      downstream: [{ layer: "silver", table: "reviews", column: "evidence" }],
+      downstream: [{ layer: "silver", table: "reviews", column: "body_masked" }],
     }),
     column({
       column: "rating",
@@ -114,14 +114,6 @@ const LINEAGE: Record<string, LineageColumn[]> = {
       note_ref: SILVER_REF,
       source_columns: ["bronze_vegas_reservations.chartNo"],
       downstream: [{ layer: "gold", table: "gold_retention_monthly", column: "cohort_size" }],
-    }),
-    column({
-      column: "concept",
-      note: "시술 개념 폐쇄 목록 13종 안으로만 매핑한다. 목록 밖 값은 빌드 실패다.",
-      rule_id: "G-021",
-      note_ref: SILVER_REF,
-      source_columns: ["bronze_vegas_reservations.chartNo"],
-      downstream: [{ layer: "gold", table: "gold_kpi_daily", column: "avg_ticket" }],
     }),
     column({
       column: "is_new",
@@ -329,6 +321,6 @@ const LINEAGE: Record<string, LineageColumn[]> = {
   ],
 };
 
-export function mockLineage(layer: Layer, table: string): LineageResponse {
+export function mockLineage(layer: ApiLayer, table: string): LineageResponse {
   return { table, columns: LINEAGE[`${layer}:${table}`] ?? [] };
 }
