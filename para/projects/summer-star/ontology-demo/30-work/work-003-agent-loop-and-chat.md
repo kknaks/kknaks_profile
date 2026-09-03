@@ -186,7 +186,7 @@ links:
 - **작업**:
   - [ ] 답변 객체 조립·검증 — `answer`·`premise_correction`(항상 존재)·`used_edges`·
         `excluded_edges`·`citations`(+`row_count`)·`drilldown`·`followups`·`unknowns`
-  - [ ] `used_edges` ⊆ 확정(채택·산출0·외생) 강제 — 보류·기각은 `excluded_edges` 로만
+  - [ ] `used_edges` ⊆ 확정(**채택 · 자동 확정 · 선언**) 강제 — 보류·기각은 `excluded_edges` 로만
   - [ ] `citations` 재조회 검증 — `source.table`·`column` 으로 다시 읽어 값 일치
   - [ ] **정량 추정 금지** — 도구가 주지 않은 수치를 만들면 위반. 엣지는 방향·부호·시차·
         신뢰도·근거(r·n·p)까지만 제시
