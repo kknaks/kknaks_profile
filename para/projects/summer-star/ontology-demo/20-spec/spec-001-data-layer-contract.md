@@ -4,7 +4,7 @@ id: SPEC-001
 title: "데이터 계층 계약 — 메달리온 전 계층 DB · 마스킹 뷰 · 적재 게이트"
 status: ready
 product: ontology-demo
-version: 0.0.6
+version: 0.0.7
 created_at: 2026-09-02
 updated_at: 2026-09-03
 tags:
@@ -383,10 +383,27 @@ Out of scope:
 | `BRONZE_ROWCOUNT_MISMATCH` | 원본 행수 ≠ 브론즈 테이블 행수 | 적재 중단, 부분 적재 미보존 | 테이블별 기대·실측 행수 |
 | `ENUM_VIOLATION` | `visit_status` enum 밖 | 실버 빌드 즉시 중단(exit ≠ 0) | 위반 행 식별자·값 |
 | `NEGATIVE_AMOUNT` | 금액·횟수 음수 | 실버 빌드 즉시 중단 | 위반 행 식별자·값 |
+| `SILVER_ROWCOUNT_MISMATCH` | 실버 행수 대사 불일치 — 브론즈 ≠ 실버 + 필터 제외 + 중복 제거 | 실버 빌드 중단 | 소스별 기대·실측 행수 |
+| `UNKNOWN_BRANCH` | 지점 alias 매핑에 없는 표기 — 정본 코드로 치환할 수 없다 | 실버 빌드 중단 | 미매핑 표기·건수 |
 | `CLOSED_LIST_VIOLATION` | `procedure_concept` 목록 밖 | 실버 빌드 실패 | 위반 값·건수 |
-| `REBUILD_MISMATCH` | 대조값 불일치(§6 AC-2) | 산출물 미채택, 이전 DB 유지 | 항목별 기대·실측 |
+| `REVIEW_SCORE_VIOLATION` | 리뷰 채점 System 검증 위반 — 점수 범위·0.5 단위·근거 미실존·채점 누락 | 실버 빌드 중단 | 위반 유형·건수 |
+| `AGREEMENT_BELOW_THRESHOLD` | 강남언니 평점 정합률 미달(±0.5 이내 **80% 이상** 기준) | 빌드 중단 | 실측 정합률·표본 수 |
+| `MASKING_RESIDUE` | `body_masked` 에 직원 실명 토큰이 남았다 | 실버 빌드 중단 | 잔존 토큰·건수 |
+| `REBUILD_MISMATCH` | 대조값 불일치(§6 AC-2) | 산출물 미채택, 이전 DB 유지 — **전 게이트 통과 시에만 스왑을 채택**한다 | 항목별 기대·실측 |
 | `ORPHAN_EDGE` | 엣지가 없는 노드를 가리킴 | 온톨로지 적재 실패 | 고아 엣지 목록 |
-| `PII_LEAK` | 마스킹 뷰 산출에 원값 검출 | 게이트 실패 — 배포 차단 | 검출 위치·건수 |
+| `NODE_ID_MISMATCH` | §4 `node_id` 25종 표와 `ontology_nodes` 의 1:1 대조 실패(§6 AC-6) | 온톨로지 적재 실패 | 어긋난 id·라벨 |
+| `PII_LEAK` | 마스킹 **뷰 산출**에 원값 검출 | 게이트 실패 — 배포 차단 | 검출 위치·건수 |
+
+- 행 순서는 **빌드 순서**(브론즈 → 실버 → 골드·온톨로지 → 게이트)다.
+- **`MASKING_RESIDUE` 와 `PII_LEAK` 는 다른 코드다** — 전자는 실버 산출(`body_masked`)에
+  실명 토큰이 남은 것이고, 후자는 마스킹 뷰 산출에서 원값이 나온 것이다. 한 코드로 묶으면
+  로그가 어느 단계에서 샜는지를 가리키지 못한다.
+- **`ENUM_VIOLATION` 은 `visit_status` 전용**이다. 다른 원인(리뷰 채점·지점 표기)을 이 코드로
+  올리지 않는다 — 위 전용 코드를 쓴다.
+- `NODE_ID_MISMATCH` 는 **표를 조용히 맞추지 않는다는 계약**의 실행 코드다 — 어긋난 id·라벨을
+  보고하고 실패시킨다(§6 AC-6).
+- 근거 기록: `SILVER_ROWCOUNT_MISMATCH`·`REVIEW_SCORE_VIOLATION`·`AGREEMENT_BELOW_THRESHOLD`·
+  `MASKING_RESIDUE` 는 기록 04 게이트 1·4·5·6·7, `UNKNOWN_BRANCH` 는 기록 03 1장(지점).
 
 ### Flow
 
@@ -459,6 +476,7 @@ stateDiagram-v2
       0**, `exogenous` 노드 3종의 들어오는 엣지 0, 기각·보류 행에 사유 필드 존재.
       **`node_id` 는 전건 snake_case 이고 §4 의 25종 표와 1:1 대응**한다 — 대응하지 않는 행이
       1건이라도 있으면 적재를 실패시키고 어긋난 id·라벨을 보고한다(표를 조용히 맞추지 않는다).
+      실패 코드는 `NODE_ID_MISMATCH`(§4 Case Matrix).
       `lag` 는 **정본 문자열 원형**이다 — 형식 강제 검사를 하지 않는다(`2w`·빈 값 허용).
 - [ ] **AC-6b (월 View)** `gold_kpi_monthly` 가 빌드 산출물로 **8행** 존재하고, 월 합계 =
       해당 월 일별 합계(오차 0), 비율형 지표는 일별 평균이 아니라 월 합계 재계산값이다.
