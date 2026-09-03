@@ -217,7 +217,7 @@ WORK-001 이 세운 DB 위에 **읽는 표면 둘**을 만든다 — 에이전�
 - **작업**:
   - [ ] `GET /api/kpi/cards` — `grain`·`dod`·`dod_pct`·`unit`·`format`·`spark[7]`·
         `alert_days`·`node_state`·`node_id`·`thresholds`·`direction`·`period`·
-        `has_next_period`. `naver_reviews` 는 상태 미부여
+        `has_prev_period`·`has_next_period`. `naver_reviews` 는 상태 미부여
   - [ ] `GET /api/kpi/series` — `query_kpi` 와 같은 shape·같은 View
   - [ ] `GET /api/graph` — 노드(`source`·`observed`·`node_state`) · 엣지(`edge_id`·
         `kind`·`note`·`evidence`·`reason`·`usable_for_causal_claim`) · `counts`.

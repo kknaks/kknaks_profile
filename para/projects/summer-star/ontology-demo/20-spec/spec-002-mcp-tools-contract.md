@@ -4,9 +4,9 @@ id: SPEC-002
 title: "조회 도구 계약 — MCP 4종(query_kpi · query_layer · trace_ontology · get_definition)"
 status: ready
 product: ontology-demo
-version: 0.0.3
+version: 0.0.4
 created_at: 2026-09-02
-updated_at: 2026-09-02
+updated_at: 2026-09-03
 tags:
   - product/ontology-demo
   - doc/spec
@@ -158,11 +158,11 @@ Out of scope:
 
 ```json
 {
-  "grain": "weekly",
-  "period": {"start": "2026-08-03", "end": "2026-08-30"},
+  "grain": "daily",
+  "period": {"start": "2026-08-24", "end": "2026-08-30"},
   "rows": [
-    {"period_key": "2026-08-03", "is_partial": false,
-     "values": {"noshow_rate": 0.053, "noshows": 54, "visits": 958},
+    {"period_key": "2026-08-30", "is_partial": false,
+     "values": {"noshow_rate": 0.05, "noshows": 8, "visits": 152},
      "status": {"noshow_rate": "양호"}}
   ],
   "formulas": [
@@ -173,10 +173,13 @@ Out of scope:
     {"metric": "noshow_rate", "direction": "높을수록 나쁨",
      "주의": 0.0714, "경고": 0.087, "method": "전 기간 백분위 25%/10%"}
   ],
-  "source": {"table": "gold_kpi_weekly", "row_count": 4}
+  "source": {"table": "gold_kpi_daily", "row_count": 7}
 }
 ```
 
+- **`status`·`status_thresholds` 는 `grain=daily` 에만 실린다.** 주별·월별 정본에는 상태
+  컬럼이 없고, **도구는 상태를 만들지 않는다**(S-002 — 집계도 판정도 View 가 한다).
+  `weekly`·`monthly` 응답은 `status: {}` · `status_thresholds: []` 로 빈다.
 - **관측 없음과 0 을 구분한다** — `naver_reviews` 의 2026-03-21 이전은 `null`(빈 값)이고,
   유기 신호의 리뷰 없는 주는 `0` 이다.
 - `naver_reviews` 는 `status` 를 갖지 않는다(방향 없는 개입 변수).

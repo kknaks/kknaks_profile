@@ -4,7 +4,7 @@ id: SPEC-003
 title: "FE↔BE API 계약 — 계층 조회 · KPI · 그래프 · 예보 · 채팅 스트림 · 접속 게이트"
 status: ready
 product: ontology-demo
-version: 0.0.5
+version: 0.0.6
 created_at: 2026-09-02
 updated_at: 2026-09-03
 tags:
@@ -298,7 +298,7 @@ Out of scope:
               "node_state": "관찰", "alert_days": 2,
               "source": "gold_kpi_daily.reservations"}],
    "edges": [{"edge_id": "cancel_rate__reservations",
-              "from": "cancel_rate", "to": "reservations", "sign": "-", "lag": "0d", "lag_days": 0,
+              "from": "cancel_rate", "to": "reservations", "sign": "−", "lag": "0d", "lag_days": 0,
               "verdict": "채택", "kind": "causal", "confidence": "중간",
               "evidence": "r=−0.583 · Granger 방향 분리(취소율→예약만 p<0.001)",
               "note": "취소율 상승은 예약 하락의 조기 경보다.",
@@ -313,6 +313,10 @@ Out of scope:
     예: `cancel_rate__reservations`. `used_edges[]`(SPEC-005) · URL `?edge=`(SPEC-004)가
     같은 값을 쓴다. `(from, to)` 쌍이 유일하므로 파생 가능하지만 **응답이 문자열로 실어 준다**
     — 소비자가 조립하지 않는다.
+  - **`sign` 은 정본 원형 문자열**이다. 허용값은 `"+"` · **`"−"`(U+2212 MINUS SIGN)** ·
+    `"0"` · `"exo"` · `"?"` — `ontology_edges` 의 값을 그대로 흘리고 치환하지 않는다.
+    ⚠️ **음수 부호는 ASCII 하이픈(`"-"`, U+002D)이 아니다.** 화면·테스트가 문자 비교를 할 때
+    **U+2212 기준**으로 맞춰야 한다 — 눈으로는 같아 보여서 어긋나도 드러나지 않는다.
   - **`kind`** — `causal` · `derivation` · `exogenous` · `candidate` · `rejected`.
     인스펙터 배지가 이 값을 쓴다.
   - **`note`** — 사람이 읽는 설명 한두 줄. `evidence`(근거 수식)·`reason`(기각 사유)과
@@ -333,7 +337,7 @@ Out of scope:
       "message": "취소율이 경고 구간에 머물고 있습니다. 채택 엣지 「취소율 → 예약 수 (−)」 기준으로 예약 수 하락이 예상됩니다.",
       "edge": {"edge_id": "cancel_rate__reservations",
                "from": "cancel_rate", "to": "reservations", "verdict": "채택",
-               "sign": "-", "lag": "0d", "lag_days": 0, "confidence": "중간",
+               "sign": "−", "lag": "0d", "lag_days": 0, "confidence": "중간",
                "evidence": "r=−0.583 · Granger 방향 분리(취소율→예약만 p<0.001)"},
       "trigger": "취소율이 경고 구간에 머무름",
       "target": "reservations", "horizon": "0d",
