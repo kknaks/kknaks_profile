@@ -1,0 +1,71 @@
+# 온톨로지 데모 **로컬 E2E 전용** 스택 — redis + ontology-worker 둘뿐이다.
+#
+#   docker compose -f docker-compose.local.yml up -d --build
+#
+# API·MCP 는 호스트에서 uvicorn 으로 띄운다(코드를 고치면서 봐야 하므로). 컨테이너로
+# 올려야 하는 것은 상주 프로세스 둘뿐이다 — redis 와 codex 워커.
+#
+# **`app/back/docker-compose.yml` 과 별개 파일인 이유**: 그쪽은 postgres·back·워커 3종을
+# 함께 요구하고 `.env`(POSTGRES_PASSWORD 등)가 있어야 뜬다. 데모를 한 번 보려고 그 전체를
+# 세울 이유가 없다. **배포는 그쪽이 정본이고, 이 파일은 로컬 전용이다.**
+#
+# 준비물 (맥):
+#   1. 리눅스용 codex 번들 — ~/.cache/axkg-live/.claude-tools (axkg 공용, 이미 있다)
+#   2. codex 로그인 — orca 가 관리하는 CODEX_HOME 아래 auth.json (이미 있다)
+# 둘 다 `app/back/docker-compose.local.yml` 의 워커가 쓰는 것과 **같은 경로**다.
+
+name: ontology-demo-local
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: ontology-demo-redis
+    ports:
+      # 호스트에서 도는 API 가 여기로 제출한다. 기존 스택(kknaks-redis·mediness-redis)과
+      # 겹치지 않는 포트다 — `config.py` 의 `redis_url` 기본값과 같은 46379.
+      - "127.0.0.1:46379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  ontology-worker:
+    # 이미지는 back 의 워커 이미지를 그대로 쓴다 — open-kknaks 버전이 갈리면
+    # broker payload 계약이 어긋난다(Dockerfile.worker 머리 주석의 lockstep).
+    build:
+      context: ../back
+      dockerfile: Dockerfile.worker
+    container_name: ontology-demo-worker
+    environment:
+      REDIS_URL: redis://redis:6379/0
+      AI_NAMESPACE: ontology_demo   # ⚠ ONTOLOGY_AI_NAMESPACE 와 같은 값
+      AI_QUEUE: ontology            # ⚠ ONTOLOGY_AI_QUEUE 와 반드시 일치
+      # 파일을 만지지 않는다(sandbox=read-only · shell off) — cwd 는 codex 가 뜰 자리다.
+      AI_CWD: /app
+      CONCURRENCY: 2
+      CODEX_HOME: /root/.codex-ontology
+      PATH: /claude-tools/node/bin:/claude-tools/node_modules/.bin:/usr/local/bin:/usr/bin:/bin
+    volumes:
+      # ⚠ **원장 마운트가 없다.** 데이터는 MCP 도구로만 온다.
+      # 맥용 리눅스 codex 번들(prod 는 서버 nvm 을 쓴다 — 여기선 그 경로가 없다).
+      - /Users/kknaks/.cache/axkg-live/.claude-tools:/claude-tools:ro
+      - ontology-local-sessions:/root/.codex-ontology
+      # 로컬 검증 한정 — 살아 있는 codex 로그인. 파일 하나만 ro 로 얹는다.
+      - "${HOME}/Library/Application Support/orca/codex-runtime-home/home/auth.json:/root/.codex-ontology/auth.json:ro"
+    extra_hosts:
+      # 워커가 **호스트에서 도는 MCP 서버**로 나가는 길. 리눅스 도커에서도 같은 이름이
+      # 풀리게 명시한다(맥은 기본 제공이지만 이 파일 하나로 양쪽이 되게).
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "codex", "--version"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  ontology-local-sessions:

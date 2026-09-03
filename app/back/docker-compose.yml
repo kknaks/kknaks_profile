@@ -147,8 +147,129 @@ services:
       retries: 3
       start_period: 10s
 
+  # ── 온톨로지 데모 (WORK-003 · SPEC-005) ──────────────────────────────
+  # 위 `worker`·`chat-worker` 는 **한 줄도 바꾸지 않는다.** 온톨로지도 전용 큐·전용
+  # 세션 홈으로 따로 뜬다 — 큐가 겹치면 서로의 태스크를 집어 간다.
+
+  ontology-worker:
+    # 이미지·기동 방식은 기존 워커와 같다(Dockerfile.worker). 다른 것은 큐와
+    # CODEX_HOME 뿐이다.
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    container_name: kknaks-ontology-worker
+    environment:
+      REDIS_URL: redis://redis:6379/0
+      AI_NAMESPACE: ontology_demo         # ONTOLOGY_AI_NAMESPACE 와 같은 값
+      AI_QUEUE: ontology                  # ⚠ ONTOLOGY_AI_QUEUE 와 반드시 일치
+      # 에이전트는 파일을 만지지 않는다(sandbox=read-only · shell off). cwd 는 codex 가
+      # 뜰 자리일 뿐이라 컨테이너 안의 빈 디렉토리면 된다.
+      AI_CWD: /app
+      CONCURRENCY: ${ONTOLOGY_WORKER_CONCURRENCY:-2}
+      CODEX_HOME: /root/.codex-ontology   # 파이프라인·채팅 세션과 격리
+      PATH: /claude-tools/node/bin:/usr/local/bin:/usr/bin:/bin
+    volumes:
+      # ⚠ **원장 마운트가 없다.** 데이터는 MCP 도구로만 온다.
+      - /home/kknaks/.nvm/versions/node/v24.19.0:/claude-tools/node:ro
+      # 대화 resume 이 워커 재시작을 넘겨 살아남는 조건이다. 기존 워커의
+      # codex-sessions·chat-codex-sessions 와 **다른 볼륨**이다.
+      - ontology-codex-sessions:/root/.codex-ontology
+      - /home/kknaks/.codex/auth.json:/root/.codex-ontology/auth.json:ro
+    depends_on:
+      redis:
+        condition: service_healthy
+    # ⚠ 레플리카 1 고정 — 세션이 워커 로컬 파일이라 2개 이상이면 resume 이 깨진다.
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "codex", "--version"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # ── 온톨로지 데모 서빙 (WORK-005 · DEC-005) ──────────────────────────
+  # 이미지 하나(app/ontology-agent/Dockerfile)로 **API 와 MCP 둘 다** 띄운다.
+  # 커맨드만 다르다 — 같은 `service/` 를 지나야 SPEC-003 AC-5(화면·도구 오차 0)가
+  # 대조가 아니라 구조로 성립한다.
+  #
+  # DB 는 **이미지에 굽지 않는다.** 브론즈 원값이 들어 있어 이미지 레이어에 박히면
+  # 레지스트리·캐시로 퍼진다. 호스트 볼륨(레포 밖)을 읽기 전용으로 붙인다.
+
+  ontology-mcp:
+    build:
+      context: ../ontology-agent
+    container_name: kknaks-ontology-mcp
+    command: ["uv", "run", "--no-sync", "uvicorn", "tools.server:asgi",
+              "--host", "0.0.0.0", "--port", "28081"]
+    env_file: ../ontology-agent/.env
+    environment:
+      ONTOLOGY_DB_PATH: /data/db/ontology_demo.db
+      # ⚠ **명시 주입이 필수다.** 기본값 `["*"]` 는 SDK 의 DNS rebinding 보호를
+      #   무력화하는 값이면서 실제로는 `Invalid Host header` 로 동작하지도 않는다
+      #   (ontology-agent README 「배포 전제」). 워커가 붙는 Host 를 그대로 적는다.
+      ONTOLOGY_MCP_ALLOWED_HOSTS: '["ontology-mcp:28081","ontology-mcp"]'
+      ONTOLOGY_MCP_ALLOWED_ORIGINS: '["http://ontology-mcp:28081"]'
+    # ⚠ **포트를 열지 않는다.** 도구 서버는 자기 인증이 없다(SPEC-002 Out of scope) —
+    #   포트가 노출되면 비밀번호 없이 `query_layer` 로 마스킹 브론즈 행을 읽을 수 있다.
+    #   부르는 것은 같은 네트워크의 `ontology-worker` 뿐이다.
+    volumes:
+      - ${ONTOLOGY_DB_DIR:-/home/kknaks/ontology-demo/db}:/data/db:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL",
+             "python -c \"import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:28081/health').status==200 else 1)\""]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  ontology-api:
+    build:
+      context: ../ontology-agent
+    container_name: kknaks-ontology-api
+    env_file: ../ontology-agent/.env
+    environment:
+      ONTOLOGY_DB_PATH: /data/db/ontology_demo.db
+      # 채팅 저장소는 **쓰기**가 필요하고 재빌드에 날아가면 안 된다 — DB 볼륨(ro)과
+      # 다른 볼륨에 둔다(config.py `resolved_chat_db_path` 주석과 같은 이유).
+      ONTOLOGY_CHAT_DB_PATH: /data/chat/ontology_chat.db
+      ONTOLOGY_REDIS_URL: redis://redis:6379/0
+      ONTOLOGY_MCP_URL: http://ontology-mcp:28081/mcp
+      ONTOLOGY_AI_NAMESPACE: ontology_demo   # ontology-worker 의 AI_NAMESPACE 와 같은 값
+      ONTOLOGY_AI_QUEUE: ontology           # ⚠ ontology-worker 의 AI_QUEUE 와 반드시 일치
+      # ONTOLOGY_DEMO_PASSWORD 는 **여기 적지 않는다** — .env 로만 온다(DEC-005).
+      # 미주입이면 발급·검증이 양쪽 다 닫혀 전 API 가 401 이다.
+      #
+      # ⚠ 프론트(Vercel)와 API(홈서버)는 **항상 다른 오리진**이다. 이 목록이 실제
+      #   프론트 주소를 담지 않으면 브라우저가 모든 호출을 막아 게이트 화면부터 죽는다.
+      #   `credentials: include` 라 `*` 는 규칙상 못 쓴다 — 주소를 그대로 적는다.
+      ONTOLOGY_ALLOWED_ORIGINS: '${ONTOLOGY_ALLOWED_ORIGINS:?프론트 오리진을 .env 에 설정하라 (예: ["https://profile.kknaks.cloud"])}'
+      ONTOLOGY_SESSION_COOKIE_SECURE: "1"   # https 뒤다 → 쿠키 SameSite=None 이 파생된다
+    ports:
+      - "48080:28080"   # 호스트 4-prefix. NPM 이 이 포트를 서브도메인에 물린다
+    volumes:
+      - ${ONTOLOGY_DB_DIR:-/home/kknaks/ontology-demo/db}:/data/db:ro
+      - ontology-chat-data:/data/chat
+    depends_on:
+      redis:
+        condition: service_healthy
+      ontology-mcp:
+        condition: service_started
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL",
+             "python -c \"import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:28080/health').status==200 else 1)\""]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
 volumes:
   postgres-data:
   codex-sessions:
   # 채팅 전용 — 파이프라인 세션과 섞이지 않는다(DEC-027 D5).
   chat-codex-sessions:
+  # 온톨로지 데모 전용 — 위 둘과 섞이지 않는다(WORK-003).
+  ontology-codex-sessions:
+  # 온톨로지 채팅 기록 — 재빌드가 DB 를 갈아 끼워도 대화가 남는다(WORK-005).
+  ontology-chat-data:
