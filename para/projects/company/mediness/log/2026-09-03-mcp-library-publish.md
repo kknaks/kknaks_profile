@@ -13,13 +13,13 @@ spec·code 리뷰 각 PASS 로 완주했다. dev·main 머지와 prod 롤아웃�
 
 ## 2. 적용한 기술·개념
 
-- **전용 라우트 + 신규 leaf capability (`baseline.publish.agent`, system_admin 전용)** — MCP 발행 창구
+- **전용 라우트 + 신규 leaf capability (`baseline.publish.agent`, system_admin 전용)** — MCP 발행 창구 → [[defense-in-depth]]
   - 왜 이걸 골랐나: 기존 웹 발행 라우트에 분기를 넣는 대신 `agent-publishes` 전용 라우트를 신설.
     웹 발행(basic)과 에이전트 발행(system_admin)의 권한 축이 달라서 한 라우트에 섞으면 재판정이 흐려짐
   - 무엇이 어려웠나: 권한을 **선언층 + back 재판정 두 층 모두**에 걸어야 했다 — 한 층만 걸면
     tools/list 필터를 우회한 직접 호출이 뚫린다. upload·update 만 허용, 256KiB 제한, 감사 두 원장 결합
   - 근거: `mcp-library-publish-spec-brief.md` · `review-spec-report.md` (PASS 위반 0·경미 2) · dev #130
-- **OQ 즉시형 예외 처리** — Action Runtime 미연동 상태의 열린 질문을 카드로 미루지 않고 닫음
+- **OQ 즉시형 예외 처리** — Action Runtime 미연동 상태의 열린 질문을 카드로 미루지 않고 닫음 → [[compensating-control]]
   - 왜 이걸 골랐나: 보상통제 4건을 명시하면 즉시형으로 닫을 수 있었고, Action Runtime 이
     baseline 도메인에 닿는 순간 카드형으로 승격한다는 조건을 spec 에 박아 재논의 여지를 없앰
   - 근거: _RESUME §2 (OQ-a, 2026-08-28 사용자 선택)
