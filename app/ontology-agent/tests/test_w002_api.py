@@ -276,6 +276,34 @@ def test_AC6_기본_호출에_보류_기각이_오지_않는다(auth_client):
 
 
 @requires_source
+def test_AC6_verdicts_는_콤마_단일_파라미터로_온다(auth_client):
+    """SPEC-003 v0.0.12 — 정본 전송 형식은 **콤마로 묶은 단일 파라미터**다.
+
+    FE 는 판정 필터를 `verdicts=채택,자동 확정,…` 하나로 보낸다. 이걸 판정값 1개로
+    읽으면 전체 문자열이 알 수 없는 판정이 되어 400 INVALID_RANGE 로 떨어진다.
+    """
+    body = auth_client.get("/api/graph?verdicts=채택,자동 확정,선언,보류,기각").json()
+    assert len(body["edges"]) == sum(body["counts"].values())   # 5종 = 전량
+    assert {"보류", "기각"} <= {e["verdict"] for e in body["edges"]}
+
+    filtered = auth_client.get("/api/graph?verdicts=기각, 보류").json()   # 공백은 다듬는다
+    assert {e["verdict"] for e in filtered["edges"]} == {"기각", "보류"}
+    assert len(filtered["edges"]) == body["counts"]["기각"] + body["counts"]["보류"]
+
+    bad = auth_client.get("/api/graph?verdicts=기각,없는판정")   # 평탄화가 오류를 삼키지 않는다
+    assert bad.status_code == 400 and bad.json()["detail"] == "INVALID_RANGE"
+
+
+@requires_source
+def test_AC6_verdicts_반복_파라미터도_같은_결과다(auth_client):
+    """반복 파라미터도 계속 받는다 — 두 형식이 같은 목록으로 평탄화된다."""
+    repeated = auth_client.get("/api/graph?verdicts=기각&verdicts=보류")
+    comma = auth_client.get("/api/graph?verdicts=기각,보류")
+    assert repeated.status_code == 200 and comma.status_code == 200
+    assert repeated.json()["edges"] == comma.json()["edges"]
+
+
+@requires_source
 def test_AC6_미관측_노드는_observed_false(auth_client):
     body = auth_client.get("/api/graph").json()
     unobserved = [n for n in body["nodes"] if not n["observed"]]
