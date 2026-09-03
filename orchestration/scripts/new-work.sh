@@ -85,6 +85,10 @@ PLAN="$(PROJECT_JSON="$PROJECT_JSON" AGENTS_JSON="$CONFIG_DIR/agents.json" \
         WORKERS_CSV="$WORKERS_CSV" AGENT_OVERRIDES="$AGENT_OVERRIDES" SLUG="$SLUG" python3 - <<'PY'
 import json, os, sys
 
+# 필드 구분자는 탭이 아니라 \x1f(unit separator) — bash 의 IFS 탭은 whitespace 라
+# 연속 탭(빈 필드)을 하나로 합쳐 뒤 필드가 앞으로 밀린다. \x1f 는 비공백이라 안 합쳐진다.
+SEP = '\x1f'
+
 cfg = json.load(open(os.environ['PROJECT_JSON']))
 agents_cfg = json.load(open(os.environ['AGENTS_JSON']))
 agents = agents_cfg['agents']
@@ -137,9 +141,9 @@ for rk in repo_keys:
     r = cfg['repos'][rk]
     name = slug + (r.get('worktree_suffix') or '')
     path = r['canonical_path'] if not use_wt else '%s/%s/%s' % (root, r['orca_name'], name)
-    out.append('\t'.join(['REPO', rk, r['orca_name'], r['canonical_path'],
-                          r['base'], r.get('pr_base', ''), name, path,
-                          '1' if use_wt else '0']))
+    out.append(SEP.join(['REPO', rk, r['orca_name'], r['canonical_path'],
+                         r['base'], r.get('pr_base', ''), name, path,
+                         '1' if use_wt else '0']))
 for w in sel:
     wk = cfg['workers'][w]
     agent_name = overrides.get(w) or wk.get('agent') or default_agent
@@ -151,16 +155,16 @@ for w in sel:
     if a.get('retired'):
         sys.exit("폐기된 agent 를 골랐다: %s (%s)" % (agent_name, a['retired']))
     r = cfg['repos'][wk['repo']]
-    out.append('\t'.join(['WORKER', w, wk['repo'], wk.get('brief_suffix') or w,
-                          wk['roles_dir'], ','.join(wk.get('allowed_paths') or []),
-                          agent_name, a['command'], (wk.get('verify') or ''),
-                          wk.get('workspace') or '', r['base'], r.get('pr_base', '')]))
+    out.append(SEP.join(['WORKER', w, wk['repo'], wk.get('brief_suffix') or w,
+                         wk['roles_dir'], ','.join(wk.get('allowed_paths') or []),
+                         agent_name, a['command'], (wk.get('verify') or ''),
+                         wk.get('workspace') or '', r['base'], r.get('pr_base', '')]))
 print('\n'.join(out))
 PY
 )" || die "config 파싱 실패"
 
 echo "▶ 프로젝트 $PROJECT / 작업 $SLUG"
-echo "$PLAN" | awk -F'\t' '$1=="WORKER"{printf "  워커 %-9s agent=%-7s repo=%-6s roles=%s\n", $2, $7, $3, $5}'
+echo "$PLAN" | awk -F$'\x1f' '$1=="WORKER"{printf "  워커 %-9s agent=%-7s repo=%-6s roles=%s\n", $2, $7, $3, $5}'
 
 # ── 2·3. fetch + 워크트리 ────────────────────────────────────────────────────
 declare -a REPO_LINES=()
@@ -178,7 +182,7 @@ resolved_field() {  # resolved_field <repo_key> <field_no(2..5)>
 # 모든 워커가 workspace="coordinator" 면 REPO_LINES 가 빈다 — bash 3.2 + set -u 에서
 # 빈 배열 확장이 unbound variable 로 죽으므로 ${arr[@]+...} 가드가 필요하다.
 for line in ${REPO_LINES[@]+"${REPO_LINES[@]}"}; do
-  IFS=$'\t' read -r _ rk orca_name canonical base pr_base wt_name wt_path use_wt <<< "$line"
+  IFS=$'\x1f' read -r _ rk orca_name canonical base pr_base wt_name wt_path use_wt <<< "$line"
   git -C "$canonical" rev-parse --git-dir >/dev/null 2>&1 \
     || die "$rk canonical 이 git 저장소가 아니다: $canonical"
 
@@ -238,7 +242,7 @@ echo "▶ work/$SLUG"
 BRIEFS=""; TERMCMDS=""
 while IFS= read -r line; do
   case "$line" in WORKER*) ;; *) continue ;; esac
-  IFS=$'\t' read -r _ wname rk suffix roles_dir allowed_csv agent_name agent_cmd verify ws w_base w_prbase <<< "$line"
+  IFS=$'\x1f' read -r _ wname rk suffix roles_dir allowed_csv agent_name agent_cmd verify ws w_base w_prbase <<< "$line"
   if [ "$ws" = "coordinator" ]; then
     # 코디 워크트리 탑승 (런북 §1 단일 레포형) — 워커 전용 워크트리 없음.
     # 산출물이 코디 트리에 바로 생기고, base/PR 정보는 config repo 값을 그대로 쓴다.
