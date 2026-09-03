@@ -1,0 +1,52 @@
+{
+  "_doc": "task-management(Tauri 태스크 관리 앱 — Next.js 프론트 + FastAPI 백엔드, iOS·Windows 타겟) 오케스트레이션 설정 SSOT. scripts/new-work.sh 가 읽는 유일한 곳. 값 하드코딩 금지.",
+  "project": "task-management",
+  "worktree_root": "/Users/kknaks/orca/workspaces",
+  "use_worktree": true,
+
+  "repos": {
+    "docs": {
+      "orca_name": "kknaks_profile",
+      "canonical_path": "/Users/kknaks/git/toy_pr2/kknaks_profile",
+      "remote": "https://github.com/kknaks/kknaks_profile.git",
+      "base": "origin/main",
+      "pr_base": "main",
+      "worktree_suffix": "",
+      "notes": [
+        "canonical(main)은 사용자 체크아웃 — pull/checkout 금지, fetch 만.",
+        "단일 레포형(runbook §프로젝트 유형): 제품 문서는 para/projects/summer-star/task-management/ — 코디네이터 소유. 워커는 문서 경로 수정 금지.",
+        "코디네이터 세션은 이 레포 task-management-app 브랜치 워크트리(workspaces/kknaks_profile/task-management-app)에서 돈다. 워커 브리프의 SSOT 참조는 그 워크트리 절대경로(read-only).",
+        "코드 레포(github.com/kknaks/task_management)는 아직 스캐폴딩 전 — 첫 코드 work 발주 때 repos.code 로 추가한다."
+      ]
+    }
+  },
+
+  "workers": {
+    "writer": {
+      "repo": "docs",
+      "agent": "claude",
+      "brief_suffix": "write",
+      "roles_dir": "roles/task-management/writer",
+      "allowed_paths": ["(브리프가 지정한 baseline/decision 파일 2개만 생성 — 코디 워크트리 절대경로. index·log·디자인 원본·그 외 일체 수정 금지)"],
+      "verify": "산출물은 브리프가 지정한 파일들뿐. 템플릿(templates/projects/) 구조 준수, 정하지 못한 것은 Open Questions 로 남기고 임의 결정 금지, 모든 결정에 분석 리포트 근거 번호(J·M·N·C) 병기"
+    },
+    "designer": {
+      "repo": "docs",
+      "agent": "claude",
+      "brief_suffix": "design",
+      "roles_dir": "roles/task-management/designer",
+      "allowed_paths": ["(read-only — 리포 파일 수정·생성 금지. 산출물은 브리프가 지정한 분석 리포트 파일 1개뿐)"],
+      "verify": "분석은 read-only — 코드를 만들지 않고 디자인 원본을 고치지 않는다. 리포트에 입력 파일 전체 커버리지 표(파일별 반영 위치)를 남기고, 미결 질문은 원본 open questions 와 대조해 누락 없이 옮겼는지 확인한다"
+    }
+  },
+
+  "default_workers": ["designer"],
+
+  "summary_dest": "/Users/kknaks/orca/workspaces/kknaks_profile/task-management-app/para/projects/summer-star/task-management/log",
+
+  "rules": {
+    "spec_and_app_use_separate_prs": true,
+    "workers_commit_or_push": false,
+    "coordinator_verifies_before_pr": true
+  }
+}

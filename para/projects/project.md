@@ -253,6 +253,7 @@ frontmatter `work_type: release`, 양식은 `templates/projects/30-work/work-rel
 | 12 | `summer-star` | `study-timelapse` | 공부하는 모습을 녹화해 자동 타임랩스 생성 |  |
 | 13 | `summer-star` | `summer-star-company` | NFC 카드로 사무실 출퇴근 자동 트래킹 |  |
 | 14 | `summer-star` | `wine-log` | 와인 기록 · 관리 모바일 앱 + 관리자 웹 + AI 라벨 분석 |  |
+| 15 | `summer-star` | `task-management` | Tauri 기반 태스크 관리 앱 — Next.js 프론트 + FastAPI 백엔드, iOS · Windows 타겟 | 코드는 `kknaks/task_management` 레포 |
 
 ---
 
