@@ -1,0 +1,57 @@
+{
+  "_doc": "sc-ax 오케스트레이션 설정 SSOT. scripts/new-work.sh 가 읽는 유일한 곳. 값을 다른 데 하드코딩하지 말 것. 코드레포는 아직 없다 — 생기면 repos.app + backend/frontend 워커를 여기 추가한다.",
+  "project": "sc-ax",
+  "worktree_root": "/Users/kknaks/orca/workspaces",
+  "use_worktree": true,
+
+  "repos": {
+    "spec": {
+      "orca_name": "mediness-mediness",
+      "canonical_path": "/Users/kknaks/git/harness_works/mediness-mediness",
+      "remote": "https://github.com/MediSolveAIDev/mediness.git",
+      "base": "origin/sc-ax",
+      "pr_base": "sc-ax",
+      "worktree_suffix": "-spec",
+      "notes": [
+        "sc-ax 는 제품 장수 브랜치 — 2026-08-28 origin/main(98a545c8d)에서 생성. 작업 브랜치는 여기서 따고 PR 도 여기로 낸다.",
+        "canonical 은 사용자가 직접 쓰는 더티 체크아웃 — pull/checkout 금지. fetch 만 하고 base 는 origin/ ref 를 쓴다.",
+        "pre-commit 이 docs lint. 무관한 타 제품 드리프트로 막히면 --no-verify."
+      ]
+    }
+  },
+
+  "workers": {
+    "planner": {
+      "repo": "spec",
+      "agent": "claude",
+      "brief_suffix": "spec",
+      "roles_dir": "roles/sc-ax/planner",
+      "allowed_paths": ["products/sc-ax/"]
+    },
+    "reviewer_spec": {
+      "repo": "spec",
+      "agent": "claude",
+      "brief_suffix": "review-spec",
+      "roles_dir": "roles/sc-ax/reviewer",
+      "allowed_paths": ["(read-only — 리포 파일 수정·생성 금지. 산출물은 브리프가 지정한 리뷰 리포트 파일 1개뿐)"],
+      "verify": "python3 scripts/lint-pipeline.py --strict 실행 → products/sc-ax/ 범위 ERROR 0 확인 (타 제품 기존 WARN/ERROR 는 '무관'으로 분리 보고). 리뷰는 read-only — 문서를 고치지 않는다"
+    }
+  },
+
+  "default_workers": ["planner"],
+
+  "environments": {
+    "_doc": "sc-ax 전용 배포 환경은 아직 없다 (코드레포 없음). 서버 접속 정보만 기록.",
+    "ssh_host": "medi-me",
+    "notes": [
+      "medi-me = 회사 Mac Studio (medisolbeuui-MacStudio.local). SSH config 의 호스트 별칭.",
+      "mediness k8s(lima VM)도 이 서버 위 — 상세 운영 정보는 config/projects/mediness.json 의 environments 가 소유. 여기 복사하지 않는다."
+    ]
+  },
+
+  "rules": {
+    "spec_and_app_use_separate_prs": true,
+    "workers_commit_or_push": false,
+    "coordinator_verifies_before_pr": true
+  }
+}
