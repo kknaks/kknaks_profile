@@ -6,6 +6,7 @@ import remarkGfm from "remark-gfm";
 import type { AnswerResult, RowValue, UsedEdge } from "@/lib/ontology/types";
 import { formatCount, verdictStroke } from "@/lib/ontology/encoding";
 import { serializeFilters } from "@/lib/ontology/client";
+import { ONT_HEX } from "@/lib/ontology/tokens";
 import { LayerBadge, SectionLabel } from "../primitives";
 
 /**
@@ -161,7 +162,7 @@ function UsedEdgeChips({
                 borderRadius: 6,
                 background: "var(--ont-surface)",
                 border: `1px ${stroke.dash ? "dashed" : "solid"} ${stroke.color}`,
-                color: stroke.color === "#1E1E1E" ? "var(--ont-ink)" : stroke.color,
+                color: stroke.color === ONT_HEX.ink ? "var(--ont-ink)" : stroke.color,
                 fontSize: 12,
                 fontWeight: 600,
               }}

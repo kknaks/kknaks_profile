@@ -7,6 +7,7 @@ import {
   QUESTION_MAX_LENGTH,
   ontologyApi,
 } from "@/lib/ontology/client";
+import { isTimeout } from "@/lib/ontology/types";
 import type { ChatMessage, KpiCard, ToolStep } from "@/lib/ontology/types";
 import { OntologyShell } from "../shell";
 import { StatusDot } from "../primitives";
@@ -344,7 +345,9 @@ function AssistantBubble({
   onRetry: () => void;
   onFollowup: (question: string) => void;
 }) {
-  const timedOut = message.error_code === "AI_TIMEOUT";
+  // 타임아웃은 같은 버블이고 **문구로만** 구분한다. `error_code` 가 없으면
+  // 일반 실패로 둔다 — 추측으로 「시간 초과」라고 말하지 않는다.
+  const timedOut = isTimeout(message);
 
   return (
     <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>

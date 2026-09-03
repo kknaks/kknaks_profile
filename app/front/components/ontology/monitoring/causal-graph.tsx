@@ -13,6 +13,7 @@ import {
   verdictWidth,
 } from "@/lib/ontology/encoding";
 import { GRAPH_VIEWBOX, NODE_COORDS } from "@/lib/ontology/node-layout";
+import { ONT_HEX } from "@/lib/ontology/tokens";
 
 /**
  * 원인 분석 그래프 — 고정 좌표 정적 SVG(`viewBox 0 0 1130 560`).
@@ -64,7 +65,11 @@ function boundaryPoint(from: Point, to: Point): Point {
   return { x: from.x + dx * t, y: from.y + dy * t };
 }
 
-const ARROW_COLORS = ["#1E1E1E", "#7181F8", "#5F6470", "#E3B93C"];
+/**
+ * 화살촉 마커 색 — SVG `<marker>` 의 `fill` 은 `var()` 를 안정적으로 받지 못해
+ * **토큰 단일 정의(`ONT_HEX`)를 직접 읽는다.** hex 를 여기 다시 적지 않는다(W2).
+ */
+const ARROW_COLORS = [ONT_HEX.ink, ONT_HEX.primary, ONT_HEX.body, ONT_HEX.watch];
 
 function arrowId(color: string): string {
   return `ont-arrow-${color.replace("#", "")}`;
@@ -176,7 +181,7 @@ export function CausalGraph({
             )}
             {(active || hovered) && hasDirection(edge.sign) && (
               <g pointerEvents="none">
-                <rect x={mid.x - 11} y={mid.y - 11} width={22} height={22} rx={6} fill="#1E1E1E" />
+                <rect x={mid.x - 11} y={mid.y - 11} width={22} height={22} rx={6} fill={ONT_HEX.ink} />
                 <text
                   x={mid.x}
                   y={mid.y + 4}
@@ -223,12 +228,12 @@ function GraphNodeShape({
 
   // 개입 노드의 Primary 표기는 **타입 표식**이고, 상태가 붙으면 상태 토큰이 이긴다(08 규칙 4).
   const typeIsIntervention = node.node_type === "intervention";
-  const fill = colored ? tone.fill : typeIsIntervention ? "#F1F2FE" : tone.fill;
-  const stroke = colored ? tone.dot : typeIsIntervention ? "#7181F8" : tone.dot;
-  const textColor = colored ? tone.text : typeIsIntervention ? "#4B52A8" : "var(--ont-ink)";
+  const fill = colored ? tone.fill : typeIsIntervention ? ONT_HEX.primaryFill : tone.fill;
+  const stroke = colored ? tone.dot : typeIsIntervention ? ONT_HEX.primary : tone.dot;
+  const textColor = colored ? tone.text : typeIsIntervention ? ONT_HEX.primaryDeep : "var(--ont-ink)";
 
   const strokeWidth = emphasized ? 2 : node.node_id === "sales_total" ? 1.6 : 1.2;
-  const strokeColor = emphasized ? "#1E1E1E" : stroke;
+  const strokeColor = emphasized ? ONT_HEX.ink : stroke;
   const labelSize = node.node_id === "sales_total" ? 13 : node.name.length > 8 ? 11 : 12;
   const labelWeight = node.node_id === "sales_total" ? 700 : 500;
 
@@ -278,7 +283,7 @@ function GraphNodeShape({
           <polygon
             points={`${coord.x - 46},${coord.y - 20} ${coord.x + 46},${coord.y - 20} ${coord.x + 66},${coord.y} ${coord.x + 46},${coord.y + 20} ${coord.x - 46},${coord.y + 20} ${coord.x - 66},${coord.y}`}
             {...shared}
-            fill={colored ? fill : "#F5F6F8"}
+            fill={colored ? fill : ONT_HEX.hover}
           />
           <text x={coord.x} y={coord.y + 4} textAnchor="middle" fontSize={10} fill={textColor}>
             {node.name}

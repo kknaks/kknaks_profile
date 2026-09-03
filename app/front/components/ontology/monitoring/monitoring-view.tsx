@@ -110,11 +110,17 @@ export function MonitoringView() {
       <ScreenBody>
         <ScreenTitle
           title="모니터링"
-          meta="최근 7일 이상 빈도로 판정 · 일 1회 배치"
+          // 판정 창은 응답의 `window_days` 파생이다 — 숫자를 카피에 박지 않는다(W3).
+          meta={
+            cards
+              ? `최근 ${cards.window_days}일 이상 빈도로 판정 · 일 1회 배치`
+              : "일 1회 배치"
+          }
           right={
             cards && (
               <PeriodStepper
                 period={cards.period}
+                hasPrev={cards.has_prev_period}
                 hasNext={cards.has_next_period}
                 onChange={setPeriod}
               />
@@ -241,19 +247,29 @@ export function MonitoringView() {
   );
 }
 
-/** 기간 스테퍼 — 다음 기간이 없으면 화살표가 비활성이다(U-4). */
+/**
+ * 기간 스테퍼 — **양쪽 화살표의 비활성 근거를 서버가 준다**
+ * (`has_prev_period`·`has_next_period`, SPEC-003 v0.0.6 §4).
+ * 화면이 경계를 짐작하지 않으므로 범위 밖 기간을 요청하는 경로 자체가 없다.
+ */
 function PeriodStepper({
   period,
+  hasPrev,
   hasNext,
   onChange,
 }: {
   period: string;
+  hasPrev: boolean;
   hasNext: boolean;
   onChange: (period: string) => void;
 }) {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-      <StepButton label="◀" onClick={() => onChange(shiftPeriod(period, -1))} />
+      <StepButton
+        label="◀"
+        disabled={!hasPrev}
+        onClick={() => hasPrev && onChange(shiftPeriod(period, -1))}
+      />
       <span style={{ height: 30, display: "inline-flex", alignItems: "center", fontSize: 14, fontWeight: 600 }}>
         {formatPeriod(period)}
       </span>

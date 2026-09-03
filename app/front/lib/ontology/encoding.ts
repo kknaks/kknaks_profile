@@ -10,6 +10,7 @@
  */
 
 import type { Confidence, KpiCard, Layer, NodeState, NodeType, Verdict } from "./types";
+import { ONT_HEX } from "./tokens";
 
 /* ─────────────────────────── 노드 유형 → 화면 카피 ─────────────────────────── */
 
@@ -48,18 +49,19 @@ export const VERDICT_ORDER: Verdict[] = ["채택", "자동 확정", "선언", "�
 /** 인과 서술에 쓸 수 있는 판정 — `used_edges` 가 이 집합의 부분집합이다(SPEC-005). */
 export const CONFIRMED_VERDICTS: Verdict[] = ["채택", "자동 확정", "선언"];
 
+/** 색은 `ONT_HEX`(토큰 단일 정의)에서 온다 — 여기에 hex 를 다시 적지 않는다. */
 export function verdictStroke(verdict: Verdict): VerdictStroke {
   switch (verdict) {
     case "채택":
-      return { color: "#1E1E1E", opacity: 1, cross: false, arrow: true };
+      return { color: ONT_HEX.ink, opacity: 1, cross: false, arrow: true };
     case "자동 확정":
-      return { color: "#7181F8", opacity: 1, cross: false, arrow: true };
+      return { color: ONT_HEX.primary, opacity: 1, cross: false, arrow: true };
     case "선언":
-      return { color: "#5F6470", dash: "7 3", opacity: 1, cross: false, arrow: true };
+      return { color: ONT_HEX.body, dash: "7 3", opacity: 1, cross: false, arrow: true };
     case "보류":
-      return { color: "#E3B93C", dash: "2.5 3", opacity: 1, cross: false, arrow: true };
+      return { color: ONT_HEX.watch, dash: "2.5 3", opacity: 1, cross: false, arrow: true };
     case "기각":
-      return { color: "#E2685B", dash: "2.5 3", opacity: 0.5, cross: true, arrow: false };
+      return { color: ONT_HEX.alert, dash: "2.5 3", opacity: 0.5, cross: true, arrow: false };
   }
 }
 
@@ -78,13 +80,24 @@ export function verdictWidth(verdict: Verdict, confidence: Confidence | null): n
   return 1.4; // 선언 · 보류
 }
 
+/**
+ * 부호의 정본 표기.
+ *
+ * 음부호는 **U+2212 MINUS SIGN(`−`)** 이고 ASCII 하이픈(`-`)이 아니다 — `ontology_edges`
+ * 원형이 그렇고 SPEC-001 §4 · SPEC-003 · 디자인 `data/edges.json` 이 같은 문자를 쓴다.
+ * 화면은 이 문자를 **정규화하지 않는다**: 응답에 ASCII 하이픈이 오면 그것은 정본과 다른
+ * 값이므로 방향 배지를 그리지 않고(=조용히 고쳐 주지 않고) 계약 불일치로 드러나야 한다.
+ */
+export const SIGN_PLUS = "+" as const;
+export const SIGN_MINUS = "−" as const; // −
+
 /** 방향 배지는 `+`/`−` 일 때만. `0`·`exo`·`?`·빈 값은 방향이 없다(디자인 03). */
 export function hasDirection(sign: string): boolean {
-  return sign === "+" || sign === "−" || sign === "-";
+  return sign === SIGN_PLUS || sign === SIGN_MINUS;
 }
 
 export function directionGlyph(sign: string): string {
-  return sign === "-" ? "−" : sign;
+  return sign;
 }
 
 /* ─────────────────────────── 상태 → 색 ─────────────────────────── */

@@ -68,7 +68,13 @@ export interface KpiCard {
 export interface KpiCardsResponse {
   as_of: string;
   period: string;
+  /** 노드 상태 판정 창(기본 7). 화면 카피가 이 값으로 만들어진다 — 숫자를 박지 않는다. */
   window_days: number;
+  /**
+   * 기간 스테퍼 양쪽 화살표의 비활성 근거를 **서버가 준다**(SPEC-003 v0.0.6 §4).
+   * 이전 기간이 없으면 `has_prev_period: false`, 다음이 없으면 `has_next_period: false`.
+   */
+  has_prev_period: boolean;
   has_next_period: boolean;
   cards: KpiCard[];
 }
@@ -291,8 +297,20 @@ export interface AnswerResult {
 
 export type MessageStatus = "pending" | "done" | "failed";
 
-/** 실패 사유 코드 — 화면은 문구로만 구분한다(SPEC-003 Case Matrix). */
+/**
+ * 실패 사유 코드 — 화면은 **문구로만** 구분한다(SPEC-003 Case Matrix: 「180초 초과 →
+ * `failed`, 코드만 구분」). 같은 버블·같은 배지 규격이고 문장만 갈린다.
+ *
+ * SPEC-003 Case Matrix 가 두 코드를 이미 가르고 있고, `message` 가 그 값을 실어 오는
+ * 것은 **개정 예정 항목**이다. 그 전까지 값이 없으면 `AI_FAILED` 로 취급한다 —
+ * 화면이 무너지지 않고 AC-12 의 5종 중 4번만 3번으로 접힌다.
+ */
 export type FailureCode = "AI_FAILED" | "AI_TIMEOUT";
+
+/** `error_code` 가 없으면 일반 실패다 — 타임아웃을 추측하지 않는다. */
+export function isTimeout(message: Pick<ChatMessage, "error_code">): boolean {
+  return message.error_code === "AI_TIMEOUT";
+}
 
 export interface ToolStep {
   tool: string;
@@ -308,6 +326,11 @@ export interface ChatMessage {
   content: string;
   steps: ToolStep[];
   result?: AnswerResult | null;
+  /**
+   * `status === "failed"` 일 때의 사유 코드. `AI_TIMEOUT` 과 `AI_FAILED` 를 가르는
+   * 유일한 수단이라 이것이 없으면 AC-12 의 상태 5종이 4종으로 접힌다 —
+   * SPEC-003 `message` 계약 개정 대기 항목(검수 W1).
+   */
   error_code?: FailureCode | null;
   created_at: string;
 }

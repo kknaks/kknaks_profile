@@ -17,6 +17,7 @@
  */
 
 import type { KpiCard, KpiCardsResponse } from "../types";
+import { OntologyApiError } from "../types";
 
 /** 데이터 마지막 날 — 2026-01-07 ~ 08-30(SPEC-001 §4). */
 export const MOCK_AS_OF = "2026-08-30";
@@ -405,7 +406,13 @@ function scale(value: number | null, factor: number, format: KpiCard["format"]):
 }
 
 export function mockKpiCards(period?: string): KpiCardsResponse {
-  const resolved = period && period in PERIOD_INDEX ? period : MOCK_LATEST_PERIOD;
+  // 기간을 지정하지 않으면 최신이다. 다만 **알 수 없는 기간을 조용히 최신으로 되돌리지
+  // 않는다** — 그러면 스테퍼 라벨이 이유 없이 튀고 사용자는 왜 그런지 알 수 없다.
+  // 범위 밖은 계약대로 `INVALID_RANGE` 로 드러낸다(SPEC-003 Case Matrix).
+  if (period !== undefined && !(period in PERIOD_INDEX)) {
+    throw new OntologyApiError("INVALID_RANGE", 400);
+  }
+  const resolved = period ?? MOCK_LATEST_PERIOD;
   const factor = periodFactor(resolved);
   const asOf = resolved === MOCK_LATEST_PERIOD ? MOCK_AS_OF : `${resolved}-28`;
 
@@ -413,6 +420,7 @@ export function mockKpiCards(period?: string): KpiCardsResponse {
     as_of: asOf,
     period: resolved,
     window_days: 7,
+    has_prev_period: resolved !== MOCK_FIRST_PERIOD,
     has_next_period: resolved !== MOCK_LATEST_PERIOD,
     cards: CARDS.map((card) => ({
       ...card,
