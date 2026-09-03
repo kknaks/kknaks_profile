@@ -4,7 +4,7 @@ id: SPEC-003
 title: "FE↔BE API 계약 — 계층 조회 · KPI · 그래프 · 예보 · 채팅 스트림 · 접속 게이트"
 status: ready
 product: ontology-demo
-version: 0.0.6
+version: 0.0.7
 created_at: 2026-09-02
 updated_at: 2026-09-03
 tags:
@@ -212,10 +212,15 @@ Out of scope:
   ```json
   {"layer": "silver",
    "tables": [{"table": "reservations", "row_count": 75479,
-               "masked": false, "note_ref": "기록 04 실버 빌드",
+               "masked": false, "source_group": null,
+               "note_ref": "기록 04 실버 빌드",
                "flows_to": [{"layer": "gold", "table": "gold_kpi_daily",
                              "note": "일별 KPI 의 주 원천"}]}]}
   ```
+  - **`source_group`** — 브론즈 테이블의 **원천 축**이다. 허용값 `"vegas"` · `"review"` ·
+    `"nexus"`, **실버·골드는 `null`**. 데이터 화면의 브론즈 2단 칩(원천 3 → nexus 하위 14)이
+    이 값으로 묶인다([[spec-004-three-screens|SPEC-004]] U-13) — 화면이 테이블 이름을
+    파싱해 그룹을 추측하지 않는다.
 - `GET /api/layers/{layer}/{table}` — 쿼리 `filters` · `order_by` · `limit`(1~200, 기본 50) ·
   `offset` → 200
   ```json
@@ -371,7 +376,7 @@ Out of scope:
   `{"conversation": {…}, "messages": [user, assistant(pending)]}`
 - `GET /api/chat/conversations/{id}` → 200 `{"conversation": {…}, "messages": [...]}`
   ```json
-  {"id": "…", "role": "assistant", "status": "done",
+  {"id": "…", "role": "assistant", "status": "done", "error_code": null,
    "content": "8월 매출은 떨어지지 않았습니다 …",
    "steps": [{"tool": "query_kpi", "args_summary": "sales_total · monthly",
               "duration_ms": 420, "called_at": "…"}],
@@ -381,6 +386,10 @@ Out of scope:
   - `result` 안의 스키마는 [[spec-005-agent-loop-and-gates|SPEC-005]] 가 SoT 다. 이 문서는
     그것을 실어 나르기만 한다 — 필드 정의를 복사하지 않는다. `used_edges[].edge_id` ·
     `citations[].row_count` · `drilldown` · `followups` 가 그 안에 실린다.
+  - **`error_code`** — `status: failed` 일 때 실패 사유를 **Case Matrix 코드**로 싣는다:
+    `AI_TIMEOUT`(180초 초과) · `AI_FAILED`(그 밖의 실패). `pending`·`done` 이면 `null` 이다.
+    **FE 는 문구가 아니라 이 코드로 분기한다** — 타임아웃과 일반 실패의 화면 문구가 다르고
+    (SPEC-004 U-9 #3·#4), 문구 매칭으로 갈라내면 카피가 바뀔 때 조용히 깨진다.
   - **`pending` 중에도 `content`(부분 텍스트)와 `steps` 가 자란다.** 백엔드가 open-kknaks
     이벤트 스트림을 구독해 DB 에 폴딩하고, FE 는 그것을 폴링한다.
 - `POST /api/chat/conversations/{id}/messages` — req `{"question": "…"}` → 201
@@ -474,8 +483,9 @@ stateDiagram-v2
 ### Data Contract
 
 - `conversation` — `{id, title, created_at, last_message_at}`. 내부 세션 id 는 비노출.
-- `message` — `{id, role: user|assistant, status: pending|done|failed, content,
-  steps[], result?, created_at}`.
+- `message` — `{id, role: user|assistant, status: pending|done|failed, error_code,
+  content, steps[], result?, created_at}`. `error_code` 는 `failed` 일 때만 값을 갖는다
+  (`AI_TIMEOUT` · `AI_FAILED`), 그 밖에는 `null`.
 - `step` — `{tool, args_summary, duration_ms, called_at}`. **기록 주체는 백엔드**다 —
   모든 도구 호출이 도구 서버를 지나므로 AI 신고 없이 서버가 잰다. `args_summary` 는 서버가
   만들고 길이를 제한한다(인자 원문 비노출).
@@ -536,6 +546,10 @@ stateDiagram-v2
       `flows_to[]` 를 싣는다. `is_provisional` 과 `null`(관측 없음)이 구분된다.
 - [ ] **AC-17** 채팅 `result` 가 `used_edges[].edge_id`·`citations[].row_count`·`drilldown`·
       `followups` 를 실어 나른다(정의는 SPEC-005).
+- [ ] **AC-18** `/api/layers/bronze/tables` 가 테이블마다 `source_group`(`vegas`·`review`·
+      `nexus`)을 싣고, 실버·골드는 `null` 이다.
+- [ ] **AC-19** `status: failed` 메시지가 `error_code`(`AI_TIMEOUT`·`AI_FAILED`)를 싣고,
+      `pending`·`done` 은 `null` 이다.
 
 ## 7. Open Questions
 

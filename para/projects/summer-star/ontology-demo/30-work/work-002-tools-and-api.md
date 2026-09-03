@@ -164,7 +164,7 @@ WORK-001 이 세운 DB 위에 **읽는 표면 둘**을 만든다 — 에이전�
         `formulas`·`status_thresholds`·`source` 동봉
   - [ ] `query_layer` — 마스킹 뷰만 조회, `masked_fields`·`total` 항상 동봉
   - [ ] `trace_ontology` — 판정 5종·사유·`usable_for_causal_claim`·`edge_id`·
-        `lag`(`<정수>d`). 기본 호출은 채택·산출0·외생만
+        `lag`(정본 원형 보존) + `lag_days`(정수). 기본 호출은 채택·자동 확정·선언만
   - [ ] `get_definition` — 글로서리 판정 표 + KPI 컬럼 + enum(폐쇄 목록 13종·감성 4값)
 - **검증**:
   - [ ] `query_kpi` 값이 골드 재조회값과 오차 0

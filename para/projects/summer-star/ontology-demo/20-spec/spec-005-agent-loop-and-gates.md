@@ -4,9 +4,9 @@ id: SPEC-005
 title: "에이전트 루프와 게이트 — 전제 검증 · used_edges 응답 스키마 · 게이트 5종 · 회귀 3본"
 status: ready
 product: ontology-demo
-version: 0.0.3
+version: 0.0.4
 created_at: 2026-09-02
-updated_at: 2026-09-02
+updated_at: 2026-09-03
 tags:
   - product/ontology-demo
   - doc/spec
@@ -157,7 +157,7 @@ Out of scope:
      "sign": "+", "lag": "0d", "lag_days": 0, "role": "매출이 버틴 경로"},
     {"edge_id": "cancel_rate__reservations",
      "from": "cancel_rate", "to": "reservations", "verdict": "채택",
-     "sign": "-", "lag": "0d", "lag_days": 0, "confidence": "중간", "role": "예약 하락 원인 후보 1"}
+     "sign": "−", "lag": "0d", "lag_days": 0, "confidence": "중간", "role": "예약 하락 원인 후보 1"}
   ],
   "excluded_edges": [
     {"edge_id": "promo_event__sales_total",
