@@ -26,3 +26,7 @@
 | 2026-09-02 | decision-change | DEC-003 | 결정5 추가 = 구현 Rust(axum·rusqlite bundled-sqlcipher·notify·windows·tray-icon), 같은 레포 win_app/ 디렉토리. spike 코드는 참조 포팅. SAC는 언어 무관(서명 문제) | decision-003 |
 | 2026-09-02 | spec-add | SPEC-003 | Windows V2 기능 계약(UX 3섹션+2pane / axum API 6개 / BE 메커니즘: 메모리 키회수·rusqlite 복호·notify 파일감시 / SQLite 스키마 / P1~3 / win_app 레이아웃). status draft | spec-003 |
 | 2026-09-02 | baseline-change | BASE-003 | UX 구조 확정(트레이→설정 3섹션, 2pane) + Rust/win_app 반영 + status accepted, links→DEC/SPEC-003 | baseline-003 |
+| 2026-09-03 | spike | — | spike4/4b 파생식 RE: 메커니즘 규명(SQLCipher+PBKDF2, passphrase=%s%s+DPAPI) but 정적·WinDbg(anti-debug 자폭) 모두 막힘 → (C). 파생식 셸빙, 속도는 세션 캐싱으로. BASE-004 기록 | orchestration/work/ |
+| 2026-09-03 | baseline-add | BASE-005 | 로그인 상태 트래킹 + 자동 재조정(등록방 최신유지) 아이디어. 3상태 모델 + 재조정 루프. status accepted | baseline-005 |
+| 2026-09-03 | decision-add | DEC-004 | 감지=계정 파일감시+프로세스wait(무거운 harvest는 이벤트 트리거만) / 속도=세션 키 캐싱 / 상태표시=트레이 메뉴+본인닉네임 / 영속=기존 room.selected. status accepted | decision-004 |
+| 2026-09-03 | spec-add | SPEC-004 | 로그인 상태 트래킹 기능계약(3상태 감지/재조정 루프/세션캐싱/트레이 상태메뉴/api state 확장). status draft → WORK-006 | spec-004 |

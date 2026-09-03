@@ -57,6 +57,31 @@ Windows 카톡 `chatLogs_*.edb` 의 SQLCipher 키를 **device/user 식별자에�
 
 둘 다 무거운 도구 설치 필요(설치 전 사용자 승인). **Frida 등 서명 없는 주입은 SAC 로 불가**(확증).
 
+
+## spike 4 진전 (2026-09-03) — 메커니즘 규명, 정적 RE 는 막힘
+
+passive 메모리 RE 로 **파생 메커니즘을 규명**했다(값 비노출):
+- 언패킹 코드 문자열: `sqlite3_key`·`PBKDF2`·`AES-256`·`PRAGMA key`·`cipher_compatibility`·`%s%s`·`CryptUnprotectData`.
+- **키 = SQLCipher raw-key + PBKDF2**, **passphrase 는 `%s%s` 로 두 조각 조립**(한 조각이 미상), 그리고 **DPAPI(`CryptUnprotectData`) 사용**.
+- 확장 배터리(UTF-8/UTF-16LE/hex × PBKDF2 SHA256/512 × iter{1..256000} × salt 변형 + HKDF + HMAC + sha 조합, 단일 27 + 조합 60폼)로 **단순 식별자 KDF 전부 배제** — spike3 재확인.
+- **미회수 이유**: passphrase 의 미상 성분이 **DPAPI 보호값 or 런타임 조립값**이라 정적 문자열론 안 잡힌다. DPAPI blob 은 디스크/레지스트리에 없음(런타임 조립 추정).
+
+→ 판정 (C) 정적 막힘. **남은 유일 경로 = WinDbg**(MS 서명 → SAC 안전, Frida 와 달리 통과)로 `sqlite3_key`·`CryptUnprotectData` BP 걸어 **런타임 passphrase/DPAPI 값 포착**. (2026-09-03 사용자 승인 → 진행.)
+
+
+## spike 4b 결론 (2026-09-03) — anti-debug 벽, 파생식 셸빙
+
+WinDbg(cdb) 설치·attach 는 됐으나 **KakaoTalk 이 강력한 anti-debug 를 갖고 있다**: BP 상주 시
+EmbeddedBrowserWebView 에서 second-chance AV 로 **자폭(3회 재현)**. anti-debug 우회는 안전규칙상
+금지 → passphrase/DPAPI 미포착. 값유출 0.
+
+**정리**: 카톡은 **DPAPI 보호 + anti-debug 자폭** 두 겹으로 키 추출을 방어한다(하드닝된 타겟).
+정적(문자열)·동적(WinDbg) 두 경로 모두 막힘. 남은 건 Ghidra 정적 RE 이나, DPAPI 런타임 값이
+정적으론 안 잡혀 마지막 조각이 안 닫힐 공산.
+
+**결정(사용자 2026-09-03)**: 파생식 **셸빙**. 속도는 **세션 키 캐싱**(스캔 1회 재사용)으로 챙긴다.
+착수 조건은 그대로 — anti-debug 를 우회할 정당한 사유/도구가 생기거나, 다른 추출 벡터가 나올 때 재개.
+
 ## 착수 조건
 
 - 오프라인 복호가 실제 요구로 올라올 때 (예: 다른 기기로 DB 옮겨 분석, 카톡 미실행 상태 수집).
