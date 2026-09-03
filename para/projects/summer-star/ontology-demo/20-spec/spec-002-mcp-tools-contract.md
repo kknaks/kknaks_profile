@@ -4,7 +4,7 @@ id: SPEC-002
 title: "조회 도구 계약 — MCP 4종(query_kpi · query_layer · trace_ontology · get_definition)"
 status: ready
 product: ontology-demo
-version: 0.0.4
+version: 0.0.5
 created_at: 2026-09-02
 updated_at: 2026-09-03
 tags:
@@ -201,7 +201,11 @@ Out of scope:
 
 - `op` enum: `eq` · `ne` · `gte` · `lte` · `in` · `between` · `contains`.
   `contains` 는 텍스트 필드에만 허용한다.
-- `field` 는 해당 뷰의 **허용 필드 목록** 안이어야 한다. PII 원 컬럼명은 목록에 없다.
+- `field` 는 해당 뷰의 **허용 필드 목록** 안이어야 한다.
+- **PII 컬럼(`patientName`·`phone`·`birthday`·`authorName`)은 뷰에 존재하므로 `field`·
+  `order_by`·`filters` 에 지정할 수 있다.** 다만 **값이 마스킹본**이라 필터·정렬은
+  마스킹값 기준으로 동작한다 — 원값 기준 조회(예: 실명 일치 검색)는 **성립하지 않는다.**
+  노출 0건의 보증 주체는 **뷰의 SELECT 목록**이지 필드 거부가 아니다(SPEC-001 AC-7·AC-8).
 
 허용 테이블
 
@@ -315,7 +319,7 @@ Out of scope:
 | `metrics` | 허용 지표 목록 안, 1~8개. 목록 밖 1건이라도 있으면 전체 거부 |
 | `grain` | 4값 안. `retention_monthly` 는 retention 지표만 허용. **도구가 집계하지 않는다** — 각 값이 골드 View 하나에 대응한다 |
 | `start` · `end` | `YYYY-MM-DD`, `start ≤ end`, 창은 데이터 범위(2026-01-07 ~ 2026-08-30) 밖도 허용(빈 결과) |
-| `table` · `field` | 허용 목록 안. PII 원 컬럼명은 목록에 없다 |
+| `table` · `field` | 허용 목록 안. PII 컬럼도 지정 가능하나 **값이 마스킹본**이라 원값 기준 조회는 성립하지 않는다 |
 | `filters` | 최대 5개. `op` enum 안. `contains` 는 텍스트 필드에만 |
 | `limit` | 1~200. 초과는 절단이 아니라 **거부** |
 | `depth` | 1~3 |
@@ -330,7 +334,7 @@ Out of scope:
 |---|---|---|---|
 | `UNKNOWN_METRIC` | 허용 지표 밖 | 400 + 허용 목록 동봉 | 목록에서 골라 재호출 |
 | `UNKNOWN_TABLE` | 허용 테이블 밖 | 400 + 허용 목록 동봉 | 재호출 |
-| `UNKNOWN_FIELD` | 허용 필드 밖(PII 원 컬럼 포함) | 400 | 재호출 — **원값 우회 시도는 여기서 막힌다** |
+| `UNKNOWN_FIELD` | 허용 필드 밖 | 400 | 재호출. **PII 컬럼은 여기 해당하지 않는다** — 뷰에 존재하고 값이 마스킹본이라 원값이 안 나온다 |
 | `UNKNOWN_TERM` | 글로서리에 없는 용어 | 404 + 유사 후보 | 「정의된 용어가 아니다」로 답한다 |
 | `UNKNOWN_NODE` | 노드 이름·id 불일치 | 404 + 노드 목록 | 재호출 |
 | `INVALID_RANGE` | `start > end` · 형식 위반 | 400 | 재호출 |
@@ -398,8 +402,10 @@ sequenceDiagram
       목록으로 확인.
 - [ ] **AC-2** 허용 목록 밖 테이블·필드·지표 요청이 전부 거부되고, 거부 응답에 허용 목록이
       동봉된다.
-- [ ] **AC-3** PII 원 컬럼(`patientName`·`phone`·`birthday`)을 `field`·`order_by`·`filters`
-      어디에 넣어도 `UNKNOWN_FIELD` 로 거부된다.
+- [ ] **AC-3** PII 컬럼(`patientName`·`phone`·`birthday`·`authorName`)을 `field`·
+      `order_by`·`filters` 에 지정할 수 있고, **결과·정렬·필터가 전부 마스킹값 기준**으로
+      동작한다. 원값을 조건으로 준 조회는 **매치 0건**이고, 응답 어디에도 원값이 없다
+      (보증 주체 = 뷰의 SELECT 목록 · SPEC-001 AC-7·AC-8).
 - [ ] **AC-4** `query_layer` 응답이 항상 마스킹 표기(`김○○` · `010-****-1234` ·
       `1990-**-**`)로만 오고 `masked_fields` 가 동봉된다 — 원값 노출 **0건**.
 - [ ] **AC-5** `trace_ontology` 응답의 모든 엣지에 `verdict` 가 있고, 기각·보류 행은

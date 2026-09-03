@@ -4,7 +4,7 @@ id: SPEC-003
 title: "FE↔BE API 계약 — 계층 조회 · KPI · 그래프 · 예보 · 채팅 스트림 · 접속 게이트"
 status: ready
 product: ontology-demo
-version: 0.0.8
+version: 0.0.9
 created_at: 2026-09-02
 updated_at: 2026-09-03
 tags:
@@ -411,7 +411,7 @@ Out of scope:
 | `question` | trim 후 1자 이상 1,000자 이하 |
 | `layer` | `bronze` · `silver` · `gold` · `ontology` |
 | `table` | 해당 계층의 허용 테이블 목록 안(SPEC-001) |
-| `filters` | 최대 5개, `op` enum 안. PII 원 컬럼은 필드 목록에 없다 |
+| `filters` | 최대 5개, `op` enum 안. PII 컬럼도 지정 가능하나 **값이 마스킹본**이라 필터는 마스킹값 기준으로 동작한다(원값 기준 조회 불성립) |
 | `limit` | 1~200(기본 50). 초과는 **거부** — 조용히 절단하지 않는다 |
 | `metrics` | SPEC-002 허용 지표 목록 안, 1~8개 |
 | `grain` | `daily` · `weekly` · `monthly` · `retention_monthly` |
