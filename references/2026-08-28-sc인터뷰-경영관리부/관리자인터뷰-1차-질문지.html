@@ -1,0 +1,300 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>관리자 인터뷰 1차 — 업무와 의사결정</title>
+<style>
+:root{--bg:#F7F9FC;--fg:#1C2333;--mut:#4A5568;--soft:#7A8699;--line:#E3E9F2;--acc:#0155DC;--accs:#EEF4FD;--ok:#0E9F6E;--card:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.7 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",Pretendard,"Noto Sans KR",sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all}
+header{position:sticky;top:0;z-index:30;background:rgba(247,249,252,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar{max-width:1020px;margin:0 auto;padding:12px 24px 8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.ttl{font-size:15px;font-weight:700;letter-spacing:-.02em}
+.sp{flex:1}
+.btn{padding:6px 13px;border-radius:7px;border:1px solid var(--line);background:#fff;font-size:13px;cursor:pointer;font-family:inherit;color:var(--mut)}
+.btn:hover{background:#F0F4FA;color:var(--fg)}
+.btn.p{background:var(--acc);color:#fff;border-color:var(--acc)}
+.btn.p:hover{background:#0141A6;color:#fff}
+.btn.on{background:var(--fg);color:#fff;border-color:var(--fg)}
+.meta{max-width:1020px;margin:0 auto;padding:0 24px 10px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:13px}
+.meta input{padding:5px 10px;border:1px solid var(--line);border-radius:6px;font:inherit;font-size:13px;background:#fff;color:var(--fg)}
+.meta label{color:var(--soft);font-size:12.5px}
+#save{color:var(--ok);font-size:12px;opacity:0;transition:opacity .3s}
+.prog{height:3px;background:#E8ECF3}.prog i{display:block;height:100%;background:var(--ok);width:0;transition:width .3s}
+main{max-width:1020px;margin:0 auto;padding:26px 24px 160px}
+h1{font-size:23px;margin:0 0 6px;letter-spacing:-.03em}
+.sub{color:var(--mut);font-size:13.5px;margin-bottom:8px}
+.rule{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px 18px;margin:18px 0 30px;font-size:13.5px;color:var(--mut)}
+.rule b{color:var(--fg);display:block;margin-bottom:6px;font-size:13px}
+.rule ul{margin:0;padding-left:18px}.rule li{margin:3px 0}
+h2{font-size:17px;margin:44px 0 6px;padding:10px 0 10px 13px;border-left:3px solid var(--acc);background:#EDF1F8;border-radius:0 6px 6px 0;letter-spacing:-.02em}
+h2 small{font-weight:400;color:var(--soft);font-size:12.5px;margin-left:6px}
+.note{background:#fff;border:1px solid var(--line);border-left:3px solid var(--soft);border-radius:0 6px 6px 0;padding:10px 15px;margin:12px 0;font-size:13px;color:var(--mut)}
+.note.warn{border-left-color:#C8432F}
+.script{background:#fff;border:1px solid var(--line);border-radius:8px;padding:16px 20px;margin:14px 0;font-size:14.5px;line-height:1.85}
+.script p{margin:0 0 12px}.script p:last-child{margin:0}
+.script .lead{font-size:12px;color:var(--acc);font-weight:700;letter-spacing:.06em;margin-bottom:14px}
+.blk{padding:0 0 14px;margin-bottom:14px;border-bottom:1px solid var(--line)}
+.blk:last-child{padding-bottom:0;margin-bottom:0;border-bottom:0}
+.blab{font-size:11.5px;font-weight:700;color:var(--soft);letter-spacing:.04em;margin-bottom:7px}
+.bridge{background:#fff;border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:0 6px 6px 0;padding:11px 16px;margin:12px 0 4px;font-size:14.5px;color:var(--fg)}
+.bridge:before{content:'넘어가는 말 · ';color:var(--acc);font-size:12px;font-weight:700}
+.card{background:#fff;border:1px solid var(--line);border-radius:9px;padding:16px 18px;margin:12px 0}
+.card.done{border-color:#BFE3D2}
+.q{font-size:15.5px;font-weight:600;line-height:1.6;margin-bottom:9px}
+.no{display:inline-block;min-width:34px;color:var(--acc);font-weight:700;font-size:13px;font-family:ui-monospace,monospace}
+.probe{background:#FAFBFD;border-radius:6px;padding:9px 13px;font-size:13px;color:var(--mut);margin-bottom:12px}
+.probe b{color:var(--fg);font-size:11.5px;display:block;margin-bottom:5px;letter-spacing:.03em}
+.probe ul{margin:0;padding-left:17px}
+.probe li{margin:2px 0}
+.why{display:none;background:var(--accs);border-radius:6px;padding:8px 13px;font-size:12.5px;color:#0141A6;margin-bottom:12px}
+body.showwhy .why{display:block}
+.ans{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:720px){.ans{grid-template-columns:1fr}}
+.ans label{display:block;font-size:11.5px;color:var(--soft);margin-bottom:4px;font-weight:600;letter-spacing:.03em}
+textarea{width:100%;min-height:64px;padding:9px 11px;border:1px solid var(--line);border-radius:7px;font:inherit;font-size:14px;resize:vertical;background:#FDFDFE;color:var(--fg);line-height:1.65}
+textarea:focus{outline:0;border-color:var(--acc);background:#fff}
+footer{max-width:1020px;margin:0 auto;padding:0 24px 60px;color:var(--soft);font-size:12px}
+@media print{
+  header,.btn,.rule{display:none}
+  body{background:#fff}main{padding:0}
+  .card{break-inside:avoid;border-color:#ccc}
+  textarea{min-height:70px;background:#fff}
+}
+</style></head><body class="showwhy">
+<header>
+  <div class="bar">
+    <span class="ttl">관리자 인터뷰 1차 — 업무와 의사결정</span>
+    <span class="sp"></span>
+    <span id="save">저장됨</span>
+    <button class="btn on" id="tgWhy">진행자 메모</button>
+    <button class="btn" onclick="window.print()">인쇄</button>
+    <button class="btn" id="btnClear">비우기</button>
+    <button class="btn p" id="btnOut">기록 내보내기</button>
+  </div>
+  <div class="meta">
+    <label>일시</label><input id="m_date" type="date" style="width:145px">
+    <label>정은애</label><input id="m_p1" value="정은애 이사" style="width:130px">
+    <label>권예은</label><input id="m_p2" value="권예은 과장" style="width:130px">
+    <label>진행</label><input id="m_host" value="조상아" style="width:100px">
+  </div>
+  <div class="prog"><i id="bar"></i></div>
+</header>
+<main>
+  <h1>업무와 의사결정</h1>
+  <div class="sub">10절 23문항 · 도입 4분 + 54분 = 58분 (상한 75분)</div>
+  <div class="note warn" style="margin:14px 0 24px">사전 설문에 답하신 분은 정은애 이사뿐이다. 설문을 인용하는 문항(1-1 · 5-2 · 6-1)은 이사님께만 그대로 쓰고, 권예은 과장께는 인용 없이 열린 형태로 다시 연다.</div>
+  <div id="app"></div>
+</main>
+<footer>답변은 이 브라우저에만 저장됩니다. 자리를 옮기거나 다른 사람에게 넘길 때는 「기록 내보내기」로 파일을 받아 전달하세요.</footer>
+<script>
+const KEY = 'scax-int1-';
+const D = [
+{t:'도입', m:4, script:[
+  ['인사', ['안녕하십니까. 메디솔브에이아이에서 이번 업무 시스템 기획을 맡고 있는 조상아입니다. 바쁘신데 시간 내주셔서 감사합니다.']],
+  ['오늘 여쭐 것', [
+    '오늘은 두 분께서 평소에 일을 어떻게 주고받으시는지를 여쭤보려고 합니다. 하루의 시작, 맡고 계신 일, 정기적으로 돌아오는 일과 보고, 일을 맡기고 피드백을 주는 방식, 그리고 의사결정입니다.',
+    '마지막에는 저희가 생각하고 있는 방향을 말씀드리고 어떠신지 여쭙겠습니다.']],
+  ['이 자리가 무엇에 쓰이는지', [
+    '저희가 알고 싶은 것은 두 가지입니다.',
+    '첫째는 어디에서 시간이 새는지입니다. 같은 것을 두 번 적으신다든가, 어떻게 됐는지 확인하려고 여러 번 물으셔야 한다든가 하는 것들이요. 둘째는 사람이 꼭 하지 않아도 될 것 같은데 지금은 사람이 하고 있는 일입니다.',
+    '오늘 말씀해 주신 것에서 이런 지점들을 찾아, 어떻게 줄일 수 있을지를 정리해서 다시 보여드립니다. 그중에 시스템으로 풀 수 있는 것은 화면과 기능으로 만들어 갑니다.',
+    '시스템을 먼저 만들어 놓고 여기 맞춰서 일해 달라고 하면 대부분 안 쓰게 됩니다. 지금 일이 실제로 어떻게 돌아가는지를 알아야 그 흐름 위에 얹을 수 있습니다.']],
+  ['안내와 녹음 동의', [
+    '평가와는 무관합니다. 인사 평가나 업무 점검이 아니고, 두 분이 잘하고 계신지를 보러 온 자리가 아닙니다.',
+    '기록의 정확성을 위해 녹음을 하려고 하는데 괜찮으실까요.']],
+  ['동의를 받고 녹음을 시작한 뒤', [
+    '녹음은 저희 쪽에서 내용을 정리하는 데만 씁니다. 녹취를 그대로 전달하지 않고, 정리된 내용만 프로젝트 문서에 들어갑니다. 누가 어떤 말씀을 하셨는지를 따로 보고드리지 않고, 회사 밖으로 나가지 않습니다. 프로젝트가 끝나면 원본은 폐기합니다.',
+    '담당이 아니신 부분은 모른다고 하셔도 됩니다. 정답이 있는 질문은 하나도 없고, 지금 하고 계신 그대로 말씀해 주시면 됩니다.',
+    '한 시간 정도 예상하고 있습니다. 그럼 시작하겠습니다.']]
+]},
+{t:'1. 하루의 시작', m:3, bridge:'먼저 하루를 어떻게 시작하시는지부터 여쭙겠습니다. 설문에서 업무를 어디에 기록하시는지 여쭀을 때 「공용 도구에 기록한다」고 하시고, 도구 이름은 「노션 외 전부」라고 적어 주셨는데 그 부분도 함께 여쭙겠습니다.', q:[
+  {n:'1-1', q:'출근해서 자리에 앉으시면 가장 먼저 무엇을 확인하시나요? 그건 어디에서 확인하시나요? 한 군데만 보시나요, 여러 군데를 도시나요?',
+   p:['도구 이름을 그대로 받아 적는다', '「노션 외 전부」의 실물 — 엑셀·구글 시트·그룹웨어 중 무엇인지', '오늘 할 일이 어디에 적히는지, 안 적으면 어떻게 기억하는지'],
+   w:'시스템의 첫 화면이 무엇을 대체해야 하는지를 정한다'}
+]},
+{t:'2. 어떤 일을 하시는가', m:7, bridge:'이제 두 분이 어떤 일을 맡고 계신지 여쭙겠습니다. 업무 분장표는 미리 받아서 읽고 왔습니다.',
+ note:'업무 분장표는 이미 읽었다. 분장표에 적힌 것을 확인하는 자리가 아니라 분장표와 실제가 벌어진 지점을 찾는 자리다. 이사님 업무는 회신 자료로 확인했으므로 과장님께 더 쓴다.',
+ q:[
+  {n:'2-1', q:'업무 분장표를 받아서 읽었습니다. 실제로도 그대로 나뉘어 있나요, 아니면 파트가 겹쳐서 누가 할지 애매한 일이 있나요? 그럴 때는 먼저 받으신 분이 하시나요, 그때그때 정하시나요? 서로 미루다 늦어진 적도 있으신가요?',
+   p:['어떤 종류의 일이 겹치는지', '분장표에 없는데 하고 계신 일이 있는지', '그 일은 어쩌다 맡게 되셨는지'],
+   w:'공식 분장과 실제의 차이가 곧 개선 여지다. 시스템이 담당을 자동으로 제안할 수 있는 범위가 여기서 정해진다'},
+  {n:'2-2', q:'(권예은 과장님) 계약서 1차 검토를 맡고 계신 것으로 봤습니다. 계약서는 법무파트 안에서 직접 쓰시나요, 다른 파트에서 써서 확인해 달라고 오나요',
+   p:['써서 오면 어떤 형태인지 — 메일·구두·문서 첨부', '검토 후 돌려주는지, 법무가 고쳐서 내보내는지', '한 건에 몇 번 오가는지', '오가는 동안 어느 판이 최신인지 어떻게 아는지'],
+   w:'검토만 하는 것과 작성까지 하는 것은 업무량도 개선 여지도 다르다. 오가는 횟수가 많으면 그 자체가 개선 대상이다'},
+  {n:'2-3', q:'하루 중에 시간을 가장 많이 쓰시는 일 세 가지를 꼽아 주세요. 그 일에 시간을 쓰는 것이 비효율적이라고 느끼신 적이 있을까요',
+   p:['「내 일」과 「남을 챙기는 일」의 비율', '직접 하는 일과 맡기는 일이 어디서 갈리는지', '불편한 부분이 어느 대목인지'],
+   w:'어느 업무부터 개선안을 만들지의 순서를 정한다. 본인이 비효율이라고 느끼는 지점이 개선안의 출발점이다'}
+]},
+{t:'3. 정기적으로 돌아오는 일', m:9, bridge:'다음은 정기적으로 돌아오는 일입니다. 그때그때 새로 생기는 일 말고, 때가 되면 해야 하는 일들이요.',
+ note:'정기 업무·정기 보고·일일보고를 한 덩어리로 묶었다. 근태·휴가 집계는 별도 문항 없이 3-1에서 나오면 그 자리에서 받는다.',
+ q:[
+  {n:'3-1', q:'정해진 주기로 돌아오는 일에는 어떤 것들이 있나요. 매일·매주·매월로 나눠서 말씀해 주세요. 그중 직접 하시는 일과 팀원 보고가 올라오는 일도 구분해 주시면 좋겠습니다',
+   p:['목록을 먼저 다 받는다. 분류는 그 다음', '얕게 나오면 정산·마감·점검·집계 계통을 되묻는다', '올라오는 것은 오는 날이 정해져 있는지', '근태·휴가 집계가 나오면 월 몇 시간인지 숫자로'],
+   w:'자동화 후보 인벤토리의 원본이다. 직접 하는 것과 받는 것은 개선 방식이 다르다',
+   warn:'분류(직접인가 보고인가)부터 답하시면 목록이 한두 개에서 멈춘다. 목록이 다 나온 뒤에 분류를 되묻는다.'},
+  {n:'3-2', q:'그 일들의 때가 됐다는 것을 무엇으로 아시나요',
+   p:['달력·알람·남이 알려줌·기억 중 무엇인지', '놓친 적이 있는지, 놓치면 무슨 일이 생기는지', '남의 일정까지 적어 두고 챙기시는지', '그 자체가 부담이 되는 대목이 있는지'],
+   w:'챙기는 일을 시스템이 대신할 수 있는지가 갈린다. 남의 일정까지 관리하고 계시면 그게 개선 1순위다'},
+  {n:'3-3', q:'주간보고나 대표님 보고, 브리핑 자료처럼 정기적으로 만드시는 자료에는 어떤 것들이 있나요? 정해진 양식이 있나요? 아니면 매번 다르게 산출되나요?',
+   p:['각각 얼마나 자주, 누구에게 내는지', '무엇을 보고 만드는지 — 팀원 보고·적어둔 것·기억', '모은다면 그대로 옮기는지 다시 쓰는지', '한 건에 얼마나 걸리는지', 'AI로 만들어 본 적이 있는지, 어떠셨는지', '안 쓰셨다면 왜인지'],
+   w:'보고를 시스템이 초안까지 만들어 드릴 수 있는지가 갈린다. AI 경험은 개선안의 AI 층이 실제로 쓰일지를 정한다'},
+  {n:'3-4', q:'지금 일일보고를 받고 계신가요? 직원들이 올릴 때 몇 시까지 내야 한다는 기한이 있나요? 그리고 내용을 다 확인하시는지 아니면 냈다는 사실만 확인하시나요? 보시고 따로 피드백도 전달하시나요?',
+   p:['전 직원인지 일부인지', '어디에 내는지 — 메일·메신저·엑셀·시스템', '마감이 규정인지 관행인지', '안 낸 사람을 어떻게 아는지', '하루에 몇 건이 오는지', '취합본을 따로 만드는지, 얼마나 걸리는지'],
+   w:'일일보고를 시스템에 담을 때 마감·누락 처리·열람 범위가 여기서 정해진다. 취합본을 손으로 만들고 계시면 그게 바로 자동화 대상이다'}
+]},
+{t:'4. 일이 생기는 경로', m:5, bridge:'이번에는 일이 어디에서 어떻게 들어오는지 여쭙겠습니다.', q:[
+  {n:'4-1', q:'위에서 지시가 내려올 때와 아래에서 보고가 올라올 때, 각각 어떤 경로로 오나요? 구두로 오나요, 메신저나 메일로 오나요? 그중 어느 쪽이 가장 많은가요?',
+   p:['위에서 오는 것과 아래에서 오는 것을 따로 받는다', '받은 것을 다시 옮겨 적는지, 어디에', '안 적으면 어떻게 기억하는지', '경로에 따라 처리가 달라지는지'],
+   w:'지시와 보고가 어느 통로로 도는지가 시스템이 무엇을 대체할지를 정한다. 옮겨 적는 지점은 개선안 1순위 후보다'},
+  {n:'4-2', q:'위에서 지시를 받으실 때, 무엇을 해야 하는지가 바로 안 잡혀서 다시 여쭤보신 적이 있나요',
+   p:['어느 대목이 비었는지 — 무엇을·언제까지·어디까지', '몇 번 오갔는지', '지시가 도중에 바뀐 적이 있는지, 해둔 것은 어떻게 됐는지', '구두라서 서로 다르게 기억한 적이 있는지'],
+   w:'재작업의 원인이 대개 여기다. 지시를 남기는 형식을 개선안에 넣을지가 갈린다',
+   warn:'위를 탓하는 질문으로 들리기 쉽다. 「지시가 부실하냐」가 아니라 「어느 대목이 비어서 한 번 더 오갔냐」로 묻는다. 두 분이 동석이라 서로를 가리키게 되지 않도록 최근 사례 한 건으로 좁힌다.'}
+]},
+{t:'5. 일을 맡길 때와 피드백', m:8, bridge:'이제 반대로, 두 분이 팀원에게 일을 맡기실 때 이야기를 여쭙겠습니다.', q:[
+  {n:'5-1', q:'최근에 팀원에게 일을 맡기신 건 하나를 떠올려 주세요. 어떻게 전달하셨고, 중간 보고를 받으셨는지, 피드백을 어떻게 전달하였는지, 최종 결과물을 어떤 경로로 받으셨나요',
+   p:['끊지 말고 끝까지 듣는다. 끝난 뒤 빠진 단계를 되묻는다', '맡길 때 기한·참고자료·목적 중 무엇이 빠지는지', '「그런 말 못 들었다」가 나온 적이 있는지'],
+   w:'지금 프로세스를 그림으로 그릴 때의 원본이 된다'},
+  {n:'5-2', q:'설문에서 기한은 정하시지만 지연 여부는 물어봐야 아신다고 하셨습니다. 며칠까지라고 기한을 정하실 때는 무엇을 보고 정하시나요?',
+   p:['안고 있는 일의 양인지, 일의 분량인지, 위에서 내려온 날짜인지', '상대와 미리 맞춰 보시는지'],
+   w:'시스템이 기한을 먼저 제안할 수 있는지 없는지를 정한다'},
+  {n:'5-3', q:'팀원이 만든 문서에 피드백을 주실 때는 어떻게 전달하시나요? 피드백이 그대로 반영되어서 오나요? 아니면 다시 수정 요청하는 경우가 많나요?',
+   p:['메신저·파일 코멘트·따로 정리 중 무엇인지', '문서마다 다른지', '여러 번 오간 문서에서 최신을 헷갈린 적이 있는지', '전달 과정에서 번거로운 대목이 어디인지'],
+   w:'피드백이 문서와 따로 떠다니면 반영 누락과 판 혼선이 같이 생긴다. 이 답이 자료와 피드백을 붙여 둘지를 정한다'}
+]},
+{t:'6. 진행 상황 파악', m:6, bridge:'맡기신 다음에 그 일이 어떻게 되는지도 여쭙겠습니다. 설문에서는 진행 확인을 직접 물어보시거나 주간회의에서 들으신다고 하셨고, 완료 보고가 올 때까지는 알기 어렵다고도 하셨습니다.', q:[
+  {n:'6-1', q:'맡기신 일을 시작했는지 안 했는지는 어떻게 아시나요? 그리고 지난 한 주로 보면, 진행 상황을 따로 물어서 확인하신 게 몇 번쯤 되나요?',
+   p:['숫자를 받는다. 안 떠오르시면 어제 하루로 좁힌다'],
+   w:'도입 후에 줄었는지를 재는 유일한 사전값이다', num:1},
+  {n:'6-2', q:'일이 막혀서 멈춘 건 언제 알게 되시나요?',
+   p:['본인이 말해주는지, 기한이 지나서야 아는지', '늦어질 것 같다고 미리 오는 경우가 있는지'],
+   w:'막힘을 사람이 알리게 둘지 시스템이 신호를 만들지가 갈린다'},
+  {n:'6-3', q:'맡겼는데 아무 답이 없는 경우는 어떻게 하시나요?',
+   p:['며칠쯤 기다렸다 다시 묻는지', '위에 올리는 기준이 있는지'],
+   w:'재촉을 자동으로 보낼지 사람에게 둘지를 정한다'}
+]},
+{t:'7. 의사결정', m:4, bridge:'결정이 필요한 일에 대해서 여쭙겠습니다.', q:[
+  {n:'7-1', q:'아래에서 결정해 달라고 올라오면 무엇을 보고 판단하시나요? 반대로 두 분이 위에 올리실 때는 무엇을 같이 붙여서 보내시나요?',
+   p:['무엇이 있어야 판단이 되는지', '없어서 되물으신 적이 있는지', '올릴 때 빠뜨려서 되돌아온 적이 있는지'],
+   w:'판단하는 화면에 무엇을 모아 놓아야 하는지를 정한다'},
+  {n:'7-2', q:'결정하신 내용이 어딘가에 기록으로 남나요',
+   p:['남는다면 어디에', '「그때 왜 그렇게 정했지」를 되짚어 본 적이 있는지', '안 남아서 곤란했던 적이 있는지'],
+   w:'결정 근거가 남지 않는다는 문제가 실재하는지를 확인한다'}
+]},
+{t:'8. 불편한 것', m:7, bridge:'이제 마무리 단계입니다. 지금까지 말씀해 주신 것 중에 불편하신 부분을 정리해서 여쭙겠습니다.', q:[
+  {n:'8-1', q:'지금 업무를 관리하시면서 번거로운 것 세 가지를 꼽아 주세요',
+   p:['하나만 받고 넘어가지 않는다', '왜 번거로운지', '얼마나 자주 겪는지'],
+   w:'개선안 후보 목록이 여기서 나온다'},
+  {n:'8-2', q:'「이건 사람이 안 해도 될 텐데」 싶은 일이 있나요',
+   p:['왜 지금은 사람이 하고 있는지'],
+   w:'자동화 대상을 고를 때 이 답이 1순위 근거가 된다'},
+  {n:'8-3', q:'지난달로 보면, 한 번으로 끝나지 않고 다시 하신 일이 몇 건쯤 되나요',
+   p:['왜 다시 했는지 — 전달 착오·기준 변경·자료 못 찾음', '한 건에 몇 시간쯤 다시 쓰셨는지'],
+   w:'다시 하는 일이 얼마나 되는지가 개선 효과를 시간으로 환산할 때의 재료다', num:1},
+  {n:'8-4', q:'오늘 말씀해 주신 것 중에 하나만 없앨 수 있다면 무엇을 없애시겠습니까',
+   p:['반드시 하나를 고르게 한다', '「다 없애고 싶다」면 「그중에서도 제일」로 좁힌다', '왜 그것인지', '없어지면 하루가 어떻게 달라지는지'],
+   w:'후보가 여럿 나온 뒤 무엇부터 손댈지를 정하는 유일한 근거다. 이 답이 1단계 워크플로 선정에 그대로 쓰인다'}
+]},
+{t:'9. 이렇게 되면 어떠신가', m:4, bridge:'마지막으로 저희가 지금 생각하고 있는 방향을 말씀드리겠습니다.',
+ note:'준비한 도식(인터뷰-개선안-예시.html)을 화면으로 보여준다. 자세히 설명하지 않는다 — 그림을 짚으며 요지만 한두 문장으로 말하고 넘어간다.',
+ read:['예를 들면 이런 것들입니다. 왼쪽이 지금이고 오른쪽이 바뀐 뒤입니다. 사람이 한 명씩 연락하고 다시 확인해야 끝나던 일을, 한 번 등록하면 따라와야 하는 일이 자동으로 만들어지고 담당자에게 걸리게 하는 방향입니다.'],
+ tail:'좋다는 답을 유도하지 않는다. 안 맞는다고 하시면 왜 안 맞는지가 좋다는 답보다 값지다.',
+ q:[{n:'9-1', q:'이와 비슷한 일이 두 분 업무에도 있을까요', p:'있다면 어떤 일인지 구체적으로 받는다. 없다고 하시면 되묻지 말고 8절에서 나온 것으로 돌아가 「그건 이렇게 되면 어떠시겠습니까」로 확인한다', w:'개선안 방향을 그 자리에서 검증하는 유일한 창이다'}]
+},
+{t:'10. 마무리', m:1, bridge:'끝으로 자료 하나만 부탁드리겠습니다.', q:[
+  {n:'10-1', q:'다음 자리를 위해 자료를 몇 가지 부탁드리고 싶습니다. 전사 조직 구조도, 회의록 실물 두세 건, 그리고 정기적으로 내시는 보고 중에 잘 정리된 것 한두 건의 양식을 공유해 주실 수 있을까요',
+   p:['있다면 어떤 일인지 구체적으로', '없다고 하시면 되묻지 말고 8절에서 나온 것으로 돌아간다'],
+   w:'2차를 열 수 있는지가 여기서 정해진다'}
+]}
+];
+
+const $=s=>document.querySelector(s), esc=s=>String(s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const META=['m_date','m_p1','m_p2','m_host'];
+let ALL=[];
+
+function render(){
+  let h='';
+  D.forEach(sec=>{
+    h+='<h2>'+esc(sec.t)+' <small>'+sec.m+'분</small></h2>';
+    if(sec.script){
+      h+='<div class="script"><div class="lead">그대로 읽는다</div>';
+      sec.script.forEach(r=>{
+        h+='<div class="blk"><div class="blab">'+esc(r[0])+'</div>';
+        r[1].forEach(t=>{h+='<p>'+esc(t)+'</p>';});
+        h+='</div>';
+      });
+      h+='</div>';
+    }
+    if(sec.bridge) h+='<div class="bridge">'+esc(sec.bridge)+'</div>';
+    if(sec.note) h+='<div class="note">'+esc(sec.note)+'</div>';
+    if(sec.warn) h+='<div class="note warn">'+esc(sec.warn)+'</div>';
+    if(sec.read){ h+='<div class="script"><div class="lead">그대로 읽는다</div>'; sec.read.forEach(t=>{h+='<p>'+esc(t)+'</p>';}); h+='</div>'; }
+    if(sec.tail) h+='<div class="note">'+esc(sec.tail)+'</div>';
+    (sec.q||[]).forEach(it=>{
+      ALL.push(it.n);
+      h+='<div class="card" id="c-'+it.n+'">'+
+        '<div class="q"><span class="no">'+it.n+'</span>'+esc(it.q)+(it.num?' <span style="color:#0155DC;font-size:12px">[숫자로 받는다]</span>':'')+'</div>'+
+        (it.p?'<div class="probe"><b>파고들 것</b><ul>'+(Array.isArray(it.p)?it.p:[it.p]).map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></div>':'')+
+        (it.w?'<div class="why">이 답으로 무엇이 달라지나 · '+esc(it.w)+'</div>':'')+
+        '<div class="ans">'+
+          '<div><label>정은애 이사</label><textarea data-k="'+it.n+'|A"></textarea></div>'+
+          '<div><label>권예은 과장</label><textarea data-k="'+it.n+'|B"></textarea></div>'+
+        '</div></div>';
+      if(it.warn) h+='<div class="note warn">'+esc(it.warn)+'</div>';
+    });
+  });
+  $('#app').innerHTML=h;
+  document.querySelectorAll('#app textarea').forEach(t=>{
+    t.value=localStorage.getItem(KEY+t.dataset.k)||''; fit(t);
+    t.addEventListener('input',onInput);
+  });
+  META.forEach(id=>{
+    const e=$('#'+id); const sv=localStorage.getItem(KEY+id); if(sv!==null) e.value=sv; else localStorage.setItem(KEY+id,e.value);
+    e.oninput=()=>{localStorage.setItem(KEY+id,e.value);flash();};
+  });
+  count();
+}
+function fit(t){t.style.height='auto';t.style.height=Math.max(64,t.scrollHeight)+'px';}
+let tmr;
+function onInput(e){
+  fit(e.target); clearTimeout(tmr);
+  tmr=setTimeout(()=>{localStorage.setItem(KEY+e.target.dataset.k,e.target.value);flash();count();},250);
+}
+function flash(){const s=$('#save');s.style.opacity=1;setTimeout(()=>s.style.opacity=0,900);}
+function count(){
+  let done=0;
+  ALL.forEach(n=>{
+    const a=(localStorage.getItem(KEY+n+'|A')||'').trim(), b=(localStorage.getItem(KEY+n+'|B')||'').trim();
+    const card=document.getElementById('c-'+n);
+    if(a||b){done++; if(card)card.classList.add('done');} else if(card)card.classList.remove('done');
+  });
+  $('#bar').style.width=(done/ALL.length*100)+'%';
+}
+$('#tgWhy').onclick=e=>{document.body.classList.toggle('showwhy');e.target.classList.toggle('on');};
+$('#btnClear').onclick=()=>{
+  if(!confirm('입력한 답변을 모두 지웁니다. 계속할까요?'))return;
+  Object.keys(localStorage).filter(k=>k.startsWith(KEY)).forEach(k=>localStorage.removeItem(k));
+  location.reload();
+};
+$('#btnOut').onclick=()=>{
+  const g=id=>localStorage.getItem(KEY+id)||'';
+  let o='# 관리자 인터뷰 1차 — 업무와 의사결정\n\n';
+  o+='| | |\n|---|---|\n';
+  o+='| 일시 | '+(g('m_date')||'—')+' |\n| 대상 | '+(g('m_p1')||'정은애 이사')+' · '+(g('m_p2')||'권예은 과장')+' |\n| 진행 | '+(g('m_host')||'조상아')+' |\n\n';
+  D.forEach(sec=>{
+    if(!sec.q)return;
+    o+='## '+sec.t+'\n\n';
+    sec.q.forEach(it=>{
+      const a=(localStorage.getItem(KEY+it.n+'|A')||'').trim(), b=(localStorage.getItem(KEY+it.n+'|B')||'').trim();
+      o+='### '+it.n+'. '+it.q+'\n\n';
+      o+='**'+(g('m_p1')||'정은애 이사')+'**\n'+(a||'(미기록)')+'\n\n';
+      o+='**'+(g('m_p2')||'권예은 과장')+'**\n'+(b||'(미기록)')+'\n\n';
+    });
+  });
+  const blob=new Blob([o],{type:'text/markdown;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='인터뷰1차-'+(g('m_date')||'기록')+'.md';
+  a.click();
+};
+render();
+</script></body></html>
