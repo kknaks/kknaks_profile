@@ -59,8 +59,13 @@ function nextId(prefix: string): string {
   return `${prefix}-${sequence.toString(36)}-${Date.now().toString(36)}`;
 }
 
-function step(tool: string, args_summary: string, duration_ms: number): ToolStep {
-  return { tool, args_summary, duration_ms, called_at: new Date().toISOString() };
+function step(
+  tool: string,
+  args_summary: string,
+  duration_ms: number,
+  is_error = false,
+): ToolStep {
+  return { tool, args_summary, duration_ms, called_at: new Date().toISOString(), is_error };
 }
 
 /* ─────────────────────────── 답변 패턴 ─────────────────────────── */
@@ -472,11 +477,15 @@ function patternDrilldown(): Plan {
     outcome: "done",
     result,
     steps: [
-      step("query_layer", "bronze · vegas_reservations · 취소 · 2026-08", 720),
+      // **단계 실패 ≠ 메시지 실패**(SPEC-003 §4 `step` · AC-20). 첫 조회가 실버 컬럼명으로
+      // 거부되고(도구 실패) 브론즈 원형 컬럼명으로 다시 걸어 답이 완성된 경우다.
+      step("query_layer", "bronze · vegas_reservations · visit_status", 120, true),
+      step("query_layer", "bronze · vegas_reservations · visitStatus · 취소 · 2026-08", 720),
       step("query_kpi", "cancels · daily · 2026-08", 300),
     ],
     partials: [
       "브론즈 마스킹 뷰에서 8월 취소 행을 가져오겠습니다.",
+      "컬럼명이 달라 한 번 거부됐습니다 — 브론즈 원형 이름으로 다시 조회합니다.",
       "20행을 받았습니다. 마스킹 표기를 확인합니다.",
     ],
   };
@@ -488,7 +497,8 @@ function planFailure(outcome: Outcome): Plan {
     result: null,
     steps: [
       step("query_kpi", "sales_total · monthly", 430),
-      step("trace_ontology", "확정 엣지만", 900),
+      // 어느 단계에서 끊겼는지가 보여야 한다 — 실패 단계는 상태 dot 으로 구분된다.
+      step("trace_ontology", "확정 엣지만", 900, true),
     ],
     partials: ["질문의 전제부터 확인하겠습니다.", "확정 엣지를 되짚는 중입니다."],
   };
@@ -517,6 +527,7 @@ function materialize(stored: StoredMessage, now: number): ChatMessage {
       status: "done",
       content: stored.content,
       steps: [],
+      error_code: null,
       created_at: stored.createdAt,
     };
   }
@@ -537,6 +548,7 @@ function materialize(stored: StoredMessage, now: number): ChatMessage {
         // 마지막으로 드러난 단계는 아직 진행 중이라 소요를 싣지 않는다.
         duration_ms: index < revealed - 1 || revealed === plan.steps.length ? s.duration_ms : null,
       })),
+      error_code: null,
       created_at: stored.createdAt,
     };
   }
@@ -549,6 +561,7 @@ function materialize(stored: StoredMessage, now: number): ChatMessage {
       content: plan.result?.answer ?? "",
       steps: plan.steps,
       result: plan.result,
+      error_code: null,
       created_at: stored.createdAt,
     };
   }
@@ -637,6 +650,12 @@ export function mockRetry(id: string, messageId: string): ConversationResponse {
   if (!stored) throw new OntologyApiError("NOT_FOUND", 404);
   const target = stored.messages.find((m) => m.id === messageId);
   if (!target || !target.plan) throw new OntologyApiError("NOT_FOUND", 404);
+
+  // 재시도는 **실패한 답변에만** 걸린다. `pending`·`done` 에 걸면 400 `RETRY_NOT_ALLOWED`
+  // 이고, 화면은 「다시 시도」를 failed 버블에만 그려 애초에 이 경로에 닿지 않는다.
+  if (materialize(target, Date.now()).status !== "failed") {
+    throw new OntologyApiError("RETRY_NOT_ALLOWED", 400);
+  }
 
   const askedIndex = stored.messages.indexOf(target) - 1;
   const question = stored.messages[askedIndex]?.content ?? "";

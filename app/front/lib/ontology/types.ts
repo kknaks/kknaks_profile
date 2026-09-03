@@ -166,6 +166,9 @@ export interface FlowTarget {
   note?: string;
 }
 
+/** 브론즈 원천 축 — 실버·골드는 `null` 이다(SPEC-003 §4 · AC-18). */
+export type SourceGroup = "vegas" | "review" | "nexus";
+
 export interface LayerTable {
   table: string;
   row_count: number;
@@ -173,10 +176,16 @@ export interface LayerTable {
   note_ref: string;
   flows_to: FlowTarget[];
   /**
-   * 브론즈 1단 원천 축(vegas · reviewCsv · nexus). 계층 탭 카운트는 **테이블 수**이고
-   * 이 값은 칩 그룹핑에만 쓴다(SPEC-004 U-13).
+   * 브론즈 1단 원천 축. 데이터 화면의 2단 칩(원천 3 → nexus 하위 14)이 이 값으로 묶인다
+   * — **화면이 테이블 이름을 파싱해 그룹을 추측하지 않는다**(SPEC-004 U-13).
    */
-  source_group?: string;
+  source_group: SourceGroup | null;
+  /**
+   * **컬럼 목록이 계약에 없는 테이블**의 사유 문자열(브론즈 `nexus_*` 14종 ·
+   * `gold_promo_calendar`). 그 밖은 `null`. 화면은 빈 컬럼을 침묵으로 두지 않고 이 사유를
+   * 표기한다 — 컬럼이 안 보이는 것과 「계약에 없어서 안 보이는 것」은 다른 사실이다.
+   */
+  columns_note: string | null;
 }
 
 export interface LayerTablesResponse {
@@ -196,8 +205,8 @@ export interface LayerRowsResponse {
   masked_fields: string[];
   columns: string[];
   rows: Record<string, RowValue>[];
-  /** 정본에 컬럼 목록이 없는 테이블은 그 사실을 실어 보낸다(디자인 08 규칙 8). */
-  columns_note?: string | null;
+  // `columns_note` 는 **테이블 목록 응답**이 갖는다(`LayerTable`) — 행 조회 응답에는
+  // 없다(SPEC-003 §4 · AC-18b). 같은 사실을 두 응답에 싣지 않는다.
 }
 
 export interface LineageColumn {
@@ -298,16 +307,15 @@ export interface AnswerResult {
 export type MessageStatus = "pending" | "done" | "failed";
 
 /**
- * 실패 사유 코드 — 화면은 **문구로만** 구분한다(SPEC-003 Case Matrix: 「180초 초과 →
- * `failed`, 코드만 구분」). 같은 버블·같은 배지 규격이고 문장만 갈린다.
- *
- * SPEC-003 Case Matrix 가 두 코드를 이미 가르고 있고, `message` 가 그 값을 실어 오는
- * 것은 **개정 예정 항목**이다. 그 전까지 값이 없으면 `AI_FAILED` 로 취급한다 —
- * 화면이 무너지지 않고 AC-12 의 5종 중 4번만 3번으로 접힌다.
+ * 실패 사유 코드 — `AI_TIMEOUT`(180초 초과) · `AI_FAILED`(그 밖의 실패).
+ * 같은 버블·같은 배지 규격이고 **문장만** 갈린다(SPEC-004 U-9 #3·#4).
  */
 export type FailureCode = "AI_FAILED" | "AI_TIMEOUT";
 
-/** `error_code` 가 없으면 일반 실패다 — 타임아웃을 추측하지 않는다. */
+/**
+ * **FE 는 문구가 아니라 이 코드로 분기한다**(SPEC-003 §4) — 문구 매칭으로 갈라내면
+ * 카피가 바뀔 때 조용히 깨진다. 값이 없으면 일반 실패다(타임아웃을 추측하지 않는다).
+ */
 export function isTimeout(message: Pick<ChatMessage, "error_code">): boolean {
   return message.error_code === "AI_TIMEOUT";
 }
@@ -317,6 +325,12 @@ export interface ToolStep {
   args_summary: string;
   duration_ms: number | null;
   called_at: string;
+  /**
+   * 그 도구 호출이 실패했는지. 화면은 실패 단계를 **상태 dot 으로만** 구분하고
+   * (기존 알림 토큰) 에러 원문을 노출하지 않는다 — `args_summary` 와 같은 규율이다.
+   * 값이 없으면 성공으로 본다.
+   */
+  is_error?: boolean;
 }
 
 export interface ChatMessage {
@@ -326,12 +340,8 @@ export interface ChatMessage {
   content: string;
   steps: ToolStep[];
   result?: AnswerResult | null;
-  /**
-   * `status === "failed"` 일 때의 사유 코드. `AI_TIMEOUT` 과 `AI_FAILED` 를 가르는
-   * 유일한 수단이라 이것이 없으면 AC-12 의 상태 5종이 4종으로 접힌다 —
-   * SPEC-003 `message` 계약 개정 대기 항목(검수 W1).
-   */
-  error_code?: FailureCode | null;
+  /** `status: failed` 일 때만 값을 갖는다. `pending`·`done` 이면 `null`(SPEC-003 AC-19). */
+  error_code: FailureCode | null;
   created_at: string;
 }
 
@@ -361,6 +371,8 @@ export type OntologyErrorCode =
   | "QUESTION_TOO_LONG"
   | "NOT_FOUND"
   | "CONVERSATION_BUSY"
+  /** 400 — `failed` 가 아닌 메시지에 재시도를 걸었을 때. FE 가 UI 로 선차단한다. */
+  | "RETRY_NOT_ALLOWED"
   | "SOURCE_UNAVAILABLE";
 
 export class OntologyApiError extends Error {

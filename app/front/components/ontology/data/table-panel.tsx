@@ -143,7 +143,8 @@ export function TablePanel({
       )}
 
       {rows.columns.length === 0 ? (
-        <StateNote>{rows.columns_note ?? "표시할 컬럼이 없습니다."}</StateNote>
+        // 사유는 **테이블 목록 응답**이 갖는다(SPEC-003 AC-18b) — 빈 컬럼을 침묵으로 두지 않는다.
+        <StateNote>{table?.columns_note ?? "표시할 컬럼이 없습니다."}</StateNote>
       ) : rows.rows.length === 0 ? (
         <StateNote>해당 조건의 행이 없습니다.</StateNote>
       ) : (

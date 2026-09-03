@@ -9,7 +9,7 @@
  * (nexus 14테이블 · `gold_promo_calendar` — 디자인 08 규칙 8). 지어내지 않는다.
  */
 
-import type { Layer, LayerTable, LayerRowsResponse, RowValue } from "../types";
+import type { Layer, LayerTable, LayerRowsResponse, RowValue, SourceGroup } from "../types";
 
 /* ─────────────────────────── 컬럼 스펙 ─────────────────────────── */
 
@@ -45,7 +45,7 @@ interface TableSpec {
   columns: ColumnSpec[];
   note_ref: string;
   flows_to: { layer: Layer; table: string; note?: string }[];
-  source_group?: string;
+  source_group?: SourceGroup;
   columns_note?: string;
 }
 
@@ -106,7 +106,7 @@ const BRONZE: TableSpec[] = [
     view: "v_bronze_reviews",
     row_count: 1962,
     masked_fields: ["authorName", "body"],
-    source_group: "reviewCsv",
+    source_group: "review",
     note_ref: "기록 02 브론즈 실사",
     columns: [
       { key: "date", kind: "date" },
@@ -379,7 +379,10 @@ export function mockLayerTables(layer: Layer): LayerTable[] {
     masked: spec.masked_fields.length > 0,
     note_ref: spec.note_ref,
     flows_to: spec.flows_to,
-    source_group: spec.source_group,
+    // 계약은 두 필드를 **항상** 싣는다 — 해당 없으면 `null`(SPEC-003 AC-18·AC-18b).
+    // undefined 로 흘려보내면 소비자가 「빠진 것」과 「없는 것」을 구별할 수 없다.
+    source_group: spec.source_group ?? null,
+    columns_note: spec.columns_note ?? null,
   }));
 }
 
@@ -473,7 +476,6 @@ export function mockLayerRows(
       masked_fields: spec.masked_fields,
       columns: [],
       rows: [],
-      columns_note: spec.columns_note ?? null,
     };
   }
 
@@ -510,7 +512,6 @@ export function mockLayerRows(
     masked_fields: spec.masked_fields,
     columns,
     rows,
-    columns_note: spec.columns_note ?? null,
   };
 }
 

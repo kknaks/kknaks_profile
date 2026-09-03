@@ -455,6 +455,8 @@ function AssistantBubble({
  */
 function StepList({ steps, collapsed }: { steps: ToolStep[]; collapsed: boolean }) {
   const done = steps.filter((s) => s.duration_ms !== null).length;
+  // 도구 실패는 **개수도 파생**이다 — 실패가 섞였다는 사실을 헤더에서 먼저 알린다.
+  const failed = steps.filter((s) => s.is_error).length;
   return (
     <details
       open={!collapsed}
@@ -469,6 +471,9 @@ function StepList({ steps, collapsed }: { steps: ToolStep[]; collapsed: boolean 
         <span style={{ fontSize: 12, fontWeight: 700, color: "var(--ont-muted)" }}>
           {collapsed ? "밟은 도구" : "근거를 모으는 중"}
         </span>
+        {failed > 0 && (
+          <span style={{ fontSize: 12, color: "var(--ont-alert-text)" }}>· 실패 {failed}</span>
+        )}
         <span className="ont-mono" style={{ marginLeft: "auto", fontSize: 12, color: "var(--ont-muted)" }}>
           {done}/{steps.length}
         </span>
@@ -476,16 +481,28 @@ function StepList({ steps, collapsed }: { steps: ToolStep[]; collapsed: boolean 
       <div style={{ display: "flex", flexDirection: "column", gap: 6, marginTop: 8 }}>
         {steps.map((step, index) => (
           <div key={`${step.tool}-${index}`} style={{ height: 20, display: "flex", alignItems: "center", gap: 8 }}>
+            {/* 진행 중 = 관찰 · 실패 = 알림 · 완료 = 정상. 새 색을 만들지 않는다(디자인 02). */}
             <span
               style={{
                 width: 6,
                 height: 6,
                 borderRadius: "50%",
-                background: step.duration_ms === null ? "var(--ont-watch)" : "var(--ont-normal)",
+                background: step.is_error
+                  ? "var(--ont-alert)"
+                  : step.duration_ms === null
+                    ? "var(--ont-watch)"
+                    : "var(--ont-normal)",
                 flexShrink: 0,
               }}
             />
-            <span className="ont-mono" style={{ fontSize: 12, fontWeight: 600, color: "var(--ont-ink)" }}>
+            <span
+              className="ont-mono"
+              style={{
+                fontSize: 12,
+                fontWeight: 600,
+                color: step.is_error ? "var(--ont-alert-text)" : "var(--ont-ink)",
+              }}
+            >
               {step.tool}
             </span>
             <span

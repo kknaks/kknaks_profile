@@ -8,6 +8,7 @@ import type {
   LayerRowsResponse,
   LayerTable,
   LineageResponse,
+  SourceGroup,
 } from "@/lib/ontology/types";
 import { LAYER_LABEL, LAYER_NOTE_REF, formatCount, layerTone } from "@/lib/ontology/encoding";
 import { OntologyShell, ScreenBody, ScreenTitle } from "../shell";
@@ -27,9 +28,9 @@ import { ColumnDetail, FlowsPanel } from "./column-detail";
 const LAYERS: Layer[] = ["bronze", "silver", "gold"];
 
 /** 브론즈 1단 원천 축 라벨 — 화면 카피이고, 테이블 목록 자체는 응답이 준다. */
-const SOURCE_GROUP_LABEL: Record<string, string> = {
+const SOURCE_GROUP_LABEL: Record<SourceGroup, string> = {
   vegas: "vegas 예약 원장",
-  reviewCsv: "리뷰 원본 CSV",
+  review: "리뷰 원본 CSV",
   nexus: "nexus 시술 카탈로그",
 };
 
@@ -200,7 +201,7 @@ export function DataView() {
         <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             {[...groups.entries()].map(([key, list]) => {
-              const label = SOURCE_GROUP_LABEL[key] ?? list[0].table;
+              const label = SOURCE_GROUP_LABEL[key as SourceGroup] ?? list[0].table;
               const meta =
                 list.length > 1 ? `${list.length}개 테이블` : formatCount(list[0].row_count);
               return (
