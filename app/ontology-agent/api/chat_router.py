@@ -120,7 +120,9 @@ def retry_message(
         if row is None or row["conversation_id"] != conversation_id:
             raise HTTPException(status_code=404, detail="NOT_FOUND")
         if row["status"] != store.STATUS_FAILED:
-            raise HTTPException(status_code=409, detail="CONVERSATION_BUSY")
+            # `done` 을 다시 돌리면 근거가 갈리고, `pending` 을 다시 돌리면 같은 태스크가
+            # 중복 제출된다. 둘 다 재시도의 대상이 아니라서 코드가 하나다(SPEC-003 AC-21).
+            raise HTTPException(status_code=400, detail="RETRY_NOT_ALLOWED")
         question = _last_question(conn, conversation_id, before_message_id=message_id)
         if question is None:
             raise HTTPException(status_code=404, detail="NOT_FOUND")

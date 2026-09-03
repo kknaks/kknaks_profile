@@ -40,7 +40,9 @@ def create_session(body: SessionRequest, response: Response) -> SessionResponse:
         value=issue_session(),
         max_age=settings.session_max_age_sec,
         httponly=True,
-        samesite="lax",
+        # 배포는 Vercel(프론트) ↔ 홈서버(API) 교차 사이트다 — `Lax` 면 쿠키가 실리지
+        # 않아 게이트를 통과해도 다음 요청이 401 이다. `secure` 에서 파생한다(config.py).
+        samesite=settings.session_cookie_samesite,
         secure=settings.session_cookie_secure,
         path="/",
     )
@@ -58,5 +60,8 @@ def check_session(
 
 @router.delete("/session", response_model=SessionResponse)
 def drop_session(response: Response) -> SessionResponse:
-    response.delete_cookie(settings.session_cookie_name, path="/")
+    # 발급과 **같은 속성**으로 지운다 — 속성이 다르면 브라우저가 다른 쿠키로 보고 남긴다.
+    response.delete_cookie(
+        settings.session_cookie_name, path="/",
+        samesite=settings.session_cookie_samesite, secure=settings.session_cookie_secure)
     return SessionResponse(ok=True)

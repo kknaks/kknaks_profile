@@ -285,10 +285,29 @@ def test_retry_가_실패_답변을_되살린다(chat_client):
 
 @requires_source
 def test_pending_인_답변은_retry_할_수_없다(chat_client):
+    """AC-21 — 도는 중인 태스크를 중복 제출하지 않는다."""
     created = chat_client.post("/api/chat/conversations", json={"question": "q"}).json()
     cid, mid = created["conversation"]["id"], created["messages"][1]["id"]
     r = chat_client.post(f"/api/chat/conversations/{cid}/messages/{mid}/retry")
-    assert r.status_code == 409
+    assert r.status_code == 400 and r.json()["detail"] == "RETRY_NOT_ALLOWED"
+
+
+@requires_source
+def test_done_인_답변은_retry_할_수_없다(chat_client):
+    """AC-21 — 성공한 답변을 다시 돌려 근거가 갈리게 두지 않는다."""
+    created = chat_client.post("/api/chat/conversations", json={"question": "q"}).json()
+    cid, mid = created["conversation"]["id"], created["messages"][1]["id"]
+    with store.connect() as conn:
+        store.update_message(conn, mid, {
+            "status": store.STATUS_DONE, "content": "끝난 답변",
+            "result": {"answer": "끝난 답변", "used_edges": []}})
+
+    r = chat_client.post(f"/api/chat/conversations/{cid}/messages/{mid}/retry")
+    assert r.status_code == 400 and r.json()["detail"] == "RETRY_NOT_ALLOWED"
+
+    # 되살아나지 않았다 — 원래 답변이 그대로다
+    after = chat_client.get(f"/api/chat/conversations/{cid}").json()["messages"][1]
+    assert after["status"] == "done" and after["content"] == "끝난 답변"
 
 
 @requires_source

@@ -7,6 +7,7 @@
 | `patientName` | `김○○` — 성 1자만 노출 |
 | `phone` | `010-****-1234` — 가운데 마스킹, 앞 3자리·뒤 4자리 유지 |
 | `birthday` | `1990-**-**` — 연도만 |
+| `chartNo`·`chart_no` | 숫자면 그대로, **숫자가 아니면 `[비정형]`**(WORK-005) |
 | 리뷰 본문 직원 실명 | `[직원]` — 기록 03·04 의 실명 사전 그대로 |
 | 리뷰 작성자명 | 원천 표기 유지(이미 마스킹 닉네임) — 대상으로 **명시**만 |
 
@@ -23,6 +24,18 @@ from db.connection import atomic
 from db.schema import REVIEW_HEADER_MAP, VEGAS_COLUMNS
 
 MASK_TOKEN = "[직원]"
+
+#: 차트번호 자리에 **숫자가 아닌 것**이 들어와 있을 때 덮는 표기(WORK-005).
+#:
+#: 차트번호는 숫자다. 숫자가 아닌 값이 앉아 있다면 그건 차트번호가 아니라 다른 무언가가
+#: 흘러든 것이고(실측 1건 — 이름 문자열), **무엇인지 모르는 값을 그대로 내보낼 수 없다.**
+#: 기록 03 의 「chart_no 는 마스킹하지 않는다」는 조인·검증 추적성을 위한 결정인데,
+#: 그 추적성은 **숫자일 때만** 성립한다 — 비정형 값은 조인 키로 쓰이지도 않는다.
+#:
+#: 이름 마스킹(`성 1자 + ○`)을 쓰지 않는 이유: 그 값이 이름인지 모른다. 이름으로
+#: 가정하고 성을 남기면, 이름이 아닐 때는 앞 1자를 그냥 노출하는 것이 된다.
+#: 길이도 남기지 않는다 — 길이가 곧 힌트다.
+CHART_NO_TOKEN = "[비정형]"
 
 # 기록 04 리뷰 전처리 1단계와 같은 규칙 — vegas `staff` 고유값 중 실명형만.
 NON_NAME = {"미지정"}
@@ -93,6 +106,19 @@ def mask_birthday_sql(col: str) -> str:
     )
 
 
+def mask_chart_no_sql(col: str) -> str:
+    """숫자면 그대로, 숫자가 아니면 `[비정형]`. 빈 값은 빈 값 그대로다.
+
+    `GLOB '*[^0-9]*'` — 숫자 아닌 문자가 하나라도 있으면 참이다. `LIKE` 와 달리
+    문자 클래스를 쓸 수 있고 대소문자 규칙에 안 걸린다.
+    """
+    return (
+        f"CASE WHEN {col} IS NULL OR {col} = '' THEN {col} "
+        f"WHEN {col} GLOB '*[^0-9]*' THEN {_sql_literal(CHART_NO_TOKEN)} "
+        f"ELSE {col} END"
+    )
+
+
 def mask_body_sql(col: str, names: list[str]) -> str:
     """실명 사전을 중첩 replace 로 감는다 — 긴 토큰이 바깥쪽(먼저 적용)."""
     expr = col
@@ -108,12 +134,26 @@ def view_ddl(conn: sqlite3.Connection) -> list[str]:
         "patientName": mask_name_sql,
         "phone": mask_phone_sql,
         "birthday": mask_birthday_sql,
+        "chartNo": mask_chart_no_sql,
     }
     vegas_select = []
     for col, _ in VEGAS_COLUMNS:
         quoted = '"' + col + '"'
         masker = maskers.get(col)
         vegas_select.append(masker(quoted) + " AS " + quoted if masker else quoted)
+
+    # 실버는 컬럼 목록이 DDL 문자열 하나에만 있다 — 규약을 두 번 적지 않으려고
+    # 테이블에서 읽는다. 뷰 단계는 실버 뒤에 오므로(`build all` · conftest 순서)
+    # 이 시점에 테이블이 있어야 정상이다.
+    silver_columns = [r[1] for r in conn.execute("PRAGMA table_info(silver_reservations)")]
+    if not silver_columns:
+        raise RuntimeError(
+            "silver_reservations 가 없다 — 뷰를 실버보다 먼저 만들 수 없다. "
+            "`build all` 로 순서대로 돌려라")
+    silver_select = [
+        (mask_chart_no_sql(f'"{col}"') + f' AS "{col}"') if col == "chart_no" else f'"{col}"'
+        for col in silver_columns
+    ]
 
     review_select = []
     for _, col in REVIEW_HEADER_MAP:
@@ -133,10 +173,14 @@ def view_ddl(conn: sqlite3.Connection) -> list[str]:
         "CREATE VIEW v_bronze_reviews AS SELECT "
         + ", ".join(review_select)
         + " FROM bronze_reviews",
-        # 실버는 가릴 원값이 없다(patientName·phone 미반입, birthday → age_band).
-        # 그래도 뷰를 둔다 — 소비자가 계층에 상관없이 같은 진입점을 쓰게 하려는 것(OQ-4).
+        # 실버는 브론즈에서 온 **원값 컬럼이 없다**(patientName·phone 미반입,
+        # birthday → age_band). 남은 것은 `chart_no` 하나인데, 브론즈에서 비정형 값이
+        # 그대로 따라 올라오므로 여기서도 같은 규칙으로 덮는다 — 뷰 하나만 고치면
+        # 다른 뷰로 같은 값이 새는 길이 생긴다(WORK-005).
         "DROP VIEW IF EXISTS v_silver_reservations",
-        "CREATE VIEW v_silver_reservations AS SELECT * FROM silver_reservations",
+        "CREATE VIEW v_silver_reservations AS SELECT "
+        + ", ".join(silver_select)
+        + " FROM silver_reservations",
         "DROP VIEW IF EXISTS v_silver_reviews",
         "CREATE VIEW v_silver_reviews AS SELECT * FROM silver_reviews",
     ]

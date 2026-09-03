@@ -220,6 +220,22 @@ def gate3(conn: sqlite3.Connection) -> dict:
     if bad_phone:
         leaks.append(f"전화 표기 규약 위반 {bad_phone:,}행")
 
+    # 차트번호 — 뷰 산출은 **숫자이거나 `[비정형]`이거나 빈 값**뿐이어야 한다.
+    # 숫자가 아닌 값이 그대로 나오면 그건 차트번호가 아니라 다른 무언가가 흘러든
+    # 것이고, 무엇인지 모르는 값이 소비자 표면으로 나간다(WORK-005 실측 1건).
+    from .masking import CHART_NO_TOKEN
+
+    for view, column in (("v_bronze_vegas_reservations", "chartNo"),
+                         ("v_silver_reservations", "chart_no")):
+        n = _one(conn, f"""
+            SELECT COUNT(*) FROM {view}
+            WHERE "{column}" IS NOT NULL AND "{column}" <> ''
+              AND "{column}" <> ? AND "{column}" GLOB '*[^0-9]*'
+        """, (CHART_NO_TOKEN,))
+        if n:
+            # 값은 남기지 않는다 — 건수와 위치만
+            leaks.append(f"{view}.{column}: 숫자도 마스킹 표기도 아닌 값 {n:,}행")
+
     # 리뷰 본문 — 실명 사전 잔존 0건
     from .masking import staff_names
 

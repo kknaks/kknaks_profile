@@ -29,6 +29,7 @@ import pytest
 from agent import store
 from agent.answer import CAUSAL_VERDICTS, validate
 from config import settings
+from service import glossary
 from tests.conftest import TEST_PASSWORD, requires_source
 
 LIVE = os.environ.get("ONTOLOGY_LIVE_REGRESSION") == "1"
@@ -76,6 +77,25 @@ def test_R1_기준값_전_주가_양호_구간이다(built_db):
     for week_start, rate, _, _ in R1_WEEKS:
         assert rate < R1_WARN, f"{week_start} 가 주의 경계를 넘는다"
         assert rate < R1_ALERT
+
+
+@requires_source
+def test_R1_기준값_query_kpi_가_노쇼율_계산식을_함께_준다(built_db):
+    """R-1 라이브의 ③ 경로가 **실제로 존재하는지**부터 고정한다.
+
+    「도구가 계산식을 줬다」를 통과 근거로 인정하려면 도구가 정말 주는지가 먼저다.
+    이게 깨지면 라이브 단언이 조용히 무조건 통과가 된다(WORK-005).
+    """
+    from service.queries import query_kpi
+
+    payload = query_kpi(built_db, metrics=["noshow_rate"], grain="weekly",
+                        start="2026-08-01", end="2026-08-30")
+    formulas = {f["metric"]: f for f in payload["formulas"]}
+    assert "noshow_rate" in formulas, f"계산식이 없다: {payload['formulas']}"
+    formula = formulas["noshow_rate"]["formula"]
+    # 취소가 분모에서 빠진다는 것이 이 계산식의 요점이다(기록 03 1장)
+    assert "부도" in formula and "내원" in formula, formula
+    assert formulas["noshow_rate"]["glossary_ref"]
 
 
 @requires_source
@@ -208,17 +228,29 @@ def test_R1_라이브_현황_질문(live_client, built_db):
     answer = result["answer"]
     assert "노쇼" in answer
 
-    # 「계산식 인용 존재」 — 본문이 분모를 밝히거나, get_definition 을 실제로 불렀거나.
-    # 한 표현만 고집하면 같은 사실을 다르게 쓴 답변을 실패로 만들고 회귀가 카피 검사가 된다.
+    # 「계산식이 답변 앞에 있었나」 — 경로가 **셋**이다. 한 표현만 고집하면 같은 사실을
+    # 다르게 쓴 답변을 실패로 만들고 회귀가 카피 검사가 된다.
+    #
+    # ③이 WORK-005 에서 추가됐다. `query_kpi` 응답은 `formulas[]` 를 **항상** 싣는데
+    # (service/queries.py `formulas_for`), 단언이 ①②만 봐서 「도구가 계산식을 줬고
+    # 모델이 그걸 읽고 답했다」를 통과시키지 못했다 — 라이브 R-1 실측에서 이 자리만
+    # 어긋났다(2026-09-03). 모델이 계산식을 본문에 재진술할지는 문장 선택의 문제이지
+    # 근거 무결성의 문제가 아니다. 근거 무결성은 게이트 5-①(citations 재조회)이 본다.
     formula_in_answer = any(k in answer for k in ("부도", "내원", "÷", "분모"))
     asked_definition = any(s.get("tool") == "get_definition" for s in assistant["steps"])
-    assert formula_in_answer or asked_definition, (
-        "계산식 인용이 없다 — 본문에도 없고 get_definition 도 안 불렀다\n"
-        f"answer={answer[:300]}")
+    # ③ 계산식이 실린 `query_kpi` 응답을 실제로 받았는가 — `args_summary` 에 지표명이
+    #    남으므로(consumer.summarize_args) 어느 지표를 물었는지로 판정한다.
+    formula_from_tool = bool(glossary.formula_of("noshow_rate")) and any(
+        s.get("tool") == "query_kpi" and "noshow_rate" in (s.get("args_summary") or "")
+        for s in assistant["steps"])
+    assert formula_in_answer or asked_definition or formula_from_tool, (
+        "계산식이 답변 앞에 한 번도 오지 않았다 — 본문에도 없고 get_definition 도 안 불렀고 "
+        "noshow_rate 로 query_kpi 를 부르지도 않았다\n"
+        f"answer={answer[:300]}\nsteps={[s.get('args_summary') for s in assistant['steps']]}")
 
     print(f"\n[R-1] {assistant['_elapsed_sec']}초 · 도구 {len(assistant['steps'])}회 "
-          f"· 인용 {len(result['citations'])}건 "
-          f"· 계산식(본문 {formula_in_answer} / 도구 {asked_definition})")
+          f"· 인용 {len(result['citations'])}건 · 계산식(본문 {formula_in_answer} / "
+          f"get_definition {asked_definition} / query_kpi 응답 {formula_from_tool})")
 
 
 @requires_source

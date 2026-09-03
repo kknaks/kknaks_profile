@@ -8,17 +8,31 @@
 """
 
 from fastapi import Depends, FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from api.auth_router import router as auth_router
 from api.chat_router import router as chat_router
 from api.deps import require_session
 from api.layers_router import router as layers_router
 from api.monitoring_router import graph_router, kpi_router
+from config import settings
 from db.connection import build_stamp, connect_ro
 
 app = FastAPI(
     title="온톨로지 데모 — 세라미크의원 강남",
     description="계층 탐색 · KPI 모니터링 · 원인 분석 그래프. 데이터는 일 1회 갱신된다.",
+)
+
+# 프론트는 Vercel, API 는 홈서버다(DEC-005) — **항상 교차 오리진**이라 이것 없이는
+# 브라우저가 모든 호출을 막는다. `credentials: include` 를 쓰므로 `*` 는 규칙상 불가고,
+# 오리진은 명시 목록으로만 온다(config `allowed_origins`). 목록 밖은 그대로 막힌다 —
+# 게이트를 대신하지는 않지만, 게이트 앞의 문이 하나 더 있는 편이 낫다.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=settings.allowed_origins,
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "DELETE", "OPTIONS"],
+    allow_headers=["Content-Type"],
 )
 
 app.include_router(auth_router)

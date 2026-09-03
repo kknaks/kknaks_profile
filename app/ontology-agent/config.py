@@ -97,6 +97,22 @@ class Settings(BaseSettings):
     session_max_age_sec: int = 60 * 60 * 24 * 30  # 30일 (SPEC-003 OQ-3)
     session_cookie_secure: bool = True
 
+    #: 브라우저가 API 를 부를 수 있는 오리진. **프론트는 Vercel, API 는 홈서버라 배포에서
+    #: 둘은 항상 다른 오리진이다**(DEC-005) — 이 목록이 비면 화면이 API 에 닿지 못한다.
+    #: `credentials: include` 를 쓰므로 `*` 는 쓸 수 없다(브라우저 규칙) — 명시 목록이다.
+    #: 로컬 기본값은 `next dev` 두 주소다. 배포 값은 env 로 주입한다.
+    allowed_origins: list[str] = ["http://localhost:3000", "http://127.0.0.1:3000"]
+
+    @property
+    def session_cookie_samesite(self) -> str:
+        """`secure` 에서 **파생**한다 — 손잡이를 늘리지 않는다.
+
+        배포는 교차 사이트(Vercel → 홈서버)라 `Lax` 면 쿠키가 아예 안 실려 세션이
+        성립하지 않는다. `None` 은 `Secure` 를 요구하므로 둘은 원래 한 몸이다.
+        로컬 http(`secure=0`)에서는 `None` 을 브라우저가 거부하므로 `Lax` 로 내린다.
+        """
+        return "none" if self.session_cookie_secure else "lax"
+
     # MCP 도구 서버 (research §5.2)
     mcp_host: str = "0.0.0.0"
     mcp_port: int = 28081
