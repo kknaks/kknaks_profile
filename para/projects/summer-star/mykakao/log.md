@@ -30,3 +30,7 @@
 | 2026-09-03 | baseline-add | BASE-005 | 로그인 상태 트래킹 + 자동 재조정(등록방 최신유지) 아이디어. 3상태 모델 + 재조정 루프. status accepted | baseline-005 |
 | 2026-09-03 | decision-add | DEC-004 | 감지=계정 파일감시+프로세스wait(무거운 harvest는 이벤트 트리거만) / 속도=세션 키 캐싱 / 상태표시=트레이 메뉴+본인닉네임 / 영속=기존 room.selected. status accepted | decision-004 |
 | 2026-09-03 | spec-add | SPEC-004 | 로그인 상태 트래킹 기능계약(3상태 감지/재조정 루프/세션캐싱/트레이 상태메뉴/api state 확장). status draft → WORK-006 | spec-004 |
+| 2026-09-03 | work-add | WORK-006 | 로그인 상태 트래킹 코드 완료·커밋(ff79ba2): state.rs 3상태·이벤트 재조정·세션캐시·트레이 상태메뉴·/api/state. cargo test 18. | work-006 |
+| 2026-09-03 | baseline-add | BASE-006 | 설정 UI 리디자인(카톡 transfer 2탭) + 백그라운드 수집 큐 + 트레이 정비. 목업 승인(artifact 7340ba99). status accepted | baseline-006 |
+| 2026-09-03 | decision-add | DEC-005 | transfer UI / DB 백그라운드 수집 큐(상태 폴링, 대기중→트래커 자동수집) / 트레이 오너드로우(까만글씨·초록빨강 점·비선택) / 본인닉네임 조사. status accepted | decision-005 |
+| 2026-09-03 | spec-add | SPEC-005 | 설정 UI 리디자인 기능계약(transfer 2탭/수집 큐/api rooms 상태/트레이 오너드로우). status draft → WORK-007 | spec-005 |

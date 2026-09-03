@@ -15,3 +15,4 @@ baseline 문서를 만들거나 상태가 바뀌면 이 표를 갱신한다.
 | BASE-003 | Windows V2 — 트레이 앱 + 방 선택 + 과거 히스토리 + 실시간 축적 | idea | draft | — | `baseline-003-windows-tray-realtime-accumulation.md` |
 | BASE-004 | 오프라인 SQLCipher 키 파생식 회수 (고도화 백로그) | observation | deferred | — | `baseline-004-offline-key-derivation.md` |
 | BASE-005 | 로그인 상태 트래킹 + 자동 재조정 (등록해두면 최신 유지) | idea | accepted | DEC-004 | `baseline-005-login-state-tracking.md` |
+| BASE-006 | 설정 UI 리디자인(카톡 transfer) + 백그라운드 수집 큐 + 트레이 정비 | idea | accepted | DEC-005 | `baseline-006-settings-redesign-collection-queue.md` |

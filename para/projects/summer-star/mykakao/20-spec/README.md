@@ -14,3 +14,4 @@ spec 문서를 만들거나 상태, 연결 work가 바뀌면 이 표를 갱신�
 | SPEC-002 | 추출 대화 AI 요약 (방·날짜 선택 + 사용자 프롬프트) | draft | DEC-002 | 요약 체인 계약(2뷰/SSE/codex) | (예정) WORK-002 |
 | SPEC-003 | Windows V2 — 방 선택·과거 복호·실시간 축적·트레이 UI (Rust/win_app) | draft | DEC-003 | WORK-003~005 |
 | SPEC-004 | 로그인 상태 트래킹 + 자동 재조정 + 트레이 상태 메뉴 | draft | DEC-004 | (예정) WORK-006 |
+| SPEC-005 | 설정 UI 리디자인 + 수집 큐 + 트레이 오너드로우 | draft | DEC-005 | (예정) WORK-007 |
