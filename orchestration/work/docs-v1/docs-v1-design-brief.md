@@ -45,7 +45,7 @@ task-management 앱의 문서 파이프라인(디자인 → 기획서 baseline �
 
 ## 5. allowed_paths — 이 밖은 건드리지 마라
 
-- 산출물은 이 파일 **1개뿐**: `/Users/kknaks/orca/workspaces/kknaks_profile/task-management-app/orchestration/work/design-frontend-structure/design-frontend-structure-report.md`
+- 산출물은 이 파일 **1개뿐**: `/Users/kknaks/orca/workspaces/kknaks_profile/task-management-app/orchestration/work/docs-v1/docs-v1-design-report.md` (완료 후 slug 통합으로 경로 변경 — 원 발주 시점 경로는 design-frontend-structure/)
 - 그 외 리포 파일 수정·생성 일체 금지 (read-only). 커밋·push 금지.
 
 ## 6. 구현 단계
