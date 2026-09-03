@@ -4,7 +4,7 @@ id: SPEC-003
 title: "FE↔BE API 계약 — 계층 조회 · KPI · 그래프 · 예보 · 채팅 스트림 · 접속 게이트"
 status: ready
 product: ontology-demo
-version: 0.0.9
+version: 0.0.10
 created_at: 2026-09-02
 updated_at: 2026-09-03
 tags:
@@ -385,7 +385,7 @@ Out of scope:
   {"id": "…", "role": "assistant", "status": "done", "error_code": null,
    "content": "8월 매출은 떨어지지 않았습니다 …",
    "steps": [{"tool": "query_kpi", "args_summary": "sales_total · monthly",
-              "duration_ms": 420, "called_at": "…"}],
+              "duration_ms": 420, "called_at": "…", "is_error": false}],
    "result": { "…": "SPEC-005 §4 의 답변 객체 — used_edges · citations · unknowns" },
    "created_at": "…"}
   ```
@@ -400,6 +400,9 @@ Out of scope:
     이벤트 스트림을 구독해 DB 에 폴딩하고, FE 는 그것을 폴링한다.
 - `POST /api/chat/conversations/{id}/messages` — req `{"question": "…"}` → 201
 - `POST …/messages/{message_id}/retry` → 201 — 실패한 답변을 다시 제출한다.
+  **`status: failed` 인 assistant 메시지에만 허용**한다. `done`·`pending` 메시지에 부르면
+  400 `RETRY_NOT_ALLOWED` 다 — 성공한 답변을 다시 돌려 근거가 갈리는 것도, 도는 중인 태스크를
+  중복 제출하는 것도 막는다.
 - **폴링**: assistant 가 `pending` 인 동안 `GET /api/chat/conversations/{id}` 를 **2초**
   간격으로 부른다. `done`/`failed` 로 바뀌면 중단.
 
@@ -437,6 +440,7 @@ Out of scope:
 | `CONVERSATION_BUSY` | 409 — `pending` 있는 대화에 질문 | (FE 가 잠금으로 선차단) | — |
 | `AI_FAILED` | `message.status = failed` | 실패 문구 + 다시 시도 | 스레드 |
 | `AI_TIMEOUT` | 180초 초과 → `failed`, 코드만 구분 | 위와 동일 | 스레드 |
+| `RETRY_NOT_ALLOWED` | 400 — `done`·`pending` 메시지에 retry | (FE 가 `failed` 에만 버튼을 띄워 선차단) | — |
 | `SOURCE_UNAVAILABLE` | 503 — DB 접근 실패 | 「데이터를 불러오지 못했습니다」 | 해당 영역 |
 
 빈 결과는 에러가 아니다 — 200 + 빈 배열 + `total: 0` 이다.
@@ -492,7 +496,12 @@ stateDiagram-v2
 - `message` — `{id, role: user|assistant, status: pending|done|failed, error_code,
   content, steps[], result?, created_at}`. `error_code` 는 `failed` 일 때만 값을 갖는다
   (`AI_TIMEOUT` · `AI_FAILED`), 그 밖에는 `null`.
-- `step` — `{tool, args_summary, duration_ms, called_at}`. **기록 주체는 백엔드**다 —
+- `step` — `{tool, args_summary, duration_ms, called_at, is_error}`.
+  **`is_error`** 는 그 도구 호출이 실패했는지의 신호다(`true` = 실패). 도구가
+  `UNKNOWN_FIELD`·`SOURCE_UNAVAILABLE` 등으로 거부·실패해도 **에이전트는 재시도하거나 다른
+  경로로 답할 수 있으므로 메시지 전체가 `failed` 가 되지는 않는다** — 단계별 실패와 답변
+  실패는 다른 층이다. 화면은 실패한 단계를 그렇게 표시한다(SPEC-004 U-9 #1 의 단계 리스트).
+  **기록 주체는 백엔드**다 —
   모든 도구 호출이 도구 서버를 지나므로 AI 신고 없이 서버가 잰다. `args_summary` 는 서버가
   만들고 길이를 제한한다(인자 원문 비노출).
 - `result` — [[spec-005-agent-loop-and-gates|SPEC-005]] §4 의 답변 객체. 정의는 그 문서가
@@ -558,6 +567,10 @@ stateDiagram-v2
       `columns_note` 에 사유를 싣고 화면이 그것을 표기한다. 그 밖의 테이블은 `null`.
 - [ ] **AC-19** `status: failed` 메시지가 `error_code`(`AI_TIMEOUT`·`AI_FAILED`)를 싣고,
       `pending`·`done` 은 `null` 이다.
+- [ ] **AC-20** `steps[]` 가 항목마다 `is_error` 를 싣고, 도구 호출이 실패한 단계가 `true`
+      로 표시된다 — 단계 실패가 곧 메시지 `failed` 는 아니다.
+- [ ] **AC-21** `done`·`pending` 메시지에 retry 를 부르면 400 `RETRY_NOT_ALLOWED` 이고,
+      `failed` 에만 성공한다.
 
 ## 7. Open Questions
 
