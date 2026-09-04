@@ -5,8 +5,8 @@
 > v1 문서 파이프라인(디자인 분석 → 영역별 baseline+decision → spec)이 전부 여기서 돈다.
 > 워커 추가 발주는 새 slug 를 파지 않고 `new-work.sh task-management docs-v1 --workers <w>` 로 이 폴더에 브리프를 더한다.
 
-**지금**: **Phase 1 완료** — BASE/DEC-001~006 작성(6영역 v1 정책 완비). 사용자 리뷰 + OQ 30건 대기
-**다음**: OQ 답 → accepted 전환 → Phase 2 진입(게이트 3건 + SPEC-000 공통 기반)
+**지금**: Phase 1 완료 + **결정형 OQ 16건 해소.** 남은 것은 디자인 대기(`design-requests.md`)와 구조 게이트 3건
+**다음**: 게이트 3건(Q-28·33·34) 결정 → WKWebView 스파이크 → 디자인 수령 후 accepted → Phase 2
 
 세팅: `scripts/new-work.sh task-management docs-v1` · 설정 SSOT `config/projects/task-management.json`
 코디handle: `term_e6d07c2f-a88d-46b4-9d0c-3ed44e6c90a2`
@@ -45,9 +45,11 @@
 
 ## 1. 지금
 
-- [~] **Phase 1 완료** — BASE/DEC-001~006. **사용자 리뷰 + OQ 30건 답 대기** (6+5+7+5+5+2, 대부분 디자인 필요)
-- [ ] Phase 2 진입 전: 게이트 3건(Q-28 Tauri export · Q-33 shadcn · Q-34 좌표 vs 유동)
-- [!] **디자인 정정이 누적** — 유형 enum 폐기(회의록·캘린더) · 완료 게이트(05-status) · 2트랙 모델 · status 「생성중」 · schedule 테이블 이관(02-data-model) · 유형 4색 폐기. 디자이너에게 일괄 전달 필요
+- [x] **Phase 1** — BASE/DEC-001~006 작성 + **결정형 OQ 16건 해소**
+- [!] **디자인 대기** — 정정 12건 + 미설계 화면 약 20건을 `design-requests.md` 로 정리 완료. **사용자가 디자이너에게 전달**
+- [ ] **구조 게이트 3건**(Q-28 Tauri export · Q-33 shadcn · Q-34 좌표 vs 유동) — spec 진입 조건, 지금 결정 가능
+- [ ] 코디 몫: **WKWebView 마이크 스파이크**
+- [ ] 디자인 수령 후 BASE/DEC accepted 전환 → Phase 2(SPEC-000 공통 기반부터)
 - [!] 코디 할 일: **WKWebView 마이크 스파이크**(DEC-003 OQ-3) — spec 전
 - [!] 알림은 **별도 도메인**으로 분리됨(회의 예약 알림·업무 기한 등 공통) — v1 범위 밖, 나중에 영역 하나 필요
 - [!] 남은 결정 3건 (사용자): ① sonioc + LLM 채팅 — 정체·편입 위치 ② PR 묶음 단위(제안: Phase 1 완료 시 1회) ③ 메시지함 순서(현재 6번)
@@ -86,6 +88,9 @@
 ## 4. 산출물
 
 - 리포트: `docs-v1-design-report.md` — P-01~72 · F-1~13 · C-01~49 · S-01~34 · Q-01~42
+- **디자인 요청서**: `design-requests.md` — 정정 A-1~12 · 미설계 B-1~6 · 게이트 C
+- 참고 시안: `work-settings-proposal.html` (**확정 아님**, 방향만)
+- 조사: `soniox-study.md`
 - 커밋: `3e13975` 리포트 · `e9db33a` 사용자 확정 4건 · `efd54e3` slug 통합
 
 ## 5. 이력 (최신이 위)
