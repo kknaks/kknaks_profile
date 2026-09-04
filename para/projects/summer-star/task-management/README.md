@@ -22,10 +22,10 @@ Tauri 기반 개인 업무 관리 앱. 프론트 Next.js, 백엔드 FastAPI, 타
 
 | Area | Status | Next |
 |---|---|---|
-| Design | `00-design/` 완성 패키지 입수(dc.html 9종 + md 00~15) | 분석 → baseline |
-| Baseline | 없음 | 디자인 분석 뒤 영역별 1건씩 |
-| Decision | 없음 | baseline 뒤 |
-| Spec | 없음 | decision 뒤 |
+| Design | `00-design/` 완성 패키지(dc.html 8종 + md 00~15) + 프론트 구조 분석 리포트 | 미설계 화면·정정 반영 |
+| Baseline | **BASE-001~006 raw** (인증·설정 / 내 업무 / 회의록 / 문서함 / 캘린더 / 메시지함) | 사용자 리뷰 → accepted |
+| Decision | **DEC-001~006 proposed** — v1 6영역 정책 완비 | OQ 30건 답(대부분 디자인) → accepted |
+| Spec | 없음 | **게이트 3건**(Tauri export·shadcn·좌표) + OQ 뒤. SPEC-000 공통 기반부터 |
 | Work | 없음 | spec 뒤 — 코드 스캐폴딩이 첫 work |
 
 ## 문서 맵

@@ -14,3 +14,5 @@ baseline 문서를 만들거나 상태가 바뀌면 이 표를 갱신한다.
 | BASE-002 | 내 업무 | design(01~08) + 사용자 논의 09-03 | raw | DEC-002 | [baseline-002-my-tasks.md](baseline-002-my-tasks.md) |
 | BASE-003 | 회의록 | design(12) + Soniox 조사 + 사용자 논의 09-03 | raw | DEC-003 | [baseline-003-meeting-notes.md](baseline-003-meeting-notes.md) |
 | BASE-004 | 문서함 | design(14) + 사용자 논의 09-03 | raw | DEC-004 | [baseline-004-library.md](baseline-004-library.md) |
+| BASE-005 | 캘린더 | design(13) + 사용자 논의 09-03 | raw | DEC-005 | [baseline-005-calendar.md](baseline-005-calendar.md) |
+| BASE-006 | 메시지함 | design(15) + 사용자 확정 09-03 (목록만 v1) | raw | DEC-006 | [baseline-006-messages.md](baseline-006-messages.md) |
