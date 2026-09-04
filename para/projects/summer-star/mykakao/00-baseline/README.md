@@ -16,3 +16,5 @@ baseline 문서를 만들거나 상태가 바뀌면 이 표를 갱신한다.
 | BASE-004 | 오프라인 SQLCipher 키 파생식 회수 (고도화 백로그) | observation | deferred | — | `baseline-004-offline-key-derivation.md` |
 | BASE-005 | 로그인 상태 트래킹 + 자동 재조정 (등록해두면 최신 유지) | idea | accepted | DEC-004 | `baseline-005-login-state-tracking.md` |
 | BASE-006 | 설정 UI 리디자인(카톡 transfer) + 백그라운드 수집 큐 + 트레이 정비 | idea | accepted | DEC-005 | `baseline-006-settings-redesign-collection-queue.md` |
+| BASE-007 | 사진 수집 — 실시간 URL 다운로드 + 로컬 미디어 서빙 | idea | accepted | DEC-006 | `baseline-007-photo-collection.md` |
+| BASE-008 | 오래된 사진 .cng 로컬 복호 (백로그) | observation | deferred | — | `baseline-008-cng-old-photo-decrypt.md` |

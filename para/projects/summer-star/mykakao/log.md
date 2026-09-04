@@ -34,3 +34,8 @@
 | 2026-09-03 | baseline-add | BASE-006 | 설정 UI 리디자인(카톡 transfer 2탭) + 백그라운드 수집 큐 + 트레이 정비. 목업 승인(artifact 7340ba99). status accepted | baseline-006 |
 | 2026-09-03 | decision-add | DEC-005 | transfer UI / DB 백그라운드 수집 큐(상태 폴링, 대기중→트래커 자동수집) / 트레이 오너드로우(까만글씨·초록빨강 점·비선택) / 본인닉네임 조사. status accepted | decision-005 |
 | 2026-09-03 | spec-add | SPEC-005 | 설정 UI 리디자인 기능계약(transfer 2탭/수집 큐/api rooms 상태/트레이 오너드로우). status draft → WORK-007 | spec-005 |
+| 2026-09-04 | spike | — | 사진 획득 조사 2회: attachment=talkmedia/url_image_v2 매핑 규명 / .cng 복호는 키 힙에 없어 실패(C, Ghidra RE 필요→백로그). 반전: URL 생존=사진 나이(최근 200/오래됨 410), 실시간은 URL 다운로드로 성립 | orchestration/work/ |
+| 2026-09-04 | baseline-add | BASE-007 | 사진 수집(실시간 URL 다운로드+로컬 저장+미디어 서빙). 커버 경계: 수집 전 만료=유실 표시(복구 안 함). status accepted | baseline-007 |
+| 2026-09-04 | baseline-add | BASE-008 | 오래된 사진 .cng 복호 백로그(키 힙에 없음, Ghidra RE 필요). status deferred | baseline-008 |
+| 2026-09-04 | decision-add | DEC-006 | 사진=talkmedia URL 다운로드(.cng 아님)+로컬 저장(바이트 보유)+/api/media 서빙+탭2 img. 유실은 정직 표시. status accepted | decision-006 |
+| 2026-09-04 | spec-add | SPEC-006 | 사진 수집 기능계약(파이프에 사진 처리+media 스토어+/api/media+img/유실 렌더). status draft → WORK-008 | spec-006 |

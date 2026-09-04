@@ -15,3 +15,4 @@ spec 문서를 만들거나 상태, 연결 work가 바뀌면 이 표를 갱신�
 | SPEC-003 | Windows V2 — 방 선택·과거 복호·실시간 축적·트레이 UI (Rust/win_app) | draft | DEC-003 | WORK-003~005 |
 | SPEC-004 | 로그인 상태 트래킹 + 자동 재조정 + 트레이 상태 메뉴 | draft | DEC-004 | (예정) WORK-006 |
 | SPEC-005 | 설정 UI 리디자인 + 수집 큐 + 트레이 오너드로우 | draft | DEC-005 | (예정) WORK-007 |
+| SPEC-006 | 사진 수집 — URL 다운로드·로컬 저장·미디어 서빙·<img> 렌더 | draft | DEC-006 | (예정) WORK-008 |

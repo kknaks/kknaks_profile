@@ -15,6 +15,7 @@ decision 문서를 만들거나 상태가 바뀌면 이 표를 갱신한다.
 | DEC-003 | Windows V2 방식 — 메모리 키 회수 + SQLite 축적 + 파일감시 실시간 + Rust/트레이/HTML | accepted | BASE-003 | 4결정 채택(Rust·axum·win_app) | SPEC-003 |
 | DEC-004 | 로그인 상태 감지·재조정 — 파일감시/프로세스wait + 세션캐싱 + 트레이메뉴 | accepted | BASE-005 | 5결정 채택 | SPEC-004 |
 | DEC-005 | 설정 리디자인 — transfer UI + 백그라운드 수집 큐 + 트레이 오너드로우 | accepted | BASE-006 | 4결정 채택 | SPEC-005 |
+| DEC-006 | 사진 수집 — talkmedia URL 다운로드 + 로컬 미디어 서빙 | accepted | BASE-007 | 4결정 채택 | SPEC-006 |
 
 ## 미결 사항
 
