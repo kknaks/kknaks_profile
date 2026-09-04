@@ -9,7 +9,7 @@
 **다음**: **Phase 2 — SPEC-000 공통 기반부터.** 디자인 대기 항목은 `design-requests.md`(병행)
 
 세팅: `scripts/new-work.sh task-management docs-v1` · 설정 SSOT `config/projects/task-management.json`
-코디handle: `term_e6d07c2f-a88d-46b4-9d0c-3ed44e6c90a2`
+코디handle: `term_6a4ac855-2a13-4484-b808-4c25182cbb2b` (09-03 세션 재연결로 갱신 — 이전 `term_e6d07c2f…` 는 stale)
 
 ## 워크트리
 
@@ -48,9 +48,11 @@
 - [x] **Phase 1** — BASE/DEC-001~006 작성 + **결정형 OQ 16건 해소**
 - [!] **디자인 대기** — 정정 12건 + 미설계 화면 약 20건을 `design-requests.md` 로 정리 완료. **사용자가 디자이너에게 전달**
 - [x] **구조 게이트 3건 확정** — 정적 빌드(`output: 'export'`) / shadcn 도입 / **유동 반응형**(맥북·중간·큰 모니터 전부)
+- [~] **아키텍처 ① 발주 중**(architect) — system · database · backend. spec 보다 앞선 층으로, 워커·리뷰어의 판정 기준이 된다
+- [ ] 아키텍처 ② 발주 — frontend (①의 schema 계약을 받아서). **직렬** — ① 완료·검증 후
 - [ ] 코디 몫: **WKWebView 마이크 스파이크**
-- [ ] **Phase 2 착수** — SPEC-000 공통 기반(토큰·셸·오버레이 3종) → 영역별 SPEC
-- [!] 미설계 화면은 spec 을 막지 않는다 — 화면이 필요한 절만 비워 두고 나머지를 쓴다
+- [ ] 그 다음 Phase 2 — 영역별 SPEC
+- [!] 미설계 화면은 아키텍처·spec 을 막지 않는다 — 화면이 필요한 절만 비워 두고 나머지를 쓴다
 - [!] 코디 할 일: **WKWebView 마이크 스파이크**(DEC-003 OQ-3) — spec 전
 - [!] 알림은 **별도 도메인**으로 분리됨(회의 예약 알림·업무 기한 등 공통) — v1 범위 밖, 나중에 영역 하나 필요
 - [!] 남은 결정 3건 (사용자): ① sonioc + LLM 채팅 — 정체·편입 위치 ② PR 묶음 단위(제안: Phase 1 완료 시 1회) ③ 메시지함 순서(현재 6번)
@@ -83,7 +85,8 @@
 
 | 워커 | handle | task_id | dispatch_id | 브리프 | 상태 |
 |---|---|---|---|---|---|
-| designer | `term_f7e8b9e4-6379-4ad2-a1f5-8f81804bbfc2` | `task_319a3ee765d4` | `ctx_cb4ec3ab8c8a` | `docs-v1-design-brief.md` | 완료·검증 PASS |
+| architect | `term_da8c7759-cf0d-4d3f-bdb5-fba8798cf3ce` | `task_b3fa2aca8cc3` | `ctx_4d1e7388e22f` | `docs-v1-arch-brief.md` | **진행** — 아키텍처 ①(시스템·DB·백엔드) |
+| designer | (종료) | `task_319a3ee765d4` | `ctx_cb4ec3ab8c8a` | `docs-v1-design-brief.md` | 완료·검증 PASS |
 
 핸들은 세션 재연결로 바뀐다. 바뀌면 **덮어쓴다.**
 

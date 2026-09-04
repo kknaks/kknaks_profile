@@ -32,6 +32,15 @@
       "allowed_paths": ["(브리프가 지정한 baseline/decision 파일 2개만 생성 — 코디 워크트리에서 직접 작업. index·log·디자인 원본·그 외 일체 수정 금지, 커밋·push 금지)"],
       "verify": "산출물은 브리프가 지정한 파일들뿐. 템플릿(templates/projects/) 구조 준수, 정하지 못한 것은 Open Questions 로 남기고 임의 결정 금지, 모든 결정에 분석 리포트 근거 번호(J·M·N·C) 병기"
     },
+    "architect": {
+      "repo": "docs",
+      "agent": "claude",
+      "brief_suffix": "arch",
+      "workspace": "coordinator",
+      "roles_dir": "roles/task-management/architect",
+      "allowed_paths": ["(브리프가 지정한 40-architecture 하위 파일만 생성/수정 — 코디 워크트리에서 직접 작업. baseline·decision·design 원본·index·log 수정 금지, 커밋·push 금지)"],
+      "verify": "산출물은 브리프가 지정한 파일들뿐. DEC-001~006 을 어기는 구조를 제안하지 않았는지 자기점검(충돌 발견 시 고치지 말고 Open Questions). 사용자가 못박은 스택·계층 제약 준수. 결정마다 근거(DEC-00x §y · P/C/S/F/Q-xx) 병기, 선택지를 남기지 말고 단일 방식으로 서술"
+    },
     "designer": {
       "repo": "docs",
       "agent": "claude",
