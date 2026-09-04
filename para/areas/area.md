@@ -167,6 +167,7 @@ para/areas/
 | 56 | `cs` | `fail-fast` | 잘못된 상태를 만나면 조용히 넘어가지 않고 그 자리에서 시끄럽게 멈추는 설계. 반대는 조용한 실패 |  |
 | 57 | `cs` | `field-hiding` | 자식이 부모와 같은 이름의 필드를 선언하면 둘 다 남고 선언 타입이 어느 쪽을 볼지 정한다 |  |
 | 58 | `cs` | `filesystem-path` | 같은 파일을 가리키는 이름이 여럿인 이유와 절대·상대·정규의 차이 |  |
+| 378 | `cs` | `filesystem-change-notification` | OS 가 파일 변경을 이벤트로 알려 주는 장치와 in-place 쓰기를 놓치는 사각지대 |  |
 | 59 | `cs` | `floating-point` | 실수를 부호·지수·가수로 쪼개 저장하는 방식과 그 오차의 근거 |  |
 | 60 | `cs` | `for-loop` | 초기화·조건·증감 세 조각을 한 줄에 모은 반복 구문의 실행 순서 |  |
 | 61 | `cs` | `format-string` | 출력 틀을 문자열로 적고 값을 따로 넘겨 자리표를 채우는 방식 |  |
@@ -196,6 +197,7 @@ para/areas/
 | 85 | `cs` | `iterator-pattern` | 순회 위치를 별도 객체에 담아 컬렉션 내부 구조를 감추는 패턴 |  |
 | 86 | `cs` | `javascript-type` | 변수가 아니라 값에 타입이 붙는 구조와 typeof 의 함정 |  |
 | 87 | `cs` | `json` | 값마다 이름을 붙여 중첩까지 표현하는 텍스트 데이터 형식 |  |
+| 379 | `cs` | `integer-precision-in-json` | 큰 정수를 JSON number 로 실으면 2^53 위 자리가 수신측 double 에서 소실되는 것 |  |
 | 88 | `cs` | `lambda-expression` | 매개변수와 처리만 남긴 식이 함수형 인터페이스 구현체로 변환됨 |  |
 | 89 | `cs` | `latency-order-of-magnitude-estimation` | 캐시·메모리·디스크·네트워크 지연을 자릿수로 분류해 만들기 전 시스템의 병목을 근사하는 방법 |  |
 | 90 | `cs` | `layered-architecture` | 비슷한 책임을 수평 계층으로 묶고 계층 사이 호출·의존 방향을 제한하는 아키텍처 |  |
@@ -235,6 +237,7 @@ para/areas/
 | 124 | `cs` | `prefix-sum` | 구간 합을 매번 다시 더하지 않고 빠진 값만 빼고 들어온 값만 더하는 기법 |  |
 | 125 | `cs` | `priority-queue` | 넣은 순서와 무관하게 가장 우선인 것이 먼저 나오는 힙 기반 자료구조 |  |
 | 126 | `cs` | `process` | 실행 중인 프로그램 하나 OS 가 메모리와 자원을 묶어 주는 격리 단위 |  |
+| 380 | `cs` | `process-memory-key-recovery` | 오프라인 재현이 안 되는 키를, 그 키를 든 실행 중 프로세스의 메모리를 읽어 회수하는 것 |  |
 | 127 | `cs` | `proxy-pattern` | 같은 타입의 대리자를 쥐게 해 실제 객체로 가는 길을 한 곳에 모으는 패턴 |  |
 | 128 | `cs` | `queue` | 한쪽으로 넣고 반대쪽으로 빼서 가장 오래된 것이 먼저 나오는 자료구조 |  |
 | 129 | `cs` | `read-side-effect` | 읽기라 이름 붙인 연산이 실제로 데이터를 고칠 때 생기는 문제 |  |
@@ -461,9 +464,11 @@ para/areas/
 | 350 | `db` | `surrogate-key` | 몇 번째인가가 아니라 몇 번인가를 데이터가 필드로 들고 있게 하는 것 |  |
 | 351 | `db` | `transaction` | 여러 문장을 전부 되거나 전부 안 되게 묶는 단위와 autocommit 경계 설정 |  |
 | 352 | `db` | `unique-key` | 기본키가 아니면서 값 중복을 막아야 하는 컬럼에 거는 유일성 제약 |  |
+| 381 | `db` | `write-ahead-logging` | 변경을 원본 대신 로그 파일에 먼저 써 두는 방식. 최신이 main 이 아니라 -wal 에 있을 수 있다 |  |
 | 353 | `infra` | `build` | 소스에서 배포 산출물이 나오기까지의 컴파일·의존성·테스트 단계 전체와 그걸 명령으로 묶는 도구 |  |
 | 354 | `infra` | `ci-cd` | 푸시 한 번으로 빌드부터 배포까지 잇는 GitHub Actions 자동화 절차 |  |
 | 355 | `infra` | `cold-start` | 준비된 상태 없이 시작한 실행이 준비 비용부터 다시 치르는 문제 |  |
+| 382 | `infra` | `code-signing` | 실행 파일에 발행자 서명을 붙여 OS 실행 방어막(SmartScreen·SAC·Gatekeeper)을 넘는 것 |  |
 | 356 | `infra` | `container` | 한 커널 위에서 게스트 OS 없이 격리돼 도는 프로세스 실행 단위 |  |
 | 357 | `infra` | `data-pipeline` | 한 저장소를 주기적으로 읽어 다듬고 다른 저장소로 옮기는 장치 |  |
 | 358 | `infra` | `distributed-lock` | 여러 프로세스·서버가 외부 공통 저장소에서 처리 권한을 조정해 공유 자원 동시 진입을 막는 락 |  |
