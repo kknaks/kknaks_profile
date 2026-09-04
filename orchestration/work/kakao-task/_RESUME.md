@@ -1,4 +1,17 @@
-# work-003-winapp-p1 — 재개 노트 (P1)
+# mykakao win_app — 재개 노트 (kakao-task 정본)
+
+> **정리(2026-09-04):** `work/` 아래 흩어져 있던 폴더(work-003 + 서브 + poc 3종)를 이 `kakao-task/` 하나로 합쳤다.
+> - `SUMMARY.md` — 무엇이 완료됐나 (P1~P3 + WORK-006/007/008 + 배포)
+> - `briefs.md` — 발주 브리프 19건 시간순 통합
+> - `mykakao-dist.zip` — 배포본 (mykakao.exe + ui/ + 사용법.txt)
+> - 코드는 별도 워크트리 `workspaces/mykakao/work-003-winapp-p1/win_app/`, 브랜치 `feat/win-app`.
+>
+> **현재 상태:** P1~P3·로그인상태·설정리디자인·사진수집 전부 done. 프로필 레포는 푸쉬됨.
+> 남은 것 — mykakao 코드 레포(`kknaksss/mykakao`) `feat/win-app` 푸쉬+PR(계정 토큰 필요), 이후 대화 패턴 추출.
+>
+> 아래는 P1 착수 시점의 원본 재개 노트(P1~P3만). 이후 이력은 SUMMARY·briefs 참조.
+
+---
 
 ## 발주 (2026-09-02)
 - 성격: **실제 코드** (spike 아님) — 커밋/PR 대상. Windows V2 P1.
