@@ -79,6 +79,16 @@
         "(read-only — 리포 파일 수정·생성 금지. 산출물은 브리프가 지정한 리뷰 리포트 파일 1개뿐)"
       ],
       "verify": "리뷰는 read-only — 코드를 고치지 않고 테스트도 돌리지 않는다. git diff <base>...HEAD + untracked 로 범위를 산정하고, 판정(PASS/WARN/FAIL)과 위반 목록(파일:줄 + 근거 규칙)을 리포트에 남긴다"
+    },
+    "winapp": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "winapp",
+      "roles_dir": "roles/mykakao/winapp",
+      "allowed_paths": [
+        "win_app/"
+      ],
+      "verify": "cd win_app && cargo build (경고는 허용, 에러 0) + cargo test <네가 만든 테스트> (전체 스위트만 금지 아님 — win_app 은 새 크레이트라 전부 네 것). cargo 는 ~/.cargo/bin. MSVC 링킹 자동. 검증은 1회만 — 통과하면 반복 금지. 실기동(카톡 대상)은 코디가 한다"
     }
   },
   "default_workers": [
