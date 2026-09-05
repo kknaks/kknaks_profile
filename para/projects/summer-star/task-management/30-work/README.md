@@ -38,3 +38,13 @@ work 문서를 만들거나 상태, owner, branch, 다음 작업이 바뀌면 �
 | Spec | Covering Work | 구현 상태 |
 |---|---|---|
 |  |  |  |
+
+## 1그룹 (2026-09-05 작성)
+
+| ID | Title | Status | Covers spec | Depends | Phase |
+|---|---|---|---|---|---|
+| WORK-001 | 스캐폴딩 | todo | SPEC-000 | — | 4 |
+| WORK-002 | 로그인·세션 | todo | SPEC-001 | WORK-001 | 3 |
+| WORK-003 | 업무 설정 | todo | SPEC-002 | WORK-002 | 3 |
+
+> **착수 전 선행**: `orchestration/config/projects/task-management.json` 에 `repos.code`(`github.com/kknaks/task_management` clone) 등록. 코드는 이 레포에 만들지 않는다.

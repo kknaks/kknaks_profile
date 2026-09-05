@@ -317,7 +317,7 @@ AppError (status=500, code)
 | BE-10 | **`schedule` 은 파생.** 쓰기 API 가 없고, 드래그는 원본(`task`·`meeting`)을 고친다 | DEC-005 §3 (2026-09-05 개정) |
 | BE-11 | AI 증분은 **즉시 push + 반영 배치 회차 동봉**. 버퍼링 없음 | DEC-003 §4 (2026-09-05) |
 | BE-12 | **회의 스트림 자동 재연결 없음** — 끊김은 설계한 실패 목록에 없다 | DEC-003 §7 |
-| BE-13 | 웹 우선. CORS 는 웹 개발 origin + 래핑 후 Tauri origin 명시 목록 | §C-4 · §C-5 |
+| BE-13 | **처음부터 Tauri 앱 창에서 개발**(§C-4 번복). CORS 는 **Tauri 웹뷰 origin 을 명시 목록**으로 두고, 브라우저로 열어볼 때만 개발 origin 을 추가한다. `*` 금지 | §C-4(번복) · §C-5 |
 
 ## Open Questions
 
