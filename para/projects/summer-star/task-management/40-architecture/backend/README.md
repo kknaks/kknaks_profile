@@ -226,6 +226,7 @@ AppError (status=500, code)
 | `invalid_credentials` | 401 | 로그인 실패. **횟수를 세지 않는다** | DEC-001 §4 |
 | `task_completion_blocked` | 422 | 결과자료도 완료 결과도 없이 완료 시도 | DEC-002 §4 |
 | `invalid_status_transition` | 409 | 전이 그래프 위반(완료→취소 등) | DEC-002 §4 |
+| `undo_not_available` | 409 | 상태 전이 실행취소 조건 미충족 — ① 마지막 로그가 상태 전이가 아니거나 ② 그 뒤 다른 변경이 있거나 ③ **4초가 지났다**. **시간 제한은 완료 토스트 수명과 맞춘 값**이다(SPEC-004) | SPEC-004 §4 |
 | `schedule_overlap` | 409 | 시간 있는 일정끼리 겹침. **종류 불문** | DEC-005 §7 |
 | `work_type_locked` | 409 | 기본 유형 3종의 삭제·개명 시도 | DEC-001 §4 |
 | `folder_not_empty` | 409 | 문서가 있는 폴더 삭제 시도 | DEC-004 §4 |
@@ -272,7 +273,7 @@ AppError (status=500, code)
 |---|---|---|
 | 인증 | `POST /api/auth/login` · `/refresh` · `/logout` | 토큰 3종을 본문으로 주고받는다. 쿠키 없음 |
 | 설정 | `/api/work-types` · `/api/projects` · `/api/profile` · `/api/careers` | 유형·프로젝트는 **삭제분을 목록에서 제외**하고, 참조 표시용 조회만 포함한다 |
-| 업무 | `/api/tasks` · `/api/tasks/{id}` · `/api/tasks/{id}/status` · 자식 컬렉션 | **상태 전이는 전용 엔드포인트**다 — 게이트 판정이 붙기 때문에 일반 PATCH 에 섞지 않는다. **기한(`dueDate`·`dueStartTime`·`dueEndTime`)은 업무 필드**라 일반 PATCH 로 바뀐다 |
+| 업무 | `/api/tasks` · `/api/tasks/{id}` · `/api/tasks/{id}/status` · **`/api/tasks/{id}/status/undo`** · 자식 컬렉션 | **상태 전이는 전용 엔드포인트**다 — 게이트 판정이 붙기 때문에 일반 PATCH 에 섞지 않는다. **섞이지 않는 것을 스키마가 강제한다**: `TaskUpdateDTO` 에 `status` 가 없어 일반 PATCH 로 상태를 보내면 **422** 다(우회 경로를 층에서 막는다). 실행취소는 **직전 전이를 되돌리고 그 로그를 지우는 유일한 경로**이고, 다른 어디서도 `task_log` 를 DELETE 하지 않는다. **기한(`dueDate`·`dueStartTime`·`dueEndTime`)은 업무 필드**라 일반 PATCH 로 바뀐다 |
 | 캘린더 | **`GET /api/schedules?from=&to=` 하나뿐 — 읽기 전용** | 기간은 **UTC** 로 받는다. 응답 항목은 `sourceType`·`sourceId` + 원본의 표시 정보(제목·유형 색·상태)를 함께 담는다 — 캘린더가 조인 결과를 그대로 그린다. **`PATCH /api/schedules/{id}` 는 없다**: 드래그는 원본을 고친다 → 업무면 `PATCH /api/tasks/{id}`, 회의면 `PATCH /api/meetings/{id}`. 겹침 차단(`schedule_overlap`)은 그 두 엔드포인트가 낸다(DEC-005 §3, 2026-09-05 개정) |
 | 회의록 | `/api/meetings` · `/api/meetings/{id}` · `/start` · `/end` · 줄·안건 컬렉션 | 상세 응답은 **트랙별로 갈라서** 준다 — **안건도 트랙별**이라 `human`·`ai`·`merged` 각각이 「안건 > 줄」 트리 하나다(2026-09-05). **일시(`startAt`·`endAt`)는 회의 필드**라 일반 PATCH 로 바뀐다 |
 | 회의 스트림 | `WS /api/meetings/{id}/stream` | 첫 프레임 인증 → 오디오 업 / 토큰·**AI 증분 + 반영 배치 회차** 다운. 자동 재연결 없음(§5-1) |
