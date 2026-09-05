@@ -61,6 +61,7 @@
 4. **부분 수정(PATCH)** 은 `XxxUpdateDTO` 의 필드를 `T | Unset` 로 두고 `model_dump(exclude_unset=True)` 결과만 채운다 — 「보내지 않음」과 「null 로 지움」을 구분해야 한다(인라인 자동 저장이 필드 단위로 오기 때문).
 5. **응답에 dto 를 그대로 쓰지 않는다.** `XxxItem.from_dto(dto)` 로 감싼다.
 6. Pydantic 설정은 전 모델 공통 — `alias_generator=to_camel`, `populate_by_name=True`, 라우터는 `response_model_by_alias=True`.
+7. **쿼리 파라미터는 `Query(alias="camelCase")` 를 손으로 적는다.** 위 `alias_generator` 는 **본문 모델에만** 걸리고 쿼리에는 걸리지 않는다 — 빠뜨리면 프론트가 보낸 `excludeId` 가 **조용히 무시되고 200 이 난다**(404 여야 할 자리에서). 실패가 안 보이는 종류라 목록·필터를 만들 때마다 확인한다. (2026-09-06, WORK-004 후보 검색에서 실제로 밟았다.)
 
 명명 — 요청 `XxxCreate` · `XxxUpdate` / 응답 단건 `XxxItem` · 목록 `XxxListResponse` / 내부 `XxxDTO` · `XxxCreateDTO` · `XxxUpdateDTO`.
 
