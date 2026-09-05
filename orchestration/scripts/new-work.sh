@@ -9,7 +9,9 @@
 # 하는 일 (idempotent):
 #   1. config 로드 + 워커 선택 → 필요한 repo 만 추림
 #   2. 각 repo canonical fetch (pull/checkout 안 함)
-#   3. 워크트리 생성 (use_worktree=false 면 canonical 을 그대로 씀)
+#   3. 워크트리 생성 (use_worktree=false 면 canonical 을 그대로 씀.
+#      워커에 workspace="coordinator" 가 있으면 그 워커는 워크트리 없이
+#      코디 워크트리(이 스크립트가 사는 리포 루트)에 직접 탄다 — 런북 §1 단일 레포형)
 #   4. work/<slug>/ 에 워커별 브리프를 **config 값이 채워진 채로** 생성 + _RESUME.md
 #   5. 워커별 `orca terminal create` 명령을 그대로 복사해 쓸 수 있게 출력
 set -euo pipefail
@@ -75,12 +77,42 @@ if [ -n "$COORD_HANDLE" ]; then
 fi
 
 WORK_DIR="$HERE/work/$SLUG"
+
+# ── 작업 단위 가드 (런북 §1) ─────────────────────────────────────────────────
+# 코디 세션 1개 = 작업 1개 = work/<slug>/ 1개. **새 작업은 사용자가 새 코디를 띄울 때만 생긴다.**
+# WORK 번호(WORK-001·002…)는 작업 단위가 아니라 한 작업 안의 단계다 — 그걸 slug 로 삼으면
+# 워크트리·브랜치가 WORK 마다 늘고, 새로 판 워크트리는 base 기준이라 앞 WORK 의 코드가 없다.
+# (2026-09-05 실제로 겪음 — 빈 트리에 워커를 태웠다.)
+#
+# 그래서: 이미 열린 작업이 있는데 **다른 slug** 로 부르면 멈춘다.
+OPEN_SLUGS="$(find "$HERE/work" -mindepth 1 -maxdepth 1 -type d ! -name '_archive' -exec basename {} \; 2>/dev/null | sort)"
+if [ -n "$OPEN_SLUGS" ] && ! printf '%s\n' "$OPEN_SLUGS" | grep -qx "$SLUG"; then
+  echo "ERROR: 진행 중인 작업이 있는데 다른 slug 로 불렀다 — 작업 단위 위반(런북 §1)" >&2
+  echo "" >&2
+  echo "  진행 중: $(printf '%s ' $OPEN_SLUGS)" >&2
+  echo "  요청한 slug: $SLUG" >&2
+  echo "" >&2
+  echo "  워커를 더 태우려는 것이라면 (대부분 이 경우다):" >&2
+  for s in $OPEN_SLUGS; do
+    echo "      $0 $PROJECT $s --workers <워커>" >&2
+  done
+  echo "" >&2
+  echo "  정말 새 작업이라면 먼저 마감한다:" >&2
+  echo "      scripts/archive-work.sh $PROJECT <slug>" >&2
+  exit 1
+fi
+
 mkdir -p "$WORK_DIR"
 
 # ── config 파싱 → 워커/repo 계획 (탭 구분 레코드로 셸에 넘김) ──────────────────
+COORD_ROOT="$(cd "$HERE/.." && pwd)"
 PLAN="$(PROJECT_JSON="$PROJECT_JSON" AGENTS_JSON="$CONFIG_DIR/agents.json" \
         WORKERS_CSV="$WORKERS_CSV" AGENT_OVERRIDES="$AGENT_OVERRIDES" SLUG="$SLUG" python3 - <<'PY'
 import json, os, sys
+
+# 필드 구분자는 탭이 아니라 \x1f(unit separator) — bash 의 IFS 탭은 whitespace 라
+# 연속 탭(빈 필드)을 하나로 합쳐 뒤 필드가 앞으로 밀린다. \x1f 는 비공백이라 안 합쳐진다.
+SEP = '\x1f'
 
 cfg = json.load(open(os.environ['PROJECT_JSON']))
 agents_cfg = json.load(open(os.environ['AGENTS_JSON']))
@@ -116,9 +148,15 @@ if unselected_overrides:
 use_wt = cfg.get('use_worktree', True)
 root = cfg.get('worktree_root', '')
 
-# 선택된 워커가 쓰는 repo 만
+# 선택된 워커가 쓰는 repo 만 — workspace="coordinator" 워커는 워크트리가 필요 없다
+for w in sel:
+    ws = cfg['workers'][w].get('workspace') or ''
+    if ws not in ('', 'coordinator'):
+        sys.exit("workspace 값은 'coordinator' 만 지원한다: worker=%s, 값=%s" % (w, ws))
 repo_keys = []
 for w in sel:
+    if cfg['workers'][w].get('workspace') == 'coordinator':
+        continue
     rk = cfg['workers'][w]['repo']
     if rk not in repo_keys:
         repo_keys.append(rk)
@@ -128,9 +166,9 @@ for rk in repo_keys:
     r = cfg['repos'][rk]
     name = slug + (r.get('worktree_suffix') or '')
     path = r['canonical_path'] if not use_wt else '%s/%s/%s' % (root, r['orca_name'], name)
-    out.append('\t'.join(['REPO', rk, r['orca_name'], r['canonical_path'],
-                          r['base'], r.get('pr_base', ''), name, path,
-                          '1' if use_wt else '0']))
+    out.append(SEP.join(['REPO', rk, r['orca_name'], r['canonical_path'],
+                         r['base'], r.get('pr_base', ''), name, path,
+                         '1' if use_wt else '0']))
 for w in sel:
     wk = cfg['workers'][w]
     agent_name = overrides.get(w) or wk.get('agent') or default_agent
@@ -141,15 +179,17 @@ for w in sel:
         sys.exit("agents.json 에 없는 agent: %s (worker=%s)" % (agent_name, w))
     if a.get('retired'):
         sys.exit("폐기된 agent 를 골랐다: %s (%s)" % (agent_name, a['retired']))
-    out.append('\t'.join(['WORKER', w, wk['repo'], wk.get('brief_suffix') or w,
-                          wk['roles_dir'], ','.join(wk.get('allowed_paths') or []),
-                          agent_name, a['command'], (wk.get('verify') or '')]))
+    r = cfg['repos'][wk['repo']]
+    out.append(SEP.join(['WORKER', w, wk['repo'], wk.get('brief_suffix') or w,
+                         wk['roles_dir'], ','.join(wk.get('allowed_paths') or []),
+                         agent_name, a['command'], (wk.get('verify') or ''),
+                         wk.get('workspace') or '', r['base'], r.get('pr_base', '')]))
 print('\n'.join(out))
 PY
 )" || die "config 파싱 실패"
 
 echo "▶ 프로젝트 $PROJECT / 작업 $SLUG"
-echo "$PLAN" | awk -F'\t' '$1=="WORKER"{printf "  워커 %-9s agent=%-7s repo=%-6s roles=%s\n", $2, $7, $3, $5}'
+echo "$PLAN" | awk -F$'\x1f' '$1=="WORKER"{printf "  워커 %-9s agent=%-7s repo=%-6s roles=%s\n", $2, $7, $3, $5}'
 
 # ── 2·3. fetch + 워크트리 ────────────────────────────────────────────────────
 declare -a REPO_LINES=()
@@ -164,8 +204,10 @@ resolved_field() {  # resolved_field <repo_key> <field_no(2..5)>
   printf '%s\n' "$RESOLVED" | awk -F'\t' -v k="$1" -v n="$2" '$1==k{print $n; exit}'
 }
 
-for line in "${REPO_LINES[@]}"; do
-  IFS=$'\t' read -r _ rk orca_name canonical base pr_base wt_name wt_path use_wt <<< "$line"
+# 모든 워커가 workspace="coordinator" 면 REPO_LINES 가 빈다 — bash 3.2 + set -u 에서
+# 빈 배열 확장이 unbound variable 로 죽으므로 ${arr[@]+...} 가드가 필요하다.
+for line in ${REPO_LINES[@]+"${REPO_LINES[@]}"}; do
+  IFS=$'\x1f' read -r _ rk orca_name canonical base pr_base wt_name wt_path use_wt <<< "$line"
   git -C "$canonical" rev-parse --git-dir >/dev/null 2>&1 \
     || die "$rk canonical 이 git 저장소가 아니다: $canonical"
 
@@ -225,10 +267,18 @@ echo "▶ work/$SLUG"
 BRIEFS=""; TERMCMDS=""
 while IFS= read -r line; do
   case "$line" in WORKER*) ;; *) continue ;; esac
-  IFS=$'\t' read -r _ wname rk suffix roles_dir allowed_csv agent_name agent_cmd verify <<< "$line"
-  wt_path="$(resolved_field "$rk" 2)"
-  wt_base="$(resolved_field "$rk" 4)"
-  wt_prbase="$(resolved_field "$rk" 5)"
+  IFS=$'\x1f' read -r _ wname rk suffix roles_dir allowed_csv agent_name agent_cmd verify ws w_base w_prbase <<< "$line"
+  if [ "$ws" = "coordinator" ]; then
+    # 코디 워크트리 탑승 (런북 §1 단일 레포형) — 워커 전용 워크트리 없음.
+    # 산출물이 코디 트리에 바로 생기고, base/PR 정보는 config repo 값을 그대로 쓴다.
+    wt_path="$COORD_ROOT"
+    wt_base="$w_base"
+    wt_prbase="$w_prbase"
+  else
+    wt_path="$(resolved_field "$rk" 2)"
+    wt_base="$(resolved_field "$rk" 4)"
+    wt_prbase="$(resolved_field "$rk" 5)"
+  fi
   dst="$WORK_DIR/$SLUG-$suffix-brief.md"
   BRIEFS="$BRIEFS $SLUG-$suffix-brief.md"
   TERMCMDS="$TERMCMDS
