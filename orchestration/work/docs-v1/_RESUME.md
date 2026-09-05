@@ -94,7 +94,9 @@
 | backend (WORK-004 후보 표면) | `term_27cfe374-d8ad-41b0-a814-04f142c5626e` | `task_43cc89b19825` | `ctx_6dec49ec6b57` | `docs-v1-work004-be-fix-brief.md` | 완료 — 커밋 `70924d7`, 컬렉션 표면 전환·pytest 80 |
 | backend (WORK-004 scope·total) | `term_27cfe374-d8ad-41b0-a814-04f142c5626e` | `task_be9dfadef1b9` | `ctx_67d31922b6b5` | `docs-v1-work004-scope-be-brief.md` | 완료 — 커밋 `9897ff5`, pytest 92 · scope 별 total 2/39/41 |
 | frontend (WORK-004 칩 3) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_5cd1c8a8c416` | `ctx_76a2f51cc313` | `docs-v1-work004-chips-fe-brief.md` | 완료 — 커밋 `99a45e7`, 칩별 4/40/42건 실측 |
-| reviewer (WORK-004) | `term_7bdbe08f-3921-4838-af97-65a981dc702c` | `task_117e21ab82e0` | `ctx_11aeef4eac46` | `docs-v1-work004-review-brief.md` | **진행** — 드로어 폭 소유권·상태 전이 뒷문 중점 |
+| reviewer (WORK-004) | `term_7bdbe08f-3921-4838-af97-65a981dc702c` | `task_117e21ab82e0` | `ctx_11aeef4eac46` | `docs-v1-work004-review-brief.md` | 완료 — **FAIL 4 · WARN 10 · 공백 7**. 드로어 규격·게이트 뒷문 두 축은 PASS |
+| backend (WORK-004 FAIL 수정) | `term_27cfe374-d8ad-41b0-a814-04f142c5626e` | `task_7a39c670d5c6` | `ctx_a063e8f064e1` | `docs-v1-work004-fix-be-brief.md` | **진행** — 할일 응답 형태·기한 검증·연관 404 |
+| frontend (WORK-004 FAIL 수정) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_5621f6b473fd` | `ctx_06853a01ece8` | `docs-v1-work004-fix-fe-brief.md` | **진행** — 상세 헤더 편집 4종·캐시 오염·WARN 7 |
 | architect (WP 5건) | `term_27b5a8ac-c826-4d41-aa07-f3e8e7c99436` | `task_9a711335fc43` | `ctx_f7e9d11792c5` | `docs-v1-wp2-brief.md` | 완료 — 커밋 `0fbf95a`, WORK-004~008 |
 | frontend (WORK-003 FAIL 수정) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_738950d797de` | `ctx_b5b661721471` | `docs-v1-work003-fix-brief.md` | 완료 — 커밋 `61ac762`, 6초 잔존·재시도 0 실측 |
 | reviewer (WORK-003) | `term_7bdbe08f-3921-4838-af97-65a981dc702c` | `task_d624e85e4787` | `ctx_bea03af664a2` | `docs-v1-work003-review-brief.md` | 완료 — FAIL 1 · WARN 7 · 공백 12 |
@@ -122,6 +124,9 @@
 
 ## 5. 이력 (최신이 위)
 
+- `2026-09-06` **WORK-004 검수 FAIL 4 · WARN 10 · 공백 7** — 브리프가 지목한 두 축(드로어 폭 소유권·게이트 뒷문)은 PASS. 대신 **상세 헤더가 표시 전용**이라 제목·기한·유형·프로젝트를 못 고치는 것(F-1~3, Acceptance 4항목 실행 불가)과 **할일 응답 타입 불일치로 인한 상세 캐시 오염**(F-4)을 잡았다. 문서 공백 7건을 먼저 닫고 양쪽 수정 발주
+- `2026-09-06` **자식 컬렉션 응답 형태를 계약으로 확정** — 쓰기 표면은 전부 `TaskDetail`, 삭제만 204, 없는 자식 삭제는 404. SPEC 이 비워 둔 자리라 구현이 넷 중 셋만 그렇게 했고 할일만 달랐다. **응답 형태는 계약이지 구현 재량이 아니다**
+- `2026-09-06` **§8-2 코드 표에 「절차」를 못박음** — spec 이 새 코드를 정하면 그 work 의 검수에서 코디가 반영한다. 같은 공백이 세 검수 연속으로 올라왔다
 - `2026-09-06` **WORK-004 계약 공백 2건을 닫음** — ① 연관업무 후보를 **컬렉션 표면**으로(생성 드로어에는 자기 id 가 없다) ② 필터 칩 3 의 대응물 **`scope`·`total`** 신설(칩은 필터인데 서버엔 정렬 힌트뿐이었다). 둘 다 SPEC-003 §4 갱신 후 발주
 - `2026-09-06` 아키텍처 backend §3 에 **쿼리 alias 규칙** 추가 — `alias_generator` 는 본문 모델에만 걸린다. 빠뜨리면 파라미터가 조용히 무시되고 200 이 난다(WORK-004 에서 실제로 밟음, WORK-005 목록·필터가 같은 자리)
 - `2026-09-03` **Phase 1 완료** — 6영역 BASE/DEC 작성. 논의로 닫고 코디가 직접 작성(발주 없음)
