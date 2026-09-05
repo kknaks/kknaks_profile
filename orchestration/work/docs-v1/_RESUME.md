@@ -89,7 +89,9 @@
 
 | 워커 | handle | task_id | dispatch_id | 브리프 | 상태 |
 |---|---|---|---|---|---|
-| architect ② | `term_da8c7759-cf0d-4d3f-bdb5-fba8798cf3ce` | `task_95fed4429873` | `ctx_623f62aa44fd` | `docs-v1-arch2-brief.md` | **진행** — 프론트 + ① 정정 |
+| architect spec② | `term_da8c7759-cf0d-4d3f-bdb5-fba8798cf3ce` | `task_e07df0fc245a` | `ctx_2f06821688a3` | `docs-v1-spec2-brief.md` | **진행** — SPEC-003·004·005 |
+| architect spec① | (같은 터미널) | `task_41b985520192` | `ctx_ae07aac081a1` | `docs-v1-spec1-brief.md` | 완료·검증 PASS |
+| architect 아키텍처② | (같은 터미널) | `task_95fed4429873` | `ctx_623f62aa44fd` | `docs-v1-arch2-brief.md` | 완료·검증 PASS |
 | architect ① | (같은 터미널) | `task_b3fa2aca8cc3` | `ctx_4d1e7388e22f` | `docs-v1-arch-brief.md` | 완료·검증 PASS |
 | designer | (종료) | `task_319a3ee765d4` | `ctx_cb4ec3ab8c8a` | `docs-v1-design-brief.md` | 완료·검증 PASS |
 

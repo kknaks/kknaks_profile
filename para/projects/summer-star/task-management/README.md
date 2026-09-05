@@ -15,7 +15,7 @@ Tauri 기반 개인 업무 관리 앱. 프론트 Next.js, 백엔드 FastAPI, 타
 | 항목 | 경로 |
 |---|---|
 | Remote | `github.com/kknaks/task_management` |
-| Local clone | 미정 — 스캐폴딩 시 기입 |
+| Local clone | **별도 clone 예정**(2026-09-05 확정) — `kknaks/task_management` 를 받고 config 에 `repos.code` 추가. 이 레포의 `app/back` 은 kknaks_profile 제품이라 쓰지 않는다. 문서/코드 PR 은 레포부터 분리 |
 | 문서 SoT | `para/projects/summer-star/task-management/` |
 
 ## 현재 상태
@@ -25,7 +25,7 @@ Tauri 기반 개인 업무 관리 앱. 프론트 Next.js, 백엔드 FastAPI, 타
 | Design | `00-design/` 완성 패키지(dc.html 8종 + md 00~15) + 프론트 구조 분석 리포트 | 미설계 화면·정정 반영 |
 | Baseline | **BASE-001~006 raw** (인증·설정 / 내 업무 / 회의록 / 문서함 / 캘린더 / 메시지함) | 사용자 리뷰 → accepted |
 | Decision | **DEC-001~006 proposed** — v1 6영역 정책 완비 | OQ 30건 답(대부분 디자인) → accepted |
-| Spec | 없음 | **게이트 3건**(Tauri export·shadcn·좌표) + OQ 뒤. SPEC-000 공통 기반부터 |
+| Spec | **SPEC-000~002 draft**(스캐폴딩·로그인/세션·업무 설정) | 배치 ②(003~005 내 업무·문서함) 진행 중 → ③ 회의록 → ④ 캘린더·설정·메시지함 |
 | Work | 없음 | spec 뒤 — 코드 스캐폴딩이 첫 work |
 
 ## 문서 맵
