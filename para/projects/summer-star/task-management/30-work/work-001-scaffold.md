@@ -240,6 +240,38 @@ links:
   - [ ] 새 clone + `.env.example` 복사만으로 **Phase 1~4 절차가 처음부터 재현**된다(README 대로)
 - **완료 증거**: 미작성
 
+## 실행 — 앱 띄우고 눈으로 확인하기
+
+**작업 워크트리**: `/Users/kknaks/orca/workspaces/task_management/work-001-scaffold`
+(코드 레포 `kknaks/task_management` 의 워크트리. 문서는 별도 레포다)
+
+```bash
+cd /Users/kknaks/orca/workspaces/task_management/work-001-scaffold
+
+make front-install   # 최초 1회 — 프론트 의존성
+make up              # ① Postgres + API (첫 실행이면 이미지 빌드 시간)
+make migrate         # ② 스키마를 head 까지
+make seed            # ③ 시드 계정 1 + 기본 유형 3종 (멱등 — 여러 번 돌려도 안전)
+make app             # ④ Tauri 앱 창 — **첫 실행은 Rust 컴파일로 몇 분**, 이후엔 빠르다
+```
+
+`make help` 로 전체 명령을 본다. 자주 쓰는 것: `make logs`(API 로그) · `make ps`(컨테이너 상태) ·
+`make down`(내리기, 데이터는 남는다) · `make reset`(볼륨째 초기화) · `make test`(백엔드 테스트).
+
+### 앱 창에서 보이는 것 (WORK-001 기준)
+
+화면은 **연결 확인 하나뿐**이다 — 로그인·업무 화면은 WORK-002·003 이다.
+
+| 해보는 것 | 기대 |
+|---|---|
+| 그냥 띄운다 | **「서버에 연결되었습니다」** + API 주소 + 버전 |
+| API 만 내린다 (`docker compose -f docker-compose.local.yml stop back`) | 「서버가 응답하지 않습니다」 |
+| DB 만 내린다 (`… stop postgres`) | **503 `db_unavailable`** 사유 표시 |
+| 창을 1280px 아래로 줄인다 | 「창이 너무 좁습니다 · 현재 ○○px」 |
+| `.env` 의 `CORS_ORIGINS` 에서 앱 origin 을 뺀다 | 「요청이 서버에서 거부되었습니다(CORS)」 — 원복하면 재연결 |
+
+**틀린 동작의 예**: DB 를 내렸는데 「정상」이 뜨면 실패다. 헬스체크가 DB 왕복을 포함해야 한다.
+
 ## Pre-deploy Check
 
 이 work 는 로컬 개발 환경만 세운다. 배포 대상이 없으므로 운영 리스크 체크는 아래 셋뿐이다.
