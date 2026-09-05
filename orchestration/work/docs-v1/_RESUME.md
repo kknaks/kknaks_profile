@@ -89,7 +89,11 @@
 | frontend (WORK-001 P3·4) | `term_f01dc2f5-b55c-4016-b40a-93628c497a25` | `task_7e2bf4726de0` | `ctx_7d3baf2cf47a` | `docs-v1-work001-fe-brief.md` | 완료 — 커밋 `84882c0`, 앱 창 E2E 통과 |
 | reviewer (WORK-001) | `term_82e0a355-3e75-47b2-8e8f-2d03e3458c47` | `task_5ae8b0e0bc24` | `ctx_00c0163ca443` | `docs-v1-work001-review-brief.md` | 완료 — FAIL 0 · WARN 3 · 문서 공백 18 |
 | frontend (WORK-003 P2·3) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_1d2587dd689b` | `ctx_e15797bfefbc` | `docs-v1-work003-fe-brief.md` | **진행** — 팔레트·공용 컴포넌트·설정 화면 |
-| backend (WORK-004 P1~3) | `term_27cfe374-d8ad-41b0-a814-04f142c5626e` | `task_3f9640623be2` | `ctx_470ee3f4a2e9` | `docs-v1-work004-be-brief.md` | **진행** — 업무 도메인·본체 API·자식 컬렉션 |
+| backend (WORK-004 P1~3) | `term_27cfe374-d8ad-41b0-a814-04f142c5626e` | `task_3f9640623be2` | `ctx_470ee3f4a2e9` | `docs-v1-work004-be-brief.md` | 완료 — 업무 도메인·본체 API·자식 컬렉션 |
+| frontend (WORK-004 P4~6) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_2c1d45b0afd9` | `ctx_b78cc4317744` | `docs-v1-work004-fe-brief.md` | 완료 — 커밋 `7550e1b`, DrawerFrame 840 단일 소유 |
+| backend (WORK-004 후보 표면) | `term_27cfe374-d8ad-41b0-a814-04f142c5626e` | `task_43cc89b19825` | `ctx_6dec49ec6b57` | `docs-v1-work004-be-fix-brief.md` | 완료 — 커밋 `70924d7`, 컬렉션 표면 전환·pytest 80 |
+| backend (WORK-004 scope·total) | `term_27cfe374-d8ad-41b0-a814-04f142c5626e` | `task_be9dfadef1b9` | `ctx_67d31922b6b5` | `docs-v1-work004-scope-be-brief.md` | **진행** — U-8 칩의 서버 대응물 |
+| frontend (WORK-004 칩 3) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_5cd1c8a8c416` | `ctx_76a2f51cc313` | `docs-v1-work004-chips-fe-brief.md` | **진행** — 필터 칩·카운트 |
 | architect (WP 5건) | `term_27b5a8ac-c826-4d41-aa07-f3e8e7c99436` | `task_9a711335fc43` | `ctx_f7e9d11792c5` | `docs-v1-wp2-brief.md` | 완료 — 커밋 `0fbf95a`, WORK-004~008 |
 | frontend (WORK-003 FAIL 수정) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_738950d797de` | `ctx_b5b661721471` | `docs-v1-work003-fix-brief.md` | 완료 — 커밋 `61ac762`, 6초 잔존·재시도 0 실측 |
 | reviewer (WORK-003) | `term_7bdbe08f-3921-4838-af97-65a981dc702c` | `task_d624e85e4787` | `ctx_bea03af664a2` | `docs-v1-work003-review-brief.md` | 완료 — FAIL 1 · WARN 7 · 공백 12 |
@@ -117,6 +121,8 @@
 
 ## 5. 이력 (최신이 위)
 
+- `2026-09-06` **WORK-004 계약 공백 2건을 닫음** — ① 연관업무 후보를 **컬렉션 표면**으로(생성 드로어에는 자기 id 가 없다) ② 필터 칩 3 의 대응물 **`scope`·`total`** 신설(칩은 필터인데 서버엔 정렬 힌트뿐이었다). 둘 다 SPEC-003 §4 갱신 후 발주
+- `2026-09-06` 아키텍처 backend §3 에 **쿼리 alias 규칙** 추가 — `alias_generator` 는 본문 모델에만 걸린다. 빠뜨리면 파라미터가 조용히 무시되고 200 이 난다(WORK-004 에서 실제로 밟음, WORK-005 목록·필터가 같은 자리)
 - `2026-09-03` **Phase 1 완료** — 6영역 BASE/DEC 작성. 논의로 닫고 코디가 직접 작성(발주 없음)
 - `2026-09-03` 전체 계획(§0) 합의, _RESUME 에 등재
 - `2026-09-03` 작업 단위 교정 — slug 2개(design-frontend-structure·auth-docs)를 docs-v1 로 통합 (사용자 지적)
