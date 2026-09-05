@@ -95,8 +95,10 @@
 | backend (WORK-004 scope·total) | `term_27cfe374-d8ad-41b0-a814-04f142c5626e` | `task_be9dfadef1b9` | `ctx_67d31922b6b5` | `docs-v1-work004-scope-be-brief.md` | 완료 — 커밋 `9897ff5`, pytest 92 · scope 별 total 2/39/41 |
 | frontend (WORK-004 칩 3) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_5cd1c8a8c416` | `ctx_76a2f51cc313` | `docs-v1-work004-chips-fe-brief.md` | 완료 — 커밋 `99a45e7`, 칩별 4/40/42건 실측 |
 | reviewer (WORK-004) | `term_7bdbe08f-3921-4838-af97-65a981dc702c` | `task_117e21ab82e0` | `ctx_11aeef4eac46` | `docs-v1-work004-review-brief.md` | 완료 — **FAIL 4 · WARN 10 · 공백 7**. 드로어 규격·게이트 뒷문 두 축은 PASS |
-| backend (WORK-004 FAIL 수정) | `term_27cfe374-d8ad-41b0-a814-04f142c5626e` | `task_7a39c670d5c6` | `ctx_a063e8f064e1` | `docs-v1-work004-fix-be-brief.md` | **진행** — 할일 응답 형태·기한 검증·연관 404 |
-| frontend (WORK-004 FAIL 수정) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_5621f6b473fd` | `ctx_06853a01ece8` | `docs-v1-work004-fix-fe-brief.md` | **진행** — 상세 헤더 편집 4종·캐시 오염·WARN 7 |
+| backend (WORK-004 FAIL 수정) | `term_27cfe374-d8ad-41b0-a814-04f142c5626e` | `task_7a39c670d5c6` | `ctx_a063e8f064e1` | `docs-v1-work004-fix-be-brief.md` | 완료 — 커밋 `ddb53d2`, pytest 237 |
+| frontend (WORK-004 FAIL 수정) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_5621f6b473fd` | `ctx_06853a01ece8` | `docs-v1-work004-fix-fe-brief.md` | 완료 — 커밋 `b46771d`, 앱 창 6항목 + 결함 1건 추가 발견·수정 |
+| frontend (WORK-004 U-7 마무리) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_5458181ac7ab` | `ctx_9625b1db052f` | `docs-v1-work004-attach-notice-brief.md` | **진행** — 첨부·연관 쓰기 실패 표시 |
+| backend (WORK-005 P1·2) | `term_27cfe374-d8ad-41b0-a814-04f142c5626e` | `task_c949630b9ce4` | `ctx_b86bdef9d3ac` | `docs-v1-work005-be-brief.md` | **진행** — 상태 전이·완료 게이트·목록 조회 |
 | architect (WP 5건) | `term_27b5a8ac-c826-4d41-aa07-f3e8e7c99436` | `task_9a711335fc43` | `ctx_f7e9d11792c5` | `docs-v1-wp2-brief.md` | 완료 — 커밋 `0fbf95a`, WORK-004~008 |
 | frontend (WORK-003 FAIL 수정) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_738950d797de` | `ctx_b5b661721471` | `docs-v1-work003-fix-brief.md` | 완료 — 커밋 `61ac762`, 6초 잔존·재시도 0 실측 |
 | reviewer (WORK-003) | `term_7bdbe08f-3921-4838-af97-65a981dc702c` | `task_d624e85e4787` | `ctx_bea03af664a2` | `docs-v1-work003-review-brief.md` | 완료 — FAIL 1 · WARN 7 · 공백 12 |
@@ -124,6 +126,8 @@
 
 ## 5. 이력 (최신이 위)
 
+- `2026-09-06` **WORK-004 완료** — 검수 FAIL 4 · WARN 10 전부 수정(백 `ddb53d2` pytest 237 / 프론트 `b46771d` 61통과). 프론트가 수정 검증 중 **결함 1건을 더 찾았다** — 할일·메모가 `void mutateAsync` 로 결과를 안 받아 낙관 반영이 되돌아가기만 하고 아무 말도 안 남았다. **되돌아가기만 하면 사용자는 체크가 안 눌린 줄 안다**
+- `2026-09-06` **U-7 실패 표시는 낙관적 갱신 여부와 별개 축** — 낙관적이면 「되돌린다 + 말한다」, 아니면 「안 바뀐다 + 말한다」. 어느 쪽이든 말은 해야 한다. 첨부·연관 네 자리에 남은 공백을 마저 닫는다
 - `2026-09-06` **WORK-004 검수 FAIL 4 · WARN 10 · 공백 7** — 브리프가 지목한 두 축(드로어 폭 소유권·게이트 뒷문)은 PASS. 대신 **상세 헤더가 표시 전용**이라 제목·기한·유형·프로젝트를 못 고치는 것(F-1~3, Acceptance 4항목 실행 불가)과 **할일 응답 타입 불일치로 인한 상세 캐시 오염**(F-4)을 잡았다. 문서 공백 7건을 먼저 닫고 양쪽 수정 발주
 - `2026-09-06` **자식 컬렉션 응답 형태를 계약으로 확정** — 쓰기 표면은 전부 `TaskDetail`, 삭제만 204, 없는 자식 삭제는 404. SPEC 이 비워 둔 자리라 구현이 넷 중 셋만 그렇게 했고 할일만 달랐다. **응답 형태는 계약이지 구현 재량이 아니다**
 - `2026-09-06` **§8-2 코드 표에 「절차」를 못박음** — spec 이 새 코드를 정하면 그 work 의 검수에서 코디가 반영한다. 같은 공백이 세 검수 연속으로 올라왔다
