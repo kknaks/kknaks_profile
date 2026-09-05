@@ -278,6 +278,23 @@ Out of scope:
 | DELETE | `/api/tasks/{id}/attachments/{attachmentId}` | 첨부 제거 | 세션 |
 | POST | `/api/tasks/{id}/relations` | 연관업무 연결(여러 건) | 세션 |
 | DELETE | `/api/tasks/{id}/relations/{otherTaskId}` | 연관 해제 | 세션 |
+| GET | `/api/tasks/relations/candidates` | **연관업무 후보 검색**(U-8 팝오버의 데이터원) | 세션 |
+
+**`GET /api/tasks/relations/candidates`** — 2026-09-06 신설(구현 중 드러난 공백)
+
+U-1 은 **생성 드로어에도** 「업무 연결」을 두는데, 그 시점에는 **자기 id 가 없다.** 그래서 후보 검색은
+업무에 매달리지 않는 **컬렉션 표면**이고, 정렬 근거를 **쿼리로 받는다.**
+
+| 파라미터 | 필수 | 뜻 |
+|---|---|---|
+| `keyword` | ✖ | 제목 검색. 없으면 기본 정렬만 |
+| `excludeId` | ✖ | **상세 드로어**가 자기 id 를 준다. 그 업무와 **이미 연결된 것도 함께 제외**한다. 생성 드로어는 보내지 않는다 |
+| `projectId` · `dueDate` | ✖ | 정렬 근거. **상세 드로어는 `excludeId` 만 보내고 서버가 그 업무 값을 쓴다.** 생성 드로어는 **폼에 입력 중인 값**을 보낸다 |
+
+정렬은 그대로 — **같은 프로젝트 → 기한 ±7일 → 최근 수정**, 최대 20건. 삭제된 업무는 제외.
+
+> 기존 `GET /api/tasks/{id}/relations/candidates` 는 **이것으로 대체한다.** 표면을 둘로 두면
+> 생성·상세가 다른 코드를 타고 정렬 규칙이 갈린다.
 
 - **상태 전이는 이 표에 없다** — 전용 엔드포인트이고 SPEC-004 가 정의한다(`backend/README.md` §10 「상태 전이는 전용 엔드포인트」)
 - **기한은 업무 필드**라 일반 `PATCH` 로 바뀐다. `schedule` 을 직접 쓰는 API 는 없다(DEC-005 §3 · BE-10)
