@@ -51,7 +51,8 @@
 - [x] **아키텍처 ①** — system · database(+domains 5) · backend 8문서. 검증 PASS, 커밋 `dea0e8f`
 - [ ] **아키텍처 ② 발주** — frontend (①의 schema 계약 `backend §10` 을 받아서). 같은 워커 터미널 재사용 가능
 - [ ] 그 다음 Phase 2 — 영역별 SPEC
-- [!] **architect OQ 10건** 미처리 — SYS-OQ-1~3 · DB-OQ-1~4 · BE-OQ-1~3. ②와 병행해 닫을 것
+- [x] **architect OQ 10건 전부 해소** (커밋 3263eeb)
+- [!] **아키텍처 DB 문서 수정 필요** — schedule 이 파생으로 바뀌었는데(f6c9ec6) ERD·도메인 문서는 아직 「단독 소유」로 되어 있다. ② 발주 브리프에 정정 지시 포함할 것
 - [!] WKWebView 마이크 확인은 **Tauri 래핑 시점으로 연기**(웹 getUserMedia 는 사내 제품에서 검증됨)
 - [!] 미설계 화면은 아키텍처·spec 을 막지 않는다 — 화면이 필요한 절만 비워 두고 나머지를 쓴다
 - [!] 코디 할 일: **WKWebView 마이크 스파이크**(DEC-003 OQ-3) — spec 전
