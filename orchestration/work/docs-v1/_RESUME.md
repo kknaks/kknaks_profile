@@ -100,7 +100,9 @@
 | frontend (WORK-004 U-7 마무리) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_5458181ac7ab` | `ctx_9625b1db052f` | `docs-v1-work004-attach-notice-brief.md` | 완료 — 커밋 `c6ba429`, 해제 컨트롤 신설·404 분기 |
 | backend (WORK-005 P1·2) | `term_27cfe374-d8ad-41b0-a814-04f142c5626e` | `task_c949630b9ce4` | `ctx_b86bdef9d3ac` | `docs-v1-work005-be-brief.md` | 완료 — 커밋 `46fe87a`, pytest 291 · 리비전 0003 추가 |
 | frontend (WORK-005 P3·4) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_aa0ea21b217c` | `ctx_b5a8899aba10` | `docs-v1-work005-fe-brief.md` | 완료 — 커밋 `ad2d4a5`, 71통과 · **DnD 드롭 캡처 미완** |
-| reviewer (WORK-005) | `term_7bdbe08f-3921-4838-af97-65a981dc702c` | `task_3ee2cc39983c` | `ctx_e0896b768dec` | `docs-v1-work005-review-brief.md` | **진행** — 게이트 단일 판정·낙관적 갱신 반대 축 |
+| reviewer (WORK-005) | `term_7bdbe08f-3921-4838-af97-65a981dc702c` | `task_3ee2cc39983c` | `ctx_e0896b768dec` | `docs-v1-work005-review-brief.md` | 완료 — **FAIL 2 · WARN 7 · 공백 7**. 핵심 축 전부 PASS |
+| backend (WORK-005 수정) | `term_27cfe374-d8ad-41b0-a814-04f142c5626e` | `task_7e9027296beb` | `ctx_1f6914e14306` | `docs-v1-work005-fix-be-brief.md` | **진행** — statusCounts·unfilteredTotal·상세 overdueDays |
+| frontend (WORK-005 수정) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_00b335d95244` | `ctx_5e7bf7c24dea` | `docs-v1-work005-fix-fe-brief.md` | **진행** — 기간 경계·칸반 데이터 범위·WARN 6 |
 | architect (WP 5건) | `term_27b5a8ac-c826-4d41-aa07-f3e8e7c99436` | `task_9a711335fc43` | `ctx_f7e9d11792c5` | `docs-v1-wp2-brief.md` | 완료 — 커밋 `0fbf95a`, WORK-004~008 |
 | frontend (WORK-003 FAIL 수정) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_738950d797de` | `ctx_b5b661721471` | `docs-v1-work003-fix-brief.md` | 완료 — 커밋 `61ac762`, 6초 잔존·재시도 0 실측 |
 | reviewer (WORK-003) | `term_7bdbe08f-3921-4838-af97-65a981dc702c` | `task_d624e85e4787` | `ctx_bea03af664a2` | `docs-v1-work003-review-brief.md` | 완료 — FAIL 1 · WARN 7 · 공백 12 |
@@ -128,6 +130,9 @@
 
 ## 5. 이력 (최신이 위)
 
+- `2026-09-06` **WORK-005 검수 FAIL 2 · WARN 7 · 공백 7** — 게이트 단일화 4종·낙관적 갱신 반대 방향·마이그레이션 0003 은 전부 PASS(검수자가 정적 검사를 직접 재현). FAIL 둘은 **실사용에서만 터지고 테스트로는 안 잡히는** 종류다: ① 프론트가 기간 `to` 를 「말일」로 보내는데 서버는 끝 경계를 열어 둬 **말일 기한 업무가 통째로 사라진다**(서버 기본값·백엔드 테스트 헬퍼는 「다음 달 1일」이라 테스트가 못 잡는다) ② 칸반이 리스트 페이지 크기 12 를 물려받는데 페이지네이션이 리스트 전용
+- `2026-09-06` **칸반 데이터 범위를 확정**(G-3) — 페이지를 쓰지 않고 그 달 전체, 상한 500, 넘으면 안내. 응답에 `statusCounts`·`unfilteredTotal` 신설. **완료 컬럼의 「8월 12」를 받아온 카드로 세면 「그 달 완료」가 아니라 「지금 받아온 것 중 완료」가 된다**
+- `2026-09-06` **SPEC 을 낮춘 것 2건**(U-4) — 드래그 고스트 그림자와 삽입 가이드선. 비용이 아니라 **약속이 지켜지지 않아서**다: 고스트는 macOS·Windows 가 다르게 그리고, 가이드선은 순서를 저장하지 않는데 위치를 약속한다
 - `2026-09-06` **WORK-005 구현 완료** — Phase 3·4(`ad2d4a5`)로 세 진입점이 `useTaskStatus` 훅 하나를 지난다(정적 검사로 호출처 1곳 증명). **남은 미완 1건: 칸반 DnD 드롭의 네트워크 캡처** — macOS 네이티브 드래그 세션이 합성 이벤트를 안 먹어 자동으로는 성사되지 않는다(탭·타이밍·커서 워프 전부 실패). **사람 손 1회면 닫힌다** — Done Criteria 의 「캡처 3장」 중 하나다
 - `2026-09-06` **WORK-005 Phase 1·2 완료**(커밋 `46fe87a`, pytest 291). **WP 의 「마이그레이션 없음」을 벗어나 리비전 0003 추가** — 실행취소가 「마지막 로그가 전이인가 + 직전 상태」를 판정해야 하는데 한국어 로그 본문 되파싱은 문구가 바뀌면 조용히 깨진다. `cancelledAt` 도 저장될 곳이 없어 취소 전이 로그 시각에서 파생한다. ERD T-8-a·T-8-b 반영
 - `2026-09-06` **WORK-004 완전 종료** — 첨부·연관 U-7 마무리(`c6ba429`)에서 **연관 해제 컨트롤이 아예 없던 것**과 **첨부 팝오버가 실패에도 입력을 비우던 것**을 추가로 잡았다. 전자는 SPEC-003 U-8 갱신(`632bd93`)으로 닫았다 — 서버 DELETE 표면은 §4 에 처음부터 있었고 화면 문구만 비어 있었다
