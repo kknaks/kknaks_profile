@@ -85,6 +85,10 @@
 
 | 워커 | handle | task_id | dispatch_id | 브리프 | 상태 |
 |---|---|---|---|---|---|
+| backend (WORK-001 P1·2) | `term_d6f9d145-12d9-4645-8762-5d4399063bd8` | `task_652a15f48f00` | `ctx_b124b7ae7fe0` | `docs-v1-work001-be-brief.md` | 완료 — 커밋 `2a4d29a`, 검증 10/10 |
+| frontend (WORK-001 P3·4) | `term_f01dc2f5-b55c-4016-b40a-93628c497a25` | `task_7e2bf4726de0` | `ctx_7d3baf2cf47a` | `docs-v1-work001-fe-brief.md` | 완료 — 커밋 `84882c0`, 앱 창 E2E 통과 |
+| reviewer (WORK-001) | `term_82e0a355-3e75-47b2-8e8f-2d03e3458c47` | `task_5ae8b0e0bc24` | `ctx_00c0163ca443` | `docs-v1-work001-review-brief.md` | 완료 — FAIL 0 · WARN 3 · 문서 공백 18 |
+| ~~backend (WORK-002)~~ | ~~`term_07e3fc7a-bf3c-4de8-85db-b301b76d0050`~~ | ~~`task_ac218285b40e`~~ | ~~`ctx_c7499e125b30`~~ | (폐기) | **중지 — 잘못 만든 워크트리에서 빈 트리로 발주됨. 재발주 필요** |
 | architect spec② | `term_da8c7759-cf0d-4d3f-bdb5-fba8798cf3ce` | `task_e07df0fc245a` | `ctx_2f06821688a3` | `docs-v1-spec2-brief.md` | **진행** — SPEC-003·004·005 |
 | architect spec① | (같은 터미널) | `task_41b985520192` | `ctx_ae07aac081a1` | `docs-v1-spec1-brief.md` | 완료·검증 PASS |
 | architect 아키텍처② | (같은 터미널) | `task_95fed4429873` | `ctx_623f62aa44fd` | `docs-v1-arch2-brief.md` | 완료·검증 PASS |

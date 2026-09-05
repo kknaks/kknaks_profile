@@ -77,6 +77,31 @@ if [ -n "$COORD_HANDLE" ]; then
 fi
 
 WORK_DIR="$HERE/work/$SLUG"
+
+# ── 작업 단위 가드 (런북 §1) ─────────────────────────────────────────────────
+# 코디 세션 1개 = 작업 1개 = work/<slug>/ 1개. **새 작업은 사용자가 새 코디를 띄울 때만 생긴다.**
+# WORK 번호(WORK-001·002…)는 작업 단위가 아니라 한 작업 안의 단계다 — 그걸 slug 로 삼으면
+# 워크트리·브랜치가 WORK 마다 늘고, 새로 판 워크트리는 base 기준이라 앞 WORK 의 코드가 없다.
+# (2026-09-05 실제로 겪음 — 빈 트리에 워커를 태웠다.)
+#
+# 그래서: 이미 열린 작업이 있는데 **다른 slug** 로 부르면 멈춘다.
+OPEN_SLUGS="$(find "$HERE/work" -mindepth 1 -maxdepth 1 -type d ! -name '_archive' -exec basename {} \; 2>/dev/null | sort)"
+if [ -n "$OPEN_SLUGS" ] && ! printf '%s\n' "$OPEN_SLUGS" | grep -qx "$SLUG"; then
+  echo "ERROR: 진행 중인 작업이 있는데 다른 slug 로 불렀다 — 작업 단위 위반(런북 §1)" >&2
+  echo "" >&2
+  echo "  진행 중: $(printf '%s ' $OPEN_SLUGS)" >&2
+  echo "  요청한 slug: $SLUG" >&2
+  echo "" >&2
+  echo "  워커를 더 태우려는 것이라면 (대부분 이 경우다):" >&2
+  for s in $OPEN_SLUGS; do
+    echo "      $0 $PROJECT $s --workers <워커>" >&2
+  done
+  echo "" >&2
+  echo "  정말 새 작업이라면 먼저 마감한다:" >&2
+  echo "      scripts/archive-work.sh $PROJECT <slug>" >&2
+  exit 1
+fi
+
 mkdir -p "$WORK_DIR"
 
 # ── config 파싱 → 워커/repo 계획 (탭 구분 레코드로 셸에 넘김) ──────────────────
