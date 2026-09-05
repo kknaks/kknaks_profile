@@ -88,7 +88,8 @@
 | backend (WORK-001 P1·2) | `term_d6f9d145-12d9-4645-8762-5d4399063bd8` | `task_652a15f48f00` | `ctx_b124b7ae7fe0` | `docs-v1-work001-be-brief.md` | 완료 — 커밋 `2a4d29a`, 검증 10/10 |
 | frontend (WORK-001 P3·4) | `term_f01dc2f5-b55c-4016-b40a-93628c497a25` | `task_7e2bf4726de0` | `ctx_7d3baf2cf47a` | `docs-v1-work001-fe-brief.md` | 완료 — 커밋 `84882c0`, 앱 창 E2E 통과 |
 | reviewer (WORK-001) | `term_82e0a355-3e75-47b2-8e8f-2d03e3458c47` | `task_5ae8b0e0bc24` | `ctx_00c0163ca443` | `docs-v1-work001-review-brief.md` | 완료 — FAIL 0 · WARN 3 · 문서 공백 18 |
-| reviewer (WORK-002) | `term_7bdbe08f-3921-4838-af97-65a981dc702c` | `task_37a4fa98da1e` | `ctx_2717269ded8c` | `docs-v1-work002-review-brief.md` | **진행** — 네 층 검수 |
+| frontend (WORK-002 FAIL 수정) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_0d73d27dfe90` | `ctx_626a38011048` | `docs-v1-work002-fix-brief.md` | **진행** — F-3 로그아웃 결함 · F-2 테스트 |
+| reviewer (WORK-002) | `term_7bdbe08f-3921-4838-af97-65a981dc702c` | `task_37a4fa98da1e` | `ctx_2717269ded8c` | `docs-v1-work002-review-brief.md` | 완료 — **FAIL 3 · WARN 4 · 공백 13** |
 | frontend (WORK-002 P2·3) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_ca9c6d573f35` | `ctx_22727520ae54` | `docs-v1-work002-fe-brief.md` | 완료 — 커밋 `c49ae72`, 앱 창 로그인 왕복 |
 | backend (WORK-002 P1) | `term_27cfe374-d8ad-41b0-a814-04f142c5626e` | `task_95532fa465bc` | `ctx_2af9c8e23129` | `docs-v1-work002-be-brief.md` | 완료 — 커밋 `37a8ce1`, pytest 31 + curl 전항목 |
 | ~~backend (WORK-002 1차)~~ | ~~`term_07e3fc7a…`~~ | ~~`task_ac218285b40e`~~ | ~~`ctx_c7499e125b30`~~ | (폐기) | 중지 — 잘못 만든 워크트리(빈 트리)에서 발주. 위 행으로 재발주 |
