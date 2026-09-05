@@ -97,8 +97,9 @@
 | reviewer (WORK-004) | `term_7bdbe08f-3921-4838-af97-65a981dc702c` | `task_117e21ab82e0` | `ctx_11aeef4eac46` | `docs-v1-work004-review-brief.md` | 완료 — **FAIL 4 · WARN 10 · 공백 7**. 드로어 규격·게이트 뒷문 두 축은 PASS |
 | backend (WORK-004 FAIL 수정) | `term_27cfe374-d8ad-41b0-a814-04f142c5626e` | `task_7a39c670d5c6` | `ctx_a063e8f064e1` | `docs-v1-work004-fix-be-brief.md` | 완료 — 커밋 `ddb53d2`, pytest 237 |
 | frontend (WORK-004 FAIL 수정) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_5621f6b473fd` | `ctx_06853a01ece8` | `docs-v1-work004-fix-fe-brief.md` | 완료 — 커밋 `b46771d`, 앱 창 6항목 + 결함 1건 추가 발견·수정 |
-| frontend (WORK-004 U-7 마무리) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_5458181ac7ab` | `ctx_9625b1db052f` | `docs-v1-work004-attach-notice-brief.md` | **진행** — 첨부·연관 쓰기 실패 표시 |
-| backend (WORK-005 P1·2) | `term_27cfe374-d8ad-41b0-a814-04f142c5626e` | `task_c949630b9ce4` | `ctx_b86bdef9d3ac` | `docs-v1-work005-be-brief.md` | **진행** — 상태 전이·완료 게이트·목록 조회 |
+| frontend (WORK-004 U-7 마무리) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_5458181ac7ab` | `ctx_9625b1db052f` | `docs-v1-work004-attach-notice-brief.md` | 완료 — 커밋 `c6ba429`, 해제 컨트롤 신설·404 분기 |
+| backend (WORK-005 P1·2) | `term_27cfe374-d8ad-41b0-a814-04f142c5626e` | `task_c949630b9ce4` | `ctx_b86bdef9d3ac` | `docs-v1-work005-be-brief.md` | 완료 — 커밋 `46fe87a`, pytest 291 · 리비전 0003 추가 |
+| frontend (WORK-005 P3·4) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_aa0ea21b217c` | `ctx_b5a8899aba10` | `docs-v1-work005-fe-brief.md` | **진행** — 리스트·칸반·세 진입점 |
 | architect (WP 5건) | `term_27b5a8ac-c826-4d41-aa07-f3e8e7c99436` | `task_9a711335fc43` | `ctx_f7e9d11792c5` | `docs-v1-wp2-brief.md` | 완료 — 커밋 `0fbf95a`, WORK-004~008 |
 | frontend (WORK-003 FAIL 수정) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_738950d797de` | `ctx_b5b661721471` | `docs-v1-work003-fix-brief.md` | 완료 — 커밋 `61ac762`, 6초 잔존·재시도 0 실측 |
 | reviewer (WORK-003) | `term_7bdbe08f-3921-4838-af97-65a981dc702c` | `task_d624e85e4787` | `ctx_bea03af664a2` | `docs-v1-work003-review-brief.md` | 완료 — FAIL 1 · WARN 7 · 공백 12 |
@@ -126,6 +127,9 @@
 
 ## 5. 이력 (최신이 위)
 
+- `2026-09-06` **WORK-005 Phase 1·2 완료**(커밋 `46fe87a`, pytest 291). **WP 의 「마이그레이션 없음」을 벗어나 리비전 0003 추가** — 실행취소가 「마지막 로그가 전이인가 + 직전 상태」를 판정해야 하는데 한국어 로그 본문 되파싱은 문구가 바뀌면 조용히 깨진다. `cancelledAt` 도 저장될 곳이 없어 취소 전이 로그 시각에서 파생한다. ERD T-8-a·T-8-b 반영
+- `2026-09-06` **WORK-004 완전 종료** — 첨부·연관 U-7 마무리(`c6ba429`)에서 **연관 해제 컨트롤이 아예 없던 것**과 **첨부 팝오버가 실패에도 입력을 비우던 것**을 추가로 잡았다. 전자는 SPEC-003 U-8 갱신(`632bd93`)으로 닫았다 — 서버 DELETE 표면은 §4 에 처음부터 있었고 화면 문구만 비어 있었다
+- `2026-09-06` **워커 질문은 `orca terminal send` 로** — `orca orchestration ask` 는 답이 안 닿아 같은 질문이 세 번 반복되고 7분 넘게 막혔다. 브리프에 명시 절로 넣는다
 - `2026-09-06` **WORK-004 완료** — 검수 FAIL 4 · WARN 10 전부 수정(백 `ddb53d2` pytest 237 / 프론트 `b46771d` 61통과). 프론트가 수정 검증 중 **결함 1건을 더 찾았다** — 할일·메모가 `void mutateAsync` 로 결과를 안 받아 낙관 반영이 되돌아가기만 하고 아무 말도 안 남았다. **되돌아가기만 하면 사용자는 체크가 안 눌린 줄 안다**
 - `2026-09-06` **U-7 실패 표시는 낙관적 갱신 여부와 별개 축** — 낙관적이면 「되돌린다 + 말한다」, 아니면 「안 바뀐다 + 말한다」. 어느 쪽이든 말은 해야 한다. 첨부·연관 네 자리에 남은 공백을 마저 닫는다
 - `2026-09-06` **WORK-004 검수 FAIL 4 · WARN 10 · 공백 7** — 브리프가 지목한 두 축(드로어 폭 소유권·게이트 뒷문)은 PASS. 대신 **상세 헤더가 표시 전용**이라 제목·기한·유형·프로젝트를 못 고치는 것(F-1~3, Acceptance 4항목 실행 불가)과 **할일 응답 타입 불일치로 인한 상세 캐시 오염**(F-4)을 잡았다. 문서 공백 7건을 먼저 닫고 양쪽 수정 발주
