@@ -290,6 +290,6 @@ sequenceDiagram
 
 | ID | Question | Owner | Next |
 |---|---|---|---|
-| SYS-OQ-1 | **마이크 캡처 경로** — WKWebView(Tauri macOS)에서 `getUserMedia` 가 동작하는지, 아니면 Tauri(rust)가 캡처해 PCM 을 넘겨야 하는지. 스파이크 결과에 따라 셸 ↔ 번들 경계가 갈린다(중계 이후 구간은 어느 쪽이든 같다) | 코디 | DEC-003 OQ-3 스파이크 |
-| SYS-OQ-2 | **Windows 지원 시점** — 타깃은 macOS·Windows 두 OS인데 마이크 스파이크는 macOS 만 잡혀 있다. Windows(WebView2) 확인을 v1 안에 넣을지 | 사용자 | spec 전 |
-| SYS-OQ-3 | **오디오 전송 포맷** — 브라우저 `MediaRecorder`(opus/webm) vs raw PCM. 녹음 원본 파일 형식·Soniox config 가 여기 걸린다. SYS-OQ-1 결과가 선행 | 코디 | spec |
+| ~~SYS-OQ-1~~ | ~~마이크 캡처 경로~~ → **해소: 웹 `getUserMedia` 로 간다**(2026-09-05). 웹 우선 개발이고 사내 제품에서 검증된 경로다. Tauri 웹뷰에서의 동작 확인은 **래핑 시점**으로 미룬다(DEC-003 OQ-3) | — | 래핑 단계 |
+| ~~SYS-OQ-2~~ | ~~Windows 지원 시점~~ → **해소: v1 에 macOS·Windows 둘 다 포함**(2026-09-05). 웹 우선 개발이라 갈리는 것은 래핑 이후의 셸 층뿐이다 | — | 닫힘 |
+| ~~SYS-OQ-3~~ | ~~오디오 전송 포맷~~ → **해소: Soniox 가 지원하는 형식 중에서 고른다**(2026-09-05). Tauri 래핑 후의 캡처 경로까지 고려해 **구현 시점에 확정**하고, 정책·아키텍처는 특정 포맷에 묶이지 않는다 | — | 구현 시 |
