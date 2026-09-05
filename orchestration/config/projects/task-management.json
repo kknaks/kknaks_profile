@@ -1,9 +1,8 @@
 {
-  "_doc": "task-management(Tauri 태스크 관리 앱 — Next.js 프론트 + FastAPI 백엔드, iOS·Windows 타겟) 오케스트레이션 설정 SSOT. scripts/new-work.sh 가 읽는 유일한 곳. 값 하드코딩 금지.",
+  "_doc": "task-management(Tauri 태스크 관리 앱 — Next.js 정적 빌드 프론트 + FastAPI 백엔드, macOS·Windows 데스크톱 타겟) 오케스트레이션 설정 SSOT. scripts/new-work.sh 가 읽는 유일한 곳. 값 하드코딩 금지.",
   "project": "task-management",
   "worktree_root": "/Users/kknaks/orca/workspaces",
   "use_worktree": true,
-
   "repos": {
     "docs": {
       "orca_name": "kknaks_profile",
@@ -17,11 +16,23 @@
         "단일 레포형(runbook §프로젝트 유형): 제품 문서는 para/projects/summer-star/task-management/ — 코디네이터 소유.",
         "코디네이터 세션은 이 레포 task-management-app 브랜치 워크트리(workspaces/kknaks_profile/task-management-app)에서 돈다.",
         "문서 워커(writer·designer)는 workspace=coordinator 로 코디 워크트리에 직접 탄다(runbook §workspace) — 개별 워크트리 없음, 산출물이 코디 트리에 바로 생긴다. 2026-09-03 워커 워크트리 정리로 산출물 유실된 사고의 재발 방지. 직렬 발주만.",
-        "코드 레포(github.com/kknaks/task_management)는 아직 스캐폴딩 전 — 첫 코드 work 발주 때 repos.code 로 추가한다. 코드 워커는 개별 워크트리(기본값) + 문서 경로 배제."
+        "문서 워커(writer·architect·designer)는 workspace=coordinator, 코드 워커(backend·frontend·reviewer)는 repos.code 의 개별 워크트리를 쓴다."
+      ]
+    },
+    "code": {
+      "orca_name": "task_management",
+      "canonical_path": "/Users/kknaks/git/toy_pr2/task_management",
+      "remote": "https://github.com/kknaks/task_management.git",
+      "base": "origin/main",
+      "pr_base": "main",
+      "worktree_suffix": "",
+      "notes": [
+        "코드 전용 레포 — 기획·정책·아키텍처·spec·WP 는 전부 docs 레포(kknaks_profile)에 있다.",
+        "코드 워커는 개별 워크트리를 쓴다(workspace 미지정). 문서 경로는 건드리지 않는다 — 문서 참조는 코디 워크트리 절대경로(read-only).",
+        "2026-09-05 초기 커밋(README·gitignore)으로 main 생성. push 권한은 kknaksss 협업자 등록이 선행."
       ]
     }
   },
-
   "workers": {
     "writer": {
       "repo": "docs",
@@ -29,7 +40,9 @@
       "brief_suffix": "write",
       "workspace": "coordinator",
       "roles_dir": "roles/task-management/writer",
-      "allowed_paths": ["(브리프가 지정한 baseline/decision 파일 2개만 생성 — 코디 워크트리에서 직접 작업. index·log·디자인 원본·그 외 일체 수정 금지, 커밋·push 금지)"],
+      "allowed_paths": [
+        "(브리프가 지정한 baseline/decision 파일 2개만 생성 — 코디 워크트리에서 직접 작업. index·log·디자인 원본·그 외 일체 수정 금지, 커밋·push 금지)"
+      ],
       "verify": "산출물은 브리프가 지정한 파일들뿐. 템플릿(templates/projects/) 구조 준수, 정하지 못한 것은 Open Questions 로 남기고 임의 결정 금지, 모든 결정에 분석 리포트 근거 번호(J·M·N·C) 병기"
     },
     "architect": {
@@ -38,7 +51,9 @@
       "brief_suffix": "arch",
       "workspace": "coordinator",
       "roles_dir": "roles/task-management/architect",
-      "allowed_paths": ["(브리프가 지정한 40-architecture 하위 파일만 생성/수정 — 코디 워크트리에서 직접 작업. baseline·decision·design 원본·index·log 수정 금지, 커밋·push 금지)"],
+      "allowed_paths": [
+        "(브리프가 지정한 40-architecture 하위 파일만 생성/수정 — 코디 워크트리에서 직접 작업. baseline·decision·design 원본·index·log 수정 금지, 커밋·push 금지)"
+      ],
       "verify": "산출물은 브리프가 지정한 파일들뿐. DEC-001~006 을 어기는 구조를 제안하지 않았는지 자기점검(충돌 발견 시 고치지 말고 Open Questions). 사용자가 못박은 스택·계층 제약 준수. 결정마다 근거(DEC-00x §y · P/C/S/F/Q-xx) 병기, 선택지를 남기지 말고 단일 방식으로 서술"
     },
     "designer": {
@@ -47,18 +62,54 @@
       "brief_suffix": "design",
       "workspace": "coordinator",
       "roles_dir": "roles/task-management/designer",
-      "allowed_paths": ["(read-only — 리포 파일 수정·생성 금지. 산출물은 브리프가 지정한 분석 리포트 파일 1개뿐 — orchestration/work/<slug>/ 아래, 코디 워크트리에서 직접 작업. 커밋·push 금지)"],
+      "allowed_paths": [
+        "(read-only — 리포 파일 수정·생성 금지. 산출물은 브리프가 지정한 분석 리포트 파일 1개뿐 — orchestration/work/<slug>/ 아래, 코디 워크트리에서 직접 작업. 커밋·push 금지)"
+      ],
       "verify": "분석은 read-only — 코드를 만들지 않고 디자인 원본을 고치지 않는다. 리포트에 입력 파일 전체 커버리지 표(파일별 반영 위치)를 남기고, 미결 질문은 원본 open questions 와 대조해 누락 없이 옮겼는지 확인한다"
+    },
+    "backend": {
+      "repo": "code",
+      "agent": "claude",
+      "brief_suffix": "be",
+      "roles_dir": "roles/task-management/backend",
+      "allowed_paths": [
+        "app/back/",
+        "docker-compose.yml",
+        "docker-compose.local.yml",
+        ".env.example"
+      ],
+      "verify": "cd app/back && uv run pytest -q <네가 만들거나 고친 테스트만> (전체 스위트 금지). 계층 준수 자기점검 — ORM 이 repository 를 넘지 않는가 · schema/dto 를 섞지 않았는가 · except Exception 을 쓰지 않았는가. 검증은 1회만"
+    },
+    "frontend": {
+      "repo": "code",
+      "agent": "claude",
+      "brief_suffix": "fe",
+      "roles_dir": "roles/task-management/frontend",
+      "allowed_paths": [
+        "app/front/"
+      ],
+      "verify": "cd app/front && npx tsc --noEmit (네가 만진 파일 0 에러). 정적 빌드 제약 자기점검 — 동적 세그먼트 0 · 모든 page 에 'use client' · 컴포넌트 hex 리터럴 0 · tokenStore 밖에서 키체인/localStorage 호출 0. 전체 빌드 금지, 검증은 1회만"
+    },
+    "reviewer": {
+      "repo": "code",
+      "agent": "claude",
+      "brief_suffix": "review",
+      "roles_dir": "roles/task-management/reviewer",
+      "allowed_paths": [
+        "(read-only — 코드·문서 일체 수정 금지. 산출물은 브리프가 지정한 리뷰 리포트 파일 1개뿐, 코디 워크트리 orchestration/work/<slug>/ 아래)"
+      ],
+      "verify": "리뷰는 read-only — 코드를 고치지 않고 테스트도 돌리지 않는다. git diff <base>...HEAD + untracked 로 범위를 산정하고, 네 층(정책·아키텍처·SPEC·WP)별로 PASS/WARN/FAIL 과 위반 목록(파일:줄 + 어긋난 문서 절)을 남긴다. 문서가 빈 것은 지적이 아니라 「문서 공백」 절로 분리한다"
     }
   },
-
-  "default_workers": ["designer"],
-
+  "default_workers": [
+    "backend",
+    "frontend"
+  ],
   "summary_dest": "/Users/kknaks/orca/workspaces/kknaks_profile/task-management-app/para/projects/summer-star/task-management/log",
-
   "rules": {
     "spec_and_app_use_separate_prs": true,
     "workers_commit_or_push": false,
-    "coordinator_verifies_before_pr": true
+    "coordinator_verifies_before_pr": true,
+    "code_workers_use_own_worktree": true
   }
 }
