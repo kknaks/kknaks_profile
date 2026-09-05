@@ -92,8 +92,9 @@
 | backend (WORK-004 P1~3) | `term_27cfe374-d8ad-41b0-a814-04f142c5626e` | `task_3f9640623be2` | `ctx_470ee3f4a2e9` | `docs-v1-work004-be-brief.md` | 완료 — 업무 도메인·본체 API·자식 컬렉션 |
 | frontend (WORK-004 P4~6) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_2c1d45b0afd9` | `ctx_b78cc4317744` | `docs-v1-work004-fe-brief.md` | 완료 — 커밋 `7550e1b`, DrawerFrame 840 단일 소유 |
 | backend (WORK-004 후보 표면) | `term_27cfe374-d8ad-41b0-a814-04f142c5626e` | `task_43cc89b19825` | `ctx_6dec49ec6b57` | `docs-v1-work004-be-fix-brief.md` | 완료 — 커밋 `70924d7`, 컬렉션 표면 전환·pytest 80 |
-| backend (WORK-004 scope·total) | `term_27cfe374-d8ad-41b0-a814-04f142c5626e` | `task_be9dfadef1b9` | `ctx_67d31922b6b5` | `docs-v1-work004-scope-be-brief.md` | **진행** — U-8 칩의 서버 대응물 |
-| frontend (WORK-004 칩 3) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_5cd1c8a8c416` | `ctx_76a2f51cc313` | `docs-v1-work004-chips-fe-brief.md` | **진행** — 필터 칩·카운트 |
+| backend (WORK-004 scope·total) | `term_27cfe374-d8ad-41b0-a814-04f142c5626e` | `task_be9dfadef1b9` | `ctx_67d31922b6b5` | `docs-v1-work004-scope-be-brief.md` | 완료 — 커밋 `9897ff5`, pytest 92 · scope 별 total 2/39/41 |
+| frontend (WORK-004 칩 3) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_5cd1c8a8c416` | `ctx_76a2f51cc313` | `docs-v1-work004-chips-fe-brief.md` | 완료 — 커밋 `99a45e7`, 칩별 4/40/42건 실측 |
+| reviewer (WORK-004) | `term_7bdbe08f-3921-4838-af97-65a981dc702c` | `task_117e21ab82e0` | `ctx_11aeef4eac46` | `docs-v1-work004-review-brief.md` | **진행** — 드로어 폭 소유권·상태 전이 뒷문 중점 |
 | architect (WP 5건) | `term_27b5a8ac-c826-4d41-aa07-f3e8e7c99436` | `task_9a711335fc43` | `ctx_f7e9d11792c5` | `docs-v1-wp2-brief.md` | 완료 — 커밋 `0fbf95a`, WORK-004~008 |
 | frontend (WORK-003 FAIL 수정) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_738950d797de` | `ctx_b5b661721471` | `docs-v1-work003-fix-brief.md` | 완료 — 커밋 `61ac762`, 6초 잔존·재시도 0 실측 |
 | reviewer (WORK-003) | `term_7bdbe08f-3921-4838-af97-65a981dc702c` | `task_d624e85e4787` | `ctx_bea03af664a2` | `docs-v1-work003-review-brief.md` | 완료 — FAIL 1 · WARN 7 · 공백 12 |
