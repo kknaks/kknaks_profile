@@ -49,10 +49,10 @@
 - [!] **디자인 대기** — 정정 12건 + 미설계 화면 약 20건을 `design-requests.md` 로 정리 완료. **사용자가 디자이너에게 전달**
 - [x] **구조 게이트 3건 확정** — 정적 빌드(`output: 'export'`) / shadcn 도입 / **유동 반응형**(맥북·중간·큰 모니터 전부)
 - [x] **아키텍처 ①** — system · database(+domains 5) · backend 8문서. 검증 PASS, 커밋 `dea0e8f`
-- [ ] **아키텍처 ② 발주** — frontend (①의 schema 계약 `backend §10` 을 받아서). 같은 워커 터미널 재사용 가능
+- [~] **아키텍처 ② 진행 중** — frontend 신규 + ① 정정 3건(schedule 파생 · OQ 10건 반영 · 웹 우선)
 - [ ] 그 다음 Phase 2 — 영역별 SPEC
 - [x] **architect OQ 10건 전부 해소** (커밋 3263eeb)
-- [!] **아키텍처 DB 문서 수정 필요** — schedule 이 파생으로 바뀌었는데(f6c9ec6) ERD·도메인 문서는 아직 「단독 소유」로 되어 있다. ② 발주 브리프에 정정 지시 포함할 것
+- [x] 아키텍처 DB 정정 지시 → ② 브리프 §3 에 포함
 - [!] WKWebView 마이크 확인은 **Tauri 래핑 시점으로 연기**(웹 getUserMedia 는 사내 제품에서 검증됨)
 - [!] 미설계 화면은 아키텍처·spec 을 막지 않는다 — 화면이 필요한 절만 비워 두고 나머지를 쓴다
 - [!] 코디 할 일: **WKWebView 마이크 스파이크**(DEC-003 OQ-3) — spec 전
@@ -89,7 +89,8 @@
 
 | 워커 | handle | task_id | dispatch_id | 브리프 | 상태 |
 |---|---|---|---|---|---|
-| architect | `term_da8c7759-cf0d-4d3f-bdb5-fba8798cf3ce` | `task_b3fa2aca8cc3` | `ctx_4d1e7388e22f` | `docs-v1-arch-brief.md` | 완료·검증 PASS (①) — **②(프론트) 재사용 가능** |
+| architect ② | `term_da8c7759-cf0d-4d3f-bdb5-fba8798cf3ce` | `task_95fed4429873` | `ctx_623f62aa44fd` | `docs-v1-arch2-brief.md` | **진행** — 프론트 + ① 정정 |
+| architect ① | (같은 터미널) | `task_b3fa2aca8cc3` | `ctx_4d1e7388e22f` | `docs-v1-arch-brief.md` | 완료·검증 PASS |
 | designer | (종료) | `task_319a3ee765d4` | `ctx_cb4ec3ab8c8a` | `docs-v1-design-brief.md` | 완료·검증 PASS |
 
 핸들은 세션 재연결로 바뀐다. 바뀌면 **덮어쓴다.**
