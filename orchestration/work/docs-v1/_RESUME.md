@@ -20,12 +20,83 @@
 > 4. **검수 브리프에 「시안과 화면을 나란히 놓고 판정하라」를 넣는다**
 > 5. **시킨 것만 한다.** 지우라면 지우기만 하고 깨진 import 를 알아서 메우지 않는다 — 사용자는 이미 알고 있다
 
+> # ⛔ 정본 기준 — 축을 나눠라 (2026-09-06)
+>
+> 위 규칙 2 「시각 정본은 `.dc.html`」을 코디가 **「시안이 전부의 정본」**으로 넓혀 읽었다.
+> 회의록 SPEC 브리프 맨 위에 **「이번엔 시안이 정본이다. 전 화면을 열고 쓴다」**를 박고,
+> 표에서 기획서를 **「왜 만드나」**로 내렸다. 전임자 사고(시안을 안 봤다)의 반대로 저울을 기울인 것이다.
+>
+> **축을 나눴어야 했다.**
+>
+> | 무엇 | 정본 |
+> |---|---|
+> | **기능** — 화면·필드·상태·흐름·문구·API | **기획 `00-baseline/` + 정책 `10-decision/`** |
+> | **시각** — 색·크기·간격·배치 | **디자인 시스템 + 시안 `.dc.html`** |
+>
+> **판정은 기획·정책 한 축뿐이다. 시안은 판정에 들어오지 않는다.**
+>
+> | 기획·정책 | 판정 |
+> |---|---|
+> | **있다** | **만든다.** 시안에 화면이 있으면 그 배치를 따르고, **없으면 디자인 시스템 컴포넌트로 조립한다** |
+> | **없다** | **안 만든다.** 시안에 그려져 있어도 |
+>
+> - **시안에 있고 기획·정책에 없다** → 만들지 않는다. 조용히 지우지도 않는다 —
+>   「시안에 있으나 기획에 없어 제외」로 **목록에 올려 사용자가 본다.** 필요하면 **기획·정책에 먼저 넣고** 그다음 만든다
+> - **기획·정책에 있고 시안에 없다** → **만든다.** 「시안 없음」은 막힐 이유가 아니다.
+>   정책이 「무엇과 같은 구조」라고 지정했으면 그 화면을 쓰고(예: DEC-005 §2 L41 회의 상세 드로어 = 업무 상세 드로어 구조),
+>   아니면 디자인 시스템 컴포넌트로 조립한다. **OQ 로 올리지 마라**
+>
+> **일어난 일** — 워커가 시안 2,882줄에 보이는 것을 전부 계약으로 옮겼다.
+> **기획에 없는데 들어간 것**: 시작 전 AI 안건 생성(`POST /agendas/draft`·`agenda_draft_failed`
+> — BASE-003 「AI 제안은 필요 없다」로 배제) · 「되돌리기」(편집 이력 표 없음) ·
+> 상태 바 파형(오디오 분석이 캡처 경로에 없음) · 취소된 회의 행(status 4종에 없음) ·
+> 「내 목소리 등록됨」(DEC-003 §2 익명 화자 정책 위반).
+> **기획에 있는데 OQ 로 올라간 것**: 회의 상세 드로어(`S008-OQ-18` — DEC-005 §2 L41 에 답이 있었다).
+>
+> 그래서 **SPEC-006·007·008 을 폐기했다**(아래 참조). 재작성 브리프는 이 표를 맨 위에 박는다.
+
 > **작업 단위 = 이 워크트리(브랜치 task-management-app) 1개 = 이 slug 1개.**
 > v1 문서 파이프라인(디자인 분석 → 영역별 baseline+decision → spec)이 전부 여기서 돈다.
 > 워커 추가 발주는 새 slug 를 파지 않고 `new-work.sh task-management docs-v1 --workers <w>` 로 이 폴더에 브리프를 더한다.
 
-**지금**: **프론트 화면 전부 삭제됨**(`32f8357`). 백엔드·연동층은 온전. 시안을 다시 보고 화면부터 다시 그린다
-**다음**: **`디자인 시스템.dc.html` 부터 읽는다** → 토큰·공통 컴포넌트를 **원본에서** 다시 뽑는다
+**지금**: **회의록 코드가 끝났다** — WORK-006·007·008 · 검수 3회 · 수정 3회. `pytest 519` · `vitest 300` · `tsc 0` · 미커밋 0. 브랜치 `kknaksss/docs-v1` (PR 안 열었다)
+
+**다음**: 아침에 사용자가 볼 것 — `decisions-pending.md` 의 **결정 2건** · `.env` 두 줄(`CODEX_TOOLS_DIR`·`CODEX_AUTH_JSON`) · **실물 확인 40건**(마이크·Soniox·Tauri·반응형). 그 뒤 문서 공백 11건 반영 → 남은 화면(REDRAW-04 설정 셸 · 개인 설정 · 연동 관리) → 캘린더·문서함 그룹
+
+> ### 회의록 커밋 (2026-09-06~07)
+>
+> ```
+> a7e1bd4  WORK-006 be Phase 1~3      회의 도메인 · 본체 API · 안건 · 첨부      pytest 389
+> 2d6319e  WORK-006 fe Phase 4~6      목록 · 생성 드로어 · 시작 전              vitest 163
+> 618d5bb  WORK-006 검수 수정          FAIL 1 · WARN 5                          vitest 171
+> b09a16a  WORK-007 be Phase 1~4      WS 2단 중계 · 녹음 · AI 배치              pytest 449
+> ecb7f07  WORK-007 fe Phase 5~6      회의 중 화면 · 스트림 훅 · 2트랙          vitest 240
+> ac9ee5b  WORK-007 검수 수정          FAIL 2 · WARN 3 · compose 에 Redis·worker
+> a48cbe2  WORK-008 be Phase 1·2      종료 파이프라인 · 통합 규칙 · 편집        pytest 508
+> a5ae4c6  WORK-008 fe Phase 3·4·6    생성중 · 통합본 상세 · 편집 모드          vitest 283
+> 580846a  WORK-008 Phase 5           업무 연동(완료 게이트 네 번째 진입점)     pytest 519
+> d44a3e5  WORK-008 검수 수정          FAIL 1 · WARN 4                          vitest 300
+> ```
+>
+> **지켜진 축**
+> - **완료 게이트 우회 0건** — 회의록에 판정 코드가 없다. `task_service.change_status()` 하나를 지난다(work-005 L137·L147·L294)
+> - **통합 규칙은 모델을 믿지 않는다** — 참조 id·자리만 받고 본문은 서버가 사람 줄에서 복사한다. 실패 5종을 테스트로 고정
+> - **공용 부품 하나씩** — `AgendaLineTree`(안에 `track` 비교 0) · `MeetingStatusBar`(상단 바 한 파일) · `MeetingDetailBody`(페이지·드로어 공유) · `build_detail()` · `_assert_allowed`
+> - **기획·정책에 없는 것은 안 그렸다** — 세 SPEC 의 §7 제외 목록 전부 0건
+>
+> **코디가 잡은 것 2건** — 워커가 초록으로 보고했으나 실제로는 깨져 있었다.
+> ① 전체 스위트에서만 깨지는 순서 의존 테스트(워커는 단독 실행만 봤다)
+> ② `vitest` 의 `Errors` 줄에만 나오는 unhandled rejection(워커는 `passed` 숫자만 봤다)
+> **앞으로 브리프에 「`make test` 전체」와 「`Errors` 줄 0」을 넣는다.**
+
+> ### ⚠ 2026-09-06 두 번째 교정 — 「버리고 다시 그린다」가 틀렸다
+>
+> 삭제(`32f8357`) 후 「처음부터 그려라」로 발주했더니 워커가 **동작까지 발명**했다 —
+> 비활성 버튼 시각·제출 중 스피너·V2Gate 배치를 하나씩 물어 왔고(Q1~Q7),
+> **전부 지운 코드에 이미 있던 것**이다. 사용자 교정: **「기존 페이지에서 레이아웃·색·컴포넌트만 바꾸는 것」**.
+>
+> 그래서 84개를 `32f8357^` 에서 전부 복구했다. **앞으로 브리프는 「이 파일의 시각만 고쳐라」다.**
+> 「처음부터 그려라」로 다시 쓰지 마라.
 
 ### 삭제된 페이지 7 · 레이아웃 4 (2026-09-06)
 
@@ -138,6 +209,17 @@
 
 | 워커 | handle | task_id | dispatch_id | 브리프 | 상태 |
 |---|---|---|---|---|---|
+| architect (아키텍처 반영) | `term_2dc83886-b1dd-4211-9f17-3058f4434623` | `task_c0b0dd1b7271` | `ctx_68fba81e1399` | `docs-v1-meeting-arch-brief.md` | **진행** — ERD 9건 · M-6 정정 · §8-2 코드 4 · system 흐름 ③ |
+| architect (SPEC-006 반영 + WORK-006) | `term_3e6440a0-ca97-418b-b8f4-f4c32e53a5a8` | `task_be2f61319a0b` | `ctx_0033f22f6606` | `docs-v1-meeting-wp1-brief.md` | **진행** |
+| architect (SPEC-007 반영 + WORK-007) | `term_95f47648-153b-4ec8-a4e4-97e9d0bebae3` | `task_41b8d2cf0345` | `ctx_e7cc953fc42a` | `docs-v1-meeting-wp2-brief.md` | **진행** |
+| architect (SPEC-008 반영 + WORK-008) | `term_e9fc284a-afbb-442b-aa52-8c3e2cd070fe` | `task_0372576d1185` | `ctx_8b07e160d45d` | `docs-v1-meeting-wp3-brief.md` | **진행** — OQ 2건이 사용자 결정으로 닫힘 |
+| architect (SPEC-006 재작성) | (같은 터미널) | `task_1ad767760edd` | `ctx_364f4b9d5cfe` | `docs-v1-meeting-respec1-brief.md` | 완료 — 741줄 · OQ 0건 · 검수 통과 |
+| architect (SPEC-007 재작성) | (같은 터미널) | `task_9aebbb04f0e1` | `ctx_48117a09681d` | `docs-v1-meeting-respec2-brief.md` | 완료 — 737줄 · OQ 0건 · 검수 통과 |
+| architect (SPEC-008 재작성) | (같은 터미널) | `task_ee2717f15405` | `ctx_ff6fc65f639c` | `docs-v1-meeting-respec3-brief.md` | 완료 — 782줄 · **진짜 OQ 2건** → 사용자 결정 → DEC-003 반영 |
+| ~~architect (회의록 SPEC trim)~~ | ~~`term_6c10543e…`~~ | ~~`task_43fa6f967358`~~ | ~~`ctx_3ec4c35729e8`~~ | ~~`docs-v1-meeting-trim-brief.md`~~ | 폐기 — 5건만 지우는 부분 수정이라 전수가 아니었다. 파일 변경 0건 |
+| ~~architect (회의록 SPEC 1차)~~ | (종료) | — | — | ~~`docs-v1-meeting-spec1/2/3-brief.md`~~ | **폐기 — 산출물 전량 삭제.** 브리프가 「시안이 정본」을 박아 기획에 없는 기능이 계약에 들어갔다(§⛔ 정본 기준) |
+| frontend (REDRAW-00 토큰) | `term_4925b9c3-ef1f-457b-9a06-9007745517e7` | `task_d79d00798d14` | `ctx_d7bfb8c42f0f` | `docs-v1-redraw00-tokens-fe-brief.md` | **진행** — tokens/globals/tailwind 3파일만. 검수는 **사용자가 직접** |
+| ~~frontend (REDRAW-01 로그인)~~ | ~~`term_d61b52bf…`~~ | ~~`task_989e1af17b4c`~~ | ~~`ctx_223b027ca227`~~ | ~~`docs-v1-redraw01-login-fe-brief.md`~~ | 폐기 — **브리프 전제가 틀렸다**(「처음부터 그려라」). 워커가 동작까지 발명하느라 Q1~Q7 이 나왔고 전부 지운 코드에 이미 있던 것이다 |
 | backend (WORK-001 P1·2) | `term_d6f9d145-12d9-4645-8762-5d4399063bd8` | `task_652a15f48f00` | `ctx_b124b7ae7fe0` | `docs-v1-work001-be-brief.md` | 완료 — 커밋 `2a4d29a`, 검증 10/10 |
 | frontend (WORK-001 P3·4) | `term_f01dc2f5-b55c-4016-b40a-93628c497a25` | `task_7e2bf4726de0` | `ctx_7d3baf2cf47a` | `docs-v1-work001-fe-brief.md` | 완료 — 커밋 `84882c0`, 앱 창 E2E 통과 |
 | reviewer (WORK-001) | `term_82e0a355-3e75-47b2-8e8f-2d03e3458c47` | `task_5ae8b0e0bc24` | `ctx_00c0163ca443` | `docs-v1-work001-review-brief.md` | 완료 — FAIL 0 · WARN 3 · 문서 공백 18 |
