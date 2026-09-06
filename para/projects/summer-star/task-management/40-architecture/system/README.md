@@ -227,7 +227,7 @@ sequenceDiagram
   A->>D: meeting.ai_session_id 저장 · status='recording'
 
   Note over W,X: ── 웹소켓 2단 중계 ──
-  W->>A: WS 연결 → 첫 프레임으로 access 토큰 인증
+  W->>A: WS 연결 → 첫 프레임 {type:auth, accessToken, audio{format,sampleRate,channels}} — 토큰 인증 + 오디오 형식 선언 (SPEC-007 §4)
   A->>X: WS 연결 + config (stt-rt-v5 · ko · diarization · endpoint off)
   loop 회의 중
     W->>A: 오디오 청크 (웹 getUserMedia · 내 마이크만)
@@ -240,7 +240,7 @@ sequenceDiagram
 
   Note over A,C: ── 배치 요약 (증분) ──
   loop 발화량 임계 · 안건 전환 flush · 최대 대기 상한
-    A->>Q: submit(resume={mode:"session", session_id}) + 미처리 구간 + 안건 + 업무 화이트리스트
+    A->>Q: submit(resume={mode:"session", session_id}) + 미처리 구간 + 사람 안건 · 사람 줄(읽기 전용 컨텍스트 — BASE-003 L36) + 기존 AI 안건 + 업무 화이트리스트
     Q->>C: codex — 같은 세션 이어서
     C-->>A: JSON (output_schema 강제)
     alt 스키마 위반
@@ -260,9 +260,9 @@ sequenceDiagram
   Note over A,W: 프론트는 「회의록 생성중」 스피너
   A->>Q: ① 최종 배치 — AI 탭 전체 재정리
   A->>D: AI 줄 전량 교체 (실패하면 증분 상태 그대로 둔다)
-  A->>Q: ② 통합본 생성 — 사람 줄 우선 · AI 줄에서 근거 타임스탬프만
+  A->>Q: ② 통합본 생성 — 사람 줄 우선 · AI 줄에서 근거 타임스탬프만 · 같은 응답에 ai_headline 한 줄 요약 (DEC-003 §4, 2026-09-06)
   alt 성공
-    A->>D: 통합 줄 INSERT · status='ended' · integration_state='succeeded'
+    A->>D: 통합 줄 INSERT(source_*_line_id 로 원본 참조) · ai_headline · status='ended' · integration_state='succeeded'
   else 2회 재시도 후 실패 · 또는 타임아웃
     A->>D: status='ended' · integration_state='failed'
   end
@@ -277,7 +277,7 @@ sequenceDiagram
 | 1 | 프론트는 Soniox 를 모른다. 오디오는 **반드시** 백엔드를 거친다 | DEC-003 §STT |
 | 2 | 녹음 원본 적재는 중계와 같은 경로에서 일어난다 — 별도 업로드가 없다 | DEC-003 §3 |
 | 3 | **확정 토큰만 DB 에 남는다.** 잠정 토큰은 화면으로만 흘려보낸다 | DEC-003 §3 |
-| 4 | 회의 중 AI 는 **AI 트랙에만 쓴다.** 사람 트랙을 건드리지 않고 줄 제안도 하지 않는다 | DEC-003 §4 |
+| 4 | 회의 중 AI 는 **AI 트랙에만 쓴다.** 사람 트랙을 고치지도 제안하지도 않는다 — **사람 안건·줄은 읽기 전용 컨텍스트로 배치 입력에 들어간다**(2026-09-06 · `../database/domains/meeting.md` M-6) | DEC-003 §4 · BASE-003 L36·L38 |
 | 5 | 회의 중 배치는 **증분 추가만** — 기존 AI 줄을 고치지 않는다. 전체 재정리는 종료 후 최종 배치 한 번뿐 | DEC-003 §4 |
 | 6 | codex 세션은 **회의 하나에 하나**다. 매 배치가 `resume` 으로 같은 세션을 이어 쓴다 | DEC-003 §STT |
 | 7 | 통합본은 **사람 문장을 그대로 쓴다.** AI 에서 가져오는 것은 근거 타임스탬프와 AI 트랙에만 있는 내용뿐이다 | DEC-003 §4 |

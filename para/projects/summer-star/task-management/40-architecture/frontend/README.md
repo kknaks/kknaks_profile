@@ -244,7 +244,7 @@ src/
 - 키는 camelCase 라 그대로 쓴다. **`types/api.ts` 가 백엔드 schema 의 미러**이고, 여기 없는 필드를 컴포넌트가 지어내지 않는다.
 - **id 는 number** 다(PK 가 bigint). 02-data-model 의 `id: string` 표기는 디자인 표기이고 계약이 아니다.
 - **시각은 UTC ISO 문자열**로 오고 **KST 변환은 `lib/datetime.ts` 하나**가 한다(G-2). 컴포넌트가 직접 `new Date()` 로 포맷하지 않는다.
-- **업무 기한은 `dueDate`(날짜) + `dueStartTime`/`dueEndTime`(시각)** 이다. `schedule` 이 아니라 업무가 소유한다(DEC-005 §3, 2026-09-05 개정) — 리스트 정렬·D-day 는 이 필드로 그린다.
+- **업무 일정은 4필드다** — `startDate`(계획 시작) · `dueDate`(계획 종료 = 기한) · `startedAt`·`completedAt`(실적, 읽기 전용). 시각은 `dueStartTime`/`dueEndTime`. `schedule` 이 아니라 업무가 소유한다(2026-09-06 §A-4 번복 · DEC-002 · ERD T-1) — 리스트 정렬·D-day 는 `dueDate` 로 그리고, **실적 2개는 입력 UI 가 없다**.
 
 ## 4. 인증 연동
 

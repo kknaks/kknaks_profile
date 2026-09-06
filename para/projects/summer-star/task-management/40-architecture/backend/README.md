@@ -157,7 +157,7 @@ app/back/
 | 단계 | 규약 |
 |---|---|
 | 시작 | `POST /api/meetings/{id}/end` → **`202 Accepted`** + `{ "jobId": 123 }`. 응답을 기다리는 동안 작업이 도는 구조를 만들지 않는다 |
-| 상태 조회 | `GET /api/jobs/{jobId}` → `{ id, kind, status, errorCode, errorMessage, finishedAt }` |
+| 상태 조회 | `GET /api/jobs/{jobId}` → `{ id, kind, status, progress, errorCode, errorMessage, finishedAt }`. **`progress{phase, attempt}` 는 파생**이다(컬럼 없음 — `phase` 는 그 회의 `meeting_batch_run` 최신 행, `attempt` 는 `job.attempt`; `kind≠meeting_finalize` 면 `null`). `failed` 의 `errorCode ∈ {integration_failed, integration_timeout, job_timeout}` (SPEC-008 §4, 2026-09-06) |
 | 완료 통지 | **폴링**이다. 프론트가 2초 간격으로 조회한다 |
 | 종료 조건 | `status ∈ {succeeded, failed}` 이면 폴링을 멈춘다. **타임아웃 상한을 둔다 — 무한 대기 금지**(DEC-003 §7). 상한을 넘으면 job 을 `failed` 로 마감한다 |
 | 결과 | job 은 결과를 담지 않는다. 프론트는 완료 후 **원 리소스**(`GET /api/meetings/{id}`)를 다시 읽는다 |
@@ -240,13 +240,17 @@ AppError (status=500, code)
 | `work_type_locked` | 409 | 기본 유형 3종의 삭제·개명 시도 | DEC-001 §4 |
 | `folder_not_empty` | 409 | 문서가 있는 폴더 삭제 시도 | DEC-004 §4 |
 | `unsupported_file_type` | 422 | md 아닌 파일 업로드. **URL 링크 첨부는 이 검사 대상이 아니다** | DEC-004 §7 · 확정(2026-09-05) |
-| `meeting_stream_disconnected` | 409 | 회의 스트림이 끊긴 상태에서 오디오·종료 요청이 왔다. **자동 재연결하지 않는다**(§5-1) | DEC-003 §7 |
+| `meeting_stream_disconnected` | 409 · WS `error` 프레임 | REST: 스트림이 끊긴 상태(`paused/stream`)에서 **오디오** 요청이 왔다. **`/end` 는 이 상태에서도 받는다** — 일시정지 헤더에 「회의 종료」가 있다(`회의록.dc.html` L804 · L1085 · L1235). 재개가 실패하면 다시 일시정지로 돌아올 뿐이고, 그 자리에 종료가 항상 있다(2026-09-06 정정). WS: 서버가 `{"type":"error","code":"meeting_stream_disconnected","reason":…}` 을 보내고 닫는다 — **부기 `reason ∈ {upstream, write_failed}`**(Soniox 연결 끊김 / 녹음 파일 append 실패). **자동 재연결하지 않는다**(§5-1) | DEC-003 §7 · SPEC-007 §4 (2026-09-06 부기) |
+| `invalid_meeting_status` | 409 | 상태 흐름(`scheduled→recording→generating→ended`, 한 방향) 밖의 요청 — `recording`·`generating` 중 삭제·일시 변경·메타 변경, `/end` 가 `recording` 아님, `/integrate` 가 `ended`+`failed` 아님, `generating` 중 줄 쓰기 ¹ | SPEC-006 §4 · SPEC-008 §4 · SPEC-009 §4 (2026-09-06) |
+| `meeting_stream_active` | WS `4409` | 그 회의에 **이미 살아 있는 스트림**이 있는데 두 번째 WS 연결이 왔다 — 「WS 엔드포인트는 회의 하나에 하나」(§5-1). 화면은 「다른 창에서 기록 중입니다」 | SPEC-007 §4 (2026-09-06) |
 | `v2_not_available` | 501 | v2 스코프 엔드포인트 호출 | DEC-001 §v2 |
 | `db_unavailable` | 503 | DB 왕복 실패 — 인프라 가용성 | SPEC-000 §4 |
 | `invalid_refresh_token` | 401 | refresh 가 없거나·만료·이미 회전됨·재사용 감지 | SPEC-001 §4 |
 | `invalid_password` | 422 | 비밀번호 규칙(8자 + 문자·숫자·특수문자) 위반 | DEC-001 §3 |
 
 **v2 는 서버에 만들지 않는다.** v2 스코프는 프론트만 그리고 토스트로 끝난다(DEC-001 §v2) — `v2_not_available` 은 프론트 실수로 실제 호출이 샜을 때의 안전망이지 정상 경로가 아니다.
+
+> ¹ **통합 판정 끝났다**(2026-09-06). SPEC-007 이 신설했던 `meeting_not_recording` 을 **폐기**하고 `invalid_meeting_status`(409) 하나로 합쳤다 — 둘 다 「현재 `status` 에서 허용되지 않는 쓰기」에 대한 상태 가드로 같은 판정이다(SPEC-006 §7 정합 #3 · SPEC-007 §7-A · SPEC-008 §7). 회의 중 쓰기(`POST lines` · `PATCH agendas {state}` · WS 연결)가 `status≠recording` 에서 오면 이 코드다. WS 는 코드 문자열을 못 실어 **close `4409`** 로 나가고, `meeting_stream_active` 와 같은 close code 를 쓴다 — 화면은 연결 시점의 상태로 둘을 가른다.
 
 ### 8-3. DEC-003 §7 실패 정책 — 코드 대응
 
@@ -282,7 +286,7 @@ AppError (status=500, code)
 |---|---|---|
 | 인증 | `POST /api/auth/login` · `/refresh` · `/logout` | 토큰 3종을 본문으로 주고받는다. 쿠키 없음 |
 | 설정 | `/api/work-types` · `/api/projects` · `/api/profile` · `/api/careers` | 유형·프로젝트는 **삭제분을 목록에서 제외**하고, 참조 표시용 조회만 포함한다 |
-| 업무 | `/api/tasks` · `/api/tasks/{id}` · `/api/tasks/{id}/status` · **`/api/tasks/{id}/status/undo`** · 자식 컬렉션 | **상태 전이는 전용 엔드포인트**다 — 게이트 판정이 붙기 때문에 일반 PATCH 에 섞지 않는다. **섞이지 않는 것을 스키마가 강제한다**: `TaskUpdateDTO` 에 `status` 가 없어 일반 PATCH 로 상태를 보내면 **422** 다(우회 경로를 층에서 막는다). 실행취소는 **직전 전이를 되돌리고 그 로그를 지우는 유일한 경로**이고, 다른 어디서도 `task_log` 를 DELETE 하지 않는다. **기한(`dueDate`·`dueStartTime`·`dueEndTime`)은 업무 필드**라 일반 PATCH 로 바뀐다 |
+| 업무 | `/api/tasks` · `/api/tasks/{id}` · `/api/tasks/{id}/status` · **`/api/tasks/{id}/status/undo`** · 자식 컬렉션 | **상태 전이는 전용 엔드포인트**다 — 게이트 판정이 붙기 때문에 일반 PATCH 에 섞지 않는다. **섞이지 않는 것을 스키마가 강제한다**: `TaskUpdateDTO` 에 `status` 가 없어 일반 PATCH 로 상태를 보내면 **422** 다(우회 경로를 층에서 막는다). 실행취소는 **직전 전이를 되돌리고 그 로그를 지우는 유일한 경로**이고, 다른 어디서도 `task_log` 를 DELETE 하지 않는다. **계획 일정(`startDate`·`dueDate`·`dueStartTime`·`dueEndTime`)은 업무 필드**라 일반 PATCH 로 바뀐다. **실적(`startedAt`·`completedAt`)은 요청으로 받지 않는다** — 상태 전이 시점에 서비스가 로그와 **같은 트랜잭션**에서 쓴다(ERD T-1-c) |
 | 캘린더 | **`GET /api/schedules?from=&to=` 하나뿐 — 읽기 전용** | 기간은 **UTC** 로 받는다. 응답 항목은 `sourceType`·`sourceId` + 원본의 표시 정보(제목·유형 색·상태)를 함께 담는다 — 캘린더가 조인 결과를 그대로 그린다. **`PATCH /api/schedules/{id}` 는 없다**: 드래그는 원본을 고친다 → 업무면 `PATCH /api/tasks/{id}`, 회의면 `PATCH /api/meetings/{id}`. 겹침 차단(`schedule_overlap`)은 그 두 엔드포인트가 낸다(DEC-005 §3, 2026-09-05 개정) |
 | 회의록 | `/api/meetings` · `/api/meetings/{id}` · `/start` · `/end` · 줄·안건 컬렉션 | 상세 응답은 **트랙별로 갈라서** 준다 — **안건도 트랙별**이라 `human`·`ai`·`merged` 각각이 「안건 > 줄」 트리 하나다(2026-09-05). **일시(`startAt`·`endAt`)는 회의 필드**라 일반 PATCH 로 바뀐다 |
 | 회의 스트림 | `WS /api/meetings/{id}/stream` | 첫 프레임 인증 → 오디오 업 / 토큰·**AI 증분 + 반영 배치 회차** 다운. 자동 재연결 없음(§5-1) |
