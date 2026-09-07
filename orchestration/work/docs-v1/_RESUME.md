@@ -59,6 +59,37 @@
 > v1 문서 파이프라인(디자인 분석 → 영역별 baseline+decision → spec)이 전부 여기서 돈다.
 > 워커 추가 발주는 새 slug 를 파지 않고 `new-work.sh task-management docs-v1 --workers <w>` 로 이 폴더에 브리프를 더한다.
 
+> ### ⛔ 2026-09-07 실물 확인 — 지금 여기부터 읽어라
+>
+> 앱을 띄워 회의를 처음부터 끝까지 돌렸다. **전 구간이 돈다** —
+> 회의 생성 → 시작 → 마이크 → Soniox 받아쓰기·화자 분리 → 녹음 적재 →
+> 증분 배치 7회 → 종료 → 최종 배치 → 통합본 29줄 + 한 줄 요약.
+> 통합 규칙도 DB 로 검증했다 — 사람 문장 불일치 0 · 사람 줄 계승 9/9 · 이중 계승 0.
+>
+> **그 과정에서 나온 것을 세 파일에 적었다. 이것이 다음 작업의 입력이다.**
+>
+> | 파일 | 무엇 |
+> |---|---|
+> | `walkthrough-fixes.md` | **F-1 ~ F-25** — 버그·사용성·정의 변경 |
+> | `decisions-pending.md` | **①~④** — 사용자 결정 대기 (①은 닫힘) |
+> | `reference/2026-09-06-task-management-app/Meeting flow.md` | **전체 흐름 정본.** 지금 「회의 시작」만 적혀 있다 |
+> | `reference/2026-09-06-task-management-app/ai-prompt-draft.md` | AI 프롬프트 초안 (A 웜스타트 · B 증분 · C 최종) |
+>
+> **작업 방식** — 사용자가 흐름을 **단계별로** 본다: 회의 시작 → 회의 중 → 종료 → 정리.
+> 단계마다 정의를 닫고 넘어간다. **「정함」은 사용자가 확정한 것만이다.**
+> 코디가 제안한 것을 정해진 것처럼 말하지 마라 — 이 세션에서 여러 번 그래서 교정받았다.
+>
+> **실물에서 고친 것(커밋됨)**
+> ```
+> aa98518  Tauri 마이크 권한 — macOS Info.plist · Entitlements · Windows WebView2
+>          + tauri.conf.json CSP 에 ws://localhost:8000 (WS 가 막혀 있었다)
+> ```
+> **환경** — `.env` 에 `CODEX_TOOLS_DIR` · `CODEX_AUTH_JSON` 을 넣었다(백업 `/tmp/env.backup.*`).
+> compose 에 db·redis·api·worker 4개가 뜬다. Soniox 는 **잔액 충전이 필요했다**(402 → 충전 후 정상).
+>
+> **아직 「확인 필요」로 남은 것** — F-12·F-14·F-17·F-18·F-19·F-20·F-21 은
+> 어느 화면의 어느 자리인지 특정 안 됐다. **짐작으로 적지 말고 사용자와 맞춰라.**
+
 **지금**: **회의록 코드가 끝났다** — WORK-006·007·008 · 검수 3회 · 수정 3회. `pytest 519` · `vitest 300` · `tsc 0` · 미커밋 0. 브랜치 `kknaksss/docs-v1` (PR 안 열었다)
 
 **다음**: 아침에 사용자가 볼 것 — `decisions-pending.md` 의 **결정 2건** · `.env` 두 줄(`CODEX_TOOLS_DIR`·`CODEX_AUTH_JSON`) · **실물 확인 40건**(마이크·Soniox·Tauri·반응형). 그 뒤 문서 공백 11건 반영 → 남은 화면(REDRAW-04 설정 셸 · 개인 설정 · 연동 관리) → 캘린더·문서함 그룹
