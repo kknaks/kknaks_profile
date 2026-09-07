@@ -20,6 +20,196 @@
 > 4. **검수 브리프에 「시안과 화면을 나란히 놓고 판정하라」를 넣는다**
 > 5. **시킨 것만 한다.** 지우라면 지우기만 하고 깨진 import 를 알아서 메우지 않는다 — 사용자는 이미 알고 있다
 
+> # ⛔ 회의록 — 흐름 결정 33건 · 계약 재작성 (2026-09-07)
+>
+> ## 지금 어디까지 왔나
+>
+> ```
+> ✅ 흐름 결정 33건    사용자와 단계별로(시작 → 중 → 종료 → 편집) 전부 닫음
+> ✅ 계약 재작성 1차    31건 반영. grep 으로 실측 확인함
+> ⏳ 계약 정정 2차      4건 — 워커 작업 중 (아래 「정정 4건」)
+> ✗  33건 전수 대조     정정 끝나면 코디가 SPEC 을 직접 열어 하나씩 본다
+> ✗  WP 6개           **새 세션에서 만든다** (사용자 지시 2026-09-07)
+> ```
+>
+> ## 문서 셋 — 무엇이 정본인가
+>
+> ```
+> 정본        SPEC-006/007/008 · DEC-001/003 · 40-architecture
+>
+> reference/2026-09-06-task-management-app/Meeting flow.md
+>            **결정의 원본 기록.** MF-1 ~ MF-65 번호. §0 이 목록, §1~§3 이 본문
+>            계약이 이걸 못 따라오면 **이게 이긴다** (사용자가 직접 닫은 것이라서)
+>
+> ⛔ decisions-pending.md · walkthrough-fixes.md
+>            **믿지 마라.** 거기 「사용자 확정」 표시에 사용자가 안 한 말이 섞여 있었다
+>            Meeting flow 를 만들 때 **목록만** 가져왔고 상태는 안 가져왔다
+>            실제로 「내가 그런 말 한 적 없다」로 7건이 지워졌다
+> ```
+>
+> ## 크게 바뀐 것 — 옛 SPEC 을 그대로 읽으면 전부 틀린다
+>
+> ```
+> ① 최종 배치와 통합 단계가 **없다** (MF-56)
+>    /end = async 재전사 → **최종 회의록 한 번** → ended
+>    경로도 /integrate → /finalize 로 바뀌었다 (DB 컬럼 integration_state 는 그대로, 뜻만 바뀜)
+>    「모델은 구조만 내고 본문은 서버가 복사」 규칙이 **폐기**됐다 (MF-57 — AI 가 쓴다. 오타도 다듬는다)
+>
+> ② 배치가 컨텍스트를 안 받는다 (MF-50)
+>    payload = transcript 하나. 안건·줄·업무·유형은 **MCP 도구로 조회**한다
+>    도구 7개 — get_meeting · get_account · list_agendas · **get_agenda** · list_tasks · get_task · list_work_types
+>    (get_agenda 가 없어서 AI 가 사람이 적은 줄을 못 봤다. 그게 안건 남발의 원인이었다)
+>
+> ③ 배치가 매번 AI 트랙 **전체를 다시 낸다** (MF-53)
+>    「INSERT 만」 규약이 「DELETE + INSERT 한 트랜잭션」으로 바뀐다
+>    세션이 앞 발화를 기억하므로 증분만 넣고 「전체를 다시 정리해라」만 요청한다
+>
+> ④ 회의록 편집이 좁아진다 (MF-60 · 62)
+>    할 수 있는 것 — 줄 삭제 · 줄 추가 · 줄 수정 · 업무 넣기 · **안건 제목 수정**
+>    못 하는 것 — **줄 종류 바꾸기** · **안건 삭제**
+> ```
+>
+> ## ⏳ 정정 4건 — 워커 작업 중 (`docs-v1-meeting-reflow2-brief.md`)
+>
+> 1차 계약을 사용자가 검수해 찾아낸 것. **코디가 보고서만 읽고 넘긴 것을 사용자가 잡았다.**
+>
+> ```
+> MF-64   「+ 액션 아이템」도 **줄이 먼저** 생기고 드로어가 뜬다 — 칩 넷이 같다
+>         (연관 업무는 원래 그랬는데 액션만 「업무 생성과 줄 생성이 한 요청」이었다)
+>
+> MF-65   드로어는 **액션·업무 각각 하나**. **payload 있고 없고가 전부**
+>         1차 계약은 「AI 줄 = 넣기 모드 / 사람 줄 = 자동 저장」으로 갈라놨다 — 사실상 드로어 둘
+>         헤더 제목 자리에 **업무 셀렉터**(RelationPopover 재사용)를 둔다
+>         → AI 가 엉뚱한 업무를 골랐을 때 바꿀 길이 1차 계약에 **없었다**
+>
+> ③      **payload 저장 ≠ 업무 생성**
+>         편집에서 액션을 추가하면 **payload 를 만드는 것**이다. 「넣기」를 눌러야 업무가 생긴다
+>
+> ④      20-spec/README.md L74 인덱스가 옛 어휘 「종료·통합·편집」 그대로
+> ```
+>
+> **정정이 끝나면 코디가 할 일 — 33건 전수 대조.** 워커 보고를 옮기지 말고 SPEC 을 직접 열어라.
+> 특히 넷: 드로어가 하나인가 · payload 와 업무 생성이 갈렸나 · 칩 넷이 같은가 · 헤더에 업무 셀렉터가 있나.
+>
+> ## WP 발주 계획 — **새 세션에서 만든다**
+>
+> 코드 워크트리: `/Users/kknaks/orca/workspaces/task_management/docs-v1` (브랜치 `kknaksss/docs-v1`)
+> **지금 코드는 전부 옛 설계다.** 아래는 각 WP 가 **읽을 계약**과 **손댈 코드**다.
+>
+> ### WP1. MCP 서버 + 단명 토큰 — MF-2 3 4 51
+>
+> ```
+> 계약   DEC-003 §2「AI 의 데이터 접근」·§8「AI 도구 연결」
+>       SPEC-007 §4「AI 도구 7개」표
+>       40-architecture/system §codex 설정(신설 — 실측 표·함정 셋)
+> 코드   app/mcp/            **없다. 새로 만든다** (compose·워커 설정 allowed_paths 에 이미 있음)
+>       app/back/integrations/agent.py    provider_options 에 mcp_servers·enabled_tools 주입
+>       토큰 발급/폐기 표면   **어디에 둘지 미정** — SPEC-001 은 무상태 JWT (DEC-003 OQ-9)
+> ⚠ **2·3·4 가 전부 이것에 기댄다.** 이게 없으면 배치가 컨텍스트를 못 얻는다
+> ```
+>
+> ### WP2. 회의 시작 — MF-1 55
+>
+> ```
+> 계약   SPEC-006 §4 `POST /start` · SPEC-007 §4 웜스타트 표
+>       backend README §5-2 · §5-3 · §7(W-1 해소) · §12 테스트 8-a
+> 코드   service/meeting_service.py           start() — 전이만. commit 제거
+>       service/meeting_batch_service.py     warm_start() · build_warm_start_prompt()
+>                                            → 컨텍스트 안 싣고 역할·규칙·용어 다섯만
+>       ai_session_id 가 NULL 인 동안 배치는 평가만 하고 제출 안 함
+> ```
+>
+> ### WP3. 회의 중 — MF-9 10 49 50 53
+>
+> ```
+> 계약   SPEC-007 U-2 · U-3(슬래시 재작성) · U-4 · §4(배치 입력·검증 3·5) · frontend §8
+> 코드   service/meeting_batch_service.py
+>         evaluate()          600 → **1000자**
+>         _load_input()       안건·줄·화이트리스트 **안 싣는다**
+>         build_batch_prompt() 조회 순서(list_agendas → get_agenda → list_tasks)
+>         _persist()          INSERT 만 → **DELETE + INSERT 한 트랜잭션**
+>       front  PromptBar · LineKindPopover   슬래시 5개 · 스페이스에서 칩 · 그 밖은 텍스트
+>              LineRow.tsx                   줄 우측 시각 제거 (안건 헤더는 유지)
+>              useMeetingStream · mergeAiBatch  ai.batch 가 **트리 전체**로 온다
+> ```
+>
+> ### WP4. 회의 종료 — MF-37 52 54 56 57 58 59  ← **제일 크다. 쪼개도 된다**
+>
+> ```
+> 계약   SPEC-008 U-1 · U-2 · §4 파이프라인 ①② · Case Matrix · DEC-003 §4·§6·§7·§STT
+> 코드   service/meeting_finalize_service.py   end() · integrate() → **finalize()**
+>                                             ① async 재전사 → ② 최종 회의록 **한 번**
+>       integrations/soniox.py                async 갈래 신설 (지금은 실시간 WS 하나뿐)
+>                                             files → transcriptions → 폴링 → tokens[]
+>                                             ⚠ sub-word 토큰이라 화자·시간 기준으로 묶어야 한다
+>       ai_schemas/meeting_batch.json → meeting_notes.json  payload·headline·termCorrections nullable
+>       meeting_transcript                    재전사분 전량 교체 · term_corrections 신설
+>       ⚠ 실물 확인 — **헤더 없는 webm 을 stt-async-v5 가 받나** (미확인)
+> ```
+>
+> ### WP5. 편집·정리 — MF-13 14 21 25 36 60 61 62 63 64 65
+>
+> ```
+> 계약   SPEC-008 U-3 · U-6 · U-7 · U-9 · U-10 · §4(PATCH lines · DELETE · POST lines)
+>       SPEC-003 U-1 · U-3 · U-8   (업무 탭이 정본. 슬롯만 더한다)
+>       SPEC-002 · DEC-001 §3·§4   (work_type.description)
+>       frontend README §6(모달 두 크기)
+> 코드   front  MeetingDetailBody.tsx      칩 넷을 같은 방식으로(줄 먼저)
+>              CreateTaskFromLineDrawer     → **폐기.** TaskCreateDrawer 재사용 + 안건 슬롯
+>              LinkTaskDrawer               → **폐기.** TaskDetailDrawer + 헤더 업무 셀렉터
+>              RelationPopover              헤더 셀렉터로 재사용 (이미 있다)
+>              LineKindSelector             편집에서 **제거** (종류 못 바꾼다)
+>              ConfirmModal                 420 폭 · 한 문장 · size prop
+>       back   meeting_line_repository      삭제 시 order_index **안 당긴다**
+>              PATCH …/lines 에서 kind 제거 · POST …/lines 의 newTask 갈래 제거
+>              work_type.description 컬럼 + 마이그레이션 + 시드 문구
+> ```
+>
+> ### WP6. 목록·상세 UI — MF-5 6 7 8
+>
+> ```
+> 계약   SPEC-006 U-1 · U-4 · U-6 · U-8 · SPEC-008 U-3
+>       frontend README §6-3(신설 — breadcrumb·헤더 규격)
+> 코드   components/shared/AppShell.tsx   Breadcrumb 를 **링크로** + 상세에 「←」
+>       MeetingPreviewPanel              CTA 상태별 · min-width:0 · 패널 안 스크롤
+>       AgendaLineTree                   density prop (미리보기 compact)
+>       MeetingClosedPage · MeetingScheduledPage · MeetingMetaInline
+>                                        헤더를 배지 줄 → 제목 순서로
+>
+> ⛔ **업무 화면은 안 고친다.** 이번 논의는 회의록 얘기였다
+>   MF-8 — 업무 헤더는 **정본으로 참고**만 한다. 업무 쪽 순서를 바꾸는 게 아니다
+>   MF-7 — 「←」 뒤로가기는 **공용 부품(AppShell)** 에서 고치니 업무 상세에도 자연히 붙는다
+>          (업무 상세에도 뒤로가기가 없다 — grep 0건. 그건 공용 부품 고치는 덤이다)
+>          breadcrumb 링크도 같은 부품이라 같이 산다
+> ```
+>
+> ## 열려 있는 것
+>
+> ```
+> DEC-003 OQ-8 ~ 12   워커가 근거와 함께 올린 것 — 웜스타트 실패 기록·재시도 / MCP 배치·토큰 인프라
+>                    / context.terms 원천(용어 사전이 v1 에 없다) / 「미팅·회의」 시드 문구
+>                    / 유형 기본값(지금은 null 허용 → 사람이 고르게)
+>
+> 실물 확인 1건        **헤더 없는 webm 을 stt-async-v5 가 받나**
+>                    우리 녹음은 실시간으로 흘려 써서 duration 헤더가 비어 있다
+>                    파일 하나 넣어보면 $0.10 에 처리 시간·화자 분리 개선폭까지 나온다
+>
+> 코드                지금 코드는 **전부 옛 설계**다. WP 가 나와야 고친다
+>                    app/ 은 별도 워크트리 — /Users/kknaks/orca/workspaces/task_management/docs-v1
+> ```
+>
+> ## ⛔ 이 세션에서 사용자가 여러 번 교정한 것
+>
+> ```
+> 1. **시킨 것만 한다.** 빈 섹션이 보여도 채우지 마라.
+>    「해결된 거 붙여봐」에 §2~§4 를 만들고 전수 대조표를 만들었다가 전부 지웠다
+> 2. **사용자가 답한 것만 적는다.** 「~할까요?」에 답이 없으면 **아무것도 쓰지 않는다**
+>    접거나 지우는 것도 물어보고 한다
+> 3. **워커 보고를 그대로 옮기지 마라.** 문서를 직접 열어 확인하고 판정해서 보고한다
+>    보고서에 「워커 판단 7건」이 있었는데 그중 3건이 틀렸고 사용자가 잡았다
+> 4. **묻지 말고 고쳐라.** 이미 논의로 결론이 난 것을 다시 확인하려 들지 마라
+> ```
+
 > # ⛔ 정본 기준 — 축을 나눠라 (2026-09-06)
 >
 > 위 규칙 2 「시각 정본은 `.dc.html`」을 코디가 **「시안이 전부의 정본」**으로 넓혀 읽었다.

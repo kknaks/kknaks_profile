@@ -5,7 +5,11 @@
 > FastAPI 백엔드의 계층·경계·규약. **여기 적힌 것은 「이렇게 한다」다** — 코드 워커가 이 문서만 읽고도 같은 방식으로 쓸 수 있어야 하고,
 > 리뷰어는 이 문서를 판정 기준으로 삼는다. 선택지를 남기지 않는다.
 >
-> 근거 표기: `DEC-00x §y` = `10-decision/`, `§C` = `orchestration/work/docs-v1/design-requests.md`, 「제약」 = 사용자가 못박은 스택·계층.
+> 근거 표기: `DEC-00x §y` = `10-decision/`, `§C` = `orchestration/work/docs-v1/design-requests.md`, 「제약」 = 사용자가 못박은 스택·계층,
+> **`MF-n` = `reference/2026-09-06-task-management-app/Meeting flow.md` §0(2026-09-07 결정 31건).**
+>
+> **2026-09-07 개정(MF).** `/start` 는 전이만 하고 즉시 응답한다(MF-1 — W-1 해소) · AI 도구는 API 래퍼 7개 + codex allow list + 회의별 단명 토큰(MF-2·3·4) ·
+> 배치 입력은 발화 하나, 출력은 AI 트랙 전체(MF-50·53) · 종료는 **async 재전사 → 최종 회의록 호출 한 번**(MF-37·56·57) — 종료 시 배치·통합 호출이 없다.
 
 관련 문서 — `../system/README.md`(구성·흐름) · `../database/README.md`(스키마 정본).
 
@@ -21,8 +25,8 @@
 | 마이그레이션 | **Alembic** | `../database/README.md` §0-2 |
 | 검증·직렬화 | **Pydantic v2** | FastAPI 기본. `schemas/` 전용 |
 | 서버 | **uvicorn** | — |
-| AI 실행 | **open-kknaks `AgentClient`** (Redis 브로커) + codex 워커 | 제약 |
-| STT | **Soniox WebSocket 중계** (백엔드가 키 보유) | DEC-003 §STT |
+| AI 실행 | **open-kknaks `AgentClient`** (Redis 브로커) + codex 워커. **AI 가 우리 데이터를 읽는 길은 MCP 도구 7개(백엔드 API 래퍼)뿐** — MF-2 | 제약 · MF-2 |
+| STT | **Soniox WebSocket 중계**(실시간 `stt-rt-v5`) + **async 재전사**(`stt-async-v5` — 종료 후, 녹음 원본). 둘 다 백엔드가 키 보유 | DEC-003 §STT · MF-37 |
 | 테스트 | pytest + pytest-asyncio(`asyncio_mode=auto`) + httpx `AsyncClient` | §12 |
 
 **금지 — Anthropic·OpenAI 등 LLM SDK 를 직접 import 하지 않는다.** LLM 은 open-kknaks 를 통해서만 쓴다(제약).
@@ -94,9 +98,11 @@ app/back/
 │   ├── work_type_service.py · project_service.py · profile_service.py
 │   ├── task_service.py
 │   ├── schedule_service.py           # 겹침 검사 + schedule 파생 — 둘 다 여기 하나뿐
-│   ├── meeting_service.py
+│   ├── meeting_service.py            # /start 는 전이만 — 웜스타트는 큐(MF-1)
 │   ├── meeting_stream_service.py     # WS 2단 중계 + 녹음 적재
-│   ├── meeting_batch_service.py      # 배치 트리거 · 결과 검증 · 통합
+│   ├── meeting_batch_service.py      # 웜스타트 큐 · 배치 트리거 · 결과 검증 · AI 트랙 전량 교체(MF-53)
+│   ├── meeting_finalize_service.py   # /end job — ① async 재전사 → ② 최종 회의록(MF-37 · 56) · 다시 시도
+│   ├── meeting_task_link_service.py  # 줄 ↔ 업무 입구 — payload(MF-59)를 task_service 로
 │   ├── document_service.py · folder_service.py
 │   └── job_service.py
 ├── repository/                       # 3층 — ORM/SQL
@@ -104,10 +110,11 @@ app/back/
 ├── dto/                              # 내부 계약
 ├── schemas/                          # 프론트 계약
 ├── integrations/
-│   ├── soniox.py                     # WS 클라이언트
-│   ├── agent.py                      # open-kknaks AgentClient 래퍼
+│   ├── soniox.py                     # 실시간 WS 클라이언트 + async 재전사(files → transcriptions → transcript)
+│   ├── agent.py                      # open-kknaks AgentClient 래퍼 — 실행 옵션 빌더(allow list · MCP 헤더 토큰)
 │   └── storage.py                    # 녹음·md 파일 경로와 입출력
-├── ai_schemas/                       # codex output_schema JSON — 배치·통합
+├── ai_schemas/                       # codex output_schema JSON — 회의록 한 벌(meeting_notes.json, MF-52). 배치·최종이 같은 파일
+                                      # MCP 서버(도구 7개)의 배치 위치는 DEC-003 OQ-9 — MCP work 에서 확정
 ├── seed/                             # 계정 · 기본 유형 3종 · PARA 폴더 4종
 └── tests/
 ```
@@ -129,7 +136,7 @@ app/back/
 - 업스트림(Soniox) 연결은 **클라이언트 연결 성립 후에** 연다. 미리 열어 두지 않는다 — 스트림 시간이 과금·한도(300분)에 직결된다.
 - 오디오 청크는 **① 녹음 파일 append → ② Soniox 전달** 순으로 흐른다. 파일 적재가 실패하면 그 자리에서 끊는다(원본이 남지 않는 녹음을 계속하지 않는다).
 - 다운스트림은 **잠정 토큰은 그대로 push, 확정 토큰만 DB 적재**한다(DEC-003 §3).
-- **AI 증분도 같은 채널로 나간다.** 배치가 끝나는 즉시 그 회차의 AI 줄과 **반영된 배치 회차(`seq`)** 를 push 한다 — 프론트가 「배치 2회 → 3회 → 종결」을 그린다. **모아 두지 않는다**(DEC-003 §4, 2026-09-05 확정).
+- **AI 증분도 같은 채널로 나간다.** 배치가 끝나는 즉시 **AI 트랙 전체**(그 회차가 갈아끼운 안건·줄 전량 — MF-53)와 **반영된 배치 회차(`seq`)** 를 push 한다 — 프론트가 트리를 통째로 교체하고 「배치 2회 → 3회」를 그린다. **모아 두지 않는다**(DEC-003 §4, 2026-09-05 확정). 「종결」 표시는 없다 — 종료 후 종료 시 배치가 없다(MF-56).
 - **백프레셔** — 클라이언트로 보낼 큐가 상한을 넘으면 잠정 토큰을 버린다(확정 토큰과 AI 증분은 버리지 않는다). 잠정은 어차피 다음 응답에서 리셋 렌더된다(soniox).
 - 회의 종료·연결 끊김 어느 쪽이든 **업스트림을 반드시 닫는다** — 종료 처리는 `finally` 에 둔다.
 - **자동 재연결을 넣지 않는다.** WS 끊김은 DEC-003 §7 의 실패 목록에 없다 — 조용히 되살리면 그 사이 오디오가 비었다는 사실이 가려진다. 끊기면 녹음을 멈춘 상태로 전환하고 화면에 드러낸다.
@@ -137,14 +144,18 @@ app/back/
 ### 5-2. AI 작업 (`integrations/agent.py`)
 
 - `AgentClient` 는 **싱글턴**이다. 브로커 연결은 첫 제출 때 한 번 맺는다.
-- 배치·통합 제출은 **`options.resume = {"mode": "session", "session_id": meeting.ai_session_id}`** 로 **회의 하나의 세션을 이어 쓴다**(DEC-003 §STT). 웜스타트가 그 세션을 만들고 결과는 버린다.
-- 출력은 **`provider_options.output_schema`** 로 강제한다(`ai_schemas/` 의 JSON 파일 경로). **그래도 받은 JSON 을 우리가 다시 검증한다** — 강제와 검증은 다른 층이다(§8 M-16·M-15).
-- **codex 실행 옵션은 한 곳(빌더 함수)에서만 만든다.** 새 세션 호출과 resume 호출이 다른 옵션으로 나가는 사고를 구조로 막는다.
-- **웜스타트 컨텍스트** — 회의가 프로젝트를 가지면 그 프로젝트의 업무를, **무소속 회의면 무소속 업무**(프로젝트 없는 업무)를 준다. 화이트리스트(§8-3)도 같은 목록이다(DEC-003 §4, 2026-09-05 확정).
+- **웜스타트는 `/start` 요청 밖에서 돈다**(MF-1). `/start` 는 `scheduled → recording` 전이 + `recording_started_at` 을 **한 UPDATE** 로 쓰고 즉시 응답한다. 웜스타트 제출은 요청이 commit 된 뒤 **백그라운드 태스크**가 하고, 돌아온 `session_id` 를 **새 세션에서** `meeting.ai_session_id` 에 UPDATE 한다. 결과 본문은 버린다. **워커가 죽어 있어도 회의는 시작된다 — 배치만 안 돈다**(`ai_session_id` 가 `NULL` 인 동안 트리거는 평가하되 제출하지 않는다). 실패의 기록·재시도는 DEC-003 OQ-8.
+- 배치·최종 회의록 제출은 **`options.resume = {"mode": "session", "session_id": meeting.ai_session_id}`** 로 **회의 하나의 세션을 이어 쓴다**(DEC-003 §STT). **세션이 앞 발화를 기억한다** — 그래서 배치는 이번 구간만 넘기고 「전체를 다시 정리해라」만 요청한다(MF-53).
+- **웜스타트는 컨텍스트를 싣지 않는다**(MF-50 · MF-55). 주는 것은 역할 · 규칙 · **용어 다섯의 뜻**(DEC-003 §8 「AI 도구 연결」) · 도구 목록뿐이다. 프로젝트 · 업무 · 안건 · 유형은 AI 가 **MCP 도구 7개**로 필요할 때 조회한다 — `get_meeting()` · `get_account()` · `list_agendas()`(사람 + AI 안건) · `get_agenda(id)` · `list_tasks(projectId?)` · `get_task(id)` · `list_work_types()`(이름 · 종류 · 설명). 도구는 **백엔드 API 의 얇은 래퍼**이고 DB 직결이 아니다(MF-2). 서버 사후 검사(§8-3)의 기준 목록(회의 프로젝트의 업무 · 무소속이면 무소속 업무 — DEC-003 §4)은 **검사 시점에 서버가 조회**한다.
+- **배치 입력은 미처리 확정 발화 하나뿐이다**(MF-50). 안건 · 사람 줄 · AI 안건 · 화이트리스트를 payload 에 싣지 않는다 — 스냅샷은 낡는다.
+- **배치 출력은 AI 트랙 전체다**(MF-53). 검증을 통과하면 `track='ai'` 안건 · 줄을 **한 트랜잭션에서 DELETE + INSERT** 한다. 검증에 떨어지면 직전 성공분이 그대로 남는다(`../database/domains/meeting.md` M-7).
+- 출력은 **`provider_options.output_schema`** 로 강제한다 — **파일은 하나**(`ai_schemas/meeting_notes.json`)다. 회의 중 배치와 최종 회의록이 같은 스키마를 쓰고, `payload` · `headline` · `termCorrections` 만 nullable 이다(MF-52). 회의 중 결과에 이 셋이 실려 오면 **서버가 버린다**. **그래도 받은 JSON 을 우리가 다시 검증한다** — 강제와 검증은 다른 층이다(§8 M-16·M-15).
+- **codex 실행 옵션은 한 곳(빌더 함수)에서만 만든다.** 새 세션 호출과 resume 호출이 다른 옵션으로 나가는 사고를 구조로 막는다. 빌더가 함께 만드는 것 — ① **allow list**(`../system/README.md` §codex 설정 — MF-3: `enabled_tools` 우리 도구 7개 · 내장 스위치 전부 off · 도구별 `approval_mode="approve"`) ② **MCP 헤더 토큰**(MF-4: 회의마다 본인 계정으로 발급한 단명 토큰을 `-c mcp_servers.<key>.http_headers={Authorization="Bearer …"}` 로. `--bearer-token-env-var` · OAuth · 설정 파일을 쓰지 않는다). 토큰 발급·폐기 인프라는 DEC-003 OQ-9.
+- **회의가 끝나면(②가 종결되면) 그 회의의 단명 토큰을 best-effort 로 폐기한다.** 실패는 자연 만료로 흡수한다(MF-4).
 
 ### 5-3. 작업 실행
 
-장시간 작업(회의 종료 통합)은 **`job` 행이 정본**이고, 실행은 **back 프로세스의 asyncio 태스크**가 한다.
+장시간 작업(회의 종료 — ① async 재전사 → ② 최종 회의록 호출)은 **`job` 행이 정본**이고, 실행은 **back 프로세스의 asyncio 태스크**가 한다. 웜스타트 제출(§5-2)도 같은 방식의 백그라운드 태스크다 — 단 job 행은 만들지 않는다(사용자가 폴링할 대상이 아니다).
 
 - 별도 워커 프로세스를 하나 더 두지 않는다 — codex 실행 자체는 이미 open-kknaks 워커가 하고, back 태스크가 하는 일은 대기와 DB 쓰기뿐이다. 단일 사용자 서버 1대에서 프로세스를 늘릴 이득이 없다(`../system/README.md` SYS-1).
 - **기동 스윕** — 앱이 뜰 때 `queued`/`running` 으로 남은 job 을 훑어 재개하거나 실패로 마감한다. 재시작으로 끊긴 「생성중」이 영원히 도는 것을 막는다.
@@ -157,7 +168,7 @@ app/back/
 | 단계 | 규약 |
 |---|---|
 | 시작 | `POST /api/meetings/{id}/end` → **`202 Accepted`** + `{ "jobId": 123 }`. 응답을 기다리는 동안 작업이 도는 구조를 만들지 않는다 |
-| 상태 조회 | `GET /api/jobs/{jobId}` → `{ id, kind, status, progress, errorCode, errorMessage, finishedAt }`. **`progress{phase, attempt}` 는 파생**이다(컬럼 없음 — `phase` 는 그 회의 `meeting_batch_run` 최신 행, `attempt` 는 `job.attempt`; `kind≠meeting_finalize` 면 `null`). `failed` 의 `errorCode ∈ {integration_failed, integration_timeout, job_timeout}` (SPEC-008 §4, 2026-09-06) |
+| 상태 조회 | `GET /api/jobs/{jobId}` → `{ id, kind, status, progress, errorCode, errorMessage, finishedAt }`. **`progress{phase, attempt}` 는 파생**이다(컬럼 없음 — `phase` 는 재전사 중 `transcription`, 그 회의에 `meeting_batch_run(phase='final')` 이 생기면 `final`; `attempt` 는 `job.attempt`; `kind≠meeting_finalize` 면 `null`). `failed` 의 `errorCode ∈ {transcription_failed, transcription_timeout, final_failed, final_timeout, job_timeout}` (SPEC-008 §4, 2026-09-07) |
 | 완료 통지 | **폴링**이다. 프론트가 2초 간격으로 조회한다 |
 | 종료 조건 | `status ∈ {succeeded, failed}` 이면 폴링을 멈춘다. **타임아웃 상한을 둔다 — 무한 대기 금지**(DEC-003 §7). 상한을 넘으면 job 을 `failed` 로 마감한다 |
 | 결과 | job 은 결과를 담지 않는다. 프론트는 완료 후 **원 리소스**(`GET /api/meetings/{id}`)를 다시 읽는다 |
@@ -170,9 +181,9 @@ app/back/
 
 | 상황 | 경계 |
 |---|---|
-| HTTP 요청 | **요청 하나 = 트랜잭션 하나.** `get_db` 의존성이 끝에서 commit 하고 예외면 rollback 한다. service·repository 는 **flush 까지만** 하고 commit 을 모른다 |
+| HTTP 요청 | **요청 하나 = 트랜잭션 하나.** `get_db` 의존성이 끝에서 commit 하고 예외면 rollback 한다. service·repository 는 **flush 까지만** 하고 commit 을 모른다. **`/start` 도 예외가 아니다**(MF-1 — W-1 해소): 전이만 하고 끝이니 요청 안에서 commit 할 이유가 없다. 웜스타트는 commit 뒤 백그라운드 태스크(§5-2) |
 | 백그라운드 job | 요청 경계가 없다. **단계마다 세션을 새로 열고 그 단계 끝에 commit** 한다. 태스크 수명 내내 세션을 붙들지 않는다 |
-| 외부 호출 | **codex·Soniox 호출 중에는 트랜잭션을 열어 두지 않는다.** 읽기 → (커밋) → 외부 호출 → 새 세션에서 쓰기 순으로 자른다. 수 분짜리 외부 대기가 커넥션과 락을 잡고 있으면 안 된다 |
+| 외부 호출 | **codex·Soniox 호출 중에는 트랜잭션을 열어 두지 않는다.** 읽기 → (커밋) → 외부 호출 → 새 세션에서 쓰기 순으로 자른다. 수 분짜리 외부 대기가 커넥션과 락을 잡고 있으면 안 된다. 재전사(①)는 폴링 사이에도 세션을 열어 두지 않는다 |
 | **일정 파생** | **원본 쓰기(`task.due_*` · `meeting.start_at`/`end_at`)와 `schedule` 재생성은 같은 트랜잭션**이다. 겹침 검사는 그 앞에 온다 — 걸리면 원본도 안 바뀐다(`../database/README.md` §3-3) |
 | 로그 | 상태 전이와 `task_log` INSERT 는 **같은 트랜잭션**이다. 로그 없는 전이는 없다(DEC-002 §6) |
 
@@ -201,7 +212,7 @@ app/back/
 
 - **`except Exception` 을 쓰지 않는다.** 포착은 구체 예외 타입으로만 한다.
 - **기본값으로 때우지 않는다.** 「없으면 빈 리스트」·「실패하면 이전 값」 같은 조용한 대체를 만들지 않는다.
-- **재시도를 임의로 넣지 않는다.** 재시도는 DEC 가 명시한 두 곳뿐이다 — 회의 중 배치(다음 배치에 합쳐), 통합본 생성(2회). **자동 저장에는 재시도가 없다**(DEC-001 §7 「자동 재시도를 두지 않는다 — 실패를 가린다」).
+- **재시도를 임의로 넣지 않는다.** 재시도는 DEC 가 명시한 두 곳뿐이다 — 회의 중 배치(다음 배치에 합쳐), 최종 회의록 호출 ②(2회). **재전사 ① 에는 자동 재시도도 fallback 도 없다**(MF-58 — 실패면 `ended`+`failed`, 사람이 「다시 시도」). **자동 저장에는 재시도가 없다**(DEC-001 §7 「자동 재시도를 두지 않는다 — 실패를 가린다」).
 - 로깅 목적의 포착은 **반드시 재전파**한다(`log; raise`). 로그만 남기고 삼키지 않는다.
 - 예외 하나 — 앱 **기동 시 복구 스윕**은 실패해도 기동을 막지 않는다(§5-3). 이건 설계한 실패다.
 
@@ -241,7 +252,7 @@ AppError (status=500, code)
 | `folder_not_empty` | 409 | 문서가 있는 폴더 삭제 시도 | DEC-004 §4 |
 | `unsupported_file_type` | 422 | md 아닌 파일 업로드. **URL 링크 첨부는 이 검사 대상이 아니다** | DEC-004 §7 · 확정(2026-09-05) |
 | `meeting_stream_disconnected` | 409 · WS `error` 프레임 | REST: 스트림이 끊긴 상태(`paused/stream`)에서 **오디오** 요청이 왔다. **`/end` 는 이 상태에서도 받는다** — 일시정지 헤더에 「회의 종료」가 있다(`회의록.dc.html` L804 · L1085 · L1235). 재개가 실패하면 다시 일시정지로 돌아올 뿐이고, 그 자리에 종료가 항상 있다(2026-09-06 정정). WS: 서버가 `{"type":"error","code":"meeting_stream_disconnected","reason":…}` 을 보내고 닫는다 — **부기 `reason ∈ {upstream, write_failed}`**(Soniox 연결 끊김 / 녹음 파일 append 실패). **자동 재연결하지 않는다**(§5-1) | DEC-003 §7 · SPEC-007 §4 (2026-09-06 부기) |
-| `invalid_meeting_status` | 409 | 상태 흐름(`scheduled→recording→generating→ended`, 한 방향) 밖의 요청 — `recording`·`generating` 중 삭제·일시 변경·메타 변경, `/end` 가 `recording` 아님, `/integrate` 가 `ended`+`failed` 아님, `generating` 중 줄 쓰기 ¹ | SPEC-006 §4 · SPEC-008 §4 · SPEC-009 §4 (2026-09-06) |
+| `invalid_meeting_status` | 409 | 상태 흐름(`scheduled→recording→generating→ended`, 한 방향) 밖의 요청 — `recording`·`generating` 중 삭제·일시 변경·메타 변경, `/end` 가 `recording` 아님, `/finalize`(다시 시도)가 `ended`+`failed` 아님, `generating` 중 줄 쓰기 ¹ | SPEC-006 §4 · SPEC-008 §4 · SPEC-009 §4 (2026-09-06 · 09-07 `/finalize`) |
 | `meeting_stream_active` | WS `4409` | 그 회의에 **이미 살아 있는 스트림**이 있는데 두 번째 WS 연결이 왔다 — 「WS 엔드포인트는 회의 하나에 하나」(§5-1). 화면은 「다른 창에서 기록 중입니다」 | SPEC-007 §4 (2026-09-06) |
 | `v2_not_available` | 501 | v2 스코프 엔드포인트 호출 | DEC-001 §v2 |
 | `db_unavailable` | 503 | DB 왕복 실패 — 인프라 가용성 | SPEC-000 §4 |
@@ -256,13 +267,15 @@ AppError (status=500, code)
 
 | DEC-003 §7 상황 | 구현 위치 | 처리 |
 |---|---|---|
-| **회의 중 배치 실패** | `meeting_batch_service` | 조용히 넘긴다. `meeting_batch_run.status='failed'` 로 남기고 **그 구간을 다음 배치 범위에 합친다.** 사용자에게 표시하지 않는다 |
-| **JSON 스키마 위반** | 〃 | **그 배치 결과 전체 폐기.** 행을 하나도 넣지 않는다(부분 파싱 금지). `status='discarded'` + 구간을 다음 배치로 |
-| **없는 업무 참조** | 〃 | 웜스타트 화이트리스트 밖의 `taskId` 는 **거부**. 그 줄은 `taskId` 를 떼고 `kind='action'` 으로 강등하되 **본문은 살린다**. 화이트리스트는 회의의 프로젝트 업무 — **무소속 회의면 무소속 업무**(2026-09-05) |
-| **업무 갱신(`pendingChange`) 거부** | `task_service` | 담을 수 있는 것은 **기한·상태·note** 셋뿐이다(2026-09-05). 그 밖의 필드가 오면 **거부**한다. 상태가 완료로 가면 **완료 게이트를 그대로 태운다** — 회의록에서 온 요청이라고 게이트를 우회하지 않는다(DEC-002 §4) |
-| **마지막 배치 실패** | 〃 | AI 탭을 **회의 중 증분 상태 그대로 유지**한다. 버리지 않는다 |
-| **통합본 생성 실패** | `meeting_service` | **자동 재시도 2회** → 실패면 `status='ended'` + `integration_state='failed'`. 사람 원본·AI 탭·트랜스크립트·녹음이 모두 남아 회의록이 비지 않는다 |
-| **스피너 타임아웃** | `job_service` | 상한을 넘으면 job 을 `failed` 로 마감한다. **무한 대기 금지** |
+| **웜스타트 미완료·실패** | `meeting_batch_service` | 회의는 정상 시작(MF-1). `ai_session_id` 가 `NULL` 이면 배치 트리거를 평가만 하고 **제출하지 않는다**. 실패 기록·재시도 경로는 DEC-003 OQ-8 |
+| **회의 중 배치 실패** | 〃 | 조용히 넘긴다. `meeting_batch_run.status='failed'` 로 남기고 **그 구간을 다음 배치 범위에 합친다.** 사용자에게 표시하지 않는다 |
+| **JSON 스키마 위반** | 〃 | **그 배치 결과 전체 폐기.** 행을 하나도 넣지 않는다(부분 파싱 금지). `status='discarded'` + 구간을 다음 배치로. **AI 트랙은 직전 성공분 그대로**(전량 교체는 검증 뒤에만 — MF-53) |
+| **없는 업무 참조** | 〃 (`meeting_finalize_service` 도 같은 함수) | **서버 사후 검사** — 입력에 화이트리스트를 싣지 않지만(MF-50) 검사는 남긴다. 기준은 **검사 시점에 조회한** 회의 프로젝트의 업무(**무소속 회의면 무소속 업무**, 2026-09-05). 밖의 `taskId` 는 그 줄만 `taskId`·`payload` 를 떼고 `kind='action'` 으로 강등하되 **본문은 살린다**. 페이로드 안의 유형·프로젝트·연관 업무 참조도 같은 자리에서 검사한다(MF-59) |
+| **회의 중 페이로드** | 〃 | 회의 중 결과의 `payload` · `headline` · `termCorrections` 는 **버린다**(`NULL` 저장 — MF-52) |
+| **업무 넣기(`payload`) 거부** | `task_service` | 업무 줄 변경분은 **기한 · 상태(`todo`·`in_progress` 만) · 진행 메모 · 할일 추가 · 연관 업무 · 프로젝트 · 완료 결과** 일곱(MF-59). **`done` 은 받지 않는다 — 스키마 층에서 422**(완료 게이트 뒷문 금지). `cancelled` 도 없다. 액션 줄 생성분은 `POST /api/tasks` 규칙 그대로. 회의록 쪽에 판정 코드를 두지 않는다 — `task.status` 대입은 `task_service.change_status()` 안에서만 |
+| **재전사 실패**(①) | `meeting_finalize_service` | **fallback 없음**(MF-58). 실시간 블록으로 최종 회의록을 만들지 않는다. `status='ended'` + `integration_state='failed'` + `errorCode='transcription_failed|transcription_timeout'`. 「다시 시도」는 ①부터 |
+| **최종 회의록 생성 실패**(②) | 〃 | **자동 재시도 2회** → 실패면 `status='ended'` + `integration_state='failed'`. 사람 원본·AI 탭·(재전사된) 트랜스크립트·녹음이 모두 남아 회의록이 비지 않는다 |
+| **스피너 타임아웃** | `job_service` | 상한을 넘으면 job 을 `failed` 로 마감한다. **무한 대기 금지.** 재전사는 처리 시간에 공식 수치가 없다 — 상한은 SPEC-008 §4 |
 | **자동 저장 실패** | 각 PATCH 라우터 | 서버는 실패를 그대로 응답한다. **재시도하지 않는다.** 토스트 + 필드 표시는 프론트 몫(DEC-001 §7) |
 
 이 표에 없는 예외는 **전파**한다 — 500 으로 나가고 로그에 스택이 남는다. 그게 의도다.
@@ -288,7 +301,8 @@ AppError (status=500, code)
 | 설정 | `/api/work-types` · `/api/projects` · `/api/profile` · `/api/careers` | 유형·프로젝트는 **삭제분을 목록에서 제외**하고, 참조 표시용 조회만 포함한다 |
 | 업무 | `/api/tasks` · `/api/tasks/{id}` · `/api/tasks/{id}/status` · **`/api/tasks/{id}/status/undo`** · 자식 컬렉션 | **상태 전이는 전용 엔드포인트**다 — 게이트 판정이 붙기 때문에 일반 PATCH 에 섞지 않는다. **섞이지 않는 것을 스키마가 강제한다**: `TaskUpdateDTO` 에 `status` 가 없어 일반 PATCH 로 상태를 보내면 **422** 다(우회 경로를 층에서 막는다). 실행취소는 **직전 전이를 되돌리고 그 로그를 지우는 유일한 경로**이고, 다른 어디서도 `task_log` 를 DELETE 하지 않는다. **계획 일정(`startDate`·`dueDate`·`dueStartTime`·`dueEndTime`)은 업무 필드**라 일반 PATCH 로 바뀐다. **실적(`startedAt`·`completedAt`)은 요청으로 받지 않는다** — 상태 전이 시점에 서비스가 로그와 **같은 트랜잭션**에서 쓴다(ERD T-1-c) |
 | 캘린더 | **`GET /api/schedules?from=&to=` 하나뿐 — 읽기 전용** | 기간은 **UTC** 로 받는다. 응답 항목은 `sourceType`·`sourceId` + 원본의 표시 정보(제목·유형 색·상태)를 함께 담는다 — 캘린더가 조인 결과를 그대로 그린다. **`PATCH /api/schedules/{id}` 는 없다**: 드래그는 원본을 고친다 → 업무면 `PATCH /api/tasks/{id}`, 회의면 `PATCH /api/meetings/{id}`. 겹침 차단(`schedule_overlap`)은 그 두 엔드포인트가 낸다(DEC-005 §3, 2026-09-05 개정) |
-| 회의록 | `/api/meetings` · `/api/meetings/{id}` · `/start` · `/end` · 줄·안건 컬렉션 | 상세 응답은 **트랙별로 갈라서** 준다 — **안건도 트랙별**이라 `human`·`ai`·`merged` 각각이 「안건 > 줄」 트리 하나다(2026-09-05). **일시(`startAt`·`endAt`)는 회의 필드**라 일반 PATCH 로 바뀐다 |
+| 회의록 | `/api/meetings` · `/api/meetings/{id}` · `/start` · `/end` · `/finalize`(다시 시도) · 줄·안건 컬렉션 · `/lines/{id}/task`(업무 넣기) | 상세 응답은 **트랙별로 갈라서** 준다 — **안건도 트랙별**이라 `human`·`ai`·`merged` 각각이 「안건 > 줄」 트리 하나다(2026-09-05). **일시(`startAt`·`endAt`)는 회의 필드**라 일반 PATCH 로 바뀐다. **`/start` 는 전이만 하고 즉시 응답**(MF-1). **줄의 `kind` 를 고치는 표면이 없다**(MF-60) |
+| MCP 도구 | `get_meeting` · `get_account` · `list_agendas` · `get_agenda` · `list_tasks` · `get_task` · `list_work_types` — **7개 · 전부 조회** | 위 REST 표면의 **얇은 래퍼**(MF-2). 회의별 단명 토큰으로 인증하고 **그 회의·그 계정 범위**만 답한다. 쓰기 도구는 없다 — 회의록에 남길 것은 output JSON 으로만. 배치 위치·토큰 인프라는 DEC-003 OQ-9 |
 | 회의 스트림 | `WS /api/meetings/{id}/stream` | 첫 프레임 인증 → 오디오 업 / 토큰·**AI 증분 + 반영 배치 회차** 다운. 자동 재연결 없음(§5-1) |
 | 문서함 | `/api/folders` · `/api/documents` · `/api/documents/{id}/content` | **본문은 별도 엔드포인트**다. 목록·메타에 본문을 싣지 않는다 |
 | 작업 | `GET /api/jobs/{id}` | §6 |
@@ -306,7 +320,8 @@ AppError (status=500, code)
 | `REDIS_URL` | open-kknaks 브로커 | worker 와 같은 값 |
 | `AI_NAMESPACE` · `AI_QUEUE` | 브로커 네임스페이스·큐 | **worker 설정과 일치해야 한다** |
 | `AI_MODEL` · `AI_TIMEOUT_SEC` | codex 모델·상한 | 미지정이면 codex 기본 |
-| `SONIOX_API_KEY` | **long-lived 키. 서버에만 둔다** | 프론트로 절대 내려보내지 않는다 |
+| `SONIOX_API_KEY` | **long-lived 키. 서버에만 둔다.** 실시간 WS 와 async 재전사(REST)가 같은 키를 쓴다 | 프론트로 절대 내려보내지 않는다 |
+| `CODEX_TOOLS_DIR` · `CODEX_AUTH_JSON` | 워커의 codex 바이너리·인증 마운트 원천(2026-09-07 실물 확인에서 `.env` 에 넣음) | `../system/README.md` §codex |
 | `JWT_SECRET` | 토큰 서명 | 기본값 없음 |
 | `ACCESS_TOKEN_TTL_MIN` = 60 · `REFRESH_TOKEN_TTL_DAYS` = 7 | 세션 수명 | DEC-001 §4 |
 | `STORAGE_ROOT` | 녹음·md 저장 루트 | 컨테이너 볼륨 |
@@ -333,9 +348,13 @@ AppError (status=500, code)
 4. **소프트 딜리트** — 삭제한 유형이 선택 목록에서 빠지고, **참조 중인 업무에는 이름·색이 그대로 보인다**(DEC-001 §4).
 5. **`schedule` 파생** — ① 업무 `due_date` 를 바꾸면 `schedule` 행이 **종일 일정으로 다시 만들어지고**, 시간까지 넣으면 시간 일정이 된다. ② 기한을 지우면 행이 **사라진다**. ③ 캘린더 드래그(=`PATCH /api/tasks|meetings`)와 상세 드로어 수정이 **같은 원본**을 고치고 결과가 같다. ④ `schedule` 을 직접 쓰는 경로가 API 에 **없다**(DEC-005 §3, 2026-09-05 개정).
 5-a. **기한 정렬은 조인이 없다** — 업무 목록 쿼리 실행 계획에 `schedule` 이 등장하지 않는다(개정의 목적이 이것이다).
-6. **스키마 위반 폐기** — 잘못된 JSON 배치 결과가 오면 **줄이 하나도 안 들어가고** 구간이 다음 배치로 넘어간다(DEC-003 §7).
-7. **화이트리스트 강등** — 목록 밖 `taskId` 가 온 줄이 `action` 으로 강등되고 **본문이 남는다**(DEC-003 §7).
-8. **통합 실패** — 2회 재시도 후 `ended` + `integration_state='failed'` 이고 **사람 줄·AI 줄·트랜스크립트가 그대로 남는다**(DEC-003 §7).
+6. **스키마 위반 폐기** — 잘못된 JSON 배치 결과가 오면 **줄이 하나도 안 들어가고** 구간이 다음 배치로 넘어가며 **직전 AI 트랙이 그대로 남는다**(DEC-003 §7 · MF-53).
+7. **사후 검사 강등** — 회의 프로젝트 밖 `taskId` 가 온 줄이 `action` 으로 강등되고 **본문이 남는다**(DEC-003 §7 · MF-50). 회의 중 결과의 `payload` 는 저장되지 않는다(MF-52).
+7-a. **AI 트랙 전량 교체** — 두 번째 배치 결과가 들어오면 첫 배치의 AI 안건·줄이 남지 않고, 두 번째 결과가 검증에 떨어지면 첫 배치 것이 그대로다(MF-53 · M-7).
+8. **최종 회의록 실패** — ② 가 2회 재시도 후 실패하면 `ended` + `integration_state='failed'` 이고 **사람 줄·AI 줄·트랜스크립트가 그대로 남는다**(DEC-003 §7). **재전사 ① 이 실패하면 ② 로 가지 않고** 같은 실패 상태다 — 실시간 블록이 그대로 있고 `merged` 행이 0건이다(MF-58).
+8-a. **`/start` 는 즉시** — 워커 어댑터를 막아 둔 채 `/start` 를 부르면 응답이 오고 `status='recording'` · `ai_session_id IS NULL` 이며, 그 상태에서 배치 트리거가 와도 제출이 나가지 않는다(MF-1).
+8-b. **줄 삭제 자리 유지** — `order_index` 3 을 지우면 4 가 3 으로 당겨지지 않고, 새 줄은 마지막 + 1 이다(MF-36).
+8-c. **`done` 뒷문 없음** — 업무 줄 `payload.status='done'` 은 스키마 층에서 422 이고 `task.status` 가 바뀌지 않는다(MF-59).
 9. **고아 `schedule` 없음** — 업무·회의 생성/삭제 경로를 지난 뒤 `schedule` 의 `source_id` 가 전부 살아 있는 행을 가리킨다(FK 를 안 걸었으므로 테스트가 대신 잡는다 — `../database/README.md` §3).
 
 ## 13. 결정 요약 — 근거 색인
@@ -355,6 +374,10 @@ AppError (status=500, code)
 | BE-11 | AI 증분은 **즉시 push + 반영 배치 회차 동봉**. 버퍼링 없음 | DEC-003 §4 (2026-09-05) |
 | BE-12 | **회의 스트림 자동 재연결 없음** — 끊김은 설계한 실패 목록에 없다 | DEC-003 §7 |
 | BE-13 | **처음부터 Tauri 앱 창에서 개발**(§C-4 번복). CORS 는 **Tauri 웹뷰 origin 을 명시 목록**으로 두고, 브라우저로 열어볼 때만 개발 origin 을 추가한다. `*` 금지 | §C-4(번복) · §C-5 |
+| BE-14 | **`/start` 는 전이만 하고 즉시 응답.** 웜스타트는 commit 뒤 백그라운드 태스크 — service 가 commit 하지 않는다는 §2 와 「외부 호출 중 트랜잭션 금지」 §7 의 충돌(W-1)이 사라진다 | MF-1 (2026-09-07) |
+| BE-15 | **AI 는 도구로 읽고 서버가 사후 검사한다.** 배치 입력은 발화 하나, 출력은 AI 트랙 전체 → 검증 통과분으로 전량 교체 | MF-50 · 51 · 53 |
+| BE-16 | **종료 = ① async 재전사 → ② 최종 회의록 호출 한 번.** 종료 시 배치·통합 호출 없음. ① 실패에 fallback 없음 | MF-37 · 56 · 57 · 58 |
+| BE-17 | **AI 데이터 접근은 MCP 도구 7개 · codex allow list · 회의별 단명 토큰.** 권한 판정은 백엔드 | MF-2 · 3 · 4 |
 
 ## Open Questions
 

@@ -7,7 +7,11 @@
 > **선택지를 남기지 않는다.**
 >
 > 근거 표기: `DEC-00x §y` = `10-decision/`, `F-xx·P-xx·C-xx·S-xx·Q-xx` = `orchestration/work/docs-v1/docs-v1-design-report.md`,
-> `§A/§B/§C` = `orchestration/work/docs-v1/design-requests.md`, 파일명 = `00-design/`.
+> `§A/§B/§C` = `orchestration/work/docs-v1/design-requests.md`, 파일명 = `00-design/`,
+> **`MF-n` = `reference/2026-09-06-task-management-app/Meeting flow.md` §0(2026-09-07 결정 31건).**
+>
+> **2026-09-07 개정(MF).** 상세 화면 헤더 규약 신설(§6-3 — breadcrumb 링크 + 「←」 · 배지 줄 → 제목 순서, MF-7 · 8) ·
+> 확인 모달 두 크기(§6 — 420 · 600, MF-63) · 회의 스트림의 AI 트랙 전량 교체(§8, MF-53) · 밀도 prop 규칙(§2, MF-6).
 
 관련 문서 — `../system/README.md`(구성·흐름) · `../backend/README.md`(**§10 API 표면이 이 문서의 입력**) · `../database/README.md`.
 
@@ -163,6 +167,8 @@ src/
 4. **영역 사이 import 금지.** `features/tasks` 가 `features/calendar` 를 부르지 않는다. 공유가 필요하면 `components/shared/` 나 `lib/` 로 올린다. **단 하나의 예외**: 업무·회의 상세/생성 드로어는 캘린더·회의록이 재사용한다(F-4·F-7·DEC-005 §2) — 이 드로어들은 **소유 영역에 두고 `features/<소유영역>/components/` 에서 직접 import** 한다. 소유는 업무 드로어=`tasks`, 회의 드로어=`meetings`(DEC-005 §2 「회의록이 소유하고 캘린더가 재사용」).
 5. **`fetch` 를 직접 부르지 않는다.** 모든 호출은 `lib/api/client.ts` 를 지난다.
 6. **파일명은 컴포넌트 PascalCase, 훅·유틸 camelCase.** 폴더는 kebab 없이 소문자 단어.
+7. **같은 구조를 다른 밀도로 그릴 때는 컴포넌트를 쪼개지 않고 `props` 로만 가른다**(2026-09-07 · MF-6). 회의록 미리보기 패널이 상세와 같은 「안건 > 줄」 트리를 작은 글자로 그리는 경우 — `AgendaLineTree` 에 `density="compact"` prop 하나를 둔다. 미리보기용 트리 컴포넌트를 따로 만들면 렌더 규격이 둘이 된다.
+8. **「업무를 만들거나 고치는 화면」은 업무 영역이 정본이고 다른 영역은 슬롯만 더한다**(MF-13 · 14 · 65). 회의록의 「업무 생성」은 `features/tasks` 의 새 업무 드로어를 **안건 슬롯**을 얹어 열고, 「업무 갱신」은 업무 상세 드로어를 **헤더 업무 셀렉터 슬롯**(제목 자리 = `RelationPopover` 단일 선택)을 얹어 연다. 둘 다 `prefill`(= 줄의 `payload`)과 `submitMode`(인라인 자동 저장 대신 **모드별 푸터** — `"save"` = 편집 모드 「취소 · 저장」(`payload` 만 줄에 · 업무 없음) / `"insert"` = 보기 모드 「취소 · 넣기」(업무 생성·갱신))를 받는다. **한 푸터에 「저장」과 「넣기」를 같이 두면 반려**(MF-66). **드로어는 액션·업무 각각 하나다** — `payload` 가 `null` 인지만 보고, **AI 줄/사람 줄로 분기하거나 「AI 는 넣기 · 사람은 자동 저장」으로 가르면 반려**(MF-65). 회의록 전용 업무 드로어를 만들지 않는다 — 규칙 4 의 예외(드로어 재사용)가 이 자리다.
 
 ## 3. 데이터 페칭 · 상태
 
@@ -201,7 +207,9 @@ src/
 | 회의 생성·수정·일시·삭제 | `['meetings', …]` 전부 + **일시가 바뀌었으면 `['schedules']`** |
 | 유형·프로젝트 변경 | `['workTypes']`/`['projects']` + `['tasks']` + `['meetings']`(배지 이름·색이 딸려 있다) |
 | 문서·폴더 변경 | `['documents']` · `['folders']` |
-| 회의 job 완료 | `['meetings', 'detail', id]` |
+| 회의 job 완료 | `['meetings', 'detail', id]` + `['meetings', 'list', …]`(목록 셋째 줄 `headline`) |
+| 회의록 드로어 「저장」(`payload`) | `['meetings', 'detail', id]` 만 — 업무는 안 바뀐다 |
+| 회의록 드로어 「넣기」(업무 생성 · 갱신) | `['meetings', 'detail', id]` + `['tasks', …]` 전부 + 기한이 바뀌었으면 `['schedules']` |
 
 **`schedules` 는 절대 직접 쓰지 않는다** — 읽기 전용 쿼리다(`../backend/README.md` §10). 캘린더에서 옮겨도 mutation 은 `tasks`/`meetings` 로 나가고 `['schedules']` 는 무효화로만 갱신된다(DEC-005 §3).
 
@@ -343,7 +351,7 @@ styles/globals.css  :root { --primary: var(--tm-primary); … }   ← shadcn 시
 | | 폭 | 스크림 | 용도 | shadcn |
 |---|---|---|---|---|
 | **Drawer** | 840 | `rgba(30,30,30,0.32)` | **값을 여러 개 넣는 편집** | `Sheet side="right"` (C-01) |
-| **Modal** | 600 | `rgba(30,30,30,0.36)` | **되돌리기 어려운 결정 하나** | `AlertDialog`/`Dialog` (C-02) |
+| **Modal** | **600 또는 420** | `rgba(30,30,30,0.36)` | **되돌리기 어려운 결정 하나.** 600 은 **회의·업무 삭제처럼 진짜 무거운 것**에만, **420 은 줄 하나 지우기처럼 가벼운 확인**(제목 18/600 + **요약 한 문장** 13/400 + 취소/확인 h32. 헤더 72 · 푸터 76 을 붙이지 않는다). 안 지워지는 것은 요약에 적지 않는다(MF-63) | `AlertDialog`/`Dialog` (C-02) |
 | **Popover** | 200–400 | 없음 | **고르기** | `Popover` (C-03) |
 
 ### 6-1. `OverlayProvider` 하나가 연다
@@ -351,12 +359,12 @@ styles/globals.css  :root { --primary: var(--tm-primary); … }   ← shadcn 시
 전역 UI 상태는 이것뿐이다(§3-1). `lib/overlay/OverlayProvider.tsx` 가 **스택**을 들고, API 는 셋이다.
 
 ```text
-openDrawer({ key, title, badge?, expandTo?, content })   // 편집
-openConfirm({ title, summary, warning?, onConfirm })      // 결정
+openDrawer({ key, title, badge?, expandTo?, content })                 // 편집
+openConfirm({ title, summary, warning?, size?: "heavy"|"light", onConfirm })   // 결정 — 기본 "heavy"(600). "light" 는 420 · 한 문장
 // Popover 는 트리거 옆에서 열리므로 전역 스택에 넣지 않는다 — Radix 에 맡긴다
 ```
 
-**함수 이름이 곧 용도 규칙이다.** 「편집은 드로어, 결정은 모달」이 API 두 개로 갈려 있어 잘못 쓰기 어렵다. `Sheet`·`Dialog` 를 컴포넌트가 **직접 import 하지 않는다** — 그러면 규격(840/600·스크림·헤더 72·푸터 76)이 화면마다 갈린다.
+**함수 이름이 곧 용도 규칙이다.** 「편집은 드로어, 결정은 모달」이 API 두 개로 갈려 있어 잘못 쓰기 어렵다. `Sheet`·`Dialog` 를 컴포넌트가 **직접 import 하지 않는다** — 그러면 규격(840/600·스크림·헤더 72·푸터 76)이 화면마다 갈린다. **모달 두 크기는 `ConfirmModal` 하나가 `size` 로 가른다**(MF-63) — `Dialog` 를 직접 import 하는 유일한 자리라 여기만 고치면 전 화면이 따라온다. `"light"` 는 `warning` 슬롯을 받지 않는다(한 문장뿐이다).
 
 ### 6-2. 강제하는 규칙 넷
 
@@ -369,6 +377,18 @@ openConfirm({ title, summary, warning?, onConfirm })      // 결정
 | **⤢ 는 전체 페이지로 승격**된다(F-5) | `expandTo` 에 라우트를 준다(`/tasks/detail?id=`). 드로어가 닫히고 그 라우트로 이동한다 |
 
 드로어는 **동시에 하나**만 연다. 드로어 안에서 다른 드로어를 열어야 하면 **같은 드로어의 단계 전환**으로 만든다.
+
+### 6-3. 상세 화면 헤더 — 전 화면 공통 (2026-09-07 · MF-7 · MF-8)
+
+**상세 화면**(업무 상세 전체 페이지 · 회의록 상세 — 시작 전 · 회의 중 · 종료 후 · 설정 하위)의 헤더는 `AppShell` 의 `PageHeader`(S-02) 하나가 그린다. 규칙 셋.
+
+| 규칙 | 내용 | 강제 |
+|---|---|---|
+| **breadcrumb 은 링크다** | `홈 › 회의록 › 테스트` 에서 **마지막(지금 여기)만 링크가 아니다**(색만 진하게). 앞 단계는 전부 `<a>` — 아무 단계로나 점프. hover·focus 표시를 주고 **키보드로도 닿아야 한다** | `Breadcrumb` 이 trail 을 `<span>` 으로 그리지 않는다 — 마지막 항목 외 `<a>` 0건이면 반려(F-5 의 사고 — 상세에서 목록으로 돌아갈 어포던스가 없었다) |
+| **상세에는 「←」가 붙는다** | breadcrumb 왼쪽 「←」 = **한 단계 뒤로** — 회의록 상세 → `/meetings/` · 업무 상세 → `/tasks/`. 목록 화면에는 없다. `router.back()` 이 아니라 **부모 라우트로 이동**한다(새로고침·딥링크에서 뒤로 갈 곳이 없어도 목록으로 간다) | `PageHeader` 의 `backTo` prop. 상세 화면은 반드시 넘긴다 |
+| **헤더 순서는 업무 헤더가 정본** | ① breadcrumb 줄 → ② **배지 줄**(유형 배지 · 프로젝트 칩 — 인라인 셀렉터면 그대로 · **우측 액션(삭제 · 상태 칩)이 같은 높이**) → ③ **제목** 28/700 → ④ 그 화면 고유의 메타 한 줄(회의 = 일시 · 소요). 회의록이 업무를 따라간다 — 업무 쪽은 바꾸지 않는다 | 제목이 배지 줄 위에 오면 반려. 회의 중 헤더의 「일시정지 · 회의 종료」 버튼도 ② 우측 액션 자리다 |
+
+> **`Breadcrumb` 은 공용 부품이라 한 번에 고친다** — 회의록만 고치면 업무·설정에 같은 것이 남는다(`Meeting flow.md` §1-1 MF-7).
 
 > **`DrawerFrame` 을 만드는 work 가 이 규격의 주인이다.** 첫 드로어(업무 생성·상세)를 만드는 work 가
 > `components/shared/DrawerFrame.tsx` 를 세우고, 이후 회의·캘린더는 **그것을 쓰기만 한다.**
@@ -413,11 +433,12 @@ openConfirm({ title, summary, warning?, onConfirm })      // 결정
 | 업로드 | 오디오 청크를 그대로 보낸다. **Soniox 주소도 키도 프론트가 모른다**(DEC-003 §STT) |
 | **잠정 토큰** | 받을 때마다 **마지막 잠정 블록을 통째로 교체**(리셋 렌더)한다. 회색으로 그린다 |
 | **확정 토큰** | **append 한다.** 지우거나 다시 쓰지 않는다. 화자 전환마다 블록을 나눈다(익명 「화자 1/2」 — DEC-003 §2) |
-| **AI 증분** | 오는 즉시 AI 탭에 반영한다. **버퍼링하지 않는다.** 함께 오는 **배치 회차**로 「배치 2회 → 3회 → 종결」을 표시한다(DEC-003 §4, 2026-09-05) |
+| **AI 증분** | 오는 즉시 AI 탭에 반영한다. **버퍼링하지 않는다.** `ai.batch` 프레임은 **AI 트랙 전체**다 — 트리를 **통째로 교체**한다(append 가 아니다. AI 줄·안건 id 가 배치마다 새로 생긴다 — MF-53). 함께 오는 **배치 회차**로 「배치 2회 → 3회」를 표시한다(DEC-003 §4). 「종결」 표시는 없다(MF-56) |
 | **AI 안건** | AI 안건은 **AI 탭에만** 그린다. 회의 중 사람 회의록 탭에 섞지 않는다(2026-09-05) |
+| **줄의 시각** | **줄에 시각을 붙이지 않는다**(MF-9). 시각은 안건(첫 줄 시각)과 근거 칩 구간에만. 탭 안내 바의 「배치 n회 반영 · HH:MM」 · 「자동 저장 · HH:MM」 · 프롬프트 바 현재 시각은 그대로 |
 | **끊김** | **자동 재연결하지 않는다.** 녹음 중지 상태로 전환하고 배너로 드러낸다 — 조용히 되살리면 오디오가 빈 구간이 가려진다(DEC-003 §7) |
-| 종료 | `POST /api/meetings/{id}/end` → `202 {jobId}` → **WS 닫고 job 폴링**(2초). `succeeded`/`failed` 에서 멈추고, 완료 후 회의 상세를 다시 읽는다(`../backend/README.md` §6) |
-| 실패 표시 | `status='ended'` + `integrationState='failed'` 이면 **「통합 정리 실패 · 다시 생성」 배너**. 「다시 생성」은 **이 조합에서만** 보인다(DEC-003 §4) |
+| 종료 | `POST /api/meetings/{id}/end` → `202 {jobId}` → **WS 닫고 job 폴링**(2초). `progress.phase` 가 `transcription`(재전사) → `final`(최종 회의록) 순으로 바뀐다. `succeeded`/`failed` 에서 멈추고, 완료 후 회의 상세를 다시 읽는다(`../backend/README.md` §6) |
+| 실패 표시 | `status='ended'` + `integrationState='failed'` 이면 **「회의록 생성 실패 · 다시 시도」 배너**. 「다시 시도」는 **이 조합에서만** 보이고 `POST …/finalize` 로 ①부터 다시 돈다(DEC-003 §4 · MF-58) |
 
 **AI 요약 탭은 「안건 > 줄」 트리**다(§A-8) — 회의록 탭과 같은 구조에 근거 칩이 붙는다. 근거 칩을 누르면 스크립트 패널이 해당 구간으로 스크롤·하이라이트한다(C-37). **트리 렌더 규격은 §B-3 디자인 대기**이고, 데이터 구조(트랙별 안건·줄·`evidence`)는 이미 닫혀 있다.
 
@@ -505,7 +526,10 @@ openConfirm({ title, summary, warning?, onConfirm })      // 결정
 | FE-12 | 유동 3구간(1280 미만 안내 / 1280–1439 / 1440+), absolute 금지 | §C Q-34 · §A-13 |
 | FE-13 | 최소 폭은 **안내 화면**으로 막는다(Q-30 확정) | §C-4 |
 | FE-14 | v2 표시는 **`V2Gate` 하나**. 숨기지 않는다 | DEC-001 §v2 |
-| FE-15 | 실시간은 WS 훅 하나. **자동 재연결 없음**, AI 증분 즉시 반영 + 배치 회차 표시 | DEC-003 §4·§7 (2026-09-05) |
+| FE-15 | 실시간은 WS 훅 하나. **자동 재연결 없음**, AI 트랙 **전량 교체** 즉시 반영 + 배치 회차 표시 | DEC-003 §4·§7 (2026-09-05) · MF-53 |
+| FE-16 | **상세 헤더 규약** — breadcrumb 링크 + 「←」(부모 라우트) · 배지 줄 → 제목 순서. `PageHeader` 하나가 그린다 | MF-7 · MF-8 (2026-09-07) |
+| FE-17 | **확인 모달 두 크기** — `ConfirmModal` 하나가 `size` 로 가른다. 420 은 한 문장 | MF-63 |
+| FE-18 | **밀도는 prop, 화면은 슬롯** — 같은 구조를 다른 밀도로 그릴 때 컴포넌트를 쪼개지 않는다. 업무 드로어는 업무 영역이 정본이고 회의록은 슬롯만 더한다. **드로어는 액션·업무 각각 하나 — `payload` 유무만 본다** | MF-6 · MF-13 · MF-14 · MF-65 |
 
 ## 디자인 대기 — 구조는 확정, 화면만 비어 있다
 

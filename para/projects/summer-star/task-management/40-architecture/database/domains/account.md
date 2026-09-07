@@ -5,7 +5,7 @@ title: "account — 계정·세션·유형·프로젝트"
 status: draft
 product: "task-management"
 created_at: 2026-09-04
-updated_at: 2026-09-04
+updated_at: 2026-09-07
 tags:
   - product/task-management
   - doc/architecture
@@ -33,7 +33,7 @@ DEC-001 이 정한 인증·설정을 담는다. 여기서 만든 `work_type`·`p
 | `account` | 계정·프로필 | **앱에서 못 만든다 — 시드로만**(DEC-001 §2). `login_id` 는 이메일 형식이 아니다(§A-9 정정) |
 | `career` | 경력 행 | **하드 삭제**(DEC-001 §5). `ended_on IS NULL` = 재직 중 |
 | `auth_session` | refresh 토큰 회전 기록 | 해시만 저장. 원문은 서버에 남기지 않는다 |
-| `work_type` | 동적 유형 | `kind ∈ {meeting, task}` + 이름 + 색. 소프트 딜리트 |
+| `work_type` | 동적 유형 | `kind ∈ {meeting, task}` + 이름 + 색 + **설명**(`description`, 2026-09-07 MF-21). 소프트 딜리트 |
 | `project` | 프로젝트 | 이름 + 색. 소프트 딜리트 |
 
 ## Invariants
@@ -41,7 +41,8 @@ DEC-001 이 정한 인증·설정을 담는다. 여기서 만든 `work_type`·`p
 - **A-1** `account.login_id` 는 로그인 식별자다. `email` 은 **표시 전용**이고 인증·발송에 쓰지 않는다 — 로그인 폼의 「이메일」 라벨은 정정 대상이다(DEC-001 §3 · §A-9).
 - **A-2** 비밀번호는 **8자 이상 + 문자·숫자·특수문자**. 해시만 저장한다(DEC-001 §3).
 - **A-3** **프로필의 회사·소속·직무를 `account` 에 두지 않는다.** 「현재」 경력(`ended_on IS NULL`)에서 파생한다(DEC-001 §3 · G-7).
-- **A-4** `work_type.is_default = true` 인 **시드 3종**(미팅·회의 = `meeting` / 개인 업무 = `task` / 문서·보고 = `task`)은 **삭제 불가·이름과 종류 고정, `color_token` 만 편집 가능**하다(DEC-001 §4).
+- **A-4** `work_type.is_default = true` 인 **시드 3종**(미팅·회의 = `meeting` / 개인 업무 = `task` / 문서·보고 = `task`)은 **삭제 불가·이름과 종류 고정, `color_token` 과 `description` 만 편집 가능**하다(DEC-001 §4 · MF-21).
+- **A-12** **`work_type.description text NULL` — 「어떤 업무인지」**(2026-09-07 · MF-21). 업무 설정에서 유형을 등록할 때 적는다. 쓰는 곳은 회의록 AI 의 `list_work_types()`(이름 · 종류 · 설명) — AI 가 새 업무의 유형을 고르는 근거다(MF-59). 시드 문구: 개인 업무 「혼자 처리하는 실무. 개발·수정·확인 등」 · 문서·보고 「산출물이 문서인 것. 기획서·보고서·회의록 정리」 · **미팅·회의는 빈 값**(DEC-003 OQ-11 — 문구가 정해지지 않았다). 비어 있어도 유형은 유효하다(선택 입력).
 - **A-5** `color_token` 은 **디자인 시스템 허용 팔레트의 토큰명**을 담는다. 자유 색상(임의 hex)을 저장하지 않는다(DEC-001 §3).
 - **A-6** 유형·프로젝트를 소프트 딜리트해도 **참조 중인 업무·회의는 이름·색을 그대로 보여준다.** 빠지는 곳은 생성·변경의 선택 목록뿐이다(DEC-001 §4).
 - **A-7** `auth_session` 의 refresh 는 **1회용**이다. 쓰면 `revoked_at` 을 찍고 새 행을 만든다. 이미 무효인 토큰이 다시 오면 그 계정의 유효 세션을 **전부** 끊는다.
