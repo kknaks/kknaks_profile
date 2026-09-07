@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+body { margin: 0; font-family: "Pretendard Variable", Pretendard, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: #7181F8; text-decoration: none; }
+a:hover { color: #5A6BF0; }
+</style>
+</helmet>
+
+<div style="background:#F9FAFB; padding:64px; display:flex; flex-direction:column; gap:56px; color:#1E1E1E; min-width:1560px">
+
+  <header style="display:flex; flex-direction:column; gap:12px; padding-bottom:32px; border-bottom:1px solid #EBEBEB">
+    <div style="display:flex; align-items:center; gap:10px">
+      <div style="width:26px; height:26px; border-radius:6px; background:linear-gradient(135deg,#7181F8,#A6CDFF); display:flex; align-items:center; justify-content:center; color:#fff; font-size:14px; font-weight:800">M</div>
+      <span style="font-size:19px; font-weight:800; letter-spacing:-0.01em">Managment</span>
+    </div>
+    <h1 style="margin:0; font-size:36px; font-weight:700; letter-spacing:-0.03em">디자인 시스템</h1>
+    <p style="margin:0; font-size:15px; color:#5F6470; max-width:720px; text-wrap:pretty">개인 워크스페이스용 업무 기록 앱. 요청자·담당자 개념이 없고, 모든 기록은 본인이 등록합니다. 아래 값은 실제 화면 파일(홈화면.dc.html)에서 추출한 확정 스펙입니다.</p>
+  </header>
+
+  <section style="display:flex; flex-direction:column; gap:20px">
+    <div style="display:flex; flex-direction:column; gap:4px">
+      <h2 style="margin:0; font-size:13px; font-weight:700; letter-spacing:0.08em; color:#9EA2AE">01 — COLOR</h2>
+      <p style="margin:0; font-size:14px; color:#5F6470">#7181F8은 <strong>액션과 완료 상태</strong>에만 씁니다. 진행중은 #33AAFF.</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(6,1fr); gap:16px">
+      <div style="display:flex; flex-direction:column; gap:8px"><div style="height:72px; border-radius:8px; background:#7181F8"></div><div style="font-size:13px; font-weight:600">Primary · Action &amp; Done</div><div style="font-size:12px; color:#9EA2AE">#7181F8</div></div>
+      <div style="display:flex; flex-direction:column; gap:8px"><div style="height:72px; border-radius:8px; background:#5F71F5"></div><div style="font-size:13px; font-weight:600">Primary Hover</div><div style="font-size:12px; color:#9EA2AE">#5F71F5</div></div>
+      <div style="display:flex; flex-direction:column; gap:8px"><div style="height:72px; border-radius:8px; background:#1E1E1E"></div><div style="font-size:13px; font-weight:600">Ink · Active</div><div style="font-size:12px; color:#9EA2AE">#1E1E1E</div></div>
+      <div style="display:flex; flex-direction:column; gap:8px"><div style="height:72px; border-radius:8px; background:#5F6470"></div><div style="font-size:13px; font-weight:600">Body</div><div style="font-size:12px; color:#9EA2AE">#5F6470</div></div>
+      <div style="display:flex; flex-direction:column; gap:8px"><div style="height:72px; border-radius:8px; background:#757575"></div><div style="font-size:13px; font-weight:600">Label · Meta</div><div style="font-size:12px; color:#9EA2AE">#757575</div></div>
+      <div style="display:flex; flex-direction:column; gap:8px"><div style="height:72px; border-radius:8px; background:#9EA2AE"></div><div style="font-size:13px; font-weight:600">Muted</div><div style="font-size:12px; color:#9EA2AE">#9EA2AE</div></div>
+      <div style="display:flex; flex-direction:column; gap:8px"><div style="height:72px; border-radius:8px; background:#B3B3B3"></div><div style="font-size:13px; font-weight:600">Placeholder · Icon</div><div style="font-size:12px; color:#9EA2AE">#B3B3B3</div></div>
+      <div style="display:flex; flex-direction:column; gap:8px"><div style="height:72px; border-radius:8px; background:#FFFFFF; border:1px solid #EBEBEB"></div><div style="font-size:13px; font-weight:600">Surface</div><div style="font-size:12px; color:#9EA2AE">#FFFFFF</div></div>
+      <div style="display:flex; flex-direction:column; gap:8px"><div style="height:72px; border-radius:8px; background:#F9FAFB; border:1px solid #EBEBEB"></div><div style="font-size:13px; font-weight:600">Canvas</div><div style="font-size:12px; color:#9EA2AE">#F9FAFB</div></div>
+      <div style="display:flex; flex-direction:column; gap:8px"><div style="height:72px; border-radius:8px; background:#F5F6F8"></div><div style="font-size:13px; font-weight:600">Hover Fill</div><div style="font-size:12px; color:#9EA2AE">#F5F6F8</div></div>
+      <div style="display:flex; flex-direction:column; gap:8px"><div style="height:72px; border-radius:8px; background:#F1F2F5"></div><div style="font-size:13px; font-weight:600">Row Divider</div><div style="font-size:12px; color:#9EA2AE">#F1F2F5</div></div>
+      <div style="display:flex; flex-direction:column; gap:8px"><div style="height:72px; border-radius:8px; background:#F8FAFF; border:1px solid #EBEBEB"></div><div style="font-size:13px; font-weight:600">Row Selected</div><div style="font-size:12px; color:#9EA2AE">#F8FAFF</div></div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(6,1fr); gap:16px">
+      <div style="display:flex; flex-direction:column; gap:8px"><div style="height:56px; border-radius:8px; background:#EBEBEB"></div><div style="font-size:13px; font-weight:600">Border · Divider</div><div style="font-size:12px; color:#9EA2AE">#EBEBEB · 패널 내부 구분선</div></div>
+      <div style="display:flex; flex-direction:column; gap:8px"><div style="height:56px; border-radius:8px; background:#D9D9D9"></div><div style="font-size:13px; font-weight:600">Border · Card</div><div style="font-size:12px; color:#9EA2AE">#D9D9D9 · 카드·패널 외곽</div></div>
+      <div style="display:flex; flex-direction:column; gap:8px"><div style="height:56px; border-radius:8px; background:#E5E7EA"></div><div style="font-size:13px; font-weight:600">Border · Sidebar</div><div style="font-size:12px; color:#9EA2AE">#E5E7EA · 사이드바 우측선</div></div>
+      <div style="display:flex; flex-direction:column; gap:8px"><div style="height:56px; border-radius:8px; background:#DCE6FB"></div><div style="font-size:13px; font-weight:600">Hero Top</div><div style="font-size:12px; color:#9EA2AE">#DCE6FB</div></div>
+      <div style="display:flex; flex-direction:column; gap:8px"><div style="height:56px; border-radius:8px; background:#BACFFF"></div><div style="font-size:13px; font-weight:600">Sky 200</div><div style="font-size:12px; color:#9EA2AE">#BACFFF</div></div>
+      <div style="display:flex; flex-direction:column; gap:8px"><div style="height:56px; border-radius:8px; background:#929BF5"></div><div style="font-size:13px; font-weight:600">Violet 300</div><div style="font-size:12px; color:#9EA2AE">#929BF5</div></div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:8px">
+      <div style="height:160px; border-radius:8px; overflow:hidden; position:relative; background:linear-gradient(180deg,#DCE6FB 0%,#E7EDFC 26%,#F5F8FE 58%,#FFFFFF 100%)">
+        <div style="position:absolute; inset:0; background:radial-gradient(58% 80% at 20% -20%, rgba(146,155,245,0.20) 0%, rgba(146,155,245,0) 62%), radial-gradient(50% 90% at 88% -24%, rgba(160,190,255,0.30) 0%, rgba(160,190,255,0) 66%)"></div>
+        <div style="position:absolute; left:40px; top:16px; right:40px; height:120px; border-radius:50%; background:#fff; filter:blur(80px); opacity:0.85"></div>
+      </div>
+      <div style="font-size:12px; color:#9EA2AE">Hero Gradient — 홈 화면 상단 400px에만 사용. 콘텐츠 영역(left 200) 기준으로 깔고 하단은 흰색으로 페이드.</div>
+    </div>
+  </section>
+
+  <section style="display:flex; flex-direction:column; gap:20px">
+    <div style="display:flex; flex-direction:column; gap:4px">
+      <h2 style="margin:0; font-size:13px; font-weight:700; letter-spacing:0.08em; color:#9EA2AE">02 — STATUS &amp; TYPE TOKENS</h2>
+      <p style="margin:0; font-size:14px; color:#5F6470">상태 5종(dot)과 업무 유형 4종(badge)은 서로 다른 축입니다. 한 카드에 둘 다 붙습니다.</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px">
+      <div style="background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:24px; display:flex; flex-direction:column; gap:16px">
+        <div style="font-size:12px; font-weight:700; color:#9EA2AE">STATUS — dot 8px + 13px 텍스트</div>
+        <div style="display:flex; flex-direction:column; gap:12px">
+          <div style="display:flex; align-items:center; gap:10px"><span style="width:8px; height:8px; border-radius:50%; background:#9EA2AE"></span><span style="font-size:13px; color:#9EA2AE; width:64px">시작전</span><span style="font-size:12px; color:#B3B3B3">#9EA2AE</span></div>
+          <div style="display:flex; align-items:center; gap:10px"><span style="width:8px; height:8px; border-radius:50%; background:#33AAFF"></span><span style="font-size:13px; color:#33AAFF; width:64px">진행중</span><span style="font-size:12px; color:#B3B3B3">#33AAFF</span></div>
+          <div style="display:flex; align-items:center; gap:10px"><span style="width:8px; height:8px; border-radius:50%; background:#7181F8"></span><span style="font-size:13px; color:#7181F8; width:64px">완료</span><span style="font-size:12px; color:#B3B3B3">#7181F8</span></div>
+          <div style="display:flex; align-items:center; gap:10px"><span style="width:8px; height:8px; border-radius:50%; background:#B3B3B3"></span><span style="font-size:13px; color:#B3B3B3; width:64px">취소</span><span style="font-size:12px; color:#B3B3B3">#B3B3B3</span></div>
+          <div style="display:flex; align-items:center; gap:10px"><span style="width:8px; height:8px; border-radius:50%; background:#E2685B"></span><span style="font-size:13px; color:#E2685B; width:64px">지연</span><span style="font-size:12px; color:#B3B3B3">#E2685B</span></div>
+        </div>
+        <div style="font-size:12px; color:#757575; line-height:1.6; padding-top:4px; border-top:1px solid #F1F2F5">진행중은 #33AAFF입니다. Primary(#7181F8)와 겹치면 리스트에서 "누를 수 있는 것"과 "진행 상태"가 구분되지 않습니다. 완료만 예외로 #7181F8을 쓰며(끝난 일 = 성과), 지연은 종료일을 넘긴 항목에 진행중 위로 덮어씁니다.</div>
+      </div>
+
+      <div style="background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:24px; display:flex; flex-direction:column; gap:16px">
+        <div style="font-size:12px; font-weight:700; color:#9EA2AE">업무 유형 — badge · h20 · r4 · 11px/600</div>
+        <div style="display:flex; flex-direction:column; gap:12px">
+          <div style="display:flex; align-items:center; gap:12px"><span style="height:20px; border-radius:4px; background:#EEF1FE; display:inline-flex; align-items:center; padding:0 7px; font-size:11px; font-weight:600; color:#4A55B8">미팅 · 회의</span><span style="font-size:12px; color:#B3B3B3">bg #EEF1FE · fg #4A55B8</span></div>
+          <div style="display:flex; align-items:center; gap:12px"><span style="height:20px; border-radius:4px; background:#F1F2FE; display:inline-flex; align-items:center; padding:0 7px; font-size:11px; font-weight:600; color:#4B52A8">개인 업무</span><span style="font-size:12px; color:#B3B3B3">bg #F1F2FE · fg #4B52A8</span></div>
+          <div style="display:flex; align-items:center; gap:12px"><span style="height:20px; border-radius:4px; background:#F4F7FF; display:inline-flex; align-items:center; padding:0 7px; font-size:11px; font-weight:600; color:#3F5F94">문서 · 보고</span><span style="font-size:12px; color:#B3B3B3">bg #F4F7FF · fg #3F5F94</span></div>
+          <div style="display:flex; align-items:center; gap:12px"><span style="height:20px; border-radius:4px; background:#F4F5F7; border:1px solid #E1E3E8; box-sizing:border-box; display:inline-flex; align-items:center; padding:0 7px; font-size:11px; color:#5F6470">취소</span><span style="font-size:12px; color:#B3B3B3">bg #F4F5F7 · border #E1E3E8</span></div>
+        </div>
+        <div style="font-size:12px; color:#757575; line-height:1.6; padding-top:4px; border-top:1px solid #F1F2F5">취소만 테두리가 있고 굵기가 없습니다. 취소된 항목의 제목은 #9EA2AE + line-through.</div>
+      </div>
+    </div>
+
+    <div style="background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:24px; display:flex; flex-direction:column; gap:16px">
+      <div style="font-size:12px; font-weight:700; color:#9EA2AE">CHANNEL — 메시지 출처 (업무 유형과 다른 축)</div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px">
+        <div style="display:flex; flex-direction:column; gap:10px">
+          <div style="max-width:236px; display:flex; align-items:center; gap:10px">
+            <span style="width:22px; height:22px; border-radius:6px; background:#EAF4FF; display:flex; align-items:center; justify-content:center"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="#338BF6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.2" y="3.6" width="11.6" height="8.8" rx="1.4"></rect><path d="m2.6 4.6 5.4 4 5.4-4"></path></svg></span>
+            <span style="font-size:14px; font-weight:700; flex:1">메일</span>
+            <span style="width:19px; height:19px; border-radius:50%; background:#338BF6; color:#fff; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center">9</span>
+          </div>
+          <div style="font-size:12px; color:#9EA2AE; line-height:1.6">tile #EAF4FF<br>glyph · count #338BF6</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:10px">
+          <div style="max-width:236px; display:flex; align-items:center; gap:10px">
+            <span style="width:22px; height:22px; border-radius:6px; background:#FEF3C0; display:flex; align-items:center; justify-content:center"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="#8A6A11" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3c3 0 5.4 1.9 5.4 4.2 0 2.3-2.4 4.2-5.4 4.2-.5 0-1-.05-1.5-.15L4 12.8l.5-2.1C3.2 9.9 2.6 8.8 2.6 7.2 2.6 4.9 5 3 8 3Z"></path></svg></span>
+            <span style="font-size:14px; font-weight:700; flex:1">카카오톡</span>
+            <span style="width:19px; height:19px; border-radius:50%; background:#E3B93C; color:#fff; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center">6</span>
+          </div>
+          <div style="font-size:12px; color:#9EA2AE; line-height:1.6">tile #FEF3C0 · glyph #8A6A11<br>count #E3B93C</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:10px">
+          <div style="max-width:236px; display:flex; align-items:center; gap:10px">
+            <span style="width:22px; height:22px; border-radius:6px; background:#F1F2FE; display:flex; align-items:center; justify-content:center"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="#4B52A8" stroke-width="1.5" stroke-linecap="round"><path d="M6.2 2.6 5 13.4M11 2.6 9.8 13.4M2.6 5.8h10.8M2.2 10.2H13"></path></svg></span>
+            <span style="font-size:14px; font-weight:700; flex:1">슬랙</span>
+            <span style="width:19px; height:19px; border-radius:50%; background:#7181F8; color:#fff; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center">9</span>
+          </div>
+          <div style="font-size:12px; color:#9EA2AE; line-height:1.6">tile #F1F2FE · glyph #4B52A8<br>count #7181F8</div>
+        </div>
+      </div>
+      <div style="font-size:12px; color:#757575; line-height:1.6; padding-top:4px; border-top:1px solid #F1F2F5">채널 색은 22px 타일과 카운트 뱃지에만 씁니다. 본문·제목·배지에는 쓰지 않으며, 실제 서비스 로고는 사용하지 않고 중립 글리프로 표현합니다. 카운트 뱃지는 미확인 건수가 있을 때만 노출.</div>
+    </div>
+
+    <div style="background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:24px; display:flex; flex-direction:column; gap:16px">
+      <div style="font-size:12px; font-weight:700; color:#9EA2AE">일정 블록 — 유형별 색 (캘린더 · 타임라인)</div>
+      <div style="display:flex; gap:16px; flex-wrap:wrap">
+        <div style="width:300px; box-sizing:border-box; border-radius:8px; background:#EEF1FE; border:1px solid #C9D1FB; border-left:3px solid #7181F8; padding:8px 10px">
+          <div style="font-size:13px; font-weight:600; color:#3D46A6">미팅 · 회의</div>
+          <div style="margin-top:2px; font-size:11px; color:#6B74C4">오전 9:30 – 10:30 · 회의실 A</div>
+        </div>
+        <div style="width:300px; box-sizing:border-box; border-radius:8px; background:#EAF4FF; border:1px solid #C3E0FF; border-left:3px solid #338BF6; padding:8px 10px">
+          <div style="font-size:13px; font-weight:600; color:#1663B5">문서 · 보고</div>
+          <div style="margin-top:2px; font-size:11px; color:#4A87C7">오전 11:00 – 12:00 · 온라인</div>
+        </div>
+        <div style="width:300px; box-sizing:border-box; border-radius:8px; background:#F4F5F7; border:1px solid #E1E3E8; border-left:3px solid #757575; padding:8px 10px">
+          <div style="font-size:13px; font-weight:600">개인 업무</div>
+          <div style="margin-top:2px; font-size:11px; color:#757575">오후 2:00 – 3:30</div>
+        </div>
+        <div style="width:300px; box-sizing:border-box; border-radius:8px; background:#FAFAFB; border:1px dashed #D9D9D9; border-left:3px solid #C6C9CF; padding:8px 10px">
+          <div style="font-size:13px; font-weight:600; color:#9EA2AE; text-decoration:line-through">취소</div>
+          <div style="margin-top:2px; font-size:11px; color:#B3B3B3">기록만 남김</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="display:flex; flex-direction:column; gap:20px">
+    <div style="display:flex; flex-direction:column; gap:4px">
+      <h2 style="margin:0; font-size:13px; font-weight:700; letter-spacing:0.08em; color:#9EA2AE">03 — TYPE</h2>
+      <p style="margin:0; font-size:14px; color:#5F6470">Pretendard Variable. 화면 전체 letter-spacing -0.02em, 큰 제목은 -0.03em.</p>
+    </div>
+    <div style="background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:32px; display:flex; flex-direction:column; gap:22px">
+      <div style="display:flex; align-items:baseline; gap:24px"><div style="width:200px; font-size:12px; color:#9EA2AE">Page Title · 28 / 700 / -0.03</div><div style="font-size:28px; font-weight:700; letter-spacing:-0.03em">회의록</div></div>
+      <div style="display:flex; align-items:baseline; gap:24px"><div style="width:200px; font-size:12px; color:#9EA2AE">Hero Date · 24 / 700 / -0.03</div><div style="font-size:24px; font-weight:700; letter-spacing:-0.03em">8월 27일 목요일</div></div>
+      <div style="display:flex; align-items:baseline; gap:24px"><div style="width:200px; font-size:12px; color:#9EA2AE">Panel Title · 16 / 700</div><div style="font-size:16px; font-weight:700">제품 소개서 리뷰</div></div>
+      <div style="display:flex; align-items:baseline; gap:24px"><div style="width:200px; font-size:12px; color:#9EA2AE">Section · 15 / 700</div><div style="font-size:15px; font-weight:700">오늘 등록한 업무</div></div>
+      <div style="display:flex; align-items:baseline; gap:24px"><div style="width:200px; font-size:12px; color:#9EA2AE">Group Header · 14 / 700</div><div style="font-size:14px; font-weight:700">기한이 오늘까지인 업무</div></div>
+      <div style="display:flex; align-items:baseline; gap:24px"><div style="width:200px; font-size:12px; color:#9EA2AE">Item · 14 / 600</div><div style="font-size:14px; font-weight:600">제품 소개서 내용 업데이트 필요사항 체크</div></div>
+      <div style="display:flex; align-items:baseline; gap:24px"><div style="width:200px; font-size:12px; color:#9EA2AE">Body · 15 / 400 / 1.65</div><div style="font-size:15px; line-height:1.65">소개서 개정 범위를 4개 섹션으로 확정했습니다.</div></div>
+      <div style="display:flex; align-items:baseline; gap:24px"><div style="width:200px; font-size:12px; color:#9EA2AE">Meta · 13 / #757575</div><div style="font-size:13px; color:#757575">08월 27일 (목) 09:30</div></div>
+      <div style="display:flex; align-items:baseline; gap:24px"><div style="width:200px; font-size:12px; color:#9EA2AE">Caption · 12 / #9EA2AE</div><div style="font-size:12px; color:#9EA2AE">일정 3</div></div>
+      <div style="display:flex; align-items:baseline; gap:24px"><div style="width:200px; font-size:12px; color:#9EA2AE">Metric · 28 / 700</div><div style="font-size:28px; font-weight:700">6</div></div>
+    </div>
+  </section>
+
+  <section style="display:flex; flex-direction:column; gap:20px">
+    <div style="display:flex; flex-direction:column; gap:4px">
+      <h2 style="margin:0; font-size:13px; font-weight:700; letter-spacing:0.08em; color:#9EA2AE">04 — LAYOUT</h2>
+      <p style="margin:0; font-size:14px; color:#5F6470">화면 캔버스 1920 × 1080 고정. 모든 페이지가 같은 격자를 씁니다.</p>
+    </div>
+    <div style="background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:0; overflow:hidden">
+      <div style="position:relative; height:300px; background:#FBFBFC; border-bottom:1px solid #EBEBEB">
+        <div style="position:absolute; left:0; top:0; width:12.5%; height:100%; background:#fff; border-right:1px solid #E5E7EA; box-sizing:border-box; display:flex; align-items:center; justify-content:center; font-size:12px; color:#9EA2AE">사이드바 200</div>
+        <div style="position:absolute; left:12.5%; top:0; width:2.5%; height:100%; background:repeating-linear-gradient(45deg,#F1F2F5,#F1F2F5 4px,transparent 4px,transparent 8px)"></div>
+        <div style="position:absolute; right:0; top:0; width:2.5%; height:100%; background:repeating-linear-gradient(45deg,#F1F2F5,#F1F2F5 4px,transparent 4px,transparent 8px)"></div>
+        <div style="position:absolute; left:15%; right:2.5%; top:24px; font-size:12px; color:#9EA2AE">breadcrumb · top 38</div>
+        <div style="position:absolute; left:15%; right:2.5%; top:46px; font-size:22px; font-weight:700; letter-spacing:-0.03em">페이지 타이틀 · top 66</div>
+        <div style="position:absolute; left:15%; right:2.5%; top:96px; bottom:24px; border:1px solid #D9D9D9; border-radius:12px; background:#fff; display:flex; align-items:center; justify-content:center; font-size:13px; color:#757575">콘텐츠 패널 · top 140 · height 900 · width 1640</div>
+      </div>
+      <div style="padding:20px 24px; display:grid; grid-template-columns:repeat(4,1fr); gap:16px; font-size:13px; color:#5F6470">
+        <div><div style="font-weight:700; color:#1E1E1E">콘텐츠 폭</div>left 240 / right 1880 (1640)</div>
+        <div><div style="font-weight:700; color:#1E1E1E">세로 리듬</div>breadcrumb 38 · 타이틀 66 · 패널 140 · 하단 1040</div>
+        <div><div style="font-weight:700; color:#1E1E1E">홈 3열</div>360 / 560 / 672 · gap 24 · 상단 히어로 400</div>
+        <div><div style="font-weight:700; color:#1E1E1E">스페이스</div>4 · 8 · 12 · 16 · 24 · 32 · 48</div>
+      </div>
+    </div>
+  </section>
+
+  <section style="display:flex; flex-direction:column; gap:20px">
+    <div style="display:flex; flex-direction:column; gap:4px">
+      <h2 style="margin:0; font-size:13px; font-weight:700; letter-spacing:0.08em; color:#9EA2AE">05 — SURFACE</h2>
+      <p style="margin:0; font-size:14px; color:#5F6470">카드 r8 + #D9D9D9, 패널 r16 + #D9D9D9, 메트릭·플로팅 r16 + #EBEBEB + shadow.</p>
+    </div>
+    <div style="display:flex; gap:16px; align-items:flex-end; flex-wrap:wrap">
+      <div style="display:flex; flex-direction:column; gap:8px"><div style="width:150px; height:80px; background:#fff; border:1px solid #D9D9D9; border-radius:8px; box-shadow:0 1px 2px rgba(16,24,40,0.03)"></div><div style="font-size:12px; color:#9EA2AE">Card · r8 · #D9D9D9</div></div>
+      <div style="display:flex; flex-direction:column; gap:8px"><div style="width:150px; height:80px; background:#fff; border:1px solid #D9D9D9; border-radius:16px"></div><div style="font-size:12px; color:#9EA2AE">Panel · r16 · #D9D9D9</div></div>
+      <div style="display:flex; flex-direction:column; gap:8px"><div style="width:150px; height:80px; background:#fff; border:1px solid #EBEBEB; border-radius:16px; box-shadow:0 1px 2px rgba(16,24,40,0.04), 0 8px 20px rgba(16,24,40,0.05)"></div><div style="font-size:12px; color:#9EA2AE">Metric · r16 · shadow-sm</div></div>
+      <div style="display:flex; flex-direction:column; gap:8px"><div style="width:150px; height:80px; background:#fff; border:1px solid #EBEBEB; border-radius:16px; box-shadow:0 1px 2px rgba(16,24,40,0.04), 0 12px 30px rgba(16,24,40,0.06)"></div><div style="font-size:12px; color:#9EA2AE">Floating · shadow-md</div></div>
+      <div style="display:flex; flex-direction:column; gap:8px"><div style="width:150px; height:80px; background:#fff; border:1px solid #DDE1F6; border-radius:16px; box-shadow:0 1px 2px rgba(16,24,40,0.04), 0 10px 24px rgba(89,105,214,0.10)"></div><div style="font-size:12px; color:#9EA2AE">AI Surface · violet shadow</div></div>
+    </div>
+  </section>
+
+  <section style="display:flex; flex-direction:column; gap:20px">
+    <div style="display:flex; flex-direction:column; gap:4px">
+      <h2 style="margin:0; font-size:13px; font-weight:700; letter-spacing:0.08em; color:#9EA2AE">06 — COMPONENTS</h2>
+      <p style="margin:0; font-size:14px; color:#5F6470">개인 워크스페이스이므로 어떤 컴포넌트에도 요청자·담당자·수신자 표기가 없습니다.</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:240px 1fr; gap:32px; align-items:start">
+
+      <div style="position:relative; height:560px; background:#fff; border:1px solid #E5E7EA; border-radius:8px; overflow:hidden">
+        <div style="position:absolute; left:12px; top:23.5px; width:25px; height:25px; border-radius:6px; background:linear-gradient(135deg,#7181F8,#A6CDFF); display:flex; align-items:center; justify-content:center; color:#fff; font-size:13px; font-weight:800">M</div>
+        <div style="position:absolute; left:45px; top:27px; font-size:17px; font-weight:800; letter-spacing:-0.01em">Managment</div>
+        <div style="position:absolute; left:12px; top:80px; width:32px; height:32px; border-radius:50%; background:linear-gradient(140deg,#C3CBFB,#98A6F0)"></div>
+        <div style="position:absolute; left:52px; top:80px; font-size:14px; font-weight:700">유하람</div>
+        <div style="position:absolute; left:52px; top:99px; font-size:11px; color:#9EA2AE">제품기획팀</div>
+        <div style="position:absolute; left:158px; top:80px; width:30px; height:30px; border-radius:8px; border:1px solid #EBEBEB; box-sizing:border-box; display:flex; align-items:center; justify-content:center">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#1E1E1E" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.6a4 4 0 0 1 8 0c0 2.9 1 4.4 1 4.4H3s1-1.5 1-4.4Z"></path><path d="M6.4 13a1.8 1.8 0 0 0 3.2 0"></path></svg>
+        </div>
+        <div style="position:absolute; left:12px; top:143px; width:176px; display:flex; flex-direction:column">
+          <div style="height:35px; border-radius:8px; background:#1E1E1E; color:#fff; font-size:14px; font-weight:700; display:flex; align-items:center; padding:0 14px; box-sizing:border-box">홈</div>
+          <div style="height:35px; border-radius:8px; color:#757575; font-size:14px; display:flex; align-items:center; padding:0 14px; box-sizing:border-box" style-hover="background:#F5F6F8; color:#1E1E1E">채팅</div>
+          <div style="height:35px; border-radius:8px; color:#757575; font-size:14px; display:flex; align-items:center; padding:0 14px; box-sizing:border-box" style-hover="background:#F5F6F8; color:#1E1E1E">캘린더</div>
+          <div style="height:35px; border-radius:8px; color:#757575; font-size:14px; display:flex; align-items:center; padding:0 14px; box-sizing:border-box" style-hover="background:#F5F6F8; color:#1E1E1E">내 업무</div>
+          <div style="height:35px; border-radius:8px; color:#757575; font-size:14px; display:flex; align-items:center; padding:0 14px; box-sizing:border-box" style-hover="background:#F5F6F8; color:#1E1E1E">회의록</div>
+          <div style="height:35px; border-radius:8px; color:#757575; font-size:14px; display:flex; align-items:center; padding:0 14px; box-sizing:border-box" style-hover="background:#F5F6F8; color:#1E1E1E">자료함</div>
+          <div style="height:35px; border-radius:8px; color:#757575; font-size:14px; display:flex; align-items:center; padding:0 14px; box-sizing:border-box" style-hover="background:#F5F6F8; color:#1E1E1E">메시지</div>
+          <div style="height:35px; border-radius:8px; color:#757575; font-size:14px; display:flex; align-items:center; padding:0 14px; box-sizing:border-box" style-hover="background:#F5F6F8; color:#1E1E1E">설정</div>
+        </div>
+        <div style="position:absolute; left:12px; bottom:14px; font-size:11px; color:#9EA2AE; line-height:1.6">Sidebar · 200px 고정<br>border-right #E5E7EA · active Ink pill</div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:32px">
+
+        <div style="display:flex; flex-direction:column; gap:10px">
+          <div style="font-size:12px; font-weight:700; color:#9EA2AE">AI PROMPT BAR · h52 · r16</div>
+          <div style="width:720px; height:52px; box-sizing:border-box; border-radius:16px; background:#fff; border:1px solid #DDE1F6; box-shadow:0 1px 2px rgba(16,24,40,0.04), 0 10px 24px rgba(89,105,214,0.10); display:flex; align-items:center; padding:0 9px">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="opacity:0.34"><path d="M10 2.6l1.3 4.3 4.3 1.3-4.3 1.3L10 13.8 8.7 9.5 4.4 8.2l4.3-1.3L10 2.6Z" fill="#7181F8"></path><path d="M15.2 13l.6 1.9 1.9.6-1.9.6-.6 1.9-.6-1.9-1.9-.6 1.9-.6.6-1.9Z" fill="#7181F8"></path></svg>
+            <div style="margin-left:9px; font-size:15px; color:#B3B3B3; flex:1">오늘 업무를 정리해줘</div>
+            <div style="width:40px; height:40px; border-radius:8px; background:linear-gradient(140deg,#7B8AFA,#6474F5); display:flex; align-items:center; justify-content:center">
+              <svg width="21" height="21" viewBox="0 0 22 22" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.1 3.6 9.2 20.9l-1.7-8.5-7.4-4.5 20-4.3Z"></path><path d="M7.5 12.4 20.1 3.6"></path></svg>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:10px">
+          <div style="font-size:12px; font-weight:700; color:#9EA2AE">METRIC CARD · 395 × 91 · r16</div>
+          <div style="display:flex; gap:16px">
+            <div style="width:300px; height:91px; box-sizing:border-box; border-radius:16px; background:#fff; border:1px solid #EBEBEB; box-shadow:0 1px 2px rgba(16,24,40,0.04), 0 8px 20px rgba(16,24,40,0.05); padding:18px">
+              <div style="display:flex; align-items:center; gap:8px">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#B3B3B3" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="7.2"></circle><path d="M7.4 6.2 10.2 9l-2.8 2.8M10.2 9H5.4"></path></svg>
+                <span style="font-size:13px; color:#5F6470">오늘 등록한 업무</span>
+              </div>
+              <div style="margin-top:6px; font-size:28px; font-weight:700">6</div>
+            </div>
+            <div style="width:300px; height:91px; box-sizing:border-box; border-radius:16px; background:#fff; border:1px solid #EBEBEB; box-shadow:0 1px 2px rgba(16,24,40,0.04), 0 8px 20px rgba(16,24,40,0.05); padding:18px">
+              <div style="display:flex; align-items:center; gap:8px">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#B3B3B3" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.8" y="4" width="12.4" height="11.2" rx="1.6"></rect><path d="M6.2 2.6v2.8M11.8 2.6v2.8M2.8 8h12.4"></path></svg>
+                <span style="font-size:13px; color:#5F6470">오늘 예정된 일정</span>
+              </div>
+              <div style="margin-top:6px; font-size:28px; font-weight:700">3</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:10px">
+          <div style="font-size:12px; font-weight:700; color:#9EA2AE">TASK CARD · w360 · r8 — 하단은 기한 + 업무 유형 (담당자 아바타 없음)</div>
+          <div style="display:flex; gap:16px; align-items:flex-start">
+            <div style="position:relative; width:360px; height:127px; box-sizing:border-box; background:#fff; border:1px solid #D9D9D9; border-radius:8px; box-shadow:0 1px 2px rgba(16,24,40,0.03)">
+              <div style="padding:15px 13px 0; display:flex; justify-content:space-between; align-items:flex-start">
+                <div style="font-size:12px; color:#757575">차티</div>
+                <div style="display:flex; align-items:center; gap:6px"><span style="width:8px; height:8px; border-radius:50%; background:#33AAFF"></span><span style="font-size:13px; color:#33AAFF">진행중</span></div>
+              </div>
+              <div style="padding:9px 13px 0; display:flex; align-items:center; gap:9px">
+                <span style="width:5px; height:5px; border-radius:50%; background:#338BF6; flex-shrink:0"></span>
+                <span style="font-size:14px; font-weight:600">제품 소개서 내용 업데이트 필요사항 체크</span>
+              </div>
+              <div style="padding:6px 13px 0; font-size:12px; color:#9EA2AE">업무 메모가 있으면 미리보기를 노출해주세요</div>
+              <div style="position:absolute; left:13px; right:13px; top:87px; height:1px; background:#EBEBEB"></div>
+              <div style="position:absolute; left:13px; right:13px; top:88px; height:39px; display:flex; align-items:center; justify-content:space-between">
+                <span style="font-size:12px; color:#757575">08월 29일</span>
+                <span style="height:20px; border-radius:4px; background:#F4F7FF; display:flex; align-items:center; padding:0 7px; font-size:11px; font-weight:600; color:#3F5F94">문서 · 보고</span>
+              </div>
+            </div>
+            <div style="position:relative; width:360px; height:106px; box-sizing:border-box; background:#fff; border:1px solid #D9D9D9; border-radius:8px; box-shadow:0 1px 2px rgba(16,24,40,0.03)">
+              <div style="padding:15px 13px 0; display:flex; justify-content:space-between; align-items:flex-start">
+                <div style="font-size:12px; color:#757575">Project name</div>
+                <div style="display:flex; align-items:center; gap:6px"><span style="width:8px; height:8px; border-radius:50%; background:#9EA2AE"></span><span style="font-size:13px; color:#9EA2AE">시작전</span></div>
+              </div>
+              <div style="padding:9px 13px 0; font-size:14px; font-weight:500">메모 없는 카드 · h106</div>
+              <div style="position:absolute; left:13px; right:13px; top:66px; height:1px; background:#EBEBEB"></div>
+              <div style="position:absolute; left:13px; right:13px; top:67px; height:39px; display:flex; align-items:center; justify-content:space-between">
+                <span style="font-size:12px; color:#757575">00월 00일</span>
+                <span style="height:20px; border-radius:4px; background:#F1F2FE; display:flex; align-items:center; padding:0 7px; font-size:11px; font-weight:600; color:#4B52A8">개인 업무</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:10px">
+          <div style="font-size:12px; font-weight:700; color:#9EA2AE">LIST ROW · h68 — 리스트형 업무</div>
+          <div style="width:560px; background:#fff; border:1px solid #EBEBEB; border-radius:8px; overflow:hidden">
+            <div style="height:50px; display:flex; align-items:center; gap:10px; padding:0 16px">
+              <svg width="10" height="7" viewBox="0 0 10 7" fill="#1E1E1E"><path d="M5 6.5 .3 1.2C.1 1 .3.7.5.7h9c.3 0 .4.3.2.5L5 6.5Z"></path></svg>
+              <span style="font-size:14px; font-weight:700">기한이 오늘까지인 업무</span>
+              <span style="width:21px; height:21px; border-radius:50%; background:#2C2C2C; color:#F5F5F5; font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center">4</span>
+            </div>
+            <div style="position:relative; height:68px; box-sizing:border-box; border-top:1px solid #F1F2F5; padding:13px 16px 0" style-hover="background:#FAFBFC">
+              <div style="font-size:12px; color:#757575">차티</div>
+              <div style="margin-top:4px; font-size:14px; font-weight:600">제품 소개서 내용 업데이트 필요사항 체크</div>
+              <div style="position:absolute; right:16px; top:20px; display:flex; align-items:center; gap:6px"><span style="width:8px; height:8px; border-radius:50%; background:#33AAFF"></span><span style="font-size:13px; color:#33AAFF">진행중</span></div>
+            </div>
+            <div style="position:relative; height:68px; box-sizing:border-box; border-top:1px solid #F1F2F5; padding:13px 16px 0" style-hover="background:#FAFBFC">
+              <div style="font-size:12px; color:#757575">제품기획</div>
+              <div style="margin-top:4px; font-size:14px; font-weight:600">스프린트 리뷰 자료 취합</div>
+              <div style="position:absolute; right:16px; top:20px; display:flex; align-items:center; gap:6px"><span style="width:8px; height:8px; border-radius:50%; background:#9EA2AE"></span><span style="font-size:13px; color:#9EA2AE">시작전</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:32px; flex-wrap:wrap">
+          <div style="display:flex; flex-direction:column; gap:10px">
+            <div style="font-size:12px; font-weight:700; color:#9EA2AE">TABS · h44 · 13px</div>
+            <div style="display:flex; gap:20px; border-bottom:1px solid #D9D9D9">
+              <div style="font-size:13px; font-weight:700; padding-bottom:12px; border-bottom:2px solid #1E1E1E">회의록</div>
+              <div style="font-size:13px; color:#9EA2AE; padding-bottom:12px; border-bottom:2px solid transparent" style-hover="color:#1E1E1E">원문 메모</div>
+              <div style="font-size:13px; color:#9EA2AE; padding-bottom:12px; border-bottom:2px solid transparent" style-hover="color:#1E1E1E">연결된 업무 2</div>
+              <div style="font-size:13px; color:#9EA2AE; padding-bottom:12px; border-bottom:2px solid transparent" style-hover="color:#1E1E1E">첨부 1</div>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px">
+            <div style="font-size:12px; font-weight:700; color:#9EA2AE">BREADCRUMB · top 38</div>
+            <div style="display:flex; align-items:center; gap:7px; font-size:13px; color:#9EA2AE">
+              <span>홈</span>
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="#B3B3B3" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 2.5 8 6l-3.5 3.5"></path></svg>
+              <span style="color:#757575">회의록</span>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px">
+            <div style="font-size:12px; font-weight:700; color:#9EA2AE">PERIOD STEPPER · h30</div>
+            <div style="display:flex; align-items:center; gap:6px">
+              <div style="width:30px; height:30px; border-radius:8px; border:1px solid #D9D9D9; box-sizing:border-box; background:#fff; display:flex; align-items:center; justify-content:center" style-hover="background:#F5F6F8"><svg width="7" height="11" viewBox="0 0 8 12" fill="none" stroke="#757575" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 1.5 1.5 6l4 4.5"></path></svg></div>
+              <div style="height:30px; border-radius:8px; border:1px solid #D9D9D9; box-sizing:border-box; background:#fff; display:flex; align-items:center; padding:0 12px; font-size:14px; font-weight:600">2026년 8월</div>
+              <div style="width:30px; height:30px; border-radius:8px; border:1px solid #D9D9D9; box-sizing:border-box; background:#fff; display:flex; align-items:center; justify-content:center" style-hover="background:#F5F6F8"><svg width="7" height="11" viewBox="0 0 8 12" fill="none" stroke="#757575" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 1.5 6.5 6l-4 4.5"></path></svg></div>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px">
+            <div style="font-size:12px; font-weight:700; color:#9EA2AE">SEARCH · h34 · w260</div>
+            <div style="width:260px; height:34px; border-radius:8px; border:1px solid #D9D9D9; box-sizing:border-box; background:#fff; display:flex; align-items:center; gap:8px; padding:0 12px">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#B3B3B3" stroke-width="1.6" stroke-linecap="round"><circle cx="7" cy="7" r="4.6"></circle><path d="M10.5 10.5 14 14"></path></svg>
+              <span style="font-size:13px; color:#B3B3B3">회의록 검색</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:10px">
+          <div style="font-size:12px; font-weight:700; color:#9EA2AE">BUTTONS · h34 (툴바) / h30 (패널 헤더) · r8</div>
+          <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap">
+            <div style="height:34px; border-radius:8px; background:#7181F8; color:#fff; display:flex; align-items:center; gap:7px; padding:0 16px; font-size:13px; font-weight:600" style-hover="background:#5F71F5">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"><path d="M8 3.5v9M3.5 8h9"></path></svg>
+              새 회의록
+            </div>
+            <div style="height:30px; border-radius:8px; background:#7181F8; color:#fff; display:flex; align-items:center; gap:7px; padding:0 12px; font-size:13px; font-weight:600" style-hover="background:#5F71F5">
+              <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M10 2.6l1.3 4.3 4.3 1.3-4.3 1.3L10 13.8 8.7 9.5 4.4 8.2l4.3-1.3L10 2.6Z" fill="#fff"></path></svg>
+              AI 요약
+            </div>
+            <div style="height:30px; border-radius:8px; border:1px solid #D9D9D9; box-sizing:border-box; background:#fff; display:flex; align-items:center; padding:0 12px; font-size:13px; color:#757575" style-hover="background:#F5F6F8; color:#1E1E1E">자료함에 저장</div>
+            <div style="height:34px; border-radius:8px; background:#1E1E1E; color:#fff; display:flex; align-items:center; padding:0 16px; font-size:13px; font-weight:600" style-hover="background:#000">확인</div>
+            <div style="font-size:13px; color:#757575; padding:0 4px" style-hover="color:#1E1E1E">전체보기</div>
+            <div style="height:28px; border-radius:999px; background:#F1F2F6; display:flex; align-items:center; padding:0 14px; font-size:13px; color:#757575">업무 유형 ▾</div>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:10px">
+          <div style="font-size:12px; font-weight:700; color:#9EA2AE">MEETING BLOCK · 회의록 본문 섹션</div>
+          <div style="width:720px; background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:24px; display:flex; flex-direction:column; gap:20px">
+            <div style="display:flex; flex-direction:column; gap:10px">
+              <div style="display:flex; align-items:center; gap:9px">
+                <span style="width:5px; height:5px; border-radius:50%; background:#7181F8"></span>
+                <span style="font-size:14px; font-weight:700">요약</span>
+                <span style="height:20px; border-radius:4px; background:#EEF0FE; display:inline-flex; align-items:center; padding:0 7px; font-size:11px; font-weight:600; color:#4A55B8">AI 생성</span>
+              </div>
+              <div style="font-size:15px; line-height:1.65; text-wrap:pretty">소개서 개정 범위를 4개 섹션으로 확정했고, 디자인 반영본은 8월 29일까지 받기로 했습니다.</div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:10px">
+              <div style="display:flex; align-items:center; gap:9px">
+                <span style="width:5px; height:5px; border-radius:50%; background:#929BF5"></span>
+                <span style="font-size:14px; font-weight:700">액션 아이템</span>
+              </div>
+              <div style="border:1px solid #EBEBEB; border-radius:8px; padding:0 16px; height:52px; display:flex; align-items:center; gap:12px">
+                <span style="width:8px; height:8px; border-radius:50%; background:#33AAFF"></span>
+                <span style="font-size:14px; font-weight:600; flex:1">제품 소개서 내용 업데이트</span>
+                <span style="height:22px; border-radius:4px; background:#F4F7FF; display:inline-flex; align-items:center; padding:0 8px; font-size:12px; font-weight:600; color:#3F5F94">문서 · 보고</span>
+                <span style="font-size:13px; color:#7181F8; font-weight:600">D-0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section style="display:flex; flex-direction:column; gap:20px">
+    <div style="display:flex; flex-direction:column; gap:4px">
+      <h2 style="margin:0; font-size:13px; font-weight:700; letter-spacing:0.08em; color:#9EA2AE">07 — OVERLAY &amp; INPUT</h2>
+      <p style="margin:0; font-size:14px; color:#5F6470">화면 위에 얹히는 것들과, 값을 넣는 자리.</p>
+    </div>
+
+    <div style="background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:32px; display:flex; flex-direction:column; gap:32px">
+
+      <div style="display:flex; flex-direction:column; gap:14px">
+        <div style="font-size:14px; font-weight:700">레이어 3종</div>
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px">
+          <div style="border:1px solid #EBEBEB; border-radius:8px; overflow:hidden">
+            <div style="height:150px; background:#F4F5F7; position:relative; overflow:hidden">
+              <div style="position:absolute; inset:0; background:rgba(30,30,30,0.32)"></div>
+              <div style="position:absolute; right:0; top:0; bottom:0; width:58%; background:#fff; box-shadow:-8px 0 20px rgba(0,0,0,0.16); display:flex; flex-direction:column">
+                <div style="height:26px; border-bottom:1px solid #EBEBEB"></div>
+              </div>
+            </div>
+            <div style="padding:14px 16px; display:flex; flex-direction:column; gap:6px">
+              <div style="font-size:13px; font-weight:700">Drawer · 840px</div>
+              <div style="font-size:12px; color:#5F6470; line-height:1.6">업무 생성·상세처럼 뒤 맥락이 필요한 편집. 우측 고정, 스크림 rgba(30,30,30,0.32), 그림자 -24px 0 60px rgba(0,0,0,0.18).</div>
+            </div>
+          </div>
+          <div style="border:1px solid #EBEBEB; border-radius:8px; overflow:hidden">
+            <div style="height:150px; background:#F4F5F7; position:relative; overflow:hidden">
+              <div style="position:absolute; inset:0; background:rgba(30,30,30,0.36)"></div>
+              <div style="position:absolute; left:18%; right:18%; top:26%; height:48%; background:#fff; border-radius:10px; box-shadow:0 16px 40px rgba(0,0,0,0.28)"></div>
+            </div>
+            <div style="padding:14px 16px; display:flex; flex-direction:column; gap:6px">
+              <div style="font-size:13px; font-weight:700">Modal · 600px</div>
+              <div style="font-size:12px; color:#5F6470; line-height:1.6">되돌리기 어려운 결정 하나만(취소 사유, 삭제 확인). 편집 폼은 모달로 만들지 않습니다.</div>
+            </div>
+          </div>
+          <div style="border:1px solid #EBEBEB; border-radius:8px; overflow:hidden">
+            <div style="height:150px; background:#F4F5F7; position:relative; overflow:hidden">
+              <div style="position:absolute; left:14%; top:22%; width:44%; height:26px; border-radius:6px; background:#fff; border:1px solid #D9D9D9"></div>
+              <div style="position:absolute; left:14%; top:calc(22% + 34px); width:56%; height:44%; background:#fff; border:1px solid #E1E3E8; border-radius:10px; box-shadow:0 12px 28px rgba(0,0,0,0.16)"></div>
+            </div>
+            <div style="padding:14px 16px; display:flex; flex-direction:column; gap:6px">
+              <div style="font-size:13px; font-weight:700">Popover · 200–400px</div>
+              <div style="font-size:12px; color:#5F6470; line-height:1.6">스크림 없음. 트리거 바로 아래·좌측 정렬, 8px 띄움. 아래 공간이 모자라면 위로 엽니다.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:14px">
+        <div style="font-size:14px; font-weight:700">선택 표현</div>
+        <div style="display:flex; align-items:center; gap:28px; flex-wrap:wrap">
+          <div style="display:flex; align-items:center; gap:10px">
+            <span style="height:34px; border-radius:8px; background:#1E1E1E; color:#fff; display:inline-flex; align-items:center; padding:0 13px; font-size:13px; font-weight:700">리스트</span>
+            <span style="height:34px; border-radius:8px; border:1px solid #D9D9D9; box-sizing:border-box; color:#757575; display:inline-flex; align-items:center; padding:0 13px; font-size:13px">칸반</span>
+            <span style="font-size:12px; color:#9EA2AE">위치 · #1E1E1E</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px">
+            <span style="height:26px; border-radius:6px; background:#F1F2FE; border:1px solid #7181F8; box-sizing:border-box; color:#4B52A8; display:inline-flex; align-items:center; padding:0 10px; font-size:12px; font-weight:600">이 프로젝트</span>
+            <span style="height:26px; border-radius:6px; border:1px solid #E1E3E8; box-sizing:border-box; color:#5F6470; display:inline-flex; align-items:center; padding:0 10px; font-size:12px">최근 30일</span>
+            <span style="width:16px; height:16px; border-radius:4px; background:#7181F8; display:flex; align-items:center; justify-content:center"><svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.6 8.4 6.4 11.2l6-6.4"></path></svg></span>
+            <span style="width:16px; height:16px; border-radius:4px; border:1.5px solid #D9D9D9; box-sizing:border-box"></span>
+            <span style="font-size:12px; color:#9EA2AE">선택 · #F1F2FE / #7181F8</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:16px">
+        <div style="flex:1; display:flex; flex-direction:column; gap:14px">
+          <div style="font-size:14px; font-weight:700">Toast</div>
+          <div style="height:56px; border-radius:10px; background:#1E1E1E; box-shadow:0 16px 40px rgba(0,0,0,0.28); display:flex; align-items:center; gap:12px; padding:0 18px; box-sizing:border-box">
+            <span style="width:22px; height:22px; border-radius:50%; background:#7181F8; display:flex; align-items:center; justify-content:center"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.6 8.4 6.4 11.2l6-6.4"></path></svg></span>
+            <span style="flex:1; font-size:14px; color:#fff">완료 처리했습니다</span>
+            <span style="font-size:13px; font-weight:600; color:#A6CDFF">실행취소</span>
+          </div>
+          <div style="font-size:12px; color:#5F6470; line-height:1.6">400×56, 하단 중앙 60px 위. 4초 후 사라짐. 되돌릴 수 있는 동작이면 실행취소를 함께 둡니다.</div>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column; gap:14px">
+          <div style="font-size:14px; font-weight:700">Status Dropdown</div>
+          <div style="width:200px; background:#fff; border:1px solid #E1E3E8; border-radius:10px; box-shadow:0 16px 40px rgba(0,0,0,0.16); overflow:hidden">
+            <div style="height:36px; display:flex; align-items:center; gap:9px; padding:0 14px; font-size:13px"><span style="width:8px; height:8px; border-radius:50%; background:#9EA2AE"></span>시작전</div>
+            <div style="height:36px; display:flex; align-items:center; gap:9px; padding:0 14px; font-size:13px; background:#F4F5FF; font-weight:600"><span style="width:8px; height:8px; border-radius:50%; background:#33AAFF"></span><span style="flex:1; color:#33AAFF">진행중</span></div>
+            <div style="height:36px; display:flex; align-items:center; gap:9px; padding:0 14px; font-size:13px"><span style="width:8px; height:8px; border-radius:50%; background:#7181F8"></span>완료</div>
+            <div style="height:36px; display:flex; align-items:center; gap:9px; padding:0 14px; font-size:13px; border-top:1px solid #F1F2F5; color:#5F6470"><span style="width:8px; height:8px; border-radius:50%; background:#B3B3B3"></span>취소</div>
+          </div>
+          <div style="font-size:12px; color:#5F6470; line-height:1.6">현재 값은 배경 #F4F5FF + 상태색 텍스트. 지연은 자동 판정이라 목록에 없고, 취소는 구분선 아래에 둡니다.</div>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:16px">
+        <div style="flex:1; display:flex; flex-direction:column; gap:14px">
+          <div style="font-size:14px; font-weight:700">Selector · 닫힘 / 열림</div>
+          <div style="display:flex; gap:16px; align-items:flex-start">
+            <div style="width:200px; display:flex; flex-direction:column; gap:8px">
+              <div style="font-size:12px; color:#9EA2AE">닫힘 · 42px</div>
+              <div style="height:42px; border:1px solid #D9D9D9; border-radius:8px; box-sizing:border-box; display:flex; align-items:center; justify-content:space-between; padding:0 14px; font-size:14px">오전 9:00<svg width="11" height="7" viewBox="0 0 12 8" fill="none" stroke="#757575" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1.5 6 6.5l5-5"></path></svg></div>
+              <div style="font-size:12px; color:#9EA2AE">열림 · 트리거 border #7181F8</div>
+              <div style="height:42px; border:1px solid #7181F8; border-radius:8px; box-sizing:border-box; box-shadow:0 0 0 3px rgba(113,129,248,0.16); display:flex; align-items:center; justify-content:space-between; padding:0 14px; font-size:14px">오전 9:00<svg width="11" height="7" viewBox="0 0 12 8" fill="none" stroke="#7181F8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6.5 6 1.5l5 5"></path></svg></div>
+            </div>
+            <div style="width:200px; margin-top:-1px; background:#fff; border:1px solid #E1E3E8; border-radius:10px; box-shadow:0 16px 40px rgba(0,0,0,0.16); overflow:hidden; padding:6px 0">
+              <div style="height:36px; display:flex; align-items:center; padding:0 14px; font-size:13px; color:#5F6470">오전 8:30</div>
+              <div style="height:36px; display:flex; align-items:center; justify-content:space-between; padding:0 14px; font-size:13px; font-weight:600; background:#F4F5FF; color:#4B52A8">오전 9:00<svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="#7181F8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.6 8.4 6.4 11.2l6-6.4"></path></svg></div>
+              <div style="height:36px; display:flex; align-items:center; padding:0 14px; font-size:13px; color:#5F6470">오전 9:30</div>
+              <div style="height:36px; display:flex; align-items:center; padding:0 14px; font-size:13px; color:#5F6470">오전 10:00</div>
+              <div style="margin-top:6px; border-top:1px solid #F1F2F5; height:38px; display:flex; align-items:center; padding:0 14px; font-size:13px; color:#757575">직접 입력</div>
+            </div>
+          </div>
+          <div style="font-size:12px; color:#5F6470; line-height:1.6">고르기는 팝오버 규격을 그대로 씁니다. 목록 폭은 트리거와 동일(최소 200px), 트리거에 붙여서(테두리 1px 겹침) 좌측 정렬. 항목 36px, 현재 값은 배경 #F4F5FF + #4B52A8 + 체크. 목록에 없는 값은 구분선 아래 '직접 입력'으로 받고, 아래 공간이 모자라면 위로 엽니다. 선택하면 즉시 반영 · 포커스 해제 시 저장이라 확인 버튼은 두지 않습니다.</div>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column; gap:14px">
+          <div style="font-size:14px; font-weight:700">Inline Add Row</div>
+          <div style="border:1px solid #D9D9D9; border-radius:8px; overflow:hidden">
+            <div style="height:44px; display:flex; align-items:center; gap:11px; padding:0 10px 0 16px; background:#FAFBFC; font-size:13px">
+              <span style="width:16px; height:16px; border-radius:4px; border:1.5px dashed #D9D9D9; box-sizing:border-box"></span>
+              <span style="flex:1; color:#9EA2AE">할일 입력 후 Enter</span>
+              <span style="height:28px; border-radius:6px; background:#F1F2FE; color:#4B52A8; display:inline-flex; align-items:center; gap:5px; padding:0 11px; font-size:12px; font-weight:600">추가</span>
+            </div>
+          </div>
+          <div style="font-size:12px; color:#5F6470; line-height:1.6">목록 맨 아래 고정, 배경 #FAFBFC. Enter로 등록되지만 버튼도 항상 함께 둡니다.</div>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column; gap:14px">
+          <div style="font-size:14px; font-weight:700">Progress · Log Row</div>
+          <div style="display:flex; align-items:center; gap:12px">
+            <span style="font-size:13px; font-weight:700">할일</span>
+            <span style="font-size:12px; color:#757575">2 / 5</span>
+            <div style="flex:1; max-width:200px; height:6px; border-radius:3px; background:#F1F2F5; overflow:hidden"><div style="width:40%; height:100%; background:#7181F8"></div></div>
+          </div>
+          <div style="border:1px solid #EBEBEB; border-radius:8px; overflow:hidden">
+            <div style="height:40px; display:flex; align-items:center; gap:10px; padding:0 16px; border-bottom:1px solid #F1F2F5; font-size:13px"><span style="width:7px; height:7px; border-radius:50%; background:#7181F8"></span><span style="flex:1">할일 2건 완료</span><span style="font-size:12px; color:#9EA2AE">오늘 09:12</span></div>
+            <div style="height:40px; display:flex; align-items:center; gap:10px; padding:0 16px; font-size:13px"><span style="width:7px; height:7px; border-radius:50%; background:#D9D9D9"></span><span style="flex:1">상태 시작전 → 진행중</span><span style="font-size:12px; color:#9EA2AE">08.27 10:05</span></div>
+          </div>
+          <div style="font-size:12px; color:#5F6470; line-height:1.6">개인용 도구라 로그·메모에 작성자를 쓰지 않습니다. 내용 + 시간 한 줄. 최신 항목만 dot #7181F8.</div>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:16px">
+        <div style="flex:1; display:flex; flex-direction:column; gap:14px">
+          <div style="font-size:14px; font-weight:700">Inline Edit Row · 56px</div>
+          <div style="border:1px solid #D9D9D9; border-radius:8px; overflow:hidden">
+            <div style="height:56px; background:#FBFCFF; display:flex; align-items:center; gap:10px; padding:0 16px">
+              <span style="width:30px; height:30px; border-radius:8px; border:1px dashed #D9D9D9; box-sizing:border-box; flex-shrink:0"></span>
+              <div style="width:120px; height:36px; border:1px solid #7181F8; border-radius:8px; box-sizing:border-box; background:#fff; box-shadow:0 0 0 3px rgba(113,129,248,0.16); display:flex; align-items:center; padding:0 10px; font-size:13px">회사명</div>
+              <div style="width:88px; height:36px; border:1px solid #D9D9D9; border-radius:8px; box-sizing:border-box; background:#fff; display:flex; align-items:center; padding:0 10px; font-size:13px; color:#B3B3B3">소속</div>
+              <div style="width:88px; height:36px; border:1px solid #D9D9D9; border-radius:8px; box-sizing:border-box; background:#fff; display:flex; align-items:center; padding:0 10px; font-size:13px; color:#B3B3B3">직무</div>
+              <div style="margin-left:auto; display:flex; align-items:center; gap:8px">
+                <span style="font-size:13px; color:#757575">취소</span>
+                <span style="height:36px; border-radius:8px; background:#7181F8; color:#fff; display:inline-flex; align-items:center; padding:0 14px; font-size:13px; font-weight:600">추가</span>
+              </div>
+            </div>
+          </div>
+          <div style="font-size:12px; color:#5F6470; line-height:1.6">한 줄로 끝나는 개체(경력)의 추가·편집. 행 높이 56, 컨트롤 36, 배경 #FBFCFF. 목록 컬럼과 같은 순서로 필드를 나열하고, 필드를 합치지 않습니다. 2줄이 필요해지면 인라인이 아니라 드로어입니다.</div>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column; gap:14px">
+          <div style="font-size:14px; font-weight:700">Password Strength</div>
+          <div style="display:flex; flex-direction:column; gap:10px">
+            <div style="display:flex; align-items:center; gap:6px">
+              <div style="flex:1; height:4px; border-radius:2px; background:#7181F8"></div>
+              <div style="flex:1; height:4px; border-radius:2px; background:#7181F8"></div>
+              <div style="flex:1; height:4px; border-radius:2px; background:#7181F8"></div>
+              <div style="flex:1; height:4px; border-radius:2px; background:#EBEBEB"></div>
+            </div>
+            <div style="display:flex; align-items:center; gap:14px; font-size:12px; color:#757575">
+              <span style="display:flex; align-items:center; gap:6px"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="#3BA776" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.6 8.4 6.4 11.2l6-6.4"></path></svg>8자 이상</span>
+              <span style="display:flex; align-items:center; gap:6px"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="#3BA776" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.6 8.4 6.4 11.2l6-6.4"></path></svg>숫자 포함</span>
+              <span style="display:flex; align-items:center; gap:6px"><span style="width:12px; height:12px; border-radius:50%; border:1.5px solid #D9D9D9; box-sizing:border-box"></span>특수문자 포함</span>
+            </div>
+          </div>
+          <div style="font-size:12px; color:#5F6470; line-height:1.6">4칸 4px 바 + 조건 3개. 충족은 #3BA776 체크, 미충족은 빈 원. 점수를 숫자나 '약함/강함' 문구로 쓰지 않습니다. 비밀번호 입력은 항상 눈 아이콘으로 표시 전환.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section style="display:flex; flex-direction:column; gap:20px">
+    <div style="display:flex; flex-direction:column; gap:4px">
+      <h2 style="margin:0; font-size:13px; font-weight:700; letter-spacing:0.08em; color:#9EA2AE">08 — RESPONSIVE</h2>
+      <p style="margin:0; font-size:14px; color:#5F6470">데스크톱 전용입니다. 1280 미만은 지원하지 않고, 그 아래에서는 최소 폭 안내를 띄웁니다.</p>
+    </div>
+
+    <div style="background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:32px; display:flex; flex-direction:column; gap:28px">
+
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px">
+
+        <div style="display:flex; flex-direction:column; gap:12px">
+          <div style="display:flex; align-items:baseline; gap:8px"><span style="font-size:14px; font-weight:700">1920</span><span style="font-size:12px; color:#9EA2AE">기준</span></div>
+          <div style="height:170px; border:1px solid #D9D9D9; border-radius:8px; position:relative; overflow:hidden; background:#fff">
+            <div style="position:absolute; left:0; top:0; bottom:0; width:10.4%; background:#F5F6F8; border-right:1px solid #E5E7EA"></div>
+            <div style="position:absolute; left:10.4%; top:0; bottom:0; width:2.1%; background:repeating-linear-gradient(45deg,#F1F2F5,#F1F2F5 4px,transparent 4px,transparent 8px)"></div>
+            <div style="position:absolute; right:0; top:0; bottom:0; width:2.1%; background:repeating-linear-gradient(45deg,#F1F2F5,#F1F2F5 4px,transparent 4px,transparent 8px)"></div>
+            <div style="position:absolute; left:12.5%; right:2.1%; top:16px; bottom:16px; border:1px solid #EBEBEB; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:12px; color:#9EA2AE">본문 1640</div>
+          </div>
+          <div style="font-size:12px; color:#5F6470; line-height:1.7">사이드바 200 · 여백 240 · 칸반 4컬럼 · 드로어 840</div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:12px">
+          <div style="display:flex; align-items:baseline; gap:8px"><span style="font-size:14px; font-weight:700">1440</span><span style="font-size:12px; color:#9EA2AE">노트북</span></div>
+          <div style="height:170px; border:1px solid #D9D9D9; border-radius:8px; position:relative; overflow:hidden; background:#fff">
+            <div style="position:absolute; left:0; top:0; bottom:0; width:13.9%; background:#F5F6F8; border-right:1px solid #E5E7EA"></div>
+            <div style="position:absolute; left:13.9%; top:0; bottom:0; width:5.6%; background:repeating-linear-gradient(45deg,#F1F2F5,#F1F2F5 4px,transparent 4px,transparent 8px)"></div>
+            <div style="position:absolute; right:0; top:0; bottom:0; width:5.6%; background:repeating-linear-gradient(45deg,#F1F2F5,#F1F2F5 4px,transparent 4px,transparent 8px)"></div>
+            <div style="position:absolute; left:19.5%; right:5.6%; top:16px; bottom:16px; border:1px solid #EBEBEB; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:12px; color:#9EA2AE">본문 1080</div>
+          </div>
+          <div style="font-size:12px; color:#5F6470; line-height:1.7">사이드바 200 유지 · 여백 240→80 · 칸반 4컬럼(최소 240) · 드로어 840</div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:12px">
+          <div style="display:flex; align-items:baseline; gap:8px"><span style="font-size:14px; font-weight:700">1280</span><span style="font-size:12px; color:#9EA2AE">좁은 노트북 · 하한</span></div>
+          <div style="height:170px; border:1px solid #D9D9D9; border-radius:8px; position:relative; overflow:hidden; background:#fff">
+            <div style="position:absolute; left:12px; top:12px; width:26px; height:26px; border-radius:7px; border:1px solid #D9D9D9; display:flex; align-items:center; justify-content:center"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="#5F6470" stroke-width="1.5" stroke-linecap="round"><path d="M3 4.5h10M3 8h10M3 11.5h10"></path></svg></div>
+            <div style="position:absolute; left:0; top:0; bottom:0; width:3.8%; background:repeating-linear-gradient(45deg,#F1F2F5,#F1F2F5 4px,transparent 4px,transparent 8px)"></div>
+            <div style="position:absolute; right:0; top:0; bottom:0; width:3.8%; background:repeating-linear-gradient(45deg,#F1F2F5,#F1F2F5 4px,transparent 4px,transparent 8px)"></div>
+            <div style="position:absolute; left:3.8%; right:3.8%; top:50px; bottom:16px; border:1px solid #EBEBEB; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:12px; color:#9EA2AE">본문 1184</div>
+          </div>
+          <div style="font-size:12px; color:#5F6470; line-height:1.7">사이드바 숨김 + 햄버거(오버레이) · 여백 48 · 칸반 가로 스크롤 · 드로어 전체 화면</div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; padding-top:24px; border-top:1px solid #F1F2F5">
+        <div style="display:flex; flex-direction:column; gap:7px">
+          <div style="font-size:13px; font-weight:700">사이드바</div>
+          <div style="font-size:12px; color:#5F6470; line-height:1.7">1440까지 200px 고정. 1280부터 숨기고 좌상단 햄버거로 오버레이 호출 — 아이콘만 남기는 축소형은 만들지 않습니다.</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:7px">
+          <div style="font-size:13px; font-weight:700">드로어</div>
+          <div style="font-size:12px; color:#5F6470; line-height:1.7">840px 고정. 화면 폭이 1280 미만이 되는 순간 전체 화면으로 바뀌고 헤더 좌측에 ← 닫기가 생깁니다. 스크림은 사라집니다.</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:7px">
+          <div style="font-size:13px; font-weight:700">칸반</div>
+          <div style="font-size:12px; color:#5F6470; line-height:1.7">컬럼 기본 320px, 최소 240px. 4컬럼이 안 들어가면 컬럼을 좁히지 말고 가로 스크롤합니다. 리스트로 자동 전환하지 않습니다.</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:7px">
+          <div style="font-size:13px; font-weight:700">그리드</div>
+          <div style="font-size:12px; color:#5F6470; line-height:1.7">본문은 유동, 좌우 여백만 240 → 80 → 48로 줄입니다. 최대폭 제한은 두지 않습니다. 리스트 컬럼 중 시작일이 1280에서 먼저 숨습니다.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section style="display:flex; flex-direction:column; gap:20px">
+    <div style="display:flex; flex-direction:column; gap:4px">
+      <h2 style="margin:0; font-size:13px; font-weight:700; letter-spacing:0.08em; color:#9EA2AE">09 — MEETING NOTE</h2>
+      <p style="margin:0; font-size:14px; color:#5F6470">회의록 전용 패턴. 한 회의록은 안건의 목록이고, 안건은 줄의 목록입니다.</p>
+    </div>
+
+    <div style="background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:32px; display:flex; flex-direction:column; gap:28px">
+
+      <div style="display:flex; flex-direction:column; gap:14px">
+        <div style="font-size:14px; font-weight:700">줄 종류 4종</div>
+        <div style="display:flex; flex-direction:column; gap:6px; max-width:760px">
+          <div style="display:flex; gap:12px; align-items:center; padding:8px 10px; border-radius:8px">
+            <span style="width:34px; flex-shrink:0; font-size:11px; font-weight:700; color:#9EA2AE">논의</span>
+            <span style="flex:1; font-size:15px">오간 이야기. 결정이 아니면 전부 여기로 들어갑니다.</span>
+          </div>
+          <div style="display:flex; gap:12px; align-items:center; padding:8px 10px; border-radius:8px">
+            <span style="width:34px; flex-shrink:0; font-size:11px; font-weight:700; color:#1663B5">결정</span>
+            <span style="flex:1; font-size:15px; font-weight:600">확정된 사항. 굵게만 쓰고 배경색은 쓰지 않습니다.</span>
+          </div>
+          <div style="display:flex; gap:12px; align-items:center; padding:8px 10px; border-radius:8px">
+            <span style="width:34px; flex-shrink:0; font-size:11px; font-weight:700; color:#5F6470">업무</span>
+            <span style="flex:1; font-size:15px; font-weight:600">기존 업무 연관 — PATCH</span>
+            <span style="height:22px; border-radius:4px; background:#F4F7FF; display:inline-flex; align-items:center; padding:0 8px; font-size:12px; font-weight:600; color:#3F5F94">문서 · 보고</span>
+            <span style="height:30px; border-radius:8px; background:#F1F2F5; border:1px solid #E1E3E8; box-sizing:border-box; display:inline-flex; align-items:center; gap:6px; padding:0 12px; font-size:12px; font-weight:600; color:#757575">업무 갱신</span>
+          </div>
+          <div style="display:flex; gap:12px; align-items:center; padding:8px 10px; border-radius:8px">
+            <span style="width:34px; flex-shrink:0; font-size:11px; font-weight:700; color:#4B52A8">액션</span>
+            <span style="flex:1; font-size:15px; font-weight:600">새 업무 생성 — POST</span>
+            <span style="height:30px; border-radius:8px; border:1px solid #D9D9D9; box-sizing:border-box; display:inline-flex; align-items:center; gap:6px; padding:0 12px; font-size:12px; font-weight:600; color:#1E1E1E">업무 생성</span>
+          </div>
+        </div>
+        <div style="font-size:12px; color:#5F6470; line-height:1.7; max-width:760px">라벨 폭 34, 줄 padding 8/10, 안건 기준선은 좌측 border-left 2px #EBEBEB. 요청은 버튼을 눌러야 나갑니다 — 줄을 적는 것만으로 업무가 생기지 않습니다.</div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:14px; padding-top:24px; border-top:1px solid #F1F2F5">
+        <div style="font-size:14px; font-weight:700">근거 아코디언</div>
+        <div style="max-width:760px; display:flex; flex-direction:column; gap:6px">
+          <div style="display:flex; gap:12px; align-items:center; padding:8px 10px; border-radius:8px; background:#FAFBFC">
+            <span style="width:34px; flex-shrink:0; font-size:11px; font-weight:700; color:#1663B5">결정</span>
+            <span style="flex:1; font-size:15px; font-weight:600">도입 사례는 3건만 유지한다.</span>
+            <span style="width:24px; height:24px; border-radius:6px; background:#F1F2F5; display:flex; align-items:center; justify-content:center; flex-shrink:0"><svg width="11" height="7" viewBox="0 0 12 8" fill="none" stroke="#5F6470" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6.5 6 1.5l5 5"></path></svg></span>
+          </div>
+          <div style="margin:2px 10px 0 56px; border-left:2px solid #C9D1FB; padding-left:14px; display:flex; flex-direction:column; gap:10px">
+            <div style="font-size:14px; line-height:1.7; color:#5F6470">회의 종료 후 배치가 채우는 상세 설명.</div>
+            <div style="display:flex; align-items:center; gap:8px">
+              <span style="font-size:12px; color:#9EA2AE">근거</span>
+              <span style="height:24px; border-radius:6px; background:#EEF1FE; border:1px solid #C9D1FB; box-sizing:border-box; display:inline-flex; align-items:center; gap:5px; padding:0 8px; font-size:12px; font-weight:600; color:#4A55B8"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#4A55B8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="4.6"></circle><path d="M6 3.6V6l1.8 1.2"></path></svg>09:34 – 09:36</span>
+              <span style="font-size:12px; color:#9EA2AE">칩 클릭 → 우측 스크립트의 해당 구간으로 이동 · 그 구간은 #F4F5FF로 표시</span>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:12px; color:#5F6470; line-height:1.7; max-width:760px">화살표는 hover에서만 나타납니다. 줄 전체 클릭은 인라인 편집이므로 펼치기는 화살표만 씁니다.</div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:14px; padding-top:24px; border-top:1px solid #F1F2F5">
+        <div style="font-size:14px; font-weight:700">탭 dot — 회의 진행 상태</div>
+        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; max-width:900px">
+          <div style="display:flex; flex-direction:column; gap:7px">
+            <div style="font-size:13px; font-weight:700">회의록</div>
+            <div style="font-size:12px; color:#5F6470; line-height:1.7">시작 전·진행 #B3B3B3, 완료 #7181F8</div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:7px">
+            <div style="font-size:13px; font-weight:700">AI 요약</div>
+            <div style="font-size:12px; color:#5F6470; line-height:1.7">시작 전 #B3B3B3, 진행 #338BF6, 완료 #B3B3B3</div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:7px">
+            <div style="font-size:13px; font-weight:700">실시간 스크립트</div>
+            <div style="font-size:12px; color:#5F6470; line-height:1.7">시작 전 #B3B3B3, 진행 #7181F8, 완료 #B3B3B3</div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:7px">
+            <div style="font-size:13px; font-weight:700">첨부 파일</div>
+            <div style="font-size:12px; color:#5F6470; line-height:1.7">항상 #D9D9D9. 라벨에 개수를 붙입니다(0개면 숫자 생략)</div>
+          </div>
+        </div>
+        <div style="font-size:12px; color:#5F6470; line-height:1.7; max-width:900px">좌측 패널 1160 = 회의록 | AI 요약, 우측 464(left 1416) = 실시간 스크립트 | 첨부 파일. 진행 중 dot에는 3px 광륜(rgba 0.2)을 씁니다.</div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:14px; padding-top:24px; border-top:1px solid #F1F2F5">
+        <div style="font-size:14px; font-weight:700">AI 한 줄 요약 바</div>
+        <div style="height:56px; max-width:900px; box-sizing:border-box; border-radius:12px; background:#EEF1FE; border:1px solid #C9D1FB; display:flex; align-items:center; padding:0 20px; gap:12px">
+          <span style="height:22px; border-radius:4px; background:#fff; border:1px solid #C9D1FB; box-sizing:border-box; display:inline-flex; align-items:center; padding:0 8px; font-size:11px; font-weight:700; color:#4A55B8; flex-shrink:0">AI 한 줄 요약</span>
+          <span style="flex:1; font-size:14px; font-weight:600; color:#3D46A6; overflow:hidden; text-overflow:ellipsis; white-space:nowrap">한 문장 · 넘치면 잘라냅니다</span>
+          <span style="font-size:12px; color:#5F6470; flex-shrink:0">안건 3 · 결정 2 · 액션 2</span>
+        </div>
+        <div style="font-size:12px; color:#5F6470; line-height:1.7; max-width:900px">상세 화면 상단(top 150, 1640×56)에 한 개만. 진행 중 화면에서는 회색 상태 바(기록 대기 · 경과 시간)가 같은 자리를 씁니다.</div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:14px; padding-top:24px; border-top:1px solid #F1F2F5">
+        <div style="font-size:14px; font-weight:700">편집 모드와 드로어</div>
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px">
+          <div style="border:1px solid #EBEBEB; border-radius:8px; padding:18px; display:flex; flex-direction:column; gap:8px">
+            <div style="font-size:13px; font-weight:700">논의 · 결정</div>
+            <div style="font-size:12px; color:#5F6470; line-height:1.7">종류 선택 · 안건 · 내용 · 상세 설명 · 근거 구간 칩. 상세 설명을 비우면 회의 종료 후 배치가 채웁니다.</div>
+          </div>
+          <div style="border:1px solid #EBEBEB; border-radius:8px; padding:18px; display:flex; flex-direction:column; gap:8px">
+            <div style="font-size:13px; font-weight:700">연관 업무</div>
+            <div style="font-size:12px; color:#5F6470; line-height:1.7">내 업무 검색 → 단일 선택 → 반영할 변경(기한·상태)과 진행 메모. 고른 항목만 PATCH로 나갑니다.</div>
+          </div>
+          <div style="border:1px solid #EBEBEB; border-radius:8px; padding:18px; display:flex; flex-direction:column; gap:8px">
+            <div style="font-size:13px; font-weight:700">액션 아이템</div>
+            <div style="font-size:12px; color:#5F6470; line-height:1.7">업무 생성 양식(제목·유형·프로젝트·기한·시작 상태·메모)과 '줄을 연관 업무로 바꾸기' 토글.</div>
+          </div>
+        </div>
+        <div style="font-size:12px; color:#5F6470; line-height:1.7; max-width:900px">편집 중에는 헤더 우측이 '변경은 자동 저장됩니다 · 되돌리기 · 편집 완료'로 바뀌고, 줄 종류 라벨이 셀렉터가 됩니다. 줄 추가는 안건별 + 버튼(드로어)이 담당하므로 하단 프롬프트 바는 감춥니다. 회의록 삭제만 모달입니다.</div>
+      </div>
+    </div>
+  </section>
+
+  <section style="display:flex; flex-direction:column; gap:20px">
+    <div style="display:flex; flex-direction:column; gap:4px">
+      <h2 style="margin:0; font-size:13px; font-weight:700; letter-spacing:0.08em; color:#9EA2AE">10 — RULES</h2>
+      <p style="margin:0; font-size:14px; color:#5F6470">화면을 추가할 때 어기면 안 되는 것들.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px">
+      <div style="background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:20px; display:flex; flex-direction:column; gap:8px">
+        <div style="font-size:14px; font-weight:700">사람 표기 없음</div>
+        <div style="font-size:13px; color:#5F6470; line-height:1.6">요청자·담당자·수신자 아바타를 카드나 리스트에 넣지 않습니다. 그 자리는 업무 유형 배지가 씁니다. 사이드바 프로필만 예외.</div>
+      </div>
+      <div style="background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:20px; display:flex; flex-direction:column; gap:8px">
+        <div style="font-size:14px; font-weight:700">#7181F8은 액션과 완료에만</div>
+        <div style="font-size:13px; color:#5F6470; line-height:1.6">버튼·전송·D-day·AI 강조, 그리고 완료 상태(dot·진행률 바·로그 최신 마커). 진행중은 #33AAFF, 시작전은 #9EA2AE에서 가져옵니다.</div>
+      </div>
+      <div style="background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:20px; display:flex; flex-direction:column; gap:8px">
+        <div style="font-size:14px; font-weight:700">그라디언트는 홈만</div>
+        <div style="font-size:13px; color:#5F6470; line-height:1.6">Hero Gradient는 홈 상단 400px과 로그인 좌측 브랜드 패널에만. 앱 안쪽 화면은 흰 배경 + breadcrumb + 타이틀로 시작합니다.</div>
+      </div>
+      <div style="background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:20px; display:flex; flex-direction:column; gap:8px">
+        <div style="font-size:14px; font-weight:700">업무 유형은 4개 고정</div>
+        <div style="font-size:13px; color:#5F6470; line-height:1.6">미팅·회의 / 개인 업무 / 문서·보고 / 취소. 새 배지 색을 임의로 만들지 않습니다.</div>
+      </div>
+      <div style="background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:20px; display:flex; flex-direction:column; gap:8px">
+        <div style="font-size:14px; font-weight:700">채널 색은 별개 축</div>
+        <div style="font-size:13px; color:#5F6470; line-height:1.6">메일·카카오톡·슬랙 색(02 CHANNEL)은 출처 표시 전용이며 업무 유형 배지와 섞어 쓰지 않습니다. 채널이 늘어나면 여기에 먼저 등록합니다.</div>
+      </div>
+      <div style="background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:20px; display:flex; flex-direction:column; gap:8px">
+        <div style="font-size:14px; font-weight:700">검정은 위치, 보라는 선택</div>
+        <div style="font-size:13px; color:#5F6470; line-height:1.6">#1E1E1E는 현재 위치 표시(사이드바 메뉴, 뷰 전환, 탭)에만 쓰고 화면당 하나씩. 필터 칩·체크·선택 카드는 #F1F2FE + #7181F8로 표현합니다. 토스트는 배경이 아니라 띄운 서페이스라 예외입니다.</div>
+      </div>
+      <div style="background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:20px; display:flex; flex-direction:column; gap:8px">
+        <div style="font-size:14px; font-weight:700">설정은 패널 스택</div>
+        <div style="font-size:13px; color:#5F6470; line-height:1.6">설정 화면은 좌측 메뉴 카드 260 + 우측 패널 스택 1356(gap 20). 성격이 다른 묶음은 패널을 나눕니다(프로필 / 경력 / 목소리). 두 컬럼의 아래 끝은 항상 같은 y에 맞추고, 로그아웃·계정 삭제는 메뉴 카드 맨 아래에 둡니다.</div>
+      </div>
+      <div style="background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:20px; display:flex; flex-direction:column; gap:8px">
+        <div style="font-size:14px; font-weight:700">자동 저장 화면엔 저장 버튼이 없다</div>
+        <div style="font-size:13px; color:#5F6470; line-height:1.6">설정 값은 포커스 해제 시 저장합니다. 패널 헤더에는 저장·되돌리기 대신 "입력을 마치면 자동으로 저장됩니다"만 둡니다. 저장 버튼은 드로어 안에서만 씁니다.</div>
+      </div>
+      <div style="background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:20px; display:flex; flex-direction:column; gap:8px">
+        <div style="font-size:14px; font-weight:700">한 줄짜리 개체는 인라인</div>
+        <div style="font-size:13px; color:#5F6470; line-height:1.6">목록의 한 줄로 끝나는 개체(경력, 할일)는 목록 자리에서 인라인으로 추가·편집합니다. 드로어는 탭·로그·첨부가 붙는 개체(업무, 회의록)에만 씁니다. 필드가 4개 이하면 드로어를 열지 않습니다.</div>
+      </div>
+      <div style="background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:20px; display:flex; flex-direction:column; gap:8px">
+        <div style="font-size:14px; font-weight:700">편집은 드로어, 결정은 모달</div>
+        <div style="font-size:13px; color:#5F6470; line-height:1.6">값을 여러 개 넣는 화면은 드로어(840px), 되돌리기 어려운 결정 하나는 모달(600px), 고르기는 팝오버. 드로어 위에 모달을 겹치지 않습니다.</div>
+      </div>
+      <div style="background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:20px; display:flex; flex-direction:column; gap:8px">
+        <div style="font-size:14px; font-weight:700">단축키는 보조</div>
+        <div style="font-size:13px; color:#5F6470; line-height:1.6">Enter·Esc로 동작하더라도 화면에는 버튼을 둡니다. 단축키 안내 칩을 푸터에 나열하지 않습니다.</div>
+      </div>
+      <div style="background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:20px; display:flex; flex-direction:column; gap:8px">
+        <div style="font-size:14px; font-weight:700">테두리 구분</div>
+        <div style="font-size:13px; color:#5F6470; line-height:1.6">외곽은 #D9D9D9, 내부 구분은 #EBEBEB, 리스트 행은 #F1F2F5, 사이드바만 #E5E7EA.</div>
+      </div>
+      <div style="background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:20px; display:flex; flex-direction:column; gap:8px">
+        <div style="font-size:14px; font-weight:700">스코프 표시 필수</div>
+        <div style="font-size:13px; color:#5F6470; line-height:1.6">내 업무·회의록 등 기간이 있는 화면은 타이틀 옆 Period Stepper로 현재 범위(월 단위)를 항상 노출합니다.</div>
+      </div>
+    </div>
+  </section>
+  <section style="display:flex; flex-direction:column; gap:20px">
+    <div style="display:flex; flex-direction:column; gap:4px">
+      <h2 style="margin:0; font-size:13px; font-weight:700; letter-spacing:0.08em; color:#9EA2AE">11 — CALENDAR</h2>
+      <p style="margin:0; font-size:14px; color:#5F6470">시간축이 있는 화면 전용 패턴. 유형 4색은 그대로 쓰고, 시간을 가진 것과 갖지 않은 것을 줄로 분리합니다.</p>
+    </div>
+
+    <div style="background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:32px; display:flex; flex-direction:column; gap:28px">
+
+      <div style="display:flex; flex-direction:column; gap:10px">
+        <div style="font-size:12px; color:#9EA2AE">Period Bar · 기간 일정 (월)</div>
+        <div style="width:700px; display:grid; grid-template-columns:repeat(7,1fr); gap:4px">
+          <div style="grid-column:2 / span 4; height:20px; box-sizing:border-box; border-radius:4px; background:#7E9BD6; display:flex; align-items:center; padding:0 8px; font-size:11px; font-weight:700; color:#fff">제품 소개서 스프린트</div>
+          <div style="grid-column:6 / span 2; height:20px; box-sizing:border-box; border-radius:4px 0 0 4px; background:#929BF5; display:flex; align-items:center; padding:0 8px; font-size:11px; font-weight:700; color:#fff">채용 온보딩 준비</div>
+          <div style="grid-column:1 / span 2; height:20px; box-sizing:border-box; border-radius:0 4px 4px 0; background:#929BF5; display:flex; align-items:center; padding:0 8px; font-size:11px; font-weight:700; color:#fff">채용 온보딩 준비</div>
+        </div>
+        <div style="font-size:13px; color:#5F6470; line-height:1.6">유형색 채움 + 흰 텍스트. 날짜 숫자 아래·시간 칩 위 고정 라인(월 셀 기준 top 32)에 놓고, 주를 넘어가면 잘린 쪽 라운드를 없애고 다음 주 첫 칸에서 제목을 다시 씁니다. 칸당 2줄까지, 나머지는 <strong>+n건 더</strong>.</div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:10px">
+        <div style="font-size:12px; color:#9EA2AE">All-day Band · 종일 (주 · 일)</div>
+        <div style="width:700px; border:1px solid #EBEBEB; border-radius:8px; overflow:hidden">
+          <div style="display:flex; align-items:flex-start; padding:7px 0; box-sizing:border-box">
+            <div style="width:70px; text-align:right; padding-right:12px; font-size:11px; color:#9EA2AE">종일</div>
+            <div style="flex:1; padding-right:10px; display:flex; flex-direction:column; gap:4px">
+              <div style="height:22px; border-radius:4px; background:#EFF1FE; border-left:3px solid #7181F8; box-sizing:border-box; display:flex; align-items:center; padding:0 9px; font-size:11px; font-weight:600; color:#4A55B8">소개서 v2 마감</div>
+              <div style="height:22px; border-radius:4px; background:#FAFAFB; border:1px dashed #E1E3E8; box-sizing:border-box; display:flex; align-items:center; gap:8px; padding:0 9px; font-size:11px; font-weight:600"><span style="color:#B3B3B3; text-decoration:line-through">고객 인터뷰 정리</span><span style="font-weight:500; color:#C9CBD1">취소 · 시간 다시 지정</span></div>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:13px; color:#5F6470; line-height:1.6">기간 일정·종일 일정·취소 일정은 모두 종일 밴드에 올립니다. 밴드는 주 3줄(88px) / 일 2줄(62px)까지이며 <strong>box-sizing:border-box</strong>로 카드 높이에 포함시킵니다. 밴드 칩의 좌측 시작선과 폭은 아래 시간 블록과 같게 맞춥니다.</div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:10px">
+        <div style="font-size:12px; color:#9EA2AE">Type Filter · 범례 겸 필터</div>
+        <div style="width:360px; border:1px solid #D9D9D9; border-radius:16px; background:#fff; padding:20px; display:flex; flex-direction:column; gap:14px">
+          <div style="display:flex; align-items:center; justify-content:space-between">
+            <span style="font-size:14px; font-weight:700">업무 유형</span>
+            <span style="height:26px; border-radius:7px; background:#EEF1FE; display:inline-flex; align-items:center; gap:6px; padding:0 10px; font-size:12px; font-weight:600; color:#3D46A6">필터 1<svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#3D46A6" stroke-width="1.8" stroke-linecap="round"><path d="M2.5 2.5l7 7M9.5 2.5l-7 7"></path></svg></span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:4px; margin:0 -12px">
+            <div style="display:flex; flex-direction:column; gap:7px; border-radius:12px; background:#F3F5FF; padding:10px 12px">
+              <div style="display:flex; align-items:center; gap:8px">
+                <span style="width:22px; height:22px; border-radius:6px; background:#EEF1FE"></span>
+                <span style="font-size:13px; flex:1; font-weight:700">미팅 · 회의</span>
+                <span style="font-size:13px; font-weight:700; color:#7181F8">4</span>
+              </div>
+              <div style="height:6px; border-radius:3px; background:#F1F2F5; overflow:hidden"><div style="width:44%; height:6px; background:#7181F8"></div></div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:7px; padding:10px 12px">
+              <div style="display:flex; align-items:center; gap:8px">
+                <span style="width:22px; height:22px; border-radius:6px; background:#F1F2FE"></span>
+                <span style="font-size:13px; flex:1; color:#5F6470">개인 업무</span>
+                <span style="font-size:13px; font-weight:700; color:#9EA2AE">3</span>
+              </div>
+              <div style="height:6px; border-radius:3px; background:#F1F2F5; overflow:hidden"><div style="width:33%; height:6px; background:#E3E5EA"></div></div>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:13px; color:#5F6470; line-height:1.6">유형 분포 카드가 곧 필터입니다. 선택 행은 #F3F5FF 필 + 라벨 700 + 카운트 #7181F8, 미선택 행은 라벨 #5F6470 + 막대 #E3E5EA. 활성 필터 칩은 타이틀·기간 스테퍼 옆(왼쪽 그룹)에 두고, 카드 우측 상단은 <strong>필터 n ✕</strong>로 해제합니다.</div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:10px">
+        <div style="font-size:12px; color:#9EA2AE">Create Menu · 새 일정</div>
+        <div style="width:200px; border:1px solid #E5E7EA; border-radius:10px; background:#fff; box-shadow:0 8px 20px rgba(0,0,0,0.10); padding:5px; display:flex; flex-direction:column">
+          <div style="height:34px; border-radius:7px; display:flex; align-items:center; gap:8px; padding:0 11px; font-size:13px; font-weight:600"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="#7181F8" stroke-width="1.7" stroke-linecap="round"><path d="M8 3.5v9M3.5 8h9"></path></svg>미팅 · 회의</div>
+          <div style="height:34px; border-radius:7px; display:flex; align-items:center; gap:8px; padding:0 11px; font-size:13px; font-weight:600"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="#7181F8" stroke-width="1.7" stroke-linecap="round"><path d="M8 3.5v9M3.5 8h9"></path></svg>개인 업무</div>
+          <div style="height:34px; border-radius:7px; display:flex; align-items:center; gap:8px; padding:0 11px; font-size:13px; font-weight:600"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="#7181F8" stroke-width="1.7" stroke-linecap="round"><path d="M8 3.5v9M3.5 8h9"></path></svg>문서 · 보고</div>
+        </div>
+        <div style="font-size:13px; color:#5F6470; line-height:1.6">「+ 새 일정」 아래 4px에 우측 정렬로 붙는 팝오버. 폭은 내용에 맞추고(빈 여백 없음), 항목은 유형 3종 — <strong>취소는 상태이므로 여기 없습니다</strong>. 미팅은 회의록 생성 드로어, 개인·문서는 업무 생성 드로어를 그대로 엽니다.</div>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px">
+      <div style="background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:20px; display:flex; flex-direction:column; gap:8px">
+        <div style="font-size:14px; font-weight:700">취소는 시간 슬롯을 점유하지 않는다</div>
+        <div style="font-size:13px; color:#5F6470; line-height:1.6">취소된 일정은 시간 그리드에서 빼고 종일 밴드의 점선 취소 칩(취소선 · #B3B3B3)으로 올립니다. 그 시간대는 비워 새 일정을 넣을 수 있어야 합니다. 카운트는 「일정 3건 · 종일 1건 · 취소 1건」처럼 분리 표기.</div>
+      </div>
+      <div style="background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:20px; display:flex; flex-direction:column; gap:8px">
+        <div style="font-size:14px; font-weight:700">상세 드로어는 뷰 공통</div>
+        <div style="font-size:13px; color:#5F6470; line-height:1.6">월·주·일 어디서 눌러도 같은 드로어가 열립니다. 뷰별 상세를 따로 만들지 않고, 업무는 업무 상세 드로어, 회의는 회의 상세 드로어(840) 하나씩만 둡니다.</div>
+      </div>
+      <div style="background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:20px; display:flex; flex-direction:column; gap:8px">
+        <div style="font-size:14px; font-weight:700">범례 색과 칩 색은 같아야 한다</div>
+        <div style="font-size:13px; color:#5F6470; line-height:1.6">유형 카드의 진행률 막대, 칩 좌측 액센트, 기간 바 채움은 모두 같은 4색을 씁니다(문서·보고는 #7E9BD6). 캘린더 전용 파란색·회색 칩을 새로 만들지 않습니다.</div>
+      </div>
+    </div>
+  </section>
+  <section style="display:flex; flex-direction:column; gap:20px">
+    <div style="display:flex; flex-direction:column; gap:4px">
+      <h2 style="margin:0; font-size:13px; font-weight:700; letter-spacing:0.08em; color:#9EA2AE">12 — LIBRARY &amp; DOCUMENT</h2>
+      <p style="margin:0; font-size:14px; color:#5F6470">문서함은 위키입니다. 문서는 폴더에 놓이고, 프로젝트 · 업무 · 회의와 링크로 이어집니다.</p>
+    </div>
+
+    <div style="background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:32px; display:flex; flex-direction:column; gap:28px">
+
+      <div style="display:flex; flex-direction:column; gap:10px">
+        <div style="font-size:12px; color:#9EA2AE">Directory Tree · 12px 단위 들여쓰기</div>
+        <div style="width:300px; border:1px solid #D9D9D9; border-radius:12px; background:#fff; padding:10px 12px; display:flex; flex-direction:column">
+          <div style="height:34px; border-radius:8px; display:flex; align-items:center; gap:6px; padding:0 8px; font-size:14px; font-weight:700"><span style="width:16px; height:16px; border-radius:4px; background:#DDE1FB"></span><span style="flex:1">01 Projects</span><span style="font-size:12px; color:#C9CBD1">+</span></div>
+          <div style="height:32px; border-radius:8px; background:#F1F2F5; display:flex; align-items:center; gap:6px; padding:0 8px 0 20px; font-size:13px; font-weight:600"><span style="width:14px; height:14px; border-radius:4px; background:#DDE6FB"></span><span style="flex:1">소개서 개정</span><span style="font-size:12px; color:#C9CBD1">+</span></div>
+          <div style="height:30px; border-radius:8px; display:flex; align-items:center; gap:8px; padding:0 8px 0 32px; font-size:13px; font-weight:600; background-image:linear-gradient(#DDE1FB,#DDE1FB); background-size:1px 100%; background-position:24px 0; background-repeat:no-repeat"><span style="width:13px; height:13px; border-radius:3px; background:#DDE6FB"></span><span style="flex:1">문서 · 보고</span><span style="font-size:12px; color:#C9CBD1">+</span></div>
+          <div style="height:30px; border-radius:8px; background:#F1F2FE; display:flex; align-items:center; gap:7px; padding:0 8px 0 44px; font-size:13px; font-weight:600; color:#3D46A6; background-image:linear-gradient(#C9D1FB,#C9D1FB); background-size:1px 100%; background-position:36px 0; background-repeat:no-repeat"><svg width="13" height="13" viewBox="0 0 18 18" fill="none" stroke="#7181F8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.4 2.2H5.6c-.8 0-1.4.6-1.4 1.4v10.8c0 .8.6 1.4 1.4 1.4h6.8c.8 0 1.4-.6 1.4-1.4V5.8l-3.4-3.6Z"></path><path d="M10.2 2.4V6h3.4"></path></svg><span style="flex:1">주간 업무 보고 초안</span></div>
+          <div style="height:30px; border-radius:8px; display:flex; align-items:center; gap:7px; padding:0 8px 0 44px; font-size:13px; color:#5F6470; background-image:linear-gradient(#EBEBEB,#EBEBEB); background-size:1px 100%; background-position:36px 0; background-repeat:no-repeat"><svg width="13" height="13" viewBox="0 0 18 18" fill="none" stroke="#7E9BD6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.4 2.2H5.6c-.8 0-1.4.6-1.4 1.4v10.8c0 .8.6 1.4 1.4 1.4h6.8c.8 0 1.4-.6 1.4-1.4V5.8l-3.4-3.6Z"></path><path d="M10.2 2.4V6h3.4"></path></svg><span style="flex:1">제품 소개서 v2.docx</span></div>
+        </div>
+        <div style="font-size:13px; color:#5F6470; line-height:1.6">폴더는 12px씩, 파일은 폴더보다 한 단 더 들여씁니다(2단 20 / 3단 32 / 파일 44). 단마다 세로 가이드선(#EBEBEB, 선택 계열은 #C9D1FB)을 깔아 소속을 보이게 합니다. 폴더 행 오른쪽은 하위 폴더 <strong>+</strong> 버튼이며 항목 수는 표시하지 않습니다. 파일 행에는 + 버튼이 없습니다. 문서 선택 필(#F1F2FE)은 상세·편집 화면에서만.</div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:10px">
+        <div style="font-size:12px; color:#9EA2AE">File List · 즐겨찾기 | 이름 | …</div>
+        <div style="width:100%; border:1px solid #D9D9D9; border-radius:12px; overflow:hidden">
+          <div style="height:42px; border-bottom:1px solid #D9D9D9; display:flex; align-items:center; padding:0 20px; font-size:13px; color:#757575"><div style="width:36px"></div><div style="flex:1">이름</div><div style="width:200px; text-align:center">연결된 업무</div><div style="width:110px; text-align:center">유형</div><div style="width:130px; text-align:center">수정일</div></div>
+          <div style="height:50px; display:flex; align-items:center; padding:0 20px; border-bottom:1px solid #F1F2F5; font-size:14px; background:#F8FAFF">
+            <span style="width:36px; height:22px; display:flex; align-items:center; justify-content:center"><svg width="14" height="14" viewBox="0 0 16 16" fill="#7181F8" stroke="#7181F8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.4 9.7 6l3.9.5-2.8 2.7.7 3.9L8 11.3 4.5 13.1l.7-3.9L2.4 6.5 6.3 6 8 2.4Z"></path></svg></span>
+            <div style="flex:1; display:flex; align-items:center; gap:11px"><span style="width:26px; height:26px; border-radius:6px; background:#EEF0FE; display:flex; align-items:center; justify-content:center"><svg width="14" height="14" viewBox="0 0 18 18" fill="none" stroke="#7181F8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.4 2.2H5.6c-.8 0-1.4.6-1.4 1.4v10.8c0 .8.6 1.4 1.4 1.4h6.8c.8 0 1.4-.6 1.4-1.4V5.8l-3.4-3.6Z"></path><path d="M10.2 2.4V6h3.4M6.6 9.4h4.8"></path></svg></span><span style="font-weight:600">주간 업무 보고 초안</span><span style="height:20px; border-radius:4px; background:#EEF0FE; display:inline-flex; align-items:center; padding:0 7px; font-size:11px; font-weight:600; color:#4A55B8">AI 생성</span></div>
+            <div style="width:200px; text-align:center; font-size:13px; color:#5F6470">주간 업무 보고 작성</div>
+            <div style="width:110px; text-align:center; font-size:13px; color:#757575">문서</div>
+            <div style="width:130px; text-align:center; font-size:13px; color:#757575">방금</div>
+          </div>
+          <div style="height:50px; display:flex; align-items:center; padding:0 20px; font-size:14px">
+            <span style="width:36px; height:22px; display:flex; align-items:center; justify-content:center"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#C9CBD1" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.4 9.7 6l3.9.5-2.8 2.7.7 3.9L8 11.3 4.5 13.1l.7-3.9L2.4 6.5 6.3 6 8 2.4Z"></path></svg></span>
+            <div style="flex:1; display:flex; align-items:center; gap:11px"><span style="width:26px; height:26px; border-radius:6px; background:#F4F7FF; display:flex; align-items:center; justify-content:center"><svg width="14" height="14" viewBox="0 0 18 18" fill="none" stroke="#7E9BD6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.4 2.2H5.6c-.8 0-1.4.6-1.4 1.4v10.8c0 .8.6 1.4 1.4 1.4h6.8c.8 0 1.4-.6 1.4-1.4V5.8l-3.4-3.6Z"></path><path d="M10.2 2.4V6h3.4"></path></svg></span><span style="font-weight:600">제품 소개서 v2.docx</span></div>
+            <div style="width:200px; text-align:center; font-size:13px; color:#5F6470">제품 소개서 내용 업데이트</div>
+            <div style="width:110px; text-align:center; font-size:13px; color:#757575">DOCX</div>
+            <div style="width:130px; text-align:center; font-size:13px; color:#757575">08.26</div>
+          </div>
+        </div>
+        <div style="font-size:13px; color:#5F6470; line-height:1.6">첫 칼럼은 36px 즐겨찾기(채운 별 #7181F8 / 미지정 #C9CBD1 외곽선), 그다음 이름 · 연결된 업무 · 유형 · 크기 · 수정일. 아이콘 색은 업무 유형 4색을 따릅니다. 상세·편집 헤더에도 같은 별을 34px 토글로 둡니다.</div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:10px">
+        <div style="font-size:12px; color:#9EA2AE">Metadata &amp; Links Rail · 문서 우측 420</div>
+        <div style="display:flex; gap:16px">
+          <div style="width:340px; border:1px solid #D9D9D9; border-radius:16px; background:#fff; padding:20px; display:flex; flex-direction:column; gap:12px">
+            <div style="display:flex; align-items:baseline; justify-content:space-between"><span style="font-size:14px; font-weight:700">메타데이터</span><span style="font-size:12px; color:#9EA2AE; font-family:ui-monospace, Menlo, monospace">doc_4f21</span></div>
+            <div style="display:flex; flex-direction:column; gap:9px; font-size:13px">
+              <div style="display:flex; justify-content:space-between; gap:12px"><span style="color:#757575">형식</span><span style="font-weight:600">Markdown (.md)</span></div>
+              <div style="display:flex; justify-content:space-between; gap:12px"><span style="color:#757575">위치</span><span style="font-weight:600; text-align:right">01 Projects / 소개서 개정 / 문서 · 보고</span></div>
+              <div style="display:flex; justify-content:space-between; gap:12px"><span style="color:#757575">수정</span><span style="font-weight:600">08.27 10:42 · v3</span></div>
+            </div>
+            <div style="border-top:1px solid #F1F2F5; padding-top:12px; display:flex; gap:6px">
+              <span style="height:24px; border-radius:6px; background:#F1F2FE; display:inline-flex; align-items:center; padding:0 9px; font-size:12px; font-weight:600; color:#4B52A8">#주간보고</span>
+              <span style="height:24px; border-radius:6px; border:1px dashed #D9D9D9; box-sizing:border-box; display:inline-flex; align-items:center; padding:0 9px; font-size:12px; color:#9EA2AE">+ 태그</span>
+            </div>
+            <div style="border-top:1px solid #F1F2F5; padding-top:12px; display:flex; align-items:center; justify-content:space-between; font-size:12px"><span style="color:#757575">AI 색인</span><span style="height:22px; border-radius:4px; background:#EEF1FE; display:inline-flex; align-items:center; gap:6px; padding:0 8px; font-weight:600; color:#4A55B8"><span style="width:6px; height:6px; border-radius:50%; background:#7181F8"></span>임베딩 완료 · v3</span></div>
+          </div>
+          <div style="width:340px; border:1px solid #D9D9D9; border-radius:16px; background:#fff; padding:20px; display:flex; flex-direction:column; gap:12px">
+            <div style="display:flex; align-items:baseline; justify-content:space-between"><span style="font-size:14px; font-weight:700">연결</span><span style="font-size:12px; color:#757575">나가는 3 · 들어오는 2</span></div>
+            <div style="display:flex; flex-direction:column; gap:8px">
+              <div style="height:40px; border:1px solid #D9D9D9; border-radius:8px; box-sizing:border-box; display:flex; align-items:center; gap:9px; padding:0 11px; font-size:13px"><span style="width:22px; height:22px; border-radius:6px; background:#EEF1FE; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; color:#4A55B8">PJ</span><span style="flex:1">소개서 개정</span><span style="font-size:12px; color:#9EA2AE">프로젝트</span></div>
+              <div style="height:40px; border:1px solid #D9D9D9; border-radius:8px; box-sizing:border-box; display:flex; align-items:center; gap:9px; padding:0 11px; font-size:13px"><span style="width:22px; height:22px; border-radius:6px; background:#F4F7FF; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; color:#3F5F94">TK</span><span style="flex:1">주간 업무 보고 작성</span><span style="font-size:12px; color:#9EA2AE">업무</span></div>
+              <div style="height:40px; border:1px solid #D9D9D9; border-radius:8px; box-sizing:border-box; display:flex; align-items:center; gap:9px; padding:0 11px; font-size:13px"><span style="width:22px; height:22px; border-radius:6px; background:#F1F2FE; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; color:#4B52A8">MT</span><span style="flex:1">제품 소개서 리뷰</span><span style="font-size:12px; color:#9EA2AE">회의</span></div>
+            </div>
+            <div style="border-top:1px solid #F1F2F5; padding-top:12px; display:flex; flex-direction:column; gap:6px">
+              <div style="font-size:12px; font-weight:700; color:#757575">이 문서를 참조 (백링크)</div>
+              <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:#5F6470"><span style="width:6px; height:6px; border-radius:50%; background:#C9CBD1"></span>8월 월간 보고</div>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:13px; color:#5F6470; line-height:1.6">문서 화면의 우측 레일은 <strong>메타데이터 → 연결 → 버전</strong> 순서입니다. 목차는 두지 않습니다. 링크 행은 PJ(프로젝트) · TK(업무) · MT(회의) 배지로 종류를 밝히고, 백링크는 별도 묶음. 버전은 카드가 아니라 48px 리스트 행(현재 버전만 #F8F9FF).</div>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px">
+      <div style="background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:20px; display:flex; flex-direction:column; gap:8px">
+        <div style="font-size:14px; font-weight:700">메타데이터는 사람, 링크는 백그라운드</div>
+        <div style="font-size:13px; color:#5F6470; line-height:1.6">태그·프로젝트·연관 업무는 업로드/편집에서 사람이 입력합니다. 문서 간 링크·백링크·임베딩은 업로드 후 백그라운드에서 붙고, 끝나기 전에는 「색인 중」으로 표시합니다. 입력만으로 서버 작업을 시작하지 않습니다.</div>
+      </div>
+      <div style="background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:20px; display:flex; flex-direction:column; gap:8px">
+        <div style="font-size:14px; font-weight:700">업로드는 파일 단위 메타데이터</div>
+        <div style="font-size:13px; color:#5F6470; line-height:1.6">업로드 드로어(840)는 파일마다 카드를 만들고 저장 위치·프로젝트·연관 업무·태그를 각각 받습니다. 미입력 파일은 「메타데이터 미입력」 배지, 반복 입력은 「첫 파일 값 모두 적용」 토글로 줄입니다.</div>
+      </div>
+      <div style="background:#fff; border:1px solid #EBEBEB; border-radius:8px; padding:20px; display:flex; flex-direction:column; gap:8px">
+        <div style="font-size:14px; font-weight:700">경로는 세 곳이 같아야 한다</div>
+        <div style="font-size:13px; color:#5F6470; line-height:1.6">트리 · breadcrumb · 메타데이터의 「위치」는 같은 문자열을 씁니다. 폴더 단계를 빼먹으면 문서가 어디 소속인지 어긋납니다. v1 본문 렌더는 .md만, 나머지 형식은 목록·메타데이터만 다룹니다.</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1720,&quot;height&quot;:1200}}"></script>
+</body>
+</html>
