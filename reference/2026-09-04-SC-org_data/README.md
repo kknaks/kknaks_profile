@@ -42,8 +42,10 @@ CSV 열 14개 중 **7개만** 들어간다.
 | 직책 | `positions` + `appointments` | 부서장 → (`division`,`head`) · 팀장 → (`team`,`head`) · 부팀장 → (`team`,`deputy`) |
 | 입사일 | `members.employed_from` | 적힌 사람만. 없는 사람은 비운다 |
 | 위하고메일 | `logins.email` | 적힌 사람만 계정을 만든다. 비밀번호는 폴더에 없고 적재할 때 환경이 준다 |
+| 전화 | `members.phone` | 적힌 사람만. 숫자와 하이픈만 남긴다 |
+| 생년월일 | `members.birth_date` | 적힌 사람만. ISO(`YYYY-MM-DD`)로 적는다 |
 | 비고 | (저장 안 함) | 「겸임」 표시만 읽어 사람 병합에 쓴다 |
-| 메모 · 전화 · 생년월일 · 지메일 · 담당 프로젝트 | **미반입** | — |
+| 메모 · 지메일 · 담당 프로젝트 | **미반입** | — |
 
 파생 열:
 
@@ -71,6 +73,9 @@ CSV 열 14개 중 **7개만** 들어간다.
 4. **부서 단계의 「팀장」은 부서장 자리로 넣는다.** 부서에는 head 슬롯이 하나뿐이다. 해당 행은 경고로 남긴다.
 5. **대표이사는 `role_key` 만 대표 역할이고 직책 행이 없다.** CSV 의 직책 열이 비어 있어 직급이 유일한 근거다.
 6. **`logins` 는 위하고메일이 적힌 사람만** (지메일이 아니다). 주소가 없는 사람은 계정 없이 들어간다.
+7. **전화·생년월일은 `members` 의 옵셔널 열이다** (2026-09-07 추가, dataset schema v6). 원문이 말한 사람만
+   갖고 나머지는 비어 있다. 명부 API 는 이 두 값을 **`organization.manage` 권한이 있는 Principal 에게만**
+   채워 주고, 없으면 필드는 그대로 두고 값만 `null` 이다.
 
 ### 계약에 맞추느라 바꾼 것 — `sc-` 접두사
 
@@ -97,6 +102,8 @@ importer 는 이미 있는 key 를 덮어쓰지 않으므로 접두사 없이 �
 | `memberships` | 169 | `primary` 165 · `additional` 4 |
 | `appointments` | 22 | `primary` 18 · `concurrent` 4 |
 | `logins` | 15 | 위하고메일이 없는 150명은 계정 없음 |
+| `members.phone` | 15 | 전화가 적힌 사람만 |
+| `members.birth_date` | 15 | 생년월일이 적힌 사람만 |
 | `jobs` · `job_assignments` · `projects` · `project_assignments` | 0 | CSV 에 직무 열이 없다 |
 
 역할: `executive` 2 · `team-lead` 18 · `member` 145.
@@ -114,3 +121,6 @@ importer 는 이미 있는 key 를 덮어쓰지 않으므로 접두사 없이 �
   해당하는 종류가 따로 없다. 이름을 바꾸려면 제품 쪽 결정이 필요하다.
 - CSV 는 **현재 시점 스냅샷 한 장**이다. 기간·과거값이 없어 소속·직책 이력은 시드로 채워지지 않는다.
 - 직무 축(`jobs`)은 CSV 에 열 자체가 없어 비어 있다.
+- `members.phone`·`members.birth_date` 컬럼은 **로컬 데모 DB 에 `make sync-demo-schema` 로만** 들어가 있다.
+  운영 스키마 반영은 별도 gate다.
+- 전화·생년월일·입사일·위하고메일은 모두 **같은 15명**에게만 있다. 나머지 150명은 네 값이 전부 비어 있다.

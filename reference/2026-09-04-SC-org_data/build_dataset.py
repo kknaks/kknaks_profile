@@ -7,7 +7,8 @@
 원문이 말하지 않는 것은 만들어 내지 않는다. 사번만은 예외로, 원문에 사번 열이 없어 화면이 사람을 부를 이름이
 없기 때문에 **임시 번호**(1001부터)를 `members.key` 로 붙인다. 그 밖에 입사일·직무·프로젝트는 비운다.
 
-옮기지 않는 열: 전화·생년월일·지메일·메모·담당 프로젝트. 비고는 겸임 판정에만 쓰고 저장하지 않는다.
+옮기지 않는 열: 지메일·메모·담당 프로젝트. 비고는 겸임 판정에만 쓰고 저장하지 않는다.
+전화·생년월일은 `members` 의 옵셔널 열로 들어간다 — 원문이 말한 사람만이고, 나머지는 빈 칸이다.
 위하고메일은 `logins` 의 주소가 된다 — 빈 사람은 계정을 만들지 않는다. 비밀번호는 이 폴더에 없고 적재할 때 환경이 준다.
 이 파일에는 사람의 이름이 상수로 들어가지 않는다 — 겸임과 동명이인은 이름이 아니라 규칙이 가른다.
 
@@ -18,6 +19,7 @@ from __future__ import annotations
 import argparse
 import csv
 from datetime import date, datetime
+import re
 from pathlib import Path
 import sys
 
@@ -109,6 +111,9 @@ ROLE_MEMBER = "member"
 #: 계정을 만들 주소가 적힌 열. 지메일이 아니라 회사 메일이다.
 LOGIN_EMAIL_COLUMN = "위하고메일"
 
+#: 전화는 숫자와 하이픈만 남긴다 — 괄호·공백·국가번호 표기가 섞여도 한 모양이 되도록.
+PHONE_ALLOWED = re.compile(r"[^0-9-]")
+
 #: 이번 CSV 가 채우지 않는 표. 헤더만 남긴다 — 파일이 없으면 검사가 걸린다.
 EMPTY_TABLES = {
     "jobs": ["key", "name"],
@@ -139,10 +144,18 @@ def parse_day(raw: str) -> date | None:
     return None
 
 
+def normalize_phone(raw: str) -> str:
+    """사람이 적은 전화번호. 숫자와 하이픈만 남기고, 비어 있으면 비운 채로 둔다."""
+    return PHONE_ALLOWED.sub("", raw.strip()).strip("-")
+
+
 class Person:
     """CSV 의 여러 행이 가리키는 한 사람. 소속은 나온 순서대로 쌓이고 첫 번째가 주소속이다."""
 
-    __slots__ = ("key", "display_name", "grade", "employment_type", "employed_from", "email", "units", "titles", "has_title")
+    __slots__ = (
+        "key", "display_name", "grade", "employment_type", "employed_from", "email", "phone", "birth_date",
+        "units", "titles", "has_title",
+    )
 
     def __init__(self, key: str, display_name: str) -> None:
         self.key = key
@@ -152,6 +165,9 @@ class Person:
         self.employed_from: date | None = None
         #: 계정을 만들 주소. 원문이 비워 둔 사람은 계정이 없다.
         self.email = ""
+        #: 인사 정보. 원문이 말한 사람만 갖는다.
+        self.phone = ""
+        self.birth_date: date | None = None
         #: 이 사람이 속한 조직 key — CSV 순서. 첫 번째가 주소속이다.
         self.units: list[str] = []
         #: (조직 key, position key) — 직책이 적힌 행마다 하나.
@@ -238,6 +254,13 @@ def build(rows: list[dict[str, str]]) -> dict[str, list[list[str]]]:
 
         if not person.email:
             person.email = cell(row, LOGIN_EMAIL_COLUMN)
+        if not person.phone:
+            person.phone = normalize_phone(cell(row, "전화"))
+        if person.birth_date is None:
+            raw_born = cell(row, "생년월일")
+            person.birth_date = parse_day(raw_born)
+            if raw_born and person.birth_date is None:
+                warn(f"{index}행: 읽을 수 없는 생년월일 형식 — 비워 둔다")
         if unit_key not in person.units:
             person.units.append(unit_key)
         if title:
@@ -285,6 +308,8 @@ def build(rows: list[dict[str, str]]) -> dict[str, list[list[str]]]:
                 person.grade,
                 person.employed_from.isoformat() if person.employed_from else "",
                 "",
+                person.phone,
+                person.birth_date.isoformat() if person.birth_date else "",
             ]
         )
         for position, unit_key in enumerate(person.units):
@@ -299,7 +324,8 @@ def build(rows: list[dict[str, str]]) -> dict[str, list[list[str]]]:
         "요약: "
         f"부서 {len(departments)} · 팀 {sum(len(v) for v in teams.values())} · 조직 {len(units)} · "
         f"직급 {len(grades)} · 직책 {len(positions)} · 사람 {len(people)}(원본 {len(rows)}행) · "
-        f"소속 {len(memberships)} · 보직 {len(appointments)} · 계정 {len(logins)}(주소 없는 {len(people) - len(logins)}명은 계정 없음)",
+        f"소속 {len(memberships)} · 보직 {len(appointments)} · 계정 {len(logins)}(주소 없는 {len(people) - len(logins)}명은 계정 없음) · "
+        f"전화 {sum(1 for p in people if p.phone)} · 생년월일 {sum(1 for p in people if p.birth_date)}",
         file=sys.stderr,
     )
     print(
@@ -336,6 +362,8 @@ HEADERS = {
         "grade_key",
         "employed_from",
         "employed_until",
+        "phone",
+        "birth_date",
     ],
     "memberships": ["member_key", "unit_key", "kind", "valid_from", "valid_until"],
     "appointments": ["member_key", "unit_key", "position_key", "kind", "valid_from", "valid_until"],
