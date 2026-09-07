@@ -13,6 +13,11 @@
 이 파일에는 사람의 이름이 상수로 들어가지 않는다 — 겸임과 동명이인은 이름이 아니라 규칙이 가른다.
 
     python3 build_dataset.py <조직도.csv> <dataset 폴더>
+    python3 build_dataset.py <조직도.csv> <dataset 폴더> --test-logins   # 로컬 확인용
+
+`--test-logins` 는 **로컬에서만** 쓴다. 주소가 없는 사람에게 `sc-<사번>@scax.example` 을 만들어, 대표·부서장·
+팀장·팀원 중 누구로든 로그인해 화면을 볼 수 있게 한다. 원본 CSV 는 읽기만 하고 고치지 않는다. 실제 주소가
+오면 이 옵션 없이 다시 만들어야 한다 — 가짜 주소가 남아 있으면 그 사람에게 진짜 계정을 줄 수 없다.
 """
 from __future__ import annotations
 
@@ -111,6 +116,11 @@ ROLE_MEMBER = "member"
 #: 계정을 만들 주소가 적힌 열. 지메일이 아니라 회사 메일이다.
 LOGIN_EMAIL_COLUMN = "위하고메일"
 
+#: `--test-logins` 가 만드는 로컬 전용 주소의 모양. 이 도메인이어야 로그인 화면의 계정 목록에 나열된다
+#: (`bootstrap/seed.py::DEMO_EMAIL_DOMAIN`, `entrypoints/http.py::/api/auth/providers`).
+TEST_LOGIN_DOMAIN = "scax.example"
+TEST_LOGIN_PREFIX = "sc-"
+
 #: 전화는 숫자와 하이픈만 남긴다 — 괄호·공백·국가번호 표기가 섞여도 한 모양이 되도록.
 PHONE_ALLOWED = re.compile(r"[^0-9-]")
 
@@ -180,7 +190,7 @@ def read_rows(source: Path) -> list[dict[str, str]]:
         return [dict(row) for row in csv.DictReader(handle)]
 
 
-def build(rows: list[dict[str, str]]) -> dict[str, list[list[str]]]:
+def build(rows: list[dict[str, str]], *, test_logins: bool = False) -> dict[str, list[list[str]]]:
     """CSV 행들 → 표별 데이터 행. 여기서만 판단하고, 쓰기는 하지 않는다."""
     cell = lambda row, column: (row.get(column) or "").strip()  # noqa: E731
 
@@ -286,6 +296,8 @@ def build(rows: list[dict[str, str]]) -> dict[str, list[list[str]]]:
     memberships: list[list[str]] = []
     appointments: list[list[str]] = []
     logins: list[list[str]] = []
+    #: `--test-logins` 로 지어낸 주소를 가진 사람. 원문이 준 주소와 섞이지 않도록 따로 센다.
+    invented_logins: list[str] = []
     role_counts = {ROLE_EXECUTIVE: 0, ROLE_LEAD: 0, ROLE_MEMBER: 0}
 
     for person in people:
@@ -319,12 +331,19 @@ def build(rows: list[dict[str, str]]) -> dict[str, list[list[str]]]:
             appointments.append([person.key, unit_key, position_key, kind, "", ""])
         if person.email:
             logins.append([person.key, person.email])
+        elif test_logins:
+            # 원문이 주소를 말하지 않은 사람. 로컬에서 그 자리로 로그인해 보기 위한 가짜 주소이고,
+            # 사번에서만 만들어지므로 이름·전화 같은 원문 값이 주소에 새지 않는다.
+            logins.append([person.key, f"{TEST_LOGIN_PREFIX}{person.key}@{TEST_LOGIN_DOMAIN}"])
+            invented_logins.append(person.key)
 
     print(
         "요약: "
         f"부서 {len(departments)} · 팀 {sum(len(v) for v in teams.values())} · 조직 {len(units)} · "
         f"직급 {len(grades)} · 직책 {len(positions)} · 사람 {len(people)}(원본 {len(rows)}행) · "
-        f"소속 {len(memberships)} · 보직 {len(appointments)} · 계정 {len(logins)}(주소 없는 {len(people) - len(logins)}명은 계정 없음) · "
+        f"소속 {len(memberships)} · 보직 {len(appointments)} · "
+        f"계정 {len(logins)}(원문 주소 {len(logins) - len(invented_logins)} · "
+        f"{'로컬 테스트 주소 ' + str(len(invented_logins)) if invented_logins else '주소 없어 계정 없음 ' + str(len(people) - len(logins))}) · "
         f"전화 {sum(1 for p in people if p.phone)} · 생년월일 {sum(1 for p in people if p.birth_date)}",
         file=sys.stderr,
     )
@@ -388,6 +407,11 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="SC 조직도 CSV → ax-workspace dataset 표")
     parser.add_argument("source", type=Path, help="조직도 CSV")
     parser.add_argument("target", type=Path, help="dataset 폴더 (manifest.yaml 이 있는 곳)")
+    parser.add_argument(
+        "--test-logins",
+        action="store_true",
+        help=f"로컬 전용 — 주소 없는 사람에게 {TEST_LOGIN_PREFIX}<사번>@{TEST_LOGIN_DOMAIN} 계정을 만든다",
+    )
     arguments = parser.parse_args(argv)
 
     source = arguments.source.expanduser().resolve()
@@ -395,7 +419,9 @@ def main(argv: list[str] | None = None) -> int:
     if not source.is_file():
         raise SourceError(f"조직도 CSV 가 없습니다: {source}")
 
-    tables = build(read_rows(source))
+    tables = build(read_rows(source), test_logins=arguments.test_logins)
+    if arguments.test_logins:
+        warn(f"--test-logins: 주소 없는 사람에게 {TEST_LOGIN_PREFIX}<사번>@{TEST_LOGIN_DOMAIN} 을 만들었다 — 로컬 전용")
     write_tables(target, tables)
     print(f"{target} 에 표 {len(tables) + len(EMPTY_TABLES)}개를 썼습니다.", file=sys.stderr)
     return 0

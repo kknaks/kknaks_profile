@@ -16,12 +16,18 @@ make dataset-import TARGET=~/scax-datasets/the-sc
 # 2) CSV → 표 채우기 (표준 라이브러리만 · 멱등)
 python3 build_dataset.py "더에쓰씨_조직도_2026-09-02(검수2)_상세추가.csv" ~/scax-datasets/the-sc
 
+#    로컬에서 대표·부서장·팀장·팀원 아무 자리로나 로그인해 보려면 (아래 「로컬 테스트 로그인」 참고)
+python3 build_dataset.py "더에쓰씨_조직도_2026-09-02(검수2)_상세추가.csv" ~/scax-datasets/the-sc --test-logins
+
 # 3) 검사만 (데이터베이스는 그대로)
 SCAX_DATASET_PASSWORD=scax-demo-1234 make dataset-import TARGET=~/scax-datasets/the-sc DATASET_ARGS=--dry-run
 
 # 4) 적재
 SCAX_DATASET_PASSWORD=scax-demo-1234 make dataset-import TARGET=~/scax-datasets/the-sc
 ```
+
+SC 만 두고 예시 회사(SCAX)를 빼려면 3·4 앞에 `make reset-catalog` 를 한 번 돌린다 — 제품 catalog(조직 단위
+종류·capability·권장 역할)만 남고 예시 회사도 데모 계정도 만들어지지 않는다.
 
 `make` 는 ax-workspace 워크트리 루트에서 돈다. `SCAX_DATASET_PASSWORD` 가 없으면 계정(logins)은 만들지 않고
 넘어간다 — 조직만 들어간다. 2·4 를 몇 번 다시 돌려도 결과는 같다.
@@ -77,6 +83,20 @@ CSV 열 14개 중 **7개만** 들어간다.
    갖고 나머지는 비어 있다. 명부 API 는 이 두 값을 **`organization.manage` 권한이 있는 Principal 에게만**
    채워 주고, 없으면 필드는 그대로 두고 값만 `null` 이다.
 
+### 로컬 테스트 로그인 — `--test-logins` (2026-09-07 추가)
+
+`--test-logins` 는 **위하고메일이 없는 사람에게** `sc-<사번>@scax.example` 을 만들어 `logins` 에 넣는다.
+비밀번호는 다른 계정과 같이 적재할 때 환경(`SCAX_DATASET_PASSWORD`)이 준다.
+
+- **원본 CSV 는 읽기만 하고 고치지 않는다.** 위하고메일이 적힌 15명은 실제 주소 그대로 들어간다.
+- 도메인이 `scax.example` 인 이유는 로그인 화면의 계정 목록이 그 도메인만 나열하기 때문이다
+  (`bootstrap/seed.py::DEMO_EMAIL_DOMAIN` · `/api/auth/providers`). 그래서 이 150명은 목록에서 눌러 들어갈 수
+  있고, 실제 주소를 가진 15명은 목록에 없이 주소를 직접 입력해 로그인한다.
+- **로컬 확인 전용이다.** 실제 주소가 오면 이 옵션 **없이** dataset 을 다시 만들고 다시 적재해야 한다 —
+  지어낸 주소가 남아 있으면 그 사람에게 진짜 계정을 줄 수 없다.
+- 권한 패널(`/api/access/*`)은 `organization.manage` 를 가진 사람에게만 열린다. SC 에서는 대표 2명뿐이라,
+  이 옵션이 없으면 대표 자리로 로그인할 방법이 없다(대표 2명 모두 위하고메일이 없다).
+
 ### 계약에 맞추느라 바꾼 것 — `sc-` 접두사
 
 `grades` 와 `position_definitions` 는 **조직을 묻지 않는 전역 표**다. 같은 데모 데이터베이스에 서 있는 예시
@@ -101,7 +121,7 @@ importer 는 이미 있는 key 를 덮어쓰지 않으므로 접두사 없이 �
 | `members` | 165 | 원본 169행 − 겸임 병합 4행 |
 | `memberships` | 169 | `primary` 165 · `additional` 4 |
 | `appointments` | 22 | `primary` 18 · `concurrent` 4 |
-| `logins` | 15 | 위하고메일이 없는 150명은 계정 없음 |
+| `logins` | 15 (`--test-logins` 로는 165) | 위하고메일 15 + 로컬 테스트 주소 150 |
 | `members.phone` | 15 | 전화가 적힌 사람만 |
 | `members.birth_date` | 15 | 생년월일이 적힌 사람만 |
 | `jobs` · `job_assignments` · `projects` · `project_assignments` | 0 | CSV 에 직무 열이 없다 |
