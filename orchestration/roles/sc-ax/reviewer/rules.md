@@ -16,16 +16,31 @@
 - [ ] **표·인덱스 정합**: 이번 작업이 만든/바꾼 문서가 관련 인덱스·상태 표에 반영됐나. 표와 본문이 어긋나지 않나.
 - [ ] **중복**: 이미 있는 문서를 놔두고 같은 내용을 새로 만들지 않았나.
 
+## backend 리뷰 (ax-workspace `backend/`)
+- [ ] **경계**: `modules/*/domain.py`·`application.py` 에 `fastapi`·`mcp`·`sqlalchemy` import 가 없나. `entrypoints/` 가 `platform/` 구현을 직접 import 하지 않나 (근거: `tests/architecture/test_architecture.py`).
+- [ ] **스키마**: `reset_demo` 밖에서 `create_all`·DDL 을 부르지 않나. 새 표가 `docs/domain-model.md` 대조표에 올랐나.
+- [ ] **판단 계약**: envelope(`allowed_commands`·`waiting_on`)를 server 가 만드나. command 가 소유 모듈 application 에 위임되나. 재전송이 영수증인가 (근거: README 「판단 통합」·`roles/sc-ax/backend/rules.md`).
+- [ ] **재사용**: 있는 operation·platform 어댑터를 놔두고 재구현하지 않았나.
+- [ ] **테스트**: 새 operation·엔드포인트에 unit/contract 테스트가 있나. `integration` 마커를 브리프 허가 없이 쓰지 않았나.
+- [ ] **예외**: 아래층이 HTTPException 을 던지지 않나. `except Exception` 으로 삼키지 않나.
+
+## frontend 리뷰 (ax-workspace `frontend/`)
+- [ ] **envelope**: kind·status 로 command·권한을 추론하는 코드가 없나 (근거: README 「판단 통합」·`roles/sc-ax/frontend/rules.md`).
+- [ ] **호출 자리**: `src/api.ts` 밖에서 `fetch` 하지 않나.
+- [ ] **재사용**: 기존 컴포넌트(Modal·DateField·Checklist·WorkViews·WorkModals·ActionPreview)·`viewModels.ts`·`labels.ts` 를 놔두고 중복 구현하지 않았나.
+- [ ] **카피·스타일**: 한국어 문자열이 `labels.ts` 밖에 흩어지지 않았나. 컴포넌트에 임의 hex 리터럴이 없나.
+- [ ] **테스트**: 훅·viewModel·critical 컴포넌트에 옆자리 `*.test.tsx` 가 있나.
+
 ## 리포트 형식 (지정된 경로에 이 형식으로)
 
 ```markdown
-# 리뷰 리포트 — <slug> / planner (<날짜>)
+# 리뷰 리포트 — <slug> / <planner|backend|frontend> (<날짜>)
 
 ## 판정: PASS | WARN | FAIL
 
 ## 검수 범위
 - diff: <base>..HEAD, 파일 N개 (+ untracked M개)
-- 실행한 검사: <린트 명령·grep 등>
+- 실행한 검사: <린트 명령·grep 등 — 코드 리뷰는 테스트를 돌리지 않는다>
 
 ## 위반 (FAIL 사유)
 - `파일:줄` — <무엇이 어긋났나> — 근거: <규칙 출처>
