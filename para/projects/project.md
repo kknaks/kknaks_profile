@@ -240,20 +240,21 @@ frontmatter `work_type: release`, 양식은 `templates/projects/30-work/work-rel
 | 구분 | 소속 | 제품 | 내용 | 비고 |
 | --- | --- | --- | --- | --- |
 | 1 | `company` | `mediness` | 사내전용 AX 프로젝트 | 스펙은 회사 레포 |
-| 2 | `summer-star` | `ax-knowledge-graph` | AX 기사 · 영상 · 링크를 모아 개념 · 사례 · 도구 관계를 지식그래프로 전환 |  |
-| 3 | `summer-star` | `cloud-file-organizer` | Google Drive 파일을 AI 가 메타데이터 후보를 내고 사람이 승인하는 부서 문서 관리 |  |
-| 4 | `summer-star` | `kknaks-agents` | LLM 을 교체 가능한 추론 모듈로 쓰는 최소 Python 런타임 라이브러리 |  |
-| 5 | `summer-star` | `kknaks-dev` | 이 포트폴리오 사이트와 레포 자체 |  |
-| 6 | `summer-star` | `language-diary` | AI 와 음성 대화로 일기를 만들고 영어 학습 포인트를 주는 모바일 앱 |  |
-| 7 | `summer-star` | `mac-remote` | iPhone 을 Mac 리모컨으로 쓰는 앱 | DeskDeck 으로 App Store 출시 |
-| 8 | `summer-star` | `mini-game` | 매일 커피 내기를 하는 모바일 웹 미니게임 |  |
-| 9 | `summer-star` | `mykakao` | 카카오톡 대화를 내보내기 없이 로컬에서 추출 |  |
-| 10 | `summer-star` | `open-kknaks` | PTY 기반 Claude Code CLI 태스크 큐 라이브러리 + MCP 서버 |  |
-| 11 | `summer-star` | `persona-counselor` | 영향받은 책 · 인물 · 철학으로 AI 상담사 페르소나를 만들어 대화 |  |
-| 12 | `summer-star` | `study-timelapse` | 공부하는 모습을 녹화해 자동 타임랩스 생성 |  |
-| 13 | `summer-star` | `summer-star-company` | NFC 카드로 사무실 출퇴근 자동 트래킹 |  |
-| 14 | `summer-star` | `wine-log` | 와인 기록 · 관리 모바일 앱 + 관리자 웹 + AI 라벨 분석 |  |
+| 2 | `company` | `sc-ax` | sc 경영관리 AX 프로젝트 | 스펙은 회사 레포(mediness `sc-ax` 브랜치) |
+| 3 | `summer-star` | `ax-knowledge-graph` | AX 기사 · 영상 · 링크를 모아 개념 · 사례 · 도구 관계를 지식그래프로 전환 |  |
+| 4 | `summer-star` | `cloud-file-organizer` | Google Drive 파일을 AI 가 메타데이터 후보를 내고 사람이 승인하는 부서 문서 관리 |  |
+| 5 | `summer-star` | `kknaks-agents` | LLM 을 교체 가능한 추론 모듈로 쓰는 최소 Python 런타임 라이브러리 |  |
+| 6 | `summer-star` | `kknaks-dev` | 이 포트폴리오 사이트와 레포 자체 |  |
+| 7 | `summer-star` | `language-diary` | AI 와 음성 대화로 일기를 만들고 영어 학습 포인트를 주는 모바일 앱 |  |
+| 8 | `summer-star` | `mac-remote` | iPhone 을 Mac 리모컨으로 쓰는 앱 | DeskDeck 으로 App Store 출시 |
+| 9 | `summer-star` | `mini-game` | 매일 커피 내기를 하는 모바일 웹 미니게임 |  |
+| 10 | `summer-star` | `mykakao` | 카카오톡 대화를 내보내기 없이 로컬에서 추출 |  |
+| 11 | `summer-star` | `open-kknaks` | PTY 기반 Claude Code CLI 태스크 큐 라이브러리 + MCP 서버 |  |
+| 12 | `summer-star` | `persona-counselor` | 영향받은 책 · 인물 · 철학으로 AI 상담사 페르소나를 만들어 대화 |  |
+| 13 | `summer-star` | `study-timelapse` | 공부하는 모습을 녹화해 자동 타임랩스 생성 |  |
+| 14 | `summer-star` | `summer-star-company` | NFC 카드로 사무실 출퇴근 자동 트래킹 |  |
 | 15 | `summer-star` | `task-management` | Tauri 기반 태스크 관리 앱 — Next.js 프론트 + FastAPI 백엔드, iOS · Windows 타겟 | 코드는 `kknaks/task_management` 레포 |
+| 16 | `summer-star` | `wine-log` | 와인 기록 · 관리 모바일 앱 + 관리자 웹 + AI 라벨 분석 |  |
 
 ---
 
