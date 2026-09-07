@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="조직 화면" description="조직 tree · 구성원 목록 · 6축 상세 3분할과 변경 기록. 관리자/직원 관점 전환." -->
+<helmet><script src="./ds-base.js"></script>
+<style>@media print{.rail{display:none}}
+/* 이 DS 는 1280 미만에서 화면을 접고 MinWidthNotice 로 대신한다. 미리보기 창은 그보다 좁을 수 있어,
+   화면을 접는 대신 1280 고정폭으로 두고 가로 스크롤을 준다. 실제 제품(1280+)에서는 아무것도 달라지지 않는다. */
+@media (max-width:1279px){
+.thesc-shell{display:grid!important;grid-template-columns:200px minmax(0,1fr)!important;min-width:1600px}
+.rail{position:sticky!important;transform:none!important;width:auto!important}
+.rail-toggle{display:none!important}
+.min-width-notice{display:none!important}
+.canvas{padding-inline:48px!important}
+}</style>
+</helmet>
+<div class="thesc-shell">
+
+<aside class="rail">
+<div class="wordmark"><span class="wordmark-mark">SC</span> 더에스씨</div>
+<div class="profile"><span class="avatar sm">윤</span><div><b>윤도현</b><small>경영지원본부</small></div></div>
+<nav>
+<button type="button">홈</button>
+<button type="button">내 업무</button>
+<button type="button">보고</button>
+<button type="button" class="active">조직</button>
+<button type="button">자료</button>
+</nav>
+<div class="rail-foot">v3 · 조직</div>
+</aside>
+
+<div class="canvas">
+<div class="canvas-topbar"><div class="breadcrumb"><span>더에스씨</span><span>›</span><b>조직</b></div></div>
+
+<div class="page-surface">
+<div class="page-head">
+<div><h1>조직</h1></div>
+<div class="page-head-actions">
+<sc-if value="{{ isAdmin }}" hint-placeholder-val="{{ true }}"><span class="badge ai">조직 관리 권한 있음</span></sc-if>
+<sc-if value="{{ isEmployee }}" hint-placeholder-val="{{ false }}"><span class="badge outline">읽기 전용</span></sc-if>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:minmax(300px,392px) minmax(380px,1fr) minmax(440px,600px);gap:24px;height:calc(100vh - 300px);min-height:560px">
+
+<section style="display:flex;flex-direction:column;min-height:0;overflow:hidden;border:1px solid var(--border-strong);border-radius:var(--radius-panel);background:var(--surface)">
+<header style="display:flex;flex-direction:column;gap:12px;padding:16px 24px;border-bottom:1px solid var(--border-default)">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><h3 style="font-size:16px">조직 tree</h3><span class="t-meta" style="font-size:12px">읽기 전용</span></div>
+<input type="text" class="search-input-box" placeholder="사람 이름 검색">
+</header>
+<div style="flex:1;min-height:0;overflow:auto;padding:8px 16px 16px">
+
+<div style="display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:var(--radius-control)">
+<x-import component-from-global-scope="SCAX.Icon" name="chevron-down" size="{{ 12 }}" hint-size="12px,12px"></x-import>
+<div style="flex:1;min-width:0"><div style="display:flex;align-items:center;gap:8px"><span class="t-item">더에스씨</span><span style="font-size:11px;color:var(--text-tertiary)">회사</span></div><div class="t-meta tabular" style="font-size:12px">직접 4 · 전체 128</div></div>
+<span class="avatar xs">차</span>
+</div>
+
+<div style="padding-left:16px">
+<div style="display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:var(--radius-control)">
+<x-import component-from-global-scope="SCAX.Icon" name="chevron-down" size="{{ 12 }}" hint-size="12px,12px"></x-import>
+<div style="flex:1;min-width:0"><div style="display:flex;align-items:center;gap:8px"><span class="t-item">제품본부</span><span style="font-size:11px;color:var(--text-tertiary)">본부</span></div><div class="t-meta tabular" style="font-size:12px">직접 0 · 전체 46</div></div>
+<span class="avatar xs">이</span>
+</div>
+
+<div style="padding-left:16px">
+<div style="display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:var(--radius-control);background:var(--selected-bg)">
+<span style="width:12px;flex:none"></span>
+<div style="flex:1;min-width:0"><div style="display:flex;align-items:center;gap:8px"><span class="t-item" style="color:var(--action)">제품기획팀</span><span style="font-size:11px;color:var(--text-tertiary)">팀</span></div><div class="t-meta tabular" style="font-size:12px">직접 12 · 전체 12</div></div>
+<span class="avatar xs">김</span>
+</div>
+
+<div style="display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:var(--radius-control)">
+<span style="width:12px;flex:none"></span>
+<div style="flex:1;min-width:0"><div style="display:flex;align-items:center;gap:8px"><span class="t-item">디자인팀</span><span style="font-size:11px;color:var(--text-tertiary)">팀</span></div><div class="t-meta tabular" style="font-size:12px">직접 9 · 전체 9</div></div>
+<span class="avatar xs">한</span>
+</div>
+
+<div style="display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:var(--radius-control)">
+<x-import component-from-global-scope="SCAX.Icon" name="chevron-down" size="{{ 12 }}" hint-size="12px,12px"></x-import>
+<div style="flex:1;min-width:0"><div style="display:flex;align-items:center;gap:8px"><span class="t-item">개발실</span><span style="font-size:11px;color:var(--text-tertiary)">실</span></div><div class="t-meta tabular" style="font-size:12px">직접 1 · 전체 24</div></div>
+<span class="avatar xs">정</span>
+</div>
+
+<div style="padding-left:16px">
+<div style="display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:var(--radius-control)">
+<span style="width:12px;flex:none"></span>
+<div style="flex:1;min-width:0"><div style="display:flex;align-items:center;gap:8px"><span class="t-item">프론트엔드팀</span><span style="font-size:11px;color:var(--text-tertiary)">팀</span></div><div class="t-meta tabular" style="font-size:12px">직접 11 · 전체 11</div></div>
+<span class="avatar xs">오</span>
+</div>
+</div>
+</div>
+
+<div style="display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:var(--radius-control)">
+<x-import component-from-global-scope="SCAX.Icon" name="chevron-right" size="{{ 12 }}" hint-size="12px,12px"></x-import>
+<div style="flex:1;min-width:0"><div style="display:flex;align-items:center;gap:8px"><span class="t-item">경영지원본부</span><span style="font-size:11px;color:var(--text-tertiary)">본부</span></div><div class="t-meta tabular" style="font-size:12px">직접 2 · 전체 27</div></div>
+<span class="avatar xs">윤</span>
+</div>
+</div>
+
+</div>
+</section>
+
+<section style="display:flex;flex-direction:column;min-height:0;overflow:hidden;border:1px solid var(--border-strong);border-radius:var(--radius-panel);background:var(--surface)">
+<header style="display:flex;align-items:center;justify-content:space-between;gap:8px;padding:16px 24px;border-bottom:1px solid var(--border-default)"><h3 style="font-size:16px">제품기획팀 구성원</h3><span class="t-meta tabular" style="font-size:12px">직접 소속 12명</span></header>
+<div style="flex:1;min-height:0;overflow:auto">
+
+<div style="display:flex;align-items:center;gap:12px;height:68px;padding:0 20px;border-bottom:1px solid var(--border-subtle);background:var(--surface-selected-row);cursor:pointer">
+<span class="t-meta tabular" style="width:40px;flex:none;font-size:12px">2417</span>
+<span class="avatar sm">유</span>
+<div style="flex:1;min-width:0"><div class="t-item">유하람</div><div class="t-meta" style="font-size:12px">제품기획팀 (주) · 디자인팀 (겸직)</div></div>
+<span style="font-size:13px;color:var(--text-secondary)">선임</span>
+<sc-if value="{{ isAdmin }}" hint-placeholder-val="{{ true }}"><button type="button" class="btn ghost icon h30" aria-label="행 메뉴"><x-import component-from-global-scope="SCAX.Icon" name="list" size="{{ 14 }}" hint-size="14px,14px"></x-import></button></sc-if>
+</div>
+
+<div style="display:flex;align-items:center;gap:12px;height:68px;padding:0 20px;border-bottom:1px solid var(--border-subtle);cursor:pointer">
+<span class="t-meta tabular" style="width:40px;flex:none;font-size:12px">2183</span>
+<span class="avatar sm">김</span>
+<div style="flex:1;min-width:0"><div class="t-item">김세연</div><div class="t-meta" style="font-size:12px">제품기획팀 (주)</div></div>
+<span style="font-size:13px;color:var(--text-secondary)">책임</span>
+<sc-if value="{{ isAdmin }}" hint-placeholder-val="{{ true }}"><button type="button" class="btn ghost icon h30" aria-label="행 메뉴"><x-import component-from-global-scope="SCAX.Icon" name="list" size="{{ 14 }}" hint-size="14px,14px"></x-import></button></sc-if>
+</div>
+
+<div style="display:flex;align-items:center;gap:12px;height:68px;padding:0 20px;border-bottom:1px solid var(--border-subtle);cursor:pointer">
+<span class="t-meta tabular" style="width:40px;flex:none;font-size:12px">1994</span>
+<span class="avatar sm">정</span>
+<div style="flex:1;min-width:0"><div class="t-item">정하늘</div><div class="t-meta" style="font-size:12px">개발실 (주) · 제품기획팀 (겸직)</div></div>
+<span style="font-size:13px;color:var(--text-secondary)">수석</span>
+<sc-if value="{{ isAdmin }}" hint-placeholder-val="{{ true }}"><button type="button" class="btn ghost icon h30" aria-label="행 메뉴"><x-import component-from-global-scope="SCAX.Icon" name="list" size="{{ 14 }}" hint-size="14px,14px"></x-import></button></sc-if>
+</div>
+
+<div style="display:flex;align-items:center;gap:12px;height:68px;padding:0 20px;border-bottom:1px solid var(--border-subtle);cursor:pointer">
+<span class="t-meta tabular" style="width:40px;flex:none;font-size:12px">2455</span>
+<span class="avatar sm">한</span>
+<div style="flex:1;min-width:0"><div class="t-item">한서우</div><div class="t-meta" style="font-size:12px">제품기획팀 (주)</div></div>
+<span style="font-size:13px;color:var(--text-secondary)">선임</span>
+<sc-if value="{{ isAdmin }}" hint-placeholder-val="{{ true }}"><button type="button" class="btn ghost icon h30" aria-label="행 메뉴"><x-import component-from-global-scope="SCAX.Icon" name="list" size="{{ 14 }}" hint-size="14px,14px"></x-import></button></sc-if>
+</div>
+
+<div style="display:flex;align-items:center;gap:12px;height:68px;padding:0 20px;border-bottom:1px solid var(--border-subtle);cursor:pointer">
+<span class="t-meta tabular" style="width:40px;flex:none;font-size:12px">2506</span>
+<span class="avatar sm">박</span>
+<div style="flex:1;min-width:0"><div class="t-item">박도윤</div><div class="t-meta" style="font-size:12px">제품기획팀 (주)</div></div>
+<span style="font-size:13px;color:var(--text-secondary)">사원</span>
+<sc-if value="{{ isAdmin }}" hint-placeholder-val="{{ true }}"><button type="button" class="btn ghost icon h30" aria-label="행 메뉴"><x-import component-from-global-scope="SCAX.Icon" name="list" size="{{ 14 }}" hint-size="14px,14px"></x-import></button></sc-if>
+</div>
+
+<div style="display:flex;align-items:center;gap:12px;height:68px;padding:0 20px;border-bottom:1px solid var(--border-subtle);cursor:pointer">
+<span class="t-meta tabular" style="width:40px;flex:none;font-size:12px">2612</span>
+<span class="avatar sm">오</span>
+<div style="flex:1;min-width:0"><div class="t-item">오지훈</div><div class="t-meta" style="font-size:12px">제품기획팀 (주)</div></div>
+<span style="font-size:13px;color:var(--text-secondary)">사원</span>
+<sc-if value="{{ isAdmin }}" hint-placeholder-val="{{ true }}"><button type="button" class="btn ghost icon h30" aria-label="행 메뉴"><x-import component-from-global-scope="SCAX.Icon" name="list" size="{{ 14 }}" hint-size="14px,14px"></x-import></button></sc-if>
+</div>
+
+</div>
+</section>
+
+<section style="display:flex;flex-direction:column;min-height:0;overflow:hidden;border:1px solid var(--border-strong);border-radius:var(--radius-panel);background:var(--surface)">
+<header style="display:flex;align-items:center;gap:12px;padding:12px 24px;border-bottom:1px solid var(--border-default)">
+<span class="avatar lg">유</span>
+<div style="flex:1;min-width:0">
+<div style="display:flex;align-items:center;gap:8px"><h3 style="font-size:20px">유하람</h3><span class="t-meta tabular" style="font-size:12px">2417</span></div>
+<div style="display:flex;align-items:center;gap:4px;margin-top:4px"><span class="badge neutral">재직</span><span class="badge neutral">로그인 계정 있음</span><span style="font-size:11px;color:var(--text-tertiary)">재직과 계정은 다른 축입니다</span></div>
+</div>
+</header>
+<div style="flex:1;min-height:0;overflow:auto;padding:8px 24px 16px">
+
+<div style="display:flex;align-items:flex-start;gap:12px;padding:8px 0;border-bottom:1px solid var(--border-subtle)">
+<span style="width:36px;flex:none;font-size:13px;font-weight:700;color:var(--text-tertiary)">계층</span>
+<div style="flex:1;min-width:0"><div style="font-size:14px">더에스씨 › 제품본부 › 제품기획팀</div><div class="t-meta" style="font-size:12px">조직 계층은 권한 범위가 아닙니다</div></div>
+<button type="button" class="btn ghost h30">이력</button>
+</div>
+
+<div style="display:flex;align-items:flex-start;gap:12px;padding:8px 0;border-bottom:1px solid var(--border-subtle)">
+<span style="width:36px;flex:none;font-size:13px;font-weight:700;color:var(--text-tertiary)">소속</span>
+<div style="flex:1;min-width:0"><div style="font-size:14px">제품기획팀 (주) · 디자인팀 (겸직)</div><div class="t-meta" style="font-size:12px">겸직은 권한을 따라오지 않습니다</div></div>
+<button type="button" class="btn ghost h30">이력</button>
+<sc-if value="{{ isAdmin }}" hint-placeholder-val="{{ true }}"><button type="button" class="btn h30" onClick="{{ openDrawer }}">변경</button></sc-if>
+</div>
+
+<div style="display:flex;align-items:flex-start;gap:12px;padding:8px 0;border-bottom:1px solid var(--border-subtle)">
+<span style="width:36px;flex:none;font-size:13px;font-weight:700;color:var(--text-tertiary)">직책</span>
+<div style="flex:1;min-width:0"><div style="font-size:14px"><x-import component-from-global-scope="SCAX.EmptyValue" hint-size="auto,20px"></x-import></div><div class="t-meta" style="font-size:12px">직급으로 임명을 막지 않습니다. 사원도 팀장이 될 수 있습니다</div></div>
+<button type="button" class="btn ghost h30">이력</button>
+<sc-if value="{{ isAdmin }}" hint-placeholder-val="{{ true }}"><button type="button" class="btn h30">변경</button></sc-if>
+</div>
+
+<div style="display:flex;align-items:flex-start;gap:12px;padding:8px 0;border-bottom:1px solid var(--border-subtle)">
+<span style="width:36px;flex:none;font-size:13px;font-weight:700;color:var(--text-tertiary)">직급</span>
+<div style="flex:1;min-width:0"><div style="font-size:14px">선임</div><div class="t-meta" style="font-size:12px">직급 값은 이 화면에서 바꾸지 않습니다</div></div>
+<button type="button" class="btn ghost h30">이력</button>
+</div>
+
+<div style="display:flex;align-items:flex-start;gap:12px;padding:8px 0;border-bottom:1px solid var(--border-subtle)">
+<span style="width:36px;flex:none;font-size:13px;font-weight:700;color:var(--text-tertiary)">직무</span>
+<div style="flex:1;min-width:0"><div style="font-size:14px">제품기획 (주) · UX리서치 (보조)</div><div class="t-meta" style="font-size:12px">직무명은 접근 권한이 아닙니다</div></div>
+<button type="button" class="btn ghost h30">이력</button>
+</div>
+
+<div style="margin-top:12px;padding:16px;border-radius:var(--radius-control);background:var(--selected-bg)">
+<div style="display:flex;align-items:flex-start;gap:12px">
+<span style="width:36px;flex:none;font-size:13px;font-weight:700">권한</span>
+<div style="flex:1;min-width:0"><div class="t-item">업무 열람 · 제품본부 / 보고 승인 · 제품기획팀</div><div style="font-size:12px;color:var(--text-secondary)">여섯 축 가운데 실제 권한을 바꾸는 축은 이것뿐입니다</div></div>
+<button type="button" class="btn ghost h30">이력</button>
+<sc-if value="{{ isAdmin }}" hint-placeholder-val="{{ true }}"><button type="button" class="btn primary h30">변경</button></sc-if>
+</div>
+<sc-if value="{{ revokedHistory }}" hint-placeholder-val="{{ true }}">
+<div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--ai-border)">
+<div style="margin-bottom:4px;font-size:11px;font-weight:700;color:var(--text-tertiary)">회수된 권한</div>
+<div style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--text-secondary)">
+<div style="display:flex;justify-content:space-between;gap:8px"><span>자료 관리 · 제품본부</span><span class="tabular" style="color:var(--text-tertiary)">2025.03.02 – 2026.01.14</span></div>
+<div style="display:flex;justify-content:space-between;gap:8px"><span>보고 승인 · 디자인팀</span><span class="tabular" style="color:var(--text-tertiary)">2024.09.01 – 2025.02.28</span></div>
+<div style="display:flex;justify-content:space-between;gap:8px"><span>조직 관리 · 제품기획팀</span><span class="tabular" style="color:var(--text-tertiary)">2024.03.04 – 2024.08.31</span></div>
+</div>
+<button type="button" class="btn link h30" style="padding-left:0">2건 더 보기</button>
+</div>
+</sc-if>
+</div>
+
+</div>
+</section>
+
+</div>
+
+<sc-if value="{{ isAdmin }}" hint-placeholder-val="{{ true }}">
+<section class="surface-card" style="margin-top:24px;padding:0;overflow:hidden">
+<header style="display:flex;align-items:center;justify-content:space-between;gap:8px;height:44px;padding:0 24px;border-bottom:1px solid var(--border-default)"><h3 style="font-size:16px">변경 기록</h3></header>
+
+<sc-if value="{{ logEmpty }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="SCAX.Empty" variant="filter" title="이 세션에서 만든 변경이 없습니다" hint-size="100%,140px"></x-import>
+</sc-if>
+
+<sc-if value="{{ logFilled }}" hint-placeholder-val="{{ true }}">
+<table class="plain-table">
+<thead><tr><th style="width:120px">시각</th><th style="width:280px">변경</th><th style="width:80px">축</th><th>사유</th><th class="end" style="width:120px">기록자</th></tr></thead>
+<tbody>
+<tr><td class="tabular">오늘 09:12</td><td class="title-cell"><b class="t-item">정하늘 · 개발실 실장 임명</b></td><td><span class="badge neutral">조직</span></td><td>개발실 신설에 따른 실장 보임</td><td class="end">윤도현</td></tr>
+<tr><td class="tabular">오늘 09:12</td><td class="title-cell">정하늘 · 표준 역할 부여</td><td><span class="badge ai">권한</span></td><td>임명과 함께 실장 표준 역할 부여</td><td class="end">윤도현</td></tr>
+<tr><td class="tabular">08.27 10:05</td><td class="title-cell">유하람 · 디자인팀 겸직 추가</td><td><span class="badge neutral">소속</span></td><td>디자인 시스템 과제 공동 수행</td><td class="end">윤도현</td></tr>
+</tbody>
+</table>
+</sc-if>
+</section>
+</sc-if>
+
+</div>
+</div>
+</div>
+
+<sc-if value="{{ drawerOpen }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="SCAX.Drawer" label="소속 변경" kicker="유하람 · 2417 · 선임" title="소속 변경" on-close="{{ closeDrawer }}" hint-size="840px,100%">
+
+<div style="display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--border-default);border-radius:var(--radius-control)">
+<span style="flex:none;font-size:13px;font-weight:700;color:var(--text-tertiary)">현재 소속</span>
+<span style="flex:1;min-width:0;font-size:14px">제품기획팀 (주) · 디자인팀 (겸직)</span>
+<button type="button" class="btn ghost h30">겸직 해제</button>
+</div>
+
+<div class="form-stack" style="margin-top:24px">
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
+<div class="field"><label for="org-target">옮길 조직</label><select id="org-target"><option>개발실</option><option>디자인팀</option><option>프론트엔드팀</option></select><span class="field-help">회사 노드는 선택할 수 없습니다</span></div>
+<div class="field"><label for="org-date">적용일</label><input id="org-date" type="text" value="2026년 09월 07일"><span class="field-help">이 날부터 새 소속이 적용됩니다</span></div>
+</div>
+
+<div class="field">
+<span>소속 종류</span>
+<div class="segmented" style="width:max-content"><button type="button" aria-selected="{{ isPrimary }}" onClick="{{ pickPrimary }}">주소속</button><button type="button" aria-selected="{{ isConcurrent }}" onClick="{{ pickConcurrent }}">겸직</button></div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:12px;padding:16px;border:1px solid var(--accent);border-radius:var(--radius-control)">
+<div style="font-size:13px;font-weight:700;color:var(--text-tertiary)">미리보기</div>
+<div style="display:flex;align-items:center;gap:12px">
+<div style="flex:1;min-width:0;padding:8px 12px;border-radius:var(--radius-chip);background:var(--surface-sunken)"><div style="font-size:11px;color:var(--text-tertiary)">before</div><div style="font-size:14px">제품기획팀 (주) · 디자인팀 (겸직)</div></div>
+<x-import component-from-global-scope="SCAX.Icon" name="arrow-right" size="{{ 16 }}" hint-size="16px,16px"></x-import>
+<div style="flex:1;min-width:0;padding:8px 12px;border-radius:var(--radius-chip);background:var(--selected-bg)"><div style="font-size:11px;color:var(--text-tertiary)">after</div><div class="t-item">개발실 (주) · 디자인팀 (겸직)</div></div>
+</div>
+<div class="danger-text" style="font-size:13px;color:var(--danger-hover)">제품기획팀 (주) 소속이 09월 06일로 종료됩니다. 계층 표시가 더에스씨 › 제품본부 › 개발실로 바뀝니다.</div>
+<div style="font-size:13px;color:var(--text-secondary)">직급 · 직무 · 직책은 이 변경으로 바뀌지 않습니다.</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:12px">
+<x-import component-from-global-scope="SCAX.Checkbox" checked="{{ grantStd }}" on-change="{{ toggleGrantStd }}" hint-size="280px,20px">새 조직의 표준 역할을 함께 부여</x-import>
+<div style="display:flex;flex-direction:column;gap:4px;padding-left:24px">
+<x-import component-from-global-scope="SCAX.Checkbox" checked="{{ revokePrev }}" disabled="{{ revokeDisabled }}" on-change="{{ toggleRevokePrev }}" hint-size="320px,20px">이전 소속에서 받은 역할을 함께 회수</x-import>
+<span class="field-help">주소속을 옮길 때만 고를 수 있습니다</span>
+</div>
+</div>
+
+<div class="field"><label for="org-reason">사유</label><textarea id="org-reason" placeholder="왜 바꾸는지 적어주세요" value="{{ reason }}" onChange="{{ setReason }}"></textarea><span class="field-help">변경 기록에 그대로 남습니다</span></div>
+</div>
+
+<div style="display:flex;align-items:center;justify-content:flex-end;gap:12px;margin-top:24px">
+<sc-if value="{{ saveBlocked }}" hint-placeholder-val="{{ true }}"><span class="t-meta" style="font-size:13px">사유를 적어야 저장할 수 있습니다</span></sc-if>
+<button type="button" class="btn ghost h40" onClick="{{ closeDrawer }}">취소</button>
+<button type="button" class="btn primary h40" disabled="{{ saveBlocked }}">저장</button>
+</div>
+
+</x-import>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;view&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;관리자&quot;,&quot;직원&quot;],&quot;default&quot;:&quot;관리자&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;관점&quot;},&quot;changeLogEmpty&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;변경 기록&quot;},&quot;revokedHistory&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;6축 카드&quot;},&quot;drawerOpen&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;소속 변경&quot;}}">
+class Component extends DCLogic {
+  state = { kind: 'primary', grantStd: true, revokePrev: false, reason: '', drawerOpen: false };
+  renderVals() {
+    const s = this.state;
+    const view = this.props.view ?? '관리자';
+    const isPrimary = s.kind === 'primary';
+    const logEmpty = this.props.changeLogEmpty ?? false;
+    return {
+      isAdmin: view === '관리자',
+      isEmployee: view !== '관리자',
+      revokedHistory: this.props.revokedHistory ?? true,
+      logEmpty, logFilled: !logEmpty,
+      drawerOpen: s.drawerOpen || (this.props.drawerOpen ?? false),
+      openDrawer: () => this.setState({ drawerOpen: true }),
+      closeDrawer: () => this.setState({ drawerOpen: false }),
+      isPrimary, isConcurrent: !isPrimary,
+      pickPrimary: () => this.setState({ kind: 'primary' }),
+      pickConcurrent: () => this.setState({ kind: 'concurrent', revokePrev: false }),
+      grantStd: s.grantStd,
+      toggleGrantStd: (v) => this.setState({ grantStd: v }),
+      revokePrev: s.revokePrev && isPrimary,
+      revokeDisabled: !isPrimary,
+      toggleRevokePrev: (v) => this.setState({ revokePrev: v }),
+      reason: s.reason,
+      setReason: (e) => this.setState({ reason: e && e.target ? e.target.value : e }),
+      saveBlocked: !s.reason.trim(),
+    };
+  }
+}
+</script>
+</body>
+</html>

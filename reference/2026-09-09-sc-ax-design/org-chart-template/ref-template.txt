@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="e2a4f464-6b5c-4332-b28c-d1dbdba30be0"></script>
+
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<style>/* Pretendard Variable — 로컬 폰트 바이너리를 제공받지 못해 원본 소스와 동일하게
+   jsdelivr CDN에서 불러옵니다. 오프라인·프로덕션 사용을 위해 .woff2 원본을 올려주시면
+   src를 프로젝트 파일로 교체합니다. */
+@font-face{font-family:"Pretendard Variable";font-weight:45 920;font-style:normal;font-display:swap;src:url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/woff2/PretendardVariable.woff2") format("woff2-variations")}
+
+:root{--font-core:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;--font-weight-regular:400;--font-weight-medium:500;--font-weight-bold:700}
+</style>
+<style>/* PRIMITIVE — 화면·프롬프트에서 직접 부르지 않습니다. Semantic 이름만 씁니다. */
+:root{
+--gray-900:#1B1E25;--gray-700:#5D6472;--gray-500:#6D7483;--gray-400:#979FAF;--gray-300:#D4D8E0;--gray-200:#E8EAF0;--gray-100:#EFF1F6;--gray-50:#F6F7FA;--white:#FFFFFF;
+--indigo-050:#F1F2FE;--indigo-500:#7181F8;--indigo-600:#5467F7;--indigo-700:#374DF6;--indigo-800:#1E37F4;
+--sky-050:#EAF4FF;--sky-500:#33AAFF;--sky-700:#0079D0;
+--red-050:#FDF0EE;--red-500:#E2685B;--red-700:#DA3C2B;--red-800:#C43222;--red-900:#AE2C1E;
+--orange-050:#FBF4EC;--orange-500:#E1872D;--orange-700:#AF6419;--orange-800:#945515;
+}
+
+/* SEMANTIC — 텍스트 */
+:root{
+--text-primary:var(--gray-900);--text-secondary:var(--gray-700);--text-tertiary:var(--gray-500);--text-disabled:var(--gray-400);--text-on-action:var(--white);--text-link:var(--indigo-600);
+}
+
+/* SEMANTIC — 서페이스·보더 (보더는 3단계뿐입니다) */
+:root{
+--surface-default:var(--white);--surface-sunken:var(--gray-50);--surface-hover:var(--gray-50);--surface-selected:#F8FAFF;--surface-disabled:var(--gray-50);
+--border-strong:var(--gray-300);--border-default:var(--gray-200);--border-subtle:var(--gray-100);
+--scrim:rgba(27,30,37,0.32);
+}
+
+/* SEMANTIC — 액션 */
+:root{
+--action:var(--indigo-600);--action-hover:var(--indigo-700);--action-active:var(--indigo-800);
+--accent:var(--indigo-500);--selected-bg:var(--indigo-050);
+--focus-ring:0 0 0 3px rgba(113,129,248,0.14);--focus-border:var(--indigo-500);
+--danger:var(--red-700);--danger-hover:var(--red-800);--danger-active:var(--red-900);--danger-accent:var(--red-500);--danger-tint:var(--red-050);
+--progress-accent:var(--sky-500);--progress-text:var(--sky-700);--progress-tint:var(--sky-050);
+--ai-bg:var(--indigo-050);--ai-border:#D5DAFB;--ai-fg:#4B52A8;--ai-bg-hover:#E9ECFD;--ai-border-hover:#C3CBFB;--ai-bg-active:#DDE2FC;--ai-border-active:#A6B0F7;--ai-fg-active:#3A4194;
+}
+
+/* SEMANTIC — 업무 상태 5종 (dot / 텍스트 / 틴트) + 지연은 파생 표시 */
+:root{
+--status-todo-dot:var(--gray-400);--status-todo-text:var(--gray-500);--status-todo-tint:#F4F5F7;
+--status-blocked-dot:var(--orange-500);--status-blocked-text:var(--orange-700);--status-blocked-tint:var(--orange-050);
+--status-doing-dot:var(--sky-500);--status-doing-text:var(--sky-700);--status-doing-tint:var(--sky-050);
+--status-done-dot:var(--indigo-500);--status-done-text:var(--indigo-600);--status-done-tint:var(--indigo-050);
+--status-cancel-dot:var(--gray-300);--status-cancel-text:var(--gray-500);--status-cancel-tint:#F4F5F7;
+--status-late-dot:var(--red-500);--status-late-text:var(--red-700);--status-late-tint:var(--red-050);
+}
+
+/* SEMANTIC — 업무 유형 4종 고정. 새 배지 색을 만들지 않습니다. */
+:root{
+--type-meeting-bg:#EEF1FE;--type-meeting-fg:#4A55B8;
+--type-personal-bg:#F1F2FE;--type-personal-fg:#4B52A8;
+--type-doc-bg:#F4F7FF;--type-doc-fg:#3F5F94;
+--type-cancel-bg:#F4F5F7;--type-cancel-fg:var(--gray-500);--type-cancel-border:var(--border-default);
+}
+
+/* SEMANTIC — 채널 (업무 유형과 다른 축. 본문·제목·배지에 쓰지 않습니다) */
+:root{
+--channel-mail-tile:#EAF4FF;--channel-mail-count:#338BF6;
+--channel-kakao-tile:#FEF3C0;--channel-kakao-count:#E3B93C;
+--channel-slack-tile:#F1F2FE;--channel-slack-count:#7181F8;
+}
+
+/* HERO GRADIENT — 홈 최상단 120px, 로그인 좌측 패널에만 */
+:root{
+--hero-sky-left:#DDE7FF;--hero-violet:#D6DAFB;--hero-sky-right:#D7E2FF;
+--hero-gradient:linear-gradient(180deg,rgba(255,255,255,0) 0%,#FFFFFF 100%),linear-gradient(90deg,#DDE7FF 0%,#D6DAFB 46%,#D7E2FF 100%); /* @kind color */
+--hero-height:120px;
+--avatar-fill:linear-gradient(140deg,#E8EAF0,#D4D8E0);
+--brand-mark:linear-gradient(135deg,#7181F8,#A6CDFF); /* @kind color */
+}
+</style>
+<style>/* line-height 145% · letter-spacing −2% 전 스타일 단일값. 예외 없음. */
+:root{--line-height:1.45;--letter-spacing:-0.02em;
+--font-size-display-1:56px;--font-size-display-2:40px;--font-size-display-3:36px;--font-size-title-1:32px;--font-size-title-2:28px;--font-size-title-3:24px;--font-size-heading-1:22px;--font-size-heading-2:20px;--font-size-headline-1:18px;--font-size-headline-2:17px;--font-size-body-1:16px;--font-size-body-2:15px;--font-size-label-1:14px;--font-size-label-2:13px;--font-size-caption-1:12px;--font-size-caption-2:11px;
+--line-height-display-1:81.2px;--line-height-display-2:58px;--line-height-display-3:52.2px;--line-height-title-1:46.4px;--line-height-title-2:40.6px;--line-height-title-3:34.8px;--line-height-heading-1:31.9px;--line-height-heading-2:29px;--line-height-headline-1:26.1px;--line-height-headline-2:24.7px;--line-height-body-1:23.2px;--line-height-body-2:21.8px;--line-height-label-1:20.3px;--line-height-label-2:18.9px;--line-height-caption-1:17.4px;--line-height-caption-2:16px;
+}
+.t-display-1{font-family:var(--font-core);font-size:56px;line-height:81.2px;letter-spacing:var(--letter-spacing)}
+.t-display-2{font-family:var(--font-core);font-size:40px;line-height:58px;letter-spacing:var(--letter-spacing)}
+.t-display-3{font-family:var(--font-core);font-size:36px;line-height:52.2px;letter-spacing:var(--letter-spacing)}
+.t-title-1{font-family:var(--font-core);font-size:32px;line-height:46.4px;letter-spacing:var(--letter-spacing)}
+.t-title-2{font-family:var(--font-core);font-size:28px;line-height:40.6px;letter-spacing:var(--letter-spacing)}
+.t-title-3{font-family:var(--font-core);font-size:24px;line-height:34.8px;letter-spacing:var(--letter-spacing)}
+.t-heading-1{font-family:var(--font-core);font-size:22px;line-height:31.9px;letter-spacing:var(--letter-spacing)}
+.t-heading-2{font-family:var(--font-core);font-size:20px;line-height:29px;letter-spacing:var(--letter-spacing)}
+.t-headline-1{font-family:var(--font-core);font-size:18px;line-height:26.1px;letter-spacing:var(--letter-spacing)}
+.t-headline-2{font-family:var(--font-core);font-size:17px;line-height:24.7px;letter-spacing:var(--letter-spacing)}
+.t-body-1{font-family:var(--font-core);font-size:16px;line-height:23.2px;letter-spacing:var(--letter-spacing)}
+.t-body-2{font-family:var(--font-core);font-size:15px;line-height:21.8px;letter-spacing:var(--letter-spacing)}
+.t-label-1{font-family:var(--font-core);font-size:14px;line-height:20.3px;letter-spacing:var(--letter-spacing)}
+.t-label-2{font-family:var(--font-core);font-size:13px;line-height:18.9px;letter-spacing:var(--letter-spacing)}
+.t-caption-1{font-family:var(--font-core);font-size:12px;line-height:17.4px;letter-spacing:var(--letter-spacing)}
+.t-caption-2{font-family:var(--font-core);font-size:11px;line-height:16px;letter-spacing:var(--letter-spacing)}
+</style>
+<style>/* 스케일에 없는 값(10·14·18)은 쓰지 않습니다. 예외는 레이블–필드 7px 하나. */
+:root{
+--space-4:4px;--space-8:8px;--space-12:12px;--space-16:16px;--space-20:20px;--space-24:24px;--space-32:32px;--space-48:48px;
+--space-label-field:7px;--space-field-helper:6px;
+--radius-badge:4px;--radius-event:6px;--radius-control:8px;--radius-popover:12px;--radius-panel:16px;--radius-card:8px;--radius-round:50%;
+--gap-icon-text:6px;--gap-icon-row:9px;
+--control-h-lg:40px;--control-h-md:34px;--control-h-sm:30px;--input-h:38px;--input-h-title:48px;
+--row-h-list:68px;--row-h-table:56px;--row-h-table-head:44px;--row-h-nav:36px;--row-h-tab:44px;
+}
+</style>
+<style>/* 그림자는 이 6개뿐입니다. 새 그림자가 필요해 보이면 높이 단계가 잘못 잡힌 것입니다. */
+:root{
+--shadow-sm:0 1px 2px rgba(16,24,40,0.04);
+--shadow-md:0 1px 2px rgba(16,24,40,0.04),0 8px 20px rgba(16,24,40,0.05);
+--shadow-lg:0 1px 2px rgba(16,24,40,0.04),0 12px 30px rgba(16,24,40,0.06);
+--shadow-xl:0 16px 40px rgba(0,0,0,0.16);
+--shadow-drawer:-24px 0 60px rgba(0,0,0,0.18);
+--shadow-ai:0 1px 2px rgba(16,24,40,0.04),0 10px 24px rgba(89,105,214,0.10);
+}
+</style>
+<style>/* 데스크톱 전용 · 최소 1280. 콘텐츠 1640 = 8컬럼(184 + 거터 24). */
+:root{
+--canvas-w:1920px;--canvas-h:1080px;
+--sidebar-w:200px;--content-w:1640px;--grid-columns:8; /* @kind other */--grid-column-w:184px;--grid-gutter:24px;
+--home-col-1:392px;--home-col-2:600px;--home-col-3:600px;
+--drawer-w:840px;--modal-w:600px;--popover-w-min:200px;--popover-w-max:400px;--toast-w:400px;--ax-bar-w:720px;--ax-bar-h:52px;--ax-bar-bottom:24px;
+--calendar-rail-w:260px;--calendar-time-axis-w:64px;--calendar-hour-h:64px;--calendar-month-cell-h:120px;
+--y-breadcrumb:38px;--y-title:66px;--y-toolbar:108px;--y-panel:140px;--panel-h:900px;
+--page-gutter-1920:40px;--page-gutter-1440:80px;--page-gutter-1280:48px;
+--icon-12:12px;--icon-14:14px;--icon-16:16px;--icon-20:20px;--icon-stroke:1.5;--icon-stroke-small:1.3;
+}
+</style>
+<style>body{margin:0;font-family:var(--font-core);font-size:var(--font-size-body-2);line-height:var(--line-height);letter-spacing:var(--letter-spacing);color:var(--text-primary);background:var(--surface-sunken);-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:var(--text-link);text-decoration:none}
+a:hover{color:var(--action-hover);text-decoration:none}
+button{font-family:inherit;letter-spacing:var(--letter-spacing)}
+.tabular{font-variant-numeric:tabular-nums}
+</style>
+<style>/* Pretendard Variable — 로컬 폰트 바이너리를 제공받지 못해 원본 소스와 동일하게
+   jsdelivr CDN에서 불러옵니다. 오프라인·프로덕션 사용을 위해 .woff2 원본을 올려주시면
+   src를 프로젝트 파일로 교체합니다. */
+@font-face{font-family:"Pretendard Variable";font-weight:45 920;font-style:normal;font-display:swap;src:url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/woff2/PretendardVariable.woff2") format("woff2-variations")}
+
+:root{--font-core:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;--font-weight-regular:400;--font-weight-medium:500;--font-weight-bold:700}
+
+/* PRIMITIVE — 화면·프롬프트에서 직접 부르지 않습니다. Semantic 이름만 씁니다. */
+:root{
+--gray-900:#1B1E25;--gray-700:#5D6472;--gray-500:#6D7483;--gray-400:#979FAF;--gray-300:#D4D8E0;--gray-200:#E8EAF0;--gray-100:#EFF1F6;--gray-50:#F6F7FA;--white:#FFFFFF;
+--indigo-050:#F1F2FE;--indigo-500:#7181F8;--indigo-600:#5467F7;--indigo-700:#374DF6;--indigo-800:#1E37F4;
+--sky-050:#EAF4FF;--sky-500:#33AAFF;--sky-700:#0079D0;
+--red-050:#FDF0EE;--red-500:#E2685B;--red-700:#DA3C2B;--red-800:#C43222;--red-900:#AE2C1E;
+--orange-050:#FBF4EC;--orange-500:#E1872D;--orange-700:#AF6419;--orange-800:#945515;
+}
+
+/* SEMANTIC — 텍스트 */
+:root{
+--text-primary:var(--gray-900);--text-secondary:var(--gray-700);--text-tertiary:var(--gray-500);--text-disabled:var(--gray-400);--text-on-action:var(--white);--text-link:var(--indigo-600);
+}
+
+/* SEMANTIC — 서페이스·보더 (보더는 3단계뿐입니다) */
+:root{
+--surface-default:var(--white);--surface-sunken:var(--gray-50);--surface-hover:var(--gray-50);--surface-selected:#F8FAFF;--surface-disabled:var(--gray-50);
+--border-strong:var(--gray-300);--border-default:var(--gray-200);--border-subtle:var(--gray-100);
+--scrim:rgba(27,30,37,0.32);
+}
+
+/* SEMANTIC — 액션 */
+:root{
+--action:var(--indigo-600);--action-hover:var(--indigo-700);--action-active:var(--indigo-800);
+--accent:var(--indigo-500);--selected-bg:var(--indigo-050);
+--focus-ring:0 0 0 3px rgba(113,129,248,0.14);--focus-border:var(--indigo-500);
+--danger:var(--red-700);--danger-hover:var(--red-800);--danger-active:var(--red-900);--danger-accent:var(--red-500);--danger-tint:var(--red-050);
+--progress-accent:var(--sky-500);--progress-text:var(--sky-700);--progress-tint:var(--sky-050);
+--ai-bg:var(--indigo-050);--ai-border:#D5DAFB;--ai-fg:#4B52A8;--ai-bg-hover:#E9ECFD;--ai-border-hover:#C3CBFB;--ai-bg-active:#DDE2FC;--ai-border-active:#A6B0F7;--ai-fg-active:#3A4194;
+}
+
+/* SEMANTIC — 업무 상태 5종 (dot / 텍스트 / 틴트) + 지연은 파생 표시 */
+:root{
+--status-todo-dot:var(--gray-400);--status-todo-text:var(--gray-500);--status-todo-tint:#F4F5F7;
+--status-blocked-dot:var(--orange-500);--status-blocked-text:var(--orange-700);--status-blocked-tint:var(--orange-050);
+--status-doing-dot:var(--sky-500);--status-doing-text:var(--sky-700);--status-doing-tint:var(--sky-050);
+--status-done-dot:var(--indigo-500);--status-done-text:var(--indigo-600);--status-done-tint:var(--indigo-050);
+--status-cancel-dot:var(--gray-300);--status-cancel-text:var(--gray-500);--status-cancel-tint:#F4F5F7;
+--status-late-dot:var(--red-500);--status-late-text:var(--red-700);--status-late-tint:var(--red-050);
+}
+
+/* SEMANTIC — 업무 유형 4종 고정. 새 배지 색을 만들지 않습니다. */
+:root{
+--type-meeting-bg:#EEF1FE;--type-meeting-fg:#4A55B8;
+--type-personal-bg:#F1F2FE;--type-personal-fg:#4B52A8;
+--type-doc-bg:#F4F7FF;--type-doc-fg:#3F5F94;
+--type-cancel-bg:#F4F5F7;--type-cancel-fg:var(--gray-500);--type-cancel-border:var(--border-default);
+}
+
+/* SEMANTIC — 채널 (업무 유형과 다른 축. 본문·제목·배지에 쓰지 않습니다) */
+:root{
+--channel-mail-tile:#EAF4FF;--channel-mail-count:#338BF6;
+--channel-kakao-tile:#FEF3C0;--channel-kakao-count:#E3B93C;
+--channel-slack-tile:#F1F2FE;--channel-slack-count:#7181F8;
+}
+
+/* HERO GRADIENT — 홈 최상단 120px, 로그인 좌측 패널에만 */
+:root{
+--hero-sky-left:#DDE7FF;--hero-violet:#D6DAFB;--hero-sky-right:#D7E2FF;
+--hero-gradient:linear-gradient(180deg,rgba(255,255,255,0) 0%,#FFFFFF 100%),linear-gradient(90deg,#DDE7FF 0%,#D6DAFB 46%,#D7E2FF 100%); /* @kind color */
+--hero-height:120px;
+--avatar-fill:linear-gradient(140deg,#E8EAF0,#D4D8E0);
+--brand-mark:linear-gradient(135deg,#7181F8,#A6CDFF); /* @kind color */
+}
+
+/* line-height 145% · letter-spacing −2% 전 스타일 단일값. 예외 없음. */
+:root{--line-height:1.45;--letter-spacing:-0.02em;
+--font-size-display-1:56px;--font-size-display-2:40px;--font-size-display-3:36px;--font-size-title-1:32px;--font-size-title-2:28px;--font-size-title-3:24px;--font-size-heading-1:22px;--font-size-heading-2:20px;--font-size-headline-1:18px;--font-size-headline-2:17px;--font-size-body-1:16px;--font-size-body-2:15px;--font-size-label-1:14px;--font-size-label-2:13px;--font-size-caption-1:12px;--font-size-caption-2:11px;
+--line-height-display-1:81.2px;--line-height-display-2:58px;--line-height-display-3:52.2px;--line-height-title-1:46.4px;--line-height-title-2:40.6px;--line-height-title-3:34.8px;--line-height-heading-1:31.9px;--line-height-heading-2:29px;--line-height-headline-1:26.1px;--line-height-headline-2:24.7px;--line-height-body-1:23.2px;--line-height-body-2:21.8px;--line-height-label-1:20.3px;--line-height-label-2:18.9px;--line-height-caption-1:17.4px;--line-height-caption-2:16px;
+}
+.t-display-1{font-family:var(--font-core);font-size:56px;line-height:81.2px;letter-spacing:var(--letter-spacing)}
+.t-display-2{font-family:var(--font-core);font-size:40px;line-height:58px;letter-spacing:var(--letter-spacing)}
+.t-display-3{font-family:var(--font-core);font-size:36px;line-height:52.2px;letter-spacing:var(--letter-spacing)}
+.t-title-1{font-family:var(--font-core);font-size:32px;line-height:46.4px;letter-spacing:var(--letter-spacing)}
+.t-title-2{font-family:var(--font-core);font-size:28px;line-height:40.6px;letter-spacing:var(--letter-spacing)}
+.t-title-3{font-family:var(--font-core);font-size:24px;line-height:34.8px;letter-spacing:var(--letter-spacing)}
+.t-heading-1{font-family:var(--font-core);font-size:22px;line-height:31.9px;letter-spacing:var(--letter-spacing)}
+.t-heading-2{font-family:var(--font-core);font-size:20px;line-height:29px;letter-spacing:var(--letter-spacing)}
+.t-headline-1{font-family:var(--font-core);font-size:18px;line-height:26.1px;letter-spacing:var(--letter-spacing)}
+.t-headline-2{font-family:var(--font-core);font-size:17px;line-height:24.7px;letter-spacing:var(--letter-spacing)}
+.t-body-1{font-family:var(--font-core);font-size:16px;line-height:23.2px;letter-spacing:var(--letter-spacing)}
+.t-body-2{font-family:var(--font-core);font-size:15px;line-height:21.8px;letter-spacing:var(--letter-spacing)}
+.t-label-1{font-family:var(--font-core);font-size:14px;line-height:20.3px;letter-spacing:var(--letter-spacing)}
+.t-label-2{font-family:var(--font-core);font-size:13px;line-height:18.9px;letter-spacing:var(--letter-spacing)}
+.t-caption-1{font-family:var(--font-core);font-size:12px;line-height:17.4px;letter-spacing:var(--letter-spacing)}
+.t-caption-2{font-family:var(--font-core);font-size:11px;line-height:16px;letter-spacing:var(--letter-spacing)}
+
+/* 스케일에 없는 값(10·14·18)은 쓰지 않습니다. 예외는 레이블–필드 7px 하나. */
+:root{
+--space-4:4px;--space-8:8px;--space-12:12px;--space-16:16px;--space-20:20px;--space-24:24px;--space-32:32px;--space-48:48px;
+--space-label-field:7px;--space-field-helper:6px;
+--radius-badge:4px;--radius-event:6px;--radius-control:8px;--radius-popover:12px;--radius-panel:16px;--radius-card:8px;--radius-round:50%;
+--gap-icon-text:6px;--gap-icon-row:9px;
+--control-h-lg:40px;--control-h-md:34px;--control-h-sm:30px;--input-h:38px;--input-h-title:48px;
+--row-h-list:68px;--row-h-table:56px;--row-h-table-head:44px;--row-h-nav:36px;--row-h-tab:44px;
+}
+
+/* 그림자는 이 6개뿐입니다. 새 그림자가 필요해 보이면 높이 단계가 잘못 잡힌 것입니다. */
+:root{
+--shadow-sm:0 1px 2px rgba(16,24,40,0.04);
+--shadow-md:0 1px 2px rgba(16,24,40,0.04),0 8px 20px rgba(16,24,40,0.05);
+--shadow-lg:0 1px 2px rgba(16,24,40,0.04),0 12px 30px rgba(16,24,40,0.06);
+--shadow-xl:0 16px 40px rgba(0,0,0,0.16);
+--shadow-drawer:-24px 0 60px rgba(0,0,0,0.18);
+--shadow-ai:0 1px 2px rgba(16,24,40,0.04),0 10px 24px rgba(89,105,214,0.10);
+}
+
+/* 데스크톱 전용 · 최소 1280. 콘텐츠 1640 = 8컬럼(184 + 거터 24). */
+:root{
+--canvas-w:1920px;--canvas-h:1080px;
+--sidebar-w:200px;--content-w:1640px;--grid-columns:8; /* @kind other */--grid-column-w:184px;--grid-gutter:24px;
+--home-col-1:392px;--home-col-2:600px;--home-col-3:600px;
+--drawer-w:840px;--modal-w:600px;--popover-w-min:200px;--popover-w-max:400px;--toast-w:400px;--ax-bar-w:720px;--ax-bar-h:52px;--ax-bar-bottom:24px;
+--calendar-rail-w:260px;--calendar-time-axis-w:64px;--calendar-hour-h:64px;--calendar-month-cell-h:120px;
+--y-breadcrumb:38px;--y-title:66px;--y-toolbar:108px;--y-panel:140px;--panel-h:900px;
+--page-gutter-1920:40px;--page-gutter-1440:80px;--page-gutter-1280:48px;
+--icon-12:12px;--icon-14:14px;--icon-16:16px;--icon-20:20px;--icon-stroke:1.5;--icon-stroke-small:1.3;
+}
+
+body{margin:0;font-family:var(--font-core);font-size:var(--font-size-body-2);line-height:var(--line-height);letter-spacing:var(--letter-spacing);color:var(--text-primary);background:var(--surface-sunken);-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:var(--text-link);text-decoration:none}
+a:hover{color:var(--action-hover);text-decoration:none}
+button{font-family:inherit;letter-spacing:var(--letter-spacing)}
+.tabular{font-variant-numeric:tabular-nums}
+
+</style>
+<script src="93851c84-cf84-47c3-af41-04222c5ce03d"></script>
+<style>
+  body { margin: 0; background: var(--surface-sunken); font-family: var(--font-core); letter-spacing: var(--letter-spacing); line-height: var(--line-height); color: var(--text-primary); }
+  a { color: var(--text-link); text-decoration: none; }
+  a:hover { color: var(--action-hover); text-decoration: underline; }
+</style>
+</helmet>
+
+<div style="display:flex;flex-direction:column;gap:var(--space-48);padding:var(--space-48);width:max-content">
+
+  <!-- ============ 1. 관리자 관점 ============ -->
+  <div style="display:flex;flex-direction:column;gap:var(--space-12)">
+    <div style="display:flex;align-items:baseline;gap:var(--space-12)">
+      <div style="font-size:var(--font-size-headline-1);font-weight:700">1 · 관리자 관점 — 전체 화면</div>
+      <div style="font-size:var(--font-size-label-2);color:var(--text-tertiary)">1920 × 1080 · Detail(Drawer) 변형 3분할</div>
+    </div>
+
+    <div data-screen-label="01 관리자" style="position:relative;width:var(--canvas-w);height:var(--canvas-h);background:var(--surface-sunken);border:1px solid var(--border-strong);border-radius:var(--radius-panel);overflow:hidden;display:flex">
+
+      <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Sidebar" active="org" hint-size="200px,100%"></x-import>
+
+      <div style="flex:1;min-width:0;padding:var(--space-16) var(--space-48) 0;display:flex;flex-direction:column;gap:var(--space-24)">
+
+        <!-- ① 헤더 -->
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-24)">
+          <div style="display:flex;flex-direction:column;gap:var(--space-4)">
+            <div style="font-size:var(--font-size-title-3);font-weight:700">조직</div>
+            <div style="font-size:var(--font-size-body-2);color:var(--text-secondary);max-width:820px;text-wrap:pretty">여섯 축은 서로 독립입니다. 조직 계층은 권한 범위가 아니고, 직급은 직책이 아닙니다.</div>
+          </div>
+          <div style="padding-top:var(--space-8)">
+            <x-import component-from-global-scope="ManagementDesignSystem_2df89d.PermissionBadge" tone="granted" label="조직 관리 권한 있음" hint-size="auto,20px"></x-import>
+          </div>
+        </div>
+
+        <!-- ②③④ -->
+        <div style="display:flex;gap:var(--grid-gutter);height:649px;flex-shrink:0">
+
+          <!-- ② 조직 tree -->
+          <div style="width:392px;flex-shrink:0;background:var(--surface-default);border:1px solid var(--border-strong);border-radius:var(--radius-panel);display:flex;flex-direction:column;overflow:hidden">
+            <div style="padding:var(--space-16) var(--space-24);border-bottom:1px solid var(--border-default);display:flex;flex-direction:column;gap:var(--space-12)">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-8)">
+                <div style="font-size:var(--font-size-headline-2);font-weight:700">조직 tree</div>
+                <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary)">읽기 전용</div>
+              </div>
+              <x-import component-from-global-scope="ManagementDesignSystem_2df89d.SearchInput" placeholder="사람 이름 검색" width="100%" height="{{ 34 }}" hint-size="100%,34px"></x-import>
+            </div>
+            <div style="flex:1;min-height:0;overflow:auto;padding:var(--space-8) var(--space-16) var(--space-16)">
+
+              <div style="display:flex;align-items:center;gap:var(--gap-icon-row);padding:var(--space-8) var(--space-12);border-radius:var(--radius-control)">
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Icon" name="chevron-down" size="12" color="var(--text-tertiary)" hint-size="12px,12px"></x-import>
+                <div style="flex:1;min-width:0">
+                  <div style="display:flex;align-items:center;gap:var(--space-8)">
+                    <span style="font-size:var(--font-size-label-1);font-weight:700">더에스씨</span>
+                    <span style="font-size:var(--font-size-caption-2);color:var(--text-tertiary)">회사</span>
+                  </div>
+                  <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">직접 4 · 전체 128</div>
+                </div>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Avatar" size="xs" name="차민석" hint-size="auto,20px"></x-import>
+              </div>
+
+              <div style="padding-left:var(--space-16)">
+                <div style="display:flex;align-items:center;gap:var(--gap-icon-row);padding:var(--space-8) var(--space-12);border-radius:var(--radius-control)">
+                  <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Icon" name="chevron-down" size="12" color="var(--text-tertiary)" hint-size="12px,12px"></x-import>
+                  <div style="flex:1;min-width:0">
+                    <div style="display:flex;align-items:center;gap:var(--space-8)">
+                      <span style="font-size:var(--font-size-label-1);font-weight:700">제품본부</span>
+                      <span style="font-size:var(--font-size-caption-2);color:var(--text-tertiary)">본부</span>
+                    </div>
+                    <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">직접 0 · 전체 46</div>
+                  </div>
+                  <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Avatar" size="xs" name="이해든" hint-size="auto,20px"></x-import>
+                </div>
+
+                <div style="padding-left:var(--space-16)">
+                  <div style="display:flex;align-items:center;gap:var(--gap-icon-row);padding:var(--space-8) var(--space-12);border-radius:var(--radius-control);background:var(--surface-selected)">
+                    <div style="width:12px;flex-shrink:0"></div>
+                    <div style="flex:1;min-width:0">
+                      <div style="display:flex;align-items:center;gap:var(--space-8)">
+                        <span style="font-size:var(--font-size-label-1);font-weight:700">제품기획팀</span>
+                        <span style="font-size:var(--font-size-caption-2);color:var(--text-tertiary)">팀</span>
+                      </div>
+                      <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">직접 12 · 전체 12</div>
+                    </div>
+                    <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Avatar" size="xs" name="김세연" hint-size="auto,20px"></x-import>
+                  </div>
+
+                  <div style="display:flex;align-items:center;gap:var(--gap-icon-row);padding:var(--space-8) var(--space-12);border-radius:var(--radius-control)">
+                    <div style="width:12px;flex-shrink:0"></div>
+                    <div style="flex:1;min-width:0">
+                      <div style="display:flex;align-items:center;gap:var(--space-8)">
+                        <span style="font-size:var(--font-size-label-1);font-weight:700">디자인팀</span>
+                        <span style="font-size:var(--font-size-caption-2);color:var(--text-tertiary)">팀</span>
+                      </div>
+                      <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">직접 9 · 전체 9</div>
+                    </div>
+                    <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Avatar" size="xs" name="한서우" hint-size="auto,20px"></x-import>
+                  </div>
+
+                  <div style="display:flex;align-items:center;gap:var(--gap-icon-row);padding:var(--space-8) var(--space-12);border-radius:var(--radius-control)">
+                    <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Icon" name="chevron-down" size="12" color="var(--text-tertiary)" hint-size="12px,12px"></x-import>
+                    <div style="flex:1;min-width:0">
+                      <div style="display:flex;align-items:center;gap:var(--space-8)">
+                        <span style="font-size:var(--font-size-label-1);font-weight:700">개발실</span>
+                        <span style="font-size:var(--font-size-caption-2);color:var(--text-tertiary)">실</span>
+                      </div>
+                      <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">직접 1 · 전체 24</div>
+                    </div>
+                    <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Avatar" size="xs" name="정하늘" hint-size="auto,20px"></x-import>
+                  </div>
+
+                  <div style="padding-left:var(--space-16)">
+                    <div style="display:flex;align-items:center;gap:var(--gap-icon-row);padding:var(--space-8) var(--space-12);border-radius:var(--radius-control)">
+                      <div style="width:12px;flex-shrink:0"></div>
+                      <div style="flex:1;min-width:0">
+                        <div style="display:flex;align-items:center;gap:var(--space-8)">
+                          <span style="font-size:var(--font-size-label-1);font-weight:700">프론트엔드팀</span>
+                          <span style="font-size:var(--font-size-caption-2);color:var(--text-tertiary)">팀</span>
+                        </div>
+                        <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">직접 11 · 전체 11</div>
+                      </div>
+                      <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Avatar" size="xs" name="오지훈" hint-size="auto,20px"></x-import>
+                    </div>
+                  </div>
+                </div>
+
+                <div style="display:flex;align-items:center;gap:var(--gap-icon-row);padding:var(--space-8) var(--space-12);border-radius:var(--radius-control)">
+                  <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Icon" name="chevron-right" size="12" color="var(--text-tertiary)" hint-size="12px,12px"></x-import>
+                  <div style="flex:1;min-width:0">
+                    <div style="display:flex;align-items:center;gap:var(--space-8)">
+                      <span style="font-size:var(--font-size-label-1);font-weight:700">경영지원본부</span>
+                      <span style="font-size:var(--font-size-caption-2);color:var(--text-tertiary)">본부</span>
+                    </div>
+                    <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">직접 2 · 전체 27</div>
+                  </div>
+                  <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Avatar" size="xs" name="윤도현" hint-size="auto,20px"></x-import>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ③ 구성원 목록 -->
+          <div style="width:600px;flex-shrink:0;background:var(--surface-default);border:1px solid var(--border-strong);border-radius:var(--radius-panel);display:flex;flex-direction:column;overflow:hidden">
+            <div style="padding:var(--space-16) var(--space-24);border-bottom:1px solid var(--border-default);display:flex;align-items:center;justify-content:space-between;gap:var(--space-8)">
+              <div style="font-size:var(--font-size-headline-2);font-weight:700">제품기획팀 구성원</div>
+              <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">직접 소속 12명</div>
+            </div>
+            <div style="flex:1;min-height:0;overflow:auto">
+
+              <div style="height:var(--row-h-list);display:flex;align-items:center;gap:var(--space-12);padding:0 var(--space-16);border-bottom:1px solid var(--border-subtle);background:var(--surface-selected);cursor:pointer">
+                <span style="width:40px;flex-shrink:0;font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">2417</span>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Avatar" size="sm" hint-size="24px,24px"></x-import>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:var(--font-size-label-1);font-weight:700">유하람</div>
+                  <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary)">제품기획팀 (주) · 디자인팀 (겸직)</div>
+                </div>
+                <span style="font-size:var(--font-size-label-2);color:var(--text-secondary)">선임</span>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.IconButton" icon="more" size="sm" variant="ghost" label="행 메뉴" hint-size="30px,30px"></x-import>
+              </div>
+
+              <div style="height:var(--row-h-list);display:flex;align-items:center;gap:var(--space-12);padding:0 var(--space-16);border-bottom:1px solid var(--border-subtle);cursor:pointer">
+                <span style="width:40px;flex-shrink:0;font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">2183</span>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Avatar" size="sm" hint-size="24px,24px"></x-import>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:var(--font-size-label-1);font-weight:700">김세연</div>
+                  <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary)">제품기획팀 (주)</div>
+                </div>
+                <span style="font-size:var(--font-size-label-2);color:var(--text-secondary)">책임</span>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.IconButton" icon="more" size="sm" variant="ghost" label="행 메뉴" hint-size="30px,30px"></x-import>
+              </div>
+
+              <div style="height:var(--row-h-list);display:flex;align-items:center;gap:var(--space-12);padding:0 var(--space-16);border-bottom:1px solid var(--border-subtle);cursor:pointer">
+                <span style="width:40px;flex-shrink:0;font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">1994</span>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Avatar" size="sm" hint-size="24px,24px"></x-import>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:var(--font-size-label-1);font-weight:700">정하늘</div>
+                  <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary)">개발실 (주) · 제품기획팀 (겸직)</div>
+                </div>
+                <span style="font-size:var(--font-size-label-2);color:var(--text-secondary)">수석</span>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.IconButton" icon="more" size="sm" variant="ghost" label="행 메뉴" hint-size="30px,30px"></x-import>
+              </div>
+
+              <div style="height:var(--row-h-list);display:flex;align-items:center;gap:var(--space-12);padding:0 var(--space-16);border-bottom:1px solid var(--border-subtle);cursor:pointer">
+                <span style="width:40px;flex-shrink:0;font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">2455</span>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Avatar" size="sm" hint-size="24px,24px"></x-import>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:var(--font-size-label-1);font-weight:700">한서우</div>
+                  <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary)">제품기획팀 (주)</div>
+                </div>
+                <span style="font-size:var(--font-size-label-2);color:var(--text-secondary)">선임</span>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.IconButton" icon="more" size="sm" variant="ghost" label="행 메뉴" hint-size="30px,30px"></x-import>
+              </div>
+
+              <div style="height:var(--row-h-list);display:flex;align-items:center;gap:var(--space-12);padding:0 var(--space-16);border-bottom:1px solid var(--border-subtle);cursor:pointer">
+                <span style="width:40px;flex-shrink:0;font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">2506</span>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Avatar" size="sm" hint-size="24px,24px"></x-import>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:var(--font-size-label-1);font-weight:700">박도윤</div>
+                  <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary)">제품기획팀 (주)</div>
+                </div>
+                <span style="font-size:var(--font-size-label-2);color:var(--text-secondary)">사원</span>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.IconButton" icon="more" size="sm" variant="ghost" label="행 메뉴" hint-size="30px,30px"></x-import>
+              </div>
+
+              <div style="height:var(--row-h-list);display:flex;align-items:center;gap:var(--space-12);padding:0 var(--space-16);border-bottom:1px solid var(--border-subtle);cursor:pointer">
+                <span style="width:40px;flex-shrink:0;font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">2612</span>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Avatar" size="sm" hint-size="24px,24px"></x-import>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:var(--font-size-label-1);font-weight:700">오지훈</div>
+                  <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary)">제품기획팀 (주)</div>
+                </div>
+                <span style="font-size:var(--font-size-label-2);color:var(--text-secondary)">사원</span>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.IconButton" icon="more" size="sm" variant="ghost" label="행 메뉴" hint-size="30px,30px"></x-import>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ④ 6축 카드 -->
+          <div style="width:600px;flex-shrink:0;align-self:flex-start;position:sticky;top:0;height:649px;background:var(--surface-default);border:1px solid var(--border-strong);border-radius:var(--radius-panel);display:flex;flex-direction:column;overflow:hidden">
+            <div style="padding:var(--space-12) var(--space-24);border-bottom:1px solid var(--border-default);display:flex;align-items:center;gap:var(--space-12)">
+              <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Avatar" size="lg" hint-size="40px,40px"></x-import>
+              <div style="flex:1;min-width:0">
+                <div style="display:flex;align-items:center;gap:var(--space-8)">
+                  <span style="font-size:var(--font-size-headline-1);font-weight:700">유하람</span>
+                  <span style="font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">2417</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:var(--space-4);margin-top:var(--space-4)">
+                  <x-import component-from-global-scope="ManagementDesignSystem_2df89d.PermissionBadge" tone="scoped" label="재직" show-icon="{{ false }}" hint-size="auto,20px"></x-import>
+                  <x-import component-from-global-scope="ManagementDesignSystem_2df89d.PermissionBadge" tone="scoped" label="로그인 계정 있음" show-icon="{{ false }}" hint-size="auto,20px"></x-import>
+                  <span style="font-size:var(--font-size-caption-2);color:var(--text-tertiary)">재직과 계정은 다른 축입니다</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="flex:1;min-height:0;overflow:auto;padding:var(--space-8) var(--space-24) var(--space-16)">
+
+              <div style="display:flex;gap:var(--space-12);padding:var(--space-8) 0;border-bottom:1px solid var(--border-subtle)">
+                <div style="width:36px;flex-shrink:0;font-size:var(--font-size-label-2);font-weight:700;color:var(--text-tertiary)">계층</div>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:var(--font-size-label-1);color:var(--text-disabled)">더에스씨 › 제품본부 › 제품기획팀</div>
+                  <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary)">조직 계층은 권한 범위가 아닙니다</div>
+                </div>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Button" variant="ghost" size="sm" hint-size="auto,30px">이력</x-import>
+              </div>
+
+              <div style="display:flex;gap:var(--space-12);padding:var(--space-8) 0;border-bottom:1px solid var(--border-subtle)">
+                <div style="width:36px;flex-shrink:0;font-size:var(--font-size-label-2);font-weight:700;color:var(--text-tertiary)">소속</div>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:var(--font-size-label-1)">제품기획팀 (주) · 디자인팀 (겸직)</div>
+                  <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary)">겸직은 권한을 따라오지 않습니다</div>
+                </div>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Button" variant="ghost" size="sm" hint-size="auto,30px">이력</x-import>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Button" variant="secondary" size="sm" hint-size="auto,30px">변경</x-import>
+              </div>
+
+              <div style="display:flex;gap:var(--space-12);padding:var(--space-8) 0;border-bottom:1px solid var(--border-subtle)">
+                <div style="width:36px;flex-shrink:0;font-size:var(--font-size-label-2);font-weight:700;color:var(--text-tertiary)">직책</div>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:var(--font-size-label-1)">—</div>
+                  <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary)">직급으로 임명을 막지 않습니다. 사원도 팀장이 될 수 있습니다</div>
+                </div>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Button" variant="ghost" size="sm" hint-size="auto,30px">이력</x-import>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Button" variant="secondary" size="sm" hint-size="auto,30px">변경</x-import>
+              </div>
+
+              <div style="display:flex;gap:var(--space-12);padding:var(--space-8) 0;border-bottom:1px solid var(--border-subtle)">
+                <div style="width:36px;flex-shrink:0;font-size:var(--font-size-label-2);font-weight:700;color:var(--text-tertiary)">직급</div>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:var(--font-size-label-1);color:var(--text-disabled)">선임</div>
+                  <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary)">직급 값은 이 화면에서 바꾸지 않습니다</div>
+                </div>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Button" variant="ghost" size="sm" hint-size="auto,30px">이력</x-import>
+              </div>
+
+              <div style="display:flex;gap:var(--space-12);padding:var(--space-8) 0;border-bottom:1px solid var(--border-subtle)">
+                <div style="width:36px;flex-shrink:0;font-size:var(--font-size-label-2);font-weight:700;color:var(--text-tertiary)">직무</div>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:var(--font-size-label-1);color:var(--text-disabled)">제품기획 (주) · UX리서치 (보조)</div>
+                  <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary)">직무명은 접근 권한이 아닙니다</div>
+                </div>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Button" variant="ghost" size="sm" hint-size="auto,30px">이력</x-import>
+              </div>
+
+              <div style="margin-top:var(--space-12);background:var(--selected-bg);border-radius:var(--radius-control);padding:var(--space-16)">
+                <div style="display:flex;gap:var(--space-12)">
+                  <div style="width:36px;flex-shrink:0;font-size:var(--font-size-label-2);font-weight:700;color:var(--text-primary)">권한</div>
+                  <div style="flex:1;min-width:0">
+                    <div style="font-size:var(--font-size-label-1);font-weight:700">업무 열람 · 제품본부 / 보고 승인 · 제품기획팀</div>
+                    <div style="font-size:var(--font-size-caption-1);color:var(--text-secondary)">여섯 축 가운데 실제 권한을 바꾸는 축은 이것뿐입니다</div>
+                  </div>
+                  <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Button" variant="ghost" size="sm" hint-size="auto,30px">이력</x-import>
+                  <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Button" variant="primary" size="sm" hint-size="auto,30px">변경</x-import>
+                </div>
+
+                <sc-if value="{{ revokedHistory }}" hint-placeholder-val="{{ true }}">
+                  <div style="margin-top:var(--space-8);padding-top:var(--space-8);border-top:1px solid var(--ai-border)">
+                    <div style="font-size:var(--font-size-caption-2);font-weight:700;color:var(--text-tertiary);margin-bottom:var(--space-4)">회수된 권한</div>
+                    <div style="display:flex;flex-direction:column;gap:var(--space-4)">
+                      <div style="display:flex;justify-content:space-between;gap:var(--space-8);font-size:var(--font-size-caption-1);color:var(--text-secondary)"><span>자료 관리 · 제품본부</span><span style="color:var(--text-tertiary);font-variant-numeric:tabular-nums">2025.03.02 – 2026.01.14</span></div>
+                      <div style="display:flex;justify-content:space-between;gap:var(--space-8);font-size:var(--font-size-caption-1);color:var(--text-secondary)"><span>보고 승인 · 디자인팀</span><span style="color:var(--text-tertiary);font-variant-numeric:tabular-nums">2024.09.01 – 2025.02.28</span></div>
+                      <div style="display:flex;justify-content:space-between;gap:var(--space-8);font-size:var(--font-size-caption-1);color:var(--text-secondary)"><span>조직 관리 · 제품기획팀</span><span style="color:var(--text-tertiary);font-variant-numeric:tabular-nums">2024.03.04 – 2024.08.31</span></div>
+                    </div>
+                    <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Button" variant="ghost" size="sm" icon-right="chevron-down" hint-size="auto,30px">2건 더 보기</x-import>
+                  </div>
+                </sc-if>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- ⑤ 변경 기록 -->
+        <div style="background:var(--surface-default);border:1px solid var(--border-strong);border-radius:var(--radius-panel);display:flex;flex-direction:column;overflow:hidden;height:214px;flex-shrink:0">
+          <div style="padding:0 var(--space-24);height:var(--row-h-table-head);flex-shrink:0;border-bottom:1px solid var(--border-default);display:flex;align-items:center;justify-content:space-between;gap:var(--space-8)">
+            <div style="font-size:var(--font-size-headline-2);font-weight:700">변경 기록</div>
+            <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary)">하나의 임명이 두 줄로 남습니다 — 축이 서로 독립이기 때문입니다</div>
+          </div>
+
+          <sc-if value="{{ changeLogEmpty }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:var(--space-24)">
+              <x-import component-from-global-scope="ManagementDesignSystem_2df89d.EmptyState" variant="filtered" title="이 세션에서 만든 변경이 없습니다" hint-size="100%,80px"></x-import>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ changeLogFilled }}" hint-placeholder-val="{{ true }}">
+            <div>
+              <div style="height:var(--row-h-table);display:flex;align-items:center;gap:var(--space-16);padding:0 var(--space-24);border-bottom:1px solid var(--border-subtle);background:var(--surface-selected)">
+                <span style="width:96px;flex-shrink:0;font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">오늘 09:12</span>
+                <span style="width:280px;flex-shrink:0;font-size:var(--font-size-label-1);font-weight:700">정하늘 · 개발실 실장 임명</span>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.PermissionBadge" tone="scoped" label="조직" show-icon="{{ false }}" hint-size="auto,20px"></x-import>
+                <span style="flex:1;min-width:0;font-size:var(--font-size-label-2);color:var(--text-secondary)">개발실 신설에 따른 실장 보임</span>
+                <span style="width:96px;flex-shrink:0;text-align:right;font-size:var(--font-size-label-2);color:var(--text-tertiary)">윤도현</span>
+              </div>
+              <div style="height:var(--row-h-table);display:flex;align-items:center;gap:var(--space-16);padding:0 var(--space-24);border-bottom:1px solid var(--border-subtle);background:var(--surface-selected)">
+                <span style="width:96px;flex-shrink:0;font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">오늘 09:12</span>
+                <span style="width:280px;flex-shrink:0;font-size:var(--font-size-label-1)">정하늘 · 표준 역할 부여</span>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.PermissionBadge" tone="granted" label="권한" show-icon="{{ false }}" hint-size="auto,20px"></x-import>
+                <span style="flex:1;min-width:0;font-size:var(--font-size-label-2);color:var(--text-secondary)">임명과 함께 실장 표준 역할 부여</span>
+                <span style="width:96px;flex-shrink:0;text-align:right;font-size:var(--font-size-label-2);color:var(--text-tertiary)">윤도현</span>
+              </div>
+              <div style="height:var(--row-h-table);display:flex;align-items:center;gap:var(--space-16);padding:0 var(--space-24);border-bottom:1px solid var(--border-subtle)">
+                <span style="width:96px;flex-shrink:0;font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">08.27 10:05</span>
+                <span style="width:280px;flex-shrink:0;font-size:var(--font-size-label-1)">유하람 · 디자인팀 겸직 추가</span>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.PermissionBadge" tone="scoped" label="소속" show-icon="{{ false }}" hint-size="auto,20px"></x-import>
+                <span style="flex:1;min-width:0;font-size:var(--font-size-label-2);color:var(--text-secondary)">디자인 시스템 과제 공동 수행</span>
+                <span style="width:96px;flex-shrink:0;text-align:right;font-size:var(--font-size-label-2);color:var(--text-tertiary)">윤도현</span>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+
+      </div>
+
+      <x-import component-from-global-scope="ManagementDesignSystem_2df89d.AXBar" placeholder="사람 이름이나 조직을 물어보세요" hint-size="720px,52px"></x-import>
+    </div>
+  </div>
+
+  <!-- ============ 2. 직원 관점 ============ -->
+  <div style="display:flex;flex-direction:column;gap:var(--space-12)">
+    <div style="display:flex;align-items:baseline;gap:var(--space-12)">
+      <div style="font-size:var(--font-size-headline-1);font-weight:700">2 · 직원 관점 — 읽기 전용</div>
+      <div style="font-size:var(--font-size-label-2);color:var(--text-tertiary)">구조 동일 · 「변경」 버튼과 ⑤ 변경 기록만 렌더하지 않음 · 거부 박스 없음</div>
+    </div>
+
+    <div data-screen-label="02 직원" style="position:relative;width:var(--canvas-w);height:var(--canvas-h);background:var(--surface-sunken);border:1px solid var(--border-strong);border-radius:var(--radius-panel);overflow:hidden;display:flex">
+
+      <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Sidebar" active="org" hint-size="200px,100%"></x-import>
+
+      <div style="flex:1;min-width:0;padding:var(--space-16) var(--space-48) 0;display:flex;flex-direction:column;gap:var(--space-24)">
+
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-24)">
+          <div style="display:flex;flex-direction:column;gap:var(--space-4)">
+            <div style="font-size:var(--font-size-title-3);font-weight:700">조직</div>
+            <div style="font-size:var(--font-size-body-2);color:var(--text-secondary);max-width:820px;text-wrap:pretty">여섯 축은 서로 독립입니다. 조직 계층은 권한 범위가 아니고, 직급은 직책이 아닙니다.</div>
+          </div>
+          <div style="padding-top:var(--space-8)">
+            <x-import component-from-global-scope="ManagementDesignSystem_2df89d.PermissionBadge" tone="readonly" label="읽기 전용" hint-size="auto,20px"></x-import>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:var(--grid-gutter);height:804px;flex-shrink:0">
+
+          <div style="width:392px;flex-shrink:0;background:var(--surface-default);border:1px solid var(--border-strong);border-radius:var(--radius-panel);display:flex;flex-direction:column;overflow:hidden">
+            <div style="padding:var(--space-16) var(--space-24);border-bottom:1px solid var(--border-default);display:flex;flex-direction:column;gap:var(--space-12)">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-8)">
+                <div style="font-size:var(--font-size-headline-2);font-weight:700">조직 tree</div>
+                <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary)">읽기 전용</div>
+              </div>
+              <x-import component-from-global-scope="ManagementDesignSystem_2df89d.SearchInput" placeholder="사람 이름 검색" width="100%" height="{{ 34 }}" hint-size="100%,34px"></x-import>
+            </div>
+            <div style="flex:1;min-height:0;overflow:auto;padding:var(--space-8) var(--space-16) var(--space-16)">
+
+              <div style="display:flex;align-items:center;gap:var(--gap-icon-row);padding:var(--space-8) var(--space-12);border-radius:var(--radius-control)">
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Icon" name="chevron-down" size="12" color="var(--text-tertiary)" hint-size="12px,12px"></x-import>
+                <div style="flex:1;min-width:0">
+                  <div style="display:flex;align-items:center;gap:var(--space-8)">
+                    <span style="font-size:var(--font-size-label-1);font-weight:700">더에스씨</span>
+                    <span style="font-size:var(--font-size-caption-2);color:var(--text-tertiary)">회사</span>
+                  </div>
+                  <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">직접 4 · 전체 128</div>
+                </div>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Avatar" size="xs" name="차민석" hint-size="auto,20px"></x-import>
+              </div>
+
+              <div style="padding-left:var(--space-16)">
+                <div style="display:flex;align-items:center;gap:var(--gap-icon-row);padding:var(--space-8) var(--space-12);border-radius:var(--radius-control)">
+                  <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Icon" name="chevron-down" size="12" color="var(--text-tertiary)" hint-size="12px,12px"></x-import>
+                  <div style="flex:1;min-width:0">
+                    <div style="display:flex;align-items:center;gap:var(--space-8)">
+                      <span style="font-size:var(--font-size-label-1);font-weight:700">제품본부</span>
+                      <span style="font-size:var(--font-size-caption-2);color:var(--text-tertiary)">본부</span>
+                    </div>
+                    <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">직접 0 · 전체 46</div>
+                  </div>
+                  <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Avatar" size="xs" name="이해든" hint-size="auto,20px"></x-import>
+                </div>
+
+                <div style="padding-left:var(--space-16)">
+                  <div style="display:flex;align-items:center;gap:var(--gap-icon-row);padding:var(--space-8) var(--space-12);border-radius:var(--radius-control);background:var(--surface-selected)">
+                    <div style="width:12px;flex-shrink:0"></div>
+                    <div style="flex:1;min-width:0">
+                      <div style="display:flex;align-items:center;gap:var(--space-8)">
+                        <span style="font-size:var(--font-size-label-1);font-weight:700">제품기획팀</span>
+                        <span style="font-size:var(--font-size-caption-2);color:var(--text-tertiary)">팀</span>
+                      </div>
+                      <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">직접 12 · 전체 12</div>
+                    </div>
+                    <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Avatar" size="xs" name="김세연" hint-size="auto,20px"></x-import>
+                  </div>
+
+                  <div style="display:flex;align-items:center;gap:var(--gap-icon-row);padding:var(--space-8) var(--space-12);border-radius:var(--radius-control)">
+                    <div style="width:12px;flex-shrink:0"></div>
+                    <div style="flex:1;min-width:0">
+                      <div style="display:flex;align-items:center;gap:var(--space-8)">
+                        <span style="font-size:var(--font-size-label-1);font-weight:700">디자인팀</span>
+                        <span style="font-size:var(--font-size-caption-2);color:var(--text-tertiary)">팀</span>
+                      </div>
+                      <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">직접 9 · 전체 9</div>
+                    </div>
+                    <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Avatar" size="xs" name="한서우" hint-size="auto,20px"></x-import>
+                  </div>
+
+                  <div style="display:flex;align-items:center;gap:var(--gap-icon-row);padding:var(--space-8) var(--space-12);border-radius:var(--radius-control)">
+                    <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Icon" name="chevron-right" size="12" color="var(--text-tertiary)" hint-size="12px,12px"></x-import>
+                    <div style="flex:1;min-width:0">
+                      <div style="display:flex;align-items:center;gap:var(--space-8)">
+                        <span style="font-size:var(--font-size-label-1);font-weight:700">개발실</span>
+                        <span style="font-size:var(--font-size-caption-2);color:var(--text-tertiary)">실</span>
+                      </div>
+                      <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">직접 1 · 전체 24</div>
+                    </div>
+                    <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Avatar" size="xs" name="정하늘" hint-size="auto,20px"></x-import>
+                  </div>
+                </div>
+
+                <div style="display:flex;align-items:center;gap:var(--gap-icon-row);padding:var(--space-8) var(--space-12);border-radius:var(--radius-control)">
+                  <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Icon" name="chevron-right" size="12" color="var(--text-tertiary)" hint-size="12px,12px"></x-import>
+                  <div style="flex:1;min-width:0">
+                    <div style="display:flex;align-items:center;gap:var(--space-8)">
+                      <span style="font-size:var(--font-size-label-1);font-weight:700">경영지원본부</span>
+                      <span style="font-size:var(--font-size-caption-2);color:var(--text-tertiary)">본부</span>
+                    </div>
+                    <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">직접 2 · 전체 27</div>
+                  </div>
+                  <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Avatar" size="xs" name="윤도현" hint-size="auto,20px"></x-import>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div style="width:600px;flex-shrink:0;background:var(--surface-default);border:1px solid var(--border-strong);border-radius:var(--radius-panel);display:flex;flex-direction:column;overflow:hidden">
+            <div style="padding:var(--space-16) var(--space-24);border-bottom:1px solid var(--border-default);display:flex;align-items:center;justify-content:space-between;gap:var(--space-8)">
+              <div style="font-size:var(--font-size-headline-2);font-weight:700">제품기획팀 구성원</div>
+              <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">직접 소속 12명</div>
+            </div>
+            <div style="flex:1;min-height:0;overflow:auto">
+
+              <div style="height:var(--row-h-list);display:flex;align-items:center;gap:var(--space-12);padding:0 var(--space-16);border-bottom:1px solid var(--border-subtle);background:var(--surface-selected);cursor:pointer">
+                <span style="width:40px;flex-shrink:0;font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">2417</span>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Avatar" size="sm" hint-size="24px,24px"></x-import>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:var(--font-size-label-1);font-weight:700">유하람</div>
+                  <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary)">제품기획팀 (주) · 디자인팀 (겸직)</div>
+                </div>
+                <span style="font-size:var(--font-size-label-2);color:var(--text-secondary)">선임</span>
+              </div>
+
+              <div style="height:var(--row-h-list);display:flex;align-items:center;gap:var(--space-12);padding:0 var(--space-16);border-bottom:1px solid var(--border-subtle);cursor:pointer">
+                <span style="width:40px;flex-shrink:0;font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">2183</span>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Avatar" size="sm" hint-size="24px,24px"></x-import>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:var(--font-size-label-1);font-weight:700">김세연</div>
+                  <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary)">제품기획팀 (주)</div>
+                </div>
+                <span style="font-size:var(--font-size-label-2);color:var(--text-secondary)">책임</span>
+              </div>
+
+              <div style="height:var(--row-h-list);display:flex;align-items:center;gap:var(--space-12);padding:0 var(--space-16);border-bottom:1px solid var(--border-subtle);cursor:pointer">
+                <span style="width:40px;flex-shrink:0;font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">1994</span>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Avatar" size="sm" hint-size="24px,24px"></x-import>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:var(--font-size-label-1);font-weight:700">정하늘</div>
+                  <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary)">개발실 (주) · 제품기획팀 (겸직)</div>
+                </div>
+                <span style="font-size:var(--font-size-label-2);color:var(--text-secondary)">수석</span>
+              </div>
+
+              <div style="height:var(--row-h-list);display:flex;align-items:center;gap:var(--space-12);padding:0 var(--space-16);border-bottom:1px solid var(--border-subtle);cursor:pointer">
+                <span style="width:40px;flex-shrink:0;font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">2455</span>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Avatar" size="sm" hint-size="24px,24px"></x-import>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:var(--font-size-label-1);font-weight:700">한서우</div>
+                  <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary)">제품기획팀 (주)</div>
+                </div>
+                <span style="font-size:var(--font-size-label-2);color:var(--text-secondary)">선임</span>
+              </div>
+
+              <div style="height:var(--row-h-list);display:flex;align-items:center;gap:var(--space-12);padding:0 var(--space-16);border-bottom:1px solid var(--border-subtle);cursor:pointer">
+                <span style="width:40px;flex-shrink:0;font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">2506</span>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Avatar" size="sm" hint-size="24px,24px"></x-import>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:var(--font-size-label-1);font-weight:700">박도윤</div>
+                  <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary)">제품기획팀 (주)</div>
+                </div>
+                <span style="font-size:var(--font-size-label-2);color:var(--text-secondary)">사원</span>
+              </div>
+
+              <div style="height:var(--row-h-list);display:flex;align-items:center;gap:var(--space-12);padding:0 var(--space-16);border-bottom:1px solid var(--border-subtle);cursor:pointer">
+                <span style="width:40px;flex-shrink:0;font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">2612</span>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Avatar" size="sm" hint-size="24px,24px"></x-import>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:var(--font-size-label-1);font-weight:700">오지훈</div>
+                  <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary)">제품기획팀 (주)</div>
+                </div>
+                <span style="font-size:var(--font-size-label-2);color:var(--text-secondary)">사원</span>
+              </div>
+
+            </div>
+          </div>
+
+          <div style="width:600px;flex-shrink:0;align-self:flex-start;position:sticky;top:0;height:804px;background:var(--surface-default);border:1px solid var(--border-strong);border-radius:var(--radius-panel);display:flex;flex-direction:column;overflow:hidden">
+            <div style="padding:var(--space-12) var(--space-24);border-bottom:1px solid var(--border-default);display:flex;align-items:center;gap:var(--space-12)">
+              <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Avatar" size="lg" hint-size="40px,40px"></x-import>
+              <div style="flex:1;min-width:0">
+                <div style="display:flex;align-items:center;gap:var(--space-8)">
+                  <span style="font-size:var(--font-size-headline-1);font-weight:700">유하람</span>
+                  <span style="font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">2417</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:var(--space-4);margin-top:var(--space-4)">
+                  <x-import component-from-global-scope="ManagementDesignSystem_2df89d.PermissionBadge" tone="scoped" label="재직" show-icon="{{ false }}" hint-size="auto,20px"></x-import>
+                  <x-import component-from-global-scope="ManagementDesignSystem_2df89d.PermissionBadge" tone="scoped" label="로그인 계정 있음" show-icon="{{ false }}" hint-size="auto,20px"></x-import>
+                </div>
+              </div>
+            </div>
+
+            <div style="flex:1;min-height:0;overflow:auto;padding:var(--space-8) var(--space-24) var(--space-16)">
+
+              <div style="display:flex;gap:var(--space-12);padding:var(--space-8) 0;border-bottom:1px solid var(--border-subtle)">
+                <div style="width:36px;flex-shrink:0;font-size:var(--font-size-label-2);font-weight:700;color:var(--text-tertiary)">계층</div>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:var(--font-size-label-1);color:var(--text-disabled)">더에스씨 › 제품본부 › 제품기획팀</div>
+                  <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary)">조직 계층은 권한 범위가 아닙니다</div>
+                </div>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Button" variant="ghost" size="sm" hint-size="auto,30px">이력</x-import>
+              </div>
+
+              <div style="display:flex;gap:var(--space-12);padding:var(--space-8) 0;border-bottom:1px solid var(--border-subtle)">
+                <div style="width:36px;flex-shrink:0;font-size:var(--font-size-label-2);font-weight:700;color:var(--text-tertiary)">소속</div>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:var(--font-size-label-1)">제품기획팀 (주) · 디자인팀 (겸직)</div>
+                  <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary)">겸직은 권한을 따라오지 않습니다</div>
+                </div>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Button" variant="ghost" size="sm" hint-size="auto,30px">이력</x-import>
+              </div>
+
+              <div style="display:flex;gap:var(--space-12);padding:var(--space-8) 0;border-bottom:1px solid var(--border-subtle)">
+                <div style="width:36px;flex-shrink:0;font-size:var(--font-size-label-2);font-weight:700;color:var(--text-tertiary)">직책</div>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:var(--font-size-label-1)">—</div>
+                  <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary)">직책은 직급과 다른 축입니다</div>
+                </div>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Button" variant="ghost" size="sm" hint-size="auto,30px">이력</x-import>
+              </div>
+
+              <div style="display:flex;gap:var(--space-12);padding:var(--space-8) 0;border-bottom:1px solid var(--border-subtle)">
+                <div style="width:36px;flex-shrink:0;font-size:var(--font-size-label-2);font-weight:700;color:var(--text-tertiary)">직급</div>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:var(--font-size-label-1);color:var(--text-disabled)">선임</div>
+                  <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary)">직급 값은 이 화면에서 바꾸지 않습니다</div>
+                </div>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Button" variant="ghost" size="sm" hint-size="auto,30px">이력</x-import>
+              </div>
+
+              <div style="display:flex;gap:var(--space-12);padding:var(--space-8) 0;border-bottom:1px solid var(--border-subtle)">
+                <div style="width:36px;flex-shrink:0;font-size:var(--font-size-label-2);font-weight:700;color:var(--text-tertiary)">직무</div>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:var(--font-size-label-1);color:var(--text-disabled)">제품기획 (주) · UX리서치 (보조)</div>
+                  <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary)">직무명은 접근 권한이 아닙니다</div>
+                </div>
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Button" variant="ghost" size="sm" hint-size="auto,30px">이력</x-import>
+              </div>
+
+              <div style="margin-top:var(--space-12);background:var(--selected-bg);border-radius:var(--radius-control);padding:var(--space-16)">
+                <div style="display:flex;gap:var(--space-12)">
+                  <div style="width:36px;flex-shrink:0;font-size:var(--font-size-label-2);font-weight:700;color:var(--text-primary)">권한</div>
+                  <div style="flex:1;min-width:0">
+                    <div style="font-size:var(--font-size-label-1);font-weight:700">업무 열람 · 제품본부 / 보고 승인 · 제품기획팀</div>
+                    <div style="font-size:var(--font-size-caption-1);color:var(--text-secondary)">여섯 축 가운데 실제 권한을 바꾸는 축은 이것뿐입니다</div>
+                  </div>
+                  <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Button" variant="ghost" size="sm" hint-size="auto,30px">이력</x-import>
+                </div>
+                <div style="margin-top:var(--space-8);padding-top:var(--space-8);border-top:1px solid var(--ai-border)">
+                  <div style="font-size:var(--font-size-caption-2);font-weight:700;color:var(--text-tertiary);margin-bottom:var(--space-4)">회수된 권한</div>
+                  <div style="display:flex;flex-direction:column;gap:var(--space-4)">
+                    <div style="display:flex;justify-content:space-between;gap:var(--space-8);font-size:var(--font-size-caption-1);color:var(--text-secondary)"><span>자료 관리 · 제품본부</span><span style="color:var(--text-tertiary);font-variant-numeric:tabular-nums">2025.03.02 – 2026.01.14</span></div>
+                    <div style="display:flex;justify-content:space-between;gap:var(--space-8);font-size:var(--font-size-caption-1);color:var(--text-secondary)"><span>보고 승인 · 디자인팀</span><span style="color:var(--text-tertiary);font-variant-numeric:tabular-nums">2024.09.01 – 2025.02.28</span></div>
+                    <div style="display:flex;justify-content:space-between;gap:var(--space-8);font-size:var(--font-size-caption-1);color:var(--text-secondary)"><span>조직 관리 · 제품기획팀</span><span style="color:var(--text-tertiary);font-variant-numeric:tabular-nums">2024.03.04 – 2024.08.31</span></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <x-import component-from-global-scope="ManagementDesignSystem_2df89d.AXBar" placeholder="사람 이름이나 조직을 물어보세요" hint-size="720px,52px"></x-import>
+    </div>
+  </div>
+
+  <!-- ============ 3. M1 소속 변경 모달 ============ -->
+  <div style="display:flex;flex-direction:column;gap:var(--space-12)">
+    <div style="display:flex;align-items:baseline;gap:var(--space-12)">
+      <div style="font-size:var(--font-size-headline-1);font-weight:700">3 · M1 소속 변경 모달</div>
+      <div style="font-size:var(--font-size-label-2);color:var(--text-tertiary)">필드 순서 대상 → 값 → 적용일 → 미리보기 → 딸린 권한 체크 → 사유</div>
+    </div>
+
+    <div data-screen-label="03 소속 변경 모달" style="position:relative;width:var(--canvas-w);height:var(--canvas-h);background:var(--surface-sunken);border:1px solid var(--border-strong);border-radius:var(--radius-panel);overflow:hidden;display:flex">
+
+      <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Sidebar" active="org" hint-size="200px,100%"></x-import>
+
+      <div style="flex:1;min-width:0;padding:var(--space-16) var(--space-48) 0;display:flex;flex-direction:column;gap:var(--space-24)">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-24)">
+          <div style="display:flex;flex-direction:column;gap:var(--space-4)">
+            <div style="font-size:var(--font-size-title-3);font-weight:700">조직</div>
+            <div style="font-size:var(--font-size-body-2);color:var(--text-secondary);max-width:820px;text-wrap:pretty">여섯 축은 서로 독립입니다. 조직 계층은 권한 범위가 아니고, 직급은 직책이 아닙니다.</div>
+          </div>
+          <div style="padding-top:var(--space-8)">
+            <x-import component-from-global-scope="ManagementDesignSystem_2df89d.PermissionBadge" tone="granted" label="조직 관리 권한 있음" hint-size="auto,20px"></x-import>
+          </div>
+        </div>
+        <div style="display:flex;gap:var(--grid-gutter);height:649px;flex-shrink:0">
+          <div style="width:392px;flex-shrink:0;background:var(--surface-default);border:1px solid var(--border-strong);border-radius:var(--radius-panel)"></div>
+          <div style="width:600px;flex-shrink:0;background:var(--surface-default);border:1px solid var(--border-strong);border-radius:var(--radius-panel)"></div>
+          <div style="width:600px;flex-shrink:0;background:var(--surface-default);border:1px solid var(--border-strong);border-radius:var(--radius-panel)"></div>
+        </div>
+        <div style="height:214px;flex-shrink:0;background:var(--surface-default);border:1px solid var(--border-strong);border-radius:var(--radius-panel)"></div>
+      </div>
+
+      <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Modal" title="소속 변경" hint-size="100%,100%">
+
+        <div style="display:flex;align-items:center;gap:var(--space-12);padding:var(--space-12) var(--space-16);background:var(--surface-sunken);border-radius:var(--radius-control)">
+          <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Avatar" size="sm" hint-size="24px,24px"></x-import>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:var(--font-size-label-1);font-weight:700">유하람</div>
+            <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary);font-variant-numeric:tabular-nums">2417 · 선임</div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:var(--space-16)">
+
+          <div style="display:flex;align-items:center;gap:var(--space-8);padding:var(--space-8) var(--space-12);border:1px solid var(--border-default);border-radius:var(--radius-control)">
+            <span style="font-size:var(--font-size-label-2);font-weight:700;color:var(--text-tertiary);flex-shrink:0">현재 소속</span>
+            <span style="flex:1;min-width:0;font-size:var(--font-size-label-1)">제품기획팀 (주) · 디자인팀 (겸직)</span>
+            <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Button" variant="ghost" size="sm" hint-size="auto,30px">겸직 해제</x-import>
+          </div>
+
+          <div style="display:flex;gap:var(--space-16)">
+            <div style="flex:1;min-width:0">
+              <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Field" label="옮길 조직" required="{{ true }}" helper="회사 노드는 선택할 수 없습니다" hint-size="100%,72px">
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Select" value="개발실" hint-size="100%,38px"></x-import>
+              </x-import>
+            </div>
+            <div style="flex:1;min-width:0">
+              <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Field" label="적용일" required="{{ true }}" helper="이 날부터 새 소속이 적용됩니다" hint-size="100%,72px">
+                <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Input" value="2026년 09월 07일" hint-size="100%,38px"></x-import>
+              </x-import>
+            </div>
+          </div>
+
+          <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Field" label="소속 종류" required="{{ true }}" hint-size="100%,48px">
+            <div style="display:flex;align-items:center;gap:var(--space-24);height:var(--control-h-sm)">
+              <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Radio" label="주소속" checked="{{ isPrimary }}" on-change="{{ pickPrimary }}" hint-size="auto,20px"></x-import>
+              <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Radio" label="겸직" checked="{{ isConcurrent }}" on-change="{{ pickConcurrent }}" hint-size="auto,20px"></x-import>
+            </div>
+          </x-import>
+
+          <div style="border:1px solid var(--accent);border-radius:var(--radius-control);padding:var(--space-16);display:flex;flex-direction:column;gap:var(--space-12)">
+            <div style="font-size:var(--font-size-label-2);font-weight:700;color:var(--text-tertiary)">미리보기</div>
+            <div style="display:flex;align-items:center;gap:var(--space-12)">
+              <div style="flex:1;min-width:0;padding:var(--space-8) var(--space-12);background:var(--surface-sunken);border-radius:var(--radius-badge)">
+                <div style="font-size:var(--font-size-caption-2);color:var(--text-tertiary)">before</div>
+                <div style="font-size:var(--font-size-label-1)">제품기획팀 (주) · 디자인팀 (겸직)</div>
+              </div>
+              <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Icon" name="chevron-right" size="16" color="var(--text-tertiary)" hint-size="16px,16px"></x-import>
+              <div style="flex:1;min-width:0;padding:var(--space-8) var(--space-12);background:var(--selected-bg);border-radius:var(--radius-badge)">
+                <div style="font-size:var(--font-size-caption-2);color:var(--text-tertiary)">after</div>
+                <div style="font-size:var(--font-size-label-1);font-weight:700">개발실 (주) · 디자인팀 (겸직)</div>
+              </div>
+            </div>
+            <div style="font-size:var(--font-size-label-2);color:var(--danger-hover)">제품기획팀 (주) 소속이 09월 06일로 종료됩니다. 계층 표시가 더에스씨 › 제품본부 › 개발실로 바뀝니다.</div>
+            <div style="font-size:var(--font-size-label-2);color:var(--text-secondary)">직급 · 직무 · 직책은 이 변경으로 바뀌지 않습니다.</div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:var(--space-12)">
+            <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Checkbox" label="새 조직의 표준 역할을 함께 부여" checked="{{ grantStd }}" on-change="{{ toggleGrantStd }}" hint-size="auto,20px"></x-import>
+            <div style="padding-left:var(--space-24);display:flex;flex-direction:column;gap:var(--space-4)">
+              <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Checkbox" label="이전 소속에서 받은 역할을 함께 회수" checked="{{ revokePrev }}" disabled="{{ revokeDisabled }}" on-change="{{ toggleRevokePrev }}" hint-size="auto,20px"></x-import>
+              <div style="font-size:var(--font-size-caption-1);color:var(--text-tertiary)">주소속을 옮길 때만 고를 수 있습니다</div>
+            </div>
+          </div>
+
+          <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Field" label="사유" required="{{ true }}" helper="변경 기록에 그대로 남습니다" hint-size="100%,130px">
+            <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Textarea" value="{{ reason }}" on-change="{{ setReason }}" min-height="{{ 72 }}" placeholder="왜 바꾸는지 적어주세요" hint-size="100%,72px"></x-import>
+          </x-import>
+
+        </div>
+
+        <div style="display:flex;align-items:center;justify-content:flex-end;gap:var(--space-12)">
+          <sc-if value="{{ saveBlocked }}" hint-placeholder-val="{{ true }}">
+            <span style="font-size:var(--font-size-label-2);color:var(--text-tertiary)">사유를 적어야 저장할 수 있습니다</span>
+          </sc-if>
+          <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Button" variant="ghost" size="lg" hint-size="auto,40px">취소</x-import>
+          <x-import component-from-global-scope="ManagementDesignSystem_2df89d.Button" variant="primary" size="lg" disabled="{{ saveBlocked }}" on-click="{{ openConfirm }}" hint-size="auto,40px">저장</x-import>
+        </div>
+
+      </x-import>
+
+      <sc-if value="{{ confirmOpen }}" hint-placeholder-val="{{ false }}">
+        <x-import component-from-global-scope="ManagementDesignSystem_2df89d.ConfirmModal" title="주소속을 교체할까요?" description="되돌리기 어려운 변경입니다." impact="제품기획팀 (주) 소속이 종료됩니다." destructive="{{ true }}" reason-required="{{ true }}" reason-value="{{ reason }}" on-reason-change="{{ setReason }}" confirm-label="주소속 교체" on-cancel="{{ closeConfirm }}" on-confirm="{{ closeConfirm }}" hint-size="100%,100%"></x-import>
+      </sc-if>
+
+      <x-import component-from-global-scope="ManagementDesignSystem_2df89d.AXBar" placeholder="사람 이름이나 조직을 물어보세요" hint-size="720px,52px"></x-import>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;revokedHistory&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;6축 카드&quot;},&quot;changeLogEmpty&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;변경 기록&quot;},&quot;reasonRequired&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;소속 변경 모달&quot;}}">
+class Component extends DCLogic {
+  state = { kind: 'primary', grantStd: true, revokePrev: false, reason: '', confirmOpen: false };
+
+  renderVals() {
+    const s = this.state;
+    const isPrimary = s.kind === 'primary';
+    return {
+      revokedHistory: this.props.revokedHistory ?? true,
+      changeLogEmpty: this.props.changeLogEmpty ?? false,
+      changeLogFilled: !(this.props.changeLogEmpty ?? false),
+
+      isPrimary,
+      isConcurrent: !isPrimary,
+      pickPrimary: () => this.setState({ kind: 'primary' }),
+      pickConcurrent: () => this.setState({ kind: 'concurrent', revokePrev: false }),
+
+      grantStd: s.grantStd,
+      toggleGrantStd: (v) => this.setState({ grantStd: v }),
+      revokePrev: s.revokePrev && isPrimary,
+      revokeDisabled: !isPrimary,
+      toggleRevokePrev: (v) => this.setState({ revokePrev: v }),
+
+      reason: s.reason,
+      setReason: (v) => this.setState({ reason: v }),
+      saveBlocked: (this.props.reasonRequired ?? true) && !s.reason.trim(),
+
+      confirmOpen: s.confirmOpen,
+      openConfirm: () => this.setState({ confirmOpen: true }),
+      closeConfirm: () => this.setState({ confirmOpen: false }),
+    };
+  }
+}
+</script>
+
+
+</body></html>
