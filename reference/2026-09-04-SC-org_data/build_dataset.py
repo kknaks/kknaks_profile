@@ -14,16 +14,23 @@
 
     python3 build_dataset.py <조직도.csv> <dataset 폴더>
     python3 build_dataset.py <조직도.csv> <dataset 폴더> \
-        --test-login executive --test-login team-lead:인사총무팀 --test-login member:인사총무팀
+        --test-login executive --test-login division-head:국내사업부 \
+        --test-login team-lead:인사총무팀 --test-login member:국내사업부
 
-`--test-login` 은 **로컬에서만** 쓴다. 규칙 하나가 사람 한 명이다 — 그 자리에 해당하면서 아직 주소가 없는
-사람 중 CSV 에 먼저 나온 한 명에게만 `sc-<사번>@scax.example` 을 만든다. 자리마다 하나씩 열어 화면을 보기
-위한 것이고, 필요 없는 계정을 열지 않는다. 원본 CSV 는 읽기만 하고 고치지 않는다.
+`--test-login` 은 **로컬에서만** 쓴다. 규칙 하나가 사람 한 명이다 — 그 자리에 해당하는 사람 중 CSV 에 먼저
+나온 한 명에게 `sc-<사번>@scax.example` 을 준다. 로그인 화면의 「바로 로그인」 목록은 그 도메인만 나열하므로,
+자리마다 하나씩 열어 두면 대표·부서장·팀장·팀원을 클릭해 들어가 볼 수 있다.
 
-규칙은 `<역할>` 또는 `<역할>:<조직 이름>` 이고 역할은 `executive`·`team-lead`·`member` 셋이다. 조직 이름은
-CSV 의 팀 이름이나 부서 이름을 그대로 쓴다. 규칙에 맞는 사람이 없으면 조용히 넘어가지 않고 멈춘다.
+**위하고메일이 있는 사람도 고르며, 그 사람의 주소는 테스트 주소로 대체된다**(한 사람에 계정 하나). 고르지
+않은 사람의 위하고메일은 그대로여서 주소를 직접 입력해 로그인한다. 원본 CSV 는 읽기만 하고 고치지 않는다.
 
-실제 주소가 오면 그 사람의 규칙을 빼고 다시 만들어야 한다 — 가짜 주소가 남아 있으면 진짜 계정을 줄 수 없다.
+규칙은 `<자리>` 또는 `<자리>:<조직 이름>` 이고, 자리는 `executive`(대표) · `division-head`(부서장) ·
+`team-lead`(팀장) · `deputy-team-lead`(부팀장) · `member`(직책 없는 사람) 다섯이다. 가운데 셋은 `positions`
+표의 자리를 그대로 부르는 이름이다. 조직 이름은 CSV 의 팀 이름이나 부서 이름을 그대로 쓴다. 규칙에 맞는
+사람이 없으면 조용히 넘어가지 않고 멈춘다.
+
+실제 주소로 로그인해야 할 때가 오면 그 사람의 규칙을 빼고 다시 만들어야 한다 — 대체된 주소가 남아 있으면
+그 사람은 자기 주소로 들어올 수 없다.
 """
 from __future__ import annotations
 
@@ -109,6 +116,13 @@ POSITIONS = (
 )
 TITLES = {"부서장": "sc-dept-head", "팀장": "sc-team-lead", "부팀장": "sc-deputy-team-lead"}
 
+#: `--test-login` 이 부를 수 있는 자리. 가운데 셋은 `positions` 표의 자리를 그대로 부른다.
+TEST_LOGIN_POSITIONS = {
+    "division-head": "sc-dept-head",
+    "team-lead": "sc-team-lead",
+    "deputy-team-lead": "sc-deputy-team-lead",
+}
+
 #: 겸임 표시. 같은 이름의 행이 이 표시를 달고 다시 나오면 같은 사람의 두 번째 소속이다.
 CONCURRENT_MARK = "겸임"
 
@@ -161,26 +175,42 @@ def parse_day(raw: str) -> date | None:
 
 
 class TestLoginRule:
-    """`<역할>` 또는 `<역할>:<조직 이름>` — 로컬에서 열어 볼 자리 하나."""
+    """`<자리>` 또는 `<자리>:<조직 이름>` — 로컬에서 열어 볼 자리 하나.
 
-    __slots__ = ("role", "unit_name", "unit_key", "text")
+    자리는 세 가지로 읽힌다. `executive` 는 직급이 말하는 대표, 가운데 셋은 `positions` 표의 보직, `member` 는
+    보직이 없는 사람이다. 조직 이름이 붙으면 보직은 **그 조직에서 맡은 것**이어야 하고, 대표·구성원은 그
+    조직에 속해 있으면 된다.
+    """
+
+    __slots__ = ("seat", "position", "unit_name", "unit_key", "text")
+
+    SEATS = (ROLE_EXECUTIVE, *TEST_LOGIN_POSITIONS, ROLE_MEMBER)
 
     def __init__(self, text: str) -> None:
-        role, _, unit_name = text.partition(":")
-        role, unit_name = role.strip(), unit_name.strip()
-        if role not in (ROLE_EXECUTIVE, ROLE_LEAD, ROLE_MEMBER):
-            raise SourceError(
-                f"모르는 테스트 로그인 역할 {role!r} — {ROLE_EXECUTIVE}·{ROLE_LEAD}·{ROLE_MEMBER} 중 하나여야 한다"
-            )
+        seat, _, unit_name = text.partition(":")
+        seat, unit_name = seat.strip(), unit_name.strip()
+        if seat not in self.SEATS:
+            raise SourceError(f"모르는 테스트 로그인 자리 {seat!r} — {' · '.join(self.SEATS)} 중 하나여야 한다")
         unit_key = ""
         if unit_name:
             unit_key = TEAM_SLUGS.get(unit_name) or DEPT_SLUGS.get(unit_name, "")
             if not unit_key:
                 raise SourceError(f"모르는 조직 이름 {unit_name!r} — CSV 의 팀 또는 부서 이름을 그대로 쓴다")
-        self.role, self.unit_name, self.unit_key, self.text = role, unit_name, unit_key, text
+        self.seat, self.position = seat, TEST_LOGIN_POSITIONS.get(seat, "")
+        self.unit_name, self.unit_key, self.text = unit_name, unit_key, text
 
-    def matches(self, role: str, units: list[str]) -> bool:
-        return role == self.role and (not self.unit_key or self.unit_key in units)
+    def matches(self, role: str, units: list[str], titles: list[tuple[str, str]]) -> bool:
+        if self.position:
+            return any(
+                position == self.position and (not self.unit_key or unit_key == self.unit_key)
+                for unit_key, position in titles
+            )
+        if self.seat == ROLE_MEMBER and titles:
+            # 「구성원」은 직책이 없는 사람이다 — 팀장을 팀원 자리로 열지 않는다.
+            return False
+        if self.seat == ROLE_EXECUTIVE and role != ROLE_EXECUTIVE:
+            return False
+        return not self.unit_key or self.unit_key in units
 
 
 def normalize_phone(raw: str) -> str:
@@ -361,31 +391,42 @@ def build(rows: list[dict[str, str]], *, test_logins: tuple[TestLoginRule, ...] 
             kind = "primary" if unit_key == primary_unit else "concurrent"
             appointments.append([person.key, unit_key, position_key, kind, "", ""])
 
-    # ── 계정: 원문이 준 주소가 먼저고, 규칙은 그 자리에 아직 주소가 없는 첫 사람 하나만 연다.
-    #    지어낸 주소는 사번에서만 만들어지므로 이름·전화 같은 원문 값이 주소에 새지 않는다.
+    # ── 계정: 규칙이 그 자리의 첫 사람을 하나 고른다. 원문이 준 주소가 있어도 고르고, 그 사람의 주소는
+    #    테스트 주소로 **대체**된다 — 한 사람에 계정 하나이고, 로그인 화면 목록은 테스트 도메인만 나열하므로
+    #    그렇게 해야 그 자리를 클릭해 들어갈 수 있다. 지어낸 주소는 사번에서만 만들어지므로 이름·전화 같은
+    #    원문 값이 주소에 새지 않는다.
     invented_by_key: dict[str, str] = {}
+    replaced_real: list[str] = []
     for rule in test_logins:
         chosen = next(
             (
                 person
                 for person in people
-                if not person.email
-                and person.key not in invented_by_key
-                and rule.matches(role_of[person.key], person.units)
+                if person.key not in invented_by_key
+                and rule.matches(role_of[person.key], person.units, person.titles)
             ),
             None,
         )
         if chosen is None:
             raise SourceError(f"테스트 로그인 규칙 {rule.text!r} 에 해당하는 사람이 없다 — 규칙을 고치거나 빼라")
         invented_by_key[chosen.key] = f"{TEST_LOGIN_PREFIX}{chosen.key}@{TEST_LOGIN_DOMAIN}"
-        print(f"테스트 로그인: {rule.text} → 사번 {chosen.key}", file=sys.stderr)
+        if chosen.email:
+            replaced_real.append(chosen.key)
+        print(
+            f"테스트 로그인: {rule.text} → 사번 {chosen.key}"
+            f"{' (원문 주소를 테스트 주소로 대체)' if chosen.email else ''}",
+            file=sys.stderr,
+        )
 
     for person in people:
-        if person.email:
-            logins.append([person.key, person.email])
-        elif person.key in invented_by_key:
+        if person.key in invented_by_key:
             logins.append([person.key, invented_by_key[person.key]])
             invented_logins.append(person.key)
+        elif person.email:
+            logins.append([person.key, person.email])
+
+    if replaced_real:
+        warn(f"테스트 로그인이 원문 위하고메일 {len(replaced_real)}건을 대체했다 — 로컬 전용이며 CSV 는 그대로다")
 
     print(
         "요약: "
@@ -465,8 +506,8 @@ def main(argv: list[str] | None = None) -> int:
         dest="test_logins",
         help=(
             "로컬 전용 — 그 자리의 첫 한 사람에게 "
-            f"{TEST_LOGIN_PREFIX}<사번>@{TEST_LOGIN_DOMAIN} 계정을 만든다 (여러 번 쓸 수 있다). "
-            f"역할은 {ROLE_EXECUTIVE}·{ROLE_LEAD}·{ROLE_MEMBER}"
+            f"{TEST_LOGIN_PREFIX}<사번>@{TEST_LOGIN_DOMAIN} 계정을 준다 (여러 번 쓸 수 있다). "
+            f"자리는 {' · '.join(TestLoginRule.SEATS)}. 위하고메일이 있으면 대체된다"
         ),
     )
     arguments = parser.parse_args(argv)
@@ -479,7 +520,7 @@ def main(argv: list[str] | None = None) -> int:
     rules = tuple(TestLoginRule(text) for text in arguments.test_logins)
     tables = build(read_rows(source), test_logins=rules)
     if rules:
-        warn(f"--test-login {len(rules)}건: 로컬 전용 주소를 만들었다. 실제 주소가 오면 그 규칙을 빼고 다시 만들 것")
+        warn(f"--test-login {len(rules)}건: 로컬 전용 주소다. 실제 주소로 들어가야 하면 그 규칙을 빼고 다시 만들 것")
     write_tables(target, tables)
     print(f"{target} 에 표 {len(tables) + len(EMPTY_TABLES)}개를 썼습니다.", file=sys.stderr)
     return 0
