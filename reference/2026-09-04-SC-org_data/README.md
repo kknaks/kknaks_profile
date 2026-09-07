@@ -16,8 +16,9 @@ make dataset-import TARGET=~/scax-datasets/the-sc
 # 2) CSV → 표 채우기 (표준 라이브러리만 · 멱등)
 python3 build_dataset.py "더에쓰씨_조직도_2026-09-02(검수2)_상세추가.csv" ~/scax-datasets/the-sc
 
-#    로컬에서 대표·부서장·팀장·팀원 아무 자리로나 로그인해 보려면 (아래 「로컬 테스트 로그인」 참고)
-python3 build_dataset.py "더에쓰씨_조직도_2026-09-02(검수2)_상세추가.csv" ~/scax-datasets/the-sc --test-logins
+#    로컬에서 자리별로 하나씩 로그인해 보려면 (아래 「로컬 테스트 로그인」 참고) — 권장 명령
+python3 build_dataset.py "더에쓰씨_조직도_2026-09-02(검수2)_상세추가.csv" ~/scax-datasets/the-sc \
+    --test-login executive --test-login team-lead:인사총무팀 --test-login member:인사총무팀
 
 # 3) 검사만 (데이터베이스는 그대로)
 SCAX_DATASET_PASSWORD=scax-demo-1234 make dataset-import TARGET=~/scax-datasets/the-sc DATASET_ARGS=--dry-run
@@ -83,19 +84,30 @@ CSV 열 14개 중 **7개만** 들어간다.
    갖고 나머지는 비어 있다. 명부 API 는 이 두 값을 **`organization.manage` 권한이 있는 Principal 에게만**
    채워 주고, 없으면 필드는 그대로 두고 값만 `null` 이다.
 
-### 로컬 테스트 로그인 — `--test-logins` (2026-09-07 추가)
+### 로컬 테스트 로그인 — `--test-login` (2026-09-07)
 
-`--test-logins` 는 **위하고메일이 없는 사람에게** `sc-<사번>@scax.example` 을 만들어 `logins` 에 넣는다.
-비밀번호는 다른 계정과 같이 적재할 때 환경(`SCAX_DATASET_PASSWORD`)이 준다.
+`--test-login <역할>[:<조직 이름>]` 은 **규칙 하나가 사람 한 명**이다. 그 자리에 해당하면서 아직 위하고메일이
+없는 사람 중 **CSV 에 먼저 나온 한 명**에게만 `sc-<사번>@scax.example` 을 만든다. 여러 번 쓸 수 있다.
 
-- **원본 CSV 는 읽기만 하고 고치지 않는다.** 위하고메일이 적힌 15명은 실제 주소 그대로 들어간다.
+- 역할은 `executive` · `team-lead` · `member` 셋이고, 조직 이름은 CSV 의 팀 이름이나 부서 이름을 그대로 쓴다.
+- **원본 CSV 는 읽기만 하고 고치지 않는다.** 위하고메일이 적힌 15명은 실제 주소 그대로 들어가고, 규칙은 그
+  사람들을 건너뛴다.
+- 규칙에 맞는 사람이 없으면 조용히 넘어가지 않고 멈춘다 — 열릴 줄 알았던 계정이 없는 채로 적재되지 않도록.
 - 도메인이 `scax.example` 인 이유는 로그인 화면의 계정 목록이 그 도메인만 나열하기 때문이다
-  (`bootstrap/seed.py::DEMO_EMAIL_DOMAIN` · `/api/auth/providers`). 그래서 이 150명은 목록에서 눌러 들어갈 수
-  있고, 실제 주소를 가진 15명은 목록에 없이 주소를 직접 입력해 로그인한다.
-- **로컬 확인 전용이다.** 실제 주소가 오면 이 옵션 **없이** dataset 을 다시 만들고 다시 적재해야 한다 —
+  (`bootstrap/seed.py::DEMO_EMAIL_DOMAIN` · `/api/auth/providers`). 실제 주소를 가진 15명은 목록에 없이
+  주소를 직접 입력해 로그인한다.
+- **로컬 확인 전용이다.** 실제 주소가 오면 그 사람의 규칙을 빼고 dataset 을 다시 만들어 다시 적재해야 한다 —
   지어낸 주소가 남아 있으면 그 사람에게 진짜 계정을 줄 수 없다.
-- 권한 패널(`/api/access/*`)은 `organization.manage` 를 가진 사람에게만 열린다. SC 에서는 대표 2명뿐이라,
-  이 옵션이 없으면 대표 자리로 로그인할 방법이 없다(대표 2명 모두 위하고메일이 없다).
+
+권장 규칙 3개와 그 이유:
+
+| 규칙 | 여는 자리 | 왜 |
+|---|---|---|
+| `executive` | 대표이사 | 권한 패널(`/api/access/*`)은 `organization.manage` 를 가진 사람에게만 열리고, SC 에서는 대표 2명뿐인데 둘 다 위하고메일이 없다 |
+| `team-lead:인사총무팀` | 팀장 | 팀장 자리에서 보이는 화면을 확인한다. 경영관리부에는 부서장이 없고 팀장이 인사총무팀·재무회계팀에 하나씩이다 |
+| `member:인사총무팀` | 팀원 | 권한 없는 사람에게 무엇이 막히는지 확인한다 |
+
+국내사업부는 부서장 1명과 팀원 14명이 실제 위하고메일을 갖고 있어 규칙 없이도 이미 로그인된다(팀이 없는 부서).
 
 ### 계약에 맞추느라 바꾼 것 — `sc-` 접두사
 
@@ -121,7 +133,7 @@ importer 는 이미 있는 key 를 덮어쓰지 않으므로 접두사 없이 �
 | `members` | 165 | 원본 169행 − 겸임 병합 4행 |
 | `memberships` | 169 | `primary` 165 · `additional` 4 |
 | `appointments` | 22 | `primary` 18 · `concurrent` 4 |
-| `logins` | 15 (`--test-logins` 로는 165) | 위하고메일 15 + 로컬 테스트 주소 150 |
+| `logins` | 15 (권장 규칙 3개를 쓰면 18) | 위하고메일 15 + 로컬 테스트 주소 3 |
 | `members.phone` | 15 | 전화가 적힌 사람만 |
 | `members.birth_date` | 15 | 생년월일이 적힌 사람만 |
 | `jobs` · `job_assignments` · `projects` · `project_assignments` | 0 | CSV 에 직무 열이 없다 |

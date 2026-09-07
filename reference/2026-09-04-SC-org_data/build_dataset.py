@@ -13,11 +13,17 @@
 이 파일에는 사람의 이름이 상수로 들어가지 않는다 — 겸임과 동명이인은 이름이 아니라 규칙이 가른다.
 
     python3 build_dataset.py <조직도.csv> <dataset 폴더>
-    python3 build_dataset.py <조직도.csv> <dataset 폴더> --test-logins   # 로컬 확인용
+    python3 build_dataset.py <조직도.csv> <dataset 폴더> \
+        --test-login executive --test-login team-lead:인사총무팀 --test-login member:인사총무팀
 
-`--test-logins` 는 **로컬에서만** 쓴다. 주소가 없는 사람에게 `sc-<사번>@scax.example` 을 만들어, 대표·부서장·
-팀장·팀원 중 누구로든 로그인해 화면을 볼 수 있게 한다. 원본 CSV 는 읽기만 하고 고치지 않는다. 실제 주소가
-오면 이 옵션 없이 다시 만들어야 한다 — 가짜 주소가 남아 있으면 그 사람에게 진짜 계정을 줄 수 없다.
+`--test-login` 은 **로컬에서만** 쓴다. 규칙 하나가 사람 한 명이다 — 그 자리에 해당하면서 아직 주소가 없는
+사람 중 CSV 에 먼저 나온 한 명에게만 `sc-<사번>@scax.example` 을 만든다. 자리마다 하나씩 열어 화면을 보기
+위한 것이고, 필요 없는 계정을 열지 않는다. 원본 CSV 는 읽기만 하고 고치지 않는다.
+
+규칙은 `<역할>` 또는 `<역할>:<조직 이름>` 이고 역할은 `executive`·`team-lead`·`member` 셋이다. 조직 이름은
+CSV 의 팀 이름이나 부서 이름을 그대로 쓴다. 규칙에 맞는 사람이 없으면 조용히 넘어가지 않고 멈춘다.
+
+실제 주소가 오면 그 사람의 규칙을 빼고 다시 만들어야 한다 — 가짜 주소가 남아 있으면 진짜 계정을 줄 수 없다.
 """
 from __future__ import annotations
 
@@ -116,7 +122,7 @@ ROLE_MEMBER = "member"
 #: 계정을 만들 주소가 적힌 열. 지메일이 아니라 회사 메일이다.
 LOGIN_EMAIL_COLUMN = "위하고메일"
 
-#: `--test-logins` 가 만드는 로컬 전용 주소의 모양. 이 도메인이어야 로그인 화면의 계정 목록에 나열된다
+#: `--test-login` 이 만드는 로컬 전용 주소의 모양. 이 도메인이어야 로그인 화면의 계정 목록에 나열된다
 #: (`bootstrap/seed.py::DEMO_EMAIL_DOMAIN`, `entrypoints/http.py::/api/auth/providers`).
 TEST_LOGIN_DOMAIN = "scax.example"
 TEST_LOGIN_PREFIX = "sc-"
@@ -152,6 +158,29 @@ def parse_day(raw: str) -> date | None:
         except ValueError:
             continue
     return None
+
+
+class TestLoginRule:
+    """`<역할>` 또는 `<역할>:<조직 이름>` — 로컬에서 열어 볼 자리 하나."""
+
+    __slots__ = ("role", "unit_name", "unit_key", "text")
+
+    def __init__(self, text: str) -> None:
+        role, _, unit_name = text.partition(":")
+        role, unit_name = role.strip(), unit_name.strip()
+        if role not in (ROLE_EXECUTIVE, ROLE_LEAD, ROLE_MEMBER):
+            raise SourceError(
+                f"모르는 테스트 로그인 역할 {role!r} — {ROLE_EXECUTIVE}·{ROLE_LEAD}·{ROLE_MEMBER} 중 하나여야 한다"
+            )
+        unit_key = ""
+        if unit_name:
+            unit_key = TEAM_SLUGS.get(unit_name) or DEPT_SLUGS.get(unit_name, "")
+            if not unit_key:
+                raise SourceError(f"모르는 조직 이름 {unit_name!r} — CSV 의 팀 또는 부서 이름을 그대로 쓴다")
+        self.role, self.unit_name, self.unit_key, self.text = role, unit_name, unit_key, text
+
+    def matches(self, role: str, units: list[str]) -> bool:
+        return role == self.role and (not self.unit_key or self.unit_key in units)
 
 
 def normalize_phone(raw: str) -> str:
@@ -190,7 +219,7 @@ def read_rows(source: Path) -> list[dict[str, str]]:
         return [dict(row) for row in csv.DictReader(handle)]
 
 
-def build(rows: list[dict[str, str]], *, test_logins: bool = False) -> dict[str, list[list[str]]]:
+def build(rows: list[dict[str, str]], *, test_logins: tuple[TestLoginRule, ...] = ()) -> dict[str, list[list[str]]]:
     """CSV 행들 → 표별 데이터 행. 여기서만 판단하고, 쓰기는 하지 않는다."""
     cell = lambda row, column: (row.get(column) or "").strip()  # noqa: E731
 
@@ -296,9 +325,10 @@ def build(rows: list[dict[str, str]], *, test_logins: bool = False) -> dict[str,
     memberships: list[list[str]] = []
     appointments: list[list[str]] = []
     logins: list[list[str]] = []
-    #: `--test-logins` 로 지어낸 주소를 가진 사람. 원문이 준 주소와 섞이지 않도록 따로 센다.
+    #: `--test-login` 으로 지어낸 주소를 가진 사람. 원문이 준 주소와 섞이지 않도록 따로 센다.
     invented_logins: list[str] = []
     role_counts = {ROLE_EXECUTIVE: 0, ROLE_LEAD: 0, ROLE_MEMBER: 0}
+    role_of: dict[str, str] = {}
 
     for person in people:
         primary_unit = person.units[0]
@@ -309,6 +339,7 @@ def build(rows: list[dict[str, str]], *, test_logins: bool = False) -> dict[str,
         else:
             role = ROLE_MEMBER
         role_counts[role] += 1
+        role_of[person.key] = role
         members.append(
             [
                 person.key,
@@ -329,12 +360,31 @@ def build(rows: list[dict[str, str]], *, test_logins: bool = False) -> dict[str,
         for unit_key, position_key in person.titles:
             kind = "primary" if unit_key == primary_unit else "concurrent"
             appointments.append([person.key, unit_key, position_key, kind, "", ""])
+
+    # ── 계정: 원문이 준 주소가 먼저고, 규칙은 그 자리에 아직 주소가 없는 첫 사람 하나만 연다.
+    #    지어낸 주소는 사번에서만 만들어지므로 이름·전화 같은 원문 값이 주소에 새지 않는다.
+    invented_by_key: dict[str, str] = {}
+    for rule in test_logins:
+        chosen = next(
+            (
+                person
+                for person in people
+                if not person.email
+                and person.key not in invented_by_key
+                and rule.matches(role_of[person.key], person.units)
+            ),
+            None,
+        )
+        if chosen is None:
+            raise SourceError(f"테스트 로그인 규칙 {rule.text!r} 에 해당하는 사람이 없다 — 규칙을 고치거나 빼라")
+        invented_by_key[chosen.key] = f"{TEST_LOGIN_PREFIX}{chosen.key}@{TEST_LOGIN_DOMAIN}"
+        print(f"테스트 로그인: {rule.text} → 사번 {chosen.key}", file=sys.stderr)
+
+    for person in people:
         if person.email:
             logins.append([person.key, person.email])
-        elif test_logins:
-            # 원문이 주소를 말하지 않은 사람. 로컬에서 그 자리로 로그인해 보기 위한 가짜 주소이고,
-            # 사번에서만 만들어지므로 이름·전화 같은 원문 값이 주소에 새지 않는다.
-            logins.append([person.key, f"{TEST_LOGIN_PREFIX}{person.key}@{TEST_LOGIN_DOMAIN}"])
+        elif person.key in invented_by_key:
+            logins.append([person.key, invented_by_key[person.key]])
             invented_logins.append(person.key)
 
     print(
@@ -408,9 +458,16 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("source", type=Path, help="조직도 CSV")
     parser.add_argument("target", type=Path, help="dataset 폴더 (manifest.yaml 이 있는 곳)")
     parser.add_argument(
-        "--test-logins",
-        action="store_true",
-        help=f"로컬 전용 — 주소 없는 사람에게 {TEST_LOGIN_PREFIX}<사번>@{TEST_LOGIN_DOMAIN} 계정을 만든다",
+        "--test-login",
+        action="append",
+        default=[],
+        metavar="<역할>[:<조직 이름>]",
+        dest="test_logins",
+        help=(
+            "로컬 전용 — 그 자리의 첫 한 사람에게 "
+            f"{TEST_LOGIN_PREFIX}<사번>@{TEST_LOGIN_DOMAIN} 계정을 만든다 (여러 번 쓸 수 있다). "
+            f"역할은 {ROLE_EXECUTIVE}·{ROLE_LEAD}·{ROLE_MEMBER}"
+        ),
     )
     arguments = parser.parse_args(argv)
 
@@ -419,9 +476,10 @@ def main(argv: list[str] | None = None) -> int:
     if not source.is_file():
         raise SourceError(f"조직도 CSV 가 없습니다: {source}")
 
-    tables = build(read_rows(source), test_logins=arguments.test_logins)
-    if arguments.test_logins:
-        warn(f"--test-logins: 주소 없는 사람에게 {TEST_LOGIN_PREFIX}<사번>@{TEST_LOGIN_DOMAIN} 을 만들었다 — 로컬 전용")
+    rules = tuple(TestLoginRule(text) for text in arguments.test_logins)
+    tables = build(read_rows(source), test_logins=rules)
+    if rules:
+        warn(f"--test-login {len(rules)}건: 로컬 전용 주소를 만들었다. 실제 주소가 오면 그 규칙을 빼고 다시 만들 것")
     write_tables(target, tables)
     print(f"{target} 에 표 {len(tables) + len(EMPTY_TABLES)}개를 썼습니다.", file=sys.stderr)
     return 0
