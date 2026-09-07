@@ -16,11 +16,6 @@ make dataset-import TARGET=~/scax-datasets/the-sc
 # 2) CSV → 표 채우기 (표준 라이브러리만 · 멱등)
 python3 build_dataset.py "더에쓰씨_조직도_2026-09-02(검수2)_상세추가.csv" ~/scax-datasets/the-sc
 
-#    로컬에서 자리별로 하나씩 로그인해 보려면 (아래 「로컬 테스트 로그인」 참고) — 권장 명령
-python3 build_dataset.py "더에쓰씨_조직도_2026-09-02(검수2)_상세추가.csv" ~/scax-datasets/the-sc \
-    --test-login executive --test-login division-head:국내사업부 \
-    --test-login team-lead:인사총무팀 --test-login member:국내사업부
-
 # 3) 검사만 (데이터베이스는 그대로)
 SCAX_DATASET_PASSWORD=scax-demo-1234 make dataset-import TARGET=~/scax-datasets/the-sc DATASET_ARGS=--dry-run
 
@@ -30,6 +25,13 @@ SCAX_DATASET_PASSWORD=scax-demo-1234 make dataset-import TARGET=~/scax-datasets/
 
 SC 만 두고 예시 회사(SCAX)를 빼려면 3·4 앞에 `make reset-catalog` 를 한 번 돌린다 — 제품 catalog(조직 단위
 종류·capability·권장 역할)만 남고 예시 회사도 데모 계정도 만들어지지 않는다.
+
+로그인 화면의 「바로 로그인」 목록은 **한 도메인의 계정만** 나열하고, 그 도메인은 실행 환경이 정한다. SC 계정을
+목록에 띄우려면 API 를 그 도메인으로 띄운다:
+
+```bash
+AX_DEMO_EMAIL_DOMAIN=companysc.com make api-e2e     # 아무 말이 없으면 scax.example
+```
 
 `make` 는 ax-workspace 워크트리 루트에서 돈다. `SCAX_DATASET_PASSWORD` 가 없으면 계정(logins)은 만들지 않고
 넘어간다 — 조직만 들어간다. 2·4 를 몇 번 다시 돌려도 결과는 같다.
@@ -85,46 +87,25 @@ CSV 열 14개 중 **7개만** 들어간다.
    갖고 나머지는 비어 있다. 명부 API 는 이 두 값을 **`organization.manage` 권한이 있는 Principal 에게만**
    채워 주고, 없으면 필드는 그대로 두고 값만 `null` 이다.
 
-### 로컬 테스트 로그인 — `--test-login` (2026-09-07)
+### 로그인 계정 — 전원 회사 메일 하나씩 (2026-09-07)
 
-`--test-login <자리>[:<조직 이름>]` 은 **규칙 하나가 사람 한 명**이다. 그 자리에 해당하는 사람 중 **CSV 에
-먼저 나온 한 명**에게 `sc-<사번>@scax.example` 을 준다. 여러 번 쓸 수 있다.
+**계정은 165명 전원에게 하나씩 있고, 주소는 회사 메일이다.** 가짜 도메인은 쓰지 않는다 — 로그인 계정은 회사
+계정 하나뿐이라는 것이 이 조직의 사실이고, 확인용 계정을 따로 만들면 그 사실이 흐려진다.
 
-로그인 화면의 「로컬 실행 전용 · 바로 로그인」 목록은 그 도메인의 계정만 나열하므로
-(`bootstrap/seed.py::DEMO_EMAIL_DOMAIN` · `/api/auth/providers`), 자리마다 하나씩 열어 두면 대표·부서장·
-팀장·팀원을 목록에서 클릭해 들어가 볼 수 있다.
-
-**부를 수 있는 자리** — 가운데 셋은 `positions` 표의 자리를 그대로 부르는 이름이다.
-
-| 자리 | 무엇을 고르나 | `positions` |
+| 어디서 왔나 | 인원 | 주소 |
 |---|---|---|
-| `executive` | 직급이 대표이사인 사람 | (직책 행 없음) |
-| `division-head` | 부서장 | `sc-dept-head` (`division`·`head`) |
-| `team-lead` | 팀장 | `sc-team-lead` (`team`·`head`) |
-| `deputy-team-lead` | 부팀장 | `sc-deputy-team-lead` (`team`·`deputy`) |
-| `member` | 직책이 없는 사람 | — |
+| CSV 의 위하고메일 | **15** | 원문 그대로 (대소문자만 정규화) |
+| 아직 적히지 않음 | **150** | `<사번>@companysc.com` — **임시** |
 
-조직 이름은 CSV 의 팀 이름이나 부서 이름을 그대로 쓴다. 보직 자리는 **그 조직에서 맡은 것**이어야 하고,
-대표·구성원은 그 조직에 속해 있으면 된다. 규칙에 맞는 사람이 없으면 조용히 넘어가지 않고 멈춘다 — 열릴 줄
-알았던 계정이 없는 채로 적재되지 않도록.
+임시 주소는 사번에서만 만들어지므로 이름·전화 같은 원문 값이 주소에 새지 않는다. 만든 개수는 실행할 때
+stderr 경고로 남는다.
 
-**위하고메일이 있는 사람도 고르며, 그 사람의 주소는 테스트 주소로 대체된다**(한 사람에 계정 하나). 대체한
-건수는 stderr 에 경고로 남는다. **원본 CSV 는 읽기만 하고 고치지 않는다** — 대체는 로컬 dataset 안에서만
-일어난다. 고르지 않은 사람의 위하고메일은 그대로여서, 목록에는 안 뜨지만 주소를 직접 입력해 로그인한다.
+**실제 주소가 오면 CSV 를 갱신해 다시 만들면 임시 주소가 덮인다.** 그것이 유일한 갱신 경로이고, 스크립트에는
+주소를 손으로 넣는 옵션이 없다 — dataset 이 CSV 보다 앞서 가면 어느 쪽이 정본인지 알 수 없게 된다.
 
-권장 규칙 4개와 그 이유:
-
-| 규칙 | 여는 자리 | 왜 |
-|---|---|---|
-| `executive` | 대표이사 | 권한 패널(`/api/access/*`)은 `organization.manage` 를 가진 사람에게만 열리고, SC 에서는 대표 2명뿐인데 둘 다 위하고메일이 없다 |
-| `division-head:국내사업부` | 부서장 | 부서장 자리에서 보이는 화면을 확인한다. 국내사업부는 팀이 없어 부서 직속 구조를 그대로 본다 |
-| `team-lead:인사총무팀` | 팀장 | 팀장 자리를 확인한다. 경영관리부에는 부서장이 없고 팀장이 인사총무팀·재무회계팀에 하나씩이다 |
-| `member:국내사업부` | 팀원 | 권한 없는 사람에게 무엇이 막히는지 확인한다 |
-
-이 4개를 쓰면 `logins` 는 17행이 된다 — 대체되지 않은 실제 주소 13 + 테스트 주소 4.
-
-**실제 주소로 로그인해야 할 때가 오면** 그 사람의 규칙을 빼고 dataset 을 다시 만들어 다시 적재한다.
-대체된 주소가 남아 있으면 그 사람은 자기 주소로 들어올 수 없다.
+도메인 분포는 `companysc.com` 163(위하고 13 + 임시 150) · `wehago.com` 2 다. 「바로 로그인」 목록은 한 도메인만
+나열하므로 `AX_DEMO_EMAIL_DOMAIN=companysc.com` 으로 API 를 띄우면 163명이 뜨고, `wehago.com` 인 2명은 목록에
+없이 주소를 직접 입력해 로그인한다.
 
 ### 계약에 맞추느라 바꾼 것 — `sc-` 접두사
 
@@ -150,7 +131,7 @@ importer 는 이미 있는 key 를 덮어쓰지 않으므로 접두사 없이 �
 | `members` | 165 | 원본 169행 − 겸임 병합 4행 |
 | `memberships` | 169 | `primary` 165 · `additional` 4 |
 | `appointments` | 22 | `primary` 18 · `concurrent` 4 |
-| `logins` | 15 (권장 규칙 4개를 쓰면 17) | 위하고메일 15 · 규칙을 쓰면 실제 13 + 테스트 4 |
+| `logins` | 165 | 위하고메일 15 + 임시 주소 150 |
 | `members.phone` | 15 | 전화가 적힌 사람만 |
 | `members.birth_date` | 15 | 생년월일이 적힌 사람만 |
 | `jobs` · `job_assignments` · `projects` · `project_assignments` | 0 | CSV 에 직무 열이 없다 |
