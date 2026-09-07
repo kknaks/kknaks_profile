@@ -459,57 +459,58 @@ para/areas/
 | 348 | `db` | `sql-operator` | where 조건 하나를 만들어 내는 비교·논리·범위 기호들 |  |
 | 349 | `db` | `sql-set-operation` | 조회 결과 두 개를 위아래로 합치거나 서로 빼서 하나로 만드는 것 |  |
 | 350 | `db` | `surrogate-key` | 몇 번째인가가 아니라 몇 번인가를 데이터가 필드로 들고 있게 하는 것 |  |
-| 351 | `db` | `transaction` | 여러 문장을 전부 되거나 전부 안 되게 묶는 단위와 autocommit 경계 설정 |  |
-| 352 | `db` | `unique-key` | 기본키가 아니면서 값 중복을 막아야 하는 컬럼에 거는 유일성 제약 |  |
-| 353 | `infra` | `build` | 소스에서 배포 산출물이 나오기까지의 컴파일·의존성·테스트 단계 전체와 그걸 명령으로 묶는 도구 |  |
-| 354 | `infra` | `ci-cd` | 푸시 한 번으로 빌드부터 배포까지 잇는 GitHub Actions 자동화 절차 |  |
-| 355 | `infra` | `cold-start` | 준비된 상태 없이 시작한 실행이 준비 비용부터 다시 치르는 문제 |  |
-| 356 | `infra` | `container` | 한 커널 위에서 게스트 OS 없이 격리돼 도는 프로세스 실행 단위 |  |
-| 357 | `infra` | `data-pipeline` | 한 저장소를 주기적으로 읽어 다듬고 다른 저장소로 옮기는 장치 |  |
-| 358 | `infra` | `distributed-lock` | 여러 프로세스·서버가 외부 공통 저장소에서 처리 권한을 조정해 공유 자원 동시 진입을 막는 락 |  |
-| 359 | `infra` | `distributed-processing` | 데이터와 처리를 여러 노드에 나눠 처리량을 올리고 일관성을 내주는 방식 |  |
-| 360 | `infra` | `git` | 변경마다 식별자를 붙여 어느 시점으로든 되돌아갈 수 있게 하는 형상관리 도구 |  |
-| 361 | `infra` | `gradle` | 컴파일·테스트·산출물 묶기를 태스크로 나눠 명령 하나로 부르는 빌드 도구 |  |
-| 362 | `infra` | `infrastructure-as-code` | 서버·네트워크를 클릭 대신 파일로 선언해 만드는 방식 (Terraform) |  |
-| 363 | `infra` | `kubernetes-workload` | 버전 전환·개수 유지·실행을 나눠 맡은 세 층의 배포 리소스 |  |
-| 364 | `infra` | `kubernetes` | 컨테이너를 여러 서버에 걸쳐 자동 배포·확장·관리하는 플랫폼 |  |
-| 365 | `infra` | `little-law` | 처리량 = 동시 처리 수 ÷ 처리 시간 이라는 큐잉이론 공식 |  |
-| 366 | `infra` | `load-balancer` | 여러 서버에 요청을 나눠 보내 부하를 분산하는 장치 |  |
-| 367 | `infra` | `message-broker` | 송수신 사이에 저장소를 둬 비동기로 주고받는 발행-구독 |  |
-| 368 | `infra` | `metric-type` | 지표를 Counter·Gauge·Histogram 으로 나눠 읽는 법을 정함 |  |
-| 369 | `infra` | `microservice-architecture` | 배포 단위를 하나로 둘지 작은 서비스 여럿으로 쪼갤지의 선택 |  |
-| 370 | `infra` | `monitoring` | 수집·저장·시각화·알림으로 돌아가는 것을 밖에서 보는 일 |  |
-| 371 | `infra` | `npm` | 자바스크립트 의존성·개발서버·번들을 Node 위에서 다루는 도구 |  |
-| 372 | `infra` | `object-storage` | 파일을 경로가 아닌 키로 찾는 객체로 저장하고 HTTP 로 접근 |  |
-| 373 | `infra` | `remote-repository` | 호스팅서버에 둔 git 저장소와 clone·push·pull 로 주고받기 |  |
-| 374 | `infra` | `reverse-proxy` | 바깥 요청을 먼저 받아 도메인·SSL 을 정리하고 내부로 넘기는 서버 |  |
-| 375 | `infra` | `staging-area` | 다음 커밋에 담을 파일을 미리 등록해 두는 중간 자리 |  |
-| 376 | `infra` | `web-application-deployment` | 코드를 실행하는 게 아니라 돌고 있는 서버가 찾아갈 자리에 war 를 놓는 일 |  |
-| 377 | `infra` | `zero-downtime-deployment` | 새 버전을 옆에 띄워 두고 준비되면 트래픽만 돌려 빈 시간을 없애는 배포 |  |
-| 378 | `ai` | `ai-agent` | 모델이 문장만 내놓는 데서 그치지 않고 툴을 호출해 실제 동작을 일으키게 만드는 구조 |  |
-| 379 | `ai` | `architectural-drift-prevention` | 개별 변경은 정상이어도 코드베이스가 합의한 설계에서 멀어지는 것을 막는 규율 |  |
-| 380 | `ai` | `data-fabric` | 여러 시스템에 흩어진 데이터를 공통 의미·메타데이터·접근 규칙으로 묶어 일관되게 제공하는 데이터 운영 구조 |  |
-| 381 | `ai` | `deterministic-first-ai-enrichment` | 파서·규칙으로 확인 가능한 구조를 먼저 뽑고 해석 작업에만 AI 를 후속 적용하는 투패스 처리 |  |
-| 382 | `ai` | `engineering-governance` | 조직의 아키텍처 결정을 기계가 읽게 구조화해 생성·검토·병합에서 집행하는 계층 |  |
-| 383 | `ai` | `entity-resolution` | 다른 이름·레코드가 현실의 같은 개체인지 판별해 하나의 표준 식별자로 잇는 과정 |  |
-| 384 | `ai` | `human-in-the-loop` | 자동화를 위험한 자리에서 멈춰 사람 승인을 기다렸다가 그 지점부터 재개하는 것 |  |
-| 385 | `ai` | `knowledge-graph-assisted-retrieval` | 그래프로 관련 개체·관계를 먼저 좁히고 그 결과가 가리키는 원문만 후속 처리에 쓰는 검색 |  |
-| 386 | `ai` | `llm-text-watermarking` | 토큰 확률 분포에 비밀 편향을 심어 생성 출처를 통계적으로 검출하는 기법 |  |
-| 387 | `ai` | `llm-wiki` | 에이전트가 원료를 기존 지식과 병합하며 목차·색인을 갱신하는 파일 기반 지식 관리 패턴 |  |
-| 388 | `ai` | `loop-engineering` | 목표 달성까지 발견·계획·실행·검증을 반복하는 외부 제어 루프 설계. 종료 조건의 기계 판정이 핵심 |  |
-| 389 | `ai` | `mrtr` | 서버가 역호출 대신 정보 필요 응답을 주고 재요청받는 패턴 |  |
-| 390 | `ai` | `prompt-injection` | 프롬프트에 실린 데이터가 명령으로 읽히는 위험. 문구가 아니라 실행권 격리·경로 분리로 막는다 |  |
-| 391 | `ai` | `purposeful-knowledge-capture` | 자료 저장 시 수집 이유·관계·기대 활용처를 함께 기록하는 수집 방식 |  |
-| 392 | `ai` | `react-agent-loop` | 모델 판단→도구 실행→관찰을 반복해 정보를 모으고, 도구 요청이 없으면 끝나는 에이전트 실행 구조 |  |
-| 393 | `ai` | `request-context` | 한 요청을 실행하는 구성 요소들이 사용자·테넌트 같은 런타임 값을 공유하는 요청 범위 컨테이너 |  |
-| 394 | `ai` | `semantic-search` | 단어 일치가 아니라 임베딩 벡터의 의미 유사도로 결과를 찾는 검색 |  |
-| 395 | `ai` | `text-embedding` | 텍스트를 의미 관계를 비교할 수 있는 수치 벡터로 바꾼 표현 |  |
-| 396 | `ai` | `workflow-orchestration` | 작업을 함수 호출이 아니라 단계로 선언해 이음매와 상태를 밖에 드러내는 것 |  |
-| 397 | `front` | `html-form` | 사용자 입력에 이름표를 달아 한 URL로 묶어 보내는 브라우저 표준 장치 |  |
-| 398 | `front` | `script-loading` | 브라우저가 script 태그를 만나면 멈추고 실행하는 순서와 배치 문제 |  |
-| 399 | `pm` | `gamification` | 게임이 아닌 일에 재화·진행도·보상·실패조건을 붙여 다시 열게 만드는 설계 |  |
-| 400 | `pm` | `para-method` | 정보를 주제가 아니라 행동과의 거리로 프로젝트·영역·자원·아카이브에 나누는 정리법 |  |
-| 401 | `qa` | `performance-testing` | 얼마나 견디는지 재는 것 정상 성능 확인과 무너지는 지점 찾기 |  |
+| 351 | `db` | `temporal-table` | 관계를 유효 기간 행으로 저장하고 겹침을 DB EXCLUDE 제약으로 막는 이력 원장 설계 |  |
+| 352 | `db` | `transaction` | 여러 문장을 전부 되거나 전부 안 되게 묶는 단위와 autocommit 경계 설정 |  |
+| 353 | `db` | `unique-key` | 기본키가 아니면서 값 중복을 막아야 하는 컬럼에 거는 유일성 제약 |  |
+| 354 | `infra` | `build` | 소스에서 배포 산출물이 나오기까지의 컴파일·의존성·테스트 단계 전체와 그걸 명령으로 묶는 도구 |  |
+| 355 | `infra` | `ci-cd` | 푸시 한 번으로 빌드부터 배포까지 잇는 GitHub Actions 자동화 절차 |  |
+| 356 | `infra` | `cold-start` | 준비된 상태 없이 시작한 실행이 준비 비용부터 다시 치르는 문제 |  |
+| 357 | `infra` | `container` | 한 커널 위에서 게스트 OS 없이 격리돼 도는 프로세스 실행 단위 |  |
+| 358 | `infra` | `data-pipeline` | 한 저장소를 주기적으로 읽어 다듬고 다른 저장소로 옮기는 장치 |  |
+| 359 | `infra` | `distributed-lock` | 여러 프로세스·서버가 외부 공통 저장소에서 처리 권한을 조정해 공유 자원 동시 진입을 막는 락 |  |
+| 360 | `infra` | `distributed-processing` | 데이터와 처리를 여러 노드에 나눠 처리량을 올리고 일관성을 내주는 방식 |  |
+| 361 | `infra` | `git` | 변경마다 식별자를 붙여 어느 시점으로든 되돌아갈 수 있게 하는 형상관리 도구 |  |
+| 362 | `infra` | `gradle` | 컴파일·테스트·산출물 묶기를 태스크로 나눠 명령 하나로 부르는 빌드 도구 |  |
+| 363 | `infra` | `infrastructure-as-code` | 서버·네트워크를 클릭 대신 파일로 선언해 만드는 방식 (Terraform) |  |
+| 364 | `infra` | `kubernetes-workload` | 버전 전환·개수 유지·실행을 나눠 맡은 세 층의 배포 리소스 |  |
+| 365 | `infra` | `kubernetes` | 컨테이너를 여러 서버에 걸쳐 자동 배포·확장·관리하는 플랫폼 |  |
+| 366 | `infra` | `little-law` | 처리량 = 동시 처리 수 ÷ 처리 시간 이라는 큐잉이론 공식 |  |
+| 367 | `infra` | `load-balancer` | 여러 서버에 요청을 나눠 보내 부하를 분산하는 장치 |  |
+| 368 | `infra` | `message-broker` | 송수신 사이에 저장소를 둬 비동기로 주고받는 발행-구독 |  |
+| 369 | `infra` | `metric-type` | 지표를 Counter·Gauge·Histogram 으로 나눠 읽는 법을 정함 |  |
+| 370 | `infra` | `microservice-architecture` | 배포 단위를 하나로 둘지 작은 서비스 여럿으로 쪼갤지의 선택 |  |
+| 371 | `infra` | `monitoring` | 수집·저장·시각화·알림으로 돌아가는 것을 밖에서 보는 일 |  |
+| 372 | `infra` | `npm` | 자바스크립트 의존성·개발서버·번들을 Node 위에서 다루는 도구 |  |
+| 373 | `infra` | `object-storage` | 파일을 경로가 아닌 키로 찾는 객체로 저장하고 HTTP 로 접근 |  |
+| 374 | `infra` | `remote-repository` | 호스팅서버에 둔 git 저장소와 clone·push·pull 로 주고받기 |  |
+| 375 | `infra` | `reverse-proxy` | 바깥 요청을 먼저 받아 도메인·SSL 을 정리하고 내부로 넘기는 서버 |  |
+| 376 | `infra` | `staging-area` | 다음 커밋에 담을 파일을 미리 등록해 두는 중간 자리 |  |
+| 377 | `infra` | `web-application-deployment` | 코드를 실행하는 게 아니라 돌고 있는 서버가 찾아갈 자리에 war 를 놓는 일 |  |
+| 378 | `infra` | `zero-downtime-deployment` | 새 버전을 옆에 띄워 두고 준비되면 트래픽만 돌려 빈 시간을 없애는 배포 |  |
+| 379 | `ai` | `ai-agent` | 모델이 문장만 내놓는 데서 그치지 않고 툴을 호출해 실제 동작을 일으키게 만드는 구조 |  |
+| 380 | `ai` | `architectural-drift-prevention` | 개별 변경은 정상이어도 코드베이스가 합의한 설계에서 멀어지는 것을 막는 규율 |  |
+| 381 | `ai` | `data-fabric` | 여러 시스템에 흩어진 데이터를 공통 의미·메타데이터·접근 규칙으로 묶어 일관되게 제공하는 데이터 운영 구조 |  |
+| 382 | `ai` | `deterministic-first-ai-enrichment` | 파서·규칙으로 확인 가능한 구조를 먼저 뽑고 해석 작업에만 AI 를 후속 적용하는 투패스 처리 |  |
+| 383 | `ai` | `engineering-governance` | 조직의 아키텍처 결정을 기계가 읽게 구조화해 생성·검토·병합에서 집행하는 계층 |  |
+| 384 | `ai` | `entity-resolution` | 다른 이름·레코드가 현실의 같은 개체인지 판별해 하나의 표준 식별자로 잇는 과정 |  |
+| 385 | `ai` | `human-in-the-loop` | 자동화를 위험한 자리에서 멈춰 사람 승인을 기다렸다가 그 지점부터 재개하는 것 |  |
+| 386 | `ai` | `knowledge-graph-assisted-retrieval` | 그래프로 관련 개체·관계를 먼저 좁히고 그 결과가 가리키는 원문만 후속 처리에 쓰는 검색 |  |
+| 387 | `ai` | `llm-text-watermarking` | 토큰 확률 분포에 비밀 편향을 심어 생성 출처를 통계적으로 검출하는 기법 |  |
+| 388 | `ai` | `llm-wiki` | 에이전트가 원료를 기존 지식과 병합하며 목차·색인을 갱신하는 파일 기반 지식 관리 패턴 |  |
+| 389 | `ai` | `loop-engineering` | 목표 달성까지 발견·계획·실행·검증을 반복하는 외부 제어 루프 설계. 종료 조건의 기계 판정이 핵심 |  |
+| 390 | `ai` | `mrtr` | 서버가 역호출 대신 정보 필요 응답을 주고 재요청받는 패턴 |  |
+| 391 | `ai` | `prompt-injection` | 프롬프트에 실린 데이터가 명령으로 읽히는 위험. 문구가 아니라 실행권 격리·경로 분리로 막는다 |  |
+| 392 | `ai` | `purposeful-knowledge-capture` | 자료 저장 시 수집 이유·관계·기대 활용처를 함께 기록하는 수집 방식 |  |
+| 393 | `ai` | `react-agent-loop` | 모델 판단→도구 실행→관찰을 반복해 정보를 모으고, 도구 요청이 없으면 끝나는 에이전트 실행 구조 |  |
+| 394 | `ai` | `request-context` | 한 요청을 실행하는 구성 요소들이 사용자·테넌트 같은 런타임 값을 공유하는 요청 범위 컨테이너 |  |
+| 395 | `ai` | `semantic-search` | 단어 일치가 아니라 임베딩 벡터의 의미 유사도로 결과를 찾는 검색 |  |
+| 396 | `ai` | `text-embedding` | 텍스트를 의미 관계를 비교할 수 있는 수치 벡터로 바꾼 표현 |  |
+| 397 | `ai` | `workflow-orchestration` | 작업을 함수 호출이 아니라 단계로 선언해 이음매와 상태를 밖에 드러내는 것 |  |
+| 398 | `front` | `html-form` | 사용자 입력에 이름표를 달아 한 URL로 묶어 보내는 브라우저 표준 장치 |  |
+| 399 | `front` | `script-loading` | 브라우저가 script 태그를 만나면 멈추고 실행하는 순서와 배치 문제 |  |
+| 400 | `pm` | `gamification` | 게임이 아닌 일에 재화·진행도·보상·실패조건을 붙여 다시 열게 만드는 설계 |  |
+| 401 | `pm` | `para-method` | 정보를 주제가 아니라 행동과의 거리로 프로젝트·영역·자원·아카이브에 나누는 정리법 |  |
+| 402 | `qa` | `performance-testing` | 얼마나 견디는지 재는 것 정상 성능 확인과 무너지는 지점 찾기 |  |
 
 ---
 
