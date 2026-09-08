@@ -518,6 +518,11 @@ para/areas/
 | 407 | `qa` | `performance-testing` | 얼마나 견디는지 재는 것 정상 성능 확인과 무너지는 지점 찾기 |  |
 | 408 | `front` | `viewport-aware-overlay` | 트리거 기준 남은 자리로 오버레이의 열 방향과 최대 높이를 정해 화면 밖으로 안 나가게 하는 배치 |  |
 | 409 | `back` | `field-level-visibility` | 한 리소스에서 자격 없는 필드만 비워 보내고 이력·감사는 403 으로 가르는 부분 인가 응답 |  |
+| 410 | `ai` | `strict-json-schema-output` | LLM 구조화 출력이 받는 스키마 규격 — 모든 object 에 additionalProperties:false + 전 키 required. 대역 테스트로는 위반을 못 본다 |  |
+| 411 | `ai` | `tool-allowlist-by-phase` | 에이전트가 볼 수 있는 것을 프롬프트가 아니라 단계별 도구 목록(enabled_tools)으로 고정하는 것 |  |
+| 412 | `back` | `resource-scoped-token` | 리소스 하나에 묶인 단명 토큰 — 세션 행 · 원문 컬럼 · allowlist 표면 · 폐기=행 삭제 · 재시도는 재발급 |  |
+| 413 | `front` | `portal-inside-scroll-lock` | 모달의 스크롤 잠금이 body 로 포탈된 팝오버의 휠을 막는 것. 포탈 컨테이너를 모달 안으로 |  |
+| 414 | `ai` | `nondeterministic-stt-output` | 같은 오디오도 STT 결과가 매번 조금 다르다 — 결정성 전제 테스트 금지 · 전사 멈춤은 입력 레벨부터 |  |
 
 ---
 
