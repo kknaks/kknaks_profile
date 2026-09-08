@@ -12,4 +12,5 @@
 ## 금지 사항
 - 대상 리포 파일 수정·생성·삭제 금지 — 산출물은 리뷰 리포트 1개뿐
 - git commit·push·PR 금지
-- canonical(`/Users/kknaks/git/harness_works/mediness-mediness`) 접근은 읽기도 하지 않는다 — 워크트리만 본다
+- canonical(`/Users/kknaks/git/harness_works/mediness-mediness` · `/Users/kknaks/git/harness_works/ax-workspace`) 접근은 읽기도 하지 않는다 — 워크트리만 본다
+- 코드 리뷰에서 테스트·빌드를 돌리지 않는다 (동작 검증은 코디네이터 몫)

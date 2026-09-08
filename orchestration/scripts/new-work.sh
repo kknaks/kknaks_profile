@@ -85,7 +85,16 @@ WORK_DIR="$HERE/work/$SLUG"
 # (2026-09-05 실제로 겪음 — 빈 트리에 워커를 태웠다.)
 #
 # 그래서: 이미 열린 작업이 있는데 **다른 slug** 로 부르면 멈춘다.
-OPEN_SLUGS="$(find "$HERE/work" -mindepth 1 -maxdepth 1 -type d ! -name '_archive' -exec basename {} \; 2>/dev/null | sort)"
+# 단, **같은 프로젝트**의 열린 작업만 센다 — 다른 프로젝트의 work/<slug>/ 가 main 머지로
+# 이 브랜치에 딸려올 수 있다(2026-09-07 sc-ax 워크트리에 task-management 의 docs-v1 이 있었다).
+# 프로젝트는 _RESUME.md 헤더 `# 재개 노트 — <slug> (<project>)` 에서 읽는다.
+# 헤더가 없거나 못 읽으면 보수적으로 "열린 작업"으로 센다.
+OPEN_SLUGS="$(for d in "$HERE"/work/*/; do
+  [ -d "$d" ] || continue
+  s="$(basename "$d")"; [ "$s" = "_archive" ] && continue
+  proj="$(grep -m1 -oE '^# 재개 노트 — .* \(([^)]+)\)' "$d/_RESUME.md" 2>/dev/null | sed -E 's/.*\(([^)]+)\)$/\1/')"
+  if [ -z "$proj" ] || [ "$proj" = "$PROJECT" ]; then echo "$s"; fi
+done | sort)"
 if [ -n "$OPEN_SLUGS" ] && ! printf '%s\n' "$OPEN_SLUGS" | grep -qx "$SLUG"; then
   echo "ERROR: 진행 중인 작업이 있는데 다른 slug 로 불렀다 — 작업 단위 위반(런북 §1)" >&2
   echo "" >&2

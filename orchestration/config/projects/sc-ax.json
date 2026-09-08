@@ -1,59 +1,113 @@
 {
-  "_doc": "sc-ax 오케스트레이션 설정 SSOT. scripts/new-work.sh 가 읽는 유일한 곳. 값을 다른 데 하드코딩하지 말 것. 코드레포는 아직 없다 — 생기면 repos.app + backend/frontend 워커를 여기 추가한다.",
+  "_doc": "sc-ax 오케스트레이션 설정 SSOT. scripts/new-work.sh 가 읽는 유일한 곳. 값을 다른 데 하드코딩하지 말 것. 분리형(런북 §1 프로젝트 유형): 문서는 mediness 문서 리포 products/sc-ax/, 코드는 ax-workspace(SCAX 상용 시스템 modular monolith — 2026-09-07 추가).",
   "project": "sc-ax",
   "worktree_root": "/Users/kknaks/orca/workspaces",
   "use_worktree": true,
-
   "repos": {
     "spec": {
       "orca_name": "mediness-mediness",
       "canonical_path": "/Users/kknaks/git/harness_works/mediness-mediness",
       "remote": "https://github.com/MediSolveAIDev/mediness.git",
-      "base": "origin/sc-ax",
-      "pr_base": "sc-ax",
+      "base": "origin/main",
+      "pr_base": "main",
       "worktree_suffix": "-spec",
       "notes": [
-        "sc-ax 는 제품 장수 브랜치 — 2026-08-28 origin/main(98a545c8d)에서 생성. 작업 브랜치는 여기서 따고 PR 도 여기로 낸다.",
+        "products/sc-ax/ 는 origin/main 에 산다 (2026-09-07 확인 — 최근 커밋 51cc47142 'docs(scax): 현재 구현 기준 SPEC 정합화 #696'). 예전 장수 브랜치 sc-ax 는 원격에서 사라졌다 — base/pr_base 를 main 으로 바꿨다(2026-09-07).",
         "canonical 은 사용자가 직접 쓰는 더티 체크아웃 — pull/checkout 금지. fetch 만 하고 base 는 origin/ ref 를 쓴다.",
         "pre-commit 이 docs lint. 무관한 타 제품 드리프트로 막히면 --no-verify."
       ]
+    },
+    "app": {
+      "orca_name": "ax-workspace",
+      "canonical_path": "/Users/kknaks/git/harness_works/ax-workspace",
+      "remote": "https://github.com/MediSolveAIDev/ax-workspace.git",
+      "base": "origin/main",
+      "pr_base": "main",
+      "worktree_suffix": "",
+      "notes": [
+        "SCAX 상용 시스템 modular monolith (backend/ = Python 3.12 + FastAPI + SQLAlchemy 2 + psycopg, uv · frontend/ = React 19 + Vite + vitest). 로컬 실행은 README 「띄우기」— make install → frontend-install → postgres-up → reset-demo → local-stack.",
+        "canonical 은 사용자 체크아웃(main) — pull/checkout 금지, fetch 만. 워커는 개별 워크트리.",
+        "기획·정책·SPEC·ERD 는 전부 spec 리포 products/sc-ax/ 에 있다. 코드 리포의 docs/domain-model.md 는 ERD ↔ 구현 대조표, docs/design/ 은 디자인 시스템 참조본 — 코드 워커는 read-only.",
+        "저장소는 데이터를 갖지 않는다 — 실제 조직·자료(datasets/·*.dataset/)는 Git 밖. 워커가 자료 폴더를 리포에 넣지 않는다.",
+        "2026-09-07 orca 등록 (repo id 83b14176). 원격 브랜치는 main 하나 — 작업 브랜치는 slug 그대로, PR 도 main."
+      ]
     }
   },
-
   "workers": {
     "planner": {
       "repo": "spec",
       "agent": "claude",
       "brief_suffix": "spec",
       "roles_dir": "roles/sc-ax/planner",
-      "allowed_paths": ["products/sc-ax/"]
+      "allowed_paths": [
+        "products/sc-ax/"
+      ]
+    },
+    "backend": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "be",
+      "roles_dir": "roles/sc-ax/backend",
+      "allowed_paths": [
+        "backend/",
+        "docker-compose.yml",
+        "Makefile"
+      ],
+      "verify": "cd backend && uv run pytest -q <네가 만들거나 고친 테스트 파일만> -m 'not integration' + uv run pytest -q tests/architecture (경계 테스트는 항상). 전체 스위트·integration 마커 금지 — 사용자 방침. 자기점검 — modules/*/domain.py·application.py 가 fastapi/mcp/sqlalchemy 를 import 하지 않는가 · entrypoints 가 platform 구현을 직접 import 하지 않는가 · 스키마 변경을 reset_demo 밖에서 하지 않았는가. 검증은 1회만"
+    },
+    "frontend": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "fe",
+      "roles_dir": "roles/sc-ax/frontend",
+      "allowed_paths": [
+        "frontend/"
+      ],
+      "verify": "cd frontend && npx tsc --noEmit (네가 만진 파일 0 에러) + npx vitest run <네가 만들거나 고친 테스트 파일만>. 전체 빌드·acceptance-e2e 금지 — 사용자 방침. 자기점검 — envelope(allowed_commands·waiting_on)로 권한을 판단했는가(kind 로 추론 금지) · api.ts 밖에서 fetch 하지 않았는가 · 기존 컴포넌트·viewModels 를 재사용했는가. 검증은 1회만"
     },
     "reviewer_spec": {
       "repo": "spec",
       "agent": "claude",
       "brief_suffix": "review-spec",
       "roles_dir": "roles/sc-ax/reviewer",
-      "allowed_paths": ["(read-only — 리포 파일 수정·생성 금지. 산출물은 브리프가 지정한 리뷰 리포트 파일 1개뿐)"],
+      "allowed_paths": [
+        "(read-only — 리포 파일 수정·생성 금지. 산출물은 브리프가 지정한 리뷰 리포트 파일 1개뿐)"
+      ],
       "verify": "python3 scripts/lint-pipeline.py --strict 실행 → products/sc-ax/ 범위 ERROR 0 확인 (타 제품 기존 WARN/ERROR 는 '무관'으로 분리 보고). 리뷰는 read-only — 문서를 고치지 않는다"
+    },
+    "reviewer_code": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "review-code",
+      "roles_dir": "roles/sc-ax/reviewer",
+      "allowed_paths": [
+        "(read-only — 리포 파일 수정·생성 금지. 산출물은 브리프가 지정한 리뷰 리포트 파일 1개뿐, 코디 워크트리 orchestration/work/<slug>/ 아래)"
+      ],
+      "verify": "리뷰는 read-only — 코드를 고치지 않고 테스트도 돌리지 않는다. git diff <base>...HEAD + untracked 로 범위를 산정하고, 판정(PASS/WARN/FAIL)과 위반 목록(파일:줄 + 근거 규칙 — 역할문서 rules.md · tests/architecture 경계 · SPEC 절)을 리포트에 남긴다"
     }
   },
-
-  "default_workers": ["planner"],
-
+  "default_workers": [
+    "backend",
+    "frontend"
+  ],
   "environments": {
-    "_doc": "sc-ax 전용 배포 환경은 아직 없다 (코드레포 없음). 서버 접속 정보만 기록.",
+    "_doc": "sc-ax 전용 배포 환경은 아직 없다. 로컬 실행은 repos.app notes(README 「띄우기」). 서버 접속 정보만 기록.",
     "ssh_host": "medi-me",
+    "local": {
+      "postgres": "docker compose (postgres:16.6, 호스트 포트 54329, db ax_demo, user/pw ax/ax) — make postgres-up",
+      "stack": "make local-stack — API 8001 · 대화/자료/회의 워커 · 프론트 5176. 스키마 없으면 make reset-demo 먼저(파괴적)",
+      "tests": "make test = backend 'not integration' · make frontend-test = vitest · make verify = 둘 + Vite build. acceptance-e2e 는 자기 DB(ax_test_acceptance)·포트 18111/15186 — 워커에게 시키지 않는다"
+    },
     "notes": [
       "medi-me = 회사 Mac Studio (medisolbeuui-MacStudio.local). SSH config 의 호스트 별칭.",
       "mediness k8s(lima VM)도 이 서버 위 — 상세 운영 정보는 config/projects/mediness.json 의 environments 가 소유. 여기 복사하지 않는다."
     ]
   },
-
   "summary_dest": "/Users/kknaks/orca/workspaces/kknaks_profile/agent/para/projects/company/sc-ax/log",
-
   "rules": {
     "spec_and_app_use_separate_prs": true,
     "workers_commit_or_push": false,
-    "coordinator_verifies_before_pr": true
+    "coordinator_verifies_before_pr": true,
+    "code_workers_use_own_worktree": true
   }
 }
