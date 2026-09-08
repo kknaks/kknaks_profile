@@ -53,7 +53,7 @@
 ```mermaid
 erDiagram
   account   ||--o{ career        : "경력"
-  account   ||--o{ auth_session  : "세션"
+  account   ||--o{ auth_session  : "세션 · 회의 토큰"
   account   ||--o{ work_type     : "유형"
   account   ||--o{ project       : "프로젝트"
   account   ||--o{ task          : "업무"
@@ -66,6 +66,8 @@ erDiagram
   work_type ||--o{ meeting       : "유형(종류=미팅)"
   project   ||--o{ task          : "0..1"
   project   ||--o{ meeting       : "0..1"
+
+  meeting   ||--o| auth_session  : "kind='meeting' 단명 토큰 · 0..1 (MF-69)"
 
   task      ||..o| schedule      : "source_type='task' · 0..1"
   meeting   ||..o| schedule      : "source_type='meeting' · 0..1"
@@ -112,9 +114,12 @@ erDiagram
   auth_session {
     bigint id PK
     bigint account_id FK
-    varchar refresh_token_hash UK
-    timestamptz expires_at "발급 + 7일"
-    timestamptz revoked_at
+    varchar kind "refresh | meeting — 회의별 단명 토큰. MF-69 · A-13"
+    varchar refresh_token_hash UK "kind='refresh' 만. meeting 행은 NULL"
+    varchar meeting_token "kind='meeting' 만 — **원문**. 매 제출이 읽어 MCP 헤더에 싣는다(A-13)"
+    bigint meeting_id FK "kind='meeting' 일 때만. 그 회의 범위"
+    timestamptz expires_at "refresh 발급 + 7일 · meeting 은 짧게"
+    timestamptz revoked_at "kind='refresh' 만 — 회의 토큰은 폐기 = 행 삭제"
   }
   work_type {
     bigint id PK
@@ -308,7 +313,7 @@ erDiagram
 |---|---|---|---|
 | `account` | account | 계정·프로필. 시드로만 생성 | DEC-001 §2·§3 |
 | `career` | account | 경력 행. 하드 삭제 | DEC-001 §5 · 11-auth §경력 패널 |
-| `auth_session` | account | refresh 토큰 회전 기록 | DEC-001 §4 |
+| `auth_session` | account | refresh 토큰 회전 기록 **+ 회의별 단명 토큰**(`kind`) | DEC-001 §4 · **MF-69**(DEC-003 OQ-9) |
 | `work_type` | account | 동적 유형(종류 미팅\|업무 + **설명**) + 기본 3종 시드 | DEC-001 §3·§4 · MF-21 |
 | `project` | account | 프로젝트 | DEC-001 §3 |
 | `schedule` | calendar | **시간축 배치의 파생 테이블** — 원본은 업무 기한·회의 일시 | DEC-005 §3 (2026-09-05 개정) |
@@ -397,7 +402,7 @@ erDiagram
 | 테이블 | 인덱스 | 왜 |
 |---|---|---|
 | `account` | `UNIQUE (login_id)` | 로그인 식별자 |
-| `auth_session` | `UNIQUE (refresh_token_hash)`, `(account_id, expires_at)` | 회전 검증·만료 청소 |
+| `auth_session` | `UNIQUE (refresh_token_hash)` · `(account_id, expires_at)` · `(meeting_id) WHERE kind='meeting'`(**비유니크** 부분 인덱스 — 회의당 하나는 `/start` 상태 게이트가 지킨다) | 회전 검증·만료 청소 · 회의 토큰 조회와 폐기(행 삭제) |
 | `work_type` · `project` | `(account_id) WHERE deleted_at IS NULL` | 선택 목록이 매 화면에 뜬다 |
 | **`schedule`** | **`(account_id, start_at, end_at)`** | **캘린더 기간 조회와 겹침 검사가 둘 다 이 하나를 탄다** |
 | `schedule` | `UNIQUE (source_type, source_id)` | SCH-3 |
