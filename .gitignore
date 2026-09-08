@@ -57,10 +57,10 @@ workspace/
 claude_design/
 
 # macOS 파인더 부산물
-.DS_Store
 
 # md 에서 뽑아내는 파생물 — 원천은 para/resources/session/ 의 md 다(CLAUDE.md §2)
 output/
 
 # 실물 회의 녹음 원본(webm · 수십 MB) — 로컬 저장소. git 에 넣지 않는다
+# 실물 회의 녹음 원본(webm · 수십 MB) — 바인드 마운트 저장소. git 에 넣지 않는다
 reference/2026-09-08-real-summit/recordings/

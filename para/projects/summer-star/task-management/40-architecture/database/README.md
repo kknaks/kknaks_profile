@@ -16,7 +16,7 @@
 |---|---|---|
 | G-1 | **PK 는 `bigint GENERATED ALWAYS AS IDENTITY`.** 유저가 입력하는 slug·영문명 필드를 두지 않는다 | DEC-001 §3 「DB 자동 생성 키. 영문명/slug 필드 없음」 |
 | G-2 | **모든 시각은 `timestamptz`, 저장은 UTC.** KST 변환은 프론트가 한다. 캘린더 기간 조회도 클라이언트가 UTC 경계로 바꿔 보낸다 | 단일 정본 원칙 |
-| G-2-e | **예외는 업무 기한 하나다** — `task.due_date`(`date`) · `task.due_start_time`/`due_end_time`(`time`). 기한은 순간이 아니라 **달력 개념**이라 그대로 두고, 시간축에 놓을 때만 앱 타임존(KST)으로 순간을 만든다(§3-3) | DEC-002 §3 · DEC-005 §3 |
+| G-2-e | **예외는 업무의 계획 일정이다** — `task.start_date`·`task.due_date`(둘 다 `date`). 계획은 순간이 아니라 **달력 개념**이라 그대로 두고, 시간축에 놓을 때만 앱 타임존(KST)으로 순간을 만든다(§3-3). **업무에 시간 컬럼은 없다**(2026-09-06 · DEC-002) — 실적 `started_at`·`completed_at` 은 순간이라 G-2 를 따른다 | DEC-002 §3 · DEC-005 §3 |
 | G-3 | **enum 은 Postgres native ENUM 을 쓰지 않는다** — `varchar` + `CHECK` 로 잡고 값의 정본은 파이썬 `StrEnum`. `ALTER TYPE` 잠금 없이 값을 늘릴 수 있어야 한다 | 유형이 동적으로 늘어나는 제품(DEC-001 §3) |
 | G-4 | **enum 값은 영문 소문자 snake_case로 저장한다.** 「시작전」 같은 한국어 라벨은 저장하지 않고 프론트가 매핑한다 | 표시와 저장의 분리 |
 | G-5 | 모든 도메인 테이블에 `account_id` 가 있고, **모든 조회는 `account_id` 로 먼저 좁힌다.** 단일 사용자여도 소유 검사를 코드로 남긴다 | DEC-001 §2 |
@@ -53,7 +53,7 @@
 ```mermaid
 erDiagram
   account   ||--o{ career        : "경력"
-  account   ||--o{ auth_session  : "세션"
+  account   ||--o{ auth_session  : "세션 · 회의 토큰"
   account   ||--o{ work_type     : "유형"
   account   ||--o{ project       : "프로젝트"
   account   ||--o{ task          : "업무"
@@ -66,6 +66,8 @@ erDiagram
   work_type ||--o{ meeting       : "유형(종류=미팅)"
   project   ||--o{ task          : "0..1"
   project   ||--o{ meeting       : "0..1"
+
+  meeting   ||--o| auth_session  : "kind='meeting' 단명 토큰 · 0..1 (MF-69)"
 
   task      ||..o| schedule      : "source_type='task' · 0..1"
   meeting   ||..o| schedule      : "source_type='meeting' · 0..1"
@@ -82,6 +84,7 @@ erDiagram
   meeting   ||--o{ meeting_attachment : "첨부"
   meeting   ||--o{ meeting_batch_run  : "배치 이력"
   meeting_agenda ||--o{ meeting_line  : "줄은 항상 안건에 속한다"
+  meeting_agenda |o--o{ meeting_agenda : "source_agenda_id — ai·merged → 원본 안건"
   meeting_line   }o--o| task          : "kind=task 일 때"
 
   folder    ||--o{ folder        : "하위 폴더"
@@ -89,7 +92,7 @@ erDiagram
   document  ||--o{ document_tag  : ""
   document  ||--o{ document_link : "프로젝트 · 업무 · 회의"
   document  ||--o{ task_attachment    : "v1 첨부는 자료함 md 만"
-  document  ||--o{ meeting_attachment : ""
+  document  ||--o{ meeting_attachment : "kind=doc"
 
   account {
     bigint id PK
@@ -111,9 +114,12 @@ erDiagram
   auth_session {
     bigint id PK
     bigint account_id FK
-    varchar refresh_token_hash UK
-    timestamptz expires_at "발급 + 7일"
-    timestamptz revoked_at
+    varchar kind "refresh | meeting — 회의별 단명 토큰. MF-69 · A-13"
+    varchar refresh_token_hash UK "kind='refresh' 만. meeting 행은 NULL"
+    varchar meeting_token "kind='meeting' 만 — **원문**. 매 제출이 읽어 MCP 헤더에 싣는다(A-13)"
+    bigint meeting_id FK "kind='meeting' 일 때만. 그 회의 범위"
+    timestamptz expires_at "refresh 발급 + 7일 · meeting 은 짧게"
+    timestamptz revoked_at "kind='refresh' 만 — 회의 토큰은 폐기 = 행 삭제"
   }
   work_type {
     bigint id PK
@@ -121,7 +127,8 @@ erDiagram
     varchar kind "meeting | task"
     varchar name
     varchar color_token "허용 팔레트 토큰명"
-    boolean is_default "시드 3종 — 삭제·개명 불가, 색만 편집"
+    text description "어떤 업무인지 — AI 가 유형을 고르는 근거. MF-21 · A-12"
+    boolean is_default "시드 3종 — 삭제·개명 불가, 색·설명 편집"
     timestamptz deleted_at
   }
   project {
@@ -147,11 +154,12 @@ erDiagram
     bigint project_id FK "NULL 허용 — 무소속"
     varchar title "유일한 필수 입력"
     varchar status "todo|in_progress|done|cancelled"
-    date due_date "기한 — 업무가 소유. 리스트 정렬·D-day 근거"
-    time due_start_time "NULL 이면 종일"
-    time due_end_time "NULL 이면 종일"
-    text background
-    text goal
+    date start_date "계획 시작"
+    date due_date "계획 종료 = 기한. 리스트 정렬·D-day 근거"
+    timestamptz started_at "실적 시작 — in_progress 전이"
+    timestamptz completed_at "실적 종료 — done 전이"
+    timestamptz cancelled_at "실적 취소 — cancelled 전이"
+    text description
     text completion_result "완료 게이트의 한 축"
     text cancel_reason
     timestamptz deleted_at
@@ -194,22 +202,25 @@ erDiagram
     bigint work_type_id FK "kind='meeting' 만"
     bigint project_id FK
     varchar title
-    timestamptz start_at "회의 일시 — 회의록이 소유"
+    timestamptz start_at "회의 일시(예정) — 회의록이 소유"
     timestamptz end_at
+    timestamptz recording_started_at "/start 성공 시각(실적) — 경과 시간·at_ms 의 기준점. SPEC-007 §7-C · M-1-a"
     varchar status "scheduled|recording|generating|ended"
-    varchar integration_state "not_started|running|succeeded|failed"
-    text ai_headline
-    varchar recording_path "영구 보관 — 소프트 딜리트해도 안 지운다"
-    varchar ai_session_id "codex 세션 — 회의당 하나"
+    varchar integration_state "not_started|running|succeeded|failed — 최종 회의록 생성 상태. M-4"
+    text ai_headline "최종 회의록 호출(②)의 출력 · 실패면 NULL · 재생성 없음. DEC-003 §1·§4 · M-19"
+    jsonb term_corrections "[{stt,correct,grade}] STT 용어 매핑표 — ②와 같은 트랜잭션. MF-54 · M-9-b"
+    varchar recording_path "영구 보관 — 재전사·다시 시도의 입력. M-13"
+    varchar ai_session_id "codex 세션 — 회의당 하나. /start 가 아니라 웜스타트 워커가 채운다. MF-1 · M-12"
     timestamptz deleted_at
   }
   meeting_agenda {
     bigint id PK
     bigint meeting_id FK
     varchar track "human | ai | merged — 안건도 트랙별"
-    varchar title
+    varchar title "쓰기는 시작 전·종료 후 두 경로. M-5-e"
     int order_index
-    varchar state "done | next"
+    varchar state "next | active | done · NULL = 시작 전. SPEC-006 §7 · SPEC-007 §7-C · M-5-c"
+    bigint source_agenda_id FK "self · NULL 허용 — ai·merged 가 가리키는 원본 안건, human 은 항상 NULL. SPEC-007 §7-C · SPEC-008 §4 · M-5-b"
   }
   meeting_line {
     bigint id PK
@@ -220,22 +231,25 @@ erDiagram
     text content
     text detail
     jsonb evidence "[{fromMs,toMs}] 근거 타임칩"
-    int order_index
+    int order_index "지운 자리는 그대로 — 당기지 않는다. MF-36 · M-20"
     bigint task_id FK "kind=task"
-    jsonb pending_change "kind=task 갱신 대기분"
+    jsonb payload "merged 의 action·task 줄만 — 업무 생성분·변경분. MF-59 · M-14-a"
   }
   meeting_transcript {
     bigint id PK
     bigint meeting_id FK
-    varchar speaker_label "화자 1/2 — 익명"
-    int at_ms "회의 시작 기준 오프셋"
+    varchar speaker_label "화자 1/2 — 익명. 용어 보정도 안 바꾼다"
+    int at_ms "회의 시작 기준 오프셋 — 재전사해도 같다. M-9-a"
     int end_ms
-    text content "확정 토큰만"
+    text content "확정 토큰만. 종료 후 재전사 결과로 전량 교체. MF-37"
   }
   meeting_attachment {
     bigint id PK
     bigint meeting_id FK
-    bigint document_id FK
+    varchar kind "doc | link — SPEC-006 §7 · M-17"
+    bigint document_id FK "kind=doc — 자료함 md · NULL 허용"
+    varchar url "kind=link — URL 링크"
+    varchar label "kind=link 표시명"
   }
   meeting_batch_run {
     bigint id PK
@@ -243,7 +257,7 @@ erDiagram
     int seq
     bigint from_transcript_id
     bigint to_transcript_id
-    varchar phase "incremental | final | integration"
+    varchar phase "incremental | final — final = 최종 회의록 호출(②). MF-56"
     varchar status "succeeded|discarded|failed"
     varchar reason
   }
@@ -286,8 +300,8 @@ erDiagram
     varchar target_type
     bigint target_id
     varchar status "queued|running|succeeded|failed"
-    int attempt
-    varchar error_code
+    int attempt "② 최종 회의록 시도 회차 1~3 — progress.attempt 의 원천"
+    varchar error_code "transcription_failed|transcription_timeout|final_failed|final_timeout|job_timeout — SPEC-008 §4"
     text error_message
     timestamptz finished_at
   }
@@ -299,8 +313,8 @@ erDiagram
 |---|---|---|---|
 | `account` | account | 계정·프로필. 시드로만 생성 | DEC-001 §2·§3 |
 | `career` | account | 경력 행. 하드 삭제 | DEC-001 §5 · 11-auth §경력 패널 |
-| `auth_session` | account | refresh 토큰 회전 기록 | DEC-001 §4 |
-| `work_type` | account | 동적 유형(종류 미팅\|업무) + 기본 3종 시드 | DEC-001 §3·§4 |
+| `auth_session` | account | refresh 토큰 회전 기록 **+ 회의별 단명 토큰**(`kind`) | DEC-001 §4 · **MF-69**(DEC-003 OQ-9) |
+| `work_type` | account | 동적 유형(종류 미팅\|업무 + **설명**) + 기본 3종 시드 | DEC-001 §3·§4 · MF-21 |
 | `project` | account | 프로젝트 | DEC-001 §3 |
 | `schedule` | calendar | **시간축 배치의 파생 테이블** — 원본은 업무 기한·회의 일시 | DEC-005 §3 (2026-09-05 개정) |
 | `task` | task | 업무 본체. **기한(`due_date`)을 소유한다** | DEC-002 §3 |
@@ -309,14 +323,14 @@ erDiagram
 | `task_relation` | task | 연관업무 (무방향) | 06-related-tasks |
 | `meeting` | meeting | 회의록 본체. **일시(`start_at`/`end_at`)를 소유한다** | DEC-003 §3·§4 · DEC-005 §3 |
 | `meeting_agenda` | meeting | 안건. **줄과 같이 트랙별로 갈린다** | DEC-003 §4 (2026-09-05 보강) |
-| `meeting_line` | meeting | **사람 / AI / 통합본 3트랙 줄** | DEC-003 §3 |
-| `meeting_transcript` | meeting | 확정 발화 블록 — 근거 칩의 원천 | DEC-003 §3·§6 |
-| `meeting_attachment` | meeting | 첨부 (v1 은 자료함 md) | DEC-003 §8 · DEC-004 §8 |
-| `meeting_batch_run` | meeting | 배치 실행 이력 — 재시도 구간 커서 | DEC-003 §7 |
+| `meeting_line` | meeting | **사람 / AI / 최종 회의록 3트랙 줄.** `payload` 에 업무 생성분·변경분(MF-59) | DEC-003 §3 |
+| `meeting_transcript` | meeting | 확정 발화 블록 — 근거 칩의 원천. 종료 후 재전사로 전량 교체(MF-37) | DEC-003 §3·§6 |
+| `meeting_attachment` | meeting | 첨부 (자료함 md 또는 **URL 링크** — `task_attachment` 와 같은 모양) | DEC-003 §1 표(2026-09-06) · DEC-004 §8 · SPEC-006 §7 |
+| `meeting_batch_run` | meeting | 배치 실행 이력 — 재시도 구간 커서. `phase ∈ {incremental, final}` | DEC-003 §7 · MF-56 |
 | `folder` | library | PARA 4종 고정 + 하위 자유 | DEC-004 §4 |
 | `document` | library | md 문서 | DEC-004 §3·§4 |
 | `document_tag` · `document_link` | library | 태그·사람이 건 연결 | DEC-004 §3 |
-| `job` | (공통) | 장시간 작업 상태 — 「회의록 생성중」이 폴링한다 | DEC-003 §4 |
+| `job` | (공통) | 장시간 작업 상태 — 「회의록 생성중」이 폴링한다. **`progress{phase, attempt}` 는 컬럼이 아니라 파생**(`phase` = 재전사 중 `transcription` / `meeting_batch_run(phase='final')` 이 생기면 `final` · `attempt` = `job.attempt` — G-7) | DEC-003 §4 · SPEC-008 §4 · MF-37 |
 
 **만들지 않는 표** — 메시지(DEC-006 §3, v1 에 저장 대상 없음) · 문서 버전 / AI 색인(DEC-004 §3, v2) · 알림(DEC-003 §8, 별도 도메인) · 감사 로그(DEC-001 §6, 개인 도구라 두지 않는다) · 태그 마스터(쓰는 곳이 문서 하나뿐이라 정규화 이득이 없다).
 
@@ -329,9 +343,14 @@ erDiagram
 
 | 사실 | 원본(소유) | `schedule` 로의 파생 |
 |---|---|---|
-| 업무의 **기한** | **`task.due_date`** — 리스트 기본 정렬·D-day 를 **조인 없이** 읽는다 | 기한이 있으면 그 날짜의 **종일 일정**(`is_all_day=true`) |
-| 업무에 **시간까지 지정** | `task.due_start_time` · `task.due_end_time` | **시간 일정**(`is_all_day=false`) |
+| 업무의 **계획 기간** | **`task.start_date` · `task.due_date`** — 리스트 정렬·D-day 를 **조인 없이** 읽는다 | 둘 다 있으면 **기간 일정**(`is_all_day=true`, 여러 날). 디자인 시스템 [11] Period Bar |
+| 업무의 **계획 종료만** | `task.due_date` | 그 날짜의 **종일 일정** 하루 |
+| 업무의 **계획 시작만** | `task.start_date` | 시작일 하루의 **종일 일정**. 끝이 없어 무한 바를 그릴 수 없다 |
 | 회의 **일시** | **`meeting.start_at` · `meeting.end_at`** | **시간 일정**(회의는 시간이 사실상 필수) |
+
+> **2026-09-06 개정 — §A-4 번복.** 업무의 일정은 **4필드**다(`start_date`·`due_date` 계획 / `started_at`·`completed_at` 실적 —
+> `domains/task.md` T-1). **실적 2개는 `schedule` 로 파생하지 않는다** — 캘린더는 계획만 그린다(사용자 확정).
+> **계획이 둘 다 없는 업무는 캘린더에 뜨지 않는다.** 「내 업무」 오늘 화면에만 매일 뜬다(DEC-002).
 
 `schedule` 이 갖는 것은 **시간축 배치뿐** — `start_at` · `end_at` · `is_all_day`. **기한 같은 도메인 속성을 담지 않는다.**
 
@@ -383,17 +402,20 @@ erDiagram
 | 테이블 | 인덱스 | 왜 |
 |---|---|---|
 | `account` | `UNIQUE (login_id)` | 로그인 식별자 |
-| `auth_session` | `UNIQUE (refresh_token_hash)`, `(account_id, expires_at)` | 회전 검증·만료 청소 |
+| `auth_session` | `UNIQUE (refresh_token_hash)` · `(account_id, expires_at)` · `(meeting_id) WHERE kind='meeting'`(**비유니크** 부분 인덱스 — 회의당 하나는 `/start` 상태 게이트가 지킨다) | 회전 검증·만료 청소 · 회의 토큰 조회와 폐기(행 삭제) |
 | `work_type` · `project` | `(account_id) WHERE deleted_at IS NULL` | 선택 목록이 매 화면에 뜬다 |
 | **`schedule`** | **`(account_id, start_at, end_at)`** | **캘린더 기간 조회와 겹침 검사가 둘 다 이 하나를 탄다** |
 | `schedule` | `UNIQUE (source_type, source_id)` | SCH-3 |
 | `task` | `(account_id, status) WHERE deleted_at IS NULL`, `(account_id, project_id) WHERE deleted_at IS NULL` | 리스트·칸반·프로젝트 필터 |
 | **`task`** | **`(account_id, due_date NULLS LAST) WHERE deleted_at IS NULL`** | **리스트 기본 정렬·D-day 가 조인 없이 이 인덱스만 탄다**(DEC-005 §3 개정의 이유) |
-| `meeting` | `(account_id, start_at)` | 목록 기간 정렬 |
+| `meeting` | `(account_id, start_at) WHERE deleted_at IS NULL` | 목록 월 범위 조회·정렬 (SPEC-006 §7 U-1 — 2026-09-06 부분 인덱스로 개정) |
 | `task_todo` · `task_memo` · `task_log` | `(task_id, order_index)` / `(task_id, created_at DESC)` | 상세 패널 |
 | `task_relation` | `UNIQUE (low_task_id, high_task_id)`, `(high_task_id)` | 무방향 1행 + 역방향 조회 |
 | `meeting` | `(account_id, status) WHERE deleted_at IS NULL` | 목록 |
-| `meeting_line` | `(meeting_id, track, agenda_id, order_index)` | 탭 하나 = 트랙 하나를 통째로 읽는다 |
+| `meeting_line` | `(meeting_id, track, agenda_id, order_index)` | 탭 하나 = 트랙 하나를 통째로 읽는다. **AI 트랙 전량 교체(M-7)도 이 인덱스로 DELETE 한다** |
+| ~~`meeting_line`~~ | ~~`UNIQUE (source_human_line_id) …` · `UNIQUE (source_ai_line_id) …`~~ | **삭제(2026-09-07)** — 통합 규칙과 함께 컬럼이 없어졌다(MF-56 · 57 · `domains/meeting.md` 컬럼 변경 표) |
+| `meeting_agenda` | `UNIQUE (meeting_id) WHERE track='human' AND state='active'` | 사람 트랙의 「논의 중」 안건은 최대 하나 (SPEC-007 §7-C · M-5-c) |
+| `meeting_attachment` | `UNIQUE (meeting_id, document_id) WHERE document_id IS NOT NULL` | 같은 문서 중복 첨부 금지 (SPEC-006 §7 · §4) |
 | `meeting_transcript` | `(meeting_id, at_ms)` | 근거 칩 클릭 → 해당 발화로 스크롤 |
 | `meeting_batch_run` | `(meeting_id, seq)` | 재시도 구간 커서 |
 | `folder` | `UNIQUE (account_id, parent_id, name)` | 같은 자리에 같은 이름 금지 |
@@ -409,7 +431,7 @@ erDiagram
 |---|---|---|
 | account | 계정·세션·경력·유형·프로젝트 | `domains/account.md` |
 | task | 업무와 그 자식들 — 완료 게이트·상태 전이 | `domains/task.md` |
-| meeting | 회의록 — 2트랙 + 통합본, 트랜스크립트, 배치 이력. 일시 소유 | `domains/meeting.md` |
+| meeting | 회의록 — 2트랙 + 최종 회의록, 트랜스크립트(재전사), 배치 이력. 일시 소유 | `domains/meeting.md` |
 | calendar | `schedule` 파생 규칙과 겹침 검사 | `domains/calendar.md` |
 | library | 문서함 — PARA 폴더·md 문서·연결 | `domains/library.md` |
 

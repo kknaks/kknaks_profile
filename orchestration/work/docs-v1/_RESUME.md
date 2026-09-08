@@ -1,12 +1,357 @@
 
 # 재개 노트 — docs-v1 (task-management)
 
+> # ⛔ 이것부터 읽어라
+>
+> ## 내가 병신이라 이상한 디자인을 했다 반드시 시안을 보고해야한다
+>
+> `00-design/` 에 **`.dc.html` 시안 8개**가 있다. 2026-09-06 까지의 코디는 **그 파일을 한 번도 열지 않고**
+> 디자이너 워커가 글로 요약한 `00-design/*.md` 만 읽고 SPEC 을 썼다. 코드 워커에게도 시안 대신 SPEC 만 줬고,
+> 검수도 「SPEC 문장대로 만들었나」만 봤다. **결과적으로 시안이 아니라 코디가 쓴 글대로 화면이 만들어졌고,
+> 만든 화면 7개를 전부 버렸다.**
+>
+> - 예: 요약본의 「배경(캔버스) `#F4F5F7`」을 body 에 깔아 **전체가 회색**이 됐다. 시안 본문은 **흰색**이다
+> - 레이아웃도 논의 없이 달라졌다. 컬럼 구성·여백·타이포 전부
+>
+> **규칙**
+> 1. **화면 이야기를 하기 전에 해당 `.dc.html` 을 연다.** 안 열었으면 「안 봤다」고 말한다. 추측으로 답하지 않는다
+> 2. **시각 정본은 `.dc.html` 이다.** `00-design/*.md` 요약본·SPEC 문장과 어긋나면 **`.dc.html` 이 이긴다**
+> 3. **코드 워커 브리프에 해당 `.dc.html` 절대경로를 박는다.** SPEC 경로만 주지 않는다
+> 4. **검수 브리프에 「시안과 화면을 나란히 놓고 판정하라」를 넣는다**
+> 5. **시킨 것만 한다.** 지우라면 지우기만 하고 깨진 import 를 알아서 메우지 않는다 — 사용자는 이미 알고 있다
+
+> # ⛔ 회의록 — 흐름 결정 33건 · 계약 재작성 (2026-09-07)
+>
+> ## 지금 어디까지 왔나
+>
+> ```
+> ✅ 흐름 결정 33건    사용자와 단계별로(시작 → 중 → 종료 → 편집) 전부 닫음
+> ✅ 계약 재작성 1차    31건 반영. grep 으로 실측 확인함
+> ⏳ 계약 정정 2차      4건 — 워커 작업 중 (아래 「정정 4건」)
+> ✗  33건 전수 대조     정정 끝나면 코디가 SPEC 을 직접 열어 하나씩 본다
+> ✗  WP 6개           **새 세션에서 만든다** (사용자 지시 2026-09-07)
+> ```
+>
+> ## 문서 셋 — 무엇이 정본인가
+>
+> ```
+> 정본        SPEC-006/007/008 · DEC-001/003 · 40-architecture
+>
+> reference/2026-09-06-task-management-app/Meeting flow.md
+>            **결정의 원본 기록.** MF-1 ~ MF-65 번호. §0 이 목록, §1~§3 이 본문
+>            계약이 이걸 못 따라오면 **이게 이긴다** (사용자가 직접 닫은 것이라서)
+>
+> ⛔ decisions-pending.md · walkthrough-fixes.md
+>            **믿지 마라.** 거기 「사용자 확정」 표시에 사용자가 안 한 말이 섞여 있었다
+>            Meeting flow 를 만들 때 **목록만** 가져왔고 상태는 안 가져왔다
+>            실제로 「내가 그런 말 한 적 없다」로 7건이 지워졌다
+> ```
+>
+> ## 크게 바뀐 것 — 옛 SPEC 을 그대로 읽으면 전부 틀린다
+>
+> ```
+> ① 최종 배치와 통합 단계가 **없다** (MF-56)
+>    /end = async 재전사 → **최종 회의록 한 번** → ended
+>    경로도 /integrate → /finalize 로 바뀌었다 (DB 컬럼 integration_state 는 그대로, 뜻만 바뀜)
+>    「모델은 구조만 내고 본문은 서버가 복사」 규칙이 **폐기**됐다 (MF-57 — AI 가 쓴다. 오타도 다듬는다)
+>
+> ② 배치가 컨텍스트를 안 받는다 (MF-50)
+>    payload = transcript 하나. 안건·줄·업무·유형은 **MCP 도구로 조회**한다
+>    도구 7개 — get_meeting · get_account · list_agendas · **get_agenda** · list_tasks · get_task · list_work_types
+>    (get_agenda 가 없어서 AI 가 사람이 적은 줄을 못 봤다. 그게 안건 남발의 원인이었다)
+>
+> ③ 배치가 매번 AI 트랙 **전체를 다시 낸다** (MF-53)
+>    「INSERT 만」 규약이 「DELETE + INSERT 한 트랜잭션」으로 바뀐다
+>    세션이 앞 발화를 기억하므로 증분만 넣고 「전체를 다시 정리해라」만 요청한다
+>
+> ④ 회의록 편집이 좁아진다 (MF-60 · 62)
+>    할 수 있는 것 — 줄 삭제 · 줄 추가 · 줄 수정 · 업무 넣기 · **안건 제목 수정**
+>    못 하는 것 — **줄 종류 바꾸기** · **안건 삭제**
+> ```
+>
+> ## ⏳ 정정 4건 — 워커 작업 중 (`docs-v1-meeting-reflow2-brief.md`)
+>
+> 1차 계약을 사용자가 검수해 찾아낸 것. **코디가 보고서만 읽고 넘긴 것을 사용자가 잡았다.**
+>
+> ```
+> MF-64   「+ 액션 아이템」도 **줄이 먼저** 생기고 드로어가 뜬다 — 칩 넷이 같다
+>         (연관 업무는 원래 그랬는데 액션만 「업무 생성과 줄 생성이 한 요청」이었다)
+>
+> MF-65   드로어는 **액션·업무 각각 하나**. **payload 있고 없고가 전부**
+>         1차 계약은 「AI 줄 = 넣기 모드 / 사람 줄 = 자동 저장」으로 갈라놨다 — 사실상 드로어 둘
+>         헤더 제목 자리에 **업무 셀렉터**(RelationPopover 재사용)를 둔다
+>         → AI 가 엉뚱한 업무를 골랐을 때 바꿀 길이 1차 계약에 **없었다**
+>
+> ③      **payload 저장 ≠ 업무 생성**
+>         편집에서 액션을 추가하면 **payload 를 만드는 것**이다. 「넣기」를 눌러야 업무가 생긴다
+>
+> ④      20-spec/README.md L74 인덱스가 옛 어휘 「종료·통합·편집」 그대로
+> ```
+>
+> **정정이 끝나면 코디가 할 일 — 33건 전수 대조.** 워커 보고를 옮기지 말고 SPEC 을 직접 열어라.
+> 특히 넷: 드로어가 하나인가 · payload 와 업무 생성이 갈렸나 · 칩 넷이 같은가 · 헤더에 업무 셀렉터가 있나.
+>
+> ## WP 발주 계획 — **새 세션에서 만든다**
+>
+> 코드 워크트리: `/Users/kknaks/orca/workspaces/task_management/docs-v1` (브랜치 `kknaksss/docs-v1`)
+> **지금 코드는 전부 옛 설계다.** 아래는 각 WP 가 **읽을 계약**과 **손댈 코드**다.
+>
+> ### WP1. MCP 서버 + 단명 토큰 — MF-2 3 4 51
+>
+> ```
+> 계약   DEC-003 §2「AI 의 데이터 접근」·§8「AI 도구 연결」
+>       SPEC-007 §4「AI 도구 7개」표
+>       40-architecture/system §codex 설정(신설 — 실측 표·함정 셋)
+> 코드   app/mcp/            **없다. 새로 만든다** (compose·워커 설정 allowed_paths 에 이미 있음)
+>       app/back/integrations/agent.py    provider_options 에 mcp_servers·enabled_tools 주입
+>       토큰 발급/폐기 표면   **어디에 둘지 미정** — SPEC-001 은 무상태 JWT (DEC-003 OQ-9)
+> ⚠ **2·3·4 가 전부 이것에 기댄다.** 이게 없으면 배치가 컨텍스트를 못 얻는다
+> ```
+>
+> ### WP2. 회의 시작 — MF-1 55
+>
+> ```
+> 계약   SPEC-006 §4 `POST /start` · SPEC-007 §4 웜스타트 표
+>       backend README §5-2 · §5-3 · §7(W-1 해소) · §12 테스트 8-a
+> 코드   service/meeting_service.py           start() — 전이만. commit 제거
+>       service/meeting_batch_service.py     warm_start() · build_warm_start_prompt()
+>                                            → 컨텍스트 안 싣고 역할·규칙·용어 다섯만
+>       ai_session_id 가 NULL 인 동안 배치는 평가만 하고 제출 안 함
+> ```
+>
+> ### WP3. 회의 중 — MF-9 10 49 50 53
+>
+> ```
+> 계약   SPEC-007 U-2 · U-3(슬래시 재작성) · U-4 · §4(배치 입력·검증 3·5) · frontend §8
+> 코드   service/meeting_batch_service.py
+>         evaluate()          600 → **1000자**
+>         _load_input()       안건·줄·화이트리스트 **안 싣는다**
+>         build_batch_prompt() 조회 순서(list_agendas → get_agenda → list_tasks)
+>         _persist()          INSERT 만 → **DELETE + INSERT 한 트랜잭션**
+>       front  PromptBar · LineKindPopover   슬래시 5개 · 스페이스에서 칩 · 그 밖은 텍스트
+>              LineRow.tsx                   줄 우측 시각 제거 (안건 헤더는 유지)
+>              useMeetingStream · mergeAiBatch  ai.batch 가 **트리 전체**로 온다
+> ```
+>
+> ### WP4. 회의 종료 — MF-37 52 54 56 57 58 59  ← **제일 크다. 쪼개도 된다**
+>
+> ```
+> 계약   SPEC-008 U-1 · U-2 · §4 파이프라인 ①② · Case Matrix · DEC-003 §4·§6·§7·§STT
+> 코드   service/meeting_finalize_service.py   end() · integrate() → **finalize()**
+>                                             ① async 재전사 → ② 최종 회의록 **한 번**
+>       integrations/soniox.py                async 갈래 신설 (지금은 실시간 WS 하나뿐)
+>                                             files → transcriptions → 폴링 → tokens[]
+>                                             ⚠ sub-word 토큰이라 화자·시간 기준으로 묶어야 한다
+>       ai_schemas/meeting_batch.json → meeting_notes.json  payload·headline·termCorrections nullable
+>       meeting_transcript                    재전사분 전량 교체 · term_corrections 신설
+>       ⚠ 실물 확인 — **헤더 없는 webm 을 stt-async-v5 가 받나** (미확인)
+> ```
+>
+> ### WP5. 편집·정리 — MF-13 14 21 25 36 60 61 62 63 64 65
+>
+> ```
+> 계약   SPEC-008 U-3 · U-6 · U-7 · U-9 · U-10 · §4(PATCH lines · DELETE · POST lines)
+>       SPEC-003 U-1 · U-3 · U-8   (업무 탭이 정본. 슬롯만 더한다)
+>       SPEC-002 · DEC-001 §3·§4   (work_type.description)
+>       frontend README §6(모달 두 크기)
+> 코드   front  MeetingDetailBody.tsx      칩 넷을 같은 방식으로(줄 먼저)
+>              CreateTaskFromLineDrawer     → **폐기.** TaskCreateDrawer 재사용 + 안건 슬롯
+>              LinkTaskDrawer               → **폐기.** TaskDetailDrawer + 헤더 업무 셀렉터
+>              RelationPopover              헤더 셀렉터로 재사용 (이미 있다)
+>              LineKindSelector             편집에서 **제거** (종류 못 바꾼다)
+>              ConfirmModal                 420 폭 · 한 문장 · size prop
+>       back   meeting_line_repository      삭제 시 order_index **안 당긴다**
+>              PATCH …/lines 에서 kind 제거 · POST …/lines 의 newTask 갈래 제거
+>              work_type.description 컬럼 + 마이그레이션 + 시드 문구
+> ```
+>
+> ### WP6. 목록·상세 UI — MF-5 6 7 8
+>
+> ```
+> 계약   SPEC-006 U-1 · U-4 · U-6 · U-8 · SPEC-008 U-3
+>       frontend README §6-3(신설 — breadcrumb·헤더 규격)
+> 코드   components/shared/AppShell.tsx   Breadcrumb 를 **링크로** + 상세에 「←」
+>       MeetingPreviewPanel              CTA 상태별 · min-width:0 · 패널 안 스크롤
+>       AgendaLineTree                   density prop (미리보기 compact)
+>       MeetingClosedPage · MeetingScheduledPage · MeetingMetaInline
+>                                        헤더를 배지 줄 → 제목 순서로
+>
+> ⛔ **업무 화면은 안 고친다.** 이번 논의는 회의록 얘기였다
+>   MF-8 — 업무 헤더는 **정본으로 참고**만 한다. 업무 쪽 순서를 바꾸는 게 아니다
+>   MF-7 — 「←」 뒤로가기는 **공용 부품(AppShell)** 에서 고치니 업무 상세에도 자연히 붙는다
+>          (업무 상세에도 뒤로가기가 없다 — grep 0건. 그건 공용 부품 고치는 덤이다)
+>          breadcrumb 링크도 같은 부품이라 같이 산다
+> ```
+>
+> ## 열려 있는 것
+>
+> ```
+> DEC-003 OQ-8 ~ 12   워커가 근거와 함께 올린 것 — 웜스타트 실패 기록·재시도 / MCP 배치·토큰 인프라
+>                    / context.terms 원천(용어 사전이 v1 에 없다) / 「미팅·회의」 시드 문구
+>                    / 유형 기본값(지금은 null 허용 → 사람이 고르게)
+>
+> 실물 확인 1건        **헤더 없는 webm 을 stt-async-v5 가 받나**
+>                    우리 녹음은 실시간으로 흘려 써서 duration 헤더가 비어 있다
+>                    파일 하나 넣어보면 $0.10 에 처리 시간·화자 분리 개선폭까지 나온다
+>
+> 코드                지금 코드는 **전부 옛 설계**다. WP 가 나와야 고친다
+>                    app/ 은 별도 워크트리 — /Users/kknaks/orca/workspaces/task_management/docs-v1
+> ```
+>
+> ## ⛔ 이 세션에서 사용자가 여러 번 교정한 것
+>
+> ```
+> 1. **시킨 것만 한다.** 빈 섹션이 보여도 채우지 마라.
+>    「해결된 거 붙여봐」에 §2~§4 를 만들고 전수 대조표를 만들었다가 전부 지웠다
+> 2. **사용자가 답한 것만 적는다.** 「~할까요?」에 답이 없으면 **아무것도 쓰지 않는다**
+>    접거나 지우는 것도 물어보고 한다
+> 3. **워커 보고를 그대로 옮기지 마라.** 문서를 직접 열어 확인하고 판정해서 보고한다
+>    보고서에 「워커 판단 7건」이 있었는데 그중 3건이 틀렸고 사용자가 잡았다
+> 4. **묻지 말고 고쳐라.** 이미 논의로 결론이 난 것을 다시 확인하려 들지 마라
+> ```
+
+> # ⛔ 정본 기준 — 축을 나눠라 (2026-09-06)
+>
+> 위 규칙 2 「시각 정본은 `.dc.html`」을 코디가 **「시안이 전부의 정본」**으로 넓혀 읽었다.
+> 회의록 SPEC 브리프 맨 위에 **「이번엔 시안이 정본이다. 전 화면을 열고 쓴다」**를 박고,
+> 표에서 기획서를 **「왜 만드나」**로 내렸다. 전임자 사고(시안을 안 봤다)의 반대로 저울을 기울인 것이다.
+>
+> **축을 나눴어야 했다.**
+>
+> | 무엇 | 정본 |
+> |---|---|
+> | **기능** — 화면·필드·상태·흐름·문구·API | **기획 `00-baseline/` + 정책 `10-decision/`** |
+> | **시각** — 색·크기·간격·배치 | **디자인 시스템 + 시안 `.dc.html`** |
+>
+> **판정은 기획·정책 한 축뿐이다. 시안은 판정에 들어오지 않는다.**
+>
+> | 기획·정책 | 판정 |
+> |---|---|
+> | **있다** | **만든다.** 시안에 화면이 있으면 그 배치를 따르고, **없으면 디자인 시스템 컴포넌트로 조립한다** |
+> | **없다** | **안 만든다.** 시안에 그려져 있어도 |
+>
+> - **시안에 있고 기획·정책에 없다** → 만들지 않는다. 조용히 지우지도 않는다 —
+>   「시안에 있으나 기획에 없어 제외」로 **목록에 올려 사용자가 본다.** 필요하면 **기획·정책에 먼저 넣고** 그다음 만든다
+> - **기획·정책에 있고 시안에 없다** → **만든다.** 「시안 없음」은 막힐 이유가 아니다.
+>   정책이 「무엇과 같은 구조」라고 지정했으면 그 화면을 쓰고(예: DEC-005 §2 L41 회의 상세 드로어 = 업무 상세 드로어 구조),
+>   아니면 디자인 시스템 컴포넌트로 조립한다. **OQ 로 올리지 마라**
+>
+> **일어난 일** — 워커가 시안 2,882줄에 보이는 것을 전부 계약으로 옮겼다.
+> **기획에 없는데 들어간 것**: 시작 전 AI 안건 생성(`POST /agendas/draft`·`agenda_draft_failed`
+> — BASE-003 「AI 제안은 필요 없다」로 배제) · 「되돌리기」(편집 이력 표 없음) ·
+> 상태 바 파형(오디오 분석이 캡처 경로에 없음) · 취소된 회의 행(status 4종에 없음) ·
+> 「내 목소리 등록됨」(DEC-003 §2 익명 화자 정책 위반).
+> **기획에 있는데 OQ 로 올라간 것**: 회의 상세 드로어(`S008-OQ-18` — DEC-005 §2 L41 에 답이 있었다).
+>
+> 그래서 **SPEC-006·007·008 을 폐기했다**(아래 참조). 재작성 브리프는 이 표를 맨 위에 박는다.
+
 > **작업 단위 = 이 워크트리(브랜치 task-management-app) 1개 = 이 slug 1개.**
 > v1 문서 파이프라인(디자인 분석 → 영역별 baseline+decision → spec)이 전부 여기서 돈다.
 > 워커 추가 발주는 새 slug 를 파지 않고 `new-work.sh task-management docs-v1 --workers <w>` 로 이 폴더에 브리프를 더한다.
 
-**지금**: Phase 1 완료 · 결정형 OQ 16건 해소 · **구조 게이트 3건 확정**(정적 빌드 / shadcn / 유동 반응형)
-**다음**: **Phase 2 — SPEC-000 공통 기반부터.** 디자인 대기 항목은 `design-requests.md`(병행)
+> ### ⛔ 2026-09-07 실물 확인 — 지금 여기부터 읽어라
+>
+> 앱을 띄워 회의를 처음부터 끝까지 돌렸다. **전 구간이 돈다** —
+> 회의 생성 → 시작 → 마이크 → Soniox 받아쓰기·화자 분리 → 녹음 적재 →
+> 증분 배치 7회 → 종료 → 최종 배치 → 통합본 29줄 + 한 줄 요약.
+> 통합 규칙도 DB 로 검증했다 — 사람 문장 불일치 0 · 사람 줄 계승 9/9 · 이중 계승 0.
+>
+> **그 과정에서 나온 것을 세 파일에 적었다. 이것이 다음 작업의 입력이다.**
+>
+> | 파일 | 무엇 |
+> |---|---|
+> | `walkthrough-fixes.md` | **F-1 ~ F-25** — 버그·사용성·정의 변경 |
+> | `decisions-pending.md` | **①~④** — 사용자 결정 대기 (①은 닫힘) |
+> | `reference/2026-09-06-task-management-app/Meeting flow.md` | **전체 흐름 정본.** 지금 「회의 시작」만 적혀 있다 |
+> | `reference/2026-09-06-task-management-app/ai-prompt-draft.md` | AI 프롬프트 초안 (A 웜스타트 · B 증분 · C 최종) |
+>
+> **작업 방식** — 사용자가 흐름을 **단계별로** 본다: 회의 시작 → 회의 중 → 종료 → 정리.
+> 단계마다 정의를 닫고 넘어간다. **「정함」은 사용자가 확정한 것만이다.**
+> 코디가 제안한 것을 정해진 것처럼 말하지 마라 — 이 세션에서 여러 번 그래서 교정받았다.
+>
+> **실물에서 고친 것(커밋됨)**
+> ```
+> aa98518  Tauri 마이크 권한 — macOS Info.plist · Entitlements · Windows WebView2
+>          + tauri.conf.json CSP 에 ws://localhost:8000 (WS 가 막혀 있었다)
+> ```
+> **환경** — `.env` 에 `CODEX_TOOLS_DIR` · `CODEX_AUTH_JSON` 을 넣었다(백업 `/tmp/env.backup.*`).
+> compose 에 db·redis·api·worker 4개가 뜬다. Soniox 는 **잔액 충전이 필요했다**(402 → 충전 후 정상).
+>
+> **아직 「확인 필요」로 남은 것** — F-12·F-14·F-17·F-18·F-19·F-20·F-21 은
+> 어느 화면의 어느 자리인지 특정 안 됐다. **짐작으로 적지 말고 사용자와 맞춰라.**
+
+**지금**: **회의록 코드가 끝났다** — WORK-006·007·008 · 검수 3회 · 수정 3회. `pytest 519` · `vitest 300` · `tsc 0` · 미커밋 0. 브랜치 `kknaksss/docs-v1` (PR 안 열었다)
+
+**다음**: 아침에 사용자가 볼 것 — `decisions-pending.md` 의 **결정 2건** · `.env` 두 줄(`CODEX_TOOLS_DIR`·`CODEX_AUTH_JSON`) · **실물 확인 40건**(마이크·Soniox·Tauri·반응형). 그 뒤 문서 공백 11건 반영 → 남은 화면(REDRAW-04 설정 셸 · 개인 설정 · 연동 관리) → 캘린더·문서함 그룹
+
+> ### 회의록 커밋 (2026-09-06~07)
+>
+> ```
+> a7e1bd4  WORK-006 be Phase 1~3      회의 도메인 · 본체 API · 안건 · 첨부      pytest 389
+> 2d6319e  WORK-006 fe Phase 4~6      목록 · 생성 드로어 · 시작 전              vitest 163
+> 618d5bb  WORK-006 검수 수정          FAIL 1 · WARN 5                          vitest 171
+> b09a16a  WORK-007 be Phase 1~4      WS 2단 중계 · 녹음 · AI 배치              pytest 449
+> ecb7f07  WORK-007 fe Phase 5~6      회의 중 화면 · 스트림 훅 · 2트랙          vitest 240
+> ac9ee5b  WORK-007 검수 수정          FAIL 2 · WARN 3 · compose 에 Redis·worker
+> a48cbe2  WORK-008 be Phase 1·2      종료 파이프라인 · 통합 규칙 · 편집        pytest 508
+> a5ae4c6  WORK-008 fe Phase 3·4·6    생성중 · 통합본 상세 · 편집 모드          vitest 283
+> 580846a  WORK-008 Phase 5           업무 연동(완료 게이트 네 번째 진입점)     pytest 519
+> d44a3e5  WORK-008 검수 수정          FAIL 1 · WARN 4                          vitest 300
+> ```
+>
+> **지켜진 축**
+> - **완료 게이트 우회 0건** — 회의록에 판정 코드가 없다. `task_service.change_status()` 하나를 지난다(work-005 L137·L147·L294)
+> - **통합 규칙은 모델을 믿지 않는다** — 참조 id·자리만 받고 본문은 서버가 사람 줄에서 복사한다. 실패 5종을 테스트로 고정
+> - **공용 부품 하나씩** — `AgendaLineTree`(안에 `track` 비교 0) · `MeetingStatusBar`(상단 바 한 파일) · `MeetingDetailBody`(페이지·드로어 공유) · `build_detail()` · `_assert_allowed`
+> - **기획·정책에 없는 것은 안 그렸다** — 세 SPEC 의 §7 제외 목록 전부 0건
+>
+> **코디가 잡은 것 2건** — 워커가 초록으로 보고했으나 실제로는 깨져 있었다.
+> ① 전체 스위트에서만 깨지는 순서 의존 테스트(워커는 단독 실행만 봤다)
+> ② `vitest` 의 `Errors` 줄에만 나오는 unhandled rejection(워커는 `passed` 숫자만 봤다)
+> **앞으로 브리프에 「`make test` 전체」와 「`Errors` 줄 0」을 넣는다.**
+
+> ### ⚠ 2026-09-06 두 번째 교정 — 「버리고 다시 그린다」가 틀렸다
+>
+> 삭제(`32f8357`) 후 「처음부터 그려라」로 발주했더니 워커가 **동작까지 발명**했다 —
+> 비활성 버튼 시각·제출 중 스피너·V2Gate 배치를 하나씩 물어 왔고(Q1~Q7),
+> **전부 지운 코드에 이미 있던 것**이다. 사용자 교정: **「기존 페이지에서 레이아웃·색·컴포넌트만 바꾸는 것」**.
+>
+> 그래서 84개를 `32f8357^` 에서 전부 복구했다. **앞으로 브리프는 「이 파일의 시각만 고쳐라」다.**
+> 「처음부터 그려라」로 다시 쓰지 마라.
+
+### 삭제된 페이지 7 · 레이아웃 4 (2026-09-06)
+
+| 경로 | 화면 |
+|---|---|
+| `/` | 연결 확인 |
+| `/login` | 로그인 |
+| `/tasks` | 업무 리스트 · 칸반 |
+| `/tasks/detail` | 업무 상세 전체 페이지 |
+| `/settings` | 설정 메뉴 |
+| `/settings/work` | 업무 설정(유형·프로젝트) |
+| `/settings/integrations` | 연동 관리(목 UI) |
+
+레이아웃 — `app/layout.tsx`(루트) · `(app)/layout.tsx`(앱 셸·사이드바) · `(app)/settings/layout.tsx` · `(auth)/layout.tsx`
+함께 삭제 — `components/shared` · `components/ui` · `features/*/components` · `tokens.css` · `globals.css` · `tailwind.config.ts`
+
+**남아 있다(화면이 아니다)** — `lib/api`(클라이언트·에러·쿼리키) · `lib/auth`(tokenStore·세션) · `lib/overlay` ·
+`lib/datetime` · `lib/palette` · 훅 전부 · `features/*/api·errors·types` · `openTaskDrawers` · `types/api` · 테스트 인프라 · **백엔드 전부**
+
+**지금 프론트는 빌드가 안 된다** — 남은 파일이 지워진 화면을 import 한다. **의도한 상태다. 고치지 마라.**
+새 화면이 붙으면 이어진다.
+
+### 다시 볼 시안 (코드가 있던 화면 기준)
+
+| 순서 | 파일 | 무엇 |
+|---|---|---|
+| 1 | `00-design/디자인 시스템.dc.html` | 색·타이포·간격·공통 컴포넌트. **나머지의 기반** |
+| 2 | `00-design/로그인 · 계정 · 프로필.dc.html` | 로그인 · 설정 셸 · 업무 설정 |
+| 3 | `00-design/업무 화면 정의서.dc.html` | 업무 리스트 · 칸반 · 생성/상세 드로어 |
+
+나머지 5개(회의록·문서함·자료함·캘린더·메시지함)는 **코드가 없어 지금 범위 밖**이다.
+
+**토스트·드로어 같은 공통 컴포넌트 규격이 `frontend/README.md` §6-2 와 SPEC 곳곳에 적혀 있으나
+전부 요약본에서 나온 값이다 — 시안으로 검증되지 않았다.**
 
 세팅: `scripts/new-work.sh task-management docs-v1` · 설정 SSOT `config/projects/task-management.json`
 코디handle: `term_6a4ac855-2a13-4484-b808-4c25182cbb2b` (09-03 세션 재연결로 갱신 — 이전 `term_e6d07c2f…` 는 stale)
@@ -85,10 +430,43 @@
 
 | 워커 | handle | task_id | dispatch_id | 브리프 | 상태 |
 |---|---|---|---|---|---|
+| architect (아키텍처 반영) | `term_2dc83886-b1dd-4211-9f17-3058f4434623` | `task_c0b0dd1b7271` | `ctx_68fba81e1399` | `docs-v1-meeting-arch-brief.md` | **진행** — ERD 9건 · M-6 정정 · §8-2 코드 4 · system 흐름 ③ |
+| architect (SPEC-006 반영 + WORK-006) | `term_3e6440a0-ca97-418b-b8f4-f4c32e53a5a8` | `task_be2f61319a0b` | `ctx_0033f22f6606` | `docs-v1-meeting-wp1-brief.md` | **진행** |
+| architect (SPEC-007 반영 + WORK-007) | `term_95f47648-153b-4ec8-a4e4-97e9d0bebae3` | `task_41b8d2cf0345` | `ctx_e7cc953fc42a` | `docs-v1-meeting-wp2-brief.md` | **진행** |
+| architect (SPEC-008 반영 + WORK-008) | `term_e9fc284a-afbb-442b-aa52-8c3e2cd070fe` | `task_0372576d1185` | `ctx_8b07e160d45d` | `docs-v1-meeting-wp3-brief.md` | **진행** — OQ 2건이 사용자 결정으로 닫힘 |
+| architect (SPEC-006 재작성) | (같은 터미널) | `task_1ad767760edd` | `ctx_364f4b9d5cfe` | `docs-v1-meeting-respec1-brief.md` | 완료 — 741줄 · OQ 0건 · 검수 통과 |
+| architect (SPEC-007 재작성) | (같은 터미널) | `task_9aebbb04f0e1` | `ctx_48117a09681d` | `docs-v1-meeting-respec2-brief.md` | 완료 — 737줄 · OQ 0건 · 검수 통과 |
+| architect (SPEC-008 재작성) | (같은 터미널) | `task_ee2717f15405` | `ctx_ff6fc65f639c` | `docs-v1-meeting-respec3-brief.md` | 완료 — 782줄 · **진짜 OQ 2건** → 사용자 결정 → DEC-003 반영 |
+| ~~architect (회의록 SPEC trim)~~ | ~~`term_6c10543e…`~~ | ~~`task_43fa6f967358`~~ | ~~`ctx_3ec4c35729e8`~~ | ~~`docs-v1-meeting-trim-brief.md`~~ | 폐기 — 5건만 지우는 부분 수정이라 전수가 아니었다. 파일 변경 0건 |
+| ~~architect (회의록 SPEC 1차)~~ | (종료) | — | — | ~~`docs-v1-meeting-spec1/2/3-brief.md`~~ | **폐기 — 산출물 전량 삭제.** 브리프가 「시안이 정본」을 박아 기획에 없는 기능이 계약에 들어갔다(§⛔ 정본 기준) |
+| frontend (REDRAW-00 토큰) | `term_4925b9c3-ef1f-457b-9a06-9007745517e7` | `task_d79d00798d14` | `ctx_d7bfb8c42f0f` | `docs-v1-redraw00-tokens-fe-brief.md` | **진행** — tokens/globals/tailwind 3파일만. 검수는 **사용자가 직접** |
+| ~~frontend (REDRAW-01 로그인)~~ | ~~`term_d61b52bf…`~~ | ~~`task_989e1af17b4c`~~ | ~~`ctx_223b027ca227`~~ | ~~`docs-v1-redraw01-login-fe-brief.md`~~ | 폐기 — **브리프 전제가 틀렸다**(「처음부터 그려라」). 워커가 동작까지 발명하느라 Q1~Q7 이 나왔고 전부 지운 코드에 이미 있던 것이다 |
 | backend (WORK-001 P1·2) | `term_d6f9d145-12d9-4645-8762-5d4399063bd8` | `task_652a15f48f00` | `ctx_b124b7ae7fe0` | `docs-v1-work001-be-brief.md` | 완료 — 커밋 `2a4d29a`, 검증 10/10 |
 | frontend (WORK-001 P3·4) | `term_f01dc2f5-b55c-4016-b40a-93628c497a25` | `task_7e2bf4726de0` | `ctx_7d3baf2cf47a` | `docs-v1-work001-fe-brief.md` | 완료 — 커밋 `84882c0`, 앱 창 E2E 통과 |
 | reviewer (WORK-001) | `term_82e0a355-3e75-47b2-8e8f-2d03e3458c47` | `task_5ae8b0e0bc24` | `ctx_00c0163ca443` | `docs-v1-work001-review-brief.md` | 완료 — FAIL 0 · WARN 3 · 문서 공백 18 |
-| backend (WORK-002 P1) | `term_27cfe374-d8ad-41b0-a814-04f142c5626e` | `task_95532fa465bc` | `ctx_2af9c8e23129` | `docs-v1-work002-be-brief.md` | **진행** — 인증 API + W-3 |
+| frontend (WORK-003 P2·3) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_1d2587dd689b` | `ctx_e15797bfefbc` | `docs-v1-work003-fe-brief.md` | **진행** — 팔레트·공용 컴포넌트·설정 화면 |
+| backend (WORK-004 P1~3) | `term_27cfe374-d8ad-41b0-a814-04f142c5626e` | `task_3f9640623be2` | `ctx_470ee3f4a2e9` | `docs-v1-work004-be-brief.md` | 완료 — 업무 도메인·본체 API·자식 컬렉션 |
+| frontend (WORK-004 P4~6) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_2c1d45b0afd9` | `ctx_b78cc4317744` | `docs-v1-work004-fe-brief.md` | 완료 — 커밋 `7550e1b`, DrawerFrame 840 단일 소유 |
+| backend (WORK-004 후보 표면) | `term_27cfe374-d8ad-41b0-a814-04f142c5626e` | `task_43cc89b19825` | `ctx_6dec49ec6b57` | `docs-v1-work004-be-fix-brief.md` | 완료 — 커밋 `70924d7`, 컬렉션 표면 전환·pytest 80 |
+| backend (WORK-004 scope·total) | `term_27cfe374-d8ad-41b0-a814-04f142c5626e` | `task_be9dfadef1b9` | `ctx_67d31922b6b5` | `docs-v1-work004-scope-be-brief.md` | 완료 — 커밋 `9897ff5`, pytest 92 · scope 별 total 2/39/41 |
+| frontend (WORK-004 칩 3) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_5cd1c8a8c416` | `ctx_76a2f51cc313` | `docs-v1-work004-chips-fe-brief.md` | 완료 — 커밋 `99a45e7`, 칩별 4/40/42건 실측 |
+| reviewer (WORK-004) | `term_7bdbe08f-3921-4838-af97-65a981dc702c` | `task_117e21ab82e0` | `ctx_11aeef4eac46` | `docs-v1-work004-review-brief.md` | 완료 — **FAIL 4 · WARN 10 · 공백 7**. 드로어 규격·게이트 뒷문 두 축은 PASS |
+| backend (WORK-004 FAIL 수정) | `term_27cfe374-d8ad-41b0-a814-04f142c5626e` | `task_7a39c670d5c6` | `ctx_a063e8f064e1` | `docs-v1-work004-fix-be-brief.md` | 완료 — 커밋 `ddb53d2`, pytest 237 |
+| frontend (WORK-004 FAIL 수정) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_5621f6b473fd` | `ctx_06853a01ece8` | `docs-v1-work004-fix-fe-brief.md` | 완료 — 커밋 `b46771d`, 앱 창 6항목 + 결함 1건 추가 발견·수정 |
+| frontend (WORK-004 U-7 마무리) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_5458181ac7ab` | `ctx_9625b1db052f` | `docs-v1-work004-attach-notice-brief.md` | 완료 — 커밋 `c6ba429`, 해제 컨트롤 신설·404 분기 |
+| backend (WORK-005 P1·2) | `term_27cfe374-d8ad-41b0-a814-04f142c5626e` | `task_c949630b9ce4` | `ctx_b86bdef9d3ac` | `docs-v1-work005-be-brief.md` | 완료 — 커밋 `46fe87a`, pytest 291 · 리비전 0003 추가 |
+| frontend (WORK-005 P3·4) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_aa0ea21b217c` | `ctx_b5a8899aba10` | `docs-v1-work005-fe-brief.md` | 완료 — 커밋 `ad2d4a5`, 71통과 · **DnD 드롭 캡처 미완** |
+| reviewer (WORK-005) | `term_7bdbe08f-3921-4838-af97-65a981dc702c` | `task_3ee2cc39983c` | `ctx_e0896b768dec` | `docs-v1-work005-review-brief.md` | 완료 — **FAIL 2 · WARN 7 · 공백 7**. 핵심 축 전부 PASS |
+| backend (WORK-005 수정) | `term_27cfe374-d8ad-41b0-a814-04f142c5626e` | `task_7e9027296beb` | `ctx_1f6914e14306` | `docs-v1-work005-fix-be-brief.md` | 완료 — 커밋 `e55fe7a`, pytest 298 |
+| frontend (WORK-005 수정) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_00b335d95244` | `ctx_5e7bf7c24dea` | `docs-v1-work005-fix-fe-brief.md` | 완료 — 커밋 `b513804`, 말일 업무 59→60 실측 |
+| architect (WP 5건) | `term_27b5a8ac-c826-4d41-aa07-f3e8e7c99436` | `task_9a711335fc43` | `ctx_f7e9d11792c5` | `docs-v1-wp2-brief.md` | 완료 — 커밋 `0fbf95a`, WORK-004~008 |
+| frontend (WORK-003 FAIL 수정) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_738950d797de` | `ctx_b5b661721471` | `docs-v1-work003-fix-brief.md` | 완료 — 커밋 `61ac762`, 6초 잔존·재시도 0 실측 |
+| reviewer (WORK-003) | `term_7bdbe08f-3921-4838-af97-65a981dc702c` | `task_d624e85e4787` | `ctx_bea03af664a2` | `docs-v1-work003-review-brief.md` | 완료 — FAIL 1 · WARN 7 · 공백 12 |
+| backend (WORK-003 P1) | (같은 터미널) | `task_0a73641cb226` | `ctx_eca4171a6527` | `docs-v1-work003-be-brief.md` | 완료 — 커밋 `ffc544d` |
+| frontend (WORK-002 FAIL 수정) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_0d73d27dfe90` | `ctx_626a38011048` | `docs-v1-work002-fix-brief.md` | 완료 — 커밋 `533843e`, F-3 실측 200→401 |
+| reviewer (WORK-002) | `term_7bdbe08f-3921-4838-af97-65a981dc702c` | `task_37a4fa98da1e` | `ctx_2717269ded8c` | `docs-v1-work002-review-brief.md` | 완료 — **FAIL 3 · WARN 4 · 공백 13** |
+| frontend (WORK-002 P2·3) | `term_758c07cd-9ca9-49c3-9ad7-25f82bcc782a` | `task_ca9c6d573f35` | `ctx_22727520ae54` | `docs-v1-work002-fe-brief.md` | 완료 — 커밋 `c49ae72`, 앱 창 로그인 왕복 |
+| backend (WORK-002 P1) | `term_27cfe374-d8ad-41b0-a814-04f142c5626e` | `task_95532fa465bc` | `ctx_2af9c8e23129` | `docs-v1-work002-be-brief.md` | 완료 — 커밋 `37a8ce1`, pytest 31 + curl 전항목 |
 | ~~backend (WORK-002 1차)~~ | ~~`term_07e3fc7a…`~~ | ~~`task_ac218285b40e`~~ | ~~`ctx_c7499e125b30`~~ | (폐기) | 중지 — 잘못 만든 워크트리(빈 트리)에서 발주. 위 행으로 재발주 |
 | architect spec② | `term_da8c7759-cf0d-4d3f-bdb5-fba8798cf3ce` | `task_e07df0fc245a` | `ctx_2f06821688a3` | `docs-v1-spec2-brief.md` | **진행** — SPEC-003·004·005 |
 | architect spec① | (같은 터미널) | `task_41b985520192` | `ctx_ae07aac081a1` | `docs-v1-spec1-brief.md` | 완료·검증 PASS |
@@ -108,6 +486,24 @@
 
 ## 5. 이력 (최신이 위)
 
+- `2026-09-06` **화면 7개를 전부 버렸다 — 시안을 안 읽고 만들었다.** `00-design/` 의 `.dc.html` 8개를 코디가 한 번도 열지 않았고, 디자이너 워커의 요약본만 읽고 SPEC 을 썼다. 코드 워커에게도 시안을 안 줬고 검수도 SPEC 문장 기준이었다. **배경이 회색인 것·레이아웃이 다른 것이 그 결과다.** 대조해서 고치지 않고 버리고 다시 그린다(`32f8357`) — 잘못 그린 화면을 참고하면 그대로 옮겨진다
+- `2026-09-06` **삭제 범위를 두 번 넘었다** — 화면 아닌 것(팔레트·훅·공개 표면)까지 지웠고(`faba893` 복구), API 계약 파일 3개를 임의로 고쳤다(복구). **시킨 것만 한다**
+- `2026-09-06` **WORK-005 완료** — 검수 FAIL 2 · WARN 7 전부 수정(백 `e55fe7a` pytest 298 / 프론트 `b513804` 82통과). 백엔드가 요청 밖으로 **지연 파생 두 벌(목록·상세)을 `derive_overdue()` 하나로 합쳤다** — 상세에 `overdueDays` 를 더하면서 두 번째 구현이 생길 자리였다
+- `2026-09-06` **남은 미완 2건(사람 손)** — ① **칸반 DnD 드롭의 네트워크 캡처**(Done Criteria 「캡처 3장」 중 하나). macOS 네이티브 드래그 세션이 합성 이벤트를 안 먹어 자동으로는 성사되지 않는다 ② **한 달 500건 초과 안내 문구**(데이터를 그만큼 못 만들었다)
+- `2026-09-06` **WORK-005 검수 FAIL 2 · WARN 7 · 공백 7** — 게이트 단일화 4종·낙관적 갱신 반대 방향·마이그레이션 0003 은 전부 PASS(검수자가 정적 검사를 직접 재현). FAIL 둘은 **실사용에서만 터지고 테스트로는 안 잡히는** 종류다: ① 프론트가 기간 `to` 를 「말일」로 보내는데 서버는 끝 경계를 열어 둬 **말일 기한 업무가 통째로 사라진다**(서버 기본값·백엔드 테스트 헬퍼는 「다음 달 1일」이라 테스트가 못 잡는다) ② 칸반이 리스트 페이지 크기 12 를 물려받는데 페이지네이션이 리스트 전용
+- `2026-09-06` **칸반 데이터 범위를 확정**(G-3) — 페이지를 쓰지 않고 그 달 전체, 상한 500, 넘으면 안내. 응답에 `statusCounts`·`unfilteredTotal` 신설. **완료 컬럼의 「8월 12」를 받아온 카드로 세면 「그 달 완료」가 아니라 「지금 받아온 것 중 완료」가 된다**
+- `2026-09-06` **SPEC 을 낮춘 것 2건**(U-4) — 드래그 고스트 그림자와 삽입 가이드선. 비용이 아니라 **약속이 지켜지지 않아서**다: 고스트는 macOS·Windows 가 다르게 그리고, 가이드선은 순서를 저장하지 않는데 위치를 약속한다
+- `2026-09-06` **WORK-005 구현 완료** — Phase 3·4(`ad2d4a5`)로 세 진입점이 `useTaskStatus` 훅 하나를 지난다(정적 검사로 호출처 1곳 증명). **남은 미완 1건: 칸반 DnD 드롭의 네트워크 캡처** — macOS 네이티브 드래그 세션이 합성 이벤트를 안 먹어 자동으로는 성사되지 않는다(탭·타이밍·커서 워프 전부 실패). **사람 손 1회면 닫힌다** — Done Criteria 의 「캡처 3장」 중 하나다
+- `2026-09-06` **WORK-005 Phase 1·2 완료**(커밋 `46fe87a`, pytest 291). **WP 의 「마이그레이션 없음」을 벗어나 리비전 0003 추가** — 실행취소가 「마지막 로그가 전이인가 + 직전 상태」를 판정해야 하는데 한국어 로그 본문 되파싱은 문구가 바뀌면 조용히 깨진다. `cancelledAt` 도 저장될 곳이 없어 취소 전이 로그 시각에서 파생한다. ERD T-8-a·T-8-b 반영
+- `2026-09-06` **WORK-004 완전 종료** — 첨부·연관 U-7 마무리(`c6ba429`)에서 **연관 해제 컨트롤이 아예 없던 것**과 **첨부 팝오버가 실패에도 입력을 비우던 것**을 추가로 잡았다. 전자는 SPEC-003 U-8 갱신(`632bd93`)으로 닫았다 — 서버 DELETE 표면은 §4 에 처음부터 있었고 화면 문구만 비어 있었다
+- `2026-09-06` **워커 질문은 `orca terminal send` 로** — `orca orchestration ask` 는 답이 안 닿아 같은 질문이 세 번 반복되고 7분 넘게 막혔다. 브리프에 명시 절로 넣는다
+- `2026-09-06` **WORK-004 완료** — 검수 FAIL 4 · WARN 10 전부 수정(백 `ddb53d2` pytest 237 / 프론트 `b46771d` 61통과). 프론트가 수정 검증 중 **결함 1건을 더 찾았다** — 할일·메모가 `void mutateAsync` 로 결과를 안 받아 낙관 반영이 되돌아가기만 하고 아무 말도 안 남았다. **되돌아가기만 하면 사용자는 체크가 안 눌린 줄 안다**
+- `2026-09-06` **U-7 실패 표시는 낙관적 갱신 여부와 별개 축** — 낙관적이면 「되돌린다 + 말한다」, 아니면 「안 바뀐다 + 말한다」. 어느 쪽이든 말은 해야 한다. 첨부·연관 네 자리에 남은 공백을 마저 닫는다
+- `2026-09-06` **WORK-004 검수 FAIL 4 · WARN 10 · 공백 7** — 브리프가 지목한 두 축(드로어 폭 소유권·게이트 뒷문)은 PASS. 대신 **상세 헤더가 표시 전용**이라 제목·기한·유형·프로젝트를 못 고치는 것(F-1~3, Acceptance 4항목 실행 불가)과 **할일 응답 타입 불일치로 인한 상세 캐시 오염**(F-4)을 잡았다. 문서 공백 7건을 먼저 닫고 양쪽 수정 발주
+- `2026-09-06` **자식 컬렉션 응답 형태를 계약으로 확정** — 쓰기 표면은 전부 `TaskDetail`, 삭제만 204, 없는 자식 삭제는 404. SPEC 이 비워 둔 자리라 구현이 넷 중 셋만 그렇게 했고 할일만 달랐다. **응답 형태는 계약이지 구현 재량이 아니다**
+- `2026-09-06` **§8-2 코드 표에 「절차」를 못박음** — spec 이 새 코드를 정하면 그 work 의 검수에서 코디가 반영한다. 같은 공백이 세 검수 연속으로 올라왔다
+- `2026-09-06` **WORK-004 계약 공백 2건을 닫음** — ① 연관업무 후보를 **컬렉션 표면**으로(생성 드로어에는 자기 id 가 없다) ② 필터 칩 3 의 대응물 **`scope`·`total`** 신설(칩은 필터인데 서버엔 정렬 힌트뿐이었다). 둘 다 SPEC-003 §4 갱신 후 발주
+- `2026-09-06` 아키텍처 backend §3 에 **쿼리 alias 규칙** 추가 — `alias_generator` 는 본문 모델에만 걸린다. 빠뜨리면 파라미터가 조용히 무시되고 200 이 난다(WORK-004 에서 실제로 밟음, WORK-005 목록·필터가 같은 자리)
 - `2026-09-03` **Phase 1 완료** — 6영역 BASE/DEC 작성. 논의로 닫고 코디가 직접 작성(발주 없음)
 - `2026-09-03` 전체 계획(§0) 합의, _RESUME 에 등재
 - `2026-09-03` 작업 단위 교정 — slug 2개(design-frontend-structure·auth-docs)를 docs-v1 로 통합 (사용자 지적)

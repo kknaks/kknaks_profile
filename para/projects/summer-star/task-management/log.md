@@ -4,6 +4,11 @@
 
 | Date | Entry | Links |
 |---|---|---|
+| 2026-09-07 | **회의록 코드 완료 — WORK-006·007·008** · 검수 3회 · 수정 3회. `pytest 519` · `vitest 300` · `tsc 0`. **완료 게이트 우회 0건**(회의록에 판정 코드 없음 — `task_service.change_status()` 하나를 지난다) · **통합 규칙은 모델을 믿지 않고 구조 검증**(참조 id·자리만 받고 본문은 서버가 복사, 실패 5종 고정) | [WORK-006](30-work/work-006-meeting-setup.md) · [007](30-work/work-007-meeting-live.md) · [008](30-work/work-008-meeting-close.md) |
+| 2026-09-07 | 검수 3회 — WORK-006 FAIL 1·WARN 5 / WORK-007 FAIL 2·WARN 3 / WORK-008 FAIL 1·WARN 4. **전부 닫음.** 두 번은 워커가 초록으로 보고한 것을 코디가 전체 스위트·`Errors` 줄로 잡았다(순서 의존 1건 · unhandled rejection 1건) | [리뷰](../../../../orchestration/work/docs-v1/) |
+| 2026-09-07 | `docker-compose.local.yml` 에 **Redis · open-kknaks worker · STORAGE_ROOT 볼륨** 합류. 없으면 `/start` 웜스타트가 브로커에서 터져 **회의를 시작할 수 없다**. codex 번들·auth 경로는 기계마다 달라 필수 env 로 뒀다 | [compose](../../../../../task_management/docs-v1/docker-compose.local.yml) |
+| 2026-09-06 | **회의록 SPEC 3개 전면 재작성** — 이전 판은 브리프가 「시안이 정본」을 박아 **기획에 없는 기능이 계약에 들어가** 폐기(AI 안건 생성기 · 되돌리기 · 파형 · 취소된 회의 · 내 목소리). **기능은 기획·정책, 시각은 디자인 시스템·시안**으로 축을 나눴다. OQ 66건 → 2건(사용자 결정) | [SPEC-006](20-spec/spec-006-meeting-setup.md) · [007](20-spec/spec-007-meeting-live.md) · [008](20-spec/spec-008-meeting-close.md) |
+| 2026-09-06 | **사용자 결정 3건** — ① AI 한 줄 요약 바 v1 포함(통합본과 **같은 응답**으로 받는다) ② 종료 후 **줄 삭제·안건 이름 수정** 추가(삭제는 통합본만·업무는 안 지움·안건 삭제 없음) ③ 안건 `next` 배지는 **회의 중 「대기」 / 종료 후 「다음 논의로」** | [DEC-003](10-decision/decision-003-meeting-notes.md) |
 | 2026-09-03 | 문서 파이프라인 재시작 — 프로젝트 세팅 커밋(config·roles·디자인 패키지), 문서 워커 workspace=coordinator 전환 | [README](README.md) |
 | 2026-09-03 | 디자인 프론트 구조 분석 완료(designer) — P-01~72 · F-1~13 · C-01~49 · S-01~34 · Q-01~42. 총계 Page 24 · 오버레이 27 · 신규 컴포넌트 ~43 · 공용 34 | [리포트](../../../../orchestration/work/docs-v1/docs-v1-design-report.md) |
 | 2026-09-03 | **사용자 확정 4건**: ① 홈화면.dc.html 패키지 제외(홈·채팅은 나중, Q-27) ② 자료함 정본 = 문서함.dc.html 확정안, 탐색안 화면 10개 폐기(Q-26) ③ 메시지함 v1 범위 보류(Q-35 open) ④ 문서화 순서 = 내 업무부터 → **인증·설정부터로 번복**(업무가 설정의 유형·프로젝트를 참조) | — |
