@@ -8,7 +8,7 @@ aliases:
   - Design Tokens
 up:
   - C-048-reference-driven-ai-design-workflow
-  - 2026-09-08-sc-design-system
+  - 2026-09-09-sc-design-system
 tags:
   - design
   - tokens
@@ -81,4 +81,4 @@ AI로 UI를 생성할 때도 구체적인 토큰을 제공하면 AI가 색상과
 ## 출처
 
 - [[C-048-reference-driven-ai-design-workflow]] — 레퍼런스에서 반복되는 디자인 값을 추출해 시스템으로 정리하는 과정과 CSS 변수 기반 학습 예제를 제공한다.
-- [[2026-09-08-sc-design-system]] — 토큰 층은 v2 와 일치했으나 그 아래 규칙이 새던 것(금지 간격 57회·정의 없는 변수 16곳)을 1차에서 정렬한 경위
+- [[2026-09-09-sc-design-system]] — 토큰 층은 v2 와 일치했으나 그 아래 규칙이 새던 것(금지 간격 57회·정의 없는 변수 16곳)을 1차에서 정렬한 경위
