@@ -8,7 +8,7 @@ aliases:
   - null 로 가리기
   - field-level authorization
 up:
-  - 2026-09-08-sc-design-system
+  - 2026-09-09-sc-design-system
 tags:
   - authorization
   - api
@@ -61,4 +61,4 @@ def member_axis_history(self, principal, member_id, axis):
 
 ## 출처
 
-- [[2026-09-08-sc-design-system]] — 조직 화면 6축 통합 조회에서 민감 필드 null · 이력 403 으로 가른 결정과, 프론트 휴리스틱이 무너진 경위
+- [[2026-09-09-sc-design-system]] — 조직 화면 6축 통합 조회에서 민감 필드 null · 이력 403 으로 가른 결정과, 프론트 휴리스틱이 무너진 경위

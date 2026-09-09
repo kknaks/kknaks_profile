@@ -8,7 +8,7 @@ aliases:
   - flip / clamp
   - 뷰포트 안에서 잘리지 않는 팝오버
 up:
-  - 2026-09-08-sc-design-system
+  - 2026-09-09-sc-design-system
 tags:
   - popover
   - overlay
@@ -58,4 +58,4 @@ panel.style.maxHeight = `${Math.max(MIN, Math.min(room, MAX))}px`; // MAX = 420
 
 ## 출처
 
-- [[2026-09-08-sc-design-system]] — 팝오버 「스크롤 안 됨」 보고의 원인이 60vh 상한이었던 것, 수정 규칙과 상수 3개
+- [[2026-09-09-sc-design-system]] — 팝오버 「스크롤 안 됨」 보고의 원인이 60vh 상한이었던 것, 수정 규칙과 상수 3개
