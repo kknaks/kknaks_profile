@@ -523,6 +523,11 @@ para/areas/
 | 412 | `back` | `resource-scoped-token` | 리소스 하나에 묶인 단명 토큰 — 세션 행 · 원문 컬럼 · allowlist 표면 · 폐기=행 삭제 · 재시도는 재발급 |  |
 | 413 | `front` | `portal-inside-scroll-lock` | 모달의 스크롤 잠금이 body 로 포탈된 팝오버의 휠을 막는 것. 포탈 컨테이너를 모달 안으로 |  |
 | 414 | `ai` | `nondeterministic-stt-output` | 같은 오디오도 STT 결과가 매번 조금 다르다 — 결정성 전제 테스트 금지 · 전사 멈춤은 입력 레벨부터 |  |
+| 415 | `cs` | `delegated-authorization` | 사용자 대신 실행하는 주체와 하위 호출에서도 자원·행위의 허용 범위를 확인하고 추적하는 권한 관리 |  |
+| 416 | `ai` | `model-routing` | 작업의 품질·지연·비용 요구에 맞춰 요청을 처리할 모델을 선택하는 구조 |  |
+| 417 | `ai` | `ai-asset-inventory` | 조직의 AI 자산을 중앙에서 식별하고 등록 검증·사용 권한 관리로 연결하는 목록 |  |
+| 418 | `ai` | `executable-task-context` | 목적·변경 대상·제약·산출물·적용 기준·완료 조건을 연결해 AI가 수행할 작업을 구성하는 것 |  |
+| 419 | `cs` | `artifact-traceability` | 요구·설계·코드·테스트의 관계와 버전을 따라 변경 대상과 검증 근거를 확인하는 성질 |  |
 
 ---
 

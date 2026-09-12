@@ -127,6 +127,9 @@ Day 파일이 두 계열이다 — **2024-12-30 에 Day01 이 다시 시작**한
 | --- | --- | --- | --- | --- |
 | 1 | [[S-001-amorepacific-data-agent-ontology]] | Snowflake World Tour 서울 · 2026-08-27 | 장홍진 · 아모레퍼시픽 빅데이터 플랫폼 개발팀 | Semantic Layer 기반 실적 Agent와 공급망 KPI 인과관계 Ontology 적용 사례 |
 | 2 | [[S-002-pulmuone-loop-engineering-agentic-ai]] | Snowflake World Tour 서울 · 2026-08-27 | 전수범 · 풀무원식품 SCM 조직 | SCM 데이터 표준화와 Sold Notice 업무를 AI·System·Human의 Loop로 재설계한 사례 |
+| 3 | [[S-003-samsung-sds-sustainable-ax]] | REAL SUMMIT 2026 · 2026-09-08 | 이태희 부사장 · 삼성SDS | 지속 가능한 AX를 위한 표준·자산·운영 전략과 코드 현대화·복지 티켓 구매·경비 처리 사례 |
+| 4 | [[S-004-samsung-sds-agent-governance]] | REAL SUMMIT 2026 · 2026-09-08 | 신계영 부사장 · 삼성SDS | 데이터·권한·비용·보안·자산의 Agent Governance와 검증된 자산 유통 구조 |
+| 5 | [[S-005-samsung-sds-software-development-ax]] | REAL SUMMIT 2026 · 2026-09-08 | 신창민 상무 · 삼성SDS | 코드 생성 이후의 병목을 이벤트 기반 개발·작업 맥락·실행 통제·운영 개선으로 연결한 경험 |
 
 ---
 

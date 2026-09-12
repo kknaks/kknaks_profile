@@ -1,0 +1,23 @@
+{
+  "source": "reference/2026-09-08-real-summit/recordings/14.bin",
+  "sha256": "e44817430cacb8270a8dd44dfaa500255e5908c838f15aed4d17e53ee14d4cca",
+  "original_copy": "recording.webm",
+  "method": "Split concatenated WebM at 2 EBML headers, decode each Opus segment with asetpts=N/SR/TB to PCM signed 16-bit mono 16000 Hz; concatenate decoded samples in file order. No silence trimming.",
+  "parts": [
+    {
+      "part": 0,
+      "byte_start": 0,
+      "byte_end": 1679319,
+      "samples": 971400,
+      "duration_seconds": 60.7125
+    },
+    {
+      "part": 1,
+      "byte_start": 1679319,
+      "byte_end": 36764562,
+      "samples": 20276880,
+      "duration_seconds": 1267.305
+    }
+  ],
+  "duration_seconds": 1328.0175000000002
+}

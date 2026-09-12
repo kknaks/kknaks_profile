@@ -9,6 +9,7 @@ aliases:
   - 승인 카드
   - suspend resume
 up:
+  - S-005-samsung-sds-software-development-ax
   - C-026-voltagent-demo-first-agent-workflow
   - C-032-beyond-erp-ai-agent-orchestration
   - agentkit-human-in-the-loop
@@ -114,6 +115,14 @@ const restored = await RunState.fromString(rootAgent, checkpoint);
 const resumed = await runner.run(rootAgent, restored);
 ```
 
+### 단건 재지시에서 승인·예외 중심 개입으로
+
+[[S-005-samsung-sds-software-development-ax]]는 사람이 작업마다 목표를 전달하고 결과를 확인해 재지시하던 개발 흐름을, 이벤트로 시작하고 승인·권한·예외에서 개입하는 흐름과 대비했다. 기준 충족이면 다음 단계로 진행하고, 승인 필요면 검토를 기다리며, 정보 부족이면 보완 후 재개한다.
+
+이 구분에서 승인은 이미 정해진 실행을 허용할지 판단하는 일이고, 정보 보완은 판단·실행에 빠진 근거를 채우는 일이다. 둘 다 사람의 응답이 필요할 수 있지만 같은 결정으로 처리하지 않는다. 검토할 작업의 목적·범위·관련 산출물·완료 기준은 [[executable-task-context]]로 연결할 수 있다.
+
+반복된 예외를 분석해 규칙이나 도구를 바꾸는 전문 진단은 실행 중 승인과 또 다른 활동이다. 발표의 FDE 역할은 이 운영 개선까지 포함하지만, HITL의 대기·재개 자체가 자동으로 운영 기준을 개선해 주지는 않는다. 구체적인 승인 상태 저장·만료·재개 API는 발표에서 확인되지 않았다.
+
 ## 왜 중요한가
 
 **자동화의 범위를 「전부/전무」가 아니라 눈금으로 정하게 한다.** 위험이 낮은 대부분은 자동으로 흘리고, 드문 큰 건만 사람이 본다 — **사람의 시간을 어디에 쓸지**를 기준으로 표현한 것이다.
@@ -159,3 +168,5 @@ AI가 자료 수집·판단·실행을 연속으로 맡는 조직에서는 사�
 - [[openai-agents-js-approval-flow]] — 실행 계층 전체에서 발생한 도구 승인을 바깥 실행 상태로 처리하는 흐름과 부분 결정, 지속 결정의 호출별 예외, 대기 입력 추가, 직렬화 후 안전한 복원 경계를 설명한다
 - [[2026-08-28-action-runtime-engine]] — 게이트를 원장으로 세운 실물. 고정 FSM·plan version 바인딩·승인 멱등 2중(멱등 view + DB unique)·「AI 는 하드 게이트가 아니다」가 여기서 왔다
 - [[2026-08-28-llm-tool-calling]] — 게이트가 채팅 턴의 상한을 정하는 쪽. 한 턴의 최대치는 승인 카드 생성이고, write 툴은 승인된 실행 바인딩 뒤에서만 돈다
+
+- [[S-005-samsung-sds-software-development-ax]] — 단건 지시를 승인·권한·예외 중심 개입으로 바꾸는 흐름과 전문 진단의 구별. 사진 08–09·14–16, 녹취 05:16–07:16 및 14:19–17:36.
