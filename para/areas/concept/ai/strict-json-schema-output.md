@@ -8,6 +8,7 @@ aliases:
   - response_format json_schema strict
   - additionalProperties false
 up:
+  - 2026-09-12-sc-meeting
   - 2026-09-08-docs-v1
 tags:
   - llm
@@ -51,6 +52,7 @@ strict 모드가 요구하는 것 — 파일 안 **모든** object 에 대해:
 - **우리 jsonschema 검증 통과 ≠ strict 통과** — 검증기는 「출력이 스키마에 맞나」를 보고, strict 는 「스키마가 규격에 맞나」를 본다. 둘은 다른 검사다.
 - **enum 을 좁히면 서버 규칙이 죽는다** — `status` 를 `todo|in_progress` 로 좁히면 모델이 `done` 을 낼 수 없어 「done 이면 그 키만 뗀다」는 서버 규칙이 도달 불가가 되고, 어쩌다 나오면 전체 폐기가 된다. 허용 범위는 스키마가 아니라 서버 규칙이 정하게 두는 편이 안전하다.
 - **전수 검사를 테스트로 잠근다** — 파일 안 모든 object 를 순회해 `additionalProperties=false` 와 required 전수를 확인하는 테스트 하나면 다음 사람이 키를 더할 때 또 400 이 나는 것을 막는다.
+- **required 키를 나중에 더하면 호출자 전부에 닿는다.** 회의 중 배치 스키마에 `todos` 를 required 로 열자(sc-meeting D46) 그 키를 모르던 테스트 픽스처·대역 payload 가 줄줄이 `SchemaViolation` 으로 깨졌다. 스키마는 계약이라 「추가」도 breaking 이다 — 픽스처 헬퍼 한 곳에 기본값을 두면 회수가 싸다.
 
 ## 함께 보는 개념
 
@@ -61,3 +63,4 @@ strict 모드가 요구하는 것 — 파일 안 **모든** object 에 대해:
 
 - 코드: `app/back/ai_schemas/meeting_notes.json` · 커밋 `dd9d861`(kknaks/task_management)
 - 증거: `orchestration/work/_archive/task-management/docs-v1/e2e-01-real-summit-evidence.md`
+- 2026-09-12-sc-meeting §2 — 회의 중 배치 `ai_batch_output.json`(todos required) · 최종 `ai_final_output.json`
