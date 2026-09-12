@@ -39,13 +39,13 @@ SCAX 의 회의 기능이 「브라우저가 STT 를 직접 부르고, 회의록
 - **오버레이는 body 포털 + fixed — 컨테이너 overflow 에 잘리지 않게** — DatePicker·Select 팝오버가 드로어 정보 카드 안에서 잘림 → [[viewport-aware-overlay]]
   - 왜 이걸 골랐나: 원인이 앵커 계산이 아니라 렌더 위치(`.meta-grid{overflow:hidden}` 안의 absolute)였다. 포털로 빼면 바깥 클릭 판정에 패널을 더해야 하고 z-index 층(드로어 41·모달 50·팝오버 55·토스트 60)을 정해야 한다.
   - 근거: `frontend/src/Popover.tsx` · 커밋 b941846 · DS-18
-- **디자인 시스템 부품은 하나의 생김새 — OS 달력 갈래 삭제** — `DateField` 의 platform/showPicker 경로를 지우고 우리 DatePicker 하나로 → [[design-system-single-source]]
+- **디자인 시스템 부품은 하나의 생김새 — OS 달력 갈래 삭제** — `DateField` 의 platform/showPicker 경로를 지우고 우리 DatePicker 하나로
   - 왜 이걸 골랐나: 같은 부품이 화면마다 다른 달력(크롬 기본/우리 것)을 내면 부품이 아니다. 타이핑 입력도 함께 사라지는 축소를 감수(사용자 결정). main 의 AX 카드가 요구한 점 표기·아이콘은 프롭(displaySeparator·pickerIcon)으로 얹었다.
   - 근거: `frontend/src/DateField.tsx` · DS-17 · 회의 목록 라운드 항목 18
 - **승격 요청자는 시스템 행위자(`system:meeting`)** — 사람이 아니라 회의가 업무 요청을 보낸다 → [[system-actor]]
   - 왜 이걸 골랐나: 승격한 사람을 요청자로 두면 조직 경계·권한(팀장 work_request.create) 예외가 줄줄이 필요했다(D29·D30). 요청자를 시스템으로 두고 `promoted_by`·cc 로 사람을 남기면 경계 예외가 사라진다(D40).
   - 근거: `modules/work/requests.py` · 커밋 d939dae · D40 · SPEC-001 §12 R-48
-- **회의실 예약 자동 대체 — 정원 ≥ 인원인 최소 방, 없으면 생성 거절** — THE CONNECT 실물 계정으로 예약 → [[fallback-selection]]
+- **회의실 예약 자동 대체 — 정원 ≥ 인원인 최소 방, 없으면 생성 거절** — THE CONNECT 실물 계정으로 예약
   - 왜 이걸 골랐나: 기획 v1.1.0 이 자동 대체를 택했고, 대체할 방이 없을 때 회의만 만들어 두면 「예약 없는 회의」가 조용히 생긴다. 409 + 가능한 방 목록으로 사용자가 고르게(D36).
   - 근거: `platform/the_connect.py` · `modules/meetings/rooms.py` · `report-be-wp007.md`
 
