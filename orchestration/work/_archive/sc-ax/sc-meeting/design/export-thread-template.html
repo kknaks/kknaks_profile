@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>회의록 — 주간 회의</title>
+<!--
+  SCAX 회의록 내보내기 · 주제 스레드형 (A4 인쇄)
+  ─────────────────────────────────────────────────────────────
+  · 이 파일 하나로 완결한다. 외부 CSS·폰트·스크립트를 부르지 않는다.
+  · 색은 DS 토큰의 실제 값을 그대로 박았다(인쇄물이라 var() 를 쓰지 않는다).
+  · BE 치환 자리는 {{...}} 주석으로 표시했다. 반복 구간은 {{#each}} ~ {{/each}}.
+  · 페이지는 .page 하나 = A4 한 장이다. 머리·꼬리는 장마다 반복한다.
+-->
+<style>
+/* ── 조판 기준 ─────────────────────────────────────────────
+   A4 210×297mm · 좌우 16mm · 위 14mm · 아래 12mm → 본문 폭 178mm     */
+@page { size: A4; margin: 0; }
+
+* { box-sizing: border-box; }
+
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+body {
+  margin: 0;
+  background: #f6f7fa;                      /* --surface-sunken · 화면에서 종이 밖 바탕 */
+  color: #1b1e25;                           /* --text-primary */
+  font-family: Pretendard, "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+               "system-ui", "Segoe UI", "Noto Sans KR", "Malgun Gothic", sans-serif;
+  font-size: 12px;
+  line-height: 1.45;                        /* DS 행간 145% */
+  letter-spacing: -0.02em;                  /* DS 자간 −2% */
+}
+
+/* ── 한 장 ───────────────────────────────────────────────── */
+.page {
+  position: relative;
+  width: 210mm;
+  min-height: 297mm;
+  padding: 14mm 16mm 22mm;   /* 아래 22mm 중 10mm 는 꼬리 자리 */
+  margin: 0 auto 12mm;
+  background: #fff;                         /* --surface */
+  box-shadow: 0 1px 2px rgba(16,24,40,.04), 0 8px 20px rgba(16,24,40,.05);  /* --shadow-md · 화면 전용 */
+  page-break-after: always;
+  break-after: page;
+}
+.page:last-of-type { page-break-after: auto; break-after: auto; margin-bottom: 0; }
+
+/* ── 머리 ────────────────────────────────────────────────── */
+.sheet-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 8px;
+}
+.sheet-head h1 { margin: 0; font-size: 17px; font-weight: 700; }   /* Title 17 */
+.sheet-when {
+  flex: none;
+  text-align: right;
+  font-size: 11px;
+  color: #5d6472;                           /* --text-secondary */
+  font-variant-numeric: tabular-nums;
+}
+.sheet-when b { display: block; font-weight: 500; }
+.sheet-people {
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e8eaf0;         /* --border-default */
+  font-size: 11px;
+  color: #6d7483;                           /* --text-tertiary */
+}
+/* 이어지는 장의 머리 — 회의명만 작게 반복한다 */
+.sheet-head.cont { padding-bottom: 12px; border-bottom: 1px solid #e8eaf0; }
+.sheet-head.cont h1 { font-size: 12px; font-weight: 700; color: #5d6472; }
+
+/* ── 요약 문단 (없으면 이 블록째 빼면 된다) ───────────────── */
+.sheet-summary {
+  margin: 12px 0 0;
+  padding: 12px 14px;
+  background: #f6f7fa;                      /* --surface-sunken */
+  border-radius: 8px;                       /* --radius-card */
+  font-size: 12px;
+  color: #5d6472;
+  text-wrap: pretty;
+}
+
+/* ── 스레드 축 ───────────────────────────────────────────── */
+.thread { margin-top: 16px; padding-left: 16px; border-left: 1px dashed #d4d8e0; } /* --border-strong */
+.thread-item { position: relative; padding: 0 0 16px 12px; break-inside: avoid; page-break-inside: avoid; }
+.thread-item:last-child { padding-bottom: 0; }
+/* 축 위의 점 — 왼쪽 점선 한가운데에 앉는다 */
+.thread-item::before {
+  content: "";
+  position: absolute;
+  left: -20px; top: 4px;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #5467f7;                      /* --action */
+}
+
+.agenda-head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px; }
+.agenda-head h2 { margin: 0 4px 0 0; font-size: 14px; font-weight: 700; }   /* Body Bold 14 */
+
+/* ── 칩 ──────────────────────────────────────────────────── */
+.chip {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 4px;                       /* --radius-chip */
+  font-size: 11px;                          /* Micro · 칩 전용 */
+  font-weight: 700;
+  white-space: nowrap;
+}
+.chip.done      { background: #f4f5f7; color: #5d6472; }   /* --status-neutral-tint · 결론 남 */
+.chip.open      { background: #eaf4ff; color: #0079d0; }   /* --progress-tint/text · 결론 안 남 */
+.chip.action    { background: #f1f2fe; color: #5467f7; }   /* --selected-bg/--action · 액션 */
+.chip.requested { background: #f4f5f7; color: #6d7483; }   /* 승격됨 · 요청됨 */
+
+/* 발화 시각 칩 — 벽시계 HH:MM */
+.stamp {
+  display: inline-block;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: #eaf4ff;                      /* --progress-tint */
+  color: #0079d0;                           /* --progress-text */
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.stamp.more { background: transparent; color: #6d7483; padding-left: 2px; }
+.stamp.none { background: #f6f7fa; color: #6d7483; }       /* 근거 없음 */
+
+/* ── 안건 본문 줄 ────────────────────────────────────────── */
+.lines { margin: 8px 0 0; padding: 0; list-style: none; }
+.lines li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 2px 0;
+  font-size: 12px;
+  color: #5d6472;
+}
+.lines li .dot { flex: none; color: #979faf; }             /* --text-disabled */
+.lines li .text { flex: 1; min-width: 0; text-wrap: pretty; }
+.lines li .at {
+  flex: none;
+  font-size: 11px;
+  color: #979faf;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── 다음 할 일 ──────────────────────────────────────────── */
+.todos { margin: 10px 0 0; padding: 10px 12px; border: 1px solid #eff1f6; border-radius: 8px; }  /* --border-subtle */
+.todos-label { margin-bottom: 6px; font-size: 11px; font-weight: 700; color: #6d7483; }
+.todo { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px; padding: 3px 0; font-size: 12px; }
+.todo .title { flex: 1; min-width: 140px; color: #1b1e25; }
+.todo .due { flex: none; font-size: 11px; color: #6d7483; font-variant-numeric: tabular-nums; }
+
+/* ── 꼬리 ────────────────────────────────────────────────── */
+.sheet-foot {
+  position: absolute;
+  left: 16mm; right: 16mm; bottom: 10mm;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 6px;
+  border-top: 1px solid #eff1f6;
+  font-size: 11px;
+  color: #979faf;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── 인쇄 ────────────────────────────────────────────────── */
+@media print {
+  body { background: #fff; }
+  .page { margin: 0; box-shadow: none; min-height: 297mm; }   /* height 로 잠그지 않는다 — 넘치면 잘리지 말고 밀려야 보인다 */
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ 1장 ══════════════ -->
+<section class="page">
+
+  <header class="sheet-head">
+    <h1><!--{{meeting.title}}-->주간 회의</h1>
+    <div class="sheet-when">
+      <b><!--{{meeting.date}} "YYYY. MM. DD.(요일)"-->2026. 09. 05.(금)</b>
+      <span><!--{{meeting.startAt}}-->11:00</span> ~ <span><!--{{meeting.endAt}}-->12:00</span>
+    </div>
+  </header>
+  <div class="sheet-people">
+    참석 · <!--{{#join meeting.attendees ", "}}-->김세진, 박도윤, 이건학, 최유정<!--{{/join}}-->
+  </div>
+
+  <!--{{#if meeting.summary}}  요약이 없으면 이 블록을 통째로 뺀다 -->
+  <p class="sheet-summary"><!--{{meeting.summary}}-->8월 정산 마감과 4분기 예산 편성 일정을 맞추는 자리였다. 마감 기한과 대손 처리 기준은 결론이 났고, 예산 편성 일정과 채용 건은 다음 회의로 넘어갔다. 미수금 정리 기준은 재무팀 안을 받기로 했다.</p>
+  <!--{{/if}}-->
+
+  <div class="thread">
+    <!--{{#each agenda}}-->
+
+    <!-- 안건 1 -->
+    <article class="thread-item">
+      <div class="agenda-head">
+        <h2><!--{{agenda.title}}-->8월 정산 마감 현황</h2>
+        <!--{{#if agenda.decided}}--><span class="chip done">결론 남</span><!--{{else}} 결론이 안 났으면 <span class="chip open">결론 안 남</span> {{/if}}-->
+        <!--{{#each agenda.stamps limit 3}}-->
+        <span class="stamp">11:04</span>
+        <span class="stamp">11:09</span>
+        <span class="stamp">11:16</span>
+        <!--{{/each}}-->
+        <!--{{#if agenda.stampsOverflow}}--><span class="stamp more">+2</span><!--{{/if}}-->
+      </div>
+
+      <ul class="lines">
+        <!--{{#each agenda.lines}}-->
+        <li><span class="dot">·</span><span class="text">8월 마감은 09-12까지 끝낸다.</span><span class="at">11:04</span></li>
+        <li><span class="dot">·</span><span class="text">대손 처리 기준은 지난 분기와 같이 간다.</span><span class="at">11:06</span></li>
+        <li><span class="dot">·</span><span class="text">미수금 정리본을 먼저 보기로 했다.</span><span class="at">11:09</span></li>
+        <li><span class="dot">·</span><span class="text">재무팀 확인은 박도윤이 09-10까지 맡는다.</span><span class="at">11:12</span></li>
+        <li><span class="dot">·</span><span class="text">정산 초안은 회람 뒤 수정본을 한 번만 돌린다.</span><span class="at">11:14</span></li>
+        <li><span class="dot">·</span><span class="text">지난 분기와 기준이 달라지는 항목은 따로 표시한다.</span><span class="at">11:16</span></li>
+        <li><span class="dot">·</span><span class="text">마감 지연이 생기면 경영관리부에 바로 알린다.</span><span class="at">11:18</span></li>
+        <li><span class="dot">·</span><span class="text">이번 분기부터 체크리스트를 같은 양식으로 쓴다.</span><span class="at">11:20</span></li>
+        <!--{{/each}}-->
+      </ul>
+
+      <!--{{#if agenda.todos}}-->
+      <div class="todos">
+        <div class="todos-label">다음 할 일</div>
+        <!--{{#each agenda.todos}}-->
+        <div class="todo">
+          <span class="chip action">액션</span>
+          <span class="title">재무팀에 대손 기준 확인</span>
+          <span class="due">09-10</span>
+          <span class="stamp">11:06</span>
+        </div>
+        <div class="todo">
+          <span class="chip action">액션</span>
+          <span class="title">미수금 정리본 취합</span>
+          <span class="due">09-11</span>
+          <span class="chip requested">요청됨</span>
+        </div>
+        <!--{{/each}}-->
+      </div>
+      <!--{{/if}}-->
+    </article>
+
+    <!-- 안건 2 -->
+    <article class="thread-item">
+      <div class="agenda-head">
+        <h2>4분기 예산 편성 일정</h2>
+        <span class="chip open">결론 안 남</span>
+        <span class="stamp">11:22</span>
+        <span class="stamp">11:28</span>
+        <span class="stamp">11:31</span>
+      </div>
+      <ul class="lines">
+        <li><span class="dot">·</span><span class="text">편성 일정은 예산안 확정 뒤로 미뤘다.</span><span class="at">11:22</span></li>
+        <li><span class="dot">·</span><span class="text">부서별 초안은 그 전에 받아 둔다.</span><span class="at">11:25</span></li>
+        <li><span class="dot">·</span><span class="text">본부별 배분 비율은 3분기 실적을 보고 정한다.</span><span class="at">11:28</span></li>
+        <li><span class="dot">·</span><span class="text">작년과 같은 양식을 쓰되 항목 수를 줄인다.</span><span class="at">11:30</span></li>
+        <li><span class="dot">·</span><span class="text">초안 취합은 경영관리부가 맡는다.</span><span class="at">11:31</span></li>
+        <li><span class="dot">·</span><span class="text">확정 일정은 다음 주간 회의에서 다시 본다.</span><span class="at">11:33</span></li>
+      </ul>
+      <div class="todos">
+        <div class="todos-label">다음 할 일</div>
+        <div class="todo">
+          <span class="chip action">액션</span>
+          <span class="title">4분기 예산안 초안 작성</span>
+          <span class="due">09-15</span>
+          <span class="stamp none">근거 없음</span>
+        </div>
+      </div>
+    </article>
+
+
+    <!--{{/each}}-->
+  </div>
+
+  <footer class="sheet-foot">
+    <span class="page-no"><!--{{page.current}}-->1</span>
+    <span>SCAX · 회의록</span>
+    <span>내보낸 시각 <!--{{export.at}}-->2026-09-11 14:20</span>
+  </footer>
+</section>
+
+<!-- ══════════════ 2장 ══════════════
+     이어지는 장은 머리를 회의명 한 줄로 줄이고 참석자·요약을 다시 내지 않는다 -->
+<section class="page">
+
+  <header class="sheet-head cont">
+    <h1><!--{{meeting.title}}-->주간 회의</h1>
+    <div class="sheet-when"><!--{{meeting.date}}-->2026. 09. 05.(금)</div>
+  </header>
+
+  <div class="thread">
+
+
+
+    <!-- 안건 3 -->
+    <article class="thread-item">
+      <div class="agenda-head">
+        <h2>미수금 정리 기준</h2>
+        <span class="chip done">결론 남</span>
+        <span class="stamp">11:35</span>
+        <span class="stamp">11:41</span>
+        <span class="stamp">11:44</span>
+        <span class="stamp more">+1</span>
+      </div>
+      <ul class="lines">
+        <li><span class="dot">·</span><span class="text">기준안은 재무팀이 다시 낸다.</span><span class="at">11:35</span></li>
+        <li><span class="dot">·</span><span class="text">90일이 넘은 건은 따로 모아 본다.</span><span class="at">11:38</span></li>
+        <li><span class="dot">·</span><span class="text">대리점 건은 재계약 일정과 함께 본다.</span><span class="at">11:41</span></li>
+        <li><span class="dot">·</span><span class="text">회수 가능성이 낮은 건은 분기말에 한 번만 정리한다.</span><span class="at">11:43</span></li>
+        <li><span class="dot">·</span><span class="text">기준을 바꾸면 지난 분기 수치도 같이 다시 낸다.</span><span class="at">11:44</span></li>
+        <li><span class="dot">·</span><span class="text">확정안은 8월 마감 전에 공유한다.</span><span class="at">11:46</span></li>
+      </ul>
+      <div class="todos">
+        <div class="todos-label">다음 할 일</div>
+        <div class="todo">
+          <span class="chip action">액션</span>
+          <span class="title">미수금 기준안 재작성</span>
+          <span class="due">09-08</span>
+          <span class="chip requested">요청됨</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 안건 4 — 다음 할 일이 없으면 그 블록을 만들지 않는다 -->
+    <article class="thread-item">
+      <div class="agenda-head">
+        <h2>9월 채용 진행 현황</h2>
+        <span class="chip open">결론 안 남</span>
+        <span class="stamp">11:48</span>
+        <span class="stamp">11:52</span>
+      </div>
+      <ul class="lines">
+        <li><span class="dot">·</span><span class="text">경력 2명 면접이 남았다.</span><span class="at">11:48</span></li>
+        <li><span class="dot">·</span><span class="text">2차 일정은 다음 주 화요일로 잡는다.</span><span class="at">11:50</span></li>
+        <li><span class="dot">·</span><span class="text">결과가 나온 뒤 배치를 다시 본다.</span><span class="at">11:52</span></li>
+        <li><span class="dot">·</span><span class="text">채용 지연이 길어지면 외주로 먼저 메운다.</span><span class="at">11:54</span></li>
+        <li><span class="dot">·</span><span class="text">다음 회의에서 결과를 공유한다.</span><span class="at">11:56</span></li>
+      </ul>
+    </article>
+
+  </div>
+
+  <footer class="sheet-foot">
+    <span class="page-no"><!--{{page.current}}-->2</span>
+    <span>SCAX · 회의록</span>
+    <span>내보낸 시각 <!--{{export.at}}-->2026-09-11 14:20</span>
+  </footer>
+</section>
+
+</body>
+</html>

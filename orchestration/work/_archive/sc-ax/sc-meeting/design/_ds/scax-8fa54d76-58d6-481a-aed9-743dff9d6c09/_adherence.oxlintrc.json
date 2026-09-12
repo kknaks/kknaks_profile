@@ -1,0 +1,322 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "components/general/Checkbox/**",
+              "components/general/ConfirmModal/**",
+              "components/general/DateField/**",
+              "components/general/DatePicker/**",
+              "components/general/Drawer/**",
+              "components/general/Empty/**",
+              "components/general/EmptyValue/**",
+              "components/general/FieldMessage/**",
+              "components/general/Icon/**",
+              "components/general/MinWidthNotice/**",
+              "components/general/Popover/**",
+              "components/general/ProgressBar/**",
+              "components/general/Skeleton/**",
+              "components/general/TaskCalendar/**",
+              "components/general/Toast/**",
+              "design_handoff_org_screen/prototype/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Pretendard Variable|Pretendard))/i]",
+        "message": "Font not provided by the design system. Available: Pretendard Variable, Pretendard."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Checkbox'] > JSXAttribute > JSXIdentifier[name!=/^(?:checked|onChange|disabled|id|children|key|ref|className|style|children)$/]",
+        "message": "<Checkbox> doesn't accept that prop. Declared props: checked, onChange, disabled, id, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ConfirmModal'] > JSXAttribute > JSXIdentifier[name!=/^(?:title|description|confirmLabel|danger|busy|onConfirm|onClose|key|ref|className|style|children)$/]",
+        "message": "<ConfirmModal> doesn't accept that prop. Declared props: title, description, confirmLabel, danger, busy, onConfirm, onClose."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='DateField'] > JSXAttribute > JSXIdentifier[name!=/^(?:id|label|value|onChange|disabled|hideLabel|key|ref|className|style|children)$/]",
+        "message": "<DateField> doesn't accept that prop. Declared props: id, label, value, onChange, disabled, hideLabel."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='DatePicker'] > JSXAttribute > JSXIdentifier[name!=/^(?:value|onChange|min|max|id|label|key|ref|className|style|children)$/]",
+        "message": "<DatePicker> doesn't accept that prop. Declared props: value, onChange, min, max, id, label."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Drawer'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|kicker|title|headerExtra|footer|onClose|children|key|ref|className|style|children)$/]",
+        "message": "<Drawer> doesn't accept that prop. Declared props: label, kicker, title, headerExtra, footer, onClose, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Empty'] > JSXAttribute > JSXIdentifier[name!=/^(?:title|description|variant|actionLabel|onAction|className|children|key|ref|className|style|children)$/]",
+        "message": "<Empty> doesn't accept that prop. Declared props: title, description, variant, actionLabel, onAction, className, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Empty'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:default|filter|error)$/]",
+        "message": "<Empty> variant must be one of 'default' | 'filter' | 'error'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='FieldMessage'] > JSXAttribute > JSXIdentifier[name!=/^(?:error|help|id|key|ref|className|style|children)$/]",
+        "message": "<FieldMessage> doesn't accept that prop. Declared props: error, help, id."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Icon'] > JSXAttribute > JSXIdentifier[name!=/^(?:name|size|className|title|key|ref|className|style|children)$/]",
+        "message": "<Icon> doesn't accept that prop. Declared props: name, size, className, title."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Icon'] > JSXAttribute[name.name='name'] > Literal[value!=/^(?:close|chevron-down|chevron-right|arrow-right|arrow-up|arrow-down|sparkle|send|check|check-square|square|circle|play|list|calendar|paperclip|plus|minus|home|refresh|ban|pending|alert|search|empty|filter)$/]",
+        "message": "<Icon> name must be one of 'close' | 'chevron-down' | 'chevron-right' | 'arrow-right' | 'arrow-up' | 'arrow-down' | 'sparkle' | 'send' | 'check' | 'check-square' | 'square' | 'circle' | 'play' | 'list' | 'calendar' | 'paperclip' | 'plus' | 'minus' | 'home' | 'refresh' | 'ban' | 'pending' | 'alert' | 'search' | 'empty' | 'filter'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Popover'] > JSXAttribute > JSXIdentifier[name!=/^(?:trigger|children|label|width|key|ref|className|style|children)$/]",
+        "message": "<Popover> doesn't accept that prop. Declared props: trigger, children, label, width."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ProgressBar'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|done|total|key|ref|className|style|children)$/]",
+        "message": "<ProgressBar> doesn't accept that prop. Declared props: label, done, total."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Skeleton'] > JSXAttribute > JSXIdentifier[name!=/^(?:rows|label|key|ref|className|style|children)$/]",
+        "message": "<Skeleton> doesn't accept that prop. Declared props: rows, label."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='TaskCalendar'] > JSXAttribute > JSXIdentifier[name!=/^(?:tasks|onOpen|mode|onModeChange|anchorDate|key|ref|className|style|children)$/]",
+        "message": "<TaskCalendar> doesn't accept that prop. Declared props: tasks, onOpen, mode, onModeChange, anchorDate."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='TaskCalendar'] > JSXAttribute[name.name='mode'] > Literal[value!=/^(?:week|month)$/]",
+        "message": "<TaskCalendar> mode must be one of 'week' | 'month'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Toast'] > JSXAttribute > JSXIdentifier[name!=/^(?:message|onClose|action|tone|key|ref|className|style|children)$/]",
+        "message": "<Toast> doesn't accept that prop. Declared props: message, onClose, action, tone."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Toast'] > JSXAttribute[name.name='tone'] > Literal[value!=/^(?:success|error)$/]",
+        "message": "<Toast> tone must be one of 'success' | 'error'."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "Checkbox": {
+        "replaces": []
+      },
+      "ConfirmModal": {
+        "replaces": []
+      },
+      "DateField": {
+        "replaces": []
+      },
+      "DatePicker": {
+        "replaces": []
+      },
+      "Drawer": {
+        "replaces": []
+      },
+      "Empty": {
+        "replaces": []
+      },
+      "EmptyValue": {
+        "replaces": []
+      },
+      "FieldMessage": {
+        "replaces": []
+      },
+      "Icon": {
+        "replaces": []
+      },
+      "MinWidthNotice": {
+        "replaces": []
+      },
+      "Popover": {
+        "replaces": []
+      },
+      "ProgressBar": {
+        "replaces": []
+      },
+      "Skeleton": {
+        "replaces": []
+      },
+      "TaskCalendar": {
+        "replaces": []
+      },
+      "Toast": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--accent",
+      "--action",
+      "--action-active",
+      "--action-hover",
+      "--ai-bg-active",
+      "--ai-bg-hover",
+      "--ai-border",
+      "--ai-border-active",
+      "--ai-border-hover",
+      "--ai-text",
+      "--ai-text-active",
+      "--border-default",
+      "--border-strong",
+      "--border-subtle",
+      "--columns",
+      "--danger",
+      "--danger-accent",
+      "--danger-active",
+      "--danger-hover",
+      "--danger-tint",
+      "--focus-ring",
+      "--graph-edge",
+      "--graph-edge-active",
+      "--graph-edge-dim",
+      "--graph-edge-label",
+      "--graph-label",
+      "--graph-node-dim",
+      "--graph-node-fallback",
+      "--graph-node-material",
+      "--graph-node-meeting",
+      "--graph-node-person",
+      "--graph-node-project",
+      "--graph-node-report",
+      "--graph-node-task",
+      "--graph-node-team",
+      "--graph-node-work-request",
+      "--hero-sky-left",
+      "--hero-sky-right",
+      "--hero-violet",
+      "--ink-hover",
+      "--on-fill",
+      "--popover-current",
+      "--progress-accent",
+      "--progress-text",
+      "--progress-tint",
+      "--radius-card",
+      "--radius-chip",
+      "--radius-control",
+      "--radius-panel",
+      "--radius-popover",
+      "--selected-bg",
+      "--shadow-ai",
+      "--shadow-drawer",
+      "--shadow-lg",
+      "--shadow-md",
+      "--shadow-sm",
+      "--shadow-xl",
+      "--status-neutral-tint",
+      "--surface",
+      "--surface-selected-row",
+      "--surface-sunken",
+      "--text-disabled",
+      "--text-primary",
+      "--text-secondary",
+      "--text-tertiary",
+      "--warning-surface",
+      "--warning-text"
+    ],
+    "tokenKinds": {
+      "--text-primary": "font",
+      "--text-secondary": "font",
+      "--text-tertiary": "font",
+      "--text-disabled": "font",
+      "--border-strong": "color",
+      "--border-default": "color",
+      "--border-subtle": "color",
+      "--surface": "color",
+      "--surface-sunken": "color",
+      "--surface-selected-row": "color",
+      "--selected-bg": "color",
+      "--accent": "color",
+      "--action": "color",
+      "--action-hover": "color",
+      "--action-active": "color",
+      "--focus-ring": "shadow",
+      "--progress-accent": "color",
+      "--progress-text": "font",
+      "--progress-tint": "color",
+      "--danger-accent": "color",
+      "--danger": "color",
+      "--danger-hover": "color",
+      "--danger-tint": "color",
+      "--status-neutral-tint": "color",
+      "--shadow-sm": "shadow",
+      "--shadow-md": "shadow",
+      "--shadow-lg": "shadow",
+      "--shadow-xl": "shadow",
+      "--shadow-drawer": "shadow",
+      "--shadow-ai": "shadow",
+      "--radius-card": "radius",
+      "--radius-panel": "radius",
+      "--radius-control": "radius",
+      "--radius-chip": "radius",
+      "--radius-popover": "radius",
+      "--popover-current": "color",
+      "--graph-node-person": "color",
+      "--graph-node-team": "color",
+      "--graph-node-project": "color",
+      "--graph-node-work-request": "color",
+      "--graph-node-task": "color",
+      "--graph-node-material": "color",
+      "--graph-node-meeting": "color",
+      "--graph-node-report": "color",
+      "--graph-node-fallback": "color",
+      "--graph-node-dim": "color",
+      "--graph-edge": "color",
+      "--graph-edge-dim": "color",
+      "--graph-edge-active": "color",
+      "--graph-label": "color",
+      "--graph-edge-label": "color",
+      "--ai-border": "color",
+      "--ai-border-hover": "color",
+      "--ai-border-active": "color",
+      "--ai-text": "font",
+      "--ai-text-active": "font",
+      "--ai-bg-hover": "color",
+      "--ai-bg-active": "color",
+      "--danger-active": "color",
+      "--hero-sky-left": "color",
+      "--hero-violet": "color",
+      "--hero-sky-right": "color",
+      "--ink-hover": "color",
+      "--on-fill": "color",
+      "--warning-surface": "color",
+      "--warning-text": "font",
+      "--columns": "other"
+    },
+    "fontFamilies": [
+      "Pretendard",
+      "Pretendard Variable"
+    ]
+  }
+}
