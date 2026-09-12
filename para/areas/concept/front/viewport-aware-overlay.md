@@ -8,6 +8,7 @@ aliases:
   - flip / clamp
   - 뷰포트 안에서 잘리지 않는 팝오버
 up:
+  - 2026-09-12-sc-meeting
   - 2026-09-09-sc-design-system
 tags:
   - popover
@@ -51,6 +52,7 @@ panel.style.maxHeight = `${Math.max(MIN, Math.min(room, MAX))}px`; // MAX = 420
 - **패널 스크롤 ≠ 패널이 보임** — `overflow: auto` 가 있어도 패널이 뷰포트 밖이면 스크롤 트랙이 밖에 있다. 「스크롤이 안 된다」는 보고는 먼저 패널 위치를 재라.
 - **flip 판단 ≠ 「위에 다 들어가는가」** — 패널 높이 전체가 위에 들어가는지로 판단하면 위도 아래도 애매한 자리에서 안 뒤집는다. 「어느 쪽이 더 넓은가」로 판단한다.
 - **부모의 `overflow: hidden`** 은 별개 문제다 — 패널이 뷰포트 안에 있어도 부모 패널에 잘린다. 폭이 부모보다 크면 정렬(`right: 0`)이나 폭 축소로 푼다.
+- **자리 계산이 맞아도 렌더 위치가 틀리면 잘린다.** 오버레이가 `overflow:hidden` 인 카드·표 안에 absolute 로 그려지면 컨테이너 경계에서 잘린다(sc-meeting DS-18: 드로어 정보 카드 안의 달력·Select). 원인은 앵커 계산이 아니라 렌더 위치 — `document.body` 포털 + `position:fixed` 로 빼고, 열릴 때·resize·중간 스크롤 컨테이너의 scroll(capture) 마다 다시 잰다. 포털이면 바깥 클릭 판정에 패널을 더해야 하고 z-index 층(드로어·모달·팝오버·토스트)을 정해야 한다.
 
 ## 함께 보는 개념
 
@@ -59,3 +61,4 @@ panel.style.maxHeight = `${Math.max(MIN, Math.min(room, MAX))}px`; // MAX = 420
 ## 출처
 
 - [[2026-09-09-sc-design-system]] — 팝오버 「스크롤 안 됨」 보고의 원인이 60vh 상한이었던 것, 수정 규칙과 상수 3개
+- 2026-09-12-sc-meeting §2 — ax-workspace `frontend/src/Popover.tsx`(포털+fixed, 커밋 b941846)

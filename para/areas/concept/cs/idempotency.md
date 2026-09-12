@@ -8,6 +8,7 @@ aliases:
   - idempotent
   - idempotency
 up:
+  - 2026-09-12-sc-meeting
   - 2026-08-10-idempotency-in-our-decisions
   - C-030-idempotency-patterns-for-safe-api-retries
   - 2026-08-31-meeting-room-workflow
@@ -68,6 +69,7 @@ Idempotency-Key: 6f5484e8-3dc7-4cb6-8987-e95d65b48767
 서버가 결제를 저장한 뒤 응답 전송에 실패해도 클라이언트는 같은 키와 본문으로 요청을 다시 보낸다. 서버는 저장해 둔 최초 결제의 상태 코드와 응답을 재생하므로 결제 행과 실제 청구가 다시 생성되지 않는다.
 
 동시 요청을 애플리케이션의 선행 조회만으로 막을 수는 없다. 멱등성 키나 주문 ID에 유일 제약을 두어 쓰는 순간 원자적으로 중복을 거절하고, 패배한 요청은 기존 레코드의 처리 결과를 조회한다.
+- **파이프라인에서 재시도 범위를 멱등한 단계로 좁힌다** — 재전사(sc-meeting): 업로드·전사 생성은 다시 하면 새 작업이 생기므로 재시도하지 않고, 이미 completed 된 같은 `transcription_id` 의 **결과 GET 만** 3회 백오프로 재시도한다. 그래도 안 되면 실패 상태로 드러낸다 → [[no-silent-fallback]].
 
 ## 왜 중요한가
 
@@ -104,3 +106,4 @@ Idempotency-Key: 6f5484e8-3dc7-4cb6-8987-e95d65b48767
 - [[2026-08-10-idempotency-in-our-decisions]] — 제품 다섯 곳의 결정 여덟 건이 같은 성질을 각자 다른 말로 요구하고 있던 것을 모은 실무 기록이다. **「멱등 upsert」·「중복 INSERT 차단」·「email 기준 멱등」·「append 중복 판정」이 전부 한 개념**이라는 것이 이 노트를 만든 이유다. 세 가지 공통 모양(재시도가 필연인 자리에서 나온다 · 자연키로 막는다 · DB 제약이 최종 방어선이다)과, upsert와 멱등이 같지 않다는 구별도 거기서 왔다.
 - [[C-030-idempotency-patterns-for-safe-api-retries]] — 결제 요청의 응답 유실 사례를 통해 멱등성 키, 요청 해시, 처리 상태와 응답 재생, DB 유일 제약, Redis 공유 저장소, 분산 동시성 제어와 재시도 정책을 하나의 처리 흐름으로 설명한다.
 - [[2026-08-31-meeting-room-workflow]] — 예약 승인 → 회의 자동 등록 체인의 「예약 건당 회의 최대 1」 보증. 처음엔 생성 직전 조회로 갈 뻔했는데 착수 실사에서 **동시 재진입은 조회로 못 막는다**로 뒤집어 부분 유니크 인덱스(`reservation_run_id IS NOT NULL` 조건 — nullable FK 라 일반 제약 불가)를 채택했다. 「애플리케이션 검사만으로는 뚫린다」의 실전이자, nullable 컬럼 변형이 이 노트에 더해진 계기다.
+- 2026-09-12-sc-meeting §2 — ax-workspace `platform/soniox.py`(결과 GET 재시도, 커밋 e252dee)

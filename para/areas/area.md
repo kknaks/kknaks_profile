@@ -528,6 +528,13 @@ para/areas/
 | 417 | `ai` | `ai-asset-inventory` | 조직의 AI 자산을 중앙에서 식별하고 등록 검증·사용 권한 관리로 연결하는 목록 |  |
 | 418 | `ai` | `executable-task-context` | 목적·변경 대상·제약·산출물·적용 기준·완료 조건을 연결해 AI가 수행할 작업을 구성하는 것 |  |
 | 419 | `cs` | `artifact-traceability` | 요구·설계·코드·테스트의 관계와 버전을 따라 변경 대상과 검증 근거를 확인하는 성질 |  |
+| 420 | `back` | `websocket-relay` | 서버가 외부 실시간 세션을 소유하고 브라우저와는 역할(upstream/subscribe) 선언한 WS 하나로 말하는 중계 |  |
+| 421 | `ai` | `two-pass-transcription` | 실시간 전사는 화면용, 종료 뒤 음원 전체를 비동기 재전사(화자 분리)해 원문을 갈아 끼우는 2-pass |  |
+| 422 | `back` | `no-silent-fallback` | 외부 단계 실패를 더 나쁜 입력으로 이어 가지 않고 failed 상태·사람 말 사유·재시도 경로로 드러내기 |  |
+| 423 | `ai` | `evidence-binding` | LLM 정리 줄마다 원문 구간을 붙이고 실재하는지만 검증(범위는 적재 전체), 화면은 겹치는 줄로 점프 |  |
+| 424 | `ai` | `transcript-segmentation` | 전사 토큰을 화자·침묵·시간·글자 상한과 문장 끝으로 자르는 블록 경계 규칙, 토큰 경계에서만 |  |
+| 425 | `ai` | `synthesis-rewrite` | 사람 메모·AI 요약·전사를 재료로 회의록 한 벌을 처음부터 새로 짓는 합성 — 구조 보존 검사 없음 |  |
+| 426 | `back` | `system-actor` | 파생 요청의 주체를 사람이 아닌 system:<출처> 로 두고 사람은 promoted_by·cc 로 남겨 권한 예외를 없앰 |  |
 
 ---
 
