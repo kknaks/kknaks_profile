@@ -1,0 +1,38 @@
+<!-- @dsCard group="Components" viewport="960x560" name="Date &amp; time" subtitle="DatePicker · DateField · TimeField — 캘린더·시간 입력" -->
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<style>body{margin:0;padding:32px;background:var(--ax-surface);font-family:var(--font-ui)}.row{display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap}.col{display:flex;flex-direction:column;gap:8px;width:280px}.cap{font-size:12px;line-height:1.334;letter-spacing:.025em;color:var(--ax-ink-assistive)}.card{padding:12px;border:1px solid var(--ax-line);border-radius:var(--ax-r-sm);background:var(--ax-surface);box-shadow:var(--ax-shadow-card)}</style>
+</head><body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script>
+const { DatePicker, DateField, TimeField } = window.TheSCAXDesignSystem_7e8395;
+const h = React.createElement;
+function Demo() {
+  const [date, setDate] = React.useState('2026-09-10');
+  const [start, setStart] = React.useState('09:00');
+  const [end, setEnd] = React.useState('');
+  return h('div', { className: 'row' },
+    h('div', { className: 'col' },
+      h('span', { className: 'cap' }, 'DatePicker — marks 로 일정 있는 날 표시'),
+      h('div', { className: 'card' }, h(DatePicker, { value: date, onChange: setDate, marks: ['2026-09-01', '2026-09-02', '2026-09-03', '2026-09-10'] })),
+    ),
+    h('div', { className: 'col' },
+      h('span', { className: 'cap' }, 'DateField — 입력 + 캘린더 팝오버'),
+      h(DateField, { value: date, onChange: setDate, ariaLabel: '기한' }),
+      h('span', { className: 'cap' }, 'DateField / size sm'),
+      h(DateField, { value: date, onChange: setDate, size: 'sm', ariaLabel: '기한 sm' }),
+      h('span', { className: 'cap' }, 'DateField / invalid'),
+      h(DateField, { value: '2026-13-40', onChange: () => {}, invalid: true, ariaLabel: '기한 오류' }),
+    ),
+    h('div', { className: 'col' },
+      h('span', { className: 'cap' }, 'TimeField — 30분 단위 슬롯'),
+      h(TimeField, { value: start, onChange: setStart, ariaLabel: '시작 시간' }),
+      h('span', { className: 'cap' }, 'TimeField — 근무 시간(09:00–18:00)만'),
+      h(TimeField, { value: end, onChange: setEnd, from: 540, to: 1080, ariaLabel: '종료 시간' }),
+    ),
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script></body></html>
