@@ -1,0 +1,107 @@
+{
+  "_doc": "strong-hajin(회의·업무 워크스페이스 — modular monolith. backend/ = Python 3.12 + FastAPI + SQLAlchemy 2 + psycopg, uv · frontend/ = React 19 + Vite + vitest) 오케스트레이션 설정 SSOT. scripts/new-work.sh 가 읽는 유일한 곳. 값 하드코딩 금지. sc-ax(회사 ax-workspace)를 개인 프로젝트로 가져온 것 — 2026-09-15.",
+  "project": "strong-hajin",
+  "worktree_root": "/Users/kknaks/orca/workspaces",
+  "use_worktree": true,
+  "repos": {
+    "docs": {
+      "orca_name": "kknaks_profile",
+      "canonical_path": "/Users/kknaks/git/toy_pr2/kknaks_profile",
+      "remote": "https://github.com/kknaks/kknaks_profile.git",
+      "base": "origin/main",
+      "pr_base": "main",
+      "worktree_suffix": "",
+      "notes": [
+        "canonical(main)은 사용자 체크아웃 — pull/checkout 금지, fetch 만.",
+        "제품 문서는 para/projects/summer-star/strong-hajin/ — 코디네이터 소유.",
+        "회사에서 가져온 SPEC 원본은 mediness 리포 products/sc-ax/ 에 있다(SPEC-004 v0.6.1 이 마지막). 이관할 때 그것을 끌어온다.",
+        "문서 워커(writer·architect·designer)는 workspace=coordinator 로 코디 워크트리에 직접 탄다 — 개별 워크트리 없음. 2026-09-03 워커 워크트리 정리로 산출물 유실된 사고의 재발 방지. 직렬 발주만.",
+        "summary_dest 를 «canonical» 로 둔다 — 워크트리 경로로 두면 archive-work.sh 가 그 워크트리를 지운 «뒤» mkdir -p 로 빈 디렉토리를 만들어 회고를 추적 밖에 떨어뜨린다. sc-ax 가 그렇게 2026-09-14 회고를 한 판 통째로 잃었다(2026-09-15 발견·복구). canonical 에 떨어지면 사용자 git status 에 보여서 잃지 않는다."
+      ]
+    },
+    "code": {
+      "orca_name": "Strong_hajin",
+      "canonical_path": "/Users/kknaks/git/toy_pr2/Strong_hajin",
+      "remote": "https://github.com/kknaks/Strong_hajin.git",
+      "base": "origin/main",
+      "pr_base": "main",
+      "worktree_suffix": "",
+      "notes": [
+        "코드 전용 레포 — 기획·정책·아키텍처·spec·WP 는 전부 docs 레포(kknaks_profile)에 있다.",
+        "2026-09-15 회사 ax-workspace 의 전체 이력 223커밋을 main 으로 올려 만들었다. 패키지명 ax_workspace·전역명 SCAX 는 그대로 둔다 — 이름을 바꾸면 CSS 토큰(--scax-*)·클래스(.scax-*)·문서·회고가 다 어긋나고 얻는 것이 없다.",
+        "코드 워커는 개별 워크트리를 쓴다. 문서 경로는 건드리지 않는다 — 문서 참조는 코디 워크트리 절대경로(read-only).",
+        ".design-sync/ 가 Claude Design 프로젝트 7e839512(TheSC AX Design System)를 가리킨다. 그 프로젝트에는 «우리가 올린» 부품 35종이 들어 있다(업스트림 Figma 렌더러 199종은 2026-09-14 에 지웠다).",
+        "⚠ 백엔드 커밋이 들어가면 API 를 «반드시» 다시 띄운다 — 2026-09-14~15 에 떠 있는 프로세스가 옛 코드인 것을 두 번 놓쳐 실물 e2e 를 통째로 날렸다."
+      ]
+    }
+  },
+  "workers": {
+    "writer": {
+      "repo": "docs",
+      "agent": "claude",
+      "brief_suffix": "write",
+      "workspace": "coordinator",
+      "allowed_paths": [
+        "(브리프가 지정한 파일만 — 코디 워크트리에서 직접 작업. index·log 수정 금지, 커밋·push 금지)"
+      ],
+      "verify": "산출물은 브리프가 지정한 파일들뿐. 정하지 못한 것은 Open Questions 로 남기고 임의 결정 금지. 모든 결정에 근거 병기",
+      "roles_dir": "roles/strong-hajin/planner"
+    },
+    "architect": {
+      "repo": "docs",
+      "agent": "claude",
+      "brief_suffix": "arch",
+      "workspace": "coordinator",
+      "allowed_paths": [
+        "(브리프가 지정한 40-architecture 하위 파일만 — 코디 워크트리에서 직접 작업. 커밋·push 금지)"
+      ],
+      "verify": "결정마다 근거 병기, 선택지를 남기지 말고 단일 방식으로 서술. 계약과 충돌하면 고치지 말고 Open Questions",
+      "roles_dir": "roles/strong-hajin/planner"
+    },
+    "backend": {
+      "repo": "code",
+      "agent": "claude",
+      "brief_suffix": "be",
+      "allowed_paths": [
+        "backend/",
+        "docker-compose.yml",
+        "Makefile"
+      ],
+      "verify": "cd backend && uv run pytest -n auto --dist worksteal. 자기점검 — modules/*/domain.py·application.py 가 fastapi/mcp/sqlalchemy 를 import 하지 않는가 · entrypoints 가 platform 구현을 직접 import 하지 않는가 · 스키마 변경을 reset_demo 밖에서 하지 않았는가. 실패가 있으면 «변경 전 커밋을 별도 워크트리에 떠서» 같은 실패가 나는지 확인해 기준선과 갈라 보고한다",
+      "roles_dir": "roles/strong-hajin/backend"
+    },
+    "frontend": {
+      "repo": "code",
+      "agent": "claude",
+      "brief_suffix": "fe",
+      "allowed_paths": [
+        "frontend/"
+      ],
+      "verify": "cd frontend && npx tsc --noEmit && npx vitest run && npx vite build. 자기점검 — envelope 으로 권한을 판단했는가(상태로 재추론 금지) · api.ts 밖에서 fetch 하지 않았는가 · 기존 부품·viewModels 를 재사용했는가 · 시안에 없는 것을 발명하지 않았는가(없으면 DS-gaps 에 적는다)",
+      "roles_dir": "roles/strong-hajin/frontend"
+    },
+    "reviewer": {
+      "repo": "code",
+      "agent": "claude",
+      "brief_suffix": "review",
+      "allowed_paths": [
+        "(read-only — 리포트 파일 하나만 쓴다)"
+      ],
+      "verify": "각 지적에 파일:줄 + 근거. 근거 없는 지적은 쓰지 않는다. 판정은 FAIL(계약과 다른 것이 돈다) · WARN(물어야 할 만큼 모호하다) · PASS. 「조용히 통과하는 자리」를 따로 본다 — 개명·빈 단언·폴백처럼 테스트가 초록인데 계약이 깨진 곳",
+      "roles_dir": "roles/strong-hajin/reviewer"
+    }
+  },
+  "default_workers": [
+    "backend",
+    "frontend"
+  ],
+  "summary_dest": "/Users/kknaks/git/toy_pr2/kknaks_profile/para/projects/summer-star/strong-hajin/log",
+  "rules": {
+    "docs_and_code_use_separate_prs": true,
+    "workers_commit_or_push": false,
+    "coordinator_verifies_before_pr": true,
+    "code_workers_use_own_worktree": true,
+    "brief_must_enumerate_surfaces": true,
+    "restart_api_after_backend_commit": true
+  }
+}
