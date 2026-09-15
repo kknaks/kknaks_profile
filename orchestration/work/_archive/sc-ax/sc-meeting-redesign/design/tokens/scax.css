@@ -1,0 +1,130 @@
+/* SCAX product aliases — 화면이 쓰는 --scax-* 이름. 값은 전부 kit 토큰(--ax-* / --t-* / --fw-*)의 별칭이다.
+   화면 CSS 는 이 이름만 쓴다. 새 값은 여기에 올린 뒤 참조한다. */
+
+:root{
+  /* ---- color: brand / accent ---- */
+  --scax-color-accent:var(--ax-accent);
+  --scax-color-accent-strong:var(--ax-accent-strong);
+  --scax-color-accent-soft:var(--ax-accent-soft);
+  --scax-color-accent-05:var(--ax-accent-05);
+  --scax-color-accent-08:var(--ax-accent-08);
+  --scax-color-accent-20:var(--ax-accent-20);
+  --scax-gradient-agent:var(--ax-agent-gradient);
+  --scax-agent-glow-blur:var(--ax-agent-glow-blur);
+
+  /* ---- color: ink ---- */
+  --scax-color-ink-strong:var(--ax-ink-strong);
+  --scax-color-ink:var(--ax-ink);
+  --scax-color-ink-neutral:var(--ax-ink-neutral);
+  --scax-color-ink-alt:var(--ax-ink-alt);
+  --scax-color-ink-assistive:var(--ax-ink-assistive);
+  --scax-color-ink-disabled:var(--ax-ink-disable);
+  --scax-color-ink-inverse:var(--ax-ink-inverse);
+  --scax-color-ink-nav-idle:var(--ax-ink-nav-idle);
+  --scax-color-ink-nav-active:var(--ax-ink-nav-active);
+
+  /* ---- color: surface ---- */
+  --scax-color-surface:var(--ax-surface);
+  --scax-color-surface-alt:var(--ax-surface-alt);
+  --scax-color-surface-nav:var(--ax-surface-nav);
+  --scax-color-surface-nav-active:var(--ax-surface-nav-active);
+  --scax-color-surface-nav-hover:var(--ax-surface-nav-hover);
+  --scax-color-surface-inverse:var(--ax-surface-inverse);
+
+  /* ---- color: line / fill ---- */
+  --scax-color-line-weak:var(--ax-line-weak);
+  --scax-color-line:var(--ax-line);
+  --scax-color-line-strong:var(--ax-line-strong);
+  --scax-color-fill-weak:var(--ax-fill-weak);
+  --scax-color-fill:var(--ax-fill);
+  --scax-color-fill-strong:var(--ax-fill-strong);
+
+  /* ---- color: status ---- */
+  --scax-color-danger:var(--ax-danger);
+  --scax-color-danger-soft:var(--red-100);
+  --scax-color-positive:var(--ax-positive);
+  --scax-color-info:var(--ax-info);
+  --scax-color-warning:var(--orange-50);
+
+  /* ---- space (px; the DS ships unitless Figma numbers) ---- */
+  --scax-space-050:2px;
+  --scax-space-100:4px;
+  --scax-space-150:6px;
+  --scax-space-200:8px;
+  --scax-space-250:10px;
+  --scax-space-300:12px;
+  --scax-space-400:16px;
+  --scax-space-500:20px;
+  --scax-space-600:24px;
+  --scax-space-800:32px;
+  --scax-space-1200:48px;
+
+  /* ---- radius ---- */
+  --scax-radius-xs:var(--ax-r-xs);
+  --scax-radius-sm:var(--ax-r-sm);
+  --scax-radius-md:var(--ax-r-md);
+  --scax-radius-lg:var(--ax-r-lg);
+  --scax-radius-xl:var(--ax-r-xl);
+  --scax-radius-2xl:var(--ax-r-2xl);
+  --scax-radius-bubble:var(--ax-r-bubble);
+  --scax-radius-pill:var(--ax-r-pill);
+
+  /* ---- type ---- */
+  --scax-font-ui:var(--font-ui);
+  --scax-font-display:var(--font-display);
+  --scax-fw-regular:var(--fw-regular);
+  --scax-fw-medium:var(--fw-medium);
+  --scax-fw-semibold:var(--fw-semibold);
+  --scax-fw-bold:var(--fw-bold);
+  --scax-text-caption2-size:var(--t-caption2-size);
+  --scax-text-caption2-lh:var(--t-caption2-lh);
+  --scax-text-caption2-ls:var(--t-caption2-ls);
+  --scax-text-caption1-size:var(--t-caption1-size);
+  --scax-text-caption1-lh:var(--t-caption1-lh);
+  --scax-text-caption1-ls:var(--t-caption1-ls);
+  --scax-text-label2-size:var(--t-label2-size);
+  --scax-text-label2-lh:var(--t-label2-lh);
+  --scax-text-label2-ls:var(--t-label2-ls);
+  --scax-text-label1-size:var(--t-label1-size);
+  --scax-text-label1-lh:var(--t-label1-lh);
+  --scax-text-label1-ls:var(--t-label1-ls);
+  --scax-text-body1-size:var(--t-body1-size);
+  --scax-text-body1-lh:var(--t-body1-lh);
+  --scax-text-body1-ls:var(--t-body1-ls);
+  --scax-text-headline-size:var(--t-headline-size);
+  --scax-text-headline-lh:var(--t-headline-lh);
+  --scax-text-headline-ls:var(--t-headline-ls);
+  --scax-text-title-size:var(--t-title-size);
+  --scax-text-title-lh:var(--t-title-lh);
+  --scax-text-title-ls:var(--t-title-ls);
+
+  /* ---- elevation ---- */
+  --scax-shadow-card:var(--ax-shadow-card);
+  --scax-shadow-raised:var(--ax-shadow-raised);
+  --scax-shadow-panel:var(--ax-shadow-panel);
+  --scax-shadow-rail:var(--ax-shadow-rail);
+  --scax-ring:var(--ax-ring);
+  --scax-ring-weak:var(--ax-ring-weak);
+
+  /* ---- interaction overlay opacity (ink is always --scax-color-ink) ---- */
+  --scax-state-hover:var(--ax-interaction-normal-hover);
+  --scax-state-focus:var(--ax-interaction-normal-focus);
+  --scax-state-press:var(--ax-interaction-normal-press);
+
+  /* ---- page frame metrics (fixed by this screen for every later screen) ---- */
+  --scax-nav-width:var(--ax-nav-max);
+  --scax-nav-width-collapsed:var(--ax-nav-min);
+  --scax-header-height:60px; /* kit 의 머리 높이. 브레드크럼 줄은 두지 않는다 (디자이너 확정) */
+  --scax-rail-left-width:var(--ax-inbox-w);
+  --scax-rail-right-width:var(--ax-calendar-w);
+  /* DS 버튼 높이는 3종뿐이다 (Button/Button lg·md·sm) */
+  --scax-control-height-sm:32px;
+  --scax-control-height-md:39px;
+  --scax-control-height-lg:47px;
+  --scax-row-height:50px;
+  --scax-content-min-width:640px; /* 3-rail frame minimum: 180+380+342+640 = 1542 */
+  --scax-table-min-width:880px;   /* 624 fixed tracks + 48 row padding + 208 title track */
+  --scax-focus-ring:0 0 0 3px var(--scax-color-accent-20);
+  --scax-duration-fast:120ms; /* @kind other */
+  --scax-easing:cubic-bezier(.2,.7,.3,1); /* @kind other */
+}

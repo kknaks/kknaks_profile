@@ -1,0 +1,23 @@
+<!-- @dsCard group="Components" viewport="700x400" name="Navigation" subtitle="Tab rail, Segmented Control, nav-menu rows, Breadcrumb, Page header, Page control" -->
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<style>body{margin:0;padding:20px;background:var(--ax-surface);font-family:var(--font-ui)}#root{display:flex;flex-direction:column;gap:16px}.row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.col{display:flex;flex-direction:column;gap:10px}.lbl{font:500 11px/1.273 var(--font-ui);letter-spacing:.031em;color:var(--ax-ink-assistive);width:72px;flex-shrink:0}</style>
+</head><body><div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+const { TabTab, SegmentedControlSegmentedControl, NavMenu, Breadcrumb, PageHeader, PageControlHorizontal } = window.TheSCAXDesignSystem_7e8395;
+const Row = ({ label, children, style }) => <div className="row" style={style}><span className="lbl">{label}</span>{children}</div>;
+const mount = (el) => ReactDOM.createRoot(document.getElementById('root')).render(el);
+
+mount(<>
+  <Row label="Tabs" style={{alignItems:'flex-start'}}><div style={{flex:1,minWidth:0}}><TabTab resize="hug" size="md" /></div></Row>
+  <Row label="Segmented"><SegmentedControlSegmentedControl variant="solid" size="sm" /><SegmentedControlSegmentedControl variant="outlined" size="sm" /></Row>
+  <Row label="nav-menu" style={{alignItems:'flex-start'}}><div className="col" style={{width:180,background:'var(--ax-surface-nav)',padding:8,borderRadius:8,gap:1}}>
+    <NavMenu state="active" text1="업무" /><NavMenu state="default" text1="회의" /><NavMenu state="hover" text1="자료" /><NavMenu state="default" text1="알림" pushBadge />
+  </div></Row>
+  <Row label="Header" style={{alignItems:'flex-start'}}><div style={{flex:1,minWidth:0}}><PageHeader pageTitle="업무" breadcrumb /></div></Row>
+  <Row label="Crumbs"><Breadcrumb /><PageControlHorizontal /></Row>
+</>);
+</script></body></html>
