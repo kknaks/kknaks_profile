@@ -1,0 +1,65 @@
+/* 회의 목록 (SCR-105) 전용 부품 CSS.
+   토큰은 ../my-work/css/tokens.css 의 --scax-* 만 쓴다. 새 값은 여기에 직접 쓰지 않는다. */
+
+/* ---------- MeetingList — 「내 업무」 수신함 레일과 같은 자리·같은 카드 밀도 ---------- */
+.scax-meeting-list{display:flex;flex-direction:column;gap:var(--scax-space-250);height:100%;min-height:0;padding:var(--scax-space-500) var(--scax-space-600);overflow:hidden}
+.scax-meeting-list__header{display:flex;flex-direction:row;align-items:center;gap:var(--scax-space-150);flex:0 0 auto;min-height:var(--scax-control-height-sm)}
+.scax-meeting-list__title{display:flex;align-items:center;gap:var(--scax-space-150);flex:1 1 auto;min-width:0;margin:0;font-size:var(--scax-text-body1-size);line-height:var(--scax-text-body1-lh);letter-spacing:var(--scax-text-body1-ls);font-weight:var(--scax-fw-medium);color:var(--scax-color-ink-neutral)}
+.scax-meeting-list__body{display:flex;flex-direction:column;gap:var(--scax-space-400);flex:1 1 auto;min-height:0;overflow-y:auto;padding-right:var(--scax-space-050)}
+
+/* ---------- MeetingSection — 예정 / 지난 ---------- */
+.scax-meeting-section{display:flex;flex-direction:column;gap:var(--scax-space-250);flex:0 0 auto}
+.scax-meeting-section__head{display:flex;align-items:center;gap:var(--scax-space-150);font-size:var(--scax-text-label2-size);line-height:var(--scax-text-label2-lh);letter-spacing:var(--scax-text-label2-ls);font-weight:var(--scax-fw-medium);color:var(--scax-color-ink-assistive)}
+.scax-meeting-section__count{color:var(--scax-color-ink-assistive);font-variant-numeric:tabular-nums}
+.scax-meeting-section__list{display:flex;flex-direction:column;gap:var(--scax-space-250);margin:0;padding:0;list-style:none}
+.scax-meeting-section__more{display:flex;justify-content:center;padding-top:var(--scax-space-100)}
+
+/* ---------- MeetingCard 「신규」 — 목록 한 건 ---------- */
+.scax-meeting-card{display:flex;flex-direction:column;gap:var(--scax-space-200);width:100%;padding:var(--scax-space-300);border:1px solid var(--scax-color-line);border-radius:var(--scax-radius-xl);background:var(--scax-color-surface);box-shadow:var(--scax-shadow-card);text-align:left;cursor:pointer;transition:background var(--scax-duration-fast) var(--scax-easing),border-color var(--scax-duration-fast) var(--scax-easing)}
+.scax-meeting-card:hover{border-color:var(--scax-color-accent-20);background:var(--scax-color-accent-05)}
+.scax-meeting-card:focus-visible{outline:0;box-shadow:var(--scax-focus-ring)}
+.scax-meeting-card--selected{border-color:var(--scax-color-accent);background:var(--scax-color-accent-05)}
+.scax-meeting-card__top{display:flex;flex-direction:row;align-items:center;gap:var(--scax-space-200)}
+.scax-meeting-card__when{font-size:var(--scax-text-caption1-size);line-height:var(--scax-text-caption1-lh);letter-spacing:var(--scax-text-caption1-ls);color:var(--scax-color-ink-assistive);font-variant-numeric:tabular-nums}
+.scax-meeting-card__state{display:flex;align-items:center;gap:var(--scax-space-100);margin-left:auto}
+.scax-meeting-card__title{margin:0;font-size:var(--scax-text-body1-size);line-height:var(--scax-text-body1-lh);letter-spacing:var(--scax-text-body1-ls);font-weight:var(--scax-fw-semibold);color:var(--scax-color-ink);text-wrap:pretty}
+.scax-meeting-card__title--untitled{color:var(--scax-color-ink-assistive);font-weight:var(--scax-fw-medium)}
+.scax-meeting-card__meta{display:flex;flex-direction:row;align-items:center;gap:var(--scax-space-150);flex-wrap:wrap;font-size:var(--scax-text-caption1-size);line-height:var(--scax-text-caption1-lh);letter-spacing:var(--scax-text-caption1-ls);color:var(--scax-color-ink-assistive)}
+.scax-meeting-card__meta-item{display:inline-flex;align-items:center;gap:var(--scax-space-100);min-width:0}
+.scax-meeting-card__meta-sep{width:1px;height:10px;background:var(--scax-color-line-strong)}
+.scax-meeting-card__actions{display:flex;flex-direction:row;gap:var(--scax-space-200);padding-top:var(--scax-space-100)}
+.scax-meeting-card__actions>.scax-button{flex:1 1 0}
+
+/* 상태 6종 — 배지 톤 매핑. 실패는 레거시의 글자색 대신 danger 배지로 통일한다 */
+.scax-meeting-card__state .scax-badge{flex:0 0 auto}
+
+/* ---------- 빈 본문 자리 — 오른쪽 회의록 패널이 들어올 자리 ---------- */
+.scax-meeting-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--scax-space-200);flex:1 1 auto;min-height:0;padding:var(--scax-space-1200);color:var(--scax-color-ink-assistive)}
+.scax-meeting-placeholder__text{margin:0;font-size:var(--scax-text-label1-size);line-height:var(--scax-text-label1-lh);letter-spacing:var(--scax-text-label1-ls)}
+
+/* ---------- NotePanel 「신규」 — 오른쪽 회의록. 읽기 전용이다 ---------- */
+.scax-note-panel{display:flex;flex-direction:column;flex:1 1 auto;min-height:0}
+.scax-note-panel__head{display:flex;flex-direction:column;gap:var(--scax-space-100);flex:0 0 auto;padding:var(--scax-space-500) var(--scax-space-600);background:var(--scax-color-surface);border-bottom:1px solid var(--scax-color-line)}
+.scax-note-panel__title-row{display:flex;align-items:center;gap:var(--scax-space-200)}
+.scax-note-panel__title{margin:0;flex:1 1 auto;min-width:0;font-size:var(--scax-text-headline-size);line-height:var(--scax-text-headline-lh);letter-spacing:var(--scax-text-headline-ls);font-weight:var(--scax-fw-semibold);color:var(--scax-color-ink);text-wrap:pretty}
+.scax-note-panel__when{display:flex;align-items:center;gap:var(--scax-space-150);margin:0;font-size:var(--scax-text-label2-size);line-height:var(--scax-text-label2-lh);letter-spacing:var(--scax-text-label2-ls);color:var(--scax-color-ink-alt)}
+.scax-note-panel__dot{color:var(--scax-color-ink-assistive)}
+.scax-note-panel__attend{margin:0;font-size:var(--scax-text-caption1-size);line-height:var(--scax-text-caption1-lh);letter-spacing:var(--scax-text-caption1-ls);color:var(--scax-color-ink-assistive)}
+.scax-note-panel__body{display:flex;flex-direction:column;flex:1 1 auto;min-height:0;overflow-y:auto;background:var(--scax-color-surface)}
+.scax-note-panel__foot{display:flex;justify-content:flex-end;gap:var(--scax-space-200);flex:0 0 auto;padding:var(--scax-space-400) var(--scax-space-600);background:var(--scax-color-surface);border-top:1px solid var(--scax-color-line)}
+.scax-note-panel__foot:empty{display:none}
+
+/* ---------- AgendaBlock 「신규」 — 본문 칸은 업무 표와 같은 결이다:
+   흰 바닥에 1px 경계로 줄을 나눈다. 카드를 다시 그리지 않는다 ---------- */
+.scax-agenda-block{display:flex;flex-direction:column;gap:var(--scax-space-200);flex:0 0 auto;padding:var(--scax-space-400) var(--scax-space-600);border-bottom:1px solid var(--scax-color-line-weak)}
+.scax-agenda-block__head{display:flex;align-items:center;gap:var(--scax-space-200)}
+.scax-agenda-block__title{margin:0;flex:1 1 auto;min-width:0;font-size:var(--scax-text-body1-size);line-height:var(--scax-text-body1-lh);letter-spacing:var(--scax-text-body1-ls);font-weight:var(--scax-fw-semibold);color:var(--scax-color-ink);text-wrap:pretty}
+.scax-agenda-block__source{margin:0;font-size:var(--scax-text-caption1-size);line-height:var(--scax-text-caption1-lh);letter-spacing:var(--scax-text-caption1-ls);color:var(--scax-color-ink-assistive)}
+.scax-agenda-block__lines{display:flex;flex-direction:column;gap:var(--scax-space-150);margin:0;padding:0 0 0 var(--scax-space-400);list-style:disc;font-size:var(--scax-text-label1-size);line-height:1.62;letter-spacing:var(--scax-text-label1-ls);color:var(--scax-color-ink-alt)}
+/* 다음 할 일 — 업무 표의 머리줄과 같은 연한 면 */
+.scax-agenda-block__todos{display:flex;flex-direction:column;gap:var(--scax-space-200);padding:var(--scax-space-300);border-radius:var(--scax-radius-lg);background:var(--scax-color-surface-alt)}
+.scax-agenda-block__todos-label{margin:0;font-size:var(--scax-text-caption1-size);line-height:var(--scax-text-caption1-lh);letter-spacing:var(--scax-text-caption1-ls);font-weight:var(--scax-fw-medium);color:var(--scax-color-ink-assistive)}
+.scax-agenda-block__todo-list{display:flex;flex-direction:column;gap:var(--scax-space-150);margin:0;padding:0;list-style:none}
+.scax-agenda-block__todo{display:flex;align-items:center;gap:var(--scax-space-200);font-size:var(--scax-text-label2-size);line-height:var(--scax-text-label2-lh);letter-spacing:var(--scax-text-label2-ls);color:var(--scax-color-ink)}
+.scax-agenda-block__todo-what{flex:1 1 auto;min-width:0}
+.scax-agenda-block__todo-due,.scax-agenda-block__todo-state{flex:0 0 auto;color:var(--scax-color-ink-assistive);font-variant-numeric:tabular-nums}
