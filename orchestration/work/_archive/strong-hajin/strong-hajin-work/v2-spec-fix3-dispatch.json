@@ -1,0 +1,47 @@
+{
+  "task": {
+    "id": "3759e774-a9da-4eff-bd7e-bc9d3f723487",
+    "ok": true,
+    "result": {
+      "task": {
+        "id": "task_4f2a2ec6bcc5",
+        "parent_id": null,
+        "created_by_terminal_handle": "term_9de388d5-58b1-4bbe-8864-5e930def648b",
+        "task_title": "# [writer] WORK002 직전 최소 정정 — 재조사 금지",
+        "display_name": "# [writer] WORK002 직전 최소 정정 — 재조사 금지",
+        "spec": "# [writer] WORK002 직전 최소 정정 — 재조사 금지\n\n## 1. 역할/근거\n기존 strong-hajin-work-v2-spec-fix2-brief.md의 규칙·역할·원문·BE+FE 승인 유지. review-v2-spec-report.md 재검수2차 WARN8건만. 신규 정책·전수 조사 금지.\n\n## 2. 필수정정\nRW2-W1 DEC OQ203의 같은 complete 문구를 기존 completion-report 제출명령 검사로 정정.\nRW2-W2 SPEC003 남은 spec001:443/460/498 줄번호 제거하고 절/인용으로 특정.\nRW2-W5 UX에 담당변경 제안과 새담당 수락/거절을 부를 자리 명시, U9에도 명령 포함. 권한은 기존 API계약 그대로.\n\n## 3. 동시 문구정정\nRW2-W3 DEC에 01 OQ06 행을 넣어 기존계약 보존/화면자리 WORK에서 결정 연결.\nRW2-W6 OQ202의 프론트 개편 때 표현을 이번 WORK002 화면설계로 갱신.\nRW2-W7 SPEC002 상단 중복문장 제거.\nRW2-W8 코디판단: 안내문 수정일 updated_at은 2026-09-17로 정렬 허용, 기존 W1 계약본문 버전은 유지(안내만 갱신). SPEC003은 patch버전 갱신.\nRW2-W4 전면조사 없이 SPEC002 종류칩 실물과 비교하여 업무/참고 분류축 및 답장/원문확인 단추의 기존계약 유무를 기록. 기존계약 없으면 좁은 미설계+WORK002 선행확인 항목으로, 존재하지 않는 명령을 만들었다고 쓰지 않음. 사용자 질문 신설 금지, 기술결정은 WORK에서.\n\n## 4. 범위\n기존 SPEC003/DEC002/SPEC001/002 상단안내 및 updated_at만. BASE수정 불필요. WORK002는 아직 쓰지 말 것. 이 정정완료를 코디 확인한 뒤 바로 WORK002 발주하므로 전수검수 루프 확대 금지.\n\n## 5. allowed_paths\npara/projects/summer-star/strong-hajin/10-decision/decision-002-task-lifecycle-v2.md\npara/projects/summer-star/strong-hajin/20-spec/spec-003-task-lifecycle-v2.md\npara/projects/summer-star/strong-hajin/20-spec/spec-001-work-management.md (상단안내+updated_at만)\npara/projects/summer-star/strong-hajin/20-spec/spec-002-action-item-review.md (상단안내+updated_at만)\norchestration/work/strong-hajin-work/v2-spec-fix3-report.md\n\n## 6. 보고\n8건 정정 자리와 인용문구, 변경 전후 짧게 보고. OQ203/206은 답대기 그대로. 최소정정 diff로 코디가 검증할 수 있게 작성.\n\n## 7. 금지\n코드/DB/테스트/빌드/원문/index/log/커밋/push/PR/stash/reset/checkout 없음.\n\n## 8. 완료\n문구정합만 검증. 실행0. 완료 후 쓰기 종료.\n\n## 9. 완료 보고 — **문구 변경 금지**\n\n> **⚠ 핸들은 dispatch preamble 의 값을 믿어라.** 아래 명령에 박힌 코디handle 은 **브리프 작성 시점** 값이라 오래됐을 수 있다 — 세션이 재연결되면 핸들이 바뀐다(2026-07-28·29 두 번 겪음). preamble 의 코디네이터 핸들과 아래 값이 다르면 **preamble 이 맞다.** 두 곳에 다 보내지 말고 preamble 쪽으로만 보내라.\n\n\n- **커밋·push·PR 하지 마라.** 워크트리에 변경만 남긴다. 검증·PR 은 코디네이터가 한다.\n- 끝나면 **아래 두 명령을 모두** 실행한다. 하나만 하면 안 된다.\n\n```bash\n# (1) 인박스 적재 — 태스크 완료 처리·영구 기록. 코디네이터를 깨우지 않는다.\norca orchestration send \\\n  --to term_29f98b02-b4b2-4735-8daa-81708cb3dfdc --from term_b9531982-afbb-4da8-b54c-122d11643219 \\\n  --type worker_done \\\n  --task-id <이 태스크의 taskId — dispatch 로 받은 context 에 들어 있다> \\\n  --dispatch-id <이 태스크의 dispatchId — dispatch 로 받은 context 에 들어 있다> \\\n  --subject \"writer 완료: <한 줄>\" \\\n  --body \"변경 파일 목록 / 구현 요약 / 검증 결과(수치) / 계약 준수 / 미결·주의점\"\n\n# (2) 직접 주입 — 코디네이터 세션에 유저 메시지로 꽂혀 자동으로 깨운다.\norca terminal send --terminal term_29f98b02-b4b2-4735-8daa-81708cb3dfdc \\\n  --text \"[worker_done] writer 완료 — <한 줄 요약>. 상세는 인박스.\" --enter\n```\n\n- 막히면 30분 이상 혼자 헤매지 말고 같은 (2) 방식으로 물어라:\n  `orca terminal send --terminal term_29f98b02-b4b2-4735-8daa-81708cb3dfdc --text \"[질문] writer: <질문>\" --enter`\n  (`orca orchestration ask` 는 채널이 닫혀 답이 안 닿는 경우가 많다.)\n",
+        "status": "ready",
+        "deps": "[]",
+        "result": null,
+        "created_at": "2026-09-17 06:36:14",
+        "completed_at": null
+      }
+    },
+    "_meta": {
+      "runtimeId": "f0b0012a-376b-4c5c-91e5-761dbda6f70a"
+    }
+  },
+  "dispatch": {
+    "id": "d3257a03-f788-4cb4-9b9f-128d09d683ab",
+    "ok": true,
+    "result": {
+      "dispatch": {
+        "id": "ctx_f400039e1358",
+        "task_id": "task_4f2a2ec6bcc5",
+        "assignee_handle": "term_b9531982-afbb-4da8-b54c-122d11643219",
+        "assignee_pane_key": "43bd038a-e7ad-4d2e-9885-ce3a8821d0b0:92fe93e9-686e-4f47-a406-b3e9b1db3614",
+        "status": "dispatched",
+        "failure_count": 0,
+        "last_failure": null,
+        "dispatched_at": "2026-09-17 06:36:14",
+        "completed_at": null,
+        "created_at": "2026-09-17 06:36:14",
+        "last_heartbeat_at": null
+      },
+      "injected": true
+    },
+    "_meta": {
+      "runtimeId": "f0b0012a-376b-4c5c-91e5-761dbda6f70a"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+# v2 FE 정정 1차 재검수
+
+## 1. 역할
+원 리뷰어 재사용. FE 정정 완료 후에만 착수. 제품 read-only, review-v2-frontend-report.md에 재검수 절만 추가한다. 최초 검수 전체를 반복하지 않는다.
+
+## 2. 입력
+정정 최종본은 make frontend-test 704 passed exit0, tsc exit0 보고. 로그·exit는 v2-frontend-verification/fix1-*에 보존. F-1은 origin.actor가 아닌 requester_id/promoted_by_member_id로 서버 판정과 정렬했고, 직접취소·재개 버튼도 함께 수정됐으므로 그 변화까지 검수한다.
+strong-hajin-work-v2-frontend-fix1-brief.md·v2-frontend-fix1-report.md·최신 WORK002 Phase7-A·FE 실제 정정 diff·검증 로그. 최초 FE 보고와 review-v2-frontend-report.md의 F-1/W-1/W-3/W-5가 대상이다.
+
+## 3. 검사
+- F-1: 제안 요청자 전용, 직접취소는 실제 서버 권한과 일치, 요청자/담당자/제3자/본인/관리 배정 정상경로 보존. meeting origin.actor가 system일 때 promoted_by 자리와 불일치 없는지.
+- W-1: 죽은 분기·주석 정정, 서버의 승인/하위차단 원장 소비. W-3: include_removed 첫 조회 실패 시 사용자 인지, 성공 일반목록 보존. W-5: 없는 681 통과수치를 근거에서 제외하고 원본 로그와 정렬.
+- 새 첨부: 기존 자료 쓰기권한이 활성담당만이므로 본인 생성에 한정한 DropZone. 다른 갈래는 담당자 상세첨부(요청 수락후) 안내이고 발송자 권한 확대 없음. evidence에 파일을 대신 넣지 않음. 파일 선택 후 갈래변경 때 조용한 유실 없음.
+- 생성 성공 후 업로드만 실패할 때 생성id/멱등키를 보존해 업무 중복생성 없이 재시도·상세이동 가능. 일부 파일만 성공한 뒤 재시도하면 성공파일 중복첨부 없는지. 취소/닫기/네트워크 실패 시 실제생성결과를 거짓 실패로 숨기지 않는지.
+- Composer 200자는 SPEC003 기존본문보존에 따라 표시눈금, 하드캡 아님(WORK 명시). 이 해석을 파일첨부 전체누락 면제로 읽지 않는다.
+
+## 4. 경계
+BE는 아직 수정 중이다. 이번 검수로 전체v2/통합 완료 주장 금지. BE B1~3은 후속 BE통합 검수로 넘긴다. 브라우저E2E 사용자 몫. 테스트/build/DB 실행0, 보존 로그만 읽는다.
+
+## 5. 허용 파일
+orchestration/work/strong-hajin-work/review-v2-frontend-report.md 하나. 기존 본문 보존하고 재검수 절 append. 코드·다른 문서·DB 무수정, 신규발주/커밋/push/PR 금지.
+
+## 6. 결과
+F-1/W-1/W-3/W-5 각각 해소 여부와 새첨부 결과, 실제 테스트증거, 남은문제만 기록. 새문제는 파일:줄/재현조건/계약근거/최소수정. 비차단을 이유없이 차단으로 확대하지 않는다.
+
+## 7. 실행
+read-only. 로그에 없는 exit/수치를 추측하지 않는다. 코디 make verify 아직없으면 그대로 명시.
+
+## 8. 완료
+두채널 완료 후 idle. 추가 전체 FE 조사 없음.
+
+## 9. 완료 보고 — **문구 변경 금지**
+
+> **⚠ 핸들은 dispatch preamble 의 값을 믿어라.** 아래 명령에 박힌 코디handle 은 **브리프 작성 시점** 값이라 오래됐을 수 있다 — 세션이 재연결되면 핸들이 바뀐다(2026-07-28·29 두 번 겪음). preamble 의 코디네이터 핸들과 아래 값이 다르면 **preamble 이 맞다.** 두 곳에 다 보내지 말고 preamble 쪽으로만 보내라.
+
+
+- **커밋·push·PR 하지 마라.** 워크트리에 변경만 남긴다. 검증·PR 은 코디네이터가 한다.
+- 끝나면 **아래 두 명령을 모두** 실행한다. 하나만 하면 안 된다.
+
+```bash
+# (1) 인박스 적재 — 태스크 완료 처리·영구 기록. 코디네이터를 깨우지 않는다.
+orca orchestration send \
+  --to term_9de388d5-58b1-4bbe-8864-5e930def648b --from term_6c69a3df-4dd6-4b56-ad9b-52133dd8efbc \
+  --type worker_done \
+  --task-id <이 태스크의 taskId — dispatch 로 받은 context 에 들어 있다> \
+  --dispatch-id <이 태스크의 dispatchId — dispatch 로 받은 context 에 들어 있다> \
+  --subject "reviewer 완료: <한 줄>" \
+  --body "변경 파일 목록 / 구현 요약 / 검증 결과(수치) / 계약 준수 / 미결·주의점"
+
+# (2) 직접 주입 — 코디네이터 세션에 유저 메시지로 꽂혀 자동으로 깨운다.
+orca terminal send --terminal term_9de388d5-58b1-4bbe-8864-5e930def648b \
+  --text "[worker_done] reviewer 완료 — <한 줄 요약>. 상세는 인박스." --enter
+```
+
+- 막히면 30분 이상 혼자 헤매지 말고 같은 (2) 방식으로 물어라:
+  `orca terminal send --terminal term_9de388d5-58b1-4bbe-8864-5e930def648b --text "[질문] reviewer: <질문>" --enter`
+  (`orca orchestration ask` 는 채널이 닫혀 답이 안 닿는 경우가 많다.)
