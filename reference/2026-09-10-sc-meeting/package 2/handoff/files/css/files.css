@@ -1,0 +1,74 @@
+/* 「자료」 화면 CSS — 좌 레일 자료 트리. 본문은 아직 비어 있다. */
+.scax-gutter-list__header--sub{min-height:auto}
+.scax-file-tree__list{display:flex;flex-direction:column;margin:0;padding:0;list-style:none}
+.scax-file-tree__list--root{gap:var(--scax-space-050)}
+.scax-file-tree__row{display:flex;align-items:center;gap:var(--scax-space-200);width:100%;min-height:32px;padding:var(--scax-space-150) var(--scax-space-300);border:0;border-radius:var(--scax-radius-md);background:none;text-align:left;color:var(--scax-color-ink);cursor:pointer}
+.scax-file-tree__row:hover{background:var(--scax-color-fill-weak)}
+.scax-file-tree__row:focus-visible{outline:0;box-shadow:var(--scax-focus-ring)}
+.scax-file-tree__row--folder{color:var(--scax-color-ink-strong);font-weight:var(--scax-fw-semibold)}
+.scax-file-tree__row--selected{background:var(--scax-color-accent-08);color:var(--scax-color-ink-strong)}
+.scax-file-tree__twig{flex:0 0 auto;width:12px}
+.scax-file-tree__name{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:var(--scax-text-label1-size);line-height:var(--scax-text-label1-lh);letter-spacing:var(--scax-text-label1-ls)}
+.scax-file-tree__count,.scax-file-tree__meta{flex:0 0 auto;font-size:var(--scax-text-caption1-size);line-height:var(--scax-text-caption1-lh);letter-spacing:var(--scax-text-caption1-ls);font-weight:var(--scax-fw-regular);color:var(--scax-color-ink-assistive);font-variant-numeric:tabular-nums}
+.scax-file-slot{flex:1 1 auto;min-height:0}
+.scax-file-upload{flex:0 0 auto;padding-top:var(--scax-space-300);border-top:1px solid var(--scax-color-line-weak)}
+.scax-file-create{position:relative;flex:0 0 auto}
+.scax-file-create .scax-popover{right:0;left:auto}
+.scax-file-create .scax-popover__option{display:flex;align-items:center;gap:var(--scax-space-200)}
+
+/* 이름 입력 — 트리 줄 안에서 그 자리 그대로 */
+.scax-file-tree__input{flex:1 1 auto;min-width:0;height:22px;padding:0 var(--scax-space-150);border:1px solid var(--scax-color-accent);border-radius:var(--scax-radius-xs);background:var(--scax-color-surface);font:inherit;font-size:var(--scax-text-label1-size);line-height:var(--scax-text-label1-lh);color:var(--scax-color-ink-strong);caret-color:var(--scax-color-accent);outline:0}
+
+/* 우클릭 메뉴 */
+.scax-context-menu{position:fixed;z-index:60;display:flex;flex-direction:column;gap:var(--scax-space-050);min-width:168px;padding:var(--scax-space-150);border:1px solid var(--scax-color-line);border-radius:var(--scax-radius-lg);background:var(--scax-color-surface);box-shadow:0 8px 24px rgb(0 0 0 / .12)}
+.scax-context-menu__where{padding:var(--scax-space-150) var(--scax-space-250);font-size:var(--scax-text-caption2-size);line-height:var(--scax-text-caption2-lh);color:var(--scax-color-ink-assistive);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.scax-context-menu__item{display:flex;align-items:center;gap:var(--scax-space-200);min-height:32px;padding:0 var(--scax-space-250);border:0;border-radius:var(--scax-radius-md);background:none;text-align:left;font-size:var(--scax-text-label1-size);line-height:var(--scax-text-label1-lh);color:var(--scax-color-ink);cursor:pointer}
+.scax-context-menu__item:hover{background:var(--scax-color-fill-weak)}
+.scax-context-menu__item:focus-visible{outline:0;box-shadow:var(--scax-focus-ring)}
+.scax-context-menu__sep{height:1px;margin:var(--scax-space-100) var(--scax-space-150);background:var(--scax-color-line-weak)}
+
+/* ---------- 본문: 마크다운 ---------- */
+.scax-file-main{display:flex;flex-direction:column;flex:1 1 auto;min-height:0;padding:var(--scax-space-800) var(--scax-space-1200);overflow-y:auto;container-type:inline-size}
+.scax-file-doc{display:flex;flex-direction:column;gap:var(--scax-space-600)}
+/* 목차는 자리가 나면 본문 오른쪽에 붙는다 */
+.scax-md-toc{display:flex;flex-direction:column;gap:var(--scax-space-200);padding:var(--scax-space-400);border:1px solid var(--scax-color-line-weak);border-radius:var(--scax-radius-lg);background:var(--scax-color-surface-alt)}
+.scax-md-toc__head{font-size:var(--scax-text-label2-size);line-height:var(--scax-text-label2-lh);letter-spacing:var(--scax-text-label2-ls);font-weight:var(--scax-fw-semibold);color:var(--scax-color-ink-assistive)}
+.scax-md-toc__list{display:flex;flex-direction:column;gap:var(--scax-space-100);margin:0;padding:0;list-style:none}
+.scax-md-toc__item--l2{padding-left:var(--scax-space-300)}
+.scax-md-toc__item--l3{padding-left:var(--scax-space-600)}
+.scax-md-toc__link{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:var(--scax-text-caption1-size);line-height:22px;color:var(--scax-color-ink-neutral);text-decoration:none}
+.scax-md-toc__link:hover{color:var(--scax-color-accent)}
+@container (min-width:880px){
+  .scax-file-doc{display:grid;grid-template-columns:minmax(0,720px) 200px;gap:var(--scax-space-1200);align-items:start}
+  .scax-md-toc{position:sticky;top:0;border:0;border-left:1px solid var(--scax-color-line-weak);border-radius:0;background:none;padding:0 0 0 var(--scax-space-400)}
+}
+.scax-md{max-width:720px;color:var(--scax-color-ink)}
+.scax-md__h1{margin:0 0 var(--scax-space-500);font-size:28px;line-height:38px;font-weight:var(--scax-fw-bold);color:var(--scax-color-ink-strong);letter-spacing:-.01em}
+.scax-md__h2{margin:var(--scax-space-800) 0 var(--scax-space-300);font-size:20px;line-height:28px;font-weight:var(--scax-fw-semibold);color:var(--scax-color-ink-strong)}
+.scax-md__h3{margin:var(--scax-space-600) 0 var(--scax-space-250);font-size:16px;line-height:24px;font-weight:var(--scax-fw-semibold);color:var(--scax-color-ink-strong)}
+.scax-md__h4{margin:var(--scax-space-500) 0 var(--scax-space-200);font-size:var(--scax-text-label1-size);line-height:var(--scax-text-label1-lh);font-weight:var(--scax-fw-semibold);color:var(--scax-color-ink-neutral)}
+.scax-md__p{margin:0 0 var(--scax-space-400);font-size:var(--scax-text-body1-size);line-height:1.7;letter-spacing:var(--scax-text-body1-ls);text-wrap:pretty}
+.scax-md__list{margin:0 0 var(--scax-space-400);padding-left:var(--scax-space-600);display:flex;flex-direction:column;gap:var(--scax-space-150)}
+.scax-md__list li{font-size:var(--scax-text-body1-size);line-height:1.7}
+.scax-md__list li::marker{color:var(--scax-color-ink-assistive)}
+.scax-md__todo{list-style:none;position:relative}
+.scax-md__todo::before{content:"";position:absolute;left:calc(-1 * var(--scax-space-500));top:.45em;width:12px;height:12px;border:1px solid var(--scax-color-line-strong);border-radius:var(--scax-radius-xs);background:var(--scax-color-surface)}
+.scax-md__todo--done::before{border-color:var(--scax-color-accent);background:var(--scax-color-accent)}
+.scax-md__todo--done{color:var(--scax-color-ink-assistive);text-decoration:line-through}
+.scax-md__quote{margin:0 0 var(--scax-space-400);padding:var(--scax-space-300) var(--scax-space-400);border-radius:var(--scax-radius-lg);background:var(--scax-color-fill-weak);font-size:var(--scax-text-body1-size);line-height:1.7;color:var(--scax-color-ink-neutral)}
+.scax-md__code{padding:2px 6px;border-radius:var(--scax-radius-xs);background:var(--scax-color-fill-weak);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em}
+.scax-md__pre{margin:0 0 var(--scax-space-400);padding:var(--scax-space-400);border:1px solid var(--scax-color-line);border-radius:var(--scax-radius-lg);background:var(--scax-color-surface-alt);overflow-x:auto;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;line-height:1.6;color:var(--scax-color-ink)}
+.scax-md__hr{margin:var(--scax-space-600) 0;border:0;border-top:1px solid var(--scax-color-line-weak)}
+.scax-md__link{color:var(--scax-color-accent);text-decoration:underline;text-underline-offset:2px}
+.scax-md__link:hover{color:var(--scax-color-accent-strong)}
+.scax-md__table{width:100%;margin:0 0 var(--scax-space-400);border-collapse:collapse;font-size:var(--scax-text-label1-size)}
+.scax-md__table th,.scax-md__table td{padding:var(--scax-space-250) var(--scax-space-300);border-bottom:1px solid var(--scax-color-line-weak);text-align:left}
+.scax-md__table th{color:var(--scax-color-ink-assistive);font-weight:var(--scax-fw-semibold);font-size:var(--scax-text-caption1-size)}
+
+/* ---------- 우 레일 추가분 ---------- */
+.scax-file-tags{display:flex;flex-wrap:wrap;gap:var(--scax-space-150)}
+.scax-file-link{display:flex;align-items:center;gap:var(--scax-space-200);padding:var(--scax-space-250) var(--scax-space-300);border:1px solid var(--scax-color-line);border-radius:var(--scax-radius-lg);color:var(--scax-color-ink);text-decoration:none}
+.scax-file-link:hover{border-color:var(--scax-color-accent-20);background:var(--scax-color-accent-05)}
+.scax-file-link__text{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:var(--scax-text-caption1-size);line-height:var(--scax-text-caption1-lh)}
+a{color:var(--scax-color-accent)}
+a:hover{color:var(--scax-color-accent-strong)}

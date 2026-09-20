@@ -1,0 +1,52 @@
+# v2 직접 취소 사유 입력 누락 수정
+
+## 1. 역할
+기존 frontend 워커 재사용. 코드 워크트리 /Users/kknaks/orca/workspaces/Strong_hajin/strong-hajin-work. 기존 frontend/만 수정, 보고서는 v2-frontend-cancel-reason-report.md. BE는 term_c2b0c982-7078-4d5b-b14d-9342eef7f699가 소유. 제품 스펙/WORK/BE/PG 수정 금지.
+
+## 2. 근거
+SPEC003 §4 API 직접취소와 Validation reason 필수, SPEC001 취소 사유 필수 및 WORK_REASON_REQUIRED. WORK002 전절구현에서 빠진 기존 확정계약을 보완한다. 미정정책 신설이 아니다. 현행보존은 취소 권한/허용 대상에 적용하고 사유 필수를 버리지 않는다. OQ203/206 미정은 그대로.
+
+## 3. 구현
+직접취소 모든 FE 호출 경로(업무 상세·오늘·캘린더 등)를 검색하고 사유 입력→공백 거부→{expected_version, reason} 전송을 연결한다. BE도 같은 통합 단위에서 reason을 받고 저장하도록 수정 중이다. 실제 BE 필드와 확인 후 맞춘다. 합의취소 제안의 기존 사유 입력은 보존. 요청 수락후 직접취소409/제안으로 안내, 권한 게이트는 바꾸지 않는다. 수락 전 권한도 새로 열지 않는다. 단순 window.prompt보다 기존 상세 명령 UI 패턴을 재사용해 입력·취소·오류를 명확히 한다. 사유 문자열을 임의로 만들어 보내거나 고정문구로 채우지 않는다.
+
+## 4. 인수
+취소 액션을 누르면 바로 취소하지 않고 입력 자리가 열린다. 공백 사유는 전송하지 않으며 사용자가 쓴 사유와 원회차를 보낸다. 서버 실패시 입력 보존/오류, 성공시 기존 갱신과 취소 표시. 다중 클릭으로 중복 명령을 내지 않는다. 기존 합의취소/재개/완료와 생성첨부 회귀 유지.
+
+## 5. 검증
+AGENTS대로 make frontend-test, tsc, 현재 변경 frontend-build 검증. 기존 706은 이전 증거다. 변경에 맞는 의미있는 회귀를 넣고 실제 rc/full logs를 /tmp/v2-fe-cancel/에 보존. 전체 반복은 실패/새수정 근거가 있을 때만. 브라우저E2E는 사용자 몫이며 실행금지. BE/PG 무거운 검증과 겹치지 않도록 실행 시작 알림.
+
+## 6. 범위
+frontend/ 및 지정 보고서만. 새 워커/커밋/push/PR 금지. 기존 닫힌 N1/N3를 이유 없이 확장하지 않는다. 이 수정은 확정된 취소 사유 입력만이다.
+
+## 7. 보고
+수정 경로 전수·실제BE 입력·테스트명·exit·빌드·남은 것. 사유가 사용자 입력값 그대로 전송되고 BE가 보존하는지 API 계약으로 확인. 종료 후 원BE에게 FE 준비됨 알림.
+
+## 8. 완료
+두 채널 보고 후 idle. 코디가 전체 통합 검증한다. 근거 문서: /Users/kknaks/orca/workspaces/kknaks_profile/strong_hajin/para/projects/summer-star/strong-hajin/20-spec/spec-003-task-lifecycle-v2.md 및 30-work/work-002-task-lifecycle-v2.md.
+
+## 9. 완료 보고 — **문구 변경 금지**
+
+> **⚠ 핸들은 dispatch preamble 의 값을 믿어라.** 아래 명령에 박힌 코디handle 은 **브리프 작성 시점** 값이라 오래됐을 수 있다 — 세션이 재연결되면 핸들이 바뀐다(2026-07-28·29 두 번 겪음). preamble 의 코디네이터 핸들과 아래 값이 다르면 **preamble 이 맞다.** 두 곳에 다 보내지 말고 preamble 쪽으로만 보내라.
+
+
+- **커밋·push·PR 하지 마라.** 워크트리에 변경만 남긴다. 검증·PR 은 코디네이터가 한다.
+- 끝나면 **아래 두 명령을 모두** 실행한다. 하나만 하면 안 된다.
+
+```bash
+# (1) 인박스 적재 — 태스크 완료 처리·영구 기록. 코디네이터를 깨우지 않는다.
+orca orchestration send \
+  --to term_9de388d5-58b1-4bbe-8864-5e930def648b --from term_87c176ee-8845-4561-bed6-71414b1ed3e5 \
+  --type worker_done \
+  --task-id <이 태스크의 taskId — dispatch 로 받은 context 에 들어 있다> \
+  --dispatch-id <이 태스크의 dispatchId — dispatch 로 받은 context 에 들어 있다> \
+  --subject "frontend 완료: <한 줄>" \
+  --body "변경 파일 목록 / 구현 요약 / 검증 결과(수치) / 계약 준수 / 미결·주의점"
+
+# (2) 직접 주입 — 코디네이터 세션에 유저 메시지로 꽂혀 자동으로 깨운다.
+orca terminal send --terminal term_9de388d5-58b1-4bbe-8864-5e930def648b \
+  --text "[worker_done] frontend 완료 — <한 줄 요약>. 상세는 인박스." --enter
+```
+
+- 막히면 30분 이상 혼자 헤매지 말고 같은 (2) 방식으로 물어라:
+  `orca terminal send --terminal term_9de388d5-58b1-4bbe-8864-5e930def648b --text "[질문] frontend: <질문>" --enter`
+  (`orca orchestration ask` 는 채널이 닫혀 답이 안 닿는 경우가 많다.)

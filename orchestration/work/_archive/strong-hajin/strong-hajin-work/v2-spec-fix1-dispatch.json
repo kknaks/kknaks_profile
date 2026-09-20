@@ -1,0 +1,47 @@
+{
+  "task": {
+    "id": "ce854bd2-a0fb-406d-89af-6a1dc1c4c0a5",
+    "ok": true,
+    "result": {
+      "task": {
+        "id": "task_153d85f87304",
+        "parent_id": null,
+        "created_by_terminal_handle": "term_9de388d5-58b1-4bbe-8864-5e930def648b",
+        "task_title": "# [writer] v2 스펙 검수 정정 1차",
+        "display_name": "# [writer] v2 스펙 검수 정정 1차",
+        "spec": "# [writer] v2 스펙 검수 정정 1차\n\n## 1. SSOT\n기존 strong-hajin-work-v2-spec-brief.md의 역할·원문4종·규칙·템플릿·허용5문서 범위 그대로. 이번 지적 원장: orchestration/work/strong-hajin-work/review-v2-spec-report.md 전문. 원문 파일/코드 읽기 전용.\n\n## 2. 목적\nF-1~6/W-1~9 정정. W-10 index/log는 코디 소유. 원문 정책을 보존하며 API 우회·관측 오류·대체안내 모순을 닫는다. 리뷰어의 최소정정 제안은 참고이며 아래 코디 판단을 우선한다.\n\n## 3. 코디 판단 — 임의 정책 확대 금지\n- F-1: POST /api/tasks+타인 assignee_id를 제거/거부하는 방식은 확정 지시가 아니다. 기존 입구를 유지하며 일반 요청으로 동일한 send=open Task+pending 계약을 적용하는 호환 방식을 우선 검토하라. 요청 행위와 권한 있는 배정을 분리, 무단 자동 요청 전환 금지. W1 타인지정이 원래 수평 요청이라는 근거로 설명하고 API/MCP/AX 모든 입구에 동일행위 동일결과를 써라. 불가능하면 구체 충돌 보고.\n- F-2: 신규 관리자배정 즉시 active / 무담당 첫 지정 pending / 담당변경은 v2 기존 active 유지 후 수락교체를 각각 관측/목표로 구분. '규칙 세개라 다시 사용자 승인 필요'로 만들지 말라. 원문이 배정 정책 별도라고 명시했고 사용자는 그 원문 범위 진행을 승인했다. 이번은 신규배정/첫지정 현행 유지, 담당변경은 v2 적용이다. OQ-204 재승인 질문을 범위 기록으로 내리고 사실만 정정.\n- F-3: 수락된 요청 Task 직접취소로 동의 우회 금지. 수락전 요청자 철회도 기존 권한자 전체에게 확장하지 말라. 요청/본인/배정 행위별 정확한 권한·오류·상태도 정합.\n- F-4: 회의 출처와 실제 actor를 구분. 사람 수행한 승격을 '시스템 발신'으로 임의 변경 금지. 본인지정 회의후속의 기존 허용 입구를 보존하고 신규 일반 요청은 같은 pending/명시수락 규칙. 자동수락 신설 금지, 실제 actor 기록 보존.\n- F-5: 완료보고 제출 허용/차단은 원문에서 미정이다. 기존 complete 명령과 구현편의를 이유로 '제출 차단 확정'으로 승격하지 말라. self 최종완료, requested 완료보고, requester 최종승인의 의미와 state=done+awaiting_review를 나눠 모순 없는 두 안/영향만 적어라. 기존 동작을 근거로 보존할 수 있으면 명시하되 신규 정책으로 포장 금지. 사용자 판단이 필요한 정확한 한 조각을 보고, 관련 기본값 모순을 제거. 별도 endpoint 신설이 꼭 필요하다고 가정하지 말 것.\n- F-6/W-1/2: 종류/항목으로 대체범위 정확히 특정, 기존본문 보존.\n- W-4: 미확정 담당 Task 하위생성 허용권한을 기존규칙·원문에서 도출하고 근거없는 새 정책은 금지.\n- W-5: 데이터 무변형과 새 명령 검증 적용은 다른 것. cutover 이전행 쓰기 금지라는 잘못된 표현 제거. 승인사실 날조 없이 기존 완료 사실 존중/이후 명령 규칙 경계를 구체 기술안으로, 사용자 업무정책 결정 필요한 부분만 분리 보고.\n- W-9: D6 의미공통인지 저장모양공통인지 SPEC와 맞춰 정정. 불필요한 새 테이블/설계 강제 금지.\n\n## 4. 나머지 정정\nOQ201은 원문으로 닫음(배정 재개는 별도), OQ202 BE정리 계약 유지/프론트 표현 질문 후행, OQ301 요청자승인 확정·대리확인 원문미정으로 통합. W3/6/7/8도 전수 정합. 원문55ID/A1~C2/E/EU/예시 흐름 추적 보존, SPEC 버전이력 갱신.\n\n## 5. allowed_paths\n기존 baseline-002-task-lifecycle-v2.md, decision-002-task-lifecycle-v2.md, spec-003-task-lifecycle-v2.md 및 SPEC001/002 상단 대체안내만. index/log/WORK/reference/코드/디자인 수정 금지.\n\n## 6. 산출물\nF/W별 무엇을 정정했는지 보고. 남은 진짜 정책질문은 원문과 선택별 결과를 정확히 써서 보고한다. 미정과 독립한 범위는 전체차단하지 않는다.\n\n## 7. 금지\n코드/DB/테스트/빌드/커밋/push/PR/stash/reset/checkout 없음. 검수리포트 직접수정 없음.\n\n## 8. 검증\n문서 내부 계약·입구 간 일치, 근거/링크/양식, 원문전수 추적. 실행검증0 명시. 한 번 완료 후 쓰기 종료, 다음 수정은 새 발주 기다림.\n\n## 9. 완료 보고 — **문구 변경 금지**\n\n> **⚠ 핸들은 dispatch preamble 의 값을 믿어라.** 아래 명령에 박힌 코디handle 은 **브리프 작성 시점** 값이라 오래됐을 수 있다 — 세션이 재연결되면 핸들이 바뀐다(2026-07-28·29 두 번 겪음). preamble 의 코디네이터 핸들과 아래 값이 다르면 **preamble 이 맞다.** 두 곳에 다 보내지 말고 preamble 쪽으로만 보내라.\n\n\n- **커밋·push·PR 하지 마라.** 워크트리에 변경만 남긴다. 검증·PR 은 코디네이터가 한다.\n- 끝나면 **아래 두 명령을 모두** 실행한다. 하나만 하면 안 된다.\n\n```bash\n# (1) 인박스 적재 — 태스크 완료 처리·영구 기록. 코디네이터를 깨우지 않는다.\norca orchestration send \\\n  --to term_29f98b02-b4b2-4735-8daa-81708cb3dfdc --from term_bb32f203-f1bf-4bcd-9cc1-95534d4f4e2c \\\n  --type worker_done \\\n  --task-id <이 태스크의 taskId — dispatch 로 받은 context 에 들어 있다> \\\n  --dispatch-id <이 태스크의 dispatchId — dispatch 로 받은 context 에 들어 있다> \\\n  --subject \"writer 완료: <한 줄>\" \\\n  --body \"변경 파일 목록 / 구현 요약 / 검증 결과(수치) / 계약 준수 / 미결·주의점\"\n\n# (2) 직접 주입 — 코디네이터 세션에 유저 메시지로 꽂혀 자동으로 깨운다.\norca terminal send --terminal term_29f98b02-b4b2-4735-8daa-81708cb3dfdc \\\n  --text \"[worker_done] writer 완료 — <한 줄 요약>. 상세는 인박스.\" --enter\n```\n\n- 막히면 30분 이상 혼자 헤매지 말고 같은 (2) 방식으로 물어라:\n  `orca terminal send --terminal term_29f98b02-b4b2-4735-8daa-81708cb3dfdc --text \"[질문] writer: <질문>\" --enter`\n  (`orca orchestration ask` 는 채널이 닫혀 답이 안 닿는 경우가 많다.)\n",
+        "status": "ready",
+        "deps": "[]",
+        "result": null,
+        "created_at": "2026-09-17 05:30:15",
+        "completed_at": null
+      }
+    },
+    "_meta": {
+      "runtimeId": "f0b0012a-376b-4c5c-91e5-761dbda6f70a"
+    }
+  },
+  "dispatch": {
+    "id": "43b2472e-f203-4909-ad47-a021799af4af",
+    "ok": true,
+    "result": {
+      "dispatch": {
+        "id": "ctx_c2c5af1eb1e8",
+        "task_id": "task_153d85f87304",
+        "assignee_handle": "term_bb32f203-f1bf-4bcd-9cc1-95534d4f4e2c",
+        "assignee_pane_key": "ea5ac30b-503d-4f3c-9dbd-c6e1e3a03d84:d9a341af-3ce2-4ea7-8fb7-f82a454f0733",
+        "status": "dispatched",
+        "failure_count": 0,
+        "last_failure": null,
+        "dispatched_at": "2026-09-17 05:30:16",
+        "completed_at": null,
+        "created_at": "2026-09-17 05:30:16",
+        "last_heartbeat_at": null
+      },
+      "injected": true
+    },
+    "_meta": {
+      "runtimeId": "f0b0012a-376b-4c5c-91e5-761dbda6f70a"
+    }
+  }
+}

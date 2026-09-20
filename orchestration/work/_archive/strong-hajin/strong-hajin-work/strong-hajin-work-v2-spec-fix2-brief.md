@@ -1,0 +1,61 @@
+# [writer] v2 정정2차 + 사용자 승인 프론트 범위 반영
+
+## 1. SSOT와 변경 승인
+기존 strong-hajin-work-v2-spec-brief.md의 역할·규칙·원문4종·양식 유지. 이후 사용자 최신 승인: "아니 이제 프론트까지 같이 작업 할 수 잇는거 같아서". 코디가 WORK002에 BE v2 + 새 시안 FE 통합 계획, 검수 후 BE/FE 분담 구현으로 수락했다. FE 제외였던 옛 지시는 이번에 대체된다. E2E 사용자 담당은 유지.
+추가 입력: reference/2026-09-10-sc-meeting/design-change-2026-09-17/00~03 4문서, 실제 코드트리 .design-sync/screens/ 읽기전용. 디자인 분석은 14:29 원문스냅샷 기준이므로 최신 SPEC과 차이를 확인, 분석보고서 주장을 무비판적으로 정책에 올리지 않는다.
+
+## 2. 지적 원장
+review-v2-spec-report.md 재검수1차 RF1~2/RW1~6 전수. 기존 통과항목 재개방 금지. v2-spec-fix1-report.md는 이전 작성보고이고 오류는 이번 정정.
+
+## 3. 최소 정정
+RF1: 요청자 전용 조작의 promoted_by 대행과 완료확인 대행 부재를 분리 관측. 승인가능 사람0인 안을 기본값으로 두지 않음. OQ206 완료확인만 사용자 답 대기(코디가 이미 질문). 새 취소제안에 기존 구현이 있다고 주장하지 말고 requester 판정의 재사용 여부를 기술계약으로 구분.
+RF2: 정상 기존 done 요청의 승인사실 매핑으로 정정. 실제DB 예외행은 Phase0 점검, 코드 경로만으로 DB0건 단정 금지. OQ205는 질문에서 내림.
+RW1/2: 두입구 결과상태/권한 일치와 입출력 모양 구분. POST tasks 기존 Task 투영 응답 유지 우선, 임의 breaking envelope 확장 금지.
+RW3: 취약한 줄번호 대신 절/인용문구로 지목(코드관측은 BASE 경로줄 유지).
+RW4: 현재 completion-report/submit_completion과 accept_delivery 실물로 O19/DEC D5 정정. SPEC 제안 complete 통합이 실제구현인 것처럼 쓰지 않음; 불필요 API 통합은 피하고 기존입구 호환하며 v2 의미 보장하는 단일 기술안으로 정합. OQ203은 선제출 허용vs차단 사용자 질문 대기, 답 없음을 승인으로 취급하지 않음.
+RW5 상태도도 제출/최종승인과 실제/제안 구분. RW6 함께 닫음.
+
+## 4. 프론트 범위 반영 — 이번에 스펙까지만
+BASE/DEC/SPEC003의 BE-only 문구를 최신 승인으로 갱신하되 과거 이력은 보존. 기존 SPEC001/002 본문은 보존.
+SPEC003 UX Contract에 디자인 기준 탭/표/필터/생성모달/수신함/캘린더/내비 변경과 v2 흐름(상하위, 수락, 승인, 재배정, 취소/재개)을 연결한다. 시안에 상세가 없는 것은 정책부정 아님. 기존 DS 재사용·신규 필요 부품·API 데이터의 책임을 명확히. 코드경로/구현 phase는 SPEC에 넣지 않음.
+디자인보고서 질문을 그대로 사용자 질문으로 복사하지 말고: 기존 계약으로 해결/표현·매핑 기술선택/진짜 새 제품 정책으로 가른다. 상태 vs 배지는 상태+파생표시로, 탭은 생성행위와 별도 축. dev StateSwitch는 제품에서 제외라는 원문에 답 있음. 별표·미읽음·출처·근무시간 등 시안 요구는 BE필요/기존데이터/정의미정 근거 구분. 승인없는 새 서비스(메일/메신저 통합 전체, 새 내비 페이지 전량)를 자동 추가하지 말고 무엇이 아직 설계되지 않았는지 좁게 기록.
+새 UX 요구에 인수조건 추가하되 사용자 브라우저E2E와 에이전트 자동검증 책임 구분. WORK002는 다음 단계, 지금 작성하지 않음.
+
+## 5. allowed_paths
+기존 BASE002/DEC002/SPEC003 및 SPEC001/002 상단 대체안내만. 추가 작성보고 orchestration/work/strong-hajin-work/v2-spec-fix2-report.md 허용. index/log/WORK/reference/코드/디자인 수정 금지.
+
+## 6. 보고
+RF/RW별 정정과 최신 FE승인 반영 결과. WORK002로 넘어갈 수 있는 구체 범위, 진짜 남은 정책결정만 보고. 전체 무한조사 금지, 이번 변경과 원문연결에 한정.
+
+## 7. 금지
+코드/DB/테스트/빌드/배포/커밋/push/PR/stash/reset/checkout 없음. 스펙 구현과 코드 구현 병행 금지.
+
+## 8. 검증
+최신 SPEC 버전 갱신, 정책/제안/관측 구분, 링크/표/인수조건 정합. 실행검증0. 완료1회 후 쓰기종료.
+
+## 9. 완료 보고 — **문구 변경 금지**
+
+> **⚠ 핸들은 dispatch preamble 의 값을 믿어라.** 아래 명령에 박힌 코디handle 은 **브리프 작성 시점** 값이라 오래됐을 수 있다 — 세션이 재연결되면 핸들이 바뀐다(2026-07-28·29 두 번 겪음). preamble 의 코디네이터 핸들과 아래 값이 다르면 **preamble 이 맞다.** 두 곳에 다 보내지 말고 preamble 쪽으로만 보내라.
+
+
+- **커밋·push·PR 하지 마라.** 워크트리에 변경만 남긴다. 검증·PR 은 코디네이터가 한다.
+- 끝나면 **아래 두 명령을 모두** 실행한다. 하나만 하면 안 된다.
+
+```bash
+# (1) 인박스 적재 — 태스크 완료 처리·영구 기록. 코디네이터를 깨우지 않는다.
+orca orchestration send \
+  --to term_29f98b02-b4b2-4735-8daa-81708cb3dfdc --from term_5f8e53ec-f725-43eb-a6c7-1dcca4b9a877 \
+  --type worker_done \
+  --task-id <이 태스크의 taskId — dispatch 로 받은 context 에 들어 있다> \
+  --dispatch-id <이 태스크의 dispatchId — dispatch 로 받은 context 에 들어 있다> \
+  --subject "writer 완료: <한 줄>" \
+  --body "변경 파일 목록 / 구현 요약 / 검증 결과(수치) / 계약 준수 / 미결·주의점"
+
+# (2) 직접 주입 — 코디네이터 세션에 유저 메시지로 꽂혀 자동으로 깨운다.
+orca terminal send --terminal term_29f98b02-b4b2-4735-8daa-81708cb3dfdc \
+  --text "[worker_done] writer 완료 — <한 줄 요약>. 상세는 인박스." --enter
+```
+
+- 막히면 30분 이상 혼자 헤매지 말고 같은 (2) 방식으로 물어라:
+  `orca terminal send --terminal term_29f98b02-b4b2-4735-8daa-81708cb3dfdc --text "[질문] writer: <질문>" --enter`
+  (`orca orchestration ask` 는 채널이 닫혀 답이 안 닿는 경우가 많다.)
