@@ -67,7 +67,7 @@
         "docker-compose.yml",
         "Makefile"
       ],
-      "verify": "cd backend && uv run pytest -n auto --dist worksteal. 자기점검 — modules/*/domain.py·application.py 가 fastapi/mcp/sqlalchemy 를 import 하지 않는가 · entrypoints 가 platform 구현을 직접 import 하지 않는가 · 스키마 변경을 reset_demo 밖에서 하지 않았는가. 실패가 있으면 «변경 전 커밋을 별도 워크트리에 떠서» 같은 실패가 나는지 확인해 기준선과 갈라 보고한다",
+      "verify": "코드 레포 AGENTS.md 준수: backend 테스트는 Makefile 타겟으로만 실행. 변경 단계에 맞게 make test-unit 또는 make test-contract, 최종 코디 검증은 make verify 및 격리 PostgreSQL의 make test-postgres와 관련 acceptance journey. 단계별 전량 반복 금지. tests/architecture 경계 및 operation inventory drift 확인(diff 항목만 패치). 스키마 변경은 reset_demo 전용 경로, 일반 API startup DDL 금지. 기존 실패는 기준선과 분리 보고.",
       "roles_dir": "roles/strong-hajin/backend"
     },
     "frontend": {
@@ -77,7 +77,7 @@
       "allowed_paths": [
         "frontend/"
       ],
-      "verify": "cd frontend && npx tsc --noEmit && npx vitest run && npx vite build. 자기점검 — envelope 으로 권한을 판단했는가(상태로 재추론 금지) · api.ts 밖에서 fetch 하지 않았는가 · 기존 부품·viewModels 를 재사용했는가 · 시안에 없는 것을 발명하지 않았는가(없으면 DS-gaps 에 적는다)",
+      "verify": "코드 레포 AGENTS.md 준수: make frontend-test 및 frontend에서 npx tsc --noEmit, 최종 빌드는 make frontend-build 또는 코디의 make verify. 같은 검증 중복 실행 금지. envelope으로 권한 판단, api.ts 밖 fetch 금지, 기존 부품/viewModels 재사용, 시안 부재는 DS-gaps 기록.",
       "roles_dir": "roles/strong-hajin/frontend"
     },
     "reviewer": {
