@@ -5,7 +5,7 @@
 > 기능, UX, 정책, acceptance criteria 계약으로 들어가는 map이다. 상세 계약은 `20-spec/` 아래 사용자 기능/정책 묶음 단위의 spec 파일로 둔다.
 > 본문은 contract만 다룬다. 구현 진척·work 매핑은 `30-work/README.md`, 결정 로그는 `10-decision/README.md`, 변경 이력은 `log.md`, 리뷰 artifact는 `00-baseline/`, 내부 구조는 `40-architecture/`를 본다.
 
-최종 수정: 2026-09-20
+최종 수정: 2026-09-21
 
 ## Data / Domain Boundary
 
@@ -50,6 +50,10 @@ spec 문서를 만들거나 상태가 바뀌면 이 표를 갱신한다. work �
 | SPEC-002 | 답하면 끝나는 목록 | 판단 | draft | DEC-001 | [본문](spec-002-action-item-review.md) |
 | SPEC-003 | 업무 생명주기 v2·MyWork UX | 업무·판단 | draft | DEC-002 | [본문](spec-003-task-lifecycle-v2.md) |
 | SPEC-004 | 캘린더 시간 배정 | 캘린더 | draft | DEC-003 | [본문](spec-004-calendar-scheduling.md) |
+
+> **SPEC-004 는 2루프(v0.3.0)에서 `§1 Scope Out` 한 줄이 뒤집혔다** — 「회의 도메인의 변경 —
+> 기간 파라미터 외에는 손대지 않는다」. **회의 생성·시각 변경에 겹침 검증이 붙는다**
+> (DEC-003 증보 8 `K22`). 회의 도메인을 읽는 다른 spec 이 생기면 그 사실을 먼저 본다.
 
 ## Reading Order
 
