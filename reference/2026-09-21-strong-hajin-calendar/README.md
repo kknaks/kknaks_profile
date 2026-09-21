@@ -1,10 +1,15 @@
-# 오케스트레이션 운영 사고 — 2026-09-21 캘린더 작업
+# 2026-09-21 캘린더 작업이 남긴 것 — **다음 작업을 시작하기 전에 읽는다**
 
-**다음 작업을 시작하기 전에 읽는다.** 캘린더 시간 배정 작업(`strong-hajin-calendar`,
-PR #52·#53·#54 · `Strong_hajin#2`)에서 실제로 겪은 것들이다. **제품 얘기가 아니라 운영 얘기라
-프로젝트를 가리지 않는다.**
+캘린더 시간 배정 작업(`strong-hajin-calendar` · PR #52·#53·#54·#55 · `Strong_hajin#2`)에서
+실제로 겪은 것들이다. **제품 얘기가 아니라 운영 얘기라 프로젝트를 가리지 않는다.**
 
-같은 디렉토리 계열: `reference/2026-09-21-test-flaky/` (테스트 격리 — 별건)
+| 이 폴더 | 무엇 |
+|---|---|
+| **이 문서** | **오케스트레이션 운영 사고 일곱** + 착수 전 체크리스트 |
+| [`material-parallel-isolation.md`](material-parallel-isolation.md) | **`material_*` 계열의 병렬 격리** — 다음 작업에서 고칠 것 |
+
+작업 자체의 회고는 `para/projects/summer-star/strong-hajin/log/2026-09-21-strong-hajin-calendar.md`
+에 있다. **여기는 다음 사람이 걸려 넘어질 자리만** 모았다.
 
 ---
 
