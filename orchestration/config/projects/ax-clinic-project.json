@@ -1,0 +1,47 @@
+{
+  "project": "ax-clinic-project",
+  "use_worktree": false,
+  "repos": {
+    "docs": {
+      "orca_name": "ax-clinic-project",
+      "canonical_path": "/Users/kknaks/git/ax-clinic-project",
+      "remote": "https://github.com/kknaks/ax-clinic-project.git",
+      "base": "main",
+      "pr_base": "main",
+      "worktree_suffix": ""
+    }
+  },
+  "source_path": "/Users/kknaks/orca/workspaces/kknaks_profile/병원AX전략/reference/2026-09-16-병원AX/ax-clinic",
+  "coordinator_handle": "term_66daaa12-cf95-40e0-862b-2acc09e6ff72",
+  "workers": {
+    "writer": {
+      "repo": "docs",
+      "brief_suffix": "write",
+      "allowed_paths": [
+        "README.md",
+        "AGENTS.md",
+        "rules/",
+        "projects/",
+        "areas/",
+        "resources/",
+        "archive/"
+      ],
+      "verify": "Check local links, exact copied documents and empty placeholders; no invented facts.",
+      "roles_dir": "roles/ax-clinic-project/writer"
+    },
+    "reviewer": {
+      "repo": "docs",
+      "brief_suffix": "review",
+      "allowed_paths": [
+        "(read-only)"
+      ],
+      "verify": "Review agreed PARA layout, source preservation, links, dates and scope. PASS/WARN/FAIL with evidence."
+    }
+  },
+  "default_workers": [
+    "writer"
+  ],
+  "notes": [
+    "User requested initial files in canonical empty repository. No commits, push, PR or source deletion. Unborn main; bootstrap without worktree."
+  ]
+}
