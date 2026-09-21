@@ -452,117 +452,119 @@ para/areas/
 | 341 | `db` | `functional-dependency` | A가 정해지면 B도 하나로 정해지는 관계. 정규화가 떼어낼 대상을 찾는 잣대 |  |
 | 342 | `db` | `identifying-relationship` | 부모 키를 자식 기본키에 넣는지 외래키로만 두는지의 선택과 그 종속 강도 |  |
 | 343 | `db` | `medallion-architecture` | 원천 데이터를 브론즈·실버·골드 레이어로 통과시키며 구조와 품질을 점진적으로 높이는 설계 패턴 |  |
-| 344 | `db` | `primary-key` | 행을 구분하려 고른 컬럼 그리고 슈퍼키 후보키 대체키로 갈리는 층 |  |
-| 345 | `db` | `search-index` | 원본과 별도로 두어 키워드로 문서를 빨리 찾게 하는 색인 구조 |  |
-| 346 | `db` | `sql-data-type` | 컬럼 하나가 어떤 값을 얼마만큼 담을 수 있는지 서버에 선언해 두는 것 |  |
-| 347 | `db` | `sql-date-function` | 날짜를 서버 쪽에서 읽고 꺼내고 옮기고 재고 형식을 바꾸는 함수들 |  |
-| 348 | `db` | `sql-join` | 여러 테이블의 행을 짝지어 한 행으로 잇는 것. 쪼갠 테이블을 다시 붙인다 |  |
-| 349 | `db` | `sql-like` | 문자열을 정확히 같은가가 아니라 이런 모양인가로 비교하는 연산자 |  |
-| 350 | `db` | `sql-null` | 컬럼마다 값 없음을 허용할지와 값을 생략하면 무엇이 들어갈지를 정하는 것 |  |
-| 351 | `db` | `sql-operator` | where 조건 하나를 만들어 내는 비교·논리·범위 기호들 |  |
-| 352 | `db` | `sql-set-operation` | 조회 결과 두 개를 위아래로 합치거나 서로 빼서 하나로 만드는 것 |  |
-| 353 | `db` | `surrogate-key` | 몇 번째인가가 아니라 몇 번인가를 데이터가 필드로 들고 있게 하는 것 |  |
-| 354 | `db` | `temporal-table` | 관계를 유효 기간 행으로 저장하고 겹침을 DB EXCLUDE 제약으로 막는 이력 원장 설계 |  |
-| 355 | `db` | `transaction` | 여러 문장을 전부 되거나 전부 안 되게 묶는 단위와 autocommit 경계 설정 |  |
-| 356 | `db` | `unique-key` | 기본키가 아니면서 값 중복을 막아야 하는 컬럼에 거는 유일성 제약 |  |
-| 357 | `db` | `write-ahead-logging` | 변경을 원본 대신 로그 파일에 먼저 써 두는 방식. 최신이 main 이 아니라 -wal 에 있을 수 있다 |  |
-| 358 | `infra` | `build` | 소스에서 배포 산출물이 나오기까지의 컴파일·의존성·테스트 단계 전체와 그걸 명령으로 묶는 도구 |  |
-| 359 | `infra` | `ci-cd` | 푸시 한 번으로 빌드부터 배포까지 잇는 GitHub Actions 자동화 절차 |  |
-| 360 | `infra` | `cold-start` | 준비된 상태 없이 시작한 실행이 준비 비용부터 다시 치르는 문제 |  |
-| 361 | `infra` | `code-signing` | 실행 파일에 발행자 서명을 붙여 OS 실행 방어막(SmartScreen·SAC·Gatekeeper)을 넘는 것 |  |
-| 362 | `infra` | `container` | 한 커널 위에서 게스트 OS 없이 격리돼 도는 프로세스 실행 단위 |  |
-| 363 | `infra` | `data-pipeline` | 한 저장소를 주기적으로 읽어 다듬고 다른 저장소로 옮기는 장치 |  |
-| 364 | `infra` | `distributed-lock` | 여러 프로세스·서버가 외부 공통 저장소에서 처리 권한을 조정해 공유 자원 동시 진입을 막는 락 |  |
-| 365 | `infra` | `distributed-processing` | 데이터와 처리를 여러 노드에 나눠 처리량을 올리고 일관성을 내주는 방식 |  |
-| 366 | `infra` | `git` | 변경마다 식별자를 붙여 어느 시점으로든 되돌아갈 수 있게 하는 형상관리 도구 |  |
-| 367 | `infra` | `gradle` | 컴파일·테스트·산출물 묶기를 태스크로 나눠 명령 하나로 부르는 빌드 도구 |  |
-| 368 | `infra` | `infrastructure-as-code` | 서버·네트워크를 클릭 대신 파일로 선언해 만드는 방식 (Terraform) |  |
-| 369 | `infra` | `kubernetes-workload` | 버전 전환·개수 유지·실행을 나눠 맡은 세 층의 배포 리소스 |  |
-| 370 | `infra` | `kubernetes` | 컨테이너를 여러 서버에 걸쳐 자동 배포·확장·관리하는 플랫폼 |  |
-| 371 | `infra` | `little-law` | 처리량 = 동시 처리 수 ÷ 처리 시간 이라는 큐잉이론 공식 |  |
-| 372 | `infra` | `load-balancer` | 여러 서버에 요청을 나눠 보내 부하를 분산하는 장치 |  |
-| 373 | `infra` | `message-broker` | 송수신 사이에 저장소를 둬 비동기로 주고받는 발행-구독 |  |
-| 374 | `infra` | `metric-type` | 지표를 Counter·Gauge·Histogram 으로 나눠 읽는 법을 정함 |  |
-| 375 | `infra` | `microservice-architecture` | 배포 단위를 하나로 둘지 작은 서비스 여럿으로 쪼갤지의 선택 |  |
-| 376 | `infra` | `monitoring` | 수집·저장·시각화·알림으로 돌아가는 것을 밖에서 보는 일 |  |
-| 377 | `infra` | `npm` | 자바스크립트 의존성·개발서버·번들을 Node 위에서 다루는 도구 |  |
-| 378 | `infra` | `object-storage` | 파일을 경로가 아닌 키로 찾는 객체로 저장하고 HTTP 로 접근 |  |
-| 379 | `infra` | `remote-repository` | 호스팅서버에 둔 git 저장소와 clone·push·pull 로 주고받기 |  |
-| 380 | `infra` | `reverse-proxy` | 바깥 요청을 먼저 받아 도메인·SSL 을 정리하고 내부로 넘기는 서버 |  |
-| 381 | `infra` | `staging-area` | 다음 커밋에 담을 파일을 미리 등록해 두는 중간 자리 |  |
-| 382 | `infra` | `web-application-deployment` | 코드를 실행하는 게 아니라 돌고 있는 서버가 찾아갈 자리에 war 를 놓는 일 |  |
-| 383 | `infra` | `zero-downtime-deployment` | 새 버전을 옆에 띄워 두고 준비되면 트래픽만 돌려 빈 시간을 없애는 배포 |  |
-| 384 | `ai` | `ai-agent` | 모델이 문장만 내놓는 데서 그치지 않고 툴을 호출해 실제 동작을 일으키게 만드는 구조 |  |
-| 385 | `ai` | `architectural-drift-prevention` | 개별 변경은 정상이어도 코드베이스가 합의한 설계에서 멀어지는 것을 막는 규율 |  |
-| 386 | `ai` | `data-fabric` | 여러 시스템에 흩어진 데이터를 공통 의미·메타데이터·접근 규칙으로 묶어 일관되게 제공하는 데이터 운영 구조 |  |
-| 387 | `ai` | `deterministic-first-ai-enrichment` | 파서·규칙으로 확인 가능한 구조를 먼저 뽑고 해석 작업에만 AI 를 후속 적용하는 투패스 처리 |  |
-| 388 | `ai` | `engineering-governance` | 조직의 아키텍처 결정을 기계가 읽게 구조화해 생성·검토·병합에서 집행하는 계층 |  |
-| 389 | `ai` | `entity-resolution` | 다른 이름·레코드가 현실의 같은 개체인지 판별해 하나의 표준 식별자로 잇는 과정 |  |
-| 390 | `ai` | `human-in-the-loop` | 자동화를 위험한 자리에서 멈춰 사람 승인을 기다렸다가 그 지점부터 재개하는 것 |  |
-| 391 | `ai` | `knowledge-graph-assisted-retrieval` | 그래프로 관련 개체·관계를 먼저 좁히고 그 결과가 가리키는 원문만 후속 처리에 쓰는 검색 |  |
-| 392 | `ai` | `llm-text-watermarking` | 토큰 확률 분포에 비밀 편향을 심어 생성 출처를 통계적으로 검출하는 기법 |  |
-| 393 | `ai` | `llm-wiki` | 에이전트가 원료를 기존 지식과 병합하며 목차·색인을 갱신하는 파일 기반 지식 관리 패턴 |  |
-| 394 | `ai` | `loop-engineering` | 목표 달성까지 발견·계획·실행·검증을 반복하는 외부 제어 루프 설계. 종료 조건의 기계 판정이 핵심 |  |
-| 395 | `ai` | `mrtr` | 서버가 역호출 대신 정보 필요 응답을 주고 재요청받는 패턴 |  |
-| 396 | `ai` | `prompt-injection` | 프롬프트에 실린 데이터가 명령으로 읽히는 위험. 문구가 아니라 실행권 격리·경로 분리로 막는다 |  |
-| 397 | `ai` | `purposeful-knowledge-capture` | 자료 저장 시 수집 이유·관계·기대 활용처를 함께 기록하는 수집 방식 |  |
-| 398 | `ai` | `react-agent-loop` | 모델 판단→도구 실행→관찰을 반복해 정보를 모으고, 도구 요청이 없으면 끝나는 에이전트 실행 구조 |  |
-| 399 | `ai` | `request-context` | 한 요청을 실행하는 구성 요소들이 사용자·테넌트 같은 런타임 값을 공유하는 요청 범위 컨테이너 |  |
-| 400 | `ai` | `semantic-search` | 단어 일치가 아니라 임베딩 벡터의 의미 유사도로 결과를 찾는 검색 |  |
-| 401 | `ai` | `text-embedding` | 텍스트를 의미 관계를 비교할 수 있는 수치 벡터로 바꾼 표현 |  |
-| 402 | `ai` | `workflow-orchestration` | 작업을 함수 호출이 아니라 단계로 선언해 이음매와 상태를 밖에 드러내는 것 |  |
-| 403 | `front` | `html-form` | 사용자 입력에 이름표를 달아 한 URL로 묶어 보내는 브라우저 표준 장치 |  |
-| 404 | `front` | `script-loading` | 브라우저가 script 태그를 만나면 멈추고 실행하는 순서와 배치 문제 |  |
-| 405 | `pm` | `gamification` | 게임이 아닌 일에 재화·진행도·보상·실패조건을 붙여 다시 열게 만드는 설계 |  |
-| 406 | `pm` | `para-method` | 정보를 주제가 아니라 행동과의 거리로 프로젝트·영역·자원·아카이브에 나누는 정리법 |  |
-| 407 | `qa` | `performance-testing` | 얼마나 견디는지 재는 것 정상 성능 확인과 무너지는 지점 찾기 |  |
-| 408 | `front` | `viewport-aware-overlay` | 트리거 기준 남은 자리로 오버레이의 열 방향과 최대 높이를 정해 화면 밖으로 안 나가게 하는 배치 |  |
-| 409 | `back` | `field-level-visibility` | 한 리소스에서 자격 없는 필드만 비워 보내고 이력·감사는 403 으로 가르는 부분 인가 응답 |  |
-| 410 | `ai` | `strict-json-schema-output` | LLM 구조화 출력이 받는 스키마 규격 — 모든 object 에 additionalProperties:false + 전 키 required. 대역 테스트로는 위반을 못 본다 |  |
-| 411 | `ai` | `tool-allowlist-by-phase` | 에이전트가 볼 수 있는 것을 프롬프트가 아니라 단계별 도구 목록(enabled_tools)으로 고정하는 것 |  |
-| 412 | `back` | `resource-scoped-token` | 리소스 하나에 묶인 단명 토큰 — 세션 행 · 원문 컬럼 · allowlist 표면 · 폐기=행 삭제 · 재시도는 재발급 |  |
-| 413 | `front` | `portal-inside-scroll-lock` | 모달의 스크롤 잠금이 body 로 포탈된 팝오버의 휠을 막는 것. 포탈 컨테이너를 모달 안으로 |  |
-| 414 | `ai` | `nondeterministic-stt-output` | 같은 오디오도 STT 결과가 매번 조금 다르다 — 결정성 전제 테스트 금지 · 전사 멈춤은 입력 레벨부터 |  |
-| 415 | `cs` | `delegated-authorization` | 사용자 대신 실행하는 주체와 하위 호출에서도 자원·행위의 허용 범위를 확인하고 추적하는 권한 관리 |  |
-| 416 | `ai` | `model-routing` | 작업의 품질·지연·비용 요구에 맞춰 요청을 처리할 모델을 선택하는 구조 |  |
-| 417 | `ai` | `ai-asset-inventory` | 조직의 AI 자산을 중앙에서 식별하고 등록 검증·사용 권한 관리로 연결하는 목록 |  |
-| 418 | `ai` | `executable-task-context` | 목적·변경 대상·제약·산출물·적용 기준·완료 조건을 연결해 AI가 수행할 작업을 구성하는 것 |  |
-| 419 | `cs` | `artifact-traceability` | 요구·설계·코드·테스트의 관계와 버전을 따라 변경 대상과 검증 근거를 확인하는 성질 |  |
-| 420 | `back` | `websocket-relay` | 서버가 외부 실시간 세션을 소유하고 브라우저와는 역할(upstream/subscribe) 선언한 WS 하나로 말하는 중계 |  |
-| 421 | `ai` | `two-pass-transcription` | 실시간 전사는 화면용, 종료 뒤 음원 전체를 비동기 재전사(화자 분리)해 원문을 갈아 끼우는 2-pass |  |
-| 422 | `back` | `no-silent-fallback` | 외부 단계 실패를 더 나쁜 입력으로 이어 가지 않고 failed 상태·사람 말 사유·재시도 경로로 드러내기 |  |
-| 423 | `ai` | `evidence-binding` | LLM 정리 줄마다 원문 구간을 붙이고 실재하는지만 검증(범위는 적재 전체), 화면은 겹치는 줄로 점프 |  |
-| 424 | `ai` | `transcript-segmentation` | 전사 토큰을 화자·침묵·시간·글자 상한과 문장 끝으로 자르는 블록 경계 규칙, 토큰 경계에서만 |  |
-| 425 | `ai` | `synthesis-rewrite` | 사람 메모·AI 요약·전사를 재료로 회의록 한 벌을 처음부터 새로 짓는 합성 — 구조 보존 검사 없음 |  |
-| 426 | `back` | `system-actor` | 파생 요청의 주체를 사람이 아닌 system:<출처> 로 두고 사람은 promoted_by·cc 로 남겨 권한 예외를 없앰 |  |
-| 427 | `cs` | `cosine-similarity` | 두 벡터의 길이를 지우고 방향만 비교해 유사도를 내는 척도 | 백필 |
-| 428 | `ai` | `tokenization` | 텍스트를 모델이 다룰 처리 단위로 쪼개는 것. 어휘 크기가 출력층과 과금 단위를 정한다 | 백필 |
-| 429 | `ai` | `text-vectorization` | 텍스트를 계산 가능한 수치 표현으로 바꾸는 과정 전체. 임베딩은 그 한 갈래 | 백필 |
-| 430 | `ai` | `tf-idf` | 흔한 단어를 깎고 그 문서에만 잦은 단어를 올려 어휘 겹침을 재는 희소 벡터 기준선 | 백필 |
-| 431 | `ai` | `ai-ready-data` | 정해진 AI 작업의 요구를 충족하도록 품질·구조·맥락·권한·접근성을 갖춘 데이터 | 백필 |
-| 432 | `ai` | `language-model` | 언어의 통계 정보를 인코딩해 다음 토큰의 확률분포를 내는 모델. 생성과 채점이 같은 일이 된다 |  |
-| 433 | `ai` | `masked-language-model` | 앞뒤 문맥을 모두 보고 가려진 토큰을 맞히는 학습. 이해·분류·임베딩 쪽에 남았다 |  |
-| 434 | `ai` | `autoregressive-language-model` | 앞만 보고 다음 토큰 하나를 맞히는 학습. 학습 목표와 사용 방식이 같아 생성의 주류가 됐다 |  |
-| 435 | `ai` | `self-supervised-learning` | 사람이 라벨을 달지 않고 데이터의 일부를 가려 정답을 만드는 학습. 병목을 라벨링에서 컴퓨팅으로 옮겼다 |  |
-| 436 | `ai` | `perplexity` | 다음 토큰을 평균 몇 개 중에서 헷갈리는가. 모델 단계의 자동 지표이지 제품 품질은 아니다 |  |
-| 437 | `ai` | `distributional-hypothesis` | 비슷한 문맥에 나오는 단어는 뜻도 비슷하다는 가설. 임베딩의 근거이자 반의어가 가까운 이유 |  |
-| 438 | `ai` | `foundation-model` | 작업에 매이지 않은 범용 기반 모델. 작업마다 학습하는 대신 적응 기법을 얹어 쓴다 |  |
-| 439 | `ai` | `multimodal-model` | 둘 이상의 데이터 형태를 다루는 모델. 텍스트로 옮겨 적으면 사라지는 정보가 이유다 |  |
-| 440 | `ai` | `contrastive-learning` | 맞는 쌍은 당기고 어긋난 쌍은 미는 학습. 형태가 다른 데이터를 한 벡터 공간에 놓는다 |  |
-| 441 | `ai` | `model-training-stages` | 사전학습→사후학습→파인튜닝→프롬프트의 순서. 기법이 아니라 주체와 목적으로 가른다 |  |
-| 442 | `ai` | `prompt-engineering` | 가중치를 안 바꾸고 입력만으로 동작을 끌어내는 것. 버전과 회귀 테스트가 붙는 개발 대상이다 |  |
-| 443 | `ai` | `retrieval-augmented-generation` | 모델 밖 지식을 검색해 프롬프트에 붙이는 것. 근거를 들고 있어 출처를 달 수 있다 |  |
-| 444 | `ai` | `fine-tuning` | 출시 모델의 가중치를 우리 문제에 맞춰 추가 학습하는 것. 아는 것이 아니라 행동을 바꾼다 |  |
-| 445 | `ai` | `llm-as-judge` | 루브릭→사람 채점→일치율 검증을 거친 뒤에야 모델에게 채점을 맡기는 것. 순서가 곧 규칙 |  |
-| 446 | `ai` | `golden-set-regression` | 사람이 채점한 기준 묶음을 고정해 모델·프롬프트·인덱스가 바뀔 때마다 다시 돌리는 검증 |  |
-| 447 | `ai` | `inference-optimization` | 요청마다 나가는 추론 비용과 시간을 줄이는 기법들. 양자화·증류는 품질을 대가로 낸다 |  |
-| 448 | `ai` | `inference-latency-metrics` | 지연을 첫 토큰(TTFT)과 토큰당(TPOT)으로 쪼개 재는 것. 합치면 처방이 안 나온다 |  |
-| 449 | `ai` | `silent-model-degradation` | 코드를 안 고쳐도 모델·입력 분포·법규가 움직여 에러 없이 품질만 떨어지는 것. 로그는 소급 불가 |  |
-| 450 | `cs` | `zipf-law` | 빈도 순위에 반비례하는 분포. 상위 소수가 건수를 차지하고 종류는 꼬리에 산다 |  |
-| 451 | `pm` | `ai-product-defensibility` | 기술력·데이터·유통력 중 무엇으로 복제를 막을 것인가. 지속 기간이 셋 다 다르다 |  |
-| 452 | `pm` | `data-flywheel` | 쓸수록 데이터가 쌓이고 제품이 좋아져 더 쓰게 되는 순환. 반영 경로가 없으면 안 돈다 |  |
-| 453 | `pm` | `ai-role-taxonomy` | 핵심/보완·반응/선제·동적/정적 세 축. 같은 모델도 놓인 자리가 요구 정확도를 정한다 |  |
-| 454 | `pm` | `launch-criteria` | 무엇을 재고 얼마면 출시인가를 착수 전에 숫자로 긋는 것. 품질·비용·지연은 맞바꾼다 |  |
+| 344 | `db` | `point-in-time-recovery` | 전체 사본 하나와 그 뒤 변경 로그를 함께 보관해 원하는 시점까지만 재생해 복원하는 것 |  |
+| 345 | `db` | `primary-key` | 행을 구분하려 고른 컬럼 그리고 슈퍼키 후보키 대체키로 갈리는 층 |  |
+| 346 | `db` | `replication-slot` | 받는 쪽이 어디까지 가져갔는지를 원본이 기억하게 해 로그가 먼저 지워지지 않게 하는 표식 |  |
+| 347 | `db` | `search-index` | 원본과 별도로 두어 키워드로 문서를 빨리 찾게 하는 색인 구조 |  |
+| 348 | `db` | `sql-data-type` | 컬럼 하나가 어떤 값을 얼마만큼 담을 수 있는지 서버에 선언해 두는 것 |  |
+| 349 | `db` | `sql-date-function` | 날짜를 서버 쪽에서 읽고 꺼내고 옮기고 재고 형식을 바꾸는 함수들 |  |
+| 350 | `db` | `sql-join` | 여러 테이블의 행을 짝지어 한 행으로 잇는 것. 쪼갠 테이블을 다시 붙인다 |  |
+| 351 | `db` | `sql-like` | 문자열을 정확히 같은가가 아니라 이런 모양인가로 비교하는 연산자 |  |
+| 352 | `db` | `sql-null` | 컬럼마다 값 없음을 허용할지와 값을 생략하면 무엇이 들어갈지를 정하는 것 |  |
+| 353 | `db` | `sql-operator` | where 조건 하나를 만들어 내는 비교·논리·범위 기호들 |  |
+| 354 | `db` | `sql-set-operation` | 조회 결과 두 개를 위아래로 합치거나 서로 빼서 하나로 만드는 것 |  |
+| 355 | `db` | `surrogate-key` | 몇 번째인가가 아니라 몇 번인가를 데이터가 필드로 들고 있게 하는 것 |  |
+| 356 | `db` | `temporal-table` | 관계를 유효 기간 행으로 저장하고 겹침을 DB EXCLUDE 제약으로 막는 이력 원장 설계 |  |
+| 357 | `db` | `transaction` | 여러 문장을 전부 되거나 전부 안 되게 묶는 단위와 autocommit 경계 설정 |  |
+| 358 | `db` | `unique-key` | 기본키가 아니면서 값 중복을 막아야 하는 컬럼에 거는 유일성 제약 |  |
+| 359 | `db` | `write-ahead-logging` | 변경을 원본 대신 로그 파일에 먼저 써 두는 방식. 최신이 main 이 아니라 -wal 에 있을 수 있다 |  |
+| 360 | `infra` | `build` | 소스에서 배포 산출물이 나오기까지의 컴파일·의존성·테스트 단계 전체와 그걸 명령으로 묶는 도구 |  |
+| 361 | `infra` | `ci-cd` | 푸시 한 번으로 빌드부터 배포까지 잇는 GitHub Actions 자동화 절차 |  |
+| 362 | `infra` | `cold-start` | 준비된 상태 없이 시작한 실행이 준비 비용부터 다시 치르는 문제 |  |
+| 363 | `infra` | `code-signing` | 실행 파일에 발행자 서명을 붙여 OS 실행 방어막(SmartScreen·SAC·Gatekeeper)을 넘는 것 |  |
+| 364 | `infra` | `container` | 한 커널 위에서 게스트 OS 없이 격리돼 도는 프로세스 실행 단위 |  |
+| 365 | `infra` | `data-pipeline` | 한 저장소를 주기적으로 읽어 다듬고 다른 저장소로 옮기는 장치 |  |
+| 366 | `infra` | `distributed-lock` | 여러 프로세스·서버가 외부 공통 저장소에서 처리 권한을 조정해 공유 자원 동시 진입을 막는 락 |  |
+| 367 | `infra` | `distributed-processing` | 데이터와 처리를 여러 노드에 나눠 처리량을 올리고 일관성을 내주는 방식 |  |
+| 368 | `infra` | `git` | 변경마다 식별자를 붙여 어느 시점으로든 되돌아갈 수 있게 하는 형상관리 도구 |  |
+| 369 | `infra` | `gradle` | 컴파일·테스트·산출물 묶기를 태스크로 나눠 명령 하나로 부르는 빌드 도구 |  |
+| 370 | `infra` | `infrastructure-as-code` | 서버·네트워크를 클릭 대신 파일로 선언해 만드는 방식 (Terraform) |  |
+| 371 | `infra` | `kubernetes-workload` | 버전 전환·개수 유지·실행을 나눠 맡은 세 층의 배포 리소스 |  |
+| 372 | `infra` | `kubernetes` | 컨테이너를 여러 서버에 걸쳐 자동 배포·확장·관리하는 플랫폼 |  |
+| 373 | `infra` | `little-law` | 처리량 = 동시 처리 수 ÷ 처리 시간 이라는 큐잉이론 공식 |  |
+| 374 | `infra` | `load-balancer` | 여러 서버에 요청을 나눠 보내 부하를 분산하는 장치 |  |
+| 375 | `infra` | `message-broker` | 송수신 사이에 저장소를 둬 비동기로 주고받는 발행-구독 |  |
+| 376 | `infra` | `metric-type` | 지표를 Counter·Gauge·Histogram 으로 나눠 읽는 법을 정함 |  |
+| 377 | `infra` | `microservice-architecture` | 배포 단위를 하나로 둘지 작은 서비스 여럿으로 쪼갤지의 선택 |  |
+| 378 | `infra` | `monitoring` | 수집·저장·시각화·알림으로 돌아가는 것을 밖에서 보는 일 |  |
+| 379 | `infra` | `npm` | 자바스크립트 의존성·개발서버·번들을 Node 위에서 다루는 도구 |  |
+| 380 | `infra` | `object-storage` | 파일을 경로가 아닌 키로 찾는 객체로 저장하고 HTTP 로 접근 |  |
+| 381 | `infra` | `remote-repository` | 호스팅서버에 둔 git 저장소와 clone·push·pull 로 주고받기 |  |
+| 382 | `infra` | `reverse-proxy` | 바깥 요청을 먼저 받아 도메인·SSL 을 정리하고 내부로 넘기는 서버 |  |
+| 383 | `infra` | `staging-area` | 다음 커밋에 담을 파일을 미리 등록해 두는 중간 자리 |  |
+| 384 | `infra` | `web-application-deployment` | 코드를 실행하는 게 아니라 돌고 있는 서버가 찾아갈 자리에 war 를 놓는 일 |  |
+| 385 | `infra` | `zero-downtime-deployment` | 새 버전을 옆에 띄워 두고 준비되면 트래픽만 돌려 빈 시간을 없애는 배포 |  |
+| 386 | `ai` | `ai-agent` | 모델이 문장만 내놓는 데서 그치지 않고 툴을 호출해 실제 동작을 일으키게 만드는 구조 |  |
+| 387 | `ai` | `architectural-drift-prevention` | 개별 변경은 정상이어도 코드베이스가 합의한 설계에서 멀어지는 것을 막는 규율 |  |
+| 388 | `ai` | `data-fabric` | 여러 시스템에 흩어진 데이터를 공통 의미·메타데이터·접근 규칙으로 묶어 일관되게 제공하는 데이터 운영 구조 |  |
+| 389 | `ai` | `deterministic-first-ai-enrichment` | 파서·규칙으로 확인 가능한 구조를 먼저 뽑고 해석 작업에만 AI 를 후속 적용하는 투패스 처리 |  |
+| 390 | `ai` | `engineering-governance` | 조직의 아키텍처 결정을 기계가 읽게 구조화해 생성·검토·병합에서 집행하는 계층 |  |
+| 391 | `ai` | `entity-resolution` | 다른 이름·레코드가 현실의 같은 개체인지 판별해 하나의 표준 식별자로 잇는 과정 |  |
+| 392 | `ai` | `human-in-the-loop` | 자동화를 위험한 자리에서 멈춰 사람 승인을 기다렸다가 그 지점부터 재개하는 것 |  |
+| 393 | `ai` | `knowledge-graph-assisted-retrieval` | 그래프로 관련 개체·관계를 먼저 좁히고 그 결과가 가리키는 원문만 후속 처리에 쓰는 검색 |  |
+| 394 | `ai` | `llm-text-watermarking` | 토큰 확률 분포에 비밀 편향을 심어 생성 출처를 통계적으로 검출하는 기법 |  |
+| 395 | `ai` | `llm-wiki` | 에이전트가 원료를 기존 지식과 병합하며 목차·색인을 갱신하는 파일 기반 지식 관리 패턴 |  |
+| 396 | `ai` | `loop-engineering` | 목표 달성까지 발견·계획·실행·검증을 반복하는 외부 제어 루프 설계. 종료 조건의 기계 판정이 핵심 |  |
+| 397 | `ai` | `mrtr` | 서버가 역호출 대신 정보 필요 응답을 주고 재요청받는 패턴 |  |
+| 398 | `ai` | `prompt-injection` | 프롬프트에 실린 데이터가 명령으로 읽히는 위험. 문구가 아니라 실행권 격리·경로 분리로 막는다 |  |
+| 399 | `ai` | `purposeful-knowledge-capture` | 자료 저장 시 수집 이유·관계·기대 활용처를 함께 기록하는 수집 방식 |  |
+| 400 | `ai` | `react-agent-loop` | 모델 판단→도구 실행→관찰을 반복해 정보를 모으고, 도구 요청이 없으면 끝나는 에이전트 실행 구조 |  |
+| 401 | `ai` | `request-context` | 한 요청을 실행하는 구성 요소들이 사용자·테넌트 같은 런타임 값을 공유하는 요청 범위 컨테이너 |  |
+| 402 | `ai` | `semantic-search` | 단어 일치가 아니라 임베딩 벡터의 의미 유사도로 결과를 찾는 검색 |  |
+| 403 | `ai` | `text-embedding` | 텍스트를 의미 관계를 비교할 수 있는 수치 벡터로 바꾼 표현 |  |
+| 404 | `ai` | `workflow-orchestration` | 작업을 함수 호출이 아니라 단계로 선언해 이음매와 상태를 밖에 드러내는 것 |  |
+| 405 | `front` | `html-form` | 사용자 입력에 이름표를 달아 한 URL로 묶어 보내는 브라우저 표준 장치 |  |
+| 406 | `front` | `script-loading` | 브라우저가 script 태그를 만나면 멈추고 실행하는 순서와 배치 문제 |  |
+| 407 | `pm` | `gamification` | 게임이 아닌 일에 재화·진행도·보상·실패조건을 붙여 다시 열게 만드는 설계 |  |
+| 408 | `pm` | `para-method` | 정보를 주제가 아니라 행동과의 거리로 프로젝트·영역·자원·아카이브에 나누는 정리법 |  |
+| 409 | `qa` | `performance-testing` | 얼마나 견디는지 재는 것 정상 성능 확인과 무너지는 지점 찾기 |  |
+| 410 | `front` | `viewport-aware-overlay` | 트리거 기준 남은 자리로 오버레이의 열 방향과 최대 높이를 정해 화면 밖으로 안 나가게 하는 배치 |  |
+| 411 | `back` | `field-level-visibility` | 한 리소스에서 자격 없는 필드만 비워 보내고 이력·감사는 403 으로 가르는 부분 인가 응답 |  |
+| 412 | `ai` | `strict-json-schema-output` | LLM 구조화 출력이 받는 스키마 규격 — 모든 object 에 additionalProperties:false + 전 키 required. 대역 테스트로는 위반을 못 본다 |  |
+| 413 | `ai` | `tool-allowlist-by-phase` | 에이전트가 볼 수 있는 것을 프롬프트가 아니라 단계별 도구 목록(enabled_tools)으로 고정하는 것 |  |
+| 414 | `back` | `resource-scoped-token` | 리소스 하나에 묶인 단명 토큰 — 세션 행 · 원문 컬럼 · allowlist 표면 · 폐기=행 삭제 · 재시도는 재발급 |  |
+| 415 | `front` | `portal-inside-scroll-lock` | 모달의 스크롤 잠금이 body 로 포탈된 팝오버의 휠을 막는 것. 포탈 컨테이너를 모달 안으로 |  |
+| 416 | `ai` | `nondeterministic-stt-output` | 같은 오디오도 STT 결과가 매번 조금 다르다 — 결정성 전제 테스트 금지 · 전사 멈춤은 입력 레벨부터 |  |
+| 417 | `cs` | `delegated-authorization` | 사용자 대신 실행하는 주체와 하위 호출에서도 자원·행위의 허용 범위를 확인하고 추적하는 권한 관리 |  |
+| 418 | `ai` | `model-routing` | 작업의 품질·지연·비용 요구에 맞춰 요청을 처리할 모델을 선택하는 구조 |  |
+| 419 | `ai` | `ai-asset-inventory` | 조직의 AI 자산을 중앙에서 식별하고 등록 검증·사용 권한 관리로 연결하는 목록 |  |
+| 420 | `ai` | `executable-task-context` | 목적·변경 대상·제약·산출물·적용 기준·완료 조건을 연결해 AI가 수행할 작업을 구성하는 것 |  |
+| 421 | `cs` | `artifact-traceability` | 요구·설계·코드·테스트의 관계와 버전을 따라 변경 대상과 검증 근거를 확인하는 성질 |  |
+| 422 | `back` | `websocket-relay` | 서버가 외부 실시간 세션을 소유하고 브라우저와는 역할(upstream/subscribe) 선언한 WS 하나로 말하는 중계 |  |
+| 423 | `ai` | `two-pass-transcription` | 실시간 전사는 화면용, 종료 뒤 음원 전체를 비동기 재전사(화자 분리)해 원문을 갈아 끼우는 2-pass |  |
+| 424 | `back` | `no-silent-fallback` | 외부 단계 실패를 더 나쁜 입력으로 이어 가지 않고 failed 상태·사람 말 사유·재시도 경로로 드러내기 |  |
+| 425 | `ai` | `evidence-binding` | LLM 정리 줄마다 원문 구간을 붙이고 실재하는지만 검증(범위는 적재 전체), 화면은 겹치는 줄로 점프 |  |
+| 426 | `ai` | `transcript-segmentation` | 전사 토큰을 화자·침묵·시간·글자 상한과 문장 끝으로 자르는 블록 경계 규칙, 토큰 경계에서만 |  |
+| 427 | `ai` | `synthesis-rewrite` | 사람 메모·AI 요약·전사를 재료로 회의록 한 벌을 처음부터 새로 짓는 합성 — 구조 보존 검사 없음 |  |
+| 428 | `back` | `system-actor` | 파생 요청의 주체를 사람이 아닌 system:<출처> 로 두고 사람은 promoted_by·cc 로 남겨 권한 예외를 없앰 |  |
+| 429 | `cs` | `cosine-similarity` | 두 벡터의 길이를 지우고 방향만 비교해 유사도를 내는 척도 | 백필 |
+| 430 | `ai` | `tokenization` | 텍스트를 모델이 다룰 처리 단위로 쪼개는 것. 어휘 크기가 출력층과 과금 단위를 정한다 | 백필 |
+| 431 | `ai` | `text-vectorization` | 텍스트를 계산 가능한 수치 표현으로 바꾸는 과정 전체. 임베딩은 그 한 갈래 | 백필 |
+| 432 | `ai` | `tf-idf` | 흔한 단어를 깎고 그 문서에만 잦은 단어를 올려 어휘 겹침을 재는 희소 벡터 기준선 | 백필 |
+| 433 | `ai` | `ai-ready-data` | 정해진 AI 작업의 요구를 충족하도록 품질·구조·맥락·권한·접근성을 갖춘 데이터 | 백필 |
+| 434 | `ai` | `language-model` | 언어의 통계 정보를 인코딩해 다음 토큰의 확률분포를 내는 모델. 생성과 채점이 같은 일이 된다 |  |
+| 435 | `ai` | `masked-language-model` | 앞뒤 문맥을 모두 보고 가려진 토큰을 맞히는 학습. 이해·분류·임베딩 쪽에 남았다 |  |
+| 436 | `ai` | `autoregressive-language-model` | 앞만 보고 다음 토큰 하나를 맞히는 학습. 학습 목표와 사용 방식이 같아 생성의 주류가 됐다 |  |
+| 437 | `ai` | `self-supervised-learning` | 사람이 라벨을 달지 않고 데이터의 일부를 가려 정답을 만드는 학습. 병목을 라벨링에서 컴퓨팅으로 옮겼다 |  |
+| 438 | `ai` | `perplexity` | 다음 토큰을 평균 몇 개 중에서 헷갈리는가. 모델 단계의 자동 지표이지 제품 품질은 아니다 |  |
+| 439 | `ai` | `distributional-hypothesis` | 비슷한 문맥에 나오는 단어는 뜻도 비슷하다는 가설. 임베딩의 근거이자 반의어가 가까운 이유 |  |
+| 440 | `ai` | `foundation-model` | 작업에 매이지 않은 범용 기반 모델. 작업마다 학습하는 대신 적응 기법을 얹어 쓴다 |  |
+| 441 | `ai` | `multimodal-model` | 둘 이상의 데이터 형태를 다루는 모델. 텍스트로 옮겨 적으면 사라지는 정보가 이유다 |  |
+| 442 | `ai` | `contrastive-learning` | 맞는 쌍은 당기고 어긋난 쌍은 미는 학습. 형태가 다른 데이터를 한 벡터 공간에 놓는다 |  |
+| 443 | `ai` | `model-training-stages` | 사전학습→사후학습→파인튜닝→프롬프트의 순서. 기법이 아니라 주체와 목적으로 가른다 |  |
+| 444 | `ai` | `prompt-engineering` | 가중치를 안 바꾸고 입력만으로 동작을 끌어내는 것. 버전과 회귀 테스트가 붙는 개발 대상이다 |  |
+| 445 | `ai` | `retrieval-augmented-generation` | 모델 밖 지식을 검색해 프롬프트에 붙이는 것. 근거를 들고 있어 출처를 달 수 있다 |  |
+| 446 | `ai` | `fine-tuning` | 출시 모델의 가중치를 우리 문제에 맞춰 추가 학습하는 것. 아는 것이 아니라 행동을 바꾼다 |  |
+| 447 | `ai` | `llm-as-judge` | 루브릭→사람 채점→일치율 검증을 거친 뒤에야 모델에게 채점을 맡기는 것. 순서가 곧 규칙 |  |
+| 448 | `ai` | `golden-set-regression` | 사람이 채점한 기준 묶음을 고정해 모델·프롬프트·인덱스가 바뀔 때마다 다시 돌리는 검증 |  |
+| 449 | `ai` | `inference-optimization` | 요청마다 나가는 추론 비용과 시간을 줄이는 기법들. 양자화·증류는 품질을 대가로 낸다 |  |
+| 450 | `ai` | `inference-latency-metrics` | 지연을 첫 토큰(TTFT)과 토큰당(TPOT)으로 쪼개 재는 것. 합치면 처방이 안 나온다 |  |
+| 451 | `ai` | `silent-model-degradation` | 코드를 안 고쳐도 모델·입력 분포·법규가 움직여 에러 없이 품질만 떨어지는 것. 로그는 소급 불가 |  |
+| 452 | `cs` | `zipf-law` | 빈도 순위에 반비례하는 분포. 상위 소수가 건수를 차지하고 종류는 꼬리에 산다 |  |
+| 453 | `pm` | `ai-product-defensibility` | 기술력·데이터·유통력 중 무엇으로 복제를 막을 것인가. 지속 기간이 셋 다 다르다 |  |
+| 454 | `pm` | `data-flywheel` | 쓸수록 데이터가 쌓이고 제품이 좋아져 더 쓰게 되는 순환. 반영 경로가 없으면 안 돈다 |  |
+| 455 | `pm` | `ai-role-taxonomy` | 핵심/보완·반응/선제·동적/정적 세 축. 같은 모델도 놓인 자리가 요구 정확도를 정한다 |  |
+| 456 | `pm` | `launch-criteria` | 무엇을 재고 얼마면 출시인가를 착수 전에 숫자로 긋는 것. 품질·비용·지연은 맞바꾼다 |  |
 
 ---
 
