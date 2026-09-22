@@ -1,0 +1,81 @@
+# [writer] SPEC-006 수정 1 — FAIL 5·WARN 10
+
+너는 앞 SPEC-006 작성자다. 이전 브리프의 역할/범위 제약을 유지하며 이번 새 dispatch ID로 보고한다. 코드 구현은 하지 않는다.
+
+## 1. SSOT
+- /Users/kknaks/orca/workspaces/kknaks_profile/strong_hajin/orchestration/work/strong-hajin-projects/tauri-spec-writer-brief.md
+- /Users/kknaks/orca/workspaces/kknaks_profile/strong_hajin/orchestration/work/strong-hajin-projects/review-tauri-spec-report.md 전체
+- /Users/kknaks/orca/workspaces/kknaks_profile/strong_hajin/orchestration/work/strong-hajin-projects/tauri-implementation-research.md
+- /Users/kknaks/orca/workspaces/kknaks_profile/strong_hajin/para/projects/summer-star/strong-hajin/10-decision/decision-005-tauri-wrapper.md
+- /Users/kknaks/orca/workspaces/kknaks_profile/strong_hajin/para/projects/summer-star/strong-hajin/20-spec/spec-006-tauri-wrapper.md
+
+## 2. 목적
+검수 FAIL 5건과 WARN을 닫는다. 권고안을 무비판적으로 복사하지 말고 아래 코디 정정을 우선한다. 목적은 녹음 중 자동 절전 방지다. 제어 프로토콜을 불필요하게 복잡하게 만들지 않는다.
+
+## 3. 코디 판단 — 검수 자체도 정정할 것
+
+A. F-1은 계약 공백으로 수용. 그러나 Chrome 타이머 규칙을 모든 WKWebView에 적용하여 '반드시 만료'한다고 쓰면 안 된다. MDN의 dataavailable도 지연될 수 있다. 따라서 리뷰어의 '청크 콜백은 스로틀되지 않는다'·'TTL 3배면 안전'은 보장 근거가 아니다.
+https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/dataavailable_event
+녹음 중 정상 비가시 상태를 JS 타이머/청크 지연만으로 종료 판정해 OS 절전 방지를 해제하는 계약을 없애라. 네이티브가 점유 수명을 소유하는 단순 구조와 기존 TTL 구조를 비교하고, 시작/명시 종료/녹음 실패/웹 콘텐츠 프로세스 소멸/문서 교체/창 닫기·앱 종료 정리를 명확히 하라. 탐지 불가능한 웹 정지까지 '반드시 자동 정리'로 과장하지 말 것. 기존 커맨드 5개는 사용자 결정이 아니므로 최소 계약으로 변경 가능. 채택 근거와 남는 한계를 리포트에 남겨라. 숨김/최소화/화면 꺼짐 지속 녹음 AC를 추가.
+
+B. W-3 근거는 낡았다. WebKit Safari 18.4는 WebM/Opus MediaRecorder 지원을 추가했다:
+https://webkit.org/blog/16574/webkit-features-in-safari-18-4/
+https://developer.apple.com/documentation/safari-release-notes/safari-18_4-release-notes
+2020 글만으로 macOS 미지원이라고 하지 말 것. 대상 OS/WebKit 버전의 isTypeSupported 및 실제 장시간 녹음/서버 수용을 실측한다. 포맷 fallback은 결과에 따른 조건부 선행 작업이며 무조건 별도 spec 필수라고 하지 않는다.
+
+C. F-2/F-3: 12시간 만료 사실과 UI 자동 전환/열린 WS 종료를 분리. 기존 API/WS에 없는 재인증·자동로그아웃을 몰래 새 계약으로 넣지 않는다. 실제 로그인 재확인·401 처리·unauthorized 스트림 경로를 정확히 적고, 미인증이 관측되어 실제 녹음이 끝날 때 native 정리 연결. 단순 시각 경과만으로 현 WS가 닫힌다는 문구 삭제.
+
+D. F-4: 동시 두 표면은 제품 UI에서 도달 불가. 그런 E2E AC를 제거/대체. 중복 acquire를 참조계수로 누적해 누수시키지 말고 동일 recording/session에 대한 멱등성·늦은 release가 새 세션을 해제하지 않음을 계약화. 참조계수 자체는 사용자 요구가 아니니 최소화 가능.
+
+E. F-5: React 내부 화면 전환과 top-level 문서 교체, same-document URL 변경을 구분. native가 React 화면 전환을 감지한다고 쓰지 말 것. 녹음이 실제 종료되는 lifecycle cleanup을 계약으로 연결.
+
+F. W-1: 네이티브 커맨드 허용 origin과 로그인 탐색 허용 origin은 별개. 인증 방식은 미정이므로 IdP를 반드시 도입하지 말고 후속 인증 선택의 조건으로 적어라. 외부 사이트에 native 권한을 늘리지 않는다.
+
+G. W-4: 운영 URL 확정 없이도 통제된 개발 HTTPS/localhost fixture로 할 수 있는 탐색과 최종 운영 검증을 구분. M-1/M-5도 개발 환경에서 부분 검증 가능하다. 'WP 전 무조건 실측' 순환은 없앤다. 측정 작업도 후속 WP에 계획 가능. 이번에는 코드 프로토타입 금지.
+
+H. W-2·W-5·W-6·W-7·W-8 반영. W-9는 코디가 수정한다. W-10은 A의 구조 변경에 따라 해소/대체. 부재·사용자 결정·구현 제안 표현을 분리. 수동 sleep 복귀 후 실제 녹음 재개/종료 상태에 따른 native 재획득·정리를 규정하되 녹음 자동 재연결을 발명하지 말 것.
+
+## 4. 핵심 참조
+적용 코드 /Users/kknaks/orca/workspaces/Strong_hajin/strong-hajin-projects/ 및 참조 /Users/kknaks/git/toy_pr2/task_management/app/front/src-tauri/. 실제 파일과 최신 공식 문서 확인. 이전 조사 사실 정정은 날짜·근거를 남긴다.
+
+## 5. allowed_paths
+- /Users/kknaks/orca/workspaces/kknaks_profile/strong_hajin/para/projects/summer-star/strong-hajin/20-spec/spec-006-tauri-wrapper.md
+- /Users/kknaks/orca/workspaces/kknaks_profile/strong_hajin/orchestration/work/strong-hajin-projects/tauri-implementation-research.md
+- /Users/kknaks/orca/workspaces/kknaks_profile/strong_hajin/orchestration/work/strong-hajin-projects/tauri-spec-fix1-report.md (신규)
+기존 검수 보고서·writer 원 보고서는 수정하지 않는다. DEC/index/log/다른 파일은 코디 소유.
+
+## 6. 순서
+각 지적 사실 검증 → 최소 계약 수정 → AC/OQ/에러/시나리오/추적표 전수 일치 → F/W별 조치표와 남은 OQ 보고. draft 유지, 버전 증가. 검수 권고와 다른 수단을 택했으면 왜 같은 문제를 닫는지 설명.
+
+## 7. 제약
+코드·실행 환경 변경·설치·빌드·서버 기동·커밋·push·PR·추가 워커 금지. 미정 OS/배포주소/채널 발명 금지. 실측 통과 주장 금지.
+
+## 8. 검증
+F-1~F-5/W-1~W-10 조치 또는 근거 있는 미반영 표. 새 UI/제어가 목적에 비해 커지지 않았는지 자기 점검. 템플릿·frontmatter·코드펜스·링크·문구 일관성 검사.
+
+## 9. 완료 보고 — **문구 변경 금지**
+
+> **⚠ 핸들은 dispatch preamble 의 값을 믿어라.** 아래 명령에 박힌 코디handle 은 **브리프 작성 시점** 값이라 오래됐을 수 있다 — 세션이 재연결되면 핸들이 바뀐다(2026-07-28·29 두 번 겪음). preamble 의 코디네이터 핸들과 아래 값이 다르면 **preamble 이 맞다.** 두 곳에 다 보내지 말고 preamble 쪽으로만 보내라.
+
+
+- **커밋·push·PR 하지 마라.** 워크트리에 변경만 남긴다. 검증·PR 은 코디네이터가 한다.
+- 끝나면 **아래 두 명령을 모두** 실행한다. 하나만 하면 안 된다.
+
+```bash
+# (1) 인박스 적재 — 태스크 완료 처리·영구 기록. 코디네이터를 깨우지 않는다.
+orca orchestration send \
+  --to term_2ae8654e-00e2-4649-ab7c-cb3b5e02b995 --from term_21131adc-c6b5-4082-834e-305628bb9de6 \
+  --type worker_done \
+  --task-id <이 태스크의 taskId — dispatch 로 받은 context 에 들어 있다> \
+  --dispatch-id <이 태스크의 dispatchId — dispatch 로 받은 context 에 들어 있다> \
+  --subject "writer 완료: <한 줄>" \
+  --body "변경 파일 목록 / 구현 요약 / 검증 결과(수치) / 계약 준수 / 미결·주의점"
+
+# (2) 직접 주입 — 코디네이터 세션에 유저 메시지로 꽂혀 자동으로 깨운다.
+orca terminal send --terminal term_2ae8654e-00e2-4649-ab7c-cb3b5e02b995 \
+  --text "[worker_done] writer 완료 — <한 줄 요약>. 상세는 인박스." --enter
+```
+
+- 막히면 30분 이상 혼자 헤매지 말고 같은 (2) 방식으로 물어라:
+  `orca terminal send --terminal term_2ae8654e-00e2-4649-ab7c-cb3b5e02b995 --text "[질문] writer: <질문>" --enter`
+  (`orca orchestration ask` 는 채널이 닫혀 답이 안 닿는 경우가 많다.)

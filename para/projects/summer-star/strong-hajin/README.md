@@ -19,10 +19,12 @@ status: active
 
 | Area | Status | Next |
 |---|---|---|
-| Baseline | raw | 출처·관측 검수 |
-| Decision | proposed | 확정 근거·미결 분류 검수 |
-| Spec | draft 2건 | 계약 검수 |
-| Work | WORK-001 초안, 전 8단계 TODO | WP 검수 후 사용자 리뷰 |
+| Baseline | raw 4건 | BASE-004 는 조사 2건을 사실로 눕혔다 |
+| Decision | proposed 4건 · accepted 1건 | **DEC-004 결정 39건** · 뒤집힌 것 둘(D-12·D-31) |
+| Spec | **6건** | SPEC-005 **v0.2.0** — 2루프 계약 반영·검수 통과 · **미결 4건**(OQ-604~607) |
+| Work | **WORK-005 in_progress** | 1루프 done · **Phase 0 done** · 2루프 BE-3→FE-4→FE-5 |
+
+데스크톱 래핑: [DEC-005](10-decision/decision-005-tauri-wrapper.md) 방향 확정. [SPEC-006](20-spec/spec-006-tauri-wrapper.md) v0.2.3: macOS·Windows, Mac Studio FE·BE, 코드 Releases 설치파일·프로필 릴리즈 문서 확정. 앞선 문서 검수 FAIL 0. 세부 미결·실측 전으로 draft 유지.
 
 ## 문서 맵
 
@@ -35,4 +37,6 @@ status: active
 
 ## 최근 로그
 
+- 2026-09-22: **Phase 0 닫힘**(`make verify` exit 0) · E2E 1차 후 **2루프 계약 개정**(결정 38건 · SPEC v0.2.0). 코드 미착수. [전체 이력](log.md)
+- 2026-09-21: 「프로젝트」 화면 — 조사 2건, 결정 27건 확정. 간트 재귀 트리 · 손자 프로젝트 종속 · 배정 시 자동 초대. [전체 이력](log.md)
 - 2026-09-15: 업무 페이지 초안 4건 작성, 검수 시작. [전체 이력](log.md)

@@ -24,6 +24,7 @@ Status 값: `todo`, `in_progress`, `blocked`, `review`, `done`
 | 1–8 | [WORK-001 업무 생성·즉시 배정](work-001-task-creation.md) | SPEC-001/002의 W1 | review | kknaks | 미산정 | 미정 | `kknaksss/strong-hajin-work` | 사용자 E2E 미수행 | 사용자 E2E 확인 |
 | 0–8 | [WORK-002 업무 v2·MyWork 개편](work-002-task-lifecycle-v2.md) | BE·FE 통합 | review | kknaks | 자동검증 완료 | 2026-09-17 목표 | `kknaksss/strong-hajin-work` | 자동검증 완료 · 브라우저 E2E 사용자 수행 · OQ-203·206 해당 경로 답 대기 | Node20 make verify·PG 77건·FE713건 완료 |
 | 1–7 | [WORK-003 참조 읽음·선행업무·만들기 창 프레임](work-003-inbox-predecessor-and-create-frame.md) | SPEC-001의 D-19·D-20·D-21 | todo | kknaks | 미산정 | 미정 | `kknaksss/strong-hajin-work` | 없음 (OQ-M은 Phase 3의 한 조각만 gate) | WP 검수 → BE·FE 병렬 발주 |
+| BE1–FE5 | [WORK-005 「프로젝트」 화면](work-005-projects.md) | SPEC-005 전절 (1루프 done · Phase 0 done · **2루프 BE-3→FE-4→FE-5 직렬**) | in_progress | kknaks | 미산정 | 미정 | `kknaksss/strong-hajin-projects` | 없음 | **2루프 BE-3 발주 예정** (인수조건 1루프 76 + **2루프 52**) |
 | BE1–FE4 | [WORK-004 캘린더 시간 배정](work-004-calendar-scheduling.md) | SPEC-004 전절 (BE·FE 직렬 · 2루프) | in_progress | kknaks | 미산정 | 미정 | `kknaksss/strong-hajin-calendar` | 없음 | **1루프 넷 DONE**(`1c15d02`·`2a85176`·`c5b109d`·`aa8576b`) → **Phase BE-3 발주**(2루프 K19~K24) |
 
 ## Work List
