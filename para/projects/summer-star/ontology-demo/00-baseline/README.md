@@ -10,4 +10,4 @@ baseline 문서를 만들거나 상태가 바뀌면 이 표를 갱신한다.
 
 | ID | Title | Source | Status | Decision | File |
 |---|---|---|---|---|---|
-|  |  |  |  |  |  |
+| BASE-001 | 데모 에이전트 앱 — 구축 순서를 그대로 재현하는 온톨로지 데모 | reference (기록 09) | accepted | DEC-001/002/003/004/005 | `baseline-001-demo-agent-app.md` |
