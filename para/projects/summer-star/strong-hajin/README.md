@@ -24,7 +24,7 @@ status: active
 | Spec | **6건** | SPEC-005 **v0.2.0** — 2루프 계약 반영·검수 통과 · **미결 4건**(OQ-604~607) |
 | Work | **WORK-005 in_progress** | 1루프 done · **Phase 0 done** · 2루프 BE-3→FE-4→FE-5 |
 
-데스크톱 래핑: [DEC-005](10-decision/decision-005-tauri-wrapper.md) 방향 확정. [SPEC-006](20-spec/spec-006-tauri-wrapper.md) v0.2.3: macOS·Windows, Mac Studio FE·BE, 코드 Releases 설치파일·프로필 릴리즈 문서 확정. 앞선 문서 검수 FAIL 0. 세부 미결·실측 전으로 draft 유지.
+데스크톱 래핑: [DEC-005](10-decision/decision-005-tauri-wrapper.md) 방향 확정. [SPEC-006](20-spec/spec-006-tauri-wrapper.md) v0.2.3: macOS·Windows, Mac Studio FE·BE, 코드 Releases 설치파일·프로필 릴리즈 문서 확정. 앞선 문서 검수 FAIL 0. 세부 미결·실측 전으로 draft 유지. [WORK-006](30-work/work-006-tauri-wrapper.md) 계획 검수 종료·문구 정리 완료(10단계, AC43·실측15). 사용자 순차 구현 승인. Phase 1 구현 중, 설치·최종 E2E는 내일.
 
 ## 문서 맵
 

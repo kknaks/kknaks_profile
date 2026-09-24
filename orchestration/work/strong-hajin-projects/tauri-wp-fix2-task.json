@@ -1,0 +1,22 @@
+{
+  "id": "b9465197-9523-45d6-9760-8294a74ea807",
+  "ok": true,
+  "result": {
+    "task": {
+      "id": "task_1ab232425444",
+      "parent_id": null,
+      "created_by_terminal_handle": "term_1f3a40c9-5b3d-4196-a44d-bb65907d59fe",
+      "task_title": "# [writer] WORK-006 마지막 문구 정리 — R2 WARN 3·경미 4",
+      "display_name": "# [writer] WORK-006 마지막 문구 정리 — R2 WARN 3·경미 4",
+      "spec": "# [writer] WORK-006 마지막 문구 정리 — R2 WARN 3·경미 4\n\n기존 writer 규약 유지. 작업 루트 /Users/kknaks/orca/workspaces/kknaks_profile/strong_hajin. 재검수 승인저지0·회귀0. 구조를 다시 설계하지 말고 아래 일곱 항목만 최소 수정한다.\n\n## 1. 읽을 것\n- orchestration/work/strong-hajin-projects/review-tauri-wp-r2-report.md\n- 같은 디렉토리 tauri-wp-fix1-brief.md, tauri-wp-fix1-report.md\n- para/projects/summer-star/strong-hajin/30-work/work-006-tauri-wrapper.md\n- SPEC-006 v0.2.3 관련 AC·세션 계약 (읽기 전용)\n\n## 2. 수정\n- WARN1: 해시 일치는 Phase8 검증한 설치파일↔9 발행파일. Phase6b 서버/웹 버전은 운영 origin·shell_api·서버이미지/웹빌드·셸버전 호환 조합으로 연결. '서버와 설치파일 같은 아티팩트' 제거, Phase9 기록과 Done Criteria 맞춤.\n- WARN2: AC-T27 fixture 증거 인용은 Phase5 당시 임시 유효. 6b 인증/세션/프로파일 변경 뒤 운영 프로파일의 격리 검증환경에서 기존 만료 계약 재검증해 증거 갱신. 실제 운영 DB 세션 조작을 지시하지 않는다. 기존 SPEC에 없는 자동 401 로그인 전환이나 열린 WS 자동 종료를 발명하지 말고 AC-T27/S-8 원문 기준으로 검증. 최종판에서 변경된 코드/설정에 영향받는 기존 증거는 갱신하는 규칙 한 줄 추가. AC 주 배정/실측 ID 불필요하게 늘리지 않는다.\n- WARN3: 브라우저 후보 전부 실패·서버 업로드 거부를 보완 경로에 명시. 관련 AC의 브라우저 축 미통과를 유지하고 별도 보완 담당/결과 기록. 독립 셸 구현은 가능하나 최종 지원판 검증·Release 완료로 넘기지 않는다. 진행/보완 조건이 겹치지 않도록 '보완/중단 조건 없을 때 진행' 같은 최소 명료화.\n- m1: 실제10 Phase(1~5·6a·6b·7·8·9), 최대번호9 구분.\n- m2: Phase1 무차단은 macOS 축 기준, Windows 실행은 장비 조건.\n- m3: Phase6b 의존에 코디의 P5 인프라 워커 설정 추가.\n- m4: 운영 이미지와 납품 이미지의 저장소/태그 경계를 명시해 운영용 비보호 이미지가 납품 경로에 섞이지 않음. 새 레지스트리 서비스 구축을 필수로 늘리지 말고 기존 레지스트리 내 별도 이미지 repository·tag namespace 같은 최소 수단으로 표현 가능.\n\n## 3. allowed_paths\n- para/projects/summer-star/strong-hajin/30-work/work-006-tauri-wrapper.md\n- orchestration/work/strong-hajin-projects/tauri-wp-fix2-report.md (신규)\n그 밖은 읽기 전용. 기존 리포트·SPEC·DEC·index·log·코드·인프라 미수정. 커밋/push/PR/실측/빌드/테스트/서버/추가워커 금지.\n\n## 4. 완료\n일곱 항목 위치·전후 요약, YAML·AC43/실측15/DEC9/I1~8 유지·Status10 TODO 확인. 변경 구간만 자체 검증하고 구조·분량을 불필요하게 늘리지 않는다. 이번은 비저지 지적 정리이므로 코디가 diff 확인 후 사용자 계획 리뷰로 넘긴다.\n\n## 9. 완료 보고 — **문구 변경 금지**\n\n> **⚠ 핸들은 dispatch preamble 의 값을 믿어라.** 아래 명령에 박힌 코디handle 은 **브리프 작성 시점** 값이라 오래됐을 수 있다 — 세션이 재연결되면 핸들이 바뀐다(2026-07-28·29 두 번 겪음). preamble 의 코디네이터 핸들과 아래 값이 다르면 **preamble 이 맞다.** 두 곳에 다 보내지 말고 preamble 쪽으로만 보내라.\n\n\n- **커밋·push·PR 하지 마라.** 워크트리에 변경만 남긴다. 검증·PR 은 코디네이터가 한다.\n- 끝나면 **아래 두 명령을 모두** 실행한다. 하나만 하면 안 된다.\n\n```bash\n# (1) 인박스 적재 — 태스크 완료 처리·영구 기록. 코디네이터를 깨우지 않는다.\norca orchestration send \\\n  --to term_1f3a40c9-5b3d-4196-a44d-bb65907d59fe --from term_4d5802b8-ffe4-4d2c-8f31-ca7c2beb5faa \\\n  --type worker_done \\\n  --task-id <이 태스크의 taskId — dispatch 로 받은 context 에 들어 있다> \\\n  --dispatch-id <이 태스크의 dispatchId — dispatch 로 받은 context 에 들어 있다> \\\n  --subject \"writer 완료: <한 줄>\" \\\n  --body \"변경 파일 목록 / 구현 요약 / 검증 결과(수치) / 계약 준수 / 미결·주의점\"\n\n# (2) 직접 주입 — 코디네이터 세션에 유저 메시지로 꽂혀 자동으로 깨운다.\norca terminal send --terminal term_1f3a40c9-5b3d-4196-a44d-bb65907d59fe \\\n  --text \"[worker_done] writer 완료 — <한 줄 요약>. 상세는 인박스.\" --enter\n```\n\n- 막히면 30분 이상 혼자 헤매지 말고 같은 (2) 방식으로 물어라:\n  `orca terminal send --terminal term_1f3a40c9-5b3d-4196-a44d-bb65907d59fe --text \"[질문] writer: <질문>\" --enter`\n  (`orca orchestration ask` 는 채널이 닫혀 답이 안 닿는 경우가 많다.)\n",
+      "status": "ready",
+      "deps": "[]",
+      "result": null,
+      "created_at": "2026-09-22 09:18:37",
+      "completed_at": null
+    }
+  },
+  "_meta": {
+    "runtimeId": "f0b0012a-376b-4c5c-91e5-761dbda6f70a"
+  }
+}

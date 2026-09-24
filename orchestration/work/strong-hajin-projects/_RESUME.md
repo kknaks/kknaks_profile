@@ -284,3 +284,54 @@ frontend 978 · build ✓. **수집 1435+127 = 1562** (가르기 전과 같다).
 - SPEC-006 v0.2.1 수정2 수령. R2 수정 범위 한정 최종 문서 검수 `task_923311de3daf` / `ctx_5810dd105613` 발주. `tauri-spec-review-r3-brief.md`. 실측/사용자 미결은 문서 판정과 분리. 다음: 리포트 확인 → 잔여 문구 정리/필요 수정 → 사용자에게 스펙 결과와 미결 보고.
 
 - Tauri 스펙 문서 단계 종료: R3 FAIL0/WARN5 → 코디 v0.2.2 문구 정리. `tauri-spec-finalization.md` 참고. draft 유지(사용자 미결/실측). WP·구현 미발주.
+
+
+### Tauri WORK-006 계획 발주 — 2026-09-22
+
+- 현 코디: term_1f3a40c9-5b3d-4196-a44d-bb65907d59fe (이전 Tauri 코디 핸들 대체).
+- 새 Claude 계획 워커: term_3905b395-8c86-4e2f-82d0-cfa590d8a74f.
+- task_2c6d8f03361f / ctx_fb1a8b72d0f1, 주입 확인.
+- 브리프: tauri-wp-writer-brief.md. 기준 SPEC-006 v0.2.3·DEC-005 D-01~09.
+- 산출물: 30-work/work-006-tauri-wrapper.md + tauri-wp-writer-report.md. 계획만 작성, 코드·서버 변경 없음.
+- 완료 후 별도 리뷰어 검수→수정→사용자 계획 리뷰. 구현 자동 착수 아님.
+
+### Tauri WORK-006 독립 검수 발주
+- writer 초안 8 Phase 수령. 코디 YAML 및 AC 유니크43 확인.
+- reviewer term_6f15ca95-9228-48e3-974d-4a867a426d6b / task_b107195af12c / ctx_71b2c63d7336.
+- tauri-wp-review-brief.md 기준, 결과 review-tauri-wp-report.md.
+- 운영 구현 Phase 누락·불필요한 미결·워크트리 규약·양쪽 OS 지원 유지 집중 검수. 코드 미착수.
+
+### Tauri WORK-006 수정1 발주
+- 검수 F3(저지2)·W8 수령, writer 수정 발주. task_b5b9d12c1386 / ctx_3c3b7f46e83e.
+- tauri-wp-fix1-brief.md. 기존 워크트리 유지, 운영 실행 Phase 추가, origin→최종빌드→검증→Release 순서, 불필요 사용자 gate 축소.
+- 산출물 WP 수정 + tauri-wp-fix1-report.md. 이후 독립 재검수, 코드 미착수.
+
+### Tauri WORK-006 수정1 수령·재검수
+- WP 1282줄, 실행단계 10개(번호1~9 중6a/6b), 코디 AC43·YAML·미체크 확인.
+- reviewer term_6f15ca95-9228-48e3-974d-4a867a426d6b / task_66e6af91cee3 / ctx_9587768e0c92.
+- tauri-wp-review-r2-brief.md → review-tauri-wp-r2-report.md.
+- writer 현재 핸들 term_4d5802b8-ffe4-4d2c-8f31-ca7c2beb5faa (이전3905 대체, 다음 발주 시 재확인).
+- 서버/셸 아티팩트 구분·운영 인증 변경 후 재검증·두 녹음 경로 실패 gate 집중. 코드 미착수.
+
+### Tauri WORK-006 검수 종료·비저지 문구 정리 발주
+- R2 승인저지0, 기존12건 닫힘·회귀0. WARN3·경미4 최소 수정 writer 발주.
+- task_1ab232425444 / ctx_3983ca9d2e9d / writer term_4d5802b8-ffe4-4d2c-8f31-ca7c2beb5faa.
+- tauri-wp-fix2-brief.md → WP + tauri-wp-fix2-report.md.
+- 수령 후 코디 변경부분 검증·index/log 정리·사용자 계획 리뷰. 구조 재검수 반복 불필요(새 회귀 없으면). 구현 아직 미착수.
+
+### Tauri WORK-006 계획 문서 마무리
+- writer fix2 수령, 코디 문구·정합 확인 완료. tauri-wp-finalization.md 참조.
+- Work Index/제품 README/log 갱신. WORK006 todo/0%, 구현·실측·배포 미착수.
+- 다음: 사용자 계획 리뷰 후 Phase1 계측 기반 발주.
+
+### 야간 Goal 활성 — Phase1 구현 발주
+- 사용자 전 Phase 순차 구현/검수/수정 승인. 앱 설치·최종E2E 내일, 오늘 코드우선. tauri-overnight-execution.md 참조.
+- task_3eca05a6ad27 / ctx_b0a65884710b / term_a7602522-3d09-4dd7-a585-6bbc3589ae1a.
+- 완료 후 코드 검수 발주→수정→다음Phase. 물리실측 pending과 코드완료 구분.
+
+### Tauri 로컬 앱 확인 완료 — 2026-09-24
+
+- 로컬 전용 실행 경로 `make tauri-local` 로 macOS 앱을 띄워 프론트엔드·백엔드 연결을 확인했다.
+- 월간 날짜·주간 종일·주간 시간 드래그 앤 드롭은 사용자 실측으로 정상 확인했다.
+- 앱에서 드롭 영역이 반응하지 않던 원인은 Tauri 기본 네이티브 드롭 핸들러가 WKWebView HTML5 드롭을 선점한 것이었다. `WebviewWindowBuilder::disable_drag_drop_handler()`로 선점만 끄고 기존 웹 HTML5 UX를 그대로 복원했다.
+- 다음 세션: 디자인 다듬기 → 운영 origin/로그인 결정 → 아이콘·서명/공증·Windows 검증 → 설치파일·GitHub Release 준비. 인프라 레포의 Strong Hajin Helm/Argo 변경은 미커밋 상태로 보존돼 있다.

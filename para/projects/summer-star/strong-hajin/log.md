@@ -41,3 +41,8 @@
 | 2026-09-22 | SPEC-006 문서 검수 종료: Claude R3 FAIL 0·WARN 5 후 코디 문구 정리(v0.2.2). AC 43건·실측 15건. 사용자 미결·실측 미완으로 draft 유지, WP·제품 코드 미착수 | [스펙](20-spec/spec-006-tauri-wrapper.md) |
 
 | 2026-09-22 | DEC-005 D-07~09·SPEC-006 v0.2.3: macOS·Windows 지원, Mac Studio 운영 FE·BE, 코드 GitHub Releases 설치파일·프로필 60-release 문서 관리 확정. 도메인·최소 OS·아키텍처·서명 등 세부 및 실측은 남음. 구현·배포 미착수 | [결정](10-decision/decision-005-tauri-wrapper.md) · [스펙](20-spec/spec-006-tauri-wrapper.md) |
+
+| 2026-09-22 | WORK-006 계획 검수 종료: R2 승인저지0·회귀0 후 WARN3·경미4 문구 정리 및 코디 확인. 10단계에 AC43·실측15 배정. 기존 코드 워크트리 계승, 운영 실행 포함, origin 설정→최종 빌드→검증→동일 설치파일 발행. 사용자 계획 리뷰 전·구현/실측/배포 미착수 | [계획](30-work/work-006-tauri-wrapper.md) |
+
+| 2026-09-22 | 사용자 야간 구현 Goal 승인: Phase별 구현→검수→수정 직렬 루프. WORK-006 Phase 1 Claude 구현 발주, Rust 검증 설정 추가. 코드·자동검증 우선, 사용자 설치·최종 E2E는 다음 날. 실제 운영배포·Release 미수행 | [계획](30-work/work-006-tauri-wrapper.md) |
+| 2026-09-24 | Tauri 로컬 앱 실행과 월간 날짜·주간 종일·주간 시간 드래그 앤 드롭을 사용자 실측으로 확인. WKWebView의 HTML5 드롭을 선점하던 Tauri 네이티브 파일 드롭 핸들러를 제품 창에서 비활성화해 웹과 같은 드래그 미리보기·저장 흐름을 복원했다. 날짜 선택기 정렬·여백과 월간 일정 막대 폭도 보정. 다음 세션은 디자인 정리와 배포 준비이며 운영 origin·로그인·서명/공증·Windows·Release는 미완료로 유지 | [계획](30-work/work-006-tauri-wrapper.md) · [구현 상태](../../../../orchestration/work/strong-hajin-projects/tauri-implementation-status.md) |
