@@ -22,9 +22,9 @@ status: active
 | Baseline | raw 4건 | BASE-004 는 조사 2건을 사실로 눕혔다 |
 | Decision | proposed 4건 · accepted 1건 | **DEC-004 결정 39건** · 뒤집힌 것 둘(D-12·D-31) |
 | Spec | **6건** | SPEC-005 **v0.2.0** — 2루프 계약 반영·검수 통과 · **미결 4건**(OQ-604~607) |
-| Work | **WORK-005 in_progress** | 1루프 done · **Phase 0 done** · 2루프 BE-3→FE-4→FE-5 |
+| Work | WORK-005·006 구현 진행 | Tauri 로컬 셸과 웹 배선 구현 · 운영 배포는 미완료 |
 
-데스크톱 래핑: [DEC-005](10-decision/decision-005-tauri-wrapper.md) 방향 확정. [SPEC-006](20-spec/spec-006-tauri-wrapper.md) v0.2.3: macOS·Windows, Mac Studio FE·BE, 코드 Releases 설치파일·프로필 릴리즈 문서 확정. 앞선 문서 검수 FAIL 0. 세부 미결·실측 전으로 draft 유지. [WORK-006](30-work/work-006-tauri-wrapper.md) 계획 검수 종료·문구 정리 완료(10단계, AC43·실측15). 사용자 순차 구현 승인. Phase 1 구현 중, 설치·최종 E2E는 내일.
+데스크톱 래핑: [DEC-005](10-decision/decision-005-tauri-wrapper.md) 방향 확정. [SPEC-006](20-spec/spec-006-tauri-wrapper.md) v0.2.3: macOS·Windows, Mac Studio FE·BE, 코드 Releases 설치파일·프로필 릴리즈 문서 확정. [WORK-006](30-work/work-006-tauri-wrapper.md)에 따라 로컬 Tauri 셸·웹 배선·빌드 관문까지 구현했다. 로컬 실행은 [RUNBOOK-001](70-runbook/runbook-001-local-tauri.md), 환경별 현재 상태는 [환경 구성](40-architecture/deploy/environments.md)을 따른다. 운영 주소·PRODUCTION 로그인·인프라 배포와 설치파일 발행은 아직 완료되지 않았다.
 
 ## 문서 맵
 
@@ -34,6 +34,8 @@ status: active
 | 10-decision | [결정](10-decision/README.md) |
 | 20-spec | [스펙](20-spec/README.md) |
 | 30-work | [구현 계획](30-work/README.md) |
+| 40-architecture | [환경과 배포 구조](40-architecture/README.md) |
+| 70-runbook | [반복 실행 절차](70-runbook/README.md) |
 
 ## 최근 로그
 

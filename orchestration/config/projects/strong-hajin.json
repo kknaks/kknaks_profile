@@ -118,6 +118,73 @@
       "roles_dir": "roles/strong-hajin/infra"
     }
   },
+  "local_dev": {
+    "_doc": "다음 세션의 로컬 웹·Tauri 기동 SSOT. 명령은 Strong_hajin 코드 워크트리 루트에서 실행한다. 현재 변경 확인은 해당 워크트리, 병합된 main 확인은 repos.code.canonical_path를 쓴다.",
+    "first_setup": [
+      "make install",
+      "make frontend-install",
+      "make postgres-up",
+      "make reset-demo"
+    ],
+    "data_warning": "make reset-demo는 로컬 데모 데이터를 지운다. 데이터를 유지하며 스키마만 맞출 때는 make sync-demo-schema.",
+    "start_order": [
+      {
+        "terminal": 1,
+        "command": "make local-stack",
+        "ready": "SCAX local stack ready",
+        "provides": [
+          "PostgreSQL 127.0.0.1:54329",
+          "API http://127.0.0.1:8001",
+          "frontend http://127.0.0.1:5176",
+          "conversation/material/meeting/report workers"
+        ]
+      },
+      {
+        "terminal": 2,
+        "command": "make tauri-local",
+        "requires": "terminal 1 ready",
+        "provides": [
+          "Strong Hajin Tauri app using http://127.0.0.1:5176"
+        ]
+      }
+    ],
+    "healthchecks": [
+      "curl -fsS http://127.0.0.1:8001/api/auth/providers",
+      "curl -fsS http://127.0.0.1:5176/"
+    ],
+    "stop": [
+      "각 foreground 터미널에서 Ctrl+C",
+      "PostgreSQL까지 내릴 때만 make postgres-down"
+    ],
+    "env_files": {
+      "~/.config/soniox/env": "선택. 실제 STT에 필요. 값은 출력·문서화 금지",
+      "~/.config/theconnect/env": "선택. 회의실 예약에 필요. 값은 출력·문서화 금지"
+    },
+    "runbook": "para/projects/summer-star/strong-hajin/70-runbook/runbook-001-local-tauri.md"
+  },
+  "environments": {
+    "_doc": "Strong Hajin 환경 상태 SSOT. 확정되지 않은 운영 값은 발명하지 않는다.",
+    "local": {
+      "status": "available",
+      "web": "http://127.0.0.1:5176",
+      "api": "http://127.0.0.1:8001",
+      "database": "postgresql://127.0.0.1:54329/ax_demo",
+      "tauri": "make tauri-local"
+    },
+    "production": {
+      "status": "not_deployed",
+      "target": "Mac Studio Kubernetes via k8s_infra_mac, Argo CD and Cloudflare Tunnel",
+      "topology": "single HTTPS origin; / -> frontend nginx, /api and WebSocket -> FastAPI",
+      "host": null,
+      "login": "unresolved: PRODUCTION session issuer is absent",
+      "registry_namespace": null,
+      "release_channel": "kknaks/Strong_hajin GitHub Releases for macOS and Windows installers",
+      "release_docs": "para/projects/summer-star/strong-hajin/60-release/",
+      "design": "para/projects/summer-star/strong-hajin/40-architecture/deploy/environments.md",
+      "infra_repo": "/Users/kknaks/git/harness_works/k8s_infra_mac",
+      "server_access_reference": "orchestration/config/projects/mediness.json environments; do not copy secrets into this file"
+    }
+  },
   "default_workers": [
     "backend",
     "frontend"
