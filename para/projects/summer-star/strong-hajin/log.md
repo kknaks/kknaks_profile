@@ -4,6 +4,7 @@
 
 | Date | Entry | Links |
 |---|---|---|
+| 2026-09-24 | 로컬 웹·Tauri 재실행 절차와 Mac Studio 운영 배포의 현재 상태·차단 항목을 환경 문서와 RUNBOOK-001로 분리해 기록 | [환경 구성](40-architecture/deploy/environments.md) · [로컬 실행](70-runbook/runbook-001-local-tauri.md) |
 | 2026-09-15 | 업무 페이지 BASE·DEC·SPEC 2건 초안 및 단계 index 생성. 계약·출처·미결 검수 시작 | [입력](00-baseline/README.md) · [결정](10-decision/README.md) · [스펙](20-spec/README.md) |
 | 2026-09-15 | 검수 FAIL에 따른 4문서 1차 수정 완료. 문서 ID 정렬, 스펙 v0.2.0 재검수 시작 | [결정](10-decision/README.md) · [스펙](20-spec/README.md) |
 | 2026-09-15 | 스펙 0.2.1 문서 정정, WORK-001 초안 및 작업 index 생성. 코드 미착수, WP 검수 시작 | [구현 계획](30-work/work-001-task-creation.md) |
