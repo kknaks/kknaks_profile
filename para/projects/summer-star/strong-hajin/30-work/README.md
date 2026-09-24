@@ -5,7 +5,7 @@
 > 현재 구현, QA, 릴리즈 상태를 추적하는 map이다. 상세 work 실행 본문은 `30-work/` 아래 1 파일 = 1 work로 둔다.
 > `Status Board`는 실행 상태의 owning view다. Spec Coverage는 work frontmatter `links.specs`를 spec 중심으로 펼친 derived view다.
 
-최종 수정: 2026-09-21
+최종 수정: 2026-09-22
 
 Status 값: `todo`, `in_progress`, `blocked`, `review`, `done`
 
@@ -24,7 +24,10 @@ Status 값: `todo`, `in_progress`, `blocked`, `review`, `done`
 | 1–8 | [WORK-001 업무 생성·즉시 배정](work-001-task-creation.md) | SPEC-001/002의 W1 | review | kknaks | 미산정 | 미정 | `kknaksss/strong-hajin-work` | 사용자 E2E 미수행 | 사용자 E2E 확인 |
 | 0–8 | [WORK-002 업무 v2·MyWork 개편](work-002-task-lifecycle-v2.md) | BE·FE 통합 | review | kknaks | 자동검증 완료 | 2026-09-17 목표 | `kknaksss/strong-hajin-work` | 자동검증 완료 · 브라우저 E2E 사용자 수행 · OQ-203·206 해당 경로 답 대기 | Node20 make verify·PG 77건·FE713건 완료 |
 | 1–7 | [WORK-003 참조 읽음·선행업무·만들기 창 프레임](work-003-inbox-predecessor-and-create-frame.md) | SPEC-001의 D-19·D-20·D-21 | todo | kknaks | 미산정 | 미정 | `kknaksss/strong-hajin-work` | 없음 (OQ-M은 Phase 3의 한 조각만 gate) | WP 검수 → BE·FE 병렬 발주 |
+| BE1–FE5 | [WORK-005 「프로젝트」 화면](work-005-projects.md) | SPEC-005 전절 (1루프 done · Phase 0 done · **2루프 BE-3→FE-4→FE-5 직렬**) | in_progress | kknaks | 미산정 | 미정 | `kknaksss/strong-hajin-projects` | 없음 | **2루프 BE-3 발주 예정** (인수조건 1루프 76 + **2루프 52**) |
 | BE1–FE4 | [WORK-004 캘린더 시간 배정](work-004-calendar-scheduling.md) | SPEC-004 전절 (BE·FE 직렬 · 2루프) | in_progress | kknaks | 미산정 | 미정 | `kknaksss/strong-hajin-calendar` | 없음 | **1루프 넷 DONE**(`1c15d02`·`2a85176`·`c5b109d`·`aa8576b`) → **Phase BE-3 발주**(2루프 K19~K24) |
+
+| 1–9 (6a·6b 분리) | [WORK-006 데스크톱 래퍼](work-006-tauri-wrapper.md) | SPEC-006 전절 · 10단계 | in_progress | kknaks | 미산정 | 미정 | `kknaksss/strong-hajin-projects` | 배포 결정·Windows 장비는 해당 단계에서 확인 | Phase 1 Claude 구현 중 |
 
 ## Work List
 
@@ -37,6 +40,8 @@ work 문서를 만들거나 상태, owner, branch, 다음 작업이 바뀌면 �
 | WORK-003 | 참조 읽음·선행업무·만들기 창 프레임 | new-feature | kknaks | todo | 0% | [본문](work-003-inbox-predecessor-and-create-frame.md) | SPEC-001 |
 | WORK-004 | 캘린더 시간 배정 | new-feature | kknaks | in_progress | 1루프 4/4 · 2루프 0/4 | [본문](work-004-calendar-scheduling.md) | SPEC-004 |
 
+| WORK-006 | 데스크톱 래퍼 | new-feature | kknaks | in_progress | 0% | [본문](work-006-tauri-wrapper.md) | SPEC-006 |
+
 ## Spec Coverage
 
 각 spec이 어느 work에서 구현되며 현재 진척이 어떤지 한눈에 보는 spec-centric view다. Covering Work의 Status를 종합한 derived view다.
@@ -47,6 +52,8 @@ work 문서를 만들거나 상태, owner, branch, 다음 작업이 바뀌면 �
 | SPEC-002 | WORK-001 · WORK-002 | 신규 수락 제거·AX 확인 보존 review. 완료 승인·문의 미착수 |
 | SPEC-003 | WORK-002 | 계획·BE·FE 구현 및 자동검증 완료, OQ-203·206 답 대기 |
 | SPEC-004 | WORK-004 | v0.3.1 검수 PASS·커밋. **1루프 넷 DONE**, 2루프(`K19`~`K24`) 넷 todo — Phase BE-3 발주 대기 |
+
+| SPEC-006 | WORK-006 | 계획 검수 종료. Phase 1 구현 중, 실기·설치 E2E는 내일 |
 
 ## Release Gate
 

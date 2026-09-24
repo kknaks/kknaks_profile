@@ -1,0 +1,71 @@
+# [reviewer] SPEC-006 Tauri 래퍼 독립 검수
+
+너는 Claude read-only 리뷰어다. 작성자와 독립해서 실제 코드와 공식 문서로 검수한다. 작업 워크트리는 /Users/kknaks/orca/workspaces/kknaks_profile/strong_hajin. 다른 제품 문서·프로젝트 화면 작업이 진행 중이다.
+역할: /Users/kknaks/orca/workspaces/kknaks_profile/strong_hajin/orchestration/roles/strong-hajin/reviewer/role.md 및 rules.md·skills.md·tools.md·workflow.md.
+
+## 1. SSOT — 읽을 것
+- /Users/kknaks/orca/workspaces/kknaks_profile/strong_hajin/para/projects/project.md
+- /Users/kknaks/orca/workspaces/kknaks_profile/strong_hajin/templates/projects/20-spec/spec.md
+- /Users/kknaks/orca/workspaces/kknaks_profile/strong_hajin/para/projects/summer-star/strong-hajin/10-decision/decision-005-tauri-wrapper.md
+- /Users/kknaks/orca/workspaces/kknaks_profile/strong_hajin/para/projects/summer-star/strong-hajin/20-spec/spec-006-tauri-wrapper.md
+- /Users/kknaks/orca/workspaces/kknaks_profile/strong_hajin/orchestration/work/strong-hajin-projects/tauri-spec-writer-brief.md
+- /Users/kknaks/orca/workspaces/kknaks_profile/strong_hajin/orchestration/work/strong-hajin-projects/tauri-spec-writer-report.md (특히 §5 R-1~R-8)
+- /Users/kknaks/orca/workspaces/kknaks_profile/strong_hajin/orchestration/work/strong-hajin-projects/tauri-implementation-research.md
+- /Users/kknaks/orca/workspaces/kknaks_profile/strong_hajin/orchestration/work/strong-hajin-projects/tauri-audio-comparison-note.md
+- 참조: /Users/kknaks/git/toy_pr2/task_management/app/front/src-tauri/ (tauri.conf.json, Cargo.toml, src/lib.rs, capabilities/default.json, plist 둘)
+- 적용 코드: /Users/kknaks/orca/workspaces/Strong_hajin/strong-hajin-projects/ (AGENTS.md 먼저)
+기대는 개념: 해당 없음. 제품 확정과 제안·미결을 엄격히 구분.
+
+## 2. 배경
+사용자는 Claude로 조사부터 스펙·검수까지 승인했다. 원격 HTTPS 웹을 Tauri로 감싸고 쿠키 로그인 유지, 녹음 중 자동 절전 방지, 추후 OS 알림, 설치파일 빌드 구성 계승이다. 구현은 아직 아니다.
+
+## 3. 계약
+검수 결과 PASS/WARN/FAIL + 파일:줄·사용자 요구/코드/공식 문서 근거. 제품 파일은 수정하지 않는다. 미정 OS·배포 주소·서명 신원을 발명하지 않는다. 실행이 필요한 사항과 문서만으로 틀린 것을 구분. 미실측이라고 원리적으로 불가능한 것처럼 판정하지 않는다.
+
+## 4. 집중 검수
+1. R-1~R-8 전수. DEC의 조건을 작성자가 임의 축소하거나 확정하지 않았는지. 일시정지 없는 현 제품에서 D-03 조건부 처리가 정직한지.
+2. 목적은 실제 회의 녹음이다. 포맷 호환을 별도 spec으로 밀어 이 spec이 목적을 못 이루는 구조인지, 필요한 변경을 조사 gate로 유지할 수 있는지. '기존 계약 0줄'과 운영 인증·Secure 쿠키·신규 native 연동·세션 만료 UX가 모순 없는지.
+3. wake lease TTL/renew의 웹뷰 타이머 throttling 영향: 화면 꺼짐·백그라운드에서도 녹음 중 lease가 만료되어 잠드는 실패. 시계/수동 sleep 복귀/OS assertion 복구/중복·stale 요청/탐색·SPA 화면전환 구분. 5개 커맨드와 참조계수가 과도하거나 모호한지.
+4. 원격 IPC 사용 시 공식 Tauri remote ACL·custom commands 노출·로컬 오류화면 신뢰 경계. 특정 버전 하한 근거 검증. 외부 링크·redirect·새 창·http URL·OS 알림 후속 범위 일관성.
+5. 세션 12시간은 코드 사실인가 사용자 확정인가 구분. 열린 WS가 세션 만료 시 실제 4401로 닫히는지, 쿠키 만료=자동 로그인 화면 전환이 현 코드에 있는지. 재설치 로그인 유지 AC에 서버 만료 조건 누락 없는지.
+6. 29개 AC가 구현 가능한지, 10 OQ 중 기술 선택을 불필요하게 사용자 결정/실측으로 미룬 부분은 없는지. 미결은 차단 범위를 정확히 표기. 측정용 prototype 계획을 WP보다 먼저 요구하는 순환 gate 금지.
+7. 목차·frontmatter·SPEC에 work ID/구현 파일 경로/불필요한 내부 구현 혼입 여부. 최신 API 사실은 공식 문서로만 검증.
+
+## 5. allowed_paths
+/Users/kknaks/orca/workspaces/kknaks_profile/strong_hajin/orchestration/work/strong-hajin-projects/review-tauri-spec-report.md 하나만 작성. 나머지는 읽기 전용.
+
+## 6. 검수 순서
+원문과 근거 확인 → DEC D-01~06/AC/OQ 대조 → 지적을 근거와 최소 수정안으로 작성 → 보고. 코드 실행·뮤테이션·설치·서버 기동·중단·제품 수정·커밋·push·PR·추가 워커 발주 금지.
+
+## 7. 범위 제약
+검수 실패와 승인 대기/실측 미완을 혼동하지 않는다. 사용자 이미 확정한 쿠키·원격 웹 래퍼를 재논의하지 않는다. 작성자의 수치를 그대로 믿지 않는다.
+
+## 8. 검증
+리포트 첫 줄 최종 판정·FAIL/WARN 수. 이후 위반, 모호점, 통과, 실물 E2E에서 확인할 지점, OQ별 차단 판정. 완료 시 핵심 지적 3개와 보고서 경로.
+
+## 9. 완료 보고 — **문구 변경 금지**
+
+> **⚠ 핸들은 dispatch preamble 의 값을 믿어라.** 아래 명령에 박힌 코디handle 은 **브리프 작성 시점** 값이라 오래됐을 수 있다 — 세션이 재연결되면 핸들이 바뀐다(2026-07-28·29 두 번 겪음). preamble 의 코디네이터 핸들과 아래 값이 다르면 **preamble 이 맞다.** 두 곳에 다 보내지 말고 preamble 쪽으로만 보내라.
+
+
+- **커밋·push·PR 하지 마라.** 워크트리에 변경만 남긴다. 검증·PR 은 코디네이터가 한다.
+- 끝나면 **아래 두 명령을 모두** 실행한다. 하나만 하면 안 된다.
+
+```bash
+# (1) 인박스 적재 — 태스크 완료 처리·영구 기록. 코디네이터를 깨우지 않는다.
+orca orchestration send \
+  --to term_2ae8654e-00e2-4649-ab7c-cb3b5e02b995 --from term_d3ba7d04-3add-4968-b1bc-eaebc7692737 \
+  --type worker_done \
+  --task-id <이 태스크의 taskId — dispatch 로 받은 context 에 들어 있다> \
+  --dispatch-id <이 태스크의 dispatchId — dispatch 로 받은 context 에 들어 있다> \
+  --subject "reviewer 완료: <한 줄>" \
+  --body "변경 파일 목록 / 구현 요약 / 검증 결과(수치) / 계약 준수 / 미결·주의점"
+
+# (2) 직접 주입 — 코디네이터 세션에 유저 메시지로 꽂혀 자동으로 깨운다.
+orca terminal send --terminal term_2ae8654e-00e2-4649-ab7c-cb3b5e02b995 \
+  --text "[worker_done] reviewer 완료 — <한 줄 요약>. 상세는 인박스." --enter
+```
+
+- 막히면 30분 이상 혼자 헤매지 말고 같은 (2) 방식으로 물어라:
+  `orca terminal send --terminal term_2ae8654e-00e2-4649-ab7c-cb3b5e02b995 --text "[질문] reviewer: <질문>" --enter`
+  (`orca orchestration ask` 는 채널이 닫혀 답이 안 닿는 경우가 많다.)

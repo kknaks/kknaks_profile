@@ -33,6 +33,20 @@
         ".design-sync/ 가 Claude Design 프로젝트 7e839512(TheSC AX Design System)를 가리킨다. 그 프로젝트에는 «우리가 올린» 부품 35종이 들어 있다(업스트림 Figma 렌더러 199종은 2026-09-14 에 지웠다).",
         "⚠ 백엔드 커밋이 들어가면 API 를 «반드시» 다시 띄운다 — 2026-09-14~15 에 떠 있는 프로세스가 옛 코드인 것을 두 번 놓쳐 실물 e2e 를 통째로 날렸다."
       ]
+    },
+    "infra": {
+      "orca_name": "k8s_infra_mac",
+      "canonical_path": "/Users/kknaks/git/harness_works/k8s_infra_mac",
+      "remote": "https://github.com/MediSolveAIDev/k8s_infra_mac.git",
+      "base": "origin/main",
+      "pr_base": "main",
+      "worktree_suffix": "-infra",
+      "notes": [
+        "Strong Hajin 전용 차트·Application만. 공유 Mediness·클러스터 기반 리소스 변경 금지.",
+        "작업당 이 레포의 작업 위치는 하나로 유지. 기존 체크아웃 변경 여부와 적용 AGENTS를 발주 전에 확인.",
+        "코드 작성/렌더 검증과 실제 GitOps 배포를 구분. 회사 org 푸시 범위는 발행 전 확인, 워커 커밋·push·PR 금지.",
+        "운영 도메인·비밀값 발명 금지. 서버 접속은 mediness.json environments 설정 참조."
+      ]
     }
   },
   "workers": {
@@ -77,7 +91,7 @@
       "allowed_paths": [
         "frontend/"
       ],
-      "verify": "코드 레포 AGENTS.md 준수: make frontend-test 및 frontend에서 npx tsc --noEmit, 최종 빌드는 make frontend-build 또는 코디의 make verify. 같은 검증 중복 실행 금지. envelope으로 권한 판단, api.ts 밖 fetch 금지, 기존 부품/viewModels 재사용, 시안 부재는 DS-gaps 기록.",
+      "verify": "코드 레포 AGENTS.md 준수: make frontend-test 및 frontend에서 npx tsc --noEmit, 최종 빌드는 make frontend-build 또는 코디의 make verify. 같은 검증 중복 실행 금지. envelope으로 권한 판단, api.ts 밖 fetch 금지, 기존 부품/viewModels 재사용, 시안 부재는 DS-gaps 기록. Tauri/Rust 변경 시 frontend/src-tauri에서 cargo check, 핵심 상태·경합의 cargo test 및 cargo clippy -- -D warnings를 단계 범위에 맞게 실행. OS별 빌드/실측 증거는 분리하며 macOS 통과를 Windows 통과로 대신하지 않는다. 실제 실행하지 못한 검증은 사유와 함께 pending으로 보고.",
       "roles_dir": "roles/strong-hajin/frontend"
     },
     "reviewer": {
@@ -89,6 +103,19 @@
       ],
       "verify": "각 지적에 파일:줄 + 근거. 근거 없는 지적은 쓰지 않는다. 판정은 FAIL(계약과 다른 것이 돈다) · WARN(물어야 할 만큼 모호하다) · PASS. 「조용히 통과하는 자리」를 따로 본다 — 개명·빈 단언·폴백처럼 테스트가 초록인데 계약이 깨진 곳",
       "roles_dir": "roles/strong-hajin/reviewer"
+    },
+    "infra": {
+      "repo": "infra",
+      "agent": "claude",
+      "brief_suffix": "infra",
+      "allowed_paths": [
+        "charts/strong-hajin/",
+        "charts/datastores/values-strong-hajin.yaml",
+        "argocd/applications/strong-hajin-*.yaml",
+        "argocd/projects/strong-hajin.yaml"
+      ],
+      "verify": "Strong Hajin 차트만 helm lint 및 dev/prod helm template. 명시 이미지 태그, 기존 앱과 이름·namespace 격리, 같은 origin FE/API/WS 라우팅·PVC·secretRef 확인. 클러스터 적용·GitOps push·Release 발행 없이 로컬 렌더 결과를 보고.",
+      "roles_dir": "roles/strong-hajin/infra"
     }
   },
   "default_workers": [

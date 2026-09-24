@@ -1,0 +1,59 @@
+# [frontend] WORK-006 Phase1 계측 기반 구현
+
+코드 워크트리 /Users/kknaks/orca/workspaces/Strong_hajin/strong-hajin-projects 에서 구현한다. 새 워크트리 금지. 코디 문서 루트 /Users/kknaks/orca/workspaces/kknaks_profile/strong_hajin. 이전 맥락은 없다.
+
+## 1. 읽을 것
+- 코드 AGENTS.md, frontend 아래 적용 지침
+- /Users/kknaks/orca/workspaces/kknaks_profile/strong_hajin/orchestration/roles/strong-hajin/frontend/ 역할 파일
+- /Users/kknaks/orca/workspaces/kknaks_profile/strong_hajin/para/projects/summer-star/strong-hajin/30-work/work-006-tauri-wrapper.md Phase1 및 계약 불변식/실측표
+- /Users/kknaks/orca/workspaces/kknaks_profile/strong_hajin/para/projects/summer-star/strong-hajin/20-spec/spec-006-tauri-wrapper.md v0.2.3 커맨드4·절전/권한 계약
+- /Users/kknaks/orca/workspaces/kknaks_profile/strong_hajin/para/projects/summer-star/strong-hajin/10-decision/decision-005-tauri-wrapper.md
+- /Users/kknaks/orca/workspaces/kknaks_profile/strong_hajin/orchestration/work/strong-hajin-projects/tauri-implementation-research.md
+- 참조 /Users/kknaks/git/toy_pr2/task_management/app/front/src-tauri/ 및 package.json (읽기전용)
+
+## 2. 사용자 최신 승인
+내일 아침까지 코드 구현 우선. 각 Phase 구현→검수→수정→다음 Phase 직렬. 사용자 앱 설치·최종 E2E는 내일이므로 오늘 미실측을 완료로 쓰지 않는다. WORK의 물리실측 gate는 미측정으로 기록하면서 독립 구현을 계속할 수 있으나, 실제 IPC/포맷 불성립을 관측하면 즉시 보고한다. 이번 워커는 Phase1만 구현한다.
+
+## 3. 구현
+WORK Phase1의 탐침 Tauri 셸, 정확한 HTTPS 로컬 origin의 최소 capability, 커맨드4와 OS 절전 API(macOS/Windows), 마이크 권한, 두 녹음경로 MIME 계측 페이지, 명시적 시작/종료와 acquire/release, navigation 로그를 구현한다. TTL/renew 금지. 참조 keychain/번들FE/API주소 가정 복제 금지. 제품 화면 배선은 Phase4.
+HTTPS fixture는 전용 개발 설정/엔트리로 분리하고 제품 빌드에 계측 화면/권한이 유출되지 않게 한다. 자체 서명 인증서 파일·개인키는 커밋 대상 금지. 시스템 인증서 신뢰/전역 보안 설정을 몰래 바꾸지 않는다. 필요한 로컬 인증서 준비는 재현 가능한 스크립트/절차로 제공하고 실제 신뢰 설치 필요는 보고. TLS 검증 무력화로 성공 증거를 만들지 않는다.
+Windows 코드는 구현하되 macOS 결과로 Windows 실행을 통과 처리하지 않는다. 운영 도메인/앱 서명 신원 발명 금지. 임시 개발 앱 ID는 제품/참조 충돌을 피하고 최종 ID와 구분.
+
+## 4. allowed_paths
+코드 frontend/src-tauri/**, frontend/src/dev/**, frontend/package.json 및 lockfile, frontend 전용 fixture 설정·엔트리·실행 스크립트·관련 ignore만. 기존 제품 App.tsx/features/api.ts/backend 변경 금지. fixture 부팅에 다른 파일이 반드시 필요하면 사유 보고. 원격 코드/인프라 수정 금지.
+예외 보고서 1개: /Users/kknaks/orca/workspaces/kknaks_profile/strong_hajin/orchestration/work/strong-hajin-projects/tauri-p1-implementation-report.md.
+문서 SPEC/WP/index/log 수정 금지. 커밋/push/PR/Release/운영배포/추가워커 금지.
+
+## 5. 검증
+작업 전 HEAD/status 기록. Node/Rust 도구 가용성 확인. 필요한 로컬 프로젝트 의존 설치와 빌드는 허용(전역 툴체인 설치는 코디에 보고). tsc, make frontend-test(신규 실패0), cargo check 및 변경 Rust 핵심 수명/경합 단위검증. 동일 검사 반복 금지. 전체 backend suite/전체 스택 기동 금지. 가능한 최소 fixture/셸 기동 확인은 사용자 녹음/OS 마이크 승인을 몰래 수락하지 말고 실제 관측 가능한 범위만.
+웹 검색 필요시 Tauri/Apple/Microsoft 공식 근거 사용. 네이티브 스레드 수명/Windows thread-bound assertion 해제를 임의 async thread 호출로 깨지 않게 검증한다. release race/close 취소 등 SPEC 불변식을 탐침에서도 훼손하지 않는다.
+
+## 6. 완료
+구현 파일·실행 명령과 exit·미실측/막힘 구분·Phase2 재현 절차·검수 포인트·운영 제품에 영향 없는 근거를 보고서에 남긴다. 한 번에 Phase2/3을 구현하지 않는다. 워커 추가발주 금지.
+
+## 9. 완료 보고 — **문구 변경 금지**
+
+> **⚠ 핸들은 dispatch preamble 의 값을 믿어라.** 아래 명령에 박힌 코디handle 은 **브리프 작성 시점** 값이라 오래됐을 수 있다 — 세션이 재연결되면 핸들이 바뀐다(2026-07-28·29 두 번 겪음). preamble 의 코디네이터 핸들과 아래 값이 다르면 **preamble 이 맞다.** 두 곳에 다 보내지 말고 preamble 쪽으로만 보내라.
+
+
+- **커밋·push·PR 하지 마라.** 워크트리에 변경만 남긴다. 검증·PR 은 코디네이터가 한다.
+- 끝나면 **아래 두 명령을 모두** 실행한다. 하나만 하면 안 된다.
+
+```bash
+# (1) 인박스 적재 — 태스크 완료 처리·영구 기록. 코디네이터를 깨우지 않는다.
+orca orchestration send \
+  --to term_1f3a40c9-5b3d-4196-a44d-bb65907d59fe --from term_a7602522-3d09-4dd7-a585-6bbc3589ae1a \
+  --type worker_done \
+  --task-id <이 태스크의 taskId — dispatch 로 받은 context 에 들어 있다> \
+  --dispatch-id <이 태스크의 dispatchId — dispatch 로 받은 context 에 들어 있다> \
+  --subject "frontend 완료: <한 줄>" \
+  --body "변경 파일 목록 / 구현 요약 / 검증 결과(수치) / 계약 준수 / 미결·주의점"
+
+# (2) 직접 주입 — 코디네이터 세션에 유저 메시지로 꽂혀 자동으로 깨운다.
+orca terminal send --terminal term_1f3a40c9-5b3d-4196-a44d-bb65907d59fe \
+  --text "[worker_done] frontend 완료 — <한 줄 요약>. 상세는 인박스." --enter
+```
+
+- 막히면 30분 이상 혼자 헤매지 말고 같은 (2) 방식으로 물어라:
+  `orca terminal send --terminal term_1f3a40c9-5b3d-4196-a44d-bb65907d59fe --text "[질문] frontend: <질문>" --enter`
+  (`orca orchestration ask` 는 채널이 닫혀 답이 안 닿는 경우가 많다.)
