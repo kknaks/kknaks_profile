@@ -26,7 +26,7 @@
       "worktree_suffix": "",
       "notes": [
         "canonical 은 사용자 피처 브랜치 체크아웃 중 — 건드리지 말 것.",
-        "릴리스는 dev→main fast-forward(git push origin origin/dev:main)."
+        "릴리스는 dev→main **PR + 머지 커밋**(gh pr create --base main --head dev → gh pr merge --merge). 2026-09-23 실측 정정 — 구 노트의 `git push origin origin/dev:main` fast-forward 는 **틀렸다**: main 에는 과거 릴리스 PR 의 머지 커밋이 쌓여 있어(#125·#128·#131·#133·#138·#144·#147·#148·#150…) main 이 dev 의 조상이 아니고, fast-forward push 는 거부되거나 억지로 밀면 그 머지 커밋들을 날린다. ⛔ squash 금지 — 머지 부모 연결이 끊겨 다음 릴리스가 또 갈라진다."
       ]
     },
     "app_main": {
@@ -134,8 +134,9 @@
     "gitops": {
       "repo": "MediSolveAIDev/k8s_infra_mac",
       "chart": "charts/mediness",
-      "values": { "dev": "values-dev.yaml", "prod": "values-prod.yaml" },
-      "tag_writeback": "mediness-app CI(build-k8s.yml)가 push 마다 <sha>-{dev|main}-arm64 태그를 values 에 커밋(mediness-ci) → ArgoCD 폴링 sync(수 분). 배포 확인 = deploy 이미지 태그가 대상 sha 인지"
+      "values": { "dev": "values-dev.yaml", "prod": "values.yaml" },
+      "_values_note": "2026-09-23 실측 정정 — prod 는 values-prod.yaml 이 아니라 charts/mediness/values.yaml 에 쓴다(CI 커밋 f727cc8 확인).",
+      "tag_writeback": "mediness-app CI(build-k8s.yml)가 push 마다 태그를 values 에 커밋(mediness-ci) → ArgoCD 폴링 sync(수 분). **태그 형식이 환경마다 다르다(2026-09-23 실측)** — dev = `<sha>-dev-arm64`(values-dev.yaml) / prod = `<sha>-arm64`(values.yaml, `-main-` 없음). 배포 확인 = deploy 이미지 태그가 대상 sha 인지. prod 는 deploy 가 넷(back·front·mcp·worker), dev 는 worker 없음"
     },
     "dev": {
       "namespace": "mediness-dev",
