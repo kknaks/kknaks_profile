@@ -4,6 +4,8 @@
 
 | Date | Entry | Links |
 |---|---|---|
+| 2026-09-28 | **SPEC-007 검수 반영(FAIL 1 · WARN 8)과 미결 판정.** §7 을 다시 짜 **기존 계약 «여섯 줄»을 대체 표로 전수 등록**했고(U-7 구획 순서 · SPEC-001:764-765 전용 명령 금지 · SPEC-005 D-07 후행 조회 금지가 새로 등록됐다), **미결 여덟을 코디 판정으로 전부 닫았다** — 덩어리가 **넷에서 여섯으로**(`진행과 판단`·`이력` 추가), 못 읽는 선행이 **「건수만」으로 되돌아왔고** 셈·배너 규칙이 섰으며, **읽기 전용 갈래에도 후행이 실리고**, 후행 해제가 **A 담당자에게도 열렸다**. 근거 포인터 셋과 알림 절 문구 모순을 정정. **새로 연 미결은 OQ-709 하나** | [검수](../../../../orchestration/work/strong-hajin-design/review-spec-007-report.md) · [스펙](20-spec/spec-007-task-detail.md) · [결정](10-decision/decision-006-task-detail.md) |
+| 2026-09-28 | **업무 상세 재설계 문서 넷** — 확정 시안(`package 2/TaskDetail.html` A·B·C)과 읽기 전용 조사 셋(문서·BE·FE) 위에 BASE-005·DEC-006(결정 20건)·SPEC-007 v0.1.0 을 세우고 WORK-007 로 단계를 갈랐다(BE 셋 → FE 셋 직렬). **후행은 저장하지 않고 `task_predecessors` 를 반대로 읽는다** — 새 표 0·새 권한 0. 상위 변경 칸을 열고 V-8 파급 거절을 더했다. 코드 미착수 | [입력](00-baseline/baseline-005-task-detail.md) · [결정](10-decision/decision-006-task-detail.md) · [스펙](20-spec/spec-007-task-detail.md) · [계획](30-work/work-007-task-detail.md) |
 | 2026-09-24 | 로컬 웹·Tauri 재실행 절차와 Mac Studio 운영 배포의 현재 상태·차단 항목을 환경 문서와 RUNBOOK-001로 분리해 기록 | [환경 구성](40-architecture/deploy/environments.md) · [로컬 실행](70-runbook/runbook-001-local-tauri.md) |
 | 2026-09-15 | 업무 페이지 BASE·DEC·SPEC 2건 초안 및 단계 index 생성. 계약·출처·미결 검수 시작 | [입력](00-baseline/README.md) · [결정](10-decision/README.md) · [스펙](20-spec/README.md) |
 | 2026-09-15 | 검수 FAIL에 따른 4문서 1차 수정 완료. 문서 ID 정렬, 스펙 v0.2.0 재검수 시작 | [결정](10-decision/README.md) · [스펙](20-spec/README.md) |
@@ -47,3 +49,4 @@
 
 | 2026-09-22 | 사용자 야간 구현 Goal 승인: Phase별 구현→검수→수정 직렬 루프. WORK-006 Phase 1 Claude 구현 발주, Rust 검증 설정 추가. 코드·자동검증 우선, 사용자 설치·최종 E2E는 다음 날. 실제 운영배포·Release 미수행 | [계획](30-work/work-006-tauri-wrapper.md) |
 | 2026-09-24 | Tauri 로컬 앱 실행과 월간 날짜·주간 종일·주간 시간 드래그 앤 드롭을 사용자 실측으로 확인. WKWebView의 HTML5 드롭을 선점하던 Tauri 네이티브 파일 드롭 핸들러를 제품 창에서 비활성화해 웹과 같은 드래그 미리보기·저장 흐름을 복원했다. 날짜 선택기 정렬·여백과 월간 일정 막대 폭도 보정. 다음 세션은 디자인 정리와 배포 준비이며 운영 origin·로그인·서명/공증·Windows·Release는 미완료로 유지 | [계획](30-work/work-006-tauri-wrapper.md) · [구현 상태](../../../../orchestration/work/strong-hajin-projects/tauri-implementation-status.md) |
+| 2026-09-29 | 업무 상세 재설계 마감. 세 층 전수조사 → BASE-005·DEC-006(결정 20)·SPEC-007 v0.2.0·WORK-007(7단계) → BE 셋·FE 셋 구현·검수. 후행은 `task_predecessors` 를 반대로 읽어 열었고(새 표 0), 상위 변경과 연결 편집을 열었으며, 선행 배선을 복구했다. 사용자 실물 e2e 지적 일곱 반영. `make verify` 통과. 알림·소급 재배치는 범위 밖 | [회고](log/2026-09-29-strong-hajin-design.md) · [스펙](20-spec/spec-007-task-detail.md) · [계획](30-work/work-007-task-detail.md) |

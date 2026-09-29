@@ -19,10 +19,10 @@ status: active
 
 | Area | Status | Next |
 |---|---|---|
-| Baseline | raw 4건 | BASE-004 는 조사 2건을 사실로 눕혔다 |
-| Decision | proposed 4건 · accepted 1건 | **DEC-004 결정 39건** · 뒤집힌 것 둘(D-12·D-31) |
-| Spec | **6건** | SPEC-005 **v0.2.0** — 2루프 계약 반영·검수 통과 · **미결 4건**(OQ-604~607) |
-| Work | WORK-005·006 구현 진행 | Tauri 로컬 셸과 웹 배선 구현 · 운영 배포는 미완료 |
+| Baseline | raw **5건** | BASE-005 는 조사 3건을 사실로 눕혔다 |
+| Decision | proposed **5건** · accepted 1건 | **DEC-004 결정 39건** · 뒤집힌 것 둘(D-12·D-31) · **DEC-006 결정 20건 · 미결 0건** |
+| Spec | **7건** | SPEC-007 **v0.2.0** — 검수 반영·미결 판정 완료 · **열린 미결 1건**(OQ-709) |
+| Work | WORK-005·006 구현 진행 · **WORK-007 todo** | Tauri 로컬 셸과 웹 배선 구현 · 운영 배포는 미완료 · WORK-007 은 **BE Phase B-1 발주 대기** |
 
 데스크톱 래핑: [DEC-005](10-decision/decision-005-tauri-wrapper.md) 방향 확정. [SPEC-006](20-spec/spec-006-tauri-wrapper.md) v0.2.3: macOS·Windows, Mac Studio FE·BE, 코드 Releases 설치파일·프로필 릴리즈 문서 확정. [WORK-006](30-work/work-006-tauri-wrapper.md)에 따라 로컬 Tauri 셸·웹 배선·빌드 관문까지 구현했다. 로컬 실행은 [RUNBOOK-001](70-runbook/runbook-001-local-tauri.md), 환경별 현재 상태는 [환경 구성](40-architecture/deploy/environments.md)을 따른다. 운영 주소·PRODUCTION 로그인·인프라 배포와 설치파일 발행은 아직 완료되지 않았다.
 
@@ -39,6 +39,7 @@ status: active
 
 ## 최근 로그
 
+- 2026-09-28: **업무 상세 재설계** — 확정 시안(`TaskDetail.html` A·B·C)과 조사 셋 위에 BASE-005·DEC-006·SPEC-007·WORK-007 넷. **후행은 저장하지 않고 같은 표를 반대로 읽는다**, 상위 변경을 열고 V-8 파급을 거절한다. 검수 반영으로 **기존 계약 여섯 줄 대체**를 §7.2 에 전수 등록하고 미결 여덟을 닫았다. 코드 미착수. [전체 이력](log.md)
 - 2026-09-22: **Phase 0 닫힘**(`make verify` exit 0) · E2E 1차 후 **2루프 계약 개정**(결정 38건 · SPEC v0.2.0). 코드 미착수. [전체 이력](log.md)
 - 2026-09-21: 「프로젝트」 화면 — 조사 2건, 결정 27건 확정. 간트 재귀 트리 · 손자 프로젝트 종속 · 배정 시 자동 초대. [전체 이력](log.md)
 - 2026-09-15: 업무 페이지 초안 4건 작성, 검수 시작. [전체 이력](log.md)

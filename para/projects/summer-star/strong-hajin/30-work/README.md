@@ -5,7 +5,7 @@
 > 현재 구현, QA, 릴리즈 상태를 추적하는 map이다. 상세 work 실행 본문은 `30-work/` 아래 1 파일 = 1 work로 둔다.
 > `Status Board`는 실행 상태의 owning view다. Spec Coverage는 work frontmatter `links.specs`를 spec 중심으로 펼친 derived view다.
 
-최종 수정: 2026-09-22
+최종 수정: 2026-09-28
 
 Status 값: `todo`, `in_progress`, `blocked`, `review`, `done`
 
@@ -28,6 +28,7 @@ Status 값: `todo`, `in_progress`, `blocked`, `review`, `done`
 | BE1–FE4 | [WORK-004 캘린더 시간 배정](work-004-calendar-scheduling.md) | SPEC-004 전절 (BE·FE 직렬 · 2루프) | in_progress | kknaks | 미산정 | 미정 | `kknaksss/strong-hajin-calendar` | 없음 | **1루프 넷 DONE**(`1c15d02`·`2a85176`·`c5b109d`·`aa8576b`) → **Phase BE-3 발주**(2루프 K19~K24) |
 
 | 1–9 (6a·6b 분리) | [WORK-006 데스크톱 래퍼](work-006-tauri-wrapper.md) | SPEC-006 전절 · 10단계 | in_progress | kknaks | 미산정 | 미정 | `kknaksss/strong-hajin-projects` | 배포 결정·Windows 장비는 해당 단계에서 확인 | Phase 1 Claude 구현 중 |
+| B-1–7 | [WORK-007 업무 상세 재설계](work-007-task-detail.md) | SPEC-007 전절 (**BE 셋 → FE 셋 직렬**) | todo | kknaks | 미산정 | 미정 | `kknaksss/strong-hajin-design` | 없음 (OQ-709 는 F-2 의 한 조각만 gate) | WP 검수 → **BE Phase B-1 발주** |
 
 ## Work List
 
@@ -41,6 +42,7 @@ work 문서를 만들거나 상태, owner, branch, 다음 작업이 바뀌면 �
 | WORK-004 | 캘린더 시간 배정 | new-feature | kknaks | in_progress | 1루프 4/4 · 2루프 0/4 | [본문](work-004-calendar-scheduling.md) | SPEC-004 |
 
 | WORK-006 | 데스크톱 래퍼 | new-feature | kknaks | in_progress | 0% | [본문](work-006-tauri-wrapper.md) | SPEC-006 |
+| WORK-007 | 업무 상세 재설계 | new-feature | kknaks | todo | 0% | [본문](work-007-task-detail.md) | SPEC-007 |
 
 ## Spec Coverage
 
@@ -54,6 +56,7 @@ work 문서를 만들거나 상태, owner, branch, 다음 작업이 바뀌면 �
 | SPEC-004 | WORK-004 | v0.3.1 검수 PASS·커밋. **1루프 넷 DONE**, 2루프(`K19`~`K24`) 넷 todo — Phase BE-3 발주 대기 |
 
 | SPEC-006 | WORK-006 | 계획 검수 종료. Phase 1 구현 중, 실기·설치 E2E는 내일 |
+| SPEC-007 | WORK-007 | 계약 v0.2.0 검수 반영 완료. WP 작성 완료·구현 미착수(BE 셋 → FE 셋 직렬). **WORK-003 Phase 6 을 흡수한다** |
 
 ## Release Gate
 
