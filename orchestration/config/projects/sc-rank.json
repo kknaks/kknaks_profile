@@ -1,0 +1,68 @@
+{
+  "_doc": "sc-rank(네이버 순위 조회 데스크톱 앱 — Tauri 2 + Rust, 서버 없음, 운영 Windows) 오케스트레이션 설정 SSOT. scripts/new-work.sh 가 읽는 유일한 곳. 값 하드코딩 금지. 2026-09-30 웹 PoC(reference/2026-09-09-sc-prototype) 이식으로 시작.",
+  "project": "sc-rank",
+  "worktree_root": "/Users/kknaks/orca/workspaces",
+  "use_worktree": true,
+  "repos": {
+    "app": {
+      "orca_name": "kknaks_profile",
+      "canonical_path": "/Users/kknaks/git/toy_pr2/kknaks_profile",
+      "remote": "https://github.com/kknaks/kknaks_profile.git",
+      "base": "origin/main",
+      "pr_base": "main",
+      "worktree_suffix": "",
+      "notes": [
+        "canonical(main)은 사용자 체크아웃 — pull/checkout 금지, fetch 만.",
+        "단일 레포형(runbook §프로젝트 유형): 문서(para/·orchestration/)와 코드가 한 레포. 별도 코드 레포 없음(DEC-001 D-07) — 코드는 reference/2026-09-09-sc-prototype/desktop/.",
+        "제품 문서는 para/projects/summer-star/sc-rank/ — 코디네이터 소유. 워커는 코디 워크트리 절대경로를 read-only 로 읽는다.",
+        "웹 PoC(reference/2026-09-09-sc-prototype/ 의 server/·src/·tests/)는 이식 원본 — 수정 금지.",
+        "PR 분리: 문서 = 코디 브랜치 → main, 코드 = <slug> 브랜치 → main.",
+        "Windows 빌드·실행은 사용자 Windows PC 에서 한다(DEC-001 D-11). macOS 통과를 Windows 통과로 대신하지 않는다."
+      ]
+    }
+  },
+  "workers": {
+    "desktop": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "desktop",
+      "roles_dir": "roles/sc-rank/desktop",
+      "allowed_paths": [
+        "reference/2026-09-09-sc-prototype/desktop/"
+      ],
+      "verify": "desktop/src-tauri 에서 cargo test · cargo clippy --all-targets -- -D warnings, desktop 에서 npm run build. Phase 범위에 맞게 1회씩 — 통과하면 반복하지 마라. 실수집(네이버 요청)은 Phase 끝에 1회만, 요청 간격 규칙을 지킨다. 사용자 포트·프로세스·브라우저 프로필을 건드리지 않는다. 실행 못 한 검증은 사유와 함께 pending 으로 보고",
+      "workspace": ""
+    },
+    "reviewer": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "review",
+      "roles_dir": "roles/sc-rank/reviewer",
+      "allowed_paths": [
+        "(read-only — 리포 파일 수정 금지. 산출물은 브리프가 지정한 리뷰 리포트 파일 1개뿐)"
+      ],
+      "verify": "각 지적에 파일:줄 + 근거(SPEC 절 또는 PoC 파일:줄). 판정은 FAIL(계약·PoC 와 다른 것이 돈다) · WARN(물어야 할 만큼 모호) · PASS. 「조용히 통과하는 자리」를 따로 본다 — 빈 단언·폴백·문구/제한값 변경"
+    },
+    "reviewer_doc": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "review-doc",
+      "roles_dir": "roles/sc-rank/reviewer",
+      "workspace": "coordinator",
+      "allowed_paths": [
+        "(read-only — 브리프가 지정한 리뷰 리포트 파일 1개만 생성)"
+      ],
+      "verify": "SPEC·WORK 를 PoC 코드와 DEC 에 대조. 각 지적에 파일:줄 + 근거. 판정 FAIL/WARN/PASS"
+    }
+  },
+  "default_workers": [
+    "desktop"
+  ],
+  "summary_dest": "/Users/kknaks/git/toy_pr2/kknaks_profile/para/projects/summer-star/sc-rank/log",
+  "rules": {
+    "spec_and_app_use_separate_prs": true,
+    "workers_commit_or_push": false,
+    "coordinator_verifies_before_pr": true,
+    "windows_verified_separately": true
+  }
+}
