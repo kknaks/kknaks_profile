@@ -12,8 +12,13 @@ aliases:
   - Gatekeeper
   - 공증
   - notarization
+  - Developer ID
+  - notarytool
+  - staple
+  - spctl
 up:
   - 2026-09-04-kakao-task
+  - 2026-10-01-strong-hajin-deploy
 tags:
   - infra
   - 배포
@@ -41,6 +46,12 @@ tags:
 
 **서명은 언어·프레임워크와 무관한 배포의 벽이다.** kakao-task 는 서명 없는 `mykakao.exe` 라 배포 시 SmartScreen 경고가 불가피했고(본인 기기 전용이라 「추가 정보→실행」안내로 수용), 빌드 중에는 MS 정책 업데이트(2026-09-02~03) 후 **SAC 가 서명 없는 rustc/cargo 산출물을 하드 차단**해 빌드가 막혔다 → SAC 를 끄고(사용자 승인) 진행했다. 「Rust 라서/트레이 앱이라서」가 아니라 서명 문제였다.
 
+### macOS 배포 한 벌
+
+Strong Hajin 회사판 dmg 는 이 순서로 나갔다: **Developer ID Application 서명**(hardened runtime + entitlements) → `xcrun notarytool submit --keychain-profile <프로필> --wait` → `xcrun stapler staple`(dmg·.app) → `spctl -a -vv -t install` 이 `accepted source=Notarized Developer ID` 를 내는지 확인. staple 까지 해야 오프라인에서도 Gatekeeper 가 통과시킨다. ad-hoc 서명 판은 다른 Mac 에서 열리지 않고, 사용자 Mac 에서도 「code has no resources but signature indicates they must be present」 로 깨져 시스템 리포트와 함께 종료됐다.
+
+**인증서 만료를 헷갈리기 쉽다** — Developer ID(2031)와 서버 TLS(Cloudflare 엣지, 자동 갱신)는 다른 인증서다. 키체인에서 직접 읽어 확인한다.
+
 ## 경계와 오해
 
 - **서명 ≠ 악성코드 아님** — 서명은 출처와 무결성만 증명한다. 서명된 악성코드도 있고, 서명 없는 정상 앱도 있다. OS 는 위험이 아니라 **신뢰 사슬**을 본다.
@@ -52,7 +63,9 @@ tags:
 
 - [[web-application-deployment]] — 서버 배포와 달리 클라이언트 바이너리 배포는 서명이 관문
 - [[ci-cd]] — 서명·공증을 파이프라인 단계로 넣어 배포 산출물에 자동 적용
+- [[build-flavor]] — 판마다 서명·공증
 
 ## 출처
 
 - [[2026-09-04-kakao-task]] — 미서명 exe 의 SmartScreen 경고 수용 + 빌드 중 SAC 하드 차단(MS 정책 업데이트 후) → SAC OFF 로 우회
+- [[2026-10-01-strong-hajin-deploy]] — macOS Developer ID 서명 → 공증 → staple → spctl 로 회사판 medi-ax 배포. ad-hoc 판이 깨져 종료된 사고
