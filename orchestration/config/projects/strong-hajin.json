@@ -172,14 +172,37 @@
       "tauri": "make tauri-local"
     },
     "production": {
-      "status": "not_deployed",
-      "target": "Mac Studio Kubernetes via k8s_infra_mac, Argo CD and Cloudflare Tunnel",
+      "status": "deployed",
+      "deployed_at": "2026-10-01",
+      "target": "Mac Studio Kubernetes via k8s_infra_mac, Argo CD (manual sync) and Cloudflare Tunnel",
       "topology": "single HTTPS origin; / -> frontend nginx, /api and WebSocket -> FastAPI",
-      "host": null,
-      "login": "unresolved: PRODUCTION session issuer is absent",
-      "registry_namespace": null,
-      "release_channel": "kknaks/Strong_hajin GitHub Releases for macOS and Windows installers",
-      "release_docs": "para/projects/summer-star/strong-hajin/60-release/",
+      "host": "https://ax.medisolveai.xyz",
+      "namespace": "strong-hajin-prod",
+      "argocd_apps": [
+        "strong-hajin-prod",
+        "strong-hajin-datastores"
+      ],
+      "argocd_project": "strong-hajin",
+      "registry_namespace": "ghcr.io/kknaksss",
+      "image_tag_rule": "<code main short sha>-arm64, set in charts/strong-hajin/values-prod.yaml image.tag",
+      "login": "email/password in every profile; demo shortcuts only in development (code #5)",
+      "ai": "codex via node /opt/codex mount + dedicated CODEX_HOME auth.json in codex-home PVC — never share with mediness or local ~/.codex",
+      "secrets": "strong-hajin-secret (SONIOX_API_KEY, TDL_EMAIL, TDL_PASSWORD), postgres password secret, ghcr-pull — created out-of-band, never printed",
+      "desktop_flavors": {
+        "strong-hajin": {
+          "name": "Strong Hajin",
+          "identifier": "app.stronghajin.desktop",
+          "origin": null
+        },
+        "medi-ax": {
+          "name": "medi-ax",
+          "identifier": "app.ax.desktop",
+          "origin": "https://ax.medisolveai.xyz"
+        }
+      },
+      "signing": "Developer ID Application (UYQF47UCVR) + notarytool keychain profile AC_NOTARY; Developer ID cert valid until 2031-05-26 (2026-11-28 is the Cloudflare edge TLS cert, auto-renewed)",
+      "release_channel": "kknaks/Strong_hajin GitHub Releases for macOS and Windows installers (not yet published)",
+      "runbook": "para/projects/summer-star/strong-hajin/70-runbook/runbook-002-production-deploy.md",
       "design": "para/projects/summer-star/strong-hajin/40-architecture/deploy/environments.md",
       "infra_repo": "/Users/kknaks/git/harness_works/k8s_infra_mac",
       "server_access_reference": "orchestration/config/projects/mediness.json environments; do not copy secrets into this file"
