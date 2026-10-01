@@ -86,6 +86,7 @@ sources:
 | 3a | D-02 · A-01 | AX 초안 = 새 업무 추가 필드 객체 · 기한 필수 제거 · 목록 응답 보강 | BE |
 | 3b | D-02 · A-01 | AX 요약 카드(좌우 넘김) · 「수정」= 새 업무 추가 모달 · 「AX 제안」 칩 | FE |
 | 4 | B-03 | 운영 회의 요약(종료 합성) 실패 — resume 실패 시 콜드스타트 | BE |
+| 5 | E2E-12 | AX 업무 생성이 프로젝트·업무를 찾아 채운다 · 프로젝트 근거 턴 실패 | BE |
 
 ## Code Surface
 
@@ -274,6 +275,25 @@ AX 경로에만 「기한 필수」 검사가 있다(`platform/action_center.py:
 - **인프라**: `charts/strong-hajin/` `_helpers.tpl`·values — 다섯 deployment 에 hostPath(type Directory) 마운트. **sync 전 노드에서 `limactl shell worker-1 -- sudo mkdir -p /mnt/mac/strong-hajin/codex-runtime`**
 - **반영 뒤 볼 것**: 다섯 파드의 sqlite(state·logs) 오류 0 — 보이면 파드별 홈 + `sessions/` 만 공유로 바꾼다(검수 `review-p4-report.md`) · 기존 실패 회의 둘 [다시 시도]
 - **범위 밖**: 웜스타트 구조 변경 · 파드 간 같은 세션 동시 resume 상호배제(확률 낮음, 검수 WARN)
+- **완료 증거**: 미작성
+
+---
+
+## Phase 5 — BE · AX 업무 생성이 프로젝트·업무를 찾지 않는다 (E2E-12)
+
+- **Status**: TODO
+- **워커**: backend
+- **요청**: 사용자 2026-10-01 E2E — 「`graph_search` 실패 … 왜 프로젝트 연결이 안 돼? 업무 만들 때 프로젝트·업무들 탐색 안 해?」
+- **원인** (`orchestration/work/strong-hajin-polish/research-graph-search.md`)
+  - (B) 업무 생성 때 탐색을 **하지 않는다**: 생성 도구 설명은 「대화가 준 필드만 채워라」, 라우팅 정책은 오히려 graph_search 를 먼저 부르지 말라고 하고, `project_list` 는 「회의용」으로 적혀 있다 → project_id 없이 생성
+  - (A) 프로젝트를 답변 근거로 가리키면 **턴 전체가 실패**: 답변 참조 형식에 `project` 종류가 없고, graph 도구로 본 대상은 근거로 묶이지 않는다
+  - (C) `graph_search` 22ms × 는 모델이 없는 인자(`kinds`)를 지어내 거절된 것 — 같은 턴에서 다시 불러 성공(무해)
+- **계약 (코디 결정 2026-10-01 — P-1 「AX 초안 = 새 업무 추가를 AI 가 채운 것」의 연장: 사람이 창에서 프로젝트·선행·참고를 고르듯 AI 도 찾아서 채운다)**
+  - [ ] 업무 생성·요청 초안을 만들기 전에 AX 가 **관련 프로젝트·기존 업무를 찾아** project_id·parent·reference·preceding 을 채울 수 있게 — 도구 설명·라우팅 정책·`project_list` 설명을 고친다. 못 찾거나 모호하면 비우고 답변에 「연결할 프로젝트를 찾지 못했다」고 말한다(지어내지 않는다)
+  - [ ] 답변 참조에 **`project` 종류**를 더하고, graph 도구로 본 대상도 근거로 묶일 수 있게 — 프로젝트를 가리킨 답변이 턴 실패가 되지 않는다. FE 가 project 참조를 그리는지 확인(못 그리면 FE 몫으로 보고)
+  - [ ] `graph_search` 인자 설명을 실제 스키마와 맞춰 지어낸 인자를 줄인다
+- **검증**: 프로젝트 이름이 들어간 업무 생성 요청 → 초안에 project_id · 프로젝트를 가리킨 답변이 턴 성공 · `make test-unit` · `make test-contract`
+- **범위 밖**: 실행 단계 UI 에서 자가 수정된 인자 오류의 표시 방식
 - **완료 증거**: 미작성
 
 ---
