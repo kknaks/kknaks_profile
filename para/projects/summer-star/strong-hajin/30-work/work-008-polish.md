@@ -85,6 +85,7 @@ sources:
 | 2 | B-01 | 탭 이동 때 깜박임 — 받아 둔 데이터를 먼저 보여 준다 | FE |
 | 3a | D-02 · A-01 | AX 초안 = 새 업무 추가 필드 객체 · 기한 필수 제거 · 목록 응답 보강 | BE |
 | 3b | D-02 · A-01 | AX 요약 카드(좌우 넘김) · 「수정」= 새 업무 추가 모달 · 「AX 제안」 칩 | FE |
+| 4 | B-03 | 운영 회의 요약(종료 합성) 실패 — resume 실패 시 콜드스타트 | BE |
 
 ## Code Surface
 
@@ -253,6 +254,26 @@ AX 경로에만 「기한 필수」 검사가 있다(`platform/action_center.py:
   - [ ] **P-2** — DS 부품·토큰. 시안 없는 자리는 DS-gaps
 - **SPEC**: **SPEC-002 §2.4 · §2.9 · S-7 · §6** · **SPEC-001 U-2 · §6**
 - **검증**: `make frontend-test` · `npx tsc --noEmit` · `make frontend-build` · 코디가 로컬에서 AX 채팅으로 초안 생성 → 카드 넘김 → 수정 모달 → 등록 → 홈·칩에서 사라짐까지 확인
+- **완료 증거**: 미작성
+
+---
+
+## Phase 4 — BE · 운영 회의 요약(종료 합성) 실패 (B-03)
+
+- **Status**: TODO
+- **무엇이 끝나야 시작하나**: 없음(3b 와 파일이 겹치지 않으면 병렬)
+- **워커**: backend
+- **요청**: 사용자 2026-10-01 — 운영 회의 둘이 「회의 내용은 저장됐지만 글로 옮기지 못했습니다」로 실패, AI 회의록 없음. 「서버에서 확인하고 버그픽스」
+- **원인** (`orchestration/work/strong-hajin-polish/research-meeting-summary.md`): 회의 중 Codex 세션은 `back` 파드에서 열리고, 종료 합성은 `worker-meeting` 파드에서 `codex exec resume <id>` 로 그 세션을 잇는다. 세션 파일이 사는 런타임 홈(`/app/.scax/codex-runtime`)이 파드 로컬이라 worker-meeting 에 세션이 없어 3회 모두 즉시 실패(`FAILURE_UNFINISHED`). 재전사·녹음·인증은 정상
+- **계약 (2026-10-01)** — ~~인프라 변경 없이 코드로 닫는다~~ → **뒤집음(사용자)**: 세션 런타임 홈을 녹음처럼 **Mac 호스트 hostPath `/mnt/mac/strong-hajin/codex-runtime`** 에 두고 앱 기본 경로 `/app/.scax/codex-runtime` 에 back·워커 4개가 공유(인프라 `charts/strong-hajin/`). 코드는 안전장치
+  - [ ] 종료 합성이 이전 세션을 **이어 갈 수 없으면(세션 없음 등 resume 실패) 콜드스타트로 합성**한다 — 저장된 전사 전문으로 새 세션을 열어 같은 결과물을 만든다. 일반 재시도 3회와 구분한다
+  - [ ] 런타임 홈 경로를 **설정(env)으로 받을 수 있게** 한다 — 기본값은 지금과 같다(배포 변경 없이 동작)
+  - [ ] codex 실패 시 **stderr 요약을 로그에 남긴다**(비밀값 마스킹) — 다음 장애의 원인을 로그로 본다
+  - [ ] 이미 실패한 회의는 배포 뒤 사용자의 [다시 시도]로 회의록이 생긴다(새 경로를 탄다)
+- **검증**: resume 실패 → 콜드스타트 성공 테스트 · 콜드스타트도 실패하면 지금처럼 실패 상태 · `make test-unit` · `make test-contract` · 운영 반영 뒤 실패 회의 [다시 시도] 확인(사용자 E2E)
+- **인프라**: `charts/strong-hajin/` `_helpers.tpl`·values — 다섯 deployment 에 hostPath(type Directory) 마운트. **sync 전 노드에서 `limactl shell worker-1 -- sudo mkdir -p /mnt/mac/strong-hajin/codex-runtime`**
+- **반영 뒤 볼 것**: 다섯 파드의 sqlite(state·logs) 오류 0 — 보이면 파드별 홈 + `sessions/` 만 공유로 바꾼다(검수 `review-p4-report.md`) · 기존 실패 회의 둘 [다시 시도]
+- **범위 밖**: 웜스타트 구조 변경 · 파드 간 같은 세션 동시 resume 상호배제(확률 낮음, 검수 WARN)
 - **완료 증거**: 미작성
 
 ---
