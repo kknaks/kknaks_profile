@@ -13,7 +13,7 @@ status: active
 | 항목 | 경로 |
 |---|---|
 | 웹 PoC (원본, 읽기 전용) | `reference/2026-09-09-sc-prototype/` (`server/` · `src/`) |
-| 데스크톱 앱 | `https://github.com/kknaksss/sc-rank`(비공개) · 로컬 `/Users/kknaks/git/toy_pr2/sc-rank` (DEC-001 D-07, 10-01 개정) |
+| 데스크톱 앱 | `https://github.com/kknaksss/sc-rank`(공개) · 로컬 `/Users/kknaks/git/toy_pr2/sc-rank` (DEC-001 D-07, 10-01 개정) |
 
 ## 현재 상태
 
@@ -21,7 +21,7 @@ status: active
 |---|---|---|
 | Baseline | raw 1건 | — |
 | Decision | accepted 1건 (결정 14) | — |
-| Spec | SPEC-001 v0.2.2 draft | — |
+| Spec | SPEC-001 v0.2.3 draft | — |
 | Work | WORK-001 P1~P5 done · P6 레포 분리 정리 | Windows 빌드(A-9) |
 
 ## 문서 맵

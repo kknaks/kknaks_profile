@@ -25,9 +25,9 @@
       "pr_base": "main",
       "worktree_suffix": "",
       "notes": [
-        "코드 전용 레포(2026-10-01 분리, kknaksss 계정 · 비공개). 첫 커밋 20ef3b7 은 kknaks_profile 의 desktop/ 을 subtree split 으로 옮긴 것.",
+        "코드 전용 레포(2026-10-01 분리, kknaksss 계정 · 공개(10-01 전환)). 첫 커밋 20ef3b7 은 kknaks_profile 의 desktop/ 을 subtree split 으로 옮긴 것.",
         "레포 루트 = 앱 루트(index.html · src/ · src-tauri/). 문서는 kknaks_profile 에 있다.",
-        "Windows 빌드는 사용자 Windows PC 에서 이 레포를 clone 해 README 절차로 한다(DEC-001 D-11). macOS 통과를 Windows 통과로 대신하지 않는다."
+        "Windows 설치 파일은 GitHub Actions `windows-build`(.github/workflows/build-windows.yml)가 만든다 — PR 산출물 · v* 태그 Release (DEC-001 D-11 10-01 개정). 실행 확인(A-9)은 사용자 Windows PC. macOS 통과를 Windows 통과로 대신하지 않는다."
       ]
     }
   },

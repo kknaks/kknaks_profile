@@ -3,7 +3,7 @@ type: spec
 id: SPEC-001
 title: "SC Rank 데스크톱 앱 — 앱 경계 · 명령 계약 · 수집 규칙 이식"
 status: draft
-version: 0.2.2
+version: 0.2.3
 product: sc-rank
 created_at: 2026-09-30
 updated_at: 2026-10-01
@@ -39,7 +39,7 @@ PoC 경로는 모두 `reference/2026-09-09-sc-prototype/` 기준이다.
 | 상태 | 결과는 화면 메모리에만 (D-03) |
 | 네트워크 | 네이버 검색·지도 페이지와 블로그 썸네일(`search.pstatic.net`) 요청만 |
 | 대상 OS | 운영 Windows 10/11 x64. 개발 macOS (D-04·D-13) |
-| 배포물 | `bundle.targets = ["nsis"]` 고정, 서명 없음 (D-09·D-10). 앱 이름 `SC Rank`, 식별자 `com.summerstar.scrank`, 창 제목 `SC Rank` |
+| 배포물 | `bundle.targets = ["nsis"]` 고정, 서명 없음 (D-09·D-10). GitHub Actions `windows-build` 가 만든다 — PR 은 산출물, `v*` 태그는 Release (D-11). 앱 이름 `SC Rank`, 식별자 `com.summerstar.scrank`, 창 제목 `SC Rank` |
 | 로그 | PoC 단계 로그(`[place]`·`[blog]` JSON 한 줄)를 같은 필드로 남긴다. 앱: OS 앱 로그 디렉터리의 파일(`tauri-plugin-log`), smoke 예제: 표준 출력 |
 
 ## 2. 명령 계약
@@ -134,7 +134,7 @@ Rust 직렬화는 `rename_all = "camelCase"`, `Option` 은 **`null` 로 직렬�
 | A-6 | 화면에서 조회 → 저장 대화상자 → 파일이 엑셀로 열림 · 링크가 OS 브라우저로 열림 | 사용자 E2E |
 | A-7 | 후보 경로가 빈 탐색이 §3 문구의 오류를 낸다 | `cargo test` |
 | A-8 | 앱 창을 닫은 뒤 `pgrep -f sc-rank-cdp-` 결과 없음 · 임시 프로필 디렉터리 없음 | 코디 실행 |
-| A-9 | Windows: NSIS 설치 → 실행 → A-4 에 해당하는 조회와 A-6 | 사용자 (Windows PC) — **macOS 통과로 대신하지 않는다** |
+| A-9 | Windows: Actions 산출물(또는 Release) 설치 파일로 설치 → 실행 → A-4 에 해당하는 조회와 A-6. Actions 의 Windows `cargo test` 통과는 컴파일·단위 테스트 증거일 뿐 실행 확인을 대신하지 않는다 | 사용자 (Windows PC) — **macOS 통과로 대신하지 않는다** |
 
 ## 7. 이식 중 확정한 PoC 와의 차이 (v0.2.1)
 
@@ -150,4 +150,4 @@ Rust 직렬화는 `rename_all = "camelCase"`, `Option` 은 **`null` 로 직렬�
 
 ## 8. 범위 밖
 
-파워링크 조회 · 새 화면·새 기능 · 이력 저장 · 자동 업데이트 · 서명 · macOS 배포 · CI.
+파워링크 조회 · 새 화면·새 기능 · 이력 저장 · 자동 업데이트 · 서명 · macOS 배포.
