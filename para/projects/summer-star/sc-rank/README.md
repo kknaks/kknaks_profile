@@ -35,6 +35,7 @@ status: active
 
 ## 최근 로그
 
+- 2026-10-01: **마감** — 머지·아카이브. 회고 [log/2026-10-01-sc-rank-desktop.md](log/2026-10-01-sc-rank-desktop.md). 잔여: Windows 실기(A-9)·링크(A-6)
 - 2026-10-01: 코드를 `kknaksss/sc-rank` 로 분리 — Windows PC 빌드에 clone 할 레포가 필요. 이식 P1~P5 완료(test 39 · 헤드리스 Edge 결과 PoC 와 일치). [전체 이력](log.md)
 - 2026-09-30: DEC-001 미결 다섯을 기본값으로 닫고(NSIS·무서명·Windows PC 빌드·Edge→Chrome·화면 재사용) SPEC-001·WORK-001 작성. 파워링크는 화면이 부르지 않아 범위 밖. [전체 이력](log.md)
 - 2026-09-30: 제품 착수 — 웹 PoC 를 Tauri + Rust 데스크톱 프로그램으로 옮기기로 결정. 서버 없음 · 운영 Windows. [전체 이력](log.md)
