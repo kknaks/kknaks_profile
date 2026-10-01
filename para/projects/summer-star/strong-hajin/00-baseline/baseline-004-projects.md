@@ -388,7 +388,7 @@ BE §5·§7 의 6건과 FE §6 의 7건 중 **이 화면에 닿는 것**만 골�
 
 우리에겐 그 값이 하나도 없다. **그런데 그건 누락이 아니다.**
 
-> `20-spec/spec-001-work-management.md:200` (§U-3 목록 행):
+> `20-spec/spec-001-work-management.md:226` (§U-3 목록 행):
 > 「**기한 경과일**: 실제 기한을 넘긴 행에만 날짜 뒤에 `+N` 을 붙인다. **진행률은 쓰지 않는다.**」
 
 - 코드가 그 결정과 **정확히 일치한다** — `grep -rn "percent|progress_rate|진행률|completion_rate|progress_pct" backend/src/` → **0건**,

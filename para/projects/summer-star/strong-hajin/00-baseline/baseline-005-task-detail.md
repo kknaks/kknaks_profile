@@ -197,7 +197,7 @@ DEC-006 이 원장이다. 여기서는 **이 문서가 사실로 눕힐 때 근�
 
 | 칸 | 지금 | 근거 |
 |---|---|---|
-| **스펙** | 관계 셋의 경계표가 상위를 「이 업무가 **어느 업무의 일부**인가 · 프로젝트와 무관 · 시작은 안 막고 **완료를 막는다** · 만들기 창 `업무 연결` 탭에서 단일 선택」으로 정한다 | `spec-001-work-management.md:984` |
+| **스펙** | 관계 셋의 경계표가 상위를 「이 업무가 **어느 업무의 일부**인가 · 프로젝트와 무관 · 시작은 안 막고 **완료를 막는다** · 만들기 창 `업무 연결` 탭에서 단일 선택」으로 정한다 | `spec-001-work-management.md:1058` |
 | | 저장 깊이 **제한 없음**(V-6), 상세는 **직속 하위만**(L-11), 중심 업무 판정과 V-8(직접 작업 중첩 금지) | `spec-003-task-lifecycle-v2.md:740` · `:237` · `:926-936` |
 | | 판정은 **생성 시점**이고 담당이 나중에 바뀌어 어긋나도 **기존 구조를 깨지 않는다** — **(미정 EU-8)** 「소급 재배치를 이번에 만들지 않는다」 | `spec-003-task-lifecycle-v2.md:937-939` · 추적 `:1302` |
 | **서버 저장** | `tasks.parent_task_id UUID NULL FK→tasks.id`, `index=True`. 별도 depth·path 열 없음 | `backend/src/ax_workspace/platform/persistence.py:937` |
@@ -221,12 +221,12 @@ DEC-006 이 원장이다. 여기서는 **이 문서가 사실로 눕힐 때 근�
 
 | 칸 | 지금 | 근거 |
 |---|---|---|
-| **스펙** | 관계 셋의 셋째 — 「이것이 **끝나야 시작**한다 · **같은 프로젝트 안** · **시작을 막는다** · 완료는 안 막는다 · 생성·수정 창에서 여러 개 한 번에」 | `spec-001-work-management.md:986` |
-| | 전이별 게이트표 — `open→in_progress` **건다** · `open→done`(직행) **건다** · `in_progress→done` **걸지 않는다** · 취소·보완 **걸지 않는다** | `spec-001-work-management.md:920-932` |
-| | 조회에 드러나는 자리 셋 — 업무 상세(`preceding_task_ids` + 요약, **볼 수 없는 선행은 제목 없이 건수만**) · 프로젝트 상세 업무 줄(**간트 연결선의 유일한 원천**) · 시작 거절 응답(**막는 선행의 이름**) | `spec-001-work-management.md:770-781` |
-| | 수정은 **배열 전체 교체** · `expected_version` 필수 · 회차가 오르고 진행 기록에 남는다 · **전용 add/remove 를 두지 않는다** | `spec-001-work-management.md:762-767` · `decision-001-work-page.md:396-400` |
-| | 권한은 「그 업무의 값을 고칠 수 있는 사람과 **같다**. 신규 권한을 만들지 않는다」 | `spec-001-work-management.md:1060` |
-| | 화면 계약 셋 — U-13(선택·상세 줄) · U-14(막혔을 때) · U-15(간트 연결선) | `spec-001-work-management.md:418-462` |
+| **스펙** | 관계 셋의 셋째 — 「이것이 **끝나야 시작**한다 · **같은 프로젝트 안** · **시작을 막는다** · 완료는 안 막는다 · 생성·수정 창에서 여러 개 한 번에」 | `spec-001-work-management.md:1060` |
+| | 전이별 게이트표 — `open→in_progress` **건다** · `open→done`(직행) **건다** · `in_progress→done` **걸지 않는다** · 취소·보완 **걸지 않는다** | `spec-001-work-management.md:994-1006` |
+| | 조회에 드러나는 자리 셋 — 업무 상세(`preceding_task_ids` + 요약, **볼 수 없는 선행은 제목 없이 건수만**) · 프로젝트 상세 업무 줄(**간트 연결선의 유일한 원천**) · 시작 거절 응답(**막는 선행의 이름**) | `spec-001-work-management.md:839-850` |
+| | 수정은 **배열 전체 교체** · `expected_version` 필수 · 회차가 오르고 진행 기록에 남는다 · **전용 add/remove 를 두지 않는다** | `spec-001-work-management.md:831-836` · `decision-001-work-page.md:396-400` |
+| | 권한은 「그 업무의 값을 고칠 수 있는 사람과 **같다**. 신규 권한을 만들지 않는다」 | `spec-001-work-management.md:1134` |
+| | 화면 계약 셋 — U-13(선택·상세 줄) · U-14(막혔을 때) · U-15(간트 연결선) | `spec-001-work-management.md:460-504` |
 | **서버 저장** | 전용 조인테이블 `task_predecessors` — `task_id`(뒤에 오는 업무) · `predecessor_task_id`(먼저 끝나야 하는 업무) · `position` · `created_by/at` · `released_at/by` | `backend/src/ax_workspace/platform/persistence.py:995-1045` |
 | | 제약 셋 — 부분 unique `uq_task_predecessors_active(task_id, predecessor_task_id) WHERE released_at IS NULL` · CHECK `ck_task_predecessors_not_self` · index **`ix_task_predecessors_task_id`(task_id 하나)** | `backend/src/ax_workspace/platform/persistence.py:1014-1025` |
 | | **`predecessor_task_id` 단독 인덱스가 없다** | `backend/src/ax_workspace/platform/persistence.py:1014-1025` |
@@ -251,9 +251,9 @@ DEC-006 이 원장이다. 여기서는 **이 문서가 사실로 눕힐 때 근�
 
 | 칸 | 지금 | 근거 |
 |---|---|---|
-| **스펙** | **후행 조회 API 를 만들지 않는다**(D-07) — 「프로젝트 범위에서 **역산이 완전**하므로」 | `spec-005-projects.md:219` · `:1194` · `decision-004-projects.md:246-262` |
-| | 그 근거 — 「선행은 같은 프로젝트 안에서만 성립한다 … **프로젝트 밖에 숨은 후행이 원리적으로 존재할 수 없다**」 | `spec-005-projects.md:574-576` |
-| | **업무 상세에 후행을 그리라고 한 문서가 없다** — 후행이 그려지는 자리로 지정된 곳은 **프로젝트 화면 우 레일** 하나다 | `spec-survey-report.md` §3-3; 대상 계약 `spec-005-projects.md:502` |
+| **스펙** | **후행 조회 API 를 만들지 않는다**(D-07) — 「프로젝트 범위에서 **역산이 완전**하므로」 | `spec-005-projects.md:234` · `:1228` · `decision-004-projects.md:246-262` |
+| | 그 근거 — 「선행은 같은 프로젝트 안에서만 성립한다 … **프로젝트 밖에 숨은 후행이 원리적으로 존재할 수 없다**」 | `spec-005-projects.md:608-610` |
+| | **업무 상세에 후행을 그리라고 한 문서가 없다** — 후행이 그려지는 자리로 지정된 곳은 **프로젝트 화면 우 레일** 하나다 | `spec-survey-report.md` §3-3; 대상 계약 `spec-005-projects.md:536` |
 | **서버 저장** | **전용 저장이 없다 — 있을 필요가 없다.** `task_predecessors` 한 줄이 이미 양쪽을 담고 있다(`task_id` ↔ `predecessor_task_id`) | `backend/src/ax_workspace/platform/persistence.py:1027-1045` |
 | **서버 읽기** | **0건이다.** `successor` 라는 식별자·문자열이 `backend/src/ax_workspace/**/*.py` 전체에 **0회** | `be-survey-report.md:19`·`:252` |
 | | 선행을 읽는 저장소 문 **넷이 전부 `task_id` 쪽으로만** 걸린다 — `predecessors_for` · `active_predecessor_ids` · `predecessor_edges` · `predecessor_task_ids` | `backend/src/ax_workspace/platform/work_tasks.py:1128-1153`·`2163-2178` |
@@ -271,9 +271,9 @@ DEC-006 이 원장이다. 여기서는 **이 문서가 사실로 눕힐 때 근�
 
 | 칸 | 지금 | 근거 |
 |---|---|---|
-| **스펙** | 관계 셋의 둘째 — 「**맥락만** 준다 · 읽을 수 있는 업무 아무거나 · **시작도 완료도 막지 않는다** · **만들기 창에 없다**(D-21), 다는 자리는 **업무 상세**」 | `spec-001-work-management.md:985` · `:289-291` |
-| | 「참고를 선행의 대체물로 쓰지 않는다」 · E-6 「참고 연결을 하위 관계의 대체물로 확정하지 않는다」 | `spec-001-work-management.md:988` · `baseline-002-task-lifecycle-v2.md:290` |
-| | ⚠ **U-7 상세 구획표에 「참고 업무」 줄이 없다** — 「업무 상세에서 단다」만 있고 어느 구획인지가 비어 있다 | `spec-001-work-management.md:314-321` vs `:291` |
+| **스펙** | 관계 셋의 둘째 — 「**맥락만** 준다 · 읽을 수 있는 업무 아무거나 · **시작도 완료도 막지 않는다** · **만들기 창에 없다**(D-21), 다는 자리는 **업무 상세**」 | `spec-001-work-management.md:1059` · `:326-328` |
+| | 「참고를 선행의 대체물로 쓰지 않는다」 · E-6 「참고 연결을 하위 관계의 대체물로 확정하지 않는다」 | `spec-001-work-management.md:1062` · `baseline-002-task-lifecycle-v2.md:290` |
+| | ⚠ **U-7 상세 구획표에 「참고 업무」 줄이 없다** — 「업무 상세에서 단다」만 있고 어느 구획인지가 비어 있다 | `spec-001-work-management.md:351-358` vs `:328` |
 | **서버 저장** | 조인테이블 `task_references` — `task_id` · `referenced_task_id`(**양쪽 index**) · `released_at/by`. 부분 unique `uq_task_reference_active` | `backend/src/ax_workspace/platform/persistence.py:1551-1578` |
 | | **자기 자신 금지 CHECK 이 없다**(선행과 다르다) — application 이 답한다 | `backend/src/ax_workspace/platform/persistence.py:1560-1569` vs `:1023` |
 | **서버 읽기** | 상세 `references: [{reference_id, created_by, created_at, task \| null}]` — **`access:"owner"` 상세에만** 실린다 | 조립 `backend/src/ax_workspace/modules/work/application.py:2363`; `read_only` 갈래에 없음 `:946-1000`; 타입 `modules/work/task_results.py:212-217`·`241` |
@@ -288,8 +288,8 @@ DEC-006 이 원장이다. 여기서는 **이 문서가 사실로 눕힐 때 근�
 
 | 칸 | 지금 | 근거 |
 |---|---|---|
-| **스펙** | 업무당 **단일**. 선행이 하나라도 있으면 **필수**가 된다. 남은 선행이 있으면 **바꿀 수 없다**(409) | `spec-001-work-management.md:669`·`:797`·`:839` |
-| | 상위를 옮기면 **자손 전체**가 따라가고 이동 게이트도 자손 전체에 걸린다(D-19). **부분 이동은 없다** | `spec-005-projects.md:1029-1039` |
+| **스펙** | 업무당 **단일**. 선행이 하나라도 있으면 **필수**가 된다. 남은 선행이 있으면 **바꿀 수 없다**(409) | `spec-001-work-management.md:738`·`:867`·`:913` |
+| | 상위를 옮기면 **자손 전체**가 따라가고 이동 게이트도 자손 전체에 걸린다(D-19). **부분 이동은 없다** | `spec-005-projects.md:1063-1073` |
 | | ⚠ 하위 업무는 프로젝트를 **따로 못 갖는다** — 상위를 따른다 | `backend/src/ax_workspace/modules/work/application.py:526-528` |
 | **서버 저장** | `tasks.project_id UUID NULL FK→projects.id`, `index=True`. **비어 있는 것이 정상** | `backend/src/ax_workspace/platform/persistence.py:939` |
 | **서버 읽기** | `TaskMutationResult.project_id: str \| null` — 생성·수정·전이·목록·상세 전부 | `backend/src/ax_workspace/modules/work/application.py:2470`; 타입 `modules/work/task_results.py:79` |
@@ -400,11 +400,11 @@ DEC-006 이 원장이다. 여기서는 **이 문서가 사실로 눕힐 때 근�
 ### ① 「후행을 만들지 않는다」 vs 시안이 후행 칸을 요구한다
 
 - SPEC-005 — 「**후행(역방향) 조회 API** — 프로젝트 범위에서 **역산이 완전**하므로 만들지 않는다
-  **(확정 — D-07)**」 (`spec-005-projects.md:219` · `decision-004-projects.md:246-262`)
+  **(확정 — D-07)**」 (`spec-005-projects.md:234` · `decision-004-projects.md:246-262`)
 - 시안 — A·B·C 세 무대 모두 `후행 업무` 칸을 그리고 범례가 「후행 — **같은 표를 반대로 읽기**」로
   적는다 (`TaskDetail.html:214-223`·`:121`)
 - ⚠ **D-07 의 근거는 프로젝트 화면에 대해 세워졌다** — 「프로젝트 범위에서」가 그 전제다
-  (`spec-005-projects.md:574-576`). 업무 상세는 프로젝트 범위가 아니다: 업무는
+  (`spec-005-projects.md:608-610`). 업무 상세는 프로젝트 범위가 아니다: 업무는
   **프로젝트 없이도 존재**하고(`backend/src/ax_workspace/platform/persistence.py:939`)
   그때 역산할 재료가 없다.
 
@@ -420,15 +420,15 @@ DEC-006 이 원장이다. 여기서는 **이 문서가 사실로 눕힐 때 근�
 ### ③ 「참고 업무를 다는 자리는 업무 상세」인데 U-7 구획표에 그 줄이 없다
 
 - SPEC-001 U-6-b — 「참고 업무를 다는 자리는 **업무 상세**다(U-7 **자료·연결 구획**)」
-  (`spec-001-work-management.md:291`)
+  (`spec-001-work-management.md:328`)
 - SPEC-001 U-7 — 구획은 머리·내용·출처·값·자료·진행 기록 여섯이고 **「연결」 구획도
-  「참고 업무」 줄도 표에 없다** (`spec-001-work-management.md:314-321`)
+  「참고 업무」 줄도 표에 없다** (`spec-001-work-management.md:351-358`)
 - 시안은 그 자리를 **`연관 업무` 덩어리의 한 칸**으로 준다 (`TaskDetail.html:206-213`)
 
 ### ④ U-7 의 구획 여섯 vs 시안의 덩어리 넷
 
 - SPEC-001 U-7 — 「구획 순서는 **고정**이다」: 머리 → 내용 → 출처 → 값(담당자·요청자·기한·승인자·
-  프로젝트·**선행업무**) → 자료 → 진행 기록 (`spec-001-work-management.md:312-321`)
+  프로젝트·**선행업무**) → 자료 → 진행 기록 (`spec-001-work-management.md:349-358`)
 - 시안 — 업무 메타 → (막힘 배너) → 업무 정보 → 연관 업무 → 자료
   (`TaskDetail.html:131-248`·`:268-271`). **「진행 기록」 구획이 시안에 없다.**
 - 현행 화면에는 그 구획이 있다 — 「활동·이력」 `TaskHistorySection`
@@ -437,8 +437,8 @@ DEC-006 이 원장이다. 여기서는 **이 문서가 사실로 눕힐 때 근�
 ### ⑤ U-14 의 「버튼 옆」 vs 시안의 상단 배너
 
 - SPEC-001 U-14 — 「`[시작]` 은 **비활성**이고, 왜인지를 **그 옆에** 낸다 —
-  "끝나지 않은 선행업무가 있습니다: {제목}"」 (`spec-001-work-management.md:447-448`);
-  Case Matrix 의 표시 위치도 「**그 버튼 옆**」 (`:840`)
+  "끝나지 않은 선행업무가 있습니다: {제목}"」 (`spec-001-work-management.md:489-490`);
+  Case Matrix 의 표시 위치도 「**그 버튼 옆**」 (`:914`)
 - 시안 B — `업무 메타` 바로 아래 **상단 배너**에 「시작할 수 없습니다 /
   **연동 규격 확인**이 끝나지 않았습니다.」 (`TaskDetail.html:268-271`)
 - **문구도 다르다** — 서버가 내는 문장은 「끝나지 않은 선행업무가 있습니다: {최대 3개 제목}」
@@ -461,7 +461,7 @@ DEC-006 이 원장이다. 여기서는 **이 문서가 사실로 눕힐 때 근�
 ### ⑧ 오류 응답에 기계용 코드가 없다
 
 - SPEC 들은 코드명으로 계약을 적는다 — `WORK_PREDECESSORS_UNFINISHED` 등
-  (`spec-001-work-management.md:834-840`)
+  (`spec-001-work-management.md:908-914`)
 - 실제 HTTP 본문은 **`detail=str(error)` 한 문장**이다. 코드명은 예외 클래스 docstring 에만 있다
   (`backend/src/ax_workspace/entrypoints/http.py:551`·`564`·`576`;
   `backend/src/ax_workspace/modules/work/errors.py:110-161`)
@@ -519,7 +519,7 @@ diff 대상도 여섯 필드 + 컬렉션 둘뿐이다
    `schema_sync` 가 기존 표에 인덱스를 못 더한다는 선례가 있다
    (`baseline-004-projects.md:525-526` · `backend/src/ax_workspace/platform/persistence.py:1650-1653`)
 3. **후행 해제를 누가 부를 수 있나** — 그 행은 후행 쪽 업무의 것이고, 기존 선행 편집 권한은
-   「그 업무의 값을 고칠 수 있는 사람」이다 (`spec-001-work-management.md:1060`).
+   「그 업무의 값을 고칠 수 있는 사람」이다 (`spec-001-work-management.md:1134`).
    **A 의 화면에서 A 의 담당자가 B 의 행을 닫는 것**에 대한 계약이 없다
 4. **프로젝트 «이름»을 업무 상세가 어디서 얻나** — 업무 응답은 `project_id` 만 낸다
    (`backend/src/ax_workspace/modules/work/task_results.py:79`)
