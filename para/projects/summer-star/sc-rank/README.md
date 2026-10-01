@@ -13,7 +13,7 @@ status: active
 | 항목 | 경로 |
 |---|---|
 | 웹 PoC (원본, 읽기 전용) | `reference/2026-09-09-sc-prototype/` (`server/` · `src/`) |
-| 데스크톱 앱 | `reference/2026-09-09-sc-prototype/desktop/` — 별도 레포 없음(DEC-001 D-07) |
+| 데스크톱 앱 | `https://github.com/kknaksss/sc-rank`(비공개) · 로컬 `/Users/kknaks/git/toy_pr2/sc-rank` (DEC-001 D-07, 10-01 개정) |
 
 ## 현재 상태
 
@@ -21,8 +21,8 @@ status: active
 |---|---|---|
 | Baseline | raw 1건 | — |
 | Decision | accepted 1건 (결정 14) | — |
-| Spec | SPEC-001 v0.2.1 draft | — |
-| Work | WORK-001 P1~P5 done | 검수 수정 → PR → Windows 빌드(A-9) |
+| Spec | SPEC-001 v0.2.2 draft | — |
+| Work | WORK-001 P1~P5 done · P6 레포 분리 정리 | Windows 빌드(A-9) |
 
 ## 문서 맵
 
@@ -35,5 +35,6 @@ status: active
 
 ## 최근 로그
 
+- 2026-10-01: 코드를 `kknaksss/sc-rank` 로 분리 — Windows PC 빌드에 clone 할 레포가 필요. 이식 P1~P5 완료(test 39 · 헤드리스 Edge 결과 PoC 와 일치). [전체 이력](log.md)
 - 2026-09-30: DEC-001 미결 다섯을 기본값으로 닫고(NSIS·무서명·Windows PC 빌드·Edge→Chrome·화면 재사용) SPEC-001·WORK-001 작성. 파워링크는 화면이 부르지 않아 범위 밖. [전체 이력](log.md)
 - 2026-09-30: 제품 착수 — 웹 PoC 를 Tauri + Rust 데스크톱 프로그램으로 옮기기로 결정. 서버 없음 · 운영 Windows. [전체 이력](log.md)

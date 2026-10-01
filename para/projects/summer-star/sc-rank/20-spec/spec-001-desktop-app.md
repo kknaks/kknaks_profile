@@ -3,7 +3,7 @@ type: spec
 id: SPEC-001
 title: "SC Rank 데스크톱 앱 — 앱 경계 · 명령 계약 · 수집 규칙 이식"
 status: draft
-version: 0.2.1
+version: 0.2.2
 product: sc-rank
 created_at: 2026-09-30
 updated_at: 2026-10-01
@@ -31,8 +31,8 @@ PoC 경로는 모두 `reference/2026-09-09-sc-prototype/` 기준이다.
 
 | 항목 | 계약 |
 |---|---|
-| 위치 | `reference/2026-09-09-sc-prototype/desktop/` (D-07). PoC `server/`·`src/`·`tests/`·`index.html`·`1.png` 는 **수정 금지** |
-| 구성 | `desktop/index.html`(PoC `index.html` 사본, 무변경 — 창 제목은 `tauri.conf.json` 이 정한다) · `desktop/src/`(PoC `src/` 사본 + §5 의 연결 모듈) · `desktop/src-tauri/` |
+| 위치 | 코드 레포 `kknaksss/sc-rank` 루트 (D-07, 10-01 개정). PoC(kknaks_profile `reference/2026-09-09-sc-prototype/` 의 `server/`·`src/`·`tests/`·`index.html`·`1.png`)는 **수정 금지** |
+| 구성 | `index.html`(PoC 사본, 무변경 — 창 제목은 `tauri.conf.json` 이 정한다) · `src/`(PoC `src/` 사본 + §5 의 연결 모듈) · `src-tauri/` · 주입 JS 동일성 검사용 PoC 원본 사본(`poc/`, 읽기 전용) |
 | 프로세스 | 앱 프로세스 1개 + 조회 중에만 쓰는 헤드리스 브라우저 1개 |
 | 포트 | D-02 의 「포트 없음」은 **앱이 여는 서버**를 뜻한다. 브라우저 CDP 연결은 `127.0.0.1` 임의 포트 또는 파이프로 허용(외부 바인딩 금지). 개발 서버(vite)는 `13100` strictPort, `/api` 프록시 없음 — PoC(13000)와 동시에 떠도 충돌하지 않게 |
 | 화면↔로직 | Tauri `invoke` 명령 셋(§2). 화면에 `fetch` 가 남지 않는다 |
@@ -110,7 +110,7 @@ Rust 직렬화는 `rename_all = "camelCase"`, `Option` 은 **`null` 로 직렬�
 
 ## 5. 화면에서 바뀌는 곳 (D-14 — 이 셋뿐)
 
-1. **호출**: `fetch('/api/...')` 세 곳 → 연결 모듈 `desktop/src/bridge.js` 의 함수 호출. 연결 모듈이
+1. **호출**: `fetch('/api/...')` 세 곳 → 연결 모듈 `src/bridge.js` 의 함수 호출. 연결 모듈이
    - `invoke` 의 reject 값(문자열)을 `Error(문자열)` 로 감싸 PoC 의 기존 `catch` 로 넘긴다 — 「다른 조회가 진행 중입니다…」가 행 메시지로 보인다
    - 조회 명령은 **180초 상한을 화면에서 유지**한다(`Promise.race`). 넘기면 PoC 와 같은 「조회 시간이 초과되었습니다.」 (`main.jsx:66`)
    - `check_place` Err 는 PoC `!res.ok` 분기와 같은 결과(오류 행)가 된다
@@ -121,12 +121,12 @@ Rust 직렬화는 `rename_all = "camelCase"`, `Option` 은 **`null` 로 직렬�
 
 ## 6. 인수 조건
 
-실수집 수단은 `desktop/src-tauri/examples/smoke.rs` 하나다(PoC `scripts/smoke.mjs` 대응). 앱과 같은 수집 함수를 부르고
+실수집 수단은 `src-tauri/examples/smoke.rs` 하나다(PoC `scripts/smoke.mjs` 대응). 앱과 같은 수집 함수를 부르고
 결과 요약 JSON 을 표준 출력에 낸다. `status == "error"` 면 exit 1.
 
 | # | 조건 | 확인 수단 |
 |---|---|---|
-| A-1 | `tests/place.test.mjs` 9개 · `tests/blog.test.mjs` 3개가 같은 단언으로 Rust 테스트 통과. 해시 테스트 픽스처는 PoC `1.png` 를 `desktop/src-tauri/tests/fixtures/` 로 복사하고, 변형(JPEG q60 축소·좌우 반전)은 `image` 크레이트로 만든다. 단언(≤6 / >6)은 그대로 | `cargo test` |
+| A-1 | `tests/place.test.mjs` 9개 · `tests/blog.test.mjs` 3개가 같은 단언으로 Rust 테스트 통과. 해시 테스트 픽스처는 PoC `1.png` 를 `src-tauri/tests/fixtures/` 로 복사하고, 변형(JPEG q60 축소·좌우 반전)은 `image` 크레이트로 만든다. 단언(≤6 / >6)은 그대로 | `cargo test` |
 | A-2 | 엑셀 블로그 11열·플레이스 13열 머리·순서 · 숫자 순위 · 빈 값 · 수식형 문자열 텍스트 | `cargo test` |
 | A-3 | `cargo clippy --all-targets -- -D warnings` 0 · `npm run build` 성공 | 명령 |
 | A-4 | 플레이스 실수집 `cargo run --example smoke -- place 강남역성형외과 무이성형외과` 가 오류 아님. `found` 를 기대하되 `not_found` 면 실패로 치지 않고 결과를 그대로 보고(순위는 고정값이 아니다) | smoke |

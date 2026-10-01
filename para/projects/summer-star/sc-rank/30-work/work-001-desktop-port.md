@@ -18,8 +18,8 @@ links:
 
 # 웹 PoC → Tauri 데스크톱 앱 이식
 
-SPEC-001 을 한 워커(desktop)가 **직렬로** 세운다. 작업 트리는 하나, 쓰는 곳은
-`reference/2026-09-09-sc-prototype/desktop/` 뿐이다.
+SPEC-001 을 한 워커(desktop)가 **직렬로** 세운다. P1~P5 는 `reference/2026-09-09-sc-prototype/desktop/` 에서,
+P6 부터는 코드 레포 `kknaksss/sc-rank` 에서(DEC-001 D-07 개정).
 
 ## Phase
 
@@ -29,7 +29,8 @@ SPEC-001 을 한 워커(desktop)가 **직렬로** 세운다. 작업 트리는 �
 | P2 순수 로직 | 플레이스 판정 · 블로그 목록 파싱·키워드 일치 · 이미지 해시(전처리 포함) · 엑셀 · 오류 문구 규칙(SPEC §4) · 브라우저 탐색 함수(후보 목록 인자). PoC 단위 테스트 이식(A-1·A-2·A-7) | `cargo test` 초록 · A-3 |
 | P3 브라우저 | CDP 기동·재사용·종료 정리 · 플레이스 수집 · 블로그 스크롤 수집 · 페이지 안 JS 문자열 주입 · UA 규칙 · 동시 1건·간격 가드 · `examples/smoke.rs` | A-4·A-5 smoke 출력 · A-3 |
 | P4 화면 연결 | SPEC §5 세 곳(`bridge.js` · 저장 대화상자 · 링크 가로채기) · 명령 Err/반환 모양(SPEC §2) | A-3 · 워커가 앱을 띄워 조회 1건 → 저장한 xlsx 경로와 앱 로그 발췌를 리포트에. A-8 워커 1회 |
-| P5 Windows 빌드 절차 | `desktop/README.md`(= DEC D-11 의 RUNBOOK): macOS 개발 · Windows 빌드 사전 요건·명령·산출물 위치 · smoke 사용법. `cfg(windows)` 경로 확인 | README · 가능하면 `cargo check --target x86_64-pc-windows-msvc` (못 하면 사유 보고) |
+| P5 Windows 빌드 절차 | `README.md`(= DEC D-11 의 RUNBOOK): macOS 개발 · Windows 빌드 사전 요건·명령·산출물 위치 · smoke 사용법. `cfg(windows)` 경로 확인 | README · 가능하면 `cargo check --target x86_64-pc-windows-msvc` (못 하면 사유 보고) |
+| P6 레포 분리 정리 | 새 레포에서 깨지는 곳 정리 — PoC 원본을 읽던 동일성 테스트(`collect_offline.rs`)는 PoC 원본 사본 `poc/` 를 읽게, README 경로·설치 절차를 레포 루트 기준으로 | `cargo test`·clippy·build 를 새 레포 clone 에서 통과 |
 
 **P3 가 가장 위험하다.** 막히면(CDP 로 `searchIframe` 실행 맥락을 못 잡음, 응답 대기가 안 됨 등)
 우회로를 만들지 말고 즉시 코디에게 보고한다. 대안(DEC-001 Option C)을 여는 것은 사용자 결정이다.
@@ -53,4 +54,6 @@ OpenSSL 에 기대는 크레이트는 쓰지 않는다(Windows 빌드 부담).
 
 | Phase | 상태 |
 |---|---|
-| P1~P5 | done (2026-10-01) — 검수 WARN 수정 진행 · A-6 링크 확인 · A-9 Windows 는 사용자 |
+| P1~P5 | done (2026-10-01) — 검수 WARN 6 중 W-1·2·4 수정 |
+| P6 | done — kknaksss/sc-rank#1 (fresh clone test 39) |
+| A-6 링크 · A-9 Windows | 사용자 |
