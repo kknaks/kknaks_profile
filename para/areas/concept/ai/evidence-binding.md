@@ -9,6 +9,7 @@ aliases:
   - grounding to transcript
 up:
   - 2026-09-12-sc-meeting
+  - 2026-10-02-strong-hajin-polish
 tags:
   - llm
   - grounding
@@ -40,6 +41,12 @@ LLM 이 낸 정리 줄마다 **어느 원문 구간(시각 범위)에서 나왔�
 - 구간이 실재하는지만 본다 — 그 줄과 어울리는지는 보지 않는다(그건 모델 몫).
 - 근거가 여러 개면 전부 낸다. 첫 것 하나만 내면 나머지 데이터가 죽는다.
 
+## 근거로 묶을 수 있는 것 = 이 턴에 좁혀서 본 것
+
+- 답변 참조는 그 턴의 도구로 **실제로 본 대상**만 묶는다 — 넓게 훑는 개요 도구(그래프 overview 120 노드)로 스친 것은 근거가 아니다. 검색·이웃·단건 조회처럼 좁혀 본 것만
+- 참조 종류가 모자라면(예: `project` 없음) 모델이 다른 종류로 우겨 넣어 **턴 전체가 실패**한다 — 종류를 더하고, 읽기 때 권한을 다시 확인해 권한 밖 대상이 새지 않게
+- 기억 키를 실행 ID 로 읽을 때 형식을 가정하지 않는다 — 회의 실행 ID(`meeting-batch:<id>`)를 UUID 로 읽다 회의 중 조회 도구가 모두 깨져 있었다
+
 ## 함께 보는 개념
 
 - [[strict-json-schema-output]] · [[transcript-segmentation]] · [[two-pass-transcription]]
@@ -47,3 +54,4 @@ LLM 이 낸 정리 줄마다 **어느 원문 구간(시각 범위)에서 나왔�
 ## 출처
 
 - 2026-09-12-sc-meeting §2 · ax-workspace `modules/meetings/batch.py demote_line` · `application.py batch_input covered_ms` · D47·D49
+- [[2026-10-02-strong-hajin-polish]] §2 — Strong Hajin WORK-008 Phase 5(`answer_documents.py` project 종류 · `mcp.py` `_remember` 범위 · `review-p5-report.md`)
