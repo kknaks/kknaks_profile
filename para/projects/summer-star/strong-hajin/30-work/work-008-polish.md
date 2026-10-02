@@ -2,7 +2,7 @@
 type: work
 id: WORK-008
 title: "운영 고도화 1차 — 화면 손질 · 깜박임 · AX 제안 카드"
-status: todo
+status: done
 product: strong-hajin
 work_type: improvement
 owner: kknaks
@@ -13,13 +13,13 @@ roles:
   be: kknaks
   qa: kknaks
   ops: kknaks
-progress: 0
+progress: 100
 created_at: 2026-10-01
-updated_at: 2026-10-01
+updated_at: 2026-10-02
 tags:
   - product/strong-hajin
   - doc/work
-  - status/todo
+  - status/done
 links:
   baselines: []
   decisions:
@@ -86,6 +86,7 @@ sources:
 | 3a | D-02 · A-01 | AX 초안 = 새 업무 추가 필드 객체 · 기한 필수 제거 · 목록 응답 보강 | BE |
 | 3b | D-02 · A-01 | AX 요약 카드(좌우 넘김) · 「수정」= 새 업무 추가 모달 · 「AX 제안」 칩 | FE |
 | 4 | B-03 | 운영 회의 요약(종료 합성) 실패 — resume 실패 시 콜드스타트 | BE |
+| 6 | B-04 | ~~핫픽스 — 대화·회의 배치 세션 잃으면 새 세션으로 이어 감~~ 취소 | BE |
 | 5 | E2E-12 | AX 업무 생성이 프로젝트·업무를 찾아 채운다 · 프로젝트 근거 턴 실패 | BE |
 
 ## Code Surface
@@ -100,7 +101,7 @@ sources:
 
 ## Phase 1 — FE · 화면 손질 다섯
 
-- **Status**: TODO
+- **Status**: DONE
 - **무엇이 끝나야 시작하나**: 없음. 첫 페이지다
 - **워커**: frontend
 
@@ -167,13 +168,13 @@ sources:
 - [ ] `make frontend-test` · `npx tsc --noEmit` · `make frontend-build`
 - [ ] 바뀐 동작마다 테스트 — 특히 B-02(두 갈래 × 담당자 선택 전후 참조자 목록), F-03·D-01 범위 계산(월요일 경계·범위 밖 업무)
 - [ ] 코디가 로컬 스택에서 다섯 화면을 직접 확인하고 사용자에게 보인다(F-02 는 Tauri 포함)
-- **완료 증거**: 미작성
+- **완료 증거**: 코드 `9255028` · 검수 WARN→fix1 · 코디 화면 확인→fix2(타임라인 업무명 열 고정)
 
 ---
 
 ## Phase 2 — FE · 탭 이동 깜박임
 
-- **Status**: TODO
+- **Status**: DONE
 - **무엇이 끝나야 시작하나**: Phase 1 화면 확인
 - **워커**: frontend
 - **원인**: 탭 전환이 `useState` surface + 조건부 렌더라 페이지·레일이 매번 언마운트된다(`App.tsx:75, 476-575`). `request()` 는 캐시 없는 fetch(`lib/api.ts:127-144`). 진입마다 상태가 `"loading"` 으로 돌아가 지연 없는 스켈레톤이 뜬다(`MyWorkPage.tsx:354`, `CalendarPage.tsx:158`). 내 업무는 진입 때 최대 9콜
@@ -185,7 +186,7 @@ sources:
   - [ ] 권한(envelope) 판단은 갱신된 응답 기준이다
 - **범위 밖**: 서버(N+1 · 요청마다 인증 재계산 · 캐시 헤더 — `be-survey-report.md` §2). 체감을 본 뒤 따로 정한다
 - **검증**: `make frontend-test` · `npx tsc --noEmit` · 코디가 로컬에서 탭을 오가며 깜박임이 없는지 확인
-- **완료 증거**: 미작성
+- **완료 증거**: 코드 `1ef8db0` · 검수 FAIL(늦은 응답 누설)→세대 토큰 · 재검수 WARN→fix2
 
 ---
 
@@ -200,7 +201,7 @@ AX 경로에만 「기한 필수」 검사가 있다(`platform/action_center.py:
 
 ### Phase 3a — BE · 초안 객체와 목록 응답
 
-- **Status**: TODO
+- **Status**: DONE
 - **무엇이 끝나야 시작하나**: Phase 2 확인
 - **워커**: backend
 - **계약**:
@@ -212,11 +213,11 @@ AX 경로에만 「기한 필수」 검사가 있다(`platform/action_center.py:
   - [ ] 운영 대장(operation inventory) drift 는 **실패 diff 의 그 항목만** 패치
 - **SPEC**: **SPEC-001 S-9 · §4 Validation · §5** · **SPEC-002 §4**(confirm 의 고친 초안 예외) · **SPEC-002 §2.4**(만든 시각)
 - **검증**: `make test-unit` · `make test-contract` · 기한 없는 초안 confirm 이 통과 · 고친 draft 가 회차 2 로 남음 · 코디 `make verify`
-- **완료 증거**: 미작성
+- **완료 증거**: 코드 `4a89650` · 검수 WARN(테스트 정밀도)
 
 ### Phase 3b — FE · 요약 카드 · 수정 모달 · 「AX 제안」 칩
 
-- **Status**: TODO
+- **Status**: DONE
 - **무엇이 끝나야 시작하나**: Phase 3a 커밋 + **로컬 스택 재시작**
 - **워커**: frontend
 - **카드 와이어프레임** (채팅 서랍 폭 380px · 높이 고정):
@@ -255,13 +256,13 @@ AX 경로에만 「기한 필수」 검사가 있다(`platform/action_center.py:
   - [ ] **P-2** — DS 부품·토큰. 시안 없는 자리는 DS-gaps
 - **SPEC**: **SPEC-002 §2.4 · §2.9 · S-7 · §6** · **SPEC-001 U-2 · §6**
 - **검증**: `make frontend-test` · `npx tsc --noEmit` · `make frontend-build` · 코디가 로컬에서 AX 채팅으로 초안 생성 → 카드 넘김 → 수정 모달 → 등록 → 홈·칩에서 사라짐까지 확인
-- **완료 증거**: 미작성
+- **완료 증거**: 코드 `8700bd0` · 검수 FAIL(참고 업무 유실)→fix1(+자료 첨부 되살림·채팅 created_at)→재검수 WARN→fix2 · 사용자 E2E 2루프 `dc4fe90`·`94cacfd`
 
 ---
 
 ## Phase 4 — BE · 운영 회의 요약(종료 합성) 실패 (B-03)
 
-- **Status**: TODO
+- **Status**: DONE
 - **무엇이 끝나야 시작하나**: 없음(3b 와 파일이 겹치지 않으면 병렬)
 - **워커**: backend
 - **요청**: 사용자 2026-10-01 — 운영 회의 둘이 「회의 내용은 저장됐지만 글로 옮기지 못했습니다」로 실패, AI 회의록 없음. 「서버에서 확인하고 버그픽스」
@@ -275,13 +276,13 @@ AX 경로에만 「기한 필수」 검사가 있다(`platform/action_center.py:
 - **인프라**: `charts/strong-hajin/` `_helpers.tpl`·values — 다섯 deployment 에 hostPath(type Directory) 마운트. **sync 전 노드에서 `limactl shell worker-1 -- sudo mkdir -p /mnt/mac/strong-hajin/codex-runtime`**
 - **반영 뒤 볼 것**: 다섯 파드의 sqlite(state·logs) 오류 0 — 보이면 파드별 홈 + `sessions/` 만 공유로 바꾼다(검수 `review-p4-report.md`) · 기존 실패 회의 둘 [다시 시도]
 - **범위 밖**: 웜스타트 구조 변경 · 파드 간 같은 세션 동시 resume 상호배제(확률 낮음, 검수 WARN)
-- **완료 증거**: 미작성
+- **완료 증거**: 코드 `dd4bd7c` + 인프라 MediSolveAIDev/k8s_infra_mac#7(codex-runtime hostPath) · 검수 WARN
 
 ---
 
 ## Phase 5 — BE · AX 업무 생성이 프로젝트·업무를 찾지 않는다 (E2E-12)
 
-- **Status**: TODO
+- **Status**: DONE
 - **워커**: backend
 - **요청**: 사용자 2026-10-01 E2E — 「`graph_search` 실패 … 왜 프로젝트 연결이 안 돼? 업무 만들 때 프로젝트·업무들 탐색 안 해?」
 - **원인** (`orchestration/work/strong-hajin-polish/research-graph-search.md`)
@@ -294,7 +295,20 @@ AX 경로에만 「기한 필수」 검사가 있다(`platform/action_center.py:
   - [ ] `graph_search` 인자 설명을 실제 스키마와 맞춰 지어낸 인자를 줄인다
 - **검증**: 프로젝트 이름이 들어간 업무 생성 요청 → 초안에 project_id · 프로젝트를 가리킨 답변이 턴 성공 · `make test-unit` · `make test-contract`
 - **범위 밖**: 실행 단계 UI 에서 자가 수정된 인자 오류의 표시 방식
-- **완료 증거**: 미작성
+- **완료 증거**: 코드 `33e8f1b` · 검수 FAIL(회의 causation UUID)→fix1
+
+---
+
+## Phase 6 — BE · 핫픽스: AX 대화·회의 배치가 세션을 잃으면 새로 이어 간다 (B-04)
+
+- **Status**: **취소(2026-10-02)** — 사용자 「핫픽스 안 해도 돼 · 버리자」. 원인은 배포 전 세션이 옛 파드 로컬에 있던 일회성이고, 공유 hostPath 이후 세션은 재배포에도 남는다. 구현했던 코드는 버렸다(브랜치 미푸시·삭제). 남은 위험: 공유 디렉터리 밖에서 세션을 잃으면 대화·회의 배치는 대비가 없다
+- **요청**: 사용자 2026-10-02 운영 — 배포 전에 시작한 AX 대화가 「Codex CLI session to resume is not available here」로 매번 실패
+- **원인**: 그 대화의 codex 세션은 옛 `worker-conversation` 파드 로컬에만 있었고 재배포로 사라졌다(`no rollout found for thread id …`). 대화 turn 에는 세션 없음 대비가 없다(Phase 4 조사에서 남은 위험으로 기록). 공유 hostPath 는 이번 배포부터라 이후 세션은 남는다
+- **계약 (코디 결정)**
+  - [ ] 대화 turn 이 resume 불가(세션 없음)면 그 대화의 provider 세션을 버리고 **최근 대화 기록을 담아 새 세션으로** 이어 간다 — 같은 turn 안에서, 사용자는 실패를 보지 않는다
+  - [ ] 회의 배치(웜스타트 세션 resume)도 같은 대비
+  - [ ] 세션 없음 판정은 Phase 4 의 판정을 재사용
+- **검증**: 세션 없는 대화 turn 성공 · 회의 배치 성공 · `make test-unit` · `make test-contract` · 운영 반영 뒤 사용자 대화로 확인
 
 ---
 
@@ -308,6 +322,10 @@ AX 경로에만 「기한 필수」 검사가 있다(`platform/action_center.py:
 ## Rollback
 
 - `values-prod.yaml` 태그를 직전 값(`cdb0f3f-arm64`)으로 되돌려 머지 → 수동 sync. 스키마 변경이 없으므로 데이터 되돌림은 없다
+
+## 반영
+
+- 2026-10-02 운영 반영: kknaks/Strong_hajin#9 squash `3d47a32` → 이미지 `3d47a32-arm64` → k8s_infra_mac#7 → 노드 디렉터리 → Argo 수동 sync Synced/Healthy 8/8. web 200 · /health production · codex-runtime 공유 마운트 확인 · 로그 오류 0
 
 ## Done Criteria
 
