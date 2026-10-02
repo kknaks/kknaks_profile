@@ -9,6 +9,7 @@ aliases:
   - graceful degradation 의 반대편
 up:
   - 2026-09-12-sc-meeting
+  - 2026-10-02-strong-hajin-polish
 tags:
   - reliability
   - failure-handling
@@ -40,6 +41,11 @@ tags:
 - 모든 폴백이 나쁜 건 아니다 — 폴백을 쓰려면 **「그 실패를 사용자가 어디서 보는가」**를 같이 적어야 한다. 그 답이 없으면 폴백이 아니라 은폐다.
 - 브리프에 폴백 규칙을 쓰는 사람(코디)이 이 실수를 하기 쉽다 — 워커는 브리프대로 만든다.
 
+## 폴백이 허용되는 자리
+
+- 같은 결과물을 다른 길로 만드는 폴백은 은폐가 아니다 — 회의록 합성이 세션을 이어 가지 못하면 **저장된 원문 전량으로** 새 세션에서 같은 스키마로 만든다. 조건 셋: 실패 갈래를 **분류해서**(세션 없음만) 그때만 타고, 분류 못 한 실패는 그대로 실패로 드러내고, 폴백을 탔다는 사실과 원 오류(stderr, 비밀값 마스킹)를 로그에 남긴다
+- 폴백이 원인을 대신하면 안 된다 — 원인(세션이 파드 로컬)은 공유 저장소로 닫고 폴백은 안전장치로 둔다([[shared-session-storage]])
+
 ## 함께 보는 개념
 
 - [[idempotency]] · [[two-pass-transcription]] · [[fault-isolation]]
@@ -47,3 +53,4 @@ tags:
 ## 출처
 
 - 2026-09-12-sc-meeting §2·§3 · ax-workspace 커밋 e252dee · SCAX-SPEC-004 0.4.8 D44 정정
+- [[2026-10-02-strong-hajin-polish]] §2 — Strong Hajin WORK-008 Phase 4(`finalize_service.py` 세션 없음 → 콜드스타트, `codex_cli.py` stderr 요약)
