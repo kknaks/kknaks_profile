@@ -13,7 +13,7 @@ roles:
   be: kknaks
   qa: kknaks
   ops: kknaks
-progress: 0
+progress: 90
 created_at: 2026-10-02
 updated_at: 2026-10-02
 tags:
@@ -46,7 +46,7 @@ sources:
 
 > **SPEC 이 먼저 반영됐다**(Meta). 계약 문장이 이 WP 와 SPEC 사이에서 다르면 **SPEC 이 맞다** — 워커는 코디에게 알린다.
 >
-> 1 파일 = 1 work. 이 판은 **세 페이지**(Phase 1 BE · 2a FE · 2b FE)로 나뉜다. 2b 는 서버와 파일이 겹치지 않아 Phase 1 과 나란히, 2a 는 Phase 1 커밋 + 스택 재시작 뒤.
+> 1 파일 = 1 work. 이 판은 **네 페이지**(Phase 1 BE · 2a FE · 2b FE · 3 BE — E2E-6 은 사용자 E2E 중 추가)로 나뉜다. 2b 는 서버와 파일이 겹치지 않아 Phase 1 과 나란히, 2a 는 Phase 1 커밋 + 스택 재시작 뒤.
 > 페이지마다 발주 → 구현 → 검수(reviewer) → 재수정 → 커밋. 세 페이지가 끝나면 PR 하나 → main → 운영 반영(RUNBOOK-002 §1).
 > 근거 줄 번호는 조사 시점(코드 `3d47a32`) 값이다. 워커는 **줄 번호가 아니라 심볼로 다시 찾는다.**
 
@@ -59,7 +59,7 @@ sources:
   - SPEC-004 v0.3.2 — §5 거는 자리 넷째(완료의 마감일 채움) · OQ-405(코디 닫음: 훅 건다)
   - SPEC-007 v0.4.0 — §2.2 사실 줄 「날짜 넷」·「출처 줄」 간격 · §3 S-1 · §6
   - 검수: `review-spec-report.md`(FAIL→fix1) · `review-spec2-report.md`(WARN 3 → 코디 처리: 시퀀스 문구 형식 · OQ-Q AC · 변경 없는 저장 = 성공)
-- Covers: E2E-1 · E2E-2 · E2E-3 · E2E-4 · E2E-5 (`_RESUME.md` §1·§2)
+- Covers: E2E-1 · E2E-2 · E2E-3 · E2E-4 · E2E-5 · E2E-6 (`_RESUME.md` §1·§2)
 - 조사: `be-survey-report.md` · `fe-survey-report.md`
 - 코드 워크트리: `Strong_hajin/strong-hajin-polish2` (branch `kknaksss/strong-hajin-polish2`, base `origin/main` `3d47a32`)
 - External dependency: 없음. 새 외부 API·credential 없음. **스키마 변경 없음**(초안 회차는 기존 Submission·SubjectVersion 을 쓴다 — 아니면 코디에게 먼저 묻는다)
@@ -85,6 +85,7 @@ sources:
 | 2a | E2E-2 | 「수정」 모달 = 저장 모드 · 저장 뒤 카드 갱신 | FE |
 | 2a | E2E-3 | 채팅 서랍 안 사람 행동 단추 — 모든 상태 검정 계열 | FE |
 | 2b | E2E-4 · E2E-5 ①③ | 상세 메타 간격 · 날짜 넷 · 「마감일」 라벨 · `2026/10/06` 형식 통일 | FE |
+| 3 | E2E-6 | AX 가 초안 전에 관련 회의·업무·자료를 찾아 내용·체크리스트의 근거로 | BE |
 
 ## Code Surface
 
@@ -95,7 +96,7 @@ sources:
 
 ## Phase 1 — BE · 초안 저장 · AI 채움 · 완료 시 마감일
 
-- **Status**: TODO
+- **Status**: DONE — 코드 `6efdac1` · 검수 FAIL(F1 화면 title 「기한」)→fix1→재검수 WARN(W5 자료 ID 순서)→fix2 · 실물: AX 초안 체크리스트 5·내용 채움, save_draft 회차 2·변경 없음·낡음 422·등록=2회차 값, 완료 시 마감일=오늘
 - **무엇이 끝나야 시작하나**: SPEC 반영·검수
 - **워커**: backend
 
@@ -148,7 +149,7 @@ sources:
 
 ## Phase 2a — FE · 수정 모달 저장 · 채팅 단추 상태
 
-- **Status**: TODO
+- **Status**: DONE — 2a-2 먼저(서버 무관) `d1bb87d` 검수 WARN→fix1 · 2a-1 `4789647` 검수 WARN 4→fix1(낡은 저장 재조회·저장 중 닫힘 잠금·갱신 실패 분리·실배선 테스트) · 코디 화면 확인(카드·창 「저장」·2회차·「등록 중…」 회색)
 - **무엇이 끝나야 시작하나**: Phase 1 커밋 + **로컬 스택 재시작**
 - **워커**: frontend
 
@@ -186,7 +187,7 @@ sources:
 
 ## Phase 2b — FE · 업무 상세 날짜 넷 · 메타 간격 · 「마감일」 통일
 
-- **Status**: TODO
+- **Status**: DONE — 코드 `c64cddf` · 검수 WARN 5→fix1(W2 범위 밖) · 코디 화면 확인(완료 업무 날짜 넷)
 - **무엇이 끝나야 시작하나**: SPEC 반영·검수 (서버 변경 불필요 — `_view` 가 `started_at`·`completed_at` 을 이미 준다, `be-survey §3-4`). Phase 1 과 나란히
 - **워커**: frontend
 
@@ -236,6 +237,27 @@ div.scax-td
 
 - [ ] `make frontend-test`(직렬) · `npx tsc --noEmit` · `make frontend-build`
 - [ ] 코디: 데모 DB 로 상세(시작 전·진행 중·완료 업무 각 하나) · 내 업무 목록 · 캘린더 · 프로젝트 화면의 라벨·형식 확인
+
+---
+
+## Phase 3 — BE · AX 초안 전 회의·업무·자료 탐색 (E2E-6)
+
+- **Status**: TODO
+- **무엇이 끝나야 시작하나**: Phase 1 커밋(`6efdac1`) · E2E-6 SPEC 반영
+- **워커**: backend
+- **요청**: 사용자 2026-10-02 로컬 E2E — 「회의 내용이나 기존 업무 내용들은 안 살펴봐? 그래프 서치 할 때?」 → 「1번만」(사람·날짜 채움은 안 함)
+- **지금** (`be-survey2-report.md`): 실물 업무 생성 턴의 도구 호출이 `task_list`·`list_projects`·`task_create_self` 셋. 업무 생성 문장(`tool_catalog.py:546`·`:648`, `codex_cli.py:461-466`)이 이름을 드는 조회는 `list_projects`·`graph_search`·`graph_neighbors`·`task_list` 넷뿐이고 회의(`meeting_get`·`my_meeting_list`)·자료(`material_search`)·업무 상세(`task_get`)는 0. 제동 문장(`codex_cli.py:372-374` graph 안 걷기 · `:381` 일괄 상세 금지 · `:385`/`:395` 회의·자료는 질문일 때만 · `:408`·`tool_catalog.py:568` task_list 명시적일 때만)이 업무 생성 턴에도 실린다. `graph_search` 는 제목 부분 일치(`modules/work/search.py:25-27`). 본문을 주는 도구는 이미 있다
+- **계약** (`_RESUME.md` §2 「E2E-6 계약」 ①~⑧):
+  - [ ] 업무 생성·요청 초안 전에 **주제 핵심어(짧게)** 로 관련 회의·기존 업무·자료를 찾는다 — `graph_search`·회의 목록·`material_search`. 그중 가장 관련 높은 것만 **상세 최대 3건**(`meeting_get` 회의록·할 일 / `task_get` 내용·체크리스트)
+  - [ ] 찾은 내용을 **업무 내용·체크리스트의 근거**로 쓰고, 답변에 출처(회의·업무 이름)를 든다 — 답변 참조로 묶인다(기존 `task`·`meeting`·`material` 종류). 상세 조회가 근거 기억(`_remember`)에 실리는지 확인하고, 빠졌으면 같은 방식으로
+  - [ ] 연결(프로젝트·참고·선행·상위)은 지금처럼 한 후보 확정일 때만
+  - [ ] 관련 기록을 못 찾으면 일반 제안 + 「관련 회의·업무를 찾지 못해 일반 단계로 제안했다」
+  - [ ] **사람·날짜(참조자·결재자·마감일)는 채우지 않는다** — Phase 1 의 「ID·날짜는 대화·조회 근거만」 그대로, 회의 할 일의 담당자·마감 후보를 옮기지 않는다
+  - [ ] 제동 문장은 **업무 생성·요청 턴만 예외** — 다른 질문 턴의 동작은 그대로
+  - [ ] 검색 엔진·타임아웃(codex 90s)·reasoning 은 바꾸지 않는다. 초안 Submission Evidence 확장 없음
+  - [ ] 도구 설명·정책 문장을 쓰는 곳(카탈로그·정책 6절·Claude 어댑터·inventory description·단언 테스트)을 **전부** 센다
+- **SPEC**: SPEC-001 S-9 7 · §5 · §6 (E2E-6 반영분)
+- **검증**: 정책·도구 설명 단언 테스트 · `make test-unit` · `make test-contract` · inventory drift(그 항목만) · **코디 실물 1회**: 데모 DB 의 회의가 있는 주제로 업무 생성 → 도구 호출에 회의/업무 상세 조회 · 체크리스트가 그 내용을 반영 · 답변 출처 · 90초 안에 끝남
 
 ---
 
