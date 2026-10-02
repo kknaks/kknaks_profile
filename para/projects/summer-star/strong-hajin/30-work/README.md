@@ -5,7 +5,7 @@
 > 현재 구현, QA, 릴리즈 상태를 추적하는 map이다. 상세 work 실행 본문은 `30-work/` 아래 1 파일 = 1 work로 둔다.
 > `Status Board`는 실행 상태의 owning view다. Spec Coverage는 work frontmatter `links.specs`를 spec 중심으로 펼친 derived view다.
 
-최종 수정: 2026-09-28
+최종 수정: 2026-10-02
 
 Status 값: `todo`, `in_progress`, `blocked`, `review`, `done`
 
@@ -29,6 +29,7 @@ Status 값: `todo`, `in_progress`, `blocked`, `review`, `done`
 
 | 1–9 (6a·6b 분리) | [WORK-006 데스크톱 래퍼](work-006-tauri-wrapper.md) | SPEC-006 전절 · 10단계 | in_progress | kknaks | 미산정 | 미정 | `kknaksss/strong-hajin-projects` | 배포 결정·Windows 장비는 해당 단계에서 확인 | Phase 1 Claude 구현 중 |
 | B-1–7 | [WORK-007 업무 상세 재설계](work-007-task-detail.md) | SPEC-007 전절 (**BE 셋 → FE 셋 직렬**) | todo | kknaks | 미산정 | 미정 | `kknaksss/strong-hajin-design` | 없음 (OQ-709 는 F-2 의 한 조각만 gate) | WP 검수 → **BE Phase B-1 발주** |
+| 1 · 2 · 3a→3b | [WORK-008 운영 고도화 1차](work-008-polish.md) | 운영 요청 8건 + 회의 요약 · AX 탐색 (Phase 1~5, 6 취소) | done | kknaks | 2026-10-01~02 | 2026-10-02 | Strong_hajin#9 · k8s_infra_mac#7 | 없음 | 운영 반영 완료 — 다음 고도화는 회고 §7 |
 
 ## Work List
 
@@ -43,6 +44,7 @@ work 문서를 만들거나 상태, owner, branch, 다음 작업이 바뀌면 �
 
 | WORK-006 | 데스크톱 래퍼 | new-feature | kknaks | in_progress | 0% | [본문](work-006-tauri-wrapper.md) | SPEC-006 |
 | WORK-007 | 업무 상세 재설계 | new-feature | kknaks | todo | 0% | [본문](work-007-task-detail.md) | SPEC-007 |
+| WORK-008 | 운영 고도화 1차 | improvement | kknaks | done | 100% | [본문](work-008-polish.md) | SPEC-001 · SPEC-002 · SPEC-005 · SPEC-007 |
 
 ## Spec Coverage
 
