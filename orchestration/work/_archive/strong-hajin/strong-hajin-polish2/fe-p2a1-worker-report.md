@@ -1,0 +1,18 @@
+# frontend Phase 2a-1 완료 보고(인박스 원문)
+
+[변경 파일] frontend/src: lib/viewModels.ts · lib/api.ts · lib/labels.ts · App.tsx · features/action/AxDraftCard.tsx · ActionPreview.tsx · ActionCenter.tsx · ActionTaskCard.tsx · ActionMeetingCard.tsx · CommandConfirmationForm.tsx · features/work/WorkModals.tsx · 테스트 features/action/AxDraftCard.test.tsx(픽스처·기대 갱신) + 새 features/action/AxDraftSave.test.tsx(10). 커밋 없음. backend 읽기만.
+
+[계약별 구현 위치]
+① 창 주 단추 「저장」/「저장 중…」: WorkModals.tsx CreateWorkModal 하단(axDraft ? axDraftCard.saving/save). 색 = DS solid-primary 그대로(body 포털이라 앱 DS 파랑) · 「닫기」 그대로. 실패 기본 문구 axDraftCard.saveFailed. axDraft 문서·「목록에 없는 참고 업무 …함께 저장됩니다」 문구도 저장으로.
+② 「저장」 = save_draft: AxDraftCard 가 save 명령을 찾는다(commands 에서 id = edit_contract.save_command ?? "save_draft"). 창 onSubmit → onCommand(save.id, {base_submission_version, draft, attachment_draft_ids?}) — confirm 안 부름. [수정] 은 save 명령이 열려 있을 때만 선다(없으면 남길 길이 없어서). 타입 ActionEditContract.save_command 추가(viewModels).
+③ 채팅 경로: MessageList onDecide → App.decideConversationAction → useConversations.decide → api.decideAction — save_draft 를 confirm 과 같은 runActionCommand 분기(POST /api/action-items/{id}/commands/save_draft, expected_version=action.version)로. 성공 뒤 기존 refreshProjections(대화 재조회 + 현재 화면 재조회 + 맥락 후보) → 카드가 새 회차(edit_contract.values · base_submission_version → 「초안 · N회차」)로 다시 그려짐. 토스트 「AX 초안을 저장했습니다.」(App). 실패는 throw → 창이 axDraft.error 로 창 안에 냄(입력 유지). 낡음 문장은 confirm 과 같은 서버 문장 그대로.
+④ 홈 판단 대기·「AX 제안」 칩(AxDraftModal): 지금 그리는 봉투를 state 로 두고 save_draft 응답(새 회차 봉투)으로 바꾼다 → 창은 닫지 않고 카드가 새 회차 · pending [거절][수정][등록]. onDone(그 화면 목록 재조회) · 알림 「AX 초안을 저장했습니다.」. 부르는 쪽이 건넨 item 은 옛 값이라 그것으로 그리면 다음 등록이 낡음으로 거절되기 때문(새 item 이 더 높은 회차로 오면 그것을 따름). confirm·reject 는 지금처럼 onDone → 닫힘.
+⑤ 카드 「등록」: 지금처럼 draft 없이 confirm{base_submission_version: contract.base_submission_version} — 그 값은 카드 source(채팅=대화 재조회의 edit_contract, 창=저장 응답)에서 읽으므로 저장 뒤 새 회차로 간다(테스트로 확인: 2→3).
+⑥ 자료: 변경 없음 — 고르는 즉시 판단 항목 자료 초안, 저장·등록 때 attachment_draft_ids(staged) 실림.
+⑦ 범용 렌더러 제외: ActionPreview 에 EDITOR_ONLY_COMMANDS={save_draft} · withoutEditorOnlyCommands. 적용 5자리 — ActionCommandButtons(채팅 결과 카드 MessageList:659) · ActionCenter 상세 footer(commands) · CommandConfirmationForm 명령 단추 · ActionTaskCard·ActionMeetingCard 「기타 명령」 목록. 그 밖에 allowed_commands/commands 를 단추로 그리는 자리 없음(grep: AxDraftCard·ProgressBatch·TaskCard·MeetingCard 는 id 로 find, assistantPresentation 은 개수만, WorkModals:1131 은 accept 확인).
+
+[다른 CreateWorkModal 자리] <CreateWorkModal 6 호출(캘린더 683 · 홈 468 · AxDraftCard 420 · 하위 업무 WorkModals 3019 · 내 업무 새 업무/재요청 1423 · 회의 승격 1289 — 조사 §2-4 의 7자리) 중 axDraft 를 넘기는 곳은 AxDraftCard 1곳뿐 → 나머지 단추(업무 추가 / 업무 요청 보내기 / 만드는 중…)·제출 함수 그대로. 테스트로 새 업무·재요청 문구 확인.
+
+[기준선 vs 결과] 직렬 전체 5 실패 / 1217 통과(83파일) — 5건은 기준선 그대로(CreateWork 시작일 4 · CreateWorkLayout 1). 새 테스트 10: 저장 문구·저장 중 · save_draft 만(confirm 없음) · 실패 문구 창 안·입력 유지 · save 없으면 [수정] 없음 · 채팅 카드 새 회차·등록 base 3 · AxDraftModal 저장 응답 반영·목록 재조회·창 유지·등록 base 3 · decideAction→/commands/save_draft · 범용 렌더러 2종 저장 단추 없음 · 다른 CreateWorkModal 문구 불변. 기존 AxDraftCard.test 13건은 픽스처에 save_draft 를 더하고 창 단추 「등록」→「저장」·기대 confirm→save_draft 로 갱신. tsc 0 · make frontend-build 성공.
+
+[미결] ① 채팅 경로의 저장 실패는 창 안 문구와 함께 App 전역 오류 띠에도 뜬다(confirm 실패와 같은 기존 동작 — decideConversationAction 이 setError 후 throw) — 겹침을 없앨지 코디 판단 ② 낡음 오류는 422 서버 문장 그대로(「base submission version is stale」 영문) — confirm 과 같은 처리, 한국어 문구 매핑은 범위 밖 ③ 화면 확인(채팅·홈·칩에서 수정→저장→카드 회차 오름→등록)은 코디 몫.
