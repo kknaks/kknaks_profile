@@ -4,7 +4,7 @@ id: RUNBOOK-002
 title: 운영 배포 — Mac Studio k8s 와 데스크톱 앱
 status: active
 created_at: 2026-10-01
-updated_at: 2026-10-02
+updated_at: 2026-10-03
 tags: [product/strong-hajin, doc/runbook, status/active]
 links:
   baselines: []
@@ -272,6 +272,7 @@ ssh medi-me '/opt/homebrew/bin/kubectl -n strong-hajin-prod logs deploy/worker-c
 | dmg 창 꾸밈이 없다 | 헤드리스 빌드(`CI=true`) 때문이다. GUI 세션에서 `CI` 없이 구우면 꾸며지지만 해시가 바뀌므로 다시 공증해야 한다 |
 | back·워커가 `ContainerCreating` 에서 멈춘다 | 노드의 `/mnt/mac/strong-hajin/codex-runtime`(또는 recordings·materials)이 없다 — §2-4 의 mkdir. 2026-10-02 첫 반영 때 미리 만들었다 |
 | 배포 전에 시작한 AX 대화가 「session to resume is not available」로 실패 | 2026-10-02 반영(세션 공유 도입) 직후 한 번 있었다 — 그 세션은 옛 파드 로컬에 있었다. 새 대화로 쓴다. 공유 이후 세션은 재배포에도 남는다 |
+| 원격 kubectl 의 `-o custom-columns=…[0]…` 가 `no matches found` | medi-me 로그인 셸이 zsh 라 대괄호를 glob 으로 먹는다. `-o jsonpath='…'` 를 따옴표로 감싸 쓴다(2026-10-03 WORK-009 반영 때) |
 | 9/30 의 로컬 ad-hoc 판(`Strong Hajin.app`, origin 127.0.0.1)이 `/Applications` 에 남아 있을 수 있다 | 서명이 깨진 판이다. medi-ax 판과 섞지 않는다 |
 
 ## 7. 이번에 하지 않은 것
