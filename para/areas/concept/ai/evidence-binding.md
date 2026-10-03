@@ -10,6 +10,7 @@ aliases:
 up:
   - 2026-09-12-sc-meeting
   - 2026-10-02-strong-hajin-polish
+  - 2026-10-03-strong-hajin-polish2
 tags:
   - llm
   - grounding
@@ -47,6 +48,11 @@ LLM 이 낸 정리 줄마다 **어느 원문 구간(시각 범위)에서 나왔�
 - 참조 종류가 모자라면(예: `project` 없음) 모델이 다른 종류로 우겨 넣어 **턴 전체가 실패**한다 — 종류를 더하고, 읽기 때 권한을 다시 확인해 권한 밖 대상이 새지 않게
 - 기억 키를 실행 ID 로 읽을 때 형식을 가정하지 않는다 — 회의 실행 ID(`meeting-batch:<id>`)를 UUID 로 읽다 회의 중 조회 도구가 모두 깨져 있었다
 
+## 근거를 넓혀도 칸의 기준은 섞지 않는다
+
+- AI 가 초안 전에 관련 회의·업무·자료를 찾아 **내용·체크리스트의 근거**로 쓰면, 답변에 출처(회의·업무 이름)를 들게 하고 그 조회는 그 턴의 답변 참조로 묶인다
+- 탐색을 열면 근거 기준이 다시 섞인다 — 「ID 와 날짜는 대화·조회 근거」 한 문장이 남아 있으면, 찾은 회의 할 일의 마감 후보가 마감일로, 참석자가 참조자로 옮겨 갈 틈이 생긴다. **ID 문장과 날짜·사람 문장을 물리적으로 나눈다** — 사람은 대화가 이름을 댄 사람만, 조회는 그 이름을 ID 로 확인할 때만
+
 ## 함께 보는 개념
 
 - [[strict-json-schema-output]] · [[transcript-segmentation]] · [[two-pass-transcription]]
@@ -55,3 +61,4 @@ LLM 이 낸 정리 줄마다 **어느 원문 구간(시각 범위)에서 나왔�
 
 - 2026-09-12-sc-meeting §2 · ax-workspace `modules/meetings/batch.py demote_line` · `application.py batch_input covered_ms` · D47·D49
 - [[2026-10-02-strong-hajin-polish]] §2 — Strong Hajin WORK-008 Phase 5(`answer_documents.py` project 종류 · `mcp.py` `_remember` 범위 · `review-p5-report.md`)
+- [[2026-10-03-strong-hajin-polish2]] §2 — Strong Hajin WORK-009 E2E-1·E2E-6(SPEC-001 S-9 7·8 · `review-be-p3-report.md` W1 · 커밋 `1d4cd1f`)

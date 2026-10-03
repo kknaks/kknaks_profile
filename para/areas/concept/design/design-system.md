@@ -7,6 +7,7 @@ aliases:
   - Design System
 up:
   - C-048-reference-driven-ai-design-workflow
+  - 2026-10-03-strong-hajin-polish2
 tags:
   - design
   - ui
@@ -65,11 +66,18 @@ h1, h2 { font-size: var(--font-heading); }
 - **특정 AI 도구에 종속되는 개념은 아니다.** 출처는 클로드 디자인 활용 사례이며, 공유 가능한 디자인 기준이라는 원리는 도구를 바꿔도 남는다.
 - **일관성 향상이 모든 품질의 향상을 보장하지는 않는다.** 출처의 비교는 발표자의 사례이며 정량적인 효과 검증으로 제시되지는 않았다.
 
+## DS 원본의 결함을 화면에서 만났을 때
+
+- DS 규칙을 직접 고치면 **앱 전체**가 바뀐다 — 화면 하나의 요구(채팅 서랍 안 사람 행동 단추는 모든 상태에서 검정)는 **그 범위의 스코프로 덮고**, DS 원본의 결함(hover 규칙에 비활성 제외가 없다)은 미결로 따로 남긴다
+- DS 가 정한 상태 표(기본·hover·active·disabled)에 **「진행 중」이 없으면** 화면이 비활성으로 대신하고, 비활성 × hover 같은 조합에서 의도하지 않은 색이 이긴다 → [[css-specificity]]
+
 ## 함께 보는 개념
 
 - [[design-token]] — 시스템에서 반복해서 사용하는 시각적 값을 이름으로 관리한다.
+- [[css-specificity]] — DS 규칙 위에 화면 범위의 예외를 얹을 때 무엇이 이기는지 정하는 규칙.
 - [[storybook]] — 구현된 컴포넌트와 상태별 예시를 탐색하고 확인하는 공간을 제공한다. 디자인 원칙과 사용 규칙 자체를 자동으로 정해 주지는 않는다.
 
 ## 출처
 
 - [[C-048-reference-driven-ai-design-workflow]] — 목적에 맞는 레퍼런스 선정, 토큰의 시스템화, 시스템 기반 UI 생성과 별도 문구 검수의 순서를 설명한다.
+- [[2026-10-03-strong-hajin-polish2]] §2 — Strong Hajin WORK-009 E2E-3(`fe-survey-report.md` §3 · `review-fe-p2a2-report.md` · 커밋 `d1bb87d`, OQ-901)

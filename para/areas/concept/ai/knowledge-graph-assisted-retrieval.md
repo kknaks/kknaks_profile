@@ -10,6 +10,7 @@ aliases:
 up:
   - C-040-integrating-llm-wiki-with-graphify
   - C-042-building-ai-second-brain-with-llm-wiki-and-graphify
+  - 2026-10-03-strong-hajin-polish2
 tags:
   - 지식 그래프
   - 검색
@@ -55,6 +56,11 @@ Graphify 같은 도구로 Markdown 위키의 그래프 데이터와 보고서·�
 - **그래프 시각화 ≠ 검색 품질** — 보기 좋은 노드 배치나 클러스터가 관련 원문의 회수율과 답변의 근거성을 보장하지 않는다.
 - **그래프 생성 ≠ 지속적인 동기화** — 위키 변경 후 그래프를 갱신하지 않으면 오래된 노드와 관계가 검색을 왜곡한다.
 
+## 에이전트가 그래프를 걷게 하는 것은 지시문이다
+
+- 도구가 있어도 에이전트는 **지시문이 이름을 든 도구**만 고른다 — 업무 초안 턴의 실물 호출이 목록 둘뿐이었고 그래프·회의·자료 조회는 0이었다. 탐색할 대상(회의·업무·자료)과 상세 상한을 생성 턴 지시에 적어야 「후보를 좁히고 원문을 읽는」 흐름이 돈다
+- 그래프 이름 검색이 **제목 부분 일치**면 긴 업무명 그대로는 안 걸린다 — 짧은 핵심어로 찾게 한다
+
 ## 함께 보는 개념
 
 - [[llm-wiki]] — 상세 설명과 출처를 보존하는 원장으로서 그래프가 가리킬 내용을 제공한다.
@@ -67,3 +73,4 @@ Graphify 같은 도구로 Markdown 위키의 그래프 데이터와 보고서·�
 
 - [[C-040-integrating-llm-wiki-with-graphify]] — 지식 그래프로 관련 위치를 먼저 좁힌 뒤 연결된 LLM 위키 원문에서 상세 내용을 회수하는 구조를 설명한다.
 - [[C-042-building-ai-second-brain-with-llm-wiki-and-graphify]] — Graphify로 Markdown 위키를 그래프화해 관계 기반으로 질의하고 위키 변경 후 그래프도 갱신하는 워크플로를 시연한다.
+- [[2026-10-03-strong-hajin-polish2]] §2 — Strong Hajin WORK-009 E2E-6(`be-survey2-report.md` · `review-be-p3-report.md`)
