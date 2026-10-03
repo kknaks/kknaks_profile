@@ -2,7 +2,7 @@
 type: work
 id: WORK-009
 title: "운영 고도화 2차 — AX 초안 저장 · 채팅 단추 상태 · 업무 날짜 넷"
-status: in_progress
+status: done
 product: strong-hajin
 work_type: improvement
 owner: kknaks
@@ -13,13 +13,13 @@ roles:
   be: kknaks
   qa: kknaks
   ops: kknaks
-progress: 90
+progress: 100
 created_at: 2026-10-02
-updated_at: 2026-10-02
+updated_at: 2026-10-03
 tags:
   - product/strong-hajin
   - doc/work
-  - status/in_progress
+  - status/done
 links:
   baselines: []
   decisions: []
@@ -242,7 +242,7 @@ div.scax-td
 
 ## Phase 3 — BE · AX 초안 전 회의·업무·자료 탐색 (E2E-6)
 
-- **Status**: TODO
+- **Status**: DONE — 코드 `1d4cd1f` · 검수 WARN 4(날짜 기준 이중·호출 상한·예외 꼬리 범위·빈 단언)→fix1 · 실물 2회: 관련 기록 있는 주제 45초(검색 도구별 1회·상세 1·연결 채움·사람·날짜 비움) / 없는 주제 25초(「관련 회의·기존 업무·자료를 찾지 못해 일반 단계로 제안」)
 - **무엇이 끝나야 시작하나**: Phase 1 커밋(`6efdac1`) · E2E-6 SPEC 반영
 - **워커**: backend
 - **요청**: 사용자 2026-10-02 로컬 E2E — 「회의 내용이나 기존 업무 내용들은 안 살펴봐? 그래프 서치 할 때?」 → 「1번만」(사람·날짜 채움은 안 함)
@@ -271,6 +271,10 @@ div.scax-td
 ## Rollback
 
 - `values-prod.yaml` 태그를 직전 값(`3d47a32-arm64`)으로 되돌려 머지 → 수동 sync. 스키마 변경이 없으므로 데이터 되돌림은 없다. 단 Phase 1-3 으로 채워진 `due_date` 는 남는다(되돌리지 않는다)
+
+## 반영
+
+- 2026-10-03 운영 반영: kknaks/Strong_hajin#10 squash `d1b5137` → 이미지 `d1b5137-arm64`(back·front) → MediSolveAIDev/k8s_infra_mac#8(태그 한 줄) → Argo 수동 sync Synced/Healthy 8/8. web 200 · /health production · providers 데모 계정 없음 · back·worker 로그 오류 0
 
 ## Done Criteria
 
