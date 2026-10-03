@@ -1,0 +1,5 @@
+# [reviewer] WORK-009 Phase 1 재검수 (fix1)
+
+앞 판 `/Users/kknaks/orca/workspaces/kknaks_profile/스트롱-하진-고도화-3/orchestration/work/strong-hajin-polish2/strong-hajin-polish2-review-be-p1-brief.md` 의 규칙·기준이 그대로다. 네 앞 리포트 `/Users/kknaks/orca/workspaces/kknaks_profile/스트롱-하진-고도화-3/orchestration/work/strong-hajin-polish2/review-be-p1-report.md` 의 F1·W1~W4 가 지시서 `/Users/kknaks/orca/workspaces/kknaks_profile/스트롱-하진-고도화-3/orchestration/work/strong-hajin-polish2/strong-hajin-polish2-be-p1-fix1-brief.md` 대로 닫혔는지, 고치면서 새 문제가 생기지 않았는지 본다. 대상은 `backend/`+`docs/unified-operations-inventory.json` 미커밋 변경 전체(`frontend/` 는 `4789647` 로 커밋됨 — 대상 아님).
+특히: 서버가 화면으로 내는 title/label 에 「기한」 0 재계수 · W1 자료 붙은 초안 저장→등록 회차 그대로(FE 는 저장·등록 둘 다 정렬된 같은 자료 ID 목록을 싣는다 — `frontend/src/features/action/AxDraftCard.tsx` confirmPayload) · W4 훅 스파이가 실제 경로를 보는지.
+리포트 `/Users/kknaks/orca/workspaces/kknaks_profile/스트롱-하진-고도화-3/orchestration/work/strong-hajin-polish2/review-be-p1b-report.md` 하나, 판정 FAIL·WARN·PASS, 2채널 보고 subject 「reviewer 완료: WORK-009 Phase 1 재검수 <판정>」(코디 term_b2ea0fd5-1473-4b83-9a04-dcf769fbedba).
