@@ -572,6 +572,9 @@ para/areas/
 | 457 | `front` | `stale-while-revalidate` | 재진입 때 받아 둔 화면을 먼저 보이고 뒤에서 갱신. 세대 토큰·기억한 권한으로 명령 안 열기 |  |
 | 458 | `infra` | `shared-session-storage` | 여러 파드가 이어 쓰는 세션은 공유 저장소에. 파드 로컬이면 resume 이 즉시 실패, 폴백은 안전장치 |  |
 | 459 | `front` | `css-specificity` | 명시도가 높은 규칙이 이기고 동률이면 뒤가 이긴다. 덮어쓰기가 빠진 상태 조합에서 옛 색이 샌다 |  |
+| 460 | `front` | `server-authoritative-transition` | 상태 전이 UI 는 서버 허용표를 비추기만. 조건부 막힘은 미리 막지 않고 서버 거절 문장을 보인다 |  |
+| 461 | `front` | `webview-attachment-download` | 웹뷰가 첨부 헤더를 안 보고 창에 그리면, 셸이 요청 단계에서 가로채 쿠키를 실어 직접 받는다 |  |
+| 462 | `design` | `wireframe` | 시각 값을 빼고 구역 배치만 그린 화면 뼈대. 세부 질문을 구조 질문으로 끌어올린다 |  |
 
 ---
 
