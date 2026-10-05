@@ -7,9 +7,12 @@ aliases:
   - optimistic lock
   - "@Version"
   - OptimisticLockException
+  - 낙관적 잠금
+  - 저장 직렬화
 up:
   - 2025-01-08-Day07
   - 2026-10-03-strong-hajin-polish2
+  - 2026-10-05-strong-hajin-polish3
 tags:
   - database
   - 동시성
@@ -76,6 +79,13 @@ UPDATE post SET username = ?, version = 3 WHERE id = 1 AND version = 2
 - **낡음 거절 뒤에 최신을 다시 읽는 길이 없으면 영영 막힌다** — 다른 화면에서 먼저 저장하면 내 화면은 옛 회차를 들고 있어 저장·등록이 계속 낡음으로 거절된다. 거절을 받으면 최신 회차를 다시 읽어 입력을 얹을 수 있어야 「드문 충돌」이 「영구 정지」가 되지 않는다
 - **저장이 도는 동안 확정 단추를 잠근다** — 저장 중 창을 닫고 바로 확정하면 서버는 **고치기 전 회차**를 확정한다. 버전 검사는 「낡은 것」을 막지 「아직 안 끝난 내 저장」을 기다려 주지 않는다
 
+## 즉시 저장 — 클라이언트가 한 줄로 세운다
+
+- 서버가 **바꾸는 명령마다 version 을 올리고 어긋나면 거절**(422)하는데 화면이 필드마다 바로 저장하면, 두 필드를 연달아 고칠 때 **둘째 요청이 첫째가 올린 version 을 모른 채** 나가 거절된다. 남과의 충돌이 아니라 **나와의 충돌**이다
+- 서버에 일괄 저장을 새로 만들지 않고 닫는 길: 화면이 요청을 **한 줄 대기열**에 세우고, **앞 응답의 version 을 다음 요청에 싣는다.** 서버 변경 0
+- **줄에 태울 대상은 「인라인 저장」이 아니라 「version 을 올리는 명령 전부」다** — 상태 전이·체크리스트·제안·자료·완료 보고처럼 같은 대상의 version 을 올리는 단추가 줄 밖에 있으면, 저장이 도는 중에 누를 때 똑같이 거절된다. 처음 범위를 「저장」으로 잡으면 검수가 줄 밖 명령을 한 번에 하나씩 찾아낸다 — 서버에서 version 을 올리는 명령을 **전부 세어** 시작해야 한 번에 닫힌다
+- 남이 먼저 고쳐 진짜로 낡았을 때(stale 거절), 인라인 화면에는 **남겨 둘 입력 칸이 없다** — 다시 읽은 서버 값으로 화면을 맞추고 알린다. 위 「다시 읽는 길」의 즉시 저장판이다
+
 ## 함께 보는 개념
 
 - [[database-lock]] — 먼저 잠그는 반대편
@@ -84,8 +94,10 @@ UPDATE post SET username = ?, version = 3 WHERE id = 1 AND version = 2
 - [[persistence-framework]] — 이 기능을 제공하는 층
 - [[exception-handling]] — 충돌이 예외로 오는 것
 - [[functional-dependency]] — 데이터 정합성이라는 같은 목적
+- [[queue]] — 같은 대상에 대한 쓰기를 한 줄로 세우는 자리
 
 ## 출처
 
 - [[2025-01-08-Day07]] — 「낙관적 락, 비관적 락」 절이 둘을 나란히 정의하고, **「JPA 에서만 통용되는 개념으로 DB 에서는 낙관적락을 직접적인 지원은 없다」**는 첫 줄이 이 개념의 성격을 정확히 짚었다. 구현은 `@Version` 필드 하나이고, 「엔티티가 수정될 때마다 버전이 자동으로 증가한다 / 트랜잭션 충돌 시 `OptimisticLockException` 이 발생한다」로 동작을 적었다. **충돌을 실제로 만들어 본 방법**이 이 회차의 값이다 — 요청을 보내 `Thread.sleep(10_000)` 으로 트랜잭션을 붙들어 둔 사이에 **DBeaver 로 버전을 직접 수정**해 예외를 일으켰고, MariaDB 에서는 `JpaSystemException`/`GenericJDBCException` 으로 나타난다는 것까지 확인했다. 다만 충돌 후 재시도를 어떻게 할지는 다루지 않았고, 「JUnitTest」 절은 제목만 있다
 - [[2026-10-03-strong-hajin-polish2]] §2 — Strong Hajin WORK-009 「초안 저장」(SPEC-002 §4 · `review-be-p1-report.md` · `review-fe-p2a1-report.md` · 커밋 `6efdac1`)
+- [[2026-10-05-strong-hajin-polish3]] §2 — Strong Hajin WORK-010 업무 상세 인라인 즉시 저장(SPEC-007 §2.10.4 · `review-fe-p2a-report.md` W1 · `review-fe-p2b-report.md` W1 · 커밋 `cc64d18` · `58e591a`)
