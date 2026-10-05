@@ -27,6 +27,7 @@ Status 값: `todo`, `in_progress`, `blocked`, `review`, `done`
 | BE1–FE5 | [WORK-005 「프로젝트」 화면](work-005-projects.md) | SPEC-005 전절 (1루프 done · Phase 0 done · **2루프 BE-3→FE-4→FE-5 직렬**) | in_progress | kknaks | 미산정 | 미정 | `kknaksss/strong-hajin-projects` | 없음 | **2루프 BE-3 발주 예정** (인수조건 1루프 76 + **2루프 52**) |
 | BE1–FE4 | [WORK-004 캘린더 시간 배정](work-004-calendar-scheduling.md) | SPEC-004 전절 (BE·FE 직렬 · 2루프) | in_progress | kknaks | 미산정 | 미정 | `kknaksss/strong-hajin-calendar` | 없음 | **1루프 넷 DONE**(`1c15d02`·`2a85176`·`c5b109d`·`aa8576b`) → **Phase BE-3 발주**(2루프 K19~K24) |
 
+| 1–3 (2a·2b) | [WORK-010 운영 고도화 3차](work-010-polish3.md) | SPEC-007 §2.10 · SPEC-006 U-5 · R1·R2a·R3(WP 계약) | review | kknaks | 2일 | 2026-10-05 | Strong_hajin#11 (`202078b`) | macOS 실기·dmg | 운영 반영 |
 | 1–9 (6a·6b 분리) | [WORK-006 데스크톱 래퍼](work-006-tauri-wrapper.md) | SPEC-006 전절 · 10단계 | in_progress | kknaks | 미산정 | 미정 | `kknaksss/strong-hajin-projects` | 배포 결정·Windows 장비는 해당 단계에서 확인 | Phase 1 Claude 구현 중 |
 | B-1–7 | [WORK-007 업무 상세 재설계](work-007-task-detail.md) | SPEC-007 전절 (**BE 셋 → FE 셋 직렬**) | todo | kknaks | 미산정 | 미정 | `kknaksss/strong-hajin-design` | 없음 (OQ-709 는 F-2 의 한 조각만 gate) | WP 검수 → **BE Phase B-1 발주** |
 | 1 · 2 · 3a→3b | [WORK-008 운영 고도화 1차](work-008-polish.md) | 운영 요청 8건 + 회의 요약 · AX 탐색 (Phase 1~5, 6 취소) | done | kknaks | 2026-10-01~02 | 2026-10-02 | Strong_hajin#9 · k8s_infra_mac#7 | 없음 | 운영 반영 완료 — 다음 고도화는 회고 §7 |
