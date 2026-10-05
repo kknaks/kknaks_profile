@@ -72,4 +72,9 @@
 - 사용자에게 물은 둘: ① 회의 자료 「내려받기」 PDF·이미지를 앱에서 파일로 저장할지(지금 아무 일 없음) ② 요청자가 `⋯`(취소/조건 변경 제안)를 거의 못 보는 구조(「보낸 업무」 = 읽기 전용)
 - E2E 체크리스트(`e2e-checklist.md`) 중 사용자가 보지 않은 항목 — 운영에서 쓰며 나오는 것은 다음 판
 - 긴 회의 제목이 편집 가능할 때만 두 줄로 접힘(P1 W4) · `⋯` 글리프·Select danger tone 은 DS-gaps
-- 다음 작업 후보: 설정·수신함 페이지(시안 `Settings.html` — DesignSync 는 워커로) · Slack·Gmail·카카오톡(mykakao) 수집
+- **다음 작업 = 설정·수신함 페이지** (사용자 2026-10-05)
+  - 시안: Claude Design 프로젝트 `7e839512-977c-4142-b4b5-d992df566ffc`(TheSC AX Design System = 코드 `.design-sync/` 가 가리키는 곳)
+    - 설정: https://claude.ai/design/p/7e839512-977c-4142-b4b5-d992df566ffc?file=Settings.html — 함께 읽을 것 `_ds_bundle.css` · `_ds_bundle.js`
+    - 수신함: 같은 프로젝트 안 — 파일 이름은 받지 않았다(워커가 프로젝트 파일 목록에서 찾는다)
+  - 읽는 법: **orca 워커가 DesignSync 로** 읽는다(코디가 직접 받지 않는다). 확정 시안이 정본 — 시안대로 SPEC·WP, 기획과 다른 점은 한 줄 목록만
+- 그다음 후보: Slack·Gmail(회사 Workspace)·카카오톡 수집 — 카톡은 mykakao 재사용(로컬 DB 복호화 + 폴링, Mac 호스트 전용, `config/projects/mykakao.json` canonical 경로가 Windows 로 낡음)
