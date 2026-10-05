@@ -2,7 +2,7 @@
 type: work
 id: WORK-010
 title: "운영 고도화 3차 — 업무 상세 인라인 개편 · 회의 제목 · 데스크톱 첨부 저장"
-status: in_progress
+status: review
 product: strong-hajin
 work_type: improvement
 owner: kknaks
@@ -13,13 +13,13 @@ roles:
   be: kknaks
   qa: kknaks
   ops: kknaks
-progress: 0
+progress: 90
 created_at: 2026-10-04
-updated_at: 2026-10-04
+updated_at: 2026-10-05
 tags:
   - product/strong-hajin
   - doc/work
-  - status/in_progress
+  - status/review
 links:
   baselines: []
   decisions: []
@@ -97,7 +97,7 @@ sources:
 
 ## Phase 1 — FE · 로그인 문구 · 내보내기 단추 · 회의 제목
 
-- **Status**: TODO
+- **Status**: DONE — 코드 `7f01c5b` · 검수 WARN 4 → fix1(W4 긴 제목 줄바꿈은 E2E)
 - **무엇이 끝나야 시작하나**: SPEC 검수
 - **워커**: frontend
 
@@ -136,7 +136,7 @@ sources:
 
 ## Phase 2a — FE · 업무 상세 헤더 · 메타 정보 · 인라인 저장
 
-- **Status**: TODO
+- **Status**: DONE — 코드 `cc64d18` · 검수 WARN 6 → W1~W5 를 2b 에 합침
 - **무엇이 끝나야 시작하나**: Phase 1 커밋
 - **워커**: frontend
 - **대상**: `features/work/WorkModals.tsx` `TaskDetailDrawer`(`:606-3039`) · `styles/task-detail.css` · 호출부 3곳(`MyWorkPage.tsx:1297` · `TodayPage.tsx:418` · `CalendarPage.tsx:701`)
@@ -190,7 +190,7 @@ sources:
 
 ## Phase 2b — FE · 진행 상태 셀렉트 · 담당 제안 · 걸린 일 · 푸터 삭제
 
-- **Status**: TODO
+- **Status**: DONE — 코드 `58e591a` · 검수 WARN 4 → fix1 (+2a W1~W5)
 - **무엇이 끝나야 시작하나**: Phase 2a 커밋
 - **워커**: frontend
 
@@ -232,7 +232,7 @@ sources:
 
 ## Phase 3 — 데스크톱 셸 · 첨부 응답 저장 (g · R2b)
 
-- **Status**: TODO
+- **Status**: DONE(코드) — `9c15934` · 방식 B(`fe-p3-decision.md` — wry 가 text/html 첨부에 download handler 를 안 부름 → 셸이 `/api/` 를 가로채 직접 받음) · inline = X · 검수 WARN 7 → fix1 · **macOS 실기 pending** · Windows pending
 - **무엇이 끝나야 시작하나**: SPEC 검수. **Phase 1 과 나란히**(파일 겹침 없음 — `frontend/src-tauri/` + 토스트 수신부 `lib/shell.ts`·`App.tsx`. Phase 1 은 `LoginPage`·`MeetingDetailPage`)
 - **워커**: frontend(셸)
 - **지금** (`fe-survey §2-3` · `be-survey §2`): 셸에 다운로드 핸들러 0건 · dialog/fs 플러그인 없음 · `on_navigation` 은 같은 origin 이동을 허용. 서버는 `text/html` + `Content-Disposition: attachment`. wry(macOS)는 핸들러가 없으면 표시 가능한 MIME 을 **Allow** — 내보낸 HTML 이 앱 창에 그려지고 돌아갈 길이 없다(사용자 확인)
@@ -250,6 +250,12 @@ sources:
 
 ---
 
+## 2루프 — 사용자 E2E (2026-10-05)
+
+- **E2E-1** 메타 정보 한 줄에 두 항목(진행 상태|버전 · 담당|출처 · 시작 예정일|실제 시작일 · 마감일|실제 종료일 · 결재|참조) · 900px 이하 한 줄 하나 — SPEC-007 v0.5.2
+- **E2E-2** 시작 예정일·마감일 날짜칸 폭 통일(같은 구조 · 140px, 마감일 초과 배지는 오른쪽)
+- 코드 `53c9c20` · PR kknaks/Strong_hajin#11 squash → main `202078b`
+
 ## Pre-deploy Check
 
 - [ ] 네 페이지 검수 처리 · 코디 `make verify` 통과 · 사용자 E2E(웹 + macOS 앱)
@@ -257,6 +263,11 @@ sources:
 - [ ] 운영 반영: arm64 front 이미지(백엔드 변경 없음 — back 이미지 태그는 그대로 두거나 같은 sha 로 맞춘다, RUNBOOK-002 판단) → infra `image.tag` PR → Argo 수동 sync
 - [ ] medi-ax 데스크톱: Phase 3 이 들어갔으므로 **dmg 재빌드·서명·공증** 후 사용자에게 전달(RUNBOOK-002 데스크톱 절)
 - [ ] 운영에서 로그인 문구 · 회의 제목 인라인 · 업무 상세 인라인 저장·상태 셀렉트 확인
+
+## 반영
+
+- 2026-10-05 운영 반영: kknaks/Strong_hajin#11 squash `202078b` → 이미지 `202078b-arm64`(front·back) → MediSolveAIDev/k8s_infra_mac#9(태그 한 줄, merge `a626312`) → Argo 수동 sync Synced/Healthy 8/8. web 200 · /health production · providers 데모 계정 없음 · 새 번들 로그인 문구 확인 · back 로그 오류 0
+- 데스크톱(medi-ax dmg): **pending** — macOS 실기(AC-T44·45·49 · 회의 자료 PDF 미리보기) 확인 뒤 재빌드·서명·공증(RUNBOOK-002 §3). Windows pending
 
 ## Rollback
 
