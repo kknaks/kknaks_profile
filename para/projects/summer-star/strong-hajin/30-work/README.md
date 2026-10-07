@@ -50,7 +50,7 @@ work 문서를 만들거나 상태, owner, branch, 다음 작업이 바뀌면 �
 | WORK-008 | 운영 고도화 1차 | improvement | kknaks | done | 100% | [본문](work-008-polish.md) | SPEC-001 · SPEC-002 · SPEC-005 · SPEC-007 |
 | WORK-009 | 운영 고도화 2차 | improvement | kknaks | done | 100% | [본문](work-009-polish2.md) | SPEC-001 · SPEC-002 · SPEC-003 · SPEC-004 · SPEC-007 |
 | WORK-011 | 외부 채널 연동·메시지함·프로필·카톡 수집 | new-feature | kknaks | done | 운영 반영 2026-10-06 · 후속 SH-IMP-006~015 | [본문](work-011-external-channels.md) | SPEC-008 · SPEC-009 · SPEC-006 |
-| WORK-012 | 고도화 — WP1 운영 버그 · WP2 회의록 · WP3 AX 흐름 · WP4 메시지함→AX · SHELL | enhancement | kknaks | in_progress | 문서 검수 통과(r2 수정 반영) 2026-10-07 · 구현 착수 | [본문](work-012-enhance.md) | SPEC-008 · SPEC-010 |
+| WORK-012 | 고도화 — WP1 운영 버그 · WP2 회의록 · WP3 AX 흐름 · WP4 메시지함→AX · SHELL | enhancement | kknaks | done | 운영 반영 2026-10-07(#16 `5c8345e` · 2루프 #17 `d2a06fa`) · dmg 서명·공증 · 운영 E2E | [본문](work-012-enhance.md) | SPEC-008 · SPEC-010 |
 
 ## Spec Coverage
 
