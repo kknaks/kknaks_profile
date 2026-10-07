@@ -16,9 +16,11 @@ aliases:
   - notarytool
   - staple
   - spctl
+  - 개발자 약관
 up:
   - 2026-09-04-kakao-task
   - 2026-10-01-strong-hajin-deploy
+  - 2026-10-07-strong-hajin-inbox
 tags:
   - infra
   - 배포
@@ -50,6 +52,8 @@ tags:
 
 Strong Hajin 회사판 dmg 는 이 순서로 나갔다: **Developer ID Application 서명**(hardened runtime + entitlements) → `xcrun notarytool submit --keychain-profile <프로필> --wait` → `xcrun stapler staple`(dmg·.app) → `spctl -a -vv -t install` 이 `accepted source=Notarized Developer ID` 를 내는지 확인. staple 까지 해야 오프라인에서도 Gatekeeper 가 통과시킨다. ad-hoc 서명 판은 다른 Mac 에서 열리지 않고, 사용자 Mac 에서도 「code has no resources but signature indicates they must be present」 로 깨져 시스템 리포트와 함께 종료됐다.
 
+**공증은 인증서 말고 계정 상태도 본다** — Apple 개발자 약관이 갱신돼 동의하지 않은 상태면 공증 제출이 403 으로 거절된다. 서명·인증서는 멀쩡하다. 웹에서 약관에 동의한 뒤에도 반영까지 수 분이 걸려 바로 다시 내면 또 403 이다 — 간격을 두고 재시도하면 통과한다.
+
 **인증서 만료를 헷갈리기 쉽다** — Developer ID(2031)와 서버 TLS(Cloudflare 엣지, 자동 갱신)는 다른 인증서다. 키체인에서 직접 읽어 확인한다.
 
 ## 경계와 오해
@@ -69,3 +73,4 @@ Strong Hajin 회사판 dmg 는 이 순서로 나갔다: **Developer ID Applicati
 
 - [[2026-09-04-kakao-task]] — 미서명 exe 의 SmartScreen 경고 수용 + 빌드 중 SAC 하드 차단(MS 정책 업데이트 후) → SAC OFF 로 우회
 - [[2026-10-01-strong-hajin-deploy]] — macOS Developer ID 서명 → 공증 → staple → spctl 로 회사판 medi-ax 배포. ad-hoc 판이 깨져 종료된 사고
+- [[2026-10-07-strong-hajin-inbox]] §3 — 약관 만료로 공증 403, 동의 뒤 반영 지연을 재시도로 통과
