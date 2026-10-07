@@ -11,6 +11,7 @@ aliases:
   - 인덱스 컬럼
 up:
   - 2024-08-06-Day51
+  - 2026-10-07-strong-hajin-enhance
 tags:
   - database
   - SQL
@@ -86,6 +87,7 @@ alter table 테이블명
 - **「문자열만 인덱스 가능」은 전문 인덱스에만 맞다** — Day51 이 `add fulltext index` 옆에 적은 주석이다. `fulltext` 는 문자 타입(`char`·`varchar`·`text`)에만 걸리지만, **일반 인덱스는 숫자·날짜에도 걸린다** — 오히려 정수 컬럼이 인덱스로 가장 이득이 크다. 이 주석을 인덱스 일반의 성질로 읽으면 `where age = 20` 을 빠르게 만들 방법이 없어진다 → [[sql-data-type]]
 - **인덱스는 캐시가 아니다** — 둘 다 「빠르게 하는 파생물」이라 겹쳐 보이는데, 캐시는 **답을 보관**하고 인덱스는 **찾는 길을 보관**한다. 캐시는 원본과 어긋날 수 있고(무효화 문제) 인덱스는 같은 트랜잭션에서 함께 갱신되어 어긋나지 않는다 → [[caching]]
 - **자동 증가 기본키는 인덱스에 가장 친절한 형태다** — InnoDB 는 데이터를 기본키 순서로 보관하므로, 번호가 계속 커지면 **새 행이 언제나 끝에 붙는다.** 임의의 값(UUID·주민번호)을 기본키로 쓰면 중간에 끼워 넣게 되어 페이지가 쪼개진다. Day51 의 「자동 증가」 절과 이 절이 붙어 있는 것이 우연이 아니다 → [[surrogate-key]] · [[primary-key]]
+- **운영 중인 큰 표에 인덱스를 더하는 것 자체가 쓰기를 막는다** — PostgreSQL 은 `CREATE INDEX CONCURRENTLY` 로 쓰기를 막지 않고 만들 수 있지만 **트랜잭션 블록 안에서는 못 돌고**, 중간에 실패하면 **무효 인덱스(`indisvalid = f`)** 가 남아 쓰기 비용만 낸다. 그래서 칸 추가와 인덱스를 다른 판으로 가르고 적용 뒤 `indisvalid` 를 본다 → [[online-schema-change]]
 
 ## 함께 보는 개념
 
@@ -97,7 +99,9 @@ alter table 테이블명
 - [[caching]] — 같은 「빠르게 하는 파생물」의 다른 종류
 - [[surrogate-key]] — 인덱스에 유리한 키 값의 형태
 - [[database-schema]] — 인덱스 길이 한계가 문자집합에 걸리는 자리
+- [[online-schema-change]] — 운영 중 인덱스를 더하는 순서
 
 ## 출처
 
 - [[2024-08-06-Day51]] — 「검색 조건으로 사용되는 컬럼인 경우 따로 정렬 해 두면 데이터를 빨리 찾을 수 있다」로 시작해 **갱신 비용과 조회 이득의 교환**을 네 줄로 정리하고, `create table` 안에 `fulltext index test1_name_idx (name)` 를 기본키·유니크와 나란히 적었다. `alter table ... add fulltext index 인덱스이름(컬럼명)` 로 나중에 더하는 문법도 함께 있다. 다만 전문 인덱스는 `MATCH ... AGAINST` 전용이라 이 예제의 조회에는 쓰이지 않으며, 이어지는 네 `insert` 는 테이블에 없는 `kor`·`eng`·`math` 컬럼을 지정해 그대로는 실행되지 않는다. 「별도의 테이블로 관리」라는 설명도 실물(정렬된 트리)과는 다르다
+- [[2026-10-07-strong-hajin-enhance]] §2 — Strong Hajin WORK-012 운영 SQL 을 칸 판 · `.concurrent.sql` 로 가르고 `indisvalid=t` 확인
