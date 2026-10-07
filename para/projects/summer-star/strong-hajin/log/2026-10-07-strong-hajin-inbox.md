@@ -12,27 +12,27 @@ AX 가 메시지에서 업무를 만드는 2단계는 다음 판(SH-IMP-008·015
 
 ## 2. 적용한 기술·개념
 
-- **건 vs 흐름 — 수집 단위 모델** — 메일은 한 통이 카드 하나, 슬랙·카톡은 방 하나가 카드 하나
+- **건 vs 흐름 — 수집 단위 모델** [[conversation-grain]] — 메일은 한 통이 카드 하나, 슬랙·카톡은 방 하나가 카드 하나
   - 왜 이걸 골랐나: 메시지마다 카드를 만들면 대화가 조각난다. 업무 판단(2단계)도 흐름 단위가 맞다
   - 근거: DEC-008 · design-change-1
-- **실시간 수신을 공개 엔드포인트 없이 — 슬랙 Socket Mode · Gmail watch + Pub/Sub pull** — 로컬·운영이 같은 방식이라 로컬 확인이 운영에 그대로 통한다
+- **실시간 수신을 공개 엔드포인트 없이 — 슬랙 Socket Mode · Gmail watch + Pub/Sub pull** [[outbound-event-connection]] — 로컬·운영이 같은 방식이라 로컬 확인이 운영에 그대로 통한다
   - 왜 이걸 골랐나: Events API·push 는 공개 HTTPS 와 터널이 필요하다. 대가는 연결 단일 소유(레플리카 1 · Recreate · advisory lock)와 로컬·운영이 같은 앱 토큰을 나눠 갖는 경합(로컬 스택을 내려야 운영이 이벤트를 다 받는다)
   - 근거: `infra-deploy-steps.md` · be2-report
-- **사용자 토큰(슬랙) · OAuth 일회용 state** — DM·그룹 DM 은 봇이 못 읽어 사용자 토큰 · 데스크톱 앱 안에서는 쿠키가 없어 콜백이 state 로 회원을 찾는다
+- **사용자 토큰(슬랙) · OAuth 일회용 state** [[oauth-state-parameter]] — DM·그룹 DM 은 봇이 못 읽어 사용자 토큰 · 데스크톱 앱 안에서는 쿠키가 없어 콜백이 state 로 회원을 찾는다
   - 무엇이 어려웠나: 데스크톱 셸이 `/api/` 이동을 가로채 302 를 따라가지 않음 → 동의 URL 을 JSON 으로 받아 외부 브라우저로
   - 근거: review-spec-008-009(F-2)
-- **사람별 팬아웃과 접근 확인** — 같은 채널을 여럿이 골라도 사람마다 저장. 방 추가 때 그 사람 토큰으로 접근을 확인하지 않으면 남의 DM 이벤트가 복제된다
+- **사람별 팬아웃과 접근 확인** [[per-user-fanout]] — 같은 채널을 여럿이 골라도 사람마다 저장. 방 추가 때 그 사람 토큰으로 접근을 확인하지 않으면 남의 DM 이벤트가 복제된다
   - 근거: review-be23 F-1 → b2ba11a
-- **HTML 메일 격리 · 이미지 프록시** — 서버 소독(nh3) + 샌드박스 iframe(allow-scripts 없음) + CSP · 원격 이미지는 SSRF 규칙을 지키는 우리 프록시로만(홉마다 재검사)
+- **HTML 메일 격리 · 이미지 프록시** [[output-escaping]] · [[ssrf-guarded-proxy]] — 서버 소독(nh3) + 샌드박스 iframe(allow-scripts 없음) + CSP · 원격 이미지는 SSRF 규칙을 지키는 우리 프록시로만(홉마다 재검사)
   - 무엇이 어려웠나: 로컬 CA 에 루트가 없어 프록시 21건 실패(certifi) · 소독기가 배경 이미지·레이아웃을 지움 → url() 을 프록시로 바꿔 보존
   - 근거: be-fix-45-report
-- **첨부는 저장하지 않고 중계(메일·슬랙) · 카톡만 수집 즉시 저장(CDN 만료)** — 원본은 원래 서비스에, 우리는 가리키기만. 카톡 CDN 은 만료가 있어 예외
+- **첨부는 저장하지 않고 중계(메일·슬랙) · 카톡만 수집 즉시 저장(CDN 만료)** [[attachment-relay]] — 원본은 원래 서비스에, 우리는 가리키기만. 카톡 CDN 은 만료가 있어 예외
   - 근거: DEC-008 · kakao-attach-survey
-- **외부 API 오류 분류** — 403 을 토큰 폐기로 보면 안 된다(Gmail 속도 제한도 403, 슬랙 첨부 권한 없음도 403). 폐기는 401·invalid_grant 만, 끊는 곳에는 경고 로그
+- **외부 API 오류 분류** [[external-api-error-classification]] — 403 을 토큰 폐기로 보면 안 된다(Gmail 속도 제한도 403, 슬랙 첨부 권한 없음도 403). 폐기는 401·invalid_grant 만, 끊는 곳에는 경고 로그
   - 근거: be-fix-45-report · 2807351
-- **이름표 일괄 캐시** — 슬랙 방 목록이 사람마다 users.info 를 불러 20초 → users.list 한 번 + 캐시로 0.83초
+- **이름표 일괄 캐시** [[n-plus-one]] — 슬랙 방 목록이 사람마다 users.info 를 불러 20초 → users.list 한 번 + 캐시로 0.83초
   - 근거: be-fix-6-report · d78dc61
-- **데스크톱 셸의 하위 프레임 이동** — wry 는 iframe 이동도 같은 이동 훅으로 보낸다 → srcdoc(about:srcdoc)이 취소돼 메일 본문이 앱에서만 비었다. 이동 없이 첫 문서에 써 넣어 해결
+- **데스크톱 셸의 하위 프레임 이동** [[webview-attachment-download]] — wry 는 iframe 이동도 같은 이동 훅으로 보낸다 → srcdoc(about:srcdoc)이 취소돼 메일 본문이 앱에서만 비었다. 이동 없이 첫 문서에 써 넣어 해결
   - 근거: PR #15 · SH-IMP-011
 
 ## 3. 막혔던 것 / 사고

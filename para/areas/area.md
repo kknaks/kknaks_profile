@@ -575,6 +575,14 @@ para/areas/
 | 460 | `front` | `server-authoritative-transition` | 상태 전이 UI 는 서버 허용표를 비추기만. 조건부 막힘은 미리 막지 않고 서버 거절 문장을 보인다 |  |
 | 461 | `front` | `webview-attachment-download` | 웹뷰가 첨부 헤더를 안 보고 창에 그리면, 셸이 요청 단계에서 가로채 쿠키를 실어 직접 받는다 |  |
 | 462 | `design` | `wireframe` | 시각 값을 빼고 구역 배치만 그린 화면 뼈대. 세부 질문을 구조 질문으로 끌어올린다 |  |
+| 463 | `back` | `conversation-grain` | 메일은 한 통이 카드 하나(건), 채팅은 방 하나가 카드 하나(흐름). 판단 단위도 흐름이 맞다 |  |
+| 464 | `infra` | `outbound-event-connection` | 상대가 우리 URL 을 부르지 않고 우리가 연결을 열어 받는 실시간 수신. 대가는 연결 단일 소유·토큰 경합 |  |
+| 465 | `back` | `oauth-state-parameter` | 동의 URL 에 일회용 state 를 실어 콜백이 회원을 찾는다. 쿠키 없는 외부 브라우저에서도 잇는 끈 |  |
+| 466 | `back` | `per-user-fanout` | 이벤트를 구독자마다 저장하고, 구독은 그 사람 토큰으로 접근을 확인할 때만 만든다 |  |
+| 467 | `back` | `ssrf-guarded-proxy` | 원격 이미지를 서버가 대신 받되 내부 주소를 홉마다 거절하는 프록시 |  |
+| 468 | `back` | `attachment-relay` | 첨부를 복사하지 않고 원본을 가리켰다 열 때 흘려보낸다. 만료되는 원본만 즉시 저장 |  |
+| 469 | `back` | `external-api-error-classification` | 끊기는 401·invalid_grant 에만. 403 은 속도 제한·자원 권한일 수 있어 폐기가 아니다 |  |
+| 470 | `infra` | `dev-prod-parity` | 로컬에서 단순화한 스킴·자격이 결함이 숨는 자리. 못 줄인 차이는 운영 조건으로 실물 1회 |  |
 
 ---
 
