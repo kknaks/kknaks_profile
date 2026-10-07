@@ -19,7 +19,7 @@ status: active
 
 | Area | Status | Next |
 |---|---|---|
-| Baseline | raw **5건** | BASE-005 는 조사 3건을 사실로 눕혔다 |
+| Baseline | raw **7건** | BASE-005 는 조사 3건을 사실로 눕혔다 · BASE-007 회의 생성·편집 피드백 정리 |
 | Decision | proposed **5건** · accepted 1건 | **DEC-004 결정 39건** · 뒤집힌 것 둘(D-12·D-31) · **DEC-006 결정 20건 · 미결 0건** |
 | Spec | **7건** | SPEC-007 **v0.2.0** — 검수 반영·미결 판정 완료 · **열린 미결 1건**(OQ-709) |
 | Work | WORK-005·006 구현 진행 · **WORK-007 todo** | Tauri 로컬 셸과 웹 배선 구현 · 운영 배포는 미완료 · WORK-007 은 **BE Phase B-1 발주 대기** |
@@ -36,6 +36,11 @@ status: active
 | 30-work | [구현 계획](30-work/README.md) |
 | 40-architecture | [환경과 배포 구조](40-architecture/README.md) |
 | 70-runbook | [반복 실행 절차](70-runbook/README.md) |
+
+## 운영 개선 목록
+
+운영 화면에서 발견한 버그와 고도화 항목은 [개선 목록](improvements/README.md)에서 상태와
+다음 조치를 계속 관리한다. 현재 피드백의 원문은 BASE-007에 보존한다.
 
 ## 최근 로그
 

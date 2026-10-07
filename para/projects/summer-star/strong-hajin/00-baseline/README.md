@@ -15,3 +15,5 @@ baseline 문서를 만들거나 상태가 바뀌면 이 표를 갱신한다.
 | BASE-003 | 캘린더 시간 배정 입력·조사 관측 | 확정 시안 · 사용자 원문 4건 · 조사 리포트 2건(BE 764줄·FE 727줄) | raw | DEC-003 | [본문](baseline-003-calendar.md) |
 | BASE-004 | 「프로젝트」 화면 입력·조사 관측 | 확정 시안(`package 2/Projects.html`) · 사용자 원문 · 조사 리포트 2건(BE 726줄·FE 500줄) · 코드 확인 4건(어긋남 ①~④) | raw | DEC-004 | [본문](baseline-004-projects.md) |
 | BASE-005 | 업무 상세 입력·조사 관측 | 확정 시안(`package 2/TaskDetail.html` A·B·C) · 사용자 확정 20건 · 조사 리포트 3건(문서·BE 714줄·FE 318줄) · 결함 5건 · 어긋남 11건 | raw | DEC-006 | [본문](baseline-005-task-detail.md) |
+| BASE-006 | 외부 채널(메일·슬랙·카톡) 입력·관측 | 사용자 요구(원장 §2 39행) · 원래 시안(설정·수신함, 질문 39) · 기존 업무 > 수신함 · 메일·슬랙 실물 시험 · 카톡 조사 3건 · 시안 변경 6판 · 어긋남 10건 | raw | DEC-008 | [본문](baseline-006-external-channels.md) |
+| BASE-007 | AX 회의 생성·편집 개선 입력 | 운영 화면 피드백 4건 · 2026-10-06 | raw | — | [본문](baseline-007-meeting-creation-improvements.md) |

@@ -28,6 +28,7 @@ Status 값: `todo`, `in_progress`, `blocked`, `review`, `done`
 | BE1–FE4 | [WORK-004 캘린더 시간 배정](work-004-calendar-scheduling.md) | SPEC-004 전절 (BE·FE 직렬 · 2루프) | in_progress | kknaks | 미산정 | 미정 | `kknaksss/strong-hajin-calendar` | 없음 | **1루프 넷 DONE**(`1c15d02`·`2a85176`·`c5b109d`·`aa8576b`) → **Phase BE-3 발주**(2루프 K19~K24) |
 
 | 1–3 (2a·2b) | [WORK-010 운영 고도화 3차](work-010-polish3.md) | SPEC-007 §2.10 · SPEC-006 U-5 · R1·R2a·R3(WP 계약) | review | kknaks | 2일 | 2026-10-05 | Strong_hajin#11 (`202078b`) | macOS 실기·dmg | 운영 반영 |
+| SHELL-0·BE1–3·FE·SHELL·INFRA | [WORK-011 외부 채널 연동·메시지함·프로필·카톡 수집](work-011-external-channels.md) | SPEC-008·009·006 전절 (초안 · 4차 검수 조건부 PASS 반영) | done | kknaks | 미산정 | 미정 | — | 없음 | BE-1·SHELL-0 발주됨 → BE-2 전 ★3 · BE-3 전 ★2 |
 | 1–9 (6a·6b 분리) | [WORK-006 데스크톱 래퍼](work-006-tauri-wrapper.md) | SPEC-006 전절 · 10단계 | in_progress | kknaks | 미산정 | 미정 | `kknaksss/strong-hajin-projects` | 배포 결정·Windows 장비는 해당 단계에서 확인 | Phase 1 Claude 구현 중 |
 | B-1–7 | [WORK-007 업무 상세 재설계](work-007-task-detail.md) | SPEC-007 전절 (**BE 셋 → FE 셋 직렬**) | todo | kknaks | 미산정 | 미정 | `kknaksss/strong-hajin-design` | 없음 (OQ-709 는 F-2 의 한 조각만 gate) | WP 검수 → **BE Phase B-1 발주** |
 | 1 · 2 · 3a→3b | [WORK-008 운영 고도화 1차](work-008-polish.md) | 운영 요청 8건 + 회의 요약 · AX 탐색 (Phase 1~5, 6 취소) | done | kknaks | 2026-10-01~02 | 2026-10-02 | Strong_hajin#9 · k8s_infra_mac#7 | 없음 | 운영 반영 완료 — 다음 고도화는 회고 §7 |
@@ -48,6 +49,7 @@ work 문서를 만들거나 상태, owner, branch, 다음 작업이 바뀌면 �
 | WORK-007 | 업무 상세 재설계 | new-feature | kknaks | todo | 0% | [본문](work-007-task-detail.md) | SPEC-007 |
 | WORK-008 | 운영 고도화 1차 | improvement | kknaks | done | 100% | [본문](work-008-polish.md) | SPEC-001 · SPEC-002 · SPEC-005 · SPEC-007 |
 | WORK-009 | 운영 고도화 2차 | improvement | kknaks | done | 100% | [본문](work-009-polish2.md) | SPEC-001 · SPEC-002 · SPEC-003 · SPEC-004 · SPEC-007 |
+| WORK-011 | 외부 채널 연동·메시지함·프로필·카톡 수집 | new-feature | kknaks | done | 운영 반영 2026-10-06 · 후속 SH-IMP-006~015 | [본문](work-011-external-channels.md) | SPEC-008 · SPEC-009 · SPEC-006 |
 
 ## Spec Coverage
 
