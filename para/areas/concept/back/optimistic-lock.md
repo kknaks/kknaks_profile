@@ -13,6 +13,7 @@ up:
   - 2025-01-08-Day07
   - 2026-10-03-strong-hajin-polish2
   - 2026-10-05-strong-hajin-polish3
+  - 2026-10-07-strong-hajin-enhance
 tags:
   - database
   - 동시성
@@ -85,6 +86,7 @@ UPDATE post SET username = ?, version = 3 WHERE id = 1 AND version = 2
 - 서버에 일괄 저장을 새로 만들지 않고 닫는 길: 화면이 요청을 **한 줄 대기열**에 세우고, **앞 응답의 version 을 다음 요청에 싣는다.** 서버 변경 0
 - **줄에 태울 대상은 「인라인 저장」이 아니라 「version 을 올리는 명령 전부」다** — 상태 전이·체크리스트·제안·자료·완료 보고처럼 같은 대상의 version 을 올리는 단추가 줄 밖에 있으면, 저장이 도는 중에 누를 때 똑같이 거절된다. 처음 범위를 「저장」으로 잡으면 검수가 줄 밖 명령을 한 번에 하나씩 찾아낸다 — 서버에서 version 을 올리는 명령을 **전부 세어** 시작해야 한 번에 닫힌다
 - 남이 먼저 고쳐 진짜로 낡았을 때(stale 거절), 인라인 화면에는 **남겨 둘 입력 칸이 없다** — 다시 읽은 서버 값으로 화면을 맞추고 알린다. 위 「다시 읽는 길」의 즉시 저장판이다
+- **세션 참조처럼 둘이 동시에 쓸 수 있는 한 칸**에도 같은 생각이 든다 — 「내가 읽은 값일 때만 바꾼다」(비교-교환, CAS)로 갱신하면 웜스타트와 배치가 같은 회의의 세션 참조를 서로 덮지 않는다. 판 번호가 없어도 **읽은 값 자체**를 조건으로 건다 → [[job-lease]] · AI 초안을 고칠 때 **기준 회차**를 싣는 것도 같은 결 → [[proposal-revision]]
 
 ## 함께 보는 개념
 
@@ -95,9 +97,11 @@ UPDATE post SET username = ?, version = 3 WHERE id = 1 AND version = 2
 - [[exception-handling]] — 충돌이 예외로 오는 것
 - [[functional-dependency]] — 데이터 정합성이라는 같은 목적
 - [[queue]] — 같은 대상에 대한 쓰기를 한 줄로 세우는 자리
+- [[job-lease]] · [[proposal-revision]] — 같은 「읽은 값일 때만」 을 세션 기록·초안 회차에
 
 ## 출처
 
 - [[2025-01-08-Day07]] — 「낙관적 락, 비관적 락」 절이 둘을 나란히 정의하고, **「JPA 에서만 통용되는 개념으로 DB 에서는 낙관적락을 직접적인 지원은 없다」**는 첫 줄이 이 개념의 성격을 정확히 짚었다. 구현은 `@Version` 필드 하나이고, 「엔티티가 수정될 때마다 버전이 자동으로 증가한다 / 트랜잭션 충돌 시 `OptimisticLockException` 이 발생한다」로 동작을 적었다. **충돌을 실제로 만들어 본 방법**이 이 회차의 값이다 — 요청을 보내 `Thread.sleep(10_000)` 으로 트랜잭션을 붙들어 둔 사이에 **DBeaver 로 버전을 직접 수정**해 예외를 일으켰고, MariaDB 에서는 `JpaSystemException`/`GenericJDBCException` 으로 나타난다는 것까지 확인했다. 다만 충돌 후 재시도를 어떻게 할지는 다루지 않았고, 「JUnitTest」 절은 제목만 있다
 - [[2026-10-03-strong-hajin-polish2]] §2 — Strong Hajin WORK-009 「초안 저장」(SPEC-002 §4 · `review-be-p1-report.md` · `review-fe-p2a1-report.md` · 커밋 `6efdac1`)
 - [[2026-10-05-strong-hajin-polish3]] §2 — Strong Hajin WORK-010 업무 상세 인라인 즉시 저장(SPEC-007 §2.10.4 · `review-fe-p2a-report.md` W1 · `review-fe-p2b-report.md` W1 · 커밋 `cc64d18` · `58e591a`)
+- [[2026-10-07-strong-hajin-enhance]] §2 — Strong Hajin WORK-012 회의 세션 기록 CAS(웜스타트 경주) · AX 초안 v+1 수정

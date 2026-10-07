@@ -583,6 +583,12 @@ para/areas/
 | 468 | `back` | `attachment-relay` | 첨부를 복사하지 않고 원본을 가리켰다 열 때 흘려보낸다. 만료되는 원본만 즉시 저장 |  |
 | 469 | `back` | `external-api-error-classification` | 끊기는 401·invalid_grant 에만. 403 은 속도 제한·자원 권한일 수 있어 폐기가 아니다 |  |
 | 470 | `infra` | `dev-prod-parity` | 로컬에서 단순화한 스킴·자격이 결함이 숨는 자리. 못 줄인 차이는 운영 조건으로 실물 1회 |  |
+| 471 | `cs` | `argv-length-limit` | 실행 인자 한 칸은 128KiB 한도가 있다. 크기를 모르는 입력은 stdin 으로, 되돌이는 이중 실행을 부른다 |  |
+| 472 | `ai` | `context-catalog-injection` | 테이블 없이 호출 때 DB 를 조회해 조직 이름 목록을 프롬프트에 싣기. 세션 첫 턴·새 세션에만 |  |
+| 473 | `ai` | `transcript-term-correction` | STT 오인식을 이름 목록으로 고르고(등급) 다시 쓰기. 바꾼 쌍은 표로, 안 돎(null)과 0건([])을 가른다 |  |
+| 474 | `ai` | `proposal-revision` | 승인 대기 초안을 같은 카드의 다음 회차로 고친다. 누가 고치든 같은 수정 · 바뀐 칸만 덮기 |  |
+| 475 | `back` | `job-lease` | 워커가 집은 작업의 점유 기한. 바닥 = 최대 호출 수 × timeout, 나머지는 heartbeat |  |
+| 476 | `db` | `online-schema-change` | 운영 표 변경을 칸(트랜잭션) → 이미지 → 인덱스(CONCURRENTLY)로 가르고 무효 인덱스를 본다 |  |
 
 ---
 

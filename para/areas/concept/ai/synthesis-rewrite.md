@@ -8,6 +8,7 @@ aliases:
   - 재작성 합성
 up:
   - 2026-09-12-sc-meeting
+  - 2026-10-07-strong-hajin-enhance
 tags:
   - llm
   - summarization
@@ -38,11 +39,14 @@ tags:
 
 - 재작성이라고 사람 메모를 버리는 게 아니다 — 근거로 딛는다.
 - 회의 중 배치는 재작성이 아니다(증분·전량 교체) — 종료 합성만 재작성.
+- **다시 쓰기 앞에 정정 pass 를 둘 수 있다** — 원문의 STT 오인식을 조직 이름 목록에 비춰 먼저 고르고(등급 auto/presumed) 그 결과로 다시 쓴다. 정정은 재작성을 대신하지 않고, 원문(SoT)은 그대로 둔다 → [[transcript-term-correction]] · 재료로 싣는 것도 늘었다 — 재전사 원문 **전량을 매번**(세션을 이어 써도) + AI 맥락 목록 → [[context-catalog-injection]]. 프롬프트가 커지면 전달 통로 한도에 걸린다 → [[argv-length-limit]]
 
 ## 함께 보는 개념
 
 - [[evidence-binding]] · [[strict-json-schema-output]] · [[two-pass-transcription]]
+- [[transcript-term-correction]] · [[context-catalog-injection]] — 다시 쓰기의 앞 단계와 그 근거
 
 ## 출처
 
 - 2026-09-12-sc-meeting §2 · ax-workspace 커밋 ada1aa9 · SCAX-SPEC-004 §8 · D42
+- [[2026-10-07-strong-hajin-enhance]] §2 — Strong Hajin WORK-012 최종 합성이 정정 pass → 다시 쓰기 + 보정 표로(SPEC-010 §4.7)
