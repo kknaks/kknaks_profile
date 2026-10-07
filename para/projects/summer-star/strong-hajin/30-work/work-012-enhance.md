@@ -342,6 +342,9 @@ FE 는 `App.tsx`(WP4-FE · WP3-FE 의 AX 카드 진입) · `MessageList.tsx`(WP3
 - [ ] 최종 합성 900초가 **워커 쪽 다른 제한**(재배달 backoff · 영수증 lease · k8s liveness)에 걸리지 않는지 — 대화가 아니라 워커에서 돈다
 - [ ] 슬랙 앱 이벤트 구독(나간 방 계열) · Connect 계정 env(`TDL_*`) 운영 설정 확인(BE §10-5)
 - [ ] 외부 실물 1회씩: Connect 방 변경 · Codex/Claude 900초 합성 · Slack 나간 방 · Gmail 메일 맥락
+- [ ] **운영 SQL 먼저**: `migrations/manual/2026-10-07-meeting-term-corrections.sql` 을 **이미지 반영 전에** 운영 DB 에 적용(새 표 `meeting_term_corrections` · `meetings.term_corrected_at`) · 로컬은 `make sync-demo-schema` 뒤 스택 재시작(검수 WP2 W-8)
+- [ ] **AI 프롬프트의 실명** — 웜스타트는 참석자 실명을 싣지 않지만(원본 원칙), **AI 맥락 목록(D-13 「구성원 전부」)이 구성원 실명을 싣는다**. 사용자 결정에 따른 의도된 변화다 — 「웜스타트에 실명 미유출」 점검은 「참석자 → 화자 매핑에 실명 없음」 으로 좁혀 읽는다(검수 WP2 W-7)
+- [ ] **프롬프트 크기** — 매번 전사 전량 + 맥락 목록이라 CLI 인자 한도(리눅스 argv 한 칸 128KiB)에 닿을 수 있다 — 1시간 회의 + 운영 조직 규모 최악 바이트 확인 · stdin 전달로 바꿨는지(검수 WP2 W-1 · `be-wp2-fix1-report.md`)
 
 ## 반영
 
