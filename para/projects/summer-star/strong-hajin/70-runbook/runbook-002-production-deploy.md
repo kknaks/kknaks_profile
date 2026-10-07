@@ -156,6 +156,14 @@ kubectl -n strong-hajin-prod logs deploy/back --tail=200 | grep -iE "error|trace
      | ssh medi-me 'kubectl -n strong-hajin-prod patch secret strong-hajin-secret --type merge --patch-file /dev/stdin'
    kubectl -n strong-hajin-prod rollout restart deploy/back deploy/worker-{conversation,material,meeting,report}
    ```
+   **외부 채널(WORK-011, 2026-10-06 추가)** — 같은 `strong-hajin-secret` 에 키 여덟 + 별도 Secret 하나:
+   - 원천 `~/.config/google/env` → `GOOGLE_OAUTH_CLIENT_ID` · `GOOGLE_OAUTH_CLIENT_SECRET` · `GMAIL_PUBSUB_TOPIC` · `GMAIL_PUBSUB_SUBSCRIPTION`
+   - 원천 `~/.config/slack/env` → `SLACK_CLIENT_ID` · `SLACK_CLIENT_SECRET` · `SLACK_APP_TOKEN`
+   - `AX_EXTERNAL_TOKEN_ENCRYPTION_KEY` — **운영 전용**(로컬과 다름 · Secret 에만 있다). **바꾸면 저장된 OAuth 토큰을 못 연다** — 재생성 금지
+   - 별도 Secret `strong-hajin-pubsub-sa`(키 `sa.json`) ← 원천 `~/.config/google/pubsub-sa.json` · worker-external 에 파일로 마운트
+   - Google 웹 클라이언트 원본 JSON: `~/.config/google/oauth-web-client.json` · 콘솔 설정 목록: `reference/2026-10-06-strong-hajin-inbox/사용자-설정.md`
+   - 명령 전문(파이프로만 · 키 이름·길이 확인): `orchestration/work/_archive/strong-hajin/strong-hajin-inbox/infra-deploy-steps.md` §3
+   - 바꾼 뒤 재시작 대상은 `deploy/back deploy/worker-external`
    `apply` 가 아니라 `patch --type merge` 를 쓰는 이유: 이미 있는 다른 키를 지우지 않는다.
 4. **hostPath.**
    ```bash
