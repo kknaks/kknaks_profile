@@ -518,4 +518,4 @@ DEC-009 의 OQ-901~909 는 닫혔다(그 처분은 위 각 절). 아래는 **이
 - 보정 표·초안 저장의 저장 구조 · 맥락 목록 조립 함수의 자리 · env 로딩 → WORK-012
 - 메시지함에서 AX 로(호버 막대·메일 단추·메시지 참고 자료) → SPEC-008 v0.6.0 §2.9 · §4.8
 
-> **WP3 구현 반영(2026-10-07)** — 회의실 선택은 화면에서 **라디오 목록**으로 선다(본문의 「셀렉트」 는 그 목록을 뜻한다) · AX 수정 카드 편집 계약에 `proposed_room_id`·`proposed_room_name` — 카드는 제안 방을 미리 고르고 「AX 제안」 표지, **사람의 선택(기존 유지 포함)이 언제나 AX 제안을 이긴다** · draft 에 `room` 이 없으면 방을 바꾸지 않는다(계약 고정 `orchestration/work/strong-hajin-enhance/wp3-contract-fixed.md`)
+> **WP3 구현 반영(2026-10-07)** — ~~회의실 선택은 화면에서 라디오 목록으로 선다~~ → **드롭다운 셀렉트**(사용자 결정 그대로 — 운영 E2E E-3 2026-10-07 에서 바로잡음: 라디오 카드는 결정과 달랐다) · AX 수정 카드 편집 계약에 `proposed_room_id`·`proposed_room_name` — 카드는 제안 방을 미리 고르고 「AX 제안」 표지, **사람의 선택(기존 유지 포함)이 언제나 AX 제안을 이긴다** · draft 에 `room` 이 없으면 방을 바꾸지 않는다(계약 고정 `orchestration/work/strong-hajin-enhance/wp3-contract-fixed.md`)

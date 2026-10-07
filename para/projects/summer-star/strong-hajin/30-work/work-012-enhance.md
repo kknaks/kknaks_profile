@@ -2,7 +2,7 @@
 type: work
 id: WORK-012
 title: "고도화 1판 — 운영 버그 · 회의록 생성 고도화 · AX 흐름 · 메시지함→AX · 셸"
-status: todo
+status: done
 product: strong-hajin
 work_type: spec-up
 owner: kknaks
