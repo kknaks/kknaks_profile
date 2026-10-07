@@ -3,7 +3,7 @@
 
 const NAV_PRIMARY = [
   { id: 'alert', label: '알림', icon: 'bell', dot: true },
-  { id: 'setting', label: '설정', icon: 'setting' },
+  { id: 'setting', label: '설정', icon: 'setting', href: './Settings.html' },
 ];
 
 const NAV_MAIN = [
@@ -13,7 +13,7 @@ const NAV_MAIN = [
   { id: 'calendar', label: '캘린더', icon: 'calendar', href: './Calendar.html' },
   { id: 'meeting', label: '회의', icon: 'persons', href: './MeetingWorkspace.html' },
   { id: 'chat', label: '채팅', icon: 'chat' },
-  { id: 'inbox', label: '수신함', icon: 'inbox', dot: true },
+  { id: 'inbox', label: '메시지함', icon: 'inbox', dot: true, href: './Inbox.html' },
   { id: 'progress', label: '진행 현황', icon: 'arrow-right' },
   { id: 'files', label: '자료', icon: 'document', href: './Files.html' },
 ];
