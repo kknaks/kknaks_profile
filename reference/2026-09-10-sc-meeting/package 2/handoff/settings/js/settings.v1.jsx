@@ -678,34 +678,58 @@ function ProfileSection({ me, imageDemo, charDemo, pwDemo }) {
   );
 }
 
-function NotifySection({ groups, channels, onToggle, onChannel }) {
+/* ===== 알림 설정 (2026-10-07) — 앱 알림만 =====
+   받는 경로(앱 · 메일 · 슬랙 DM) 줄은 걷었다 — 이번엔 앱 알림만이다. 앱이 켜져 있으면 시스템 알림으로도 뜬다.
+   맨 위 전체 on/off → 테마 셋(업무 · 메시지 · 회의, 알림 목록의 분류와 같다) 머리마다 on/off → 아래 항목 체크.
+   전체를 끄면 아래가 전부, 테마를 끄면 그 항목들이 흐려진다(값은 그대로 남아 다시 켜면 돌아온다). */
+
+function NotifyItem({ item, disabled, onToggle }) {
+  return (
+    <li>
+      <label className={`scax-set-notify__item${disabled ? ' scax-set-notify__item--off' : ''}`}>
+        <span className="scax-checkbox">
+          <input type="checkbox" className="scax-checkbox__input" checked={item.on} disabled={disabled} onChange={onToggle} />
+          <span className="scax-checkbox__box"><Icon name="check" size={14} /></span>
+        </span>
+        <span className="scax-set-row__who">
+          <span className="scax-set-row__name">{item.label}</span>
+          {item.desc ? <span className="scax-set-row__meta">{item.desc}</span> : null}
+        </span>
+      </label>
+    </li>
+  );
+}
+
+function NotifySection({ master, groups, onMaster, onTheme, onToggle }) {
   return (
     <React.Fragment>
-      <p className="scax-set-view__intro">받을 알림과 받는 경로를 따로 정한다.</p>
-      <Card title="받는 경로">
-        {channels.map((c) => (
-          <div className="scax-switch-row" key={c.id}>
-            <span className="scax-switch-row__who">
-              <span className="scax-set-row__name">{c.label}</span>
-              <span className="scax-set-row__meta">{c.desc}</span>
-            </span>
-            <Switch on={c.on} label={c.label} onToggle={() => onChannel(c.id)} />
-          </div>
-        ))}
-      </Card>
-      {groups.map((g) => (
-        <Card title={g.title} key={g.id}>
-          {g.items.map((it) => (
-            <div className="scax-switch-row" key={it.id}>
-              <span className="scax-switch-row__who">
-                <span className="scax-set-row__name">{it.label}</span>
-                {it.desc ? <span className="scax-set-row__meta">{it.desc}</span> : null}
-              </span>
-              <Switch on={it.on} label={it.label} onToggle={() => onToggle(g.id, it.id)} />
-            </div>
-          ))}
-        </Card>
-      ))}
+      <p className="scax-set-view__intro">받을 알림을 고른다. 앱이 켜져 있으면 시스템 알림으로도 뜬다.</p>
+      <section className="scax-set-card scax-set-notify__master">
+        <div className="scax-switch-row">
+          <span className="scax-switch-row__who">
+            <span className="scax-set-row__name">알림 받기</span>
+            <span className="scax-set-row__meta">{master ? '아래에서 고른 알림을 받는다' : '알림을 하나도 받지 않는다 — 아래 고른 값은 그대로 남는다'}</span>
+          </span>
+          <Switch on={master} label="알림 받기" onToggle={onMaster} />
+        </div>
+      </section>
+      {groups.map((g) => {
+        const themeOff = !master || !g.on;
+        const picked = g.items.filter((i) => i.on).length;
+        return (
+          <section className={`scax-set-card scax-set-notify${!master ? ' scax-set-notify--off' : ''}`} key={g.id}>
+            <header className="scax-set-card__head scax-set-notify__head">
+              <h2 className="scax-set-card__title">{g.title}</h2>
+              <span className="scax-set-card__legend">{g.on ? `${g.items.length}개 중 ${picked}개` : '꺼짐'}</span>
+              <Switch on={g.on} label={`${g.title} 알림`} onToggle={() => master && onTheme(g.id)} />
+            </header>
+            <ul className={`scax-set-notify__list${themeOff ? ' scax-set-notify__list--off' : ''}`}>
+              {g.items.map((it) => <NotifyItem key={it.id} item={it} disabled={themeOff} onToggle={() => onToggle(g.id, it.id)} />)}
+            </ul>
+            {g.note ? <p className={`scax-set-card__note${themeOff ? ' scax-set-notify__list--off' : ''}`}>{g.note}</p> : null}
+          </section>
+        );
+      })}
     </React.Fragment>
   );
 }
@@ -783,8 +807,8 @@ function SettingsPage() {
   const [kstate, setKstate] = React.useState('live');
   const [kakao, setKakao] = React.useState(KAKAO_ROOMS);
   const [kpickOpen, setKpickOpen] = React.useState(false);
+  const [notifyOn, setNotifyOn] = React.useState(true);
   const [groups, setGroups] = React.useState(NOTIFY_GROUPS);
-  const [channels, setChannels] = React.useState(NOTIFY_CHANNELS);
   const [confirm, setConfirm] = React.useState(null);
   const [pickOpen, setPickOpen] = React.useState(false);
   const [pickState, setPickState] = React.useState('default');
@@ -845,7 +869,7 @@ function SettingsPage() {
   const toggleItem = (gid, iid) => setGroups((gs) => gs.map((g) => (g.id !== gid ? g : Object.assign({}, g, {
     items: g.items.map((i) => (i.id === iid ? Object.assign({}, i, { on: !i.on }) : i)),
   }))));
-  const toggleChannel = (id) => setChannels((cs) => cs.map((c) => (c.id === id ? Object.assign({}, c, { on: !c.on }) : c)));
+  const toggleTheme = (gid) => setGroups((gs) => gs.map((g) => (g.id === gid ? Object.assign({}, g, { on: !g.on }) : g)));
 
   const counts = { mail: mail.length, slack: slack.rooms.length, kakao: kstate === 'no-app' ? 0 : kakao.length };
   const titles = { mail: '메일 연동', slack: '슬랙 연동', kakao: '카카오톡 연동', account: '프로필 설정', notify: '알림 설정' };
@@ -870,7 +894,7 @@ function SettingsPage() {
             {section === 'slack' ? <SlackSection ws={slack.ws} rooms={slack.rooms} onConnect={connectSlack} onReconnect={reconnectSlack} onAskDisconnect={askDisconnectSlack} onPick={openPicker} onAskRemove={askRemoveRoom} /> : null}
             {section === 'kakao' ? <KakaoSection kstate={kstate} rooms={kstate === 'no-app' ? [] : kakao} onPick={openKakaoPicker} onAskRemove={askRemoveKakao} /> : null}
             {section === 'account' ? <ProfileSection me={MY_PROFILE} imageDemo={imageDemo} charDemo={charDemo} pwDemo={pwDemo} /> : null}
-            {section === 'notify' ? <NotifySection groups={groups} channels={channels} onToggle={toggleItem} onChannel={toggleChannel} /> : null}
+            {section === 'notify' ? <NotifySection master={notifyOn} groups={groups} onMaster={() => setNotifyOn((v) => !v)} onTheme={toggleTheme} onToggle={toggleItem} /> : null}
           </div>
         </AppBody>
       </AppShell>

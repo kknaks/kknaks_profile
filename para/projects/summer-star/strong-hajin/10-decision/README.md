@@ -19,6 +19,7 @@ decision 문서를 만들거나 상태가 바뀌면 이 표를 갱신한다.
 | DEC-007 | [운영 첫 배포](decision-007-production-deploy.md) | accepted | 사용자 지시 · 배포 리포트 | **결정 11건** · 뒤집힌 것 1건(레지스트리 ~~kknaks~~→kknaksss) · 운영 가동 2026-10-01 | — (SPEC-006 OQ-T02·T03 일부를 닫음) |
 | DEC-008 | [외부 채널 연동·메시지함·프로필 설정](decision-008-external-channels.md) | accepted | BASE-006 | **결정 50건** · 뒤집힌 것 3건(~~삭제~~→소프트 딜리트 · ~~사용자 테이블~~→별도 연동 테이블 · ~~서버 키·방 ID~~→로컬) · **미결 0건**(OQ-801~810 → D-41~D-50, 사용자 결정 2026-10-06) · 2단계(AX 판단) 미룸 | SPEC-008 · SPEC-009 |
 | DEC-009 | [고도화 — 회의·회의록·AX·메시지함](decision-009-enhance.md) | accepted | BASE-008 | **결정 37건** · 뒤집힌 것 4건(DEC-008 hover 막대 없음 · 2단계 미룸 · 원격 이미지 · …) · OQ-901~909 사용자 결정으로 닫힘 · 019 보류 | SPEC-008 v0.6.0 · SPEC-010 |
+| DEC-010 | [알림 — 사건×관계 · SSE · 사이드바 점 · 설정 · 셸 OS 알림](decision-010-notifications.md) | accepted | BASE-009 | **결정 41건** · 사건×관계 68행 사용자 확정 · 뒤집은 것 DEC-008 D-37(설정 알림 메뉴 범위 밖) · DEC-005 D-04 후속 · 열린 OQ 0 | SPEC-011 · SPEC-006 v0.7.0 · SPEC-008 v0.7.0 · SPEC-009 v0.6.0 |
 
 ## 미결 사항
 

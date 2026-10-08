@@ -63,29 +63,43 @@ const KAKAO_CANDIDATES = [
   { id: 'k8', type: 'group', name: '배성민, 오지훈, 서지안, 유하람', members: 4 },
 ];
 
+/* 알림 설정 (2026-10-07) — 받는 경로 없이 앱 알림만. 앱이 켜져 있으면 시스템 알림으로도 뜬다.
+   테마 셋(업무 · 메시지 · 회의) = 알림 목록의 분류와 같다. 테마마다 on/off + 항목 체크.
+   항목은 목 — 확정은 DEC 의 사건×관계 표에서. 「기한 하루 전」·「일일 요약」은 범위 밖이라 없다 */
 const NOTIFY_GROUPS = [
   {
-    id: 'work', title: '업무',
+    id: 'work', title: '업무', on: true,
     items: [
-      { id: 'assign', label: '업무가 배정됐을 때', desc: '나에게 새 업무가 생기면 알립니다', on: true },
-      { id: 'due', label: '기한 하루 전', desc: '마감 24시간 전에 한 번', on: true },
-      { id: 'comment', label: '내 업무에 댓글', desc: '', on: false },
+      { id: 'request', label: '업무 요청을 받았을 때', desc: '누군가 나에게 업무를 요청하면', on: true },
+      { id: 'assign', label: '업무가 배정·넘겨졌을 때', desc: '직접 배정되거나 다른 사람이 담당을 넘기면', on: true },
+      { id: 'answer', label: '내가 보낸 요청·배정·제안에 답이 왔을 때', desc: '받는 사람이 수락·거절하거나 제안에 답하면', on: true },
+      { id: 'report', label: '완료 보고를 받았을 때', desc: '내가 요청한 업무의 담당이 완료를 보고하면', on: true },
+      { id: 'rework', label: '보완 요청을 받았을 때', desc: '내가 보고한 업무에 요청자가 보완을 요청하면', on: true },
+      { id: 'change', label: '기한·조건이 바뀌었을 때', desc: '내 업무의 기한·조건이 바뀌거나 취소·재개되면', on: true },
+      { id: 'comment', label: '내 업무에 댓글', desc: '내가 담당·요청·참조인 업무에 댓글이 달리면', on: false },
+      { id: 'unblock', label: '선행 업무가 끝났을 때', desc: '기다리던 앞 업무가 끝나 내 업무를 시작할 수 있으면', on: true },
     ],
   },
   {
-    id: 'meeting', title: '회의 · 연동',
+    id: 'message', title: '메시지', on: true,
+    /* 채널 하나 = 항목 하나(2026-10-08). 연동 끊김·수집 실패는 따로 항목이 없고 그 채널 항목에 딸린다(메일 끊김 = 「메일」) */
+    note: '연동이 끊기면 해당 채널 알림으로 알려 준다',
     items: [
-      { id: 'minutes', label: '회의록 정리 완료', desc: '에이전트가 정리를 마치면', on: true },
-      { id: 'sync-fail', label: '연동 수집 실패', desc: '메일·슬랙·카카오 수집이 실패하면', on: true },
-      { id: 'digest', label: '일일 요약', desc: '매일 오전 9시', on: false },
+      { id: 'mail', label: '메일', desc: '연동한 메일 계정에 새 메일이 오면 (받는 사람·참조 모두)', on: true },
+      { id: 'slack', label: '슬랙', desc: '수집 중인 DM·멘션·채널에 새 메시지가 오면', on: true },
+      { id: 'kakao', label: '카톡', desc: '수집 중인 1:1·단체방에 새 대화가 오면', on: true },
+    ],
+  },
+  {
+    id: 'meeting', title: '회의', on: true,
+    items: [
+      { id: 'invite', label: '회의에 초대됐을 때', desc: '나를 참석자로 넣은 회의가 생기면', on: true },
+      { id: 'change', label: '회의가 바뀌거나 취소됐을 때', desc: '내가 참석하는 회의의 시간·장소가 바뀌거나 취소되면', on: true },
+      { id: 'minutes', label: '회의록 정리 완료', desc: '에이전트가 회의록 정리를 마치면', on: true },
+      { id: 'minutes-fail', label: '회의록 생성 실패', desc: '회의록을 만들지 못하면', on: true },
+      { id: 'share', label: '회의를 공유받았을 때', desc: '다른 사람이 회의를 나에게 공유하면', on: true },
     ],
   },
 ];
 
-const NOTIFY_CHANNELS = [
-  { id: 'app', label: '앱 알림', desc: '수신함과 좌측 알림에 표시', on: true },
-  { id: 'mail', label: '메일', desc: 'haram@thesc.co.kr', on: true },
-  { id: 'slack', label: '슬랙 DM', desc: '@haram', on: false },
-];
-
-Object.assign(window, { MY_PROFILE, MAIL_ACCOUNTS, MAIL_BACKFILL, SLACK_WORKSPACE, SLACK_ROOMS, SLACK_CANDIDATES, KAKAO_STATUS, KAKAO_ROOMS, KAKAO_CANDIDATES, NOTIFY_GROUPS, NOTIFY_CHANNELS });
+Object.assign(window, { MY_PROFILE, MAIL_ACCOUNTS, MAIL_BACKFILL, SLACK_WORKSPACE, SLACK_ROOMS, SLACK_CANDIDATES, KAKAO_STATUS, KAKAO_ROOMS, KAKAO_CANDIDATES, NOTIFY_GROUPS });
