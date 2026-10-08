@@ -4,6 +4,7 @@
 
 | Date | Entry | Links |
 |---|---|---|
+| 2026-10-08 | **알림 문서 파이프라인 닫힘.** BE·FE 조사 → 시안 4판(알림 목록 · 설정 알림 · 사이드바 점 둘) → BASE-009 → DEC-010(결정 41 · 사건×관계 68행 사용자 확정) → SPEC-011 v0.2.2 · SPEC-006 v0.7.0 · SPEC-008 v0.7.0 · SPEC-009 v0.6.0 · WORK-013. 검수 r1 FAIL 3 → r2 FAIL 1 → r3 WARN 3 → 닫음. 운영 확인: 카톡 「내가 보냄」 재료 없음(수집기 표지 + 백필) · 슬랙 안 읽음 「내 줄 빼기」 버그 | [DEC-010](10-decision/decision-010-notifications.md) · [SPEC-011](20-spec/spec-011-notifications.md) · [WORK-013](30-work/work-013-notifications.md) |
 | 2026-10-07 | **외부 채널 연동(WORK-011) 운영 반영.** 메일(Gmail API)·슬랙(사용자 토큰 · Socket Mode)·카톡(medi-ax Mac 수집기)이 사람마다 **메시지함**에 실시간으로 쌓이고, 슬랙·메일은 답장까지. 설정(연동·기기 토큰)·프로필(이미지·AX 캐릭터·비밀번호). 남은 것은 개선 목록 SH-IMP-006~015(앱 내려받기 회귀·첨부·AX 판단·호버 행동 막대 등) | [DEC-008](10-decision/decision-008-external-channels.md) · [WORK-011](30-work/work-011-external-channels.md) · [개선 목록](improvements/README.md) |
 | 2026-10-06 | 운영 피드백 추가: 직접 작성한 안건이 회의 정보만 불러온 상황에서도 ‘지난 회의에서 넘어옴’으로 표시되는 출처 오류를 SH-IMP-005로 등록 | [개선 목록](improvements/README.md) · [상세](improvements/SH-IMP-005-agenda-source.md) |
 | 2026-10-06 | 운영 AX 회의 생성·편집 피드백 네 건을 BASE-007에 보존하고, 상태·다음 조치·완료 이력을 계속 관리할 개선 목록을 신설 | [개선 목록](improvements/README.md) · [입력](00-baseline/baseline-007-meeting-creation-improvements.md) |

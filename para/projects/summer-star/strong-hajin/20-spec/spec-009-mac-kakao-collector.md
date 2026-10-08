@@ -4,9 +4,9 @@ id: SPEC-009
 title: "Mac 카톡 수집기 — 로컬에서 읽어 서버로 올리는 조회 전용 백그라운드 앱"
 status: draft
 product: strong-hajin
-version: 0.5.1
+version: 0.6.0
 created_at: 2026-10-06
-updated_at: 2026-10-06
+updated_at: 2026-10-08
 tags:
   - product/strong-hajin
   - doc/spec
@@ -16,9 +16,11 @@ links:
     - "[[baseline-006-external-channels|BASE-006]]"
   decisions:
     - "[[decision-008-external-channels|DEC-008]]"
+    - "[[decision-010-notifications|DEC-010]]"
   specs:
     - "[[spec-008-external-channels|SPEC-008]]"
     - "[[spec-006-tauri-wrapper|SPEC-006]]"
+    - "[[spec-011-notifications|SPEC-011]]"
   works: []
   releases: []
   related: []
@@ -26,6 +28,12 @@ links:
 
 # Mac 카톡 수집기 — 로컬에서 읽어 서버로 올리는 조회 전용 백그라운드 앱
 
+> **⚠ v0.6.0 (2026-10-08 · 알림 — DEC-010 D-34 · D-35 · SPEC-011)** — **업로드 메시지 줄에 「내가 보냄」 표지 `from_me` 를 싣는다**(§3.1 · §4) — 서버가
+> 알림의 원칙 ①(내가 보낸 줄은 나에게 알리지 않는다)과 메시지함 안 읽음 셈에 쓴다(SPEC-008 v0.7.0 §4.4 · §4.6). 지금 운영 카톡 메시지 116건의 raw 키는
+> `type · author · seq_in_log · at · attachments · logId · text` 일곱뿐이고 「내가 보낸」 표지 · 보낸 사람 id 는 **0건**이다(`prod-check-1.md`).
+> **값의 출처(카톡 로컬 DB 의 무엇인가)는 아직 확정하지 않았다 — WORK-013 Phase 0 조사로 정한다**(§7 OQ-K01 · 추측으로 정하지 않는다).
+> **기존 줄의 백필은 수집기 재전송이 아니라 서버의 일회성 수동 SQL**(SPEC-011 §4.7 — 서버가 이미 있는 `logId` 를 건너뛰어 재전송으로는 못 채운다) — 수집기 쪽 절차는 없다.
+>
 > **⚠ v0.5.1 (2026-10-06 · 4차 검수 ★1·★2·W4-2 — `review-spec-work-r4.md`)** — handshake `selected_rooms` 에
 > **`external_id`(=chatId)** 추가(서버 room_id ↔ 로컬 chatId 매핑 · ★1) · 메시지 키·aid 를 **`(연동,chatId,logId)`**
 > 로 맞춤(S8 과 일치 · W3-7 잔여) · 「다시 연결」(`reset-account`)은 **웹 세션 라우트**이고 앱은 handshake `reset_at`
@@ -175,7 +183,7 @@ SPEC-006 의 다음이 **더는 성립하지 않아 개정이 필요하다**(W-6
 |---|---|
 | **입력** | **카카오톡에 로그인한 계정**(사람이 고르는 목록 없음, D-18·D-38). 그 계정의 로컬 데이터가 수집 대상이다 |
 | **출력 — 방 목록** | `(방 id · 종류 1:1/단체 · 이름 또는 참여자 이름)`. **오픈채팅 제외**(D-18). 이름이 비면 참여자로 엮는다(`kakao-db-fields.md` §5). **이 목록은 서버가 아니라 앱 웹뷰의 프론트에 Tauri 커맨드로 준다**(R-F1 · §3.2) |
-| **출력 — 메시지 행** | `(chatId · logId · 발신자 · 보낸 시각 · 종류 · 본문 · 첨부 메타)` — 업로드는 서버 내부 `room_id`(handshake 의 `external_id`=chatId 로 매핑 · ★1)로 보낸다. **중복 방지 키 = `(연동, chatId, logId)`** · `aid`=`SHA-256("{연동}:{chatId}:{logId}:{seq}")`(W3-2) — SPEC-008 §4.6 이 중복을 버린다(`kakao-db-fields.md` §6) |
+| **출력 — 메시지 행** | `(chatId · logId · 발신자 · 보낸 시각 · 종류 · 본문 · 첨부 메타 · **내가 보냄** *(v0.6.0)*)` — **내가 보냄** = 그 줄을 **지금 로그인한 카톡 계정**이 보냈는가(bool). 값의 출처는 **OQ-K01**(Phase 0 조사 전에는 정하지 않는다 · 모르면 싣지 않는다 — 서버가 `null` 로 둔다) · 업로드는 서버 내부 `room_id`(handshake 의 `external_id`=chatId 로 매핑 · ★1)로 보낸다. **중복 방지 키 = `(연동, chatId, logId)`** · `aid`=`SHA-256("{연동}:{chatId}:{logId}:{seq}")`(W3-2) — SPEC-008 §4.6 이 중복을 버린다(`kakao-db-fields.md` §6) |
 | **출력 — 첨부 메타** | 종류(사진·앨범·파일·동영상·음성·이모티콘) · 이름·크기·MIME · CDN 참조 · 만료 추정(`kakao-db-fields.md` §2·§3·§4) |
 | **실패** | DB 를 못 열면 **「읽기 불가」 상태**(권한/버전) — 예외를 삼키지 않고 상태로 올린다(SPEC-008 §4.6 status `unreadable` · D-42) |
 
@@ -204,7 +212,7 @@ SPEC-006 의 다음이 **더는 성립하지 않아 개정이 필요하다**(W-6
 | SPEC-008 §4.6 경로 | 이 앱이 쓰는 때 |
 |---|---|
 | `GET …/kakao/handshake` | 붙을 때 — **서버의 고른 방(`selected_rooms`:{room_id, external_id=chatId, last_logId})** · `reset_at` · `selected_rooms_version`(로컬 캐시 · ★1·W3-3) |
-| `POST …/kakao/messages` | 메시지 묶음 올리기(그 방이 서버의 고른 방이어야 · 서버가 **`(연동,chatId,logId)`** 로 중복 버림) — **매니페스트 없음**(서버 정본) |
+| `POST …/kakao/messages` | 메시지 묶음 올리기(그 방이 서버의 고른 방이어야 · 서버가 **`(연동,chatId,logId)`** 로 중복 버림) — **매니페스트 없음**(서버 정본) · *(v0.6.0)* 줄마다 **`from_me`**(SPEC-008 v0.7.0 §4.6) — **이미 올린 줄은 다시 올려도 서버가 바꾸지 않는다**(중복 버림) — 그래서 표지는 **이 판 이후 새로 올리는 줄부터** 실린다 |
 | `POST …/kakao/attachments/{aid}` | 사진·앨범·파일 바이트 + 메타 올리기 |
 | `POST …/kakao/status` | 앱·카톡·계정·읽기 불가 상태 보고 |
 
@@ -273,6 +281,8 @@ SPEC-006 의 다음이 **더는 성립하지 않아 개정이 필요하다**(W-6
 - AC-08 카톡 DB 를 **읽기 전용**으로만 연다(쓰기·조작 없음) · 키·DB 경로가 서버로 가지 않는다
 - AC-09 DB 를 못 열면 예외를 삼키지 않고 「읽기 불가」 상태로 올린다
 - AC-10 서버 호출이 **SPEC-008 §4.6** 그대로다(그 사람 세션으로 붙음)
+- AC-11 *(v0.6.0)* 업로드 줄에 `from_me` 가 실린다 — **내가 보낸 줄 = `true` · 남이 보낸 줄 = `false`**(type 0 시스템 줄은 지금처럼 건너뛴다 — `db.rs:270-273` · 작성자 없는 그 밖의 줄은 `false` — 운영에 3건 · `prod-check-1.md`). 실물 1회: 사용자 Mac 에서 내가 보낸 1:1 · 단체방 줄과 받은 줄을 각각 올려 서버에 `true`/`false` 로 선다 · 그 줄로는 나에게 알림이 없다(SPEC-011 AC-08)
+- AC-12 *(v0.6.0)* 값의 출처가 Phase 0 에서 확정되지 않으면(OQ-K01) **표지를 싣지 않는다**(지어낸 값을 싣지 않는다) — 서버는 `null`
 
 ### 실물에서만 답이 나는 것
 
@@ -304,7 +314,11 @@ SPEC-006 의 다음이 **더는 성립하지 않아 개정이 필요하다**(W-6
 ## 7. Open Questions
 
 OQ-901~906 **전부 2026-10-06 사용자 결정으로 닫혔다.** v0.3.0 검수가 OQ-906 을 열었고 v0.4.0 이 **장수명 기기
-토큰 채택**으로 닫았다. 행은 지우지 않는다. **열린 것 0건.**
+토큰 채택**으로 닫았다. 행은 지우지 않는다. ~~**열린 것 0건.**~~ → *(v0.6.0)* **열린 것 1건 — OQ-K01**(번호는 DEC-009 의 OQ-901~ 과 겹치지 않게 `K` 를 쓴다).
+
+| ID | 무엇 | 처분 |
+|---|---|---|
+| **OQ-K01** *(v0.6.0)* | **「내가 보냄」 값의 출처** — 카톡 로컬 DB 의 무엇으로 「지금 로그인한 계정이 보낸 줄」 을 가르나. **코드 읽기로 보이는 후보**: 수집기는 이미 메시지의 `authorId`(`NTChatMessage` — `T/kakao/db.rs:242-245` 의 조인)와 로그인한 내 `userId`(`NTChatContext` — `db.rs:127-131` `self_user_id`, 단체방 이름에서 나를 빼는 데 쓴다)를 읽는다 → `authorId == 내 userId` 가 후보다. **실기 DB 로 확인하지 않았다** — 1:1 · 단체방에서 내가 보낸 줄의 `authorId` 가 내 `userId` 와 같은지, 운영 백필 기준(본인 14건 · 방 3개 · `prod-check-1.md`)과 셈이 맞는지 | **열림 — WORK-013 Phase 0 조사**(사용자 Mac · 읽기만). 결과로 이 행을 닫는다. 확인되지 않으면 AC-12(싣지 않음)로 간다 |
 
 | ID | 무엇 | 처분 |
 |---|---|---|

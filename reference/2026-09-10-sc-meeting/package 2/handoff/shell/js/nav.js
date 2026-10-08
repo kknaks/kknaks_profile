@@ -2,7 +2,7 @@
    href 가 있는 항목만 이동한다. 아직 화면이 없는 항목은 href 없이 둔다 (비활성). */
 
 const NAV_PRIMARY = [
-  { id: 'alert', label: '알림', icon: 'bell', dot: true },
+  { id: 'alert', label: '알림', icon: 'bell', dot: true, href: './Alerts.html' },
   { id: 'setting', label: '설정', icon: 'setting', href: './Settings.html' },
 ];
 
