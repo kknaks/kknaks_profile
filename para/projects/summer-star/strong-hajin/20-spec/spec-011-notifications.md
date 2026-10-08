@@ -4,7 +4,7 @@ id: SPEC-011
 title: "알림 — 사용자 사건 채널(SSE) 하나 · 사건 × 관계로 만드는 알림 · 설정 16항목 · 알림 목록 · 앱이 켜져 있을 때 OS 알림"
 status: draft
 product: strong-hajin
-version: 0.2.3
+version: 0.2.4
 created_at: 2026-10-08
 updated_at: 2026-10-08
 tags:
@@ -46,6 +46,8 @@ DEC-010(accepted · D-01~D-41 · 사건 × 관계 표 사용자 확정 — 전 �
 >
 > **화면은 확정 시안이 정본이다** — `Alerts.html` · `handoff/alerts/` · `handoff/settings/js/data.js` · `handoff/shell/js/nav.js`
 > (바뀐 기록 `design-change-1.md` ~ `design-change-4.md`).
+>
+> **v0.2.4 (2026-10-08 · 코드 검수 — `orchestration/work/strong-hajin-notify/review-wp2-wp3-report.md` F-2)** — §4.2-1 `data` 모양을 코드와 맞춘다: `meeting.changed` 의 `before`/`after` = **`{starts_at, ends_at, place}` 객체** · `work.assigned`(W14 밀려남) `new_assignee_name` · 합친 슬랙 줄 `sender_count`.
 >
 > **v0.2.3 (2026-10-08 · P0 처분 — `orchestration/work/strong-hajin-notify/p0-report.md` · 사용자 P0 처분 2026-10-08(재개 노트 §2))** — **OQ-1108 닫힘 → ④**: macOS 는 셸이 **UNUserNotificationCenter 를 objc2 로 직접** 쓴다 — 클릭은 지금 계약의 셸 → 웹 사건 그대로 · Windows 는 공식 `tauri-plugin-notification`(클릭 콜백 없음 — 누르면 OS 기본 동작만) · OQ-1102 의 권한 판정(`granted`/`denied`)이 **macOS 에서 실제로 된다**(UN 프롬프트 · 상태 읽기).
 >
@@ -281,7 +283,7 @@ DEC-010(accepted · D-01~D-41 · 사건 × 관계 표 사용자 확정 — 전 �
 | `work.request_received` | work | `request` | W01 · W09 | `{resubmitted: bool}` | 「{b}님이 ‘{업무}’ 업무를 요청했습니다」 / 재상신 「…다시 요청했습니다」 |
 | `work.request_answered` | work | `answer` | W05 · W07 | `{answer: "accepted"\|"rejected"\|"negotiated"}` | 「{b}님이 내가 요청한 ‘{업무}’ 업무를 수락했습니다 / 거절했습니다 / 조건을 제시했습니다」 |
 | `work.assignment_answered` | work | `answer` | W15 | `{answer: "accepted"\|"rejected"}` | 「{b}님이 내가 배정한 ‘{업무}’ 업무의 담당을 수락했습니다 / 거절했습니다」 |
-| `work.assigned` | work | `assign` | W12 · W13 · W14 | `{mode: "assigned"\|"handed_over"\|"change_proposed"\|"displaced"}` | 「{b}님이 ‘{업무}’ 업무를 나에게 배정했습니다 / 넘겼습니다 / 담당 변경을 제안했습니다」 / 밀려남 「‘{업무}’ 업무의 담당이 {새 담당}님으로 바뀝니다」 |
+| `work.assigned` | work | `assign` | W12 · W13 · W14 | `{mode: "assigned"\|"handed_over"\|"change_proposed"\|"displaced", new_assignee_name?}` — *(v0.2.4)* `new_assignee_name` = 밀려남(W14)일 때 새 담당 이름(문장의 {새 담당}) | 「{b}님이 ‘{업무}’ 업무를 나에게 배정했습니다 / 넘겼습니다 / 담당 변경을 제안했습니다」 / 밀려남 「‘{업무}’ 업무의 담당이 {새 담당}님으로 바뀝니다」 |
 | `work.changed` | work | `change` | W08 · W10 · W17 · W24 · W29 · W30 · W31 · W32 | `{change: "amended"\|"withdrawn"\|"due_changed"\|"start_changed"\|"cancelled"\|"reopened"\|"condition_proposed"\|"cancel_proposed", before?, after?}` | 「{b}님이 ‘{업무}’ 업무의 기한을 바꿨습니다」 + 보조 「{before} → {after}」 / 「…요청을 수정했습니다 · 철회했습니다 · 취소했습니다 · 다시 열었습니다 · 조건 변경을 제안했습니다 · 취소를 제안했습니다」 |
 | `work.proposal_answered` | work | `answer` | W33 | `{answer: "agreed"\|"declined"\|"agreement_cancelled"\|"agreement_changed"}` | 「{b}님이 ‘{업무}’ 업무의 제안에 동의했습니다 / 거절했습니다」 · 합의 「…합의대로 취소했습니다 / 조건을 바꿨습니다」 |
 | `work.completion_reported` | work | `report` | W25 | `{}` | 「{b}님이 ‘{업무}’ 업무 완료를 보고했습니다」 + 보조 「확인해 주세요 — 승인하거나 보완을 요청한다」 |
@@ -289,11 +291,11 @@ DEC-010(accepted · D-01~D-41 · 사건 × 관계 표 사용자 확정 — 전 �
 | `work.predecessor_released` | work | `unblock` | W35 | `{predecessor_title}` | 「‘{선행}’ 업무가 끝나 ‘{업무}’ 업무를 시작할 수 있습니다」 |
 | `work.commented` | work | `comment` | W36 | `{excerpt}` | 「{b}님이 ‘{업무}’ 에 댓글을 남겼습니다」 + 보조 「{excerpt}」 |
 | `message.mail` | message | `mail` | X01 · X02 · X03 | `{subject, attachment_count, account}` | 「{b}님이 메일 ‘{제목}’ 을 보냈습니다」 + 보조(첨부 · 받은 계정 · 참조/받는 사람에 없음) |
-| `message.slack` | message | `slack` | X04 · X05 · X06 | `{room_name, excerpt?, count, senders?}` | DM 「{b}님이 슬랙 DM 을 보냈습니다」 · 멘션 「{b}님이 ‘{방}’ 에서 나를 멘션했습니다」 · 채널(합침) 「‘{방}’ 에 새 메시지가 {count}건 왔습니다」 + 보조 「보낸 사람 … 외 N명」 |
+| `message.slack` | message | `slack` | X04 · X05 · X06 | `{room_name, excerpt?, count, senders?, sender_count?}` — *(v0.2.4)* `sender_count` = 합친 채널 줄(X06)의 보낸 사람 수(보조 줄 「… 외 N명」) | DM 「{b}님이 슬랙 DM 을 보냈습니다」 · 멘션 「{b}님이 ‘{방}’ 에서 나를 멘션했습니다」 · 채널(합침) 「‘{방}’ 에 새 메시지가 {count}건 왔습니다」 + 보조 「보낸 사람 … 외 N명」 |
 | `message.kakao` | message | `kakao` | X08 · X09 | `{room_name, excerpt?}` | 「{b}님이 카카오톡 메시지를 보냈습니다」(단체방이면 「‘{방}’ 에서 …」) |
 | `message.integration_lost` | message | 그 채널의 항목(`mail`\|`slack`\|`kakao`) | X10 · X11 | `{channel: "mail"\|"slack"\|"kakao", reason: "disconnected"\|"room_access_lost", account?, room_name?}` | 「메일 연동 ‘{계정}’ 의 연결이 끊겼습니다」 / 「‘{방}’ 에 더 접근할 수 없습니다」 — **실패 표식(붉은)** |
 | `meeting.invited` | meeting | `invite` | M01 · M05 | `{starts_at, ends_at, place?}` | 「{b}님이 ‘{회의}’ 회의에 초대했습니다」 + 보조 일시 · 장소 |
-| `meeting.changed` | meeting | `change` | M04 · M06 · M07 | `{change: "updated"\|"removed"\|"cancelled", before?, after?}` | 「{b}님이 ‘{회의}’ 회의 시간을 바꿨습니다」 / 「‘{회의}’ 회의에서 빠졌습니다」 / 「‘{회의}’ 회의가 취소됐습니다」 |
+| `meeting.changed` | meeting | `change` | M04 · M06 · M07 | `{change: "updated"\|"removed"\|"cancelled", before?, after?}` — *(v0.2.4 · 코드 검수 F-2)* `before`/`after` = **`{starts_at, ends_at, place}` 객체**(ISO 글자가 아니다) — 화면은 시간이 바뀌면 「회의 시간을 바꿨습니다」 + 「HH:MM → HH:MM」, 장소만 바뀌면 「회의 장소를 바꿨습니다」 | 「{b}님이 ‘{회의}’ 회의 시간을 바꿨습니다」 / 「‘{회의}’ 회의에서 빠졌습니다」 / 「‘{회의}’ 회의가 취소됐습니다」 |
 | `meeting.minutes_ready` | meeting | `minutes` | M09 · M10 | `{agenda_count?, action_count?}` | 「‘{회의}’ 회의록 정리가 끝났습니다」 |
 | `meeting.minutes_failed` | meeting | `minutes-fail` | M11 | `{}` | 「‘{회의}’ 회의록을 만들지 못했습니다」 — **실패 표식** |
 | `meeting.shared` | meeting | `share` | M12 | `{}` | 「{b}님이 ‘{회의}’ 회의를 공유했습니다」 |
