@@ -4,7 +4,7 @@ id: SPEC-006
 title: "데스크톱 래퍼 — 웹은 그대로 두고, 녹음하는 동안만 잠들지 않는 창"
 status: draft
 product: strong-hajin
-version: 0.7.0
+version: 0.7.1
 created_at: 2026-09-22
 updated_at: 2026-10-08
 tags:
@@ -40,6 +40,8 @@ links:
 > strong-hajin flavor 는 옛 계약 그대로**(수집기 없음). 바뀌는 불변식·AC·셸 시험의 전수는 **아래 「외부 채널
 > 수집기 수용」 절**이 센다. 본문의 옛 문장(§2 Placement·§2.5·AC-T23·T33·T47)은 그 절이 **판별로 덮는다**.
 
+> **⚠ v0.7.1 (2026-10-08 · P0 처분 — `orchestration/work/strong-hajin-notify/p0-report.md` · 사용자 P0 처분 2026-10-08(재개 노트 §2))** — 「시스템 알림 수용」 의 **구현 수단을 정한다**: macOS = 셸이 **UNUserNotificationCenter 를 objc2 로 직접**(클릭 · 진짜 권한 프롬프트/판정) · Windows = 공식 `tauri-plugin-notification`(클릭 콜백 없음) · **tauri ≥ 2.12 로 올림**(공식 플러그인 2.5.1 요구) · `tauri dev` 는 번들 id 가 없어 OS 알림 대상이 아니다 — `notify_show` 는 `{shown:false}` · **실측은 서명 dmg 만**. 지운 문장은 ~~취소선~~.
+>
 > **⚠ v0.7.0 (2026-10-08 · 알림 — DEC-010 · SPEC-011)** — DEC-005 D-04 「알림 시스템 자체는 후속」 의 **그 후속이 왔다.**
 > §2.5 「만들지 않는 것」 표의 칸을 **연다**(OS 알림 권한 요청 · 알림 표시 · 이벤트 정의 · 클릭 딥링크) / **그대로 둔다**(푸시 · 트레이 · 백그라운드 · 배지) —
 > 지운 문장은 ~~취소선~~ 으로 남긴다. **웹 → 셸 커맨드 둘**(`notify_permission` · `notify_show`)을 두 판 모두에 더해 **strong-hajin 4 → 6 · medi-ax 7 → 9**,
@@ -1150,7 +1152,9 @@ DEC-005 D-04 는 「OS 알림 **연결은 래퍼의 책임**, 알림 시스템 �
 | 불변식 | 옛 | v0.7.0 |
 |---|---|---|
 | **I-2** 커맨드 수 | strong-hajin 4 · medi-ax 7 | **strong-hajin 6 · medi-ax 9** — 두 판 모두 `notify_permission` · `notify_show` 를 더한다. 파일 · 프로세스 권한은 여전히 0 |
-| 플러그인 | `tauri_plugin_opener` 하나(`lib.rs:613`) | **+ 데스크톱 알림 플러그인 하나**(Tauri 공식 알림 플러그인 계열 — 판 선택은 구현 · 클릭 콜백 확인은 WORK-013 Phase 0) |
+| 플러그인 · 구현 수단 | `tauri_plugin_opener` 하나(`lib.rs:613`) | ~~**+ 데스크톱 알림 플러그인 하나**(Tauri 공식 알림 플러그인 계열 — 판 선택은 구현 · 클릭 콜백 확인은 WORK-013 Phase 0)~~ → *(v0.7.1 · P0)* **macOS = 셸이 UNUserNotificationCenter 를 objc2 로 직접**(델리게이트가 기본 동작 클릭을 받아 `strong-hajin:notification-click` · `notify_permission` 이 `requestAuthorization`/설정 읽기로 진짜 `granted`/`denied` — lock 에 objc2 계열이 전이로 이미 있다) · **Windows = 공식 `tauri-plugin-notification`**(표시만 · **클릭 콜백 없음** — 누르면 OS 기본 동작(앱을 앞으로)만 · 권한은 늘 허용으로 답한다 · 실기 pending — OQ-T01). 공식 플러그인의 데스크톱 클릭 콜백 부재 · macOS 백엔드(NSUserNotification · 폐기 API) · 권한 늘 `Granted` 가 근거(P0-2 · P0-3) |
+| tauri 판 | 2.11(lock `2.11.6`) | **≥ 2.12 로 올린다** — 공식 `tauri-plugin-notification` 2.5.1 이 `tauri = "2.12"` 이상을 요구한다(P0 §2-1). 올림이 다른 셸 동작(가로채기 · 커맨드 ACL · 카톡 수집기)을 바꾸지 않는지 셸 시험 전부로 확인 |
+| dev 실행 | — | **`tauri dev` 는 번들 id 가 없어 UN 알림 대상이 아니다** — `notify_show` 는 `{shown:false}`(오류 · panic 없이 · UN 은 번들 id 없이 보내면 거절 · panic 위험 — P0 §2-3 ②′) · `notify_permission` 은 `denied` 또는 `default` 로 답한다 |
 | capability | 판마다 `product-shell.json` 하나 · `remote.urls` 한 origin | 같은 파일에 **알림 커맨드 허용 둘**(`allow-notify-permission` · `allow-notify-show`) — 허용 origin 은 여전히 하나 |
 | 셸 → 웹 사건 | 다운로드 결과 1종(`strong-hajin:download`) | **2종** — `strong-hajin:notification-click` 더함. 같은 `window.eval` 길 · 같은 「앱 origin 일 때만」 규칙 · 사건 이름 일치 시험(다운로드 사건의 `download.rs` 대조 시험과 같은 결) |
 | `shell_info.features` | `["wake_guard", "open_external"]`(`lib.rs:210`) | **+ `"notification"`** — 웹은 이 값이 있을 때만 알림 커맨드를 부른다(옛 dmg = 목록만) |
@@ -1162,13 +1166,13 @@ DEC-005 D-04 는 「OS 알림 **연결은 래퍼의 책임**, 알림 시스템 �
 |---|---|---|
 | AC-T23 / AC-T47 · 셸 시험 「웹에 여는 커맨드가 판에 맞다」 | strong-hajin 4 · medi-ax 7 | **6 · 9** — 시험의 기대 목록을 고친다(`lib.rs` 시험 블록) |
 | AC-T33 「추가 창 없음」 | 그대로 | **그대로** — 알림 클릭은 **있는 창**을 앞으로 가져올 뿐 새 창을 만들지 않는다. 창이 없으면(닫힘) 알림이 없다 |
-| **새 AC-T50** | — | 앱이 켜져 있을 때 `notify_show` 가 OS 알림을 띄우고(앱이 앞에 있어도), 권한 거부면 `{shown:false}` 로 조용히 끝난다 *(macOS 실기 — 서명 dmg 1회 · 미서명 dev 실행 결과도 기록)* |
-| **새 AC-T51** | — | OS 알림을 누르면 창이 앞으로 오고 웹에 `strong-hajin:notification-click`(보낸 `target` 그대로)이 한 번 간다 *(macOS 실기 — 클릭 콜백을 플러그인이 못 주면 SPEC-011 OQ-1108)* |
+| **새 AC-T50** | — | 앱이 켜져 있을 때 `notify_show` 가 OS 알림을 띄우고(~~앱이 앞에 있어도~~ — SPEC-011 D-39 생략 규칙은 웹 몫), 권한 거부면 `{shown:false}` 로 조용히 끝난다 *(macOS 실기 — **서명 dmg 만**(v0.7.1) · ~~미서명 dev 실행 결과도 기록~~ dev 는 번들 id 가 없어 대상 아님 — `{shown:false}` 만 시험으로)* · 첫 요청 때 OS 권한 프롬프트가 `app.ax.desktop`/`app.stronghajin.desktop` 이름으로 뜬다 |
+| **새 AC-T51** | — | **(macOS)** OS 알림을 누르면 창이 앞으로 오고 웹에 `strong-hajin:notification-click`(보낸 `target` 그대로)이 한 번 간다 *(서명 dmg 실기)* · ~~클릭 콜백을 플러그인이 못 주면 SPEC-011 OQ-1108~~ → OQ-1108 닫힘 ④(v0.7.1) · **(Windows)** 클릭 사건은 오지 않는다 — OS 기본 동작만(pending) |
 | **새 AC-T52** | — | `shell_info.features` 에 `"notification"` · 사건 이름이 웹 수신부와 같다(셸 시험) · 웹에 파일 권한 0(그대로) |
 
 ### 실측 — WORK-013 으로 넘긴다
 
-- macOS 알림 권한 프롬프트 · 표시가 **미서명 dev · 서명 dmg** 에서 각각 뜨는가 · 알림 센터에 어떤 이름 · 아이콘으로 서는가(`app.stronghajin.desktop` / `app.ax.desktop`) — FE §N+2
+- macOS 알림 권한 프롬프트 · 표시 · 클릭이 ~~**미서명 dev · 서명 dmg** 에서 각각 뜨는가~~ **서명 dmg 에서** 뜨는가(v0.7.1 — dev 는 대상 아님) · 알림 센터에 어떤 이름 · 아이콘으로 서는가(`app.stronghajin.desktop` / `app.ax.desktop`) — FE §N+2 · P0 §3
 - Windows 토스트가 AUMID 없이 뜨는가(Windows 는 pending — OQ-T01)
 - 최소화 · 가려짐 · 잠자기 뒤 웹뷰가 사건 채널을 유지하고 `notify_show` 가 제때 불리는가
 

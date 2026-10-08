@@ -46,7 +46,7 @@ sources:
 # 알림 — 사건 채널(SSE) · 알림 생성과 설정 · 알림 화면 · 셸 시스템 알림 · 카톡 표지
 
 DEC-010(accepted · D-01~D-41 · 사건 × 관계 표 사용자 확정 전 행 · 열린 OQ 0)이 정한 알림을 구현한다.
-**SPEC-011 v0.2.2**(알림) · **SPEC-006 v0.7.0**(셸) · **SPEC-008 v0.7.0**(메시지함 · 사건 채널 · 안 읽음) · **SPEC-009 v0.6.0**(카톡 수집기 표지)이 계약의 정본이다.
+**SPEC-011 v0.2.3**(알림) · **SPEC-006 v0.7.1**(셸) · **SPEC-008 v0.7.0**(메시지함 · 사건 채널 · 안 읽음) · **SPEC-009 v0.6.1**(카톡 수집기 표지)이 계약의 정본이다.
 
 > **초안이다(`status: todo`).** **SPEC 이 정본이다** — 이 WP 와 SPEC 이 다르면 SPEC 이 맞고, 워커는 코디에게 알린다(Open Issues).
 > 근거 줄 번호는 조사 시점(코드 origin/main `d2a06fa`) 값이다 — 워커는 **줄이 아니라 심볼로 다시 찾는다**(P-2).
@@ -54,14 +54,16 @@ DEC-010(accepted · D-01~D-41 · 사건 × 관계 표 사용자 확정 전 행 �
 > SPEC-011 §7 의 미결(OQ-1101 · 1102 · 1104 · 1105 · 1108 · 1109 · 1111)은 **제안대로 구현**하고 사용자 결정이 다르면 2루프에서 고친다. OQ-1103 · 1106 · 1107 · 1110 은 **사용자가 닫았다**(DEC-010 D-36 ~ D-40).
 >
 > **수정 1(2026-10-08 · 검수 FAIL 3 · WARN 11 + 사용자 결정 넷 — `orchestration/work/strong-hajin-notify/review-spec-work-report.md` · DEC-010 D-36 ~ D-41)** — 무엇이 어디서 닫혔는지는 **부록 3**.
+>
+> **P0 처분 반영(2026-10-08 · `orchestration/work/strong-hajin-notify/p0-report.md` · 사용자 P0 처분 2026-10-08(재개 노트 §2))** — P0 DONE · WP4 구현 수단 = macOS UN objc2 직접 + Windows 공식 플러그인 · tauri ≥ 2.12 · OS 알림 실측 = 서명 dmg 만 · 카톡 표지 = `authorId == 내 userId` · 반영 순서에 `notifications-v2.sql` 재실행(코드 검수 W-2) · SPEC-011 v0.2.3 · SPEC-006 v0.7.1 · SPEC-009 v0.6.1
 
 ## Meta
 
 - **SPEC (정본)**
-  - SPEC-011 **v0.2.2** — §4.1(사건 채널 SSE · v0.2.0 닫힘 처리 · 겹침 창 · v0.2.1 둘째 `ready` = 다시 읽기 · 기준 줄 대체 · 10회 멈춤) · §4.2 · §4.3(사건 × 관계 67행 + M15 · 생성 규칙) · §4.4(설정) · §4.5(알림 API · 대상 · 점 · §4.5-3 메시지함 읽음 → 알림 읽음) · §4.6(셸 커맨드) · §4.7(백필 두 걸음) · §2(화면 · §2.5 OS 알림 줄이기) · AC-01~25 · AC-02b · AC-02c
-  - SPEC-006 v0.7.0 — §2.5(칸 열기) · §4 커맨드 여섯 · 「시스템 알림 수용」 절 · AC-T50~52
+  - SPEC-011 **v0.2.3** — §4.1(사건 채널 SSE · v0.2.0 닫힘 처리 · 겹침 창 · v0.2.1 둘째 `ready` = 다시 읽기 · 기준 줄 대체 · 10회 멈춤) · §4.2 · §4.3(사건 × 관계 67행 + M15 · 생성 규칙) · §4.4(설정) · §4.5(알림 API · 대상 · 점 · §4.5-3 메시지함 읽음 → 알림 읽음) · §4.6(셸 커맨드) · §4.7(백필 두 걸음) · §2(화면 · §2.5 OS 알림 줄이기) · AC-01~25 · AC-02b · AC-02c
+  - SPEC-006 v0.7.1 — §2.5(칸 열기) · §4 커맨드 여섯 · 「시스템 알림 수용」 절 · AC-T50~52
   - SPEC-008 v0.7.0 — §4.4(v0.7.0) 사건 채널 대체 · 안 읽음 `from_me` · §4.6 `from_me` · §2.7 · AC-35~37
-  - SPEC-009 v0.6.0 — §3.1 · §4 업로드 표지 · OQ-K01 · AC-11 · AC-12
+  - SPEC-009 v0.6.1 — §3.1 · §4 업로드 표지 · OQ-K01 · AC-11 · AC-12
 - **Decision**: DEC-010 · **Baseline**: BASE-009
 - **코드(읽기만 — 조사 기준)**: `Strong_hajin` origin/main `d2a06fa` · 구현 워크트리 `/Users/kknaks/orca/workspaces/Strong_hajin/strong-hajin-notify`(branch `kknaksss/strong-hajin-notify`)
 - **조사**: `orchestration/work/strong-hajin-notify/be-survey-report.md`(BE §n) · `fe-survey-report.md`(FE §n) · `prod-check-1.md`(운영 DB 읽기)
@@ -215,7 +217,8 @@ FE 는 `App.tsx`(WP1-FE 전역 연결 · WP3-FE 화면·점·이동 · WP4 셸 �
 
 ## Phase P0 — 조사 (코드 아님)
 
-- **Status**: TODO · **누가**: 코디(사용자 Mac · 읽기만) + frontend 워커(셸 플러그인 문서 · 소스 읽기) · **SPEC**: S9 OQ-K01 · S11 OQ-1108 · S6 「시스템 알림 수용」 실측
+- **Status**: **DONE(2026-10-08)** · **누가**: 코디(사용자 Mac · 읽기만) + frontend 워커(셸 플러그인 문서 · 소스 읽기) · **SPEC**: S9 OQ-K01 · S11 OQ-1108 · S6 「시스템 알림 수용」 실측
+- **결과(한 줄)**: P0-1 맞음(운영 「본인」 16 = 로컬 `authorId==나` 16 · 방마다 같음 · 1:1 은 로컬 전수 보조) → OQ-K01 닫힘 · P0-2 공식 플러그인은 데스크톱 클릭 콜백 없음 → OQ-1108 ④(macOS UN objc2 직접 · Windows 공식) · P0-3 공식 플러그인 권한 늘 `Granted` · dev 는 터미널로 뜸 → 실측은 서명 dmg 만 · tauri ≥ 2.12 — `orchestration/work/strong-hajin-notify/p0-report.md`
 - **시작 조건**: SPEC 검수 PASS
 - **물음**
   - [ ] **P0-1 카톡 「내가 보냄」 재료(OQ-K01)** — 사용자 Mac 의 카톡 로컬 DB 를 **읽기 전용 사본**으로 열어(수집기와 같은 방식 · 키·경로는 Mac 밖으로 내지 않음) **고른 방 3개**에서 `NTChatMessage.authorId` 가 `NTChatContext.userId`(내 id)와 같은 줄 수를 센다 → 운영 백필 기준(**본인 14건 · 방 3개** · `prod-check-1.md`)과 맞는지. 1:1 · 단체방 각각. **결과(맞음 / 다름 / 열 수 없음)만 기록**하고 사람 이름 · 본문은 적지 않는다
@@ -299,14 +302,14 @@ FE 는 `App.tsx`(WP1-FE 전역 연결 · WP3-FE 화면·점·이동 · WP4 셸 �
 - **Status**: TODO · **워커**: frontend(셸) · **SPEC**: S6 v0.7.0 · S11 §2.5 · §4.6 · S9 v0.6.0
 - **시작 조건**: WP3-FE 머지 · **P0 결과**(OQ-K01 · OQ-1108 처분)
 - **계약**
-  - [ ] 알림 플러그인(`Cargo.toml:35` 옆) · 커맨드 `notify_permission` · `notify_show` · **`build.rs:138-160` ACL 매니페스트에 두 커맨드**(없으면 빌드 실패 — 검수 F-2 ④) · capability 두 판 · `shell_info.features += "notification"` · 셸 시험(커맨드 6 · 9)
+  - [ ] ~~알림 플러그인(`Cargo.toml:35` 옆)~~ → *(P0 처분)* **macOS = 셸이 UNUserNotificationCenter 를 objc2 로 직접**(델리게이트 · 클릭 → `strong-hajin:notification-click` · `notify_permission` = 진짜 프롬프트/판정 · 번들 id 없는 dev 는 `{shown:false}`) · **Windows = 공식 `tauri-plugin-notification`**(`Cargo.toml:35` 옆 · 표시만 · 클릭 없음) · **tauri ≥ 2.12 로 올림**(플러그인 2.5.1 요구 · 올린 뒤 셸 시험 전부) · 커맨드 `notify_permission` · `notify_show` · **`build.rs:138-160` ACL 매니페스트에 두 커맨드**(없으면 빌드 실패 — 검수 F-2 ④) · capability 두 판 · `shell_info.features += "notification"` · 셸 시험(커맨드 6 · 9)
   - [ ] **클릭** — 창 보이기 · 포커스 → `strong-hajin:notification-click`(`{notification_id, target}`) · 이름 일치 시험 · (P0 에서 클릭 콜백이 없으면 OQ-1108 처분대로)
   - [ ] **웹 다리**(`F/lib/shell.ts`) — `notifyPermission` · `notifyShow` · `onShellNotificationClick` · `features` 에 `notification` 있을 때만
   - [ ] **새 알림 → OS 알림**(D-39 · S11 §2.5) — `notification.upserted` 가 `created: true` · `replayed: false` 일 때만 · ① **앱이 앞에 있고 그 대상 화면을 보고 있으면 생략**(`visibilityState` · `hasFocus()` · 지금 surface · 포커스 = `target`) ② 합친 줄 갱신(`created: false`)은 없음 ③ **10초 창에 넷 이상이면 셋까지 낱낱이 · 나머지는 창 끝에 「새 알림 N건」 하나**(누르면 알림 목록) — 창 · 문턱은 웹 상수 · 글자는 WP3 의 문장 함수 · 클릭 → WP3 의 이동 함수
   - [ ] **권한 묻기**(OQ-1102 제안) — 로그인 뒤 첫 화면 한 번 · 거부면 다시 묻지 않는다 · ~~설정 탭 안내 한 줄~~(검수 W-9 — 시안에 없어 걷음 · Open Issues I-8)
-  - [ ] **카톡 수집기 `from_me`** — P0-1 결과가 「맞음」 이면 `authorId == 내 userId` 로 업로드에 싣는다 · 아니면 **싣지 않는다**(SPEC-009 AC-12)
+  - [ ] **카톡 수집기 `from_me`** — ~~P0-1 결과가 「맞음」 이면~~ *(P0-1 맞음 · OQ-K01 닫힘)* **`authorId == 내 userId`(`NTChatContext.userId`)** 로 모든 업로드 줄에 싣는다 — `fetch_messages`(`db.rs:236-286`)가 `authorId` 를 값으로 꺼내고 `RawMessage`(`db.rs:52-60`) · 업로드 모양(`client.rs`)에 칸을 더한다 · `type=1999`·`authorId=0` 은 `false` · 내 userId 를 못 읽으면 싣지 않는다(SPEC-009 AC-12)
   - [ ] dmg 빌드 · 서명 · 공증 1회
-- **완료 조건(실물 · macOS 서명 dmg)**: 새 알림 OS 표시 · **그 대상 화면을 보고 있으면 안 뜸** · 합친 슬랙 줄은 처음만 · **몰림(재연결 직후 · 최소화 풀림) 때 셋 + 「새 알림 N건」**(창 · 문턱 실측 기록) · 누르면 앱이 앞으로 + 대상 고른 상태 · 권한 거부 시 목록만 · **창 닫으면 OS 알림 없음 · 다시 열면 목록 · 점 맞음** · **최소화 · 가려짐 30분 동안 알림이 제때 뜨는가**(실측 기록) · strong-hajin 판에서 마지막 창을 닫으면 프로세스가 끝나는가(기록) · 카톡: 내가 보낸 줄 `true` · 받은 줄 `false`(실물 1회)
+- **완료 조건(실물 · macOS 서명 dmg)**: 새 알림 OS 표시 · **그 대상 화면을 보고 있으면 안 뜸** · 합친 슬랙 줄은 처음만 · **몰림(재연결 직후 · 최소화 풀림) 때 셋 + 「새 알림 N건」**(창 · 문턱 실측 기록) · 누르면 앱이 앞으로 + 대상 고른 상태 · 권한 거부 시 목록만 · **창 닫으면 OS 알림 없음 · 다시 열면 목록 · 점 맞음** · **최소화 · 가려짐 30분 동안 알림이 제때 뜨는가**(실측 기록) · strong-hajin 판에서 마지막 창을 닫으면 프로세스가 끝나는가(기록) · 카톡: 내가 보낸 줄 `true` · 받은 줄 `false`(실물 1회) · *(P0 처분)* **OS 알림 실측은 서명 dmg 만**(dev 는 번들 id 가 없어 대상 아님 — `{shown:false}` 를 시험으로) · 첫 요청 때 권한 프롬프트 · 거부 뒤 `{shown:false}`
 - **시험(관련만 — P-8)**: `make shell-verify`(커맨드 · capability · 사건 이름) · **cargo 두 벌** — `cd frontend/src-tauri && cargo test`(strong-hajin — 커맨드 6) **와** `cargo test --features kakao-collector`(medi-ax — 커맨드 9 · `kakao/db.rs` · `client.rs` 의 `from_me`) · `cd frontend && npx vitest run src/lib/shell.test.ts <새 셸 다리 · OS 알림 생략/묶음 시험> --no-file-parallelism`(셸 대역 `__TAURI_INTERNALS__`) · `make shell-build`(판마다)
 
 ## Phase 반영 — 1루프 E2E → 2루프 → 운영
@@ -316,9 +319,10 @@ FE 는 `App.tsx`(WP1-FE 전역 연결 · WP3-FE 화면·점·이동 · WP4 셸 �
 - [ ] 마지막에 코디 `make verify` 한 번(P-8)
 - [ ] PR(코드) 하나 · 문서 PR 따로
 - **운영 반영 순서**
-  1. [ ] **manual SQL**(알림 표 칸 · 설정 표 · `from_me` 칸 · 사건 순번 · 옛 종류 값)을 이미지보다 먼저
+  1. [ ] **manual SQL ①**(알림 표 칸 · 설정 표 · `from_me` 칸 · 사건 순번 · 옛 종류 값 — `migrations/manual/2026-10-08-notifications-v2.sql` 등)을 이미지보다 먼저
   2. [ ] **ingress 주석**(인프라 레포 `MediSolveAIDev/k8s_infra_mac` — `/api/events/stream` 버퍼링 끔 · 읽기 제한) — 이미지보다 먼저
   3. [ ] 이미지 태그(back · front · **워커 다섯 — conversation · material · meeting · report · external**(검수 F-2 ⑤ · 메일 · 슬랙 알림은 external 이 만든다 · meeting 은 회의록 알림)) → Argo 수동 sync · **다섯 워커 모두 재시작 확인**(옛 코드가 떠 있으면 알림이 안 선다 — P-4)
+  3-1. [ ] **`notifications-v2.sql` 을 한 번 더**(이미지 반영 **뒤** · 코드 검수 W-2 — `review-wp1-be-report.md`) — ①과 새 이미지 사이에 옛 이미지가 쓴 알림 행(업무 요청 발송 · 수락)은 `seq` · `updated_at` 이 비어 남아 이어 받기 · SSE 밖에 머문다. 같은 파일의 채우기는 **빈 행만** 채우므로 다시 돌려도 안전하다
   4. [ ] **운영 SSE 실물**(WP1 완료 조건) — Cloudflare 경유 **1시간** · 그 사이 back 을 한 번 재시작해 **비-200 뒤 회복**(로그인 안 튕김 · 이어 받기)
   5. [ ] **medi-ax dmg 전달 · 사용자 앱 업데이트 확인**(새 수집기가 `from_me` 를 싣는다) — *(수정 1 · W-3: 백필보다 먼저)*
   6. [ ] **백필 SQL 두 걸음**(코디 · `psql -v` 인자) — `apply=0` 셈 출력 → 보고 판단 → `apply=1`. dmg **뒤**에 돌려 그 사이 올라온 `null` 줄까지 채운다 · 그 뒤에도 `null` 이 남으면 한 번 더(`null` 줄만 — 안전). **백필 전 · dmg 전 `null` 줄은 「내 것 아님」**(S11 §4.7) — 그동안 내 카톡 줄이 나에게 알림으로 올 수 있다
@@ -387,8 +391,8 @@ FE 는 `App.tsx`(WP1-FE 전역 연결 · WP3-FE 화면·점·이동 · WP4 셸 �
 | ID | 무엇 | 다음 |
 |---|---|---|
 | **I-1** | **AX 실행으로 난 업무 사건이 어느 프로세스에서 나나**(`BA:1790` 의 실행 경로 — BE §9 미확인). conversation_worker 에서 나면 그 워커도 게시한다 | WP2-BE 첫날 확인 — 생성기는 프로세스 무관(DB 세션 + 같은 트랜잭션 NOTIFY)이라 계약은 그대로 |
-| **I-2** | **데스크톱 알림 플러그인의 macOS 클릭 콜백** — 없으면 D-31 의 OS 알림 쪽 「고른 상태까지」 를 못 짓는다 | P0-2 → SPEC-011 OQ-1108 · 사용자 |
-| **I-3** | **카톡 「내가 보냄」 재료**(OQ-K01) | P0-1 → SPEC-009 OQ-K01 |
+| ~~**I-2**~~ | **데스크톱 알림 플러그인의 macOS 클릭 콜백** — 없으면 D-31 의 OS 알림 쪽 「고른 상태까지」 를 못 짓는다 | **닫힘(P0 처분)** — 공식 플러그인엔 없다 → macOS 는 UN objc2 직접(클릭 받음) · Windows 는 클릭 없음(pending) · SPEC-011 OQ-1108 ④ |
+| ~~**I-3**~~ | **카톡 「내가 보냄」 재료**(OQ-K01) | **닫힘(P0 처분)** — `authorId == NTChatContext.userId` · SPEC-009 v0.6.1 |
 | **I-4** | **Cloudflare 프록시의 SSE 처리** — 버퍼링 · 유휴 끊김 · 요금제 한도(장시간 연결) | WP1 운영 실물 · 하트비트 상수 조정 |
 | **I-5** | **메일 「내가 보낸 줄」 백필** — Gmail raw 의 From 을 SQL 로 풀기 어려우면 기존 메일은 `null` | WP2-BE 가 SQL 로 풀 수 있는지 보고 · 못 풀면 `null`(받은편지함만 받아 드묾) |
 | **I-6** | **회의 「빠진 참석자」 셈** — `replace_attendees`(`:531`)가 바뀌기 전 · 뒤 목록을 생성기에 넘겨야 한다(지금은 통째 교체) | WP2-BE |
