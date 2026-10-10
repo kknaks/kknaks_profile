@@ -589,6 +589,13 @@ para/areas/
 | 474 | `ai` | `proposal-revision` | 승인 대기 초안을 같은 카드의 다음 회차로 고친다. 누가 고치든 같은 수정 · 바뀐 칸만 덮기 |  |
 | 475 | `back` | `job-lease` | 워커가 집은 작업의 점유 기한. 바닥 = 최대 호출 수 × timeout, 나머지는 heartbeat |  |
 | 476 | `db` | `online-schema-change` | 운영 표 변경을 칸(트랜잭션) → 이미지 → 인덱스(CONCURRENTLY)로 가르고 무효 인덱스를 본다 |  |
+| 477 | `db` | `listen-notify` | 저장과 같은 트랜잭션에서 내는 DB 알림. 커밋돼야 나가고 보관이 없어 페이로드는 id 만 |  |
+| 478 | `back` | `relationship-based-notification` | 알림 여부를 사건 × 받는 사람 관계 표로. 원칙 셋 · 우선순위 하나 · 만들 때 설정으로 거름 · 행 id 시험 |  |
+| 479 | `back` | `own-message-flag` | 「내가 보낸 줄」 을 수집 때 원천별 재료로 판정해 칸 하나에. 표시 이름이 id 를 덮으면 조용히 0 |  |
+| 480 | `front` | `desktop-native-notification` | 웹이 받고 셸이 OS 알림 API 로 직접 띄움. 공식 플러그인의 데스크톱 한계 · 권한 · 클릭 보관 |  |
+| 481 | `design` | `notification-coalescing` | OS 배너 줄이기 — 보고 있으면 생략 · 합친 줄은 처음만 · 창·문턱 묶음 「새 알림 N건」 |  |
+| 482 | `qa` | `dependency-upgrade-regression` | 의존성 올림이 시험 밖 실행 동작을 바꾼다. 움직인 범위를 세고 회귀는 diff 전수로 하나로 좁힌다 |  |
+| 483 | `qa` | `schema-parity-test` | 모델 · 처음 까는 SQL · 운영 ALTER 사본의 어긋남을 구조 시험이 대조. 칸 추가는 두 곳 |  |
 
 ---
 
