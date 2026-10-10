@@ -9,30 +9,30 @@
 
 ## 2. 적용한 기술·개념
 
-- **사용자 사건 채널을 SSE 하나로** [[server-sent-events]] · [[websocket]] · [[per-user-fanout]] — 메시지함 사건 넷과 알림을 회원별 스트림 하나(`GET /api/events/stream`)에 싣고, 앱이 로그인 동안 `EventSource` 를 **하나만** 연다.
+- **사용자 사건 채널을 SSE 하나로** [[server-sent-events]] · [[websocket]] · [[per-user-fanout]] · [[exponential-backoff]] — 메시지함 사건 넷과 알림을 회원별 스트림 하나(`GET /api/events/stream`)에 싣고, 앱이 로그인 동안 `EventSource` 를 **하나만** 연다.
   - 왜 이걸 골랐나: 알림은 서버 → 화면 한 방향이고 지금 WS 도 올라오는 프레임을 읽고 버렸다. 알림은 저장되므로 사건 id 로 **놓친 것을 다시 줄 수 있다**(WS 에는 커서가 없었다). 회의 WS 는 오디오를 올려야 해서 그대로 뒀다
   - 무엇이 어려웠나: 검수가 세 번 같은 자리를 팠다 — ① `EventSource` 는 비-200 이면 **영구히 닫히고** 상태 코드도, 새 인스턴스의 `Last-Event-ID` 도 없다 → 세션 확인(`/api/auth/me`)으로 「로그인 풀림 / 서버 재시작」 을 가르고 화면이 직접 백오프로 새로 연다(`?last_event_id=`) ② 순번 없이 다시 붙으면 다시 읽기가 빠져 **지금 WS 보다 후퇴** → 「둘째 이후 ready = 다시 읽기」 ③ 순번이 커밋 순서와 다를 때 빠짐 → 겹침 창 60초 + 화면이 id 로 거름. 「10회 멈춤」 이 서버 장애에도 걸려 앱이 조용히 멈추는 것도 r3 가 잡았다(인증 200 + 스트림 실패만 센다)
   - 근거: `backend/src/ax_workspace/entrypoints/http_events.py` · `frontend/src/lib/eventStream.ts` · `W/review-spec-work-report.md` F-1 · `W/review-spec-work-r2-report.md` R-F1 · `W/review-spec-work-r3-report.md`
-- **같은 트랜잭션 NOTIFY · 짧은 페이로드** [[application-event]] — 사건은 저장과 같은 트랜잭션에서 `pg_notify` 로 내고, 페이로드는 id 만 싣고 SSE 를 내는 API 프로세스가 DB 에서 항목을 읽는다. 게시 프로세스가 API · external_worker 둘뿐이라 meeting_worker 가 같은 함수로 내게 길을 냈다(회의록 완료 알림).
+- **같은 트랜잭션 NOTIFY · 짧은 페이로드** [[listen-notify]] · [[application-event]] — 사건은 저장과 같은 트랜잭션에서 `pg_notify` 로 내고, 페이로드는 id 만 싣고 SSE 를 내는 API 프로세스가 DB 에서 항목을 읽는다. 게시 프로세스가 API · external_worker 둘뿐이라 meeting_worker 가 같은 함수로 내게 길을 냈다(회의록 완료 알림).
   - 근거: `platform/user_events.py` · `W/be-survey-report.md` C-2 · `W/be-wp1-report.md`
-- **사건 × 관계 생성기 하나** — 같은 사건이라도 받는 사람의 관계(담당 · 요청자 · 배정자 · 참조 · To/CC · DM · 멘션 · 소유자 · 참석자 · 공유받음)로 알림 여부 · 항목 · 꼬리표가 갈린다. 원칙 셋(내 행동은 안 알림 · 설정 항목이 없으면 안 알림 · 관계 없으면 안 알림)과 우선순위(담당 > 요청자 > 배정자 > 참조)로 68행을 한 생성기에 적고, **만들 때 설정으로 거른다**(끄면 목록에도 안 쌓인다).
+- **사건 × 관계 생성기 하나** [[relationship-based-notification]] · [[per-user-fanout]] — 같은 사건이라도 받는 사람의 관계(담당 · 요청자 · 배정자 · 참조 · To/CC · DM · 멘션 · 소유자 · 참석자 · 공유받음)로 알림 여부 · 항목 · 꼬리표가 갈린다. 원칙 셋(내 행동은 안 알림 · 설정 항목이 없으면 안 알림 · 관계 없으면 안 알림)과 우선순위(담당 > 요청자 > 배정자 > 참조)로 68행을 한 생성기에 적고, **만들 때 설정으로 거른다**(끄면 목록에도 안 쌓인다).
   - 왜 이걸 골랐나: 사건마다 흩어 쓰면 원칙이 자리마다 달라진다. 행 id 로 시험을 짜 검수가 「표본이 아니라 전수」 로 대조할 수 있었다
   - 무엇이 어려웠나: W17 · W24 · W30 은 표에 「알림」 인데 지금 권한상 **행위자 = 받는 사람**이라 늘 0줄이었다 — 권한을 넓히지 않고 자리만 남기고 E2E 체크리스트를 고쳤다
   - 근거: `modules/notification_events.py` · `BT/contract/test_notification_rows.py` · DEC-010 사건 × 관계 표
-- **「내가 보낸 줄」 판정 재료 = 저장 칸 하나(`from_me`)** — 슬랙 `raw.user` · 메일 From = 연동 계정 · 카톡 수집기 표지(`authorId == NTChatContext.userId`).
+- **「내가 보낸 줄」 판정 재료 = 저장 칸 하나(`from_me`)** [[own-message-flag]] — 슬랙 `raw.user` · 메일 From = 연동 계정 · 카톡 수집기 표지(`authorId == NTChatContext.userId`).
   - 무엇이 어려웠나: 운영 DB 를 보니 **슬랙 `author` 4,041건이 100% 표시 이름으로 덮여** 메시지함 안 읽음의 「내 줄 빼기」 가 한 줄도 동작하지 않던 기존 버그였다. 카톡 raw 에는 「내가 보냄」 재료가 아예 없어 P0 에서 사용자 Mac 의 카톡 로컬 DB 를 읽기 전용 사본으로 열어 운영 16건 = 로컬 16건(방마다 일치)을 확인하고서야 수집기를 고쳤다
   - 근거: `W/prod-check-1.md` · `W/p0-report.md` §1
-- **데스크톱 OS 알림 — UNUserNotificationCenter 를 셸이 직접** — 웹이 SSE 로 받아 셸 커맨드 둘(`notify_permission` · `notify_show`)로 넘기고, 클릭은 셸 → 웹 사건으로 그 항목을 고른 상태까지 연다. 앱이 켜져 있을 때만(서버 푸시 없음).
+- **데스크톱 OS 알림 — UNUserNotificationCenter 를 셸이 직접** [[desktop-native-notification]] — 웹이 SSE 로 받아 셸 커맨드 둘(`notify_permission` · `notify_show`)로 넘기고, 클릭은 셸 → 웹 사건으로 그 항목을 고른 상태까지 연다. 앱이 켜져 있을 때만(서버 푸시 없음).
   - 왜 이걸 골랐나: 공식 `tauri-plugin-notification` 2.5.1 은 **데스크톱에서 클릭 응답을 버리고 권한을 늘 「허용」 으로 답한다**(P0 — 소스 근거). 폐기 API(NSUserNotification) · 1인 유지 서드파티 플러그인을 빼고 objc2 로 직접 짰다 — 진짜 권한 프롬프트 · 거부 판정 · 클릭. Windows 는 공식 플러그인(클릭 없음 · 실기 pending)
   - 무엇이 어려웠나: delegate 수명 · 번들 id 없는 dev 실행에서 panic 없이 떨어지기 · **창이 없을 때 남은 배너 클릭**(medi-ax 는 트레이 상주) — 클릭 하나를 60초 보관했다가 웹이 준비되면 보내는 중계를 뒀다
   - 근거: `frontend/src-tauri/src/notify.rs` · `W/review-wp4-report.md` · `W/review-wp4-r2-report.md`
-- **OS 알림 줄이기** — 그 대상 화면을 보고 있으면 생략 · 합친 슬랙 채널 줄은 처음만 · 10초 창에 넷 이상이면 셋 + 「새 알림 N건」 하나.
+- **OS 알림 줄이기** [[notification-coalescing]] — 그 대상 화면을 보고 있으면 생략 · 합친 슬랙 채널 줄은 처음만 · 10초 창에 넷 이상이면 셋 + 「새 알림 N건」 하나.
   - 근거: `frontend/src/lib/osNotifier.ts` · DEC-010 D-39
 
 ## 3. 막혔던 것 / 사고
 
-- **의존성 올림이 웹뷰 동작을 바꿨다** — tauri 2.11 → 2.12 는 공식 알림 플러그인이 요구해서 올렸다. 검수가 「65 크레이트가 움직였다 — 시험이 덮지 않는 실행 회귀는 실측으로」 라고 짚었는데, 사용자 앱에서 **전체화면을 나갔다 들어오면 아래 110px 이 비는** 회귀로 나왔다 → wry 0.55 → 0.57 의 macOS 웹뷰 생성 diff 를 전수로 보니 바뀐 것은 `elementFullscreenEnabled` 를 늘 켜는 것(#1779 · #1780) 하나 → 셸에서 끄고 셸 높이도 `100vh` → `100%` 사슬로. 결과적으로 공식 플러그인은 Windows 에만 쓰는데 그 때문에 올린 판이 macOS 를 흔들었다
-- **E2E 직전 전체 테스트에서 1건** — `from_me` 칸을 모델에 더했는데 처음 까는 DB 용 외부 채널 SQL 에 없어 구조 시험이 걸렸다(운영은 ALTER 로 이미 맞음). 단계마다 관련 시험만 돌린 대가로 마지막 한 번에서 잡혔다 — 그 한 번이 있어서 잡혔다
+- **의존성 올림이 웹뷰 동작을 바꿨다** [[dependency-upgrade-regression]] — tauri 2.11 → 2.12 는 공식 알림 플러그인이 요구해서 올렸다. 검수가 「65 크레이트가 움직였다 — 시험이 덮지 않는 실행 회귀는 실측으로」 라고 짚었는데, 사용자 앱에서 **전체화면을 나갔다 들어오면 아래 110px 이 비는** 회귀로 나왔다 → wry 0.55 → 0.57 의 macOS 웹뷰 생성 diff 를 전수로 보니 바뀐 것은 `elementFullscreenEnabled` 를 늘 켜는 것(#1779 · #1780) 하나 → 셸에서 끄고 셸 높이도 `100vh` → `100%` 사슬로. 결과적으로 공식 플러그인은 Windows 에만 쓰는데 그 때문에 올린 판이 macOS 를 흔들었다
+- **E2E 직전 전체 테스트에서 1건** [[schema-parity-test]] — `from_me` 칸을 모델에 더했는데 처음 까는 DB 용 외부 채널 SQL 에 없어 구조 시험이 걸렸다(운영은 ALTER 로 이미 맞음). 단계마다 관련 시험만 돌린 대가로 마지막 한 번에서 잡혔다 — 그 한 번이 있어서 잡혔다
 - **날짜에 묶인 기존 프론트 시험 8개** — 고정 픽스처 마감일이 오늘을 지나 「마감일 초과」 가 붙고, 달력이 9월 날짜 칸을 못 찾았다. 이번 변경과 무관함을 판정해 남겼다(`W/flaky-baseline-evidence.md`)
 - **zsh 단어 나누기로 발주 실패** — `for pair in "a b"; set -- $pair` 가 zsh 에서 안 나뉘어 브리프 경로가 통째로 들어갔다. 발주는 변수 없이 한 줄씩
 - **코디 핸들이 오갔다** — env 값이 stale 였다가 다시 살아났다(term_3f9a08f5 → term_aa9fb9af). 발주 직전마다 list 로 확인해 브리프 · 워커에 정정

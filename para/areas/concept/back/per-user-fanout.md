@@ -7,8 +7,10 @@ aliases:
   - fan-out
   - 사람별 저장
   - 구독 접근 확인
+  - 회원별 스트림
 up:
   - 2026-10-07-strong-hajin-inbox
+  - 2026-10-10-strong-hajin-notify
 tags:
   - 권한
   - 메시징
@@ -24,6 +26,7 @@ tags:
 1. 같은 채널을 여럿이 고르면 채널 이벤트 하나가 들어올 때 고른 사람 수만큼 행이 생긴다 — 읽음·보관·삭제가 사람마다 갈리기 때문이다
 2. 구독(방 추가)은 **그 사람의 토큰으로** 원천에 접근해 보고 성공할 때만 만든다
 3. 이벤트 → 구독 목록 → 사람별 저장 순서. 구독 목록이 곧 권한 목록이다
+4. **나가는 쪽도 사람별이다** — 사람별로 저장된 것을 화면에 밀 때도 사람(회원)마다 스트림 하나로 모은다. 사건 종류마다 연결을 따로 열지 않고, 서버는 그 회원 몫의 사건만 그 스트림에 싣는다. 받는 사람을 고르는 판단은 저장 때 끝났으므로 나가는 쪽은 「이 행의 주인이 누구인가」 만 본다 → [[relationship-based-notification]] · [[server-sent-events]]
 
 ## 왜 중요한가
 
@@ -40,7 +43,10 @@ tags:
 - [[conversation-grain]] — 흐름 단위 카드가 사람마다 생기는 이유
 - [[oauth-state-parameter]] — 사람마다 자기 토큰을 갖는 연결
 - [[observer-pattern]] — 등록된 구독자에게 나눠 주는 모양
+- [[relationship-based-notification]] — 사건 하나를 받는 사람마다 알림 행으로 나누는 규칙
+- [[server-sent-events]] — 사람별 저장을 사람별 스트림으로 내보내는 길
 
 ## 출처
 
 - [[2026-10-07-strong-hajin-inbox]] §2 — Strong Hajin WORK-011 슬랙 채널 구독(review-be23 F-1 → 커밋 b2ba11a)
+- [[2026-10-10-strong-hajin-notify]] §2 — Strong Hajin WORK-013. 알림을 받는 사람마다 행으로 만들고, 메시지함 사건 넷과 알림을 회원별 SSE 스트림 하나에 실었다

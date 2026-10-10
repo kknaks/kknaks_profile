@@ -10,6 +10,7 @@ aliases:
   - 메시지 브로커
 up:
   - 2025-01-02-Day03
+  - 2026-10-10-strong-hajin-notify
 tags:
   - web
   - 통신
@@ -79,6 +80,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 - **연결이 상태를 갖는다** — HTTP 의 무상태와 정반대다. 어느 서버에 붙었는지가 의미를 가지므로, 로드밸런서·세션·재접속 처리가 전부 새 문제가 된다 → [[http-message]] · [[http-session]]
 - **SockJS 는 성능이 아니라 호환을 위한 것이다** — 웹소켓이 되면 그것을 쓰고, 안 되면 폴링 계열로 떨어진다. **떨어졌을 때의 성질은 폴링의 것**이라는 점을 알고 써야 한다 → [[polling]]
 - **`@MessageMapping` 은 `@RequestMapping` 이 아니다** — 같은 컨트롤러 안에 있어도 HTTP 요청이 아니라 STOMP 메시지를 받는다. 인증·인터셉터·예외 처리가 **웹 쪽 장치와 별개**로 돈다 → [[request-mapping]] · [[handler-interceptor]]
+- **연결 자체에는 커서가 없다** — 끊겼다 다시 붙으면 그 사이 것은 사라진다. 이어받기는 규약 위에 직접 만들어야 한다. 서버 → 화면 한 방향만 쓰고 올라오는 프레임을 읽고 버리는 쓰임이라면, 저장된 사건 id 로 이어받는 [[server-sent-events]] 쪽이 더 맞다 — 양방향이 진짜 필요한 것(오디오를 올리는 회의)만 남긴다
 - **연결 수가 곧 자원이다** — 사용자마다 연결 하나가 계속 열려 있으므로, 동시 접속자가 서버 자원의 상한을 정한다 → [[socket]] · [[thread]]
 
 ## 함께 보는 개념
@@ -93,3 +95,4 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 ## 출처
 
 - [[2025-01-02-Day03]] — 「WebSocket(STOMP)방식 구현」 절이 **주소 두 갈래의 흐름을 한 줄로 그렸다**: 「클라이언트 → `/app/*` → `@MessageMapping` → `/topic/*` → 구독 클라이언트들」. `enableSimpleBroker("/topic")` 과 `setApplicationDestinationPrefixes("/app")` 을 각각 네 줄씩 풀어 **브로커가 1:N 전달을 맡고 `/app` 은 클라이언트→서버 단방향**이라는 것을 명시했고, `/topic/chat/room/1` 예로 방별 구독까지 짚었다. 자바스크립트 쪽은 `new SockJS("/ws")` → `Stomp.over(socket)` → `subscribe(...)` 세 줄이 층을 쌓는 순서를 그대로 보이고, **SockJS 가 「WebSocket 을 지원하지 않는 브라우저를 위한 폴백」**이라는 설명도 붙어 있다. 같은 노트가 SSE 구현을 먼저 하고 이쪽으로 넘어오므로, **연결 관리를 직접 하던 것(`CopyOnWriteArrayList<SseEmitter>`)이 브로커로 넘어가는 대비**가 코드로 남았다 → [[server-sent-events]]
+- [[2026-10-10-strong-hajin-notify]] §2 — 화면마다 따로 열던 메시지함 WS 를 회원별 SSE 하나로 옮겼다. WS 는 올라오는 프레임을 읽고 버렸고 다시 붙을 때 놓친 것을 줄 커서가 없었다. 오디오를 올려야 하는 회의 WS 는 그대로 뒀다
