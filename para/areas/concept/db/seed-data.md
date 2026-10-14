@@ -11,8 +11,12 @@ aliases:
   - dataset import
   - pg_dump
   - pg_restore
+  - 목데이터 시나리오
+  - 시드 + 이벤트
+  - 대본
 up:
   - 2026-10-01-strong-hajin-deploy
+  - 2026-10-14-sts-prototype
 tags:
   - db
   - 운영
@@ -33,6 +37,18 @@ tags:
 
 Strong Hajin 은 `seed_catalog(demo_organization=False)` 로 카탈로그만 깔고(`reset-catalog`), 실제 조직은 `dataset import` 로 한 트랜잭션에 넣는다.
 
+### 시연용 목데이터 — 시드 + 이벤트로 실데이터를 대본화
+
+원천 시스템을 부르지 않는 시연(PoC)은 목데이터가 곧 화면이다. **실데이터를 대본으로 삼되, 시점을 둘로 가른다.**
+
+| 파일 | 뜻 | 들어오는 때 |
+|---|---|---|
+| `seed.json` | 아침에 원천 시스템에서 받아 온 것 — 오늘 예약 · 고객 · 보유 시술권 · 지난 방문 | DB 가 빌 때 한 번 |
+| `events/<id>.json` | 진행하다 원천 시스템에서 들어오는 것 — 상담 종료(상담 · 오더 · 시술 · 결제액) · 결제 완료 · 시술 종료(담당자 메모) | 그 사건이 화면에서 일어날 때 |
+
+- **필드 이름은 원천 응답 이름 그대로**, 있는 것만. 대본에 없는 장면(재내원 · 남은 시술권)을 만들면 `"synthetic": true` 로 표시한다
+- **「아무도 접수 안 한 아침」 에서 시작한다** — 한낮 캡처를 그 시각 상태로 재구성한 시드는 위치 · 단계 · 큐 · 담당이 전부 짐작(cc-prototype 22개 추정)이었다. 아침에서 시작해 사건마다 대본 방문의 실데이터를 넣으면 짐작이 사라지고, 사건 전에 보이면 안 되는 것(미래 정보)도 막힌다 → [[as-of-visibility]]
+
 ## 왜 중요한가
 
 **적재 도구는 로컬 DB 에만 돈다.** reset·import 둘 다 dev 프로파일 + localhost `ax_demo*` 가드가 있고, 운영 DB 에 넣는 경로는 코드에 없다. 가드를 풀지 않고 운영에 넣는 길은 **로컬에서 적재 → `pg_dump`(세션 표 제외) → 운영 `pg_restore`** 다. 코드 변경 없이 같은 데이터가 간다. dump 는 파일로 남기지 않고 stdin 으로 흘려 복원했다.
@@ -44,12 +60,17 @@ Strong Hajin 은 `seed_catalog(demo_organization=False)` 로 카탈로그만 깔
 - **dump 이관은 일회성이다** — 이후 유저를 더 넣을 운영 경로는 여전히 없다. 반복되면 운영용 적재 명령이 필요하다
 - **실명 시드는 공개 레포에 두지 않는다** — 형식(README)만 커밋하고 CSV 는 Git 밖에 둔다
 - **[[database-migration]] 과 다르다** — 그쪽은 스키마·엔진 이전, 이쪽은 빈 DB 에 처음 채우는 내용이다
+- **「한 번만 시드」 는 배포 뒤에도 그대로다** — 시드 파일(Secret)을 바꿔도 이미 시드된 DB 는 안 바뀐다. 재시드는 볼륨의 DB 파일을 지우고 재시작하는 파괴적 결정이다
+- **목데이터라도 사람 이름 · 연락처는 가짜로** — 공개 배포면 직원 이름 · 이메일까지 치환하고, 대본 원문 · 대응표는 Git 밖에 둔다
 
 ## 함께 보는 개념
 
 - [[database-migration]] — 데이터를 옮기는 다른 경우
 - [[runtime-profile-gating]] — 적재 도구에 걸린 프로파일 가드
+- [[as-of-visibility]] — 시드 시점과 사건 시점을 맞추는 이유
+- [[public-vs-internal-api]] — 원천 시스템을 부르지 않는 PoC 가 목데이터로 가는 이유
 
 ## 출처
 
 - [[2026-10-01-strong-hajin-deploy]] — 조직도 9표 양식 → mediness prod 4명 조회 → 로컬 import → dump 로 운영 복원
+- [[2026-10-14-sts-prototype]] §2 — cc-prototype 목데이터 시나리오: 한낮 재구성 시드(추정 22개)를 버리고 아침 시드 + 진행 중 이벤트로(`scenario-format.md` · WP7b)
