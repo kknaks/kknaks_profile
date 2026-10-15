@@ -7,9 +7,11 @@ aliases:
   - 실패를 삼키지 않기
   - fail loudly
   - graceful degradation 의 반대편
+  - 예외 삼키기
 up:
   - 2026-09-12-sc-meeting
   - 2026-10-02-strong-hajin-polish
+  - 2026-10-15-strong-hajin-attach-read
 tags:
   - reliability
   - failure-handling
@@ -40,6 +42,7 @@ tags:
 
 - 모든 폴백이 나쁜 건 아니다 — 폴백을 쓰려면 **「그 실패를 사용자가 어디서 보는가」**를 같이 적어야 한다. 그 답이 없으면 폴백이 아니라 은폐다.
 - 브리프에 폴백 규칙을 쓰는 사람(코디)이 이 실수를 하기 쉽다 — 워커는 브리프대로 만든다.
+- **판정 함수 안의 폴백도 같은 은폐다** — `except Exception: return False` 는 「확인 못 함」 을 「없음」 이라는 정상 답으로 바꾼다. 실패 상태는 남지만 **사유가 틀린 채로** 남는다(이미지 확인 실패 → 「이미지 없음」 → 「빈 파일」). 확인 실패는 `None`/별도 표지로 올린다 → [[failure-reason-classification]]
 
 ## 폴백이 허용되는 자리
 
@@ -49,8 +52,10 @@ tags:
 ## 함께 보는 개념
 
 - [[idempotency]] · [[two-pass-transcription]] · [[fault-isolation]]
+- [[failure-reason-classification]] — 드러낸 `failed` 안에서 사유가 판정 근거만큼 맞는가
 
 ## 출처
 
 - 2026-09-12-sc-meeting §2·§3 · ax-workspace 커밋 e252dee · SCAX-SPEC-004 0.4.8 D44 정정
 - [[2026-10-02-strong-hajin-polish]] §2 — Strong Hajin WORK-008 Phase 4(`finalize_service.py` 세션 없음 → 콜드스타트, `codex_cli.py` stderr 요약)
+- [[2026-10-15-strong-hajin-attach-read]] §2 — Strong Hajin 자료 추출의 이미지 판정이 예외를 False 로 삼켜 「빈 파일」 사유에 합쳐지는 자리(`platform/document_parsers.py:513-514`)

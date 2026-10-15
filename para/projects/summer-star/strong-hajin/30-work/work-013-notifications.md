@@ -2,7 +2,7 @@
 type: work
 id: WORK-013
 title: "알림 — 사건 채널(SSE) · 알림 생성과 설정 · 알림 화면 · 셸 시스템 알림 · 카톡 표지"
-status: todo
+status: done
 product: strong-hajin
 work_type: new-feature
 owner: kknaks
@@ -15,7 +15,7 @@ roles:
   ops: kknaks
 progress: 0
 created_at: 2026-10-08
-updated_at: 2026-10-08
+updated_at: 2026-10-10
 tags:
   - product/strong-hajin
   - doc/work
@@ -229,7 +229,7 @@ FE 는 `App.tsx`(WP1-FE 전역 연결 · WP3-FE 화면·점·이동 · WP4 셸 �
 
 ## Phase WP1-BE — 사건 채널(서버)
 
-- **Status**: TODO · **워커**: backend · **SPEC**: S11 §4.1 · S8 §4.4(v0.7.0)
+- **Status**: **DONE(2026-10-08)** · **워커**: backend · **SPEC**: S11 §4.1 · S8 §4.4(v0.7.0)
 - **시작 조건**: SPEC 검수 PASS
 - **계약**
   - [ ] **`GET /api/events/stream`** — `text/event-stream` · `Cache-Control: no-cache, no-transform` · `X-Accel-Buffering: no` · 첫 `retry: 3000` + `event: ready` · **20초 `: ping`**
@@ -245,7 +245,7 @@ FE 는 `App.tsx`(WP1-FE 전역 연결 · WP3-FE 화면·점·이동 · WP4 셸 �
 
 ## Phase WP1-FE — 사건 채널(화면)
 
-- **Status**: TODO · **워커**: frontend · **SPEC**: S11 §4.1-6 · S8 AC-35
+- **Status**: **DONE(2026-10-08)** · **워커**: frontend · **SPEC**: S11 §4.1-6 · S8 AC-35
 - **시작 조건**: WP1-BE 계약 고정
 - **계약**
   - [ ] **App 이 로그인한 동안 EventSource 하나** — 화면이 바뀌어도 유지 · 로그아웃 · 세션 상실 때 닫음
@@ -260,7 +260,7 @@ FE 는 `App.tsx`(WP1-FE 전역 연결 · WP3-FE 화면·점·이동 · WP4 셸 �
 
 ## Phase WP2-BE — 알림 생성 · 설정 · 판정 재료 · 백필
 
-- **Status**: TODO · **워커**: backend · **SPEC**: S11 §4.2 ~ §4.5 · §4.7 · S8 §4.4(v0.7.0) · §4.6
+- **Status**: **DONE(2026-10-08)** · **워커**: backend · **SPEC**: S11 §4.2 ~ §4.5 · §4.7 · S8 §4.4(v0.7.0) · §4.6
 - **시작 조건**: WP1-BE 머지
 - **계약**
   - [ ] **스키마**(Domain/Schema) — 알림 표 칸 · 사건 순번 · 알림 설정 표 · 외부 메시지 `from_me` · 기존 두 종류 값 바꾸기 · 수동 SQL + 로컬 `schema_sync`
@@ -285,7 +285,7 @@ FE 는 `App.tsx`(WP1-FE 전역 연결 · WP3-FE 화면·점·이동 · WP4 셸 �
 
 ## Phase WP3-FE — 화면
 
-- **Status**: TODO · **워커**: frontend · **SPEC**: S11 §2.1 ~ §2.3 · §4.5
+- **Status**: **DONE(2026-10-08)** · **워커**: frontend · **SPEC**: S11 §2.1 ~ §2.3 · §4.5
 - **시작 조건**: WP2-BE 계약 고정 · WP1-FE 머지
 - **계약**
   - [ ] **알림 목록 화면** `surface="notifications"`(검수 W-10 — 사이드바 id `notifications` 그대로 · 시안 `alert` = 코드 `notifications` · `ProductSurface` 에 더함) — 시안 A 그대로(머리 · 필터 넷 · 탭 수 · 날짜 구분 넷(KST) · 한 줄 · 꼬리표 16 · 실패 표식 · 상태 넷) · **스크롤 끝 자동 이어 불러오기**(D-36 · 실패면 끝에 「더 불러오지 못했습니다 · 다시 시도」) · **[모두 읽음] = 전부 · 비활성은 전체 기준**(D-40)
@@ -299,7 +299,7 @@ FE 는 `App.tsx`(WP1-FE 전역 연결 · WP3-FE 화면·점·이동 · WP4 셸 �
 
 ## Phase WP4-SHELL — 셸 시스템 알림 + 카톡 수집기 표지 *(dmg 는 이 판에 한 번)*
 
-- **Status**: TODO · **워커**: frontend(셸) · **SPEC**: S6 v0.7.0 · S11 §2.5 · §4.6 · S9 v0.6.0
+- **Status**: **DONE(2026-10-08)** · **워커**: frontend(셸) · **SPEC**: S6 v0.7.0 · S11 §2.5 · §4.6 · S9 v0.6.0
 - **시작 조건**: WP3-FE 머지 · **P0 결과**(OQ-K01 · OQ-1108 처분)
 - **계약**
   - [ ] ~~알림 플러그인(`Cargo.toml:35` 옆)~~ → *(P0 처분)* **macOS = 셸이 UNUserNotificationCenter 를 objc2 로 직접**(델리게이트 · 클릭 → `strong-hajin:notification-click` · `notify_permission` = 진짜 프롬프트/판정 · 번들 id 없는 dev 는 `{shown:false}`) · **Windows = 공식 `tauri-plugin-notification`**(`Cargo.toml:35` 옆 · 표시만 · 클릭 없음) · **tauri ≥ 2.12 로 올림**(플러그인 2.5.1 요구 · 올린 뒤 셸 시험 전부) · 커맨드 `notify_permission` · `notify_show` · **`build.rs:138-160` ACL 매니페스트에 두 커맨드**(없으면 빌드 실패 — 검수 F-2 ④) · capability 두 판 · `shell_info.features += "notification"` · 셸 시험(커맨드 6 · 9)
@@ -613,3 +613,13 @@ DEC-010 § 사건 × 관계 표의 행 순서 그대로. **알림 40 · 없음 2
 
 - `orchestration/work/strong-hajin-notify/_RESUME.md` §2 — 결정 원장 · `be-survey-report.md` · `fe-survey-report.md` · `prod-check-1.md`
 - WORK-012 — 앞 판(메시지함 → AX · `inbox.message_updated` 사건) · WORK-011 — 외부 채널 · 사용자 사건 채널(WS)의 출처 · WORK-010 — 셸 다운로드 사건(셸 → 웹 사건의 본보기)
+
+## 완료 기록 (2026-10-10)
+
+- **1루프 구현** — WP1 사건 채널(SSE) · WP2 알림 생성·설정·판정 · WP3 화면 · WP4 셸 OS 알림·카톡 표지. 검수 전부 PASS(WP1 BE WARN 4 → 손질 · WP2·WP3 FAIL 3 → r2 PASS · WP4 WARN 6 → r2 PASS)
+- **전체 1회**(E2E 직전) — backend 1992+133+13+1 · PG 통합 117 passed · frontend 1572 passed / 8 failed(날짜 고정 기존 시험 — 무관 · `flaky-baseline-evidence.md`) · build OK
+- **운영 반영** — 코드 #18 `3321504` · 인프라 #14 · 운영 SQL(백업 뒤 ① · 이미지 · 재실행 · 인덱스) · medi-ax dmg 공증 (2026-10-08)
+- **사용자 E2E 통과** (2026-10-10) — 2루프 지적 없음
+- **추가 수정** — #19 `baf7daf` · 인프라 #15: 「메시지함」 → 「메시지」(사이드바 · 화면 머리 제목 · 목록 칸 제목 세 곳만) · 전체화면 왕복 뒤 아래 빈 공간(tauri 2.12 · wry 0.57 이 WKWebView 요소 전체화면을 늘 켬 → 셸에서 끔 + 셸 높이 `100%` 사슬) · dmg 재공증
+- **하지 않은 것** — `from_me` 백필(사용자: 운영 DB 를 다시 만들 예정 · `apply=0` 셈만) · Windows 빌드(`cargo check --target x86_64-pc-windows-msvc` 확인 전 배포 막음) · 운영 SSE 1시간 실측은 사용자 앱 사용으로 갈음
+
