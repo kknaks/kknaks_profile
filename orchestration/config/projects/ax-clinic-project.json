@@ -1,47 +1,77 @@
 {
+  "_doc": "ax-clinic-project(회사 — 병원 AX 전환 사업 문서 레포. 지점별 AX 전환 전략: 명동 · 안양) 오케스트레이션 설정 SSOT. scripts/new-work.sh 가 읽는 유일한 곳. 값 하드코딩 금지. 사업 레포가 문서 원천이고 프로필에는 회고(log/)만 쌓는다 — 2026-10-15 프로필 오케스트레이션으로 편입.",
   "project": "ax-clinic-project",
-  "use_worktree": false,
+  "worktree_root": "/Users/kknaks/orca/workspaces",
+  "use_worktree": true,
   "repos": {
-    "docs": {
+    "profile": {
+      "orca_name": "kknaks_profile",
+      "canonical_path": "/Users/kknaks/git/toy_pr2/kknaks_profile",
+      "remote": "https://github.com/kknaks/kknaks_profile.git",
+      "base": "origin/main",
+      "pr_base": "main",
+      "worktree_suffix": "",
+      "notes": [
+        "canonical(main)은 사용자 체크아웃 — pull/checkout 금지, fetch 만.",
+        "회사 일(company/, sot: external)이라 para/projects/company/ax-clinic-project/ 에는 README(지도)와 log/(회고)만 둔다 — 스펙 단계 없음. 문서 원천은 사업 레포(clinic)."
+      ]
+    },
+    "clinic": {
       "orca_name": "ax-clinic-project",
       "canonical_path": "/Users/kknaks/git/ax-clinic-project",
       "remote": "https://github.com/kknaks/ax-clinic-project.git",
-      "base": "main",
+      "base": "origin/main",
       "pr_base": "main",
-      "worktree_suffix": ""
+      "worktree_suffix": "",
+      "notes": [
+        "사업 문서 레포 — 이 레포가 문서의 원본이다. canonical 은 사용자 체크아웃 — pull/checkout 금지, fetch 만.",
+        "레포 규칙 정본: 루트 AGENTS.md · rules/document-rules.md(말투 8절 포함) · 단계 폴더의 규칙 문서. 브리프에 규칙을 베끼지 않고 경로만 준다.",
+        "검사 훅이 네 번 돈다(.md 쓰기 · 대답 끝 · 커밋 · 푸시 — check_docs.py). 훅을 우회(--no-verify)하지 않는다.",
+        "para/projects/mediness/products/ 는 메디니스 레포 서브모듈 — 읽기 전용. sources/ 원천 자료는 보존한다.",
+        "2026-09 초기 구성(clinic-ax-bootstrap)은 unborn main 이라 use_worktree=false 로 canonical 에서 했다. 이후 작업은 워크트리로."
+      ]
     }
   },
-  "source_path": "/Users/kknaks/orca/workspaces/kknaks_profile/병원AX전략/reference/2026-09-16-병원AX/ax-clinic",
-  "coordinator_handle": "term_66daaa12-cf95-40e0-862b-2acc09e6ff72",
   "workers": {
     "writer": {
-      "repo": "docs",
+      "repo": "clinic",
+      "agent": "claude",
       "brief_suffix": "write",
+      "roles_dir": "roles/ax-clinic-project/writer",
       "allowed_paths": [
-        "README.md",
-        "AGENTS.md",
-        "rules/",
-        "projects/",
-        "areas/",
-        "resources/",
-        "archive/"
+        "(브리프가 지정한 para/ 하위 문서만)",
+        "para/projects/mediness/ (서브모듈) · */sources/ 원천 수정 금지"
       ],
-      "verify": "Check local links, exact copied documents and empty placeholders; no invented facts.",
-      "roles_dir": "roles/ax-clinic-project/writer"
+      "verify": "레포 검사(check_docs.py)가 통과한다. 로컬 링크 · 맵 등록 · 변경 이력 갱신. 확인 안 된 사실은 만들지 않고 「확인 필요」로 남긴다. 커밋·push 금지"
+    },
+    "researcher": {
+      "repo": "profile",
+      "agent": "claude",
+      "brief_suffix": "research",
+      "roles_dir": "roles/ax-clinic-project/researcher",
+      "workspace": "coordinator",
+      "allowed_paths": [
+        "(read-only — 브리프가 지정한 리포트 파일 1개만 생성)"
+      ],
+      "verify": "질문마다 답 + 근거(파일:줄 또는 출처). 확인 못 한 것은 「확인 안 됨」. 결정하지 않고 「정할 것」으로 모은다"
     },
     "reviewer": {
-      "repo": "docs",
+      "repo": "clinic",
+      "agent": "claude",
       "brief_suffix": "review",
+      "roles_dir": "roles/ax-clinic-project/reviewer",
       "allowed_paths": [
-        "(read-only)"
+        "(read-only — 리포 파일 수정 금지. 산출물은 브리프가 지정한 리뷰 리포트 파일 1개뿐)"
       ],
-      "verify": "Review agreed PARA layout, source preservation, links, dates and scope. PASS/WARN/FAIL with evidence."
+      "verify": "rules/document-rules.md · 브리프 계약과 대조. 각 지적에 파일:줄 + 근거. 판정 FAIL · WARN · PASS"
     }
   },
   "default_workers": [
     "writer"
   ],
-  "notes": [
-    "User requested initial files in canonical empty repository. No commits, push, PR or source deletion. Unborn main; bootstrap without worktree."
-  ]
+  "summary_dest": "/Users/kknaks/git/toy_pr2/kknaks_profile/para/projects/company/ax-clinic-project/log",
+  "rules": {
+    "workers_commit_or_push": false,
+    "coordinator_verifies_before_pr": true
+  }
 }
