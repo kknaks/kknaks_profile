@@ -7,10 +7,12 @@ aliases:
   - GitHub Actions
   - 파이프라인
   - 컨테이너 레지스트리
+  - main 빌드만
 up:
   - 2025-01-13-Day10
   - 2025-01-17-Day14
   - 2026-08-31-task-redesign
+  - 2026-10-14-sts-prototype
 tags:
   - 배포
   - 자동화
@@ -44,6 +46,8 @@ on:
 ```
 
 **경로까지 지정한다** — 문서만 고친 푸시로 배포가 도는 것을 막는다.
+
+**브랜치도 지정한다** — `branches` 를 빼면 모든 브랜치 푸시가 이미지를 굽는다. 태그가 커밋 sha 라 어느 이미지든 배포 값에 넣을 수 있고, 그러면 **리뷰 · 머지 안 된 코드가 배포된다.** cc-prototype 이 그랬다 — 브랜치 빌드가 운영에 올라가 있었고, `branches: [main]` 으로 막은 뒤 main 빌드로 갈아 끼웠다. 이미지를 만드는 조건이 곧 배포할 수 있는 코드의 범위다
 
 ### 무엇을 하나 — 잡과 의존
 
@@ -115,6 +119,7 @@ GitHub 이 주는 러너 대신 **내 클러스터의 파드가 잡을 받는** 
 
 ## 출처
 
+- [[2026-10-14-sts-prototype]] §2 — 모든 브랜치 푸시에서 이미지가 빌드돼 브랜치 코드가 배포됐다 → 빌드 트리거를 main 으로 막고 main 빌드로 재배포(infra #19)
 - [[2026-08-31-task-redesign]] — GitHub 결제 장애로 호스팅 러너가 전면 차단된 날, mediness(arm64 네이티브 빌드)와 CHARTY(QEMU amd64 크로스빌드 → ACR push → ssh 배포)를 사내 ARC 러너로 우회해 **당일 배포를 완주**한 실전. `az` 부재는 설치가 아니라 docker login 치환으로 풀었고, ephemeral 파드라 「서버에 설치」가 무의미하다는 것을 몸으로 확인했다
 
 - [[2025-01-17-Day14]] — 나흘 뒤. **배포하는 방법이 바뀐다** — AWS SSM 으로 서버에 명령을 보내던 것이 **kubeconfig 로 클러스터 API 에 붙어 `kubectl set image` 를 부르는 것**이 된다. 필기가 그 이행을 명시했다(「기존 방식은 aws ssm 을 이용하여 접속하는 방식이었다 / 이번에는 github actions 를 이용하여 마스터 노드에 접근하여 자동배포를 진행한다」). `~/.kube/config` 의 구조(clusters·users·contexts)를 풀어 적고 **그 파일을 통째로 Secrets 에 넣는다**는 것까지 나오는데, 그것은 곧 **클러스터 전체 권한을 워크플로우에 준다**는 뜻이다. 이미지 태그로 앞 잡의 출력(`needs.makeTagAndRelease.outputs.tag_name`)을 쓰는 것도 잡 사이 값 전달의 예다 → [[kubernetes]]

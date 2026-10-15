@@ -7,8 +7,11 @@ aliases:
   - STT 릴레이
   - upstream / subscribe
   - 브라우저 직결 금지
+  - 통역 중계
+  - STT + TTS 중계
 up:
   - 2026-09-12-sc-meeting
+  - 2026-10-14-sts-prototype
 tags:
   - websocket
   - streaming
@@ -31,6 +34,8 @@ tags:
 
 회의 상세: 주최자 창이 `upstream` 으로 마이크 청크를 올리고, 참석자 창은 `subscribe` 로 붙어 `transcript.partial/final` · `ai.batch` · `memo.line` · `agenda.added` 를 받는다. 서버는 Soniox 세션 하나를 잡고 20초 무음이면 keepalive, `/end` 뒤 8초 드레인 뒤 닫는다.
 
+통역(cc-prototype): 브라우저 WS 하나 뒤에서 서버가 Soniox **두 연결**을 잡는다 — STT(two_way 번역, 원문 · 번역 토큰이 섞여 옴) → 확정 발화(`<end>`)마다 번역문을 TTS 로 → `audio_start` · PCM · `audio_end` 를 같은 WS 로 돌려준다. 고객 국적이 통역 언어를 정하고(TW · HK 는 `zh`), 번체는 **자막만** 서버가 바꾼다(TTS 는 간체만 바르게 읽는다 — 번체를 넣으면 오류 없이 발음이 깨졌다). 닫기 · stop · 오류 · 브라우저가 그냥 닫는 어느 경우든 **외부 두 연결을 모두 닫는다.** 재생 중 마이크 되먹임은 클라이언트가 반이중으로 막는다 → [[half-duplex-echo-suppression]]
+
 ## 왜 중요한가
 
 - 외부 API 키·과금이 서버에 머문다.
@@ -42,13 +47,16 @@ tags:
 - 「참석자는 소켓을 안 쓴다」와 「참석자는 마이크를 안 쓴다」는 다르다 — 후자가 맞다.
 - 드레인을 안 기다리면 마지막 발화가 유실된다. 종료는 「보내기 끝」이 아니라 「받기 끝」이다.
 - 컨테이너 포맷(webm/opus)은 길이 헤더가 있어 외부가 끝을 안다. raw pcm 은 없다 — 직접 테스트는 pcm 으로.
+- 외부 세션이 둘이면 **수명도 둘**이다 — 한쪽만 닫히면 과금 · 동시 한도가 남는다. 세션 단위로 묶어 함께 닫고, 그걸 시험으로 확인한다. 외부 API 의 「오류 없음」 은 「맞음」 이 아니다 — 실물 왕복(TTS → STT)으로 확인한다
 
 ## 함께 보는 개념
 
 - [[no-silent-fallback]] — 외부 단계가 끊겼을 때를 상태로 드러내기
 - [[two-pass-transcription]] — 실시간 결과를 화면용으로만 쓰는 이유
 - [[idempotency]]
+- [[half-duplex-echo-suppression]] — 같은 기기에서 재생과 수음이 겹칠 때
 
 ## 출처
 
 - 2026-09-12-sc-meeting §2 · ax-workspace `modules/meetings/stream.py`·`stream_service.py` · SCAX-SPEC-004 §5.3 · D41
+- [[2026-10-14-sts-prototype]] §2 — cc-prototype 통역: STT(two_way) + TTS 두 연결 중계 · 국적 → 언어 · 번체는 자막만(`wp2-be-report.md` 실물 호출 4건)
