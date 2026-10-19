@@ -594,6 +594,9 @@ para/areas/
 | 479 | `db` | `as-of-visibility` | 그 시각에 이미 있던 데이터만 보인다. 사후 스냅샷을 시작 시드로 쓰면 미래 정보가 샌다 |  |
 | 480 | `back` | `public-vs-internal-api` | 벤더 연동은 공개 API 쓰기 범위로만, 웹앱 내부 API(HAR)는 근거 · 요청서용 |  |
 | 481 | `front` | `half-duplex-echo-suppression` | 재생 중 마이크 송신을 멈추고 재생 끝 + 여유 뒤 재개해 스피커 되먹임을 끊는다 |  |
+| 482 | `design` | `time-in-current-state` | 경과 시간 = 지금 상태가 시작된 뒤. 현재 상태와 `<종류> N분 경과` 를 한 칸에 두 줄로 |  |
+| 483 | `cs` | `consume-on-completion` | 소모성 자원은 계획 때가 아니라 완료 때 차감. 사용은 done 에서 계산해 취소 · 노쇼 · undo 가 자연히 되돌린다 |  |
+| 484 | `back` | `demo-stand-in-for-integration` | 없는 외부 연동은 입구만 데모 버튼으로, 상태 전이 · 저장은 실제와 같게. 외부 결과는 그 순간 스냅샷 |  |
 
 ---
 

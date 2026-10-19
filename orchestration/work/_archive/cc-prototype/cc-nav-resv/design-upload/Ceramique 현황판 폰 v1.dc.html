@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/medikit-aea7ac33-f044-4445-9164-87b8b69474dc/fonts/fonts.css">
+  <link rel="stylesheet" href="_ds/medikit-aea7ac33-f044-4445-9164-87b8b69474dc/_ds_bundle.css">
+  <link rel="stylesheet" href="_ds/medikit-aea7ac33-f044-4445-9164-87b8b69474dc/styles.css">
+  <link rel="stylesheet" href="ceramique-theme.css">
+  <link rel="stylesheet" href="medikit-patches.css">
+  <script src="_ds/medikit-aea7ac33-f044-4445-9164-87b8b69474dc/_ds_bundle.js"></script>
+  <style>html,body{margin:0;min-height:100%;background:#e9ecef;}a{color:#2498bd;}a:hover{color:#1d7f9e;}
+  .cc-btn{background:none;border:0;padding:0;font:inherit;cursor:pointer;text-align:left;}
+  </style>
+</helmet>
+<div data-product="ceramique" data-screen-label="현황판 폰 v1" style="min-height:100vh;display:flex;justify-content:center;">
+  <div class="bg-ms-gray-100" style="width:100%;max-width:390px;min-height:100vh;display:flex;flex-direction:column;box-shadow:0 0 0 1px rgba(0,0,0,0.04);position:relative;">
+    <!-- 공통 헤더 · 폰 폭(< 760px) — 세 갈래가 햄버거로 접힌다(DEC-004 D-05 · D-09) -->
+    <header class="bg-ms-white border-ms-gray-200" style="position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 8px 0 16px;height:56px;border-bottom-width:1px;border-bottom-style:solid;">
+      <div style="display:flex;align-items:center;gap:10px;min-width:0;">
+        <img src="assets/ceramique-logo-color.svg" alt="CÉRAMIQUE" style="height:16px;display:block;">
+        <span class="bg-ms-gray-300" style="width:1px;height:14px;"></span>
+        <span class="text-typo-body-600 text-ms-gray-800" style="white-space:nowrap;">{{ pageName }}</span>
+      </div>
+      <button class="cc-btn" onClick="{{ toggleMenu }}" aria-label="메뉴" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:8px;">
+        <sc-if value="{{ menuClosed }}" hint-placeholder-val="{{ true }}">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3e3e3e" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </sc-if>
+        <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3e3e3e" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </sc-if>
+      </button>
+    </header>
+
+    <!-- 햄버거 메뉴(열린 상태) -->
+    <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+      <div onClick="{{ toggleMenu }}" style="position:absolute;left:0;right:0;top:56px;bottom:0;background:rgba(0,0,0,0.28);z-index:20;"></div>
+      <nav class="bg-ms-white" style="position:absolute;left:0;right:0;top:56px;z-index:25;display:flex;flex-direction:column;padding:8px 0 4px;border-radius:0 0 16px 16px;box-shadow:0 12px 24px rgba(0,0,0,0.12);">
+        <sc-for list="{{ menus }}" as="m" hint-placeholder-count="3">
+          <button class="{{ m.cls }}" onClick="{{ m.go }}" style="display:flex;align-items:center;gap:12px;height:52px;padding:0 20px;width:100%;box-sizing:border-box;">
+            <span style="width:4px;height:20px;border-radius:2px;background:{{ m.bar }};margin-left:-12px;"></span>
+            <span style="flex:1;">{{ m.name }}</span>
+            <sc-if value="{{ m.active }}" hint-placeholder-val="{{ false }}">
+              <span class="text-typo-caption-md-500 text-primary">지금 화면</span>
+            </sc-if>
+          </button>
+        </sc-for>
+        <div class="border-ms-gray-200" style="margin-top:6px;border-top-width:1px;border-top-style:solid;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px 8px 20px;">
+          <span style="display:flex;align-items:center;gap:8px;min-width:0;">
+            <span style="width:8px;height:8px;border-radius:50%;background:#2498bd;"></span>
+            <span class="text-typo-body-500 text-ms-gray-800">{{ who }}</span>
+            <span class="text-typo-caption-md-400 text-ms-gray-600">세라미크 명동점</span>
+          </span>
+          <!-- 로그아웃 → /login -->
+          <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="text" color="gray" size="sm" on-click="{{ logout }}" hint-size="64px,32px">로그아웃</x-import>
+        </div>
+      </nav>
+    </sc-if>
+
+    <main style="flex:1;display:flex;flex-direction:column;gap:12px;padding:16px;">
+      <!-- 요약 -->
+      <div class="bg-ms-white" style="border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;box-shadow:0px 2px 10px 0px rgba(0,0,0,0.04);">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:8px;">
+          <span class="text-typo-heading-md-500 text-ms-gray-800">지금 내원 고객</span>
+          <span class="text-typo-caption-md-400 text-ms-gray-600" style="font-variant-numeric:tabular-nums;">{{ asOf }} 기준</span>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          <sc-for list="{{ summary }}" as="s" hint-placeholder-count="4">
+            <span class="{{ s.cls }}" style="display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;">
+              <span class="text-typo-caption-md-500">{{ s.name }}</span><span class="text-typo-caption-md-600" style="font-variant-numeric:tabular-nums;">{{ s.n }}</span></span>
+          </sc-for>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+          <span class="text-typo-caption-md-400 text-ms-gray-600">방별로 묶어 보여요 · 읽기 전용</span>
+          <button class="cc-btn text-typo-caption-md-600 text-primary" onClick="{{ toggleAll }}">{{ allLabel }}</button>
+        </div>
+      </div>
+
+      <!-- 방별 목록(D-08) — 고객별 한 줄: 이름 · 지금 방 · 단계 · 담당 -->
+      <sc-for list="{{ rooms }}" as="g" hint-placeholder-count="4">
+        <div class="bg-ms-white" style="border-radius:12px;overflow:hidden;box-shadow:0px 2px 10px 0px rgba(0,0,0,0.04);">
+          <button class="cc-btn" onClick="{{ g.toggle }}" style="display:flex;align-items:center;gap:10px;width:100%;box-sizing:border-box;padding:12px 16px;min-height:52px;">
+            <span style="width:10px;height:10px;border-radius:3px;background:{{ g.color }};flex:none;"></span>
+            <span class="text-typo-body-600 text-ms-gray-900" style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ g.name }}</span>
+            <sc-if value="{{ g.folded }}" hint-placeholder-val="{{ false }}">
+              <span class="text-typo-caption-md-400 text-ms-gray-600" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:150px;">{{ g.peek }}</span>
+            </sc-if>
+            <span class="text-typo-caption-md-500 text-ms-gray-600" style="white-space:nowrap;">{{ g.count }}명</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a8a8a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;transform:rotate({{ g.rot }});transition:transform 160ms ease;"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <sc-if value="{{ g.open }}" hint-placeholder-val="{{ true }}">
+            <sc-for list="{{ g.rows }}" as="c" hint-placeholder-count="1">
+              <div class="border-ms-gray-200" style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;padding:12px 16px 14px;border-top-width:1px;border-top-style:solid;">
+                <div style="display:flex;align-items:center;gap:6px;min-width:0;">
+                  <span class="text-typo-body-600 text-ms-gray-900" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ c.name }}</span>
+                  <sc-if value="{{ c.foreign }}" hint-placeholder-val="{{ true }}">
+                    <span class="bg-ms-gray-200 text-typo-caption-md-500 text-ms-gray-700" style="padding:1px 6px;border-radius:4px;white-space:nowrap;">{{ c.nat }}</span>
+                  </sc-if>
+                </div>
+                <x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="{{ c.variant }}" size="sm" dot="{{ true }}" hint-size="64px,22px">{{ c.status }}</x-import>
+                <span class="text-typo-body-400 text-ms-gray-800" style="overflow-wrap:anywhere;">{{ c.step }}</span>
+                <span class="text-typo-caption-md-500 text-ms-gray-600" style="font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap;">{{ c.elapsed }}</span>
+                <span class="text-typo-caption-md-400 text-ms-gray-600" style="grid-column:1 / span 2;">담당 · <b class="{{ c.whoCls }}" style="font-weight:600;">{{ c.who }}</b></span>
+              </div>
+            </sc-for>
+          </sc-if>
+        </div>
+      </sc-for>
+      <span class="text-typo-caption-md-400 text-ms-gray-500" style="text-align:center;padding:4px 0 12px;">방 배정 · 단계 변경은 탭 · 데스크톱 현황판에서 해요</span>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;menu&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;closed&quot;, &quot;open&quot;], &quot;default&quot;: &quot;closed&quot;, &quot;tsType&quot;: &quot;'closed'|'open'&quot;}, &quot;fold&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;all-open&quot;, &quot;some-folded&quot;], &quot;default&quot;: &quot;all-open&quot;, &quot;tsType&quot;: &quot;'all-open'|'some-folded'&quot;}}">
+// ===== 현황판 폰 v1 — DEC-004 D-05 · D-08. 시나리오 고객(가짜 이름본) · 직원(kos-staff 가짜 이름본) · 시연 장면 10-09 12:10 =====
+const DATA = {"patients": [{"id": "S7", "name": "[TW] LIU JIA HUI", "nat": "TW", "bundles": [], "today": {"tasks": [{"seq": 1, "kind": "doctor_consult", "label": "원장 상담"}, {"seq": 2, "kind": "procedure", "label": "리쥬란 힐러 2cc"}, {"seq": 3, "kind": "procedure", "label": "리쥬란 힐러/HB 2cc"}, {"seq": 4, "kind": "procedure", "label": "리쥬란 아이 2cc"}, {"seq": 5, "kind": "procedure", "label": "아이 슈링크 유니버스 200shot"}, {"seq": 6, "kind": "procedure", "label": "슈링크 유니버스 300shot"}, {"seq": 7, "kind": "procedure", "label": "슈링크 유니버스 600shot"}, {"seq": 8, "kind": "procedure", "label": "얼굴필러 수입 1cc"}, {"seq": 9, "kind": "procedure", "label": "온다리프팅 얼굴 30kJ"}, {"seq": 10, "kind": "procedure", "label": "온다리프팅 얼굴 추가 10kJ"}]}}, {"id": "S1", "name": "[TW] CHEN XIAO WEN", "nat": "TW", "bundles": [], "today": {"tasks": [{"seq": 1, "kind": "doctor_consult", "label": "원장 상담"}, {"seq": 2, "kind": "procedure", "label": "울쎄라피 프라임 100shot"}, {"seq": 3, "kind": "procedure", "label": "울쎄라피 프라임 추가 100shot"}, {"seq": 4, "kind": "procedure", "label": "소프웨이브 150pulse"}, {"seq": 5, "kind": "procedure", "label": "머미팩"}]}}, {"id": "S8", "name": "김하늘", "nat": "KR", "bundles": [], "today": {"tasks": [{"seq": 1, "kind": "doctor_consult", "label": "원장 상담"}, {"seq": 2, "kind": "procedure", "label": "볼뉴머 턱선 300shot"}, {"seq": 3, "kind": "procedure", "label": "슈링크 유니버스 300shot"}, {"seq": 4, "kind": "procedure", "label": "슈링크 유니버스 300shot"}]}}, {"id": "S2", "name": "[TW] WANG YI TING", "nat": "TW", "bundles": [{"key": "f16a0510", "name": "포텐자 펌핑팁"}, {"key": "e829e037", "name": "쥬베룩 스킨 2cc"}], "today": {"tasks": [{"seq": 1, "kind": "doctor_consult", "label": "원장 상담"}, {"seq": 2, "kind": "procedure", "label": "블랙필"}]}}], "staff": [["권태윤", "의사"], ["임윤서", "의사"], ["류하린", "상담사"], ["민현우", "상담사"], ["오현우", "상담사"], ["송지호", "피부관리사"], ["서채원", "피부관리사"], ["강도윤", "간호사"], ["유채원", "간호사"], ["류하람", "간호사"], ["서가온", "간호사"], ["주태윤", "코디"], ["곽태린", "코디"], ["심준서", "코디"]]};
+const SC = (kind, src, staff, state, start, end) => ({ kind, src, staff: staff || null, state, start: start || '', end: end || '' });
+const SCENE = [
+  { id: 'S7', loc: 'c06', recv: '09:55', paid: true, steps: [SC('consult', null, '오현우', 'done', '10:00', '10:25'), SC('doctor_consult', null, '임윤서', 'done', '10:35', '10:42'),
+    SC('procedure', 't:4', '임윤서', 'done', '10:48', '11:05'), SC('procedure', 't:2', '임윤서', 'done', '10:48', '11:05'), SC('procedure', 't:3', '임윤서', 'done', '10:48', '11:05'),
+    SC('procedure', 't:8', '임윤서', 'done', '11:05', '11:14'), SC('procedure', 't:5', '서채원', 'done', '11:20', '11:40'), SC('procedure', 't:6', '권태윤', 'in_progress', '11:58'),
+    SC('procedure', 't:7', '권태윤', 'assigned', '11:58'), SC('procedure', 't:9', null, 'planned'), SC('procedure', 't:10', null, 'planned')] },
+  { id: 'S1', loc: 'c09', recv: '10:26', paid: true, steps: [SC('consult', null, '민현우', 'done', '10:32', '11:00'), SC('doctor_consult', null, '권태윤', 'done', '11:08', '11:15'),
+    SC('procedure', 't:2', '권태윤', 'done', '11:20', '11:52'), SC('procedure', 't:3', '권태윤', 'done', '11:20', '11:52'), SC('procedure', 't:4', '임윤서', 'in_progress', '12:00'),
+    SC('procedure', 't:5', '송지호', 'assigned', '12:02')] },
+  { id: 'S8', loc: 'c08', recv: '10:57', steps: [SC('consult', null, '오현우', 'in_progress', '11:50'), SC('doctor_consult', null, null, 'planned')] },
+  // 재내원 — 접수 때 보유 시술권 묶음마다 1회 + 상담 · 원장 상담 / 상담 종료 → 오늘 결제(블랙필)는 후보로만 · 미결제
+  { id: 'S2', loc: 'c02', recv: '11:24', steps: [SC('consult', null, '류하린', 'done', '11:30', '11:52'), SC('procedure', 'own:f16a0510', null, 'planned'),
+    SC('procedure', 'own:e829e037', null, 'planned'), SC('doctor_consult', null, null, 'planned')] }
+];
+const P = Object.fromEntries(DATA.patients.map((p) => [p.id, p]));
+const ROLE_OF = Object.fromEntries(DATA.staff);
+const RTITLE = { 의사: '원장', 상담사: '상담사', 피부관리사: '피부관리사', 간호사: '간호사', 코디: '코디' };
+const KIND = { consult: '상담', doctor_consult: '원장 상담', procedure: '시술' };
+const NAT = { TW: '대만', CN: '중국', HK: '홍콩', JP: '일본', US: '미국', TH: '태국', FR: '프랑스', PH: '필리핀', IN: '인도', KR: '한국' };
+const pad = (n) => String(n).padStart(2, '0');
+const DEMO_NOW = 12 * 60 + 10; // 시연 장면 시각(10-09 12:10)
+const hm = (t) => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
+const bundleOf = (p, key) => p.bundles.find((b) => b.key === key) || {};
+const taskOf = (p, seq) => p.today.tasks.find((t) => t.seq === seq) || {};
+function stepLabel(p, x) {
+  if (x.src && x.src.startsWith('own:')) return bundleOf(p, x.src.slice(4)).name;
+  if (x.src && x.src.startsWith('t:')) return taskOf(p, Number(x.src.slice(2))).label;
+  return KIND[x.kind];
+}
+const ROOMNAME = { reception: '접수대기실', s01: '수면시술실 01', s02: '수면시술실 02', s03: '수면시술실 03', t01: '2인관리실 01', t02: '2인관리실 02', t03: '2인관리실 03' };
+const roomName = (id) => ROOMNAME[id] || (/^c\d+/.test(id || '') ? '관리실 ' + id.slice(1) : '-');
+// 방 상태 색 · 이름 — 현황판 v5 와 같은 규칙(SPEC-001 §5.1 · §0-b 10)
+const STATUS = {
+  wait: { name: '대기', variant: 'warning', color: '#f5c542' },
+  consult: { name: '상담', variant: 'purple', color: '#ac47ff' },
+  treat: { name: '시술', variant: 'primary', color: '#2498bd' },
+  need: { name: '확인 필요', variant: 'danger', color: '#ff4e51' }
+};
+const who = (n) => RTITLE[ROLE_OF[n]] + ' ' + n;
+// 고객 한 줄 = 지금 방 · 단계 · 담당
+function rowOf(s) {
+  const p = P[s.id], live = s.steps.filter((x) => x.state !== 'skipped');
+  const last = [s.recv, ...s.steps.flatMap((x) => [x.start, x.end])].filter(Boolean).sort().pop();
+  const base = { name: p.name, nat: NAT[p.nat] || p.nat, foreign: p.nat !== 'KR', elapsed: (DEMO_NOW - hm(last)) + '분째' };
+  if (s.loc === 'reception') return { ...base, key: 'wait', step: '접수 후 대기 · 방 배정 필요', who: '미배정' };
+  const prog = live.find((x) => x.state === 'in_progress');
+  if (prog) return { ...base, key: prog.kind === 'procedure' ? 'treat' : 'consult', step: stepLabel(p, prog) + ' 진행 중', who: who(prog.staff) };
+  const asg = live.find((x) => x.state === 'assigned');
+  if (asg) return { ...base, key: 'wait', step: stepLabel(p, asg) + ' 대기', who: who(asg.staff) };
+  const rest = live.filter((x) => x.state === 'planned');
+  if (!rest.length) return { ...base, key: 'need', step: '귀가 대기', who: '-' };
+  return { ...base, key: 'need', step: stepLabel(p, rest[0]) + ' 대기 · 배정 필요', who: '미배정' };
+}
+
+class Component extends DCLogic {
+  state = { menu: null, folded: null };
+  initFolded() { return this.props.fold === 'some-folded' ? { c06: true, c09: true } : {}; }
+  renderVals() {
+    const menuOpen = this.state.menu ?? this.props.menu === 'open';
+    const folded = this.state.folded || this.initFolded();
+    const present = SCENE.filter((s) => s.loc && !s.left);
+    const byRoom = {};
+    present.forEach((s) => { (byRoom[s.loc] = byRoom[s.loc] || []).push(rowOf(s)); });
+    const order = Object.keys(byRoom).sort((a, b) => (a === 'reception' ? -1 : b === 'reception' ? 1 : roomName(a).localeCompare(roomName(b), 'ko', { numeric: true })));
+    const rank = { need: 0, consult: 1, treat: 1, wait: 2 };
+    const rooms = order.map((id) => {
+      const rows = byRoom[id].map((r) => ({ ...r, status: STATUS[r.key].name, variant: STATUS[r.key].variant, whoCls: r.who === '미배정' ? 'text-red' : 'text-ms-gray-800' }));
+      const top = [...rows].sort((a, b) => rank[a.key] - rank[b.key])[0];
+      const isFolded = !!folded[id];
+      return {
+        name: roomName(id), count: rows.length, color: STATUS[top.key].color, rows,
+        folded: isFolded, open: !isFolded, rot: isFolded ? '-90deg' : '0deg',
+        peek: rows.map((r) => r.name.replace(/^\[[A-Z]{2}\]\s*/, '') + ' · ' + r.status).join(', '),
+        toggle: () => this.setState((s) => { const f = { ...(s.folded || this.initFolded()) }; f[id] = !f[id]; return { folded: f }; })
+      };
+    });
+    const all = rooms.flatMap((g) => g.rows);
+    const cnt = (k) => all.filter((r) => r.key === k).length;
+    const anyOpen = rooms.some((g) => g.open);
+    // 직원 계정 — 세 갈래 모두(D-01). 데스크 계정이면 내 스케쥴 없음(D-06)
+    const MENUS = [['현황판', '/desk'], ['예약관리', '/reservations'], ['내 스케쥴', '/staff']];
+    return {
+      pageName: '현황판',
+      menuOpen, menuClosed: !menuOpen,
+      toggleMenu: () => this.setState({ menu: !menuOpen }),
+      menus: MENUS.map(([name, href]) => {
+        const active = href === '/desk';
+        return { name, href, active, bar: active ? '#2498bd' : 'transparent', cls: 'cc-btn ' + (active ? 'text-typo-body-600 text-primary bg-primary-100' : 'text-typo-body-500 text-ms-gray-800'), go: () => this.setState({ menu: false }) };
+      }),
+      who: '주태윤 코디',
+      logout: () => {},
+      asOf: '10-09 ' + pad(Math.floor(DEMO_NOW / 60)) + ':' + pad(DEMO_NOW % 60),
+      summary: [
+        { name: '내원', n: all.length, cls: 'bg-ms-gray-200 text-ms-gray-800' },
+        { name: '확인 필요', n: cnt('need'), cls: 'bg-red-100 text-red' },
+        { name: '상담', n: cnt('consult'), cls: 'bg-purple-100 text-purple' },
+        { name: '시술', n: cnt('treat'), cls: 'bg-primary-100 text-primary' },
+        { name: '대기', n: cnt('wait'), cls: 'bg-yellow-100 text-ms-gray-800' }
+      ],
+      rooms,
+      allLabel: anyOpen ? '모두 접기' : '모두 펼치기',
+      toggleAll: () => this.setState({ folded: Object.fromEntries(order.map((id) => [id, anyOpen])) })
+    };
+  }
+}
+</script>
+</body>
+</html>
