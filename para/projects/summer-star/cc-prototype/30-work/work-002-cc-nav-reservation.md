@@ -2,7 +2,7 @@
 type: work
 id: WORK-002
 title: "cc 2차 구현 — 공통 헤더 · 기기별 현황판 · 예약관리 데모"
-status: in-progress
+status: done
 product: cc-prototype
 feature: cc
 work_type: new-feature
@@ -14,7 +14,7 @@ tags:
   - product/cc-prototype
   - feature/cc
   - doc/work
-  - status/in-progress
+  - status/done
 links:
   baselines: []
   decisions:
