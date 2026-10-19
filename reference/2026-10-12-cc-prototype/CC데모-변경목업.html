@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>CC 데모 변경 목업 — 데스크 · 원장 · 간호사</title>
+<style>
+:root{--ac:#4396bd;--acd:#2f7fa6;--acl:#eaf4f9;--bg:#f7f7f8;--ink:#2b2b2e;--mute:#8a8a90;--line:#e7e7ea;
+ --wait:#fdf6ea;--waitb:#efd9b0;--cons:#f4effd;--consb:#c9b5f2;--proc:#eaf4fb;--procb:#a9cfe6;--warn:#fdecec;--warnb:#f0b4b4;--chg:#e07a1f}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Apple SD Gothic Neo","Pretendard",sans-serif;color:var(--ink);background:var(--bg);font-size:14px}
+button{font:inherit;cursor:pointer}
+.mockbar{background:#26262a;color:#ddd;display:flex;align-items:center;gap:14px;padding:8px 20px;font-size:13px}
+.mockbar .roles button{background:#3a3a40;color:#ddd;border:0;border-radius:6px;padding:5px 12px;margin-right:4px}
+.mockbar .roles button.on{background:#fff;color:#111;font-weight:600}
+.mockbar label{display:flex;gap:6px;align-items:center;margin-left:auto}
+.mockbar .lg{display:inline-flex;align-items:center;gap:6px}
+.mockbar .lg i{display:inline-block;width:22px;height:12px;border:2px dashed var(--chg);border-radius:3px}
+header.app{background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 24px;height:56px;gap:28px}
+.logo{font-family:"Didot","Times New Roman",serif;font-size:20px;letter-spacing:.5px}
+header.app .nav{color:var(--ac);font-weight:600}
+header.app .r{margin-left:auto;display:flex;gap:16px;color:var(--mute)}
+header.app .r b{color:var(--ink);font-weight:600}
+.view{display:none}.view.on{display:block}
+/* change highlight */
+.imp{outline:2px dashed var(--chg);outline-offset:3px;border-radius:8px;position:relative}
+.imptag{position:absolute;top:-11px;right:6px;background:var(--chg);color:#fff;font-size:11px;font-weight:700;padding:1px 6px;border-radius:8px;z-index:3;white-space:nowrap}
+body.nohl .imp{outline:none}body.nohl .imptag{display:none}
+/* desk */
+.desk{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:16px;padding:16px 20px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px}
+.board{padding:16px}
+.board h1{font-size:20px;margin:0 0 12px;display:flex;align-items:baseline;gap:10px}
+.board h1 small{font-size:13px;color:var(--mute);font-weight:400}
+.rooms{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.room{border:1px solid var(--line);border-radius:10px;min-height:96px;padding:10px;background:#fff}
+.room .rn{font-size:13px;font-weight:600}
+.room.empty .rn{color:#b8b8be;font-weight:500}
+.room.empty .sub{color:#b8b8be}
+.room.wait{background:var(--wait);border-color:var(--waitb)}
+.room.cons{background:var(--cons);border-color:var(--consb)}
+.room.proc{background:var(--proc);border-color:var(--procb)}
+.room .sub{font-size:12px;color:var(--mute);margin-top:3px}
+.room .tm{font-size:12px;color:#a0632a;margin-top:2px}
+.pname{display:inline-flex;align-items:center;gap:5px;border:0;background:none;padding:2px 0;font-weight:600;color:var(--ink);text-align:left}
+.pname:before{content:"";width:7px;height:7px;border-radius:50%;background:#333}
+.pname:hover{color:var(--ac);text-decoration:underline}
+.pname small{font-weight:400;color:var(--mute)}
+.room .pname{flex-wrap:wrap;row-gap:0}.room .pname small{flex-basis:100%;margin-left:12px;font-size:12px}
+.side{display:flex;flex-direction:column;min-height:640px}
+.search{padding:12px 14px 0;position:relative}
+.search input{width:100%;border:1px solid var(--line);border-radius:8px;padding:9px 12px;font:inherit;background:var(--bg)}
+.sres{position:absolute;left:14px;right:14px;top:52px;background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.1);z-index:20;display:none}
+.sres div{padding:9px 12px;border-bottom:1px solid var(--line);cursor:pointer}
+.sres div:hover{background:var(--acl)}
+.sres small{color:var(--mute)}
+.tabs{display:flex;border-bottom:1px solid var(--line);margin:10px 14px 0}
+.tabs button{flex:1;border:0;background:none;padding:10px 0;color:var(--mute);border-bottom:2px solid transparent}
+.tabs button.on{color:var(--ac);border-color:var(--ac);font-weight:600}
+.tabpane{display:none;padding:12px 14px;overflow:auto}.tabpane.on{display:block}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px}
+.stat{border:1px solid var(--line);border-radius:8px;padding:8px;background:#fff;text-align:left}
+.stat span{display:block;font-size:12px;color:var(--mute)}
+.stat b{font-size:18px}
+.stat.on{border-color:var(--ac);background:var(--acl)}
+.stat.late b{color:#c94a4a}
+.rlist .row{display:flex;align-items:center;gap:10px;padding:10px 2px;border-bottom:1px solid var(--line)}
+.row{align-items:flex-start}.row .t{padding-top:2px;width:42px;color:var(--mute);font-variant-numeric:tabular-nums}
+.row .n{flex:1;min-width:0}
+.row .n .pname:before{display:none}
+.row .meta{font-size:12px;color:var(--mute)}
+.row .late{color:#c94a4a;font-size:12px}
+.badge{font-size:11px;padding:1px 6px;border-radius:6px;background:#eef1f3;color:#555;margin-left:4px;font-weight:500}
+.badge.first{background:var(--acl);color:var(--acd)}
+.btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 14px}
+.btn.pri{background:var(--ac);border-color:var(--ac);color:#fff;font-weight:600}
+.btn.pri:hover{background:var(--acd)}
+.btn.sm{padding:4px 10px;font-size:13px}
+.btn.warn{border-color:#d66;color:#c33}
+.done{color:var(--mute)}
+/* staff tab */
+.ai{border:1px solid var(--consb);background:var(--cons);border-radius:10px;padding:12px;margin-bottom:12px}
+.ai .h{font-size:12px;color:#7a5ac8;font-weight:700;margin-bottom:4px}
+.ai p{margin:0 0 8px;line-height:1.5}
+.staff{padding:10px 0;border-bottom:1px solid var(--line)}
+.staff .nm{font-weight:600}.staff .nm small{color:var(--mute);font-weight:400;margin-left:4px}
+.staff .ln{font-size:13px;margin-top:3px;display:flex;gap:8px;align-items:center}
+.staff .ln b{color:var(--ac);font-weight:500;width:28px}
+.staff select{font:inherit;font-size:12px;padding:2px 4px;border:1px solid var(--line);border-radius:6px}
+/* drawer & modal */
+.dim{position:fixed;inset:0;background:rgba(0,0,0,.35);display:none;z-index:40}
+.dim.on{display:block}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:440px;background:#fff;z-index:41;transform:translateX(100%);transition:transform .2s;overflow:auto;padding:22px}
+.drawer.on{transform:none}
+.modal{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:640px;max-height:90vh;overflow:auto;background:#fff;border-radius:16px;padding:26px;z-index:41;display:none}
+.modal.on{display:block}
+.x{float:right;border:0;background:none;font-size:20px;color:var(--mute)}
+.who{font-size:22px;font-weight:700}
+.who small{font-size:14px;color:var(--mute);font-weight:400;margin-left:6px}
+.idline{color:var(--mute);margin:4px 0 14px}
+.idline b{color:var(--ink);font-weight:500}
+.sec{margin-top:16px}
+.sec h4{margin:0 0 8px;font-size:13px;color:#555}
+.caut{display:flex;flex-wrap:wrap;gap:6px}
+.caut span{background:var(--warn);border:1px solid var(--warnb);color:#a33;border-radius:6px;padding:3px 8px;font-size:13px}
+.steps .st{display:flex;gap:10px;align-items:center;padding:7px 0}
+.steps .no{width:22px;height:22px;border-radius:50%;border:1px solid #ccc;font-size:12px;display:flex;align-items:center;justify-content:center;color:#888}
+.steps .st.cur .no{border-color:var(--ac);color:var(--ac);font-weight:700}
+.steps .st.ok .no{background:#e9e9ec;border-color:#e9e9ec}
+.steps .st .s{font-size:12px;color:var(--mute)}
+.opts{display:flex;flex-wrap:wrap;gap:6px}
+.opt{border:1px solid var(--line);border-radius:8px;padding:6px 10px;background:#fff;font-size:13px}
+.opt.on{border-color:var(--ac);background:var(--acl);color:var(--acd);font-weight:600}
+.opt small{color:var(--mute);font-weight:400}
+.foot{display:flex;justify-content:flex-end;gap:8px;margin-top:22px}
+.chk{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:6px}
+.chk.on{border-color:var(--ac);background:var(--acl)}
+.chk .r{margin-left:auto;font-size:12px;color:var(--mute);text-align:right}
+.chk .r em{font-style:normal;color:var(--acd)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.tag{display:inline-flex;align-items:center;gap:4px;background:#eef1f3;border-radius:6px;padding:4px 8px;font-size:13px;margin:0 6px 6px 0}
+.tag button{border:0;background:none;color:#999;padding:0}
+textarea,select.full{width:100%;border:1px solid var(--line);border-radius:8px;padding:9px;font:inherit}
+.hist{background:var(--bg);border-radius:10px;padding:10px 12px;line-height:1.6}
+.hist b{font-weight:600}
+/* staff screens */
+.staffv{display:grid;grid-template-columns:400px minmax(0,1fr);gap:16px;padding:16px 20px}
+.lst{padding:14px}
+.lst h3{margin:0 0 2px;font-size:17px}
+.lst .cnt{color:var(--mute);font-size:13px;margin-bottom:8px}
+.grp{font-size:12px;color:var(--mute);margin:12px 0 4px;font-weight:600}
+.pi{border-radius:10px;padding:10px 12px;cursor:pointer;border:1px solid transparent}
+.pi:hover{background:var(--bg)}
+.pi.sel{background:var(--acl)}
+.pi .l1{display:flex;justify-content:space-between;align-items:center}
+.pi .l1 b{font-weight:600}
+.pi .l2{font-size:13px;margin-top:3px}
+.pi .l3{font-size:12px;color:#b04848;margin-top:2px}
+.pill{font-size:11px;border-radius:10px;padding:1px 8px}
+.pill.ing{background:var(--proc);color:#2f7fa6}.pill.wait{background:var(--wait);color:#a0632a}.pill.ok{background:#eee;color:#888}.pill.ane{background:#fdf0e6;color:#c26a1f}
+.det{padding:20px}
+.det .top{display:flex;justify-content:space-between;align-items:flex-start}
+.trt{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.trt .nm{flex:1}
+.trt .nm small{display:block;color:var(--mute);font-size:12px}
+.mis{font-size:11px;background:var(--warn);color:#b33;border:1px solid var(--warnb);border-radius:6px;padding:1px 6px;margin-left:6px}
+.fold{margin-top:10px;border:1px dashed var(--line);border-radius:10px;padding:10px 12px;color:var(--mute)}
+.fold ul{margin:6px 0 0;padding-left:18px}
+.next{display:flex;gap:12px;align-items:center;background:var(--acl);border-radius:10px;padding:12px 14px}
+.next b{font-size:15px}
+.memo{background:var(--bg);border-radius:10px;padding:10px 12px;margin-bottom:6px;font-size:13px;line-height:1.55;white-space:pre-line}
+.memo .h{color:var(--mute);font-size:12px;margin-bottom:2px}
+.memoin{display:flex;gap:6px}.memoin input{flex:1;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font:inherit}
+.prep .chk{cursor:default}
+.bar{height:8px;background:#eee;border-radius:4px;overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;background:#e9a35c}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:#26262a;color:#fff;padding:11px 18px;border-radius:10px;z-index:60;display:none;font-size:14px}
+.alert{background:var(--warn);border:1px solid var(--warnb);border-radius:10px;padding:12px;margin-top:12px;line-height:1.55;display:none}
+.alert.on{display:block}
+.amt{display:flex;gap:8px;align-items:center;margin-top:8px}
+.amt input{width:80px;border:1px solid var(--line);border-radius:8px;padding:7px;font:inherit}
+
+.contact{margin-top:6px;padding:6px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.contact a.btn{text-decoration:none;color:var(--ink)}
+.vip{font-size:11px;font-weight:700;color:#8a5a00;background:#fff3cf;border:1px solid #f0d27a;border-radius:6px;padding:1px 6px;margin-left:4px}
+.chip{display:inline-block;font-size:12px;background:#eef1f3;border-radius:6px;padding:2px 8px;margin:4px 4px 0 0}
+.chip.red{background:var(--warn);color:#a33}
+.chip.big{font-size:14px;padding:5px 10px;background:var(--acl);color:var(--acd);font-weight:600}
+.ccard{border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:8px;cursor:pointer;background:#fff}
+.ccard:hover{border-color:var(--ac)}
+.ccard.wait{border-left:4px solid var(--waitb)}.ccard.cons{border-left:4px solid var(--consb)}.ccard.proc{border-left:4px solid var(--procb)}
+.ccard .l1{display:flex;align-items:center;gap:6px}.ccard .l1 b{font-size:15px}.ccard .l1 small{color:var(--mute)}
+.ccard .l2{font-size:13px;margin-top:4px}.ccard .loc{font-weight:600}
+.warnTxt{color:#c94a4a;font-weight:600}
+.nowbox{display:flex;align-items:center;gap:10px;border-radius:10px;padding:10px 12px;background:var(--bg);margin-top:10px}
+.nowbox b{font-size:15px}
+.movebox{margin-top:18px;padding:12px;border-radius:10px;background:#fafbfc}
+.movebox .mh{font-weight:700}
+.strip{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:4px}
+.sc{border:1px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer}
+.sc.on{border-color:var(--ac);box-shadow:0 0 0 2px var(--acl)}
+.sc.nx{background:var(--acl)}
+.sc .k{font-size:12px;color:var(--mute);font-weight:600}
+.sc .rm{font-size:22px;font-weight:700;margin:2px 0 4px}
+.sc .rdy{font-size:12px;font-weight:600;color:#c26a1f;margin-left:6px}
+.caut.sm span{font-size:12px;padding:2px 6px;margin-top:6px}
+.caut .none{background:none;border:0;color:var(--mute)}
+.room-s{font-weight:700;font-size:13px}
+.ht{border-collapse:collapse;width:100%;font-size:13px}.ht th,.ht td{border-bottom:1px solid var(--line);padding:6px 4px;text-align:left}.ht th{color:var(--mute);font-weight:500}
+.trt.prep .nm{color:var(--mute)}
+
+.callbar{display:flex;gap:6px;align-items:center;padding:8px;border-radius:10px;background:var(--bg);margin-bottom:14px}
+.nowtask{border:1px solid var(--ac);background:var(--acl);border-radius:12px;padding:14px 16px}
+.nowtask .k{font-size:12px;color:var(--mute);font-weight:600}
+.nowtask .rm{font-size:24px;font-weight:700;margin:2px 0}
+.nowtask .rdy{font-size:13px;font-weight:600;color:#c26a1f;margin-left:6px}
+.nowtask .t1{font-size:15px;font-weight:600}
+.order{margin-top:8px;border:1px dashed #c9c9cf;border-radius:10px;padding:10px 12px;font-size:13px;line-height:1.55}
+.order .h{font-size:12px;color:var(--mute);font-weight:600}
+
+.legend{margin-left:auto;font-size:12px;color:var(--mute);font-weight:400;display:inline-flex;gap:6px;align-items:center}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;border:1px solid}
+.legend .lw{background:var(--wait);border-color:var(--waitb)}.legend .lc{background:var(--cons);border-color:var(--consb)}.legend .la{background:#fdf0e6;border-color:#efc39a}.legend .lp{background:var(--proc);border-color:var(--procb)}
+.room.ane{background:#fdf0e6;border-color:#efc39a}
+.btn.int{font-size:12px;padding:3px 9px;border-color:var(--ac);color:var(--acd)}
+.scb{display:flex;gap:6px;margin-top:8px}.scb:empty{display:none}
+.chk.mine{border-color:var(--ac)}
+.chk.other{background:#f6f6f7;color:#888}
+.chk .by{font-size:12px;color:var(--acd)}
+.ntabs{display:flex;gap:4px;margin:8px 0 4px}.ntabs button{border:1px solid var(--line);background:#fff;border-radius:16px;padding:4px 12px;font-size:13px}.ntabs button.on{background:var(--ac);border-color:var(--ac);color:#fff}
+</style>
+</head>
+<body>
+<div class="mockbar">
+  <span>목업</span>
+  <span class="roles"><button data-role="desk" class="on">데스크</button><button data-role="doc">원장 · 권태윤</button><button data-role="nurse">간호사 · 강도윤</button></span>
+  <span class="lg"><i></i>주황 점선 = 이번 변경 (번호는 피드백 페이지와 같다)</span>
+  <label><input type="checkbox" id="hlt" checked> 변경 표시</label>
+</div>
+<header class="app">
+  <span class="logo">CÉRAMIQUE</span>
+  <span class="nav" id="navname">현황판</span>
+  <span class="r"><b>11:20</b><span>세라미크 명동점</span><span id="who">데스크</span><span>로그아웃</span></span>
+</header>
+
+<!-- ===== 데스크 ===== -->
+<section class="view on" id="v-desk">
+ <div class="desk">
+  <div class="card board">
+   <h1>실시간 현황판 <small>명동점 · 1층</small><span class="legend"><i class="lw"></i>대기 <i class="lc"></i>상담 <i class="la"></i>마취 · 준비 <i class="lp"></i>시술</span></h1>
+   <div class="rooms" id="rooms"></div>
+  </div>
+  <div class="card side">
+   <div class="search imp"><span class="imptag">D13</span>
+     <input id="q" placeholder="고객 검색 — 영문 이름 · 한글 읽기 · 전화번호">
+     <div class="sres" id="sres"></div>
+   </div>
+   <div class="tabs"><button class="on" data-tab="rsv">예약</button><button data-tab="stf">직원</button><button data-tab="now">현황</button></div>
+   <div class="tabpane on" id="t-rsv">
+     <div class="stats imp" id="stats"><span class="imptag">D7</span></div>
+     <div class="meta" id="rcount" style="margin-bottom:4px"></div>
+     <div class="rlist" id="rlist"></div>
+   </div>
+   <div class="tabpane" id="t-stf">
+     <div class="ai imp" id="aibox"><span class="imptag">D12</span>
+       <div class="h">배정 제안</div>
+       <p>CHEN XIAO WEN 님이 류하린 상담사를 1시간 40분째 기다립니다. 민현우 상담사가 지금 비어 있습니다. 담당을 민현우로 바꿀까요?</p>
+       <button class="btn pri sm" onclick="approveAI()">승인</button> <button class="btn sm" onclick="holdAI()">보류</button>
+     </div>
+     <div id="stafflist"></div>
+   </div>
+   <div class="tabpane" id="t-now"><div id="nowlist"></div></div>
+  </div>
+ </div>
+</section>
+
+<!-- ===== 원장 ===== -->
+<section class="view" id="v-doc">
+ <div class="staffv">
+  <div class="card lst imp"><span class="imptag">W1</span>
+   <h3>오늘 진료</h3>
+   <div class="cnt">6명 · 지금 1 · 다음 1 · 이후 3 · 완료 1</div>
+   <div id="doclist"></div>
+  </div>
+  <div class="card det" id="docdet"></div>
+ </div>
+</section>
+
+<!-- ===== 간호사 ===== -->
+<section class="view" id="v-nurse">
+ <div class="staffv">
+  <div class="card lst">
+   <h3>내 할 일</h3>
+   <div class="cnt">간호사 강도윤 · 지금 1 · 다음 1 · 이후 2 · 완료 2</div>
+   <div id="nurselist"></div>
+  </div>
+  <div class="card det" id="nursedet"></div>
+ </div>
+</section>
+
+<div class="dim" id="dim" onclick="closeAll()"></div>
+<aside class="drawer" id="drawer"></aside>
+<div class="modal" id="modal"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const NOW = 11*60+20;
+const m = t => { const [h,mm]=t.split(':').map(Number); return h*60+mm; };
+const dur = min => min>=60 ? `${Math.floor(min/60)}시간 ${min%60}분` : `${min}분`;
+
+const P = {
+ chen:{en:'CHEN XIAO WEN',ko:'천샤오원',nat:'대만',sex:'여',age:38,phone:'+886 912 345 678',visit:'첫 방문',time:'09:30',st:'원내',loc:'2인관리실 02',state:'wait',since:'09:40',line:'상담 대기 · 류하린',stateTxt:'상담 대기',staff:'상담사 류하린',caut:['통역 중국어'],plan:['상담 · 리프팅 문의'],steps:[['상담','상담사 류하린','']]},
+ liu:{en:'LIU JIA HUI',ko:'리우자후이',nat:'대만',sex:'여',age:44,phone:'+886 933 210 457',visit:'첫 방문',time:'10:00',st:'원내',loc:'관리실 04',state:'proc',since:'11:12',line:'시술 · 원장 권태윤',stateTxt:'시술 중',staff:'원장 권태윤',caut:['12:30 전 퇴원','통역 중국어','동행 2명'],plan:['리쥬란 아이 1cc','리쥬란 힐러 2cc','아이 슈링크 200shot'],steps:[['상담','상담사 류하린 · 완료 10:29','ok'],['원장 상담','원장 권태윤 · 완료 10:30','ok'],['세안 · 마취크림','간호사 강도윤 · 완료 11:05','ok'],['리쥬란 아이 1cc','원장 권태윤 · 진행 중','cur'],['리쥬란 힐러 2cc','원장 권태윤',''],['아이 슈링크 200shot','원장 권태윤','']],hist:[]},
+ park:{en:'박서연',ko:'',vip:true,nat:'한국',sex:'여',age:35,phone:'010-4821-7730',visit:'재진',time:'10:50',st:'원내',loc:'관리실 06',state:'proc',since:'11:02',line:'마취크림 · 11:32 끝',stateTxt:'마취 중 · 11:32 끝',staff:'간호사 강도윤',caut:['시술 후 홍조 이력 (2일)','아스피린 복용 중'],plan:['포텐자 펌핑팁 (시술권 7/10)','진정 관리'],steps:[['세안 · 마취크림','간호사 강도윤 · 11:02 시작 · 11:32 끝','cur'],['포텐자 펌핑팁','원장 권태윤',''],['진정 관리','간호사 강도윤','']],
+   hist:[['09-18','포텐자 펌핑팁','원장 권태윤','시술 후 홍조 2일. 다음엔 에너지 한 단계 낮추기'],['08-21','포텐자 펌핑팁','원장 권태윤','특이 반응 없음'],['07-24','상담 · 포텐자 10회권 구매','상담사 민현우','모공 · 흉터 고민']]},
+ kim:{en:'김하늘',ko:'',nat:'한국',sex:'여',age:31,phone:'010-2394-1187',visit:'첫 방문',time:'11:00',st:'원내',loc:'접수대기실',state:'wait',since:'11:00',line:'접수 후 대기',stateTxt:'접수 후 대기',staff:'담당 미정',caut:['동행 1명'],plan:['상담 · 온다 리프팅 희망'],steps:[['상담','상담사 미정','']]},
+ jung:{en:'정민지',ko:'',nat:'한국',sex:'여',age:29,phone:'010-7740-2213',visit:'예약 없이 방문',time:'—',st:'원내',loc:'상담실',state:'cons',since:'11:05',line:'상담 · 류하린',stateTxt:'상담 중',staff:'상담사 류하린',caut:[],plan:[],purpose:'리프팅 상담',steps:[['상담','상담사 류하린 · 진행 중','cur']],walk:true},
+ nguyen:{en:'NGUYEN THI LAN',ko:'응우옌티란',nat:'베트남',sex:'여',age:27,phone:'+84 90 812 4471',visit:'첫 방문',time:'10:30',st:'늦음',msg:'Zalo'},
+ wang:{en:'WANG YI TING',ko:'왕이팅',nat:'대만',sex:'남',age:47,phone:'+886 921 778 302',visit:'재진',time:'11:30',st:'접수 전',
+   histTxt:'10-02 · 포텐자 펌핑팁 · 쥬베룩 스킨 2cc (원장 권태윤)<br>상담: 모공 · 탄력 고민. 다음 방문 때 쥬베룩 2회차 진행하기로 함',
+   hist:[['10-02','포텐자 펌핑팁 · 쥬베룩 스킨 2cc','원장 권태윤','쥬베룩 후 멍 3일']],
+   tickets:[['포텐자 펌핑팁','7/10'],['쥬베룩 스킨 2cc','2/3']],plan:['쥬베룩 스킨 2cc'],caut:['쥬베룩 후 멍 이력']},
+ chan:{en:'CHAN MEI LING',ko:'찬메이링',nat:'홍콩',sex:'여',age:47,phone:'+852 6123 9087',visit:'첫 방문',time:'13:00',st:'접수 전',plan:['원장 상담'],caut:['통역 광둥어']},
+ lin:{en:'LIN YA CHEN',ko:'린야천',nat:'대만',sex:'여',age:33,phone:'+886 955 120 664',visit:'첫 방문',time:'14:00',st:'접수 전'},
+ tanaka:{en:'TANAKA YUKI',ko:'다나카 유키',nat:'일본',sex:'여',age:41,phone:'+81 90 3321 5508',visit:'첫 방문',time:'15:00',st:'접수 전'},
+ huang:{en:'HUANG SHU FEN',ko:'황수펀',nat:'대만',sex:'여',age:52,phone:'+886 987 004 129',visit:'첫 방문',time:'15:30',st:'접수 전'},
+ sato:{en:'SATO MIKI',ko:'사토 미키',nat:'일본',sex:'여',age:36,phone:'+81 80 7714 2290',visit:'재진',time:'09:00',st:'귀가',plan:['슈링크 유니버스 300shot']},
+};
+const ROOMS = ['접수대기실','상담실','2인관리실 01','2인관리실 02','2인관리실 03','관리실 01','관리실 02','관리실 03','관리실 04','관리실 05','관리실 06','관리실 07','수면시술실 01','수면시술실 02','데스크'];
+const STAFF = [['권태윤','의사','관리실 04 · 시술 (LIU JIA HUI)','관리실 06 · 포텐자 (박서연, 11:32 마취 끝)'],['임윤서','의사','',''],['류하린','상담사','상담실 · 상담 (정민지)','2인관리실 02 · 상담 (CHEN XIAO WEN)'],['민현우','상담사','',''],['오현우','상담사','',''],['서채원','피부관리사','',''],['강도윤','간호사','관리실 06 · 마취크림 (박서연)',''],['곽태린','코디','','']];
+const nm = k => (P[k].ko ? `${P[k].en} <small>${P[k].ko}</small>` : P[k].en) + (P[k].vip?'<span class="vip">VIP</span>':'');
+let filter = '접수 전';
+
+/* ---------- 데스크 ---------- */
+function renderRooms(){
+  const occ = {}; Object.keys(P).forEach(k=>{ if(P[k].st==='원내') (occ[P[k].loc] ||= []).push(k); });
+  document.getElementById('rooms').innerHTML = ROOMS.map((r,i)=>{
+    const ks = occ[r]||[];
+    if(!ks.length) return `<div class="room empty"><div class="rn">${r}</div><div class="sub">비어있음</div></div>`;
+    const k = ks[0], p = P[k], wait = NOW-m(p.since); const rc = k==='park'?'ane':p.state;
+    const label = p.state==='wait' ? `대기 ${dur(wait)}` : (k==='park' ? `마취 ${dur(wait)} 경과` : `${dur(wait)} 경과`);
+    const hlName = (r==='접수대기실') ? ' imp' : '';
+    const hlTm = (r==='2인관리실 02') ? ' imp' : '';
+    return `<div class="room ${rc}"><div class="rn">${r}</div>
+      <div class="${hlName}" style="margin-top:4px">${r==='접수대기실'?'<span class="imptag">D8</span>':''}<button class="pname" onclick="openCust('${k}')">${nm(k)}</button></div>
+      <div class="sub">${p.line}</div><div class="tm${hlTm}">${r==='2인관리실 02'?'<span class="imptag">D9</span>':''}${label}</div></div>`;
+  }).join('');
+}
+function renderRsv(){
+  const order=['접수 전','늦음','원내','귀가'];
+  const cnt = s => Object.values(P).filter(p=>p.st===s && !p.walk).length;
+  document.getElementById('stats').innerHTML = '<span class="imptag">D7</span>' + order.map(s=>
+    `<button class="stat ${s===filter?'on':''} ${s==='늦음'?'late':''}" onclick="setFilter('${s}')"><span>${s}</span><b>${cnt(s)}</b></button>`).join('');
+  const total = Object.values(P).filter(p=>!p.walk).length;
+  document.getElementById('rcount').textContent = `오늘 예약 ${total}건 · ${filter} ${cnt(filter)}건`;
+  const ks = Object.keys(P).filter(k=>P[k].st===filter && !P[k].walk).sort((a,b)=>m(P[a].time)-m(P[b].time));
+  document.getElementById('rlist').innerHTML = ks.map(k=>{
+    const p=P[k]; const b = p.visit==='재진'?'<span class="badge">재진</span>':'<span class="badge first">첫 방문</span>';
+    let right='';
+    if(p.st==='접수 전'||p.st==='늦음') right=`<button class="btn pri sm" onclick="openReg('${k}')">접수</button>`;
+    else if(p.st==='원내') right=`<span class="meta">${p.loc}</span>`;
+    else right='<span class="meta">귀가</span>';
+    let late='';
+    if(p.st==='늦음'){
+      late = `<div class="late">예약 시각 ${dur(NOW-m(p.time))} 지남${p.contact?` · ${p.contact}`:''}</div>
+        <div class="contact imp"><span class="imptag">D14</span>
+          <a class="btn sm" href="tel:${p.phone.replace(/\s/g,'')}" onclick="contacted('${k}','전화')">전화 ${p.phone}</a>
+          <button class="btn sm" onclick="contacted('${k}','${p.msg} 메시지')">${p.msg} 메시지</button>
+          ${p.contact?`<div class="opts" style="margin-top:6px"><button class="opt" onclick="lateResult('${k}','오는 중')">오는 중</button><button class="opt" onclick="lateResult('${k}','시간 변경')">시간 변경</button><button class="opt" onclick="lateResult('${k}','오늘 취소')">오늘 취소</button></div>`:''}
+        </div>`;
+    }
+    return `<div class="row ${p.st==='귀가'?'done':''}" style="flex-wrap:wrap"><span class="t">${p.time}</span><div class="n"><button class="pname" onclick="openCust('${k}')">${nm(k)}</button>${b}${late}</div>${right}</div>`;
+  }).join('') || '<div class="meta" style="padding:16px 0">해당 고객이 없습니다.</div>';
+}
+function contacted(k,how){ P[k].contact=`${how} 11:20`; renderRsv(); toast(`${P[k].en} 님에게 ${how}을 시작했습니다. 결과를 골라 주세요.`); return true; }
+function lateResult(k,r){ P[k].contact=`${r} (11:20 연락)`; renderRsv(); toast(`연락 결과를 「${r}」로 남겼습니다.`); }
+function setFilter(s){ filter=s; renderRsv(); }
+const ROLE_STAFF = {
+ '상담사':[['민현우','지금 비어 있음'],['오현우','지금 비어 있음'],['류하린','상담 중 · 대기 1건']],
+ '의사':[['권태윤','11:30부터 가능 · 관리실 04 시술 중'],['임윤서','지금 비어 있음']],
+ '간호사':[['강도윤','마취 관리 중 · 1건'],['류하람','지금 비어 있음'],['서가온','지금 비어 있음']],
+ '피부관리사':[['서채원','지금 비어 있음'],['송지호','지금 비어 있음']],
+ '데스크':[['데스크','—']]
+};
+const STEP = {
+ '상담':{role:'상담사',rooms:['상담실','2인관리실 01','2인관리실 03'],rec:1},
+ '원장 상담':{role:'의사',rooms:['상담실','관리실 05'],rec:1},
+ '세안 · 마취크림':{role:'간호사',rooms:['관리실 01','관리실 02','관리실 05'],rec:1},
+ '레이저 · 관리':{role:'피부관리사',rooms:['관리실 01','관리실 02','관리실 03'],rec:0},
+ '수납 · 귀가':{role:'데스크',rooms:['데스크'],rec:0}
+};
+function renderStaff(){
+  document.getElementById('stafflist').innerHTML = STAFF.map(([n,r,now,wait])=>`<div class="staff"><div class="nm">${n}<small>${r}</small></div>
+    <div class="ln"><b>지금</b><span>${now||'<span class="done">진행 중인 일 없음</span>'}</span></div>
+    <div class="ln"><b>대기</b><span>${wait||'<span class="done">배정된 일 없음</span>'}</span>${wait&&r==='상담사'?` <select onchange="reassign(this,'${n}')"><option>담당 바꾸기</option><option>민현우</option><option>오현우</option></select>`:''}</div></div>`).join('');
+  const ord = Object.keys(P).filter(k=>P[k].st==='원내').sort((a,b)=>m(P[a].since)-m(P[b].since));
+  const cs = {대기:ord.filter(k=>P[k].state==='wait').length, 상담:ord.filter(k=>P[k].state==='cons').length, '마취 · 준비':ord.filter(k=>k==='park').length, 시술:ord.filter(k=>P[k].state==='proc'&&k!=='park').length};
+  document.getElementById('nowlist').innerHTML = '<div class="stats">'+Object.entries(cs).map(([a,b])=>`<div class="stat"><span>${a}</span><b>${b}</b></div>`).join('')+'</div><div class="imp" style="padding:4px"><span class="imptag">D15</span>' + ord.map(k=>{
+    const p=P[k], w=NOW-m(p.since), long = p.state==='wait' && w>=30;
+    return `<div class="ccard ${p.state}" onclick="openCust('${k}')">
+      <div class="l1"><b>${p.en}</b>${p.ko?`<small>${p.ko}</small>`:''}${p.vip?'<span class="vip">VIP</span>':''}<span class="pill ${p.state==='wait'?'wait':'ing'}" style="margin-left:auto">${p.stateTxt}</span></div>
+      <div class="l2"><span class="loc">${p.loc}</span> · ${p.staff} · <span class="${long?'warnTxt':''}">${p.state==='wait'?'대기 ':''}${dur(w)}${p.state==='wait'?'':' 경과'}</span></div>
+      <div class="l2">${(p.plan&&p.plan.length?p.plan:[p.walk?'예약 없음 · '+p.purpose:'']).map(x=>`<span class="chip">${x}</span>`).join('')}${(p.caut||[]).slice(0,2).map(c=>`<span class="chip red">${c}</span>`).join('')}</div>
+    </div>`;}).join('') + '</div>';
+}
+function reassign(sel){ if(sel.selectedIndex===0) return; toast(`CHEN XIAO WEN 님 상담 담당을 ${sel.value}(으)로 바꿨습니다.`); STAFF[2][3]=''; STAFF.find(s=>s[0]===sel.value)[3]='2인관리실 02 · 상담 (CHEN XIAO WEN)'; P.chen.line='상담 대기 · '+sel.value; P.chen.staff='상담사 '+sel.value; document.getElementById('aibox').style.display='none'; renderAll(); }
+function approveAI(){ STAFF[2][3]=''; STAFF[3][3]='2인관리실 02 · 상담 (CHEN XIAO WEN)'; P.chen.line='상담 대기 · 민현우'; P.chen.staff='상담사 민현우'; document.getElementById('aibox').style.display='none'; renderAll(); toast('CHEN XIAO WEN 님 상담 담당을 민현우로 바꿨습니다. 민현우 상담사에게 알림을 보냈습니다.'); }
+function holdAI(){ document.getElementById('aibox').style.display='none'; toast('제안을 보류했습니다. 대기가 20분 더 길어지면 다시 제안합니다.'); }
+
+/* 고객 패널 (D8 · D10 · D11) */
+function badges(p){ return `${p.vip?'<span class="vip">VIP</span>':''}<span class="badge ${p.visit==='재진'?'':'first'}">${p.visit}</span><span class="badge">${p.nat}</span>`; }
+function nextSteps(k){
+  const p=P[k];
+  if(k==='jung'||k==='kim'||k==='chen') return p.state==='cons' ? ['원장 상담','세안 · 마취크림','레이저 · 관리','수납 · 귀가'] : ['상담','원장 상담','수납 · 귀가'];
+  return ['세안 · 마취크림','원장 상담','레이저 · 관리','수납 · 귀가'];
+}
+let curStep;
+function openCust(k){
+  const p=P[k], dr=document.getElementById('drawer'), isIn=p.st==='원내';
+  const planHtml = p.plan&&p.plan.length ? p.plan.map(x=>`<span class="chip big">${x}</span>`).join('') : (p.walk?`<span class="meta">예약 없음 · 방문 목적: ${p.purpose}</span>`:'<span class="meta">예약 항목 없음</span>');
+  let body = `<button class="x" onclick="closeAll()">×</button>
+   <div class="who">${p.en}${p.ko?`<small>${p.ko}</small>`:''}</div>
+   <div style="margin:6px 0 4px">${badges(p)} ${intBtn(k)}</div>
+   <div class="idline imp"><span class="imptag">D10</span><b>${p.phone}</b> · ${p.sex} · ${p.age}세</div>
+   ${isIn?`<div class="nowbox ${p.state}"><span class="pill ${p.state==='wait'?'wait':'ing'}">${p.stateTxt}</span><b>${p.loc}</b><span>${p.staff}</span><span class="meta">${dur(NOW-m(p.since))}${p.state==='wait'?' 대기':' 경과'}</span></div>`:`<div class="sec"><h4>예약</h4>${p.time} 예약 · ${p.st}</div>`}
+   <div class="sec imp" style="padding:4px"><span class="imptag">D8</span><h4>오늘 받을 것 (예약 항목)</h4>${planHtml}</div>
+   ${p.caut&&p.caut.length?`<div class="sec"><h4>주의사항</h4><div class="caut">${p.caut.map(c=>`<span>${c}</span>`).join('')}</div></div>`:''}`;
+  if(isIn){
+    const opts = nextSteps(k); curStep = opts[0];
+    body += `<div class="sec"><h4>오늘 동선</h4><div class="steps">${p.steps.map((s,i)=>`<div class="st ${s[2]}"><span class="no">${i+1}</span><div>${s[0]}<div class="s">${s[1]}</div></div></div>`).join('')}</div></div>
+     <div class="movebox imp"><span class="imptag">D11</span>
+       <div class="mh">${p.state==='cons'?'상담이 끝나면 다음 단계로 보내기':p.state==='wait'?'다음 단계로 보내기':'지금 단계가 끝나면 다음 단계로 보내기'}</div>
+       <div class="sec" style="margin-top:8px"><h4>① 다음 단계</h4><div class="opts" id="ns">${opts.map((o,i)=>`<button class="opt ${i===0?'on':''}" onclick="pickStep(this,'${k}')">${o}</button>`).join('')}</div></div>
+       <div id="stepdep"></div>
+     </div>
+     <div class="foot"><button class="btn" onclick="closeAll()">닫기</button><button class="btn pri" onclick="sendCust('${k}')">다음 단계로 보내기</button></div>`;
+  } else if(p.st==='접수 전'||p.st==='늦음'){
+    body += `<div class="foot"><button class="btn" onclick="closeAll()">닫기</button><button class="btn pri" onclick="closeAll();openReg('${k}')">접수</button></div>`;
+  }
+  dr.innerHTML = body; show('drawer'); if(isIn) renderDep();
+}
+function pickStep(el,k){ document.querySelectorAll('#ns .opt').forEach(o=>o.classList.remove('on')); el.classList.add('on'); curStep=el.textContent.trim(); renderDep(); }
+function renderDep(){
+  const s=STEP[curStep], staff=ROLE_STAFF[s.role];
+  const recStaff = staff.findIndex(x=>x[1].startsWith('지금 비어'));
+  document.getElementById('stepdep').innerHTML = `
+   <div class="sec"><h4>② 방</h4><div class="opts" id="ro">${s.rooms.map((r,i)=>`<button class="opt ${i===s.rec?'on':''}" onclick="pick(this,'ro')">${r}${i===s.rec?' <small>추천 · 비어 있음</small>':''}</button>`).join('')}</div></div>
+   <div class="sec"><h4>③ 담당 · ${s.role}</h4><div class="opts" id="pe">${staff.map((x,i)=>`<button class="opt ${i===Math.max(recStaff,0)?'on':''}" onclick="pick(this,'pe')">${x[0]} <small>${i===recStaff?'추천 · ':''}${x[1]}</small></button>`).join('')}</div>
+   <div class="meta" style="margin-top:6px">담당 후보는 단계에 맞는 역할(${s.role})만 나온다.</div></div>`;
+}
+function pick(el,g){ document.querySelectorAll('#'+g+' .opt').forEach(o=>o.classList.remove('on')); el.classList.add('on'); }
+function sendCust(k){
+  const r=document.querySelector('#ro .opt.on').childNodes[0].textContent.trim(), w=document.querySelector('#pe .opt.on').childNodes[0].textContent.trim();
+  const role=STEP[curStep].role;
+  Object.assign(P[k],{loc:r,state:'wait',since:'11:20',line:`${curStep} 대기 · ${w}`,stateTxt:`${curStep} 대기`,staff:`${role} ${w}`});
+  if(curStep==='수납 · 귀가') Object.assign(P[k],{loc:'데스크',stateTxt:'수납 대기',staff:'데스크'});
+  closeAll(); renderAll(); toast(`${P[k].en} 님을 ${curStep} 단계로 ${r}에 보냈습니다. ${w}에게 알림을 보냈습니다.`);
+}
+
+/* 접수 모달 (D2 · D3 · D4 · D5 · D6) */
+const ADDS = ['리쥬란 힐러 2cc','슈링크 유니버스 300shot','온다리프팅 얼굴 30kJ','피부 진정 관리'];
+function openReg(k){ if(!P[k].histTxt && P[k].hist) P[k].histTxt="";
+  const p=P[k], re=p.visit==='재진', md=document.getElementById('modal');
+  md.innerHTML = `<button class="x" onclick="closeAll()">×</button>
+   <div style="font-size:18px;font-weight:700;margin-bottom:8px">접수</div>
+   <div class="who" style="font-size:18px">${p.en}${p.ko?`<small>${p.ko}</small>`:''} <span class="badge ${re?'':'first'}">${p.visit}</span></div>
+   <div class="idline"><span class="imp" style="padding:0 4px"><span class="imptag">D10</span><b>${p.phone}</b></span> · ${p.sex} · ${p.age}세 · ${p.nat} · ${p.time} 예약</div>
+   ${re?`<div class="sec imp" style="padding:4px"><span class="imptag">D6</span><h4>지난 방문</h4><div class="hist">${p.histTxt}</div></div>`:
+   `<div class="sec imp" style="padding:4px"><span class="imptag">D2</span><h4>첫 방문 확인</h4><div class="grid2">
+     ${['본인 확인 (여권)','개인정보 수집 동의','시술 동의서','문진표'].map(x=>`<label class="chk"><input type="checkbox"> ${x}</label>`).join('')}
+     <label class="chk"><input type="checkbox" ${p.nat!=='한국'?'checked':''}> 통역 필요 <span class="r">${LANG[p.nat]||'—'}</span></label><label class="chk"><input type="checkbox"> 동행 <span class="r">0명</span></label></div></div>`}
+   <div class="sec"><h4>오늘 동선</h4>
+     <label class="chk ${re?'':'on'}"><input type="checkbox" ${re?'':'checked'}> 상담<span class="r">상담사</span></label>
+     <label class="chk"><input type="checkbox"> 원장 상담<span class="r">의사</span></label>
+     ${re? p.tickets.map(t=>`<label class="chk on imp"><span class="imptag">D5</span><input type="checkbox" checked> ${t[0]}<span class="r">보유 시술권 ${t[1]}<br><em>오늘 사용 예정 · 시술 완료 때 차감</em></span></label>`).join('') : ''}
+     <div class="meta" style="margin-top:6px">순서 · ${re? p.tickets.map(t=>t[0]).join(' → ') : '상담'}</div>
+   </div>
+   <div class="sec imp" style="padding:4px"><span class="imptag">D3</span><h4>추가 요청</h4>
+     <div id="addtags"></div>
+     <select class="full" onchange="addReq(this)"><option>시술 · 상담 추가</option>${ADDS.map(a=>`<option>${a}</option>`).join('')}</select>
+     <h4 style="margin-top:12px">메모</h4><textarea rows="2" placeholder="예: 눈밑 필러 가능한지 원장님께 여쭤봐 달라고 하심"></textarea>
+   </div>
+   <div class="sec imp" style="padding:4px"><span class="imptag">D4</span><h4>보낼 곳</h4>
+     <div class="opts" id="rgo"><button class="opt on" onclick="pick(this,'rgo')">접수대기실 <small>기본</small></button><button class="opt" onclick="pick(this,'rgo')">상담실</button><button class="opt" onclick="pick(this,'rgo')">관리실 05</button></div>
+   </div>
+   <div class="foot"><button class="btn" onclick="closeAll()">취소</button><button class="btn pri" onclick="doReg('${k}')">접수</button></div>`;
+  show('modal');
+}
+function addReq(sel){ if(sel.selectedIndex===0) return; const v=sel.value; document.getElementById('addtags').insertAdjacentHTML('beforeend',`<span class="tag">${v} <button onclick="this.parentElement.remove()">×</button></span>`); sel.selectedIndex=0; }
+function doReg(k){
+  const to=document.querySelector('#rgo .opt.on').childNodes[0].textContent.trim();
+  Object.assign(P[k],{st:'원내',loc:to,state:'wait',since:'11:20',line:'접수 후 대기',next:P[k].visit==='재진'?'시술':'상담',caut:P[k].caut||[],steps:P[k].tickets?P[k].tickets.map(t=>[t[0],'오늘 사용 예정','']):[['상담','상담사 미정','']]});
+  closeAll(); renderAll(); toast(`${P[k].en} 님을 접수했습니다. ${to}로 안내합니다.`);
+}
+
+/* 통역 (원래 데모 기능 복원) */
+const LANG = {'대만':'중국어','홍콩':'광둥어','일본':'일본어','베트남':'베트남어'};
+function intBtn(k){ return P[k].nat!=='한국' ? `<button class="btn sm int" onclick="event.stopPropagation();openInterp('${k}')">통역 · ${LANG[P[k].nat]}</button>` : ''; }
+function openInterp(k){
+  const p=P[k], md=document.getElementById('modal'); md.style.width='460px';
+  md.innerHTML=`<button class="x" onclick="closeAll();document.getElementById('modal').style.width=''">×</button>
+   <div style="font-size:18px;font-weight:700">통역 · ${LANG[p.nat]}</div>
+   <div class="meta" style="margin:4px 0 14px">${p.en} 님 · ${p.nat} · 국적으로 자동 선택 · 눌러서 변경</div>
+   <div class="opts">${Object.values(LANG).concat(['영어']).filter((v,i,a)=>a.indexOf(v)===i).map(l=>`<button class="opt ${l===LANG[p.nat]?'on':''}">${l}</button>`).join('')}</div>
+   <div class="hist" style="margin-top:14px"><b>연결하는 중이에요</b><br>잠시 뒤 바로 들을 수 있어요. 폰을 환자와 나 사이에 두세요.</div>
+   <div class="foot"><button class="btn" onclick="closeAll();document.getElementById('modal').style.width=''">닫기</button></div>`;
+  show('modal');
+}
+/* 원장 · 간호사 공통 맨 위 「지금 · 다음」 */
+function stripHtml(tag, a, b){
+  const card = (c,cls) => `<div class="sc ${cls} ${c.sel?'on':''}" onclick="${c.click}"><div class="k">${c.k}</div><div class="rm">${c.room}${c.rdy?` <span class="rdy">${c.rdy}</span>`:''}</div>
+    <div><b>${P[c.who].en}</b>${P[c.who].vip?' <span class="vip">VIP</span>':''} · ${c.what}</div>
+    <div class="caut sm">${cautHtml(P[c.who])}</div>
+    <div class="scb">${intBtn(c.who)}${c.btn||''}</div></div>`;
+  return `<div class="strip imp"><span class="imptag">${tag}</span>${card(a,'now')}${card(b,'nx')}</div>`;
+}
+
+/* ---------- 원장 ---------- */
+const DOC = [
+ ['지금','liu','관리실 04','리쥬란 아이 1cc','ing','시술 중'],
+ ['다음','park','관리실 06','포텐자 펌핑팁','ane','11:32 마취 끝'],
+ ['이후','chen','2인관리실 02','원장 상담 (상담 후)','wait','상담 대기'],
+ ['이후','wang','도착 전','쥬베룩 스킨 2cc','wait','11:30 예약'],
+ ['이후','chan','도착 전','원장 상담','wait','13:00 예약'],
+ ['완료','sato','귀가','슈링크 유니버스 300shot','ok','09:20 완료'],
+];
+let docSel='liu';
+function cautHtml(p){ return (p.caut||[]).map(c=>`<span>${c}</span>`).join('') || '<span class="none">없음</span>'; }
+function renderDoc(){
+  let g='';
+  document.getElementById('doclist').innerHTML = DOC.map(([grp,k,room,what,pc,tm])=>{
+    const p=P[k], h = grp!==g ? `<div class="grp">${grp}</div>` : ''; g=grp;
+    return h+`<div class="pi ${k===docSel?'sel':''}" onclick="docSel='${k}';renderDoc()">
+      <div class="l1"><span class="room-s">${room}</span><span class="pill ${pc}">${tm}</span></div>
+      <div class="l1" style="justify-content:flex-start;gap:6px;margin-top:4px"><b>${p.en}</b>${p.vip?'<span class="vip">VIP</span>':''}<span class="meta">${p.visit}</span></div>
+      <div class="l2">${what}</div>${p.caut&&p.caut[0]?`<div class="l3">${p.caut.join(' · ')}</div>`:''}</div>`;
+  }).join('');
+  const now=P.liu, nx=P.park;
+  const strip = stripHtml('W3 · W5',
+    {k:'지금 있는 곳',room:'관리실 04',who:'liu',what:'리쥬란 아이 1cc 시술 중',sel:docSel==='liu',click:"docSel='liu';renderDoc()"},
+    {k:'다음 · 11:32',room:'관리실 06',rdy:'마취 끝까지 12분',who:'park',what:'포텐자 펌핑팁',sel:docSel==='park',click:"docSel='park';renderDoc()",btn:'<button class="btn sm" disabled title="마취가 끝나면 누를 수 있다">시술 시작</button>'});
+  const p=P[docSel], d=document.getElementById('docdet');
+  let detail = `<div class="sec" style="margin-top:18px"><div class="who">${p.en}${p.ko?`<small>${p.ko}</small>`:''} ${intBtn(docSel)}</div>
+     <div style="margin:6px 0">${badges(p)}<span class="meta" style="margin-left:6px">${p.sex} · ${p.age}세</span></div></div>
+   <div class="sec imp" style="padding:6px"><span class="imptag">W2</span><h4>주의사항</h4><div class="caut">${cautHtml(p)}</div>
+     ${docSel==='liu'?`<div class="alert on" id="outalert" style="margin-top:8px;padding:8px 10px;font-size:13px">퇴원 시각이 기록마다 다릅니다 — 간호 메모 12:30 · 오더 메모 1시. 하나로 정해 주세요. <button class="btn sm" onclick="this.parentElement.outerHTML='<div class=&quot;meta&quot; style=&quot;margin-top:6px&quot;>퇴원 시각을 12:30으로 정했습니다.</div>'">12:30으로 정하기</button></div>`:''}
+   </div>`;
+  if(docSel==='liu'){
+    detail += `<div class="sec imp" style="padding:6px"><span class="imptag">C1 · C2</span><h4>오늘 받을 것 · 3건 중 0건 완료</h4>
+     <div class="trt prep"><span class="nm">세안 · 마취크림<small>간호사 강도윤 · 완료 11:05</small></span><span class="pill ok">준비 끝</span></div>
+     <div class="trt" id="trt3"><span class="nm">리쥬란 아이 1cc <span class="mis">상담 2cc · 오더 1cc</span><small>진행 중 · 11:12 시작</small></span><button class="btn pri sm" onclick="doneTrt()">완료</button></div>
+     <div class="alert" id="trtalert"></div>
+     <div class="trt"><span class="nm">리쥬란 힐러 2cc<small>예정</small></span><span class="pill wait">예정</span></div>
+     <div class="trt"><span class="nm">아이 슈링크 유니버스 200shot<small>예정</small></span><span class="pill wait">예정</span></div>
+     <div class="fold">권했지만 오늘 안 함 · 3건 — 다음 방문 때 다시 권할 목록
+       <ul><li>슈링크 유니버스 600shot</li><li>온다리프팅 얼굴 30kJ</li><li>얼굴필러 수입 1cc</li></ul></div></div>`;
+  } else {
+    detail += `<div class="sec"><h4>오늘 받을 것</h4>${(p.plan||[]).map(x=>`<span class="chip big">${x}</span>`).join('')||'<span class="meta">상담 후 정해진다</span>'}</div>`;
+  }
+  const hist = p.hist||[];
+  detail += `<div class="sec imp" style="padding:6px"><span class="imptag">W6</span><h4>지난 시술</h4>${hist.length?`<table class="ht"><tr><th>날짜</th><th>시술</th><th>담당</th><th>반응 · 메모</th></tr>${hist.map(h=>`<tr><td>${h[0]}</td><td>${h[1]}</td><td>${h[2]}</td><td>${h[3]}</td></tr>`).join('')}</table>`:'<span class="meta">첫 방문이라 지난 시술이 없다.</span>'}</div>
+   <div class="sec"><h4>메모</h4>
+     ${docSel==='liu'?`<div class="memo"><div class="h">상담 내용 · 상담사 민현우 · 10:29</div>고민: 지방 처짐 · 눈밑. 추천: 아이리쥬란 2cc, 리쥬란 4cc, 아이슈링크 200</div><div class="memo"><div class="h">오더 메모</div>OUT TIME 1시 · 1. 아이리쥬란 1cc(눈밑) · 2. 리쥬란 4cc(얼전) …</div>`:''}
+     <div class="fold" style="margin:6px 0">예약 메모 · 담당자 메모 · 환자 차트 <span class="meta">(펼치기 — 원래 데모와 같음)</span></div>
+     <div id="docmemos"></div>
+     <div class="memoin imp" style="padding:4px"><span class="imptag">W4</span><input id="dm" placeholder="메모 남기기"><button class="btn sm" onclick="addMemo()">남기기</button></div>
+   </div>`;
+  d.innerHTML = strip + detail;
+}
+function doneTrt(){
+  const a=document.getElementById('trtalert'); a.classList.add('on');
+  a.innerHTML=`실제 진행한 용량을 확인해 주세요.<div class="amt">리쥬란 아이 <input id="amt" value="1"> cc <button class="btn pri sm" onclick="checkAmt()">완료 처리</button></div>`;
+}
+function checkAmt(){
+  const v=document.getElementById('amt').value.trim(), a=document.getElementById('trtalert');
+  if(v==='1'){ a.classList.remove('on'); finishTrt('1cc'); return; }
+  a.innerHTML=`오더와 다릅니다 — 오더 1cc · 실제 ${v}cc. 결제 금액은 오더를 기준으로 매깁니다.<div class="amt"><button class="btn pri sm" onclick="finishTrt('${v}cc',true)">오더를 ${v}cc로 고치고 데스크에 알림</button><button class="btn sm" onclick="doneTrt()">다시 입력</button></div>`;
+}
+function finishTrt(v,changed){
+  document.getElementById('trtalert').classList.remove('on');
+  document.getElementById('trt3').innerHTML=`<span class="nm">리쥬란 아이 ${v}<small>원장 권태윤 · 완료 11:20${changed?' · 오더 수정됨':''}</small></span><span class="pill ok">완료</span>`;
+  toast(changed?`오더를 ${v}로 고쳤습니다. 데스크에 결제 금액 변경을 알렸습니다.`:'리쥬란 아이를 완료했습니다.');
+}
+function addMemo(){ const i=document.getElementById('dm'); if(!i.value.trim()) return; document.getElementById('docmemos').insertAdjacentHTML('beforeend',`<div class="memo"><div class="h">원장 권태윤 · 11:20</div>${i.value}</div>`); i.value=''; toast('메모를 남겼습니다.'); }
+
+/* ---------- 간호사 ---------- */
+const NT = [
+ ['지금','park','관리실 06','포텐자 시술 준비','마취 중 · 12분 남음','ane',''],
+ ['다음','park','관리실 06','마취크림 닦기 → 원장 시술 시작','11:32','wait',''],
+ ['이후','park','관리실 06','포텐자 시술 보조 → 진정 관리 15분','11:35~','wait',''],
+ ['이후','liu','관리실 04','시술 후 진정 관리','리쥬란 끝나면','wait',''],
+ ['완료','liu','관리실 04','세안 · 마취크림','11:05 완료','ok','강도윤'],
+ ['완료','park','관리실 06','세안 · 마취크림 시작','11:02 완료','ok','강도윤'],
+];
+const ME='강도윤';
+let PREP = [
+ {id:'a',t:'포텐자 기기 켜기 · 자가 점검',sub:'',who:'류하람',done:'11:10'},
+ {id:'b',t:'펌핑팁 장착',sub:'새 팁 1개',who:ME,done:''},
+ {id:'c',t:'소모품',sub:'거즈 · 진정 마스크 · 쿨링 팩',who:ME,done:''},
+ {id:'d',t:'진정 관리 준비',sub:'쿨링 15분 · 재생 크림',who:'류하람',done:''},
+];
+let nTab='mine';
+function togglePrep(id){ const x=PREP.find(p=>p.id===id); if(x.who!==ME) return; x.done = x.done?'':'11:20'; renderNurse(); }
+function renderNurse(){
+  let g='';
+  const tabs = `<div class="ntabs imp"><span class="imptag">N2</span><button class="${nTab==='mine'?'on':''}" onclick="nTab='mine';renderNurse()">내 할 일</button><button class="${nTab==='all'?'on':''}" onclick="nTab='all';renderNurse()">원내 전체</button></div>`;
+  let list;
+  if(nTab==='mine'){
+    list = NT.map(([grp,k,room,what,tm,pc,by],i)=>{
+      const h = grp!==g ? `<div class="grp">${grp}</div>` : ''; g=grp;
+      return h+`<div class="pi ${i===0?'sel':''}"><div class="l1"><span class="room-s">${room}</span><span class="pill ${pc}">${tm}</span></div>
+        <div class="l1" style="justify-content:flex-start;gap:6px;margin-top:4px"><b>${P[k].en}</b>${P[k].vip?'<span class="vip">VIP</span>':''}</div>
+        <div class="l2">${what}${by?` <span class="meta">· ${by}</span>`:''}</div></div>`;
+    }).join('');
+  } else {
+    list = Object.keys(P).filter(k=>P[k].st==='원내').map(k=>`<div class="pi"><div class="l1"><span class="room-s">${P[k].loc}</span><span class="pill ${P[k].state==='wait'?'wait':'ing'}">${P[k].stateTxt}</span></div><div class="l1" style="justify-content:flex-start;gap:6px;margin-top:4px"><b>${P[k].en}</b>${P[k].vip?'<span class="vip">VIP</span>':''}</div><div class="l2">${P[k].staff}</div></div>`).join('') + '<div class="meta" style="margin-top:8px">순회할 때 원내 전체를 본다. 내 몫이 아닌 고객은 보기만 한다.</div>';
+  }
+  document.getElementById('nurselist').innerHTML = tabs + list;
+  const mine = PREP.filter(x=>x.who===ME), doneAll = PREP.filter(x=>x.done).length;
+  const ck = x => {
+    const isMine = x.who===ME;
+    return `<label class="chk ${x.done?'on':''} ${isMine?'mine':'other'}"><input type="checkbox" ${x.done?'checked':''} ${isMine?'':'disabled'} onchange="togglePrep('${x.id}')"> ${x.t}
+      <span class="r">${x.sub?x.sub+'<br>':''}${x.done?`<span class="by">${x.who} · ${x.done} 완료</span>`:(isMine?'<span class="by">내 몫</span>':`${x.who} 몫`)}</span></label>`;
+  };
+  document.getElementById('nursedet').innerHTML = `
+   <div class="callbar imp"><span class="imptag">N3</span>
+     <span class="meta">호출</span>
+     <button class="btn sm" onclick="openCall('원장')">원장</button>
+     <button class="btn sm" onclick="openCall('간호사')">다른 간호사</button>
+     <button class="btn sm" onclick="openCall('코디')">코디</button>
+     <button class="btn sm" onclick="openCall('데스크')">데스크</button>
+     <button class="btn sm warn" style="margin-left:auto" onclick="openCall('긴급')">긴급 · 이상 반응</button>
+   </div>
+   ${stripHtml('N2',
+     {k:'지금 있는 곳',room:'관리실 06',rdy:'마취 끝까지 12분',who:'park',what:'포텐자 시술 준비',sel:true,click:''},
+     {k:'다음 · 11:32',room:'관리실 06',rdy:'같은 방',who:'park',what:'마취크림 닦기 → 원장 시술 시작',click:'',btn:`<button class="btn pri sm" onclick="event.stopPropagation();openCall('원장','마취 끝 · 시술 시작 가능')">원장 호출</button>`})}
+   <div class="meta" style="margin:8px 4px 0">마취 18분 경과 / 30분. 끝나기 5분 전(11:27)에 원장에게 자동으로 알린다. 그 뒤 · 관리실 04 LIU JIA HUI 시술 후 진정 관리.</div>
+   <div class="sec imp" style="padding:6px"><span class="imptag">N4</span><h4>포텐자 준비 · ${doneAll} / ${PREP.length} 완료 · 내 몫 ${mine.length}건</h4>
+     ${PREP.map(ck).join('')}
+     <div class="meta" style="margin-top:4px">내 몫만 체크할 수 있다. 다른 사람 몫은 누가 언제 끝냈는지 보인다.</div>
+     <div class="order"><div class="h">원장 오더 · 보기만 가능</div>
+       <div>포텐자 펌핑팁 · 얼굴 전체 · 에너지 지난번(09-18)보다 한 단계 낮춤</div>
+       <div class="meta">사유: 09-18 시술 후 홍조 2일. 설정값 변경은 원장이 한다.</div></div>
+   </div>
+   <div class="sec"><h4>지난 시술</h4><div class="hist">09-18 · 포텐자 펌핑팁 (원장 권태윤) · 시술 후 홍조 2일<br>08-21 · 포텐자 펌핑팁 (원장 권태윤) · 특이 반응 없음</div></div>`;
+}
+const CALL = {
+ '원장':[['권태윤','관리실 04 · 시술 중 · 11:30 가능'],['임윤서','지금 비어 있음']],
+ '간호사':[['류하람','지금 비어 있음'],['서가온','지금 비어 있음']],
+ '코디':[['곽태린','지금 비어 있음'],['심준서','고객 안내 중']],
+ '데스크':[['데스크','—']],
+ '긴급':[['원장 전체 · 간호사 전체','즉시 알림']]
+};
+const REASON = {
+ '원장':['마취 끝 · 시술 시작 가능','시술 전 확인 필요','고객 질문'],
+ '간호사':['시술 보조 필요','손이 모자람','소모품 가져다 주기'],
+ '코디':['고객 안내 · 이동','통역 필요','동행 안내'],
+ '데스크':['수납 준비','다음 예약 잡기','보호자 · 동행 문의'],
+ '긴급':['이상 반응 (호흡 · 어지러움 · 부종)','출혈 · 화상 의심']
+};
+function openCall(who,reason){
+  const md=document.getElementById('modal');
+  md.style.width='460px';
+  md.innerHTML=`<button class="x" onclick="closeAll()">×</button>
+   <div style="font-size:18px;font-weight:700;margin-bottom:4px">${who==='긴급'?'긴급 호출':who+' 호출'}</div>
+   <div class="meta">관리실 06 · 박서연 · 강도윤 간호사가 부름</div>
+   <div class="sec"><h4>누구를</h4><div class="opts" id="cw">${CALL[who].map((x,i)=>`<button class="opt ${i===0?'on':''}" onclick="pick(this,'cw')">${x[0]} <small>${x[1]}</small></button>`).join('')}</div></div>
+   <div class="sec"><h4>왜</h4><div class="opts" id="cr">${REASON[who].map((x,i)=>`<button class="opt ${(reason?x===reason:i===0)?'on':''}" onclick="pick(this,'cr')">${x}</button>`).join('')}</div></div>
+   <div class="foot"><button class="btn" onclick="closeAll()">취소</button><button class="btn ${who==='긴급'?'warn':'pri'}" onclick="doCall()">호출</button></div>`;
+  show('modal');
+}
+function doCall(){
+  const w=document.querySelector('#cw .opt.on').childNodes[0].textContent.trim(), r=document.querySelector('#cr .opt.on').textContent.trim();
+  closeAll(); document.getElementById('modal').style.width=''; toast(`${w}에게 「관리실 06 · ${r}」 호출을 보냈습니다.`);
+}
+
+/* ---------- 공통 ---------- */
+function renderAll(){ renderRooms(); renderRsv(); renderStaff(); renderDoc(); renderNurse(); }
+function show(id){ document.getElementById('dim').classList.add('on'); document.getElementById(id).classList.add('on'); }
+function closeAll(){ ['dim','drawer','modal'].forEach(i=>document.getElementById(i).classList.remove('on')); }
+let tt; function toast(s){ const t=document.getElementById('toast'); t.textContent=s; t.style.display='block'; clearTimeout(tt); tt=setTimeout(()=>t.style.display='none',3200); }
+document.querySelectorAll('.roles button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.roles button').forEach(x=>x.classList.toggle('on',x===b));
+  document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id==='v-'+b.dataset.role));
+  document.getElementById('who').textContent = {desk:'데스크',doc:'권태윤 원장',nurse:'강도윤 간호사'}[b.dataset.role];
+  document.getElementById('navname').textContent = {desk:'현황판',doc:'오늘 진료',nurse:'내 할 일'}[b.dataset.role];
+});
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));
+  document.querySelectorAll('.tabpane').forEach(p=>p.classList.toggle('on',p.id==='t-'+b.dataset.tab));
+});
+document.getElementById('hlt').onchange=e=>document.body.classList.toggle('nohl',!e.target.checked);
+const q=document.getElementById('q'), sres=document.getElementById('sres');
+q.oninput=()=>{ const v=q.value.trim().toLowerCase().replace(/[\s-]/g,''); if(!v){sres.style.display='none';return;}
+  const hit=Object.keys(P).filter(k=>[P[k].en,P[k].ko,P[k].phone].join('|').toLowerCase().replace(/[\s-]/g,'').includes(v));
+  sres.innerHTML = hit.map(k=>`<div onclick="sres.style.display='none';openCust('${k}')">${nm(k)}<br><small>${P[k].phone} · ${P[k].time} · ${P[k].st}${P[k].st==='원내'?' · '+P[k].loc:''}</small></div>`).join('') || '<div><small>찾는 고객이 없습니다. 이름 · 전화번호를 다시 확인해 주세요.</small></div>';
+  sres.style.display='block'; };
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeAll(); });
+renderAll();
+</script>
+</body>
+</html>
