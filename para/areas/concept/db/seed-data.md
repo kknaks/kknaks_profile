@@ -17,6 +17,7 @@ aliases:
 up:
   - 2026-10-01-strong-hajin-deploy
   - 2026-10-14-sts-prototype
+  - 2026-10-19-cc-nav-resv
 tags:
   - db
   - 운영
@@ -47,6 +48,7 @@ Strong Hajin 은 `seed_catalog(demo_organization=False)` 로 카탈로그만 깔
 | `events/<id>.json` | 진행하다 원천 시스템에서 들어오는 것 — 상담 종료(상담 · 오더 · 시술 · 결제액) · 결제 완료 · 시술 종료(담당자 메모) | 그 사건이 화면에서 일어날 때 |
 
 - **필드 이름은 원천 응답 이름 그대로**, 있는 것만. 대본에 없는 장면(재내원 · 남은 시술권)을 만들면 `"synthetic": true` 로 표시한다
+- **원천에 있는 칸은 시드도 갖는다** — 처음 시드는 화면이 그때 쓰던 칸만 들고 있기 쉽다. 새 화면 요구가 원천에 있는 칸(cc-prototype 2차: 한글 읽기 · 전화번호 · 고객 분류)을 쓰면, 화면을 포기하거나 메모에서 짐작하지 말고 **시드에 그 칸을 더한다.** 공개본 값은 형식만 맞춘 가짜(가짜 이름에 맞춘 읽기 · 가짜 번호), 거의 비어 있는 칸은 시연용 실례 하나 → [[no-inference-from-free-text]]
 - **「아무도 접수 안 한 아침」 에서 시작한다** — 한낮 캡처를 그 시각 상태로 재구성한 시드는 위치 · 단계 · 큐 · 담당이 전부 짐작(cc-prototype 22개 추정)이었다. 아침에서 시작해 사건마다 대본 방문의 실데이터를 넣으면 짐작이 사라지고, 사건 전에 보이면 안 되는 것(미래 정보)도 막힌다 → [[as-of-visibility]]
 
 ## 왜 중요한가
@@ -60,7 +62,7 @@ Strong Hajin 은 `seed_catalog(demo_organization=False)` 로 카탈로그만 깔
 - **dump 이관은 일회성이다** — 이후 유저를 더 넣을 운영 경로는 여전히 없다. 반복되면 운영용 적재 명령이 필요하다
 - **실명 시드는 공개 레포에 두지 않는다** — 형식(README)만 커밋하고 CSV 는 Git 밖에 둔다
 - **[[database-migration]] 과 다르다** — 그쪽은 스키마·엔진 이전, 이쪽은 빈 DB 에 처음 채우는 내용이다
-- **「한 번만 시드」 는 배포 뒤에도 그대로다** — 시드 파일(Secret)을 바꿔도 이미 시드된 DB 는 안 바뀐다. 재시드는 볼륨의 DB 파일을 지우고 재시작하는 파괴적 결정이다
+- **「한 번만 시드」 는 배포 뒤에도 그대로다** — 시드 파일(Secret)을 바꿔도 이미 시드된 DB 는 안 바뀐다. 재시드는 볼륨의 DB 파일을 지우고 재시작하는 파괴적 결정이다. **시드 원본이 볼륨에도 복사돼 있으면 그것까지 지운다** — cc-prototype 은 `cc.db` 만 지우면 시작 스크립트(`seed ensure`)가 같은 폴더의 옛 `seed.json` 으로 다시 만들어 새 칸이 빠질 뻔했다
 - **목데이터라도 사람 이름 · 연락처는 가짜로** — 공개 배포면 직원 이름 · 이메일까지 치환하고, 대본 원문 · 대응표는 Git 밖에 둔다
 
 ## 함께 보는 개념
@@ -69,8 +71,10 @@ Strong Hajin 은 `seed_catalog(demo_organization=False)` 로 카탈로그만 깔
 - [[runtime-profile-gating]] — 적재 도구에 걸린 프로파일 가드
 - [[as-of-visibility]] — 시드 시점과 사건 시점을 맞추는 이유
 - [[public-vs-internal-api]] — 원천 시스템을 부르지 않는 PoC 가 목데이터로 가는 이유
+- [[no-inference-from-free-text]] — 시드에 넣을 칸을 고르는 채움률 판정
 
 ## 출처
 
 - [[2026-10-01-strong-hajin-deploy]] — 조직도 9표 양식 → mediness prod 4명 조회 → 로컬 import → dump 로 운영 복원
 - [[2026-10-14-sts-prototype]] §2 — cc-prototype 목데이터 시나리오: 한낮 재구성 시드(추정 22개)를 버리고 아침 시드 + 진행 중 이벤트로(`scenario-format.md` · WP7b)
+- [[2026-10-19-cc-nav-resv]] §2 — KOS 에 있는 칸(`phoneticName` · `phone` · `categories`)을 시드에 더함(DEC-004 D-24 · SPEC-002 §5.1), 재시드 때 볼륨의 `seed.json` 도 지움(§3)
