@@ -589,14 +589,25 @@ para/areas/
 | 474 | `ai` | `proposal-revision` | 승인 대기 초안을 같은 카드의 다음 회차로 고친다. 누가 고치든 같은 수정 · 바뀐 칸만 덮기 |  |
 | 475 | `back` | `job-lease` | 워커가 집은 작업의 점유 기한. 바닥 = 최대 호출 수 × timeout, 나머지는 heartbeat |  |
 | 476 | `db` | `online-schema-change` | 운영 표 변경을 칸(트랜잭션) → 이미지 → 인덱스(CONCURRENTLY)로 가르고 무효 인덱스를 본다 |  |
-| 477 | `pm` | `structured-work-as-primary-data` | 메모를 보고 사람이 넣은 작업 목록(동선)이 메인, 메모는 참고 원문. 바뀌면 메모가 아니라 작업을 고친다 |  |
-| 478 | `cs` | `no-inference-from-free-text` | 자유 메모의 습관 양식을 잘라 읽거나 글자 일치로 짐작하지 않는다. 구조 값은 원천 구조 필드에서만 |  |
-| 479 | `db` | `as-of-visibility` | 그 시각에 이미 있던 데이터만 보인다. 사후 스냅샷을 시작 시드로 쓰면 미래 정보가 샌다 |  |
-| 480 | `back` | `public-vs-internal-api` | 벤더 연동은 공개 API 쓰기 범위로만, 웹앱 내부 API(HAR)는 근거 · 요청서용 |  |
-| 481 | `front` | `half-duplex-echo-suppression` | 재생 중 마이크 송신을 멈추고 재생 끝 + 여유 뒤 재개해 스피커 되먹임을 끊는다 |  |
-| 482 | `design` | `time-in-current-state` | 경과 시간 = 지금 상태가 시작된 뒤. 현재 상태와 `<종류> N분 경과` 를 한 칸에 두 줄로 |  |
-| 483 | `cs` | `consume-on-completion` | 소모성 자원은 계획 때가 아니라 완료 때 차감. 사용은 done 에서 계산해 취소 · 노쇼 · undo 가 자연히 되돌린다 |  |
-| 484 | `back` | `demo-stand-in-for-integration` | 없는 외부 연동은 입구만 데모 버튼으로, 상태 전이 · 저장은 실제와 같게. 외부 결과는 그 순간 스냅샷 |  |
+| 477 | `db` | `listen-notify` | 저장과 같은 트랜잭션에서 내는 DB 알림. 커밋돼야 나가고 보관이 없어 페이로드는 id 만 |  |
+| 478 | `back` | `relationship-based-notification` | 알림 여부를 사건 × 받는 사람 관계 표로. 원칙 셋 · 우선순위 하나 · 만들 때 설정으로 거름 · 행 id 시험 |  |
+| 479 | `back` | `own-message-flag` | 「내가 보낸 줄」 을 수집 때 원천별 재료로 판정해 칸 하나에. 표시 이름이 id 를 덮으면 조용히 0 |  |
+| 480 | `front` | `desktop-native-notification` | 웹이 받고 셸이 OS 알림 API 로 직접 띄움. 공식 플러그인의 데스크톱 한계 · 권한 · 클릭 보관 |  |
+| 481 | `design` | `notification-coalescing` | OS 배너 줄이기 — 보고 있으면 생략 · 합친 줄은 처음만 · 창·문턱 묶음 「새 알림 N건」 |  |
+| 482 | `qa` | `dependency-upgrade-regression` | 의존성 올림이 시험 밖 실행 동작을 바꾼다. 움직인 범위를 세고 회귀는 diff 전수로 하나로 좁힌다 |  |
+| 483 | `qa` | `schema-parity-test` | 모델 · 처음 까는 SQL · 운영 ALTER 사본의 어긋남을 구조 시험이 대조. 칸 추가는 두 곳 |  |
+| 484 | `pm` | `structured-work-as-primary-data` | 메모를 보고 사람이 넣은 작업 목록(동선)이 메인, 메모는 참고 원문. 바뀌면 메모가 아니라 작업을 고친다 |  |
+| 485 | `cs` | `no-inference-from-free-text` | 자유 메모의 습관 양식을 잘라 읽거나 글자 일치로 짐작하지 않는다. 구조 값은 원천 구조 필드에서만 |  |
+| 486 | `db` | `as-of-visibility` | 그 시각에 이미 있던 데이터만 보인다. 사후 스냅샷을 시작 시드로 쓰면 미래 정보가 샌다 |  |
+| 487 | `back` | `public-vs-internal-api` | 벤더 연동은 공개 API 쓰기 범위로만, 웹앱 내부 API(HAR)는 근거 · 요청서용 |  |
+| 488 | `front` | `half-duplex-echo-suppression` | 재생 중 마이크 송신을 멈추고 재생 끝 + 여유 뒤 재개해 스피커 되먹임을 끊는다 |  |
+| 489 | `design` | `time-in-current-state` | 경과 시간 = 지금 상태가 시작된 뒤. 현재 상태와 `<종류> N분 경과` 를 한 칸에 두 줄로 |  |
+| 490 | `cs` | `consume-on-completion` | 소모성 자원은 계획 때가 아니라 완료 때 차감. 사용은 done 에서 계산해 취소 · 노쇼 · undo 가 자연히 되돌린다 |  |
+| 491 | `back` | `demo-stand-in-for-integration` | 없는 외부 연동은 입구만 데모 버튼으로, 상태 전이 · 저장은 실제와 같게. 외부 결과는 그 순간 스냅샷 |  |
+| 492 | `ai` | `ontology` | 영역의 대상·개념·속성·관계·제약을 명시한 의미 모델. 상태 변화·판단 규칙·실행 절차를 이으면 운영 결정을 돕는다 |  |
+| 493 | `db` | `data-lineage` | 데이터가 어느 원천에서 어떤 이동·변환을 거쳐 결과에 쓰였는지의 계보. 역추적·영향 범위의 근거 |  |
+| 494 | `cs` | `pdf-text-layer` | 화면 글자는 텍스트 층 · 래스터 · 윤곽선 중 하나. 쪽별 폰트 · BT/Tj · 이미지(Form 재귀 · 인라인)를 세어 가른다 |  |
+| 495 | `back` | `failure-reason-classification` | 사유는 판정이 본 만큼만 정확하다. 얕은 판정 · 예외를 False 로 삼킴 · 저장에서 상태 뭉갬 · 판정보다 넓은 문구 |  |
 
 ---
 
