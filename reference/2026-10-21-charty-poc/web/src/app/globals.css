@@ -1,0 +1,57 @@
+/* 메디킷 base.css 가 @tailwind base/components/utilities 를 이미 품고 있다(mk:styles/base.css:7-9).
+   여기서 다시 쓰면 지시문이 두 벌이 되어 두 번째 벌이 처리되지 않고 남는다(Turbopack 경고). */
+@import "../../node_modules/@medisolve-ai/medikit/dist/styles/base.css";
+
+/* 차티 테마 — stg:styles/index.css:16-25 */
+:root {
+  --ms-primary: #6f21ff;
+  --ms-primary-100: #f4f3ff;
+  --ms-primary-300: #e9e6ff;
+  --ms-primary-500: #a290ff;
+  --ms-primary-shadow: rgba(111, 33, 255, 0.3);
+  --ms-primary-hover: #5a1acc;
+  --ms-white: #ffffff;
+}
+
+/* solid(blue) 버튼 hover 보정 — stg:styles/index.css:37- (PLAN-139-T-004). 특이도 트릭 그대로 */
+.hover\:bg-primary-500.hover\:bg-primary-500:hover {
+  background-color: var(--ms-primary-hover);
+}
+
+* {
+  font-family: var(--font-pretendard), "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+    system-ui, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.chart-preview {
+  white-space: pre-wrap;
+  line-height: 1.6;
+  font-size: 12px;
+}
+
+@keyframes row-highlight {
+  from {
+    background-color: var(--ms-primary-100);
+  }
+  to {
+    background-color: transparent;
+  }
+}
+.row-highlight {
+  animation: row-highlight 1.5s ease-out;
+}

@@ -51,7 +51,7 @@ work 문서를 만들거나 상태, owner, branch, 다음 작업이 바뀌면 �
 | WORK-009 | 운영 고도화 2차 | improvement | kknaks | done | 100% | [본문](work-009-polish2.md) | SPEC-001 · SPEC-002 · SPEC-003 · SPEC-004 · SPEC-007 |
 | WORK-011 | 외부 채널 연동·메시지함·프로필·카톡 수집 | new-feature | kknaks | done | 운영 반영 2026-10-06 · 후속 SH-IMP-006~015 | [본문](work-011-external-channels.md) | SPEC-008 · SPEC-009 · SPEC-006 |
 | WORK-012 | 고도화 — WP1 운영 버그 · WP2 회의록 · WP3 AX 흐름 · WP4 메시지함→AX · SHELL | enhancement | kknaks | done | 운영 반영 2026-10-07(#16 `5c8345e` · 2루프 #17 `d2a06fa`) · dmg 서명·공증 · 운영 E2E | [본문](work-012-enhance.md) | SPEC-008 · SPEC-010 |
-| WORK-013 | 알림 — P0 조사 · WP1 사건 채널(SSE) · WP2 생성·설정·판정·백필 · WP3 화면 · WP4 셸·수집기 | new-feature | kknaks | todo | 0% | [본문](work-013-notifications.md) | SPEC-011 · SPEC-006 · SPEC-008 · SPEC-009 |
+| WORK-013 | 알림 — P0 조사 · WP1 사건 채널(SSE) · WP2 생성·설정·판정·백필 · WP3 화면 · WP4 셸·수집기 | new-feature | kknaks | done | 운영 반영 2026-10-08(#18 `3321504`) · 추가 수정 2026-10-10(#19 `baf7daf`) · 사용자 E2E 통과 | [본문](work-013-notifications.md) | SPEC-011 · SPEC-006 · SPEC-008 · SPEC-009 |
 
 ## Spec Coverage
 
