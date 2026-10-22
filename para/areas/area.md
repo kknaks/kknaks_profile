@@ -608,6 +608,8 @@ para/areas/
 | 493 | `db` | `data-lineage` | 데이터가 어느 원천에서 어떤 이동·변환을 거쳐 결과에 쓰였는지의 계보. 역추적·영향 범위의 근거 |  |
 | 494 | `cs` | `pdf-text-layer` | 화면 글자는 텍스트 층 · 래스터 · 윤곽선 중 하나. 쪽별 폰트 · BT/Tj · 이미지(Form 재귀 · 인라인)를 세어 가른다 |  |
 | 495 | `back` | `failure-reason-classification` | 사유는 판정이 본 만큼만 정확하다. 얕은 판정 · 예외를 False 로 삼킴 · 저장에서 상태 뭉갬 · 판정보다 넓은 문구 |  |
+| 496 | `front` | `uv-atlas-overlay` | 같은 UV 아틀라스의 검출 이미지를 셰이더로 겹쳐 3D 위 필터를 만든다. flipY · 색 공간 · 얇은 선은 팽창 후 max 축소 |  |
+| 497 | `front` | `broadcast-channel-snapshot-sync` | 한쪽이 전체 스냅샷+seq 를 쏘고 다른 쪽은 받기만. sessionId 예외 · 연결 판정 최악 = 문턱 + tick |  |
 
 ---
 
