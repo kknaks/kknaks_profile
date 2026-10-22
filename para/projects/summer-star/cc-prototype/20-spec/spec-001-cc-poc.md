@@ -28,11 +28,11 @@ links:
 
 # cc PoC — 데스크 현황판 · 직원 페이지 · 통역 계약
 
-`cc/back`(FastAPI) · `cc/front`(Next.js) 가 지킬 계약. **업무 흐름의 정본은 `workflow.md`**(프로필 레포 `reference/2026-10-12-cc-prototype/workflow.md`) — 이 문서는 그 흐름을 화면 · 상태 · API 로 옮긴 것이다. 둘이 다르면 workflow.md 가 이긴다.
+`cc/back`(FastAPI) · `cc/front`(Next.js) 가 지킬 계약. **업무 흐름의 정본은 `workflow-v1.md`**(프로필 레포 `reference/2026-10-12-cc-prototype/workflow-v1.md`) — 이 문서는 그 흐름을 화면 · 상태 · API 로 옮긴 것이다. 둘이 다르면 workflow-v1.md 가 이긴다.
 
 ## 0-b. 0.3.0 — E2E 2차 반영 (2026-10-13)
 
-근거 · 원문: `orchestration/work/sts-prototype/e2e-feedback-batch-2.md` #1~#26 · workflow.md 「동선이 메인 데이터」 「메모 원칙」. **이 절이 앞 절과 다르면 이 절이 이긴다.**
+근거 · 원문: `orchestration/work/sts-prototype/e2e-feedback-batch-2.md` #1~#26 · workflow-v1.md 「동선이 메인 데이터」 「메모 원칙」. **이 절이 앞 절과 다르면 이 절이 이긴다.**
 
 **원칙**
 - **동선이 메인 데이터.** 화면의 「오늘 오더」 = 동선(시술 · 순서 · 담당 · 상태). 메모는 참고용 원문(#18 #20)
@@ -59,7 +59,7 @@ links:
 
 ## 0-a. 0.2.1 덧붙임 (2026-10-13 — WP7 뒤)
 
-- **데이터 = 목데이터 시드 + 고객별 이벤트**(workflow.md 「PoC 범위」). §6 시드 build 는 캡처를 직접 읽는 대신 **시나리오 파일**(`cc/back/data/scenario/`: `seed.json` + `events/<scheduleId>.json`)을 읽는다. 시나리오는 실데이터 대본에서 만든다(researcher)
+- **데이터 = 목데이터 시드 + 고객별 이벤트**(workflow-v1.md 「PoC 범위」). §6 시드 build 는 캡처를 직접 읽는 대신 **시나리오 파일**(`cc/back/data/scenario/`: `seed.json` + `events/<scheduleId>.json`)을 읽는다. 시나리오는 실데이터 대본에서 만든다(researcher)
 - **상담 완료 이벤트**: 상담 단계 [종료] 때 그 고객 이벤트의 상담 기록 · 오더 메모 · **상담사가 넣은 시술**(단계로 추가, `paymentRequired=true` · 「수납필요」) · 결제 금액을 넣는다. 데스크는 확인 · 순서 · 배정
 - **[결제 완료]**(방 패널, 미결제 금액 옆, 데스크): 수납필요 해제 · 미결제 0 · 시술권(`ticketId`) 연결. 주석 = 「KOS 결제 조회(공식 `getPurchaseSummariesByVisitor` · `getTicketBundlesQuery`)」
 - **시술 완료 이벤트**: 시술 [종료] 때 그 작업의 담당자 메모(있으면)
@@ -88,7 +88,7 @@ E2E 피드백(`orchestration/work/sts-prototype/e2e-feedback-batch-1.md` #1~#21)
 - Out: **KOS 호출(어떤 것도)** · 결제(KOS 에서 함) · 차티 연동 · 배포 · PWA · 비밀번호 검증 · 메모 작성 · 수정 · 코디/간호사 폰에서 배정
 - 실행: 로컬만. 노트북 브라우저 `http://localhost:3600`
 
-## 2. 원칙 (workflow.md)
+## 2. 원칙 (workflow-v1.md)
 
 1. **자동은 없다.** 고객 이동 · 단계 추가 · 배정은 사람이 누른다
 2. **배정 = 데스크**(현황판). **시작 · 종료 = 그 직원 본인 화면**(의사 · 상담사 · 피부관리사)
@@ -236,7 +236,7 @@ KOS 캡처에서 그 고객의:
 
 ## 9. KOS 반영 주석 (호출 없음)
 
-조작 함수마다 아래 꼴의 주석을 넣는다. **호출 코드 없음.** 출처: workflow.md 「KOS 반영 표」 · HAR 리포트.
+조작 함수마다 아래 꼴의 주석을 넣는다. **호출 코드 없음.** 출처: workflow-v1.md 「KOS 반영 표」 · HAR 리포트.
 
 ```text
 ## ============kos api 연동 필요 ========================
