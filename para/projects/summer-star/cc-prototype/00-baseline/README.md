@@ -11,3 +11,4 @@
 | BASE-005 | 인플루언서 협찬 — Casty 로 찾고, Linky 에서 먼저 말을 건다(대화 생성) | 사용자 대화 2026-10-10 | raw | — | [본문](baseline-005-influencer-outreach-idea.md) |
 | BASE-006 | cc 2차 — 헤더 세 갈래 · 기기별 현황판 · 예약관리 데모 | 사용자 대화 2026-10-14 · 와이어프레임 | raw | — | [본문](baseline-006-nav-reservation-demo.md) |
 | BASE-007 | 기획자 피드백 — 1차 데모(데스크 · 원장 · 간호사) · 시술 관제 개념 | 기획자 피드백 2026-10-14 | raw | — | [본문](baseline-007-planner-feedback.md) |
+| BASE-008 | 명동 PoC v2 — 시술 현황판(10-16 명동점 인터뷰 · KOS 데모 지점 실연동) | 명동점 인터뷰 2026-10-16 · 사용자 대화 2026-10-20~21 | raw | DEC-005 | [본문](baseline-008-procedure-board.md) |

@@ -41,6 +41,19 @@
         "canonical 은 사용자 체크아웃 — pull/checkout 금지, fetch 만.",
         "cc-prototype 범위는 charts/cc-prototype · argocd/applications/cc-prototype*.yaml · provisioning/secrets/cc-prototype*.env.example 뿐. 도메인 ccc.medisolveai.xyz(2026-10-13)."
       ]
+    },
+    "reference": {
+      "orca_name": "ax-clinic-project",
+      "canonical_path": "/Users/kknaks/git/ax-clinic-project",
+      "remote": "https://github.com/kknaks/ax-clinic-project.git",
+      "base": "origin/main",
+      "read_only": true,
+      "notes": [
+        "참고 전용 — 병원 AX 사업 문서 레포(원천). 워크트리 만들지 않고, 수정 · 커밋 · PR 금지. fetch 만.",
+        "명동 실질 인터뷰 · 현장 자료는 para/projects/clinic-myeongdong-ax/ — strategy/07-interviews.md · sources/interviews/ · sources/meetings/ · sources/requirements/ · recordings/2026-10-08-myeongdong-marketing-interview/.",
+        "KOS 연동의 메인 참고처 — 키 값은 scripts/.env(KOS_API_tenent_dev = 운영 호스트 open-api.kos-solution.com 의 데모 지점, KOS_API_tenent = 실제 명동점 · 사용 금지) · 사용법은 para/resources/technology/2026-09-18-kos-developers-api-guide.md · 호출 코드는 scripts/kos_collect.py. 이 레포는 private, kknaks_profile 은 public — 키 값을 profile 로 옮기지 않는다.",
+        "워커는 canonical 절대경로를 read-only 로 읽는다(2026-10-20 명동 PoC v2)."
+      ]
     }
   },
   "workers": {
@@ -110,6 +123,29 @@
         "docs/ 의 cc-prototype 문단"
       ],
       "verify": "helm lint charts/cc-prototype · helm template … -f values-prod.yaml · kubectl apply --dry-run=client — 각 1회. 다른 앱 차트·앱 무수정. 시크릿 값 0. 클러스터 접근이 없으면 실배포·sync 는 pending 으로 보고"
+    },
+    "planner": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "spec",
+      "roles_dir": "roles/cc-prototype/planner",
+      "workspace": "coordinator",
+      "allowed_paths": [
+        "para/projects/summer-star/cc-prototype/20-spec/",
+        "para/projects/summer-star/cc-prototype/30-work/",
+        "reference/2026-10-12-cc-prototype/workflow-v2.md"
+      ],
+      "verify": "SPEC 의 모든 절이 DEC · workflow · 시안 중 하나를 근거로 가리킨다. 근거 없는 정책 0 · 열린 것은 열린 것으로. 링크 · 인덱스 갱신. public — 키 · 실명 0(grep)"
+    },
+    "mobile": {
+      "repo": "code",
+      "agent": "claude",
+      "brief_suffix": "app",
+      "roles_dir": "roles/cc-prototype/mobile",
+      "allowed_paths": [
+        "procedure/app/ (Flutter · iOS)"
+      ],
+      "verify": "procedure/app 에서 flutter analyze · flutter test · flutter build ios --no-codesign — 각 1회(통합은 마지막). procedure 밖 import 없음. 사용자 포트 · 프로세스 · 기기를 건드리지 않는다. 서명 · TestFlight 는 사용자 몫 — 실행 못 한 검증은 사유와 함께 pending"
     }
   },
   "default_workers": [

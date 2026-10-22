@@ -82,3 +82,9 @@ reference/2026-10-12-cc-prototype/cc-back-data/
 
 # cc-prototype KOS 화면 캡처(실제 고객 정보) — 로컬만(2026-10-14)
 reference/2026-10-12-cc-prototype/kos-screenshot/
+
+# cc-prototype KOS 웹앱 HAR(내부 API 요청 · 응답, 고객 정보 포함 가능) — 로컬만(2026-10-20)
+reference/2026-10-12-cc-prototype/*.har
+
+# 명동 PoC v2 — claude design 에서 받은 KOS 화면 캡처(실명 · 이메일) — 로컬만(2026-10-21)
+orchestration/work/myeongdong-poc-v2/design-user-r3/*.png
