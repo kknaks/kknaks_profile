@@ -17,10 +17,14 @@ aliases:
   - staple
   - spctl
   - 개발자 약관
+  - TestFlight
+  - 내부 테스터
+  - 빌드 번호
 up:
   - 2026-09-04-kakao-task
   - 2026-10-01-strong-hajin-deploy
   - 2026-10-07-strong-hajin-inbox
+  - 2026-10-22-myeongdong-poc-v2
 tags:
   - infra
   - 배포
@@ -54,6 +58,15 @@ Strong Hajin 회사판 dmg 는 이 순서로 나갔다: **Developer ID Applicati
 
 **공증은 인증서 말고 계정 상태도 본다** — Apple 개발자 약관이 갱신돼 동의하지 않은 상태면 공증 제출이 403 으로 거절된다. 서명·인증서는 멀쩡하다. 웹에서 약관에 동의한 뒤에도 반영까지 수 분이 걸려 바로 다시 내면 또 403 이다 — 간격을 두고 재시도하면 통과한다.
 
+### iOS 배포 한 벌 — TestFlight 내부 테스터
+
+iOS 는 서명 없는 앱이 기기에 아예 못 깔린다. 명동 PoC v2 시술실 앱(Flutter)은 사용자 맥북에서 이렇게 나갔다: App Store Connect 에 앱 레코드(번들 id) → `flutter build ipa --release`(Xcode Automatic signing · 팀은 사용자 맥에서만 고름) → Xcode Organizer/Transporter 로 업로드 → TestFlight **내부 테스터**에 빌드 배정 → 기기의 TestFlight 앱으로 설치.
+
+- **내부 테스터는 심사가 없다** — App Store Connect 사용자만 받을 수 있는 대신 업로드 직후 깔린다. 외부 테스터는 베타 심사가 걸려 PoC 일정에 안 맞는다
+- **빌드 번호는 업로드마다 +1** — 같은 번호는 거절된다. 버전(1.0.0)은 그대로 두고 `+N` 만 올렸다(빌드 1 ~ 3)
+- **수출 규정 질문** — 표준 https 만 쓰면 `ITSAppUsesNonExemptEncryption=false` 로 업로드 때 질문을 건너뛴다
+- **푸시는 내보내기 때 환경이 바뀐다** — `aps-environment` 가 개발 빌드는 development, TestFlight 는 production → [[apns-direct-push]]
+
 **인증서 만료를 헷갈리기 쉽다** — Developer ID(2031)와 서버 TLS(Cloudflare 엣지, 자동 갱신)는 다른 인증서다. 키체인에서 직접 읽어 확인한다.
 
 ## 경계와 오해
@@ -68,9 +81,11 @@ Strong Hajin 회사판 dmg 는 이 순서로 나갔다: **Developer ID Applicati
 - [[web-application-deployment]] — 서버 배포와 달리 클라이언트 바이너리 배포는 서명이 관문
 - [[ci-cd]] — 서명·공증을 파이프라인 단계로 넣어 배포 산출물에 자동 적용
 - [[build-flavor]] — 판마다 서명·공증
+- [[apns-direct-push]] — 서명 환경과 푸시 환경이 같이 움직인다
 
 ## 출처
 
 - [[2026-09-04-kakao-task]] — 미서명 exe 의 SmartScreen 경고 수용 + 빌드 중 SAC 하드 차단(MS 정책 업데이트 후) → SAC OFF 로 우회
 - [[2026-10-01-strong-hajin-deploy]] — macOS Developer ID 서명 → 공증 → staple → spctl 로 회사판 medi-ax 배포. ad-hoc 판이 깨져 종료된 사고
+- [[2026-10-22-myeongdong-poc-v2]] §2 — Flutter iOS 시술실 앱을 TestFlight 내부 테스터로 아이폰 · 아이패드에 설치, 빌드 번호 +1 · 심사 없음(SPEC-004 §2.4 · 코드 #4 · #5)
 - [[2026-10-07-strong-hajin-inbox]] §3 — 약관 만료로 공증 403, 동의 뒤 반영 지연을 재시도로 통과
