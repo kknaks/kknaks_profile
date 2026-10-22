@@ -14,10 +14,15 @@ aliases:
   - 목데이터 시나리오
   - 시드 + 이벤트
   - 대본
+  - 데모 환자
+  - 데모 테넌트 채우기
+  - reserveV2
+  - 예약 그룹
 up:
   - 2026-10-01-strong-hajin-deploy
   - 2026-10-14-sts-prototype
   - 2026-10-19-cc-nav-resv
+  - 2026-10-22-myeongdong-poc-v2
 tags:
   - db
   - 운영
@@ -51,7 +56,15 @@ Strong Hajin 은 `seed_catalog(demo_organization=False)` 로 카탈로그만 깔
 - **원천에 있는 칸은 시드도 갖는다** — 처음 시드는 화면이 그때 쓰던 칸만 들고 있기 쉽다. 새 화면 요구가 원천에 있는 칸(cc-prototype 2차: 한글 읽기 · 전화번호 · 고객 분류)을 쓰면, 화면을 포기하거나 메모에서 짐작하지 말고 **시드에 그 칸을 더한다.** 공개본 값은 형식만 맞춘 가짜(가짜 이름에 맞춘 읽기 · 가짜 번호), 거의 비어 있는 칸은 시연용 실례 하나 → [[no-inference-from-free-text]]
 - **「아무도 접수 안 한 아침」 에서 시작한다** — 한낮 캡처를 그 시각 상태로 재구성한 시드는 위치 · 단계 · 큐 · 담당이 전부 짐작(cc-prototype 22개 추정)이었다. 아침에서 시작해 사건마다 대본 방문의 실데이터를 넣으면 짐작이 사라지고, 사건 전에 보이면 안 되는 것(미래 정보)도 막힌다 → [[as-of-visibility]]
 
-## 왜 중요한가
+### 원천의 데모 지점을 채우기 — 우리 DB 가 아니라 원천에 시드
+
+우리 화면이 원천을 실제로 조회하면(→ [[strangler-fig]]) 목데이터는 우리 DB 가 아니라 **원천의 데모 지점(테넌트)** 에 넣어야 한다. 명동 PoC v2 는 KOS 데모 지점에 공개 API 로 가상 고객 190건(국적 칸 5 × 30분 슬롯 19 × 2명)을 만드는 스킬을 두었다.
+
+- **가드 둘 — 어디에 · 무엇을** — 데모 표식 계정이 없으면(= 운영 지점) 멈춘다. 만든 것에는 예약 메모 표식을 달고, 목록 · 삭제는 **표식이 있는 우리 것만**. 우리가 만들지 않은 일정은 건드리지 않는다
+- **원천의 기본값이 조용히 섞는다** — 시간 칸 예약(`reserveByTimeSlot`)은 예약 그룹을 못 정해 38건이 전부 기본 그룹(국내)에 들어갔다. 그룹을 받는 `reserveV2`(`occupiedResources[].reservationGroup`)로 바꾸고, 1건을 먼저 만들어 재조회로 그룹을 확인한 뒤 나머지를 만들었다. 결과도 원천을 다시 읽어 그룹 · 시간 · 국적을 대조(불일치 0)
+- **공개 API 로 만들 수 없는 상태가 있다** — 공개 API 로 만든 내원객은 늘 첫내원(재내원 불가)이고 접수 · 수납 · 방 배정 쓰기가 없다. 그래서 시드는 「예약」 까지, 카드로 띄울 고객은 데모 직전에 원천 화면에서 손으로 진행한다 → [[public-vs-internal-api]]
+- **이름은 전부 가상 · 연락처 없음** — 데모 지점이라도 사람처럼 보이는 값은 지어낸 것으로
+
 
 **적재 도구는 로컬 DB 에만 돈다.** reset·import 둘 다 dev 프로파일 + localhost `ax_demo*` 가드가 있고, 운영 DB 에 넣는 경로는 코드에 없다. 가드를 풀지 않고 운영에 넣는 길은 **로컬에서 적재 → `pg_dump`(세션 표 제외) → 운영 `pg_restore`** 다. 코드 변경 없이 같은 데이터가 간다. dump 는 파일로 남기지 않고 stdin 으로 흘려 복원했다.
 
@@ -72,9 +85,11 @@ Strong Hajin 은 `seed_catalog(demo_organization=False)` 로 카탈로그만 깔
 - [[as-of-visibility]] — 시드 시점과 사건 시점을 맞추는 이유
 - [[public-vs-internal-api]] — 원천 시스템을 부르지 않는 PoC 가 목데이터로 가는 이유
 - [[no-inference-from-free-text]] — 시드에 넣을 칸을 고르는 채움률 판정
+- [[strangler-fig]] — 원천을 감싸 조회하면 시드도 원천 쪽에 들어간다
 
 ## 출처
 
 - [[2026-10-01-strong-hajin-deploy]] — 조직도 9표 양식 → mediness prod 4명 조회 → 로컬 import → dump 로 운영 복원
 - [[2026-10-14-sts-prototype]] §2 — cc-prototype 목데이터 시나리오: 한낮 재구성 시드(추정 22개)를 버리고 아침 시드 + 진행 중 이벤트로(`scenario-format.md` · WP7b)
 - [[2026-10-19-cc-nav-resv]] §2 — KOS 에 있는 칸(`phoneticName` · `phone` · `categories`)을 시드에 더함(DEC-004 D-24 · SPEC-002 §5.1), 재시드 때 볼륨의 `seed.json` 도 지움(§3)
+- [[2026-10-22-myeongdong-poc-v2]] §2 — KOS 데모 지점에 국적별 예약 칸 · 슬롯당 2명 데모 환자를 공개 API 로 채움 · 데모 표식 가드 · 메모 표식 · `reserveByTimeSlot` → `reserveV2`(`tools/kos_demo_patients.py` · 스킬 `kos-demo-patients` · `demo-patients-2026-10-22.md`)

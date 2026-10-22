@@ -12,48 +12,48 @@
 
 ## 2. 적용한 기술·개념
 
-- **KOS 내부 API 쓰기 체인(HAR 역공학)** — 공개 API 에 없는 호출 · 수락 · 완료 · 방 · 작업 취소를 KOS 웹이 쓰는 내부 API 로 보낸다
+- **KOS 내부 API 쓰기 체인(HAR 역공학)** [[public-vs-internal-api]] — 공개 API 에 없는 호출 · 수락 · 완료 · 방 · 작업 취소를 KOS 웹이 쓰는 내부 API 로 보낸다
   - 왜 이걸 골랐나: 공개 API(쓰기 25개 전수)에는 담당자 · 호출 · 집도의 · 완료 쓰기가 없다. 「KOS 에 요청」은 PoC 기간 안에 안 된다 → HAR 로 경로 · 본문을 읽고 데모 지점에 실호출로 하나씩 확인(10-20 4종 200 · 10-21 관리자 권한 재확인 · 다른 원장 id 로 대신 수락 200)
   - 무엇이 어려웠나: ① `sign-in` 응답 id 를 담당자로 넣으면 **200 을 주고 무시** — 진짜는 `get-user-account` 의 `data.id` ② 같은 단계로 `change-flow-step` 하면 400 ③ 시술 작업에 방이 없으면 `call-tasks-doctors` 400 `roomId NotFound`(방은 「방 배정」 ETCETERA 작업에만) → 호출 앞에 `change-tasks-room` 을 끼워 **방 → 담당자 → 호출** ④ [귀가 대기]를 flow-step 만 보내면 「방 배정」이 준비중으로 남아 방이 안 빈다 → `cancel-flow-tasks` → `PROCEDURE_DONE`
   - 근거: `procedure/back/app/domain/kos_ops.py:12-18` · `:29` · `:55` · `kos/client.py:27` · `_RESUME.md` §2 10-20 · 10-21 「(사실)」 줄 · `e2e-feedback-batch-1.md` #1 · #3 · SPEC-003 §8
-- **조작 대기열 + 1.5초 확인 조회** — ccc 상태를 먼저 바꾸고 KOS 반영은 `kos_op` 대기열로(확인 · 재전송 · 3회 실패 · 뒤 op 멈춤)
+- **조작 대기열 + 1.5초 확인 조회** [[external-write-queue]] — ccc 상태를 먼저 바꾸고 KOS 반영은 `kos_op` 대기열로(확인 · 재전송 · 3회 실패 · 뒤 op 멈춤)
   - 왜: 조작 응답이 KOS 를 기다리면 화면이 굳는다. 대신 「KOS 반영 중 · 실패」를 카드에 보이고, KOS 에 있는 값은 10초 조회로 KOS 기준 덮어쓰기(반영 대기 중인 필드만 보호)
   - 무엇이 어려웠나: 처음엔 「앞 op confirmed(= 다음 10초 조회) 뒤 다음 op」 → 방 · 담당자 · 호출 3단계가 KOS 에 20 ~ 30초 늦게 떴다(E2E-6). 2xx 면 바로 다음 op · 보낸 게 있으면 1.5초 뒤 조회 1회. 그러자 앞 op(호출 WAITING)의 확인 조건이 뒤 op(수락 READY)에 덮여 영영 안 맞아 **재전송이 KOS 를 되돌리는** 문제 → 「뒤 op 이 같은 값을 바꿨으면 앞 op 은 확인」(`superseded`)
   - 근거: `back/app/kos/runtime.py:23` · `kos/ops.py:27` · `:70` · SPEC-003 §4.4 · 리뷰 r1 W1 · W2 · r2 N2
-- **SSE 전체 스냅샷** — 현황판 · 의국 화면 · 앱이 같은 `board` 이벤트 하나를 받는다
+- **SSE 전체 스냅샷** [[server-sent-events]] — 현황판 · 의국 화면 · 앱이 같은 `board` 이벤트 하나를 받는다
   - 왜: 폴링은 의국 화면에서 호출이 늦게 보인다(사용자 「의국에서도 실시간으로」). 바뀐 것만 보내면 합치기 · 순서 · 빠진 이벤트 복구가 front · 앱에 생긴다 — 하루 한 구역이라 스냅샷이 작아(HAR 15건 ≈ 32KB) 통째로 보내고 규칙 계산(`canStart` 등)은 back 한 곳에
   - 무엇이 어려웠나: `EventSource` 는 헤더를 못 실어 `?token=` → 접근 로그에 토큰이 남는다(리뷰 F3) → uvicorn 쿼리 지움 필터. 시간 경과로 바뀌는 「확인이 필요」 때문에 10초마다 무조건 발행. Flutter 는 `EventSource` 가 없어 스트림 요청 + 직접 파서 · 45초 무소식이면 재연결. 배포는 ingress 버퍼링 끔 · timeout 3600s
   - 근거: `back/app/api/board.py:15` · `main.py:27` · `app/lib/sse/sse_parser.dart` · infra #22 · SPEC-003 §7.5 · SPEC-004 §7.1
-- **APNs 직접(ES256 JWT · HTTP/2) + 알림 액션 수락** — Firebase 없이 원장 호출 푸시, 잠금 화면 · Apple Watch 에서 바로 [수락]
+- **APNs 직접(ES256 JWT · HTTP/2) + 알림 액션 수락** [[apns-direct-push]] — Firebase 없이 원장 호출 푸시, 잠금 화면 · Apple Watch 에서 바로 [수락]
   - 왜: 앱이 iOS 만이라 FCM 을 끼울 이유가 없다(의존 0 · 키 하나). 원장이 앱을 열지 않고 받게(사용자 「와치에도 · 수락 버튼까지」)
   - 무엇이 어려웠나: JWT 는 20 ~ 60분 재사용 → 40분 · `.p8` · Team ID 는 레포 밖. 의사 알림에만 카테고리 `CALL`(관리자는 원장을 골라야 해서 액션 없음). 수락은 Flutter 가 아니라 **네이티브 `AppDelegate` 가 키체인 토큰으로 백그라운드 요청**(앱이 꺼져 있어도) → 결과를 로컬 알림 한 줄로. 번들 id 를 바꾼 뒤 옛 토큰이 400 `DeviceTokenNotForTopic` → 죽은 토큰 400 3종 · 410 이면 기기 행 삭제. 발송은 `push_log`, 수락 출처는 `X-Accept-Source` 로
   - 근거: `back/app/push/apns.py:17` · `:30` · `:43` · `service/push.py:27` · `:97` · `api/actions.py:42` · `app/ios/Runner/AppDelegate.swift:23-25` · SPEC-004 §5-1
-- **Flutter iOS → TestFlight** — 시안(간호사 모바일 · 시술실 태블릿)을 Flutter 로, 사용자 맥북에서 빌드 · 업로드 · 내부 테스터 설치
+- **Flutter iOS → TestFlight** [[code-signing]] · [[build-flavor]] — 시안(간호사 모바일 · 시술실 태블릿)을 Flutter 로, 사용자 맥북에서 빌드 · 업로드 · 내부 테스터 설치
   - 왜: 시술실은 태블릿 · 폰. 웹으로는 푸시 · 백그라운드 수락 · 마이크 통역이 약하다. 내부 테스터는 심사가 없다
   - 무엇이 어려웠나: 팀 id · 번들 id 를 public 레포에 안 넣으려고 `Signing.xcconfig`(gitignore) 의 `APP_BUNDLE_ID`. 처음엔 기기 back = 같은 Wi-Fi 맥 IP(ATS 로컬 허용) → 「배포 먼저」로 바뀌어 release 는 배포 주소 고정 · 서버 주소 칸은 debug 만(T8). 앱 아이콘이 Flutter 기본(A7) · 빌드 번호는 업로드마다 +1 · 최소 iOS 15
   - 근거: `app/lib/config/server.dart:40` · `ios/Podfile:2` · 코드 #4 · #5 · SPEC-004 §2.4
-- **k8s Secret 파일 마운트 — `/run/secrets` 함정** — APNs `.p8` 를 Secret 파일로
+- **k8s Secret 파일 마운트 — `/run/secrets` 함정** [[kubernetes]] — APNs `.p8` 를 Secret 파일로
   - 무엇이 어려웠나: Secret 을 `/run/secrets` 에 통째로 ro 마운트 → `/var/run` = `/run` 이라 kubelet 의 서비스계정 토큰 마운트가 막혀 back CrashLoop(`mkdirat … read-only file system`). → `/etc/apns` 로 옮기고 `automountServiceAccountToken: false`(back 은 k8s API 를 안 쓴다)
   - 근거: infra #23 본문 · SPEC-004 §2.3 `APNS_KEY_PATH`
-- **이미지 태그 = 커밋 전체 sha · ArgoCD 수동 sync** — `latest` · `main` 태그 없음
+- **이미지 태그 = 커밋 전체 sha · ArgoCD 수동 sync** [[ci-cd]] — `latest` · `main` 태그 없음
   - 왜: 무엇이 떠 있는지 차트 값 하나로 알 수 있게 · 잘못 추측한 태그로 배포하지 않게(차트가 `image.tag` 없으면 렌더 실패)
   - 무엇이 어려웠나: Actions 는 `github.sha`(40자)로 민다 — 차트 `values-prod.yaml` 도 40자여야 한다(PR 제목의 7자 sha 로는 이미지가 없다). ConfigMap 이 바뀌면 back 재시작이 필요해 sync 는 코디가 수동(`cc-prototype-prod`)
   - 근거: `.github/workflows/procedure-back-image.yml:45` · infra #22 차트 `required "image.tag …"` · #24(`329b543…` 40자) · `_RESUME` 10-21 「태그 = 전체 sha」
-- **bcrypt 로그인 · 잠금** — 계정 카드(비밀번호 없음)에서 아이디 + 비밀번호로(OQ-601)
+- **bcrypt 로그인 · 잠금** [[password-login-hardening]] — 계정 카드(비밀번호 없음)에서 아이디 + 비밀번호로(OQ-601)
   - 왜: 배포 주소가 공개다. 카드 목록 API 자체가 계정 이름을 흘린다 → 목록 API 제거
   - 무엇이 어려웠나: 비밀번호 원천 = env/Secret → 서버 시작 · 계정 동기화 때 해시(맞으면 다시 안 만듦). 없는 아이디 · 틀린 비밀번호 · 해시 없는 계정을 같은 401 · 같은 시간(가짜 해시 비교)으로. 같은 아이디 5회 실패 → 1분 429(메모리) · 72바이트 넘는 비밀번호
   - 근거: `back/app/service/auth.py:35-38` · `service/accounts.py` `_passwords` · 코드 #4 · SPEC-004 §3.3
-- **권한은 back 이 조작 API 마다** — 의사 = 자기 원장으로만 수락 · 지정 호출은 지정 원장만 · 간호사 수락 403 · 관리자는 원장을 골라 수락
+- **권한은 back 이 조작 API 마다** [[delegated-authorization]] — 의사 = 자기 원장으로만 수락 · 지정 호출은 지정 원장만 · 간호사 수락 403 · 관리자는 원장을 골라 수락
   - 왜: 앱 버튼 숨김만으로는 안 된다(사용자 「권한 체크는 중요」). 역할 · 원장 id 는 토큰이 아니라 DB 의 지금 값으로
   - 근거: `back/app/service/actions.py` `accept` · SPEC-004 §3.4
-- **`reserveV2` 예약 그룹 지정** — 데모 고객을 국적별 예약 칸(4층 5칸)에 슬롯당 2명
+- **`reserveV2` 예약 그룹 지정** [[seed-data]] — 데모 고객을 국적별 예약 칸(4층 5칸)에 슬롯당 2명
   - 무엇이 어려웠나: `reserveByTimeSlot` 은 그룹을 못 정해 **전부 기본 그룹(국내)** 에 들어갔다 → `reserveV2` 의 `occupiedResources[].reservationGroup` 으로 · 국내 아닌 32건 취소 후 재생성. 공개 API 로 만든 내원객은 모두 첫내원(재내원 불가) · 접수 · 수납 · 방 배정 API 가 없어 카드로 띄우려면 KOS 화면
   - 안전: 데모 표식 계정이 없으면(= 운영) 멈춤 · 예약 메모 표식으로 우리 것만 list/delete
   - 근거: `procedure/tools/kos_demo_patients.py:33` · `:115` · `:259-262` · `.claude/skills/kos-demo-patients/SKILL.md` · 코드 #5 · `demo-patients-2026-10-22.md`
-- **반응형 글자 배율** — 아이패드에서 웹 디자인 시스템 px(캡션 13 등) 그대로라 글자가 작았다(T4 「반응형 고려해서 비율로 했어?」)
+- **반응형 글자 배율** [[proportional-ui-scale]] — 아이패드에서 웹 디자인 시스템 px(캡션 13 등) 그대로라 글자가 작았다(T4 「반응형 고려해서 비율로 했어?」)
   - 무엇을: 폰 = 1 · 태블릿 = 짧은 변 / 700(1.15 ~ 1.3)을 `MediaQuery.textScaler` 로 모든 글자에, 버튼 높이 · 격자 최소 폭도 같은 배율. 웹 카드 높이도 같은 결(E2E-12) — 판 높이 절반을 `100cqh` 로
   - 근거: `app/lib/theme/tokens.dart:75-76` · `front/app/(main)/procedures/live/page.tsx:199` · `e2e-device-feedback-batch-1.md` T1 ~ T4
-- **ccc DB 가 KOS 를 품는다** — 모든 행 = ccc id + `kos_id` · KOS 원천은 덮어쓰고 ccc 에만 있는 것(마취 · 호출 기록 · 수락 · [시작] · 귀가 대기)은 이벤트 로그로 쌓기만
+- **ccc DB 가 KOS 를 품는다** [[strangler-fig]] — 모든 행 = ccc id + `kos_id` · KOS 원천은 덮어쓰고 ccc 에만 있는 것(마취 · 호출 기록 · 수락 · [시작] · 귀가 대기)은 이벤트 로그로 쌓기만
   - 왜: 장기 방향이 「KOS 를 화면 하나씩 교체」 — 원천만 바꾸면 되게. 호출은 지우지 않고 「유효 호출 = 가장 최근 호출」로 수락 범위 · [시작] 조건을 계산(되돌리기는 나중에 로그로)
   - 근거: SPEC-003 §3 · §5.4 · DEC-005 D-12 · D-25
 
