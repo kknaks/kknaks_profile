@@ -2,12 +2,12 @@
 type: spec
 id: SPEC-003
 title: "명동 PoC v2 — 시술 현황판(procedure) · KOS 데모 지점 실연동 계약"
-version: 0.3.0
+version: 0.4.2
 status: draft
 product: cc-prototype
 feature: procedure
 created_at: 2026-10-21
-updated_at: 2026-10-22
+updated_at: 2026-10-23
 tags:
   - product/cc-prototype
   - feature/procedure
@@ -22,12 +22,19 @@ links:
     - "[[spec-002-cc-nav-reservation|SPEC-002]]"
   works:
     - "[[work-003-procedure-board|WORK-003]]"
+    - "[[work-005-overall-board-procedure|WORK-005]]"
   releases: []
   related: []
 ---
 
 # 명동 PoC v2 — 시술 현황판 계약
 
+> 0.4.2(2026-10-23 · r3): review-doc r2(`orchestration/work/overall-board/review-doc-r2.md` FAIL 1 · WARN 6) 반영 — §5.11 · §5.12(방향 판정 기준 · 경합 ② 비교 · 그사이 귀가 대기) · §6.4 고객 탭 순서 · §7.3 · 부록 E #3 · **부록 G(새 — r2 처분표)** · SPEC-004 0.3.1. 줄 끝 `(r3)`.
+> 0.4.1(2026-10-23 · r2): review-doc r1(`orchestration/work/overall-board/review-doc-r1.md` FAIL 2 · WARN 12) 반영 — §3.2 · §5.1 · §5.11 · §5.12 · §6 머리 표 · §6.3 · §6.4 · §6.7 · §7.3 · §9 · §10 · 부록 E(10줄) · **부록 F(새 — r1 처분표)** · 머리말 우선순위 · SPEC-004 §3.4 한 줄. 줄 끝 `(r2)`.
+> 0.4.0(2026-10-23): **시술 현황 → 「Ceramique 전체현황판」 시안의 「현황 › 시술 현황」 하위 화면으로 옮긴다** — 원천 = `orchestration/work/overall-board/_RESUME.md` §2 2026-10-23 결정 줄(아래 근거 `_RESUME 10-23`) ·
+> 시안 `reference/2026-10-23-cc-overall-board/design/Ceramique 전체현황판.dc.html`(근거 `M:줄`) · 읽기 리포트 `orchestration/work/overall-board/design-analysis-report.md`(근거 `DA §n`) ·
+> 지금 코드 인벤토리 `orchestration/work/overall-board/current-board-report.md`(근거 `CB §n`). 바뀐 절: §1 · §2.4 · §3.2 · §5.1 · §5.9 · **§5.12(새 — 카드 순서)** · §6 머리 표 · §6.2 · §6.3 · §6.4 · §6.7 ·
+> §7.2 · §7.3 · §7.4 · §7.5 · §9 · §10 · 부록 A · **부록 E(새 — 10-23 결정 줄 → 절 반영표)**. 뒤집힌 줄은 ~~취소선~~ + 「(0.4.0 바뀜)」, 새 줄 끝에 `(0.4.0)`. 예약 현황 · 원내 현황 · 다른 상단 메뉴는 이 문서 범위 밖(§1.2).
 > 0.3.0(2026-10-22): **머지 전 코드 동기화** — 사용자 E2E batch 1(`e2e-feedback-batch-1.md` E2E-1 ~ 12) 처분 · `_RESUME.md` §2 10-21 뒤쪽 줄 ·
 > 코드 `kknaksss/cc-prototype` main `329b543`(`procedure/back` · `procedure/front`)을 따른다. §1 · §2.3 · §3.2 · §3.3 · §4.4 · §5.1 · §5.4 · §5.7 · §5.11 ·
 > §6 화면 정본 칸 · §6.1 · §6.3 · §7.1 ~ §7.4 · §8 · §9 · §10 · 부록 C(새) · **부록 D(새 — `_RESUME` §2 100줄 · 피드백 · 리뷰 · 처분 · 배포 사실 → 절 전수 대응표)**. 계정 · 권한 · 통역 · 푸시는 SPEC-004 가 정본(이 문서는 가리키기만). 바뀐 줄 끝에 `(0.3.0)`.
@@ -40,10 +47,11 @@ links:
 > `procedure/back`(FastAPI) · `procedure/front`(Next.js) 가 지킬 계약. 정책의 원천은 DEC-005(D-01 ~ D-34),
 > 화면 정본은 확정 시안 `orchestration/work/myeongdong-poc-v2/design-user-r4/Ceramique 시술현황판 v2.dc.html`
 > (읽기 리포트 `design-r3-read-report.md` P1 ~ P19 · `design-r4-read-report.md` Q1 ~ Q4). 시안과 DEC-005 가 다르면
-> DEC-005 가 맞다(§6.7). 업무 흐름은 `reference/2026-10-12-cc-prototype/workflow-v2.md`.
+> DEC-005 가 맞다(§6.7). **0.4.0 부터는 `_RESUME 10-23` 결정 줄 > DEC-005**(D-17 · D-18 · D-22 일부를 뒤집는다 — 부록 A · 부록 E). DEC-005 파일은 개정하지 않는다 (r2) — `_RESUME 10-23` 「review-doc r1 기본값 ①」 줄. 업무 흐름은 `reference/2026-10-12-cc-prototype/workflow-v2.md`.
 >
 > 근거 표기: `D-nn` = DEC-005 · `P-nn` / `Q-n` = 시안 읽기 리포트 · `HAR` = `_RESUME.md` §2 「(사실)」 줄 · `API` =
 > `kos-demo-api.md` · `기본값` = 결정에 없어 이 문서가 고른 구현값(§10 에 같이 올린다).
+> 0.4.0 근거 표기: `_RESUME 10-23` = `orchestration/work/overall-board/_RESUME.md` §2 2026-10-23 줄 · `M:n` = 전체현황판 시안 줄 · `DA §n` · `CB §n` = 위 두 리포트 절 (0.4.0)
 > 이 레포는 public — 키 · 토큰 · 비밀번호 · 계정 이메일 · 실명 · KOS id 값은 쓰지 않는다. env 는 이름만.
 
 ## 1. 범위
@@ -58,6 +66,8 @@ links:
 | ~~ccc 로그인 = 관리자 계정 1개(값은 env)~~ → 계정 = 관리자 · 의사 · 간호사 · **아이디 + 비밀번호**(SPEC-004 §3). 웹(간호 스테이션 · 의국)은 관리자 계정으로 쓴다 (0.3.0) | D-05 · `_RESUME` 10-21 OQ-601 닫음 줄 · SPEC-004 A-03 · A-16 |
 | KOS 데모 지점 실연동 — 조회(10초 · 1시간) · 쓰기(방 넣기 · 담당자 · 호출 · 수락 · 진행 · 완료 · 작업 취소 · 귀가 대기) (0.3.0) | D-06 ~ D-11 · E2E-1 · E2E-3 |
 | 조작 이벤트 로그 · KOS 반영 상태 | D-09 · D-12 · D-13 |
+| 화면 = 「Ceramique 전체현황판」 시안의 **「현황 › 시술 현황」 하위 화면**(헤더 메뉴 「현황」 하나 · 사이드바 없음 — §6.2) (0.4.0) | `_RESUME 10-23` 목적 · 헤더 줄 · `M:63-92` · `M:777-1153` |
+| **카드 드래그 순서** — back DB 저장 · 모든 화면 공유(SSE 스냅샷) · KOS 반영 없음(§5.12) (0.4.0) | `_RESUME 10-23` 드래그 순서 줄 · `M:1425-1430` · `M:1464-1472` |
 | ~~이번 목표 = 사용자 **로컬 E2E**. 배포(D-03)는 그 뒤 마지막 WP~~ → 로컬 E2E 뒤 **배포 완료**(2026-10-21 · `ccc.medisolveai.xyz` = procedure · WORK-004 WP10) (0.3.0) | D-03 · `_RESUME` 10-21 배포 완료 줄 |
 
 ### 1.2 Out
@@ -73,6 +83,7 @@ links:
 | 운영 명동점 키 · 운영 지점 | D-06 |
 | 연락처 · 생년월일 · 고객 메모 저장 | D-14 |
 | 시술 준비(약물 · 장비) 표시 (0.3.0) | `_RESUME` 10-20 「시술 준비는 현황판에 표시하지 않는다」 줄 |
+| 전체현황판의 **예약 현황 · 원내 현황** 하위 화면 · 상단 메뉴 「현황」 밖 5개(고객 · 예약 · 시술 기록 · 매출 · 설정) — 예약 현황은 workflow-v2 예약 구간 → KOS API 조사 뒤 다음 판 (0.4.0) | `_RESUME 10-23` 목적 · 헤더 · 예약 현황 줄 |
 
 ## 2. 폴더 · 실행
 
@@ -153,8 +164,8 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 | `cc/front/public/ceramique-logo-color.svg` | `public/` | 그대로 |
 | `cc/front/{tailwind.config.ts, postcss.config.mjs, next.config.ts, tsconfig.json, eslint.config.mjs, global.d.ts}` | 같은 자리 | 그대로 |
 | `cc/front/package.json` 의 의존성(`@medisolve-ai/medikit` 1.4.0 · `pretendard` 1.3.9 · next · react · tailwind 3) | `package.json` | 버전 그대로 · 이름 `procedure-front` · 포트 3700 |
-| `cc/front/components/common/AppHeader.tsx` | `components/common/` | **모양만**(높이 57 · 로고 · 메뉴 간격 · 시계 · 로그아웃). 메뉴 = 「시술 현황」 하나(D-17) · 세션 = §7.1 |
-| `cc/front/app/(main)/desk/page.tsx` 의 틀(사이드바 `Menu` · main 여백 · 제목 줄 · 토스트) | `app/(main)/procedures/` | **모양만**. 메뉴 항목 = 「시술 현황」 |
+| `cc/front/components/common/AppHeader.tsx` | `components/common/` | **모양만**(높이 57 · 로고 · 메뉴 간격 · 시계 · 로그아웃). ~~메뉴 = 「시술 현황」 하나(D-17)~~ (0.4.0 바뀜) → 메뉴 = 상단 「현황」 하나 + 호버 드롭다운(§6.2) · 세션 = §7.1 |
+| `cc/front/app/(main)/desk/page.tsx` 의 틀(~~사이드바 `Menu`~~ (0.4.0 바뀜 — 사이드바 없음 · §6.2) · main 여백 · 제목 줄 · 토스트) | `app/(main)/procedures/` | **모양만**. ~~메뉴 항목 = 「시술 현황」~~ (0.4.0 바뀜 — 메뉴는 헤더 드롭다운만) |
 | `cc/front/components/desk/Aside.tsx` 의 패널 틀(폭 340 · 반경 12 · 그림자 · 검색 · 탭) | `components/` | **모양만** — 내용은 §6.4 |
 | `cc/front/lib/memo.tsx` `MemoCard` · `cc/front/lib/time.ts`(`pad` · `fmtElapsed`) · `cc/front/lib/hooks.ts`(`useNow` · `useWide`) | `lib/` | 그 함수만 복사 |
 | `cc/front/Dockerfile` · `.dockerignore` · `.gitignore` | 같은 자리 | 포트 · 이름만 바꿔 복사(배포 WP 에서 쓴다) |
@@ -179,7 +190,7 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 | `room` | `id` · `kos_id` · `zone_kos_id` · `title` · `order` · `synced_at` | KOS 내부 `get-rooms`(1시간) |
 | `customer` | `id` · `kos_id` · `name` · `phonetic_name` · `nationality` · `is_new` · `chart_number` · `synced_at` | 일정 `visitor`(10초) |
 | `visit`(일정 1건 = 카드 1장) | `id` · `kos_id` · `customer_id` · `zone_kos_id` · `flow_step` · `flow_step_at` · `order_memo` · `room_id` · `room_assigned_at` · `kos_updated_at` · `synced_at` · `seen_at`(ccc 가 처음 본 시각) · `present`(마지막 일정 조회에 있었나) · `open_task_seqs`(json — KOS 에서 끝나지 않은 작업 sequence, 종류 무관 · [귀가 대기] 취소 대상 · §5.7) (0.3.0) | 일정(10초) · 코드 `repository/db.py` |
-| `procedure`(작업 1개) | `id` · `visit_id` · `kos_sequence`(`kos_id` 역할 — 일정 `kos_id` + sequence) · `kos_order` · `title` · `kos_status` · `payment_required` · `doctor_staff_ids`(json) · `assignee_staff_ids`(json) · `doctor_assigned_at` · `doctor_call_at` · `completed_at` · `synced_at` · `present`(KOS 작업 목록에 있나 · 빠지면 0, 행은 남김) · `room_kos_id`(작업에 들어간 방 — 호출 전 방 넣기 판단 · §5.4) · **`kind`**(`procedure` = KOS `PROCEDURE` · `etc` = `ETCETERA`「방 배정」 등 — 표시만) (0.3.0) | 일정 `tasks[]` type `PROCEDURE` **+ `ETCETERA`**(10초) — E2E-4 (0.3.0) |
+| `procedure`(작업 1개) | `id` · `visit_id` · `kos_sequence`(`kos_id` 역할 — 일정 `kos_id` + sequence) · `kos_order` · `title` · `kos_status` · `payment_required` · `doctor_staff_ids`(json) · `assignee_staff_ids`(json) · `doctor_assigned_at` · `doctor_call_at` · `completed_at` · `synced_at` · `present`(KOS 작업 목록에 있나 · 빠지면 0, 행은 남김) · `room_kos_id`(작업에 들어간 방 — 호출 전 방 넣기 판단 · §5.4) · **`kind`**(`procedure` = KOS `PROCEDURE` · `etc` = `ETCETERA` **전부 저장** — 방 있는 것(「방 배정」)은 스냅샷에서 뺀다 · §5.1 (r2)) (0.3.0) | 일정 `tasks[]` type `PROCEDURE` **+ `ETCETERA`**(10초) — E2E-4 (0.3.0) |
 
 **ccc 원천(KOS 에 없음 · D-09 · D-12)**
 
@@ -195,8 +206,12 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 | `kos_op`(KOS 반영) | `id` · `event_id` · `visit_id` · `seq`(그 visit 안 순서) · `api`(`open` \| `internal`) · `path` · `body`(json) · `expect`(json — 확인 조건) · `status`(`pending` 대기 · `sent` 보냄 · `confirmed` 확인 · `failed` 실패 — 앞 op 실패로 보내지 않은 op 도 `failed`(사유: 앞 op 실패로 보내지 않음) (0.2.0 · r2)) · `attempts` · `checks`(sent 뒤 `expect` 가 안 맞은 조회 수 · 2 면 재전송) (0.3.0) · `last_error` · `created_at` · `updated_at` | D-09 · D-12 |
 | `kos_token` | `kind`(`open` \| `internal`) · `token` · `expires_at` · `account_kos_id`(internal 만) | D-07 |
 | `sync_state` | `key`(`schedules` · `master`) · `last_ok_at` · `last_error` | 시안 제목 줄 「마지막 KOS 동기화」 |
+| `board_order`(카드 드래그 순서 · 하루 1행) (0.4.0) | `day`(KST 날짜 `YYYY-MM-DD` · PK) · `visit_ids`(json — 귀가 대기 아닌 카드의 visit id 를 앞에서부터) · `updated_at` · `updated_by`(로그인 아이디) · `event_id`(그 순서를 만든 `event_log`) | `_RESUME 10-23` 드래그 순서 줄 · §5.12 |
 
-`event_log.type`: `anes_start` · `anes_end` · `call_create` · `call_reassign_all` · `call_accept` · `proc_start` · `proc_finish` · `home` · `kos_failed` — D-13 · D-27 「로그에는 수락한 원장 · 시각 · 시술 · 호출 id」.
+`event_log.type`: `anes_start` · `anes_end` · `call_create` · `call_reassign_all` · `call_accept` · `proc_start` · `proc_finish` · `home` · `kos_failed` · **`board_order`**(0.4.0) — D-13 · D-27 「로그에는 수락한 원장 · 시각 · 시술 · 호출 id」.
+`board_order` payload = `{day, visitIds}`(저장된 목록 — §5.12 거르기 뒤) · `visit_id` 칸은 비움(카드 여럿) (0.4.0) — D-13(조작은 이벤트 한 줄 · 다른 표는 투영) · `_RESUME 10-23`.
+
+- `board_order` 는 ccc 원천(KOS 에 없음 · `kos_op` 0줄). 새 표라 서버 시작 때 `CREATE TABLE IF NOT EXISTS` 로 생긴다 — 기존 DB 파일에 열 추가(ALTER) 없음(코드 `repository/db.py` `SCHEMA` 방식 그대로) (0.4.0)
 `call_accept` payload = `{callId, doctorId, procedureIds, byRole, source}`(`source` = `push` \| `app` \| `web` — SPEC-004 §3.5) · `home` payload = `{cancelSequences}`(§5.7) (0.3.0) — 코드 `service/actions.py`.
 
 계정(`account`) · 기기(`device`) · 푸시 내역(`push_log`) 테이블은 SPEC-004 §3.1 · §5-1 (0.3.0).
@@ -304,8 +319,11 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 3. **방이 있다**(§3.3 `visit.room_id`) — 방 없는 고객 = 라운지 대기 = 안 나온다 — D-22
 4. 수납 전(`payment_required` 인 시술이 있음)이어도 띄우고 「수납 필요」 표시 — D-21
 
-- ~~시술 목록 = type `PROCEDURE` 작업만. 「방 배정」 등 ETCETERA 작업은 시술 목록에 안 보인다~~ → **ETCETERA(「방 배정」 등)도 스냅샷에 실린다** — `procedures[].kind = "etc"` · 읽기 전용(제목 + KOS 상태) · 호출 · 시작 · 종료 · 「전부 완료」 · 「수납 필요」 판정에서 빠진다(규칙은 `kind = procedure` 만 본다). KOS `CANCELED` 작업은 목록에서 뺀다(OQ-506) (0.3.0) — E2E-4 · 코드 `domain/rules.py` `items` · `procedures`
-- 현황판(웹)이 `etc` 줄을 **그리지 않게** 하는 것은 E2E-10 으로 기록만 됐다 — 코드(웹)는 아직 카드 맨 위에 그린다 · 앱은 그리지 않는다(SPEC-004 §6.0) → §10 OQ-517 (0.3.0)
+- ~~시술 목록 = type `PROCEDURE` 작업만. 「방 배정」 등 ETCETERA 작업은 시술 목록에 안 보인다~~ → ~~**ETCETERA(「방 배정」 등)도 스냅샷에 실린다**~~ (0.4.0 바뀜 — 아래 「방 배정」 줄) → **방 없는 ETCETERA(마취 · 시트팩 등)는 스냅샷에 실린다** (r2) — `procedures[].kind = "etc"` · 읽기 전용(제목 + KOS 상태) · 호출 · 시작 · 종료 · 「전부 완료」 · 「수납 필요」 판정에서 빠진다(규칙은 `kind = procedure` 만 본다). KOS `CANCELED` 작업은 목록에서 뺀다(OQ-506) (0.3.0) — E2E-4 · 코드 `domain/rules.py` `items` · `procedures`
+- ~~현황판(웹)이 `etc` 줄을 **그리지 않게** 하는 것은 E2E-10 으로 기록만 됐다 — 코드(웹)는 아직 카드 맨 위에 그린다 · 앱은 그리지 않는다(SPEC-004 §6.0) → §10 OQ-517 (0.3.0)~~ (0.4.0 바뀜 — OQ-517 닫음)
+- **「방 배정」 작업은 스냅샷 `procedures[]` 에서 뺀다** = `kind = etc` 이고 **작업에 방이 있는 것**(`procedure.room_kos_id` 있음 — KOS ETCETERA 중 `room` 있는 작업 · 카드 방을 고르는 판정과 같은 규칙, 코드 `kos/sync.py:39-40` `_room_task`). 방 있는 ETCETERA 가 여럿이어도(OQ-511 「방 점유/원장 상담」 등) **전부** 뺀다. **그 밖 ETCETERA(마취 · 시트팩 · 관리 마무리 등 — 방 없는 기타 작업)는 남긴다** — 지금처럼 읽기 전용 줄(제목 + KOS 상태 · §6.3) (0.4.0) — `_RESUME 10-23` 「방 배정」 줄 · OQ-517 닫음
+  - 빼는 자리 = **back**(`domain/rules.py` 「카드에 보이는 작업」 `items` 한 곳). 근거: ① 스냅샷 `procedures[]` 에는 작업 방 필드가 없어 front 는 「방 배정」과 다른 기타 작업을 가를 수 없다 ② 규칙 계산은 back 한 곳(§7.2) ③ 앱도 같은 스냅샷을 쓴다 — 앱은 `etc` 를 그리지 않으므로(SPEC-004 §6.0) 바뀌는 화면이 없다 (0.4.0)
+  - [귀가 대기]의 「방 배정」 취소(§5.7)는 그대로 — 취소 대상은 `visit.open_task_seqs`(스냅샷과 무관 · §3.3)에서 고른다. 호출 전 방 넣기(§5.4)의 카드 방도 `visit.room_id` 그대로 (0.4.0) — 코드 `service/actions.py` · `kos/sync.py`
 - 카드가 생기는 때 = 조회 주기만큼 뒤(최대 10초) — D-08 · D-21
 
 ### 5.2 고객 상태 (D-32 · D-33)
@@ -388,7 +406,9 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 | `wait` · 호출 없음 · 담당의 있음 | | 「<원장>」 | [시작] | D-30 |
 | `wait` · 호출 없음 · 담당의 없음 | | 「담당의 미정」 | [시작] 꺼짐 | D-30 · 시안 #10 |
 
-- 순서 = 완료(완료 시각 순) → 진행 → 대기(KOS `sequence` 순) — 시안 `procRows` · workflow-v2 §5. `etc` 작업은 그 위에 sequence 순(웹 `orderedProcs`) (0.3.0)
+- ~~순서 = 완료(완료 시각 순) → 진행 → 대기(KOS `sequence` 순) — 시안 `procRows` · workflow-v2 §5. `etc` 작업은 그 위에 sequence 순(웹 `orderedProcs`) (0.3.0)~~ (0.4.0 바뀜)
+- **웹 카드 줄 순서 = 진행 → 대기(KOS `sequence` 순) → 완료(완료 시각 순)** · 완료 묶음 앞에 점선 한 줄(대기 · 진행이 위에 있을 때만). 남은 `etc` 작업(방 없는 기타 작업 · §5.1)은 그 위에 sequence 순(지금 자리 그대로) (0.4.0) — 시안 `M:1458-1460` · `M:1500-1503` (`[...doing, ...wait, ...done]` · `cut`) · `_RESUME 10-23` 「시안과 코드가 다른데 … 시안대로」
+  - 줄 순서는 **웹 front 가 정한다**(지금도 `view.ts` `orderedProcs` 가 다시 정렬 — CB §4). back `procedures[]` 순서(완료 → 진행 → 대기)는 바꾸지 않는다 — 앱이 그 순서를 쓰는지와 무관하게 앱 화면이 바뀌지 않게(이번 판 범위 = 웹) (0.4.0) — 기본값
 - KOS `status = CANCELED` 작업 → OQ-506
 - 「시술 n / m 완료」 줄은 없다 — P16
 
@@ -413,8 +433,8 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 | 버튼 | 보임 | 켜짐 | 근거 |
 |---|---|---|---|
 | 줄 체크칸 · 「전체 선택」 | 귀가 대기 아닌 카드 | 그 시술이 `wait`(전체 선택 = `wait` 시술이 1개 이상) · 없으면 「호출할 대기 시술 없음」 회색 | D-26 · 시안 r4 #1 |
-| 카드 아래 [의사 호출] | 귀가 대기 아님 · **시술이 전부 완료는 아님** | 체크한 `wait` 시술 ≥ 1 — 「의사 호출 · N건」, 없으면 「시술 선택 후 의사 호출」 꺼짐 | Q1 · Q2 · Q4 · D-24 |
-| (스냅샷) `canCall` | — | 귀가 대기 아님 · 전부 완료 아님 · **호출할 수 있는(`pickable`) 시술(`kind = procedure`)이 1개 이상**. 시술 0개(「방 배정」 등 `etc` 만)인 카드는 `false` (0.3.0) | T6 · 코드 `service/board_service.py` |
+| 카드 아래 [의사 호출] | ~~귀가 대기 아님 · **시술이 전부 완료는 아님**~~ (r2 바뀜) → 스냅샷 **`canCall = true`** 일 때만(귀가 대기 아님 · 전부 완료 아님 · 호출할 수 있는 대기 시술 ≥ 1). `canHome` 도 `canCall` 도 아니면(기타 작업만 남은 카드 · 남은 시술이 진행 중뿐인 카드) **카드 아래 버튼 자리 없음** | 체크한 `wait` 시술 ≥ 1 — 「의사 호출 · N건」, 없으면 「시술 선택 후 의사 호출」 꺼짐 | Q1 · Q2 · Q4 · D-24 · 시안 `M:894`(「둘 다 아니면 버튼 없음」) · `M:1518-1519` · 지금 코드(CB §9 #4) (r2) |
+| (스냅샷) `canCall` | — | 귀가 대기 아님 · 전부 완료 아님 · **호출할 수 있는(`pickable`) 시술(`kind = procedure`)이 1개 이상**. 시술 0개(~~「방 배정」 등~~ (r3) 방 없는 기타 작업 `etc` 만)인 카드는 `false` (0.3.0) | T6 · 코드 `service/board_service.py` |
 | 팝오버 [<원장> 호출 / 모든 의사 호출] | 팝오버 열림 | 「모든 의사」 또는 원장 한 명을 골랐을 때(기본값 없음 → 「의사를 선택하세요」 꺼짐) | P7 |
 | 카드 아래 [귀가 대기] | 귀가 대기 아님 · 시술 전부 완료 | 항상(보이면 켜짐) | D-33 · Q3 |
 | [마취 시작] | 귀가 대기 아님 · 진행 중 마취 없음 | 항상 | D-23 |
@@ -426,12 +446,31 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 
 조작 버튼은 「KOS 반영 중 · 실패」여도 막지 않는다(§4.4 대기열) — 기본값.
 
+### 5.12 카드 순서 — 드래그 (0.4.0)
+
+| 규칙 | 계약 | 근거 |
+|---|---|---|
+| 무엇 | 현황판 카드를 끌어 다른 카드 위에 놓으면 **방향 따라** 끼운다 — 지금 순서에서 끄는 카드가 대상보다 **앞**에 있었으면(아래 · 뒤로 끔) 대상 **뒤**에, **뒤**에 있었으면(위 · 앞으로 끔) 대상 **앞**에. **앞 · 뒤 판정 = 드래그를 시작할 때의 전체 순서**(놓기 전 화면 순서 — 경합 중이면 그때의 로컬 순서) 기준 — 끄는 동안 미리보기로 바뀐 순서로 다시 판정하지 않는다(같은 대상 위에서 앞 · 뒤가 번갈아 바뀌는 깜빡임 방지 · 기본값 (r3)). 그래서 바로 옆 카드와 자리 바꾸기 · 맨 끝으로 옮기기가 된다(시안 「앞에 끼우기」만으로는 안 됨 · §6.7 #21) (r2). ~~[입실순 \| 배치순] 버튼~~ 은 없다(0.4.0 바뀜) — **정렬 = 드래그 순서** | `_RESUME 10-23` 「review-doc r1 기본값 ②」(방향 따라) · 「입실순/배치순 버튼은 뺀다」 · 드래그 순서 줄 · `M:1464-1472` · DA §11 Q-11 |
+| 저장 | **back DB**(`board_order` · §3.2) — ccc 만, **KOS 반영 없음**(`kos_op` 0줄) · 조작 1번 = `event_log(board_order)` 1줄 | `_RESUME 10-23` 드래그 순서 줄 · D-13 |
+| 공유 | **모든 화면 공유** — 순서는 SSE 스냅샷 `cards[]` 배열 순서로 실린다(§7.2). 한 화면에서 옮기면 다른 화면(간호 스테이션 · 의국 PC)도 새로고침 없이 같은 순서 | `_RESUME 10-23` 기본값 「모든 화면 공유(SSE 스냅샷에 실음)」 |
+| 단위 | **그날(KST) 하나** — `board_order.day` = 오늘 KST. 날짜가 바뀌면(KST 00:00) 새 날은 순서 없음 → 아래 「목록에 없는 카드」 규칙. 전날 행은 지우지 않아도 된다(읽지 않는다) | `_RESUME 10-23` 기본값 「그날 단위」 · §4.2 날짜 바뀜 |
+| 스냅샷 정렬 | ① 귀가 대기 아닌 카드 중 **오늘 순서 목록에 있는 카드** = 목록 자리 순 → ② 목록에 **없는** 귀가 대기 아닌 카드(새 카드 등) = **맨 뒤, 그들끼리 입실순**(`room_assigned_at` 오름차순 · 같으면 visit id) → ③ **귀가 대기 카드 = 맨 뒤, 귀가 대기 시각 순**(`flow_step_at` · 지금 규칙 그대로) | `_RESUME 10-23` 기본값 「새 카드는 맨 뒤」 · `M:1425-1430` (`key = i < 0 ? 1000 + inAt : i` · home 은 뒤에 `home` 시각 순) |
+| 귀가 대기 카드 | **드래그 제외** — 끌 수 없고(드래그 시작 안 함), 귀가 대기 카드 위에 놓아도 옮기지 않는다. back 도 저장 목록에서 귀가 대기 카드를 뺀다 | `_RESUME 10-23` 기본값 「귀가 대기 카드는 드래그 제외」 · `M:1471`(`ids` = `home == null` 만 · `at < 0` 이면 그만) |
+| 귀가 대기가 된 카드 | 목록에 남아 있어도 ③ 으로 간다(목록 자리는 무시). 데스크 귀가(`COMPLETED`)로 사라진 카드는 목록에서 그냥 건너뛴다 | 위 두 줄의 결과 · §5.1 조건 2 |
+| 저장 요청 | `PUT /api/board/order` 본문 = **귀가 대기 아닌 카드 전부의 새 순서**(필터로 숨긴 카드 포함 — 화면에 보이는 것만이 아니라 front 가 가진 전체 순서) — §7.3 | 기본값(목록 통째 바꾸기 — 아래 동시 규칙이 단순해진다) |
+| 놓은 뒤 화면(경합) (r2) | front 는 놓을 때마다 요청 번호를 하나 올리고 **마지막 요청만** 본다. ① 마지막 PUT 응답이 올 때까지 **로컬 순서 유지** — 그사이 오는 스냅샷은 카드 내용만 바꾸고 순서는 로컬 것(로컬 목록에 없는 새 카드는 스냅샷 순서대로 귀가 대기 아닌 카드들 뒤에 · **로컬 목록 안의 카드가 그사이 귀가 대기가 되면 로컬 순서에서 빼고 귀가 대기 묶음(맨 뒤 · 스냅샷 순서)으로** · 사라진 카드는 뺀다 (r3)) ② 응답(성공) 뒤에는 **「같음」이 성립하는 첫 스냅샷**부터 서버 순서를 따른다 — ~~스냅샷 귀가 대기 아닌 `cards[]` 순서 = 응답 `visitIds`~~ (r3 바뀜) → 비교 = 스냅샷의 귀가 대기 아닌 `cards[]` 에서 **응답 `visitIds` 에 든 카드만 뽑은 차례**가 **응답 `visitIds` 중 그 스냅샷에서 귀가 대기 아닌 카드로 남아 있는 것**의 차례와 같으면 「같음」(그사이 생긴 새 카드 · 그사이 귀가 대기가 되거나 사라진 카드는 비교에서 빠진다) (r3) ③ 응답 뒤 **3초** 안에 그런 스냅샷이 없으면(다른 사람이 그사이 바꿈 등) 그냥 스냅샷을 따른다 ④ 마지막 PUT 실패면 오류 토스트 + 바로 스냅샷 순서. 앞선 요청의 응답 · 실패는 무시 | 기본값(review r1 W5 · r2 R2 — PUT 응답 모양은 그대로 · `version` 안 실음) |
+| 목록 거르기 | back 은 받은 목록에서 **지금 카드가 아닌 id**(없는 visit · 이미 사라진 카드 · 다른 날 · 귀가 대기)를 **오류 없이 빼고** 저장한다 — 놓는 사이에 카드가 사라질 수 있어서. 형식 오류(배열 아님 · 정수 아님 · 같은 id 두 번)만 400 | 기본값 |
+| 동시에 두 사람 | **마지막 쓰기가 이긴다**(오늘 행을 통째로 바꾼다 · 버전 검사 없음). 앞 사람의 순서는 다음 스냅샷에서 뒤 사람 것으로 바뀐다. 뒤 사람 목록에 없던 카드(그 사이 새로 생긴 카드)는 ② 규칙으로 맨 뒤 | 기본값(PoC 한 지점 · 같은 화면을 보는 사람 수가 적다 — §7.5 「연결 목록은 메모리」와 같은 결) |
+| 역할 | 관리자 · 의사 · 간호사 모두(SPEC-004 §3.4 표에 `PUT /api/board/order` 줄 — r2) · `PROC_FAKE_BOARD` 면 403 `fake_board`(§2.3) | SPEC-004 A-08 기본값 · §3.4 · §7.3 |
+| 앱 | 앱은 지금 자기 코드로 입실순 정렬(`app/lib/view/view.dart:58`)이라 **이번 판에 바뀌지 않는다**. 앱도 같은 순서를 따를지 → §10 OQ-523 | SPEC-004 §6 「순서 = 입실순」 · 코드 |
+
 ## 6. 화면 (시안 기준)
 
 | 화면 정본 | 값 |
 |---|---|
 | 확정 시안(정책 기준) | `design-user-r4/Ceramique 시술현황판 v2.dc.html`(r3 · r4 읽기 리포트) |
 | **구현 반영 시안 파일 이름**(코드 main `329b543` 화면 = E2E 수정 뒤를 다시 그린 시안) | claude design `dda9a931` 「Ceramique 시술현황판 v2 (구현 v3).dc.html」 — 장면 17(login · login-error · login-locked · board … narrow) · 원본 v2(r4)는 그대로 · 대응표 `orchestration/work/myeongdong-poc-v2/design-sync-frontend-report.md`(아카이브 뒤 같은 slug 로그) (2026-10-22) |
+| **전체현황판 시안(0.4.0 화면 정본)** | `reference/2026-10-23-cc-overall-board/design/Ceramique 전체현황판.dc.html`(claude design `dda9a931` 같은 이름 파일 · 「구현 v3」 복사본에서 시작 — `M:17-18`) 의 **헤더 `M:63-92` · 「시술 현황」 하위 화면 `M:777-1098` · 의사 호출 팝오버 `M:1101-1153`**. 읽기 리포트 `orchestration/work/overall-board/design-analysis-report.md` §1 · §2 · §4 · §6 · §8 · §10 · §11. 위 두 시안과 다르면 이 시안이 맞다 — 단 `_RESUME 10-23` 결정이 고친 곳(§6.7)은 결정이 맞다. **public 레포 — 시안 공지 예시 · 직원 이름의 실명은 옮기지 않는다** (0.4.0) |
 
 장면 이름은 시안 `scene` 값: `board` · `board-placement` · `memo-expanded` · `call-modal` · `call-modal-specific` · `all-done` · `panel-doctors`(= 호출 탭) · `panel-customers`.
 
@@ -440,37 +479,68 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 | 경로 | 화면 | 근거 |
 |---|---|---|
 | `/login` | 로그인 — **아이디 · 비밀번호 폼** · [로그인]. 헤더 없음. ~~계정 카드를 눌러 바로(비밀번호 검증 없음)~~ — 카드 · 계정 목록 없음. 웹은 관리자 계정으로 쓴다(역할 제한은 §10 OQ-518) (0.3.0) | D-05 · `_RESUME` 10-21 OQ-601 닫음 줄 · 코드 `front/app/login/page.tsx` |
-| `/procedures/live` | 시술 현황판(시안 사이드바 `current-path`) | 시안 · D-17 |
+| `/procedures/live` | 시술 현황판(시안 사이드바 `current-path`). 0.4.0 = 헤더 「현황 › 시술 현황」 항목이 가리키는 곳 — **경로는 그대로 둔다**(시안 데모 href `/live/proc` 는 따르지 않음 · 배포 주소 · 북마크 유지 — 기본값 · §10 OQ-524) (0.4.0) | 시안 · D-17 · `M:1215-1222` |
 | `/` · `/procedures` | `/procedures/live` 로 보낸다(로그인 안 했으면 `/login`) | 기본값 |
 
 로그인 화면 모양 = `cc/front/app/login/page.tsx` 의 틀(입력 · 버튼 스타일)만 따른다. 별도 시안 없음 — D-02 · 기본값.
 
 ### 6.2 헤더 · 사이드바 · 제목 줄
 
-- 헤더 = `AppHeader` 모양. 메뉴 = **「시술 현황」 하나**(시안은 「현황판 · 시술 현황 · 예약관리」 세 칸 → D-17 이 고친다). 오른쪽 = 시계 · 지점 이름 · 계정 표시 · 로그아웃 — D-17 · 시안 헤더
-- 사이드바 = medikit `Menu`, 묶음 · 항목 모두 「시술 현황」 — 시안
-- 제목 줄 = 「시술 현황」 + 「명동점 · 마지막 KOS 동기화 HH:MM:SS」(`sync_state.schedules.last_ok_at`) · 범례 Badge sm dot 5개(시술 대기 · 마취 중 · 시술 진행 · 확인 필요 · 귀가 대기) · [입실순 | 배치순] — 시안 · D-18
+- ~~헤더 = `AppHeader` 모양. 메뉴 = **「시술 현황」 하나**(시안은 「현황판 · 시술 현황 · 예약관리」 세 칸 → D-17 이 고친다). 오른쪽 = 시계 · 지점 이름 · 계정 표시 · 로그아웃 — D-17 · 시안 헤더~~ (0.4.0 바뀜)
+- ~~사이드바 = medikit `Menu`, 묶음 · 항목 모두 「시술 현황」 — 시안~~ (0.4.0 바뀜)
+- ~~제목 줄 = 「시술 현황」 + 「명동점 · 마지막 KOS 동기화 HH:MM:SS」(`sync_state.schedules.last_ok_at`) · 범례 Badge sm dot 5개(시술 대기 · 마취 중 · 시술 진행 · 확인 필요 · 귀가 대기) · [입실순 | 배치순] — 시안 · D-18~~ (0.4.0 바뀜)
+
+**헤더** (0.4.0) — `M:63-92` · DA §2 · `_RESUME 10-23` 헤더 줄
+
+| 자리 | 계약 | 근거 |
+|---|---|---|
+| 틀 | 높이 57 · 흰 바탕 · 아래 1px `gray-200` · 좌우 여백 28(좁은 화면 16) · z 30. **사이드바 없음**(medikit `Menu` 를 쓰지 않는다 — 지금 코드의 사이드바를 뺀다) | `M:64-65` · DA §2 · CB §2 |
+| 왼쪽 | 로고(높이 22 · 좁은 화면 18) · 간격 48 · 상단 메뉴 **「현황」 하나**(`text-typo-heading-md-500` · 지금 메뉴라 `text-primary`). 나머지 5개(고객 · 예약 · 시술 기록 · 매출 · 설정)는 **그리지 않는다** | `_RESUME 10-23` 헤더 줄 · `M:67-81` · `M:2225` |
+| 호버 드롭다운 | 「현황」에 마우스를 올리면 아래로 펼침 — 최소 폭 180 · 반경 10 · 그림자 `0 8px 28px rgba(0,0,0,.12)` · 항목 높이 40. 항목 = **「시술 현황」 하나**(지금 항목이라 `text-typo-body-600 text-primary bg-primary-100`) → `/procedures/live`. 예약 현황 · 원내 현황은 아직 없어 **그리지 않는다**(코디 기본값 · §10 OQ-520). 「현황」 글자를 누르면 그 메뉴 첫 항목(= 시술 현황) | `M:70-78` · `M:2222-2227` · `_RESUME 10-23` |
+| 오른쪽 | (넓은 화면만) 시계 HH:MM(tabular · `heading-sm-400 text-ms-black`) · 「세라미크 명동점」(`gray-700`) → 계정 표시(`text-primary`) → [로그아웃](누르면 세션 지우고 `/login`) | `M:83-90` · CB §2 |
+| 계정 표시 | 시안 = 「{역할} · {이름}」. 역할 글자는 정한 곳이 없다 → **지금(`name`) 그대로** · §10 OQ-514 | `M:2245` · SPEC-004 §3.6 「헤더 계정 표시 = name」 |
+| 하위 화면 탭 | 없음 — 시안이 `subTabs`(개수 뱃지)를 계산만 하고 그리지 않는다. 하위 화면 바꾸기 = 헤더 드롭다운뿐 | `M:2234-2236` · DA §1.2 · Q-3 |
+
+**제목 줄** (0.4.0) — `M:781-800` · DA §4.1
+
+- 왼쪽: 「시술 현황」(`h1` · `text-typo-title-md-600 gray-800`) · 「마지막 KOS 동기화 HH:MM:SS」(`body-400 gray-600` · `sync_state.schedules.last_ok_at`) — ~~「명동점 · 」 앞머리~~ (0.4.0 바뀜 — 시안에 없음) · 「조회 시간 밖」(`caption-md-500 gray-500` · `!sync.inWindow`) · 「동기화 실패」(`caption-md-600 text-red` · title 「KOS 조회 오류」 · `sync.lastError`) — `M:784-791`
+- 오른쪽: 범례 Badge sm dot 5개(시술 대기 warning · 마취 중 purple · 시술 진행 primary · 확인 필요 danger · 귀가 대기 neutral) — `M:794-798` · `M:2262-2265`
+- **[입실순 | 배치순] 없음**(0.4.0 바뀜) — 정렬 = 드래그 순서(§5.12) — `_RESUME 10-23` · 시안 template 에 버튼 없음(`sortIn` · `sortRoom` 계산만 · `M:2266`)
+
 - 조회 시간 밖이면 동기화 문구 옆 「조회 시간 밖」, 조회 실패면 「동기화 실패」 — 기본값(§4.2)
 
 ### 6.3 가운데 — 오더지 카드 (D-17 ~ D-19 · 장면 `board` · `board-placement` · `memo-expanded` · `all-done`)
 
 - 격자 `minmax(300px,1fr)` · 간격 8 · 한 줄 높이 같음 · 카드 흰 바탕 · 확인 필요만 빨간 테두리 — P1 · r3 #2 · #3
 - **카드 높이**: 최소 높이 = **가운데 판 보이는 높이의 절반쯤**(판 안에 두 줄 — CSS 비율 계산 · `100cqh` 기준) · 내용이 길면 늘어난다 · **카드 안 스크롤 없음**(내용 다 · 오더 메모는 `MemoCard` 접기) · 아래 큰 버튼은 카드 바닥. **px 상수 금지** (0.3.0) — E2E-5 → E2E-12 · 코드 `front/app/(main)/procedures/live/page.tsx`
-- 정렬: **입실순** = `room_assigned_at` 오름차순 · **배치순** = `room.order` 오름차순. 귀가 대기 카드는 그 뒤에(귀가 대기 시각 순) — D-18 · D-33 · 시안 `ordered`
+- ~~정렬: **입실순** = `room_assigned_at` 오름차순 · **배치순** = `room.order` 오름차순. 귀가 대기 카드는 그 뒤에(귀가 대기 시각 순) — D-18 · D-33 · 시안 `ordered`~~ (0.4.0 바뀜)
+- **정렬 = 스냅샷 `cards[]` 순서 그대로**(back 이 §5.12 로 정렬 — 드래그 순서 → 순서 없는 카드는 입실순 → 귀가 대기 맨 뒤 귀가 대기 시각 순). front 는 다시 정렬하지 않는다(지금 `view.ts` `orderedCards` 의 입실순 · 배치순 정렬을 뺀다) (0.4.0) — `_RESUME 10-23` · `M:1425-1430`
+- **드래그**(0.4.0) — `M:808` · `M:1464-1472` · `M:2251` · DA §6 시술 줄
+  - 귀가 대기 아닌 카드 = 끌 수 있음(`cursor: grab` · HTML5 drag) · 귀가 대기 카드 = 끌 수 없음 · 그 위에 놓아도 안 옮김(§5.12)
+  - 끄는 카드 = 불투명도 **0.35** + 테두리 밖 primary 2px 그림자(`box-shadow: 0 0 0 2px var(--ms-primary)`)
+  - 끄는 동안 다른 카드 위에 올리면 **그 자리로 미리 옮겨 그린다**(놓기 전 미리보기 — ~~끄는 카드를 그 카드 앞에 끼움~~ (r2 바뀜) → 놓을 때와 같은 **방향 따라** 끼움 · §5.12) · 놓으면 확정 · 끌기를 그만두면(드래그 끝 · 판 밖에 놓음) 원래 순서
+  - 놓으면 화면은 **바로 새 순서**(front 가 잠시 들고 있음) → `PUT /api/board/order`(§7.3 · 귀가 대기 아닌 카드 전체 순서) → 뒤따르는 `board` 스냅샷으로 바꾼다(경합 규칙 = §5.12 「놓은 뒤 화면」 (r2)). 실패(4xx · 5xx · 네트워크 — **가짜 보드의 403 `fake_board` 도 같다**, 예외 없음 (r2))면 오류 토스트(back `message`) + 스냅샷 순서로 돌아간다 — 기본값(§6.6 「조작 응답은 `{ok}` · 화면은 SSE」와 같은 길)
+  - 필터 · 검색 강조 중에도 끌 수 있다 — 숨긴 카드 자리는 그대로 두고 보이는 카드끼리 자리를 바꾼다(방향 따라 끼우기 · 전체 목록 기준 — 앞 · 뒤는 전체 목록 순서로 판단 (r2)) — 시안 `M:1471`(`ordered()` 전체 목록에서 `ids.splice`)
+  - 터치 드래그(태블릿)는 시안에 없다 — 범위 밖(웹 마우스만) — 기본값
 - 카드 안 순서(D-19):
-  1. 머리 — 방 이름(`title-lg-600`) · 「입실 HH:MM」 / 상태 Badge + 오른쪽 경과 글자 / 고객 줄(이름 한 줄 줄임 · 국적 칩 · 「첫내원/재내원」) + **「수납 필요」**(§6.7)
+  1. ~~머리 — 방 이름(`title-lg-600`) · 「입실 HH:MM」 / 상태 Badge + 오른쪽 경과 글자 / 고객 줄(이름 한 줄 줄임 · 국적 칩 · 「첫내원/재내원」) + **「수납 필요」**(§6.7)~~ (0.4.0 바뀜)
+     → 머리 **한 줄** = 왼쪽 방 이름(`title-lg-600 gray-800`) + 상태 Badge(sm dot · §5.2 덮어쓰기 그대로) / 오른쪽 「입실 HH:MM」(`caption-md-400 gray-600`). **경과 글자(「호출 N분 경과」 · 「완료 뒤 N분 경과」 · 「귀가 대기 HH:MM」) 줄 없음 · KOS 반영 줄 없음**. 그 아래 고객 줄(점 7px · 이름 `caption-md-600` 한 줄 줄임 · 국적 칩 `bg-ms-gray-200 caption-md-500 gray-700` · 「첫내원/재내원」 · **「수납 필요」** Badge warning sm) (0.4.0) — `M:810-828` · 시안 `hasLabel` · `hasKos` 는 계산만(`M:1479-1482`) · §6.7 #11 · #12
   2. 오더 메모 — `MemoCard` 3줄 · 120자 넘으면 접기 [펼치기 · 접기] — P19 · `memo-expanded`
   3. 마취 줄 — §5.3 · [마취 시작/종료] 26px(`data-compact-buttons`)
   4. 선택 줄 — 체크칸(일부면 「–」) · 「전체 선택 / N개 선택됨 / 호출할 대기 시술 없음」. 고르면 `bg-primary-100 border-primary` — r4 #1
-  5. 시술 줄 — 줄마다 테두리 상자 · 체크칸 20 · 이름 · 둘째 줄(§5.9) · 오른쪽 버튼(§5.11) — r3 #9 ~ #11. `kind = etc` 작업은 지금 코드에서 **시술 줄 맨 위**에 제목 + KOS 상태 글자만(체크 · 버튼 · 배지 없음) — E2E-4. 빼는 것은 OQ-517 (0.3.0)
+  5. 시술 줄 — 줄마다 테두리 상자 · 체크칸 20 · 이름 · 둘째 줄(§5.9) · 오른쪽 버튼(§5.11) — r3 #9 ~ #11. ~~`kind = etc` 작업은 지금 코드에서 **시술 줄 맨 위**에 제목 + KOS 상태 글자만(체크 · 버튼 · 배지 없음) — E2E-4. 빼는 것은 OQ-517 (0.3.0)~~ (0.4.0 바뀜)
+     → 줄 순서 = 진행 → 대기 → 완료 · 완료 묶음 앞 점선(§5.9). **「방 배정」 줄은 없다**(스냅샷에 없음 · §5.1). **방 없는 기타 작업(`kind = etc` — 마취 · 시트팩 · 관리 마무리 등)은 지금처럼 시술 줄 맨 위에 읽기 전용 한 줄**(제목 `body-500 gray-600` + KOS 상태 글자 `caption-md-400 gray-500` — 대기중 · 준비중 · 호출함 · 진행중 · 완료 · 취소 · 체크 · 버튼 · 배지 없음) — 시안에는 이 줄이 없지만 사용자 결정이 이긴다(§6.7 #13) (0.4.0) — `_RESUME 10-23` 「방 배정」 줄 · E2E-4 · CB §4 5a · `M:1232` `KOS_STATUS`
   6. 카드 아래 큰 버튼 하나(md · 꽉 찬 폭 · `data-fill-buttons`) — [의사 호출 · N건] 또는 [귀가 대기] — Q1 · Q2 · `all-done`
-- 「KOS 반영 중」 / 「KOS 반영 실패」 — 카드 머리 오른쪽 경과 글자 자리 아래 작은 글자(실패 = `text-red`) — D-09 · 자리는 기본값(시안에 없음 · §6.7)
+- ~~「KOS 반영 중」 / 「KOS 반영 실패」 — 카드 머리 오른쪽 경과 글자 자리 아래 작은 글자(실패 = `text-red`) — D-09 · 자리는 기본값(시안에 없음 · §6.7)~~ (0.4.0 바뀜)
+- **카드에 「KOS 반영 중 · 실패」를 그리지 않는다**(시안대로). 조작 API 실패는 지금 코드의 오류 토스트(back `message`)로만. 스냅샷 `cards[].kos` 필드는 그대로 둔다(앱이 씀 — SPEC-004 §6) · 웹만 안 그린다. **조작 응답 뒤 비동기로 난 KOS 반영 실패(3회 재전송 뒤 `failed`)는 웹 화면에 나타나는 곳이 없다** → §10 OQ-522 (0.4.0) — `_RESUME 10-23` 「KOS 반영 중/실패 표시도 시안대로 뺀다」 · 시안 `hasKos` 계산만(`M:1482`) · CB §5 「조작 호출」
+- 카드 불투명도(0.4.0 — 시안 `M:1475`): 끄는 중 **0.35** → 귀가 대기 0.55 → 다른 카드를 골랐을 때(검색 · 필터 강조) 나머지 0.45 → 그 밖 1. 확인 필요 = `border-red` · 그 밖 `border-ms-gray-300` · 고른 카드 = outline 2px primary(지금 그대로)
+- 빈 상태: 카드 0 = 「시술 대기 중인 고객 없음」 · 필터 결과 0 = 「조건에 맞는 고객 없음」(지금 그대로) — `M:907-909` · `M:2267`
 - 토스트: 「A-룸1 3개 시술 · 전체 호출」 · 「… · 최 원장 호출」 · 「방 · 마취 시작/종료」 · 「방 · 이름 · 귀가 대기」 등 시안 문구. **되돌리기 없음** — r3 #25 · D-28
 
 ### 6.4 오른쪽 패널 (폭 340 · 검색 + 탭 현황 · 호출 · 고객 — P17)
 
-- 검색 — 이름 · 읽기로 카드 고객 찾기(시안 `hitVals`) · 결과 누르면 그 카드 강조
-- **현황** 탭 — 상태 수 6칸 한 줄(전체 · 확인 · 대기 · 마취 · 호출 · 진행) = 카드 필터(고른 칸 파랑 2px). 겹쳐 센다 · 「전체」는 귀가 대기 포함 — D-20 · P12 · r3 §4-2
+- 검색 — 이름 · 읽기 · 차트번호로 카드 고객 찾기(시안 `hitVals` · `M:1611`) · ~~결과 누르면 그 카드 강조~~ (r2 바뀜) → 결과 누르면 **검색어를 지우고 고객 탭으로 옮겨 그 카드 강조**(필터 = 전체) — 시안 `M:1613` · DA §4.3 E · 지금 코드(CB §9 #8 · #9)와 같음 (r2)
+- **현황** 탭 — ~~상태 수 6칸 한 줄(전체 · 확인 · 대기 · 마취 · 호출 · 진행) = 카드 필터(고른 칸 파랑 2px)~~ (0.4.0 바뀜) → 상태 수 6칸 **3칸 × 2줄**(전체 · 확인 · 대기 / 마취 · 호출 · 진행) = 카드 필터. 칸 = 점 6px(전체 `bg-ms-gray-300` · 확인 `bg-red` · 대기 `bg-yellow` · 마취 `bg-purple` · 호출 `bg-primary-500` · 진행 `bg-primary`) · 이름 · 수. 칸 바탕색 · 테두리 상자 없음 — 줄의 2 · 3번째 칸만 왼쪽 1px `gray-300` 구분선. 고른 칸 = `body-600 gray-800` · 나머지 `body-400 gray-500`(지금의 칸 바탕색 · outline 2px 를 뺀다) (0.4.0) — `M:945-955` · `M:1536-1541` · DA §4.3-B. 겹쳐 센다 · 「전체」는 귀가 대기 포함 — D-20 · P12 · r3 §4-2
   - 칸 정의: 확인 = §5.8 대상 · 대기 = `waiting` · 마취 = 진행 중 마취 있음(귀가 대기 제외) · 호출 = 받을 시술이 남은 호출 있음(귀가 대기 제외) · 진행 = `doing` — 시안 `filterFn`
   - 아래 「확인이 필요한 고객」 목록(§5.8) · 빈 문구 「확인이 필요한 고객 없음」 — P13
 - **호출** 탭(의국 화면 · `panel-doctors`) — 「수락 대기 N건」 + 호출 카드(호출 오래된 순): 「전체 호출 / 지정 호출」 Badge · 방 · 「호출 N분」(5분 이상 빨강 · 카드 빨간 테두리) · 「기준 5분 / 기준 도달 / +N분 초과」 · 이름 · 국적 · 받을 시술 목록
@@ -478,7 +548,7 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
   - 지정 호출 → 「지정 <원장> · 상태」 + [다른 원장에게] · [수락]
   - 아래 「최근 수락」 3건 — **[되돌리기] 없음** — D-27 · D-28 · r3 #19
   - 호출 카드 = 고객 1명이 아니라 **호출 1건**(받을 시술이 남은 호출) — D-25 · D-27(시안은 고객 단위로 묶어 보임 → §6.7)
-- **고객** 탭(`panel-customers`) — 고객 줄(상태 Badge · 이름 · 방 / 번호 원 시술 줄) · 귀가 대기까지 · 누르면 그 카드만 남기고 흐림 — 시안 r3 §3 「그대로」
+- **고객** 탭(`panel-customers`) — 고객 줄(상태 Badge · 이름 · 방 / 번호 원 시술 줄) · **줄 순서 = 카드판과 같은 카드 순서**(스냅샷 `cards[]` 순서 · 경합 중이면 로컬 순서 — §5.12 · 지금 코드의 `orderedCards(board.cards, sort)` 정렬은 뺀다) (r3) — 시안 `M:1591`(`customerVals` = `this.ordered()`) · 귀가 대기까지 · 누르면 그 카드만 남기고 흐림 — 시안 r3 §3 「그대로」
 - 탭을 옮기면 필터 · 고른 카드 모두 풀림 — r3 #20
 
 ### 6.5 의사 호출 팝오버 (`call-modal` · `call-modal-specific`)
@@ -508,12 +578,24 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 | 2 | 수락 = 그 고객의 수락 전 호출 시술 **전부** | 그 **호출이 유효 호출인 시술 중 미수락만** · 호출 탭 카드 = 호출 1건 | D-27 · D-25 |
 | 3 | 「최근 수락」 · 토스트 [되돌리기] | 없음 | D-28 |
 | 4 | 시술 줄 「호출함」 Badge 를 누르면 데모 수락 | 누르지 못함(수락은 호출 탭에서만) | D-27 |
-| 5 | 헤더 메뉴 세 칸 | 「시술 현황」 하나 | D-17 |
+| 5 | ~~헤더 메뉴 세 칸~~ → (0.4.0) 전체현황판 시안: 상단 메뉴 6개(현황 · 고객 · 예약 · 시술 기록 · 매출 · 설정) · 「현황」 드롭다운 3항목(예약 현황 · 원내 현황 · 시술 현황) | ~~「시술 현황」 하나~~ (0.4.0 바뀜) → 상단 메뉴 **「현황」 하나** · 드롭다운 **「시술 현황」 하나**(§6.2) | D-17 · `_RESUME 10-23` 헤더 줄 · 드롭다운은 코디 기본값(OQ-520) |
 | 6 | 카드 위 주석 「시술 [시작] · [종료]는 태블릿 · 폰 몫(여기 없음)」 | 현황판 카드에 [시작] · [종료] 있음(시안 그림이 맞고 주석이 낡음) | D-29 · P3 |
-| 7 | 「수납 필요」 표시 없음(시안 데이터에 결제 없음) | 고객 줄 끝에 작은 칩 「수납 필요」(Badge `warning` sm) — 자리 · 모양은 기본값 | D-21 · OQ-508 |
-| 8 | 「KOS 반영 중 · 실패」 표시 없음 | §6.3 의 작은 글자 — 자리는 기본값 | D-09 · OQ-508 |
+| 7 | 「수납 필요」 표시 없음(시안 데이터에 결제 없음) — (0.4.0) 전체현황판 시안에는 **있다**(고객 줄 끝 Badge warning sm · `M:825-827`) → 차이 아님 | 고객 줄 끝에 작은 칩 「수납 필요」(Badge `warning` sm) — ~~자리 · 모양은 기본값~~ (0.4.0) 시안과 같음 | D-21 · ~~OQ-508~~(닫힘) |
+| 8 | 「KOS 반영 중 · 실패」 표시 없음 | ~~§6.3 의 작은 글자 — 자리는 기본값~~ (0.4.0 바뀜) → **시안대로 없음**. 조작 실패는 오류 토스트만 · 비동기 KOS 실패의 웹 표시는 OQ-522 | ~~D-09 · OQ-508~~ → `_RESUME 10-23` 「KOS 반영 중/실패 표시도 시안대로 뺀다」 |
 | 9 | 원장 · 고객 · 방 = 가짜 4명 · seed 6명 | KOS 데모 지점 실데이터 | D-06 · D-11 |
-| 10 | 같은 칸을 다시 눌러도 필터가 안 풀림(주석은 「다시 누르면 해제」) | 시안 동작대로 — 「전체」 또는 탭 이동으로 풀림 | 시안 r3 #14 |
+| 10 | 같은 칸을 다시 눌러도 필터가 안 풀림(주석은 「다시 누르면 해제」) | 시안 동작대로 — 「전체」 또는 탭 이동으로 풀림 | 시안 r3 #14 · 전체현황판 `M:1540`(같음) |
+| 11 | (0.4.0) 카드 머리 경과 글자(「호출 N분 경과」 · 「완료 뒤 N분 경과」 · 「귀가 대기 HH:MM」)를 계산만 하고 그리지 않음(`hasLabel` · `M:1479`) | **시안대로 그리지 않는다** — 확인 필요 경과는 오른쪽 현황 탭 · 호출 탭에 남고, 귀가 대기는 Badge · 흐림 · 맨 뒤로 보인다. 되살릴지는 §10 OQ-521 | `_RESUME 10-23` 「시안과 코드가 다른데 … 시안대로」 · CB §4 1b |
+| 12 | (0.4.0) 시안 주석은 머리에 「KOS 반영 중 · 실패」 · 기타 작업 줄을 그린다고 적었지만 template 은 그리지 않는다(`M:809` · `M:859` vs `M:1479-1499`) | 「KOS 반영」 = template 대로 없음(#8) · 기타 작업 = #13 | DA §10 「template이 쓰지 않는 계산값」 · Q-10 |
+| 13 | (0.4.0) 기타 작업(`etc`) 줄 없음(`etcs` 계산만 · `M:1499`) | **「방 배정」(방 있는 ETCETERA)만 뺀다** · 방 없는 기타 작업(마취 · 시트팩 · 관리 마무리 등)은 **지금처럼 맨 위 읽기 전용 줄로 남긴다**(§5.1 · §6.3) | `_RESUME 10-23` 「방 배정」 줄(사용자 결정이 시안을 이긴다) · OQ-517 닫음 |
+| 14 | (0.4.0) 사이드바 없음 · 제목 줄 「명동점 · 」 앞머리 없음 · [입실순 \| 배치순] 버튼 없음(주석 `M:781` 엔 있음) | 셋 다 시안대로 없앤다 | `_RESUME 10-23` 헤더 · 버튼 줄 · `M:64` · `M:785` · DA Q-11 |
+| 15 | (0.4.0) 시술 줄 순서 진행 → 대기 → 완료 · 완료 앞 점선(주석 `M:859` 은 「완료 → 진행 → 대기」) | **template · 로직대로**(진행 → 대기 → 완료 · 점선) — 주석이 낡았다 | `M:1500-1503` · §5.9 |
+| 16 | (0.4.0) 현황 탭 6칸 = 3 × 2 · 점 · 칸 바탕 없음(지금 코드 = 한 줄 6칸 · 칸 바탕색 · outline) | 시안대로(§6.4) | `M:945-955` · CB §3.2 |
+| 17 | (0.4.0) 헤더 계정 표시 「{역할} · {이름}」(역할 = 데모 prop) | 지금(`name`) 그대로 — 역할 글자를 정한 곳이 없다 · OQ-514 | `M:2245` · SPEC-004 §3.6 |
+| 18 | (0.4.0) 메뉴 href `/live/proc`(데모) | 경로 `/procedures/live` 그대로 · OQ-524 | `M:1215-1222` · §6.1 |
+| 19 | (0.4.0) 드래그 순서 = 화면 메모리(`procOrder` · 새로고침 · 다른 화면과 공유 정의 없음) | back DB 저장 · 모든 화면 공유 · 그날 단위(§5.12) | `_RESUME 10-23` 드래그 순서 줄 · DA Q-12 |
+| 20 | (0.4.0) 귀가 대기 카드도 `draggable="true"`(놓기만 막힘 · `M:1471`) | 귀가 대기 카드는 **끌기부터 막는다**(§5.12) | `_RESUME 10-23` 기본값 「귀가 대기 카드는 드래그 제외」 |
+| 21 | (r2) 놓기 = 「대상 앞에 끼우기」만(`M:1471-1472` `splice(at, 0, from)` · 미리보기 `M:2251` 같음) — 바로 아래 카드 위에 놓으면 안 움직이고 맨 끝 자리로 못 감 | **방향 따라** — 아래로 끌면 대상 뒤 · 위로 끌면 대상 앞(§5.12) | `_RESUME 10-23` 「review-doc r1 기본값 ②」 · review r1 W6 |
+| 22 | (r2) 카드 아래 [의사 호출] — 시안 = `canCall` 일 때만(「둘 다 아니면 버튼 없음」 `M:894`) · 0.3.0 SPEC 은 「전부 완료 아님」이면 꺼진 채 보임 | **시안대로**(§5.11 고침 · 지금 코드와 같음) | `_RESUME 10-23` 「시안과 코드가 다른데 … 시안대로」 · review r1 W9 |
 
 ## 7. back ↔ front API
 
@@ -563,6 +645,9 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 
 - 규칙(§5) 계산은 back 이 한다 — `pickable` · `canStart` · `canFinish` · `canCall` · `canHome` · `need` 를 front 가 다시 계산하지 않는다 — 기본값(규칙 한 곳)
 - `kind = etc` 작업은 `state` = KOS `DONE` 이면 `done` · 아니면 `wait`(ccc [시작]이 없으므로) · `pickable` · `canStart` · `canFinish` 는 늘 `false` · 화면 글자는 `kosStatus` — 코드 `domain/rules.py` `proc_state` · `schemas/board.py` (0.3.0)
+- **`procedures[]` 에 「방 배정」(방 있는 `etc`) 작업은 싣지 않는다** — §5.1. 남는 `etc` 는 방 없는 기타 작업뿐. 필드 모양은 그대로(`kind` 값 두 개 유지) (0.4.0) — `_RESUME 10-23`
+- **`cards[]` 배열 순서 = 화면 순서**(§5.12 — 드래그 순서 → 순서 없는 카드 입실순 → 귀가 대기 맨 뒤). 순서 전용 필드(`order` 등)는 **두지 않는다**. 근거: ① front 는 받은 스냅샷을 통째로 바꾸기만 한다(§7.5) — 배열 순서면 front 에 정렬 로직이 없다 ② 새 카드 · 귀가 대기 · 날짜 규칙이 back 한 곳에 남는다(이 절 「규칙 계산은 back」) ③ 필드를 더하지 않아 앱 모델(`app/lib/model/board.dart`)이 바뀌지 않는다 — 앱은 자기 입실순 정렬을 그대로 쓴다(§5.12 「앱」) (0.4.0) — 기본값
+- `cards[].kos` 는 그대로 싣는다(앱이 그린다 · 웹은 안 그림 — §6.3) (0.4.0)
 - 필드 순서는 코드 `schemas/board.py` 의 `BoardSnapshot`(`now` · `sync` · `doctors` · `counts` · `limits` · `cards` · `calls` · `recentAccepts`) — 이름 · null 여부는 코드가 정본 (0.3.0)
 - `chartNumber` 는 검색에만 쓰고 화면에 크게 보이지 않는다 — D-14
 
@@ -578,18 +663,20 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 | `POST /api/procedures/{procedureId}/start` | — | `{ok:true, flowStepChanged}` | `visit_home` · `procedure_not_waiting` · `call_not_accepted` · `no_doctor` | D-30 · D-32 |
 | `POST /api/procedures/{procedureId}/finish` | — | `{ok:true}` | `procedure_not_started` | D-31 · D-32 |
 | `POST /api/visits/{visitId}/home` | — | `{ok:true}` | `procedures_not_done` · `visit_home` | D-33 |
+| **`PUT /api/board/order`** (0.4.0) | `{visitIds:[int, …]}` — 귀가 대기 아닌 카드의 새 순서(앞이 먼저 · 빈 배열 = 오늘 순서 지움 → 전부 입실순). 그 밖 필드 = 400 | `{ok:true, visitIds:[…]}`(거르기 뒤 저장된 목록) | 없음 — 지금 카드가 아닌 id 는 오류 없이 뺀다(§5.12) | `_RESUME 10-23` 드래그 순서 줄 · §5.12 |
 
 - 없는 id = 404 `not_found` · 형식 오류 = 400 `invalid_request`(cc 와 같은 형식). `etc` 작업 id 로 [시작] · [종료] = 404 (0.3.0 — 코드 `service/actions.py` `_procedure`)
 - `PROC_FAKE_BOARD` 가 켜져 있으면 조작 API 전부 403 `fake_board`(§2.3) (0.2.0) — S7
 - 역할 403(`role_forbidden` · `doctor_forbidden` · `not_your_call`)과 검사 순서는 SPEC-004 §3.4 (0.3.0)
 - 조작마다 `event_log` 1줄(`actor` = 로그인 아이디) — D-13
+- `PUT /api/board/order` (0.4.0): `visitIds` = **엄격한 정수 배열(StrictInt — 문자열 `"3"` · 실수 `3.0` · 불리언 `true` 도 400)** (r2). 400 `invalid_request` = 본문이 객체가 아님 · `visitIds` 없음 · 그 밖 필드 · 배열 아님 · 정수 아닌 값 · **같은 id 두 번**. 역할 = admin · doctor · nurse 모두(SPEC-004 0.3.1 §3.4 표 줄) (r2 · r3). 404 없음(없는 visit id 도 거르기만). 성공하면 `board_order` 오늘 행을 **통째로 바꾸고**(마지막 쓰기가 이긴다) `event_log(board_order)` 1줄 · `kos_op` 0줄 → SSE `board` 발행(§7.5 ①). `fake_board` 403 · 인증 401 은 다른 조작과 같다 (r3 — 역할 겹친 말 지움) — §5.12 · SPEC-004 §3.4
 
 ### 7.4 기타
 
 - `GET /api/health` → `{ok, kos: { open, internal }}`(토큰 보유 여부만 · 값 없음)
 - 데모 · 시드 · 리셋 API 없음 — D-01(시드 없음). 데모 고객 준비는 레포 밖 운영 도구(WORK-003 「운영 도구」)가 KOS 에 직접 한다 (0.3.0)
 - 그 밖 back API — `WS /api/interpret`(SPEC-004 §4) · `POST /api/devices` · `DELETE /api/devices/{token}`(SPEC-004 §5-1.1) (0.3.0)
-- **back 경로 전부(코드 기준 16개 — router 15 + `GET /api/health`)** = §7.1 2 · §7.2 `GET /api/board` · §7.5 `GET /api/board/stream` · §7.3 조작 8 · `GET /api/health` · 통역 WS 1 · 기기 2. `GET /api/auth/accounts` 는 **없다**(0.3.0 에서 제거 — SPEC-004 §3.3) (0.3.0)
+- ~~**back 경로 전부(코드 기준 16개 — router 15 + `GET /api/health`)** = §7.1 2 · §7.2 `GET /api/board` · §7.5 `GET /api/board/stream` · §7.3 조작 8 · `GET /api/health` · 통역 WS 1 · 기기 2.~~ (0.4.0 바뀜) → **back 경로 전부 17개(router 16 + `GET /api/health`)** = §7.1 2 · §7.2 `GET /api/board` · §7.5 `GET /api/board/stream` · §7.3 조작 8 + **순서 1(`PUT /api/board/order`)** · `GET /api/health` · 통역 WS 1 · 기기 2. `GET /api/auth/accounts` 는 **없다**(0.3.0 에서 제거 — SPEC-004 §3.3) (0.3.0 · 0.4.0)
 
 ### 7.5 실시간 갱신 — SSE (코디 지시 · 사용자 2026-10-21)
 
@@ -599,7 +686,7 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 | 인증 | `?token=<ccc 토큰>`(브라우저 `EventSource` 는 헤더를 못 싣는다). 틀리면 401 후 닫음 → front 는 `/login`. **접근 로그에 쿼리 문자열을 남기지 않는다** — uvicorn 접근 로그에서 쿼리를 지우는 필터(또는 `/api/board/stream` 접근 로그 끔). 배포 때 ingress 로그도 같은 기준 (0.2.0) | `EventSource` 제약 · S9 |
 | 이벤트 종류 | **`board` 하나** | 화면이 하나 · 상태도 하나 |
 | 본문 | **전체 스냅샷** — `GET /api/board`(§7.2)와 **같은 모양 그대로**(+ `version`: 보낼 때마다 1 씩 느는 정수) | 단순한 쪽: ① 한 지점 · 한 구역 · 오늘 일정이라 크기가 작다(HAR 하루 15건 ≈ 32KB, 저장 필드는 그보다 적다) ② front 는 받으면 **통째로 바꾸기만** — 바뀐 것만 보내면 합치기 · 순서 · 빠진 이벤트 복구 로직이 front 에 생긴다 ③ 규칙 계산(`canStart` 등)이 back 한 곳에 남는다(§7.2) |
-| 보내는 때 | ① ccc 조작(마취 · 호출 · 다른 원장에게 · 수락 · 시작 · 종료 · 귀가 대기)이 DB 에 들어간 직후 ② KOS 일정 조회(10초)가 끝날 때마다 — 값이 바뀌었거나 `sync`(마지막 동기화 시각 · 오류)가 바뀌었으면 ③ 직원 · 방 조회(1시간) 뒤 ④ `kos_op` 상태가 바뀔 때(반영 중 → 확인 · 실패) ⑤ **조회 시간과 상관없이 10초마다**(시간 경과로 바뀌는 「확인이 필요」 · 마취 `long` · 날짜 바뀜 반영) (0.2.0) | 화면의 값은 이 다섯 중 하나로만 바뀐다 · S5 |
+| 보내는 때 | ① ccc 조작(마취 · 호출 · 다른 원장에게 · 수락 · 시작 · 종료 · 귀가 대기 · **카드 순서(0.4.0)**)이 DB 에 들어간 직후 ② KOS 일정 조회(10초)가 끝날 때마다 — 값이 바뀌었거나 `sync`(마지막 동기화 시각 · 오류)가 바뀌었으면 ③ 직원 · 방 조회(1시간) 뒤 ④ `kos_op` 상태가 바뀔 때(반영 중 → 확인 · 실패) ⑤ **조회 시간과 상관없이 10초마다**(시간 경과로 바뀌는 「확인이 필요」 · 마취 `long` · 날짜 바뀜 반영) (0.2.0) | 화면의 값은 이 다섯 중 하나로만 바뀐다 · S5 |
 | 첫 접속 | 연결되면 **바로 `board` 1개**(지금 전체). front 는 이것으로 첫 화면을 그린다 — 따로 `GET /api/board` 를 부를 필요 없음(§7.2 는 시험 · 디버그용으로 남긴다) | 첫 로딩과 갱신이 같은 길 |
 | 재연결 | 끊기면 `EventSource` 기본 재연결(back 이 `retry: 3000` 을 보낸다). 다시 붙으면 첫 접속처럼 전체 스냅샷을 받는다 — **`Last-Event-ID` 다시 보내기 없음** | 스냅샷이라 놓친 이벤트를 메울 필요가 없다 |
 | 연결 유지 | 15초마다 주석 줄 `: ping` | 프록시 · 브라우저 유휴 끊김 방지(기본값) |
@@ -642,7 +729,7 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 
 | # | 단계 | ccc 에서 보는 것 | KOS 쪽 확인 | 근거 |
 |---|---|---|---|---|
-| 0 | 데모 KOS 에서 4층 오늘 일정 1건을 시술 대기 · 방 배정(작업 2개 이상) | — | 일정 `PROCEDURE_WAITING` · ETCETERA 작업 `room` | D-21 · D-22 |
+| 0 | 데모 KOS 에서 4층 오늘 일정 1건을 시술 대기 · 방 배정(작업 2개 이상) · **방 없는 ETCETERA(마취 · 시트팩 등) 1개 이상 필수** — 데모 환자에 없으면 E2E 전에 KOS 화면에서 붙인다. KOS 에서 만들 수 없으면 그 사실을 기록하고 사용자에게 알린다 (r2) | — | 일정 `PROCEDURE_WAITING` · ETCETERA 작업 `room` | D-21 · D-22 · `_RESUME 10-23` 「방 배정」 줄 · review r1 W10 (r2) |
 | 1 | 카드 등장 | 10초 안에 카드 · 「시술 대기」 · 입실 시각 · 오더 메모 · (결제 전이면) 「수납 필요」. 방 없는 일정은 안 나온다 | — | D-08 · D-21 · D-22 |
 | 2 | [마취 시작] → 21분 대기 또는 시각 조작 없이 표시만 확인 → [마취 종료] | 「마취 · NN분 경과」 보라 → 20분 이상 빨강 · 「확인」 칸 +1 → 「완료 N분」 | KOS 변화 없음 | D-20 · D-23 |
 | 3 | 시술 2개 체크 → [의사 호출 · 2건] → 「모든 의사」 | 「호출함」 · 「전체 호출 · 수락 전」 · [시작] 꺼짐 · 호출 탭 1건 · 5분 뒤 「확인이 필요」 | 두 작업 `room` = 카드 방 · `assignees` = 시스템 계정 · `status = WAITING` — **몇 초 안에**(20 ~ 30초 걸리지 않음) (0.3.0) | D-24 · D-25 · D-30 · E2E-1 · E2E-6 |
@@ -652,10 +739,17 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 | 7 | [마취 시작] (진행 중) | 켜진다 | 변화 없음 | D-23 |
 | 8 | 시술 1 [종료] · 시술 2 [시작] → [종료] | 완료 줄이 위로 · 카드 아래가 [귀가 대기] 로 바뀜 | 각 작업 `status = DONE`. KOS 화면은 방을 비워 보일 수 있다 — ccc 카드 · 방은 그대로 | D-31 · D-32 · D-33 |
 | 9 | [귀가 대기] | 카드 흐림 · 맨 뒤 · 「귀가 대기 HH:MM」 — 데모 KOS 에서 귀가(`COMPLETED`) 처리하면 10초 안에 카드가 사라진다 (0.3.0) | 「방 배정」 등 남은 작업 `CANCELED` · 일정 `flowStep = PROCEDURE_DONE` · KOS 방이 빈다 (0.3.0) | D-33 · E2E-3 · E2E-9 |
-| 10 | 반영 실패 확인(선택) — back 의 내부 API 주소를 틀리게 두고 [종료] | 「KOS 반영 중」 → 3회 뒤 「KOS 반영 실패」 · ccc 상태는 완료 | 변화 없음 | D-09 |
+| 10 | 반영 실패 확인(선택) — back 의 내부 API 주소를 틀리게 두고 [종료] | ~~「KOS 반영 중」 → 3회 뒤 「KOS 반영 실패」 · ccc 상태는 완료~~ (0.4.0 바뀜) → 웹 카드에는 표시 없음 · ccc 상태는 완료 · `GET /api/board` 의 그 카드 `kos.status` 가 `pending` → 3회 뒤 `failed`(앱 룸 상세에도 보임) | 변화 없음 | D-09 · `_RESUME 10-23` · OQ-522 |
 | 11 | 조회 시간 · 덮어쓰기 | 데모 KOS 에서 오더 메모를 고치면 10초 안에 카드에 반영 | — | D-08 · D-09 |
+| 12 | (0.4.0) 헤더 · 제목 줄 | 상단 메뉴 「현황」 하나 · 호버하면 「시술 현황」 한 항목 · 사이드바 없음 · 제목 줄에 [입실순 \| 배치순] 없음 · 「마지막 KOS 동기화 HH:MM:SS」 | — | `_RESUME 10-23` 헤더 · 버튼 줄 · §6.2 |
+| 13 | (0.4.0) 「방 배정」 줄 · 기타 작업 | 1 단계 카드에 **「방 배정」 줄이 없다**. 0 단계의 **방 없는 기타 작업(마취 · 시트팩 등)은 맨 위 읽기 전용 줄(제목 + KOS 상태)로 반드시 보인다**(필수 확인 · r2). [귀가 대기](9 단계) 뒤 KOS 「방 배정」이 `CANCELED` 인 것은 그대로 | 「방 배정」 작업 `CANCELED`(9 단계와 같음) | `_RESUME 10-23` 「방 배정」 줄 · §5.1 |
+| 14 | (0.4.0) 드래그 순서 · 공유 | 카드 3장 이상에서 ① 첫 카드를 **바로 아래(다음) 카드** 위에 놓으면 둘이 자리를 바꾼다 ② 한 카드를 **마지막 카드** 위에 놓으면 맨 끝으로 간다 ③ 뒤 카드를 앞 카드 위에 놓으면 그 앞으로 — 끄는 동안 같은 자리로 미리 옮겨 보임 (r2). **다른 브라우저(의국 PC 역할)도 새로고침 없이 같은 순서** · 새로고침 · back 재시작 뒤에도 같은 순서. 귀가 대기 카드는 끌리지 않는다 | KOS 변화 없음(데모 KOS 화면 순서 그대로) | `_RESUME 10-23` 드래그 순서 줄 · §5.12 · §7.5 |
+| 15 | (0.4.0) 새 카드 · 귀가 대기 | 순서를 정한 뒤 데모 KOS 에서 새 일정을 시술 대기 + 방 배정 → 새 카드가 **귀가 대기 아닌 카드들 맨 뒤**에. 한 카드를 [귀가 대기] → 맨 뒤(귀가 대기 시각 순)로 가고 나머지 순서는 그대로 | — | `_RESUME 10-23` 기본값 · §5.12 |
+| 16 | (0.4.0) 동시 저장 | 두 브라우저에서 거의 같이 다른 순서로 놓는다 → 둘 다 **나중에 놓은 쪽 순서**로 맞춰진다(오류 없음) | — | §5.12 「마지막 쓰기가 이긴다」 |
+| 17 | (0.4.0) 시안 차이 | 카드 머리 한 줄(방 · Badge / 입실) · 경과 글자 · 「KOS 반영」 글자 없음 · 시술 줄 진행 → 대기 → 완료(점선) · 현황 탭 3 × 2 칸 — 전체현황판 시안 `board` 장면과 나란히 놓고 본다 | — | §6.3 · §6.4 · §6.7 #11 ~ #16 |
 
 back 단위 시험(pytest, KOS 는 가짜 클라이언트): §5.10 전이 · §5.11 활성 조건 · 유효 호출(D-25) · 수락 범위(D-27) · 덮어쓰기 보호(§4.3) · op 순서 · 재전송 · 실패(§4.4) · 원장 목록 제외(D-11) · 조회 시간(D-08) · SSE(§7.5 — 첫 접속 스냅샷 · 조작 뒤 1개 · 토큰 없으면 401).
+0.4.0 더함(r2 — StrictInt: `"3"` · `3.0` · `true` 400 · 옛 스키마 DB 파일로 시작해도 `board_order` 가 생기고 기존 행이 남음): 「방 배정」(방 있는 `etc`)이 `procedures[]` 에 없음 · 방 없는 `etc` 는 있음 · [귀가 대기] 취소 대상에는 「방 배정」 그대로 · `PUT /api/board/order`(저장 · 거르기 — 없는 id · 귀가 대기 · 사라진 카드 · 400 형식 · 같은 id 두 번 · 마지막 쓰기 · `event_log` 1줄 · `kos_op` 0줄 · 저장 뒤 SSE 1개 · 401 · 403 `fake_board`) · 스냅샷 정렬(목록 → 목록 밖 입실순 → 귀가 대기 시각 순 · 날짜 바뀌면 순서 없음) (0.4.0)
 
 E2E 공통: 브라우저 두 개(현황판 · 의국 PC 역할)를 열어 두고, 한쪽 조작이 다른 쪽에 새로고침 없이 바로 보이는지 매 단계 본다(§7.5). back 을 재시작하면 화면이 다시 붙고 같은 상태가 보인다.
 
@@ -669,18 +763,24 @@ E2E 공통: 브라우저 두 개(현황판 · 의국 PC 역할)를 열어 두고
 | OQ-504 | 「확인이 필요」에 시안의 세 번째 이유(시술 모두 완료 · 귀가 대기 전, 기준 없음)를 넣나 — D-20 은 호출 · 마취 둘만 적었다 | 시안대로 넣는다(D-16 「정책은 시안대로」) | 새로 |
 | ~~OQ-505~~ | 카드가 사라지는 때 — KOS 가 `COMPLETED`(귀가) 등 세 단계 밖이 되면 | **닫힘** — 귀가 대기 카드는 흐리게 남고 KOS `COMPLETED` 가 되면 사라진다(§5.1 조건 2) | 닫힘(E2E-9 · `_RESUME` 10-21) (0.3.0) |
 | OQ-506 | KOS `status = CANCELED` 작업을 시술 목록에 두나 | 목록에서 뺀다 · 「전부 완료」 판정에서도 뺀다 — 코드 그대로(`domain/rules.py` `items`) | 기본값 구현 (0.3.0) |
-| OQ-508 | 「수납 필요」 · 「KOS 반영 중 · 실패」 자리 · 모양 — 시안에 없음 | §6.7 #7 · #8 | 새로 |
+| OQ-508 | 「수납 필요」 · 「KOS 반영 중 · 실패」 자리 · 모양 — 시안에 없음 | §6.7 #7 · #8. **0.4.0: 「KOS 반영 중 · 실패」 쪽은 닫힘**(웹은 안 그림 · `_RESUME 10-23`) — 「수납 필요」는 전체현황판 시안에 자리가 생겼다(`M:825-827` · 고객 줄 끝 Badge warning sm = 지금 코드와 같음) → 그것도 닫힘 (0.4.0) | 닫힘 (0.4.0) |
 | OQ-509 | 「KOS 반영 실패」 뒤 복구 — 다시 보내기 버튼 · 운영 절차 | 버튼 없음 · back 로그 · `event_log(kos_failed)` 로 확인. 되돌리기 정책 때 같이 | 새로 |
 | OQ-510 | 재전송 횟수 · 간격 | 조회 주기마다 · 3회 뒤 실패 | 새로 |
 | OQ-511 | 한 일정에 방 있는 ETCETERA 작업이 둘 이상이면 어느 방인가(HAR 에 「방 배정」 외 「방 점유/원장 상담」 작업도 있다) | `roomAssignedDateTimeUtc` 가 가장 늦은 작업의 방 — 코드 그대로(`kos/sync.py`) · 호출 때 시술 작업에 넣는 방도 이것(§5.4) | 기본값 구현 (0.3.0) |
 | OQ-512 | KOS 쪽에서 ccc 를 거치지 않은 호출 · 집도의 변경이 조회되면(D-10 은 현장이 안 한다고 정함) | KOS 값을 보여 준다(집도의 · 호출 여부) · ccc 호출 기록은 만들지 않는다 | 새로 |
 | OQ-513 | 조회 시간 밖의 조작 | 막지 않는다 · KOS 에 보내고 확인은 다음 조회 시간 | 새로 |
-| OQ-514 | 헤더 계정 표시 문구(시안 「데스크」 · 계정은 관리자 1개) | 시안 문구 그대로 | 새로 |
+| OQ-514 | 헤더 계정 표시 문구(시안 「데스크」 · 계정은 관리자 1개) | ~~시안 문구 그대로~~ (0.4.0 바뀜) → 전체현황판 시안 = 「{역할} · {이름}」(`M:2245` · 역할은 데모 prop). 역할 글자(관리자 · 의사 · 간호사 등)를 정한 곳이 없어 **지금 `name` 그대로**(SPEC-004 §3.6) | 열림 (0.4.0) |
 | OQ-515 | 진행 중 마취가 있는 채로 [귀가 대기] | 막지 않는다 · 귀가 대기 카드엔 마취 버튼 없음 | 새로 |
 | OQ-516 | `call-tasks-doctors` 가 400 을 주는 조건 — 이미 `WAITING`/`READY` 작업 재호출(D-25 다시 호출) · [다른 원장에게](D-27) | 확인된 것: 귀가 대기 일정 400 · **시술 작업에 방 없음 400 `roomId NotFound`**(E2E-1 → 방 넣기 op 으로 막음 · §8). 재호출 · [다른 원장에게] 400 여부는 실 데모 기록 없음 — 400 이면 §4.4 실패 규칙 (0.3.0) | 일부 닫힘(방) · 나머지 열림 (0.3.0) |
-| OQ-517 | 현황판(웹) 카드의 `kind = etc`(「방 배정 · 준비중」) 줄을 빼나 | 사용자 「필요하지 않을 거 같아요 · 일단 기록해놔」 — **빼기로 기록만**(다음 수정 batch). 지금 코드(웹)는 그린다 · back · 스냅샷은 그대로(귀가 대기 취소에 씀) · 앱은 안 그림 | 열림 — 다음 수정 batch(E2E-10) (0.3.0) |
+| ~~OQ-517~~ | 현황판(웹) 카드의 `kind = etc`(「방 배정 · 준비중」) 줄을 빼나 | ~~사용자 「필요하지 않을 거 같아요 · 일단 기록해놔」 — **빼기로 기록만**(다음 수정 batch). 지금 코드(웹)는 그린다 · back · 스냅샷은 그대로(귀가 대기 취소에 씀) · 앱은 안 그림~~ → **닫힘** — **「방 배정」(방 있는 ETCETERA)만 뺀다 · back 스냅샷에서**(§5.1). 다른 기타 작업은 남긴다. 귀가 대기 취소는 `open_task_seqs` 로 그대로 (0.4.0) | 닫힘(`_RESUME 10-23` 「방 배정」 줄) (0.4.0) |
 | OQ-518 | 웹 로그인에 역할 제한을 두나 — 결정은 「웹 = 관리자」(SPEC-004 A-03 · §3.6)인데, 정상 로그인 뒤 웹 폼은 **비밀번호가 있는 계정이면 역할과 상관없이** 들어간다(코드 `front/app/login/page.tsx` · back 은 역할로 막지 않음). 조작 권한은 back 이 API 마다 검사(SPEC-004 §3.4) | 코드 그대로(제한 없음) · 결정 필요 | 열림 (0.3.0) |
 | OQ-519 | KOS 데모 지점의 데모 표식 계정(`KOS-DEMO` 이름 · 데모 도구가 데모 테넌트 확인에 씀)이 원장 목록에 섞이면 뺄까 — 지금 제외는 시스템 계정 id + `KOS_EXCLUDE_ACCOUNT_IDS` 뿐(§4.6) | 코드 그대로 — 빼려면 `KOS_EXCLUDE_ACCOUNT_IDS` 에 그 계정 id(env · 코드 변경 없음) | 열림 (0.3.0) |
+| OQ-520 | 헤더 「현황」 드롭다운에 예약 현황 · 원내 현황 항목을 언제 · 어떤 모양으로 더하나(시안은 3항목 · `M:1215-1222`) | 지금 없는 화면이라 **그리지 않는다** — 「시술 현황」 한 항목만(코디 기본값). 예약 현황 판에서 다시 | 열림 (0.4.0) |
+| OQ-521 | 카드 머리 경과 글자(「호출 N분 경과」 · 「완료 뒤 N분 경과」 · 「귀가 대기 HH:MM」)를 되살리나 | 시안대로 **안 그린다**(§6.7 #11). 사용자 E2E 에서 아쉬우면 다음 batch | 열림 (0.4.0) |
+| OQ-522 | 조작 응답 뒤 비동기로 난 **KOS 반영 실패**(3회 재전송 뒤 `failed`)를 웹에서 어떻게 알리나 — 결정(`_RESUME 10-23` 「… **오류 토스트로만**(비동기 실패 알림은 OQ-522 열림)」 줄)의 지금 토스트는 조작 API 실패만 띄운다 | **웹엔 표시 없음**(스냅샷 `kos` · `event_log(kos_failed)` · back 로그 · 앱 룸 상세에만). 스냅샷 `kos.status` 가 `failed` 로 바뀔 때 토스트를 띄울지는 정하지 않았다 — OQ-509(복구)와 같이 | 열림 (0.4.0) |
+| OQ-523 | 시술실 앱도 공유 드래그 순서를 따르나(「모든 화면 공유」의 「모든 화면」에 앱이 드는지) | 앱은 지금 자기 입실순 정렬(`app/lib/view/view.dart:58`) — **이번 판 바꾸지 않음**(범위 = 웹). 따르려면 앱이 `cards[]` 배열 순서를 그대로 쓰면 된다(back 변경 없음) | 열림 (0.4.0) |
+| OQ-524 | 전체현황판 경로를 시안 데모 href(`/live/proc` 등)로 바꾸나 | **`/procedures/live` 그대로**(배포 주소 · 북마크 · 앱 무관). 예약 · 원내 현황이 들어올 때 같이 정한다 | 열림 (0.4.0) |
+| OQ-525 | 순서 목록을 며칠치 남기나(`board_order` 전날 행) | 지우지 않는다(하루 1행 · 작다 · 읽지 않음). 정리 정책 없음 | 열림 (0.4.0) |
 
 ## 부록 A. DEC-005 대응표
 
@@ -694,20 +794,20 @@ E2E 공통: 브라우저 두 개(현황판 · 의국 PC 역할)를 열어 두고
 | D-06 | KOS 데모 지점 실연동 · 운영 키 금지 | §1.1 · §1.2 · §2.3 · §6.7 #9 |
 | D-07 | 공개 · 내부 인증 · 토큰 보관 | §2.3 · §4.1 |
 | D-08 | 4층 · 10초 · 1시간 · 09~21 | §2.3 · §4.2 · §5.1 |
-| D-09 | KOS 기준 / ccc 기준 · 반영 중 · 실패 | §3.2 · §4.3 · §4.4 · §5.2 · §6.3 |
+| D-09 | KOS 기준 / ccc 기준 · 반영 중 · 실패(→ 0.4.0 웹 카드 표시 없음 · 스냅샷 `kos` 는 유지) | §3.2 · §4.3 · §4.4 · §5.2 · §6.3 · OQ-522 |
 | D-10 | 현장은 KOS 직접 조작 안 함 | §1.2 · §9 · OQ-512 |
 | D-11 | 원장 목록 · 시스템 · 마취용 · 비활성 제외 | §2.3 · §4.1 · §4.6 |
 | D-12 | ccc DB 가 KOS 를 품음 · `kos_id` · 대응표 | §3.1 · §3.2 · §3.3 |
-| D-13 | 이벤트 로그 | §3.1 · §3.2 · §7.3 |
+| D-13 | 이벤트 로그(0.4.0 `board_order` 더함) | §3.1 · §3.2 · §7.3 |
 | D-14 | 개인정보 = 화면에 쓰는 것만 | §1.2 · §3.1 · §3.3 · §7.2 |
 | D-15 | SQLite · 나중 PG + Redis | §2.2 · §3.1 |
 | D-16 | 시안 정본 | 머리말 · §6 |
-| D-17 | 구조 · 헤더 메뉴 하나 | §6.2 · §6.3 · §6.7 #5 |
-| D-18 | 입실순 · 배치순 | §3.3 · §6.3 |
+| D-17 | 구조 · 헤더 메뉴 하나 → (0.4.0) 상단 「현황」 하나 + 드롭다운 「시술 현황」 하나 · 사이드바 없음 | §6.2 · §6.3 · §6.7 #5 · #14 |
+| D-18 | 입실순 · 배치순 → (0.4.0) **뒤집힘** — 버튼 없음 · 정렬 = 드래그 순서(`_RESUME 10-23`) · 입실순은 순서 없는 카드에만 | §3.3 · §5.12 · §6.3 |
 | D-19 | 카드 구성 | §6.3 |
 | D-20 | 현황 · 필터 · 확인이 필요 | §5.8 · §6.4 · OQ-504 |
 | D-21 | PROCEDURE_WAITING 이면 카드 · 수납 필요 | §5.1 · §6.7 #7 |
-| D-22 | 방 있는 고객만 · ~~ETCETERA 안 보임~~ → 읽기 전용으로 보임(E2E-4) (0.3.0) | §3.3 · §5.1 · §6.3 · OQ-517 |
+| D-22 | 방 있는 고객만 · ~~ETCETERA 안 보임~~ → 읽기 전용으로 보임(E2E-4) (0.3.0) → (0.4.0) 「방 배정」(방 있는 ETCETERA)만 다시 뺌 · 그 밖은 보임 | §3.3 · §5.1 · §6.3 · ~~OQ-517~~(닫힘) |
 | D-23 | 마취 별개 · 시안 고침 | §5.3 · §5.11 · §6.7 #1 · §8 |
 | D-24 | 의사 호출 · KOS 2단계 → 방 넣기 포함 3단계(E2E-1) (0.3.0) | §5.4 · §8 |
 | D-25 | 호출 쌓기 · 유효 호출 | §3.2 · §5.4 · §5.5 |
@@ -919,3 +1019,62 @@ E2E 공통: 브라우저 두 개(현황판 · 의국 PC 역할)를 열어 두고
 | 데모 환자 190건(10-22) | W3 「운영 도구」 · S4 OQ-604 닫힘 |
 
 누락 0.
+
+## 부록 E. 0.4.0 반영표 — `_RESUME 10-23` 결정 줄 → 절 (0.4.0)
+
+원천 `orchestration/work/overall-board/_RESUME.md` §2 결정 표 2026-10-23 줄 ~~8개~~ → **10개**(r2 — 코디가 7 · 8번째 줄을 더함 · 아래 #7 · #8 · 옛 #7 · #8 은 #9 · #10)(위에서부터). 취소선 부분은 같은 날 뒤집힌 것 — SPEC 은 지금 것만 따른다.
+
+| # | 결정 줄(줄임) | SPEC-003 0.4.0 | WORK-005 |
+|---|---|---|---|
+| 1 | 목적 = 시술 현황판 → 「Ceramique 전체현황판」 업그레이드 · **현황 탭만**(다른 탭 X) | 머리말 · §1.1(화면 줄) · §1.2(예약 · 원내 현황 · 다른 메뉴 Out) · §6 머리 표 | 머리말 · Meta |
+| 2 | 다음 발주 보류 — 먼저 사용자와 계획 | 해당 없음(오케스트레이션 순서 — SPEC 에 닿는 정책 없음) | 해당 없음 |
+| 3 | **디자인 시안이 정본** · ~~프론트만 변경~~ → 프론트 + back 소량(KOS 무변경) | 머리말 · §6 머리 표 · §6.7(#11 ~ #22 (r3)) · §5.1 · §5.12(back 소량 = 순서 · 「방 배정」 거르기) · §8 변경 없음(KOS 무변경) | WP-BE · WP-FE 범위 |
+| 4 | 드래그 순서 = **back DB 저장**(ccc 만 · KOS 반영 없음) · 기본값: 모든 화면 공유(SSE) · 그날 단위 · 새 카드 맨 뒤 · 귀가 대기 드래그 제외 | §1.1 · §3.2 `board_order` · `event_log.type` · §5.12 · §6.3 드래그 · §7.2 배열 순서 · §7.3 `PUT /api/board/order` · §7.4 경로 수 · §7.5 ① · §9 #14 ~ #16 · §6.7 #19 · #20 · OQ-523 · OQ-525 | WP-BE1 · WP-BE2 · WP-FE2 |
+| 5 | 헤더 상단 메뉴는 「현황」 하나만(나머지 5개 안 그림) | §2.4 · §6.1 · §6.2 헤더 · §6.7 #5 · #14 · §9 #12 · 부록 A D-17 · OQ-520(드롭다운 항목 — 코디 기본값) | WP-FE1 |
+| 6 | ~~기타 작업 줄 전부 뺀다~~ → **「방 배정」 줄만 뺀다**(OQ-517 · room 있는 ETCETERA = `sync.py:39-40`) · 다른 ETCETERA 남김 · **입실순/배치순 버튼 뺀다** · **KOS 반영 중/실패 표시 뺀다** | 「방 배정」: §5.1 · §6.3 #5 · §6.7 #13 · §7.2 · §9 #13 · ~~OQ-517~~ 닫음 · 부록 A D-22 / 버튼: §5.12 · §6.2 제목 줄 · §6.3 정렬 · §6.7 #14 · 부록 A D-18 / KOS 표시: §6.3 · §6.7 #8 · §9 #10 · OQ-508 닫음 · OQ-522 | WP-BE1(「방 배정」) · WP-FE1 · WP-FE2 |
+| 7 | (r2 새 줄) 결정 표에 없는 화면 차이는 **시안대로** · KOS 반영 실패는 카드 표시 없이 **오류 토스트로만**(비동기 알림 OQ-522) | §6.3(KOS 표시) · §5.9 · §5.11 · §6.4 · §6.7 #11 · #14 ~ #16 · #22 · OQ-522 근거 칸 | WP-FE1 · WP-FE2 |
+| 8 | (r2 새 줄) review r1 기본값 ① DEC-005 개정 안 함 · 머리말 「0.4.0 부터 _RESUME 10-23 > DEC-005」 ② 드래그 놓기 = **방향 따라** | ① 머리말 우선순위 문장 · 부록 A ② §5.12 「무엇」 · §6.3 드래그 · §6.7 #21 · §9 #14 | WP-FE2 · WP-E2E |
+| 9 | 예약 현황은 workflow-v2 예약 구간 갱신 → KOS API 조사 순 | §1.2(다음 판 · Out) · OQ-520 | 범위 밖(「하지 않는 것」) |
+| 10 | 디자인 원천 = Claude Design p/dda9a931… `Ceramique 전체현황판.dc.html` | §6 머리 표 · 머리말 근거 표기 `M:n` | Meta(시안 경로) |
+
+10줄 · 누락 0 (r2). 결정 표에 없고 **시안을 따른** 화면 차이 = §6.7 #11 · #14 ~ #16 · §5.9 · §6.4(시안 근거) — 판단이 안 선 것은 OQ-514 · OQ-521 · OQ-524 로 열어 두었다.
+
+## 부록 F. review-doc r1 처분 (r2 · 2026-10-23)
+
+원천 `orchestration/work/overall-board/review-doc-r1.md`(FAIL 2 · WARN 12) · 지시 `orchestration/work/overall-board/spec-r2-instructions.md`.
+
+| 항목 | 처분 | 바뀐 곳 |
+|---|---|---|
+| F1 | §5.1 살아 있는 문장 = 「**방 없는 ETCETERA(마취 · 시트팩 등)는 스냅샷에 실린다**」 | SPEC §5.1 |
+| F2 | (c) — FE 는 가짜 보드에서 **미리보기 · 놓은 직후 로컬 순서**까지만 확인. 403 `fake_board` 도 일반 오류(토스트 + 스냅샷 순서 복귀) — 예외 없음. 「놓은 뒤 유지 · 공유」는 WP-E2E(데모 지점) | SPEC §6.3 · WORK-005 고정점 아래 문단 · WP-FE2 완료 조건 · WP-E2E |
+| W1 | 근거를 `_RESUME 10-23` 새 줄(「시안과 코드가 다른데 … 시안대로」 · 「오류 토스트로만」)로 | SPEC §5.9 · §6.7 #11 · OQ-522 · 부록 E #7 |
+| W2 | DEC-005 개정 안 함 · 머리말에 「0.4.0 부터 `_RESUME 10-23` > DEC-005(D-17 · D-18 · D-22 일부)」 | SPEC 머리말 · 부록 E #8 |
+| W3 | SPEC-004 §3.4 표에 `PUT /api/board/order`(세 역할) 한 줄 · SPEC-003 §7.3 에 역할 | SPEC-004 §3.4 · SPEC-003 §5.12 · §7.3 · WORK-005 WP-BE2 |
+| W4 | `procedure.kind` = ETCETERA 전부 저장 · 방 있는 것은 스냅샷에서 뺌 | SPEC §3.2 |
+| W5 | 경합 규칙 하나 — 마지막 요청만 · 응답까지 로컬 순서 · 응답 뒤 `visitIds` 와 같은 첫 스냅샷부터 서버 순서 · 3초 넘으면 스냅샷 · 실패면 바로 스냅샷(기본값) | SPEC §5.12 「놓은 뒤 화면」 · §6.3 · WORK-005 WP-FE2 |
+| W6 | 방향 따라 놓기(아래로 = 대상 뒤 · 위로 = 대상 앞) | SPEC §5.12 · §6.3 · §6.7 #21 · §9 #14 · WORK-005 WP-FE2 |
+| W7 | `visitIds` = StrictInt 배열 · 시험 항목 | SPEC §7.3 · §9 끝 · WORK-005 WP-BE2 |
+| W8 | 검색 결과 클릭 = 검색어 지우고 고객 탭 + 강조(시안 · 코드와 같음) | SPEC §6.4 |
+| W9 | [의사 호출] 보임 = `canCall` 일 때만 · 둘 다 아니면 버튼 없음(시안 · 코드와 같음) | SPEC §5.11 · §6.7 #22 |
+| W10 | §9 #0 준비에 방 없는 ETCETERA 필수(없으면 KOS 화면에서 붙임 · 못 만들면 기록 · 사용자 알림) · #13 필수 확인 | SPEC §9 #0 · #13 · WORK-005 WP-E2E |
+| W11 | 옛 스키마 DB 시험 이름 · grep 기대 수 · 화면 대조 방법(누가 · 무엇으로) | WORK-005 WP-BE2 · WP-FE1 · WP-FE2 |
+| W12 | §6 머리 표 빈 줄 지움 | SPEC §6 |
+| 참고 | 앱 정렬 근거 `view.dart:60` → `:58` | SPEC §5.12 · OQ-523 |
+
+FAIL 2 · WARN 12 · 참고 1 — 누락 0.
+
+## 부록 G. review-doc r2 처분 (r3 · 2026-10-23)
+
+원천 `orchestration/work/overall-board/review-doc-r2.md`(FAIL 1 · WARN 6) · 지시 `orchestration/work/overall-board/spec-r3-instructions.md`. 사용자 결정 없음 — 기본값으로 닫음.
+
+| 항목 | 처분 | 바뀐 곳 |
+|---|---|---|
+| R1(FAIL) | WP-FE1 grep 을 `--include='*.ts' --include='*.tsx'` 로 좁힘 — 복사 테마 CSS(`medikit-patches.css`)의 `[Menu-n]` 주석은 §2.4 「그대로 복사」라 대상 밖 | WORK-005 WP-FE1 |
+| R2 | 경합 ② 비교 = 스냅샷 귀가 대기 아닌 `cards[]` 에서 보낸 목록 카드만 뽑은 차례 ↔ 보낸 목록 중 아직 귀가 대기 아닌 카드의 차례(새 카드 · 그사이 귀가 대기 · 사라진 카드 빠짐). ① 에서 그사이 귀가 대기가 된 카드 = 로컬 순서에서 빼고 귀가 대기 묶음으로(기본값) | SPEC §5.12 「놓은 뒤 화면」 · WORK-005 WP-FE2 |
+| R3 | 앞 · 뒤 판정 = **드래그 시작 때의 전체 순서**(미리보기 순서 아님 — 깜빡임 방지 · 기본값) | SPEC §5.12 「무엇」 · WORK-005 WP-FE2 |
+| R4 | 고객 탭 줄 순서 = 카드 순서(스냅샷 `cards[]` · 경합 중 로컬) — 시안 `M:1591` | SPEC §6.4 · WORK-005 WP-FE1 |
+| R5 | 범위 표기 따라잡음 — WP-E2E · WP-FE2 계약 칸 §6.7 #11 ~ #22 · 부록 E #3 · WORK 의 「SPEC-003 0.4.0」 → 0.4.2 | WORK-005 Meta · 병렬 그림 · WP-FE2 · WP-E2E · SPEC 부록 E |
+| R6 | SPEC-004 → 0.3.1 · `updated_at` 2026-10-23 · 머리말 한 줄 · 20-spec README | SPEC-004 · README |
+| R7 | §5.11 `canCall` 예시 = 방 없는 기타 작업 · §7.3 역할 겹친 말 하나로 | SPEC §5.11 · §7.3 |
+
+FAIL 1 · WARN 6 — 누락 0.

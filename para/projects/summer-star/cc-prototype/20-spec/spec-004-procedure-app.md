@@ -2,12 +2,12 @@
 type: spec
 id: SPEC-004
 title: "명동 PoC v2 — 시술실 앱(Flutter · iOS) · 계정 · 권한 · 통역 · 원장 호출 푸시 계약"
-version: 0.3.0
+version: 0.3.1
 status: draft
 product: cc-prototype
 feature: procedure
 created_at: 2026-10-21
-updated_at: 2026-10-22
+updated_at: 2026-10-23
 tags:
   - product/cc-prototype
   - feature/procedure
@@ -39,6 +39,7 @@ sources:
 
 # 명동 PoC v2 — 시술실 앱 계약
 
+> 0.3.1(2026-10-23): §3.4 역할 검사표에 `PUT /api/board/order`(카드 드래그 순서 · 세 역할 ○) 한 줄 — SPEC-003 0.4.1 · 0.4.2(§5.12 · §7.3). 그 밖 변경 없음.
 > 0.3.0(2026-10-22): **머지 전 코드 동기화** — **정상 로그인**(A-16 · OQ-601 닫힘 — 아이디 + 비밀번호 · bcrypt · 계정 목록 API 제거 · 5회/1분 잠금) ·
 > **알림 [수락]**(A-17 · `CALL` 카테고리) · **`push_log` · `X-Accept-Source`**(A-18) · 죽은 기기 토큰 삭제 · Apple 준비(A-19) · **배포 먼저 · 앱 = 배포 주소 고정**(A-20 — A-11 · A-12 를 고침) ·
 > 앱 피드백 A1 ~ A7 · 실기기 T1 ~ T8 · iOS 15 · 배포 완료(infra #22 ~ #24). §0 · §1 · §2.2 ~ §2.4 · §3 · §5-1 · §6(화면 정본 칸) · §7.3 · §8 · §9 · 부록 A · 부록 B(새). 출처 줄 전수 대응표는 SPEC-003 부록 D. 바뀐 줄 끝에 `(0.3.0)`.
@@ -269,6 +270,7 @@ TestFlight 절차(사용자 맥북 · README 에 그대로):
 | `POST /api/calls/{id}/accept` | ○ 원장을 골라 `doctorId` 필수 | ○ **자기 자신으로만**(아래) | **✕** | `role_forbidden` |
 | `POST /api/procedures/{id}/start` · `/finish` | ○ | ○ | ○ | — |
 | `POST /api/visits/{id}/home` | ○ | ○ | ○ | — |
+| `PUT /api/board/order`(카드 드래그 순서 · SPEC-003 0.4.0 §5.12 · §7.3) | ○ | ○ | ○ | — (2026-10-23 · SPEC-003 0.4.1 r2) |
 | `WS /api/interpret` | ○ | ○ | ○ | (연결 거절 · §4.2) |
 
 수락 규칙(A-07 · A-08):
