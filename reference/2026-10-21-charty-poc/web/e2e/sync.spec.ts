@@ -80,8 +80,9 @@ test('AC-8·9 — 필터 양방향 · 피부 분석 항목 강조', async ({ con
   await tablet.getByTestId('analysis-item-fineWrinkle').click();
   await expect(screen.getByTestId('bar-fineWrinkle')).toHaveAttribute('data-highlight', 'true', { timeout: SEC });
   await expect(screen.getByTestId('filter-fineWrinkle')).toHaveAttribute('data-active', 'true', { timeout: SEC });
-  await expect(screen.getByTestId('focus-card')).toHaveAttribute('data-filter', 'fineWrinkle');
-  await expect(screen.getByTestId('region-map')).toBeVisible();
+  // 「지금 보는 것」(focus-card)은 범례 한 줄로 바뀌었다 → 뷰어 안 부위 카드 강조로 확인
+  await expect(screen.getByTestId('area-card-eye')).toHaveAttribute('data-state', 'strong', { timeout: SEC });
+  await expect(screen.getByTestId('area-card-forehead')).toHaveAttribute('data-match', 'true');
   // 다시 누르면 해제(필터는 그대로)
   await tablet.getByTestId('analysis-item-fineWrinkle').click();
   await expect(tablet.getByTestId('analysis-item-fineWrinkle')).toHaveAttribute('data-focus', 'false');
@@ -158,7 +159,15 @@ test('AC-15·16·17 — 한자·−1 없음 · 좌/우 ⓘ 는 태블릿만 · �
   for (const f of ['natural', 'fineWrinkle', 'deepWrinkle', 'pore', 'redness', 'pigment', 'porphyrin']) {
     await screen.getByTestId(`filter-${f}`).click();
     await expect(screen.getByTestId(`filter-${f}`)).toHaveAttribute('data-active', 'true', { timeout: SEC });
-    const text = await screen.locator('body').innerText();
+    // 부위 카드의 시술 간단 설명(area-summary)은 Procedure Hub 원문 그대로라 금지어 검사에서 뺀다 —
+    // 모달과 같은 처리(SPEC §6-5 연장, 2루프 코디 확정 A). 출처는 모달 아래 출처 줄(3루프 V-1). 나머지 화면 ① 글자는 그대로 검사한다
+    const text = await screen.evaluate(() => {
+      const els = [...document.querySelectorAll<HTMLElement>('[data-testid=area-summary]')];
+      els.forEach((e) => (e.style.display = 'none'));
+      const t = document.body.innerText;
+      els.forEach((e) => (e.style.display = ''));
+      return t;
+    });
     expect(text).not.toMatch(han);
     expect(text).not.toMatch(/(^|[^0-9])[-−]1(?![0-9])/);
     expect(text).not.toMatch(/진단|질환|치료|환자/);
@@ -175,7 +184,7 @@ test('AC-15·16·17 — 한자·−1 없음 · 좌/우 ⓘ 는 태블릿만 · �
   await expect(tablet.getByTestId('side-note')).toHaveCount(2); // 측정치는 항목당 2개까지(SPEC §3-3)
 });
 
-test('fix1 W-3 — 필터를 직접 바꾸면 피부 분석 강조가 풀리고 C·B·A2 가 같은 대상', async ({ context }) => {
+test('fix1 W-3 — 필터를 직접 바꾸면 피부 분석 강조가 풀리고 C·B·부위 카드가 같은 대상', async ({ context }) => {
   const { tablet, screen } = await openBoth(context);
   await tablet.getByTestId('analysis-item-pore').click();
   await expect(screen.getByTestId('bar-pore')).toHaveAttribute('data-highlight', 'true', { timeout: SEC });
@@ -184,7 +193,8 @@ test('fix1 W-3 — 필터를 직접 바꾸면 피부 분석 강조가 풀리고 
   await expect(screen.getByTestId('bar-redness')).toHaveAttribute('data-highlight', 'true', { timeout: SEC });
   await expect(screen.getByTestId('bar-pore')).toHaveAttribute('data-highlight', 'false');
   await expect(screen.getByTestId('cat-inflammation')).toHaveAttribute('data-focus', 'true');
-  await expect(screen.getByTestId('focus-card')).toHaveAttribute('data-filter', 'redness');
+  await expect(screen.getByTestId('area-card-cheek')).toHaveAttribute('data-state', 'strong', { timeout: SEC });
+  await expect(screen.getByTestId('area-card-poreTexture')).toHaveAttribute('data-state', 'dim');
   await expect(tablet.getByTestId('analysis-item-pore')).toHaveAttribute('data-focus', 'false');
   // 태블릿에서 바꿔도 같다
   await tablet.getByTestId('analysis-item-pore').click();

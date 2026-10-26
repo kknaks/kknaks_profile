@@ -40,11 +40,6 @@ export const GRADE_PHRASE: Record<Grade, string> = {
   none: '점수는 나오지 않았어요',
 };
 
-/** 「{쉬운 이름}{조사} {등급 문구}」 */
-export function gradeSentence(label: string, grade: Grade): string {
-  return `${withJosa(label, '은/는')} ${GRADE_PHRASE[grade]}`;
-}
-
 /** 점수가 가장 낮은 대분류 2개 → 「{A}와 {B}부터 관리하면 좋아요」 */
 export function summaryLine(categories: SkinCategory[]): string {
   const scored = categories.filter((c) => c.score != null).sort((a, b) => (a.score as number) - (b.score as number));
@@ -68,6 +63,8 @@ export const COPY = {
   priceHidden: '가격은 상담사가 안내해 드려요',
   assetsMissing: '3D 에셋이 없습니다 — npm run prepare:assets 를 먼저 실행하세요',
   reportMissing: '측정 데이터가 없습니다 — npm run prepare:assets 를 먼저 실행하세요',
+  reportMissingShort: '측정 데이터 없음',
   faceLoading: '얼굴을 불러오는 중',
   sideNote: '원본 리포트의 좌우 표기와 다를 수 있어요',
+  mockNote: '목업 · 의학적 근거 아님',
 } as const;
