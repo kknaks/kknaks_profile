@@ -608,13 +608,15 @@ para/areas/
 | 493 | `db` | `data-lineage` | 데이터가 어느 원천에서 어떤 이동·변환을 거쳐 결과에 쓰였는지의 계보. 역추적·영향 범위의 근거 |  |
 | 494 | `cs` | `pdf-text-layer` | 화면 글자는 텍스트 층 · 래스터 · 윤곽선 중 하나. 쪽별 폰트 · BT/Tj · 이미지(Form 재귀 · 인라인)를 세어 가른다 |  |
 | 495 | `back` | `failure-reason-classification` | 사유는 판정이 본 만큼만 정확하다. 얕은 판정 · 예외를 False 로 삼킴 · 저장에서 상태 뭉갬 · 판정보다 넓은 문구 |  |
-| 496 | `front` | `uv-atlas-overlay` | 같은 UV 아틀라스의 검출 이미지를 셰이더로 겹쳐 3D 위 필터를 만든다. flipY · 색 공간 · 얇은 선은 팽창 후 max 축소 |  |
+| 496 | `front` | `uv-atlas-overlay` | 같은 UV 아틀라스의 검출 이미지를 셰이더로 겹쳐 3D 위 필터를 만든다. flipY · 색 공간 · 얇은 선은 팽창 후 max 축소 · hit.uv 로 부위 CSS 크롭 |  |
 | 497 | `front` | `broadcast-channel-snapshot-sync` | 한쪽이 전체 스냅샷+seq 를 쏘고 다른 쪽은 받기만. sessionId 예외 · 연결 판정 최악 = 문턱 + tick |  |
 | 498 | `back` | `external-write-queue` | 내 상태 먼저 · 원천 쓰기는 op 대기열로. 2xx ≠ 반영 — 다시 읽어 확인 · 재전송 · 3회 실패 · 뒤 op 이 덮으면 앞은 확인 |  |
 | 499 | `back` | `apns-direct-push` | FCM 없이 .p8 ES256 JWT(40분)로 APNs HTTP/2 직접. 카테고리 액션은 네이티브가 키체인 토큰으로 · 죽은 토큰 400 · 410 은 행 삭제 |  |
 | 500 | `back` | `password-login-hardening` | bcrypt 해시 · 없는 아이디도 가짜 해시로 같은 401 · 같은 시간 · 연속 실패 잠금 · 로그인 전 계정 목록 표면 제거 |  |
 | 501 | `front` | `proportional-ui-scale` | 고정 px 대신 짧은 변 배율 하나를 글자(textScaler) · 높이 · 최소 폭에. 판의 절반은 cqh 같은 비율 단위로 |  |
 | 502 | `cs` | `strangler-fig` | 원천을 감싸 쓰다 화면 하나씩 교체. 행 = 우리 id + 원천 id · 원천 필드는 덮어쓰고 우리 사실은 이벤트로 쌓기만 |  |
+| 503 | `front` | `surface-anchor-leader-line` | 메시 위 점을 매 프레임 투영해 DOM 카드와 선으로. 카메라 행렬 먼저 갱신 · raycast 가림 · visible 은 목표값 |  |
+| 504 | `cs` | `labeled-upward-fallback` | 계층 데이터 빈 칸을 상위 값으로 채우되 출처 노드를 같이 돌려 「◯◯ 전체 기준」 표기. 숨기기·조용한 대체 둘 다 아님 |  |
 
 ---
 

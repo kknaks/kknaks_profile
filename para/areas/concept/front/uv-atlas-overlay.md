@@ -9,8 +9,11 @@ aliases:
   - flipY
   - 마스크 합성
   - 얇은 선 축소
+  - 텍스처 크롭
+  - hit.uv
 up:
   - 2026-10-22-charty-consult-mockup
+  - 2026-10-26-charty-consult-recommend
 tags:
   - frontend
   - threejs
@@ -29,18 +32,24 @@ tags:
 3. **셰이더 하나로 합성한다** — 바탕(광원 텍스처) + 오버레이 밝기를 알파로 쓰는 `ShaderMaterial` 1개. 필터 = 바탕 교체(붉은기·색소처럼 검출 이미지가 없는 것) 또는 오버레이 교체(주름·모공)
 4. **색 공간을 맞춘다** — `<Canvas linear>` 에서 hex 를 `Color.set()` 하면 sRGB→linear 로 바뀌어 오버레이가 어두워진다. 사진 픽셀과 같은 공간(`LinearSRGBColorSpace`)으로 넣는다
 
+5. **아틀라스에서 부위를 잘라 2D 로 보인다** — 메시 위 점에서 raycast 한 `hit.uv` 를 이미지 px `(u·W, (1−v)·H)` 로 바꿔, 그 둘레를 CSS `background-size/position` 으로 잘라 썸네일에 쓴다. 파일을 만들지 않으니 개인 얼굴이 산출물로 남지 않고, 필터 텍스처를 바꾸면 그대로 따라간다. 오버레이는 PNG 알파를 `mask-image` 로 써서 셰이더와 같은 합성
+
 ## 경계와 오해
 
 - **얇은 선은 축소하면 사라진다** — 면적 0.01% 대의 1px 선을 1/3 로 평균 축소하면 거의 0 이 된다. blur 로 키우면 **선이 방울**이 되어 「찾아낸 주름 선」이라는 뜻이 깨진다. 풀해상도에서 **팽창(max filter) 후 max 축소**해야 모양이 남는다
 - **형태 연산의 전경은 라이브러리마다 다르다** — libvips 는 검정을 전경으로 본다. 흰 선을 굵히는 쪽이 `erode` 였다(`dilate` 는 흰 선을 지움, 실측 0.013%→0%). 이름을 믿지 말고 면적을 재서 확인한다
 - **응답이 가리키는 파일이 실재하는지는 따로 본다** — 리포트 응답은 마스크 21종(`zip://mask/…`)을 가리켰지만 어느 ZIP 에도 없었다. 이름이 있는 것과 파일이 있는 것은 다르다
+- **크롭 반경은 부위마다 다르다** — 아틀라스는 펼친 그림이라 같은 반경이라도 부위마다 실제 넓이가 다르다. 좁으면 「피부색 판」(반경 120 px · 64px 썸네일에서 사용자 「안 보인다」). 후보 반경을 잘라 비교해 **알아볼 윤곽(눈·눈썹·코·입)이 들어오게** 부위별 반경 + 중심 이동을 정한다
+- 흐림 opacity 를 부모에 주면 자식 사진까지 곱해져 사라진다 — 사진 칸만 따로 감싼다
 - 9728px 텍스처는 `MAX_TEXTURE_SIZE` 8192 기기에서 안 올라간다 — 원본 뷰어도 1/3 미리보기(3242px)를 썼다
 
 ## 함께 보는 개념
 
 - [[floating-point]] — 픽셀 차 비율로 「필터가 다르게 보이는가」를 잴 때의 문턱
 - [[viewport-aware-overlay]] — 화면(DOM) 쪽 오버레이와 대비
+- [[surface-anchor-leader-line]] — 같은 메시 위 앵커를 화면 지시선으로
 
 ## 출처
 
 - [[2026-10-22-charty-consult-mockup]] §2 — 피부 상담 목업 3D 뷰어(`assets-report.md` §4–6 · `fe-report.md` 수정 1판 #2 · `web/scripts/prepare-assets.mjs`)
+- [[2026-10-26-charty-consult-recommend]] §2 — 부위 카드 확대 사진(`web/src/components/screen/area-crop.tsx` `CROP_FRAMES` · `fe-report.md` 2루프 U-4 · 3루프 V-3)
