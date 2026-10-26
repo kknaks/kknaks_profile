@@ -55,3 +55,14 @@ body {
 .row-highlight {
   animation: row-highlight 1.5s ease-out;
 }
+/* 카드 시술 탭 — 가로 스크롤은 되고 막대는 숨긴다 */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.tabs-fade {
+  mask-image: linear-gradient(to right, #000 80%, transparent);
+  -webkit-mask-image: linear-gradient(to right, #000 80%, transparent);
+}

@@ -10,6 +10,7 @@
     "test": "vitest run",
     "e2e": "playwright test",
     "prepare:assets": "node scripts/prepare-assets.mjs",
+    "hub:snapshot": "node scripts/fetch-hub.mjs",
     "verify": "npm run lint && npm run test && npm run build && npm run e2e"
   },
   "dependencies": {
