@@ -2,12 +2,12 @@
 type: spec
 id: SPEC-003
 title: "명동 PoC v2 — 시술 현황판(procedure) · KOS 데모 지점 실연동 계약"
-version: 0.4.3
+version: 0.5.1
 status: draft
 product: cc-prototype
 feature: procedure
 created_at: 2026-10-21
-updated_at: 2026-10-25
+updated_at: 2026-10-26
 tags:
   - product/cc-prototype
   - feature/procedure
@@ -23,12 +23,15 @@ links:
   works:
     - "[[work-003-procedure-board|WORK-003]]"
     - "[[work-005-overall-board-procedure|WORK-005]]"
+    - "[[work-006-overall-board-undo|WORK-006]]"
   releases: []
   related: []
 ---
 
 # 명동 PoC v2 — 시술 현황판 계약
 
+> 0.5.1(2026-10-26 · r6): review-doc r4(`orchestration/work/overall-board/review-doc-r4.md` FAIL 1 · WARN 6) 반영 + **WP-KOS 결과**(`kos-undo-probe-report.md` K1 ~ K4) — OQ-529 · OQ-530 **닫음(받음)** · [종료] 되돌리기 즉시 값 `READY` 확정. 바뀐 절: 머리말(W6) · §5.10 · §5.13 · §8(F1 · W1) · §9 #21 · #22 · 「0.5.0 더함」 · §10 OQ-528 ~ OQ-530 · 부록 I.3(W4) · **부록 J(새 — r4 처분)** · WORK-006(W2 · W3 · W5 · 게이트 통과). 지시 `spec-r6-instructions.md`. 줄 끝 `(r6)`.
+> 0.5.0(2026-10-26 · r5): **[시작] · [종료] 되돌리기**(D-28 「되돌리기 없음」을 [시작] · [종료]에 한해 뒤집는다) · **웹 계약이 정본 — 앱(SPEC-004)은 나중에 웹에 맞춘다**. 원천 = `orchestration/work/overall-board/_RESUME.md` §2 2026-10-26 줄 3개(근거 `_RESUME 10-26`) · 지시 `spec-r5-addendum.md` · 코드 `cc-prototype/overall-board/procedure`(PR #6 상태 `9a317a2` — 읽기만) · medikit 1.4.0 `dist/index.d.ts`(`ConfirmModal` · `Tooltip` · `ResetIcon`). 바뀐 절: 머리말 우선순위 · §1.1 · §1.2 · §3.2 · §4.3 · §4.4 · §5.5 · §5.6 · §5.9 · §5.10 · §5.11 · **§5.13(새 — 되돌리기)** · §6.3 · §6.7 #3 · #23 · §7.2 · §7.3 · §7.4 · §7.5 · §8 · §9 #21 ~ #26 · §10(OQ-523 · OQ-526 닫음 · OQ-529 ~ OQ-533 새 · **§10.1 앱 후속(새)**) · 부록 A D-28 · **부록 I(새 — 10-26 반영표)**. 빌드 계획 = WORK-006. 줄 끝 `(r5)`.
 > 0.4.3(2026-10-25 · r4): **코드가 먼저 간 10-25 결정을 문서에 맞춘다** — ① 카드 방 = **type 무관** 방 붙은 작업 중 배정 시각 최신 ② **규칙 하나**: KOS 작업은 type 무관 전부 같은 시술 · 예외 「방 배정」 하나(방 붙은 ETCETERA · ccc 호출 이력 없음) — 스냅샷에 싣고 `isRoomTask: true` · front 가 숨김 · 판정 제외 · [귀가 대기] 때 KOS 취소. 0.4.0 의 「기타 작업 읽기 전용 줄」 · 「back 에서 방 배정 거르기」는 뒤집힘. 원천 = `orchestration/work/overall-board/_RESUME.md` §2 2026-10-25 줄(근거 `_RESUME 10-25`) · `room-fix-instructions.md` · `one-rule-instructions.md` · `backend-r1-report.md`(WP-BE3 · 규칙 하나) · `frontend-r1-report.md`(재수정) · 코드 `cc-prototype/overall-board/procedure`(작업 트리 · 시험 162 통과). 바뀐 절: §3.2 · §3.3 · §5.1 · §5.4 · §5.7 · §5.9 · §5.11 · §6.3 · §6.4 · §6.7 · §7.2 · §7.3 · §9 · §10 · 부록 A · 부록 E · **부록 H(새 — 10-25 반영표 · r4 처분)**. 줄 끝 `(r4)`.
 > 0.4.2(2026-10-23 · r3): review-doc r2(`orchestration/work/overall-board/review-doc-r2.md` FAIL 1 · WARN 6) 반영 — §5.11 · §5.12(방향 판정 기준 · 경합 ② 비교 · 그사이 귀가 대기) · §6.4 고객 탭 순서 · §7.3 · 부록 E #3 · **부록 G(새 — r2 처분표)** · SPEC-004 0.3.1. 줄 끝 `(r3)`.
 > 0.4.1(2026-10-23 · r2): review-doc r1(`orchestration/work/overall-board/review-doc-r1.md` FAIL 2 · WARN 12) 반영 — §3.2 · §5.1 · §5.11 · §5.12 · §6 머리 표 · §6.3 · §6.4 · §6.7 · §7.3 · §9 · §10 · 부록 E(10줄) · **부록 F(새 — r1 처분표)** · 머리말 우선순위 · SPEC-004 §3.4 한 줄. 줄 끝 `(r2)`.
@@ -48,11 +51,14 @@ links:
 > `procedure/back`(FastAPI) · `procedure/front`(Next.js) 가 지킬 계약. 정책의 원천은 DEC-005(D-01 ~ D-34),
 > 화면 정본은 확정 시안 `orchestration/work/myeongdong-poc-v2/design-user-r4/Ceramique 시술현황판 v2.dc.html`
 > (읽기 리포트 `design-r3-read-report.md` P1 ~ P19 · `design-r4-read-report.md` Q1 ~ Q4). 시안과 DEC-005 가 다르면
-> DEC-005 가 맞다(§6.7). **0.4.0 부터는 `_RESUME 10-23` 결정 줄 > DEC-005**(D-17 · D-18 · D-22 일부를 뒤집는다 — 부록 A · 부록 E). DEC-005 파일은 개정하지 않는다 (r2) — `_RESUME 10-23` 「review-doc r1 기본값 ①」 줄. 업무 흐름은 `reference/2026-10-12-cc-prototype/workflow-v2.md`.
+> DEC-005 가 맞다(§6.7). **0.4.0 부터는 `_RESUME 10-23` 결정 줄 > DEC-005**(D-17 · D-18 · D-22 일부를 뒤집는다 — 부록 A · 부록 E). DEC-005 파일은 개정하지 않는다 (r2) — `_RESUME 10-23` 「review-doc r1 기본값 ①」 줄. **0.5.0 부터 `_RESUME 10-26` > DEC-005 D-28**(되돌리기 — §5.13) (r5).
+> **웹 계약(이 문서)이 정본이다 — SPEC-004(시술실 앱)는 따른다.** 웹과 앱의 규칙이 다르면 앱이 틀린 것으로 보고 §10.1 「앱 후속」 목록에 올린다(열린 질문으로 두지 않는다) (r5) — `_RESUME 10-26` 「웹이 정본」 줄. (r6)
+> 업무 흐름은 `reference/2026-10-12-cc-prototype/workflow-v2.md`.
 >
 > 근거 표기: `D-nn` = DEC-005 · `P-nn` / `Q-n` = 시안 읽기 리포트 · `HAR` = `_RESUME.md` §2 「(사실)」 줄 · `API` =
 > `kos-demo-api.md` · `기본값` = 결정에 없어 이 문서가 고른 구현값(§10 에 같이 올린다).
 > 0.4.3 근거 표기: `_RESUME 10-25` = 같은 파일 §2 2026-10-25 줄 (r4)
+> 0.5.0 근거 표기: `_RESUME 10-26` = 같은 파일 §2 2026-10-26 줄(「되돌리기 기능 추가」 · 「아이콘 위치」 · 「웹이 정본」) · `MK` = medikit 1.4.0 `procedure/front/node_modules/@medisolve-ai/medikit/dist/index.d.ts` (r5)
 > 0.4.0 근거 표기: `_RESUME 10-23` = `orchestration/work/overall-board/_RESUME.md` §2 2026-10-23 줄 · `M:n` = 전체현황판 시안 줄 · `DA §n` · `CB §n` = 위 두 리포트 절 (0.4.0)
 > 이 레포는 public — 키 · 토큰 · 비밀번호 · 계정 이메일 · 실명 · KOS id 값은 쓰지 않는다. env 는 이름만.
 
@@ -70,6 +76,7 @@ links:
 | 조작 이벤트 로그 · KOS 반영 상태 | D-09 · D-12 · D-13 |
 | 화면 = 「Ceramique 전체현황판」 시안의 **「현황 › 시술 현황」 하위 화면**(헤더 메뉴 「현황」 하나 · 사이드바 없음 — §6.2) (0.4.0) | `_RESUME 10-23` 목적 · 헤더 줄 · `M:63-92` · `M:777-1153` |
 | **카드 드래그 순서** — back DB 저장 · 모든 화면 공유(SSE 스냅샷) · KOS 반영 없음(§5.12) (0.4.0) | `_RESUME 10-23` 드래그 순서 줄 · `M:1425-1430` · `M:1464-1472` |
+| **[시작] · [종료] 되돌리기**(웹) — 토스트 [되돌리기] · 시술 줄 되돌리기 아이콘 + 확인 모달 · KOS 반영(§5.13 · §8) (r5) | `_RESUME 10-26` 「되돌리기 기능 추가」 · 「아이콘 위치」 줄 |
 | ~~이번 목표 = 사용자 **로컬 E2E**. 배포(D-03)는 그 뒤 마지막 WP~~ → 로컬 E2E 뒤 **배포 완료**(2026-10-21 · `ccc.medisolveai.xyz` = procedure · WORK-004 WP10) (0.3.0) | D-03 · `_RESUME` 10-21 배포 완료 줄 |
 
 ### 1.2 Out
@@ -78,7 +85,7 @@ links:
 |---|---|
 | 시술실 고객 모니터 | D-34 |
 | ~~시술실 태블릿 · 폰(디자인 2단계) · 개인 계정 · 앱 수락~~ → **SPEC-004(시술실 앱 · 계정 · 권한)로 들어갔다** — 이 문서 범위 밖일 뿐 Out 이 아니다 (0.3.0) | `_RESUME` 10-21 「디자인 2단계 = Flutter PoC 앱」 줄 · SPEC-004 A-01 · A-03 |
-| 되돌리기(호출 · 수락 · [종료] 실수 포함) — 로그만 쌓는다 | D-28 · D-13 · D-34 |
+| ~~되돌리기(호출 · 수락 · [종료] 실수 포함) — 로그만 쌓는다~~ (r5 바뀜) → **호출 · 수락 · [다른 원장에게] · [귀가 대기] · 마취 되돌리기** — 로그만 쌓는다. [시작] · [종료] 되돌리기는 In(§5.13) | D-28 · D-13 · D-34 · `_RESUME 10-26`(결정 범위 = [시작] · [종료]) |
 | 시술 차트(KOS `assigneeMemo` · `doctorMemo` · `memo`) | D-34 |
 | 라운지 / 내원현황(방 미리 배정). ~~원장 호출 휴대폰 알림~~ → SPEC-004 §5-1(APNs 푸시)로 들어갔다 (0.3.0) | D-34 · D-22 · SPEC-004 A-14 |
 | KOS 「마취용」 계정 배정 · KOS 화면 직접 조작 | D-23 · D-10 |
@@ -210,11 +217,13 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 | `sync_state` | `key`(`schedules` · `master`) · `last_ok_at` · `last_error` | 시안 제목 줄 「마지막 KOS 동기화」 |
 | `board_order`(카드 드래그 순서 · 하루 1행) (0.4.0) | `day`(KST 날짜 `YYYY-MM-DD` · PK) · `visit_ids`(json — 귀가 대기 아닌 카드의 visit id 를 앞에서부터) · `updated_at` · `updated_by`(로그인 아이디) · `event_id`(그 순서를 만든 `event_log`) | `_RESUME 10-23` 드래그 순서 줄 · §5.12 |
 
-`event_log.type`: `anes_start` · `anes_end` · `call_create` · `call_reassign_all` · `call_accept` · `proc_start` · `proc_finish` · `home` · `kos_failed` · **`board_order`**(0.4.0) — D-13 · D-27 「로그에는 수락한 원장 · 시각 · 시술 · 호출 id」.
+`event_log.type`: `anes_start` · `anes_end` · `call_create` · `call_reassign_all` · `call_accept` · `proc_start` · `proc_finish` · `home` · `kos_failed` · **`board_order`**(0.4.0) · **`proc_undo_start`** · **`proc_undo_finish`**(r5 — §5.13) — D-13 · D-27 「로그에는 수락한 원장 · 시각 · 시술 · 호출 id」.
 `board_order` payload = `{day, visitIds}`(저장된 목록 — §5.12 거르기 뒤) · `visit_id` 칸은 비움(카드 여럿) (0.4.0) — D-13(조작은 이벤트 한 줄 · 다른 표는 투영) · `_RESUME 10-23`.
 
 - `board_order` 는 ccc 원천(KOS 에 없음 · `kos_op` 0줄). 새 표라 서버 시작 때 `CREATE TABLE IF NOT EXISTS` 로 생긴다 — 기존 DB 파일에 열 추가(ALTER) 없음(코드 `repository/db.py` `SCHEMA` 방식 그대로) (0.4.0)
 `call_accept` payload = `{callId, doctorId, procedureIds, byRole, source}`(`source` = `push` \| `app` \| `web` — SPEC-004 §3.5) · `home` payload = `{cancelSequences}`(§5.7) (0.3.0) — 코드 `service/actions.py`.
+
+`proc_undo_start` payload = `{procedureId, startedAt, startedEventId, flowStepChanged}`(지운 [시작] 시각 · 그 [시작] 이벤트 · 고객 상태를 시술 대기로 돌렸나) · `proc_undo_finish` payload = `{procedureId, completedAt}`(지운 완료 시각). 되돌리기도 **추가만** — 앞 `proc_start` · `proc_finish` 줄은 고치지 · 지우지 않는다(D-13). 새 표 · 새 열 없음 — `procedure.started_at` · `started_event_id` · `completed_at` · `kos_status` 를 바꾸는 투영뿐 (r5) — D-13 · 기본값
 
 계정(`account`) · 기기(`device`) · 푸시 내역(`push_log`) 테이블은 SPEC-004 §3.1 · §5-1 (0.3.0).
 
@@ -276,9 +285,9 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 | 결제(`payment_required`) | KOS | 덮어씀 | D-09 · D-21 |
 | 방 · 방 배정 시각 | KOS | 덮어씀 — KOS 는 완료해도 `room` 을 지우지 않는다 | D-09 · D-33 · HAR(`시술완료_상태.har`) |
 | 고객 단계(`flow_step`) | KOS | 덮어씀. **반영 대기 중인 `changeFlowStep` 이 있으면 덮어쓰지 않는다** | D-09 |
-| 시술 완료 · 완료 시각 | KOS | 덮어씀. 반영 대기 중인 `change-tasks-complete` 가 있으면 그 작업은 덮어쓰지 않는다 | D-09 |
+| 시술 완료 · 완료 시각 | KOS | 덮어씀. 반영 대기 중인 `change-tasks-complete` 가 있으면 그 작업은 덮어쓰지 않는다 — [종료] 되돌리기(`complete:false` · §8)도 같은 경로라 같은 보호를 받는다(코드 `kos/sync.py` `guarded` = 대기 op 의 `sequences` · 경로 무관) (r5) | D-09 · §5.13 |
 | 집도의(`doctors`) · 담당자 · 호출 여부(`status` WAITING · `doctorCallDateTime`) | KOS | 덮어씀. 반영 대기 중인 호출 · 수락이 있으면 그 작업은 덮어쓰지 않는다 | D-09 |
-| 마취 회차 · [시작] 시각 · 호출 기록 · 지정 원장 · 수락 기록 · [귀가 대기] 누른 시각 | ccc | 조회가 건드리지 않는다 | D-09 · D-12 |
+| 마취 회차 · [시작] 시각 · 호출 기록 · 지정 원장 · 수락 기록 · [귀가 대기] 누른 시각 | ccc | 조회가 건드리지 않는다. [시작] 시각은 [시작] 되돌리기(§5.13)로만 지워진다 (r5) | D-09 · D-12 |
 
 「반영 대기 중」 = 그 visit 에 `status ∈ {pending, sent}` 인 `kos_op` 이 있고 그 op 이 그 필드를 바꾸는 것. `failed` op 은 대기가 아니다 — **실패 뒤에는 KOS 값을 따른다**(D-09 KOS 기준) (0.2.0) — S3
 
@@ -295,7 +304,7 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 - 재전송: `sent` 인데 조회 2번 동안 `expect` 가 안 맞거나, `pending` 으로 돌아온 op 은 다음 조회 주기에 다시 보낸다 — 기본값
 - 실패: `attempts` 가 3 에 닿으면 `failed` + `event_log(kos_failed)` — 기본값(횟수) · D-09
 - **실패 뒤 같은 visit 의 뒤 op 은 보내지 않고 멈춘다** — 상태 `failed`(사유: 앞 op 실패로 보내지 않음) · 멈춘 op id 는 그 `event_log(kos_failed)` 의 `payload.blockedOpIds` 에 (r2). 담당자 지정이 실패하면 그 뒤 호출을 보내지 않는다(D-24 순서) (0.2.0) — S4
-- **실패 뒤 KOS 기준 필드는 KOS 값으로 돌아간다**(다음 조회부터 덮어쓴다 · §4.3). ccc 에만 있는 기록(이벤트 · 호출 · 수락 · [시작] 시각)은 지우지 않는다(되돌리기 없음 — D-28). 카드의 「KOS 반영 실패」는 **그 visit 의 다음 op 이 `confirmed` 될 때까지 남는다** (0.2.0) — S3 · 처분 W1
+- **실패 뒤 KOS 기준 필드는 KOS 값으로 돌아간다**(다음 조회부터 덮어쓴다 · §4.3). ccc 에만 있는 기록(이벤트 · 호출 · 수락 · [시작] 시각)은 지우지 않는다(실패를 되돌리지 않는다 — D-28 · 사용자 [시작] · [종료] 되돌리기(§5.13)와는 다른 이야기 (r5)). **[종료] 되돌리기 op 이 `failed` 면 다음 조회부터 KOS 값(`DONE`)으로 돌아가 그 시술은 다시 완료로 보인다**(§5.13 · OQ-529) (r5). 카드의 「KOS 반영 실패」는 **그 visit 의 다음 op 이 `confirmed` 될 때까지 남는다** (0.2.0) — S3 · 처분 W1
 - 복구 방법은 §10 OQ-509 — D-28
 - 조회 시간 밖에도 쓰기는 보낸다(조회만 시간 제한). 확인은 다음 조회 시간에 — 기본값
 
@@ -370,7 +379,7 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 - 전체 호출: 원장 목록(비어 있는 원장 먼저)에서 고르고 [<원장> 수락] / 지정 호출: [수락](지정 원장으로) — D-27 · P8 · P9
 - [다른 원장에게](지정 호출만) = 같은 시술(그 호출에서 아직 받을 것)로 **「전체」 호출을 새로 만든다**. 기존 지정 호출은 그대로 남는다(유효 호출이 새 것으로 넘어간다) — D-27 · D-25
 - KOS: `change-tasks-doctors`(받는 sequences · 고른 원장 id). [다른 원장에게]의 KOS 요청 = §5.4 호출과 같다 — D-27 · §8
-- [되돌리기] 없음(토스트 · 호출 탭 모두) — D-28
+- [되돌리기] 없음(토스트 · 호출 탭 모두) — D-28. 10-26 되돌리기는 **[시작] · [종료]만**이다 — 수락 · 호출 되돌리기는 결정에 없어 그대로 없음 (r5 — 기본값 · `_RESUME 10-26` 결정 범위)
 - 호출 탭에 나오는 호출 = **받을 시술이 남은 호출만**(유효 호출이 그것이고 미수락인 시술이 1개 이상) — `_RESUME.md` 10-21 ③④
 
 ### 5.6 [시작] · [종료] (D-29 ~ D-32)
@@ -384,6 +393,7 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 - [시작] = ccc `started_at`(지금) · 집도의는 KOS 값 그대로. 그 고객의 첫 [시작]이면 KOS `changeFlowStep(PROCEDURE)` — D-32
 - **[종료] 켜짐**: [시작]한 시술(진행)에만 — D-31
 - [종료] = KOS `change-tasks-complete`(그 작업 하나) → 완료. 완료 상태만 올린다 — D-32
+- [시작] · [종료]를 잘못 눌렀으면 되돌린다 — §5.13 (r5)
 
 ### 5.7 [귀가 대기] (D-33)
 
@@ -408,8 +418,8 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 
 | ccc 시술 상태 | 조건 | 줄 문구(둘째 줄) | 오른쪽 | 근거 |
 |---|---|---|---|---|
-| `done` 완료 | KOS `status = DONE` | 「<원장> · HH:MM~HH:MM」 | 「완료」 Badge `neutral` | D-09 · 시안 #10 · #11 |
-| `doing` 진행 | ccc `started_at` 있음 · 완료 아님 | 「<원장> · HH:MM 시작」 | [종료] solid blue | D-31 · 시안 |
+| `done` 완료 | KOS `status = DONE` | 「<원장> · HH:MM~HH:MM」 | (`canUndoFinish` 면 되돌리기 아이콘 →) 「완료」 Badge `neutral` (r5) | D-09 · 시안 #10 · #11 · `_RESUME 10-26` 아이콘 위치 |
+| `doing` 진행 | ccc `started_at` 있음 · 완료 아님 | 「<원장> · HH:MM 시작」 | (`canUndoStart` 면 되돌리기 아이콘 →) [종료] solid blue (r5) | D-31 · 시안 · `_RESUME 10-26` 아이콘 위치 |
 | `wait` 대기 · 유효 호출 미수락 | | 「전체 호출 · 수락 전」 / 「<원장> 지정 호출 · 수락 전」 | 「호출함」 Badge(파랑 외곽선) + [시작] 꺼짐 | D-30 · 시안 #10 · #11 |
 | `wait` · 유효 호출 수락됨 | | 「<원장> 수락 · 시작 가능」(파랑) | [시작] outlined blue | D-30 · 시안 |
 | `wait` · 호출 없음 · 담당의 있음 | | 「<원장>」 | [시작] | D-30 |
@@ -435,6 +445,9 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 | 시술 | `wait` · 미수락 | [수락] | `wait` · 수락됨 · 집도의 = 고른 원장 | `change-tasks-doctors` | D-27 |
 | 시술 | `wait` · [시작] 켜짐 | [시작] | `doing` | (첫 [시작]이면 flow-step) | D-30 · D-32 |
 | 시술 | `doing` | [종료] | `done` | `change-tasks-complete` | D-31 · D-32 |
+| 시술 | `doing` | [시작] 되돌리기(§5.13) | `wait`(호출 · 수락 · 집도의 그대로) | 없음 · 단 그 고객에 진행 · 완료 시술이 하나도 안 남으면 고객도 ↓ (r5) | `_RESUME 10-26` |
+| 고객 | `doing` | 위 [시작] 되돌리기로 진행 · 완료 시술 0 | `waiting` | `changeFlowStep(PROCEDURE_WAITING)` — ~~이미 KOS 가 그 단계면 보내지 않음(§8 같은 단계 규칙)~~ (r6 바뀜) → ccc 고객 상태가 `doing` → `waiting` 이 될 때 **항상 op 1줄**. KOS 가 그 사이 이미 그 단계라 400 이 오면 §8 같은 단계 규칙(다음 조회에서 `confirmed`) (r5 · r6) | `_RESUME 10-26` · §5.13 |
+| 시술 | `done`(ccc [시작] 있음) · 귀가 대기 아님 | [종료] 되돌리기(§5.13) | `doing`([시작] 시각 그대로) | `change-tasks-complete {complete:false}` — 고객 상태는 그대로(진행) (r5) | `_RESUME 10-26` · ~~OQ-529~~(닫힘 · 받음 — WP-KOS K2 (r6)) |
 | 시술 | 아무 상태 | KOS `DONE` 조회 | `done` | — | D-09 |
 
 ### 5.11 버튼 활성 조건표
@@ -450,6 +463,9 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 | [마취 종료] | 진행 중 마취 있음 | 항상 | D-23 |
 | 줄 [시작] | 귀가 대기 아님 · `wait` | §5.6 조건 | D-30 |
 | 줄 [종료] | `doing` | 항상 | D-31 |
+| 줄 되돌리기 아이콘(진행 줄 · [종료] 왼쪽) | 스냅샷 `canUndoStart = true`(§5.13) | 항상(보이면 켜짐) → 누르면 확인 모달 | `_RESUME 10-26` (r5) |
+| 줄 되돌리기 아이콘(완료 줄 · 「완료」 왼쪽) | 스냅샷 `canUndoFinish = true`(§5.13) | 항상 → 확인 모달 | `_RESUME 10-26` (r5) |
+| 토스트 [되돌리기] | 이 화면에서 [시작] · [종료]가 성공한 직후의 토스트(5초)에만 | 항상 → 모달 없이 바로 되돌리기 API | `_RESUME 10-26` · 기본값(§5.13) (r5) |
 | 호출 탭 [<원장> 수락] | 전체 호출 카드 | 원장을 골랐을 때 | D-27 · 시안 #19 |
 | 호출 탭 [수락] · [다른 원장에게] | 지정 호출 카드 | 항상 | D-27 |
 
@@ -471,7 +487,31 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 | 목록 거르기 | back 은 받은 목록에서 **지금 카드가 아닌 id**(없는 visit · 이미 사라진 카드 · 다른 날 · 귀가 대기)를 **오류 없이 빼고** 저장한다 — 놓는 사이에 카드가 사라질 수 있어서. 형식 오류(배열 아님 · 정수 아님 · 같은 id 두 번)만 400 | 기본값 |
 | 동시에 두 사람 | **마지막 쓰기가 이긴다**(오늘 행을 통째로 바꾼다 · 버전 검사 없음). 앞 사람의 순서는 다음 스냅샷에서 뒤 사람 것으로 바뀐다. 뒤 사람 목록에 없던 카드(그 사이 새로 생긴 카드)는 ② 규칙으로 맨 뒤 | 기본값(PoC 한 지점 · 같은 화면을 보는 사람 수가 적다 — §7.5 「연결 목록은 메모리」와 같은 결) |
 | 역할 | 관리자 · 의사 · 간호사 모두(SPEC-004 §3.4 표에 `PUT /api/board/order` 줄 — r2) · `PROC_FAKE_BOARD` 면 403 `fake_board`(§2.3) | SPEC-004 A-08 기본값 · §3.4 · §7.3 |
-| 앱 | 앱은 지금 자기 코드로 입실순 정렬(`app/lib/view/view.dart:58`)이라 **이번 판에 바뀌지 않는다**. 앱도 같은 순서를 따를지 → §10 OQ-523 | SPEC-004 §6 「순서 = 입실순」 · 코드 |
+| 앱 | 앱은 지금 자기 코드로 입실순 정렬(`app/lib/view/view.dart:58`)이라 **이번 판에 바뀌지 않는다**. ~~앱도 같은 순서를 따를지 → §10 OQ-523~~ (r5) → 앱도 같은 순서를 따른다 — **§10.1 앱 후속 1**(웹이 정본) | SPEC-004 §6 「순서 = 입실순」 · 코드 |
+
+### 5.13 [시작] · [종료] 되돌리기 (r5)
+
+원천 = `_RESUME 10-26` 「되돌리기 기능 추가」 · 「아이콘 위치」 줄 — D-28(되돌리기 없음)을 **[시작] · [종료]에 한해** 뒤집는다. 웹만(앱은 §10.1 후속).
+
+| 규칙 | 계약 | 근거 |
+|---|---|---|
+| 무엇 | **[시작] 되돌리기** = 진행 시술 → **시술 대기** · **[종료] 되돌리기** = 완료 시술 → **시술 중** | `_RESUME 10-26` |
+| 들어가는 곳 두 개 | ① [시작] · [종료]가 성공한 직후 토스트 오른쪽 [되돌리기] — **누르면 바로**(확인 모달 없음) ② 시술 줄 되돌리기 아이콘 — 호버 「되돌리기」 툴팁 → 누르면 **확인 모달** → [되돌리기] | `_RESUME 10-26` ① · ② |
+| 토스트에 모달이 없는 이유 | 기본값 — 토스트는 방금 내가 누른 조작의 즉시 취소라 대상이 분명하고(그 줄 · 그 시술), 5초 안에 두 번 누르게 하면 시간 안에 못 누른다. 아이콘은 언제 누를지 모르는 다른 사람의 조작도 되돌리므로 모달로 한 번 묻는다 | 기본값 |
+| 토스트 시간 | **5초**(기본값) — 지금 토스트 2.6초(§6.3 · 시안 `M:1369`)는 읽기용이라 누르기에 짧다. [되돌리기] 가 있는 토스트만 5초 · 다른 토스트는 2.6초 그대로. 새 토스트가 뜨면 앞 토스트(와 그 [되돌리기])는 사라진다 — 토스트 되돌리기는 **그 화면의 마지막 [시작] · [종료] 하나만** | 기본값 |
+| 되돌릴 수 있는 범위 | 토스트 = 마지막 조작만(위). **아이콘 = 아무 때나** — 오늘 카드에 보이는 진행 · 완료 시술이면 누가 언제 눌렀든(다른 화면 · 앱에서 누른 것 포함). 여러 번 되돌리기 · 되돌린 뒤 다시 [시작] · [종료] 모두 된다(횟수 제한 없음) | 기본값 — 아이콘이 줄에 늘 있으므로(`_RESUME 10-26` ②) |
+| `canUndoStart` (스냅샷) | 시술이 `doing`(ccc `started_at` 있음 · 완료 아님) · 「방 배정」 아님 · **귀가 대기 카드 아님** | §5.9 · §5.1 |
+| `canUndoFinish` (스냅샷) | 시술이 `done` · **ccc `started_at` 있음**(ccc 에서 [시작]한 시술) · 「방 배정」 아님 · **귀가 대기 카드 아님**. KOS 에서만 완료돼 ccc [시작]이 없는 시술은 아이콘 없음 — 「시술 중」 = ccc [시작] 시각이 기준(§5.9)이라 시작 시각 없이 진행으로 돌릴 수 없다 | 기본값 · §5.9 |
+| [시작] 되돌리기 뒤 | ccc `started_at` · `started_event_id` 를 비운다 → 시술 `wait`. **호출 · 수락 · 집도의는 그대로** — 수락이 있던 시술은 「<원장> 수락 · 시작 가능」, 호출 없이 담당의로 시작했던 시술은 「<원장>」으로 돌아가 [시작]이 다시 켜진다(§5.6 조건 그대로). KOS 작업 쪽 요청 없음([시작]도 작업에 KOS 요청이 없다 — §8) | §5.6 · §8 · 기본값 |
+| 고객 상태(시술 대기로) | [시작] 되돌리기 뒤 그 고객의 시술(「방 배정」 제외 · §5.1 `procedures`) 중 **진행 · 완료가 하나도 없고** 고객이 `doing` 이면 → 고객 `waiting` + KOS `changeFlowStep(PROCEDURE_WAITING)`(§8). 진행 · 완료 시술이 하나라도 남으면 고객은 진행 그대로 · KOS 요청 없음. 첫 [시작]의 거울(§5.2 「그 고객의 첫 [시작]」). KOS 는 뒤로 가기를 **받는다**(WP-KOS K4 — `PROCEDURE` → `PROCEDURE_WAITING` 200 · 작업 값 그대로) (r6) | §5.2 · §5.10 · 기본값 · ~~OQ-530~~(닫힘 · 받음 (r6)) · 리포트 `orchestration/work/overall-board/kos-undo-probe-report.md` |
+| [종료] 되돌리기 뒤 | ccc `completed_at` 을 비우고 `kos_status` 를 **`READY`**(즉시 값 — ~~기본값~~ (r6) **확정: 실 KOS 가 `complete:false` 뒤 `DONE` → `READY` 로 간다**(WP-KOS K2 · 완료 시각 지움 · 집도의 · 담당 · 호출 시각 그대로 · 22초 뒤에도 `READY`). 집도의 없는 작업의 값은 보지 않았다 — [시작]이 켜지려면 수락이나 담당의가 있어야 하므로 [종료]된 시술은 집도의가 있다. 확인 뒤엔 KOS 값으로 덮인다)로 → 시술 `doing`(「<원장> · HH:MM 시작」 — 옛 [시작] 시각 그대로) · [종료]가 다시 켜진다. KOS `change-tasks-complete {complete:false}`(§8). 고객 상태는 바뀌지 않는다(완료 시술이 있던 고객은 이미 진행) — 「전부 완료」가 풀리면 카드 아래 [귀가 대기]는 사라지고 스냅샷 규칙대로 [의사 호출] 또는 버튼 없음(§5.11) | §5.9 · §5.11 · ~~OQ-529~~(닫힘 · 받음 (r6)) · 리포트 `orchestration/work/overall-board/kos-undo-probe-report.md` K2 |
+| 귀가 대기 카드 | **되돌리기 없음** — 아이콘 없음 · API 409 `visit_home`. 귀가 대기 카드는 다른 조작 버튼도 없고(§5.11), [귀가 대기] 때 취소한 「방 배정」(§5.7)을 되살릴 방법이 정해지지 않았다. 귀가 대기 뒤 [종료] 되돌리기(고객 귀가 대기 → 진행)는 OQ-531 | 기본값 · §5.7 |
+| 마취 | 범위 밖 — 마취 시작 · 종료 되돌리기 없음 | 기본값(브리프) |
+| 되돌리기 중 KOS | 조작 1번 = `event_log` 1줄 + `kos_op` 0 ~ 1줄(§8) · 응답은 KOS 를 기다리지 않는다(§4.4). 같은 visit 의 op 은 만든 순서대로 — [종료] op 뒤에 되돌리기 op 이 가므로 KOS 에도 그 순서로 닿는다. 확인 · 재전송 · 실패는 §4.4 그대로 | §4.4 |
+| 동시성 | **상태로만 검사**(버전 없음): 되돌리기를 누를 때 그 시술이 이미 다른 화면에서 바뀌었으면 409 — [시작] 되돌리기인데 시술이 `doing` 이 아님 = `procedure_not_doing` · [종료] 되돌리기인데 `done` 이 아님 = `procedure_not_done` · 귀가 대기 = `visit_home`. front 는 back `message` 로 오류 토스트(§6.3)를 띄우고 화면은 다음 스냅샷대로. 상태가 같은 채로 다른 사람이 그 사이 되돌리고 다시 누른 경우(A [시작] → B 되돌리기 → C [시작] → A 토스트 [되돌리기])는 C 의 [시작]을 되돌린다 — 막지 않는다(OQ-532) | 기본값(§5.12 「마지막 쓰기가 이긴다」와 같은 결) |
+| 역할 | 관리자 · 의사 · 간호사 모두 — [시작] · [종료]와 같다(SPEC-004 §3.4 표 줄) · `PROC_FAKE_BOARD` 면 403 `fake_board` | SPEC-004 §3.4 · §2.3 |
+| 앱 | 이번 판 앱 무변경 — 앱은 새 스냅샷 필드(`canUndoStart` · `canUndoFinish`)를 모르고 무시한다. 앱에 되돌리기를 넣는 것은 §10.1 앱 후속 | `_RESUME 10-26` 「웹이 정본」 |
+| **KOS 실호출 확인이 구현 완료 조건** | `change-tasks-complete {complete:false}` · `change-flow-step` 뒤로 가기(`PROCEDURE` → `PROCEDURE_WAITING`)는 **실 KOS 에서 본 적이 없다**(HAR 에 `complete:false` 없음 — 「될 것으로 추정」만 · 1차 HAR 조사). WORK-006 **WP-KOS** 가 구현 전에 데모 지점에 1회씩 호출해 응답 · KOS 화면 상태를 리포트로 남긴다. 안 받으면 → OQ-529 · OQ-530. **(r6) 확인됨 — 둘 다 받음**(K2 `complete:false` 200 · `DONE → READY` · K4 flow-step 뒤로 가기 200). KOS **웹 화면** 표시는 워커가 보지 못했다 → §9 #21 · #22 에서 코디 · 사용자가 본다 | `_RESUME 10-26` 「KOS 실호출 확인 필수」 · `spec-r5-addendum.md` ② |
 
 ## 6. 화면 (시안 기준)
 
@@ -540,12 +580,15 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
   5. 시술 줄 — 줄마다 테두리 상자 · 체크칸 20 · 이름 · 둘째 줄(§5.9) · 오른쪽 버튼(§5.11) — r3 #9 ~ #11. ~~`kind = etc` 작업은 지금 코드에서 **시술 줄 맨 위**에 제목 + KOS 상태 글자만(체크 · 버튼 · 배지 없음) — E2E-4. 빼는 것은 OQ-517 (0.3.0)~~ (0.4.0 바뀜)
      → ~~줄 순서 = 진행 → 대기 → 완료 · 완료 묶음 앞 점선(§5.9). **「방 배정」 줄은 없다**(스냅샷에 없음 · §5.1). **방 없는 기타 작업(`kind = etc` — 마취 · 시트팩 · 관리 마무리 등)은 지금처럼 시술 줄 맨 위에 읽기 전용 한 줄**(제목 `body-500 gray-600` + KOS 상태 글자 `caption-md-400 gray-500` — 대기중 · 준비중 · 호출함 · 진행중 · 완료 · 취소 · 체크 · 버튼 · 배지 없음) — 시안에는 이 줄이 없지만 사용자 결정이 이긴다(§6.7 #13) (0.4.0) — `_RESUME 10-23` 「방 배정」 줄 · E2E-4 · CB §4 5a · `M:1232` `KOS_STATUS`~~ (r4 바뀜)
      → 줄 순서 = 진행 → 대기 → 완료 · 완료 묶음 앞 점선(§5.9). **type 무관 모든 작업이 같은 시술 줄**(체크 · [시작]/[종료] · 「호출함」 · 담당 글자 — 시안 시술 줄과 같은 모양 · 읽기 전용 줄 없음). **`isRoomTask` 인 줄(「방 배정」)만 그리지 않는다** — 선택 대상 · 「N개 선택됨」 · [의사 호출 · N건] 개수 · 호출 팝오버 목록에서도 빠진다 (r4) — `_RESUME 10-25` 「규칙 하나」 줄 · 코드 `OrderCard.tsx` · `view.ts` `procsOf` · `CallPopover.tsx` · `live/page.tsx`
+     → **되돌리기 아이콘**(r5 — §5.13 · `_RESUME 10-26` 아이콘 위치 줄): 시술 줄 오른쪽 버튼/배지의 **바로 왼쪽** — 진행 줄 = [종료] 왼쪽(`canUndoStart`) · 완료 줄 = 「완료」 Badge 왼쪽(`canUndoFinish`) · 대기 줄 = 없음(되돌릴 것이 없다). 모양(기본값): 아이콘 버튼 26 × 26(줄 버튼 `data-compact-buttons` 26px 높이와 맞춤) · 테두리 없음 · 아이콘 = medikit **`ResetIcon`** `size="sm"`(16px · `MK` — 되돌리기 화살표 모양이 아니면 FE 가 인라인 SVG 되돌리기 화살표로 바꾸고 보고서에 적는다) · 색 `gray-500` → 호버 `text-primary`. **호버 = medikit `Tooltip` · `TooltipTrigger` · `TooltipContent` 「되돌리기」**(`TooltipProvider` 는 페이지에 하나 · `MK`). `aria-label` 「되돌리기」
+     → **누르면 확인 모달** = medikit **`ConfirmModal`**(`MK` — `Modal` 위의 확인용 · 좌 · 우 버튼) — `title` 「시술 대기로 되돌리겠습니까?」([시작] 되돌리기) / 「시술 중으로 되돌리겠습니까?」([종료] 되돌리기) · `description` 「<방> · <시술 이름>」(기본값) · `variant` = **`caution`**(기본값 — 상태를 되돌리는 조작이라 주의 · 지우는 조작이 아니라 빨간 `warning` 은 아님) · `leftButton` = 「취소」(닫기만) · `rightButton` = 「되돌리기」(API → 닫기). 바깥 누르면 닫힘(= 취소). API 실패면 모달을 닫고 오류 토스트 (r5)
   6. 카드 아래 큰 버튼 하나(md · 꽉 찬 폭 · `data-fill-buttons`) — [의사 호출 · N건] 또는 [귀가 대기] — Q1 · Q2 · `all-done`
 - ~~「KOS 반영 중」 / 「KOS 반영 실패」 — 카드 머리 오른쪽 경과 글자 자리 아래 작은 글자(실패 = `text-red`) — D-09 · 자리는 기본값(시안에 없음 · §6.7)~~ (0.4.0 바뀜)
 - **카드에 「KOS 반영 중 · 실패」를 그리지 않는다**(시안대로). 조작 API 실패는 지금 코드의 오류 토스트(back `message`)로만. 스냅샷 `cards[].kos` 필드는 그대로 둔다(앱이 씀 — SPEC-004 §6) · 웹만 안 그린다. **조작 응답 뒤 비동기로 난 KOS 반영 실패(3회 재전송 뒤 `failed`)는 웹 화면에 나타나는 곳이 없다** → §10 OQ-522 (0.4.0) — `_RESUME 10-23` 「KOS 반영 중/실패 표시도 시안대로 뺀다」 · 시안 `hasKos` 계산만(`M:1482`) · CB §5 「조작 호출」
 - 카드 불투명도(0.4.0 — 시안 `M:1475`): 끄는 중 **0.35** → 귀가 대기 0.55 → 다른 카드를 골랐을 때(검색 · 필터 강조) 나머지 0.45 → 그 밖 1. 확인 필요 = `border-red` · 그 밖 `border-ms-gray-300` · 고른 카드 = outline 2px primary(지금 그대로)
 - 빈 상태: 카드 0 = 「시술 대기 중인 고객 없음」 · 필터 결과 0 = 「조건에 맞는 고객 없음」(지금 그대로) — `M:907-909` · `M:2267`
-- 토스트: 「A-룸1 3개 시술 · 전체 호출」 · 「… · 최 원장 호출」 · 「방 · 마취 시작/종료」 · 「방 · 이름 · 귀가 대기」 등 시안 문구. **되돌리기 없음** — r3 #25 · D-28
+- 토스트: 「A-룸1 3개 시술 · 전체 호출」 · 「… · 최 원장 호출」 · 「방 · 마취 시작/종료」 · 「방 · 이름 · 귀가 대기」 등 시안 문구. ~~**되돌리기 없음**~~ (r5 바뀜) → 호출 · 수락 · 마취 · 귀가 대기 토스트는 되돌리기 없음 그대로 — r3 #25 · D-28
+- **[시작] · [종료] 토스트**(r5 — §5.13): 지금은 [시작] · [종료] 성공에 토스트가 없다(코드 `live/page.tsx` `onStart` · `onFinish` 는 문구 없음 — 실패 토스트만) → 성공하면 「<방> · <시술 이름> 시작」 / 「<방> · <시술 이름> 종료」(기본값 문구) + 오른쪽 글자 버튼 **[되돌리기]**(지금 토스트 틀 · 글자와 간격 16 · `text-typo-body-600` · 진한 토스트 바탕에서 읽히는 밝은 primary 계열 — 토큰은 FE 가 테마에서 고르고 보고서에 적는다 · 기본값) · **5초**. [되돌리기] 를 누르면 토스트를 닫고 바로 되돌리기 API(모달 없음) → 성공 「<방> · <시술 이름> 시술 대기로 되돌림」 / 「… 시술 중으로 되돌림」(2.6초 · [되돌리기] 없음) · 실패(409 등) = back `message` 오류 토스트
 
 ### 6.4 오른쪽 패널 (폭 340 · 검색 + 탭 현황 · 호출 · 고객 — P17)
 
@@ -586,7 +629,7 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 |---|---|---|---|
 | 1 | [마취 시작/종료]는 시술 대기 카드에만(`anesCtl`) | 대기 · 진행 어느 때나 | D-23 |
 | 2 | 수락 = 그 고객의 수락 전 호출 시술 **전부** | 그 **호출이 유효 호출인 시술 중 미수락만** · 호출 탭 카드 = 호출 1건 | D-27 · D-25 |
-| 3 | 「최근 수락」 · 토스트 [되돌리기] | 없음 | D-28 |
+| 3 | 「최근 수락」 · 토스트 [되돌리기] | ~~없음~~ (r5 바뀜) → 「최근 수락」 · 호출 · 수락 토스트 = **없음 그대로**. **[시작] · [종료] 토스트에만 [되돌리기]**(§5.13 · §6.3) | D-28 · `_RESUME 10-26` |
 | 4 | 시술 줄 「호출함」 Badge 를 누르면 데모 수락 | 누르지 못함(수락은 호출 탭에서만) | D-27 |
 | 5 | ~~헤더 메뉴 세 칸~~ → (0.4.0) 전체현황판 시안: 상단 메뉴 6개(현황 · 고객 · 예약 · 시술 기록 · 매출 · 설정) · 「현황」 드롭다운 3항목(예약 현황 · 원내 현황 · 시술 현황) | ~~「시술 현황」 하나~~ (0.4.0 바뀜) → 상단 메뉴 **「현황」 하나** · 드롭다운 **「시술 현황」 하나**(§6.2) | D-17 · `_RESUME 10-23` 헤더 줄 · 드롭다운은 코디 기본값(OQ-520) |
 | 6 | 카드 위 주석 「시술 [시작] · [종료]는 태블릿 · 폰 몫(여기 없음)」 | 현황판 카드에 [시작] · [종료] 있음(시안 그림이 맞고 주석이 낡음) | D-29 · P3 |
@@ -606,6 +649,7 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 | 20 | (0.4.0) 귀가 대기 카드도 `draggable="true"`(놓기만 막힘 · `M:1471`) | 귀가 대기 카드는 **끌기부터 막는다**(§5.12) | `_RESUME 10-23` 기본값 「귀가 대기 카드는 드래그 제외」 |
 | 21 | (r2) 놓기 = 「대상 앞에 끼우기」만(`M:1471-1472` `splice(at, 0, from)` · 미리보기 `M:2251` 같음) — 바로 아래 카드 위에 놓으면 안 움직이고 맨 끝 자리로 못 감 | **방향 따라** — 아래로 끌면 대상 뒤 · 위로 끌면 대상 앞(§5.12) | `_RESUME 10-23` 「review-doc r1 기본값 ②」 · review r1 W6 |
 | 22 | (r2) 카드 아래 [의사 호출] — 시안 = `canCall` 일 때만(「둘 다 아니면 버튼 없음」 `M:894`) · 0.3.0 SPEC 은 「전부 완료 아님」이면 꺼진 채 보임 | **시안대로**(§5.11 고침 · 지금 코드와 같음) | `_RESUME 10-23` 「시안과 코드가 다른데 … 시안대로」 · review r1 W9 |
+| 23 | (r5) 전체현황판 시안 = 토스트 「되돌리기 없음(D-28)」(`M:1089`) · 시술 줄 되돌리기 아이콘 · 확인 모달 없음 | **결정대로 더한다** — [시작] · [종료] 토스트 [되돌리기] · 진행 줄 [종료] 왼쪽 · 완료 줄 「완료」 왼쪽 아이콘 · medikit `ConfirmModal`(§5.13 · §6.3). 시안 그림은 없다 — 모양은 위 기본값 | `_RESUME 10-26` 두 줄(결정이 시안을 이긴다 — 머리말) |
 
 ## 7. back ↔ front API
 
@@ -643,6 +687,7 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
                    startedAt, completedAt, doctor: { id, name }|null,
                    call: { id, kind: "all"|"one", targetDoctorId, createdAt, acceptedBy, acceptedAt }|null,
                    pickable, canStart, canFinish,
+                   canUndoStart, canUndoFinish,  // 되돌리기 아이콘(§5.13) — back 이 계산 (r5)
                    isRoomTask }],                // 「방 배정」(§5.1) — front 는 그리지 않는다 · 판정에서 빠짐 (r4)
     canCall, canHome,
     need: { why: "home"|"anes"|"call", since, limitMin }|null,
@@ -661,6 +706,7 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 - **`procedures[]` = KOS 작업 전부**(CANCELED 만 뺌 · 「방 배정」 포함) · 작업마다 **`isRoomTask: bool`**(새 필드 · 그 밖 모양 그대로 · `kind` 유지) (r4) — `_RESUME 10-25` · 코드 `schemas/board.py` `Procedure.isRoomTask`
 - **`cards[]` 배열 순서 = 화면 순서**(§5.12 — 드래그 순서 → 순서 없는 카드 입실순 → 귀가 대기 맨 뒤). 순서 전용 필드(`order` 등)는 **두지 않는다**. 근거: ① front 는 받은 스냅샷을 통째로 바꾸기만 한다(§7.5) — 배열 순서면 front 에 정렬 로직이 없다 ② 새 카드 · 귀가 대기 · 날짜 규칙이 back 한 곳에 남는다(이 절 「규칙 계산은 back」) ③ 필드를 더하지 않아 앱 모델(`app/lib/model/board.dart`)이 바뀌지 않는다 — 앱은 자기 입실순 정렬을 그대로 쓴다(§5.12 「앱」) (0.4.0) — 기본값
 - `cards[].kos` 는 그대로 싣는다(앱이 그린다 · 웹은 안 그림 — §6.3) (0.4.0)
+- **`procedures[].canUndoStart` · `canUndoFinish: bool`**(새 필드 · 그 밖 모양 그대로) — 조건은 §5.13 표. 「방 배정」 · 귀가 대기 카드는 늘 `false`. front 는 이 값으로만 아이콘을 그린다(다시 계산하지 않는다 — 이 절 「규칙 계산은 back」). 앱은 모르는 필드를 무시한다(SPEC-004 §7.2) (r5)
 - 필드 순서는 코드 `schemas/board.py` 의 `BoardSnapshot`(`now` · `sync` · `doctors` · `counts` · `limits` · `cards` · `calls` · `recentAccepts`) — 이름 · null 여부는 코드가 정본 (0.3.0)
 - `chartNumber` 는 검색에만 쓰고 화면에 크게 보이지 않는다 — D-14
 
@@ -676,10 +722,13 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 | `POST /api/procedures/{procedureId}/start` | — | `{ok:true, flowStepChanged}` | `visit_home` · `procedure_not_waiting` · `call_not_accepted` · `no_doctor` | D-30 · D-32 |
 | `POST /api/procedures/{procedureId}/finish` | — | `{ok:true}` | `procedure_not_started` | D-31 · D-32 |
 | `POST /api/visits/{visitId}/home` | — | `{ok:true}` | `procedures_not_done` · `visit_home` | D-33 |
+| **`POST /api/procedures/{procedureId}/undo-start`** (r5) | — | `{ok:true, flowStepChanged}`(고객을 시술 대기로 돌렸나 · §5.13) | `visit_home` · `procedure_not_doing` | `_RESUME 10-26` · §5.13 |
+| **`POST /api/procedures/{procedureId}/undo-finish`** (r5) | — | `{ok:true}` | `visit_home` · `procedure_not_done` · `procedure_not_started`(ccc [시작] 없이 KOS 에서만 완료된 시술) | `_RESUME 10-26` · §5.13 |
 | **`PUT /api/board/order`** (0.4.0) | `{visitIds:[int, …]}` — 귀가 대기 아닌 카드의 새 순서(앞이 먼저 · 빈 배열 = 오늘 순서 지움 → 전부 입실순). 그 밖 필드 = 400 | `{ok:true, visitIds:[…]}`(거르기 뒤 저장된 목록) | 없음 — 지금 카드가 아닌 id 는 오류 없이 뺀다(§5.12) | `_RESUME 10-23` 드래그 순서 줄 · §5.12 |
 
 - 없는 id = 404 `not_found` · 형식 오류 = 400 `invalid_request`(cc 와 같은 형식). ~~`etc` 작업 id 로 [시작] · [종료] = 404~~ (r4 바뀜) → **「방 배정」 작업 id** 로 [시작] · [종료] · 호출 = 404(ETCETERA 라도 「방 배정」이 아니면 일반 시술과 같다) (0.3.0 · r4 — 코드 `service/actions.py` `_procedure`)
 - `PROC_FAKE_BOARD` 가 켜져 있으면 조작 API 전부 403 `fake_board`(§2.3) (0.2.0) — S7
+- 되돌리기 두 API (r5): 경로를 **둘로 나눈다**(하나로 묶고 본문에 종류를 싣지 않는다) — 근거: ① [시작] · [종료]가 이미 경로 둘이라 짝이 맞다 ② 409 코드 · 응답 모양(`flowStepChanged`)이 다르다 ③ 본문 없는 POST 라 형식 오류(400)가 생기지 않는다. 기본값. 409 메시지(기본값): `procedure_not_doing` 「진행 중인 시술이 아니에요」 · `procedure_not_done` 「완료된 시술이 아니에요」 · `procedure_not_started` · `visit_home` 은 지금 문구 그대로. 「방 배정」 작업 id · 없는 id · 카드 아닌 visit = 404(§7.3 위 줄 · [시작] · [종료]와 같은 `_procedure` 검사). 검사 순서 = 401 → 403 `fake_board` → 404 → 409(`visit_home` 먼저 → 시술 상태). 성공하면 `event_log`(`proc_undo_start` · `proc_undo_finish`) 1줄 · `kos_op` 0 ~ 1줄(§8) → SSE `board` 발행(§7.5 ①) — §5.13 · SPEC-004 §3.4
 - 역할 403(`role_forbidden` · `doctor_forbidden` · `not_your_call`)과 검사 순서는 SPEC-004 §3.4 (0.3.0)
 - 조작마다 `event_log` 1줄(`actor` = 로그인 아이디) — D-13
 - `PUT /api/board/order` (0.4.0): `visitIds` = **엄격한 정수 배열(StrictInt — 문자열 `"3"` · 실수 `3.0` · 불리언 `true` 도 400)** (r2). 400 `invalid_request` = 본문이 객체가 아님 · `visitIds` 없음 · 그 밖 필드 · 배열 아님 · 정수 아닌 값 · **같은 id 두 번**. 역할 = admin · doctor · nurse 모두(SPEC-004 0.3.1 §3.4 표 줄) (r2 · r3). 404 없음(없는 visit id 도 거르기만). 성공하면 `board_order` 오늘 행을 **통째로 바꾸고**(마지막 쓰기가 이긴다) `event_log(board_order)` 1줄 · `kos_op` 0줄 → SSE `board` 발행(§7.5 ①). `fake_board` 403 · 인증 401 은 다른 조작과 같다 (r3 — 역할 겹친 말 지움) — §5.12 · SPEC-004 §3.4
@@ -689,7 +738,7 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 - `GET /api/health` → `{ok, kos: { open, internal }}`(토큰 보유 여부만 · 값 없음)
 - 데모 · 시드 · 리셋 API 없음 — D-01(시드 없음). 데모 고객 준비는 레포 밖 운영 도구(WORK-003 「운영 도구」)가 KOS 에 직접 한다 (0.3.0)
 - 그 밖 back API — `WS /api/interpret`(SPEC-004 §4) · `POST /api/devices` · `DELETE /api/devices/{token}`(SPEC-004 §5-1.1) (0.3.0)
-- ~~**back 경로 전부(코드 기준 16개 — router 15 + `GET /api/health`)** = §7.1 2 · §7.2 `GET /api/board` · §7.5 `GET /api/board/stream` · §7.3 조작 8 · `GET /api/health` · 통역 WS 1 · 기기 2.~~ (0.4.0 바뀜) → **back 경로 전부 17개(router 16 + `GET /api/health`)** = §7.1 2 · §7.2 `GET /api/board` · §7.5 `GET /api/board/stream` · §7.3 조작 8 + **순서 1(`PUT /api/board/order`)** · `GET /api/health` · 통역 WS 1 · 기기 2. `GET /api/auth/accounts` 는 **없다**(0.3.0 에서 제거 — SPEC-004 §3.3) (0.3.0 · 0.4.0)
+- ~~**back 경로 전부(코드 기준 16개 — router 15 + `GET /api/health`)** = §7.1 2 · §7.2 `GET /api/board` · §7.5 `GET /api/board/stream` · §7.3 조작 8 · `GET /api/health` · 통역 WS 1 · 기기 2.~~ (0.4.0 바뀜) → ~~**back 경로 전부 17개(router 16 + `GET /api/health`)** = §7.1 2 · §7.2 `GET /api/board` · §7.5 `GET /api/board/stream` · §7.3 조작 8 + **순서 1(`PUT /api/board/order`)** · `GET /api/health` · 통역 WS 1 · 기기 2.~~ (r5 바뀜) → **back 경로 전부 19개(router 18 + `GET /api/health`)** = §7.1 2 · §7.2 `GET /api/board` · §7.5 `GET /api/board/stream` · §7.3 조작 8 + 순서 1 + **되돌리기 2(`undo-start` · `undo-finish`)** · `GET /api/health` · 통역 WS 1 · 기기 2. `GET /api/auth/accounts` 는 **없다**(0.3.0 에서 제거 — SPEC-004 §3.3) (0.3.0 · 0.4.0 · r5)
 
 ### 7.5 실시간 갱신 — SSE (코디 지시 · 사용자 2026-10-21)
 
@@ -699,7 +748,7 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 | 인증 | `?token=<ccc 토큰>`(브라우저 `EventSource` 는 헤더를 못 싣는다). 틀리면 401 후 닫음 → front 는 `/login`. **접근 로그에 쿼리 문자열을 남기지 않는다** — uvicorn 접근 로그에서 쿼리를 지우는 필터(또는 `/api/board/stream` 접근 로그 끔). 배포 때 ingress 로그도 같은 기준 (0.2.0) | `EventSource` 제약 · S9 |
 | 이벤트 종류 | **`board` 하나** | 화면이 하나 · 상태도 하나 |
 | 본문 | **전체 스냅샷** — `GET /api/board`(§7.2)와 **같은 모양 그대로**(+ `version`: 보낼 때마다 1 씩 느는 정수) | 단순한 쪽: ① 한 지점 · 한 구역 · 오늘 일정이라 크기가 작다(HAR 하루 15건 ≈ 32KB, 저장 필드는 그보다 적다) ② front 는 받으면 **통째로 바꾸기만** — 바뀐 것만 보내면 합치기 · 순서 · 빠진 이벤트 복구 로직이 front 에 생긴다 ③ 규칙 계산(`canStart` 등)이 back 한 곳에 남는다(§7.2) |
-| 보내는 때 | ① ccc 조작(마취 · 호출 · 다른 원장에게 · 수락 · 시작 · 종료 · 귀가 대기 · **카드 순서(0.4.0)**)이 DB 에 들어간 직후 ② KOS 일정 조회(10초)가 끝날 때마다 — 값이 바뀌었거나 `sync`(마지막 동기화 시각 · 오류)가 바뀌었으면 ③ 직원 · 방 조회(1시간) 뒤 ④ `kos_op` 상태가 바뀔 때(반영 중 → 확인 · 실패) ⑤ **조회 시간과 상관없이 10초마다**(시간 경과로 바뀌는 「확인이 필요」 · 마취 `long` · 날짜 바뀜 반영) (0.2.0) | 화면의 값은 이 다섯 중 하나로만 바뀐다 · S5 |
+| 보내는 때 | ① ccc 조작(마취 · 호출 · 다른 원장에게 · 수락 · 시작 · 종료 · 귀가 대기 · **카드 순서(0.4.0)** · **[시작] · [종료] 되돌리기(r5)**)이 DB 에 들어간 직후 ② KOS 일정 조회(10초)가 끝날 때마다 — 값이 바뀌었거나 `sync`(마지막 동기화 시각 · 오류)가 바뀌었으면 ③ 직원 · 방 조회(1시간) 뒤 ④ `kos_op` 상태가 바뀔 때(반영 중 → 확인 · 실패) ⑤ **조회 시간과 상관없이 10초마다**(시간 경과로 바뀌는 「확인이 필요」 · 마취 `long` · 날짜 바뀜 반영) (0.2.0) | 화면의 값은 이 다섯 중 하나로만 바뀐다 · S5 |
 | 첫 접속 | 연결되면 **바로 `board` 1개**(지금 전체). front 는 이것으로 첫 화면을 그린다 — 따로 `GET /api/board` 를 부를 필요 없음(§7.2 는 시험 · 디버그용으로 남긴다) | 첫 로딩과 갱신이 같은 길 |
 | 재연결 | 끊기면 `EventSource` 기본 재연결(back 이 `retry: 3000` 을 보낸다). 다시 붙으면 첫 접속처럼 전체 스냅샷을 받는다 — **`Last-Event-ID` 다시 보내기 없음** | 스냅샷이라 놓친 이벤트를 메울 필요가 없다 |
 | 연결 유지 | 15초마다 주석 줄 `: ping` | 프록시 · 브라우저 유휴 끊김 방지(기본값) |
@@ -724,16 +773,20 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 | 첫 [시작] | 1 | 공개 `schedule/open/v1/commands/change-flow-step` | `{scheduleId, step:"PROCEDURE"}` | 일정 `flowStep = PROCEDURE` | D-32 · API §2 A |
 | [시작](첫 아님) | — | 없음(ccc 만) | — | — | D-32 |
 | [종료] | 1 | 내부 `schedule/flow/v1/commands/change-tasks-complete` | `{scheduleId, sequences:[그 시술 하나], complete:true}` | 그 작업 `status = DONE` | D-32 · HAR(`시술완료.har`) |
-| [귀가 대기] | 1 | 내부 `schedule/v1/commands/cancel-flow-tasks` — 남은 비시술 작업이 없으면 만들지 않음 | `{scheduleId, sequences:[끝나지 않은 작업 중 시술 작업을 뺀 것], reason:"CANCEL"}` | 그 작업들 `status = CANCELED` | E2E-3 · 1차 HAR (0.3.0) |
+| [시작] 되돌리기 — 고객이 시술 대기로 돌아갈 때만(§5.13) (r5) | 1 | 공개 `schedule/open/v1/commands/change-flow-step` | `{scheduleId, step:"PROCEDURE_WAITING"}` — ~~이미 KOS 가 그 단계면 보내지 않고 `confirmed`(같은 단계 규칙)~~ (r6 바뀜) → ccc 고객 상태가 `doing` → `waiting` 이 될 때 **항상** 만든다. 그 사이 KOS 가 이미 그 단계라 400 이 오면 아래 같은 단계 규칙(다음 조회에서 `confirmed`) · 앞 `PROCEDURE` op 은 `superseded`(`flowStep` 키 — §4.4 · 코드 `kos/ops.py` `superseded`)로 이미 닫힌다 | 일정 `flowStep = PROCEDURE_WAITING` | `_RESUME 10-26` · ~~미확인~~ **WP-KOS K4 받음(200)** (r6) |
+| [시작] 되돌리기 — 고객 진행 그대로 (r5) | — | 없음(ccc 만 — [시작](첫 아님)과 같다) | — | — | §5.13 |
+| [종료] 되돌리기 (r5) | 1 | 내부 `schedule/flow/v1/commands/change-tasks-complete` | `{scheduleId, sequences:[그 시술 하나], complete:false}` | 그 작업 `status ≠ DONE`(확인 조건 새 키 `statusNot` — 아래) | `_RESUME 10-26` · 1차 HAR 「`false` 로 완료 취소도 될 것으로 추정 · HAR 에 없음」 · ~~미확인~~ **WP-KOS K2 받음(200 · `DONE → READY`)** (r6) |
+| [귀가 대기] | 1 | 내부 `schedule/v1/commands/cancel-flow-tasks` — ~~남은 비시술 작업이 없으면 만들지 않음~~ → **남은 「방 배정」이 없으면 만들지 않음** (r4 · r6 — review-doc r4 F1) | ~~`{scheduleId, sequences:[끝나지 않은 작업 중 시술 작업을 뺀 것], reason:"CANCEL"}`~~ → `{scheduleId, sequences:[안 끝난 「방 배정」(§5.1 is_room_task)], reason:"CANCEL"}` (r4) — §5.7 · 코드 `service/actions.py` `home` | 그 작업들 `status = CANCELED` | E2E-3 · 1차 HAR (0.3.0) · `_RESUME 10-25` 「규칙 하나」 줄 |
 | 〃 | 2 | 공개 `schedule/open/v1/commands/change-flow-step` | `{scheduleId, step:"PROCEDURE_DONE"}` | 일정 `flowStep = PROCEDURE_DONE` | D-33 · HAR(`시술완료_상태.har`) |
 
 - `scheduleId` = `visit.kos_id` · `sequences` = `procedure.kos_sequence`
 - `change-flow-step` 거절(스펙): `ProceduresNotFound` 등 400 → §4.4 재전송 · 실패 규칙 — API §5
 - **같은 단계 규칙** (0.2.0 — S2 · 워커 실호출): KOS 는 **지금 단계와 같은 단계로의 `change-flow-step` 을 400 으로 거절**한다. 그래서
-  - op 을 만들 때 · 보내기 직전에 마지막 조회의 KOS `flowStep` 이 이미 목표 단계면 **보내지 않고 `confirmed`** 로 둔다(조회 10초 사이에 KOS 가 먼저 바뀐 경우 — ccc 는 아직 `waiting` 이라도)
+  - op 을 만들 때 ~~· 보내기 직전에~~ (r6 — 코드는 보내기 직전에 거르지 않는다 · `kos/ops.py` `send_heads` · review-doc r4 참고) 마지막 조회의 KOS `flowStep` 이 이미 목표 단계면 **보내지 않고 `confirmed`** 로 둔다 — 만들 때의 판단은 ccc 고객 상태(= 마지막 조회 값 · 반영 대기 중이면 ccc 값 · §4.3)로 한다(조회 10초 사이에 KOS 가 먼저 바뀐 경우 — ccc 는 아직 `waiting` 이라도)
   - 보냈는데 400 이 오면 바로 실패로 세지 않고, 다음 조회에서 `flowStep` 이 목표 단계면 `confirmed`(재전송 없음). 아니면 §4.4 재전송 · 실패 규칙
 - `call-tasks-doctors` 가 400 을 주는 조건 — 귀가 대기 일정은 400(처분 W10) · **시술 작업에 방이 없으면 400 `errorProperties roomId NotFound`** → 1번 `change-tasks-room` 으로 막는다(E2E-1) (0.3.0). 이미 `WAITING` / `READY` 작업 재호출 · [다른 원장에게]는 미확인 → OQ-516 (0.2.0)
 - KOS 작업 칸 「진행중」은 **수락(집도의 지정) 직후** 뜬다(KOS 에 작업별 시작 칸이 없다) — **그대로 둔다**. 시술 진행 · 대기의 기준은 ccc 이고 현장은 KOS 를 보지 않는다. [시작] 때 집도의를 지정하는 방식으로 바꾸지 않는다 (0.3.0) — E2E-2 · `_RESUME` 10-21 「KOS 작업 「진행중」은 수락 시점 그대로」 줄
+- **되돌리기 op 의 확인 · 대체 규칙** (r5): ① [종료] 되돌리기의 확인 = 그 작업 `status` 가 `DONE` 이 **아님**(되돌린 뒤 KOS 가 어느 상태 — `READY` · `NOT_STARTED` 등 — 로 가는지 모르므로 「아님」으로 본다 · WP-KOS 가 실제 값을 적는다 → (r6) K2 = `READY`. 확인 조건은 「아님」 그대로 둔다 — 집도의 없는 작업의 값은 보지 않았다) → `expect` 에 `statusNot: "DONE"` 키를 더한다(코드 `kos/ops.py` `expect_met`) ② **같은 작업의 앞 [종료] op(`status = DONE`)은 뒤 되돌리기 op 이 `sent` · `confirmed` 면 `confirmed`** 로 본다 — 지금 `superseded`(§4.4)의 `status` 규칙에 `statusNot` 도 같은 필드로 넣는다. 거꾸로 되돌린 뒤 다시 [종료]하면 앞 되돌리기 op 이 대체된다. 이게 없으면 앞 [종료] op 이 「KOS 값이 바뀌지 않음」으로 재전송돼 KOS 를 다시 완료로 만든다 ③ [시작] 되돌리기의 flow-step op 은 지금 `flowStep` 대체 규칙(앞 `PROCEDURE` op 대체)을 그대로 쓴다
 - 「KOS 화면은 마지막 완료 때 방을 비워 보인다」 — ccc 는 그 표시를 따르지 않는다(§5.7) — D-33 · HAR
 
 ## 9. 검증 기준 — 로컬 E2E (데모 지점)
@@ -763,8 +816,15 @@ front 가 쓰는 것: `NEXT_PUBLIC_API_BASE_URL`(back 주소) — compose 는 `b
 | 18 | (r4) 방 배정 작업 없이 카드 | 데모 KOS 에서 「방 배정」 작업 없이 **시술 작업에만 방**을 붙인 일정 → 10초 안에 카드가 뜬다(방 = 그 작업 방 · 입실 = 그 작업 배정 시각). 방이 어디에도 없으면 안 뜬다 | 시술 작업 `room` 만 있음 | `_RESUME 10-25` 「카드 방」 줄 · §3.3 · §5.1 |
 | 19 | (r4) 기타 작업 = 일반 시술 | 시트팩(ETCETERA) 줄을 체크 → 호출 · 수락 · [시작] · [종료] 가 일반 시술과 같다. **시트팩이 안 끝났으면 카드 아래에 [귀가 대기]가 없다**(다른 시술이 다 끝나도) · 「수납 필요」도 시트팩 결제를 센다 | 시트팩 작업 `room` = 카드 방 · `WAITING` → `READY` → `DONE`(실 KOS 가 ETCETERA 에 호출 · 완료를 받는지 이 단계에서 처음 본다 — OQ-528) | `_RESUME 10-25` 「규칙 하나」 줄 · §5.1 · §5.7 |
 | 20 | (r4) 시트팩 호출 뒤에도 남음 | #19 에서 시트팩을 호출해 KOS 가 시트팩에 방을 붙인 뒤에도 **시트팩 줄이 카드에 남는다**(「방 배정」으로 바뀌어 숨지 않는다). [귀가 대기] 때 취소되는 것은 「방 배정」뿐 | 귀가 대기 뒤 시트팩 `DONE` 그대로 · 「방 배정」만 `CANCELED` | `_RESUME 10-25` 「「방 배정」 판정」 줄 · §5.1 |
+| 21 | (r5) 토스트 [되돌리기] — [시작] | 그 고객의 **첫** [시작] → 토스트 「<방> · <시술> 시작」 + [되돌리기] **5초** → 누른다(모달 없음) → 시술 「<원장> 수락 · 시작 가능」(또는 「<원장>」) · [시작] 켜짐 · 고객 「시술 대기」 · 「시술 대기로 되돌림」 토스트. 5초 뒤엔 토스트와 [되돌리기]가 없다 | 일정 `flowStep = PROCEDURE_WAITING`(WP-KOS K4 받음 (r6)) · 작업 상태 변화 없음 · **KOS 웹 화면 표시도 본다**(워커 미관찰 (r6)) | `_RESUME 10-26` · §5.13 · §8 |
+| 22 | (r5) 아이콘 — [종료] 되돌리기 | [종료] → 완료 줄 「완료」 **왼쪽** 아이콘 · 호버 「되돌리기」 툴팁 → 누르면 medikit 모달 「시술 중으로 되돌리겠습니까?」 → [취소] = 아무것도 안 바뀜 → 다시 열어 [되돌리기] → 시술 진행 「<원장> · HH:MM 시작」(옛 [시작] 시각) · [종료] 켜짐 · (전부 완료였으면) 카드 아래 [귀가 대기] 사라짐 | 그 작업 `status = READY`(WP-KOS K2 와 같은지 (r6)) · **KOS 웹 화면에서도 완료가 풀렸나**(워커 미관찰) · 30초 뒤에도 다시 `DONE` 으로 안 돌아감 | `_RESUME 10-26` · §5.13 · §8 · ~~OQ-529~~(닫힘 (r6)) |
+| 23 | (r5) 아이콘 — [시작] 되돌리기 · 고객 진행 그대로 | 다른 시술이 완료 · 진행인 고객에서 진행 줄 [종료] **왼쪽** 아이콘 → 모달 「시술 대기로 되돌리겠습니까?」 → [되돌리기] → 그 시술만 대기 · 고객 「시술 진행」 그대로. 대기 줄에는 아이콘이 없다 | flowStep 변화 없음 · 작업 변화 없음 | §5.13 |
+| 24 | (r5) 다른 화면이 먼저 바꿈 | 브라우저 A [종료] → 브라우저 B 가 아이콘으로 그 시술 되돌리기 → A 가 토스트 [되돌리기] → **오류 토스트 「완료된 시술이 아니에요」**(409) · 두 화면 모두 시술 진행 | — | §5.13 동시성 |
+| 25 | (r5) 아이콘 없는 곳 | 귀가 대기 카드의 완료 줄 · KOS 화면에서만 완료한 시술(ccc [시작] 없음) · 「방 배정」 · 대기 줄 — 아이콘 없음 | — | §5.13 `canUndoStart` · `canUndoFinish` |
+| 26 | (r5) 되돌린 뒤 다시 [종료] | #22 뒤 같은 시술 [종료] → 완료 · 1분 뒤에도 그대로(앞 op 재전송으로 흔들리지 않음) · `GET /api/board` 그 카드 `kos.status = ok` | 그 작업 `status = DONE` | §8 되돌리기 op 대체 규칙 |
 
 back 단위 시험(pytest, KOS 는 가짜 클라이언트): §5.10 전이 · §5.11 활성 조건 · 유효 호출(D-25) · 수락 범위(D-27) · 덮어쓰기 보호(§4.3) · op 순서 · 재전송 · 실패(§4.4) · 원장 목록 제외(D-11) · 조회 시간(D-08) · SSE(§7.5 — 첫 접속 스냅샷 · 조작 뒤 1개 · 토큰 없으면 401).
+0.5.0 더함(r5): `undo-start` — `doing` 만 · 호출 · 수락 · 집도의 남음 · [시작] 다시 켜짐 · 진행 · 완료 0 이면 고객 `waiting` + flow-step op(`PROCEDURE_WAITING`) **항상 1줄** · 남으면 op 0 · ~~이미 KOS 가 그 단계면 op `confirmed`~~ (r6) → 그 op 이 400 을 받은 뒤 다음 조회에서 KOS `flowStep = PROCEDURE_WAITING` 이면 `confirmed`(재전송 없음) · 첫 [시작] 직후 되돌리면 앞 `PROCEDURE` op 은 `superseded` 로 `confirmed` / `undo-finish` — `done` + ccc [시작] 있음만 · `completed_at` 비움 · `kos_status = READY` · `complete:false` op 1줄 · 고객 상태 그대로 · `canHome` 풀림 / 409(`visit_home` · `procedure_not_doing` · `procedure_not_done` · `procedure_not_started`) · 404(「방 배정」 · 없는 id) · 403 `fake_board` · 세 역할 모두 · `event_log` 1줄 · SSE 1개 / 스냅샷 `canUndoStart` · `canUndoFinish`(귀가 대기 · 「방 배정」 false) / `expect_met` `statusNot` · `superseded`([종료] → 되돌리기 → [종료] 순서에서 앞 op 재전송 0) / 경로 수 19.
 0.4.3 더함(r4 — 코드 시험 162 통과): 카드 방 type 무관(시술 작업에만 방 · 여러 방 = 가장 늦은 배정 · 동률 = ETCETERA → 큰 sequence · 방 없음 = 카드 없음) · ETCETERA 가 일반 시술처럼 체크 · 호출 · 시작 · 종료 · 전부 완료 · 수납에 든다 · 시트팩 안 끝나면 [귀가 대기] 409 · 「방 배정」 스냅샷에 `isRoomTask=true` · 판정 · 조작에서 빠짐 · [귀가 대기] 취소 = 「방 배정」만 · 호출된 ETCETERA 는 방이 붙어도 「방 배정」 아님. 아래 0.4.0 줄의 「「방 배정」이 `procedures[]` 에 없음 · 방 없는 `etc` 는 있음 · 취소 대상에 「방 배정」 그대로」는 ~~뒤집힘~~ (r4)
 
 0.4.0 더함(r2 — StrictInt: `"3"` · `3.0` · `true` 400 · 옛 스키마 DB 파일로 시작해도 `board_order` 가 생기고 기존 행이 남음): 「방 배정」(방 있는 `etc`)이 `procedures[]` 에 없음 · 방 없는 `etc` 는 있음 · [귀가 대기] 취소 대상에는 「방 배정」 그대로 · `PUT /api/board/order`(저장 · 거르기 — 없는 id · 귀가 대기 · 사라진 카드 · 400 형식 · 같은 id 두 번 · 마지막 쓰기 · `event_log` 1줄 · `kos_op` 0줄 · 저장 뒤 SSE 1개 · 401 · 403 `fake_board`) · 스냅샷 정렬(목록 → 목록 밖 입실순 → 귀가 대기 시각 순 · 날짜 바뀌면 순서 없음) (0.4.0)
@@ -782,7 +842,7 @@ E2E 공통: 브라우저 두 개(현황판 · 의국 PC 역할)를 열어 두고
 | ~~OQ-505~~ | 카드가 사라지는 때 — KOS 가 `COMPLETED`(귀가) 등 세 단계 밖이 되면 | **닫힘** — 귀가 대기 카드는 흐리게 남고 KOS `COMPLETED` 가 되면 사라진다(§5.1 조건 2) | 닫힘(E2E-9 · `_RESUME` 10-21) (0.3.0) |
 | OQ-506 | KOS `status = CANCELED` 작업을 시술 목록에 두나 | 목록에서 뺀다 · 「전부 완료」 판정에서도 뺀다 — 코드 그대로(`domain/rules.py` `items`) | 기본값 구현 (0.3.0) |
 | OQ-508 | 「수납 필요」 · 「KOS 반영 중 · 실패」 자리 · 모양 — 시안에 없음 | §6.7 #7 · #8. **0.4.0: 「KOS 반영 중 · 실패」 쪽은 닫힘**(웹은 안 그림 · `_RESUME 10-23`) — 「수납 필요」는 전체현황판 시안에 자리가 생겼다(`M:825-827` · 고객 줄 끝 Badge warning sm = 지금 코드와 같음) → 그것도 닫힘 (0.4.0) | 닫힘 (0.4.0) |
-| OQ-509 | 「KOS 반영 실패」 뒤 복구 — 다시 보내기 버튼 · 운영 절차 | 버튼 없음 · back 로그 · `event_log(kos_failed)` 로 확인. 되돌리기 정책 때 같이 | 새로 |
+| OQ-509 | 「KOS 반영 실패」 뒤 복구 — 다시 보내기 버튼 · 운영 절차 | 버튼 없음 · back 로그 · `event_log(kos_failed)` 로 확인. ~~되돌리기 정책 때 같이~~ (r5) 10-26 되돌리기는 **사용자 조작([시작] · [종료]) 되돌리기**라 이 질문(반영 실패 복구)을 닫지 않는다 — 그대로 열림 | 새로 |
 | OQ-510 | 재전송 횟수 · 간격 | 조회 주기마다 · 3회 뒤 실패 | 새로 |
 | OQ-511 | ~~한 일정에 방 있는 ETCETERA 작업이 둘 이상이면 어느 방인가~~ (r4) → 한 일정에 **방 있는 작업(type 무관)**이 둘 이상이면 어느 방인가(HAR 에 「방 배정」 외 「방 점유/원장 상담」 작업도 있다 · 데모 10-25 는 시술 작업마다 방) | `roomAssignedDateTimeUtc` 가 가장 늦은 작업의 방 · 동률 · 시각 없음 = ETCETERA 먼저 → 큰 `sequence` — 코드 그대로(`kos/sync.py` `_card_room_task`) · 호출 때 고른 작업에 넣는 방도 이것(§5.4) (r4) | 기본값 구현 (0.3.0 · r4) |
 | OQ-512 | KOS 쪽에서 ccc 를 거치지 않은 호출 · 집도의 변경이 조회되면(D-10 은 현장이 안 한다고 정함) | KOS 값을 보여 준다(집도의 · 호출 여부) · ccc 호출 기록은 만들지 않는다 | 새로 |
@@ -796,12 +856,26 @@ E2E 공통: 브라우저 두 개(현황판 · 의국 PC 역할)를 열어 두고
 | OQ-520 | 헤더 「현황」 드롭다운에 예약 현황 · 원내 현황 항목을 언제 · 어떤 모양으로 더하나(시안은 3항목 · `M:1215-1222`) | 지금 없는 화면이라 **그리지 않는다** — 「시술 현황」 한 항목만(코디 기본값). 예약 현황 판에서 다시 | 열림 (0.4.0) |
 | OQ-521 | 카드 머리 경과 글자(「호출 N분 경과」 · 「완료 뒤 N분 경과」 · 「귀가 대기 HH:MM」)를 되살리나 | 시안대로 **안 그린다**(§6.7 #11). 사용자 E2E 에서 아쉬우면 다음 batch | 열림 (0.4.0) |
 | OQ-522 | 조작 응답 뒤 비동기로 난 **KOS 반영 실패**(3회 재전송 뒤 `failed`)를 웹에서 어떻게 알리나 — 결정(`_RESUME 10-23` 「… **오류 토스트로만**(비동기 실패 알림은 OQ-522 열림)」 줄)의 지금 토스트는 조작 API 실패만 띄운다 | **웹엔 표시 없음**(스냅샷 `kos` · `event_log(kos_failed)` · back 로그 · 앱 룸 상세에만). 스냅샷 `kos.status` 가 `failed` 로 바뀔 때 토스트를 띄울지는 정하지 않았다 — OQ-509(복구)와 같이 | 열림 (0.4.0) |
-| OQ-523 | 시술실 앱도 공유 드래그 순서를 따르나(「모든 화면 공유」의 「모든 화면」에 앱이 드는지) | 앱은 지금 자기 입실순 정렬(`app/lib/view/view.dart:58`) — **이번 판 바꾸지 않음**(범위 = 웹). 따르려면 앱이 `cards[]` 배열 순서를 그대로 쓰면 된다(back 변경 없음) | 열림 (0.4.0) |
+| ~~OQ-523~~ | 시술실 앱도 공유 드래그 순서를 따르나 | **닫힘** — 웹이 정본 · 앱은 웹에 맞춘다 → §10.1 앱 후속 1 (r5) | 닫힘(`_RESUME 10-26` 「웹이 정본」) (0.4.0 · r5) |
 | OQ-524 | 전체현황판 경로를 시안 데모 href(`/live/proc` 등)로 바꾸나 | **`/procedures/live` 그대로**(배포 주소 · 북마크 · 앱 무관). 예약 · 원내 현황이 들어올 때 같이 정한다 | 열림 (0.4.0) |
 | OQ-525 | 순서 목록을 며칠치 남기나(`board_order` 전날 행) | 지우지 않는다(하루 1행 · 작다 · 읽지 않음). 정리 정책 없음 | 열림 (0.4.0) |
-| OQ-526 | 시술실 앱(SPEC-004 §6.0 「앱은 `etc` 를 그리지 않는다」)과 웹 규칙(type 무관 · 「방 배정」만 숨김)이 갈라졌다 — 앱은 `isRoomTask` 를 모르고 시트팩 등 ETCETERA 를 전부 숨긴다 | **이번 판 앱 무변경**(SPEC-004 그대로). 앱도 「`isRoomTask` 만 숨김」으로 맞출지는 앱 판에서 | 열림 (r4) |
+| ~~OQ-526~~ | 시술실 앱(「`etc` 를 그리지 않는다」)과 웹 규칙(type 무관 · 「방 배정」만 숨김)이 갈라졌다 | **닫힘** — 웹 규칙이 맞다 · 앱이 「`isRoomTask` 만 숨김」으로 맞춘다 → §10.1 앱 후속 2 (r5) | 닫힘(`_RESUME 10-26` 「웹이 정본」) (r4 · r5) |
 | OQ-527 | ccc [의사 호출]의 방 넣기(`change-tasks-room`)로 KOS 가 그 작업의 `roomAssignedDateTimeUtc` 를 호출 시각으로 새로 찍으면, 「가장 늦은 배정」이 그 작업이 되어 카드 입실 시각(`inAt`) · 목록 밖 카드 입실순이 호출 시각으로 밀린다 | 실 KOS 미확인 — §9 #3 뒤 입실 시각이 그대로인지 본다. 밀리면 「입실 = 같은 방 작업 중 가장 이른 배정」 등 규칙이 필요(정하지 않음) | 열림 (r4 — backend WP-BE3 보고) |
-| OQ-528 | 실 KOS 가 ETCETERA 작업에 `call-tasks-doctors` · `change-tasks-complete` 를 받아 주는가 | ccc 는 type 무관 같은 API 로 보낸다(가짜 KOS 시험만). §9 #19 에서 처음 확인 — 400 이면 §4.4 실패 규칙 | 열림 (r4 — backend 규칙 하나 보고) |
+| OQ-528 | 실 KOS 가 ETCETERA 작업에 `call-tasks-doctors` · `change-tasks-complete` 를 받아 주는가 | ccc 는 type 무관 같은 API 로 보낸다(가짜 KOS 시험만). ~~§9 #19 에서 처음 확인~~ (r5) **WORK-006 WP-KOS K5 에서 실호출로 확인**(`spec-r5-addendum.md` ②) — (r6) 되돌리기 게이트와는 **따로**(되돌리기 계약과 무관 · K5 는 사용자가 데모 KOS 에 방 없는 ETCETERA(시트팩)를 붙이면 진행 · WP-E2E 전까지). 「안 받음」이면 §5.1 쪽(WORK-005 · PR #6) 사용자 결정으로 올린다 · §9 #19 는 그 뒤 화면 확인 — 400 이면 §4.4 실패 규칙 | 열림 (r4 — backend 규칙 하나 보고) |
+| ~~OQ-529~~ | 실 KOS 가 `change-tasks-complete {complete:false}`(완료 풀기)를 받나 | **닫힘 — 받음**(WP-KOS K2 · 2026-10-26): HTTP 200 · 작업 `DONE → READY` · `completedDateTimeUtc` 지움 · 집도의 · 담당 · 호출 시각 그대로 · 22초 뒤에도 `READY`. §5.13 즉시 값 `READY` 확정. 남은 것: 집도의 없는 작업의 값 · 시술권이 걸린 작업의 차감 되돌림(OQ-502 — 데모 작업은 시술권 없음) · KOS 웹 화면 표시(§9 #22) | 닫힘 (r5 · r6 — 리포트 `orchestration/work/overall-board/kos-undo-probe-report.md`) |
+| ~~OQ-530~~ | 실 KOS 가 `change-flow-step` **뒤로 가기**(`PROCEDURE` → `PROCEDURE_WAITING`)를 받나 | **닫힘 — 받음**(WP-KOS K4 · 2026-10-26): HTTP 200 · `flowStep` 바뀜 · 작업 값 그대로. 기준선 K3(`PROCEDURE_WAITING` → `PROCEDURE`)도 200. KOS 웹 화면 표시는 §9 #21 에서 | 닫힘 (r5 · r6 — 리포트 `orchestration/work/overall-board/kos-undo-probe-report.md`) |
+| OQ-531 | 귀가 대기 카드에서 [종료] 되돌리기(고객 귀가 대기 → 진행)를 열까 | **막는다**(아이콘 없음 · 409 `visit_home` — §5.13). 열려면 `change-flow-step` `PROCEDURE_DONE` → `PROCEDURE` 와 [귀가 대기] 때 취소한 「방 배정」 되살리기가 필요 — 둘 다 미확인 | 열림 (r5) |
+| OQ-532 | 토스트 [되돌리기] 가 그 사이 다른 사람이 같은 상태로 만든 조작을 되돌리는 경우(A [시작] → B 되돌리기 → C [시작] → A 토스트 되돌리기 = C 의 [시작]이 풀림) — 「내 조작만」 되돌리게 이벤트 id 검사를 둘까 | **두지 않는다** — 상태 검사(409)만 · 5초 창이라 드물다(기본값 · §5.13 동시성) | 열림 (r5) |
+
+### 10.1 앱 후속 — 웹 기준으로 맞춘다 (r5)
+
+`_RESUME 10-26` 「웹이 정본 · 앱은 나중에 웹에 맞춘다」 — 웹과 앱이 다른 곳은 질문이 아니라 **앱이 할 일**이다. 앱 판(SPEC-004 개정 · 앱 WORK)에서 아래를 웹 계약대로 맞춘다. 이번 판(WORK-006)은 앱 코드 · 빌드를 건드리지 않는다.
+
+| # | 웹 계약(정본) | 앱 지금 | 앱이 할 일 | 옛 OQ |
+|---|---|---|---|---|
+| 1 | 카드 순서 = 스냅샷 `cards[]` 배열 순서(드래그 공유 · §5.12) | 자기 입실순 정렬(`app/lib/view/view.dart:58`) | 정렬을 빼고 배열 순서 그대로 | OQ-523 |
+| 2 | 작업은 type 무관 같은 시술 · `isRoomTask` 만 숨김(§5.1) | `etc` 를 전부 숨김(SPEC-004 §6.0) | `isRoomTask` 만 숨기고 ETCETERA 를 시술 줄로 | OQ-526 |
+| 3 | [시작] · [종료] 되돌리기(§5.13 · `canUndoStart` · `canUndoFinish` · `undo-start` · `undo-finish`) | 없음 | 같은 API · 같은 조건(앱 UI 모양은 앱 판에서) | — (r5 새) |
 
 ## 부록 A. DEC-005 대응표
 
@@ -834,7 +908,7 @@ E2E 공통: 브라우저 두 개(현황판 · 의국 PC 역할)를 열어 두고
 | D-25 | 호출 쌓기 · 유효 호출 | §3.2 · §5.4 · §5.5 |
 | D-26 | 진행 · 완료 시술은 호출 대상 아님 | §5.4 · §5.11 |
 | D-27 | 의국 화면 수락 · 받는 범위 · 다른 원장에게 | §5.5 · §6.4 · §6.7 #2 · #4 · §8 |
-| D-28 | 되돌리기 없음 | §1.2 · §5.5 · §6.3 · §6.4 · §6.7 #3 |
+| D-28 | 되돌리기 없음 → (r5) **[시작] · [종료]만 되돌리기 생김**(`_RESUME 10-26`) · 호출 · 수락 · 마취 · 귀가 대기는 그대로 없음 | §1.2 · §5.5 · §5.13 · §6.3 · §6.4 · §6.7 #3 · #23 · OQ-509 |
 | D-29 | 지금은 현황판에서 [시작] · [종료] | §5.6 · §6.7 #6 |
 | D-30 | [시작] 조건 | §5.6 · §5.9 · §5.11 |
 | D-31 | [종료] = 시작한 시술만 | §5.6 · §5.11 |
@@ -1125,3 +1199,53 @@ FAIL 1 · WARN 6 — 누락 0.
 | 3 E2E | #18(방 배정 없이 시술에만 방) · #19(시트팩 = 일반 시술 · 안 끝나면 귀가 대기 불가) · #20(시트팩 호출 뒤에도 남음) · #9 · #13 고침 | §9 |
 | 4 SPEC-004 | 앱 무변경 · 갈라진 규칙 = OQ-526 | §10 |
 | 5 WORK-005 | WP-BE3 · WP-BE4 · WP-FE3(완료) · 「r4 처분」 | WORK-005 |
+
+## 부록 I. 10-26 결정 반영 (r5 · 2026-10-26)
+
+원천 `orchestration/work/overall-board/_RESUME.md` §2 2026-10-26 줄 3개 · 브리프(planner r5) · 지시 `spec-r5-addendum.md`. 코드(`cc-prototype/overall-board/procedure` · PR #6 상태)는 읽기만 — 이 판의 계약은 코드보다 먼저 간다(구현 = WORK-006).
+
+### I.1 10-26 결정 줄 → 절
+
+| # | 결정 줄(줄임) | SPEC-003 0.5.0 | WORK-006 |
+|---|---|---|---|
+| 1 | **되돌리기 기능 추가** — [시작] → 시술 대기 · [종료] → 시술 중 · ① 토스트 [되돌리기] ② 시술 줄 아이콘 · 호버 「되돌리기」 · medikit 모달 「시술 대기/시술 중으로 되돌리겠습니까?」 · D-28 뒤집음 | 머리말 · §1.1 · §1.2 · §3.2 · §4.3 · §4.4 · §5.5 · §5.6 · §5.10 · §5.11 · **§5.13** · §6.3(토스트 · 모달) · §6.7 #3 · #23 · §7.2 · §7.3 · §7.4 · §7.5 · §8 · §9 #21 ~ #26 · OQ-529 ~ OQ-532 · 부록 A D-28 | WP-KOS · WP-BE · WP-FE · WP-E2E |
+| 2 | **아이콘 위치** = 오른쪽 버튼/배지 왼쪽 — 진행 줄 [종료] 왼쪽 · 완료 줄 「완료」 왼쪽 · 대기 줄 없음 | §5.9 오른쪽 칸 · §5.11 아이콘 두 줄 · §6.3 #5 · §9 #22 · #23 · #25 | WP-FE |
+| 3 | **웹이 정본 · 앱은 나중에 웹에 맞춘다** · 되돌리기 KOS 실호출 확인 필수 | 머리말 우선순위 · §5.13 「앱」 · 「KOS 실호출 확인」 · §10 OQ-523 · OQ-526 닫음 · OQ-528 · **§10.1 앱 후속** | 「하지 않는 것」 · **WP-KOS 맨 앞** |
+
+3줄 · 누락 0.
+
+### I.2 브리프 「정할 것」 → 처분
+
+| 정할 것 | 처분 | 절 |
+|---|---|---|
+| 1 KOS 반영 | [종료] 되돌리기 = `change-tasks-complete {complete:false}`(~~미확인~~ (r6) WP-KOS K2 받음) · [시작] = 지금 KOS 에 보내는 것: 작업 쪽 없음 · 그 고객의 첫 [시작]만 `changeFlowStep(PROCEDURE)`(코드 `service/actions.py` `start`) → [시작] 되돌리기는 고객이 시술 대기로 돌아갈 때만 `changeFlowStep(PROCEDURE_WAITING)`(~~미확인~~ (r6) WP-KOS K4 받음) · 귀가 대기 → 진행은 막음(OQ-531) · 확인 조건 `statusNot` · 대체 규칙 · **WP-KOS 실호출이 완료 조건** · 안 받으면 OQ-529 · OQ-530 | §5.13 · §8 · §10 |
+| 2 범위 | 토스트 = 마지막 조작만(5초) · 아이콘 = 아무 때나 · 호출 · 수락 · 담당의 그대로 · 귀가 대기 카드 없음 · ccc [시작] 없는 완료 시술 없음 · 마취 범위 밖 | §5.13 |
+| 3 API | `POST /api/procedures/{id}/undo-start` · `/undo-finish`(둘로 나눈 근거) · 409 · 404 · 403 · 역할 세 역할 · `event_log` 두 type · SSE ① · SPEC-004 §3.4 한 줄 | §3.2 · §7.3 · §7.4 · §7.5 · SPEC-004 0.3.2 |
+| 4 동시성 | 상태 검사 409(`procedure_not_doing` · `procedure_not_done` · `visit_home`) · 버전 검사 없음(OQ-532) | §5.13 · §9 #24 |
+| medikit 모달 | 1.4.0 에 **`ConfirmModal`**(확인 · 좌우 버튼 · `variant`) · `Modal` · `BaseModal` · `Dialog`(Radix) 있음 → `ConfirmModal` 을 쓴다. 툴팁 `Tooltip` · 아이콘 `ResetIcon` 도 있음 — OQ 없음 | §6.3 #5 |
+| 토스트 시간 | 5초(기본값 — 되돌리기 토스트만) | §5.13 · §6.3 |
+
+### I.3 기본값 목록(결정에 없어 이 판이 고른 값)
+
+토스트에 모달 없음 · 토스트 5초 · 토스트 문구 · 아이콘 = `ResetIcon` sm · 26px 버튼 · 모달 `variant = caution` · 모달 설명 「<방> · <시술>」 · 아이콘 = 아무 때나 · 귀가 대기 카드 막음 · ccc [시작] 없는 완료 시술 막음 · [종료] 되돌리기 즉시 `kos_status = READY` · 경로 둘 · 버전 검사 없음 · 호출 · 수락 되돌리기 없음 그대로.
+(r6 더함 — review-doc r4 W4) · 고객 상태를 시술 대기로 되돌리기(진행 · 완료 0 일 때 · 첫 [시작]의 거울 · §5.13) · 되돌리기 횟수 제한 없음 · 되돌린 뒤 다시 [시작] · [종료] 됨(§5.13) · 새 토스트가 앞 토스트와 그 [되돌리기]를 대체(§5.13) · 마취 되돌리기 범위 밖(§5.13) · 409 새 문구 두 개 「진행 중인 시술이 아니에요」 · 「완료된 시술이 아니에요」(§7.3) · [시작] · [종료] **성공 토스트 신설**과 그 문구(§6.3 — 지금은 성공 토스트가 없다) · 토스트 [되돌리기] 버튼 색 토큰은 FE 가 테마에서 고름(§6.3).
+(r6 빠짐) [종료] 되돌리기 즉시 `kos_status = READY` — 기본값이 아니라 WP-KOS K2 로 확정.
+
+## 부록 J. review-doc r4 처분 · WP-KOS 반영 (r6 · 2026-10-26)
+
+원천 `orchestration/work/overall-board/review-doc-r4.md`(FAIL 1 · WARN 6) · `kos-undo-probe-report.md`(K1 ~ K4 끝 · K5 대기) · 지시 `spec-r6-instructions.md`.
+
+| 항목 | 처분 | 바뀐 곳 |
+|---|---|---|
+| F1 | §8 [귀가 대기] ① = 안 끝난 「방 배정」(`is_room_task`)만 · 「남은 「방 배정」이 없으면 만들지 않음」 · 옛 문장 취소선 · 확인 칸 그대로(코드 `service/actions.py` `home` 과 같음). 코드 `kos_ops.py` `cancel_tasks_op` docstring 낡음은 리뷰가 기록만 — 문서 범위 밖 | SPEC §8 |
+| W1 | [시작] 되돌리기 flow-step op = ccc 고객 상태가 `doing` → `waiting` 이 될 때 **항상 1줄** · 400 이면 같은 단계 규칙(다음 조회에서 `confirmed`) · 앞 `PROCEDURE` op 은 `superseded` 로 닫힘 · 시험 줄 고침. 같은 뿌리인 0.2.0 같은 단계 규칙의 「보내기 직전에」도 코드에 맞춰 지움(리뷰 참고) | SPEC §5.10 · §8 · §9 「0.5.0 더함」 · WORK-006 WP-BE |
+| W2 | 가짜 보드 `canUndo*` 예시(옛 WP-BE ⑦)를 **WP-FE 로 옮김**(back 파일 `service/fake_board.py` 하나 허용) — FE 가 BE 를 기다리지 않는다 | WORK-006 고정점 아래 문단 · WP-BE · WP-FE · 병렬 |
+| W3 | 게이트 = **OQ-529 · OQ-530 만**. OQ-528 은 WP-KOS K5 로 따로(WP-E2E 전까지 · 사용자가 시트팩을 붙이면 진행 · 「안 받음」이면 WORK-005 쪽 사용자 결정) | WORK-006 WP-KOS · 게이트 · 열린 것 · SPEC OQ-528 |
+| W4 | I.3 에 빠진 기본값 7개 더함 · `READY` 는 기본값 목록에서 뺌(확정) | SPEC 부록 I.3 |
+| W5 | WP-KOS 검증 명령을 실행할 수 있는 grep 으로(UUID · 이메일 · `Bearer` · JWT · 5자리 이상 숫자) · 결과 0 = 완료 조건 | WORK-006 WP-KOS |
+| W6 | 머리말 우선순위 줄 끊음 — 「… 「웹이 정본」 줄.」 / 「업무 흐름은 …」 따로 | SPEC 머리말 |
+| WP-KOS OQ-529 | **닫음 — 받음**(K2 200 · `DONE → READY` · 22초 뒤에도 `READY`) · §5.13 즉시 값 `READY` 확정 | SPEC §5.10 · §5.13 · §8 · §9 #22 · OQ-529 · I.2 · I.3 |
+| WP-KOS OQ-530 | **닫음 — 받음**(K4 200 · `PROCEDURE → PROCEDURE_WAITING`) | SPEC §5.13 · §8 · §9 #21 · OQ-530 · I.2 |
+| WP-KOS 화면 | KOS **웹 화면** 표시는 워커가 못 봄 → §9 #21 · #22 KOS 칸에 「웹 화면도 본다」 | SPEC §5.13 · §9 |
+
+FAIL 1 · WARN 6 · WP-KOS 판정 2 — 누락 0. 리뷰 참고의 §6.8 / §6.7 절 순서는 0.2.0 부터의 부채라 이번 판에 옮기지 않는다(한 관심사).
