@@ -22,3 +22,4 @@
 | 2026-10-27 | D-36 배포(PR #7) · DEC-001 D-37 — 용어집 API · 메뉴 삭제 · 최소 정보만 노출(D-13 뒤집음) | [결정](10-decision/decision-001-interpret-pwa.md) |
 | 2026-10-27 | 마감 — 아카이브 · 회고 | [회고](log/2026-10-27-interpret-pwa-poc.md) |
 | 2026-10-27 | DEC-001 D-38 — 대만어 사전 2차(대만 클리닉 3곳 대조 · 한국 전용 제품은 영문 · 톡신 대만 허가명) | [결정](10-decision/decision-001-interpret-pwa.md) |
+| 2026-10-27 | 대만어 사전 2차 마감 — 아카이브 · 회고 | [회고](log/2026-10-27-interpret-pwa-seed-tw.md) |
