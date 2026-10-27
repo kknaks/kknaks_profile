@@ -5,10 +5,14 @@ title: 디자인 시스템
 aliases:
   - 디자인시스템
   - Design System
+  - 제품 테마
+  - data-product
+  - 시안 정본
 up:
   - C-048-reference-driven-ai-design-workflow
   - 2026-10-03-strong-hajin-polish2
   - 2026-10-19-cc-nav-resv
+  - 2026-10-27-interpret-pwa-poc
 tags:
   - design
   - ui
@@ -78,14 +82,21 @@ h1, h2 { font-size: var(--font-heading); }
 - **토큰 이름은 실재를 대조한다** — 시스템에 그럴듯한 이름이 있다고 그 값이 있는 것은 아니다. 유틸리티 CSS 는 **없는 클래스를 조용히 무시**해서, 새 화면의 `bg-ms-gray-900`(medikit 에 없는 이름 — 1차 토스트는 `bg-ms-gray-800`)이 바탕을 비워 흰 바탕 · 흰 글자 토스트가 됐다. 오류도 경고도 없다. 새 파일이 쓴 클래스를 **빌드 산출 CSS 와 전수 대조**(빠진 것 0)하는 것을 검증에 넣는다
 - **옛 맥락의 값을 새 맥락에 그대로 쓰지 않는다** — 쌓임 순서(`z-index`) 같은 값은 「무엇 위에 무엇」 이라는 **그 화면의 관계**를 담는다. 1차 서랍용 `zIndex: 41` 이 폰 배치(서랍 아님)에 그대로 남아 공통 헤더(30) · 메뉴 위로 올라와 햄버거를 덮었다. 재사용할 때는 값이 아니라 관계를 다시 정하고, 같은 층에 걸리는 다른 값(모달 · 토스트 · 팝오버)도 함께 센다
 
+## 같은 DS 를 쓰는 다른 제품으로 화면을 옮길 때
+
+- **DS 이름만으로는 제품 테마가 안 따라온다** — 통키는 원형(ccc)의 통역 화면을 새 레포로 옮기며 front 브리프에 「medikit 연결 방식」 만 적었다. ccc 는 같은 medikit 위에 **세라믹 테마**(`data-product="ceramique"` · `ceramique-theme.css`)를 얹어 쓰고 있었는데 그게 빠져 medikit 기본 파랑으로 나왔고, 「디자인이 하나도 안 들어갔다」 는 지적을 받았다. 원형 기능을 옮기는 브리프에는 **DS + 제품 테마 속성 + 시안 위치**를 첫머리에 적는다
+- **시안을 화면 정본으로 두면 순서가 생긴다** — 지적 뒤 시안 캔버스(21화면)를 정본으로 세우고 사용자가 거기서 고쳤다. 시안이 front 보다 늦게 나오면 문구 · 값이 어긋나므로, 시안이 나온 뒤 **값 맞춤을 한 번 더** 돈다. 부품의 한계(포탈을 끄는 prop 이 없음 등)는 화면에서 우회하고 DS 반영 요청 후보로 남긴다 → [[rotated-region-layout]]
+
 ## 함께 보는 개념
 
 - [[design-token]] — 시스템에서 반복해서 사용하는 시각적 값을 이름으로 관리한다.
 - [[css-specificity]] — DS 규칙 위에 화면 범위의 예외를 얹을 때 무엇이 이기는지 정하는 규칙.
 - [[storybook]] — 구현된 컴포넌트와 상태별 예시를 탐색하고 확인하는 공간을 제공한다. 디자인 원칙과 사용 규칙 자체를 자동으로 정해 주지는 않는다.
+- [[rotated-region-layout]] — DS 부품(포탈 목록)이 화면 요구(회전)를 못 받을 때의 우회.
 
 ## 출처
 
 - [[C-048-reference-driven-ai-design-workflow]] — 목적에 맞는 레퍼런스 선정, 토큰의 시스템화, 시스템 기반 UI 생성과 별도 문구 검수의 순서를 설명한다.
 - [[2026-10-03-strong-hajin-polish2]] §2 — Strong Hajin WORK-009 E2E-3(`fe-survey-report.md` §3 · `review-fe-p2a2-report.md` · 커밋 `d1bb87d`, OQ-901)
 - [[2026-10-19-cc-nav-resv]] §2 — cc-prototype 2차 D-21 · D-23(무변경과 예외 범위) · 없는 토큰 클래스로 흰 글자 토스트 · 1차 `zIndex: 41` 재사용(`e2e-feedback-batch-1.md` #2 · #3)
+- [[2026-10-27-interpret-pwa-poc]] §2 · §3 — 통키: front 브리프에 세라믹 테마를 안 적어 medikit 기본 파랑 · 시안 캔버스를 화면 정본으로 · 시안 뒤 값 맞춤(`design/` · `design-r*-report.md` · DEC-001 D-20 · D-21)

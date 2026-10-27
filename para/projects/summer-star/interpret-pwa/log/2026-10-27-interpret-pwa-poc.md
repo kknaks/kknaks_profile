@@ -10,34 +10,34 @@ ccc(cc-prototype)의 통역이 피부과 시술명을 직역한다(중국어에�
 
 ## 2. 적용한 기술·개념
 
-- **Soniox `context` 로 용어 보정 — 한도는 실측으로** [[transcript-term-correction]] — 시술명을 정방향(ko → 현지명) · 역방향(현지명 · 별칭 → ko) `translation_terms` 로 넣는다
+- **Soniox `context` 로 용어 보정 — 한도는 실측으로** [[context-catalog-injection]] · [[empirical-limit-probing]] · [[transcript-term-correction]] — 시술명을 정방향(ko → 현지명) · 역방향(현지명 · 별칭 → ko) `translation_terms` 로 넣는다
   - 왜 이걸 골랐나: 번역 뒤에 우리가 치환하면 문장이 어색해지고 TTS 와 어긋난다. Soniox 번역 단계에 용어를 주는 게 자막 · 음성을 한 번에 맞춘다. 실물: 용어집 넣음 en · zh 3/3 vs 없음 1/3 · 0/3
   - 무엇이 어려웠나: 문서 한도는 「8,000토큰(약 1만 자)」뿐이라 역방향을 넣자(15 ~ 18k자) 「terms 를 다 빼도 넘는다」는 계산이 나왔다 → 문서값 대신 **같은 언어 짝을 덧붙이며 이분 탐색**으로 실제 한도를 쟀다(ja 20,925 ~ 25,922자 통과 · 거절은 오디오 없이 0.41 ~ 0.46초) → 기본값 = 가장 작은 통과치 × 0.9(18,832 → 시드 뒤 20,251). 줄이기 순서는 `terms` → 역방향 별칭 → 역방향 기본 → 정방향 별칭, 정방향 기본은 끝까지 · 거절되면 정방향만으로 1회 재연결
   - 근거: `back/app/service/glossary.py` · `back/app/config.py` · `live-check-2026-10-26.json` · `live-check-wp6-2026-10-26.json` · DEC-001 D-05 · D-18 · SPEC-001 §4.4
-- **외부 원천 대신 우리 시드 사전 · 정규화** [[seed-data]] — 「영문（현지명）」 한 칸을 term(ko · 별칭) × 언어별 현지명 · 별칭 · 출처 · 검수로 나눔
+- **외부 원천 대신 우리 시드 사전 · 정규화** [[seed-data]] · [[translation-glossary-normalization]] — 「영문（현지명）」 한 칸을 term(ko · 별칭) × 언어별 현지명 · 별칭 · 출처 · 검수로 나눔
   - 왜 이걸 골랐나: Procedure Hub 는 대만 열이 없고 써마지는 「써마지FLX」만, zh 칸은 「Thermage FLX（美版热玛吉FLX）」라 TTS 가 괄호를 빼면 영어만 읽혔다. 원천 수정을 기다리는 대신 첫 1회만 가져오고 git PR 로 고치는 시드로(DB · 편집 화면은 PoC 에 과함)
   - 무엇이 어려웠나: 괄호 분해 모양이 다섯 갈래(설명 괄호 60칸은 `reviewed:false` + `raw` 보존) · 같은 ko 행 합치기 · 시드가 깨지면 기동 실패(우리 파일이라 시험이 게이트)
   - 근거: `back/seed/glossary.json` · `back/scripts/import_glossary.py` · `back/tests/test_seed.py` · DEC-001 D-33 · 코드 #4
-- **OpenCC 변환 단계 — 매핑은 간체, 출력만 번체** [[transcript-term-correction]] — Soniox 는 중국어를 간체로만 낸다
+- **OpenCC 변환 단계 — 매핑은 간체, 출력만 번체** [[chinese-script-conversion]] — Soniox 는 중국어를 간체로만 낸다
   - 왜: 대만 손님 발화도 간체로 받아써지므로 매핑(context)은 간체로, 자막 · 화면만 번체로. TTS 는 간체(번체는 발음이 깨짐 — ccc 실물)
   - 무엇이 어려웠나: 대만식 표현까지 바꿔 준다는 `s2twp` 를 넣었다가(D-32) 조사에서 「鐳射」는 홍콩 표기 · 대만은 「雷射」, 「导入 → 匯入」 같은 오변환이 드러나 `s2tw` + 激光 → 雷射 하나로 되돌렸다(D-35). 기기 현지 별명(美國音波 · 鳳凰電波)은 글자 변환이 아니라 단어가 달라 어떤 라이브러리로도 안 나온다 → 데이터로
   - 근거: `back/app/service/interpret/langs.py` · `chinese.py` · `research-tw-names-report.md` · DEC-001 D-17 · D-32 · D-35
-- **Soniox TTS WebSocket keepalive 형식** [[websocket-relay]] — 멈춤 중 40초 idle 끊김을 막는 keepalive
+- **Soniox TTS WebSocket keepalive 형식** [[websocket-relay]] · [[deferred-stream-error]] — 멈춤 중 40초 idle 끊김을 막는 keepalive
   - 무엇이 어려웠나: 운영에서 통역이 50초 만에 `invalid_request` 로 끊겼다. 로그엔 오류 종류만 있어 원인을 못 봤다 → 채널 · 메시지 · 상태를 남기게 하고 재현. TTS 에 `{}` 를 보내고 있었고 Soniox 는 `Missing stream_id` 오류를 소켓에 쌓아 뒀다가 **다음 발화 TTS 에서** 터뜨렸다(TTS 뒤 20초 이상 쉬면 발생 · 언어 무관). 공식 형식 `{"keep_alive": true}` · 다른 stream_id 오류는 경고만
   - 근거: `back/app/service/interpret/soniox.py` · `session.py` · `d35-be-report.md` 장애 절 · 코드 #6
-- **반이중 + 누르고 말하기** [[half-duplex-echo-suppression]] — TTS 재생 중 마이크 송신 0 · 주변 노래가 계속 들어오는 문제에 「누르고 말하기」 모드
+- **반이중 + 누르고 말하기** [[half-duplex-echo-suppression]] · [[push-to-talk]] — TTS 재생 중 마이크 송신 0 · 주변 노래가 계속 들어오는 문제에 「누르고 말하기」 모드
   - 왜: 브라우저 noiseSuppression 은 일정한 소음만 지운다 — 노래는 말소리라 그대로 받아써졌다. 음량 문턱은 큰 음악 · 작은 목소리에 둘 다 틀린다 → 누르는 동안만 보내기(누름 = `resume` · 뗌 = `pause` → finalize). 기존 WS 메시지를 그대로 써서 back 무변경
   - 무엇이 어려웠나: 멈춤 중에도 `finalize` 로 확정된 발화의 TTS 는 나온다 → 원 상태 판정에서 「출력 중」을 「멈춤」 위로(문서 리뷰 FAIL-2) · 멈춘 뒤 남은 TTS 조각을 다음 `audio_start` 까지 버림(코드 리뷰 FAIL-1)
   - 근거: `front/lib/interpret.ts` · `front/lib/ptt.ts` · `review-doc-report.md` · `review-code-report.md` · DEC-001 D-09 · D-36
-- **마주 보는 화면 — 회전은 레이아웃 한 벌 + 영역째 회전** — 외국어 영역 180° · 말풍선(보는 사람 기준 내 말 오른쪽) · 원 위 외국어 안내
+- **마주 보는 화면 — 회전은 레이아웃 한 벌 + 영역째 회전** [[rotated-region-layout]] · [[ios-input-auto-zoom]] — 외국어 영역 180° · 말풍선(보는 사람 기준 내 말 오른쪽) · 원 위 외국어 안내
   - 왜: 뒤집힘 · 바로 보기를 따로 짜면 두 모드가 어긋난다 → 바로 선 기준으로 짜고 회전만
   - 무엇이 어려웠나: medikit ComboBox 가 목록을 Popover portal 로 body 에 붙여 **회전을 못 받았다**(실기기에서 목록이 바로 선 채 펼쳐짐 · 끄는 prop 없음) → 카드 안 자체 목록. iOS Safari 는 16px 미만 입력에 포커스하면 화면을 확대 → 입력 16px(확대 잠금은 접근성 때문에 안 씀)
   - 근거: `front/components/interpret/LangSelect.tsx` · `InterpretScreen.tsx` · `app/login/page.tsx` · DEC-001 D-08 · D-24 · D-27 · D-31
-- **밖으로는 통역만 — 최소 노출 · 경로 고정 시험** [[field-level-visibility]] — 사전 JSON 노출 금지
+- **밖으로는 통역만 — 최소 노출 · 경로 고정 시험** [[minimal-api-surface]] — 사전 JSON 노출 금지
   - 왜: 데모 원탭 로그인(D-30)을 켜 두니 버튼 하나면 `/api/glossary` 로 사전 전체를 가져갈 수 있었다. `/api/health` 는 사전 버전, `/me` 는 아이디, 오류 문구는 env 이름을 흘렸다
   - 무엇을: 용어집 API · 메뉴 삭제 · health/me `{ok}` · 오류 일반 문구 4종 · docs/openapi 끔 · **허용 경로 6개를 고정하는 시험**(새 경로가 생기면 실패) · 빌드 산출물에 용어 데이터 0(grep)
   - 근거: `back/tests/test_api_surface.py` · `front/tests/minimal-exposure.test.ts` · DEC-001 D-37 · 코드 #8
-- **데모 원탭 로그인 — env 스위치** [[demo-stand-in-for-integration]] — 비밀번호를 front 번들에 넣지 않고 back `INTERPRET_DEMO_LOGIN` 으로 `POST /api/auth/demo`
+- **데모 원탭 로그인 — env 스위치** [[runtime-profile-gating]] — 비밀번호를 front 번들에 넣지 않고 back `INTERPRET_DEMO_LOGIN` 으로 `POST /api/auth/demo`
   - 왜: 공개 번들에 비밀번호를 넣으면 누구나 본다. 스위치면 Secret 값만 지우고 back 재시작으로 원래 로그인
   - 근거: `back/app/api/auth.py` · DEC-001 D-30
 - **폴더별 이미지 빌드와 차트 태그** [[ci-cd]] — Actions 가 바뀐 폴더만 빌드

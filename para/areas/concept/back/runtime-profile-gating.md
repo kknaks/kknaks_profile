@@ -8,8 +8,11 @@ aliases:
   - PRODUCTION 프로파일
   - 개발 전용 기능
   - 데모 바로가기
+  - 데모 원탭 로그인
+  - env 스위치
 up:
   - 2026-10-01-strong-hajin-deploy
+  - 2026-10-27-interpret-pwa-poc
 tags:
   - back
   - 설정
@@ -40,13 +43,17 @@ Strong Hajin 은 `local_login_enabled = profile != PRODUCTION` 하나가 「로�
 
 - **「운영을 개발 프로파일로 띄우면 되지」는 답이 아니다** — 지름길이 함께 열린다. 헤더 하나로 아무 멤버로나 행세할 수 있게 된다
 - **가드는 지우는 게 아니라 좁힌다** — 데이터 적재 도구의 「로컬 DB 만」 가드는 그대로 두고 dump 로 우회 없이 옮겼다([[seed-data]])
+- **공개 배포에서 지름길을 일부러 켤 때는 env 스위치 하나로** — 통키는 데모 시연을 위해 운영에 「원탭 로그인」 을 켰다. 비밀번호를 front 번들에 넣으면 공개 번들이라 누구나 본다 → back 의 `INTERPRET_DEMO_LOGIN` 이 켜져 있을 때만 `POST /api/auth/demo` 가 토큰을 주고, front 는 `GET /api/auth/config` 의 `demoLogin` 만 보고 단추를 그린다. 끄면 404(일반 문구). 끄는 법은 Secret 값을 지우고 back 재시작뿐이다. 켜져 있는 동안은 주소만 알면 유료 외부 API 를 쓸 수 있으므로, 그 사이 밖으로 나가는 것을 최소로 줄였다 → [[minimal-api-surface]]
 - **테스트가 계약을 고정해야 한다** — 「운영 로그인 200·Secure 쿠키·틀린 비번 401·페르소나 헤더 401」처럼 프로파일별 기대를 시험으로 박는다
 
 ## 함께 보는 개념
 
 - [[externalized-configuration]] — 프로파일 값이 오는 곳
 - [[seed-data]] — 같은 프로파일 가드가 데이터 도구에도 걸린다
+- [[minimal-api-surface]] — 지름길이 열려 있을 때 표면을 줄이는 쪽
+- [[demo-stand-in-for-integration]] — 시연용 「데모」 의 다른 뜻(없는 연동의 입구)
 
 ## 출처
 
 - [[2026-10-01-strong-hajin-deploy]] — `local_login_enabled` → `demo_shortcuts_enabled` 로 가르고 로그인을 프로파일 무관 등록(코드 #5)
+- [[2026-10-27-interpret-pwa-poc]] §2 — 통키 데모 원탭 로그인: 비밀번호는 번들에 없이 back env 스위치 `INTERPRET_DEMO_LOGIN` → `POST /api/auth/demo`(`back/app/api/auth.py` · DEC-001 D-30)
