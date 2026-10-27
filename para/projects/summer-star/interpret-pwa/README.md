@@ -43,4 +43,5 @@ status: active
 
 - 2026-10-27: D-34 ~ D-37 배포(PR #5 ~ #8 · 최종 fe8475e) — 시작 오버레이 언어 단추 · 대만 현지명 시드 + `s2tw` · **운영 끊김(TTS keepalive `{}`) 수정** · 누르고 말하기 · 용어집 API · 메뉴 삭제(최소 노출). SPEC 0.5.0. [전체 이력](log.md)
 - 2026-10-27: 용어집을 우리 시드로(D-33 · 4차 배포 main 9befd18). [전체 이력](log.md)
+- 2026-10-27: 마감 — 회고 [log/2026-10-27-interpret-pwa-poc.md](log/2026-10-27-interpret-pwa-poc.md) · 8차 배포(fe8475e)
 - 2026-10-26: 제품 착수. 사용자 대화를 BASE-001 로, 대화에서 닫은 것을 DEC-001(proposed)로. 빈 레포 `kknaksss/interpret-pwa` 생성. [전체 이력](log.md)

@@ -20,3 +20,4 @@
 | 2026-10-27 | D-34 배포(PR #5) · 대만 현지명 웹 조사(77/157) · DEC-001 D-35 — 시드 반영 · D-32(s2twp) 뒤집음 → s2tw + 激光→雷射 | [결정](10-decision/decision-001-interpret-pwa.md) |
 | 2026-10-27 | 운영 끊김 원인(TTS keepalive) 수정 · D-35 배포(PR #6) · DEC-001 D-36 누르고 말하기 모드 | [결정](10-decision/decision-001-interpret-pwa.md) |
 | 2026-10-27 | D-36 배포(PR #7) · DEC-001 D-37 — 용어집 API · 메뉴 삭제 · 최소 정보만 노출(D-13 뒤집음) | [결정](10-decision/decision-001-interpret-pwa.md) |
+| 2026-10-27 | 마감 — 아카이브 · 회고 | [회고](log/2026-10-27-interpret-pwa-poc.md) |
