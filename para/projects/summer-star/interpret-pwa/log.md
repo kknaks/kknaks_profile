@@ -17,3 +17,6 @@
 | 2026-10-26 | 배포(tongky.medisolveai.xyz) 후 폰 피드백 — DEC-001 D-27 로그인 확대 막기 · D-28 중국어 번체 선택지 | [결정](10-decision/decision-001-interpret-pwa.md) |
 | 2026-10-27 | DEC-001 D-27~D-33 — 폰 피드백(로그인 확대 · 중국/대만 · 초기화 · 데모 로그인 · 언어 목록 180° · s2twp) · **용어집을 우리 시드 파일로(정규화 · Procedure Hub 는 첫 가져오기만)** | [결정](10-decision/decision-001-interpret-pwa.md) |
 | 2026-10-27 | 용어집 시드 배포(PR #4) · DEC-001 D-34 시작 오버레이 = 언어 단추 7개(누르면 시작) | [결정](10-decision/decision-001-interpret-pwa.md) |
+| 2026-10-27 | D-34 배포(PR #5) · 대만 현지명 웹 조사(77/157) · DEC-001 D-35 — 시드 반영 · D-32(s2twp) 뒤집음 → s2tw + 激光→雷射 | [결정](10-decision/decision-001-interpret-pwa.md) |
+| 2026-10-27 | 운영 끊김 원인(TTS keepalive) 수정 · D-35 배포(PR #6) · DEC-001 D-36 누르고 말하기 모드 | [결정](10-decision/decision-001-interpret-pwa.md) |
+| 2026-10-27 | D-36 배포(PR #7) · DEC-001 D-37 — 용어집 API · 메뉴 삭제 · 최소 정보만 노출(D-13 뒤집음) | [결정](10-decision/decision-001-interpret-pwa.md) |

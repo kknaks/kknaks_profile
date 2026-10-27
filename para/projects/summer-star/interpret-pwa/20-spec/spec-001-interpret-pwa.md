@@ -2,7 +2,7 @@
 type: spec
 id: SPEC-001
 title: "통역 PWA — 로그인 · 용어집 context · 통역 WS · 화면 · PWA 계약"
-version: 0.4.1
+version: 0.5.0
 status: draft
 product: interpret-pwa
 created_at: 2026-10-26
@@ -22,9 +22,10 @@ links:
   releases: []
   related: []
 sources:
-  - para/projects/summer-star/interpret-pwa/10-decision/decision-001-interpret-pwa.md (D-01 ~ D-34 · accepted)
-  - 확정 시안 — Claude Design 캔버스 「Interpret PWA」(r3 · D-22 ~ D-24 · D-28 ~ D-30 반영) 로컬 사본 interpret-pwa-poc 코드 워크트리 design/{README.md,project/*.dc.html,project/ceramique-theme.css} (D-20 · D-21 · 화면 19개)
-  - 구현 kknaksss/interpret-pwa main d0a91a7(배포본 · D-22 ~ D-32 반영 — 0.4.0 은 이 코드에 맞춰 적고, 다르면 DEC 를 따른다) · main 9befd18(PR #4 · D-33 시드 — 0.4.1 대조)
+  - para/projects/summer-star/interpret-pwa/10-decision/decision-001-interpret-pwa.md (D-01 ~ D-37 · accepted — D-13 · D-32 는 뒤집힘)
+  - 확정 시안 — Claude Design 캔버스 「Interpret PWA」(r3 · D-22 ~ D-24 · D-28 ~ D-30 반영 · r7 D-36 `Mode-Auto-Idle` · `PTT-Ready` · `PTT-Pressed` · r8 D-37 `Glossary` 삭제 · 화면 21개) 로컬 사본 interpret-pwa-poc 코드 워크트리 design/{README.md,project/*.dc.html,project/ceramique-theme.css} (D-20 · D-21 · 화면 19개)
+  - 구현 kknaksss/interpret-pwa main d0a91a7(배포본 · D-22 ~ D-32 반영 — 0.4.0 은 이 코드에 맞춰 적고, 다르면 DEC 를 따른다) · main 9befd18(PR #4 · D-33 시드 — 0.4.1 대조) · **main fe8475e(PR #5 ~ #8 · D-34 ~ D-37 · 운영 장애 수정 — 0.5.0 대조 · 최종 배포본)**
+  - orchestration/work/interpret-pwa-poc/{research-tw-names-report.md,d35-be-report.md,live-check-d35-2026-10-27.json,d36-fe-report.md,design-r7-report.md,d37-be-report.md,d37-fe-report.md,design-r8-report.md} (대만 현지명 조사 77/157 · D-35 시드 · 운영 장애 2026-10-27 02:07 원인 · D-36 · D-37 구현)
   - orchestration/work/interpret-pwa-poc/{wp9-be-report.md,wp9-fe-report.md,live-check-wp9-2026-10-27.json} (시드 실물 ⑫ ~ ⑯ · 한도 20251 처분)
   - orchestration/work/interpret-pwa-poc/{wp6-be-report.md,wp6-fe-report.md,fix-phone1-be-report.md,fix-phone1-fe-report.md,fix-phone2-be-report.md,fix-phone2-fe-report.md,fix-phone2-design-report.md,fix-phone3-be-report.md,fix-phone3-fe-report.md,live-check-wp6-2026-10-26.json} (D-22 ~ D-32 구현 · 실물 ⑧ ~ ⑪ · 한도 18832)
   - orchestration/work/interpret-pwa-poc/{design-report.md,live-check-2026-10-26.json,review-code-report.md,e2e-feedback-batch-1.md} (시안 제안 · Soniox 실물 ① ~ ⑦ · 코드 리뷰 FAIL-1 · WARN 1 ~ 6)
@@ -44,8 +45,8 @@ sources:
 > 통역 중계는 cc-prototype 원형(`procedure/back` 의 `service/interpret/` · `api/interpret.py`)을 **복사해서** 쓰고,
 > 이 문서는 원형과 **달라지는 자리**와 새로 생기는 것(로그인 · 용어집 · 화면 · PWA)을 정한다.
 >
-> SSOT 순서(이기는 순): ① DEC-001 D-01 ~ D-34 ② 화면 = 확정 시안(D-20) ③ 통역 로직 = 원형 코드(`origin/main`) ④ Soniox 공식 문서 · 실물 결과(§9.3) ⑤ 이 문서의 기본값.
-> **화면 정본은 확정 시안이다(0.3.0 · D-20 · D-21)** — Claude Design 캔버스 「Interpret PWA」(사용자가 직접 고친다). 로컬 사본은 코드 레포 `design/project/*.dc.html` — 참고 자료이고 빌드에 넣지 않는다. 시안이 바뀌면 사본을 다시 받고 §6 · §7 을 맞춘다. **시안과 DEC 가 다르면 DEC 가 이긴다**(D-22 ~ D-25 · D-29 · D-31 은 시안보다 뒤에 정했거나 시안을 고친 결정이다). 시안에 없는 자리(네트워크 실패 로그인 · 용어집 `loaded=false` · 오프라인 화면)는 이 문서 문구를 따른다.
+> SSOT 순서(이기는 순): ① DEC-001 D-01 ~ D-37 ② 화면 = 확정 시안(D-20) ③ 통역 로직 = 원형 코드(`origin/main`) ④ Soniox 공식 문서 · 실물 결과(§9.3) ⑤ 이 문서의 기본값.
+> **화면 정본은 확정 시안이다(0.3.0 · D-20 · D-21)** — Claude Design 캔버스 「Interpret PWA」(사용자가 직접 고친다). 로컬 사본은 코드 레포 `design/project/*.dc.html` — 참고 자료이고 빌드에 넣지 않는다. 시안이 바뀌면 사본을 다시 받고 §6 · §7 을 맞춘다. **시안과 DEC 가 다르면 DEC 가 이긴다**(D-22 ~ D-25 · D-29 · D-31 은 시안보다 뒤에 정했거나 시안을 고친 결정이다). 시안에 없는 자리(네트워크 실패 로그인 · 오프라인 화면)는 이 문서 문구를 따른다.
 >
 > 이 레포는 public — Soniox 키 · 로그인 아이디 · 비밀번호 · 세션 비밀값 · 실명을 쓰지 않는다. env 는 **이름만**(D-06 · D-11).
 
@@ -53,6 +54,7 @@ sources:
 
 | 버전 | 날짜 | 무엇 |
 |---|---|---|
+| 0.5.0 | 2026-10-27 | fix5 — 마감 동기. DEC D-35 ~ D-37 · 운영 장애를 최종 배포본 main fe8475e(PR #5 ~ #8)와 맞춤: **§4 시드** — 대만 현지명(조사 77/157 · zh-Hant `name` · 초안은 `aliases` · 출처 2+ 만 `reviewed:true`) · `source` 에 `web-research YYYY-MM-DD` · zh 구어 별칭(热玛吉) · 모호어 제외(zh · zh-Hant) · 볼뉴머 카테고리 · `version` `.4`(D-35) / **§4.7 용어집 메뉴 API 삭제 · §7.6 메뉴 = 로그아웃만**(D-37 · D-13 뒤집힘) / **§5.6 zh-Hant 자막 = `s2tw` + 「激光 → 雷射」**(D-35 · D-32 의 `s2twp` 폐기) · 가져오기 초안도 같은 변환 / §5.4 · §3.3 오류 문구 일반화 · `/api/auth/me` · `/api/health` = `{ok}` · `/docs` · `/openapi.json` 끔 · 허용 경로 6개(D-37 · §3.5) / **§5.8 TTS keepalive `{"keep_alive": true}` · 다른 stream_id 오류는 발화를 끊지 않음**(운영 장애 2026-10-27 02:07) / **§7.7 누르고 말하기 모드**(D-36 · 시안 r7) / §9 시험 · 실물 ⑰ ⑱ · 배포 기록 5 ~ 8 / §10 OQ 정리(남은 것: 사람 목소리 E2E · 못 찾은 대만명 80 · 데모 로그인 끄기) |
 | 0.4.1 | 2026-10-27 | fix4 — 배포본 main 9befd18(PR #4) · WP9 보고 · DEC D-34 반영: §2.4 · §4.6 `GLOSSARY_CONTEXT_MAX_CHARS` **18832 → 20251**(시드 실측 ⑬ 가장 작은 통과 최대치 ja 22,502 × 0.9 · th 줄이기 0 · 코디 처분) · §4.2 backend 가 더한 것(알 수 없는 필드 = `unknown_field` 오류 · term 선택 필드 `note`) · §4.8 가져오기 `--date` · §7.3 #1 시작 오버레이 = **언어 단추 7개 — 누르는 것이 시작 · 상담사 방향(D-34)** · §9.3 ⑫ ~ ⑯ 결과 · §9.5 배포 확인 결과 · §10 OQ-005 · OQ-013 · OQ-014 갱신 |
 | 0.4.0 | 2026-10-27 | fix3 — DEC D-22 ~ D-33 동기(배포본 main d0a91a7 대조): **§4 를 새로 씀 — 용어집 = 우리 시드 `back/seed/glossary.json`(D-33)** · 스키마(term · entry · 현지명 · 별칭 · 출처 · 검수) · 기동 때 읽기 · 깨지면 기동 실패(기본값 · 코디 권장) · context 정방향/역방향 × 기본/별칭 · 줄이기 순서 넷 · 메뉴 API 에 별칭 · 검수 · 첫 가져오기 스크립트(괄호 분해 · zh-Hant 초안 s2twp) · Procedure Hub 런타임 호출 제거 · `GLOSSARY_CONTEXT_MAX_CHARS` **18832**(실측 · OQ-002 닫음) / §2.4 · §3 데모 로그인(D-30) · `GLOSSARY_MATRIX_URL` 삭제 / §5.5 언어 7개 · zh-Hant · 목록 표시 이름 · 한국어 이름 중국어/대만어(D-28) / §5.6 번체 변환 언어별(yue s2tw · zh-Hant s2twp · D-32) / §7 원 위 외국어 안내(D-22) · 원 64/88 · 원 줄 140(D-23) · 말풍선(D-24) · 자동 스크롤 · ↓ 최신(D-25) · 로그인 입력 16px(D-27) · 초기화(D-29) · 데모 로그인 화면(D-30) · 언어 목록 180° 자체 목록(D-31) · 용어집 메뉴 별칭 · 검수 표시 / §9.3 ⑧ ~ ⑪ 결과 · 시드 재확인 ⑫ ~ ⑮ / §9.5 배포 주소(D-26) / §10 OQ-002 · 004 · 010 · 011 닫음 · OQ-012 ~ 014 |
 | 0.3.0 | 2026-10-26 | fix2 — DEC D-18 ~ D-21 · 확정 시안 · Soniox 실물 결과 · 코드 리뷰 반영: §4.3 · §4.4 역방향 용어(D-18 · 줄이기 순서 terms → 역방향 · 정방향만 재연결 · 한도 기본값은 WP6 실측 — 코디 답 2026-10-26) · §5.7 TTS 입력 괄호 제거(D-19) · §6 · §7 시안 정본(ceramique 테마 · 앱 이름 통키 · 회전 아이콘 · 원 크기 · 글리프 · 색 점 · `final:false` gray-600 · 오버레이가 헤더까지 덮음 — 리뷰 WARN-3 닫음) · §7.4 멈춤 뒤 남은 TTS 조각 버림(FAIL-1) · 출력 언어 표시 시점(WARN-4) · §3 · §4.2 기동 · 토큰 오류 처리(WARN-1 · 2 · 5 · 6) · §8 manifest 이름 · §9.3 실물 ① ~ ⑦ 결과 · 재확인 ⑧ ~ ⑪ · `STT_CONFIG_CHECK_SEC` 2초 확정 · OQ-003 · OQ-009 닫음 · OQ-002 는 WP6 실측으로 닫음 · OQ-010 일부 닫음 |
@@ -71,9 +73,10 @@ sources:
 
 | In | Out(DEC Scope Out) |
 |---|---|
-| 로그인(계정 하나) · 통역 화면(양방향 실시간 · 자막 · TTS) · 용어집 context · 용어집 메뉴(읽기 전용) · PWA · 로컬 실행 · Mac Studio 배포 | 통역 기록 저장 · 여러 계정 · 권한 · 자동 언어 맞추기(DEC Option B) · ccc(cc-prototype) 변경 |
+| 로그인(계정 하나) · 통역 화면(양방향 실시간 · 자막 · TTS) · 듣기 방식 전환(자동 듣기 · 누르고 말하기 — D-36) · 용어집 context · PWA · 로컬 실행 · Mac Studio 배포 | 통역 기록 저장 · 여러 계정 · 권한 · 자동 언어 맞추기(DEC Option B) · ccc(cc-prototype) 변경 |
 
 - 통역 대화는 **어디에도 저장하지 않는다** — back 은 중계만, front 는 화면을 떠나면 지운다(Scope Out 「통역 기록 저장」).
+- **용어집 메뉴(읽기 전용)는 0.5.0 에서 뺐다**(D-37 — D-13 뒤집음). 용어집(시드)은 back 안에서 Soniox `context` 로만 쓰고 화면 · 응답에 나가지 않는다(§3.5 · §4.7).
 
 ## 2. 구성 · 실행 — D-01 · D-02 · D-06 · D-11 · D-12
 
@@ -89,22 +92,22 @@ interpret-pwa/                 # 레포 루트 (D-01)
 │   ├── scripts/               # import_glossary.py(첫 가져오기 · 한 번 · §4.8) · live_check.py(실물 확인 · §9.3)
 │   ├── app/
 │   │   ├── main.py · config.py · container.py
-│   │   ├── api/               # router — auth.py(login · me · config · demo) · glossary.py · interpret.py · health
-│   │   ├── service/           # auth.py · glossary.py(시드 로더 · context · 메뉴) · interpret/{session,soniox,assembler,chinese,langs}.py
+│   │   ├── api/               # router — auth.py(login · me · config · demo) · health.py · interpret.py (0.5.0 — glossary.py 삭제 · D-37)
+│   │   ├── service/           # auth.py · glossary.py(시드 로더 · 검사 · context — 메뉴 행 없음) · interpret/{session,soniox,assembler,chinese,langs}.py
 │   │   ├── domain/            # errors.py (DomainError)
-│   │   └── schemas/           # front 계약(pydantic)
+│   │   └── schemas/           # front 계약(pydantic) — auth.py · health.py
 │   └── tests/
 └── front/                     # Next.js PWA (D-02)
     ├── package.json · tailwind.config.ts · Dockerfile
     ├── .env.example           # NEXT_PUBLIC_API_BASE_URL 이름만 — 개발은 .env.local(gitignore) (0.2.0)
     ├── app/                   # login/ · (main)/ 통역 화면 · manifest
-    ├── components/ · lib/     # components/interpret/{InterpretScreen,Circle,CaptionArea,LangSelect,HeaderMenu,GlossaryModal}.tsx · lib/{interpret,output,view,scroll,langs,phrases,session,api}.ts
+    ├── components/ · lib/     # components/interpret/{InterpretScreen,StartOverlay,Circle,ModeToggle,CaptionArea,LangSelect,HeaderMenu}.tsx · lib/{interpret,halfDuplex,output,view,scroll,start,ptt,prefs,langs,phrases,session,api}.ts (0.5.0 — GlossaryModal · lib/glossary 삭제)
     └── public/                # 아이콘 · 서비스 워커
 ```
 
 - back 은 원형과 같은 계층(router → service, 아래층은 HTTP 를 모르고 `DomainError` 만 던진다 · 원형 `domain/errors.py`). DB 는 없다 — 계정은 env, 용어집은 **시드 파일을 읽은 메모리**(§3 · §4 · D-33 「DB · 편집 화면은 두지 않는다」).
 - 통역 4파일(`session.py` · `soniox.py` · `assembler.py` · `chinese.py`)과 `tests/test_interpret.py` 는 원형 `origin/main:procedure/back` 에서 **복사**하고 §5 의 자리만 고친다. cc-prototype 을 import 하지 않는다.
-- front 는 원형 `procedure/front` 처럼 `@medisolve-ai/medikit@1.4.0`(Tailwind preset · `@medisolve-ai/medikit/styles`) · `pretendard` · Next.js 16 · React 19 · Tailwind 3 (§7.6).
+- front 는 원형 `procedure/front` 처럼 `@medisolve-ai/medikit@1.4.0`(Tailwind preset · `@medisolve-ai/medikit/styles`) · `pretendard` · Next.js 16 · React 19 · Tailwind 3 (§7.8).
 
 ### 2.2 포트 — 기본값
 
@@ -166,13 +169,13 @@ interpret-pwa/                 # 레포 루트 (D-01)
 | 메서드 · 경로 | 요청 | 응답 200 | 오류 |
 |---|---|---|---|
 | `POST /api/auth/login` | `{id, password}` — 둘 다 필수(빠지거나 그 밖 필드 = 400 `invalid_request`) | `{token, expiresAt}` (`expiresAt` = ISO 8601) | 401 `invalid_credentials` 「아이디 또는 비밀번호가 맞지 않아요」 · 429 `too_many_attempts` 「로그인 실패가 많아요. 1분 뒤 다시 시도해 주세요」 |
-| `GET /api/auth/me` | 헤더 `Authorization: Bearer <token>` | `{id}` | 401 `unauthorized` |
+| `GET /api/auth/me` | 헤더 `Authorization: Bearer <token>` | **`{ok: true}`**(0.5.0 · D-37 — 아이디를 내지 않는다. 토큰이 살아 있는지 확인용) | 401 `unauthorized` 「로그인이 필요해요」 |
 | `GET /api/auth/config` (0.4.0 · D-30) | — | `{demoLogin: bool}` — `INTERPRET_DEMO_LOGIN` 값 그대로(계정 · 비밀번호 값은 내지 않는다) | — (인증 없음) |
-| `POST /api/auth/demo` (0.4.0 · D-30) | 본문 없음 | `{token, expiresAt}` — `/api/auth/login` 과 같은 모양 · 같은 토큰(§3.2 · `sub` = env 아이디) | 404 `not_found` 「Not Found」(스위치 꺼짐 — 경로가 없는 것과 같게) · 401 `invalid_credentials`(켜졌는데 로그인 env 3개 중 빈 것이 있음) |
-| `GET /api/health` | — | `{ok: true, glossary: {loaded, version, count}}` — 0.4.0: `loaded` 늘 true · `version` = 시드 판 · `count` = 시드 term 수(§4.4 · §4.7) | — (인증 없음) |
+| `POST /api/auth/demo` (0.4.0 · D-30) | 본문 없음 | `{token, expiresAt}` — `/api/auth/login` 과 같은 모양 · 같은 토큰(§3.2 · `sub` = env 아이디) | 404 `not_found` 「찾을 수 없어요」(스위치 꺼짐 — 경로가 없는 것과 같은 응답 · 0.5.0 문구) · 401 `invalid_credentials`(켜졌는데 로그인 env 3개 중 빈 것이 있음) |
+| `GET /api/health` | — | **`{ok: true}`** 만(0.5.0 · D-37). 시드 판 · term 수는 back 기동 로그 `glossary seed loaded: …` 에만(§4.3). 0.4.x 의 `glossary{loaded, version, count}` 는 지웠다 | — (인증 없음) |
 
-- 오류 본문은 원형 모양 `{"error": {"code", "message"}}`(원형 `main.py` 처리기).
-- **보호 대상**: `/api/auth/me` · `/api/glossary` · `WS /api/interpret`. `/api/auth/login` · `/api/auth/config` · `/api/auth/demo` · `/api/health` 만 인증 없음.
+- 오류 본문은 원형 모양 `{"error": {"code", "message"}}`(원형 `main.py` 처리기). **문구는 일반 문구**(0.5.0 · D-37 — §3.5).
+- **보호 대상**: `/api/auth/me` · `WS /api/interpret`. `/api/auth/login` · `/api/auth/config` · `/api/auth/demo` · `/api/health` 만 인증 없음. (0.5.0 — `/api/glossary` 삭제 · D-37)
 - **로그아웃**: 서버 API 없음(토큰은 상태가 없다). front 가 ① 통역 WS 에 `stop` 을 보내고 닫고 ② `localStorage` 토큰을 지우고 ③ 로그인 화면으로. 토큰은 만료까지 서버에서 거둘 수 없다 — PoC 한계(§10 OQ-008).
 - front 는 어느 API 든 401 을 받으면 토큰을 지우고 로그인 화면으로 보낸다. 통역 WS 가 핸드셰이크에서 거절되면(§5.2) `GET /api/auth/me` 로 401 인지 확인해 같은 처리.
 
@@ -186,9 +189,35 @@ interpret-pwa/                 # 레포 루트 (D-01)
 | 운영 | 운영 Secret 에 켜고, 데모가 끝나면 **값만 지우고 back 재시작**(D-30). 켜져 있는 동안은 주소만 알면 누구나 로그인된다 — 결정대로(PoC 데모) |
 | front | 로그인 화면이 진입 때 `GET /api/auth/config` → `demoLogin: true` 면 입력 칸 없이 「로그인」 단추 하나(§7.1) |
 
-## 4. 용어집 — 우리 시드 파일 — D-33(D-05 · D-13 · D-14 개정) · D-17 · D-18 · D-19 · D-28 · D-32
+### 3.5 밖으로 내는 것 — 최소 정보만 (0.5.0 — D-37)
+
+> 「통역만 왔다 갔다」 — 용어집(시드) · 설정 이름 · 내부 사정을 응답 · WS · front 번들로 내지 않는다.
+
+**허용 경로 — 정확히 6개**(그 밖 경로는 404 · 시험이 목록을 고정한다 — 새 경로는 DEC 와 함께 목록에 더한다)
+
+| 경로 | 인증 | 응답 200 |
+|---|---|---|
+| `POST /api/auth/login` | 없음 | `{token, expiresAt}` |
+| `GET /api/auth/me` | Bearer | `{ok: true}` |
+| `GET /api/auth/config` | 없음 | `{demoLogin: bool}` |
+| `POST /api/auth/demo` | 없음 | `{token, expiresAt}` (꺼지면 404) |
+| `GET /api/health` | 없음 | `{ok: true}` |
+| `WS /api/interpret` | `?token=` · Bearer | `ready` · `caption` · `audio_start` · PCM · `audio_end` · `error`(§5.3) |
+
+| 항목 | 계약 |
+|---|---|
+| API 문서 | FastAPI `/docs` · `/redoc` · `/openapi.json` **끔**(`docs_url=None` · `redoc_url=None` · `openapi_url=None` → 404) |
+| `/api/glossary` | **삭제**(404) — 메뉴 API(0.4.x §4.7) · 그 스키마 · `menu_rows` 삭제 |
+| 시드 | back 이미지 안에서 `context_for` → 세션 → Soniox STT 설정으로만 간다. 응답 · WS · front 번들에 시드 판 · 시드 낱말(ko · 별칭 · 현지명) 0(시험 · 빌드 산출물 grep — §9.1 · §9.2) |
+| HTTP 오류 문구 | 검증 오류 400 `invalid_request` 「요청 형식이 맞지 않아요」(필드 경로 · 검증기 문구 없음) · 404 `not_found` 「찾을 수 없어요」 · 그 밖 HTTP 오류(405 등) `http_error` 「요청을 처리하지 못했어요」 · 처리기 밖 예외 = JSON 500 `internal` 「요청을 처리하지 못했어요」(원인 종류는 back 로그에만) |
+| 사용자 문구는 그대로 | 로그인 401 「아이디 또는 비밀번호가 맞지 않아요」 · 429 「로그인 실패가 많아요. 1분 뒤 다시 시도해 주세요」 · 토큰 401 「로그인이 필요해요」 — 화면에 그대로 쓰는 문구라 둔다(설정 이름 · 내부 원인 없음) |
+| WS 오류 문구 | §5.4 — 코드 + 일반 문구 4종 · 받은 값을 되돌려 보내지 않는다 |
+| front | 설정 · env 이름이 든 문구를 쓰지 않는다 — back 주소가 비었을 때도 「서버에 연결하지 못했어요」. 서버 `message` 는 그대로 보여 준다 |
+
+## 4. 용어집 — 우리 시드 파일 — D-33(D-05 · D-13 · D-14 개정) · D-17 · D-18 · D-19 · D-28 · D-32 · D-35 · D-37
 
 > 0.4.0 — **용어집 정본은 레포의 시드 파일**이다(D-33). Procedure Hub matrix 는 **첫 가져오기 원천**일 뿐 back 이 런타임에 부르지 않는다.
+> 0.5.0 — 시드에 **대만 현지명**을 넣었다(D-35 · §4.2.1) · **용어집 메뉴 API 를 지웠다**(D-37 · §4.7) — 시드는 Soniox `context` 로만 쓴다.
 > 0.3.0 의 「기동 때 matrix 를 읽음 · 실패면 빈 용어집」(0.3.0 §4.1 · §4.2)은 **폐기**. 정방향 · 역방향 · 줄이기 · 2초 확인 · 재연결(0.3.0 §4.4 · §4.4.1 → 이 판 §4.6 · §4.6.1)은 그대로 두고 **짝을 만드는 재료만 시드로** 바꾼다.
 
 ### 4.1 무엇이 바뀌나
@@ -212,32 +241,32 @@ interpret-pwa/                 # 레포 루트 (D-01)
 | 필드 | 필수 | 타입 | 뜻 |
 |---|---|---|---|
 | `schema` | 필수 | 정수 `1` | 스키마 판. 다르면 기동 실패 |
-| `version` | 필수 | 문자열 `YYYY-MM-DD.n` | 시드 판. **고칠 때마다 올린다**(PR 마다). `/api/health` · 메뉴 응답 `version` |
+| `version` | 필수 | 문자열 `YYYY-MM-DD.n` | 시드 판. **고칠 때마다 올린다**(PR 마다). back 기동 로그에만 쓴다(0.5.0 — 응답에 내지 않음 · §3.5). 최종 배포본 **`2026-10-27.4`** |
 | `langs` | 필수 | 문자열 배열 | 이 파일이 다루는 앱 lang — **정확히 7개** `["en","ja","zh","zh-Hant","th","vi","yue"]`(back `langs.py` `APP_LANGS` 와 같은 집합 · 순서 무관) |
 | `imported_from` | 선택 | 객체 `{source, url, version, count, at}` | 첫 가져오기 기록(§4.8). 런타임은 읽기만 하고 쓰지 않는다 |
-| `terms` | 필수 | 배열(1개 이상) | 시술. **배열 순서 = context · 메뉴 순서** |
+| `terms` | 필수 | 배열(1개 이상) | 시술. **배열 순서 = context 순서** |
 
 **term(시술)**
 
 | 필드 | 필수 | 타입 | 뜻 |
 |---|---|---|---|
 | `id` | 필수 | 문자열 `[a-z0-9-]+` | 바뀌지 않는 이름(첫 가져오기 = `ph-001` ~ matrix 순서 · 손으로 더한 것 = `m-<짧은 영문>`). 파일 안 유일 |
-| `category` | 필수 | 문자열(비지 않음) | 카테고리(메뉴 첫 칸) |
-| `ko` | 필수 | 문자열(비지 않음) | **ko 대표명** — 역방향 target · 메뉴 한국어 칸 |
+| `category` | 필수 | 문자열(비지 않음) | 카테고리 — 사람이 시드를 읽을 때 묶음(0.5.0 — 메뉴가 없어 런타임은 안 쓴다) |
+| `ko` | 필수 | 문자열(비지 않음) | **ko 대표명** — 정방향 source · 역방향 target |
 | `ko_aliases` | 선택 | 문자열 배열(기본 `[]`) | ko 별칭(예 상담사가 줄여 부르는 이름). 정방향 source 로만 쓴다 |
-| `entries` | 필수 | 객체 `{<lang>: entry}` | 언어별 표기. 키 ⊆ `langs`. **없는 언어는 그 언어 context · 메뉴에서 이 시술이 빠진다**(전부 채울 필요 없음) |
+| `entries` | 필수 | 객체 `{<lang>: entry}` | 언어별 표기. 키 ⊆ `langs`. **없는 언어는 그 언어 context 에서 이 시술이 빠진다**(전부 채울 필요 없음) |
 | `note` | 선택 | 문자열 · null | 사람 메모(예 손 편집의 출처 — 「사용자 지적 2026-10-26 …」) · 런타임은 안 쓴다 (0.4.1 — backend 가 더함) |
 
 **entry(언어별 표기)**
 
 | 필드 | 필수 | 타입 | 뜻 |
 |---|---|---|---|
-| `name` | 필수 | 문자열(비지 않음 · **괄호 `(` `)` `（` `）` 0**) | **현지명** — 그 언어 손님이 부르는 이름. 정방향 target · 역방향 source · 메뉴 표기 · TTS 가 읽는 말 |
+| `name` | 필수 | 문자열(비지 않음 · **괄호 `(` `)` `（` `）` 0**) | **현지명** — 그 언어 손님이 부르는 이름. 정방향 target · 역방향 source · TTS 가 읽는 말 |
 | `aliases` | 선택 | 문자열 배열(기본 `[]` · 괄호 0) | 그 언어의 다른 이름(영문 상표명 · 현지 별명 등). **역방향 source 로만** 쓴다 |
-| `source` | 필수 | `"procedure-hub"` · `"draft-s2twp"` · `"manual"` 중 하나 | 출처 — 가져온 것 · zh-Hant 기계 초안 · 사람이 쓴 것 |
-| `reviewed` | 필수 | bool | 검수 여부. `false` = 사람이 아직 안 본 초안(메뉴에 「검수 전」 · §4.7). context 에는 **그대로 넣는다**(검수 여부로 빼지 않는다 — 기본값 · D-33 은 초안을 넣고 사용자가 고친다고 했다) |
+| `source` | 필수 | `"procedure-hub"` · `"draft-s2twp"` · `"manual"` · **`"web-research YYYY-MM-DD"`**(0.5.0 · D-35 — 날짜 모양까지 검사 · `web-research` 만 · 날짜 모양이 틀리면 오류) 중 하나 | 출처 — 가져온 것 · zh-Hant 기계 초안(이름은 스키마 값 그대로 — 변환은 §4.8) · 사람이 쓴 것 · 웹 조사로 넣은 것(조사 날짜) |
+| `reviewed` | 필수 | bool | 검수 여부. `false` = 사람이 아직 안 본 초안 · 출처가 하나뿐인 조사값(§4.2.1). context 에는 **그대로 넣는다**(검수 여부로 빼지 않는다 — 기본값 · D-33 은 초안을 넣고 사용자가 고친다고 했다). 0.5.0 — 메뉴가 없어 화면에 보이지 않는다 · 검수 목록은 시드 파일에서 `reviewed:false` 로 찾는다 |
 | `raw` | 선택 | 문자열 · null | 가져오기 때 원문(괄호 분해 전) — 분해가 원문과 다를 때만. 검수용 · 런타임은 안 쓴다 |
-| `note` | 선택 | 문자열 · null | 사람 메모 · 런타임은 안 쓴다 |
+| `note` | 선택 | 문자열 · null | 사람 메모 · 런타임은 안 쓴다. `web-research` entry 는 대표 출처 URL 1개(D-35) |
 
 예(값은 2026-10-27 matrix 를 §4.8 규칙으로 바꾼 모양 — 실제 파일은 스크립트가 만든다):
 
@@ -280,11 +309,28 @@ interpret-pwa/                 # 레포 루트 (D-01)
 
 - 다른 시술끼리 **같은 현지명**(역방향 source 가 겹침 — 2026-10-26 matrix 기준 en 2 · ja 1 · zh 2 · th 1 · yue 2)은 **허용**한다 — 실제로 같은 이름을 쓰는 시술이 있다. 역방향에서는 처음 짝만 둔다(§4.5 · 0.3.0 규칙 그대로).
 
+### 4.2.1 시드 내용 규칙 — 대만 현지명 · 구어 별칭 (0.5.0 — D-35)
+
+조사(`research-tw-names-report.md` · 2026-10-27 · 157 term 중 대만 현지명 **77** 찾음 · 80 못 찾음)를 아래 규칙으로 시드에 넣었다. 시드를 더 고칠 때도 같은 규칙.
+
+| 항목 | 규칙 | 최종 시드 `2026-10-27.4` |
+|---|---|---|
+| zh-Hant `name` | 조사로 찾은 **대만 현지명**(예 울쎄라 美國音波 · 써마지FLX 鳳凰電波 · 올리지오 玩美電波 · 슈링크유니버스 海芙音波 · 볼뉴머 海芙電波 · 레이저 雷射) | 77 term(`source: "web-research 2026-10-27"`) |
+| 기존 초안 | 대만명이 생기면 이전 초안 표기는 zh-Hant `aliases` 로(이름과 같은 것 · 겹침은 뺌) · 대만 별칭도 `aliases` | — |
+| 「鐳射」 | 홍콩 표기 — zh-Hant 어디에도 두지 않는다(「雷射」로) | zh-Hant 「鐳射」 0 |
+| `reviewed` | **서로 다른 출처(도메인) 2개 이상**이면 `true` · 1개면 이름만 바꾸고 `false` | `true` 38 · `false` 39 |
+| `note` | 대표 출처 URL 1개 | 77 |
+| 못 찾은 것 | **그대로**(초안 · `draft-s2twp` · `reviewed:false`) — 우리가 이름을 짓지 않는다 | 80(OQ-016) |
+| zh 구어 별칭 | 대륙 구어는 **한 기기로 확정되는 것만** zh `aliases`(美版超声刀 → 울쎄라 — 이미 zh `name` · 热玛吉 → 써마지FLX) | 써마지FLX zh 「热玛吉」 |
+| 모호어 | 어느 기기인지 갈리는 말(**超声刀 · 韩版超声刀 · 韩版热玛吉**)은 넣지 않는다 — **zh · zh-Hant 둘 다**(zh-Hant 는 `t2s` 를 거쳐 같은 말이 되므로 · 코디 처분 — 올리지오 「韓版熱瑪吉」 · 슈링크유니버스 「韓版超聲刀」 별칭 지움). 시험이 막는다(§9.1) | zh · zh-Hant 모호어 0 |
+| 카테고리 | ph-071 볼뉴머 = **기기 리프팅**(스킨부스터 아님 — 조사 · RF 리프팅 기기) | — |
+| 괄호 | 조사 표기에 붙은 주석 괄호는 뺀다(§4.2 검사 4 — 예 「玻尿酸 (填充物)」 → 玻尿酸) | — |
+
 ### 4.3 기동 때 읽기 (D-33 · D-14 개정)
 
 - back 기동(lifespan) 때 한 번 `load_seed(path) -> Glossary` — 파일 읽기 → §4.2 검사 → 메모리. 다시 읽지 않는다.
 - 성공 로그 1줄: `glossary seed loaded: version=… terms=… entries={lang: n…}`(용어 문자열 0).
-- `Glossary` 는 순수 데이터(term · entry 목록) — context 조립(§4.5) · 메뉴(§4.7)가 이것만 읽는다. **HTTP 클라이언트 · `GLOSSARY_MATRIX_URL` · `load_glossary`(matrix) 는 back 런타임에서 지운다**(§4.9).
+- `Glossary` 는 순수 데이터(term · entry 목록) — context 조립(§4.5)만 이것을 읽는다(0.5.0 — 메뉴 없음 · D-37). **HTTP 클라이언트 · `GLOSSARY_MATRIX_URL` · `load_glossary`(matrix) 는 back 런타임에서 지운다**(§4.9).
 
 ### 4.4 시드가 깨지면 — 기동 실패 (기본값)
 
@@ -293,7 +339,7 @@ interpret-pwa/                 # 레포 루트 (D-01)
 | 파일 없음 · 읽기 오류 · JSON 아님 · §4.2 검사 실패 | **back 기동 실패** — lifespan 이 `SeedError` 를 올려 프로세스가 0 아닌 코드로 끝난다. 오류 로그 1줄 = 무엇이 틀렸나(필드 경로 · term `id` · 규칙 이름). 시드 값은 공개 데이터라 로그에 써도 되지만 줄 길이를 위해 경로 · id 만 |
 
 - **왜 기동 실패인가(코디 권장 · 기본값)**: 0.3.0 의 「빈 용어집으로 뜬다」(D-14)는 **남의 서버**가 죽을 때를 위한 것이었다. 시드는 **우리 파일**이고 깨지는 길은 우리 PR 뿐 — 그건 **시험으로 막는다**(§9.1 「시드」: 레포의 실제 `back/seed/glossary.json` 을 같은 검사 함수로 읽는 시험). 그래도 깨진 채 배포되면 조용히 용어집 없이 통역하는 것보다 **readiness 가 안 올라와 옛 pod 가 남는 것**이 낫다(k8s 롤링 — 옛 판이 계속 서비스). 용어집이 들어간 줄 아는데 빠져 있는 상태(§4.6 4번 「몰래 빼지 않는다」와 같은 원칙)를 만들지 않는다.
-- 그래서 `loaded=false` 경로는 **없어진다** — `/api/health` · 메뉴의 `loaded` 는 떠 있는 back 에서 늘 `true`(필드는 front 계약 호환을 위해 남긴다 · §4.7).
+- 그래서 `loaded=false` 경로는 **없어진다**. 0.5.0 — `loaded` 필드 자체를 응답에서 지웠다(`/api/health` = `{ok}` · 메뉴 없음 · §3.5).
 - 시드에 term 이 있는데 **고른 언어 entry 가 하나도 없으면** 그 언어는 `context` 없이 연결한다(빈 용어집과 같은 경로 · 0.3.0 §4.5 「빈 용어집이면 `context` 키 없음」). 기동 실패가 아니다(언어별로 채워 가는 중일 수 있다).
 
 ### 4.5 언어별 `context` 조립 (D-05 · D-18 · D-33)
@@ -310,7 +356,7 @@ interpret-pwa/                 # 레포 루트 (D-01)
 
 - 역방향 source 중복(다른 시술의 같은 현지명 · `norm` 뒤 같아진 것 · 현지명과 다른 시술 별칭이 같음)은 **위 순서에서 처음 짝만** 둔다(0.3.0 규칙 그대로 — 기본 짝이 별칭 짝보다 앞).
 - 정방향 source 중복은 §4.2 검사 3 이 막는다(조립에서 다시 거르지 않는다).
-- **zh-Hant 는 zh-Hant entry 를 쓴다(0.4.0)** — 0.3.0 · D-28 의 「zh-Hant target 은 zh 열」은 시드에 zh-Hant 표기가 없을 때의 대안이었다. D-33 이 zh-Hant 표기를 시드에 두고(초안 = zh 의 s2twp) D-32 가 「대만 현지 별명은 그 언어 표기를 추가해서 해결」이라 했으므로, 대만 손님이 부르는 이름(예 美國音波)이 Soniox 에 닿으려면 zh-Hant entry 가 context 재료여야 한다. 첫 가져오기 직후에는 zh-Hant = s2twp(zh) 이므로 `t2s` 뒤 **zh context 와 거의 같다**(s2twp 의 낱말 바꿈 — 激光→鐳射 — 은 `t2s` 로 鐳射 그대로 남을 수 있다 · 실물 ⑬ 에서 확인). → §10 OQ-013 에서 확인.
+- **zh-Hant 는 zh-Hant entry 를 쓴다(0.4.0)** — 0.3.0 · D-28 의 「zh-Hant target 은 zh 열」은 시드에 zh-Hant 표기가 없을 때의 대안이었다. D-33 이 zh-Hant 표기를 시드에 두고 D-32 가 「대만 현지 별명은 그 언어 표기를 추가해서 해결」이라 했으므로, 대만 손님이 부르는 이름(예 美國音波)이 Soniox 에 닿으려면 zh-Hant entry 가 context 재료여야 한다. **0.5.0 — D-35 로 대만 현지명 77개가 들어가 zh-Hant context 는 zh 와 실제로 다르다**(정방향 target 美國音波 · 역방향 source 美國音波 · 極線音波 등 → `t2s` 뒤 美国音波 …). OQ-013 닫음.
 - 크기 로그(§4.6 5번)는 칸 수를 넷으로 나눠 적는다: `terms` · 정방향(기본 · 별칭) · 역방향(기본 · 별칭) · 뺀 수 · 글자 수.
 
 **구조로 들고 다닌다(0.4.0)** — 조립 결과를 Soniox dict 하나로 합쳐 두고 나중에 「앞 정방향의 거울인 첫 짝」으로 정방향/역방향 경계를 다시 찾지 않는다(별칭 짝이 생기면 거울 추측이 틀린다 · 0.3.0 `split_translation_terms`). `build_context` 는 네 묶음을 따로 가진 값(예 `ContextParts{general, terms, forward, forward_alias, reverse, reverse_alias}`)을 내고, Soniox 설정 dict 는 `to_soniox(parts)` 로 만든다. `forward_only(parts)` · `is_forward_only(parts)` 도 이 값으로.
@@ -333,6 +379,7 @@ Soniox context 한도는 **8,000토큰** · 넘으면 `invalid_request`(공식 �
 **`GLOSSARY_CONTEXT_MAX_CHARS` 기본값 = 20251 (0.4.1 · 시드 실측)**
 
 - **0.4.1**: 시드(157 term)로 7개 언어 실제 한도를 다시 쟀다(§9.3 ⑬ — 같은 방법). 가장 작은 통과 최대치 **ja 22,502** × 0.9 = **20,251**(내림). 18,832 에서는 시드 th 전체 context(19,340자)가 넘어 `terms` 45개가 빠졌다 → 20,251 이면 7개 언어 모두 뺀 수 0(남는 여유 th 기준 911자). zh-Hant 통과 최대치 22,842 는 ja 보다 크다. 코디 처분(WP9 보고 이슈 1).
+- **0.5.0 — 대만 현지명(D-35) 뒤 zh-Hant 는 줄이기가 돈다**(기본값은 그대로 20,251 · 코디 처분 「그대로」): 역방향 별칭이 55 → 190 으로 늘어 zh-Hant 전체 context 가 기본값을 넘는다 → 1단계로 `terms`(ko 대표명 뒤쪽부터)만 빠지고 **짝은 전부 남는다**(최종 시드 `.4` — 조립 뒤 20,250자 · `terms` 31개 남음). 다른 6개 언어는 뺀 수 0. 줄이기 없는 전체(21,605자 · 시드 `.3`)도 실물에서 거절되지 않았다(§9.3 ⑰) — 줄이기는 안전 여유다. 별칭이 더 늘면 2단계(역방향 별칭)가 시작된다.
 - 아래는 0.4.0 근거(matrix 시절 · 기록으로 남김).
 
 - 근거 = WP6-BE 실측(§9.3 ⑧ · `live-check-wp6-2026-10-26.json`). 「통과 최대치」는 **같은 언어 짝을 덧붙여 크기를 늘리며 이분 탐색으로 찾은 실제 한도**다 — 역방향 포함 전체 context(최대 th 17,952자)가 6개 언어 모두 그대로 통과해 전체 크기로는 한도를 알 수 없었다. 언어별 통과 최대치 en 25,922 · **ja 20,925(가장 작음)** · zh 21,643 · th 22,566 · vi 24,778 · yue 22,643 → **20,925 × 0.9 = 18,832**(내림). 그 값으로 6개 언어 재연결 거절 0 · 뺀 `terms` 0 · 뺀 역방향 0.
@@ -344,26 +391,12 @@ Soniox context 한도는 **8,000토큰** · 넘으면 `invalid_request`(공식 �
 
 0.3.0 §4.4.1 **그대로**(STT 설정 뒤 `ready` 전 최대 `STT_CONFIG_CHECK_SEC` = 2초 · `SonioxError.error_type` · `invalid_request` 만 재연결 · STT 만 · TTS 는 확인 뒤 · 같은 브라우저 WS · `ready` 뒤 거절은 재연결 없음 · 로그는 `error_type` · `request_id` 만). 재연결 설정만 「정방향 기본만」(§4.6 4번)으로 읽는다. 가짜 Soniox 시험 6건도 그대로(§9.1 「context」).
 
-### 4.7 용어집 메뉴 API — 읽기 전용 (D-13 · D-33)
+### 4.7 ~~용어집 메뉴 API~~ — 삭제 (0.5.0 — D-37 · D-13 뒤집음)
 
-| 메서드 · 경로 | 요청 | 응답 200 | 오류 |
-|---|---|---|---|
-| `GET /api/glossary?lang=<L>` | `Authorization: Bearer` · `L` ∈ 7개(§5.5) | `{loaded, version, count, lang, rows: [{id, category, ko, koAliases, term, aliases, reviewed}]}` | 400 `invalid_request`(lang 없음 · 다름) · 401 `unauthorized` |
-
-| 필드 | 값 |
-|---|---|
-| `loaded` | 늘 `true`(§4.4 — 호환용으로 남김) |
-| `version` | 시드 `version` |
-| `count` | `rows` 수 = 그 언어 entry 가 있는 시술 수(언어마다 다를 수 있다 — 모달 부제 「N개」) |
-| `rows` | 시드 순서 · `entries[L]` 이 있는 term 만 |
-| `id` · `category` · `ko` | term 그대로 |
-| `koAliases` | term `ko_aliases` 그대로 |
-| `term` | **현지명** = `entries[L].name` **원본 그대로**(yue · zh-Hant 는 시드의 번체 그대로 — 0.3.0 · D-32 의 「메뉴 표시 때 s2twp 변환」은 **없어진다**: 변환은 가져오기 때 한 번(§4.8) · 사람이 고친 값을 런타임이 다시 바꾸지 않는다). 이름은 0.3.0 계약(`term`)을 그대로 둔다 — front 가 이미 이 이름을 읽는다 |
-| `aliases` | `entries[L].aliases` 그대로 |
-| `reviewed` | `entries[L].reviewed` |
-
-- `source` · `raw` · `note` 는 내지 않는다(검수는 시드 파일에서 — 메뉴는 「검수 전」 표시만 · D-13 읽기 전용).
-- 쓰기 API 없음(D-13 · D-33 「DB · 편집 화면은 두지 않는다」).
+- **`GET /api/glossary` 를 지운다**(404) · 응답 스키마 · `Glossary.menu_rows` 도 지운다. 화면의 용어집 메뉴 · 창도 지운다(§7.6).
+- 이유(D-37): 밖으로는 통역에 필요한 최소 정보만 — 사전(시드)은 back 이미지 안에서 Soniox `context` 로만 쓰고 front 번들 · 응답에 나가지 않는다(§3.5).
+- 0.4.x 의 메뉴 계약(`{loaded, version, count, lang, rows: [{id, category, ko, koAliases, term, aliases, reviewed}]}` · 「검수 전」 꼬리표)은 **폐기**. 검수는 시드 파일에서 `reviewed:false` 로 본다(§4.2).
+- 시드 로더 · 검사 · context 조립은 그대로(§4.2 ~ §4.6).
 
 ### 4.8 첫 가져오기 스크립트 — Procedure Hub matrix → 시드 (D-33 · 한 번)
 
@@ -381,7 +414,7 @@ cd back && uv run python scripts/import_glossary.py [--url <matrix 주소>] [--o
 | term | matrix 행 하나 = term 하나. `id` = `ph-` + matrix 순서 3자리(`ph-001`). `category` · `ko` = 행 값(앞뒤 공백 · 줄바꿈 정리). `ko_aliases` = `[]`(matrix 에 없다) |
 | 같은 `ko` 행 | **처음 행이 term**, 뒤 행은 term 을 만들지 않고 언어마다 표기가 다르면 그 표기(분해 뒤 현지명 · 별칭)를 처음 term 의 같은 언어 `aliases` 에 더한다 · 카테고리는 처음 행(2026-10-27 기준 `스킨보톡스` 2행 — yue 만 다름). 기본값 — 0.3.0 「같은 `ko` 는 처음 행」과 같은 쪽을 고르되 뒤 행의 표기를 버리지 않는다 |
 | 언어 6개 | 행의 `en` · `ja` · `zh` · `th` · `vi` · `yue` 를 아래 **괄호 분해**로 entry 로. `source: "procedure-hub"` · `raw` = 분해가 원문과 다르면 원문 |
-| zh-Hant | **zh entry(분해 뒤)를 OpenCC `s2twp`** 로 바꾼 것 — `name` · `aliases` 둘 다(영문은 그대로) · `source: "draft-s2twp"` · **`reviewed: false`**(D-33 · D-32 — 현지 별명은 우리가 짓지 않는다 · 사용자가 고친다) |
+| zh-Hant | **zh entry(분해 뒤)를 자막과 같은 변환 `to_display("zh-Hant")`**(OpenCC `s2tw` + 「激光 → 雷射」 · §5.6 · 0.5.0 — D-35 처분. 0.4.x 의 `s2twp` 는 「鐳射」 · 「匯入」 오변환이라 폐기) 로 바꾼 것 — `name` · `aliases` 둘 다(영문은 그대로) · `source: "draft-s2twp"`(스키마 값 이름 그대로) · **`reviewed: false`**(D-33 — 현지 별명은 우리가 짓지 않는다 · 사용자가 고친다). 이미 시드가 있으므로 다시 도는 일은 사람이 파일을 지울 때뿐 |
 | 빈 칸 | 표기가 빈 언어는 entry 를 만들지 않는다(zh 가 비면 zh-Hant 도 없음) |
 | 머리 | `schema: 1` · `version` = 실행 날짜(`--date`) `.1` · `langs` 7개 · `imported_from{source:"procedure-hub", url, version: matrix version, count: matrix count, at: 날짜}` |
 | 출력 | §4.2 모양 · 끝에 §4.2 검사를 스스로 돌려 통과해야 쓴다 · 요약 1화면(term 수 · 언어별 entry 수 · 합친 행 · 분해 종류별 수 · `reviewed:false` 수) |
@@ -413,7 +446,7 @@ cd back && uv run python scripts/import_glossary.py [--url <matrix 주소>] [--o
 - 시드의 `name` 에는 괄호가 없다(§4.2 검사 4) → 용어집이 번역문에 괄호를 들여오는 길은 닫힌다. 정방향 target 이 현지명이라 TTS 는 **현지명을 읽는다**(예 zh 「美版热玛吉FLX」 — 영문 상표명이 아니라 · D-33 「써마지가 영어로 들어가는 게 아니라 중국어 · 대만어로」).
 - 그래도 **§5.7 `strip_parens` 는 지우지 않는다** — 실물 ⑤(2026-10-26)에서 괄호는 Soniox 번역이 **스스로 만들기도** 했다(ja 「チャウム（補充）」 — 용어집 원문에 없던 괄호). D-19 「TTS 입력에서만 괄호를 뺀다」는 용어집과 무관하게 계속 맞다.
 
-## 5. 통역 WS — D-03 · D-04 · D-17 · D-19 · D-28 · D-32 · D-33
+## 5. 통역 WS — D-03 · D-04 · D-17 · D-19 · D-28 · D-33 · D-35 · D-37
 
 ### 5.1 원형과 무엇이 같고 무엇이 다른가
 
@@ -422,7 +455,8 @@ cd back && uv run python scripts/import_glossary.py [--url <matrix 주소>] [--o
 | 중계 구조 | 브라우저 WS 하나 ↔ back ↔ Soniox STT(two_way) + TTS 두 연결 · 세션이 끝나면 둘 다 닫음 | **그대로** | D-03 · 개념 websocket-relay |
 | 메시지 종류 · 오디오 형식 | §5.3 표 | **그대로** | 원형 `interpret-ws-contract.md` · `session.py` |
 | 발화 묶기 · 자막 갱신 | `assembler.py`(`<end>`/`<fin>` 까지 한 발화 · non-final 갈아 끼움 · 같은 caption 재전송 안 함 · zh · ja · th 빈칸 정리) | **그대로** | 원형 · 개념 nondeterministic-stt-output |
-| Soniox 모델 · 음색 · 샘플레이트 · keepalive | `stt-rt-v5` · `tts-rt-v2` · 음색 `Jiwoo` · 16k 입력 · 24k 출력 · 10초/20초 keepalive · stop 뒤 3초 드레인 | **그대로** | 원형 `soniox.py` · `session.py` |
+| Soniox 모델 · 음색 · 샘플레이트 · keepalive 주기 | `stt-rt-v5` · `tts-rt-v2` · 음색 `Jiwoo` · 16k 입력 · 24k 출력 · 10초/20초 keepalive · stop 뒤 3초 드레인 | **그대로** | 원형 `soniox.py` · `session.py` |
+| TTS keepalive **메시지 모양** | `{}` | **`{"keep_alive": true}`**(공식 형식) · 다른 stream_id 의 오류는 발화를 끊지 않음(§5.8 · 0.5.0) | 운영 장애 2026-10-27 · Soniox 공식 문서 |
 | `start` 의 `lang` | 8개 `{zh,en,ja,th,fr,es,tl,hi}` | **7개 `{en, ja, zh, zh-Hant, th, vi, yue}`** — 앱 언어 코드(§5.5 · 0.4.0 zh-Hant 추가) | D-04 · D-28 |
 | `start` 의 `traditional` | front 가 보냄 | **없앤다** — 번체 여부는 `lang` 이 정한다(§5.6). 와도 무시 | D-17 |
 | `start` 의 `scheduleId` | 받아서 버림 | 없앤다(기록 저장 없음) | Scope Out |
@@ -430,8 +464,8 @@ cd back && uv run python scripts/import_glossary.py [--url <matrix 주소>] [--o
 | TTS 입력 | 번역문 그대로 | **괄호 부분을 뺀 문자열**(§5.7) — 자막은 그대로 | D-19 |
 | `ready` 시점 | STT · TTS 를 열자마자 | STT 설정 확인(최대 2초 · 필요하면 정방향 기본만으로 1회 재연결) → TTS 열기 → `ready`(§4.6.1) · `SonioxError` 에 `error_type` (0.2.0) | D-05 · 공식 error-handling |
 | 인증 | 헤더 Bearer 또는 `?token=` · accept 전 검증 · Origin 있으면 허용 출처만 | **그대로** — 토큰은 §3.2, 허용 출처는 `INTERPRET_FRONT_ORIGIN` | 원형 `api/interpret.py` · SPEC-004 §4.2 |
-| 오류 문구의 env 위치 | 「`procedure/.env` 에 없어요」 | 「`.env` 에 없어요」 | §2.4 |
-| 자막 번체 변환 | `traditional` 이면 `s2tw` 하나 | **lang 별 설정**(yue `s2tw` · zh-Hant `s2twp`) — `CaptionAssembler(display=…)`(§5.6) | D-32 |
+| 오류 문구 | 원인 · env 위치를 적은 문구(「`procedure/.env` 에 없어요」 · 「지원하지 않는 언어예요: 'xx'」 등) | **코드는 그대로 · 문구는 일반 문구 4종**(§5.4 · 0.5.0) — 원인은 back 로그에만 | D-37 |
+| 자막 번체 변환 | `traditional` 이면 `s2tw` 하나 | **lang 별 설정**(yue `s2tw` · zh-Hant `s2tw` + 「激光 → 雷射」) — `CaptionAssembler(display=…)`(§5.6 · 0.5.0) | D-35(D-32 뒤집음) |
 
 ### 5.2 연결 · 인증
 
@@ -462,51 +496,55 @@ cd back && uv run python scripts/import_glossary.py [--url <matrix 주소>] [--o
 - `audio_start` 의 언어 = 그 `id` caption 의 반대편: `side=me` 발화의 TTS 는 외국어, `side=them` 발화의 TTS 는 한국어. front 는 `id` → `side` 로 안다(새 필드 안 둠 — 원형 모양 유지).
 - TTS 는 한 번에 하나씩 차례로(원형 `_tts_worker` 큐).
 
-### 5.4 오류 코드 (원형 그대로)
+### 5.4 오류 코드 — 코드는 원형 그대로 · 문구는 일반 문구 (0.5.0 — D-37)
 
-| `code` | 언제 | `message`(원형 문구 · env 위치만 바꿈) |
+| `code` | 언제 | `message`(0.5.0) |
 |---|---|---|
-| `bad_request` | 첫 프레임이 `start` 아님 · JSON 아님 · `lang` 이 7개 밖 · 10초 안에 `start` 없음 · 알 수 없는 텍스트 프레임 | 원형 `parse_start` 문구 · 「지원하지 않는 언어예요: 'xx' (가능: en, ja, th, vi, yue, zh, zh-Hant)」 |
-| `no_api_key` | `SONIOX_API_KEY` 비었음 | 「SONIOX_API_KEY 가 .env 에 없어요」 |
-| `soniox_unavailable` | Soniox 연결 · 인증 실패 · 중계 중 Soniox 오류 · §4.6 4번의 재시도도 거절 | 「통역 서버(Soniox)에 연결하지 못했어요」 · 「통역 서버(Soniox) 오류로 끊겼어요」 · 「통역 중계가 끊겼어요」 |
+| `bad_request` | 첫 프레임이 `start` 아님 · JSON 아님 · `lang` 이 7개 밖 · 10초 안에 `start` 없음 · 알 수 없는 텍스트 프레임 | 「요청을 처리할 수 없어요」 |
+| `no_api_key` | `SONIOX_API_KEY` 비었음 | 「통역 서버를 쓸 수 없어요」 |
+| `soniox_unavailable`(연결) | Soniox 연결 · 인증 실패 · §4.6 4번의 재시도도 거절 | 「통역 서버에 연결하지 못했어요」 |
+| `soniox_unavailable`(중계 중) | 중계 중 Soniox 오류 · 중계가 끊김 | 「통역 연결이 끊겼어요」 |
 
+- 문구에 설정 이름(`SONIOX` · `.env` · `API_KEY`) · 프로토콜 낱말(`start` · `type` · `JSON`) · **받은 값**(예 잘못 보낸 `lang`)을 넣지 않는다 — 0.4.x 의 「지원하지 않는 언어예요: 'xx' (가능: …)」 · 「알 수 없는 type: 'x'」 · 「SONIOX_API_KEY 가 .env 에 없어요」 · 「통역 서버(Soniox)…」는 **폐기**. 원인은 back 로그에만(`bad start: <예외 종류>` · 빈 키 경고 · §5.8 Soniox 오류 로그).
+- front 는 `message` 를 그대로 보여 준다(§7.3 #2).
 - 인증 실패는 `error` 프레임이 아니라 핸드셰이크 거절(close 1008 · §5.2).
 - `bad_request` 중 「알 수 없는 텍스트 프레임」은 원형처럼 연결을 끊지 않고 오류만 보낸다.
 
 ### 5.5 언어 코드 매핑 (D-04 · D-28 · D-33)
 
-| 앱 `lang` | 목록 표시 이름(자기 표기) | 한국어 이름(원 아래 안내 · 메뉴) | Soniox STT `language_b` · `language_hints` | Soniox TTS `language` | 자막 표기 | 시드 entry(§4) · context `norm` |
+| 앱 `lang` | 목록 표시 이름(자기 표기) | 한국어 이름(원 아래 안내) | Soniox STT `language_b` · `language_hints` | Soniox TTS `language` | 자막 표기 | 시드 entry(§4) · context `norm` |
 |---|---|---|---|---|---|---|
 | `en` | English | 영어 | `en` | `en` | 그대로 | `en` · 그대로 |
 | `ja` | 日本語 | 일본어 | `ja` | `ja` | 그대로 | `ja` · 그대로 |
 | `zh` | **中国 · 简体中文** | **중국어** | `zh` | `zh` | **간체**(Soniox 출력 그대로) | `zh`(간체) · 그대로 |
-| `zh-Hant` | **臺灣 · 繁體中文** | **대만어** | **`zh`** | **`zh`**(간체 · 만다린 — 대만 음성 없음) | **번체 `s2twp`**(§5.6) | **`zh-Hant`**(번체 · 첫 가져오기는 zh 의 s2twp 초안) · `t2s`(§4.5) |
+| `zh-Hant` | **臺灣 · 繁體中文** | **대만어** | **`zh`** | **`zh`**(간체 · 만다린 — 대만 음성 없음) | **번체 `s2tw` + 「激光 → 雷射」**(§5.6 · D-35) | **`zh-Hant`**(번체 · 대만 현지명 77 + 초안 80 · §4.2.1) · `t2s`(§4.5) |
 | `th` | ไทย | 태국어 | `th` | `th` | 그대로 | `th` · 그대로 |
 | `vi` | Tiếng Việt | 베트남어 | `vi` | `vi` | 그대로 | `vi` · 그대로 |
 | `yue` | 廣東話 | 광둥어 | **`zh`** | **`zh`**(간체 · 만다린 발음) | **번체 `s2tw`**(§5.6) | `yue`(번체) · `t2s`(§4.5) |
 
 - 목록 순서 = 위 표 순서(en · ja · zh · zh-Hant · th · vi · yue). 기본 선택 `en` · 마지막으로 고른 언어를 `localStorage` 에 기억(기본값 — 0.3.0 그대로).
-- **중국과 대만은 별도 언어 항목**이다(D-28) — 대만을 중국어의 하위 갈래(「중국어(번체)」)로 쓰지 않는다. 한국어 이름은 「중국어」 · 「대만어」 → 원 아래 「대만어로 출력 중」 · 「대만어 듣는 중」 · 메뉴 「용어집 · 대만어」.
+- **중국과 대만은 별도 언어 항목**이다(D-28) — 대만을 중국어의 하위 갈래(「중국어(번체)」)로 쓰지 않는다. 한국어 이름은 「중국어」 · 「대만어」 → 원 아래 「대만어로 출력 중」 · 「대만어 듣는 중」.
 - 한국어 쪽은 늘 `ko` — `translation: {type:"two_way", language_a:"ko", language_b:<위 표>}` · `language_hints: ["ko", <위 표>]`(원형 `stt_config`).
 - **`yue` · `zh-Hant` 는 Soniox 에 별도 코드가 없다** — 공식 문서 STT · 번역 · TTS 지원 언어표(2026-10-26)에 중국어는 `zh` 하나다. 원형 실물(2026-10-13 `wp2-be-report.md` ②): 광둥어 발화가 `language: zh` 로 잡혔고 전사는 표준 문어 간체였다. 그래서 둘 다 `zh` 로 보낸다.
-- ⚠ `yue` 를 고르면 한국어 → 광둥어 번역은 **표준 중국어 문어(번체 자막) + 만다린 음성**으로 나간다(§10 OQ-001). `zh-Hant` 도 TTS 는 만다린(간체 입력)이다 — 외국어 안내의 출력 언어 이름은 「中文」(front 문구 · `lib/langs.ts`).
+- ⚠ `yue` 를 고르면 한국어 → 광둥어 번역은 **표준 중국어 문어(번체 자막) + 만다린 음성**으로 나간다(§10 OQ-017 ②). `zh-Hant` 도 TTS 는 만다린(간체 입력)이다 — 외국어 안내의 출력 언어 이름은 「中文」(front 문구 · `lib/langs.ts`).
 - 매핑 표는 back `service/interpret/langs.py` 한 곳(`APP_LANGS` · `SONIOX_LANG` · `TRADITIONAL_CONFIG`)에 둔다. front 는 `lib/langs.ts` 에 lang 7개 · 목록 표시 이름 · 한국어 이름 · 외국어 안내 문구만(같은 사실 한 곳 · lang 문자열은 back 과 정확히 같아야 한다 — `zh-Hant`).
-- 0.4.0 — 0.3.0 의 `GLOSSARY_COLUMN = {zh-Hant: zh}`(대만이 zh 열을 빌림)은 **시드에 zh-Hant entry 가 생겨 지운다**(§4.5 · OQ-013).
+- 0.4.0 — 0.3.0 의 `GLOSSARY_COLUMN = {zh-Hant: zh}`(대만이 zh 열을 빌림)은 **시드에 zh-Hant entry 가 생겨 지운다**(§4.5).
 
-### 5.6 중국어 번체 — 언어별 변환 (D-17 · D-28 · D-32)
+### 5.6 중국어 번체 — 언어별 변환 (D-17 · D-28 · D-35 — D-32 뒤집음)
 
-| 앱 `lang` | 자막(`caption.original` · `caption.translation` 의 중국어 쪽) | TTS 입력 | Soniox context(§4.5) | 용어집 메뉴(§4.7) |
-|---|---|---|---|---|
-| `zh` | 간체 그대로 | 간체 | 시드 zh 그대로 | 시드 zh 그대로(간체) |
-| `zh-Hant` | **OpenCC `s2twp`**(대만 글자 + 대만식 일반 표현 — 激光 → 鐳射) | **간체**(변환 전 `Utterance.text`) | 시드 zh-Hant 를 `t2s` | 시드 zh-Hant 그대로(번체 · 런타임 변환 없음) |
-| `yue` | **OpenCC `s2tw`** | **간체** | 시드 yue 를 `t2s` | 시드 yue 그대로(번체) |
+| 앱 `lang` | 자막(`caption.original` · `caption.translation` 의 중국어 쪽) | TTS 입력 | Soniox context(§4.5) |
+|---|---|---|---|
+| `zh` | 간체 그대로 | 간체 | 시드 zh 그대로 |
+| `zh-Hant` | **OpenCC `s2tw` 뒤 낱말 표 「激光 → 雷射」**(0.5.0 · D-35) | **간체**(변환 전 `Utterance.text`) | 시드 zh-Hant 를 `t2s` |
+| `yue` | **OpenCC `s2tw`** | **간체** | 시드 yue 를 `t2s` |
 
-- 변환 선택은 back `langs.py` 의 `TRADITIONAL_CONFIG = {"yue": "s2tw", "zh-Hant": "s2twp"}` 한 곳 · `to_display(lang)` 이 그 lang 의 변환 함수(없으면 간체 그대로)를 낸다 · 세션은 `CaptionAssembler(display=to_display(lang))`. 원형처럼 「`lang == "zh"` 인 쪽 문자열만」 바꾼다(Soniox 토큰 언어 기준).
+- 변환 선택은 back `langs.py` 한 곳: `TRADITIONAL_CONFIG = {"yue": "s2tw", "zh-Hant": "s2tw"}` + **`DISPLAY_REPLACE = {"zh-Hant": {"激光": "雷射"}}`**(OpenCC 뒤에 적용). `to_display(lang)` 이 그 lang 의 변환 함수(없으면 간체 그대로)를 낸다 · 세션은 `CaptionAssembler(display=to_display(lang))`. 원형처럼 「`lang == "zh"` 인 쪽 문자열만」 바꾼다(Soniox 토큰 언어 기준). 가져오기 스크립트의 zh-Hant 초안도 같은 함수(§4.8).
+- **`s2twp` 는 쓰지 않는다(0.5.0 · D-35 — D-32 뒤집음)**: `s2twp` 는 激光 → **鐳射**(홍콩 표기 — 대만은 雷射) · 导入 → **匯入**(離子導入이 맞음) · 项目 → **專案** 같은 오변환을 만들었다. 대만식 낱말은 표에 **필요한 것만** 더한다(지금 「激光 → 雷射」 하나).
+  - 예(시험 · 실물): 激光治疗 → zh-Hant 「雷射治療」 · yue 「激光治療」 / 离子导入 → 「離子導入」 / 特色项目 → 「特色項目」 / 软件 → 「軟件」.
 - TTS 로 보내는 번역문은 **간체 그대로**(번체를 넣으면 발음이 깨진다 · D-17).
-- `s2twp` 는 화자가 한 원문 자막에도 적용된다 — 대만 화자가 「激光」이라 말해도 「鐳射」로 보인다(의도 · fix-phone3 보고 1).
-- **현지 별명은 라이브러리로 만들지 않는다**(D-32) — 美國音波 · 鳳凰電波 같은 기기 현지 이름은 OpenCC 가 못 바꾼다. **시드 zh-Hant entry 의 `name` · `aliases` 에 사람이 넣는다**(0.4.0 · D-33 — 0.3.0 시점 D-32 의 「Procedure Hub 에 추가」는 D-33 으로 시드 편집이 됐다). 우리 코드에 별칭 표를 짓지 않는다.
-- 메뉴의 0.3.0 런타임 `s2twp` 변환(zh 열 → zh-Hant 표시)은 **없어진다** — 변환은 가져오기 때 한 번(§4.8)이고, 그 뒤 사람이 고친 값을 런타임이 다시 바꾸지 않는다.
-- 의존성: `opencc-python-reimplemented`(원형 버전) — `s2tw` · `s2twp`(자막) · `t2s`(context) · 가져오기 스크립트의 `s2twp`(zh-Hant 초안).
+- 변환은 화자가 한 원문 자막에도 적용된다 — 대만 화자가 「激光」이라 말해도 「雷射」로 보인다.
+- **현지 별명은 라이브러리로 만들지 않는다**(D-32 의 이 부분은 D-35 에서도 유지) — 美國音波 · 鳳凰電波 같은 기기 현지 이름은 OpenCC 가 못 바꾼다. **시드 zh-Hant entry 의 `name` · `aliases`** 에 넣는다(§4.2.1). 우리 코드에 별칭 표를 짓지 않는다(`DISPLAY_REPLACE` 는 일반 낱말 표기 차이만).
+- 의존성: `opencc-python-reimplemented`(원형 버전) — `s2tw`(자막 · 가져오기 초안) · `t2s`(context).
 
 ### 5.7 TTS 입력 괄호 제거 (0.3.0 — D-19)
 
@@ -528,12 +566,26 @@ cd back && uv run python scripts/import_glossary.py [--url <matrix 주소>] [--o
 
 - 시험(§9.1 「통역」): 반각 · 전각 · 섞은 짝 · 겹친 괄호 · 짝 없는 괄호 · 앞 공백 · 다 빠져 빈 문자열 → TTS 안 보냄 · 같은 발화의 caption 은 괄호 그대로 · `yue` 는 간체 TTS 입력에서 뺌.
 
+### 5.8 Soniox keepalive · TTS 오류 처리 (0.5.0 — 운영 장애 2026-10-27 02:07)
+
+**장애**: 운영 통역(zh-Hant)이 연결 50초 뒤 `error soniox_unavailable` 로 끊겼다(로그 `error_type=invalid_request` · 설정 확인 2초 창 밖 · context 크기와 무관). 원인은 원형에서 복사한 **TTS keepalive 메시지 `{}`** — Soniox TTS 는 이것을 stream_id 없는 스트림 메시지로 보고 `{"stream_id": "", "error_type": "invalid_request", "error_message": "Missing stream_id"}` 를 돌려준다(실물 확인). Soniox 는 검증 오류 뒤에도 연결을 유지하지만(공식 `api-reference/tts/websocket-api` 「Error handling」), back `speak()` 는 TTS 소켓을 발화 때만 읽고 stream_id 를 보기 전에 오류를 올렸다 → keepalive 오류가 소켓에 쌓여 있다가 **다음 발화 TTS 에서 터져 세션 전체가 끝났다**(첫 TTS 뒤 20초 넘게 쉬었다 다시 말하는 모든 세션 · 언어 무관). 실물 재현(§9.3 ⑱)으로 확정.
+
+| 항목 | 계약 |
+|---|---|
+| STT keepalive | `{"type": "keepalive"}`(공식 형식 · 원형 그대로) — 멈춤 · 말 없음 동안 |
+| **TTS keepalive** | **`{"keep_alive": true}`**(공식 `tts/rt/connection-keepalive`) — `{}` 금지. 주기는 원형 그대로(20초 넘게 쉬면 10초마다) |
+| TTS `speak(stream_id)` | 받은 메시지의 `stream_id` 가 **자기 것도 아니고 없음도 아니면**(다른 스트림 · 빈 문자열 `""`) **그 발화를 끊지 않는다** — 오류면 경고 로그 1줄(`soniox tts stray error: error_type · request_id · message`) 뒤 계속 읽는다. 자기 stream_id(또는 stream_id 없음)의 오류는 지금처럼 `SonioxError` 로 올린다 → `soniox_unavailable`(§5.4) |
+| `SonioxError.channel` | `"stt"` · `"tts"` — 어느 연결의 오류인지 |
+| 오류 로그 | `soniox error: channel · error_type · request_id · message · lang · paused · speaking · queue · stt_last=<audio·finalize·keepalive·end·config> N초 전 · tts_last=<text·keepalive·none> N초 전 [len · lang]` — **종류 · 길이 · 시각만**(키 · 발화 원문 · 번역문 0) |
+
+- 원형(cc-prototype `procedure/back` `soniox.py`)에도 같은 `{}` 가 있을 수 있다 — 이 레포 범위 밖(DEC Scope Out 「ccc 변경」).
+
 ## 6. 화면 공통 — D-07 · D-10 · D-20 · D-21 · D-30
 
 > 0.3.0 — **화면 정본 = 확정 시안**(D-20). 화면마다 근거 시안 파일을 단다(`design/project/<파일>`). 시안의 마크업은 medikit JS 없이 medikit 1.4.0 클래스 값을 옮긴 것이다(`design/README.md`) — **구현은 진짜 medikit 컴포넌트**를 쓰고 크기 · 색 · 글자 클래스를 시안 값에 맞춘다.
 
-- 화면은 **둘**: `/login`(데모 모드면 단추 하나 · §7.1 · D-30) · `/`(통역). 용어집은 통역 화면 위의 모달(별도 경로 아님 · 기본값). (D-07)
-- 시안 화면은 **19개**(0.4.0 — r3 · `Login-Demo` · `Language-List` 추가 · `State-5-Paused` 에 초기화). 시안보다 뒤에 정한 DEC(D-22 ~ D-25 · D-29 · D-31)가 시안과 다르면 DEC 를 따른다.
+- 화면은 **둘**: `/login`(데모 모드면 단추 하나 · §7.1 · D-30) · `/`(통역). (D-07) 0.5.0 — 용어집 모달은 없다(D-37 · §7.6).
+- 시안 화면은 **21개**(0.4.0 — r3 · `Login-Demo` · `Language-List` 추가 · `State-5-Paused` 에 초기화 / 0.5.0 — r7 `Mode-Auto-Idle` · `PTT-Ready` · `PTT-Pressed` 추가 · r8 `Glossary` 삭제 · `Menu` 로그아웃만). 시안보다 뒤에 정한 DEC(D-22 ~ D-25 · D-29 · D-31)가 시안과 다르면 DEC 를 따른다.
 - 토큰이 없거나 만료면 `/` → `/login`. 로그인 성공이면 `/login` → `/`.
 - 세로 화면 기준(기기 하나를 가운데 두고 양쪽이 본다 — 입력 3). 가로 고정은 하지 않는다. 시안 크기 390 × 844 — 다른 폭에서는 좌우 16px 여백을 두고 늘어난다.
 - **테마(D-20)**: 루트 `<html lang="ko" data-product="ceramique">` + `app/styles/ceramique-theme.css`(cc-prototype `origin/main:procedure/front/app/styles/ceramique-theme.css` 를 **복사** — 시안 `project/ceramique-theme.css` 와 같은 내용) → `--ms-primary: #2498bd` · `--ms-primary-50/100: #e9f5f8` · `-300: #d3f4fe` · `-500: #b2e3f2`. import 순서는 원형 `procedure/front/app/layout.tsx` 그대로(medikit styles 뒤). 0.2.0 의 「`data-product` 두지 않음 · medikit 기본 파랑」은 **폐기**.
@@ -543,7 +595,7 @@ cd back && uv run python scripts/import_glossary.py [--url <matrix 주소>] [--o
 - 문구는 한국어. 단, 외국어 쪽 고정 문구(원 위 안내 · 오버레이 위 절반 · 「↓ 최신」)는 고른 언어로(§7.3 · §7.5) — 기본값.
 - 아이콘: medikit 에 없는 것(햄버거 · 회전 · 원 안 글리프 · 말풍선 · 눈 · 시계 · 손가락)은 **시안의 인라인 SVG 를 그대로**(24 · stroke 1.8 등 시안 값). medikit 에 있는 것은 medikit(`CloseIcon` · `ErrorIcon`).
 
-## 7. 화면 — D-07 · D-08 · D-09 · D-16 · D-20 ~ D-25 · D-27 · D-29 · D-30 · D-31
+## 7. 화면 — D-07 · D-08 · D-09 · D-16 · D-20 ~ D-25 · D-27 · D-29 · D-30 · D-31 · D-34 · D-36 · D-37
 
 ### 7.1 로그인 (D-06 · D-07 · D-21 · D-27 · D-30) — 시안 `Main.dc.html` · `Login-Error.dc.html` · `Login-Locked.dc.html` · `Login-Demo.dc.html`
 
@@ -586,7 +638,8 @@ cd back && uv run python scripts/import_glossary.py [--url <matrix 주소>] [--o
 │ ║  말풍선(외국어)                  ║ │    안내 줄 없음(원 위로 옮김 — D-22)
 │ ╚════════════════════════════════╝ │
 │      ● 고른 언어 안내 (180°)        │ ← 가운데 줄 140px 고정(D-23) — 원 위 안내 20px(외국어 영역과 같은 방향)
-│        ( 원 · 92 상자 )  [초기화]   │    원 기본 64 · 듣는 중 최대 88 · 「초기화」는 멈춤(#5)에서만(D-29)
+│ [자동 듣기 ]( 원 · 92 상자 )[초기화] │    원 기본 64 · 듣는 중 최대 88 · 「초기화」는 멈춤 · 누르고 말하기 안 누름에서만(D-29 · D-36)
+│ [누르고 말하기]                      │    원 왼쪽 = 듣기 방식 전환(D-36 · §7.7)
 │          한국어 안내               │    원 아래 안내 20px · 13px
 │ ╔══ 한국어 영역 ═══════════════════╗ │
 │ ║  말풍선(한국어)                  ║ │    안내 줄 없음 · 자막만
@@ -605,9 +658,9 @@ cd back && uv run python scripts/import_glossary.py [--url <matrix 주소>] [--o
   - 키보드 · 접근성: `role=combobox` · `listbox` · `option` · `aria-activedescendant` · 단추 ↓ · Enter · Space 열기 · ↑ ↓ · Home · End · Enter 고르기 · Esc(단추로 포커스) · Tab 닫기 · 바깥 누름 닫힘
 - 언어를 바꾸면 지금 WS 에 `stop` → 닫고 → 새 `start` 로 다시 연다(원형 front 와 같음) → 「연결 중」 → 「대기」(멈춤이었어도 다시 듣기 — 고르는 동작이 사용자 동작이라 오디오도 깨어 있다). 자막은 지운다(기본값 — 대화 상대가 바뀐 것으로 본다).
 
-### 7.3 가운데 원 — 상태표 (D-09 · D-20 · D-21 · D-22 · D-23 · D-29) — 시안 `State-1-Start` ~ `State-8-Idle.dc.html`(r3)
+### 7.3 가운데 원 — 상태표 (D-09 · D-20 · D-21 · D-22 · D-23 · D-29 · D-34 · D-36) — 시안 `State-1-Start` ~ `State-8-Idle.dc.html`(r3)
 
-front 는 아래 상태 중 하나다. 판정은 **위에서부터**(먼저 맞는 것). (0.2.0 — FAIL-2 · WARN-1 · WARN-4 · WARN-6 / 0.3.0 — 색 · 글리프 · 링 · 색 점 / **0.4.0 — 크기 D-23 · 안내 위치 D-22 · 초기화 D-29**)
+front 는 아래 상태 중 하나다. 판정은 **위에서부터**(먼저 맞는 것). (0.2.0 — FAIL-2 · WARN-1 · WARN-4 · WARN-6 / 0.3.0 — 색 · 글리프 · 링 · 색 점 / 0.4.0 — 크기 D-23 · 안내 위치 D-22 · 초기화 D-29 / **0.5.0 — #4′ 누르고 말하세요 D-36**)
 
 | # | 상태 | 언제(판정) | WS | 원(클래스 · 크기 · 글리프 · 링) | **원 위** 안내(고른 언어 · 앞 색 점 · D-22) | **원 아래** 안내(한국어) | 누르면 | 시안 |
 |---|---|---|---|---|---|---|---|---|
@@ -615,14 +668,15 @@ front 는 아래 상태 중 하나다. 판정은 **위에서부터**(먼저 맞�
 | 2 | 오류 | `error` 수신 · WS 끊김 · 마이크 거부 | 닫힘 | `bg-red text-ms-white` **56** · 「!」 · 링 5px `rgba(255,78,81,.15)` · 92 상자 없이 64 줄 | 점 대신 **`bg-red-100` 박스**(둥글기 8) 안에 `ErrorIcon` 14 + 짧은 오류 `text-red`(예 en 「Connection error」) | 오류 문구(서버 `message` · 끊김 문구) + **[다시 연결]**(medikit `Button` solid · ss · round · 다시 아이콘) | [다시 연결] = 새 WS · `start` → 3(원 누름은 아무것도 안 함) | `State-2-Error` |
 | 3 | 연결 중 | 새 WS ~ `ready` 전 | 여는 중 | `bg-ms-gray-300 text-ms-gray-700` 64 · 점 셋 6px · 링 없음 | 점 `bg-ms-gray-600` · 그 언어로(예 en 「Connecting…」) | 「연결 중…」 | 아무것도 안 함 | `State-3-Connecting` |
 | 4 | **〈언어〉로 출력 중** | 출력 구간(§7.4 — 표시 시점은 실제 재생 기준 · WARN-4) — **멈춤 중이어도 이 상태**(`pause` 의 `finalize` 로 확정된 발화의 TTS · D-09) | 열림 | 외국어로 출력 = `bg-purple` · 한국어로 출력 = `bg-primary` · `text-ms-white` **64 고정** · 스피커 글리프 · **링 두 겹**(7px 18% + 15px 8% — 맥박) | 점 = 출력 언어 색(외국어 `bg-purple` · 한국어 `bg-primary`) · 그 언어로(예 en 「Speaking in English」 · 「Speaking in Korean」) | 「〈한국어 이름〉로 출력 중」 — 예 「영어로 출력 중」 · 「대만어로 출력 중」 · 「한국어로 출력 중」 | 멈춤 중이 아니면 `pause` — **지금 재생을 멈추고 큐를 비우고 남은 조각을 버린 뒤**(§7.4 FAIL-1) `pause` 전송 → 5. 멈춤 중이면 `resume` → 8 | `State-4a-Speaking-Foreign` · `State-4b-Speaking-Korean` |
-| 5 | 멈춤 | `pause` 를 보낸 뒤 · 출력 중 아님 | **열림** | `bg-ms-gray-300 text-ms-gray-700` 64 · 「‖」 · 링 없음 · **원 오른쪽에 「초기화」**(아래) | 점 `bg-ms-gray-600` · 그 언어로(예 en 「Paused」) | 「멈춤 · 원을 눌러 다시 듣기」 | `resume` → 8(또는 6 · 7) | `State-5-Paused` |
+| **4′** | **누르고 말하세요**(0.5.0 · D-36) | 듣기 방식 = 누르고 말하기(§7.7) · 원을 **누르고 있지 않음** · 출력 중 아님 | **열림**(`pause` 상태) | 시안 `PTT-Ready`: **64 `bg-ms-white` + 2px `border-ms-gray-500`** · 마이크 22(`text-ms-gray-700`) · 링 없음 — 「눌러야 듣는다」를 대기(회색으로 채운 원)와 구분 · 원 오른쪽 「초기화」 | 점 `bg-ms-gray-600` · 그 언어로(예 en 「Hold to speak」 · §7.7) | 「누르고 말하세요」 | **누르고 있는 동안** 듣기(§7.7) — 누름 = `resume` → 듣는 중(6 · 7 · 8 모양) · 뗌 = `pause` → 4′ | `PTT-Ready` |
+| 5 | 멈춤 | `pause` 를 보낸 뒤 · 출력 중 아님 · 자동 듣기 모드 | **열림** | `bg-ms-gray-300 text-ms-gray-700` 64 · 「‖」 · 링 없음 · **원 오른쪽에 「초기화」**(아래) | 점 `bg-ms-gray-600` · 그 언어로(예 en 「Paused」) | 「멈춤 · 원을 눌러 다시 듣기」 | `resume` → 8(또는 6 · 7) | `State-5-Paused` |
 | 6 | **한국어 듣는 중** | 열린(`final:false`) caption 의 `side=me` | 열림 | `bg-primary text-ms-white` · **음량에 따라 64 ~ 88** · 마이크 글리프 · 링 7px 18% | 점 `bg-primary` · 그 언어로 「상대(한국어)를 듣는 중」(예 en 「Listening to Korean…」) — **0.4.0: 0.3.0 의 「안내 줄 없음」을 D-22 「상태 8개 전부」가 이긴다** | 「한국어 듣는 중」 | `pause` → 5 | `State-6-Listening-Korean` |
 | 7 | **외국어 듣는 중** | 열린 caption 의 `side=them` | 열림 | `bg-purple text-ms-white` · 음량에 따라 64 ~ 88 · 마이크 · 링 7px 18% | 점 `bg-purple` · 그 언어로(예 en 「Listening」) | 「〈한국어 이름〉 듣는 중」 | `pause` → 5 | `State-7-Listening-Foreign` · `Captions` |
 | 8 | **대기** | `ready` 뒤 · 위 어느 것도 아님 | 열림 | `bg-ms-gray-400 text-ms-gray-700` **64** · 마이크 · 링 7px `rgba(214,214,214,.35)` · 음량 반응 작게(최대 1.1배 ≈ 70) | 점 `bg-purple`(외국인이 말할 차례도 됨) · 그 언어로(예 en 「Please speak」) | 「말씀하세요」 | `pause` → 5 | `State-8-Idle` |
 
 - **원 크기(0.4.0 — D-23 · 시안 r3)**: 기본 **64** · 오류 **56** · 듣는 중 **64 ~ 88**(음량 반응 최대 1.375배 · 92 상자를 넘지 않는다) · 대기 64 ~ 약 70. 링은 비례로 줄였다(7 · 15 · 5px). 글리프 = 시안 인라인 SVG(마이크 19 ~ 22 · 스피커 24 · ‖ 22 · 「!」 24 · 점 셋 6px). 0.3.0 의 96 · 88 · 100 · 96 ~ 144 는 폐기.
 - **원 위아래 안내(0.4.0 — D-22 · D-23)**: 원을 사이에 두고 **두 언어 안내가 마주 본다** — 원 위 = 고른 언어(외국어 영역과 같은 방향 · 180°) · 원 아래 = 한국어(늘 바로). 높이 20px 씩 · 글자 13px — medikit 에 13px typo 토큰이 없어 `text-typo-caption-md-500/600` + `!text-[13px]`(`!` 없이는 토큰 12px 가 이긴다 — 계산값 확인 · wp6-fe 보고). 원 위 = `text-ms-gray-700`(오류는 `text-red`) · 원 아래 = `text-ms-gray-800`. 앞 색 점 6px. **외국어 카드 안의 안내 줄은 없앴다**(두 번 보이지 않게 · D-22). 시작 전(#1)은 오버레이가 두 안내를 대신한다.
-- **초기화(0.4.0 — D-29)**: **멈춤(#5)에서만** 원 상자 오른쪽 12px · 세로 가운데에 「초기화」 단추(medikit `Button` outlined gray · ss · round · 한국어만 · 가운데 줄은 안 뒤집힘 — 상담사 쪽). 출력 중(#4 — 멈춤 중 출력 포함) · 오류(#2)에서는 안 보인다. 누르면 **확인 창 없이** ① 재생 중 · 대기 중 TTS 를 버린다(재생 큐를 비우고 다음 `audio_start` 까지 오는 조각은 버림 — §7.4 FAIL-1 과 같은 길) ② 두 영역 말풍선을 모두 지운다 ③ **멈춤 · 고른 언어 · WS 는 그대로** — 원을 다시 누르면(`resume`) 빈 화면에서 새 대화. back 에 보내는 메시지는 없다(WS 계약 그대로). 시안 `State-5-Paused`(r3) 의 단추 모양(되돌리기 아이콘 · outlined gray s)은 참고 — 구현은 medikit ss round(fix-phone2 · 시안보다 먼저 들어감 · 값 차이는 E2E 피드백으로).
+- **초기화(0.4.0 — D-29)**: **멈춤(#5) · 누르고 말하세요(#4′ · 0.5.0)에서만** 원 상자 오른쪽 12px · 세로 가운데에 「초기화」 단추(0.5.0 — 시안 r7 모양: 흰 바탕 · `border-ms-gray-300` · h33 · 둥글기 6 · `text-typo-body-500` · 되돌리기 아이콘 · 한국어만 · 가운데 줄은 안 뒤집힘 — 상담사 쪽). 출력 중(#4 — 멈춤 중 출력 포함) · 오류(#2)에서는 안 보인다. 누르면 **확인 창 없이** ① 재생 중 · 대기 중 TTS 를 버린다(재생 큐를 비우고 다음 `audio_start` 까지 오는 조각은 버림 — §7.4 FAIL-1 과 같은 길) ② 두 영역 말풍선을 모두 지운다 ③ **멈춤 · 고른 언어 · WS 는 그대로** — 원을 다시 누르면(`resume`) 빈 화면에서 새 대화. back 에 보내는 메시지는 없다(WS 계약 그대로). 0.4.x 의 medikit ss round 모양은 0.5.0 에서 시안 r7 모양으로 바꿨다(#5 · #4′ 같은 모양 · d36-fe 보고).
 - **원 안 글리프 · 원 위 안내 앞 색 점 · 링**은 시안에서 더한 요소 — **채택**(D-21).
 - **시작 전 오버레이 = 언어 고르기(0.4.1 — D-34)**: 「탭해서 통역 시작」 대신 **언어 단추 7개** — **누르는 것이 시작**이다(언어를 고르지 않고 시작하는 길이 없다).
   - 자리: 화면 루트 `absolute inset-0` · `bg-ms-overlay` — **헤더(햄버거)까지 덮는다**(0.3.0 WARN-3 그대로 — 시작 전에는 메뉴를 열 수 없다).
@@ -632,12 +686,13 @@ front 는 아래 상태 중 하나다. 판정은 **위에서부터**(먼저 맞�
   - 누르면 = 사용자 동작 안에서 `AudioContext` 깨우기 · 마이크 · WS · `start{lang}`(§7.4 「깨우는 곳」 — 0.4.1: 오버레이의 언어 단추 · [다시 연결] · 언어 고르기). 고른 언어는 드롭다운 값 · `localStorage` 와 같아진다.
   - **시작 뒤 언어 바꿈은 지금 드롭다운**(§7.2 `LangSelect`) — 그대로.
   - 백그라운드 복귀(§8)도 이 오버레이로 — 다시 언어를 누른다(마지막 언어 표시).
+- **#4′ 와 #5 는 모드로 가른다**: 누르고 말하기 모드에서 손을 뗀 상태는 늘 #4′(WS 는 `pause` 지만 「멈춤」 문구가 아니라 「누르고 말하세요」) · #5 는 자동 듣기 모드에서 원을 눌러 멈춘 것. 출력 중(#4)은 둘보다 위.
 - **멈춤(5)과 시작 전(1)은 다른 상태다**: 5 는 WS 가 열린 채 마이크만 멈춘 것(누르면 `resume`), 1 은 WS 가 없는 것(오버레이 언어 단추로 새로 연다 · D-34). 백그라운드 복귀는 1 이다.
 - 멈춤 여부는 상태와 따로 들고 있다(판정 입력). 흔한 경로: 말하는 중(6 · 7)에 원을 누름 → `pause` → 5 → back 이 `finalize` 로 그 발화를 확정해 번역 TTS 를 보냄 → `audio_start` → **4(멈춤 중이어도 출력 중 안내 · D-09)** → 재생 끝 + 400 ms → 5. 원형 front 는 `pause` 때 그때까지의 재생만 멈추고(`stopPlayback`), 그 뒤에 온 `audio_start` 는 재생한다(`_archive/cc/front/lib/interpret.ts`).
-- 원 단추 `aria-label` 「멈춤」(4 · 6 · 7 · 8) · 「다시 듣기」(5).
+- 원 단추 `aria-label` 「멈춤」(4 · 6 · 7 · 8) · 「다시 듣기」(5) · 누르고 말하기 모드는 「누르고 있는 동안 말하기」(§7.7).
 - **음량 반응**: 마이크 입력을 Web Audio `AnalyserNode` 로 재서(RMS) 원 크기를 매끄럽게 바꾼다(D-09) — 듣는 중 64 ~ 88 · 대기는 64 에서 작게(최대 1.1배 · 기본값). 출력 중에는 마이크를 안 보내므로 음량 반응을 끈다(64 고정 · 링 두 겹 맥박만).
-- 외국어 안내 문구는 7개 언어 × {시작 전 · 오류 · 연결 중 · 출력 중(외국어 · 한국어) · 멈춤 · 외국어 듣는 중 · **한국어 듣는 중** · 대기 · **「↓ 최신」 라벨**(§7.5)} 고정 표를 front 상수(`lib/langs.ts` `FOREIGN_PHRASES`)로 둔다. 값은 frontend 가 정했다 — 원어민 검수 없음(§10 OQ-006 · PoC 범위). en 값은 시안 문구와 같다. zh-Hant 는 번체(대만식 「韓語」) · yue 는 번체(「韓文」) · 둘 다 출력 언어 이름은 「中文」(TTS 가 만다린).
-- **원을 누르면 멈춤 ↔ 다시 듣기**(`pause`/`resume` — WS 가 열린 4 ~ 8 에서만) · **시작은 오버레이의 언어 단추**(1 · D-34) — 원 누름과 나눴다(§10 OQ-005).
+- 외국어 안내 문구는 7개 언어 × {시작 전 · 오류 · 연결 중 · 출력 중(외국어 · 한국어) · 멈춤 · 외국어 듣는 중 · **한국어 듣는 중** · 대기 · **「↓ 최신」 라벨**(§7.5) · **누르고 말하세요**(0.5.0 · §7.7)} 고정 표를 front 상수(`lib/langs.ts` `FOREIGN_PHRASES`)로 둔다. 값은 frontend 가 정했다 — 원어민 검수 없음(§10 OQ-006 · PoC 범위). en 값은 시안 문구와 같다. zh-Hant 는 번체(대만식 「韓語」) · yue 는 번체(「韓文」) · 둘 다 출력 언어 이름은 「中文」(TTS 가 만다린).
+- **원을 누르면 멈춤 ↔ 다시 듣기**(`pause`/`resume` — 자동 듣기 모드 · WS 가 열린 4 ~ 8 에서만) · **시작은 오버레이의 언어 단추**(1 · D-34) — 원 누름과 나눴다. 누르고 말하기 모드의 원은 §7.7.
 
 ### 7.4 오디오 — 원형 `lib/interpret.ts` 그대로
 
@@ -647,6 +702,7 @@ front 는 아래 상태 중 하나다. 판정은 **위에서부터**(먼저 맞�
 - **반이중**(D-03 · 개념 half-duplex-echo-suppression): `audio_start` 를 받은 순간부터 마이크 PCM 을 보내지 않는다(트랙은 열어 둔다) · 마지막 재생 조각 `onended` + **400 ms** 뒤 재개 · 그 사이 새 `audio_start` 가 오면 재개 취소 · 멈춤 · 닫기 · 오류 · 언어 바꿈은 재생 큐를 비운다. 이 구간이 §7.3 「출력 중」이다.
 - **멈춘 뒤 남은 조각은 버린다(0.3.0 — 리뷰 FAIL-1)**: back 은 `pause` 와 상관없이 그 발화의 남은 음성 조각과 `audio_end` 를 끝까지 보낸다(원형 `_tts_worker`). 그래서 front 는 재생 큐를 비울 때(멈춤 · 원 누름으로 `pause` · 닫기 · 오류 · 언어 바꿈 · **초기화**(0.4.0 · D-29 — `clearPlayback()`)) **「버림」 표시를 세우고, 다음 `audio_start` 를 받을 때까지 오는 바이너리 조각을 재생하지 않고 버린다**. `audio_end` 는 받아서 무시. 다음 `audio_start` 가 오면 표시를 풀고 평소대로(그 발화는 재생 · 반이중 막음 시작). 버리는 동안 반이중 게이트(`speaking`)는 **열지 않은 상태 그대로** — 버린 조각이 송신 재개 타이머를 건드리지 않는다. back 은 바꾸지 않는다(원형 유지).
 - **출력 언어 표시 시점(0.3.0 — 리뷰 WARN-4)**: 「〈언어〉로 출력 중」의 언어 · 원 색 · 원 위 안내 점 색(0.4.0 — D-22)은 **그 발화의 첫 조각이 실제로 재생되기 시작하는 시각**(재생 스케줄 시각 — 이어 붙이는 재생의 `nextTime`)에 바꾼다. `audio_start` 를 받은 시각이 아니다 — 앞 발화가 아직 재생 중이면 앞 발화 재생이 끝나 다음 발화가 시작될 때 바뀐다. **마이크 막음(반이중)은 그대로 `audio_start` 를 받은 순간부터**(표시만 재생 기준으로 옮긴다).
+- **누르고 말하기(0.5.0 · D-36)**: 반이중은 그대로 — 누르고 있는 중에 TTS 가 오면(`audio_start`) 송신이 막힌다. **TTS 재생 중에 원을 누르면 재생을 멈추고 큐를 비운 뒤**(`clearPlayback` · 버림 표시 — 위 FAIL-1 과 같은 길) `resume`. 반이중 게이트 기준 「출력 중」(`outputting`)은 표시보다 먼저 참이다(`audio_start` 받은 순간부터).
 - iOS Safari: `AudioContext` 는 사용자 동작 안에서 `resume()` 해야 한다 — 깨우는 곳은 **오버레이 언어 단추(D-34) · [다시 연결] · 언어 고르기** 셋(모두 사용자 동작). 로그인 단추에 기대지 않는다(새로고침 · 토큰이 살아 있으면 로그인을 건너뛰므로). `AudioContext.state` 가 `suspended` 로 돌아가 있으면 다음 사용자 동작에서 다시 `resume()`(0.2.0 — WARN-6 · 실기기 확인 §9.5).
 
 ### 7.5 자막 — 말풍선 · 자동 스크롤 (D-16 · D-21 · D-24 · D-25) — 시안 `Captions.dc.html`(r3)
@@ -686,24 +742,36 @@ front 는 아래 상태 중 하나다. 판정은 **위에서부터**(먼저 맞�
 
 - 영역별 최대 말풍선 수는 두지 않는다 — 화면을 떠나면(로그아웃 · 새로고침) 지운다(Scope Out 기록 저장). 「초기화」(§7.3 · D-29)로도 지운다.
 
-### 7.6 햄버거 · 용어집 모달 (D-07 · D-13 · D-21 · D-28 · D-33) — 시안 `Menu.dc.html` · `Glossary.dc.html`
+### 7.6 햄버거 메뉴 — 로그아웃만 (D-07 · D-21 · D-37) — 시안 `Menu.dc.html`(r8)
 
-- 햄버거(헤더 왼쪽 · 인라인 SVG) → medikit **`Popover`**(`PopoverTrigger` · `PopoverContent`) — 헤더 아래 왼쪽(시안: 위 58 · 왼쪽 8) · 폭 196 · 둥글기 10 · 안쪽 6 · 그림자 `shadow-pop-over-more`. 안에 항목 두 개(h44 · 둥글기 6 · 아이콘 + `text-typo-heading-sm-500`): **용어집**(`text-ms-gray-800`) · 구분선(`bg-ms-gray-200` 1px) · **로그아웃**(**`text-red`** — 시안에서 더한 요소 · 채택). medikit `Menu` 는 경로 기반 옆 메뉴라 쓰지 않는다(0.2.0 — WARN-3).
+- 햄버거(헤더 왼쪽 · 인라인 SVG) → medikit **`Popover`**(`PopoverTrigger` · `PopoverContent`) — 헤더 아래 왼쪽(시안: 위 58 · 왼쪽 8) · 폭 196 · 둥글기 10 · 안쪽 6 · 그림자 `shadow-pop-over-more`. 안에 항목 **하나 — 로그아웃**(h44 · 둥글기 6 · 아이콘 + `text-typo-heading-sm-500` · **`text-red`** — 시안에서 더한 요소 · 채택). medikit `Menu` 는 경로 기반 옆 메뉴라 쓰지 않는다(0.2.0 — WARN-3).
 - 로그아웃 = §3.3 순서.
-- 용어집 = medikit **`BaseModal`**(`isOpen` · `title` · `onClose` · `hasCloseButton`) — 바탕 `bg-ms-overlay` · 모달 폭 가득(최대 560) · 높이 720(화면이 낮으면 줄어듦) · 둥글기 14. 머리: 제목 「용어집 · 〈고른 언어 **한국어 이름**〉」(예 「용어집 · 대만어」 · D-28) `text-typo-title-sm-600` + **부제 「〈count〉개 · 읽기 전용」** `text-typo-caption-md-400 text-ms-gray-700`(`count` = §4.7 응답 — 그 언어 시술 수) · 닫기 `CloseIcon`. 부제를 넣으려고 이 모달만 BaseModal 머리를 숨기고 몸에 그린다(`medikit-patches.css` `[BaseModal-1]`).
-- 몸: medikit `Table` 세 칸 **카테고리(34%) · 한국어(30%) · 〈고른 언어 한국어 이름〉(36%)**(D-13) — 머리 `bg-ms-gray-200` `text-typo-caption-md-600 text-ms-gray-700` · 카테고리 `text-typo-caption-md-400 text-ms-gray-700` · 한국어 `text-typo-body-500 text-ms-gray-800` · 표기 `text-typo-body-400 text-ms-gray-800` · 몸만 스크롤. `GET /api/glossary?lang=<지금 고른 언어>` 를 열 때마다 부른다. 검색 · 편집 없음.
-- **별칭 · 검수 표시(0.4.0 — D-33 · 시안 없음 · 이 문서 기본값)** — 칸 수 · 폭은 그대로 두고 칸 안에 줄을 더한다:
+- **용어집 항목 · 구분선 · 용어집 모달(`GlossaryModal` · `BaseModal` · `Table` · 별칭 줄 · 「검수 전」 꼬리표 · `medikit-patches.css` `[BaseModal-1]`)은 지웠다**(0.5.0 · D-37 — D-13 뒤집음 · 시안 r8 에서 `Glossary` 화면 삭제). front 는 `/api/glossary` 를 부르지 않고 용어집 타입 · 아이콘(`BookIcon`)도 없다.
+- 메뉴는 뒤집히지 않는다(사용자 쪽 조작).
 
-| 칸 | 첫 줄(지금 그대로) | 더하는 것 |
-|---|---|---|
-| 한국어 | `ko`(대표명) | `koAliases` 가 있으면 아래 줄에 「· 」로 이어 `text-typo-caption-md-400 text-ms-gray-600` |
-| 〈고른 언어〉 | `term`(현지명) | `aliases` 가 있으면 아래 줄에 「· 」로 이어 `text-typo-caption-md-400 text-ms-gray-600` · **`reviewed: false` 면 현지명 뒤에 「검수 전」 꼬리표**(`bg-ms-gray-200 text-ms-gray-700 text-typo-caption-md-500` · 둥글기 4 · 안쪽 1/6) |
+### 7.7 듣기 방식 — 자동 듣기 / 누르고 말하기 (0.5.0 — D-36) — 시안 `Mode-Auto-Idle` · `PTT-Ready` · `PTT-Pressed`(r7)
 
-  - 꼬리표 문구는 한국어 「검수 전」 하나(메뉴는 상담사 쪽 · 뒤집히지 않음). 클래스는 이미 쓰는 medikit 토큰만(§9.2 대조). 시안이 생기면 시안을 따른다.
-- 0.3.0 의 `loaded=false` 문구(「용어집을 불러오지 못했어요 — 용어집 없이 통역 중이에요」)는 **닿지 않는 경로**가 된다(§4.4 — 시드가 깨지면 back 이 안 뜬다). 지우거나 남겨 두는 것은 frontend 판단(계약 영향 없음). 요청 실패(네트워크 · 401 아닌 오류)는 지금처럼 한 줄 `text-red`.
-- 메뉴 · 모달은 뒤집히지 않는다(사용자 쪽 조작).
+> 주변 소리(노래 등)가 계속 입력되는 자리에서 쓰려고 — 원을 누르고 있는 동안만 마이크를 보낸다. **back 무변경 · WS 메시지 그대로**(누름 = `resume` · 뗌 = `pause` → back `finalize`).
+
+| 항목 | 계약 |
+|---|---|
+| 전환 | 원 **왼쪽** 세로 세그먼트 「자동 듣기 / 누르고 말하기」(`ModeToggle`) — 트랙 `bg-ms-gray-200` · 폭 104 · 둥글기 8 · 안쪽 2 · **칸 높이 44**(누르는 영역 · 코디 처분 — 시안 r7 처음 28 → 44) · 고른 칸 `bg-ms-white text-ms-gray-800 text-typo-caption-md-600` + 그림자 `0 1px 3px rgba(0,0,0,.08)` · 안 고른 칸 투명 `text-ms-gray-700 text-typo-caption-md-500` · `role=radiogroup` · `radio`. 한국어만 · 가운데 줄이라 회전 없음. 「초기화」(원 오른쪽)와 겹치지 않는다 |
+| 기억 | `localStorage` 키 `interpret.mode` = `auto` · `ptt` · **처음은 `auto`**(지금과 같음) |
+| 자동 듣기 | 지금 그대로(§7.3 · 원 누름 = 멈춤 ↔ 다시 듣기) — 시안 `Mode-Auto-Idle` |
+| 누르고 말하기 — 시작 | `ready` 뒤 바로 `pause` → #4′(§7.3) |
+| 모드 바꿈 | 자동 → 누르고 말하기 = `pause`(멈춤이 아니었으면) · 누르고 말하기 → 자동 = `resume`(멈춤이었으면). WS 는 그대로 |
+| 누름 | 원을 **누르고 있는 동안** — `pointerdown`(+ pointer capture) = 시작 · `pointerup` · `pointercancel` · `lostpointercapture` · `pointerleave` = 끝 · 키보드 Space · Enter 누름/뗌 · `contextmenu` 막음 · iOS 길게 누름 대비 `touch-none select-none [-webkit-touch-callout:none] [-webkit-user-select:none]`. 원이 가운데라 **상담사 · 손님 누구나 누른다**(화자는 자동 감지 그대로 — `side`) |
+| 누름 동작 | 재생 구간(`outputting`)이면 `clearPlayback()`(재생 멈춤 · 큐 비움 · 버림 표시 — §7.4) → `resume`. 누르는 동안은 듣는 중 그대로(음량 반응 64 → 88 · 화자 색 · 캡션 오기 전은 대기 모양) — 시안 `PTT-Pressed` |
+| 뗌 동작 | `pause` → back 이 말하던 발화를 `finalize` → 번역 · TTS(출력 중 #4) → 끝나면 #4′ |
+| 원 위 안내(고른 언어) | 안 누름 = 「Hold to speak」 류 7개 — en Hold to speak · ja 押しながら話してください · zh 按住说话 · zh-Hant 按住說話 · th กดค้างไว้แล้วพูด · vi Nhấn giữ để nói · yue 㩒住講嘢(design-r7 제안 · 원어민 검수 없음 — OQ-006). 누름 = 듣는 중 문구 그대로 |
+| 원 아래 안내(한국어) | 안 누름 「누르고 말하세요」 · 누름 = 듣는 중 문구 |
+| 그대로인 것 | 초기화(#4′ 에서도 보임) · 자동 스크롤 · 「↓ 최신」 · 반이중 · 언어 바꿈 · 백그라운드 → 시작 전 |
+| 판정 함수 | `lib/view.ts` `CircleInput.ptt` · `holding` → `holdToTalk` · `canReset` · `lib/ptt.ts` `pressDown(session, outputting)` · `pressUp(session)` — 순수 함수(시험 §9.2) |
+
+### 7.8 medikit (D-10 · D-20)
+
 - medikit 은 원형 `procedure/front` 방식으로 붙인다: `tailwind.config.ts` 에 `medikitPreset` + `content` 에 `node_modules/@medisolve-ai/medikit/dist/**/*.js` · `app/layout.tsx` 에서 `pretendard` · `@medisolve-ai/medikit/styles` · `./styles/ceramique-theme.css`(§6) · `./styles/medikit-patches.css` import. 원형 `medikit-patches.css` 의 보정은 **필요한 것만**.
-- 쓴 클래스(시안에서 옮긴 것 · 0.4.0 의 `bg-purple-100` · `text-typo-heading-md-400` · `text-typo-heading-md-500` · `shadow-pop-over` · 꼬리표 클래스 포함)는 빌드 산출 CSS 와 전수 대조한다(§9.2).
+- 쓴 클래스(시안에서 옮긴 것 · 0.4.0 의 `bg-purple-100` · `text-typo-heading-md-400` · `text-typo-heading-md-500` · `shadow-pop-over` · 0.5.0 의 `border-ms-gray-500` · 세그먼트 클래스 포함)는 빌드 산출 CSS 와 전수 대조한다(§9.2). 0.5.0 — 용어집 창 클래스 · `[BaseModal-1]` 보정은 지웠다.
 
 ## 8. PWA — D-02 · D-12
 
@@ -712,11 +780,11 @@ front 는 아래 상태 중 하나다. 판정은 **위에서부터**(먼저 맞�
 | manifest | `app/manifest.ts`(Next.js 메타데이터 라우트) — **`name` 「통키」 · `short_name` 「Tongky」**(0.3.0 — D-21) · 문서 제목(`metadata.title` · `apple-mobile-web-app-title`) 「통키」 · `display: "standalone"` · `orientation: "portrait"` · `start_url: "/"` · `theme_color` · `background_color`(흰색) · 아이콘 192 · 512(+ maskable) · `apple-touch-icon` 180 |
 | 홈 화면 추가 | Android Chrome = 설치 안내(브라우저 기본) · iOS Safari = 공유 → 홈 화면에 추가. 앱 안에 따로 설치 단추는 두지 않는다(기본값) |
 | 서비스 워커 | 앱 껍데기(정적 파일)만 캐시 — `/api/*` · WS 는 캐시하지 않는다. 오프라인이면 「인터넷 연결이 필요해요」 화면(기본값). 라이브러리는 frontend 가 고른다(Next.js 16 호환) |
-| HTTPS | 마이크(`getUserMedia`) · 서비스 워커는 **보안 출처**에서만 된다. 로컬은 `http://localhost:3800`(보안 출처로 취급) · 같은 맥의 브라우저로 확인한다. **휴대폰에서 맥 IP 로 `http://` 접속하면 마이크가 안 된다** → 기기 확인은 배포(HTTPS) 뒤(§9.4 · §10 OQ-007) |
+| HTTPS | 마이크(`getUserMedia`) · 서비스 워커는 **보안 출처**에서만 된다. 로컬은 `http://localhost:3800`(보안 출처로 취급) · 같은 맥의 브라우저로 확인한다. **휴대폰에서 맥 IP 로 `http://` 접속하면 마이크가 안 된다** → 기기 확인은 배포(HTTPS) 뒤(§9.5) |
 | 화면 꺼짐 방지 | 통역 화면에서 `navigator.wakeLock.request("screen")`. 탭이 다시 보이면(`visibilitychange`) 다시 요청. 지원하지 않으면 조용히 넘어간다(기능 감지) — 기본값 |
 | 끊김 · 재연결 | **자동 재연결 없음**. WS 가 끊기거나 `error` 면 「오류」 상태 + [다시 연결](§7.3) — 누르면 새 WS · 새 `start`. 앱이 백그라운드로 가면(`visibilitychange` hidden) `stop` 보내고 닫는다 → 돌아오면 **「시작 전」(§7.3 #1) 오버레이** — 언어 단추를 누르면 새 WS · 새 `start`(0.4.1 · D-34)(0.2.0 — WARN-1 · 기본값 — 원형 SPEC-004 §4.3 「백그라운드면 닫는다」 · 개념 websocket-relay 「끊김을 그대로 드러낸다」) |
 
-## 9. 검증 — 완료 조건 — D-03 · D-05 · D-12 · D-33
+## 9. 검증 — 완료 조건 — D-03 · D-05 · D-12 · D-33 · D-35 ~ D-37
 
 ### 9.1 back 시험 (pytest · Soniox 가짜 · 시드는 가짜 + 실제 파일)
 
@@ -724,19 +792,21 @@ front 는 아래 상태 중 하나다. 판정은 **위에서부터**(먼저 맞�
 |---|---|
 | 로그인 | 맞는 아이디 · 비밀번호 → 200 `{token, expiresAt}` · 틀림(아이디만 · 비번만 · 둘 다) 같은 401 · 필드 빠짐 400 · 5회 실패 → 429 · 1분 뒤 풀림 · env 비면 401 · 만료 토큰 401 · env 아이디 바꾸면 기존 토큰 401 · `/api/auth/me` · 망가진 토큰(ASCII 아님 · 점 개수 · base64 · JSON) → HTTP 401 · WS 1008(500 0) · 로그인 env 빈 채 기동 → 경고 로그 1줄(이름만 · 값 0) · 응답은 같은 401 |
 | 데모 로그인(0.4.0 · D-30) | 꺼짐: `config` `{demoLogin:false}`(토큰 없이 200) · `demo` 404 `not_found` / 켜짐: `config` true · `demo` 200 `{token, expiresAt}` · 그 토큰으로 `/api/auth/me` = env 아이디 · 응답에 비밀번호 0 / 잠긴 상태에서도 demo 200 · demo 뒤에도 잠금 그대로 / 켜짐 + 로그인 env 빈 것 → demo 401 / env 파싱 `true` · `1` 켬 · `false` · 빈 값 끔 |
-| **시드(0.4.0 · D-33)** | **① 레포의 실제 `back/seed/glossary.json` 을 로더와 같은 검사 함수로 읽어 통과**(이 시험이 깨진 시드의 머지를 막는다 — §4.4) ② 가짜 시드로 §4.2 검사 하나씩 어김 → `SeedError`(파일 없음 · JSON 아님 · `schema` 다름 · `version` 모양 · `langs` 집합 다름 · 필수 필드 빠짐 · 타입 · `id` 모양 · `id` 중복 · `ko` · `ko_aliases` 겹침 · entry 키가 `langs` 밖 · `name` 빔 · `name` · `aliases` 괄호 · `source` 값 · `reviewed` bool 아님 · entry 안 겹침 · 앞뒤 공백 · 줄바꿈) · 오류 문구에 경로 · `id` ③ 시드가 깨지면 앱 lifespan 기동이 실패한다(빈 용어집으로 뜨지 않음) ④ 다른 시술의 같은 현지명은 통과 ⑤ `grep` 대신 시험: back 런타임 모듈에 matrix 주소 · `GLOSSARY_MATRIX_URL` 없음(§4.9) |
+| **시드(0.4.0 · D-33 · 0.5.0 D-35)** | **① 레포의 실제 `back/seed/glossary.json` 을 로더와 같은 검사 함수로 읽어 통과**(이 시험이 깨진 시드의 머지를 막는다 — §4.4) ② 가짜 시드로 §4.2 검사 하나씩 어김 → `SeedError`(파일 없음 · JSON 아님 · `schema` 다름 · `version` 모양 · `langs` 집합 다름 · 필수 필드 빠짐 · 타입 · `id` 모양 · `id` 중복 · `ko` · `ko_aliases` 겹침 · entry 키가 `langs` 밖 · `name` 빔 · `name` · `aliases` 괄호 · `source` 값 · `reviewed` bool 아님 · entry 안 겹침 · 앞뒤 공백 · 줄바꿈) · 오류 문구에 경로 · `id` ③ 시드가 깨지면 앱 lifespan 기동이 실패한다(빈 용어집으로 뜨지 않음) ④ 다른 시술의 같은 현지명은 통과 ⑤ `grep` 대신 시험: back 런타임 모듈에 matrix 주소 · `GLOSSARY_MATRIX_URL` 없음(§4.9) ⑥ **(0.5.0 · §4.2.1) 레포 시드 내용**: 울쎄라 zh-Hant 美國音波 · 써마지FLX 鳳凰電波 · 이전 초안은 별칭 · zh 「热玛吉」 · **모호어(超声刀 · 韩版超声刀 · 韩版热玛吉) zh · zh-Hant 0**(zh-Hant 는 `t2s` 뒤 비교) · 볼뉴머 기기 리프팅 · zh-Hant 「鐳射」 0 · `web-research` 77 · `note` 가 URL · `reviewed:true` 38 / `source` 검사: `web-research`(날짜 없음) · 날짜 모양 틀림은 오류 · `web-research 2026-10-27` 통과 |
 | context | (0.4.0 · §4.5 · §4.6) 순서 = 정방향 기본 → 정방향 별칭 → 역방향 기본 → 역방향 별칭 · `terms` = 대표명 뒤 ko 별칭 · `entries[L]` 없는 시술은 빠짐 · `yue` · `zh-Hant` 는 `t2s`(정방향 target · 역방향 source 둘 다) · zh 는 그대로 · zh-Hant 는 zh-Hant entry 를 씀(zh entry 아님) · 역방향 source 중복은 처음 짝(기본이 별칭보다 앞) · 줄이기 순서 `terms`(별칭부터) → 역방향 별칭 → 역방향 기본 → 정방향 별칭 · **정방향 기본 · `general` 은 줄지 않음** · `forward_only` = `general` + 정방향 기본만 · `is_forward_only` · 그 언어 entry 0 이면 `context` 키 없음 · 경계를 거울 추측 없이 구조로 들고 다님(별칭 짝이 있어도 `forward_only` 가 정확) · §4.6.1 가짜 Soniox 6건(0.3.0 그대로 — 설정 직후 `invalid_request` → 정방향 기본만 2번째 STT 연결 뒤 `ready` · 두 번 거절 → `soniox_unavailable` · TTS 안 열림 · 다른 `error_type` → 재연결 없음 · 2초 무응답 → `ready` · `ready` 뒤 `invalid_request` → 재연결 없음 · 처음부터 정방향 기본만이면 재연결 없음) · 로그 칸 수(용어 문자열 0) |
-| 메뉴(0.4.0 · §4.7) | `/api/glossary?lang=` 7개 · 잘못된 lang 400 · 인증 없이 401 · 응답 필드 `{id, category, ko, koAliases, term, aliases, reviewed}` · `term` = 시드 `name` 그대로(yue · zh-Hant 런타임 변환 없음) · `count` = 그 언어 행 수 · `rows` 는 시드 순서 · entry 없는 시술 빠짐 · `loaded` true · `version` = 시드 판 · `/api/health` 같은 값 |
-| 가져오기 스크립트(0.4.0 · §4.8) | 저장한 matrix 가짜(`--from-file`)로: 괄호 분해 다섯 모양(없음 · 라틴(현지) · 현지(라틴) · 같음 · 그 밖 → `reviewed:false` · 괄호 뺀 이름 · `raw`) · 반각 · 전각 · 앞 공백 · 줄바꿈 정리 · 같은 `ko` 행 합치기(뒤 행 다른 표기 → 처음 term `aliases`) · zh-Hant = 분해 뒤 zh 의 `s2twp` · `draft-s2twp` · `reviewed:false` · 빈 칸이면 entry 없음 · `id` = `ph-001` 순서 · 머리 `imported_from` · 출력이 §4.2 검사 통과 · **출력 파일이 이미 있으면 쓰지 않고 0 아닌 코드** · 같은 입력 두 번 → 같은 바이트(결정적) |
-| 통역 | 원형 `test_interpret.py` 복사분(묶기 · 갱신 · 번체 자막 · TTS 간체 · flush · bad start · 전체 흐름 · 닫기 정리 · 오류 코드 · Origin · 토큰) + `lang` **7개** 매핑(§5.5) · `yue` · `zh-Hant` 는 Soniox 에 `zh` · **자막 변환 yue `s2tw`(「激光治療」) · zh-Hant `s2twp`(「鐳射治療」) · zh 간체 · 셋 다 TTS 입력은 간체**(§5.6 · D-32) · `traditional` 이 와도 무시 · STT 설정에 `context` 가 들어감 · §5.7 괄호 제거 목록 — TTS 입력만 괄호 없음 · caption 은 괄호 그대로 |
+| ~~메뉴(0.4.0 · §4.7)~~ | 0.5.0 — 메뉴 API 삭제로 시험도 지움(D-37). 대신 아래 「밖으로 내는 것」 |
+| **밖으로 내는 것(0.5.0 · §3.5 · D-37)** | `tests/test_api_surface.py` — **앱 경로가 정확히 6개**(그 밖 Route 가 있으면 실패) · `/docs` · `/redoc` · `/openapi.json` · `/docs/oauth2-redirect` · `/api/glossary` → 404 일반 문구 · 응답 최소 모양(health `{ok:true}` · me `{ok:true}` · config `{demoLogin}`) · **허용 경로 전부(성공 · 401 · 404)의 응답에 시드 판 · 시드 낱말 0** · `app/api` · `app/schemas` 소스에 `glossary` · `.terms` · `.entries` · `menu_rows` · `load_seed` · `build_context` 0 · 오류 일반 문구(검증 400 · 405 · 데모 꺼짐 404 · 처리기 밖 예외 500 — 예외 내용이 응답에 없고 로그에 종류) · WS 문구 4개에 `SONIOX` · `Soniox` · `.env` · `API_KEY` · `start` · `type` · `JSON` 0 · 받은 `lang` 을 되돌려 보내지 않음 |
+| 가져오기 스크립트(0.4.0 · §4.8) | 저장한 matrix 가짜(`--from-file`)로: 괄호 분해 다섯 모양(없음 · 라틴(현지) · 현지(라틴) · 같음 · 그 밖 → `reviewed:false` · 괄호 뺀 이름 · `raw`) · 반각 · 전각 · 앞 공백 · 줄바꿈 정리 · 같은 `ko` 행 합치기(뒤 행 다른 표기 → 처음 term `aliases`) · zh-Hant = 분해 뒤 zh 의 `to_display("zh-Hant")`(0.5.0 — 「离子导入 → 離子導入」 · 「激光导入 → 雷射導入」 · 「特色项目 → 特色項目」) · `draft-s2twp` · `reviewed:false` · 빈 칸이면 entry 없음 · `id` = `ph-001` 순서 · 머리 `imported_from` · 출력이 §4.2 검사 통과 · **출력 파일이 이미 있으면 쓰지 않고 0 아닌 코드** · 같은 입력 두 번 → 같은 바이트(결정적) |
+| 통역 | 원형 `test_interpret.py` 복사분(묶기 · 갱신 · 번체 자막 · TTS 간체 · flush · bad start · 전체 흐름 · 닫기 정리 · 오류 코드 · Origin · 토큰) + `lang` **7개** 매핑(§5.5) · `yue` · `zh-Hant` 는 Soniox 에 `zh` · **자막 변환 yue `s2tw`(「激光治療」) · zh-Hant `s2tw` + 표(「雷射治療」 · 「離子導入」 · 0.5.0 D-35) · `to_display` 「激光 软件 导入 项目 → 雷射 軟件 導入 項目」 · zh 간체 · 셋 다 TTS 입력은 간체**(§5.6) · `traditional` 이 와도 무시 · STT 설정에 `context` 가 들어감 · §5.7 괄호 제거 목록 — TTS 입력만 괄호 없음 · caption 은 괄호 그대로 · **(0.5.0 · §5.8) TTS keepalive 가 `{"keep_alive": true}` · 스트림 밖 검증 오류(`stream_id: ""`)가 와도 그 발화 오디오가 끝까지 나옴 + 경고 로그 · 자기 스트림 오류는 `SonioxError(channel="tts")` · 중계 중 오류 로그에 channel · message · lang · paused · stt_last · tts_last(len · lang) — 번역문 · 키 0** |
 | 비밀값 | 로그 캡처에 토큰 · 키 · 비밀번호 0 |
 
 ### 9.2 front 확인
 
 - `npx tsc --noEmit` · `npm run lint` · `npm run build` · `npx vitest run` 통과.
-- 쓴 medikit 클래스를 **빌드 산출 CSS 와 전수 대조** — 없는 클래스 0(개념 design-system · `scripts/check-classes.mjs`). 시안에서 옮긴 클래스 · 0.4.0 메뉴 꼬리표 클래스 포함(§7.6 끝).
-- **시안 대조(D-20)**: 화면 19개(시안 파일과 같은 상태)를 390 × 844 로 스크린샷해 시안 값과 대조 — `data-product="ceramique"`(primary `#2498bd` 계산값) · 헤더 「Tongky」 · 로그인 「통키」 · 데모 로그인 단추 하나 · 회전 아이콘 · 원 크기(64 · 56 · 88) · 원 줄 140 · 원 위아래 안내 13px · 말풍선 좌우 · 언어 목록 펼침(뒤집힘이면 카드와 같이 180°) · 초기화 · 오버레이가 헤더를 덮음(햄버거가 안 눌림).
-- 단위 시험: caption → 영역 배치(§7.5) · **말풍선 좌우 `isMine`**(D-24) · **`isNearBottom` · `hasNewBelow`**(D-25) · 상태 판정 순서(§7.3 #1 ~ #8) — 멈춤 중 `audio_start` → 「〈언어〉로 출력 중」 · 재생 끝 + 400 ms → 「멈춤」(FAIL-2) · 백그라운드 복귀 → 「시작 전」 · 오류 때 원 위 오류 문구 · 반이중 재개 타이머 · `pause` 뒤 같은 발화 조각 → 재생 0 · 게이트 그대로 · 다음 `audio_start` 뒤 재생(FAIL-1) · 앞 발화 재생 중 다음 `audio_start` → 표시는 앞 발화 재생 끝에 바뀜 · 마이크 막음은 즉시(WARN-4) · **`canReset` 은 멈춤(#5)에서만 · 초기화 → TTS 버림**(D-29) · **lang 7개 · 목록 표시 이름 · 한국어 이름(중국어 · 대만어) · 외국어 문구 빠짐 없음 · `htmlLang`**(D-28) · **(0.4.0 WP10) 메뉴 행 — 별칭 줄 · 「검수 전」 꼬리표는 `reviewed:false` 에서만**.
+- 쓴 medikit 클래스를 **빌드 산출 CSS 와 전수 대조** — 없는 클래스 0(개념 design-system · `scripts/check-classes.mjs`). 시안에서 옮긴 클래스 · 0.5.0 세그먼트 · `PTT-Ready` 클래스 포함(§7.8 끝). (fe8475e 기준 177 · 없는 것 0)
+- **(0.5.0 · D-37) 빌드 산출물 grep**: `.next/static`(브라우저로 나감)에 시드 낱말(美國音波 · Thermage · 써마지 · `koAliases`) · `glossary` · `용어집` · `SONIOX` · `INTERPRET_` · `NEXT_PUBLIC` 0. 서버 소스맵에 주석이 실리므로 front 소스 주석에도 「용어집」을 남기지 않는다.
+- **시안 대조(D-20)**: 화면 21개(0.5.0 — r7 3개 더함 · `Glossary` 뺌 · 시안 파일과 같은 상태)를 390 × 844 로 스크린샷해 시안 값과 대조 — `data-product="ceramique"`(primary `#2498bd` 계산값) · 헤더 「Tongky」 · 로그인 「통키」 · 데모 로그인 단추 하나 · 회전 아이콘 · 원 크기(64 · 56 · 88) · 원 줄 140 · 원 위아래 안내 13px · 말풍선 좌우 · 언어 목록 펼침(뒤집힘이면 카드와 같이 180°) · 초기화 · 오버레이가 헤더를 덮음(햄버거가 안 눌림) · **(0.5.0) 세그먼트 · `PTT-Ready` 흰 원 · `PTT-Pressed` · 메뉴 로그아웃 하나**.
+- 단위 시험: caption → 영역 배치(§7.5) · **말풍선 좌우 `isMine`**(D-24) · **`isNearBottom` · `hasNewBelow`**(D-25) · 상태 판정 순서(§7.3 #1 ~ #8) — 멈춤 중 `audio_start` → 「〈언어〉로 출력 중」 · 재생 끝 + 400 ms → 「멈춤」(FAIL-2) · 백그라운드 복귀 → 「시작 전」 · 오류 때 원 위 오류 문구 · 반이중 재개 타이머 · `pause` 뒤 같은 발화 조각 → 재생 0 · 게이트 그대로 · 다음 `audio_start` 뒤 재생(FAIL-1) · 앞 발화 재생 중 다음 `audio_start` → 표시는 앞 발화 재생 끝에 바뀜 · 마이크 막음은 즉시(WARN-4) · **`canReset` 은 멈춤(#5)에서만 · 초기화 → TTS 버림**(D-29) · **lang 7개 · 목록 표시 이름 · 한국어 이름(중국어 · 대만어) · 외국어 문구 빠짐 없음 · `htmlLang`**(D-28) · **(0.5.0 · D-36 `tests/ptt.test.ts`) 누름/뗌 → `resume`/`pause` · TTS 중 누름 → `clearPlayback` 뒤 `resume` · 판정(안 누름 = #4′ · 누름 = 듣는 중 · 출력 중이 #4′ 위 · 자동 모드는 그대로) · `canReset` 이 #4′ 에서도 참 · 문구 · 모드 기억(`interpret.mode`)** · **(0.5.0 · D-37 `tests/minimal-exposure.test.ts`) `lib/api` 에 glossary 없음 · 설정 오류 문구에 env 이름 없음**. 0.4.0 WP10 메뉴 행 시험은 지움.
 - 「시작 전」 오버레이: 새로고침으로 통역 화면에 바로 들어와도 오버레이가 뜨고, 탭 전에는 WS · 마이크 · `AudioContext` 가 없다 · 탭 한 번으로 `AudioContext.state === "running"` · 원 누름은 오버레이가 덮여 있는 동안 동작하지 않는다.
 
 ### 9.3 실물 확인 — **완료 조건** (back · 키는 사용자 `.env`)
@@ -785,22 +855,29 @@ front 는 아래 상태 중 하나다. 판정은 **위에서부터**(먼저 맞�
 | ⑬ | 통과 최대치 / 거절 최소치(모두 `invalid_request`): en 26,372 / 26,463 · **ja 22,502 / 22,600(가장 작음)** · zh 22,953 / 23,027 · zh-Hant 22,842 / 22,917 · th 23,661 / 23,735 · vi 25,843 / 25,950 · yue 23,763 / 23,835. zh-Hant context(`t2s` 뒤)와 zh 는 짝 359개 중 **22개 다름**(s2twp 낱말 바꿈이 남음 — 镭射 · 奈米 · 专案 등) | **기본값 20,251**(ja × 0.9 · §4.6) · OQ-013 기록 |
 | ⑭ | 「써마지FLX」 · 별칭 「써마지」 → zh 「美版热玛吉FLX」 ✓ ✓ · zh-Hant 「美版熱瑪吉FLX」 ✓ ✓(TTS 입력 간체) · ja 「サーマジFLX」 ✗ ✗(음역 — 짝이 context 에 있는데 안 잡힘). 「울쎄라」 → zh · zh-Hant ✗(「不饱和疗法」 — 한국어 전사부터 빗나감으로 보임) · ja 「ウルセラ」 ✓. TTS 입력 괄호 0 | 써마지는 **현지명으로**(D-33 목표) · 나머지 기록 |
 | ⑮ | 현지명 발화 → 써마지FLX 는 zh · zh-Hant · ja ✓ · 울쎄라는 ja ✓ · zh 「美版超声刀」 → ✗ 「슈링크유니버스」. 영문 상표명 발화는 엇갈림. 구어(热玛吉 · 超声刀)는 ✗ — **비슷한 현지명**(美版超声刀 ↔ 韩版超声刀 · 美版热玛吉FLX ↔ 韩版热玛吉)이라 역방향이 다른 시술로 간다 | 기록 → 시드 데이터 숙제(§10 OQ-015) |
-| ⑯ | 깨진 시드(id 중복)로 uvicorn · docker 기동 → **종료 코드 3** · 0.32초 · 오류 1줄 · 포트 안 열림. 정상 시드 이미지 `/api/health` `{"ok":true,"glossary":{"loaded":true,"version":"2026-10-27.2","count":157}}` | 통과 |
+| ⑯ | 깨진 시드(id 중복)로 uvicorn · docker 기동 → **종료 코드 3** · 0.32초 · 오류 1줄 · 포트 안 열림. 정상 시드 이미지 `/api/health` `{"ok":true,"glossary":{"loaded":true,"version":"2026-10-27.2","count":157}}`(그때 모양 — 0.5.0 부터 `{"ok":true}` · §3.5) | 통과 |
 
 - 첫 시드 = 가져오기 1회(term 157 · 합친 행 1 · 괄호 분해 없음 667 · 라틴(현지) 76 · 현지(라틴) 130 · 같음 15 · 그 밖 60 · `reviewed:false` = 그 밖 60 + zh-Hant 157) + 코디 처분 손 편집 1건(`ph-130` 써마지FLX `ko_aliases: ["써마지"]` · term `note` · `version` `.2`) — §10 OQ-014.
 
+**4차 결과 — D-35 backend 2026-10-27 (`live-check-d35-2026-10-27.json` · 시드 `2026-10-27.3` · 기본값 20,251)** — 배포 main 145c872(PR #6).
+
+| # | 무엇 | 결과 | 판정 |
+|---|---|---|---|
+| ⑰ | **zh-Hant 대만 현지명** — 대만 발화 → 한국어 · 한국어 → 대만(합성 음성 · 문장 1개씩) | 대만 → 한국어 **3/4**: 「美國音波」 → 울쎄라 ✓ · 「鳳凰電波」 → 써마지FLX ✓ · 둘을 한 문장에 → 울쎄라 ✓ · 써마지 ✗(슈링크유니버스). 한국어 → 대만 **1/4**: 「써마지」(ko 별칭) → 鳳凰電波 ✓(TTS 입력 간체 凤凰电波) · 「울쎄라」 → Ultherapy ✗ · 「울쎄라랑 써마지FLX」 → Ulthera · Somagic FLX ✗ ✗. **줄이기는 원인이 아니다** — 줄이기 없이(전체 21,605자 · 한도 22,000 으로) 다시 돌려도 같은 결과 · 21,605자는 거절 0. 자막 「激光治疗 → 雷射治療」 · 「离子导入 → 離子導入」 | 대만명 → 한국어는 D-35 전(짝 없음)보다 나아짐 · 한국어 → 대만명은 짝이 context 에 있는데 Soniox 가 상표명 · 음역으로 냄 → 사람 목소리 E2E(OQ-017) |
+| ⑱ | **운영 장애 재현**(§5.8 · `live_check.py idle` — zh-Hant · 발화 → 멈춤 35초(TTS keepalive 나감) → 다시 듣기 → 발화) | 고치기 전 코드: **47.4초에 `error soniox_unavailable`**(`channel=tts` · `invalid_request` · `Missing stream_id` — 운영 50초와 같음) · keepalive 만 옛것 + 새 `speak`: 끝까지 통과(경고 로그만 — 방어 동작) · **고친 코드: 발화 2 · 오디오 2 · 오류 0**. TTS 프로브: `{}` → `{"stream_id":"","error_type":"invalid_request","error_message":"Missing stream_id"}` · `{"keep_alive": true}` → 응답 없음(정상) | 통과 → 배포(PR #6 · infra #30) |
+
 ### 9.4 로컬 E2E (사용자 · D-12)
 
-맥 브라우저 `http://localhost:3800` — 시안과 같은 모양(§9.2) · 로그인(데모 켬 · 끔 둘 다) · 언어 7개 고르기(뒤집힌 목록) · 한국어 ↔ 외국어 실발화 · 말풍선 좌우(D-24) · 자동 스크롤 · 「↓ 최신」(D-25) · 원 상태 8개 · 원 위아래 안내(D-22) · 멈춤 → 초기화(D-29) · 시작 오버레이 언어 단추 7개(D-34) · 백그라운드 복귀 · 뒤집힘 아이콘 · 출력 중 마이크 막힘 · 출력 중 멈춤 뒤 소리 안 남(FAIL-1) · 외국어 발화의 시술명이 한국어 대표명으로(D-18) · 대만어 자막 대만식(D-32) · **용어집 모달에 별칭 · 「검수 전」 표시(0.4.0)** · 로그아웃 · 401 처리.
+맥 브라우저 `http://localhost:3800` — 시안과 같은 모양(§9.2) · 로그인(데모 켬 · 끔 둘 다) · 언어 7개 고르기(뒤집힌 목록) · 한국어 ↔ 외국어 실발화 · 말풍선 좌우(D-24) · 자동 스크롤 · 「↓ 최신」(D-25) · 원 상태 8개 · 원 위아래 안내(D-22) · 멈춤 → 초기화(D-29) · 시작 오버레이 언어 단추 7개(D-34) · 백그라운드 복귀 · 뒤집힘 아이콘 · 출력 중 마이크 막힘 · 출력 중 멈춤 뒤 소리 안 남(FAIL-1) · 외국어 발화의 시술명이 한국어 대표명으로(D-18) · 대만어 자막 대만식(0.5.0 · D-35 — 「雷射」 · 「離子導入」) · **대만 현지명(美國音波 · 鳳凰電波) 양방향**(D-35 · OQ-017) · **누르고 말하기 — 모드 전환 · 누르는 동안만 듣기 · 뗌 → 번역 · TTS 중 누름 → 재생 멈춤 · 주변 소리 안 들어감**(D-36) · **메뉴 = 로그아웃 하나**(D-37) · **멈춤 35초 뒤 다시 말해도 안 끊김**(§5.8) · 로그아웃 · 401 처리. (0.5.0 — 「용어집 모달」 항목은 지움)
 
 ### 9.5 배포 뒤 (D-12 · D-26)
 
 - 주소 **`https://tongky.medisolveai.xyz`** — 한 호스트 · `/api` → back(WS `/api/interpret` 포함) · 나머지 → front(D-26). k8s_infra_mac · 네임스페이스 `interpret-pwa-prod` · 이미지 `ghcr.io/kknaksss/interpret-pwa-{back,front}:<sha>`(Actions · arm64 · main 빌드만) · ArgoCD 수동 sync. front 빌드 `NEXT_PUBLIC_API_BASE_URL` = 배포 주소.
-- 배포 주소(HTTPS)에서: 로그인(운영은 데모 켬 — D-30) · `wss` 통역 실발화 1회 · 유휴 2분 안 끊김(ingress WS 업그레이드 · 시간 초과 3600) · 휴대폰 홈 화면 추가 · standalone 실행 · 마이크 · 화면 꺼짐 방지 · **로그인 포커스 확대 없음(D-27) · 언어 목록 터치(D-31)**.
+- 배포 주소(HTTPS)에서: 로그인(운영은 데모 켬 — D-30) · `wss` 통역 실발화 1회 · 유휴 2분 안 끊김(ingress WS 업그레이드 · 시간 초과 3600) · 휴대폰 홈 화면 추가 · standalone 실행 · 마이크 · 화면 꺼짐 방지 · **로그인 포커스 확대 없음(D-27) · 언어 목록 터치(D-31)** · **(0.5.0) iPhone 길게 누름 — 텍스트 선택 · 확대 · 콘텍스트 메뉴 없음 · 손가락이 원 밖으로 미끄러져도 뗄 때까지 유지(D-36)** · **최소 노출 — `/api/health` · `/api/auth/me` `{ok}` · `/api/glossary` · `/docs` · `/openapi.json` 404(D-37)**.
 - 비밀값(`SONIOX_API_KEY` · 로그인 아이디 · 비밀번호 · 세션 비밀값 · `INTERPRET_DEMO_LOGIN`)은 클러스터 Secret 에만. **0.4.0 — 운영 ConfigMap · Secret 이름 목록에서 `GLOSSARY_MATRIX_URL` 을 지운다**(infra 차트 · `provisioning/secrets/*.env.example`).
 - **시드를 고치면**: 시드 PR 머지 → main 이미지 → infra `values-prod` 태그 → sync(back 재시작) — 데이터만 고쳐도 재배포다(D-33 「git · PR 로 고친다」).
 
-**배포 기록 (0.4.1 — 코디 확인)**
+**배포 기록 (0.5.0 — 코디 확인 · 최종 fe8475e)**
 
 | 판 | 코드(kknaksss/interpret-pwa) | infra(MediSolveAIDev/k8s_infra_mac) | 무엇 |
 |---|---|---|---|
@@ -808,30 +885,38 @@ front 는 아래 상태 중 하나다. 판정은 **위에서부터**(먼저 맞�
 | 2 | PR #2 → `4ccf905` | PR #26 | 폰 피드백 1 · 2(D-27 ~ D-30) |
 | 3 | PR #3 → `d0a91a7` | PR #27 | 폰 피드백 3(D-31 · D-32) |
 | 4 | PR #4 → `9befd18` | PR #28 | 용어집 시드(D-33) · 한도 20251 · `GLOSSARY_MATRIX_URL` 삭제 |
+| 5 | PR #5 → `2b4976b` | PR #29(front) | 시작 오버레이 언어 단추 7개(D-34) |
+| 6 | PR #6 → `145c872` | PR #30(back) | **운영 끊김 수정**(TTS keepalive · §5.8) · 대만 현지명 시드 `.4` · zh-Hant `s2tw` + 「激光 → 雷射」(D-35) |
+| 7 | PR #7 → `10b4c38` | PR #32(front) | 누르고 말하기 모드(D-36 · back 무변경) |
+| 8 | PR #8 → **`fe8475e`** | PR #33 | 최소 노출(D-37) — 용어집 API · 메뉴 삭제 · health/me `{ok}` · 오류 일반 문구 · docs 끔. back · front **같은 sha · 이미지 태그 하나**(5 ~ 7 의 back/front 개별 태그 오버라이드 정리) |
 
 - 반영 방식: Actions(main · arm64 · sha 태그) → infra `values-prod` 이미지 태그 PR → 머지 → ArgoCD **수동 sync**.
 - 운영은 **데모 로그인 켬**(`INTERPRET_DEMO_LOGIN=true` — Secret · D-30). 데모가 끝나면 값만 지우고 back 재시작.
-- **배포 주소 확인(코디)**: `/api/health` 200(시드 `version` · `count`) · 로그인 200 · manifest(`name` 통키 · `short_name` Tongky) · `wss /api/interpret` `start` → `ready` · 데모 로그인(`/api/auth/config` `demoLogin:true` · `/api/auth/demo` 200). **폰 확인(마이크 · standalone · 화면 꺼짐 방지 · D-27 · D-31 · D-34)은 사용자 진행 중**.
+- **배포 주소 확인(코디 · 8차)**: `/api/health` · `/api/auth/me` → `{ok}` · `/api/glossary` 404 · `/docs` 404 · `wss /api/interpret` `start` → `ready`. (4차까지: 로그인 200 · manifest `name` 통키 · `short_name` Tongky · 데모 로그인 `demoLogin:true` · `/api/auth/demo` 200.) **사람 목소리 폰 E2E(D-35 대만명 · D-36 길게 누름)는 남음**(OQ-017).
 
 ## 10. 열린 것 — 근거(DEC · 공식 문서 · 원형)로 닫지 못한 것
 
+> 0.5.0 마감 정리 — **남은 것은 셋**: 사람 목소리 E2E(OQ-017) · 못 찾은 대만명 80(OQ-016) · 데모 로그인 끄기(OQ-008). 나머지는 닫았거나 합쳤다(근거는 각 행).
+
 | ID | 무엇 | 지금 | 왜 못 닫나 · 권장 |
 |---|---|---|---|
-| OQ-001 | **`yue`(광둥어) 음성 · 번역 품질** — Soniox 에 광둥어 코드가 없어 `zh` 로 보낸다(§5.5). 한국어 → 광둥어 화자 방향은 **표준 중국어 문어(번체 자막) + 만다린 음성** | 매핑대로 구현 · 배포 | 공식 문서에 광둥어 TTS · 번역 대상이 없다. 권장: 사람 목소리 1회로 확인(E2E · 폰) |
-| ~~OQ-002~~ | ~~`terms` 를 다 빼도 한도를 넘으면 어떻게 줄이나 · 기본값 크기~~ | **닫음(0.4.0) — 18,832**(§4.6 · §9.3 ⑧ — 실제 한도 ja 20,925 × 0.9). 줄이기 순서는 시드 별칭까지 넷으로(§4.6) | zh-Hant 한도는 ⑬ 에서 따로 잰다 — 더 작으면 같은 규칙으로 고친다 |
+| **OQ-017** | **사람 목소리 E2E**(0.5.0 — OQ-001 · OQ-007 의 남은 확인을 합침) — ① 대만 현지명 양방향: 한국어 「울쎄라」 · 「써마지FLX」 → 대만명이 합성 음성에서 상표명 · 음역으로 나옴(⑰ 1/4 — 짝은 context 에 있음 · 줄이기와 무관) ② `yue` = 표준 문어(번체 자막) + 만다린 음성(OQ-001) ③ iPhone 길게 누름(D-36 — 선택 · 확대 · 콘텍스트 메뉴 · 원 밖으로 미끄러짐) · 누르는 중에 TTS 가 오면 송신 막힘(반이중 그대로 · DEC 에 따로 없음) | 코드 · 시드로 더 할 것이 보이지 않음 · 배포 fe8475e | 합성 음성 표본 1문장씩이라 판정 못 함. 권장: 사용자가 폰(배포 주소)에서 사람 목소리로 1회 — 결과로 시드(대만명 별칭) 또는 DEC 를 고친다 |
+| **OQ-016** | **시드 검수 숙제(사용자 PR)** — ① **대만 현지명을 못 찾은 80 term**(zh-Hant = 초안 · `draft-s2twp` · `reviewed:false`) ② 출처 1개뿐인 대만명 39(`web-research` · `reviewed:false`) ③ 첫 가져오기 「그 밖」 괄호 60(OQ-012 를 합침 — 괄호를 뺀 이름 + `raw` 보존 · `reviewed:false`) | 데이터 그대로 · context 에는 들어감(§4.2 — 검수 여부로 빼지 않음). 메뉴가 없어(D-37) 목록은 시드에서 `reviewed:false` 로 찾는다 | 현지명 · 별칭은 사람이 정한다(D-32 · D-33 · D-35 — 우리가 짓지 않는다). 권장: 사용자가 시드 PR(§4.2.1 규칙) → 재배포(§9.5) |
+| **OQ-008** | **데모 로그인 끄기** · 로그아웃해도 토큰은 만료(기본 12시간)까지 유효 | 운영 **데모 켬**(`INTERPRET_DEMO_LOGIN=true`) — 주소만 알면 로그인된다 · 서버 토큰 무효화 없음 | 데모가 끝나는 때는 사용자가 정한다. 할 일: Secret 에서 `INTERPRET_DEMO_LOGIN` 값만 지우고 back 재시작(D-30 · §3.4). 토큰 무효화는 PoC 범위 밖 |
+| ~~OQ-001~~ | ~~`yue` 음성 · 번역 품질~~ | **OQ-017 ② 로 합침**(0.5.0) | — |
+| ~~OQ-002~~ | ~~한도 기본값~~ | 닫음 — 20,251(0.4.1 · §4.6 · ⑬). 0.5.0 zh-Hant 는 `terms` 만 줄어듦(짝 전부 남음) | — |
 | ~~OQ-003~~ | ~~역방향 `translation_terms`~~ | 닫음(0.3.0) — D-18 | — |
-| ~~OQ-004~~ | ~~대만 · 홍콩 만다린 화자용 「중국어 번체」 선택지~~ | **닫음(0.4.0) — D-28 대만(zh-Hant)을 별도 언어 항목으로 · D-32 s2twp**(§5.5 · §5.6) | 홍콩 만다린 화자는 별도 항목 없음(yue 가 번체 s2tw) — DEC 범위 밖 |
-| OQ-005 | **통역 시작 · 멈춤 조작** — D-07 와이어에 시작 · 멈춤 단추가 없다 | 시작 = **오버레이 언어 단추(D-34 · 0.4.1)** · 원 = 멈춤 ↔ 다시 듣기 · 멈춤에 초기화(D-29) | 시작은 D-34 로 정해짐. 남은 것 = 원 = 멈춤 조작에 사용자 이의 없음 확인 — 폰 사용 중 |
-| OQ-006 | 외국어 안내 문구(7개 언어 × 10개 · 오버레이 · 「↓ 최신」 포함) 번역 값 | frontend 가 정한 상수 · 원어민 검수 없음 | PoC 범위로 둔다 |
-| OQ-007 | **휴대폰 실기기 확인 시점** | 배포(HTTPS) 뒤 폰으로 확인 중(폰 피드백 1 ~ 3) | 사실상 닫힘 — D-26 배포 뒤 폰 테스트로 진행. 사용자 확인으로 닫는다 |
-| OQ-008 | 로그아웃해도 토큰은 만료(기본 12시간)까지 유효 · **데모 켜짐이면 주소만 알면 로그인**(D-30) | 서버 무효화 없음 | PoC 범위. 데모가 끝나면 Secret 에서 `INTERPRET_DEMO_LOGIN` 을 지우고 재시작(D-30) |
-| ~~OQ-009~~ | ~~괄호 병기 target 이 번역 · TTS 에 나옴~~ | 닫음(0.3.0) — D-19 · 0.4.0 에서도 §5.7 유지(§4.10) | — |
-| ~~OQ-010~~ | ~~뒤집힌 영역에서 언어 목록 방향 · 드롭다운 이름 표기~~ | **닫음(0.4.0) — D-31 카드 안 자체 목록(§7.2) · D-28 목록 표시 이름(§5.5)** | — |
-| ~~OQ-011~~ | ~~배포 도메인 · ingress 경로~~ | **닫음(0.4.0) — D-26 `tongky.medisolveai.xyz`**(§9.5) | — |
-| OQ-012 | **첫 가져오기의 「그 밖」 괄호 표기**(설명 괄호인지 다른 이름인지 글자로 못 가름 — en 17 · ja 12 · zh 3 · th 2 · vi 23 · yue 3 · 2026-10-27 기준) | 괄호를 뺀 이름 + `reviewed:false` + `raw` 보존(§4.8) | D-33 은 「영문（현지명）」 모양만 정했다. 권장: 사용자가 시드에서 `raw` 를 보고 괄호 안을 별칭으로 옮길지 · 버릴지 정하고 `reviewed:true` 로(메뉴 「검수 전」 꼬리표가 목록이다) |
-| OQ-013 | **zh-Hant context 재료** — 시드 zh-Hant entry(`t2s`)를 쓴다(§4.5). 0.3.0 · D-28 의 「target 은 zh 열」과 다르다 | 기본값 = zh-Hant entry · 배포됨(9befd18). ⑬: zh 와 짝 359개 중 22개 다름 | D-32 「대만 별명은 그 언어 표기를 추가해서」 · D-33 「zh-Hant 열은 초안 · 사용자가 고친다」를 함께 읽으면 사람이 넣은 대만 이름이 Soniox 에 닿아야 한다. 첫 판은 zh 의 s2twp → t2s 라 zh 와 거의 같다(⑬ 에서 차이 수). 권장: 이대로 — 사용자 확인 |
-| OQ-014 | **ko 별칭 · 써마지 단독** — 첫 가져오기는 `ko_aliases` 가 비어 있다(matrix 에 없음) | **처리됨(1건)** — 코디 처분으로 `ph-130` 써마지FLX `ko_aliases: ["써마지"]`(⑭ ✓). 그 밖 상담사 호칭은 비어 있음 | 우리가 ko 별칭을 짓지 않는다. 더 필요한 호칭은 사용자가 시드 PR 로 |
-| OQ-015 | **시드 숙제(사용자 PR)** — ① zh-Hant 현지명(美國音波 · 鳳凰電波 등 — 지금은 zh 의 s2twp 초안 157개 `reviewed:false`) ② 구어 별칭 美版/韩版 — 「超声刀」 · 「热玛吉」 단독이 울쎄라 ↔ 슈링크유니버스 · 써마지FLX ↔ 올리지오 중 어느 쪽인지(⑮ 오답 원인) ③ 「그 밖」 괄호 60개 검수(OQ-012) | 데이터 그대로 · 메뉴에 「검수 전」 표시 | 현지 별명 · 구어를 어느 시술에 둘지는 사람이 정한다(D-32 · D-33 — 우리가 별칭을 짓지 않는다). 권장: 사용자가 시드 PR → 재배포(§9.5) |
+| ~~OQ-004~~ | ~~대만 · 홍콩 만다린 화자용 선택지~~ | 닫음(0.4.0) — D-28 · 변환은 0.5.0 D-35(`s2tw` + 표) | — |
+| ~~OQ-005~~ | ~~통역 시작 · 멈춤 조작~~ | **닫음(0.5.0)** — 시작 = 오버레이 언어 단추(D-34) · 원 = 멈춤 ↔ 다시 듣기 또는 누르고 말하기(D-36 · 사용자가 모드로 고른다) · 멈춤에 초기화(D-29) | — |
+| ~~OQ-006~~ | ~~외국어 안내 문구 번역 값~~ | **닫음(0.5.0) — PoC 범위로 둔다**(frontend 상수 · 원어민 검수 없음 · 「Hold to speak」 류 포함) | 고칠 말이 생기면 front 상수(`lib/langs.ts`)만 고친다 |
+| ~~OQ-007~~ | ~~휴대폰 실기기 확인 시점~~ | **닫음(0.5.0)** — 배포(HTTPS) 뒤 폰으로 확인해 왔다(폰 피드백 1 ~ 3 · D-27 ~ D-37). 남은 사람 목소리 확인은 OQ-017 | — |
+| ~~OQ-009~~ | ~~괄호 병기 target 이 번역 · TTS 에 나옴~~ | 닫음(0.3.0) — D-19 · §5.7 유지 | — |
+| ~~OQ-010~~ | ~~뒤집힌 영역 언어 목록~~ | 닫음(0.4.0) — D-31 · D-28 | — |
+| ~~OQ-011~~ | ~~배포 도메인~~ | 닫음(0.4.0) — D-26 | — |
+| ~~OQ-012~~ | ~~첫 가져오기 「그 밖」 괄호 표기~~ | **OQ-016 ③ 으로 합침**(0.5.0) | — |
+| ~~OQ-013~~ | ~~zh-Hant context 재료~~ | **닫음(0.5.0)** — zh-Hant entry(`t2s`) · D-35 로 대만 현지명이 들어가 zh 와 실제로 다르다(§4.5 · ⑰) | — |
+| ~~OQ-014~~ | ~~ko 별칭 · 써마지 단독~~ | **닫음(0.5.0)** — 써마지FLX `ko_aliases` 「써마지」(⑭ · ⑰ ✓). 더 필요한 호칭은 사용자 시드 PR(OQ-016 과 같은 길) | — |
+| ~~OQ-015~~ | ~~시드 숙제 ① zh-Hant 현지명 ② 美版/韩版 구어 ③ 그 밖 괄호~~ | **닫음(0.5.0)** — ① D-35 조사로 77 반영(못 찾은 80 → OQ-016 ①) ② D-35 — 한 기기로 확정되는 것만 alias(热玛吉 → 써마지FLX) · 모호어(超声刀 · 韩版超声刀 · 韩版热玛吉) zh · zh-Hant 에서 뺌(§4.2.1) ③ → OQ-016 ③ | — |
 
 ## 부록 A. 결정 대응표
 
@@ -846,10 +931,10 @@ front 는 아래 상태 중 하나다. 판정은 **위에서부터**(먼저 맞�
 | D-07 화면 둘 · 배치 | §6 · §7.1 · §7.2 · §7.6 |
 | D-08 외국어 영역 180° · 전환 아이콘 · 렌더만 | §7.2 |
 | D-09 원 · 음량 · 색 · 출력 중 안내 | §7.3 |
-| D-10 medikit · 단순 | §6 · §7.6 |
+| D-10 medikit · 단순 | §6 · §7.8 |
 | D-11 키는 사용자 `.env` · `.env.example` 만 | §2.4 |
 | D-12 로컬 확인 → 마지막 배포 | §9.3 · §9.4 · §9.5 · WORK-001 순서 |
-| D-13 용어집 메뉴 읽기 전용 · 카테고리 · 한국어 · 고른 언어 | §4.7 · §7.6 |
+| ~~D-13 용어집 메뉴 읽기 전용~~(D-37 로 뒤집힘) | §4.7 · §7.6 — 삭제 기록 |
 | D-14 기동 때 한 번 캐시 · ~~실패면 용어집 없이~~(D-33 개정 — 시드 실패는 기동 실패 · 기본값) | §4.3 · §4.4 |
 | D-15 배포 도메인은 배포 WP | D-26 으로 닫힘 · §9.5 |
 | D-16 각 영역에 자기 언어 문장만 | §7.5 |
@@ -864,10 +949,14 @@ front 는 아래 상태 중 하나다. 판정은 **위에서부터**(먼저 맞�
 | D-25 자동 스크롤 · 「↓ 최신」 | §7.5 |
 | D-26 배포 도메인 tongky.medisolveai.xyz | §9.5 · OQ-011 닫음 |
 | D-27 로그인 입력 16px · 확대 막는 viewport 안 씀 | §7.1 |
-| D-28 중국 · 대만 별도 언어 항목 · 목록 표시 이름 · 한국어 이름 | §5.5 · §5.6 · §7.6 · OQ-004 닫음 |
+| D-28 중국 · 대만 별도 언어 항목 · 목록 표시 이름 · 한국어 이름 | §5.5 · §5.6 · OQ-004 닫음 |
 | D-29 멈춤 때 「초기화」 | §7.3 · §7.4 |
 | D-30 데모 원탭 로그인 | §2.4 · §3.3 · §3.4 · §7.1 |
 | D-31 언어 목록 180° — 자체 목록 | §7.2 · OQ-010 닫음 |
-| D-32 zh-Hant 출력 s2twp · yue s2tw · 별칭은 데이터로 | §5.6 · §4.5 · OQ-013 |
-| D-33 용어집 = 우리 시드 · 정규화 · 첫 가져오기 · 런타임 호출 0 | §4 전부 · §9.1 「시드」 「가져오기 스크립트」 · §9.3 ⑫ ~ ⑯ · OQ-012 ~ 015 |
+| ~~D-32 zh-Hant 출력 s2twp~~(D-35 로 뒤집힘) · yue s2tw · 별칭은 데이터로(유지) | §5.6 · §4.5 |
+| D-33 용어집 = 우리 시드 · 정규화 · 첫 가져오기 · 런타임 호출 0 | §4 전부 · §9.1 「시드」 「가져오기 스크립트」 · §9.3 ⑫ ~ ⑯ · OQ-016 |
 | D-34 시작 오버레이에서 언어 단추 7개 — 누르는 것이 시작 · 상담사 방향 · 마지막 언어는 표시만 | §7.3 #1 · §7.4 · §8 · OQ-005 |
+| D-35 대만 현지명 시드 · zh-Hant `s2tw` + 「激光 → 雷射」 · 구어 alias · 모호어 제외 · 볼뉴머 카테고리 | §4.2 `source` · §4.2.1 · §4.5 · §4.6 · §4.8 · §5.5 · §5.6 · §9.1 · §9.3 ⑰ · OQ-016 · OQ-017 |
+| D-36 누르고 말하기 모드(원 옆 전환 · 기억 · 누름 = resume · 뗌 = pause · TTS 중 누름 = 재생 멈춤) | §7.2 · §7.3 #4′ · §7.4 · §7.7 · §9.2 · OQ-017 ③ |
+| D-37 최소 노출(D-13 뒤집음) — 용어집 API · 메뉴 삭제 · health/me `{ok}` · WS 오류 일반 문구 · docs 끔 | §1 · §2.1 · §3.3 · §3.5 · §4.7 · §5.4 · §7.6 · §9.1 · §9.2 |
+| (DEC 밖) 운영 장애 2026-10-27 02:07 — TTS keepalive 형식 | §5.1 · §5.8 · §9.1 · §9.3 ⑱ |
