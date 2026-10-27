@@ -1,0 +1,1114 @@
+{
+  "date": "2026-10-27",
+  "spec": "SPEC-001 0.4.0 §9.3 ⑫ ~ ⑯",
+  "seed": {
+    "en": {
+      "terms": 158,
+      "forward": 157,
+      "forward_alias": 1,
+      "reverse": 155,
+      "reverse_alias": 0,
+      "chars": 16131,
+      "dropped_terms": 0,
+      "dropped_forward": 0,
+      "dropped_forward_alias": 0,
+      "dropped_reverse": 0,
+      "dropped_reverse_alias": 0,
+      "rejected": false,
+      "error_type": null,
+      "elapsed_sec": 0.223
+    },
+    "ja": {
+      "terms": 158,
+      "forward": 157,
+      "forward_alias": 1,
+      "reverse": 156,
+      "reverse_alias": 56,
+      "chars": 17360,
+      "dropped_terms": 0,
+      "dropped_forward": 0,
+      "dropped_forward_alias": 0,
+      "dropped_reverse": 0,
+      "dropped_reverse_alias": 0,
+      "rejected": false,
+      "error_type": null,
+      "elapsed_sec": 0.22
+    },
+    "zh": {
+      "terms": 158,
+      "forward": 157,
+      "forward_alias": 1,
+      "reverse": 151,
+      "reverse_alias": 55,
+      "chars": 16464,
+      "dropped_terms": 0,
+      "dropped_forward": 0,
+      "dropped_forward_alias": 0,
+      "dropped_reverse": 0,
+      "dropped_reverse_alias": 0,
+      "rejected": false,
+      "error_type": null,
+      "elapsed_sec": 0.242
+    },
+    "zh-Hant": {
+      "terms": 158,
+      "forward": 157,
+      "forward_alias": 1,
+      "reverse": 151,
+      "reverse_alias": 55,
+      "chars": 16464,
+      "dropped_terms": 0,
+      "dropped_forward": 0,
+      "dropped_forward_alias": 0,
+      "dropped_reverse": 0,
+      "dropped_reverse_alias": 0,
+      "rejected": false,
+      "error_type": null,
+      "elapsed_sec": 0.245
+    },
+    "th": {
+      "terms": 113,
+      "forward": 157,
+      "forward_alias": 1,
+      "reverse": 156,
+      "reverse_alias": 60,
+      "chars": 18828,
+      "dropped_terms": 45,
+      "dropped_forward": 0,
+      "dropped_forward_alias": 0,
+      "dropped_reverse": 0,
+      "dropped_reverse_alias": 0,
+      "rejected": false,
+      "error_type": null,
+      "elapsed_sec": 0.255
+    },
+    "vi": {
+      "terms": 158,
+      "forward": 157,
+      "forward_alias": 1,
+      "reverse": 157,
+      "reverse_alias": 0,
+      "chars": 16272,
+      "dropped_terms": 0,
+      "dropped_forward": 0,
+      "dropped_forward_alias": 0,
+      "dropped_reverse": 0,
+      "dropped_reverse_alias": 0,
+      "rejected": false,
+      "error_type": null,
+      "elapsed_sec": 0.246
+    },
+    "yue": {
+      "terms": 158,
+      "forward": 157,
+      "forward_alias": 1,
+      "reverse": 154,
+      "reverse_alias": 36,
+      "chars": 16090,
+      "dropped_terms": 0,
+      "dropped_forward": 0,
+      "dropped_forward_alias": 0,
+      "dropped_reverse": 0,
+      "dropped_reverse_alias": 0,
+      "rejected": false,
+      "error_type": null,
+      "elapsed_sec": 0.246
+    },
+    "rejected_total": 0
+  },
+  "max_chars": 18832,
+  "12_seed_context": {
+    "en": {
+      "terms": 158,
+      "forward": 157,
+      "forward_alias": 1,
+      "reverse": 155,
+      "reverse_alias": 0,
+      "chars": 16131,
+      "dropped_terms": 0,
+      "dropped_forward": 0,
+      "dropped_forward_alias": 0,
+      "dropped_reverse": 0,
+      "dropped_reverse_alias": 0,
+      "rejected": false,
+      "error_type": null,
+      "elapsed_sec": 0.223
+    },
+    "ja": {
+      "terms": 158,
+      "forward": 157,
+      "forward_alias": 1,
+      "reverse": 156,
+      "reverse_alias": 56,
+      "chars": 17360,
+      "dropped_terms": 0,
+      "dropped_forward": 0,
+      "dropped_forward_alias": 0,
+      "dropped_reverse": 0,
+      "dropped_reverse_alias": 0,
+      "rejected": false,
+      "error_type": null,
+      "elapsed_sec": 0.22
+    },
+    "zh": {
+      "terms": 158,
+      "forward": 157,
+      "forward_alias": 1,
+      "reverse": 151,
+      "reverse_alias": 55,
+      "chars": 16464,
+      "dropped_terms": 0,
+      "dropped_forward": 0,
+      "dropped_forward_alias": 0,
+      "dropped_reverse": 0,
+      "dropped_reverse_alias": 0,
+      "rejected": false,
+      "error_type": null,
+      "elapsed_sec": 0.242
+    },
+    "zh-Hant": {
+      "terms": 158,
+      "forward": 157,
+      "forward_alias": 1,
+      "reverse": 151,
+      "reverse_alias": 55,
+      "chars": 16464,
+      "dropped_terms": 0,
+      "dropped_forward": 0,
+      "dropped_forward_alias": 0,
+      "dropped_reverse": 0,
+      "dropped_reverse_alias": 0,
+      "rejected": false,
+      "error_type": null,
+      "elapsed_sec": 0.245
+    },
+    "th": {
+      "terms": 113,
+      "forward": 157,
+      "forward_alias": 1,
+      "reverse": 156,
+      "reverse_alias": 60,
+      "chars": 18828,
+      "dropped_terms": 45,
+      "dropped_forward": 0,
+      "dropped_forward_alias": 0,
+      "dropped_reverse": 0,
+      "dropped_reverse_alias": 0,
+      "rejected": false,
+      "error_type": null,
+      "elapsed_sec": 0.255
+    },
+    "vi": {
+      "terms": 158,
+      "forward": 157,
+      "forward_alias": 1,
+      "reverse": 157,
+      "reverse_alias": 0,
+      "chars": 16272,
+      "dropped_terms": 0,
+      "dropped_forward": 0,
+      "dropped_forward_alias": 0,
+      "dropped_reverse": 0,
+      "dropped_reverse_alias": 0,
+      "rejected": false,
+      "error_type": null,
+      "elapsed_sec": 0.246
+    },
+    "yue": {
+      "terms": 158,
+      "forward": 157,
+      "forward_alias": 1,
+      "reverse": 154,
+      "reverse_alias": 36,
+      "chars": 16090,
+      "dropped_terms": 0,
+      "dropped_forward": 0,
+      "dropped_forward_alias": 0,
+      "dropped_reverse": 0,
+      "dropped_reverse_alias": 0,
+      "rejected": false,
+      "error_type": null,
+      "elapsed_sec": 0.246
+    },
+    "rejected_total": 0
+  },
+  "13_ceiling": {
+    "langs": {
+      "en": {
+        "full_chars": 16131,
+        "full_passes": true,
+        "pass_max": 26372,
+        "reject_min": 26463,
+        "error_type": "invalid_request",
+        "probes": [
+          {
+            "extra_pairs": 0,
+            "chars": 16131,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.252
+          },
+          {
+            "extra_pairs": 309,
+            "chars": 30272,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.38
+          },
+          {
+            "extra_pairs": 154,
+            "chars": 23180,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.254
+          },
+          {
+            "extra_pairs": 231,
+            "chars": 26596,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.235
+          },
+          {
+            "extra_pairs": 192,
+            "chars": 24777,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.256
+          },
+          {
+            "extra_pairs": 211,
+            "chars": 25637,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.244
+          },
+          {
+            "extra_pairs": 221,
+            "chars": 26126,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.236
+          },
+          {
+            "extra_pairs": 226,
+            "chars": 26372,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.25
+          },
+          {
+            "extra_pairs": 228,
+            "chars": 26463,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.256
+          }
+        ]
+      },
+      "ja": {
+        "full_chars": 17360,
+        "full_passes": true,
+        "pass_max": 22502,
+        "reject_min": 22600,
+        "error_type": "invalid_request",
+        "probes": [
+          {
+            "extra_pairs": 0,
+            "chars": 17360,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.245
+          },
+          {
+            "extra_pairs": 301,
+            "chars": 29923,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.394
+          },
+          {
+            "extra_pairs": 150,
+            "chars": 23606,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.462
+          },
+          {
+            "extra_pairs": 75,
+            "chars": 20340,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.232
+          },
+          {
+            "extra_pairs": 112,
+            "chars": 21914,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.265
+          },
+          {
+            "extra_pairs": 131,
+            "chars": 22818,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.261
+          },
+          {
+            "extra_pairs": 121,
+            "chars": 22377,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.264
+          },
+          {
+            "extra_pairs": 126,
+            "chars": 22600,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.269
+          },
+          {
+            "extra_pairs": 123,
+            "chars": 22457,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.251
+          },
+          {
+            "extra_pairs": 124,
+            "chars": 22502,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.251
+          }
+        ]
+      },
+      "zh": {
+        "full_chars": 16464,
+        "full_passes": true,
+        "pass_max": 22953,
+        "reject_min": 23027,
+        "error_type": "invalid_request",
+        "probes": [
+          {
+            "extra_pairs": 0,
+            "chars": 16464,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.25
+          },
+          {
+            "extra_pairs": 339,
+            "chars": 30011,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.456
+          },
+          {
+            "extra_pairs": 169,
+            "chars": 23131,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.258
+          },
+          {
+            "extra_pairs": 84,
+            "chars": 19646,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.263
+          },
+          {
+            "extra_pairs": 126,
+            "chars": 21418,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.233
+          },
+          {
+            "extra_pairs": 147,
+            "chars": 22272,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.259
+          },
+          {
+            "extra_pairs": 158,
+            "chars": 22738,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.253
+          },
+          {
+            "extra_pairs": 163,
+            "chars": 22917,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.219
+          },
+          {
+            "extra_pairs": 166,
+            "chars": 23027,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.246
+          },
+          {
+            "extra_pairs": 164,
+            "chars": 22953,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.257
+          }
+        ]
+      },
+      "zh-Hant": {
+        "full_chars": 16464,
+        "full_passes": true,
+        "pass_max": 22842,
+        "reject_min": 22917,
+        "error_type": "invalid_request",
+        "probes": [
+          {
+            "extra_pairs": 0,
+            "chars": 16464,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.229
+          },
+          {
+            "extra_pairs": 339,
+            "chars": 30011,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.472
+          },
+          {
+            "extra_pairs": 169,
+            "chars": 23131,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.261
+          },
+          {
+            "extra_pairs": 84,
+            "chars": 19646,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.25
+          },
+          {
+            "extra_pairs": 126,
+            "chars": 21418,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.245
+          },
+          {
+            "extra_pairs": 147,
+            "chars": 22272,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.262
+          },
+          {
+            "extra_pairs": 158,
+            "chars": 22738,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.239
+          },
+          {
+            "extra_pairs": 163,
+            "chars": 22917,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.269
+          },
+          {
+            "extra_pairs": 160,
+            "chars": 22807,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.246
+          },
+          {
+            "extra_pairs": 161,
+            "chars": 22842,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.236
+          }
+        ]
+      },
+      "th": {
+        "full_chars": 19340,
+        "full_passes": true,
+        "pass_max": 23661,
+        "reject_min": 23735,
+        "error_type": "invalid_request",
+        "probes": [
+          {
+            "extra_pairs": 0,
+            "chars": 19340,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.255
+          },
+          {
+            "extra_pairs": 232,
+            "chars": 30170,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.444
+          },
+          {
+            "extra_pairs": 116,
+            "chars": 24835,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.434
+          },
+          {
+            "extra_pairs": 58,
+            "chars": 21888,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.379
+          },
+          {
+            "extra_pairs": 87,
+            "chars": 23306,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.384
+          },
+          {
+            "extra_pairs": 101,
+            "chars": 24066,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.377
+          },
+          {
+            "extra_pairs": 94,
+            "chars": 23661,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.379
+          },
+          {
+            "extra_pairs": 97,
+            "chars": 23843,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.378
+          },
+          {
+            "extra_pairs": 95,
+            "chars": 23735,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.452
+          }
+        ]
+      },
+      "vi": {
+        "full_chars": 16272,
+        "full_passes": true,
+        "pass_max": 25843,
+        "reject_min": 25950,
+        "error_type": "invalid_request",
+        "probes": [
+          {
+            "extra_pairs": 0,
+            "chars": 16272,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.226
+          },
+          {
+            "extra_pairs": 306,
+            "chars": 30343,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.409
+          },
+          {
+            "extra_pairs": 153,
+            "chars": 23300,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.249
+          },
+          {
+            "extra_pairs": 229,
+            "chars": 26642,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.267
+          },
+          {
+            "extra_pairs": 191,
+            "chars": 24914,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.284
+          },
+          {
+            "extra_pairs": 210,
+            "chars": 25758,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.267
+          },
+          {
+            "extra_pairs": 219,
+            "chars": 26188,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.264
+          },
+          {
+            "extra_pairs": 214,
+            "chars": 25950,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.266
+          },
+          {
+            "extra_pairs": 212,
+            "chars": 25843,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.274
+          }
+        ]
+      },
+      "yue": {
+        "full_chars": 16090,
+        "full_passes": true,
+        "pass_max": 23763,
+        "reject_min": 23835,
+        "error_type": "invalid_request",
+        "probes": [
+          {
+            "extra_pairs": 0,
+            "chars": 16090,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.241
+          },
+          {
+            "extra_pairs": 340,
+            "chars": 30030,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.434
+          },
+          {
+            "extra_pairs": 170,
+            "chars": 22970,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.231
+          },
+          {
+            "extra_pairs": 255,
+            "chars": 26341,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.39
+          },
+          {
+            "extra_pairs": 212,
+            "chars": 24572,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.231
+          },
+          {
+            "extra_pairs": 191,
+            "chars": 23763,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.23
+          },
+          {
+            "extra_pairs": 201,
+            "chars": 24146,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.242
+          },
+          {
+            "extra_pairs": 196,
+            "chars": 23944,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.257
+          },
+          {
+            "extra_pairs": 193,
+            "chars": 23835,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.247
+          }
+        ]
+      }
+    },
+    "smallest_pass_max": 22502,
+    "candidate_default": 20251,
+    "current_default": 18832,
+    "zh_hant_vs_zh": {
+      "zh-Hant_pairs": 359,
+      "zh_pairs": 359,
+      "only_in_zh-Hant": 22,
+      "only_in_zh": 22,
+      "examples": [
+        "奈米脂肪填充 → 나노지방이식",
+        "微针式RF装置 → 니들RF 장비",
+        "汇入装置 → 주입장비",
+        "点阵镭射 → 프락셔널",
+        "特色专案 → 시그니처프로그램",
+        "皮秒镭射 → 피코초(Picosecond)",
+        "离子汇入 → 이온토포레시스",
+        "血管镭射 → 혈관"
+      ]
+    }
+  },
+  "14_15_thermage_ulthera": {
+    "zh": {
+      "seed_names": [
+        "美版热玛吉FLX",
+        "美版超声刀"
+      ],
+      "pairs_in_context": {
+        "forward": [
+          true,
+          true
+        ],
+        "forward_alias_써마지": true,
+        "reverse_name": [
+          true,
+          true
+        ]
+      },
+      "forward": [
+        {
+          "utterance": "오늘은 써마지FLX 시술을 먼저 하고요, 다음 방문 때 울쎄라도 같이 상담해 드릴게요.",
+          "translation": "今天先做美版热玛吉FLX的护理，下次来访的时候也会一起咨询你做不饱和疗法。",
+          "tts_inputs": [
+            "今天先做美版热玛吉FLX的护理，下次来访的时候也会一起咨询你做不饱和疗法。"
+          ],
+          "caption_hits": [
+            true,
+            false
+          ],
+          "tts_hits": [
+            true,
+            false
+          ],
+          "tts_parens": 0,
+          "errors": []
+        },
+        {
+          "utterance": "써마지는 한 번 받으시면 효과가 꽤 오래가요.",
+          "translation": "美版热玛吉FLX一次做完的话，效果会持续挺久的。",
+          "tts_inputs": [
+            "美版热玛吉FLX一次做完的话，效果会持续挺久的。"
+          ],
+          "caption_hits": [
+            true,
+            false
+          ],
+          "tts_hits": [
+            true,
+            false
+          ],
+          "tts_parens": 0,
+          "errors": []
+        }
+      ],
+      "reverse": [
+        {
+          "kind": "name",
+          "utterance": "我想做美版热玛吉FLX，下次也想了解一下美版超声刀。",
+          "translation": "써마지FLX 미용을 받고 싶어요. 다음에는 미용용 슈링크유니버스도 좀 알아보고 싶어요.",
+          "ko_hits": [
+            true,
+            false
+          ],
+          "ko_hits_loose": [
+            true,
+            false
+          ],
+          "errors": []
+        },
+        {
+          "kind": "alias",
+          "utterance": "我想做Thermage FLX，下次也想了解一下Ultherapy。",
+          "translation": "저는 \"써마지 FLX\"를 하고 싶어요. 다음에는 all therapy도 좀 알아보고 싶어요.",
+          "ko_hits": [
+            true,
+            false
+          ],
+          "ko_hits_loose": [
+            true,
+            false
+          ],
+          "errors": []
+        },
+        {
+          "kind": "colloquial",
+          "utterance": "我想做热玛吉，还有超声刀也想了解一下。",
+          "translation": "열마기(热玛吉)를 하고 싶고요, 슈링크유니버스도 좀 알아보고 싶어요.",
+          "ko_hits": [
+            false,
+            false
+          ],
+          "ko_hits_loose": [
+            false,
+            false
+          ],
+          "errors": []
+        }
+      ]
+    },
+    "zh-Hant": {
+      "seed_names": [
+        "美版熱瑪吉FLX",
+        "美版超聲刀"
+      ],
+      "pairs_in_context": {
+        "forward": [
+          true,
+          true
+        ],
+        "forward_alias_써마지": true,
+        "reverse_name": [
+          true,
+          true
+        ]
+      },
+      "forward": [
+        {
+          "utterance": "오늘은 써마지FLX 시술을 먼저 하고요, 다음 방문 때 울쎄라도 같이 상담해 드릴게요.",
+          "translation": "今天先做美版熱瑪吉FLX的護理，下次來訪的時候也會一起諮詢你做不飽和療法。",
+          "tts_inputs": [
+            "今天先做美版热玛吉FLX的护理，下次来访的时候也会一起咨询你做不饱和疗法。"
+          ],
+          "caption_hits": [
+            true,
+            false
+          ],
+          "tts_hits": [
+            true,
+            false
+          ],
+          "tts_parens": 0,
+          "errors": []
+        },
+        {
+          "utterance": "써마지는 한 번 받으시면 효과가 꽤 오래가요.",
+          "translation": "美版熱瑪吉FLX一次做完的話，效果會持續挺久的。",
+          "tts_inputs": [
+            "美版热玛吉FLX一次做完的话，效果会持续挺久的。"
+          ],
+          "caption_hits": [
+            true,
+            false
+          ],
+          "tts_hits": [
+            true,
+            false
+          ],
+          "tts_parens": 0,
+          "errors": []
+        }
+      ],
+      "reverse": [
+        {
+          "kind": "name",
+          "utterance": "我想做美版热玛吉FLX，下次也想了解一下美版超声刀。",
+          "translation": "써마지FLX 미용을 받고 싶어요. 다음에 미용용 슈링크도 좀 알아보고 싶어요.",
+          "ko_hits": [
+            true,
+            false
+          ],
+          "ko_hits_loose": [
+            true,
+            false
+          ],
+          "errors": []
+        },
+        {
+          "kind": "alias",
+          "utterance": "我想做Thermage FLX，下次也想了解一下Ultherapy。",
+          "translation": "저는 \"thermage FLX\"를 하고 싶어요. 다음에는 O therapy도 좀 알아보고 싶어요.",
+          "ko_hits": [
+            false,
+            false
+          ],
+          "ko_hits_loose": [
+            false,
+            false
+          ],
+          "errors": []
+        },
+        {
+          "kind": "colloquial",
+          "utterance": "我想做热玛吉，还有超声刀也想了解一下。",
+          "translation": "저는 열마기(热玛吉)를 하고 싶고요, 초음파 절개도 좀 알아보고 싶어요.",
+          "ko_hits": [
+            false,
+            false
+          ],
+          "ko_hits_loose": [
+            false,
+            false
+          ],
+          "errors": []
+        }
+      ]
+    },
+    "ja": {
+      "seed_names": [
+        "サーマクールFLX",
+        "ウルセラ"
+      ],
+      "pairs_in_context": {
+        "forward": [
+          true,
+          true
+        ],
+        "forward_alias_써마지": true,
+        "reverse_name": [
+          true,
+          true
+        ]
+      },
+      "forward": [
+        {
+          "utterance": "오늘은 써마지FLX 시술을 먼저 하고요, 다음 방문 때 울쎄라도 같이 상담해 드릴게요.",
+          "translation": "今日はまずサーマジFLXの施術をして、次回の受診時にウルセラも一緒に相談しますね。",
+          "tts_inputs": [
+            "今日はまずサーマジFLXの施術をして、次回の受診時にウルセラも一緒に相談しますね。"
+          ],
+          "caption_hits": [
+            false,
+            true
+          ],
+          "tts_hits": [
+            false,
+            true
+          ],
+          "tts_parens": 0,
+          "errors": []
+        },
+        {
+          "utterance": "써마지는 한 번 받으시면 효과가 꽤 오래가요.",
+          "translation": "サーマジーは一度受ければ、効果がかなり長く続きます。",
+          "tts_inputs": [
+            "サーマジーは一度受ければ、効果がかなり長く続きます。"
+          ],
+          "caption_hits": [
+            false,
+            false
+          ],
+          "tts_hits": [
+            false,
+            false
+          ],
+          "tts_parens": 0,
+          "errors": []
+        }
+      ],
+      "reverse": [
+        {
+          "kind": "name",
+          "utterance": "今日はサーマクールFLXをお願いしたいです。次回はウルセラも相談したいです。",
+          "translation": "오늘은 써마지FLX를 부탁드리고 싶어요. 다음에는 울쎄라도 상담하고 싶어요.",
+          "ko_hits": [
+            true,
+            true
+          ],
+          "ko_hits_loose": [
+            true,
+            true
+          ],
+          "errors": []
+        },
+        {
+          "kind": "alias",
+          "utterance": "今日はThermage FLXと、Ultherapyも相談したいです。",
+          "translation": "오늘은 써마지FLX랑 올리지오도 상담하고 싶어요.",
+          "ko_hits": [
+            true,
+            false
+          ],
+          "ko_hits_loose": [
+            true,
+            false
+          ],
+          "errors": []
+        },
+        {
+          "kind": "colloquial",
+          "utterance": "サーマクールとウルセラについて聞きたいです。",
+          "translation": "써마쿨과 울쎄라에 대해 여쭤보고 싶어요.",
+          "ko_hits": [
+            false,
+            true
+          ],
+          "ko_hits_loose": [
+            false,
+            true
+          ],
+          "errors": []
+        }
+      ]
+    }
+  },
+  "zh_hant_caption": {
+    "caption_translations": [
+      "今天先做美版熱瑪吉FLX的護理，下次來訪時也會一起諮詢你做不頰刺激。"
+    ],
+    "tts_inputs": [
+      "今天先做美版热玛吉FLX的护理，下次来访时也会一起咨询你做不颊刺激。"
+    ],
+    "caption_traditional": true,
+    "tts_simplified": true,
+    "tts_languages": [
+      "zh"
+    ],
+    "errors": []
+  },
+  "16_bad_seed_uvicorn": {
+    "exit_code": 3,
+    "elapsed_sec": 0.32,
+    "error_lines": [
+      "glossary seed invalid: id_duplicate at $.terms[1].id (id=ph-001) — 기동을 멈춘다"
+    ],
+    "listening_after": false,
+    "started": false
+  },
+  "16_bad_seed_docker": {
+    "how": "back/ 임시 복사본의 시드 id 중복 → docker build · docker run(포트 없음)",
+    "exit_code": 3,
+    "error_line": "glossary seed invalid: id_duplicate at $.terms[1].id (id=ph-001) — 기동을 멈춘다"
+  },
+  "real_seed_docker": {
+    "health": {
+      "ok": true,
+      "glossary": {
+        "loaded": true,
+        "version": "2026-10-27.2",
+        "count": 157
+      }
+    }
+  }
+}

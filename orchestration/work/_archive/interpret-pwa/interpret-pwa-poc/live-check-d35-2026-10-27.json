@@ -1,0 +1,209 @@
+{
+  "date": "2026-10-27",
+  "decision": "D-35",
+  "default_20251": {
+    "seed": "2026-10-27.3",
+    "max_chars": 20251,
+    "zh_hant_context": {
+      "terms": 20,
+      "forward": 157,
+      "forward_alias": 1,
+      "reverse": 145,
+      "reverse_alias": 190,
+      "chars": 20245
+    },
+    "tw_to_ko": [
+      {
+        "utterance": "我想打美国音波，效果大概可以维持多久？",
+        "want": "울쎄라",
+        "caption_original": "我想打美國音波，效果大概可以維持多久？",
+        "translation": "울쎄라를 받고 싶은데, 효과가 대략 얼마나 지속될까요?",
+        "hits": {
+          "울쎄라": true
+        },
+        "errors": []
+      },
+      {
+        "utterance": "凤凰电波一次大概多少钱？",
+        "want": "써마지",
+        "caption_original": "鳳凰電波，一次大概多少錢？",
+        "translation": "써마지FLX 한 번에 대략 얼마예요?",
+        "hits": {
+          "써마지": true
+        },
+        "errors": []
+      },
+      {
+        "utterance": "我想做美国音波跟凤凰电波，可以一起做吗？",
+        "want": "울쎄라+써마지",
+        "caption_original": "我想做美國音波跟鳳凰電波，可以一起做嗎？",
+        "translation": "저는 울쎄라와 슈링크유니버스를 해보고 싶어요. 같이 진행할 수 있을까요?",
+        "hits": {
+          "울쎄라": true,
+          "써마지": false
+        },
+        "errors": []
+      }
+    ],
+    "ko_to_tw": [
+      {
+        "utterance": "오늘은 울쎄라 시술을 먼저 하실게요.",
+        "want": "美國音波",
+        "translation": "今天先給您做Ultherapy。",
+        "tts_inputs": [
+          "今天先给您做Ultherapy。"
+        ],
+        "hits": {
+          "美國音波": false
+        },
+        "errors": []
+      },
+      {
+        "utterance": "써마지는 한 번 받으시면 효과가 꽤 오래가요.",
+        "want": "鳳凰電波",
+        "translation": "鳳凰電波這個項目一做一次的話，效果會持續挺久的。",
+        "tts_inputs": [
+          "凤凰电波这个项目一做一次的话，效果会持续挺久的。"
+        ],
+        "hits": {
+          "鳳凰電波": true
+        },
+        "errors": []
+      },
+      {
+        "utterance": "울쎄라랑 써마지FLX를 같이 받으셔도 돼요.",
+        "want": "美國音波+鳳凰電波",
+        "translation": "您也可以一起做Ulthera和Somagic FLX。",
+        "tts_inputs": [
+          "您也可以一起做Ulthera和Somagic FLX。"
+        ],
+        "hits": {
+          "美國音波": false,
+          "鳳凰電波": false
+        },
+        "errors": []
+      }
+    ]
+  },
+  "untrimmed_22000_comparison": {
+    "seed": "2026-10-27.3",
+    "max_chars": 22000,
+    "zh_hant_context": {
+      "terms": 158,
+      "forward": 157,
+      "forward_alias": 1,
+      "reverse": 145,
+      "reverse_alias": 190,
+      "chars": 21605
+    },
+    "tw_to_ko": [
+      {
+        "utterance": "我想打美国音波，效果大概可以维持多久？",
+        "want": "울쎄라",
+        "caption_original": "我想打美國音波，效果大概可以維持多久？",
+        "translation": "울쎄라를 받고 싶은데, 효과가 대략 얼마나 지속될까요?",
+        "hits": {
+          "울쎄라": true
+        },
+        "errors": []
+      },
+      {
+        "utterance": "凤凰电波一次大概多少钱？",
+        "want": "써마지",
+        "caption_original": "鳳凰電波一次大概多少錢？",
+        "translation": "써마지FLX 한 번에 대략 얼마예요?",
+        "hits": {
+          "써마지": true
+        },
+        "errors": []
+      },
+      {
+        "utterance": "我想做美国音波跟凤凰电波，可以一起做吗？",
+        "want": "울쎄라+써마지",
+        "caption_original": "我想做美國音波跟鳳凰電波，可以一起做嗎？",
+        "translation": "저는 울쎄라와 슈링크유니버스를 해보고 싶어요. 같이 진행할 수 있을까요?",
+        "hits": {
+          "울쎄라": true,
+          "써마지": false
+        },
+        "errors": []
+      }
+    ],
+    "ko_to_tw": [
+      {
+        "utterance": "오늘은 울쎄라 시술을 먼저 하실게요.",
+        "want": "美國音波",
+        "translation": "今天先給您做Ultherra手術。",
+        "tts_inputs": [
+          "今天先给您做Ultherra手术。"
+        ],
+        "hits": {
+          "美國音波": false
+        },
+        "errors": []
+      },
+      {
+        "utterance": "써마지는 한 번 받으시면 효과가 꽤 오래가요.",
+        "want": "鳳凰電波",
+        "translation": "鳳凰電波一做一次的話，效果會持續挺久的。",
+        "tts_inputs": [
+          "凤凰电波一做一次的话，效果会持续挺久的。"
+        ],
+        "hits": {
+          "鳳凰電波": true
+        },
+        "errors": []
+      },
+      {
+        "utterance": "울쎄라랑 써마지FLX를 같이 받으셔도 돼요.",
+        "want": "美國音波+鳳凰電波",
+        "translation": "您也可以一起做Ulthera和Somagic FLX。",
+        "tts_inputs": [
+          "您也可以一起做Ulthera和Somagic FLX。"
+        ],
+        "hits": {
+          "美國音波": false,
+          "鳳凰電波": false
+        },
+        "errors": []
+      }
+    ]
+  },
+  "incident_idle_repro": {
+    "fixed": {
+      "elapsed_sec": 52.2,
+      "finals": 2,
+      "audio_starts": 2,
+      "tts_count": 2,
+      "errors": []
+    },
+    "old_keepalive": {
+      "elapsed_sec": 53.0,
+      "finals": 2,
+      "audio_starts": 2,
+      "tts_count": 2,
+      "errors": []
+    },
+    "old_code": {
+      "elapsed_sec": 47.4,
+      "finals": 2,
+      "audio_starts": 2,
+      "tts_count": 2,
+      "errors": [
+        {
+          "type": "error",
+          "code": "soniox_unavailable",
+          "message": "통역 서버(Soniox) 오류로 끊겼어요"
+        }
+      ]
+    }
+  },
+  "incident_tts_probe": {
+    "{}": {
+      "error_type": "invalid_request",
+      "error_message": "Missing stream_id",
+      "stream_id": ""
+    },
+    "{\"keep_alive\": true}": "no reply (3s)"
+  }
+}
