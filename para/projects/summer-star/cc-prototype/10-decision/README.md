@@ -7,3 +7,4 @@
 | DEC-003 | cc PoC 배포 — k8s_infra_mac · ccc.medisolveai.xyz | accepted | — | SPEC-001 | [본문](decision-003-cc-deploy.md) |
 | DEC-004 | cc 2차 — 공통 헤더 세 갈래 · 기기별 현황판 · 예약관리 데모 | proposed | BASE-004 · BASE-006 | SPEC-002 | [본문](decision-004-cc-nav-reservation.md) |
 | DEC-005 | 명동 PoC v2 — 시술 현황판(새 기능 procedure · KOS 데모 지점 실연동) | proposed | BASE-008 | — | [본문](decision-005-procedure-board.md) |
+| DEC-006 | 전체현황판 「현황 › 예약 현황」 — 예약 · 접수(방 배정) · 상담 호출 · 귀가 정산(KOS 데모 지점) | proposed | BASE-009 | SPEC-005 | [본문](decision-006-reservation-board.md) |

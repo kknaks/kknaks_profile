@@ -21,6 +21,7 @@ links:
   specs:
     - "[[spec-003-procedure-board|SPEC-003]]"
     - "[[spec-001-cc-poc|SPEC-001]]"
+    - "[[spec-005-reservation-board|SPEC-005]]"
   works:
     - "[[work-004-procedure-app|WORK-004]]"
   releases: []

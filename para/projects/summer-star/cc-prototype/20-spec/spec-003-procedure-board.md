@@ -20,6 +20,7 @@ links:
     - "[[decision-005-procedure-board|DEC-005]]"
   specs:
     - "[[spec-002-cc-nav-reservation|SPEC-002]]"
+    - "[[spec-005-reservation-board|SPEC-005]]"
   works:
     - "[[work-003-procedure-board|WORK-003]]"
     - "[[work-005-overall-board-procedure|WORK-005]]"
