@@ -617,6 +617,14 @@ para/areas/
 | 502 | `cs` | `strangler-fig` | 원천을 감싸 쓰다 화면 하나씩 교체. 행 = 우리 id + 원천 id · 원천 필드는 덮어쓰고 우리 사실은 이벤트로 쌓기만 |  |
 | 503 | `front` | `surface-anchor-leader-line` | 메시 위 점을 매 프레임 투영해 DOM 카드와 선으로. 카메라 행렬 먼저 갱신 · raycast 가림 · visible 은 목표값 |  |
 | 504 | `cs` | `labeled-upward-fallback` | 계층 데이터 빈 칸을 상위 값으로 채우되 출처 노드를 같이 돌려 「◯◯ 전체 기준」 표기. 숨기기·조용한 대체 둘 다 아님 |  |
+| 505 | `back` | `empirical-limit-probing` | 외부 한도는 문서값 대신 실측 — 크기를 키우며 이분 탐색, 가장 작은 통과치 × 0.9 · 넘으면 줄이는 순서 |  |
+| 506 | `ai` | `translation-glossary-normalization` | 번역 사전 = term × 언어별 현지명 · 별칭 · 출처 · 검수. 원문은 raw 로 · 매핑은 엔진이 내는 문자로 |  |
+| 507 | `cs` | `chinese-script-conversion` | 간번 변환은 글자 · 지역 표기(s2tw · 鐳射≠雷射)까지, 현지 별명은 데이터로. 엔진 안은 간체 · 번체는 출력에서만 |  |
+| 508 | `back` | `deferred-stream-error` | 한 연결 위 오류가 다음 요청에서 터진다. 스트림 id 로 가르기 · 제어 메시지는 공식 형식 · 오류 로그엔 채널 · 메시지 · 상태 |  |
+| 509 | `front` | `push-to-talk` | 말소리 소음은 noiseSuppression · 문턱으로 안 된다. 누름 = 송신 · 뗌 = 확정, 멈춤 중 출력이 상태 판정 위 |  |
+| 510 | `front` | `rotated-region-layout` | 마주 보는 화면은 레이아웃 한 벌 + 영역째 180°. body 포탈 오버레이는 회전을 못 받는다 |  |
+| 511 | `front` | `ios-input-auto-zoom` | iOS Safari 는 16px 미만 입력 포커스에 확대. 입력만 16px · 확대 잠금은 접근성 때문에 안 씀 |  |
+| 512 | `back` | `minimal-api-surface` | 밖으로는 필요한 경로 · 필드만. 허용 경로 목록 고정 시험 · 일반 오류 문구 · docs 끔 · 빌드 산출물 grep |  |
 
 ---
 
