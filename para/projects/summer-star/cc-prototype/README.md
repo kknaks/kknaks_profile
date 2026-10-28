@@ -31,9 +31,11 @@ status: active
 | 10-decision | [결정](10-decision/README.md) |
 | 20-spec | [스펙](20-spec/README.md) |
 | 30-work | [구현 계획](30-work/README.md) |
+| 배포 | [배포 · TestFlight 업로드](deploy.md) — 경로 · 웹 배포 순서 · 앱 업로드 명령 |
 
 ## 최근 로그
 
+- 2026-10-28: 고객 문진 웹 — 문진을 고객 자기 폰의 ccc 웹 페이지로(DEC-008 · SPEC-006 · WORK-010) · 앱은 QR 만 보여 줌
 - 2026-10-12: DEC-001 개정(D-06) — sts 는 별도 기능이 아니라 cc 직원용 화면 안의 통역 기능
 - 2026-10-10: 협찬 아이디어 노트 BASE-005 — Casty 로 찾고 Linky 에서 대화 생성
 - 2026-10-10: 예약 아이디어 노트 BASE-004 — Linky → cc → KOS. 카톡·스크린샷 구간을 cc 로

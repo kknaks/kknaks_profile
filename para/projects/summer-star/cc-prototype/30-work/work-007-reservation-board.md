@@ -2,7 +2,7 @@
 type: work
 id: WORK-007
 title: "전체현황판 「현황 › 예약 현황」 — 스케줄 표 · 등록 · 상세(접수 묶음 · 실장 호출 · 귀가 정산) · WP-KOS 먼저"
-status: todo
+status: doing
 product: cc-prototype
 feature: procedure
 work_type: new-feature
@@ -14,7 +14,7 @@ tags:
   - product/cc-prototype
   - feature/procedure
   - doc/work
-  - status/todo
+  - status/doing
 links:
   baselines:
     - "[[baseline-009-reservation-board|BASE-009]]"
@@ -37,15 +37,17 @@ sources:
   - "orchestration/work/overall-board/reservation-kos-probe-report.md (WP-KOS)"
   - "orchestration/work/overall-board/reservation-e2e-feedback.md (E2E batch 1 · 2026-10-27)"
   - "orchestration/work/overall-board/reservation-e2e-batch1-brief.md (batch 1 BE · FE 몫)"
+  - "orchestration/work/overall-board/reservation-e2e-feedback.md (E2E batch 2 · 3 · 4) · reservation-e2e-batch{2,3}-*-report.md"
+  - "orchestration/work/overall-board/reservation-notice-report.md · reservation-spec-r4-addendum-1.md (공지 쓰기)"
 ---
 
 # 전체현황판 「현황 › 예약 현황」 — 빌드 계획
 
-계약은 **SPEC-005 0.3.0**(r3 — 사용자 로컬 E2E batch 1 · 23건 · DEC-006 D-51 ~ D-57 · 부록 F. 0.2.0 = r1 처분 · U1 ~ U7 · WP-KOS) — 이 문서는 빌드 계획만 적고 계약을 다시 쓰지 않는다. 사용자 지시 「코드까지 다 작성해서 알려줘 — e2e 로컬 해보게」(`_RESUME 10-26 #49`)의 순서: 문서 → reviewer_doc → **WP-KOS** → BE ∥ FE → reviewer → 코디 검증 → 사용자 로컬 E2E.
+계약은 **SPEC-005 0.4.0**(r4 — E2E batch 2 · 3 · 4 · DEC-006 D-58 ~ D-61 · 부록 G · 공지 [수정하기] 계약 §5.15. 0.3.0 = r3 — 사용자 로컬 E2E batch 1 · 23건 · DEC-006 D-51 ~ D-57 · 부록 F. 0.2.0 = r1 처분 · U1 ~ U7 · WP-KOS) — 이 문서는 빌드 계획만 적고 계약을 다시 쓰지 않는다. 사용자 지시 「코드까지 다 작성해서 알려줘 — e2e 로컬 해보게」(`_RESUME 10-26 #49`)의 순서: 문서 → reviewer_doc → **WP-KOS** → BE ∥ FE → reviewer → 코디 검증 → 사용자 로컬 E2E.
 
 ## Meta
 
-- Covers spec: SPEC-005 0.3.0 전부(§1 ~ §10 · 부록 A ~ F) · SPEC-003 §7.4 경로 수(19 → 34 · SPEC-005 §7.6) · SPEC-004 §3.1 · §3.4(역할 `coordinator` 더함 · SPEC-005 §3.4)
+- Covers spec: SPEC-005 0.4.0 전부(§1 ~ §10 · 부록 A ~ G) · SPEC-003 §7.4 경로 수(19 → 34 → **35**(0.4.0 공지) · SPEC-005 §7.6) · SPEC-004 §3.1 · §3.4(역할 `coordinator` 더함 · SPEC-005 §3.4)
 - 코드 레포: `kknaksss/cc-prototype` — 범위 `procedure/back/**` · `procedure/front/**` · `procedure/.env.example` · `procedure/README.md`. **`procedure/app/`(앱) · infra 는 건드리지 않는다**(D-02 · SPEC-005 §1.2)
 - base: 같은 코드 브랜치 **`kknaksss/overall-board`**(PR #6 에 이어서 · `d05cd88` 위) — `_RESUME 10-26 #49`
 - 워커: backend(WP-KOS · WP-BE0 ~ BE4) · frontend(WP-FE1 ~ FE3) · reviewer · 코디(E2E)
@@ -82,8 +84,10 @@ sources:
 | **WP-FE1** | **헤더 · 경로 · 스케줄 표** — `AppHeader` 드롭다운 항목 하나 더함(시술 현황 뒤 · 「현황」 글자 그대로 · 부모 활성 = `/procedures/*` · `/reservations/*` — §6.1 · D-49) · `app/(main)/reservations/{page,live/page}.tsx` · 제목 줄(날짜 · [오늘] · 총 · 범례 7 · 동기화 글자) · 표(칸 · 축 · 회색 · 줄 간격 · 1시간 높이 · 지금 줄 · 자동 스크롤) · 카드(§6.3 · `flag-icons` · title = 국가 이름 · 부상태 칩 · 취소 흐림 · **「수납 필요」 Badge warning sm** — D-50) · 칸 머리 정원(구역별) · 「그룹 없음」 칸 · [+](`rows[].plusAllowed`) · 드래그(카드 구역 슬롯으로 미리 막기 · 낙관 표시 · 실패 원위치 + 토스트) · 10초 폴링 · 토스트 · `lib/types.ts` · `lib/api.ts` · `lib/session.ts`(`coordinator`) | §5.2 ~ §5.4 · §5.9(카드) · §6.1 ~ §6.3 · §6.7 · §6.8 #1 ~ #4 · #18 · #20 · #21 · #23 ~ #25 · #27 · #28 | frontend | `procedure/front/{components/common/AppHeader.tsx, app/(main)/reservations/**, components/reservations/**, lib/api.ts, lib/types.ts, lib/session.ts, package.json}` | 가짜 응답(`PROC_FAKE_BOARD=1`) 스크린샷: 표 전체 · 15/30/60 칸 · 구역 둘인 칸 머리 · 「그룹 없음」 칸 · 취소/부도 카드 · 수납 필요 카드 · 범례 · 드래그 중 금지 칸 · 드래그 403 토스트 · 헤더 드롭다운(「현황」 = 시술 현황). 시술 현황 화면 회귀 없음(스크린샷 1장) · `cc/` import 0 | `cd procedure/front && npx tsc --noEmit && npm run lint && npm run build` | 대기 |
 | **WP-FE2** | **오른쪽 패널 · 등록 모달** — 탭 둘(공지 목록 · 요청 빈 자리 / 원내 현황 필터 · **구역별 묶음** · 카드 · 금액 3칸) · 등록 모달(§6.5 — 구역 칸 · 검색 · 결과 표 · 페이지 · 이름 경고 · 신규/기존 · 칸 표 · 신규 구분 규칙 버튼 끄기 · `duplicated_visitor` 처리 · 등록 중 · 실패 줄) | §5.5 · §6.4 · §6.5 · §6.8 #5 ~ #9 · #26 · #29 | frontend | `procedure/front/components/reservations/**` · `lib/api.ts` · `lib/types.ts` | 가짜 응답 스크린샷: 공지 · 요청 빈 상태 · 원내 현황 필터 5 · 구역 묶음 둘 · 수납 필요 카드 · 등록 모달(구역 select)(검색 결과 · 이름 경고 · 신규 구분 꺼짐/켜짐 · 중복 안내) | 같음 | 대기 |
 | **WP-FE3** | **예약 상세 모달** — §6.6 전부(기본 정보 · 「n / N 입력」 · 여권 영문 칸 · 저장 · 신분 확인(KOS 신분 칸 줄 + ccc 표시) · 유입 읽기 · 예약 메모 · 건강 · 특이사항 · 이전 방문 · 내원 현황 · 상담 카드 · 상담사 팝오버 · 단계 카드 · 정산 상자 · 딥링크 새 탭 · 바닥 줄 · [예약 취소] 고르기 · 시술실 팝오버(그 구역 · `roomLocked` 고정) · [접수 완료] 꺼짐 이유(신분 칸 · 방) · 단계 오류 표시) · 버튼은 `can.*` · `receiveMode` 로만 · 상세 다시 부르기 규칙(§6.7) | §5.6 ~ §5.14 · §6.6 · §6.7 · §6.8 #10 ~ #17 · #19 · #22 · #28 | frontend | `procedure/front/components/reservations/**` · `lib/api.ts` · `lib/types.ts` | 가짜 응답 스크린샷: 상태별 상세(예약 · 상담 대기 · 시술 진행 · 귀가 대기 수납 필요 · 귀가 완료 · 취소 · **부도(접수 가능)** · **이어 하기(방 고정)** · **신분 칸 빔(꺼짐 이유)**) · 시술실 팝오버(사용 중) · 상담사 팝오버 · 건강 확인 필요 · 이전 방문 펼침 · 조작 403 토스트 | 같음 · `grep -rn "can\.\(receive\|discharge\|cancel\)" procedure/front/components/reservations` ≥ 3 | 대기 |
-| **WP-FIX1** | **E2E batch 1 수정**(2026-10-27 · 사용자 지적 23건 · 코드 `3c3c6ad` 위) — SPEC-005 0.3.0 부록 F 의 # 1 ~ 23 「SPEC-005 0.3.0」 칸 전부. back: 고객 검색 빈 조건 · 시간축 06–22 · `closedDay` · 등록 본문 셋 뺌(422) · `form.doctors` 뺌 · `snsTypes` · 접수 신분 조건 · `identity_incomplete` 없앰 · `route` 받음 · `PUT …/route` 없앰 · `POST …/consultation-add`(+ **데모 1회 시험** `changeFlowStep(CONSULTATION_WAITING)`) · 접수 단계별 측정(#14) · 상세 캐시 없음. front: DS 컨트롤 · 달력 · 칸 폭 · 카드 2줄 · 줄 경계 · 칸 머리 한 꼴 · 공지 높이 · 시각 뺌 · 자동 스크롤 · 이름 경고 뺌 · 진행 경로 라디오 · [+ 상담 추가] · 귀가 문구 뺌 · 성공 닫기 · 상세 5초 폴링 · 접수 낙관 표시 · 타이포 | §5.2 · §5.5 · §5.6 · §5.8 · §5.10 · §5.12 · §5.14 · §6 · §7.2 ~ §7.6 · §8 · 부록 F · D-51 ~ D-57 | backend ∥ frontend | `procedure/back/**` · `procedure/front/**`(batch 1 브리프 §2 몫) | 부록 F 23줄 처리 여부 줄마다(각자 몫) · #14 측정 수치 · #15 KOS 시험 결과(받음/안 받음 · 바뀐 값) · 경로 34(`PUT route` 없음 · `consultation-add` 있음) · 기존 시험 전부 · planner 가 SPEC 과 다른 곳을 보고로 고침 | `cd procedure/back && uv run ruff check . && uv run pytest -q` · `cd procedure/front && npx tsc --noEmit && npm run lint && npm run build` | 진행 중(2026-10-27) |
-| **WP-E2E** | **리뷰 + 코디 E2E(데모 지점)** — reviewer: SPEC-005 §1 ~ §8 ↔ 코드(부록 A 의 절 전부) · 기본값(§10 「planner 기본값」 줄)이 코드에 그대로인지 · KOS 본문 = WP-KOS 판정 · 시술 현황 회귀 · public 누출. FAIL 은 모아서 한 번에 수정 발주. 코디: 백엔드 커밋 뒤 **compose 다시 올리고** 데모 지점 → SPEC-005 §9 **#1 ~ #35**(브라우저 2개 · 시술 현황 탭) + SPEC-003 §9 회귀 #1 · #9 · #12 · #14 → 사용자 E2E(사용자 표면 · 피드백은 모아서 한 batch) | §9 | reviewer · 코디 · backend · frontend(수정) | `procedure/back/**` · `procedure/front/**` | 리뷰 PASS · 코디 §9 #1 ~ #41 통과(0.3.0 — #36 ~ #41 더함)(KOS 쪽 확인 칸 포함 — #13 · #17 「다른 칸 그대로」 · #21 KOS 웹 눈 확인 · #23 두 갈래 · #30 `COMPLETED` · #33 부도 접수 · #35 다른 구역) · #12 관찰 갈래 · #25 접수 뒤 상담사 지정 기록(OQ-760) · 남긴 데모 데이터 목록 사용자 통보 · 사용자 E2E 통과 | `cd procedure/back && uv run ruff check . && uv run pytest -q` · `cd procedure/front && npx tsc --noEmit && npm run lint && npm run build` · `cd procedure && docker compose up --build` | 대기 |
+| **WP-FIX1** | **E2E batch 1 수정**(2026-10-27 · 사용자 지적 23건 · 코드 `3c3c6ad` 위) — SPEC-005 0.3.0 부록 F 의 # 1 ~ 23 「SPEC-005 0.3.0」 칸 전부. back: 고객 검색 빈 조건 · 시간축 06–22 · `closedDay` · 등록 본문 셋 뺌(422) · `form.doctors` 뺌 · `snsTypes` · 접수 신분 조건 · `identity_incomplete` 없앰 · `route` 받음 · `PUT …/route` 없앰 · `POST …/consultation-add`(+ **데모 1회 시험** `changeFlowStep(CONSULTATION_WAITING)`) · 접수 단계별 측정(#14) · 상세 캐시 없음. front: DS 컨트롤 · 달력 · 칸 폭 · 카드 2줄 · 줄 경계 · 칸 머리 한 꼴 · 공지 높이 · 시각 뺌 · 자동 스크롤 · 이름 경고 뺌 · 진행 경로 라디오 · [+ 상담 추가] · 귀가 문구 뺌 · 성공 닫기 · 상세 5초 폴링 · 접수 낙관 표시 · 타이포 | §5.2 · §5.5 · §5.6 · §5.8 · §5.10 · §5.12 · §5.14 · §6 · §7.2 ~ §7.6 · §8 · 부록 F · D-51 ~ D-57 | backend ∥ frontend | `procedure/back/**` · `procedure/front/**`(batch 1 브리프 §2 몫) | 부록 F 23줄 처리 여부 줄마다(각자 몫) · #14 측정 수치 · #15 KOS 시험 결과(받음/안 받음 · 바뀐 값) · 경로 34(`PUT route` 없음 · `consultation-add` 있음) · 기존 시험 전부 · planner 가 SPEC 과 다른 곳을 보고로 고침 | `cd procedure/back && uv run ruff check . && uv run pytest -q` · `cd procedure/front && npx tsc --noEmit && npm run lint && npm run build` | **완료**(2026-10-27 · 코드 `1d482d8` · 코드 리뷰 r2 PASS · SPEC-005 0.3.0) |
+| **WP-FIX2** | **E2E batch 2 · 3 수정**(2026-10-27 · 코드 `1d482d8` → `09b1edc` → `0fdeeb1` · main `64e1989` 에 스쿼시) — SPEC-005 0.4.0 부록 G 의 b2 #1 · #2 · #4 ~ #9 · b3 #1 ~ #3. back: 상세 404 `reservation_gone` · 로그 한 번 · 상담사 목록 제외(시스템 계정 · `KOS_EXCLUDE_ACCOUNT_IDS`) · `flow.times`. front: 날짜 이동 흐림 · 404 안내 · 상담사 팝오버 · 시술실 팝오버(1차 근거 시안 대조) · 이전 방문 펼침 · 한글 · 내원 현황 한 줄 · 부상태 색 규칙(`phaseStyle`) | §5.1 · §5.7 · §5.8 · §5.13 · §6.3 · §6.4 · §6.6 · §6.7 · §7.3 · §7.4 · 부록 G · D-58 · D-59 | backend ∥ frontend | `procedure/back/**` · `procedure/front/**`(batch 2 · 3 지시 몫) | 부록 G 처리 줄 전부 · 기존 시험 전부(334 passed) · tsc · lint · build 0 | `cd procedure/back && uv run ruff check . && uv run pytest -q` · `cd procedure/front && npx tsc --noEmit && npm run lint && npm run build` | **완료**(2026-10-27 · 커밋 `09b1edc` · `0fdeeb1` → main `64e1989` 배포) · 사용자 E2E 확인 남음(§9 #42 ~ #45) · 운영 배포 때 지점 시스템 계정 id 를 `KOS_EXCLUDE_ACCOUNT_IDS` 에 더함(D-59) |
+| **WP-FIX3** | **E2E batch 4 · 공지 [수정하기]**(base = `kknaksss/overall-board-2` · main `64e1989`) — ① b4 #1 예약 카드가 안 잡힘: 원인 찾아 코드만 고친다(시안 대조 없이 — D-60 · 이동 계약 §5.4 · §8 그대로) ② 공지 [수정하기](D-61 · §5.15): back = `PUT /api/reservations/notice`(저장 직전 다시 읽기 → change · create · delete 4갈래 · trim 2000 · 지난 날짜 409 `notice_past_date` · `event_log(notice_save)` · 캐시 비움) · `board.noticeEditable` · 경로 35(`test_route_count_35`) / front = 그 날 공지 하나 · 제자리 편집 [수정하기] ↔ 「저장」 · [취소] · 글자 수 · 지난 날짜 버튼 없음 · 실패 = 편집 유지 · 성공 토스트 | §5.4 · §5.14 · §5.15 · §6.4 · §7.2 · §7.5 · §7.6 · §8 공지 줄 · D-60 · D-61 | backend ∥ frontend | `procedure/back/app/{api,service,schemas,kos}/**` · `tests/**` · `procedure/front/components/reservations/**` · `lib/**` · (드래그 원인이면) `procedure/front/app/**` · 공용 컴포넌트 | **b4 #1 원인(무엇이 잡기를 막았나 · 고친 파일)을 보고에 적는다**(D-60 — 시안 대조가 없어 리뷰 근거는 원인 보고뿐) · **잡기 실물 확인 = 브라우저(1920 폭) · 예약 · 접수 카드 각 1장 · 누르고 끌기 시작 → 미리보기 · 놓을 줄 outline → 다른 줄에 놓기 → 새 자리(가짜 모드면 403 원위치 토스트까지) 스크린샷** · 원인이 `procedure/front/app/**` · 공용 컴포넌트에 있으면 **고쳐도 된다**(범위 넓힘 — review-doc r3 W5) · §9 #11(카드 잡기) · #6 · #46 (a) ~ (h) 코디 데모 확인 · 공지 쓰기 = **데모 실물 호출 1회가 완료 조건**(가짜 KOS 만으로 done 안 함) · 남긴 데모 공지 목록 · 기존 시험 전부 | 같음 + `uv run pytest -q tests/test_resv_notice.py`(새) | **대기** — 계약 있음(SPEC-005 0.4.0 §5.15 · 추가 지시 1) |
+| **WP-E2E** | **리뷰 + 코디 E2E(데모 지점)** — reviewer: SPEC-005 §1 ~ §8 ↔ 코드(부록 A 의 절 전부) · 기본값(§10 「planner 기본값」 줄)이 코드에 그대로인지 · KOS 본문 = WP-KOS 판정 · 시술 현황 회귀 · public 누출. FAIL 은 모아서 한 번에 수정 발주. 코디: 백엔드 커밋 뒤 **compose 다시 올리고** 데모 지점 → SPEC-005 §9 **#1 ~ #46**(브라우저 2개 · 시술 현황 탭) + SPEC-003 §9 회귀 #1 · #9 · #12 · #14 → 사용자 E2E(사용자 표면 · 피드백은 모아서 한 batch) | §9 | reviewer · 코디 · backend · frontend(수정) | `procedure/back/**` · `procedure/front/**` | 리뷰 PASS · 코디 §9 #1 ~ #46 통과(0.3.0 — #36 ~ #41 · 0.4.0 — #42 ~ #46 더함 · #32 시안 대조 뺌)(KOS 쪽 확인 칸 포함 — #13 · #17 「다른 칸 그대로」 · #21 KOS 웹 눈 확인 · #23 두 갈래 · #30 `COMPLETED` · #33 부도 접수 · #35 다른 구역) · #12 관찰 갈래 · #25 접수 뒤 상담사 지정 기록(OQ-760) · 남긴 데모 데이터 목록 사용자 통보 · 사용자 E2E 통과 | `cd procedure/back && uv run ruff check . && uv run pytest -q` · `cd procedure/front && npx tsc --noEmit && npm run lint && npm run build` · `cd procedure && docker compose up --build` | 대기 |
 
 ## SPEC-005 절 → WP (빠진 절 0)
 
@@ -113,6 +117,8 @@ sources:
 | §8 KOS 반영 표 | WP-KOS · BE3 · BE4 |
 | §9 E2E · 단위 시험 | WP-E2E · 각 BE 완료 조건 |
 | §0 0.3.0 변경 · 부록 F(E2E batch 1) | WP-FIX1 |
+| §0 0.4.0 변경 · 부록 G(E2E batch 2 · 3 · 4) | WP-FIX2(b2 · b3) · WP-FIX3(b4 #1 · b2 #3 공지) |
+| §5.15 공지 [수정하기] | WP-FIX3 |
 | §10 열린 것 | 「열린 것」 |
 | 부록 C · D · E(r1 처분 · U 반영 · WP-KOS 반영) | 리뷰(WP-E2E) 대조 기준 |
 
@@ -146,13 +152,16 @@ WP-BE0(뼈대 · 가짜 · 첫 커밋) ─┬─ WP-BE1 ─ WP-BE2 ────�
 - 외부 서비스 경로(KOS)는 **실물 호출이 완료 조건** — 가짜 KOS 시험만으로 done 하지 않는다(WP-KOS · WP-E2E)
 - 같은 코드 브랜치에 시술 현황 되돌리기(WORK-006 · PR #6)가 E2E 중이다 — 그 코드 · 시험을 깨지 않는다(기존 시험 전부 통과가 매 BE WP 완료 조건)
 
-## 열린 것 (2026-10-27 · r3)
+## 열린 것 (2026-10-27 · r4)
 
-SPEC-005 §10 이 정본(OQ-701 ~ OQ-760). WP-KOS 게이트 줄(OQ-728 · OQ-739 · OQ-753 ~ OQ-756)은 **닫혔다**. 이 문서가 기다리는 것만:
+SPEC-005 §10 이 정본(OQ-701 ~ OQ-772). WP-KOS 게이트 줄(OQ-728 · OQ-739 · OQ-753 ~ OQ-756)은 **닫혔다**. 이 문서가 기다리는 것만:
 
 | 무엇 | 지금(기본값) | 근거 |
 |---|---|---|
 | 내부 API 정원 초과 거절 · 접수 뒤 단계 [실장 호출] | WP-E2E #12(관찰) · #25 에서 기록 | SPEC-005 OQ-760 · §8 |
 | planner 기본값 줄 전부(OQ-701 나머지 · OQ-702 · OQ-704 ~ OQ-715 · OQ-717 · OQ-720 ~ OQ-727 · OQ-729 · OQ-731 ~ OQ-742 · OQ-752 · **OQ-757 작은 기본값 묶음 · OQ-758 구역 세부 · OQ-759 신분 칸 세부**) | 사용자 확인 대기 — 바뀌면 SPEC-005 개정 뒤 해당 WP | SPEC-005 §10 |
 | batch 1 이 기다리는 것 — [+ 상담 추가] KOS 동작 · 고객 검색 빈 조건 · DS 컴포넌트 유무 · 접수 측정 수치 | WP-FIX1 보고 | SPEC-005 OQ-761 · OQ-762 · OQ-764 · OQ-767 |
+| (r4) ~~상담사 제외 목록 모양~~ | **닫음**(추가 지시 2 — 구현 그대로 · 운영 배포 때 지점 시스템 계정 id 를 `KOS_EXCLUDE_ACCOUNT_IDS` 에 더함 · 배포 메모) | SPEC-005 OQ-768 · D-59 |
+| (r4) 공지 — 같은 날 둘째 create · 지난 날짜 고치기를 KOS 가 막는지 | 저장 직전 다시 읽기 · ccc 가 지난 날짜 409 | SPEC-005 OQ-770 · WP-FIX3 |
+| (r4) 시술실 팝오버 사용자 칸 · 지난 단계 시각 · 날짜 이동 실 back 시간 | 비움 · 근거 있는 것만 · 미측정 | SPEC-005 OQ-769 · OQ-771 · OQ-772 |
 | WP-KOS 가 남긴 데모 데이터(고객 1 · 일정 2 — 하나는 귀가 대기 + 수납 필요로 남음) 지울지 | 지우지 않음 · E2E #28 · #34 에 씀 · 사용자 판단 | `reservation-kos-probe-report.md` §5 · OQ-751 |
