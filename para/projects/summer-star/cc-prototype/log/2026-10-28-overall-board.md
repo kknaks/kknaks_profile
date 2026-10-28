@@ -12,37 +12,37 @@
 
 ## 2. 적용한 기술·개념
 
-- **KOS 그대로 원칙을 데모 실호출로 검증하기** — 「planner 기본값」으로 막아 둔 동작을 KOS 가 실제로 받는지 먼저 확인
+- **KOS 그대로 원칙을 데모 실호출로 검증하기** [[public-vs-internal-api]] — 「planner 기본값」으로 막아 둔 동작을 KOS 가 실제로 받는지 먼저 확인
   - 왜 이걸 골랐나: 예약 카드 이동을 「예약 · 접수만」으로 막아 뒀는데 근거가 없었다. 데모에서 단계별로 옮겨 보니 KOS 는 모든 단계 · 그룹 · 지난 날을 받았고, 바뀌는 필드는 시각 · 그룹뿐이었다
   - 무엇이 어려웠나: 사용자가 「KOS 에서도 안 되는 거야?」라고 물을 때까지 그 제한이 KOS 근거인 줄 알았다. 문서에 「planner 기본값」이 「KOS 확인」과 같은 무게로 섞여 있었다
   - 근거: `reservation-move-stage-report.md` · DEC-006 D-62 · 코드 `901267f`
 
-- **KOS 이미지는 일정(scheduleId)에 묶여야 화면에 보인다** — 업로드 200 ≠ 화면에 보임
+- **KOS 이미지는 일정(scheduleId)에 묶여야 화면에 보인다** [[external-write-queue]] — 업로드 200 ≠ 화면에 보임
   - 왜 이걸 골랐나: WP-KOS 게이트에서 `scheduleId` 를 「안 보냄」 기본값으로 뒀다. KOS 일정 「사진 · 펜차트」는 `get-visitor-images{visitorId, scheduleId}` 로 읽어서 고객에만 붙은 사진은 안 걸렸다
   - 무엇이 어려웠나: 운영 DB `kos_status=ok` 라 성공으로 보였다. 사용자 HAR(KOS 웹 여권 스캔)로 KOS 자체가 scheduleId · 분류 「여권」을 싣는 것을 확인 · 분류는 지점 코드(`IMAGE_CATEGORY`)에 「여권」이 있을 때만
   - 근거: `app-backend-report.md` 「E2E batch 2 #5」 · 「여권 사진 분류」 · 코드 `fad8b56` · `96441df`
 
-- **앱 기기 등록 · SSE 재연결은 로그인이 아니라 앱 시작 · 복귀에 건다**
+- **앱 기기 등록 · SSE 재연결은 로그인이 아니라 앱 시작 · 복귀에 건다** [[server-sent-events]]
   - 왜 이걸 골랐나: TestFlight 업데이트 뒤 저장된 로그인으로 켜면 SSE 가 등록 전 deviceId 로 붙어 back 이 「기기 없는 연결」로 받고, 등록이 같은 id 를 돌려주면 다시 안 붙었다 → 웹 → 폰 띄우기가 안 열림. 다시 로그인하면 됐다(사용자가 찾은 단서)
   - 무엇이 어려웠나: back 로그 · push_log 는 「보냄 1 · 실패 0」이라 서버는 정상. `device.last_seen_at` 이 안 바뀐 것이 SSE 가 안 붙었다는 단서였다. 앞에서 받은 푸시는 iOS 가 앱에 넘겨 배너만 띄우는 것도 함께
   - 근거: `display-device-bug-instructions.md` · 코드 `113c5e1` · 운영 `display_request` 21 ~ 24
 
-- **설치 단위 id(installId)로 기기 행 하나** — APNs 토큰은 sandbox ↔ production · 재설치마다 바뀐다
+- **설치 단위 id(installId)로 기기 행 하나** [[apns-direct-push]] — APNs 토큰은 sandbox ↔ production · 재설치마다 바뀐다
   - 왜 이걸 골랐나: 토큰 = 행이라 같은 폰이 「iPhone」 2대로 떴다. `identifierForVendor` 를 보내 같은 설치는 옛 행을 바꿔 끼우고, installId 없는 옛 행은 targets 에서 뺐다
   - 무엇이 어려웠나: 「iPhone」 이름은 iOS 16+ entitlement 문제 → 첫 로그인 이름 입력 창을 넣었다가 「유저 불편」으로 뺐고 기종 이름 자동(모델 코드 표)으로
   - 근거: 코드 `333f30f` · `affac41` · `app-e2e-feedback-batch1.md` · `-batch2.md`
 
-- **여권 MRZ 연속 인식** — 한 장 촬영(UIImagePickerController) → AVCaptureSession 연속 프레임 · 틀 영역만 Vision · OCR 오인식 보정 · 연속 2 프레임 확정 · [촬영] 버튼 항상
+- **여권 MRZ 연속 인식** [[mrz-continuous-scan]] — 한 장 촬영(UIImagePickerController) → AVCaptureSession 연속 프레임 · 틀 영역만 Vision · OCR 오인식 보정 · 연속 2 프레임 확정 · [촬영] 버튼 항상
   - 왜 이걸 골랐나: 한 장 촬영은 근접 초점 · 매크로 전환이 안 되고, 검사 숫자 전부 일치 조건은 실기기에서 한 번도 통과 못 했다(`<` → `K` 등)
   - 무엇이 어려웠나: 시뮬레이터는 카메라가 「있음」(가짜 카메라)으로 열려 자동 시험이 멈췄다 · 실기기에서만 확인 가능
   - 근거: 코드 `333f30f` · `affac41` · `app-mobile-report.md` 「E2E batch 2」
 
-- **고객 문진 = 로그인 없는 토큰 링크 웹 페이지** — 앱 안 잠금 화면 대신
+- **고객 문진 = 로그인 없는 토큰 링크 웹 페이지** [[resource-scoped-token]] — 앱 안 잠금 화면 대신
   - 왜 이걸 골랐나: 고객이 직원 기기를 들고 쓰는 것보다 자기 폰이 자연스럽고, KOS 를 떼어도 같은 페이지를 쓸 수 있다. 토큰은 URL `#` 뒤(서버 로그에 안 남음) · HMAC · nonce 해시만 저장 · 열기 10분 · 쓰기 60분 · 한 번 제출
   - 무엇이 어려웠나: KOS 는 다시 제출해도 제출본 읽기가 첫 제출본을 돌려준다 → ccc 가 받은 답을 `web_submit` 이력에 두고 더 새면 그걸 쓴다. 실 KOS 양식 제목이 「건강 정보 >> …」 꼴 · 답 id 는 `answerId`(가짜 응답으로는 안 잡힘)
   - 근거: SPEC-006 · DEC-008 · 코드 `00853e1` · `app-fe-report.md` 「WORK-010 실제 back」
 
-- **Actions 경로 필터 → 바뀐 쪽 이미지만 빌드된다** — infra 는 `back.imageTag` 로 한쪽만 올린다
+- **Actions 경로 필터 → 바뀐 쪽 이미지만 빌드된다** [[ci-cd]] — infra 는 `back.imageTag` 로 한쪽만 올린다
   - 왜 이걸 골랐나: back 만 바뀐 머지에서 front 이미지가 그 sha 로 없어 `image.tag` 를 올리면 front 파드가 이미지를 못 받는다
   - 근거: `deploy.md` ② · infra #39
 

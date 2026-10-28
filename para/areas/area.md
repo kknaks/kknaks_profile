@@ -615,6 +615,7 @@ para/areas/
 | 500 | `back` | `password-login-hardening` | bcrypt 해시 · 없는 아이디도 가짜 해시로 같은 401 · 같은 시간 · 연속 실패 잠금 · 로그인 전 계정 목록 표면 제거 |  |
 | 501 | `front` | `proportional-ui-scale` | 고정 px 대신 짧은 변 배율 하나를 글자(textScaler) · 높이 · 최소 폭에. 판의 절반은 cqh 같은 비율 단위로 |  |
 | 502 | `cs` | `strangler-fig` | 원천을 감싸 쓰다 화면 하나씩 교체. 행 = 우리 id + 원천 id · 원천 필드는 덮어쓰고 우리 사실은 이벤트로 쌓기만 |  |
+| 503 | `front` | `mrz-continuous-scan` | 한 장 촬영 대신 프레임마다 MRZ 자리만 기기 안 OCR. 칸별 보정 · 검사 숫자 셋 · 연속 2 프레임 확정 · [촬영] 늘 · 실기기에서만 |  |
 
 ---
 
