@@ -23,3 +23,5 @@
 | 2026-10-27 | 마감 — 아카이브 · 회고 | [회고](log/2026-10-27-interpret-pwa-poc.md) |
 | 2026-10-27 | DEC-001 D-38 — 대만어 사전 2차(대만 클리닉 3곳 대조 · 한국 전용 제품은 영문 · 톡신 대만 허가명) | [결정](10-decision/decision-001-interpret-pwa.md) |
 | 2026-10-27 | 대만어 사전 2차 마감 — 아카이브 · 회고 | [회고](log/2026-10-27-interpret-pwa-seed-tw.md) |
+| 2026-10-27 | DEC-001 D-39 ~ D-41 — 사전 밖 시술 7개 언어 추가(현지 피부과) · 대륙 중국어 검증 · 통역 기록(서버만 · 화면/API 없음) | [결정](10-decision/decision-001-interpret-pwa.md) |
+| 2026-10-28 | v2 배포(코드 #10 · infra #35 · #36 — back cpu 50m) · 시드 .6 · 통역 기록 on · 표면 확인(health/me {ok} · /api/glossary · /api/records · /api/docs 404) · SPEC 0.6.1 | [스펙](20-spec/spec-001-interpret-pwa.md) |
