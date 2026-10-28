@@ -1,0 +1,59 @@
+{
+  "seed_file": {
+    "version": "2026-10-27.6",
+    "terms": 170,
+    "entries": {
+      "en": 170,
+      "ja": 170,
+      "zh": 170,
+      "zh-Hant": 170,
+      "th": 170,
+      "vi": 170,
+      "yue": 170
+    }
+  },
+  "max_chars": 20251,
+  "records": {
+    "dir_outside_repo": true,
+    "files": [
+      "2026-10-27.jsonl"
+    ],
+    "today": "2026-10-27",
+    "lines": 27,
+    "line_types": {
+      "session_start": 9,
+      "utterance": 9,
+      "session_end": 9
+    },
+    "sessions": 9,
+    "every_session_start_end": true,
+    "end_reasons": [
+      "stop"
+    ],
+    "kr_terms_hit": [
+      "kr-001",
+      "kr-002",
+      "kr-003",
+      "kr-004",
+      "kr-005",
+      "kr-007",
+      "kr-008"
+    ],
+    "secrets_found": {
+      "api_key": false,
+      "bearer": false,
+      "token": false,
+      "ip_like": false,
+      "origin": false
+    },
+    "readonly": {
+      "finals": 1,
+      "audio_starts": 1,
+      "errors": [],
+      "warnings": [
+        "interpret record write failed: PermissionError"
+      ],
+      "files": []
+    }
+  }
+}
