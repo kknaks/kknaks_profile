@@ -8,7 +8,7 @@ work_type: new-feature
 owner: kknaks
 progress: 95
 created_at: 2026-10-26
-updated_at: 2026-10-27
+updated_at: 2026-10-28
 tags:
   - product/interpret-pwa
   - doc/work
@@ -39,6 +39,10 @@ SPEC-001 을 빈 레포 `kknaksss/interpret-pwa` 에 세운다. 순서는 DEC-00
 > 2026-10-27 fix4 — SPEC-001 0.4.1 에 맞춰 WP7(건너뜀) · WP8 · WP-P · WP9 · WP10 · WP11 상태를 실제(배포 main 9befd18 · PR 번호)로 고치고 **WP12(D-34 시작 오버레이 언어 단추)** 를 더했다.
 >
 > 2026-10-27 fix5 — 마감 동기. SPEC-001 0.5.0 에 맞춰 WP11 · WP12 를 done 으로 고치고 **WP13(운영 장애 · D-35) · WP14(D-36 누르고 말하기) · WP15(D-37 최소 노출)** 을 실제(최종 배포 main fe8475e · 코드 PR #5 ~ #8 · infra PR #29 · #30 · #32 · #33)로 기록했다. 남은 것은 사람 목소리 E2E · 못 찾은 대만명 80 · 데모 로그인 끄기(「열린 것」).
+>
+> 2026-10-28 fix7 — v2 마감 동기. SPEC-001 0.6.1 에 맞춰 **WP16 · WP17 · WP18 을 done** 으로(코드 PR #10 → `17c26b5` · infra PR #35 · #36). WP16 은 코디 처분 2 · 3(OQ-018 ⑤ 뒤집음 · 언어별 한도)까지 했다. 「열린 것」 OQ-018 닫음.
+>
+> 2026-10-27 fix6 — interpret-pwa-v2. SPEC-001 0.6.0(DEC D-38 ~ D-41)에 맞춰 **WP16(back: 시드 `.6` · 통역 기록) · WP17(infra: back PVC · env) · WP18(배포 · 실물)** 을 더했다. D-38(시드 `.5` · 코드 PR #9 · infra #34)은 WORK 표 밖 slug(interpret-pwa-seed-tw)로 마감돼 「열린 것」 아래에 한 줄로 남긴다.
 >
 > 1 파일 = 1 work = **빌드 계획**. 계약은 SPEC-001 만 참조한다 — 여기서 계약을 새로 정하지 않는다.
 
@@ -74,6 +78,9 @@ SPEC-001 을 빈 레포 `kknaksss/interpret-pwa` 에 세운다. 순서는 DEC-00
 | WP13 | **운영 장애 수정 · 대만 현지명 시드(D-35)** — ① **장애**(2026-10-27 02:07 운영 zh-Hant 연결 50초 뒤 `soniox_unavailable`): TTS keepalive `{}` → `{"keep_alive": true}` · `speak()` 가 다른 stream_id(빈 문자열 포함) 오류로 발화를 끊지 않음(경고 로그) · `SonioxError.channel` · 오류 로그에 channel · 마지막 STT/TTS 송신 종류 · 몇 초 전(값 0) · 실물 재현(`live_check.py idle`) ② **시드**: 조사 리포트 77/157 → zh-Hant `name`(초안은 `aliases` · 「鐳射」→「雷射」) · 출처 2+ 만 `reviewed:true`(38/39) · `source` `web-research 2026-10-27` + `note` URL · zh 「热玛吉」 alias · 모호어 zh · zh-Hant 0 · 볼뉴머 기기 리프팅 · `version` `.4` ③ **자막**: zh-Hant `s2tw` + `DISPLAY_REPLACE` 「激光 → 雷射」(s2twp 폐기) · 가져오기 초안도 같은 함수 | SPEC-001 0.5.0 §4.2 · §4.2.1 · §4.6 · §4.8 · §5.6 · §5.8 · §9.1 · §9.3 ⑰ ⑱ | researcher(조사 · read-only) · backend | WP12 · 사용자 「인터넷에서 검색해보면 금방 나오잖아」 · 운영 로그 | `back/seed/glossary.json` · `back/app/service/interpret/{soniox,session,langs}.py` · `back/app/service/glossary.py` · `back/scripts/{import_glossary,live_check}.py` · `back/tests/test_{interpret,seed,import_glossary}.py` | 시드 검사 통과 · 장애 재현(고치기 전 47.4초 `soniox_unavailable` → 고친 뒤 오류 0) · zh-Hant 실발화 ⑰ 수치 · 결과 JSON(키 0) | `cd back && uv run ruff check . && uv run pytest -q`(249 passed) · `live_check.py`(⑰ · idle) | 완료(2026-10-27 · 코드 PR #6 → `145c872` · infra PR #30(back) · 보고 `research-tw-names-report.md` · `d35-be-report.md` · `live-check-d35-2026-10-27.json`) |
 | WP14 | **누르고 말하기 모드(D-36)** — 시안 r7(`Mode-Auto-Idle` · `PTT-Ready` · `PTT-Pressed` · 세그먼트 칸 44 · `PTT-Ready` 에 초기화) → front: 원 왼쪽 세그먼트 「자동 듣기 / 누르고 말하기」(`interpret.mode` 기억 · 처음 auto) · 누르고 말하기면 `ready` 뒤 `pause` · 누름 = `resume`(TTS 중이면 `clearPlayback` 먼저) · 뗌 = `pause` · 상태 #4′ 「누르고 말하세요」(흰 원 + gray-500 테두리) · 「Hold to speak」 류 7개 · 초기화 시안 r7 모양(#5 · #4′) · back 무변경 | SPEC-001 0.5.0 §7.2 · §7.3 #4′ · §7.4 · §7.7 · §9.2 | designer · frontend | WP13 | 시안 `design/project/{Mode-Auto-Idle,PTT-Ready,PTT-Pressed}.dc.html` · `front/components/interpret/{ModeToggle,Circle,InterpretScreen}.tsx` · `front/lib/{view,ptt,prefs,interpret,langs,phrases}.ts` · `front/tests/ptt.test.ts` | `tsc` · `lint` · `build` · `vitest` · 클래스 대조 누락 0 · 스크린샷 3장(시안 3개와 같은 상태) | `cd front && npx tsc --noEmit && npm run lint && npm run build && npx vitest run`(36) · 클래스 대조(209 · 누락 0) | 완료(2026-10-27 · 코드 PR #7 → `10b4c38` · infra PR #32(front) · 보고 `design-r7-report.md` · `d36-fe-report.md`) · iPhone 길게 누름 사람 확인은 열린 것 |
 | WP15 | **밖으로는 최소 정보만(D-37 · D-13 뒤집음)** — back: `GET /api/glossary` · 스키마 · `menu_rows` 삭제 · `/api/health` · `/api/auth/me` = `{ok}` · WS 오류 일반 문구 4종 · HTTP 오류 일반 문구 · 처리기 밖 예외 JSON 500 · `/docs` · `/redoc` · `/openapi.json` 끔 · 허용 경로 6개 시험 / front: 용어집 메뉴 · 창 · 호출 · 타입 · 아이콘 · `[BaseModal-1]` 삭제 · 메뉴 = 로그아웃만 · `Me` = `{ok}` · 설정 오류 문구 일반화 · 빌드 산출물 grep / 시안 r8: `Glossary` 삭제 · `Menu` 로그아웃만 | SPEC-001 0.5.0 §3.3 · §3.5 · §4.7 · §5.4 · §7.6 · §9.1 · §9.2 | backend · frontend · designer | WP14 | `back/app/{main,api/*,schemas/*,service/auth,service/glossary,service/interpret/session}.py` · `back/tests/test_api_surface.py`(새) · `front/components/interpret/{HeaderMenu,InterpretScreen}.tsx` · `front/lib/api.ts` · `front/tests/minimal-exposure.test.ts`(새) · 시안 `Menu` · `Glossary` | 표면 시험(경로 6개 · 시드 낱말 0 · 일반 문구) · 빌드 산출물(`.next/static`) 시드 낱말 · `glossary` · env 이름 0 · 배포 주소 health/me `{ok}` · `/api/glossary` · `/docs` 404 · wss ready | `cd back && uv run ruff check . && uv run pytest -q`(246) · `cd front && npx tsc --noEmit && npm run lint && npm run build && npx vitest run`(36) · 클래스 대조(177 · 누락 0) | 완료(2026-10-27 · 코드 PR #8 → **`fe8475e`**(back · front 같은 sha · 이미지 태그 하나) · infra PR #33 · 코디 확인 · 보고 `d37-be-report.md` · `d37-fe-report.md` · `design-r8-report.md`) |
+| WP16 | **back — 시드 `.6`(D-39 · D-40) · 통역 기록(D-41)** — ① **시드**: `back/seed/glossary.json` 을 SPEC §4.2.2(새 term `kr-001` ~ `kr-013` · 배열 맨 뒤 · 7개 언어 × name · aliases · reviewed · `source` `web-research 2026-10-27` · `note` = 리포트의 대표 URL 또는 `현지 출처 없음 — <리포트>`) · §4.2.3(A zh · B th · C 결함 — 표 그대로) · `version` `2026-10-27.6` 대로 고친다. **표에 없는 값을 짓지 않는다** — URL 은 리포트(`orchestration/work/interpret-pwa-v2/research-r{1,2,3}-*.md`)에서 옮긴다 ② 검사 7 `invisible_char`(§4.2) ③ **기록**: `service/records.py` — 폴더 env `INTERPRET_RECORD_DIR`(config · `.env.example` 이름만) · 기동 때 폴더 확인 · 끔/켬 로그 · 날짜별 JSONL(UTC+9) · `session_start` · `utterance`(final caption 마다 · 같은 id 1번) · `session_end`(reason · code · utterances) · 걸린 term 판정(§5.9 — 정규화 · 라틴 경계 · 공백 무시 · 더 긴 일치) · 넣지 않는 것 · 쓰기 실패는 경고(세션당 1) · 통역 무영향 · 7일 삭제(기동 + 24시간 · lifespan 배경 작업) ④ 세션 연결: `InterpretSession` 이 start · `_emit`(final) · `_cleanup` 에서 기록기를 부른다(기록기 없으면 아무것도 안 함) · 시드 `version` 전달 ⑤ 시험(§9.1 「시드」 ⑥ · 「기록」 ① ~ ⑩ · `test_api_surface.py` 는 고치지 않고 통과) ⑥ **실물 §9.3 ⑲ ⑳ ㉑**(로컬 · 키는 사용자 `.env` · 결과 JSON) | SPEC-001 0.6.0 §2.4 · §4.2 · §4.2.1 ~ §4.2.3 · §4.6 · §5.9 · §9.1 · §9.3 ⑲ ~ ㉑ | backend | 사용자 처분(`research-dispositions.md`) · 이 SPEC | `back/seed/glossary.json` · `back/app/{config,main,container}.py` · `back/app/service/{records,glossary}.py` · `back/app/service/interpret/session.py` · `back/tests/test_{seed,records}.py` · `back/scripts/live_check.py` · `.env.example` | 시드 검사 통과 · §4.2.2 · §4.2.3 표 대조 시험 · 모호어 0 · 기록 시험 · 표면 시험 그대로 · ⑲ 거절 0 · 정방향 뺀 수 0(아니면 코디 보고 — §4.6) · ⑳ 적중 기록 · ㉑ 파일 · 결과 JSON(키 · 토큰 0) | `cd back && uv run ruff check . && uv run pytest -q tests/test_seed.py tests/test_records.py tests/test_api_surface.py tests/test_interpret.py tests/test_context.py` · `live_check.py`(⑲ ⑳ ㉑) | 완료(2026-10-27 · 코드 PR #10 → **`17c26b5`** · `ruff` 통과 · `pytest` 295 passed · ⑲ 거절 0 · 정방향 뺀 수 0 · ⑳ zh-Hant 2/7 · ja 4/7 · en 6/7 · ㉑ 통과 · **코디 처분 2** — OQ-018 ① ~ ⑤ 반영(⑤ = ph-130 ko 별칭 「써마지」 지움 · SPEC §4.2.3 D) · ⑬′ 7개 언어 한도 재측정 · **처분 3** — 언어별 한도 표 `langs.py` `CONTEXT_MAX_CHARS` · env 는 전체 덮어쓰기(SPEC §4.6) · 보고 `wp16-be-report.md`) |
+| WP17 | **infra — back PVC · env(D-41)** — `charts/interpret-pwa`: `templates/back-pvc.yaml`(`interpret-pwa-records` · RWO · `local-path` · 1Gi · `resource-policy: keep`) · back 에 `/data` 마운트 · ConfigMap `INTERPRET_RECORD_DIR=/data/records` · `podSecurityContext.fsGroup: 10001` · `nodeSelector` 템플릿 + **`values-prod.yaml` `kubernetes.io/hostname: lima-worker-1`**(local-path 노드 제약 — cc-prototype 선례) · 롤링 그대로 · 「Stateless」 주석 고침 · `docs/interpret-pwa-deploy.md` 에 「통역 기록 꺼내기」 절(kubectl `ls` · `cp` · `exec cat` · 꺼낸 파일은 레포에 넣지 않는다) · 이미지 태그는 WP16 머지 sha(back 만이면 `back.imageTag`) | SPEC-001 0.6.0 §9.6 · §2.4 | infra | WP16 머지(태그) — 차트 · 문서 변경은 먼저 해도 된다 | infra 레포 `charts/interpret-pwa/{templates/back-pvc.yaml,templates/back.yaml,templates/configmap.yaml,values.yaml,values-prod.yaml,templates/NOTES.txt}` · `docs/interpret-pwa-deploy.md` | `helm lint` · `helm template … -f values-prod.yaml` 에 PVC · 마운트 · `fsGroup` · `nodeSelector` · ConfigMap 키 · 비밀값 0 | `helm lint charts/interpret-pwa` · `helm template interpret-pwa charts/interpret-pwa -f charts/interpret-pwa/values-prod.yaml` · `kubectl apply --dry-run=client` | 완료(2026-10-27 · infra PR **#35**(PVC · ConfigMap · `lima-worker-1` · back 이미지 `17c26b5`) · `helm lint` · `helm template` · `kubeconform` 14 Valid · 렌더 Secret 0 · `recordsDir` 가 `dataDir` 밖이면 렌더 거부 가드 · 보고 `wp17-infra-report.md`) |
+| WP18 | **배포 · 실물(D-12)** — WP16 · WP17 머지 → Actions(main · sha) → infra 태그 PR → ArgoCD 수동 sync → 운영 주소에서 §9.6 「배포 뒤 확인」 ① ~ ⑦: 시드 `.6` 로그 · 기록 on 로그 · PVC Bound · pod `lima-worker-1` · **새 시술 3개 언어(zh-Hant · ja · en) 실발화 1회** · **기록 파일 생김**(start · utterance · end · `terms` 에 `kr-…`) · **7일 삭제 시험**(−8일 · −6일 · 다른 이름 파일 → 재시작 → −8일만 사라짐) · 표면 그대로. 꺼낸 기록은 수치만 보고(문장 0) | SPEC-001 0.6.0 §9.5 · §9.6 · §9.3 ⑳ ㉑ | 코디(진행) · infra · 사용자(폰 — 원하면) | WP16 · WP17 | infra `values-prod.yaml`(태그) | §9.6 ① ~ ⑦ 통과 · 배포 기록 10 · 레포 · 차트 비밀값 0 · 기록 파일 문장이 레포 · 보고에 0 | `kubectl -n interpret-pwa-prod get pvc,pod -o wide` · `logs` · `exec ls` · 배포 주소 확인 | 완료(2026-10-28 · 배포 10 = PR #10 `17c26b5` + infra #35 · **배포 11 = infra #36 back `requests.cpu` 100m → 50m**(PVC 고정 노드 `lima-worker-1` CPU 예약 3,950m/98% 로 새 pod Pending · limit 1 그대로) · 코디 확인: 시드 `.6` 로드 · `records on dir=/data/records keep_days=7` · 세션 시작/끝 줄 기록 · 운영 zh-Hant context 21,658/21,689. §9.6 ③ · ⑤ · ⑥ 결과는 보고에 없음 — SPEC §9.6 「배포 뒤 확인 결과」) |
 
 ## 병렬
 
@@ -87,6 +94,8 @@ WP6 = WP6-BE(back 묶음 · 실물 ⑧ ~ ⑪) ∥ WP6-FE(시안 맞춤 · FAIL-1
 (0.4.0) WP8 배포 ── WP-P 폰 피드백 1 ~ 3 ── WP9(back 시드 · 가져오기 · 실물 ⑫ ~ ⑯) ∥ WP10(front 메뉴 별칭 · 검수) ── WP11 재배포 · 폰
 (0.4.1) WP11 ── WP12(D-34 시작 오버레이 — designer → frontend) ── 재배포 · 폰
 (0.5.0) WP12 ── WP13(운영 장애 · D-35 — researcher → backend) ── WP14(D-36 — designer → frontend) ── WP15(D-37 — backend ∥ frontend ∥ designer) ── 8차 배포 fe8475e
+(D-38) 9차 배포 2a9d5a5(seed-tw slug · 표 밖)
+(0.6.0) 조사 r1 ∥ r2 ∥ r3(researcher) ── 처분(코디 · 사용자) ── WP16(backend — 시드 · 기록 · 실물 ⑲ ~ ㉑ · 처분 2 · 3) ∥ WP17(infra — PVC · env · 문서) ── WP18(배포 10 · 11 · 운영 실물) — 10차 17c26b5
 ```
 
 - back 순서(한 워커): WP1 → WP2. front 순서(한 워커): WP3 → WP4.
@@ -95,6 +104,8 @@ WP6 = WP6-BE(back 묶음 · 실물 ⑧ ~ ⑪) ∥ WP6-FE(시안 맞춤 · FAIL-1
 - WP2 실물 확인(§9.3 ①)이 한도를 넘는 언어를 보이면 SPEC-001 §4.4 · OQ-002 를 사용자 결정으로 닫고 나서 WP4 로 간다. (2026-10-26 ① 통과 — 정방향만)
 - **WP9 와 WP10 은 서로 기다리지 않는다** — 메뉴 응답 모양은 SPEC 0.4.0 §4.7 로 고정돼 있다(`term` 이름은 그대로 · 필드만 더함). 통역 WS 메시지 모양은 바뀌지 않는다. WP10 의 실 back 스크린샷만 WP9 뒤.
 - WP9 의 첫 시드는 **가져오기 스크립트를 한 번 돌린 결과**를 그대로 커밋한다 — 워커가 시드 값을 손으로 고치지 않는다(현지명 · 별칭 검수는 사용자 · OQ-012 · OQ-014). WP9 실물 ⑬ 이 한도 기본값을 바꾸면 코디가 planner 에게 넘겨 SPEC §2.4 · §4.6 에 적는다.
+- **WP16 과 WP17 은 서로 기다리지 않는다**(0.6.0) — 계약은 SPEC §5.9(폴더 env · 비면 끔) · §9.6(마운트 · ConfigMap)으로 고정. WP17 은 이미지 태그만 WP16 머지 뒤. front 는 바뀌지 않는다(D-41 화면 없음).
+- WP16 ⑲ 에서 정방향 짝이 빠지는 언어가 나오면 코디가 한도 재측정 여부를 사용자와 정하고 planner 에게 넘긴다(SPEC §4.6) — 워커가 기본값을 바꾸지 않는다.
 - WP6-BE 와 WP6-FE 는 서로 기다리지 않는다 — WS 메시지 모양은 0.3.0 에서도 그대로다(TTS 입력 · context 는 back 안쪽). WP6-BE 실측(⑧)이 정한 기본값은 코디가 planner 에게 넘겨 SPEC §2.4 · §4.4 에 적는다.
 
 ## 주의
@@ -107,12 +118,15 @@ WP6 = WP6-BE(back 묶음 · 실물 ⑧ ~ ⑪) ∥ WP6-FE(시안 맞춤 · FAIL-1
 
 ## 열린 것
 
-SPEC-001 §10 이 정본이다. 0.5.0 마감 기준 **남은 것 셋** — 모두 WP 밖(사용자):
+SPEC-001 §10 이 정본이다. 0.6.1 마감 기준 **남은 것 넷** — 모두 WP 밖(사용자):
 
 | ID | 무엇 | 언제 닫나 |
 |---|---|---|
-| OQ-017 | 사람 목소리 E2E — 대만 현지명 양방향(한국어 → 대만명 ⑰ 1/4) · `yue` 만다린 음성 · iPhone 길게 누름(D-36) | 사용자가 배포 주소에서 폰으로 1회. 결과로 시드 · DEC 를 고친다 |
+| OQ-017 | 사람 목소리 E2E — 대만 현지명 양방향(한국어 → 대만명 ⑰ 1/4) · `yue` 만다린 음성 · iPhone 길게 누름(D-36) · (0.6.1) 새 시술 미적중(프로파일로 STT · 뉴라미스 zh-Hant 優美思 · ja サーマジCPT 등 — 짝은 context 에 있음) | 사용자가 배포 주소에서 폰으로 1회. 결과로 시드 · DEC 를 고친다 |
 | OQ-016 | 시드 검수 숙제 — 대만명 못 찾은 80 · 출처 1개 39 · 「그 밖」 괄호 60(`reviewed:false`) | 사용자 시드 PR(SPEC §4.2.1 규칙) → 재배포(SPEC §9.5). 워커는 값을 짓지 않는다 |
 | OQ-008 | 데모 로그인 끄기(운영 `INTERPRET_DEMO_LOGIN=true`) | 데모가 끝나면 Secret 값만 지우고 back 재시작(SPEC §3.4) |
+| OQ-019 | (0.6.0) 대문자 영문 name(EXION · DENSITY · EMFACE) TTS · en `DENSITY` 일반 단어 역방향 | **사용자 청취 대기** — 소리 파일 `orchestration/work/interpret-pwa-v2/tts-samples/`(13개). 글자 읽기면 name 을 `Exion` 꼴로 바꾸는 시드 PR |
 
+- 닫음(0.6.1): **OQ-018** — 코디 처분 ① ~ ⑤ 를 WP16 이 시드 `.6` 에 반영(⑤ ko 별칭 「써마지」 는 0.6.0 「그대로」를 뒤집어 지움 · SPEC §4.2.3 D).
 - 닫음 · 합침(0.5.0): OQ-001 · OQ-007 → OQ-017 · OQ-012 · OQ-015 → OQ-016(①② 는 D-35 로 처리) · OQ-005(D-34 · D-36) · OQ-006(PoC 범위) · OQ-013(D-35) · OQ-014(1건 · 더는 사용자 PR) · OQ-002 · 003 · 004 · 009 · 010 · 011(이전 판).
+- 표 밖 마감(기록): **D-38 대만어 사전 2차** — slug interpret-pwa-seed-tw · 코드 PR #9(`2a9d5a5` · 시드 `.5`) · infra PR #34 · 회고 `log/2026-10-27-interpret-pwa-seed-tw.md`. SPEC 0.6.0 §4.2.1 · §9.5 배포 9 에 뒤늦게 기록.
