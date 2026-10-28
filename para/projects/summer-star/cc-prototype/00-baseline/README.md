@@ -12,3 +12,4 @@
 | BASE-006 | cc 2차 — 헤더 세 갈래 · 기기별 현황판 · 예약관리 데모 | 사용자 대화 2026-10-14 · 와이어프레임 | raw | — | [본문](baseline-006-nav-reservation-demo.md) |
 | BASE-007 | 기획자 피드백 — 1차 데모(데스크 · 원장 · 간호사) · 시술 관제 개념 | 기획자 피드백 2026-10-14 | raw | — | [본문](baseline-007-planner-feedback.md) |
 | BASE-008 | 명동 PoC v2 — 시술 현황판(10-16 명동점 인터뷰 · KOS 데모 지점 실연동) | 명동점 인터뷰 2026-10-16 · 사용자 대화 2026-10-20~21 | raw | DEC-005 | [본문](baseline-008-procedure-board.md) |
+| BASE-009 | 전체현황판 「현황 › 예약 현황」 — 예약 → 접수 → 상담 → 귀가 정산(KOS 데모 지점 조사 15건) | 사용자 대화 2026-10-26 · workflow-v3 · 리포트 15건 · HAR 19(gitignore) | raw | DEC-006 | [본문](baseline-009-reservation-board.md) |

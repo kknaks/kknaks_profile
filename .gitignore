@@ -86,6 +86,10 @@ reference/2026-10-12-cc-prototype/kos-screenshot/
 # cc-prototype KOS 웹앱 HAR(내부 API 요청 · 응답, 고객 정보 포함 가능) — 로컬만(2026-10-20)
 reference/2026-10-12-cc-prototype/*.har
 
+# cc 전체현황판 KOS 웹앱 HAR(내부 API · 테넌트 id · 고객 정보) — 로컬만(2026-10-26). 앞으로 어디에 둬도 HAR 은 커밋하지 않는다
+reference/2026-10-23-cc-overall-board/har/
+*.har
+
 # 명동 PoC v2 — claude design 에서 받은 KOS 화면 캡처(실명 · 이메일) — 로컬만(2026-10-21)
 orchestration/work/myeongdong-poc-v2/design-user-r3/*.png
 
@@ -107,3 +111,12 @@ orchestration/work/_archive/cc-prototype/myeongdong-poc-v2/wp5-shots/
 orchestration/work/_archive/cc-prototype/myeongdong-poc-v2/design-sync/shots/mobile/t_list_admin.png
 orchestration/work/_archive/cc-prototype/myeongdong-poc-v2/design-sync/shots/mobile/m_list_offline.png
 orchestration/work/_archive/cc-prototype/myeongdong-poc-v2/demo-patients-*.md
+
+# cc 전체현황판 Claude Design 시안(예시값 실명 · Q-22) — 로컬만(2026-10-27)
+reference/2026-10-23-cc-overall-board/design/
+reference/2026-10-23-cc-overall-board/design-prev/
+
+# 전체현황판 스크린샷(운영 · 데모 고객 이름 · 용량) — 로컬만(2026-10-28)
+orchestration/work/**/app-shots/
+orchestration/work/**/fe-shots/
+orchestration/work/**/fe-shots-reservation/

@@ -23,7 +23,8 @@ links:
   specs: []
   works: []
   releases: []
-  related: []
+  related:
+    - "[[decision-006-reservation-board|DEC-006]]"
 up: []
 ---
 
