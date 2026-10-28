@@ -479,7 +479,7 @@ para/areas/
 | 368 | `infra` | `git` | 변경마다 식별자를 붙여 어느 시점으로든 되돌아갈 수 있게 하는 형상관리 도구 |  |
 | 369 | `infra` | `gradle` | 컴파일·테스트·산출물 묶기를 태스크로 나눠 명령 하나로 부르는 빌드 도구 |  |
 | 370 | `infra` | `infrastructure-as-code` | 서버·네트워크를 클릭 대신 파일로 선언해 만드는 방식 (Terraform) |  |
-| 371 | `infra` | `kubernetes-workload` | 버전 전환·개수 유지·실행을 나눠 맡은 세 층의 배포 리소스 |  |
+| 371 | `infra` | `kubernetes-workload` | 버전 전환·개수 유지·실행을 나눠 맡은 세 층의 배포 리소스 · 스케줄은 사용량이 아니라 requests 합으로 |  |
 | 372 | `infra` | `kubernetes` | 컨테이너를 여러 서버에 걸쳐 자동 배포·확장·관리하는 플랫폼 |  |
 | 373 | `infra` | `little-law` | 처리량 = 동시 처리 수 ÷ 처리 시간 이라는 큐잉이론 공식 |  |
 | 374 | `infra` | `load-balancer` | 여러 서버에 요청을 나눠 보내 부하를 분산하는 장치 |  |
@@ -617,7 +617,7 @@ para/areas/
 | 502 | `cs` | `strangler-fig` | 원천을 감싸 쓰다 화면 하나씩 교체. 행 = 우리 id + 원천 id · 원천 필드는 덮어쓰고 우리 사실은 이벤트로 쌓기만 |  |
 | 503 | `front` | `surface-anchor-leader-line` | 메시 위 점을 매 프레임 투영해 DOM 카드와 선으로. 카메라 행렬 먼저 갱신 · raycast 가림 · visible 은 목표값 |  |
 | 504 | `cs` | `labeled-upward-fallback` | 계층 데이터 빈 칸을 상위 값으로 채우되 출처 노드를 같이 돌려 「◯◯ 전체 기준」 표기. 숨기기·조용한 대체 둘 다 아님 |  |
-| 505 | `back` | `empirical-limit-probing` | 외부 한도는 문서값 대신 실측 — 크기를 키우며 이분 탐색, 가장 작은 통과치 × 0.9 · 넘으면 줄이는 순서 |  |
+| 505 | `back` | `empirical-limit-probing` | 외부 한도는 문서값 대신 실측 — 크기를 키우며 이분 탐색, 변형(언어)별 통과치 × 0.9 표 한 곳 · 넘으면 줄이는 순서 |  |
 | 506 | `ai` | `translation-glossary-normalization` | 번역 사전 = term × 언어별 현지명 · 별칭 · 출처 · 검수. 원문은 raw 로 · 매핑은 엔진이 내는 문자로 |  |
 | 507 | `cs` | `chinese-script-conversion` | 간번 변환은 글자 · 지역 표기(s2tw · 鐳射≠雷射)까지, 현지 별명은 데이터로. 엔진 안은 간체 · 번체는 출력에서만 |  |
 | 508 | `back` | `deferred-stream-error` | 한 연결 위 오류가 다음 요청에서 터진다. 스트림 id 로 가르기 · 제어 메시지는 공식 형식 · 오류 로그엔 채널 · 메시지 · 상태 |  |
