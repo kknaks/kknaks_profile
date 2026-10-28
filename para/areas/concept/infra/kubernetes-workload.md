@@ -7,8 +7,13 @@ aliases:
   - ReplicaSet
   - 롤링 업데이트
   - 레이블 셀렉터
+  - resource requests
+  - Insufficient cpu
+  - Pending
+  - WaitForFirstConsumer
 up:
   - 2025-01-15-Day12
+  - 2026-10-28-interpret-pwa-v2
 tags:
   - 인프라
   - 배포
@@ -68,6 +73,15 @@ Deployment 수정 → 새 ReplicaSet 생성 → 새 Pod 생성 → 이전 Pod �
 
 **이전 ReplicaSet 을 지우지 않는 것**이 롤백을 가능하게 한다.
 
+### Pod 가 노드에 앉는 기준 — requests 합
+
+스케줄러는 노드의 **실제 사용량이 아니라 그 노드에 앉은 Pod 들의 `requests` 합**으로 자리를 잰다. 합이 노드 용량에 닿으면 실제로 한가해도 새 Pod 는 `Pending`(이벤트 「Insufficient cpu」)이다.
+
+- **저장 공간이 Pod 를 노드에 묶는다** — `local-path` 같은 노드 로컬 PV 는 한 노드의 디스크에만 생긴다. 저장이 필요한 앱이 전부 그 노드로 몰리고(nodeSelector), 그 노드의 requests 가 먼저 찬다
+- **PVC 도 같이 Pending** — `WaitForFirstConsumer` 는 Pod 가 노드에 잡힌 뒤에야 PV 를 만든다. Pod 가 못 앉으면 PVC 도 Bound 가 안 된다. 원인은 PVC 가 아니라 Pod 스케줄링이다
+- **롤링 업데이트라 끊김은 없다** — 새 Pod 가 못 떠도 옛 ReplicaSet 의 Pod 가 계속 응답한다. 배포는 멈춰 있고 서비스는 옛 버전이다
+- **푸는 길** — 우리 Pod 의 request 를 실제 필요만큼 낮춘다(통키 back 100m → 50m · limit 은 그대로). 다른 앱의 requests 를 줄이거나 노드 자원을 늘리는 것은 그 노드를 쓰는 다른 주인의 판단이다
+
 ## 왜 중요한가
 
 **무중단 배포가 기능으로 들어와 있다.** 앞 회차에서 두 포트를 번갈아 쓰고 `socat` 을 죽였다 살리는 스크립트를 손으로 썼는데, 여기서는 **`strategy` 두 줄**이 그 일을 한다 — `maxSurge`/`maxUnavailable` 이 「한 번에 몇 개씩 갈아 낄지」를 정한다 → [[zero-downtime-deployment]]
@@ -84,6 +98,8 @@ Deployment 수정 → 새 ReplicaSet 생성 → 새 Pod 생성 → 이전 Pod �
 - **셀렉터와 템플릿의 라벨이 어긋나면 무한히 만든다** — 만든 파드가 셀렉터에 안 걸리면 「아직 부족하다」로 보고 계속 만든다. **조건으로 묶는 방식의 대가**다
 - **`maxUnavailable: 1` 은 그동안 용량이 준다는 뜻이다** — 세 개 중 하나가 빠진 상태로 트래픽을 받으므로, **여유가 없으면 배포 중에 느려진다** → [[little-law]]
 - **롤백은 이미지 버전으로 돌아가는 것이지 데이터까지 되돌리는 것이 아니다** — 스키마를 바꾼 배포는 롤백해도 DB 가 옛 상태가 아니다 → [[db-normalization]] · [[transaction]]
+- **requests ≠ 사용량** — 「노드가 꽉 찼다」 는 예약(requests 합 98%)이 꽉 찬 것일 수 있다. 메트릭 서버가 없으면 사용량은 아예 안 보인다. `kubectl describe node` 의 `Allocated resources` 가 스케줄러가 보는 숫자다
+- **차트 검증은 스케줄링을 못 본다** — `helm lint` · `template` · kubeconform 이 다 통과해도 「그 노드에 자리가 있나」 는 클러스터에서만 드러난다. 노드에 묶이는 볼륨을 새로 붙이는 배포는 그 노드의 `Allocated resources` 를 먼저 본다
 - **`replicas: 3` 이 「세 배 빠름」은 아니다** — 상태를 공유하지 않는 애플리케이션이어야 늘린 만큼 처리한다. 세션·파일을 서버에 두면 **늘리는 순간 깨진다** → [[jwt]] · [[object-storage]]
 
 ## 함께 보는 개념
@@ -98,3 +114,4 @@ Deployment 수정 → 새 ReplicaSet 생성 → 새 Pod 생성 → 이전 Pod �
 ## 출처
 
 - [[2025-01-15-Day12]] — 「Deployment, ReplicaSet, Pod」 절이 **셋의 계층과 사용 순위를 함께** 정리했다. Deployment 의 주요 기능 다섯(롤링 업데이트·롤백·배포 이력·스케일링·일시 중지/재개)과 ReplicaSet 의 넷(개수 유지·파드 장애 시 재생성·노드 장애 시 다른 노드에 재생성·수평 확장)이 각각 나열돼 **무엇이 어느 층의 책임인지**가 갈린다. YAML 두 벌이 `replicas`·`selector.matchLabels`·`template` 의 대응을 보이고, Deployment 쪽에는 `strategy.rollingUpdate` 의 `maxSurge`·`maxUnavailable` 이 주석과 함께 있다. 「세 리소스의 관계」 절의 **업데이트 프로세스 다이어그램**이 특히 값지다 — 새 ReplicaSet 생성 → 새 Pod → 이전 Pod 제거 → **이전 ReplicaSet 보존(롤백 가능)** 까지가 한 흐름으로 그려져 있다. 「직접 Pod 생성 < ReplicaSet 사용 < Deployment 사용」이라는 한 줄도 실전 지침으로 남았다
+- [[2026-10-28-interpret-pwa-v2]] §2 — 통역 기록용 local-path PVC 로 back 을 한 노드에 고정하자 새 Pod 가 「Insufficient cpu」 Pending(requests 합 98% · 사용량 아님) · PVC 는 WaitForFirstConsumer 로 같이 Pending · 롤링이라 옛 Pod 가 응답해 무중단 · back request 100m → 50m 로 해소(`wp17-infra-report.md` · infra #36)

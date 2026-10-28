@@ -10,6 +10,7 @@ aliases:
   - term correction
 up:
   - 2026-10-07-strong-hajin-enhance
+  - 2026-10-27-interpret-pwa-poc
 tags:
   - stt
   - llm
@@ -41,12 +42,15 @@ STT 원문의 오인식(「캐스티」 · 「세라믹 홈페이지」)을 회�
 - **원문(스크립트)은 고치지 않는다** — 사실의 기준은 재전사 원문이다. 정정은 회의록 본문에만 → [[two-pass-transcription]]
 - 정정 pass 는 [[synthesis-rewrite]] 의 앞 단계다 — 정정이 다시 쓰기를 대신하지 않는다
 - **빈 목록과 「없음」 을 한 값으로 접지 않는다** — `null` 과 `[]` 의 차이는 저장 구조가 담아야 응답이 낼 수 있다
+- **실시간 통역에는 사후 정정이 맞지 않는다** — 회의록은 다 듣고 다시 쓰면 되지만, 통역은 번역문이 바로 TTS 로 나간다. 결과 문장에서 낱말을 바꾸면 문장이 어색해지고 이미 나간 음성과 어긋난다. 그래서 통키는 정정을 사후가 아니라 **번역 엔진 입력**(용어 쌍 context)으로 옮겼다 → [[context-catalog-injection]] · [[translation-glossary-normalization]]
 
 ## 함께 보는 개념
 
 - [[nondeterministic-stt-output]] — STT 결과가 흔들리는 것(정정이 필요한 배경)
 - [[evidence-binding]] — 정정한 본문도 근거 구간에 묶인다
+- [[context-catalog-injection]] — 사후 정정 대신 엔진 입력에 용어를 싣는 쪽
 
 ## 출처
 
 - [[2026-10-07-strong-hajin-enhance]] §2 — Strong Hajin WORK-012 최종 합성(SPEC-010 §4.7 · `2026-10-07-meeting-term-corrections.sql` · 검수 r2 N-1 · 메디니스 Pass1→Pass2·보정 표 대조)
+- [[2026-10-27-interpret-pwa-poc]] §2 — 실시간 통역은 번역 뒤 치환 대신 Soniox 번역 단계에 용어를 줌(자막 · TTS 가 한 번에 맞음 · DEC-001 D-05)

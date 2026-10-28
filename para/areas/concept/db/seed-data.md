@@ -18,11 +18,14 @@ aliases:
   - 데모 테넌트 채우기
   - reserveV2
   - 예약 그룹
+  - 시드 사전
+  - 용어집 시드
 up:
   - 2026-10-01-strong-hajin-deploy
   - 2026-10-14-sts-prototype
   - 2026-10-19-cc-nav-resv
   - 2026-10-22-myeongdong-poc-v2
+  - 2026-10-27-interpret-pwa-poc
 tags:
   - db
   - 운영
@@ -65,6 +68,14 @@ Strong Hajin 은 `seed_catalog(demo_organization=False)` 로 카탈로그만 깔
 - **공개 API 로 만들 수 없는 상태가 있다** — 공개 API 로 만든 내원객은 늘 첫내원(재내원 불가)이고 접수 · 수납 · 방 배정 쓰기가 없다. 그래서 시드는 「예약」 까지, 카드로 띄울 고객은 데모 직전에 원천 화면에서 손으로 진행한다 → [[public-vs-internal-api]]
 - **이름은 전부 가상 · 연락처 없음** — 데모 지점이라도 사람처럼 보이는 값은 지어낸 것으로
 
+### 외부 원천을 한 번 가져와 우리 시드로 — 원천이 제품에 안 맞을 때
+
+원천 데이터의 **모양**이 우리 제품에 안 맞으면(통키: Procedure Hub 용어집은 대만 열이 없고, 한 칸에 「영문（현지명）」 이 섞여 TTS 가 괄호를 빼면 영어만 읽혔다) 원천 수정을 기다리지 않고 **처음 1회만 가져와(import 스크립트) 우리 시드 파일로 바꾸고, 이후는 git PR 로 고친다.**
+
+- **DB · 편집 화면은 PoC 에 과하다** — 고치는 사람이 개발자뿐이면 git 파일 + PR 이 이력 · 리뷰 · 되돌리기를 공짜로 준다. 시드는 이미지 안에 실린다
+- **시드가 깨지면 기동 실패 — 그래서 시험이 게이트** — 우리 파일이 됐으니 검사도 우리 몫이다. 검사 규칙(ko 중복 · 빈 칸 · 이름에 남은 괄호 · `source` 형식(조사는 날짜 필수) · 앞뒤 공백 · 빠진 칸)마다 깨진 시드를 넣어 오류 경로 · term id 가 나오는지 시험하고, 기동 때 같은 검사가 실패하면 서버가 뜨지 않는다(조용히 빈 사전으로 뜨지 않게). 런타임 코드에 원천 주소가 0 인지도 시험한다 — 가져오기는 스크립트 한 번뿐
+- **원천 흔적은 남긴다** — 분해한 칸마다 `source` · `raw` 를 두어 어디서 왔는지 · 원래 무엇이었는지 보인다 → [[translation-glossary-normalization]]
+
 
 **적재 도구는 로컬 DB 에만 돈다.** reset·import 둘 다 dev 프로파일 + localhost `ax_demo*` 가드가 있고, 운영 DB 에 넣는 경로는 코드에 없다. 가드를 풀지 않고 운영에 넣는 길은 **로컬에서 적재 → `pg_dump`(세션 표 제외) → 운영 `pg_restore`** 다. 코드 변경 없이 같은 데이터가 간다. dump 는 파일로 남기지 않고 stdin 으로 흘려 복원했다.
 
@@ -86,6 +97,7 @@ Strong Hajin 은 `seed_catalog(demo_organization=False)` 로 카탈로그만 깔
 - [[public-vs-internal-api]] — 원천 시스템을 부르지 않는 PoC 가 목데이터로 가는 이유
 - [[no-inference-from-free-text]] — 시드에 넣을 칸을 고르는 채움률 판정
 - [[strangler-fig]] — 원천을 감싸 조회하면 시드도 원천 쪽에 들어간다
+- [[translation-glossary-normalization]] — 원천을 가져와 우리 시드로 바꿀 때의 칸 나누기
 
 ## 출처
 
@@ -93,3 +105,4 @@ Strong Hajin 은 `seed_catalog(demo_organization=False)` 로 카탈로그만 깔
 - [[2026-10-14-sts-prototype]] §2 — cc-prototype 목데이터 시나리오: 한낮 재구성 시드(추정 22개)를 버리고 아침 시드 + 진행 중 이벤트로(`scenario-format.md` · WP7b)
 - [[2026-10-19-cc-nav-resv]] §2 — KOS 에 있는 칸(`phoneticName` · `phone` · `categories`)을 시드에 더함(DEC-004 D-24 · SPEC-002 §5.1), 재시드 때 볼륨의 `seed.json` 도 지움(§3)
 - [[2026-10-22-myeongdong-poc-v2]] §2 — KOS 데모 지점에 국적별 예약 칸 · 슬롯당 2명 데모 환자를 공개 API 로 채움 · 데모 표식 가드 · 메모 표식 · `reserveByTimeSlot` → `reserveV2`(`tools/kos_demo_patients.py` · 스킬 `kos-demo-patients` · `demo-patients-2026-10-22.md`)
+- [[2026-10-27-interpret-pwa-poc]] §2 — Procedure Hub 용어집을 1회 가져와 git 시드 사전으로(정규화 · 157 term × 7개 언어) · 깨지면 기동 실패 · 시험이 게이트(`back/seed/glossary.json` · `back/scripts/import_glossary.py` · `back/tests/test_seed.py` · DEC-001 D-33 · 코드 #4)

@@ -479,7 +479,7 @@ para/areas/
 | 368 | `infra` | `git` | 변경마다 식별자를 붙여 어느 시점으로든 되돌아갈 수 있게 하는 형상관리 도구 |  |
 | 369 | `infra` | `gradle` | 컴파일·테스트·산출물 묶기를 태스크로 나눠 명령 하나로 부르는 빌드 도구 |  |
 | 370 | `infra` | `infrastructure-as-code` | 서버·네트워크를 클릭 대신 파일로 선언해 만드는 방식 (Terraform) |  |
-| 371 | `infra` | `kubernetes-workload` | 버전 전환·개수 유지·실행을 나눠 맡은 세 층의 배포 리소스 |  |
+| 371 | `infra` | `kubernetes-workload` | 버전 전환·개수 유지·실행을 나눠 맡은 세 층의 배포 리소스 · 스케줄은 사용량이 아니라 requests 합으로 |  |
 | 372 | `infra` | `kubernetes` | 컨테이너를 여러 서버에 걸쳐 자동 배포·확장·관리하는 플랫폼 |  |
 | 373 | `infra` | `little-law` | 처리량 = 동시 처리 수 ÷ 처리 시간 이라는 큐잉이론 공식 |  |
 | 374 | `infra` | `load-balancer` | 여러 서버에 요청을 나눠 보내 부하를 분산하는 장치 |  |
@@ -608,14 +608,24 @@ para/areas/
 | 493 | `db` | `data-lineage` | 데이터가 어느 원천에서 어떤 이동·변환을 거쳐 결과에 쓰였는지의 계보. 역추적·영향 범위의 근거 |  |
 | 494 | `cs` | `pdf-text-layer` | 화면 글자는 텍스트 층 · 래스터 · 윤곽선 중 하나. 쪽별 폰트 · BT/Tj · 이미지(Form 재귀 · 인라인)를 세어 가른다 |  |
 | 495 | `back` | `failure-reason-classification` | 사유는 판정이 본 만큼만 정확하다. 얕은 판정 · 예외를 False 로 삼킴 · 저장에서 상태 뭉갬 · 판정보다 넓은 문구 |  |
-| 496 | `front` | `uv-atlas-overlay` | 같은 UV 아틀라스의 검출 이미지를 셰이더로 겹쳐 3D 위 필터를 만든다. flipY · 색 공간 · 얇은 선은 팽창 후 max 축소 |  |
+| 496 | `front` | `uv-atlas-overlay` | 같은 UV 아틀라스의 검출 이미지를 셰이더로 겹쳐 3D 위 필터를 만든다. flipY · 색 공간 · 얇은 선은 팽창 후 max 축소 · hit.uv 로 부위 CSS 크롭 |  |
 | 497 | `front` | `broadcast-channel-snapshot-sync` | 한쪽이 전체 스냅샷+seq 를 쏘고 다른 쪽은 받기만. sessionId 예외 · 연결 판정 최악 = 문턱 + tick |  |
 | 498 | `back` | `external-write-queue` | 내 상태 먼저 · 원천 쓰기는 op 대기열로. 2xx ≠ 반영 — 다시 읽어 확인 · 재전송 · 3회 실패 · 뒤 op 이 덮으면 앞은 확인 |  |
 | 499 | `back` | `apns-direct-push` | FCM 없이 .p8 ES256 JWT(40분)로 APNs HTTP/2 직접. 카테고리 액션은 네이티브가 키체인 토큰으로 · 죽은 토큰 400 · 410 은 행 삭제 |  |
 | 500 | `back` | `password-login-hardening` | bcrypt 해시 · 없는 아이디도 가짜 해시로 같은 401 · 같은 시간 · 연속 실패 잠금 · 로그인 전 계정 목록 표면 제거 |  |
 | 501 | `front` | `proportional-ui-scale` | 고정 px 대신 짧은 변 배율 하나를 글자(textScaler) · 높이 · 최소 폭에. 판의 절반은 cqh 같은 비율 단위로 |  |
 | 502 | `cs` | `strangler-fig` | 원천을 감싸 쓰다 화면 하나씩 교체. 행 = 우리 id + 원천 id · 원천 필드는 덮어쓰고 우리 사실은 이벤트로 쌓기만 |  |
-| 503 | `front` | `mrz-continuous-scan` | 한 장 촬영 대신 프레임마다 MRZ 자리만 기기 안 OCR. 칸별 보정 · 검사 숫자 셋 · 연속 2 프레임 확정 · [촬영] 늘 · 실기기에서만 |  |
+| 503 | `front` | `surface-anchor-leader-line` | 메시 위 점을 매 프레임 투영해 DOM 카드와 선으로. 카메라 행렬 먼저 갱신 · raycast 가림 · visible 은 목표값 |  |
+| 504 | `cs` | `labeled-upward-fallback` | 계층 데이터 빈 칸을 상위 값으로 채우되 출처 노드를 같이 돌려 「◯◯ 전체 기준」 표기. 숨기기·조용한 대체 둘 다 아님 |  |
+| 505 | `back` | `empirical-limit-probing` | 외부 한도는 문서값 대신 실측 — 크기를 키우며 이분 탐색, 변형(언어)별 통과치 × 0.9 표 한 곳 · 넘으면 줄이는 순서 |  |
+| 506 | `ai` | `translation-glossary-normalization` | 번역 사전 = term × 언어별 현지명 · 별칭 · 출처 · 검수. 원문은 raw 로 · 매핑은 엔진이 내는 문자로 |  |
+| 507 | `cs` | `chinese-script-conversion` | 간번 변환은 글자 · 지역 표기(s2tw · 鐳射≠雷射)까지, 현지 별명은 데이터로. 엔진 안은 간체 · 번체는 출력에서만 |  |
+| 508 | `back` | `deferred-stream-error` | 한 연결 위 오류가 다음 요청에서 터진다. 스트림 id 로 가르기 · 제어 메시지는 공식 형식 · 오류 로그엔 채널 · 메시지 · 상태 |  |
+| 509 | `front` | `push-to-talk` | 말소리 소음은 noiseSuppression · 문턱으로 안 된다. 누름 = 송신 · 뗌 = 확정, 멈춤 중 출력이 상태 판정 위 |  |
+| 510 | `front` | `rotated-region-layout` | 마주 보는 화면은 레이아웃 한 벌 + 영역째 180°. body 포탈 오버레이는 회전을 못 받는다 |  |
+| 511 | `front` | `ios-input-auto-zoom` | iOS Safari 는 16px 미만 입력 포커스에 확대. 입력만 16px · 확대 잠금은 접근성 때문에 안 씀 |  |
+| 512 | `back` | `minimal-api-surface` | 밖으로는 필요한 경로 · 필드만. 허용 경로 목록 고정 시험 · 일반 오류 문구 · docs 끔 · 빌드 산출물 grep |  |
+| 513 | `front` | `mrz-continuous-scan` | 한 장 촬영 대신 프레임마다 MRZ 자리만 기기 안 OCR. 칸별 보정 · 검사 숫자 셋 · 연속 2 프레임 확정 · [촬영] 늘 · 실기기에서만 |  |
 
 ---
 

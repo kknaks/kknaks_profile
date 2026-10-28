@@ -1,0 +1,867 @@
+{
+  "date": "2026-10-26",
+  "glossary": {
+    "loaded": true,
+    "version": "2026-07-01-reviewed-v5",
+    "count": 158
+  },
+  "spec": "SPEC-001 0.3.0 §9.3 ⑧ ~ ⑪",
+  "8_limit_full_context": {
+    "langs": {
+      "en": {
+        "full_chars": 16689,
+        "pass_max": 16689,
+        "reject_min": null,
+        "error_type": null,
+        "probes": [
+          {
+            "max_chars": 16689,
+            "chars": 16689,
+            "terms_dropped": 0,
+            "reverse_dropped": 0,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.228
+          }
+        ]
+      },
+      "ja": {
+        "full_chars": 16136,
+        "pass_max": 16136,
+        "reject_min": null,
+        "error_type": null,
+        "probes": [
+          {
+            "max_chars": 16136,
+            "chars": 16136,
+            "terms_dropped": 0,
+            "reverse_dropped": 0,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.245
+          }
+        ]
+      },
+      "zh": {
+        "full_chars": 15265,
+        "pass_max": 15265,
+        "reject_min": null,
+        "error_type": null,
+        "probes": [
+          {
+            "max_chars": 15265,
+            "chars": 15265,
+            "terms_dropped": 0,
+            "reverse_dropped": 0,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.244
+          }
+        ]
+      },
+      "th": {
+        "full_chars": 17952,
+        "pass_max": 17952,
+        "reject_min": null,
+        "error_type": null,
+        "probes": [
+          {
+            "max_chars": 17952,
+            "chars": 17952,
+            "terms_dropped": 0,
+            "reverse_dropped": 0,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.222
+          }
+        ]
+      },
+      "vi": {
+        "full_chars": 17366,
+        "pass_max": 17366,
+        "reject_min": null,
+        "error_type": null,
+        "probes": [
+          {
+            "max_chars": 17366,
+            "chars": 17366,
+            "terms_dropped": 0,
+            "reverse_dropped": 0,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.244
+          }
+        ]
+      },
+      "yue": {
+        "full_chars": 15123,
+        "pass_max": 15123,
+        "reject_min": null,
+        "error_type": null,
+        "probes": [
+          {
+            "max_chars": 15123,
+            "chars": 15123,
+            "terms_dropped": 0,
+            "reverse_dropped": 0,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.227
+          }
+        ]
+      }
+    },
+    "smallest_pass_max": 15123,
+    "default_max_chars": 13610
+  },
+  "8_ceiling": {
+    "dup_check": {
+      "chars": 1928,
+      "rejected": false,
+      "error_type": null
+    },
+    "langs": {
+      "en": {
+        "full_chars": 16689,
+        "pass_max": 25922,
+        "reject_min": 26009,
+        "error_type": "invalid_request",
+        "probes": [
+          {
+            "extra_pairs": 284,
+            "chars": 30270,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.433
+          },
+          {
+            "extra_pairs": 142,
+            "chars": 23463,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.273
+          },
+          {
+            "extra_pairs": 213,
+            "chars": 26604,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.235
+          },
+          {
+            "extra_pairs": 177,
+            "chars": 25014,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.262
+          },
+          {
+            "extra_pairs": 195,
+            "chars": 25757,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.254
+          },
+          {
+            "extra_pairs": 204,
+            "chars": 26150,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.235
+          },
+          {
+            "extra_pairs": 199,
+            "chars": 25922,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.23
+          },
+          {
+            "extra_pairs": 201,
+            "chars": 26009,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.267
+          }
+        ]
+      },
+      "ja": {
+        "full_chars": 16136,
+        "pass_max": 20925,
+        "reject_min": 21014,
+        "error_type": "invalid_request",
+        "probes": [
+          {
+            "extra_pairs": 309,
+            "chars": 30273,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.428
+          },
+          {
+            "extra_pairs": 154,
+            "chars": 23174,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.246
+          },
+          {
+            "extra_pairs": 77,
+            "chars": 19530,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.235
+          },
+          {
+            "extra_pairs": 115,
+            "chars": 21307,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.27
+          },
+          {
+            "extra_pairs": 96,
+            "chars": 20386,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.252
+          },
+          {
+            "extra_pairs": 105,
+            "chars": 20800,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.263
+          },
+          {
+            "extra_pairs": 110,
+            "chars": 21014,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.332
+          },
+          {
+            "extra_pairs": 107,
+            "chars": 20887,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.256
+          },
+          {
+            "extra_pairs": 108,
+            "chars": 20925,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.253
+          }
+        ]
+      },
+      "zh": {
+        "full_chars": 15265,
+        "pass_max": 21643,
+        "reject_min": 21729,
+        "error_type": "invalid_request",
+        "probes": [
+          {
+            "extra_pairs": 343,
+            "chars": 30004,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.446
+          },
+          {
+            "extra_pairs": 171,
+            "chars": 22585,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.334
+          },
+          {
+            "extra_pairs": 85,
+            "chars": 18786,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.316
+          },
+          {
+            "extra_pairs": 128,
+            "chars": 20738,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.226
+          },
+          {
+            "extra_pairs": 149,
+            "chars": 21643,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.246
+          },
+          {
+            "extra_pairs": 160,
+            "chars": 22168,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.318
+          },
+          {
+            "extra_pairs": 154,
+            "chars": 21892,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.261
+          },
+          {
+            "extra_pairs": 151,
+            "chars": 21729,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.332
+          }
+        ]
+      },
+      "th": {
+        "full_chars": 17952,
+        "pass_max": 22566,
+        "reject_min": 22611,
+        "error_type": "invalid_request",
+        "probes": [
+          {
+            "extra_pairs": 237,
+            "chars": 29949,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.421
+          },
+          {
+            "extra_pairs": 118,
+            "chars": 24001,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.379
+          },
+          {
+            "extra_pairs": 59,
+            "chars": 20767,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.266
+          },
+          {
+            "extra_pairs": 88,
+            "chars": 22297,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.444
+          },
+          {
+            "extra_pairs": 103,
+            "chars": 23136,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.381
+          },
+          {
+            "extra_pairs": 95,
+            "chars": 22685,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.427
+          },
+          {
+            "extra_pairs": 91,
+            "chars": 22432,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.371
+          },
+          {
+            "extra_pairs": 93,
+            "chars": 22566,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.435
+          },
+          {
+            "extra_pairs": 94,
+            "chars": 22611,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.372
+          }
+        ]
+      },
+      "vi": {
+        "full_chars": 17366,
+        "pass_max": 24778,
+        "reject_min": 24902,
+        "error_type": "invalid_request",
+        "probes": [
+          {
+            "extra_pairs": 258,
+            "chars": 29988,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.429
+          },
+          {
+            "extra_pairs": 129,
+            "chars": 23777,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.231
+          },
+          {
+            "extra_pairs": 193,
+            "chars": 26722,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.247
+          },
+          {
+            "extra_pairs": 161,
+            "chars": 25324,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.259
+          },
+          {
+            "extra_pairs": 145,
+            "chars": 24498,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.225
+          },
+          {
+            "extra_pairs": 153,
+            "chars": 24902,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.236
+          },
+          {
+            "extra_pairs": 149,
+            "chars": 24688,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.226
+          },
+          {
+            "extra_pairs": 151,
+            "chars": 24778,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.251
+          }
+        ]
+      },
+      "yue": {
+        "full_chars": 15123,
+        "pass_max": 22643,
+        "reject_min": 22740,
+        "error_type": "invalid_request",
+        "probes": [
+          {
+            "extra_pairs": 355,
+            "chars": 30163,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.384
+          },
+          {
+            "extra_pairs": 177,
+            "chars": 22643,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.232
+          },
+          {
+            "extra_pairs": 266,
+            "chars": 26315,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.411
+          },
+          {
+            "extra_pairs": 221,
+            "chars": 24424,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.26
+          },
+          {
+            "extra_pairs": 199,
+            "chars": 23504,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.256
+          },
+          {
+            "extra_pairs": 188,
+            "chars": 23085,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.256
+          },
+          {
+            "extra_pairs": 182,
+            "chars": 22855,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.275
+          },
+          {
+            "extra_pairs": 179,
+            "chars": 22740,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.229
+          }
+        ]
+      }
+    },
+    "smallest_pass_max": 20925,
+    "default_max_chars": 18832
+  },
+  "8_default_recheck": {
+    "max_chars": 18832,
+    "en": {
+      "terms": 157,
+      "forward": 157,
+      "reverse": 155,
+      "chars": 16689,
+      "terms_dropped": 0,
+      "reverse_dropped": 0,
+      "rejected": false,
+      "error_type": null
+    },
+    "ja": {
+      "terms": 157,
+      "forward": 157,
+      "reverse": 156,
+      "chars": 16136,
+      "terms_dropped": 0,
+      "reverse_dropped": 0,
+      "rejected": false,
+      "error_type": null
+    },
+    "zh": {
+      "terms": 157,
+      "forward": 157,
+      "reverse": 155,
+      "chars": 15265,
+      "terms_dropped": 0,
+      "reverse_dropped": 0,
+      "rejected": false,
+      "error_type": null
+    },
+    "th": {
+      "terms": 157,
+      "forward": 157,
+      "reverse": 156,
+      "chars": 17952,
+      "terms_dropped": 0,
+      "reverse_dropped": 0,
+      "rejected": false,
+      "error_type": null
+    },
+    "vi": {
+      "terms": 157,
+      "forward": 157,
+      "reverse": 157,
+      "chars": 17366,
+      "terms_dropped": 0,
+      "reverse_dropped": 0,
+      "rejected": false,
+      "error_type": null
+    },
+    "yue": {
+      "terms": 157,
+      "forward": 157,
+      "reverse": 155,
+      "chars": 15123,
+      "terms_dropped": 0,
+      "reverse_dropped": 0,
+      "rejected": false,
+      "error_type": null
+    },
+    "rejected_total": 0
+  },
+  "9_reverse_run1": {
+    "en": {
+      "terms": [
+        {
+          "ko": "필러",
+          "target": "Filler",
+          "reverse_in_context": true
+        },
+        {
+          "ko": "쥬비덤",
+          "target": "Juvéderm",
+          "reverse_in_context": true
+        },
+        {
+          "ko": "신펄",
+          "target": "Synpurl",
+          "reverse_in_context": true
+        }
+      ],
+      "reverse": {
+        "translation": "오늘 필러를 맞고 싶고요, 다음에는 쥬베덤이랑 신펄도 한 번 더 받고 싶어요.",
+        "ko_hits": 2,
+        "hit_each": [
+          true,
+          false,
+          true
+        ],
+        "errors": []
+      },
+      "forward": {
+        "translation": "Today we'll do the filler procedure first, and on your next visit, I'll also consult you about Juvéderm and Syn펄 together.",
+        "hits": 2,
+        "hit_each": [
+          true,
+          true,
+          false
+        ],
+        "errors": []
+      }
+    },
+    "zh": {
+      "terms": [
+        {
+          "ko": "필러",
+          "target": "填充剂",
+          "reverse_in_context": true
+        },
+        {
+          "ko": "쥬비덤",
+          "target": "乔雅登",
+          "reverse_in_context": true
+        },
+        {
+          "ko": "신펄",
+          "target": "新珍珠 (Synpurl)",
+          "reverse_in_context": true
+        }
+      ],
+      "reverse": {
+        "translation": "오늘은 필러를 하려고 해요. 다음에는 쥬비덤이랑 신펄도 한번 상담하고 싶어요. 新珍珠。",
+        "ko_hits": 3,
+        "hit_each": [
+          true,
+          true,
+          true
+        ],
+        "errors": []
+      },
+      "forward": {
+        "translation": "今天先做填充剂的护理，下次来就诊时我也会一起咨询乔雅登和新珍珠 (Synpurl)。",
+        "hits": 3,
+        "hit_each": [
+          true,
+          true,
+          true
+        ],
+        "errors": []
+      }
+    },
+    "ja": {
+      "terms": [
+        {
+          "ko": "필러",
+          "target": "フィラー（ヒアルロン酸）",
+          "reverse_in_context": true
+        },
+        {
+          "ko": "쥬비덤",
+          "target": "ジュビダーム",
+          "reverse_in_context": true
+        },
+        {
+          "ko": "신펄",
+          "target": "シンパール (Synpurl)",
+          "reverse_in_context": true
+        }
+      ],
+      "reverse": {
+        "translation": "오늘은 필러, 히알루론산을 부탁드리고 싶어요. 다음에는 쥬비덤이랑 신펄, 신펄도 상담하고 싶어요.",
+        "ko_hits": 3,
+        "hit_each": [
+          true,
+          true,
+          true
+        ],
+        "errors": []
+      },
+      "forward": {
+        "translation": "今日はまずフィラー施術をして、次回の受診でジュビダームとシン펄も一緒に相談しますね。",
+        "hits": 1,
+        "hit_each": [
+          false,
+          true,
+          false
+        ],
+        "errors": []
+      }
+    }
+  },
+  "9_reverse_run2": {
+    "en": {
+      "terms": [
+        {
+          "ko": "필러",
+          "target": "Filler",
+          "reverse_in_context": true
+        },
+        {
+          "ko": "쥬비덤",
+          "target": "Juvéderm",
+          "reverse_in_context": true
+        },
+        {
+          "ko": "신펄",
+          "target": "Synpurl",
+          "reverse_in_context": true
+        }
+      ],
+      "reverse": {
+        "translation": "오늘 필러를 맞고 싶어요. 그리고 다음에는 쥬베덤이랑 신펄도 한 번 더요.",
+        "ko_hits": 2,
+        "hit_each": [
+          true,
+          false,
+          true
+        ],
+        "errors": []
+      },
+      "forward": {
+        "translation": "Today we'll do the filler procedure first, and on your next visit, I'll also consult you on Juvéderm and Syn펄 together.",
+        "hits": 2,
+        "hit_each": [
+          true,
+          true,
+          false
+        ],
+        "errors": []
+      }
+    },
+    "zh": {
+      "terms": [
+        {
+          "ko": "필러",
+          "target": "填充剂",
+          "reverse_in_context": true
+        },
+        {
+          "ko": "쥬비덤",
+          "target": "乔雅登",
+          "reverse_in_context": true
+        },
+        {
+          "ko": "신펄",
+          "target": "新珍珠 (Synpurl)",
+          "reverse_in_context": true
+        }
+      ],
+      "reverse": {
+        "translation": "오늘은 필러를 하려고 해요. 다음에는 쥬비덤이랑 신珍珠도 한번 상담해 보고 싶어요. 심플하게요.",
+        "ko_hits": 2,
+        "hit_each": [
+          true,
+          true,
+          false
+        ],
+        "errors": []
+      },
+      "forward": {
+        "translation": "今天先做填充剂的治疗，下次来就诊时我也会一起咨询乔雅登和新珍珠 (Synpurl)。",
+        "hits": 3,
+        "hit_each": [
+          true,
+          true,
+          true
+        ],
+        "errors": []
+      }
+    },
+    "ja": {
+      "terms": [
+        {
+          "ko": "필러",
+          "target": "フィラー（ヒアルロン酸）",
+          "reverse_in_context": true
+        },
+        {
+          "ko": "쥬비덤",
+          "target": "ジュビダーム",
+          "reverse_in_context": true
+        },
+        {
+          "ko": "신펄",
+          "target": "シンパール (Synpurl)",
+          "reverse_in_context": true
+        }
+      ],
+      "reverse": {
+        "translation": "오늘은 필러, 히알루론산을 부탁드리고 싶어요. 다음에는 쥬비덤이랑 신펄, 신팔도 상담하고 싶어요.",
+        "ko_hits": 3,
+        "hit_each": [
+          true,
+          true,
+          true
+        ],
+        "errors": []
+      },
+      "forward": {
+        "translation": "今日はまずフィラー施術をして、次回の受診でジュビダムとシン펄も一緒に相談しますね。",
+        "hits": 0,
+        "hit_each": [
+          false,
+          false,
+          false
+        ],
+        "errors": []
+      }
+    }
+  },
+  "10_paren_tts": {
+    "terms": [
+      {
+        "ko": "신펄",
+        "target": "シンパール (Synpurl)"
+      },
+      {
+        "ko": "채움",
+        "target": "チャウム (Chaeum)"
+      },
+      {
+        "ko": "필러",
+        "target": "フィラー（ヒアルロン酸）"
+      }
+    ],
+    "caption_translations": [
+      "今日はまずシン펄の施術を先にして、次回の訪問時にチャウム（補充）と、フィラー（ヒアルロン酸）も一緒に相談しますね。"
+    ],
+    "tts_inputs": [
+      "今日はまずシン펄の施術を先にして、次回の訪問時にチャウムと、フィラーも一緒に相談しますね。"
+    ],
+    "caption_parens": 1,
+    "tts_parens": 0,
+    "audio_start": 1,
+    "audio_bytes": 417792,
+    "errors": []
+  },
+  "11_bad_url": {
+    "started": true,
+    "health_glossary": {
+      "loaded": false,
+      "version": null,
+      "count": 0
+    },
+    "context_empty": true,
+    "ready": true,
+    "finals": 1,
+    "errors": []
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "_note": "부위 카드 → Hub 시술명 노드(SPEC §2-1). 목업용 매핑 · 의학적 근거 아님. 스크립트(fetch-hub.mjs)와 앱이 함께 읽는다",
+  "areas": {
+    "forehead": {
+      "problems": ["P2-1"],
+      "chips": [{ "label": "보톡스", "hubId": "M1-3-1", "problemItems": ["이마주름", "미간주름"] }]
+    },
+    "eye": {
+      "problems": ["P2-1", "P2-3", "P4-2"],
+      "chips": [
+        { "label": "보톡스", "hubId": "M1-3-1", "problemItems": ["눈가주름"] },
+        { "label": "필러", "hubId": "M2", "problemItems": ["필러볼륨"] },
+        { "label": "스킨부스터", "hubId": "M4", "problemItems": ["잔주름"] },
+        { "label": "기기 리프팅", "hubId": "M9", "problemItems": ["잔주름"] }
+      ]
+    },
+    "nasolabial": {
+      "problems": ["P2-2"],
+      "chips": [
+        { "label": "필러", "hubId": "M2", "problemItems": ["팔자주름"] },
+        { "label": "바이오스티뮬레이터/콜라겐부스터", "hubId": "M3", "problemItems": ["팔자주름"] }
+      ]
+    },
+    "cheek": {
+      "problems": ["P8-1", "P8-2", "P5-1", "P5-2"],
+      "chips": [
+        { "label": "V빔", "hubId": "M8-4-1", "problemItems": ["V빔"] },
+        { "label": "IPL", "hubId": "M8-3-1", "problemItems": ["IPL홍조", "IPL"] },
+        { "label": "엑셀V", "hubId": "M8-4-2", "problemItems": ["엑셀V"] },
+        { "label": "레이저토닝", "hubId": "M8-1-1", "problemItems": ["레이저토닝"] },
+        { "label": "피코토닝", "hubId": "M8-1-2", "problemItems": ["피코토닝"] }
+      ]
+    },
+    "poreTexture": {
+      "problems": ["P7-1", "P7-2"],
+      "chips": [
+        { "label": "스킨보톡스", "hubId": "M1-3-5", "problemItems": ["스킨보톡스"] },
+        { "label": "아그네스", "hubId": "auto-M11-1775364775142", "problemItems": ["아그네스"] },
+        { "label": "프락셔널레이저", "hubId": "M8-2", "problemItems": ["프락셔널레이저"] },
+        { "label": "니들RF", "hubId": "M11", "problemItems": ["니들RF"] }
+      ]
+    },
+    "sebum": {
+      "problems": ["P6-1", "P6-2"],
+      "chips": [
+        { "label": "PDT", "hubId": "auto-M15-1775364775173", "problemItems": ["PDT"] },
+        { "label": "아그네스", "hubId": "auto-M11-1775364775142", "problemItems": ["아그네스"] },
+        { "label": "케미컬필링", "hubId": "M15-1-1", "problemItems": ["케미컬필링"] }
+      ]
+    }
+  }
+}
