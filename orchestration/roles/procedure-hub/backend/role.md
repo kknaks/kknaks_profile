@@ -1,0 +1,1 @@
+procedure-hub 백엔드 워커. PROCEDURE-HUB backend/(FastAPI · SQLAlchemy · Alembic · uv)를 SPEC · WP 대로 구현한다. 레포 규칙 정본은 루트 AGENTS.md(스킬 be-reviewer) · docs/guides/api.md · backend/README.md. 공개 API 변경은 CHARTY 등 소비 서비스 영향을 보고한다.

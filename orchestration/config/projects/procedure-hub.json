@@ -1,0 +1,156 @@
+{
+  "_doc": "procedure-hub(회사 — MediSolveAIDev/PROCEDURE-HUB. 시술 지식을 조회·관리하고 CHARTY 등 소비 서비스에 API 로 제공하는 내부 서비스. backend = FastAPI·uv · frontend = Next.js) 오케스트레이션 설정 SSOT. scripts/new-work.sh 가 읽는 유일한 곳. 값 하드코딩 금지. 문서 원천은 메디니스 문서 레포 products/procedure-hub/ — 2026-10-26 프로필 오케스트레이션으로 편입(release/v1.2.0 기준).",
+  "project": "procedure-hub",
+  "worktree_root": "/Users/kknaks/orca/workspaces",
+  "use_worktree": true,
+  "repos": {
+    "profile": {
+      "orca_name": "kknaks_profile",
+      "canonical_path": "/Users/kknaks/git/toy_pr2/kknaks_profile",
+      "remote": "https://github.com/kknaks/kknaks_profile.git",
+      "base": "origin/main",
+      "pr_base": "main",
+      "worktree_suffix": "",
+      "notes": [
+        "canonical(main)은 사용자 체크아웃 — pull/checkout 금지, fetch 만.",
+        "회사 일(company/, sot: external)이라 para/projects/company/procedure-hub/ 에는 README(지도)와 log/(회고)만 둔다. 조사 리포트 등 작업 산출물은 orchestration/work/<slug>/. public 레포 — 키 · 실명 · 내부 URL 의 비밀값을 넣지 않는다."
+      ]
+    },
+    "spec": {
+      "orca_name": "mediness-mediness",
+      "canonical_path": "/Users/kknaks/git/harness_works/mediness-mediness",
+      "remote": "https://github.com/MediSolveAIDev/mediness.git",
+      "base": "origin/main",
+      "pr_base": "main",
+      "worktree_suffix": "-spec",
+      "notes": [
+        "메디니스 문서 레포. procedure-hub 범위는 products/procedure-hub/ 뿐(00-baseline · 10-decision · 20-spec · 30-work). canonical 은 사용자 체크아웃 — pull/checkout 금지, fetch 만.",
+        "2026-10-26 확인: products/procedure-hub 는 origin/main 과 origin/mediness 가 같다. 다른 제품(charty 등) 문서 PR 이 main 으로 가므로 base·pr_base 는 main.",
+        "문서는 v1.1.0(2026-07-03 #347)에서 멈춰 있다. v1.2.0 코드와의 차이는 아직 대조하지 않았다 — 첫 작업에서 baseline 으로 잡는다.",
+        "pre-commit 이 docs lint. 무관한 타 제품 드리프트로 막히면 사용자 확인 후 --no-verify."
+      ]
+    },
+    "code": {
+      "orca_name": "PROCEDURE-HUB",
+      "canonical_path": "/Users/kknaks/git/PROCEDURE-HUB",
+      "remote": "https://github.com/MediSolveAIDev/PROCEDURE-HUB.git",
+      "base": "origin/release/v1.2.0",
+      "pr_base": "release/v1.2.0",
+      "worktree_suffix": "",
+      "notes": [
+        "회사 org 레포. canonical 은 2026-10-26 사용자 지시로 release/v1.2.0 을 클론한 체크아웃 — pull/checkout 금지, fetch 만. 원격 브랜치: main · release/v1.0.0 · release/v1.1.0 · release/v1.2.0.",
+        "옛 클론 harness_works/PROCEDURE-HUB(feat/wp004-orm, 2026-06) · CENTURION_MSO/PROCEDURE-HUB(main, 2026-04)는 쓰지 않는다.",
+        "레포 규칙 정본: 루트 AGENTS.md(→ 프로젝트 스킬 .agents/skills/: ph-pm · fe-convention-reviewer · be-reviewer · task-checker) · docs/guides/(design · api · deployment) · docs/README.md(ADR·계약 지도). 브리프에 규칙을 베끼지 않고 경로만 준다.",
+        "AGENTS.md 첫 줄이 가리키는 /Users/marin/AGENTS.md 는 다른 개발자 머신 경로 — 이 머신에 없다. 그 줄은 무시한다.",
+        "검증 명령 정본은 backend/README.md · frontend/README.md 「검증」 절. tests/integration 은 데이터 전제 DB 가 필요해 CI 에서도 안 돈다 — 개발·운영 DB 를 지정하지 않는다.",
+        "배포는 .github/workflows/csp-azure-deploy.yml(Azure). 배포 · 운영 DB · secret 은 별도 승인 없이 하지 않는다. 회사 org 푸시 범위는 발행 전 사용자 확인."
+      ]
+    }
+  },
+  "workers": {
+    "researcher": {
+      "repo": "profile",
+      "agent": "claude",
+      "brief_suffix": "research",
+      "roles_dir": "roles/procedure-hub/researcher",
+      "workspace": "coordinator",
+      "allowed_paths": [
+        "(read-only — 브리프가 지정한 리포트 파일 1개만 생성)"
+      ],
+      "verify": "질문마다 답 + 근거(파일:줄 · 테이블/컬럼 · API 응답 실물). 확인 못 한 것은 「확인 안 됨」. 결정하지 않고 「정할 것」으로 모은다"
+    },
+    "writer": {
+      "repo": "profile",
+      "agent": "claude",
+      "brief_suffix": "write",
+      "roles_dir": "roles/procedure-hub/writer",
+      "workspace": "coordinator",
+      "allowed_paths": [
+        "orchestration/work/<slug>/ 안의 브리프가 지정한 문서(DEC · SPEC · WORK)만"
+      ],
+      "verify": "모든 결정·요구가 _RESUME §2 결정 · 조사 리포트 · 코드(파일:줄) 중 하나를 근거로 가리킨다. 근거 없는 정책 0 · 열린 것은 열린 것으로. public — 키 · 토큰 · 실명 0(grep)"
+    },
+    "planner": {
+      "repo": "spec",
+      "agent": "claude",
+      "brief_suffix": "spec",
+      "roles_dir": "roles/procedure-hub/planner",
+      "allowed_paths": [
+        "products/procedure-hub/"
+      ],
+      "verify": "SPEC·WP 의 모든 절이 baseline · DEC · 코드(파일:줄) 중 하나를 근거로 가리킨다. 근거 없는 정책 0 · 열린 것은 열린 것으로. 20-spec.md · 30-work.md 인덱스 갱신. 문서 레포 lint 는 이번 제품 범위만 보고(타 제품 기존 오류는 '무관'으로 분리)"
+    },
+    "backend": {
+      "repo": "code",
+      "agent": "claude",
+      "brief_suffix": "be",
+      "roles_dir": "roles/procedure-hub/backend",
+      "allowed_paths": [
+        "backend/"
+      ],
+      "verify": "cd backend && uv run ruff check <네가 만진 파일> · DATABASE_URL=sqlite+aiosqlite:///:memory: uv run pytest -q <네가 만들거나 고친 테스트 파일만> (tests/integration 제외) — 각 1회, 통과하면 반복하지 마라. 마이그레이션을 만들었으면 alembic 이 빈 DB 에 올라가는지 확인. 사용자 포트·프로세스·개발/운영 DB 를 건드리지 않는다. 실행 못 한 검증은 사유와 함께 pending 으로 보고"
+    },
+    "frontend": {
+      "repo": "code",
+      "agent": "claude",
+      "brief_suffix": "fe",
+      "roles_dir": "roles/procedure-hub/frontend",
+      "allowed_paths": [
+        "frontend/"
+      ],
+      "verify": "cd frontend && npm run lint · npm run typecheck · npm run test:products — 각 1회. npm run build 는 Phase 마지막에 1회. 사용자 포트·프로세스를 건드리지 않는다. 실행 못 한 검증은 사유와 함께 pending 으로 보고"
+    },
+    "reviewer_spec": {
+      "repo": "spec",
+      "agent": "claude",
+      "brief_suffix": "review-spec",
+      "roles_dir": "roles/procedure-hub/reviewer",
+      "allowed_paths": [
+        "(read-only — 리포 파일 수정·생성 금지. 산출물은 브리프가 지정한 리뷰 리포트 파일 1개뿐)"
+      ],
+      "verify": "SPEC·WP 를 baseline·DEC·코드에 대조. 각 지적에 파일:줄 + 근거. 판정 FAIL/WARN/PASS"
+    },
+    "reviewer_code": {
+      "repo": "code",
+      "agent": "claude",
+      "brief_suffix": "review-code",
+      "roles_dir": "roles/procedure-hub/reviewer",
+      "allowed_paths": [
+        "(read-only — 리포 파일 수정·생성 금지. 산출물은 브리프가 지정한 리뷰 리포트 파일 1개뿐)"
+      ],
+      "verify": "git diff <base>...HEAD + untracked 로 범위 산정. 각 지적에 파일:줄 + 근거(SPEC 절 · WP · AGENTS.md 스킬 be-reviewer/fe-convention-reviewer 기준). 판정 FAIL/WARN/PASS. 「사용자가 실물에서 만날 자리」를 따로 모은다"
+    },
+    "reviewer_doc": {
+      "repo": "profile",
+      "agent": "claude",
+      "brief_suffix": "review-doc",
+      "roles_dir": "roles/procedure-hub/reviewer",
+      "workspace": "coordinator",
+      "allowed_paths": [
+        "(read-only — 브리프가 지정한 리뷰 리포트 파일 1개만 생성)"
+      ],
+      "verify": "DEC · SPEC · WORK 를 _RESUME 결정 · 조사 리포트 · 코드에 대조. 각 지적에 파일:줄 + 근거. 판정 FAIL/WARN/PASS"
+    },
+    "tool_dev": {
+      "repo": "profile",
+      "agent": "claude",
+      "brief_suffix": "tool",
+      "roles_dir": "roles/procedure-hub/tool_dev",
+      "workspace": "coordinator",
+      "allowed_paths": [
+        "reference/<브리프가 지정한 폴더 하나>/"
+      ],
+      "verify": "폴더 안에서 uv sync · uv run pytest(실호출 없음) · uv run ruff check . — 각 1회. 실호출 확인 스크립트는 키가 있을 때 엔드포인트당 몇 번만. 키 · 캐시 · 개인 경로가 git 에 안 들어가는지 git status 로 확인"
+    }
+  },
+  "default_workers": [
+    "backend",
+    "frontend"
+  ],
+  "summary_dest": "/Users/kknaks/git/toy_pr2/kknaks_profile/para/projects/company/procedure-hub/log",
+  "rules": {
+    "spec_and_app_use_separate_prs": true,
+    "workers_commit_or_push": false,
+    "coordinator_verifies_before_pr": true
+  }
+}
