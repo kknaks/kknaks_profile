@@ -22,9 +22,9 @@ cc-prototype 과 **같은 방식**(문서 = 이 폴더 · 코드 = 별도 레포
 | Area | Status | Next |
 |---|---|---|
 | Baseline | 조사 리포트(운영 KOS · 레포 밖 private 보관) | — |
-| Decision | DEC-001 accepted | — |
-| Spec | SPEC-001 draft | 검수 PASS → 사용자 리뷰 |
-| Work | WORK-001 draft | WP-BE · WP-FE 발주 |
+| Decision | DEC-001 accepted (D-01 ~ D-18) | — |
+| Spec | SPEC-001 0.4.3 draft (구현 동기) | OQ-132 사용자 답 |
+| Work | WORK-001 1 · 2 · 3판 완료 · 코드 PR kknaksss/agency-settlement#1 | 사용자 화면 확인 · 마감 |
 
 ## 문서 맵
 
@@ -36,5 +36,7 @@ cc-prototype 과 **같은 방식**(문서 = 이 폴더 · 코드 = 별도 레포
 | 30-work | [구현 계획](30-work/README.md) |
 
 ## 최근 로그
+
+- 2026-10-29: 구현 — 운영 KOS 조회 전용 · SQLite 저장/증분 · 에이전트별 탭 · 엑셀 · 최종 결제만(D-18) · 코드 PR #1
 
 - 2026-10-29: 착수 — 운영 명동점 KOS 조사 · 에이전시 판정 = 고객 최초 유입 채널 · 월별 매출 리스트(DEC-001 · SPEC-001 · WORK-001). cc-prototype 안에 잘못 두었던 문서를 이 프로젝트로 옮김
