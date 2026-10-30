@@ -21,6 +21,7 @@ up:
   - 2025-01-17-Day14
   - 2026-10-14-sts-prototype
   - 2026-10-22-myeongdong-poc-v2
+  - 2026-10-30-internal-chat
 tags:
   - 인프라
   - 배포
@@ -84,6 +85,7 @@ kubeadm join (워커)          조인 토큰으로 마스터에 연결
 - **Secret 을 볼륨으로 꽂으면 키 하나가 파일 하나다** — 키에 `/` 를 못 쓰니 하위 폴더가 안 된다. `events/<id>.json` 은 `event-<id>.json` 처럼 평평하게 넣는다. 공개 레포의 앱이 실데이터를 읽어야 하면 이미지 · git 이 아니라 Secret 으로 들어간다 → [[externalized-configuration]]
 - **Secret 을 꽂는 경로가 kubelet 의 경로와 겹치면 파드가 안 뜬다** — APNs 키(`.p8`)를 Secret 으로 `/run/secrets` 에 통째로 읽기 전용 마운트하자 back 이 CrashLoop(`mkdirat … read-only file system`) 했다. 컨테이너에서 `/var/run` 은 `/run` 이고, kubelet 은 서비스계정 토큰을 `/var/run/secrets/kubernetes.io/serviceaccount` 에 꽂는다 — 그 부모를 우리가 ro 로 덮어 하위 폴더를 못 만든 것. 앱 전용 경로(`/etc/apns`)로 옮기고, k8s API 를 안 쓰는 앱이라 `automountServiceAccountToken: false` 로 토큰 마운트 자체를 껐다. 「도커에서 흔히 쓰는 `/run/secrets`」 가 k8s 에서는 예약된 자리다
 - **etcd 가 클러스터의 기억 전부다** — 상태가 거기 있으므로 **그것을 잃으면 클러스터를 잃는다** → [[database-schema]]
+- **local-path PVC 크기는 한도가 아니다**(cc-prototype 내부 채팅) — local-path 는 quota 가 없어 1Gi PVC 도 1Gi 넘게 써지고, StorageClass 에 `allowVolumeExpansion` 이 없어 값을 키우면 API 서버가 거절해 ArgoCD sync 만 실패로 남는다. 실제 한도는 노드 디스크 — 값은 두고 주석으로 · [[2026-10-30-internal-chat]]
 
 ## 함께 보는 개념
 
@@ -103,3 +105,4 @@ kubeadm join (워커)          조인 토큰으로 마스터에 연결
 - [[2026-10-14-sts-prototype]] §2 — cc-prototype 을 Helm + ArgoCD(수동 sync)로 Mac k8s 에 올리며 겪은 것: local-path 볼륨 노드 제약 → nodeSelector · 데이터는 평평한 키의 Secret(`deploy-infra-report.md` fix1)
 - [[2025-01-17-Day14]] — 이틀 뒤. **클러스터에 실제로 애플리케이션을 올리면서 딸려 오는 것들**이 나온다 — 비공개 이미지를 받으려면 `kubectl create secret docker-registry` 로 레지스트리 자격을 클러스터에 등록해야 하고, 밖에서 들어오는 트래픽은 마스터 노드의 프록시가 **도메인:포트 → 서비스:포트** 로 넘긴다(HTTP 뿐 아니라 DB·Redis 포트도 stream 으로). 그리고 **파드가 라운드로빈으로 갈리기 때문에 세션이 깨진다**는 것이 이 환경의 첫 실전 문제로 나타난다 → [[distributed-session]]
 - [[2025-01-15-Day12]] — 「kubernetes의 기본용어」 절이 **클러스터 → 마스터노드 → 워커노드 → 파드 → 서비스** 순으로 정의하며, 마스터·워커의 구성요소를 각각 넷·셋으로 나눠 한 줄씩 설명했다(API 서버·스케줄러·컨트롤러 매니저·etcd / kubelet·kube-proxy·컨테이너 런타임). **파드가 「동일한 네트워크 네임스페이스, IP 주소, 포트 공간, IPC 네임스페이스, 호스트 이름을 공유한다」**는 정의가 파드와 컨테이너의 차이를 정확히 짚는다. 「클러스터 생성과정」이 `kubeadm init` → 컨트롤 플레인 시작 → `kubeadm join` 세 걸음을 **각 단계에서 실제로 일어나는 일**과 함께 적었고, 특히 컨트롤 플레인이 **static pod 로 뜬다**는 것과 시작 순서(API 서버 먼저)까지 남겼다. 다만 「API 서버」와 「컨트롤러 매니저」의 설명이 같은 문장으로 반복된다 → [[kubernetes-workload]]
+- [[2026-10-30-internal-chat]] §2 「업로드 한도는 앞단부터」 · `infra-report.md`

@@ -10,6 +10,7 @@ aliases:
 up:
   - 2026-09-12-sc-meeting
   - 2026-09-09-sc-design-system
+  - 2026-10-30-internal-chat
 tags:
   - popover
   - overlay
@@ -42,6 +43,7 @@ panel.style.maxHeight = `${Math.max(MIN, Math.min(room, MAX))}px`; // MAX = 420
 ```
 
 `MIN`·`MAX`·`EDGE` 세 상수만 디자인 규칙에 맞춰 바꾼다. 디자인 시스템 v2 `14 — OVERLAY` 는 폭(200–400)만 정하고 높이는 정하지 않아 상한 420 은 구현이 정한 값이다.
+- **바텀 시트 · 드로어 높이 = 놓인 칸 기준 + 위 안전 영역 아래**(cc-prototype 앱) — 화면 전체 × 0.92 로 잡고 탭바 위 본문 안에 그려 머리가 상태 표시줄 밑으로 밀렸다(손잡이가 잘려 못 닫음 · 통역 드로어 · 전달 시트 두 번). 공용 도우미 하나로 10곳을 바꾸고 직접 호출 0 을 grep 시험으로 잠금. 셸이 키보드 높이를 본문에 다시 넘겨 입력줄이 한 번 더 뜬 것도 같은 뿌리 · [[2026-10-30-internal-chat]]
 
 ## 왜 중요한가
 
@@ -62,3 +64,4 @@ panel.style.maxHeight = `${Math.max(MIN, Math.min(room, MAX))}px`; // MAX = 420
 
 - [[2026-09-09-sc-design-system]] — 팝오버 「스크롤 안 됨」 보고의 원인이 60vh 상한이었던 것, 수정 규칙과 상수 3개
 - 2026-09-12-sc-meeting §2 — ax-workspace `frontend/src/Popover.tsx`(포털+fixed, 커밋 b941846)
+- [[2026-10-30-internal-chat]] §2 「바텀 시트 · 드로어 높이」

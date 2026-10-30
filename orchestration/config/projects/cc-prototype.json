@@ -146,6 +146,18 @@
         "procedure/app/ (Flutter · iOS)"
       ],
       "verify": "procedure/app 에서 flutter analyze · flutter test · flutter build ios --no-codesign — 각 1회(통합은 마지막). procedure 밖 import 없음. 사용자 포트 · 프로세스 · 기기를 건드리지 않는다. 서명 · TestFlight 는 사용자 몫 — 실행 못 한 검증은 사유와 함께 pending"
+    },
+    "designer": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "design",
+      "roles_dir": "roles/cc-prototype/designer",
+      "workspace": "coordinator",
+      "allowed_paths": [
+        "Claude Design(claude.ai/design) — 브리프가 지정한 프로젝트 · 브리프가 지정한 새 파일만 (DesignSync). 기존 파일은 읽기만",
+        "orchestration/work/<slug>/design/ (시안 로컬 사본) · 브리프가 지정한 리포트 파일 1개"
+      ],
+      "verify": "브리프의 화면 · 상태 목록이 시안에 전부 있다(화면별 이름 표) · 로컬 사본이 프로젝트와 같다 · 기존 시안의 테마 · 컴포넌트만 쓴다 · 가짜 값만(실명 · 키 0) · 기존 파일 무수정"
     }
   },
   "default_workers": [
