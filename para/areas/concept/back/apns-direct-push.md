@@ -20,6 +20,7 @@ aliases:
 up:
   - 2026-10-22-myeongdong-poc-v2
   - 2026-10-28-overall-board
+  - 2026-10-30-internal-chat
 tags:
   - push
   - ios
@@ -55,6 +56,7 @@ apns-priority: 10          apns-expiration: 0
 ```
 
 본문에 고객 이름 · 국적 · 시술 이름을 넣지 않는다 — 잠금 화면에 뜬다. 카테고리는 **그 호출을 수락할 수 있는 수신자(의사)** 에게만 단다. 관리자는 원장을 골라야 해서 액션 없이 앱을 연다.
+- **채팅 푸시**(cc-prototype 내부 채팅) — 호출 푸시와 같은 계정 → 기기 발송을 쓰되 만료 1일 · `thread-id` = 방. 발송 함수가 이벤트 루프 없으면 경고만 남기고 건너뛰어, 라우트가 동기 `def` 면 실기기에서 「푸시가 안 온다」로만 보인다 → 채팅 라우트 전부 `async def` + HTTP 경로로 가짜 APNs 에 닿는 시험 · [[2026-10-30-internal-chat]]
 
 ## 왜 중요한가
 
@@ -85,3 +87,4 @@ apns-priority: 10          apns-expiration: 0
 
 - [[2026-10-28-overall-board]] §2 — 토큰 = 행이라 같은 폰이 두 대로 뜸 → 설치 id 로 행 하나 · 옛 행은 대상에서만 뺌 · 기기 이름 = 기종 자동(코드 `333f30f` · `affac41` · `app-e2e-feedback-batch1.md` #1 · `-batch2.md` #1 · #3)
 - [[2026-10-22-myeongdong-poc-v2]] §2 — 명동 PoC v2 원장 호출 푸시 · 알림 [수락](SPEC-004 §5-1 · `push/apns.py` · `service/push.py` · `api/actions.py` · `AppDelegate.swift`)
+- [[2026-10-30-internal-chat]] §2 「푸시 · SSE 는 커밋 뒤」 — 동기 핸들러 = 푸시 0 · 만료 · thread-id

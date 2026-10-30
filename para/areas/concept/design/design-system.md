@@ -13,6 +13,7 @@ up:
   - 2026-10-03-strong-hajin-polish2
   - 2026-10-19-cc-nav-resv
   - 2026-10-27-interpret-pwa-poc
+  - 2026-10-30-internal-chat
 tags:
   - design
   - ui
@@ -56,6 +57,7 @@ h1, h2 { font-size: var(--font-heading); }
 변수는 공통 값을 담고 선택자 규칙은 적용 대상을 정한다. 이 예제는 최소 원리만 보여 주며 완전한 디자인 시스템은 아니다.
 
 영상은 이러한 기준을 먼저 정리한 뒤 ‘더 세련되게’ 같은 요청 대신 정의한 글자 체계, 간격, 색상과 컴포넌트 기준을 적용해 화면을 생성하도록 요청한다.
+- **시안이 DS 를 썼는지 센다**(cc-prototype 내부 채팅 시안) — Claude Design 시안 r1 이 medikit 컴포넌트 `x-import` 0회 · 손 CSS 로 흉내 냈는데 「클래스가 모두 DS」 검사로 통과했다. 검증 조건을 「`x-import` 개수를 기준 시안과 나란히 · 손 CSS grep 0」으로 바꾸자 r2 = 316 · [[2026-10-30-internal-chat]]
 
 ## 왜 중요한가
 
@@ -100,3 +102,4 @@ h1, h2 { font-size: var(--font-heading); }
 - [[2026-10-03-strong-hajin-polish2]] §2 — Strong Hajin WORK-009 E2E-3(`fe-survey-report.md` §3 · `review-fe-p2a2-report.md` · 커밋 `d1bb87d`, OQ-901)
 - [[2026-10-19-cc-nav-resv]] §2 — cc-prototype 2차 D-21 · D-23(무변경과 예외 범위) · 없는 토큰 클래스로 흰 글자 토스트 · 1차 `zIndex: 41` 재사용(`e2e-feedback-batch-1.md` #2 · #3)
 - [[2026-10-27-interpret-pwa-poc]] §2 · §3 — 통키: front 브리프에 세라믹 테마를 안 적어 medikit 기본 파랑 · 시안 캔버스를 화면 정본으로 · 시안 뒤 값 맞춤(`design/` · `design-r*-report.md` · DEC-001 D-20 · D-21)
+- [[2026-10-30-internal-chat]] §2 「확정 시안이라도 DS 컴포넌트를 쓰는지 센다」
