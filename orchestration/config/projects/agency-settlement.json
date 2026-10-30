@@ -1,0 +1,134 @@
+{
+  "_doc": "agency-settlement(에이전시 수수료 정산 PoC — 운영 명동점 KOS 결제를 월별 품목 리스트로. back = FastAPI · front = Next.js, 디자인은 cc-prototype procedure/front 복사) 오케스트레이션 설정 SSOT. scripts/new-work.sh 가 읽는 유일한 곳. 값 하드코딩 금지. 2026-10-29 빈 레포 kknaksss/agency-settlement 에서 착수.",
+  "project": "agency-settlement",
+  "worktree_root": "/Users/kknaks/orca/workspaces",
+  "use_worktree": true,
+  "repos": {
+    "app": {
+      "orca_name": "kknaks_profile",
+      "canonical_path": "/Users/kknaks/git/toy_pr2/kknaks_profile",
+      "remote": "https://github.com/kknaks/kknaks_profile.git",
+      "base": "origin/main",
+      "pr_base": "main",
+      "worktree_suffix": "",
+      "notes": [
+        "canonical(main)은 사용자 체크아웃 — pull/checkout 금지, fetch 만.",
+        "문서 레포. 제품 문서는 para/projects/summer-star/agency-settlement/ — 코디네이터 소유. 워커는 코디 워크트리 절대경로를 read-only 로 읽는다.",
+        "public 레포 — 실제 고객 이름 · 에이전시 이름 · 매출 금액 · 키 · 테넌트 id 금지."
+      ]
+    },
+    "code": {
+      "orca_name": "agency-settlement",
+      "canonical_path": "/Users/kknaks/git/toy_pr2/agency-settlement",
+      "remote": "https://github.com/kknaksss/agency-settlement.git",
+      "base": "origin/main",
+      "pr_base": "main",
+      "worktree_suffix": "",
+      "notes": [
+        "코드 전용 레포(kknaksss 계정 · private). 레포 루트에 back/(FastAPI) · front/(Next.js).",
+        "디자인은 /Users/kknaks/git/toy_pr2/cc-prototype/procedure/front 의 토큰 · 컴포넌트를 front/ 로 복사해 쓴다(읽기만 · import 금지).",
+        "운영 명동점 KOS 조회 전용(/queries/ 만) — 키는 .env(gitignore). 로컬만, 배포 없음."
+      ]
+    },
+    "reference": {
+      "orca_name": "ax-clinic-project",
+      "canonical_path": "/Users/kknaks/git/ax-clinic-project",
+      "remote": "https://github.com/kknaks/ax-clinic-project.git",
+      "base": "origin/main",
+      "read_only": true,
+      "notes": [
+        "참고 전용 — 병원 AX 사업 문서 레포(원천). 워크트리 만들지 않고, 수정 · 커밋 · PR 금지. fetch 만.",
+        "명동 실질 인터뷰 · 현장 자료는 para/projects/clinic-myeongdong-ax/ — strategy/07-interviews.md · sources/interviews/ · sources/meetings/ · sources/requirements/ · recordings/2026-10-08-myeongdong-marketing-interview/.",
+        "KOS 연동의 메인 참고처 — 키 값은 scripts/.env(KOS_API_tenent_dev = 운영 호스트 open-api.kos-solution.com 의 데모 지점, KOS_API_tenent = 실제 명동점 — 이 프로젝트는 조회 전용으로 사용 허용(2026-10-29 사용자)) · 사용법은 para/resources/technology/2026-09-18-kos-developers-api-guide.md · 호출 코드는 scripts/kos_collect.py. 이 레포는 private, kknaks_profile 은 public — 키 값을 profile 로 옮기지 않는다.",
+        "워커는 canonical 절대경로를 read-only 로 읽는다(2026-10-20 명동 PoC v2)."
+      ]
+    },
+    "cc_prototype": {
+      "orca_name": "cc-prototype",
+      "canonical_path": "/Users/kknaks/git/toy_pr2/cc-prototype",
+      "remote": "https://github.com/kknaksss/cc-prototype.git",
+      "base": "origin/main",
+      "read_only": true,
+      "notes": [
+        "참고 전용 — 디자인 원천(procedure/front) · KOS 클라이언트 본보기(procedure/back/app/kos). 워크트리 만들지 않고 수정 · 커밋 금지."
+      ]
+    }
+  },
+  "workers": {
+    "researcher": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "research",
+      "roles_dir": "roles/agency-settlement/researcher",
+      "workspace": "coordinator",
+      "allowed_paths": [
+        "(read-only — 브리프가 지정한 리포트 파일 1개만 생성)"
+      ],
+      "verify": "질문마다 답 + 공식 문서 URL. 문서에 없는 것은 「문서에 없음」. 결정하지 않고 「정할 것」으로 모은다"
+    },
+    "backend": {
+      "repo": "code",
+      "agent": "claude",
+      "brief_suffix": "be",
+      "roles_dir": "roles/agency-settlement/backend",
+      "allowed_paths": [
+        "back/",
+        "back/.env.example"
+      ],
+      "verify": "back 에서 uv run pytest · uv run ruff check . — Phase 범위에 맞게 1회씩, 통과하면 반복하지 마라. 사용자 포트·프로세스를 건드리지 않는다. 실행 못 한 검증은 사유와 함께 pending 으로 보고"
+    },
+    "frontend": {
+      "repo": "code",
+      "agent": "claude",
+      "brief_suffix": "fe",
+      "roles_dir": "roles/agency-settlement/frontend",
+      "allowed_paths": [
+        "front/"
+      ],
+      "verify": "front 에서 npx tsc --noEmit · npm run lint · npm run build — 각 1회. 사용자 포트·프로세스를 건드리지 않는다. 실행 못 한 검증은 사유와 함께 pending 으로 보고"
+    },
+    "reviewer": {
+      "repo": "code",
+      "agent": "claude",
+      "brief_suffix": "review",
+      "roles_dir": "roles/agency-settlement/reviewer",
+      "allowed_paths": [
+        "(read-only — 리포 파일 수정 금지. 산출물은 브리프가 지정한 리뷰 리포트 파일 1개뿐)"
+      ],
+      "verify": "각 지적에 파일:줄 + 근거(SPEC 절 · DEC D-번호). 판정 FAIL · WARN · PASS. /commands/ 로 가는 길 · 개인정보 로그는 FAIL. 「조용히 통과하는 자리」를 따로 본다"
+    },
+    "reviewer_doc": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "review-doc",
+      "roles_dir": "roles/agency-settlement/reviewer",
+      "workspace": "coordinator",
+      "allowed_paths": [
+        "(read-only — 브리프가 지정한 리뷰 리포트 파일 1개만 생성)"
+      ],
+      "verify": "SPEC·WORK 를 DEC 에 대조. 각 지적에 파일:줄 + 근거. 판정 FAIL/WARN/PASS"
+    },
+    "planner": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "spec",
+      "roles_dir": "roles/agency-settlement/planner",
+      "workspace": "coordinator",
+      "allowed_paths": [
+        "para/projects/summer-star/agency-settlement/20-spec/",
+        "para/projects/summer-star/agency-settlement/30-work/"
+      ],
+      "verify": "SPEC 의 모든 절이 DEC · _RESUME §2 · 조사 리포트 · KOS 공식 스펙 중 하나를 근거로 가리킨다. 근거 없는 정책 0 · 열린 것은 OQ 로. 링크 · 인덱스 갱신. public — 키 · 실명 · 실제 금액 · 에이전시 이름 0(grep)"
+    }
+  },
+  "default_workers": [
+    "backend",
+    "frontend"
+  ],
+  "summary_dest": "/Users/kknaks/git/toy_pr2/kknaks_profile/para/projects/summer-star/agency-settlement/log",
+  "rules": {
+    "spec_and_app_use_separate_prs": true,
+    "workers_commit_or_push": false,
+    "coordinator_verifies_before_pr": true
+  }
+}
