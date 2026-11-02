@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin:0; padding:0; background:#fff; color:#000; font-family:"Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
+  a { color:#476CFF; text-decoration:none; }
+  a:hover { color:#3554CC; }
+  .sc::-webkit-scrollbar { width:8px; height:8px; }
+  .sc::-webkit-scrollbar-thumb { background:#E3E3E3; border-radius:8px; }
+  .sc::-webkit-scrollbar-track { background:transparent; }
+</style>
+</helmet>
+
+<div style="display:flex;flex-direction:column;height:100vh;min-height:760px;background:#fff;overflow:hidden">
+
+  <header style="display:flex;align-items:center;height:52px;flex:0 0 52px;border-bottom:1px solid #F3F3F3;padding:0 14px;gap:16px">
+    <div style="display:flex;align-items:center;gap:9px;flex:0 0 auto">
+      <div style="display:flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;background:#476CFF;color:#fff;font-size:14px;font-weight:600">M</div>
+      <div style="font-size:14px;font-weight:600;letter-spacing:-0.01em">mediness</div>
+    </div>
+    <nav style="display:flex;align-items:center;gap:2px;flex:1;min-width:0">
+      <a href="#" style="padding:6px 10px;border-radius:6px;font-size:13.5px;color:#6E6E6E" style-hover="background:#FBFBFB">AX</a>
+      <a href="#" style="padding:6px 10px;border-radius:6px;font-size:13.5px;font-weight:600;background:#F0F4FF;color:#476CFF">내 업무</a>
+      <a href="#" style="padding:6px 10px;border-radius:6px;font-size:13.5px;color:#6E6E6E" style-hover="background:#FBFBFB">제품 관리</a>
+      <a href="#" style="padding:6px 10px;border-radius:6px;font-size:13.5px;color:#6E6E6E" style-hover="background:#FBFBFB">문서 관리</a>
+      <a href="#" style="padding:6px 10px;border-radius:6px;font-size:13.5px;color:#6E6E6E" style-hover="background:#FBFBFB">회의 관리</a>
+      <a href="#" style="padding:6px 10px;border-radius:6px;font-size:13.5px;color:#6E6E6E" style-hover="background:#FBFBFB">조직 관리</a>
+      <a href="#" style="padding:6px 10px;border-radius:6px;font-size:13.5px;color:#6E6E6E" style-hover="background:#FBFBFB">관리자</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:6px;height:30px;flex:0 0 240px;padding:0 10px;border:1px solid #E3E3E3;border-radius:6px;background:#FBFBFB;color:#9F9F9F;font-size:12.5px">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+      <span style="flex:1">검색</span>
+      <span style="font-size:11px;color:#CFCFCF">⌘K</span>
+    </div>
+  </header>
+
+  <div style="display:flex;flex:1;min-height:0">
+
+    <aside style="display:flex;flex-direction:column;flex:0 0 224px;border-right:1px solid #F3F3F3;background:#fff">
+      <div class="sc" style="flex:1;min-height:0;overflow-y:auto;padding:14px 8px">
+        <div style="padding:6px 11px 6px;font-size:12px;font-weight:600;color:#000;letter-spacing:-0.01em">내 업무</div>
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <a href="#" style="display:flex;align-items:center;gap:10px;padding:8px 11px;border-radius:6px;color:#3E3E3E;font-size:13.5px" style-hover="background:#FBFBFB">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#9F9F9F" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"></path></svg>
+            <span style="flex:1">AX 채팅</span>
+          </a>
+          <a href="#" style="display:flex;align-items:center;gap:10px;padding:8px 11px;border-radius:6px;color:#3E3E3E;font-size:13.5px" style-hover="background:#FBFBFB">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#9F9F9F" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+            <span style="flex:1">인박스</span>
+            <span style="padding:1.5px 7px;border-radius:9999px;background:#FFEFEF;font-size:11px;color:#FF4E51">2</span>
+          </a>
+          <a href="#" style="display:flex;align-items:center;gap:10px;padding:8px 11px;border-radius:6px;background:#F0F4FF;color:#476CFF;font-size:13.5px;font-weight:600">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M8 9v7M13 9v4"></path></svg>
+            <span style="flex:1">태스크</span>
+          </a>
+          <a href="#" style="display:flex;align-items:center;gap:10px;padding:8px 11px;border-radius:6px;color:#3E3E3E;font-size:13.5px" style-hover="background:#FBFBFB">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#9F9F9F" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+            <span style="flex:1">워크플로우</span>
+          </a>
+        </div>
+        <div style="padding:18px 11px 6px;font-size:12px;font-weight:600;color:#000;letter-spacing:-0.01em">관리자</div>
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <a href="#" style="display:flex;align-items:center;gap:10px;padding:8px 11px;border-radius:6px;color:#3E3E3E;font-size:13.5px" style-hover="background:#FBFBFB">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#9F9F9F" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+            <span style="flex:1">인박스 (전체)</span>
+          </a>
+          <a href="#" style="display:flex;align-items:center;gap:10px;padding:8px 11px;border-radius:6px;color:#3E3E3E;font-size:13.5px" style-hover="background:#FBFBFB">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#9F9F9F" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M8 9v7M13 9v4"></path></svg>
+            <span style="flex:1">태스크 (전체)</span>
+          </a>
+        </div>
+      </div>
+      <div style="flex:0 0 auto;border-top:1px solid #F3F3F3;padding:10px 8px">
+        <a href="#" style="display:flex;align-items:center;gap:10px;padding:6px 8px;border-radius:6px" style-hover="background:#FBFBFB">
+          <div style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;flex:0 0 34px;border-radius:9999px;background:#F3F3F3;color:#3E3E3E;font-size:13px;font-weight:500">이</div>
+          <div style="min-width:0;flex:1;line-height:1.3">
+            <div style="font-size:13px;font-weight:500;color:#000">이건학</div>
+            <div style="font-size:11px;color:#9F9F9F;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">kknaks@medisolveai.com</div>
+          </div>
+        </a>
+      </div>
+    </aside>
+
+    <main style="display:flex;flex:1;min-width:0;flex-direction:column">
+
+      <div style="flex:0 0 auto;padding:20px 24px 0">
+        <div style="display:flex;align-items:center;gap:8px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#476CFF">
+          <span style="display:block;height:2px;width:18px;border-radius:9999px;background:#476CFF"></span>
+          AX ASSISTANT · 내 업무
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;margin-top:10px">
+          <h1 style="margin:0;font-size:26px;font-weight:700;letter-spacing:-0.02em;color:#000">태스크</h1>
+          <span style="padding:2px 7px;border-radius:9999px;background:#DDE6FF;font-size:10px;font-weight:600;letter-spacing:0.04em;color:#476CFF">BETA</span>
+          <div style="display:flex;align-items:center;gap:6px;margin-left:6px">
+            <button type="button" onClick="{{ prevMonth }}" style="display:flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid #E3E3E3;border-radius:9999px;background:#fff;color:#6E6E6E;cursor:pointer" style-hover="background:#FBFBFB;color:#000">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m14 6-6 6 6 6"></path></svg>
+            </button>
+            <div style="display:flex;align-items:center;justify-content:center;min-width:112px;height:28px;padding:0 12px;border:1px solid #E3E3E3;border-radius:9999px;font-size:12.5px;font-weight:600;color:#000">{{ monthLabel }}</div>
+            <button type="button" onClick="{{ nextMonth }}" style="display:flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid #E3E3E3;border-radius:9999px;background:#fff;color:#6E6E6E;cursor:pointer" style-hover="background:#FBFBFB;color:#000">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10 6 6 6-6 6"></path></svg>
+            </button>
+          </div>
+          <div style="flex:1"></div>
+          <button type="button" style="display:flex;align-items:center;gap:5px;height:32px;padding:0 12px;border:0;border-radius:6px;background:#476CFF;color:#fff;font-family:inherit;font-size:12.5px;font-weight:600;cursor:pointer" style-hover="background:#3554CC">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>
+            Task 생성
+          </button>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:8px;margin-top:16px;padding-bottom:16px;border-bottom:1px solid #F3F3F3">
+          <button type="button" onClick="{{ pickBoard }}" style="border:0;background:none;padding:0;font-family:inherit;cursor:pointer">
+            <span style="{{ tabBoard }}">칸반</span>
+          </button>
+          <button type="button" onClick="{{ pickList }}" style="border:0;background:none;padding:0;font-family:inherit;cursor:pointer">
+            <span style="{{ tabList }}">테이블</span>
+          </button>
+          <span style="width:1px;height:20px;background:#F3F3F3;margin:0 6px"></span>
+        </div>
+      </div>
+
+      <sc-if value="{{ isBoard }}" hint-placeholder-val="{{ true }}">
+        <div class="sc" style="display:flex;flex:1;min-height:0;gap:16px;overflow-x:auto;padding:18px 24px 24px">
+          <sc-for list="{{ columns }}" as="col" hint-placeholder-count="3">
+            <div style="display:flex;flex-direction:column;min-height:0;flex:1 1 0;min-width:240px">
+              <div style="{{ col.headStyle }}">
+                <span style="{{ col.dot }}"></span>
+                <span style="font-size:13px;font-weight:600;color:#3E3E3E">{{ col.label }}</span>
+                <span style="font-size:12px;color:#9F9F9F">{{ col.count }}</span>
+                <div style="flex:1"></div>
+              </div>
+              <div class="sc" style="display:flex;min-height:0;flex:1;flex-direction:column;gap:6px;overflow-y:auto;padding:0 2px 4px">
+                <sc-if value="{{ col.isEmpty }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:flex;align-items:center;justify-content:center;flex:1;min-height:120px;border:1px dashed #E3E3E3;border-radius:8px;background:#FBFBFB;font-size:12px;color:#CFCFCF">비어 있음</div>
+                </sc-if>
+                <sc-for list="{{ col.items }}" as="t" hint-placeholder-count="3">
+                  <sc-if value="{{ t.isHeader }}" hint-placeholder-val="{{ false }}">
+                    <button type="button" onClick="{{ t.toggle }}" style="{{ t.headStyle }}" style-hover="background:#F3F3F3">
+                      <span style="{{ t.chevStyle }}">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+                      </span>
+                      <span style="{{ t.labelStyle }}">{{ t.label }}</span>
+                      <span style="font-size:11.5px;color:#9F9F9F">{{ t.count }}</span>
+                    </button>
+                  </sc-if>
+                  <sc-if value="{{ t.isCard }}" hint-placeholder-val="{{ true }}">
+                  <div style="position:relative;border:1px solid #E3E3E3;border-radius:8px;background:#fff;padding:11px 12px;cursor:pointer" style-hover="background:#FBFBFB;border-color:#CFCFCF">
+                    <div style="display:flex;align-items:flex-start;gap:8px">
+                      <span style="{{ t.originDot }}"></span>
+                      <div style="flex:1;min-width:0;font-size:14px;font-weight:500;line-height:1.45;color:#000;text-wrap:pretty">{{ t.title }}</div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:8px;margin-top:9px;padding-left:16px">
+                      <button type="button" onClick="{{ t.toggleMenu }}" style="{{ t.statusStyle }}">
+                        {{ t.statusLabel }}
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+                      </button>
+                      <span style="{{ t.metaStyle }}">{{ t.meta }}</span>
+                      <div style="flex:1"></div>
+                      <sc-if value="{{ t.hasDue }}" hint-placeholder-val="{{ false }}">
+                        <span style="{{ t.dueStyle }}">{{ t.due }}</span>
+                      </sc-if>
+                      <span style="{{ t.avatarStyle }}">{{ t.avatar }}</span>
+                    </div>
+                    <sc-if value="{{ t.hasBlocker }}" hint-placeholder-val="{{ false }}">
+                      <div style="margin-top:8px;padding-left:16px;font-size:11.5px;color:#FF4E51">{{ t.blocker }}</div>
+                    </sc-if>
+                    <sc-if value="{{ t.menuOpen }}" hint-placeholder-val="{{ false }}">
+                      <div style="position:absolute;left:26px;top:56px;z-index:20;display:flex;flex-direction:column;gap:1px;width:150px;padding:4px;border:1px solid #E3E3E3;border-radius:8px;background:#fff;box-shadow:0 6px 18px 0 rgb(0 0 0 / 0.10)">
+                        <div style="padding:6px 8px 4px;font-size:10.5px;font-weight:600;letter-spacing:0.02em;color:#9F9F9F">상태 변경</div>
+                        <sc-for list="{{ t.options }}" as="o" hint-placeholder-count="4">
+                          <button type="button" onClick="{{ o.pick }}" style="{{ o.style }}">
+                            <span style="{{ o.dot }}"></span>
+                            {{ o.label }}
+                          </button>
+                        </sc-for>
+                      </div>
+                    </sc-if>
+                  </div>
+                  </sc-if>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isList }}" hint-placeholder-val="{{ false }}">
+        <div class="sc" style="flex:1;min-height:0;overflow:auto;padding:8px 24px 28px">
+          <sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
+            <div style="margin-top:14px">
+              <div style="display:flex;align-items:center;gap:7px;padding:8px 4px;border-bottom:1px solid #F3F3F3">
+                <span style="{{ g.dot }}"></span>
+                <span style="font-size:13px;font-weight:600;color:#3E3E3E">{{ g.label }}</span>
+                <span style="font-size:12px;color:#9F9F9F">{{ g.count }}</span>
+              </div>
+              <sc-for list="{{ g.items }}" as="t" hint-placeholder-count="3">
+                <div style="display:flex;align-items:center;gap:12px;padding:10px 4px;border-bottom:1px solid #F3F3F3;cursor:pointer" style-hover="background:#FBFBFB">
+                  <span style="{{ t.originDot }}"></span>
+                  <div style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px;color:#000">{{ t.title }}</div>
+                  <span style="{{ t.metaStyle }}">{{ t.meta }}</span>
+                  <span style="flex:0 0 92px;text-align:right;font-size:12px;color:#9F9F9F">{{ t.due }}</span>
+                  <span style="{{ t.avatarStyle }}">{{ t.avatar }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+    </main>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
+const COLS = [
+  { key: 'todo', label: '대기', color: '#9F9F9F' },
+  { key: 'doing', label: '진행 중', color: '#476CFF' },
+  { key: 'done', label: '완료', color: '#22C55E' },
+  { key: 'blocked', label: '중단', color: '#FF4E51' },
+];
+
+const TASKS = [
+  { c: 'todo', t: '워크플로우 요청서 n8n style', src: 'ax', meta: 'WBS', due: '8월 18일', who: '건' },
+  { c: 'todo', t: 'VOC 리스트 만들기', src: 'ax', meta: 'WBS', due: '8월 20일', who: '낙' },
+  { c: 'doing', t: '샤라웃 워크플로우', src: 'ax', meta: 'WBS · 0차', due: '오늘', who: '건' },
+  { c: 'doing', t: '기능개발', src: 'dec', meta: '미분류 · 1차', due: '8월 14일', who: '낙' },
+  { c: 'doing', t: '버그/기능요청 남겨주세요', src: 'ax', meta: 'WBS', due: '8월 15일', who: '건' },
+  { c: 'doing', t: '제품 개발 파이프라인 워크플로우', src: 'ax', meta: 'WBS', due: '8월 21일', who: '수' },
+  { c: 'doing', t: '부서 스페이스 문서양식(엑셀) 추가', src: 'ax', meta: 'WBS', due: '8월 12일', overdue: true, who: '낙', blocker: '문서 관리 스키마 확정 대기' },
+  { c: 'done', t: '계정 세라믹 말고 다른거 발급받으세요', src: 'dec', meta: '와치 · 1차', due: '8월 6일', who: '건' },
+  { c: 'done', t: '링키 서비스 발생 비용 달러/원화 환산 정리', src: 'dec', meta: '미분류 · 1차', due: '8월 5일', who: '수' },
+  { c: 'done', t: '실행 태스크 배정 — 메디니스(medi)', src: 'dec', meta: '1차', due: '8월 4일', who: '낙' },
+  { c: 'todo', t: '온보딩 가이드 문서 초안 검토', src: 'dec', meta: '와치 · 2차', due: '8월 22일', who: '수' },
+  { c: 'todo', t: '링키 대시보드 지표 정의', src: 'ax', meta: 'WBS', due: '8월 25일', who: '건' },
+  { c: 'blocked', t: 'SSO 연동 테스트 계정 발급', src: 'dec', meta: '미분류 · 1차', due: '8월 11일', overdue: true, who: '수', blocker: '보안팀 승인 대기' },
+  { c: 'todo', t: '회의록 자동 요약 프롬프트 정리', src: 'ax', meta: 'WBS', due: '8월 26일', who: '수' },
+  { c: 'doing', t: '알림 채널 정책 정리 (슬랙/메일)', src: 'ax', meta: 'WBS · 1차', due: '8월 19일', who: '수' },
+  { c: 'done', t: '조직 관리 권한 매트릭스 확정', src: 'dec', meta: '와치 · 2차', due: '8월 1일', who: '건' },
+  { c: 'done', t: '제품 관리 스키마 1차 리뷰', src: 'ax', meta: 'WBS', due: '7월 30일', who: '낙' },
+  { c: 'done', t: '인박스 알림 중복 제거', src: 'ax', meta: 'WBS', due: '7월 24일', who: '수' },
+  { c: 'done', t: '태스크 상태 5개로 통일 (WP-126)', src: 'dec', meta: '미분류 · 2차', due: '7월 18일', who: '건' },
+  { c: 'done', t: '문서 업로드 용량 제한 상향', src: 'ax', meta: 'WBS', due: '7월 11일', who: '낙' },
+  { c: 'done', t: '회의실 예약 중봐 버서 수정', src: 'dec', meta: '와치 · 1차', due: '6월 27일', who: '수' },
+  { c: 'done', t: '조직도 싱킹 로직 개선', src: 'ax', meta: 'WBS', due: '6월 19일', who: '건' },
+  { c: 'done', t: '로그인 이후 리다이렉트 버그', src: 'dec', meta: '미분류 · 1차', due: '6월 9일', who: '낙' },
+];
+const ALL_STATUS = [
+  { key: 'todo', label: '대기', color: '#9F9F9F', chipBg: '#F3F3F3', chipFg: '#6E6E6E' },
+  { key: 'doing', label: '진행 중', color: '#476CFF', chipBg: '#F0F4FF', chipFg: '#476CFF' },
+  { key: 'blocked', label: '중단', color: '#FF4E51', chipBg: '#FFEFEF', chipFg: '#FF4E51' },
+  { key: 'done', label: '완료', color: '#22C55E', chipBg: '#E7F8EE', chipFg: '#15803D' },
+  { key: 'canceled', label: '취소', color: '#9F9F9F', chipBg: '#F3F3F3', chipFg: '#9F9F9F' },
+];
+
+class Component extends DCLogic {
+  state = { view: 'board', menu: null, openMonths: null, y: 2026, mo: 8 };
+
+  chip(on) {
+    return {
+      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+      height: '28px', padding: '0 12px', borderRadius: '9999px',
+      border: on ? '1px solid #476CFF' : '1px solid #E3E3E3',
+      background: on ? '#F0F4FF' : '#fff',
+      color: on ? '#476CFF' : '#6E6E6E',
+      fontFamily: 'inherit', fontSize: '12.5px', fontWeight: on ? 600 : 400, cursor: 'pointer',
+    };
+  }
+
+  monthOf(t) {
+    return parseInt(t.due, 10);
+  }
+  step(d) {
+    let { y, mo } = this.state;
+    mo += d;
+    if (mo > 12) { mo = 1; y += 1; }
+    if (mo < 1) { mo = 12; y -= 1; }
+    this.setState({ y, mo });
+  }
+  monthHeader(label, count, open, all) {
+    return {
+      isHeader: true,
+      isCard: false,
+      label,
+      count,
+      open,
+      headStyle: {
+        display: 'flex', alignItems: 'center', gap: '7px', width: '100%',
+        border: 0, borderRadius: '6px', padding: '5px 7px',
+        background: open ? 'transparent' : '#FBFBFB',
+        fontFamily: 'inherit', cursor: 'pointer', textAlign: 'left',
+      },
+      labelStyle: { fontSize: '12px', fontWeight: 600, color: open ? '#3E3E3E' : '#6E6E6E' },
+      chevStyle: {
+        display: 'flex', flex: '0 0 auto', color: '#9F9F9F',
+        transform: open ? 'rotate(0deg)' : 'rotate(-90deg)', transition: 'transform .15s ease',
+      },
+      toggle: () => this.setState((s) => {
+        const cur = s.openMonths ?? all;
+        return { openMonths: cur.includes(label) ? cur.filter((m) => m !== label) : [...cur, label] };
+      }),
+    };
+  }
+
+  tab(on) {
+    return {
+      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+      height: '34px', padding: '0 20px', borderRadius: '9999px',
+      border: on ? '1px solid #476CFF' : '1px solid #E3E3E3',
+      background: on ? '#476CFF' : '#fff',
+      color: on ? '#fff' : '#3E3E3E',
+      fontSize: '14px', fontWeight: on ? 600 : 500,
+    };
+  }
+  dot(c) {
+    return { display: 'block', flex: '0 0 auto', width: '7px', height: '7px', borderRadius: '9999px', background: c };
+  }
+  originDot(src) {
+    return {
+      display: 'inline-flex', flex: '0 0 auto', marginTop: '5px',
+      width: '8px', height: '8px', borderRadius: '2px',
+      background: src === 'ax' ? '#DDE6FF' : '#F3F3F3',
+      boxShadow: src === 'ax' ? 'inset 0 0 0 1px #A9BEFF' : 'inset 0 0 0 1px #E3E3E3',
+    };
+  }
+  statusChip(key) {
+    const c = ALL_STATUS.find((s) => s.key === key);
+    return {
+      display: 'inline-flex', flex: '0 0 auto', alignItems: 'center', gap: '4px',
+      border: 0, borderRadius: '5px', padding: '2px 6px 2px 5px',
+      background: c.chipBg, color: c.chipFg,
+      fontFamily: 'inherit', fontSize: '11.5px', fontWeight: 500, cursor: 'pointer',
+    };
+  }
+  menuItem(on) {
+    return {
+      display: 'flex', alignItems: 'center', gap: '8px', width: '100%',
+      border: 0, borderRadius: '5px', padding: '6px 8px',
+      background: on ? '#F0F4FF' : 'transparent',
+      color: on ? '#476CFF' : '#3E3E3E',
+      fontFamily: 'inherit', fontSize: '12.5px', fontWeight: on ? 600 : 400,
+      textAlign: 'left', cursor: 'pointer',
+    };
+  }
+  card(t) {
+    const open = this.state.menu === t.t;
+    return {
+      title: t.t,
+      statusLabel: ALL_STATUS.find((s) => s.key === t.c).label,
+      statusStyle: this.statusChip(t.c),
+      menuOpen: open,
+      toggleMenu: (e) => { e.stopPropagation(); this.setState({ menu: open ? null : t.t }); },
+      options: ALL_STATUS.map((s) => ({
+        label: s.label,
+        dot: this.dot(s.color),
+        style: this.menuItem(s.key === t.c),
+        pick: (e) => { e.stopPropagation(); t.c = s.key; this.setState({ menu: null }); },
+      })),
+      originDot: this.originDot(t.src),
+      meta: t.meta,
+      metaStyle: { flex: '0 0 auto', fontSize: '11.5px', color: '#9F9F9F' },
+      due: t.due,
+      hasDue: !!t.due,
+      dueStyle: { flex: '0 0 auto', fontSize: '11.5px', color: t.overdue ? '#FF4E51' : '#9F9F9F' },
+      avatar: t.who,
+      avatarStyle: {
+        display: 'inline-flex', flex: '0 0 auto', alignItems: 'center', justifyContent: 'center',
+        width: '20px', height: '20px', borderRadius: '9999px',
+        background: '#F3F3F3', color: '#3E3E3E', fontSize: '10.5px', fontWeight: 600,
+      },
+      hasBlocker: !!t.blocker,
+      blocker: t.blocker ?? '',
+    };
+  }
+
+  renderVals() {
+    const board = this.state.view === 'board';
+    const of = (k) => TASKS.filter((t) => t.c === k);
+    const cols = COLS.map((c) => {
+      const items = of(c.key);
+      let entries;
+      if (c.key === 'done') {
+        entries = items
+          .filter((t) => this.monthOf(t) === this.state.mo)
+          .map((t) => ({ isCard: true, isHeader: false, ...this.card(t) }));
+      } else if (false) {
+        const months = [...new Set(items.map((t) => this.monthOf(t)))]
+          .sort((a, b) => parseInt(b) - parseInt(a));
+        const open = this.state.openMonths ?? [months[0]];
+        entries = [];
+        months.forEach((m) => {
+          const list = items.filter((t) => this.monthOf(t) === m);
+          const isOpen = open.includes(m);
+          entries.push(this.monthHeader(m, list.length, isOpen, [months[0]]));
+          if (isOpen) list.forEach((t) => entries.push({ isCard: true, isHeader: false, ...this.card(t) }));
+        });
+      } else {
+        entries = items.map((t) => ({ isCard: true, isHeader: false, ...this.card(t) }));
+      }
+      return {
+        label: c.label, dot: this.dot(c.color),
+        count: items.length,
+        items: entries,
+        cards: items.map((t) => this.card(t)),
+        isEmpty: items.length === 0,
+        headStyle: {
+          display: 'flex', alignItems: 'center', gap: '7px',
+          padding: '0 4px 10px', opacity: items.length ? 1 : 0.55,
+        },
+      };
+    });
+    return {
+      isBoard: board,
+      isList: !board,
+      tabBoard: this.tab(board),
+      tabList: this.tab(!board),
+      pickBoard: () => this.setState({ view: 'board' }),
+      pickList: () => this.setState({ view: 'list' }),
+      monthLabel: `${this.state.y}년 ${this.state.mo}월`,
+      prevMonth: () => this.step(-1),
+      nextMonth: () => this.step(1),
+      columns: cols,
+      groups: cols.map((c) => ({ label: c.label, dot: c.dot, count: c.count, items: c.cards })),
+    };
+  }
+}
+
+</script>
+</body>
+</html>

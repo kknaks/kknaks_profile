@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="design_doc_mode" content="canvas">
+  <link rel="stylesheet" href="_ds/medikit-aea7ac33-f044-4445-9164-87b8b69474dc/fonts/fonts.css">
+  <link rel="stylesheet" href="_ds/medikit-aea7ac33-f044-4445-9164-87b8b69474dc/_ds_bundle.css">
+  <link rel="stylesheet" href="_ds/medikit-aea7ac33-f044-4445-9164-87b8b69474dc/styles.css">
+  <link rel="stylesheet" href="ceramique-theme.css">
+  <link rel="stylesheet" href="medikit-patches.css">
+  <script src="_ds/medikit-aea7ac33-f044-4445-9164-87b8b69474dc/_ds_bundle.js"></script>
+  <style>html,body{margin:0;}a{color:#2498bd;}a:hover{color:#1d7f9e;}</style>
+</helmet>
+
+<section data-product="ceramique" data-screen-label="Turn 2" class="bg-ms-gray-200 border-ms-gray-400" style="padding:56px 64px 96px;display:flex;flex-direction:column;gap:72px;min-width:max-content;border-bottom-width:2px;border-bottom-style:solid;">
+  <div style="display:flex;flex-direction:column;gap:8px;">
+    <span class="text-typo-caption-md-600 text-ms-gray-600">TURN 2 · 룸(환자) 중심으로 다시</span>
+    <h1 class="text-typo-headline-md-600 text-ms-gray-800" style="margin:0;">시술실 태블릿 · 의사 폰 · 간호사 폰</h1>
+    <span class="text-typo-body-400 text-ms-gray-700" style="max-width:900px;text-wrap:pretty;">개인 스케줄은 없앴어요. 의사는 그때그때 호출로 움직입니다. 시술실 태블릿은 그 방 환자 한 명만 보여주고 시작·종료·통역을 맡습니다. 의사 폰은 전체 현황을 보고, 호출 알림을 받고, 들어가기 전에 오더를 확인합니다. 간호사 폰은 현황과 다음 동선 예측, 다음 시술 준비, 지금 시술 보조를 맡습니다. 시술실 태블릿 기본 화면만 2안입니다(<a href="#2a">2a</a> / <a href="#2b">2b</a>).</span>
+  </div>
+
+  <!-- ===================== 시술실 태블릿 ===================== -->
+  <div data-screen-label="시술실 태블릿" style="display:flex;flex-direction:column;gap:32px;">
+    <h2 class="text-typo-headline-md-600 text-ms-gray-800" style="margin:0;padding-bottom:12px;border-bottom:2px solid #3e3e3e;">시술실 태블릿 <span class="text-typo-body-400 text-ms-gray-600">— 룸마다 1대 · 지금 이 방 환자만</span></h2>
+    <div style="display:flex;gap:56px;flex-wrap:wrap;align-items:flex-start;">
+
+      <!-- 2a 환자 + 시술 목록 -->
+      <div id="2a" data-screen-label="2a 시술실 태블릿 · 환자+시술 목록" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;align-items:center;gap:10px;"><span class="bg-ms-gray-800 text-ms-white text-typo-caption-md-600" style="padding:3px 10px;border-radius:999px;">2a</span><span class="text-typo-heading-md-500 text-ms-gray-800">환자 + 시술 목록 — 왼쪽 오더 메모, 오른쪽 시술 줄마다 시작·종료, 아래 통역 바</span></div>
+        <div class="bg-ms-gray-100" style="width:1194px;height:834px;border-radius:28px;box-shadow:0 0 0 12px #1f1f1f, 0 24px 60px rgba(0,0,0,0.25);overflow:hidden;display:flex;flex-direction:column;">
+          <div class="bg-ms-white border-ms-gray-200" style="height:72px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 24px;border-bottom-width:1px;border-bottom-style:solid;">
+            <div style="display:flex;align-items:center;gap:16px;min-width:0;">
+              <span class="text-typo-headline-md-600 text-ms-gray-800">A-룸2</span>
+              <span class="bg-ms-gray-300" style="width:1px;height:28px;"></span>
+              <div style="display:flex;flex-direction:column;gap:2px;">
+                <div style="display:flex;align-items:center;gap:6px;"><span class="text-typo-title-sm-600 text-ms-gray-800">[TW] WANG YI TING</span><span class="bg-ms-gray-200 text-typo-caption-md-500 text-ms-gray-700" style="padding:1px 6px;border-radius:4px;">대만</span><span class="bg-ms-gray-200 text-ms-gray-700 text-typo-caption-md-600" style="padding:1px 6px;border-radius:4px;">재내원</span></div>
+                <span class="text-typo-caption-md-400 text-ms-gray-600">입실 13:30 · 34세 여 · 오후 4시 출국</span>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="primary" size="sm" dot="{{ true }}" hint-size="80px,22px">시술 진행</x-import>
+              <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="sm" hint-size="96px,33px">간호사 요청</x-import>
+              <span class="text-typo-heading-sm-400 text-ms-black" style="font-variant-numeric:tabular-nums;">14:46</span>
+            </div>
+          </div>
+          <div style="flex:1;min-height:0;display:grid;grid-template-columns:380px minmax(0,1fr);gap:12px;padding:12px 20px;">
+            <div style="display:flex;flex-direction:column;gap:10px;min-height:0;">
+              <div class="bg-ms-white" style="border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px;flex:1;">
+                <span class="text-typo-heading-md-500 text-ms-gray-800">오더 메모</span>
+                <span class="text-typo-body-400 text-ms-gray-800" style="white-space:pre-wrap;word-break:keep-all;line-height:1.6;">1. 울쎄라피 프라임 300shot — 이마 · 볼 위주, 턱선은 약하게
+2. 써마지 FLX 300shot 눈가 포함(눈가 팁 따로)
+3. 쥬베룩 볼 2cc
+4. 바디보톡스 100unit 승모근
+* 오후 4시 출국 — 3시 반까지 마무리
+* 시술 전후 사진 촬영</span>
+              </div>
+              <div class="bg-red-100" style="border-radius:12px;padding:12px 16px;display:flex;flex-direction:column;gap:4px;">
+                <span class="text-typo-caption-md-600 text-red">주의</span>
+                <span class="text-typo-body-500 text-ms-gray-800">지난 방문 써마지 열감 민감 → 레벨 낮게 시작</span>
+              </div>
+              <div class="bg-ms-white" style="border-radius:12px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;">
+                <span class="text-typo-caption-md-600 text-ms-gray-700">마취</span>
+                <span class="text-typo-body-600 text-purple">완료 23분 <span class="text-typo-caption-md-400 text-ms-gray-600">크림 13:35~13:58</span></span>
+              </div>
+            </div>
+            <div class="bg-ms-white" style="border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px;min-height:0;">
+              <div style="display:flex;justify-content:space-between;align-items:center;"><span class="text-typo-heading-md-500 text-ms-gray-800">시술 4 <span class="text-typo-body-400 text-ms-gray-600">· 완료 1</span></span><span class="text-typo-caption-md-500 text-ms-gray-600">담당 박 원장</span></div>
+              <div class="border-ms-gray-200" style="border-width:1px;border-style:solid;border-radius:10px;padding:14px 16px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;align-items:center;">
+                <span class="text-typo-heading-md-400 text-ms-gray-500">울쎄라피 프라임 300shot</span>
+                <x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="neutral" size="sm" hint-size="40px,22px">완료</x-import>
+                <span class="text-typo-caption-md-400 text-ms-gray-500">박 원장 · 14:02~14:20 · 18분</span>
+              </div>
+              <div class="bg-primary-100 border-primary" style="border-width:1px;border-style:solid;border-radius:10px;padding:14px 16px;display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:2px 16px;align-items:center;">
+                <span class="text-typo-title-md-600 text-primary">써마지 FLX 300shot</span>
+                <span class="text-primary" style="grid-row:span 2;font-size:36px;font-weight:600;font-variant-numeric:tabular-nums;">08:12</span>
+                <div style="grid-row:span 2;width:120px;display:grid;" data-fill-buttons="true"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="md" hint-size="120px,40px">종료</x-import></div>
+                <span class="text-typo-caption-md-500 text-ms-gray-700">박 원장 · 14:38 시작 · 눈가 팁 따로</span>
+              </div>
+              <div class="border-ms-gray-200" style="border-width:1px;border-style:solid;border-radius:10px;padding:14px 16px;display:grid;grid-template-columns:minmax(0,1fr) 120px;gap:2px 16px;align-items:center;">
+                <span class="text-typo-title-sm-600 text-ms-gray-800">쥬베룩 볼 2cc</span>
+                <div style="grid-row:span 2;display:grid;" data-fill-buttons="true"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="blue" size="md" disabled="{{ true }}" hint-size="120px,40px">시작</x-import></div>
+                <span class="text-typo-caption-md-600 text-red">동의서 미서명 — 서명 후 시작</span>
+              </div>
+              <div class="border-ms-gray-200" style="border-width:1px;border-style:solid;border-radius:10px;padding:14px 16px;display:grid;grid-template-columns:minmax(0,1fr) 120px;gap:2px 16px;align-items:center;">
+                <span class="text-typo-title-sm-600 text-ms-gray-800">바디보톡스 100unit</span>
+                <div style="grid-row:span 2;display:grid;" data-fill-buttons="true"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="blue" size="md" hint-size="120px,40px">시작</x-import></div>
+                <span class="text-typo-caption-md-500 text-ms-gray-700">박 원장 · 승모근</span>
+              </div>
+              <div data-fill-buttons="true" style="margin-top:auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;">
+                <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="md" hint-size="100%,40px">시술 메모</x-import>
+                <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="md" hint-size="100%,40px">다른 의사 호출</x-import>
+              </div>
+            </div>
+          </div>
+          <div class="bg-ms-white border-ms-gray-200" style="height:96px;flex-shrink:0;border-top-width:1px;border-top-style:solid;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px;align-items:center;padding:0 20px;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <span class="bg-primary text-ms-white text-typo-heading-md-500" style="width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;">통역</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;min-width:0;">
+              <div style="display:flex;align-items:baseline;gap:10px;min-width:0;"><span class="text-typo-caption-md-600 text-primary" style="flex-shrink:0;">한국어 → 中文(繁體)</span><span class="text-typo-heading-md-500 text-ms-gray-800" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">會有一點熱，覺得太燙請舉手。</span></div>
+              <div style="display:flex;gap:6px;flex-wrap:nowrap;overflow:hidden;">
+                <sc-for list="{{ phrases }}" as="p" hint-placeholder-count="5"><x-import component-from-global-scope="MedisolveAiMedikit.Chip" hint-size="120px,32px">{{ p }}</x-import></sc-for>
+              </div>
+            </div>
+            <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="blue" size="md" hint-size="120px,40px">통역 화면</x-import>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2b 지금 시술 + 통역 상시 -->
+      <div id="2b" data-screen-label="2b 시술실 태블릿 · 지금 시술+통역" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;align-items:center;gap:10px;"><span class="bg-ms-gray-800 text-ms-white text-typo-caption-md-600" style="padding:3px 10px;border-radius:999px;">2b</span><span class="text-typo-heading-md-500 text-ms-gray-800">지금 시술 + 통역 상시 — 위 단계 줄, 가운데 진행 시술, 오른쪽 대화</span></div>
+        <div class="bg-ms-gray-100" style="width:1194px;height:834px;border-radius:28px;box-shadow:0 0 0 12px #1f1f1f, 0 24px 60px rgba(0,0,0,0.25);overflow:hidden;display:flex;flex-direction:column;">
+          <div class="bg-ms-white border-ms-gray-200" style="height:72px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 24px;border-bottom-width:1px;border-bottom-style:solid;">
+            <div style="display:flex;align-items:center;gap:16px;min-width:0;">
+              <span class="text-typo-headline-md-600 text-ms-gray-800">A-룸2</span>
+              <span class="bg-ms-gray-300" style="width:1px;height:28px;"></span>
+              <div style="display:flex;align-items:center;gap:6px;"><span class="text-typo-title-sm-600 text-ms-gray-800">[TW] WANG YI TING</span><span class="bg-ms-gray-200 text-typo-caption-md-500 text-ms-gray-700" style="padding:1px 6px;border-radius:4px;">대만</span><span class="bg-ms-gray-200 text-ms-gray-700 text-typo-caption-md-600" style="padding:1px 6px;border-radius:4px;">재내원</span><span class="text-typo-caption-md-500 text-purple" style="margin-left:6px;">마취 완료 23분</span></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="sm" hint-size="96px,33px">간호사 요청</x-import><span class="text-typo-heading-sm-400 text-ms-black">14:46</span></div>
+          </div>
+          <div style="padding:12px 20px 0;display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:8px;">
+            <div class="bg-ms-white border-ms-gray-300" style="border-width:1px;border-style:solid;border-radius:10px;padding:10px 12px;display:flex;gap:10px;align-items:center;"><span class="bg-ms-gray-300 text-ms-white" style="width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;">✓</span><div style="display:flex;flex-direction:column;min-width:0;"><span class="text-typo-body-500 text-ms-gray-500">울쎄라피 프라임</span><span class="text-typo-caption-md-400 text-ms-gray-500">14:02~14:20</span></div></div>
+            <div class="bg-primary border-primary" style="border-width:1px;border-style:solid;border-radius:10px;padding:10px 12px;display:flex;gap:10px;align-items:center;"><span class="bg-ms-white text-primary" style="width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;">2</span><div style="display:flex;flex-direction:column;min-width:0;"><span class="text-typo-body-600 text-ms-white">써마지 FLX</span><span class="text-typo-caption-md-500 text-ms-white">진행 중</span></div></div>
+            <div class="bg-ms-white border-ms-gray-300" style="border-width:1px;border-style:solid;border-radius:10px;padding:10px 12px;display:flex;gap:10px;align-items:center;"><span class="border-primary text-primary" style="width:24px;height:24px;border-radius:50%;border-width:1px;border-style:solid;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;">3</span><div style="display:flex;flex-direction:column;min-width:0;"><span class="text-typo-body-500 text-ms-gray-800">쥬베룩</span><span class="text-typo-caption-md-500 text-red">동의서 미서명</span></div></div>
+            <div class="bg-ms-white border-ms-gray-300" style="border-width:1px;border-style:solid;border-radius:10px;padding:10px 12px;display:flex;gap:10px;align-items:center;"><span class="border-primary text-primary" style="width:24px;height:24px;border-radius:50%;border-width:1px;border-style:solid;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;">4</span><div style="display:flex;flex-direction:column;min-width:0;"><span class="text-typo-body-500 text-ms-gray-800">바디보톡스</span><span class="text-typo-caption-md-400 text-ms-gray-600">대기</span></div></div>
+          </div>
+          <div style="flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:12px;padding:12px 20px 20px;">
+            <div class="bg-ms-white" style="border-radius:16px;padding:28px 32px;display:flex;flex-direction:column;gap:18px;">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                <div style="display:flex;flex-direction:column;gap:6px;"><span class="text-typo-caption-md-600 text-primary">2 / 4 · 진행 중</span><span class="text-typo-headline-lg-600 text-ms-gray-800">써마지 FLX 300shot</span><span class="text-typo-heading-md-500 text-ms-gray-700">박 원장 · 14:38 시작</span></div>
+                <span class="text-primary" style="font-size:72px;line-height:1;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-1px;">08:12</span>
+              </div>
+              <div class="bg-ms-gray-100" style="border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;">
+                <span class="text-typo-caption-md-600 text-ms-gray-700">이 시술 오더</span>
+                <span class="text-typo-heading-md-400 text-ms-gray-800" style="word-break:keep-all;">300shot 눈가 포함 — 눈가 팁 따로</span>
+                <span class="text-typo-body-500 text-red">지난 방문 열감 민감 → 레벨 낮게 시작</span>
+              </div>
+              <div class="bg-ms-gray-100" style="border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;">
+                <span class="text-typo-caption-md-600 text-ms-gray-700">전체 오더 메모</span>
+                <span class="text-typo-body-400 text-ms-gray-800">오후 4시 출국 — 3시 반까지 마무리 · 시술 전후 사진 촬영</span>
+              </div>
+              <div data-fill-buttons="true" style="margin-top:auto;display:grid;grid-template-columns:180px 180px minmax(0,1fr);gap:10px;">
+                <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="md" hint-size="100%,40px">시술 메모</x-import>
+                <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="md" hint-size="100%,40px">다른 의사 호출</x-import>
+                <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="md" hint-size="100%,40px">써마지 FLX 종료</x-import>
+              </div>
+            </div>
+            <div class="bg-ms-white" style="border-radius:16px;display:flex;flex-direction:column;min-height:0;overflow:hidden;">
+              <div class="border-ms-gray-200" style="padding:14px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom-width:1px;border-bottom-style:solid;"><span class="text-typo-heading-md-500 text-ms-gray-800">통역</span><span class="text-typo-caption-md-600 text-primary">한국어 ↔ 中文(繁體)</span></div>
+              <div style="flex:1;min-height:0;padding:12px 16px;display:flex;flex-direction:column;gap:10px;overflow:hidden;justify-content:flex-end;">
+                <sc-for list="{{ chat }}" as="m" hint-placeholder-count="4">
+                  <div style="display:flex;flex-direction:column;gap:2px;align-self:{{ m.align }};max-width:85%;">
+                    <span class="text-typo-caption-md-500 text-ms-gray-500" style="align-self:{{ m.align }};">{{ m.who }}</span>
+                    <div class="{{ m.cls }}" style="border-radius:12px;padding:8px 12px;display:flex;flex-direction:column;gap:2px;">
+                      <span class="text-typo-heading-md-500">{{ m.main }}</span>
+                      <span class="text-typo-caption-md-400" style="opacity:0.8;">{{ m.sub }}</span>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+              <div class="border-ms-gray-200" style="padding:10px 16px 16px;border-top-width:1px;border-top-style:solid;display:flex;flex-direction:column;gap:10px;">
+                <div style="display:flex;gap:6px;flex-wrap:wrap;"><sc-for list="{{ phrasesShort }}" as="p" hint-placeholder-count="3"><x-import component-from-global-scope="MedisolveAiMedikit.Chip" hint-size="100px,32px">{{ p }}</x-import></sc-for></div>
+                <div data-fill-buttons="true" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;">
+                  <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="md" hint-size="100%,40px">한국어로 말하기</x-import>
+                  <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="blue" size="md" hint-size="100%,40px">用中文說話</x-import>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <span class="text-typo-title-md-600 text-ms-gray-800" style="padding-top:24px;">시술실 태블릿 — 시작 전 · 통역 화면</span>
+    <div style="display:flex;gap:56px;flex-wrap:wrap;align-items:flex-start;">
+      <!-- 2c 시작 전 (호출 · 마취) -->
+      <div id="2c" data-screen-label="2c 시술실 태블릿 · 시작 전" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;align-items:center;gap:10px;"><span class="bg-ms-gray-800 text-ms-white text-typo-caption-md-600" style="padding:3px 10px;border-radius:999px;">2c</span><span class="text-typo-heading-md-500 text-ms-gray-800">시작 전 — 마취 · 의사 호출 상태. 원장이 수락해야 [시작] 열림</span></div>
+        <div class="bg-ms-gray-100" style="width:1194px;height:834px;border-radius:28px;box-shadow:0 0 0 12px #1f1f1f, 0 24px 60px rgba(0,0,0,0.25);overflow:hidden;display:flex;flex-direction:column;">
+          <div class="bg-ms-white border-ms-gray-200" style="height:72px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 24px;border-bottom-width:1px;border-bottom-style:solid;">
+            <div style="display:flex;align-items:center;gap:16px;min-width:0;">
+              <span class="text-typo-headline-md-600 text-ms-gray-800">A-룸4</span>
+              <span class="bg-ms-gray-300" style="width:1px;height:28px;"></span>
+              <div style="display:flex;flex-direction:column;gap:2px;">
+                <div style="display:flex;align-items:center;gap:6px;"><span class="text-typo-title-sm-600 text-ms-gray-800">[HK] CHAN MEI LING</span><span class="bg-ms-gray-200 text-typo-caption-md-500 text-ms-gray-700" style="padding:1px 6px;border-radius:4px;">홍콩</span><span class="bg-primary-100 text-primary text-typo-caption-md-600" style="padding:1px 6px;border-radius:4px;">첫내원</span></div>
+                <span class="text-typo-caption-md-400 text-ms-gray-600">입실 13:50 · 통역 광둥어</span>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;"><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="danger" size="sm" dot="{{ true }}" hint-size="80px,22px">호출 6분</x-import><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="sm" hint-size="96px,33px">간호사 요청</x-import><span class="text-typo-heading-sm-400 text-ms-black">14:46</span></div>
+          </div>
+          <div style="flex:1;min-height:0;display:grid;grid-template-columns:380px minmax(0,1fr);gap:12px;padding:12px 20px;">
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div class="bg-ms-white" style="border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px;flex:1;">
+                <span class="text-typo-heading-md-500 text-ms-gray-800">오더 메모</span>
+                <span class="text-typo-body-400 text-ms-gray-800" style="white-space:pre-wrap;word-break:keep-all;line-height:1.6;">1. 써마지 FLX 300shot
+2. 쥬베룩 볼 2cc
+3. 바디보톡스 100unit 승모근
+* 첫 방문 — 시술마다 통증 미리 안내</span>
+              </div>
+              <div class="bg-purple-100" style="border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;">
+                <div style="display:flex;justify-content:space-between;align-items:baseline;"><span class="text-typo-caption-md-600 text-purple">마취 완료</span><span class="text-purple" style="font-size:28px;font-weight:600;">20분</span></div>
+                <span class="text-typo-caption-md-400 text-ms-gray-700">크림 · 13:55~14:15 · 김 간호사</span>
+              </div>
+            </div>
+            <div class="bg-ms-white" style="border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px;">
+              <div class="bg-red-100 border-red" style="border-width:1px;border-style:solid;border-radius:12px;padding:14px 16px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;align-items:center;">
+                <span class="text-typo-title-sm-600 text-red">전체 호출 · 수락 대기</span>
+                <span class="text-red" style="grid-row:span 2;font-size:36px;font-weight:600;font-variant-numeric:tabular-nums;">6분</span>
+                <span class="text-typo-caption-md-500 text-ms-gray-700">14:40 김 간호사 호출 · 기준 5분 넘음 · 비어있는 원장: 최 원장</span>
+                <div data-fill-buttons="true" style="grid-column:1 / -1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;padding-top:8px;"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="md" hint-size="100%,40px">다시 알림</x-import><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="md" hint-size="100%,40px">최 원장 지정 호출</x-import></div>
+              </div>
+              <sc-for list="{{ preProcs }}" as="p" hint-placeholder-count="3">
+                <div class="border-ms-gray-200" style="border-width:1px;border-style:solid;border-radius:10px;padding:14px 16px;display:grid;grid-template-columns:minmax(0,1fr) 120px;gap:2px 16px;align-items:center;">
+                  <span class="text-typo-title-sm-600 text-ms-gray-800">{{ p.t }}</span>
+                  <div style="grid-row:span 2;display:grid;" data-fill-buttons="true"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="blue" size="md" disabled="{{ true }}" hint-size="120px,40px">시작</x-import></div>
+                  <span class="text-typo-caption-md-500 text-ms-gray-600">전체 호출 · 수락 후 시작</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div class="bg-ms-white border-ms-gray-200" style="height:96px;flex-shrink:0;border-top-width:1px;border-top-style:solid;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px;align-items:center;padding:0 20px;">
+            <span class="bg-primary text-ms-white text-typo-heading-md-500" style="width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;">통역</span>
+            <div style="display:flex;flex-direction:column;gap:6px;min-width:0;">
+              <div style="display:flex;align-items:baseline;gap:10px;"><span class="text-typo-caption-md-600 text-primary">한국어 → 廣東話</span><span class="text-typo-heading-md-500 text-ms-gray-800">醫生好快就到，請稍等。</span></div>
+              <span class="text-typo-caption-md-400 text-ms-gray-600">의사 선생님이 곧 오십니다. 잠시만 기다려주세요.</span>
+            </div>
+            <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="blue" size="md" hint-size="120px,40px">통역 화면</x-import>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2d 통역 화면 -->
+      <div id="2d" data-screen-label="2d 시술실 태블릿 · 통역 화면" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;align-items:center;gap:10px;"><span class="bg-ms-gray-800 text-ms-white text-typo-caption-md-600" style="padding:3px 10px;border-radius:999px;">2d</span><span class="text-typo-heading-md-500 text-ms-gray-800">통역 화면 — 고객에게 돌려 보여줌. 고객 언어를 크게</span></div>
+        <div class="bg-ms-white" style="width:1194px;height:834px;border-radius:28px;box-shadow:0 0 0 12px #1f1f1f, 0 24px 60px rgba(0,0,0,0.25);overflow:hidden;display:flex;flex-direction:column;">
+          <div class="border-ms-gray-200" style="height:64px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom-width:1px;border-bottom-style:solid;">
+            <div style="display:flex;align-items:center;gap:12px;"><span class="text-typo-title-sm-600 text-ms-gray-800">A-룸2 · 통역</span><span class="text-typo-body-500 text-primary">한국어 ↔ 中文(繁體)</span></div>
+            <div style="display:flex;gap:8px;"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="sm" hint-size="80px,33px">언어 변경</x-import><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="gray" size="sm" hint-size="80px,33px">닫기</x-import></div>
+          </div>
+          <div style="flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 360px;">
+            <div style="padding:48px 56px;display:flex;flex-direction:column;justify-content:center;gap:20px;">
+              <span class="text-typo-caption-md-600 text-primary">박 원장 · 방금</span>
+              <span class="text-ms-gray-800" style="font-size:56px;line-height:1.3;font-weight:600;word-break:keep-all;">會有一點熱，<br>覺得太燙請舉手。</span>
+              <span class="text-typo-title-sm-600 text-ms-gray-600">조금 뜨거울 수 있어요. 너무 뜨거우면 손을 들어주세요.</span>
+            </div>
+            <div class="bg-ms-gray-100" style="padding:16px;display:flex;flex-direction:column;gap:8px;overflow:hidden;">
+              <span class="text-typo-caption-md-600 text-ms-gray-700">자주 쓰는 문장</span>
+              <sc-for list="{{ phraseGrid }}" as="p" hint-placeholder-count="6">
+                <div class="bg-ms-white border-ms-gray-200" style="border-width:1px;border-style:solid;border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-height:56px;justify-content:center;">
+                  <span class="text-typo-body-500 text-ms-gray-800">{{ p.ko }}</span>
+                  <span class="text-typo-caption-md-400 text-ms-gray-600">{{ p.zh }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div class="border-ms-gray-200" data-fill-buttons="true" style="flex-shrink:0;border-top-width:1px;border-top-style:solid;padding:16px 24px 24px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;">
+            <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="lg" hint-size="100%,48px">한국어로 말하기 — 의료진</x-import>
+            <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="blue" size="lg" hint-size="100%,48px">用中文說話 — 顧客</x-import>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== 의사 폰 ===================== -->
+  <div data-screen-label="의사 폰" style="display:flex;flex-direction:column;gap:32px;">
+    <h2 class="text-typo-headline-md-600 text-ms-gray-800" style="margin:0;padding-bottom:12px;border-bottom:2px solid #3e3e3e;">의사 폰 <span class="text-typo-body-400 text-ms-gray-600">— 전체 현황 · 호출 알림 · 들어가기 전 오더 확인</span></h2>
+    <div style="display:flex;gap:56px;flex-wrap:wrap;align-items:flex-start;">
+      <!-- 2e 알림 -->
+      <div id="2e" data-screen-label="2e 의사 폰 · 호출 알림" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;align-items:center;gap:10px;"><span class="bg-ms-gray-800 text-ms-white text-typo-caption-md-600" style="padding:3px 10px;border-radius:999px;">2e</span><span class="text-typo-heading-md-500 text-ms-gray-800">호출 알림 — 잠금 화면 푸시</span></div>
+        <div class="bg-ms-gray-800" style="width:390px;height:844px;border-radius:48px;box-shadow:0 0 0 10px #1f1f1f, 0 24px 60px rgba(0,0,0,0.25);overflow:hidden;display:flex;flex-direction:column;align-items:center;padding:72px 16px 0;box-sizing:border-box;gap:4px;">
+          <span class="text-ms-white text-typo-body-500">10월 21일 수요일</span>
+          <span class="text-ms-white" style="font-size:80px;font-weight:600;line-height:1;font-variant-numeric:tabular-nums;">14:46</span>
+          <div style="height:40px;"></div>
+          <div class="bg-ms-white" style="width:100%;border-radius:20px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;box-sizing:border-box;">
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span class="text-typo-caption-md-600 text-ms-gray-700">CÉRAMIQUE · 호출</span><span class="text-typo-caption-md-400 text-ms-gray-500">방금</span></div>
+            <span class="text-typo-heading-md-500 text-ms-gray-800">A-룸4 · 전체 호출</span>
+            <span class="text-typo-body-400 text-ms-gray-800">CHAN MEI LING · 써마지 FLX 외 2건 · 마취 완료</span>
+          </div>
+          <div class="bg-ms-white" style="width:100%;border-radius:20px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;box-sizing:border-box;opacity:0.85;">
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span class="text-typo-caption-md-600 text-ms-gray-700">CÉRAMIQUE · 호출</span><span class="text-typo-caption-md-400 text-ms-gray-500">2분 전</span></div>
+            <span class="text-typo-heading-md-500 text-ms-gray-800">A-룸1 · 박 원장 지정</span>
+            <span class="text-typo-body-400 text-ms-gray-800">LIN YA CHEN · 울쎄라피 프라임 300shot</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2f 현황 -->
+      <div id="2f" data-screen-label="2f 의사 폰 · 시술 현황" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;align-items:center;gap:10px;"><span class="bg-ms-gray-800 text-ms-white text-typo-caption-md-600" style="padding:3px 10px;border-radius:999px;">2f</span><span class="text-typo-heading-md-500 text-ms-gray-800">시술 현황 — 룸 단위. 호출 온 룸이 맨 위</span></div>
+        <div class="bg-ms-gray-100" style="width:390px;height:844px;border-radius:48px;box-shadow:0 0 0 10px #1f1f1f, 0 24px 60px rgba(0,0,0,0.25);overflow:hidden;display:flex;flex-direction:column;">
+          <div class="bg-ms-white" style="height:44px;flex-shrink:0;display:flex;align-items:center;padding:0 28px;"><span class="text-typo-caption-md-600 text-ms-black">14:46</span></div>
+          <div class="bg-ms-white border-ms-gray-200" style="height:52px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 20px;border-bottom-width:1px;border-bottom-style:solid;"><span class="text-typo-title-md-600 text-ms-gray-800">시술 현황</span><span class="text-typo-body-500 text-primary">박 원장</span></div>
+          <div style="padding:12px 16px 0;"><x-import component-from-global-scope="MedisolveAiMedikit.Banner" variant="{{ bannerVariant }}" action="{{ actView }}" hint-size="100%,52px">{{ bannerShort }}</x-import></div>
+          <div style="flex:1;min-height:0;padding:12px 16px;display:flex;flex-direction:column;gap:8px;overflow:hidden;">
+            <sc-for list="{{ docRooms }}" as="r" hint-placeholder-count="6">
+              <div class="{{ r.cls }}" style="border-width:1px;border-style:solid;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;opacity:{{ r.op }};">
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
+                  <div style="display:flex;align-items:center;gap:8px;min-width:0;"><span class="text-typo-heading-md-500 text-ms-gray-800">{{ r.room }}</span><span class="text-typo-caption-md-600 text-ms-gray-800" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ r.name }}</span></div>
+                  <x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="{{ r.variant }}" size="sm" dot="{{ true }}" hint-size="64px,22px">{{ r.badge }}</x-import>
+                </div>
+                <span class="{{ r.lineCls }}">{{ r.line }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2g 호출 상세 -->
+      <div id="2g" data-screen-label="2g 의사 폰 · 호출 상세" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;align-items:center;gap:10px;"><span class="bg-ms-gray-800 text-ms-white text-typo-caption-md-600" style="padding:3px 10px;border-radius:999px;">2g</span><span class="text-typo-heading-md-500 text-ms-gray-800">호출 상세 — 들어가기 전 오더 메모 · 시술 목록</span></div>
+        <div class="bg-ms-gray-100" style="width:390px;height:844px;border-radius:48px;box-shadow:0 0 0 10px #1f1f1f, 0 24px 60px rgba(0,0,0,0.25);overflow:hidden;display:flex;flex-direction:column;">
+          <div class="bg-ms-white" style="height:44px;flex-shrink:0;display:flex;align-items:center;padding:0 28px;"><span class="text-typo-caption-md-600 text-ms-black">14:46</span></div>
+          <div class="bg-ms-white" style="padding:8px 20px 12px;display:flex;flex-direction:column;gap:4px;">
+            <span class="text-typo-caption-md-500 text-ms-gray-600">← 시술 현황</span>
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span class="text-typo-title-md-600 text-ms-gray-800">A-룸4</span><span class="text-typo-body-600 text-red">호출 6분</span></div>
+            <div style="display:flex;align-items:center;gap:6px;"><span class="text-typo-body-600 text-ms-gray-800">[HK] CHAN MEI LING</span><span class="bg-ms-gray-200 text-typo-caption-md-500 text-ms-gray-700" style="padding:1px 6px;border-radius:4px;">홍콩</span><span class="bg-primary-100 text-primary text-typo-caption-md-600" style="padding:1px 6px;border-radius:4px;">첫내원</span></div>
+          </div>
+          <div style="flex:1;min-height:0;padding:12px 16px;display:flex;flex-direction:column;gap:10px;overflow:hidden;">
+            <div class="bg-ms-white" style="border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:6px;">
+              <span class="text-typo-caption-md-600 text-ms-gray-700">오더 메모</span>
+              <span class="text-typo-body-400 text-ms-gray-800" style="white-space:pre-wrap;word-break:keep-all;line-height:1.6;">1. 써마지 FLX 300shot
+2. 쥬베룩 볼 2cc
+3. 바디보톡스 100unit 승모근
+* 첫 방문 — 시술마다 통증 미리 안내</span>
+            </div>
+            <div class="bg-ms-white" style="border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:8px;">
+              <span class="text-typo-caption-md-600 text-ms-gray-700">호출된 시술 3</span>
+              <sc-for list="{{ preProcs }}" as="p" hint-placeholder-count="3">
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;"><span class="text-typo-body-500 text-ms-gray-800">{{ p.t }}</span><span class="text-typo-caption-md-400 text-ms-gray-600">{{ p.note }}</span></div>
+              </sc-for>
+            </div>
+            <div class="bg-ms-white" style="border-radius:14px;padding:12px 14px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:8px;">
+              <div style="display:flex;flex-direction:column;gap:2px;"><span class="text-typo-caption-md-500 text-ms-gray-600">마취</span><span class="text-typo-body-600 text-purple">완료 20분</span></div>
+              <div style="display:flex;flex-direction:column;gap:2px;"><span class="text-typo-caption-md-500 text-ms-gray-600">동의서</span><span class="text-typo-body-600 text-ms-gray-800">3 / 3</span></div>
+              <div style="display:flex;flex-direction:column;gap:2px;"><span class="text-typo-caption-md-500 text-ms-gray-600">통역</span><span class="text-typo-body-600 text-ms-gray-800">광둥어</span></div>
+            </div>
+          </div>
+          <div class="bg-ms-white border-ms-gray-200" data-fill-buttons="true" style="flex-shrink:0;border-top-width:1px;border-top-style:solid;padding:12px 16px 28px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:8px;">
+            <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="md" hint-size="100%,40px">못 감</x-import>
+            <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="md" hint-size="100%,40px">수락 · A-룸4로</x-import>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== 간호사 폰 ===================== -->
+  <div data-screen-label="간호사 폰" style="display:flex;flex-direction:column;gap:32px;">
+    <h2 class="text-typo-headline-md-600 text-ms-gray-800" style="margin:0;padding-bottom:12px;border-bottom:2px solid #3e3e3e;">간호사 폰 <span class="text-typo-body-400 text-ms-gray-600">— 현황 · 다음 동선 예측 · 다음 시술 준비 · 지금 시술 보조</span></h2>
+    <div style="display:flex;gap:56px;flex-wrap:wrap;align-items:flex-start;">
+      <!-- 2h 현황 + 동선 -->
+      <div id="2h" data-screen-label="2h 간호사 폰 · 현황+다음 동선" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;align-items:center;gap:10px;"><span class="bg-ms-gray-800 text-ms-white text-typo-caption-md-600" style="padding:3px 10px;border-radius:999px;">2h</span><span class="text-typo-heading-md-500 text-ms-gray-800">현황 + 다음 동선 — 15분 안에 일어날 일</span></div>
+        <div class="bg-ms-gray-100" style="width:390px;height:844px;border-radius:48px;box-shadow:0 0 0 10px #1f1f1f, 0 24px 60px rgba(0,0,0,0.25);overflow:hidden;display:flex;flex-direction:column;">
+          <div class="bg-ms-white" style="height:44px;flex-shrink:0;display:flex;align-items:center;padding:0 28px;"><span class="text-typo-caption-md-600 text-ms-black">14:46</span></div>
+          <div class="bg-ms-white border-ms-gray-200" style="height:52px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 20px;border-bottom-width:1px;border-bottom-style:solid;"><span class="text-typo-title-md-600 text-ms-gray-800">시술 현황</span><span class="text-typo-body-500 text-primary">김 간호사 · A구역</span></div>
+          <div style="flex:1;min-height:0;padding:12px 16px;display:flex;flex-direction:column;gap:10px;overflow:hidden;">
+            <div style="display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:6px;">
+              <sc-for list="{{ roomChips }}" as="r" hint-placeholder-count="6">
+                <div class="{{ r.cls }}" style="border-width:1px;border-style:solid;border-radius:8px;padding:6px 8px;display:flex;flex-direction:column;gap:1px;">
+                  <span class="text-typo-caption-md-600 text-ms-gray-800">{{ r.room }}</span>
+                  <span class="{{ r.subCls }}">{{ r.sub }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <div class="bg-ms-white" style="border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:0;flex:1;min-height:0;">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:8px;"><span class="text-typo-heading-md-500 text-ms-gray-800">다음 동선</span><span class="text-typo-caption-md-400 text-ms-gray-500">평균 시술 시간 기준</span></div>
+              <sc-for list="{{ flow }}" as="f" hint-placeholder-count="5">
+                <div style="display:grid;grid-template-columns:44px 12px minmax(0,1fr);gap:8px;min-height:64px;">
+                  <span class="{{ f.timeCls }}" style="padding-top:2px;font-variant-numeric:tabular-nums;">{{ f.time }}</span>
+                  <div style="display:flex;flex-direction:column;align-items:center;"><span class="{{ f.dotCls }}" style="width:10px;height:10px;border-radius:50%;margin-top:5px;flex-shrink:0;"></span><span class="bg-ms-gray-200" style="width:2px;flex:1;"></span></div>
+                  <div style="display:flex;flex-direction:column;gap:2px;padding-bottom:10px;">
+                    <span class="text-typo-body-600 text-ms-gray-800">{{ f.title }}</span>
+                    <span class="text-typo-caption-md-400 text-ms-gray-600" style="word-break:keep-all;">{{ f.sub }}</span>
+                    <span class="{{ f.todoCls }}">{{ f.todo }}</span>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div class="bg-ms-white border-ms-gray-200" style="height:72px;flex-shrink:0;border-top-width:1px;border-top-style:solid;display:grid;grid-template-columns:repeat(3, minmax(0,1fr));padding-bottom:12px;">
+            <span class="text-typo-caption-md-600 text-primary" style="display:flex;align-items:center;justify-content:center;">현황</span>
+            <span class="text-typo-caption-md-500 text-ms-gray-600" style="display:flex;align-items:center;justify-content:center;gap:4px;">준비 <span class="bg-primary text-ms-white" style="font-size:11px;font-weight:600;padding:0 6px;border-radius:999px;">3</span></span>
+            <span class="text-typo-caption-md-500 text-ms-gray-600" style="display:flex;align-items:center;justify-content:center;gap:4px;">보조 <span class="bg-red text-ms-white" style="font-size:11px;font-weight:600;padding:0 6px;border-radius:999px;">1</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2i 다음 시술 준비 -->
+      <div id="2i" data-screen-label="2i 간호사 폰 · 다음 시술 준비" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;align-items:center;gap:10px;"><span class="bg-ms-gray-800 text-ms-white text-typo-caption-md-600" style="padding:3px 10px;border-radius:999px;">2i</span><span class="text-typo-heading-md-500 text-ms-gray-800">다음 시술 준비 — 곧 시작할 순서대로 준비물</span></div>
+        <div class="bg-ms-gray-100" style="width:390px;height:844px;border-radius:48px;box-shadow:0 0 0 10px #1f1f1f, 0 24px 60px rgba(0,0,0,0.25);overflow:hidden;display:flex;flex-direction:column;">
+          <div class="bg-ms-white" style="height:44px;flex-shrink:0;display:flex;align-items:center;padding:0 28px;"><span class="text-typo-caption-md-600 text-ms-black">14:46</span></div>
+          <div class="bg-ms-white border-ms-gray-200" style="height:52px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 20px;border-bottom-width:1px;border-bottom-style:solid;"><span class="text-typo-title-md-600 text-ms-gray-800">다음 시술 준비</span><span class="text-typo-caption-md-500 text-ms-gray-600">3건</span></div>
+          <div style="flex:1;min-height:0;padding:12px 16px;display:flex;flex-direction:column;gap:10px;overflow:hidden;">
+            <sc-for list="{{ prep }}" as="g" hint-placeholder-count="3">
+              <div class="{{ g.cls }}" style="border-width:1px;border-style:solid;border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;">
+                <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;"><span class="text-typo-heading-md-500 text-ms-gray-800">{{ g.title }}</span><span class="{{ g.whenCls }}">{{ g.when }}</span></div>
+                <span class="text-typo-caption-md-400 text-ms-gray-600">{{ g.sub }}</span>
+                <sc-for list="{{ g.items }}" as="k" hint-placeholder-count="2">
+                  <div style="display:flex;align-items:center;gap:10px;min-height:40px;"><x-import component-from-global-scope="MedisolveAiMedikit.Checkbox" checked="{{ k.on }}" hint-size="20px,20px"></x-import><span class="{{ k.cls }}">{{ k.t }}</span></div>
+                </sc-for>
+              </div>
+            </sc-for>
+          </div>
+          <div class="bg-ms-white border-ms-gray-200" style="height:72px;flex-shrink:0;border-top-width:1px;border-top-style:solid;display:grid;grid-template-columns:repeat(3, minmax(0,1fr));padding-bottom:12px;">
+            <span class="text-typo-caption-md-500 text-ms-gray-600" style="display:flex;align-items:center;justify-content:center;">현황</span>
+            <span class="text-typo-caption-md-600 text-primary" style="display:flex;align-items:center;justify-content:center;gap:4px;">준비 <span class="bg-primary text-ms-white" style="font-size:11px;font-weight:600;padding:0 6px;border-radius:999px;">3</span></span>
+            <span class="text-typo-caption-md-500 text-ms-gray-600" style="display:flex;align-items:center;justify-content:center;gap:4px;">보조 <span class="bg-red text-ms-white" style="font-size:11px;font-weight:600;padding:0 6px;border-radius:999px;">1</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2j 지금 시술 보조 -->
+      <div id="2j" data-screen-label="2j 간호사 폰 · 지금 시술 보조" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;align-items:center;gap:10px;"><span class="bg-ms-gray-800 text-ms-white text-typo-caption-md-600" style="padding:3px 10px;border-radius:999px;">2j</span><span class="text-typo-heading-md-500 text-ms-gray-800">지금 시술 보조 — 시술실 태블릿 [간호사 요청]이 여기로</span></div>
+        <div class="bg-ms-gray-100" style="width:390px;height:844px;border-radius:48px;box-shadow:0 0 0 10px #1f1f1f, 0 24px 60px rgba(0,0,0,0.25);overflow:hidden;display:flex;flex-direction:column;">
+          <div class="bg-ms-white" style="height:44px;flex-shrink:0;display:flex;align-items:center;padding:0 28px;"><span class="text-typo-caption-md-600 text-ms-black">14:46</span></div>
+          <div class="bg-ms-white border-ms-gray-200" style="height:52px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 20px;border-bottom-width:1px;border-bottom-style:solid;"><span class="text-typo-title-md-600 text-ms-gray-800">보조</span><span class="text-typo-caption-md-500 text-ms-gray-600">진행 중 2룸</span></div>
+          <div style="flex:1;min-height:0;padding:12px 16px;display:flex;flex-direction:column;gap:10px;overflow:hidden;">
+            <div class="bg-ms-white border-red" style="border-width:1px;border-style:solid;border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;"><div style="display:flex;align-items:center;gap:8px;"><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="danger" size="sm" dot="{{ true }}" hint-size="48px,22px">요청</x-import><span class="text-typo-heading-md-500 text-ms-gray-800">A-룸2</span></div><span class="text-typo-caption-md-600 text-red">1분 전</span></div>
+              <span class="text-typo-title-sm-600 text-ms-gray-800">써마지 눈가 팁 0.25cm² 가져다주세요</span>
+              <span class="text-typo-caption-md-400 text-ms-gray-600">박 원장 · 시술실 태블릿에서</span>
+              <div data-fill-buttons="true" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="md" hint-size="100%,40px">다른 간호사</x-import><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="md" hint-size="100%,40px">가는 중</x-import></div>
+            </div>
+            <div class="bg-ms-white" style="border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;"><span class="text-typo-heading-md-500 text-ms-gray-800">A-룸2 · 써마지 FLX</span><span class="text-typo-body-600 text-primary" style="font-variant-numeric:tabular-nums;">08분 / 약 15분</span></div>
+              <x-import component-from-global-scope="MedisolveAiMedikit.Progress" value="{{ 55 }}" hint-size="100%,8px"></x-import>
+              <span class="text-typo-caption-md-400 text-ms-gray-600">박 원장 · 다음 쥬베룩 — 동의서 미서명</span>
+              <div class="bg-ms-gray-100" style="border-radius:8px;padding:8px 10px;display:flex;flex-direction:column;gap:2px;"><span class="text-typo-caption-md-600 text-ms-gray-700">보조 체크</span><span class="text-typo-caption-md-500 text-ms-gray-800">✓ 냉각 가스 잔량 · ✓ 그리드 표시 · ○ 시술 후 진정 팩</span></div>
+            </div>
+            <div class="bg-ms-white" style="border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;"><span class="text-typo-heading-md-500 text-ms-gray-800">A-룸5 · 포텐자</span><span class="text-typo-body-600 text-primary" style="font-variant-numeric:tabular-nums;">16분 / 약 20분</span></div>
+              <x-import component-from-global-scope="MedisolveAiMedikit.Progress" value="{{ 80 }}" hint-size="100%,8px"></x-import>
+              <span class="text-typo-caption-md-400 text-ms-gray-600">이 원장 · 다음 바디보톡스 — 최 원장 호출함</span>
+            </div>
+          </div>
+          <div class="bg-ms-white border-ms-gray-200" style="height:72px;flex-shrink:0;border-top-width:1px;border-top-style:solid;display:grid;grid-template-columns:repeat(3, minmax(0,1fr));padding-bottom:12px;">
+            <span class="text-typo-caption-md-500 text-ms-gray-600" style="display:flex;align-items:center;justify-content:center;">현황</span>
+            <span class="text-typo-caption-md-500 text-ms-gray-600" style="display:flex;align-items:center;justify-content:center;gap:4px;">준비 <span class="bg-primary text-ms-white" style="font-size:11px;font-weight:600;padding:0 6px;border-radius:999px;">3</span></span>
+            <span class="text-typo-caption-md-600 text-primary" style="display:flex;align-items:center;justify-content:center;gap:4px;">보조 <span class="bg-red text-ms-white" style="font-size:11px;font-weight:600;padding:0 6px;border-radius:999px;">1</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-product="ceramique" data-screen-label="Turn 1" class="bg-ms-gray-200" style="padding:56px 64px 96px;display:flex;flex-direction:column;gap:72px;min-width:max-content;">
+  <div style="display:flex;flex-direction:column;gap:8px;">
+    <span class="text-typo-caption-md-600 text-ms-gray-600">TURN 1 · 시술현황판 v2 흐름 기준</span>
+    <h1 class="text-typo-headline-md-600 text-ms-gray-800" style="margin:0;">Ceramique 의료진 앱 — 의사 · 간호사</h1>
+    <span class="text-typo-body-400 text-ms-gray-700" style="max-width:860px;text-wrap:pretty;">태블릿 가로(1194×834) · 모바일(390×844). 홈 화면만 2안씩 비교(<a href="#1a">1a</a>/<a href="#1b">1b</a>, <a href="#1c">1c</a>/<a href="#1d">1d</a>), 나머지는 1안. 상태 색은 현황판과 같음 — 대기 노랑 · 마취 보라 · 진행 파랑 · 확인 빨강 · 귀가 회색 · 호출 파랑 외곽선.</span>
+  </div>
+
+  <!-- ===================== 의사 앱 ===================== -->
+  <div data-screen-label="의사 앱" style="display:flex;flex-direction:column;gap:32px;">
+    <h2 class="text-typo-headline-md-600 text-ms-gray-800" style="margin:0;padding-bottom:12px;border-bottom:2px solid #3e3e3e;">의사 앱</h2>
+
+    <span class="text-typo-title-md-600 text-ms-gray-800">태블릿 홈 — 2안 비교</span>
+    <div style="display:flex;gap:56px;flex-wrap:wrap;align-items:flex-start;">
+
+      <!-- 1a 목록 + 상세 -->
+      <div id="1a" data-screen-label="1a 의사 태블릿 홈 · 목록+상세" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;align-items:center;gap:10px;"><span class="bg-ms-gray-800 text-ms-white text-typo-caption-md-600" style="padding:3px 10px;border-radius:999px;">1a</span><span class="text-typo-heading-md-500 text-ms-gray-800">목록 + 상세 — 내 일을 한 줄로 쌓고, 고른 룸을 오른쪽에 펼침</span></div>
+        <div class="bg-ms-gray-100" style="width:1194px;height:834px;border-radius:28px;box-shadow:0 0 0 12px #1f1f1f, 0 24px 60px rgba(0,0,0,0.25);overflow:hidden;display:flex;flex-direction:column;">
+          <div class="bg-ms-white border-ms-gray-200" style="height:56px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom-width:1px;border-bottom-style:solid;">
+            <div style="display:flex;align-items:center;gap:40px;">
+              <img src="assets/ceramique-logo-color.svg" alt="CÉRAMIQUE" style="height:20px;display:block;">
+              <nav style="display:flex;gap:32px;"><span class="text-typo-heading-md-500 text-primary">내 시술</span><span class="text-typo-heading-md-400 text-ms-gray-800">스케줄</span><span class="text-typo-heading-md-400 text-ms-gray-800">환자</span></nav>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;"><span class="text-typo-heading-sm-400 text-ms-black" style="font-variant-numeric:tabular-nums;">14:46</span><span class="text-typo-heading-sm-400 text-ms-gray-700">명동점</span><span class="text-typo-heading-sm-400 text-primary">박 원장</span></div>
+          </div>
+          <div style="padding:12px 24px 0;">
+            <x-import component-from-global-scope="MedisolveAiMedikit.Banner" variant="{{ bannerVariant }}" action="{{ actAccept }}" hint-size="100%,52px">{{ bannerText }}</x-import>
+          </div>
+          <div style="flex:1;min-height:0;display:grid;grid-template-columns:380px minmax(0,1fr);gap:12px;padding:12px 24px 20px;">
+            <div class="bg-ms-white" style="border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.04);display:flex;flex-direction:column;gap:6px;padding:16px;overflow:hidden;">
+              <span class="text-typo-caption-md-600 text-ms-gray-700">진행 중</span>
+              <div class="bg-primary-100 border-primary" style="border-width:1px;border-style:solid;border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:4px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;"><span class="text-typo-body-600 text-ms-gray-800">A-룸2 · WANG YI TING</span><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="primary" size="sm" dot="{{ true }}" hint-size="72px,22px">진행 08분</x-import></div>
+                <span class="text-typo-heading-md-500 text-primary">써마지 FLX 300shot</span>
+              </div>
+              <span class="text-typo-caption-md-600 text-ms-gray-700" style="padding-top:10px;">호출 · 수락 대기 2</span>
+              <div class="bg-ms-white border-red" style="border-width:1px;border-style:solid;border-radius:10px;padding:10px 12px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;align-items:center;">
+                <span class="text-typo-body-600 text-ms-gray-800">A-룸4 · CHAN MEI LING</span>
+                <span class="text-typo-body-600 text-red" style="font-variant-numeric:tabular-nums;">6분</span>
+                <span class="text-typo-caption-md-500 text-ms-gray-700">전체 호출 · 써마지 FLX 외 2건</span>
+                <div data-compact-buttons="true"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="sm" hint-size="48px,26px">수락</x-import></div>
+              </div>
+              <div class="bg-ms-white border-ms-gray-200" style="border-width:1px;border-style:solid;border-radius:10px;padding:10px 12px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;align-items:center;">
+                <span class="text-typo-body-600 text-ms-gray-800">A-룸1 · LIN YA CHEN</span>
+                <span class="text-typo-body-600 text-primary" style="font-variant-numeric:tabular-nums;">2분</span>
+                <span class="text-typo-caption-md-500 text-ms-gray-700">지정 호출 · 울쎄라피 프라임 300shot</span>
+                <div data-compact-buttons="true"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="sm" hint-size="48px,26px">수락</x-import></div>
+              </div>
+              <span class="text-typo-caption-md-600 text-ms-gray-700" style="padding-top:10px;">다음 · 2</span>
+              <div class="bg-ms-white border-ms-gray-200" style="border-width:1px;border-style:solid;border-radius:10px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;gap:8px;"><div style="display:flex;flex-direction:column;gap:2px;"><span class="text-typo-body-500 text-ms-gray-800">쥬베룩</span><span class="text-typo-caption-md-400 text-ms-gray-600">A-룸2 · WANG YI TING</span></div><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="warning" size="sm" dot="{{ true }}" hint-size="48px,22px">대기</x-import></div>
+              <div class="bg-ms-white border-ms-gray-200" style="border-width:1px;border-style:solid;border-radius:10px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;gap:8px;"><div style="display:flex;flex-direction:column;gap:2px;"><span class="text-typo-body-500 text-ms-gray-800">바디보톡스 100unit</span><span class="text-typo-caption-md-400 text-ms-gray-600">A-룸2 · WANG YI TING</span></div><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="warning" size="sm" dot="{{ true }}" hint-size="48px,22px">대기</x-import></div>
+              <div class="border-ms-gray-200" style="margin-top:auto;border-top-width:1px;border-top-style:solid;padding-top:10px;display:flex;justify-content:space-between;"><span class="text-typo-caption-md-500 text-ms-gray-600">오늘 완료 4건</span><span class="text-typo-caption-md-500 text-primary">보기</span></div>
+            </div>
+            <div class="bg-ms-white" style="border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.04);display:flex;flex-direction:column;min-height:0;overflow:hidden;">
+              <div style="padding:16px 20px 0;display:flex;flex-direction:column;gap:6px;">
+                <div style="display:flex;align-items:baseline;justify-content:space-between;"><span class="text-typo-headline-md-600 text-ms-gray-800">A-룸2</span><span class="text-typo-caption-md-400 text-ms-gray-600">입실 13:30</span></div>
+                <div style="display:flex;align-items:center;gap:6px;"><span class="text-typo-heading-md-500 text-ms-gray-800">[TW] WANG YI TING</span><span class="bg-ms-gray-200 text-typo-caption-md-500 text-ms-gray-700" style="padding:1px 6px;border-radius:4px;">대만</span><span class="bg-ms-gray-200 text-ms-gray-700 text-typo-caption-md-600" style="padding:1px 6px;border-radius:4px;">재내원</span><span class="text-typo-caption-md-500 text-ms-gray-600" style="margin-left:8px;">통역 중국어</span></div>
+                <div style="padding-top:6px;"><x-import component-from-global-scope="MedisolveAiMedikit.Tabs" tabs="{{ tabsDetail }}" selected-tab="proc" on-select-tab="{{ noop }}" hint-size="100%,44px"></x-import></div>
+              </div>
+              <div style="flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px;padding:16px 20px;">
+                <div style="display:flex;flex-direction:column;gap:6px;">
+                  <div style="display:flex;align-items:center;gap:8px;min-height:28px;"><span class="text-typo-caption-md-600 text-ms-gray-700">마취</span><span class="text-typo-caption-md-600 text-purple">완료 23분</span><span class="text-typo-caption-md-400 text-ms-gray-600">크림 · 13:35~13:58</span></div>
+                  <div class="bg-ms-white border-ms-gray-200" style="border-width:1px;border-style:solid;border-radius:8px;padding:10px 12px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 8px;align-items:center;"><span class="text-typo-heading-sm-400 text-ms-gray-500">울쎄라피 프라임 300shot</span><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="neutral" size="sm" hint-size="40px,22px">완료</x-import><span class="text-typo-caption-md-400 text-ms-gray-500">박 원장 · 14:02~14:20</span></div>
+                  <div class="bg-primary-100 border-primary" style="border-width:1px;border-style:solid;border-radius:8px;padding:10px 12px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 8px;align-items:center;"><span class="text-typo-title-sm-600 text-primary">써마지 FLX 300shot</span><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="primary" size="sm" dot="{{ true }}" hint-size="72px,22px">진행 08분</x-import><span class="text-typo-caption-md-500 text-ms-gray-700">박 원장 · 14:38 시작 · 눈가 팁 따로</span></div>
+                  <div class="bg-ms-white border-ms-gray-200" style="border-width:1px;border-style:solid;border-radius:8px;padding:10px 12px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 8px;align-items:center;"><span class="text-typo-heading-md-500 text-ms-gray-800">쥬베룩</span><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="warning" size="sm" dot="{{ true }}" hint-size="48px,22px">대기</x-import><span class="text-typo-caption-md-500 text-ms-gray-700">박 원장 · 볼 2cc</span></div>
+                  <div class="bg-ms-white border-ms-gray-200" style="border-width:1px;border-style:solid;border-radius:8px;padding:10px 12px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 8px;align-items:center;"><span class="text-typo-heading-md-500 text-ms-gray-800">바디보톡스 100unit</span><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="warning" size="sm" dot="{{ true }}" hint-size="48px,22px">대기</x-import><span class="text-typo-caption-md-500 text-ms-gray-700">박 원장 · 승모근</span></div>
+                  <div data-fill-buttons="true" style="margin-top:auto;display:grid;grid-template-columns:160px minmax(0,1fr);gap:8px;">
+                    <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="md" hint-size="100%,40px">시술 메모</x-import>
+                    <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="md" hint-size="100%,40px">써마지 FLX 종료</x-import>
+                  </div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                  <div class="bg-ms-gray-100" style="border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:4px;">
+                    <span class="text-typo-caption-md-600 text-ms-gray-700">오더 메모</span>
+                    <span class="text-typo-body-400 text-ms-gray-800" style="white-space:pre-wrap;word-break:keep-all;">* 오후 4시 출국 — 3시 반까지 마무리
+* 지난 방문 써마지 열감 민감 → 레벨 낮게 시작
+* 시술 전후 사진 촬영 동의</span>
+                  </div>
+                  <div class="bg-ms-white border-ms-gray-200" style="border-width:1px;border-style:solid;border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px;">
+                    <span class="text-typo-caption-md-600 text-ms-gray-700">동의서</span>
+                    <div style="display:flex;justify-content:space-between;align-items:center;"><span class="text-typo-body-400 text-ms-gray-800">울쎄라피 · 써마지</span><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="neutral" size="sm" hint-size="56px,22px">서명 완료</x-import></div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;"><span class="text-typo-body-400 text-ms-gray-800">쥬베룩</span><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="danger" size="sm" dot="{{ true }}" hint-size="56px,22px">미서명</x-import></div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;"><span class="text-typo-body-400 text-ms-gray-800">사진 촬영</span><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="neutral" size="sm" hint-size="56px,22px">서명 완료</x-import></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1b 포커스 -->
+      <div id="1b" data-screen-label="1b 의사 태블릿 홈 · 지금 하는 시술" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;align-items:center;gap:10px;"><span class="bg-ms-gray-800 text-ms-white text-typo-caption-md-600" style="padding:3px 10px;border-radius:999px;">1b</span><span class="text-typo-heading-md-500 text-ms-gray-800">지금 하는 시술 — 화면 대부분을 진행 중 시술에, 호출 · 다음은 오른쪽 열</span></div>
+        <div class="bg-ms-gray-100" style="width:1194px;height:834px;border-radius:28px;box-shadow:0 0 0 12px #1f1f1f, 0 24px 60px rgba(0,0,0,0.25);overflow:hidden;display:flex;flex-direction:column;">
+          <div class="bg-ms-white border-ms-gray-200" style="height:56px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom-width:1px;border-bottom-style:solid;">
+            <div style="display:flex;align-items:center;gap:40px;">
+              <img src="assets/ceramique-logo-color.svg" alt="CÉRAMIQUE" style="height:20px;display:block;">
+              <nav style="display:flex;gap:32px;"><span class="text-typo-heading-md-500 text-primary">내 시술</span><span class="text-typo-heading-md-400 text-ms-gray-800">스케줄</span><span class="text-typo-heading-md-400 text-ms-gray-800">환자</span></nav>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;"><span class="text-typo-heading-sm-400 text-ms-black" style="font-variant-numeric:tabular-nums;">14:46</span><span class="text-typo-heading-sm-400 text-ms-gray-700">명동점</span><span class="text-typo-heading-sm-400 text-primary">박 원장</span></div>
+          </div>
+          <div style="flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:12px;padding:16px 24px 20px;">
+            <div class="bg-ms-white" style="border-radius:16px;box-shadow:0 2px 10px rgba(0,0,0,0.04);padding:28px 32px;display:flex;flex-direction:column;gap:20px;">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                <div style="display:flex;flex-direction:column;gap:6px;">
+                  <span class="text-typo-caption-md-600 text-primary">지금 진행 중 · A-룸2</span>
+                  <span class="text-typo-headline-lg-600 text-ms-gray-800">써마지 FLX 300shot</span>
+                  <div style="display:flex;align-items:center;gap:6px;"><span class="text-typo-heading-md-500 text-ms-gray-800">[TW] WANG YI TING</span><span class="bg-ms-gray-200 text-typo-caption-md-500 text-ms-gray-700" style="padding:1px 6px;border-radius:4px;">대만</span><span class="bg-ms-gray-200 text-ms-gray-700 text-typo-caption-md-600" style="padding:1px 6px;border-radius:4px;">재내원</span></div>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:2px;">
+                  <span class="text-primary" style="font-size:64px;line-height:1;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-1px;">08:12</span>
+                  <span class="text-typo-caption-md-500 text-ms-gray-600">14:38 시작</span>
+                </div>
+              </div>
+              <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;">
+                <div class="bg-ms-gray-100" style="border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;">
+                  <span class="text-typo-caption-md-600 text-ms-gray-700">오더 메모</span>
+                  <span class="text-typo-body-400 text-ms-gray-800" style="white-space:pre-wrap;word-break:keep-all;">써마지 FLX 300shot 눈가 포함(눈가 팁 따로)
+* 지난 방문 열감 민감 → 레벨 낮게 시작</span>
+                </div>
+                <div class="bg-ms-gray-100" style="border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;">
+                  <span class="text-typo-caption-md-600 text-ms-gray-700">이 고객 오늘</span>
+                  <span class="text-typo-body-400 text-ms-gray-500">✓ 울쎄라피 프라임 300shot · 14:02~14:20</span>
+                  <span class="text-typo-body-600 text-primary">● 써마지 FLX 300shot</span>
+                  <span class="text-typo-body-400 text-ms-gray-800">○ 쥬베룩 · ○ 바디보톡스 100unit</span>
+                  <span class="text-typo-caption-md-500 text-purple">마취 완료 23분</span>
+                </div>
+              </div>
+              <div data-fill-buttons="true" style="margin-top:auto;display:grid;grid-template-columns:200px 200px minmax(0,1fr);gap:10px;">
+                <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="md" hint-size="100%,40px">차트 · 동의서</x-import>
+                <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="md" hint-size="100%,40px">시술 메모</x-import>
+                <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="md" hint-size="100%,40px">종료 → 다음 쥬베룩</x-import>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px;min-height:0;">
+              <div class="bg-ms-white" style="border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.04);padding:14px 16px;display:flex;flex-direction:column;gap:8px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;"><span class="text-typo-heading-md-500 text-ms-gray-800">호출</span><span class="bg-red text-ms-white text-typo-caption-md-600" style="padding:1px 8px;border-radius:999px;">2</span></div>
+                <div class="bg-red-100" style="border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;">
+                  <div style="display:flex;justify-content:space-between;"><span class="text-typo-body-600 text-ms-gray-800">A-룸4 · 전체 호출</span><span class="text-typo-body-600 text-red">6분</span></div>
+                  <span class="text-typo-caption-md-500 text-ms-gray-700">CHAN MEI LING · 써마지 FLX 외 2건</span>
+                  <div data-fill-buttons="true" style="display:grid;"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="sm" hint-size="100%,33px">수락</x-import></div>
+                </div>
+                <div class="bg-ms-gray-100" style="border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;">
+                  <div style="display:flex;justify-content:space-between;"><span class="text-typo-body-600 text-ms-gray-800">A-룸1 · 나를 지정</span><span class="text-typo-body-600 text-primary">2분</span></div>
+                  <span class="text-typo-caption-md-500 text-ms-gray-700">LIN YA CHEN · 울쎄라피 프라임</span>
+                  <div data-fill-buttons="true" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:6px;"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="sm" hint-size="100%,33px">다른 원장에게</x-import><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="sm" hint-size="100%,33px">수락</x-import></div>
+                </div>
+              </div>
+              <div class="bg-ms-white" style="flex:1;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.04);padding:14px 16px;display:flex;flex-direction:column;gap:10px;">
+                <span class="text-typo-heading-md-500 text-ms-gray-800">다음 순서</span>
+                <sc-for list="{{ nextQueue }}" as="q" hint-placeholder-count="4">
+                  <div style="display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;align-items:start;">
+                    <span class="bg-ms-white border-primary text-primary" style="width:22px;height:22px;border-radius:50%;border-width:1px;border-style:solid;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;">{{ q.n }}</span>
+                    <div style="display:flex;flex-direction:column;gap:1px;"><span class="text-typo-body-500 text-ms-gray-800">{{ q.title }}</span><span class="text-typo-caption-md-400 text-ms-gray-600">{{ q.sub }}</span></div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <span class="text-typo-title-md-600 text-ms-gray-800" style="padding-top:24px;">태블릿 — 환자 · 스케줄</span>
+    <div style="display:flex;gap:56px;flex-wrap:wrap;align-items:flex-start;">
+      <!-- 1e 환자 상세 -->
+      <div id="1e" data-screen-label="1e 의사 태블릿 · 환자 정보" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;align-items:center;gap:10px;"><span class="bg-ms-gray-800 text-ms-white text-typo-caption-md-600" style="padding:3px 10px;border-radius:999px;">1e</span><span class="text-typo-heading-md-500 text-ms-gray-800">환자 정보 — 오늘 오더 · 시술 메모 · 지난 차트 · 동의서</span></div>
+        <div class="bg-ms-gray-100" style="width:1194px;height:834px;border-radius:28px;box-shadow:0 0 0 12px #1f1f1f, 0 24px 60px rgba(0,0,0,0.25);overflow:hidden;display:flex;flex-direction:column;">
+          <div class="bg-ms-white border-ms-gray-200" style="height:56px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom-width:1px;border-bottom-style:solid;">
+            <div style="display:flex;align-items:center;gap:40px;">
+              <img src="assets/ceramique-logo-color.svg" alt="CÉRAMIQUE" style="height:20px;display:block;">
+              <nav style="display:flex;gap:32px;"><span class="text-typo-heading-md-400 text-ms-gray-800">내 시술</span><span class="text-typo-heading-md-400 text-ms-gray-800">스케줄</span><span class="text-typo-heading-md-500 text-primary">환자</span></nav>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;"><span class="text-typo-heading-sm-400 text-ms-black">14:46</span><span class="text-typo-heading-sm-400 text-ms-gray-700">명동점</span><span class="text-typo-heading-sm-400 text-primary">박 원장</span></div>
+          </div>
+          <div style="padding:16px 24px 0;display:flex;align-items:center;justify-content:space-between;">
+            <div style="display:flex;align-items:center;gap:8px;"><span class="text-typo-caption-md-500 text-ms-gray-600">← 내 시술</span><span class="text-typo-title-md-600 text-ms-gray-800" style="margin-left:12px;">[TW] WANG YI TING</span><span class="bg-ms-gray-200 text-typo-caption-md-500 text-ms-gray-700" style="padding:1px 6px;border-radius:4px;">대만 · 34세 · 여</span><span class="bg-ms-gray-200 text-ms-gray-700 text-typo-caption-md-600" style="padding:1px 6px;border-radius:4px;">재내원 3회</span></div>
+            <div style="display:flex;align-items:center;gap:8px;"><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="primary" size="sm" dot="{{ true }}" hint-size="80px,22px">A-룸2 · 진행</x-import></div>
+          </div>
+          <div style="flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) 300px;gap:12px;padding:12px 24px 20px;">
+            <div class="bg-ms-white" style="border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px;">
+              <span class="text-typo-heading-md-500 text-ms-gray-800">오늘 오더</span>
+              <span class="text-typo-body-400 text-ms-gray-800" style="white-space:pre-wrap;word-break:keep-all;">1. 울쎄라피 프라임 300shot — 이마 · 볼 위주, 턱선은 약하게
+2. 써마지 FLX 300shot 눈가 포함(눈가 팁 따로)
+3. 쥬베룩 볼 2cc
+4. 바디보톡스 100unit 승모근
+* 통역 중국어 · 오후 4시 출국 — 3시 반까지 마무리</span>
+              <div class="border-ms-gray-200" style="border-top-width:1px;border-top-style:solid;padding-top:12px;display:flex;flex-direction:column;gap:8px;flex:1;">
+                <div style="display:flex;justify-content:space-between;align-items:center;"><span class="text-typo-heading-md-500 text-ms-gray-800">시술 메모</span><span class="text-typo-caption-md-400 text-ms-gray-500">14:44 저장됨</span></div>
+                <x-import component-from-global-scope="MedisolveAiMedikit.Textarea" placeholder="시술 중 특이사항" default-value="울쎄라피 — 이마 2.0mm 120 · 볼 3.0mm 180. 턱선 생략.&#10;써마지 — 레벨 2.5부터, 눈가 팁 0.25cm²." hint-size="100%,140px"></x-import>
+              </div>
+            </div>
+            <div class="bg-ms-white" style="border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px;">
+              <span class="text-typo-heading-md-500 text-ms-gray-800">지난 차트</span>
+              <sc-for list="{{ history }}" as="h" hint-placeholder-count="3">
+                <div class="border-ms-gray-200" style="border-width:1px;border-style:solid;border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:4px;">
+                  <div style="display:flex;justify-content:space-between;"><span class="text-typo-body-600 text-ms-gray-800">{{ h.date }}</span><span class="text-typo-caption-md-500 text-ms-gray-600">{{ h.doc }}</span></div>
+                  <span class="text-typo-body-500 text-ms-gray-800">{{ h.procs }}</span>
+                  <span class="text-typo-caption-md-400 text-ms-gray-600" style="word-break:keep-all;">{{ h.note }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <div class="bg-ms-white" style="border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;">
+              <span class="text-typo-heading-md-500 text-ms-gray-800">동의서</span>
+              <div class="border-ms-gray-200" style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom-width:1px;border-bottom-style:solid;"><div style="display:flex;flex-direction:column;"><span class="text-typo-body-500 text-ms-gray-800">울쎄라피 · 써마지</span><span class="text-typo-caption-md-400 text-ms-gray-500">13:22 서명</span></div><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="neutral" size="sm" hint-size="56px,22px">서명 완료</x-import></div>
+              <div class="border-ms-gray-200" style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom-width:1px;border-bottom-style:solid;"><div style="display:flex;flex-direction:column;"><span class="text-typo-body-500 text-ms-gray-800">사진 촬영 · 활용</span><span class="text-typo-caption-md-400 text-ms-gray-500">13:22 서명</span></div><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="neutral" size="sm" hint-size="56px,22px">서명 완료</x-import></div>
+              <div style="display:flex;flex-direction:column;gap:8px;padding:8px 0;"><div style="display:flex;justify-content:space-between;align-items:center;"><span class="text-typo-body-500 text-ms-gray-800">쥬베룩 (필러류)</span><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="danger" size="sm" dot="{{ true }}" hint-size="56px,22px">미서명</x-import></div><div data-fill-buttons="true" style="display:grid;"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="blue" size="sm" hint-size="100%,33px">코디에게 서명 요청</x-import></div></div>
+              <div class="bg-ms-gray-100" style="margin-top:auto;border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:4px;"><span class="text-typo-caption-md-600 text-ms-gray-700">주의</span><span class="text-typo-caption-md-500 text-red">써마지 열감 민감 (2026.07)</span><span class="text-typo-caption-md-500 text-ms-gray-800">알레르기 없음 · 복용약 없음</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1f 스케줄 -->
+      <div id="1f" data-screen-label="1f 의사 태블릿 · 스케줄" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;align-items:center;gap:10px;"><span class="bg-ms-gray-800 text-ms-white text-typo-caption-md-600" style="padding:3px 10px;border-radius:999px;">1f</span><span class="text-typo-heading-md-500 text-ms-gray-800">스케줄 — 오늘 내 시술 순서 · 주간 근무</span></div>
+        <div class="bg-ms-gray-100" style="width:1194px;height:834px;border-radius:28px;box-shadow:0 0 0 12px #1f1f1f, 0 24px 60px rgba(0,0,0,0.25);overflow:hidden;display:flex;flex-direction:column;">
+          <div class="bg-ms-white border-ms-gray-200" style="height:56px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom-width:1px;border-bottom-style:solid;">
+            <div style="display:flex;align-items:center;gap:40px;">
+              <img src="assets/ceramique-logo-color.svg" alt="CÉRAMIQUE" style="height:20px;display:block;">
+              <nav style="display:flex;gap:32px;"><span class="text-typo-heading-md-400 text-ms-gray-800">내 시술</span><span class="text-typo-heading-md-500 text-primary">스케줄</span><span class="text-typo-heading-md-400 text-ms-gray-800">환자</span></nav>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;"><span class="text-typo-heading-sm-400 text-ms-black">14:46</span><span class="text-typo-heading-sm-400 text-ms-gray-700">명동점</span><span class="text-typo-heading-sm-400 text-primary">박 원장</span></div>
+          </div>
+          <div style="padding:16px 24px 0;display:grid;grid-template-columns:repeat(7, minmax(0,1fr));gap:8px;">
+            <sc-for list="{{ week }}" as="d" hint-placeholder-count="7">
+              <div class="{{ d.cls }}" style="border-width:1px;border-style:solid;border-radius:10px;padding:8px 10px;display:flex;flex-direction:column;gap:2px;">
+                <span class="text-typo-caption-md-500">{{ d.day }}</span>
+                <span class="text-typo-title-sm-600">{{ d.date }}</span>
+                <span class="text-typo-caption-md-400">{{ d.shift }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div class="bg-ms-white" style="flex:1;min-height:0;margin:12px 24px 20px;border-radius:12px;padding:8px 16px;display:flex;flex-direction:column;overflow:hidden;">
+            <div class="border-ms-gray-200 text-typo-caption-md-600 text-ms-gray-600" style="display:grid;grid-template-columns:110px 80px 220px minmax(0,1fr) 110px;gap:12px;padding:10px 4px;border-bottom-width:1px;border-bottom-style:solid;"><span>시각</span><span>룸</span><span>고객</span><span>시술</span><span>상태</span></div>
+            <sc-for list="{{ sched }}" as="r" hint-placeholder-count="8">
+              <div class="{{ r.cls }}" style="display:grid;grid-template-columns:110px 80px 220px minmax(0,1fr) 110px;gap:12px;padding:12px 4px;align-items:center;border-bottom-width:1px;border-bottom-style:solid;">
+                <span class="text-typo-body-600 text-ms-gray-800" style="font-variant-numeric:tabular-nums;">{{ r.time }}</span>
+                <span class="text-typo-body-500 text-ms-gray-800">{{ r.room }}</span>
+                <span class="text-typo-body-500 text-ms-gray-800">{{ r.name }}</span>
+                <span class="text-typo-body-400 text-ms-gray-700">{{ r.procs }}</span>
+                <div><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="{{ r.variant }}" size="sm" dot="{{ true }}" hint-size="64px,22px">{{ r.st }}</x-import></div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <span class="text-typo-title-md-600 text-ms-gray-800" style="padding-top:24px;">모바일</span>
+    <div style="display:flex;gap:56px;flex-wrap:wrap;align-items:flex-start;">
+      <!-- 1g 모바일 홈 -->
+      <div id="1g" data-screen-label="1g 의사 모바일 · 홈" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;align-items:center;gap:10px;"><span class="bg-ms-gray-800 text-ms-white text-typo-caption-md-600" style="padding:3px 10px;border-radius:999px;">1g</span><span class="text-typo-heading-md-500 text-ms-gray-800">홈 — 진행 중 + 다음</span></div>
+        <div class="bg-ms-gray-100" style="width:390px;height:844px;border-radius:48px;box-shadow:0 0 0 10px #1f1f1f, 0 24px 60px rgba(0,0,0,0.25);overflow:hidden;display:flex;flex-direction:column;">
+          <div class="bg-ms-white" style="height:44px;flex-shrink:0;display:flex;align-items:center;padding:0 28px;"><span class="text-typo-caption-md-600 text-ms-black">14:46</span></div>
+          <div class="bg-ms-white border-ms-gray-200" style="height:52px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 20px;border-bottom-width:1px;border-bottom-style:solid;"><span class="text-typo-title-md-600 text-ms-gray-800">내 시술</span><span class="text-typo-body-500 text-primary">박 원장</span></div>
+          <div style="padding:12px 16px 0;"><x-import component-from-global-scope="MedisolveAiMedikit.Banner" variant="{{ bannerVariant }}" hint-size="100%,52px">{{ bannerShort }}</x-import></div>
+          <div style="flex:1;min-height:0;padding:12px 16px;display:flex;flex-direction:column;gap:10px;overflow:hidden;">
+            <div class="bg-ms-white border-primary" style="border-width:1px;border-style:solid;border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;"><span class="text-typo-caption-md-600 text-primary">진행 중 · A-룸2</span><span class="text-primary" style="font-size:28px;font-weight:600;font-variant-numeric:tabular-nums;">08:12</span></div>
+              <span class="text-typo-title-md-600 text-ms-gray-800">써마지 FLX 300shot</span>
+              <span class="text-typo-body-500 text-ms-gray-700">[TW] WANG YI TING · 대만 · 재내원</span>
+              <span class="bg-ms-gray-100 text-typo-caption-md-500 text-ms-gray-800" style="border-radius:8px;padding:8px 10px;word-break:keep-all;">눈가 팁 따로 · 지난 방문 열감 민감 → 레벨 낮게</span>
+              <div data-fill-buttons="true" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:8px;"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="md" hint-size="100%,40px">메모</x-import><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="md" hint-size="100%,40px">종료</x-import></div>
+            </div>
+            <span class="text-typo-caption-md-600 text-ms-gray-700" style="padding-top:4px;">다음</span>
+            <sc-for list="{{ nextQueue }}" as="q" hint-placeholder-count="3">
+              <div class="bg-ms-white" style="border-radius:12px;padding:12px 14px;display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;align-items:center;">
+                <span class="border-primary text-primary" style="width:22px;height:22px;border-radius:50%;border-width:1px;border-style:solid;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;">{{ q.n }}</span>
+                <div style="display:flex;flex-direction:column;"><span class="text-typo-body-500 text-ms-gray-800">{{ q.title }}</span><span class="text-typo-caption-md-400 text-ms-gray-600">{{ q.sub }}</span></div>
+              </div>
+            </sc-for>
+          </div>
+          <div class="bg-ms-white border-ms-gray-200" style="height:72px;flex-shrink:0;border-top-width:1px;border-top-style:solid;display:grid;grid-template-columns:repeat(4, minmax(0,1fr));padding-bottom:12px;">
+            <span class="text-typo-caption-md-600 text-primary" style="display:flex;align-items:center;justify-content:center;">내 시술</span>
+            <span class="text-typo-caption-md-500 text-ms-gray-600" style="display:flex;align-items:center;justify-content:center;gap:4px;">호출 <span class="bg-red text-ms-white" style="font-size:11px;font-weight:600;padding:0 6px;border-radius:999px;">2</span></span>
+            <span class="text-typo-caption-md-500 text-ms-gray-600" style="display:flex;align-items:center;justify-content:center;">스케줄</span>
+            <span class="text-typo-caption-md-500 text-ms-gray-600" style="display:flex;align-items:center;justify-content:center;">환자</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1h 모바일 호출 -->
+      <div id="1h" data-screen-label="1h 의사 모바일 · 호출" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;align-items:center;gap:10px;"><span class="bg-ms-gray-800 text-ms-white text-typo-caption-md-600" style="padding:3px 10px;border-radius:999px;">1h</span><span class="text-typo-heading-md-500 text-ms-gray-800">호출 — 수락하면 룸 카드 [시작] 활성</span></div>
+        <div class="bg-ms-gray-100" style="width:390px;height:844px;border-radius:48px;box-shadow:0 0 0 10px #1f1f1f, 0 24px 60px rgba(0,0,0,0.25);overflow:hidden;display:flex;flex-direction:column;">
+          <div class="bg-ms-white" style="height:44px;flex-shrink:0;display:flex;align-items:center;padding:0 28px;"><span class="text-typo-caption-md-600 text-ms-black">14:46</span></div>
+          <div class="bg-ms-white border-ms-gray-200" style="height:52px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 20px;border-bottom-width:1px;border-bottom-style:solid;"><span class="text-typo-title-md-600 text-ms-gray-800">호출</span><span class="text-typo-caption-md-500 text-ms-gray-600">기준 5분</span></div>
+          <div style="flex:1;min-height:0;padding:12px 16px;display:flex;flex-direction:column;gap:10px;overflow:hidden;">
+            <div class="bg-ms-white border-red" style="border-width:1px;border-style:solid;border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;"><div style="display:flex;align-items:center;gap:8px;"><span data-badge-call="true" style="display:inline-flex;"><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="primary" size="sm" hint-size="60px,22px">전체 호출</x-import></span><span class="text-typo-heading-md-500 text-ms-gray-800">A-룸4</span></div><span class="text-typo-body-600 text-red">6분 · +1분</span></div>
+              <span class="text-typo-body-500 text-ms-gray-800">[HK] CHAN MEI LING · 홍콩 · 첫내원</span>
+              <div class="bg-ms-gray-100" style="border-radius:8px;padding:8px 10px;display:flex;flex-direction:column;gap:2px;"><span class="text-typo-caption-md-500 text-ms-gray-800">· 써마지 FLX 300shot</span><span class="text-typo-caption-md-500 text-ms-gray-800">· 쥬베룩</span><span class="text-typo-caption-md-500 text-ms-gray-800">· 바디보톡스 100unit</span></div>
+              <span class="text-typo-caption-md-500 text-purple">마취 완료 20분 · 13:55~14:15</span>
+              <div data-fill-buttons="true" style="display:grid;"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="md" hint-size="100%,40px">내가 수락</x-import></div>
+            </div>
+            <div class="bg-ms-white border-ms-gray-200" style="border-width:1px;border-style:solid;border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;"><div style="display:flex;align-items:center;gap:8px;"><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="primary" size="sm" hint-size="60px,22px">나를 지정</x-import><span class="text-typo-heading-md-500 text-ms-gray-800">A-룸1</span></div><span class="text-typo-body-600 text-primary">2분</span></div>
+              <span class="text-typo-body-500 text-ms-gray-800">[TW] LIN YA CHEN · 대만 · 첫내원</span>
+              <div class="bg-ms-gray-100" style="border-radius:8px;padding:8px 10px;"><span class="text-typo-caption-md-500 text-ms-gray-800">· 울쎄라피 프라임 300shot</span></div>
+              <span class="text-typo-caption-md-400 text-ms-gray-600">마취 안 함</span>
+              <div data-fill-buttons="true" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="md" hint-size="100%,40px">다른 원장에게</x-import><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="md" hint-size="100%,40px">수락</x-import></div>
+            </div>
+          </div>
+          <div class="bg-ms-white border-ms-gray-200" style="height:72px;flex-shrink:0;border-top-width:1px;border-top-style:solid;display:grid;grid-template-columns:repeat(4, minmax(0,1fr));padding-bottom:12px;">
+            <span class="text-typo-caption-md-500 text-ms-gray-600" style="display:flex;align-items:center;justify-content:center;">내 시술</span>
+            <span class="text-typo-caption-md-600 text-primary" style="display:flex;align-items:center;justify-content:center;gap:4px;">호출 <span class="bg-red text-ms-white" style="font-size:11px;font-weight:600;padding:0 6px;border-radius:999px;">2</span></span>
+            <span class="text-typo-caption-md-500 text-ms-gray-600" style="display:flex;align-items:center;justify-content:center;">스케줄</span>
+            <span class="text-typo-caption-md-500 text-ms-gray-600" style="display:flex;align-items:center;justify-content:center;">환자</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1i 모바일 환자 -->
+      <div id="1i" data-screen-label="1i 의사 모바일 · 환자 정보" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;align-items:center;gap:10px;"><span class="bg-ms-gray-800 text-ms-white text-typo-caption-md-600" style="padding:3px 10px;border-radius:999px;">1i</span><span class="text-typo-heading-md-500 text-ms-gray-800">환자 정보 — 시술 · 차트 · 동의서 탭</span></div>
+        <div class="bg-ms-gray-100" style="width:390px;height:844px;border-radius:48px;box-shadow:0 0 0 10px #1f1f1f, 0 24px 60px rgba(0,0,0,0.25);overflow:hidden;display:flex;flex-direction:column;">
+          <div class="bg-ms-white" style="height:44px;flex-shrink:0;display:flex;align-items:center;padding:0 28px;"><span class="text-typo-caption-md-600 text-ms-black">14:46</span></div>
+          <div class="bg-ms-white" style="padding:8px 20px 0;display:flex;flex-direction:column;gap:4px;">
+            <span class="text-typo-caption-md-500 text-ms-gray-600">← A-룸2</span>
+            <span class="text-typo-title-md-600 text-ms-gray-800">[TW] WANG YI TING</span>
+            <span class="text-typo-caption-md-500 text-ms-gray-600">대만 · 34세 · 여 · 재내원 3회 · 통역 중국어</span>
+            <div style="padding-top:4px;"><x-import component-from-global-scope="MedisolveAiMedikit.Tabs" tabs="{{ tabsMobile }}" selected-tab="consent" on-select-tab="{{ noop }}" hint-size="100%,44px"></x-import></div>
+          </div>
+          <div style="flex:1;min-height:0;padding:12px 16px;display:flex;flex-direction:column;gap:8px;overflow:hidden;">
+            <div class="bg-ms-white" style="border-radius:12px;padding:14px;display:flex;justify-content:space-between;align-items:center;"><div style="display:flex;flex-direction:column;"><span class="text-typo-body-500 text-ms-gray-800">울쎄라피 · 써마지</span><span class="text-typo-caption-md-400 text-ms-gray-500">13:22 서명</span></div><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="neutral" size="sm" hint-size="56px,22px">서명 완료</x-import></div>
+            <div class="bg-ms-white" style="border-radius:12px;padding:14px;display:flex;justify-content:space-between;align-items:center;"><div style="display:flex;flex-direction:column;"><span class="text-typo-body-500 text-ms-gray-800">사진 촬영 · 활용</span><span class="text-typo-caption-md-400 text-ms-gray-500">13:22 서명</span></div><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="neutral" size="sm" hint-size="56px,22px">서명 완료</x-import></div>
+            <div class="bg-ms-white border-red" style="border-width:1px;border-style:solid;border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:10px;"><div style="display:flex;justify-content:space-between;align-items:center;"><span class="text-typo-body-500 text-ms-gray-800">쥬베룩 (필러류)</span><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="danger" size="sm" dot="{{ true }}" hint-size="56px,22px">미서명</x-import></div><span class="text-typo-caption-md-400 text-ms-gray-700">서명 전에는 쥬베룩 [시작]이 잠깁니다.</span><div data-fill-buttons="true" style="display:grid;"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="blue" size="md" hint-size="100%,40px">코디에게 서명 요청</x-import></div></div>
+            <div class="bg-ms-white" style="border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:4px;"><span class="text-typo-caption-md-600 text-ms-gray-700">주의</span><span class="text-typo-caption-md-500 text-red">써마지 열감 민감 (2026.07)</span><span class="text-typo-caption-md-500 text-ms-gray-800">알레르기 없음 · 복용약 없음</span></div>
+          </div>
+          <div class="bg-ms-white border-ms-gray-200" style="height:72px;flex-shrink:0;border-top-width:1px;border-top-style:solid;display:grid;grid-template-columns:repeat(4, minmax(0,1fr));padding-bottom:12px;">
+            <span class="text-typo-caption-md-500 text-ms-gray-600" style="display:flex;align-items:center;justify-content:center;">내 시술</span>
+            <span class="text-typo-caption-md-500 text-ms-gray-600" style="display:flex;align-items:center;justify-content:center;gap:4px;">호출 <span class="bg-red text-ms-white" style="font-size:11px;font-weight:600;padding:0 6px;border-radius:999px;">2</span></span>
+            <span class="text-typo-caption-md-500 text-ms-gray-600" style="display:flex;align-items:center;justify-content:center;">스케줄</span>
+            <span class="text-typo-caption-md-600 text-primary" style="display:flex;align-items:center;justify-content:center;">환자</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== 간호사 앱 ===================== -->
+  <div data-screen-label="간호사 앱" style="display:flex;flex-direction:column;gap:32px;padding-top:24px;">
+    <h2 class="text-typo-headline-md-600 text-ms-gray-800" style="margin:0;padding-bottom:12px;border-bottom:2px solid #3e3e3e;">간호사 앱</h2>
+
+    <span class="text-typo-title-md-600 text-ms-gray-800">태블릿 홈 — 2안 비교</span>
+    <div style="display:flex;gap:56px;flex-wrap:wrap;align-items:flex-start;">
+      <!-- 1c 평면도 -->
+      <div id="1c" data-screen-label="1c 간호사 태블릿 홈 · 평면도" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;align-items:center;gap:10px;"><span class="bg-ms-gray-800 text-ms-white text-typo-caption-md-600" style="padding:3px 10px;border-radius:999px;">1c</span><span class="text-typo-heading-md-500 text-ms-gray-800">평면도 — 실제 배치대로 룸을 칠하고, 누른 룸을 오른쪽에서 조작</span></div>
+        <div class="bg-ms-gray-100" style="width:1194px;height:834px;border-radius:28px;box-shadow:0 0 0 12px #1f1f1f, 0 24px 60px rgba(0,0,0,0.25);overflow:hidden;display:flex;flex-direction:column;">
+          <div class="bg-ms-white border-ms-gray-200" style="height:56px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom-width:1px;border-bottom-style:solid;">
+            <div style="display:flex;align-items:center;gap:40px;">
+              <img src="assets/ceramique-logo-color.svg" alt="CÉRAMIQUE" style="height:20px;display:block;">
+              <nav style="display:flex;gap:32px;"><span class="text-typo-heading-md-500 text-primary">룸 현황</span><span class="text-typo-heading-md-400 text-ms-gray-800">배정 · 이동</span><span class="text-typo-heading-md-400 text-ms-gray-800">기록 출력</span></nav>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;"><span class="text-typo-heading-sm-400 text-ms-black">14:46</span><span class="text-typo-heading-sm-400 text-ms-gray-700">명동점 A구역</span><span class="text-typo-heading-sm-400 text-primary">김 간호사</span></div>
+          </div>
+          <div style="padding:12px 24px 0;"><x-import component-from-global-scope="MedisolveAiMedikit.Banner" variant="{{ bannerVariant }}" hint-size="100%,52px">{{ bannerNurse }}</x-import></div>
+          <div style="flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:12px;padding:12px 24px 20px;">
+            <div class="bg-ms-white" style="border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px;box-shadow:0 2px 10px rgba(0,0,0,0.04);">
+              <div style="display:flex;gap:12px;flex-wrap:wrap;padding:0 4px;">
+                <sc-for list="{{ legend }}" as="k" hint-placeholder-count="5"><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="{{ k.variant }}" size="sm" dot="{{ true }}" hint-size="64px,22px">{{ k.name }}</x-import></sc-for>
+              </div>
+              <div class="bg-ms-gray-100" style="flex:1;border-radius:8px;padding:8px;display:grid;grid-template-columns:repeat(4, minmax(0,1fr));grid-template-rows:minmax(0,1fr) 36px minmax(0,1fr);gap:8px;">
+                <sc-for list="{{ floorSel }}" as="r" hint-placeholder-count="9">
+                  <div class="{{ r.cls }}" style="grid-area:{{ r.area }};border-width:1px;border-style:{{ r.bs }};border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;outline:{{ r.outline }};outline-offset:2px;opacity:{{ r.op }};">
+                    <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;"><span class="text-typo-title-sm-600 text-ms-gray-800">{{ r.room }}</span><span class="{{ r.subCls }}" style="font-variant-numeric:tabular-nums;">{{ r.sub }}</span></div>
+                    <sc-if value="{{ r.hasBadge }}" hint-placeholder-val="{{ true }}"><div><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="{{ r.variant }}" size="sm" dot="{{ true }}" hint-size="72px,22px">{{ r.badge }}</x-import></div></sc-if>
+                    <span class="text-typo-caption-md-600 text-ms-gray-800">{{ r.name }}</span>
+                    <span class="text-typo-caption-md-400 text-ms-gray-700" style="margin-top:auto;word-break:keep-all;">{{ r.note }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+            <div class="bg-ms-white" style="border-radius:12px;box-shadow:0 0 10px rgba(0,0,0,0.09);padding:16px;display:flex;flex-direction:column;gap:12px;">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;"><span class="text-typo-title-lg-600 text-ms-gray-800">A-룸3</span><span class="text-typo-caption-md-400 text-ms-gray-600">입실 14:18</span></div>
+              <div style="display:flex;align-items:center;gap:6px;"><span class="text-typo-body-600 text-ms-gray-800">[JP] TANAKA YUKI</span><span class="bg-ms-gray-200 text-typo-caption-md-500 text-ms-gray-700" style="padding:1px 6px;border-radius:4px;">일본</span><span class="bg-ms-gray-200 text-ms-gray-700 text-typo-caption-md-600" style="padding:1px 6px;border-radius:4px;">재내원</span></div>
+              <div class="bg-purple-100" style="border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px;">
+                <div style="display:flex;justify-content:space-between;align-items:baseline;"><span class="text-typo-caption-md-600 text-purple">마취 중 · 크림</span><span class="text-purple" style="font-size:28px;font-weight:600;font-variant-numeric:tabular-nums;">24분</span></div>
+                <span class="text-typo-caption-md-400 text-ms-gray-700">14:22 시작 · 기준 20분 넘음</span>
+                <div data-fill-buttons="true" style="display:grid;"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="md" hint-size="100%,40px">마취 종료</x-import></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;"><span class="text-typo-caption-md-600 text-ms-gray-700">준비 체크리스트</span><span class="text-typo-caption-md-600 text-primary">4 / 6</span></div>
+              <x-import component-from-global-scope="MedisolveAiMedikit.Progress" value="{{ 66 }}" hint-size="100%,8px"></x-import>
+              <span class="text-typo-caption-md-600 text-ms-gray-700" style="padding-top:4px;">시술</span>
+              <div class="bg-ms-white border-primary" style="border-width:1px;border-style:solid;border-radius:8px;padding:8px 10px;display:flex;align-items:center;gap:8px;"><x-import component-from-global-scope="MedisolveAiMedikit.Checkbox" checked="{{ true }}" hint-size="20px,20px"></x-import><span class="text-typo-body-500 text-ms-gray-800" style="flex:1;">포텐자</span><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="warning" size="sm" dot="{{ true }}" hint-size="48px,22px">대기</x-import></div>
+              <div class="bg-ms-white border-primary" style="border-width:1px;border-style:solid;border-radius:8px;padding:8px 10px;display:flex;align-items:center;gap:8px;"><x-import component-from-global-scope="MedisolveAiMedikit.Checkbox" checked="{{ true }}" hint-size="20px,20px"></x-import><span class="text-typo-body-500 text-ms-gray-800" style="flex:1;">리쥬란 힐러 2cc</span><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="warning" size="sm" dot="{{ true }}" hint-size="48px,22px">대기</x-import></div>
+              <div data-fill-buttons="true" style="margin-top:auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:8px;"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="md" hint-size="100%,40px">룸 상세</x-import><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="md" hint-size="100%,40px">의사 호출 · 2건</x-import></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1d 카드 + 할 일 -->
+      <div id="1d" data-screen-label="1d 간호사 태블릿 홈 · 카드+할 일" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;align-items:center;gap:10px;"><span class="bg-ms-gray-800 text-ms-white text-typo-caption-md-600" style="padding:3px 10px;border-radius:999px;">1d</span><span class="text-typo-heading-md-500 text-ms-gray-800">카드 + 할 일 — 현황판 카드를 줄이고, 손 갈 일을 급한 순으로</span></div>
+        <div class="bg-ms-gray-100" style="width:1194px;height:834px;border-radius:28px;box-shadow:0 0 0 12px #1f1f1f, 0 24px 60px rgba(0,0,0,0.25);overflow:hidden;display:flex;flex-direction:column;">
+          <div class="bg-ms-white border-ms-gray-200" style="height:56px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom-width:1px;border-bottom-style:solid;">
+            <div style="display:flex;align-items:center;gap:40px;">
+              <img src="assets/ceramique-logo-color.svg" alt="CÉRAMIQUE" style="height:20px;display:block;">
+              <nav style="display:flex;gap:32px;"><span class="text-typo-heading-md-500 text-primary">룸 현황</span><span class="text-typo-heading-md-400 text-ms-gray-800">배정 · 이동</span><span class="text-typo-heading-md-400 text-ms-gray-800">기록 출력</span></nav>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;"><span class="text-typo-heading-sm-400 text-ms-black">14:46</span><span class="text-typo-heading-sm-400 text-ms-gray-700">명동점 A구역</span><span class="text-typo-heading-sm-400 text-primary">김 간호사</span></div>
+          </div>
+          <div style="flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:12px;padding:16px 24px 20px;">
+            <div class="bg-ms-gray-200" style="border-radius:12px;padding:8px;display:grid;grid-template-columns:repeat(3, minmax(0,1fr));grid-auto-rows:minmax(0,1fr);gap:8px;">
+              <sc-for list="{{ cards }}" as="c" hint-placeholder-count="6">
+                <div class="{{ c.cls }}" style="border-width:1px;border-style:solid;border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;min-width:0;opacity:{{ c.op }};">
+                  <div style="display:flex;justify-content:space-between;align-items:baseline;"><span class="text-typo-title-sm-600 text-ms-gray-800">{{ c.room }}</span><span class="text-typo-caption-md-400 text-ms-gray-600">{{ c.inAt }}</span></div>
+                  <div><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="{{ c.variant }}" size="sm" dot="{{ true }}" hint-size="72px,22px">{{ c.badge }}</x-import></div>
+                  <span class="text-typo-caption-md-600 text-ms-gray-800" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ c.name }}</span>
+                  <div style="display:flex;gap:6px;align-items:center;"><span class="text-typo-caption-md-600 text-ms-gray-700">마취</span><span class="{{ c.anesCls }}">{{ c.anes }}</span></div>
+                  <div style="display:flex;flex-direction:column;gap:3px;">
+                    <sc-for list="{{ c.procs }}" as="p" hint-placeholder-count="2">
+                      <div style="display:flex;justify-content:space-between;gap:6px;"><span class="{{ p.cls }}" style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{ p.t }}</span><span class="{{ p.stCls }}" style="white-space:nowrap;">{{ p.st }}</span></div>
+                    </sc-for>
+                  </div>
+                  <div data-fill-buttons="true" style="display:grid;margin-top:auto;"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="{{ c.btnVariant }}" color="{{ c.btnColor }}" size="sm" hint-size="100%,33px">{{ c.btn }}</x-import></div>
+                </div>
+              </sc-for>
+            </div>
+            <div class="bg-ms-white" style="border-radius:12px;box-shadow:0 0 10px rgba(0,0,0,0.09);padding:16px;display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;"><span class="text-typo-heading-md-500 text-ms-gray-800">할 일</span><span class="text-typo-caption-md-500 text-ms-gray-600">급한 순</span></div>
+              <sc-for list="{{ todos }}" as="t" hint-placeholder-count="4">
+                <div class="{{ t.cls }}" style="border-width:1px;border-style:solid;border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;">
+                  <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;"><div style="display:flex;align-items:center;gap:8px;"><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="{{ t.variant }}" size="sm" dot="{{ true }}" hint-size="56px,22px">{{ t.kind }}</x-import><span class="text-typo-body-600 text-ms-gray-800">{{ t.room }}</span></div><span class="{{ t.minCls }}">{{ t.min }}</span></div>
+                  <span class="text-typo-caption-md-500 text-ms-gray-700">{{ t.text }}</span>
+                  <div data-fill-buttons="true" style="display:grid;"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="blue" size="sm" hint-size="100%,33px">{{ t.btn }}</x-import></div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <span class="text-typo-title-md-600 text-ms-gray-800" style="padding-top:24px;">태블릿 — 룸 상세 · 배정 · 기록</span>
+    <div style="display:flex;gap:56px;flex-wrap:wrap;align-items:flex-start;">
+      <!-- 1j 룸 상세 -->
+      <div id="1j" data-screen-label="1j 간호사 태블릿 · 룸 상세" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;align-items:center;gap:10px;"><span class="bg-ms-gray-800 text-ms-white text-typo-caption-md-600" style="padding:3px 10px;border-radius:999px;">1j</span><span class="text-typo-heading-md-500 text-ms-gray-800">룸 상세 — 준비 체크리스트 · 마취 기록 · 의사 호출</span></div>
+        <div class="bg-ms-gray-100" style="width:1194px;height:834px;border-radius:28px;box-shadow:0 0 0 12px #1f1f1f, 0 24px 60px rgba(0,0,0,0.25);overflow:hidden;display:flex;flex-direction:column;">
+          <div class="bg-ms-white border-ms-gray-200" style="height:56px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom-width:1px;border-bottom-style:solid;">
+            <div style="display:flex;align-items:center;gap:40px;">
+              <img src="assets/ceramique-logo-color.svg" alt="CÉRAMIQUE" style="height:20px;display:block;">
+              <nav style="display:flex;gap:32px;"><span class="text-typo-heading-md-500 text-primary">룸 현황</span><span class="text-typo-heading-md-400 text-ms-gray-800">배정 · 이동</span><span class="text-typo-heading-md-400 text-ms-gray-800">기록 출력</span></nav>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;"><span class="text-typo-heading-sm-400 text-ms-black">14:46</span><span class="text-typo-heading-sm-400 text-ms-gray-700">명동점 A구역</span><span class="text-typo-heading-sm-400 text-primary">김 간호사</span></div>
+          </div>
+          <div style="padding:16px 24px 0;display:flex;align-items:center;justify-content:space-between;">
+            <div style="display:flex;align-items:center;gap:10px;"><span class="text-typo-caption-md-500 text-ms-gray-600">← 룸 현황</span><span class="text-typo-title-md-600 text-ms-gray-800" style="margin-left:8px;">A-룸1</span><span class="text-typo-heading-md-500 text-ms-gray-800">[TW] LIN YA CHEN</span><span class="bg-ms-gray-200 text-typo-caption-md-500 text-ms-gray-700" style="padding:1px 6px;border-radius:4px;">대만</span><span class="bg-primary-100 text-primary text-typo-caption-md-600" style="padding:1px 6px;border-radius:4px;">첫내원</span></div>
+            <div style="display:flex;gap:8px;"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="sm" hint-size="80px,33px">룸 이동</x-import><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="sm" hint-size="80px,33px">기록 출력</x-import></div>
+          </div>
+          <div style="flex:1;min-height:0;display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:12px;padding:12px 24px 20px;">
+            <div class="bg-ms-white" style="border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;"><span class="text-typo-heading-md-500 text-ms-gray-800">준비 체크리스트</span><span class="text-typo-caption-md-600 text-primary">4 / 6</span></div>
+              <x-import component-from-global-scope="MedisolveAiMedikit.Progress" value="{{ 66 }}" hint-size="100%,8px"></x-import>
+              <sc-for list="{{ checklist }}" as="k" hint-placeholder-count="6">
+                <div class="border-ms-gray-200" style="display:flex;align-items:center;gap:10px;min-height:48px;border-bottom-width:1px;border-bottom-style:solid;">
+                  <x-import component-from-global-scope="MedisolveAiMedikit.Checkbox" checked="{{ k.on }}" hint-size="20px,20px"></x-import>
+                  <div style="display:flex;flex-direction:column;flex:1;"><span class="{{ k.cls }}">{{ k.t }}</span><span class="text-typo-caption-md-400 text-ms-gray-500">{{ k.sub }}</span></div>
+                </div>
+              </sc-for>
+            </div>
+            <div class="bg-ms-white" style="border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px;">
+              <span class="text-typo-heading-md-500 text-ms-gray-800">마취 기록</span>
+              <div style="display:flex;gap:6px;"><x-import component-from-global-scope="MedisolveAiMedikit.Chip" hint-size="56px,32px">크림</x-import><x-import component-from-global-scope="MedisolveAiMedikit.Chip" hint-size="56px,32px">국소</x-import><x-import component-from-global-scope="MedisolveAiMedikit.Chip" hint-size="56px,32px">수면</x-import></div>
+              <div class="bg-ms-gray-100" style="border-radius:10px;padding:20px 16px;display:flex;flex-direction:column;align-items:center;gap:6px;">
+                <span class="text-typo-caption-md-500 text-ms-gray-600">마취 안 함</span>
+                <span class="text-ms-gray-400" style="font-size:44px;font-weight:600;font-variant-numeric:tabular-nums;">00:00</span>
+                <span class="text-typo-caption-md-400 text-ms-gray-600">울쎄라피 — 고객이 크림 마취 원하지 않음</span>
+              </div>
+              <div data-fill-buttons="true" style="display:grid;"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="md" hint-size="100%,40px">마취 시작</x-import></div>
+              <span class="text-typo-caption-md-600 text-ms-gray-700" style="padding-top:8px;">예시 — 마취 중일 때</span>
+              <div class="bg-purple-100" style="border-radius:10px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;"><div style="display:flex;flex-direction:column;"><span class="text-typo-caption-md-600 text-purple">크림 · 14:22 시작</span><span class="text-typo-caption-md-400 text-ms-gray-700">기준 20분</span></div><span class="text-purple" style="font-size:28px;font-weight:600;font-variant-numeric:tabular-nums;">24분</span></div>
+              <span class="text-typo-caption-md-600 text-ms-gray-700">예시 — 끝난 뒤</span>
+              <div class="border-ms-gray-200" style="border-width:1px;border-style:solid;border-radius:10px;padding:12px 14px;display:flex;justify-content:space-between;"><span class="text-typo-body-500 text-ms-gray-800">크림 · 13:35~13:58</span><span class="text-typo-body-600 text-purple">마취 완료 23분</span></div>
+            </div>
+            <div class="bg-ms-white" style="border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;">
+              <span class="text-typo-heading-md-500 text-ms-gray-800">시술 · 의사 호출</span>
+              <div class="bg-primary-100 border-primary" style="border-width:1px;border-style:solid;border-radius:8px;padding:8px 10px;display:flex;align-items:center;gap:8px;"><x-import component-from-global-scope="MedisolveAiMedikit.Checkbox" checked="{{ true }}" hint-size="20px,20px"></x-import><span class="text-typo-body-600 text-primary">3개 선택됨</span></div>
+              <sc-for list="{{ n1procs }}" as="p" hint-placeholder-count="3">
+                <div class="bg-ms-white border-primary" style="border-width:1px;border-style:solid;border-radius:8px;padding:8px 10px;display:grid;grid-template-columns:20px minmax(0,1fr) auto;gap:2px 8px;align-items:center;">
+                  <x-import component-from-global-scope="MedisolveAiMedikit.Checkbox" checked="{{ true }}" hint-size="20px,20px"></x-import>
+                  <span class="text-typo-heading-md-500 text-ms-gray-800">{{ p.t }}</span>
+                  <x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="warning" size="sm" dot="{{ true }}" hint-size="48px,22px">대기</x-import>
+                  <span class="text-typo-caption-md-400 text-ms-gray-500" style="grid-column:2 / -1;">담당의 미정</span>
+                </div>
+              </sc-for>
+              <span class="text-typo-caption-md-600 text-ms-gray-700" style="padding-top:6px;">누구에게</span>
+              <div class="bg-ms-white border-ms-gray-200" style="border-width:1px;border-style:solid;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:10px;"><span class="bg-ms-gray-700 text-ms-white" style="width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;">ALL</span><span class="text-typo-body-500 text-ms-gray-800">모든 의사</span><span class="text-typo-caption-md-400 text-ms-gray-500" style="margin-left:auto;">먼저 수락한 원장</span></div>
+              <div class="bg-primary-100 border-primary" style="border-width:1px;border-style:solid;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:10px;"><span class="bg-purple-100 text-purple" style="width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">박</span><span class="text-typo-body-500 text-ms-gray-800">박 원장</span><span class="text-typo-caption-md-400 text-ms-gray-500" style="margin-left:auto;">A-룸2 시술 중</span></div>
+              <div class="bg-ms-white border-ms-gray-200" style="border-width:1px;border-style:solid;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:10px;"><span class="bg-purple-100 text-purple" style="width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">최</span><span class="text-typo-body-500 text-ms-gray-800">최 원장</span><span class="text-typo-caption-md-500 text-primary" style="margin-left:auto;">비어있음</span></div>
+              <div data-fill-buttons="true" style="display:grid;margin-top:auto;"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="md" hint-size="100%,40px">박 원장 호출 · 3건</x-import></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1k 배정 · 이동 -->
+      <div id="1k" data-screen-label="1k 간호사 태블릿 · 룸 배정·이동" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;align-items:center;gap:10px;"><span class="bg-ms-gray-800 text-ms-white text-typo-caption-md-600" style="padding:3px 10px;border-radius:999px;">1k</span><span class="text-typo-heading-md-500 text-ms-gray-800">룸 배정 · 이동 — 고객 고르고, 빈 룸을 누름</span></div>
+        <div class="bg-ms-gray-100" style="width:1194px;height:834px;border-radius:28px;box-shadow:0 0 0 12px #1f1f1f, 0 24px 60px rgba(0,0,0,0.25);overflow:hidden;display:flex;flex-direction:column;">
+          <div class="bg-ms-white border-ms-gray-200" style="height:56px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom-width:1px;border-bottom-style:solid;">
+            <div style="display:flex;align-items:center;gap:40px;">
+              <img src="assets/ceramique-logo-color.svg" alt="CÉRAMIQUE" style="height:20px;display:block;">
+              <nav style="display:flex;gap:32px;"><span class="text-typo-heading-md-400 text-ms-gray-800">룸 현황</span><span class="text-typo-heading-md-500 text-primary">배정 · 이동</span><span class="text-typo-heading-md-400 text-ms-gray-800">기록 출력</span></nav>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;"><span class="text-typo-heading-sm-400 text-ms-black">14:46</span><span class="text-typo-heading-sm-400 text-ms-gray-700">명동점 A구역</span><span class="text-typo-heading-sm-400 text-primary">김 간호사</span></div>
+          </div>
+          <div style="flex:1;min-height:0;display:grid;grid-template-columns:320px minmax(0,1fr);gap:12px;padding:16px 24px 20px;">
+            <div class="bg-ms-white" style="border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px;">
+              <span class="text-typo-heading-md-500 text-ms-gray-800">배정 대기 3</span>
+              <span class="text-typo-caption-md-400 text-ms-gray-600">상담 끝나고 시술 룸을 기다리는 고객</span>
+              <sc-for list="{{ waitList }}" as="w" hint-placeholder-count="3">
+                <div class="{{ w.cls }}" style="border-width:1px;border-style:solid;border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:4px;">
+                  <div style="display:flex;justify-content:space-between;"><span class="text-typo-body-600 text-ms-gray-800">{{ w.name }}</span><span class="text-typo-caption-md-500 text-ms-gray-600">{{ w.min }}</span></div>
+                  <span class="text-typo-caption-md-500 text-ms-gray-700">{{ w.procs }}</span>
+                  <span class="text-typo-caption-md-400 text-ms-gray-500">{{ w.where }}</span>
+                </div>
+              </sc-for>
+              <span class="text-typo-caption-md-600 text-ms-gray-700" style="padding-top:12px;">룸에 있는 고객 옮기기</span>
+              <span class="text-typo-caption-md-400 text-ms-gray-600">평면도에서 룸을 길게 누르면 이동 모드</span>
+            </div>
+            <div class="bg-ms-white" style="border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:0 4px;"><span class="text-typo-body-600 text-ms-gray-800">[CN] ZHANG WEI 를 배정할 룸</span><span class="text-typo-caption-md-500 text-primary">배정 가능 2</span></div>
+              <div class="bg-ms-gray-100" style="flex:1;border-radius:8px;padding:8px;display:grid;grid-template-columns:repeat(4, minmax(0,1fr));grid-template-rows:minmax(0,1fr) 36px minmax(0,1fr);gap:8px;">
+                <sc-for list="{{ floorAssign }}" as="r" hint-placeholder-count="9">
+                  <div class="{{ r.cls }}" style="grid-area:{{ r.area }};border-width:1px;border-style:{{ r.bs }};border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;outline:{{ r.outline }};outline-offset:2px;opacity:{{ r.op }};">
+                    <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;"><span class="text-typo-title-sm-600 text-ms-gray-800">{{ r.room }}</span><span class="{{ r.subCls }}">{{ r.sub }}</span></div>
+                    <sc-if value="{{ r.hasBadge }}" hint-placeholder-val="{{ true }}"><div><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="{{ r.variant }}" size="sm" dot="{{ true }}" hint-size="72px,22px">{{ r.badge }}</x-import></div></sc-if>
+                    <span class="text-typo-caption-md-600 text-ms-gray-800">{{ r.name }}</span>
+                    <span class="text-typo-caption-md-400 text-ms-gray-700" style="margin-top:auto;">{{ r.note }}</span>
+                  </div>
+                </sc-for>
+              </div>
+              <div class="bg-ms-gray-800" style="border-radius:10px;padding:10px 12px 10px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;">
+                <span class="text-typo-body-500 text-ms-white">ZHANG WEI → 레이저실</span>
+                <div style="display:flex;gap:8px;"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="text" color="gray" size="sm" hint-size="56px,33px">취소</x-import><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="sm" hint-size="80px,33px">배정</x-import></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1l 기록 출력 -->
+      <div id="1l" data-screen-label="1l 간호사 태블릿 · 차지/마취 기록 출력" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;align-items:center;gap:10px;"><span class="bg-ms-gray-800 text-ms-white text-typo-caption-md-600" style="padding:3px 10px;border-radius:999px;">1l</span><span class="text-typo-heading-md-500 text-ms-gray-800">차지 · 마취 기록 출력 — 시술 끝난 고객 → A4 미리보기</span></div>
+        <div class="bg-ms-gray-100" style="width:1194px;height:834px;border-radius:28px;box-shadow:0 0 0 12px #1f1f1f, 0 24px 60px rgba(0,0,0,0.25);overflow:hidden;display:flex;flex-direction:column;">
+          <div class="bg-ms-white border-ms-gray-200" style="height:56px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom-width:1px;border-bottom-style:solid;">
+            <div style="display:flex;align-items:center;gap:40px;">
+              <img src="assets/ceramique-logo-color.svg" alt="CÉRAMIQUE" style="height:20px;display:block;">
+              <nav style="display:flex;gap:32px;"><span class="text-typo-heading-md-400 text-ms-gray-800">룸 현황</span><span class="text-typo-heading-md-400 text-ms-gray-800">배정 · 이동</span><span class="text-typo-heading-md-500 text-primary">기록 출력</span></nav>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;"><span class="text-typo-heading-sm-400 text-ms-black">14:46</span><span class="text-typo-heading-sm-400 text-ms-gray-700">명동점 A구역</span><span class="text-typo-heading-sm-400 text-primary">김 간호사</span></div>
+          </div>
+          <div style="flex:1;min-height:0;display:grid;grid-template-columns:320px minmax(0,1fr);gap:12px;padding:16px 24px 20px;">
+            <div class="bg-ms-white" style="border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px;">
+              <span class="text-typo-heading-md-500 text-ms-gray-800">오늘 · 출력할 고객</span>
+              <sc-for list="{{ printList }}" as="p" hint-placeholder-count="4">
+                <div class="{{ p.cls }}" style="border-width:1px;border-style:solid;border-radius:10px;padding:10px 12px;display:flex;align-items:center;gap:10px;">
+                  <x-import component-from-global-scope="MedisolveAiMedikit.Checkbox" checked="{{ p.on }}" hint-size="20px,20px"></x-import>
+                  <div style="display:flex;flex-direction:column;flex:1;min-width:0;"><span class="text-typo-body-600 text-ms-gray-800">{{ p.name }}</span><span class="text-typo-caption-md-400 text-ms-gray-600">{{ p.sub }}</span></div>
+                  <span class="{{ p.stCls }}">{{ p.st }}</span>
+                </div>
+              </sc-for>
+              <div data-fill-buttons="true" style="margin-top:auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="md" hint-size="100%,40px">PDF 저장</x-import><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="md" hint-size="100%,40px">출력 · 1장</x-import></div>
+            </div>
+            <div class="bg-ms-gray-300" style="border-radius:12px;padding:20px;display:flex;justify-content:center;overflow:hidden;">
+              <div class="bg-ms-white" style="width:500px;height:707px;box-shadow:0 4px 16px rgba(0,0,0,0.12);padding:36px 40px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px;">
+                <div style="display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid #3e3e3e;padding-bottom:10px;"><span class="text-typo-title-md-600 text-ms-gray-800">시술 · 마취 기록지</span><img src="assets/ceramique-logo-color.svg" alt="CÉRAMIQUE" style="height:14px;"></div>
+                <div class="text-typo-caption-md-500 text-ms-gray-800" style="display:grid;grid-template-columns:64px minmax(0,1fr) 64px minmax(0,1fr);gap:6px 8px;">
+                  <span class="text-ms-gray-600">고객</span><span>[JP] SATO HANA</span><span class="text-ms-gray-600">일자</span><span>2026.10.21</span>
+                  <span class="text-ms-gray-600">국적</span><span>일본 · 재내원</span><span class="text-ms-gray-600">룸</span><span>A-룸6 · 12:50 입실</span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:6px;">
+                  <span class="text-typo-caption-md-600 text-ms-gray-800">시술 (차지)</span>
+                  <div class="text-typo-caption-md-500 text-ms-gray-800" style="display:grid;grid-template-columns:minmax(0,1fr) 64px 92px 48px;border-top:1px solid #3e3e3e;">
+                    <span class="bg-ms-gray-100" style="padding:6px;">시술</span><span class="bg-ms-gray-100" style="padding:6px;">담당</span><span class="bg-ms-gray-100" style="padding:6px;">시간</span><span class="bg-ms-gray-100" style="padding:6px;">수량</span>
+                    <span style="padding:6px;border-bottom:1px solid #e3e3e3;">울쎄라피 프라임</span><span style="padding:6px;border-bottom:1px solid #e3e3e3;">정 원장</span><span style="padding:6px;border-bottom:1px solid #e3e3e3;">13:20~13:42</span><span style="padding:6px;border-bottom:1px solid #e3e3e3;">300shot</span>
+                    <span style="padding:6px;border-bottom:1px solid #e3e3e3;">바디보톡스</span><span style="padding:6px;border-bottom:1px solid #e3e3e3;">정 원장</span><span style="padding:6px;border-bottom:1px solid #e3e3e3;">13:50~14:05</span><span style="padding:6px;border-bottom:1px solid #e3e3e3;">100unit</span>
+                  </div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:6px;">
+                  <span class="text-typo-caption-md-600 text-ms-gray-800">마취</span>
+                  <div class="text-typo-caption-md-500 text-ms-gray-800" style="display:grid;grid-template-columns:64px minmax(0,1fr) 64px 64px;border-top:1px solid #3e3e3e;">
+                    <span class="bg-ms-gray-100" style="padding:6px;">종류</span><span class="bg-ms-gray-100" style="padding:6px;">시간</span><span class="bg-ms-gray-100" style="padding:6px;">경과</span><span class="bg-ms-gray-100" style="padding:6px;">기록</span>
+                    <span style="padding:6px;border-bottom:1px solid #e3e3e3;">크림</span><span style="padding:6px;border-bottom:1px solid #e3e3e3;">12:55~13:15</span><span style="padding:6px;border-bottom:1px solid #e3e3e3;">20분</span><span style="padding:6px;border-bottom:1px solid #e3e3e3;">김 간호사</span>
+                  </div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:6px;">
+                  <span class="text-typo-caption-md-600 text-ms-gray-800">특이사항</span>
+                  <span class="text-typo-caption-md-400 text-ms-gray-800" style="border:1px solid #e3e3e3;padding:8px;min-height:48px;">특이사항 없음. 시술 후 진정 팩 10분.</span>
+                </div>
+                <div class="text-typo-caption-md-500 text-ms-gray-800" style="margin-top:auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;">
+                  <div style="display:flex;justify-content:space-between;border-bottom:1px solid #3e3e3e;padding-bottom:4px;"><span>담당의</span><span class="text-ms-gray-500">(서명)</span></div>
+                  <div style="display:flex;justify-content:space-between;border-bottom:1px solid #3e3e3e;padding-bottom:4px;"><span>간호사</span><span class="text-ms-gray-500">(서명)</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <span class="text-typo-title-md-600 text-ms-gray-800" style="padding-top:24px;">모바일</span>
+    <div style="display:flex;gap:56px;flex-wrap:wrap;align-items:flex-start;">
+      <!-- 1m 룸 목록 -->
+      <div id="1m" data-screen-label="1m 간호사 모바일 · 룸 목록" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;align-items:center;gap:10px;"><span class="bg-ms-gray-800 text-ms-white text-typo-caption-md-600" style="padding:3px 10px;border-radius:999px;">1m</span><span class="text-typo-heading-md-500 text-ms-gray-800">룸 목록 — 평면도 대신 급한 순 목록</span></div>
+        <div class="bg-ms-gray-100" style="width:390px;height:844px;border-radius:48px;box-shadow:0 0 0 10px #1f1f1f, 0 24px 60px rgba(0,0,0,0.25);overflow:hidden;display:flex;flex-direction:column;">
+          <div class="bg-ms-white" style="height:44px;flex-shrink:0;display:flex;align-items:center;padding:0 28px;"><span class="text-typo-caption-md-600 text-ms-black">14:46</span></div>
+          <div class="bg-ms-white border-ms-gray-200" style="height:52px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 20px;border-bottom-width:1px;border-bottom-style:solid;"><span class="text-typo-title-md-600 text-ms-gray-800">룸 현황</span><span class="text-typo-body-500 text-primary">김 간호사</span></div>
+          <div style="padding:12px 16px 0;"><x-import component-from-global-scope="MedisolveAiMedikit.Banner" variant="{{ bannerVariant }}" hint-size="100%,52px">{{ bannerNurseShort }}</x-import></div>
+          <div style="flex:1;min-height:0;padding:12px 16px;display:flex;flex-direction:column;gap:8px;overflow:hidden;">
+            <sc-for list="{{ mobileRooms }}" as="r" hint-placeholder-count="6">
+              <div class="{{ r.cls }}" style="border-width:1px;border-style:solid;border-radius:12px;padding:12px 14px;display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:2px 10px;align-items:center;opacity:{{ r.op }};">
+                <span class="text-typo-heading-md-500 text-ms-gray-800">{{ r.room }}</span>
+                <span class="text-typo-caption-md-600 text-ms-gray-800" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ r.name }}</span>
+                <x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="{{ r.variant }}" size="sm" dot="{{ true }}" hint-size="64px,22px">{{ r.badge }}</x-import>
+                <span></span>
+                <span class="{{ r.subCls }}" style="grid-column:2 / -1;">{{ r.note }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div class="bg-ms-white border-ms-gray-200" style="height:72px;flex-shrink:0;border-top-width:1px;border-top-style:solid;display:grid;grid-template-columns:repeat(3, minmax(0,1fr));padding-bottom:12px;">
+            <span class="text-typo-caption-md-600 text-primary" style="display:flex;align-items:center;justify-content:center;">룸 현황</span>
+            <span class="text-typo-caption-md-500 text-ms-gray-600" style="display:flex;align-items:center;justify-content:center;">배정 · 이동</span>
+            <span class="text-typo-caption-md-500 text-ms-gray-600" style="display:flex;align-items:center;justify-content:center;">기록</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1n 룸 상세 -->
+      <div id="1n" data-screen-label="1n 간호사 모바일 · 룸 상세" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;align-items:center;gap:10px;"><span class="bg-ms-gray-800 text-ms-white text-typo-caption-md-600" style="padding:3px 10px;border-radius:999px;">1n</span><span class="text-typo-heading-md-500 text-ms-gray-800">룸 상세 — 마취 · 체크리스트 · 호출</span></div>
+        <div class="bg-ms-gray-100" style="width:390px;height:844px;border-radius:48px;box-shadow:0 0 0 10px #1f1f1f, 0 24px 60px rgba(0,0,0,0.25);overflow:hidden;display:flex;flex-direction:column;">
+          <div class="bg-ms-white" style="height:44px;flex-shrink:0;display:flex;align-items:center;padding:0 28px;"><span class="text-typo-caption-md-600 text-ms-black">14:46</span></div>
+          <div class="bg-ms-white" style="padding:8px 20px 12px;display:flex;flex-direction:column;gap:4px;">
+            <span class="text-typo-caption-md-500 text-ms-gray-600">← 룸 현황</span>
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span class="text-typo-title-md-600 text-ms-gray-800">A-룸3</span><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="purple" size="sm" dot="{{ true }}" hint-size="64px,22px">마취 중</x-import></div>
+            <span class="text-typo-caption-md-500 text-ms-gray-700">[JP] TANAKA YUKI · 일본 · 재내원</span>
+          </div>
+          <div style="flex:1;min-height:0;padding:12px 16px;display:flex;flex-direction:column;gap:10px;overflow:hidden;">
+            <div class="bg-purple-100" style="border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;"><div style="display:flex;flex-direction:column;"><span class="text-typo-caption-md-600 text-purple">크림 마취 · 14:22 시작</span><span class="text-typo-caption-md-400 text-red">기준 20분 넘음</span></div><span class="text-purple" style="font-size:32px;font-weight:600;font-variant-numeric:tabular-nums;">24분</span></div>
+              <div data-fill-buttons="true" style="display:grid;"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="md" hint-size="100%,40px">마취 종료</x-import></div>
+            </div>
+            <div class="bg-ms-white" style="border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;">
+              <div style="display:flex;justify-content:space-between;"><span class="text-typo-caption-md-600 text-ms-gray-700">준비 체크리스트</span><span class="text-typo-caption-md-600 text-primary">4 / 6</span></div>
+              <sc-for list="{{ checklistShort }}" as="k" hint-placeholder-count="3">
+                <div style="display:flex;align-items:center;gap:10px;min-height:44px;"><x-import component-from-global-scope="MedisolveAiMedikit.Checkbox" checked="{{ k.on }}" hint-size="20px,20px"></x-import><span class="{{ k.cls }}">{{ k.t }}</span></div>
+              </sc-for>
+            </div>
+            <div class="bg-ms-white" style="border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:8px;">
+              <span class="text-typo-caption-md-600 text-ms-gray-700">시술</span>
+              <div style="display:flex;align-items:center;gap:10px;min-height:44px;"><x-import component-from-global-scope="MedisolveAiMedikit.Checkbox" checked="{{ true }}" hint-size="20px,20px"></x-import><span class="text-typo-body-500 text-ms-gray-800" style="flex:1;">포텐자</span><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="warning" size="sm" dot="{{ true }}" hint-size="48px,22px">대기</x-import></div>
+              <div style="display:flex;align-items:center;gap:10px;min-height:44px;"><x-import component-from-global-scope="MedisolveAiMedikit.Checkbox" checked="{{ true }}" hint-size="20px,20px"></x-import><span class="text-typo-body-500 text-ms-gray-800" style="flex:1;">리쥬란 힐러 2cc</span><x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="warning" size="sm" dot="{{ true }}" hint-size="48px,22px">대기</x-import></div>
+            </div>
+          </div>
+          <div class="bg-ms-white border-ms-gray-200" data-fill-buttons="true" style="flex-shrink:0;border-top-width:1px;border-top-style:solid;padding:12px 16px 28px;display:grid;"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="md" hint-size="100%,40px">의사 호출 · 2건</x-import></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;callLate&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const FILL = {
+  wait: 'bg-yellow-100 border-ms-gray-400',
+  anes: 'bg-purple-100 border-purple',
+  doing: 'bg-primary-100 border-primary',
+  need: 'bg-red-100 border-red',
+  home: 'bg-ms-gray-100 border-ms-gray-300',
+  empty: 'bg-ms-white border-ms-gray-400',
+  hall: 'bg-ms-gray-200 border-ms-gray-200'
+};
+const ROOMS = [
+  { id: 'r1', room: 'A-룸1', area: '1 / 1', st: 'wait', badge: '시술 대기', variant: 'warning', name: '[TW] LIN YA CHEN', sub: '14:05', note: '박 원장 지정 호출 · 2분' },
+  { id: 'r2', room: 'A-룸2', area: '1 / 2', st: 'doing', badge: '진행 08분', variant: 'primary', name: '[TW] WANG YI TING', sub: '13:30', note: '써마지 FLX · 박 원장 · 남은 2' },
+  { id: 'r3', room: 'A-룸3', area: '1 / 3', st: 'anes', badge: '마취 24분', variant: 'purple', name: '[JP] TANAKA YUKI', sub: '14:18', note: '기준 20분 넘음 · 체크 4/6' },
+  { id: 'r4', room: 'A-룸4', area: '1 / 4', st: 'need', badge: '호출 6분', variant: 'danger', name: '[HK] CHAN MEI LING', sub: '13:50', note: '전체 호출 · 수락 전' },
+  { id: 'hall', room: '복도', area: '2 / 1 / 3 / 5', st: 'hall' },
+  { id: 'r5', room: 'A-룸5', area: '3 / 1', st: 'doing', badge: '진행 16분', variant: 'primary', name: '[VN] NGUYEN THI MAI', sub: '13:40', note: '포텐자 · 이 원장' },
+  { id: 'r6', room: 'A-룸6', area: '3 / 2', st: 'home', badge: '귀가 대기', variant: 'neutral', name: '[JP] SATO HANA', sub: '12:50', note: '14:12 시술 완료 · 정리 필요' },
+  { id: 'r7', room: '레이저실', area: '3 / 3', st: 'empty', name: '', sub: '비어있음', note: '정리 완료' },
+  { id: 'r8', room: '대기실', area: '3 / 4', st: 'empty', name: '2명 대기', sub: '', note: 'ZHANG WEI · SOMCHAI' }
+];
+function tile(r, mode) {
+  const hall = r.st === 'hall';
+  const base = {
+    room: r.room, area: r.area, name: r.name || '', note: r.note || '', sub: r.sub || '',
+    hasBadge: !!r.badge, badge: r.badge || '', variant: r.variant || 'neutral',
+    cls: FILL[r.st], bs: r.st === 'empty' ? 'dashed' : 'solid',
+    subCls: r.st === 'empty' && r.id === 'r7' ? 'text-typo-caption-md-500 text-primary' : 'text-typo-caption-md-400 text-ms-gray-600',
+    outline: 'none', op: '1'
+  };
+  if (hall) return { ...base, cls: FILL.hall + ' text-typo-caption-md-500', room: '', note: '복도', sub: '' };
+  if (mode === 'sel' && r.id === 'r3') base.outline = '2px solid var(--ms-primary)';
+  if (mode === 'assign') {
+    const ok = r.id === 'r7' || r.id === 'r6';
+    base.op = ok ? '1' : '0.4';
+    if (r.id === 'r7') { base.outline = '2px solid var(--ms-primary)'; base.sub = '선택'; base.note = '여기에 배정'; }
+    if (r.id === 'r6') { base.outline = '2px dashed var(--ms-primary)'; base.note = '귀가 처리 후 배정 가능'; }
+  }
+  return base;
+}
+const pc = (t, st) => ({
+  t, st,
+  cls: st === '완료' ? 'text-typo-caption-md-400 text-ms-gray-500' : st.startsWith('진행') ? 'text-typo-caption-md-600 text-primary' : 'text-typo-caption-md-500 text-ms-gray-800',
+  stCls: st === '완료' ? 'text-typo-caption-md-400 text-ms-gray-500' : st.startsWith('진행') ? 'text-typo-caption-md-600 text-primary' : st === '호출함' ? 'text-typo-caption-md-600 text-primary' : 'text-typo-caption-md-500 text-ms-gray-600'
+});
+function Act(props) {
+  const B = window.MedisolveAiMedikit && window.MedisolveAiMedikit.Button;
+  return B ? React.createElement(B, { variant: 'solid', color: 'blue', size: 'sm' }, props.label) : null;
+}
+
+class Component extends DCLogic {
+  renderVals() {
+    const late = this.props.callLate ?? true;
+    return {
+      noop: () => {},
+      bannerVariant: late ? 'danger' : 'primary',
+      bannerText: late ? 'A-룸4 · 전체 호출 6분 — 써마지 FLX 외 2건 · 기준 5분 넘음' : 'A-룸4 · 전체 호출 3분 — 써마지 FLX 외 2건',
+      bannerShort: late ? 'A-룸4 전체 호출 6분 · 수락 대기' : 'A-룸4 전체 호출 3분 · 수락 대기',
+      bannerNurse: late ? 'A-룸4 호출 6분째 수락 없음 · A-룸3 마취 24분 (기준 20분)' : 'A-룸4 호출 3분 · 수락 대기',
+      bannerNurseShort: late ? 'A-룸4 호출 6분 · A-룸3 마취 24분' : 'A-룸4 호출 3분 · 수락 대기',
+      actAccept: React.createElement(Act, { label: '수락' }),
+      actView: React.createElement(Act, { label: '보기' }),
+      phrases: ['조금 뜨거워요', '아프면 손 들어주세요', '눈을 감아주세요', '10분 정도 걸려요', '끝났습니다'],
+      phrasesShort: ['조금 뜨거워요', '아프면 손 들어주세요', '눈을 감아주세요'],
+      phraseGrid: [
+        { ko: '조금 뜨거울 수 있어요', zh: '會有一點熱' }, { ko: '아프면 손을 들어주세요', zh: '痛的話請舉手' },
+        { ko: '눈을 감아주세요', zh: '請閉上眼睛' }, { ko: '10분 정도 걸려요', zh: '大約需要十分鐘' },
+        { ko: '움직이지 마세요', zh: '請不要動' }, { ko: '다 끝났습니다', zh: '已經結束了' }
+      ],
+      chat: [
+        { who: '박 원장', main: '這次會從低一點的強度開始。', sub: '이번엔 낮은 강도부터 시작할게요.', align: 'flex-end', cls: 'bg-primary text-ms-white' },
+        { who: '고객', main: '좋아요. 눈가도 하나요?', sub: '好的，眼周也會做嗎？', align: 'flex-start', cls: 'bg-ms-gray-100 text-ms-gray-800' },
+        { who: '박 원장', main: '會，用另外的眼周探頭。', sub: '네, 눈가 전용 팁으로 따로 해요.', align: 'flex-end', cls: 'bg-primary text-ms-white' },
+        { who: '박 원장 · 방금', main: '會有一點熱，覺得太燙請舉手。', sub: '조금 뜨거워요. 너무 뜨거우면 손 들어주세요.', align: 'flex-end', cls: 'bg-primary text-ms-white' }
+      ],
+      preProcs: [{ t: '써마지 FLX 300shot', note: '약 15분' }, { t: '쥬베룩 볼 2cc', note: '약 10분' }, { t: '바디보톡스 100unit', note: '약 5분' }],
+      docRooms: [
+        { room: 'A-룸4', name: '[HK] CHAN MEI LING', badge: '호출 6분', variant: 'danger', line: '전체 호출 · 써마지 FLX 외 2건 · 마취 완료', lineCls: 'text-typo-caption-md-600 text-red', cls: 'bg-ms-white border-red' },
+        { room: 'A-룸1', name: '[TW] LIN YA CHEN', badge: '나를 지정', variant: 'primary', line: '울쎄라피 프라임 300shot · 2분 전 호출', lineCls: 'text-typo-caption-md-600 text-primary', cls: 'bg-ms-white border-primary' },
+        { room: 'A-룸2', name: '[TW] WANG YI TING', badge: '진행 08분', variant: 'primary', line: '써마지 FLX · 박 원장(나) · 남은 2건', lineCls: 'text-typo-caption-md-500 text-ms-gray-700', cls: 'bg-primary-100 border-ms-gray-200' },
+        { room: 'A-룸5', name: '[VN] NGUYEN THI MAI', badge: '진행 16분', variant: 'primary', line: '포텐자 · 이 원장 · 다음 바디보톡스 최 원장 호출', lineCls: 'text-typo-caption-md-500 text-ms-gray-700', cls: 'bg-ms-white border-ms-gray-200' },
+        { room: 'A-룸3', name: '[JP] TANAKA YUKI', badge: '마취 24분', variant: 'purple', line: '포텐자 · 리쥬란 — 곧 호출 예정', lineCls: 'text-typo-caption-md-500 text-ms-gray-700', cls: 'bg-ms-white border-ms-gray-200' },
+        { room: 'A-룸6', name: '[JP] SATO HANA', badge: '귀가 대기', variant: 'neutral', line: '시술 완료 14:05', lineCls: 'text-typo-caption-md-400 text-ms-gray-500', cls: 'bg-ms-white border-ms-gray-200', op: '0.6' }
+      ].map((r) => ({ op: '1', ...r })),
+      roomChips: [
+        ['A-룸1', '대기 · 호출', 'wait'], ['A-룸2', '진행 08분', 'doing'], ['A-룸3', '마취 24분', 'anesLate'],
+        ['A-룸4', '호출 6분', 'need'], ['A-룸5', '진행 16분', 'doing'], ['A-룸6', '귀가 대기', 'home']
+      ].map(([room, sub, st]) => ({ room, sub,
+        cls: st === 'anesLate' ? FILL.anes : FILL[st],
+        subCls: st === 'need' || st === 'anesLate' ? 'text-typo-caption-md-600 text-red' : 'text-typo-caption-md-500 text-ms-gray-700' })),
+      flow: [
+        { time: '지금', title: 'A-룸2 눈가 팁 요청', sub: '박 원장 · 써마지 FLX 중', todo: '→ 보조 탭에서 처리', kind: 'now' },
+        { time: '14:48', title: 'A-룸3 마취 닦기 · 의사 호출', sub: '크림 24분 — 기준 20분 넘음. 포텐자 · 리쥬란', todo: '→ 비어있는 원장: 최 원장', kind: 'now' },
+        { time: '14:53', title: 'A-룸2 써마지 종료 예상', sub: '박 원장 → 같은 룸 쥬베룩. 동의서 미서명', todo: '→ 코디에게 서명 요청 · 쥬베룩 준비', kind: 'next' },
+        { time: '14:56', title: 'A-룸5 포텐자 종료 예상', sub: '이 원장 빠짐 → 최 원장 바디보톡스', todo: '→ 보톡스 100unit 희석', kind: 'next' },
+        { time: '15:00', title: '레이저실 ZHANG WEI 입실', sub: '상담 완료 · 써마지 FLX · 리쥬란', todo: '→ 룸 정리 · 크림 마취 준비', kind: 'later' }
+      ].map((f) => ({ ...f,
+        timeCls: f.kind === 'now' ? 'text-typo-caption-md-600 text-red' : 'text-typo-caption-md-600 text-ms-gray-800',
+        dotCls: f.kind === 'now' ? 'bg-red' : f.kind === 'next' ? 'bg-primary' : 'bg-ms-gray-400',
+        todoCls: f.kind === 'now' ? 'text-typo-caption-md-600 text-red' : 'text-typo-caption-md-600 text-primary' })),
+      prep: [
+        { title: 'A-룸2 · 쥬베룩 볼 2cc', when: '14:53 예상', whenCls: 'text-typo-caption-md-600 text-primary', sub: '박 원장 · 써마지 끝나면 바로', cls: 'bg-ms-white border-primary',
+          items: [['쥬베룩 바이알 · 희석', true], ['캐뉼라 25G · 소독 솜', false], ['동의서 — 코디 서명 요청함', false]] },
+        { title: 'A-룸5 · 바디보톡스 100unit', when: '14:56 예상', whenCls: 'text-typo-caption-md-600 text-primary', sub: '최 원장 호출함 · 승모근', cls: 'bg-ms-white border-ms-gray-200',
+          items: [['보톡스 100unit 희석', false], ['30G 니들 · 마킹펜', false]] },
+        { title: '레이저실 · ZHANG WEI', when: '15:00 입실', whenCls: 'text-typo-caption-md-500 text-ms-gray-600', sub: '써마지 FLX 300shot · 리쥬란 2cc', cls: 'bg-ms-white border-ms-gray-200',
+          items: [['룸 정리 · 베드 시트', true], ['크림 마취 준비', false]] }
+      ].map((g) => ({ ...g, items: g.items.map(([t, on]) => ({ t, on, cls: on ? 'text-typo-body-400 text-ms-gray-500' : 'text-typo-body-500 text-ms-gray-800' })) })),
+      tabsDetail: [{ id: 'proc', name: '시술' }, { id: 'memo', name: '오더 메모' }, { id: 'chart', name: '차트' }, { id: 'consent', name: '동의서' }],
+      tabsMobile: [{ id: 'proc', name: '시술' }, { id: 'chart', name: '차트' }, { id: 'consent', name: '동의서' }],
+      nextQueue: [
+        { n: 1, title: '쥬베룩 볼 2cc', sub: 'A-룸2 · WANG YI TING · 같은 룸' },
+        { n: 2, title: '바디보톡스 100unit', sub: 'A-룸2 · WANG YI TING · 같은 룸' },
+        { n: 3, title: '울쎄라피 프라임 300shot', sub: 'A-룸1 · LIN YA CHEN · 수락 시 추가' }
+      ],
+      history: [
+        { date: '2026.07.14', doc: '박 원장', procs: '울쎄라피 프라임 300shot · 써마지 FLX', note: '써마지 레벨 3.0에서 열감 호소 → 2.5로 내림. 턱선 약하게.' },
+        { date: '2026.03.02', doc: '이 원장', procs: '리쥬란 힐러 2cc', note: '멍 경미 · 3일 후 소실' },
+        { date: '2025.11.20', doc: '박 원장', procs: '울쎄라피 프라임 200shot', note: '첫 방문 · 특이사항 없음' }
+      ],
+      week: [['월', '10.19', '10:00–19:00'], ['화', '10.20', '휴무'], ['수', '10.21', '10:00–19:00'], ['목', '10.22', '13:00–21:00'], ['금', '10.23', '10:00–19:00'], ['토', '10.24', '10:00–16:00'], ['일', '10.25', '휴무']].map(([day, date, shift]) => ({
+        day, date, shift,
+        cls: date === '10.21' ? 'bg-primary border-primary text-ms-white' : shift === '휴무' ? 'bg-ms-gray-100 border-ms-gray-200 text-ms-gray-500' : 'bg-ms-white border-ms-gray-200 text-ms-gray-800'
+      })),
+      sched: [
+        ['11:30', 'A-룸6', '[JP] SATO HANA', '울쎄라피 프라임 300shot', '완료', 'neutral'],
+        ['14:02', 'A-룸2', '[TW] WANG YI TING', '울쎄라피 프라임 300shot', '완료', 'neutral'],
+        ['14:38', 'A-룸2', '[TW] WANG YI TING', '써마지 FLX 300shot', '진행 중', 'primary'],
+        ['다음', 'A-룸2', '[TW] WANG YI TING', '쥬베룩 · 바디보톡스 100unit', '대기', 'warning'],
+        ['호출', 'A-룸1', '[TW] LIN YA CHEN', '울쎄라피 프라임 300shot', '수락 전', 'danger'],
+        ['16:00', '—', '[KR] 예약 고객', '써마지 FLX 600shot', '예약', 'neutral'],
+        ['17:30', '—', '[CN] 예약 고객', '울쎄라피 · 쥬베룩', '예약', 'neutral']
+      ].map(([time, room, name, procs, st, variant]) => ({ time, room, name, procs, st, variant, cls: st === '진행 중' ? 'bg-primary-100 border-ms-gray-200' : 'bg-ms-white border-ms-gray-200' })),
+      legend: [{ name: '시술 대기', variant: 'warning' }, { name: '마취 중', variant: 'purple' }, { name: '시술 진행', variant: 'primary' }, { name: '확인 필요', variant: 'danger' }, { name: '귀가 대기', variant: 'neutral' }],
+      floorSel: ROOMS.map((r) => tile(r, 'sel')),
+      floorAssign: ROOMS.map((r) => tile(r, 'assign')),
+      cards: [
+        { room: 'A-룸4', inAt: '13:50', st: 'need', badge: '호출 6분 · 수락 전', variant: 'danger', name: '[HK] CHAN MEI LING', anes: '완료 20분', procs: [pc('써마지 FLX 300shot', '호출함'), pc('쥬베룩', '호출함'), pc('바디보톡스 100unit', '호출함')], btn: '다시 호출', btnVariant: 'outlined', btnColor: 'blue' },
+        { room: 'A-룸3', inAt: '14:18', st: 'anes', badge: '마취 중', variant: 'purple', name: '[JP] TANAKA YUKI', anes: '24분 경과', anesLate: true, procs: [pc('포텐자', '대기'), pc('리쥬란 힐러 2cc', '대기')], btn: '마취 종료', btnVariant: 'solid', btnColor: 'blue' },
+        { room: 'A-룸1', inAt: '14:05', st: 'wait', badge: '시술 대기', variant: 'warning', name: '[TW] LIN YA CHEN', anes: '안 함', procs: [pc('울쎄라피 프라임 300shot', '호출함'), pc('리쥬란 힐러 2cc', '대기')], btn: '의사 호출 · 1건', btnVariant: 'solid', btnColor: 'blue' },
+        { room: 'A-룸2', inAt: '13:30', st: 'doing', badge: '시술 진행', variant: 'primary', name: '[TW] WANG YI TING', anes: '완료 23분', procs: [pc('울쎄라피 프라임', '완료'), pc('써마지 FLX', '진행 08분'), pc('쥬베룩 외 1', '대기')], btn: '룸 상세', btnVariant: 'outlined', btnColor: 'gray' },
+        { room: 'A-룸5', inAt: '13:40', st: 'doing', badge: '시술 진행', variant: 'primary', name: '[VN] NGUYEN THI MAI', anes: '완료 20분', procs: [pc('리쥬란 힐러 2cc', '완료'), pc('포텐자', '진행 16분'), pc('바디보톡스', '호출함')], btn: '룸 상세', btnVariant: 'outlined', btnColor: 'gray' },
+        { room: 'A-룸6', inAt: '12:50', st: 'home', badge: '귀가 대기', variant: 'neutral', name: '[JP] SATO HANA', anes: '완료 20분', procs: [pc('울쎄라피 프라임', '완료'), pc('바디보톡스', '완료')], btn: '기록 출력', btnVariant: 'outlined', btnColor: 'gray' }
+      ].map((c) => ({ ...c, cls: c.st === 'need' ? 'bg-ms-white border-red' : 'bg-ms-white border-ms-gray-300', op: c.st === 'home' ? '0.6' : '1', anesCls: c.anesLate ? 'text-typo-caption-md-600 text-red' : c.anes === '안 함' ? 'text-typo-caption-md-400 text-ms-gray-600' : 'text-typo-caption-md-500 text-purple' })),
+      todos: [
+        { kind: '호출', variant: 'danger', room: 'A-룸4', min: '6분', minCls: 'text-typo-body-600 text-red', text: '전체 호출 수락 없음 · 비어있는 원장: 최 원장', btn: '최 원장 지정 호출', cls: 'bg-red-100 border-red' },
+        { kind: '마취', variant: 'purple', room: 'A-룸3', min: '24분', minCls: 'text-typo-body-600 text-red', text: '크림 마취 기준 20분 넘음', btn: '마취 종료', cls: 'bg-ms-white border-ms-gray-200' },
+        { kind: '배정', variant: 'warning', room: '대기실', min: '14분', minCls: 'text-typo-body-600 text-ms-gray-800', text: 'ZHANG WEI 상담 완료 · 레이저실 비어있음', btn: '레이저실 배정', cls: 'bg-ms-white border-ms-gray-200' },
+        { kind: '귀가', variant: 'neutral', room: 'A-룸6', min: '34분', minCls: 'text-typo-body-600 text-ms-gray-800', text: '시술 완료 · 기록 출력 후 룸 정리', btn: '기록 출력', cls: 'bg-ms-white border-ms-gray-200' }
+      ],
+      checklist: [
+        ['세안 · 클렌징', '14:08 · 김 간호사', true], ['시술 전 사진 촬영', '14:10 · 김 간호사', true], ['동의서 서명 확인', '코디 13:58', true],
+        ['마취 여부 확인', '안 함 (고객 요청)', true], ['장비 세팅 — 울쎄라피 4.5 / 3.0 팁', '', false], ['소모품 — 리쥬란 2cc · 니들', '', false]
+      ].map(([t, sub, on]) => ({ t, sub: sub || '아직', on, cls: on ? 'text-typo-body-400 text-ms-gray-500' : 'text-typo-body-500 text-ms-gray-800' })),
+      checklistShort: [['세안 · 클렌징', true], ['장비 세팅 — 포텐자 팁', false], ['소모품 — 리쥬란 2cc', false]].map(([t, on]) => ({ t, on, cls: on ? 'text-typo-body-400 text-ms-gray-500' : 'text-typo-body-500 text-ms-gray-800' })),
+      n1procs: [{ t: '울쎄라피 프라임 300shot' }, { t: '리쥬란 힐러 2cc' }, { t: '바디보톡스 100unit' }],
+      waitList: [
+        { name: '[CN] ZHANG WEI', min: '14분', procs: '써마지 FLX 300shot · 리쥬란', where: '대기실 · 상담 완료 14:32', cls: 'bg-primary-100 border-primary' },
+        { name: '[TH] SOMCHAI P.', min: '6분', procs: '포텐자', where: '대기실 · 상담 완료 14:40', cls: 'bg-ms-white border-ms-gray-200' },
+        { name: '[KR] 이서연', min: '방금', procs: '바디보톡스 100unit', where: '상담실 2 · 상담 중', cls: 'bg-ms-white border-ms-gray-200' }
+      ],
+      printList: [
+        { name: '[JP] SATO HANA', sub: 'A-룸6 · 시술 2 · 마취 1', st: '미출력', stCls: 'text-typo-caption-md-600 text-primary', on: true, cls: 'bg-primary-100 border-primary' },
+        { name: '[KR] 박지민', sub: 'B-룸2 · 시술 1', st: '11:42 출력', stCls: 'text-typo-caption-md-400 text-ms-gray-500', on: false, cls: 'bg-ms-white border-ms-gray-200' },
+        { name: '[CN] LI NA', sub: 'A-룸3 · 시술 3 · 마취 1', st: '12:10 출력', stCls: 'text-typo-caption-md-400 text-ms-gray-500', on: false, cls: 'bg-ms-white border-ms-gray-200' }
+      ],
+      mobileRooms: ['r4', 'r3', 'r1', 'r2', 'r5', 'r6'].map((id) => {
+        const r = ROOMS.find((x) => x.id === id);
+        return { room: r.room, name: r.name, badge: r.badge, variant: r.variant, note: r.note,
+          cls: r.st === 'need' ? 'bg-ms-white border-red' : 'bg-ms-white border-ms-gray-200', op: r.st === 'home' ? '0.6' : '1',
+          subCls: r.st === 'need' || r.st === 'anes' ? 'text-typo-caption-md-500 text-red' : 'text-typo-caption-md-400 text-ms-gray-600' };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/medikit-aea7ac33-f044-4445-9164-87b8b69474dc/fonts/fonts.css">
+  <link rel="stylesheet" href="_ds/medikit-aea7ac33-f044-4445-9164-87b8b69474dc/_ds_bundle.css">
+  <link rel="stylesheet" href="_ds/medikit-aea7ac33-f044-4445-9164-87b8b69474dc/styles.css">
+  <link rel="stylesheet" href="ceramique-theme.css">
+  <link rel="stylesheet" href="medikit-patches.css">
+  <script src="_ds/medikit-aea7ac33-f044-4445-9164-87b8b69474dc/_ds_bundle.js"></script>
+  <style>html,body{margin:0;min-height:100%;}a{color:#2498bd;}a:hover{color:#1d7f9e;}
+  .cc-btn{background:none;border:0;padding:0;font:inherit;cursor:pointer;text-align:left;}
+  /* 데모 전용 — 제품 화면과 구분되는 주황 점선 */
+  .rv-demo-btn{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 14px;border-radius:8px;border:1px dashed #fd9400;background:#fff;color:#b35c00;font:inherit;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap;}
+  .rv-demo-btn:hover{background:#fff4e0;}
+  .rv-demo-btn[disabled]{border-color:#d9d9d9;color:#b4b4b4;cursor:default;background:#fafafa;}
+  .rv-text{width:100%;box-sizing:border-box;min-height:112px;resize:vertical;border-radius:8px;border:1px solid #e3e3e3;padding:12px 14px;font:inherit;font-size:15px;line-height:1.5;color:#3e3e3e;background:#fff;outline:none;}
+  .rv-text:focus{border-color:#2498bd;}
+  .rv-spin{animation:rvSpin 0.9s linear infinite;}
+  @keyframes rvSpin{to{transform:rotate(360deg);}}
+  .rv-new{animation:rvNew 1.6s ease-out 1;}
+  @keyframes rvNew{0%{box-shadow:0 0 0 3px rgba(36,152,189,0.35);}100%{box-shadow:0 0 0 3px rgba(36,152,189,0);}}
+  </style>
+</helmet>
+<div data-product="ceramique" data-screen-label="예약관리 v1" style="min-height:100vh;display:flex;flex-direction:column;background:var(--ms-gray-100, #f5f6f8);">
+  <!-- 공통 헤더(DEC-004 D-01 · D-06) — 데스크 계정은 현황판 | 예약관리 두 갈래 -->
+  <x-import component-from-global-scope="MedisolveAiMedikit.Header" logo="{{ logo }}" menus="{{ menus }}" current-path="/reservations" on-menu-click="{{ navigate }}" branch-name="세라미크 명동점" user-name="데스크" on-logout="{{ logout }}" hint-size="100%,64px"></x-import>
+
+  <main style="flex:1;width:100%;max-width:1280px;margin:0 auto;box-sizing:border-box;padding:24px 28px 48px;display:flex;flex-direction:column;gap:16px;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        <span class="text-typo-title-md-600 text-ms-gray-900">예약관리</span>
+        <span class="text-typo-body-400 text-ms-gray-600">본사(링키)가 보낸 예약 요청을 확인하고 KOS 에 등록해요</span>
+      </div>
+      <!-- 데모 전용(D-10 · D-15) — 링키 연동이 붙으면 이 상자는 없어진다 -->
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;border:1px dashed #fd9400;background:#fffaf2;">
+        <span style="display:flex;flex-direction:column;gap:1px;padding-right:4px;">
+          <span class="text-typo-caption-md-600" style="color:#b35c00;">데모 전용</span>
+          <span class="text-typo-caption-md-400" style="color:#c98a3c;">링키 연동 자리</span>
+        </span>
+        <button class="rv-demo-btn" onClick="{{ genRequest }}">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>링키 예약 요청 생성</button>
+        <button class="rv-demo-btn" onClick="{{ genModify }}" disabled="{{ modifyDisabled }}" title="{{ modifyHint }}">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16v4z"/></svg>링키 수정 요청 생성</button>
+      </div>
+    </div>
+
+    <!-- 요약 -->
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <sc-for list="{{ summary }}" as="s" hint-placeholder-count="4">
+        <div class="bg-ms-white" style="display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;box-shadow:0px 2px 10px 0px rgba(0,0,0,0.04);">
+          <span style="width:8px;height:8px;border-radius:50%;background:{{ s.dot }};"></span>
+          <span class="text-typo-body-500 text-ms-gray-700">{{ s.name }}</span>
+          <span class="text-typo-body-600 text-ms-gray-900" style="font-variant-numeric:tabular-nums;">{{ s.n }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- 예약 테이블 — 한 줄 = 예약 하나 · 수정 요청은 기존 예약 아래에 이어 붙는다(D-14) -->
+    <div class="bg-ms-white" style="border-radius:12px;box-shadow:0px 2px 10px 0px rgba(0,0,0,0.04);overflow:hidden;">
+      <div class="bg-ms-gray-100 text-typo-caption-md-600 text-ms-gray-600" style="display:grid;grid-template-columns:minmax(0,1.25fr) 200px minmax(0,1fr);gap:20px;padding:12px 20px;">
+        <span>본사 요청</span><span>병원 상태</span><span>비고</span>
+      </div>
+
+      <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:72px 20px 80px;text-align:center;">
+          <div class="bg-ms-gray-100" style="width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#9f9f9f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+          </div>
+          <span class="text-typo-heading-md-500 text-ms-gray-800">아직 받은 예약 요청이 없어요</span>
+          <span class="text-typo-body-400 text-ms-gray-600">본사가 링키에서 예약 요청을 보내면 여기에 한 줄씩 쌓여요</span>
+          <span class="text-typo-caption-md-500" style="margin-top:6px;color:#b35c00;padding:4px 10px;border-radius:999px;border:1px dashed #fd9400;background:#fffaf2;">데모 · 위 [링키 예약 요청 생성]을 눌러 보세요</span>
+        </div>
+      </sc-if>
+
+      <sc-for list="{{ chains }}" as="g" hint-placeholder-count="2">
+        <div class="border-ms-gray-200" style="border-top-width:1px;border-top-style:solid;padding:6px 0 8px;">
+          <sc-if value="{{ g.multi }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;align-items:center;gap:8px;padding:10px 20px 2px;">
+              <span class="text-typo-caption-md-600 text-ms-gray-700">{{ g.name }}</span>
+              <span class="text-typo-caption-md-400 text-ms-gray-500">예약 이력 {{ g.count }}건</span>
+            </div>
+          </sc-if>
+          <sc-for list="{{ g.rows }}" as="r" hint-placeholder-count="1">
+            <div style="display:grid;grid-template-columns:minmax(0,1.25fr) 200px minmax(0,1fr);gap:20px;padding:10px 20px;align-items:start;">
+              <!-- 본사 요청 카드 -->
+              <div style="display:flex;gap:8px;min-width:0;">
+                <sc-if value="{{ r.isMod }}" hint-placeholder-val="{{ false }}">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b4b4b4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:12px;"><path d="M6 3v10a4 4 0 0 0 4 4h9M15 13l4 4-4 4"/></svg>
+                </sc-if>
+                <div class="{{ r.cardCls }}" style="flex:1;min-width:0;border-radius:10px;border-width:1px;border-style:solid;padding:12px 14px;display:flex;flex-direction:column;gap:5px;opacity:{{ r.op }};">
+                  <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+                    <span class="{{ r.kindCls }}">{{ r.kind }}</span>
+                    <span class="text-typo-caption-md-400 text-ms-gray-500" style="font-variant-numeric:tabular-nums;white-space:nowrap;">{{ r.recv }} 받음</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+                    <span class="text-typo-body-600 text-ms-gray-900">{{ r.name }}</span>
+                    <span class="bg-ms-gray-200 text-typo-caption-md-500 text-ms-gray-700" style="padding:1px 6px;border-radius:4px;">{{ r.nat }}</span>
+                    <span class="{{ r.visitCls }}" style="padding:1px 6px;border-radius:4px;">{{ r.visit }}</span>
+                  </div>
+                  <div class="text-typo-heading-md-500 text-ms-gray-900" style="font-variant-numeric:tabular-nums;">
+                    <sc-for list="{{ r.dt }}" as="s" hint-placeholder-count="1"><span style="text-decoration:{{ s.deco }};font-weight:{{ s.fw }};color:{{ s.color }};">{{ s.t }}</span></sc-for>
+                  </div>
+                  <span class="text-typo-body-400 text-ms-gray-700">
+                    <sc-for list="{{ r.proc }}" as="s" hint-placeholder-count="1"><span style="text-decoration:{{ s.deco }};font-weight:{{ s.fw }};color:{{ s.color }};">{{ s.t }}</span></sc-for><span class="text-ms-gray-400"> · </span>통역 <sc-for list="{{ r.lang }}" as="s" hint-placeholder-count="1"><span style="text-decoration:{{ s.deco }};font-weight:{{ s.fw }};color:{{ s.color }};">{{ s.t }}</span></sc-for>
+                  </span>
+                </div>
+              </div>
+
+              <!-- 병원 상태 -->
+              <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding-top:10px;">
+                <span class="text-typo-caption-md-600" style="display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:{{ r.st.bg }};color:{{ r.st.fg }};border:1px solid {{ r.st.bd }};white-space:nowrap;">
+                  <span style="width:6px;height:6px;border-radius:50%;background:{{ r.st.fg }};"></span>{{ r.st.name }}</span>
+                <span class="text-typo-caption-md-400 text-ms-gray-600" style="font-variant-numeric:tabular-nums;">{{ r.stNote }}</span>
+              </div>
+
+              <!-- 비고 — 버튼 · 사유 · 스크린샷 -->
+              <div style="display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding-top:6px;min-width:0;">
+                <sc-if value="{{ r.canAct }}" hint-placeholder-val="{{ true }}">
+                  <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                    <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="md" on-click="{{ r.openPreview }}" hint-size="120px,40px">{{ r.kosLabel }}</x-import>
+                    <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="md" on-click="{{ r.openChange }}" hint-size="120px,40px">변경 요청하기</x-import>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ r.hasShot }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                    <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="{{ r.shotColor }}" size="md" on-click="{{ r.openShot }}" hint-size="120px,40px"><span style="display:flex;align-items:center;gap:6px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 9"/></svg>{{ r.shotLabel }}</span></x-import>
+                    <span class="text-typo-caption-md-400 text-ms-gray-600">{{ r.shotNote }}</span>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ r.hasReason }}" hint-placeholder-val="{{ false }}">
+                  <div style="width:100%;box-sizing:border-box;border-radius:8px;padding:10px 12px;background:#fff5f5;border:1px solid #ffd6d7;display:flex;flex-direction:column;gap:4px;">
+                    <span class="text-typo-caption-md-600" style="color:#e5484d;">변경 요청 사유</span>
+                    <span class="text-typo-body-400 text-ms-gray-800" style="white-space:pre-wrap;overflow-wrap:anywhere;">{{ r.reason }}</span>
+                    <span class="text-typo-caption-md-400 text-ms-gray-500">{{ r.reasonNote }}</span>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ r.hasPlain }}" hint-placeholder-val="{{ false }}">
+                  <span class="text-typo-caption-md-400 text-ms-gray-500">{{ r.plain }}</span>
+                </sc-if>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+  </main>
+
+  <!-- 토스트 -->
+  <sc-if value="{{ hasToast }}" hint-placeholder-val="{{ false }}">
+    <div class="bg-ms-gray-900 text-ms-white text-typo-body-500" style="position:fixed;left:50%;bottom:32px;transform:translateX(-50%);z-index:70;padding:12px 18px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.18);display:flex;align-items:center;gap:8px;white-space:nowrap;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5fd08a" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>{{ toast }}</div>
+  </sc-if>
+
+  <!-- ① KOS 등록 · 수정 미리보기 모달 -->
+  <sc-if value="{{ pv.open }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ pv.close }}" style="position:fixed;inset:0;background:rgba(0,0,0,0.32);z-index:50;"></div>
+    <div class="bg-ms-white" style="position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:51;width:640px;max-width:calc(100vw - 32px);max-height:calc(100vh - 48px);overflow:auto;border-radius:16px;box-shadow:0 16px 48px rgba(0,0,0,0.2);display:flex;flex-direction:column;">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:22px 24px 6px;">
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <span class="text-typo-title-sm-600 text-ms-gray-900">{{ pv.title }}</span>
+          <span class="text-typo-body-400 text-ms-gray-600">{{ pv.sub }}</span>
+        </div>
+        <button class="cc-btn" onClick="{{ pv.close }}" aria-label="닫기" style="padding:4px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8a8a8a" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+      <div style="padding:14px 24px 4px;">
+        <div class="border-ms-gray-200" style="border-width:1px;border-style:solid;border-radius:12px;overflow:hidden;">
+          <sc-for list="{{ pv.rows }}" as="f" hint-placeholder-count="7">
+            <div class="{{ f.rowCls }}" style="display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px;padding:11px 16px;border-top-width:1px;border-top-style:solid;align-items:start;">
+              <span class="text-typo-body-500 text-ms-gray-600">{{ f.label }}</span>
+              <span class="text-typo-body-500 text-ms-gray-900" style="white-space:pre-wrap;overflow-wrap:anywhere;font-variant-numeric:tabular-nums;"><sc-for list="{{ f.segs }}" as="s" hint-placeholder-count="1"><span style="text-decoration:{{ s.deco }};font-weight:{{ s.fw }};color:{{ s.color }};">{{ s.t }}</span></sc-for></span>
+            </div>
+          </sc-for>
+        </div>
+        <span class="text-typo-caption-md-400 text-ms-gray-500" style="display:block;padding:10px 2px 0;">{{ pv.foot }}</span>
+      </div>
+      <div style="display:flex;justify-content:flex-end;gap:8px;padding:18px 24px 22px;">
+        <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="lg" on-click="{{ pv.close }}" hint-size="88px,44px">취소</x-import>
+        <!-- kos api 연동 필요 — 등록: KOS 예약 생성 · 수정: KOS 예약 변경. 지금은 상태만 바꾸고 HTML 스크린샷을 붙인다(D-18) -->
+        <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="lg" is-loading="{{ pv.busy }}" on-click="{{ pv.submit }}" hint-size="120px,44px">{{ pv.cta }}</x-import>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ② 스크린샷 보기 모달 — KOS 예약 카드 모양(값은 전부 가짜) -->
+  <sc-if value="{{ sh.open }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ sh.close }}" style="position:fixed;inset:0;background:rgba(0,0,0,0.32);z-index:50;"></div>
+    <div class="bg-ms-white" style="position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:51;width:520px;max-width:calc(100vw - 32px);max-height:calc(100vh - 48px);overflow:auto;border-radius:16px;box-shadow:0 16px 48px rgba(0,0,0,0.2);display:flex;flex-direction:column;">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:22px 24px 10px;">
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <span class="text-typo-title-sm-600 text-ms-gray-900">{{ sh.title }}</span>
+          <span class="text-typo-body-400 text-ms-gray-600">{{ sh.sub }}</span>
+        </div>
+        <button class="cc-btn" onClick="{{ sh.close }}" aria-label="닫기" style="padding:4px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8a8a8a" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+      <!-- 스크린샷 자리 — 지금은 HTML 로 그린다. 원본 캡처는 사용자가 준다(D-12 · OQ-402) -->
+      <div class="bg-ms-gray-100" style="margin:6px 24px 24px;border-radius:12px;padding:20px;display:flex;justify-content:center;">
+        <div style="width:330px;background:#fff;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.12);overflow:hidden;font-size:13px;color:#222;">
+          <div style="background:#d84b93;color:#fff;font-weight:700;font-size:14px;padding:9px 14px;">예약</div>
+          <div style="padding:14px 16px 12px;border-bottom:1px solid #eee;display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;">
+              <span style="font-size:16px;font-weight:700;">{{ sh.k.name }}</span>
+              <span style="color:#777;">{{ sh.k.reading }}</span>
+              <span style="color:#ccc;">|</span>
+              <span style="color:#777;">{{ sh.k.chart }}</span>
+            </div>
+            <div style="display:grid;grid-template-columns:72px 1fr;align-items:center;gap:8px;">
+              <span style="color:#666;">현재위치</span>
+              <span style="border:1px solid #ddd;border-radius:6px;padding:5px 10px;display:flex;justify-content:space-between;">{{ sh.k.floor }}<span style="color:#aaa;">⌄</span></span>
+            </div>
+          </div>
+          <div style="padding:12px 16px;border-bottom:1px solid #eee;display:grid;grid-template-columns:72px 1fr;row-gap:8px;column-gap:8px;">
+            <span style="color:#666;">생년월일</span><span>{{ sh.k.birth }}</span>
+            <span style="color:#666;">최근방문일</span><span>{{ sh.k.last }}</span>
+            <span style="color:#666;">연락처</span><span>{{ sh.k.phone }}</span>
+            <span style="color:#666;grid-column:1 / span 2;padding-top:4px;">주요 정보</span>
+            <div style="grid-column:1 / span 2;display:flex;gap:5px;flex-wrap:wrap;">
+              <sc-for list="{{ sh.k.chips }}" as="c" hint-placeholder-count="3"><span style="border:1px solid {{ c.bd }};color:{{ c.fg }};background:{{ c.bg }};border-radius:5px;padding:2px 8px;">{{ c.t }}</span></sc-for>
+            </div>
+          </div>
+          <div style="padding:12px 16px;border-bottom:1px solid #eee;display:flex;flex-direction:column;gap:6px;">
+            <span style="color:#666;">예약 일정</span>
+            <span style="background:#eef3fd;border-left:3px solid #3b7be8;border-radius:4px;padding:7px 10px;font-variant-numeric:tabular-nums;">{{ sh.k.slot }} <b style="margin-left:6px;">{{ sh.k.zone }}</b></span>
+            <span style="color:#666;padding-top:4px;">희망 시술</span>
+            <span>{{ sh.k.proc }}</span>
+          </div>
+          <div style="padding:12px 16px;display:flex;flex-direction:column;gap:6px;">
+            <span style="color:#666;">예약 메모</span>
+            <span style="white-space:pre-wrap;line-height:1.5;">{{ sh.k.memo }}</span>
+          </div>
+          <div style="display:flex;justify-content:flex-end;gap:6px;padding:4px 16px 14px;">
+            <span style="border:1px solid #ccc;border-radius:6px;padding:5px 10px;color:#444;">예약 이동하기</span>
+            <span style="background:#3b7be8;border-radius:6px;padding:5px 10px;color:#fff;">고객차트 보기</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ③ 변경 요청하기 모달 — 사유는 텍스트(D-13) -->
+  <sc-if value="{{ ch.open }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ ch.close }}" style="position:fixed;inset:0;background:rgba(0,0,0,0.32);z-index:50;"></div>
+    <div class="bg-ms-white" style="position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:51;width:560px;max-width:calc(100vw - 32px);border-radius:16px;box-shadow:0 16px 48px rgba(0,0,0,0.2);display:flex;flex-direction:column;">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:22px 24px 6px;">
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <span class="text-typo-title-sm-600 text-ms-gray-900">변경 요청하기</span>
+          <span class="text-typo-body-400 text-ms-gray-600">사유를 적어 본사로 돌려보내요. 본사가 고객과 다시 맞춘 뒤 수정 요청을 보내요</span>
+        </div>
+        <button class="cc-btn" onClick="{{ ch.close }}" aria-label="닫기" style="padding:4px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8a8a8a" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+      <div style="padding:14px 24px 0;display:flex;flex-direction:column;gap:14px;">
+        <div class="bg-ms-gray-100" style="border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:3px;">
+          <span class="text-typo-body-600 text-ms-gray-900">{{ ch.name }} <span class="text-typo-caption-md-400 text-ms-gray-600">{{ ch.meta }}</span></span>
+          <span class="text-typo-body-500 text-ms-gray-800" style="font-variant-numeric:tabular-nums;">{{ ch.when }} · {{ ch.proc }}</span>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:8px;">
+          <span class="text-typo-body-600 text-ms-gray-800">사유</span>
+          <textarea class="rv-text" value="{{ ch.text }}" onInput="{{ ch.onInput }}" placeholder="예) 그 시간은 원장 상담이 마감됐어요. 같은 날 14:00 이후로 가능해요"></textarea>
+        </label>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;padding:18px 24px 22px;">
+        <span class="text-typo-caption-md-400 text-ms-gray-500">보내면 이 줄은 「변경 요청」이 되고 사유가 함께 보여요</span>
+        <div style="display:flex;gap:8px;">
+          <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="lg" on-click="{{ ch.close }}" hint-size="88px,44px">취소</x-import>
+          <!-- 링키 연동 필요 — 변경 요청 · 사유를 본사(링키)로 보낸다. 데모는 줄 상태만 바꾼다 -->
+          <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="{{ ch.color }}" size="lg" disabled="{{ ch.empty }}" on-click="{{ ch.submit }}" hint-size="140px,44px">변경 요청 보내기</x-import>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;scene&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;1-empty&quot;, &quot;2-requested&quot;, &quot;3-preview&quot;, &quot;4-confirmed&quot;, &quot;4-screenshot&quot;, &quot;5-change-modal&quot;, &quot;5-changed&quot;, &quot;6-modify&quot;, &quot;7-modified&quot;], &quot;default&quot;: &quot;1-empty&quot;, &quot;tsType&quot;: &quot;'1-empty'|'2-requested'|'3-preview'|'4-confirmed'|'4-screenshot'|'5-change-modal'|'5-changed'|'6-modify'|'7-modified'&quot;}}">
+// ===== 예약관리 v1 — DEC-004 D-10 ~ D-18 데모 흐름. 고객 · 값은 전부 가짜(이름은 시나리오 가짜 이름본) =====
+const pad = (n) => String(n).padStart(2, '0');
+const WD = ['일', '월', '화', '수', '목', '금', '토'];
+const dayLabel = (md) => { const [m, d] = md.split('-').map(Number); return md + '(' + WD[new Date(2026, m - 1, d).getDay()] + ')'; };
+const plus30 = (t) => { const [h, m] = t.split(':').map(Number), x = h * 60 + m + 30; return pad(Math.floor(x / 60)) + ':' + pad(x % 60); };
+
+// [링키 예약 요청 생성] 을 누를 때마다 차례로 하나씩(가짜)
+const SAMPLES = [
+  { name: '[TW] LIN YA CHEN', reading: '린야천', chart: 'No.9041', nat: '대만', natCode: 'TW', isNew: true, sex: '여성', birth: '1991.03.08 (만 35세)', phone: '+886 900 000 000', zone: '3층 / 중화권',
+    date: '10-16', time: '14:00', proc: '울쎄라피 프라임 300shot', lang: '중국어' },
+  { name: '[JP] TANAKA YUKI', reading: '다나카 유키', chart: 'No.9058', nat: '일본', natCode: 'JP', isNew: false, sex: '여성', birth: '1988.11.23 (만 37세)', phone: '+81 90 0000 0000', zone: '3층 / 일본',
+    date: '10-17', time: '10:00', proc: '리쥬란 힐러 2cc', lang: '일본어' },
+  { name: '[HK] CHAN MEI LING', reading: '찬메이링', chart: 'No.9063', nat: '홍콩', natCode: 'HK', isNew: true, sex: '여성', birth: '1995.07.19 (만 31세)', phone: '+852 9000 0000', zone: '3층 / 중화권',
+    date: '10-17', time: '15:00', proc: '써마지 FLX 900shot', lang: '중국어' }
+];
+// [링키 수정 요청 생성] — 변경 요청이 걸린 예약이면 사유대로 시간을 고친다(D-14), 아니면 확정 예약에 고객 시간 변경
+const MOD_FROM_CHANGE = { time: '14:30' };
+const MOD_FROM_CUSTOMER = { time: '16:30' };
+const DEMO_REASON = '10:00 은 원장 상담이 마감됐어요. 같은 날 14:00 이후로 가능해요.';
+
+// 상태(OQ-401 와이어 값)
+const ST = {
+  pending: { name: '예약 확인중', fg: '#c26a00', bg: '#fff4e0', bd: '#ffd9a0' },
+  confirmed: { name: '예약 확정', fg: '#15803d', bg: '#e9f7ee', bd: '#b7e4c7' },
+  change: { name: '변경 요청', fg: '#e5484d', bg: '#fff0f0', bd: '#ffd0d2' },
+  modPending: { name: '수정 확인중', fg: '#c26a00', bg: '#fff4e0', bd: '#ffd9a0' },
+  modConfirmed: { name: '수정 확정', fg: '#15803d', bg: '#e9f7ee', bd: '#b7e4c7' },
+  superseded: { name: '변경됨', fg: '#7a7a7a', bg: '#f3f3f3', bd: '#e0e0e0' }
+};
+const OPEN = ['pending', 'modPending'];
+const DONE = ['confirmed', 'modConfirmed'];
+
+// 바뀐 값은 취소선 → 새 값(D-14)
+const seg = (t, k) => ({ t, deco: k === 'old' ? 'line-through' : 'none', fw: k === 'new' ? '700' : 'inherit', color: k === 'old' ? '#9f9f9f' : k === 'new' ? '#1d7f9e' : 'inherit' });
+const diff = (prev, cur, pre) => (prev != null && prev !== cur ? [...(pre ? [seg(pre)] : []), seg(prev, 'old'), seg(' → '), seg(cur, 'new')] : [seg((pre || '') + cur)]);
+const dtSegs = (r) => {
+  const p = r.prev;
+  if (p && p.date !== r.date) return [seg(dayLabel(p.date) + ' ' + p.time, 'old'), seg(' → '), seg(dayLabel(r.date) + ' ' + r.time, 'new')];
+  return diff(p && p.time, r.time, dayLabel(r.date) + ' ');
+};
+
+function memoOf(c, r) { return '26.' + DEMO_DAY.replace('-', '.') + '/링키 본사/' + r.proc + '/' + r.lang + ' 통역 필요' + (r.prev ? '\n*' + (r.prev.date !== r.date || r.prev.time !== r.time ? '예약 시간 변경 ' + r.prev.time + ' → ' + r.time : '예약 수정') : ''); }
+const DEMO_DAY = '10-14';
+
+class Component extends DCLogic {
+  state = this.initial();
+  initial() { return { chains: [], seq: 0, clock: 11 * 60 + 2, modal: null, text: '', busy: false, toast: '', fresh: null }; }
+
+  componentDidMount() { this.applyScene(this.props.scene); }
+  componentDidUpdate(prev) { if (prev && prev.scene !== this.props.scene) this.applyScene(this.props.scene); }
+  componentWillUnmount() { clearTimeout(this.busyT); clearTimeout(this.toastT); }
+
+  // ---- 캔버스 장면 = 빈 상태에서 데모 조작을 차례로 다시 돈 결과
+  applyScene(scene) {
+    let s = this.initial();
+    const run = (fn) => { s = { ...s, ...fn(s) }; };
+    const n = Number(String(scene || '1').split('-')[0]);
+    if (n >= 2) run((x) => this.reqNew(x));                                                    // A 받음
+    if (scene === '3-preview') run(() => ({ modal: { type: 'preview', id: 'r1' } }));
+    if (n >= 4) run((x) => this.register(x, 'r1'));                                             // A 확정
+    if (scene === '4-screenshot') run(() => ({ modal: { type: 'shot', id: 'r1' } }));
+    if (n >= 5) run((x) => this.reqNew(x));                                                     // B 받음
+    if (scene === '5-change-modal') run(() => ({ modal: { type: 'change', id: 'r2' }, text: DEMO_REASON }));
+    if (n >= 5 && scene !== '5-change-modal') run((x) => this.sendChange(x, 'r2', DEMO_REASON)); // B 변경 요청
+    if (n >= 6) run((x) => this.reqModify(x));                                                  // B 수정 요청(사유 반영)
+    if (n >= 7) {
+      run((x) => this.register(x, 'r3'));                                                       // B 수정 확정
+      run((x) => this.reqModify(x, 'c0'));                                                      // A 고객 시간 변경
+      run((x) => this.register(x, 'r4'));                                                       // A 수정 확정 · 이전 스크린샷 보관
+    }
+    this.setState({ ...s, fresh: null, toast: '' });
+  }
+
+  // ---- 순수 상태 전이(state → patch)
+  tick(s, m) { return s.clock + (m || 3); }
+  hhmm(t) { return DEMO_DAY + ' ' + pad(Math.floor(t / 60)) + ':' + pad(t % 60); }
+  reqNew(s) {
+    const smp = SAMPLES[s.chains.length % SAMPLES.length], clock = this.tick(s), id = 'r' + (s.seq + 1);
+    const row = { id, src: 'new', date: smp.date, time: smp.time, proc: smp.proc, lang: smp.lang, prev: null, status: 'pending', recv: this.hhmm(clock) };
+    return { chains: [...s.chains, { cid: 'c' + s.chains.length, smp, rows: [row] }], seq: s.seq + 1, clock, fresh: id };
+  }
+  modTarget(s) {
+    const last = (c) => c.rows[c.rows.length - 1];
+    return s.chains.find((c) => last(c).status === 'change') || [...s.chains].reverse().find((c) => DONE.includes(last(c).status)) || null;
+  }
+  reqModify(s, cid) {
+    const c = cid ? s.chains.find((x) => x.cid === cid) : this.modTarget(s);
+    if (!c) return {};
+    const base = c.rows[c.rows.length - 1], fromChange = base.status === 'change', clock = this.tick(s), id = 'r' + (s.seq + 1);
+    const patch = fromChange ? MOD_FROM_CHANGE : MOD_FROM_CUSTOMER;
+    const row = { id, src: fromChange ? 'change' : 'customer', date: base.date, time: base.time, proc: base.proc, lang: base.lang, ...patch,
+      prev: { date: base.date, time: base.time, proc: base.proc, lang: base.lang }, status: 'modPending', recv: this.hhmm(clock), baseId: base.id };
+    const chains = s.chains.map((x) => (x === c ? { ...x, rows: [...x.rows.map((r) => (r.id === base.id ? { ...r, modReq: true } : r)), row] } : x));
+    return { chains, seq: s.seq + 1, clock, fresh: id };
+  }
+  register(s, id) {
+    const clock = this.tick(s, 2);
+    const chains = s.chains.map((c) => {
+      const t = c.rows.find((r) => r.id === id);
+      if (!t) return c;
+      return { ...c, rows: c.rows.map((r) => {
+        if (r.id === id) return { ...r, status: r.status === 'modPending' ? 'modConfirmed' : 'confirmed', shotAt: this.hhmm(clock) };
+        if (t.status === 'modPending' && r.status !== 'superseded' && r.id !== id) return { ...r, status: 'superseded', supAt: this.hhmm(clock), was: r.status };
+        return r;
+      }) };
+    });
+    return { chains, clock, modal: null, busy: false };
+  }
+  sendChange(s, id, text) {
+    const clock = this.tick(s);
+    const chains = s.chains.map((c) => ({ ...c, rows: c.rows.map((r) => (r.id === id ? { ...r, status: 'change', reason: text.trim(), reasonAt: this.hhmm(clock) } : r)) }));
+    return { chains, clock, modal: null, text: '' };
+  }
+
+  // ---- 조작
+  find(id) { for (const c of this.state.chains) { const r = c.rows.find((x) => x.id === id); if (r) return { c, r }; } return null; }
+  flash(msg) { clearTimeout(this.toastT); this.setState({ toast: msg }); this.toastT = setTimeout(() => this.setState({ toast: '' }), 2600); }
+  genRequest() { this.setState((s) => this.reqNew(s)); this.flash('링키에서 예약 요청이 왔어요'); }
+  genModify() { if (!this.modTarget(this.state)) return; this.setState((s) => this.reqModify(s)); this.flash('링키에서 수정 요청이 왔어요'); }
+  submitPreview() {
+    const id = this.state.modal.id, mod = this.find(id).r.status === 'modPending';
+    this.setState({ busy: true });
+    // kos api 연동 필요 — 지금은 0.9초 뒤 성공으로 친다
+    this.busyT = setTimeout(() => { this.setState((s) => this.register(s, id)); this.flash(mod ? 'KOS 예약을 수정하고 스크린샷을 붙였어요' : 'KOS 에 등록하고 스크린샷을 붙였어요'); }, 900);
+  }
+  submitChange() {
+    if (!this.state.text.trim()) return;
+    const id = this.state.modal.id;
+    this.setState((s) => this.sendChange(s, id, s.text));
+    this.flash('본사에 변경 요청을 보냈어요');
+  }
+
+  // ---- 화면 값
+  rowVals(c, r, i) {
+    const smp = c.smp, isMod = r.src !== 'new', st = r.status;
+    const kind = r.src === 'new' ? '예약 요청 · 본사' : r.src === 'change' ? '수정 요청 · 변경 요청 반영' : '수정 요청 · 고객 시간 변경';
+    const hasShot = !!r.shotAt;
+    const live = OPEN.includes(st);
+    let stNote = '', plain = '';
+    if (st === 'pending') stNote = 'KOS 등록 전';
+    if (st === 'modPending') stNote = 'KOS 수정 전';
+    if (DONE.includes(st)) stNote = r.modReq ? '수정 요청 받음 ↓' : r.shotAt + ' 등록';
+    if (st === 'change') stNote = r.modReq ? '수정 요청 받음 ↓' : '본사 회신 대기';
+    if (st === 'superseded') { stNote = r.supAt + ' 아래 예약으로 바뀜'; if (!hasShot) plain = 'KOS 등록 전에 바뀌어 스크린샷이 없어요'; }
+    return {
+      isMod, kind, recv: r.recv, name: smp.name, nat: smp.nat,
+      visit: smp.isNew ? '첫 방문' : '재내원',
+      visitCls: smp.isNew ? 'bg-primary-100 text-primary text-typo-caption-md-600' : 'bg-ms-gray-200 text-ms-gray-700 text-typo-caption-md-500',
+      dt: dtSegs(r),
+      proc: diff(r.prev && r.prev.proc, r.proc),
+      lang: diff(r.prev && r.prev.lang, r.lang),
+      kindCls: st === 'superseded' ? 'text-typo-caption-md-600 text-ms-gray-500' : 'text-typo-caption-md-600 text-primary',
+      cardCls: (live ? 'bg-primary-100 border-primary' : st === 'superseded' ? 'bg-ms-gray-100 border-ms-gray-300' : st === 'change' ? 'bg-ms-white border-ms-gray-300' : 'bg-ms-white border-ms-gray-300') + (this.state.fresh === r.id ? ' rv-new' : ''),
+      op: st === 'superseded' ? '0.75' : '1',
+      st: ST[st], stNote,
+      canAct: live,
+      kosLabel: st === 'modPending' ? 'KOS 수정하기' : 'KOS 등록하기',
+      openPreview: () => this.setState({ modal: { type: 'preview', id: r.id } }),
+      openChange: () => this.setState({ modal: { type: 'change', id: r.id }, text: '' }),
+      hasShot, shotColor: st === 'superseded' ? 'gray' : 'blue',
+      shotLabel: st === 'superseded' ? '이전 스크린샷' : '스크린샷 보기',
+      shotNote: st === 'superseded' ? '이력 보관' : r.shotAt + ' 등록 화면 자동 첨부',
+      openShot: () => this.setState({ modal: { type: 'shot', id: r.id } }),
+      hasReason: !!r.reason, reason: r.reason || '', reasonNote: r.reasonAt ? r.reasonAt + ' · 데스크가 본사로 보냄' : '',
+      hasPlain: !!plain, plain
+    };
+  }
+  previewVals() {
+    const m = this.state.modal, open = !!m && m.type === 'preview';
+    const empty = { open: false, rows: [], title: '', sub: '', foot: '', cta: '', busy: false, close: () => {}, submit: () => {} };
+    if (!open) return empty;
+    const { c, r } = this.find(m.id), smp = c.smp, mod = r.status === 'modPending', p = r.prev;
+    const rows = [
+      ['고객', [seg(smp.name)]],
+      ['고객 구분', [seg(smp.isNew ? '신규 환자' : '재내원')]],
+      ['국적 · 성별', [seg(smp.nat + ' · ' + smp.sex)]],
+      ['예약 일정', p && (p.date !== r.date || p.time !== r.time)
+        ? [seg(dayLabel(p.date) + ' ' + p.time + ' ~ ' + plus30(p.time), 'old'), seg('  →  '), seg(dayLabel(r.date) + ' ' + r.time + ' ~ ' + plus30(r.time), 'new')]
+        : [seg(dayLabel(r.date) + ' ' + r.time + ' ~ ' + plus30(r.time))]],
+      ['층 / 권역', [seg(smp.zone)]],
+      ['희망 시술', diff(p && p.proc, r.proc)],
+      ['통역', diff(p && p.lang, r.lang, '').concat([seg(' 통역 필요')])],
+      ['예약 메모', [seg(memoOf(c, r))]]
+    ];
+    const changed = p ? ['date', 'time', 'proc', 'lang'].filter((k) => p[k] !== r[k]).length : 0;
+    return {
+      open: true,
+      title: mod ? 'KOS 수정 미리보기' : 'KOS 등록 미리보기',
+      sub: mod ? '이미 등록된 예약을 아래처럼 바꿔요 · 바뀐 항목 ' + changed + '개' : '아래 내용으로 KOS 에 예약을 등록해요',
+      rows: rows.map(([label, segs], i) => ({ label, segs, rowCls: (i === 0 ? 'border-ms-white' : 'border-ms-gray-200') + (segs.some((s) => s.deco === 'line-through' || s.fw === '700') ? ' bg-primary-100' : '') })),
+      foot: '등록하면 KOS 예약 화면을 스크린샷으로 이 줄에 붙여요',
+      cta: mod ? '수정하기' : '등록하기',
+      busy: this.state.busy,
+      close: () => { if (!this.state.busy) this.setState({ modal: null }); },
+      submit: () => { if (!this.state.busy) this.submitPreview(); }
+    };
+  }
+  shotVals() {
+    const m = this.state.modal;
+    const empty = { open: false, title: '', sub: '', k: { chips: [] }, close: () => {} };
+    if (!m || m.type !== 'shot') return empty;
+    const { c, r } = this.find(m.id), smp = c.smp, idx = c.rows.indexOf(r) + 1;
+    return {
+      open: true,
+      title: (c.rows.length > 1 ? '예약 ' + idx + ' · ' : '') + 'KOS 등록 화면',
+      sub: r.shotAt + ' ' + (r.status === 'modConfirmed' || r.src !== 'new' ? 'KOS 수정' : 'KOS 등록') + ' · 자동 첨부' + (r.status === 'superseded' ? ' · 이력 보관' : ''),
+      k: {
+        name: smp.name, reading: smp.reading, chart: smp.chart, floor: smp.zone.split(' / ')[0],
+        birth: smp.birth, last: smp.isNew ? '없음' : '2026.08.21', phone: smp.phone,
+        chips: [
+          { t: smp.nat, fg: '#333', bg: '#f5f5f5', bd: '#ddd' },
+          { t: smp.sex, fg: '#333', bg: '#f5f5f5', bd: '#ddd' },
+          smp.isNew ? { t: '신규 환자', fg: '#e08a00', bg: '#fff7e6', bd: '#ffd591' } : { t: '재내원', fg: '#333', bg: '#f5f5f5', bd: '#ddd' },
+          { t: '유입 · 본사(링키)', fg: '#333', bg: '#f5f5f5', bd: '#ddd' }
+        ],
+        slot: r.time + ' ~ ' + plus30(r.time) + '  ·  ' + dayLabel(r.date), zone: smp.zone,
+        proc: r.proc, memo: memoOf(c, r)
+      },
+      close: () => this.setState({ modal: null })
+    };
+  }
+  changeVals() {
+    const m = this.state.modal;
+    const empty = { open: false, name: '', meta: '', when: '', proc: '', text: '', empty: true, color: 'gray', close: () => {}, submit: () => {}, onInput: () => {} };
+    if (!m || m.type !== 'change') return empty;
+    const { c, r } = this.find(m.id), smp = c.smp, blank = !this.state.text.trim();
+    return {
+      open: true, name: smp.name, meta: smp.nat + ' · ' + (smp.isNew ? '첫 방문' : '재내원'),
+      when: dayLabel(r.date) + ' ' + r.time, proc: r.proc + ' · 통역 ' + r.lang,
+      text: this.state.text, empty: blank, color: blank ? 'gray' : 'blue',
+      onInput: (e) => this.setState({ text: e.target.value }),
+      close: () => this.setState({ modal: null, text: '' }),
+      submit: () => this.submitChange()
+    };
+  }
+  renderVals() {
+    const s = this.state, all = s.chains.flatMap((c) => c.rows);
+    const cnt = (keys) => all.filter((r) => keys.includes(r.status)).length;
+    const target = this.modTarget(s);
+    return {
+      logo: React.createElement('img', { src: 'assets/ceramique-logo-color.svg', alt: 'CÉRAMIQUE', style: { height: 22, display: 'block' } }),
+      // 데스크 계정 — 내 스케쥴 없음(D-06). 직원 계정은 { 내 스케쥴: /staff } 가 셋째로 붙는다
+      menus: [{ name: '현황판', href: '/desk' }, { name: '예약관리', href: '/reservations' }],
+      navigate: (href, e) => { e && e.preventDefault && e.preventDefault(); },
+      logout: () => {},
+      genRequest: () => this.genRequest(),
+      genModify: () => this.genModify(),
+      modifyDisabled: !target,
+      modifyHint: target ? target.smp.name + ' 예약에 수정 요청이 붙어요' : '확정 또는 변경 요청된 예약이 있어야 해요',
+      summary: [
+        { name: '확인 필요', n: cnt(OPEN), dot: '#fd9400' },
+        { name: '변경 요청', n: cnt(['change']), dot: '#e5484d' },
+        { name: '확정', n: cnt(DONE), dot: '#15803d' },
+        { name: '전체 예약', n: s.chains.length, dot: '#9f9f9f' }
+      ],
+      isEmpty: !s.chains.length,
+      chains: s.chains.map((c) => ({ name: c.smp.name, count: c.rows.length, multi: c.rows.length > 1, rows: c.rows.map((r, i) => this.rowVals(c, r, i)) })),
+      hasToast: !!s.toast, toast: s.toast,
+      pv: this.previewVals(), sh: this.shotVals(), ch: this.changeVals()
+    };
+  }
+}
+</script>
+</body>
+</html>

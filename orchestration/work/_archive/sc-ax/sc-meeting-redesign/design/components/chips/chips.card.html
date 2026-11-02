@@ -1,0 +1,20 @@
+<!-- @dsCard group="Components" viewport="700x240" name="Chips &amp; Category" subtitle="Chip/Chip (4 sizes, solid / outlined, active, disabled) and the Category scroll rail" -->
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<style>body{margin:0;padding:20px;background:var(--ax-surface);font-family:var(--font-ui)}#root{display:flex;flex-direction:column;gap:16px}.row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.col{display:flex;flex-direction:column;gap:10px}.lbl{font:500 11px/1.273 var(--font-ui);letter-spacing:.031em;color:var(--ax-ink-assistive);width:72px;flex-shrink:0}</style>
+</head><body><div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+const { ChipChip, CategoryCategory } = window.TheSCAXDesignSystem_7e8395;
+const Row = ({ label, children, style }) => <div className="row" style={style}><span className="lbl">{label}</span>{children}</div>;
+const mount = (el) => ReactDOM.createRoot(document.getElementById('root')).render(el);
+
+mount(<>
+  <Row label="Outlined">{['lg','md','sm','xs'].map(s=><ChipChip key={s} variant="outlined" size={s} text="전체" />)}</Row>
+  <Row label="Solid">{['lg','md','sm','xs'].map(s=><ChipChip key={s} variant="solid" size={s} text="전체" />)}</Row>
+  <Row label="States"><ChipChip size="md" active text="진행중" /><ChipChip size="md" disable text="보관" /><ChipChip size="md" leadingContent text="필터" /></Row>
+  <Row label="Category" style={{alignItems:'flex-start'}}><div style={{flex:1,minWidth:0}}><CategoryCategory size="sm" variant="normal" /></div></Row>
+</>);
+</script></body></html>

@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/scax-8fa54d76-58d6-481a-aed9-743dff9d6c09/fonts/fonts.css">
+<link rel="stylesheet" href="_ds/scax-8fa54d76-58d6-481a-aed9-743dff9d6c09/_ds_bundle.css">
+<link rel="stylesheet" href="_ds/scax-8fa54d76-58d6-481a-aed9-743dff9d6c09/styles.css">
+<script src="_ds/scax-8fa54d76-58d6-481a-aed9-743dff9d6c09/_ds_bundle.js"></script>
+<style>
+/* 이 DS 는 1280 미만에서 화면을 접는다. 미리보기 창은 그보다 좁을 수 있어 고정폭 + 가로 스크롤로 둔다. */
+@media (max-width:1279px){
+.thesc-shell{display:grid!important;grid-template-columns:200px minmax(0,1fr)!important;min-width:1560px}
+.rail{position:sticky!important;transform:none!important;width:auto!important}
+.rail-toggle,.min-width-notice{display:none!important}
+}
+/* 모달 컴포넌트 보정 — DS 기본값이 이 화면의 타이포 단(design/CLAUDE.md)에 없다.
+   _ds/ 는 읽기 전용이라 여기서 누른다: 제목 22 → Title 17, 본문 15 → Body 14 */
+.modal-head h3{font-size:17px}
+.modal-body{font-size:14px;color:var(--text-primary)}
+.modal-close{font-size:0}
+/* 폼 입력은 DS 기본이 15 인데 이 화면의 단(17/14/13/12)에 15 가 없다. 주제(.title-input 17)만 빼고 14 로.
+   .search-input-box(13)가 input[type=text](0,1,1)에 밀리는 것도 여기서 되돌린다 */
+.modal input[type="text"]:not(.title-input),.modal textarea{height:38px;font-size:14px}
+.modal label,.modal button:not([class]){font-size:14px}
+/* 5 · 포커스는 브라우저 기본 링을 쓰지 않고 DS 링(--focus-ring)으로만 읽힌다.
+   DS 의 :focus-visible(0,1,0)이 내 규칙에 밀리지 않게 같은 자리에서 다시 적는다 */
+.modal :focus{outline:none}
+.modal input:focus-visible,.modal textarea:focus-visible,.modal .field-select:focus-visible{
+  outline:none;border-color:var(--accent);box-shadow:var(--focus-ring)}
+/* 1·2 · 스크롤바는 보이지 않는다 — 트랙도 손잡이도 없이 내용만 흐른다 */
+.mm-scroll{scrollbar-width:none;-ms-overflow-style:none}
+.mm-scroll::-webkit-scrollbar{width:0;height:0;display:none}
+/* 1·2 · 두 패널은 화면 높이를 꽉 쓴다. 오른쪽은 머리 고정 · 본문 스크롤 · 푸터 고정 3단.
+   클래스 이름은 코드(MeetingListPage.tsx)와 같게 둬 피드백 셀렉터가 시안에도 그대로 걸린다 */
+.meeting-panel{display:flex;flex-direction:column;min-height:0;overflow:hidden;
+  border:1px solid var(--border-strong);border-radius:var(--radius-panel);background:var(--surface)}
+.meeting-panel-head{flex:none;padding:20px 24px 16px;border-bottom:1px solid var(--border-default)}
+.meeting-scroll{flex:1;min-height:0;overflow-y:auto}
+.meeting-panel-foot{flex:none;display:flex;justify-content:flex-end;gap:8px;
+  padding:12px 24px;border-top:1px solid var(--border-default)}
+/* 4·12 · 셀렉터 공용 부품 — DS 에 Select·TimeField 가 없어 여기서 규격을 세운다 (DS 추가 후보) */
+.field-select{display:flex;align-items:center;justify-content:space-between;gap:8px;
+  height:38px;padding:0 12px;border:1px solid var(--border-strong);border-radius:var(--radius-control);
+  background:var(--surface);color:var(--text-primary);font-size:14px;font-variant-numeric:tabular-nums}
+.field-select:hover{border-color:var(--text-tertiary)}
+.field-select[aria-expanded="true"]{border-color:var(--action)}
+/* 밀도 높은 목록 화면이라 페이지 제목은 Display 28 대신 Title 17 (design/CLAUDE.md) */
+.page-head h1{font-size:17px}
+/* 목록·패널이 화면 끝까지 차게 — 고정 높이(calc(100vh - 214px)) 대신 셸을 flex 기둥으로 세운다.
+   고정값은 상단 높이가 바뀔 때마다 아래에 빈 띠가 남는다 */
+.canvas{display:flex;flex-direction:column;padding-bottom:24px}
+.page-surface{flex:1;min-height:0;display:flex;flex-direction:column}
+</style>
+</helmet>
+<div class="thesc-shell">
+
+<aside class="rail">
+<div class="wordmark"><span class="wordmark-mark">M</span> Managment</div>
+<div class="profile"><span class="avatar md">이</span><div><b>이건학</b><small>제품본부</small></div></div>
+<nav>
+<button type="button">홈</button>
+<button type="button">업무</button>
+<button type="button">부서 진행 현황</button>
+<button type="button" class="active">회의 목록</button>
+<button type="button">채팅</button>
+<button type="button">자료</button>
+<button type="button">일정</button>
+<button type="button">메신저</button>
+</nav>
+<div class="rail-foot">v1 · 회의 목록</div>
+</aside>
+
+<div class="canvas">
+<div class="canvas-topbar"><div class="breadcrumb"><span>홈</span><span>›</span><b>회의 목록</b></div></div>
+
+<div class="page-surface">
+
+<div class="page-head">
+<div><h1>회의 목록</h1></div>
+<div class="page-head-actions">
+<a class="btn primary" href="회의실.dc.html"><x-import component-from-global-scope="SCAX.Icon" name="play" size="{{ 14 }}" hint-size="14px,14px"></x-import> 회의 시작</a>
+<button type="button" class="btn" onClick="{{ openModal }}">회의 예약</button>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);gap:24px;flex:1;min-height:0">
+
+<!-- ── 기능 ① 목록 ───────────────────────────────────────────── -->
+<section class="meeting-panel" aria-label="회의 목록">
+
+<sc-if value="{{ listError }}" hint-placeholder-val="{{ false }}">
+<div style="flex:1;display:grid;place-items:center;padding:48px 24px">
+<x-import component-from-global-scope="SCAX.Empty" variant="error" title="불러오지 못했습니다. 다시 시도해 주세요." action-label="다시 시도" on-action="{{ retryList }}" hint-size="100%,200px"></x-import>
+</div>
+</sc-if>
+
+<sc-if value="{{ listEmpty }}" hint-placeholder-val="{{ false }}">
+<div style="flex:1;display:grid;place-items:center;padding:48px 24px">
+<x-import component-from-global-scope="SCAX.Empty" title="아직 회의가 없습니다. 회의를 예약하거나 바로 시작하면 여기에 쌓입니다." hint-size="100%,200px"></x-import>
+</div>
+</sc-if>
+
+<sc-if value="{{ listShown }}" hint-placeholder-val="{{ true }}">
+<div class="meeting-scroll mm-scroll" style="padding:0 16px 20px">
+
+<sc-if value="{{ hasUpcoming }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:8px;padding:16px 4px 4px">
+<h2 id="sec-upcoming" style="font-size:14px;font-weight:700">예정</h2>
+<span style="font-size:12px;color:var(--text-tertiary);font-variant-numeric:tabular-nums">{{ upcomingCount }}</span>
+</div>
+<ul class="meeting-list" aria-labelledby="sec-upcoming">
+<sc-for list="{{ upcoming }}" as="row" hint-placeholder-count="3">
+<li class="meeting-row openable" onClick="{{ row.select }}" style="{{ row.style }}">
+<span aria-hidden="true" style="{{ row.markStyle }}">▸</span>
+<span style="flex:none;width:138px;font-size:12px;color:var(--text-secondary);font-variant-numeric:tabular-nums">{{ row.when }}</span>
+<b style="flex:1;min-width:0;font-size:14px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:{{ row.titleColor }}">{{ row.title }}</b>
+<span style="flex:none;display:flex;align-items:center;justify-content:flex-end;gap:8px;width:96px">
+<sc-if value="{{ row.shared }}" hint-placeholder-val="{{ false }}"><span class="badge outline">열람</span></sc-if>
+<span class="{{ row.stateCls }}" style="font-size:12px">{{ row.stateLabel }}</span>
+</span>
+<sc-if value="{{ row.canDelete }}" hint-placeholder-val="{{ true }}">
+<button type="button" class="btn ghost h30" onClick="{{ row.askDelete }}" style="flex:none">삭제</button>
+</sc-if>
+</li>
+</sc-for>
+</ul>
+</sc-if>
+
+<sc-if value="{{ hasPast }}" hint-placeholder-val="{{ true }}">
+<div style="padding:20px 4px 4px">
+<h2 id="sec-past" style="font-size:14px;font-weight:700">지난</h2>
+</div>
+<ul class="meeting-list" aria-labelledby="sec-past">
+<sc-for list="{{ past }}" as="row" hint-placeholder-count="8">
+<li class="meeting-row openable" onClick="{{ row.select }}" style="{{ row.style }}">
+<span aria-hidden="true" style="{{ row.markStyle }}">▸</span>
+<span style="flex:none;width:138px;font-size:12px;color:var(--text-secondary);font-variant-numeric:tabular-nums">{{ row.when }}</span>
+<b style="flex:1;min-width:0;font-size:14px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:{{ row.titleColor }}">{{ row.title }}</b>
+<span style="flex:none;display:flex;align-items:center;justify-content:flex-end;gap:8px;width:96px">
+<sc-if value="{{ row.shared }}" hint-placeholder-val="{{ true }}"><span class="badge outline">열람</span></sc-if>
+<span class="{{ row.stateCls }}" style="font-size:12px">{{ row.stateLabel }}</span>
+</span>
+<sc-if value="{{ row.canDelete }}" hint-placeholder-val="{{ false }}">
+<button type="button" class="btn ghost h30" onClick="{{ row.askDelete }}" style="flex:none">삭제</button>
+</sc-if>
+</li>
+</sc-for>
+</ul>
+<sc-if value="{{ hasMore }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;justify-content:center;padding:16px 0 4px">
+<button type="button" class="btn" onClick="{{ loadMore }}" disabled="{{ moreBusy }}">더 보기</button>
+</div>
+</sc-if>
+</sc-if>
+
+</div>
+</sc-if>
+</section>
+
+<!-- ── 기능 ② 회의록 패널 (읽기 전용) ────────────────────────── -->
+<section class="meeting-panel" aria-label="회의록">
+
+<sc-if value="{{ panelEmpty }}" hint-placeholder-val="{{ false }}">
+<div style="flex:1;display:grid;place-items:center;padding:48px 24px">
+<x-import component-from-global-scope="SCAX.Empty" title="왼쪽에서 회의를 고르면 회의록이 열립니다." hint-size="100%,200px"></x-import>
+</div>
+</sc-if>
+
+<sc-if value="{{ panelShown }}" hint-placeholder-val="{{ true }}">
+
+<header class="meeting-panel-head">
+<h2 style="font-size:17px;font-weight:700;margin-bottom:4px">{{ d.title }}</h2>
+<div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-secondary)">
+<span style="font-variant-numeric:tabular-nums">{{ d.when }}</span>
+<span style="color:var(--text-tertiary)">·</span>
+<sc-if value="{{ d.hasPlace }}" hint-placeholder-val="{{ true }}"><span>{{ d.place }}</span></sc-if>
+<sc-if value="{{ d.noPlace }}" hint-placeholder-val="{{ false }}"><x-import component-from-global-scope="SCAX.EmptyValue" hint-size="12px,18px"></x-import></sc-if>
+</div>
+<div class="t-meta" style="margin-top:4px">참석 {{ d.people }}</div>
+</header>
+
+<div class="meeting-scroll mm-scroll" style="padding:20px 24px 24px">
+
+<!-- E26 · 예정 회의는 회의록 대신 안건을 낸다 -->
+<sc-if value="{{ d.isUpcoming }}" hint-placeholder-val="{{ false }}">
+<sc-if value="{{ d.hasAgenda }}" hint-placeholder-val="{{ true }}">
+<div>
+<sc-for list="{{ d.agenda }}" as="item" hint-placeholder-count="3">
+<section style="{{ item.style }}">
+<h3 style="font-size:14px;font-weight:700">안건 {{ item.no }}. {{ item.title }}</h3>
+</section>
+</sc-for>
+</div>
+</sc-if>
+</sc-if>
+
+<!-- E22 · 안건별 회의록 -->
+<sc-if value="{{ d.isPast }}" hint-placeholder-val="{{ true }}">
+<sc-if value="{{ d.hasNotes }}" hint-placeholder-val="{{ true }}">
+<div>
+<sc-for list="{{ d.notes }}" as="note" hint-placeholder-count="2">
+<section style="{{ note.style }}">
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px">
+<h3 style="font-size:14px;font-weight:700">안건 {{ note.no }}. {{ note.title }}</h3>
+<span style="flex:none;font-size:12px;color:{{ note.markColor }}">{{ note.mark }}</span>
+</div>
+<ul style="display:flex;flex-direction:column;gap:4px;margin-top:8px">
+<sc-for list="{{ note.lines }}" as="line" hint-placeholder-count="3">
+<li style="display:flex;align-items:baseline;gap:8px;font-size:13px;color:var(--text-secondary)">
+<span style="flex:none;color:var(--text-tertiary)">·</span>
+<span style="flex:1;min-width:0;text-wrap:pretty">{{ line }}</span>
+</li>
+</sc-for>
+</ul>
+<sc-if value="{{ note.hasTodos }}" hint-placeholder-val="{{ true }}">
+<div style="margin-top:12px;font-size:13px;font-weight:700">다음 할 일</div>
+<ul style="display:flex;flex-direction:column;gap:4px;margin-top:4px;padding-left:16px">
+<sc-for list="{{ note.todos }}" as="todo" hint-placeholder-count="2">
+<li style="display:flex;align-items:baseline;gap:12px">
+<span style="flex:none;color:var(--text-tertiary)">·</span>
+<span style="flex:1;min-width:0;font-size:13px">{{ todo.what }}</span>
+<sc-if value="{{ todo.hasDue }}" hint-placeholder-val="{{ true }}">
+<span style="flex:none;font-size:12px;color:var(--text-tertiary);font-variant-numeric:tabular-nums">{{ todo.due }}</span>
+</sc-if>
+<sc-if value="{{ todo.linked }}" hint-placeholder-val="{{ false }}">
+<span class="t-meta" style="flex:none;font-size:12px">요청됨</span>
+</sc-if>
+</li>
+</sc-for>
+</ul>
+</sc-if>
+</section>
+</sc-for>
+</div>
+</sc-if>
+</sc-if>
+
+<!-- E24 · 자료 이름 (E23 후속업무 후보 건수는 안건 안 「다음 할 일」로 옮겼다) -->
+<sc-if value="{{ d.hasExtra }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-direction:column;gap:4px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border-subtle)">
+<sc-if value="{{ d.hasFiles }}" hint-placeholder-val="{{ true }}">
+<div style="font-size:13px;color:var(--text-secondary)">자료 <span style="color:var(--text-primary)">{{ d.files }}</span></div>
+</sc-if>
+</div>
+</sc-if>
+
+</div>
+
+<footer class="meeting-panel-foot">
+<sc-if value="{{ d.canBookNext }}" hint-placeholder-val="{{ true }}">
+<button type="button" class="btn h30" onClick="{{ bookNext }}" style="margin-right:auto">다음 회의 예약</button>
+</sc-if>
+<button type="button" class="btn h30" onClick="{{ noop }}">공유</button>
+<sc-if value="{{ d.canExport }}" hint-placeholder-val="{{ true }}">
+<button type="button" class="btn h30" onClick="{{ noop }}">내보내기</button>
+</sc-if>
+<a class="btn h30" href="회의실.dc.html">회의록 열기</a>
+</footer>
+
+</sc-if>
+</section>
+
+</div>
+</div>
+</div>
+</div>
+
+<!-- ── MOD-102 회의 예약 (모달) ──────────────────────────────── -->
+<sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+<div class="modal-backdrop" onMouseDown="{{ backdropClose }}">
+<!-- DS 기본 폭 600 은 필드 여덟을 못 담는다 — 폭만 늘리고 본문만 스크롤한다 -->
+<section class="modal" role="dialog" aria-modal="true" aria-label="회의 예약" tabIndex="{{ -1 }}" onKeyDown="{{ modalKey }}" style="max-width:760px;width:100%;max-height:calc(100vh - 48px);display:flex;flex-direction:column">
+<header class="modal-head">
+<h3>회의 예약</h3>
+<button type="button" class="modal-close" aria-label="닫기" onClick="{{ askClose }}"><x-import component-from-global-scope="SCAX.Icon" name="close" size="{{ 20 }}" hint-size="20px,20px"></x-import></button>
+</header>
+
+<div class="modal-body mm-scroll" style="flex:1;min-height:0;overflow-y:auto">
+<div class="form-stack">
+
+<!-- E02 주제 · E24 최근 회의 · E20 지난 회의 제안 -->
+<div class="field">
+<label for="mm-subject">주제 *</label>
+<input id="mm-subject" class="title-input" type="text" placeholder="회의 주제를 적으세요" autoFocus="{{ true }}" value="{{ subject }}" onChange="{{ setSubject }}">
+<sc-if value="{{ hasRecent }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:4px">
+<span class="t-meta" style="font-size:12px">최근</span>
+<sc-for list="{{ recent }}" as="r" hint-placeholder-count="2">
+<button type="button" class="filter-chip" onClick="{{ r.pick }}">{{ r.label }}</button>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{ hasSuggest }}" hint-placeholder-val="{{ true }}">
+<div style="margin-top:8px;padding:16px 20px;border:1px solid var(--border-default);border-radius:var(--radius-card);background:var(--surface-sunken)">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+<span class="t-item">지난 「{{ subject }}」</span>
+<button type="button" class="btn ghost h30 icon" aria-label="제안 닫기" onClick="{{ closeSuggest }}"><x-import component-from-global-scope="SCAX.Icon" name="close" size="{{ 14 }}" hint-size="14px,14px"></x-import></button>
+</div>
+<div style="display:flex;align-items:center;gap:12px;margin-top:12px">
+<div class="popover-root" style="position:relative">
+<button type="button" class="field-select" style="width:168px" aria-haspopup="listbox" aria-expanded="{{ roundOpen }}" aria-label="회차 고르기" onClick="{{ toggleRound }}">{{ roundLabel }}<x-import component-from-global-scope="SCAX.Icon" name="chevron-down" size="{{ 12 }}" hint-size="12px,12px"></x-import></button>
+<sc-if value="{{ roundOpen }}" hint-placeholder-val="{{ false }}">
+<div class="popover" role="listbox" aria-label="회차 고르기" style="width:168px">
+<sc-for list="{{ suggestRounds }}" as="o" hint-placeholder-count="2">
+<button type="button" class="popover-item" role="option" aria-checked="{{ o.checked }}" onClick="{{ o.pick }}">{{ o.label }}</button>
+</sc-for>
+</div>
+</sc-if>
+</div>
+<span class="t-meta">{{ suggest.recur }} · {{ suggest.place }}</span>
+</div>
+<div class="t-meta" style="margin-top:8px">{{ suggest.people }}</div>
+<sc-if value="{{ suggest.hasDone }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;gap:12px;margin-top:8px;font-size:13px"><span style="flex:none;width:72px;color:var(--text-tertiary)">결론 남</span><span style="color:var(--text-secondary)">{{ suggest.done }}</span></div>
+</sc-if>
+<sc-if value="{{ suggest.hasOpen }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;gap:12px;margin-top:4px;font-size:13px"><span style="flex:none;width:72px;color:var(--text-tertiary)">결론 안 남</span><span style="color:var(--text-secondary)">{{ suggest.open }}</span></div>
+</sc-if>
+<div style="display:flex;justify-content:flex-end;margin-top:12px">
+<button type="button" class="btn h30" onClick="{{ applySuggest }}">불러오기</button>
+</div>
+</div>
+</sc-if>
+</div>
+
+<!-- E03 일시 · E16 [지금] -->
+<div class="field">
+<label>일시 *</label>
+<div style="display:flex;align-items:center;gap:8px">
+<!-- 18 · 한 칸 안에 날짜 + 오른쪽 안쪽 달력 아이콘. 칸 어디를 눌러도 캘린더가 열린다 -->
+<div class="popover-root" style="position:relative">
+<button type="button" class="field-select" id="meeting-date" style="width:168px" aria-haspopup="dialog" aria-expanded="{{ dateOpen }}" aria-label="회의 날짜" onClick="{{ toggleDate }}"><span style="color:{{ dateColor }}">{{ dateLabel }}</span><x-import component-from-global-scope="SCAX.Icon" name="calendar" size="{{ 12 }}" hint-size="12px,12px"></x-import></button>
+<sc-if value="{{ dateOpen }}" hint-placeholder-val="{{ false }}">
+<div class="popover" role="dialog" aria-label="회의 날짜" style="width:252px">
+<div class="date-picker-head">
+<button type="button" class="btn h30 icon ghost date-picker-prev" aria-label="이전 달" onClick="{{ prevMonth }}"><x-import component-from-global-scope="SCAX.Icon" name="chevron-right" size="{{ 12 }}" hint-size="12px,12px"></x-import></button>
+<span class="t-item">{{ monthLabel }}</span>
+<button type="button" class="btn h30 icon ghost" aria-label="다음 달" onClick="{{ nextMonth }}"><x-import component-from-global-scope="SCAX.Icon" name="chevron-right" size="{{ 12 }}" hint-size="12px,12px"></x-import></button>
+</div>
+<div class="calendar-weekdays" aria-hidden="true">
+<sc-for list="{{ weekdays }}" as="w" hint-placeholder-count="7"><span>{{ w }}</span></sc-for>
+</div>
+<div role="grid">
+<sc-for list="{{ weeks }}" as="week" hint-placeholder-count="6">
+<div class="date-picker-row" role="row">
+<sc-for list="{{ week.days }}" as="d" hint-placeholder-count="7">
+<button type="button" class="{{ d.cls }}" role="gridcell" aria-selected="{{ d.selected }}" aria-label="{{ d.label }}" onClick="{{ d.pick }}">{{ d.day }}</button>
+</sc-for>
+</div>
+</sc-for>
+</div>
+<div class="date-picker-foot">
+<button type="button" class="btn link" onClick="{{ clearDate }}">지우기</button>
+<button type="button" class="btn h30" onClick="{{ pickToday }}">오늘</button>
+</div>
+</div>
+</sc-if>
+</div>
+<div class="popover-root" style="position:relative">
+<button type="button" class="field-select" style="width:104px" aria-haspopup="listbox" aria-expanded="{{ fromOpen }}" aria-label="시작 시각" onClick="{{ toggleFrom }}">{{ from }}<x-import component-from-global-scope="SCAX.Icon" name="chevron-down" size="{{ 12 }}" hint-size="12px,12px"></x-import></button>
+<sc-if value="{{ fromOpen }}" hint-placeholder-val="{{ false }}">
+<div class="popover mm-scroll" role="listbox" aria-label="시작 시각" style="width:104px">
+<sc-for list="{{ fromTimes }}" as="t" hint-placeholder-count="6">
+<button type="button" class="popover-item" role="option" aria-checked="{{ t.checked }}" onClick="{{ t.pick }}">{{ t.label }}</button>
+</sc-for>
+</div>
+</sc-if>
+</div>
+<span class="t-meta">~</span>
+<div class="popover-root" style="position:relative">
+<button type="button" class="field-select" style="width:104px" aria-haspopup="listbox" aria-expanded="{{ toOpen }}" aria-label="종료 시각" onClick="{{ toggleTo }}">{{ to }}<x-import component-from-global-scope="SCAX.Icon" name="chevron-down" size="{{ 12 }}" hint-size="12px,12px"></x-import></button>
+<sc-if value="{{ toOpen }}" hint-placeholder-val="{{ false }}">
+<div class="popover mm-scroll" role="listbox" aria-label="종료 시각" style="width:104px">
+<sc-for list="{{ toTimes }}" as="t" hint-placeholder-count="6">
+<button type="button" class="popover-item" role="option" aria-checked="{{ t.checked }}" onClick="{{ t.pick }}">{{ t.label }}</button>
+</sc-for>
+</div>
+</sc-if>
+</div>
+<button type="button" class="btn h30" onClick="{{ setNow }}" style="margin-left:auto">지금</button>
+</div>
+</div>
+
+<!-- E23 목적 -->
+<div class="field">
+<label for="mm-purpose">목적</label>
+<input id="mm-purpose" type="text" placeholder="이 회의를 왜 하는지 한 줄로" value="{{ purpose }}" onChange="{{ setPurpose }}">
+</div>
+
+<!-- E07 안건 목록 · E08 안건 입력 · E09 [안건 추가] -->
+<div class="field">
+<label>안건</label>
+<sc-if value="{{ hasAgendaRows }}" hint-placeholder-val="{{ true }}">
+<ul class="meeting-list" style="margin:0">
+<sc-for list="{{ agendaRows }}" as="a" hint-placeholder-count="2">
+<li class="meeting-row" style="padding:8px 12px;gap:12px">
+<span style="flex:none;font-size:12px;color:var(--text-tertiary);font-variant-numeric:tabular-nums">{{ a.no }}</span>
+<span style="flex:1;min-width:0;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ a.title }}</span>
+<span class="t-meta" style="flex:none;font-size:12px">{{ a.origin }}</span>
+<button type="button" class="btn ghost h30 icon" aria-label="안건 빼기" onClick="{{ a.remove }}"><x-import component-from-global-scope="SCAX.Icon" name="close" size="{{ 14 }}" hint-size="14px,14px"></x-import></button>
+</li>
+</sc-for>
+</ul>
+</sc-if>
+<div style="display:flex;align-items:center;gap:8px;margin-top:4px">
+<input type="text" placeholder="안건을 적으세요" value="{{ agendaDraft }}" onChange="{{ setAgendaDraft }}" style="flex:1">
+<button type="button" class="btn" onClick="{{ addAgenda }}" disabled="{{ agendaFull }}">안건 추가</button>
+</div>
+</div>
+
+<!-- E05 참석자 · E06 사외 참석자 — 명부에 없는 이름은 찾기 결과에서 바로 사외로 단다 -->
+<div class="field">
+<label>참석자 * <span class="count-badge">{{ peopleCount }}</span></label>
+<sc-if value="{{ hasPicked }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-wrap:wrap;gap:8px;padding:12px;border:1px solid var(--border-subtle);border-radius:var(--radius-card);background:var(--surface-sunken)">
+<sc-for list="{{ picked }}" as="p" hint-placeholder-count="3">
+<button type="button" onClick="{{ p.remove }}" style="display:inline-flex;align-items:center;gap:8px;height:24px;padding:0 8px;border-radius:var(--radius-chip);background:var(--surface);border:1px solid var(--border-default);font-size:12px"><span style="font-weight:700">{{ p.name }}</span><span style="color:{{ p.unitColor }}">{{ p.unit }}</span><x-import component-from-global-scope="SCAX.Icon" name="close" size="{{ 14 }}" hint-size="14px,14px"></x-import></button>
+</sc-for>
+</div>
+</sc-if>
+
+<!-- 참석자 콤보박스 — 이름을 치면 팝오버로 결과가 서고 거기서 단다 -->
+<div class="popover-root" style="display:block;position:relative;margin-top:8px">
+<input type="text" class="search-input-box" style="width:100%" role="combobox" aria-expanded="{{ searchOpen }}" placeholder="조직도 내 이름 검색 / 사외 참석자 추가" value="{{ query }}" onChange="{{ setQuery }}">
+<sc-if value="{{ searchOpen }}" hint-placeholder-val="{{ true }}">
+<div class="popover" role="listbox" aria-label="이름 찾기 결과" style="left:0;right:0;width:auto">
+<sc-for list="{{ hits }}" as="m" hint-placeholder-count="3">
+<button type="button" class="popover-item" role="option" aria-checked="{{ m.checked }}" onClick="{{ m.toggle }}">
+<span class="avatar xs">{{ m.initial }}</span>
+<span style="flex:1;min-width:0;font-weight:700;color:var(--text-primary)">{{ m.name }}</span>
+<span class="t-meta" style="flex:none;font-size:12px">{{ m.unit }} · {{ m.rank }}</span>
+</button>
+</sc-for>
+<!-- 6 · 찾은 직원이 없을 때 — 줄 둘(안내 · 사외 추가)을 구분선으로 가른다 -->
+<sc-if value="{{ noMatch }}" hint-placeholder-val="{{ false }}">
+<div aria-hidden="true" style="height:1px;background:var(--border-subtle)"></div>
+<div class="t-meta" style="display:flex;align-items:center;height:34px;padding:0 12px;font-size:13px">직원 정보 없음</div>
+<sc-if value="{{ canAddGuest }}" hint-placeholder-val="{{ true }}">
+<div aria-hidden="true" style="height:1px;background:var(--border-subtle)"></div>
+<button type="button" class="popover-item" onClick="{{ addGuest }}" style="color:var(--text-primary)">{{ guestName }} 사외 참석자로 추가</button>
+</sc-if>
+<div aria-hidden="true" style="height:1px;background:var(--border-subtle)"></div>
+</sc-if>
+<!-- 찾은 직원이 있을 때는 그대로 — 아바타 행으로 목록에 이어 붙는다 -->
+<sc-if value="{{ canAddGuestInline }}" hint-placeholder-val="{{ true }}">
+<button type="button" class="popover-item" onClick="{{ addGuest }}" style="border-top:1px solid var(--border-subtle);border-radius:0">
+<span class="avatar xs">{{ guestInitial }}</span>
+<span style="flex:1;min-width:0;font-weight:700;color:var(--text-primary)">{{ guestName }}</span>
+<span class="t-meta" style="flex:none;font-size:12px">사외 참석자로 추가</span>
+</button>
+</sc-if>
+</div>
+</sc-if>
+</div>
+
+<!-- 조직도 — 왼쪽 부서, 오른쪽 그 부서 사람 -->
+<div style="display:grid;grid-template-columns:180px minmax(0,1fr);margin-top:8px;border:1px solid var(--border-default);border-radius:var(--radius-card);overflow:hidden">
+<div class="mm-scroll" style="max-height:216px;overflow-y:auto;padding:8px;border-right:1px solid var(--border-default);background:var(--surface-sunken)">
+<sc-for list="{{ units }}" as="u" hint-placeholder-count="5">
+<button type="button" onClick="{{ u.pick }}" style="{{ u.style }}">
+<span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ u.unit }}</span>
+<span style="flex:none;font-size:12px;color:var(--text-tertiary);font-variant-numeric:tabular-nums">{{ u.count }}</span>
+</button>
+</sc-for>
+</div>
+<div class="mm-scroll" style="max-height:216px;overflow-y:auto;padding:8px">
+<sc-for list="{{ members }}" as="m" hint-placeholder-count="4">
+<div onClick="{{ m.toggle }}" style="{{ m.rowStyle }}">
+<x-import component-from-global-scope="SCAX.Checkbox" checked="{{ m.checked }}" hint-size="16px,16px"></x-import>
+<span class="avatar xs">{{ m.initial }}</span>
+<span style="flex:1;min-width:0;font-size:13px;font-weight:700">{{ m.name }}</span>
+<span class="t-meta" style="flex:none;font-size:12px">{{ m.rank }}</span>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+
+<!-- E04 장소 -->
+<div class="field">
+<label>장소</label>
+<div style="display:flex;flex-direction:column;gap:8px">
+<sc-for list="{{ rooms }}" as="r" hint-placeholder-count="4">
+<label style="{{ r.style }}">
+<input type="radio" name="mm-room" checked="{{ r.checked }}" onChange="{{ r.pick }}" style="width:16px;height:16px;flex:none;accent-color:var(--action)">
+<span style="flex:1;min-width:0;font-size:14px;font-weight:700">{{ r.name }}</span>
+<sc-if value="{{ r.hasSeats }}" hint-placeholder-val="{{ true }}">
+<span style="flex:none;font-size:13px;color:var(--text-tertiary);font-variant-numeric:tabular-nums">{{ r.seats }}</span>
+</sc-if>
+</label>
+</sc-for>
+</div>
+</div>
+
+</div>
+</div>
+
+<footer class="modal-foot">
+<button type="button" class="btn h40 primary" disabled="{{ notReady }}" onClick="{{ submit }}">회의 생성</button>
+</footer>
+
+</section>
+</div>
+</sc-if>
+
+<!-- MOD-102-I10 · 쓴 것이 있는 채로 닫을 때 (TXT-004) -->
+<sc-if value="{{ closeAsk }}" hint-placeholder-val="{{ false }}">
+<div class="modal-backdrop" style="z-index:60">
+<section class="modal" role="alertdialog" aria-modal="true" aria-label="입력 정보는 저장되지 않습니다.">
+<header class="modal-head"><h3>입력 정보는 저장되지 않습니다.</h3></header>
+<footer class="modal-foot">
+<button type="button" class="btn h40 ghost" onClick="{{ keepOpen }}">취소</button>
+<button type="button" class="btn h40 danger" onClick="{{ discard }}">나가기</button>
+</footer>
+</section>
+</div>
+</sc-if>
+
+<!-- SCR-105-T08 · 삭제 확인 -->
+<sc-if value="{{ confirmOpen }}" hint-placeholder-val="{{ false }}">
+<div class="modal-backdrop" onMouseDown="{{ backdropCloseConfirm }}">
+<section class="modal" role="alertdialog" aria-modal="true" aria-label="회의를 취소할까요?" tabIndex="{{ -1 }}" onKeyDown="{{ confirmKey }}">
+<header class="modal-head">
+<h3>회의를 취소할까요?</h3>
+<button type="button" class="modal-close" aria-label="닫기" autoFocus="{{ true }}" onClick="{{ closeConfirm }}"><x-import component-from-global-scope="SCAX.Icon" name="close" size="{{ 20 }}" hint-size="20px,20px"></x-import></button>
+</header>
+<div class="modal-body"><p>회의 삭제 시 회의 자료가 삭제되고 회의도 취소됩니다.</p></div>
+<footer class="modal-foot">
+<button type="button" class="btn h40 danger" onClick="{{ deleteMeeting }}">회의 취소</button>
+</footer>
+</section>
+</div>
+</sc-if>
+
+<!-- SCR-105-T09 · T10 토스트 -->
+<sc-if value="{{ toastOpen }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="SCAX.Toast" message="{{ toastMessage }}" tone="success" on-close="{{ closeToast }}" hint-size="400px,56px"></x-import>
+</sc-if>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;screenState&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;기본&quot;,&quot;고름&quot;,&quot;빈 상태&quot;,&quot;오류&quot;],&quot;default&quot;:&quot;고름&quot;,&quot;tsType&quot;:&quot;'기본' | '고름' | '빈 상태' | '오류'&quot;,&quot;section&quot;:&quot;화면&quot;}}">
+/* 오늘은 2026-09-10 (수). 「예정」과 「지난」은 이 날짜로 갈린다. */
+
+// 다음 할 일 한 줄 — 할 일 문장 · 기한(있을 때만). 담당은 담지 않는다 —
+// AI 가 담당을 고르지 않고 [업무 생성] 모달에서 사람이 고른다 (D19-3).
+// linked 면 이미 업무로 선 것이라 조작 자리에 「요청됨」을 낸다 (D24)
+const T = (what, due, linked) => ({ what, due, linked: !!linked });
+// 안건별 회의록 한 덩어리 — 제목 · 결론 여부 · 본문 줄 목록 · 그 안건에서 나온 다음 할 일 (D12)
+const N = (title, decided, lines, todos) => ({ title, decided, lines, todos: todos || [] });
+// 지난 회의 한 건
+const P = (id, when, end, title, tag, place, people, notes, files) =>
+  ({ id, when, end, title, tag, place, people, notes, files });
+// 예정 회의 한 건
+const U = (id, when, end, title, place, people, agenda) =>
+  ({ id, when, end, title, tag: null, place, people, agenda });
+
+const UPCOMING = [
+  U('u1', '09-10 (수) 15:00', '16:00', '경영관리부 주간', '회의실 B', '정우성 윤도현 이건학',
+    ['9월 인력 운영 계획', '사무용품 구매 승인 절차']),
+  U('u2', '09-11 (목) 10:00', '11:00', '주간 회의', '회의실 A', '김세진 박도윤 이건학 최유정',
+    ['4분기 예산 편성 일정', '미수금 정리 기준', '9월 채용 진행 현황']),
+  U('u3', '09-15 (월) 14:00', '15:00', '국내사업부 정기', '', '김민수 유하람 이건학',
+    ['3분기 매출 점검', '대리점 재계약 일정'])
+];
+
+const PAST = [
+  P('p1', '09-09 (화) 16:00', '17:00', '아마스 미팅', 'failed', '회의실 B', '박도윤 이건학', [], []),
+  P('p2', '09-09 (화) 14:00', '15:00', '국내사업부 정기', 'in_progress', '회의실 A', '김민수 유하람 이건학',
+    [N('3분기 매출 점검', true, ['8월까지 목표 대비 94%다.', '9월 잔여분은 대리점 재계약과 함께 본다.', '미달 두 곳은 본부장이 직접 본다.'],
+        [T('대리점 재계약 일정표 정리', '09-12'), T('미달 지점 방문 일정 잡기', '09-15')])], ['9월_대리점_현황.pdf']),
+  P('p3', '09-08 (월) 10:00', '11:00', '주간 회의', null, '회의실 A', '김세진 박도윤 이건학 최유정',
+    [N('8월 정산 마감 현황', true, ['마감은 09-12까지 끝낸다.', '대손 처리 기준은 지난 분기와 같이 간다.'],
+        [T('정산 초안 재무팀 회람', '09-09', true), T('대손 기준 문서 갱신', '09-11')]),
+     N('9월 채용 진행 현황', false, ['경력 2명 면접이 남았다.', '결과가 나온 뒤 다시 본다.'],
+        [T('2차 면접 일정 조율', '09-10')])], ['8월_정산_초안.xlsx']),
+  P('p4', '09-07 (일) 14:20', '15:00', '', null, '', '이건학',
+    [N('기타', false, ['주말에 급히 연 자리라 주제를 안 채웠다.', '논의한 것은 다음 주간 회의로 넘긴다.'])], []),
+  P('p5', '09-07 (일) 09:00', '10:00', '대표 보고', 'shared', '대회의실', '양승철 이진백 정우성',
+    [N('3분기 경영 실적', true, ['매출은 계획선, 비용은 계획 대비 6% 초과다.', '초과분은 4분기 예산에서 조정한다.'],
+        [T('비용 초과분 항목별 정리', '09-12')]),
+     N('내년 조직 개편 방향', false, ['개편 폭은 4분기 실적을 보고 정한다.'])], ['3분기_경영보고.pdf']),
+  P('p6', '09-05 (금) 11:00', '12:00', '주간 회의', null, '회의실 A', '김세진 박도윤 이건학 최유정',
+    [N('8월 정산 마감 현황', true, ['대손 처리 기준은 지난 분기와 같이 간다.', '미수금 정리본을 먼저 보기로 했다.', '재무팀 확인은 박도윤이 09-10까지 맡는다.'],
+        [T('재무팀에 대손 기준 확인', '09-10'), T('미수금 정리본 취합', '09-11', true)]),
+     N('4분기 예산 편성 일정', false, ['편성 일정은 예산안 확정 뒤로 미뤘다.', '부서별 초안은 그 전에 받아 둔다.'],
+        [T('4분기 예산안 초안 작성', '09-15')])], ['8월_정산_초안.xlsx']),
+  P('p7', '09-04 (목) 11:00', '12:00', '자재 점검', 'cancelled', '소회의실', '윤도현 이건학', [], []),
+  P('p8', '09-03 (수) 15:00', '16:00', '제품 로드맵 점검', null, '회의실 B', '한서린 유하람 이건학',
+    [N('4분기 릴리즈 범위', true, ['회의록 자동 요약과 목록 필터 두 건으로 좁힌다.', '나머지는 다음 분기 후보로 돌린다.'],
+        [T('릴리즈 범위 확정안 공유', '09-05')]),
+     N('캘린더 연동 일정', false, ['연동 범위를 먼저 정한 뒤 일정을 잡는다.'],
+        [T('연동 범위 초안 작성', '09-09')])], ['로드맵_초안_v3.pptx']),
+  P('p9', '09-02 (화) 14:00', '15:00', '국내사업부 정기', null, '회의실 A', '김민수 유하람 이건학',
+    [N('대리점 재계약 일정', true, ['9월 안에 12곳 재계약을 끝낸다.'],
+        [T('재계약 대상 명단 확정', '09-05')])], []),
+  P('p10', '09-01 (월) 10:00', '11:00', '주간 회의', null, '회의실 A', '김세진 박도윤 이건학 최유정',
+    [N('8월 마감 준비', true, ['마감 체크리스트를 09-03까지 돌린다.'],
+        [T('마감 체크리스트 배포', '09-03')]),
+     N('미수금 정리 기준', false, ['기준안은 재무팀이 다시 낸다.'],
+        [T('미수금 기준안 재작성', '09-08')])], []),
+  P('p11', '08-29 (금) 16:00', '17:00', '8월 마감 리뷰', null, '회의실 B', '정우성 윤도현 이건학',
+    [N('마감 일정 점검', true, ['8월 마감은 09-12까지로 확정했다.'],
+        [T('마감 일정 전사 공지', '09-01')])], ['8월_마감_체크리스트.xlsx']),
+  P('p12', '08-28 (목) 11:00', '12:00', '채용 면접 결과 공유', null, '소회의실', '최유정 이건학',
+    [N('경력 채용 2차 결과', true, ['두 명 모두 3차로 올린다.'])], []),
+  P('p13', '08-27 (수) 15:00', '16:00', '제품 로드맵 점검', null, '회의실 B', '한서린 유하람 이건학',
+    [N('요약 정확도 개선', false, ['베타 플래그를 유지하고 다음 점검에서 다시 본다.'],
+        [T('요약 오답 사례 수집', '09-03')])], []),
+  P('p14', '08-26 (화) 14:00', '15:00', '국내사업부 정기', null, '회의실 A', '김민수 유하람 이건학',
+    [N('8월 매출 점검', true, ['목표 대비 91%다.', '잔여는 재계약으로 메운다.'])], []),
+  P('p15', '08-25 (월) 10:00', '11:00', '주간 회의', null, '회의실 A', '김세진 박도윤 이건학 최유정',
+    [N('상반기 정산 이슈 정리', true, ['남은 두 건은 재무팀이 09-01까지 닫는다.'],
+        [T('잔여 정산 이슈 마감', '09-01')]),
+     N('휴가 일정 공유', false, ['9월 일정은 다음 주에 다시 모은다.'])], []),
+  P('p16', '08-22 (금) 14:00', '15:30', '협력사 미팅', null, '대회의실', '오세림 정우성 이건학',
+    [N('제안서 검토', true, ['단가 조정안을 받고 09-05까지 회신한다.'],
+        [T('단가 조정안 회신', '09-05')])], ['협력사_제안서.pdf']),
+  P('p17', '08-21 (목) 09:30', '10:30', '보안 점검 회의', null, '회의실 B', '김도윤 이건학',
+    [N('접근 권한 재점검', true, ['퇴사자 계정 정리를 08-25까지 끝낸다.'],
+        [T('퇴사자 계정 정리', '08-25')])], []),
+  P('p18', '08-20 (수) 15:00', '16:00', '제품 로드맵 점검', null, '회의실 B', '한서린 유하람 이건학',
+    [N('다음 분기 후보 정리', false, ['후보 다섯 중 둘로 좁히는 것은 다음 회의로 넘겼다.'])], []),
+  P('p19', '08-19 (화) 14:00', '15:00', '국내사업부 정기', null, '회의실 A', '김민수 유하람 이건학',
+    [N('대리점 이슈 공유', true, ['지연 두 건은 본부장이 직접 본다.'])], []),
+  P('p20', '08-18 (월) 10:00', '11:00', '주간 회의', null, '회의실 A', '김세진 박도윤 이건학 최유정',
+    [N('주간 업무 공유', true, ['이번 주는 마감 준비에 집중한다.']),
+     N('사무용품 구매 승인', false, ['승인 절차는 경영관리부가 정리해 온다.'],
+        [T('구매 승인 절차 초안', '08-22')])], []),
+  P('p21', '08-14 (목) 16:00', '17:30', '하반기 예산 설명회', null, '대회의실', '정우성 윤도현 오세림 이건학',
+    [N('하반기 예산 배분', true, ['본부별 배분안을 08-20까지 확정한다.'],
+        [T('본부별 배분안 취합', '08-18'), T('예산 설명 자료 보완', '08-19')])], ['하반기_예산안.pdf']),
+  P('p22', '08-13 (수) 15:00', '16:00', '제품 로드맵 점검', null, '회의실 B', '한서린 유하람 이건학',
+    [N('릴리즈 회고', true, ['회고에서 나온 두 건은 백로그로 옮긴다.'])], []),
+  P('p23', '08-12 (화) 14:00', '15:00', '국내사업부 정기', null, '회의실 A', '김민수 유하람 이건학',
+    [N('신규 대리점 검토', true, ['두 곳은 실사 뒤 다시 본다.'],
+        [T('실사 일정 잡기', '08-18')])], []),
+  P('p24', '08-11 (월) 10:00', '11:00', '주간 회의', null, '회의실 A', '김세진 박도윤 이건학 최유정',
+    [N('주간 업무 공유', true, ['휴가자가 많아 마감 일정만 확인했다.']),
+     N('채용 진행 상황', false, ['1차 결과는 다음 주에 나온다.'],
+        [T('1차 결과 취합', '08-14')])], []),
+  P('p25', '08-08 (금) 11:00', '12:00', '7월 마감 리뷰', null, '회의실 B', '정우성 윤도현 이건학',
+    [N('7월 마감 결과', true, ['마감은 기한 내에 끝났다.', '이월 두 건만 남았다.'],
+        [T('이월 건 처리 계획', '08-12')])], []),
+  P('p26', '08-07 (목) 14:00', '15:00', '신규 입사자 온보딩', null, '소회의실', '최유정 이건학',
+    [N('온보딩 일정 안내', true, ['2주 과정으로 잡고 부서 배치는 마지막 주에 정한다.'])], [])
+];
+
+// 회의 상태 — 모든 행에 낸다. 「열람」(공유받아 담긴 회의)은 상태가 아니라 따로 붙는 표시다
+const STATES = {
+  upcoming:    { label: '예정',    cls: 'status' },
+  in_progress: { label: '정리 중', cls: 'status in_progress' },
+  done:        { label: '완료',    cls: 'status done' },
+  failed:      { label: '실패',    cls: 'danger-text' },
+  cancelled:   { label: '취소됨',  cls: 'status cancelled' }
+};
+const NO_TITLE = '제목 없는 회의';
+const PAGE = 20;
+
+/* ── MOD-102 이 쓰는 값 ─────────────────────────────────────── */
+
+const ORG = [
+  { unit: '경영진', total: 2, members: [ { id: '1001', name: '양승철', rank: '대표이사' }, { id: '1002', name: '이진백', rank: '대표이사' } ] },
+  { unit: '경영관리부', total: 11, members: [ { id: '5101', name: '정우성', rank: '본부장' }, { id: '5102', name: '윤도현', rank: '선임' }, { id: '5103', name: '김세진', rank: '주임' } ] },
+  { unit: '국내사업부', total: 15, members: [ { id: '3101', name: '김민수', rank: '본부장' }, { id: '3102', name: '유하람', rank: '선임' }, { id: '3103', name: '박도윤', rank: '과장' } ] },
+  { unit: '글로벌마케팅부', total: 59, members: [ { id: '2101', name: '하윤서', rank: '본부장' }, { id: '2102', name: '오세림', rank: '선임' }, { id: '2103', name: '김도윤', rank: '주임' } ] },
+  { unit: '제품본부', total: 15, members: [ { id: '4101', name: '전지우', rank: '본부장' }, { id: '4102', name: '한서린', rank: '주임' }, { id: '4103', name: '이건학', rank: '주임' }, { id: '4104', name: '최유정', rank: '선임' } ] }
+];
+
+const ROOMS = [
+  // 맨 위 · 기본값. 이걸 고르면 회의실 예약(the Connect)을 부르지 않는다 (피드백 7)
+  { id: 'none', name: '회의실 선택 안 함', seats: 0 },
+  { id: 'a', name: '회의실 A', seats: 10 },
+  { id: 'b', name: '회의실 B', seats: 6 },
+  { id: 's', name: '소회의실', seats: 4 },
+  { id: 'l', name: '대회의실', seats: 20 }
+];
+
+// 주제가 정확히 같은 지난 회의 (X-116) — 세트를 고르는 자리는 따로 두지 않는다
+const SETS = {
+  '주간 회의': [
+    { when: '09-05 (금) 11:00', date: '2026-09-05', from: '11:00', to: '12:00', recur: '매주 금 11:00~12:00', place: 'a',
+      people: ['5103', '3103', '4103', '4104'], purpose: '8월 정산을 마감하고 4분기 예산 일정을 잡는다',
+      done: '8월 정산 마감 현황', open: ['4분기 예산 편성 일정'] },
+    { when: '09-01 (월) 10:00', date: '2026-09-01', from: '10:00', to: '11:00', recur: '매주 월 10:00~11:00', place: 'a',
+      people: ['5103', '3103', '4103', '4104'], purpose: '8월 마감 준비 상황을 맞춘다',
+      done: '8월 마감 준비', open: ['미수금 정리 기준'] }
+  ],
+  '국내사업부 정기': [
+    { when: '09-09 (화) 14:00', date: '2026-09-09', from: '14:00', to: '15:00', recur: '매주 화 14:00~15:00', place: 'a',
+      people: ['3101', '3102', '4103'], purpose: '분기 매출과 대리점 현황을 점검한다',
+      done: '3분기 매출 점검', open: ['대리점 재계약 일정'] }
+  ]
+};
+const RECENT = ['주간 회의', '국내사업부 정기'];
+
+const TIMES = (() => {
+  const out = [];
+  for (let h = 0; h < 24; h++) for (const m of ['00', '30']) {
+    const v = String(h).padStart(2, '0') + ':' + m;
+    out.push({ value: v, label: v });
+  }
+  return out;
+})();
+
+const TODAY = '2026-09-10';               // 이 시안의 기준일 (픽스처의 예정/지난 가름과 같다)
+const WEEKDAYS = ['일', '월', '화', '수', '목', '금', '토'];
+const MONTH_LABEL = ym => Number(ym.slice(0, 4)) + '년 ' + Number(ym.slice(5, 7)) + '월';
+const SHIFT_MONTH = (ym, n) => {
+  const d = new Date(Date.UTC(Number(ym.slice(0, 4)), Number(ym.slice(5, 7)) - 1 + n, 1));
+  return d.toISOString().slice(0, 7);
+};
+// 그 달을 6주 42칸으로 — DS DatePickerPanel 과 같은 짜임
+const MONTH_GRID = ym => {
+  const first = new Date(Date.UTC(Number(ym.slice(0, 4)), Number(ym.slice(5, 7)) - 1, 1));
+  const start = new Date(first);
+  start.setUTCDate(1 - first.getUTCDay());
+  const weeks = [];
+  for (let w = 0; w < 6; w++) {
+    const days = [];
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(start);
+      d.setUTCDate(start.getUTCDate() + w * 7 + i);
+      days.push(d.toISOString().slice(0, 10));
+    }
+    weeks.push(days);
+  }
+  return weeks;
+};
+
+const addHour = t => {
+  const [h, m] = t.split(':').map(Number);
+  return String((h + 1) % 24).padStart(2, '0') + ':' + String(m).padStart(2, '0');
+};
+
+class Component extends DCLogic {
+  state = {
+    touched: false, selected: null, page: 1,
+    confirm: null, toast: null,
+    modal: false, closeAsk: false, subject: '', suggestClosed: false, round: 0, openSelect: null,
+    date: '2026-09-10', month: '', from: '15:00', to: '16:00', endTouched: false,
+    people: [], query: '', unit: '', guests: [],
+    room: 'none', purpose: '', agenda: [], agendaDraft: ''
+  };
+
+  /* ── 목록 ─────────────────────────────────────────────────── */
+
+  pick(id) { this.setState({ touched: true, selected: id }); }
+
+  row(m, kind, selected) {
+    const on = m.id === selected;
+    const state = kind === 'upcoming' ? 'upcoming' : (STATES[m.tag] ? m.tag : 'done');
+    const s = STATES[state];
+    return {
+      when: m.when,
+      title: m.title || NO_TITLE,
+      titleColor: m.title ? 'var(--text-primary)' : 'var(--text-tertiary)',
+      stateLabel: s.label, stateCls: s.cls, shared: m.tag === 'shared',
+      canDelete: kind === 'upcoming',
+      markStyle: 'flex:none;width:10px;font-size:12px;color:var(--action);visibility:' + (on ? 'visible' : 'hidden'),
+      style: 'padding:8px 12px;gap:12px;background:' + (on ? 'var(--surface-selected-row)' : 'var(--surface)') +
+             ';border-color:' + (on ? 'var(--action)' : 'var(--border-default)'),
+      select: () => this.pick(m.id),
+      askDelete: e => { if (e && e.stopPropagation) e.stopPropagation(); this.setState({ confirm: m.id }); }
+    };
+  }
+
+  panel(m) {
+    if (!m) return { panelEmpty: true, panelShown: false, d: {} };
+    const isUpcoming = !!m.agenda;
+    const notes = (m.notes || []).map((n, i) => ({
+      no: String(i + 1), title: n.title, lines: n.lines,
+      mark: n.decided ? '결론 남' : '결론 안 남',
+      markColor: n.decided ? 'var(--text-secondary)' : 'var(--text-tertiary)',
+      // 카드로 감싸지 않는다 — 패널 안에 상자를 또 두면 글자가 두 번 들여쓰인다
+      style: i === 0 ? 'padding-bottom:16px' : 'padding:16px 0;border-top:1px solid var(--border-subtle)',
+      // 다음 할 일은 그 할 일이 나온 안건 안에 선다 (SCR-106-E40). 승격은 SCR-106 에서 한다
+      hasTodos: n.todos.length > 0,
+      // 승격된 행은 조작 자리에 「요청됨」만 낸다 — 링크로 읽히지 않게 t-meta 로 (D24)
+      todos: n.todos.map(t => ({
+        what: t.what, due: t.due || '', hasDue: !!t.due, linked: t.linked
+      }))
+    }));
+    const files = m.files || [];
+    const settled = !isUpcoming && !['in_progress', 'failed', 'cancelled'].includes(m.tag);
+    return {
+      panelEmpty: false, panelShown: true,
+      d: {
+        title: m.title || NO_TITLE,
+        when: m.when + '~' + m.end,
+        place: m.place, hasPlace: !!m.place, noPlace: !m.place,
+        people: m.people,
+        isUpcoming, isPast: !isUpcoming,
+        hasAgenda: isUpcoming && m.agenda.length > 0,
+        // 지난 회의의 안건 블록과 같은 모양으로 낸다 — 아직 결론도 본문도 없을 뿐이다
+        agenda: isUpcoming ? m.agenda.map((t, i) => ({
+          no: String(i + 1), title: t,
+          style: i === 0 ? 'padding-bottom:16px' : 'padding:16px 0;border-top:1px solid var(--border-subtle)'
+        })) : [],
+        hasNotes: notes.length > 0, notes,
+        hasFiles: files.length > 0, files: files.join(' · '),
+        hasExtra: files.length > 0,
+        canExport: settled,
+        canBookNext: !isUpcoming
+      }
+    };
+  }
+
+  /* ── MOD-102 ──────────────────────────────────────────────── */
+
+  flat() { return ORG.flatMap(u => u.members.map(m => ({ ...m, unit: u.unit }))); }
+
+  togglePerson(id) {
+    const has = this.state.people.includes(id);
+    this.setState({ people: has ? this.state.people.filter(p => p !== id) : [...this.state.people, id] });
+  }
+
+  bookingVals() {
+    const st = this.state;
+    const people = st.people;
+    const flat = this.flat();
+    const q = st.query.trim();
+
+    // 왼쪽은 조직, 오른쪽은 이름 찾기. 찾는 동안에는 조직을 넘어 전부에서 찾는다
+    const activeUnit = st.unit || ORG[0].unit;
+    const units = ORG.map(u => {
+      const on = !q && u.unit === activeUnit;
+      return {
+        unit: u.unit, count: u.total + '명',
+        style: 'display:flex;align-items:center;gap:8px;width:100%;padding:8px 12px;border-radius:var(--radius-control);font-size:13px;text-align:left;font-weight:' +
+               (on ? '700' : '400') + ';color:' + (on ? 'var(--action)' : 'var(--text-primary)') +
+               ';background:' + (on ? 'var(--selected-bg)' : 'transparent'),
+        pick: () => this.setState({ unit: u.unit, query: '' })
+      };
+    });
+
+    const row = m => ({
+      id: m.id, name: m.name, rank: m.rank, unit: m.unit, initial: m.name[0],
+      checked: people.includes(m.id),
+      rowStyle: 'display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:var(--radius-control);cursor:pointer;background:' + (people.includes(m.id) ? 'var(--selected-bg)' : 'transparent'),
+      toggle: () => { this.togglePerson(m.id); if (this.state.query) this.setState({ query: '' }); }
+    });
+    // 아래 조직도는 고른 부서만, 위 검색창은 부서를 넘어 전부에서 찾는다
+    const members = flat.filter(m => m.unit === activeUnit).map(row);
+    const hits = q ? flat.filter(m => m.name.includes(q)).map(row) : [];
+
+    // 명부에 없는 이름은 사외 참석자로 단다 — 계정을 만들지 않는다 (X-97)
+    const guestReady = q.length > 0 && q.length <= 30 && !st.guests.includes(q);
+
+    const picked = people.map(id => {
+      const p = flat.find(m => m.id === id);
+      return { name: p ? p.name : id, unit: p ? p.unit : '', unitColor: 'var(--text-tertiary)', remove: () => this.togglePerson(id) };
+    }).concat(st.guests.map(name => ({
+      name, unit: '사외', unitColor: 'var(--text-secondary)',
+      remove: () => this.setState({ guests: st.guests.filter(g => g !== name) })
+    })));
+
+    const subject = st.subject.trim();
+    const set = SETS[subject];
+    const round = set ? set[Math.min(st.round, set.length - 1)] : null;
+    const hasSuggest = !!round && !st.suggestClosed;
+
+    const headcount = people.length + st.guests.length;
+    // 회의실 판정과 the Connect 예약은 데모 범위 밖이다 (D16) — 이름·정원만 낸 정적 목록
+    const rooms = ROOMS.map(r => {
+      const on = st.room === r.id;
+      return {
+        id: r.id, name: r.name, seats: r.seats ? r.seats + '인' : '', hasSeats: r.seats > 0,
+        checked: on,
+        style: 'display:flex;align-items:center;gap:12px;padding:12px;border:1px solid ' +
+               (on ? 'var(--action)' : 'var(--border-default)') + ';border-radius:var(--radius-control);background:' +
+               (on ? 'var(--selected-bg)' : 'var(--surface)') + ';cursor:pointer',
+        pick: () => this.setState({ room: r.id })
+      };
+    });
+
+    const ready = subject.length > 0 && headcount > 0 && st.from < st.to;
+    // 쓴 것이 있으면 닫을 때 한 번 묻는다 (MOD-102-I10 · TXT-004)
+    const dirty = subject.length > 0 || headcount > 0 ||
+      st.agenda.length > 0 || st.purpose.trim().length > 0 || st.room !== 'none';
+    const close = () => this.setState({
+      modal: false, closeAsk: false, subject: '', suggestClosed: false, round: 0, openSelect: null,
+      people: [], query: '', unit: '', guests: [],
+      room: 'none', purpose: '', agenda: [], agendaDraft: '', endTouched: false
+    });
+
+    const applySuggest = () => {
+      if (!round) return;
+      const merged = st.agenda.slice();
+      round.open.forEach(t => { if (!merged.some(a => a.title === t)) merged.push({ title: t, origin: '지난 회의에서 넘어옴' }); });
+      this.setState({
+        date: round.date, from: round.from, to: round.to, endTouched: true,
+        people: round.people.slice(), room: round.place,
+        purpose: st.purpose || round.purpose, agenda: merged, suggestClosed: true
+      });
+    };
+
+    return {
+      modalOpen: st.modal,
+      openModal: () => this.setState({ modal: true }),
+      // [×] · ESC · 바깥 클릭 셋 다 같다 (MOD-102-I10). 아래에 [취소]를 또 두지 않는다
+      askClose: () => (dirty ? this.setState({ closeAsk: true }) : close()),
+      backdropClose: e => { if (e && e.target !== e.currentTarget) return; return dirty ? this.setState({ closeAsk: true }) : close(); },
+      modalKey: e => { if (e.key === 'Escape') { e.stopPropagation(); return dirty ? this.setState({ closeAsk: true }) : close(); } },
+      closeAsk: st.closeAsk,
+      keepOpen: () => this.setState({ closeAsk: false }),
+      discard: close,
+      notReady: !ready, submit: close,
+
+      subject: st.subject,
+      setSubject: e => this.setState({ subject: e.target.value, suggestClosed: false, round: 0 }),
+      hasRecent: st.subject.trim().length === 0,
+      recent: RECENT.map(label => ({ label, pick: () => this.setState({ subject: label, suggestClosed: false, round: 0 }) })),
+      hasSuggest,
+      suggest: round ? {
+        recur: round.recur,
+        place: (ROOMS.find(r => r.id === round.place) || { name: '' }).name,
+        people: round.people.map(id => (flat.find(m => m.id === id) || {}).name).join(' '),
+        done: round.done, hasDone: !!round.done,
+        open: round.open.join(' · '), hasOpen: round.open.length > 0
+      } : {},
+      roundOpen: st.openSelect === 'round',
+      toggleRound: () => this.setState({ openSelect: st.openSelect === 'round' ? null : 'round' }),
+      roundLabel: round ? round.when : '',
+      suggestRounds: set ? set.map((r, i) => ({
+        label: r.when, checked: i === Math.min(st.round, set.length - 1),
+        pick: () => this.setState({ round: i, openSelect: null })
+      })) : [],
+      applySuggest,
+      closeSuggest: () => this.setState({ suggestClosed: true }),
+
+      date: st.date, setDate: v => this.setState({ date: v }),
+      // 18 · 한 칸짜리 날짜 칸 — DS 의 date-picker 클래스로 판을 짠다
+      dateLabel: st.date || 'YYYY-MM-DD',
+      dateColor: st.date ? 'var(--text-primary)' : 'var(--text-tertiary)',
+      dateOpen: st.openSelect === 'date',
+      toggleDate: () => this.setState({ openSelect: st.openSelect === 'date' ? null : 'date' }),
+      weekdays: WEEKDAYS,
+      monthLabel: MONTH_LABEL((st.month || st.date.slice(0, 7) || TODAY.slice(0, 7))),
+      prevMonth: () => this.setState({ month: SHIFT_MONTH((st.month || st.date.slice(0, 7) || TODAY.slice(0, 7)), -1) }),
+      nextMonth: () => this.setState({ month: SHIFT_MONTH((st.month || st.date.slice(0, 7) || TODAY.slice(0, 7)), 1) }),
+      weeks: MONTH_GRID((st.month || st.date.slice(0, 7) || TODAY.slice(0, 7))).map(week => ({
+        days: week.map(iso => ({
+          day: Number(iso.slice(8)), label: iso,
+          selected: iso === st.date,
+          cls: 'date-picker-cell' + (iso.slice(0, 7) === ((st.month || st.date.slice(0, 7) || TODAY.slice(0, 7))) ? '' : ' outside') + (iso === TODAY ? ' today' : ''),
+          pick: () => this.setState({ date: iso, month: iso.slice(0, 7), openSelect: null })
+        }))
+      })),
+      clearDate: () => this.setState({ date: '', openSelect: null }),
+      pickToday: () => this.setState({ date: TODAY, month: TODAY.slice(0, 7), openSelect: null }),
+      // 시각 셀렉터 — DS 에 TimeField 가 없어 popover 어휘로 세운 공용 부품 (DS 추가 후보)
+      from: st.from, to: st.to,
+      fromOpen: st.openSelect === 'from', toOpen: st.openSelect === 'to',
+      toggleFrom: () => this.setState({ openSelect: st.openSelect === 'from' ? null : 'from' }),
+      toggleTo: () => this.setState({ openSelect: st.openSelect === 'to' ? null : 'to' }),
+      fromTimes: TIMES.map(t => ({
+        label: t.label, checked: t.value === st.from,
+        pick: () => this.setState(st.endTouched
+          ? { from: t.value, openSelect: null }
+          : { from: t.value, to: addHour(t.value), openSelect: null })
+      })),
+      toTimes: TIMES.map(t => ({
+        label: t.label, checked: t.value === st.to,
+        pick: () => this.setState({ to: t.value, endTouched: true, openSelect: null })
+      })),
+      setNow: () => this.setState({ date: '2026-09-10', from: '14:30', to: '15:30', endTouched: false, openSelect: null }),
+
+      units, members, hits, picked, peopleCount: headcount + '명',
+      hasPicked: picked.length > 0,
+      searchOpen: q.length > 0,
+      noMatch: q.length > 0 && hits.length === 0,
+      canAddGuest: guestReady,
+      canAddGuestInline: guestReady && hits.length > 0,
+      guestName: q, guestInitial: q ? q[0] : '',
+      addGuest: () => this.setState({ guests: [...st.guests, q], query: '' }),
+      query: st.query, setQuery: e => this.setState({ query: e.target.value }),
+
+      rooms,
+      purpose: st.purpose, setPurpose: e => this.setState({ purpose: e.target.value }),
+
+      agendaRows: st.agenda.map((a, i) => ({
+        no: String(i + 1), title: a.title, origin: a.origin,
+        remove: () => this.setState({ agenda: st.agenda.filter((_, j) => j !== i) })
+      })),
+      hasAgendaRows: st.agenda.length > 0,
+      agendaDraft: st.agendaDraft,
+      setAgendaDraft: e => this.setState({ agendaDraft: e.target.value }),
+      agendaFull: st.agenda.length >= 20,
+      addAgenda: () => {
+        const v = st.agendaDraft.trim();
+        if (!v || st.agenda.length >= 20) return;
+        this.setState({ agenda: [...st.agenda, { title: v, origin: '직접 입력' }], agendaDraft: '' });
+      }
+    };
+  }
+
+  /* ── 화면 ─────────────────────────────────────────────────── */
+
+  renderVals() {
+    const mode = this.props.screenState ?? '고름';
+    const isEmpty = mode === '빈 상태';
+    const isError = mode === '오류';
+    const base = this.state.touched ? this.state.selected : (mode === '고름' ? 'p6' : null);
+    const selected = (isEmpty || isError) ? null : base;
+
+    const upcoming = isEmpty || isError ? [] : UPCOMING;
+    const pastAll = isEmpty || isError ? [] : PAST;
+    const past = pastAll.slice(0, this.state.page * PAGE);
+
+    const current = [...UPCOMING, ...PAST].find(m => m.id === selected) || null;
+    const target = this.state.confirm ? [...UPCOMING, ...PAST].find(m => m.id === this.state.confirm) : null;
+
+    return {
+      ...this.bookingVals(),
+      ...this.panel(isEmpty || isError ? null : current),
+
+      listError: isError, listEmpty: isEmpty, listShown: !isError && !isEmpty,
+      retryList: () => {},
+      hasUpcoming: upcoming.length > 0,
+      upcomingCount: String(upcoming.length),
+      upcoming: upcoming.map(m => this.row(m, 'upcoming', selected)),
+      hasPast: past.length > 0,
+      past: past.map(m => this.row(m, 'past', selected)),
+      hasMore: past.length < pastAll.length, moreBusy: false,
+      loadMore: () => this.setState({ page: this.state.page + 1 }),
+
+      bookNext: () => {
+        if (!current) return;
+        // 결론 안 난 안건만 담는다 (X-121 · MOD-102-E07). 나머지 값은 제안 카드가 채운다
+        const open = (current.notes || []).filter(n => !n.decided)
+          .map(n => ({ title: n.title, origin: '지난 회의에서 넘어옴' }));
+        this.setState({
+          modal: true, subject: current.title, suggestClosed: false, round: 0,
+          agenda: open, people: [], room: 'none', purpose: '', agendaDraft: ''
+        });
+      },
+
+      confirmOpen: !!target,
+      // 닫는 자리는 머리의 × 하나 — 푸터에 [취소]를 두지 않는다. ESC · 바깥 클릭도 같다
+      closeConfirm: () => this.setState({ confirm: null }),
+      backdropCloseConfirm: e => { if (e && e.target !== e.currentTarget) return; this.setState({ confirm: null }); },
+      confirmKey: e => { if (e.key === 'Escape') { e.stopPropagation(); this.setState({ confirm: null }); } },
+      deleteMeeting: () => this.setState({ confirm: null, toast: '회의를 취소했습니다.' }),
+      toastOpen: !!this.state.toast, toastMessage: this.state.toast || '',
+      closeToast: () => this.setState({ toast: null }),
+
+      noop: () => {}
+    };
+  }
+}
+
+</script>
+</body>
+</html>

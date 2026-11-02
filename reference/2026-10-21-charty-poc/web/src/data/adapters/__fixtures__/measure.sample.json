@@ -1,0 +1,587 @@
+{
+  "type": 7,
+  "version": "0.0.0",
+  "results_version": "0.0.0",
+  "categories": [
+    {
+      "id": "basic_247",
+      "name": "염증&민감",
+      "features": [
+        "Red",
+        "Porphyrin"
+      ],
+      "score": 90,
+      "level": 0
+    },
+    {
+      "id": "basic_246",
+      "name": "피부톤",
+      "features": [
+        "Pigment",
+        "Grayscale",
+        "Pantone"
+      ],
+      "score": 62.5,
+      "level": 2
+    },
+    {
+      "id": "basic_245",
+      "name": "피부결",
+      "features": [
+        "Pore",
+        "Dermatograin"
+      ],
+      "score": 71,
+      "level": 1
+    },
+    {
+      "id": "basic_244",
+      "name": "노화",
+      "features": [
+        "basic_241",
+        "basic_242"
+      ],
+      "score": 55,
+      "level": 3
+    }
+  ],
+  "features": [
+    {
+      "id": "Red",
+      "name": "샘플",
+      "score": 90,
+      "level": 1,
+      "measures": [
+        {
+          "id": "Red",
+          "title": "描述词",
+          "score": 90,
+          "results": [
+            {
+              "id": "red_max",
+              "title": "极值",
+              "type": "extremum",
+              "value": 100,
+              "score": 80,
+              "unit": null
+            },
+            {
+              "id": "red_peak",
+              "title": "原始值",
+              "type": "extremum",
+              "value": 50,
+              "score": 85,
+              "unit": null
+            },
+            {
+              "id": "red_distribution",
+              "title": "原始值",
+              "type": "distribution",
+              "value": {
+                "ratios": [
+                  0.1
+                ],
+                "ratio_title": "红度"
+              },
+              "score": null,
+              "unit": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Porphyrin",
+      "name": "샘플",
+      "score": -1,
+      "level": 1,
+      "measures": [
+        {
+          "id": "Porphyrin",
+          "title": "描述词",
+          "score": -1,
+          "results": [
+            {
+              "id": "porphyrin_count",
+              "title": "数量",
+              "type": "count",
+              "value": 1234,
+              "score": 60,
+              "unit": null
+            },
+            {
+              "id": "porphyrin_percentage",
+              "title": "比例",
+              "type": "ratio",
+              "value": 0.25,
+              "score": 60,
+              "unit": "%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Pigment",
+      "name": "샘플",
+      "score": 84.9,
+      "level": 1,
+      "measures": [
+        {
+          "id": "Pigment",
+          "title": "描述词",
+          "score": 84.9,
+          "results": [
+            {
+              "id": "pigment_max",
+              "title": "原始值",
+              "type": "extremum",
+              "value": 120,
+              "score": 80,
+              "unit": null
+            },
+            {
+              "id": "pigment_strength",
+              "title": "原始值",
+              "type": "intensity",
+              "value": 50.5,
+              "score": 80,
+              "unit": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Grayscale",
+      "name": "샘플",
+      "score": 60,
+      "level": 1,
+      "measures": [
+        {
+          "id": "Grayscale",
+          "title": "描述词",
+          "score": 60,
+          "results": [
+            {
+              "id": "grayscale_peak",
+              "title": "原始值",
+              "type": "extremum",
+              "value": 100,
+              "score": 60,
+              "unit": null
+            },
+            {
+              "id": "grayscale_strength",
+              "title": "原始值",
+              "type": "intensity",
+              "value": 90.25,
+              "score": 60,
+              "unit": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Pore",
+      "name": "샘플",
+      "score": 59.9,
+      "level": 1,
+      "measures": [
+        {
+          "id": "Pore",
+          "title": "描述词",
+          "score": 59.9,
+          "results": [
+            {
+              "id": "pore_area_peak",
+              "title": "原始值",
+              "type": "extremum",
+              "value": 300,
+              "score": 70,
+              "unit": "μm"
+            },
+            {
+              "id": "pore_big_ratio",
+              "title": "原始值",
+              "type": "ratio",
+              "value": 0.2,
+              "score": 60,
+              "unit": "%"
+            },
+            {
+              "id": "pore_deep_ratio",
+              "title": "原始值",
+              "type": "ratio",
+              "value": 0.05,
+              "score": 80,
+              "unit": "%"
+            },
+            {
+              "id": "pore_unknown",
+              "title": "未知",
+              "type": "ratio",
+              "value": 0.9,
+              "score": 10,
+              "unit": "%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Dermatograin",
+      "name": "샘플",
+      "score": 85,
+      "level": 1,
+      "measures": [
+        {
+          "id": "Dermatograin",
+          "title": "描述词",
+          "score": 85,
+          "results": [
+            {
+              "id": "dermatograin_deep2_ratio",
+              "title": "原始值",
+              "type": "ratio",
+              "value": 0.031,
+              "score": 85,
+              "unit": "%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Pantone",
+      "name": "팬톤",
+      "score": -1,
+      "measures": [
+        {
+          "id": "Pantone",
+          "title": "潘通",
+          "score": -1,
+          "results": [
+            {
+              "id": "Skin_ID",
+              "title": "原始值",
+              "type": "color_code",
+              "value": "1A01",
+              "score": null,
+              "unit": null
+            },
+            {
+              "id": "Skin_description",
+              "title": "描述词",
+              "type": "str",
+              "value": "샘플색",
+              "score": null,
+              "unit": null
+            },
+            {
+              "id": "rgb_value",
+              "title": "rgb值",
+              "type": "rgb",
+              "value": [
+                10,
+                20,
+                30
+              ],
+              "score": null,
+              "unit": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "basic_241",
+      "name": "샘플",
+      "score": 88,
+      "level": 1,
+      "measures": [
+        {
+          "id": "Wrinkles_BG",
+          "title": "皱纹",
+          "score": 100,
+          "results": [
+            {
+              "id": "wrinkles_bg_length",
+              "title": "原始值",
+              "type": "length",
+              "value": 0,
+              "score": 90,
+              "unit": "mm"
+            },
+            {
+              "id": "wrinkles_bg_length_thick_2",
+              "title": "原始值",
+              "type": "length",
+              "value": 1.0,
+              "score": 90,
+              "unit": "mm"
+            },
+            {
+              "id": "wrinkles_bg_average",
+              "title": "原始值",
+              "type": "average",
+              "value": -100.5,
+              "score": 70,
+              "unit": null
+            }
+          ]
+        },
+        {
+          "id": "Wrinkles_MJ",
+          "title": "皱纹",
+          "score": 90,
+          "results": [
+            {
+              "id": "wrinkles_mj_length",
+              "title": "原始值",
+              "type": "length",
+              "value": 5,
+              "score": 90,
+              "unit": "mm"
+            },
+            {
+              "id": "wrinkles_mj_length_thick_2",
+              "title": "原始值",
+              "type": "length",
+              "value": 1.0,
+              "score": 90,
+              "unit": "mm"
+            },
+            {
+              "id": "wrinkles_mj_average",
+              "title": "原始值",
+              "type": "average",
+              "value": -100.5,
+              "score": 70,
+              "unit": null
+            }
+          ]
+        },
+        {
+          "id": "Wrinkles_YD",
+          "title": "皱纹",
+          "score": 84,
+          "results": [
+            {
+              "id": "wrinkles_yd_length",
+              "title": "原始值",
+              "type": "length",
+              "value": 10,
+              "score": 90,
+              "unit": "mm"
+            },
+            {
+              "id": "wrinkles_yd_length_thick_2",
+              "title": "原始值",
+              "type": "length",
+              "value": 1.0,
+              "score": 90,
+              "unit": "mm"
+            },
+            {
+              "id": "wrinkles_yd_average",
+              "title": "原始值",
+              "type": "average",
+              "value": -100.5,
+              "score": 70,
+              "unit": null
+            }
+          ]
+        },
+        {
+          "id": "Wrinkles_YW",
+          "title": "皱纹",
+          "score": 86,
+          "results": [
+            {
+              "id": "wrinkles_yw_length",
+              "title": "原始值",
+              "type": "length",
+              "value": 2.5,
+              "score": 90,
+              "unit": "mm"
+            },
+            {
+              "id": "wrinkles_yw_length_thick_2",
+              "title": "原始值",
+              "type": "length",
+              "value": 1.0,
+              "score": 90,
+              "unit": "mm"
+            },
+            {
+              "id": "wrinkles_yw_average",
+              "title": "原始值",
+              "type": "average",
+              "value": -100.5,
+              "score": 70,
+              "unit": null
+            }
+          ]
+        },
+        {
+          "id": "Wrinkles_TT",
+          "title": "皱纹",
+          "score": 95,
+          "results": [
+            {
+              "id": "wrinkles_tt_length",
+              "title": "原始值",
+              "type": "length",
+              "value": 1,
+              "score": 90,
+              "unit": "mm"
+            },
+            {
+              "id": "wrinkles_tt_length_thick_2",
+              "title": "原始值",
+              "type": "length",
+              "value": 1.0,
+              "score": 90,
+              "unit": "mm"
+            },
+            {
+              "id": "wrinkles_tt_average",
+              "title": "原始值",
+              "type": "average",
+              "value": -100.5,
+              "score": 70,
+              "unit": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "basic_242",
+      "name": "샘플",
+      "score": 55,
+      "level": 1,
+      "measures": [
+        {
+          "id": "Wrinkles_LG",
+          "title": "深纹",
+          "score": 50,
+          "results": [
+            {
+              "id": "wrinkles_lg_right_length_ratio",
+              "title": "左侧",
+              "type": "ratio",
+              "value": 1,
+              "score": 0.6,
+              "unit": "%"
+            },
+            {
+              "id": "wrinkles_lg_left_length_ratio",
+              "title": "右侧",
+              "type": "ratio",
+              "value": 1,
+              "score": 0.6,
+              "unit": "%"
+            },
+            {
+              "id": "wrinkles_lg_left_avg_curvature",
+              "title": "右侧",
+              "type": "curvature",
+              "value": -50,
+              "score": 55.5,
+              "unit": null
+            },
+            {
+              "id": "wrinkles_lg_right_avg_curvature",
+              "title": "左侧",
+              "type": "curvature",
+              "value": -40,
+              "score": 60,
+              "unit": null
+            }
+          ]
+        },
+        {
+          "id": "Wrinkles_FL",
+          "title": "深纹",
+          "score": 70,
+          "results": [
+            {
+              "id": "wrinkles_fl_right_length_ratio",
+              "title": "左侧",
+              "type": "ratio",
+              "value": 1,
+              "score": 0.6,
+              "unit": "%"
+            },
+            {
+              "id": "wrinkles_fl_left_length_ratio",
+              "title": "右侧",
+              "type": "ratio",
+              "value": 1,
+              "score": 0.6,
+              "unit": "%"
+            },
+            {
+              "id": "wrinkles_fl_left_avg_curvature",
+              "title": "右侧",
+              "type": "curvature",
+              "value": -50,
+              "score": 55.5,
+              "unit": null
+            },
+            {
+              "id": "wrinkles_fl_right_avg_curvature",
+              "title": "左侧",
+              "type": "curvature",
+              "value": -40,
+              "score": 60,
+              "unit": null
+            }
+          ]
+        },
+        {
+          "id": "Wrinkles_QJ",
+          "title": "深纹",
+          "score": 88,
+          "results": [
+            {
+              "id": "wrinkles_qj_right_length_ratio",
+              "title": "左侧",
+              "type": "ratio",
+              "value": 1,
+              "score": 0.6,
+              "unit": "%"
+            },
+            {
+              "id": "wrinkles_qj_left_length_ratio",
+              "title": "右侧",
+              "type": "ratio",
+              "value": 1,
+              "score": 0.6,
+              "unit": "%"
+            },
+            {
+              "id": "wrinkles_qj_left_avg_curvature",
+              "title": "右侧",
+              "type": "curvature",
+              "value": -50,
+              "score": 55.5,
+              "unit": null
+            },
+            {
+              "id": "wrinkles_qj_right_avg_curvature",
+              "title": "左侧",
+              "type": "curvature",
+              "value": -40,
+              "score": 60,
+              "unit": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "task": {
+    "id": "846a5d17-5a0a-4244-9cc9-7c71c04178a5",
+    "ok": true,
+    "result": {
+      "task": {
+        "id": "task_5b3cd7adb43a",
+        "parent_id": null,
+        "created_by_terminal_handle": "term_9de388d5-58b1-4bbe-8864-5e930def648b",
+        "task_title": "# [writer] WORK-002 — 업무 v2 + MyWork 프론트 통합 구현 계획",
+        "display_name": "# [writer] WORK-002 — 업무 v2 + MyWork 프론트 통합 구현 계획",
+        "spec": "# [writer] WORK-002 — 업무 v2 + MyWork 프론트 통합 구현 계획\n\n## 1. 역할/규칙/SSOT\norchestration/roles/strong-hajin/planner/role.md 및 rules/skills/tools/workflow. para/para.md→para/projects/project.md, templates/projects/30-work/work.md 준수.\n현재 문서트리 para/projects/summer-star/strong-hajin/ BASE002/DEC002/SPEC003 v0.3.1 및 대체되지 않은 SPEC001/002. SPEC는 read-only 확정입력, WORK->SPEC 연결만. 기존 WORK001은 W1 기준선이고 재구현하지 않음.\n원문 reference/2026-09-10-sc-meeting/ 정의/생명주기/작업계획서 v2·example + design-change-2026-09-17/ 분석4문서. 실제 시안 코드트리 .design-sync/screens/ 읽기. 분석보고만 보고 시안 검증했다 하지 말 것.\n\n## 2. 승인/현재상태\n사용자 v2 BE+FE 함께 진행 승인, 코디가 발주/통합검증하고 브라우저E2E는 사용자. 스펙 재검수2차 WARN/FAIL0, RW2-W1~8 최소정정 완료 코디 실물확인. SPEC의 특정 WORK역참조2건은 코디가 일반 후속계획으로 정리. 새 정책 추가 없이 통합 WORK002 작성 단계다. OQ203 제출선차단 여부/OQ206 회의승격 완료확인자 답대기. 의존 작업만 명시하고 미정과 독립한 구현계획은 완성한다.\n\n## 3. 코드 기준선/보존\n코드 /Users/kknaks/orca/workspaces/Strong_hajin/strong-hajin-work, branch kknaksss/strong-hajin-work, HEAD8973791 + W1 미커밋. orchestration/work/strong-hajin-work/v2-code-baseline/manifest.json/working-files.zip/tracked.patch 기준선. HEAD만으로 v2 diff를 판정하지 않음. 새 branch/worktree 없음, 사용자 문서/디자인/W1 보존, stash/reset/checkout/clean 금지.\n코드 AGENTS.md 및 Makefile부터 읽고 실제 호출/테스트/DB도구 조사. 이번은 읽기만, DB/테스트 실행하지 않음.\n\n## 4. WORK 내용\ntemplates/projects/30-work/work.md로 WORK002 status todo/progress0/phase전부TODO. 코드표면 전수·phase별 작업/검증/완료증거, BE/FE 소유와 공유파일 단일소유 지정. 단계순서+BE FE 독립작업 병행가능 지점, API생산/FE소비 함께 연결되는 통합단위 지정. API받고 무시하는 창/멱등키서버필수화와 FE미전송 창 금지.\n원문 작업계획서 단계0~7을 실제 레포에 구체화: 현재DB읽기전용 스키마/예외행 조사→격리PG 검증/호환·migration 기술안→요청send/accept/decline/협의/재요청→책임유지 재배정→재귀하위/권한/자료→완료보고/승인/취소합의/재개→REST/MCP/AX/회의/seed/인벤토리→FE시안+v2흐름→자동 통합회귀.\nDB도구 없는 것을 있다고 쓰지 말 것. 실제 schema_sync/reset_demo 제한 읽고 운영DB초기화 없이 가능한 additive migration/rollout/rollback을 단일 기술안으로 제시. 실물DB 예외는 관측뒤 판단, 데이터승인 날조금지. schema정본은 코드, 문서에 전체스키마 복사금지.\nW1 유효 보장(멱등원장/active최대1/권한재검사/actor/AX확인) 보존. 최종완료와 completion-report 구분. 모든 생성입구/회신명령/읽기자료표면을 직접 찾아 누락방지. 기존테스트를 편의상 삭제·skip하거나 약화하지 말 것.\n\n## 5. FE/디자인 범위와 미설계\n새3탭/표/필터/모달/레일 + 상세/하위/승인/재배정/취소재개 UX를 구현가능 단위로 배치. DS재사용/실제없는 아이콘/부품을 실물로 구분, 시안12파일 원본확인. 업무 생성3행위 구분과 API권한 보존. SPEC U1~15와 A1~C2 모두 책임/검증 매핑.\nM20~24 및 수신함 업무/참고/답장/원문확인, 별표, 미읽음, 근무시간/회의일정에 대해 현재 API/데이터를 읽어 기술적으로 해소가능한 것을 결정. 부재를 추정하지 말 것. 신규 외부계약이 필요하면 SPEC환류 후보로 명시, WORK에서 몰래 제품정책 확정 금지. 전체 새서비스/내비 페이지 구축은 승인범위와 구분. 디자인요구 누락을 '후행' 한마디로 숨기지 말고 의존/실행가능범위 명시. OQ202 목록정리 표현은 기존 BE계약내 기술UX 선택으로 구체안 가능.\n\n## 6. 검증계획\n실제 코드 AGENTS/Makefile 우선. BE make test-unit/test-contract, PG make test-postgres 격리DB, 최종 make verify. FE make frontend-test/frontend-build 및 npx tsc --noEmit(허용되는 위치). 임의 uv pytest 직접명령 금지. Node20 지원환경과 기존 W1 검증 리포트 참고. 자료worker3초 lease 시간전제 부채는 제품버그와 구분하고 테스트skip/완화 금지. 테스트 단계별 적정범위, 전량 불필요반복 금지.\n자동 API/DB/FE회귀는 에이전트, 브라우저E2E 사용자. E2E미실행을 통과라고 쓰지 않음. 사용자 E2E시나리오/기대결과 인계 계획. W1유지회귀와 v2새계약검증 구분.\n\n## 7. allowed_paths/금지\n신규 para/projects/summer-star/strong-hajin/30-work/work-002-task-lifecycle-v2.md 하나.\n보고 orchestration/work/strong-hajin-work/v2-work-plan-report.md 하나.\n그밖에 SPEC/BASE/DEC/index/log/reference/코드/디자인 수정 금지. 커밋/push/PR/DB/테스트/빌드/새워커발주 금지.\n\n## 8. 완료\nWORK002 작성 및 양식/phase상태/links/인수조건추적 자체점검. code surface 실제확인근거, SPEC환류가 필요한 최소부분, 남은 사용자 질문의 영향만 보고. 구현한 것처럼 표시하지 않는다. 리뷰어 검수는 코디가 후속발주.\n\n## 9. 완료 보고 — **문구 변경 금지**\n\n> **⚠ 핸들은 dispatch preamble 의 값을 믿어라.** 아래 명령에 박힌 코디handle 은 **브리프 작성 시점** 값이라 오래됐을 수 있다 — 세션이 재연결되면 핸들이 바뀐다(2026-07-28·29 두 번 겪음). preamble 의 코디네이터 핸들과 아래 값이 다르면 **preamble 이 맞다.** 두 곳에 다 보내지 말고 preamble 쪽으로만 보내라.\n\n\n- **커밋·push·PR 하지 마라.** 워크트리에 변경만 남긴다. 검증·PR 은 코디네이터가 한다.\n- 끝나면 **아래 두 명령을 모두** 실행한다. 하나만 하면 안 된다.\n\n```bash\n# (1) 인박스 적재 — 태스크 완료 처리·영구 기록. 코디네이터를 깨우지 않는다.\norca orchestration send \\\n  --to term_29f98b02-b4b2-4735-8daa-81708cb3dfdc --from term_10811a39-039e-4ea7-bc4f-0b9e612c6e5b \\\n  --type worker_done \\\n  --task-id <이 태스크의 taskId — dispatch 로 받은 context 에 들어 있다> \\\n  --dispatch-id <이 태스크의 dispatchId — dispatch 로 받은 context 에 들어 있다> \\\n  --subject \"writer 완료: <한 줄>\" \\\n  --body \"변경 파일 목록 / 구현 요약 / 검증 결과(수치) / 계약 준수 / 미결·주의점\"\n\n# (2) 직접 주입 — 코디네이터 세션에 유저 메시지로 꽂혀 자동으로 깨운다.\norca terminal send --terminal term_29f98b02-b4b2-4735-8daa-81708cb3dfdc \\\n  --text \"[worker_done] writer 완료 — <한 줄 요약>. 상세는 인박스.\" --enter\n```\n\n- 막히면 30분 이상 혼자 헤매지 말고 같은 (2) 방식으로 물어라:\n  `orca terminal send --terminal term_29f98b02-b4b2-4735-8daa-81708cb3dfdc --text \"[질문] writer: <질문>\" --enter`\n  (`orca orchestration ask` 는 채널이 닫혀 답이 안 닿는 경우가 많다.)\n",
+        "status": "ready",
+        "deps": "[]",
+        "result": null,
+        "created_at": "2026-09-17 06:42:36",
+        "completed_at": null
+      }
+    },
+    "_meta": {
+      "runtimeId": "f0b0012a-376b-4c5c-91e5-761dbda6f70a"
+    }
+  },
+  "dispatch": {
+    "id": "d54373dc-e119-4806-9751-65695505c272",
+    "ok": true,
+    "result": {
+      "dispatch": {
+        "id": "ctx_fa48f5b4b4e6",
+        "task_id": "task_5b3cd7adb43a",
+        "assignee_handle": "term_10811a39-039e-4ea7-bc4f-0b9e612c6e5b",
+        "assignee_pane_key": "281c75cf-e606-4166-ba83-d8757f562e66:e5c521e6-c475-4e5f-92be-f0a087450df5",
+        "status": "dispatched",
+        "failure_count": 0,
+        "last_failure": null,
+        "dispatched_at": "2026-09-17 06:42:36",
+        "completed_at": null,
+        "created_at": "2026-09-17 06:42:36",
+        "last_heartbeat_at": null
+      },
+      "injected": true
+    },
+    "_meta": {
+      "runtimeId": "f0b0012a-376b-4c5c-91e5-761dbda6f70a"
+    }
+  }
+}

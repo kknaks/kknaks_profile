@@ -1,0 +1,57 @@
+# @sc-ax-reviewer — 규칙 (검수 체크리스트)
+
+## 공통 규칙
+1. **read-only.** 대상 리포의 파일을 수정·생성·삭제하지 않는다. 유일한 산출물은 브리프가 지정한 리뷰 리포트 파일 1개.
+2. **diff 가 검수 범위다.** `git diff <base>...HEAD` (+ untracked) 에 없는 기존 문서의 문제는 "기존 부채"로 분리해 참고란에만 적는다 — 이번 판정에 넣지 않는다.
+3. **근거 없는 지적 금지.** 위반마다 `파일:줄` + 어긴 규칙의 출처(역할문서·리포 rules/·기존 패턴)를 명시한다.
+4. **allowed_paths 이탈은 무조건 FAIL.** diff 에 원 워커 브리프 §5 밖 파일이 있으면 다른 항목과 무관하게 FAIL.
+5. 취향 지적은 하지 않는다. 기준 문서나 기존 패턴으로 근거를 댈 수 있는 것만 위반이다.
+
+## planner 리뷰 (문서 리포)
+- [ ] **린트**: `python3 scripts/lint-pipeline.py --strict` 실행 → `para/projects/summer-star/strong-hajin/` 범위 ERROR 0.
+      타 제품의 기존 WARN/ERROR 는 "무관"으로 분리 보고.
+- [ ] **frontmatter**: 신규/수정 문서의 필수 필드 (린트 보조).
+- [ ] **자리 규칙**: 문서가 `para/projects/summer-star/strong-hajin/` 의 기존 구조에 맞는 자리에 있나. 새 최상위 디렉토리를 임의로 만들지 않았나.
+- [ ] **출처**: 도메인 사실(고객사 현황·인터뷰·요구)에 baseline 또는 브리프 SSOT 출처가 있나. 출처 없는 단정이 있으면 위반.
+- [ ] **표·인덱스 정합**: 이번 작업이 만든/바꾼 문서가 관련 인덱스·상태 표에 반영됐나. 표와 본문이 어긋나지 않나.
+- [ ] **중복**: 이미 있는 문서를 놔두고 같은 내용을 새로 만들지 않았나.
+
+## backend 리뷰 (Strong_hajin `backend/`)
+- [ ] **경계**: `modules/*/domain.py`·`application.py` 에 `fastapi`·`mcp`·`sqlalchemy` import 가 없나. `entrypoints/` 가 `platform/` 구현을 직접 import 하지 않나 (근거: `tests/architecture/test_architecture.py`).
+- [ ] **스키마**: `reset_demo` 밖에서 `create_all`·DDL 을 부르지 않나. 새 표가 `docs/domain-model.md` 대조표에 올랐나.
+- [ ] **판단 계약**: envelope(`allowed_commands`·`waiting_on`)를 server 가 만드나. command 가 소유 모듈 application 에 위임되나. 재전송이 영수증인가 (근거: README 「판단 통합」·`roles/sc-ax/backend/rules.md`).
+- [ ] **재사용**: 있는 operation·platform 어댑터를 놔두고 재구현하지 않았나.
+- [ ] **테스트**: 새 operation·엔드포인트에 unit/contract 테스트가 있나. `integration` 마커를 브리프 허가 없이 쓰지 않았나.
+- [ ] **예외**: 아래층이 HTTPException 을 던지지 않나. `except Exception` 으로 삼키지 않나.
+
+## frontend 리뷰 (Strong_hajin `frontend/`)
+- [ ] **envelope**: kind·status 로 command·권한을 추론하는 코드가 없나 (근거: README 「판단 통합」·`roles/sc-ax/frontend/rules.md`).
+- [ ] **호출 자리**: `src/api.ts` 밖에서 `fetch` 하지 않나.
+- [ ] **재사용**: 기존 컴포넌트(Modal·DateField·Checklist·WorkViews·WorkModals·ActionPreview)·`viewModels.ts`·`labels.ts` 를 놔두고 중복 구현하지 않았나.
+- [ ] **카피·스타일**: 한국어 문자열이 `labels.ts` 밖에 흩어지지 않았나. 컴포넌트에 임의 hex 리터럴이 없나.
+- [ ] **테스트**: 훅·viewModel·critical 컴포넌트에 옆자리 `*.test.tsx` 가 있나.
+
+## 리포트 형식 (지정된 경로에 이 형식으로)
+
+```markdown
+# 리뷰 리포트 — <slug> / <planner|backend|frontend> (<날짜>)
+
+## 판정: PASS | WARN | FAIL
+
+## 검수 범위
+- diff: <base>..HEAD, 파일 N개 (+ untracked M개)
+- 실행한 검사: <린트 명령·grep 등 — 코드 리뷰는 테스트를 돌리지 않는다>
+
+## 위반 (FAIL 사유)
+- `파일:줄` — <무엇이 어긋났나> — 근거: <규칙 출처>
+  - 권장 수정: <한 줄>
+
+## 경미 (WARN)
+- `파일:줄` — <내용> — 근거: <출처>
+
+## 기존 부채 (이번 판정 제외)
+- <이번 diff 밖에서 발견한 것. 없으면 "없음">
+
+## 확인한 것 (PASS 근거)
+- <체크리스트 항목별 한 줄 — "확인 안 함" 을 숨기지 마라>
+```

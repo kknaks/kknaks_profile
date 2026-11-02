@@ -1,0 +1,132 @@
+{
+  "_doc": "mykakao 오케스트레이션 설정 SSOT. scripts/new-work.sh 가 읽는 유일한 곳. CLAUDE.md·브리프·스크립트에 여기 값을 하드코딩하지 말 것.",
+  "project": "mykakao",
+  "worktree_root": "C:/Users/sc971/orca/workspaces",
+  "use_worktree": true,
+  "_platform": {
+    "_doc": "이 프로젝트만 Windows 머신에서 돈다 (2026-09-02). 다른 프로젝트 config 의 /Users/kknaks/... 경로와 섞지 말 것.",
+    "host": "Windows 11 (C:/Users/sc971)",
+    "shell": "Git Bash (bash 5.3 cygwin) + PowerShell 7",
+    "note": "레포 코드는 아직 macOS 전제(ioreg·plist·brew sqlcipher). Windows 이식이 첫 작업이다.",
+    "python": "Python 3.12.10 (user scope, 2026-09-02 설치). PYTHONUTF8=1 을 사용자 환경변수로 박아 뒀다 — 없으면 cp949 로 열려 한글 config 파싱이 죽는다."
+  },
+  "repos": {
+    "app": {
+      "orca_name": "mykakao",
+      "canonical_path": "C:/Users/sc971/OneDrive/Desktop/kknaks/mykakao",
+      "remote": "https://github.com/kknaksss/mykakao.git",
+      "base": "origin/main",
+      "pr_base": "main",
+      "worktree_suffix": "",
+      "notes": [
+        "canonical 은 사용자 체크아웃 — pull/checkout 금지, fetch 만.",
+        "프로필 레포(kknaks/kknaks_profile)와 계정이 다르다: kknaksss (s 3개).",
+        "main 최신 = 2026-06-15 (macOS 데모 + AI 요약까지). 그 뒤 커밋 없음."
+      ]
+    }
+  },
+  "_docs_ssot": {
+    "_doc": "문서와 코드가 다른 레포다 — runbook §프로젝트 유형의 제3형. 분리형이지만 planner 워커가 없다.",
+    "repo": "kknaks_profile (이 레포)",
+    "path": "para/projects/summer-star/mykakao/",
+    "owner": "코디네이터가 직접 쓴다 (baseline→decision→spec→work). planner 워커 없음 — kknaks-dev 와 같은 방식",
+    "worker_reference": "워커 base(origin/main, mykakao 레포)에는 문서가 아예 없다. 브리프 §1 에 코디 워크트리 절대경로를 read-only 로 박는다: C:/Users/sc971/orca/workspaces/kknaks_profile/mykakao/para/projects/summer-star/mykakao/",
+    "pr_separation": "문서 PR = kknaks_profile 레포 / 코드 PR = mykakao 레포. 레포부터 다르므로 분리는 자동이다."
+  },
+  "workers": {
+    "backend": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "be",
+      "roles_dir": "roles/mykakao/backend",
+      "allowed_paths": [
+        "backend/",
+        "requirements.txt"
+      ],
+      "verify": "python -m pytest -q backend/tests/<네가 만들거나 고친 테스트 파일만> (전체 스위트 금지 — 사용자 방침). 검증은 1회만 — 통과하면 반복하지 마라. sqlcipher3 가 안 깔린 환경이면 DB 의존 테스트는 못 돈다 — 못 돌렸다고 보고한다"
+    },
+    "frontend": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "fe",
+      "roles_dir": "roles/mykakao/frontend",
+      "allowed_paths": [
+        "frontend/"
+      ],
+      "verify": "빌드 도구가 없다 (vanilla HTML+JS, npm/tsc 없음). 워커 검증 = `node --check` 로 script 블록을 뽑아 문법 확인 + 네가 만진 파일 diff 자체 대조. 실기동 확인은 코디네이터가 backend 띄워서 한다. 검증은 1회만"
+    },
+    "infra": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "infra",
+      "roles_dir": "roles/mykakao/infra",
+      "allowed_paths": [
+        "docker-compose.yml",
+        "Dockerfile.worker",
+        "worker/",
+        "setup.sh",
+        "run.sh",
+        ".env.example"
+      ],
+      "verify": "docker 미설치 환경이면 기동 검증 불가 — 파일 문법(compose 스키마·쉘 스크립트 shellcheck 수준 육안)만 확인하고 실기동은 코디네이터에게 넘긴다. 검증은 1회만"
+    },
+    "reviewer_code": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "review-code",
+      "roles_dir": "roles/mykakao/reviewer",
+      "allowed_paths": [
+        "(read-only — 리포 파일 수정·생성 금지. 산출물은 브리프가 지정한 리뷰 리포트 파일 1개뿐)"
+      ],
+      "verify": "리뷰는 read-only — 코드를 고치지 않고 테스트도 돌리지 않는다. git diff <base>...HEAD + untracked 로 범위를 산정하고, 판정(PASS/WARN/FAIL)과 위반 목록(파일:줄 + 근거 규칙)을 리포트에 남긴다"
+    },
+    "winapp": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "winapp",
+      "roles_dir": "roles/mykakao/winapp",
+      "allowed_paths": [
+        "win_app/"
+      ],
+      "verify": "cd win_app && cargo build (경고는 허용, 에러 0) + cargo test <네가 만든 테스트> (전체 스위트만 금지 아님 — win_app 은 새 크레이트라 전부 네 것). cargo 는 ~/.cargo/bin. MSVC 링킹 자동. 검증은 1회만 — 통과하면 반복 금지. 실기동(카톡 대상)은 코디가 한다"
+    }
+  },
+  "default_workers": [
+    "backend",
+    "frontend"
+  ],
+  "local_dev": {
+    "_doc": "⚠ 아래는 레포 README 기준 = macOS 전제다. 이 Windows 머신에서는 아직 하나도 돌지 않는다 (2026-09-02 실측).",
+    "macos_original": {
+      "backend": "./run.sh — venv 생성 → 의존성 설치 → 키 복구(ioreg+plist) → uvicorn 기동",
+      "worker": "./setup.sh 후 docker compose up -d (redis + codex worker)",
+      "frontend": "backend 가 정적 서빙 (frontend/index.html, frontend/summary.html)"
+    },
+    "windows_missing": [
+      "docker / docker compose 미설치 → redis + codex worker 기동 불가",
+      "sqlcipher3 (Windows 휠 없음 — 빌드 경로 미확인). requirements.txt 전체 설치가 여기서 막힐 수 있다",
+      "uv 미설치 (이 레포는 requirements.txt 라 필수는 아님)",
+      "jq 미설치",
+      "backend/extract.py 전체가 macOS 전용 (ioreg IOPlatformUUID · ~/Library plist SHA512 preimage)"
+    ],
+    "available": [
+      "Python 3.12.10 + pip 25.0.1",
+      "git 2.x (Git Bash)",
+      "node v24.19.0",
+      "PowerShell 7.6",
+      "gh CLI (미인증)",
+      "orca CLI"
+    ],
+    "gotchas": [
+      "Windows Python 은 기본 인코딩이 cp949 다. orchestration 스크립트가 `json.load(open(...))` 로 한글 config 를 읽다 UnicodeDecodeError 로 죽는다 → 사용자 환경변수 PYTHONUTF8=1 로 해결(2026-09-02 설정 완료). mediness·kknaks-dev config 도 같은 이유로 영향받는다",
+      "공식 설치본에 python3.exe 가 없다. 스크립트는 `python3` 를 부르므로 Python312/python3.exe 를 python.exe 하드링크로 만들어 뒀다 — 없으면 Microsoft Store 스텁이 잡힌다",
+      "이미 떠 있던 셸은 설치 전 PATH 를 물고 있다. 새 터미널을 열어야 python3 가 잡힌다"
+    ]
+  },
+  "summary_dest": "C:/Users/sc971/orca/workspaces/kknaks_profile/mykakao/para/projects/summer-star/mykakao/log",
+  "rules": {
+    "spec_and_app_use_separate_prs": true,
+    "workers_commit_or_push": false,
+    "coordinator_verifies_before_pr": true
+  }
+}

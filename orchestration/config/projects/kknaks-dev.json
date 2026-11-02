@@ -3,7 +3,6 @@
   "project": "kknaks-dev",
   "worktree_root": "/Users/kknaks/orca/workspaces",
   "use_worktree": true,
-
   "repos": {
     "app": {
       "orca_name": "kknaks_profile",
@@ -21,14 +20,16 @@
       ]
     }
   },
-
   "workers": {
     "backend": {
       "repo": "app",
       "agent": "claude",
       "brief_suffix": "be",
       "roles_dir": "roles/kknaks-dev/backend",
-      "allowed_paths": ["app/back/", "app/mcp/"],
+      "allowed_paths": [
+        "app/back/",
+        "app/mcp/"
+      ],
       "verify": "cd app/back && uv run pytest -q <네가 만들거나 고친 테스트 파일만> (전체 스위트 금지 — 사용자 방침). 검증은 1회만 — 통과하면 반복하지 마라"
     },
     "frontend": {
@@ -36,7 +37,9 @@
       "agent": "claude",
       "brief_suffix": "fe",
       "roles_dir": "roles/kknaks-dev/frontend",
-      "allowed_paths": ["app/front/"],
+      "allowed_paths": [
+        "app/front/"
+      ],
       "verify": "cd app/front && npx tsc --noEmit (네가 만진 파일 0 에러). 전체 빌드 금지 — 사용자 방침. 검증은 1회만"
     },
     "reviewer_code": {
@@ -44,21 +47,33 @@
       "agent": "claude",
       "brief_suffix": "review-code",
       "roles_dir": "roles/kknaks-dev/reviewer",
-      "allowed_paths": ["(read-only — 리포 파일 수정·생성 금지. 산출물은 브리프가 지정한 리뷰 리포트 파일 1개뿐)"],
+      "allowed_paths": [
+        "(read-only — 리포 파일 수정·생성 금지. 산출물은 브리프가 지정한 리뷰 리포트 파일 1개뿐)"
+      ],
       "verify": "리뷰는 read-only — 코드를 고치지 않고 테스트도 돌리지 않는다. git diff <base>...HEAD + untracked 로 범위를 산정하고, 판정(PASS/WARN/FAIL)과 위반 목록(파일:줄 + 근거 규칙)을 리포트에 남긴다"
+    },
+    "surveyor": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "survey",
+      "roles_dir": "roles/kknaks-dev/surveyor",
+      "workspace": "coordinator",
+      "allowed_paths": [
+        "reference/2026-09-19-data-backup/survey-k8s-infra-mac.md (이 파일 1개만 생성·수정. 조사 대상 레포는 read-only)"
+      ],
+      "verify": "조사는 read-only — 대상 레포 파일을 고치지 않는다. 산출물은 리포트 1개. 모든 서술에 파일:줄 근거를 붙이고, 확인 못 한 것은 「확인 불가」로 남긴다"
     }
   },
-
-  "default_workers": ["backend", "frontend"],
-
+  "default_workers": [
+    "backend",
+    "frontend"
+  ],
   "summary_dest": "/Users/kknaks/orca/workspaces/kknaks_profile/agent/para/projects/summer-star/kknaks-dev/log",
-
   "local_dev": {
     "_doc": "로컬 기동 참고. compose 는 app/back/ 소유 (docker-compose.local.yml).",
     "backend": "cd app/back && docker compose -f docker-compose.local.yml up -d (codex CLI 번들은 호스트 ~/.cache/axkg-live/.claude-tools ro 마운트)",
     "front": "cd app/front && npm run dev (백엔드 :48000 필요)"
   },
-
   "rules": {
     "spec_and_app_use_separate_prs": true,
     "workers_commit_or_push": false,

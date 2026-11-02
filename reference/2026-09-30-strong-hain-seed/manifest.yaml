@@ -1,0 +1,17 @@
+schema_version: 6
+name: strong-hajin-seed
+as_of: '2026-09-30'
+tables:
+- organization_units.csv
+- grades.csv
+- jobs.csv
+- positions.csv
+- members.csv
+- memberships.csv
+- appointments.csv
+- job_assignments.csv
+- projects.csv
+- project_assignments.csv
+- logins.csv
+files: []
+notes: 원본 파일은 files/ 아래에 두고, 이 목록에 상대 경로와 sha256을 적습니다.

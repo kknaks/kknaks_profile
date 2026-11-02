@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/scax-8fa54d76-58d6-481a-aed9-743dff9d6c09/fonts/fonts.css">
+<link rel="stylesheet" href="_ds/scax-8fa54d76-58d6-481a-aed9-743dff9d6c09/_ds_bundle.css">
+<link rel="stylesheet" href="_ds/scax-8fa54d76-58d6-481a-aed9-743dff9d6c09/styles.css">
+<script src="_ds/scax-8fa54d76-58d6-481a-aed9-743dff9d6c09/_ds_bundle.js"></script>
+<style>
+/* 이 DS 는 1280 미만에서 화면을 접는다. 미리보기 창은 그보다 좁을 수 있어 고정폭 + 가로 스크롤로 둔다. */
+@media (max-width:1279px){
+.thesc-shell{display:grid!important;grid-template-columns:200px minmax(0,1fr)!important;min-width:1560px}
+.rail{position:sticky!important;transform:none!important;width:auto!important}
+.rail-toggle,.min-width-notice{display:none!important}
+}
+/* 드로어: 화면 절반 · 제목은 8단(Title 17)로 */
+.drawer{width:clamp(560px,50vw,840px)!important}
+.drawer-head h3{font-size:17px}
+.drawer-head .modal-kicker{font-size:12px}
+/* SCAX 에 TimeField 가 없어 네이티브 time 이 16px 로 남는다 — 날짜 필드와 같은 규격으로 눌러 둔다 */
+.drawer input[type="time"]{width:auto;height:38px;padding:0 12px;border:1px solid var(--border-strong);border-radius:var(--radius-control);background:var(--surface);font-size:15px}
+.drawer label,.drawer button:not([class]){font-size:14px}
+/* 스크롤바: 기본은 투명, 그 영역에 손이 올라올 때만 보인다 */
+.mm-scroll{scrollbar-width:thin;scrollbar-color:transparent transparent}
+.mm-scroll:hover{scrollbar-color:var(--border-strong) transparent}
+.mm-scroll::-webkit-scrollbar{width:10px;height:10px}
+.mm-scroll::-webkit-scrollbar-track{background:transparent}
+.mm-scroll::-webkit-scrollbar-thumb{border:3px solid transparent;border-radius:8px;background-clip:content-box;background-color:transparent}
+.mm-scroll:hover::-webkit-scrollbar-thumb{background-color:var(--border-strong)}
+.page-head h1{font-size:17px}
+</style>
+</helmet>
+<div class="thesc-shell">
+
+<aside class="rail">
+<div class="wordmark"><span class="wordmark-mark">M</span> Managment</div>
+<div class="profile"><span class="avatar md">이</span><div><b>이건학</b><small>제품본부</small></div></div>
+<nav>
+<button type="button">홈</button>
+<button type="button">채팅</button>
+<button type="button">캘린더</button>
+<button type="button">내 업무</button>
+<button type="button" class="active">회의록</button>
+<button type="button">자료함</button>
+<button type="button">메시지</button>
+<button type="button">설정</button>
+</nav>
+<div class="rail-foot">v1 · 회의록</div>
+</aside>
+
+<div class="canvas">
+<div class="canvas-topbar"><div class="breadcrumb"><span>홈</span><span>›</span><b>회의록</b></div></div>
+
+<div class="page-surface">
+<div class="page-head">
+<div style="display:flex;align-items:center;gap:16px">
+<h1>회의록</h1>
+<div style="display:flex;align-items:center;gap:8px">
+<button type="button" class="btn icon" aria-label="이전 달" onClick="{{ prevMonth }}"><span style="display:grid;transform:rotate(180deg)"><x-import component-from-global-scope="SCAX.Icon" name="chevron-right" size="{{ 14 }}" hint-size="14px,14px"></x-import></span></button>
+<button type="button" class="btn" style="min-width:132px;justify-content:center;font-weight:500">{{ monthLabel }}</button>
+<button type="button" class="btn icon" aria-label="다음 달" onClick="{{ nextMonth }}"><x-import component-from-global-scope="SCAX.Icon" name="chevron-right" size="{{ 14 }}" hint-size="14px,14px"></x-import></button>
+</div>
+</div>
+<div class="page-head-actions">
+<button type="button" class="btn primary h30" onClick="{{ openDrawer }}"><x-import component-from-global-scope="SCAX.Icon" name="plus" size="{{ 14 }}" hint-size="14px,14px"></x-import> 새 회의록</button>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr);gap:24px;height:calc(100vh - 210px);min-height:620px">
+
+<section style="display:flex;flex-direction:column;min-height:0;overflow:hidden;border:1px solid var(--border-strong);border-radius:var(--radius-panel);background:var(--surface)">
+<header style="display:flex;align-items:center;justify-content:space-between;gap:8px;padding:18px 24px;border-bottom:1px solid var(--border-default)">
+<div style="display:flex;align-items:baseline;gap:8px"><h3 style="font-size:14px">{{ monthShort }} 회의록</h3><span class="t-meta tabular" style="font-size:12px">{{ totalCount }}건</span></div>
+<button type="button" class="btn ghost h30" onClick="{{ toggleSort }}" style="color:var(--text-secondary)">{{ sortLabel }} <x-import component-from-global-scope="SCAX.Icon" name="chevron-down" size="{{ 12 }}" hint-size="12px,12px"></x-import></button>
+</header>
+
+<div class="mm-scroll" style="display:flex;gap:8px;padding:14px 24px;overflow-x:auto;border-bottom:1px solid var(--border-default)">
+<sc-for list="{{ chips }}" as="chip" hint-placeholder-count="4">
+<button type="button" class="{{ chip.cls }}" onClick="{{ chip.select }}" style="flex:none;white-space:nowrap">{{ chip.label }}</button>
+</sc-for>
+</div>
+
+<div class="mm-scroll" style="flex:1;min-height:0;overflow-y:auto;padding:0 16px 16px">
+<ul class="meeting-list">
+<sc-for list="{{ rows }}" as="row" hint-placeholder-count="6">
+<li class="meeting-row openable" onClick="{{ row.select }}" style="{{ row.style }}">
+<div class="cell-main">
+<div class="note-status" style="margin:0">
+<span class="tabular" style="color:var(--text-secondary)">{{ row.when }}</span>
+<sc-if value="{{ row.hasStatus }}" hint-placeholder-val="{{ true }}"><span class="{{ row.statusCls }}" style="font-size:12px">{{ row.statusLabel }}</span></sc-if>
+</div>
+<b style="font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ row.title }}</b>
+<small style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:{{ row.summaryColor }}">{{ row.summary }}</small>
+</div>
+<span class="badge neutral" style="flex:none;align-self:flex-start">미팅·회의</span>
+</li>
+</sc-for>
+</ul>
+<sc-if value="{{ noRows }}" hint-placeholder-val="{{ false }}">
+<div style="padding:48px 24px">
+<x-import component-from-global-scope="SCAX.Empty" variant="filter" title="이 필터에 맞는 회의록이 없습니다" description="다른 프로젝트를 골라 보세요." action-label="전체 보기" on-action="{{ clearFilter }}" hint-size="100%,180px"></x-import>
+</div>
+</sc-if>
+</div>
+</section>
+
+<section style="display:flex;flex-direction:column;min-height:0;overflow:hidden;border:1px solid var(--border-strong);border-radius:var(--radius-panel);background:var(--surface)">
+<header style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:16px 24px 12px">
+<div style="min-width:0">
+<h2 style="font-size:17px;font-weight:700;margin-bottom:4px">{{ detail.title }}</h2>
+<div style="display:flex;align-items:center;gap:10px">
+<span class="tabular" style="font-size:12px;color:var(--action)">{{ detail.when }}</span>
+<sc-if value="{{ detail.hasStatus }}" hint-placeholder-val="{{ true }}"><span class="{{ detail.statusCls }}" style="font-size:12px">{{ detail.statusLabel }}</span></sc-if>
+</div>
+</div>
+<div style="display:flex;gap:8px;flex:none">
+<button type="button" class="btn ai h30"><x-import component-from-global-scope="SCAX.Icon" name="sparkle" size="{{ 14 }}" hint-size="14px,14px"></x-import> 안건 정리</button>
+<a href="회의실.dc.html" class="btn h30">회의 입장</a>
+</div>
+</header>
+
+<div style="display:flex;gap:24px;padding:0 28px;border-bottom:1px solid var(--border-default)">
+<button type="button" onClick="{{ showMinutes }}" style="{{ tabMinutesStyle }}">회의록</button>
+<button type="button" onClick="{{ showSource }}" style="{{ tabSourceStyle }}">원문</button>
+</div>
+
+<div class="mm-scroll" style="flex:1;min-height:0;overflow-y:auto;padding:24px 28px 32px">
+
+<sc-if value="{{ isMinutes }}" hint-placeholder-val="{{ true }}">
+<div>
+<sc-if value="{{ detail.hasAgenda }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-direction:column;gap:16px">
+<div class="meta-grid columns" style="padding:16px 20px;border:1px solid var(--border-subtle);border-radius:var(--radius-card);background:var(--surface-sunken)">
+<div><dt>참석</dt><dd>{{ detail.people }}</dd></div>
+<div><dt>프로젝트</dt><dd>{{ detail.project }}</dd></div>
+<div><dt>기록</dt><dd>{{ detail.recordNote }}</dd></div>
+</div>
+<sc-for list="{{ agenda }}" as="item" hint-placeholder-count="3">
+<section class="surface-card" style="padding:20px 24px">
+<div class="card-title" style="align-items:flex-start">
+<h3 style="font-size:16px"><span class="tabular" style="color:var(--text-tertiary);margin-right:8px">{{ item.no }}</span>{{ item.title }}</h3>
+<span class="t-meta tabular" style="font-size:12px">{{ item.time }}</span>
+</div>
+<ul style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+<sc-for list="{{ item.points }}" as="point" hint-placeholder-count="3">
+<li style="display:flex;gap:9px;font-size:13px;color:var(--text-secondary)"><span style="flex:none;color:var(--text-tertiary)">·</span><span style="text-wrap:pretty">{{ point }}</span></li>
+</sc-for>
+</ul>
+<sc-if value="{{ item.hasDecision }}" hint-placeholder-val="{{ true }}">
+<div class="effect-note" style="margin-top:14px">결정 · {{ item.decision }}</div>
+</sc-if>
+<sc-if value="{{ item.hasTasks }}" hint-placeholder-val="{{ true }}">
+<table class="plain-table" style="margin-top:14px">
+<thead><tr><th>파생 업무</th><th class="center">상태</th><th class="end">담당 · 기한</th></tr></thead>
+<tbody>
+<sc-for list="{{ item.tasks }}" as="task" hint-placeholder-count="2">
+<tr><td class="title-cell">{{ task.title }}</td><td class="center"><span class="{{ task.cls }}">{{ task.state }}</span></td><td class="end tabular">{{ task.owner }}</td></tr>
+</sc-for>
+</tbody>
+</table>
+</sc-if>
+</section>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{ detail.noAgenda }}" hint-placeholder-val="{{ false }}">
+<div style="padding:120px 0">
+<x-import component-from-global-scope="SCAX.Empty" title="아직 안건이 없습니다" description="회의에 입장하면 발언에서 안건이 자동으로 정리됩니다." hint-size="100%,200px"></x-import>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ isSource }}" hint-placeholder-val="{{ false }}">
+<div>
+<sc-if value="{{ detail.hasSource }}" hint-placeholder-val="{{ true }}">
+<ul class="transcript" style="max-height:none">
+<sc-for list="{{ source }}" as="line" hint-placeholder-count="5">
+<li class="transcript-line">
+<span class="transcript-meta"><b>{{ line.who }}</b><span class="tabular" style="color:var(--text-tertiary);font-size:12px">{{ line.at }}</span></span>
+<span class="transcript-text">{{ line.text }}</span>
+<span class="transcript-correction">원문</span>
+</li>
+</sc-for>
+</ul>
+</sc-if>
+<sc-if value="{{ detail.noSource }}" hint-placeholder-val="{{ false }}">
+<div style="padding:120px 0">
+<x-import component-from-global-scope="SCAX.Empty" title="원문이 없습니다" description="회의가 시작되면 발언 원문이 여기에 쌓입니다." hint-size="100%,200px"></x-import>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+</div>
+</section>
+
+</div>
+</div>
+</div>
+</div>
+
+
+<sc-if value="{{ drawerOpen }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="SCAX.Drawer" label="새 회의록" title="새 회의록" kicker="회의 생성" footer="{{ drawerFooter }}" on-close="{{ closeDrawer }}" hint-size="840px,100%">
+
+<div class="form-stack">
+
+<div class="field">
+<label for="mt-title">제목</label>
+<input id="mt-title" class="title-input" type="text" placeholder="무엇을 결정하는 회의인지 한 줄로" value="{{ title }}" onChange="{{ setTitle }}">
+</div>
+
+<div class="field">
+<label for="mt-purpose">회의 목적</label>
+<textarea id="mt-purpose" rows="2" placeholder="이 회의가 끝났을 때 남아야 하는 결과" value="{{ purpose }}" onChange="{{ setPurpose }}"></textarea>
+<span class="field-help">목적은 회의 후 요약과 파생 업무의 기준이 됩니다.</span>
+</div>
+
+<div class="field">
+<label>회의 일시</label>
+<div style="display:flex;align-items:center;gap:8px">
+<input type="date" style="width:auto" value="{{ date }}" onChange="{{ setDate }}">
+<input type="time" style="width:auto" value="{{ from }}" onChange="{{ setFrom }}">
+<span class="t-meta">–</span>
+<input type="time" style="width:auto" value="{{ to }}" onChange="{{ setTo }}">
+</div>
+</div>
+
+<div class="field">
+<label>회의 참석 인원 <span class="count-badge">{{ peopleCount }}</span></label>
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px">
+<sc-for list="{{ quick }}" as="q" hint-placeholder-count="5">
+<button type="button" class="{{ q.cls }}" onClick="{{ q.add }}">+ {{ q.label }}</button>
+</sc-for>
+</div>
+<sc-if value="{{ hasPicked }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-wrap:wrap;gap:6px;padding:10px 12px;border:1px solid var(--border-subtle);border-radius:var(--radius-card);background:var(--surface-sunken)">
+<sc-for list="{{ picked }}" as="p" hint-placeholder-count="3">
+<button type="button" onClick="{{ p.remove }}" style="display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 8px;border-radius:var(--radius-chip);background:var(--surface);border:1px solid var(--border-default);font-size:12px"><span style="font-weight:700">{{ p.name }}</span><span style="color:var(--text-tertiary)">{{ p.unit }}</span><x-import component-from-global-scope="SCAX.Icon" name="close" size="{{ 14 }}" hint-size="14px,14px"></x-import></button>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{ noPicked }}" hint-placeholder-val="{{ false }}">
+<div class="t-meta" style="padding:10px 12px;border:1px dashed var(--border-default);border-radius:var(--radius-card);font-size:12px">퀵칩이나 아래 조직도에서 참석자를 고르세요</div>
+</sc-if>
+<div style="margin-top:8px;border:1px solid var(--border-default);border-radius:var(--radius-card);overflow:hidden">
+<div style="padding:10px 12px;border-bottom:1px solid var(--border-subtle)">
+<input type="text" class="search-input-box" placeholder="사람 이름 검색" value="{{ query }}" onChange="{{ setQuery }}">
+</div>
+<div class="mm-scroll" style="max-height:236px;overflow-y:auto;padding:8px">
+<sc-for list="{{ tree }}" as="u" hint-placeholder-count="4">
+<div>
+<div style="display:flex;align-items:center;gap:9px;padding:7px 12px;border-radius:var(--radius-control)">
+<button type="button" onClick="{{ u.toggle }}" style="display:grid;place-items:center;width:14px;height:14px;color:var(--text-tertiary)"><x-import component-from-global-scope="SCAX.Icon" name="{{ u.chevron }}" size="{{ 12 }}" hint-size="12px,12px"></x-import></button>
+<span class="t-item" style="flex:1;min-width:0">{{ u.unit }} <span style="font-size:11px;color:var(--text-tertiary);font-weight:400">{{ u.kind }} · {{ u.count }}</span></span>
+<button type="button" class="btn ghost h30" onClick="{{ u.addAll }}" style="font-size:12px">전체 추가</button>
+</div>
+<sc-for list="{{ u.members }}" as="m" hint-placeholder-count="2">
+<div onClick="{{ m.toggle }}" style="{{ m.rowStyle }}">
+<x-import component-from-global-scope="SCAX.Checkbox" checked="{{ m.checked }}" hint-size="16px,16px"></x-import>
+<span class="avatar xs">{{ m.initial }}</span>
+<span style="flex:1;min-width:0;font-size:13px;font-weight:700">{{ m.name }}</span>
+<span class="t-meta" style="font-size:12px">{{ m.rank }}</span>
+</div>
+</sc-for>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+
+<div class="field">
+<label>연관 프로젝트 · 업무 <span class="badge ai">AI 추천</span></label>
+<div style="display:flex;gap:8px">
+<select style="flex:1"><option>연결 안 함</option><option>후보 검증 프로젝트</option><option>scope 검증 프로젝트</option><option>업무없는 프로젝트</option></select>
+<button type="button" class="btn">업무 찾기</button>
+</div>
+<sc-if value="{{ hasLinks }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px">
+<sc-for list="{{ links }}" as="l" hint-placeholder-count="1">
+<button type="button" onClick="{{ l.remove }}" style="display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 8px;border-radius:var(--radius-chip);background:var(--selected-bg);color:var(--action);font-size:12px;font-weight:700">{{ l.label }}<x-import component-from-global-scope="SCAX.Icon" name="close" size="{{ 14 }}" hint-size="14px,14px"></x-import></button>
+</sc-for>
+</div>
+</sc-if>
+<span class="field-help">제목·목적에서 뽑은 후보를 먼저 보여주고, 나머지는 직접 검색합니다.</span>
+</div>
+
+<div class="field">
+<label>회의실 <span class="t-meta" style="font-weight:400;font-size:12px">옵셔널 · 외부 예약 시스템 연동</span></label>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:4px">
+<span class="t-meta" style="font-size:12px">{{ roomHint }}</span>
+<button type="button" class="btn h30" onClick="{{ queryRooms }}"><x-import component-from-global-scope="SCAX.Icon" name="refresh" size="{{ 14 }}" hint-size="14px,14px"></x-import> 가능한 회의실 조회</button>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<sc-for list="{{ rooms }}" as="r" hint-placeholder-count="5">
+<label style="{{ r.style }}">
+<input type="radio" name="mt-room" checked="{{ r.checked }}" onChange="{{ r.pick }}" style="width:16px;height:16px;flex:none;accent-color:var(--action)">
+<span style="flex:1;min-width:0;font-size:14px;font-weight:700">{{ r.name }} <span style="font-weight:400;color:var(--text-tertiary);font-size:12px">{{ r.meta }}</span></span>
+<span style="flex:none;font-size:12px;color:{{ r.noteColor }}">{{ r.note }}</span>
+</label>
+</sc-for>
+</div>
+</div>
+
+</div>
+</x-import>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;listDensity&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;보통&quot;,&quot;촘촘&quot;],&quot;default&quot;:&quot;보통&quot;,&quot;tsType&quot;:&quot;'보통' | '촘촘'&quot;,&quot;section&quot;:&quot;목록&quot;}}">
+const MEETINGS = [
+  { id: 'm1', date: '09월 08일 (화)', time: '16:00', range: '09월 08일 (화) 16:00 – 16:30', status: 'scheduled', project: '미정', title: '기업 AX를 위한 SW개발 전략', summary: '안건 없음', people: '이건학, 정우성, 한서린', agenda: [], source: [] },
+  { id: 'm2', date: '09월 08일 (화)', time: '13:30', range: '09월 08일 (화) 13:30 – 14:00', status: 'scheduled', project: '미정', title: '토큰나이즈 at scale', summary: '안건 없음', people: '이건학, 오세림', agenda: [], source: [] },
+  { id: 'm3', date: '09월 08일 (화)', time: '13:00', range: '09월 08일 (화) 13:00 – 진행 중', status: 'recording', project: '후보 검증 프로젝트', title: 'AX 가속화 위한 agent 거버넌스체계',
+    summary: '보안 등급, 에이전트 신원 권한, 토큰비용, 안전장치, 자산화, 공유화 체계 · 데이터 · 권한',
+    people: '이건학, 정우성, 유하람, 김도윤', recordNote: '자동 기록 중 · 32분 경과',
+    agenda: [
+      { no: '01', title: '에이전트 신원과 권한 등급', time: '13:04', points: ['사내 에이전트에 사람과 같은 사번 체계를 부여하고, 권한은 등급으로 관리한다.', '외부 API 호출 권한은 보안 3등급 이상에만 열되 감사 로그를 남긴다.'], decision: '에이전트 신원 체계는 인사 시스템의 사번 규칙을 그대로 확장한다.', tasks: [ { title: '에이전트 신원 등급표 초안', state: '진행 중', cls: 'status in_progress', owner: '유하람 · 09/12' }, { title: '감사 로그 스키마 정의', state: '시작 전', cls: 'status', owner: '김도윤 · 09/16' } ] },
+      { no: '02', title: '토큰 비용과 안전장치', time: '13:19', points: ['팀별 월 토큰 상한을 두고, 상한의 80%에서 경고를 보낸다.', '비용 급증 구간은 자동 차단 대신 승인 요청으로 전환한다.'], decision: '상한 초과는 차단이 아니라 승인 대기로 처리한다.', tasks: [ { title: '토큰 사용량 대시보드', state: '진행 중', cls: 'status in_progress', owner: '정우성 · 09/19' } ] },
+      { no: '03', title: '자산화 · 공유 체계', time: '13:31', points: ['잘 동작한 프롬프트와 워크플로는 자료함에 자산으로 등록한다.', '공유 범위는 본부 단위가 기본, 전사 공개는 검토 후.'], decision: null, tasks: [] }
+    ],
+    source: [
+      { who: '이건학', at: '13:02', text: '오늘은 에이전트를 사람처럼 다룰 수 있는지, 그 전제부터 정리하고 싶습니다.' },
+      { who: '정우성', at: '13:04', text: '신원이 없으면 권한도 없습니다. 사번 체계를 확장하는 쪽이 가장 빠릅니다.' },
+      { who: '유하람', at: '13:07', text: '등급을 세 단계로 나누고, 외부 호출은 상위 등급만 열어두는 방식이 안전합니다.' },
+      { who: '김도윤', at: '13:18', text: '비용은 팀 단위 상한이 현실적입니다. 다만 차단은 업무를 멈추게 하니 승인으로 돌리는 게 좋겠습니다.' },
+      { who: '이건학', at: '13:31', text: '자산화는 자료함에 붙입시다. 공유 범위는 본부 기본으로 두고 시작하죠.' }
+    ] },
+  { id: 'm4', date: '09월 08일 (화)', time: '09:30', range: '09월 08일 (화) 09:30 – 10:00', status: 'failed', project: 'scope 검증 프로젝트', title: 'ai 키노트', summary: '삼성 키노트', people: '이건학, 한서린', agenda: [], source: [] },
+  { id: 'm5', date: '09월 08일 (화)', time: '02:00', range: '09월 08일 (화) 02:00 – 03:00', status: null, project: '업무없는 프로젝트', title: '지속가능한 ax전략 : 표준, 자산, 운영',
+    summary: '지속 가능한 AX를 위해 표준·자산·운영 중심의 플랫폼을 구축하고, 소프트웨어 개발·업무 시…',
+    people: '이건학, 오세림, 정우성', recordNote: '기록 완료 · 58분',
+    agenda: [
+      { no: '01', title: '표준 · 자산 · 운영 세 축', time: '02:06', points: ['표준은 문서가 아니라 템플릿과 검사 도구로 배포한다.', '자산은 재사용 횟수로 가치를 측정한다.'], decision: '세 축 각각에 담당 조직을 지정한다.', tasks: [ { title: '표준 템플릿 1차 배포', state: '완료', cls: 'status done', owner: '오세림 · 09/05' } ] },
+      { no: '02', title: '운영 지표', time: '02:34', points: ['도입률보다 재사용률을 핵심 지표로 둔다.'], decision: null, tasks: [] }
+    ],
+    source: [
+      { who: '오세림', at: '02:06', text: '표준을 문서로 내리면 아무도 읽지 않습니다. 템플릿과 검사 도구로 내려야 합니다.' },
+      { who: '이건학', at: '02:34', text: '지표는 재사용률로 갑시다. 도입률은 숫자만 예쁘게 나옵니다.' }
+    ] },
+  { id: 'm6', date: '09월 08일 (화)', time: '01:00', range: '09월 08일 (화) 01:00 – 01:40', status: null, project: '업무없는 프로젝트', title: 'ㄴㅇㄴ', summary: 'AI 시대의 ERP 혁신을 위해 엔드투엔드 프로세스와 데이터 관리, 구축·운영·지속 혁신 전반을 …', people: '이건학', agenda: [], source: [] },
+  { id: 'm7', date: '09월 08일 (화)', time: '00:00', range: '09월 08일 (화) 00:00 – 00:45', status: null, project: '미정', title: 'Open ai 키노트', summary: 'AI를 핵심 업무와 데이터에 연결해 실제 일을 맡기고, 비용이 아닌 완성된 업무 성과를 기준으…', people: '이건학, 김도윤', agenda: [], source: [] },
+  { id: 'm8', date: '09월 05일 (금)', time: '15:00', range: '09월 05일 (금) 15:00 – 16:00', status: 'done', project: '후보 검증 프로젝트', title: '주간 제품 리뷰',
+    summary: '9월 2주 릴리즈 범위 확정 · 회의록 자동 요약 베타',
+    people: '이건학, 유하람, 한서린', recordNote: '기록 완료 · 61분',
+    agenda: [
+      { no: '01', title: '9월 2주 릴리즈 범위', time: '15:08', points: ['회의록 자동 요약은 베타 플래그로 먼저 내보낸다.', '캘린더 연동은 다음 스프린트로 미룬다.'], decision: '릴리즈 범위는 요약 베타 + 목록 필터 두 건.', tasks: [ { title: '요약 베타 플래그 적용', state: '완료', cls: 'status done', owner: '한서린 · 09/08' }, { title: '캘린더 연동 스펙 재작성', state: '지연', cls: 'status blocked', owner: '유하람 · 09/10' } ] }
+    ],
+    source: [ { who: '유하람', at: '15:08', text: '요약은 정확도가 아직 들쭉날쭉해서 베타로 두는 편이 낫겠습니다.' } ] },
+  { id: 'm9', date: '09월 03일 (수)', time: '10:00', range: '09월 03일 (수) 10:00 – 11:00', status: 'done', project: 'scope 검증 프로젝트', title: 'AX 파일럿 착수 회의', summary: '파일럿 대상 조직 2곳 선정 · 성공 기준 합의', people: '이건학, 정우성', recordNote: '기록 완료 · 55분',
+    agenda: [ { no: '01', title: '파일럿 대상과 성공 기준', time: '10:12', points: ['제품기획팀과 경영지원본부 두 곳으로 시작한다.', '성공 기준은 주간 재사용 3회 이상.'], decision: '4주 후 성공 기준 재검토.', tasks: [ { title: '파일럿 온보딩 세션', state: '완료', cls: 'status done', owner: '정우성 · 09/04' } ] } ],
+    source: [] }
+];
+
+const ORG = [
+  { unit: '경영진', kind: '본부', total: 2, members: [ { id: '1001', name: '양승철', rank: '대표이사' }, { id: '1002', name: '이진백', rank: '대표이사' } ] },
+  { unit: '글로벌마케팅부', kind: '본부', total: 59, members: [ { id: '2101', name: '하윤서', rank: '본부장' }, { id: '2102', name: '오세림', rank: '선임' }, { id: '2103', name: '김도윤', rank: '주임' } ] },
+  { unit: '국내사업부', kind: '본부', total: 15, members: [ { id: '3101', name: '김민수', rank: '본부장' }, { id: '3102', name: '유하람', rank: '선임' } ] },
+  { unit: '비주얼콘텐츠부', kind: '본부', total: 15, members: [ { id: '4101', name: '전지우', rank: '본부장' }, { id: '4102', name: '한서린', rank: '주임' } ] },
+  { unit: '경영관리부', kind: '본부', total: 11, members: [ { id: '5101', name: '정우성', rank: '본부장' }, { id: '5102', name: '윤도현', rank: '선임' } ] }
+];
+const QUICK = ['경영진', '글로벌마케팅부', '국내사업부', '비주얼콘텐츠부', '경영관리부'];
+const ROOMS = [
+  { id: 'none', name: '예약 안 함', meta: '외부 예약 없이 진행', seats: 0 },
+  { id: 'r1', name: '회의실 1 (12인)', meta: '정원 12 · 모니터', seats: 12 },
+  { id: 'r2', name: '회의실 2 (4인)', meta: '정원 4 · 모니터', seats: 4 },
+  { id: 'r4', name: '회의실 4 (6인)', meta: '정원 6 · 모니터', seats: 6 },
+  { id: 'r5', name: '회의실 5 (12인)', meta: '정원 12 · 모니터', seats: 12 },
+  { id: 'r6', name: '회의실 6 (4인)', meta: '정원 4', seats: 4 }
+];
+
+const STATUS = {
+  scheduled: { label: '예정', cls: 'status pending' },
+  recording: { label: '기록 중', cls: 'status in_progress' },
+  failed: { label: '통합 실패', cls: 'danger-text' },
+  done: { label: '완료', cls: 'status done' }
+};
+
+class Component extends DCLogic {
+  state = { selected: 'm1', filter: '전체', sort: 'new', tab: 'minutes', monthOffset: 0,
+    drawer: false, title: '', purpose: '', date: '2026-09-08', from: '14:30', to: '15:30',
+    people: ['1001'], open: { 경영진: true }, query: '', links: ['후보 검증 프로젝트'], room: 'none', roomQuery: false };
+
+  addUnit(unit) {
+    const ids = ORG.filter(u => u.unit === unit).flatMap(u => u.members.map(m => m.id));
+    this.setState({ people: Array.from(new Set([...this.state.people, ...ids])) });
+  }
+  togglePerson(id) {
+    const has = this.state.people.includes(id);
+    this.setState({ people: has ? this.state.people.filter(p => p !== id) : [...this.state.people, id] });
+  }
+  drawerVals() {
+    const st = this.state;
+    const people = st.people;
+    const flat = ORG.flatMap(u => u.members.map(m => ({ ...m, unit: u.unit })));
+    const q = st.query.trim();
+    const tree = ORG.map(u => {
+      const open = !!st.open[u.unit] || q.length > 0;
+      const members = u.members.filter(m => !q || m.name.includes(q));
+      return {
+        unit: u.unit, kind: u.kind, count: u.total + '명',
+        chevron: open ? 'chevron-down' : 'chevron-right',
+        show: q ? members.length > 0 : true,
+        toggle: () => this.setState({ open: { ...st.open, [u.unit]: !st.open[u.unit] } }),
+        addAll: () => this.addUnit(u.unit),
+        members: open ? members.map(m => ({
+          id: m.id, name: m.name, rank: m.rank, initial: m.name[0],
+          checked: people.includes(m.id),
+          rowStyle: 'display:flex;align-items:center;gap:10px;padding:7px 12px 7px 34px;border-radius:var(--radius-control);cursor:pointer;background:' + (people.includes(m.id) ? 'var(--selected-bg)' : 'transparent'),
+          toggle: () => this.togglePerson(m.id)
+        })) : []
+      };
+    }).filter(u => u.show);
+
+    const picked = people.map(id => {
+      const p = flat.find(m => m.id === id);
+      return { name: p ? p.name : id, unit: p ? p.unit : '', remove: () => this.togglePerson(id) };
+    });
+
+    const rooms = ROOMS.map(r => {
+      const tight = r.seats > 0 && r.seats < people.length;
+      return {
+        id: r.id, name: r.name, meta: r.meta,
+        note: r.id === 'none' ? '기본값' : (tight ? '정원 부족' : '예약 가능'),
+        noteColor: r.id === 'none' ? 'var(--text-tertiary)' : (tight ? 'var(--danger)' : 'var(--text-tertiary)'),
+        checked: st.room === r.id,
+        style: 'display:flex;align-items:center;gap:12px;padding:11px 14px;border:1px solid ' + (st.room === r.id ? 'var(--action)' : 'var(--border-default)') + ';border-radius:var(--radius-control);cursor:pointer;background:' + (st.room === r.id ? 'var(--selected-bg)' : 'var(--surface)'),
+        pick: () => this.setState({ room: r.id })
+      };
+    });
+
+    return {
+      drawerOpen: st.drawer,
+      openDrawer: () => this.setState({ drawer: true }),
+      closeDrawer: () => this.setState({ drawer: false }),
+      drawerFooter: React.createElement(React.Fragment, null,
+        React.createElement('button', { type: 'button', className: 'btn h40 ghost', onClick: () => this.setState({ drawer: false }) }, '취소'),
+        React.createElement('button', { type: 'button', className: 'btn h40 primary', disabled: !st.title.trim(), onClick: () => this.setState({ drawer: false }) }, '만들기')),
+      title: st.title, setTitle: e => this.setState({ title: e.target.value }),
+      purpose: st.purpose, setPurpose: e => this.setState({ purpose: e.target.value }),
+      date: st.date, setDate: e => this.setState({ date: e.target.value }),
+      from: st.from, setFrom: e => this.setState({ from: e.target.value }),
+      to: st.to, setTo: e => this.setState({ to: e.target.value }),
+      quick: QUICK.map(name => ({ label: name, cls: 'filter-chip', add: () => this.addUnit(name) })),
+      query: st.query, setQuery: e => this.setState({ query: e.target.value }),
+      tree, picked, peopleCount: people.length + '명',
+      hasPicked: picked.length > 0, noPicked: picked.length === 0,
+      links: st.links.map(l => ({ label: l, remove: () => this.setState({ links: st.links.filter(x => x !== l) }) })),
+      hasLinks: st.links.length > 0,
+      rooms, roomHint: st.roomQuery ? '조회 완료 · ' + this.state.from + ' 기준' : '시간 입력 후 조회',
+      queryRooms: () => this.setState({ roomQuery: true })
+    };
+  }
+
+  filtered() {
+    const list = this.state.filter === '전체' ? MEETINGS.slice() : MEETINGS.filter(m => m.project === this.state.filter);
+    list.sort((a, b) => (a.date + a.time < b.date + b.time ? 1 : -1));
+    if (this.state.sort === 'old') list.reverse();
+    return list;
+  }
+
+  renderVals() {
+    const dense = (this.props.listDensity ?? '보통') === '촘촘';
+    const rows = this.filtered().map(m => {
+      const on = m.id === this.state.selected;
+      const s = m.status ? STATUS[m.status] : null;
+      return {
+        when: m.date + ' ' + m.time,
+        title: m.title,
+        summary: m.summary,
+        summaryColor: m.summary === '안건 없음' ? 'var(--text-disabled)' : 'var(--text-tertiary)',
+        hasStatus: !!s, statusLabel: s ? s.label : '', statusCls: s ? s.cls : '',
+        style: 'padding:' + (dense ? '9px 14px' : '12px 16px') + ';background:' + (on ? 'var(--surface-selected-row)' : 'var(--surface)') + ';border-color:' + (on ? 'var(--action)' : 'var(--border-default)'),
+        select: () => this.setState({ selected: m.id, tab: 'minutes' })
+      };
+    });
+
+    const counts = { 전체: MEETINGS.length };
+    MEETINGS.forEach(m => { counts[m.project] = (counts[m.project] || 0) + 1; });
+    const chips = ['전체', '미정', '후보 검증 프로젝트', 'scope 검증 프로젝트', '업무없는 프로젝트'].map(name => ({
+      label: name + ' ' + (counts[name] || 0),
+      cls: 'filter-chip' + (this.state.filter === name ? ' on' : ''),
+      select: () => this.setState({ filter: name })
+    }));
+
+    const m = MEETINGS.find(x => x.id === this.state.selected) || MEETINGS[0];
+    const s = m.status ? STATUS[m.status] : null;
+    const hasAgenda = m.agenda.length > 0;
+    const hasSource = m.source.length > 0;
+    const tab = t => 'height:42px;padding:0 2px;font-size:13px;font-weight:' + (this.state.tab === t ? '700' : '500') + ';color:' + (this.state.tab === t ? 'var(--text-primary)' : 'var(--text-tertiary)') + ';border-bottom:2px solid ' + (this.state.tab === t ? 'var(--text-primary)' : 'transparent');
+    const monthLabel = ['2026년 8월', '2026년 9월', '2026년 10월'][Math.min(2, Math.max(0, this.state.monthOffset + 1))];
+
+    return {
+      ...this.drawerVals(),
+      rows, chips, noRows: rows.length === 0,
+      clearFilter: () => this.setState({ filter: '전체' }),
+      totalCount: rows.length,
+      monthLabel, monthShort: monthLabel.split(' ')[1],
+      prevMonth: () => this.setState({ monthOffset: Math.max(-1, this.state.monthOffset - 1) }),
+      nextMonth: () => this.setState({ monthOffset: Math.min(1, this.state.monthOffset + 1) }),
+      sortLabel: this.state.sort === 'new' ? '최신순' : '오래된순',
+      toggleSort: () => this.setState({ sort: this.state.sort === 'new' ? 'old' : 'new' }),
+      detail: {
+        title: m.title, when: m.range, people: m.people, project: m.project,
+        recordNote: m.recordNote || '기록 없음',
+        hasStatus: !!s, statusLabel: s ? s.label : '', statusCls: s ? s.cls : '',
+        hasAgenda, noAgenda: !hasAgenda, hasSource, noSource: !hasSource
+      },
+      agenda: m.agenda.map(a => ({ ...a, hasDecision: !!a.decision, hasTasks: a.tasks.length > 0 })),
+      source: m.source,
+      isMinutes: this.state.tab === 'minutes', isSource: this.state.tab === 'source',
+      showMinutes: () => this.setState({ tab: 'minutes' }),
+      showSource: () => this.setState({ tab: 'source' }),
+      tabMinutesStyle: tab('minutes'), tabSourceStyle: tab('source')
+    };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+# [frontend] 회의 화면 시안 정합·생성/수정·첨부 동작 복구
+
+너는 sc-ax frontend 워커다. 역할 문서를 먼저 읽어라:
+- /Users/kknaks/orca/workspaces/kknaks_profile/sc-meeting-redesign/orchestration/roles/sc-ax/frontend/role.md (+ rules.md·skills.md·tools.md·workflow.md)
+
+작업 워크트리: `/Users/kknaks/orca/workspaces/ax-workspace/sc-meeting-room`
+브랜치 `kknaksss/sc-meeting-room`, 확인한 HEAD `75360fe`, base `origin/main`.
+사용자는 이번 대화에서 아래 시안 수정안을 검토하고 프론트 구현 발주를 명시 승인했다. 커밋·push·PR 금지.
+기존 DS sync 작업의 미커밋 변경(.design-sync/, frontend/ds-entry.tsx)을 보존한다. 이 파일들은 이번 수정 대상에서 제외한다. 새 워크트리·하위 워커를 만들지 않는다.
+
+## 1. SSOT — 먼저 읽을 것
+
+- /Users/kknaks/orca/workspaces/kknaks_profile/sc-meeting-redesign/orchestration/work/_archive/sc-ax/sc-meeting-redesign/design/MeetingWorkspace.html 및 같은 폴더 styles.css·tokens·components·handoff: Claude Design TheSC AX Design System 로컬 정본 (읽기 전용).
+- /Users/kknaks/orca/workspaces/kknaks_profile/sc-meeting-redesign/orchestration/work/sc-meeting-room/visual-review-2026-09-14: 사용자가 직접 보낸 시안/구현 비교 스크린샷. 모든 PNG를 직접 열어 확인. 01은 최종 전체 시안, 02·08·10·12·14는 세부 시안, 나머지는 현재 문제 화면. 14의 복구하기는 사용자가 명시적으로 제외.
+- 아래 §6은 사용자와 확정한 이번 변경 계약. 시안의 예시 데이터나 하단 상태 데모 컨트롤을 앱에 복제하지 않는다.
+- 실제 backend/ 코드·frontend/src/api.ts·envelope가 API 계약 정본. docs/design은 보조 read-only 참조. 구 DS 규정은 은퇴했으므로 새 ds/ 부품과 --scax-* 토큰을 우선한다.
+- 기대는 개념: 시각은 시안 정본, 로직·책임 경계는 현재 앱의 계약 유지.
+
+## 2. 배경 / 무엇을 바꾸나
+
+사용자가 비교 검토한 회의 목록 잘림, 생성 폼 팝오버 미작동, 수정 진입 위치, 상세 헤더·여백·안건 입력, 오른쪽 첨부/스크립트 열, 첨부 UI와 삭제 토스트, 캐릭터 말풍선 대비를 수정한다. 단순 근사 구현이 아닌 시안의 위치·크기·여백·아이콘·버튼 variant까지 대조한다.
+
+## 3. 계약
+
+사용자: API는 이미 만들었으므로 백엔드를 확인만 하고 프론트를 구현한다. 실제 코드에서 각 기능의 endpoint·payload·응답·allowed_commands를 확인하여 기존 api.ts 호출과 연결한다. backend/ 한 줄도 수정 금지.
+API가 없거나 계약이 부족하면 어떤 기능/필드/명령이 없는지 근거 경로와 함께 코디에 보고한다. API를 억지로 만들거나 프론트 가짜 저장·성공 표시·추론 권한으로 메우지 않는다. BE 미지원이어도 정적 레이아웃/빈 상태는 그리되 눌러도 저장될 곳이 없는 거짓 동작은 금지. 가능한 나머지 작업은 계속한다.
+상태 관리·api.ts 구조·envelope 권한 판단·viewModels·책임 분리는 유지. 컴포넌트 직접 fetch 금지. 가짜 사람·파일·수치 금지.
+
+## 4. 먼저 읽을 핵심 파일
+
+실제 경로를 rg --files로 확인한다.
+- frontend/src/features/meetings/MeetingWorkspace.tsx: App의 유일한 회의 입구, 칸 배치·집중 모드·이탈 가드.
+- MeetingListPage.tsx: 목록 카드·구획·더 보기.
+- MeetingDetailPage.tsx: 제목·메타·진행바·안건·회의록·첨부.
+- BookingModal.tsx와 편집/첨부 모달, MeetingWorkspace.test.tsx의 이탈 가드 잠금 2건.
+- frontend/src/ds/, styles/index.css 및 하위 스타일, lib/labels, api.ts, viewModels와 캐릭터 말풍선 컴포넌트.
+- frontend/package.json·tsconfig.json·vite.config.* 및 저장소 AGENTS 지침.
+
+## 5. allowed_paths
+
+- frontend/src/ 아래 이번 기능에 필요한 구현·스타일·라벨·테스트.
+- 그 밖의 파일은 read-only. backend/, docs/, .design-sync/, frontend/ds-entry.tsx, 아카이브, spec 리포 수정 금지.
+- 시작 시 git status를 기록하고 기존 변경을 보존. 먼저 영향 파일을 페이지→DS/컴포넌트→viewModels/API→테스트 순으로 전수 나열.
+
+## 6. 구현 단계 / 수락 기준
+
+### A. DS 우선과 공통 스크롤
+- 기존 ds/의 Select·DatePicker·TimeField·SegmentedControl·DropZone·FileList·Modal·Button·Icon 등을 먼저 재사용한다.
+- DS에 필요한 CSS/variant/부품이 없으면 현 DS 방식으로 추가. 구 .btn·.field·.badge·.avatar 재도입 금지. 임의 hex 대신 --scax-* 토큰. 새 토큰도 시안 근거로만.
+- ds/에 사람이 읽는 문구를 넣지 않는다. 호출부가 lib/labels에서 prop으로 넘긴다.
+- 앱 전역 스크롤바의 thumb/track을 보이지 않게 하되 wheel·터치·키보드 스크롤은 유지. 불필요한 가로 넘침은 폭 계산 자체를 고쳐 제거하며 overflow 숨김으로 콘텐츠를 잘라 해결하지 않는다.
+
+### B. 목록과 생성/수정
+- 목록 카드 오른쪽/상태 배지가 잘림. 시안처럼 양쪽 여백과 둥근 외곽 전체가 목록 칸 안에 보이게 한다. 선택 상태·구획·더 보기 유지.
+- 생성 모달: 지난 회의 셀렉터, 날짜 캘린더, 시작/종료 시간 칩을 누르면 실제 선택 UI가 열리고 값 변경이 반영되게 한다. 포털/z-index/클리핑/이벤트 원인을 점검.
+- 생성 모달 가로 스크롤 및 왼쪽 텍스트/라디오 잘림 제거. 필수 입력·참석자·회의실·자정 넘는 회의 예약 등 기존 기능 유지.
+- 회의 정보 옆 연필 인라인 편집을 목록 카드의 수정 버튼으로 옮겨 모달로 연다. 기존 정보 편집 필드/저장 동작 보존. 클릭 시 회의 선택과 편집 대상이 어긋나지 않게 한다.
+- 이탈 가드: 편집 중 다른 회의를 고르면 반드시 확인. 모달 닫기 경로에서도 변경 손실 방지. 잠금 테스트 2건 유지.
+
+### C. 4칸 배치와 회의 전 상세
+- 전체 시안 01 기준 네 칸의 너비·내부 여백·상단/하단 정렬을 맞춘다. 브라우저 chrome을 앱 영역으로 계산하지 않는다.
+- 상세의 '회의 정보' 라벨과 연필 제거. 제목부터 시작, 그 아래 메타.
+- 제목과 같은 상단 행 오른쪽에 흰 배경/얇은 테두리의 재생 아이콘 + 회의 시작 버튼. 현재 보라 버튼/별도 줄 배치 제거. 화면 전체 상단의 빠른 시작과 상세 회의 시작은 구분.
+- 버튼 왼쪽에는 대각선 양방향 확장 화살표 아이콘. 현재 사각형 세로선 패널 아이콘과 오른쪽 배치는 시안과 다르다. 집중 모드 실제 기능은 유지.
+- 좌우/상단 과한 여백을 줄여 제목·목적·AI 회의록·안건 위치를 시안에 맞춘다. 구분선은 칸 전체 너비, 내용에는 시안의 안쪽 여백.
+- 회의 전 안건 목록 바로 아래 입력창 + 안건 추가 버튼을 표시하고 기존 API/권한에 연결. AI 회의록 옆 수정 버튼을 단순 삭제해 기존 편집 기능을 잃지 않도록 현재 편집 책임과 시안 동작을 대조. 계약 부족은 보고.
+
+### D. 오른쪽 첨부/스크립트 열
+- 열 전체를 감싼 둥근 카드/짧은 고정높이 외곽 제거. 세로 경계선으로 분리되고 화면 콘텐츠 하단까지 이어지는 열.
+- 위쪽 '자료' 밑줄 탭 대신 회색 바탕, 선택된 항목 흰색인 첨부/스크립트 세그먼트 탭. 스크립트는 실제 데이터를 연결하고 없으면 사실에 맞는 빈 상태. API가 없다면 보고.
+- 라운드는 세그먼트·각 파일 행·버튼에만. 파일 행은 시안의 아이콘·파일명·용량·간격.
+- + 자료 첨부 버튼은 파일 목록 바로 아래. 짧은 카드 바닥에 붙이지 않는다. 파일 없을 때도 이 열 구조 유지, 큰 빈 상태 카드가 열을 감싸지 않게 한다.
+
+### E. 파일 첨부와 공용 토스트
+- 첨부 모달의 첨부 영역: 안내 문구와 보라 파일 추가 버튼 한 줄. 아래 같은 영역 안에 파일 종류 아이콘·이름·용량·삭제 × 행.
+- drag-over는 영역 전체 연보라 배경/보라 점선. 현재 긴 파일 선택 버튼과 영역 밖 파일 목록을 시안에 맞춘다.
+- 지원 파일 형식·크기·링크 등은 실제 API 계약을 따른다. 시안에 있다고 미지원 확장자/URL 업로드를 발명하지 않는다.
+- 공용 DS Toast를 기존 것 확인 후 보완/추가. 이미지 14처럼 검은 배경·둥근 모서리·흰 삭제 아이콘과 문구. 복구하기/undo는 명시 제외. 실제 삭제 성공 또는 선택 목록에서 실제 제거 후 정확한 알림. 실패를 성공 토스트로 표시 금지. 접근성 알림 포함.
+- 아직 첨부하지 않은 선택 파일이 남아있을 때 닫기 확인 유지. 선택 파일이 없거나 모두 제거한 경우 불필요한 확인 금지. 기존 이탈 가드와 통합하고 기능을 약화하지 않는다. 파일 미첨부라는 사실이 드러나는 문구를 labels에서 제공.
+
+### F. 캐릭터 말풍선
+- 검은 말풍선의 상태 점/'대기 중' 등 상태 문구가 검게 묻힘. DS 토큰/variant로 읽을 수 있는 대비 확보. 캐릭터 교체나 가짜 상태 추가는 범위 밖.
+
+## 7. 범위 제약
+
+커밋·push·PR·배포·DB reset 금지. 백엔드·권한·도메인 정책 발명 금지. 기존 변경 되돌리기 금지. 사용자 이미지 01의 상태 데모 도구·예시 데이터를 앱에 넣지 않는다. 실제 데이터 없는 화면은 실제 빈 상태로 검증한다.
+
+## 8. 검증
+
+사용자의 이번 지시가 역할 문서의 테스트 범위 기본값보다 우선한다:
+```
+cd frontend && npx tsc --noEmit
+cd frontend && npx vitest run
+```
+타입 오류 0, 전체 스위트 실행. 기준선 75360fe에서 524 통과. 의존성이 없으면 진짜 TypeScript가 실행됐는지 확인하고 가짜 exit 0를 통과로 보고하지 않는다.
+이탈 가드·선택/저장 등 기능 변경에는 의미 있는 회귀 테스트. 클래스 선택자가 깨지면 새 DOM에 맞춰 수정하되 접근성·텍스트 질의가 깨지면 기능이 살아있는지 먼저 확인. '없음' 단언으로 사라진 UI를 정당화하지 않는다.
+가능한 로컬 프리뷰에서 시안 대비 스크린샷과 클릭/스크롤/모달/탭 동작 확인. UI 확인을 못하면 이유와 미검증 항목을 명시. 전체 빌드·acceptance-e2e·새 e2e 스크립트 작성 금지.
+완료 보고에 A~F 각각 완료/미완료, 파일 목록, 테스트 수치, 실제 확인한 API 근거, 미지원 계약, 시각 검증 결과 포함. 실패가 있으면 종류/원인과 영향 보고.
+
+## 9. 완료 보고 — **문구 변경 금지**
+
+> **⚠ 핸들은 dispatch preamble 의 값을 믿어라.** 아래 명령에 박힌 코디handle 은 **브리프 작성 시점** 값이라 오래됐을 수 있다 — 세션이 재연결되면 핸들이 바뀐다(2026-07-28·29 두 번 겪음). preamble 의 코디네이터 핸들과 아래 값이 다르면 **preamble 이 맞다.** 두 곳에 다 보내지 말고 preamble 쪽으로만 보내라.
+
+
+- **커밋·push·PR 하지 마라.** 워크트리에 변경만 남긴다. 검증·PR 은 코디네이터가 한다.
+- 끝나면 **아래 두 명령을 모두** 실행한다. 하나만 하면 안 된다.
+
+```bash
+# (1) 인박스 적재 — 태스크 완료 처리·영구 기록. 코디네이터를 깨우지 않는다.
+orca orchestration send \
+  --to term_fa9914b3-124d-43d2-81ec-10417df53069 --from term_08a8813a-da42-428b-9fff-52586fe9614f \
+  --type worker_done \
+  --task-id <이 태스크의 taskId — dispatch 로 받은 context 에 들어 있다> \
+  --dispatch-id <이 태스크의 dispatchId — dispatch 로 받은 context 에 들어 있다> \
+  --subject "frontend 완료: <한 줄>" \
+  --body "변경 파일 목록 / 구현 요약 / 검증 결과(수치) / 계약 준수 / 미결·주의점"
+
+# (2) 직접 주입 — 코디네이터 세션에 유저 메시지로 꽂혀 자동으로 깨운다.
+orca terminal send --terminal term_fa9914b3-124d-43d2-81ec-10417df53069 \
+  --text "[worker_done] frontend 완료 — <한 줄 요약>. 상세는 인박스." --enter
+```
+
+- 막히면 30분 이상 혼자 헤매지 말고 같은 (2) 방식으로 물어라:
+  `orca terminal send --terminal term_fa9914b3-124d-43d2-81ec-10417df53069 --text "[질문] frontend: <질문>" --enter`
+  (`orca orchestration ask` 는 채널이 닫혀 답이 안 닿는 경우가 많다.)

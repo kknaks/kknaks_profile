@@ -1,0 +1,64 @@
+cd backend && uv run pytest tests/contract -n auto --dist worksteal
+============================= test session starts ==============================
+platform darwin -- Python 3.13.11, pytest-8.4.2, pluggy-1.6.0
+rootdir: /Users/kknaks/orca/workspaces/Strong_hajin/strong-hajin-work/backend
+configfile: pyproject.toml
+plugins: xdist-3.8.0, anyio-4.15.0
+created: 4/4 workers
+4 workers [31 items]
+
+...............................                                          [100%]
+=============================== warnings summary ===============================
+.venv/lib/python3.13/site-packages/starlette/testclient.py:53
+.venv/lib/python3.13/site-packages/starlette/testclient.py:53
+.venv/lib/python3.13/site-packages/starlette/testclient.py:53
+.venv/lib/python3.13/site-packages/starlette/testclient.py:53
+.venv/lib/python3.13/site-packages/starlette/testclient.py:53
+  /Users/kknaks/orca/workspaces/Strong_hajin/strong-hajin-work/backend/.venv/lib/python3.13/site-packages/starlette/testclient.py:53: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+tests/contract/test_task_lifecycle_v2.py::test_lifecycle_v2_c1_the_key_is_required_where_something_is_created
+tests/contract/test_task_lifecycle_v2.py::test_lifecycle_v2_a2_both_entrances_give_the_same_result_and_keep_their_own_input
+  /Users/kknaks/orca/workspaces/Strong_hajin/strong-hajin-work/backend/src/ax_workspace/entrypoints/http.py:1324: StarletteDeprecationWarning: 'HTTP_422_UNPROCESSABLE_ENTITY' is deprecated. Use 'HTTP_422_UNPROCESSABLE_CONTENT' instead.
+    raise _runtime_error(error) from error
+
+tests/contract/test_task_lifecycle_v2.py::test_lifecycle_v2_c1_the_key_is_required_where_something_is_created
+tests/contract/test_task_lifecycle_v2.py::test_lifecycle_v2_a2_both_entrances_give_the_same_result_and_keep_their_own_input
+  /Users/kknaks/orca/workspaces/Strong_hajin/strong-hajin-work/backend/src/ax_workspace/entrypoints/http.py:1893: StarletteDeprecationWarning: 'HTTP_422_UNPROCESSABLE_ENTITY' is deprecated. Use 'HTTP_422_UNPROCESSABLE_CONTENT' instead.
+    raise _runtime_error(error) from error
+
+tests/contract/test_task_lifecycle_v2.py::test_lifecycle_v2_b5_withdrawal_before_acceptance_cancels_and_keeps_the_log
+tests/contract/test_task_lifecycle_v2.py::test_lifecycle_v2_c2_two_commands_that_race_resolve_without_a_contradiction
+  /Users/kknaks/orca/workspaces/Strong_hajin/strong-hajin-work/backend/src/ax_workspace/entrypoints/http.py:1937: StarletteDeprecationWarning: 'HTTP_422_UNPROCESSABLE_ENTITY' is deprecated. Use 'HTTP_422_UNPROCESSABLE_CONTENT' instead.
+    raise _runtime_error(error) from error
+
+tests/contract/test_task_lifecycle_v2.py::test_lifecycle_v2_c2_every_new_command_answers_a_version
+  /Users/kknaks/orca/workspaces/Strong_hajin/strong-hajin-work/backend/src/ax_workspace/entrypoints/http.py:2178: StarletteDeprecationWarning: 'HTTP_422_UNPROCESSABLE_ENTITY' is deprecated. Use 'HTTP_422_UNPROCESSABLE_CONTENT' instead.
+    raise _runtime_error(error) from error
+
+tests/contract/test_task_lifecycle_v2.py::test_lifecycle_v2_c2_every_new_command_answers_a_version
+  /Users/kknaks/orca/workspaces/Strong_hajin/strong-hajin-work/backend/src/ax_workspace/entrypoints/http.py:1721: StarletteDeprecationWarning: 'HTTP_422_UNPROCESSABLE_ENTITY' is deprecated. Use 'HTTP_422_UNPROCESSABLE_CONTENT' instead.
+    raise _runtime_error(error) from error
+
+tests/contract/test_task_lifecycle_v2.py::test_lifecycle_v2_b1_rejection_cancels_and_a_re_request_is_new
+  /Users/kknaks/orca/workspaces/Strong_hajin/strong-hajin-work/backend/src/ax_workspace/entrypoints/http.py:2191: StarletteDeprecationWarning: 'HTTP_422_UNPROCESSABLE_ENTITY' is deprecated. Use 'HTTP_422_UNPROCESSABLE_CONTENT' instead.
+    raise _runtime_error(error) from error
+
+tests/contract/test_task_lifecycle_v2.py::test_lifecycle_v2_k11_a_manager_assignment_still_stands_at_once
+  /Users/kknaks/orca/workspaces/Strong_hajin/strong-hajin-work/backend/src/ax_workspace/entrypoints/http.py:1433: StarletteDeprecationWarning: 'HTTP_422_UNPROCESSABLE_ENTITY' is deprecated. Use 'HTTP_422_UNPROCESSABLE_CONTENT' instead.
+    raise _runtime_error(error) from error
+
+tests/contract/test_task_lifecycle_v2.py::test_lifecycle_v2_a6_report_revision_and_approval_stay_in_one_task
+  /Users/kknaks/orca/workspaces/Strong_hajin/strong-hajin-work/backend/src/ax_workspace/entrypoints/http.py:2283: StarletteDeprecationWarning: 'HTTP_422_UNPROCESSABLE_ENTITY' is deprecated. Use 'HTTP_422_UNPROCESSABLE_CONTENT' instead.
+    raise _runtime_error(error) from error
+
+tests/contract/test_task_lifecycle_v2.py::test_lifecycle_v2_a6_report_revision_and_approval_stay_in_one_task
+  /Users/kknaks/orca/workspaces/Strong_hajin/strong-hajin-work/backend/src/ax_workspace/entrypoints/http.py:2102: StarletteDeprecationWarning: 'HTTP_422_UNPROCESSABLE_ENTITY' is deprecated. Use 'HTTP_422_UNPROCESSABLE_CONTENT' instead.
+    raise _runtime_error(error) from error
+
+tests/contract/test_task_lifecycle_v2.py::test_lifecycle_v2_c2_two_commands_that_race_resolve_without_a_contradiction
+  /Users/kknaks/orca/workspaces/Strong_hajin/strong-hajin-work/backend/src/ax_workspace/entrypoints/http.py:1454: StarletteDeprecationWarning: 'HTTP_422_UNPROCESSABLE_ENTITY' is deprecated. Use 'HTTP_422_UNPROCESSABLE_CONTENT' instead.
+    raise _runtime_error(error) from error
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================= 31 passed, 18 warnings in 26.14s =======================

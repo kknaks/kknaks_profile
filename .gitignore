@@ -57,10 +57,69 @@ workspace/
 claude_design/
 
 # macOS 파인더 부산물
-.DS_Store
 
 # md 에서 뽑아내는 파생물 — 원천은 para/resources/session/ 의 md 다(CLAUDE.md §2)
 output/
 
 # 온톨로지 데모 원천 데이터 — PII(환자 정보)·자격증명 포함. 공개 레포에 절대 올리지 않는다
 reference/ontology_demo/
+
+# 실물 회의 녹음 원본(webm · 수십 MB) — 로컬 저장소. git 에 넣지 않는다
+# 실물 회의 녹음 원본(webm · 수십 MB) — 바인드 마운트 저장소. git 에 넣지 않는다
+reference/2026-09-08-real-summit/recordings/
+
+# 회의 실물 테스트 음원(메디니스 운영 Charty 회의) — 로컬만
+reference/2026-09-11-charty-meeting/
+
+# 회의 실물 테스트 음원(2026-09-14 메디니스 운영 회의 원본 wav) — 로컬만. 실제 사람 목소리다
+reference/2026-09-10-sc-meeting/recordings/
+
+# Strong Hajin 실제 유저 시드 CSV — 실명·회사 메일. 공개 레포라 Git 밖. 형식은 README, 원본은 ~/strong-hajin-deploy-data/seed/
+reference/2026-09-30-strong-hain-seed/*.csv
+
+# cc-prototype 자료 캡처(2026-10-12) — 로컬만
+reference/2026-10-12-cc-prototype/2026-10-12T161224-5b4603da/
+
+# cc-prototype 배포 데이터(시나리오 · 직원 — 가짜 이름본 + 원본 · 대응표) — 로컬만(2026-10-14)
+reference/2026-10-12-cc-prototype/cc-back-data/
+
+# cc-prototype KOS 화면 캡처(실제 고객 정보) — 로컬만(2026-10-14)
+reference/2026-10-12-cc-prototype/kos-screenshot/
+
+# cc-prototype KOS 웹앱 HAR(내부 API 요청 · 응답, 고객 정보 포함 가능) — 로컬만(2026-10-20)
+reference/2026-10-12-cc-prototype/*.har
+
+# cc 전체현황판 KOS 웹앱 HAR(내부 API · 테넌트 id · 고객 정보) — 로컬만(2026-10-26). 앞으로 어디에 둬도 HAR 은 커밋하지 않는다
+reference/2026-10-23-cc-overall-board/har/
+*.har
+
+# 명동 PoC v2 — claude design 에서 받은 KOS 화면 캡처(실명 · 이메일) — 로컬만(2026-10-21)
+orchestration/work/myeongdong-poc-v2/design-user-r3/*.png
+
+# charty-poc — M3D 원본 에셋(본인 스캔 · 93MB) · Next.js 산출물은 로컬만
+reference/2026-10-21-charty-poc/m3d-assets/
+reference/2026-10-21-charty-poc/web/node_modules/
+reference/2026-10-21-charty-poc/web/.next/
+reference/2026-10-21-charty-poc/*.har
+reference/2026-10-21-charty-poc/web/public/m3d/
+orchestration/work/_archive/centurion/charty-consult-mockup/screens/
+orchestration/work/_archive/centurion/charty-consult-recommend/screens/
+reference/2026-10-21-charty-poc/web/AGENTS.md
+reference/2026-10-21-charty-poc/web/*.tsbuildinfo
+reference/2026-10-21-charty-poc/*.html
+
+# 명동 PoC v2 아카이브 — KOS 화면 캡처 · 실데이터 스크린샷 · 데모 예약 KOS id 목록 — 로컬만(2026-10-22)
+orchestration/work/_archive/cc-prototype/myeongdong-poc-v2/design-user-r3/*.png
+orchestration/work/_archive/cc-prototype/myeongdong-poc-v2/wp5-shots/
+orchestration/work/_archive/cc-prototype/myeongdong-poc-v2/design-sync/shots/mobile/t_list_admin.png
+orchestration/work/_archive/cc-prototype/myeongdong-poc-v2/design-sync/shots/mobile/m_list_offline.png
+orchestration/work/_archive/cc-prototype/myeongdong-poc-v2/demo-patients-*.md
+
+# cc 전체현황판 Claude Design 시안(예시값 실명 · Q-22) — 로컬만(2026-10-27)
+reference/2026-10-23-cc-overall-board/design/
+reference/2026-10-23-cc-overall-board/design-prev/
+
+# 전체현황판 스크린샷(운영 · 데모 고객 이름 · 용량) — 로컬만(2026-10-28)
+orchestration/work/**/app-shots/
+orchestration/work/**/fe-shots/
+orchestration/work/**/fe-shots-reservation/

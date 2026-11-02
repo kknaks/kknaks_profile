@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>경영관리부 현행 업무 진단 — 관리자 인터뷰 1차</title>
+<style>
+  :root{
+    --navy:#102a43;
+    --blue:#245f9e;
+    --aqua:#13866f;
+    --violet:#6853a5;
+    --stack-1:#184f86;
+    --stack-2:#5688b8;
+    --stack-3:#c9d7e4;
+    --warn:#c84f2f;
+    --ink:#17212b;
+    --ink-2:#53606d;
+    --ink-3:#7d8893;
+    --line:#dce2e8;
+    --bg:#ffffff;
+    --bg-soft:#f5f7f9;
+    --bg-navy-soft:#edf2f7;
+    --paper:#eef1f4;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:var(--paper)}
+  body{font-family:"Pretendard Variable","Pretendard","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact;font-feature-settings:"tnum" 1,"kern" 1;letter-spacing:-.012em}
+
+  .page{width:210mm;height:297mm;background:var(--bg);margin:0 auto;padding:16mm 17mm 13mm;display:none;flex-direction:column;position:relative;overflow:hidden}
+  .page.active{display:flex}
+
+  /* ── 공통 ── */
+  .page:not(.cover)::before{content:"SC-AX  /  MANAGEMENT DIAGNOSTIC";position:absolute;top:7mm;left:17mm;font-size:7.5px;font-weight:800;letter-spacing:.16em;color:#91a0ae}
+  .page-head{display:flex;align-items:flex-end;justify-content:space-between;border-bottom:1px solid var(--line);padding:0 0 4mm;margin:2mm 0 6mm;position:relative}
+  .page-head::after{content:"";position:absolute;left:0;bottom:-1px;width:18mm;height:3px;background:var(--navy)}
+  .page-head h2{font-size:21px;color:var(--navy);font-weight:800;letter-spacing:-.035em;line-height:1.18}
+  .page-head .kicker{max-width:48%;font-size:9.5px;color:var(--ink-3);font-weight:650;text-align:right;line-height:1.45}
+  .foot{position:absolute;left:17mm;right:17mm;bottom:6mm;display:flex;justify-content:space-between;font-size:8px;color:var(--ink-3);border-top:1px solid var(--line);padding-top:2.2mm;letter-spacing:.02em}
+  h3.block-title{font-size:12.5px;color:var(--navy);font-weight:800;margin-bottom:2.5mm;letter-spacing:-.02em;display:flex;align-items:center;gap:2mm}
+  h3.block-title::before{content:"";width:2.5mm;height:2.5mm;background:var(--blue);display:inline-block}
+  .tag{display:inline-block;font-size:9px;font-weight:750;color:var(--navy);background:var(--bg-navy-soft);border:1px solid #d9e2ea;border-radius:999px;padding:1px 7px;vertical-align:1px}
+  .note{font-size:9.5px;color:var(--ink-2);line-height:1.6}
+  .note b{color:var(--ink)}
+  table.data{width:100%;border-collapse:separate;border-spacing:0;font-size:9.8px;line-height:1.42;border-top:2px solid var(--navy)}
+  table.data th{background:#eef2f5;color:var(--navy);font-weight:800;padding:5.5px 7px;text-align:left;white-space:nowrap;border-bottom:1px solid #bdc8d2}
+  table.data td{border-bottom:1px solid var(--line);padding:5px 7px;vertical-align:top}
+  table.data tbody tr:nth-child(even):not(.sum) td{background:#fafbfc}
+  table.data tr.sum td{background:#eaf0f5;font-weight:800;border-bottom:1px solid #cbd5de}
+  table.data td.num{text-align:center;white-space:nowrap}
+  .axis-dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:4px;vertical-align:.2px}
+  .d-blue{background:var(--blue)} .d-aqua{background:var(--aqua)} .d-violet{background:var(--violet)}
+
+  /* ── 1. 표지 ── */
+  .cover{justify-content:flex-start;background:#fff;color:var(--ink);padding:24mm 21mm 16mm 36mm}
+  .cover::before{content:"";position:absolute;left:0;top:0;bottom:0;width:16mm;background:linear-gradient(180deg,#0d253d 0%,#174e7f 68%,#1f7392 100%)}
+  .cover::after{content:"01";position:absolute;right:17mm;top:18mm;font-size:72px;font-weight:850;line-height:1;color:#edf2f6;letter-spacing:-.08em;z-index:0}
+  .cover .brand{font-size:10px;font-weight:800;letter-spacing:.18em;color:var(--blue);margin-bottom:35mm;position:relative;z-index:1}
+  .cover h1{font-size:36px;font-weight:850;letter-spacing:-.045em;line-height:1.18;margin-bottom:5mm;color:var(--navy);max-width:145mm;position:relative;z-index:1}
+  .cover .sub{font-size:14px;color:var(--ink-2);font-weight:600;margin-bottom:17mm;padding-bottom:7mm;border-bottom:1px solid var(--line)}
+  .cover .lead{font-size:20px;font-weight:750;border-left:3px solid var(--warn);padding:1mm 0 1mm 5mm;line-height:1.45;color:var(--ink);margin-bottom:17mm}
+  .cover .lead small{display:block;font-size:11px;color:var(--ink-3);font-weight:600;margin-top:2mm}
+  .cover-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:2px solid var(--navy);border-bottom:1px solid var(--line)}
+  .cover-grid .cell{background:#fff;border:0;border-bottom:1px solid var(--line);padding:4mm 3mm}
+  .cover-grid .cell:nth-child(odd){border-right:1px solid var(--line)}
+  .cover-grid .k{font-size:8.5px;color:var(--ink-3);font-weight:800;margin-bottom:1.5mm;letter-spacing:.06em}
+  .cover-grid .v{font-size:10.5px;font-weight:650;line-height:1.5;color:var(--ink)}
+  .cover .foot{left:36mm;right:21mm;border-top:1px solid var(--line);color:var(--ink-3)}
+
+  /* ── 2. 진단 요약 ── */
+  .bignum-row{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm;margin-bottom:5mm}
+  .bignum{background:#fff;border:1px solid var(--line);border-top:3px solid var(--navy);padding:4mm 4.5mm 4mm;min-height:37mm}
+  .bignum .n{font-size:34px;font-weight:850;color:var(--navy);letter-spacing:-.045em;line-height:1}
+  .bignum .l{font-size:11.5px;font-weight:800;margin:2.5mm 0 1.5mm}
+  .bignum .s{font-size:10px;color:var(--ink-2);line-height:1.5}
+  .diag-list{list-style:none;margin-bottom:5mm;border-top:1px solid var(--line)}
+  .diag-list li{font-size:11.5px;font-weight:700;padding:2.8mm 0 2.8mm 9mm;position:relative;border-bottom:1px solid var(--line);line-height:1.45}
+  .diag-list li::before{content:attr(data-n);position:absolute;left:0;top:2.7mm;width:5.5mm;height:5.5mm;border:1px solid var(--navy);color:var(--navy);font-size:9.5px;font-weight:800;display:flex;align-items:center;justify-content:center}
+  .diag-list li em{font-style:normal;color:var(--ink-2);font-weight:500}
+  .chart-row{display:grid;grid-template-columns:1.45fr 1fr;gap:4mm;align-items:start}
+  .chart-box{border:1px solid var(--line);background:#fbfcfd;padding:4mm;min-width:0}
+  .chart-box h4{font-size:10.8px;font-weight:800;color:var(--navy);margin-bottom:2mm}
+  .legend{display:flex;gap:12px;font-size:9.5px;color:var(--ink-2);font-weight:600;margin-bottom:1.5mm}
+  .fn{font-size:8px;color:var(--ink-3);line-height:1.5;margin-top:1.5mm}
+
+  /* ── 3. 현황 진단 ── */
+  .p2-grid{display:grid;grid-template-columns:1fr;gap:2.7mm;flex:1;min-height:0}
+  .p2-card{border:1px solid var(--line);border-left:3px solid var(--blue);padding:3mm 4mm;display:flex;flex-direction:column;gap:1.5mm;background:#fff}
+  .p2-card .hd{display:flex;align-items:baseline;justify-content:space-between;gap:4px}
+  .p2-card .hd .t{font-size:11.5px;font-weight:800;color:var(--navy)}
+  .p2-card .hd .cnt{font-size:8.5px;font-weight:800;color:var(--navy);background:var(--bg-navy-soft);border-radius:999px;padding:1px 7px;white-space:nowrap}
+  .flow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;row-gap:1.4mm}
+  .fstep{background:var(--bg-soft);border:1px solid var(--line);font-size:8.8px;font-weight:700;padding:2.5px 6px;display:flex;align-items:center;white-space:nowrap}
+  .fstep.ok{border-color:#bfe3d3;background:#eaf7f1}
+  .fstep.hub{background:var(--navy);color:#fff;border-color:var(--navy);font-size:9.5px}
+  .farr{display:flex;align-items:center;font-size:9px;color:var(--ink-3);padding:0 3px;white-space:nowrap}
+  .farr.cut{color:var(--warn);font-weight:800}
+  .cutnote{font-size:8.6px;color:var(--warn);font-weight:600;line-height:1.5}
+  .p2-card .meta{font-size:9.5px;line-height:1.55;color:var(--ink-2)}
+  .p2-card .meta b{color:var(--ink)}
+  .p2-card .refs{font-size:8.6px;color:var(--ink-3)}
+
+  /* ── 5. 과제 ── */
+  .stage-pill{display:inline-block;font-size:8.5px;font-weight:800;border-radius:999px;padding:1px 7px;white-space:nowrap}
+  .st-1{background:var(--stack-1);color:#fff}
+  .st-1b{background:var(--stack-2);color:#fff}
+  .st-2{background:var(--stack-3);color:#173f73}
+
+  /* ── 내비 (화면 전용) ── */
+  .nav{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;align-items:center;background:rgba(16,42,67,.96);color:#fff;border-radius:4px;padding:8px 12px;font-size:12px;z-index:9;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+  .nav button{background:none;border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:14px;padding:2px 12px;cursor:pointer;font-size:12px}
+  .nav button:hover{background:rgba(255,255,255,.15)}
+  .nav .pos{font-weight:700;min-width:44px;text-align:center}
+
+  @media screen{
+    body{padding:28px 0 72px}
+    .page{box-shadow:0 10px 34px rgba(20,35,50,.18);margin-bottom:0}
+  }
+  @page{size:A4 portrait;margin:0}
+  @media print{
+    html,body{background:#fff;padding:0}
+    .page{display:flex !important;box-shadow:none;page-break-after:always}
+    .page:last-child{page-break-after:auto}
+    .nav{display:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ 1. 표지 · 개요 ═══ -->
+<section class="page cover active">
+  <div class="brand">MEDISOLVE AI · SC-AX / DIAGNOSTIC REPORT</div>
+  <h1>경영관리부 현행 업무 진단</h1>
+  <div class="sub">관리자 인터뷰 1차 「업무와 의사결정」 결과 보고</div>
+  <div class="lead">“일이 아니라 일 사이가 새고 있다”
+    <small>60분 인터뷰로 확인한 문제 31건</small>
+  </div>
+  <div class="cover-grid">
+    <div class="cell"><div class="k">조사</div><div class="v">구조화 질문지 10절 24문항</div></div>
+    <div class="cell"><div class="k">일시 · 대상</div><div class="v">2026-08-26 · 60분<br>경영관리부 관리자 2인</div></div>
+    <div class="cell"><div class="k">방법</div><div class="v">대면 면담 + 녹취 전사 분석<br>원본 수행사 보관 · 종료 후 폐기</div></div>
+    <div class="cell"><div class="k">목적</div><div class="v">① 업무 흐름 병목 지점 식별<br>② 자동화 가능 업무 식별<br>③ 개선 전후 비교 기준선 확보</div></div>
+  </div>
+  <div class="foot"><span>메디솔브에이아이 (수행사) · 본 보고는 역할명만 사용</span><span>2026-08-28 · 1 / 8</span></div>
+</section>
+
+<!-- ═══ 2. 진단 요약 ═══ -->
+<section class="page">
+  <div class="page-head"><h2>진단 요약</h2><span class="kicker">확인된 문제 31건 → 진단 3 · 개선 과제 7</span></div>
+  <div class="bignum-row">
+    <div class="bignum"><div class="n">31건</div><div class="l">확인된 현행 업무 문제</div><div class="s">계약·정산·인사·소통·근태 5개 영역 전반</div></div>
+    <div class="bignum"><div class="n">29건</div><div class="l">지금도 반복되는 병목·비효율</div><div class="s">31건 중 2건은 자발적 개선으로 해소 확인</div></div>
+    <div class="bignum"><div class="n">1인</div><div class="l">승인·확인이 수렴하는 지점</div><div class="s">대표 가용 시간 = 전사 처리량의 상한</div></div>
+  </div>
+  <ul class="diag-list">
+    <li data-n="1">업무를 이관·전달하는 과정에서 병목 발생 <em>— 절차는 있으나 시작 신호 부재</em></li>
+    <li data-n="2">대표 승인·확인 대기가 업무 전반에서 발생 <em>— 계약 예외·정산 컨펌·지시 확인 전 영역에 병목</em></li>
+    <li data-n="3">협업 도구 전환 등 자발적 개선 진행 중 <em>— 시스템 도입 수용성 높음</em></li>
+  </ul>
+  <div class="chart-row">
+    <div class="chart-box">
+      <h4>문제 구조 분석 — 유형 분포 <span style="font-weight:600;color:var(--ink-3)">(색 = 근본 원인 축)</span></h4>
+      <div class="legend">
+        <span><span class="axis-dot d-blue"></span>기록의 부재 19건</span>
+        <span><span class="axis-dot d-aqua"></span>신호의 부재 10건</span>
+        <span><span class="axis-dot d-violet"></span>판단 기준 미작동 2건</span>
+      </div>
+      <svg viewBox="0 0 470 168" width="100%" role="img" aria-label="유형별 문제 건수">
+        <g font-size="10.5" font-weight="600" fill="#15202e">
+          <!-- rows: label x=0..150, bar starts 155, scale 7건=280px → 40px/건 -->
+          <g><title>확인 비용 7건 — 기록의 부재</title>
+            <text x="150" y="15" text-anchor="end">확인 비용</text>
+            <rect x="155" y="6" width="280" height="13" rx="4" fill="#2a78d6"/>
+            <text x="441" y="15" font-weight="800">7</text></g>
+          <g><title>기록 소실 6건 — 기록의 부재</title>
+            <text x="150" y="41" text-anchor="end">기록 소실</text>
+            <rect x="155" y="32" width="240" height="13" rx="4" fill="#2a78d6"/>
+            <text x="401" y="41" font-weight="800">6</text></g>
+          <g><title>알림 누락 6건 — 신호의 부재</title>
+            <text x="150" y="67" text-anchor="end">알림 누락</text>
+            <rect x="155" y="58" width="240" height="13" rx="4" fill="#1baf7a"/>
+            <text x="401" y="67" font-weight="800">6</text></g>
+          <g><title>대기 4건 — 신호의 부재 (판단 기준이 증폭)</title>
+            <text x="150" y="93" text-anchor="end">대기</text>
+            <rect x="155" y="84" width="160" height="13" rx="4" fill="#1baf7a"/>
+            <text x="321" y="93" font-weight="800">4</text></g>
+          <g><title>이중 입력·재작업·수기 집계 6건 — 기록의 부재</title>
+            <text x="150" y="119" text-anchor="end">이중 입력·재작업·수기 집계</text>
+            <rect x="155" y="110" width="240" height="13" rx="4" fill="#2a78d6"/>
+            <text x="401" y="119" font-weight="800">6</text></g>
+          <g><title>귀속 모호·돌발 유입 2건 — 판단 기준의 미작동</title>
+            <text x="150" y="145" text-anchor="end">귀속 모호·돌발 유입</text>
+            <rect x="155" y="136" width="80" height="13" rx="4" fill="#4a3aa7"/>
+            <text x="241" y="145" font-weight="800">2</text></g>
+        </g>
+      </svg>
+      <div class="fn">확인 비용: 상태 확인을 위한 문의·중복 조회 · 기록 소실: 결정·근거·수정 이력 미기록 · 알림 누락: 처리 시점을 사람의 기억에 의존 · 대기: 타인 응답 대기로 업무 중단 · 이중 입력·재작업·수기 집계: 동일 정보 중복 입력·재작성·수작업 취합 · 귀속 모호·돌발 유입: 담당 불명확·계획 외 업무 유입</div>
+    </div>
+    <div class="chart-box">
+      <h4>해결 안 요약 — 31건의 해소 경로</h4>
+      <svg viewBox="0 0 360 150" width="100%" role="img" aria-label="해결 안별 해결 대상 문제 수">
+        <g font-size="10.5" font-weight="600" fill="#15202e">
+          <!-- stacked bar: total 31 → 330px, 10.65px/건 -->
+          <g><title>1단계 구축 12건</title><rect x="10" y="34" width="126" height="30" rx="4" fill="#205ea8"/><text x="73" y="53" text-anchor="middle" fill="#fff" font-weight="800">12</text></g>
+          <g><title>후속 단계 구축 10건</title><rect x="138" y="34" width="105" height="30" rx="4" fill="#5b9be2"/><text x="190" y="53" text-anchor="middle" fill="#fff" font-weight="800">10</text></g>
+          <g><title>과제 외 처리 9건</title><rect x="245" y="34" width="95" height="30" rx="4" fill="#c6d8ee"/><text x="292" y="53" text-anchor="middle" fill="#173f73" font-weight="800">9</text></g>
+          <text x="73" y="82" text-anchor="middle" font-size="9.5" fill="#4b5a6b">1단계 구축</text>
+          <text x="190" y="82" text-anchor="middle" font-size="9.5" fill="#4b5a6b">후속 단계 구축</text>
+          <text x="292" y="82" text-anchor="middle" font-size="9.5" fill="#4b5a6b">과제 외 처리</text>
+          <text x="10" y="22" font-size="10" font-weight="700" fill="#4b5a6b">과제 7건 → 문제 22건 해결 · 과제 외 처리 9건 · 합계 31건</text>
+          <text x="10" y="112" font-size="9" fill="#8494a5">1단계 구축으로 확인된 문제의 39%(12건) 우선 해소</text>
+        </g>
+      </svg>
+      <div class="fn"><b>과제 외 처리 9건</b> — 진행 중인 자발적 개선 유지 4 · 경영진 규칙 협의 상정 3 · 외부 제공사 독촉 1 · 타 부서 확인 후 과제화 1</div>
+    </div>
+  </div>
+  <div class="foot"><span>메디솔브에이아이 · 경영관리부 현행 업무 진단</span><span>2026-08-28 · 2 / 8</span></div>
+</section>
+
+<!-- ═══ 3. 현황 진단 ═══ -->
+<section class="page">
+  <div class="page-head"><h2>현황 진단 — 업무 흐름 단절 지점</h2><span class="kicker">영역별 흐름 · 단절 지점 <span style="color:var(--warn)">✂</span> · 원인</span></div>
+  <div class="p2-grid">
+    <div class="p2-card">
+      <div class="hd"><span class="t">2.1 계약 — 단계별 기록·이력 단절</span><span class="cnt">문제 7건</span></div>
+      <div class="flow">
+        <span class="fstep">작성</span><span class="farr">→</span>
+        <span class="fstep">검토</span><span class="farr cut">─✂→</span>
+        <span class="fstep">예외 승인</span><span class="farr cut">─✂→</span>
+        <span class="fstep">체결</span><span class="farr cut">─✂→</span>
+        <span class="fstep">보관</span>
+      </div>
+      <div class="cutnote">✂ 수정 대조 불가 (매건 전문 재검토) · 구두 확정·기록 없음 (승인·실수 구분 불가) · 체결 상태 별도 확인 (별도 로그인) · 이력본·클린본 부재 (변경 지점 확인 불가)</div>
+      <div class="meta">핵심 수치: <b>단절 4곳</b> · 매건 <b>전문 재검토</b><br>원인: 승인 기록 경로·수정 대조 기능 부재</div>
+      <div class="refs">문제: 부록 #3 · 4 · 5 · 6 · 7 · 8 · 9</div>
+    </div>
+    <div class="p2-card">
+      <div class="hd"><span class="t">2.2 정산 — 조건 변경 미전파로 연쇄 지연</span><span class="cnt">문제 3건</span></div>
+      <div class="flow">
+        <span class="fstep">거래처 조건 변경</span><span class="farr cut">─✂→</span>
+        <span class="fstep">정산 시점에야 인지</span><span class="farr">→</span>
+        <span class="fstep">가결산 정지</span><span class="farr">→</span>
+        <span class="fstep">확정결산 정지</span><span class="farr">→</span>
+        <span class="fstep">실적 보고 정지</span>
+      </div>
+      <div class="meta">타임라인: <b>7월분 정산 → 8월 말까지 미마감</b> (인터뷰 시점 실측) · 매월 반복<br>원인: 조건 변경의 회계 전달 규칙·경로 부재</div>
+      <div class="refs">문제: 부록 #13 · 14 · 16</div>
+    </div>
+    <div class="p2-card">
+      <div class="hd"><span class="t">2.3 입퇴사 — 절차 시작 신호 부재</span><span class="cnt">문제 8건 (외국인 서류 4 포함)</span></div>
+      <div class="flow">
+        <span class="fstep">입·퇴사 확정</span><span class="farr cut">─✂ 신호 없음 →</span>
+        <span class="fstep ok">절차 문서 ✓ 정비됨</span><span class="farr">→</span>
+        <span class="fstep">장비·계정·자리·급여·자산</span>
+      </div>
+      <div class="meta">타임라인: 퇴사 통보 <b>D+29일</b> 도착 (급여 이체 하루 전) · 입사 신고 <b>당일</b> 접수 (장비 미준비 출근)<br>원인: 확정 시점 자동 통보 부재<br>외국인 서류: 계약서 <b>2벌</b> 이중 작성 · 영문 증명서 <b>수기+재작성</b> · 비자 갱신 <b>연 1회 × 인원수</b></div>
+      <div class="refs">문제: 부록 #17 · 18 · 19 · 20 (입퇴사) · #24 · 25 · 26 · 27 (외국인 서류)</div>
+    </div>
+    <div class="p2-card">
+      <div class="hd"><span class="t">2.4 소통·의사결정 — 승인·확인의 대표 1인 집중</span><span class="cnt">문제 8건 (해소 2 포함)</span></div>
+      <div class="flow">
+        <span class="fstep">계약 예외 승인</span><span class="farr">┐</span>
+      </div>
+      <div class="flow">
+        <span class="fstep">정산 컨펌</span><span class="farr">├→</span>
+        <span class="fstep hub">대표 1인</span><span class="farr">←</span>
+        <span class="fstep">확인 시간대 고정 불가 · 이동 중 포착</span>
+      </div>
+      <div class="flow">
+        <span class="fstep">전결 판단 상향</span><span class="farr">│</span>
+        <span class="fstep">구두 지시 재확인</span><span class="farr">┘</span>
+      </div>
+      <div class="meta">핵심 수치: 구두 지시 1건 = <b>대기 2회</b> (지시 대기 + 재확인 대기)<br>원인: 위임 기준 적용 근거 부재</div>
+      <div class="refs">문제: 부록 #1 · 2 · 10 · 11 · 12 · 15 · #30 · 31 (해소)</div>
+    </div>
+    <div class="p2-card">
+      <div class="hd"><span class="t">2.5 근태·외근 — 신청·승인 경로 부재</span><span class="cnt">문제 5건 (일일보고 2 포함)</span></div>
+      <div class="flow">
+        <span class="fstep">외근·출장</span><span class="farr cut">─ ─ 신청·승인 경로 없음 ─ ─</span>
+        <span class="fstep">기록 공백</span>
+        <span class="farr" style="padding:0 12px">│</span>
+        <span class="fstep">현장 근무 인력 재직 확인 수단 없음</span>
+      </div>
+      <div class="meta">원인: 신청·승인 규칙 미제정 &nbsp;·&nbsp; <span class="refs" style="font-size:8.6px">문제: 부록 #21 · 22 · 23 (외근·재직) · #28 · 29 (일일보고)</span></div>
+    </div>
+  </div>
+  <div class="foot"><span>메디솔브에이아이 · 경영관리부 현행 업무 진단</span><span>2026-08-28 · 3 / 8</span></div>
+</section>
+
+<!-- ═══ 4. 원인 분석 ═══ -->
+<section class="page">
+  <div class="page-head"><h2>원인 분석</h2><span class="kicker">현상 → 직접 원인 → 근본 원인 3축 수렴</span></div>
+  <table class="data">
+    <thead><tr><th style="width:22%">현상</th><th>직접 원인 — 인터뷰에서 확인된 「지금 이렇게 하는 이유」</th><th style="width:12%">근본 원인 축</th><th style="width:13%">문제 (부록 #)</th><th style="width:6%">건수</th></tr></thead>
+    <tbody>
+      <tr><td>계약 예외 승인·실수 구분 불가</td><td>예외 조건이 대면 미팅에서 구두 확정 — 승인자·사유 기록 경로 부재</td><td><span class="axis-dot d-blue"></span>기록</td><td>5 · 6</td><td class="num">2</td></tr>
+      <tr><td>계약서 매건 전문 재검토</td><td>사내 도구가 서식 생성만 지원 — 수정 대조·이력 관리·체결 상태 연동 부재</td><td><span class="axis-dot d-blue"></span>기록</td><td>3 · 4 · 7 · 9</td><td class="num">4</td></tr>
+      <tr><td>정산 매월 연쇄 지연</td><td>거래처 조건 변경의 회계 전달 규칙·경로 미비 — 정산 시점에야 인지</td><td><span class="axis-dot d-aqua"></span>신호</td><td>13 · 14</td><td class="num">2</td></tr>
+      <tr><td>컨펌 대기로 업무 중단</td><td>위임 기준은 문서로 존재하나 실제 상황 대입 근거 부재 — 상신이 안전한 구조</td><td><span class="axis-dot d-violet"></span>판단</td><td>15 · 16</td><td class="num">2</td></tr>
+      <tr><td>입퇴사 절차 미기동</td><td>입·퇴사 확정 통보를 개인 성실성에 의존 — 자동 통보 체계 부재</td><td><span class="axis-dot d-aqua"></span>신호</td><td>17 · 18 · 19 · 20</td><td class="num">4</td></tr>
+      <tr><td>외국인 서류 수기 반복</td><td>발급 시스템의 영문 서식 미지원 · 연 단위 갱신 시점 알림 부재</td><td><span class="axis-dot d-blue"></span>기록</td><td>24 · 25 · 26 · 27</td><td class="num">4</td></tr>
+      <tr><td>구두 지시 재확인 왕복</td><td>외부 미팅 중 즉석 지시 — 지시에 맥락을 첨부할 경로 부재</td><td><span class="axis-dot d-blue"></span>기록</td><td>11 · 12</td><td class="num">2</td></tr>
+      <tr><td>카카오톡 이탈 불가</td><td>채널 간 자료 이동 시 수동 재업로드 — 이동 비용이 기존 채널 고착 유발</td><td><span class="axis-dot d-aqua"></span>신호</td><td>1 · 2 · 30 · 31</td><td class="num">4</td></tr>
+      <tr><td>근태·일일보고 기록 공백</td><td>외근 신청·승인 경로 및 보고 마감 규칙 미제정</td><td><span class="axis-dot d-violet"></span>판단</td><td>21 · 22 · 23 · 28 · 29</td><td class="num">5</td></tr>
+      <tr class="sum"><td colspan="4">소계 — 원인 규명 9건</td><td class="num">29</td></tr>
+      <tr><td>전자계약 데모 계정 미수령 <span style="color:var(--ink-3)">#8</span></td><td>원인이 조직 외부 (제공사 무응답 1개월)</td><td>별도 — 외부</td><td>8</td><td class="num">1</td></tr>
+      <tr><td>신규 사업 검토 매번 반복 <span style="color:var(--ink-3)">#10</span></td><td>근거 1개 부서뿐 — 타 부서 확인 후 규명</td><td>별도 — 미규명</td><td>10</td><td class="num">1</td></tr>
+      <tr class="sum"><td colspan="4">합계</td><td class="num">31</td></tr>
+    </tbody>
+  </table>
+  <div class="note" style="margin-top:4mm;background:var(--bg-navy-soft);border-left:4px solid var(--navy);padding:3mm 4mm;border-radius:0 6px 6px 0;font-size:11px">
+    원인은 개인 과실이 아닌 <b>경로·규칙·기록 체계의 부재</b> — 처방은 교육·독려가 아니라 경로 구축 (과제 7건, 다음 페이지)
+  </div>
+  <div class="foot"><span>메디솔브에이아이 · 경영관리부 현행 업무 진단</span><span>2026-08-28 · 4 / 8</span></div>
+</section>
+
+<!-- ═══ 5. 개선 과제 ═══ -->
+<section class="page">
+  <div class="page-head"><h2>개선 과제</h2><span class="kicker">배열 기준: 신호 축 우선 · 실무 수용 확인 우선 · 외부 선행 조건 후순위 · 단계 준수</span></div>
+  <table class="data">
+    <thead><tr><th style="width:4%">순위</th><th style="width:34%">과제</th><th style="width:19%">끊는 원인</th><th style="width:13%">해결 문제</th><th style="width:16%">구축 단계</th><th>성립 조건</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1</td><td><b>업무 현황 대시보드</b> — 부서별 업무·제출·컨펌 상태 일원 표시 · 첫 적용: 정산 마감 현황 + 조건 변경 확인 알림</td><td><span class="axis-dot d-aqua"></span>정산 경로 없음 (신호)</td><td>#13 · 14 · 16(부분)</td><td><span class="stage-pill st-1">1단계</span> 베타 즉시 제작</td><td>실무 "루틴 업무로 전환 가능" 평가</td></tr>
+      <tr><td class="num">2</td><td><b>일일보고 제출·취합</b> — 마감 알림 · 팀 제출 현황 한 화면 · 확인 질문의 기록화</td><td><span class="axis-dot d-violet"></span>마감·확인 규칙 부재 (판단·기록)</td><td>#28 · 29</td><td><span class="stage-pill st-1">1단계</span> 보고 기반 확장</td><td>마감 시각 규칙 확정 (설정값 수용)</td></tr>
+      <tr><td class="num">3</td><td><b>회의 맥락 연결</b> — 회의에서 생성된 지시에 출처 회의 자동 연결</td><td><span class="axis-dot d-blue"></span>지시 맥락 경로 없음 (기록)</td><td>#11</td><td><span class="stage-pill st-1">1단계</span> 회의 기록 범위</td><td>회의 기록의 시스템 내 생성</td></tr>
+      <tr><td class="num">4</td><td><b>확인 대기열</b> — 대표 확인 필요 건을 맥락과 함께 모아 일괄 제시</td><td><span class="axis-dot d-violet"></span>전결 판단 근거 없음 (판단)</td><td>#12 · 15 · 16</td><td><span class="stage-pill st-1">1단계</span> 판단 흐름 범위</td><td><b>위임전결 확정 선행</b></td></tr>
+      <tr><td class="num">5</td><td><b>입퇴사 후속 절차 자동 기동</b> — 입·퇴사일 확정 시 담당자별 체크리스트 자동 생성·추적</td><td><span class="axis-dot d-aqua"></span>입퇴사 기동 신호 없음 (신호)</td><td>#17 · 18 · 19 · 20</td><td><span class="stage-pill st-1b">1단계 베타까지</span> 본격 연동은 후속</td><td>절차 문서 이미 정비됨</td></tr>
+      <tr><td class="num">6</td><td><b>계약 이력 일원화</b> — 예외 사유·승인자 기록 · 수정본 대조 · 체결 상태 연동</td><td><span class="axis-dot d-blue"></span>계약 기록 없음 + 도구 한계 (기록)</td><td>#3 · 4 · 5 · 6 · 7 · 9</td><td><span class="stage-pill st-2">후속 단계</span> 현 단계는 요건 확정</td><td>신규 입력 없는 설계 · 연동은 데모 계정 수령 후(#8)</td></tr>
+      <tr><td class="num">7</td><td><b>서류 셀프 신청·발급</b> — 본인 신청 → 관리자 확인 → 발급 (영문 서식)</td><td><span class="axis-dot d-blue"></span>외국인 서류 도구 공백 (기록)</td><td>#24 · 25 · 26 · 27</td><td><span class="stage-pill st-2">후속 단계</span> 현 단계는 서식 조사</td><td>외국인 직원 사용성 확보</td></tr>
+    </tbody>
+  </table>
+  <div class="note" style="margin-top:3mm;display:flex;justify-content:space-between;align-items:center">
+    <span><b>과제 해결 대상 22건</b> + 과제 외 처리 9건 = 31건 (부록 A 전수와 일치)</span>
+    <span style="background:var(--bg-navy-soft);border-radius:4px;padding:2px 8px;font-weight:700;color:var(--navy)">본 순위는 경영관리부 기준 잠정안 — 타 부서 인터뷰 결과 반영 시 조정·업데이트</span>
+  </div>
+  <div class="foot"><span>메디솔브에이아이 · 경영관리부 현행 업무 진단</span><span>2026-08-28 · 5 / 8</span></div>
+</section>
+
+<!-- ═══ 6. 구축 순서 · 과제 외 처리 ═══ -->
+<section class="page">
+  <div class="page-head"><h2>구축 순서 · 과제 외 처리</h2><span class="kicker">공통 기반 우선 · 영역 심화 후속</span></div>
+  <div style="display:flex;flex-direction:column;gap:7mm;flex:1;min-height:0">
+    <div>
+      <h3 class="block-title">구축 순서 — 공통 기반 우선, 영역 심화 후속</h3>
+      <ul class="note" style="list-style:none;margin-bottom:3.5mm;font-size:10.5px">
+        <li style="padding:1.5mm 0">· 과제 7건 모두 공통 기반(업무 기록 · 신호 · 판단 이력) 위에서 동작</li>
+        <li style="padding:1.5mm 0">· 심화 기능 선행 구축 시 기반 중복 개발 발생 — 단계 준수가 전체 완성의 최단 경로</li>
+      </ul>
+      <table class="data">
+        <thead><tr><th style="width:24%">시기</th><th>내용</th></tr></thead>
+        <tbody>
+          <tr><td><span class="stage-pill st-1">즉시</span></td><td>과제 1·5 베타 제작 · 차기 방문 시연</td></tr>
+          <tr><td><span class="stage-pill st-1">1단계</span></td><td>과제 1~5 구축 (공통 기반 + 화면)</td></tr>
+          <tr><td><span class="stage-pill st-2">후속 단계</span></td><td>과제 6·7 구축 · 현 단계는 요건 확정·조사 병행</td></tr>
+        </tbody>
+      </table>
+      <div class="note" style="margin-top:4mm;background:var(--bg-navy-soft);border-left:4px solid var(--navy);padding:3mm 4mm;border-radius:0 6px 6px 0;font-size:10.5px">
+        <b>경영진 협의 안건</b><br>① 위임전결 범위 확정 (과제 4 선행)<br>② 외근·출장 승인 경로 · 현장 인력 재직 확인 규칙<br>③ 일일보고 마감 시각 (과제 2 착수 시 확정)
+      </div>
+    </div>
+    <div>
+      <h3 class="block-title">과제 외 처리 — 9건</h3>
+      <table class="data">
+        <thead><tr><th style="width:30%">문제</th><th style="width:7%">건수</th><th>처리</th><th style="width:22%">과제 제외 사유</th></tr></thead>
+        <tbody>
+          <tr><td>#1 · 2 · 30 · 31<br><span style="color:var(--ink-3)">채널·카카오톡</span></td><td class="num">4</td><td>자발적 개선 유지 (2건 해소 확인) · 1단계 시스템으로 흡수</td><td>진행 중 개선과 중복</td></tr>
+          <tr><td>#21 · 22 · 23<br><span style="color:var(--ink-3)">외근·출장·재직 확인</span></td><td class="num">3</td><td>경영진 규칙 협의 상정 · 확정 후 과제 5 방식으로 편입</td><td>조직 규칙 미확정</td></tr>
+          <tr><td>#8<br><span style="color:var(--ink-3)">전자계약 데모</span></td><td class="num">1</td><td>제공사 독촉 · 대안 검토</td><td>원인이 조직 외부</td></tr>
+          <tr><td>#10<br><span style="color:var(--ink-3)">돌발 유입</span></td><td class="num">1</td><td>타 부서 확인 후 과제화</td><td>원인 미규명</td></tr>
+          <tr class="sum"><td>합계</td><td class="num">9</td><td colspan="2"></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="foot"><span>메디솔브에이아이 · 경영관리부 현행 업무 진단</span><span>2026-08-28 · 6 / 8</span></div>
+</section>
+
+<!-- ═══ 7. 보고 범위 및 향후 계획 ═══ -->
+<section class="page">
+  <div class="page-head"><h2>보고 범위 및 향후 계획</h2><span class="kicker"></span></div>
+  <div style="display:flex;flex-direction:column;gap:7mm">
+    <div>
+      <h3 class="block-title">보고 범위</h3>
+      <div class="note" style="font-size:11px;margin-bottom:5mm">경영관리부 1개 부서 · 인터뷰 1회차 진단 · 과제 우선순위는 부서 기준<br><b>전사 이행 계획은 전 부서 인터뷰 완료 후 종합 보고에서 일괄 제시</b></div>
+      <h3 class="block-title">진행 예정</h3>
+      <table class="data" style="margin-bottom:5mm">
+        <tbody>
+          <tr><td>과제 1·5 베타 제작 · 차기 방문 시연</td></tr>
+          <tr><td>후속 과제 요건 확정·조사 병행 (계약 기록 방식 · 서류 서식)</td></tr>
+          <tr><td>선행 조건 대기: 위임전결 규정 자료 · 전자계약 데모 계정 (요청 후 약 1개월)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h3 class="block-title">차기 인터뷰 확보 목표 — 개선 전후 비교 기준선 4건</h3>
+      <table class="data" style="margin-bottom:5mm">
+        <tbody>
+          <tr><td>지시 진행 확인 횟수</td><td style="color:var(--ink-3)">최근 1주 기준으로 질문</td></tr>
+          <tr><td>일일보고 취합 소요</td><td style="color:var(--ink-3)">〃</td></tr>
+          <tr><td>근태 수기 관리 소요</td><td style="color:var(--ink-3)">〃</td></tr>
+          <tr><td>재작업 건수</td><td style="color:var(--ink-3)">〃</td></tr>
+        </tbody>
+      </table>
+      <h3 class="block-title">진단의 한계</h3>
+      <div class="note" style="font-size:10.5px;line-height:1.8">① 관리자 진술 중심 · 실무자 진술 미확보<br>② 부서 간 비교는 타 부서 회차 후 가능<br>③ 정량 기준선 미확보 (차기 재시도)</div>
+    </div>
+  </div>
+  <div class="foot"><span>메디솔브에이아이 · 경영관리부 현행 업무 진단</span><span>2026-08-28 · 7 / 8</span></div>
+</section>
+
+<!-- ═══ 8. 부록 A ═══ -->
+<section class="page">
+  <div class="page-head"><h2>부록 A — 문제 31건 전수 목록</h2><span class="kicker">본문 집계·플로우의 근거 원장 · 번호는 확인 순서</span></div>
+  <div>
+    <table class="data" style="font-size:9.5px;line-height:1.4">
+      <thead><tr><th style="width:6%">#</th><th style="width:11%">영역</th><th style="width:17%">유형</th><th>내용</th><th style="width:9%">상태</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1</td><td>소통</td><td>확인 비용</td><td>리더급 카카오톡 사용으로 사내 메신저는 확인용으로만 사용</td><td>관찰</td></tr>
+        <tr><td class="num">2</td><td>소통</td><td>이중 입력</td><td>채널 간 자료 이동 시 수동 재업로드</td><td>관찰</td></tr>
+        <tr><td class="num">3</td><td>계약</td><td>재작업</td><td>표준 계약서 수정 대조 수단 부재로 매건 전문 재검토</td><td>관찰</td></tr>
+        <tr><td class="num">4</td><td>계약</td><td>이중 입력</td><td>거래처 양식 계약서를 대화형 AI로 1차 검토 후 인계</td><td>관찰</td></tr>
+        <tr><td class="num">5</td><td>계약</td><td>기록 소실</td><td>계약 예외 조건 구두 확정으로 승인 기록 부재</td><td>관찰</td></tr>
+        <tr><td class="num">6</td><td>계약</td><td>대기</td><td>예외 승인 대기로 계약 조건 확정 지연</td><td>관찰</td></tr>
+        <tr><td class="num">7</td><td>계약</td><td>기록 소실</td><td>수정 이력본·클린본 미수령으로 변경 지점 확인 불가</td><td>관찰</td></tr>
+        <tr><td class="num">8</td><td>계약</td><td>대기</td><td>전자계약 데모 계정 약 1개월 미수령으로 연동 검토 중단</td><td>관찰</td></tr>
+        <tr><td class="num">9</td><td>계약</td><td>확인 비용</td><td>체결 여부 확인 시 전자계약 사이트 별도 로그인 필요</td><td>관찰</td></tr>
+        <tr><td class="num">10</td><td>소통</td><td>돌발 유입</td><td>신규 사업 검토 시 대관·업체·예산·인력 매번 신규 조사</td><td>관찰</td></tr>
+        <tr><td class="num">11</td><td>소통</td><td>확인 비용</td><td>외부 미팅 중 구두 지시의 맥락 부재로 재확인 발생</td><td>관찰</td></tr>
+        <tr><td class="num">12</td><td>소통</td><td>확인 비용</td><td>대표 확인 시간대 고정 불가로 이동 중 확인 의존</td><td>관찰</td></tr>
+        <tr><td class="num">13</td><td>정산</td><td>알림 누락</td><td>거래처 조건 변경 미공유로 정산 단계에서 인지</td><td>관찰</td></tr>
+        <tr><td class="num">14</td><td>정산</td><td>대기</td><td>정산 미마감으로 실적 보고 전체 중단 (7월분 8월 말 기준)</td><td>관찰</td></tr>
+        <tr><td class="num">15</td><td>소통</td><td>귀속 모호</td><td>전결 범위 불확실로 결정 상향</td><td>관찰</td></tr>
+        <tr><td class="num">16</td><td>정산</td><td>대기</td><td>정산 지연 원인은 자료 품질이 아닌 컨펌 지연</td><td>관찰</td></tr>
+        <tr><td class="num">17</td><td>인사</td><td>알림 누락</td><td>입사 신고서 당일 접수로 장비·자리 미준비 출근</td><td>관찰</td></tr>
+        <tr><td class="num">18</td><td>인사</td><td>알림 누락</td><td>퇴사 통보 29일 지연으로 급여 오지급 직전 차단</td><td>관찰</td></tr>
+        <tr><td class="num">19</td><td>인사</td><td>기록 소실</td><td>미반납 장비의 신규 입사자 사용으로 자산 대장 불일치</td><td>관찰</td></tr>
+        <tr><td class="num">20</td><td>인사</td><td>알림 누락</td><td>퇴사 절차 문서 존재하나 시작 신호 부재로 미기동</td><td>관찰</td></tr>
+        <tr><td class="num">21</td><td>근태</td><td>기록 소실</td><td>외근·출장 신청·승인 경로 부재</td><td>관찰</td></tr>
+        <tr><td class="num">22</td><td>근태</td><td>확인 비용</td><td>외근 직원 대상 문서 요청의 담당자 업무화</td><td>관찰</td></tr>
+        <tr><td class="num">23</td><td>근태</td><td>기록 소실</td><td>현장 근무 인력의 출근 기록 기반 재직 확인 불가</td><td>관찰</td></tr>
+        <tr><td class="num">24</td><td>인사</td><td>이중 입력</td><td>외국인 직원 계약서 이중 작성 (내부 + 고용 허가용)</td><td>관찰</td></tr>
+        <tr><td class="num">25</td><td>인사</td><td>수기 집계</td><td>영문 재직증명서 시스템 미지원으로 매건 수기 작성</td><td>관찰</td></tr>
+        <tr><td class="num">26</td><td>인사</td><td>재작업</td><td>발급 중 정보 변경으로 증명서 재작성 발생</td><td>관찰</td></tr>
+        <tr><td class="num">27</td><td>인사</td><td>알림 누락</td><td>비자 갱신 서류 요청 반복 (직원당 연 1회)</td><td>관찰</td></tr>
+        <tr><td class="num">28</td><td>근태</td><td>알림 누락</td><td>일일보고 마감 시각 미규정으로 퇴근 무렵 제출</td><td>관찰</td></tr>
+        <tr><td class="num">29</td><td>근태</td><td>확인 비용</td><td>일일보고 확인 사항의 구두 문의 반복</td><td>관찰</td></tr>
+        <tr><td class="num">30</td><td>소통</td><td>확인 비용</td><td>협업 도구 지시 등록 후 완료 확인 일원화·응답 속도 개선</td><td><b style="color:var(--aqua)">해소</b></td></tr>
+        <tr><td class="num">31</td><td>소통</td><td>기록 소실</td><td>업무 요청의 협업 도구 태스크 이전 진행 중</td><td><b style="color:var(--aqua)">해소</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note" style="margin-top:3mm">영역 합계: 계약 7 · 정산 3 · 인사(입퇴사·외국인) 8 · 소통·의사결정 8 · 근태·일일보고 5 = <b>31</b></div>
+  <div class="foot"><span>메디솔브에이아이 · 경영관리부 현행 업무 진단</span><span>2026-08-28 · 8 / 8</span></div>
+</section>
+
+<div class="nav">
+  <button id="prev">◀ 이전</button>
+  <span class="pos" id="pos">1 / 8</span>
+  <button id="next">다음 ▶</button>
+  <button onclick="window.print()">PDF 저장</button>
+</div>
+
+<script>
+  const pages=[...document.querySelectorAll('.page')];let cur=0;
+  function show(i){cur=Math.max(0,Math.min(pages.length-1,i));pages.forEach((p,j)=>p.classList.toggle('active',j===cur));document.getElementById('pos').textContent=(cur+1)+' / '+pages.length;window.scrollTo(0,0);}
+  document.getElementById('prev').onclick=()=>show(cur-1);
+  document.getElementById('next').onclick=()=>show(cur+1);
+  addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='PageDown')show(cur+1);if(e.key==='ArrowLeft'||e.key==='PageUp')show(cur-1);});
+</script>
+</body>
+</html>

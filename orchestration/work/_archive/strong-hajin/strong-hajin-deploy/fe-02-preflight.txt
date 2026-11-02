@@ -1,0 +1,66 @@
+== 운영 origin 최종 빌드 관문 (Phase 8) ==
+
+  · G4 입력·shell.config·capability 가 모두 https://ax.medisolveai.xyz 로 일치한다
+
+-- 막은 것: 1건 --
+  ✗ G5 M-5 — 앱 재시작 후 로그인(쿠키) 유지 — **미결**. 미측정. 실기 확인이 필요하다 — 유지되지 않으면 사용자가 열 때마다 다시 로그인한다. 증거 파일에 `{ resolved: true, reference: "<근거>" }` 로 기록되기 전에는 **통과로 쓰지 않는다**
+
+== manifest (참고 — 관문이 막혔으므로 최종판 기록이 아니다) ==
+{
+  "$comment": "WORK-006 Phase 8 최종판 manifest. **이 파일은 «구웠다»는 증거가 아니라 «무엇으로 구울 것인가»의 기록이다.** attestations 는 이 관문이 «잰» 것이 아니라 «기록된 주장»이다.",
+  "generatedAt": "2026-09-30T23:35:45.190Z",
+  "appVersion": "0.0.1",
+  "shellApi": 1,
+  "identifier": "app.stronghajin.desktop",
+  "productName": "Strong Hajin",
+  "bundleTargets": "all",
+  "operationalOrigin": "https://ax.medisolveai.xyz",
+  "capabilityRemoteUrl": "https://ax.medisolveai.xyz/*",
+  "originsAgree": true,
+  "attestations": [
+    {
+      "item": "D-4 — PRODUCTION 로그인 수단",
+      "status": "attested",
+      "reference": "GET https://ax.medisolveai.xyz/api/auth/providers → {\"local\":true,\"oidc\":false} (2026-10-01 워커 curl). 사용자 웹 로그인 성공(2026-10-01, 코디네이터 확인)",
+      "attestedBy": "frontend 워커(curl 실측) + 코디네이터(사용자 로그인 확인 전달)",
+      "measuredByThisGate": false
+    },
+    {
+      "item": "운영 서버 실재",
+      "status": "attested",
+      "reference": "curl https://ax.medisolveai.xyz/ → HTTP 200 (2026-10-01 워커 실측)",
+      "attestedBy": "frontend 워커",
+      "measuredByThisGate": false
+    },
+    {
+      "item": "M-1 — https 신뢰(인증서 체인)",
+      "status": "attested",
+      "reference": "curl -v https://ax.medisolveai.xyz/ → TLSv1.3, subject CN=medisolveai.xyz, SAN *.medisolveai.xyz 일치, issuer Google Trust Services WE1, 유효 2026-08-30~2026-11-28, 'SSL certificate verify ok' (2026-10-01 워커 실측, macOS 시스템 신뢰 저장소)",
+      "attestedBy": "frontend 워커",
+      "measuredByThisGate": false
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/Users/kknaks/orca/workspaces/Strong_hajin/strong-hajin-deploy/frontend/src-tauri/target/release/bundle/dmg/Strong Hajin_0.0.1_aarch64.dmg",
+      "bundleDir": false,
+      "bytes": 3986199,
+      "sha256": "3d90bbf0cd246e070bdaede6564ff7460c53e28bc0f67dad80633077d0a6aff8"
+    },
+    {
+      "path": "/Users/kknaks/orca/workspaces/Strong_hajin/strong-hajin-deploy/frontend/src-tauri/target/release/bundle/macos/Strong Hajin.app",
+      "bundleDir": true,
+      "bytes": null,
+      "sha256": null
+    }
+  ],
+  "artifactNote": "아래 해시는 **이 호스트에 실재하는 파일**을 읽어 만든 것이다. 다른 기기에서 구운 것은 포함되지 않는다",
+  "shellRoot": "/Users/kknaks/orca/workspaces/Strong_hajin/strong-hajin-deploy/frontend/src-tauri",
+  "rehearsal": false,
+  "rehearsalNote": null,
+  "hostPlatform": "darwin",
+  "hostCaveat": "이 기기에서 굽지 못한 플랫폼은 이 manifest 로 검증되지 않는다 — macOS 결과를 Windows 자리에 쓰지 않는다"
+}
+
+관문이 막혔다 — 1건. **최종 빌드로 넘어가지 않는다.**
+(아무것도 굽지 않았고, 설정 파일을 한 글자도 쓰지 않았다)

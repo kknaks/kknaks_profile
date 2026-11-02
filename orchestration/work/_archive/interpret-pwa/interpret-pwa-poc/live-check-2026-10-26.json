@@ -1,0 +1,287 @@
+{
+  "glossary": {
+    "loaded": true,
+    "version": "2026-07-01-reviewed-v5",
+    "count": 158
+  },
+  "max_chars": 10000,
+  "context": {
+    "en": {
+      "terms": 157,
+      "terms_dropped": 0,
+      "translation_terms": 157,
+      "chars": 9295,
+      "rejected": false,
+      "first_message": "tokens",
+      "elapsed_sec": 0.241,
+      "audio_sent": false
+    },
+    "ja": {
+      "terms": 157,
+      "terms_dropped": 0,
+      "translation_terms": 157,
+      "chars": 8989,
+      "rejected": false,
+      "first_message": "tokens",
+      "elapsed_sec": 0.219,
+      "audio_sent": false
+    },
+    "zh": {
+      "terms": 157,
+      "terms_dropped": 0,
+      "translation_terms": 157,
+      "chars": 8572,
+      "rejected": false,
+      "first_message": "tokens",
+      "elapsed_sec": 0.229,
+      "audio_sent": false
+    },
+    "th": {
+      "terms": 157,
+      "terms_dropped": 0,
+      "translation_terms": 157,
+      "chars": 9900,
+      "rejected": false,
+      "first_message": "tokens",
+      "elapsed_sec": 0.237,
+      "audio_sent": false
+    },
+    "vi": {
+      "terms": 157,
+      "terms_dropped": 0,
+      "translation_terms": 157,
+      "chars": 9579,
+      "rejected": false,
+      "first_message": "tokens",
+      "elapsed_sec": 0.212,
+      "audio_sent": false
+    },
+    "yue": {
+      "terms": 157,
+      "terms_dropped": 0,
+      "translation_terms": 157,
+      "chars": 8501,
+      "rejected": false,
+      "first_message": "tokens",
+      "elapsed_sec": 0.232,
+      "audio_sent": false
+    }
+  },
+  "terms": {
+    "en": {
+      "terms": [
+        {
+          "ko": "필러",
+          "target": "Filler"
+        },
+        {
+          "ko": "쥬비덤",
+          "target": "Juvéderm"
+        },
+        {
+          "ko": "신펄",
+          "target": "Synpurl"
+        }
+      ],
+      "with_context": {
+        "translation": "Today we'll do the filler procedure first, and on your next visit, I'll also consult you on Juvéderm and Synpurl together.",
+        "hits": 3,
+        "hit_each": [
+          true,
+          true,
+          true
+        ],
+        "errors": []
+      },
+      "no_context": {
+        "translation": "Today we'll do the filler procedure first, and on the next visit I'll consult you on Juvederm and Simple too.",
+        "hits": 1,
+        "hit_each": [
+          true,
+          false,
+          false
+        ],
+        "errors": []
+      },
+      "reverse_foreign_utterance": {
+        "translation": "오늘 필러를 맞고 싶어요. 그리고 다음에는 Juvederm이랑 Synprol도 맞고 싶어요.",
+        "ko_hits": 1,
+        "hit_each": [
+          true,
+          false,
+          false
+        ]
+      }
+    },
+    "zh": {
+      "terms": [
+        {
+          "ko": "필러",
+          "target": "填充剂"
+        },
+        {
+          "ko": "쥬비덤",
+          "target": "乔雅登"
+        },
+        {
+          "ko": "신펄",
+          "target": "新珍珠 (Synpurl)"
+        }
+      ],
+      "with_context": {
+        "translation": "今天先做填充剂的护理，下次来就诊时我也会一起咨询乔雅登和新珍珠 (Synpurl)。",
+        "hits": 3,
+        "hit_each": [
+          true,
+          true,
+          true
+        ],
+        "errors": []
+      },
+      "no_context": {
+        "translation": "今天先做填充物治疗，下次来访时我会一起咨询你的主鼻窦和心房。",
+        "hits": 0,
+        "hit_each": [
+          false,
+          false,
+          false
+        ],
+        "errors": []
+      },
+      "reverse_foreign_utterance": {
+        "translation": "저는 오늘 필러를 하려고 해요. 다음에는 조아든이랑 신珍珠도 한번 상담해 보고 싶어요. 신펄이요.",
+        "ko_hits": 2,
+        "hit_each": [
+          true,
+          false,
+          true
+        ]
+      }
+    },
+    "ja": {
+      "terms": [
+        {
+          "ko": "필러",
+          "target": "フィラー（ヒアルロン酸）"
+        },
+        {
+          "ko": "쥬비덤",
+          "target": "ジュビダーム"
+        },
+        {
+          "ko": "신펄",
+          "target": "シンパール (Synpurl)"
+        }
+      ],
+      "with_context": {
+        "translation": "今日はまずフィラー（ヒアルロン酸）施術を先にして、次回の受診でジュビダームとシンパール（Synpurl）も一緒に相談しますね。",
+        "hits": 2,
+        "hit_each": [
+          true,
+          true,
+          false
+        ],
+        "errors": []
+      },
+      "no_context": {
+        "translation": "今日はまずフィラー施術をして、次回の受診で準備と心拍も一緒に相談しますね。",
+        "hits": 0,
+        "hit_each": [
+          false,
+          false,
+          false
+        ],
+        "errors": []
+      },
+      "reverse_foreign_utterance": {
+        "translation": "오늘은 필러, 히알루론산을 부탁드리고 싶어요. 다음에는 쥬비담이랑 심팔, 심팔도 상담하고 싶어요.",
+        "ko_hits": 1,
+        "hit_each": [
+          true,
+          false,
+          false
+        ]
+      }
+    }
+  },
+  "yue": {
+    "caption_translations": [
+      "今天先做填充劑的治療，下次來就診時我也會一起諮詢 Juvederm 和 Synpurl。"
+    ],
+    "tts_inputs": [
+      "今天先做填充剂的治疗，下次来就诊时我也会一起咨询 Juvederm 和 Synpurl。"
+    ],
+    "caption_traditional": true,
+    "caption_differs_from_simplified": true,
+    "tts_simplified": true,
+    "tts_languages": [
+      "zh"
+    ],
+    "errors": []
+  },
+  "foreign": {
+    "sides": [
+      "them"
+    ],
+    "translations": [
+      "안녕하세요, 몇 가지 질문이 있어요. 치료 과정과 얼마나 걸리는지에 대해서요."
+    ],
+    "tts": [
+      [
+        "ko",
+        "안녕하세요, 몇 가지 질문이 있어요. 치료 과정과 얼마나 걸리는지에 대해서요."
+      ]
+    ],
+    "audio_start": [
+      {
+        "type": "audio_start",
+        "id": "u1",
+        "sampleRate": 24000
+      }
+    ],
+    "audio_bytes": 294912,
+    "ok": true,
+    "errors": []
+  },
+  "paren": {
+    "terms": [
+      {
+        "ko": "신펄",
+        "target": "シンパール (Synpurl)"
+      },
+      {
+        "ko": "채움",
+        "target": "チャウム (Chaeum)"
+      },
+      {
+        "ko": "필러",
+        "target": "フィラー（ヒアルロン酸）"
+      }
+    ],
+    "translations": [
+      "今日はまずシンパールの施術をして、次回の訪問でチャウム（補充）して、フィラー（ヒアルロン酸）も一緒に相談しますね。"
+    ],
+    "tts_inputs": [
+      "今日はまずシンパールの施術をして、次回の訪問でチャウム（補充）して、フィラー（ヒアルロン酸）も一緒に相談しますね。"
+    ],
+    "errors": []
+  },
+  "noglossary": {
+    "glossary_loaded": false,
+    "context_empty": true,
+    "ready": true,
+    "finals": 1,
+    "errors": []
+  },
+  "overflow": {
+    "chars": 29110,
+    "repeat": 3,
+    "config_check_sec": 2.0,
+    "rejected": true,
+    "error_type": "invalid_request",
+    "request_id": "02a77a9b-a846-46e6-a674-e09b727b79d1",
+    "elapsed_sec": 0.458,
+    "audio_sent": false,
+    "within_check_window": true
+  }
+}

@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/scax-8fa54d76-58d6-481a-aed9-743dff9d6c09/fonts/fonts.css">
+<link rel="stylesheet" href="_ds/scax-8fa54d76-58d6-481a-aed9-743dff9d6c09/_ds_bundle.css">
+<link rel="stylesheet" href="_ds/scax-8fa54d76-58d6-481a-aed9-743dff9d6c09/styles.css">
+<script src="_ds/scax-8fa54d76-58d6-481a-aed9-743dff9d6c09/_ds_bundle.js"></script>
+<style>
+/* 이 DS 는 1280 미만에서 화면을 접는다. 미리보기 창은 그보다 좁을 수 있어 고정폭 + 가로 스크롤로 둔다. */
+@media (max-width:1279px){
+.thesc-shell{display:grid!important;grid-template-columns:200px minmax(0,1fr)!important;min-width:1560px}
+.rail{position:sticky!important;transform:none!important;width:auto!important}
+.rail-toggle,.min-width-notice{display:none!important}
+}
+/* 회의 목록(회의록.dc.html)과 같은 규격 — 페이지 제목은 Title 17 (design/CLAUDE.md) */
+.page-head h1{font-size:17px}
+/* 좌우 패널이 «남는 높이»를 그대로 먹게 한다 — height:calc(100vh - NNNpx) 로 빼면
+   머리 높이가 상태마다 달라(배지·실패 안내) 아래에 빈 띠가 남는다.
+   DS 의 canvas 아래 여백 64 는 한 화면에 갇히는 이 화면에서 너무 커 24 로 줄인다 */
+.canvas{display:flex;flex-direction:column;min-height:100vh;padding-bottom:24px}
+.page-surface{display:flex;flex-direction:column;flex:1;min-height:0}
+.modal-head h3{font-size:17px}
+.modal-body{font-size:14px;color:var(--text-primary)}
+.modal-close{font-size:0}
+/* MOD-105 는 조직도가 들어가 DS 기본 600 으로 좁다. 본문 사이 여백도 grid gap 16 + 자식
+   margin 이 겹쳐 벌어져 있어 gap 하나로 맞춘다 */
+.modal-body{gap:12px}
+.modal .plain-table th{height:34px;font-size:12px}
+.modal .plain-table td{height:40px;font-size:13px}
+/* 스크롤바: 기본은 투명, 그 영역에 손이 올라올 때만 보인다 */
+.mm-scroll{scrollbar-width:thin;scrollbar-color:transparent transparent}
+.mm-scroll:hover{scrollbar-color:var(--border-strong) transparent}
+.mm-scroll::-webkit-scrollbar{width:10px;height:10px}
+.mm-scroll::-webkit-scrollbar-track{background:transparent}
+.mm-scroll::-webkit-scrollbar-thumb{border:3px solid transparent;border-radius:8px;background-clip:content-box;background-color:transparent}
+.mm-scroll:hover::-webkit-scrollbar-thumb{background-color:var(--border-strong)}
+/* SCR-106-E81 메모 입력 칸 — 안건 드롭다운(E80)과 한 줄에 선다.
+   :focus-within 은 인라인으로 못 쓴다 (DS 에 아직 없는 부품) */
+.composer{display:flex;align-items:center;gap:8px;padding:5px 6px 5px 8px;border:1px solid var(--border-strong);border-radius:var(--radius-control);background:var(--surface)}
+.composer:focus-within{border-color:var(--accent);box-shadow:var(--focus-ring)}
+.composer input{flex:1;min-width:0;height:32px;padding:0 4px;border:0;border-radius:0;background:transparent;font-size:14px}
+.composer input:focus{box-shadow:none}
+.composer-divider{width:1px;height:20px;flex:none;background:var(--border-default)}
+/* 연필 — SCAX Icon 26종에 pencil 이 없어 이 화면에서만 같은 규격(16 박스 · stroke 1.3 ·
+   round · fill none)으로 그린다. 채운 아이콘을 만들지 않는다는 규약은 지킨다.
+   DS 에 pencil 이 들어오면 <Icon name="pencil"> 로 갈아 끼운다 (리포트 M14) */
+.sc-icon{display:block;flex:none}
+/* 머리 편집 — SCAX 에 DateField/TimeField 가 없어 네이티브 date·select 를 다른 칸과 같은
+   규격으로 눌러 둔다 (회의록.dc.html 의 MOD-102 와 같은 방식) */
+.meta-edit input[type="text"],.meta-edit input[type="date"],.meta-edit select{height:34px;padding:0 10px;border:1px solid var(--border-strong);border-radius:var(--radius-control);background:var(--surface);font-size:13px;color:var(--text-primary)}
+.meta-edit input:focus,.meta-edit select:focus{border-color:var(--accent);box-shadow:var(--focus-ring);outline:none}
+.meta-edit label{font-size:12px}
+
+/* SCR-106-E29 편집 상태 — 내용 «줄 하나»가 한 줄 칸으로 선다 (D12) */
+.line-edit{flex:1;min-width:0;height:30px;padding:0 10px;border:1px solid var(--border-strong);border-radius:var(--radius-control);background:var(--surface);font:inherit;font-size:13px;color:var(--text-primary)}
+.line-edit:focus{border-color:var(--accent);box-shadow:var(--focus-ring);outline:none}
+</style>
+</helmet>
+<div class="thesc-shell">
+
+<aside class="rail">
+<div class="wordmark"><span class="wordmark-mark">M</span> Managment</div>
+<div class="profile"><span class="avatar md">이</span><div><b>이건학</b><small>제품본부</small></div></div>
+<nav>
+<button type="button">홈</button>
+<button type="button">업무</button>
+<button type="button">부서 진행 현황</button>
+<button type="button" class="active">회의 목록</button>
+<button type="button">채팅</button>
+<button type="button">자료</button>
+<button type="button">일정</button>
+<button type="button">메신저</button>
+</nav>
+<div class="rail-foot">v1 · 회의 상세</div>
+</aside>
+
+<div class="canvas">
+<div class="canvas-topbar">
+<div class="breadcrumb">
+<span>홈</span><span>›</span><a href="회의록.dc.html" onClick="{{ leave }}" style="color:var(--text-tertiary)">회의 목록</a><span>›</span><b>{{ title }}</b>
+</div>
+</div>
+
+<!-- SCR-106-E12 진행 표시 — 회의가 도는 동안 상단에 남는다 (DEC-007) -->
+<sc-if value="{{ isLive }}" hint-placeholder-val="{{ true }}">
+<div style="position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 32px;border-bottom:1px solid var(--border-default);background:var(--selected-bg)">
+<div style="display:flex;align-items:center;gap:12px">
+<span class="status in_progress" style="font-size:13px">진행 중</span>
+<span style="font-size:14px;font-weight:700;color:var(--action);font-variant-numeric:tabular-nums">{{ clock }}</span>
+</div>
+<span class="t-meta" style="font-size:12px">{{ starter }} 이 시작함</span>
+</div>
+</sc-if>
+
+<div class="page-surface">
+
+<!-- ── 기능 ① 머리 — 회의 정보와 진행 ───────────────────────── -->
+<div class="page-head" style="{{ headStyle }}">
+<div style="min-width:0;flex:1">
+<!-- E76 구획 제목 · 그 옆이 예약값을 고치는 자리다 -->
+<div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+<span class="t-meta" style="font-size:12px">회의 정보</span>
+<!-- E62 머리의 [저장] — 고치는 자리 바로 옆에 작게 선다 -->
+<sc-if value="{{ headEditing }}" hint-placeholder-val="{{ false }}">
+<button type="button" class="btn ghost h30" onClick="{{ cancelHeadEdit }}" style="height:22px;padding:0 8px;font-size:12px">취소</button>
+<button type="button" class="btn h30" onClick="{{ saveHeadEdit }}" disabled="{{ headUnchanged }}" style="height:22px;padding:0 10px;font-size:12px">저장</button>
+</sc-if>
+<sc-if value="{{ btnHeadEdit }}" hint-placeholder-val="{{ true }}">
+<button type="button" class="btn ghost icon h30" onClick="{{ openHeadEdit }}" aria-label="회의 정보 수정" style="width:22px;height:22px;color:var(--text-tertiary)">
+<svg class="sc-icon" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M11.3 2.7l2 2-7.9 7.9-2.6.6.6-2.6z"></path><path d="M9.9 4.1l2 2"></path></svg>
+</button>
+</sc-if>
+</div>
+
+<!-- 읽기 -->
+<sc-if value="{{ headReading }}" hint-placeholder-val="{{ true }}">
+<div>
+<div style="display:flex;align-items:center;gap:8px">
+<h1>{{ title }}</h1>
+<!-- E02 상태 배지 — 정리 중 · 실패 · 취소됨만 -->
+<sc-if value="{{ badgeShown }}" hint-placeholder-val="{{ false }}">
+<span class="{{ badgeCls }}">{{ badgeLabel }}</span>
+</sc-if>
+</div>
+<!-- E03 일시·장소·귀속·인원 -->
+<p style="font-size:13px">{{ facts }}</p>
+<!-- E58 열람 범위 표시 (T16) -->
+<sc-if value="{{ soloShown }}" hint-placeholder-val="{{ false }}">
+<div class="t-meta" style="margin-top:4px;font-size:12px">나만 볼 수 있습니다</div>
+</sc-if>
+</div>
+</sc-if>
+
+<!-- E59 머리 편집 상태 — 제목 | 날짜·시간 | 참석자 세 칸이 한 줄로 선다.
+     읽기와 자리를 맞춰 «수정을 열었다고 화면이 무너지지» 않게 한다 -->
+<sc-if value="{{ headEditing }}" hint-placeholder-val="{{ false }}">
+<div class="meta-edit" style="display:grid;grid-template-columns:2fr 3fr;gap:20px;align-items:start">
+
+<!-- 왼쪽 2 — 제목 · 날짜 · 시간 -->
+<div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+<!-- E60 주제 -->
+<div class="field">
+<label>제목</label>
+<input type="text" placeholder="회의 주제" value="{{ hTitle }}" onChange="{{ setHTitle }}">
+</div>
+<!-- 일시 — 30분 단위 (X-149) -->
+<div class="field">
+<label>날짜 · 시간</label>
+<div style="display:flex;align-items:center;gap:6px">
+<input type="date" style="width:auto;flex:1;min-width:0" value="{{ hDate }}" onChange="{{ setHDate }}">
+<select style="width:auto" value="{{ hFrom }}" onChange="{{ setHFrom }}">
+<sc-for list="{{ timeOptions }}" as="t" hint-placeholder-count="4"><option value="{{ t }}">{{ t }}</option></sc-for>
+</select>
+<span class="t-meta" style="flex:none">~</span>
+<select style="width:auto" value="{{ hTo }}" onChange="{{ setHTo }}">
+<sc-for list="{{ timeOptions }}" as="t" hint-placeholder-count="4"><option value="{{ t }}">{{ t }}</option></sc-for>
+</select>
+</div>
+</div>
+<!-- 장소 — 이름표만 받는다. 회의실 판정·예약은 여기서 하지 않는다 (D14) -->
+<div class="field">
+<label>장소</label>
+<input type="text" placeholder="회의실 이름을 적으세요" value="{{ hPlace }}" onChange="{{ setHPlace }}">
+</div>
+</div>
+
+<!-- 오른쪽 3 — 참석자 태그와 그 아래 이름 검색 -->
+<!-- E61 참석자 -->
+<div class="field" style="min-width:0">
+<label>참석자 <span class="count-badge">{{ hPeopleCount }}</span></label>
+<div style="display:flex;flex-wrap:wrap;gap:6px;padding:8px;border:1px solid var(--border-subtle);border-radius:var(--radius-card);background:var(--surface-sunken)">
+<sc-for list="{{ hPeople }}" as="pp" hint-placeholder-count="5">
+<button type="button" onClick="{{ pp.remove }}" style="display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 8px;border:1px solid var(--border-default);border-radius:var(--radius-chip);background:var(--surface);font-size:12px"><span style="font-weight:700">{{ pp.name }}</span><x-import component-from-global-scope="SCAX.Icon" name="close" size="{{ 12 }}" hint-size="12px,12px"></x-import></button>
+</sc-for>
+</div>
+<div class="popover-root" style="display:block;position:relative;margin-top:12px">
+<input type="text" class="search-input-box" style="width:100%" role="combobox" aria-expanded="{{ hSearchOpen }}" placeholder="조직도 내 이름 검색" value="{{ hQuery }}" onChange="{{ setHQuery }}">
+<sc-if value="{{ hSearchOpen }}" hint-placeholder-val="{{ false }}">
+<div class="popover" role="listbox" aria-label="이름 찾기 결과" style="left:0;right:0;width:auto">
+<sc-for list="{{ hHits }}" as="hh" hint-placeholder-count="3">
+<button type="button" class="popover-item" role="option" onClick="{{ hh.pick }}">
+<span class="avatar xs">{{ hh.initial }}</span>
+<span style="flex:1;min-width:0;font-weight:700;color:var(--text-primary)">{{ hh.name }}</span>
+<span class="t-meta" style="flex:none;font-size:12px">{{ hh.unit }} · {{ hh.rank }}</span>
+</button>
+</sc-for>
+<sc-if value="{{ hNoHit }}" hint-placeholder-val="{{ false }}">
+<div class="t-meta" style="padding:8px 12px;font-size:13px">찾는 사람이 없습니다.</div>
+</sc-if>
+</div>
+</sc-if>
+</div>
+</div>
+
+</div>
+</sc-if>
+</div>
+<div class="page-head-actions" style="{{ headActionsStyle }}">
+<sc-if value="{{ btnStart }}" hint-placeholder-val="{{ false }}">
+<button type="button" class="btn primary" onClick="{{ startMeeting }}" disabled="{{ headEditing }}"><x-import component-from-global-scope="SCAX.Icon" name="play" size="{{ 14 }}" hint-size="14px,14px"></x-import> 회의 시작</button>
+</sc-if>
+<sc-if value="{{ btnEnd }}" hint-placeholder-val="{{ true }}">
+<button type="button" class="btn primary" onClick="{{ endMeeting }}">회의 종료</button>
+</sc-if>
+<sc-if value="{{ btnShare }}" hint-placeholder-val="{{ true }}">
+<button type="button" class="btn" onClick="{{ openShare }}">공유</button>
+</sc-if>
+<sc-if value="{{ btnExport }}" hint-placeholder-val="{{ false }}">
+<button type="button" class="btn" onClick="{{ exportNote }}">내보내기</button>
+</sc-if>
+<sc-if value="{{ btnNext }}" hint-placeholder-val="{{ false }}">
+<button type="button" class="btn" onClick="{{ noop }}">다음 회의 예약</button>
+</sc-if>
+</div>
+</div>
+
+<!-- E54 변환 실패 안내 (T05) + E55 [다시 시도] -->
+<sc-if value="{{ isFailed }}" hint-placeholder-val="{{ false }}">
+<div class="effect-note" style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:12px;padding:14px 20px;border-color:var(--danger-accent);background:var(--danger-tint)">
+<span style="font-size:13px;color:var(--text-primary)">회의 내용은 저장됐지만 글로 옮기지 못했습니다. 다시 시도할 수 있습니다.</span>
+<sc-if value="{{ btnRetry }}" hint-placeholder-val="{{ true }}">
+<button type="button" class="btn h30" onClick="{{ retry }}" style="flex:none">다시 시도</button>
+</sc-if>
+</div>
+</sc-if>
+
+<!-- E85 회의 목적 — 회의록 구획 위에 한 줄로 계속 선다 (X-198).
+     두 칸 위 전체 폭이라 「AI 회의록」과 「자료」 머리가 같은 줄에서 시작한다 -->
+<sc-if value="{{ hasPurpose }}" hint-placeholder-val="{{ true }}">
+<div class="effect-note" style="display:flex;align-items:flex-start;gap:14px;margin-bottom:12px;padding:14px 20px">
+<span class="t-meta" style="flex:none;width:30px;font-size:12px;padding-top:1px">목적</span>
+<span style="font-size:13px;font-weight:700;color:var(--text-primary);text-wrap:pretty">{{ purpose }}</span>
+</div>
+</sc-if>
+
+<div style="display:grid;grid-template-columns:{{ gridCols }};gap:16px;flex:1;min-height:520px">
+
+<!-- ── 왼쪽 — 회의록 ─────────────────────────────────────────── -->
+<section aria-label="회의록" style="display:flex;flex-direction:column;min-height:0">
+
+<div style="display:flex;flex-direction:column;flex:1;min-height:0;overflow:hidden;border:1px solid var(--border-strong);border-radius:var(--radius-panel);background:var(--surface)">
+
+<header style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 20px;border-bottom:1px solid var(--border-default)">
+<div style="display:flex;align-items:baseline;gap:10px;min-width:0">
+<h2 style="font-size:14px;font-weight:700">AI 회의록</h2>
+<!-- E83 진행 중 정리 표시 (T35) -->
+<sc-if value="{{ isLive }}" hint-placeholder-val="{{ true }}">
+<span class="t-meta" style="font-size:12px;font-variant-numeric:tabular-nums">정리하는 중 {{ aiAt }}</span>
+</sc-if>
+<!-- 정리 중: 상태 어휘 그대로 (정본에 이 자리의 확정 문구가 없다 — 리포트 미결 M2) -->
+<sc-if value="{{ isSettling }}" hint-placeholder-val="{{ false }}">
+<span class="status in_progress" style="font-size:12px">정리 중</span>
+</sc-if>
+<!-- E66 마지막 저장 표시 -->
+<sc-if value="{{ savedShown }}" hint-placeholder-val="{{ false }}">
+<span class="t-meta" style="font-size:12px;font-variant-numeric:tabular-nums">마지막 저장 {{ savedAt }}</span>
+</sc-if>
+</div>
+<!-- E77 [수정] · [저장] — 회의를 만든 사람에게만, 구획 머리에 한 자리 -->
+<sc-if value="{{ btnEditNote }}" hint-placeholder-val="{{ false }}">
+<button type="button" class="btn h30" onClick="{{ toggleEdit }}" style="flex:none">{{ editLabel }}</button>
+</sc-if>
+</header>
+
+<!-- 진행 중 두 트랙 — 탭 둘 (OQ-303 사용자 결정) -->
+<sc-if value="{{ leftTabs }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;gap:20px;padding:0 20px;border-bottom:1px solid var(--border-default)">
+<button type="button" onClick="{{ showMemo }}" style="{{ tabMemoStyle }}">메모</button>
+<button type="button" onClick="{{ showAi }}" style="{{ tabAiStyle }}">AI 요약</button>
+</div>
+</sc-if>
+
+<div class="mm-scroll" style="flex:1;min-height:0;overflow-y:auto;padding:18px 20px">
+
+<!-- 예정 · 취소됨 — 안건 목록. [수정]을 누르면 여기서 안건을 더하고 뺀다 -->
+<sc-if value="{{ showAgendaOnly }}" hint-placeholder-val="{{ true }}">
+<div>
+<sc-for list="{{ agendaOnly }}" as="a" hint-placeholder-count="3">
+<section style="{{ a.style }}">
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px">
+<h3 style="flex:1;min-width:0;font-size:14px;font-weight:700">안건 {{ a.no }}. {{ a.title }}</h3>
+<!-- E71 안건 지우기 — 편집 중에만 -->
+<sc-if value="{{ a.canRemove }}" hint-placeholder-val="{{ false }}">
+<button type="button" class="btn ghost icon h30" aria-label="안건 빼기" onClick="{{ a.askRemove }}" style="flex:none;width:24px;height:24px;color:var(--text-tertiary)"><x-import component-from-global-scope="SCAX.Icon" name="close" size="{{ 14 }}" hint-size="14px,14px"></x-import></button>
+</sc-if>
+</div>
+<div class="t-meta" style="margin-top:2px;font-size:12px">{{ a.src }}</div>
+</section>
+</sc-for>
+
+<!-- E35 [안건 추가] — 편집 중에만 -->
+<sc-if value="{{ addAgendaShown }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border-subtle)">
+<input type="text" placeholder="안건을 적으세요" value="{{ agendaDraft }}" onChange="{{ setAgendaDraft }}" style="flex:1;height:34px;padding:0 12px;border:1px solid var(--border-strong);border-radius:var(--radius-control);font-size:14px">
+<button type="button" class="btn" onClick="{{ addAgenda }}" disabled="{{ agendaFull }}">안건 추가</button>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+<!-- 진행 중 · 「메모」 탭 — E82 남긴 메모. 메모는 안건에 매달리므로(CMP-105)
+     블록 모양은 「예정」·「완료」과 같다 -->
+<sc-if value="{{ showMemoList }}" hint-placeholder-val="{{ false }}">
+<div>
+<sc-for list="{{ memoBlocks }}" as="b" hint-placeholder-count="3">
+<section style="{{ b.style }}">
+<h3 style="font-size:14px;font-weight:700">{{ b.head }}</h3>
+<sc-if value="{{ b.hasSrc }}" hint-placeholder-val="{{ true }}">
+<div class="t-meta" style="margin-top:2px;font-size:12px">{{ b.src }}</div>
+</sc-if>
+<sc-if value="{{ b.hasMemo }}" hint-placeholder-val="{{ true }}">
+<ul style="display:flex;flex-direction:column;gap:4px;margin-top:6px">
+<sc-for list="{{ b.memos }}" as="m" hint-placeholder-count="2">
+<li style="display:flex;align-items:baseline;gap:12px;padding-left:12px">
+<span style="flex:1;min-width:0;font-size:13px;color:var(--text-secondary);text-wrap:pretty">{{ m.text }}</span>
+<span class="t-meta" style="flex:none;font-size:12px;font-variant-numeric:tabular-nums">{{ m.at }}</span>
+</li>
+</sc-for>
+</ul>
+</sc-if>
+</section>
+</sc-for>
+</div>
+</sc-if>
+
+<!-- 진행 중 · 「AI 요약」 탭 — E29 가 안건마다 차오른다 -->
+<sc-if value="{{ showLiveNote }}" hint-placeholder-val="{{ false }}">
+<div>
+<sc-for list="{{ liveNotes }}" as="n" hint-placeholder-count="3">
+<section style="{{ n.style }}">
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px">
+<h3 style="font-size:14px;font-weight:700">{{ n.head }}</h3>
+</div>
+<sc-if value="{{ n.hasSrc }}" hint-placeholder-val="{{ true }}">
+<div class="t-meta" style="margin-top:2px;font-size:12px">{{ n.src }}</div>
+</sc-if>
+<ul style="display:flex;flex-direction:column;gap:4px;margin-top:6px">
+<sc-for list="{{ n.lines }}" as="l" hint-placeholder-count="2">
+<li style="padding-left:12px;font-size:13px;color:var(--text-secondary);text-wrap:pretty">{{ l }}</li>
+</sc-for>
+</ul>
+</section>
+</sc-for>
+</div>
+</sc-if>
+
+<!-- 정리 중 — 영역 로딩 (§4 로딩) -->
+<sc-if value="{{ isSettling }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="SCAX.Skeleton" rows="{{ 7 }}" label="불러오는 중" hint-size="100%,220px"></x-import>
+</sc-if>
+
+<!-- 완료 · 실패 — 합쳐진 회의록 한 벌 -->
+<sc-if value="{{ showNote }}" hint-placeholder-val="{{ false }}">
+<div>
+<sc-for list="{{ notes }}" as="n" hint-placeholder-count="4">
+<section style="{{ n.style }}">
+
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px">
+<h3 style="flex:1;min-width:0;font-size:14px;font-weight:700">{{ n.head }}</h3>
+<!-- E22 결론 표시 -->
+<sc-if value="{{ n.hasMark }}" hint-placeholder-val="{{ true }}">
+<span style="flex:none;font-size:12px;color:{{ n.markColor }}">{{ n.mark }}</span>
+</sc-if>
+<!-- E71 안건 지우기 — 편집 중에만 -->
+<sc-if value="{{ n.canRemove }}" hint-placeholder-val="{{ false }}">
+<button type="button" class="btn ghost icon h30" aria-label="안건 빼기" onClick="{{ n.askRemove }}" style="flex:none;width:24px;height:24px;color:var(--text-tertiary)"><x-import component-from-global-scope="SCAX.Icon" name="close" size="{{ 14 }}" hint-size="14px,14px"></x-import></button>
+</sc-if>
+</div>
+
+<!-- E21 안건 출처 — 상태와 무관하게 늘 낸다 -->
+<sc-if value="{{ n.hasSrc }}" hint-placeholder-val="{{ true }}">
+<div class="t-meta" style="margin-top:2px;font-size:12px">{{ n.src }}</div>
+</sc-if>
+
+<!-- E29 회의록 본문 -->
+<sc-if value="{{ n.reading }}" hint-placeholder-val="{{ true }}">
+<div style="margin-top:6px">
+<sc-if value="{{ n.hasBody }}" hint-placeholder-val="{{ true }}">
+<ul style="display:flex;flex-direction:column;gap:4px">
+<sc-for list="{{ n.lines }}" as="l" hint-placeholder-count="3">
+<li style="padding-left:12px;font-size:13px;color:var(--text-secondary);text-wrap:pretty">{{ l }}</li>
+</sc-for>
+</ul>
+</sc-if>
+<sc-if value="{{ n.noBody }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="SCAX.EmptyValue" hint-size="12px,18px"></x-import>
+</sc-if>
+</div>
+</sc-if>
+<!-- 편집도 읽기와 같은 «줄 하나가 행 하나» — 줄마다 한 줄 칸이다 -->
+<sc-if value="{{ n.editing }}" hint-placeholder-val="{{ false }}">
+<div style="margin-top:6px">
+<ul style="display:flex;flex-direction:column;gap:4px">
+<sc-for list="{{ n.editLines }}" as="e" hint-placeholder-count="3">
+<li style="display:flex;align-items:center;gap:6px;padding-left:12px">
+<input type="text" class="line-edit" placeholder="내용을 한 줄로 적으세요" value="{{ e.text }}" onChange="{{ e.set }}">
+<button type="button" class="btn ghost icon h30" aria-label="줄 빼기" onClick="{{ e.remove }}" style="width:30px;height:30px;color:var(--text-tertiary)"><x-import component-from-global-scope="SCAX.Icon" name="close" size="{{ 14 }}" hint-size="14px,14px"></x-import></button>
+</li>
+</sc-for>
+</ul>
+<button type="button" class="btn ghost h30" onClick="{{ n.addLine }}" style="margin-top:6px;margin-left:12px"><x-import component-from-global-scope="SCAX.Icon" name="plus" size="{{ 14 }}" hint-size="14px,14px"></x-import> 내용 줄 추가</button>
+</div>
+</sc-if>
+
+<!-- E31 근거 — 그 안건의 내용이 딛는 구간. 누르면 오른쪽 「스크립트」 탭의 그 자리가 열린다.
+     안건 본문 바로 뒤에 둔다 — 「다음 할 일」이 아니라 본문이 딛는 것이다 -->
+<sc-if value="{{ n.hasEv }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:10px;padding-left:12px">
+<span class="t-meta" style="flex:none;font-size:12px">근거</span>
+<sc-for list="{{ n.evs }}" as="e" hint-placeholder-count="2">
+<button type="button" class="{{ e.cls }}" onClick="{{ e.jump }}">{{ e.at }}</button>
+</sc-for>
+</div>
+</sc-if>
+
+<!-- E40 후속업무 후보 — 그 할 일이 나온 안건 안에 「다음 할 일」로 선다 -->
+<sc-if value="{{ n.todoShown }}" hint-placeholder-val="{{ true }}">
+<div style="margin-top:12px">
+<div style="padding-left:12px;font-size:13px;font-weight:700">다음 할 일</div>
+<sc-if value="{{ n.hasTodos }}" hint-placeholder-val="{{ true }}">
+<ul style="display:flex;flex-direction:column;gap:6px;margin-top:6px">
+<sc-for list="{{ n.todos }}" as="t" hint-placeholder-count="2">
+<li style="display:flex;align-items:center;gap:12px;min-height:30px;padding-left:24px">
+<span style="flex:1;min-width:0;font-size:13px">{{ t.what }}</span>
+<sc-if value="{{ t.hasDue }}" hint-placeholder-val="{{ true }}">
+<span class="t-meta" style="flex:none;font-size:12px;font-variant-numeric:tabular-nums">{{ t.meta }}</span>
+</sc-if>
+<!-- 조작 자리는 폭을 고정한다 — 승격 여부로 버튼이 갈려도 행마다 세로로 맞아 선다 -->
+<span style="flex:none;display:flex;align-items:center;justify-content:flex-end;gap:4px;width:116px">
+<!-- E43 승격 표시 — 이미 업무로 요청한 후보는 글자만 남는다 (D24).
+     [업무 생성]·× 가 서던 자리를 그대로 쓴다 -->
+<sc-if value="{{ t.promoted }}" hint-placeholder-val="{{ false }}">
+<span class="t-meta" style="font-size:12px">요청됨</span>
+</sc-if>
+<!-- E42 [업무 생성] -->
+<sc-if value="{{ t.canPromote }}" hint-placeholder-val="{{ true }}">
+<button type="button" class="btn h30" onClick="{{ noop }}">업무 생성</button>
+</sc-if>
+<!-- E73 후보 삭제 — 묻지 않는다 -->
+<sc-if value="{{ t.canDrop }}" hint-placeholder-val="{{ true }}">
+<button type="button" class="btn ghost icon h30" aria-label="후보 빼기" onClick="{{ t.drop }}" style="width:30px;height:30px;color:var(--text-tertiary)"><x-import component-from-global-scope="SCAX.Icon" name="close" size="{{ 14 }}" hint-size="14px,14px"></x-import></button>
+</sc-if>
+</span>
+</li>
+</sc-for>
+</ul>
+</sc-if>
+<sc-if value="{{ n.noTodos }}" hint-placeholder-val="{{ false }}">
+<div class="t-meta" style="margin-top:4px;padding-left:24px;font-size:12px">후속업무 후보가 없습니다.</div>
+</sc-if>
+</div>
+</sc-if>
+
+</section>
+</sc-for>
+
+<!-- E35 [안건 추가] — 편집 중에만 -->
+<sc-if value="{{ addAgendaShown }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border-subtle)">
+<input type="text" placeholder="안건을 적으세요" value="{{ agendaDraft }}" onChange="{{ setAgendaDraft }}" style="flex:1;height:34px;padding:0 12px;border:1px solid var(--border-strong);border-radius:var(--radius-control);font-size:14px">
+<button type="button" class="btn" onClick="{{ addAgenda }}" disabled="{{ agendaFull }}">안건 추가</button>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+</div>
+
+<!-- E80 메모 대상 안건 · E81 메모 입력 — 「진행 중」에만 · 쓰기는 만든 사람만 -->
+<sc-if value="{{ composerShown }}" hint-placeholder-val="{{ true }}">
+<footer style="padding:12px 20px;border-top:1px solid var(--border-default)">
+<div style="position:relative">
+<sc-if value="{{ pickerOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;bottom:calc(100% + 8px);left:0;width:280px;z-index:20;padding:6px;border:1px solid var(--border-default);border-radius:var(--radius-popover);background:var(--surface);box-shadow:var(--shadow-lg)">
+<sc-for list="{{ memoTargets }}" as="t" hint-placeholder-count="4">
+<button type="button" onClick="{{ t.pick }}" style="{{ t.style }}">{{ t.label }}</button>
+</sc-for>
+</div>
+</sc-if>
+<div class="composer">
+<button type="button" class="btn ghost h30" onClick="{{ togglePicker }}" disabled="{{ memoTargetDisabled }}" style="flex:none;color:var(--text-secondary)">{{ memoTarget }} <x-import component-from-global-scope="SCAX.Icon" name="chevron-down" size="{{ 12 }}" hint-size="12px,12px"></x-import></button>
+<span class="composer-divider"></span>
+<input type="text" placeholder="메모를 남기세요" value="{{ draft }}" onChange="{{ setDraft }}">
+<button type="button" class="btn icon h30" aria-label="메모 남기기" onClick="{{ addMemo }}"><x-import component-from-global-scope="SCAX.Icon" name="send" size="{{ 14 }}" hint-size="14px,14px"></x-import></button>
+</div>
+<sc-if value="{{ memoSaveFailed }}" hint-placeholder-val="{{ false }}">
+<span class="field-error" style="display:block;margin-top:7px">저장하지 못했습니다. 다시 시도하고 있습니다.</span>
+</sc-if>
+</div>
+</footer>
+</sc-if>
+
+</div>
+</section>
+
+<!-- ── 오른쪽 — 자료 · 스크립트 (E63 탭 바) ──────────────────── -->
+<sc-if value="{{ rightShown }}" hint-placeholder-val="{{ true }}">
+<section aria-label="자료와 스크립트" style="display:flex;flex-direction:column;min-height:0;overflow:hidden;border:1px solid var(--border-strong);border-radius:var(--radius-panel);background:var(--surface)">
+
+<header style="display:flex;gap:20px;padding:0 20px;border-bottom:1px solid var(--border-default)">
+<sc-if value="{{ tabMatShown }}" hint-placeholder-val="{{ true }}">
+<button type="button" onClick="{{ showMat }}" style="{{ tabMatStyle }}">자료</button>
+</sc-if>
+<sc-if value="{{ tabScriptShown }}" hint-placeholder-val="{{ true }}">
+<button type="button" onClick="{{ showScript }}" style="{{ tabScriptStyle }}">스크립트</button>
+</sc-if>
+</header>
+
+<div class="mm-scroll" style="flex:1;min-height:0;overflow-y:auto;padding:16px 20px">
+
+<!-- E33 「자료」 탭 -->
+<sc-if value="{{ matOn }}" hint-placeholder-val="{{ true }}">
+<div>
+<sc-if value="{{ hasFiles }}" hint-placeholder-val="{{ true }}">
+<ul style="display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{ files }}" as="f" hint-placeholder-count="3">
+<li style="{{ f.style }}" onClick="{{ f.open }}">
+<span style="flex:1;min-width:0;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ f.name }}</span>
+<span class="t-meta" style="flex:none;font-size:12px;font-variant-numeric:tabular-nums">{{ f.size }}</span>
+<sc-if value="{{ f.canDrop }}" hint-placeholder-val="{{ true }}">
+<button type="button" class="btn ghost icon h30" aria-label="자료 빼기" onClick="{{ f.askDrop }}" style="flex:none;width:24px;height:24px;color:var(--text-tertiary)"><x-import component-from-global-scope="SCAX.Icon" name="close" size="{{ 14 }}" hint-size="14px,14px"></x-import></button>
+</sc-if>
+</li>
+</sc-for>
+</ul>
+
+</sc-if>
+
+<!-- T19 자료 빈 상태 -->
+<sc-if value="{{ noFiles }}" hint-placeholder-val="{{ false }}">
+<div style="padding:60px 0">
+<x-import component-from-global-scope="SCAX.Empty" title="첨부한 자료가 없습니다." hint-size="100%,180px"></x-import>
+</div>
+</sc-if>
+
+<!-- E06 [자료 첨부] — 「진행 중」에는 숨긴다 (X-117) -->
+<sc-if value="{{ btnAttach }}" hint-placeholder-val="{{ true }}">
+<button type="button" class="btn" onClick="{{ openAttach }}" style="width:100%;margin-top:12px"><x-import component-from-global-scope="SCAX.Icon" name="paperclip" size="{{ 14 }}" hint-size="14px,14px"></x-import> 자료 첨부</button>
+</sc-if>
+</div>
+</sc-if>
+
+<!-- E26 「스크립트」 탭 — 진행 중이면 실시간 원문, 끝난 뒤면 원문 -->
+<sc-if value="{{ scriptOn }}" hint-placeholder-val="{{ false }}">
+<div>
+<ul style="display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{ script }}" as="s" hint-placeholder-count="8">
+<li style="{{ s.style }}">
+<span style="flex:none;display:flex;flex-direction:column;gap:1px;width:76px">
+<sc-if value="{{ s.isTalk }}" hint-placeholder-val="{{ true }}">
+<button type="button" onClick="{{ s.nameSpeaker }}" style="{{ s.whoStyle }}">{{ s.who }}</button>
+</sc-if>
+<!-- 메모는 발화와 갈리게 「메모」로 표시하고 적은 사람을 함께 낸다 (E26 · E31) -->
+<sc-if value="{{ s.isMemo }}" hint-placeholder-val="{{ false }}">
+<span style="font-size:12px;font-weight:700;color:var(--text-secondary)">메모</span>
+<span class="t-meta" style="font-size:12px">{{ s.by }}</span>
+</sc-if>
+<span class="t-meta" style="font-size:12px;font-variant-numeric:tabular-nums">{{ s.at }}</span>
+</span>
+<span style="flex:1;min-width:0;font-size:13px;color:{{ s.textColor }};text-wrap:pretty">{{ s.text }}</span>
+</li>
+</sc-for>
+</ul>
+
+<!-- E57 화자 이름 지정 — 이름을 고르는 자리를 편다 (I32 · I51) -->
+<sc-if value="{{ speakerOpen }}" hint-placeholder-val="{{ false }}">
+<div style="margin-top:12px;padding:12px;border:1px solid var(--border-default);border-radius:var(--radius-popover);background:var(--surface);box-shadow:var(--shadow-lg)">
+<div class="t-meta" style="font-size:12px;margin-bottom:6px">{{ speakerLabel }} 에 이름 달기</div>
+<div style="display:flex;flex-wrap:wrap;gap:6px">
+<sc-for list="{{ roster }}" as="p" hint-placeholder-count="5">
+<button type="button" class="filter-chip" onClick="{{ p.pick }}">{{ p.name }}</button>
+</sc-for>
+<sc-if value="{{ speakerNamed }}" hint-placeholder-val="{{ false }}">
+<button type="button" class="btn ghost h30" onClick="{{ askUnname }}">이름 떼기</button>
+</sc-if>
+</div>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+</div>
+</section>
+</sc-if>
+
+</div>
+</div>
+</div>
+</div>
+
+<!-- E64 자료 미리보기 — 고른 자료 하나를 드로어로 연다 (2026-09-10 사용자 결정).
+     데모가 받는 것은 PDF · Markdown 둘 -->
+<sc-if value="{{ fileOpen }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="SCAX.Drawer" label="자료 보기" title="{{ file.name }}" kicker="{{ file.kicker }}" header-extra="{{ fileWho }}" footer="{{ fileFooter }}" on-close="{{ closeFile }}" hint-size="clamp(560px,50vw,840px),100%">
+<div style="padding:28px 30px;border:1px solid var(--border-default);border-radius:var(--radius-card);background:var(--surface)">
+<div style="padding-bottom:12px;margin-bottom:16px;border-bottom:1px solid var(--border-subtle);font-size:14px;font-weight:700">{{ file.heading }}</div>
+<div style="display:flex;flex-direction:column;gap:14px">
+<sc-for list="{{ file.body }}" as="blk" hint-placeholder-count="4">
+<div>
+<sc-if value="{{ blk.isHead }}" hint-placeholder-val="{{ false }}">
+<div style="font-size:13px;font-weight:700;color:var(--text-primary)">{{ blk.text }}</div>
+</sc-if>
+<sc-if value="{{ blk.isText }}" hint-placeholder-val="{{ true }}">
+<p style="font-size:13px;color:var(--text-secondary);text-wrap:pretty">{{ blk.text }}</p>
+</sc-if>
+</div>
+</sc-for>
+</div>
+</div>
+</x-import>
+</sc-if>
+
+<!-- MOD-104 자료 첨부 — 붙는 자리는 회의 하나라 어디에 붙일지를 묻지 않는다 (X-117) -->
+<sc-if value="{{ attachOpen }}" hint-placeholder-val="{{ false }}">
+<div class="modal-backdrop" onMouseDown="{{ closeAttach }}">
+<section class="modal" role="dialog" aria-modal="true" aria-label="자료 첨부" style="width:min(600px,100%)">
+<header class="modal-head">
+<h3>자료 첨부</h3>
+<button type="button" class="modal-close" onClick="{{ closeAttach }}" aria-label="닫기"><x-import component-from-global-scope="SCAX.Icon" name="close" size="{{ 16 }}" hint-size="16px,16px"></x-import></button>
+</header>
+<div class="modal-body">
+
+<!-- E02 파일 — 끌어다 놓거나 골라 올린다. 한 건당 20MB (X-100) -->
+<div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:32px 20px;border:1px dashed var(--border-strong);border-radius:var(--radius-card);background:var(--surface-sunken)">
+<span class="t-meta" style="font-size:13px">여기에 끌어다 놓거나</span>
+<button type="button" class="btn" onClick="{{ pickFile }}"><x-import component-from-global-scope="SCAX.Icon" name="paperclip" size="{{ 14 }}" hint-size="14px,14px"></x-import> 파일 선택</button>
+<span class="t-meta" style="font-size:12px">한 건당 20MB · PDF · Markdown</span>
+</div>
+
+<!-- T04 일부만 올라감 -->
+<sc-if value="{{ attachPartial }}" hint-placeholder-val="{{ false }}">
+<div class="field-error">일부 파일을 올리지 못했습니다. 아래에서 확인해 주세요.</div>
+</sc-if>
+
+<!-- E03 올린 파일 목록 — 파일명 · 크기 · 삭제. 0건이면 숨김 -->
+<sc-if value="{{ attachHasFiles }}" hint-placeholder-val="{{ true }}">
+<ul style="display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{ attachFiles }}" as="f" hint-placeholder-count="3">
+<li style="display:flex;align-items:center;gap:12px;min-height:34px;padding:0 4px">
+<span style="flex:1;min-width:0;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:{{ f.nameColor }}">{{ f.name }}</span>
+<span class="t-meta" style="flex:none;font-size:12px;font-variant-numeric:tabular-nums">{{ f.size }}</span>
+<sc-if value="{{ f.bad }}" hint-placeholder-val="{{ false }}">
+<span class="danger-text" style="flex:none;font-size:12px">{{ f.reason }}</span>
+</sc-if>
+<button type="button" class="btn ghost icon h30" aria-label="파일 빼기" onClick="{{ f.remove }}" style="flex:none;width:30px;height:30px;color:var(--text-tertiary)"><x-import component-from-global-scope="SCAX.Icon" name="close" size="{{ 14 }}" hint-size="14px,14px"></x-import></button>
+</li>
+</sc-for>
+</ul>
+</sc-if>
+
+</div>
+<footer class="modal-foot">
+<!-- E05 [첨부] — 파일이 없으면 비활성 -->
+<button type="button" class="btn h40 primary" onClick="{{ doAttach }}" disabled="{{ attachEmpty }}">첨부</button>
+</footer>
+</section>
+</div>
+</sc-if>
+
+<!-- TXT-004 — 올린 것이 있는 채로 닫을 때 (MOD-104-I08) -->
+<sc-if value="{{ askDiscardAttachOpen }}" hint-placeholder-val="{{ false }}">
+<div class="modal-backdrop" style="z-index:60">
+<section class="modal" role="alertdialog" aria-modal="true" aria-label="쓴 내용을 버리고 닫을까요?">
+<header class="modal-head"><h3>쓴 내용을 버리고 닫을까요?</h3></header>
+<footer class="modal-foot">
+<button type="button" class="btn h40 ghost" onClick="{{ closeAsk }}">취소</button>
+<button type="button" class="btn h40 danger" onClick="{{ discardAttach }}">버리기</button>
+</footer>
+</section>
+</div>
+</sc-if>
+
+<!-- MOD-105 공유 — 참석자가 아닌 사람에게 «읽기»만 연다 (X-31) -->
+<sc-if value="{{ shareOpen }}" hint-placeholder-val="{{ false }}">
+<div class="modal-backdrop" onMouseDown="{{ closeShare }}">
+<section class="modal" role="dialog" aria-modal="true" aria-label="공유" style="width:min(680px,100%)">
+<header class="modal-head">
+<h3>공유</h3>
+<button type="button" class="modal-close" onClick="{{ closeShare }}" aria-label="닫기"><x-import component-from-global-scope="SCAX.Icon" name="close" size="{{ 16 }}" hint-size="16px,16px"></x-import></button>
+</header>
+<div class="modal-body">
+
+<!-- E01 안내 (T01) -->
+<p style="font-size:13px;color:var(--text-secondary)">추가한 사람은 이 회의록을 읽을 수 있습니다. 수정은 할 수 없습니다.</p>
+
+<!-- E02 사람 찾기 · E03 고른 사람 — 회의 예약(MOD-102)의 참석자 고르는 자리와 같은 모양 -->
+<div class="field">
+<label>공유할 사람 <span class="count-badge">{{ shareCount }}</span></label>
+
+<sc-if value="{{ sharePicked }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-wrap:wrap;gap:8px;padding:12px;border:1px solid var(--border-subtle);border-radius:var(--radius-card);background:var(--surface-sunken)">
+<sc-for list="{{ sharePicks }}" as="pk" hint-placeholder-count="2">
+<button type="button" onClick="{{ pk.remove }}" style="display:inline-flex;align-items:center;gap:8px;height:24px;padding:0 8px;border:1px solid var(--border-default);border-radius:var(--radius-chip);background:var(--surface);font-size:12px"><span style="font-weight:700">{{ pk.name }}</span><span class="t-meta" style="font-size:12px">{{ pk.unit }}</span><x-import component-from-global-scope="SCAX.Icon" name="close" size="{{ 14 }}" hint-size="14px,14px"></x-import></button>
+</sc-for>
+</div>
+</sc-if>
+
+<div class="popover-root" style="display:block;position:relative;margin-top:8px">
+<input type="text" class="search-input-box" style="width:100%" role="combobox" aria-expanded="{{ shareSearchOpen }}" placeholder="조직도 내 이름 검색" value="{{ shareQuery }}" onChange="{{ setShareQuery }}">
+<sc-if value="{{ shareSearchOpen }}" hint-placeholder-val="{{ false }}">
+<div class="popover" role="listbox" aria-label="이름 찾기 결과" style="left:0;right:0;width:auto">
+<sc-for list="{{ shareHits }}" as="h" hint-placeholder-count="3">
+<button type="button" class="popover-item" role="option" onClick="{{ h.pick }}">
+<span class="avatar xs">{{ h.initial }}</span>
+<span style="flex:1;min-width:0;font-weight:700;color:var(--text-primary)">{{ h.name }}</span>
+<span class="t-meta" style="flex:none;font-size:12px">{{ h.unit }} · {{ h.rank }}</span>
+</button>
+</sc-for>
+<sc-if value="{{ shareNoHit }}" hint-placeholder-val="{{ false }}">
+<div class="t-meta" style="padding:8px 12px;font-size:13px">찾는 사람이 없습니다.</div>
+</sc-if>
+</div>
+</sc-if>
+</div>
+
+<!-- 조직도 — 왼쪽 부서, 오른쪽 그 부서 사람. 이미 볼 수 있는 사람은 안 낸다 (E02) -->
+<div style="display:grid;grid-template-columns:150px minmax(0,1fr);margin-top:8px;border:1px solid var(--border-default);border-radius:var(--radius-card);overflow:hidden">
+<div class="mm-scroll" style="max-height:184px;overflow-y:auto;padding:6px;border-right:1px solid var(--border-default);background:var(--surface-sunken)">
+<sc-for list="{{ shareUnits }}" as="u" hint-placeholder-count="5">
+<button type="button" onClick="{{ u.pick }}" style="{{ u.style }}">
+<span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ u.unit }}</span>
+<span style="flex:none;font-size:12px;color:var(--text-tertiary);font-variant-numeric:tabular-nums">{{ u.count }}</span>
+</button>
+</sc-for>
+</div>
+<div class="mm-scroll" style="max-height:184px;overflow-y:auto;padding:6px">
+<sc-for list="{{ shareMembers }}" as="m" hint-placeholder-count="3">
+<div onClick="{{ m.pick }}" style="{{ m.rowStyle }}">
+<span class="avatar xs">{{ m.initial }}</span>
+<span style="flex:1;min-width:0;font-size:13px;font-weight:700">{{ m.name }}</span>
+<span class="t-meta" style="flex:none;font-size:12px">{{ m.rank }}</span>
+</div>
+</sc-for>
+<sc-if value="{{ shareUnitEmpty }}" hint-placeholder-val="{{ false }}">
+<div class="t-meta" style="padding:8px;font-size:12px">이 부서는 모두 볼 수 있습니다.</div>
+</sc-if>
+</div>
+</div>
+</div>
+
+<!-- E04 볼 수 있는 사람 · E05 [삭제] -->
+<div class="field">
+<label>볼 수 있는 사람</label>
+<table class="plain-table share-table">
+<thead><tr><th>이름</th><th>부서</th><th class="center">어떻게</th><th class="end"></th></tr></thead>
+<tbody>
+<sc-for list="{{ shareViewers }}" as="v" hint-placeholder-count="6">
+<tr>
+<td class="title-cell"><span style="display:inline-flex;align-items:center;gap:8px"><span class="avatar xs">{{ v.initial }}</span>{{ v.name }}</span></td>
+<td>{{ v.unit }} · {{ v.rank }}</td>
+<td class="center"><span class="{{ v.howCls }}">{{ v.how }}</span></td>
+<td class="end">
+<sc-if value="{{ v.canDrop }}" hint-placeholder-val="{{ false }}">
+<button type="button" class="btn ghost h30" onClick="{{ v.askDrop }}">삭제</button>
+</sc-if>
+</td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+
+</div>
+<footer class="modal-foot">
+<!-- E06 [공유] — 0명이면 비활성 -->
+<button type="button" class="btn h40 primary" onClick="{{ doShare }}" disabled="{{ shareEmpty }}">공유</button>
+</footer>
+</section>
+</div>
+</sc-if>
+
+<!-- TXT-004 — 고른 것이 있는 채로 닫을 때 (MOD-105-I06) -->
+<sc-if value="{{ askDiscardOpen }}" hint-placeholder-val="{{ false }}">
+<div class="modal-backdrop" style="z-index:60">
+<section class="modal" role="alertdialog" aria-modal="true" aria-label="쓴 내용을 버리고 닫을까요?">
+<header class="modal-head"><h3>쓴 내용을 버리고 닫을까요?</h3></header>
+<footer class="modal-foot">
+<button type="button" class="btn h40 ghost" onClick="{{ closeAsk }}">취소</button>
+<button type="button" class="btn h40 danger" onClick="{{ discardShare }}">버리기</button>
+</footer>
+</section>
+</div>
+</sc-if>
+
+<!-- MOD-105-T03 열람 삭제 확인 -->
+<sc-if value="{{ askUnshareOpen }}" hint-placeholder-val="{{ false }}">
+<div class="modal-backdrop" style="z-index:60" onMouseDown="{{ closeAsk }}">
+<section class="modal" role="alertdialog" aria-modal="true" aria-label="삭제한 사람은 이 회의록을 볼 수 없습니다. 삭제할까요?">
+<header class="modal-head"><h3>삭제한 사람은 이 회의록을 볼 수 없습니다. 삭제할까요?</h3></header>
+<footer class="modal-foot">
+<button type="button" class="btn h40 ghost" onClick="{{ closeAsk }}">취소</button>
+<button type="button" class="btn h40 danger" onClick="{{ unshare }}">삭제</button>
+</footer>
+</section>
+</div>
+</sc-if>
+
+<!-- T27 안건 지우기 확인 -->
+<sc-if value="{{ askRemoveOpen }}" hint-placeholder-val="{{ false }}">
+<div class="modal-backdrop" onMouseDown="{{ closeAsk }}">
+<section class="modal" role="alertdialog" aria-modal="true" aria-label="안건과 회의록이 함께 삭제됩니다. 삭제할까요?">
+<header class="modal-head"><h3>안건과 회의록이 함께 삭제됩니다. 삭제할까요?</h3></header>
+<footer class="modal-foot">
+<button type="button" class="btn h40 ghost" onClick="{{ closeAsk }}">취소</button>
+<button type="button" class="btn h40 danger" onClick="{{ removeAgenda }}">삭제</button>
+</footer>
+</section>
+</div>
+</sc-if>
+
+<!-- T29 자료 삭제 확인 -->
+<sc-if value="{{ askDropOpen }}" hint-placeholder-val="{{ false }}">
+<div class="modal-backdrop" onMouseDown="{{ closeAsk }}">
+<section class="modal" role="alertdialog" aria-modal="true" aria-label="이 회의에서 삭제할까요? 자료에는 그대로 남습니다.">
+<header class="modal-head"><h3>이 회의에서 삭제할까요? 자료에는 그대로 남습니다.</h3></header>
+<footer class="modal-foot">
+<button type="button" class="btn h40 ghost" onClick="{{ closeAsk }}">취소</button>
+<button type="button" class="btn h40 danger" onClick="{{ dropFile }}">삭제</button>
+</footer>
+</section>
+</div>
+</sc-if>
+
+<!-- T31 화자 이름 고치기 확인 -->
+<sc-if value="{{ askNameOpen }}" hint-placeholder-val="{{ false }}">
+<div class="modal-backdrop" onMouseDown="{{ closeAsk }}">
+<section class="modal" role="alertdialog" aria-modal="true" aria-label="이 목소리에 붙은 이름이 바뀝니다.">
+<header class="modal-head"><h3>이 목소리에 붙은 이름이 바뀝니다. 지난 회의의 표시도 함께 바뀝니다. 계속할까요?</h3></header>
+<footer class="modal-foot">
+<button type="button" class="btn h40 ghost" onClick="{{ closeAsk }}">취소</button>
+<button type="button" class="btn h40" onClick="{{ applyName }}">바꾸기</button>
+</footer>
+</section>
+</div>
+</sc-if>
+
+<!-- T11 저장하지 않고 이탈 -->
+<sc-if value="{{ askLeaveOpen }}" hint-placeholder-val="{{ false }}">
+<div class="modal-backdrop" onMouseDown="{{ closeAsk }}">
+<section class="modal" role="alertdialog" aria-modal="true" aria-label="저장하지 않은 내용이 있습니다. 나갈까요?">
+<header class="modal-head"><h3>저장하지 않은 내용이 있습니다. 나갈까요?</h3></header>
+<footer class="modal-foot">
+<button type="button" class="btn h40 ghost" onClick="{{ closeAsk }}">취소</button>
+<button type="button" class="btn h40" onClick="{{ doLeave }}">나가기</button>
+</footer>
+</section>
+</div>
+</sc-if>
+
+<sc-if value="{{ toastOpen }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="SCAX.Toast" message="{{ toastMessage }}" tone="{{ toastTone }}" on-close="{{ closeToast }}" hint-size="400px,56px"></x-import>
+</sc-if>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;screenState&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;예정&quot;,&quot;진행 중&quot;,&quot;정리 중&quot;,&quot;완료&quot;,&quot;실패&quot;,&quot;취소됨&quot;],&quot;default&quot;:&quot;예정&quot;,&quot;tsType&quot;:&quot;'예정' | '진행 중' | '정리 중' | '완료' | '실패' | '취소됨'&quot;,&quot;section&quot;:&quot;화면&quot;},&quot;viewer&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;만든 사람&quot;,&quot;참석자&quot;,&quot;공유받은 사람&quot;],&quot;default&quot;:&quot;만든 사람&quot;,&quot;tsType&quot;:&quot;'만든 사람' | '참석자' | '공유받은 사람'&quot;,&quot;section&quot;:&quot;화면&quot;}}">
+/* SCR-106 회의 상세.
+   상태 여섯(X-93 · §5.7) × 관계 셋(§5.7 관계별 표)이 무엇을 내는지가 renderVals() 한 자리에 있다.
+   회의 하나는 한 화면이다 — 상태로 화면을 나누지 않는다 (X-93). */
+
+const MEETING = {
+  title: 'DB ax 전략',
+  when: '09-08 (월) 15:30~16:00',
+  date: '2026-09-08', from: '15:30', to: '16:00',
+  place: '대회의실',
+  people: '참석 5명',
+  duration: '00:52:07',
+  starter: '이건학',
+  purpose: 'DB 영역의 AX 전환 범위를 정하고, 토큰 비용 구조에 합의한 뒤 PoC 한 건을 확정한다.',
+  savedAt: '16:08'
+};
+
+/* 다음 할 일 한 줄 — 할 일 문장 · 기한 후보 (E41).
+   담당은 두지 않는다 (D19-3) — AI 가 담당을 고르지 않는다. 담당은 [업무 생성] 모달에서
+   사람이 고른다. 기한도 없으면 그 자리를 비운다 */
+const T = (what, due, promoted) => ({ what, due, promoted: !!promoted });
+
+/* 안건 하나 (CMP-105) — 순서 · 제목 · 출처 · 결론 여부 · 내용 줄 · 다음 할 일 · 근거 구간.
+   본문은 «줄 목록»이다 (사용자 결정 D12) — 줄 하나에 짧은 문장 하나이고 문단으로 묶지
+   않는다. 종류(논의·결정) 배지도 두지 않는다: 우리 회의는 논의 줄뿐이다.
+   출처는 셋이다 — 직접 입력 · 지난 회의에서 넘어옴 · AI 정리 (D14).
+   live = 회의가 도는 동안 AI 가 채워 가는 줄, lines = 종료 뒤 합쳐진 줄 */
+const AGENDA = [
+  { id: 'a1', title: '토큰 수요 전망', src: '지난 회의에서 넘어옴', decided: true,
+    live: [
+      '에이전틱 AI 확산으로 토큰 수요가 구조적으로 는다는 데 이견이 없었다.',
+      '대응은 확장과 효율 두 축이다.'
+    ],
+    lines: [
+      '에이전틱 AI 확산으로 토큰 수요가 구조적으로 는다는 전제에 합의했다.',
+      '대응은 인프라 확장과 단위 효율 개선 두 축으로 같이 간다.',
+      '수요 전망치는 분기별로 다시 뽑아 다음 회의에 올린다.'
+    ],
+    todos: [T('토큰 수요 전망치 분기별로 다시 뽑기')], evs: ['15:32', '15:34'] },
+  { id: 'a2', title: '토큰 비용 절감을 위한 AI 인프라 전략', src: '직접 입력', decided: true,
+    live: [
+      '절감 다섯 갈래 중 요청 분배와 KV 캐싱을 먼저 붙이기로 했다.',
+      '캐시 히트 68% → 86%.'
+    ],
+    lines: [
+      '절감 다섯 갈래 중 지능형 요청 분배와 KV 캐싱을 먼저 적용한다.',
+      '캐시 히트는 68%에서 86%로 올랐다.',
+      'HBM 제약은 계층 저장으로 넘기되 지연 증가 여부는 아직 측정 전이다.'
+    ],
+    todos: [T('캐시 히트 레이쇼 측정 지표 정의', '09-15'), T('계층 저장 지연 측정', '09-18', true)], evs: ['15:41', '15:49', '15:52'] },
+  { id: 'a3', title: '협력 범위와 다음 단계', src: '직접 입력', decided: false,
+    live: ['협력 범위를 PoC 한 건으로 좁히자는 이야기가 나왔다.'],
+    lines: [
+      '실리콘 협력은 RNGD 기반 PoC 한 건으로 범위를 좁힌다.',
+      '성공 기준과 예산 주체는 다음 회의에서 정한다.'
+    ],
+    todos: [], evs: ['15:56'] }
+];
+
+/* E82 남긴 메모 — 「진행 중」에만 선다. 끝나면 본문에 녹고 원문은 [근거]에서 본다 */
+const MEMOS = [
+  { id: 'm1', aid: 'a1', at: '15:34', text: '수요 전망은 분기별로 다시 뽑기로.' },
+  { id: 'm2', aid: 'a2', at: '15:49', text: '캐시 히트 68 → 86. 측정 조건 확인 필요.' },
+  { id: 'm3', aid: 'a2', at: '15:52', text: 'HBM 계층 저장 지연은 아직 측정 전.' }
+];
+
+/* E26 원문 — 발화(확정·잠정)와 메모가 같은 시각 축에 선다. 톤·강도는 두지 않는다 (X-28) */
+const SCRIPT = [
+  { k: 'talk', sp: 's1', at: '15:32', text: '오늘은 토큰 수요가 어디까지 늘어날지, 그 전제부터 맞춰보고 싶습니다.', firm: true },
+  { k: 'talk', sp: 's2', at: '15:34', text: '에이전틱 AI 가 사람 개입 없이 처리하는 구간이 늘면 수요는 계단식으로 올라갑니다.', firm: true },
+  { k: 'memo', at: '15:34', by: '이건학', text: '수요 전망은 분기별로 다시 뽑기로.' },
+  { k: 'talk', sp: 's1', at: '15:41', text: '비용 쪽으로 넘어가면, 저희가 쓰는 절감 전략은 다섯 가지입니다.', firm: true },
+  { k: 'talk', sp: 's3', at: '15:49', text: '라우팅과 KV 캐시 오프로드를 붙였을 때 캐시 히트가 68에서 86까지 올라갔습니다.', firm: true },
+  { k: 'memo', at: '15:49', by: '이건학', text: '캐시 히트 68 → 86. 측정 조건 확인 필요.' },
+  { k: 'talk', sp: 's2', at: '15:52', text: 'HBM 이 부족한 구간은 계층 저장으로 넘기는데, 지연은 아직 측정 전입니다.', firm: true },
+  { k: 'memo', at: '15:52', by: '이건학', text: 'HBM 계층 저장 지연은 아직 측정 전.' },
+  { k: 'talk', sp: 's1', at: '15:56', text: '협력은 PoC 한 건으로 좁히죠. 성공 기준은 다음 회의에서 정합시다.', firm: true },
+  { k: 'talk', sp: 's3', at: '15:58', text: '예산 주체는 아직', firm: false }
+];
+
+/* 자료 — 데모가 받는 것은 PDF · Markdown 둘이다 (2026-09-10 사용자 결정).
+   본문은 소제목(h)과 문단(p) 두 종류로만 쌓는다 — 둘 다 같은 모양으로 읽힌다 */
+const H = text => ({ kind: 'h', text });
+const P = text => ({ kind: 'p', text });
+
+const FILES = [
+  { id: 'f1', ext: 'PDF', name: 'DB AX 전환 범위 초안.pdf', size: '2.4MB', who: '이건학', at: '15:34',
+    heading: 'DB AX 전환 범위 초안',
+    body: [
+      P('본 문서는 DB 영역의 AX 전환 대상과 제외 범위를 정리한다. 전환은 운영 DB 를 직접 건드리지 않고, 읽기 전용 복제본 위에서 시작한다.'),
+      H('1. 대상'),
+      P('상담 이력 · 청구 내역 · 장애 티켓 세 도메인이다. 세 도메인 모두 텍스트 비중이 높아 요약과 검색의 효용이 크다.'),
+      H('2. 제외'),
+      P('개인 식별 정보가 든 원본 컬럼은 마스킹 이후에만 색인한다. 마스킹 규칙은 보안팀 표준을 그대로 따른다.'),
+      H('3. 성공 기준'),
+      P('4주 안에 상담 이력 도메인에서 주간 재사용 3회 이상. 재사용률이 기준이고 도입률은 보조 지표로만 본다.')
+    ] },
+  { id: 'f2', ext: 'MD', name: '토큰 비용 시나리오 v3.md', size: '18KB', who: '정우성', at: '15:47',
+    heading: '토큰 비용 시나리오 v3',
+    body: [
+      H('전제'),
+      P('월 토큰 4.2억을 고정으로 두고 캐시 히트만 움직여 본 것이다. 단가는 현행 계약 기준이다.'),
+      H('시나리오'),
+      P('현행은 캐시 히트 68% · 월 3,180만이다. 라우팅을 붙이면 79% · 2,540만, 여기에 KV 캐싱까지 붙이면 86% · 1,970만이 된다.'),
+      H('남은 것'),
+      P('유휴 GPU 를 끌어 쓰는 갈래는 지연 측정 전이라 이 표에 넣지 않았다.')
+    ] },
+  { id: 'f3', ext: 'MD', name: '추론 라우팅 구조 메모.md', size: '7KB', who: '정우성', at: '15:49',
+    heading: '추론 라우팅 구조 메모',
+    body: [
+      P('요청 난도 분류 → 모델 선택 → KV 캐시 계층 순서로 돈다.'),
+      H('캐시 계층'),
+      P('HBM · 호스트 메모리 · 공유 스토리지 세 층이다. HBM 이 모자라면 아래 층으로 넘기는데, 넘길 때 지연이 얼마나 붙는지는 아직 측정 전이다.')
+    ] }
+];
+
+/* 화자는 목소리로 갈라 익명 라벨로 낸다 (X-132). 이름이 붙은 목소리는 이름으로 선다 */
+const SPEAKERS = { s1: null, s2: null, s3: '정우성' };
+const ROSTER = ['이건학', '정우성', '유하람', '김세진', '박도윤'];
+
+/* MOD-105 가 쓰는 것 — 조직도는 회의 예약(MOD-102)의 참석자 고르는 자리와 같은 모양이다.
+   부서를 왼쪽, 그 부서 사람을 오른쪽에 두고 위 검색은 부서를 넘어 전부에서 찾는다.
+   이름과 함께 부서·직급을 낸다 — 동명이인을 이름만으로 못 가른다 (MOD-105-E02) */
+const ORG = [
+  { unit: '제품본부', members: [
+    { name: '이건학', rank: '대리' }, { name: '정우성', rank: '과장' },
+    { name: '유하람', rank: '사원' }, { name: '윤도현', rank: '사원' } ] },
+  { unit: '경영관리부', members: [
+    { name: '김세진', rank: '차장' }, { name: '조아이보리', rank: '대리' } ] },
+  { unit: '국내사업부', members: [
+    { name: '박도윤', rank: '과장' }, { name: '최유정', rank: '과장' } ] },
+  { unit: '기획팀', members: [
+    { name: '한지우', rank: '차장' }, { name: '이진백', rank: '과장' } ] },
+  { unit: '재무팀', members: [ { name: '양승철', rank: '부장' } ] }
+];
+/* 「참석」은 이 회의의 참석자, 「열람」은 공유로 들어온 사람이다 (X-31 · X-32) */
+const ATTENDEES = ['이건학', '정우성', '유하람', '김세진', '박도윤'];
+const VIEWERS = ['한지우'];
+const FLAT = ORG.flatMap(u => u.members.map(m => ({ ...m, unit: u.unit })));
+
+/* MOD-104 가 고르는 가짜 파일. 한 건 20MB 한도와 형식 검사를 그 자리에서 보인다 (§5.4).
+   데모가 받는 형식은 PDF · Markdown 둘이다 (사용자 결정) */
+const PICKABLE = [
+  { name: '4분기 예산안 초안.pdf', size: '1.8MB', bad: null },
+  { name: '회의 준비 메모.md', size: '12KB', bad: null },
+  { name: '전체 로그 덤프.pdf', size: '24.6MB', bad: '20MB가 넘는 파일은 첨부할 수 없습니다.' },
+  { name: '구조도 원본.png', size: '3.2MB', bad: '첨부할 수 없는 형식입니다. 문서 · 이미지 · 압축 파일을 올려 주세요.' }
+];
+const ATTACH_MAX = 20;
+
+/* 30분 단위 시각 (X-149) */
+const TIME_OPTIONS = Array.from({ length: 48 }, (_, i) =>
+  String(Math.floor(i / 2)).padStart(2, '0') + ':' + (i % 2 ? '30' : '00'));
+
+const NO_TITLE = '제목 없는 회의';
+const MAX_AGENDA = 20;
+
+class Component extends DCLogic {
+  state = {
+    screen: '예정', viewer: '만든 사람',
+    left: 'memo', right: 'mat',
+    editing: false, bodies: {}, dropped: [], removed: [], added: [],
+    memos: MEMOS.map(m => m.id), draft: '', memoTarget: '안건 1', pickerOpen: false,
+    agendaDraft: '', file: null, marked: null,
+    speakers: { ...SPEAKERS }, speakerOpen: null, pendingName: null,
+    share: false, shareQuery: '', picks: [], viewers: [...VIEWERS], shareUnit: null,
+    headEdit: false, hTitle: null, hPeople: null, hQuery: '',
+    hDate: null, hFrom: null, hTo: null, hPlace: null,
+    attach: false, staged: [], attached: [],
+    ask: null, askArg: null, toast: null, toastTone: 'success',
+    seconds: 0
+  };
+
+  componentDidMount() {
+    this.timer = setInterval(() => {
+      if (this.state.screen === '진행 중') this.setState({ seconds: this.state.seconds + 1 });
+    }, 1000);
+    this.sync();
+  }
+  componentDidUpdate() { this.sync(); }
+  componentWillUnmount() { clearInterval(this.timer); clearTimeout(this.settleTimer); }
+
+  /* [회의 종료]·[다시 시도]로 「정리 중」에 들어오면 1초 뒤 「완료」으로 넘어간다.
+     합성은 자동이라 사람이 눌러 넘기는 단계가 없다 (spec §8-2 · §8-6) — 시안에서도
+     버튼을 만들지 않고 그대로 흐르게 둔다. 프롭으로 「정리 중」을 고른 경우에는
+     그 화면을 보려는 것이므로 넘기지 않는다 */
+  settle() {
+    clearTimeout(this.settleTimer);
+    this.settleTimer = setTimeout(() => {
+      if (this.state.screen === '정리 중') this.setState({ screen: '완료', right: 'mat' });
+    }, 1000);
+  }
+
+  /* 프롭이 «바뀐 순간»에만 화면 상태를 따라간다 — 화면 안에서 [회의 시작]으로 옮긴
+     상태를 프롭이 매 렌더 되돌리면 안 된다 */
+  sync() {
+    const p = this.props, next = {};
+    if (p.screenState !== undefined && p.screenState !== this.seenScreen) {
+      this.seenScreen = p.screenState; next.screen = p.screenState;
+      /* 프롭으로 바로 「진행 중」을 볼 때는 회의가 도는 중간이 보여야 한다.
+         화면 안에서 [회의 시작]을 눌러 온 것은 0 에서 센다 (startMeeting) */
+      if (p.screenState === '진행 중') next.seconds = 1394;
+    }
+    if (p.viewer !== undefined && p.viewer !== this.seenViewer) { this.seenViewer = p.viewer; next.viewer = p.viewer; }
+    if (Object.keys(next).length) { clearTimeout(this.settleTimer); next.editing = false; next.headEdit = false; next.ask = null; this.setState(next); }
+  }
+
+  clock() {
+    const s = this.state.seconds, p = n => String(n).padStart(2, '0');
+    return p(Math.floor(s / 3600)) + ':' + p(Math.floor(s / 60) % 60) + ':' + p(s % 60);
+  }
+
+  toast(message, tone) { this.setState({ toast: message, toastTone: tone || 'success', ask: null, askArg: null }); }
+
+  /* 안건 하나를 회의록 블록으로 — 상태와 관계가 무엇을 내는지 여기서 한 번에 가른다 */
+  block(a, i, opts) {
+    const st = this.state;
+    /* 본문은 줄 목록이다 (D12). 읽기도 편집도 «줄 하나가 행 하나»로 같은 모양이다 —
+       한 덩어리 입력 칸을 두면 읽을 때와 고칠 때의 모양이 갈린다 */
+    const draft = st.bodies[a.id] !== undefined ? st.bodies[a.id] : (opts.settled ? (a.lines || []) : []);
+    const setLines = next => this.setState({ bodies: { ...st.bodies, [a.id]: next } });
+    const lines = draft.filter(t => t.trim());
+    const todos = a.todos.filter(t => !st.dropped.includes(a.id + '|' + t.what));
+    return {
+      head: '안건 ' + opts.no + '. ' + a.title,
+      hasSrc: !!a.src, src: a.src || '',
+      hasMark: opts.settled, mark: a.decided ? '결론 남' : '결론 안 남',
+      markColor: a.decided ? 'var(--text-secondary)' : 'var(--text-tertiary)',
+      canRemove: opts.editing,
+      askRemove: () => this.setState({ ask: 'removeAgenda', askArg: a.id }),
+      reading: !opts.editing, editing: opts.editing,
+      hasBody: lines.length > 0, noBody: lines.length === 0, lines,
+      editLines: draft.map((t, li) => ({
+        text: t,
+        set: e => setLines(draft.map((x, k) => k === li ? e.target.value : x)),
+        remove: () => setLines(draft.filter((x, k) => k !== li))
+      })),
+      addLine: () => setLines([...draft, '']),
+      todoShown: opts.settled && !opts.editing,
+      hasTodos: todos.length > 0, noTodos: todos.length === 0,
+      todos: todos.map(t => ({
+        what: t.what, hasDue: !!t.due, meta: t.due || '',
+        promoted: t.promoted,
+        canPromote: !t.promoted && opts.canPromote,
+        canDrop: !t.promoted && opts.canPromote,
+        drop: () => this.setState({ dropped: [...st.dropped, a.id + '|' + t.what] })
+      })),
+      hasEv: opts.settled && !opts.editing && opts.canEvidence && (a.evs || []).length > 0,
+      evs: (a.evs || []).map(at => ({
+        at, cls: this.state.marked === at ? 'filter-chip on' : 'filter-chip',
+        jump: () => this.setState({ right: 'script', marked: at })
+      })),
+      style: i === 0 ? 'padding-bottom:18px' : 'padding:18px 0;border-top:1px solid var(--border-subtle)'
+    };
+  }
+
+  renderVals() {
+    const st = this.state;
+    const S = st.screen, V = st.viewer;
+    const planned = S === '예정', live = S === '진행 중', settling = S === '정리 중',
+          settled = S === '완료', failed = S === '실패', cancelled = S === '취소됨';
+    const owner = V === '만든 사람', attendee = V === '만든 사람' || V === '참석자', shared = V === '공유받은 사람';
+
+    /* §5.7 관계별 — 만든 사람은 참석자가 할 수 있는 것을 전부 한다.
+       공유받은 사람은 회의록 · 스크립트 · 내보내기만 갖고 나머지 조작 버튼은 숨는다 */
+    /* [수정]이 서는 곳 — 완료·실패는 회의록을, 예정·취소됨은 안건을 손본다.
+       §5.2 와이어프레임 변형 1(예정)이 회의록 구획에 [수정]을 그려 둔 것을 따른다
+       (§5.7 예정 「제한: 회의록 수정」과 어긋나는 자리다 — 리포트 M11) */
+    const canEditNote = owner && !live && !settling;
+    const editing = st.editing && canEditNote;
+
+    const agendaLive = [...AGENDA, ...st.added].filter(a => !st.removed.includes(a.id));
+    /* 「기타」 블록을 두지 않는다 (D14) — 안건에 안 맞는 내용이면 AI 가 새 안건을 세운다 */
+    const noteSource = agendaLive;
+
+    const tab = on => 'display:flex;align-items:center;height:42px;padding:0 2px;font-size:13px;font-weight:' +
+      (on ? '700' : '500') + ';color:' + (on ? 'var(--text-primary)' : 'var(--text-tertiary)') +
+      ';border-bottom:2px solid ' + (on ? 'var(--text-primary)' : 'transparent');
+
+    /* 오른쪽 탭 — 「예정」·「취소됨」에는 스크립트 탭 자체가 서지 않는다 (E26) */
+    const tabMatShown = attendee;
+    const tabScriptShown = !planned && !cancelled;
+    const rightShown = tabMatShown || tabScriptShown;
+    const matOn = tabMatShown && (st.right === 'mat' || !tabScriptShown);
+    const scriptOn = tabScriptShown && !matOn;
+
+    const files = [...FILES, ...st.attached].filter(f => !st.dropped.includes(f.id));
+    const openFile = files.find(f => f.id === st.file) || null;
+
+    const leftTabs = live && attendee;
+    const memoTab = leftTabs && st.left === 'memo';
+    const aiTab = live && (!leftTabs || st.left === 'ai');
+
+    const memos = MEMOS.filter(m => st.memos.includes(m.id));
+    const speakerLabelOf = sp => st.speakers[sp] || ('화자 ' + sp.slice(1));
+
+    const askOpen = k => st.ask === k;
+
+    /* 이미 참석이거나 이미 열람인 사람은 안 낸다 (MOD-105-E02) */
+    const addable = m => !ATTENDEES.includes(m.name) && !st.viewers.includes(m.name) && !st.picks.includes(m.name);
+    const q = st.shareQuery.trim();
+    const shareHits = q ? FLAT.filter(m => m.name.includes(q) && addable(m)) : [];
+    const shareUnit = st.shareUnit || ORG[0].unit;
+    const memoTargetLabels = agendaLive.map((a, i) => '안건 ' + String(i + 1));
+    const hq = st.hQuery.trim();
+    const headHits = hq ? FLAT.filter(m => m.name.includes(hq) && !(st.hPeople || []).includes(m.name)) : [];
+
+    return {
+      /* 머리 */
+      title: MEETING.title || NO_TITLE,
+      /* 조직 귀속은 내지 않는다 (2026-09-10 사용자 결정) — 정본 E03 은 「시각 · 장소 ·
+         조직 귀속 · 참석 인원」이나 회의 정보에서 조직은 읽는 사람이 쓰지 않는 값이다 */
+      facts: [MEETING.when, MEETING.place, MEETING.people]
+        .concat(settled ? [MEETING.duration] : []).filter(Boolean).join(' · '),
+      badgeShown: settling || failed || cancelled,
+      badgeLabel: settling ? '정리 중' : failed ? '실패' : '취소됨',
+      badgeCls: failed ? 'badge danger' : settling ? 'badge progress' : 'badge neutral',
+      soloShown: false,   /* 참석자를 아직 안 채운 회의에만 선다 — 이 회의는 예약으로 섰다 */
+      isLive: live, isSettling: settling, isFailed: failed,
+      clock: this.clock(), starter: MEETING.starter,
+
+      btnStart: (planned || cancelled) && attendee,
+      btnEnd: live && attendee,
+      /* 예약값 수정은 머리 구획 제목 옆으로 옮겼다 (2026-09-10 사용자 결정) */
+      /* 예약값을 고치는 자리 — 「예정」과 「완료」 둘에서 연다 (D14).
+         ⚠ §5.7 완료의 제한 행동에 「수정」이 있으나 사용자 결정으로 연다 */
+      btnHeadEdit: (planned || settled) && attendee && !st.headEdit,
+      /* 「예정」에는 공유가 서지 않는다 — 아직 읽을 회의록이 없다 (2026-09-10 사용자 결정) */
+      btnShare: attendee && !planned,
+      btnExport: settled && (attendee || shared),
+      btnNext: settled && attendee,
+      btnRetry: failed && attendee,
+      /* 예정 → 진행 중. 경과 시간은 이 순간부터 0 에서 센다 (E12) */
+      startMeeting: () => this.setState({ screen: '진행 중', left: 'memo', right: 'mat', seconds: 0 }),
+      endMeeting: () => { this.setState({ screen: '정리 중', right: 'mat' }); this.settle(); },
+      retry: () => { this.setState({ screen: '정리 중' }); this.settle(); },
+      exportNote: () => this.toast('회의록을 내려받았습니다.', 'success'),
+      noop: () => {},
+
+      /* 왼쪽 */
+      hasPurpose: !!MEETING.purpose, purpose: MEETING.purpose,
+      gridCols: rightShown ? 'minmax(0,1.15fr) minmax(0,0.85fr)' : 'minmax(0,1fr)',
+      aiAt: '15:58',
+      savedShown: settled && !editing, savedAt: MEETING.savedAt,
+      btnEditNote: canEditNote, editLabel: editing ? '저장' : '수정',
+      toggleEdit: () => {
+        if (editing) { this.setState({ editing: false }); this.toast('저장했습니다.', 'success'); }
+        else this.setState({ editing: true });
+      },
+
+      leftTabs, showMemo: () => this.setState({ left: 'memo' }), showAi: () => this.setState({ left: 'ai' }),
+      tabMemoStyle: tab(memoTab), tabAiStyle: tab(aiTab),
+
+      /* 「취소됨」의 화면은 「예정」과 같다. 다만 회의록 수정은 열려 있어(§5.7)
+         [수정]을 누르면 안건 블록이 편집 상태로 선다 — 그것을 하면 취소가 풀린다 */
+      showAgendaOnly: planned || cancelled,
+      agendaOnly: agendaLive.map((a, i) => ({
+        no: String(i + 1), title: a.title, src: a.src,
+        canRemove: editing,
+        askRemove: () => this.setState({ ask: 'removeAgenda', askArg: a.id }),
+        style: i === 0 ? 'padding-bottom:16px' : 'padding:16px 0;border-top:1px solid var(--border-subtle)'
+      })),
+
+      showMemoList: memoTab,
+      /* 메모는 안건에 매달린다 (CMP-105 · spec §6-4) — 블록 모양을 「예정」·「완료」과
+         같게 두어 같은 회의록을 상태마다 다르게 읽지 않게 한다 */
+      memoBlocks: agendaLive.map((a, i) => {
+        const mine = memos.filter(m => m.aid === a.id);
+        return {
+          head: '안건 ' + String(i + 1) + '. ' + a.title,
+          hasSrc: true, src: a.src,
+          hasMemo: mine.length > 0,
+          memos: mine.map(m => ({ text: m.text, at: m.at })),
+          style: i === 0 ? 'padding-bottom:18px' : 'padding:18px 0;border-top:1px solid var(--border-subtle)'
+        };
+      }),
+
+      showLiveNote: aiTab,
+      liveNotes: noteSource.map((a, i) => ({
+        head: '안건 ' + String(i + 1) + '. ' + a.title,
+        hasSrc: !!a.src, src: a.src || '', lines: a.live || [],
+        style: i === 0 ? 'padding-bottom:18px' : 'padding:18px 0;border-top:1px solid var(--border-subtle)'
+      })),
+
+
+      showNote: settled || failed,
+      notes: noteSource.map((a, i) => this.block(a, i, {
+        no: String(i + 1), settled, editing, canPromote: settled && attendee, canEvidence: attendee
+      })),
+      addAgendaShown: editing,
+      agendaDraft: st.agendaDraft,
+      setAgendaDraft: e => this.setState({ agendaDraft: e.target.value }),
+      agendaFull: agendaLive.length >= MAX_AGENDA || !st.agendaDraft.trim(),
+      /* 화면에서 세운 안건의 출처는 「직접 입력」이다 (I34 · MOD-102-E07) */
+      addAgenda: () => {
+        const title = st.agendaDraft.trim();
+        if (!title || agendaLive.length >= MAX_AGENDA) return;
+        this.setState({
+          added: [...st.added, { id: 'n' + (st.added.length + 1), title, src: '직접 입력', decided: false, live: [], lines: [], todos: [], evs: [] }],
+          agendaDraft: ''
+        });
+      },
+
+      composerShown: live && owner,
+      draft: st.draft, setDraft: e => this.setState({ draft: e.target.value }),
+      addMemo: () => this.setState({ draft: '' }),
+      memoSaveFailed: false,
+      /* 대상 안건의 기본값은 첫 안건이다. 안건이 하나도 없으면 매달 자리가 없어
+         드롭다운이 비활성이다 — 「기타」 블록을 두지 않기 때문이다 (D14).
+         비활성일 때의 라벨은 요소명 「안건」을 그대로 쓴다: 정본에 이 자리의 문구가 없다 */
+      memoTarget: memoTargetLabels.includes(st.memoTarget) ? st.memoTarget : (memoTargetLabels[0] || '안건'),
+      memoTargetDisabled: memoTargetLabels.length === 0,
+      pickerOpen: st.pickerOpen && memoTargetLabels.length > 0,
+      togglePicker: () => { if (memoTargetLabels.length) this.setState({ pickerOpen: !st.pickerOpen }); },
+      memoTargets: memoTargetLabels.map(label => ({
+        label,
+        style: 'display:block;width:100%;height:34px;padding:0 10px;text-align:left;font-size:14px;border-radius:var(--radius-control);background:' +
+          (st.memoTarget === label ? 'var(--surface-sunken)' : 'transparent'),
+        pick: () => this.setState({ memoTarget: label, pickerOpen: false })
+      })),
+
+      /* 오른쪽 */
+      rightShown, tabMatShown, tabScriptShown,
+      showMat: () => this.setState({ right: 'mat' }), showScript: () => this.setState({ right: 'script' }),
+      tabMatStyle: tab(matOn), tabScriptStyle: tab(scriptOn),
+      matOn, scriptOn,
+
+      hasFiles: files.length > 0, noFiles: files.length === 0,
+      files: files.map(f => ({
+        name: f.name, size: f.size,
+        style: 'display:flex;align-items:center;gap:12px;padding:8px 10px;border-radius:var(--radius-chip);cursor:pointer;background:' +
+          (openFile && f.id === openFile.id ? 'var(--surface-selected-row)' : 'transparent'),
+        open: () => this.setState({ file: f.id }),
+        canDrop: attendee && !live,
+        askDrop: e => { if (e && e.stopPropagation) e.stopPropagation(); this.setState({ ask: 'dropFile', askArg: f.id }); }
+      })),
+      /* 고른 자료 하나만 드로어로 연다 — 탭 안에 미리보기를 깔지 않는다 */
+      fileOpen: !!openFile,
+      file: openFile ? {
+        name: openFile.name, size: openFile.size, who: openFile.who, at: openFile.at,
+        kicker: openFile.ext === 'MD' ? 'Markdown 문서' : 'PDF 문서',
+        heading: openFile.heading,
+        body: openFile.body.map(b => ({ text: b.text, isHead: b.kind === 'h', isText: b.kind === 'p' }))
+      } : { body: [] },
+      closeFile: () => this.setState({ file: null }),
+      /* 붙인 시각·용량은 드로어 발치에 이미 선다 — 머리에는 올린 사람만 낸다 */
+      fileWho: openFile
+        ? React.createElement('span', { className: 't-meta', style: { fontSize: 12 } }, openFile.who)
+        : null,
+      fileFooter: React.createElement(React.Fragment, null,
+        React.createElement('span', { className: 't-meta', style: { fontSize: 12 } }, openFile ? openFile.ext + ' · ' + openFile.size + ' · ' + openFile.at : ''),
+        React.createElement('span', { className: 'spacer' }),
+        React.createElement('button', { type: 'button', className: 'btn h40' }, '내려받기')),
+      btnAttach: attendee && !live,
+
+      script: SCRIPT.filter(s => live || s.firm !== false).map(s => {
+        const marked = st.marked === s.at;
+        return {
+          isTalk: s.k === 'talk', isMemo: s.k === 'memo',
+          who: s.k === 'talk' ? speakerLabelOf(s.sp) : '',
+          at: s.at, by: s.by || '', text: s.text,
+          whoStyle: 'text-align:left;font-size:12px;font-weight:700;color:' +
+            (attendee ? 'var(--action)' : 'var(--text-secondary)') + ';cursor:' + (attendee ? 'pointer' : 'default'),
+          nameSpeaker: () => { if (attendee) this.setState({ speakerOpen: s.sp }); },
+          /* 확정은 본문색, 잠정은 회색 (§5.4 — 잠정은 밀어 주기만 하고 저장하지 않는다) */
+          textColor: s.firm === false ? 'var(--text-tertiary)' : 'var(--text-primary)',
+          style: 'display:flex;gap:12px;padding:8px 10px;border-radius:var(--radius-chip);background:' +
+            (marked ? 'var(--selected-bg)' : 'transparent')
+        };
+      }),
+      speakerOpen: !!st.speakerOpen,
+      speakerLabel: st.speakerOpen ? speakerLabelOf(st.speakerOpen) : '',
+      speakerNamed: !!(st.speakerOpen && st.speakers[st.speakerOpen]),
+      roster: ROSTER.map(name => ({
+        name,
+        pick: () => {
+          const sp = st.speakerOpen;
+          if (st.speakers[sp]) this.setState({ ask: 'nameSpeaker', askArg: name, pendingName: name });
+          else {
+            this.setState({ speakers: { ...st.speakers, [sp]: name }, speakerOpen: null });
+            this.toast('이름을 달았습니다. 다음 회의부터 이 이름으로 표시됩니다.', 'success');
+          }
+        }
+      })),
+      askUnname: () => this.setState({ ask: 'nameSpeaker', askArg: null, pendingName: null }),
+      applyName: () => {
+        const sp = st.speakerOpen;
+        this.setState({ speakers: { ...st.speakers, [sp]: st.pendingName }, speakerOpen: null });
+        this.toast('이름을 바꿨습니다.', 'success');
+      },
+
+      /* MOD-104 자료 첨부 */
+      openAttach: () => this.setState({ attach: true, staged: [] }),
+      /* I08 — [×]·바깥 클릭이 같다. 올린 것이 있으면 TXT-004 로 한 번 묻는다 */
+      closeAttach: () => {
+        if (st.staged.length) this.setState({ ask: 'discardAttach' });
+        else this.setState({ attach: false });
+      },
+      askDiscardAttachOpen: askOpen('discardAttach'),
+      discardAttach: () => this.setState({ attach: false, staged: [], ask: null }),
+      attachOpen: st.attach,
+      /* I01·I02 — 고르는 시점에 크기와 형식을 본다. 되는 것만 붙이고 안 되는 것은
+         사유와 함께 목록에 남긴다 (I07 · T04) */
+      pickFile: () => {
+        const next = PICKABLE.filter(f => !st.staged.some(x => x.name === f.name));
+        this.setState({ staged: [...st.staged, ...next] });
+      },
+      attachHasFiles: st.staged.length > 0,
+      attachPartial: st.staged.some(f => f.bad),
+      attachFiles: st.staged.map(f => ({
+        name: f.name, size: f.size, bad: !!f.bad, reason: f.bad || '',
+        nameColor: f.bad ? 'var(--text-tertiary)' : 'var(--text-primary)',
+        remove: () => this.setState({ staged: st.staged.filter(x => x.name !== f.name) })
+      })),
+      /* 못 올라간 것이 있으면 되는 것만 붙는다. 하나도 없으면 비활성 (I05) */
+      attachEmpty: st.staged.filter(f => !f.bad).length === 0,
+      doAttach: () => {
+        const ok = st.staged.filter(f => !f.bad).map((f, i) => ({
+          id: 'u' + (st.attached.length + i + 1), ext: f.name.endsWith('.md') ? 'MD' : 'PDF',
+          name: f.name, size: f.size, who: '이건학', at: '16:12',
+          heading: f.name.replace(/\.(pdf|md)$/, ''),
+          body: [P('회의 중에 붙인 자료입니다.')]
+        }));
+        this.setState({ attached: [...st.attached, ...ok], attach: false, staged: [] });
+        this.toast('자료를 첨부했습니다.', 'success');
+      },
+
+      /* E59~E62 머리 편집 — 예약값(제목 · 날짜·시간 · 참석자)을 그 자리에서 고친다.
+         정본 I22 는 [수정]이 MOD-102 를 열게 했는데, 버튼을 구획 제목 옆으로 옮기면서
+         모달 대신 인라인으로 바꿨다 (2026-09-10 사용자 결정 · 리포트 M14) */
+      headReading: !st.headEdit, headEditing: st.headEdit,
+      /* 고치는 동안에는 머리가 세로로 서고 [회의 시작]이 한 칸 아래에 비활성으로 남는다 —
+         고치다 만 값으로 회의를 열지 않는다 */
+      headStyle: st.headEdit ? 'display:block' : '',
+      headActionsStyle: st.headEdit ? 'justify-content:flex-end;margin-top:16px' : '',
+      openHeadEdit: () => this.setState({
+        headEdit: true, hTitle: MEETING.title, hPeople: [...ATTENDEES], hQuery: '',
+        hDate: MEETING.date, hFrom: MEETING.from, hTo: MEETING.to, hPlace: MEETING.place
+      }),
+      cancelHeadEdit: () => this.setState({ headEdit: false, hQuery: '' }),
+      saveHeadEdit: () => { this.setState({ headEdit: false, hQuery: '' }); this.toast('저장했습니다.', 'success'); },
+      headUnchanged: st.hTitle === MEETING.title && st.hDate === MEETING.date
+        && st.hFrom === MEETING.from && st.hTo === MEETING.to && st.hPlace === MEETING.place
+        && (st.hPeople || []).join() === ATTENDEES.join(),
+      hTitle: st.hTitle || '',
+      setHTitle: e => this.setState({ hTitle: e.target.value }),
+      hPeopleCount: String((st.hPeople || []).length),
+      hPeople: (st.hPeople || []).map(n => {
+        const m = FLAT.find(x => x.name === n) || { unit: '' };
+        return { name: n, unit: m.unit, remove: () => this.setState({ hPeople: st.hPeople.filter(x => x !== n) }) };
+      }),
+      hQuery: st.hQuery,
+      setHQuery: e => this.setState({ hQuery: e.target.value }),
+      hSearchOpen: st.hQuery.trim().length > 0,
+      hHits: headHits.map(m => ({
+        name: m.name, initial: m.name.slice(0, 1), unit: m.unit, rank: m.rank,
+        pick: () => this.setState({ hPeople: [...st.hPeople, m.name], hQuery: '' })
+      })),
+      hNoHit: st.hQuery.trim().length > 0 && headHits.length === 0,
+      hDate: st.hDate || MEETING.date,
+      setHDate: e => this.setState({ hDate: e.target.value }),
+      hFrom: st.hFrom || MEETING.from,
+      setHFrom: e => this.setState({ hFrom: e.target.value }),
+      hTo: st.hTo || MEETING.to,
+      setHTo: e => this.setState({ hTo: e.target.value }),
+      /* 장소는 이름표다 — 회의실 판정(MOD-102-E04 · X-190)은 여기로 안 온다 (D14) */
+      hPlace: st.hPlace === null ? MEETING.place : st.hPlace,
+      setHPlace: e => this.setState({ hPlace: e.target.value }),
+      /* 시각은 30분 단위다 (X-149) */
+      timeOptions: TIME_OPTIONS,
+
+      /* MOD-105 공유 — 검색 · 조직도 · 볼 수 있는 사람 셋으로 선다 */
+      openShare: () => this.setState({ share: true, shareQuery: '', picks: [], shareUnit: null }),
+      /* I06 — [×]·바깥 클릭이 같다. 고른 것이 있으면 TXT-004 로 한 번 묻는다 */
+      closeShare: () => {
+        if (st.picks.length) this.setState({ ask: 'discardShare' });
+        else this.setState({ share: false, shareQuery: '' });
+      },
+      askDiscardOpen: askOpen('discardShare'),
+      discardShare: () => this.setState({ share: false, shareQuery: '', picks: [], ask: null }),
+      shareOpen: st.share,
+
+      shareQuery: st.shareQuery,
+      setShareQuery: e => this.setState({ shareQuery: e.target.value }),
+      shareSearchOpen: q.length > 0,
+      shareHits: shareHits.map(m => ({
+        name: m.name, initial: m.name.slice(0, 1), unit: m.unit, rank: m.rank,
+        pick: () => this.setState({ picks: [...st.picks, m.name], shareQuery: '' })
+      })),
+      shareNoHit: q.length > 0 && shareHits.length === 0,
+
+      /* 조직도 — 왼쪽 부서(고를 수 있는 사람 수), 오른쪽 그 부서 사람 */
+      shareUnits: ORG.map(u => {
+        const n = u.members.filter(addable).length;
+        const on = u.unit === shareUnit;
+        return {
+          unit: u.unit, count: n,
+          style: 'display:flex;align-items:center;gap:8px;width:100%;height:32px;padding:0 10px;text-align:left;font-size:13px;font-weight:' +
+            (on ? '700' : '500') + ';border-radius:var(--radius-chip);color:' + (on ? 'var(--action)' : 'var(--text-primary)') +
+            ';background:' + (on ? 'var(--selected-bg)' : 'transparent'),
+          pick: () => this.setState({ shareUnit: u.unit })
+        };
+      }),
+      shareMembers: (ORG.find(u => u.unit === shareUnit) || ORG[0]).members.filter(addable).map(m => ({
+        name: m.name, initial: m.name.slice(0, 1), rank: m.rank,
+        rowStyle: 'display:flex;align-items:center;gap:10px;height:34px;padding:0 8px;border-radius:var(--radius-chip);cursor:pointer',
+        pick: () => this.setState({ picks: [...st.picks, m.name] })
+      })),
+      shareUnitEmpty: (ORG.find(u => u.unit === shareUnit) || ORG[0]).members.filter(addable).length === 0,
+
+      sharePicked: st.picks.length > 0,
+      shareCount: String(st.picks.length),
+      sharePicks: st.picks.map(n => {
+        const m = FLAT.find(x => x.name === n) || { unit: '' };
+        return { name: n, unit: m.unit, remove: () => this.setState({ picks: st.picks.filter(x => x !== n) }) };
+      }),
+      shareEmpty: st.picks.length === 0,
+      doShare: () => {
+        this.setState({ viewers: [...st.viewers, ...st.picks], share: false, picks: [], shareQuery: '' });
+        this.toast('공유했습니다. 알림을 보냈습니다.', 'success');
+      },
+
+      /* 참석자에게는 [삭제]가 안 붙는다 — 참석을 빼는 자리는 [수정]이다 (E05 · X-134) */
+      shareViewers: [...ATTENDEES.map(n => ({ n, how: '참석' })), ...st.viewers.map(n => ({ n, how: '열람' }))]
+        .map(({ n, how }) => {
+          const m = FLAT.find(x => x.name === n) || { unit: '', rank: '' };
+          return {
+            name: n, initial: n.slice(0, 1), unit: m.unit, rank: m.rank, how,
+            howCls: how === '참석' ? 'badge neutral' : 'badge outline',
+            canDrop: how === '열람',
+            askDrop: () => this.setState({ ask: 'unshare', askArg: n })
+          };
+        }),
+      askUnshareOpen: askOpen('unshare'),
+      /* I03 — 확인을 받고 목록에서 뺀다. 정본에 이 성공 토스트가 없어 내지 않는다 */
+      unshare: () => this.setState({ viewers: st.viewers.filter(n => n !== st.askArg), ask: null, askArg: null }),
+
+      /* 확인 · 토스트 */
+      askRemoveOpen: askOpen('removeAgenda'),
+      askDropOpen: askOpen('dropFile'),
+      askNameOpen: askOpen('nameSpeaker'),
+      askLeaveOpen: askOpen('leave'),
+      closeAsk: () => this.setState({ ask: null, askArg: null }),
+      removeAgenda: () => { this.setState({ removed: [...st.removed, st.askArg] }); this.toast('안건을 삭제했습니다.', 'success'); },
+      dropFile: () => { this.setState({ dropped: [...st.dropped, st.askArg], file: null }); this.toast('자료를 삭제했습니다.', 'success'); },
+      leave: e => { if (editing) { if (e && e.preventDefault) e.preventDefault(); this.setState({ ask: 'leave' }); } },
+      doLeave: () => this.setState({ ask: null, editing: false }),
+      toastOpen: !!st.toast, toastMessage: st.toast || '', toastTone: st.toastTone,
+      closeToast: () => this.setState({ toast: null })
+    };
+  }
+}
+</script>
+</body>
+</html>

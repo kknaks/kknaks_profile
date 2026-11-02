@@ -1,0 +1,24 @@
+{
+  "$comment": "Phase 8 증거(2026-10-01). 실측한 것만 resolved:true. M-5 는 서명본 설치 후 사용자 확인 항목이라 pending.",
+  "d4LoginMethod": {
+    "resolved": true,
+    "reference": "GET https://ax.medisolveai.xyz/api/auth/providers → {\"local\":true,\"oidc\":false} (2026-10-01 워커 curl). 사용자 웹 로그인 성공(2026-10-01, 코디네이터 확인)",
+    "attestedBy": "frontend 워커(curl 실측) + 코디네이터(사용자 로그인 확인 전달)"
+  },
+  "operationalServerLive": {
+    "resolved": true,
+    "reference": "curl https://ax.medisolveai.xyz/ → HTTP 200 (2026-10-01 워커 실측)",
+    "attestedBy": "frontend 워커"
+  },
+  "m1HttpsTrust": {
+    "resolved": true,
+    "reference": "curl -v https://ax.medisolveai.xyz/ → TLSv1.3, subject CN=medisolveai.xyz, SAN *.medisolveai.xyz 일치, issuer Google Trust Services WE1, 유효 2026-08-30~2026-11-28, 'SSL certificate verify ok' (2026-10-01 워커 실측, macOS 시스템 신뢰 저장소)",
+    "attestedBy": "frontend 워커"
+  },
+  "m5": {
+    "resolved": false,
+    "status": "pending",
+    "reference": null,
+    "why": "앱 재시작 후 쿠키 유지는 서명·공증된 dmg 를 사용자가 설치해 로그인→종료→재실행으로 확인해야 한다. 아직 미측정"
+  }
+}

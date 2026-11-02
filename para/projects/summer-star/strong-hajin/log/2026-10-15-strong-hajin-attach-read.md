@@ -1,0 +1,59 @@
+
+# 작업 요약 — strong-hajin-attach-read (strong-hajin)
+
+기간: `2026-10-13` ~ `2026-10-15`
+결과: 조사 전용(코드 변경 없음) — 원인 확정, 개선 목록 SH-IMP-023 으로 넘김(PR #92)
+
+## 1. 무엇을 했나
+
+결과 자료에 올린 PDF(3.1MB)가 「내용을 읽지 못함 · 본문에 텍스트가 없습니다 (스캔 이미지 PDF 또는 빈 파일)」
+배지를 받았다. backend 워커에게 read-only 조사를 발주해 업로드 → 추출 → 저장 → 배지 경로를 추적했고,
+실제 파일을 운영과 같은 추출기에 넣어 원인을 확정했다. 판정은 계약대로였고 문제는 문구였다 —
+배지 축약을 SH-IMP-023 으로 개선 목록에 올렸다.
+
+## 2. 적용한 기술·개념
+
+- **PDF 텍스트 층 vs 윤곽선 글자** [[pdf-text-layer]] — 화면엔 글자인데 추출 0자인 이유를 가른 기준
+  - 왜 이걸 봤나: 「HTML 을 PDF 로 뽑았는데 왜 못 읽나」에 래스터화 · 윤곽선 · 추출기 버그 세 가설이 있었다.
+    쪽별 `/Font` 리소스 · 텍스트 연산자(BT/Tj/TJ) · Image XObject(최상위 · Form 재귀 · 인라인)를 세서 갈랐다
+  - 무엇이 어려웠나: 코드만으로는 단정 불가 — 실제 파일이 있어야 했다. 결과는 14쪽 0자, 폰트·텍스트 연산자 0,
+    이미지 0, 채움 경로 수백~수천 → 벡터 윤곽선. Producer=macOS Quartz PDFContext, Creator=Claude
+  - 근거: `research-attach-read-report.md` §7
+- **추출 파이프라인의 실패 사유 분기** [[failure-reason-classification]] · [[no-silent-fallback]] — 이미지 판정이 상태를 가른다
+  - 텍스트 0자 + 이미지 있음 → `needs_ocr`, 이미지 없음 → `empty_content`. 이미지 판정은 최상위 Image XObject 만
+    봐서 Form 으로 감싼 이미지 · 인라인 이미지를 놓친다(합성 PDF 로 확인). Office 는 이미지 판정이 없다
+  - `needs_ocr` 는 `finish()` 에서 `status=failed` 로 바뀌어 FE 전용 배지가 실데이터로 안 뜬다 — 설계 문서와 어긋남
+  - 근거: `platform/document_parsers.py:502-515` · `modules/work/material_extraction.py:366` · 리포트 §5
+
+## 3. 막혔던 것 / 사고
+
+- 첫 리포트는 「로컬 DB 에 해당 행 없음」으로 원인을 형식별 가설로만 남겼다 [[pdf-text-layer]] → 사용자가 원본 파일을 줘서 실측으로 확정.
+  화면 증상 조사는 **원본 파일을 먼저 받는 게** 빠르다
+- 코디 핸들이 조사 중 바뀌었다(`term_ad33…` → `term_172d…`) — 추가 지시에 새 핸들을 같이 실어 보내 보고가 닿았다
+- 빨간 배지 + 긴 문장 때문에 사용자가 업로드 실패로 읽었다 [[failure-reason-classification]] — 파일 자체는 정상(열기 · 다운로드 · 첨부)
+
+## 4. 결정
+
+| 날짜 | 결정 | 왜 |
+|---|---|---|
+| 2026-10-13 | 이번 파일의 `empty_content` 판정은 계약대로 — 고칠 것은 문구 | 텍스트 층도 이미지도 없는 윤곽선 PDF(실측) |
+| 2026-10-13 | 배지는 「내용을 읽지 못함」만, 사유는 `title` 로 → SH-IMP-023 미착수로 기록 | 사용자 지시 · 고도화와 묶어 처리 |
+| 2026-10-13 | 이미지 판정 · `needs_ocr` 저장 · 재추출 · OCR 은 SH-IMP-023 에 참고로만 | 사용자가 범위를 배지로 한정 |
+
+## 5. 날짜별 로그
+
+- `2026-10-13` 사용자 스크린샷으로 조사 요청 → backend 워커 read-only 발주 → 추출 경로·사유 분기 리포트
+- `2026-10-13` 실제 PDF 실측(§7) — 벡터 윤곽선 확정 · SH-IMP-023 기록 · PR #92
+- `2026-10-15` 마감
+
+## 6. 산출물
+
+- spec PR: https://github.com/kknaks/kknaks_profile/pull/92 (SH-IMP-023)
+- code PR: 없음
+- 커밋: 없음 — 조사 전용 작업
+- 리포트: `research-attach-read-report.md`
+
+## 7. 잔여
+
+- SH-IMP-023 착수 — 「검색 미지원 형식」도 같이 줄일지 확인
+- 별도 항목화 여부(사용자 판단): PDF 이미지 판정 오판 · `needs_ocr` 저장 시 `failed` 로 바뀜 · 재추출 수단 없음 · OCR

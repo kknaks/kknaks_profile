@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>내 업무 — SCAX</title>
+<link rel="stylesheet" href="./fonts/fonts.css">
+<link rel="stylesheet" href="./styles.css">
+<link rel="stylesheet" href="./_ds_bundle.css">
+<link rel="stylesheet" href="./handoff/my-work/css/components.css">
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="./_ds_bundle.js"></script>
+<script>window.SCAX_DS = window.SCAX || window.TheSCAXDesignSystem_7e8395;</script>
+<script src="./handoff/shell/js/nav.js"></script>
+<script src="./handoff/shared/js/work-data.js"></script>
+<script src="./handoff/my-work/js/data.js"></script>
+<script type="text/babel" src="./handoff/shell/js/scax-ui.jsx"></script>
+<script type="text/babel" src="./handoff/shell/js/work-modal.jsx"></script>
+<script type="text/babel" src="./handoff/my-work/js/my-work.v2.jsx"></script>
+<style>
+/* 업무 생성 시안: 기본 정보 / 업무 연결 / 자료 */
+.prototype-create-modal-backdrop{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;background:rgba(23,23,25,.32)}
+.prototype-create-modal{width:min(820px,calc(100vw - 40px));max-height:min(820px,calc(100vh - 40px));display:flex;flex-direction:column;background:#fff;border:1px solid rgba(112,115,124,.18);border-radius:16px;box-shadow:0 24px 64px rgba(23,23,25,.18);overflow:hidden;color:#171719}
+.prototype-create-modal__head{display:flex;align-items:center;justify-content:space-between;padding:22px 28px 18px;border-bottom:1px solid rgba(112,115,124,.16)}
+.prototype-create-modal__head h2{margin:0;font-size:20px;line-height:28px;font-weight:700;color:#171719}
+.prototype-create-modal__close{width:32px;height:32px;border:0;background:transparent;border-radius:8px;font-size:24px;line-height:1;color:#70737c;cursor:pointer}.prototype-create-modal__close:hover{background:rgba(112,115,124,.08);color:#171719}
+.prototype-create-modal__body{display:grid;grid-template-columns:188px minmax(0,1fr);padding:0;overflow:hidden}.prototype-create-modal__tabs{display:flex;flex-direction:column;gap:4px;padding:22px 14px;border-right:1px solid rgba(112,115,124,.16);background:#fafafa}.prototype-create-modal__tab{position:relative;padding:12px 14px;border:0;border-radius:8px;background:transparent;text-align:left;color:rgba(55,56,60,.62);font:600 14px/20px inherit;cursor:pointer}.prototype-create-modal__tab[aria-selected=true]{background:#fff;color:#171719;box-shadow:0 1px 4px rgba(23,23,25,.08)}.prototype-create-modal__tab-group{margin:0 14px 8px;color:rgba(55,56,60,.5);font-size:11px;font-weight:700;letter-spacing:.02em}.prototype-create-modal__content{padding:24px 28px;overflow:auto;min-height:360px}.prototype-create-modal__panel{display:none}.prototype-create-modal__panel[data-active=true]{display:block}
+.prototype-create-modal__grid{display:grid;grid-template-columns:1fr 1fr;gap:20px 16px}.prototype-create-modal__field{display:flex;flex-direction:column;gap:7px}.prototype-create-modal__field--full{grid-column:1/-1}.prototype-create-modal__field label{font-size:14px;line-height:20px;font-weight:600;color:#171719}.prototype-create-modal__field label em{font-style:normal;color:#e24a4a}.prototype-create-modal__field input,.prototype-create-modal__field textarea,.prototype-create-modal__field select{box-sizing:border-box;width:100%;border:1px solid rgba(112,115,124,.22);border-radius:8px;background:#fff;color:#171719;font:400 14px/20px inherit;padding:9px 12px;outline:none}.prototype-create-modal__field input,.prototype-create-modal__field select{height:40px}.prototype-create-modal__field textarea{min-height:132px;resize:vertical}.prototype-create-modal__field input:focus,.prototype-create-modal__field textarea:focus,.prototype-create-modal__field select:focus{border-color:#5467f7;box-shadow:0 0 0 3px rgba(84,103,247,.12)}
+.prototype-create-modal__section-title{margin:0 0 16px;font-size:16px;line-height:22px}.prototype-create-modal__checklist{display:flex;flex-direction:column;gap:8px}.prototype-create-modal__checkrow,.prototype-create-modal__file{display:flex;align-items:center;gap:10px;padding:11px 12px;border:1px solid rgba(112,115,124,.16);border-radius:8px;font-size:14px}.prototype-create-modal__checkrow input{accent-color:#5467f7}.prototype-create-modal__checkrow button,.prototype-create-modal__file button{margin-left:auto;border:0;background:transparent;color:#70737c;cursor:pointer}.prototype-create-modal__add{margin-top:10px;height:36px;border:1px dashed rgba(112,115,124,.3);border-radius:8px;background:#fff;color:#5467f7;font-weight:600;cursor:pointer}.prototype-create-modal__file + .prototype-create-modal__file{margin-top:8px}
+.prototype-create-modal__foot{display:flex;justify-content:flex-end;gap:8px;padding:16px 28px;border-top:1px solid rgba(112,115,124,.16)}.prototype-create-modal__button{height:40px;padding:0 16px;border-radius:8px;font:600 14px/20px inherit;cursor:pointer}.prototype-create-modal__button--cancel{border:1px solid rgba(112,115,124,.24);background:#fff;color:#37383c}.prototype-create-modal__button--primary{border:1px solid #5467f7;background:#5467f7;color:#fff}
+@media(max-width:620px){.prototype-create-modal__body{grid-template-columns:132px minmax(0,1fr)}.prototype-create-modal__content{padding:20px 16px}.prototype-create-modal__grid{grid-template-columns:1fr}.prototype-create-modal__field--full{grid-column:auto}}
+</style>
+<script>
+/* 이 파일 전용 정적 시안: 앱 로직은 건드리지 않고 업무 생성 모달의 정보 구조만 보여준다. */
+(function(){
+  function close(){var el=document.querySelector('.prototype-create-modal-backdrop');if(el)el.remove();}
+  function open(){
+    close();
+    var el=document.createElement('div');el.className='prototype-create-modal-backdrop';
+    el.innerHTML='<section class="prototype-create-modal" role="dialog" aria-modal="true" aria-label="새 업무 추가">'
+      +'<header class="prototype-create-modal__head"><h2>새 업무 추가</h2><button class="prototype-create-modal__close" type="button" aria-label="닫기">×</button></header>'
+      +'<div class="prototype-create-modal__body"><nav class="prototype-create-modal__tabs" role="tablist" aria-label="업무 생성 정보"><div class="prototype-create-modal__tab-group">필수</div><button class="prototype-create-modal__tab" type="button" role="tab" aria-selected="true" data-tab="basic">기본 정보</button><div class="prototype-create-modal__tab-group">선택</div><button class="prototype-create-modal__tab" type="button" role="tab" aria-selected="false" data-tab="checklist">체크리스트</button><button class="prototype-create-modal__tab" type="button" role="tab" aria-selected="false" data-tab="links">연관 업무</button><button class="prototype-create-modal__tab" type="button" role="tab" aria-selected="false" data-tab="materials">자료</button></nav><div class="prototype-create-modal__content">'
+      +'<div class="prototype-create-modal__panel" data-panel="basic" data-active="true"><div class="prototype-create-modal__grid">'
+      +'<div class="prototype-create-modal__field prototype-create-modal__field--full"><label>업무 제목 <em>*</em></label><input type="text" placeholder="업무 제목을 입력하세요"></div>'
+      +'<div class="prototype-create-modal__field"><label>시작일</label><input type="date"></div><div class="prototype-create-modal__field"><label>마감일</label><input type="date"></div>'
+      +'<div class="prototype-create-modal__field prototype-create-modal__field--full"><label>업무 내용</label><textarea placeholder="업무 내용을 입력하세요"></textarea></div>'
+      +'</div></div>'
+      +'<div class="prototype-create-modal__panel" data-panel="checklist" data-active="false"><h3 class="prototype-create-modal__section-title">체크리스트</h3><div class="prototype-create-modal__checklist"><label class="prototype-create-modal__checkrow"><input type="checkbox"><input type="text" value="계약 조항 확인" aria-label="체크리스트 항목 1"><button type="button" aria-label="항목 삭제">빼기</button></label><label class="prototype-create-modal__checkrow"><input type="checkbox"><input type="text" value="수정 의견 회신" aria-label="체크리스트 항목 2"><button type="button" aria-label="항목 삭제">빼기</button></label></div><button type="button" class="prototype-create-modal__add">+ 단계 추가</button></div>'
+      +'<div class="prototype-create-modal__panel" data-panel="links" data-active="false"><h3 class="prototype-create-modal__section-title">연관 업무</h3><div class="prototype-create-modal__grid"><div class="prototype-create-modal__field"><label>상위 업무</label><select><option>선택 안 함</option><option>제품 사용성 조사 정리</option><option>연동 규격 확인</option></select></div><div class="prototype-create-modal__field"><label>선행 업무</label><select><option>선택 안 함</option><option>제품 사용성 조사 정리</option><option>연동 규격 확인</option></select></div><div class="prototype-create-modal__field prototype-create-modal__field--full"><label>프로젝트</label><select><option>선택 안 함</option><option>SCAX 제품 개선</option><option>2026년 3분기 운영</option></select></div><div class="prototype-create-modal__field prototype-create-modal__field--full"><label>참고 업무</label><div class="prototype-create-modal__checklist"><label class="prototype-create-modal__checkrow"><input type="checkbox">제품 사용성 조사 정리 <small>민아 · SCAX 제품 개선</small></label><label class="prototype-create-modal__checkrow"><input type="checkbox">연동 규격 확인 <small>지호 · 2026년 3분기 운영</small></label><label class="prototype-create-modal__checkrow"><input type="checkbox">지난주 고객 의견 분류 <small>민석 · SCAX 제품 개선</small></label></div></div></div></div>'
+      +'<div class="prototype-create-modal__panel" data-panel="materials" data-active="false"><h3 class="prototype-create-modal__section-title">자료</h3><div class="prototype-create-modal__field"><label>참고 자료</label><input type="url" placeholder="참고 링크를 입력하세요"></div><div class="prototype-create-modal__field" style="margin-top:18px"><label>첨부파일</label><div class="prototype-create-modal__file"><span>파일을 선택해 추가</span><button type="button">파일 추가</button></div></div><div class="prototype-create-modal__field" style="margin-top:18px"><label>링크</label><input type="url" placeholder="https://"></div></div>'
+      +'</div></div><footer class="prototype-create-modal__foot"><button class="prototype-create-modal__button prototype-create-modal__button--cancel" type="button">취소</button><button class="prototype-create-modal__button prototype-create-modal__button--primary" type="button">업무 만들기</button></footer></section>';
+    document.body.appendChild(el);
+    el.addEventListener('click',function(e){if(e.target===el||e.target.closest('.prototype-create-modal__close')||e.target.closest('.prototype-create-modal__button--cancel'))close();var tab=e.target.closest('.prototype-create-modal__tab');if(tab){var key=tab.dataset.tab;el.querySelectorAll('.prototype-create-modal__tab').forEach(function(t){t.setAttribute('aria-selected',String(t===tab));});el.querySelectorAll('.prototype-create-modal__panel').forEach(function(p){p.dataset.active=String(p.dataset.panel===key);});}});
+  }
+  document.addEventListener('click',function(e){var b=e.target.closest('button');if(!b||b.textContent.trim()!=='업무 만들기'||b.closest('.prototype-create-modal'))return;e.preventDefault();e.stopImmediatePropagation();open();},true);
+})();
+</script>
+</body>
+</html>

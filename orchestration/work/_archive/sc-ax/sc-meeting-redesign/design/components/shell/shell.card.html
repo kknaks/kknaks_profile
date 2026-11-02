@@ -1,0 +1,26 @@
+<!-- @dsCard group="Components" viewport="900x420" name="Page frame" subtitle="AppShell · SideNav · AppHeader · AppBody — 모든 화면이 쓰는 틀. 사이드바는 접으면 아이콘만 남는다." -->
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<style>body{margin:0;background:var(--ax-surface-alt);font-family:var(--font-ui)}.stage{height:420px;overflow:hidden}.stage .scax-app-shell{min-width:0;height:420px}.stage .scax-page-body__content{min-width:0}.stage .scax-page-body__rail--left{width:260px}.ph{display:flex;align-items:center;justify-content:center;height:100%;font:400 13px/1.5 var(--font-ui);color:var(--ax-ink-assistive)}</style>
+</head><body>
+<div class="stage"><div id="root"></div></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script>
+const { AppShell, SideNav, AppHeader, AppBody } = window.TheSCAXDesignSystem_7e8395;
+const h = React.createElement;
+const items = [
+  { id: 'home', label: '홈', icon: 'home' },
+  { id: 'work', label: '업무', icon: 'square-check', href: '#' },
+  { id: 'meeting', label: '회의', icon: 'persons', href: '#' },
+  { id: 'chat', label: '채팅', icon: 'chat' },
+];
+function Demo() {
+  const [collapsed, setCollapsed] = React.useState(false);
+  return h(AppShell, { nav: h(SideNav, { user: { name: '유하람님', role: '기획자' }, utilityItems: [{ id: 'alert', label: '알림', icon: 'bell' }], items, activeId: 'meeting', collapsed, onCollapse: () => setCollapsed(v => !v) }) },
+    h(AppHeader, { breadcrumb: ['회의', '회의 목록'], title: '회의' }),
+    h(AppBody, { railLeft: h('div', { className: 'ph' }, '왼쪽 레일') }, h('div', { className: 'ph' }, '본문'))
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script></body></html>

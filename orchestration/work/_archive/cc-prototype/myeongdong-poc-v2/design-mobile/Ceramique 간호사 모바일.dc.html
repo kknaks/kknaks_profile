@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/medikit-aea7ac33-f044-4445-9164-87b8b69474dc/fonts/fonts.css">
+  <link rel="stylesheet" href="_ds/medikit-aea7ac33-f044-4445-9164-87b8b69474dc/_ds_bundle.css">
+  <link rel="stylesheet" href="_ds/medikit-aea7ac33-f044-4445-9164-87b8b69474dc/styles.css">
+  <link rel="stylesheet" href="ceramique-theme.css">
+  <link rel="stylesheet" href="medikit-patches.css">
+  <script src="_ds/medikit-aea7ac33-f044-4445-9164-87b8b69474dc/_ds_bundle.js"></script>
+  <style>html,body{margin:0;height:100%;}a{color:#2498bd;}a:hover{color:#1d7f9e;}
+  :where(.cc-btn){background:none;border-width:0;padding:0;font:inherit;cursor:pointer;text-align:left;}
+  .ip-pulse{animation:ipPulse 1.6s ease-out infinite;}
+  @keyframes ipPulse{0%{box-shadow:0 0 0 0 rgba(36,152,189,0.45);}100%{box-shadow:0 0 0 18px rgba(36,152,189,0);}}
+  .ip-spin{animation:ipSpin 0.9s linear infinite;}
+  @keyframes ipSpin{to{transform:rotate(360deg);}}</style>
+</helmet>
+<div data-product="ceramique" data-screen-label="간호사 모바일" class="bg-ms-gray-100" style="height:100vh;max-width:520px;margin:0 auto;display:flex;flex-direction:column;overflow:hidden;position:relative;">
+
+  <!-- ========== 시술실 현황 ========== -->
+  <sc-if value="{{ isList }}" hint-placeholder-val="{{ true }}">
+    <div class="bg-ms-white border-ms-gray-200" style="height:56px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 16px;border-bottom-width:1px;border-bottom-style:solid;">
+      <div style="display:flex;flex-direction:column;">
+        <span class="text-typo-title-sm-600 text-ms-gray-800" style="white-space:nowrap;">시술실 현황</span>
+        <button type="button" onClick="{{ switchMe }}" class="cc-btn text-typo-caption-md-400 text-ms-gray-600" style="white-space:nowrap;" title="데모: 눌러서 계정 전환">명동점 A구역 · <span class="text-typo-caption-md-600 text-primary">{{ meName }}</span> ▾</button>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <sc-if value="{{ hasAttn }}" hint-placeholder-val="{{ true }}">
+          <span class="bg-red text-ms-white text-typo-caption-md-600" style="padding:2px 8px;border-radius:999px;white-space:nowrap;">확인 {{ attnCount }}</span>
+        </sc-if>
+        <span class="text-typo-heading-sm-400 text-ms-black" style="font-variant-numeric:tabular-nums;">{{ clock }}</span>
+      </div>
+    </div>
+    <div style="flex-shrink:0;padding:10px 16px 0;display:flex;gap:6px;overflow-x:auto;">
+      <sc-for list="{{ filters }}" as="f" hint-placeholder-count="6">
+        <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="{{ f.variant }}" color="{{ f.color }}" size="sm" on-click="{{ f.pick }}" hint-size="72px,33px">{{ f.label }}</x-import>
+      </sc-for>
+    </div>
+    <div style="flex:1;min-height:0;overflow:auto;padding:10px 16px 24px;display:flex;flex-direction:column;gap:8px;">
+      <sc-for list="{{ roomCards }}" as="r" hint-placeholder-count="5">
+        <div onClick="{{ r.open }}" class="{{ r.cls }}" style="border-width:{{ r.bw }};border-style:{{ r.bs }};border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:8px;cursor:{{ r.cursor }};opacity:{{ r.op }};flex-shrink:0;">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
+            <div style="display:flex;align-items:center;gap:8px;min-width:0;">
+              <span class="text-typo-heading-md-500 text-ms-gray-800" style="white-space:nowrap;">{{ r.room }}</span>
+              <span class="text-typo-caption-md-600 text-ms-gray-800" style="min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ r.name }}</span>
+            </div>
+            <sc-if value="{{ r.full }}" hint-placeholder-val="{{ true }}">
+              <x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="{{ r.variant }}" size="sm" dot="{{ true }}" hint-size="72px,22px">{{ r.badge }}</x-import>
+            </sc-if>
+          </div>
+          <sc-if value="{{ r.full }}" hint-placeholder-val="{{ true }}">
+            <div class="{{ r.nowBg }}" style="border-radius:8px;padding:8px 10px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;align-items:center;">
+              <span class="{{ r.nowCls }}" style="word-break:keep-all;">{{ r.nowTitle }}</span>
+              <span class="{{ r.timerCls }}" style="grid-row:span 2;font-size:20px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1;white-space:nowrap;">{{ r.timer }}</span>
+              <span class="text-typo-caption-md-500 text-ms-gray-700" style="word-break:keep-all;">{{ r.nowSub }}</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div style="width:72px;flex-shrink:0;display:flex;gap:3px;">
+                <sc-for list="{{ r.steps }}" as="st" hint-placeholder-count="3"><span class="{{ st.cls }}" style="flex:1;height:5px;border-radius:3px;"></span></sc-for>
+              </div>
+              <span class="text-typo-caption-md-500 text-ms-gray-600" style="white-space:nowrap;font-variant-numeric:tabular-nums;">{{ r.stepText }}</span>
+              <span class="text-typo-caption-md-400 text-ms-gray-700" style="min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ r.next }}</span>
+            </div>
+          </sc-if>
+          <sc-if value="{{ r.canAccept }}" hint-placeholder-val="{{ false }}">
+            <div class="border-ms-gray-200" style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:8px;border-top-width:1px;border-top-style:solid;">
+              <span class="{{ r.acceptCls }}" style="white-space:nowrap;">{{ r.acceptText }}</span>
+              <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="md" on-click="{{ r.accept }}" hint-size="96px,40px">수락</x-import>
+            </div>
+          </sc-if>
+          <sc-if value="{{ r.empty }}" hint-placeholder-val="{{ false }}">
+            <span class="text-typo-caption-md-400 text-ms-gray-500">비어있음 · {{ r.next }}</span>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <!-- ========== 룸 상세 ========== -->
+  <sc-if value="{{ isRoom }}" hint-placeholder-val="{{ false }}">
+    <div class="bg-ms-white border-ms-gray-200" style="flex-shrink:0;padding:8px 12px 12px;display:flex;flex-direction:column;gap:8px;border-bottom-width:1px;border-bottom-style:solid;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <button type="button" onClick="{{ back }}" class="cc-btn" style="min-height:44px;padding:0 8px;display:flex;align-items:center;gap:6px;border-radius:8px;" style-hover="background:var(--ms-gray-100, #f5f6f8);">
+          <span class="text-typo-body-600 text-ms-gray-800">← 현황</span>
+          <span class="{{ backSubCls }}" style="white-space:nowrap;">{{ backSub }}</span>
+        </button>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="{{ stVariant }}" size="sm" dot="{{ true }}" hint-size="72px,22px">{{ stName }}</x-import>
+          <span class="text-typo-heading-sm-400 text-ms-black" style="font-variant-numeric:tabular-nums;">{{ clock }}</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:2px;padding:0 8px;">
+        <div style="display:flex;align-items:baseline;gap:8px;min-width:0;">
+          <span class="text-typo-title-md-600 text-ms-gray-800" style="white-space:nowrap;">{{ room }}</span>
+          <span class="text-typo-body-600 text-ms-gray-800" style="min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ name }}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+          <span class="bg-ms-gray-200 text-typo-caption-md-500 text-ms-gray-700" style="padding:1px 6px;border-radius:4px;white-space:nowrap;">{{ nat }}</span>
+          <span class="{{ visitCls }}" style="padding:1px 6px;border-radius:4px;white-space:nowrap;">{{ visit }}</span>
+          <span class="text-typo-caption-md-400 text-ms-gray-600">{{ meta }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="flex:1;min-height:0;overflow:auto;padding:12px 12px 16px;display:flex;flex-direction:column;gap:8px;">
+      <sc-if value="{{ call.on }}" hint-placeholder-val="{{ false }}">
+        <div class="{{ call.cls }}" style="border-width:1px;border-style:solid;border-radius:14px;padding:12px 14px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;align-items:center;flex-shrink:0;">
+          <span class="{{ call.titleCls }}">{{ call.title }}</span>
+          <span class="{{ call.minCls }}" style="grid-row:span 2;font-size:28px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1;white-space:nowrap;">{{ call.min }}</span>
+          <span class="text-typo-caption-md-500 text-ms-gray-700" style="word-break:keep-all;">{{ call.sub }}</span>
+          <sc-if value="{{ call.canAccept }}" hint-placeholder-val="{{ false }}">
+            <div data-fill-buttons="true" style="grid-column:1 / -1;display:grid;padding-top:6px;">
+              <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="lg" on-click="{{ call.accept }}" hint-size="100%,48px">{{ call.acceptLabel }}</x-import>
+            </div>
+          </sc-if>
+          <sc-if value="{{ call.nurseCtl }}" hint-placeholder-val="{{ true }}">
+            <div data-fill-buttons="true" style="grid-column:1 / -1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;padding-top:6px;">
+              <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="md" on-click="{{ call.remind }}" hint-size="100%,40px">다시 알림</x-import>
+              <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="blue" size="md" on-click="{{ openCall }}" hint-size="100%,40px">다른 의사</x-import>
+            </div>
+            <button type="button" class="cc-btn text-typo-caption-md-500 text-ms-gray-500" onClick="{{ call.demoAccept }}" style="grid-column:1 / -1;justify-self:start;">데모: {{ call.demoWho }} 수락 처리</button>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ allDone }}" hint-placeholder-val="{{ false }}">
+        <div class="bg-primary-100 border-primary" style="border-width:1px;border-style:solid;border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:8px;flex-shrink:0;">
+          <span class="text-typo-heading-md-500 text-primary">{{ doneTitle }}</span>
+          <span class="text-typo-caption-md-500 text-ms-gray-700">{{ doneSub }}</span>
+          <sc-if value="{{ canHome }}" hint-placeholder-val="{{ true }}">
+            <div data-fill-buttons="true" style="display:grid;"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="md" on-click="{{ goHome }}" hint-size="100%,40px">귀가 대기</x-import></div>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <div class="bg-ms-white" style="border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:6px;flex-shrink:0;">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:0 2px;">
+          <span class="text-typo-heading-md-500 text-ms-gray-800" style="white-space:nowrap;">시술 {{ procTotal }} <span class="text-typo-body-400 text-ms-gray-600">· 완료 {{ procDone }}</span></span>
+          <span class="text-typo-caption-md-500 text-ms-gray-600" style="white-space:nowrap;">{{ docLine }}</span>
+        </div>
+        <sc-for list="{{ procs }}" as="p" hint-placeholder-count="3">
+          <div class="{{ p.rowCls }}" style="border-width:1px;border-style:solid;border-radius:10px;padding:10px 12px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;align-items:center;">
+            <div style="display:flex;flex-direction:column;gap:2px;min-width:0;">
+              <span class="{{ p.titleCls }}" style="word-break:keep-all;">{{ p.title }}</span>
+              <span class="{{ p.subCls }}" style="word-break:keep-all;">{{ p.sub }}</span>
+              <sc-if value="{{ p.needConsent }}" hint-placeholder-val="{{ false }}">
+                <button type="button" class="cc-btn text-typo-caption-md-500 text-ms-gray-500" onClick="{{ p.signDemo }}" style="align-self:flex-start;">데모: 서명 완료 처리</button>
+              </sc-if>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">
+              <span class="text-primary" style="font-size:22px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1;white-space:nowrap;">{{ p.timer }}</span>
+              <sc-if value="{{ p.isWait }}" hint-placeholder-val="{{ true }}">
+                <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="blue" size="md" disabled="{{ p.startOff }}" on-click="{{ p.start }}" hint-size="80px,40px">시작</x-import>
+              </sc-if>
+              <sc-if value="{{ p.isDoing }}" hint-placeholder-val="{{ false }}">
+                <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="md" on-click="{{ p.end }}" hint-size="80px,40px">종료</x-import>
+              </sc-if>
+              <sc-if value="{{ p.isDone }}" hint-placeholder-val="{{ false }}">
+                <x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="neutral" size="sm" hint-size="40px,22px">완료</x-import>
+              </sc-if>
+            </div>
+          </div>
+        </sc-for>
+        <div data-fill-buttons="true" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;padding-top:4px;">
+          <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="md" on-click="{{ openMemo }}" hint-size="100%,40px">시술 메모</x-import>
+          <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="md" disabled="{{ callBtnOff }}" on-click="{{ openCall }}" hint-size="100%,40px">의사 호출</x-import>
+        </div>
+      </div>
+
+      <div class="{{ anesBoxCls }}" style="border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:8px;flex-shrink:0;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;">
+          <span class="{{ anesLabelCls }}">{{ anesLabel }}</span>
+          <span class="{{ anesValCls }}" style="font-variant-numeric:tabular-nums;white-space:nowrap;">{{ anesVal }}</span>
+        </div>
+        <sc-if value="{{ anesHasSub }}" hint-placeholder-val="{{ true }}"><span class="text-typo-caption-md-400 text-ms-gray-700">{{ anesSub }}</span></sc-if>
+        <sc-if value="{{ anesCtl }}" hint-placeholder-val="{{ false }}">
+          <div data-fill-buttons="true" style="display:grid;"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="{{ anesBtnVariant }}" color="{{ anesBtnColor }}" size="md" on-click="{{ anesClick }}" hint-size="100%,40px">{{ anesBtn }}</x-import></div>
+        </sc-if>
+      </div>
+
+      <sc-if value="{{ hasCaution }}" hint-placeholder-val="{{ true }}">
+        <div class="bg-red-100" style="border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;flex-shrink:0;">
+          <span class="text-typo-caption-md-600 text-red">주의</span>
+          <span class="text-typo-body-500 text-ms-gray-800" style="word-break:keep-all;">{{ caution }}</span>
+        </div>
+      </sc-if>
+
+      <div class="bg-ms-white" style="border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;flex-shrink:0;">
+        <span class="text-typo-caption-md-600 text-ms-gray-700">오더 메모</span>
+        <span class="text-typo-body-400 text-ms-gray-800" style="white-space:pre-wrap;word-break:keep-all;line-height:1.6;">{{ memo }}</span>
+        <sc-if value="{{ hasNote }}" hint-placeholder-val="{{ false }}">
+          <div class="border-ms-gray-200" style="border-top-width:1px;border-top-style:solid;padding-top:8px;margin-top:2px;display:flex;flex-direction:column;gap:4px;">
+            <span class="text-typo-caption-md-600 text-ms-gray-700">시술 메모 · {{ noteAt }}</span>
+            <span class="text-typo-body-400 text-ms-gray-800" style="white-space:pre-wrap;word-break:keep-all;">{{ note }}</span>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+
+    <!-- 아래 — 빠른 말하기 + 통역하기 -->
+    <div class="bg-ms-white border-ms-gray-200" style="flex-shrink:0;border-top-width:1px;border-top-style:solid;padding:10px 12px 20px;display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;align-items:baseline;gap:8px;min-width:0;padding:0 4px;">
+        <span class="text-typo-caption-md-600 text-ms-gray-700" style="white-space:nowrap;flex-shrink:0;">빠른 말하기 · {{ langName }}</span>
+        <span class="{{ barSubCls }}" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ barSub }}</span>
+      </div>
+      <div style="display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;">
+        <sc-for list="{{ phrases }}" as="ph" hint-placeholder-count="4">
+          <button type="button" onClick="{{ ph.play }}" class="cc-btn {{ ph.chipCls }}" style="flex-shrink:0;height:40px;padding:0 14px 0 10px;border-radius:999px;border-width:1px;border-style:solid;white-space:nowrap;display:flex;align-items:center;gap:6px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M4 9v6h4l5 4V5L8 9H4z"></path><path d="M16 8.5a4.5 4.5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+            <span>{{ ph.ko }}</span>
+          </button>
+        </sc-for>
+      </div>
+      <div data-fill-buttons="true" style="display:grid;"><x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="lg" on-click="{{ openTr }}" hint-size="100%,48px">통역하기</x-import></div>
+    </div>
+  </sc-if>
+
+  <!-- 통역 드로어 -->
+  <div onClick="{{ closeTr }}" style="position:absolute;inset:0;z-index:59;background:rgba(0,0,0,0.32);opacity:{{ trDimOp }};pointer-events:{{ trDimPe }};transition:opacity 240ms ease;"></div>
+  <div class="bg-ms-white" style="position:absolute;left:0;right:0;bottom:0;z-index:60;height:92%;border-radius:20px 20px 0 0;box-shadow:0 -8px 32px rgba(0,0,0,0.16);display:flex;flex-direction:column;overflow:hidden;transform:{{ trY }};transition:transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1);">
+    <div onClick="{{ closeTr }}" style="height:20px;flex-shrink:0;display:flex;align-items:center;justify-content:center;cursor:pointer;">
+      <span class="bg-ms-gray-300" style="width:44px;height:5px;border-radius:3px;"></span>
+    </div>
+    <div class="border-ms-gray-200" style="flex-shrink:0;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 12px 10px 16px;border-bottom-width:1px;border-bottom-style:solid;">
+      <button type="button" onClick="{{ toggleLang }}" class="cc-btn" style="display:flex;flex-direction:column;gap:2px;min-width:0;">
+        <span class="text-typo-heading-md-500 text-ms-gray-800" style="display:flex;align-items:center;gap:4px;white-space:nowrap;">통역 · <span class="text-primary">{{ langName }}</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2498bd" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate({{ langRot }});"><path d="M6 9l6 6 6-6"></path></svg></span>
+        <span class="text-typo-caption-md-400 text-ms-gray-600" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ room }} · {{ trElapsed }}</span>
+      </button>
+      <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="md" on-click="{{ closeTr }}" hint-size="64px,40px">종료</x-import>
+    </div>
+    <sc-if value="{{ langOpen }}" hint-placeholder-val="{{ false }}">
+      <div class="border-ms-gray-200" style="flex-shrink:0;padding:10px 16px 12px;display:flex;flex-wrap:wrap;gap:8px;border-bottom-width:1px;border-bottom-style:solid;">
+        <sc-for list="{{ langs }}" as="lg" hint-placeholder-count="4">
+          <button type="button" onClick="{{ lg.pick }}" class="cc-btn {{ lg.cls }}" style="padding:7px 12px;border-radius:999px;border-width:1px;border-style:solid;white-space:nowrap;">{{ lg.name }}</button>
+        </sc-for>
+      </div>
+    </sc-if>
+    <div class="bg-ms-gray-100" style="flex:1;min-height:0;overflow:auto;padding:14px 16px;display:flex;flex-direction:column-reverse;gap:10px;">
+      <sc-for list="{{ msgsRev }}" as="mm" hint-placeholder-count="3">
+        <div style="display:flex;flex-direction:column;align-items:{{ mm.align }};gap:3px;flex-shrink:0;">
+          <span class="text-typo-caption-md-400 text-ms-gray-600" style="padding:0 4px;line-height:1.4;">{{ mm.who }}</span>
+          <div class="{{ mm.cls }}" style="max-width:84%;border-radius:{{ mm.radius }};padding:10px 13px;display:flex;flex-direction:column;gap:5px;box-sizing:border-box;">
+            <span class="{{ mm.origCls }}" style="word-break:keep-all;text-wrap:pretty;">{{ mm.orig }}</span>
+            <span class="{{ mm.transCls }}" style="word-break:keep-all;text-wrap:pretty;">{{ mm.trans }}</span>
+          </div>
+        </div>
+      </sc-for>
+      <sc-if value="{{ noMsgs }}" hint-placeholder-val="{{ true }}">
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:0 12px;">
+          <span class="text-typo-body-500 text-ms-gray-700">{{ emptyTitle }}</span>
+          <span class="text-typo-caption-md-400 text-ms-gray-600" style="word-break:keep-all;">{{ emptyText }}</span>
+        </div>
+      </sc-if>
+    </div>
+    <div class="border-ms-gray-200" style="flex-shrink:0;padding:10px 12px 0;display:flex;gap:6px;overflow-x:auto;border-top-width:1px;border-top-style:solid;">
+      <sc-for list="{{ phrases }}" as="ph" hint-placeholder-count="4">
+        <button type="button" onClick="{{ ph.play }}" class="cc-btn {{ ph.chipCls }}" style="flex-shrink:0;height:36px;padding:0 12px;border-radius:999px;border-width:1px;border-style:solid;white-space:nowrap;">{{ ph.ko }}</button>
+      </sc-for>
+    </div>
+    <div style="flex-shrink:0;padding:12px 16px 24px;display:flex;align-items:center;gap:14px;">
+      <button type="button" onClick="{{ toggleMic }}" class="cc-btn {{ micCls }}" style="width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;border-width:2px;border-style:solid;box-sizing:border-box;flex-shrink:0;">
+        <sc-if value="{{ isListening }}" hint-placeholder-val="{{ false }}">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#ffffff"><rect x="6" y="5" width="4" height="14" rx="1.2"></rect><rect x="14" y="5" width="4" height="14" rx="1.2"></rect></svg>
+        </sc-if>
+        <sc-if value="{{ isPaused }}" hint-placeholder-val="{{ false }}">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2498bd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg>
+        </sc-if>
+        <sc-if value="{{ isConnecting }}" hint-placeholder-val="{{ true }}">
+          <svg class="ip-spin" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#9f9f9f" stroke-width="2.4" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9"></path></svg>
+        </sc-if>
+      </button>
+      <div style="display:flex;flex-direction:column;gap:2px;min-width:0;">
+        <span class="{{ ipCls }}" style="display:flex;align-items:center;gap:6px;"><span class="{{ ipDot }}" style="width:8px;height:8px;border-radius:50%;"></span>{{ ipText }}</span>
+        <span class="text-typo-caption-md-400 text-ms-gray-600" style="word-break:keep-all;">{{ ipHint }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 의사 호출 — 바텀 시트 -->
+  <sc-if value="{{ cm.open }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeSheet }}" style="position:absolute;inset:0;z-index:50;background:rgba(0,0,0,0.32);"></div>
+    <div class="bg-ms-white" style="position:absolute;z-index:51;left:0;right:0;bottom:0;max-height:88%;border-radius:20px 20px 0 0;box-shadow:0 -8px 32px rgba(0,0,0,0.16);display:flex;flex-direction:column;overflow:hidden;">
+      <div class="border-ms-gray-200" style="padding:16px;display:flex;align-items:baseline;gap:8px;border-bottom-width:1px;border-bottom-style:solid;"><span class="text-typo-title-sm-600 text-ms-gray-800">의사 호출</span><span class="text-typo-caption-md-400 text-ms-gray-600">{{ room }}</span></div>
+      <div style="flex:1;min-height:0;overflow:auto;padding:12px 16px;display:flex;flex-direction:column;gap:8px;">
+        <span class="text-typo-caption-md-600 text-ms-gray-700">호출할 시술</span>
+        <sc-for list="{{ cm.procs }}" as="r" hint-placeholder-count="3">
+          <div onClick="{{ r.toggle }}" class="{{ r.cls }}" style="border-width:1px;border-style:solid;border-radius:8px;padding:10px 12px;display:flex;align-items:center;gap:10px;cursor:pointer;min-height:48px;box-sizing:border-box;">
+            <span class="{{ r.boxCls }}" style="width:20px;height:20px;border-radius:4px;border-width:1px;border-style:solid;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;">✓</span>
+            <div style="display:flex;flex-direction:column;min-width:0;"><span class="text-typo-body-500 text-ms-gray-800">{{ r.title }}</span><span class="text-typo-caption-md-400 text-ms-gray-500">{{ r.note }}</span></div>
+          </div>
+        </sc-for>
+        <span class="text-typo-caption-md-600 text-ms-gray-700" style="padding-top:6px;">누구에게</span>
+        <sc-for list="{{ cm.docs }}" as="d" hint-placeholder-count="5">
+          <div onClick="{{ d.pick }}" class="{{ d.cls }}" style="border-width:1px;border-style:solid;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:10px;cursor:pointer;min-height:48px;box-sizing:border-box;">
+            <span class="{{ d.avCls }}" style="width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">{{ d.av }}</span>
+            <span class="text-typo-body-500 text-ms-gray-800" style="white-space:nowrap;">{{ d.name }}</span>
+            <span class="{{ d.subCls }}" style="margin-left:auto;white-space:nowrap;">{{ d.sub }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div class="border-ms-gray-200" data-fill-buttons="true" style="padding:12px 16px 24px;display:grid;grid-template-columns:96px minmax(0,1fr);gap:8px;border-top-width:1px;border-top-style:solid;">
+        <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="md" on-click="{{ closeSheet }}" hint-size="100%,40px">취소</x-import>
+        <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="md" disabled="{{ cm.off }}" on-click="{{ cm.submit }}" hint-size="100%,40px">{{ cm.cta }}</x-import>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- 시술 메모 — 바텀 시트 -->
+  <sc-if value="{{ mm.open }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeSheet }}" style="position:absolute;inset:0;z-index:50;background:rgba(0,0,0,0.32);"></div>
+    <div class="bg-ms-white" style="position:absolute;z-index:51;left:0;right:0;bottom:0;border-radius:20px 20px 0 0;box-shadow:0 -8px 32px rgba(0,0,0,0.16);display:flex;flex-direction:column;overflow:hidden;">
+      <div class="border-ms-gray-200" style="padding:16px;display:flex;align-items:baseline;gap:8px;border-bottom-width:1px;border-bottom-style:solid;"><span class="text-typo-title-sm-600 text-ms-gray-800">시술 메모</span><span class="text-typo-caption-md-400 text-ms-gray-600">{{ mm.meta }}</span></div>
+      <div style="padding:12px 16px;">
+        <textarea value="{{ mm.text }}" onChange="{{ mm.set }}" placeholder="시술 중 특이사항 — 강도 · 샷 수 · 반응" class="border-ms-gray-300 text-typo-body-400 text-ms-gray-800" style="width:100%;box-sizing:border-box;height:160px;border-width:1px;border-style:solid;border-radius:8px;padding:12px 14px;font:inherit;resize:none;outline:none;"></textarea>
+      </div>
+      <div class="border-ms-gray-200" data-fill-buttons="true" style="padding:12px 16px 24px;display:grid;grid-template-columns:96px minmax(0,1fr);gap:8px;border-top-width:1px;border-top-style:solid;">
+        <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="md" on-click="{{ closeSheet }}" hint-size="100%,40px">취소</x-import>
+        <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="solid" color="blue" size="md" on-click="{{ mm.save }}" hint-size="100%,40px">저장</x-import>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ hasToast }}" hint-placeholder-val="{{ false }}">
+    <div class="bg-ms-gray-800 text-ms-white" style="position:absolute;left:50%;bottom:180px;transform:translateX(-50%);z-index:9999;border-radius:10px;padding:10px 16px;box-shadow:0 6px 20px rgba(0,0,0,0.18);max-width:calc(100% - 32px);box-sizing:border-box;">
+      <span class="text-typo-body-500">{{ toast }}</span>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844},&quot;scene&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;list&quot;,&quot;doing&quot;,&quot;pre&quot;,&quot;done&quot;],&quot;default&quot;:&quot;list&quot;,&quot;tsType&quot;:&quot;'list'|'doing'|'pre'|'done'&quot;},&quot;account&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;nurse&quot;,&quot;d1&quot;,&quot;d3&quot;],&quot;default&quot;:&quot;nurse&quot;,&quot;tsType&quot;:&quot;'nurse'|'d1'|'d3'&quot;}}">
+const pad = (n) => String(n).padStart(2, '0');
+const S = (s) => { const [h, m, x] = s.split(':').map(Number); return h * 3600 + m * 60 + (x || 0); };
+const hm = (t) => pad(Math.floor(t / 3600)) + ':' + pad(Math.floor(t / 60) % 60);
+const ms = (t) => pad(Math.floor(Math.max(0, t) / 60)) + ':' + pad(Math.floor(Math.max(0, t)) % 60);
+const mins = (t) => Math.floor(Math.max(0, t) / 60);
+const BASE = S('14:46:00');
+const CALL_LONG = 5, ANES_LONG = 20;
+
+const DOCS = [{ id: 'd1', name: '박 원장' }, { id: 'd2', name: '이 원장' }, { id: 'd3', name: '최 원장' }, { id: 'd4', name: '정 원장' }];
+const docName = (id) => (DOCS.find((d) => d.id === id) || { name: '' }).name;
+// 다른 룸 상태(가짜) — 실제는 현황 API
+const ELSEWHERE = { d2: 'A-룸5 시술 중' };
+
+const LANGS = {
+  'zh-TW': { name: '中文(繁體)', speak: '用中文說話 — 顧客', listen: '正在聽…',
+    phrases: [['조금 뜨거울 수 있어요', '會有一點熱'], ['아프면 손을 들어주세요', '痛的話請舉手'], ['눈을 감아주세요', '請閉上眼睛'], ['10분 정도 걸려요', '大約需要十分鐘'], ['움직이지 마세요', '請不要動'], ['다 끝났습니다', '已經結束了']],
+    staff: ['잠시 후 다음 시술 시작할게요.', '稍後開始下一個療程。'], patient: ['네, 감사합니다.', '好的，謝謝。'] },
+  yue: { name: '廣東話', speak: '用廣東話講 — 顧客', listen: '聽緊…',
+    phrases: [['의사 선생님이 곧 오세요', '醫生好快就到'], ['조금 뜨거울 수 있어요', '會有少少熱'], ['아프면 손을 들어주세요', '痛就舉手'], ['눈을 감아주세요', '請合埋眼'], ['움직이지 마세요', '唔好郁'], ['다 끝났습니다', '做完喇']],
+    staff: ['마취가 잘 됐어요. 곧 시작합니다.', '麻醉做好咗，好快開始。'], patient: ['얼마나 기다려야 해요?', '要等幾耐？'] }
+};
+
+LANGS.ja = { name: '日本語', speak: '日本語で話す — お客様', listen: '聞いています…',
+  phrases: [['조금 뜨거울 수 있어요', '少し熱くなります'], ['아프면 손을 들어주세요', '痛かったら手を挙げてください'], ['눈을 감아주세요', '目を閉じてください'], ['10분 정도 걸려요', '10分ほどかかります'], ['움직이지 마세요', '動かないでください'], ['다 끝났습니다', '終わりました']],
+  staff: ['곧 시작합니다.', 'まもなく始めます。'], patient: ['네, 알겠습니다.', 'はい、わかりました。'] };
+LANGS.vi = { name: 'Tiếng Việt', speak: 'Nói tiếng Việt — Khách', listen: 'Đang nghe…',
+  phrases: [['조금 뜨거울 수 있어요', 'Sẽ hơi nóng một chút'], ['아프면 손을 들어주세요', 'Nếu đau hãy giơ tay'], ['눈을 감아주세요', 'Xin hãy nhắm mắt'], ['10분 정도 걸려요', 'Mất khoảng 10 phút'], ['움직이지 마세요', 'Xin đừng cử động'], ['다 끝났습니다', 'Đã xong rồi']],
+  staff: ['곧 시작합니다.', 'Sắp bắt đầu.'], patient: ['네, 감사합니다.', 'Vâng, cảm ơn.'] };
+
+const VOICE = { 'zh-TW': 'zh-TW', yue: 'zh-HK', ja: 'ja-JP', vi: 'vi-VN' };
+const KNAME = { 'zh-TW': '중국어(번체)', yue: '광둥어', ja: '일본어', vi: '베트남어' };
+// 데모 대본 — them = 고객(원문 · 한국어) / me = 의료진(한국어 · 번역)
+const TALK = {
+  'zh-TW': [['them', '這個會很燙嗎？', '이거 많이 뜨거워요?'], ['me', '처음엔 낮은 강도로 시작해서 괜찮을 거예요.', '一開始會用低強度，應該還好。'], ['them', '眼睛周圍也會做嗎？', '눈가도 하나요?'], ['me', '네, 눈가 전용 팁으로 따로 해요.', '會，用另外的眼周探頭。'], ['them', '好，謝謝。', '네, 감사합니다.']],
+  yue: [['them', '醫生幾時到？', '의사 선생님 언제 오세요?'], ['me', '곧 오세요. 마취는 잘 됐어요.', '醫生好快到，麻醉已經做好。'], ['them', '會唔會好痛？', '많이 아파요?'], ['me', '조금 뜨거울 수 있어요. 아프면 손 들어주세요.', '會有少少熱，痛就舉手。']],
+  ja: [['them', 'どのくらい時間がかかりますか？', '시간이 얼마나 걸리나요?'], ['me', '20분 정도 걸려요.', '20分ほどかかります。'], ['them', '顔が赤くなりやすいです。', '얼굴이 쉽게 빨개져요.'], ['me', '알겠습니다. 끝나고 진정 팩 해드릴게요.', 'わかりました。終わったら鎮静パックをします。']],
+  vi: [['them', 'Có đau không ạ?', '아픈가요?'], ['me', '조금 따끔해요. 금방 끝나요.', 'Hơi nhói một chút, sẽ xong nhanh thôi.'], ['them', 'Bao lâu thì xong?', '얼마나 걸려요?'], ['me', '10분 정도요.', 'Khoảng 10 phút.']]
+};
+
+const NURSE_OPTS = [
+  { id: 'tip', name: '팁 · 소모품', sub: '장비 팁 · 니들 · 거즈' }, { id: 'cream', name: '마취 크림', sub: '추가 도포' },
+  { id: 'pack', name: '진정 팩', sub: '시술 후 쿨링' }, { id: 'photo', name: '사진 촬영', sub: '전 · 후' },
+  { id: 'care', name: '고객 응대', sub: '통증 · 불편' }, { id: 'etc', name: '그냥 와주세요', sub: '룸으로' }
+];
+
+function seed(scene) {
+  if (scene === 'pre') {
+    const call = { kind: 'all', at: S('14:40:00'), by: '김 간호사' };
+    return {
+      room: 'A-룸4', name: '[HK] CHAN MEI LING', nat: '홍콩', isNew: true, inAt: S('13:50:00'), meta: '입실 13:50 · 통역 광둥어', lang: 'yue',
+      memo: '1. 써마지 FLX 300shot\n2. 쥬베룩 볼 2cc\n3. 바디보톡스 100unit 승모근\n* 첫 방문 — 시술마다 통증 미리 안내',
+      caution: '', anes: [{ kind: '크림', start: S('13:55:00'), end: S('14:15:00') }], home: null, note: '', noteAt: '',
+      procs: [
+        { seq: 1, title: '써마지 FLX 300shot', note: '', st: 'wait', consent: true, call: { ...call } },
+        { seq: 2, title: '쥬베룩 볼 2cc', note: '', st: 'wait', consent: true, call: { ...call } },
+        { seq: 3, title: '바디보톡스 100unit', note: '승모근', st: 'wait', consent: true, call: { ...call } }],
+      chat: [{ who: '김 간호사', main: '醫生好快就到，請稍等。', sub: '의사 선생님이 곧 오십니다. 잠시만 기다려주세요.', mine: true }]
+    };
+  }
+  const c = {
+    room: 'A-룸2', name: '[TW] WANG YI TING', nat: '대만', isNew: false, inAt: S('13:30:00'), meta: '입실 13:30 · 34세 여 · 오후 4시 출국', lang: 'zh-TW',
+    memo: '1. 울쎄라피 프라임 300shot — 이마 · 볼 위주, 턱선은 약하게\n2. 써마지 FLX 300shot 눈가 포함(눈가 팁 따로)\n3. 쥬베룩 볼 2cc\n4. 바디보톡스 100unit 승모근\n* 오후 4시 출국 — 3시 반까지 마무리\n* 시술 전후 사진 촬영',
+    caution: '지난 방문 써마지 열감 민감 → 레벨 낮게 시작', anes: [{ kind: '크림', start: S('13:35:00'), end: S('13:58:00') }], home: null,
+    note: '울쎄라피 — 이마 2.0mm 120 · 볼 3.0mm 180. 턱선 생략.', noteAt: '14:21',
+    procs: [
+      { seq: 1, title: '울쎄라피 프라임 300shot', note: '', st: 'done', doc: 'd1', start: S('14:02:00'), end: S('14:20:00'), consent: true },
+      { seq: 2, title: '써마지 FLX 300shot', note: '눈가 팁 따로', st: 'doing', doc: 'd1', start: S('14:38:00'), consent: true },
+      { seq: 3, title: '쥬베룩 볼 2cc', note: '볼 2cc', st: 'wait', doc: 'd1', consent: false },
+      { seq: 4, title: '바디보톡스 100unit', note: '승모근', st: 'wait', doc: 'd1', consent: true }],
+    chat: [
+      { who: '박 원장', main: '這次會從低一點的強度開始。', sub: '이번엔 낮은 강도부터 시작할게요.', mine: true },
+      { who: '고객', main: '좋아요. 눈가도 하나요?', sub: '好的，眼周也會做嗎？', mine: false },
+      { who: '박 원장', main: '會有一點熱，覺得太燙請舉手。', sub: '조금 뜨거워요. 너무 뜨거우면 손 들어주세요.', mine: true }]
+  };
+  if (scene === 'done') {
+    c.procs = c.procs.map((p, i) => ({ ...p, st: 'done', consent: true, start: p.start || S(['', '', '14:52:00', '15:03:00'][i]), end: p.end || S(['', '14:53:00', '15:02:00', '15:09:00'][i]) }));
+    c.procs[1].end = S('14:53:00');
+  }
+  return c;
+}
+
+// 룸 전체 — r2 · r4 는 위 seed, 나머지는 현황판 v2 데이터
+function seedRooms(scene) {
+  const base = (o) => ({ caution: '', home: null, note: '', noteAt: '', chat: [], anes: [], ...o });
+  return {
+    r1: base({ room: 'A-룸1', name: '[TW] LIN YA CHEN', nat: '대만', isNew: true, inAt: S('14:05:00'), meta: '입실 14:05 · 통역 중국어', lang: 'zh-TW',
+      memo: '1. 울쎄라피 프라임 300shot 전안\n2. 리쥬란 힐러 2cc\n3. 바디보톡스 100unit 종아리\n* 통역 중국어',
+      procs: [
+        { seq: 1, title: '울쎄라피 프라임 300shot', note: '전안', st: 'wait', consent: true, call: { kind: 'one', doc: 'd1', at: S('14:44:00'), by: '김 간호사' } },
+        { seq: 2, title: '리쥬란 힐러 2cc', note: '', st: 'wait', consent: true },
+        { seq: 3, title: '바디보톡스 100unit', note: '종아리', st: 'wait', consent: true }] }),
+    r2: seed(scene === 'done' ? 'done' : 'doing'),
+    r3: base({ room: 'A-룸3', name: '[JP] TANAKA YUKI', nat: '일본', isNew: false, inAt: S('14:18:00'), meta: '입실 14:18 · 통역 일본어', lang: 'ja',
+      memo: '1. 포텐자 전안\n2. 리쥬란 힐러 2cc\n* 일본어 통역', caution: '지난번 포텐자 후 홍조 2일',
+      anes: [{ kind: '크림', start: S('14:22:00'), end: null }],
+      procs: [{ seq: 1, title: '포텐자', note: '전안', st: 'wait', consent: true }, { seq: 2, title: '리쥬란 힐러 2cc', note: '', st: 'wait', consent: true }] }),
+    r4: seed('pre'),
+    r5: base({ room: 'A-룸5', name: '[VN] NGUYEN THI MAI', nat: '베트남', isNew: true, inAt: S('13:40:00'), meta: '입실 13:40 · 통역 베트남어', lang: 'vi',
+      memo: '1. 리쥬란 힐러 2cc\n2. 포텐자\n3. 바디보톡스 100unit — 고객 요청: 최 원장님께',
+      anes: [{ kind: '크림', start: S('13:44:00'), end: S('14:04:00') }],
+      procs: [
+        { seq: 1, title: '리쥬란 힐러 2cc', note: '', st: 'done', doc: 'd2', start: S('14:10:00'), end: S('14:22:00'), consent: true },
+        { seq: 2, title: '포텐자', note: '', st: 'doing', doc: 'd2', start: S('14:30:00'), consent: true },
+        { seq: 3, title: '바디보톡스 100unit', note: '최 원장 요청', st: 'wait', consent: true, call: { kind: 'one', doc: 'd3', at: S('14:41:00'), by: '이 원장' } }] }),
+    r6: base({ room: 'A-룸6', name: '[JP] SATO HANA', nat: '일본', isNew: false, inAt: S('12:50:00'), meta: '입실 12:50 · 통역 일본어', lang: 'ja',
+      memo: '1. 울쎄라피 프라임 300shot\n2. 바디보톡스 100unit', home: S('14:12:00'),
+      anes: [{ kind: '크림', start: S('12:55:00'), end: S('13:15:00') }],
+      procs: [
+        { seq: 1, title: '울쎄라피 프라임 300shot', note: '', st: 'done', doc: 'd4', start: S('13:20:00'), end: S('13:42:00'), consent: true },
+        { seq: 2, title: '바디보톡스 100unit', note: '', st: 'done', doc: 'd4', start: S('13:50:00'), end: S('14:05:00'), consent: true }] }),
+    r7: { room: '레이저실', empty: true, next: '15:00 ZHANG WEI 입실 예정' }
+  };
+}
+const ORDER = ['r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7'];
+
+// 룸 상태 한 줄 — 현황 카드 · 필터 · 머리 배지 공용
+function statusOf(c, now) {
+  if (c.empty) return { key: 'empty', name: '비어있음', variant: 'neutral', attn: false };
+  const doing = c.procs.find((p) => p.st === 'doing');
+  const open = c.procs.filter((p) => p.st === 'wait' && p.call && !p.call.accepted);
+  const anesOn = c.anes.find((a) => a.end == null);
+  const allDone = c.procs.every((p) => p.st === 'done');
+  if (c.home != null) return { key: 'home', name: '귀가 대기', variant: 'neutral', attn: false };
+  if (doing) return { key: 'doing', name: '시술 진행', variant: 'primary', attn: false, doing };
+  if (allDone) return { key: 'home', name: '시술 완료', variant: 'neutral', attn: true };
+  if (open.length) {
+    const m = mins(now - Math.min(...open.map((p) => p.call.at)));
+    return { key: 'call', name: '호출 ' + m + '분', variant: m >= CALL_LONG ? 'danger' : 'primary', attn: m >= CALL_LONG, m, open };
+  }
+  if (anesOn) { const m = mins(now - anesOn.start); return { key: 'anes', name: '마취 중', variant: m >= ANES_LONG ? 'danger' : 'purple', attn: m >= ANES_LONG, m, anesOn }; }
+  return { key: 'wait', name: '시술 대기', variant: 'warning', attn: !c.procs.some((p) => p.doc || p.call) };
+}
+
+class Component extends DCLogic {
+  state = this.initial(this.props.scene);
+  initial(scene) {
+    const rooms = seedRooms(scene);
+    Object.values(rooms).forEach((r) => { if (r.chat && r.chat.length) { r.lastTr = { at: r.room === 'A-룸4' ? S('14:41:00') : S('14:44:00'), n: r.chat.length }; r.chat = []; } });
+    const cur = scene === 'pre' ? 'r4' : scene === 'doing' || scene === 'done' ? 'r2' : null;
+    return { rooms, cur, trStart: null, filter: null, t0: Date.now(), sheet: null, cm: null, nr: null, memoText: '', trOpen: false, listening: null, toast: '' };
+  }
+  // 로그인 계정 — 간호사 / 원장. 원장이면 전체 호출 + 나를 지정한 호출에 [수락]
+  me() { return this.state.me || this.props.account || 'nurse'; }
+  myCalls(c) {
+    const me = this.me();
+    if (me === 'nurse' || c.empty || c.home != null) return [];
+    return c.procs.filter((p) => p.st === 'wait' && p.call && !p.call.accepted && (p.call.kind === 'all' || p.call.doc === me));
+  }
+  acceptRoom(id) {
+    const me = this.me(), room = this.state.rooms[id];
+    const mine = this.myCalls(room).map((p) => p.seq);
+    if (!mine.length) return;
+    this.setState((x) => ({ rooms: { ...x.rooms, [id]: { ...x.rooms[id], procs: x.rooms[id].procs.map((p) => (mine.includes(p.seq) ? { ...p, doc: me, call: { ...p.call, accepted: true } } : p)) } } }));
+    this.flash(room.room + ' 수락 · ' + mine.length + '건 — 룸으로 이동해주세요');
+  }
+  listVals(now) {
+    const s = this.state, rooms = ORDER.map((id) => ({ id, c: s.rooms[id], st: statusOf(s.rooms[id], now) }));
+    const isDoc = this.me() !== 'nurse';
+    const F = [['all', '전체'], ...(isDoc ? [['mine', '수락 대기']] : []), ['call', '호출'], ['doing', '진행'], ['anes', '마취'], ['wait', '대기'], ['home', '완료 · 귀가']];
+    const live = rooms.filter((r) => !r.c.empty);
+    const match = (r, k) => (k === 'all' ? true : k === 'mine' ? this.myCalls(r.c).length > 0 : r.st.key === k);
+    const cnt = (k) => live.filter((r) => match(r, k)).length;
+    const cur = s.filter && (s.filter !== 'mine' || isDoc) ? s.filter : (isDoc && s.filter == null && this.props.account && !s.me ? 'all' : 'all');
+    const filters = F.map(([k, n]) => ({ label: n + ' ' + cnt(k), variant: cur === k ? 'solid' : 'outlined', color: cur === k ? 'blue' : 'gray', pick: () => this.setState({ filter: k === 'all' ? null : k }) }));
+    const shown = rooms.filter((r) => r.c.empty ? cur === 'all' : match(r, cur));
+    const roomCards = shown.map(({ id, c, st }) => {
+      if (c.empty) return { canAccept: false, acceptText: '', acceptCls: '', accept: () => {}, room: c.room, full: false, empty: true, next: c.next, cls: 'bg-ms-white border-ms-gray-300', bw: '1px', bs: 'dashed', op: '1', cursor: 'default', open: () => {},
+        name: '', nat: '', visit: '', visitCls: '', variant: 'neutral', badge: '', nowBg: '', nowCls: '', nowTitle: '', nowSub: '', timer: '', timerCls: '', steps: [], stepText: '' };
+      const waits = c.procs.filter((p) => p.st === 'wait').sort((a, b) => a.seq - b.seq);
+      let nowTitle = '', nowSub = '', timer = '', nowBg = 'bg-ms-gray-100', nowCls = 'text-typo-body-600 text-ms-gray-800', timerCls = 'text-ms-gray-800';
+      let nextP = waits[0];
+      if (st.key === 'doing') {
+        nowTitle = st.doing.title; nowSub = docName(st.doing.doc) + ' · ' + hm(st.doing.start) + ' 시작'; timer = ms(now - st.doing.start);
+        nowBg = 'bg-primary-100'; nowCls = 'text-typo-body-600 text-primary'; timerCls = 'text-primary';
+      } else if (st.key === 'call') {
+        const k = st.open[0].call;
+        nowTitle = (k.kind === 'all' ? '전체 호출' : docName(k.doc) + ' 지정') + ' · 수락 대기'; nowSub = st.open.map((p) => p.title).join(' · '); timer = st.m + '분';
+        nowBg = st.attn ? 'bg-red-100' : 'bg-primary-100'; nowCls = st.attn ? 'text-typo-body-600 text-red' : 'text-typo-body-600 text-primary'; timerCls = st.attn ? 'text-red' : 'text-primary';
+        nextP = waits.find((p) => !st.open.includes(p));
+      } else if (st.key === 'anes') {
+        nowTitle = '마취 중 · ' + st.anesOn.kind; nowSub = hm(st.anesOn.start) + ' 시작 · 기준 ' + ANES_LONG + '분'; timer = st.m + '분';
+        nowBg = 'bg-purple-100'; nowCls = 'text-typo-body-600 text-purple'; timerCls = st.attn ? 'text-red' : 'text-purple';
+      } else if (st.key === 'home') {
+        const last = Math.max(...c.procs.map((p) => p.end || 0));
+        nowTitle = c.home != null ? '귀가 대기 · ' + hm(c.home) : '시술 모두 완료'; nowSub = '마지막 종료 ' + hm(last); nowCls = 'text-typo-body-600 text-ms-gray-700';
+        nextP = null;
+      } else {
+        nowTitle = '시술 대기'; nowSub = st.attn ? '담당의 미정 — 의사 호출 필요' : '담당 ' + docName((waits.find((p) => p.doc) || {}).doc);
+        nowCls = 'text-typo-body-600 text-ms-gray-800';
+      }
+      const doneN = c.procs.filter((p) => p.st === 'done').length;
+      return {
+        room: c.room, full: true, empty: false, name: c.name, nat: c.nat,
+        visit: c.isNew ? '첫내원' : '재내원', visitCls: c.isNew ? 'bg-primary-100 text-primary text-typo-caption-md-600' : 'bg-ms-gray-200 text-ms-gray-700 text-typo-caption-md-600',
+        badge: st.name, variant: st.variant,
+        nowTitle, nowSub, timer, nowBg, nowCls, timerCls,
+        steps: c.procs.slice().sort((a, b) => a.seq - b.seq).map((p) => ({ cls: p.st === 'done' ? 'bg-ms-gray-400' : p.st === 'doing' ? 'bg-primary' : 'bg-ms-gray-200' })),
+        stepText: doneN + ' / ' + c.procs.length,
+        next: nextP ? '다음 ' + nextP.title + (nextP.doc ? ' · ' + docName(nextP.doc) : '') : st.key === 'home' ? '룸 정리 · 기록 출력' : '',
+        cls: st.attn ? 'bg-ms-white border-red' : st.key === 'doing' ? 'bg-ms-white border-primary' : 'bg-ms-white border-ms-gray-200',
+        bw: st.attn ? '2px' : '1px', bs: 'solid', op: st.key === 'home' && c.home != null ? '0.6' : '1', cursor: 'pointer',
+        open: () => this.setState({ cur: id, sheet: null, trOpen: false }),
+        ...(() => {
+          const mine = this.myCalls(c);
+          const k = mine[0] && mine[0].call;
+          return {
+            canAccept: mine.length > 0,
+            acceptText: k ? (k.kind === 'all' ? '전체 호출' : '나를 지정') + ' · ' + mine.length + '건' : '',
+            acceptCls: st.attn ? 'text-typo-body-600 text-red' : 'text-typo-body-600 text-primary',
+            accept: () => this.acceptRoom(id)
+          };
+        })()
+      };
+    });
+    const attn = live.filter((r) => r.st.attn);
+    return { filters, roomCards, hasAttn: attn.length > 0, attnCount: attn.length, attnOthers: attn.filter((r) => r.id !== s.cur).length };
+  }
+  componentDidMount() { this.iv = setInterval(() => this.setState({ tick: Date.now() }), 1000); }
+  componentDidUpdate(prev) { if (prev && prev.scene !== this.props.scene) this.setState(this.initial(this.props.scene)); }
+  componentWillUnmount() { clearInterval(this.iv); clearTimeout(this.tt); clearTimeout(this.vt); this.clearTalk(); try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch (e) {} }
+
+  now() { return BASE + Math.floor((Date.now() - this.state.t0) / 1000) + (this.props.scene === 'done' ? 23 * 60 : 0); }
+  flash(msg) { clearTimeout(this.tt); this.setState({ toast: msg }); this.tt = setTimeout(() => this.setState({ toast: '' }), 2600); }
+  editC(fn) { this.setState((x) => (x.cur ? { rooms: { ...x.rooms, [x.cur]: fn(x.rooms[x.cur]) } } : null)); }
+  editP(seq, fn) { this.editC((c) => ({ ...c, procs: c.procs.map((p) => (p.seq === seq ? fn(p) : p)) })); }
+  startTr() {
+    if (this.state.trOpen || !this.state.cur) return;
+    const t = this.now(), lang = this.state.rooms[this.state.cur].lang;
+    this.clearTalk();
+    this.editC((c) => ({ ...c, chat: [] }));
+    this.setState({ trOpen: true, trStart: t, ip: 'connecting', trLang: lang, langOpen: false, partial: null, talkIdx: 0 });
+    this.ct = setTimeout(() => { if (this.state.trOpen) { this.setState({ ip: 'listening' }); this.queueTalk(1600); } }, 1200);
+  }
+  clearTalk() { clearTimeout(this.ct); clearTimeout(this.pt); clearTimeout(this.qt); }
+  // 데모 — 듣는 중이면 대본을 한 줄씩: 받아쓰는 중(…) → 확정 + 번역
+  queueTalk(delay) {
+    clearTimeout(this.qt);
+    this.qt = setTimeout(() => {
+      const s = this.state, script = TALK[s.trLang] || [];
+      if (!s.trOpen || s.ip !== 'listening' || s.talkIdx >= script.length) return;
+      const [side, orig, trans] = script[s.talkIdx];
+      this.setState({ partial: { me: side === 'me', orig: orig.slice(0, Math.ceil(orig.length * 0.6)) } });
+      this.pt = setTimeout(() => {
+        if (!this.state.trOpen || this.state.ip !== 'listening') return;
+        this.editC((c) => ({ ...c, chat: [...c.chat, { me: side === 'me', orig, trans }] }));
+        this.setState((x) => ({ partial: null, talkIdx: x.talkIdx + 1 }));
+        this.queueTalk(2600);
+      }, 1400);
+    }, delay);
+  }
+  toggleMic() {
+    const ip = this.state.ip;
+    if (ip === 'listening') { this.clearTalk(); this.setState({ ip: 'paused', partial: null }); }
+    else if (ip === 'paused') { this.setState({ ip: 'listening' }); this.queueTalk(1000); }
+  }
+  endTr() {
+    if (!this.state.trOpen) return;
+    const t = this.now(), n = (this.state.rooms[this.state.cur] || { chat: [] }).chat.length;
+    this.clearTalk();
+    if (n) this.editC((c) => ({ ...c, lastTr: { at: t, n }, chat: [] }));
+    this.setState({ trOpen: false, partial: null, ip: null, langOpen: false });
+    this.flash('통역 종료' + (n ? ' · ' + n + '문장' : ''));
+  }
+  // 빠른 말하기 — 고객 언어로 바로 읽기(브라우저 TTS 대신 Flutter 에선 flutter_tts)
+  play(ko, tr, lang) {
+    clearTimeout(this.vt);
+    const done = () => this.setState((x) => (x.playing === ko ? { playing: null } : null));
+    this.setState({ playing: ko, played: { ko, tr, at: this.now() } });
+    try {
+      const ss = window.speechSynthesis;
+      if (ss) {
+        ss.cancel();
+        const u = new SpeechSynthesisUtterance(tr);
+        u.lang = VOICE[lang] || 'en-US'; u.rate = 0.95;
+        u.onend = done; u.onerror = done;
+        ss.speak(u);
+      }
+    } catch (e) {}
+    this.vt = setTimeout(done, 1200 + tr.length * 140);
+    if (this.state.trOpen) this.say(ko, tr);
+  }
+  say(ko, tr) { this.editC((c) => ({ ...c, chat: [...c.chat, { me: true, orig: ko, trans: tr }] })); }
+
+  renderVals() {
+    const s = this.state, c = s.rooms[s.cur || 'r2'], now = this.now(), curLang = (s.trOpen && s.trLang) || c.lang, L = LANGS[curLang];
+    const lv = this.listVals(now);
+    const doing = c.procs.find((p) => p.st === 'doing');
+    const anyStarted = c.procs.some((p) => p.st !== 'wait');
+    const allDone = c.procs.every((p) => p.st === 'done');
+    const openCalls = c.procs.filter((p) => p.st === 'wait' && p.call && !p.call.accepted);
+    const anesOn = c.anes.find((a) => a.end == null), anesLast = c.anes.filter((a) => a.end != null).slice(-1)[0];
+
+    // 상태 배지
+    let stName = '시술 대기', stVariant = 'warning';
+    if (c.home != null) { stName = '귀가 대기'; stVariant = 'neutral'; }
+    else if (doing) { stName = '시술 진행'; stVariant = 'primary'; }
+    else if (allDone) { stName = '시술 완료'; stVariant = 'neutral'; }
+    else if (openCalls.length) { const late = mins(now - Math.min(...openCalls.map((p) => p.call.at))) >= CALL_LONG; stName = '호출 ' + mins(now - Math.min(...openCalls.map((p) => p.call.at))) + '분'; stVariant = late ? 'danger' : 'primary'; }
+    else if (anesOn) { stName = '마취 중'; stVariant = 'purple'; }
+
+    // 시술 줄
+    const procs = c.procs.slice().sort((a, b) => (a.st === 'done' ? 0 : a.st === 'doing' ? 1 : 2) - (b.st === 'done' ? 0 : b.st === 'doing' ? 1 : 2) || a.seq - b.seq).map((p) => {
+      const ready = !!p.doc && (!p.call || p.call.accepted);
+      const canStart = p.st === 'wait' && !doing && p.consent && ready && c.home == null;
+      let sub = '', subCls = 'text-typo-caption-md-500 text-ms-gray-700';
+      if (p.st === 'done') { sub = docName(p.doc) + ' · ' + hm(p.start) + '~' + hm(p.end) + ' · ' + mins(p.end - p.start) + '분'; subCls = 'text-typo-caption-md-400 text-ms-gray-500'; }
+      else if (p.st === 'doing') sub = docName(p.doc) + ' · ' + hm(p.start) + ' 시작' + (p.note ? ' · ' + p.note : '');
+      else if (!p.consent) { sub = '동의서 미서명 — 서명 후 시작'; subCls = 'text-typo-caption-md-600 text-red'; }
+      else if (p.call && !p.call.accepted) sub = (p.call.kind === 'all' ? '전체 호출' : docName(p.call.doc) + ' 지정 호출') + ' · 수락 후 시작';
+      else if (p.call && p.call.accepted) { sub = docName(p.doc) + ' 수락 · 시작 가능'; subCls = 'text-typo-caption-md-600 text-primary'; }
+      else if (p.doc) sub = docName(p.doc) + (p.note ? ' · ' + p.note : '') + (doing ? ' · 진행 중 시술 끝나면' : '');
+      else { sub = '담당의 미정 — 의사 호출 필요'; subCls = 'text-typo-caption-md-400 text-ms-gray-500'; }
+      return {
+        title: p.title, sub, subCls,
+        titleCls: p.st === 'done' ? 'text-typo-heading-md-400 text-ms-gray-500' : p.st === 'doing' ? 'text-typo-title-md-600 text-primary' : 'text-typo-title-sm-600 text-ms-gray-800',
+        rowCls: p.st === 'doing' ? 'bg-primary-100 border-primary' : 'bg-ms-white border-ms-gray-200',
+        timer: p.st === 'doing' ? ms(now - p.start) : '', timerW: p.st === 'doing' ? '110px' : '0px',
+        isWait: p.st === 'wait' && c.home == null, isDoing: p.st === 'doing', isDone: p.st === 'done',
+        startOff: !canStart,
+        needConsent: p.st === 'wait' && !p.consent,
+        signDemo: () => { this.editP(p.seq, (q) => ({ ...q, consent: true })); this.flash(p.title + ' 동의서 서명 확인'); },
+        start: () => { if (!canStart) return; const t = this.now(); this.editP(p.seq, (q) => ({ ...q, st: 'doing', start: t, call: null })); this.flash(p.title + ' 시작'); },
+        end: () => { const t = this.now(); this.editP(p.seq, (q) => ({ ...q, st: 'done', end: t })); this.flash(p.title + ' 종료'); }
+      };
+    });
+
+    // 호출 카드
+    let call = { on: false, cls: '', titleCls: '', minCls: '', title: '', sub: '', min: '', remind: () => {}, demoAccept: () => {}, demoWho: '' };
+    if (openCalls.length && c.home == null) {
+      const k = openCalls[0].call, m = mins(now - Math.min(...openCalls.map((p) => p.call.at))), late = m >= CALL_LONG;
+      const who = k.kind === 'all' ? 'd1' : k.doc;
+      call = {
+        on: true, cls: late ? 'bg-red-100 border-red' : 'bg-primary-100 border-primary',
+        titleCls: late ? 'text-typo-title-sm-600 text-red' : 'text-typo-title-sm-600 text-primary',
+        minCls: late ? 'text-red' : 'text-primary',
+        title: (k.kind === 'all' ? '전체 호출' : docName(k.doc) + ' 지정 호출') + ' · 수락 대기',
+        sub: hm(k.at) + ' ' + (k.by || '이 태블릿') + ' 호출 · 시술 ' + openCalls.length + '건' + (late ? ' · 기준 ' + CALL_LONG + '분 넘음' : ' · 기준 ' + CALL_LONG + '분'),
+        min: m + '분',
+        remind: () => this.flash((k.kind === 'all' ? '모든 의사' : docName(k.doc)) + '에게 다시 알림'),
+        demoWho: docName(who),
+        demoAccept: () => { this.editC((cc) => ({ ...cc, procs: cc.procs.map((p) => (p.st === 'wait' && p.call && !p.call.accepted ? { ...p, doc: who, call: { ...p.call, accepted: true } } : p)) })); this.flash(docName(who) + ' 수락 — 시작할 수 있어요'); }
+      };
+    }
+
+    // 마취
+    const anesCtl = !anyStarted && c.home == null;
+    let anesLabel = '마취', anesVal = '안 함', anesSub = '', anesBoxCls = 'bg-ms-white', anesLabelCls = 'text-typo-caption-md-600 text-ms-gray-700', anesValCls = 'text-typo-body-500 text-ms-gray-600';
+    if (anesOn) {
+      const m = mins(now - anesOn.start), late = m >= ANES_LONG;
+      anesLabel = '마취 중 · ' + anesOn.kind; anesVal = m + '분'; anesSub = hm(anesOn.start) + ' 시작 · 기준 ' + ANES_LONG + '분' + (late ? ' 넘음' : '');
+      anesBoxCls = 'bg-purple-100'; anesLabelCls = 'text-typo-caption-md-600 text-purple'; anesValCls = late ? 'text-typo-title-md-600 text-red' : 'text-typo-title-md-600 text-purple';
+    } else if (anesLast) {
+      anesVal = '완료 ' + mins(anesLast.end - anesLast.start) + '분'; anesSub = anesLast.kind + ' ' + hm(anesLast.start) + '~' + hm(anesLast.end);
+      anesValCls = 'text-typo-body-600 text-purple';
+    }
+
+    // 통역
+    const phrases = L.phrases.map(([ko, tr]) => ({ ko, tr, say: () => this.play(ko, tr, curLang), play: () => this.play(ko, tr, curLang),
+      chipCls: s.playing === ko ? 'bg-primary border-primary text-ms-white text-typo-caption-md-600' : 'bg-ms-white border-ms-gray-300 text-ms-gray-800 text-typo-caption-md-500' }));
+    const short = c.name.replace(/^\[[A-Z]+\]\s*/, '');
+    const msg = (m, partial) => ({
+      align: m.me ? 'flex-end' : 'flex-start',
+      who: m.me ? '의료진' : short + ' 님',
+      cls: m.me ? 'bg-primary text-ms-white' : 'bg-ms-white text-ms-gray-800',
+      radius: m.me ? '14px 4px 14px 14px' : '4px 14px 14px 14px',
+      origCls: (m.me ? 'text-ms-white' : partial ? 'text-ms-gray-600' : 'text-ms-gray-800') + ' text-typo-title-sm-600',
+      transCls: (m.me ? 'text-ms-white' : 'text-ms-gray-600') + ' text-typo-body-400',
+      orig: partial ? m.orig + ' …' : m.orig, trans: partial ? '번역 중…' : m.trans
+    });
+    const msgs = c.chat.map((m) => msg(m, false)).concat(s.partial ? [msg(s.partial, true)] : []);
+    const IP = {
+      connecting: { text: '연결 중', cls: 'text-typo-body-600 text-ms-gray-700', dot: 'bg-ms-gray-500', hint: '마이크와 통역 서버를 연결하고 있어요', mic: 'bg-ms-gray-100 border-ms-gray-300' },
+      listening: { text: '듣는 중', cls: 'text-typo-body-600 text-primary', dot: 'bg-primary', hint: '양쪽 말을 모두 들어요 · 누가 말했는지 자동으로 구분해요 · 누르면 멈춤', mic: 'bg-primary border-primary ip-pulse' },
+      paused: { text: '멈춤', cls: 'text-typo-body-600 text-ms-gray-700', dot: 'bg-ms-gray-500', hint: '누르면 다시 들어요 · 시술 중 잠깐 끌 때', mic: 'bg-ms-white border-primary' }
+    }[s.ip || 'connecting'];
+
+    // 의사 호출 시트
+    const waitProcs = c.procs.filter((p) => p.st === 'wait');
+    let cm = { open: false, procs: [], noProcs: false, docs: [], off: true, cta: '', submit: () => {} };
+    if (s.sheet === 'call' && s.cm) {
+      const m = s.cm, set = (patch) => this.setState((x) => ({ cm: { ...x.cm, ...patch } }));
+      const busy = (id) => (doing && doing.doc === id ? '이 방 시술 중' : ELSEWHERE[id] || '');
+      const opts = [{ key: 'all', name: '모든 의사', av: 'ALL', avCls: 'bg-ms-gray-700 text-ms-white', sub: '먼저 수락한 원장', free: true },
+        ...DOCS.slice().sort((a, b) => !!busy(a.id) - !!busy(b.id)).map((d) => ({ key: d.id, name: d.name, av: d.name.slice(0, 1), avCls: 'bg-purple-100 text-purple', sub: busy(d.id) || '비어있음', free: !busy(d.id) }))];
+      const off = !m.picks.length || !m.to;
+      cm = {
+        open: true, noProcs: !waitProcs.length,
+        procs: waitProcs.map((p) => {
+          const on = m.picks.includes(p.seq);
+          const note = p.call && !p.call.accepted ? '호출함 · ' + (p.call.kind === 'all' ? '전체' : docName(p.call.doc)) : p.doc ? '담당 ' + docName(p.doc) : '담당의 미정';
+          return { title: p.title, note, cls: on ? 'bg-primary-100 border-primary' : 'bg-ms-white border-ms-gray-300', boxCls: on ? 'bg-primary border-primary text-ms-white' : 'bg-ms-white border-ms-gray-400 text-ms-white',
+            toggle: () => set({ picks: on ? m.picks.filter((q) => q !== p.seq) : [...m.picks, p.seq] }) };
+        }),
+        docs: opts.map((o) => ({ ...o, cls: m.to === o.key ? 'bg-primary-100 border-primary' : 'bg-ms-white border-ms-gray-200',
+          subCls: o.key === 'all' ? 'text-typo-caption-md-400 text-ms-gray-500' : o.free ? 'text-typo-caption-md-500 text-primary' : 'text-typo-caption-md-400 text-ms-gray-500',
+          pick: () => set({ to: m.to === o.key ? null : o.key }) })),
+        off,
+        cta: !m.to ? '의사를 선택하세요' : (m.to === 'all' ? '모든 의사' : docName(m.to)) + ' 호출 · ' + m.picks.length + '건',
+        submit: () => {
+          if (off) return;
+          const t = this.now(), callObj = m.to === 'all' ? { kind: 'all', at: t, by: '이 태블릿' } : { kind: 'one', doc: m.to, at: t, by: '이 태블릿' };
+          this.editC((cc) => ({ ...cc, procs: cc.procs.map((p) => (m.picks.includes(p.seq) ? { ...p, call: { ...callObj }, doc: null } : p)) }));
+          this.setState({ sheet: null, cm: null });
+          this.flash((m.to === 'all' ? '모든 의사' : docName(m.to)) + ' 호출 · ' + m.picks.length + '건');
+        }
+      };
+    }
+
+    // 간호사 요청 시트
+    let nr = { open: false, opts: [], off: true, cta: '', submit: () => {} };
+    if (s.sheet === 'nurse') {
+      const pick = s.nr;
+      nr = {
+        open: true, off: !pick,
+        opts: NURSE_OPTS.map((o) => ({ ...o, cls: pick === o.id ? 'bg-primary-100 border-primary' : 'bg-ms-white border-ms-gray-200', pick: () => this.setState({ nr: pick === o.id ? null : o.id }) })),
+        cta: pick ? NURSE_OPTS.find((o) => o.id === pick).name + ' 요청' : '요청할 일을 고르세요',
+        submit: () => { if (!pick) return; this.setState({ sheet: null, nr: null }); this.flash('간호사에게 요청 보냄 · ' + NURSE_OPTS.find((o) => o.id === pick).name); }
+      };
+    }
+
+    const docsHere = [...new Set(c.procs.map((p) => p.doc).filter(Boolean))].map(docName);
+    const lastEnd = allDone ? Math.max(...c.procs.map((p) => p.end)) : 0;
+
+    const me = this.me(), myHere = s.cur ? this.myCalls(c) : [];
+    call = { ...call, canAccept: myHere.length > 0, nurseCtl: call.on && !myHere.length,
+      acceptLabel: myHere.length ? '수락 · ' + myHere.length + '건' : '', accept: () => this.acceptRoom(s.cur) };
+    const ACC = { nurse: '김 간호사', d1: '박 원장', d3: '최 원장' };
+    return {
+      ...lv, isList: !s.cur, isRoom: !!s.cur,
+      meName: ACC[me], meRole: me === 'nurse' ? '간호사' : '원장',
+      switchMe: () => { const order = ['nurse', 'd1', 'd3'], nx = order[(order.indexOf(me) + 1) % order.length]; this.setState({ me: nx, filter: nx === 'nurse' ? null : 'mine' }); this.flash(ACC[nx] + ' 계정으로 전환(데모)'); },
+      back: () => { this.endTr(); this.setState({ cur: null, sheet: null, played: null, playing: null }); },
+      backSub: lv.attnOthers ? '다른 룸 확인 ' + lv.attnOthers : '룸 7',
+      backSubCls: lv.attnOthers ? 'text-typo-caption-md-600 text-red' : 'text-typo-caption-md-400 text-ms-gray-500',
+      room: c.room, name: c.name, nat: c.nat, meta: c.meta,
+      visit: c.isNew ? '첫내원' : '재내원', visitCls: c.isNew ? 'bg-primary-100 text-primary text-typo-caption-md-600' : 'bg-ms-gray-200 text-ms-gray-700 text-typo-caption-md-600',
+      stName, stVariant, clock: hm(now),
+      memo: c.memo, hasNote: !!c.note, note: c.note, noteAt: c.noteAt,
+      hasCaution: !!c.caution, caution: c.caution,
+      anesLabel, anesVal, anesSub, anesHasSub: !!anesSub, anesBoxCls, anesLabelCls, anesValCls, anesCtl,
+      anesBtn: anesOn ? '마취 종료' : '마취 시작', anesBtnVariant: anesOn ? 'solid' : 'outlined', anesBtnColor: anesOn ? 'blue' : 'gray',
+      anesClick: () => {
+        const t = this.now();
+        this.editC((cc) => ({ ...cc, anes: anesOn ? cc.anes.map((a) => (a.end == null ? { ...a, end: t } : a)) : [...cc.anes, { kind: '크림', start: t, end: null }] }));
+        this.flash(anesOn ? '마취 종료' : '크림 마취 시작');
+      },
+      procTotal: c.procs.length, procDone: c.procs.filter((p) => p.st === 'done').length,
+      docLine: docsHere.length ? '담당 ' + docsHere.join(' · ') : '담당의 미정',
+      procs, call,
+      allDone, canHome: c.home == null,
+      doneTitle: c.home != null ? '귀가 대기로 넘김 · ' + hm(c.home) : '시술 모두 완료',
+      doneSub: c.home != null ? '데스크 현황판에 반영됨' : '마지막 종료 ' + hm(lastEnd) + ' · 진정 · 사진 촬영 후 귀가 대기',
+      goHome: () => { const t = this.now(); this.editC((cc) => ({ ...cc, home: t })); this.flash(c.room + ' 귀가 대기'); },
+      callBtnOff: !waitProcs.length || c.home != null,
+      openCall: () => this.setState({ sheet: 'call', cm: { picks: waitProcs.filter((p) => !p.call || !p.call.accepted).filter((p) => !(p.doc && !p.call) || !doing).map((p) => p.seq), to: null } }),
+      openNurse: () => this.setState({ sheet: 'nurse', nr: null }),
+      openMemo: () => this.setState({ sheet: 'memo', memoText: c.note }),
+      closeSheet: () => this.setState({ sheet: null }),
+      cm, nr,
+      mm: {
+        open: s.sheet === 'memo', text: s.memoText,
+        meta: c.room + ' · ' + (doing ? doing.title : '전체'),
+        set: (e) => this.setState({ memoText: e.target.value }),
+        save: () => { const t = this.now(); this.editC((cc) => ({ ...cc, note: s.memoText, noteAt: hm(t) })); this.setState({ sheet: null }); this.flash('시술 메모 저장'); }
+      },
+      langName: KNAME[curLang], langRot: s.langOpen ? '180deg' : '0deg', langOpen: !!s.langOpen,
+      trWho: short + ' 님 · ' + c.nat + ' · ' + (curLang === c.lang ? '국적으로 자동 선택 · 눌러서 변경' : '직접 고른 언어 · 눌러서 변경'),
+      toggleLang: () => this.setState((x) => ({ langOpen: !x.langOpen })),
+      langs: Object.keys(KNAME).map((code) => ({
+        name: KNAME[code] + (code === c.lang ? ' · 자동' : ''),
+        cls: code === curLang ? 'bg-primary-100 border-primary text-typo-body-600 text-primary' : 'bg-ms-white border-ms-gray-300 text-typo-body-500 text-ms-gray-700',
+        pick: () => { this.clearTalk(); this.setState({ trLang: code, langOpen: false, partial: null, talkIdx: 0 }); if (this.state.ip === 'listening') this.queueTalk(1200); }
+      })),
+      phrases, msgsRev: msgs.slice().reverse(), noMsgs: !msgs.length,
+      emptyTitle: s.ip === 'connecting' ? '연결하는 중이에요' : '아직 대화가 없어요',
+      emptyText: s.ip === 'connecting' ? '잠시 뒤 바로 들어요. 태블릿을 고객과 의료진 사이에 두세요.' : '말하면 여기에 원문과 번역이 쌓여요.',
+      micCls: IP.mic, isListening: s.ip === 'listening', isPaused: s.ip === 'paused', isConnecting: !s.ip || s.ip === 'connecting',
+      ipText: IP.text, ipCls: IP.cls, ipDot: IP.dot, ipHint: IP.hint,
+      toggleMic: () => this.toggleMic(),
+      trOpen: s.trOpen, openTr: () => this.startTr(), closeTr: () => this.endTr(),
+      trY: s.trOpen ? 'translateY(0)' : 'translateY(105%)', trDimOp: s.trOpen ? '1' : '0', trDimPe: s.trOpen ? 'auto' : 'none',
+      trElapsed: s.trOpen && s.trStart ? ms(now - s.trStart) : '00:00',
+      barSub: s.playing && s.played ? '▶ ' + s.played.tr : s.played ? '방금 ' + s.played.tr : (c.lastTr ? '마지막 통역 ' + hm(c.lastTr.at) + ' · ' + c.lastTr.n + '문장' : '누르면 ' + KNAME[curLang] + '로 바로 읽어줘요'),
+      barSubCls: s.playing ? 'text-typo-body-600 text-primary' : 'text-typo-caption-md-400 text-ms-gray-600',
+      trIdle: c.lastTr ? '마지막 통역 ' + hm(c.lastTr.at) + ' · ' + c.lastTr.n + '문장 · 누르면 바로 듣기 시작' : '누르면 바로 듣기 시작 · 말하는 사람은 자동 구분',
+      hasToast: !!s.toast, toast: s.toast
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!-- @dsCard group="Components" viewport="700x210" name="Badges" subtitle="Content Badge (solid / outlined × neutral / accent × md sm xs) and Push Badge (dot / number / new)" -->
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<style>body{margin:0;padding:20px;background:var(--ax-surface);font-family:var(--font-ui)}#root{display:flex;flex-direction:column;gap:16px}.row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.col{display:flex;flex-direction:column;gap:10px}.lbl{font:500 11px/1.273 var(--font-ui);letter-spacing:.031em;color:var(--ax-ink-assistive);width:72px;flex-shrink:0}</style>
+</head><body><div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+const { ContentBadgeContentBadge, PushBadgePushBadge } = window.TheSCAXDesignSystem_7e8395;
+const Row = ({ label, children, style }) => <div className="row" style={style}><span className="lbl">{label}</span>{children}</div>;
+const mount = (el) => ReactDOM.createRoot(document.getElementById('root')).render(el);
+
+mount(<>
+  <Row label="Solid">{['md','sm','xs'].map(s=><ContentBadgeContentBadge key={s} variant="solid" color="accent" size={s} text="진행중" />)}
+    {['md','sm','xs'].map(s=><ContentBadgeContentBadge key={'n'+s} variant="solid" color="neutral" size={s} text="시작전" />)}</Row>
+  <Row label="Outlined">{['md','sm','xs'].map(s=><ContentBadgeContentBadge key={s} variant="outlined" color="accent" size={s} text="참조" />)}
+    {['md','sm','xs'].map(s=><ContentBadgeContentBadge key={'n'+s} variant="outlined" color="neutral" size={s} text="공지" />)}</Row>
+  <Row label="Push"><PushBadgePushBadge variant="dot" size="md" /><PushBadgePushBadge variant="number" size="md" number="5" /><PushBadgePushBadge variant="new" size="md" /></Row>
+</>);
+</script></body></html>

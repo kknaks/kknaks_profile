@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/medikit-aea7ac33-f044-4445-9164-87b8b69474dc/fonts/fonts.css">
+  <link rel="stylesheet" href="_ds/medikit-aea7ac33-f044-4445-9164-87b8b69474dc/_ds_bundle.css">
+  <link rel="stylesheet" href="_ds/medikit-aea7ac33-f044-4445-9164-87b8b69474dc/styles.css">
+  <link rel="stylesheet" href="ceramique-theme.css">
+  <link rel="stylesheet" href="medikit-patches.css">
+  <style>html,body{margin:0;height:100%;}
+  /* 구현 v3 — 버튼 · 배지 · 칩은 Flutter procedure/app lib/widgets/ui.dart 와 같은 크기(lg 48 · md 40 · sm 33 · 배지 22 · 반경 8) — 태블릿은 × --k */
+  :where(.cc-btn){background:none;border-width:0;padding:0;font:inherit;cursor:pointer;text-align:left;}
+  .v3b{display:flex;align-items:center;justify-content:center;box-sizing:border-box;border-radius:8px;border:1px solid;white-space:nowrap;cursor:pointer;font-weight:600;letter-spacing:0;padding:0 16px;font-family:inherit;}
+  .v3b.lg{height:calc(48px*var(--k));font-size:calc(16px*var(--k));} .v3b.md{height:calc(40px*var(--k));font-size:calc(14px*var(--k));} .v3b.sm{height:calc(33px*var(--k));font-size:calc(13px*var(--k));padding:0 14px;}
+  .v3b.sb{background:var(--ms-primary);border-color:var(--ms-primary);color:#fff;} .v3b.ob{background:#fff;border-color:var(--ms-primary);color:var(--ms-primary);}
+  .v3b.og{background:#fff;border-color:var(--ms-gray-300);color:var(--ms-gray-800);} .v3b.gy{background:var(--ms-gray-700);border-color:var(--ms-gray-700);color:#fff;} .v3b.rd{background:var(--ms-red);border-color:var(--ms-red);color:#fff;}
+  .v3b.off{background:#fff;border-color:var(--ms-gray-300);color:var(--ms-gray-600);cursor:default;} .v3b.sb.off{background:var(--ms-gray-300);}
+  .v3badge{height:calc(22px*var(--k));padding:0 8px;border-radius:999px;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;max-width:100%;box-sizing:border-box;}
+  .v3dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+  .v3tag{padding:1px 6px;border-radius:4px;white-space:nowrap;}
+  .v3chips{-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 28px),transparent);}
+  .v3in{width:100%;box-sizing:border-box;height:calc(46px*var(--k));border:1px solid var(--ms-gray-300);border-radius:8px;padding:0 12px;background:#fff;outline:none;font:inherit;}
+  .v3in:focus{border-color:var(--ms-primary);}
+  [data-k] .text-typo-caption-md-400{font-size:14.28px;}
+  [data-k] .text-typo-caption-md-500{font-size:14.28px;}
+  [data-k] .text-typo-caption-md-600{font-size:14.28px;}
+  [data-k] .text-typo-body-400{font-size:16.66px;}
+  [data-k] .text-typo-body-500{font-size:16.66px;}
+  [data-k] .text-typo-body-600{font-size:16.66px;}
+  [data-k] .text-typo-heading-sm-400{font-size:16.66px;}
+  [data-k] .text-typo-heading-md-400{font-size:19.04px;}
+  [data-k] .text-typo-heading-md-500{font-size:19.04px;}
+  [data-k] .text-typo-heading-md-600{font-size:19.04px;}
+  [data-k] .text-typo-title-sm-600{font-size:21.42px;}
+  [data-k] .text-typo-title-md-600{font-size:23.8px;}</style>
+</helmet>
+<!-- 구현 v3(2026-10-22) — 확정 시안(같은 이름 원본)을 코드 main 329b543 procedure/app(Flutter) 화면에 맞춘 사본. 원본은 그대로 둔다 -->
+<div data-product="ceramique" data-screen-label="시술실 태블릿 (구현 v3)" data-k="1" class="bg-ms-gray-100" style="height:var(--frame-h,100vh);min-width:880px;min-height:640px;display:flex;flex-direction:column;overflow:hidden;position:relative;--k:1.19;">
+
+  <!-- ========== 로그인 — 아이디 + 비밀번호(카드 없음 · OQ-601 닫음). 서버 주소 칸 · [연결 확인] 은 debug 빌드만(릴리스 = API_BASE 고정) ========== -->
+  <sc-if value="{{ isLogin }}">
+    <div style="flex:1;min-height:0;overflow:auto;display:flex;align-items:center;justify-content:center;padding:24px;">
+      <div style="width:100%;max-width:calc(420px*var(--k));display:flex;flex-direction:column;">
+        <span style="align-self:center;font-size:calc(26px*var(--k));font-weight:700;color:var(--ms-primary);letter-spacing:-0.3px;line-height:1;">Céramique</span>
+        <span class="text-typo-title-md-600 text-ms-gray-800" style="align-self:center;margin-top:6px;">시술 현황</span>
+        <span class="text-typo-caption-md-600 text-ms-gray-700" style="margin-top:28px;">아이디</span>
+        <input class="v3in text-typo-body-400 text-ms-gray-800" style="margin-top:6px;" value="{{ loginId }}" onChange="{{ setId }}" placeholder="아이디" autocapitalize="off" autocomplete="username">
+        <span class="text-typo-caption-md-600 text-ms-gray-700" style="margin-top:12px;">비밀번호</span>
+        <div style="position:relative;margin-top:6px;">
+          <input class="v3in text-typo-body-400 text-ms-gray-800" style="padding-right:44px;" type="{{ pwType }}" value="{{ loginPw }}" onChange="{{ setPw }}" placeholder="비밀번호" autocomplete="current-password">
+          <button type="button" class="cc-btn" onClick="{{ togglePw }}" title="비밀번호 보기" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);width:28px;height:28px;display:flex;align-items:center;justify-content:center;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9f9f9f" stroke-width="1.8"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          </button>
+        </div>
+        <sc-if value="{{ hasLoginErr }}"><span class="text-typo-caption-md-600 text-red" style="margin-top:10px;font-size:calc(13px*var(--k));">{{ loginErr }}</span></sc-if>
+        <button type="button" class="v3b lg sb" style="margin-top:20px;width:100%;" onClick="{{ doLogin }}">로그인</button>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ========== 시술실 현황(목록) — 필터 = 웹과 같은 칸(겹쳐 셈) + 「수락 대기」(의사 · 관리자) + 「귀가」 · 맞는 카드만 · 격자 왼쪽 위부터 ========== -->
+  <sc-if value="{{ isList }}">
+    <div class="bg-ms-white border-ms-gray-200" style="height:calc(64px*var(--k));flex-shrink:0;display:flex;align-items:center;gap:16px;padding:0 24px;border-bottom-width:1px;border-bottom-style:solid;">
+      <span style="font-size:calc(20px*var(--k));font-weight:700;color:var(--ms-primary);letter-spacing:-0.3px;line-height:1;">Céramique</span>
+      <span class="text-typo-title-sm-600 text-ms-gray-800" style="white-space:nowrap;">시술실 현황</span>
+      <span style="flex:1;"></span>
+      <sc-if value="{{ hasNeed }}"><span class="text-typo-body-600 text-red" style="white-space:nowrap;">확인 필요 {{ need }}</span></sc-if>
+      <span class="text-typo-heading-sm-400 text-ms-black" style="font-variant-numeric:tabular-nums;">{{ clock }}</span>
+      <button type="button" class="cc-btn" onClick="{{ toggleMenu }}" style="white-space:nowrap;padding:8px 0;"><span class="text-typo-body-600 text-primary">{{ meName }}</span><span class="text-typo-body-400 text-ms-gray-600"> ▾</span><sc-if value="{{ notifOff }}"><span class="text-typo-caption-md-600 text-red">  알림 꺼짐</span></sc-if></button>
+    </div>
+
+    <sc-if value="{{ offline }}"><div class="bg-yellow-100" style="flex-shrink:0;padding:6px 16px;"><span class="text-typo-caption-md-600 text-yellow">연결 끊김 · 다시 연결 중</span></div></sc-if>
+    <div style="flex-shrink:0;padding:10px 24px 0;display:flex;gap:6px;overflow-x:auto;">
+      <sc-for list="{{ filters }}" as="f">
+        <button type="button" class="v3b sm {{ f.cls }}" onClick="{{ f.pick }}">{{ f.label }}</button>
+      </sc-for>
+    </div>
+    <div style="flex:1;min-height:0;overflow:auto;">
+      <sc-if value="{{ noCards }}"><div style="height:100%;display:flex;align-items:center;justify-content:center;"><span class="text-typo-body-500 text-ms-gray-600">시술 중인 방이 없어요</span></div></sc-if>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(calc(270px*var(--k)),1fr));gap:12px;align-content:start;align-items:start;justify-content:start;padding:12px 24px 24px;">
+        <sc-for list="{{ cards }}" as="r">
+          <div onClick="{{ r.open }}" class="bg-ms-white" style="border:{{ r.border }};border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;cursor:pointer;opacity:{{ r.op }};box-sizing:border-box;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span class="text-typo-heading-md-500 text-ms-gray-800" style="white-space:nowrap;">{{ r.room }}</span>
+              <span class="text-typo-caption-md-600 text-ms-gray-800" style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ r.name }}</span>
+              <span style="max-width:190px;display:flex;"><span class="v3badge {{ r.b.cls }}"><sc-if value="{{ r.b.dot }}"><span class="v3dot {{ r.b.dotCls }}"></span></sc-if><span class="text-typo-caption-md-600" style="overflow:hidden;text-overflow:ellipsis;">{{ r.b.text }}</span></span></span>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px;margin-top:6px;">
+              <span class="v3tag bg-ms-gray-200 text-ms-gray-700 text-typo-caption-md-500">{{ r.nat }}</span>
+              <span class="v3tag {{ r.visitCls }} text-typo-caption-md-600">{{ r.visit }}</span>
+            </div>
+            <div class="{{ r.nowBg }}" style="margin-top:8px;border-radius:8px;padding:8px 10px;display:flex;align-items:center;gap:10px;">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;">
+                <span class="text-typo-body-600 {{ r.nowCls }}" style="word-break:keep-all;">{{ r.nowTitle }}</span>
+                <sc-if value="{{ r.hasSub }}"><span class="text-typo-caption-md-500 text-ms-gray-700" style="word-break:keep-all;">{{ r.nowSub }}</span></sc-if>
+              </div>
+              <sc-if value="{{ r.hasTimer }}"><span class="{{ r.timerCls }}" style="font-size:calc(20px*var(--k));font-weight:600;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap;">{{ r.timer }}</span></sc-if>
+            </div>
+            <sc-if value="{{ r.hasSteps }}">
+              <div style="display:flex;align-items:center;gap:8px;margin-top:8px;">
+                <div style="width:72px;flex-shrink:0;display:flex;gap:3px;"><sc-for list="{{ r.steps }}" as="st"><span class="{{ st.cls }}" style="flex:1;height:5px;border-radius:3px;"></span></sc-for></div>
+                <span class="text-typo-caption-md-500 text-ms-gray-600" style="white-space:nowrap;font-variant-numeric:tabular-nums;">{{ r.stepText }}</span>
+                <span class="text-typo-caption-md-400 text-ms-gray-700" style="min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ r.next }}</span>
+              </div>
+            </sc-if>
+            <sc-for list="{{ r.accepts }}" as="a">
+              <div class="border-ms-gray-200" style="margin-top:8px;padding-top:8px;border-top-width:1px;border-top-style:solid;display:flex;align-items:center;gap:10px;">
+                <span class="text-typo-body-600 {{ a.cls }}" style="flex:1;">{{ a.text }}</span>
+                <button type="button" class="v3b md sb" onClick="{{ a.go }}">수락</button>
+              </div>
+            </sc-for>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ========== 룸 상세 ========== -->
+  <sc-if value="{{ isRoom }}">
+    <!-- 머리 한 줄(T2) — [← 현황 · 다른 룸 확인] │ 방(크게) │ 고객 · 국적 · 첫/재내원 / 입실 · 수납 필요 · KOS │ 상태 · 시각 -->
+    <div class="bg-ms-white border-ms-gray-200" style="height:calc(72px*var(--k));flex-shrink:0;display:flex;align-items:center;gap:16px;padding:0 24px 0 12px;border-bottom-width:1px;border-bottom-style:solid;">
+      <button type="button" onClick="{{ back }}" class="cc-btn bg-ms-gray-100" style="min-height:48px;padding:4px 14px;border-radius:10px;display:flex;flex-direction:column;justify-content:center;flex-shrink:0;">
+        <span class="text-typo-body-600 text-ms-gray-800" style="white-space:nowrap;">← 현황</span>
+        <sc-if value="{{ hasOthers }}"><span class="text-typo-caption-md-600 text-red" style="white-space:nowrap;">{{ others }}</span></sc-if>
+      </button>
+      <span class="text-ms-gray-800" style="font-size:calc(32px*var(--k));font-weight:600;line-height:1.3;white-space:nowrap;">{{ room }}</span>
+      <span class="bg-ms-gray-300" style="width:1px;height:28px;flex-shrink:0;"></span>
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;">
+        <div style="display:flex;align-items:center;gap:6px;min-width:0;">
+          <span class="text-typo-title-sm-600 text-ms-gray-800" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ name }}</span>
+          <span class="v3tag bg-ms-gray-200 text-ms-gray-700 text-typo-caption-md-500">{{ nat }}</span>
+          <span class="v3tag {{ visitCls }} text-typo-caption-md-600">{{ visit }}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="text-typo-caption-md-400 text-ms-gray-600">{{ inAt }}</span>
+          <sc-if value="{{ pay }}"><span class="v3tag bg-yellow-100 text-yellow text-typo-caption-md-600">수납 필요</span></sc-if>
+          <sc-if value="{{ hasKos }}"><span class="text-typo-caption-md-600 {{ kosCls }}">{{ kosText }}</span></sc-if>
+        </div>
+      </div>
+      <span class="v3badge {{ bd.cls }}"><sc-if value="{{ bd.dot }}"><span class="v3dot {{ bd.dotCls }}"></span></sc-if><span class="text-typo-caption-md-600" style="overflow:hidden;text-overflow:ellipsis;">{{ bd.text }}</span></span>
+      <span class="text-typo-heading-sm-400 text-ms-black" style="font-variant-numeric:tabular-nums;">{{ clock }}</span>
+    </div>
+    <!-- 두 열 = 남은 높이 전부(T1) — 왼쪽 오더 메모(늘어남 · 안 스크롤) + 마취 / 오른쪽 호출 · 완료 상자 + 시술 카드(늘어남 · [의사 호출] 바닥) -->
+    <div style="flex:1;min-height:0;display:grid;grid-template-columns:minmax(260px,calc(380px*var(--k))) minmax(0,1fr);gap:12px;padding:12px 20px;">
+      <div style="display:flex;flex-direction:column;gap:10px;min-height:0;">
+          <div class="bg-ms-white" style="border-radius:14px;padding:16px;display:flex;flex-direction:column;flex:1;min-height:0;">
+            <span class="text-typo-heading-md-500 text-ms-gray-800">오더 메모</span>
+            <div style="margin-top:8px;flex:1;min-height:0;overflow:auto;"><span class="text-typo-body-400 {{ memoCls }}" style="font-size:calc(15px*var(--k));line-height:1.6;white-space:pre-wrap;word-break:keep-all;">{{ memo }}</span></div>
+          </div>
+
+          <div class="{{ anes.boxCls }}" style="border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;flex-shrink:0;">
+            <div style="display:flex;align-items:baseline;gap:8px;">
+              <span class="text-typo-caption-md-600 {{ anes.labelCls }}" style="flex:1;">{{ anes.label }}</span>
+              <span class="{{ anes.valCls }}" style="font-variant-numeric:tabular-nums;white-space:nowrap;">{{ anes.val }}</span>
+            </div>
+            <sc-if value="{{ anes.on }}"><span class="text-typo-caption-md-400 text-ms-gray-700" style="margin-top:4px;">{{ anes.sub }}</span></sc-if>
+            <sc-if value="{{ anes.canStart }}"><button type="button" class="v3b md og" style="margin-top:8px;" onClick="{{ anes.start }}">마취 시작</button></sc-if>
+            <sc-if value="{{ anes.canEnd }}"><button type="button" class="v3b md sb" style="margin-top:8px;" onClick="{{ anes.end }}">마취 종료</button></sc-if>
+          </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;min-height:0;">
+        <div style="max-height:50%;overflow:auto;display:flex;flex-direction:column;gap:8px;flex-shrink:0;">
+        <sc-for list="{{ callBoxes }}" as="k">
+          <div class="{{ k.boxCls }}" style="border-width:1px;border-style:solid;border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;flex-shrink:0;">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px;">
+                <span class="text-typo-title-sm-600 {{ k.titleCls }}">{{ k.title }}</span>
+                <span class="text-typo-caption-md-500 text-ms-gray-700">{{ k.sub }}</span>
+              </div>
+              <span class="{{ k.titleCls }}" style="font-size:calc(28px*var(--k));font-weight:600;line-height:1;font-variant-numeric:tabular-nums;">{{ k.min }}</span>
+            </div>
+            <div style="padding-top:10px;display:flex;gap:8px;">
+              <sc-if value="{{ k.adminOne }}">
+                <button type="button" class="v3b lg sb" style="flex:3;min-width:0;" onClick="{{ k.accept }}">{{ k.fixedLabel }}</button>
+                <button type="button" class="v3b lg og" style="flex:2;min-width:0;" onClick="{{ k.reassign }}">다른 원장에게</button>
+              </sc-if>
+              <sc-if value="{{ k.mineOne }}"><button type="button" class="v3b lg sb" style="flex:1;" onClick="{{ k.accept }}">{{ k.mineLabel }}</button></sc-if>
+              <sc-if value="{{ k.notMine }}">
+                <button type="button" class="v3b md ob" style="flex:1;" onClick="{{ k.other }}">다른 의사 호출</button>
+                <sc-if value="{{ k.isOne }}"><button type="button" class="v3b md og" style="flex:1;" onClick="{{ k.reassign }}">다른 원장에게</button></sc-if>
+              </sc-if>
+            </div>
+          </div>
+        </sc-for>
+        <sc-if value="{{ hasDone }}">
+          <div class="bg-primary-100 border-primary" style="border-width:1px;border-style:solid;border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;flex-shrink:0;">
+            <span class="text-typo-heading-md-500 text-primary">시술 모두 완료</span>
+            <span class="text-typo-caption-md-500 text-ms-gray-700">{{ doneSub }}</span>
+            <button type="button" class="v3b md sb" style="margin-top:4px;" onClick="{{ goHome }}">귀가 대기</button>
+          </div>
+        </sc-if>
+        </div>
+          <div class="bg-ms-white" style="border-radius:14px;padding:16px;display:flex;flex-direction:column;flex:1;min-height:0;">
+            <span><span class="text-typo-heading-md-500 text-ms-gray-800">시술 {{ procTotal }} </span><span class="text-typo-body-400 text-ms-gray-600">· 완료 {{ procDone }}</span></span>
+            <div style="flex:1;min-height:0;overflow:auto;display:flex;flex-direction:column;">
+            <sc-for list="{{ procs }}" as="p">
+              <div style="{{ p.rowStyle }}border-radius:10px;padding:10px 12px;display:flex;align-items:center;gap:10px;margin-top:6px;flex-shrink:0;">
+                <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;">
+                  <span class="{{ p.titleCls }}" style="word-break:keep-all;">{{ p.title }}</span>
+                  <span class="{{ p.lineCls }}" style="word-break:keep-all;">{{ p.line }}</span>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">
+                  <sc-if value="{{ p.isDoing }}"><span class="text-primary" style="font-size:calc(22px*var(--k));font-weight:600;line-height:1;font-variant-numeric:tabular-nums;">{{ p.timer }}</span></sc-if>
+                  <sc-if value="{{ p.called }}"><span class="v3badge bg-primary-100 text-primary"><span class="text-typo-caption-md-600">호출함</span></span></sc-if>
+                  <sc-if value="{{ p.isWait }}"><button type="button" class="v3b md {{ p.startCls }}" onClick="{{ p.start }}">시작</button></sc-if>
+                  <sc-if value="{{ p.isDoing }}"><button type="button" class="v3b md sb" onClick="{{ p.end }}">종료</button></sc-if>
+                  <sc-if value="{{ p.isDone }}"><span class="v3badge bg-ms-gray-200 text-ms-gray-800"><span class="text-typo-caption-md-600">완료</span></span></sc-if>
+                </div>
+              </div>
+            </sc-for>
+            </div>
+            <button type="button" class="v3b md {{ callBtnCls }}" style="margin-top:10px;flex-shrink:0;" onClick="{{ openCall }}">{{ callBtn }}</button>
+          </div>
+      </div>
+    </div>
+    <!-- 통역 바 — 「통역 · 언어」 + 빠른 말하기 칩(끝 페이드 · T7) + [통역하기] -->
+    <div class="bg-ms-white border-ms-gray-200" style="flex-shrink:0;border-top-width:1px;border-top-style:solid;padding:10px 24px;display:flex;align-items:center;gap:12px;">
+      <div style="display:flex;flex-direction:column;flex-shrink:0;">
+        <span class="text-typo-caption-md-600 text-ms-gray-700" style="white-space:nowrap;">통역 · {{ langName }}</span>
+        <sc-if value="{{ hasLastTalk }}"><span class="text-typo-caption-md-400 text-ms-gray-600" style="white-space:nowrap;">{{ lastTalk }}</span></sc-if>
+      </div>
+      <div class="v3chips" style="flex:1;min-width:0;display:flex;gap:6px;overflow-x:auto;padding-right:28px;">
+        <sc-for list="{{ phrases }}" as="ph">
+          <button type="button" onClick="{{ ph.play }}" class="cc-btn {{ ph.chipCls }}" style="flex-shrink:0;height:calc(40px*var(--k));padding:0 14px 0 10px;border-radius:999px;border-width:1px;border-style:solid;white-space:nowrap;display:flex;align-items:center;gap:6px;font-size:calc(13px*var(--k));">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M4 9v6h4l5 4V5L8 9H4z"></path><path d="M16 8.5a4.5 4.5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+            <span>{{ ph.ko }}</span>
+          </button>
+        </sc-for>
+      </div>
+      <button type="button" class="v3b lg sb" style="width:calc(160px*var(--k));flex-shrink:0;" onClick="{{ openTr }}">통역하기</button>
+    </div>
+  </sc-if>
+
+  <!-- 계정 ▾ — [로그아웃](기기 토큰 해제 → 토큰 지움 → 로그인) · 알림 거부면 「알림 꺼짐」 줄 -->
+  <sc-if value="{{ menu }}">
+    <div onClick="{{ toggleMenu }}" style="position:absolute;inset:0;z-index:70;"></div>
+    <div class="bg-ms-white" style="position:absolute;z-index:71;top:calc(64px*var(--k));right:24px;min-width:180px;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,0.14);padding:6px 0;display:flex;flex-direction:column;">
+      <button type="button" class="cc-btn text-typo-body-500 text-ms-gray-800" onClick="{{ logout }}" style="padding:12px 16px;">로그아웃</button>
+    </div>
+  </sc-if>
+
+  <!-- 의사 호출 시트(§6.4) — 가운데 시트 · 「호출할 시술」 + [전체 선택](pickable 만 · E2E A2) · 「누구에게」 비어 있는 원장 먼저 -->
+  <sc-if value="{{ sheetCall }}">
+    <div onClick="{{ cs.close }}" style="position:absolute;inset:0;z-index:50;background:rgba(0,0,0,0.32);"></div>
+    <div class="bg-ms-white" style="position:absolute;z-index:51;left:50%;top:50%;transform:translate(-50%,-50%);width:min(560px,calc(100% - 80px));max-height:min(640px,calc(100% - 80px));border-radius:20px;box-shadow:0 -8px 32px rgba(0,0,0,0.16);display:flex;flex-direction:column;overflow:hidden;">
+      <div class="border-ms-gray-200" style="padding:16px;display:flex;align-items:baseline;gap:8px;border-bottom-width:1px;border-bottom-style:solid;"><span class="text-typo-title-sm-600 text-ms-gray-800">의사 호출</span><span class="text-typo-caption-md-400 text-ms-gray-600" style="min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ cs.head }}</span></div>
+      <div style="flex:1;min-height:0;overflow:auto;padding:12px 16px;display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;align-items:center;">
+          <span class="text-typo-caption-md-600 text-ms-gray-700" style="flex:1;">호출할 시술</span>
+          <sc-if value="{{ cs.hasPick }}">
+            <button type="button" class="cc-btn" onClick="{{ cs.toggleAll }}" style="display:flex;align-items:center;gap:6px;padding:4px 0;">
+              <span class="{{ cs.allCls }}" style="width:20px;height:20px;border-radius:4px;border-width:1px;border-style:solid;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;">✓</span>
+              <span class="text-typo-caption-md-600 {{ cs.allTxt }}">전체 선택</span>
+            </button>
+          </sc-if>
+        </div>
+        <sc-if value="{{ cs.noPick }}"><span class="text-typo-body-400 text-ms-gray-600" style="padding:8px 0;">호출할 대기 시술이 없어요</span></sc-if>
+        <sc-for list="{{ cs.rows }}" as="r">
+          <div onClick="{{ r.toggle }}" class="{{ r.rowCls }}" style="opacity:{{ r.op }};border-width:1px;border-style:solid;border-radius:8px;padding:10px 12px;display:flex;align-items:center;gap:10px;cursor:pointer;min-height:48px;box-sizing:border-box;">
+            <span class="{{ r.boxCls }}" style="width:20px;height:20px;border-radius:4px;border-width:1px;border-style:solid;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0;">✓</span>
+            <div style="display:flex;flex-direction:column;min-width:0;"><span class="text-typo-body-500 {{ r.titleCls }}">{{ r.title }}</span><span class="text-typo-caption-md-400 text-ms-gray-500">{{ r.note }}</span></div>
+          </div>
+        </sc-for>
+        <span class="text-typo-caption-md-600 text-ms-gray-700" style="padding-top:6px;">누구에게</span>
+        <sc-for list="{{ cs.docs }}" as="d">
+          <div onClick="{{ d.pick }}" class="{{ d.rowCls }}" style="border-width:1px;border-style:solid;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:10px;cursor:pointer;min-height:48px;box-sizing:border-box;">
+            <span class="{{ d.avCls }}" style="width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">{{ d.av }}</span>
+            <span class="text-typo-body-500 text-ms-gray-800" style="white-space:nowrap;">{{ d.name }}</span>
+            <span class="{{ d.subCls }}" style="margin-left:auto;white-space:nowrap;">{{ d.sub }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div class="border-ms-gray-200" style="padding:12px 16px 24px;display:grid;grid-template-columns:96px minmax(0,1fr);gap:8px;border-top-width:1px;border-top-style:solid;">
+        <button type="button" class="v3b md og" onClick="{{ cs.close }}">취소</button>
+        <button type="button" class="v3b md {{ cs.ctaCls }}" style="border-width:0;" onClick="{{ cs.send }}">{{ cs.cta }}</button>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- 관리자 수락 — 원장 고르기(A-15 · 웹 호출 탭과 같은 규칙: 전체 호출 = 원장 고르기 · 지정 호출 = 지정 원장 고정) -->
+  <sc-if value="{{ sheetPick }}">
+    <div onClick="{{ pk.close }}" style="position:absolute;inset:0;z-index:50;background:rgba(0,0,0,0.32);"></div>
+    <div class="bg-ms-white" style="position:absolute;z-index:51;left:0;right:0;bottom:0;margin:0 auto;max-width:560px;max-height:80%;border-radius:20px 20px 0 0;box-shadow:0 -8px 32px rgba(0,0,0,0.16);display:flex;flex-direction:column;overflow:hidden;">
+      <div class="border-ms-gray-200" style="padding:16px;border-bottom-width:1px;border-bottom-style:solid;"><span class="text-typo-title-sm-600 text-ms-gray-800">{{ pk.head }}</span></div>
+      <div style="flex:1;min-height:0;overflow:auto;padding:12px 16px;display:flex;flex-direction:column;gap:8px;">
+        <sc-for list="{{ pk.docs }}" as="d">
+          <div onClick="{{ d.pick }}" class="{{ d.rowCls }}" style="border-width:1px;border-style:solid;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:10px;cursor:pointer;min-height:48px;box-sizing:border-box;">
+            <span class="text-typo-body-500 text-ms-gray-800" style="flex:1;">{{ d.name }}</span><span class="{{ d.subCls }}">{{ d.sub }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div class="border-ms-gray-200" style="padding:12px 16px 24px;display:grid;grid-template-columns:96px minmax(0,1fr);gap:8px;border-top-width:1px;border-top-style:solid;">
+        <button type="button" class="v3b md og" onClick="{{ pk.close }}">취소</button>
+        <button type="button" class="v3b md {{ pk.ctaCls }}" style="border-width:0;" onClick="{{ pk.ok }}">{{ pk.cta }}</button>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- 통역 드로어(§6.5 · 높이 92%) — WS(헤더 토큰) · 언어 8(국적 자동 · 번체) · 의료진 오른쪽 · 고객 왼쪽 · 받아쓰는 중 「…」 · 재생 중엔 마이크 안 보냄 -->
+  <sc-if value="{{ tr }}">
+    <div onClick="{{ dr.close }}" style="position:absolute;inset:0;z-index:59;background:rgba(0,0,0,0.32);"></div>
+    <div class="bg-ms-white" style="position:absolute;left:0;right:0;bottom:0;z-index:60;height:92%;border-radius:20px 20px 0 0;box-shadow:0 -8px 32px rgba(0,0,0,0.16);display:flex;flex-direction:column;overflow:hidden;">
+      <div onClick="{{ dr.close }}" style="height:20px;flex-shrink:0;display:flex;align-items:center;justify-content:center;cursor:pointer;"><span class="bg-ms-gray-300" style="width:44px;height:5px;border-radius:3px;"></span></div>
+      <div class="border-ms-gray-200" style="flex-shrink:0;display:flex;align-items:center;gap:8px;padding:0 12px 10px 16px;border-bottom-width:1px;border-bottom-style:solid;">
+        <button type="button" onClick="{{ dr.toggleLang }}" class="cc-btn" style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;">
+          <span class="text-typo-heading-md-500 text-ms-gray-800" style="display:flex;align-items:center;gap:4px;white-space:nowrap;">통역 · <span class="text-primary">{{ dr.head }}</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2498bd" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate({{ dr.rot }});"><path d="M6 9l6 6 6-6"></path></svg></span>
+          <span class="text-typo-caption-md-400 text-ms-gray-600" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ dr.sub }}</span>
+        </button>
+        <button type="button" class="v3b md og" onClick="{{ dr.close }}">{{ dr.endLabel }}</button>
+      </div>
+      <sc-if value="{{ dr.langOpen }}">
+        <div class="border-ms-gray-200" style="flex-shrink:0;padding:10px 16px 12px;display:flex;flex-wrap:wrap;gap:8px;border-bottom-width:1px;border-bottom-style:solid;">
+          <sc-for list="{{ dr.langs }}" as="l"><button type="button" onClick="{{ l.pick }}" class="cc-btn {{ l.cls }}" style="padding:7px 12px;border-radius:999px;border-width:1px;border-style:solid;white-space:nowrap;font-size:13px;">{{ l.name }}</button></sc-for>
+        </div>
+      </sc-if>
+      <div style="flex:1;min-height:0;display:flex;">
+        <div class="bg-ms-gray-100" style="flex:1;min-height:0;overflow:auto;padding:14px 16px;display:flex;flex-direction:column-reverse;gap:10px;">
+          <sc-for list="{{ dr.lines }}" as="m">
+            <div style="display:flex;flex-direction:column;align-items:{{ m.align }};gap:3px;flex-shrink:0;">
+              <span class="text-typo-caption-md-400 text-ms-gray-600" style="padding:0 4px;">{{ m.who }}</span>
+              <div class="{{ m.bubble }}" style="max-width:84%;border-radius:{{ m.radius }};padding:10px 13px;display:flex;flex-direction:column;gap:5px;opacity:{{ m.op }};">
+                <span class="text-typo-title-sm-600 {{ m.origCls }}" style="word-break:keep-all;">{{ m.orig }}</span>
+                <span class="text-typo-body-400 {{ m.transCls }}" style="word-break:keep-all;">{{ m.trans }}</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div class="border-ms-gray-200" style="width:300px;flex-shrink:0;overflow:auto;padding:14px;border-left-width:1px;border-left-style:solid;display:flex;flex-direction:column;gap:8px;">
+          <span class="text-typo-caption-md-600 text-ms-gray-700">빠른 말하기 · 누르면 읽어줘요</span>
+          <sc-for list="{{ dr.side }}" as="q">
+            <div class="border-ms-gray-300" style="border-width:1px;border-style:solid;border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;"><span class="text-typo-body-600 text-ms-gray-800">{{ q.ko }}</span><span class="text-typo-caption-md-400 text-ms-gray-600">{{ q.tr }}</span></div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="flex-shrink:0;padding:12px 16px 24px;display:flex;align-items:center;gap:14px;">
+        <button type="button" onClick="{{ dr.toggleMic }}" class="cc-btn {{ dr.micCls }}" style="width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;border-width:2px;border-style:solid;box-sizing:border-box;flex-shrink:0;">
+          <sc-if value="{{ dr.listening }}"><svg width="28" height="28" viewBox="0 0 24 24" fill="#ffffff"><rect x="6" y="5" width="4" height="14" rx="1.2"></rect><rect x="14" y="5" width="4" height="14" rx="1.2"></rect></svg></sc-if>
+          <sc-if value="{{ dr.paused }}"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2498bd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg></sc-if>
+        </button>
+        <div style="display:flex;flex-direction:column;gap:2px;min-width:0;">
+          <span class="text-typo-body-600 {{ dr.ipCls }}" style="display:flex;align-items:center;gap:6px;"><span class="{{ dr.ipDot }}" style="width:8px;height:8px;border-radius:50%;"></span>{{ dr.ipText }}</span>
+          <span class="text-typo-caption-md-400 text-ms-gray-600" style="word-break:keep-all;">{{ dr.ipHint }}</span>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- 원장 호출 푸시(§5-1 · APNs) — 앱이 앞에 있어도 배너 + 소리 · 누르면 그 방 룸 상세. 의사 수신자 = 카테고리 CALL [수락](앱 안 열고 · 워치 포함) → 결과 로컬 알림 -->
+  <sc-if value="{{ push }}">
+    <div style="position:absolute;inset:0;z-index:80;background:linear-gradient(160deg,#1f6f8b,#0b2633);display:flex;flex-direction:column;align-items:stretch;padding:40px 260px;gap:10px;overflow:auto;">
+      <span style="align-self:center;color:#fff;font-size:72px;font-weight:600;line-height:1;margin-bottom:16px;">14:46</span>
+      <span style="color:rgba(255,255,255,0.8);font-size:13px;">{{ pushRole }}</span>
+        <div onClick="{{ openPush }}" style="background:rgba(255,255,255,0.78);backdrop-filter:blur(20px);border-radius:20px;padding:12px 14px;display:flex;gap:10px;align-items:center;cursor:pointer;">
+          <span style="width:38px;height:38px;border-radius:9px;background:#2498bd;color:#fff;display:flex;align-items:center;justify-content:center;font-family:Didot,'Bodoni 72',serif;font-weight:700;font-size:26px;flex-shrink:0;">C</span>
+          <div style="flex:1;min-width:0;display:flex;flex-direction:column;"><span style="font-size:15px;font-weight:600;color:#111;">원장 호출</span><span style="font-size:14px;color:#222;">{{ pushBody }}</span></div>
+          <span style="font-size:12px;color:#555;align-self:flex-start;">지금</span>
+        </div>
+        <sc-if value="{{ showAction }}">
+          <div style="align-self:flex-start;margin-left:52px;background:rgba(255,255,255,0.78);backdrop-filter:blur(20px);border-radius:14px;padding:12px 20px;min-width:200px;"><span style="font-size:15px;color:#111;">수락</span></div>
+        </sc-if>
+      <sc-if value="{{ showAction }}">
+      <span style="color:rgba(255,255,255,0.8);font-size:13px;margin-top:12px;">[수락] 결과 — 로컬 알림(실패 알림을 누르면 그 방 룸 상세)</span>
+        <div onClick="{{ openPush }}" style="background:rgba(255,255,255,0.78);backdrop-filter:blur(20px);border-radius:20px;padding:12px 14px;display:flex;gap:10px;align-items:center;cursor:pointer;">
+          <span style="width:38px;height:38px;border-radius:9px;background:#2498bd;color:#fff;display:flex;align-items:center;justify-content:center;font-family:Didot,'Bodoni 72',serif;font-weight:700;font-size:26px;flex-shrink:0;">C</span>
+          <div style="flex:1;min-width:0;display:flex;flex-direction:column;"><span style="font-size:15px;font-weight:600;color:#111;">수락했어요 · A-룸4</span><span style="font-size:14px;color:#222;"></span></div>
+          <span style="font-size:12px;color:#555;align-self:flex-start;">지금</span>
+        </div>
+        <div onClick="{{ openPush }}" style="background:rgba(255,255,255,0.78);backdrop-filter:blur(20px);border-radius:20px;padding:12px 14px;display:flex;gap:10px;align-items:center;cursor:pointer;">
+          <span style="width:38px;height:38px;border-radius:9px;background:#2498bd;color:#fff;display:flex;align-items:center;justify-content:center;font-family:Didot,'Bodoni 72',serif;font-weight:700;font-size:26px;flex-shrink:0;">C</span>
+          <div style="flex:1;min-width:0;display:flex;flex-direction:column;"><span style="font-size:15px;font-weight:600;color:#111;">수락 못 함 · 다른 원장을 지정한 호출이에요</span><span style="font-size:14px;color:#222;"></span></div>
+          <span style="font-size:12px;color:#555;align-self:flex-start;">지금</span>
+        </div>
+      </sc-if>
+      <button type="button" onClick="{{ closePush }}" class="cc-btn" style="align-self:center;margin-top:16px;color:#fff;font-size:13px;text-decoration:underline;">닫기</button>
+    </div>
+  </sc-if>
+
+  <!-- 토스트 — 화면 위(머리 아래 · E2E A3) -->
+  <sc-if value="{{ hasToast }}">
+    <div style="position:absolute;left:16px;right:16px;top:68px;z-index:9999;display:flex;justify-content:center;pointer-events:none;">
+      <div style="background:rgba(34,34,34,0.9);border-radius:10px;padding:10px 16px;box-shadow:0 4px 12px rgba(0,0,0,0.16);"><span class="text-typo-body-500 text-ms-white">{{ toast }}</span></div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1194, &quot;height&quot;: 834}, &quot;scene&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;login&quot;, &quot;login_fail&quot;, &quot;login_lock&quot;, &quot;list&quot;, &quot;list_filter&quot;, &quot;list_doctor&quot;, &quot;list_admin&quot;, &quot;list_offline&quot;, &quot;room_call&quot;, &quot;room_doing&quot;, &quot;room_done&quot;, &quot;call_sheet&quot;, &quot;accept_admin&quot;, &quot;interpret&quot;, &quot;push&quot;], &quot;default&quot;: &quot;list&quot;, &quot;tsType&quot;: &quot;&#x27;login&#x27;|&#x27;login_fail&#x27;|&#x27;login_lock&#x27;|&#x27;list&#x27;|&#x27;list_filter&#x27;|&#x27;list_doctor&#x27;|&#x27;list_admin&#x27;|&#x27;list_offline&#x27;|&#x27;room_call&#x27;|&#x27;room_doing&#x27;|&#x27;room_done&#x27;|&#x27;call_sheet&#x27;|&#x27;accept_admin&#x27;|&#x27;interpret&#x27;|&#x27;push&#x27;&quot;}, &quot;account&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;&quot;, &quot;nurse&quot;, &quot;doctor&quot;, &quot;admin&quot;], &quot;default&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;&#x27;&#x27;|&#x27;nurse&#x27;|&#x27;doctor&#x27;|&#x27;admin&#x27;&quot;}}">
+// ── 구현 v3 — 값 · 문구 · 순서 = 코드 main 329b543 procedure/app(Flutter) · procedure/back(스냅샷 규칙) ──
+// 이 시안 안의 규칙 흉내(pickable · canStart · need …)는 back 스냅샷이 주는 값을 화면에서 재현하려는 것뿐 — 앱은 규칙을 계산하지 않는다(SPEC-004 §6.0)
+const TABLET = true;
+const K = 1.19; // 태블릿 글자 · 높이 배율(uiScale = 짧은 변/700 · 1.15~1.3 — 미리보기 iPad 11" 834 → 1.19)
+const pad = (n) => String(n).padStart(2, '0');
+const S = (s) => { const [h, m, x] = s.split(':').map(Number); return h * 3600 + m * 60 + (x || 0); };
+const hm = (t) => (t == null ? '' : pad(Math.floor(t / 3600)) + ':' + pad(Math.floor(t / 60) % 60));
+const mmss = (t) => { const v = Math.max(0, Math.floor(t)); const h = Math.floor(v / 3600); return h > 0 ? h + ':' + pad(Math.floor(v / 60) % 60) + ':' + pad(v % 60) : pad(Math.floor(v / 60)) + ':' + pad(v % 60); };
+const mins = (t) => Math.max(0, Math.floor(t / 60));
+const BASE = S('14:46:00');
+const LIMITS = { callMin: 5, anesMin: 20 }; // 스냅샷 limits
+const px = (n) => Math.round(n * K * 10) / 10 + 'px';
+
+// 원장(스냅샷 doctors) — 지어낸 이름
+const DOCS = [{ id: 1, name: '박 원장' }, { id: 2, name: '이 원장' }, { id: 3, name: '최 원장' }, { id: 4, name: '정 원장' }];
+const docName = (id) => (DOCS.find((d) => d.id === id) || { name: '' }).name;
+// 계정(로그인) — 의사 계정은 KOS 원장 1명(박 원장 · staffId 1)에 연결
+const ACCOUNTS = { nurse: { name: '간호사', role: 'nurse' }, doctor: { name: '박 원장', role: 'doctor', staffId: 1 }, admin: { name: '관리자', role: 'admin' } };
+
+// 통역 언어(SPEC-004 §4.4) · 빠른 말하기 6문장(§5)
+const LANGS = [['zh', '중국어'], ['en', '영어'], ['ja', '일본어'], ['th', '태국어'], ['fr', '프랑스어'], ['es', '스페인어'], ['tl', '타갈로그어'], ['hi', '힌디어']];
+const NAT_LANG = { TW: 'zh', CN: 'zh', HK: 'zh', US: 'en', PH: 'en', IN: 'en', JP: 'ja', TH: 'th', FR: 'fr' };
+const autoLang = (nat) => ({ code: NAT_LANG[nat] || 'en', trad: nat === 'TW' || nat === 'HK' });
+const langLabel = (code, trad) => (code === 'zh' ? (trad ? '중국어(번체)' : '중국어(간체)') : (LANGS.find((l) => l[0] === code) || ['', '영어'])[1]);
+const PHRASES = [
+  ['조금 뜨거울 수 있어요', { zhTW: '會有一點熱', zhCN: '会有一点热', en: 'It may feel a little hot.', ja: '少し熱くなります' }],
+  ['아프면 손을 들어주세요', { zhTW: '痛的話請舉手', zhCN: '痛的话请举手', en: 'If it hurts, please raise your hand.', ja: '痛かったら手を挙げてください' }],
+  ['눈을 감아주세요', { zhTW: '請閉上眼睛', zhCN: '请闭上眼睛', en: 'Please close your eyes.', ja: '目を閉じてください' }],
+  ['10분 정도 걸려요', { zhTW: '大約需要十分鐘', zhCN: '大约需要十分钟', en: 'It will take about 10 minutes.', ja: '10分ほどかかります' }],
+  ['움직이지 마세요', { zhTW: '請不要動', zhCN: '请不要动', en: "Please don't move.", ja: '動かないでください' }],
+  ['다 끝났습니다', { zhTW: '已經結束了', zhCN: '已经结束了', en: "We're all done.", ja: '終わりました' }]
+];
+const phraseKey = (code, trad) => (code === 'zh' ? (trad ? 'zhTW' : 'zhCN') : code);
+// 데모 대화(통역 드로어 장면) — side me = 의료진 · them = 고객
+const TALK = [['them', '這個會很燙嗎？', '이거 많이 뜨거워요?', true], ['me', '처음엔 낮은 강도로 시작해서 괜찮을 거예요.', '一開始會用低強度，應該還好。', true], ['them', '眼睛周圍也會做嗎？', '', false]];
+
+// 카드 — 지어낸 고객(원본 시안 데이터). 스냅샷 모양: 시술 kind=procedure 만(방 배정 etc 줄은 그리지 않는다 — E2E-10)
+function seed(scene) {
+  const P = (id, seq, title, st, o) => ({ id, seq, title, st, doc: null, start: null, end: null, callId: null, ...o });
+  const cards = [
+    { id: 1, room: 'A-룸1', name: '[TW] LIN YA CHEN', nat: 'TW', isNew: true, inAt: S('14:05:00'), pay: true, kos: 'ok', anes: { since: null, last: null },
+      memo: '1. 울쎄라피 프라임 300shot 전안\n2. 리쥬란 힐러 2cc\n3. 바디보톡스 100unit 종아리\n* 통역 중국어',
+      procs: [P(11, 1, '울쎄라피 프라임 300shot', 'wait', { callId: 101 }), P(12, 2, '리쥬란 힐러 2cc', 'wait'), P(13, 3, '바디보톡스 100unit', 'wait')] },
+    { id: 2, room: 'A-룸2', name: '[TW] WANG YI TING', nat: 'TW', isNew: false, inAt: S('13:30:00'), pay: false, kos: 'ok', anes: { since: null, last: 23 },
+      memo: '1. 울쎄라피 프라임 300shot — 이마 · 볼 위주, 턱선은 약하게\n2. 써마지 FLX 300shot 눈가 포함(눈가 팁 따로)\n3. 쥬베룩 볼 2cc\n4. 바디보톡스 100unit 승모근\n* 오후 4시 출국 — 3시 반까지 마무리\n* 시술 전후 사진 촬영',
+      procs: [P(21, 1, '울쎄라피 프라임 300shot', 'done', { doc: 1, start: S('14:02:00'), end: S('14:20:00') }), P(22, 2, '써마지 FLX 300shot', 'doing', { doc: 1, start: S('14:38:00') }),
+        P(23, 3, '쥬베룩 볼 2cc', 'wait', { doc: 1 }), P(24, 4, '바디보톡스 100unit', 'wait', { doc: 1 })] },
+    { id: 3, room: 'A-룸3', name: '[JP] TANAKA YUKI', nat: 'JP', isNew: false, inAt: S('14:18:00'), pay: false, kos: 'pending', anes: { since: S('14:22:00'), last: null },
+      memo: '1. 포텐자 전안\n2. 리쥬란 힐러 2cc\n* 일본어 통역',
+      procs: [P(31, 1, '포텐자', 'wait'), P(32, 2, '리쥬란 힐러 2cc', 'wait')] },
+    { id: 4, room: 'A-룸4', name: '[HK] CHAN MEI LING', nat: 'HK', isNew: true, inAt: S('13:50:00'), pay: false, kos: 'ok', anes: { since: null, last: 20 },
+      memo: '1. 써마지 FLX 300shot\n2. 쥬베룩 볼 2cc\n3. 바디보톡스 100unit 승모근\n* 첫 방문 — 시술마다 통증 미리 안내',
+      procs: [P(41, 1, '써마지 FLX 300shot', 'wait', { callId: 102 }), P(42, 2, '쥬베룩 볼 2cc', 'wait', { callId: 102 }), P(43, 3, '바디보톡스 100unit', 'wait', { callId: 102 })] },
+    { id: 5, room: 'A-룸5', name: '[VN] NGUYEN THI MAI', nat: 'VN', isNew: true, inAt: S('13:40:00'), pay: false, kos: 'failed', anes: { since: null, last: 20 },
+      memo: '1. 리쥬란 힐러 2cc\n2. 포텐자\n3. 바디보톡스 100unit — 고객 요청: 최 원장님께',
+      procs: [P(51, 1, '리쥬란 힐러 2cc', 'done', { doc: 2, start: S('14:10:00'), end: S('14:22:00') }), P(52, 2, '포텐자', 'doing', { doc: 2, start: S('14:30:00') }),
+        P(53, 3, '바디보톡스 100unit', 'wait', { callId: 103 })] },
+    { id: 6, room: 'A-룸6', name: '[JP] SATO HANA', nat: 'JP', isNew: false, inAt: S('12:50:00'), home: S('14:12:00'), pay: false, kos: 'ok', anes: { since: null, last: 20 },
+      memo: '1. 울쎄라피 프라임 300shot\n2. 바디보톡스 100unit',
+      procs: [P(61, 1, '울쎄라피 프라임 300shot', 'done', { doc: 4, start: S('13:20:00'), end: S('13:42:00') }), P(62, 2, '바디보톡스 100unit', 'done', { doc: 4, start: S('13:50:00'), end: S('14:05:00') })] },
+    { id: 7, room: 'A-룸7', name: '[US] EMMA WILSON', nat: 'US', isNew: true, inAt: S('14:30:00'), pay: false, kos: 'ok', anes: { since: null, last: null }, memo: '',
+      procs: [P(71, 1, '리쥬란 힐러 2cc', 'wait')] }
+  ];
+  // 호출 기록(만든 시각) — 유효 호출 = 그 시술이 들어간 가장 최근 호출
+  const calls = [
+    { id: 101, visit: 1, kind: 'one', target: 1, at: S('14:44:00'), procIds: [11], acceptedBy: null },
+    { id: 102, visit: 4, kind: 'all', target: null, at: S('14:40:00'), procIds: [41, 42, 43], acceptedBy: null },
+    { id: 103, visit: 5, kind: 'one', target: 3, at: S('14:41:00'), procIds: [53], acceptedBy: null }
+  ];
+  if (scene === 'room_done') {
+    const c = cards[1];
+    c.procs = c.procs.map((p, i) => ({ ...p, st: 'done', start: p.start || S(['', '', '14:52:00', '15:03:00'][i]), end: p.end || S(['', '14:51:00', '15:02:00', '15:09:00'][i]) }));
+  }
+  return { cards, calls };
+}
+
+// 스냅샷 값 흉내 — 카드마다(back 이 주는 값과 같은 이름)
+function snap(b, c, now) {
+  const procs = c.procs;
+  const home = c.home != null;
+  const callOf = (p) => b.calls.find((k) => k.id === p.callId) || null;
+  const doing = procs.find((p) => p.st === 'doing');
+  const open = b.calls.filter((k) => k.visit === c.id && procs.some((p) => p.callId === k.id && p.st === 'wait' && k.acceptedBy == null)).sort((a, z) => a.at - z.at);
+  const pick = (p) => p.st === 'wait' && !home;
+  const canStart = (p) => { const k = callOf(p); return p.st === 'wait' && !home && (k ? k.acceptedBy != null : p.doc != null); };
+  const allDone = procs.length > 0 && procs.every((p) => p.st === 'done');
+  const anesOn = c.anes.since != null;
+  const state = home ? 'home' : doing ? 'doing' : 'waiting';
+  let need = null;
+  if (!home && allDone) need = { why: 'home', since: Math.max(...procs.map((p) => p.end || 0)), limit: 0 };
+  else if (!home && open.length && mins(now - open[0].at) >= LIMITS.callMin) need = { why: 'call', since: open[0].at, limit: LIMITS.callMin };
+  else if (!home && anesOn && mins(now - c.anes.since) >= LIMITS.anesMin) need = { why: 'anes', since: c.anes.since, limit: LIMITS.anesMin };
+  return { home, doing, open, allDone, anesOn, state, need, callOf, pick, canStart,
+    canCall: !home && procs.some(pick), canHome: !home && allDone,
+    anesCanStart: !home && !anesOn, anesCanEnd: !home && anesOn, anesLong: anesOn && mins(now - c.anes.since) >= LIMITS.anesMin };
+}
+
+// 웹 view.ts 와 같은 표시 매핑(Dart lib/view/view.dart)
+const callText = (k) => (k.kind === 'all' ? '전체 호출' : docName(k.target) + ' 지정 호출');
+function procLine(b, p, sp) {
+  const who = p.doc ? docName(p.doc) : '';
+  const k = sp.callOf(p);
+  if (p.st === 'done') return { text: (who ? who + ' · ' : '') + hm(p.start) + '~' + hm(p.end), cls: 'text-typo-caption-md-400 text-ms-gray-500' };
+  if (p.st === 'doing') return { text: (who ? who + ' · ' : '') + hm(p.start) + ' 시작', cls: 'text-typo-caption-md-500 text-ms-gray-700' };
+  if (k && k.acceptedBy != null) return { text: docName(k.acceptedBy) + ' 수락 · 시작 가능', cls: 'text-typo-caption-md-600 text-primary' };
+  if (k) return { text: callText(k) + ' · 수락 전', cls: 'text-typo-caption-md-500 text-ms-gray-700' };
+  if (who) return { text: who, cls: 'text-typo-caption-md-500 text-ms-gray-700' };
+  return { text: '담당의 미정', cls: 'text-typo-caption-md-400 text-ms-gray-500' };
+}
+const BADGE = { neutral: ['bg-ms-gray-200', 'text-ms-gray-800', 'bg-ms-gray-600'], primary: ['bg-primary-100', 'text-primary', 'bg-primary'], warning: ['bg-yellow-100', 'text-yellow', 'bg-yellow'], danger: ['bg-red-100', 'text-red', 'bg-red'], purple: ['bg-purple-100', 'text-purple', 'bg-purple'] };
+const badge = (text, v, dot = true) => ({ text, cls: BADGE[v][0] + ' ' + BADGE[v][1], dotCls: BADGE[v][2], dot });
+function cardBadge(b, c, sp) {
+  if (sp.need) {
+    if (sp.need.why === 'anes') return badge('마취 중', 'danger');
+    if (sp.need.why === 'call') return badge(callText(sp.open[0]) + ' · 수락 전', 'danger');
+    return badge('시술 완료', 'danger'); // E2E A6 — 짧게
+  }
+  if (sp.home) return badge('귀가 대기', 'neutral');
+  if (sp.anesOn) return badge('마취 중', 'purple');
+  return sp.state === 'doing' ? badge('시술 진행', 'primary') : badge('시술 대기', 'warning');
+}
+// 받는 사람 — 의사 = 전체 호출 + 나를 지정 · 관리자 = 모든 호출(A-15) · 간호사 = 없음
+const isMine = (k, acc) => acc.role === 'admin' || (acc.role === 'doctor' && (k.kind === 'all' || k.target === acc.staffId));
+const FILTERS = [['all', '전체'], ['mine', '수락 대기'], ['need', '확인'], ['waiting', '대기'], ['anes', '마취'], ['call', '호출'], ['doing', '진행'], ['home', '귀가']];
+
+class Component extends DCLogic {
+  state = this.initial(this.props.scene, this.props.account);
+  initial(scene, account) {
+    const acc = account || (scene === 'list_doctor' || scene === 'push' ? 'doctor' : scene === 'accept_admin' || scene === 'list_admin' ? 'admin' : 'nurse');
+    const b = seed(scene);
+    const cur = { room_call: 4, room_doing: 2, room_done: 2, call_sheet: 7, accept_admin: 4, interpret: 2 }[scene] || null;
+    return {
+      b, acc, cur, t0: Date.now(), toast: '',
+      login: scene && scene.indexOf('login') === 0,
+      loginErr: scene === 'login_fail' ? '아이디 또는 비밀번호가 맞지 않아요' : scene === 'login_lock' ? '로그인 실패가 많아요. 1분 뒤 다시 시도해 주세요' : '',
+      loginId: scene === 'login' ? '' : 'nr', loginPw: '', showPw: false,
+      filter: scene === 'list_filter' ? 'waiting' : 'all', menu: false,
+      sheet: scene === 'call_sheet' ? 'call' : scene === 'accept_admin' ? 'pick' : null,
+      picks: scene === 'call_sheet' ? [71] : [], to: scene === 'call_sheet' ? 'all' : null, pickDoc: null, pickCall: scene === 'accept_admin' ? 102 : null,
+      tr: scene === 'interpret', trLang: null, langOpen: false, ip: 'listening', trStart: Date.now() - 83000,
+      lastTalk: null, playing: null, push: scene === 'push' ? 0 : null
+    };
+  }
+  componentDidMount() { this.iv = setInterval(() => this.setState({ tick: Date.now() }), 1000); }
+  componentDidUpdate(prev) { if (prev && (prev.scene !== this.props.scene || prev.account !== this.props.account)) this.setState(this.initial(this.props.scene, this.props.account)); }
+  componentWillUnmount() { clearInterval(this.iv); clearTimeout(this.tt); }
+  now() { return BASE + Math.floor((Date.now() - this.state.t0) / 1000) + (this.props.scene === 'room_done' ? 23 * 60 : 0); }
+  flash(msg) { clearTimeout(this.tt); this.setState({ toast: msg }); this.tt = setTimeout(() => this.setState({ toast: '' }), 2600); }
+  editCard(id, fn) { this.setState((x) => ({ b: { ...x.b, cards: x.b.cards.map((c) => (c.id === id ? fn(c) : c)) } })); }
+  editProc(cid, pid, fn) { this.editCard(cid, (c) => ({ ...c, procs: c.procs.map((p) => (p.id === pid ? fn(p) : p)) })); }
+  accept(k, doctorId) {
+    const acc = ACCOUNTS[this.state.acc];
+    const d = acc.role === 'admin' ? doctorId : acc.staffId;
+    if (acc.role === 'nurse') return this.flash('이 계정은 수락할 수 없어요');
+    if (k.kind === 'one' && k.target !== d) return this.flash(acc.role === 'doctor' ? '다른 원장을 지정한 호출이에요' : '지정된 원장이 아니에요');
+    this.setState((x) => ({
+      b: { ...x.b, calls: x.b.calls.map((z) => (z.id === k.id ? { ...z, acceptedBy: d } : z)),
+        cards: x.b.cards.map((c) => (c.id === k.visit ? { ...c, procs: c.procs.map((p) => (p.callId === k.id && p.st === 'wait' ? { ...p, doc: d } : p)) } : c)) },
+      sheet: null, pickDoc: null
+    }));
+    const room = this.state.b.cards.find((c) => c.id === k.visit).room;
+    this.flash(room + ' ' + (acc.role === 'admin' ? docName(d) + ' ' : '') + '수락');
+  }
+
+  renderVals() {
+    const s = this.state, now = this.now(), acc = ACCOUNTS[s.acc], b = s.b;
+    const sps = {}; b.cards.forEach((c) => { sps[c.id] = snap(b, c, now); });
+    const live = b.cards;
+    const order = [...live.filter((c) => c.home == null).sort((a, z) => a.inAt - z.inAt), ...live.filter((c) => c.home != null).sort((a, z) => a.home - z.home)];
+    const mineCalls = b.calls.filter((k) => sps[k.visit].open.includes(k) && isMine(k, acc));
+    const counts = {
+      all: live.length, need: live.filter((c) => sps[c.id].need).length, waiting: live.filter((c) => sps[c.id].state === 'waiting').length,
+      anes: live.filter((c) => !sps[c.id].home && sps[c.id].anesOn).length, call: live.filter((c) => !sps[c.id].home && sps[c.id].open.length).length,
+      doing: live.filter((c) => sps[c.id].state === 'doing').length, home: live.filter((c) => sps[c.id].home).length, mine: mineCalls.length
+    };
+    const fit = (k) => (c) => { const sp = sps[c.id]; return k === 'all' ? true : k === 'need' ? !!sp.need : k === 'waiting' ? sp.state === 'waiting' : k === 'anes' ? !sp.home && sp.anesOn : k === 'call' ? !sp.home && sp.open.length > 0 : k === 'doing' ? sp.state === 'doing' : k === 'home' ? sp.home : k === 'mine' ? mineCalls.some((z) => z.visit === c.id) : true; };
+    const receives = acc.role !== 'nurse';
+    const filters = FILTERS.filter(([k]) => k !== 'mine' || receives).map(([k, n]) => ({
+      label: n + ' ' + counts[k], on: s.filter === k,
+      cls: s.filter === k ? 'bg-primary border-primary text-ms-white' : 'bg-ms-white border-ms-gray-300 text-ms-gray-800',
+      pick: () => this.setState({ filter: k })
+    }));
+    const open = (id) => () => this.setState({ cur: id, sheet: null, tr: false, menu: false });
+
+    const cards = order.filter(fit(s.filter)).map((c) => {
+      const sp = sps[c.id];
+      const ps = [...c.procs.filter((p) => p.st === 'done').sort((a, z) => a.end - z.end), ...c.procs.filter((p) => p.st === 'doing'), ...c.procs.filter((p) => p.st === 'wait').sort((a, z) => a.seq - z.seq)];
+      let nk = 'wait', title = '시술 대기', sub = '', timer = '', red = false;
+      if (sp.home) { nk = 'home'; title = '귀가 대기 · ' + hm(c.home); const e = c.procs.map((p) => p.end || 0); sub = '마지막 종료 ' + hm(Math.max(...e)); }
+      else if (sp.doing) { nk = 'doing'; title = sp.doing.title; sub = (sp.doing.doc ? docName(sp.doing.doc) + ' · ' : '') + hm(sp.doing.start) + ' 시작'; timer = mmss(now - sp.doing.start); }
+      else if (sp.canHome) { nk = 'done'; title = '시술 모두 완료'; sub = '마지막 종료 ' + hm(Math.max(...c.procs.map((p) => p.end || 0))); }
+      else if (sp.open.length) { const k = sp.open[0]; const m = mins(now - k.at); nk = 'call'; title = k.kind === 'all' ? '전체 호출 · 수락 대기' : docName(k.target) + ' 지정 · 수락 대기'; sub = c.procs.filter((p) => k.procIds.includes(p.id)).map((p) => p.title).join(' · '); timer = m + '분'; red = m >= LIMITS.callMin; }
+      else if (sp.anesOn) { const m = mins(now - c.anes.since); nk = 'anes'; title = '마취 중'; sub = hm(c.anes.since) + ' 시작 · 기준 ' + LIMITS.anesMin + '분'; timer = m + '분'; red = sp.anesLong; }
+      else { const ds = [...new Set(c.procs.filter((p) => p.st === 'wait' && p.doc).map((p) => docName(p.doc)))]; sub = ds.length ? '담당 ' + ds.join(', ') : '담당의 미정'; }
+      const C = { doing: ['bg-primary-100', 'text-primary', 'text-primary'], call: red ? ['bg-red-100', 'text-red', 'text-red'] : ['bg-primary-100', 'text-primary', 'text-primary'],
+        anes: ['bg-purple-100', 'text-purple', red ? 'text-red' : 'text-purple'], home: ['bg-ms-gray-100', 'text-ms-gray-700', 'text-ms-gray-800'], done: ['bg-ms-gray-100', 'text-ms-gray-700', 'text-ms-gray-800'], wait: ['bg-ms-gray-100', 'text-ms-gray-800', 'text-ms-gray-800'] }[nk];
+      const waits = ps.filter((p) => p.st === 'wait');
+      const mine = mineCalls.filter((k) => k.visit === c.id);
+      return {
+        room: c.room, name: c.name, nat: c.nat, visit: c.isNew ? '첫내원' : '재내원', visitCls: c.isNew ? 'bg-primary-100 text-primary' : 'bg-ms-gray-200 text-ms-gray-700',
+        b: cardBadge(b, c, sp), nowBg: C[0], nowCls: C[1], timerCls: C[2], nowTitle: title, nowSub: sub, hasSub: !!sub, timer, hasTimer: !!timer,
+        steps: ps.map((p) => ({ cls: p.st === 'done' ? 'bg-ms-gray-400' : p.st === 'doing' ? 'bg-primary' : 'bg-ms-gray-200' })), hasSteps: ps.length > 0,
+        stepText: ps.filter((p) => p.st === 'done').length + ' / ' + ps.length,
+        next: sp.home || !waits.length ? '' : '다음 ' + waits[0].title + (waits[0].doc ? ' · ' + docName(waits[0].doc) : ''),
+        border: sp.need ? '2px solid var(--ms-red)' : sp.state === 'doing' ? '1px solid var(--ms-primary)' : '1px solid var(--ms-gray-200)',
+        op: sp.home ? '0.55' : '1', open: open(c.id),
+        accepts: mine.map((k) => ({
+          text: (k.kind === 'all' ? '전체 호출' : acc.role === 'admin' ? docName(k.target) + ' 지정' : '나를 지정') + ' · ' + k.procIds.length + '건',
+          cls: sp.need ? 'text-red' : 'text-primary',
+          go: (e) => { if (e && e.stopPropagation) e.stopPropagation(); if (acc.role === 'admin' && k.kind === 'all') this.setState({ sheet: 'pick', pickCall: k.id, pickDoc: null, cur: c.id }); else this.accept(k, k.target); }
+        })), hasAccept: mine.length > 0
+      };
+    });
+
+    const base = {
+      T: TABLET, K, isLogin: s.login, isList: !s.login && !s.cur, isRoom: !s.login && !!s.cur,
+      clock: hm(now), meName: acc.name, notifOff: this.props.scene === 'list_admin' /* 알림 권한 거부 — 계정 ▾ 옆 「알림 꺼짐」 */, need: counts.need, hasNeed: counts.need > 0, offline: this.props.scene === 'list_offline' /* SSE 끊김 — 값은 마지막 스냅샷 그대로 */,
+      filters, cards, noCards: cards.length === 0,
+      toggleMenu: () => this.setState((x) => ({ menu: !x.menu })), menu: s.menu,
+      logout: () => this.setState({ login: true, cur: null, menu: false, loginId: 'nr', loginPw: '', loginErr: '' }),
+      hasToast: !!s.toast, toast: s.toast,
+      // 로그인(정상 로그인 · OQ-601 닫음) — 서버 주소 칸은 debug 빌드만(릴리스 = API_BASE 고정)
+      loginId: s.loginId, loginPw: s.loginPw, pwType: s.showPw ? 'text' : 'password', loginErr: s.loginErr, hasLoginErr: !!s.loginErr,
+      setId: (e) => this.setState({ loginId: e.target.value }), setPw: (e) => this.setState({ loginPw: e.target.value }),
+      togglePw: () => this.setState((x) => ({ showPw: !x.showPw })),
+      doLogin: () => {
+        if (!s.loginId.trim()) return this.setState({ loginErr: '아이디를 입력하세요' });
+        if (!s.loginPw) return this.setState({ loginErr: '비밀번호를 입력하세요' });
+        if (s.loginPw === 'wrong') return this.setState({ loginErr: '아이디 또는 비밀번호가 맞지 않아요', loginPw: '' });
+        const role = { dr: 'doctor', admin: 'admin' }[s.loginId.trim()] || 'nurse';
+        this.setState({ login: false, acc: role, loginErr: '', loginPw: '' });
+      },
+      push: s.push != null, openPush: () => this.setState({ push: null, cur: 4 }), closePush: () => this.setState({ push: null }),
+    };
+    if (!s.cur || s.login) return { ...base, ...this.roomStub(), ...this.pushVals(b, sps) };
+    return { ...base, ...this.roomVals(b, sps, now, acc, counts), ...this.pushVals(b, sps) };
+  }
+
+  roomStub() {
+    return { room: '', name: '', nat: '', hasNat: false, visit: '', visitCls: '', inAt: '', hasIn: false, pay: false, kosText: '', hasKos: false, kosCls: '', others: '', hasOthers: false,
+      bd: badge('', 'neutral'), callBoxes: [], callBtnCls: '', hasDone: false, doneSub: '', goHome: () => {}, memo: '', memoCls: '', anes: {}, procs: [], procTotal: 0, procDone: 0, callBtn: '', callBtnOff: true, openCall: () => {},
+      langName: '', lastTalk: '', hasLastTalk: false, phrases: [], openTr: () => {}, back: () => {}, sheetCall: false, sheetPick: false, cs: {}, pk: {}, tr: false, dr: {} };
+  }
+
+  roomVals(b, sps, now, acc, counts) {
+    const s = this.state, c = b.cards.find((x) => x.id === s.cur), sp = sps[c.id];
+    const auto = autoLang(c.nat), code = s.trLang || auto.code, trad = code === 'zh' && auto.code === 'zh' ? auto.trad : false;
+    const ps = [...c.procs.filter((p) => p.st === 'done').sort((a, z) => a.end - z.end), ...c.procs.filter((p) => p.st === 'doing'), ...c.procs.filter((p) => p.st === 'wait').sort((a, z) => a.seq - z.seq)];
+    const kos = c.kos === 'pending' ? 'KOS 반영 중' : c.kos === 'failed' ? 'KOS 반영 실패' : '';
+    const others = counts.need - (sp.need ? 1 : 0);
+    // 호출 상자 — 받을 호출마다(§6.3 #2)
+    const callBoxes = sp.open.map((k) => {
+      const m = mins(now - k.at), late = m >= LIMITS.callMin, mine = isMine(k, acc), n = k.procIds.length;
+      const admin = acc.role === 'admin';
+      return {
+        title: (k.kind === 'all' ? '전체 호출' : docName(k.target) + ' 지정 호출') + ' · 수락 대기',
+        sub: hm(k.at) + ' 호출 · 시술 ' + n + '건 · 기준 ' + LIMITS.callMin + '분' + (late ? ' 넘음' : ''),
+        min: m + '분', boxCls: late ? 'bg-red-100 border-red' : 'bg-primary-100 border-primary', titleCls: late ? 'text-red' : 'text-primary',
+        adminOne: mine && admin && k.kind === 'one', mineOne: mine && !(admin && k.kind === 'one'), notMine: !mine,
+        fixedLabel: docName(k.target) + '으로 수락 · ' + n + '건',
+        mineLabel: admin ? '원장 골라 수락 · ' + n + '건' : '수락 · ' + n + '건',
+        isOne: k.kind === 'one',
+        accept: () => (admin && k.kind === 'all' ? this.setState({ sheet: 'pick', pickCall: k.id, pickDoc: null }) : this.accept(k, k.target)),
+        reassign: () => {
+          const nk = { id: Date.now(), visit: c.id, kind: 'all', target: null, at: this.now(), procIds: k.procIds, acceptedBy: null };
+          this.setState((x) => ({ b: { ...x.b, calls: [...x.b.calls, nk], cards: x.b.cards.map((cc) => (cc.id === c.id ? { ...cc, procs: cc.procs.map((p) => (k.procIds.includes(p.id) ? { ...p, callId: nk.id } : p)) } : cc)) } }));
+          this.flash(c.room + ' 전체 호출로 바꿈');
+        },
+        other: () => this.setState({ sheet: 'call', picks: k.procIds.slice(), to: null })
+      };
+    });
+    const procs = ps.map((p) => {
+      const ln = procLine(b, p, sp), k = sp.callOf(p);
+      return {
+        title: p.title, titleCls: p.st === 'done' ? 'text-typo-heading-md-400 text-ms-gray-500' : p.st === 'doing' ? 'text-typo-title-md-600 text-primary' : 'text-typo-title-sm-600 text-ms-gray-800',
+        line: ln.text, lineCls: ln.cls, rowStyle: p.st === 'doing' ? 'background:var(--ms-primary-100);border:1px solid var(--ms-primary);' : 'background:var(--ms-white);border:1px solid var(--ms-gray-200);',
+        isWait: p.st === 'wait', isDoing: p.st === 'doing', isDone: p.st === 'done', called: p.st === 'wait' && k && k.acceptedBy == null,
+        timer: p.st === 'doing' ? mmss(now - p.start) : '', startOff: !sp.canStart(p), startCls: sp.canStart(p) ? 'ob' : 'ob off',
+        start: () => { if (!sp.canStart(p)) return; this.editProc(c.id, p.id, (q) => ({ ...q, st: 'doing', start: this.now() })); this.flash(p.title + ' 시작'); },
+        end: () => { this.editProc(c.id, p.id, (q) => ({ ...q, st: 'done', end: this.now() })); this.flash(p.title + ' 종료'); }
+      };
+    });
+    const am = c.anes.since != null ? mins(now - c.anes.since) : 0;
+    const anes = {
+      on: sp.anesOn, boxCls: sp.anesOn ? 'bg-purple-100' : 'bg-ms-white', label: sp.anesOn ? '마취 중' : '마취', labelCls: sp.anesOn ? 'text-purple' : 'text-ms-gray-700',
+      val: sp.anesOn ? am + '분' : c.anes.last != null ? '완료 ' + c.anes.last + '분' : '안 함',
+      valCls: sp.anesOn ? 'text-typo-title-md-600 ' + (sp.anesLong ? 'text-red' : 'text-purple') : c.anes.last != null ? 'text-typo-body-600 text-purple' : 'text-typo-body-500 text-ms-gray-600',
+      sub: sp.anesOn ? hm(c.anes.since) + ' 시작 · 기준 ' + LIMITS.anesMin + '분' + (sp.anesLong ? ' 넘음' : '') : '',
+      canStart: sp.anesCanStart, canEnd: sp.anesCanEnd,
+      start: () => { this.editCard(c.id, (cc) => ({ ...cc, anes: { since: this.now(), last: cc.anes.last } })); this.flash(c.room + ' 마취 시작'); },
+      end: () => { this.editCard(c.id, (cc) => ({ ...cc, anes: { since: null, last: mins(this.now() - cc.anes.since) } })); this.flash(c.room + ' 마취 종료'); }
+    };
+    // 호출 시트(§6.4 · E2E A2 [전체 선택])
+    const pickable = c.procs.filter(sp.pick).map((p) => p.id);
+    const picks = s.picks.filter((id) => pickable.includes(id));
+    const docs = DOCS.map((d) => { const busy = b.cards.find((cc) => cc.procs.some((p) => p.st === 'doing' && p.doc === d.id)); return { ...d, busy: busy ? busy.room : null }; })
+      .sort((a, z) => (a.busy ? 1 : 0) - (z.busy ? 1 : 0));
+    const toName = s.to == null ? '' : s.to === 'all' ? '모든 의사' : docName(s.to);
+    const allOn = pickable.length > 0 && pickable.every((id) => picks.includes(id));
+    const cs = {
+      head: TABLET ? c.room + ' · ' + c.name : c.room, noPick: pickable.length === 0, hasPick: pickable.length > 0, allOn,
+      allCls: allOn ? 'bg-primary border-primary' : 'bg-ms-white border-ms-gray-400', allTxt: allOn ? 'text-primary' : 'text-ms-gray-700',
+      toggleAll: () => this.setState({ picks: allOn ? [] : pickable.slice() }),
+      rows: [...c.procs].sort((a, z) => a.seq - z.seq).map((p) => {
+        const en = pickable.includes(p.id), on = picks.includes(p.id);
+        return { title: p.title, note: procLine(b, p, sp).text, op: en ? '1' : '0.5',
+          rowCls: on ? 'bg-primary-100 border-primary' : en ? 'bg-ms-white border-ms-gray-300' : 'bg-ms-gray-100 border-ms-gray-300',
+          boxCls: on ? 'bg-primary border-primary' : 'bg-ms-white border-ms-gray-400', titleCls: en ? 'text-ms-gray-800' : 'text-ms-gray-600',
+          toggle: () => { if (!en) return; this.setState((x) => ({ picks: on ? x.picks.filter((i) => i !== p.id) : [...x.picks, p.id] })); } };
+      }),
+      docs: [{ key: 'all', name: '모든 의사', av: 'ALL', avCls: 'bg-ms-gray-700 text-ms-white', sub: '먼저 수락한 원장', subCls: 'text-typo-caption-md-400 text-ms-gray-500' },
+        ...docs.map((d) => ({ key: d.id, name: d.name, av: d.name.slice(0, 1), avCls: 'bg-purple-100 text-purple', sub: d.busy ? d.busy + ' 시술 중' : '비어있음', subCls: d.busy ? 'text-typo-caption-md-400 text-ms-gray-500' : 'text-typo-caption-md-500 text-primary' }))]
+        .map((d) => ({ ...d, rowCls: s.to === d.key ? 'bg-primary-100 border-primary' : 'bg-ms-white border-ms-gray-300', pick: () => this.setState((x) => ({ to: x.to === d.key ? null : d.key })) })),
+      cta: s.to == null ? '의사를 선택하세요' : toName + ' 호출 · ' + picks.length + '건', off: s.to == null || picks.length === 0,
+      ctaCls: s.to == null || picks.length === 0 ? 'bg-ms-gray-300 text-ms-gray-600' : 'bg-primary text-ms-white',
+      send: () => {
+        if (s.to == null || !picks.length) return;
+        const nk = { id: Date.now(), visit: c.id, kind: s.to === 'all' ? 'all' : 'one', target: s.to === 'all' ? null : s.to, at: this.now(), procIds: picks.slice(), acceptedBy: null };
+        this.setState((x) => ({ sheet: null, picks: [], to: null, b: { ...x.b, calls: [...x.b.calls, nk], cards: x.b.cards.map((cc) => (cc.id === c.id ? { ...cc, procs: cc.procs.map((p) => (picks.includes(p.id) ? { ...p, callId: nk.id } : p)) } : cc)) } }));
+        this.flash(c.room + ' ' + picks.length + '개 시술 · ' + (s.to === 'all' ? '모든 의사 호출' : toName + ' 호출'));
+      },
+      close: () => this.setState({ sheet: null })
+    };
+    // 관리자 수락 — 원장 고르기(A-15)
+    const pkCall = b.calls.find((k) => k.id === s.pickCall);
+    const pk = {
+      head: '누구로 수락할까요 · ' + c.room,
+      docs: docs.map((d) => ({ name: d.name, sub: d.busy ? d.busy + ' 시술 중' : '비어있음', subCls: d.busy ? 'text-typo-caption-md-400 text-ms-gray-500' : 'text-typo-caption-md-500 text-primary',
+        rowCls: s.pickDoc === d.id ? 'bg-primary-100 border-primary' : 'bg-ms-white border-ms-gray-300', pick: () => this.setState((x) => ({ pickDoc: x.pickDoc === d.id ? null : d.id })) })),
+      cta: s.pickDoc == null ? '원장을 선택하세요' : docName(s.pickDoc) + ' 수락 · ' + (pkCall ? pkCall.procIds.length : 0) + '건',
+      ctaCls: s.pickDoc == null ? 'bg-ms-gray-300 text-ms-gray-600' : 'bg-primary text-ms-white',
+      ok: () => { if (s.pickDoc != null && pkCall) this.accept(pkCall, s.pickDoc); }, close: () => this.setState({ sheet: null })
+    };
+    // 통역 드로어(§6.5)
+    const lines = s.tr ? TALK.map(([side, o, t, fin]) => ({ me: side === 'me', who: side === 'me' ? '의료진' : c.name.replace(/^\[[A-Z]+\]\s*/, '') + ' 님',
+      align: side === 'me' ? 'flex-end' : 'flex-start', bubble: side === 'me' ? 'bg-primary' : 'bg-ms-white',
+      radius: side === 'me' ? '14px 4px 14px 14px' : '4px 14px 14px 14px', orig: fin ? o : o + ' …', trans: fin ? t : '번역 중…', op: fin ? '1' : '0.7',
+      origCls: side === 'me' ? 'text-ms-white' : fin ? 'text-ms-gray-800' : 'text-ms-gray-600', transCls: side === 'me' ? 'text-ms-white' : 'text-ms-gray-600' })).reverse() : [];
+    const IP = { listening: ['듣는 중', 'text-primary', '양쪽 말을 모두 들어요 · 누가 말했는지 자동으로 구분해요 · 누르면 멈춤', 'bg-primary border-primary', 'bg-primary'],
+      paused: ['멈춤', 'text-ms-gray-700', '누르면 다시 들어요 · 시술 중 잠깐 끌 때', 'bg-ms-white border-primary', 'bg-ms-gray-500'],
+      connecting: ['연결 중', 'text-ms-gray-700', '마이크와 통역 서버를 연결하고 있어요', 'bg-ms-gray-100 border-ms-gray-300', 'bg-ms-gray-500'] }[s.ip];
+    const dr = {
+      head: langLabel(code, trad), rot: s.langOpen ? '180deg' : '0deg', langOpen: s.langOpen,
+      sub: TABLET ? c.name.replace(/^\[[A-Z]+\]\s*/, '') + ' 님 · ' + c.nat + ' · 국적으로 자동 선택 · 눌러서 변경' : c.room + ' · ' + mmss((Date.now() - s.trStart) / 1000),
+      endLabel: TABLET ? '통역 종료' : '종료',
+      langs: LANGS.map(([lc, ln]) => ({ name: ln + (lc === auto.code ? ' · 자동' : ''), cls: lc === code ? 'bg-primary-100 border-primary text-primary text-typo-caption-md-600' : 'bg-ms-white border-ms-gray-300 text-ms-gray-800 text-typo-caption-md-500',
+        pick: () => this.setState({ trLang: lc, langOpen: false }) })),
+      toggleLang: () => this.setState((x) => ({ langOpen: !x.langOpen })),
+      lines, empty: lines.length === 0, ipText: IP[0], ipCls: IP[1], ipHint: IP[2], micCls: IP[3], ipDot: IP[4],
+      listening: s.ip === 'listening', paused: s.ip === 'paused', connecting: s.ip === 'connecting',
+      toggleMic: () => this.setState((x) => ({ ip: x.ip === 'listening' ? 'paused' : 'listening' })),
+      side: PHRASES.map(([ko, tr]) => ({ ko, tr: tr[phraseKey(code, trad)] || tr.en })),
+      close: () => this.setState({ tr: false, lastTalk: '마지막 통역 ' + hm(this.now()) + ' · 2문장' })
+    };
+    return {
+      room: c.room, name: c.name, nat: c.nat, hasNat: !!c.nat, visit: c.isNew ? '첫내원' : '재내원', visitCls: c.isNew ? 'bg-primary-100 text-primary' : 'bg-ms-gray-200 text-ms-gray-700',
+      inAt: '입실 ' + hm(c.inAt), hasIn: c.inAt != null, pay: c.pay, kosText: kos, hasKos: !!kos, kosCls: c.kos === 'failed' ? 'text-red' : 'text-ms-gray-600',
+      others: '다른 룸 확인 ' + others, hasOthers: others > 0, bd: cardBadge(b, c, sp),
+      callBoxes, hasDone: sp.canHome, doneSub: '마지막 종료 ' + hm(Math.max(...c.procs.map((p) => p.end || 0))),
+      goHome: () => { this.editCard(c.id, (cc) => ({ ...cc, home: this.now() })); this.flash(c.room + ' ' + c.name + ' 귀가 대기'); },
+      memo: (c.memo || '').trim() || '오더 메모 없음', memoCls: (c.memo || '').trim() ? 'text-ms-gray-800' : 'text-ms-gray-600',
+      anes, procs, procTotal: ps.length, procDone: ps.filter((p) => p.st === 'done').length,
+      callBtn: sp.canCall ? '의사 호출' : '호출할 대기 시술 없음', callBtnOff: !sp.canCall, callBtnCls: sp.canCall ? 'og' : 'og off', openCall: () => sp.canCall && this.setState({ sheet: 'call', picks: [], to: null }),
+      langName: langLabel(code, trad), lastTalk: s.lastTalk || '', hasLastTalk: !!s.lastTalk,
+      phrases: PHRASES.map(([ko, tr]) => ({ ko, chipCls: s.playing === ko ? 'bg-primary border-primary text-ms-white text-typo-caption-md-600' : 'bg-ms-white border-ms-gray-300 text-ms-gray-800 text-typo-caption-md-500',
+        play: () => { this.setState({ playing: ko }); setTimeout(() => this.setState({ playing: null }), 1600); } })),
+      openTr: () => this.setState({ tr: true, trStart: Date.now(), ip: 'listening' }),
+      back: () => this.setState({ cur: null, sheet: null, tr: false }),
+      sheetCall: s.sheet === 'call', sheetPick: s.sheet === 'pick', cs, pk, tr: s.tr, dr
+    };
+  }
+
+  // 원장 호출 푸시(§5-1) — APNs · 의사 수신자만 [수락] 액션(카테고리 CALL) · 관리자는 액션 없음
+  pushVals(b) {
+    const k = b.calls.find((z) => z.id === 102), c = b.cards.find((x) => x.id === 4);
+    return {
+      pushBody: c.room + ' · 시술 ' + k.procIds.length + '건 · 전체 호출',
+      pushBodyOne: 'A-룸1 · 시술 1건 · 지정 호출',
+      pushOk: '수락했어요 · ' + c.room, pushFail: '수락 못 함 · 다른 원장을 지정한 호출이에요', pushRole: TABLET ? '관리자 기기 — 액션 없음(앱을 열어 원장 고르기)' : '의사 기기 — 알림을 아래로 당기거나 길게 누르면 [수락]',
+      showAction: !TABLET
+    };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+---
+type: concept
+id: code-signing
+title: 코드 서명 (Code Signing)
+aliases:
+  - 코드 서명
+  - code signing
+  - 디지털 서명
+  - SmartScreen
+  - Smart App Control
+  - SAC
+  - Gatekeeper
+  - 공증
+  - notarization
+  - Developer ID
+  - notarytool
+  - staple
+  - spctl
+  - 개발자 약관
+  - TestFlight
+  - 내부 테스터
+  - 빌드 번호
+up:
+  - 2026-09-04-kakao-task
+  - 2026-10-01-strong-hajin-deploy
+  - 2026-10-07-strong-hajin-inbox
+  - 2026-10-22-myeongdong-poc-v2
+tags:
+  - infra
+  - 배포
+  - 보안
+  - windows
+---
+
+# 코드 서명 (Code Signing)
+
+**실행 파일에 발행자의 디지털 서명을 붙여 「누가 만들었고 그 뒤로 안 바뀌었다」를 OS 가 검증할 수 있게 하는 것.** 서명이 없거나 신뢰받지 못하면 OS 의 실행 방어막이 경고를 띄우거나 아예 실행을 막는다.
+
+## 정의
+
+서명은 두 가지를 보증한다 — **무결성**(배포 후 변조 없음)과 **출처**(신뢰된 CA 가 발급한 인증서의 소유자가 서명함). OS 별 방어막이 이 서명을 읽는다.
+
+| OS | 방어막 | 서명 없을 때 |
+|---|---|---|
+| Windows | **SmartScreen** | 「알 수 없는 게시자」경고, 「추가 정보 → 실행」로 우회 가능 |
+| Windows | **Smart App Control (SAC)** | 신뢰 못 하면 **하드 차단** — 우회 UI 없음 |
+| macOS | **Gatekeeper / 공증(notarization)** | 실행 거부, 「보안 설정에서 허용」필요 |
+
+**SmartScreen 은 평판(reputation) 기반**이라 신규 서명은 다운로드 수가 쌓이기 전까지 경고가 뜬다. **SAC 는 더 강경**해서 서명·평판을 못 넘기면 실행 자체를 막고, 사용자 우회 경로도 없다 — 끄려면 클린 설치가 필요한 전역 스위치다.
+
+## 왜 중요한가
+
+**서명은 언어·프레임워크와 무관한 배포의 벽이다.** kakao-task 는 서명 없는 `mykakao.exe` 라 배포 시 SmartScreen 경고가 불가피했고(본인 기기 전용이라 「추가 정보→실행」안내로 수용), 빌드 중에는 MS 정책 업데이트(2026-09-02~03) 후 **SAC 가 서명 없는 rustc/cargo 산출물을 하드 차단**해 빌드가 막혔다 → SAC 를 끄고(사용자 승인) 진행했다. 「Rust 라서/트레이 앱이라서」가 아니라 서명 문제였다.
+
+### macOS 배포 한 벌
+
+Strong Hajin 회사판 dmg 는 이 순서로 나갔다: **Developer ID Application 서명**(hardened runtime + entitlements) → `xcrun notarytool submit --keychain-profile <프로필> --wait` → `xcrun stapler staple`(dmg·.app) → `spctl -a -vv -t install` 이 `accepted source=Notarized Developer ID` 를 내는지 확인. staple 까지 해야 오프라인에서도 Gatekeeper 가 통과시킨다. ad-hoc 서명 판은 다른 Mac 에서 열리지 않고, 사용자 Mac 에서도 「code has no resources but signature indicates they must be present」 로 깨져 시스템 리포트와 함께 종료됐다.
+
+**공증은 인증서 말고 계정 상태도 본다** — Apple 개발자 약관이 갱신돼 동의하지 않은 상태면 공증 제출이 403 으로 거절된다. 서명·인증서는 멀쩡하다. 웹에서 약관에 동의한 뒤에도 반영까지 수 분이 걸려 바로 다시 내면 또 403 이다 — 간격을 두고 재시도하면 통과한다.
+
+### iOS 배포 한 벌 — TestFlight 내부 테스터
+
+iOS 는 서명 없는 앱이 기기에 아예 못 깔린다. 명동 PoC v2 시술실 앱(Flutter)은 사용자 맥북에서 이렇게 나갔다: App Store Connect 에 앱 레코드(번들 id) → `flutter build ipa --release`(Xcode Automatic signing · 팀은 사용자 맥에서만 고름) → Xcode Organizer/Transporter 로 업로드 → TestFlight **내부 테스터**에 빌드 배정 → 기기의 TestFlight 앱으로 설치.
+
+- **내부 테스터는 심사가 없다** — App Store Connect 사용자만 받을 수 있는 대신 업로드 직후 깔린다. 외부 테스터는 베타 심사가 걸려 PoC 일정에 안 맞는다
+- **빌드 번호는 업로드마다 +1** — 같은 번호는 거절된다. 버전(1.0.0)은 그대로 두고 `+N` 만 올렸다(빌드 1 ~ 3)
+- **수출 규정 질문** — 표준 https 만 쓰면 `ITSAppUsesNonExemptEncryption=false` 로 업로드 때 질문을 건너뛴다
+- **푸시는 내보내기 때 환경이 바뀐다** — `aps-environment` 가 개발 빌드는 development, TestFlight 는 production → [[apns-direct-push]]
+
+**인증서 만료를 헷갈리기 쉽다** — Developer ID(2031)와 서버 TLS(Cloudflare 엣지, 자동 갱신)는 다른 인증서다. 키체인에서 직접 읽어 확인한다.
+
+## 경계와 오해
+
+- **서명 ≠ 악성코드 아님** — 서명은 출처와 무결성만 증명한다. 서명된 악성코드도 있고, 서명 없는 정상 앱도 있다. OS 는 위험이 아니라 **신뢰 사슬**을 본다.
+- **SmartScreen ≠ SAC** — 전자는 우회 가능한 평판 경고, 후자는 우회 불가한 실행 차단이다. 개발기에서 자기 산출물이 막히면 SAC 를 의심한다.
+- **평판은 시간이 든다** — EV 인증서로 서명해도 신규 배포는 평판이 쌓일 때까지 경고가 남을 수 있다.
+- **개발 도구도 대상이다** — 컴파일러가 낸 미서명 바이너리를 SAC 가 막으면 개발 자체가 멈춘다.
+
+## 함께 보는 개념
+
+- [[web-application-deployment]] — 서버 배포와 달리 클라이언트 바이너리 배포는 서명이 관문
+- [[ci-cd]] — 서명·공증을 파이프라인 단계로 넣어 배포 산출물에 자동 적용
+- [[build-flavor]] — 판마다 서명·공증
+- [[apns-direct-push]] — 서명 환경과 푸시 환경이 같이 움직인다
+
+## 출처
+
+- [[2026-09-04-kakao-task]] — 미서명 exe 의 SmartScreen 경고 수용 + 빌드 중 SAC 하드 차단(MS 정책 업데이트 후) → SAC OFF 로 우회
+- [[2026-10-01-strong-hajin-deploy]] — macOS Developer ID 서명 → 공증 → staple → spctl 로 회사판 medi-ax 배포. ad-hoc 판이 깨져 종료된 사고
+- [[2026-10-22-myeongdong-poc-v2]] §2 — Flutter iOS 시술실 앱을 TestFlight 내부 테스터로 아이폰 · 아이패드에 설치, 빌드 번호 +1 · 심사 없음(SPEC-004 §2.4 · 코드 #4 · #5)
+- [[2026-10-07-strong-hajin-inbox]] §3 — 약관 만료로 공증 403, 동의 뒤 반영 지연을 재시도로 통과

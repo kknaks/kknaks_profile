@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>업무 상세 재설계 시안 — TheSC AX</title>
+<link rel="stylesheet" href="./styles.css">
+<style>
+  /* ── 시안 페이지 껍데기 (실제 앱에는 없다) ───────────────────── */
+  body{margin:0;background:var(--scax-color-surface-alt,#f5f6f7);
+       font-family:"Pretendard JP",system-ui,sans-serif;color:var(--scax-color-ink,#17191c)}
+  .page{max-width:1000px;margin:0 auto;padding:40px 24px 80px}
+  .page>h1{font-size:24px;font-weight:700;letter-spacing:-.01em;margin:0 0 4px}
+  .page>.sub{margin:0 0 20px;color:var(--scax-color-ink-neutral,#5b6169);font-size:13px;line-height:1.6}
+  .legend{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 24px}
+  .legend span{font-size:11px;padding:3px 9px;border-radius:999px;background:#fff;
+       border:1px solid var(--scax-color-line,#e3e5e8);color:var(--scax-color-ink-neutral,#5b6169)}
+  .legend b{color:var(--scax-color-accent,#1e63d0)}
+  .stage{background:#fff;border:1px solid var(--scax-color-line,#e3e5e8);border-radius:14px;
+       overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04);margin-bottom:28px}
+  .stage__label{padding:9px 18px;background:var(--scax-color-surface-alt,#fafbfc);
+       border-bottom:1px solid var(--scax-color-line,#e3e5e8);
+       font-size:11px;font-weight:600;color:var(--scax-color-ink-assistive,#8a9099)}
+  .drawer{padding:18px 20px 22px}
+
+  /* ── 고침 ①  .section-row 가 자식 셋 이상이면 가운데가 뜬다 ──── */
+  .section-row{justify-content:flex-start;margin-bottom:10px}
+  .section-row>h4{margin-right:auto}
+  /* ── 고침 ②  목록 첫 칸 버튼이 칸을 꽉 채워 글자가 가운데로 간다 ── */
+  .material-list li>.scax-button--inline{justify-content:flex-start;text-align:left}
+
+  /* ── 큰 덩어리 ─────────────────────────────────────────────── */
+  .block{margin-top:22px}
+  .block:first-child{margin-top:0}
+  /* 덩어리 머리 — 셋(업무 정보·연관 업무·자료)이 «같은 레벨»이다.
+     단추가 있든 없든 같은 높이·같은 활자로 서도록 머리를 한 벌로 둔다. */
+  .block__row{display:flex;align-items:center;gap:8px;min-height:30px;margin:0 0 10px;
+       padding-bottom:7px;border-bottom:1px solid var(--scax-color-line,#e3e5e8)}
+  .block__row>h3{margin:0;padding:0;border:0;flex:1;
+       font-size:15px;font-weight:700;letter-spacing:-.005em;
+       color:var(--scax-color-ink,#17191c)}
+
+  /* ── 2열 ──────────────────────────────────────────────────── */
+  .cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 22px;align-items:start}
+  .stack{display:grid;gap:14px}
+
+  /* 목록은 «칸 안에서» 스크롤한다 — 하위 30개가 연관 업무를 화면 밖으로 밀지 않는다.
+     2열 격자에서 두 칸 높이가 어긋나는 것도 이 상한이 막는다. */
+  /* 기본 3행 — 넘으면 칸 «안에서» 스크롤한다. 3행 = (34 + 경계선 1) × 3 */
+  /* 목록은 «표»가 아니다 — 통 테두리도 스크롤도 없다. 부품이 그냥 이어진다.
+     (2026-09-28 사용자 확정 · 길이는 「더 보기」가 잡는다) */
+  .scroll{border:0;border-radius:0;overflow:visible}
+  .scroll>.material-list{border:0;border-radius:0}
+  .more{margin-top:4px;font-size:12px;font-weight:600;color:var(--scax-color-accent,#1e63d0);cursor:pointer}
+  .cell{min-width:0}
+  .cell__head{display:flex;align-items:baseline;gap:7px;margin:0 0 6px}
+  .cell__head h5{margin:0;font-size:13px;font-weight:600;color:var(--scax-color-ink,#17191c)}
+  /* 구획 제목은 «검정»이다 — 앱의 .drawer-section h4 회색을 이 화면에서 덮는다 (2026-09-28) */
+  .drawer-section h4{color:var(--scax-color-ink,#17191c)}
+  .drawer-section.danger h4{color:var(--scax-color-danger,#d93636)}
+  .blocked-reason{color:var(--scax-color-ink,#17191c)}
+  .cell__n{font-size:11px;color:var(--scax-color-ink-disabled,#b0b5bb)}
+  .cell__head .scax-button{margin-left:auto;height:22px;min-height:22px;padding:0 6px;font-size:11px}
+
+  /* 값 한 줄 (상위·프로젝트) */
+  .one{display:flex;align-items:center;gap:6px;min-height:34px;padding:0 10px;
+       border:1px solid var(--scax-color-line-weak,#eef0f2);border-radius:8px;
+       background:var(--scax-color-surface-alt,#fafbfc);font-size:13px}
+  .one .scax-button--inline{padding:0;font-size:13px}
+  .one--empty{color:var(--scax-color-ink-disabled,#b0b5bb)}
+
+  /* 목록 — 촘촘하게 */
+  .material-list{border:0;border-radius:0;overflow:visible}
+  .material-list li{display:grid;grid-template-columns:minmax(0,1fr) auto;
+       align-items:center;gap:8px;min-height:30px;padding:2px 0;
+       border-bottom:0;font-size:13px}
+  .material-list li>*{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .material-list .t-meta{font-size:11px}
+  .material-list .scax-button--inline{font-size:13px}
+  .empty{font-size:12px;color:var(--scax-color-ink-disabled,#b0b5bb);
+       padding:8px 10px;border:1px dashed var(--scax-color-line,#e3e5e8);border-radius:8px}
+  .private{display:flex;align-items:center;gap:6px;margin-top:4px;padding:7px 10px;
+       border:1px dashed var(--scax-color-line,#e3e5e8);border-radius:8px;
+       font-size:12px;color:var(--scax-color-ink-assistive,#8a9099)}
+
+  /* 업무 메타 */
+  .meta{display:flex;align-items:flex-start;gap:12px;padding:0 0 14px;
+       border-bottom:1px solid var(--scax-color-line,#e3e5e8)}
+  .meta h2{margin:0 0 6px;font-size:19px;font-weight:700;letter-spacing:-.01em}
+  .meta__facts{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;
+       color:var(--scax-color-ink-assistive,#8a9099)}
+  .meta__facts b{color:var(--scax-color-ink-alt,#4a5058);font-weight:600}
+  .meta__right{margin-left:auto;display:flex;gap:6px;align-items:center;flex:0 0 auto}
+
+  .desc{margin:0;font-size:13px;line-height:1.65;color:var(--scax-color-ink-alt,#4a5058)}
+  .check{list-style:none;margin:0;padding:0;display:grid;gap:3px}
+  .check li{display:flex;align-items:center;gap:7px;font-size:13px;min-height:26px}
+  .check input{margin:0}
+  .check .done{color:var(--scax-color-ink-disabled,#b0b5bb);text-decoration:line-through}
+
+  .rel__addrow{display:flex;align-items:center;gap:8px;margin-top:6px}
+  .rel__addlabel{flex:0 0 auto;font-size:12px;font-weight:600;color:var(--scax-color-accent,#1e63d0)}
+  .rel__addrow .rel__select{flex:1 1 0%;min-width:0}
+  /* 편집 목록 — 제목 + 해제 두 칸 */
+  .scroll .material-list li:has(> .scax-button--sm){grid-template-columns:minmax(0,1fr) auto}
+  .scroll .material-list li > .scax-button--sm{height:24px;min-height:24px;padding:0 8px;font-size:11px}
+  .rel__select{width:100%;height:34px;padding:0 10px;font:inherit;font-size:13px;
+       border:1px solid var(--scax-color-line,#e3e5e8);border-radius:8px;background:#fff;
+       color:var(--scax-color-ink,#17191c)}
+
+  .isnew{position:relative}
+  .isnew>.block__row>h3::after,.cell.isnew .cell__head h5::after{
+       content:"NEW";margin-left:7px;font-size:9px;font-weight:700;letter-spacing:.04em;
+       padding:2px 5px;border-radius:999px;vertical-align:middle;
+       background:rgba(30,99,208,.1);color:var(--scax-color-accent,#1e63d0)}
+  .drawer-section.notice{margin-top:14px}
+</style>
+</head>
+<body>
+<main class="page">
+
+<h1>업무 상세 — 재설계 시안</h1>
+<p class="sub">
+  <b>덩어리 여섯</b> — 업무 메타 · 업무 정보 · <b>진행과 판단</b> · 연관 업무 · 자료 · 이력.
+  연관과 자료는 2열, 업무 정보는 1열. 목록은 <b>표가 아니라 이어진 부품</b>이고 길이는 「더 보기」가 잡는다
+  (관계·자료 3줄 · 체크리스트 5줄). 목데이터이고 상호작용은 없다.
+</p>
+<p class="sub" style="margin-top:-12px">
+  2026-09-28 실물 확인에서 나온 지시를 반영했다 — 통 테두리·스크롤 제거 · 진행과 판단을 연관 업무 앞으로 ·
+  구획 제목과 막힘 사유 본문을 검정으로 · 셀렉터는 칸 전체 폭 · 「추가」→「하위 업무 생성」.
+  <b>계약의 정본은 <code>spec-007-task-detail.md</code> 다.</b>
+</p>
+<div class="legend">
+  <span><b>NEW</b> 지금 화면에 없는 자리</span>
+  <span>선행 — 계약·서버 있음, 프론트 배선만</span>
+  <span>후행 — 같은 표를 반대로 읽기</span>
+  <span>프로젝트 — PATCH 이미 열림</span>
+</div>
+
+<!-- ═══════════ A ═══════════ -->
+<section class="stage">
+  <div class="stage__label">A · 기본 — 선행이 끝나 시작할 수 있는 업무</div>
+  <div class="drawer">
+
+    <!-- 업무 메타 -->
+    <div class="meta">
+      <div>
+        <h2>연동 규격 확인</h2>
+        <div class="meta__facts">
+          <span>담당 <b>민아</b></span>
+          <span>기한 <b>2026/09/27</b></span>
+          <span>시작 <b>09/25</b></span>
+          <span>결재 <b>지호</b></span>
+          <span>참조 <b>소라 · 유나</b></span>
+        </div>
+      </div>
+      <div class="meta__right">
+        <span class="scax-badge scax-badge--info">진행중</span>
+        <button class="scax-button scax-button--text-neutral scax-button--sm" type="button">편집</button>
+      </div>
+    </div>
+
+    <!-- 업무 정보 -->
+    <div class="block">
+      <div class="block__row"><h3>업무 정보</h3></div>
+      <div class="stack">
+        <div class="cell">
+          <div class="cell__head"><h5>업무 내용</h5></div>
+          <p class="desc">외부 연동 스펙을 확인하고 우리 계약과 어긋나는 지점을 정리한다.</p>
+        </div>
+        <div class="cell">
+          <div class="cell__head"><h5>체크리스트</h5><span class="cell__n">1 / 3</span>
+            <button class="scax-button scax-button--text-neutral scax-button--sm" type="button">추가</button></div>
+          <div class="scroll scroll--tall"><ul class="check">
+            <li><input type="checkbox" checked><span class="done">인증 방식 확인</span></li>
+            <li><input type="checkbox"><span>오류 코드 대조</span></li>
+            <li><input type="checkbox"><span>타임아웃 정책 확인</span></li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- 진행과 판단 — 연관 업무 «앞» (2026-09-28 사용자 확정: 지금 이 업무의 상태가 관계보다 먼저 읽힌다) -->
+    <div class="block">
+      <div class="block__row"><h3>진행과 판단</h3></div>
+      <div class="cols">
+        <div class="cell">
+          <div class="cell__head"><h5>담당</h5>
+            <button class="scax-button scax-button--text-neutral scax-button--sm" type="button">담당자 변경</button></div>
+          <div class="one"><span>민아</span><span class="t-meta">· 2026/09/25 수락</span></div>
+        </div>
+        <div class="cell">
+          <div class="cell__head"><h5>완료 보고</h5></div>
+          <div class="empty">아직 보고가 없습니다.</div>
+        </div>
+      </div>
+    </div>
+    <!-- 연관 업무 -->
+    <div class="block isnew">
+      <div class="block__row">
+        <h3>연관 업무</h3>
+        <button class="scax-button scax-button--text-neutral scax-button--sm" type="button">연결 편집</button>
+      </div>
+      <div class="cols">
+
+        <div class="cell">
+          <div class="cell__head"><h5>상위 업무</h5></div>
+          <div class="one"><button class="scax-button scax-button--inline" type="button">제품 사용성 조사 정리</button><span class="t-meta">진행중</span></div>
+        </div>
+        <div class="cell isnew">
+          <div class="cell__head"><h5>프로젝트</h5></div>
+          <div class="one"><button class="scax-button scax-button--inline" type="button">하반기 제품 개편</button></div>
+        </div>
+
+        <div class="cell">
+          <div class="cell__head"><h5>하위 업무</h5><span class="cell__n">2 / 5 · 완료 막음 3</span>
+            <button class="scax-button scax-button--text-neutral scax-button--sm" type="button">추가</button></div>
+          <div class="scroll">
+            <ul class="material-list">
+            <li><button class="scax-button scax-button--inline" type="button">규격 문서 수집</button><span class="t-meta">완료 · 민아</span></li>
+            <li><button class="scax-button scax-button--inline" type="button">차이점 표 작성</button><span class="t-meta">진행중 · 민아</span></li>
+            <li><button class="scax-button scax-button--inline" type="button">샘플 응답 수집</button><span class="t-meta">대기 · 지호</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="cell isnew">
+          <div class="cell__head"><h5>선행 업무</h5><span class="cell__n">2 · 모두 완료</span></div>
+          <div class="scroll">
+            <ul class="material-list">
+            <li><button class="scax-button scax-button--inline" type="button">사용자 리서치 설문</button><span class="t-meta">완료 · 민아</span></li>
+            <li><button class="scax-button scax-button--inline" type="button">경쟁 제품 비교</button><span class="t-meta">완료 · 지호</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cell">
+          <div class="cell__head"><h5>참고 업무</h5><span class="cell__n">1</span></div>
+          <div class="scroll">
+            <ul class="material-list">
+            <li><button class="scax-button scax-button--inline" type="button">작년 연동 회고</button><span class="t-meta">완료 · 유나</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="cell isnew">
+          <div class="cell__head"><h5>후행 업무</h5><span class="cell__n">3</span></div>
+          <div class="scroll">
+            <ul class="material-list">
+            <li><button class="scax-button scax-button--inline" type="button">연동 구현</button><span class="t-meta">대기 · 지호</span></li>
+            <li><button class="scax-button scax-button--inline" type="button">연동 테스트 시나리오</button><span class="t-meta">대기 · 소라</span></li>
+            </ul>
+          </div>
+          <div class="private">🔒 비공개 업무 <b>1건</b>이 이 업무를 기다립니다.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 자료 -->
+    <div class="block">
+      <div class="block__row"><h3>자료</h3></div>
+      <div class="cols">
+        <div class="cell">
+          <div class="cell__head"><h5>참고 자료</h5><span class="cell__n">2</span>
+            <button class="scax-button scax-button--text-neutral scax-button--sm" type="button">추가</button></div>
+          <div class="scroll">
+            <ul class="material-list">
+            <li><button class="scax-button scax-button--inline" type="button">연동규격_v3.pdf</button><span class="t-meta">09/25</span></li>
+            <li><button class="scax-button scax-button--inline" type="button">외부 API 문서</button><span class="t-meta">링크</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="cell">
+          <div class="cell__head"><h5>결과 자료</h5><span class="cell__n">0</span>
+            <button class="scax-button scax-button--text-neutral scax-button--sm" type="button">추가</button></div>
+          <div class="empty">등록된 결과 자료가 없습니다.</div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- 이력 — 맨 뒤 -->
+    <div class="block">
+      <div class="block__row"><h3>이력</h3>
+        <button class="scax-button scax-button--text-neutral scax-button--sm" type="button">이력 보기</button></div>
+      <p class="t-meta">2026/09/22 생성 · 최근 변경 2026/09/23</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ B ═══════════ -->
+<section class="stage">
+  <div class="stage__label">B · 선행이 안 끝나 시작이 막힌 업무</div>
+  <div class="drawer">
+
+    <div class="meta">
+      <div>
+        <h2>연동 구현</h2>
+        <div class="meta__facts">
+          <span>담당 <b>지호</b></span><span>기한 <b>2026/10/02</b></span><span>결재 <b>유나</b></span>
+        </div>
+      </div>
+      <div class="meta__right"><span class="scax-badge scax-badge--neutral">대기</span></div>
+    </div>
+
+    <section class="drawer-section notice danger isnew">
+      <h4>시작할 수 없습니다</h4>
+      <p><b>연동 규격 확인</b>이 끝나지 않았습니다.</p>
+    </section>
+
+    <div class="block">
+      <div class="block__row"><h3>업무 정보</h3></div>
+      <div class="stack">
+        <div class="cell">
+          <div class="cell__head"><h5>업무 내용</h5></div>
+          <p class="desc">확정된 규격에 맞춰 연동 모듈을 구현한다.</p>
+        </div>
+        <div class="cell">
+          <div class="cell__head"><h5>체크리스트</h5><span class="cell__n">0 / 0</span>
+            <button class="scax-button scax-button--text-neutral scax-button--sm" type="button">추가</button></div>
+          <div class="empty">단계가 없습니다.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="block isnew">
+      <div class="block__row">
+        <h3>연관 업무</h3>
+        <button class="scax-button scax-button--text-neutral scax-button--sm" type="button">연결 편집</button>
+      </div>
+      <div class="cols">
+        <div class="cell">
+          <div class="cell__head"><h5>상위 업무</h5></div>
+          <div class="one one--empty">없음</div>
+        </div>
+        <div class="cell">
+          <div class="cell__head"><h5>프로젝트</h5></div>
+          <div class="one"><button class="scax-button scax-button--inline" type="button">하반기 제품 개편</button></div>
+        </div>
+        <div class="cell">
+          <div class="cell__head"><h5>하위 업무</h5><span class="cell__n">0 / 0</span>
+            <button class="scax-button scax-button--text-neutral scax-button--sm" type="button">추가</button></div>
+          <div class="empty">하위 업무가 없습니다.</div>
+        </div>
+        <div class="cell">
+          <div class="cell__head"><h5>선행 업무</h5><span class="cell__n">1 · 미완 1</span></div>
+          <div class="scroll">
+            <ul class="material-list">
+            <li><button class="scax-button scax-button--inline" type="button">연동 규격 확인</button><span class="scax-badge scax-badge--neutral">진행중</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="cell">
+          <div class="cell__head"><h5>참고 업무</h5><span class="cell__n">0</span></div>
+          <div class="empty">연결된 참고 업무가 없습니다.</div>
+        </div>
+        <div class="cell">
+          <div class="cell__head"><h5>후행 업무</h5><span class="cell__n">0</span></div>
+          <div class="empty">이 업무를 기다리는 업무가 없습니다.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════ C ═══════════ -->
+<section class="stage">
+  <div class="stage__label">C · 「연결 편집」 — 상위·프로젝트는 고르기, 나머지는 해제·추가. 유효성은 서버가 판정한다</div>
+  <div class="drawer">
+    <div class="block isnew">
+      <div class="block__row">
+        <h3>연관 업무 편집</h3>
+        <button class="scax-button scax-button--text-neutral scax-button--sm" type="button">취소</button>
+        <button class="scax-button scax-button--sm" type="button">저장</button>
+      </div>
+      <div class="cols">
+
+        <div class="cell">
+          <div class="cell__head"><h5>상위 업무</h5></div>
+          <select class="rel__select">
+            <option>제품 사용성 조사 정리</option>
+            <option>하반기 제품 개편 준비</option>
+            <option>— 없음 —</option>
+          </select>
+        </div>
+        <div class="cell">
+          <div class="cell__head"><h5>프로젝트</h5></div>
+          <select class="rel__select">
+            <option>하반기 제품 개편</option>
+            <option>2026 인프라 정비</option>
+            <option>— 없음 —</option>
+          </select>
+        </div>
+
+        <div class="cell">
+          <div class="cell__head"><h5>하위 업무</h5><span class="cell__n">3</span></div>
+          <div class="scroll">
+            <ul class="material-list">
+              <li><span>규격 문서 수집</span><button class="scax-button scax-button--text-neutral scax-button--sm" type="button">해제</button></li>
+              <li><span>차이점 표 작성</span><button class="scax-button scax-button--text-neutral scax-button--sm" type="button">해제</button></li>
+              <li><span>샘플 응답 수집</span><button class="scax-button scax-button--text-neutral scax-button--sm" type="button">해제</button></li>
+            </ul>
+          </div>
+          <div class="rel__addrow"><span class="rel__addlabel">추가</span><select class="rel__select"><option>업무 고르기</option><option>개편 범위 확정</option><option>배포 체크리스트 보완</option></select></div>
+        </div>
+
+        <div class="cell">
+          <div class="cell__head"><h5>선행 업무</h5><span class="cell__n">2</span></div>
+          <div class="scroll">
+            <ul class="material-list">
+              <li><span>사용자 리서치 설문</span><button class="scax-button scax-button--text-neutral scax-button--sm" type="button">해제</button></li>
+              <li><span>경쟁 제품 비교</span><button class="scax-button scax-button--text-neutral scax-button--sm" type="button">해제</button></li>
+            </ul>
+          </div>
+          <div class="rel__addrow"><span class="rel__addlabel">추가</span><select class="rel__select"><option>업무 고르기</option><option>개편 범위 확정</option><option>사용성 조사 결과 보고</option></select></div>
+        </div>
+
+        <div class="cell">
+          <div class="cell__head"><h5>참고 업무</h5><span class="cell__n">1</span></div>
+          <div class="scroll">
+            <ul class="material-list">
+              <li><span>작년 연동 회고</span><button class="scax-button scax-button--text-neutral scax-button--sm" type="button">해제</button></li>
+            </ul>
+          </div>
+          <div class="rel__addrow"><span class="rel__addlabel">추가</span><select class="rel__select"><option>업무 고르기</option><option>다음 배포 안내 검토 요청</option><option>사용성 조사 결과 보고</option></select></div>
+        </div>
+
+        <div class="cell">
+          <div class="cell__head"><h5>후행 업무</h5><span class="cell__n">2</span></div>
+          <div class="scroll">
+            <ul class="material-list">
+              <li><span>연동 구현</span><button class="scax-button scax-button--text-neutral scax-button--sm" type="button">해제</button></li>
+              <li><span>연동 테스트 시나리오</span><button class="scax-button scax-button--text-neutral scax-button--sm" type="button">해제</button></li>
+            </ul>
+          </div>
+          <div class="private">🔒 비공개 1건은 여기서 해제할 수 없습니다.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+</body>
+</html>

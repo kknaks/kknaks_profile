@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin:0; padding:0; background:#fff; color:#000; font-family:"Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
+  a { color:#476CFF; text-decoration:none; }
+  a:hover { color:#3554CC; }
+  .sc::-webkit-scrollbar { width:8px; height:8px; }
+  .sc::-webkit-scrollbar-thumb { background:#E3E3E3; border-radius:8px; }
+  .sc::-webkit-scrollbar-track { background:transparent; }
+  textarea, input { font-family:inherit; }
+</style>
+</helmet>
+
+<div style="display:flex;flex-direction:column;height:100vh;min-height:760px;background:#fff;overflow:hidden">
+
+  <header style="display:flex;align-items:center;height:52px;flex:0 0 52px;border-bottom:1px solid #F3F3F3;padding:0 14px;gap:16px">
+    <div style="display:flex;align-items:center;gap:9px;flex:0 0 auto">
+      <div style="display:flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;background:#476CFF;color:#fff;font-size:14px;font-weight:600">M</div>
+      <div style="font-size:14px;font-weight:600;letter-spacing:-0.01em">mediness</div>
+    </div>
+    <nav style="display:flex;align-items:center;gap:2px;flex:1;min-width:0">
+      <a href="#" style="padding:6px 10px;border-radius:6px;font-size:13.5px;color:#6E6E6E" style-hover="background:#FBFBFB">AX</a>
+      <a href="#" style="padding:6px 10px;border-radius:6px;font-size:13.5px;font-weight:600;background:#F0F4FF;color:#476CFF">내 업무</a>
+      <a href="#" style="padding:6px 10px;border-radius:6px;font-size:13.5px;color:#6E6E6E" style-hover="background:#FBFBFB">제품 관리</a>
+      <a href="#" style="padding:6px 10px;border-radius:6px;font-size:13.5px;color:#6E6E6E" style-hover="background:#FBFBFB">문서 관리</a>
+      <a href="#" style="padding:6px 10px;border-radius:6px;font-size:13.5px;color:#6E6E6E" style-hover="background:#FBFBFB">회의 관리</a>
+      <a href="#" style="padding:6px 10px;border-radius:6px;font-size:13.5px;color:#6E6E6E" style-hover="background:#FBFBFB">조직 관리</a>
+      <a href="#" style="padding:6px 10px;border-radius:6px;font-size:13.5px;color:#6E6E6E" style-hover="background:#FBFBFB">관리자</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:6px;height:30px;flex:0 0 240px;padding:0 10px;border:1px solid #E3E3E3;border-radius:6px;background:#FBFBFB;color:#9F9F9F;font-size:12.5px">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+      <span style="flex:1">검색</span>
+      <span style="font-size:11px;color:#CFCFCF">⌘K</span>
+    </div>
+  </header>
+
+  <div style="display:flex;flex:1;min-height:0">
+
+    <aside style="display:flex;flex-direction:column;flex:0 0 224px;border-right:1px solid #F3F3F3;background:#fff">
+      <div class="sc" style="flex:1;min-height:0;overflow-y:auto;padding:14px 8px">
+        <div style="padding:6px 11px 6px;font-size:12px;font-weight:600;color:#000;letter-spacing:-0.01em">내 업무</div>
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <a href="#" style="display:flex;align-items:center;gap:10px;padding:8px 11px;border-radius:6px;color:#3E3E3E;font-size:13.5px" style-hover="background:#FBFBFB">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#9F9F9F" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"></path></svg>
+            <span style="flex:1">AX 채팅</span>
+          </a>
+          <a href="#" style="display:flex;align-items:center;gap:10px;padding:8px 11px;border-radius:6px;color:#3E3E3E;font-size:13.5px" style-hover="background:#FBFBFB">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#9F9F9F" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+            <span style="flex:1">인박스</span>
+            <span style="padding:1.5px 7px;border-radius:9999px;background:#FFEFEF;font-size:11px;color:#FF4E51">4</span>
+          </a>
+          <a href="#" style="display:flex;align-items:center;gap:10px;padding:8px 11px;border-radius:6px;background:#F0F4FF;color:#476CFF;font-size:13.5px;font-weight:600">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M8 9v7M13 9v4"></path></svg>
+            <span style="flex:1">태스크</span>
+          </a>
+          <a href="#" style="display:flex;align-items:center;gap:10px;padding:8px 11px;border-radius:6px;color:#3E3E3E;font-size:13.5px" style-hover="background:#FBFBFB">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#9F9F9F" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+            <span style="flex:1">워크플로우</span>
+          </a>
+        </div>
+        <div style="padding:18px 11px 6px;font-size:12px;font-weight:600;color:#000;letter-spacing:-0.01em">관리자</div>
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <a href="#" style="display:flex;align-items:center;gap:10px;padding:8px 11px;border-radius:6px;color:#3E3E3E;font-size:13.5px" style-hover="background:#FBFBFB">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#9F9F9F" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+            <span style="flex:1">인박스 (전체)</span>
+          </a>
+          <a href="#" style="display:flex;align-items:center;gap:10px;padding:8px 11px;border-radius:6px;color:#3E3E3E;font-size:13.5px" style-hover="background:#FBFBFB">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#9F9F9F" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M8 9v7M13 9v4"></path></svg>
+            <span style="flex:1">태스크 (전체)</span>
+          </a>
+        </div>
+      </div>
+      <div style="flex:0 0 auto;border-top:1px solid #F3F3F3;padding:10px 8px">
+        <a href="#" style="display:flex;align-items:center;gap:10px;padding:6px 8px;border-radius:6px" style-hover="background:#FBFBFB">
+          <div style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;flex:0 0 34px;border-radius:9999px;background:#F3F3F3;color:#3E3E3E;font-size:13px;font-weight:500">이</div>
+          <div style="min-width:0;flex:1;line-height:1.3">
+            <div style="font-size:13px;font-weight:500;color:#000">이건학</div>
+            <div style="font-size:11px;color:#9F9F9F;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">kknaks@medisolveai.com</div>
+          </div>
+        </a>
+      </div>
+    </aside>
+
+    <div style="display:flex;flex-direction:column;flex:1;min-width:0">
+
+      <div style="flex:0 0 auto;border-bottom:1px solid #F3F3F3;background:#fff">
+        <div style="padding:14px 40px 16px">
+          <a href="#" style="display:inline-flex;align-items:center;gap:7px;font-size:13px;color:#6E6E6E" style-hover="color:#476CFF">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>
+            태스크
+          </a>
+
+          <div style="display:flex;align-items:center;gap:8px;margin-top:14px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#476CFF">
+            <span style="display:block;height:2px;width:18px;border-radius:9999px;background:#476CFF"></span>
+            AX ASSISTANT · 태스크 상세
+          </div>
+
+          <div style="display:flex;align-items:flex-start;gap:20px;margin-top:12px">
+            <div style="min-width:0;flex:1">
+              <div style="display:flex;align-items:center;flex-wrap:wrap;gap:6px">
+                <span style="padding:3px 9px;border-radius:6px;background:#F3F3F3;font-size:11.5px;color:#6E6E6E">제품</span>
+                <span style="padding:3px 9px;border-radius:6px;background:#F0F4FF;font-size:11.5px;color:#476CFF">메디니스</span>
+                <span style="padding:3px 9px;border-radius:6px;background:#F3F3F3;font-size:11.5px;color:#6E6E6E">WBS</span>
+                <span style="width:1px;height:12px;background:#E3E3E3;margin:0 3px"></span>
+                <span style="{{ statusPill }}">
+                  <span style="{{ statusDot }}"></span>
+                  {{ statusLabel }}
+                </span>
+                <span style="{{ duePill }}">{{ dueLabel }}</span>
+              </div>
+              <h1 style="margin:10px 0 0;font-size:26px;font-weight:700;letter-spacing:-0.02em;line-height:1.3;color:#000;text-wrap:pretty">제품 개발 파이프라인 워크플로우</h1>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;flex:0 0 auto;padding-top:26px">
+              <sc-for list="{{ actions }}" as="a" hint-placeholder-count="2">
+                <button type="button" onClick="{{ a.click }}" style="{{ a.style }}">{{ a.label }}</button>
+              </sc-for>
+              <sc-if value="{{ isTerminal }}" hint-placeholder-val="{{ false }}">
+                <span style="font-size:12px;color:#9F9F9F">상태 변경 불가</span>
+              </sc-if>
+              <div style="position:relative">
+                <button type="button" onClick="{{ toggleMenu }}" style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid #E3E3E3;border-radius:6px;background:#fff;color:#9F9F9F;font-size:15px;cursor:pointer" style-hover="background:#FBFBFB;color:#3E3E3E">···</button>
+                <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+                  <div style="position:absolute;right:0;top:38px;z-index:30;display:flex;flex-direction:column;gap:1px;width:200px;padding:5px;border:1px solid #E3E3E3;border-radius:9px;background:#fff;box-shadow:0 8px 24px 0 rgb(0 0 0 / 0.10)">
+                    <sc-for list="{{ menuItems }}" as="mi" hint-placeholder-count="3">
+                      <button type="button" onClick="{{ mi.click }}" style="{{ mi.style }}" style-hover="background:#FBFBFB">{{ mi.label }}</button>
+                    </sc-for>
+                  </div>
+                </sc-if>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:center;flex-wrap:wrap;gap:0 18px;margin-top:14px;font-size:12.5px">
+            <div style="display:flex;align-items:center;gap:7px;padding:3px 0">
+              <span style="display:flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:9999px;background:#F0F4FF;color:#476CFF;font-size:10px;font-weight:600">이</span>
+              <span style="color:#000">이건학</span>
+              <span style="color:#CFCFCF">·</span>
+              <span style="color:#6E6E6E">백엔드</span>
+              <button type="button" style="{{ reassignStyle }}">재배정</button>
+            </div>
+            <span style="width:1px;height:12px;background:#F3F3F3"></span>
+            <div style="display:flex;align-items:center;gap:6px;padding:3px 0;color:#6E6E6E">
+              <span style="color:#9F9F9F">제품</span>
+              <span style="color:#000">메디니스 · v0.0.2</span>
+            </div>
+            <span style="width:1px;height:12px;background:#F3F3F3"></span>
+            <div style="display:flex;align-items:center;gap:6px;padding:3px 0;color:#6E6E6E">
+              <span style="color:#9F9F9F">기한</span>
+              <span style="color:#000">08. 28.</span>
+            </div>
+            <span style="width:1px;height:12px;background:#F3F3F3"></span>
+            <a href="#" style="display:inline-flex;align-items:center;gap:6px;padding:3px 0;font-size:12.5px">
+              <span style="display:block;width:6px;height:6px;border-radius:9999px;background:#476CFF"></span>
+              WBS 연결됨
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"></path><path d="M20 4 11 13"></path><path d="M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"></path></svg>
+            </a>
+          </div>
+
+          <sc-if value="{{ hasNote }}" hint-placeholder-val="{{ false }}">
+            <div style="{{ noteBox }}">
+              <span style="{{ noteLabelStyle }}">{{ noteLabel }}</span>
+              <span style="flex:1;min-width:0;font-size:12.5px;line-height:1.6;color:#3E3E3E;text-wrap:pretty">{{ note }}</span>
+            </div>
+          </sc-if>
+          <sc-if value="{{ isTerminal }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:10px;font-size:12px;color:#9F9F9F">{{ terminalNote }}</div>
+          </sc-if>
+        </div>
+      </div>
+
+      <div class="sc" style="flex:1;min-height:0;overflow-y:auto">
+        <div style="display:flex;gap:40px;padding:24px 40px 56px">
+
+          <main style="min-width:0;flex:1">
+
+            <div style="border:1px solid #E3E3E3;border-radius:12px;overflow:hidden">
+              <div style="display:flex;align-items:center;gap:10px;padding:9px 14px;background:#FBFBFB;border-bottom:1px solid #F3F3F3">
+                <div style="flex:1;min-width:0;font-size:12.5px;font-weight:600;color:#000">할일 목록</div>
+                <div style="width:72px;height:4px;border-radius:9999px;background:#E3E3E3;overflow:hidden">
+                  <div style="{{ barStyle }}"></div>
+                </div>
+                <div style="flex:0 0 auto;font-size:11.5px;color:#6E6E6E">{{ countLabel }}</div>
+              </div>
+
+              <div style="display:flex;flex-direction:column;padding:4px 6px 6px">
+                <sc-for list="{{ items }}" as="it" hint-placeholder-count="4">
+                  <div style="{{ it.rowStyle }}" style-hover="background:#FBFBFB">
+                    <span style="flex:0 0 auto;color:#E3E3E3;cursor:grab;line-height:1" style-hover="color:#9F9F9F">
+                      <svg width="12" height="16" viewBox="0 0 12 16" fill="currentColor"><circle cx="4" cy="4" r="1.3"></circle><circle cx="8" cy="4" r="1.3"></circle><circle cx="4" cy="8" r="1.3"></circle><circle cx="8" cy="8" r="1.3"></circle><circle cx="4" cy="12" r="1.3"></circle><circle cx="8" cy="12" r="1.3"></circle></svg>
+                    </span>
+                    <button type="button" onClick="{{ it.toggle }}" style="{{ it.boxStyle }}">
+                      <sc-if value="{{ it.done }}" hint-placeholder-val="{{ false }}">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                      </sc-if>
+                    </button>
+                    <div style="{{ it.titleStyle }}">{{ it.title }}</div>
+                    <sc-if value="{{ it.isNext }}" hint-placeholder-val="{{ false }}">
+                      <span style="flex:0 0 auto;padding:2px 7px;border-radius:9999px;background:#F0F4FF;font-size:10.5px;font-weight:600;color:#476CFF">진행 중</span>
+                    </sc-if>
+                    <button type="button" style="display:flex;align-items:center;justify-content:center;width:26px;height:26px;flex:0 0 auto;border:0;border-radius:5px;background:none;color:#CFCFCF;cursor:pointer" style-hover="background:#F3F3F3;color:#6E6E6E">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4l10-10-4-4L4 16v4Z"></path><path d="m14 6 4 4"></path></svg>
+                    </button>
+                    <button type="button" style="display:flex;align-items:center;justify-content:center;width:26px;height:26px;flex:0 0 auto;border:0;border-radius:5px;background:none;color:#CFCFCF;cursor:pointer" style-hover="background:#FFEFEF;color:#FF4E51">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+                    </button>
+                  </div>
+                </sc-for>
+                <div style="display:flex;align-items:center;gap:9px;padding:2px 8px 0">
+                  <span style="flex:0 0 auto;width:12px"></span>
+                  <span style="display:flex;align-items:center;justify-content:center;flex:0 0 auto;width:17px;height:17px;border-radius:4px;border:1px dashed #CFCFCF;color:#CFCFCF">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>
+                  </span>
+                  <input type="text" placeholder="항목을 입력하고 Enter" style="flex:1;min-width:0;height:28px;padding:0;border:0;background:none;font-size:13px;color:#000;outline:none" />
+                </div>
+              </div>
+            </div>
+
+            <section style="margin-top:30px">
+              <div style="display:flex;align-items:center;gap:10px">
+                <h2 style="margin:0;flex:1;font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#9F9F9F">배경</h2>
+                <button type="button" style="display:flex;align-items:center;justify-content:center;width:24px;height:24px;border:0;border-radius:5px;background:none;color:#CFCFCF;cursor:pointer" style-hover="background:#F3F3F3;color:#6E6E6E">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4l10-10-4-4L4 16v4Z"></path><path d="m14 6 4 4"></path></svg>
+                </button>
+              </div>
+              <p style="margin:10px 0 0;font-size:14px;line-height:1.75;color:#3E3E3E;text-wrap:pretty">제품 개발이 기획 → 개발 → 배포로 넘어가는 과정이 사람마다 다르게 흘러가서, 지금 어느 단계인지 물어보지 않으면 알 수 없습니다. 단계와 산출물을 고정된 워크플로우로 정의해 WBS와 연결해두려 합니다.</p>
+            </section>
+
+            <section style="margin-top:26px">
+              <div style="display:flex;align-items:center;gap:10px">
+                <h2 style="margin:0;flex:1;font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#9F9F9F">목표</h2>
+                <button type="button" style="display:flex;align-items:center;justify-content:center;width:24px;height:24px;border:0;border-radius:5px;background:none;color:#CFCFCF;cursor:pointer" style-hover="background:#F3F3F3;color:#6E6E6E">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4l10-10-4-4L4 16v4Z"></path><path d="m14 6 4 4"></path></svg>
+                </button>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px">
+                <div style="display:flex;gap:10px">
+                  <span style="flex:0 0 auto;margin-top:6px;width:5px;height:5px;border-radius:9999px;background:#476CFF"></span>
+                  <div style="flex:1;font-size:14px;line-height:1.7;color:#3E3E3E;text-wrap:pretty">제품 개발 단계(기획·설계·개발·검증·배포)를 워크플로우 템플릿으로 정의</div>
+                </div>
+                <div style="display:flex;gap:10px">
+                  <span style="flex:0 0 auto;margin-top:6px;width:5px;height:5px;border-radius:9999px;background:#476CFF"></span>
+                  <div style="flex:1;font-size:14px;line-height:1.7;color:#3E3E3E;text-wrap:pretty">각 단계 완료 조건과 산출물 문서를 1:1로 매핑</div>
+                </div>
+                <div style="display:flex;gap:10px">
+                  <span style="flex:0 0 auto;margin-top:6px;width:5px;height:5px;border-radius:9999px;background:#476CFF"></span>
+                  <div style="flex:1;font-size:14px;line-height:1.7;color:#3E3E3E;text-wrap:pretty">WBS 태스크가 자동 생성되어 진행률이 대시보드에 반영되도록 연결</div>
+                </div>
+              </div>
+            </section>
+
+            <section style="margin-top:34px;padding-top:24px;border-top:1px solid #F3F3F3">
+              <div style="display:flex;align-items:center;gap:4px">
+                <button type="button" onClick="{{ pickComments }}" style="{{ tabComments }}">댓글 <span style="{{ tabCountA }}">2</span></button>
+                <button type="button" onClick="{{ pickLog }}" style="{{ tabLog }}">진행 로그 <span style="{{ tabCountB }}">{{ logCount }}</span></button>
+              </div>
+
+              <sc-if value="{{ isComments }}" hint-placeholder-val="{{ true }}">
+                <div style="margin-top:18px">
+                  <div style="display:flex;flex-direction:column;gap:18px">
+                    <div style="display:flex;gap:11px">
+                      <div style="display:flex;align-items:center;justify-content:center;width:30px;height:30px;flex:0 0 30px;border-radius:9999px;background:#F3F3F3;color:#3E3E3E;font-size:12px;font-weight:600">낙</div>
+                      <div style="min-width:0;flex:1">
+                        <div style="display:flex;align-items:center;gap:8px">
+                          <span style="font-size:13.5px;font-weight:600;color:#000">김낙영</span>
+                          <span style="font-size:12px;color:#9F9F9F">08. 05. 오후 2:14</span>
+                        </div>
+                        <div style="margin-top:5px;font-size:14px;line-height:1.7;color:#3E3E3E;text-wrap:pretty">단계 정의는 기존 WBS phase랑 이름을 맞추는 게 좋을 것 같아요. 지금 phase가 백엔드/프론트로만 나뉘어 있어서 매핑이 애매합니다.</div>
+                      </div>
+                    </div>
+                    <div style="display:flex;gap:11px">
+                      <div style="display:flex;align-items:center;justify-content:center;width:30px;height:30px;flex:0 0 30px;border-radius:9999px;background:#F0F4FF;color:#476CFF;font-size:12px;font-weight:600">이</div>
+                      <div style="min-width:0;flex:1">
+                        <div style="display:flex;align-items:center;gap:8px">
+                          <span style="font-size:13.5px;font-weight:600;color:#000">이건학</span>
+                          <span style="font-size:12px;color:#9F9F9F">08. 05. 오후 3:02</span>
+                        </div>
+                        <div style="margin-top:5px;font-size:14px;line-height:1.7;color:#3E3E3E;text-wrap:pretty">phase 재정의는 별도 태스크로 빼고, 이번엔 워크플로우 단계만 먼저 확정하겠습니다.</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style="display:flex;gap:11px;margin-top:20px">
+                    <div style="display:flex;align-items:center;justify-content:center;width:30px;height:30px;flex:0 0 30px;border-radius:9999px;background:#F0F4FF;color:#476CFF;font-size:12px;font-weight:600">이</div>
+                    <div style="min-width:0;flex:1">
+                      <textarea rows="3" placeholder="댓글을 남겨주세요 (⌘↵ 등록)" style="display:block;width:100%;padding:11px 12px;border:1px solid #E3E3E3;border-radius:8px;background:#fff;font-size:13.5px;line-height:1.6;color:#000;outline:none;resize:vertical" style-focus="border-color:#476CFF"></textarea>
+                      <div style="display:flex;align-items:center;justify-content:flex-end;gap:10px;margin-top:10px">
+                        <span style="flex:1;font-size:11.5px;color:#CFCFCF">@로 멘션할 수 있습니다</span>
+                        <button type="button" style="display:flex;align-items:center;gap:6px;height:34px;padding:0 15px;border:0;border-radius:6px;background:#476CFF;color:#fff;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer" style-hover="background:#3554CC">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3 3 10.5l7 3 3 7L21 3Z"></path></svg>
+                          등록
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ isLog }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;flex-direction:column;gap:0;margin-top:18px">
+                  <sc-for list="{{ logs }}" as="l" hint-placeholder-count="3">
+                    <div style="display:flex;gap:12px">
+                      <div style="display:flex;flex-direction:column;align-items:center;flex:0 0 auto;width:8px">
+                        <span style="{{ l.dot }}"></span>
+                        <span style="{{ l.line }}"></span>
+                      </div>
+                      <div style="min-width:0;flex:1;padding-bottom:16px">
+                        <div style="font-size:13.5px;color:#000">{{ l.text }}</div>
+                        <div style="margin-top:3px;font-size:12px;color:#9F9F9F">{{ l.at }} · {{ l.who }}</div>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </section>
+          </main>
+
+          <aside style="display:flex;flex-direction:column;gap:14px;flex:0 0 320px">
+
+            <div style="border:1px solid #F3F3F3;border-radius:10px;padding:15px 16px">
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="flex:1;font-size:12.5px;font-weight:600;color:#000">일정</div>
+                <button type="button" style="display:flex;align-items:center;justify-content:center;width:24px;height:24px;border:0;border-radius:5px;background:none;color:#CFCFCF;cursor:pointer" style-hover="background:#F3F3F3;color:#6E6E6E">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4l10-10-4-4L4 16v4Z"></path><path d="m14 6 4 4"></path></svg>
+                </button>
+              </div>
+              <div style="display:flex;flex-direction:column;margin-top:10px">
+                <sc-for list="{{ schedule }}" as="row" hint-placeholder-count="6">
+                  <div style="display:flex;align-items:flex-start;gap:10px">
+                    <div style="display:flex;flex-direction:column;align-items:center;flex:0 0 auto;width:8px;padding-top:5px">
+                      <span style="{{ row.dot }}"></span>
+                      <span style="{{ row.line }}"></span>
+                    </div>
+                    <div style="display:flex;align-items:baseline;gap:10px;min-width:0;flex:1;padding-bottom:9px">
+                      <span style="{{ row.kStyle }}">{{ row.k }}</span>
+                      <span style="{{ row.vStyle }}">{{ row.v }}</span>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+
+            <div style="border:1px solid #F3F3F3;border-radius:10px;padding:15px 16px">
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="flex:1;font-size:12.5px;font-weight:600;color:#000">참고자료</div>
+                <span style="font-size:11.5px;color:#9F9F9F">4</span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:1px;margin-top:8px">
+                <sc-for list="{{ refs }}" as="r" hint-placeholder-count="4">
+                  <div style="display:flex;align-items:center;gap:9px;padding:7px 6px;margin:0 -6px;border-radius:6px;cursor:pointer" style-hover="background:#FBFBFB">
+                    <span style="{{ r.iconStyle }}">
+                      <sc-if value="{{ r.isLink }}" hint-placeholder-val="{{ true }}">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l2-2a5 5 0 0 0-7-7l-1 1"></path><path d="M14 11a5 5 0 0 0-7 0l-2 2a5 5 0 0 0 7 7l1-1"></path></svg>
+                      </sc-if>
+                      <sc-if value="{{ r.isFile }}" hint-placeholder-val="{{ false }}">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v5h5"></path><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"></path></svg>
+                      </sc-if>
+                    </span>
+                    <div style="min-width:0;flex:1">
+                      <div style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12.5px;color:#000">{{ r.title }}</div>
+                      <div style="margin-top:2px;font-size:11px;color:#9F9F9F;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ r.sub }}</div>
+                    </div>
+                    <button type="button" style="display:flex;align-items:center;justify-content:center;width:22px;height:22px;flex:0 0 auto;border:0;border-radius:5px;background:none;color:#E3E3E3;cursor:pointer" style-hover="background:#FFEFEF;color:#FF4E51">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+                    </button>
+                  </div>
+                </sc-for>
+              </div>
+              <button type="button" style="display:flex;align-items:center;gap:6px;margin-top:10px;border:0;background:none;padding:0;color:#9F9F9F;font-family:inherit;font-size:12px;cursor:pointer" style-hover="color:#476CFF">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>
+                링크 · 파일 추가
+              </button>
+            </div>
+
+            <div style="{{ deliverPanel }}">
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="flex:1;font-size:12.5px;font-weight:600;color:#000">제출자료</div>
+                <span style="{{ deliverBadge }}">{{ deliverBadgeLabel }}</span>
+              </div>
+              <div style="margin-top:5px;font-size:11.5px;line-height:1.5;color:#9F9F9F">{{ deliverHint }}</div>
+              <div style="display:flex;flex-direction:column;gap:1px;margin-top:8px">
+                <sc-for list="{{ deliverables }}" as="r" hint-placeholder-count="3">
+                  <div style="display:flex;align-items:center;gap:9px;padding:7px 6px;margin:0 -6px;border-radius:6px;cursor:pointer" style-hover="background:#FBFBFB">
+                    <span style="{{ r.iconStyle }}">
+                      <sc-if value="{{ r.isLink }}" hint-placeholder-val="{{ true }}">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l2-2a5 5 0 0 0-7-7l-1 1"></path><path d="M14 11a5 5 0 0 0-7 0l-2 2a5 5 0 0 0 7 7l1-1"></path></svg>
+                      </sc-if>
+                      <sc-if value="{{ r.isFile }}" hint-placeholder-val="{{ false }}">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v5h5"></path><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"></path></svg>
+                      </sc-if>
+                    </span>
+                    <div style="min-width:0;flex:1">
+                      <div style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12.5px;color:#000">{{ r.title }}</div>
+                      <div style="margin-top:2px;font-size:11px;color:#9F9F9F;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ r.sub }}</div>
+                    </div>
+                    <button type="button" style="display:flex;align-items:center;justify-content:center;width:22px;height:22px;flex:0 0 auto;border:0;border-radius:5px;background:none;color:#E3E3E3;cursor:pointer" style-hover="background:#FFEFEF;color:#FF4E51">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+                    </button>
+                  </div>
+                </sc-for>
+              </div>
+              <button type="button" style="display:flex;align-items:center;gap:6px;margin-top:10px;border:0;background:none;padding:0;color:#9F9F9F;font-family:inherit;font-size:12px;cursor:pointer" style-hover="color:#476CFF">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>
+                링크 · 파일 추가
+              </button>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <sc-if value="{{ isDoneModal }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;background:rgb(0 0 0 / 0.28);padding:24px">
+      <div style="display:flex;flex-direction:column;width:620px;max-width:100%;max-height:100%;border-radius:14px;background:#fff;box-shadow:0 20px 60px 0 rgb(0 0 0 / 0.22)">
+
+        <div style="display:flex;align-items:flex-start;gap:12px;flex:0 0 auto;padding:22px 24px 16px;border-bottom:1px solid #F3F3F3">
+          <div style="min-width:0;flex:1">
+            <div style="font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#476CFF">완료 처리</div>
+            <div style="margin-top:7px;font-size:19px;font-weight:700;letter-spacing:-0.01em;color:#000">이렇게 마무리하는 걸로 기록됩니다</div>
+            <div style="margin-top:6px;font-size:13px;line-height:1.6;color:#6E6E6E;text-wrap:pretty">아래 요약이 진행 로그와 인박스 알림에 그대로 남습니다. 빠진 게 있으면 지금 고쳐주세요.</div>
+          </div>
+          <button type="button" onClick="{{ closeModal }}" style="display:flex;align-items:center;justify-content:center;width:28px;height:28px;flex:0 0 auto;border:0;border-radius:6px;background:none;color:#9F9F9F;cursor:pointer" style-hover="background:#F3F3F3;color:#3E3E3E">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+          </button>
+        </div>
+
+        <div class="sc" style="flex:1;min-height:0;overflow-y:auto;padding:18px 24px 20px">
+
+          <div style="display:flex;align-items:center;gap:8px">
+            <div style="flex:1;font-size:12px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;color:#9F9F9F">한 일</div>
+            <span style="font-size:12px;color:#6E6E6E">{{ summaryCount }}</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:7px;margin-top:10px">
+            <sc-for list="{{ summaryItems }}" as="s" hint-placeholder-count="4">
+              <div style="display:flex;align-items:center;gap:9px">
+                <span style="{{ s.markStyle }}">
+                  <sc-if value="{{ s.done }}" hint-placeholder-val="{{ true }}">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                  </sc-if>
+                </span>
+                <span style="{{ s.titleStyle }}">{{ s.title }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <sc-if value="{{ hasOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:11px;padding:9px 11px;border:1px solid #FFE6B8;border-radius:7px;background:#FFF9EC;font-size:12px;line-height:1.55;color:#B45309;text-wrap:pretty">{{ openWarn }}</div>
+          </sc-if>
+
+          <div style="display:flex;align-items:center;gap:8px;margin-top:22px">
+            <div style="flex:1;font-size:12px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;color:#9F9F9F">참고한 자료</div>
+            <span style="font-size:12px;color:#6E6E6E">{{ refCount }}</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:1px;margin-top:8px">
+            <sc-for list="{{ refs }}" as="r" hint-placeholder-count="4">
+              <div style="display:flex;align-items:center;gap:9px;padding:6px 0">
+                <span style="{{ r.iconStyle }}">
+                  <sc-if value="{{ r.isLink }}" hint-placeholder-val="{{ true }}">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l2-2a5 5 0 0 0-7-7l-1 1"></path><path d="M14 11a5 5 0 0 0-7 0l-2 2a5 5 0 0 0 7 7l1-1"></path></svg>
+                  </sc-if>
+                  <sc-if value="{{ r.isFile }}" hint-placeholder-val="{{ false }}">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v5h5"></path><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"></path></svg>
+                  </sc-if>
+                </span>
+                <div style="min-width:0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12.5px;color:#3E3E3E">{{ r.title }}</div>
+                <div style="flex:0 0 auto;font-size:11px;color:#9F9F9F">{{ r.sub }}</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:8px;margin-top:22px">
+            <div style="flex:1;font-size:12px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;color:#9F9F9F">제출자료</div>
+            <span style="font-size:12px;color:#6E6E6E">{{ deliverCount }}</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:1px;margin-top:8px">
+            <sc-for list="{{ deliverables }}" as="r" hint-placeholder-count="3">
+              <div style="display:flex;align-items:center;gap:9px;padding:6px 0">
+                <span style="{{ r.iconStyle }}">
+                  <sc-if value="{{ r.isLink }}" hint-placeholder-val="{{ true }}">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l2-2a5 5 0 0 0-7-7l-1 1"></path><path d="M14 11a5 5 0 0 0-7 0l-2 2a5 5 0 0 0 7 7l1-1"></path></svg>
+                  </sc-if>
+                  <sc-if value="{{ r.isFile }}" hint-placeholder-val="{{ false }}">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v5h5"></path><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"></path></svg>
+                  </sc-if>
+                </span>
+                <div style="min-width:0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12.5px;color:#3E3E3E">{{ r.title }}</div>
+                <div style="flex:0 0 auto;font-size:11px;color:#9F9F9F">{{ r.sub }}</div>
+              </div>
+            </sc-for>
+            <button type="button" style="display:flex;align-items:center;gap:6px;margin-top:8px;border:0;background:none;padding:0;color:#9F9F9F;font-family:inherit;font-size:12px;cursor:pointer" style-hover="color:#476CFF">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>
+              제출자료 추가
+            </button>
+          </div>
+
+          <div style="margin-top:24px">
+            <div style="display:flex;align-items:center;gap:5px;font-size:12.5px;font-weight:600;color:#3E3E3E">
+              한 줄 요약
+              <span style="color:#FF4E51">*</span>
+            </div>
+            <textarea rows="3" value="{{ reason }}" onChange="{{ setReason }}" placeholder="예) 5단계 워크플로우 템플릿 확정, 단계별 산출물 매핑 후 WBS 자동 생성까지 연결 완료" style="display:block;width:100%;margin-top:8px;padding:11px 12px;border:1px solid #E3E3E3;border-radius:8px;background:#fff;font-size:13.5px;line-height:1.6;color:#000;outline:none;resize:vertical" style-focus="border-color:#476CFF"></textarea>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:9px;flex:0 0 auto;padding:14px 24px;border-top:1px solid #F3F3F3">
+          <span style="flex:1"></span>
+          <button type="button" onClick="{{ closeModal }}" style="height:36px;padding:0 14px;border:1px solid #E3E3E3;border-radius:6px;background:#fff;color:#3E3E3E;font-family:inherit;font-size:13px;cursor:pointer" style-hover="background:#FBFBFB">취소</button>
+          <button type="button" onClick="{{ confirmModal }}" style="{{ confirmStyle }}">완료로 전환</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isReasonModal }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;background:rgb(0 0 0 / 0.28);padding:24px">
+      <div style="width:480px;max-width:100%;border-radius:14px;background:#fff;box-shadow:0 20px 60px 0 rgb(0 0 0 / 0.22);padding:22px 24px 20px">
+        <div style="display:flex;align-items:flex-start;gap:12px">
+          <div style="min-width:0;flex:1">
+            <div style="font-size:17px;font-weight:700;letter-spacing:-0.01em;color:#000">{{ modalTitle }}</div>
+            <div style="margin-top:6px;font-size:13px;line-height:1.6;color:#6E6E6E;text-wrap:pretty">{{ modalDesc }}</div>
+          </div>
+          <button type="button" onClick="{{ closeModal }}" style="display:flex;align-items:center;justify-content:center;width:28px;height:28px;flex:0 0 auto;border:0;border-radius:6px;background:none;color:#9F9F9F;cursor:pointer" style-hover="background:#F3F3F3;color:#3E3E3E">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+          </button>
+        </div>
+
+        <div style="margin-top:18px">
+          <div style="display:flex;align-items:center;gap:5px;font-size:12.5px;font-weight:600;color:#3E3E3E">
+            {{ modalLabel }}
+            <span style="color:#FF4E51">*</span>
+          </div>
+          <textarea rows="4" value="{{ reason }}" onChange="{{ setReason }}" placeholder="{{ modalPh }}" style="display:block;width:100%;margin-top:8px;padding:11px 12px;border:1px solid #E3E3E3;border-radius:8px;background:#fff;font-size:13.5px;line-height:1.6;color:#000;outline:none;resize:vertical" style-focus="border-color:#476CFF"></textarea>
+        </div>
+
+        <div style="display:flex;align-items:center;justify-content:flex-end;gap:9px;margin-top:18px">
+          <button type="button" onClick="{{ closeModal }}" style="height:36px;padding:0 14px;border:1px solid #E3E3E3;border-radius:6px;background:#fff;color:#3E3E3E;font-family:inherit;font-size:13px;cursor:pointer" style-hover="background:#FBFBFB">취소</button>
+          <button type="button" onClick="{{ confirmModal }}" style="{{ confirmStyle }}">{{ modalCta }}</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
+const ITEMS = ['워크 플로우 설계', '워크 플로우 구현', '워크플로우 검증', '워크 플로우 배포'];
+const REFS = [
+  { kind: 'link', title: '제품 개발 파이프라인 정의 (Notion)', sub: 'notion.so · 08. 04.' },
+  { kind: 'link', title: 'n8n 워크플로우 초안', sub: 'n8n.medisolveai.com · 08. 05.' },
+  { kind: 'file', title: '파이프라인_단계정의_v2.xlsx', sub: 'XLSX · 84KB · 이건학' },
+  { kind: 'file', title: '단계별_산출물_체크리스트.pdf', sub: 'PDF · 1.2MB · 김낙영' },
+];
+const DELIVERABLES = [
+  { kind: 'link', title: '워크플로우 최종 정의 문서', sub: 'docs.medisolveai.com · 08. 27.' },
+  { kind: 'file', title: '파이프라인_워크플로우_최종.pdf', sub: 'PDF · 2.4MB · 이건학' },
+  { kind: 'file', title: '배포_검증_리포트.xlsx', sub: 'XLSX · 132KB · 이건학' },
+];
+const SCHEDULE = [
+  { k: '생성', v: '08. 04.', on: true },
+  { k: '시작 예정', v: '08. 24.', on: true },
+  { k: '시작', key: 'startedAt' },
+  { k: '완료 예정', v: '08. 28.', on: true },
+  { k: '완료', key: 'doneAt' },
+  { k: '마감기한', v: '08. 28.', accent: true },
+];
+const TODAY = '08. 28.';
+const STATUS = {
+  todo: { label: '대기', color: '#6E6E6E', bg: '#F3F3F3' },
+  in_progress: { label: '진행 중', color: '#476CFF', bg: '#F0F4FF' },
+  blocked: { label: '중단', color: '#FF4E51', bg: '#FFEFEF' },
+  done: { label: '완료', color: '#15803D', bg: '#E7F8EE', terminal: true },
+  canceled: { label: '취소', color: '#9F9F9F', bg: '#F3F3F3', terminal: true },
+};
+const TRANSITIONS = {
+  todo: [
+    { to: 'in_progress', label: '시작', kind: 'primary' },
+    { to: 'blocked', label: '중단', kind: 'danger' },
+  ],
+  in_progress: [
+    { to: 'done', label: '완료', kind: 'primary' },
+    { to: 'blocked', label: '중단', kind: 'danger' },
+  ],
+  blocked: [
+    { to: 'todo', label: '재개', kind: 'primary' },
+    { to: 'in_progress', label: '시작', kind: 'secondary' },
+  ],
+  done: [],
+  canceled: [],
+};
+const MODAL = {
+  done: { title: '완료 처리', desc: '무엇을 어떻게 끝냈는지 남겨주세요. 제출자료와 함께 기록됩니다.', label: '완료 근거', ph: '예) 5단계 워크플로우 템플릿 확정, WBS 자동 생성까지 연결 완료', cta: '완료로 전환', required: true },
+  blocked: { title: '중단', desc: '왜 멈췄는지 남기면 재개할 사람이 덜 묻습니다.', label: '중단 사유', ph: '예) phase 재정의 결론 대기 중', cta: '중단으로 전환', required: true },
+  canceled: { title: '취소', desc: '하기로 했다가 안 하기로 한 경우입니다. 기록에는 남고 칸반에서는 빠집니다.', label: '취소 사유', ph: '예) 상위 파이프라인 개편으로 불필요해짐', cta: '취소로 전환', required: true },
+};
+
+class Component extends DCLogic {
+  state = {
+    done: [],
+    status: 'todo',
+    tab: 'comments',
+    modal: null,
+    reason: '',
+    menuOpen: false,
+    note: '',
+    startedAt: '',
+    doneAt: '',
+    logs: [
+      { at: '08. 04. 오전 11:20', who: '이건학', text: '담당자 배정 · 이건학 · ax' },
+      { at: '08. 04. 오전 10:49', who: '시스템', text: '발행됨 · wbs_backfill' },
+    ],
+  };
+
+  log(text) {
+    const now = '08. 28. 오후 4:12';
+    this.setState((s) => ({ logs: [{ at: now, who: '이건학', text }, ...s.logs] }));
+  }
+  go(to, reason) {
+    const from = STATUS[this.state.status].label;
+    const stamp = { status: to, modal: null, reason: '', note: reason ?? '' };
+    if (to === 'in_progress' && !this.state.startedAt) stamp.startedAt = TODAY;
+    if (to === 'done') stamp.doneAt = TODAY;
+    this.setState(stamp);
+    this.log(`상태 변경 · ${from} → ${STATUS[to].label}${reason ? ' · ' + reason : ''}`);
+  }
+  actionStyle(kind) {
+    const base = {
+      display: 'flex', alignItems: 'center', gap: '6px', height: '34px', padding: '0 14px',
+      borderRadius: '6px', fontFamily: 'inherit', fontSize: '13px', cursor: 'pointer',
+    };
+    if (kind === 'primary') return { ...base, border: 0, background: '#476CFF', color: '#fff', fontWeight: 600 };
+    if (kind === 'danger') return { ...base, border: '1px solid #E3E3E3', background: '#fff', color: '#6E6E6E' };
+    return { ...base, border: '1px solid #E3E3E3', background: '#fff', color: '#3E3E3E' };
+  }
+
+  fileRow(r) {
+    return {
+      title: r.title,
+      sub: r.sub,
+      isLink: r.kind === 'link',
+      isFile: r.kind === 'file',
+      iconStyle: {
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        flex: '0 0 auto', width: '26px', height: '26px', borderRadius: '6px',
+        background: r.kind === 'link' ? '#F0F4FF' : '#F3F3F3',
+        color: r.kind === 'link' ? '#476CFF' : '#6E6E6E',
+      },
+    };
+  }
+  tabStyle(on) {
+    return {
+      display: 'inline-flex', alignItems: 'center', gap: '6px',
+      height: '32px', padding: '0 12px', border: 0, borderRadius: '7px',
+      background: on ? '#F3F3F3' : 'transparent',
+      color: on ? '#000' : '#9F9F9F',
+      fontFamily: 'inherit', fontSize: '13px', fontWeight: on ? 600 : 500, cursor: 'pointer',
+    };
+  }
+  tabCount(on) {
+    return { fontSize: '11.5px', fontWeight: 500, color: on ? '#6E6E6E' : '#CFCFCF' };
+  }
+
+  renderVals() {
+    const done = this.state.done;
+    const st = STATUS[this.state.status];
+    const isDone = this.state.status === 'done';
+    const m = MODAL[this.state.modal];
+    const nextIdx = ITEMS.findIndex((_, i) => !done.includes(i));
+
+    const items = ITEMS.map((title, i) => {
+      const on = done.includes(i);
+      return {
+        title,
+        done: on,
+        isNext: i === nextIdx && !isDone,
+        toggle: () => this.setState((s) => ({
+          done: s.done.includes(i) ? s.done.filter((x) => x !== i) : [...s.done, i],
+        })),
+        rowStyle: {
+          display: 'flex', alignItems: 'center', gap: '9px',
+          padding: '5px 8px', borderRadius: '6px',
+        },
+        boxStyle: {
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          flex: '0 0 auto', width: '17px', height: '17px', borderRadius: '4px', padding: 0,
+          border: on ? '1px solid #476CFF' : '1px solid #CFCFCF',
+          background: on ? '#476CFF' : '#fff', cursor: 'pointer',
+        },
+        titleStyle: {
+          flex: 1, minWidth: 0, fontSize: '13px',
+          color: on ? '#9F9F9F' : '#000',
+          fontWeight: i === nextIdx && !isDone ? 600 : 400,
+          textDecoration: on ? 'line-through' : 'none',
+        },
+      };
+    });
+
+    const n = done.length;
+    const pct = Math.round((n / ITEMS.length) * 100);
+    const isComments = this.state.tab === 'comments';
+
+    return {
+      items,
+      pctLabel: `${pct}%`,
+      countLabel: `${n} / ${ITEMS.length} 완료`,
+      nextLabel: nextIdx === -1 ? '체크리스트 전부 완료 — 제출자료를 확인하세요' : ITEMS[nextIdx],
+      barStyle: { width: `${pct}%`, height: '100%', borderRadius: '9999px', background: '#476CFF', transition: 'width .25s ease' },
+
+      statusLabel: st.label,
+      statusPill: {
+        display: 'inline-flex', alignItems: 'center', gap: '6px',
+        padding: '3px 10px 3px 8px', borderRadius: '9999px',
+        background: st.bg, color: st.color, fontSize: '12px', fontWeight: 600,
+      },
+      statusDot: { display: 'block', width: '6px', height: '6px', borderRadius: '9999px', background: st.color },
+      dueLabel: st.terminal ? '08. 28.' : 'D-4 · 08. 28. 마감',
+      duePill: { fontSize: '12px', color: st.terminal ? '#9F9F9F' : '#6E6E6E' },
+
+      actions: TRANSITIONS[this.state.status].map((a) => ({
+        label: a.label,
+        style: this.actionStyle(a.kind),
+        click: () => (MODAL[a.to] ? this.setState({ modal: a.to, reason: '' }) : this.go(a.to)),
+      })),
+      isTerminal: !!st.terminal,
+      terminalNote: this.state.status === 'done' ? '완료된 태스크입니다. 상태 변경과 재배정이 불가합니다.' : '취소된 태스크입니다. 기록에만 남고 칸반에는 표시되지 않습니다.',
+      hasNote: !!this.state.note && (this.state.status === 'blocked' || st.terminal),
+      noteLabel: this.state.status === 'blocked' ? '중단 사유' : this.state.status === 'canceled' ? '취소 사유' : '완료 근거',
+      note: this.state.note,
+      noteBox: {
+        display: 'flex', gap: '10px', marginTop: '14px', padding: '11px 13px', borderRadius: '8px',
+        background: this.state.status === 'blocked' ? '#FFF6F6' : '#FBFBFB',
+        border: this.state.status === 'blocked' ? '1px solid #FFD7D7' : '1px solid #F3F3F3',
+      },
+      noteLabelStyle: {
+        flex: '0 0 auto', fontSize: '12px', fontWeight: 600,
+        color: this.state.status === 'blocked' ? '#FF4E51' : '#6E6E6E',
+      },
+
+      menuOpen: this.state.menuOpen,
+      toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      menuItems: [
+        { label: '재배정 (대기로 리셋)', dis: !!st.terminal, click: () => { this.setState({ menuOpen: false }); if (!st.terminal) { this.setState({ status: 'todo' }); this.log('재배정 · 상태 대기로 리셋, 시작 시각 클리어'); } } },
+        { label: '취소', dis: !!st.terminal, click: () => this.setState({ menuOpen: false, modal: st.terminal ? null : 'canceled', reason: '' }) },
+        { label: '삭제', dis: false, danger: true, click: () => this.setState({ menuOpen: false }) },
+      ].map((m) => ({
+        label: m.label,
+        click: m.click,
+        style: {
+          display: 'flex', alignItems: 'center', width: '100%', border: 0, borderRadius: '6px',
+          padding: '7px 9px', background: 'transparent', textAlign: 'left',
+          fontFamily: 'inherit', fontSize: '12.5px',
+          color: m.dis ? '#CFCFCF' : m.danger ? '#FF4E51' : '#3E3E3E',
+          cursor: m.dis ? 'not-allowed' : 'pointer',
+        },
+      })),
+
+      isDoneModal: this.state.modal === 'done',
+      isReasonModal: !!this.state.modal && this.state.modal !== 'done',
+      summaryItems: ITEMS.map((title, i) => {
+        const on = done.includes(i);
+        return {
+          title,
+          done: on,
+          markStyle: {
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            flex: '0 0 auto', width: '16px', height: '16px', borderRadius: '4px',
+            background: on ? '#476CFF' : '#fff',
+            border: on ? 'none' : '1px solid #E3E3E3',
+            color: '#CFCFCF', fontSize: '10px',
+          },
+          titleStyle: { flex: 1, minWidth: 0, fontSize: '13px', color: on ? '#3E3E3E' : '#CFCFCF' },
+        };
+      }),
+      openCount: ITEMS.length - n,
+      hasOpen: n < ITEMS.length,
+      openWarn: `체크되지 않은 항목이 ${ITEMS.length - n}개 있습니다. 그대로 완료하면 미완 항목으로 기록됩니다.`,
+      summaryCount: `${n} / ${ITEMS.length}`,
+      refCount: REFS.length,
+      deliverCount: DELIVERABLES.length,
+
+      modalOpen: !!this.state.modal,
+      modalTitle: m ? m.title : '',
+      modalDesc: m ? m.desc : '',
+      modalLabel: m ? m.label : '',
+      modalPh: m ? m.ph : '',
+      modalCta: m ? m.cta : '',
+      reason: this.state.reason,
+      setReason: (e) => this.setState({ reason: e.target.value }),
+      closeModal: () => this.setState({ modal: null, reason: '' }),
+      confirmModal: () => {
+        if (!this.state.reason.trim()) return;
+        this.go(this.state.modal, this.state.reason.trim());
+      },
+      confirmStyle: {
+        display: 'flex', alignItems: 'center', gap: '6px', height: '36px', padding: '0 16px',
+        border: 0, borderRadius: '6px', fontFamily: 'inherit', fontSize: '13px', fontWeight: 600,
+        background: this.state.reason.trim() ? '#476CFF' : '#DDE6FF', color: '#fff',
+        cursor: this.state.reason.trim() ? 'pointer' : 'not-allowed',
+      },
+      reassignStyle: {
+        marginLeft: '2px', border: 0, background: 'none', padding: 0,
+        fontFamily: 'inherit', fontSize: '12px',
+        color: st.terminal ? '#CFCFCF' : '#476CFF',
+        cursor: st.terminal ? 'not-allowed' : 'pointer',
+      },
+
+      isComments,
+      isLog: !isComments,
+      tabComments: this.tabStyle(isComments),
+      tabLog: this.tabStyle(!isComments),
+      tabCountA: this.tabCount(isComments),
+      tabCountB: this.tabCount(!isComments),
+      pickComments: () => this.setState({ tab: 'comments' }),
+      pickLog: () => this.setState({ tab: 'log' }),
+
+      logCount: this.state.logs.length,
+      logs: this.state.logs.map((l, i, arr) => ({
+        ...l,
+        dot: {
+          display: 'block', flex: '0 0 auto', marginTop: '5px', width: '7px', height: '7px',
+          borderRadius: '9999px',
+          background: i === 0 ? '#476CFF' : '#fff',
+          border: i === 0 ? 'none' : '1.5px solid #E3E3E3',
+        },
+        line: { display: 'block', flex: 1, width: '1px', background: i === arr.length - 1 ? 'transparent' : '#F3F3F3', marginTop: '3px' },
+      })),
+
+      schedule: SCHEDULE.map((r, i, arr) => ({
+        k: r.k,
+        v: r.key ? (this.state[r.key] || '—') : r.v,
+        kStyle: { flex: 1, fontSize: '12px', color: '#9F9F9F' },
+        vStyle: {
+          fontSize: '12px', textAlign: 'right',
+          color: (r.key ? !this.state[r.key] : r.v === '—') ? '#CFCFCF' : r.accent ? '#476CFF' : '#000',
+          fontWeight: r.accent ? 600 : 400,
+        },
+        dot: {
+          display: 'block', flex: '0 0 auto', width: '7px', height: '7px', borderRadius: '9999px',
+          background: r.accent ? '#476CFF' : r.on ? '#CFCFCF' : '#fff',
+          border: r.accent || r.on ? 'none' : '1.5px solid #E3E3E3',
+        },
+        line: { display: 'block', flex: 1, width: '1px', background: i === arr.length - 1 ? 'transparent' : '#F3F3F3', marginTop: '3px' },
+      })),
+
+      refs: REFS.map((r) => this.fileRow(r)),
+      deliverables: DELIVERABLES.map((r) => this.fileRow(r)),
+      deliverPanel: {
+        border: isDone ? '1px solid #C7EBD6' : '1px solid #F3F3F3',
+        borderRadius: '10px', padding: '15px 16px',
+        background: isDone ? '#F9FDFB' : '#fff',
+      },
+      deliverBadgeLabel: isDone ? '제출 완료' : '3',
+      deliverBadge: isDone
+        ? { padding: '2px 8px', borderRadius: '9999px', background: '#E7F8EE', fontSize: '11px', fontWeight: 600, color: '#15803D' }
+        : { fontSize: '11.5px', color: '#9F9F9F' },
+      deliverHint: isDone ? '완료 시점에 제출된 결과물입니다.' : '완료 처리 시 이 자료가 결과물로 첨부됩니다.',
+    };
+  }
+}
+
+</script>
+</body>
+</html>

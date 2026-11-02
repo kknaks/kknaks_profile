@@ -111,7 +111,7 @@ done <<< "$PLAN"
 # 스크립트는 사실값(기간·커밋)만 채우고 멈춘다. §2 「적용한 기술·개념」은 판단이라
 # 기계가 못 쓴다. 코디네이터가 채우기 전에는 아카이브로 넘어가지 않는다(아래 게이트).
 SUMMARY="$WORK_DIR/SUMMARY.md"
-SUMMARY_TEMPLATE="$HERE/templates/work-summary.md"
+SUMMARY_TEMPLATE="$HERE/../templates/orchestration/work-summary.md"
 if [ -d "$WORK_DIR" ] && [ ! -f "$SUMMARY" ]; then
   [ -f "$SUMMARY_TEMPLATE" ] || die "템플릿 없음: $SUMMARY_TEMPLATE"
   START="$(git -C "$HERE" log --diff-filter=A --format=%ad --date=short -1 -- "work/$SLUG" 2>/dev/null | head -1)"

@@ -1,0 +1,148 @@
+{
+  "_doc": "interpret-pwa(실시간 통역 PWA PoC — 한국어 ↔ 외국어 양방향 · Procedure Hub 용어집을 Soniox 번역 용어로) 오케스트레이션 설정 SSOT. scripts/new-work.sh 가 읽는 유일한 곳. 값 하드코딩 금지. 2026-10-26 빈 레포 kknaksss/interpret-pwa 에서 착수(cc-prototype 의 sts 통역에서 떼어 새로 세운다).",
+  "project": "interpret-pwa",
+  "worktree_root": "/Users/kknaks/orca/workspaces",
+  "use_worktree": true,
+  "repos": {
+    "app": {
+      "orca_name": "kknaks_profile",
+      "canonical_path": "/Users/kknaks/git/toy_pr2/kknaks_profile",
+      "remote": "https://github.com/kknaks/kknaks_profile.git",
+      "base": "origin/main",
+      "pr_base": "main",
+      "worktree_suffix": "",
+      "notes": [
+        "canonical(main)은 사용자 체크아웃 — pull/checkout 금지, fetch 만.",
+        "문서 레포. 제품 문서는 para/projects/summer-star/interpret-pwa/ — 코디네이터 소유. 워커는 코디 워크트리 절대경로를 read-only 로 읽는다."
+      ]
+    },
+    "code": {
+      "orca_name": "interpret-pwa",
+      "canonical_path": "/Users/kknaks/git/toy_pr2/interpret-pwa",
+      "remote": "https://github.com/kknaksss/interpret-pwa.git",
+      "base": "origin/main",
+      "pr_base": "main",
+      "worktree_suffix": "",
+      "notes": [
+        "코드 전용 레포(kknaksss 계정 · private). 레포 루트에 front/(Next.js PWA) · back/(FastAPI) 한 쌍.",
+        "Soniox 키 · 로그인 계정값은 사용자가 back/.env 에 직접 넣는다 — 워커 · 코디는 .env.example 만 만든다.",
+        "참고: 통역 원형은 cc-prototype 레포(/Users/kknaks/git/toy_pr2/cc-prototype)의 cc 기능 통역 — read-only 로만 읽는다."
+      ]
+    },
+    "infra": {
+      "orca_name": "k8s_infra_mac",
+      "canonical_path": "/Users/kknaks/git/harness_works/k8s_infra_mac",
+      "remote": "https://github.com/MediSolveAIDev/k8s_infra_mac.git",
+      "base": "origin/main",
+      "pr_base": "main",
+      "worktree_suffix": "",
+      "notes": [
+        "MediSolveAIDev 사내 인프라 레포 — mediness · strong-hajin 과 같은 클러스터(Mac Studio arm64, Lima+kubeadm, Helm+ArgoCD, Cloudflare Tunnel medisolveai.xyz).",
+        "canonical 은 사용자 체크아웃 — pull/checkout 금지, fetch 만.",
+        "interpret-pwa 범위는 charts/interpret-pwa · argocd/applications/interpret-pwa*.yaml · provisioning/secrets/interpret-pwa*.env.example 뿐. 도메인은 SPEC 배포 절. 배포는 로컬 실물 확인 뒤 마지막(사용자 2026-10-26)."
+      ]
+    }
+  },
+  "workers": {
+    "researcher": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "research",
+      "roles_dir": "roles/interpret-pwa/researcher",
+      "workspace": "coordinator",
+      "allowed_paths": [
+        "(read-only — 브리프가 지정한 리포트 파일 1개만 생성)"
+      ],
+      "verify": "질문마다 답 + 공식 문서 URL. 문서에 없는 것은 「문서에 없음」. 결정하지 않고 「정할 것」으로 모은다"
+    },
+    "planner": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "spec",
+      "roles_dir": "roles/interpret-pwa/planner",
+      "workspace": "coordinator",
+      "allowed_paths": [
+        "para/projects/summer-star/interpret-pwa/20-spec/",
+        "para/projects/summer-star/interpret-pwa/30-work/"
+      ],
+      "verify": "SPEC 의 모든 절이 DEC · 확정 시안 중 하나를 근거로 가리킨다. 근거 없는 정책 0 · 열린 것은 열린 것으로. 링크 · 인덱스 갱신. public — 키 · 계정값 · 실명 0(grep)"
+    },
+    "reviewer_doc": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "review-doc",
+      "roles_dir": "roles/interpret-pwa/reviewer",
+      "workspace": "coordinator",
+      "allowed_paths": [
+        "(read-only — 브리프가 지정한 리뷰 리포트 파일 1개만 생성)"
+      ],
+      "verify": "SPEC·WORK 를 DEC 에 대조. 각 지적에 파일:줄 + 근거. 판정 FAIL/WARN/PASS"
+    },
+    "backend": {
+      "repo": "code",
+      "agent": "claude",
+      "brief_suffix": "be",
+      "roles_dir": "roles/interpret-pwa/backend",
+      "allowed_paths": [
+        "back/",
+        "docker-compose.yml · .env.example (레포 루트)"
+      ],
+      "verify": "back 에서 uv run pytest · uv run ruff check . — Phase 범위에 맞게 1회씩, 통과하면 반복하지 마라. Soniox · Procedure Hub 경로는 실물 호출 1회(키 없으면 pending). 사용자 포트·프로세스를 건드리지 않는다. 실행 못 한 검증은 사유와 함께 pending 으로 보고"
+    },
+    "frontend": {
+      "repo": "code",
+      "agent": "claude",
+      "brief_suffix": "fe",
+      "roles_dir": "roles/interpret-pwa/frontend",
+      "allowed_paths": [
+        "front/"
+      ],
+      "verify": "front 에서 npx tsc --noEmit · npm run lint · npm run build — 각 1회. 사용자 포트·프로세스를 건드리지 않는다. 실기기(마이크 · PWA 설치) 확인은 pending 으로 보고"
+    },
+    "reviewer": {
+      "repo": "code",
+      "agent": "claude",
+      "brief_suffix": "review",
+      "roles_dir": "roles/interpret-pwa/reviewer",
+      "allowed_paths": [
+        "(read-only — 리포 파일 수정 금지. 산출물은 브리프가 지정한 리뷰 리포트 파일 1개뿐)"
+      ],
+      "verify": "각 지적에 파일:줄 + 근거(SPEC 절 · DEC D-번호). 판정 FAIL · WARN · PASS. 「조용히 통과하는 자리」를 따로 본다"
+    },
+    "infra": {
+      "repo": "infra",
+      "agent": "claude",
+      "brief_suffix": "infra",
+      "roles_dir": "roles/interpret-pwa/infra",
+      "allowed_paths": [
+        "charts/interpret-pwa/",
+        "argocd/applications/interpret-pwa*.yaml",
+        "argocd/projects/interpret-pwa.yaml (필요할 때만)",
+        "provisioning/secrets/interpret-pwa*.env.example",
+        "docs/ 의 interpret-pwa 문단"
+      ],
+      "verify": "helm lint charts/interpret-pwa · helm template … -f values-prod.yaml · kubectl apply --dry-run=client — 각 1회. 다른 앱 차트·앱 무수정. 시크릿 값 0. 클러스터 접근이 없으면 실배포·sync 는 pending 으로 보고"
+    },
+    "designer": {
+      "repo": "code",
+      "agent": "claude",
+      "brief_suffix": "design",
+      "roles_dir": "roles/interpret-pwa/designer",
+      "allowed_paths": [
+        "design/ (Claude Design 프로젝트의 로컬 사본 · README)",
+        "Claude Design(claude.ai/design) — 브리프가 지정한 interpret-pwa 전용 프로젝트만 (DesignSync)"
+      ],
+      "verify": "Claude Design 프로젝트에 브리프의 화면 목록이 전부 있다(화면별 이름 표) · 로컬 design/ 사본이 프로젝트와 같다 · medikit + ceramique 테마 토큰만 쓴다 · 가짜 값만(실명·키 0) · 기존 ccc 프로젝트는 읽기만"
+    }
+  },
+  "default_workers": [
+    "backend",
+    "frontend"
+  ],
+  "summary_dest": "/Users/kknaks/git/toy_pr2/kknaks_profile/para/projects/summer-star/interpret-pwa/log",
+  "rules": {
+    "spec_and_app_use_separate_prs": true,
+    "workers_commit_or_push": false,
+    "coordinator_verifies_before_pr": true
+  }
+}

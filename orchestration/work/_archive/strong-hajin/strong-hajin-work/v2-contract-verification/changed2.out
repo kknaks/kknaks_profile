@@ -1,0 +1,21 @@
+cd backend && uv run pytest tests/contract -n auto --dist worksteal
+============================= test session starts ==============================
+platform darwin -- Python 3.13.11, pytest-8.4.2, pluggy-1.6.0
+rootdir: /Users/kknaks/orca/workspaces/Strong_hajin/strong-hajin-work/backend
+configfile: pyproject.toml
+plugins: xdist-3.8.0, anyio-4.15.0
+created: 4/4 workers
+4 workers [5 items]
+
+.....                                                                    [100%]
+=============================== warnings summary ===============================
+.venv/lib/python3.13/site-packages/starlette/testclient.py:53
+.venv/lib/python3.13/site-packages/starlette/testclient.py:53
+.venv/lib/python3.13/site-packages/starlette/testclient.py:53
+.venv/lib/python3.13/site-packages/starlette/testclient.py:53
+.venv/lib/python3.13/site-packages/starlette/testclient.py:53
+  /Users/kknaks/orca/workspaces/Strong_hajin/strong-hajin-work/backend/.venv/lib/python3.13/site-packages/starlette/testclient.py:53: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 5 passed, 5 warnings in 5.10s =========================

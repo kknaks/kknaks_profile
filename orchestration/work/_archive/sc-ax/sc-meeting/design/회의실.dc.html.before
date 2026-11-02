@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/scax-8fa54d76-58d6-481a-aed9-743dff9d6c09/fonts/fonts.css">
+<link rel="stylesheet" href="_ds/scax-8fa54d76-58d6-481a-aed9-743dff9d6c09/_ds_bundle.css">
+<link rel="stylesheet" href="_ds/scax-8fa54d76-58d6-481a-aed9-743dff9d6c09/styles.css">
+<script src="_ds/scax-8fa54d76-58d6-481a-aed9-743dff9d6c09/_ds_bundle.js"></script>
+<style>
+@media (max-width:1279px){
+.thesc-shell{display:grid!important;grid-template-columns:200px minmax(0,1fr)!important;min-width:1560px}
+.rail{position:sticky!important;transform:none!important;width:auto!important}
+.rail-toggle,.min-width-notice{display:none!important}
+}
+.page-head h1{font-size:17px}
+/* 드로어: 화면 절반 · 제목은 8단(Title 17) */
+.drawer{width:clamp(560px,50vw,840px)!important}
+.drawer-head h3{font-size:17px}
+.drawer-head .modal-kicker{font-size:12px}
+/* 스크롤바: 기본은 투명, 그 영역에 손이 올라올 때만 보인다 */
+.mm-scroll{scrollbar-width:thin;scrollbar-color:transparent transparent}
+.mm-scroll:hover{scrollbar-color:var(--border-strong) transparent}
+.mm-scroll::-webkit-scrollbar{width:10px;height:10px}
+.mm-scroll::-webkit-scrollbar-track{background:transparent}
+.mm-scroll::-webkit-scrollbar-thumb{border:3px solid transparent;border-radius:8px;background-clip:content-box;background-color:transparent}
+.mm-scroll:hover::-webkit-scrollbar-thumb{background-color:var(--border-strong)}
+/* 기록 입력창: 한 줄 안에 안건 · 종류 · 본문 · 보내기가 같이 선다.
+   :focus-within 은 인라인으로 쓸 수 없어 규칙으로 둔다 (DS 에 아직 없는 부품) */
+.composer{display:flex;align-items:center;gap:8px;padding:5px 6px 5px 8px;border:1px solid var(--border-strong);border-radius:var(--radius-control);background:var(--surface)}
+.composer:focus-within{border-color:var(--accent);box-shadow:var(--focus-ring)}
+.composer input{flex:1;min-width:0;height:32px;padding:0 4px;border:0;border-radius:0;background:transparent;font-size:14px}
+.composer input:focus{box-shadow:none}
+.composer-divider{width:1px;height:20px;flex:none;background:var(--border-default)}
+</style>
+</helmet>
+<div class="thesc-shell">
+
+<aside class="rail">
+<div class="wordmark"><span class="wordmark-mark">M</span> Managment</div>
+<div class="profile"><span class="avatar md">이</span><div><b>이건학</b><small>제품본부 · 서기</small></div></div>
+<nav>
+<button type="button">홈</button>
+<button type="button">채팅</button>
+<button type="button">캘린더</button>
+<button type="button">내 업무</button>
+<button type="button" class="active">회의록</button>
+<button type="button">자료함</button>
+<button type="button">설정</button>
+</nav>
+<div class="rail-foot">v1 · 회의 진행</div>
+</aside>
+
+<div class="canvas">
+<div class="canvas-topbar">
+<div class="breadcrumb">
+<a href="회의록.dc.html" class="btn ghost icon h30" aria-label="회의록 목록으로" style="margin-right:2px;color:var(--text-secondary)"><span style="display:grid;transform:rotate(180deg)"><x-import component-from-global-scope="SCAX.Icon" name="chevron-right" size="{{ 14 }}" hint-size="14px,14px"></x-import></span></a>
+<a href="회의록.dc.html" style="color:var(--text-tertiary)">홈</a><span>›</span><a href="회의록.dc.html" style="color:var(--text-tertiary)">회의록</a><span>›</span><b>DB ax 전략</b>
+</div>
+<div class="segmented" role="tablist">
+<button type="button" role="tab" aria-selected="{{ isBefore }}" onClick="{{ goBefore }}">시작 전</button>
+<button type="button" role="tab" aria-selected="{{ isLive }}" onClick="{{ goLive }}">기록 중</button>
+<button type="button" role="tab" aria-selected="{{ isMerge }}" onClick="{{ goMerge }}">통합 작성</button>
+</div>
+</div>
+
+<div class="page-surface">
+<div class="page-head">
+<div>
+<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+<span class="badge ai">미팅·회의</span>
+<span class="badge neutral">ax 프로젝트</span>
+</div>
+<h1>DB ax 전략</h1>
+<p>{{ subhead }}</p>
+</div>
+<div class="page-head-actions">
+<sc-if value="{{ isBefore }}" hint-placeholder-val="{{ true }}">
+<button type="button" class="btn primary h30" onClick="{{ goLive }}"><x-import component-from-global-scope="SCAX.Icon" name="play" size="{{ 14 }}" hint-size="14px,14px"></x-import> 회의 시작</button>
+</sc-if>
+<sc-if value="{{ isLive }}" hint-placeholder-val="{{ false }}">
+<button type="button" class="btn h30">일시정지</button>
+<button type="button" class="btn primary h30" onClick="{{ goMerge }}">회의 종료</button>
+</sc-if>
+<sc-if value="{{ isMerge }}" hint-placeholder-val="{{ false }}">
+<button type="button" class="btn h30">공유</button>
+</sc-if>
+</div>
+</div>
+
+<div class="effect-note" style="display:flex;align-items:flex-start;gap:14px;margin-bottom:12px;padding:16px 20px">
+<span class="t-meta" style="flex:none;width:34px;font-size:12px;padding-top:2px">목적</span>
+<span style="font-size:15px;font-weight:700;color:var(--text-primary);text-wrap:pretty">{{ purpose }}</span>
+</div>
+
+<div class="recording-state" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 20px;border-radius:var(--radius-panel);background:{{ stripBg }}">
+<sc-if value="{{ notMerge }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;align-items:center;gap:12px">
+<span class="{{ stripStatusCls }}" style="font-size:13px">{{ stripLabel }}</span>
+<span class="tabular" style="font-size:15px;font-weight:700;color:{{ stripTextColor }}">{{ clock }}</span>
+</div>
+</sc-if>
+<sc-if value="{{ isMerge }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;align-items:center;gap:10px;min-width:0;flex:1">
+<span class="badge ai" style="flex:none">AI 한 줄 요약</span>
+<span style="font-size:13px;font-weight:700;color:var(--action);text-wrap:pretty">{{ aiHeadline }}</span>
+</div>
+</sc-if>
+<sc-if value="{{ notMerge }}" hint-placeholder-val="{{ true }}">
+<span class="t-meta" style="font-size:12px">{{ stripNote }}</span>
+</sc-if>
+</div>
+
+<div style="display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,0.8fr);gap:16px;margin-top:16px;height:calc(100vh - 320px);min-height:560px">
+
+<section style="display:flex;flex-direction:column;min-height:0;overflow:hidden;border:1px solid var(--border-strong);border-radius:var(--radius-panel);background:var(--surface)">
+<header style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 20px;border-bottom:1px solid var(--border-default)">
+<div style="display:flex;gap:20px">
+<button type="button" onClick="{{ showScribe }}" style="{{ tabScribeStyle }}"><span class="{{ scribeDot }}"></span> 노트</button>
+<button type="button" onClick="{{ showAi }}" style="{{ tabAiStyle }}"><span class="{{ aiDot }}"></span> AI 노트</button>
+</div>
+<span class="t-meta" style="font-size:12px">{{ noteOwner }}</span>
+</header>
+
+<div class="mm-scroll" style="flex:1;min-height:0;overflow-y:auto;padding:16px 20px">
+<sc-if value="{{ scribeOn }}" hint-placeholder-val="{{ true }}">
+<div>
+<sc-if value="{{ hasScribe }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-direction:column;gap:20px">
+<sc-for list="{{ scribe }}" as="a" hint-placeholder-count="2">
+<div>
+<div style="display:flex;align-items:baseline;gap:8px;padding-bottom:8px;border-bottom:1px solid var(--border-subtle)">
+<span class="t-meta tabular" style="font-size:12px">안건 {{ a.no }}</span>
+<span style="flex:1;min-width:0;font-size:14px;font-weight:700">{{ a.title }}</span>
+<span class="t-meta tabular" style="font-size:12px">{{ a.at }}</span>
+</div>
+<ul style="display:flex;flex-direction:column;gap:2px;margin-top:8px">
+<sc-for list="{{ a.lines }}" as="l" hint-placeholder-count="3">
+<li style="display:grid;grid-template-columns:48px minmax(0,1fr) 24px;gap:10px;padding:6px 8px;border-radius:var(--radius-chip)">
+<span class="{{ l.badgeCls }}" style="justify-self:start">{{ l.kind }}</span>
+<div style="min-width:0">
+<span style="font-size:13px;color:var(--text-primary);text-wrap:pretty">{{ l.text }}</span>
+<sc-if value="{{ l.evOpen }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:8px;padding-left:10px;border-left:2px solid var(--border-default)">
+<span class="t-meta" style="font-size:12px">근거</span>
+<sc-for list="{{ l.chips }}" as="c" hint-placeholder-count="2">
+<button type="button" onClick="{{ c.jump }}" style="{{ c.style }}"><x-import component-from-global-scope="SCAX.Icon" name="play" size="{{ 12 }}" hint-size="12px,12px"></x-import> {{ c.label }}</button>
+</sc-for>
+<span class="t-meta" style="font-size:12px">칩을 누르면 해당 구간 스크립트로 이동합니다</span>
+</div>
+</sc-if>
+</div>
+<sc-if value="{{ l.hasEv }}" hint-placeholder-val="{{ true }}">
+<button type="button" onClick="{{ l.toggleEv }}" class="btn ghost icon h30" aria-label="근거 구간 보기" style="width:24px;height:24px;color:var(--text-tertiary)"><x-import component-from-global-scope="SCAX.Icon" name="{{ l.chevron }}" size="{{ 12 }}" hint-size="12px,12px"></x-import></button>
+</sc-if>
+</li>
+</sc-for>
+</ul>
+</div>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{ noScribe }}" hint-placeholder-val="{{ false }}">
+<div style="padding:120px 0">
+<x-import component-from-global-scope="SCAX.Empty" title="아직 안건이 없습니다" description="아래 입력창에서 / 로 안건 · 논의 · 결정 · 업무를 고릅니다." hint-size="100%,200px"></x-import>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ aiOn }}" hint-placeholder-val="{{ false }}">
+<div>
+<sc-if value="{{ hasAi }}" hint-placeholder-val="{{ true }}">
+<div>
+<div class="summary-card">
+<div class="summary-head"><b style="font-size:14px">AI 한 줄 요약</b><span class="t-meta tabular" style="font-size:12px">{{ aiCounts }}</span></div>
+<p style="margin-top:6px;font-size:13px;color:var(--text-primary);text-wrap:pretty">{{ aiHeadline }}</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:20px;margin-top:16px">
+<sc-for list="{{ ai }}" as="a" hint-placeholder-count="3">
+<div>
+<div style="display:flex;align-items:baseline;gap:8px;padding-bottom:8px;border-bottom:1px solid var(--border-subtle)">
+<span class="t-meta tabular" style="font-size:12px">안건 {{ a.no }}</span>
+<span style="flex:1;min-width:0;font-size:14px;font-weight:700">{{ a.title }}</span>
+</div>
+<ul style="display:flex;flex-direction:column;gap:2px;margin-top:8px">
+<sc-for list="{{ a.lines }}" as="l" hint-placeholder-count="2">
+<li style="display:grid;grid-template-columns:48px minmax(0,1fr);gap:10px;padding:6px 8px;border-radius:var(--radius-chip)">
+<span class="{{ l.badgeCls }}" style="justify-self:start">{{ l.kind }}</span>
+<span style="font-size:13px;color:var(--text-secondary);text-wrap:pretty">{{ l.text }} <button type="button" class="btn link">{{ l.at }}</button></span>
+</li>
+</sc-for>
+</ul>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{ noAi }}" hint-placeholder-val="{{ false }}">
+<div style="padding:120px 0">
+<x-import component-from-global-scope="SCAX.Empty" title="AI 노트는 회의가 시작되면 쌓입니다" description="AI 는 서기 노트와 별도로 자신의 요약본을 만듭니다." hint-size="100%,200px"></x-import>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+</div>
+
+<footer style="padding:12px 20px;border-top:1px solid var(--border-default)">
+<sc-if value="{{ scribeOn }}" hint-placeholder-val="{{ true }}">
+<div style="position:relative">
+<sc-if value="{{ slashOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;bottom:calc(100% + 8px);left:0;width:340px;z-index:20;border:1px solid var(--border-default);border-radius:var(--radius-popover);background:var(--surface);box-shadow:var(--shadow-lg);overflow:hidden">
+<div style="padding:12px 16px 10px;border-bottom:1px solid var(--border-subtle)">
+<div class="t-meta" style="font-size:12px">{{ activeAgenda }} 아래에 추가</div>
+<div style="font-size:13px;font-weight:700;margin-top:2px">{{ activeAgendaTitle }}</div>
+</div>
+<div style="padding:6px">
+<sc-for list="{{ slashItems }}" as="s" hint-placeholder-count="4">
+<button type="button" onClick="{{ s.pick }}" style="{{ s.style }}">
+<span class="{{ s.badgeCls }}" style="flex:none;width:26px;justify-content:center">{{ s.short }}</span>
+<span style="flex:1;min-width:0;text-align:left;font-size:14px;font-weight:500">{{ s.label }}</span>
+<span class="t-meta" style="font-size:12px">{{ s.hint }}</span>
+</button>
+</sc-for>
+</div>
+</div>
+</sc-if>
+<div class="composer">
+<button type="button" class="btn ghost h30" style="flex:none;color:var(--text-secondary)">{{ activeAgenda }} <x-import component-from-global-scope="SCAX.Icon" name="chevron-down" size="{{ 12 }}" hint-size="12px,12px"></x-import></button>
+<span class="composer-divider"></span>
+<span class="{{ kindBadgeCls }}" style="flex:none">{{ kind }}</span>
+<input type="text" placeholder="적을 내용 — / 로 종류를 바꿉니다" value="{{ draft }}" onChange="{{ setDraft }}">
+<span class="t-meta tabular" style="flex:none;font-size:12px">{{ nowTime }}</span>
+<button type="button" class="btn primary icon h30" aria-label="기록 추가" onClick="{{ addLine }}"><x-import component-from-global-scope="SCAX.Icon" name="send" size="{{ 14 }}" hint-size="14px,14px"></x-import></button>
+</div>
+<span class="field-help" style="display:block;margin-top:7px">{{ inputHint }}</span>
+</div>
+</sc-if>
+<sc-if value="{{ aiOn }}" hint-placeholder-val="{{ false }}">
+<div class="note-status" style="margin:0">
+<span class="status in_progress" style="font-size:12px">자동 갱신 중</span>
+<span class="t-meta" style="font-size:12px">AI 노트는 사람이 직접 쓰지 않습니다 — 통합 단계에서 골라 씁니다</span>
+</div>
+</sc-if>
+</footer>
+</section>
+
+<section style="display:flex;flex-direction:column;min-height:0;overflow:hidden;border:1px solid var(--border-strong);border-radius:var(--radius-panel);background:var(--surface)">
+<header style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 20px;border-bottom:1px solid var(--border-default)">
+<div style="display:flex;gap:20px">
+<button type="button" onClick="{{ showScript }}" style="{{ tabScriptStyle }}">실시간 스크립트</button>
+<button type="button" onClick="{{ showFiles }}" style="{{ tabFilesStyle }}">첨부 파일</button>
+</div>
+<span class="t-meta" style="font-size:12px">{{ scriptMeta }}</span>
+</header>
+<div class="mm-scroll" style="flex:1;min-height:0;overflow-y:auto;padding:12px 16px">
+<sc-if value="{{ scriptOn }}" hint-placeholder-val="{{ true }}">
+<div>
+<sc-if value="{{ hasScript }}" hint-placeholder-val="{{ true }}">
+<ul class="transcript" style="max-height:none">
+<sc-for list="{{ script }}" as="s" hint-placeholder-count="6">
+<li class="{{ s.cls }}" style="grid-template-columns:88px minmax(0,1fr) auto">
+<span class="transcript-meta"><b style="color:var(--action)">{{ s.who }}</b><span class="tabular" style="font-size:12px;color:var(--text-tertiary)">{{ s.at }}</span></span>
+<span class="transcript-text">{{ s.text }}</span>
+<sc-if value="{{ s.isMarked }}" hint-placeholder-val="{{ false }}">
+<span class="transcript-correction" style="color:var(--action);font-weight:700">근거 구간</span>
+</sc-if>
+</li>
+</sc-for>
+</ul>
+</sc-if>
+<sc-if value="{{ noScript }}" hint-placeholder-val="{{ false }}">
+<div style="padding:100px 0">
+<x-import component-from-global-scope="SCAX.Empty" title="아직 회의 전입니다" description="회의를 시작하면 스크립트가 이 자리에 쌓입니다." hint-size="100%,180px"></x-import>
+</div>
+</sc-if>
+</div>
+</sc-if>
+<sc-if value="{{ filesOn }}" hint-placeholder-val="{{ false }}">
+<div>
+<ul class="meeting-list" style="margin:0">
+<sc-for list="{{ files }}" as="f" hint-placeholder-count="3">
+<li class="meeting-row openable" onClick="{{ f.open }}" style="padding:12px 14px">
+<span style="display:grid;place-items:center;width:34px;height:34px;flex:none;border-radius:var(--radius-chip);background:var(--surface-sunken);color:var(--text-tertiary);font-size:11px;font-weight:700">{{ f.ext }}</span>
+<div class="cell-main">
+<b style="font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ f.name }}</b>
+<small class="tabular">{{ f.size }} · {{ f.who }} · {{ f.at }}</small>
+</div>
+</li>
+</sc-for>
+</ul>
+<button type="button" class="btn" style="width:100%;margin-top:10px"><x-import component-from-global-scope="SCAX.Icon" name="paperclip" size="{{ 14 }}" hint-size="14px,14px"></x-import> 파일 첨부하기</button>
+</div>
+</sc-if>
+</div>
+<footer style="padding:10px 16px;border-top:1px solid var(--border-default)">
+<span class="t-meta" style="font-size:12px">{{ rightFoot }}</span>
+</footer>
+</section>
+
+</div>
+</sc-if>
+
+</div>
+</div>
+</div>
+
+
+<sc-if value="{{ fileOpen }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="SCAX.Drawer" label="첨부 파일 보기" title="{{ file.name }}" kicker="첨부 파일" footer="{{ fileFooter }}" on-close="{{ closeFile }}" hint-size="clamp(560px,50vw,840px),100%">
+
+<div class="drawer-facts">
+<div><dt>올린 사람</dt><dd>{{ file.who }}</dd></div>
+<div><dt>시각</dt><dd>{{ file.at }}</dd></div>
+<div><dt>용량</dt><dd>{{ file.size }}</dd></div>
+</div>
+
+<div style="padding:32px;border-radius:var(--radius-card);background:var(--surface-sunken)">
+<div style="max-width:640px;margin:0 auto;padding:40px 44px;border:1px solid var(--border-default);border-radius:4px;background:var(--surface);box-shadow:var(--shadow-md)">
+
+<div style="padding-bottom:16px;margin-bottom:20px;border-bottom:1px solid var(--border-subtle)">
+<div class="t-meta" style="font-size:11px;letter-spacing:0.04em">{{ file.ext }} 문서</div>
+<h4 style="margin-top:6px;font-size:17px;font-weight:700">{{ file.heading }}</h4>
+</div>
+
+<sc-if value="{{ isDoc }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-direction:column;gap:14px">
+<sc-for list="{{ file.body }}" as="p" hint-placeholder-count="4">
+<p style="font-size:13px;color:var(--text-secondary);text-wrap:pretty">{{ p }}</p>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{ isSheet }}" hint-placeholder-val="{{ false }}">
+<table class="plain-table">
+<thead><tr>
+<sc-for list="{{ file.cols }}" as="c" hint-placeholder-count="4">
+<th>{{ c }}</th>
+</sc-for>
+</tr></thead>
+<tbody>
+<sc-for list="{{ file.rows }}" as="r" hint-placeholder-count="4">
+<tr>
+<sc-for list="{{ r }}" as="cell" hint-placeholder-count="4">
+<td class="tabular">{{ cell }}</td>
+</sc-for>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</sc-if>
+
+<sc-if value="{{ isImage }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="display:grid;place-items:center;height:280px;border:1px solid var(--border-default);border-radius:var(--radius-card);background:var(--surface-sunken);color:var(--text-tertiary)">
+<x-import component-from-global-scope="SCAX.Icon" name="empty" size="{{ 20 }}" hint-size="20px,20px"></x-import>
+</div>
+<p class="t-meta" style="margin-top:10px;font-size:12px;text-wrap:pretty">{{ file.caption }}</p>
+</div>
+</sc-if>
+
+</div>
+</div>
+</x-import>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;startMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;시작 전&quot;,&quot;기록 중&quot;,&quot;통합 작성&quot;],&quot;default&quot;:&quot;기록 중&quot;,&quot;tsType&quot;:&quot;'시작 전' | '기록 중' | '통합 작성'&quot;,&quot;section&quot;:&quot;화면 상태&quot;}}">
+const KIND_BADGE = { 논의: 'badge outline', 결정: 'badge ai', 업무: 'badge progress', 액션: 'badge progress', 요약: 'badge neutral', 수치: 'badge neutral', 위험: 'badge danger', 미결: 'badge danger' };
+const badge = k => KIND_BADGE[k] || 'badge neutral';
+
+const FILES = [
+  { id: 'f1', kind: 'doc', ext: 'PDF', name: 'DB AX 전환 범위 초안.pdf', size: '2.4MB', who: '이건학', at: '15:34', tag: '회의 중 공유', tagCls: 'badge progress', pages: '3페이지 · 09월 08일 15:34 업로드',
+    heading: 'DB AX 전환 범위 초안',
+    body: [
+      '본 문서는 DB 영역의 AX 전환 대상과 제외 범위를 정리한다. 전환은 운영 DB 를 직접 건드리지 않고, 읽기 전용 복제본 위에서 시작한다.',
+      '1. 대상 — 상담 이력, 청구 내역, 장애 티켓 세 도메인. 세 도메인 모두 텍스트 비중이 높아 요약과 검색의 효용이 크다.',
+      '2. 제외 — 개인 식별 정보가 포함된 원본 컬럼은 마스킹 이후에만 색인한다. 마스킹 규칙은 보안팀 표준을 그대로 따른다.',
+      '3. 비용 — 토큰 사용량은 도메인별 상한을 두고, 상한의 80% 에서 경고한다. 상한 초과는 차단이 아니라 승인 대기로 처리한다.',
+      '4. 성공 기준 — 4주 안에 상담 이력 도메인에서 주간 재사용 3회 이상. 재사용률이 기준이며 도입률은 보조 지표로만 본다.'
+    ] },
+  { id: 'f2', kind: 'sheet', ext: 'XLSX', name: '토큰 비용 시나리오 v3.xlsx', size: '860KB', who: '정우성', at: '15:47', tag: '근거 자료', tagCls: 'badge outline', pages: '시트 2개 · 셀 1,240',
+    heading: '토큰 비용 시나리오 v3',
+    cols: ['시나리오', '월 토큰', '캐시 히트', '월 비용'],
+    rows: [ ['현행', '4.2억', '68%', '3,180만'], ['라우팅 적용', '4.2억', '79%', '2,540만'], ['라우팅 + KV 캐싱', '4.2억', '86%', '1,970만'], ['+ 유휴 GPU 활용', '4.2억', '86%', '1,720만'] ] },
+  { id: 'f3', kind: 'image', ext: 'PNG', name: '추론 라우팅 구조도.png', size: '9.1MB', who: '정우성', at: '15:49', pages: '1920 × 1080',
+    heading: '추론 라우팅 구조도',
+    caption: '요청 난도 분류 → 모델 선택 → KV 캐시 계층(HBM · 호스트 메모리 · 공유 스토리지) 순서로 그려진 화면 캡처' }
+];
+
+const AGENDA = [
+  { no: '1', title: '토큰 수요 전망', at: '15:32' },
+  { no: '2', title: '토큰 비용 절감을 위한 AI 인프라 전략', at: '15:41' },
+  { no: '3', title: '협력 범위와 다음 단계', at: '15:54' }
+];
+
+const SCRIBE = [
+  { id: 's1', no: '1', kind: '논의', text: '에이전틱 AI와 AGI 전개로 토큰 수요가 계속 크게 증가할 것으로 본다.', ev: ['15:32', '15:34'] },
+  { id: 's2', no: '1', kind: '논의', text: '수요를 받으려면 인프라 확장과 단위 효율을 같이 올려야 한다.', ev: ['15:34'] },
+  { id: 's3', no: '2', kind: '결정', text: '토큰 비용 절감은 지능형 요청 분배와 KV 캐싱 두 축을 먼저 적용한다.', ev: ['15:41', '15:49'] },
+  { id: 's4', no: '2', kind: '논의', text: '이종 GPU 환경에서는 요청 난도에 따라 라우팅해 부하를 나눈다.' },
+  { id: 's5', no: '2', kind: '업무', text: '캐시 히트 레이쇼 측정 지표를 정의한다 — 정우성, 09/15', ev: ['15:49'] },
+  { id: 's6', no: '3', kind: '결정', text: '실리콘 협력은 RNGD 기반 PoC 한 건으로 범위를 좁힌다.' },
+  { id: 's7', no: '3', kind: '업무', text: 'PoC 범위 합의서 초안 — 유하람, 09/12' }
+];
+
+const AI_NOTE = [
+  { id: 'a1', no: '1', kind: '요약', at: '15:33', text: '토큰 수요 증가에 대응해 인프라 확장과 단위 효율 개선을 병행해야 한다는 데 이견이 없었다.' },
+  { id: 'a2', no: '2', kind: '요약', at: '15:44', text: '비용 절감 5개 전략(요청 분배 · KV 캐싱 · 혼합 서빙 · 유휴 GPU · 고장 대비) 중 앞의 두 개가 우선순위로 언급됐다.' },
+  { id: 'a3', no: '2', kind: '수치', at: '15:49', text: 'Intelligent Inference Routing과 KV 캐시 오프로드 적용 후 캐시 히트 레이쇼 68% → 86%.' },
+  { id: 'a4', no: '2', kind: '위험', at: '15:52', text: 'HBM 용량 제약은 계층 저장으로 완화하되 지연 증가 여부는 측정되지 않았다.' },
+  { id: 'a5', no: '3', kind: '요약', at: '15:56', text: '협력은 PoC 한 건으로 좁히고, 성공 기준을 다음 회의에서 정하기로 했다.' },
+  { id: 'a6', no: '3', kind: '미결', at: '15:58', text: 'PoC 예산 주체가 정해지지 않았다.' }
+];
+
+const AI_SUMMARY = [
+  { no: '1', title: '토큰 수요 전망', summary: '에이전틱 AI 확산으로 토큰 수요가 구조적으로 증가한다는 전제에 합의했고, 대응은 확장과 효율 두 축으로 정리됐다.', evidence: [ { at: '15:33', text: '수요는 계속 크게 증가할 것으로 예상' }, { at: '15:36', text: '단위 인프라 효율도 같이 올려야' } ] },
+  { no: '2', title: '토큰 비용 절감을 위한 AI 인프라 전략', summary: '5개 전략 중 지능형 요청 분배와 KV 캐싱을 우선 적용하기로 했고, 캐시 히트 레이쇼는 68%에서 86%로 개선된 수치가 공유됐다.', evidence: [ { at: '15:44', text: '5가지 전략 제시' }, { at: '15:49', text: '캐시 히트 68% → 86%' } ] },
+  { no: '3', title: '협력 범위와 다음 단계', summary: 'RNGD 기반 PoC 한 건으로 범위를 좁혔다. 성공 기준과 예산 주체는 미결로 남았다.', evidence: [ { at: '15:56', text: 'PoC 한 건으로' } ] }
+];
+
+const SCRIPT = [
+  { who: '화자 1', at: '15:32', text: '오늘은 토큰 수요가 어디까지 늘어날지, 그 전제부터 맞춰보고 싶습니다.' },
+  { who: '화자 2', at: '15:34', text: '에이전틱 AI가 사람 개입 없이 처리하는 구간이 늘면 수요는 계단식으로 올라갑니다.' },
+  { who: '화자 1', at: '15:41', text: '비용 쪽으로 넘어가면, 저희가 쓰는 절감 전략은 다섯 가지입니다.' },
+  { who: '화자 3', at: '15:49', text: '라우팅과 KV 캐시 오프로드를 붙였을 때 캐시 히트가 68에서 86까지 올라갔습니다.' },
+  { who: '화자 2', at: '15:52', text: 'HBM이 부족한 구간은 계층 저장으로 넘기는데, 지연은 아직 측정 전입니다.' },
+  { who: '화자 1', at: '15:56', text: '협력은 PoC 한 건으로 좁히죠. 성공 기준은 다음 회의에서 정합시다.' }
+];
+
+class Component extends DCLogic {
+  state = { mode: '기록 중', note: 'scribe', right: 'script', draft: '', seconds: 69, kind: '논의', file: null, evOpen: 's1', marked: '15:32' };
+
+  componentDidMount() {
+    this.timer = setInterval(() => {
+      if (this.state.mode === '기록 중') this.setState({ seconds: this.state.seconds + 1 });
+    }, 1000);
+    const start = this.props.startMode;
+    if (start && start !== this.state.mode) this.setState({ mode: start });
+  }
+  componentWillUnmount() { clearInterval(this.timer); }
+
+  clock() {
+    const s = this.state.mode === '시작 전' ? 0 : this.state.seconds;
+    const p = n => String(n).padStart(2, '0');
+    return p(Math.floor(s / 3600)) + ':' + p(Math.floor(s / 60) % 60) + ':' + p(s % 60);
+  }
+
+  renderVals() {
+    const st = this.state;
+    const before = st.mode === '시작 전', live = st.mode === '기록 중', merge = st.mode === '통합 작성';
+    const tab = (on, dot) => 'display:flex;align-items:center;gap:7px;height:46px;padding:0 2px;font-size:13px;font-weight:' + (on ? '700' : '500') + ';color:' + (on ? 'var(--text-primary)' : 'var(--text-tertiary)') + ';border-bottom:2px solid ' + (on ? 'var(--text-primary)' : 'transparent');
+
+    // 노트 탭이 곧 최종 회의록이다. 회의 중에는 서기가 적은 줄만, 종료 후에는
+    // AI 가 노트·AI 노트·스크립트를 합쳐 만든 초안이 같은 자리에 들어온다.
+    const noteItems = before ? []
+      : live ? SCRIBE.map(s => ({ ...s, src: '' }))
+      : [
+          ...SCRIBE.map(s => ({ ...s, src: '서기' })),
+          ...AI_NOTE.filter(a => a.kind !== '요약').map(a => ({ ...a, src: 'AI' }))
+        ];
+    const noteByAgenda = AGENDA.map(a => ({
+      no: a.no, title: a.title, at: a.at,
+      lines: noteItems.filter(l => l.no === a.no).map(l => {
+        const open = st.evOpen === l.id;
+        return {
+          kind: l.kind, text: l.text, badgeCls: badge(l.kind),
+          hasEv: !!(l.ev && l.ev.length), evOpen: open && !!(l.ev && l.ev.length),
+          chevron: open ? 'chevron-down' : 'chevron-right',
+          toggleEv: () => this.setState({ evOpen: open ? null : l.id }),
+          chips: (l.ev || []).map(at => ({
+            label: at,
+            style: 'display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:var(--radius-chip);font-size:12px;font-weight:700;border:1px solid ' + (st.marked === at ? 'var(--action)' : 'transparent') + ';color:var(--action);background:var(--selected-bg)',
+            jump: () => this.setState({ marked: at, right: 'script' })
+          }))
+        };
+      })
+    })).filter(a => a.lines.length > 0);
+
+    const openFile = FILES.find(f => f.id === st.file) || FILES[0];
+
+    const aiByAgenda = AGENDA.map(a => ({
+      no: a.no, title: a.title,
+      lines: AI_NOTE.filter(l => l.no === a.no).map(l => ({ kind: l.kind, text: l.text, at: l.at, badgeCls: badge(l.kind) }))
+    })).filter(a => a.lines.length > 0);
+
+    return {
+      isBefore: before, isLive: live, isMerge: merge, notMerge: !merge, never: false,
+      goBefore: () => this.setState({ mode: '시작 전', note: 'scribe', right: 'script' }),
+      goLive: () => this.setState({ mode: '기록 중' }),
+      goMerge: () => this.setState({ mode: '통합 작성' }),
+      subhead: before ? '09월 08일 (화) 15:30 – 16:00 · 30분 · 예정'
+        : live ? '09월 08일 (화) 15:30 시작 · 서기 이건학 · AI 노트 자동 기록'
+        : '09월 08일 (화) 15:30 – 16:02 · 32분 · 노트 = 최종 회의록 (AI 초안 반영됨)',
+      clock: this.clock(),
+      purpose: 'DB 영역의 AX 전환 범위를 정하고, 토큰 비용 구조에 합의한 뒤 PoC 한 건을 확정한다.',
+      stripBg: before ? 'var(--surface-sunken)' : live ? 'var(--selected-bg)' : 'var(--surface-sunken)',
+      stripLabel: before ? '기록 대기' : live ? '기록 중' : '기록 종료',
+      stripStatusCls: before ? 'status' : live ? 'status in_progress' : 'status done',
+      stripTextColor: live ? 'var(--action)' : 'var(--text-primary)',
+      stripNote: before ? '회의 시작을 누르면 녹음 · 스크립트 · AI 노트가 함께 켜집니다'
+        : live ? '서기는 왼쪽에, AI 는 자기 노트에 따로 적습니다'
+        : 'AI 가 노트 · AI 노트 · 스크립트를 합쳐 최종 초안을 만들었습니다 — 서기는 확인만 하면 됩니다',
+
+      showScribe: () => this.setState({ note: 'scribe' }),
+      showAi: () => this.setState({ note: 'ai' }),
+      scribeOn: st.note === 'scribe', aiOn: st.note === 'ai',
+      tabScribeStyle: tab(st.note === 'scribe'), tabAiStyle: tab(st.note === 'ai'),
+      scribeDot: st.note === 'scribe' ? 'status done' : 'status',
+      aiDot: st.note === 'ai' ? 'status in_progress' : 'status',
+      noteOwner: st.note === 'ai' ? '작성 AI · 사람이 고치지 않습니다'
+        : merge ? '최종 회의록 · AI 초안 + 서기 확인' : '작성 이건학 (서기)',
+      scribe: noteByAgenda, hasScribe: noteByAgenda.length > 0, noScribe: noteByAgenda.length === 0,
+      ai: before ? [] : aiByAgenda, hasAi: !before, noAi: before,
+      aiHeadline: '토큰 수요 증가에 맞춰 요청 분배 · KV 캐싱을 우선 적용하고, 실리콘 협력은 PoC 한 건으로 좁혔다.',
+      aiCounts: '안건 3 · 논의 24 · 결정 2 · 업무 2',
+      activeAgenda: '안건 ' + (noteByAgenda.length ? noteByAgenda[noteByAgenda.length - 1].no : '1'),
+      draft: st.draft, setDraft: e => this.setState({ draft: e.target.value }),
+      addLine: () => this.setState({ draft: '' }),
+      slashOpen: st.draft.trim().startsWith('/'),
+      slashItems: [
+        { kind: '논의', short: '논', label: '논의', hint: '' },
+        { kind: '결정', short: '결', label: '결정', hint: '' },
+        { kind: '업무', short: '업', label: '업무', hint: '담당 · 기한' },
+        { kind: '액션', short: '액', label: '액션', hint: '' },
+        { kind: '안건', short: '안', label: '새 안건', hint: '다음 주제로' }
+      ].map(s => ({
+        short: s.short, label: s.label, hint: s.hint, badgeCls: badge(s.kind),
+        style: 'display:flex;align-items:center;gap:12px;width:100%;height:40px;padding:0 10px;border-radius:var(--radius-control);background:' + (st.kind === s.kind ? 'var(--surface-sunken)' : 'transparent'),
+        pick: () => this.setState({ kind: s.kind, draft: '' })
+      })),
+      kind: st.kind, kindPicked: !!st.kind, kindBadgeCls: badge(st.kind),
+      activeAgendaTitle: (AGENDA.find(a => noteByAgenda.length && a.no === noteByAgenda[noteByAgenda.length - 1].no) || AGENDA[0]).title,
+      nowTime: '15:2' + (st.seconds % 10),
+      inputHint: before ? '시작 전에는 새 안건만 만들 수 있습니다' : 'Enter 로 기록 · / 로 종류 변경 · 자동 저장됨',
+
+      showScript: () => this.setState({ right: 'script' }),
+      showFiles: () => this.setState({ right: 'files' }),
+      scriptOn: st.right === 'script', filesOn: st.right === 'files',
+      tabScriptStyle: tab(st.right === 'script'), tabFilesStyle: tab(st.right === 'files'),
+      script: before ? [] : SCRIPT.map(s => ({
+        ...s,
+        cls: st.marked === s.at ? 'transcript-line marked' : 'transcript-line',
+        isMarked: st.marked === s.at
+      })),
+      hasScript: !before, noScript: before,
+      scriptMeta: st.right === 'files' ? '3개 · 12.4MB' : before ? '대기' : '화자 3명 · 27분',
+      files: FILES.map(f => ({ ...f, open: () => this.setState({ file: f.id }) })),
+      fileOpen: !!st.file,
+      file: openFile,
+      isDoc: openFile.kind === 'doc', isSheet: openFile.kind === 'sheet', isImage: openFile.kind === 'image',
+      closeFile: () => this.setState({ file: null }),
+      fileFooter: React.createElement(React.Fragment, null,
+        React.createElement('span', { className: 't-meta', style: { fontSize: 12 } }, openFile.pages),
+        React.createElement('span', { className: 'spacer' }),
+        React.createElement('button', { type: 'button', className: 'btn h40' }, '다운로드')),
+      rightFoot: before ? '회의 시작 전에는 스크립트가 없습니다' : st.right === 'script' ? '받아쓰기 중 · 확정된 발화는 바로 저장됩니다' : '끌어다 놓아도 첨부됩니다 · 최대 50MB',
+    };
+  }
+}
+
+</script>
+</body>
+</html>

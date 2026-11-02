@@ -1,0 +1,278 @@
+--- /private/tmp/claude-501/-Users-kknaks-orca-workspaces-Strong-hajin-strong-hajin-work/bc638986-a382-4a53-b2e9-83531f3e8ae2/scratchpad/prev/frontend/src/features/work/WorkModals.tsx	2026-09-16 10:01:58
++++ frontend/src/features/work/WorkModals.tsx	2026-09-16 12:30:19
+@@ -2431,7 +2431,21 @@
+     return null;
+   }
+   const assignTarget = taskOwnerId === "me" ? null : recipientCandidates.find((candidate) => candidate.id === taskOwnerId) ?? null;
++  const ownerRoute = routeFor(taskOwnerId);
+   /**
++   * **수평 생성은 시작일을 받지 않는다** — 서버가 조용히 버리지 않고 422 로 거절한다
++   * (`creation_commands.py` `_refuse_unsupported_horizontal_fields`). 그러니 그 대상에서는 줄을
++   * 세우지도, payload 에 싣지도 않는다. 본인·관리자 배정은 지금까지대로 받는다.
++   *
++   * 값 자체는 **지우지 않는다**: 본인으로 적어 둔 시작일이 담당을 바꿨다 되돌리면 그대로 살아 있어야 한다.
++   * 대신 아래 `effectiveStartDate` 로 «지금 이 경로가 실제로 보내는 값» 을 하나로 좁혀, 숨긴 날짜가
++   * 지문·전송·유효성 어디에도 섞이지 않게 한다.
++   */
++  const startDateSupported = ownerRoute !== "horizontal";
++  const effectiveStartDate = startDateSupported ? startDate : "";
++  /** 적어 둔 시작일이 이 경로에서는 실리지 않는다는 사실 — 값이 있을 때만 말한다. */
++  const startDateDropped = Boolean(startDate) && !startDateSupported;
++  /**
+    * 한 제출 의도에 키 하나. 쓴 것이 그대로면 재시도·연타가 **같은 키**를 다시 보내 서버가 첫 결과를
+    * 영수증으로 돌려주고, 쓴 것이 달라지면 그것은 새 의도라 **새 키**를 만든다. 경로도 여기 함께 박아
+    * 둔다 — 재시도 도중 endpoint 가 바뀌지 않는다(W1 계약 §5).
+@@ -2506,7 +2520,9 @@
+           ...recipientCandidates.map((candidate) => ({ value: candidate.id, label: candidate.display_name })),
+         ],
+       }] : []),
+-      { id: "start_date", label: "시작일", type: "date", required: false, editable: true },
++      /* 수평 생성이 거절하는 값은 묻지 않는다 — `project_id`·`reference_task_ids` 와 같은 방식이다.
++         다만 이쪽은 **관리자 배정에서는 여전히 받으므로** `assignTarget` 이 아니라 경로로 가른다. */
++      ...(startDateSupported ? [{ id: "start_date", label: "시작일", type: "date" as const, required: false, editable: true }] : []),
+       { id: "due_date", label: "기한", type: "date", required: false, editable: true },
+       ...(!assignTarget ? [{
+         id: "project_id",
+@@ -2554,11 +2570,12 @@
+       onError("담당 후보를 선택해 주세요.");
+       return;
+     }
+-    if (kind === "task" && startDate && dueDate && startDate > dueDate) {
++    // 숨긴 시작일로 제출을 막지 않는다 — 안 보내는 값이 사람을 세우면 고칠 자리가 없다.
++    if (kind === "task" && effectiveStartDate && dueDate && effectiveStartDate > dueDate) {
+       onError("시작일은 기한보다 늦을 수 없습니다.");
+       return;
+     }
+-    const route = routeFor(taskOwnerId);
++    const route = ownerRoute;
+     if (kind === "task" && route === null) {
+       // 후보 목록에 없는 대상이다 — 임의로 다른 경로를 골라 보내지 않는다.
+       onError("이 사람에게는 업무를 보낼 수 없습니다.");
+@@ -2573,7 +2590,8 @@
+       route,
+       title: trimmed,
+       description: description.trim(),
+-      startDate,
++      // 이 경로가 실제로 보내는 값만 지문에 든다 — 숨긴 시작일이 새 의도를 만들지 않는다.
++      startDate: effectiveStartDate,
+       dueDate,
+       checklist: steps,
+       reference_task_ids: reference_task_ids ?? [],
+@@ -2594,15 +2612,16 @@
+       if (kind === "task" && assignTarget && attempt.route === "managed") {
+         await assignTask(trimmed, assignTarget.id, {
+           description: description.trim() || undefined,
+-          start_date: startDate || undefined,
++          start_date: effectiveStartDate || undefined,
+           due_date: dueDate || undefined,
+           checklist,
+         }, attempt.key);
+         await onCreated(`'${trimmed}' 업무가 ${personName(assignTarget.display_name)}의 업무가 되었습니다. 수락을 기다리지 않습니다.`, { assignedToOther: true });
+       } else if (kind === "task" && assignTarget) {
++        /* 수평 생성에는 `start_date` 를 싣지 않는다 — 서버가 받지 않는 값이라 실으면 422 다.
++           위에서 줄을 세우지 않았으므로 `effectiveStartDate` 는 언제나 빈 값이고, 여기서 한 번 더 굳힌다. */
+         await createDirectTask(trimmed, {
+           description: description.trim() || undefined,
+-          start_date: startDate || undefined,
+           due_date: dueDate || undefined,
+           checklist,
+           reference_task_ids,
+@@ -2612,7 +2631,7 @@
+       } else if (kind === "task") {
+         await createDirectTask(trimmed, {
+           description: description.trim() || undefined,
+-          start_date: startDate || undefined,
++          start_date: effectiveStartDate || undefined,
+           due_date: dueDate || undefined,
+           checklist,
+           reference_task_ids,
+@@ -2737,6 +2756,12 @@
+                 : "내가 할 업무를 만듭니다. 바로 내 업무에 들어갑니다."
+               : "상대의 수락 없이 바로 그 사람의 업무가 됩니다. 희망 기한을 함께 보낼 수 있습니다."}
+           </span>
++          {/* 적어 둔 값이 조용히 사라지지 않게 한다 — 담당을 남으로 바꾼 뒤에야 줄이 걷히므로,
++              그 사실을 말해 주지 않으면 사람은 시작일이 실려 갔다고 믿는다. 담당을 나로 되돌리면
++              적어 둔 날짜가 그대로 다시 선다. */}
++          {kind === "task" && startDateDropped && (
++            <span className="t-meta">적어 둔 시작일은 보내지 않습니다 — 언제 시작할지는 담당자가 정합니다.</span>
++          )}
+         </ChipRow>
+       }
+       label={drawerTitle}
+--- /private/tmp/claude-501/-Users-kknaks-orca-workspaces-Strong-hajin-strong-hajin-work/bc638986-a382-4a53-b2e9-83531f3e8ae2/scratchpad/prev/frontend/src/features/work/CreateWork.test.tsx	2026-09-16 10:04:27
++++ frontend/src/features/work/CreateWork.test.tsx	2026-09-16 12:31:51
+@@ -543,3 +543,174 @@
+     expect(modal.textContent).not.toMatch(/수락 대기|수락하면|수락해야/);
+   });
+ });
++
++/* ════════════════════════════════════════════════════════════════════════════
++   F-1 — 수평 생성이 받지 않는 「시작일」 (리뷰 리포트 2026-09-16).
++
++   서버는 담당을 지정한 생성에서 `start_date`·`parent_task_id`·`project_id` 를 **조용히 버리지 않고**
++   422 로 거절한다(`creation_commands.py` `_refuse_unsupported_horizontal_fields`). 화면이 그 사실을
++   모른 채 시작일을 묻고 실어 보내면 W1 의 대표 동선(일반 구성원 → 동료에게 보내기)이 통째로 막힌다.
++   그래서 **묻지 않고 보내지 않는다.** 본인·관리자 배정이 지금까지 받던 것은 그대로 받는다.
++   ════════════════════════════════════════════════════════════════════════════ */
++describe("F-1 수평 생성과 시작일", () => {
++  afterEach(() => {
++    cleanup();
++    vi.clearAllMocks();
++  });
++
++  const sora = { id: "sora", display_name: "소라 (기획)" } as never;
++
++  function renderCreate(props: Record<string, unknown> = {}) {
++    const onCreated = vi.fn();
++    const onError = vi.fn();
++    render(
++      <CreateWorkModal
++        assignCandidates={[]}
++        assigneeCandidates={[]}
++        canCreateRequest
++        canCreateTask
++        onClose={vi.fn()}
++        onCreated={onCreated}
++        onError={onError}
++        ownerName="민아"
++        {...props}
++      />,
++    );
++    return { onCreated, onError };
++  }
++
++  const pickOwner = (value: string) => fireEvent.change(screen.getByLabelText("담당자"), { target: { value } });
++  /* 날짜 칸은 앱의 `DatePicker` 팝오버 하나를 쓴다(DS-17) — 칸을 열고 격자에서 그 날을 누른다.
++     9월 격자는 8/30~10/10 이라 아래 날짜는 모두 한 화면에 선다. */
++  const pickDate = (label: string, iso: string) => {
++    fireEvent.click(screen.getByRole("button", { name: `${label} 달력 열기` }));
++    fireEvent.click(screen.getByRole("group", { name: label }).querySelector(`[data-date="${iso}"]`) as HTMLElement);
++  };
++  const startDateField = () => screen.queryByRole("button", { name: "시작일 달력 열기" });
++  const typeStartDate = (value: string) => pickDate("시작일", value);
++
++  it("시작일을 먼저 적고 수신 후보를 고르면 줄이 걷히고 payload 에도 start_date 가 없다", async () => {
++    vi.mocked(api.createDirectTask).mockResolvedValue({ task_id: "task-1" } as never);
++    const { onCreated, onError } = renderCreate({ assigneeCandidates: [sora] });
++    fireEvent.change(screen.getByLabelText("업무 제목"), { target: { value: "전망치 정리" } });
++    // 본인 업무일 때는 지금까지대로 묻는다
++    typeStartDate("2026-09-20");
++
++    pickOwner("sora");
++
++    // 묻지 않는다 — 서버가 받지 않는 값이라 줄 자체를 세우지 않는다
++    expect(startDateField()).toBeNull();
++    // 적어 둔 것이 조용히 사라지지 않게 말해 준다
++    expect(screen.getByText("적어 둔 시작일은 보내지 않습니다 — 언제 시작할지는 담당자가 정합니다.")).toBeTruthy();
++
++    fireEvent.click(screen.getByRole("button", { name: "업무 배정" }));
++
++    await waitFor(() => expect(api.createDirectTask).toHaveBeenCalled());
++    const [, extra] = vi.mocked(api.createDirectTask).mock.calls[0];
++    expect(extra?.assignee_id).toBe("sora");
++    // 422 를 부르는 값이 실려 나가지 않는다 — 키 자체가 없다
++    expect(extra && "start_date" in extra).toBe(false);
++    expect(extra?.start_date).toBeUndefined();
++    // 그래서 생성이 성공한다
++    expect(onError).not.toHaveBeenCalledWith(expect.stringContaining("쓸 수 없는 항목"));
++    expect(onCreated).toHaveBeenCalledWith("'전망치 정리' 업무가 소라의 업무가 되었습니다. 수락을 기다리지 않습니다.", { assignedToOther: true });
++  });
++
++  it("본인 업무는 지금까지대로 시작일을 묻고 실어 보낸다", async () => {
++    vi.mocked(api.createDirectTask).mockResolvedValue({ task_id: "task-1" } as never);
++    renderCreate({ assigneeCandidates: [sora] });
++    fireEvent.change(screen.getByLabelText("업무 제목"), { target: { value: "내 업무" } });
++    typeStartDate("2026-09-20");
++
++    fireEvent.click(screen.getByRole("button", { name: "업무 추가" }));
++
++    await waitFor(() => expect(api.createDirectTask).toHaveBeenCalled());
++    expect(vi.mocked(api.createDirectTask).mock.calls[0][1]?.start_date).toBe("2026-09-20");
++  });
++
++  it("관리자 배정도 지금까지대로 시작일을 묻고 실어 보낸다 — 걷는 것은 수평 경로뿐이다", async () => {
++    vi.mocked(api.assignTask).mockResolvedValue({ assignment_id: "as-1" } as never);
++    renderCreate({ assignCandidates: [jiho] });
++    fireEvent.change(screen.getByLabelText("업무 제목"), { target: { value: "실적 정리" } });
++    pickOwner("jiho");
++
++    // 관리자 배정은 서버가 받는 값이라 줄이 그대로 선다
++    expect(startDateField()).toBeTruthy();
++    typeStartDate("2026-09-21");
++    expect(screen.queryByText("적어 둔 시작일은 보내지 않습니다 — 언제 시작할지는 담당자가 정합니다.")).toBeNull();
++
++    fireEvent.click(screen.getByRole("button", { name: "업무 배정" }));
++
++    await waitFor(() => expect(api.assignTask).toHaveBeenCalled());
++    expect(vi.mocked(api.assignTask).mock.calls[0][2]?.start_date).toBe("2026-09-21");
++  });
++
++  it("담당을 나로 되돌리면 적어 둔 시작일이 그대로 다시 서고 다시 실려 간다", async () => {
++    vi.mocked(api.createDirectTask).mockResolvedValue({ task_id: "task-1" } as never);
++    renderCreate({ assigneeCandidates: [sora] });
++    fireEvent.change(screen.getByLabelText("업무 제목"), { target: { value: "오가는 업무" } });
++    typeStartDate("2026-09-20");
++
++    pickOwner("sora");
++    expect(startDateField()).toBeNull();
++    pickOwner("me");
++
++    // 값을 지우지 않았다 — 고쳐 쓴 것을 돌려받는다 (AX 카드 결이라 화면 구분자는 점이다)
++    expect(startDateField()?.textContent).toBe("2026.09.20");
++    fireEvent.click(screen.getByRole("button", { name: "업무 추가" }));
++
++    await waitFor(() => expect(api.createDirectTask).toHaveBeenCalled());
++    expect(vi.mocked(api.createDirectTask).mock.calls[0][1]?.start_date).toBe("2026-09-20");
++  });
++
++  it("숨긴 시작일이 기한보다 늦어도 수평 제출을 막지 않는다 — 안 보내는 값이 사람을 세우지 않는다", async () => {
++    vi.mocked(api.createDirectTask).mockResolvedValue({ task_id: "task-1" } as never);
++    const { onError } = renderCreate({ assigneeCandidates: [sora] });
++    fireEvent.change(screen.getByLabelText("업무 제목"), { target: { value: "기한이 앞선 업무" } });
++    typeStartDate("2026-10-05");
++    pickDate("기한", "2026-09-18");
++
++    pickOwner("sora");
++    fireEvent.click(screen.getByRole("button", { name: "업무 배정" }));
++
++    await waitFor(() => expect(api.createDirectTask).toHaveBeenCalled());
++    expect(onError).not.toHaveBeenCalledWith("시작일은 기한보다 늦을 수 없습니다.");
++    expect(vi.mocked(api.createDirectTask).mock.calls[0][1]?.due_date).toBe("2026-09-18");
++  });
++
++  it("숨긴 시작일은 새 의도 지문에 섞이지 않는다 — 실패 재시도가 같은 키로 간다", async () => {
++    vi.mocked(api.createDirectTask).mockRejectedValueOnce(new Error("네트워크 오류"));
++    renderCreate({ assigneeCandidates: [sora] });
++    fireEvent.change(screen.getByLabelText("업무 제목"), { target: { value: "다시 보낼 업무" } });
++    typeStartDate("2026-09-20");
++    pickOwner("sora");
++
++    fireEvent.click(screen.getByRole("button", { name: "업무 배정" }));
++    await waitFor(() => expect(api.createDirectTask).toHaveBeenCalledTimes(1));
++
++    vi.mocked(api.createDirectTask).mockResolvedValue({ task_id: "task-1" } as never);
++    fireEvent.click(screen.getByRole("button", { name: "업무 배정" }));
++    await waitFor(() => expect(api.createDirectTask).toHaveBeenCalledTimes(2));
++
++    const [first, second] = vi.mocked(api.createDirectTask).mock.calls;
++    expect(second[2]).toBe(first[2]);
++    expect(second[1] && "start_date" in second[1]).toBe(false);
++  });
++
++  it("제출 중에는 단추가 잠기고 연타해도 한 번만 나간다 — 수평 경로에서도 같다", async () => {
++    let settle: (value: unknown) => void = () => {};
++    vi.mocked(api.createDirectTask).mockImplementation(() => new Promise((resolve) => { settle = resolve; }) as never);
++    renderCreate({ assigneeCandidates: [sora] });
++    fireEvent.change(screen.getByLabelText("업무 제목"), { target: { value: "한 번만 생길 업무" } });
++    typeStartDate("2026-09-20");
++    pickOwner("sora");
++
++    const submit = screen.getByRole("button", { name: "업무 배정" });
++    fireEvent.click(submit);
++    fireEvent.click(submit);
++
++    await waitFor(() => expect(api.createDirectTask).toHaveBeenCalledTimes(1));
++    expect(screen.getByRole("button", { name: "만드는 중…" }).hasAttribute("disabled")).toBe(true);
++    settle({ task_id: "task-1" });
++  });
++});

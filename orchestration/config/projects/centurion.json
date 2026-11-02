@@ -1,0 +1,90 @@
+{
+  "_doc": "centurion(회사 — MediSolveAIDev/centurion. 메디솔브 통합 백엔드: SSO·Linky·common·admin·catalog·crm 을 한 ASGI 프로세스로. Python 3.13 + FastAPI, uv) 오케스트레이션 설정 SSOT. scripts/new-work.sh 가 읽는 유일한 곳. 값 하드코딩 금지. 우리 작업 대상은 backend/crm = 우리 CRM(데이터 허브 + 시술관제, 외부 CRM ↔ 우리 CRM ↔ linky·charty·watch). cc-prototype(시연)과는 별개 프로젝트 — 2026-10-12.",
+  "project": "centurion",
+  "worktree_root": "/Users/kknaks/orca/workspaces",
+  "use_worktree": true,
+  "repos": {
+    "app": {
+      "orca_name": "kknaks_profile",
+      "canonical_path": "/Users/kknaks/git/toy_pr2/kknaks_profile",
+      "remote": "https://github.com/kknaks/kknaks_profile.git",
+      "base": "origin/main",
+      "pr_base": "main",
+      "worktree_suffix": "",
+      "notes": [
+        "canonical(main)은 사용자 체크아웃 — pull/checkout 금지, fetch 만.",
+        "문서 레포. 회사 일(company/, sot: external)이라 para/projects/company/centurion/ 에는 README(지도)와 log/(회고)만 둔다 — 스펙 단계 없음. 기획·스펙 원천은 회사 쪽(위치 미정). 워커는 코디 워크트리 절대경로를 read-only 로 읽는다."
+      ]
+    },
+    "code": {
+      "orca_name": "centurion",
+      "canonical_path": "/Users/kknaks/git/centurion",
+      "remote": "https://github.com/MediSolveAIDev/centurion.git",
+      "base": "origin/release/v1.0.0-linky-rc.2",
+      "pr_base": "release/v1.0.0-linky-rc.2",
+      "worktree_suffix": "",
+      "notes": [
+        "회사 org 레포. canonical 은 2026-10-12 사용자 지시로 rc.2 를 클론한 체크아웃 — pull/checkout 금지, fetch 만. 원격 브랜치: main · release/v1.0.0-linky-rc.1 · release/v1.0.0-linky-rc.2 (사용자 표현 「rc2」).",
+        "레포 규칙 정본은 레포 루트 AGENTS.md · docs/development/(backend-reliability · testing-strategy · service-onboarding). 하위 AGENTS.md 를 만들지 않는다.",
+        "migration · 실제 DB/Redis credential · Azure · deploy · DNS 는 별도 실행 gate 없이 하지 않는다(AGENTS.md). 회사 org 푸시 범위는 발행 전 사용자 확인.",
+        "의존성 설치에 private Python index(medisolve-sso-sdk · medisolve-billing-sdk) 읽기 권한이 필요하다(README)."
+      ]
+    }
+  },
+  "workers": {
+    "researcher": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "research",
+      "roles_dir": "roles/centurion/researcher",
+      "workspace": "coordinator",
+      "allowed_paths": [
+        "(read-only — 브리프가 지정한 리포트 파일 1개만 생성)"
+      ],
+      "verify": "질문마다 답 + 근거(파일:줄 또는 문서 URL). 확인 못 한 것은 「확인 안 됨」. 결정하지 않고 「정할 것」으로 모은다"
+    },
+    "backend": {
+      "repo": "code",
+      "agent": "claude",
+      "brief_suffix": "be",
+      "roles_dir": "roles/centurion/backend",
+      "allowed_paths": [
+        "backend/crm/",
+        "backend/migrations/crm/ · backend/alembic.crm.ini",
+        "backend/tests/crm/",
+        "(그 밖 — admin·runtime·linky 연동 등 — 은 브리프가 경로를 지정할 때만)"
+      ],
+      "verify": "cd backend && uv run --frozen pytest -q <네가 만들거나 고친 테스트 파일만> · uv run --frozen ruff check <네가 만진 파일> — 각 1회, 통과하면 반복하지 마라. 테스트 DB 는 deploy/compose.test.yaml 포트(README) — 공유 STG·PROD 금지. 사용자 포트·프로세스를 건드리지 않는다. 실행 못 한 검증은 사유와 함께 pending 으로 보고"
+    },
+    "reviewer": {
+      "repo": "code",
+      "agent": "claude",
+      "brief_suffix": "review",
+      "roles_dir": "roles/centurion/reviewer",
+      "allowed_paths": [
+        "(read-only — 리포 파일 수정 금지. 산출물은 브리프가 지정한 리뷰 리포트 파일 1개뿐)"
+      ],
+      "verify": "각 지적에 파일:줄 + 근거(SPEC 절 · DEC D-번호 · AGENTS.md/docs/development 규칙). 판정 FAIL · WARN · PASS"
+    },
+    "reviewer_doc": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "review-doc",
+      "roles_dir": "roles/centurion/reviewer",
+      "workspace": "coordinator",
+      "allowed_paths": [
+        "(read-only — 브리프가 지정한 리뷰 리포트 파일 1개만 생성)"
+      ],
+      "verify": "브리프·계약 문서를 서로 대조. 각 지적에 파일:줄 + 근거. 판정 FAIL/WARN/PASS"
+    }
+  },
+  "default_workers": [
+    "backend"
+  ],
+  "summary_dest": "/Users/kknaks/git/toy_pr2/kknaks_profile/para/projects/company/centurion/log",
+  "rules": {
+    "spec_and_app_use_separate_prs": true,
+    "workers_commit_or_push": false,
+    "coordinator_verifies_before_pr": true
+  }
+}
