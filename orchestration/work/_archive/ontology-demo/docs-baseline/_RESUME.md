@@ -1,9 +1,10 @@
 
 # 재개 노트 — docs-baseline (ontology-demo)
 
-**지금**: SPEC-001·002·003·005 발주(task_ca52bf6b772c), docs 워커 작성 중. PR #32 병합 대기.
-**다음**: 완료 보고 오면 검증(특히 「제안—리뷰 필요」 목록) → 사용자 리뷰 → spec 커밋·PR. SPEC-004 는 디자인 귀환 후.
-**확정(2026-09-02 문답)**: 마스킹 표기 = 김○○ / 010-****-1234 / 1990-**-** · 접속 게이트 = env 난수 비번 1개(값은 사용자가 배포 시 주입), 내부망이라 추가 가드 없음.
+**지금**: spec 5건 커밋(2523b40, **푸시 보류** — 사용자 지시: PR 은 WP 까지 묶어 한 번에). WORK-001~010 발주(task_60060f3b4b0a), docs 워커 작성 중.
+**다음**: WP 완료 → 검증 → 사용자 WP 리뷰(승인 게이트) → 커밋·푸시(PR #32 갱신) → fe 워커 config/role 신설 → 코드 발주(WORK-001 부터).
+**확정(2026-09-02 문답)**: 마스킹 표기 김○○/010-****-1234/1990-**-** · 게이트 env 비번 1개 · 채팅 미니그래프 제거(칩+?edge= 점프) · Pretendard next/font · 정량추정 문구 제거 · 월 집계 = gold_kpi_monthly View · lag 표기 "<정수>d" 통일.
+**디자인 조정 대기 20건**: SPEC-004 §7.2 표 + `reference/ontology_demo/DESIGN_FEEDBACK.md` (디자인 세션 재방문 시 입력).
 
 세팅: `scripts/new-work.sh ontology-demo docs-baseline` · 설정 SSOT `config/projects/ontology-demo.json`
 코디handle: `term_45e793be-0adb-44c7-9d9a-eb35c4f48320`
@@ -31,7 +32,12 @@
 
 | 워커 | handle | task_id | dispatch_id | 브리프 | 상태 |
 |---|---|---|---|---|---|
-| docs | `term_b25f6462-b5e3-41fe-aa61-ad32e81ba66a` | `task_ca52bf6b772c` | `ctx_371d84bbfab6` | `docs-specs-docs-brief.md` | 진행 |
+| design-fix | `term_0b5d9a19-47c2-470a-bca5-529f70b859ef` | `task_c744fc9c4402` | `ctx_2658e775a421` | `design-fix-brief.md` | 진행 — 디자인 패키지 조정 20건·신규 3건·재키잉 (design/ 폴더 한정 쓰기). 완료 후: 코디 검증 → docs 소수정(SPEC-001 좌표 '미배정' 채움·§7.2 정리·SPEC-004 ready) → WORK-004 발주 가능 |
+| docs | `term_b25f6462…` | `task_bb37976fda08` | `ctx_2b0bb31d2f7c` | `docs-spec-node-fix-brief.md` | 완료·검증통과·커밋(5b890cf) — naver=intervention·gu=organic 정본 확인 |
+| research | `term_0b5d9a19-47c2-470a-bca5-529f70b859ef` | `task_ac360b43ab2d` | `ctx_120f994d4466` | `research-codex-mcp-brief.md` | 완료 — `research-codex-mcp-report.md` 506줄. WORK-002·003 브리프에 §5(적용 체크리스트)·함정 2건(approval_mode·features.apps=false)·§5.6(착수 전 5건) 반영할 것 |
+| docs | `term_b25f6462-b5e3-41fe-aa61-ad32e81ba66a` | `task_e4d9b6098dd1` | `ctx_7f38b61be87e` | `docs-spec004-and-revisions-brief.md` | 완료 — SPEC-004 draft + 4건 ready, WP 5건까지 완료·푸시(f40bfcf) |
+| reviewer | `term_0b5d9a19-47c2-470a-bca5-529f70b859ef` | `task_0fc1c83a9e8f` | `ctx_86bdf5fc0f1d` | `review-design-feasibility-brief.md` | 완료 — 리포트 `review-design-feasibility-report.md`, 전 페이지 FEASIBLE-WITH-CHANGES |
+| docs | (같음) | `task_ca52bf6b772c` | `ctx_371d84bbfab6` | `docs-specs-docs-brief.md` | 완료·검증통과 — 제안 21건 전건 사용자 확정(4건 문답: 그래프 패널 제거·Pretendard·정량추정 제거·월 View) |
 | docs | (같음) | `task_65fb3666d260` | `ctx_3e15c3c45ee1` | `docs-dec002-up-fix-brief.md` | 완료·PR#32 포함 |
 | docs | (같음) | `task_713063497cfc` | `ctx_7ed01caa356c` | `docs-decisions-docs-brief.md` | 완료·검증통과·사용자 승인 |
 | docs | (같음) | `task_87f39fa33d40` | `ctx_fccf1f154451` | `docs-baseline-docs-brief.md` | 완료·검증통과·사용자 승인 |
