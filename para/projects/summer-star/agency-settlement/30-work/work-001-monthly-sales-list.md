@@ -1,15 +1,15 @@
 ---
 type: work
 id: WORK-001
-title: "월별 매출 리스트 — 새 레포 agency-settlement · back(KOS 조회 전용 · 조인) → front(cc-prototype 디자인 복사) → 운영 KOS 10월 실물 조회 1회 · 2판(저장 · 증분 · 에이전트별 · 엑셀 — SPEC-001 0.3.0) · 3판(최종 결제만 — SPEC-001 0.4.3 · 코드 PR #1)"
+title: "월별 매출 리스트 — 새 레포 agency-settlement · back(KOS 조회 전용 · 조인) → front(cc-prototype 디자인 복사) → 운영 KOS 10월 실물 조회 1회 · 2판(저장 · 증분 · 에이전트별 · 엑셀 — SPEC-001 0.3.0) · 3판(최종 결제만 — SPEC-001 0.4.3 · 코드 PR #1) · 4판(유입 채널 · 수수료율 · KOS 상품 · PostgreSQL · PDF · 시안 v3 반응형 — SPEC-001 0.5.2)"
 status: draft
 product: agency-settlement
 feature: monthly-sales
 work_type: feature
 owner: kknaks
-progress: 100
+progress: 0
 created_at: 2026-10-29
-updated_at: 2026-10-29
+updated_at: 2026-11-02
 tags:
   - product/agency-settlement
   - feature/monthly-sales
@@ -33,19 +33,21 @@ sources:
   - "orchestration/work/agency-settlement/review-code-r1-report.md · backend-fix-1-instructions.md (code r1 · 수정 1판)"
   - "orchestration/work/agency-settlement/design-upload/Ceramique 월별 매출 v1.dc.html · v2.dc.html · design-report.md · design-v2-report.md (시안)"
   - "cc-prototype procedure/ main(읽기만 — back app/kos/client.py · config.py · main.py · front 디자인 파일)"
+  - "orchestration/work/agency-settlement/_RESUME.md §2 — 2026-11-02 줄(피드백 · 수수료율 · PG · 백엔드 병렬 · 시안 v3 채택 · 사용자 답) · feedback-2026-11-02.md · planner-v5-add-design.md · design-v3-report.md · design-upload/Ceramique 월별 매출 v3.dc.html (4판)"
 ---
 
 # 월별 매출 리스트 — 빌드 계획
 
-계약은 **SPEC-001 0.4.3**(전부) — 이 문서는 빌드 계획만 적고 계약을 다시 쓰지 않는다. 결정 = DEC-001(D-01 ~ D-18).
+계약은 **SPEC-001 0.5.2**(전부 · 4판 · 1 ~ 3판은 그때 판) — 이 문서는 빌드 계획만 적고 계약을 다시 쓰지 않는다. 결정 = DEC-001(D-01 ~ D-23).
 
 - **1판**(WP-BE · WP-FE · WP-REVIEW · WP-LIVE) = SPEC 0.2.1 — 구현 · 운영 10월 조회 성공(_RESUME §5)
 - **2판**(WP-BE2 · WP-FE2 · WP-REVIEW2 · WP-LIVE2) = SPEC 0.3.1(0.3.0 + doc r3 수정)
 - **3판**(WP-BE3 · WP-FE3 · WP-REVIEW3 · WP-LIVE3) = SPEC 0.4.3(0.4.0 + doc r5 · r6 수정 + 구현 뒤 동기) — **D-18 최종 결제만**(머리 실결제 · 품목 = 최종 결제 · 취소 · 전액 환불은 숫자만). 2판 위에 얹는다(아래 「3판」 — 2판과 다르면 3판이 이긴다) — 저장 · 증분 · 에이전트별 · 엑셀 · 시안 v1 · v2 적용 · code r1 SPEC 정리(아래 「2판」)
+- **4판**(WP-BE4 · WP-MIG · WP-FE4 · WP-REVIEW4 · WP-LIVE4) = SPEC 0.5.2(0.5.0 + doc r7 수정 + 사용자 화면 수정 2차 · 상품 id 키 동기) — 유입 채널 일반화 · 9월 ⚠ · KOS 상품 · 수수료율 · PostgreSQL(로컬 docker) · PDF · zip · **화면 = 시안 v3**(반응형 · 설정 · 결산 표). 3판 위에 얹는다(아래 「4판」 — 3판과 다르면 4판이 이긴다)
 
 ## Meta
 
-- Covers spec: SPEC-001 0.4.3(1판 = 0.2.1 · 2판 = 0.3.1)
+- Covers spec: SPEC-001 0.5.2(1판 = 0.2.1 · 2판 = 0.3.1 · 3판 = 0.4.3)
 - 코드 레포: **`kknaksss/agency-settlement`**(private · 로컬 `/Users/kknaks/git/toy_pr2/agency-settlement` · 1판 코드 있음 — 워크트리 `/Users/kknaks/orca/workspaces/agency-settlement/agency-settlement`) — 범위 **`back/**` · `front/**` · `README.md`**. cc-prototype 레포는 읽기만(디자인 · KOS 클라이언트 복사 원본 — 그 레포엔 아무것도 쓰지 않는다) · R§2 별도 프로젝트 줄 · D1-08
 - base: 코드 레포 `kknaksss/agency-settlement` `main` · 워크트리 · 브랜치는 코디가 정한다
 - **코드 PR**: https://github.com/kknaksss/agency-settlement/pull/1 (커밋 `2b299dc` — 1 · 2 · 3판 전부 · SPEC 0.4.2 구현 + code r3 수정 1 · 2 · SPEC 0.4.3 은 이 코드에 맞춘 동기)
@@ -180,4 +182,59 @@ WP-FE2(시안 v2 · 가짜 응답 먼저 ┘
 - 3판 저장 표 변경은 **`month_purchases` 칸 두 개 더하기뿐**(schema 2 · `ADD COLUMN` · KOS 0) — 2판 저장본(9월 · 10월)을 지우지 않는다. 9월(`closed`)은 KOS 를 다시 부르지 않는다. 10월(`current`)은 증분 한 번으로 같은 달 환불 · 재결제를 맞춘다. 확정 달 품목 금액은 받은 때 남은 금액(D-13)
 - LIVE3 의 수납 id · 금액 · 이름은 레포 · 리포트에 적지 않는다(꼴 · 같음/다름 · 수만)
 - 사용자 답 대기: OQ-132(합 기준 = 품목 실결제 합 + 앞 달 결제 취소 — 코디 결정 · 추천안 통보 · 답이 다르면 §6.9 · 엑셀 행 · #52 · #57 · L24 가 바뀐다) · 코디 몫: OQ-136(시안 v3) · planner 기본값: OQ-137(상태 경계)
+
+## 4판 — SPEC-001 0.5.2 (유입 채널 · 수수료율 · KOS 상품 · PostgreSQL · PDF · 시안 v3)
+
+근거: R§2 11-02 줄(피드백 묶음 · 수수료율 상품 단위 · PG · 백엔드 병렬 · 시안 v3 채택 · 사용자 답 — 앞 달 결제 취소 수수료 되돌리지 않음 · 로컬에서 다 개발) · `feedback-2026-11-02.md` · 시안 v3.
+
+### 계약 고정점 (4판 — BE4 ∥ FE4 가 이것만 맞추면 따로 간다)
+
+| 고정점 | 값 | SPEC-001 |
+|---|---|---|
+| 응답 이름 | `agency` · `agencies` · `agencyTotal` **없앰** → `purchases[].channel`(null 없음 · 빈 값 `(없음)`) · `channels[]`(`name` · `rawNames` · `agency` · `customers` · `payingCustomers` · `purchases` · `netTotal` · `feeTotal` · `unsetItems` · 저장된 모든 달 · 차례 §6.8) · `channelTotal` | §4.2 · §6.8 |
+| 더한 필드 | `clinicName`(0.5.1 · 지점 이름 한 곳) · `fees.exists`(0.5.1) · 수납 `priorCancels` · `priorCancelCount` · `mismatch` · `feeTotal` · `priorFee`(늘 null) · 줄 `productKey{kind,name}` · `rateBp`(만분율 · null = 미설정) · `fee` · 달 `fees{rateMonth, locked, lockedAt, copiedFrom}` · `counts.mismatchPurchases` · `counts.unsetItems` | §4.2 · §6.4 · §6.10 |
+| ⚠ | `mismatch` 만(front 다시 계산 0) = itemsHere 이고 `paymentsNet − priorCancels ≠ itemsTotal` | §6.4 |
+| 경로 10 | 3판 셋(`sales.xlsx` 는 `view=monthly\|channel` · `channel=`) + `POST /api/products/refresh` · `GET` · `PUT /api/fee-rates` · `POST /api/fee-rates/lock` · `/unlock` · `GET /api/statements.pdf?month&channel` · `.zip?month` — 본문 · 응답 §4.8 ~ §4.10 · 오류 코드 §4.3(`month_locked`(잠긴 달 `refresh=full` 포함) · `cannot_lock` · `confirm_required` · `bad_rate` · `bad_origin` · `bad_content_type` · `nothing_to_export`) | §4.1 · §4.3 |
+| 쓰기 요청 | `Content-Type: application/json` · 같은 출처 · CORS GET · POST · PUT | §7.4 |
+| 수수료 | 줄 = `(amount × rateBp + 5000) // 10000`(정수만) · 품목 달 스냅샷 · 미설정 0 · 「앞 달 결제 취소」 = 「—」(null · 양수도 · OQ-153) · **스냅샷 = 쓰기 API 만 만듦**(설정 첫 열기 `PUT rates: []` · [저장] · lock — GET 은 쓰기 0 · 없으면 미설정) · 잠금 = 사람이 lock(지난 달 · **매출 `closed`** 만) · **잠긴 달 `refresh=full` = 409 `month_locked`(KOS 0)** · unlock = `confirm:true` | §4.5 J0 · §6.10 · §4.8 |
+| 상품 키 | **0.5.2 동기 — KOS 상품 id**(⑤ 옵션 이름 짝 → 옵션 id → ⑦ 상품 id · 목록 밖 = ⑤ 상품 이름 하나 맞음 → 상품 id · 그래도 없으면 `option:` · 못 짝지음 · 기타 · 선불 = `name:`) · `key` · `by` · `nameKeyedItems` · PUT `rates[{key, rateBp}]` — 구현 BE4 추가 · 수정 1 이 정본 | §5.5 |
+| 0원 · 묶음(0.5.2) | 0원 = 보통 줄(② 차례 · 흐리게만) · 묶음 옵션 = 한 줄 + `lines[].composition{items[{name, count, unitType, unitValue}]}`(null 가능) · 금액 · 수수료는 묶음 줄만 · 서비스 표시 0(OQ-154) | §3.3 · §6.11 |
+| 잠금(0.5.1) | 달 잠금 = 프로세스 안 `asyncio.Lock` 먼저(기다리는 쪽은 연결 안 쥠) → 세션 advisory lock · 받기 쓰기는 그 연결에서 | §4.4.3 |
+| 저장 | PostgreSQL(로컬 docker · `DATABASE_URL` · alembic `0001` = 3판 표 6 + 새 표 7) · 잠금 = advisory lock · SQLite 는 옮기기 명령만 읽음 | §4.4 · §4.4.1 ~ §4.4.4 |
+| 화면 | 시안 v3 — 메뉴 「월별 조회 \| 유입채널 \| 설정」 · `/` · `/channel` · `/settings` · 반응형 ≥1280 / 768 ~ 1279 / <768 · 엑셀 버튼 없앰 → PDF · zip | §3.0 |
+| 그대로 | 3판 판정 · 잇기 · 증분 · 숨김 · 반영 판정 · 합 기준(§6.2 · §5.4 · §4.5 · §6.9) · 운영 키 · 조회만 | — |
+
+### Work Packages (4판)
+
+| WP | 내용 | 계약 | 워커 | 대상 파일(범위) | 완료 조건 | 검증 명령(부분) | 상태 |
+|---|---|---|---|---|---|---|---|
+| **WP-BE4** | **back 0.5.0** — ① 채널(§6.8 · 결산 셈 · 저장된 모든 달 목록 · 차례) · ② ⚠ `priorCancels` · `mismatch`(§6.4) · ③ KOS ⑥ ⑦ · 허용 경로 7 · 상품 받기(§4.9) · ④ 수수료율 스냅샷 · lock · unlock · 기록 · 수수료 계산(§6.10 · `service/fees.py`) · 설정 응답(§4.8) · ⑤ PG(§4.4 — `repository/store.py` psycopg · advisory lock · alembic `0001` · `compose.db.yaml` · `.env.example` 이름 · 시험 = testcontainers) · ⑥ PDF · zip(§4.10 · reportlab · Pretendard) · ⑦ 쓰기 막기(§7.4) · 엑셀 `view=channel`(§4.7) · 시험 #1 ~ #67 을 PG · channel 로 옮김 + #68 ~ #92 | SPEC-001 §4 · §5.1 ⑥ ⑦ · §5.5 · §6.4 · §6.8 · §6.10 · §7 · §9.1 · §10 | backend | `back/**` · `README.md` | §9.1 1 ~ 92 · `agency` grep 0(`back/app`) · KOS 실물 호출 0 · 운영 키 사용 0 · `migrate_sqlite` 는 가짜 SQLite 로만(#84 — 실물 파일은 WP-MIG) | `cd back && docker compose -f compose.db.yaml up -d && uv run alembic upgrade head && uv run ruff check . && uv run pytest -q` | 대기 |
+| **WP-FE4** | **front = 시안 v3** — `lib/types.ts` 0.5.0 · 메뉴 셋 · `/channel`(결산 표 · 탭 · `/agency` 넘김) · `/settings`(달 · 머리 판 · 찾기 · 카테고리 · 미설정만 · 일괄 · 저장 · 되돌리기 · 확정 · 고치기 확인 · 상품 다시 받기 · 떠날 때 확인) · 금액 칸 셋 · 머리 수수료 · 「앞 달 결제 취소 n」 회색 · ⚠ = `mismatch` · PDF 미리보기 · zip 확인 창 · 반응형 세 갈래 · 엑셀 버튼 없앰 · 테마 토큰(`ms-warn` 등) | SPEC-001 §3.0 · §4.2 · §4.8 · §9.3 0.5.0 | frontend | `front/**` | §9.3 0.5.0 스크린샷(가짜 back · 세 폭) · tsc · lint · build 0 · 가로 페이지 스크롤 0 | `cd front && npx tsc --noEmit && npm run lint && npm run build` | 대기 |
+| **WP-BE5**(0.5.2) | **묶음 구성 · 0원 · PDF 줄 맞춤** — ⑤ `optionType` · `compositions`(시술 이름 · 횟수 · 단위만) 꺼내 저장(alembic `0002` · `purchase_option_compositions`) · 응답 `lines[].composition` · 0원 줄 ② 차례(옮기기 코드 지움) · PDF: 0원 줄 넣음 · 묶음 줄 아래 「구성: …」 · 상자 · 요약 · 표 좌우 끝 · 테두리 · 기간 한 줄 · 단위 이름표(`labels.py`) · `tools/backfill_compositions.py`(⑤ 만 · 돈 무관) · 시험 #51 · #93 ~ #97 | SPEC-001 §3.3 · §4.4.1 · §4.4.2 · §4.10 · §6.11 · §7.3 | backend | `back/**` | §9.1 #51 · #93 ~ #97 + 앞 시험 그대로 · 필드 더하기만(옛 필드 · 뜻 그대로) · KOS 실물 0 | `cd back && uv run alembic upgrade head && uv run ruff check . && uv run pytest -q` | 대기 |
+| **WP-FE5**(0.5.2) | **0원 · 묶음 화면** — `types.ts` `composition` · 0원 줄 「ㄴ」 · 들여쓰기 · 옮기기 지움(② 차례 · 흐리게만) · 묶음 줄 아래 회색 「구성: …」(데스크톱 · 태블릿 · 폰 카드) · 단위 이름표(`labels.ts` = back) · PDF 미리보기도 같은 줄 맞춤 · 0원 · 구성 | SPEC-001 §3.0.2 · §3.0.4 · §6.11 | frontend | `front/**` | 가짜 응답(묶음 줄 · 0원 줄 섞인 수납) 스크린샷 1600 · 1024 · 390 · tsc · lint · build 0 | `cd front && npx tsc --noEmit && npm run lint && npm run build` | 대기 |
+| **WP-MIG** | **코디: SQLite → PG 옮기기 · 실물 대조** — §9.6 M1(3판 back 으로 9 · 10월 숫자 · 10월 J4 증분 1회는 사용자에게 먼저 알림) → M2(로컬 docker PG · alembic · `--dry-run` → 실행) → M3(새 back 9 · 10월 숫자 같음 · KOS 0) → M4(재시작 · 두 번째 옮기기 멈춤 · 원본 sha256) → M5(사용자 확인 뒤 SQLite 지움) | SPEC-001 §4.4.4 · §9.6 | 코디 · 사용자 | `back/data/`(gitignore) · 로컬 docker volume | M1 ~ M4 같음 · M5 사용자 확인 | `uv run python -m app.tools.migrate_sqlite --sqlite data/sales.sqlite3 --dry-run` | 대기(BE4 뒤) |
+| **WP-REVIEW4** | reviewer: SPEC 0.5.0 ↔ 코드 — 수수료 반올림 · 스냅샷 복사 · 잠금(사람만 · 지난 달만 · 풀기 확인) · 기록 지움 0 · 채널 이름 · 합쳐짐 · 차례 · `mismatch` · 「앞 달 결제 취소」 수수료 null · PG 잠금(인스턴스 둘) · 앱 계정 DDL 0 · 쓰기 막기(Content-Type · Origin · Host) · 가드 7 · 상품 표에 설명 · 가격 0 · PDF 한글 · 0원 줄 없음 · zip 손님 0 채널 뺌 · 로그 · 응답에 접속 문자열 0 · front 시안 v3 대조(세 폭) · `agency` 잔재 0 | 4판 | reviewer | `back/**` · `front/**` | PASS | — | 대기(BE4 · FE4 뒤) |
+| **WP-LIVE4** | **코디: 운영 실물** — MIG 뒤 새 back · front(3800 다시 build) · §9.5 L25 ~ L31(양수 「앞 달 결제 취소」 수 L31 포함 · 9월 ⚠ 0 · 채널 수 · 상품 받기 1회 · 수수료 한 바퀴 · zip · 세 폭 사용자 확인) | SPEC-001 §9.5 | 코디 · 사용자 | 로컬 | L25 ~ L31 · 사용자 확인 | `cd back && uv run pytest -q` · `cd front && npm run build` | 대기 |
+
+### 병렬 (4판)
+
+```text
+SPEC 0.5.0 ──┬── WP-BE4 (back · 가짜 KOS · 시험 PG) ──┬── WP-MIG (코디) ──┐
+             └── WP-FE4 (front · 가짜 back 0.5.0)  ───┴── WP-REVIEW4 ────┴── WP-LIVE4
+```
+
+- **BE4 ∥ FE4** — 둘이 만나는 곳은 위 「계약 고정점」(응답 · 경로 · 오류 코드 · 쓰기 헤더)뿐. FE4 는 가짜 back(§4.2 · §4.8 예시 꼴 · 3판 `fe3-fake-back.mjs` 를 0.5.0 으로)으로 화면을 끝내고, 붙여 보기는 REVIEW4 앞에 코디가 한다
+- **8800 · 3800 바꾸기는 BE4 · FE4 · MIG 가 다 끝난 뒤 한 번에**(3판 front 는 0.5.0 응답을 못 읽는다 · 3판 back 은 SQLite 를 쓴다 — 중간에 한쪽만 바꾸면 사용자 화면이 깨진다). 그때까지 사용자 화면은 3판(코드 PR #1) 그대로
+- MIG 는 BE4 의 `migrate_sqlite` · alembic 이 있어야 한다 · M1(3판 back 숫자)은 BE4 와 상관없이 먼저 할 수 있다
+
+### 주의 (4판)
+
+- **로컬만**(R§2 11-02 로컬 줄) — PG = 이 맥 docker(`127.0.0.1`) · 서버 PG · 로그인 · 배포 0. `DATABASE_URL` · 비밀번호는 `back/.env`(gitignore) · `.env.example` 은 이름만. docker volume 은 운영 개인정보 — 이 맥 밖 0
+- **운영 KOS 는 코디만**(WP-MIG M1 의 10월 J4 증분 1회 · WP-LIVE4 상품 받기 1회 · 필요하면 증분) — 그때마다 사용자에게 알린다 · 워커는 가짜 transport 만 · `/commands/` 0(토큰 교환 빼고)
+- **쓰기 API 첫 등장** — §7.4 시험(#85) 없이 끝내지 않는다
+- **상품 키는 이름**(OQ-138 · D-20 — 코디 채택 · ② 에 id 가 없다) · 같은 이름 상품 둘은 화면 배지 · L27 수로 판단
+- **새 back(PG)을 옮기기(M2) 전에 띄우지 않는다** — 빈 PG 에서 9 · 10월을 열면 J2 전체 받기로 KOS 를 부르고 옮기기도 멈춘다
+- **0.5.2**: BE5 ∥ FE5(고정점 = 위 「0원 · 묶음」 줄) · 저장된 달 구성 채우기(`backfill_compositions` · ⑤ KOS 호출)는 **코디가 사용자에게 알리고** 실행(L32) · 서비스 표시는 병원 담당자 답 뒤(OQ-154)
+- 남은 OQ: OQ-154(서비스 · 병원 담당자) · OQ-155(구성 채우기 · 코디) · OQ-139(채널 노출 · L27) · OQ-153(양수 「앞 달 결제 취소」 수수료 · 코디 · L31) · OQ-132(합 기준 · 사용자 답 대기 — 3판부터) · 닫힘/코디 판단: OQ-135(0.5.2 뒤집음) · OQ-138(id 키) · OQ-145 · OQ-147(MIG 통과 뒤 지움) · OQ-148 · OQ-149(API 남김 · 버튼 없앰) · 나머지 planner 기본값 · 시안 값
+- LIVE4 · MIG 결과 보고 = 수 · 같음/다름만(상품 · 채널 · 손님 이름 · 금액 · id 는 레포 밖)
 
