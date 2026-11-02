@@ -158,6 +158,9 @@ services:
       context: .
       dockerfile: Dockerfile.worker
     container_name: kknaks-ontology-worker
+    # ⚠ profile 로 묶어 기본 `up` 에서 뺀다 — deploy.sh 의 `docker compose up -d --build` 가
+    #   ontology `.env`·DB 볼륨 없는 서버에서 back 배포 전체를 깨뜨리지 않게. 이름을 지정하면 뜬다.
+    profiles: ["ontology"]
     environment:
       REDIS_URL: redis://redis:6379/0
       AI_NAMESPACE: ontology_demo         # ONTOLOGY_AI_NAMESPACE 와 같은 값
@@ -199,6 +202,9 @@ services:
     build:
       context: ../ontology-agent
     container_name: kknaks-ontology-mcp
+    # ⚠ profile 로 묶어 기본 `up` 에서 뺀다 — deploy.sh 의 `docker compose up -d --build` 가
+    #   ontology `.env`·DB 볼륨 없는 서버에서 back 배포 전체를 깨뜨리지 않게. 이름을 지정하면 뜬다.
+    profiles: ["ontology"]
     command: ["uv", "run", "--no-sync", "uvicorn", "tools.server:asgi",
               "--host", "0.0.0.0", "--port", "28081"]
     env_file: ../ontology-agent/.env
@@ -227,6 +233,9 @@ services:
     build:
       context: ../ontology-agent
     container_name: kknaks-ontology-api
+    # ⚠ profile 로 묶어 기본 `up` 에서 뺀다 — deploy.sh 의 `docker compose up -d --build` 가
+    #   ontology `.env`·DB 볼륨 없는 서버에서 back 배포 전체를 깨뜨리지 않게. 이름을 지정하면 뜬다.
+    profiles: ["ontology"]
     env_file: ../ontology-agent/.env
     environment:
       ONTOLOGY_DB_PATH: /data/db/ontology_demo.db
