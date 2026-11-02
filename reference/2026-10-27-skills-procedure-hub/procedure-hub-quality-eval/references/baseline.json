@@ -1,0 +1,75 @@
+{
+ "note": "허브 품질 측정 고정 기준 — 문항 · 정답 · 채점 식이 안 바뀌었는지 볼 때 대는 값. 바꾸는 것은 사용자 결정(채점 식을 일부러 바꿈)이 있을 때만 — check_quality.py --write-baseline. 경로는 --work 기준",
+ "decided_by": "사용자 10-30 품질 목표(_RESUME §2 「품질 목표(사용자 승인)」) · quality-fix 브리프 「문항 세트 · 정답 · 채점 기준을 고쳐서 목표를 맞추지 말 것」",
+ "fixed_set": "quality-v1/quality-eval-set.json",
+ "rule_fields": [
+  "answer.sub_families",
+  "answer.site_words"
+ ],
+ "rule_fields_basis": "정답 칸 중 실버 규칙으로 계산되는 칸 — sub_families = 원천 제품 이름 → 2단계 하위(quality-eval.py source_subs) · site_words = 원천 문구 → 3단계 부위 이름(sites_in_text). 2단계 · 3단계 결정이 바뀌면 같이 바뀐다(10-30 다파장 KTP 로 7문항). 오류가 아니라 무엇이 바뀌었는지 보고",
+ "goal_excluded": [
+  "Q042",
+  "Q075",
+  "Q083",
+  "Q084",
+  "Q102"
+ ],
+ "goal_excluded_basis": "1차 의료진 질문 5(Q042 · Q075 · Q083 · Q084 · Q102 — Q102 는 정답 미정과 같은 문항) — quality-eval.py 가 quality-v1 리포트에서 읽는 고정 목록",
+ "scoring": {
+  "build_eval_set": "55b1d12fd377",
+  "source_subs": "eadac9433070",
+  "sites_in_text": "acef31c947ca",
+  "fam_hit": "13a1cd527878",
+  "judge_target": "19b16366497d",
+  "goal_stats": "b9b4f260b77f",
+  "goal_pass": "288a5b5cf69e",
+  "GOALS": "198fcd88545e",
+  "pct": "cc083ab0e32d",
+  "SEED": "8a0596df82d7",
+  "PER_KIND": "e94deae7b7df"
+ },
+ "scoring_basis": "문항 · 정답을 만드는 규칙(build_eval_set · source_subs · sites_in_text) · 채점(fam_hit · judge_target) · 목표 판정(goal_stats · goal_pass · GOALS) · 표본 시드 — 바뀌면 오류",
+ "path": {
+  "SL": "f8cb4059710e",
+  "norm": "b59e409aee3a",
+  "resolve": "10633fc55d70",
+  "prefix_groups": "3c31d46101db",
+  "recommend": "86b5654b8ef6",
+  "edge_root": "1286f8304169",
+  "run_m1": "0144a4ce7cf0",
+  "run_m2": "493aba789cd9",
+  "run_m3": "75a110f9c94d",
+  "run_m4": "de669b5f37fb",
+  "pair_claims": "1ef507b4e1e6",
+  "pair_summary": "aca74c3f3628",
+  "cond_stated": "c558717b6318",
+  "resolve_procedure": "520454c25e6d",
+  "units_of": "d5d2b8ec44f4",
+  "unit_safety": "94d5918a9d43",
+  "silver_corpus": "429743a64dde",
+  "edge_rows": "00abdf4f1e5b",
+  "check_edge": "07f2216f8488",
+  "_move_pairs": "f3737f5898ea",
+  "moved_ok": "e917ec471a99",
+  "word_list": "3c6c10256d44"
+ },
+ "path_basis": "측정 경로(허브 탐색 흉내 · 사전 찾기 · 표본 · 안전 대조 · 계열 옮김 표) — 실버 · 시맨틱 · 골드 규칙을 따라 바뀔 수 있음(2차 resolve_rules · R28 · R32 · by_direction · 3차 옮김 표). 바뀌면 경고 · 사람이 diff 와 「1차 실버 × 이 판 측정」 대조(quality-eval.py --inputs quality-v1/inputs --out <폴더>)로 측정 변경만으로 지표가 움직이지 않았는지 확인",
+ "versions": [
+  {
+   "label": "v1",
+   "report": "quality-v1/quality-report.json",
+   "goal_from_current_v1_compare": true,
+   "note": "1차(10-30 12:20) — 측정만 · 원인 14 · 문항 · 스크립트 · 입력 실버 보관. 목표는 1차 정의 전이라 지금 리포트 v1_compare 로 셈"
+  },
+  {
+   "label": "v2",
+   "report": "quality-v2/inputs/quality-report.json",
+   "note": "2차(10-30 12:58) — 원인 14 고친 뒤 · CC 슬롯(R28) · 입력 실버 · 스크립트 보관"
+  },
+  {
+   "label": "v3",
+   "report": "quality-v3/inputs/quality-report.json",
+   "note": "3차 보관(10-30 13:17) — 골드 전 정리(옮김 표 · 다파장 · 덮어쓰기 · 조합 구성) 뒤 · 다파장 ⑤ 넓힘 전(보조 KTP 10행 · 정답 하위 바뀐 문항 5)"
+  }
+ ]
+}

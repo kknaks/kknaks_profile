@@ -3,7 +3,7 @@
 하는 일
 1. step8-apply.py 를 임시 폴더로 다시 돌려 원장과 바이트 비교(원장 낡음 · 결정론)
 2. 원장 불변식 검사(errors) — 사람 확인 게이트 상태 없음(U8-1) · 간격 숫자 칸(first a|b · days 하한 ≤ 상한 · 원문 간격 낱말마다 사전 갈래) ·
-   「같은 날 불가」 = same_day false · 「대체(택 1)」 = 간격 비움 · 끝점 단위 시술 = 5단계 키 · 엣지 ↔ 주장 · 충돌 표시 ↔ 충돌 표 ·
+   「같은 날 불가」 = same_day false · 「대체(택 1)」 = 간격 비움 · 끝점 단위 시술 = 5단계 키 · 엣지 ↔ 주장 · 충돌 하나로(10-30 — 「충돌」 표시 없음 · resolved 필드마다 하나 · 순서 반대만 의료진 · 등급 더 엄격 · 대기 처분) ·
    피함 엣지 출발 = 7단계 고민 노드 · 확인 조건 id = 결정 사전 · 원천 질문 걸린 행 존재 · summary 재셈 · open 0
 3. --selftest: 원장 사본에 틀린 값을 넣어(뒤집은 days · 게이트 상태 · 엣지 빠진 주장 · 없는 고민 · 같은 날 불가인데 true · 사전 밖 간격 낱말 ·
    없는 단위 시술 · summary) 각각 errors 로 잡히는지 본다
@@ -114,15 +114,44 @@ def validate(rel, dec, s5, s7, A):
     for c in rel['claims']:
         if any(ekeys(c['a'])) and any(ekeys(c['b'])) and c['id'] not in in_edge:
             err('끝점이 풀린 주장인데 엣지에 없음', claim=c['id'])
-    conf_ids = set()
+    # 충돌 하나로(10-30 · conflict_resolution) — 「충돌」 표시 없음 · 앱이 읽는 resolved 는 필드마다 하나 · 진짜 반대만 의료진
+    cr = dec.get('conflict_resolution') or {}
+    rev_ok = set((cr.get('review_status') or {}).values())
+    for c in rel['claims'] + rel['edges']:
+        if c.get('review_status') == 'conflict' or (rev_ok and c.get('review_status') not in rev_ok):
+            err('충돌 표시가 남음(10-30 — ok · conservative · staff_check 만)', id=c['id'], review_status=c.get('review_status'))
+    owners = [(e['id'], e.get('resolved')) for e in rel['edges']] + [(p_['id'], p_.get('resolved')) for p_ in rel.get('resolved_pairs') or []]
+    for oid, r in owners:
+        if not isinstance(r, dict):
+            err('엣지에 resolved 없음', id=oid)
+            continue
+        for f in ('first', 'same_day', 'days'):
+            if r.get(f) is not None and any(o['field'] == f for o in r.get('options') or []):
+                err('resolved 두 값 — 겉 칸과 하위 조건 옵션이 같이 있음', id=oid, field=f)
+        if 'R5' in (r.get('rules') or []) and r.get('field_status', {}).get('first') == '의료진 확인' and r.get('first') is not None:
+            err('순서 반대(의료진 확인)인데 resolved.first 단정', id=oid)
+        bd = r.get('by_direction') or {}
+        if r.get('same_day') is not None and len({v['same_day'] for v in bd.values() if v['same_day'] is not None}) > 1:
+            err('방향별 같은 날 값이 갈리는데 겉 same_day 채움(by_direction)', id=oid)
+    qrefs = {r_ for q in rel['origin_questions'] for r_ in q['refs']}
     for x in rel['conflicts']:
-        for side in x['sides'].values():
-            conf_ids |= set(side if isinstance(side, list) else [])
-        if x['type'] == '간격 수치':
-            conf_ids |= set(x['sides'])
-    for c in rel['claims']:
-        if (c['id'] in conf_ids) != (c.get('review_status') == 'conflict'):
-            err('충돌 표시 ↔ 충돌 표 어긋남', claim=c['id'], review_status=c.get('review_status'))
+        res = x.get('resolution')
+        if not res:
+            err('충돌 처분 없음', conflict=x['id'])
+            continue
+        if (res['status'] == '의료진 확인') != (x['id'] in qrefs):
+            err('진짜 반대 ↔ 원천 질문 어긋남(의료진 확인만 질문)', conflict=x['id'], status=res['status'])
+    go = cr.get('grade_order') or []
+    for x in rel['conditions']['grade_conflicts']:
+        res = x.get('resolution')
+        want = min((g for g in x['grades'] if g in go), key=go.index) if go else None
+        if not res or (want and go.index(res['grade3']) > go.index(want)):
+            err('등급 충돌인데 더 엄격한 쪽이 아님(R2)', id=x['id'], got=(res or {}).get('grade3'), want=want)
+    for x in rel['conditions']['wait_conflicts']:
+        if not x.get('resolution'):
+            err('대기 기간 충돌 처분 없음(R6)', id=x['id'])
+    if (rel['summary'].get('conflict_resolution') or {}).get('two_value_unit_pairs', 0):
+        err('두 값 나가는 단위 시술 쌍 남음', n=rel['summary']['conflict_resolution']['two_value_unit_pairs'])
     for a in rel['avoid_edges']:
         for p in scope_leaks(a['to'], a.get('qualifier')):
             err('한정어를 떼고 묶음으로 연 끝점이 기본 적용(scope_rule)', avoid=a['id'], text=p)
@@ -139,7 +168,28 @@ def validate(rel, dec, s5, s7, A):
             err('사람 조건인데 조건 없음', claim=k['id'])
     known = set(claims) | {x['id'] for x in rel['conflicts']} | {x['id'] for x in rel['conditions']['claims']} | \
         {x['id'] for x in rel['conditions']['grade_conflicts']} | {x['id'] for x in rel['conditions']['wait_conflicts']} | \
-        {x['id'] for x in rel['evidence']['guides']} | {x['id'] for x in rel['avoid_edges']}
+        {x['id'] for x in rel['evidence']['guides']} | {x['id'] for x in rel['avoid_edges']} | {x['id'] for x in rel['safety'].get('side_effects') or []}
+    # 시맨틱 반영(10-30 · B1 · B3 · B8 · U1 · U2)
+    sa = dec.get('semantic_apply')
+    if sa:
+        for x in rel['safety']['complications']:
+            if x['severity'] is not None and x['severity'] not in sa['complication_severities']:
+                err('합병증 노드에 부작용 등급(B1 — mild 는 부작용)', id=x['id'], severity=x['severity'])
+        for x in rel['safety'].get('side_effects') or []:
+            if x['severity'] is not None and x['severity'] not in sa['side_effect_severities']:
+                err('부작용에 합병증 등급(B1)', id=x['id'], severity=x['severity'])
+        for k in rel['conditions']['claims']:
+            if k['kind'].endswith('항목') or not k['kind'].startswith(('사람 조건', '연령대')):
+                err('확인 조건 엣지에 조건 아닌 문장(B8)', claim=k['id'], kind=k['kind'])
+        for e in rel['edges']:
+            for side in 'ab':
+                ep = (e.get('endpoints') or {}).get(side)
+                if ep is None:
+                    err('엣지 끝점 칸 없음(B3)', edge=e['id'])
+                    continue
+                n = len(e[side][6:].split(',')) if e[side].startswith('units:') else len(e[side][7:].split('|')) if e[side].startswith('bundle:') else 1
+                if (n > 1) != (len(ep['candidates']) > 1) or (n > 1 and len(ep['candidates']) != n):
+                    err('끝점 묶음 ↔ candidates[] 어긋남(B3)', edge=e['id'], side=side)
     for q in rel['origin_questions']:
         for r in q['refs']:
             if r not in known:
@@ -147,7 +197,8 @@ def validate(rel, dec, s5, s7, A):
     s = rel['summary']
     for k, n in (('claims', len(rel['claims'])), ('edges', len(rel['edges'])), ('conflicts', len(rel['conflicts'])), ('avoid_edges', len(rel['avoid_edges'])),
                  ('condition_claims', len(rel['conditions']['claims'])), ('open', len(rel['open'])), ('complications', len(rel['safety']['complications'])),
-                 ('site_caution', len(rel['safety']['site_caution']))):
+                 ('site_caution', len(rel['safety']['site_caution'])), ('side_effects', len(rel['safety'].get('side_effects') or [])),
+                 ('not_condition_claims', len(rel['conditions'].get('not_condition') or []))):
         if s.get(k) != n:
             err('summary 불일치', key=k, summary=s.get(k), recount=n)
     return errors
@@ -167,7 +218,19 @@ TAMPER = [
     ('하위 조건 갈리는데 겉 same_day 채움', '하위 조건이 갈리는데 겉 칸을 섞음(by_sub_condition)',
      lambda r: next(c for c in r['claims'] if (c.get('interval') or {}).get('by_sub_condition'))['interval'].update(same_day=True)),
     ('summary 셈 틀림', 'summary 불일치', lambda r: r['summary'].update(claims=r['summary']['claims'] + 1)),
-    ('충돌 표시 지움', '충돌 표시 ↔ 충돌 표 어긋남', lambda r: next(c for c in r['claims'] if c.get('review_status') == 'conflict').update(review_status='ok')),
+    ('옛 충돌 표시 되살림', '충돌 표시가 남음(10-30 — ok · conservative · staff_check 만)', lambda r: r['claims'][0].update(review_status='conflict')),
+    ('순서 반대인데 순서 단정', '순서 반대(의료진 확인)인데 resolved.first 단정',
+     lambda r: next(e for e in r['edges'] if e['resolved']['field_status'].get('first') == '의료진 확인')['resolved'].update(first='a')),
+    ('하위 조건 옵션 있는데 겉 칸 채움', 'resolved 두 값 — 겉 칸과 하위 조건 옵션이 같이 있음',
+     lambda r: next(e for e in r['edges'] if any(o['field'] == 'first' for o in e['resolved']['options']))['resolved'].update(first='b')),
+    ('방향별 갈리는데 겉 same_day', '방향별 같은 날 값이 갈리는데 겉 same_day 채움(by_direction)',
+     lambda r: next(e for e in r['edges'] if len({v['same_day'] for v in (e['resolved'].get('by_direction') or {}).values() if v['same_day'] is not None}) > 1)['resolved'].update(same_day=True)),
+    ('등급 덜 엄격', '등급 충돌인데 더 엄격한 쪽이 아님(R2)', lambda r: next(x for x in r['conditions']['grade_conflicts'] if '금기' in x['grades'])['resolution'].update(grade3='확인만')),
+    ('진짜 반대 질문 지움', '진짜 반대 ↔ 원천 질문 어긋남(의료진 확인만 질문)',
+     lambda r: [q['refs'].clear() for q in r['origin_questions'] if any(x in q['refs'] for x in [c['id'] for c in r['conflicts'] if c['resolution']['status'] == '의료진 확인'])]),
+    ('부작용을 합병증으로', '합병증 노드에 부작용 등급(B1 — mild 는 부작용)', lambda r: r['safety']['complications'].append(dict(r['safety']['side_effects'][0]))),
+    ('상담 문장을 확인 조건 엣지로', '확인 조건 엣지에 조건 아닌 문장(B8)', lambda r: r['conditions']['claims'].append(dict(r['conditions']['not_condition'][0]))),
+    ('끝점 후보 지움', '끝점 묶음 ↔ candidates[] 어긋남(B3)', lambda r: next(e for e in r['edges'] if e['a'].startswith('units:') and ',' in e['a'])['endpoints']['a'].update(candidates=[])),
 ]
 
 

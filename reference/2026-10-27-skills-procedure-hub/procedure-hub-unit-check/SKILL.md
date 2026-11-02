@@ -1,6 +1,6 @@
 ---
 name: procedure-hub-unit-check
-description: 새 시술 메뉴 · 원장 항목 · 시장가 · 제품이 들어오거나 바뀌어 단위 시술(계열 × 부위 × 기법)을 세우거나 잇거나, 원천 질문 답이 왔을 때 Procedure Hub 실버 단위 시술 원장(step5-units)을 갱신한다. 원장 항목 행선지(제품 · 단위 시술 · 6단계 패키지 · 값 …) → 시술이면 전부 단위 시술(계열이 없으면 procedure-hub-family-check 로 계열부터) → 키(J1 안 C — 계열 × [하위 · 성분] × 부위 × 기법) → 부위 기본값 · 해당 없음 · 병변 단위 → 이름 · 동의어 → 붙는 것 순으로 판정하고, 제품 → 단위 시술 상속은 기법 근거(계열 기법 하나 · 계열 근거 · 장비 속성 · 매질이 기법을 정함 · 제품 출처 · 도포 가드)가 있을 때만 잇는다. 결정 파일 한 줄만 고친 뒤 step5-apply.py 로 결정론 반영하고, 끝 조건은 open 0 · 시술인데 단위 시술 없음 0 · 추천 가능 제품인데 단위 시술 0 = 예외 목록뿐. 트리거 예 — 「새 메뉴 단위 시술 세워 줘」「이 시장가 행 어디에 붙여」「새 장비가 어느 단위 시술에 이어져」「step5-apply 가 open 을 냈어」「원천 질문 답 왔어」「성분 확인됐어」「추천 가능한데 단위 시술 0 이래」「step5-units 갱신」「단위 시술 원장 점검」.
+description: 새 시술 메뉴 · 원장 항목 · 시장가 · 제품이 들어오거나 바뀌어 단위 시술(계열 × 부위 × 기법)을 세우거나 잇거나, 원천 질문 답이 왔을 때 Procedure Hub 실버 단위 시술 원장(step5-units)을 갱신한다. 원장 항목 행선지(제품 · 단위 시술 · 6단계 패키지 · 값 …) → 시술이면 전부 단위 시술(계열이 없으면 procedure-hub-family-check 로 계열부터) → 키(J1 안 C — 계열 × [하위 · 성분] × 부위 × 기법) → 부위 기본값 · 해당 없음 · 병변 단위 → 이름 · 동의어 → 붙는 것 순으로 판정하고, 제품 → 단위 시술 상속은 기법 근거(계열 기법 하나 · 계열 근거 · 장비 속성 · 매질이 기법을 정함 · 제품 출처 · 도포 가드)가 있을 때만 잇는다. 원장 extracted 의 안전 · 사후관리 원문은 붙는 행에 그대로(source_text) 싣고, 그 안전 값을 제품 × 계열 · 단위 시술 부작용 덮어쓰기 값(side_effect_override)으로 붙는 수준에 싣는다. 결정 파일 한 줄만 고친 뒤 step5-apply.py 로 결정론 반영하고, 끝 조건은 open 0 · 시술인데 단위 시술 없음 0 · 추천 가능 제품인데 단위 시술 0 = 예외 목록뿐. 트리거 예 — 「새 메뉴 단위 시술 세워 줘」「이 시장가 행 어디에 붙여」「새 장비가 어느 단위 시술에 이어져」「step5-apply 가 open 을 냈어」「원천 질문 답 왔어」「성분 확인됐어」「추천 가능한데 단위 시술 0 이래」「step5-units 갱신」「단위 시술 원장 점검」.
 ---
 
 # Procedure Hub 단위 시술 판정 · 실버 단위 시술 원장 갱신
@@ -10,10 +10,10 @@ description: 새 시술 메뉴 · 원장 항목 · 시장가 · 제품이 들어
 7단계(고민 · 목적 · 추천 조합 — `procedure-hub-concern-check`)가 open 「단위 시술 없는 이름」 · 「제모 부위 단위 시술 없음」을 내면 그 이름의 키를 여기서 세우고(7단계에서 만들지 않는다), 반영 뒤 7단계는 `step7-apply.py` 재실행만 한다.
 
 - 정본 원장: `orchestration/work/phub-recommend/step5-units.json` · `.md` — 현재 값(키 · 원장 행선지별 · 시술 · 6단계 패키지 · 상속 쌍 · open) = `scripts/check_units.py` 출력. 숫자를 여기 박지 않는다(결정이 바뀌면 낡는다 — 예: 6단계 보강 U2 에서 리쥬란 → U5-018 쌍이 「저장 uses_product」로 옮겨 가 상속 쌍이 하나 줄었다)
-- 결정(사람이 고치는 곳): `step5-decisions.json` — 키 `units[]` · 원장 행선지 `ledger[]` · 시장가 `market[]` · 쁘띠시술 메뉴 `problem_P1[]` · 제품 연결 `product_link_rule`(`technique_compat` · `product_evidence`) · 붙는 것(PIH · 4단계 속성 · 용량 · extracted · 경로 · 마취) · 넘겨받은 것 `handoffs`
-- 결정론 반영: `step5-apply.py`(입력 = 결정 · 원천 taxonomy · market-pricing · pih-risk · procedure-profiles · anatomy-danger-zones · `step1-products` · `step2-families` · `step3-sites` · `step4-techniques` · `source-map` → 출력 `step5-units.json` · `.md` · `step5-origin-questions.md`) · 가드 시험 `step5-fixture-test.py` + `step5-fixtures/cases.json`(24건 — 「결정 한 줄 빼면 open」만)
-- 결정 정본: `orchestration/work/phub-recommend/_RESUME.md` §2 2026-10-29 행 8개 — 「5단계 시작 — 계획 승인」 · 「5단계 원칙: 클리닉에서 하는 시술은 전부 단위 시술」(J1 안 C · J2 · F1~F9) · 「F4 정체 미상 · 성분 미상 수액 = 웹 조사」 · 「추가 조사 반영」(U1~U9 + 보정) · 「반영 확인 3」 · 「검수 FAIL 1 · WARN 2 처리」(F1 · W1 · W2) · 「데이터 끝 — 재검수 v3 PASS」. 규칙이 바뀌면 거기가 이긴다
-- 과정 기록: `para/projects/company/procedure-hub/log/2026-10-29-silver-step5-unit.md`(§3 규칙 · §5 틀린 것) · 조사 `step5-research.*` · `step5-research2.*` · 검수 `review-step5-report.md` · `-v2-report.md` · `-v3-report.md` · 원천 질문 `step5-origin-questions.md`
+- 결정(사람이 고치는 곳): `step5-decisions.json` — 키 `units[]` · 원장 행선지 `ledger[]` · 시장가 `market[]` · 쁘띠시술 메뉴 `problem_P1[]` · 제품 연결 `product_link_rule`(`technique_compat` · `product_evidence`) · 붙는 것(PIH · 4단계 속성 · 용량 · extracted · 경로 · 마취) · **부작용 덮어쓰기 `side_effect_override_rule`(규칙 · 우선순위 — 10-30)** · 넘겨받은 것 `handoffs`
+- 결정론 반영: `step5-apply.py`(입력 = 결정 · 원천 taxonomy · market-pricing · pih-risk · procedure-profiles · anatomy-danger-zones · `step1-products` · `step2-families` · `step3-sites` · `step4-techniques` · `source-map` → 출력 `step5-units.json` · `.md` · `step5-origin-questions.md`) · 가드 시험 `step5-fixture-test.py` + `step5-fixtures/cases.json`(「결정 한 줄 빼면 open」 + 10-30 안전 원문 QJ · 덮어쓰기 QG1a · QG1b — 건수는 `result.json`)
+- 결정 정본: `orchestration/work/phub-recommend/_RESUME.md` §2 2026-10-29 행 8개 — 「5단계 시작 — 계획 승인」 · 「5단계 원칙: 클리닉에서 하는 시술은 전부 단위 시술」(J1 안 C · J2 · F1~F9) · 「F4 정체 미상 · 성분 미상 수액 = 웹 조사」 · 「추가 조사 반영」(U1~U9 + 보정) · 「반영 확인 3」 · 「검수 FAIL 1 · WARN 2 처리」(F1 · W1 · W2) · 「데이터 끝 — 재검수 v3 PASS」 · 10-30 「품질 목표(사용자 승인)」(원인 J 안전 원문) · 「골드 전 순서」 · 「남은 8문항 처리」 안 골드 빈틈 ①(부작용 덮어쓰기 값). 규칙이 바뀌면 거기가 이긴다
+- 과정 기록: `para/projects/company/procedure-hub/log/2026-10-29-silver-step5-unit.md`(§3 규칙 · §5 틀린 것) · `2026-10-30-quality-eval.md`(안전 원문 누락 229 → 0 · 덮어쓰기 값) · `2026-10-30-gold-decisions.md`(골드 G9 · D-07 — 값을 실버에서 읽는다) · 조사 `step5-research.*` · `step5-research2.*` · 검수 `review-step5-report.md` · `-v2-report.md` · `-v3-report.md` · 원천 질문 `step5-origin-questions.md`
 - 원천: `step5-decisions.json` `source.path`(지금 `/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26`) — 경로는 프로필 레포 기준
 
 **원장 · 결정 파일은 승인 없이 고치지 않는다.** 판정 → 결정 목록(사람) → 결정 한 줄(승인된 것만) → 반영(스크립트) → 점검 · 검수 고리를 그대로 돈다.
@@ -28,6 +28,7 @@ description: 새 시술 메뉴 · 원장 항목 · 시장가 · 제품이 들어
 | ④ **앞 단계가 5단계로 넘김**(1단계 moved_to · 2단계 deferred · 3 · 4단계 handoffs · 지도 5단계 칸) | open 「넘겨받은 것 행선지 없음」 → `handoffs.<출처>` 한 줄 |
 | ⑤ **키 · 상속 규칙 바꾸기 요청** | 최종 판단(사용자). 규칙이 닿는 곳 전부 · 반대 방향 셈을 먼저(`references/inheritance-rules.md` §8) |
 | ⑥ 정기 점검 · 결정을 고친 뒤 | `scripts/check_units.py` 한 번 — errors 0 · open 0 · 시술인데 단위 시술 없음 0 · 기법 근거 없는 쌍 0 |
+| ⑦ **원장 extracted 안전 · 사후관리 칸이 바뀜** · 허브 품질 측정 M4(원천 안전 원문 실버 누락)가 0 이 아님 · 골드가 「덮어쓸 값이 없다」고 함 | §2-6b — 결정 고칠 것 없이 `step5-apply.py` 재실행이 정상(원문을 칸째 옮김). 붙는 수준이 바뀌면(행선지 · 제품 연결 · 하위) 덮어쓰기 행도 따라 바뀐다 |
 
 점검(읽기만 · 표준 라이브러리):
 
@@ -93,6 +94,19 @@ python3 <스킬>/scripts/check_units.py \
 쓰는 제품(§3) · 시장가(시술 1회 + 제품 / 등급 + 규격 · 회차 `sessions` · 「/」 나열 = 부위마다 같은 가격) · extracted · PIH(원천 없음 = 값 없음 표시 · 추정 안 함) · 운영 정보 · 마취(계열 상속) · 4단계 속성 · 용량(붙을 키 없으면 8단계) · 목적(7단계 넘김 표시만). 6 · 7 · 8단계는 **넘김 표시만**.
 
 판정마다 「원천 id · 원문 · 행선지 · 키(계열 · 하위 · 성분 · 부위 · 기법) · site_basis · 근거(결정 행 · 원천 필드)」를 남긴다. 형식은 `references/record-schema.md`.
+
+### 2-6b. 안전 원문 · 부작용 덮어쓰기 값(2026-10-30 · 품질 원인 J · 골드 빈틈 ①)
+
+허브 품질 측정 1차의 M4(원천 안전 문장 → 실버 전수 대조)에서 원천 안전 항목 1,548 중 229 가 실버에 없었고, 그중 223 이 원문만 없는 것이었다 — 5단계 `extracted[]` 가 원장 항목의 extracted **키 이름만**(`safety.common` …) 들고 문장은 안 실었다. 골드 조사도 같은 빈틈을 찾았다: 시맨틱 U2 「제품 · 단위 시술 부작용이 계열 부작용을 덮어쓴다」의 **덮어쓸 값이 실버에 없었다**(골드 G9 · D-07 은 처음에 「적재가 브론즈 원문을 읽는다」로 썼다가, 실버에 값을 싣는 쪽으로 정정 — SPEC-005 §3-0).
+
+1. **`source_text`(원인 J)** — `extracted[]` · `taxonomy_products[]` 행마다 원천 extracted 의 `safety.*` · `aftercare` 칸 원문을 **그대로**(`SAFETY_KEYS = ('safety', 'aftercare')` · 고치지 않음 · 칸 이름 그대로). 붙는 곳이 없는 원문 보관 행(값 · 6단계 패키지 · 시술 아님 · 원장님 문의)도 `source_text` 에는 있다
+2. **`side_effect_override`(골드 빈틈 ①)** — `source_text` 의 `safety.*` 값을 그 행이 **붙는 수준**에 싣는다: 제품 × 계열(× 키 하위) → `product_links[].side_effect_override[]` · 단위 시술(후보 포함) → `units[].side_effect_override[]`. 행 = `{source, id, name, level, values{common · serious · long_term …}, sub_family?, override_of: family:{계열}, priority}`
+   - **우선순위**(`side_effect_override_rule.priority`): 제품 × 계열 × 키 하위 > 제품 × 계열 > 단위 시술 > 단위 시술 후보 > 계열(8단계 `safety.side_effects`). 덮이는 계열 값은 지우지 않고 `override_of` 로 근거만
+   - **합병증 노드는 덮지 않는다** — 덮는 것은 부작용(흔한 예상 반응)뿐(사용자 10-29 「부작용 ≠ 합병증」)
+   - 1단계 합침(`merged_into`)이면 활성 제품으로 따라간다 · 원문 보관 행은 붙는 곳이 없어 안 실음(셈 「안 실음(원문 보관(…))」)
+3. 셈은 `step5-units.json` `summary.side_effect_override`(행 수준별 · product_links 행 · units 행) — 숫자를 여기 박지 않는다
+
+예(지금 정본): 원장 「보톡스(엘러간)」(M1-2-1) → 제품 × 계열 덮어쓰기 common 「주입부위 부종 · 약간의 통증 · 멍 · 두통」 · serious 「안검하수(눈꺼풀 처짐) · 비대칭 표정(드문 경우)」 · `override_of` family:M1 / 원장 「주름」(M1-3-1) → 단위 시술 이마 보톡스(U5-001)에 common · serious · long_term 「반복 시술 시 1.5% 교근 섬유화 위험」.
 
 ## 3. 제품 상속 규칙
 
@@ -162,12 +176,20 @@ python3 <스킬>/scripts/check_units.py \
 - [ ] **조사에서 칸이던 조건은 결정에서도 칸으로** — F1 ① 의 원인(4단계 `pulse_scope` 와 같은 꼴)
 - [ ] **앞 단계 정본 보강은 그 단계 결정 파일 · 스크립트로**(10-29 듀오 하이드로젠 · 파셀라 · 계열 24 · K13)
 
+### 4-4b. 안전 원문 · 덮어쓰기
+
+- [ ] **원문은 칸째 옮긴다 · 키 이름만 들고 있지 않는다**(원인 J — 1차 실버는 `keys` 만 있어 M4 누락 223)
+- [ ] **원문을 고치거나 요약하지 않는다** — 값 = 원천 문장 그대로(QJ 「원문 같음」)
+- [ ] **덮어쓰기는 붙는 수준에만 · 계열 값은 `override_of` 로 남김 · 합병증은 안 덮음**
+- [ ] **실버에 값이 있어야 골드가 읽는다** — 골드 · 적재가 브론즈를 다시 읽게 두지 않는다(골드 G9 정정 · SPEC-005 §3-0)
+- [ ] 안전 칸을 바꿨으면 `procedure-hub-quality-eval` M4(원천 안전 원문 실버 누락 = 0)를 다시 잰다 — `check_units.py` 는 이 칸을 보지 않는다(가드는 고정 시험 QJ · QG1a · QG1b 와 측정 M4)
+
 ### 4-5. 끝 조건
 
 - [ ] **`step5-apply.py` open 0 · stale 0**
 - [ ] **시술인데 단위 시술 없음 0**(`check_units.py` `procedures_without_unit` 0 — 시술 수 = 키 있는 시술 수)
 - [ ] **추천 가능 제품인데 단위 시술 0 = 예외 목록뿐**(진단 장비 · 원천 질문 예외 — 예외 결정 없는 것 0)
-- [ ] `check_units.py` errors 0 — 기법 근거 없는 상속 쌍 0 · `step5-fixture-test.py` 24/24 · 결정론(같은 입력 → 바이트 같은 출력)
+- [ ] `check_units.py` errors 0 — 기법 근거 없는 상속 쌍 0 · `step5-fixture-test.py` 전부 PASS(10-30 판 28/28 — QJ · QG1a · QG1b 포함) · 결정론(같은 입력 → 바이트 같은 출력)
 - [ ] **가상 문장 · 미래 원천 시험은 하지 않는다** — 「새 행이 오면?」은 구조(결정 한 줄 빼면 그 한 줄이 open — fixture)로 본다
 - [ ] **검수 PASS + open 0** — PASS 만으로 「끝」이라 적지 않는다
 
@@ -191,11 +213,11 @@ python3 <스킬>/scripts/check_units.py \
 ```bash
 W=orchestration/work/phub-recommend
 python3 $W/step5-apply.py                    # 정본 재생성(승인된 반영 때만). 시험은 --out <scratchpad> 로
-python3 $W/step5-fixture-test.py             # 24/24 — 결정 한 줄 빼면 open 이 나오나
+python3 $W/step5-fixture-test.py             # 전부 PASS(10-30 판 28/28) — 결정 한 줄 빼면 open · 안전 원문 · 덮어쓰기 값
 python3 <스킬>/scripts/check_units.py --work $W --out <scratchpad>/unit-check.json
 ```
 
-   open 0 · stale 0 · errors 0 · 시술인데 단위 시술 없음 0 · 기법 근거 없는 쌍 0 · 추천 가능 단위 시술 0 = 예외만 · fixture 24/24 · 같은 입력 재실행 바이트 동일(scratchpad `--out` 두 번 → `cmp`)
+   open 0 · stale 0 · errors 0 · 시술인데 단위 시술 없음 0 · 기법 근거 없는 쌍 0 · 추천 가능 단위 시술 0 = 예외만 · fixture 전부 · 같은 입력 재실행 바이트 동일(scratchpad `--out` 두 번 → `cmp`)
    - 앞 단계 정본을 고친 뒤면 그 단계 먼저(open 0) — 5단계는 step1 ~ 4 를 읽는다
 4. **검수** — 바뀐 행 전부를 결정 · 원천 원문과 대조(읽기 전용 검수자 · scratch 복사본에서 1 → 2 → 4 → 5 재실행). 원장 521 · 상속 쌍을 **따로 다시 센다** · 제품 출처 문구를 원천 필드에서 글자 그대로 다시 찾는다 · **빠뜨린 것 역방향 셈**(목적 낱말이 있는데 안 이어진 제품 = 제외 결정뿐) · 앞 판 사본과 행 단위 비교(지시한 행 밖 차이 = 회귀) · step1 ~ 4 · 지도 · 원천 md5 그대로
    - **검수 기준에 가상 문장 · 미래 원천 시험을 넣지 않는다**(§4-5)
@@ -227,7 +249,8 @@ python3 <스킬>/scripts/check_units.py --work $W --out <scratchpad>/unit-check.
 
 ### 점검
 - step5-apply: 키 N · 원장 521 = 시술 N(키 있음 N) · 제품 N · 6단계 N · 원장님 문의 N · 시술 아님 N · 상속 N쌍 · open N · stale N
-- check_units errors N · 시술인데 단위 시술 없음 N · 기법 근거 없는 쌍 N · 추천 가능 단위 시술 0 = N(예외 N) · fixture N/24 · 결정론 <예/아니오>
+- check_units errors N · 시술인데 단위 시술 없음 N · 기법 근거 없는 쌍 N · 추천 가능 단위 시술 0 = N(예외 N) · fixture N/N · 결정론 <예/아니오>
+- 안전 원문 · 덮어쓰기: extracted 원문 있음 N/N · product_links 덮어쓰기 N행(제품 N) · units 덮어쓰기 N행(단위 시술 N) · quality-eval M4 누락 N
 ```
 
 변경이 0 이면 「변경 0 — check_units open 0 · stale 0 · errors 0(결과 경로)」 한 줄로 끝낸다.

@@ -18,6 +18,7 @@
 | `problem_P1[]` | 쁘띠시술 메뉴 17 — `id` · `name` · `dest` · `units` · `role` |
 | `product_link_rule` | 저장 · 상속 규칙 — `stored` · `inherit` · `guards[]` · `extra_stored[]` · `technique_compat`(`requires[]` · `family_evidence[]` · `product_evidence[]` · `product_evidence_excluded[]` …) — `inheritance-rules.md` |
 | `extracted_rule` · `route_rule` · `pih_not_applicable` · `anesthesia_dict` | 붙는 것 규칙 |
+| `side_effect_override_rule` | rule · priority[](제품 × 계열 × 키 하위 > 제품 × 계열 > 단위 시술 > 단위 시술 후보 > 계열) · priority_basis · decided_by — 부작용 덮어쓰기 값(10-30 골드 빈틈 ①) |
 | `pih[]` · `step4_attrs[]` · `dose_range[]` · `taxonomy_products[]` | 원천 행마다 붙는 곳 |
 | `handoffs` | 앞 단계가 넘긴 것 — `step1_moved_to` · `step2_deferred` · `step3_to5` · `step4_handoffs` · `step4_expressions` · `map_fields` |
 
@@ -110,6 +111,8 @@
 | `ledger[]` | 결정 칸 + `detail` · `source_family` · `source_sub` · `product` · `product_state` |
 | `product_links[]` | 1단계 active 제품마다 — `family` · `sub_family` · `recommendable` · `stored_units` · `inherited_candidates` · `technique_excluded[{unit, reason}]` · `technique_attrs` · `guard` · `link` |
 | `market[]` · `problem_P1[]` · `step1_market_copies[]` · `extracted[]` · `taxonomy_products[]` · `pih[]` · `step4_attrs[]` · `dose_range[]` · `handoffs` · `device_name_synonyms[]` · `synonym_multi_unit` | 붙는 것 산출 |
+| `extracted[]` · `taxonomy_products[]` 행 | id · name · keys[] · attach(붙는 수준) · product · family · sub_family · shown_on · **`source_text{safety.common · safety.serious · aftercare …: [원문]}`**(10-30 품질 J — 원천 extracted `safety` · `aftercare` 칸 원문 그대로) |
+| `product_links[].side_effect_override[]` · `units[].side_effect_override[]` | source · id · name · level · values{common · serious · long_term · …} · sub_family · override_of(`family:Mx`) · priority — 10-30 골드 빈틈 ①. 셈 `summary.side_effect_override` |
 | `origin_questions[]` · `staff_questions[]` | 원천(병원) 질문 19 · 의료진 질문 1 |
 | `open[]` · `stale_decisions[]` | 지금 0 · 0 |
 

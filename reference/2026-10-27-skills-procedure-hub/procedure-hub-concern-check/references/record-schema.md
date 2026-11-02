@@ -62,7 +62,7 @@
 | `concerns` | `categories` · `subcategories` · `items`(+ `resolve` · `modality_lowered`) · `extra_items` — 노드는 `node: true`(항목은 kind 「고민」) |
 | `correspondence[]` | 대응 행 — source · field · text · match · target · basis · human_check · match_class · gate_status(「자동(완전 일치)」/「자동(규칙)」/「사람 질문(규칙 밖)」) · gate_initial(규칙 밖이면 후보) · candidates · question · rule_sites · severity · source_word · exact_name |
 | `purposes[]` | 목적 — node · same_as_concern · aliases |
-| `edges[]` | 엣지 — source(①~⑦) · source_id · from(고민 id / `목적:` / `opt:`) · to_units · to_family · lowering · basis · evidence · anchor_sites · resolve_flag · target_kind · site_check |
+| `edges[]` | 엣지 — source(①~⑧) · source_id · from(고민 id / `목적:` / `opt:` / 「(앵커 없음 — 쁘띠시술)」) · to_units · to_family · lowering · basis · evidence · anchor_sites · resolve_flag(`no_unit_at_site` · `sub_undecided` · `concern_without_site` …) · target_kind · site_check · **`ccs[]`(R28 — 원천 CC 이름 목록 · ③ = evidence.ccs · ① = [항목 이름]) · `cc_named[]`(R28 — ⑤ CC 이름 = 그 시술) · `layer`(R32 — 부위 · 상위 · null) · `quality_dropped{R29 · R30 · R31: [뺀 단위 시술]}`**(10-30 품질 수정) |
 | `combos[]` | 추천 조합 — id(RC-PC · RC-RE · RC-SQ · RC-OP · RC-AN · RC-AG · RC-CP) · kind · source · anchor · components / members / schedule · sales_copy · consult_copy · site_names |
 | `step8_notes[]` | 8단계 메모 — kind · source · where · text |
 | `unit_gaps[]` · `not_procedure[]` · `unresolved[]` · `check_flags[]` | 단위 시술 없는 이름(0 이어야) · 시술 아님 묶음 · 못 풂 · check |
@@ -70,16 +70,18 @@
 | `source_fix_candidates[]` | 계열 코드 어긋남(비교 · CC · taxonomy 항목) |
 | `open[]` · `stale_decisions[]` | 0 이어야 |
 
-엣지 한 줄 예(후보 전부 · 표시):
+엣지 한 줄 예(10-30 품질 수정 뒤 · R29 부위 낱말 → 상위 층 · R31 원천 제품 하위로 뺌 · R32 상위 표시 · basis · evidence 줄임):
 
 ```json
-{"source": "① taxonomy modality_ref", "source_id": "auto-83-1774737181584", "from": "auto-83-1774737181584",
- "to_units": ["U5-090"], "to_family": "M3", "lowering": "그 부위 단위 시술 없음 · 후보 전부",
- "basis": "항목 팔자주름 → M3 × 부위 팔자", "anchor_sites": ["팔자"], "resolve_flag": "no_unit_at_site",
- "target_kind": "단위 시술", "site_check": "그 부위 단위 시술 없음 · 후보 전부(표시)"}
+{"source": "③ problem-packages CC 추천 시술", "source_id": "P1:이마지방이식", "from": "(앵커 없음 — 쁘띠시술)",
+ "to_units": ["U5-020"], "to_family": "M5",
+ "lowering": "복합 · 나눠 풂 · 원천 부위 낱말 이마(묶음)/이마 → 상위 부위 얼굴 전체 층(R21)(R29) · 원천 제품 하위 혈소판 농축물(PRP·PRF) 밖 2 뺌(R31)",
+ "anchor_sites": ["이마(묶음)", "이마"], "resolve_flag": null, "target_kind": "단위 시술",
+ "ccs": ["이마지방이식"], "site_check": "상위 부위 얼굴 전체", "layer": "상위",
+ "quality_dropped": {"R31": ["U5-019", "U5-142"]}}
 ```
 
-`site_check` 값: 「앵커 부위 없음」(검사 밖) · 「부위 안」 · 「그 부위 단위 시술 없음 · 후보 전부(표시)」 · 「부위 밖」(있으면 open).
+`site_check` 값: 「앵커 부위 없음」(검사 밖) · 「부위 안」 · 「상위 부위 <층>」(R21) · 「이 부위 단위 시술 없음 · 계열만」 · 「원천 하위 안 정함 · 계열만(R31)」 · 「단위 시술 없음」 · 「부위 밖」(있으면 오류). 10-29 이전 값 「그 부위 단위 시술 없음 · 후보 전부(표시)」는 W2 폐기로 없어졌다.
 
 ## 3. open · 오류 — 어느 스크립트가 무엇을
 

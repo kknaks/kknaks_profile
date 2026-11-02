@@ -25,9 +25,14 @@
   ⑥ = 5단계 units[].purposes · product_evidence 목적 · ⑦ = 6단계 non_packages(7단계 넘김)
   - 못 찾음 = 오류(원천 구조에 없는 엣지) · 일곱 갈래 밖 source = 오류(적응증 · 효과 문장 · 8단계 원천 유래)
   - 원천 구조 행 수 ↔ 엣지 수(③ CC procedures · ④ optimal_combo · ⑤ 시술 이름 항목 · ⑥ purposes) 다르면 오류(빠진 엣지)
-- 엣지 부위(검수 F2 · W2 · v2 W2) — 엣지 단위 시술 부위 ∈ 앵커 부위(또는 하위 · 「얼굴」 = 얼굴 전체) ∪ 부위 무관 특수 부위
-  - 어긋남 = 오류(앵커 부위 밖) · 「그 부위 단위 시술 없음 · 후보 전부」인데 no_unit_at_site 표시 없음 = 오류 ·
-    「후보 전부」인데 그 계열에 앵커 부위 단위 시술이 실제로 있음 = 오류(부위로 내렸어야)
+- 엣지 부위(검수 F2 · R21 부위 올라가기 · 사용자 10-29) — 엣지 단위 시술 부위 ∈ 앵커 부위(또는 하위 · 「얼굴」 = 얼굴 전체)
+  ∪ 올라간 층(조상 노드 자신 · 최상위 영역 「전체」 노드) ∪ 부위 무관 특수 부위
+  - 어긋남 = 오류(앵커 부위 밖) · 최상위 영역(트리에서 계산)이 앵커와 다름 = 오류(영역 넘음) · 앵커 부위가 있는데 「후보 전부」 = 오류(대체 전 규칙) ·
+    「이 부위 단위 시술 없음 · 계열만」인데 올라가면 찾을 단위 시술이 있음 = 오류 · 상위 층인데 앵커 부위에 그 계열이 있음 = 오류
+- 고민 영역(R22 · 사용자 10-30) — 고민 · 하위 고민 · 항목의 앵커 부위 → 최상위 영역 합(갈래 「목적」뿐인 중분류 제외)을 다시 세서
+  엣지(from · from_concerns) · 추천 조합 구성(anchor concerns)의 단위 시술이 영역 밖이면 오류. 영역 없는 고민은 검사 밖
+  · 판단 ①(10-30) 영역 없는 피부 고민 기본 영역(결정 concern_region_default) 도 같이 셈 · R25 두피 단위 시술은 두피 고민에만 · R26 흉터에 필러 단위 시술 없음
+  · R27 ③ 합친 엣지 — source_ids 의 CC 마다 그 원천 시술 이름이 있어야 · ③ 원천 행 수 = 합친 CC 행 수 합
   - 엣지 · 추천 조합 구성의 단위 시술이 step5-units 에 없음 = 오류
 - 영업 문구 — salesPitch · upsellHook 는 default_response false · 레시피 환자 설명 · 비유는 true(R9)
 - 원장 open[] · stale_decisions[] · summary 셈(대응표 · 게이트 · 엣지 · 부위 검사 · 추천 조합 · 8단계 메모)
@@ -276,9 +281,9 @@ def main() -> int:
         elif s.startswith("②"):
             ok = e["to_family"] in combo_fams.get(sid, set())
             why = "problem-combos 그 고민 계열에 없음"
-        elif s.startswith("③"):
-            ok = (e.get("evidence") or {}).get("name") in cc_proc.get(sid, [])
-            why = "CC procedures 에 그 이름 없음"
+        elif s.startswith("③"):  # R27 — 합친 엣지는 source_ids 의 CC 마다 그 이름이 있어야
+            ok = all((e.get("evidence") or {}).get("name") in cc_proc.get(x_, []) for x_ in (e.get("source_ids") or [sid]))
+            why = "CC procedures 에 그 이름 없음(합친 CC 중 하나라도)"
         elif s.startswith("④"):
             ok = inner(e["basis"]) in opt.get(sid, [])
             why = "optimal_combo 에 그 이름 없음"
@@ -316,7 +321,7 @@ def main() -> int:
     }
     got6 = sum(1 for e in LED["edges"] if e["source"].startswith("⑥ 5단계 units"))
     for k_, v in want_n.items():
-        g = got6 if k_ == "⑥" else by_src[k_ + " "]
+        g = got6 if k_ == "⑥" else (sum(len(e.get("source_ids") or [1]) for e in LED["edges"] if e["source"].startswith("③")) if k_ == "③" else by_src[k_ + " "])  # R27 — ③ 은 합친 CC 행 수로
         if g != v:
             err("원천 구조 행 수 ≠ 엣지 수", f"{k_}: 원천 {v} · 엣지 {g}", path=k_)
 
@@ -336,33 +341,173 @@ def main() -> int:
         return set(sum([desc(s) if s != "얼굴" else ["얼굴 전체"] for s in sites], []))
 
     site_free = set(DEC["site_rules"]["site_free"])
+    parent = {n["name"]: n["parent"] for n in S3["nodes"]}
+
+    def region(x):  # 최상위 영역 — 3단계 트리에서 계산(R21)
+        if x not in parent:
+            return None
+        while parent[x]:
+            x = parent[x]
+        return x
+
+    def whole(root):  # 영역 「전체」 노드 — 「R 전체」 자식 · 없으면 R 자신 · 묶음이면 없음
+        return root + " 전체" if parent.get(root + " 전체") == root else (None if root.endswith("(묶음)") else root)
+
+    def layers(x):  # 조상 노드 자신(최상위 제외) → 영역 「전체」 노드
+        out, a = [], parent.get(x)
+        while a and parent.get(a):
+            out.append(a)
+            a = parent[a]
+        r_ = region(x)
+        w = whole(r_) if r_ else None
+        if w and w != x:
+            out.append(w)
+        return out
+
+    def first_layer(fams, sites):
+        """R21 대로 찾을 단위 시술 — 앵커(또는 하위) 다음 층마다 그 노드 자신 · 처음 찾은 층"""
+        w_ = want(sites)
+        at = [u["id"] for u in S5["units"] if u["key"]["family"] in fams and u["key"]["site"] in w_]
+        if at:
+            return at, "앵커"
+        seen = set(w_)
+        ch = [layers(s_) for s_ in sites if s_ in parent]
+        for i_ in range(max([len(c_) for c_ in ch] or [0])):
+            lay = [c_[i_] for c_ in ch if i_ < len(c_) and c_[i_] not in seen]
+            seen |= set(lay)
+            r_ = [u["id"] for u in S5["units"] if u["key"]["family"] in fams and u["key"]["site"] in lay]
+            if r_:
+                return r_, "/".join(lay)
+        return [], None
+
     site_check = collections.Counter()
     for k, e in enumerate(LED["edges"]):
         us = [u for u in e["to_units"] if u in UNITS]
         sites = e.get("anchor_sites") or []
+        fl = e.get("resolve_flag") or ""
+        if sites and not us and "no_unit_at_site" in fl:  # R21 끝까지 없음 → 계열만 — 그 영역에 정말 없는지 다시 셈
+            site_check["이 부위 단위 시술 없음 · 계열만"] += 1
+            fams = set(filter(None, (e.get("to_family") or "").split("/")))
+            if e["to_units"]:
+                err("계열만인데 단위 시술 있음", f"#{k} {e['source']} {e.get('source_id')}", edge=k)
+            if e["source"].startswith(("①", "③")) and fams:
+                got, lay = first_layer(fams, sites)
+                if got:
+                    err("계열만인데 부위 올라가기로 찾을 단위 시술 있음(R21)", f"#{k} {e['source']} {e.get('source_id')} 부위 {sites} → {lay} {got}", edge=k, units=got)
+            continue
+        if sites and not us and fl == "sub_undecided":  # R31(품질 N · 10-30) — 원천이 하위를 안 정했고 올라간 층 하위가 둘 이상 → 계열만. 뺀 단위 시술 하위가 정말 둘 이상인지
+            site_check["원천 하위 안 정함 · 계열만(R31)"] += 1
+            dropped = (e.get("quality_dropped") or {}).get("R31") or []
+            if len({UNITS[u]["key"].get("sub_family") for u in dropped if u in UNITS and UNITS[u]["key"].get("sub_family")}) < 2:
+                err("R31 계열만인데 뺀 단위 시술 하위가 둘 미만", f"#{k} {e['source']} {e.get('source_id')} → {dropped}", edge=k)
+            continue
+        if sites and not us and not fl:
+            site_check["단위 시술 없음"] += 1
+            continue
         if not sites or not us:
             site_check["앵커 부위 없음"] += 1
             continue
         w_ = want(sites)
-        fl = e.get("resolve_flag") or ""
-        if "후보 전부" in e["lowering"] + " " + e["basis"] or "no_unit_at_site" in fl:
-            site_check["그 부위 단위 시술 없음 · 후보 전부(표시)"] += 1
-            if e["lowering"].startswith("그 부위 단위 시술 없음") and "no_unit_at_site" not in fl:
-                err("후보 전부인데 no_unit_at_site 표시 없음", f"#{k} {e['source']} {e.get('source_id')}", edge=k)
-            if e["lowering"].startswith("그 부위 단위 시술 없음"):
-                fams = {UNITS[u]["key"]["family"] for u in us}
-                at = [u["id"] for u in S5["units"] if u["key"]["family"] in fams and u["key"]["site"] in w_]
-                if at:
-                    err("후보 전부인데 앵커 부위 단위 시술 있음(부위로 내렸어야)", f"#{k} {e['source']} {e.get('source_id')} 부위 {sites} → {at}",
-                        edge=k, units_at_site=at)
+        if "후보 전부" in e["lowering"]:
+            err("앵커 부위가 있는데 후보 전부(R21 대체 전 규칙)", f"#{k} {e['source']} {e.get('source_id')} 부위 {sites}", edge=k)
+        regs = {region("얼굴 전체" if s_ == "얼굴" else s_) for s_ in sites} - {None}
+        cross = [u for u in us if UNITS[u]["key"]["site"] not in site_free and region(UNITS[u]["key"]["site"]) not in regs]
+        if cross:
+            site_check["영역 넘음"] += 1
+            err("엣지 단위 시술이 앵커 부위의 최상위 영역 밖(R21)", f"#{k} {e['source']} {e.get('source_id')} 부위 {sites} → {cross}", edge=k, units=cross)
             continue
-        out_ = [u for u in us if UNITS[u]["key"]["site"] not in w_ and UNITS[u]["key"]["site"] not in site_free]
+        up = {x for s_ in sites for x in layers(s_)}
+        out_ = [u for u in us if UNITS[u]["key"]["site"] not in w_ | up and UNITS[u]["key"]["site"] not in site_free]
+        hi = [u for u in us if UNITS[u]["key"]["site"] in up - w_]
         if out_:
             site_check["부위 밖"] += 1
             err("엣지 단위 시술이 앵커 부위 밖", f"#{k} {e['source']} {e.get('source_id')} 부위 {sites} → {out_}",
                 edge=k, sites=sites, units=out_)
+        elif hi:
+            site_check["상위 부위 " + "/".join(sorted({UNITS[u]["key"]["site"] for u in hi}))] += 1
+            fams = {UNITS[u]["key"]["family"] for u in hi}
+            lower = [u["id"] for u in S5["units"] if u["key"]["family"] in fams and u["key"]["site"] in w_]
+            if lower and e["source"].startswith(("①", "③")) and "계열 코드 어긋남" not in e["lowering"]:
+                err("상위 층 단위 시술인데 앵커 부위에 그 계열 단위 시술 있음(R21 — 처음 찾은 층만)", f"#{k} {e['source']} {e.get('source_id')} 부위 {sites} → {lower}", edge=k, units_at_site=lower)
         else:
             site_check["부위 안"] += 1
+
+    # ── 5b. 고민 영역(R22) — 고민 · 하위 고민 · 항목의 앵커 부위 → 최상위 영역 합(갈래 「목적」뿐인 중분류 제외)을 다시 셈 ──
+    creg = collections.defaultdict(set)
+    CN = LED["concerns"]
+    subk = {x["id"]: x for x in CN["subcategories"]}
+
+    def cadd(ids, sts):
+        for s_ in sts:
+            r_ = region("얼굴 전체" if s_ == "얼굴" else s_)
+            if r_:
+                for i_ in ids:
+                    creg[i_].add(r_)
+    for x in CN["subcategories"]:
+        if x["kind"] != "목적":
+            cadd([x["id"], x["parent"]], x["sites"])
+    for x in CN["items"]:
+        if subk.get(x["subcategory"], {}).get("kind") != "목적":
+            cadd([x["id"], x["subcategory"], x["category"]], x["sites"])
+    for x in CN["extra_items"]:
+        cadd([x["id"]] + ([x["parent"]] if x["parent"] else []), x["sites"])
+    # 판단 ①(10-30) — 영역 없는 피부 고민 기본 영역(결정 site_rules.concern_region_default) · 위로 올리지 않음
+    cpar = {x["id"]: x["parent"] for x in CN["subcategories"]}
+    cpar.update({x["id"]: x["subcategory"] for x in CN["items"]})
+    cpar.update({x["id"]: x["parent"] for x in CN["extra_items"]})
+    cdef = {i_: r_ for r_, ids in (DEC["site_rules"].get("concern_region_default") or {}).get("regions", {}).items() for i_ in ids}
+    allc = [x["id"] for x in CN["categories"]] + list(cpar)
+    for i_ in allc:
+        if creg.get(i_):
+            continue
+        a_ = i_
+        while a_ and a_ not in cdef:
+            a_ = cpar.get(a_)
+        if a_:
+            creg[i_] = {cdef[a_]}
+    scar = set((DEC["site_rules"].get("scar_filler") or {}).get("concerns") or [])
+    nsrc = tuple(DEC["site_rules"].get("narrow_sources") or [])
+
+    def is_scar(cs):
+        cc_ = [c_ for c_ in cs if not c_.startswith("목적:")]
+        def up(c_):
+            while c_:
+                if c_ in scar:
+                    return True
+                c_ = cpar.get(c_)
+            return False
+        return bool(cc_) and all(up(c_) for c_ in cc_)
+
+    def r25_r26(us, cs, where, **kw):  # R25 두피 시술은 두피 고민에만 · R26 흉터에 필러 단위 시술 없음
+        rs = set().union(*[creg.get(c_, set()) for c_ in cs]) if cs else set()
+        b = [u for u in us if u in UNITS and "두피" not in rs and region(UNITS[u]["key"]["site"]) == "두피"]
+        if b:
+            err("두피 단위 시술이 두피 고민 밖(R25)", f"{where} → {b}", units=b, **kw)
+        if scar and is_scar(cs):
+            b = [u for u in us if u in UNITS and UNITS[u]["key"]["family"] == DEC["site_rules"]["scar_filler"]["family"]]
+            if b:
+                err("흉터 고민에 필러 단위 시술(R26)", f"{where} → {b}", units=b, **kw)
+
+    def outside(us, cs):
+        rs = set().union(*[creg.get(c_, set()) for c_ in cs]) if cs else set()
+        return [u for u in us if u in UNITS and rs and UNITS[u]["key"]["site"] not in site_free and region(UNITS[u]["key"]["site"]) not in rs]
+    for k, e in enumerate(LED["edges"]):
+        if nsrc and not e.get("anchor_sites") and e["source"].startswith(nsrc):
+            r25_r26(e["to_units"], e.get("from_concerns") or [e["from"]], f"#{k} {e['source']} {e.get('source_id')}", edge=k)
+        o_ = outside(e["to_units"], e.get("from_concerns") or [e["from"]])
+        if o_:
+            err("엣지 단위 시술이 고민 영역 밖(R22)", f"#{k} {e['source']} {e.get('source_id')} {e['from']} → {o_}", edge=k, units=o_)
+    for c in LED["combos"]:
+        anc22 = c.get("anchor") or {}
+        cs = anc22.get("concerns") or anc22.get("concern") or []
+        cs = [cs] if isinstance(cs, str) else cs
+        parts = (c.get("components") or []) + (c.get("members") or []) + (c.get("upgrade") or []) + [i for m in c.get("schedule") or [] for i in m["items"]]
+        for x in parts:
+            if nsrc:
+                r25_r26(x.get("units") or [], cs, f"{c['id']} {x.get('family') or x.get('text')}", combo=c["id"])
+            o_ = outside(x.get("units") or [], cs)
+            if o_:
+                err("추천 조합 단위 시술이 고민 영역 밖(R22)", f"{c['id']} {x.get('family') or x.get('text')} → {o_}", combo=c["id"], units=o_)
 
     # ── 6. 추천 조합 — 키 실재 · 영업 문구 ──
     def comp_units(c):

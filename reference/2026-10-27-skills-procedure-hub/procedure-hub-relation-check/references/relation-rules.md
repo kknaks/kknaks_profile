@@ -11,7 +11,7 @@
 | G3 | synergy 「대신」 = 대체(택 1) · 시너지 아님 | 「포텐자 대신 시크릿 · 택 1 시술」 |
 | G4 → U8-1 (나) | 원칙 · 규칙 · 위험 문장 쌍 = **문장 패턴**(게이트 없음) | 원칙 2 「HIFU는 보톡스 주입 후 … HIFU 선행 또는 2주 이상 간격을 두며, RF·IPL·비침습 레이저는 당일 병행 가능」 → 순서(HIFU 먼저) · 간격(보톡스 먼저면 14일 이상) · RF/IPL/비침습 레이저 ↔ 보톡스 같은 날(생략 상대 = 앞 절 B) |
 | G5 → U8-1 (나) | 화살표 · 「A 후 N 내 B 금지」 분해 = 규칙(auto) | 「토닝 먼저 → 2주 후 스킨부스터」 → first a · days [14,14] · open_high |
-| G6 | 충돌 = 전부 보존 + 표시 | M2↔M8 순서 갈림(「레이저/IPL 은 필러 전에」 ↔ 「필러 → 레이저 최소 5일」) |
+| G6 → 10-30 | 충돌 = **하나로**(conflict_resolution R1~R6 · D-13b 바꿈) — 조건 분리 · 등급 더 엄격 · 간격 더 긴 쪽 · 같은 날 불가 · 순서 반대만 순서 단정 안 함 + 의료진 · 원문 alternatives | M1↔M2 같은 날 가능 ↔ 「별도 세션」 문맥(R1 세션) · 필러 → HIFU 같은 날 불가 ↔ HIFU → 필러 가능(R1 방향 · by_direction) · M2↔M8 「레이저/IPL 은 필러 전에」 ↔ 「필러 → 레이저 최소 5일」(R5 · 간격 R3) · 아미노글리코시드 확인만 · 주의 · 금기(R2 → 금기) · 이소트레티노인 6 · 12 · 0~2개월(R6 → 얕은 6 · 박리 12) |
 | G7 | 시술 아닌 원소 · 묶음 낱말 | 「제모 후 2주 내 왁싱/전기분해 금지」 → 왁싱 · 전기분해 = 시술 아님(엣지 안 섬 · 원문 보관) |
 | G8 | 6단계 메모 = 시너지 「함께 판매」 근거 · 「다름」 = 충돌 표시 | 꿀광토닝 ↔ synergy 「스킨부스터 2주 후 레이저토닝」 |
 | G9 | procedure-profiles 플래그 = 계열 원문 속성(파생 계산 안 함) | hasProtein · thermalLoad |
@@ -53,7 +53,20 @@
 | wide_candidates | 계열 아닌 조건 끝점 후보 > 기준 | 듀얼파장 레이저 |
 | purpose_word | 용도 낱말(`purpose_ok` 밖) | 혈관레이저 |
 | code_mismatch | 원천 코드 ≠ 해석 계열 | M4-쥬베룩 · M8-서브시전 · M17-엑소좀 |
-| conflict | 계열 쌍 충돌(pairs) | M1↔M2 · M2↔M8 … |
-| grade_conflict | 조건 등급 충돌 | 임신 · 수유 |
-| wait_conflict | 대기 기간 충돌 | 이소트레티노인 |
+| conflict | 계열 쌍 **진짜 반대(R5)만**(pairs · 10-30) | M1↔M2 · M2↔M8 · M3↔M9(묶음 원칙 Q8-20) … |
+| ~~grade_conflict~~ | 10-30 R2 로 정함 — 질문 없음(Q8-7 내림) | 임신 · 수유 |
+| ~~wait_conflict~~ | 10-30 R6 로 정함 — 질문 없음(Q8-1 내림) | 이소트레티노인 |
 | guide_not_source | 출처 낱말 없는 표기 | 피부 회복 |
+| side_effect_exception | 부작용(mild)인데 발생률에 흔함 낱말 없음(B1 예외) | 비대칭 · 딤플링 · 두통 → Q8-19 |
+
+## 6. 시맨틱 반영(10-30 · 결정 `semantic_apply`)
+
+사용자 10-30 「시맨틱 조사 반영 — 추천대로」(B1~B12 · U1~U3). 새 원천이 들어와도 아래 규칙으로만 나눈다.
+
+| 규칙 | 칸 | 뜻 |
+|---|---|---|
+| U2 · B1 부작용 ≠ 합병증 | `safety.side_effects` · `safety.complications` | complications.json severity mild = 부작용(계열 속성 · id SE-) · moderate 이상 = 합병증 노드(id CX- · 원천 번호 그대로). 제품 × 계열 · 단위 시술 값(5단계 extracted safety.common)이 계열 값을 덮어쓰는 것은 골드 계산 |
+| B1 예외 | `side_effects[].staff_question` | mild 인데 발생률에 흔함 낱말(side_effect_common_incidence)이 없으면 부작용으로 두고 의료진 질문 Q8-19 |
+| U1 gap 채움 | `summary.gap_filled_families` | complications.json 에 없는 계열 중 taxonomy modality extracted.safety 원문이 있으면 serious → 합병증(CX-{계열}-T{n} · severity null) · common · uncommon → 부작용. gap = 합병증 원천 없음만 · 원천은 있는데 전부 mild 인 계열은 `complication_mild_only_families` |
+| U3 · B3 끝점 묶음 | `edges[].endpoints.a/b{kind, id, qualifier, candidates[]}` | 묶음은 노드가 아니라 엣지 칸. a · b 문자열은 그대로(뒤 호환) |
+| B8 조건 아님 | `conditions.not_condition` | 상담 · 시술 준비 · 고지 · 조건 아닌 문장은 확인 조건 엣지에서 빼고 원문 보관(계열 대상은 family_text 「상담 · 준비 · 고지 …」 — G10) |

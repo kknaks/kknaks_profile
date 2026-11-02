@@ -1,7 +1,7 @@
 # Procedure Hub 스킬 모음
 
 Procedure Hub 실버 원장 작업(`orchestration/work/phub-recommend/`)에서 실제로 한 방법을 Claude Code 스킬로 옮긴 것.
-단계 순서대로 여덟이다 — 1단계 제품 확인 → 2단계 계열 판정 → 3단계 부위 판정 → 4단계 기법 판정 → 5단계 단위 시술 판정 → 6단계 패키지 판정 → 7단계 고민 판정 → 8단계 관계 판정. 새 행 · 허가 품목이 바뀐 행은 product-check 다음에 family-check 로 넘기고, 새 메뉴 · 이름 칸이 바뀌어 부위 문자열이 생기면 site-check 로, 지도(`source-map.json`) 4단계 칸에 새 기법 표현이 생기거나 새 계열 · 장비 hint · 층 · 대상 근육 넘김이 생기면 technique-check 로 넘긴다. 새 원장 항목 · 시장가 · 메뉴가 오거나 새 제품이 이어질 단위 시술을 찾아야 하면, 또는 원천 질문 답이 오면 unit-check 로 간다 — 거기서 계열 없는 시술이 나오면 family-check(계열) · technique-check(기법)로 되돌아간다. 5단계가 행선지 「6단계 패키지」로 넘긴 행 · 새 묶음 메뉴 · 회차 패키지 · 시장가 패키지 가격이 오면 package-check 로 간다 — 거기서 「단위 시술」(한 장비 다중 모드 · 같은 키 두 제제)로 판정되거나 구성에 5단계 키가 없으면 unit-check 로 되돌아간다. 새 고민 · 고민 표현 · 추천 조합(추천 패키지 · 레시피 · 최적화 · 비교)이 오거나 대응표 사람 확인(게이트) 답이 오면 concern-check 로 간다 — 거기서 단위 시술이 없는 이름이 나오면 unit-check 로 되돌아가 키부터 세운다. 시술↔시술 관계(시너지 · 순서 · 간격 · 금기) · 확인 조건 · 고민 조건 금기 · 안전 · 근거 원천이 바뀌거나 8단계 원천 질문 답이 오면 relation-check 로 간다 — 거기서 7단계 끝점(조합 · CC 엣지 · 고민 노드)이 어긋나면 concern-check, 못 푼 이름의 키가 없으면 unit-check 로 되돌아간다.
+단계 순서대로 아홉 + 시맨틱 하나 + 품질 측정 하나다 — 1단계 제품 확인 → 2단계 계열 판정 → 3단계 부위 판정 → 4단계 기법 판정 → 5단계 단위 시술 판정 → 6단계 패키지 판정 → 7단계 고민 판정 → 8단계 관계 판정 → 9단계 설명 사실 판정. 새 행 · 허가 품목이 바뀐 행은 product-check 다음에 family-check 로 넘기고, 새 메뉴 · 이름 칸이 바뀌어 부위 문자열이 생기면 site-check 로, 지도(`source-map.json`) 4단계 칸에 새 기법 표현이 생기거나 새 계열 · 장비 hint · 층 · 대상 근육 넘김이 생기면 technique-check 로 넘긴다. 새 원장 항목 · 시장가 · 메뉴가 오거나 새 제품이 이어질 단위 시술을 찾아야 하면, 또는 원천 질문 답이 오면 unit-check 로 간다 — 거기서 계열 없는 시술이 나오면 family-check(계열) · technique-check(기법)로 되돌아간다. 5단계가 행선지 「6단계 패키지」로 넘긴 행 · 새 묶음 메뉴 · 회차 패키지 · 시장가 패키지 가격이 오면 package-check 로 간다 — 거기서 「단위 시술」(한 장비 다중 모드 · 같은 키 두 제제)로 판정되거나 구성에 5단계 키가 없으면 unit-check 로 되돌아간다. 새 고민 · 고민 표현 · 추천 조합(추천 패키지 · 레시피 · 최적화 · 비교)이 오거나 대응표 사람 확인(게이트) 답이 오면 concern-check 로 간다 — 거기서 단위 시술이 없는 이름이 나오면 unit-check 로 되돌아가 키부터 세운다. 시술↔시술 관계(시너지 · 순서 · 간격 · 금기) · 확인 조건 · 고민 조건 금기 · 안전 · 근거 원천이 바뀌거나 8단계 원천 질문 답이 오면 relation-check 로 간다 — 거기서 7단계 끝점(조합 · CC 엣지 · 고민 노드)이 어긋나면 concern-check, 못 푼 이름의 키가 없으면 unit-check 로 되돌아간다. 설명 문장(효과 시작 · 지속 · 작용 원리 · 개요 · 적응증 · 제품 메모 · 대안 · 관련 기법 · 고민 상세 · 반응 · 중증도 단계 값 사전) 원천이 바뀌거나 5 · 7 · 8단계가 바뀌면 explanation-check 로 간다 — 거기서 붙는 노드가 없으면 그 단계(unit · concern · relation-check)로 되돌아간다. 어느 단계든 실버가 바뀌면(그 단계 스킬 errors 0 뒤) semantic-check 로 시맨틱 정본을 재생성 · 점검한다 — 골드 · 적재는 그 정본을 읽는다. 그다음 quality-eval 로 허브가 상담 질문에 맞는 답을 내는지 원천 근거 정답으로 잰다(목표 6 · CC 슬롯 경로 6/6) — 틀린 문항은 원인 묶음으로 그 단계 스킬(concern · semantic · relation · unit · family-check)로 되돌아간다.
 
 ## 지도
 
@@ -63,7 +63,7 @@ reference/2026-10-27-skills-procedure-hub/
     └── scripts/
         └── check_packages.py              원장 점검 — 패키지 원천 행 재추출 → 결정 없는 행 = open · 구성 엣지 원문을 원천 칸에서 다시 찾기(적응증만이면 오류) · 키 실재 · 슬롯 · 근거 약 질문 · 시그니처 노출 · menu_group ↔ 원천 하위 · 가격 원문 · 회차 · 원장 ↔ 결정 · summary → JSON
 └── procedure-hub-concern-check/           ← 스킬: 고민 · 목적 · 추천 조합 판정 · 실버 고민 원장(step7-concerns) 갱신
-    ├── SKILL.md                           언제 · 판정 순서(고민 정본 = taxonomy problem → 시술 이름 항목은 엣지 → 대응표 완전 일치만 자동 · 나머지 게이트 → 목적 vs 고민 → 엣지는 원천 구조만 → 부위로 내림 · 후보 전부 + 표시 → 단위 시술 없으면 unit-check → 추천 조합 원천별 · 영업 문구 제외 · 사이트 용어) · 체크리스트(F1 · F2 · W2 · W3) · 끝 조건 · 갱신 방법(결정 한 줄 → step7-apply.py) · 변경 보고 형식 · 게이트 답 반영 방법
+    ├── SKILL.md                           언제 · 판정 순서(고민 정본 = taxonomy problem → 시술 이름 항목은 엣지 → 대응표 규칙 R12~R20 → 목적 vs 고민 → 엣지는 원천 구조만 → 부위로 내림 → 부위 올라가기 R21 · 영역 경계 · 없으면 계열만 → 앵커 부위 없는 후보 전부 좁힘 R24 → R23 → R22(+ 판단 ①) → R25 → R26 → 판단 ② · R27 합침 → 단위 시술 없으면 unit-check → 추천 조합 원천별 · 영업 문구 제외 · 사이트 용어) · 체크리스트(F1 · F2 · W2 → R21 · W3 · R22 ~ R27) · 끝 조건 · 갱신 방법(결정 한 줄 → step7-apply.py) · 변경 보고 형식 · 게이트 답 반영 방법
     ├── references/
     │   ├── concern-rules.md               고민 트리 갈래별 행선지(대분류 · 중분류 · 항목) · 대응표 원천 9곳 · 게이트 규칙 · 목적 ↔ 고민 · 엣지 원천 칸 일곱 갈래 · 이름 → 단위 시술 · 부위 거름 순서 · 추천 조합 kind · 8단계 메모
     │   ├── record-schema.md               step7-decisions.json(대응 · 이름 풀이 · site_rules …) · step7-concerns.json(대응 · 엣지 · 조합) 칸 + 실제 행 · open · 오류를 어느 스크립트가 보나
@@ -78,6 +78,31 @@ reference/2026-10-27-skills-procedure-hub/
     │   └── mistakes.md                    8단계에서 틀린 것(W1 행별 대응표 → 패턴 · W2 간격 한 줄 정규식 · W3 꼬리 먼저 떼기 · W4 「24시간 내」 · W5 기전 문장 붙임 · W6 CC 원소 글자 비교 · W7 괄호 복합 · W8 제품 계열 · W9 칸 셈)
     └── scripts/
         └── check_relations.py             원장 점검 — apply 재실행 바이트 비교(낡음 · 결정론) · 게이트 상태 없음 · 간격 숫자 칸(first · days · 낱말별 사전 갈래) · 같은 날 불가 = false · 대체 = 간격 비움 · 끝점 키 · 엣지 ↔ 주장 · 충돌 표시 · 피함 출발 = 7단계 고민 노드 · 조건 id · 질문 걸린 행 · summary → JSON · --selftest(틀린 값 11가지를 넣어 잡히는지)
+└── procedure-hub-explanation-check/       ← 스킬: 설명 사실 판정 · 실버 설명 사실 원장(step9-explanations) 갱신
+    ├── SKILL.md                           언제 · 판정 순서(종류 식 → 붙는 자리 = 5 · 7 · 8단계 대응(R9-1~R9-8 · 새 대응표 없음) → 대조본 same_as · source_conflict → 같은 노드 · 같은 칸 D9-3 ① 긴 쪽 · ② resolved 하나 + alternatives · ③ 둘 다 → 값 사전 · section 표) · 갱신 방법 · 끝 조건 · 변경 보고 형식
+    ├── references/
+    │   ├── rules.md                       종류 K1~K11 · section · 규칙 R9-1~R9-8 · R9-2b · R9-5b · G9-1(반영 판 레코드 수) · 붙이지 않음 · D9-3 군집 · 기간 읽기 · 원천 우선순위 · 대조본 셈
+    │   ├── record-schema.md               step9-explanations.json 칸(records · node_slots · source_conflicts · value_dictionary · section_map) + 실제 행(① ② ③ · R9-2b · R9-5b)
+    │   └── mistakes.md                    9단계에서 틀린 것 9(칸 이름 꼴 · CC 대응 글자 · 고민 노드 기준 · 배열 칸 충돌 · 지속 하한 · 잘린 기대값 · semantic-check 입력 · 스펙 문구 · A 셈 식)
+    └── scripts/
+        └── check_explanations.py          원장 점검 — apply 재실행 바이트 비교(낡음 · 결정론) · open · 사람 확인 · summary 재셈 · 붙는 노드 = 실버 id · section 허용 집합 · 붙이지 않음 노드 0 · ② 숫자 값 하나 · alternatives ∉ emit · ③ multi_source · same_as ∉ emit · fact id 꼴 · 값 사전 = 원천 · section_map = 8단계 실버 · 고정 시험 → JSON · --selftest(틀린 값 10가지)
+└── procedure-hub-semantic-check/          ← 스킬: 시맨틱 정본(semantic.json — 노드 13 · 엣지 21 · 사전 · id 대응 · 표시 · 상속 9) 재생성 · 점검. 실버가 바뀌면 semantic-build.py 재생성 → 결정론 · 셈 · 사전 겹침 · id 대응 빠짐 · 표시 · 상속 · 합병증/부작용 분리 · --selftest(틀린 값 15가지)
+    ├── SKILL.md                           언제 · 정본 읽는 법(노드 · 엣지 · 상속 · 사전 · id · 읽는 규칙 · 부작용 ≠ 합병증) · 체크리스트 · 끝 조건 · 갱신 방법(실버 스킬 먼저 → semantic-build.py) · 변경 보고 형식
+    ├── references/
+    │   ├── semantic-rules.md              결정 B1~B12 · U1~U3 → 정본 · 실버 자리 · 엣지 합침 · 나눔 기준 · 사전 겹침 갈래 A~J · id 대응 · 상속 9 불변식
+    │   ├── record-schema.md               입력 12(11-01 step9-explanations 더함) · semantic.json 칸 · 어느 스크립트가 무엇을 보나
+    │   └── mistakes.md                    시맨틱에서 틀린 것(S1 페이지 뽑기 · S2 이름 같은 엣지 · S3 겹침 147 · S4 합병증에 흔한 반응 · S5 조건 아닌 문장 · S6 목적 id 없음)
+    └── scripts/
+        └── check_semantic.py              정본 점검 — semantic-build 임시 폴더 두 번(결정론 · 정본 바이트 같음 · 종료 코드) · 입력 판 sha · 노드 · 엣지 셈 실버 재셈 · 사전(norm · 겹침 ⇔ collision · mode · 대상 id) · id 대응(빠짐 · 실버 밖 · 허용 밖 키 · from 문자열) · 표시 12 · gate 3값 · 상속 I1~I9 · B1 · B8 · I9 · summary → JSON · --selftest
+└── procedure-hub-quality-eval/            ← 스킬: 허브 품질 측정(실버 · 시맨틱이 바뀔 때마다 · 골드 E2E 전후) — quality-eval.py 를 감싸 측정 4(질문 세트 · 말 → 노드 · 엣지 표본 · 안전 누락) · 목표 6(CC 슬롯 · CC 없음) · 문항 · 정답 · 채점 식 고정 · 판 비교(v1 · v2 · v3 · 지금) · --selftest(틀린 값 13가지)
+    ├── SKILL.md                           언제 · 측정 4 · 목표 6 · 경로 셋(CC 슬롯 · CC 없음 · 1차) · 고정 칸 ↔ 규칙 칸 · 틀린 문항 → 원인 → 그 단계 스킬 · 체크리스트 · 끝 조건 · 갱신 방법(보관 → 재측정 → 대조) · 측정 보고 형식
+    ├── references/
+    │   ├── measures.md                    문항 출처 · 정답 칸 · 채점 · 충돌 판 · M2 말 · 변형 V0~V4 · M3 표본 · M4 33 묶음 · 판 보관 표
+    │   ├── record-schema.md               quality-eval-set.json · quality-report.json · check_quality 출력 · baseline.json 칸 + 문항 실제 행(Q019 엑셀V)
+    │   ├── mistakes.md                    측정기가 틀린 것 7(간독성 · 점제거 · by_direction · 정규화 · 옮김 표 · 피코의 코 · 원인 M 고정 1) · 진행에서 틀린 것 3(원인 + 빈틈 한 번에 · CC 없는 경로 하나 · 규칙 칸)
+    │   └── baseline.json                  고정 기준 — 1차 문항 파일 · 규칙 칸 · 목표 제외 문항 · 채점 지문(scoring) · 측정 경로 지문(path) · 보관 판 목록
+    └── scripts/
+        └── check_quality.py               측정 점검 — quality-eval.py 임시 폴더 두 번(결정론 · 정본 낡음) · 문항 · 정답 1차 대조(규칙 칸은 바뀜 목록) · 채점 지문 · 목표 제외 · 목표 6(--require cc) · 판 비교 · 문항 상태 변화 → JSON · --selftest · --write-baseline(결정 있을 때만)
 ```
 
 ## 기대는 것
@@ -123,11 +148,27 @@ concern-check:
 - 앞 단계 정본(읽기만): `step3-sites.json`(부위 트리 · deferred · strings handoff) · `step5-units.json`(키 · 동의어 · purposes · product_evidence · 제품 연결) · `step6-packages.json`(non_packages 7단계 넘김)
 - 원천 `/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/`(결정 `source.path` — 점검 스크립트가 taxonomy · problem-packages · problem-combos · combo-recipes · treatment-optimization · procedure-comparison · synergy 를 읽고, apply 는 treatment-sequence 도 읽는다. `--source` 로 바꿀 수 있다)
 
+semantic-check:
+
+- 정본 `orchestration/work/phub-recommend/semantic.json` · `.md` · 생성 `semantic-build.py` · 조사 `semantic-research.*` · 결정 `_RESUME.md` §2 10-29 「시맨틱 조사 반영」 · 10-30 「시맨틱 확정」 · 기록 `para/projects/company/procedure-hub/log/2026-10-30-semantic.md`
+- 입력(읽기만): 실버 정본 json 8(`step1-products` ~ `step8-relations`) · `step7-decisions` · `step8-decisions` · `step3-lexicon` · `step9-explanations`(11-01 · 값 사전 · 설명 사실 셈) — 원천 폴더는 안 읽는다
+
 relation-check:
 
 - 원장 `orchestration/work/phub-recommend/step8-relations.json` · `.md` · 결정 `step8-decisions.json` · 반영 `step8-apply.py` · 가드 시험 `step8-fixture-test.py` + `step8-fixtures/` · 원천 질문 `step8-origin-questions.md` · 조사 `step8-research.*` · 결정 `_RESUME.md` §2 10-29 8단계 행
 - 앞 단계 정본(읽기만): `step1-products` · `step2-families` · `step3-sites`(danger_zone_mapping) · `step4-techniques`(safe_layers) · `step5-units`(키 · 동의어 · 장비 · product_links · ledger · pih) · `step6-packages`(8단계 메모) · `step7-concerns`(고민 노드 · 조합 앵커 · CC ③ 엣지 · 8단계 메모) · `source-map.json`(8단계 칸)
 - 원천 `/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/`(결정 `source.path` — apply 가 18파일을 읽는다. `--source` 로 바꿀 수 있다)
+
+explanation-check:
+
+- 원장 `orchestration/work/phub-recommend/step9-explanations.json` · `.md` · 결정 `step9-decisions.json` · 반영 `step9-apply.py` · 가드 시험 `step9-fixture-test.py` + `step9-fixtures/` · 효과 재셈 `step9-effect.py`(`step9-effect.json` · `.md`) · 조사 `step9-research.*` · 결정 `_RESUME.md` §2 11-01 · 기록 `para/projects/company/procedure-hub/log/2026-11-01-silver-step9-explanations.md`
+- 앞 단계 정본(읽기만): `step1-products`(ledger_id) · `step2-families` · `step5-units`(extracted · taxonomy_products attach · 단위 시술) · `step7-concerns`(고민 항목 · CC 대응표) · `step8-relations`(complications · side_effects)
+- 원천 `/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/`(결정 `source.path` — apply 가 7파일을 읽는다. `--source` 로 바꿀 수 있다) · 효과 재셈은 `reference/2026-10-30-hub-evals/`(읽기만)
+
+quality-eval:
+
+- 측정 `orchestration/work/phub-recommend/quality-eval.py`(정본 · 읽기만 · `--inputs` · `--out`) · 산출 `quality-eval-set.json` · `quality-report.json` · `.md` · 보관 판 `quality-v1/` · `quality-v2/inputs/` · `quality-v3/inputs/` · 결정 `_RESUME.md` §2 10-30 「품질 목표」 · 「골드 규칙 판단」 ① · 기록 `para/projects/company/procedure-hub/log/2026-10-30-quality-eval.md`
+- 입력(읽기만): 실버 정본 json 8 · `semantic.json` · `gold-research.json` · 2 · 5 · 7단계 결정(계열 옮김 표) · 샘플 상담 `reference/2026-10-30-chatry-sample/` · 원천 `/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/`(quality-eval.py 가 이 절대 경로를 읽는다)
 
 ## 정기 점검 실행
 
@@ -288,6 +329,52 @@ python3 reference/2026-10-27-skills-procedure-hub/procedure-hub-relation-check/s
 - 결함 주입 확인(scratchpad 사본 · 8가지 한 번에): 게이트 행(비교 acne)을 자동으로 · 바디 CC 쿨스컬프팅 엣지를 얼굴 전체 고주파 리프팅(U5-091)으로 · 「extracted indications」 엣지 더하기 · ④ 엣지 하나 빼기 · 팔자주름 ① 엣지 no_unit_at_site 표시 지우기 · 결정 synergy 「리프팅」 target 을 P2 로(apply 안 돌림) · 고민 패키지 영업 문구 default_response true · 원장 taxonomy 항목 하나 빼기 → open 1(원장에 없는 taxonomy 고민 칸) · 오류 14(자동 대응 글자 다름 2(주입 1 + 뺀 항목을 가리키던 역방향 행 1) · 게이트 질문 수 · 원장 낡음 · 원천 구조 밖 엣지 · 원천 구조 행 수 ≠ 엣지 수 · 후보 전부 표시 없음 · 앵커 부위 밖 · 영업 문구 · summary 불일치 5) · 종료 코드 1
 - 함께 확인: `step7-apply.py --out <scratchpad>` 두 번 → `step7-concerns.json` · `.md` · `step7-origin-questions.md` · `step7-source-fix.md` 서로 · 정본과 바이트 같음(정본은 지금 입력의 결정론 출력)
 
+## 시맨틱 정본 점검 실행
+
+실버가 바뀌었거나 골드 · 적재가 시맨틱을 읽기 전에. 읽기만 · 표준 라이브러리 · 재생성은 임시 폴더 둘에서(작업 폴더에 안 씀).
+
+```bash
+python3 reference/2026-10-27-skills-procedure-hub/procedure-hub-semantic-check/scripts/check_semantic.py \
+  --work orchestration/work/phub-recommend \
+  --out /tmp/semantic-check.json --selftest     # 낡음 · 오류 · 안 잡힌 selftest 있으면 종료 코드 1
+```
+
+2026-10-30 실행(`semantic.json` · `step7-concerns.json` 실행 전후 md5 같음): 노드 종류 13 · 엣지 종류 21 · 사전 표현 1962(겹침 135) · id 대응 1071(빠짐 0) · 합병증 35 · 부작용 72 · gap 12 · build 종료 코드 [0, 0] · 두 번 실행 · 정본 바이트 같음 · **errors 0 · selftest 15/15 잡힘** · 종료 코드 0. 지금 값은 다시 돌려 본다.
+
+## 품질 측정 점검 실행
+
+실버 · 시맨틱이 바뀐 뒤(그 단계 스킬 · semantic-check errors 0 다음) · 골드 빌드 · E2E 전후. 읽기만 · 표준 라이브러리 · quality-eval.py 를 임시 폴더 둘에서 돌린다(작업 폴더에 안 씀).
+
+```bash
+python3 reference/2026-10-27-skills-procedure-hub/procedure-hub-quality-eval/scripts/check_quality.py \
+  --work orchestration/work/phub-recommend \
+  --out /tmp/quality-check.json --selftest     # 필수 경로 --require cc(기본) · 오류 · 목표 미달 · 안 잡힌 selftest 있으면 종료 코드 1
+```
+
+2026-10-30 실행(작업 폴더 `quality-report.json` · `quality-eval-set.json` · `.md` 실행 전후 md5 같음): 목표 CC 슬롯 6/6(맞음 102/106) · CC 없음 4/6(84/106) · 1차 경로 4/6(78/106) · 규칙 칸 바뀐 문항 7(Q012 · Q013 · Q018 · Q019 · Q022 · Q023 · Q031 — 정답 하위 M8 에 KTP · 다파장 규칙) · 측정 경로 바뀐 함수 0(기준 = 이 판) · 판 4(v1 · v2 · v3 · 지금 — 상태 바뀐 문항 v1 → v2 26 · v2 → v3 4 · v3 → 지금 0) · **errors 0 · warnings 0 · selftest 13/13 잡힘** · 종료 코드 0. 채점 함수(build_eval_set · source_subs · sites_in_text · fam_hit · judge_target)는 v1 스크립트와 지문이 같고, 목표 판정 함수(goal_stats · goal_pass · GOALS)는 2차에서 생겨 그 뒤 같다.
+
+## 2026-10-30 스킬 설명서 최신화 뒤 실행(writer · 4종)
+
+- concern-check(R28 ~ R32 · §2-6c) · semantic-check(resolve_rules · §2-3b) · family-check(다파장 · §3-3b) · unit-check(source_text · side_effect_override · §2-6b) 설명서 · references 를 스크립트 · 결정 파일 그대로 맞춤(스크립트는 안 고침)
+- 결과(실버 md5 실행 전후 같음): family `rows 354 · 오류 0 · open 0` · unit `open 0 · stale 0 · errors 0 · 시술 175 · 단위 시술 162 · 상속 1379쌍` · concern `open 0 · stale 0 · errors 0 · 엣지 437 · 게이트 0` · semantic `errors 0 · selftest 15/15 · 사전 표현 2053(겹침 208)` · 종료 코드 전부 0
+
+## 2026-10-30 품질 수정 뒤 실행(quality-fix · 9종)
+
+- 7 · 8단계 · 시맨틱에 품질 규칙이 들어감(7단계 R28 CC 단위 · R29 원천 부위 낱말 · R30 원천 계열 밖 금지 · R31 원천 제품 하위 · R32 층 표시 / 8단계 끝점 부위 낱말 · row_landing · unit_gaps / 시맨틱 dictionary.resolve_rules) — 정본 `orchestration/work/phub-recommend/quality-report.md` §0-2
+- 스크립트 고침 2: concern-check(site_check 「원천 하위 안 정함 · 계열만(R31)」 · 「단위 시술 없음」 재셈 + R31 계열만은 뺀 단위 시술 하위가 둘 이상인지 확인) · semantic-check(사전 정규화 = semantic.json resolve_rules 를 읽음 · 대상 `scope:모든 시술` 허용)
+- 결과: family · site · technique · unit · package · concern · relation(selftest) · semantic(selftest) **errors 0 · 종료 코드 0** · product-check(MFDS) `--limit 5` 변경 0 · 조회 오류 3(외부 응답 None) → 그 2행 `--ids` 다시 조회 변경 0 · 오류 0(1단계 원장은 이번에 안 바뀜)
+
+## 2026-10-30 골드 전 정리 뒤 실행(gold-prep · 9종)
+
+- 2단계 다파장 하위(multi_wavelength · 보조 10행) · 5단계 부작용 덮어쓰기 값(side_effect_override) · 7단계 조합 구성 셈(components · members · upgrade = 581) — 정본 `orchestration/work/phub-recommend/quality-report.md` §0-2 3차
+- 스크립트 고침 1: semantic-check combo_component 재셈 = 구성 칸 셋(components · members · upgrade)
+- 결과: family · site · technique · unit · package · concern · relation(selftest) · semantic(selftest) errors 0 · 종료 코드 0 · product-check(MFDS) `--ids M8-4-2,M8-4-3,M1-2-1` 변경 0 · 조회 오류 1(외부 응답 None) → 그 행 다시 조회 변경 0 · 오류 0(1단계 원장은 이번에 안 바뀜)
+
+## 2026-10-30 다파장 KTP 넓힘 뒤 실행(multiwave · 9종)
+
+- 2단계 multi_wavelength 규칙을 「보조 하위가 이미 있어도 원천 파장이 가리키는 매질이 빠졌으면 더함」으로 넓힘(사용자 10-30 ⑤) — 노블린 · 클라리티2 · 아포지 엘리트 플러스 · 디스커버리 피코 + KTP
+- 결과: family · site · technique · unit · package · concern · relation(selftest) · semantic(selftest) errors 0 · product-check(MFDS) 그 4행 변경 0 · 조회 오류 1(HTTPError) → 그 행 다시 조회 변경 0 · 오류 0
+
 ## 설치 (명령만 — 실행하지 않았다)
 
 ```bash
@@ -300,6 +387,8 @@ ln -s "$PWD/reference/2026-10-27-skills-procedure-hub/procedure-hub-technique-ch
 ln -s "$PWD/reference/2026-10-27-skills-procedure-hub/procedure-hub-unit-check" .claude/skills/procedure-hub-unit-check
 ln -s "$PWD/reference/2026-10-27-skills-procedure-hub/procedure-hub-package-check" .claude/skills/procedure-hub-package-check
 ln -s "$PWD/reference/2026-10-27-skills-procedure-hub/procedure-hub-concern-check" .claude/skills/procedure-hub-concern-check
+ln -s "$PWD/reference/2026-10-27-skills-procedure-hub/procedure-hub-semantic-check" .claude/skills/procedure-hub-semantic-check
+ln -s "$PWD/reference/2026-10-27-skills-procedure-hub/procedure-hub-quality-eval" .claude/skills/procedure-hub-quality-eval
 
 # 전역 (모든 프로젝트)
 mkdir -p ~/.claude/skills
@@ -310,6 +399,8 @@ ln -s "$PWD/reference/2026-10-27-skills-procedure-hub/procedure-hub-technique-ch
 ln -s "$PWD/reference/2026-10-27-skills-procedure-hub/procedure-hub-unit-check" ~/.claude/skills/procedure-hub-unit-check
 ln -s "$PWD/reference/2026-10-27-skills-procedure-hub/procedure-hub-package-check" ~/.claude/skills/procedure-hub-package-check
 ln -s "$PWD/reference/2026-10-27-skills-procedure-hub/procedure-hub-concern-check" ~/.claude/skills/procedure-hub-concern-check
+ln -s "$PWD/reference/2026-10-27-skills-procedure-hub/procedure-hub-semantic-check" ~/.claude/skills/procedure-hub-semantic-check
+ln -s "$PWD/reference/2026-10-27-skills-procedure-hub/procedure-hub-quality-eval" ~/.claude/skills/procedure-hub-quality-eval
 
 # 링크 대신 복사
 cp -R reference/2026-10-27-skills-procedure-hub/procedure-hub-product-check ~/.claude/skills/
@@ -320,6 +411,8 @@ cp -R reference/2026-10-27-skills-procedure-hub/procedure-hub-unit-check ~/.clau
 cp -R reference/2026-10-27-skills-procedure-hub/procedure-hub-package-check ~/.claude/skills/
 cp -R reference/2026-10-27-skills-procedure-hub/procedure-hub-concern-check ~/.claude/skills/
 cp -R reference/2026-10-27-skills-procedure-hub/procedure-hub-relation-check ~/.claude/skills/
+cp -R reference/2026-10-27-skills-procedure-hub/procedure-hub-semantic-check ~/.claude/skills/
+cp -R reference/2026-10-27-skills-procedure-hub/procedure-hub-quality-eval ~/.claude/skills/
 ```
 
 스킬 본문의 경로는 프로필 레포 기준이다 — 전역으로 깔아도 이 레포에서 쓰는 것을 전제로 한다.
