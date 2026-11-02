@@ -626,6 +626,7 @@ para/areas/
 | 511 | `front` | `ios-input-auto-zoom` | iOS Safari 는 16px 미만 입력 포커스에 확대. 입력만 16px · 확대 잠금은 접근성 때문에 안 씀 |  |
 | 512 | `back` | `minimal-api-surface` | 밖으로는 필요한 경로 · 필드만. 허용 경로 목록 고정 시험 · 일반 오류 문구 · docs 끔 · 빌드 산출물 grep |  |
 | 513 | `front` | `mrz-continuous-scan` | 한 장 촬영 대신 프레임마다 MRZ 자리만 기기 안 OCR. 칸별 보정 · 검사 숫자 셋 · 연속 2 프레임 확정 · [촬영] 늘 · 실기기에서만 |  |
+| 514 | `db` | `pii-masking` | 원값은 저장에 보존하고 표시·전달 표면에서만 가리는 통제. 가리는 지점을 한 군데로 모은다 |  |
 
 ---
 
