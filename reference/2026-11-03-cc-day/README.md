@@ -35,7 +35,7 @@ DAY  ── 시술실 · 의국 (현황판 · 직원 앱)
 | 4-1 | 상품 · 시술 메뉴 | [04-1-menu.md](04-1-menu.md) | 설계만 — **1차에서는 만들지 않음**(작업 등은 스냅샷만 · cc 방식) |
 | 5 | 시술 현황(작업) | [05-task.md](05-task.md) | 정함(2026-11-03) · 확인할 것 1 |
 | 6 | 방 · 구역 · 예약 그룹 | [06-room.md](06-room.md) | 정함(2026-11-03) |
-| 7 | 알림 · 접수 · 채팅 (호출 · 마취는 05 에서 정함) | — | 다음 |
+| 7 | 알림 · 접수 · 채팅 (호출 · 마취는 05 에서 정함) | [07-misc.md](07-misc.md) | 정함(2026-11-03 · 바로 적용 — 검토는 이후) |
 
 ## 모든 테이블에 공통
 
@@ -117,4 +117,19 @@ erDiagram
   reservation_group ||--o{ reservation_group_timetable : "요일 시간표"
   visit ||--o{ visit_occupied_resource : "잡은 예약 칸"
   reservation_group ||--o{ visit_occupied_resource : ""
+  account ||--o{ device : "푸시 기기"
+  account ||--o{ notification : "알림함"
+  doctor_call ||--o{ notification : ""
+  account ||--o{ notification_setting : ""
+  notification ||--o{ push_log : "푸시 내역"
+  visit ||--o{ display_request : "화면 띄우기"
+  customer ||--o{ identity_check : "신분 확인"
+  customer ||--o{ id_photo : "신분증 사진"
+  customer ||--o{ questionnaire_history : "문진"
+  hospital ||--o{ chat_room : "채팅방"
+  chat_room ||--o{ chat_member : ""
+  account ||--o{ chat_member : ""
+  chat_room ||--o{ chat_message : ""
+  chat_message ||--o| chat_attachment : "첨부"
+  hospital ||--o{ notice : "KOS 공지 사본"
 ```
