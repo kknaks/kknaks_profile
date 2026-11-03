@@ -30,7 +30,6 @@
 | 예약 | `reserved_start_at` | timestamptz | ✓ | 예약 시작 시각 | reservation.startDateTime |
 |  | `reserved_end_at` | timestamptz |  | 예약 끝 시각 | reservation.endDateTime |
 |  | `reservation_status` | enum reserved · canceled · no_show · received · completed | ✓ | 예약 상태 — 예약됨 · 취소 · 노쇼 · 접수됨 · 완료 (KOS IN_PROGRESS = 접수됨) | reservation.status |
-|  | `reservation_group_id` | uuid FK |  | 예약 그룹 (시간표 · 정원 단위) | reservation.reservationGroupId (폐기 예정 표시) |
 |  | `reservation_notes` | text |  | 예약 메모 (최대 1,000자) | reservation.reservationMemo |
 |  | `reservation_assignee_id` | uuid FK |  | 예약 담당자 (예약을 잡은 직원) | reservation.reservationAssignee.id |
 |  | `requested_counselor_id` | uuid FK |  | 희망 상담사 | reservation.counselor.id |
@@ -111,7 +110,7 @@ visit
  ├─ visit_requested_procedure   희망 시술 (참고)        visit 1 : N      → 상품 옵션 참조 + 이름 · 가격 스냅샷
  ├─ consultation
  │    └─ consultation_procedure 상담 시술 (참고)        상담 1 : N       → 상품 옵션 | 시술권 참조 + 이름 · 가격 스냅샷
- └─ visit_task                  작업 = 시술 현황 (핵심)  visit 1 : N (5번) → 종류별로 하나를 가리킨다:
+ └─ visit_task                  작업 = 시술 현황 (핵심)  visit 1 : N (5번) → 1차는 스냅샷만(cc 방식 — 04-1 보류):
                                   · 시술권 + 회차 (잔여 시술권 / 오늘 결제한 시술)
                                   · 상품 옵션 (추후 수납 — 수납 필요)
                                   · 기타 작업 종류 (방 배정 · 마취 · 시트팩 …)
@@ -126,7 +125,6 @@ visit
 
 ## 논의 중 (사용자가 더 생각하기로 함)
 
-1. **예약 그룹(`reservation_group_id`)** — 6번(방 · 구역 · 예약 그룹)에서 정한다. KOS 는 예약 안 `reservationGroupId` 를 폐기 예정으로
-   두고 점유 자원(`occupiedResources`, 종류 `RESERVATION_GROUP`)으로 옮기는 중.
+1. ~~예약 그룹(`reservation_group_id`)~~ → 06 에서 정함: `visit` 에 두지 않고 `visit_occupied_resource` 로.
 
 보류(예약 현황 때): 수납 연결 · 처방전 연결 · 반응(`reactions`).

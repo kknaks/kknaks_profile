@@ -30,12 +30,12 @@ DAY  ── 시술실 · 의국 (현황판 · 직원 앱)
 |---|---|---|---|
 | 1 | 브랜드 · 병원 · 외부 CRM 연결 | [01-hospital.md](01-hospital.md) | 정함(2026-11-03) · 열린 것 1(Vegas — 붙일 때) |
 | 2 | 고객 | [02-customer.md](02-customer.md) | 정함(2026-11-03 · 검토 승인 53 · 반려 4 처리) · 열린 것 1 |
-| 3 | 예약 / 방문 | [03-visit.md](03-visit.md) | 정함 · 논의 1(예약 그룹 → 6번) |
-| 4 | 직원 / 계정 | — | |
-| 4-1 | 상품 · 시술 메뉴 (상품 · 옵션 · 진료항목 · 기타 작업 종류) | — | 작업보다 먼저 — 희망 시술 · 상담 시술 · 작업이 전부 가리킨다 |
-| 5 | 시술(방문 안의 작업 = 시술 현황) | — | |
-| 6 | 방 · 구역 · 예약 그룹 | — | |
-| 7 | 호출 · 마취 · 알림 · 접수 · 채팅 | — | |
+| 3 | 예약 / 방문 | [03-visit.md](03-visit.md) | 정함(2026-11-03) |
+| 4 | 직원 · 계정 · 로그인 · 역할 | [04-staff.md](04-staff.md) | 정함(2026-11-03) · 열린 것 2 |
+| 4-1 | 상품 · 시술 메뉴 | [04-1-menu.md](04-1-menu.md) | 설계만 — **1차에서는 만들지 않음**(작업 등은 스냅샷만 · cc 방식) |
+| 5 | 시술 현황(작업) | [05-task.md](05-task.md) | 정함(2026-11-03) · 확인할 것 1 |
+| 6 | 방 · 구역 · 예약 그룹 | [06-room.md](06-room.md) | 정함(2026-11-03) |
+| 7 | 알림 · 접수 · 채팅 (호출 · 마취는 05 에서 정함) | — | 다음 |
 
 ## 모든 테이블에 공통
 
@@ -52,7 +52,7 @@ DAY  ── 시술실 · 의국 (현황판 · 직원 앱)
 | DAY 테이블이 더 크다 | DAY 가 결국 원장이므로 외부 CRM 이 가진 정보를 처음부터 전부 DAY 칸으로 두고 동기화한다(+ DAY 에만 필요한 칸). 「필요할 때 외부를 읽는다」로 비워 두지 않는다 — ref 를 지우면 볼 곳이 없어진다. `external_ref` 에는 외부에만 의미 있는 값(외부 id · 외부 차트번호)과 **동기화 칸**(`synced_at` · `linked_at` · `is_present_in_source` · `external_updated_at`)만 | 사용자 2026-11-03 |
 | 민감 정보 | 주민번호 · 외국인등록번호 · 여권번호 등은 암호화해 저장 | 사용자 2026-11-03 |
 | 생성 · 수정 · 삭제 시각 | DAY 테이블에는 `created_at` · `updated_at` · `deleted_at` 만. 동기화 칸은 `external_ref` 에만 둔다. DAY 에서 먼저 만들고 외부에 보내면, 외부가 받아 준 id 를 `external_ref` 에 등록한다 | 사용자 2026-11-03 |
-| 참조 + 스냅샷 | 메뉴(상품 옵션 · 진료항목 등)를 가리키는 기록은 **참조 id 와 그때 값(이름 · 가격 · 진료항목)을 함께** 둔다. 메뉴가 바뀌어도 기록은 그때 값이 남는다. KOS 와 같은 구조(구매 항목 · 시술권 · 작업이 옵션을 복사해 둔다) | 사용자 2026-11-03 · HAR `add-pending-purchase-items` · `add-flow-tasks` |
+| 참조 + 스냅샷 | 메뉴(상품 옵션 · 진료항목 등)를 가리키는 기록은 **참조 id 와 그때 값(이름 · 가격 · 진료항목)을 함께** 둔다. **1차는 메뉴 테이블이 없어 스냅샷만**(참조는 자체 운영 단계에서). 메뉴가 바뀌어도 기록은 그때 값이 남는다. KOS 와 같은 구조(구매 항목 · 시술권 · 작업이 옵션을 복사해 둔다) | 사용자 2026-11-03 · HAR `add-pending-purchase-items` · `add-flow-tasks` |
 | 삭제 | **소프트 딜리트** — 행을 지우지 않는다. 모든 테이블에 `deleted_at`(timestamptz, null = 살아 있음)을 두고 조회는 기본으로 `deleted_at IS NULL` 만 본다. 외부에서 지워진 것도 `deleted_at` 을 채운다 | 사용자 2026-11-03 — 기본 원칙 |
 
 ## 전체 관계도
@@ -79,4 +79,42 @@ erDiagram
   visit ||--o{ visit_requested_procedure : "희망 시술"
   visit ||--o{ consultation : "상담"
   visit ||--o{ visit_flow_log : "단계 이력"
+  account ||--o{ staff : "병원별 직원"
+  hospital ||--o{ staff : ""
+  hospital ||--o{ job_role : "직무 = 역할"
+  job_role ||--o{ staff : ""
+  job_role ||--o{ job_role_permission : "DAY 권한"
+  account ||--o{ account_brand_access : "본사 조회"
+  brand ||--o{ account_brand_access : ""
+  account ||--o{ login_session : ""
+  login_session ||--o| external_session : "KOS 토큰"
+  product_category ||--o{ product_category_link : ""
+  product ||--o{ product_category_link : ""
+  product ||--o{ product_option : "옵션"
+  product_option ||--o{ product_option_price : "수가 유형별"
+  customer_type ||--o{ product_option_price : ""
+  product_option ||--o{ product_option_composition : "코스 구성"
+  medical_service ||--o{ product_option : ""
+  procedure ||--o{ medical_service : ""
+  product_option ||--o{ visit_requested_procedure : "희망 시술"
+  visit ||--o{ visit_task : "작업 = 시술 현황"
+  visit_task ||--o{ visit_task_staff : "담당 · 집도 · 호출된 의사"
+  staff ||--o{ visit_task_staff : ""
+  visit ||--o{ doctor_call : "의사 호출"
+  doctor_call ||--o{ doctor_call_task : ""
+  visit_task ||--o{ doctor_call_task : ""
+  doctor_call ||--o{ doctor_call_accept : "수락"
+  visit ||--o{ visit_anesthesia : "마취"
+  visit ||--o{ board_card_order : "카드 순서"
+  hospital ||--o{ event_log : "동작 기록"
+  hospital ||--o{ external_outbox : "외부 쓰기 큐"
+  hospital ||--o{ zone : "구역(층)"
+  zone ||--o{ room : "방"
+  room ||--o{ visit_task : ""
+  hospital ||--o{ reservation_group : "예약 그룹"
+  reservation_group ||--o{ reservation_group_capacity : "구역별 정원"
+  zone ||--o{ reservation_group_capacity : ""
+  reservation_group ||--o{ reservation_group_timetable : "요일 시간표"
+  visit ||--o{ visit_occupied_resource : "잡은 예약 칸"
+  reservation_group ||--o{ visit_occupied_resource : ""
 ```
