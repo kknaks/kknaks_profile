@@ -1,7 +1,7 @@
 # 재개 노트 — agency-settlement (agency-settlement)
 
-**지금**: 0.5.2 구현 끝 · BE code r4 수정 · FE6(접기 · 정렬 · 일괄 · 0원) · back · front 재기동(3800 production) · 코드 커밋 8089f72 → PR kknaksss/agency-settlement#1 · 문서 커밋 → PR #114
-**다음**: 사용자 화면 확인 · planner SPEC 동기 0.5.3(code r4 결정 · FE6) · [!] 서비스 표시 = 병원 담당자 확인 · 마감은 사용자 지시 때(archive-work.sh — 운영 PG volume · back/.env · research 리포트 옮길 곳 먼저)
+**지금**: 0.6.1 구현 · code r5 수정 끝(pytest 300) · back · front 재기동(3800 production) · 코드 커밋 788f73f(PR kknaksss/agency-settlement#1) · 문서 커밋(PR #114)
+**다음**: 사용자 화면 확인 · [!] 서비스 표시 = 병원 담당자 확인 · [!] 12-01 21시 뒤 run_daily 한 번(11월 마감 · 알림) · 마감은 사용자 지시 때(운영 PG volume · back/.env · research 리포트 옮길 곳 먼저)
 
 세팅: 처음엔 `new-work.sh cc-prototype agency-settlement` 로 시작 → 10-29 별도 프로젝트로 옮김. 설정 SSOT **`config/projects/agency-settlement.json`** · 이후 브리프는 `new-work.sh agency-settlement agency-settlement --workers …`
 문서: `para/projects/summer-star/agency-settlement/` · 코드: `kknaksss/agency-settlement`(private) · `/Users/kknaks/git/toy_pr2/agency-settlement`
@@ -63,11 +63,15 @@
 | 2026-11-02 | ~~OQ-138 상품 키 = 이름~~ → **상품 키 = KOS 상품 id**: ② 품목 ↔ 같은 수납 ⑤ items 를 옵션 이름으로 짝지어 옵션 id(수집본 671/671 겹침 0) → ⑦ 상품 options[].id → 상품 id. 목록에 없는 옵션 = 옵션 id 키 · 기타 상품 · 선불카드 = (종류, 이름). BE4 에 추가 지시 | 사용자 「상품 id로 매핑하는 게 아니야?」 · 코디 확인 |
 | 2026-11-02 | 상품 id 연결 한계 확인: 남은 미연결 품목(9월 914 · 10월 44 · 옵션 id 키)은 **그 상품 자체가 지금 KOS 목록에 없음**(예: 「[오픈] 피코토닝」 · 「[첫방문] 포텐자」 — ⑦ title 0 개 · 삭제된 상품) · 공개 API 로 상품 id 를 얻을 길 없음 → 옵션 id 키 그대로(설정에 「KOS 목록에 없음」 줄 · 비율 설정 가능) | 코디 실물(PG 직접 조회) |
 | 2026-11-02 | code r4 F-1: **잠긴 달 품목은 상품 키를 다시 잇지 않는다**(달 잠금 = 키 얼림) · 풀린 달은 키가 바뀌면 옛 키 비율을 새 키로 옮김(새 키 값 있으면 그대로 · 충돌 수) · 기록 · 상품 받기 응답에 rekeyedItems · carriedRates · conflicts | 코디 판단(리뷰 권장안 + 옮기기) |
+| 2026-11-03 | **[이 달 확정] 없앰** · **운영 기준 11월부터**(9 · 10월 테스트) · **서버 배포 뒤 스케줄: 매일 21시(KST) 상품 → 결제** · 상품 스냅샷 매일(늘어난 것만 · 사라진 것 「KOS 삭제됨」 · 지우지 않음) · 달 끝 다음 날 실행 때 앞 달 상품 스냅샷 고정 · 수수료율은 달 끝 뒤에도 고칠 수 있음 · **연결 안 된 품목 = 사람이 직접 상품 연결** · 스케줄은 앱 안 · 환경 변수로 켬(로컬 끔) | 사용자 지시(설계) · 끝 3줄은 코디 추천 동의 |
 
 ## 3. 발주 (살아 있는 것만)
 
 | 워커 | handle | task_id | dispatch_id | 브리프 | 상태 |
 |---|---|---|---|---|---|
+| be6 | `term_2b0bc5fd-c40c-4f07-9364-469e17c51a65` | `task_2f1e0b8d6e05` | `ctx_785c54a8524c` | `agency-settlement-wp-be6-brief.md` | 완료 · pytest 296 |
+| fe7 | `term_3aef3682-39a2-4fb9-9cff-543b2ea5ce0d` | `task_6e2b26870f91` | `ctx_c808efa4c6fc` | `agency-settlement-wp-fe7-brief.md` | 완료 · 코디 tsc |
+| planner 0.6.0 | `term_3a786cf2-d7ff-4b51-b5b0-7cd93003031b` | `task_b4fec218e554` | `ctx_c9518b0169bc` | `agency-settlement-spec-v6-brief.md` | 완료 0.6.1 |
 | reviewer code r4 | `term_484ec91b-dc98-476e-bf33-eb653612c2c8` | `task_40329ab89b2f` | `ctx_a53d6836dfb6` | `agency-settlement-review4-brief.md` | 완료 FAIL 1 · W 4 |
 | be4 | `term_2b0bc5fd-c40c-4f07-9364-469e17c51a65` | `task_1ed9c003ff96` | `ctx_232409da828d` | `agency-settlement-wp-be4-brief.md` | 완료 · pytest 268(PG) |
 | fe4 | `term_3aef3682-39a2-4fb9-9cff-543b2ea5ce0d` | `task_61f61bc35b7e` | `ctx_cdb8db42444b` | `agency-settlement-wp-fe4-brief.md` | 수정 1 완료(상품 id 계약) · 코디 tsc · build · 3800 |
@@ -100,6 +104,14 @@
 - 리포트: `research-agency-attribution.md` (완료 · 10-01~10-28 운영 수집본 기준)
 
 ## 5. 이력 (최신이 위)
+
+- `2026-11-03` code r5 FAIL 1 · W 5 → BE · FE 수정 발주
+
+- `2026-11-03` WP-FE7 완료(확정 UI 지움 · 수동 연결 화면 · b-11~18 · b-22 · fe7-* 25장)
+
+- `2026-11-03` planner 0.6.1 완료(r8 결정 반영)
+
+- `2026-11-03` 구조 결정(일별 스냅샷 · 21시 · 수동 연결) · planner 0.6.0 발주(옛 planner 터미널 사라짐 → 새로)
 
 - `2026-11-02` FE6 완료 · front build · 3800 · 코드 커밋 8089f72 push(PR #1) · 문서 커밋(PR #114)
 

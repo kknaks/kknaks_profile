@@ -1,13 +1,13 @@
 ---
 type: spec
 id: SPEC-001
-title: "월별 매출 리스트 — 운영 명동점 KOS 결제를 월 단위 · 수납별 묶음 · 품목 한 줄씩 · 유입 채널별 결산 · 상품 수수료율(달별 스냅샷) · PostgreSQL 저장 · 증분 조회 · 엑셀 · PDF 거래 명세서 · KOS 조회 전용 · 로컬 back"
-version: 0.5.2
+title: "월별 매출 리스트 — 운영 명동점 KOS 결제를 월 단위 · 수납별 묶음 · 품목 한 줄씩 · 유입 채널별 결산 · 상품 수수료율(달별 스냅샷 · 언제든 고침) · 상품 정보 달별 · 일별 스냅샷 · 수동 상품 연결 · 매일 21시 스케줄(환경 변수로 켬) · PostgreSQL 저장 · 증분 조회 · 엑셀 · PDF 거래 명세서 · KOS 조회 전용"
+version: 0.6.1
 status: draft
 product: agency-settlement
 feature: monthly-sales
 created_at: 2026-10-29
-updated_at: 2026-11-02
+updated_at: 2026-11-03
 tags:
   - product/agency-settlement
   - feature/monthly-sales
@@ -25,7 +25,7 @@ links:
     - "[[no-inference-from-free-text]]"
 up: []
 sources:
-  - "para/projects/summer-star/agency-settlement/10-decision/decision-001-monthly-sales-list.md (D-01 ~ D-23 · 열린 것 — 0.5.0 = D-19 ~ D-23)"
+  - "para/projects/summer-star/agency-settlement/10-decision/decision-001-monthly-sales-list.md (D-01 ~ D-28 · 열린 것 — 0.5.0 = D-19 ~ D-23 · 0.6.x = D-24 ~ D-28)"
   - "orchestration/work/agency-settlement/_RESUME.md §2 — 2026-10-29 줄 전부(결정 원천 · DEC-001 와 다르면 이쪽 · 0.1.1 = 운영 키 확장 · ③ 작업 정정 · 분할 결제 줄 · 0.1.2 = ⑤ 추가 승인 · 결제일 원천 줄 · 0.2.0 = 별도 프로젝트 줄 · 0.3.0 = 시안 v1 채택 · 에이전트별 · SQLite · 받은 시점 · 시안 v2 채택(정할 것) · 엑셀 줄 · 0.3.1 = 손님 셈 visitorId 줄 · 0.4.0 = 결제 손님 0원 · 엑셀 이름 · 증분 해석 · D-18 정정(최종 결제만) 줄)"
   - "orchestration/work/agency-settlement/research-agency-attribution.md — Q1 · Q3 ~ Q6(필드 경로 · 결제/취소 모양 · 연결 근거)"
   - "orchestration/work/agency-settlement/review-spec-007-report.md — 0.1.0 검수(F-1 · W-1 ~ W-6 · NOTE 1 ~ 5)"
@@ -53,13 +53,18 @@ sources:
   - "orchestration/work/agency-settlement/review-code-r3-report.md §2 — 9월 ⚠ 1 수납(Ⓐ) = 앞 달 승인의 이 달 취소 꼴(0.5.0 ⚠ 비교에서 뺌 · OQ-106)"
   - "https://developers.kos-solution.com/openapi.yaml 1.0.1(2026-11-02 받음) — 상품 작업 getProducts · getProduct · getCategories · getProductOptions · searchProductOptionSummaries · ② OpenPurchaseItemStatisticsItem(상품 id 없음 확인) · ⑤ PurchaseItemOptionConfiguration(옵션 id 있음)"
   - "agency-settlement 코드 back/(읽기만 · 커밋 2b299dc · PR #1) — repository/store.py 표 6개 · PRAGMA user_version 2 · service/sales.py 달 잠금 · 쓰기 잠금(0.5.0 PG 옮기기 대상)"
+  - "orchestration/work/agency-settlement/_RESUME.md §2 — 2026-11-02 「code r4 F-1」 줄 · **2026-11-03 줄**(0.6.0 — [이 달 확정] 없앰 · 운영 기준 11월 · 매일 21시 스케줄 · 상품 일별 스냅샷 · 수동 연결 · 앱 안 · 환경 변수) — 이기는 순서 1번"
+  - "orchestration/work/agency-settlement/feedback-2026-11-02-b.md 7 ~ 22 — 사용자 화면 수정(7 ~ 10 = FE6 구현 동기 · 11 ~ 18 · 22 = 0.6.0 화면 · 19 ~ 21 = 구조)"
+  - "orchestration/work/agency-settlement/review-doc-r8-report.md · r8-decisions.md — doc r8(F-1 · W-1 ~ W-5 · 구현 때 지킬 것 18) 코디 결정 · DEC-001 D-24 ~ D-28(0.6.1)"
+  - "orchestration/work/agency-settlement/review-code-r4-report.md · be5-fix-1-instructions.md · fe6-instructions.md — code r4(F-1 · W-1 ~ W-3) 수정 · FE6(0.5.3 몫 — 구현 동기)"
+  - "agency-settlement 코드(읽기만 · 커밋 8089f72 · PR #1) — migrations/versions/0001 ~ 0004 · repository/{store,settings_store}.py(link_products · FROZEN_PURCHASE · _carry · store_busy) · schemas/settings.py(CatalogInfo · ProductsRefreshResponse) · front components/{monthly,channel,settings}(접기 · 정렬 · 일괄)"
 ---
 
 # 월별 매출 리스트 계약
 
 > 운영 명동점 KOS 의 결제를 **월 단위로 조회**해 **수납별로 묶고 품목 한 줄씩** 보여 주는 로컬 페이지다. 병원 · 유입 채널(에이전시 포함) 수수료 정산용이고, **0.5.0 판은 월별 리스트 + 유입 채널별 결산 + 상품 수수료율(달별 스냅샷 · 확정) + PDF 거래 명세서 · zip**이다(DEC-001 D-01 · D-11 · D-14 · D-19 ~ D-22). 받은 데이터는 back 의 **PostgreSQL(로컬 docker)** 에 저장하고 지난 달은 다시 부르지 않는다(D-12 · D-23).
 >
-> SSOT 순서(이기는 순): ① `_RESUME` §2 의 10-29 줄 · **11-02 줄**(0.5.0 — 같은 날짜끼리는 뒤 줄이 이긴다) + 피드백 SoT `feedback-2026-11-02.md` ② DEC-001 ③ 이 문서 ④ 조사 리포트(사실) ⑤ 공식 스펙(필드 이름 · 뜻). **화면 정본 = 시안 v3(`Ceramique 월별 매출 v3.dc.html` · D-19 · §3.0)** — 시안 v1 · v2(D-10 · R§2 시안 v2 줄)는 3판 화면 기록(§3.1 ~ §3.6 · §3.0 이 이긴다). 이 문서는 화면의 계약(무엇이 보이나 · 어느 필드인가 · 언제 KOS 를 부르나)만 갖고, 배치 · 간격 · 색 · 문구 세부는 시안 대로다(§3).
+> SSOT 순서(이기는 순): ① `_RESUME` §2 의 10-29 줄 · **11-02 줄**(0.5.0 — 같은 날짜끼리는 뒤 줄이 이긴다) · **11-03 줄(0.6.0 — 11-02 의 「확정 달 잠금」 · 「사람이 [이 달 확정]」을 뒤집음 · DEC-001 D-24 ~ D-28)** · doc r8 코디 결정(0.6.1) + `feedback-2026-11-02-b.md` + 피드백 SoT `feedback-2026-11-02.md` ② DEC-001 ③ 이 문서 ④ 조사 리포트(사실) ⑤ 공식 스펙(필드 이름 · 뜻). **화면 정본 = 시안 v3(`Ceramique 월별 매출 v3.dc.html` · D-19 · §3.0)** — 시안 v1 · v2(D-10 · R§2 시안 v2 줄)는 3판 화면 기록(§3.1 ~ §3.6 · §3.0 이 이긴다). 이 문서는 화면의 계약(무엇이 보이나 · 어느 필드인가 · 언제 KOS 를 부르나)만 갖고, 배치 · 간격 · 색 · 문구 세부는 시안 대로다(§3).
 >
 > 근거 표기: `D1-nn` = DEC-001 결정 줄 · `R§2` = `_RESUME` §2 10-29 줄(괄호 안에 어느 줄인지) · `Qn` = 조사 리포트 질문 절 · `스펙` = openapi 1.0.1 스키마(이름을 같이 적음) · `KA§` = `kos-demo-api.md` 절 · `코드` = cc-prototype procedure 구현(읽기만) · `검수` = 0.1.0 검수 리포트 항목 · **`기본값`** = 결정에 없어 이 문서가 고른 값(§11 OQ 에 같이 올림).
 >
@@ -91,6 +96,10 @@ sources:
 >
 > **0.5.2(2026-11-02)** — 사용자 화면 수정 2차(`feedback-2026-11-02-b.md` · 재검수 없음 · 필드 더하기만): **0원 품목 = 보통 줄**(② 차례 · 「ㄴ」 · 옮기기 0 · 흐리게만 — §3.2 · §3.3 · OQ-135 뒤집음 · PDF 에도 0원 줄) · **묶음 옵션(⑤ `optionType GROUP`) = 한 줄 + 회색 「구성: …」**(§6.11 · 응답 `lines[].composition` · ⑤ `compositions` 의 시술 이름 · 횟수 · 단위만 저장 · alembic `0002` · 저장된 달 = `backfill_compositions`) · **PDF 줄 맞춤**(§4.10 — 상자 · 요약 · 표 좌우 끝 같은 선 · 테두리 같은 굵기 · 기간 한 줄) · 서비스(0원) 표시 · 수수료 대상 = 병원 담당자 확인 대기(OQ-154) · **구현 동기: 상품 키 = KOS 상품 id**(§5.5 · R§2 11-02 「상품 id」 두 줄 · `key` · `by` · `nameKeyedItems` · PUT `rates[{key}]` · OQ-138 닫음 · 0.5.1 같은 이름 배지 없앰) · 시험 #93 ~ #97 · L32 · OQ-154 · OQ-155.
 
+> **0.6.0(2026-11-03)** — R§2 11-03 줄 · `feedback-2026-11-02-b.md` 11 ~ 22 · 구현 동기(code r4 수정 · FE6 = 0.5.3 몫): ① **[이 달 확정] · lock · unlock 없앰**(§4.1 경로 `fee-rates/lock` · `/unlock` 지움 · `month_locked` · `cannot_lock` · `confirm_required` 없어짐 · J0 없어짐 · **수수료율은 어느 달이든 언제든 고친다 · 바꾼 것은 모두 기록** — §6.10) ② **상품 정보 달별 · 일별 스냅샷**(§6.12 · §4.4.5 — 상품 받기 = 그 달 스냅샷에 **늘어난 것만 더함** · KOS 에서 사라진 상품 · 옵션은 지우지 않고 `deletedInKos` 「KOS 삭제됨」 · **다음 달 1일 실행 때 앞 달 스냅샷 고정** · 품목 → 상품 id 는 **그 품목 달 스냅샷**으로 · 고정된 달 품목은 저절로 다시 잇지 않음 — 0.5.2 code r4 「잠긴 달 = 키 얼림」을 대신함) ③ **스케줄**(§4.12 — 앱 안 · `SALES_SCHEDULE_ENABLED`(기본 끔) · 매일 **21:00 KST** 상품 받기 → 결제 증분 · 달 1일 = 앞 달 마감 · 실패 · 겹침 · 놓친 실행 따라잡기 · 기록 표 `schedule_runs` · 한 번 돌리기 명령) ④ **수동 상품 연결**(§4.11 — 상품 id 로 못 이은 상품 품목 키 목록 · 사람이 그 달 스냅샷 상품을 골라 연결 · 기록 · 같은 키는 다음 달에도 · 수동이 자동보다 이김 · 경로 `GET` · `PUT /api/product-links` · 설정 「연결 안 된 품목 n」) ⑤ **화면 수정 11 ~ 18 · 22**(§3.0 — 문구 4 곳 지움 · 일괄 대상 = 필터 이름 · 선택은 필터를 바꾸면 풀림 · 월별 기본 펼침 · 옵션 칸 왼쪽 · 넓게 · 확정 · 고치기 UI 지움) ⑥ **운영 기준 11월부터**(9 · 10월 = 테스트 데이터 · 지우지 않음 · alembic `0005` 는 더하기만) ⑦ 구현 동기: alembic `0002` ~ `0004` 이름 · `store_busy` 503 · 상품 받기 응답 `rekeyedItems` · `carriedRates` · `conflicts` · 접기 · 정렬 · 일괄 · 0원 보통 글자색 · 경로 수 10 그대로(lock · unlock −2 · product-links +2) · 시험 #98 ~ #118 · LIVE5 L33 ~ L39 · OQ-156 ~ OQ-169(0.6.1 — #119 · #120 더함).
+
+> **0.6.1(2026-11-03)** — doc r8 FAIL 1 · WARN 5 코디 결정(`r8-decisions.md` · DEC-001 D-24 ~ D-28 · 재검수 없음 · BE6 ∥ FE7 이 이 결정대로 구현 중): **F-1 수동 연결은 자동으로 못 이은 품목에만**(§5.5 ⓪ 을 ② 뒤로 · 자동으로 이은 다른 달 품목은 연결 때도 [전체 다시 받기] 때도 안 바뀜 · 한 번 `manual` 이 된 품목은 그대로 · `otherMonths` · `result.months` = 그 키가 못 이은 줄로 있는 달 · D-27 · #114 · #115 고침 · #119) · **W-1 로컬(스케줄 꺼짐)은 달 1일 21:00 뒤 코디가 `run_daily` 한 번**(앞 달 마감 · 고정 · D-26 · `--due` 가드 = 지금보다 뒤 · 21:00 아님 거절 · §4.12 · #111 · L36) · **W-2 지난 달 설정은 열기만으로 스냅샷을 만들지 않음**(자동 `PUT rates: []` 은 이번 달만 · 지난 달은 미리 보기 · [저장] 확인 창 때 만듦 · §3.0.5 · §4.8 · §6.10 · #120) · **W-3 0원 줄 「흐리게」 남은 네 곳 지움**(§3.2 · §3.3 · §6.11 · OQ-135 · OQ-154 — 보통 글자색) · **W-5 달 마지막 더하기의 다시 잇기는 옵션 id 로만**(`product_title` 안 함 · §4.12 · §6.12 · D-25) · W-4 DEC = 코디가 고침(D-24 ~ D-28) · 「구현 때 지킬 것」 18 은 BE6 · FE7 브리프 몫(WORK 5판에 자리만).
+
 ## 1. 범위
 
 ### 1.1 In
@@ -100,7 +109,9 @@ sources:
 | 별도 프로젝트 코드 레포 **`kknaksss/agency-settlement`** — 루트에 `back/`(FastAPI) + `front/`(Next.js) · cc-prototype 은 읽기만(복사 원본) | D1-08 · R§2(별도 프로젝트 줄) |
 | **화면 셋(0.5.0 — 메뉴 「월별 조회 \| 유입채널 \| 설정」 · 반응형 1600 · 1024 · 390 · 결산 표 · 금액 칸 · 설정 · 명세서 미리보기 · zip 확인 = 시안 v3 · §3.0)**. 3판 기록 — 화면 둘(헤더 메뉴 「월별 조회 \| 에이전트별 조회」) — 월 선택 · 수납별 묶음 · 품목 줄 · 칸(D-03) · 상태 · 빈 달 · 불러오는 중 · 오류 · 저장 상태(§3) · 화면 세부 = 시안 v1 · v2 | D1-01 · D1-02 · D1-03 · D1-10 · D1-11 |
 | **유입 채널별 조회 · 결산**(0.5.0) — 그달 모든 최초 유입 채널(「(에이전시)」 꼬리 뗀 이름 · 빈 값 `(없음)`)마다 손님 · 결제 손님 · 수납 · 실결제 · 수수료 · 미설정 품목 수 + 합계(§4.2 · §6.8). 3판의 「에이전시만」 판정은 없어진다 | D1-11 · **R§2 11-02 피드백 줄** · 피드백 3 · 2 |
-| **KOS 상품 목록 받기 · 수수료율 설정 · 수수료 계산**(0.5.0 — §4.8 · §4.9 · §5.5 · §6.10) — 상품 단위 · 달별 스냅샷 · 앞 달 복사 · 지난 달 잠금 · 미설정 = 0 | **R§2 11-02 수수료율 줄** · 피드백 5 · 6 · 코디 기본값 |
+| **KOS 상품 목록 받기 · 수수료율 설정 · 수수료 계산**(0.5.0 — §4.8 · §4.9 · §5.5 · §6.10) — 상품 단위 · 달별 스냅샷 · 앞 달 복사 · 미설정 = 0 · **0.6.0: 잠금 없음 — 어느 달이든 언제든 고치고 기록** | **R§2 11-02 수수료율 줄** · **R§2 11-03 줄** · 피드백 5 · 6 · 코디 기본값 |
+| **상품 정보 달별 · 일별 스냅샷 · 수동 상품 연결**(0.6.0 — §4.4.5 · §4.11 · §6.12) — 상품 받기마다 그 달 스냅샷에 늘어난 것만 더함 · 사라진 것 「KOS 삭제됨」 · 다음 달 1일 앞 달 고정 · 못 이은 품목은 사람이 연결 | **R§2 11-03 줄** · 피드백 b-19 · b-21 |
+| **매일 21:00 KST 스케줄**(0.6.0 — §4.12) — 앱 안 · 환경 변수로 켬(로컬 기본 끔 · 서버 배포 때 켬) · 상품 → 결제 · 달 1일 앞 달 마감 | **R§2 11-03 줄** · 피드백 b-20 · b-21 |
 | **PDF 거래 명세서**(0.5.0 — §4.10 · 채널별 PDF · zip 하나 · 경로 · 라이브러리만 · 모양 = 시안 v3) | 피드백 4 |
 | **PostgreSQL 저장**(0.5.0 — §4.4 · SQLite 를 대신 · alembic · SQLite → PG 한 번짜리 옮기기) | **R§2 11-02 PG 줄** |
 | back API — `GET /api/sales`(§4 · 유입 채널 · 결산 · 수수료를 같은 응답에) + `GET /api/sales.xlsx`(§4.7 · 엑셀) + **0.5.0: 상품 받기 · 수수료율 읽기 · 쓰기 · PDF**(§4.1 — 경로 8) | D1-01 · D1-05 · D1-11 · D1-14 · R§2 11-02 |
@@ -119,12 +130,13 @@ sources:
 | 수수료 정산 확인 절차(채널과 서로 확인한 판 · 지급 기록) · 수수료를 KOS 에 쓰기 | OQ-112 · D1-05 |
 | 채널 목록 관리(채널 이름 합치기 · 별칭) — 채널 = 최초 유입 채널 값 그대로(꼬리만 뗌 · §6.8) | 피드백 3 · OQ-125 |
 | CSV · 엑셀 합계 행 · 엑셀 수수료 칸(0.5.0 — 엑셀은 11칸 그대로 · OQ-149) | D1-14(xlsx) · 피드백 4 |
-| 배포 · 외부 접속 · 로그인 · **서버 PG**(0.5.0 — back · front · PG 모두 이 맥 로컬 · PG = 로컬 docker · OQ-110 · OQ-145) | D1-09 · R§2(운영 키 줄 「로컬만」) · **R§2 11-02 로컬 줄**(「배포는 나중 — 서버 PG · 로그인 · 배포는 이번 판 밖」) |
+| 배포 · 외부 접속 · 로그인 · **서버 PG**(0.5.0 — back · front · PG 모두 이 맥 로컬 · PG = 로컬 docker · OQ-110 · OQ-145 · **0.6.0: 스케줄 코드는 이번 판에 넣고 켜는 것은 서버 배포 때** — R§2 11-03) | D1-09 · R§2(운영 키 줄 「로컬만」) · **R§2 11-02 로컬 줄**(「배포는 나중 — 서버 PG · 로그인 · 배포는 이번 판 밖」) |
 | KOS 쓰기(`/commands/` — 토큰 교환 하나 빼고) | D1-05 · R§2(운영 키 줄 「조회만」) |
 | 선불카드 충전 · 사용 이중 계산 거르기(0.5.0 — 둘 다 그대로 · 수수료율로 사람이 정함 · OQ-112 · OQ-142) | D1-07(「뒤의 필터가 정한다」) |
 | 메모 · 상세 유입(`…FunnelDetail`) 같은 자유 텍스트로 에이전시 짐작 | D1-04 · [[no-inference-from-free-text]] |
 | KOS 원본 응답(JSON) 저장 · 전화 · 생년월일 · 메모 등 이름 밖 개인정보 저장(§4.4 — 줄인 필드만 · PG 에서도 같음) | D1-12 · §7.3 |
-| 자동으로 지난 달을 다시 받기(지난 달은 [전체 다시 받기] 를 누를 때만) | D1-12 |
+| 자동으로 지난 달을 **처음부터** 다시 받기(지난 달 전체 받기는 [전체 다시 받기] 를 누를 때만 · 0.6.0 스케줄은 달 1일에 앞 달 **증분 한 번**(마감)만 — §4.12) | D1-12 · R§2 11-03 |
+| 9 · 10월 저장본 지우기 · 다시 받기(0.6.0 — 운영 기준은 11월부터 · 9 · 10월은 테스트 데이터로 **그대로 둔다** · 화면 · 채널 목록에 그대로 보임 · OQ-165) | R§2 11-03 「운영 기준 11월부터」 |
 
 ## 2. 폴더 · 실행 모양
 
@@ -136,7 +148,7 @@ agency-settlement/          # 코드 레포 kknaksss/agency-settlement(private) 
 │   ├── .env.example        # 이름만 — 복사해 back/.env(gitignore)
 │   ├── data/               # 0.3.0 — SQLite 파일 자리(gitignore). 0.5.0: 앱은 안 쓴다 — 옮기기 명령(§4.4.4)의 원본으로만 남음
 │   ├── compose.db.yaml     # 0.5.0 — 로컬 PG(postgres:16 · 127.0.0.1 · volume · 비밀번호는 .env)
-│   ├── alembic.ini · migrations/   # 0.5.0 — alembic(§4.4.2) · versions/0001_* = 3판 표 6개 + 0.5.0 새 표
+│   ├── alembic.ini · migrations/   # 0.5.0 — alembic(§4.4.2) · versions/0001_* = 3판 표 6개 + 0.5.0 새 표 · 0002 ~ 0004(0.5.x) · **0005(0.6.0 · §4.4.5)**
 │   ├── assets/fonts/       # 0.5.0 — PDF 글꼴(TTF · OFL · §4.10)
 │   ├── app/
 │   │   ├── main.py         # create_app 팩토리 · 오류 처리기 · CORS
@@ -150,6 +162,10 @@ agency-settlement/          # 코드 레포 kknaksss/agency-settlement(private) 
 │   │   ├── tools/migrate_sqlite.py   # 0.5.0 — SQLite 저장본 → PG 한 번짜리(§4.4.4)
 │   │   ├── tools/backfill_compositions.py  # 0.5.2 — 저장된 달 묶음 구성 채우기(⑤ 만 · §6.11)
 │   │   ├── domain/product_key.py # 0.5.2 동기 — 품목 → 상품 id 키(§5.5)
+│   │   ├── api/links.py          # 0.6.0 — GET · PUT /api/product-links(§4.11) · 이름은 구현
+│   │   ├── service/snapshot.py   # 0.6.0 — 달 상품 스냅샷 더하기 · 고정 · 다시 잇기(§6.12) · 이름은 구현
+│   │   ├── service/schedule.py   # 0.6.0 — 매일 21:00 KST 실행 · 따라잡기 · 겹침(§4.12)
+│   │   ├── tools/run_daily.py    # 0.6.0 — 한 번 돌리기(§4.12)
 │   │   ├── service/export.py     # 0.3.0 — 저장본 → xlsx(openpyxl · §4.7) · service/labels.py(한글 이름 표)
 │   │   ├── service/sales.py      # 월 경계 · 조인 · 줄 만들기 · 저장 · 증분 판단(§4.5) · 에이전시 판정(§6.8)
 │   │   ├── repository/store.py   # 0.5.0 — PostgreSQL(`psycopg` 3 · ORM 없음 · SQL 은 여기만) · 읽기 · 한 트랜잭션 쓰기 · advisory lock(§4.4) — 표 만들기는 alembic
@@ -175,7 +191,9 @@ agency-settlement/          # 코드 레포 kknaksss/agency-settlement(private) 
 
 ### 3.0 0.5.0 화면 — 시안 v3 (정본)
 
-**화면 정본 = 시안 v3**(`orchestration/work/agency-settlement/design-upload/Ceramique 월별 매출 v3.dc.html` · 장면 17 · 리포트 `design-v3-report.md` — R§2 11-02 시안 v3 채택 줄 · 「정할 것」 = 시안 값). 이 절은 **무엇이 보이고 어느 필드에서 오나 · 어느 경로를 부르나**만 정한다 — 배치 · 간격 · 색 · 문구 세부는 시안 대로, 값 · 필드 · 호출은 이 문서가 이긴다(3판 규칙 그대로). **아래 §3.1 ~ §3.6(3판)과 다르면 이 절이 이긴다** — 3판 절에서 그대로 남는 것: 월 선택 · 기본 달 · 저장 상태 · 받기 버튼 · 받은 시각 · 「새로 받음」 · 건수 줄 문구(구현 문구 그대로 · 시안 리포트 「다른 곳」 11) · 상태 화면(§3.4) · 묶음 차례(§3.3) · 품목 줄 규칙(§3.2 줄 · 숨김 · 0원 흐림).
+**화면 정본 = 시안 v3**(`orchestration/work/agency-settlement/design-upload/Ceramique 월별 매출 v3.dc.html` · 장면 17 · 리포트 `design-v3-report.md` — R§2 11-02 시안 v3 채택 줄 · 「정할 것」 = 시안 값). 이 절은 **무엇이 보이고 어느 필드에서 오나 · 어느 경로를 부르나**만 정한다 — 배치 · 간격 · 색 · 문구 세부는 시안 대로, 값 · 필드 · 호출은 이 문서가 이긴다(3판 규칙 그대로). **아래 §3.1 ~ §3.6(3판)과 다르면 이 절이 이긴다** — 3판 절에서 그대로 남는 것: 월 선택 · 기본 달 · 저장 상태 · 받기 버튼 · 받은 시각 · 「새로 받음」 · 건수 줄 「수납 N건 · 품목 M줄」(**0.6.0: 그 뒤 회색 글은 지움** — b-15 · §3.0.2) · 상태 화면(§3.4) · 묶음 차례(§3.3) · 품목 줄 규칙(§3.2 줄 · 숨김 · **0원 = 보통 글자색** — FE6 · b-10).
+
+**0.6.0 화면 바뀜(시안보다 이긴다 — 사용자 b-11 ~ b-18 · b-22 · R§2 11-03)**: [이 달 확정] · [고치기] · 「🔒 확정 · 잠김」 · 잠긴 달 입력 꺼짐 · 「수수료율이 확정된 달」 글 · zip 확인 창 「확정 전이에요」 줄 · PDF 미리보기 「확정 MM-DD」 글을 **모두 지운다**. 시안 v3 `settings-month-locked` 장면은 쓰지 않는다.
 
 #### 3.0.1 틀 · 반응형
 
@@ -193,10 +211,13 @@ agency-settlement/          # 코드 레포 kknaksss/agency-settlement(private) 
 | 요약 칩 | 수납 `counts.purchases` · 품목 `counts.itemLines` 줄 · **실결제 합** = `channelTotal.netTotal` · **수수료 합** = `channelTotal.feeTotal` · **미설정 품목** = `counts.unsetItems` 줄(0 이면 안 보임). 통화 섞임(`null`)이면 합 대신 `⚠ 통화 섞임` | `monthly` |
 | 표 칸 | 머리 = 결제일 · 손님 이름 · 방문일(데스크톱만) · 최초 유입 채널 · 수납(데스크톱만 — 끝 6자리 + 결제 수단) · 빈 칸 · **실결제** · 빈 칸 · **수수료**. 품목 줄 = 품목 종류 · 상품 · 옵션 · 상태 · **상품 실결제(`amount`) · 수수료율(`rateBp` → `n%` · `null` = 주황 「미설정」) · 수수료(`fee` · 미설정이면 0 흐림)** — 3판 「줄 첫 빈 칸」 없앰 · 칸 너비 = 시안 `headCols` · `lineCols` | 피드백 6 · `monthly` |
 | 머리 수수료 | `feeTotal`(0 이면 흐림) · **「앞 달 결제 취소」 머리 = 「—」**(`priorFee = null` · §6.10) · 통화 섞임 = `⚠` | `channel-one` 강샘플 |
-| ⚠ · 회색 표시 | `⚠ 결제 ≠ 품목` = `mismatch` 만(§6.4). 회색 작은 글 = 「취소 a · 환불 b · **앞 달 결제 취소 n**」(n = `priorCancelCount` · `title` = 「앞 달 결제를 이 달에 취소(<priorCancels>) — 결제 ≠ 품목 비교에서 뺐어요」) | `monthly-sep` |
-| 0원 · 묶음 줄(0.5.2) | 0원 품목 = 보통 줄 · 흐리게만 · ② 차례(「ㄴ」 · 옮기기 0 · 배지 0) · 묶음 줄(`composition ≠ null`) 아래 작은 회색 「구성: …」 한 줄(§6.11 · 금액 칸 없음) — 시안 v3 의 「묶음 + 0원 구성품 ㄴ」 그림(가짜 데이터)을 대신함 · 폰 카드도 같음 | 사용자 b-1 · b-5 · b-6 |
+| ⚠ · 회색 표시 | `⚠ 결제 ≠ 품목` = `mismatch` 만(§6.4). 회색 작은 글 = 「취소 a · 환불 b · **앞 달 결제 취소 n**」(n = `priorCancelCount` · `title` = 「앞 달 결제를 이 달에 취소(<priorCancels>) — 결제 ≠ 품목 비교에서 뺐어요」) — 묶음 머리의 글은 그대로 | `monthly-sep` |
+| 건수 줄(0.6.0 · b-15) | 「수납 N건 · 품목 M줄」 만. 그 뒤 회색 글 「취소된 결제 n건 · 전액 환불 품목 n개 · 숨긴 수납 n · 앞 달 품목에 반영된 취소 n · 이름으로 연결한 상품 줄 n」 은 **지운다**(응답 `counts` 는 그대로 · 엑셀 「정보」 시트도 그대로) | 사용자 b-15 |
+| 접기 · 펼치기(FE6 구현 동기 · 0.6.0 b-17) | 수납 묶음마다 머리 줄을 눌러 접기 / 펼치기(Enter · Space · `aria-expanded`) · 접힌 머리 = 결제일 · 손님 · 유입 채널 · 실결제 · 수수료 · 툴바 [모두 펼치기] [모두 접기] · **기본 = 월별 조회 펼침**(b-17 — FE6 「기본 접힘」을 월별에서 뒤집음) · **유입채널 채널 탭 기본 = 접힘**(코디 기본값 · OQ-163) · 폰 카드 같음 · 접힘 상태는 화면 안에서만(저장 0 · 달을 바꾸면 기본으로) | 사용자 b-7 · b-17 · fe6 |
+| 품목 줄 칸 차례 · 폭(0.6.0 · b-18) | 품목 줄 = **품목 종류 · 상품 · 옵션** 을 붙여 왼쪽에 · 옵션 칸 폭을 넓혀 말줄임을 줄인다(넘치면 말줄임 + `title`) · 그 뒤 상태 · 상품 실결제 · 수수료율 · 수수료(오른쪽 정렬). **머리 줄과 품목 줄은 같은 격자**(칸 너비 하나를 둘이 씀 · 시안 `headCols` · `lineCols` 을 바꿈). 태블릿 · 폰 카드도 차례 같음 | 사용자 b-18 |
+| 0원 · 묶음 줄(0.5.2 · 0.5.3 동기) | 0원 품목 = 보통 줄 · **보통 글자색**(FE6 · b-10 — 0.5.2 의 「흐리게」를 뒤집음) · 상태 배지 · 금액 「0」 · 수수료 「0」 · ② 차례(「ㄴ」 · 옮기기 0 · 배지 0) · 묶음 줄(`composition ≠ null`) 아래 작은 회색 「구성: …」 한 줄(§6.11 · 금액 칸 없음) — 시안 v3 의 「묶음 + 0원 구성품 ㄴ」 그림(가짜 데이터)을 대신함 · 폰 카드도 같음 | 사용자 b-1 · b-5 · b-6 |
 | 머리 메모 | 품목 못 찾음 = 「품목을 찾지 못했어요 — 수수료 0」 · 「앞 달 결제 취소」 = 「품목은 다른 달에 · 첫 승인 MM-DD」(시안 꼬리 「수수료 되돌림은 정할 것」은 넣지 않음 — 사용자 결정) | `monthly` · `channel-one` |
-| [전체 다시 받기](0.5.1) | 응답 `fees.locked = true` 면 **꺼짐** + 작은 글 「수수료율이 확정된 달 — 설정에서 [고치기]로 풀어야 다시 받을 수 있어요」(§4.5 J0 · doc r7 F-1). 월별 · 유입채널 둘 다 | doc r7 F-1 |
+| [전체 다시 받기](0.6.0) | **늘 켜짐**(0.5.1 의 「잠긴 달 꺼짐」 · J0 없어짐 — 잠금이 없다). 확인 창 문구에 한 줄 더함: 「이미 내려받은 거래 명세서와 금액이 달라질 수 있어요」(지난 달 · `closed` 일 때만). 다시 받아도 품목 → 상품 id 는 그 달 상품 스냅샷으로 잇는다(§6.12 — 고정된 달은 새 상품이 끼어들지 않음) | R§2 11-03 · OQ-157 |
 | 폰 카드 | 묶음 하나 = 카드(머리 줄 · 품목 줄 · 「실결제 n · 수수료 n」) — 값은 표와 같음 | `monthly-mobile` |
 
 #### 3.0.3 유입채널 (`/channel`)
@@ -205,6 +226,8 @@ agency-settlement/          # 코드 레포 kknaksss/agency-settlement(private) 
 |---|---|---|
 | 주소 | `/channel?month=YYYY-MM[&channel=<채널 이름>]` — `channel` 없음 = 「전체」 탭 · `channels[]` 에 없는 이름이면 「전체」로 바꾸고 주소에서 뺌 | 3판 §3.5 꼴 |
 | 탭 | 「전체 <counts.purchases>」 + `channels[]` **차례 그대로**(§6.8) 채널마다 하나 · 글자 = `name` · `title` = `rawNames` · 숫자 = `purchases` · **그달 0 인 채널도 탭 있음(흐리게)** · 탭 줄 오른쪽 안내 없음(피드백 1) · 폰 = 가로 스크롤 | `channel-all` · 피드백 1 · 3 |
+| 결산 표 정렬(FE6 구현 동기) | 칸 머리(유입 채널 · 손님 · 결제 손님 · 실결제 · 수수료 · 미설정 품목)를 눌러 오름 / 내림(▲▼) · 기본 = 실결제 내림 · 합계 줄은 늘 맨 아래 · 「전체」 탭 결산 표 · 폰 결산 카드 같음 | 사용자 b-8 · fe6 |
+| 결산 표 위 글(0.6.0 · b-16) | 회색 글 「채널 이름을 누르면 … · 수수료 = N월 수수료율 · 상품 id 대신 이름으로 연결한 줄 n」 **지운다** | 사용자 b-16 |
 | 「전체」 탭 | **결산 표만**(손님 묶음 없음 — 월별과 같아져서): 줄 = `channels[]` 하나씩(채널 · 손님 `customers` · 결제 손님 `payingCustomers` · 실결제 `netTotal` · 수수료 `feeTotal` · 미설정 품목 `unsetItems` · [PDF]) + **합계 줄** = `channelTotal`. 0 인 줄 흐리게 · 줄을 누르면 그 채널 탭 · [PDF] = `statements.pdf?channel=` · 폰 = 결산 카드 | 피드백 2 · `channel-all` |
 | 채널 탭 | 결산 한 줄(그 채널) + 그 채널 수납 묶음(§3.0.2 와 같은 표 · `purchases[].channel` 로 front 가 거름) + [거래 명세서(PDF)]. 묶음이 0 이면 3판 빈 탭 문구(손님 n · 결제 손님 m) | `channel-one` |
 | 건수 줄 | 3판 §3.5 그대로(걸러진 묶음으로 front 가 셈 · 숨긴 수 없음) | — |
@@ -213,7 +236,7 @@ agency-settlement/          # 코드 레포 kknaksss/agency-settlement(private) 
 
 | 자리 | 계약 | 시안 |
 |---|---|---|
-| [전체 내보내기(zip)] | 확인 창: 제목 「전체 내보내기 — YYYY년 M월」 · 파일 `거래명세서_YYYY-MM.zip` · 줄 = **손님 > 0 인 채널마다** `거래명세서_YYYY-MM_<채널>.pdf` + 부제(손님 · 실결제) + 수수료 · ⚠ 줄(있을 때만): 「미설정 품목 n줄 — 수수료 0 으로 들어가요」 · 「앞 달 결제 취소 n건 — 수수료는 되돌리지 않아요」(n = 그달 보이는 수납 중 `itemsHere = false` 이고 `netTotal ≠ 0` 인 수 = 수수료 「—」 머리 수 = PDF 주석 ③ 이 붙는 조건 · 양수 재승인 포함 · 0.5.1 doc r7 W-5) · 「이 달 수수료율이 확정 전이에요」(`fees.locked = false`) · 버튼 「zip 내려받기 (PDF n개)」 → `GET /api/statements.zip`(막지 않음) | `export-zip` |
+| [전체 내보내기(zip)] | 확인 창: 제목 「전체 내보내기 — YYYY년 M월」 · 파일 `거래명세서_YYYY-MM.zip` · 줄 = **손님 > 0 인 채널마다** `거래명세서_YYYY-MM_<채널>.pdf` + 부제(손님 · 실결제) + 수수료 · ⚠ 줄(있을 때만): 「미설정 품목 n줄 — 수수료 0 으로 들어가요」 · 「앞 달 결제 취소 n건 — 수수료는 되돌리지 않아요」(n = 그달 보이는 수납 중 `itemsHere = false` 이고 `netTotal ≠ 0` 인 수 = 수수료 「—」 머리 수 = PDF 주석 ③ 이 붙는 조건 · 양수 재승인 포함 · 0.5.1 doc r7 W-5) · ~~「이 달 수수료율이 확정 전이에요」~~(0.6.0 지움 — 확정이 없다) · 버튼 「zip 내려받기 (PDF n개)」 → `GET /api/statements.zip`(막지 않음) | `export-zip` |
 | [거래 명세서(PDF)] | 미리보기(시안 `statement-pdf` 꼴 — 값 = 응답에서 front 가 그림 · §4.10 과 같은 칸) + [닫기] [PDF 내려받기] → `GET /api/statements.pdf`. **미리보기는 데스크톱 폭에서만**(1024 미만은 바로 내려받기 — 시안 리포트 「A4 794px 넘침」) | `statement-pdf` |
 | 내려받는 중 · 실패 | 버튼 꺼짐 · 실패하면 오류 `message` 토스트(3판 엑셀과 같음) | §3.6 |
 
@@ -221,13 +244,15 @@ agency-settlement/          # 코드 레포 kknaksss/agency-settlement(private) 
 
 | 자리 | 계약 | 시안 |
 |---|---|---|
-| 달 | 「‹ YYYY년 M월 수수료율 ›」 — 범위 = `GET /api/fee-rates` `range`(앞 끝 = 가장 이른 저장 매출 달 · 뒤 끝 = 이번 달). 주소 `?month=` · 기본 = 이번 달. **달을 열 때 `exists = false` 면 `PUT rates: []` 한 번**(스냅샷 만들기 · 0.5.1 · §4.8) | `settings` |
-| 머리 판 | 「M월 값을 복사해서 시작했어요」(`copiedFrom`) · 상태 = 편집 중 / 「🔒 확정 · 잠김(MM-DD HH:mm)」(`lockedAt`) · 「저장됨 MM-DD HH:mm」(`savedAt`) · 상품 수 · 미설정 수(`rows` 로 셈) · 「상품 n개 · KOS 에서 받은 시각 MM-DD HH:mm」(`catalog`) · **[KOS 상품 다시 받기]**(`POST /api/products/refresh` · 받는 중… · 끝나면 다시 `GET`) | `settings` |
-| 확정 · 고치기 | **[이 달 확정]** = `canLock` 일 때만(0.5.1 — 매출이 `closed` 가 아니면 `canLock = false` · 그때 작은 글 「매출이 아직 확정 전이에요」) · 저장 안 한 변경이 있으면 꺼짐 → `POST …/lock`. 잠긴 달 = 입력 · 체크 · 일괄 전부 꺼짐 + **[고치기]** → 확인 창(「M월 수수료율을 고칠까요? — 확정 MM-DD 뒤에 나간 M월 거래 명세서와 금액이 달라질 수 있어요. 고친 뒤 다시 [이 달 확정]을 눌러 주세요」 · [아니요] [고칠게요]) → `POST …/unlock {confirm:true}` | `settings-month-locked` |
+| 달 | 「‹ YYYY년 M월 수수료율 ›」 — 범위 = `GET /api/fee-rates` `range`(앞 끝 = 가장 이른 저장 매출 달 · 뒤 끝 = 이번 달). 주소 `?month=` · 기본 = 이번 달. **달을 열 때 `exists = false` 면** — **이번 달(KST)만 `PUT rates: []` 한 번**(스냅샷 만들기 · 0.5.1 · §4.8). **지난 달은 자동 `PUT` 을 부르지 않는다**(0.6.1 · doc r8 W-2): `GET` 의 `rateBp`(복사될 값)를 미리 보기로만 보이고(머리 판 「아직 저장 안 됨 — M월 값을 복사해 보여 줘요」) · [저장] 때 지난 달 확인 창(OQ-156)을 거쳐 그 `PUT` 이 스냅샷을 만든다(바꾼 키가 없어도 [저장] 이 켜짐 · 그때 `rates` = 보이는 값 전부) — 열어 보기만 해서 지난 달 화면 · PDF 수수료가 바뀌는 길 0 | `settings` · doc r8 W-2 |
+| 머리 판 | 「M월 값을 복사해서 시작했어요」(`copiedFrom`) · 「저장됨 MM-DD HH:mm」(`savedAt`) · 상품 수 · 미설정 수(`rows` 로 셈) · 「상품 n개 · KOS 에서 받은 시각 MM-DD HH:mm」(`catalog`) · **상품 스냅샷 상태**(0.6.0 — `catalog.snapshot`: 열림 = 「M월 상품 스냅샷 · 매일 늘어난 것만 더해요」 / 고정 = 「M월 상품 스냅샷 고정(MM-DD HH:mm)」 / 없음 = 「M월 상품 스냅샷 없음」) · **[KOS 상품 다시 받기]**(`POST /api/products/refresh` · 받는 중… · 끝나면 다시 `GET` · 결과 한 줄 「새 상품 a · KOS 삭제됨 d · 키 바뀐 줄 r · 비율 옮김 c · 충돌 x」 — 0 인 것은 뺌 · 0.5.3 동기 `rekeyedItems` · `carriedRates` · `conflicts` + 0.6.0 `addedProducts` · `addedOptions` · `markedDeleted`). ~~편집 중 / 「🔒 확정 · 잠김」~~(0.6.0 지움). **상단 안내 「N월 매출의 수수료는 이 값으로 계산해요 — …」 지움**(b-11) | `settings` · 사용자 b-11 · R§2 11-03 |
+| ~~확정 · 고치기~~ | **0.6.0 없앰**(R§2 11-03 「[이 달 확정] 없앰」) — [이 달 확정] · [고치기] · 풀기 확인 창 · 잠긴 달 입력 꺼짐 · 「매출이 아직 확정 전이에요」 글 전부 지움. **어느 달이든 늘 고칠 수 있다** — 지난 달(이번 달 KST 보다 앞)을 [저장] 할 때만 확인 창 한 번: 「M월 수수료율을 바꿀까요? — 이미 내려받은 M월 거래 명세서와 금액이 달라질 수 있어요 · 바꾼 기록은 남아요」 [아니요] [바꿀게요](코디 기본값 · OQ-156) | R§2 11-03 · OQ-156 |
 | 거르기 | 찾기(상품 · 옵션 이름) · 카테고리 알약(`rows[].category` · 개수) · 「미설정만」 — front 가 `rows` 로 | `settings` |
-| 일괄 | 대상 = 고른 줄 / 카테고리 · 값 0 ~ 100 · 미리보기 「→ n개 상품을 v% 로 … 이름 a→v …」 · [적용] = 표 입력만 바꿈(저장 전) | `settings-bulk` |
-| 표 | 칸 = 체크 · 상품(이름 · 카테고리 · 옵션 글) · 배지(「미설정」 · 「새 상품」(`prevRateBp`·`rateBp` 둘 다 null) · 「KOS 목록에 없음」(`inCatalog = false`) · 「사용 중지」(`closed`) · ~~「같은 이름 상품 n개」~~(0.5.2 — id 키라 같은 이름도 따로 줄 · 대신 이름 옆 작은 id 끝 4자리) · 「KOS 목록에 없음」 = `by = option` · 회색 「이름으로 연결」 = `by = name`) · **앞 달 칸**(`prevRateBp` · 「M월 a% → b%」 바뀐 줄 강조) · **이 달 입력**(`%` · 빈 칸 = 미설정 · 0 ~ 100 · 소수 둘째 자리) · 폰 = 목록 | `settings` · `settings-mobile` |
-| 저장 | **[저장]**(자동 저장 아님) · 「저장 안 한 변경 n개」 · **[되돌리기]**(입력을 마지막 `GET` 값으로) · 저장 = 바뀐 키만 `PUT` · 저장 안 한 변경이 있는데 달 · 메뉴를 바꾸거나 페이지를 떠나면 브라우저 확인(`beforeunload`) — 시안 「경고 여부」 → 경고함(기본값 · OQ-152) | `settings-bulk` |
+| 선택(0.6.0 · b-22) | 표 체크는 **지금 보이는 줄에서만**. **거르기(카테고리 알약 · 찾기 · 「미설정만」)나 달을 바꾸면 고른 것이 모두 풀린다**(0 개로). 「모두 고르기」 체크 = 지금 보이는 줄 전부. 그래서 고른 줄 ⊆ 보이는 줄 — **안 보이는 상품에 일괄이 적용되는 길 0** | 사용자 b-22(「다른 필터로 가면 이전에 셀렉된 거는 풀어줘야지 · 눈에 안 보이는 걸 어떻게 적용한다는 거야」) |
+| 일괄(FE6 구현 동기 · 0.6.0 b-12) | 일괄 줄에 카테고리 드롭다운 **없음**(FE6 · b-9). 대상 = **고른 줄이 있으면 고른 줄, 없으면 지금 보이는 줄 전부**. 대상 글자 = **필터 이름으로**(b-12): 거르기 없음 「전체 n개」 · 카테고리 알약 「<카테고리> n개」 · 찾기 「'<찾는 말>' n개」 · 「미설정만」 「미설정 n개」 · 둘 이상 겹치면 「<카테고리> · '<찾는 말>' n개」 꼴로 이어 붙임 · 고른 줄이면 「고른 상품 n개」(「지금 보이는 n개」 글자는 쓰지 않는다). 값 0 ~ 100 · 미리보기 「→ n개 상품을 v% 로 … 이름 a→v …」 · [적용] = 표 입력만 바꿈(저장 전) · 고른 줄이 없을 때 [적용] 은 확인 창 「<대상 글자>에 적용할까요?」 한 번 | 사용자 b-9 · b-12 · fe6 |
+| 표 | 칸 = 체크 · 상품(이름 · 카테고리 · 옵션 글) · 배지(「미설정」 · 「새 상품」(`prevRateBp`·`rateBp` 둘 다 null) · **「KOS 삭제됨」(0.6.0 — `deletedInKos` · 이 달 상품 스냅샷에서 KOS 가 더는 안 줌 · 줄 · 비율은 그대로)** · 「사용 중지」(`closed`) · **「연결 안 됨」(`by = option` · `name` 인 상품 품목 줄 — 누르면 「연결 안 된 품목」 보기로 · 0.6.0)** · 「수동 연결」(`by = manual` 회색 · 0.6.0) · 이름 옆 작은 id 끝 4자리(0.5.2)) · **앞 달 칸**(`prevRateBp` · 「M월 a% → b%」 바뀐 줄 강조) · **이 달 입력**(`%` · 빈 칸 = 미설정 · 0 ~ 100 · 소수 둘째 자리 · 틀리면 칸 빨강 + `title` 툴팁만 — **입력 아래 안내 글 「0 ~ 100 사이 숫자를 넣어 주세요(소수 둘째 자리까지)」 지움**(b-13) · 일괄 값 칸도 같음) · 폰 = 목록 | `settings` · `settings-mobile` · 사용자 b-13 |
+| 저장 | **[저장]**(자동 저장 아님) · 「저장 안 한 변경 n개」 · **[되돌리기]**(입력을 마지막 `GET` 값으로) · 저장 = 바뀐 키만 `PUT` · 저장 안 한 변경이 있는데 달 · 메뉴 · 보기를 바꾸거나 페이지를 떠나면 브라우저 확인(`beforeunload`) — 시안 「경고 여부」 → 경고함(기본값 · OQ-152) | `settings-bulk` |
+| **연결 안 된 품목(0.6.0 — §4.11)** | 설정 화면 위 보기 바꿈 **「수수료율 \| 연결 안 된 품목 n」**(n = `GET /api/fee-rates` `unlinkedKeys` · 0 이면 「연결 안 된 품목」 흐리게 · 주소 `?month=&view=links`). 보기 = 그 달 **못 이은 상품 품목 키** 목록(§4.11 `unlinked[]` — 줄 = 상품 이름 · 옵션 이름들 · 「품목 n줄」 · 키 꼴 회색(「옵션 id …끝 4자리」 / 「이름」)) + **이미 수동 연결한 키**(`linked[]` — 고른 상품 이름 · 연결한 시각 · [바꾸기] · [연결 풀기]). 줄의 [상품 고르기] → 그 달 상품 스냅샷 목록(`candidates[]` · 찾기 · 카테고리 · 「KOS 삭제됨」 · 「사용 중지」 배지 · 이름 옆 id 끝 4자리)에서 하나 → 확인 창 「<품목 이름> → <상품 이름> 으로 연결할까요? — 같은 키로 아직 못 이은 <otherMonths> 품목도 이 상품으로 이어지고, 수수료율이 그 상품 비율로 바뀔 수 있어요」(0.6.1 — `otherMonths` 를 그대로 보임 · 0 개면 그 구절 뺌 · 자동으로 이은 품목은 안 바뀜) → `PUT /api/product-links` → 결과 한 줄 「품목 n줄 연결 · 비율 옮김 c · 충돌 x」 → 다시 `GET`. 메모 칸(선택 · 200자). 폰 = 목록 · 고르기는 전체 화면 창 | R§2 11-03 「연결 안 된 품목 = 사람이 직접 상품 연결」 · 피드백 b-21 · 코디 기본값(OQ-160) |
 
 ### 3.1 틀
 
@@ -247,7 +272,7 @@ agency-settlement/          # 코드 레포 kknaksss/agency-settlement(private) 
 
 ### 3.2 표 — 수납 묶음 · 품목 줄
 
-**한 줄 = 최종 결제된 품목 하나 · 같은 수납의 품목은 묶어 보인다**(D1-02 · **D1-18**). 묶음 머리 = 수납 단위 칸 + **실결제**, 그 아래 줄(들여 쓴 두 번째 층 — 시안 v1) = 품목 단위 칸(품목 줄은 그 수납의 **첫 승인 결제가 있는 달에만** — §6.2). **결제 · 취소 · 반환 줄은 없다**(0.4.0 — 1 · 2판의 `payment` · `cancel` · `spent` 줄 · 시안의 결제 · 취소 줄은 그리지 않는다) · **전액 환불 품목(`REFUNDED`) 줄도 없다**(건수만 · §6.9). 금액 0 인 결제 완료 품목은 보인다 — **0.5.2: 보통 품목 줄**(들여쓰기 · 「ㄴ」 · 자리 옮기기 없음 · **흐리게만** · 차례 = ② 차례 · §3.3). 0원 품목은 다른 품목의 하위(구성품)가 아니다(사용자 2026-11-02 b-1 · 운영 10월 — 독립 상품 · 할인으로 0원).
+**한 줄 = 최종 결제된 품목 하나 · 같은 수납의 품목은 묶어 보인다**(D1-02 · **D1-18**). 묶음 머리 = 수납 단위 칸 + **실결제**, 그 아래 줄(들여 쓴 두 번째 층 — 시안 v1) = 품목 단위 칸(품목 줄은 그 수납의 **첫 승인 결제가 있는 달에만** — §6.2). **결제 · 취소 · 반환 줄은 없다**(0.4.0 — 1 · 2판의 `payment` · `cancel` · `spent` 줄 · 시안의 결제 · 취소 줄은 그리지 않는다) · **전액 환불 품목(`REFUNDED`) 줄도 없다**(건수만 · §6.9). 금액 0 인 결제 완료 품목은 보인다 — **0.5.2: 보통 품목 줄**(들여쓰기 · 「ㄴ」 · 자리 옮기기 없음 · **보통 글자색**(0.6.1 — b-10 · 「흐리게」 없음) · 차례 = ② 차례 · §3.3). 0원 품목은 다른 품목의 하위(구성품)가 아니다(사용자 2026-11-02 b-1 · 운영 10월 — 독립 상품 · 할인으로 0원).
 
 | 칸 | 단위 | 보이는 값 | 근거 |
 |---|---|---|---|
@@ -271,7 +296,7 @@ agency-settlement/          # 코드 레포 kknaksss/agency-settlement(private) 
 
 ### 3.3 정렬
 
-**묶음 차례 = back 응답 차례 그대로**(0.4.3 — front 는 다시 정렬하지 않는다 · 엑셀과 같은 차례 · code r3 W-1). back 은 「정렬 시각」 = 저장 `paid_at`(살아 있는 승인) · 없으면 그달 첫 취소 · 반환 시각(반영된 취소 포함) 오름차순 · 시각 없는 묶음은 맨 뒤 · 같으면 수납 id 로 놓는다 · **묶음 안 = 품목 줄만 · ② 응답 차례 그대로**(**0.5.2** — 사용자 b-1: 0.4.0 의 「0원 줄은 앞 유료 줄 바로 아래로 옮김」을 **없앤다** · OQ-135 뒤집음). 0원 품목도 다른 줄과 같은 자리 · 같은 들여쓰기(「ㄴ」 없음) · 흐리게만. 근거: 운영 10월 0원 품목 줄은 할인으로 0원(⑤ `priceAdjustments`) · 원래 0원 상품(독립 상품) · 환불이고, **어느 것도 다른 품목의 하위가 아니다**(feedback b-3 · b-5). 「하위 구성」은 묶음 옵션 안의 `compositions` 로만 온다(§6.11). ① `lastUpdatedPaymentDateTimeUtc` 로 정렬하지 않는다(R§2 ⑤ 줄). 차례 세부는 기본값(OQ-113).
+**묶음 차례 = back 응답 차례 그대로**(0.4.3 — front 는 다시 정렬하지 않는다 · 엑셀과 같은 차례 · code r3 W-1). back 은 「정렬 시각」 = 저장 `paid_at`(살아 있는 승인) · 없으면 그달 첫 취소 · 반환 시각(반영된 취소 포함) 오름차순 · 시각 없는 묶음은 맨 뒤 · 같으면 수납 id 로 놓는다 · **묶음 안 = 품목 줄만 · ② 응답 차례 그대로**(**0.5.2** — 사용자 b-1: 0.4.0 의 「0원 줄은 앞 유료 줄 바로 아래로 옮김」을 **없앤다** · OQ-135 뒤집음). 0원 품목도 다른 줄과 같은 자리 · 같은 들여쓰기(「ㄴ」 없음) · 보통 글자색(0.6.1 · b-10). 근거: 운영 10월 0원 품목 줄은 할인으로 0원(⑤ `priceAdjustments`) · 원래 0원 상품(독립 상품) · 환불이고, **어느 것도 다른 품목의 하위가 아니다**(feedback b-3 · b-5). 「하위 구성」은 묶음 옵션 안의 `compositions` 로만 온다(§6.11). ① `lastUpdatedPaymentDateTimeUtc` 로 정렬하지 않는다(R§2 ⑤ 줄). 차례 세부는 기본값(OQ-113).
 
 ### 3.4 상태 화면
 
@@ -315,15 +340,17 @@ D1-11 — 같은 달 같은 응답(§4.2)을 **front 가 걸러서** 보인다(b
 |---|---|---|---|
 | **`GET /api/sales`** | 쿼리 `month=YYYY-MM`(없으면 이번 달 KST) · `refresh`(선택) = **`new`**(이번 달 — 마지막 받은 시각 이후만 더 받기) · **`full`**(그 달을 처음부터 다시 받기). 없으면 §4.5 판단표대로(저장본 · 필요할 때만 증분). 그 밖 값(옛 `1` 포함) → 400 `bad_refresh` | 200 §4.2 · 오류 §4.3 | D1-01 · D1-05 · D1-12 · §4.5 |
 | **`GET /api/sales.xlsx`** | 쿼리 `month=YYYY-MM`(필수) · `view=monthly\|channel`(기본 `monthly` · **0.5.0: `agency` → `channel`** — 옛 `agency` 는 400 `bad_view`) · `channel=<채널 이름>`(`view=channel` 일 때만 · 없으면 채널 전체 = 그달 수납 전부) | 200 xlsx 파일(§4.7) · 오류 §4.3 | **D1-14** · 피드백 3 |
-| **`POST /api/products/refresh`**(0.5.0) | 본문 `{}`(JSON · §7.4) | 200 `{fetchedAt, products, options, categories, kosCalls}`(수만) · 오류 §4.3 | §4.9 · 피드백 5 |
+| **`POST /api/products/refresh`**(0.5.0) | 본문 `{}`(JSON · §7.4) | 200 `{fetchedAt, month, products, options, categories, kosCalls, rekeyedItems, carriedRates, conflicts, addedProducts, addedOptions, markedDeleted}`(수만 · 0.5.3 동기 + 0.6.0 · §4.9) · 오류 §4.3 | §4.9 · 피드백 5 |
 | **`GET /api/fee-rates`**(0.5.0) | 쿼리 `month=YYYY-MM`(없으면 이번 달 KST) | 200 §4.8 | §4.8 |
 | **`PUT /api/fee-rates`**(0.5.0) | 쿼리 `month=YYYY-MM`(필수) · 본문 JSON §4.8 | 200 §4.8(쓴 뒤 다시 읽은 값) · 오류 §4.3 | §4.8 · R§2 11-02 수수료율 줄 |
-| **`POST /api/fee-rates/lock`** · **`/unlock`**(0.5.0) | 쿼리 `month=YYYY-MM`(필수) · 본문 `{}`(lock) · `{"confirm": true}`(unlock) | 200 §4.8 | §6.10 · 시안 v3 [이 달 확정] · [고치기] |
+| ~~`POST /api/fee-rates/lock` · `/unlock`~~ | **0.6.0 없앰** — 부르면 404 `not_found`(§4.3) | — | R§2 11-03 「[이 달 확정] 없앰」 |
+| **`GET /api/product-links`**(0.6.0) | 쿼리 `month=YYYY-MM`(없으면 이번 달 KST) | 200 §4.11 | §4.11 · R§2 11-03 |
+| **`PUT /api/product-links`**(0.6.0) | 쿼리 `month=YYYY-MM`(필수 — 고를 상품 스냅샷 달) · 본문 JSON §4.11 | 200 §4.11(쓴 뒤 다시 읽은 값 + 이번 연결 수) · 오류 §4.3 | §4.11 |
 | **`GET /api/statements.pdf`**(0.5.0) | 쿼리 `month=YYYY-MM`(필수) · `channel=<채널 이름>`(필수) | 200 PDF 하나(§4.10) | 피드백 4 |
 | **`GET /api/statements.zip`**(0.5.0) | 쿼리 `month=YYYY-MM`(필수) | 200 zip 하나(그달 채널마다 PDF · §4.10) | 피드백 4 |
 | `GET /api/health` | 없음 | `{ok: true, kosConfigured: bool}` — 키 · 주소 값은 싣지 않는다 | 코드(cc-prototype procedure `HealthResponse` 모양) · 기본값(OQ-111) |
 
-- 경로는 **열**(0.5.0 · `test_route_count_10` — 3판의 셋 + `products/refresh` · `fee-rates` GET · PUT · `fee-rates/lock` · `fee-rates/unlock` · `statements.pdf` · `statements.zip`). **쓰기 경로가 처음 생긴다**(POST 3 · PUT 1 — 로컬 저장본만 바꾼다 · KOS 쓰기 0 · 로그인 없음) → 막는 규칙 §7.4. DELETE 0. 매출 `refresh` 는 그대로 GET 쿼리(KOS 를 다시 읽는 것 · 3판과 같음)
+- 경로는 **열**(0.5.0 · `test_route_count_10` — 3판의 셋 + `products/refresh` · `fee-rates` GET · PUT · `fee-rates/lock` · `fee-rates/unlock` · `statements.pdf` · `statements.zip`). **0.6.0 도 열**(lock · unlock 지우고 `product-links` GET · PUT 더함 — 시험은 경로 이름 목록까지 맞춘다 · #98). 쓰기 경로 = **POST 1 · PUT 2**(상품 받기 · 수수료율 쓰기 · 상품 연결 — 로컬 저장본만 바꾼다 · KOS 쓰기 0 · 로그인 없음) → 막는 규칙 §7.4. DELETE 0(연결 풀기도 `PUT productId: null`). 매출 `refresh` 는 그대로 GET 쿼리(KOS 를 다시 읽는 것 · 3판과 같음)
 - 상품 목록만 읽는 경로(`GET /api/products`)는 두지 않는다 — 설정 화면이 쓰는 상품 줄은 `GET /api/fee-rates` 응답에 같이 싣는다(§4.8 · 화면 하나 = 요청 하나)
 - **유입 채널별 조회는 경로를 늘리지 않는다**(3판과 같은 이유 · 0.5.0 이름만 바뀜) — `/api/sales` 응답에 수납마다 `channel` · 달 결산 `channels[]` · `channelTotal` 을 싣고 front 가 거른다(§3.5). 근거: 한 달 수납이 수백 건이라 한 응답에 다 담겨도 가볍고 · 탭을 바꿀 때 back · KOS 를 다시 부르지 않으며 · 월별 · 채널별이 같은 저장본 · 같은 받은 시각을 본다(서로 다른 숫자가 날 자리가 없다). 대안(목록 경로 + 채널로 거른 경로)은 OQ-127
 - 모든 응답 헤더 `Cache-Control: no-store`(이름 · 결제가 브라우저 캐시에 남지 않게) · 기본값(OQ-117)
@@ -372,15 +399,24 @@ D1-11 — 같은 달 같은 응답(§4.2)을 **front 가 걸러서** 보인다(b
     "itemsNowhere": 0,        // 고정한 다른 달이 이제 품목을 안 보여 품목이 어느 달에도 없는 수납 수(§4.4 · OQ-128 · 0.3.1)
     "mismatchPurchases": 0,   // 0.5.0 — mismatch = true 인 수납 수(§6.4)
     "unsetItems": 1,          // 0.5.0 — 보이는 품목 줄 중 금액 > 0 이고 수수료율 미설정(rateBp = null)인 줄 수(§6.10)
-    "nameKeyedItems": 0       // 0.5.2 동기 — 상품 id 로 못 이어 이름 키로 대체한 PRODUCT_OPTION 보이는 줄 수(§5.5)
+    "nameKeyedItems": 0,      // 0.5.2 동기 — 상품 id 로 못 이어 이름 키로 대체한 PRODUCT_OPTION 보이는 줄 수(§5.5)
+    "unlinkedItems": 0,       // 0.6.0 — 보이는 PRODUCT_OPTION 줄 중 by = option · name 인 줄 수(§4.11 · 화면에 안 씀 · 시험 · LIVE 용)
+    "manualLinkedItems": 0    // 0.6.0 — by = manual 인 보이는 줄 수
   },
   "clinicName": "세라미크 명동점",           // 0.5.1 — env SALES_CLINIC_NAME(§10.1) · 헤더 지점 이름 · PDF 미리보기 「발행 (병원)」 · PDF 와 같은 한 곳(doc r7 W-5)
   "fees": {                                   // 0.5.0 — §6.10 · 이 달 수수료율 스냅샷 상태
     "rateMonth": "2026-10",                   // 품목 줄 비율을 읽은 스냅샷 달 = 이 달
     "exists": true,                            // 0.5.1 — 이 달 스냅샷이 있나 · false 면 모든 줄 미설정(GET 은 만들지 않는다 · §6.10)
-    "locked": false,                          // 이 달 비율이 사람이 [이 달 확정] 해 잠겼나(§6.10) · PDF 주석 「확정 MM-DD HH:mm / 확정 전」
-    "lockedAt": null,
+    // ~~"locked" · "lockedAt"~~ — 0.6.0 없앰(잠금 없음 · R§2 11-03)
+    "savedAt": "2026-10-31T18:00:00+09:00",   // 0.6.0 — 이 달 스냅샷 마지막 [저장] 시각(KST) · 없으면 null · PDF 주석 ①
     "copiedFrom": "2026-09"                   // 이 달 스냅샷을 만들 때 복사한 달 · 처음부터 빈 스냅샷이면 null
+  },
+  "catalog": {                                // 0.6.0 — 이 달 상품 스냅샷(§6.12) · 품목 → 상품 id 를 이 스냅샷으로 이었다
+    "month": "2026-10",
+    "exists": true,                           // false = 이 달 상품 스냅샷 없음(그 달 품목은 저장된 키 그대로 · 자동 다시 잇기 0)
+    "frozenAt": "2026-11-01T21:00:04+09:00",  // 고정 시각(KST) · null = 열림(매일 늘어난 것만 더함)
+    "updatedAt": "2026-10-31T21:00:03+09:00", // 마지막으로 더한 받기 시각 · 없으면 null
+    "unlinkedKeys": 3                         // 이 달 보이는 품목 중 상품 id 로 못 이은 상품 품목 키 수(§4.11 · by = option · name · PRODUCT_OPTION 만)
   },
   "channelTotal": { "customers": 4, "payingCustomers": 3, "purchases": 4, "netTotal": 1000000, "feeTotal": 60000, "unsetItems": 1 },  // 0.5.0 — 결산 합계 = 그달 수납 전부(§6.8 · 다시 셈 · 단순 합 아님)
   "channels": [                               // 0.5.0 — **저장된 모든 달**에 나온 채널 전부(그달 0 이어도 줄 · 시안 「탭 · 결산 줄 남음 · 흐리게」) · 차례 §6.8
@@ -416,7 +452,7 @@ D1-11 — 같은 달 같은 응답(§4.2)을 **front 가 걸러서** 보인다(b
       "lines": [
         { "kind": "item", "itemType": "PRODUCT_OPTION", "productName": "시술 A", "productNameFrom": "product",
           "optionName": "1회", "amount": 600000, "currency": "KRW", "status": "ACCEPTED", "at": null,
-          "productKey": { "kind": "PRODUCT_OPTION", "name": "시술 A", "key": "product:…", "by": "product", "productId": "…", "optionId": "…" },  // §5.5(0.5.2 동기 — by = product · product_title · option · name)
+          "productKey": { "kind": "PRODUCT_OPTION", "name": "시술 A", "key": "product:…", "by": "product", "productId": "…", "optionId": "…" },  // §5.5(0.5.2 동기 — by = product · product_title · option · name · **0.6.0: manual**)
           "rateBp": 1000, "fee": 60000,
           "composition": null },                 // 0.5.2 — §6.11 묶음 옵션 구성 · 아니면 null
         { "kind": "item", "itemType": "PREPAID_CARD_PRODUCT", "productName": "선불카드 B", "productNameFrom": "prepaidCard",
@@ -446,9 +482,12 @@ D1-11 — 같은 달 같은 응답(§4.2)을 **front 가 걸러서** 보인다(b
 | `purchases[].channel` · `channels[]` · `channelTotal` | 0.5.0 — §6.8 채널 · 결산 셈 정의 · `channelTotal` = 그달 수납 전부(「유입채널 전체」 = 월별과 같은 수납) | 피드백 2 · 3 |
 | `lines[].composition` | **0.5.2** — 묶음 옵션 구성(§6.11) · `null` = 묶음 아님 · 짝 못 찾음 · 구성 저장 전 | 사용자 b-5 · b-6 |
 | `lines[].productKey` · `rateBp` · `fee` | 0.5.0 — §5.5 상품 키(0.5.2 동기: `key` · `by` · `productId` · `optionId` 더함) · §6.10 비율(만분율 정수 · `1000` = 10.00% · `null` = 미설정) · 수수료(원 정수 · 반올림 §6.10) | R§2 11-02 수수료율 줄 |
-| `feeTotal` · `priorFee` · `fees` · `counts.unsetItems` | 0.5.0 — §6.10 · `fees.exists`(0.5.1) | 피드백 6 · 코디 기본값 |
+| `feeTotal` · `priorFee` · `fees` · `counts.unsetItems` | 0.5.0 — §6.10 · `fees.exists`(0.5.1) · **0.6.0: `fees.locked` · `fees.lockedAt` 없앰 · `fees.savedAt` 더함** | 피드백 6 · 코디 기본값 · R§2 11-03 |
+| `catalog` · `counts.unlinkedItems` · `counts.manualLinkedItems` · `productKey.by = manual` | **0.6.0** — §6.12 · §4.11 | R§2 11-03 |
 | `clinicName` | 0.5.1 — 지점 · 병원 이름의 한 곳(env `SALES_CLINIC_NAME`). front 는 헤더 · PDF 미리보기에 이 값만 쓴다(하드코딩 0) | doc r7 W-5 |
 | `priorCancels` · `mismatch` · `counts.mismatchPurchases` | 0.5.0 — §6.4(⚠ 비교에서 앞 달 결제의 이 달 취소를 뺌) | R§2 E2E ⑥ · OQ-106 |
+
+**0.6.0 바뀜 — front 계약**: 없어지는 필드 = `fees.locked` · `fees.lockedAt`(설정 응답 `lockedAt` · `canLock` 도 — §4.8). 더하는 필드 = `fees.savedAt` · `catalog` · `counts.unlinkedItems` · `counts.manualLinkedItems` · `by` 값 `manual` · 설정 응답 `rows[].deletedInKos` · `catalog.snapshot` · `unlinkedKeys`(§4.8). 뜻이 바뀌는 필드 = `rows[].inCatalog`(「지금 KOS 목록」 → **「이 달 상품 스냅샷에 있음」** · §4.8). **5판 front(FE7)와 back(BE6)은 같이 띄운다**(옛 front 의 [이 달 확정] · [고치기]는 404 — WORK 5판).
 
 **0.5.0 바뀜 — front 계약(`schemas/sales.py` ↔ `front/lib/types.ts`)**: 없어지는 필드 = `purchases[].agency` · `agencies` · `agencyTotal`. 더하는 필드 = 위 표. 뜻이 바뀌는 필드 없음(`netTotal` · `paymentsNet` · `itemsTotal` 그대로). **3판 front 는 0.5.0 응답을 읽지 못한다**(에이전트별 화면이 `agencies` 를 읽음) → BE4 를 띄우는 것은 FE4 와 같이(§3.0 · WORK 4판).
 
@@ -458,18 +497,20 @@ D1-11 — 같은 달 같은 응답(§4.2)을 **front 가 걸러서** 보인다(b
 
 | HTTP | `code` | 언제 | `message`(화면에 그대로) |
 |---|---|---|---|
-| 400 | `bad_month` | `month` 가 `YYYY-MM` 꼴이 아님 · 없는 달(`2026-13`) · 이번 달(KST)보다 뒤 · **0.5.1: `month` 가 필수인 경로(`statements.*` · `PUT` · `lock` · `unlock`)에 `month` 가 없음** | 「조회할 달이 올바르지 않아요」 |
+| 400 | `bad_month` | `month` 가 `YYYY-MM` 꼴이 아님 · 없는 달(`2026-13`) · 이번 달(KST)보다 뒤 · **0.5.1: `month` 가 필수인 경로(`statements.*` · `PUT` 둘)에 `month` 가 없음**(0.6.0 — lock · unlock 은 없어짐) | 「조회할 달이 올바르지 않아요」 |
 | 503 | `kos_not_configured` | `KOS_OPEN_API_BASE` · `KOS_OPEN_API_KEY` 중 하나라도 비어 있음 | 「KOS 연결 설정이 비어 있어요 — back/.env 를 채워 주세요」 |
 | 503 | `kos_busy` | KOS 가 429(호출 한도 — 스펙 「같은 IP 1분 3,000회」) | 「KOS 호출이 너무 많아요 — 1분 뒤 다시 시도해 주세요」 |
 | 502 | `kos_rejected` | KOS 4xx 중 **「없음」(§6.4)이 아닌 것 전부** — 다른 reason 의 400 · **404(경로 없음 — KA§2 `getTicketGroupStatistics` 404 「No static resource」)** · 401(토큰 다시 받기 1회 뒤에도 401) | 「KOS 가 조회를 거절했어요 (오류 이름)」 — 오류 이름 = KOS `className` 끝(코드 `_error_of`) · 본문 · 값 없음 |
 | 502 | `kos_unavailable` | 네트워크 · 시간 초과 · KOS 5xx | 「KOS 에 연결하지 못했어요」 |
 | 500 | `guard_blocked` | 조회 전용 가드가 막음(§7.1 — 코드 버그) | 「허용되지 않은 KOS 호출이에요」 |
 | 400 | `bad_view` | `sales.xlsx` 의 `view` 가 `monthly` · `channel` 이 아니거나(0.5.0 — 옛 `agency` 포함) `month` 가 없음 · `view=monthly` 인데 `channel` 이 있음 · `statements.pdf` 에 `channel` 이 없음 | 「내보낼 화면이 올바르지 않아요」 |
+| 404 | `not_found` | 없는 경로(이미 있는 처리기 `main.http_error` · 0.6.0 — 지운 `fee-rates/lock` · `/unlock` 도 여기) | 처리기 그대로(`detail`) |
 | 409 | `not_fetched` | `sales.xlsx` · `statements.pdf` · `statements.zip`(0.5.0) 을 부른 달이 **아직 저장되지 않음**(`months` 에 행 없음) — 내보내기는 KOS 를 부르지 않는다(§4.7 · §4.10 · OQ-131) | 「이 달은 아직 받지 않았어요 — 화면에서 먼저 받아 주세요」 |
-| 409 | `month_locked` | 0.5.0 — 잠긴 달(§6.10 — 사람이 확정한 달)에 `PUT` · 다시 `lock` · **0.5.1: 잠긴 달 `GET /api/sales?refresh=full`(§4.5 J0 · KOS 0)** | 「수수료율이 확정된 달이에요 — 설정에서 [고치기]로 풀어야 고치거나 다시 받을 수 있어요」 |
-| 409 | `cannot_lock` | 0.5.0 — 이번 달(KST) · 뒤 달을 `lock` · 스냅샷이 없는 달을 `lock`(설정을 한 번도 저장 안 함) · **0.5.1: 그 달 매출이 `closed` 가 아님(저장 없음 · `current` — doc r7 F-1)** | 「지난 달만 확정할 수 있어요」 · 매출이 `closed` 아님 = 「매출이 아직 확정 전이에요 — 월별 조회에서 먼저 받아 주세요」 |
+| ~~409~~ | ~~`month_locked`~~ · ~~`cannot_lock`~~ | **0.6.0 없앰**(잠금 없음 — 어느 달 `PUT` · `refresh=full` 도 막지 않는다 · R§2 11-03) | — |
 | 409 | `nothing_to_export` | 0.5.0 — `statements.zip` 인데 그달 손님 > 0 인 채널이 없음(§4.10 · 0.5.1 표에 더함) | 「이 달 내보낼 명세서가 없어요」 |
-| 400 | `confirm_required` | 0.5.0 — `unlock` 본문에 `confirm: true` 가 없음 | 「확인이 필요해요」 |
+| ~~400~~ | ~~`confirm_required`~~ | **0.6.0 없앰**(unlock 경로가 없다) | — |
+| 400 | `bad_link` | 0.6.0 — `PUT /api/product-links` 본문 꼴이 틀림: `key` 가 `option:` · `name:PRODUCT_OPTION:` 꼴이 아님 · 저장된 품목에 없는 키 · `productId` 가 `month` 상품 스냅샷에 없음 · `month` 상품 스냅샷이 없음 · note 200자 넘음 | 「연결할 상품이 올바르지 않아요」 |
+| 503 | `store_busy` | **0.5.3 동기(code r4 W-3)** — 풀에서 연결을 `DB_LOCK_TIMEOUT_SEC` 안에 못 얻음(다른 달 받기 · 스케줄 실행이 연결을 쥠) — 오래 멈추지 않고 바로 알림 | 「저장소가 바빠요(다른 달을 받는 중) — 잠시 뒤 다시 시도해 주세요」 |
 | 400 | `bad_rate` | 0.5.0 — `PUT /api/fee-rates` 본문 꼴이 틀림: `rateBp` 가 정수 0 ~ 10000 · `null` 이 아님 · `key` 가 §5.5 꼴이 아니거나 설정 줄(`rows`)에 없는 키(0.5.2 동기) · 같은 키가 두 번 · 줄 500개 넘음 | 「수수료율 값이 올바르지 않아요」 |
 | 403 | `bad_origin` | 0.5.0 — 쓰기 경로(POST · PUT)에 `Origin` 이 있고 `SALES_FRONT_ORIGIN` 이 아님 · 또는 `Host` 가 `127.0.0.1:<포트>` · `localhost:<포트>` 가 아님(§7.4) | 「허용되지 않은 곳에서 온 요청이에요」 |
 | 415 | `bad_content_type` | 0.5.0 — 쓰기 경로 본문이 `application/json` 이 아님(§7.4 — 미리 보내기(preflight) 없는 요청을 막음) | 「요청 형식이 올바르지 않아요」 |
@@ -522,18 +563,19 @@ D1-12 「받은 데이터는 저장 · 다시 부르지 않는다」. **0.5.0 �
 
 | 표 | 한 행 | 담는 것 | 원천 |
 |---|---|---|---|
-| `catalog_fetches` | 상품 받기 한 번 | `fetched_at`(받기 시작 · UTC) · `products` · `options` · `categories`(수) · `kos_calls` — 마지막 행 = 「상품 마지막 받은 시각」 | §4.9 |
-| `categories` | KOS 카테고리 하나 | `id`(KOS id · 키) · `name` · `order` · `fetched_at` | ⑥ `getCategories` · §5.1 |
+| `catalog_fetches` | 상품 받기 한 번 | `fetched_at`(받기 시작 · UTC) · `products` · `options` · `categories`(수) · `kos_calls` · **0.5.3 동기(alembic `0004`): `rekeyed_items` · `carried_rates` · `rate_conflicts`** · **0.6.0(`0005`): `month`(더한 스냅샷 달) · `trigger`(`manual` \| `schedule`) · `added_products` · `added_options` · `marked_deleted`** — 마지막 행 = 「상품 마지막 받은 시각」 | §4.9 · §6.12 |
+| `categories` | KOS 카테고리 하나(**0.6.0: 「마지막으로 받은 KOS 목록」 — 달 스냅샷은 §4.4.5**) | `id`(KOS id · 키) · `name` · `order` · `fetched_at` | ⑥ `getCategories` · §5.1 |
 | `products` | KOS 상품 하나 | `id`(KOS id · 키) · `title` · `closed`(사용 중지) · `order` · `category_ids`(KOS 카테고리 id 목록 · 쉼표로 이음 · 3판 `payment_types` 와 같은 꼴) · `fetched_at` | ⑦ `getProducts` · §5.1 |
 | `product_options` | KOS 상품 옵션 하나 | `id`(KOS 옵션 id · 키) · `product_id` · `title` · `type`(`SINGLE` · `GROUP` · `CONSULTATION`) · `fetched_at` — 보이기 · 다음 판 id 잇기(OQ-138 대안)용 · 수수료율은 상품 단위라 옵션에 비율을 두지 않는다 | ⑦ `options[]` · R§2 11-02 수수료율 줄(「옵션은 상품 비율을 따름」) |
-| `fee_rate_months` | 달 하나의 스냅샷 머리 | `month`(키) · `created_at` · `copied_from`(복사한 달 · 없으면 null) · `locked_at`(사람이 [이 달 확정] 한 시각 · 풀리면 null) · `saved_at`(마지막 `PUT` 시각 · 화면 「저장됨 MM-DD HH:mm」) | §6.10 · R§2 11-02 수수료율 줄 |
+| `fee_rate_months` | 달 하나의 스냅샷 머리 | `month`(키) · `created_at` · `copied_from`(복사한 달 · 없으면 null) · ~~`locked_at`~~(**0.6.0: 칸은 남기고 읽지도 쓰지도 않는다** — 9 · 10월에 남은 값도 그대로 · 잠금 뜻 없음) · `saved_at`(마지막 `PUT` 시각 · 화면 「저장됨 MM-DD HH:mm」) | §6.10 · R§2 11-02 수수료율 줄 |
 | `fee_rates` | 달 × 상품 키 | `month` · **`key`**(키 = 둘 · §5.5 `key` 문자열 · 0.5.2 동기) · `kind` · `name`(보이는 이름) · `rate_bp`(0 ~ 10000 · **줄이 없으면 미설정** — 0% 와 미설정을 가른다) · `updated_at` | §6.10 · §5.5 |
 | `purchase_options` | ⑤ 수납 요약 `items[]` 한 개(`PRODUCT_OPTION`) | `purchase_id` · `seq` · `option_id` · `title` · `product_title` · `amount` · **0.5.2: `option_type`(`SINGLE` · `GROUP` …) · `compositions`(아래 `purchase_option_compositions`)** — 품목 → 옵션 id 짝짓기 원천(§5.5) · 개인정보 없음 | §5.5 · §6.11 |
 | `purchase_option_compositions`(0.5.2) | 묶음 옵션(`GROUP`)의 구성 하나 | `purchase_id` · `option_seq` · `seq`(⑤ 차례) · `procedure_name`(⑤ `compositions[].procedure.name`) · `count`(`count`) · `unit_type` · `unit_value`(`unit.type` · `unit.value`) — 그 밖(가격 · 기기 · 약물 · 진료 항목)은 저장 안 함 | §6.11 |
-| `fee_rate_changes` | 바꾼 한 번(줄 하나) | `id` · `month` · `action`(`set` · `lock` · `unlock`) · `kind` · `name`(`set` 만) · `old_bp` · `new_bp`(둘 다 null 가능 = 미설정) · `changed_at` · `note`(사람이 적은 까닭 · 200자 · 선택) — **지우지 않는다**(쓰기 = `INSERT` 만 · 기록) | R§2 11-02 브리프 「확정 달 잠금(고칠 땐 확인 · 기록)」 · §4.8 |
+| `fee_rate_changes` | 바꾼 한 번(줄 하나) | `id` · `month` · `action`(`set` · ~~`lock` · `unlock`~~ — **0.6.0: 새로 쓰는 것은 `set` 하나**(사람 [저장] · 상품 받기 · 수동 연결의 비율 옮김 — 옮김은 `note` 에 까닭) · 옛 `lock` · `unlock` 줄은 그대로 남음) · `kind` · `name`(`set` 만) · `old_bp` · `new_bp`(둘 다 null 가능 = 미설정) · `changed_at` · `note`(사람이 적은 까닭 · 200자 · 선택) — **지우지 않는다**(쓰기 = `INSERT` 만 · 기록) | R§2 11-02 브리프 「확정 달 잠금(고칠 땐 확인 · 기록)」 · §4.8 |
 
 - 상품 표에 손님 · 결제 값은 없다. 수수료율 표는 **§5.5 `key`**(0.5.2 — 상품 id 가 먼저 · 옵션 id · 이름은 대체)를 키로 갖는다. `items` 에 0.5.2 동기로 `option_id` · `product_id` · `key_match` · `product_via` 칸(§5.5 — 구현 정본)
-- 상품 받기는 `categories` · `products` · `product_options` 를 **통째로 갈아 끼운다**(한 트랜잭션) — 수수료율 표는 건드리지 않는다(키가 이름이라 상품 표와 독립 · 상품이 KOS 에서 지워져도 비율 · 기록은 남는다)
+- 상품 받기는 `categories` · `products` · `product_options` 를 **통째로 갈아 끼운다**(한 트랜잭션 · 「마지막 KOS 목록」) — **0.6.0: 같은 트랜잭션에서 달 상품 스냅샷(§4.4.5)에 늘어난 것만 더하고 · 사라진 것에 표시**(§6.12). 수수료율 표는 키가 바뀐 줄의 비율 옮기기(§6.12 · 0.5.3 동기)말고는 건드리지 않는다 · 상품이 KOS 에서 지워져도 비율 · 기록 · 스냅샷 줄은 남는다
+- **0.5.3 동기(code r4 W-1)**: 다른 달 받기 · `backfill_compositions` 가 `purchase_options` 를 갈아 끼울 때 **품목 달 상품 스냅샷이 고정된 수납은 빼고** 갈아 끼운다(0.5.2 code r4 의 「품목 달이 잠긴 수납」을 0.6.0 에서 「품목 달 상품 스냅샷이 고정 · 없음」으로 바꿈 — 키 원천을 얼림 · §6.12)
 
 #### 4.4.2 alembic
 
@@ -542,7 +584,7 @@ D1-12 「받은 데이터는 저장 · 다시 부르지 않는다」. **0.5.0 �
 | 자리 | `back/alembic.ini` · `back/migrations/`(env.py · versions/) · 의존성 `alembic` · `sqlalchemy`(**alembic 이 쓰는 것뿐** — 앱 코드는 SQLAlchemy 를 import 하지 않는다 · repository 는 `psycopg`) |
 | 접속 | alembic 은 `MIGRATION_DATABASE_URL`(없으면 `DATABASE_URL`)을 읽는다 · `postgresql://` 를 `postgresql+psycopg://` 로 바꿔 쓴다(env.py 안에서 · 사람이 두 꼴을 적지 않게) |
 | 첫 판 | `0001` = 3판 표 6개(§4.4 표 — 칸 · 키 그대로 · 타입은 §4.4 「시각 · 금액 칸」) + 0.5.0 새 표 7개(§4.4.1) + 앱 계정 권한 주기(`GRANT` — 앱 계정 이름은 env `DB_APP_ROLE` · 없으면 GRANT 를 건너뛰고 로그 한 줄) |
-| 판 올리기 | 사람이 `uv run alembic upgrade head`(소유 계정). **0.5.2 = 새 판 `0002`**(`0001` 은 이미 쓰인 DB 가 있어 고치지 않는다 — `purchase_options.option_type` 칸 · `purchase_option_compositions` 표 더하기만 · 앱 계정 GRANT 같이 · 지우는 것 0). back 은 판이 다르면 뜨지 않는다(§4.4 「표 만들기」) · 내리기(`downgrade`)는 시험 DB 에서만 |
+| 판 올리기 | 사람이 `uv run alembic upgrade head`(소유 계정). **0.5.3 동기 — 구현 판 이름**: `0002_product_via`(`items.product_via` · BE4 수정 1) · `0003_compositions`(0.5.2 — `purchase_options.option_type` · `purchase_option_compositions`) · `0004_rekey_counts`(code r4 — `catalog_fetches` 수 셋). **0.6.0 = `0005`**(아래 · 더하기만). 이미 쓰인 판은 고치지 않는다 · 앱 계정 GRANT 같이 · 지우는 것 0. back 은 판이 다르면 뜨지 않는다(§4.4 「표 만들기」) · 내리기(`downgrade`)는 시험 DB 에서만 |
 | 인덱스 | 키 외에 `transactions(month)` · `transactions(purchase_id)` · `items(purchase_id)` · `month_purchases(purchase_id)` · `fee_rates(month)` · `fee_rate_changes(month, changed_at)` — 이름 · 모양은 구현 |
 
 #### 4.4.3 잠금 · 트랜잭션 (PG)
@@ -550,7 +592,7 @@ D1-12 「받은 데이터는 저장 · 다시 부르지 않는다」. **0.5.0 �
 | 잠금 | 계약 | 3판 자리 |
 |---|---|---|
 | 달 잠금 | **두 겹**(0.5.1 — doc r7 W-2 · 풀 교착 막기): ① 프로세스 안 `asyncio.Lock`(달별)을 **먼저** 잡는다 — 기다리는 요청은 **DB 연결을 쥐지 않고** 여기서 기다린다 ② 잡은 뒤 풀에서 연결 하나를 얻어 **세션 advisory lock**(`pg_advisory_lock(<이름공간 1>, <YYYYMM 정수>)` · 다른 프로세스와 겨룸)을 잡고, 받기가 끝날 때까지(성공 · 실패 · 예외 모두 `finally` 로) 쥔다. **받기 결과 쓰기 트랜잭션은 달 잠금을 쥔 그 연결에서** 한다(연결을 하나 더 얻지 않는다). KOS 를 받는 동안 트랜잭션을 열어 두지 않는다(`idle in transaction` 0). 기다린 요청은 잡은 뒤 **기다리기 전에 읽은 `months.fetched_at` 과 지금 값을 비교**해 바뀌었으면 「기다리는 동안 받기가 끝남」 → 저장본만(§4.5 줄 선 요청 · `fetch.mode none`). 내보내기(엑셀 · PDF · zip)의 달 잠금도 같은 두 겹 | `asyncio.Lock` 달별 · 「기다리는 동안 끝났나」 |
-| 쓰기 잠금 | **트랜잭션 advisory lock**(`pg_advisory_xact_lock(<이름공간 2>, 0)`) — 받기 결과 쓰기 · 품목 달 고정 확인 · 수수료율 스냅샷 만들기 · 수수료율 쓰기 · 상품 받기 쓰기 모두 이 하나 | 쓰기 잠금 하나 + `BEGIN IMMEDIATE` |
+| 쓰기 잠금 | **트랜잭션 advisory lock**(`pg_advisory_xact_lock(<이름공간 2>, 0)`) — 받기 결과 쓰기 · 품목 달 고정 확인 · 수수료율 스냅샷 만들기 · 수수료율 쓰기 · 상품 받기 쓰기 모두 이 하나 · **0.6.0: 상품 스냅샷 더하기 · 고정 · 수동 연결 쓰기 · `schedule_runs` 쓰기도**. **스케줄 잠금**(0.6.0 · §4.12) = 세션 advisory lock `<이름공간 3>, 0` 을 **try**(기다리지 않음) — 달 잠금 · 쓰기 잠금보다 먼저 잡고 실행이 끝날 때 놓는다 | 쓰기 잠금 하나 + `BEGIN IMMEDIATE` |
 | 격리 | 쓰기 = `READ COMMITTED` + 쓰기 잠금(한 번에 하나라 직렬) · 응답 읽기 · 내보내기 = `REPEATABLE READ READ ONLY`(한 번 읽기 안에 다른 커밋이 섞이지 않게 — doc r3 NOTE-1) | 읽기 트랜잭션 하나 |
 | 시간 | 쓰기 잠금 기다림 `lock_timeout` = `DB_LOCK_TIMEOUT_SEC`(기본 5) · 문장 하나 `statement_timeout` 30초 → 넘으면 500 `store_failed`(트랜잭션 되돌림) | `busy_timeout` 5초 |
 | 연결 끊김 | 받기 중 DB 연결이 끊기면 세션 잠금도 풀린다(PG 가 품) — 그 받기는 쓰기 전이면 아무것도 안 바뀌고 500 `store_failed` | — |
@@ -570,19 +612,40 @@ R§2 11-02 「SQLite 저장본(확정 9 · 10월)은 옮긴다(KOS 다시 안 �
 | 출력 | 표마다 행 수 · 달마다 위 숫자(**수와 같음/다름만** — 이름 · 수납 id · 개별 금액 0 · 합 금액도 화면에만, 로그 파일 · 리포트에 붙이지 않는다 · §7.3) · 걸린 시간. KOS 호출 0(KOS 클라이언트를 만들지도 않는다) |
 | 그 뒤 | SQLite 파일은 **지우지 않는다**(명령이 지우지 않음) — WP-MIG 대조(§9.6)가 PASS 하고 사용자가 확인한 뒤 사람이 지운다(OQ-129 · OQ-147) |
 
+#### 4.4.5 0.6.0 새 표 — 달 상품 스냅샷 · 수동 연결 · 스케줄 기록 (alembic `0005` · 더하기만)
+
+R§2 11-03 줄. **`0005` 는 표 · 칸 · 제약을 더하기만 한다** — 기존 행을 지우거나 값을 바꾸지 않는다(9 · 10월 테스트 데이터 · `fee_rate_months.locked_at` · `fee_rate_changes` 의 `lock` · `unlock` 줄 그대로 · 아래 「씨앗」 은 새 표에 넣기만).
+
+| 표 | 한 행 | 담는 것 | 원천 |
+|---|---|---|---|
+| `catalog_months` | 상품 스냅샷 달 하나 | `month`(키 · `YYYY-MM`) · `created_at`(그 달 첫 상품 받기 · UTC) · `updated_at`(마지막으로 더한 받기) · `frozen_at`(고정 시각 · null = 열림) · `frozen_by`(`schedule` \| `migration` \| `catch_up`) | §6.12 |
+| `catalog_month_products` | 달 × KOS 상품 | `month` · `product_id`(키 = 둘) · `title` · `closed` · `sort_order` · `category_ids` · `first_seen_at` · `last_seen_at` · **`deleted_in_kos`**(boolean · 마지막 받기에 없었음) · `deleted_marked_at`(처음 「삭제됨」으로 본 시각 · 다시 나오면 null) | ⑦ · §6.12 |
+| `catalog_month_options` | 달 × KOS 옵션 | `month` · `option_id`(키 = 둘) · `product_id` · `title` · `type` · `first_seen_at` · `last_seen_at` · `deleted_in_kos` · `deleted_marked_at` | ⑦ `options[]` · §6.12 |
+| `catalog_month_categories` | 달 × KOS 카테고리 | `month` · `category_id`(키 = 둘) · `name` · `sort_order` · `deleted_in_kos` | ⑥ · §6.12 |
+| `product_links` | 수동 연결 하나 | **`key`**(키 · `option:<옵션 id>` \| `name:PRODUCT_OPTION:<이름>` — §5.5 대체 키) · `product_id` · `picked_month`(고를 때 본 상품 스냅샷 달) · `linked_at` · `note`(200자 · 선택) | §4.11 |
+| `product_link_changes` | 연결 바꿈 한 번 | `id` · `key` · `action`(`link` \| `unlink`) · `old_product_id` · `new_product_id` · `picked_month` · `items`(바뀐 품목 줄 수) · `carried_rates` · `rate_conflicts` · `changed_at` · `note` — **지우지 않는다**(`INSERT` 만 · 앱 계정 UPDATE · DELETE 권한 0 — `fee_rate_changes` 와 같음) | §4.11 |
+| `schedule_runs` | 스케줄 실행 한 번 | `id` · `due_at`(그 실행이 맡은 21:00 KST · UTC) · `started_at` · `finished_at` · `status`(`ok` \| `partial` \| `failed` \| `skipped`) · `steps`(단계마다 결과를 쉼표로 이은 짧은 글 — 예: `products=ok,freeze:2026-10=ok,sales:2026-10=closed,sales:2026-11=incremental` · 이름 · 금액 · id 0) · `kos_calls` · `error_code`(§4.3 코드 하나 · 없으면 null) | §4.12 |
+
+| 항목 | 계약 |
+|---|---|
+| 칸 더하기 | `items.product_via` 의 CHECK 에 **`manual`** 더함(`option` · `product_title` · `manual`) — 제약을 다시 만드는 것뿐 · 값 바뀜 0 |
+| 권한 | 새 표 7 의 앱 계정 GRANT(`product_link_changes` · `schedule_runs` 는 `SELECT` · `INSERT` 만 — `schedule_runs` 는 끝날 때 `finished_at` · `status` 를 쓰므로 **`UPDATE` 더함**(그 표만) · DELETE 0) |
+| 씨앗(seed · `0005` 안 · 한 번) | `products` · `product_options` · `categories`(마지막 KOS 목록)에 행이 있으면: ① **이번 달(KST · 올리는 시각)** 스냅샷 = 그 목록 그대로 · 열림(`first_seen_at` = `catalog_fetches` 마지막 `fetched_at`) ② **`months` 에 저장된 지난 달마다**(9 · 10월) 같은 목록으로 스냅샷 · **고정**(`frozen_at` = 올리는 시각 · `frozen_by = migration`). 목록이 비었으면 씨앗 0(첫 상품 받기가 이번 달을 만든다 · 지난 달은 「스냅샷 없음」 — §6.12). **품목 행의 `product_id` · `product_via` 는 건드리지 않는다**(지난 달은 고정이라 다시 잇지 않음 → 9 · 10월 키 · 수수료 그대로) — 씨앗 내용은 지난 달 수동 연결 후보 목록에만 쓰인다(OQ-165) |
+| 내리기 | 시험 DB 에서만(`0005` → `0004` 왕복 · #117) |
+
 ### 4.5 언제 KOS 를 부르나 — 전체 · 증분 · 확정
 
 **판단표**(요청 하나 · 달 잠금 안에서 · 위에서 처음 맞는 줄):
 
 | # | 그 달 저장 상태 | `refresh` | 하는 일 | `fetch.mode` |
 |---|---|---|---|---|
-| J0 | **수수료율이 잠긴 달**(`fee_rate_months.locked_at ≠ null` · 0.5.1) | `full` | **409 `month_locked`** — KOS 0 · 아무것도 안 바뀜(doc r7 F-1 · 잠긴 달 수수료 · 명세서를 지킴). 다시 받으려면 설정에서 [고치기] 로 먼저 푼다 | — |
-| J1 | 무엇이든(J0 밖) | `full` | **전체 받기**(아래 「전체」) | `full` |
+| ~~J0~~ | ~~수수료율이 잠긴 달~~ | — | **0.6.0 없앰**(잠금 없음 · R§2 11-03). 지난 달 [전체 다시 받기]도 받는다 — 품목 → 상품 id 는 그 달 상품 스냅샷으로 잇는다(§6.12 · 고정된 달이면 다시 받아도 새 상품이 끼지 않음) | — |
+| J1 | 무엇이든 | `full` | **전체 받기**(아래 「전체」) | `full` |
 | J2 | 저장 없음(`months` 에 행 없음) | 없음 · `new` | **전체 받기** — 지난 달도 이번 달도 첫 조회 때 한 번 | `full` |
 | J3 | `closed` | 없음 · `new` | **아무것도 안 부른다**(KOS 0) — 저장본만 | `none` |
-| J4 | `current` 이고 그 달이 이미 끝남(지금 ≥ 다음 달 1일 00:00 KST) | 없음 · `new` | **증분 받기 한 번** → 아래 「확정」 판단 | `incremental` |
+| J4 | `current` 이고 그 달이 이미 끝남(지금 ≥ 다음 달 1일 00:00 KST) | 없음 · `new` | **증분 받기 한 번** → 아래 「확정」 판단. **0.6.0: 스케줄이 켜져 있으면(`SALES_SCHEDULE_ENABLED`) 값 없는 요청은 저장본만**(`none` — 달 마감은 달 1일 21:00 실행이 한다 · §4.12) · `new` 는 그대로 증분(OQ-168) | `incremental` · `none` |
 | J5 | `current` · 이번 달 | `new` | **증분 받기** | `incremental` |
-| J6 | `current` · 이번 달 | 없음 | 마지막 받은 시각이 `SALES_CURRENT_STALE_SEC`(기본 600초)보다 오래면 **증분 받기**, 아니면 저장본만 | `incremental` · `none` |
+| J6 | `current` · 이번 달 | 없음 | 마지막 받은 시각이 `SALES_CURRENT_STALE_SEC`(기본 600초)보다 오래면 **증분 받기**, 아니면 저장본만. **0.6.0: 스케줄이 켜져 있으면 늘 저장본만**(`none` — 「결제 내역 = 매일 21시 마감 업데이트」 · 화면을 열 때마다 숫자가 바뀌지 않게 · 사람이 [새 결제 받기] 를 누르면 J5) · 꺼져 있으면(로컬) 3판 그대로(OQ-168) | `incremental` · `none` |
 
 - **전체**: §5.3 순서를 처음부터(① 달 범위 전부 · ⑤ 그 달 수납 전부 · ② · ③ · ④ 그 달 수납 전부) 부른 뒤, **한 쓰기 트랜잭션 안에서** 그 달의 `transactions` · `month_purchases` 를 지우고 새로 쓴다(지우기도 같은 트랜잭션 — 실패하면 지운 것도 돌아온다). `full_fetched_at` · `fetched_at` = 받기 시작 시각 · `kos_total_count` 기록. **수납 단위 표의 갈아 끼우기 범위**(doc r3 F-3):
 
@@ -601,6 +664,7 @@ R§2 11-02 「SQLite 저장본(확정 9 · 10월)은 옮긴다(KOS 다시 안 �
   6. `fetched_at` = 이번 받기 **시작 시각**(① 을 부르기 직전 시계). `fetch.fromUtc` 는 달 시작(① 에 보낸 값)
 - **확정**(달이 바뀌는 순간 · `current` → `closed`): 받기(전체 · 증분)를 마친 뒤 **받기 시작 시각 ≥ 다음 달 1일 00:00 KST + `SALES_OVERLAP_SEC`** 이면 그 달을 `closed` · `closed_at` 기록. 그래서 ① 이번 달은 늘 `current` ② 지난 달을 처음 열면 전체 받기 한 번에 바로 `closed`(J2) ③ `current` 로 저장된 채 달이 끝난 달은 다음에 열 때 증분 한 번(J4 — 달 끝까지의 늦은 결제를 받음)으로 `closed` ④ 달이 끝나고 겹침 여유 안(00:00 ~ 00:10)에 받으면 아직 `current` — 다음 열 때 J4 를 한 번 더. `closed` 를 `current` 로 되돌리는 길은 없다(J1 `full` 은 받은 뒤 같은 규칙으로 다시 `closed`)
 - **KOS 호출 수**: 전체 ≈ 토큰 1 + ① 1 + ⑤ (수납 수 ÷ 100) + ② 1 + 수납 수 + ④ 몇 건(§5.3) · 증분 ≈ 토큰(메모리에 없을 때) 1 + ① 1(달 전체 · 보통 한 페이지) + ⑤ (새 행이 있는 수납 ÷ 100 · 0 이면 0) + ② (0 또는 1) + 처음 보는 수납 수 + ④ 몇 건 · `closed` · 신선한 저장본 = **0**. 이 요청의 수를 `fetch.kosCalls` 로 돌려준다
+- **0.6.0 — 스케줄 실행도 같은 판단표 · 같은 달 잠금**을 탄다(§4.12 — 실행이 `refresh=new` 로 부른 것과 같음 · 저장 없는 달은 J2). 그래서 사람이 같은 때 [새 결제 받기] 를 눌러도 한 번만 받는다(아래 「줄 선 요청」)
 - **줄 선 요청**(doc r3 W-4): 달 잠금을 기다린 요청은 **기다리는 동안 같은 달 받기가 하나라도 끝났으면 `refresh` 와 상관없이 저장본만**(`fetch.mode none` · KOS 0) — [새 결제 받기] · [전체 다시 받기] 를 두 번 눌러도, `/` · `/agency` 가 같이 보내도 한 번만 받는다. 0.5.0 — 「기다리는 동안 끝났나」는 `months.fetched_at` 비교로 본다(§4.4.3 · back 프로세스가 둘이어도 같음)
 
 ### 4.6 증분 · 저장이 놓치는 것 (D1-13 — 받은 시점 기준)
@@ -609,7 +673,7 @@ R§2 11-02 「SQLite 저장본(확정 9 · 10월)은 옮긴다(KOS 다시 안 �
 
 | # | 놓치는 것 | 저장본에 남는 것 | 다시 맞추는 길 |
 |---|---|---|---|
-| ① | 이미 받은 **품목의 상태 변화** — **다른 달**의 환불(10월에 판 품목이 11월에 환불 → ② `purchaseStatus`). **같은 달(이번 달)은 놓치지 않는다** — 증분이 새 행이 생긴 수납의 ② 를 다시 불러 맞춘다(§4.5 증분 5 (ii) · 0.4.1) | 확정 달 = 받은 시점 배지 · 금액(예: `결제 완료` · 받은 때 남은 금액). 환불 돈은 11월 「앞 달 결제 취소」(음수 머리 · 엑셀 음수 행)로 11월 실결제에서 빠진다 | 그 달 `[전체 다시 받기]`(그러면 배지 · 금액이 그때 상태로 — 받은 시각도 바뀜) · D1-13. **0.5.1: 수수료율이 잠긴 달은 막힘**(§4.5 J0 — 설정 [고치기] 로 푼 뒤에만) |
+| ① | 이미 받은 **품목의 상태 변화** — **다른 달**의 환불(10월에 판 품목이 11월에 환불 → ② `purchaseStatus`). **같은 달(이번 달)은 놓치지 않는다** — 증분이 새 행이 생긴 수납의 ② 를 다시 불러 맞춘다(§4.5 증분 5 (ii) · 0.4.1) | 확정 달 = 받은 시점 배지 · 금액(예: `결제 완료` · 받은 때 남은 금액). 환불 돈은 11월 「앞 달 결제 취소」(음수 머리 · 엑셀 음수 행)로 11월 실결제에서 빠진다 | 그 달 `[전체 다시 받기]`(그러면 배지 · 금액이 그때 상태로 — 받은 시각도 바뀜) · D1-13. ~~0.5.1: 수수료율이 잠긴 달은 막힘~~(0.6.0 — 잠금 없음 · 확인 창만 · §3.0.2) |
 | ② | 앞 달 수납의 **「첫 승인」이 바뀜**(앞 달 첫 승인이 다음 달에 전액 취소 → §6.2 s2 로 다음 달 승인이 첫 승인이 됨) | 앞 달 저장본이 품목을 보인다 · 다음 달은 품목 달 고정(§4.4)으로 품목을 안 보이고 `itemsPinnedElsewhere` | 앞 달 `[전체 다시 받기]` 뒤 다음 달 `[전체 다시 받기]`(그 순서로 눌러야 품목이 다음 달로 옮겨진다 · OQ-128). **앞 달만 다시 받으면** 품목이 어느 달에도 없게 되고 다음 달 머리에 「품목이 어느 달에도 없어요」 · `counts.itemsNowhere`(§4.4 — 숫자로 드러난다 · doc r3 W-2) |
 | ③ | 손님 **이름 · 방문일 · 최초 유입 채널**이 받은 뒤 바뀜 | 받은 시점 값(유입은 ① 행 값 — 에이전시 판정도 받은 시점). 한 수납 · 한 손님이 여러 달에 저장되면 **달마다 받은 시점 유입이 달라 에이전시 판정이 달마다 다를 수 있다**(doc r3 NOTE-2 · L16 읽을 때). 이름 · 방문일은 수납 단위 표라 마지막으로 받은 값이 모든 달에 보인다 | 그 달 `[전체 다시 받기]` · OQ-109 |
 | ④ | 이번 달 증분에서 **이미 저장된 수납의 품목이 늘거나 바뀜**(같은 수납에 품목을 더한 뒤 결제) | 처음 받을 때 품목. 새 승인 행은 들어오므로 `⚠ 결제 ≠ 품목` 으로 드러날 수 있다 | `[전체 다시 받기]` · OQ-123 |
@@ -638,11 +702,11 @@ R§2 11-02 「SQLite 저장본(확정 9 · 10월)은 옮긴다(KOS 다시 안 �
 | 로그 | 달 · `view` · 행 수 · 걸린 시간만. **에이전시 이름 · 손님 이름 · 금액 · 수납 id · 파일 이름을 남기지 않는다**(§7.3) | §7.3 · 지시서 |
 | 개인정보 | 파일에 **손님 이름이 그대로** 들어간다(화면과 같음 — D1-03). **가리지 않는다**(사용자 2026-10-29 「엑셀 이름 가리지마」 · OQ-130 닫음) — 내려받은 파일은 사람이 다룬다(레포 · 리포트에 올리지 않는다 — L18) | D1-03 · D1-14 · 사용자 지시 |
 
-### 4.8 수수료율 읽기 · 쓰기 · 확정 — `/api/fee-rates` (0.5.0)
+### 4.8 수수료율 읽기 · 쓰기 — `/api/fee-rates` (0.5.0 · 0.6.0 확정 없앰)
 
 R§2 11-02 수수료율 줄 · 피드백 5 · 시안 v3 `settings` · `settings-month-locked` · `settings-bulk`. 계산 · 잠금 규칙은 §6.10, 이 절은 경로 계약만. 모든 경로 KOS 0.
 
-**`GET /api/fee-rates?month=YYYY-MM`** — **읽기만**(0.5.1 · doc r7 W-1). 그 달 스냅샷이 없으면 `exists = false` · `rows[].rateBp` = 복사될 값(앞의 가장 늦은 스냅샷 · 없으면 null) · `copiedFrom` = 그 달. front 는 `exists = false` 를 받으면 **`PUT`(`rates: []`)을 한 번 불러 스냅샷을 만든 뒤** 그 응답으로 그린다(§3.0.5 · 잠긴 달은 해당 없음 — 스냅샷이 있어야 잠김).
+**`GET /api/fee-rates?month=YYYY-MM`** — **읽기만**(0.5.1 · doc r7 W-1). 그 달 스냅샷이 없으면 `exists = false` · `rows[].rateBp` = 복사될 값(앞의 가장 늦은 스냅샷 · 없으면 null) · `copiedFrom` = 그 달. front 는 `exists = false` 를 받으면 **이번 달(KST)일 때만** **`PUT`(`rates: []`)을 한 번 불러 스냅샷을 만든 뒤** 그 응답으로 그린다 · **지난 달은 미리 보기만**(0.6.1 · doc r8 W-2 · §3.0.5).
 
 ```jsonc
 {
@@ -650,19 +714,23 @@ R§2 11-02 수수료율 줄 · 피드백 5 · 시안 v3 `settings` · `settings-
   "clinicName": "세라미크 명동점",       // 0.5.1 — §4.2 와 같은 값(설정 화면 헤더)
   "exists": true,                       // 스냅샷이 있나 · false = 저장 안 됨(rows.rateBp 는 복사될 값 미리 보기 · 0.5.1)
   "copiedFrom": "2026-10",              // 복사한 달 · 없으면 null → 화면 「10월 값을 복사해서 시작했어요」
-  "lockedAt": null,                     // 확정 시각(KST) · null = 편집 가능
-  "canLock": false,                     // [이 달 확정] 보일까 = 이번 달(KST)보다 앞 달 · 스냅샷 있음 · 그 달 매출 closed(0.5.1) · 안 잠김
+  // ~~"lockedAt" · "canLock"~~ — 0.6.0 없앰(R§2 11-03)
   "savedAt": "2026-11-02T10:12:00+09:00",
   "prevMonth": "2026-10",               // 「앞 달」 칸의 달 = 바로 앞 달(스냅샷 없으면 그 칸 값 null)
   "range": { "from": "2026-09", "to": "2026-11" },   // 설정 화면 ‹ › 끝 — from = 가장 이른 저장 매출 달(§4.4 months) · to = 이번 달(KST)
-  "catalog": { "fetchedAt": "2026-11-02T09:58:00+09:00", "products": 120 },   // 상품 마지막 받기(§4.9) · 한 번도 안 받았으면 null
+  "catalog": { "fetchedAt": "2026-11-02T09:58:00+09:00", "products": 120,     // 상품 마지막 받기(§4.9) · 한 번도 안 받았으면 null
+               "rekeyedItems": 0, "carriedRates": 0, "conflicts": 0,            // 0.5.3 동기(code r4) — 마지막 받기의 수
+               "addedProducts": 0, "addedOptions": 0, "markedDeleted": 0,       // 0.6.0 — 마지막 받기가 그 달 스냅샷에 더한 · 「삭제됨」 표시한 수
+               "snapshot": { "month": "2026-11", "exists": true, "frozenAt": null, "updatedAt": "2026-11-02T21:00:03+09:00" } },  // 0.6.0 — **이 달(month)** 상품 스냅샷(§6.12 · §4.2 catalog 와 같은 꼴)
+  "unlinkedKeys": 3,                    // 0.6.0 — 이 달 연결 안 된 품목 키 수(§4.11 · 설정 「연결 안 된 품목 n」)
   "rows": [                             // §5.5 상품 키마다 하나 · 차례 = 카테고리 차례(KOS order · 「기타 상품」 · 「선불카드」 · 「카테고리 없음」 순) · 상품 order · 이름
     { "key": "product:…", "by": "product",   // 0.5.2 동기 — §5.5 키 · PUT 이 이 key 를 보냄
       "kind": "PRODUCT_OPTION", "name": "시술 A",
       "optionIds": ["…"],                // 이 키로 이어진 옵션 id(0.5.2 동기)
       "category": "카테고리1",            // 카테고리 이름 하나(KOS 상품의 첫 카테고리 · 기타 상품 = 「기타 상품」 · 선불카드 = 「선불카드」 · 없으면 「카테고리 없음」) — 시안 카테고리 거르기 · 카테고리 일괄
       "options": ["1회", "5회"],         // KOS 옵션 이름(보이기만) · 목록에 없으면 저장된 품목 줄의 옵션 이름
-      "inCatalog": true,                // KOS 상품 목록(§4.9)에 이 이름이 있나 · false 면 화면에서 「KOS 목록에 없음」(OQ-139)
+      "inCatalog": true,                // **0.6.0: 이 달 상품 스냅샷에 이 상품이 있나**(0.5.x 「지금 KOS 목록」을 바꿈) · false = 스냅샷 밖(by = option · name 또는 스냅샷 없는 달)
+      "deletedInKos": false,            // 0.6.0 — 이 달 스냅샷 줄이 「KOS 삭제됨」(§6.12) · 화면 배지 「KOS 삭제됨」 · 비율 · 줄 그대로
       "productIds": ["…"],              // 이 키의 KOS 상품 id(by = product · product_title 이면 하나 · 0.5.2)
       "closed": false,                  // KOS 상품 사용 중지
       "prevRateBp": 1000,               // 앞 달 비율 · null = 앞 달 미설정 또는 앞 달 스냅샷 없음
@@ -674,7 +742,7 @@ R§2 11-02 수수료율 줄 · 피드백 5 · 시안 v3 `settings` · `settings-
 
 | 항목 | 계약 | 근거 |
 |---|---|---|
-| 줄 범위 | **KOS 상품 목록의 상품(`product:` 키) ∪ 저장된 품목 줄(모든 달 `items`)의 §5.5 키 ∪ 이 달 · 앞 달 스냅샷에 비율이 있는 키**(0.5.2 동기) — KOS 목록에 없어도 팔린 상품은 줄이 있다(채널 노출 거르기 · 지워진 상품 · 기타 상품 · 선불카드 — §5.5 · OQ-139) | §5.5 · 피드백 5 · 시안 「기타 상품 · 선불카드도 같은 목록에 카테고리로」 |
+| 줄 범위 | **0.6.0: 이 달 상품 스냅샷의 상품(`product:` 키 · 「KOS 삭제됨」 포함 · 스냅샷이 없는 달은 마지막 KOS 목록)** ∪ 저장된 품목 줄(모든 달 `items`)의 §5.5 키 ∪ 이 달 · 앞 달 스냅샷에 비율이 있는 키(0.5.2 동기) — KOS 목록에 없어도 팔린 상품은 줄이 있다(채널 노출 거르기 · 지워진 상품 · 기타 상품 · 선불카드 — §5.5 · OQ-139) | §5.5 · 피드백 5 · 시안 「기타 상품 · 선불카드도 같은 목록에 카테고리로」 |
 | 찾기 · 카테고리 · 미설정만 · 일괄 | **front 가 `rows` 로** 한다(back 경로 없음) — 찾기 = 상품 · 옵션 이름 부분 일치 · 일괄 = 고른 줄 / 카테고리 줄의 입력값을 바꿈(저장 전까지 화면에만) | 시안 v3 `settings-bulk` |
 | 개인정보 | 응답에 손님 · 수납 · 금액 값 0(상품 이름 · 비율 · 달만) | §7.3 |
 
@@ -690,26 +758,27 @@ R§2 11-02 수수료율 줄 · 피드백 5 · 시안 v3 `settings` · `settings-
 |---|---|---|
 | 범위 | **보낸 키만** 바꾼다(부분 갱신 — 화면 「저장 안 한 변경 n개」 를 보냄) · 안 보낸 키는 그대로 · 값이 같은 키는 기록하지 않는다 | 시안 v3 · 기본값(OQ-141) |
 | 한 트랜잭션 | 스냅샷이 없으면 먼저 만들고(복사 · 없으면 빈 스냅샷 · §6.10) · 보낸 키를 쓰고 · `saved_at`(보낸 키가 하나라도 바뀌었을 때만) · 바뀐 키마다 `fee_rate_changes` 한 줄 — 쓰기 잠금 안 한 트랜잭션. 하나라도 틀리면(400 · 409) 아무것도 안 바뀜. **`rates: []` = 스냅샷만 만들기**(설정 첫 열기 · 이미 있으면 아무것도 안 함 · 기록 0) | §4.4.3 · doc r7 W-1 |
-| 잠김 | 잠긴 달 = 409 `month_locked`(먼저 `unlock`) | §6.10 |
+| 지난 달 | **0.6.0: 어느 달이든 쓴다**(잠금 없음 · 지난 달도 · `closed` 달도) · 바뀐 키마다 `fee_rate_changes` 한 줄 — 그 달 화면 · 결산 · PDF 수수료가 바로 바뀐다(이미 내려받은 PDF 와 다를 수 있음 → 화면 확인 창 · §3.0.5) | R§2 11-03 「수수료율은 달 끝 뒤에도 고칠 수 있음」 |
 | 다른 달 | **이 달만 바뀐다** — 뒤 달 스냅샷이 이미 있으면 안 바뀐다. 아직 없으면 그 달을 처음 열 때 이 달 값을 복사해 간다 | 피드백 5 |
 | 응답 | `GET` 과 같은 본문 · 로그 = 달 · 바뀐 줄 수만(상품 이름 · 비율 · note 0) | §7.3 |
 
-**`POST /api/fee-rates/lock?month=`** — [이 달 확정]. 이번 달(KST)보다 앞 달 · 스냅샷 있음 · **그 달 매출 `months.state = closed`(0.5.1)** · 안 잠김일 때만(아니면 409 `cannot_lock` · `month_locked`) · 검사와 쓰기는 쓰기 잠금을 잡은 한 트랜잭션 안 → `locked_at` · 기록 `lock`. 「저장 안 한 변경이 있으면 꺼짐」은 front 몫(시안). **`POST /api/fee-rates/unlock?month=`** — [고치기] → 확인 창 → 「고칠게요」 · 본문 `{"confirm": true}`(없으면 400 `confirm_required`) → `locked_at = null` · 기록 `unlock`. 둘 다 응답 = `GET` 본문.
+~~`POST /api/fee-rates/lock` · `/unlock`~~ — **0.6.0 없앰**(R§2 11-03 · §4.1 · 부르면 404). 0.5.x 의 「확정 = 매출 `closed` 달만 · 풀기 = 확인 1번」 규칙은 모두 없어진다.
 
-- 쓰기 막기(네 쓰기 경로 공통): §7.4(`Origin` · `Host` · `Content-Type` · 로그인 없음) — 브리프 「쓰기 API 가 생기는 것에 주의」
+- 쓰기 막기(0.6.0 — 세 쓰기 경로 공통 · `product-links` PUT 포함): §7.4(`Origin` · `Host` · `Content-Type` · 로그인 없음) — 브리프 「쓰기 API 가 생기는 것에 주의」
 
 ### 4.9 KOS 상품 목록 받기 — `POST /api/products/refresh` (0.5.0)
 
 | 항목 | 계약 | 근거 |
 |---|---|---|
-| 하는 일 | KOS ⑥ `getCategories`(본문 `{}`) 1회 · ⑦ `getProducts`(본문 `{}` — 거르기 없음) 1회 → `categories` · `products` · `product_options` 를 한 트랜잭션으로 **갈아 끼움** · `catalog_fetches` 한 줄 · 응답 수만 | 피드백 5 · §5.1 ⑥ ⑦ |
-| 언제 | **사람이 누를 때만**(설정 화면 [상품 다시 받기] — 자리는 시안 v3). back 이 뜰 때 · 매출 받기 때 저절로 부르지 않는다. 한 번도 안 받았으면 `GET /api/fee-rates` 의 `catalog = null` · 줄은 팔린 상품 이름으로만(§4.8) | 브리프 「다시 받기 API」 · 기본값(OQ-140) |
+| 하는 일 | KOS ⑥ `getCategories`(본문 `{}`) 1회 · ⑦ `getProducts`(본문 `{}` — 거르기 없음) 1회 → **한 쓰기 트랜잭션**: ① `categories` · `products` · `product_options`(마지막 KOS 목록) **갈아 끼움** ② **0.6.0: 이번 달(KST · 받기 시작 시각) 상품 스냅샷에 더하기**(§6.12 — 없으면 만들고 · 늘어난 것만 더함 · 사라진 것 `deleted_in_kos` · 고정된 달이면 아무것도 안 함) ③ 그 달 · **열린 스냅샷 달** 품목 다시 잇기(§6.12 「다시 잇기」 — 못 이은 줄만) + 바뀐 키 비율 옮기기(0.5.3 동기 · 그 품목 달 수수료 스냅샷만 · §6.12) ④ `catalog_fetches` 한 줄 · 응답 수만. **앞 달 마감 · 고정은 스케줄 실행만 한다**(§4.12 — 사람이 누른 받기는 앞 달을 건드리지 않는다) | 피드백 5 · §5.1 ⑥ ⑦ · R§2 11-03 |
+| 언제 | 사람이 누를 때(설정 [KOS 상품 다시 받기] · `trigger = manual`) · **0.6.0: 스케줄 실행 첫 단계**(매일 21:00 KST · `trigger = schedule` · §4.12). back 이 뜰 때 · 매출 받기 때 저절로 부르지 않는다(결제 증분 중 스냅샷에 없는 옵션을 보아도 그 자리에서 다시 받지 않음 — 다음 21:00 실행이 더하고 다시 잇는다 · OQ-159). 한 번도 안 받았으면 `GET /api/fee-rates` 의 `catalog = null` · 줄은 팔린 상품 이름으로만(§4.8) | 브리프 「다시 받기 API」 · R§2 11-03 · 피드백 b-21(「1시간마다 상품 받기 안 함」) · 기본값(OQ-140 · OQ-159) |
 | 페이지 | ⑦ 응답에 `nextCursor` · `totalCount` 가 없다(스펙 `GetOpenProductsQueryResponse = {data}`) → 1회로 끝. ⑥ 도 같음 | 스펙 |
 | 쓰지 않는 작업 | `getProduct`(id 하나씩 — ⑦ 이 같은 모양 `OpenProductDetailContract` 를 통째로 줌) · `getProductOptions`(`optionIds` 필수 · 옵션은 ⑦ `options[]` 에 이미 있음 · 상품 id 를 안 줌) · `searchProductOptionSummaries`(`searchText` 필수 검색 — 목록용 아님) → **부르지 않는다 · 허용 경로에 넣지 않는다**(§7.1) | 스펙 · 브리프 「허용 경로에 더함 · `/queries/` 만」 |
 | 채널 거르기 | ⑦ · ⑥ 은 스펙상 「요청한 API Key 에 해당하는 채널에 노출 가능한」 상품 · 옵션만 준다 — 운영 키의 채널에 안 보이는 상품은 목록에 없을 수 있다. 그래서 줄 범위에 팔린 상품 이름을 더한다(§4.8) · LIVE4 L27 로 「팔렸는데 목록에 없는 이름」 수를 센다 · OQ-139 | 스펙 `getProducts` · `OpenGetCategoriesQuery.opened` 설명 |
 | 꺼내는 것 | ⑥ `data[].{id, name, order}` · ⑦ `data[].{id, title, closed, order, categories[].id}` · `options[].{id, title, type}` 만 — 설명 · 이미지 · 가격 · 프로모션 · 번역 · 기기 · 약물은 저장하지 않는다 | §7.3 · 기본값 |
-| 실패 | KOS 오류 = §4.3 KOS 줄 · 표는 안 바뀜(갈아 끼우기는 KOS 를 다 받은 뒤) · 동시에 두 번 눌러도 쓰기 잠금으로 하나씩 | §4.4.3 |
+| 실패 | KOS 오류 = §4.3 KOS 줄 · 표 · 스냅샷 모두 안 바뀜(쓰기는 KOS 를 다 받은 뒤 · ⑥ ⑦ 중 하나라도 실패하면 쓰기 0 — 반쪽 목록으로 「KOS 삭제됨」 을 찍지 않는다) · **⑦ 이 상품 0 개를 주면 「사라짐」 표시를 하지 않는다**(KOS 이상으로 보고 갈아 끼우기 · 표시 0 · 로그 경고 · 0.6.0 기본값 · OQ-158) · 동시에 두 번 눌러도 쓰기 잠금으로 하나씩 | §4.4.3 · 기본값(OQ-158) |
 | 호출 수 | 토큰(메모리에 없을 때) + 2 · 응답 `kosCalls` | — |
+| 응답(0.6.0) | `{fetchedAt, month, products, options, categories, kosCalls, rekeyedItems, carriedRates, conflicts, addedProducts, addedOptions, markedDeleted}` — `month` = 더한 스냅샷 달 · `rekeyedItems` = 키가 바뀐 품목 줄(열린 스냅샷 달 품목만) · `carriedRates` = 옛 키 비율을 새 키로 옮긴 수 · `conflicts` = 새 키에 이미 다른 값이 있어 그대로 둔 수(0.5.3 동기 · code r4) · `added*` = 스냅샷에 새로 더한 상품 · 옵션 수 · `markedDeleted` = 이번에 「KOS 삭제됨」 으로 처음 표시한 상품 + 옵션 수 · 고정된 달이면 `added* = markedDeleted = 0` | R§2 11-03 · code r4 |
 
 ### 4.10 PDF 거래 명세서 — `GET /api/statements.pdf` · `.zip` (0.5.0)
 
@@ -726,10 +795,70 @@ R§2 11-02 수수료율 줄 · 피드백 5 · 시안 v3 `settings` · `settings-
 | 두 칸 | 「발행 (병원)」 = 병원 이름(env `SALES_CLINIC_NAME` · 기본 `세라미크 명동점`) + 「CÉRAMIQUE · 운영 KOS 기준」 / 「받는 곳 (유입 채널)」 = 채널 이름 + 「KOS 값 「<rawNames 를 ` · ` 로>」」. 사업자 정보 · 도장 칸 **없음**(시안 그대로 · OQ-151) | 시안 v3 |
 | 요약 네 칸 | 기간 `YYYY-MM-01 ~ YYYY-MM-<말일>` · 손님 · 결제 손님 `n명 · m명` · 실결제 합 · 수수료 합(= `channels[]` 그 줄 값) | 시안 v3 · §6.8 |
 | 표 | 칸 **결제일 · 손님 · 상품 · 옵션 · 실결제 · 수수료율 · 수수료**. 수납마다: **보이는 품목 줄 전부**(0.5.2 — 0원 줄도 보통 줄로 · 「0원 구성품 뺌」 시안 값을 뒤집음 · 0원은 구성품이 아님 · 서비스 표시는 OQ-154) 한 줄씩 · **묶음 옵션 줄은 그 아래 작은 회색 「구성: …」 한 줄**(§6.11 · 금액 칸 비움)(결제일 · 손님은 그 수납 첫 줄에만) · 줄이 둘 이상이면 「<손님> 소계」 줄(실결제 · 수수료). 「앞 달 결제 취소」 수납 = 한 줄(결제일 칸 「앞 달 결제 취소」 · 상품 칸 「첫 승인 MM-DD 수납의 이 달 취소」 · 실결제 = `netTotal` · 수수료율 · 수수료 「—」 — §6.10 사용자 결정). 품목 못 찾은 수납 = 한 줄(「품목을 찾지 못했어요」 · 수수료율 「—」 · 수수료 0). 수수료율 = `n%`(소수는 있을 때만 · `12.5%`) · 미설정 = 「미설정」. 끝 줄 「합계」(실결제 합 · 수수료 합). 차례 = §3.3 묶음 차례 | 시안 v3 `pdfVals` |
-| 주석(표 아래 `·` 줄) | ① 「수수료 = 상품 실결제 × YYYY년 M월 수수료율(확정 MM-DD HH:mm / 확정 전) · 원 단위 반올림」 ② (미설정 줄이 있으면) 「수수료율 미설정 품목 n줄은 수수료 0 으로 넣었어요」 ③ (앞 달 결제 취소가 있으면) 「『앞 달 결제 취소』는 실결제에서 빼고 수수료는 되돌리지 않았어요」 ④ 「금액은 받은 시점 기준 최종 결제예요 — 취소 · 전액 환불 품목은 넣지 않았어요 」 ⑤ 「KOS 받은 시각 MM-DD HH:mm」. 시안의 「(정할 것)」 · 「(가림 여부 정할 것)」 꼬리는 넣지 않는다  | 시안 v3 |
+| 주석(표 아래 `·` 줄) | ① 「수수료 = 상품 실결제 × YYYY년 M월 수수료율(저장 MM-DD HH:mm) · 원 단위 반올림」(0.6.0 — 「확정 / 확정 전」 대신 `fees.savedAt` · 없으면 「(저장 MM-DD HH:mm)」 빼고) ② (미설정 줄이 있으면) 「수수료율 미설정 품목 n줄은 수수료 0 으로 넣었어요」 ③ (앞 달 결제 취소가 있으면) 「『앞 달 결제 취소』는 실결제에서 빼고 수수료는 되돌리지 않았어요」 ④ 「금액은 받은 시점 기준 최종 결제예요 — 취소 · 전액 환불 품목은 넣지 않았어요 」 ⑤ 「KOS 받은 시각 MM-DD HH:mm」. 시안의 「(정할 것)」 · 「(가림 여부 정할 것)」 꼬리는 넣지 않는다  | 시안 v3 |
 | 손님 이름 | **그대로**(화면 · 엑셀과 같음 · D1-17) — 시안 「명세서 이름 그대로」(R§2 11-02 시안 v3 채택 줄). 이름 없음 = 「(이름 없음)」 | R§2 11-02 · D1-17 |
 | 라이브러리 | **`reportlab`**(순수 파이썬 · 시스템 라이브러리 없음 — WeasyPrint 는 Pango · Cairo 설치가 필요해 뺌) · 글꼴 = **Pretendard TTF**(OFL · front 와 같은 글꼴 · `back/assets/fonts/` 에 라이선스 파일 같이) · zip = 표준 `zipfile`(`ZIP_DEFLATED`) · 메모리에서 만들어 바로 응답(디스크 0) | 기본값(OQ-151) |
 | 로그 | 달 · 채널 수 · 쪽 수 · 걸린 시간만(채널 이름 · 손님 이름 · 금액 · 파일 이름 0 — §4.7 로그 규칙) | §7.3 |
+
+### 4.11 수동 상품 연결 — `/api/product-links` (0.6.0)
+
+R§2 11-03 「연결 안 된 품목 = 사람이 직접 상품 연결」 · 피드백 b-21(「연결 안 된 거는 사람이 직접 입력」). 규칙은 §5.5 · §6.12, 이 절은 경로 계약만. 모든 경로 KOS 0.
+
+| 항목 | 계약 | 근거 |
+|---|---|---|
+| 대상 키 | **상품 품목(`PRODUCT_OPTION`)이 상품 id 로 못 이은 키만** — `option:<옵션 id>`(⑤ 옵션은 짝지었으나 그 달 스냅샷에 옵션 · 상품 이름이 없음) · `name:PRODUCT_OPTION:<이름>`(⑤ 옵션과 짝 못 지음). **기타 상품 · 선불카드(`name:ETCETRA_PRODUCT:…` · `name:PREPAID_CARD_PRODUCT:…`)는 대상이 아니다**(⑦ 상품 목록에 없는 종류 — 이름 키 비율 그대로) · 키 없음(`UNSPECIFIED` · 이름 없음)도 아님 | §5.5 · 스펙 ⑦ |
+| 연결 범위(0.6.1 · doc r8 F-1 · D-27) | **키 하나 = 모든 달의 「못 이은」 품목** — 지금 키가 그 대체 키(`option:o` · `name:PRODUCT_OPTION:n`)인 저장된 품목 전부(지난 달 · 고정된 달 포함 — 사람이 정한 것이라 고정이 막지 않는다 · §6.12)와 **앞으로 저장될 품목 중 ② 가 못 찾는 것**이 그 상품 id 로 이어진다(`by = manual`). **자동으로 이은 품목(`product` · `product_title` — 같은 옵션 id 라도 다른 달 스냅샷에서 이어진 것)은 지금도 · 나중 [전체 다시 받기] 때도 안 바뀜** — 그래서 「연결할 때 바뀐 것」 = 「다시 받을 때 바뀌는 것」 | 브리프 4 · doc r8 F-1(권장안 · 코디 결정) · OQ-161 |
+| 이기는 순서 | **이미 `manual` 이 된 품목 = 수동 그대로**(상품 받기 · 다시 잇기 · [전체 다시 받기] 가 바꾸지 않음 — 스냅샷에 옵션이 나중에 생겨도). **새로 저장되는 품목 = ② 자동 먼저 · 못 찾을 때 수동**(0.6.1). 풀면(`productId: null`) 다음 다시 잇기부터 자동 규칙(§5.5)으로 | 브리프 4 · doc r8 F-1 |
+
+**`GET /api/product-links?month=YYYY-MM`** — 읽기만(쓰기 0).
+
+```jsonc
+{
+  "month": "2026-11",
+  "snapshot": { "month": "2026-11", "exists": true, "frozenAt": null, "updatedAt": "…" },   // §4.2 catalog 꼴 · 후보 목록의 달
+  "unlinked": [                                   // 이 달 보이는 품목 줄(§6.9) 중 대상 키 · 연결 없음 · 품목 줄 수 내림 → 이름
+    { "key": "option:…", "by": "option", "name": "시술 C", "options": ["3회"], "itemLines": 4,
+      "otherMonths": ["2026-10"] }                // 0.6.1 — 같은 키가 **못 이은 줄로** 있는 다른 저장 달(연결하면 바뀌는 달 전부 · 확인 창 글 · 자동으로 이어진 달은 안 넣음)
+  ],
+  "linked": [                                     // 수동 연결된 키 중 이 달에 보이는 품목이 있는 것
+    { "key": "name:PRODUCT_OPTION:시술 D", "by": "name", "name": "시술 D", "options": ["1회"], "itemLines": 1,
+      "productId": "…", "productTitle": "시술 D 리뉴얼", "pickedMonth": "2026-11", "linkedAt": "…", "note": null }
+  ],
+  "candidates": [                                 // 이 달 상품 스냅샷의 상품 전부(「KOS 삭제됨」 포함) · 차례 = §4.8 rows 차례
+    { "productId": "…", "title": "시술 C", "category": "카테고리1", "closed": false, "deletedInKos": false, "options": ["1회", "3회"] }
+  ],
+  "changes": [ { "action": "link", "key": "…", "oldProductId": null, "newProductId": "…", "items": 4, "changedAt": "…", "note": null } ]   // 최근 50 · 새것 먼저
+}
+```
+
+- 이 달 상품 스냅샷이 없으면(`snapshot.exists = false`) `candidates = []` — 화면 「이 달 상품 스냅샷이 없어요 — [KOS 상품 다시 받기]」(이번 달만 버튼 · 지난 달은 글만)
+- 응답에 손님 · 수납 · 금액 0(상품 이름 · 수 · 달만 · §7.3)
+
+**`PUT /api/product-links?month=YYYY-MM`** — 본문 `{ "key": "option:…", "productId": "…" | null, "note": null }`(하나씩 · `month` = 후보를 고른 스냅샷 달).
+
+| 항목 | 계약 | 근거 |
+|---|---|---|
+| 검사 | `key` = 대상 키 꼴 · 저장된 품목에 그 키가 있음 · `productId` 가 `month` 상품 스냅샷(`catalog_month_products`)에 있음(「KOS 삭제됨」 줄도 됨) · 아니면 400 `bad_link` · 연결이 이미 같으면 아무것도 안 함(기록 0) | §4.3 |
+| 한 트랜잭션(쓰기 잠금) | ① `product_links` 넣기 · 바꾸기 · 지우기(`null`) ② **지금 키가 그 대체 키인 품목 전부**(0.6.1 — 자동으로 이은 품목 0) `product_id` · `product_via`(`manual` · 풀면 null 뒤 그 품목 달 스냅샷으로 자동 다시 잇기 — 고정된 달 품목은 풀면 대체 키로 돌아감 · 대체 키는 `items.option_id` · 이름으로 다시 만듦) ③ **비율 옮기기** — 품목이 있는 달마다 그 달 수수료 스냅샷에서 옛 키(`option:` · `name:`) 비율이 있고 새 키(`product:<id>`)가 비었으면 옮겨 쓰고 `fee_rate_changes`(`set` · note 「수동 연결 — 옛 키 값을 옮김」) · 새 키에 다른 값이 있으면 그대로 · 충돌 수(0.5.3 code r4 옮기기와 같은 규칙) · 옛 키 비율 줄은 지우지 않음 ④ `product_link_changes` 한 줄 | 브리프 4 「기록」 · code r4 결정 |
+| 응답 | `GET` 본문 + `{ "result": { "items": n, "months": ["2026-10", "2026-11"], "carriedRates": c, "conflicts": x } }`(0.6.1 — `months` = 실제로 품목 키가 바뀐 달 = 연결 전 `otherMonths` + 이 달) · 로그 = 달 · 수만(키 · 상품 이름 · note 0) | §7.3 |
+| 돈 | 연결로 바뀌는 것은 **품목의 상품 키 → 그 줄 수수료율 · 수수료**뿐 — 금액 · 품목 · 판정 · 숨김 · 실결제는 안 바뀜 | §6.10 |
+
+### 4.12 스케줄 — 매일 21:00 KST (0.6.0)
+
+R§2 11-03 「서버 배포 뒤 스케줄: 매일 21시(KST) 상품 → 결제 · 스케줄은 앱 안 · 환경 변수로 켬(로컬 끔)」 · 피드백 b-20 · b-21.
+
+| 항목 | 계약 | 근거 |
+|---|---|---|
+| 켜기 | env **`SALES_SCHEDULE_ENABLED`**(`true` 일 때만 · 기본 `false` — 로컬은 끔 · 서버 배포 때 켬). 켜져 있으면 back 이 뜰 때(lifespan) 백그라운드 작업 하나를 띄우고, 닫힐 때 멈춘다(돌던 단계는 끝까지 · 새 단계는 시작 안 함). KOS 설정(§4.3 `kos_not_configured`)이 비어 있으면 켜도 돌지 않고 뜰 때 로그 한 줄 | R§2 11-03 · 기본값 |
+| 언제 | **매일 21:00:00 KST**(`Asia/Seoul` · 서버 시간대와 상관없이 · 시각은 상수 — env 로 바꾸지 않는다). 다음 21:00 까지 기다렸다 돈다 · **뜰 때 바로 돌지 않는다**(놓친 실행은 아래 「따라잡기」로 다음 21:00 에) | 피드백 b-21 「21시」 · 브리프 3 「다음 실행에서 따라잡기」 |
+| 한 번의 실행(차례) | `due_at` = 그 21:00. ① **상품 받기**(§4.9 · `trigger = schedule` · 이번 달 스냅샷에 더함) ② **앞 달 마감**(이번 달보다 앞이고 **열린** 상품 스냅샷 달 · `current` 매출 달 모두 — 보통 달 1일에 앞 달 하나): (a) 그 달 매출이 `current` 면 **증분 한 번**(§4.5 J4 꼴 · 끝나면 「확정」 규칙으로 `closed`) (b) 그 달 상품 스냅샷 **마지막 더하기 = 늘어난 것만 · 「삭제됨」 표시 안 함**(①에서 받은 목록으로 · KOS 다시 안 부름 — 달이 끝난 뒤 지운 것을 그 달에 찍지 않게) → 그 달 품목 다시 잇기(§6.12 — **0.6.1: 옵션 id 로만** · `product_title` 짝은 하지 않음 · 달이 끝난 뒤 만든 같은 이름 상품에 이어지지 않게 · doc r8 W-5 · D-25) → **고정**(`frozen_at` · `frozen_by = schedule` · 같은 트랜잭션 · `frozen_at IS NULL` 일 때만) ③ **이번 달 결제 증분**(§4.5 J5 꼴 · 저장 없음 = J2 전체) | 브리프 3 · R§2 11-03 · 피드백 b-19 · b-21 |
+| 실패 | 단계마다 따로 — 한 단계가 실패해도(§4.3 KOS · 저장 오류) 그 단계는 **쓰기 0**(한 트랜잭션)이고 다음 단계는 한다. 단, ① 이 실패하면 ②(b) 고정은 하지 않는다(그 달은 열린 채로 다음 실행이 다시 — 마지막 목록 없이 고정하지 않음) · ②(a) 가 실패한 달은 고정하지 않는다. 실행 안에서 다시 시도하지 않는다(다음 21:00 이 다시 · OQ-162). `status` = 다 됨 `ok` · 일부 실패 `partial` · 다 실패 `failed` · `error_code` = 첫 실패 코드 | 브리프 3 「실패」 · 기본값(OQ-162) |
+| 겹침 | 실행은 **스케줄 잠금**(PG 세션 advisory lock `<이름공간 3>, 0` · try — 못 잡으면 그 실행은 `skipped`) 안에서 한 번에 하나(back 프로세스가 둘이어도). 앞 실행이 다음 21:00 까지 안 끝나면 그 21:00 은 `skipped`. 사람 요청 · 내보내기와는 **달 잠금 · 쓰기 잠금**(§4.4.3)으로 줄을 선다(같은 달을 두 번 받지 않음 · §4.5 줄 선 요청) | 브리프 3 「겹침」 · §4.4.3 |
+| 따라잡기(놓친 실행) | 서버가 21:00 에 꺼져 있었으면 그 실행은 없다(기록도 없음 · 날마다 되풀이하지 않음). **실행 하나가 그때 상태를 보고 할 일을 다 한다** — ② 는 「이번 달보다 앞인 열린 스냅샷 달 · `current` 매출 달 전부」(달이 여럿이면 오래된 달부터 · `frozen_by = catch_up` 은 그 실행의 `due_at` 이 그 달 다음 달 1일이 아닐 때) · ③ 은 이번 달. 그래서 며칠 · 달 끝을 놓쳐도 다음 21:00 한 번으로 맞춰진다(놓친 날의 「삭제됨」 표시 · 중간 상품은 없을 수 있다 — 상품은 그날 목록만 · OQ-164) | 브리프 3 「서버 재시작 때 놓친 실행(다음 실행에서 따라잡기)」 |
+| 기록 · 로그 | 실행마다 `schedule_runs` 한 줄(시작 때 넣고 끝날 때 `finished_at` · `status` · `steps` · `kos_calls` · `error_code`) · 로그 = 단계 · 달 · `fetch.mode` · `kosCalls` · 새 행 수 · 더한 상품 수 · 고정한 달 · 걸린 시간 — **수만**(이름 · 금액 · 상품명 · id 0 · §7.3) | 브리프 3 「로그 수만」 · §7.3 |
+| 보이기 | `GET /api/health` 에 `{ ok, kosConfigured, schedule: { enabled, nextDueAt, lastRun: { dueAt, status, finishedAt } \| null } }`(KST · 값 0) — 화면 자리는 이번 판 없음(OQ-166) | 기본값(OQ-166) |
+| 한 번 돌리기(사람 · 확인용 · **로컬 달 마감**) | `cd back && uv run python -m app.tools.run_daily [--due YYYY-MM-DDT21:00]` — 위 「한 번의 실행」을 **지금 한 번**(같은 함수 · 같은 잠금 · `schedule_runs` 기록 · `--due` 는 「어느 21:00 몫인지」(달 1일 판단 · 기본 = 지금 이전 마지막 21:00)만 바꿈 · 시계를 속이지 않는다). **`--due` 가 지금보다 뒤 · 21:00:00 KST 가 아니면 거절**(0.6.1 — 지난 달을 미리 고정하는 길을 코드가 막음 · 오류 한 줄 · 종료 코드 ≠ 0). `SALES_SCHEDULE_ENABLED` 와 상관없이 돈다 · **운영 KOS 를 부른다 — 코디가 사용자에게 알리고**. **0.6.1 · D-26: 로컬(스케줄 꺼짐 · 배포 전)에서는 달 1일 21:00 뒤 코디가 이 명령을 한 번 돌려 앞 달을 마감 · 고정한다**(doc r8 W-1 — 그 전엔 지난 달 스냅샷이 열려 있어 상품 받기가 그 달 못 이은 줄을 다시 이을 수 있다) | 기본값 · doc r8 W-1 · D-26 |
+| 시험 | 시계 · 잠자기는 주입(가짜 시계 — 21:00 · 달 1일 · 놓친 날 · 겹침) · KOS 는 가짜 transport(§9.1 #105 ~ #112) | — |
 
 ## 5. KOS 원천 매핑
 
@@ -804,7 +933,7 @@ KOS 호출 수 ≈ 토큰 1 + ① 1 + ⑤ (수납 수 ÷ 100) + ② 1 + 수납 �
 | 못 이음 | (후보 0 · 동점을 못 가름) 줄 · 금액 · 상태 · 묶음은 ① 그대로(달에서 빠지지 않는다) · **`at = null`** · `tx_id = null` → 화면 결제일 `—` + 흐린 「시각 없음」 · 정렬 맨 뒤 · `counts.unmatchedTransactions` 로 센다. **① `lastUpdatedPaymentDateTimeUtc` 로 채우지 않는다**. 머리 `paidAt` 은 이은 승인만으로 정한다(하나도 없으면 `null` → `—`) | R§2 ⑤ 줄 · 기본값(OQ-120) |
 | ⑤ 에 수납 없음 | 그 수납의 모든 ① 행이 못 이음 · `itemsHere` 는 §6.2 판정 표 「⑤ 에 수납 없음」 줄 | 스펙 `GetPurchaseSummariesQuery.purchaseIds` · §6.2 |
 
-### 5.5 품목 → 상품 잇기 (0.5.0 · **0.5.2 동기 — 상품 키 = KOS 상품 id**)
+### 5.5 품목 → 상품 잇기 (0.5.0 · **0.5.2 동기 — 상품 키 = KOS 상품 id** · **0.6.0 — 그 품목 달 상품 스냅샷 · 수동 연결**)
 
 **0.5.2 — 상품 키는 KOS 상품 id 다**(R§2 11-02 「상품 키 = KOS 상품 id」 · 「상품 id 연결 한계」 줄 · D-20 의 「이름 키」를 뒤집음 · 구현 BE4 추가 · 수정 1 이 정본 — `back/app/domain/product_key.py`). 0.5.0 · 0.5.1 의 「(종류, 이름) 키」는 **대체 키**로 남는다.
 
@@ -813,11 +942,13 @@ KOS 호출 수 ≈ 토큰 1 + ① 1 + ⑤ (수납 수 ÷ 100) + ② 1 + 수납 �
 | 단계 | 계약 | 근거 |
 |---|---|---|
 | ① 품목 → ⑤ 옵션 | 같은 수납 ⑤ `items[]` 중 `type = PRODUCT_OPTION` 의 `optionConfiguration` 을 ② `PRODUCT_OPTION` 줄과 짝짓는다: ② `productOptionTitle` = ⑤ `optionConfiguration.title`(앞뒤 공백만 뗀 비교)인 후보가 **하나면 그것** · 여럿이면 **금액(② 남은 금액 = ⑤ 금액)이 같은 것이 하나일 때만** · ⑤ 옵션 하나는 한 줄에만 · 못 정하면 못 이음(`key_match = null`). 짝 결과(`option_id` · `key_match` = `name` / `amount`)는 품목을 저장할 때 `items` 에 저장 | R§2 11-02 · be4-add-product-id |
-| ② 옵션 → 상품 | 옵션 id 가 ⑦ 목록(`product_options` · 상품 받기 때 저장)에 있으면 그 상품 id(`by = product`). 없으면 ⑤ `optionConfiguration.productTitle`(그때의 상품 이름)과 ⑦ 상품 `title` 이 **하나로** 맞을 때 그 상품 id(`by = product_title` — 옵션이 바뀐 지금도 있는 상품). 그래도 없으면 옵션 id 가 키(`by = option` · 「KOS 목록에 없음」 · 삭제된 상품 — 공개 API 로 상품 id 를 얻을 길 없음 · R§2 「상품 id 연결 한계」) | R§2 11-02 · be4-fix-1 |
+| ⓪ 수동(0.6.0 · **0.6.1 차례 바뀜**) | **② 가 상품을 못 찾을 때만**(자동으로 못 이은 품목) — 그 품목의 대체 키(② 끝의 `option:` · ③ 의 `name:PRODUCT_OPTION:`)가 `product_links` 에 있으면 **그 상품 id**(`by = manual`). **② 로 이은 품목에는 수동 연결이 붙지 않는다**(같은 대체 키라도 · 다른 달이라도 · 연결할 때도 [전체 다시 받기] 로 다시 저장할 때도). 한 번 `manual` 이 된 품목은 뒤에 그 달 스냅샷에 옵션이 생겨도 그대로(다시 잇기는 못 이은 줄만 — 「다시 잇기」) | R§2 11-03 · 브리프 4 · **doc r8 F-1 · D-27** |
+| ② 옵션 → 상품 | **0.6.0: 찾는 곳 = 그 품목 달(`items_here = true` 인 달)의 상품 스냅샷**(`catalog_month_options` · `catalog_month_products` — 「KOS 삭제됨」 줄도 찾음 · 0.5.x 의 「지금 ⑦ 목록」을 바꿈 · §6.12). 옵션 id 가 그 스냅샷 옵션에 있으면 그 상품 id(`by = product` · 저장 `product_via = option`). 없으면 ⑤ `optionConfiguration.productTitle`(그때의 상품 이름 · 비면 ② `productTitle`)과 그 스냅샷 상품 `title` 이 **하나로** 맞을 때 그 상품 id(`by = product_title`). 그래도 없으면 옵션 id 가 키(`by = option` · 화면 「연결 안 됨」 → §4.11 수동). 품목 달 스냅샷이 **없으면** 저장된 값 그대로(다시 잇지 않음 · 새로 저장하는 품목이면 `option:` · `name:` 대체 키) | R§2 11-02 · be4-fix-1 · **R§2 11-03 「품목 → 상품 id 는 그 품목 달 스냅샷으로」** |
 | ③ 대체 | 못 짝지은 `PRODUCT_OPTION` 줄 · 기타 상품 · 선불카드 = **(종류, 이름) 키**(`by = name` · 0.5.0 규칙 그대로 — 이름 = §6.5 상품명 앞뒤 공백 뗌). 이름 키 상품 줄 수 = `counts.nameKeyedItems` | 0.5.0 §5.5 |
 | 키 없음 | `PurchaseItemType_UNSPECIFIED` · `productNameFrom = none` = 키 없음 → 늘 미설정 | 0.5.0 |
 | 키 꼴 | 문자열 하나 `key` = `product:<상품 id>` · `option:<옵션 id>` · `name:<종류>:<이름>` — 수수료율 표 · `PUT` · 기록의 키(§4.4.1 · §4.8) | 구현 정본 |
-| 다시 잇기 | 상품 받기(§4.9) 뒤 · 품목 저장 때 저장된 품목의 `product_id` · `by` 를 저장본(`items.option_id` · `purchase_options`)으로 다시 정한다 — **KOS 다시 안 부름** | be4-fix-1 |
+| 다시 잇기 | **0.6.0**: (i) 품목 저장 때 그 품목 ② → ⓪(② 가 못 찾을 때) → ③ 으로 정한다(0.6.1) (ii) 상품 받기 · 앞 달 마지막 더하기(§4.12) 뒤 **열린 스냅샷 달의 품목 중 못 이은 줄(`by = option` · `name` 인 상품 품목)만** 다시 정한다 — **이미 상품 id 로 이은 줄(`product` · `product_title` · `manual`)은 바꾸지 않는다**(스냅샷은 늘기만 하므로 옵션이 사라져 끊기는 일이 없고 · 같은 이름 상품이 늘어 `product_title` 이 풀리는 길(code r4 F-1 「반대 방향」)도 막힘) (iii) **고정된 달 · 스냅샷 없는 달 품목은 저절로 다시 잇지 않는다**(수동 ⓪ 만 — §4.11) · 키 원천 `purchase_options` 도 안 바꿈(§4.4.1). KOS 다시 안 부름 | be4-fix-1 · code r4 F-1(0.5.3 「잠긴 달 = 키 얼림」을 「고정된 달 = 키 얼림」으로) · R§2 11-03 |
+| 키가 바뀐 줄의 비율(0.5.3 동기 · 0.6.0) | (ii) · 수동 연결로 품목 키가 바뀌면 **그 품목 달 수수료 스냅샷에서** 옛 키 비율을 새 키로 옮긴다(새 키가 비었을 때만 · 다른 값이 있으면 그대로 두고 충돌로 셈 · `fee_rate_changes` `set` 기록 · 옛 키 줄은 지우지 않음). 0.5.3 구현(「잠기지 않은 모든 스냅샷 달」)을 「그 품목 달」로 좁힌다 — 다른 달 비율이 따라 바뀌지 않게 | code r4 결정(R§2 11-02 「code r4 F-1」 줄) · 기본값(OQ-167) |
 | 같은 이름 다른 상품 | id 가 다르면 **따로 줄 · 따로 비율**(0.5.0 「같은 이름 = 한 비율」 · 0.5.1 배지는 없어짐 — 화면은 이름 옆 id 끝 4자리) | R§2 11-02 · fe4-fix-1 |
 | 이름이 바뀜 | id 가 같으면 같은 키(비율 그대로) | R§2 11-02 |
 
@@ -965,7 +1096,7 @@ KOS 호출 수 ≈ 토큰 1 + ① 1 + ⑤ (수납 수 ÷ 100) + ② 1 + 수납 �
 | 에이전시 · 손님 | `agencies[].netTotal` · `agencyTotal.netTotal` = 그 수납들 `netTotal` 합(= 같은 화면 엑셀 「품목 금액」 열 합 · 숨긴 수납은 0 이라 상관없음). 손님 수 · 결제 손님 수는 D-15 · D-16 그대로(숨긴 수납 포함) · `agencies[].purchases` = 보이는 묶음 수 | D1-15 · D1-16 · D1-18 · doc r5 F-2 |
 | 받은 시점 | **이번 달**: 증분이 새 행이 생긴 저장 수납의 ② · ⑤ 를 다시 불러 품목 상태 · 금액을 갈아 끼운다(§4.5 증분 5 — 같은 달 환불 · 재결제가 품목에 들어온다 · doc r5 F-1). **확정 달(`closed`)**: 품목 금액은 받은 때 남은 금액 그대로(D1-12 · D1-13). 그 뒤 다른 달에 환불되면 환불 돈은 환불된 달의 「앞 달 결제 취소」(음수 머리)로 그 달 실결제에서 빠진다. 품목 달을 환불 **뒤에** 받았거나 [전체 다시 받기] 했으면 품목 금액이 이미 남은 금액이므로 그 취소는 「반영됨」(더하지 않음 · `reflectedCancels`) → **어느 순서로 받아도 달을 모두 더하면 최종 금액**(위 「반영 판정」 · #61 ~ #63) | D1-12 · D1-13 · D1-06 |
 
-### 6.10 수수료율 · 수수료 (0.5.0)
+### 6.10 수수료율 · 수수료 (0.5.0 · 0.6.0 잠금 없앰)
 
 **규칙 한 줄: 품목 수수료 = 품목 실결제 × 그 품목이 보이는 달의 그 상품 수수료율(줄마다 원 단위 반올림).** 비율은 상품 단위 · 달별 스냅샷 · 미설정 = 0(R§2 11-02 수수료율 줄 · 피드백 5 · 6 · 시안 v3 「정할 것」 = 시안 값 — R§2 11-02 시안 v3 채택 줄).
 
@@ -974,16 +1105,15 @@ KOS 호출 수 ≈ 토큰 1 + ① 1 + ⑤ (수납 수 ÷ 100) + ② 1 + 수납 �
 | 비율 값 | 만분율 정수 `rateBp` 0 ~ 10000(화면 입력 0 ~ 100 % · 소수 둘째 자리까지 — `12.5` → 1250 · 셋째 자리 이하는 400 `bad_rate` · front 가 먼저 막음). **빈 칸 = 미설정**(`null` · 줄 없음) — **0 % 와 다르다**(0 % 는 설정된 0) | 시안 v3 「율 입력 0 ~ 100 · 소수 허용 · 빈 칸 = 미설정」 |
 | 키 | §5.5 `key`(0.5.2 동기 — KOS 상품 id 먼저 · 옵션 id · 이름 대체) · 옵션은 상품 비율 | R§2 11-02 · §5.5 |
 | 스냅샷 | 달마다 `fee_rate_months` 한 행 + `fee_rates` 줄(§4.4.1). 그 달 정산(화면 · PDF · 결산)은 **그 달 스냅샷만** 읽는다 — 뒤 달에 비율을 바꿔도 앞 달 수수료는 안 바뀐다(피드백 5 「10월 자료엔 10%」) | 피드백 5 |
-| 스냅샷 만들기(새 달 = 앞 달 복사) | **0.5.1 — 쓰기 API 만 만든다**(doc r7 W-1): 그 달 스냅샷이 없을 때 **`PUT /api/fee-rates`**(설정 화면을 처음 열 때 front 가 `rates: []` 로 한 번 부름 · [저장] 때) · `lock` 이 쓰기 잠금 안 한 트랜잭션에서 먼저 만든다(`INSERT … ON CONFLICT DO NOTHING` — 동시여도 하나): **그 달보다 앞이고 스냅샷이 있는 달 중 가장 늦은 달**의 **저장된** `fee_rates` 를 그대로 복사 · `copied_from` = 그 달 · 앞에 없으면 빈 스냅샷. **GET 은 아무것도 만들지 않는다** — `GET /api/sales` · 내보내기는 그 달 스냅샷이 없으면 **모든 품목 미설정**(`rateBp null` · `fee 0` · `fees.exists = false`)으로 읽기만 · `GET /api/fee-rates` 는 스냅샷이 없으면 `exists = false` 와 **복사될 값을 미리 보이기**(`rateBp` = 앞의 가장 늦은 스냅샷 값 · `copiedFrom` = 그 달 · 저장 안 됨). 그래서 새 달은 「그 달 설정을 처음 연 순간」 앞 달 저장값으로 시작한다(시안 「처음 열 때」) · 복사 뒤 앞 달을 고쳐도 이 달은 안 바뀐다 | 시안 v3 「새 달 시작 — 처음 열 때 앞 달 저장된 값 복사」 · 「설정이 없는 달 = 전부 미설정」 · doc r7 W-1 |
-| 잠금 = 사람이 확정 | **[이 달 확정]**(`POST /api/fee-rates/lock` · §4.8)을 누른 달만 잠긴다(`locked_at` 기록) — **저절로 잠그지 않는다**. 확정은 **이번 달(KST)보다 앞 달 · 스냅샷 있음 · 그 달 매출이 `closed`**(0.5.1 — doc r7 F-1 · 늦은 증분이 잠긴 달 금액을 바꾸지 않게)일 때만(아니면 409 `cannot_lock`). **잠금이 막는 것 = 비율(`PUT` 409) + 그 달 매출 다시 받기(`refresh=full` 409 · §4.5 J0)** — 그래서 잠긴 달의 품목 줄 · 금액 · 수수료는 바뀌지 않는다. 다른 달 받기는 잠긴 달의 품목 줄을 바꾸지 않는다(고정 수납은 이 달에 줄이 없고 · 반영 판정 §4.6 ⑧ 은 `netTotal` 만 바꿈) → **잠긴 달 실결제(머리 · 「앞 달 결제 취소」 숨김)는 다른 달 받기로 바뀔 수 있으나 수수료는 안 바뀐다**(「앞 달 결제 취소」 수수료는 늘 「—」 · D-21) | 시안 v3 「확정 = 사람이 [이 달 확정](지난 달에만)」 · D-20 · D-21 · doc r7 F-1 |
-| 잠금 풀기 = 고치기 | **[고치기] → 확인 창 1번 → 풀림**(`POST /api/fee-rates/unlock` · `confirm: true` 필수) — 풀린 달은 고친 뒤 **다시 [이 달 확정]** 을 눌러야 잠긴다 | 시안 v3 「확정 달 고치기 = 확인 1번 → 잠금 풀림(다시 확정 필요)」 |
-| 기록 | 확정 · 풀기 · 비율 바꿈을 **모두** `fee_rate_changes` 에 남긴다(지우지 않음 — 확정 · 풀기는 `kind = name = null` · 행동 칸 `lock` · `unlock` · `set`). 화면에 보이는 기록은 0.5.0 범위 밖(응답 `changes[]` 는 준다 · 시안에 자리 없음) | R§2 11-02 브리프 「확정 달 잠금(고칠 땐 확인 · 기록)」 · 시안 v3 「고친 기록을 남길지」 → 남김(브리프가 이김) |
+| 스냅샷 만들기(새 달 = 앞 달 복사) | **0.5.1 — 쓰기 API 만 만든다**(doc r7 W-1): 그 달 스냅샷이 없을 때 **`PUT /api/fee-rates`**(**이번 달** 설정 화면을 처음 열 때 front 가 `rates: []` 로 한 번 부름 · [저장] 때 — 0.6.0: `lock` 은 없어짐 · **0.6.1: 지난 달은 [저장](확인 창) 때만** — doc r8 W-2) 쓰기 잠금 안 한 트랜잭션에서 먼저 만든다(`INSERT … ON CONFLICT DO NOTHING` — 동시여도 하나): **그 달보다 앞이고 스냅샷이 있는 달 중 가장 늦은 달**의 **저장된** `fee_rates` 를 그대로 복사 · `copied_from` = 그 달 · 앞에 없으면 빈 스냅샷. **GET 은 아무것도 만들지 않는다** — `GET /api/sales` · 내보내기는 그 달 스냅샷이 없으면 **모든 품목 미설정**(`rateBp null` · `fee 0` · `fees.exists = false`)으로 읽기만 · `GET /api/fee-rates` 는 스냅샷이 없으면 `exists = false` 와 **복사될 값을 미리 보이기**(`rateBp` = 앞의 가장 늦은 스냅샷 값 · `copiedFrom` = 그 달 · 저장 안 됨). 그래서 새 달은 「그 달 설정을 처음 연 순간」 앞 달 저장값으로 시작한다(시안 「처음 열 때」) · 복사 뒤 앞 달을 고쳐도 이 달은 안 바뀐다 | 시안 v3 「새 달 시작 — 처음 열 때 앞 달 저장된 값 복사」 · 「설정이 없는 달 = 전부 미설정」 · doc r7 W-1 |
+| ~~잠금 = 사람이 확정~~ · ~~잠금 풀기 = 고치기~~ | **0.6.0 없앰**(R§2 11-03 「[이 달 확정] 없앰 · 수수료율은 달 끝 뒤에도 고칠 수 있음」). **어느 달 스냅샷이든 언제든 `PUT` 으로 고친다**(지난 달 · `closed` 달 포함 · 기록은 남김) · 그 달 매출 [전체 다시 받기] 도 막지 않는다(§4.5). 0.5.x 의 잠금이 지키던 두 가지는 이렇게 바뀐다: ① **상품 키 다시 잇기** → 품목 달 **상품 스냅샷 고정**(§6.12 — 고정된 달 품목은 저절로 키가 안 바뀜) ② **확정 달 다시 받기 막기** → 막지 않음(사람이 누를 때만 · 확인 창 · 다시 받아도 키는 그 달 스냅샷으로) · 9 · 10월에 남은 `locked_at` 은 뜻 없음(읽지 않음) | R§2 11-03 · 브리프 1 |
+| 기록 | 비율 바꿈을 **모두** `fee_rate_changes` 에 남긴다(지우지 않음 — 0.6.0: 사람 [저장] · 상품 받기 · 수동 연결의 비율 옮김 모두 `set` · 옮김은 `note` 에 까닭 · 옛 `lock` · `unlock` 줄은 남아 있음). 화면에 보이는 기록은 0.5.0 범위 밖(응답 `changes[]` 는 준다 · 시안에 자리 없음) | R§2 11-02 브리프 「확정 달 잠금(고칠 땐 확인 · 기록)」 · 시안 v3 「고친 기록을 남길지」 → 남김(브리프가 이김) |
 | 품목 수수료 `fee` | 보이는 품목 줄(§6.9 — 최종 결제 품목 · 0원 포함) 마다 `round_half_up(amount × rateBp / 10000)` 원 · `rateBp = null` 이면 **0**(`rateBp` 는 `null` 그대로 → 화면 「미설정」). 금액 = `lines[].amount`(남은 실결제) · 비율 = **그 줄이 보이는 달**(= 품목 달 · `itemsHere` 달)의 스냅샷. 통화가 `KRW` 가 아닌 줄도 같은 식(그 통화 단위) | 피드백 6 · R§2 11-02 「품목 실결제 × 그 품목이 보이는 달의 비율」 · 시안 v3 「줄마다 원 단위 반올림 → 합」 |
 | 수납 `feeTotal` | 그 수납 줄 `fee` 합(+ `priorFee` — 0.5.0 기본값에선 늘 0 이 아니라 **없음**: 아래). 통화 섞인 수납 = `null`(합 대신 ⚠ — 3판 §6.7 꼴 · 시안 「수수료도 합 대신 ⚠」) | 시안 v3 · §6.7 |
 | **「앞 달 결제 취소」 머리의 수수료** | **되돌리지 않는다**(사용자 결정 · OQ-148 닫음) — `priorFee = null` · 화면 · PDF 수수료 칸 「—」 · 실결제에서만 빠진다 · 수납 `feeTotal` = 0(줄 0) · 결산 수수료 합에 안 들어감. 까닭: 정산은 달이 끝난 뒤 한 번이라 이미 지급한 수수료를 돌려받을 일이 없다. 고정 수납의 이 달 재승인(양수 `netTotal` · §6.9)도 같은 머리라 **기본값** 수수료 「—」 — D-21 은 취소만 정했으므로 양수(돈이 더 들어온 꼴 — 더 팔린 금액에 어느 달에도 수수료가 안 붙음)는 **OQ-153(코디)** · 운영 9 · 10월 이 꼴 0 건(R§2 10-29 마지막 줄) · LIVE4 L31 로 센다 | 시안 v3 · **R§2 11-02 사용자 답 줄**(「되돌리지 않음 — 정산은 달이 끝난 뒤 한 번이라 돌려받을 일 없음」) |
 | 품목 못 찾음 · 품목 어느 달에도 없음 | `itemsMissing` · `itemsNowhere` 수납 = 줄 0 → 수수료 0(화면 「품목을 찾지 못했어요 — 수수료 0」) | 시안 v3 |
 | 미설정 품목 수 `unsetItems` | 보이는 줄 중 **금액 > 0 이고 `rateBp = null`** 인 줄 수(0원 품목은 세지 않는다) | feedback 코디 기본값 · 기본값(OQ-143) |
-| 비율 · 금액이 바뀌면 | 수수료는 저장하지 않고 읽을 때 계산한다(KOS 0). 잠기지 않은 달은 `PUT` · [전체 다시 받기] 즉시 그 달 수수료가 바뀐다. 잠긴 달은 비율도 금액도 바뀔 길이 「[고치기] → 풀기」 하나뿐(풀기 확인 창이 「금액이 달라질 수 있어요」를 알림 · §3.0.5). 수수료 · 금액을 잠글 때 얼려 두는 길은 쓰지 않는다(doc r7 F-1 대안 — 표가 늘고 「받은 시점」 규칙과 겹침) | doc r7 F-1 · 기본값 |
+| 비율 · 금액이 바뀌면 | 수수료는 저장하지 않고 읽을 때 계산한다(KOS 0). **0.6.0: 어느 달이든** `PUT` · [전체 다시 받기] · 수동 연결(§4.11) 즉시 그 달 수수료가 바뀐다 — 이미 내려받은 PDF 와 달라질 수 있어 지난 달은 화면 확인 창(§3.0.2 · §3.0.5)으로만 알린다. 수수료 · 금액을 얼려 두는 길은 쓰지 않는다(doc r7 F-1 대안 그대로 · 바꾼 기록이 대신 남음) | doc r7 F-1 · R§2 11-03 · 기본값(OQ-156) |
 | 선불카드 충전 · 사용 | 둘 다 줄이 있으면 둘 다 수수료가 붙을 수 있다 — 거르지 않는다. 선불카드 판매 품목(`PREPAID_CARD_PRODUCT`)의 비율을 0 % 나 미설정으로 둘지는 사람이 설정에서 정한다 · 선불카드로 낸 상품 품목은 그 상품 비율 | D1-07 · OQ-112 · OQ-142 |
 
 ### 6.11 묶음 옵션 구성 · 0원 품목 (0.5.2)
@@ -998,8 +1128,23 @@ KOS 호출 수 ≈ 토큰 1 + ① 1 + ⑤ (수납 수 ÷ 100) + ② 1 + 수납 �
 | 보이는 글 | 묶음 줄 바로 아래 작은 회색 한 줄 **「구성: <이름> <값><단위> × <횟수> · …」** — 값 · 단위는 `unitValue` · `unitType` 이 있을 때만(단위 이름 = 스펙 `Unit.type` 표의 한글 뜻 — `SHOT` 샷 · `CC` cc · `UNIT` 개 …, `UnitType_UNKNOWN` · 모르는 값은 빼고 값만) · `× n` 은 `count ≠ 1` 일 때만 · 이름 없으면 그 구성 빼고 · 구성 0 개면 줄 없음. 이름표는 front `labels.ts` · back `labels.py` 같은 표(#39 꼴) | feedback b-5 예(「<시술> 300샷」 꼴) |
 | 금액 · 수수료 | **묶음 줄에만**(그 줄 `amount` · `rateBp` · `fee`) · 「구성」 줄은 금액 · 수수료 칸 없음 · 셈(`itemLines` · `unsetItems`)에 안 들어감 · 비율은 묶음 줄의 상품 키(§5.5) | 지시서 2 |
 | PDF · 엑셀 | PDF = 묶음 줄 아래 같은 「구성: …」 작은 글 한 줄(금액 칸 비움 · §4.10) · 엑셀 = 행 늘리지 않음(11칸 그대로 · 구성은 안 넣음 — OQ-149 꼴 · 필요하면 다음 판) | 지시서 2 · D-22 |
-| 저장된 달 | 0.5.2 전 저장본(9 · 10 · 11월)엔 구성이 없다 → `composition = null`. 채우는 길 = **`uv run python -m app.tools.backfill_compositions --month YYYY-MM`**(한 번짜리 · ⑤ `getPurchaseSummaries` 만 · 그 달 저장 수납 ÷ 100 회 · `purchase_options` 의 `option_type` · 구성만 채움 · **금액 · 품목 · 판정 · 수수료 · 잠금과 무관**(잠긴 달도 됨 — 돈이 안 바뀜) · KOS 쓰기 0 · 코디가 사용자에게 알리고 실행). 또는 잠기지 않은 달 [전체 다시 받기] | D-12(지난 달 다시 안 부름)의 예외 — ⑤ 만 · 돈 무관 · OQ-155 |
-| **0원 품목** | 보통 품목 줄(§3.2 · §3.3 — ② 차례 · 흐리게만 · 「ㄴ」 0) · 수수료 = `amount × rate` = **0** · `unsetItems` 안 셈 · 배지 0. 「서비스」 표시(할인 100% · 원래 0원) · 「원래 X원」 · 수수료 대상 여부는 **병원 담당자 확인 대기**(OQ-154 · 사용자) — 0.5.2 는 0원 그대로 · ⑤ `priceAdjustments` · 원래 가격은 꺼내지 않는다 | 지시서 4 · feedback b-3 · 코디 기본값 |
+| 저장된 달 | 0.5.2 전 저장본(9 · 10 · 11월)엔 구성이 없다 → `composition = null`. 채우는 길 = **`uv run python -m app.tools.backfill_compositions --month YYYY-MM`**(한 번짜리 · ⑤ `getPurchaseSummaries` 만 · 그 달 저장 수납 ÷ 100 회 · `purchase_options` 의 `option_type` · 구성만 채움 · **금액 · 품목 · 판정 · 수수료와 무관**(0.6.0: 품목 달 상품 스냅샷이 고정된 수납은 `purchase_options` 의 키 칸(`option_id` · `title` · `product_title`)을 바꾸지 않고 `option_type` · 구성만 채운다 — 0.5.3 code r4 W-1 「잠긴 달」을 「고정된 달」로) · KOS 쓰기 0 · 코디가 사용자에게 알리고 실행). 또는 잠기지 않은 달 [전체 다시 받기] | D-12(지난 달 다시 안 부름)의 예외 — ⑤ 만 · 돈 무관 · OQ-155 |
+| **0원 품목** | 보통 품목 줄(§3.2 · §3.3 — ② 차례 · 보통 글자색(0.6.1 · b-10) · 「ㄴ」 0) · 수수료 = `amount × rate` = **0** · `unsetItems` 안 셈 · 배지 0. 「서비스」 표시(할인 100% · 원래 0원) · 「원래 X원」 · 수수료 대상 여부는 **병원 담당자 확인 대기**(OQ-154 · 사용자) — 0.5.2 는 0원 그대로 · ⑤ `priceAdjustments` · 원래 가격은 꺼내지 않는다 | 지시서 4 · feedback b-3 · 코디 기본값 |
+
+### 6.12 상품 정보 달별 · 일별 스냅샷 (0.6.0)
+
+R§2 11-03 「상품 스냅샷 매일(늘어난 것만 · 사라진 것 『KOS 삭제됨』 · 지우지 않음) · 달 끝 다음 날 실행 때 앞 달 상품 스냅샷 고정」 · 피드백 b-19 · b-21. **규칙 한 줄: 한 달의 상품 목록은 그 달 동안 늘기만 하고, 다음 달 1일 실행 때 얼고, 그 달 품목은 그 달 목록으로 상품 id 를 찾는다.**
+
+| 항목 | 계약 | 근거 |
+|---|---|---|
+| 스냅샷 달 | 상품 받기의 **받기 시작 시각(KST)의 달** 하나에만 더한다(§4.9). 앞 달 마지막 더하기 · 고정은 스케줄만(§4.12 ②) | R§2 11-03 |
+| 처음 | 그 달 스냅샷이 없으면 그 받기의 목록 그대로 새로 만든다(`created_at` · 모든 줄 `first_seen_at` = 받기 시각) — **앞 달 스냅샷을 복사하지 않는다**(앞 달에만 있고 이 달 목록에 없는 상품은 이 달 스냅샷에 없음 · OQ-169) | 피드백 b-19 「달 시작(그 달 처음 상품 받기) → 상품 목록 스냅샷」 · 기본값(OQ-169) |
+| 늘어난 것 | 받은 목록에 있고 스냅샷에 없는 상품 · 옵션 · 카테고리 = **더함**(`first_seen_at`). 이미 있는 줄 = `last_seen_at` · 보이는 값(`title` · `closed` · 차례 · 카테고리 · 옵션 `type`)만 새 값으로 · 「KOS 삭제됨」이던 줄이 다시 나오면 `deleted_in_kos = false`(OQ-169) — **id · 키는 안 바뀜** | 피드백 b-19 「늘어난 것만 더함」 · 기본값 |
+| 사라진 것 | 스냅샷에 있고 받은 목록에 없는 줄 = **지우지 않고** `deleted_in_kos = true` · `deleted_marked_at`(처음 본 시각) — 화면 배지 「KOS 삭제됨」(§3.0.5) · 비율 · 기록 · 품목 연결 그대로. ⑦ 상품 0 개 · ⑥ ⑦ 중 하나 실패면 표시하지 않는다(§4.9) | 피드백 b-19 · b-21 · OQ-158 |
+| 고정 | 다음 달 1일 21:00 실행(놓쳤으면 그 뒤 첫 실행 · §4.12 따라잡기 · **로컬은 코디의 `run_daily` — 0.6.1 · D-26**)이 그 달 **마지막 더하기(늘어난 것만 · 「삭제됨」 표시 0)** → 다시 잇기(**옵션 id 로만** — 0.6.1 · doc r8 W-5) 뒤 `frozen_at`. 고정 뒤엔 그 달 스냅샷 · 그 달 품목의 자동 키 · 그 달 품목 수납의 `purchase_options` 가 바뀌지 않는다(사람의 수동 연결 · 수수료율 [저장] · [전체 다시 받기] 는 된다). **고정을 푸는 길은 없다**(사람 경로 0 · 시험 DB 만) | 브리프 2 · R§2 11-03 · 기본값 |
+| 품목의 달 | 품목 → 상품 id 는 **그 품목이 보이는 달(`items_here = true` 인 달 — 품목 달)의 스냅샷**으로(§5.5 ②). 품목 달이 정해지지 않은 품목(어느 달도 `items_here` 아님)은 잇지 않는다(대체 키) | 브리프 2 「품목 → 상품 id 는 그 품목 달 스냅샷으로」 |
+| 스냅샷 없는 달 | 상품을 한 번도 받지 않은 달(씨앗 0 · §4.4.5) = 「스냅샷 없음」 — 그 달 품목은 **저장된 키 그대로**(자동 다시 잇기 0 · 새 품목은 대체 키) · 설정 줄 범위는 마지막 KOS 목록(§4.8) · 수동 연결 후보 0(§4.11) | 기본값 |
+| 운영 기준 | **11월부터가 운영**(9 · 10월 = 테스트 데이터 · R§2 11-03). 9 · 10월은 `0005` 씨앗으로 고정 스냅샷(마지막 KOS 목록) · 품목 키 · 수수료 그대로 · 지우지 않음. 11월은 열린 스냅샷으로 시작해 12-01 21:00 실행이 고정 | R§2 11-03 · OQ-165 |
 
 ## 7. 조회 전용 · 개인정보
 
@@ -1031,6 +1176,7 @@ KOS 호출 수 ≈ 토큰 1 + ① 1 + ⑤ (수납 수 ÷ 100) + ② 1 + 수납 �
 - **③ · ④ 응답에서 꺼내는 것은 `visitor.name` · `reservation.startDateTime`(③) · `name`(④) 뿐**이다. ③ 응답(`ScheduleContract`)에 같이 오는 전화 · 생년월일 · 차트번호 · 메모 · 예약 메모, ④ 응답의 전화 · 여권 · 생년월일은 **변수에 남기지 않고 DB · 로그 · 응답에 싣지 않는다**(파싱 직후 두 값만 남김) · 검수 NOTE 3
 - **⑤ 응답에서 꺼내는 것은 `data[].id` · `transactions[].{id, status, paymentType, price, paymentDateTime, canceledRefId, createdDateTimeUtc}` · 0.5.2 동기: `items[]`(`type = PRODUCT_OPTION`)의 `optionConfiguration.{id, title, productTitle, optionType}` · 금액 · `compositions[].{procedure.name, count, unit.type, unit.value}` 뿐**이다(§5.5 · §6.11 — 개인정보 아님). 같이 오는 `purchaseMemo`(자유 텍스트) · `assignees` · 거래 담당자 · 카드 설정 · `priceAdjustments` · 가격 · 기기 · 약물은 남기지 않는다(DB 에도) · 검수 r2 NOTE 2
 - **① · ② 에서 저장하는 것은 §4.4 `transactions` · `items` 표의 칸뿐**이다 — ① `visitorFunnelDetail` · `reservationFunnelName` · 그 밖 손님 칸, ② 의 손님 · 담당자 칸은 저장하지 않는다
+- **0.6.0**: 스케줄 실행(§4.12) · 스냅샷 더하기 · 수동 연결 로그도 같은 규칙 — 단계 · 달 · 수만(상품명 · 키 · note · 손님 · 금액 0). `schedule_runs.steps` · `product_link_changes` 에도 상품명 · 손님 · 금액 0(키 · 상품 id 는 `product_link_changes` 에만 — 표 안 · 응답 · 로그 0)
 - 로그에 남기는 것: 달 · 건수(`counts`) · `fetch`(mode · kosCalls · 새 행 수 · 중복 수) · `store.state` · 걸린 시간 · KOS 오류 이름 · `totalCount` ↔ 받은 행 수(숫자만) · 엑셀은 달 · `view` · 행 수(§4.7) · 0.4.3 구현 수: `itemsRefetched` · `filledLiveApprovals` · `changedPurchases` · `repaidAfterCancel`(이 달 취소 뒤 재승인 갈래를 탄 수납 수 — 드묾) — 전부 수만. **이름 · 금액 · 상품명 · 수납 id · 손님 id · 키 · 토큰 · 테넌트 id 를 남기지 않는다**. `httpx` 로그는 WARNING 이상만(요청 URL 이 찍히지 않게 — 코드 `main.py`)
 - **저장은 PostgreSQL 하나뿐**(0.5.0 · §4.4 — 이 맥의 로컬 docker) — 이름 · 방문일 · 결제 · 품목이 들어 있는 **운영 개인정보 DB** 다: docker volume 은 이 맥 밖으로 옮기지 않는다(덤프 · 복사 · 업로드 · 스크린샷 금지) · 포트는 `127.0.0.1` 에만 · 앱 계정 권한은 §4.4 「계정 · 권한」 · 레포 · 리포트에 행 · 값을 붙이지 않는다 · 필요 없어지면 volume 을 지운다. 3판 SQLite 파일은 옮기기(§4.4.4) 대조가 끝난 뒤 사람이 지운다. 그 밖 파일 · 브라우저 저장소(`localStorage` 등) 0 · 메모리 캐시 0 · **PDF · zip · xlsx 는 응답으로만**(서버 디스크 0 · 내려받은 파일은 사람이 다룬다)
 - 오류 응답 · 로그에 `DATABASE_URL`(계정 · 비밀번호 · 호스트) · SQL 문 · 행 값을 싣지 않는다(`store_failed` 는 문구만 — §4.3) · psycopg 오류 문자열을 그대로 응답에 싣지 않는다
@@ -1038,7 +1184,7 @@ KOS 호출 수 ≈ 토큰 1 + ① 1 + ⑤ (수납 수 ÷ 100) + ② 1 + 수납 �
 
 ### 7.4 쓰기 경로 막기 (0.5.0 — 처음 생긴 쓰기 API)
 
-3판까지 back 은 GET 만이었다. 0.5.0 에 **POST 3 · PUT 1**(상품 받기 · 수수료율 쓰기 · 확정 · 풀기)이 생긴다. 로그인은 여전히 없다(R§2 11-02 「로그인 · 배포는 이번 판 밖」) — 대신 **같은 브라우저의 다른 사이트 · 같은 Wi-Fi 의 다른 기기**가 쓰지 못하게 한다.
+3판까지 back 은 GET 만이었다. 0.5.0 에 **POST 3 · PUT 1**(상품 받기 · 수수료율 쓰기 · 확정 · 풀기)이 생긴다. **0.6.0 = POST 1 · PUT 2**(확정 · 풀기 지움 · 상품 연결 `PUT` 더함 — 아래 규칙 그대로 · 스케줄은 HTTP 경로가 아니다 — back 안에서 돈다). 로그인은 여전히 없다(R§2 11-02 「로그인 · 배포는 이번 판 밖」) — 대신 **같은 브라우저의 다른 사이트 · 같은 Wi-Fi 의 다른 기기**가 쓰지 못하게 한다.
 
 | 막기 | 계약 | 막는 길 |
 |---|---|---|
@@ -1169,24 +1315,47 @@ cc-prototype 레포의 `procedure/front` 를 **복사**한다(import · 링크 �
 | 77 | **「앞 달 결제 취소」 수수료** — 품목 달 스냅샷에 비율이 있어도 `priorFee null` · 수납 `feeTotal 0` · 채널 `feeTotal` 에 안 들어감 · 고정 수납 재승인(양수 `netTotal`)도 같음 |
 | 78 | **품목 달 비율** — 분할 결제 수납: 품목 9월 · 10월엔 숨김 → 품목 수수료는 9월 스냅샷 · 10월 영향 0 |
 | 79 | **PUT** — 보낸 키만 바뀜 · 같은 값은 기록 0 · `null` = 줄 지움 · `rateBp 10001` · `-1` · `12.345%`(= 1234.5) · 모르는 key · 같은 키 두 번 → 400 `bad_rate` · 아무것도 안 바뀜 · 바뀐 키마다 `fee_rate_changes` 한 줄(`action set`) · 스냅샷 없는 달 PUT → 빈 스냅샷 만들고 씀(복사 대상 있으면 복사 뒤) |
-| 80 | **확정 · 고치기** — 시계 11-02: `lock 2026-10` → `lockedAt` · 기록 `lock` · 그 뒤 PUT → 409 `month_locked` · `lock 2026-11`(이번 달) → 409 `cannot_lock` · 스냅샷 없는 달 → 409 `cannot_lock` · `unlock` 본문 없음 → 400 `confirm_required` · `unlock {confirm:true}` → 풀림 · 기록 `unlock` · PUT 됨 · 다시 lock 됨 · 기록 행은 지워지지 않음(앱 계정 `DELETE` 경로 0) · 저절로 잠기는 길 0(시계를 12월로 옮겨도 10월 `lockedAt null`) |
+| 80 | ~~**확정 · 고치기** — 시계 11-02: `lock 2026-10` → `lockedAt` · 기록 `lock` · 그 뒤 PUT → 409 `month_locked` · `lock 2026-11`(이번 달) → 409 `cannot_lock` · 스냅샷 없는 달 → 409 `cannot_lock` · `unlock` 본문 없음 → 400 `confirm_required` · `unlock {confirm:true}` → 풀림 · 기록 `unlock` · PUT 됨 · 다시 lock 됨 · 기록 행은 지워지지 않음(앱 계정 `DELETE` 경로 0) · 저절로 잠기는 길 0(시계를 12월로 옮겨도 10월 `lockedAt null`)~~ — **0.6.0: 없어짐**(잠금 없음 · #99 · #100 이 대신) |
 | 81 | **PG 달 잠금** — 같은 달 두 요청을 **서로 다른 서비스 인스턴스(다른 연결 풀 — 프로세스 둘 흉내)**로 동시에 → ① 호출 1 · 뒤 요청 `fetch.mode none` · 받기 중 예외 → 잠금 풀림(다음 요청이 기다리지 않음) · **0.5.1(doc r7 W-2): `DB_POOL_MAX=2` 에서 같은 달 요청 4개(`/api/sales` 둘 · PDF · 엑셀) 동시 → 교착 0 · 풀 시간 초과 0 · ① 1** |
 | 82 | **쓰기 잠금 · 고정** — #41 을 인스턴스 둘로 → 품목 정확히 한 번 · `lock_timeout` 넘김(가짜로 잠금 잡아 둠) → 500 `store_failed` · 표 안 바뀜 |
 | 83 | **응답 읽기 한 번** — 응답을 만드는 중 다른 연결이 그 달 행을 커밋해도 한 응답 안 숫자가 섞이지 않음(`REPEATABLE READ`) |
 | 84 | **SQLite → PG 옮기기** — 3판 꼴 SQLite(가짜 · `user_version 2` · 9월 `closed` · 10월 `current` · 모든 표 행)를 옮김 → 표마다 행 수 같음 · 달마다 `value` · `amount` 합 · `items_here` · `pinned_elsewhere` 수 같음 · 시각이 같은 순간(`+00:00` · `Z` 둘 다) · 옮긴 뒤 9월 `GET /api/sales` KOS 0 · `fetch.mode none` · 응답 숫자 = 옮기기 전 3판 응답 숫자(채널 이름만 다름) · `user_version 1` → 멈춤 · PG 가 비어 있지 않음 → 멈춤 · 중간 실패 → PG 빈 채 · 원본 파일 sha256 그대로 · 출력 · 로그에 이름 · 수납 id 0 · `--dry-run` 은 PG 에 쓰기 0 |
 | 85 | **쓰기 막기** — `Content-Type: text/plain` → 415 · `Origin: http://evil.example` → 403 · `Host: evil.example:8800` → 403 · `Origin` 없는 JSON → 통과 · CORS preflight 에 허용 출처 하나 · 메서드 GET · POST · PUT · GET 경로는 `Origin` 검사 안 함(3판 그대로) |
-| 86 | **쓰기 경로가 KOS 를 안 씀** — 네 쓰기 경로 모두 가짜 transport 에 `/commands/` 0 · `refresh` 만 ⑥ · ⑦ |
+| 86 | **쓰기 경로가 KOS 를 안 씀** — 쓰기 경로 모두(0.6.0: 셋 — 상품 받기 · 수수료율 PUT · 상품 연결 PUT) 가짜 transport 에 `/commands/` 0 · `refresh` 만 ⑥ · ⑦ |
 | 87 | **PDF** — 저장된 10월 · 채널A → `application/pdf` · 쪽 ≥ 1 · 글자 뽑기(`pypdf` 시험 의존성)에 「거래 명세서」 · `AS-202610-<채널>` · 발행일 = 시계 날짜 · 손님 · 결제 손님 · 합계 · 주석 ①④⑤ · 미설정 있으면 ② · 앞 달 결제 취소 있으면 ③ 과 그 줄 수수료 「—」 · 0원 품목 줄 없음 · 소계 줄(품목 둘 이상 수납) · 한글이 글꼴로 들어감(빈 네모 0 — 글꼴 포함 확인) · 줄 수 많은 가짜(200 줄) → 여러 쪽 · 머리 줄 되풀이 · KOS 0 · 저장 안 된 달 409 |
 | 88 | **zip** — 채널 4개 중 손님 0 인 채널 1 → PDF 3개 · 이름 `거래명세서_2026-10_<채널>.pdf` UTF-8 · 차례 = `channels[]` · 같은 파일 이름 → `_2` · 손님 있는 채널 0 → 409 `nothing_to_export` · 서버 디스크에 pdf · zip 0 |
 | 89 | **엑셀 0.5.0** — `view=channel&channel=에이전시A` 행 = 그 채널 줄 · `view=agency` → 400 · 파일 이름 `유입채널전체` · 「정보」 시트 수수료 합 · 미설정 수 · 잠김 |
 | 90 | **로그 0.5.0** — 상품 받기 · PUT · lock · unlock · PDF · zip · 옮기기 caplog 에 상품 이름 · 비율 값 · note · 채널 이름 · 손님 이름 · 금액 · `DATABASE_URL` 0 |
-| 91 | **잠긴 달 다시 받기 막기(0.5.1 · doc r7 F-1)** — 10월 품목 P 500,000 · 10% · `lock` → 가짜 ② 를 P 300,000 으로 바꿔 `GET /api/sales?month=2026-10&refresh=full` → **409 `month_locked` · KOS 호출 0** · DB 행 수 · 값 그대로 · 10월 수수료 50,000 그대로 · PDF 합계 그대로 · `unlock` 뒤에는 `refresh=full` 이 받고 수수료 30,000 |
-| 92 | **잠금 뒤 다른 달 환불 · 잠금 조건(0.5.1)** — 10월(`closed`) P 500,000 · 10% 잠금 → 11월 증분에 P 부분 환불 −200,000 → 10월 줄 · 수수료 50,000 그대로 · 11월 「앞 달 결제 취소 −200,000」 수수료 `null` · 11월이 `current` 인 동안 `lock 2026-11` 409 `cannot_lock` · 10월 매출이 `current`(J4 전) 이거나 저장 없음이면 `lock 2026-10` 409 `cannot_lock` · 다른 달(9월) [전체 다시 받기]가 10월 품목 줄 · 수수료를 바꾸지 않음(실결제 머리는 반영 판정으로 바뀔 수 있음) |
+| 91 | ~~**잠긴 달 다시 받기 막기(0.5.1 · doc r7 F-1)** — 10월 품목 P 500,000 · 10% · `lock` → 가짜 ② 를 P 300,000 으로 바꿔 `GET /api/sales?month=2026-10&refresh=full` → **409 `month_locked` · KOS 호출 0** · DB 행 수 · 값 그대로 · 10월 수수료 50,000 그대로 · PDF 합계 그대로 · `unlock` 뒤에는 `refresh=full` 이 받고 수수료 30,000~~ — **0.6.0: 없어짐**(잠금 없음 · #99 · #100 이 대신) |
+| 92 | ~~**잠금 뒤 다른 달 환불 · 잠금 조건(0.5.1)** — 10월(`closed`) P 500,000 · 10% 잠금 → 11월 증분에 P 부분 환불 −200,000 → 10월 줄 · 수수료 50,000 그대로 · 11월 「앞 달 결제 취소 −200,000」 수수료 `null` · 11월이 `current` 인 동안 `lock 2026-11` 409 `cannot_lock` · 10월 매출이 `current`(J4 전) 이거나 저장 없음이면 `lock 2026-10` 409 `cannot_lock` · 다른 달(9월) [전체 다시 받기]가 10월 품목 줄 · 수수료를 바꾸지 않음(실결제 머리는 반영 판정으로 바뀔 수 있음)~~ — **0.6.0: 없어짐**(잠금 없음 · #99 · #100 이 대신) |
 | 93 | **묶음 구성(0.5.2)** — ⑤ 옵션 `optionType GROUP` · `compositions` 둘(시술 a 300 SHOT ×1 · 시술 b 600 SHOT ×2) · ② 그 옵션 줄 하나 → `lines` 줄 하나 · `composition.items` 둘(⑤ 차례 · name · count · unitType · unitValue) · `itemLines` 그대로 · 금액 · `fee` 는 그 줄만 · `SINGLE` 줄 `composition null` · 짝 못 찾은 줄 `null` · DB 에 구성 가격 · 기기 · 약물 · 진료 항목 칸 0 · `priceAdjustments` 저장 0 |
 | 94 | **구성 글 · PDF** — 「구성: 시술 a 300샷 · 시술 b 600샷 × 2」 · `UnitType_UNKNOWN` 은 값만 · 이름 없는 구성 뺌 · back `labels.py` 단위 표 = front `labels.ts` · PDF 글자 뽑기에 그 「구성:」 줄 · 그 줄 금액 칸 비움 · 엑셀 행 수 그대로 |
 | 95 | **0원 줄(0.5.2)** — 0원 품목이 ② 차례 자리에 보통 줄로(#51) · PDF 에도 0원 줄 있음 · `fee 0` · `unsetItems` 안 셈 · 응답 · PDF 에 「서비스」 · 「원래」 글자 0 |
-| 96 | **backfill_compositions** — 구성 없는 저장본(잠긴 달 포함)에 실행 → ⑤ 만 불림(가짜 transport 경로 = ⑤ · 호출 수 = 수납 ÷ 100) · `purchase_options.option_type` · 구성만 바뀜 · `transactions` · `items` · `month_purchases` · `fee_rate*` 행 · 값 그대로(덤프 비교) · 그 달 `netTotal` · `feeTotal` 그대로 · 두 번 돌려도 같음 |
+| 96 | **backfill_compositions** — 구성 없는 저장본(0.6.0: 고정된 달 포함 — 키 칸 그대로 · #104)에 실행 → ⑤ 만 불림(가짜 transport 경로 = ⑤ · 호출 수 = 수납 ÷ 100) · `purchase_options.option_type` · 구성만 바뀜 · `transactions` · `items` · `month_purchases` · `fee_rate*` 행 · 값 그대로(덤프 비교) · 그 달 `netTotal` · `feeTotal` 그대로 · 두 번 돌려도 같음 |
 | 97 | **상품 키 id(0.5.2 동기 · 구현 BE4 추가 · 수정 1 시험이 정본)** — ② 옵션 이름 = ⑤ 옵션 이름 하나 → `by product` · 같은 이름 둘 → 금액으로 · 그래도 둘 → `by name` · `nameKeyedItems` · ⑦ 에 없는 옵션 + ⑤ 상품 이름 하나 맞음 → `by product_title` · 둘/없음 → `by option` · 같은 이름 다른 id 상품 → 설정 두 줄 · 이름이 바뀐 같은 id → 같은 비율 · `PUT rates[{key}]` · 모르는 key → 400 |
+| 98 | **경로 0.6.0** — 경로 이름 목록 = `GET /api/sales` · `GET /api/sales.xlsx` · `GET /api/health` · `POST /api/products/refresh` · `GET` · `PUT /api/fee-rates` · `GET` · `PUT /api/product-links` · `GET /api/statements.pdf` · `.zip`(열) · `POST /api/fee-rates/lock` · `/unlock` → 404 `not_found` · 쓰기 막기(#85)가 `PUT /api/product-links` 에도 |
+| 99 | **잠금 없음 · 지난 달 고침** — 시계 11-03: 10월(`closed`) `PUT` A 10% → 200 · `fee_rate_changes` `set` 한 줄 · 10월 `fee` 바뀜 · 다시 20% → 200 · 기록 둘 · 응답 · 설정 GET 에 `locked` · `lockedAt` · `canLock` 칸 0 · `fees.savedAt` 있음 · 옛 DB 에 `locked_at` 값이 있어도(9 · 10월) PUT 막지 않음 |
+| 100 | **지난 달 전체 다시 받기 막지 않음** — 10월(`closed` · `locked_at` 옛 값 있음) `refresh=full` → 받음(가짜 KOS · 409 0) · 다시 받은 품목의 상품 id = 10월 **고정 스냅샷**으로(그 뒤 11월 스냅샷에만 생긴 옵션은 10월 품목에 안 붙음 · 대체 키) · 수수료 = 10월 비율 |
+| 101 | **스냅샷 처음 · 더하기 · 삭제됨** — 시계 11-03 받기 ⑦ {P1(o1) · P2(o2)} → 11월 스냅샷 둘 · 열림 · 11-04 ⑦ {P1(o1 · o3) · P3} → P3 · o3 더함 · P2 · o2 `deleted_in_kos true` · 줄 지움 0 · 응답 `addedProducts 1` · `addedOptions 1` · `markedDeleted 2` · 11-05 ⑦ 에 P2 다시 → `deleted_in_kos false` · P1 `title` 바뀜 → 스냅샷 `title` 새 값 · 키 그대로 · ⑦ 상품 0 개 → 「삭제됨」 표시 0 · ⑦ 500 → 표 · 스냅샷 안 바뀜 |
+| 102 | **품목 달 스냅샷으로 잇기** — 10월 고정 스냅샷 {o1→P1} · 11월 스냅샷 {o1→P1 · o9→P9} · 10월 품목(옵션 o9) → `option:o9`(10월 스냅샷엔 없음) · 11월 품목(o9) → `product:P9` · 「KOS 삭제됨」 줄의 옵션으로 판 품목도 `product:` 로 이어짐 |
+| 103 | **다시 잇기 = 못 이은 줄만 · 열린 달만** — 11월 열림: 품목 `option:o5` → 다음 받기에 o5 가 더해지면 `product:P5` · `rekeyedItems 1` · 11월 수수료 스냅샷 `option:o5` 10% → `product:P5` 10% 옮김(`carriedRates 1` · 기록 `set`) · `product:P5` 에 이미 20% → 그대로 · `conflicts 1` · **10월 수수료 스냅샷은 안 바뀜**(그 품목 달만) · 이미 `product_title` 로 이은 줄은 같은 title 상품이 하나 더 생겨도 그대로 · 고정된 10월 품목은 키 바뀜 0 |
+| 104 | **고정 달 키 원천** — 10월 고정 · 11월 증분이 10월 품목 수납의 ⑤ 를 다시 받음 → `purchase_options` 키 칸(`option_id` · `title` · `product_title`) 그대로 · `backfill_compositions --month 2026-10` → 구성 · `option_type` 만 채움 · 10월 `feeTotal` · 줄 키 그대로 |
+| 105 | **스케줄 보통 날** — 가짜 시계 11-03 20:59 → 실행 0 · 21:00 → 실행 하나: 차례 = ⑥ ⑦ → 11월 증분(① …) · `schedule_runs` 한 줄 `ok` · `steps` 에 이름 · 금액 · id 0 · 11월 스냅샷 더함 · 10월 · 9월 안 건드림 |
+| 106 | **스케줄 달 1일** — 가짜 시계 12-01 21:00 · 11월 `current` · 11월 스냅샷 열림 → ① 상품 받기(12월 스냅샷 새로) ② 11월 증분 → `closed` · 11월 스냅샷 마지막 더하기(늘어난 것만 · 이날 ⑦ 에 없는 11월 상품은 「삭제됨」 표시 0) → 11월 품목 다시 잇기 → `frozen_at` · `frozen_by schedule` ③ 12월 저장 없음 → 전체 받기(J2) · 그 뒤 11월 상품 받기 · 수동 받기가 11월 스냅샷을 안 바꿈 · **0.6.1: 마지막 더하기의 다시 잇기는 옵션 id 로만** — 12-01 낮에 생긴 같은 이름 상품에 11월 못 이은 줄이 `product_title` 로 이어지지 않음 |
+| 107 | **스케줄 실패** — ⑦ 502 → 그 단계 쓰기 0 · 11월 결제 증분은 함 · `partial` · `error_code kos_unavailable` · 달 1일이면 앞 달 고정 안 함(다음 실행에서) · 앞 달 증분이 실패하면 그 달 고정 안 함 · 실행 안 다시 시도 0 |
+| 108 | **스케줄 겹침** — 실행 중(가짜 KOS 를 붙잡음) 다음 21:00 → `skipped` · 인스턴스 둘(풀 둘)이 같은 21:00 → 한쪽만 돔 · 다른 쪽 `skipped` · 실행 중 사람 `refresh=new` 같은 달 → 한 번만 받음(줄 선 요청 `none`) |
+| 109 | **따라잡기** — 11-29 ~ 12-02 꺼짐(실행 0) · 12-02 21:00 실행 하나 → 11월 마감(증분 · `closed` · 고정 `frozen_by catch_up`) · 12월 증분 · `schedule_runs` 는 한 줄 · 뜰 때 바로 돌지 않음(뜬 뒤 첫 21:00 까지 0) · 열린 지난 달이 둘(10 · 11월 · 씨앗 없음)이면 오래된 달부터 둘 다 |
+| 110 | **스케줄 끔** — `SALES_SCHEDULE_ENABLED` 비어 있음 · `false` → 백그라운드 작업 0 · J4 · J6 3판 그대로 · 켜면 J4 · J6 값 없는 요청 `none`(KOS 0) · `refresh=new` 는 증분 · KOS 설정 비면 켜도 0 · 로그 한 줄 |
+| 111 | **한 번 돌리기 명령** — `run_daily --due 2026-12-01T21:00` = #106 과 같은 결과 · `schedule_runs` 한 줄 · `SALES_SCHEDULE_ENABLED=false` 여도 돔 · **0.6.1: `--due` 가 지금보다 뒤 → 거절(종료 코드 ≠ 0 · 실행 0 · 기록 0) · `--due 2026-12-01T20:00` → 거절** |
+| 112 | **health · 로그** — `GET /api/health` `schedule.enabled` · `nextDueAt`(KST 21:00) · `lastRun` · 키 · 주소 값 0 · 스케줄 caplog 에 상품 이름 · 채널 · 손님 이름 · 금액 · id 0 |
+| 113 | **수동 연결 목록** — 11월 보이는 품목: `option:o7` 2줄 · `name:PRODUCT_OPTION:시술 X` 1줄 · `name:ETCETRA_PRODUCT:기타 B` 1줄 · `product:P1` 3줄 → `unlinked` 둘(기타 상품 · 이어진 키 없음) · `itemLines` · `otherMonths` · `candidates` = 11월 스냅샷 상품 전부(「삭제됨」 포함) · 설정 GET `unlinkedKeys 2` · 응답에 손님 · 금액 0 · GET 쓰기 0 |
+| 114 | **수동 연결 쓰기** — `PUT {key: option:o7, productId: P2}` → **지금 키가 `option:o7` 인 품목만**(10월 고정 달 · 11월 — 0.6.1) `by manual` · `product:P2` · 각 품목 달 수수료 스냅샷 `option:o7` 비율 → `product:P2`(비었을 때만 · 충돌 셈) · `product_link_changes` 한 줄 · 응답 `result.items` · `months` · 같은 값 다시 → 기록 0 · `productId` 가 11월 스냅샷에 없음 → 400 `bad_link` · 기타 상품 키 → 400 · 앱 계정으로 `product_link_changes` UPDATE · DELETE → 권한 오류 |
+| 115 | **수동 > 자동 · 다음에도** — 연결 뒤 11월 스냅샷에 o7(→P3) 이 생겨도 그 품목 `product:P2` 그대로 · 12월에 새로 저장된 o7 품목은 **12월 스냅샷에 o7 이 없을 때만** `manual` P2 · 12월 스냅샷에 o7(→P3) 이 있으면 자동 `product:P3`(0.6.1 · doc r8 F-1) · `productId: null` 로 풀기 → 기록 `unlink` · 열린 달 품목은 자동(P3) · 고정 달 품목은 대체 키 `option:o7` 로 |
+| 116 | **0005 씨앗** — `products` 둘 · 저장 달 9 · 10 · 11월 · 시계 11-03 에 `upgrade` → 11월 스냅샷 열림 · 9 · 10월 고정(`migration`) · `items.product_id` · `product_via` · `fee_rates` · `fee_rate_changes` · `months` 행 수 · 값 그대로(덤프 비교) · 목록이 비면 씨앗 0 |
+| 117 | **0005 왕복 · 권한** — `0004 → 0005 → 0004 → 0005` · 새 표 칸 목록 = §4.4.5 · `json` 칸 0 · `product_via = 'manual'` 넣기 됨 · 앱 계정 DDL 0 |
+| 118 | **돈 그대로(0.6.0 바뀜 전후)** — 9 · 10 · 11월 가짜 저장본: 0005 올리기 · 상품 받기 · 스케줄 한 번 뒤 `netTotal` · `itemsTotal` · `counts`(새 칸 빼고) · 엑셀 행 수 그대로 · 수수료는 키가 바뀐 줄(그 품목 달)만 바뀜 |
+| 119 | **수동 연결 범위(0.6.1 · doc r8 F-1)** — 10월(고정) 품목 X 옵션 o7 → 10월 스냅샷으로 자동 `product:P1` 10% · 11월 품목 Y `option:o7`(11월 스냅샷에 o7 없음) → 11월 `unlinked` 의 `otherMonths` 에 10월 **없음** · `PUT {option:o7 → P2}` → Y 만 `manual` P2 · `result.months = [2026-11]` · X 그대로 `product:P1` · 10월 수수료 그대로 → 10월 `refresh=full`(같은 가짜 KOS) 뒤에도 X `product:P1` · 10월 수수료 그대로(PUT 직후 = 다시 받은 뒤) · 10월에 못 이은 o7 줄 Z 가 있었으면 `otherMonths = [2026-10]` · Z 도 P2 |
+| 120 | **지난 달 설정 열기(0.6.1 · doc r8 W-2)** — 시계 11-03 · 10월 수수료율 스냅샷 없음 · 9월 A 10% → `GET /api/fee-rates?month=2026-10` 뒤 `fee_rate_months` 10월 행 0 · `GET /api/sales?month=2026-10` `feeTotal` · `fees.exists false` 그대로 · front 가짜 back 시험: 10월을 열 때 `PUT` 0 · 11월(이번 달)을 열 때 `PUT rates: []` 1 · 10월 [저장] → 확인 창 → `PUT`(보이는 값) → 스냅샷 · 기록 |
 ### 9.2 운영 KOS 실물 조회 (완료 조건 · 10월 · 1회)
 
 근거: R§2(운영 키 줄 — 「이 프로젝트 코드 · WP-LIVE 실물 조회까지 · 조회만 · 로컬만」). 코디가 `back/.env` 에 운영 키를 넣고(§7.2) 로컬에서 back · front 를 띄워 **`month=2026-10` 한 번** 조회한다.
@@ -1219,6 +1388,7 @@ cc-prototype 레포의 `procedure/front` 를 **복사**한다(import · 링크 �
 - **0.4.0(D-18)**: 머리 「실결제」(음수 빨강) · 줄은 품목만(결제 · 취소 · 환불 줄 0 · `환불` 배지 0) · `결제 완료` · `부분 환불`(남은 금액) 배지 · 건수 줄 「취소된 결제 a건 · 전액 환불 품목 b개」 · 머리 「취소 a · 환불 b」 · ~~「전액 환불 b개」 한 줄~~(0.4.1 에서 숨김으로 바뀜 — 그리지 않는다) · 「앞 달 결제 취소」 · 0원 품목 차례(#51 꼴 가짜 응답) · 에이전시 요약 실결제 합 · 안내 문구 바뀜 — 가짜 응답 스크린샷
 - **0.4.1**: 머리 실결제 = `netTotal`(합 기준) · ⚠ = `paymentsNet ≠ itemsTotal` · 「앞 달 결제 취소」 머리(음수) · 숨긴 수납은 그리지 않음 · 건수 줄 「숨긴 수납 h」(월별만) · 에이전트별 건수 줄은 숨긴 수 없음 · `미수납` 배지 없음
 - **0.5.0(시안 v3 · §3.0)**: 가짜 back(0.5.0 응답 꼴)으로 시안 장면마다 나란히 스크린샷 — `monthly` · `monthly-sep`(⚠ 없음 · 회색 「앞 달 결제 취소 1」) · `channel-all`(결산 표 · 합계 · 0 채널 흐림) · `channel-one`(「앞 달 결제 취소」 수수료 「—」) · `settings` · `settings-month-locked`(고치기 확인 창) · `settings-bulk` · `statement-pdf` 미리보기 · `export-zip` 확인 창 · **세 폭 1600 · 1024 · 390** 에서 `monthly` · `channel-all` · `channel-one` · `settings`(가로 페이지 스크롤 0 — `document.documentElement.scrollWidth ≤ innerWidth`) · `/agency?month=` → `/channel?month=` · 저장 안 한 변경 뒤 떠나면 확인 · 요청 주소(가짜 back 로그): PUT 본문 = 바뀐 키만 · lock · unlock(`confirm:true`) · `statements.pdf?channel=` · `statements.zip` · `products/refresh` · 쓰기 요청 `Content-Type: application/json` · 화면 글자 grep 「에이전시」 = 값 안에만 · 「에이전트별」 0 · front 가 `mismatch` 를 다시 계산하지 않음(`paymentsNet` 을 ⚠ 에 안 씀 — grep)
+- **0.6.0(§3.0 · b-11 ~ b-18 · b-22)**: 가짜 back(0.6.0 꼴) 스크린샷 1600 · 1024 · 390 — 월별 기본 펼침 · 채널 탭 기본 접힘 · 건수 줄 회색 글 0 · 결산 표 위 회색 글 0 · 품목 줄 칸(종류 · 상품 · 옵션 왼쪽 · 옵션 넓게 · 머리와 같은 격자) · 설정: 상단 안내 0 · 율 입력 안내 글 0(틀리면 빨강 + 툴팁) · 일괄 대상 글자 「전체 n개」 · 「<카테고리> n개」 · 「'<찾는 말>' n개」 · 「고른 상품 n개」 · **카테고리 · 찾기 · 미설정만 · 달을 바꾸면 고른 것 0**(b-22 — 고른 뒤 필터 바꾸고 [적용] → 보이는 줄만 바뀜 · 안 보이는 줄 입력 그대로) · 「KOS 삭제됨」 · 「연결 안 됨」 · 「수동 연결」 배지 · 「수수료율 \| 연결 안 된 품목 n」 보기 · 상품 고르기 · 확인 창 · 결과 줄 · 상품 받기 결과 한 줄 · [이 달 확정] · [고치기] · 「확정」 글 grep 0(`grep -rn '이 달 확정\|고치기\|lockedAt\|canLock\|fee-rates/lock' front/app front/components front/lib` = 0) · [전체 다시 받기] 지난 달 확인 창 한 줄 · 지난 달 [저장] 확인 창 · **0.6.1: 지난 달 설정을 열 때 `PUT` 0(미리 보기 · 「아직 저장 안 됨」) · 이번 달만 `PUT rates: []`** · 연결 확인 창이 `otherMonths` 를 그대로 · [적용] 대상 = 보이는 줄 ∩ 고른 줄 · zip 확인 창 「확정 전」 줄 0 · PDF 미리보기 주석 ① 「저장 MM-DD HH:mm」
 - `refresh=new` · `refresh=full` 만 보낸다(옛 `refresh=1` 0 — `grep -rn "refresh=1\|refresh: *1" front` = 0) · `[전체 다시 받기]` 는 확인 뒤에만 요청
 
 ### 9.4 운영 KOS 실물 조회 2 (0.3.0 완료 조건 · LIVE2)
@@ -1249,7 +1419,7 @@ cc-prototype 레포의 `procedure/front` 를 **복사**한다(import · 링크 �
 | L25 | **9월 ⚠** — 9월 `counts.mismatchPurchases` · `priorCancelCount > 0` 인 수납 수 · 10월 같은 둘 | 9월 ⚠ **0**(3판 1 → 0 · Ⓐ 꼴) · 남으면 그 수와 꼴(분할 나머지 · 다음 달 환불 뒤 받음) |
 | L26 | **채널** — 10월 `channels[]` 수 · 그중 `agency true` 수 · `rawNames` 가 둘 이상인 채널 수(합쳐짐) · `(없음)` 손님 수 · `channelTotal` ↔ 월별 칩(수납 · 실결제 합) | 수 기록 · `channelTotal` = 월별 같음 · 합쳐짐이 0 이 아니면 OQ-125 사용자에게 |
 | L27 | **상품 받기 1회** — [KOS 상품 다시 받기] → `kosCalls` · 상품 · 옵션 · 카테고리 수 · **팔렸는데 KOS 목록에 없는 이름 수**(`inCatalog false` 이고 `PRODUCT_OPTION`) · 키 `by` 별 줄 수(`product` · `product_title` · `option` · `name` — 0.5.2) · back 로그 KOS 경로에 `/commands/` 0(토큰 교환 빼고) | 수 기록 · 없는 이름이 0 이 아니면 OQ-139 사용자에게(채널 노출 거르기인지) |
-| L28 | **수수료 한 바퀴** — 10월 설정에서 상품 하나 비율 넣고 저장 → 10월 월별 그 줄 수수료 = 금액 × 비율(손 계산 · 레포 밖) · 결산 수수료 합 = 줄 합 · [이 달 확정] → PUT 막힘 → [고치기] → 풀림 · 11월 처음 열기 → 10월 값 복사 · 11월만 바꿔도 10월 수수료 그대로 · 기록 행 수 | 같음 · 실험한 비율은 끝나고 원래대로(빈 칸) 되돌린다 — 기록 행은 남는다(지우지 않음) · 사용자에게 알림 |
+| L28 | **수수료 한 바퀴** — 10월 설정에서 상품 하나 비율 넣고 저장 → 10월 월별 그 줄 수수료 = 금액 × 비율(손 계산 · 레포 밖) · 결산 수수료 합 = 줄 합 · ~~[이 달 확정] → PUT 막힘 → [고치기] → 풀림~~(0.5.x 기록 · 0.6.0 없음) · 11월 처음 열기 → 10월 값 복사 · 11월만 바꿔도 10월 수수료 그대로 · 기록 행 수 | 같음 · 실험한 비율은 끝나고 원래대로(빈 칸) 되돌린다 — 기록 행은 남는다(지우지 않음) · 사용자에게 알림 |
 | L29 | **PDF · zip** — 10월 [전체 내보내기(zip)] → PDF 수 = 손님 > 0 채널 수 · 하나 열어 합계 = 결산 줄 · 한글 · A4 · 내려받는 동안 KOS 0 · 파일은 레포 · 리포트에 안 올리고 확인 뒤 지움 | 같음 · **KOS 0** |
 | L32 | **묶음 구성 · 0원(0.5.2)** — `backfill_compositions` 를 9 · 10 · 11월에(사용자 알림 · `kosCalls` 기록) → 10월 `composition ≠ null` 줄 수(운영 10월 GROUP 117 품목 기준 · 레포 밖 대조) · 0원 줄이 ② 차례로 보임 · PDF 줄 맞춤(상자 · 요약 · 표 좌우 끝 · 테두리 · 기간 한 줄 — 사용자 눈) · 그 달 실결제 · 수수료 합 실행 전후 같음 | 수 기록 · 합 같음 · 사용자 확인 |
 | L31 | **양수 「앞 달 결제 취소」**(0.5.1 · doc r7 W-3) — 9 · 10월 `itemsHere = false` 이고 `netTotal > 0` 인 보이는 수납 수 | 수 기록 · 0 이 아니면 OQ-153 을 사용자에게 |
@@ -1264,6 +1434,21 @@ cc-prototype 레포의 `procedure/front` 를 **복사**한다(import · 링크 �
 | M3 | **새 back(PG)으로 같은 숫자** — 9 · 10월 `GET /api/sales`: `fetch.mode none` · `kosCalls 0` · `counts.{purchases, itemLines, transactions, canceledPayments, refundedItems, hiddenPurchases, reflectedCancels, excludedItems, itemsMissing, itemsElsewhere, itemsPinnedElsewhere, itemsNowhere}` · 수납 `netTotal` 합 · `itemsTotal` 합 · `paymentsNet` 합 · 손님 수 합계(3판 월별 손님 = `channelTotal.customers` 와 비교할 값이 없으면 수납 수만) ↔ M1 | **모두 같음**. 다른 것 = 뜻이 바뀐 것뿐: ⚠ 수(9월 1 → 0 — L25) · 3판 `agencies` ↔ 0.5.0 `channels`(비교 안 함) |
 | M4 | **back 재시작 · 두 번째 옮기기** — 재시작 뒤 9 · 10월 KOS 0 · 옮기기 다시 실행 → 「PG 가 비어 있지 않음」으로 멈춤 · SQLite 파일 sha256 옮기기 전과 같음 | 같음 |
 | M5 | **SQLite 지우기** — M1 ~ M4 PASS · 사용자 확인 뒤 사람이 `back/data/sales.sqlite3*` 지움(OQ-147) | 사용자 확인 |
+
+### 9.7 운영 실물 5 (0.6.0 완료 조건 · LIVE5 · 코디 · 로컬)
+
+운영 KOS 를 부르는 것은 코디만 · 그때마다 사용자에게 먼저 알림. 숫자 · 같음/다름만 레포 밖에 적는다(이름 · 금액 · 상품명 · id 0).
+
+| # | 볼 것 | 기준 |
+|---|---|---|
+| L33 | **0005 올리기** — 운영 PG(로컬 docker) 백업 뒤 `alembic upgrade head` → 9 · 10월 스냅샷 고정 · 11월 열림 · 9 · 10 · 11월 `GET /api/sales` 실결제 합 · 수수료 합 · `counts` 올리기 전과 같음 · KOS 0 | 같음 |
+| L34 | **상품 받기 1회(사용자 알림)** — 11월 스냅샷 `addedProducts` · `markedDeleted` · `rekeyedItems` · `carriedRates` · `conflicts` 수 기록 · 9 · 10월 수수료 합 그대로 | 수 기록 · 9 · 10월 같음 |
+| L35 | **연결 안 된 품목** — 9 · 10 · 11월 `unlinkedKeys` 수 기록(9월 옵션 키 많음 예상 — R§2 「상품 id 연결 한계」) · 사용자가 하나 연결 → 그 키 다른 달도 이어짐 · 기록 한 줄 · 사용자 화면 확인 | 수 기록 · 사용자 확인 |
+| L36 | **한 번 돌리기(사용자 알림)** — `run_daily`(오늘 21:00 몫) → `schedule_runs` `ok` · 11월 증분 · 10월 이미 `closed` 라 증분 0 · `--due` 를 지금보다 뒤로 → 거절 확인 | `ok` · 거절 |
+| L36b | **로컬 달 마감(0.6.1 · D-26 · 배포 전 매달)** — 달 1일 21:00 **뒤** 코디가 `run_daily`(기본 `--due` = 그날 21:00) 한 번 · 사용자에게 알림 → 앞 달 `closed` · 상품 스냅샷 `frozen_at` · `frozen_by schedule` · 이번 달 증분 · 수 기록(첫 번째 = 2026-12-01 21:00 뒤 11월) | 앞 달 고정 |
+| L37 | **달 1일 몫 미리 돌리기 금지** — 12-01 21:00 전에 `--due 2026-12-01T21:00` 은 코드가 거절(0.6.1) · 그 모양은 #106 으로 대신(운영 11월을 미리 고정하지 않는다) | 시험만 |
+| L38 | **화면** — 사용자 브라우저(3800 다시 build)에서 b-11 ~ b-18 · b-22 · 확정 UI 0 · 「연결 안 된 품목 n」 · 세 폭 | 사용자 확인 |
+| L39 | **서버 켜기(배포 때 · 이번 판 밖)** — 서버 `.env` 에 `SALES_SCHEDULE_ENABLED=true` → 첫 21:00 `schedule_runs` 한 줄 · 12-01 21:00 11월 고정 | 배포 때 |
 
 ## 10. env · 로컬 실행
 
@@ -1288,6 +1473,7 @@ cc-prototype 레포의 `procedure/front` 를 **복사**한다(import · 링크 �
 | `SALES_OVERLAP_SEC` | `600` | 확정 판단 여유(초 · §4.5 「확정」). 0.3.1 부터 증분 ① 범위에는 안 쓴다(증분은 달 전체) |
 | `SALES_CURRENT_STALE_SEC` | `600` | 이번 달 저장본이 이보다 오래면 값 없는 요청이 증분을 한 번 부른다(§4.5 J6). `0` 이면 매 요청 증분 |
 | `SALES_KOS_CONCURRENCY` | `8` | 수납별 일정 조회 동시 수(§4.4) |
+| `SALES_SCHEDULE_ENABLED` | `false` | **0.6.0** — `true` 일 때만 back 안 스케줄(매일 21:00 KST · §4.12)이 돈다 · 로컬은 끔 · 서버 배포 때 켬 · 켜면 J4 · J6 값 없는 요청이 KOS 를 안 부름(§4.5) |
 | `NEXT_PUBLIC_API_BASE_URL` | — | front 전용 · `front/.env.local`(gitignore)에 `http://localhost:8800` |
 
 - 포트 8800 · 3800 = cc-prototype procedure(8700 · 3700)와 같은 맥에서 겹치지 않게 · 기본값(OQ-111)
@@ -1351,7 +1537,7 @@ npm install && npm run dev        # http://localhost:3800
 | OQ-132 | 합 기준 · 앞 달 결제의 이 달 취소 · 실결제 0 묶음(D-06 ↔ D-18) | **코디 추천안(기본값) · 사용자 답 대기**(R§2 OQ-132 줄 「사용자에게 두 번 물음 · 답 오면 고침」): 실결제 = 품목 실결제 합 + 앞 달 결제의 이 달 돈(반영 안 된 취소 음수 · 고정 수납이나 이 달 취소가 있는 수납은 이 달 살아 있는 승인도 — R§2 마지막 줄 「달을 모두 더하면 KOS 최종」) · 화면 · 에이전시 합 · 엑셀이 같은 숫자 · 실결제 0 · 줄 0 묶음은 숨김(손님 셈엔 포함) · 분할 결제는 품목 달에 전액. 운영 9 · 10월에 「이 달 취소 뒤 재승인」 갈래 0 건(R§2). **답이 바뀌면 고칠 곳 = §6.9 판정 하나**(코드 `settle()` 하나). 대안 = (b) 두 숫자를 다 보임 · 앞 달 취소를 이 달에서 빼고 숫자로만 | 기본값 · **사용자 답 대기** |
 | OQ-133 | 부분 환불의 환불된 금액 · 원래 금액 | 화면 · 엑셀 = 남은 금액만(D1-18). 품목 단위 환불 금액 · 환불 전 금액은 **문서 · 데이터에 없음**(§6.3 — `firstPriceAmount` · `basePriceAmountV2` 는 정가 · ⑤ `items` 는 ② 와 잇는 키 없음 · `refundingItems` 빈 값). 필요하면 수납 단위 환불 합(① 취소 행)을 따로 보이는 것만 가능 | 새로 · planner 기본값(데이터 없음) |
 | OQ-134 | 취소 · 환불을 숫자로 보이는 자리 | 건수 줄 「취소된 결제 a건 · 전액 환불 품목 b개」 + 수납 머리 회색 「취소 a · 환불 b」 + 엑셀 「정보」 시트 · 취소된 결제 행은 엑셀에 넣지 않는다(지시서 기본 = 넣지 않음 · D1-18 로 굳음). 대안 = 머리 글자 없이 건수 줄만 | 새로 · planner 기본값 |
-| ~~OQ-135~~ | ~~0원 품목 차례~~ | **닫음 · 뒤집음(0.5.2)** — ② 차례 그대로 · 0원 줄도 보통 줄(흐리게만) · 옮기기 · 「ㄴ」 없음. 0원은 구성품이 아니다(운영 10월 — 할인 · 원래 0원 · 환불) · 묶음 구성은 §6.11 | 닫음(사용자 b-1 · b-6) |
+| ~~OQ-135~~ | ~~0원 품목 차례~~ | **닫음 · 뒤집음(0.5.2)** — ② 차례 그대로 · 0원 줄도 보통 줄(0.6.1: 보통 글자색 · b-10) · 옮기기 · 「ㄴ」 없음. 0원은 구성품이 아니다(운영 10월 — 할인 · 원래 0원 · 환불) · 묶음 구성은 §6.11 | 닫음(사용자 b-1 · b-6) |
 | ~~OQ-136~~ | ~~시안 v1 · v2 와 달라지는 화면~~ | **닫음(0.4.3)** — 그때는 시안 v3 을 안 만들고 구현본(코드 PR #1)이 정본. **0.5.0: 피드백 묶음으로 시안 v3 을 만들어 채택 — 0.5.0 화면 정본 = 시안 v3(§3.0)** · 3판 화면은 기록 | 닫음 |
 | OQ-137 | 「최종 결제」 품목 상태 경계(doc r5 W-4) | 줄 · 합 · 엑셀 = `ACCEPTED` · `PAID` · `PARTIALLY_REFUNDED` 만 · `REFUNDED` = `refundedItems` · `INITIALIZED`(미수납) · `PURCHASE_STATUS_UNSPECIFIED` · 그 밖 = `excludedItems` 로 셈(운영 수집본 0건). 대안 = `INITIALIZED` 를 「미수납」 배지로 보이되 합에서 뺌 | 새로 · planner 기본값 |
 
@@ -1370,9 +1556,27 @@ npm install && npm run dev        # http://localhost:3800
 | OQ-150 | 명세서 대상 · 빈 채널 | PDF 하나는 손님 0 이어도 빈 명세서 · zip 은 손님 > 0 채널만 · 0 개면 409 · 손님 이름 그대로(시안) | 시안 값 |
 | OQ-151 | PDF 도구 · 사업자 칸 | `reportlab` + Pretendard TTF · 사업자 정보 · 도장 칸 없음(시안) · 병원 이름 = env | 시안 값 · planner 기본값 |
 | OQ-153 | 양수 「앞 달 결제 취소」(고정 수납의 더 큰 재승인)의 수수료(doc r7 W-3) | 기본값 = 「—」(수수료 0 · 음수 취소와 같은 머리) — D-21 은 취소만 정했고, 이 꼴은 더 팔린 금액에 어느 달에도 수수료가 안 붙는다. 운영 9 · 10월 0 건 · L31 로 셈. 대안 = 양수일 때만 품목 달 비율 가중 평균으로 수수료 | 새로 · **코디** |
-| OQ-154 | 「서비스」(0원 — 할인 100% · 원래 0원 상품) 표시 · 원래 가격 · 수수료 대상 여부 | **병원 담당자 확인 대기** — 0.5.2 는 0원 그대로(보통 줄 · 흐리게 · 수수료 0 · 배지 0 · 「원래 X원」 안 보임). 답이 오면 ⑤ `priceAdjustments` · 원래 가격을 꺼내 저장(§7.3 바뀜)하고 배지 · 회색 글을 더함 | 새로 · **사용자(병원 담당자)** |
+| OQ-154 | 「서비스」(0원 — 할인 100% · 원래 0원 상품) 표시 · 원래 가격 · 수수료 대상 여부 | **병원 담당자 확인 대기** — 0.5.2 는 0원 그대로(보통 줄 · 보통 글자색(0.6.1) · 수수료 0 · 배지 0 · 「원래 X원」 안 보임). 답이 오면 ⑤ `priceAdjustments` · 원래 가격을 꺼내 저장(§7.3 바뀜)하고 배지 · 회색 글을 더함 | 새로 · **사용자(병원 담당자)** |
 | OQ-155 | 0.5.2 전 저장본의 묶음 구성 | 한 번짜리 `backfill_compositions`(⑤ 만 · 돈 무관 · 잠긴 달도) — 코디가 사용자에게 알리고 실행. 대안 = 잠기지 않은 달만 [전체 다시 받기] · 잠긴 달은 구성 없이 둠 | 새로 · 코디 |
 | OQ-152 | 설정 화면 떠날 때 | 저장 안 한 변경이 있으면 브라우저 확인(`beforeunload` · 메뉴 · 달 바꿀 때 확인 창) | 시안 「경고 여부」 → planner 기본값 |
+| OQ-156 | 지난 달 수수료율 [저장] 알림 | 확인 창 한 번(「이미 내려받은 거래 명세서와 금액이 달라질 수 있어요 · 바꾼 기록은 남아요」) · 이번 달은 확인 없음. 대안 = 확인 없이 저장 | 새로 · planner 기본값 |
+| OQ-157 | 지난 달 [전체 다시 받기] | 막지 않음(J0 없어짐 · 확인 창에 「명세서와 달라질 수 있어요」 한 줄) · 키는 그 달 스냅샷으로. 대안 = 상품 스냅샷이 고정된 달은 [전체 다시 받기] 를 막음(0.5.1 J0 꼴) — 브리프 「잠금으로 막던 것(전체 다시 받기 …)은 스냅샷 고정으로 대신」을 「키만 얼림」으로 읽음 | 새로 · **코디** |
+| OQ-158 | ⑦ 이 상품 0 개를 줄 때 | 「KOS 삭제됨」 표시 안 함(KOS 이상으로 봄 · 로그 경고) · 마지막 KOS 목록은 갈아 끼움 | 새로 · planner 기본값 |
+| OQ-159 | 결제 증분 중 스냅샷에 없는 옵션 | 그 자리에서 상품을 다시 받지 않음(피드백 b-21 「1시간마다 안 함 · 21시 상품 → 결제」) — 다음 21:00 이 더하고 열린 달이면 다시 이음 · 그 사이 「연결 안 됨」. 대안 = 증분 뒤 못 이은 옵션이 있으면 상품 받기 1회 더(b-19 ③ 코디 제안) | 새로 · **코디** |
+| OQ-160 | 「연결 안 된 품목」 화면 자리 · 모양 | 설정 화면 위 보기 바꿈 「수수료율 \| 연결 안 된 품목 n」 · 한 키씩 고르기 · 확인 창 · 시안 없음(planner 글 계약만 — 필요하면 시안) | 새로 · 코디(시안 여부) |
+| ~~OQ-161~~ | ~~수동 연결 범위~~ | **닫음(0.6.1 · doc r8 F-1 · D-27)** — 키 하나 = 모든 달의 **못 이은** 품목(자동으로 이은 품목 안 바뀜 · 새 품목은 ② 먼저) | 닫음 · 코디 |
+| OQ-162 | 스케줄 실패 다시 시도 | 실행 안에서 다시 시도 0 · 다음 21:00 이 다시(놓친 하루 = 다음 날 증분이 같이 받음 · 달 마감은 하루 늦어짐). 대안 = 5분 뒤 1회 | 새로 · planner 기본값 |
+| OQ-163 | 유입채널 채널 탭 접기 기본 | 접힘(b-17 은 월별만 펼침이라 함 · 코디 기본값) | 코디 기본값 · 사용자 |
+| OQ-164 | 따라잡기 때 놓친 날 상품 | 그날 목록만 더함 — 꺼져 있던 동안 생겼다 사라진 상품은 스냅샷에 없음(→ 그 상품 품목은 「연결 안 됨」 → 수동) | 새로 · planner 기본값 |
+| OQ-165 | 9 · 10월(테스트 데이터) | 지우지 않고 그대로 보임 · 0005 씨앗으로 고정(마지막 KOS 목록 · 품목 키 그대로) · 채널 목록 · 설정 달 범위에 그대로. 대안 = 화면 달 범위를 11월부터로 자름(데이터는 둠) | 새로 · 사용자 |
+| OQ-166 | 스케줄 상태 보이기 | `GET /api/health` 의 `schedule` 만 · 화면 자리 없음. 대안 = 설정 머리 판에 「자동 받기 켜짐 · 마지막 MM-DD 21:00 성공」 | 새로 · 사용자(배포 때) |
+| OQ-167 | 키가 바뀐 줄의 비율 옮기는 달 | 그 품목 달 수수료 스냅샷만(0.5.3 구현 「잠기지 않은 모든 달」을 좁힘). 대안 = 0.5.3 그대로 | 새로 · planner 기본값 |
+| OQ-168 | 스케줄 켜졌을 때 화면 열기 | J4 · J6 값 없는 요청은 KOS 0(21시 마감 숫자 그대로) · [새 결제 받기] 는 그대로 증분. 대안 = 3판처럼 10분 지난 저장본이면 증분 | 새로 · **코디** |
+| OQ-170 | 달 마지막 더하기의 다시 잇기 | **닫음(0.6.1 · doc r8 W-5 · D-25)** — 옵션 id 로만(`product_title` 안 함) | 닫음 · 코디 |
+| OQ-169 | 새 달 스냅샷 시작 · 이미 있는 줄의 값 | 새 달 = 그 달 첫 받기 목록 그대로(앞 달 복사 0) · 있는 줄은 보이는 값(이름 · 사용 중지 · 차례)을 새 값으로 · 다시 나오면 「삭제됨」 풀림. 대안 = 새 달 = 앞 달 스냅샷 복사(「삭제됨」 줄도 이어 감) | 새로 · planner 기본값 |
+| OQ-153 · OQ-154 · OQ-155 | (0.5.x 그대로) | — | 그대로 |
+| ~~OQ-138 · 확정 관련~~ | 0.5.x 의 「확정 = 매출 `closed` 달만」 · 「풀기 확인」 · OQ-152 의 「잠긴 달」 언급은 0.6.0 에서 뜻 없음 | — | 0.6.0 닫음(R§2 11-03) |
+
 ## 부록 A. DEC-001 · `_RESUME` §2 대응표
 
 | 원천 | 절 |
@@ -1415,4 +1619,7 @@ npm install && npm run dev        # http://localhost:3800
 | R§2 원천 줄(10-29 정정 — `findScheduleByPurchaseId` · 없으면 `getVisitor`) | §5.1 ③ ④ · §6.4 |
 | R§2 분할 결제 줄(품목 줄은 첫 승인 결제가 있는 달에만) — 수정 4판: 「취소 안 된 첫 승인 결제 행이 ① 로 귀속된 달」 | §5.1 ⑤ · §6.2 · OQ-106 · OQ-121 · #17 · #22 ~ #24 · L11 |
 | R§2 ⑤ 줄(⑤ 승인 · 결제일 = ⑤ `approvedDateTimeUtc` · 취소 = `canceledDateTimeUtc` · OQ-104 닫음) | §3.2 · §3.3 · §5.1 ⑤ · §5.2 · §5.4 · §6.1 · OQ-104 · OQ-119 · OQ-120 · #21 · L12 |
-
+| **R§2 11-02 「code r4 F-1」 줄**(잠긴 달 키 얼림 · 옮기기 · 수) → **0.6.0 에서 「고정된 상품 스냅샷 달 = 키 얼림」으로 바뀜** | §4.4.1 · §4.9 · §5.5 「다시 잇기」 · §6.11 · §6.12 · #103 · #104 · OQ-167 |
+| **R§2 11-03 줄**(0.6.0 — [이 달 확정] 없앰 · 운영 기준 11월 · 매일 21시 상품 → 결제 · 상품 일별 스냅샷 · 앞 달 고정 · 수수료율 언제든 · 수동 연결 · 앱 안 · 환경 변수) — **DEC-001 D-20(「사람이 [이 달 확정]」)을 뒤집음 · DEC 줄은 코디 몫(D-24 ~)** | §1 · §3.0 · §4.1 · §4.2 · §4.3 · §4.4.5 · §4.5 · §4.8 · §4.9 · §4.10 · §4.11 · §4.12 · §5.5 · §6.10 · §6.12 · §7.4 · §9.1 #98 ~ #118 · §9.7 · §10.1 · OQ-156 ~ OQ-169 |
+| 사용자 화면 수정 `feedback-2026-11-02-b.md` 7 ~ 10(FE6 구현 동기) · 11 ~ 18 · 22(0.6.0) | §3.0 머리 · §3.0.2 · §3.0.3 · §3.0.5 · §9.3 0.6.0 줄 · OQ-163 |
+| **D-24 ~ D-28**(0.6.1 — 코디가 DEC-001 에 적음: [이 달 확정] 없앰 · 상품 일별 스냅샷(마지막 더하기 잇기 = 옵션 id) · 스케줄(로컬은 달 1일 21시 뒤 코디 `run_daily`) · 수동 연결 = 못 이은 품목만 · 운영 기준 11월) · doc r8(F-1 · W-1 ~ W-5) | §3.0.5 · §3.2 · §3.3 · §4.8 · §4.11 · §4.12 · §5.5 · §6.10 · §6.11 · §6.12 · #106 · #111 · #114 · #115 · #119 · #120 · L36 · L36b · L37 · OQ-161 · OQ-170 |

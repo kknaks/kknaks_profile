@@ -1,7 +1,7 @@
 ---
 type: work
 id: WORK-001
-title: "월별 매출 리스트 — 새 레포 agency-settlement · back(KOS 조회 전용 · 조인) → front(cc-prototype 디자인 복사) → 운영 KOS 10월 실물 조회 1회 · 2판(저장 · 증분 · 에이전트별 · 엑셀 — SPEC-001 0.3.0) · 3판(최종 결제만 — SPEC-001 0.4.3 · 코드 PR #1) · 4판(유입 채널 · 수수료율 · KOS 상품 · PostgreSQL · PDF · 시안 v3 반응형 — SPEC-001 0.5.2)"
+title: "월별 매출 리스트 — 새 레포 agency-settlement · back(KOS 조회 전용 · 조인) → front(cc-prototype 디자인 복사) → 운영 KOS 10월 실물 조회 1회 · 2판(저장 · 증분 · 에이전트별 · 엑셀 — SPEC-001 0.3.0) · 3판(최종 결제만 — SPEC-001 0.4.3 · 코드 PR #1) · 4판(유입 채널 · 수수료율 · KOS 상품 · PostgreSQL · PDF · 시안 v3 반응형 — SPEC-001 0.5.2) · 5판(확정 없앰 · 상품 일별 스냅샷 · 수동 연결 · 21시 스케줄 · 화면 수정 — SPEC-001 0.6.1)"
 status: draft
 product: agency-settlement
 feature: monthly-sales
@@ -9,7 +9,7 @@ work_type: feature
 owner: kknaks
 progress: 0
 created_at: 2026-10-29
-updated_at: 2026-11-02
+updated_at: 2026-11-03
 tags:
   - product/agency-settlement
   - feature/monthly-sales
@@ -34,6 +34,8 @@ sources:
   - "orchestration/work/agency-settlement/design-upload/Ceramique 월별 매출 v1.dc.html · v2.dc.html · design-report.md · design-v2-report.md (시안)"
   - "cc-prototype procedure/ main(읽기만 — back app/kos/client.py · config.py · main.py · front 디자인 파일)"
   - "orchestration/work/agency-settlement/_RESUME.md §2 — 2026-11-02 줄(피드백 · 수수료율 · PG · 백엔드 병렬 · 시안 v3 채택 · 사용자 답) · feedback-2026-11-02.md · planner-v5-add-design.md · design-v3-report.md · design-upload/Ceramique 월별 매출 v3.dc.html (4판)"
+  - "orchestration/work/agency-settlement/_RESUME.md §2 — 2026-11-02 「code r4 F-1」 줄 · 2026-11-03 줄 · feedback-2026-11-02-b.md 7 ~ 22 · review-code-r4-report.md · be5-fix-1-instructions.md · fe6-instructions.md (5판)"
+  - "orchestration/work/agency-settlement/review-doc-r8-report.md · r8-decisions.md — doc r8 코디 결정(5판 0.6.1 · DEC-001 D-24 ~ D-28)"
 ---
 
 # 월별 매출 리스트 — 빌드 계획
@@ -238,3 +240,52 @@ SPEC 0.5.0 ──┬── WP-BE4 (back · 가짜 KOS · 시험 PG) ──┬─
 - 남은 OQ: OQ-154(서비스 · 병원 담당자) · OQ-155(구성 채우기 · 코디) · OQ-139(채널 노출 · L27) · OQ-153(양수 「앞 달 결제 취소」 수수료 · 코디 · L31) · OQ-132(합 기준 · 사용자 답 대기 — 3판부터) · 닫힘/코디 판단: OQ-135(0.5.2 뒤집음) · OQ-138(id 키) · OQ-145 · OQ-147(MIG 통과 뒤 지움) · OQ-148 · OQ-149(API 남김 · 버튼 없앰) · 나머지 planner 기본값 · 시안 값
 - LIVE4 · MIG 결과 보고 = 수 · 같음/다름만(상품 · 채널 · 손님 이름 · 금액 · id 는 레포 밖)
 
+## 5판 — SPEC-001 0.6.1 (확정 없앰 · 상품 일별 스냅샷 · 수동 연결 · 21시 스케줄 · 화면 수정)
+
+근거: R§2 11-02 「code r4 F-1」 줄 · **R§2 11-03 줄** · `feedback-2026-11-02-b.md` 7 ~ 22(7 ~ 10 = FE6 구현 동기 · 11 ~ 18 · 22 = 화면 · 19 ~ 21 = 구조) · 코드 정본 커밋 8089f72(code r4 수정 · FE6 = SPEC 0.5.3 몫 — 0.6.0 에 같이 실음) · **0.6.1 = doc r8 코디 결정(`r8-decisions.md` · DEC-001 D-24 ~ D-28 · 재검수 없음 — BE6 ∥ FE7 이 이미 이 결정대로 구현 중)**.
+
+### 계약 고정점 (5판 — BE6 ∥ FE7 이 이것만 맞추면 따로 간다)
+
+| 고정점 | 값 | SPEC-001 |
+|---|---|---|
+| 경로 10 | lock · unlock **지움**(404 `not_found`) · **`GET` · `PUT /api/product-links?month=`** 더함 · 그 밖 그대로 · 쓰기 = POST 1 · PUT 2(§7.4 규칙 그대로 — `Content-Type` · `Origin` · `Host`) | §4.1 · §4.11 · §7.4 |
+| 없어지는 필드 | `/api/sales` `fees.locked` · `fees.lockedAt` · `/api/fee-rates` `lockedAt` · `canLock` · 오류 `month_locked` · `cannot_lock` · `confirm_required` | §4.2 · §4.3 · §4.8 |
+| 더하는 필드 | `/api/sales`: `fees.savedAt` · `catalog{month, exists, frozenAt, updatedAt, unlinkedKeys}` · `counts.unlinkedItems` · `counts.manualLinkedItems` · `productKey.by` 값 `manual`. `/api/fee-rates`: `catalog.{rekeyedItems, carriedRates, conflicts}`(0.5.3 — 이미 구현) · `catalog.{addedProducts, addedOptions, markedDeleted, snapshot{month, exists, frozenAt, updatedAt}}` · `unlinkedKeys` · `rows[].deletedInKos` · `rows[].inCatalog` 뜻 = 「이 달 상품 스냅샷에 있음」. `POST /api/products/refresh` 응답에 `month` · `addedProducts` · `addedOptions` · `markedDeleted`. `GET /api/health` 에 `schedule{enabled, nextDueAt, lastRun}` | §4.2 · §4.8 · §4.9 · §4.12 |
+| 상품 연결 본문 | `GET` = `{month, snapshot, unlinked[{key, by, name, options, itemLines, otherMonths}], linked[{… productId, productTitle, pickedMonth, linkedAt, note}], candidates[{productId, title, category, closed, deletedInKos, options}], changes[]}` · `PUT` 본문 `{key, productId \| null, note}` → `GET` 본문 + `result{items, months, carriedRates, conflicts}` · 오류 400 `bad_link` | §4.11 · §4.3 |
+| 새 오류 | 400 `bad_link` · 503 `store_busy`(0.5.3 — 이미 구현 · 문구 §4.3) | §4.3 |
+| 규칙(back 만) | 상품 받기 = 마지막 KOS 목록 갈아 끼움 + **이번 달 스냅샷에 늘어난 것만 · 사라진 것 `deleted_in_kos`** · 품목 → 상품 id = **품목 달 스냅샷**(⓪ 수동 > ② 스냅샷 옵션 · 이름 > 대체 키) · 다시 잇기 = **열린 달 · 못 이은 줄만** · **달 마지막 더하기의 다시 잇기 = 옵션 id 로만**(0.6.1 · W-5) · **수동 연결 = 자동으로 못 이은 품목에만**(0.6.1 · F-1 — 저장 때 ② 먼저 · 못 찾으면 ⓪ · 이미 `manual` 은 그대로 · `otherMonths` · `result.months` = 못 이은 줄이 있는 달) · 비율 옮기기 = 그 품목 달 수수료 스냅샷만 · **고정 = 스케줄만**(달 1일 21:00 · 놓치면 다음 실행) · 고정된 달 = 자동 키 · `purchase_options` 키 칸 그대로(`FROZEN_PURCHASE` 정의를 `fee_rate_months.locked_at` → **품목 달 상품 스냅샷 고정 · 없음**으로) · 잠금 없음(PUT · `refresh=full` 어느 달이든) | §5.5 · §6.10 · §6.12 · §4.4.1 |
+| 스케줄 | `SALES_SCHEDULE_ENABLED`(기본 `false`) · 매일 21:00 KST · ① 상품 → ② 앞 달 마감(증분 → `closed` · 마지막 더하기(늘어난 것만) → 다시 잇기 → 고정) → ③ 이번 달 증분 · 단계마다 쓰기 0 실패 · 스케줄 잠금 try(`skipped`) · 따라잡기 = 실행 하나가 열린 지난 달 전부 · 뜰 때 바로 안 돎 · `schedule_runs` · `app.tools.run_daily`(**0.6.1: `--due` 가 지금보다 뒤 · 21:00 아님 = 거절**) · 켜지면 J4 · J6 값 없는 요청 KOS 0 | §4.5 · §4.12 |
+| 저장 | alembic **`0005` 더하기만**(새 표 7 · `items.product_via` CHECK 에 `manual` · 권한 · 씨앗 — 이번 달 열림 · 저장된 지난 달 고정 · 품목 키 · 비율 · 기록 · 9 · 10월 데이터 그대로) · `fee_rate_months.locked_at` 칸은 남기고 안 읽음 | §4.4.5 |
+| 화면(front 만) | 확정 · 고치기 · 잠김 UI 전부 지움 · b-11 · b-13 · b-15 · b-16 문구 지움 · b-12 일괄 대상 = 필터 이름 · **b-22 선택은 필터 · 달을 바꾸면 풀림 · 고른 줄 ⊆ 보이는 줄** · b-17 월별 기본 펼침(채널 탭 접힘) · b-18 품목 줄 칸 차례 · 폭 · 「KOS 삭제됨」 · 「연결 안 됨」 · 「수동 연결」 배지 · 「수수료율 \| 연결 안 된 품목 n」 보기 · 지난 달 [저장] · [전체 다시 받기] 확인 창 한 줄 · **0.6.1: 지난 달 설정은 열기만으로 `PUT` 0(미리 보기 · [저장] 확인 창 때 스냅샷) · 이번 달만 `PUT rates: []` · 0원 줄 보통 글자색 · [적용] 대상 = 보이는 줄 ∩ 고른 줄** · zip 확인 창 「확정 전」 줄 지움 · PDF 미리보기 주석 ① 「저장 MM-DD HH:mm」 | §3.0 |
+| 그대로 | 판정 · 잇기 · 증분 · 숨김 · 반영 판정 · 합 기준 · 수수료 식 · 채널 · PDF 칸 · 운영 키 · 조회만 · 로컬만(서버 · 배포 · 로그인 0) | — |
+
+### Work Packages (5판)
+
+| WP | 내용 | 계약 | 워커 | 대상 파일(범위) | 완료 조건 | 검증 명령(부분) | 상태 |
+|---|---|---|---|---|---|---|---|
+| **WP-BE6** | **back 0.6.0** — ① 잠금 지움(lock · unlock 경로 · `month_locked` · `cannot_lock` · `confirm_required` · J0 · `fees.locked*` · `canLock` · `fee_rate_months.locked_at` 읽기 0 — **쓰는 곳 · 읽는 곳을 `grep -rn "locked_at\|lockedAt\|canLock\|month_locked\|cannot_lock\|confirm_required\|/lock\|unlock\|FROZEN_PURCHASE\|NOT_FROZEN" back/app back/tests` 로 전부 세고 시작**) ② alembic `0005`(§4.4.5 · 씨앗) ③ 달 상품 스냅샷(§6.12 — 더하기 · 「삭제됨」 · 고정 · 품목 달 스냅샷으로 잇기 · 다시 잇기 = 열린 달 못 이은 줄만 · 비율 옮기기 = 그 품목 달만 · `FROZEN_PURCHASE` 새 정의) · 상품 받기 응답 · 설정 응답 새 필드(§4.8 · §4.9) ④ 수동 연결(§4.11 · `product_links` · `product_link_changes` · `bad_link` · `by = manual`) ⑤ 스케줄(§4.12 · lifespan 작업 · 가짜 시계 주입 · 스케줄 잠금 · `schedule_runs` · `run_daily` · health · J4 · J6) ⑥ env `SALES_SCHEDULE_ENABLED` · `.env.example` 이름 · README ⑦ 시험: #80 · #91 · #92 지움/바꿈 · #98 ~ #120(0.6.1 — #106 · #111 · #114 · #115 고침 · #119 · #120) · 앞 시험 그대로 · **doc r8 「구현 때 지킬 것」 1 ~ 16 = BE6 브리프 몫**(`review-doc-r8-report.md`) | SPEC-001 §4.1 ~ §4.5 · §4.8 ~ §4.12 · §5.5 · §6.10 · §6.12 · §7 · §9.1 · §10.1 | backend | `back/**` · `README.md` | §9.1 전부 PASS(#80 · #91 · #92 는 0.6.0 표시대로) · 위 grep 의 잠금 잔재 0(`0005` 내리기 · 옛 판 파일 빼고) · KOS 실물 0 · 운영 PG(5434) · 8800 · `back/.env` 손대지 않음 | `cd back && uv run alembic upgrade head && uv run ruff check . && uv run pytest -q` | 대기 |
+| **WP-FE7** | **front 0.6.0** — `lib/types.ts`(§4.2 · §4.8 · §4.11 바뀜 — 없어진 필드 지움 · 새 필드) · 확정 · 고치기 · 잠김 UI 지움(**`grep -rn "이 달 확정\|고치기\|lockedAt\|canLock\|locked\|fee-rates/lock\|unlock" front/app front/components front/lib` 로 쓰는 곳 전부 세고 시작**) · 화면 수정 **b-11** 설정 상단 안내 지움 · **b-12** 일괄 대상 글자 = 필터 이름(「전체 n개」 · 「<카테고리> n개」 · 「'<찾는 말>' n개」 · 「미설정 n개」 · 「고른 상품 n개」) · **b-13** 율 입력 아래 안내 지움(빨강 + 툴팁만) · **b-15** 월별 건수 줄 회색 글 지움 · **b-16** 결산 표 위 회색 글 지움 · **b-17** 월별 기본 펼침 · 채널 탭 기본 접힘 · **b-18** 품목 줄 칸 차례(종류 · 상품 · 옵션 왼쪽 · 옵션 넓게 · 머리와 같은 격자 · 태블릿 · 폰 같게) · **b-22 설정 표 선택은 카테고리 칩 · 찾기 · 「미설정만」 · 달을 바꾸면 0 개로 풀림 · 「고른 상품 n개」는 지금 보이는 줄만 · 안 보이는 상품에 일괄 적용되는 길 0**(고른 뒤 필터를 바꿔 [적용] 해도 안 보이는 줄 입력은 그대로 — 스크린샷 · 손 시험) · 배지 「KOS 삭제됨」 · 「연결 안 됨」 · 「수동 연결」 · 머리 판 상품 스냅샷 상태 · 상품 받기 결과 한 줄 · 「수수료율 \| 연결 안 된 품목 n」 보기(§3.0.5 · `?view=links` · 목록 · 상품 고르기 · 확인 창 · 풀기 · 결과 줄) · 지난 달 [저장] 확인 창 · [전체 다시 받기] 늘 켜짐 + 지난 달 확인 창 한 줄 · zip 확인 창 「확정 전」 줄 지움 · PDF 미리보기 주석 ① | SPEC-001 §3.0 · §4.2 · §4.8 · §4.11 · §9.3 0.6.0 · 0.6.1 줄 · doc r8 「구현 때 지킬 것」 17 · 18 | frontend | `front/**` | §9.3 0.6.0 줄 스크린샷(가짜 back 0.6.0 · 1600 · 1024 · 390 · `fe7-*`) · 위 grep 의 확정 잔재 0 · tsc · lint · build 0 · 가로 페이지 스크롤 0 | `cd front && npx tsc --noEmit && npm run lint && npm run build` | 대기 |
+| **WP-REVIEW5** | reviewer: SPEC 0.6.0 ↔ 코드 — 잠금 잔재 0(back · front) · 스냅샷 더하기 · 「삭제됨」 · 0 개 · 실패 때 표시 0 · 품목 달 스냅샷 잇기 · 다시 잇기 범위(열린 달 · 못 이은 줄만) · 고정 달 키 · `purchase_options` 그대로 · 비율 옮기기 범위(그 품목 달) · 수동 > 자동 · 모든 달 · 기록 지움 0 · 스케줄 차례 · 달 1일 · 실패 · 겹침 · 따라잡기 · 뜰 때 안 돎 · 끔 기본 · J4 · J6 · 로그 수만 · `0005` 더하기만(덤프 비교) · b-11 ~ b-18 · b-22 · 쓰기 막기가 `product-links` 에도 | 5판 | reviewer | `back/**` · `front/**` | PASS | — | 대기(BE6 · FE7 뒤) |
+| **WP-LIVE5** | **코디: 운영 실물** — 운영 PG 백업 → `0005` → BE6 · FE7 같이 띄움(8800 · 3800 다시 build) · §9.7 L33 ~ L38 · L36b(상품 받기 · `run_daily` 는 사용자에게 먼저 알림 · L37 은 시험만 · L39 는 배포 때) | SPEC-001 §9.7 | 코디 · 사용자 | 로컬 | L33 ~ L38 · 사용자 확인 | `cd back && uv run pytest -q` · `cd front && npm run build` | 대기 |
+
+### 병렬 (5판)
+
+```text
+SPEC 0.6.0 ──┬── WP-BE6 (back · 가짜 KOS · 가짜 시계 · 시험 PG) ──┬── WP-REVIEW5 ── WP-LIVE5
+             └── WP-FE7 (front · 가짜 back 0.6.0)               ──┘
+```
+
+- **BE6 ∥ FE7** — 만나는 곳은 위 「계약 고정점」(경로 · 필드 · 오류 코드 · 상품 연결 본문)뿐. FE7 은 가짜 back(4판 가짜 back 을 0.6.0 꼴로)으로 끝내고, 붙여 보기는 REVIEW5 앞에 코디가 한다
+- **8800 · 3800 바꾸기는 BE6 · FE7 둘 다 끝난 뒤 한 번에**(옛 front 의 [이 달 확정] 은 새 back 에서 404 · 새 front 는 옛 back 의 `catalog` 이 없어 「연결 안 된 품목」 이 0) · 그 전에 `0005` 를 운영 PG 에 올리지 않는다(옛 back 은 판이 달라 안 뜸 — §4.4)
+
+### 주의 (5판)
+
+- **운영 기준 11월부터** — 9 · 10월은 테스트 데이터지만 **지우지 않는다**(`0005` 는 더하기만 · 씨앗으로 고정 · 키 · 비율 그대로 · OQ-165)
+- **스케줄은 로컬에서 끈 채로**(`SALES_SCHEDULE_ENABLED` 비움) — 시험은 가짜 시계 · LIVE5 는 `run_daily` 를 코디가 한 번(사용자 알림) · 서버에서 켜는 것은 배포 때(이번 판 밖 · L39)
+- **배포 전 달 마감 = 코디 몫(0.6.1 · D-26 · doc r8 W-1)** — **달 1일 21:00 뒤** 코디가 `run_daily` 를 한 번(사용자 알림 · LIVE5 L36b) → 앞 달 `closed` · 상품 스냅샷 고정. 그 전엔 지난 달 스냅샷이 열려 있어 [KOS 상품 다시 받기]가 그 달 못 이은 줄을 다시 이을 수 있다(수 = `rekeyedItems` 로 드러남). 첫 번째 = 2026-12-01 21:00 뒤(11월) · `_RESUME` 에 매달 할 일로 둠
+- **운영 11월을 미리 고정하지 않는다** — 12-01 21:00 전에 달 1일 몫을 돌리지 않는다(0.6.1: `--due` 가 지금보다 뒤면 코드가 거절 · L37)
+- 운영 KOS 는 코디만(LIVE5 상품 받기 1회 · `run_daily` 1회) · 워커는 가짜 transport 만 · `/commands/` 0
+- DEC-001 = 코디가 D-24 ~ D-28 로 맞춤(doc r8 W-4 · 0.6.1)
+- 0.6.1 닫힘: OQ-161(수동 연결 범위 = 못 이은 품목만 · D-27) · OQ-170(마지막 더하기 잇기 = 옵션 id · D-25)
+- 남은 OQ: **코디** OQ-157(지난 달 전체 다시 받기 막을지) · OQ-159(증분 중 못 이은 옵션 → 상품 받기 1회 더 할지) · OQ-160(연결 화면 시안 여부) · OQ-168(스케줄 켜졌을 때 화면 열기 증분) / **사용자** OQ-163(채널 탭 접기 기본) · OQ-165(9 · 10월 화면 범위) · OQ-166(스케줄 상태 화면) · OQ-154(서비스 · 병원 담당자) / planner 기본값 OQ-156 · 158 · 162 · 164 · 167 · 169
+- LIVE5 결과 보고 = 수 · 같음/다름만(상품 · 채널 · 손님 이름 · 금액 · id 는 레포 밖)
