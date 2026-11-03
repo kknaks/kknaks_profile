@@ -97,7 +97,8 @@
 | `is_present_in_source` | bool | ✓ | 마지막 조회에 외부에 있었나 — 외부에서 사라지면 false |
 | `linked_at` | timestamptz | ✓ | 처음 연결(= DAY 가 처음 받은 시각, 또는 DAY 에서 만들어 외부에 등록된 시각) |
 | `unlinked_at` | timestamptz | | 업체를 바꾸거나 뗄 때 닫는다. 행은 남긴다 |
-| `deleted_at` · `created_at` · `updated_at` | timestamptz | | 소프트 딜리트 · 생성 · 수정 |
+| `created_at` · `updated_at` | timestamptz | ✓ | 생성 · 수정 |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 |
 
 제약: (`hospital_id`, `vendor`, `entity_type`, `external_id`) 유일. 인덱스: (`entity_type`, `entity_id`).
 

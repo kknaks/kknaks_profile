@@ -35,7 +35,8 @@ KOS 명동점: 직원 90 · 의사 10 · 상담 31 · 직무 21 · 분류 태그
 | `is_system_admin` | bool | ✓ | 시스템 관리자 — 병원 직원이 아니라 KOS 직무가 없다. 전체를 본다 |  |
 | `is_active` | bool | ✓ | 로그인 허용 | cc account.active |
 | `last_login_at` | timestamptz |  | 마지막 로그인 |  |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  |  |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | |
 
 ## `account_brand_access` — 본사 조회 (계정 ↔ 브랜드)
 
@@ -43,7 +44,8 @@ KOS 명동점: 직원 90 · 의사 10 · 상담 31 · 직무 21 · 분류 태그
 |---|---|---|---|---|
 | `account_id` | uuid FK → account · PK | ✓ | 본사(브랜드 조회) 계정 — KOS 직무가 없다 |  |
 | `brand_id` | uuid FK → brand · PK | ✓ | 볼 수 있는 브랜드 — 소속 지점 데이터 조회만 |  |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  |  |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | |
 
 ## `staff` — 병원 직원 (KOS 직원 계정 미러 · 계정 1 : 직원 N)
 
@@ -60,7 +62,8 @@ KOS 명동점: 직원 90 · 의사 10 · 상담 31 · 직무 21 · 분류 태그
 | `default_zone_id` | uuid FK |  | 기본 근무 구역(층) | defaultWorkingZoneId |
 | `is_active` | bool | ✓ | 재직(활성) — 퇴사자는 끈다 | activate |
 | `is_system_account` | bool | ✓ | 사람이 아닌 계정(시스템 · 공용) — 원장 목록 등에서 뺀다 (cc KOS_EXCLUDE_ACCOUNT_IDS) |  |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  |  |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | |
 
 ## `job_role` — 직무 = DAY 역할 (KOS role 그대로)
 
@@ -71,7 +74,8 @@ KOS 명동점: 직원 90 · 의사 10 · 상담 31 · 직무 21 · 분류 태그
 | `name` | varchar | ✓ | 직무 이름 | name |
 | `tags` | enum[] admin · doctor · counselor · nurse · skincare · call_counselor · coordinator | ✓ | 직무 분류 — 고정 7개. 한 직무가 여럿 (예: 코디 = call_counselor · counselor · coordinator). 업무 판단(의사 목록 · 상담사 목록)은 이걸로 | roleTags[] (1~7) |
 | `is_default` | bool |  | KOS 기본 직무인지 | isDefault |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  |  |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | |
 
 ## `job_role_permission` — 직무별 DAY 권한
 
@@ -80,7 +84,8 @@ KOS 명동점: 직원 90 · 의사 10 · 상담 31 · 직무 21 · 분류 태그
 | `job_role_id` | uuid FK → job_role · PK | ✓ | 직무 1 : 권한 N — DAY 관리자가 정한다 |  |
 | `permission_key` | varchar · PK | ✓ | DAY 에서 할 수 있는 일 — 코드가 정한 목록(예: board.view · board.call_doctor · visit.edit · settings.crm) | centurion sso.menu_catalog |
 | `level` | enum view · edit | ✓ | 보기만 / 고치기까지 |  |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  |  |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | |
 
 ## `login_session` — DAY 로그인 세션
 
@@ -91,7 +96,8 @@ KOS 명동점: 직원 90 · 의사 10 · 상담 31 · 직무 21 · 분류 태그
 | `hospital_id` | uuid FK → hospital | ✓ | 지금 고른 병원 — KOS 사용자가 여러 테넌트에 속하면 로그인 뒤 고른다 | get-user-tenants |
 | `staff_id` | uuid FK → staff | ✓ | 그 병원에서의 직원 | get-user-account |
 | `expires_at · last_used_at · revoked_at` | timestamptz |  | 만료 · 마지막 사용 · 로그아웃 |  |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  |  |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | |
 
 ## `external_session` — KOS 토큰 (KOS 를 떼면 지움)
 
@@ -102,7 +108,8 @@ KOS 명동점: 직원 90 · 의사 10 · 상담 31 · 직무 21 · 분류 태그
 | `access_token` | 암호화 text | ✓ | KOS sign-in 이 준 토큰 — DAY 가 이 직원 이름으로 KOS 에 쓴다(KOS 기록에 실제 직원이 남는다) | sign-in data.token |
 | `token_expires_at` | timestamptz | ✓ | 토큰 만료 — 지나면 다시 로그인 | tokenExpiredDateTimeUtc |
 | `external_tenant_id` | varchar | ✓ | 고른 병원의 KOS 테넌트 id | get-user-tenants data[].id |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  |  |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | |
 
 ## 정할 것
 

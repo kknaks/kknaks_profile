@@ -45,14 +45,16 @@
 |  | `doctor_assigned_at` | timestamptz |  | 집도의 배정 시각 (cc: procedure.doctor_assigned_at) |  |
 |  | `started_at` | timestamptz |  | 시술 시작 — DAY 에서 누름(KOS 에 없는 칸) (cc: procedure.started_at) |  |
 |  | `completed_at` | timestamptz |  | 시술 완료 (cc: procedure.completed_at) | completedDateTimeUtc |
-|  | `created_at · updated_at · deleted_at` | timestamptz | ✓ | 동기화 칸(synced · present)은 external_ref |  |
+|  | `created_at · updated_at` | timestamptz | ✓ | 동기화 칸(synced · present)은 external_ref |  |
+| | `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | |
 
 ## `visit_task_staff`
 
 | 필드 | 타입 | 필수 | 설명 | 외부(KOS) |
 |---|---|---|---|---|
 | `task_id · staff_id · role` | uuid · uuid · enum · PK | ✓ | role = assignee(담당자) · doctor(집도의) · called_doctor(호출된 의사) (cc: procedure.assignee_staff_ids · doctor_staff_ids) | assignees[] · doctors[] · calledDoctors[] |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  |  |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | |
 
 ## `doctor_call`
 
@@ -64,14 +66,16 @@
 | `target_staff_id` | uuid FK → staff |  | 특정 의사 — kind = one 일 때 (cc: doctor_call.target_staff_id) |  |
 | `called_by_staff_id` | uuid FK → staff | ✓ | 부른 직원 (cc 에 없던 새 칸) |  |
 | `reassigned_from_call_id` | uuid FK → doctor_call |  | 다른 의사로 다시 부른 경우 원래 호출 (cc: doctor_call.reassigned_from_call_id) |  |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ | created_at = 호출 시각 |  |
+| `created_at · updated_at` | timestamptz | ✓ | created_at = 호출 시각 |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | |
 
 ## `doctor_call_task`
 
 | 필드 | 타입 | 필수 | 설명 | 외부(KOS) |
 |---|---|---|---|---|
 | `call_id · task_id` | uuid FK · PK | ✓ | 한 번 호출에 작업 여러 개 (cc: doctor_call_item) |  |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  |  |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | |
 
 ## `doctor_call_accept`
 
@@ -81,7 +85,8 @@
 | `call_id · task_id` | uuid FK | ✓ | 어느 호출의 어느 작업을 (cc: call_accept) |  |
 | `doctor_staff_id` | uuid FK → staff | ✓ | 수락한 의사 — 집도의가 된다 (cc: call_accept.doctor_staff_id) |  |
 | `accepted_at` | timestamptz | ✓ | (cc: call_accept.accepted_at) |  |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  |  |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | |
 
 ## `visit_anesthesia`
 
@@ -91,7 +96,8 @@
 | `visit_id` | uuid FK → visit | ✓ | 방문 1 : 마취 N (cc: anesthesia) |  |
 | `started_at · ended_at` | timestamptz |  | 마취 시작 · 끝 — 현황판 타이머 (cc: anesthesia) |  |
 | `started_by · ended_by` | uuid FK → staff |  | 누른 직원 (cc: start_event_id · end_event_id) |  |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  |  |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | |
 
 ## `board_card_order`
 
@@ -100,7 +106,8 @@
 | `hospital_id · board_date · visit_id` | uuid · date · uuid · PK | ✓ | 하루 · 병원별 카드 드래그 순서 — cc 의 visit_ids JSON 한 줄 대신 카드마다 한 행 (cc: board_order) |  |
 | `position` | int | ✓ | 위에서부터 순서 (cc: board_order.visit_ids) |  |
 | `updated_by_staff_id` | uuid FK → staff |  | 마지막으로 옮긴 직원 (cc: board_order.updated_by) |  |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  |  |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | |
 
 ## `event_log`
 

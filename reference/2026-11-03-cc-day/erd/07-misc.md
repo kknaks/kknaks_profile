@@ -24,7 +24,8 @@
 | `push_token` | 암호화 text | ✓ | APNs 토큰 | cc device.token |
 | `name · kind` | varchar · enum phone · tablet |  | 기기 이름 · 종류 | cc device.name · kind |
 | `last_seen_at` | timestamptz |  | 마지막 접속 | cc device.last_seen_at |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  |  |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | |
 
 ## notification · 알림함
 
@@ -38,7 +39,8 @@
 | `visit_id` | uuid FK → visit |  |  | cc visit_id · reservation_id (예약 · 방문 합침) |
 | `title · body` | varchar · text | ✓ |  | cc notification.title · body |
 | `read_at` | timestamptz |  |  | cc notification.read_at |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  |  |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | |
 
 ## notification_setting · 알림 켜기/끄기
 
@@ -46,7 +48,8 @@
 |---|---|---|---|---|
 | `account_id · kind` | uuid FK · enum · PK | ✓ | 계정 × 알림 종류 | cc notification_setting |
 | `is_enabled` | bool | ✓ |  | cc enabled |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  |  |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | |
 
 ## push_log · 푸시 발송 내역 (쌓기만)
 
@@ -77,7 +80,8 @@
 | `status` | enum pending · opened · done · canceled · expired | ✓ |  | cc display_request.status |
 | `created_by_staff_id` | uuid FK → staff | ✓ |  | cc display_request.created_by |
 | `expires_at · opened_at · closed_at` | timestamptz |  |  | cc display_request |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  |  |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | |
 
 ## identity_check · 신분 확인 표시
 
@@ -91,7 +95,8 @@
 | `checked_at` | timestamptz | ✓ |  | cc identity_check.checked_at |
 | `checked_by_staff_id` | uuid FK → staff | ✓ |  | cc identity_check.actor |
 | `event_id` | uuid FK → event_log |  |  | cc identity_check.event_id |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  |  |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | |
 
 ## id_photo · 신분증 · 여권 사진
 
@@ -104,7 +109,8 @@
 | `file_key · bytes · sha256` | varchar · int · varchar | ✓ | 저장소 키(파일 이름 대신) · 크기 · 해시 | cc file_name · bytes · sha256 |
 | `created_by_staff_id` | uuid FK → staff | ✓ |  | cc id_photo.created_by |
 | `KOS 업로드 상태` | — |  | KOS 고객 이미지로 올리기 — external_outbox 로 보내고 결과도 거기에(핵심 테이블에 kos_status 를 두지 않는다) | cc id_photo.kos_status · kos_error |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  |  |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | |
 
 ## questionnaire_history · 문진 이력
 
@@ -119,7 +125,8 @@
 | `answers` | jsonb | ✓ | 문항 · 답 — 문진 원문 | cc questionnaire_history.answers |
 | `device_id · display_request_id` | uuid FK |  |  | cc questionnaire_history |
 | `fetched_at` | timestamptz |  | 외부에서 읽은 시각 | cc questionnaire_history.fetched_at |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ | 제출은 external_outbox 로 KOS 에 보낸다 |  |
+| `created_at · updated_at` | timestamptz | ✓ | 제출은 external_outbox 로 KOS 에 보낸다 |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | |
 
 ## chat_room · 채팅방
 
@@ -133,7 +140,8 @@
 | `created_by_account_id` | uuid FK → account | ✓ |  | cc chat_room.created_by |
 | `last_message_at` | timestamptz |  | 방 목록 정렬 | cc chat_room.last_message_at |
 | `last_seq` | bigint | ✓ | 방의 마지막 메시지 순번 — uuid 는 순서가 없어서 순번을 따로 둔다 | cc 정수 id 순서 |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  |  |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | |
 
 ## chat_member · 채팅방 멤버
 
@@ -144,7 +152,8 @@
 | `last_read_seq` | bigint | ✓ | 안 읽음 = seq > 이 값 | cc last_read_message_id |
 | `from_seq` | bigint | ✓ | 보이는 경계 — seq > 이 값만 본다(들어온 뒤 대화만) | cc from_message_id |
 | `is_muted` | bool | ✓ |  | cc muted |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  |  |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | |
 
 ## chat_message · 메시지
 
@@ -159,7 +168,8 @@
 | `attachment_id` | uuid FK → chat_attachment |  |  | cc chat_message.photo_id |
 | `client_id` | varchar |  | 앱이 만든 id — (account_id, client_id) 유일 · 중복 전송 막기 | cc chat_message.client_id |
 | `edited_at` | timestamptz |  | 마지막으로 고친 시각 | cc chat_message.edited_at |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ | 소프트 딜리트 · 보존 기간 없음(cc 그대로) | cc chat_message.deleted_at |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 · 보존 기간 없음(cc 그대로) | cc chat_message.deleted_at |
 
 ## chat_attachment · 첨부 (사진 · 동영상)
 
@@ -171,7 +181,8 @@
 | `file_key · bytes · sha256` | varchar · int · varchar | ✓ |  | cc chat_photo.file_name · bytes · sha256 |
 | `width · height` | int |  |  | cc chat_photo |
 | `duration_ms · thumb_file_key` | int · varchar |  | 동영상만 | cc chat_photo.duration_ms · thumb_file_name |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  | cc chat_photo.deleted_at |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | cc chat_photo.deleted_at |
 
 ## notice · KOS 공지 사본
 
@@ -181,4 +192,5 @@
 | `hospital_id` | uuid FK → hospital | ✓ |  |  |
 | `content` | text | ✓ |  | cc notice.content |
 | `released_at` | timestamptz |  |  | cc notice.released_at |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ | 외부 id 는 external_ref | cc notice.deleted · synced_at |
+| `created_at · updated_at` | timestamptz | ✓ | 외부 id 는 external_ref |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | cc notice.deleted · synced_at |

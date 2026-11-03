@@ -1,6 +1,6 @@
 # 03 예약 / 방문
 
-2026-11-03 사용자와 정하는 중. 공통 규칙은 [README.md](README.md). 검토표: https://claude.ai/artifact/WcNUV73uvfKVN4etSjBjFn
+2026-11-03 사용자와 정함. 공통 규칙은 [README.md](README.md). 검토표: https://claude.ai/artifact/WcNUV73uvfKVN4etSjBjFn
 
 ## 정한 것
 
@@ -72,7 +72,8 @@
 | `option_type` | enum single · group · consultation |  | 스냅샷 — 옵션 종류 (group = 코스) | optionConfiguration.optionType |
 | `price_amount · currency` | int · varchar |  | 스냅샷 — 그때 가격 | optionConfiguration.price |
 | `sort_order` | int | ✓ | 예약에 적힌 순서 | 배열 순서 |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  |  |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | |
 
 ## `consultation` — 상담 (방문 1 : N)
 
@@ -84,9 +85,27 @@
 |  | `counselor_id` | uuid FK |  | 상담사 — 한 상담에 한 명(사용자 2026-11-03) | counselors[] |
 |  | `doctor_id` | uuid FK |  | 상담 의사 — 한 상담에 한 명(사용자 2026-11-03) | consultationDoctors[] |
 |  | `consultation_note` | text |  | 상담 메모 (최대 5,000자) | content.text |
-|  | `procedures` | — |  | 상담에서 정한 시술 | consultationProcedures[] |
+|  | `procedures` | — |  | 상담에서 정한 시술 → `consultation_procedure`(아래 · 상담 1 : N) | consultationProcedures[] |
 |  | `created_at · updated_at` | timestamptz | ✓ | DAY 행 생성 · 수정 시각 | createdDateTimeUtc · updatedDateTimeUtc |
 |  | `deleted_at` | timestamptz |  | 소프트 딜리트 |  |
+
+## `consultation_procedure` — 상담 시술 (상담 1 : N)
+
+2026-11-03 사용자 확정(검수 F2 — 칸 표가 비어 있던 것). 희망 시술과 같은 모양 — **참조 + 스냅샷, 1차는 스냅샷만**.
+
+| 필드 | 타입 | 필수 | 설명 | 외부(KOS) |
+|---|---|---|---|---|
+| `id` | uuid PK | ✓ |  |  |
+| `consultation_id` | uuid FK → consultation | ✓ | 상담 1 : 상담 시술 N |  |
+| `kind` | enum product_option · ticket | ✓ | 새로 살 상품 옵션인지, 이미 가진 시술권인지 | consultationProcedures[].type |
+| `product_option_id` | uuid FK |  | 상품 옵션 참조 — **1차는 비워 둔다**(메뉴 테이블 없음 — 04-1) | optionConfiguration.optionId |
+| `product_title` | varchar |  | 스냅샷 — 그때 상품 이름 | productTitle |
+| `option_title` | varchar | ✓ | 스냅샷 — 그때 옵션 이름 (시술권이면 시술권 이름) | optionTitle |
+| `option_type` | enum single · group · consultation |  | 스냅샷 — 옵션 종류 | optionType |
+| `price_amount · currency` | int · varchar |  | 스냅샷 — 상담에서 정한 가격 | price |
+| `sort_order` | int | ✓ | 상담에 적힌 순서 | 배열 순서 |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz |  | 소프트 딜리트 — null = 살아 있음 |  |
 
 ## `visit_flow_log` — 단계 이력 (방문 1 : N)
 

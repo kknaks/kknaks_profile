@@ -27,7 +27,8 @@ visit ─< visit_occupied_resource >─ reservation_group · zone   (+ 지정 �
 | `title` | varchar | ✓ | 예: 4층 | title (cc zone.title) |
 | `sort_order` | int | ✓ |  | order (cc zone.order) |
 | `is_default` | bool | ✓ | 기본 구역 | isDefault (cc zone.is_default) |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ | 외부에서 사라지면 deleted_at (cc zone.present) |  |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음. 외부에서 사라지면 채운다 (cc zone.present) | |
 
 ## room · 방
 
@@ -38,7 +39,8 @@ visit ─< visit_occupied_resource >─ reservation_group · zone   (+ 지정 �
 | `zone_id` | uuid FK → zone | ✓ | 어느 층의 방 | zoneId (cc room.zone_kos_id) |
 | `title` | varchar | ✓ | 예: 레이저 1번 | title (cc room.title) |
 | `sort_order` | int | ✓ | 현황판 칸 순서 | order (cc room.order) |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  |  |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | |
 
 ## reservation_group · 예약 그룹
 
@@ -50,7 +52,8 @@ visit ─< visit_occupied_resource >─ reservation_group · zone   (+ 지정 �
 | `sort_order` | int | ✓ | 예약 현황판 열 순서 | order |
 | `interval_minutes` | int | ✓ | 예약 간격 — 기본 30분 | intervalMinutes (cc interval_minutes) |
 | `same_day_close_buffer_minutes` | int |  | 당일 예약 마감 — 시작 몇 분 전까지 받나 | sameDayCloseBufferMinutes (cc close_buffer_min) |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  | deleted |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | deleted |
 
 ## reservation_group_capacity · 구역별 정원 (그룹 1 : N)
 
@@ -58,7 +61,8 @@ visit ─< visit_occupied_resource >─ reservation_group · zone   (+ 지정 �
 |---|---|---|---|---|
 | `group_id · zone_id` | uuid FK · PK | ✓ | 그룹이 켜진 구역 — cc 의 JSON [{zoneKosId, capacity}] 대신 행 | intervalCapacities[] (cc capacities) |
 | `capacity` | int | ✓ | 한 칸(간격)에 받는 예약 수 | capacity |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  |  |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | |
 
 ## reservation_group_timetable · 요일별 운영 시간 (그룹 1 : 7)
 
@@ -68,7 +72,8 @@ visit ─< visit_occupied_resource >─ reservation_group · zone   (+ 지정 �
 | `is_enabled` | bool | ✓ | 그 요일 운영 | enabled |
 | `start_time · end_time` | time |  | 운영 시작 · 끝 — 병원 현지 시각(시계 시간). 순간이 아니라 UTC 규칙의 예외 | start · end |
 | `break_start · break_end` | time |  | 휴게 시간 | breakStart · breakEnd |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  |  |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | |
 
 ## visit_occupied_resource · 방문이 잡은 예약 칸 (방문 1 : N)
 
@@ -79,8 +84,20 @@ visit ─< visit_occupied_resource >─ reservation_group · zone   (+ 지정 �
 | `type` | enum reservation_group | ✓ | 점유 종류 — KOS 값은 지금 RESERVATION_GROUP 하나 | type |
 | `reservation_group_id · zone_id` | uuid FK | ✓ |  | reservationGroup.reservationGroupId · zoneId |
 | `start_at · end_at` | timestamptz | ✓ | 잡은 시간 | reservationTime |
-| `doctor_ids` | — |  | 지정 의사 — 있으면 visit_occupied_resource_doctor(N:M) | reservationGroup.doctors[] |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  |  |
+| `doctor_ids` | — |  | 지정 의사 → `visit_occupied_resource_doctor`(아래 · N:M) | reservationGroup.doctors[] |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | |
+
+
+## visit_occupied_resource_doctor · 예약 칸 지정 의사 (N:M)
+
+2026-11-03 사용자 확정(검수 F2 — 칸 표가 비어 있던 것).
+
+| 필드 | 타입 | 필수 | 설명 | 외부(KOS) · (cc) |
+|---|---|---|---|---|
+| `occupied_resource_id · staff_id` | uuid FK · PK | ✓ | 예약 칸 × 지정 의사 | reservationGroup.doctors[] |
+| `created_at · updated_at` | timestamptz | ✓ |  |  |
+| `deleted_at` | timestamptz |  | 소프트 딜리트 — null = 살아 있음 |  |
 
 ## 다른 곳으로
 

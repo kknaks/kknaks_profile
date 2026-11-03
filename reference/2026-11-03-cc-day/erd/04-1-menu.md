@@ -33,7 +33,8 @@ etc_task_type  기타 작업 종류 (방 배정 · 마취 · 시트팩 · 관리
 | `sort_order` | int | ✓ |  | order | product_category |
 | `is_open` | bool | ✓ | 노출 여부 | opened | product_category |
 | `name_translations` | jsonb |  | 다국어 이름 {ko, en, ja, zh-Hans, zh-Hant} | translsMap.name | product_category |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  | deleted | product_category |
+| `created_at · updated_at` | timestamptz | ✓ |  | deleted | product_category |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | | |
 
 ## product · 상품 (데모 101)
 
@@ -51,14 +52,16 @@ etc_task_type  기타 작업 종류 (방 배정 · 마취 · 시트팩 · 관리
 | `offering_from · offering_to` | timestamptz |  | 예약 · 수납 가능 기간 — 같은 이유 | offeringPeriod | product |
 | `badges` | varchar[] |  | 배지 | badges[] | product |
 | `translations` | jsonb |  | 다국어 이름 · 설명 · 주의 · 이미지 주소 | translsMap | product |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  | deleted | product |
+| `created_at · updated_at` | timestamptz | ✓ |  | deleted | product |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | | |
 
 ## product_category_link · 상품 ↔ 카테고리 (N:M)
 
 | 필드 | 타입 | 필수 | 설명 | 외부(KOS) | 테이블 |
 |---|---|---|---|---|---|
 | `product_id · category_id` | uuid FK · PK | ✓ | 상품 하나가 카테고리 여럿에 | categories[] | product_category_link |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  |  | product_category_link |
+| `created_at · updated_at` | timestamptz | ✓ |  |  | product_category_link |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | | |
 
 ## product_option · 상품 옵션 (데모 323 — SINGLE 307 · GROUP 16)
 
@@ -80,7 +83,8 @@ etc_task_type  기타 작업 종류 (방 배정 · 마취 · 시트팩 · 관리
 | `display_channels` | enum[] homepage · gangnamunni · kos_connect |  | 노출 채널 | displayChannels[] | product_option |
 | `badges · promotions` | jsonb |  | 배지 · 프로모션 설정 | badges · promotionConfigurations | product_option |
 | `translations` | jsonb |  | 다국어 제목 · 설명 | translsMap | product_option |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  | deleted | product_option |
+| `created_at · updated_at` | timestamptz | ✓ |  | deleted | product_option |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | | |
 
 ## product_option_price · 수가 유형별 가격 (옵션 1 : N)
 
@@ -88,7 +92,8 @@ etc_task_type  기타 작업 종류 (방 배정 · 마취 · 시트팩 · 관리
 |---|---|---|---|---|---|
 | `option_id · customer_type_id` | uuid FK · PK | ✓ | 고객 수가 유형(02 고객의 customer_type)마다 다른 가격 | price.additional[].visitorType.id | product_option_price |
 | `amount` | int | ✓ | 그 유형의 가격 | price.additional[].amount | product_option_price |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  |  | product_option_price |
+| `created_at · updated_at` | timestamptz | ✓ |  |  | product_option_price |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | | |
 
 ## product_option_composition · 코스 구성 (group 옵션 1 : N)
 
@@ -102,7 +107,8 @@ etc_task_type  기타 작업 종류 (방 배정 · 마취 · 시트팩 · 관리
 | `count · unit_type · unit_value` | int · enum · numeric |  | 횟수 · 단위(cc · unit · shot …) · 용량 | count · unit | product_option_composition |
 | `price_amount (+ 공급가 · 부가세 · 면세)` | int |  | 구성별 가격 | price | product_option_composition |
 | `sort_order` | int | ✓ |  | 배열 순서 | product_option_composition |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  |  | product_option_composition |
+| `created_at · updated_at` | timestamptz | ✓ |  |  | product_option_composition |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | | |
 
 ## medical_service · 진료항목 (데모 226)
 
@@ -121,7 +127,8 @@ etc_task_type  기타 작업 종류 (방 배정 · 마취 · 시트팩 · 관리
 | `price_amount` | int |  | 진료항목 가격 | priceAmount (문서) | medical_service |
 | `duration_minutes · recommended_interval_days` | int |  | 시술 시간 · 권장 간격 — KOS 문서에 있음 | durationTime · recommendedInterval (문서) | medical_service |
 | `translations` | jsonb |  |  | translsMap | medical_service |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  | drafted · updatedDateTimeUtc · deleted | medical_service |
+| `created_at · updated_at` | timestamptz | ✓ |  | drafted · updatedDateTimeUtc · deleted | medical_service |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | | |
 
 ## medical_service_machine · medical_service_medicine (N:M)
 
@@ -138,7 +145,8 @@ etc_task_type  기타 작업 종류 (방 배정 · 마취 · 시트팩 · 관리
 | `hospital_id` | uuid FK → hospital | ✓ | 메뉴는 병원별 |  | procedure |
 | `name` | varchar | ✓ | 시술 이름 — 진료항목 · 옵션이 가리킨다. 이름 충돌: 5번 작업과 헷갈리지 않게 테이블 이름을 정할 것 | name | procedure |
 | `category_ids` | — |  | 시술 카테고리 — 목록 응답엔 비어 있음 | categoryIds[] | 확인 필요 |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  |  | procedure |
+| `created_at · updated_at` | timestamptz | ✓ |  |  | procedure |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | | |
 
 ## machine · medicine · 기기 (302) · 약물 (349)
 
@@ -154,7 +162,8 @@ etc_task_type  기타 작업 종류 (방 배정 · 마취 · 시트팩 · 관리
 | `id` | uuid PK | ✓ |  | id | etc_task_type |
 | `hospital_id` | uuid FK → hospital | ✓ | 메뉴는 병원별 |  | etc_task_type |
 | `title` | varchar | ✓ | 방 배정 · 마취 · 시트팩 · 관리 마무리 (명동점 4개) — 내부 API | get-etcetera-tasks (cc etc_task_def) | etc_task_type |
-| `created_at · updated_at · deleted_at` | timestamptz | ✓ |  | deleted | etc_task_type |
+| `created_at · updated_at` | timestamptz | ✓ |  | deleted | etc_task_type |
+| `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | | |
 
 ## 다른 곳으로
 
