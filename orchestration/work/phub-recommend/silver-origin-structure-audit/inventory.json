@@ -1,0 +1,1231 @@
+{
+  "scope": "2026-11-03 current on-disk artifacts; migration authority and active DB build not verified",
+  "roots": {
+    "silver": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend",
+    "raw": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26",
+    "skills": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub",
+    "backend": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-recommend/backend"
+  },
+  "authority": "Coordinator explicitly approved these existing files as audit baseline; separate migrated canonical location unconfirmed",
+  "lineage": [
+    "raw 21 snapshot -> step decisions/research + step apply -> step1..9 Silver",
+    "step1..9 + step3 lexicon + step7/8 decisions -> semantic-build -> semantic.json",
+    "gold_ingest --from-dir explicit 13 files -> DB source snapshots -> gold_build latest snapshots -> gold facts/edges; no DB operations in audit"
+  ],
+  "raw_manifest_checks": [
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/anatomy-danger-zones.json",
+      "bytes_match": true,
+      "sha16_match": true
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/combo-recipes.json",
+      "bytes_match": true,
+      "sha16_match": true
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/complications.json",
+      "bytes_match": true,
+      "sha16_match": true
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+      "bytes_match": true,
+      "sha16_match": true
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+      "bytes_match": true,
+      "sha16_match": true
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/extracted.json",
+      "bytes_match": true,
+      "sha16_match": true
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/literature-evidence.json",
+      "bytes_match": true,
+      "sha16_match": true
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/market-pricing.json",
+      "bytes_match": true,
+      "sha16_match": true
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/patient-education.json",
+      "bytes_match": true,
+      "sha16_match": true
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pih-risk.json",
+      "bytes_match": true,
+      "sha16_match": true
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/post-procedure-timeline.json",
+      "bytes_match": true,
+      "sha16_match": true
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+      "bytes_match": true,
+      "sha16_match": true
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-combos.json",
+      "bytes_match": true,
+      "sha16_match": true
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "bytes_match": true,
+      "sha16_match": true
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/procedure-comparison.json",
+      "bytes_match": true,
+      "sha16_match": true
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/procedure-profiles.json",
+      "bytes_match": true,
+      "sha16_match": true
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/products.json",
+      "bytes_match": true,
+      "sha16_match": true
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+      "bytes_match": true,
+      "sha16_match": true
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+      "bytes_match": true,
+      "sha16_match": true
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+      "bytes_match": true,
+      "sha16_match": true
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+      "bytes_match": true,
+      "sha16_match": true
+    }
+  ],
+  "semantic_input_checks": [
+    {
+      "file": "step1-products.json",
+      "expected": "41128c7d5bce171b",
+      "actual": "41128c7d5bce171b",
+      "equal": true
+    },
+    {
+      "file": "step2-families.json",
+      "expected": "42eef4dc7dc70b26",
+      "actual": "42eef4dc7dc70b26",
+      "equal": true
+    },
+    {
+      "file": "step3-sites.json",
+      "expected": "f92f4a8411c15cd1",
+      "actual": "f92f4a8411c15cd1",
+      "equal": true
+    },
+    {
+      "file": "step4-techniques.json",
+      "expected": "cc6c0291a0b3506a",
+      "actual": "cc6c0291a0b3506a",
+      "equal": true
+    },
+    {
+      "file": "step5-units.json",
+      "expected": "38bcc0853547edb7",
+      "actual": "38bcc0853547edb7",
+      "equal": true
+    },
+    {
+      "file": "step6-packages.json",
+      "expected": "293b50e565ddf61e",
+      "actual": "293b50e565ddf61e",
+      "equal": true
+    },
+    {
+      "file": "step7-concerns.json",
+      "expected": "b2fa90915876de1d",
+      "actual": "b2fa90915876de1d",
+      "equal": true
+    },
+    {
+      "file": "step8-relations.json",
+      "expected": "4f91a2abe7e3aae2",
+      "actual": "4f91a2abe7e3aae2",
+      "equal": true
+    },
+    {
+      "file": "step7-decisions.json",
+      "expected": "ae73f09bced8c13b",
+      "actual": "ae73f09bced8c13b",
+      "equal": true
+    },
+    {
+      "file": "step8-decisions.json",
+      "expected": "2fbeb45c010185e6",
+      "actual": "2fbeb45c010185e6",
+      "equal": true
+    },
+    {
+      "file": "step3-lexicon.json",
+      "expected": "c3b4effa7662af8c",
+      "actual": "c3b4effa7662af8c",
+      "equal": true
+    },
+    {
+      "file": "step9-explanations.json",
+      "expected": "5d394f87dca53602",
+      "actual": "5d394f87dca53602",
+      "equal": true
+    }
+  ],
+  "stage_denominators": {
+    "1": {
+      "shared_license": 28,
+      "open": 31,
+      "items": 395
+    },
+    "2": {
+      "inputs": 7,
+      "rules": 3,
+      "step5_delta": 5,
+      "step7_delta": 8,
+      "v4_fix": 7,
+      "v3_delta": 49,
+      "v2_delta": 45,
+      "source_fix_candidates": 1,
+      "families": 27,
+      "product_family": 354,
+      "out_of_family": 5,
+      "open": 0,
+      "pending_director": 3
+    },
+    "3": {
+      "inputs": 5,
+      "nodes": 53,
+      "strings": 176,
+      "deferred": 23,
+      "open": 0,
+      "stale_decisions": 0,
+      "doctor_questions": 35,
+      "changes": 73,
+      "boundary_rules": 6,
+      "danger_zone_mapping": 11
+    },
+    "4": {
+      "inputs": 7,
+      "nodes": 26,
+      "family_defaults": 27,
+      "draft_techniques": 65,
+      "handoffs": 15,
+      "expressions": 181,
+      "conflicts": 6,
+      "user_decisions": 2,
+      "oq_closed": 4,
+      "not_done": 3,
+      "open": 0,
+      "stale_decisions": 0
+    },
+    "5": {
+      "inputs": 7,
+      "units": 162,
+      "ledger": 521,
+      "problem_P1": 17,
+      "market": 122,
+      "step1_market_copies": 38,
+      "product_links": 354,
+      "device_name_synonyms": 36,
+      "extracted": 521,
+      "taxonomy_products": 59,
+      "pih": 26,
+      "pih_not_applicable_units": 77,
+      "pih_gap_units": 63,
+      "step4_attrs": 38,
+      "dose_range": 11,
+      "origin_questions": 20,
+      "staff_questions": 1,
+      "open": 0,
+      "stale_decisions": 0
+    },
+    "6": {
+      "packages": 24,
+      "contains": 49,
+      "slots": 8,
+      "non_packages": 9,
+      "menu_groups_used": 2,
+      "handoffs": 4,
+      "step6-to-step8-notes": 37,
+      "origin_questions": 13,
+      "source_fix": 1,
+      "open": 0,
+      "stale_decisions": 0
+    },
+    "7": {
+      "rules": 35,
+      "judgements": 14,
+      "correspondence": 249,
+      "purposes": 30,
+      "edges": 437,
+      "combos": 79,
+      "step8_notes": 245,
+      "unit_gaps": 0,
+      "not_procedure": 6,
+      "unresolved": 2,
+      "concern_unresolved": 0,
+      "check_flags": 6,
+      "origin_questions": 3,
+      "source_fix_candidates": 70,
+      "open": 0,
+      "stale_decisions": 0
+    },
+    "8": {
+      "edges": 230,
+      "resolved_pairs": 105,
+      "claims": 395,
+      "conflicts": 22,
+      "avoid_edges": 5,
+      "sequence_rank": 11,
+      "principles_text_only": 5,
+      "optimization_principles": 4,
+      "package_evidence": 37,
+      "profile_attrs": 17,
+      "attrs": 56,
+      "origin_questions": 18,
+      "origin_questions_retired": 2,
+      "conflict_resolution_rules": 6,
+      "source_fix_candidates": 10,
+      "step7_reconcile": 8,
+      "coverage": 200,
+      "row_landing": 446,
+      "research_diff": 20,
+      "open": 0,
+      "stale_decisions": 0
+    },
+    "9": {
+      "records": 5847,
+      "node_slots": 2946,
+      "source_conflicts": 12,
+      "value_dictionary": 8,
+      "section_map": 435,
+      "new_sections": 1,
+      "open": 0
+    }
+  },
+  "direct_comparison_groups": {
+    "step5.ledger.name": 521,
+    "step5.ledger.detail": 521,
+    "step5.extracted.source_text": 521,
+    "step5.taxonomy_products.source_text": 59,
+    "step9.records.text": 5847,
+    "step7.comparison.anchor": 18,
+    "step7.comparison.member.name": 39,
+    "step7.comparison.member.attrs": 353,
+    "step7.cc_note.text": 146,
+    "step7.cc_note.where": 146,
+    "step8.category_specific.text": 123,
+    "step8.claims.original_text": 395,
+    "step8.claims.original_fields": 571,
+    "step8.conditions.claims.original_text": 336,
+    "step8.conditions.claims.original_fields": 118,
+    "step8.conditions.not_condition.original_text": 37,
+    "step8.conditions.not_condition.original_fields": 34
+  },
+  "files": [
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-recommend/backend/app/modules/gold/build.py",
+      "bytes": 103205,
+      "sha256": "4a428aa4b2387ec770387f466e130df592cc18c84fcca19f8700c6e8a0bf8584",
+      "role": "consumer"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-recommend/backend/app/modules/gold/facts.py",
+      "bytes": 4790,
+      "sha256": "ec1ab39999a202a74654f7ec78eb3df157c2e776ac79aa4046968c199fe713b7",
+      "role": "consumer"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-recommend/backend/app/modules/gold/inputs.py",
+      "bytes": 2476,
+      "sha256": "86622e65660ec137d18d8c6e71a5ad5c74f69b8e9fb5064fb7d6ef45eef624f3",
+      "role": "consumer"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-recommend/backend/app/modules/gold/tools.py",
+      "bytes": 148987,
+      "sha256": "ac1d2fbb58363907f37b3c5a774a50462252ea98bd4f3e4c822b851354106478",
+      "role": "consumer"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-recommend/backend/app/modules/raw/config.py",
+      "bytes": 773,
+      "sha256": "8224a09ec597890be83135357746c03546e6c0e0989789190b768e0cb0aaef95",
+      "role": "consumer"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-recommend/backend/raw-manifest.json",
+      "bytes": 2117,
+      "sha256": "6b5d501290c21cddcadb9b4b17b52f1c8433a5276b03ebbffd96b02cd9d4aaf9",
+      "role": "consumer"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-recommend/backend/scripts/gold_build.py",
+      "bytes": 3357,
+      "sha256": "3a47fda3777ef1da8edfa01d1813c31aadca79cf31d3fbaadfba34b0014c6c29",
+      "role": "consumer"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-recommend/backend/scripts/gold_ingest.py",
+      "bytes": 1974,
+      "sha256": "bbbeb1624cdc9bccad427382f59683904bc356232df5ca11e1729920df8ed348",
+      "role": "consumer"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/anatomy-danger-zones.json",
+      "bytes": 29555,
+      "sha256": "34b2a2de737a2770828ce52e49c3f4f17dc54c21ad9754362c24ebf4fced69a4",
+      "role": "raw"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/combo-recipes.json",
+      "bytes": 6486,
+      "sha256": "1bb7c309e8ec72768ae9c5db94e1911188be240f4c7d770d54244008aeab0c94",
+      "role": "raw"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/complications.json",
+      "bytes": 58333,
+      "sha256": "7bf0573efa955225f63cc33d96b68a20693ddaac647ee2a0c679c1de32d3d932",
+      "role": "raw"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+      "bytes": 21047,
+      "sha256": "4e138ffb64414995483e4201396bc4f185ec34e4d150f825ec151b0fe07512e5",
+      "role": "raw"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+      "bytes": 6390,
+      "sha256": "964b729594b1756036c160823dc2e8d27ea38fe85d7aefb7559733522d7c53c2",
+      "role": "raw"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/extracted.json",
+      "bytes": 56589,
+      "sha256": "b829d499e3e3fd7f6119f2dc23092cf50f7c13e57ee18e9d3131a14c7e350f2c",
+      "role": "raw"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/literature-evidence.json",
+      "bytes": 118979,
+      "sha256": "6e179872a9c234491ca62c20899757fca3aa5388833aa6bc4d1ac28a032aebfd",
+      "role": "raw"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/market-pricing.json",
+      "bytes": 12214,
+      "sha256": "601d7e7b4db29731bf15304ff3ec9489ba38838e9f5ba2144c2c181cfd15e477",
+      "role": "raw"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/patient-education.json",
+      "bytes": 26551,
+      "sha256": "6c96520c514b76ef7f93d7f685e53023afe91b05133a9b9ca5db0a95d42d91ac",
+      "role": "raw"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pih-risk.json",
+      "bytes": 11875,
+      "sha256": "cb6e9305113d0b47f447eb314ce3bb34d0278bbc8bdf26bc3303d323028575c8",
+      "role": "raw"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/post-procedure-timeline.json",
+      "bytes": 20081,
+      "sha256": "d04c9fe494acd318d656f6dea6d19e33cb944a20440e312ca9bad41309c9742e",
+      "role": "raw"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+      "bytes": 14569,
+      "sha256": "0de87bff91f721fe685884025d31749017d44da250492b2db9d49109a61e4086",
+      "role": "raw"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-combos.json",
+      "bytes": 25026,
+      "sha256": "74453c724800975ef7f3fa8b81546fe69fa014bfbc7a8f7e60c75774c2cf2262",
+      "role": "raw"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "bytes": 73526,
+      "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+      "role": "raw"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/procedure-comparison.json",
+      "bytes": 18002,
+      "sha256": "eba7ae5af919ef77ff52cb07b2f6117b458751319f530f38cf30c61e94989571",
+      "role": "raw"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/procedure-profiles.json",
+      "bytes": 19548,
+      "sha256": "a1fe389d83430002f3d78e7c07ead4a7675d4afcfb68d28f9ac94042a5423f3e",
+      "role": "raw"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/products.json",
+      "bytes": 8322,
+      "sha256": "090955cccd35468ace2882024f0e0f216d3ebdb58b38d77693c0cf402338b854",
+      "role": "raw"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+      "bytes": 32905,
+      "sha256": "5b17a72f2ff31d29c081af7fbfaa63127799d5ef5210399af1e4c5bce8f9da19",
+      "role": "raw"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+      "bytes": 660497,
+      "sha256": "7e92abcd81b344cee947f001b809555e7549f1adaa4c622ef425a9cf55ee68f6",
+      "role": "raw"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+      "bytes": 22887,
+      "sha256": "70efff35f35a3400333bd64d02c101b212c31eb25f9081d8929e2431b7146bf8",
+      "role": "raw"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+      "bytes": 8964,
+      "sha256": "13e3d39658e53c717fa1a9f729f546e16dbeeb19efbe01110b83c74461ef6d86",
+      "role": "raw"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/semantic-build.py",
+      "bytes": 78963,
+      "sha256": "aef70db545de98e726b86cf98ff681b94bda27cb625c8c527497446cf57fc3e1",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/semantic.json",
+      "bytes": 1367293,
+      "sha256": "6c43231e82939a444b89222ead4600a5313e5f1e016a5024ed4b925e89b124c3",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/source-map.json",
+      "bytes": 377868,
+      "sha256": "791134cc920115704ebac4b08fc5e1d9e4a03f16f586412fba0818625da5362a",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-apply-log.json",
+      "bytes": 122922,
+      "sha256": "baf69503a6ff2608af2138a33efb37eb100a771344e90772a42db645e5e5bf35",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-apply.py",
+      "bytes": 121497,
+      "sha256": "965f3451aa9853b5e17bafcb076ca9b5fa7b4caff8aa1f26519d724bf4257e83",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-cancel-recheck.json",
+      "bytes": 30029,
+      "sha256": "f59f726679d1333923d46dbd8f6025c1f1c1182d852aca04bc364ef85c091bf0",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d09-web.json",
+      "bytes": 25626,
+      "sha256": "81a99c318b78a57642a2001728e80dc60bdc2e56b6f771f90dd5a3844c33c7d4",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d12-web.json",
+      "bytes": 21607,
+      "sha256": "5a4377138ca6b364f5c02202341b71f00da33d4d4eedf9542e713eaba46621d4",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d15-web.json",
+      "bytes": 18315,
+      "sha256": "d89b0082ed43b0e17a3e44fbb349753ae6f2bdeacc562c9c7f8f59f60ecc9a7c",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d16-web.json",
+      "bytes": 6057,
+      "sha256": "2f11cd05098d23f28f6eca95437947bd544665e9c6d4b2f2f4a68ce92a4178f6",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d17-2.json",
+      "bytes": 10190,
+      "sha256": "f7d09123491f31a69910c54fb25de5332c459aa790aa642ad96f7957e41e5e5d",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d17.json",
+      "bytes": 11501,
+      "sha256": "87ad3c49047ea02acde8c8a61e5d825ce1ae1b221636434f7403010cf39ad265",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d18.json",
+      "bytes": 35217,
+      "sha256": "565182ff248994780b5a3db2d0d782816e257f4d7db60791082282278d21934d",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d19.json",
+      "bytes": 30114,
+      "sha256": "0229fb85e518382d9dbac55743d6d9268017d768478fc3a0b2955fa2b1b15868",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d20-31.json",
+      "bytes": 162281,
+      "sha256": "70bb15eb58ca1795e044c5b12b71d28706119d688a5df73823c49931918be2eb",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-decisions.json",
+      "bytes": 163650,
+      "sha256": "c80fcb9bef132ec0fc7956d4c76efe4bd1cf208496fbfdb324a96ac7b9a1a4e2",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-domestic7.json",
+      "bytes": 14694,
+      "sha256": "45c558d5ff2cecac5af0b9d1574dc7fd7266bc560fb7cef2162267978a60715d",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-export-check.json",
+      "bytes": 171512,
+      "sha256": "df54ebd658872f279bc83ea51594f11676907464954445f7bab2c0e81644799f",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-export-recheck.json",
+      "bytes": 47505,
+      "sha256": "db0a9debf27fdef9ad3de7170edaba99657cd459c51f654857e58db7252ee40d",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-kpic.json",
+      "bytes": 43443,
+      "sha256": "6c23db8436729ddc96dc5cbbefc4b8d55b12cc65ed990259796d78561f09166a",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-n45-check.json",
+      "bytes": 23938,
+      "sha256": "1357bd589e77226c31ff5360dd2a8af33c93dc2925b91755583b27fde0429d14",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-products-A.json",
+      "bytes": 682203,
+      "sha256": "88c8f158a6ecb23ccdd99f0a7d9def210060628cb3f11d48e59b83024627deba",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-products-B.json",
+      "bytes": 514967,
+      "sha256": "c23c640524049029e08ef190fe4802c5a7095a9143faf0c079980eef7a3f04ac",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-products-C.json",
+      "bytes": 264736,
+      "sha256": "8509cd15b7eb774ebde88f5819bc0b1f6f07173cf0f0230a3dbccfc52efadb3c",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-products-v1-frozen.json",
+      "bytes": 1658968,
+      "sha256": "a54facb305240468750a2fe4dd813ca0f557dd7545c513517fc7338fcf435f61",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-products.json",
+      "bytes": 1830115,
+      "sha256": "41128c7d5bce171bb186afdf13ec76d6f98adb092efb34be1af55461792354fd",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-source-fix.json",
+      "bytes": 9093,
+      "sha256": "40cf271ba9a066cd592d07a5cd9f8b80d99ba164bbfb18fb7ac2461562bd776b",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-step5-decisions.json",
+      "bytes": 3108,
+      "sha256": "7b68c082945f797a53b338f78fa0186094b29a473fe6f68f14b450a4b329ba91",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-apply.py",
+      "bytes": 51891,
+      "sha256": "4015505f29e680ec1039cb4825a54cbeceacc409851037e4148312d2445beb85",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-families.json",
+      "bytes": 450121,
+      "sha256": "42eef4dc7dc70b264cb855cb7563863f4ba6cc901b36133132659d66c963c3a4",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-families.v2.json",
+      "bytes": 287168,
+      "sha256": "02600fee48f00334eeee188a7faec8defd30eaae67451a1864cab11a5e1fd697",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-families.v3.json",
+      "bytes": 309414,
+      "sha256": "09e0e7c2433113dcdeaf9935a5cc17794990f45f299705642cd9745a921d592e",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-open-resolve.json",
+      "bytes": 48611,
+      "sha256": "ccedc7370a9d71fba3cfc42bd226087fba0a28350e32a1556d4d17476baeaddf",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-research.json",
+      "bytes": 232245,
+      "sha256": "5fd185211e8d80d5ae39676580765f4d79a80b0a5cf9cfe4e15e19d47011a48a",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-step5-decisions.json",
+      "bytes": 35549,
+      "sha256": "03b48c98c05536220c50a7f7977bbc6726f471aeccd36cddfdfe60e77183894f",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step3-apply.py",
+      "bytes": 28445,
+      "sha256": "47880b5615ad18a8ec572cc78a9657ceace0ce035ba69442e164c65a60bc0ade",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step3-decisions.json",
+      "bytes": 311097,
+      "sha256": "2519fac5ac527f6be141f72551e025d1d7f37dcd4038f3f620d56049cb11af1e",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step3-lexicon.json",
+      "bytes": 54318,
+      "sha256": "c3b4effa7662af8cfe92cc82b02759cd20829ac6d98ea890071daf2fd147650b",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step3-research.json",
+      "bytes": 761184,
+      "sha256": "11a6abba3ca0b8a145a5ff7974b252017cce90a63ec6f631de8fccbd1d747891",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step3-sites.json",
+      "bytes": 270807,
+      "sha256": "f92f4a8411c15cd15275b435fff6893a32df5502514533c859340d629de00d40",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step4-apply.py",
+      "bytes": 28551,
+      "sha256": "61ba9fa55fd82935d06692aae238ba83e73fe81b1f61cf8c9931806b013763af",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step4-decisions.json",
+      "bytes": 174496,
+      "sha256": "1114e9160a9e429289c31043d638d67abb06a449bcd3fce60eece9348af0ae2c",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step4-research.json",
+      "bytes": 164492,
+      "sha256": "2abeb3ac4990deec60a4576cc5525a968a5c375d046d920dbcab8431c062e851",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step4-techniques.json",
+      "bytes": 225390,
+      "sha256": "cc6c0291a0b3506abf72982e5b5151eb0c9ed1a72102c62bcecf601aee705038",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-apply.py",
+      "bytes": 72159,
+      "sha256": "fe9322fcc8c880cae4cba57524b8ce6e1220a63c0ce8d6ce29ec86e4714e8061",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-decisions.json",
+      "bytes": 405661,
+      "sha256": "a638bb256afc012920b0134c790d69df5a1aae9b325d8895767f06210a1e6886",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-research.json",
+      "bytes": 743000,
+      "sha256": "2f714c5f066ea3a2d97818db88212c805583e8477fe73c9d7d9c2493240d9669",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-research2.json",
+      "bytes": 44324,
+      "sha256": "85ee413db6c35aa5e7186c4724fb91070384709f0f28b3a929aaf76a3006c999",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-units.json",
+      "bytes": 1847285,
+      "sha256": "38bcc0853547edb751cdb6c8c2e13b6525ee4999c9d4346d304574dd3e2b6cd1",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-units.v-pre7.json",
+      "bytes": 1224695,
+      "sha256": "02ff6cfd759bcf505b2c54805008f14ee5c80650b51b3aa8578ce19b864b756f",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step6-apply.py",
+      "bytes": 17528,
+      "sha256": "3abb712e038be36f47ab962eb6a16e08771d390fc09b73f237d2b8105310c84a",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step6-decisions.json",
+      "bytes": 40201,
+      "sha256": "6485fa8f8a5a94915e6e5e8fb9eee2b95c0c41913a9bc4923f3752c1c017d055",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step6-packages.json",
+      "bytes": 74738,
+      "sha256": "293b50e565ddf61e62ece45c0ab002d4ee55393c11339dac5dcecac10455e811",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step6-research.json",
+      "bytes": 89768,
+      "sha256": "87fda6510c40a70336f946e9b03b55105f821bcd48ba423a3d54b7b17db9eddd",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+      "bytes": 135449,
+      "sha256": "67b3cd578527521112b8b67960c8c4b359030cd1bd03ec27337c05e24595613d",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "bytes": 975907,
+      "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-decisions.json",
+      "bytes": 84265,
+      "sha256": "ae73f09bced8c13b6559c2ff30a74bbec79e7ccd5b84b409b2f3269f36f1edb6",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-research.json",
+      "bytes": 660306,
+      "sha256": "0303ba5d4b1af7b33d527e2be8d2f1bc179ae5b5d9849b796b7e865c453ddbc2",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py",
+      "bytes": 164592,
+      "sha256": "fa1a3250cb4a71682957e26f71f1ace0f110132b1e867e6162aedb3a7036ff9f",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-decisions.json",
+      "bytes": 69118,
+      "sha256": "2fbeb45c010185e6471ee330938d21d3df0b2a04de3c4a25a0390061c2076440",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-relations.json",
+      "bytes": 2657176,
+      "sha256": "4f91a2abe7e3aae2a1b5beedf9902daac76873df221eaf6f61d59cf3fc8bbb11",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-research.json",
+      "bytes": 1360886,
+      "sha256": "8bc32ce8527469676aeb473a2433ece92c84db264ea0728f9ca0cb0f8ed71aa7",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step9-apply.py",
+      "bytes": 27876,
+      "sha256": "d51265e14d7d618c5a4b6e2aedc06b2905b4713c6191bf4c53a2518353488c19",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step9-decisions.json",
+      "bytes": 16358,
+      "sha256": "7a9a52e09ac266d45e3473bbb396b753ec0e3149378b7dac1c1320a02e81d341",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step9-effect.json",
+      "bytes": 33963,
+      "sha256": "077405ab97459d354edaa46c4d0ca78e067fbb557e02e502dec9664494d1e90d",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step9-explanations.json",
+      "bytes": 5872047,
+      "sha256": "5d394f87dca53602902a557e20c0a9cfe33efd485ced27901929bbe26c635d1b",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step9-research.json",
+      "bytes": 433272,
+      "sha256": "624ee14477d22e82f30cd607bb64e19f63b46ea2549607f1b83ac7119a666d90",
+      "role": "silver_or_decision_or_generator"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/README.md",
+      "bytes": 56944,
+      "sha256": "de0df28712b314c00720a40de347b6114feb87c741f775ccac656b25d573ed6c",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-concern-check/SKILL.md",
+      "bytes": 48520,
+      "sha256": "b5962f7431737dfc565a44c974c29024c610cf1e4c63a77037c9ef482f11c6e4",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-concern-check/references/concern-rules.md",
+      "bytes": 18719,
+      "sha256": "a1d7d38d443371b4c61954c097c973813bd6faa1dc6e7ca1ae38a34b3a142c7f",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-concern-check/references/mistakes.md",
+      "bytes": 11992,
+      "sha256": "d90f681d1f51e7e316eba6ca1539b2fc0114af5d9d31cbe8477a5679baec39c9",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-concern-check/references/record-schema.md",
+      "bytes": 11138,
+      "sha256": "11f15a37830f34ca80a349f67f612070416d4ae6a3ee0e321806ac45e573db3a",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-explanation-check/SKILL.md",
+      "bytes": 9728,
+      "sha256": "50f67dd61b085c75cb4882b6cd3b19702e91c6d96bae52c1ca38fa68e6b27099",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-explanation-check/references/mistakes.md",
+      "bytes": 2423,
+      "sha256": "789cfbb4b3aa8709ddd067577e863b1a0b0c1d7263a9cd990f05e82f4656a617",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-explanation-check/references/record-schema.md",
+      "bytes": 3289,
+      "sha256": "6fafb306b0050844ab6d7d277e66f9ac98ff7d73ade8d9e1b84fd6946fd6a23e",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-explanation-check/references/rules.md",
+      "bytes": 4110,
+      "sha256": "26f737f92ba0d7b93641ce57bc50eab5a97d41cd2fff2eebe94c164c58d06bcf",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-family-check/SKILL.md",
+      "bytes": 22469,
+      "sha256": "63583e8eb9e65ff7b5c2eaa699dd01c56c9337e01cc8d666cffda49b06805cc0",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-family-check/references/families.md",
+      "bytes": 35563,
+      "sha256": "52b306b05346241ada984a08819d8ebb8d94f67f875fa30bd55c3d268b80045a",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-family-check/references/mistakes.md",
+      "bytes": 6690,
+      "sha256": "a8098a1e321859b5562ad88778427fbca880fed6f48112a9090c33b35fac45b2",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-family-check/references/record-schema.md",
+      "bytes": 12022,
+      "sha256": "f5909d421d44f87735042df526ce7528fc379d2df19d517a80c11d3dc296de51",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-package-check/SKILL.md",
+      "bytes": 18813,
+      "sha256": "c315d882569ff35001c40539ec3f92764e41fcf47e89257ce89b56f1c1220db6",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-package-check/references/mistakes.md",
+      "bytes": 4501,
+      "sha256": "8db4351b521e9713a7a1bd539eedbdbeead109500d156db7ea11d2f486b884b9",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-package-check/references/package-rules.md",
+      "bytes": 6256,
+      "sha256": "1b0ccbe7bb28db91fdba0d5846c0501dafb93fc89d7878bec60653d75f495f4f",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-package-check/references/record-schema.md",
+      "bytes": 6458,
+      "sha256": "0e0cee5e5cf4a261cde10fe46acdcc5b3c515abefbf24db27f02d80c5b6521ed",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-product-check/SKILL.md",
+      "bytes": 9896,
+      "sha256": "77c4aab9f54f87ea769eaf7c45872a4b7a6da83261d78e0e3329d947a445f0ed",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-product-check/references/mistakes.md",
+      "bytes": 4361,
+      "sha256": "6ed86fe32dbd3a1ede61bda62e2f918b30217679c3fab9527f7f058d240ada1d",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-product-check/references/query-patterns.md",
+      "bytes": 6012,
+      "sha256": "afc20cc77eff303b52dc9de6f8e7ecb143ea2acd6b18cdfda7570befbeb2c683",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-product-check/references/record-schema.md",
+      "bytes": 12087,
+      "sha256": "858e01899f522431a225f4db97b8c4fc1651d49405d5d7c574627ba74bddec95",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-product-check/references/rules.md",
+      "bytes": 7900,
+      "sha256": "073318f48fad589c6723515a1c5ba40f8df687ff3b9bc6a319a2acd2dbdad23a",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-quality-eval/SKILL.md",
+      "bytes": 17685,
+      "sha256": "2d1df30a7b0f9ee3b9fb47f2fc56c6af654bdea5bfc9b1ccb65467c6e98c2e39",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-quality-eval/references/measures.md",
+      "bytes": 6178,
+      "sha256": "9f5f092aacb111ab40b44267c005244131f4c99a4f7f3cc63c794a7bfb70f1b5",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-quality-eval/references/mistakes.md",
+      "bytes": 4667,
+      "sha256": "08b86afe5928f638ff9fbe07b00158fbb370dd5e056cacc05d98eddff81b780f",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-quality-eval/references/record-schema.md",
+      "bytes": 5324,
+      "sha256": "b1d5545edc9e1509d3e81f24ce0d6d5f665e5f81cd0ac662776a03bc0d6e1bae",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-relation-check/SKILL.md",
+      "bytes": 21664,
+      "sha256": "b16f000661e126cb294d7a7ba4a152193de74b7762e42c1524722637597febb0",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-relation-check/references/mistakes.md",
+      "bytes": 4732,
+      "sha256": "1a0cf9407bcd09e21249125b723a8483f0403dda6f5ef41ff4bba75b1ed38f4e",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-relation-check/references/record-schema.md",
+      "bytes": 8505,
+      "sha256": "3ae2c78e9d7107eababc56a549b36541fae3576bf1bf32a00be1912240701d78",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-relation-check/references/relation-rules.md",
+      "bytes": 8400,
+      "sha256": "2e8b81ee286a1862634cdc7a2cea8ddeeab845a7bc76cfe15e29bcb0725eb64f",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-semantic-check/SKILL.md",
+      "bytes": 20257,
+      "sha256": "37adc29fff223f9617a30718cdc27b322eef7f0fc9d24acff314d9896ce1f500",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-semantic-check/references/mistakes.md",
+      "bytes": 4483,
+      "sha256": "e75e207d9cf36cdf6b3790c6b83e28d9aa76e556924667db4f43f0d9d05fce37",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-semantic-check/references/record-schema.md",
+      "bytes": 5247,
+      "sha256": "1f1e62acd8753c015fa331f57078807ab9a260bb64122477555887ed3884734c",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-semantic-check/references/semantic-rules.md",
+      "bytes": 6610,
+      "sha256": "bcaa87d07502d40250972daf3b1394d88683d0171e53dfcfc564f6af7c10f516",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-site-check/SKILL.md",
+      "bytes": 23031,
+      "sha256": "acb9bd3eb3bae8f1814a352942f23bc721226d228d55f32e957aa6d2a99b4fc2",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-site-check/references/mistakes.md",
+      "bytes": 7671,
+      "sha256": "cb16a0b37b56b7d64df9868f1506d67632fb8f8471ea2bd1102d43edc6e28d96",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-site-check/references/name-fields.md",
+      "bytes": 4543,
+      "sha256": "b3254f24c05b05512f0f965ce741e854e60c97f23b6a7b1fc1278e902b31b7ce",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-site-check/references/nodes.md",
+      "bytes": 25680,
+      "sha256": "825c353c87fb53546c7ed36dcd2d80507fcc6224a549b851ee906ee3e08ebf5b",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-site-check/references/record-schema.md",
+      "bytes": 13446,
+      "sha256": "c0b79c311c13cb5996a2b039c6fe90dd045600d812842f7d12ab47e63e29cc1e",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-technique-check/SKILL.md",
+      "bytes": 24106,
+      "sha256": "c9b1e9ef73cda866d5aca77c5a1129c92205243ee935e23178324c5553dd5d51",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-technique-check/references/family-defaults.md",
+      "bytes": 5207,
+      "sha256": "234083bffa6d6d6f0dd582c6f3ab7d62d3b1d176227c92ed7aec878d33719bf0",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-technique-check/references/mistakes.md",
+      "bytes": 7562,
+      "sha256": "0e4f5028920fbcaa293272617291aceb41f50751dfe26a6c20bf90d936033651",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-technique-check/references/nodes.md",
+      "bytes": 13930,
+      "sha256": "045fee600d9bd45e6803fb593fbf61e530a7487cf1fbe34597811cbfdcfc4b73",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-technique-check/references/record-schema.md",
+      "bytes": 20704,
+      "sha256": "6b88e0d615a6a379260d9e3703d16f4db02681fe105bd22139001c3ad55fb4bb",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-technique-check/references/value-dictionary.md",
+      "bytes": 8710,
+      "sha256": "abaa14de4ba600c79ef47480104575b4dcfd09013d96163a9d93f553cf42c037",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-unit-check/SKILL.md",
+      "bytes": 31225,
+      "sha256": "1de4ef185f79ed227276514f2fd5e2c40ac11e2876a28cdede98e30268891327",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-unit-check/references/inheritance-rules.md",
+      "bytes": 10842,
+      "sha256": "9caefaaf8a648d54b595c0c11a8d982d0b7fe741b14712e90123053164a40371",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-unit-check/references/key-rules.md",
+      "bytes": 10170,
+      "sha256": "7da9fb51f302687041829c948449b76bb37df83e50138137dedc62bf6a89fc44",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-unit-check/references/mistakes.md",
+      "bytes": 10641,
+      "sha256": "09cf3bd6ee85815e50b08d51392e0fe02961a9d9314dfe976a761758e5147583",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-unit-check/references/origin-questions.md",
+      "bytes": 5454,
+      "sha256": "0949b349cc946958c9c4391d7d5eb6859352691aa0ddee479e4acaae3ac8e665",
+      "role": "skill"
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-unit-check/references/record-schema.md",
+      "bytes": 12248,
+      "sha256": "a1fd741bd334708ee9bc2ec8602d60fbf72fc024e6dd52e9d50aa6fc3c8c4f5e",
+      "role": "skill"
+    }
+  ]
+}

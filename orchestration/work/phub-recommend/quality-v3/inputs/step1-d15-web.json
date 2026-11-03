@@ -1,0 +1,266 @@
+{
+ "version": 1,
+ "generated_at": "2026-10-27",
+ "scope": "1단계 D15 — 실 3종(울트라V · 해피리프트 · 오메가리프트) 현재 제품 · 허가 · 대한민국 식약처 API · emedi 품목 상세 · 웹",
+ "basis": "식약처 API(MdlpPrdlstPrmisnInfoService06 getMdlpPrdlstPrmisnItem05 — ENTRPS · TYPE_NAME) · emedi 품목 상세(POST /search/data/item — 제품명 brandName · 수출용 여부 xprtppYn · 제조원 · 의뢰자 · 유효기간) · WebSearch · WebFetch · curl. emedi 목록 검색(query2)은 결과가 스크립트 렌더라 이번 세션에서 받지 못함 — 대신 업체명 전체 목록 → 품목 상세로 확인. 추정 금지 · URL 없는 판매사 칸 없음 · 개인 실명 제외. 원장 · 결정 파일 수정 없음",
+ "finding": "수출용 허가 — 이름이 맞는 정상 허가 중 울트라V(13-1398 · 20-682 · 20-499) · 오메가(23-814 · 13-2240 · 옛 12-516/419)는 「수출용에 한함」 이라 국내 유통 허가로 쓸 수 없음",
+ "summary": {
+  "rows": 3,
+  "result": {
+   "현재 국내 허가 특정 불가": 1,
+   "현재 허가 특정 불가 · 후보 APTOS 와 관계 출처 있음(2006 시술 명칭)": 1,
+   "현재 허가 특정 불가 · 후보 OMEGA VJ 는 수출용(국내 유통 허가 아님)": 1
+  },
+  "sellers_total": 3,
+  "conflicts": 4
+ },
+ "items": [
+  {
+   "ledger_id": "auto-M7-1775364775158",
+   "name": "울트라V",
+   "linked": "제허 13-1398 폴리디옥사논봉합사 · 미스코 · 제품명 「울트라V-lift, UltraV-lift, 4D MONO, 4S SCREW, THE MO, THE NOON, THE X-FIT」 · 모델 UVL-…(3,210건)",
+   "result": "현재 국내 허가 특정 불가",
+   "result_basis": "연결 허가 13-1398 은 정상이지만 **「수출용에 한함」**(emedi xprtppYn=예) — 국내 유통 허가가 아님. 업체 미스코(업허가 제 4211호 · 서울 구로)와 「울트라브이」(주식회사 울트라브이 · 제 4423호 · 서울 성동)는 업허가번호 · 주소가 다른 **다른 회사**. 원장 「울트라V」 이름의 주인은 출처상 울트라브이 — 연혁 「2012.07 Ultra V Lift / 울트라브이 리프트 상표등록」 · 「2013.06 (주)울트라브이 설립[(주)DDK 상호변경] UVL/HIKO/DDK 상표 및 디자인 등록」 · 「2014.02 PDO 제조 품목 허가 취득(제허14-182호)」 · 「2014.05 (주)종근당, PDO 독점공급계약 체결」. 울트라브이의 실 허가는 PDO 5건(14-182 「울트라브이모노 CKD」 · 18-184 · 18-185 · 20-4 · 20-12 · 20-27 「ULTRA V COG/MONO/HIKO …」)이 **전부 취하**(2019~2022), 정상은 20-682 「ULTRA V OCTO TWIST(PCL Ez Cannula)」 하나인데 이것도 **수출용**(제조 ㈜메타바이오메드 · 의뢰 울트라브이). 이름 든 다른 허가 진오메카디칼 20-499 「ULTRA V SCAF(PLLA)」(흡수성합성폴리머재료)도 수출용. → 「울트라V」 이름이 든 **내수 정상 허가 0**. 미스코 13-1398 제품명 「울트라V-lift」 · 모델 접두 UVL(울트라브이 등록 상표 「UVL」)과 울트라브이의 관계 출처는 없음",
+   "current_license": [],
+   "candidates": [
+    {
+     "no": "제허 13-1398 호",
+     "entp": "미스코",
+     "brand": "울트라V-lift, UltraV-lift …",
+     "item": "폴리디옥사논봉합사",
+     "state": "정상(2013-08-02) · 수출용에 한함",
+     "src": "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=2013005522"
+    },
+    {
+     "no": "제허 20-682 호",
+     "entp": "주식회사 울트라브이(제조 ㈜메타바이오메드)",
+     "brand": "ULTRA V OCTO TWIST(PCL Ez Cannula) LC/WC/AC-MT",
+     "item": "안면조직고정용실(PCL)",
+     "state": "정상(2020-08-20) · 수출용에 한함",
+     "src": "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=2020005333"
+    },
+    {
+     "no": "제허 20-499 호",
+     "entp": "진오메카디칼(주)",
+     "brand": "ULTRA V SCAF(PLLA)",
+     "item": "흡수성합성폴리머재료",
+     "state": "정상(2020-06-23) · 수출용에 한함",
+     "src": "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=2020003894"
+    },
+    {
+     "no": "제허 14-182 호",
+     "entp": "주식회사 울트라브이(제조 (주)필텍)",
+     "brand": "울트라브이모노 CKD (Ultra V Mono CKD)",
+     "item": "폴리디옥사논봉합사",
+     "state": "취하 2019-03-06 · 내수",
+     "src": "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=2014002074"
+    }
+   ],
+   "sources": [
+    "https://www.ultrav.co.kr/about/history.php",
+    "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=2013005522 · 2020005333 · 2020003894 · 2014002074 · 2020000314 · 2018001545",
+    "식약처 API getMdlpPrdlstPrmisnItem05 ENTRPS=미스코(28) · 울트라브이(54) · TYPE_NAME=UVL(3) · ULTRA V(4)"
+   ],
+   "sellers": [
+    {
+     "name": "(주)종근당",
+     "role": "「(주)종근당, PDO 독점공급계약 체결」(울트라브이 연혁) · 「종근당의 울트라V는 … 동방침구제작소 … 에서 제조한 제품」(보도 — 종근당 제품으로 표기)",
+     "url": "https://www.ultrav.co.kr/about/history.php",
+     "period": "계약 2014-05 · 판매 보도 2015-03-02(https://www.hkn24.com/news/articleView.html?idxno=141329) — 현재도 판매하는지 출처 없음"
+    },
+    {
+     "name": "주식회사 울트라브이",
+     "role": "제조의뢰 · 공급(「녹는실, 의료기기 … 을 공급」 회사 소개)",
+     "url": "https://www.ultrav.co.kr/about/history.php",
+     "period": "2013~ · 국내용 실 허가는 2022-08 마지막 취하 이후 0(식약처 API)"
+    }
+   ],
+   "conflicts": [
+    {
+     "field": "울트라V 제조사",
+     "license": "14-182 제조원 (주)필텍 · 의뢰 울트라브이(emedi)",
+     "web": "「종근당의 울트라V는 … 동방침구제작소(작년 말 명칭을 '동방메디컬'로 변경)에서 제조한 제품」(헬스코리아뉴스 2015-03-02)",
+     "url": "https://www.hkn24.com/news/articleView.html?idxno=141329",
+     "note": "덮어쓰지 않음 — 동방메디컬 실 허가 중 제품명에 울트라V 든 것 0(식약처 API ENTRPS=동방메디컬 · 2012 허가 12-1347 · 12-421 제품명 확인)"
+    }
+   ],
+   "site_pages": [
+    {
+     "text": "병원 메뉴 「울트라V 리프팅」 — 제조사 표기 없음",
+     "url": "http://www.mipretty.co.kr/clinicInfo/lifting/lifting_02.php?code1=361&code2=42"
+    },
+    {
+     "text": "「울트라 V리프팅」 — PDO Fine Thread, 제조사 표기 없음",
+     "url": "https://www.toxnfill41.com/m/detail.php?c=1023&i=16043"
+    },
+    {
+     "text": "병원 메뉴 「V리프트」(오메가 리프트와 나란히) — 제조사 표기 없음",
+     "url": "https://mielclinic.com/33"
+    }
+   ],
+   "note": "이전 기록 「울트라V ≈ V리프트(울트라브이 Ultra V Lift)」 — 상표 「Ultra V Lift / 울트라브이 리프트」 가 울트라브이 것이라는 출처는 있음(연혁). 병원 메뉴 「V리프트」 가 그 제품인지는 출처 없음",
+   "queries": [
+    "식약처 API getMdlpPrdlstPrmisnItem05 ENTRPS=미스코 · 울트라브이 · 메타바이오메드 · 필텍 · 21세기메디칼 · 리젠바이오참 · 진오메 · 동방메디컬 · 동방침구(0) / TYPE_NAME=UVL · ULTRA V · UltraV · UV",
+    "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=(위 허가 9건)",
+    "emedi 목록 검색 query2=울트라V · ULTRA V — 서버가 결과를 화면에 넣지 않아(스크립트 렌더) 목록 미확인",
+    "울트라브이 실리프팅 V리프트 Ultra V lift 회사",
+    "미스코 울트라V 실 PDO Mythco",
+    "\"미스코\" 울트라브이 OR 울트라V 봉합사 제조",
+    "종근당 울트라V 실 동방메디컬 제조 판매 계약"
+   ]
+  },
+  {
+   "ledger_id": "auto-M7-1775362513156",
+   "name": "해피리프트",
+   "linked": "(이력) 수허 05-144 안면조직고정용실 · (주)알지바이오 수입 · 제조 Assut Europe S.P.A. · 모델 Happy LIFT PERMANENT 06TWC85 · 06TWC12 · 2015-07-29 취하",
+   "result": "현재 허가 특정 불가 · 후보 APTOS 와 관계 출처 있음(2006 시술 명칭)",
+   "result_basis": "「Happy」 이름 든 정상 실 허가 0(식약처 API TYPE_NAME=Happy 9건 · HAPPY 21건 — 실은 05-144 하나, 취하). 해피리프트는 국내 보도상 **시술 이름** — 「해피리프트란 기존의 얼굴당김수술에 압토스(Aptos)란 실이 결합된 새로운 리프트 수술법」 · 「이탈리아에서 압토스실을 이용한 리프트 시술의 공식 명칭을 '해피리프트'라고 부르기로」(의협신문 2006-01-31). 후보 수허 25-219 「Aptos」(주식회사 인터케어사이언스 수입 · 제조 Aptos LLC · 내수 · 유효 2025-12-17~2030-12-16) — 시술명과 실 브랜드의 관계는 이 2006 보도가 유일한 출처이고, 2006 의 압토스 실과 25-219 제품이 같은지는 출처 없음. 2006 이후 국내 「해피리프트」 언급 0(질의 결과는 일반 실리프팅 페이지뿐)",
+   "current_license": [],
+   "candidates": [
+    {
+     "no": "수허 25-219 호",
+     "entp": "주식회사 인터케어사이언스(수입) · 제조 Aptos LLC",
+     "brand": "Aptos",
+     "item": "안면조직 고정용 실",
+     "state": "정상(2025-12-17) · 내수 · 유효 ~2030-12-16",
+     "src": "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=2025003907"
+    }
+   ],
+   "sources": [
+    "http://www.doctorsnews.co.kr/news/articleView.html?idxno=29605",
+    "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=2025003907 · 200502685",
+    "식약처 API getMdlpPrdlstPrmisnItem05 TYPE_NAME=Happy · HAPPY · APTOS(0) · Aptos / ENTRPS=인터케어사이언스"
+   ],
+   "sellers": [
+    {
+     "name": "주식회사 인터케어사이언스",
+     "role": "APTOS 국내 독점유통(「2023년 8월 APTOS사와 국내 독점유통 계약을 협의」) · 수입 허가 업체 · 「한국에서 유통되고 있는 주요 제품」 Namica 19 · Light Lift 25 · Light Lift 50(2026 포럼)",
+     "url": "https://www.hinews.co.kr/view.php?ud=2024111115172032486aa9cc43d0_48",
+     "period": "계약 2023-08 · 보도 2024-11-12 · 포럼 보도 2026-07-02(https://www.rapportian.com/news/articleView.html?idxno=237780) — 해피리프트 이름으로 파는 출처는 없음(APTOS 판매사)"
+    }
+   ],
+   "conflicts": [
+    {
+     "field": "Happy Lift 제조사",
+     "license": "Assut Europe S.P.A.(수허 05-144 · 이탈리아)",
+     "web": "Happy Lift = Promoitalia 실(해외 시술 페이지)",
+     "url": "https://artmediaclinic.ru/promoitalia/",
+     "note": "덮어쓰지 않음 — 국외 출처 · 국내 허가에 Promoitalia 0. 2006 의협신문은 「압토스실」 이라고 함 — 세 출처 표기가 다름"
+    },
+    {
+     "field": "APTOS 식약처 허가 시기",
+     "license": "수허 25-219 허가 2025-12-17",
+     "web": "하이뉴스 2024-11-12 「내년 상반기에 KFDA 등록을 마칠 것」",
+     "url": "https://www.hinews.co.kr/view.php?ud=2024111115172032486aa9cc43d0_48",
+     "note": "충돌 아님(계획 vs 실제) — 검색 요약의 「2024년 6월 품목 허가」 문장은 원문 미확인으로 미채택. ENTRPS=인터케어사이언스 실 허가는 25-219 하나"
+    }
+   ],
+   "site_pages": [],
+   "note": "원장 synonyms 「러시안 리프트 · 아프토스」(web4) 와 2006 보도가 맞물림. 현장이 지금 쓰는 실이 APTOS 인지는 병원 확인 필요(정할 것)",
+   "queries": [
+    "식약처 API getMdlpPrdlstPrmisnItem05 TYPE_NAME=Happy · HAPPY · APTOS · Aptos / ENTRPS=인터케어사이언스",
+    "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=200502685 · 2025003907",
+    "해피리프트 실 Happy Lift Promoitalia 국내 수입",
+    "\"해피리프트\" 실리프팅",
+    "아프토스 실 인터케어사이언스 국내 출시 APTOS",
+    "해피리프트 아프토스 러시안리프트 실"
+   ]
+  },
+  {
+   "ledger_id": "auto-M7-1775362579841",
+   "name": "오메가리프트",
+   "linked": "(이력) 제허 12-516 · 12-419 폴리디옥사논봉합사 · 오브이코리아 · 제품명 「오메가리프트」 · 모델 OVL10-14 · OVL10-12 · 2013-06-30 취하 · 둘 다 수출용에 한함",
+   "result": "현재 허가 특정 불가 · 후보 OMEGA VJ 는 수출용(국내 유통 허가 아님)",
+   "result_basis": "후보 제허 23-814 「OMEGA VJ, ELALIFFIL」(오브이메디)은 정상이지만 **「수출용에 한함」** — 국내 병원 「오메가실」 의 허가일 수 없음. 오브이메디의 **내수** 정상 실 허가는 3건: 제허 13-151 「오메가브이L, OMEGA VL, IMIT, 수미오G · N, Soft LF, Omega Plus C …」(유효 ~2027-09-30) · 13-150 「오메가브이M, OMEGA VM, 수미오M · S, Omega Plus M, Dr.MONO」(~2027-09-30) · 15-188 「OMEGA VS, 오메가브이S」(~2028-06-30). 나머지 오메가 이름 든 허가(13-2240 「오메가브이 Lifting」 · 16-684 「OMEGA VMM」)는 수출용. 오브이메디 사이트 의료기기 「OMEGA V-L」 · 링크 기사 「오메가 리프팅은 … 녹는실(PDO)」. 병원 「오메가실」(모두닥 2026 · 루비성형외과) · 「오메가 리프트 = 오메가 코그실 리프팅」(미엘의원)은 제조사 표기 없음 → 어느 오메가브이 허가인지(또는 오브이메디 제품인지) 출처 없음. 옛 업체 오브이코리아(제 3722호 · 고양)와 오브이메디(제 3854호 · 군포)는 업허가번호 · 주소가 달라 같은 회사라는 출처 없음",
+   "current_license": [],
+   "candidates": [
+    {
+     "no": "제허 23-814 호",
+     "entp": "주식회사 오브이메디",
+     "brand": "OMEGA VJ, ELALIFFIL",
+     "item": "안면조직 고정용 실(PDO)",
+     "state": "정상(2023-08-02) · 수출용에 한함",
+     "src": "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=2023004556"
+    },
+    {
+     "no": "제허 13-151 호",
+     "entp": "주식회사 오브이메디",
+     "brand": "오메가브이L, OMEGA VL, IMIT, 수미오G, 수미오N, Soft LF, Omega Plus C, OMEGA VL FOR DUO, Dr.MONO-C",
+     "item": "폴리디옥사논봉합사",
+     "state": "정상(2013-01-07) · 내수 · 유효 2020-10-08~2027-09-30",
+     "src": "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=2013000226"
+    },
+    {
+     "no": "제허 13-150 호",
+     "entp": "주식회사 오브이메디",
+     "brand": "오메가브이M, OMEGA VM, 수미오M, 수미오S, OMEGA VM FOR DUO, Omega Plus M, Dr.MONO",
+     "item": "폴리디옥사논봉합사",
+     "state": "정상(2013-01-07) · 내수 · 유효 ~2027-09-30",
+     "src": "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=2013000225"
+    },
+    {
+     "no": "제허 15-188 호",
+     "entp": "주식회사 오브이메디",
+     "brand": "OMEGA VS, 오메가브이S",
+     "item": "폴리디옥사논봉합사",
+     "state": "정상(2015-02-11) · 내수 · 유효 ~2028-06-30",
+     "src": "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=2015001228"
+    },
+    {
+     "no": "제허 13-2240 호",
+     "entp": "주식회사 오브이메디",
+     "brand": "오메가브이 Lifting",
+     "item": "안면조직고정용실",
+     "state": "정상(2013-12-26) · 수출용에 한함",
+     "src": "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=2013010695"
+    }
+   ],
+   "sources": [
+    "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=2023004556 · 2013000226 · 2013000225 · 2015001228 · 2013010695 · 2016005829 · 2012002454 · 2012001834",
+    "식약처 API getMdlpPrdlstPrmisnItem05 ENTRPS=오브이메디(19) · 오브이코리아(3) / TYPE_NAME=OMEGA · Omega",
+    "http://ovmedi.co.kr/",
+    "https://www.modoodoc.com/blog/price-detail?tc=%EC%8B%A4%EB%A6%AC%ED%94%84%ED%8C%85&sub_tc=%EC%98%A4%EB%A9%94%EA%B0%80%EC%8B%A4",
+    "https://mielclinic.com/33"
+   ],
+   "sellers": [
+    {
+     "name": "근거 없음",
+     "role": null,
+     "url": null,
+     "period": null,
+     "note": "조사 기록: 국내 판매·유통사 표기 0 — 오브이메디는 제조사(사이트 · 식약처)로만 확인. 병원 페이지는 제조사 · 공급사 표기 없음"
+    }
+   ],
+   "conflicts": [
+    {
+     "field": "오브이메디 설립",
+     "license": "업체 등록 meddevEntpSeq 2012000391(emedi)",
+     "web": "사이트 「2012년 설립」 ↔ 혁신의숲 「2013년 6월 24일에 설립」",
+     "url": "https://www.innoforest.co.kr/company/CP00020959/%EC%98%A4%EB%B8%8C%EC%9D%B4%EB%A9%94%EB%94%94",
+     "note": "참고 — 판정하지 않음"
+    }
+   ],
+   "site_pages": [
+    {
+     "text": "모두닥 「오메가실 가격정보 (2026)」 루비_오메가실 6줄 — 제조사 표기 없음",
+     "url": "https://www.modoodoc.com/blog/price-detail?tc=%EC%8B%A4%EB%A6%AC%ED%94%84%ED%8C%85&sub_tc=%EC%98%A4%EB%A9%94%EA%B0%80%EC%8B%A4"
+    },
+    {
+     "text": "미엘의원 「오메가 리프트 … 오메가 코그실 리프팅(Omega Cog Thread Lifting)」 — 제조사 표기 없음",
+     "url": "https://mielclinic.com/33"
+    },
+    {
+     "text": "미앤미의원 「오메가실 — 양방향의 돌기를 지닌 PDO 실」",
+     "url": "http://www.mipretty.co.kr/clinicInfo/lifting/lifting_02.php?code1=361&code2=42"
+    }
+   ],
+   "note": "병원 「오메가실 = 양방향 돌기 PDO 코그실」 — 내수 후보 3건(13-151 · 13-150 · 15-188) 중 어느 것인지는 병원 · 업체 확인 필요(정할 것)",
+   "queries": [
+    "식약처 API getMdlpPrdlstPrmisnItem05 ENTRPS=오브이메디 · 오브이코리아 / TYPE_NAME=OMEGA · Omega",
+    "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=(오브이메디 14건 · 오브이코리아 3건)",
+    "오메가실 리프팅 오브이메디 오메가브이",
+    "ovmedi.co.kr · modoodoc · mielclinic(curl)"
+   ]
+  }
+ ]
+}

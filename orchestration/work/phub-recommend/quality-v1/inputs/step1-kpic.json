@@ -1,0 +1,1340 @@
+{
+ "generated_at": "2026-10-28",
+ "source": "KPIC MCP(reference/2026-10-28-kpic-mcp · dist/kpic-api.js search_drugs_by_name → get_drug_detail_by_id) · health.kr",
+ "method": "원장 의약품 허가(식약처 품목기준코드)마다 제품명 검색 → kfda_code 일치 결과의 상세. license_no 가 null 인 줄은 이름 조회(새 행 · 상태 확인용)",
+ "items": [
+  {
+   "ledger_id": "M1-2-1",
+   "license_no": "200901660",
+   "search": "보톡스주",
+   "n_search": 2,
+   "hits": [
+    {
+     "drug_code": "2009071505531",
+     "drug_name": "보톡스주50단위",
+     "drug_enm": "Botox Inje. 50",
+     "ingredient": "Clostridium Botulinum Toxin Type A 50U",
+     "company": "한국애브비",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "200901660",
+     "permit_date": "20090303",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M1-2-1",
+   "license_no": "200804190",
+   "search": "보톡스주",
+   "n_search": 2,
+   "hits": [
+    {
+     "drug_code": "A11AKP08G2664",
+     "drug_name": "보톡스주",
+     "drug_enm": "Botox Inj.",
+     "ingredient": "Clostridium Botulinum Toxin Type A 100U",
+     "company": "한국애브비",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "192092원/1병",
+     "boh_hiracode": "679400031",
+     "boh_code_search": "624900421",
+     "kfda_code": "200804190",
+     "permit_date": "20080416",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M1-2-3",
+   "license_no": "199907127",
+   "search": "디스포트주",
+   "n_search": 1,
+   "hits": [
+    {
+     "drug_code": "A11AGGGGG7051",
+     "drug_name": "디스포트주",
+     "drug_enm": "Dysport Injection",
+     "ingredient": "Clostridium Botulinum Toxin Type A - Haemagglutinin Complex 500U",
+     "company": "입센코리아",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A - Haemagglutinin Complex : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "179792원/1병",
+     "boh_hiracode": "681400011",
+     "boh_code_search": "681400011",
+     "kfda_code": "199907127",
+     "permit_date": "19990713",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M1-2-2",
+   "license_no": "201801515",
+   "search": "제오민주",
+   "n_search": 2,
+   "hits": [
+    {
+     "drug_code": "2018040600005",
+     "drug_name": "제오민주50단위",
+     "drug_enm": "Xeomin Inj. 50Unit",
+     "ingredient": "Clostridium Botulinum Toxin Type A 50U",
+     "company": "멀츠아시아퍼시픽피티이엘티디",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "201801515",
+     "permit_date": "20180405",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M1-2-2",
+   "license_no": "200904004",
+   "search": "제오민주",
+   "n_search": 2,
+   "hits": [
+    {
+     "drug_code": "2009071506030",
+     "drug_name": "제오민주",
+     "drug_enm": "Xeomin Inj.",
+     "ingredient": "Clostridium Botulinum Toxin Type A 100U",
+     "company": "멀츠아시아퍼시픽피티이엘티디",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "비급여",
+     "boh_hiracode": "699500011",
+     "boh_code_search": null,
+     "kfda_code": "200904004",
+     "permit_date": "20090609",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M1-1-1",
+   "license_no": "202100911",
+   "search": "보툴렉스주",
+   "n_search": 5,
+   "hits": [
+    {
+     "drug_code": "2021012900009",
+     "drug_name": "보툴렉스주300단위",
+     "drug_enm": "Botulax Inj. 300U",
+     "ingredient": "Clostridium Botulinum Toxin Type A 300U",
+     "company": "휴젤",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "202100911",
+     "permit_date": "20210128",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M1-1-1",
+   "license_no": "201602416",
+   "search": "보툴렉스주",
+   "n_search": 5,
+   "hits": [
+    {
+     "drug_code": "2016050200001",
+     "drug_name": "보툴렉스주150단위",
+     "drug_enm": "Botulax Inj. 150U",
+     "ingredient": "Clostridium botulinum CBFC26 150U",
+     "company": "휴젤",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium botulinum CBFC26 : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "164390원/1병",
+     "boh_hiracode": "694100041",
+     "boh_code_search": "694100041",
+     "kfda_code": "201602416",
+     "permit_date": "20160429",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M1-1-1",
+   "license_no": "201108443",
+   "search": "보툴렉스주",
+   "n_search": 5,
+   "hits": [
+    {
+     "drug_code": "2011111400008",
+     "drug_name": "보툴렉스주50단위",
+     "drug_enm": "Botulax Inj. 50U",
+     "ingredient": "Clostridium Botulinum Toxin Type A 50U",
+     "company": "휴젤",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "201108443",
+     "permit_date": "20111012",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M1-1-1",
+   "license_no": "201001176",
+   "search": "보툴렉스주",
+   "n_search": 5,
+   "hits": [
+    {
+     "drug_code": "2010020400003",
+     "drug_name": "보툴렉스주200단위",
+     "drug_enm": "Botulax Inj. 200U",
+     "ingredient": "Clostridium Botulinum Toxin Type A 200U",
+     "company": "휴젤",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "201001176",
+     "permit_date": "20100203",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M1-1-1",
+   "license_no": "200901953",
+   "search": "보툴렉스주",
+   "n_search": 5,
+   "hits": [
+    {
+     "drug_code": "2009071505580",
+     "drug_name": "보툴렉스주",
+     "drug_enm": "Botulax Inj.",
+     "ingredient": "Clostridium Botulinum Toxin Type A 100U",
+     "company": "휴젤",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "200901953",
+     "permit_date": "20090313",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M1-1-2",
+   "license_no": "201603000",
+   "search": "나보타주",
+   "n_search": 4,
+   "hits": [
+    {
+     "drug_code": "2016053000021",
+     "drug_name": "나보타주150단위",
+     "drug_enm": "Nabota Inj. 150Unit",
+     "ingredient": "Clostridium Botulinum Toxin Type A 150U",
+     "company": "대웅제약",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "164754원/1병",
+     "boh_hiracode": "641606311",
+     "boh_code_search": "641606311",
+     "kfda_code": "201603000",
+     "permit_date": "20160527",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M1-1-2",
+   "license_no": "201503760",
+   "search": "나보타주",
+   "n_search": 4,
+   "hits": [
+    {
+     "drug_code": "2015061500038",
+     "drug_name": "나보타주200단위",
+     "drug_enm": "Nabota Inj. 200Unit",
+     "ingredient": "Clostridium Botulinum Toxin Type A 200U",
+     "company": "대웅제약",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "201503760",
+     "permit_date": "20150609",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M1-1-2",
+   "license_no": "201500080",
+   "search": "나보타주",
+   "n_search": 4,
+   "hits": [
+    {
+     "drug_code": "2015010900002",
+     "drug_name": "나보타주50단위",
+     "drug_enm": "Nabota Inj. 50Unit",
+     "ingredient": "Clostridium Botulinum Toxin Type A 50U",
+     "company": "대웅제약",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "201500080",
+     "permit_date": "20150108",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M1-1-2",
+   "license_no": "201310386",
+   "search": "나보타주",
+   "n_search": 4,
+   "hits": [
+    {
+     "drug_code": "2013120300007",
+     "drug_name": "나보타주",
+     "drug_enm": "Nabota Inj.",
+     "ingredient": "Clostridium Botulinum Toxin Type A 100U",
+     "company": "대웅제약",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "201310386",
+     "permit_date": "20131129",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M1-1-4",
+   "license_no": "201309732",
+   "search": "메디톡신주",
+   "n_search": 4,
+   "hits": [
+    {
+     "drug_code": "2013101600006",
+     "drug_name": "메디톡신주150단위",
+     "drug_enm": "Meditoxin Inj. 150IU",
+     "ingredient": "Clostridium Botulinum Toxin Type A (Hall) 150U",
+     "company": "메디톡스",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A (Hall) : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "201309732",
+     "permit_date": "20131015",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M1-1-4",
+   "license_no": "201001655",
+   "search": "메디톡신주",
+   "n_search": 4,
+   "hits": [
+    {
+     "drug_code": "2010022500012",
+     "drug_name": "메디톡신주50단위",
+     "drug_enm": "Meditoxin Inj. 50U",
+     "ingredient": "Clostridium Botulinum Toxin Type A (Hall) 50U",
+     "company": "메디톡스",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A (Hall) : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "201001655",
+     "permit_date": "20100224",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M1-1-4",
+   "license_no": "200902348",
+   "search": "메디톡신주",
+   "n_search": 4,
+   "hits": [
+    {
+     "drug_code": "2009071505666",
+     "drug_name": "메디톡신주200단위",
+     "drug_enm": "Meditoxin Inj. 200U",
+     "ingredient": "Clostridium Botulinum Toxin Type A (Hall) 200U",
+     "company": "메디톡스",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A (Hall) : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "134887원/1병",
+     "boh_hiracode": "675500021",
+     "boh_code_search": "675500021",
+     "kfda_code": "200902348",
+     "permit_date": "20090331",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M1-1-4",
+   "license_no": "200600841",
+   "search": "메디톡신주",
+   "n_search": 4,
+   "hits": [
+    {
+     "drug_code": "A11APPPPP2639",
+     "drug_name": "메디톡신주",
+     "drug_enm": "Meditoxin Inj.",
+     "ingredient": "Clostridium Botulinum Toxin Type A (Hall) 100U",
+     "company": "메디톡스",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A (Hall) : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "200600841",
+     "permit_date": "20060316",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M1-1-3",
+   "license_no": "201603891",
+   "search": "코어톡스주",
+   "n_search": 1,
+   "hits": [
+    {
+     "drug_code": "2016062700037",
+     "drug_name": "코어톡스주",
+     "drug_enm": "Coretox Inj",
+     "ingredient": "Clostridium Botulinum Toxin Type A (Hall) 100U",
+     "company": "메디톡스",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A (Hall) : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "201603891",
+     "permit_date": "20160624",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M1-1-5",
+   "license_no": "201310633",
+   "search": "이노톡스주",
+   "n_search": 1,
+   "hits": [
+    {
+     "drug_code": "2013121200006",
+     "drug_name": "이노톡스주",
+     "drug_enm": "Innotox Inj.",
+     "ingredient": "Clostridium Botulinum Toxin Type A (Hall) 40Unit/mL",
+     "company": "메디톡스",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A (Hall) : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "201310633",
+     "permit_date": "20131211",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "auto-1-1774737181584",
+   "license_no": "202402879",
+   "search": "제테마더톡신주",
+   "n_search": 3,
+   "hits": [
+    {
+     "drug_code": "2024120600001",
+     "drug_name": "제테마더톡신주100U",
+     "drug_enm": "JTM201 Inj. 100U",
+     "ingredient": "Clostridium Botulinum Toxin Type A 100U",
+     "company": "제테마",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "202402879",
+     "permit_date": "20241205",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "auto-1-1774737181584",
+   "license_no": "202107200",
+   "search": "제테마더톡신주",
+   "n_search": 3,
+   "hits": [
+    {
+     "drug_code": "2021110100002",
+     "drug_name": "제테마더톡신주200U(수출용)",
+     "drug_enm": "Jetema The Toxin Inj. 200U(for export)",
+     "ingredient": "Clostridium Botulinum Toxin Type A 200U",
+     "company": "제테마",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "202107200",
+     "permit_date": "20211029",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "auto-1-1774737181584",
+   "license_no": "202004236",
+   "search": "제테마더톡신주",
+   "n_search": 3,
+   "hits": [
+    {
+     "drug_code": "2020060500011",
+     "drug_name": "제테마더톡신주100U(수출용)",
+     "drug_enm": "Jetema The Toxin Inj. 100U(for export)",
+     "ingredient": "Clostridium Botulinum Toxin Type A 100U",
+     "company": "제테마",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "202004236",
+     "permit_date": "20200604",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M1-1-6",
+   "license_no": "202105230",
+   "search": "원더톡스주",
+   "n_search": 3,
+   "hits": [
+    {
+     "drug_code": "2021071200005",
+     "drug_name": "원더톡스주200단위",
+     "drug_enm": "Wondertox Inj. 200unit",
+     "ingredient": "Clostridium Botulinum Toxin Type A 200U",
+     "company": "종근당",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "202105230",
+     "permit_date": "20210709",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M1-1-6",
+   "license_no": "202104584",
+   "search": "원더톡스주",
+   "n_search": 3,
+   "hits": [
+    {
+     "drug_code": "2021061700003",
+     "drug_name": "원더톡스주50단위",
+     "drug_enm": "Wondertox Inj. 50unit",
+     "ingredient": "Clostridium Botulinum Toxin Type A 50U",
+     "company": "종근당",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "202104584",
+     "permit_date": "20210615",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M1-1-6",
+   "license_no": "201905671",
+   "search": "원더톡스주",
+   "n_search": 3,
+   "hits": [
+    {
+     "drug_code": "2019081900059",
+     "drug_name": "원더톡스주100단위",
+     "drug_enm": "Wondertox Inj. 100unit",
+     "ingredient": "Clostridium Botulinum Toxin Type A 100U",
+     "company": "종근당",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "201905671",
+     "permit_date": "20190812",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M1-1-7",
+   "license_no": "202105225",
+   "search": "리즈톡스주",
+   "n_search": 3,
+   "hits": [
+    {
+     "drug_code": "2021071200001",
+     "drug_name": "리즈톡스주200단위",
+     "drug_enm": "Liztox Inj. 200Unit",
+     "ingredient": "Clostridium Botulinum Toxin Type A 200U",
+     "company": "휴온스바이오파마",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "202105225",
+     "permit_date": "20210709",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M1-1-7",
+   "license_no": "202104572",
+   "search": "리즈톡스주",
+   "n_search": 3,
+   "hits": [
+    {
+     "drug_code": "2021061700002",
+     "drug_name": "리즈톡스주50단위",
+     "drug_enm": "Liztox Inj. 50Unit",
+     "ingredient": "Clostridium Botulinum Toxin Type A 50U",
+     "company": "휴온스바이오파마",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "202104572",
+     "permit_date": "20210615",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M1-1-7",
+   "license_no": "201605990",
+   "search": "리즈톡스주",
+   "n_search": 3,
+   "hits": [
+    {
+     "drug_code": "2016101100008",
+     "drug_name": "리즈톡스주100단위",
+     "drug_enm": "Liztox Inj. 100Unit",
+     "ingredient": "Clostridium Botulinum Toxin Type A 100U",
+     "company": "휴온스바이오파마",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "193639원/1병",
+     "boh_hiracode": "054600012",
+     "boh_code_search": "054600012",
+     "kfda_code": "201605990",
+     "permit_date": "20161010",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "auto-M1-1775362455497",
+   "license_no": "202102247",
+   "search": "비비톡신주",
+   "n_search": 1,
+   "hits": [
+    {
+     "drug_code": "2021031200007",
+     "drug_name": "비비톡신주100단위",
+     "drug_enm": "Vivitoxin Inj. 100unit",
+     "ingredient": "Clostridium Botulinum Toxin Type A 100U",
+     "company": "휴메딕스",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "202102247",
+     "permit_date": "20210311",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "auto-M1-1775362462896",
+   "license_no": "202500353",
+   "search": "톡스온주",
+   "n_search": 1,
+   "hits": [
+    {
+     "drug_code": "2025021800006",
+     "drug_name": "톡스온주",
+     "drug_enm": "Toxon Inj.",
+     "ingredient": "Clostridium Botulinum Toxin Type A 100U",
+     "company": "에이티지씨",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "202500353",
+     "permit_date": "20250217",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "auto-M16-1775364775098",
+   "license_no": "200308393",
+   "search": "멜스몬주",
+   "n_search": 1,
+   "hits": [
+    {
+     "drug_code": "A11AOOOOO8251",
+     "drug_name": "멜스몬주",
+     "drug_enm": "MELSMON INJ.",
+     "ingredient": "Human Placenta Extract 1mL",
+     "company": "한국멜스몬",
+     "drug_class": "전문",
+     "cls": "단백아미노산제제",
+     "atc": "G02CX|OTHER GYNECOLOGICALS|기타 부인과용제",
+     "kpic_atc": "",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "200308393",
+     "permit_date": "20030530",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "auto-M16-1775403016892",
+   "license_no": "202105795",
+   "search": "브이올렛주",
+   "n_search": 1,
+   "hits": [
+    {
+     "drug_code": "2021080900003",
+     "drug_name": "브이올렛주",
+     "drug_enm": "V-olet Inj.",
+     "ingredient": "Deoxycholic Acid 10mg/mL",
+     "company": "대웅제약",
+     "drug_class": "전문",
+     "cls": "따로 분류되지 않는 대사성 의약품",
+     "atc": "D11AX24|DEOXYCHOLIC ACID|데옥시콜산",
+     "kpic_atc": "Deoxycholic Acid : 피부/피하조직질환 > 기타 약물 > 기타",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "202105795",
+     "permit_date": "20210806",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "auto-M16-1775403142279",
+   "license_no": "202400198",
+   "search": "벨라콜린주",
+   "n_search": 1,
+   "hits": [
+    {
+     "drug_code": "2024012600002",
+     "drug_name": "벨라콜린주",
+     "drug_enm": "Bellacholine Inj.",
+     "ingredient": "Deoxycholic Acid 10mg/mL",
+     "company": "엘지화학",
+     "drug_class": "전문",
+     "cls": "따로 분류되지 않는 대사성 의약품",
+     "atc": "D11AX24|DEOXYCHOLIC ACID|데옥시콜산",
+     "kpic_atc": "Deoxycholic Acid : 피부/피하조직질환 > 기타 약물 > 기타",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "202400198",
+     "permit_date": "20240125",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "auto-M16-DCA-1775404043062",
+   "license_no": "202402922",
+   "search": "올리핏주",
+   "n_search": 1,
+   "hits": [
+    {
+     "drug_code": "2024121200004",
+     "drug_name": "올리핏주",
+     "drug_enm": "Olifit Inj.",
+     "ingredient": "Deoxycholic Acid 10mg/mL",
+     "company": "휴메딕스",
+     "drug_class": "전문",
+     "cls": "따로 분류되지 않는 대사성 의약품",
+     "atc": "D11AX24|DEOXYCHOLIC ACID|데옥시콜산",
+     "kpic_atc": "Deoxycholic Acid : 피부/피하조직질환 > 기타 약물 > 기타",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "202402922",
+     "permit_date": "20241211",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "auto-M16-DCA-1775404043063",
+   "license_no": "202501064",
+   "search": "펜카이라주",
+   "n_search": 1,
+   "hits": [
+    {
+     "drug_code": "2025050200019",
+     "drug_name": "펜카이라주",
+     "drug_enm": "Penkyra Inj.",
+     "ingredient": "Deoxycholic Acid 20mg",
+     "company": "펜믹스",
+     "drug_class": "전문",
+     "cls": "따로 분류되지 않는 대사성 의약품",
+     "atc": "D11AX24|DEOXYCHOLIC ACID|데옥시콜산",
+     "kpic_atc": "Deoxycholic Acid : 피부/피하조직질환 > 기타 약물 > 기타",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "202501064",
+     "permit_date": "20250430",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "auto-M16-DCA-1775404043064",
+   "license_no": "202501108",
+   "search": "바이블주",
+   "n_search": 1,
+   "hits": [
+    {
+     "drug_code": "2025050800006",
+     "drug_name": "바이블주",
+     "drug_enm": "Vivle Inj.",
+     "ingredient": "Deoxycholic Acid 10mg/mL",
+     "company": "한국비엠아이",
+     "drug_class": "전문",
+     "cls": "따로 분류되지 않는 대사성 의약품",
+     "atc": "D11AX24|DEOXYCHOLIC ACID|데옥시콜산",
+     "kpic_atc": "Deoxycholic Acid : 피부/피하조직질환 > 기타 약물 > 기타",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "202501108",
+     "permit_date": "20250507",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "auto-M16-DCA-1775404043065",
+   "license_no": "202501930",
+   "search": "밀리핏주사",
+   "n_search": 1,
+   "hits": [
+    {
+     "drug_code": "2025072800014",
+     "drug_name": "밀리핏주사",
+     "drug_enm": "Millifit Inj.",
+     "ingredient": "Deoxycholic Acid 20mg",
+     "company": "동국제약",
+     "drug_class": "전문",
+     "cls": "따로 분류되지 않는 대사성 의약품",
+     "atc": "D11AX24|DEOXYCHOLIC ACID|데옥시콜산",
+     "kpic_atc": "Deoxycholic Acid : 피부/피하조직질환 > 기타 약물 > 기타",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "202501930",
+     "permit_date": "20250725",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "auto-M16-DCA-1775404043066",
+   "license_no": "202502008",
+   "search": "원더브이주",
+   "n_search": 1,
+   "hits": [
+    {
+     "drug_code": "2025080100011",
+     "drug_name": "원더브이주",
+     "drug_enm": "Wonder-V Inj.",
+     "ingredient": "Deoxycholic Acid 20mg",
+     "company": "종근당",
+     "drug_class": "전문",
+     "cls": "따로 분류되지 않는 대사성 의약품",
+     "atc": "D11AX24|DEOXYCHOLIC ACID|데옥시콜산",
+     "kpic_atc": "Deoxycholic Acid : 피부/피하조직질환 > 기타 약물 > 기타",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "202502008",
+     "permit_date": "20250731",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "auto-M16-DCA-1775404043068",
+   "license_no": "202502484",
+   "search": "뉴비쥬주",
+   "n_search": 1,
+   "hits": [
+    {
+     "drug_code": "2025092200003",
+     "drug_name": "뉴비쥬주",
+     "drug_enm": "Nuviju Inj.",
+     "ingredient": "Cholic Acid 15mg/mL",
+     "company": "메디톡스",
+     "drug_class": "전문",
+     "cls": "따로 분류되지 않는 대사성 의약품",
+     "atc": "D11AX|OTHER DERMATOLOGICALS|기타 피부과용제",
+     "kpic_atc": "",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "202502484",
+     "permit_date": "20250919",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M1-P-8",
+   "license_no": "202301026",
+   "search": "타임버스엘주",
+   "n_search": 1,
+   "hits": [
+    {
+     "drug_code": "2023032700002",
+     "drug_name": "타임버스엘주(수출용)",
+     "drug_enm": "Tyemvers L Inj. (For Export)",
+     "ingredient": "Clostridium Botulinum Toxin Type A (Hall) 40Unit/mL",
+     "company": "종근당바이오",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A (Hall) : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "202301026",
+     "permit_date": "20230324",
+     "cancel_date": "20240201",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M1-P-9",
+   "license_no": "202302604",
+   "search": "뉴럭스주",
+   "n_search": 2,
+   "hits": [
+    {
+     "drug_code": "2023090100007",
+     "drug_name": "뉴럭스주",
+     "drug_enm": "Newlux Inj.",
+     "ingredient": "Clostridium Botulinum Toxin Type A (Hall) 100U",
+     "company": "뉴메코",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A (Hall) : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "202302604",
+     "permit_date": "20230831",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M1-P-9",
+   "license_no": "202601737",
+   "search": "뉴럭스주",
+   "n_search": 2,
+   "hits": [
+    {
+     "drug_code": "2026062200002",
+     "drug_name": "뉴럭스주200단위",
+     "drug_enm": "Newlux Inj. 200U",
+     "ingredient": "Clostridium Botulinum Toxin Type A (Hall) 200U",
+     "company": "뉴메코",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A (Hall) : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "202601737",
+     "permit_date": "20260619",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M17-P-0",
+   "license_no": "202105645",
+   "search": "큐어스킨주",
+   "n_search": 1,
+   "hits": [
+    {
+     "drug_code": "2021080200004",
+     "drug_name": "큐어스킨주",
+     "drug_enm": "Cure-Skin Inj.",
+     "ingredient": "Autologous Dermal Fibroblast 20,000,000개",
+     "company": "에스바이오메딕스",
+     "drug_class": "전문",
+     "cls": "기타의 조직세포의 치료 및 진단",
+     "atc": "D03|PREPARATIONS FOR TREATMENT OF WOUNDS AND ULCERS|상처 및 궤양 치료제",
+     "kpic_atc": "Autologous Dermal Fibroblast : 피부/피하조직질환 > 상처ㆍ궤양 치료제 > 기타",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "202105645",
+     "permit_date": "20210729",
+     "cancel_date": "20240509",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "auto-M15-1775361951923",
+   "license_no": null,
+   "search": "아큐탄",
+   "n_search": 0,
+   "hits": []
+  },
+  {
+   "ledger_id": "auto-M15-1775364775171",
+   "license_no": null,
+   "search": "콘투락투벡스",
+   "n_search": 1,
+   "hits": [
+    {
+     "drug_code": "A11AOOOOO9487",
+     "drug_name": "콘투락투벡스겔",
+     "drug_enm": "Contractubex Gel",
+     "ingredient": "Allantoin 10mg/g",
+     "company": "메디팁",
+     "drug_class": "일반",
+     "cls": "기타의 조직세포의 기능용의약품",
+     "atc": "D03AX|OTHER CICATRIZANTS|기타 흉터 치료제",
+     "kpic_atc": "Allantoin : 피부/피하조직질환 > 상처ㆍ궤양 치료제 > 기타|Heparin Sodium : 혈액 및 조혈기관 질환 > 항정맥류성 약물 > 국소용 헤파린 또는 헤파리노이드 제제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "200109572",
+     "permit_date": "20010406",
+     "cancel_date": "0",
+     "route": "피부"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M16-3-1",
+   "license_no": null,
+   "search": "라이넥",
+   "n_search": 5,
+   "hits": [
+    {
+     "drug_code": "A11AKP09B0008",
+     "drug_name": "라이넥스나잘스프레이",
+     "drug_enm": "Rhinex Nasal Spray",
+     "ingredient": "Mometasone Furoate 0.5mg/mL",
+     "company": "삼일제약",
+     "drug_class": "전문",
+     "cls": "이비과용제",
+     "atc": "R01AD09|MOMETASONE|모메타손",
+     "kpic_atc": "Mometasone Furoate : 호흡기계질환 > 비강 질환 치료제 > 스테로이드제 (분무)",
+     "boh": "비급여",
+     "boh_hiracode": "643902141",
+     "boh_code_search": null,
+     "kfda_code": "200811429",
+     "permit_date": "20081204",
+     "cancel_date": "0",
+     "route": "코"
+    },
+    {
+     "drug_code": "A11AOOOOO6804",
+     "drug_name": "라이넥주",
+     "drug_enm": "Laennec Inj.",
+     "ingredient": "Human Placenta Hydrolysate 1mL/mL",
+     "company": "녹십자웰빙",
+     "drug_class": "전문",
+     "cls": "장기제제",
+     "atc": "A05BA|LIVER THERAPY|간 치료제",
+     "kpic_atc": "Human Placenta Hydrolysate : 소화기계질환 > 간장ㆍ담낭ㆍ췌장질환 치료 > 간보호제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "200512342",
+     "permit_date": "20050413",
+     "cancel_date": "0",
+     "route": "주사"
+    },
+    {
+     "drug_code": "2011022400001",
+     "drug_name": "라이넥주바이알",
+     "drug_enm": "Lainec Inj. Vial",
+     "ingredient": "Human Placenta Hydrolysate 1mL/mL",
+     "company": "녹십자웰빙",
+     "drug_class": "전문",
+     "cls": "장기제제",
+     "atc": "A05BA|LIVER THERAPY|간 치료제",
+     "kpic_atc": "Human Placenta Hydrolysate : 소화기계질환 > 간장ㆍ담낭ㆍ췌장질환 치료 > 간보호제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "201100874",
+     "permit_date": "20110223",
+     "cancel_date": "0",
+     "route": "주사"
+    },
+    {
+     "drug_code": "2014080400003",
+     "drug_name": "라이넥피오정(수출용)",
+     "drug_enm": "LaennecP.O. Cap.",
+     "ingredient": "Human Placenta Hydrolysate 350mg",
+     "company": "녹십자웰빙",
+     "drug_class": "일반",
+     "cls": "기타의 자양강장변질제",
+     "atc": "A05BA|LIVER THERAPY|간 치료제",
+     "kpic_atc": "Human Placenta Hydrolysate : 소화기계질환 > 간장ㆍ담낭ㆍ췌장질환 치료 > 간보호제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "201403583",
+     "permit_date": "20140801",
+     "cancel_date": "20241126",
+     "route": "경구(내용고형)"
+    },
+    {
+     "drug_code": "2014031800009",
+     "drug_name": "라이넥피오캡슐(수출용)",
+     "drug_enm": "Laennec P.O. CAPSULE",
+     "ingredient": "Human Placenta Hydrolysate 350mg",
+     "company": "녹십자웰빙",
+     "drug_class": "일반",
+     "cls": "기타의 자양강장변질제",
+     "atc": "A05BA|LIVER THERAPY|간 치료제",
+     "kpic_atc": "Human Placenta Hydrolysate : 소화기계질환 > 간장ㆍ담낭ㆍ췌장질환 치료 > 간보호제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "201401144",
+     "permit_date": "20140313",
+     "cancel_date": "20241126",
+     "route": "경구(내용고형)"
+    }
+   ]
+  },
+  {
+   "ledger_id": "M1-P-8",
+   "license_no": null,
+   "search": "티엠버스",
+   "n_search": 2,
+   "hits": [
+    {
+     "drug_code": "2025040100014",
+     "drug_name": "티엠버스주100단위",
+     "drug_enm": "Tyemvers Inj. 100 Unit",
+     "ingredient": "Clostridium Botulinum Toxin Type A 100U",
+     "company": "종근당바이오",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "202500753",
+     "permit_date": "20250331",
+     "cancel_date": "0",
+     "route": "주사"
+    },
+    {
+     "drug_code": "2025091700003",
+     "drug_name": "티엠버스주200단위",
+     "drug_enm": "Tyemvers Inj. 200Unit",
+     "ingredient": "Clostridium Botulinum Toxin Type A 200U",
+     "company": "종근당바이오",
+     "drug_class": "전문",
+     "cls": "독소류 및 톡소이드류",
+     "atc": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소",
+     "kpic_atc": "Clostridium Botulinum Toxin Type A : 근골격계/결합조직질환 > 근이완제 > 말초성 근이완제 > 기타 말초성 근이완제",
+     "boh": "비급여",
+     "boh_hiracode": null,
+     "boh_code_search": null,
+     "kfda_code": "202502453",
+     "permit_date": "20250916",
+     "cancel_date": "0",
+     "route": "주사"
+    }
+   ]
+  },
+  {
+   "ledger_id": "auto-M16-1775403024925",
+   "license_no": null,
+   "search": "벨카이라",
+   "n_search": 0,
+   "hits": []
+  },
+  {
+   "ledger_id": "auto-M16-DCA-1775404043067",
+   "license_no": null,
+   "search": "리포린",
+   "n_search": 1,
+   "hits": []
+  }
+ ]
+}

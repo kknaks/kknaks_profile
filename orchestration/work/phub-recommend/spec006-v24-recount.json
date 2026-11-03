@@ -1,0 +1,5387 @@
+{
+ "build": "b031371c4c69cea1",
+ "cover34": {
+  "rows": [
+   {
+    "i": 32,
+    "intent": "I-08",
+    "n_fact_hits": 6,
+    "no": "Q020",
+    "owners": [
+     "procedure_relation"
+    ],
+    "place": "받을 곳 없음",
+    "skind": "product",
+    "start": "product:auto-40-1774737181584",
+    "v22": false,
+    "v23": false,
+    "v24": false,
+    "v24_no_unit": false
+   },
+   {
+    "i": 36,
+    "intent": "I-05",
+    "n_fact_hits": 1,
+    "no": "Q027",
+    "place": "0홉·2쪽+",
+    "sections": [
+     "timeline"
+    ],
+    "skind": "unit_procedure",
+    "start": "unit_procedure:U5-001",
+    "v22": false,
+    "v23": false,
+    "v24": false,
+    "v24_no_unit": false
+   },
+   {
+    "i": 63,
+    "intent": "I-04",
+    "n_fact_hits": 1,
+    "no": "Q055",
+    "place": "0홉·1쪽",
+    "sections": [
+     "disclosure"
+    ],
+    "skind": "family",
+    "start": "family:M2",
+    "v22": true,
+    "v23": true,
+    "v24": true,
+    "v24_no_unit": true
+   },
+   {
+    "i": 65,
+    "intent": "I-07",
+    "n_fact_hits": 1,
+    "no": "Q056",
+    "owners": [
+     "procedure_relation"
+    ],
+    "place": "받을 곳 없음",
+    "skind": "family",
+    "start": "family:M2",
+    "v22": false,
+    "v23": false,
+    "v24": false,
+    "v24_no_unit": false
+   },
+   {
+    "i": 71,
+    "intent": "I-07",
+    "n_fact_hits": 3,
+    "no": "Q064",
+    "place": "2홉+",
+    "skind": "family",
+    "start": "family:M4",
+    "v22": false,
+    "v23": false,
+    "v24": false,
+    "v24_no_unit": false
+   },
+   {
+    "i": 85,
+    "intent": "I-09",
+    "kinds": [
+     "procedure_relation"
+    ],
+    "n_fact_hits": 6,
+    "no": "Q070",
+    "place": "1홉·2쪽+",
+    "skind": "family",
+    "start": "family:M4",
+    "v22": false,
+    "v23": false,
+    "v24": false,
+    "v24_no_unit": false
+   },
+   {
+    "i": 97,
+    "intent": "I-02",
+    "n_fact_hits": 1,
+    "no": "Q078",
+    "place": "0홉·1쪽",
+    "sections": [
+     "overview"
+    ],
+    "skind": "family",
+    "start": "family:M9",
+    "v22": true,
+    "v23": true,
+    "v24": true,
+    "v24_no_unit": true
+   },
+   {
+    "i": 104,
+    "intent": "I-05",
+    "kinds": [
+     "key_family",
+     "procedure_relation",
+     "product_family"
+    ],
+    "n_fact_hits": 5,
+    "no": "Q083",
+    "place": "1홉·2쪽+",
+    "skind": "family",
+    "start": "family:M9",
+    "v22": false,
+    "v23": false,
+    "v24": false,
+    "v24_no_unit": false
+   },
+   {
+    "i": 119,
+    "intent": "I-07",
+    "n_fact_hits": 6,
+    "no": "Q097",
+    "owners": [
+     "procedure_relation"
+    ],
+    "place": "받을 곳 없음",
+    "skind": "family",
+    "start": "family:M11",
+    "v22": false,
+    "v23": false,
+    "v24": false,
+    "v24_no_unit": false
+   },
+   {
+    "i": 120,
+    "intent": "I-10",
+    "n_fact_hits": 1,
+    "no": "Q098",
+    "place": "0홉·1쪽",
+    "sections": [
+     "overview"
+    ],
+    "skind": "family",
+    "start": "family:M11",
+    "v22": true,
+    "v23": true,
+    "v24": true,
+    "v24_no_unit": true
+   },
+   {
+    "i": 122,
+    "intent": "I-09",
+    "n_fact_hits": 1,
+    "no": "Q099",
+    "place": "2홉+",
+    "skind": "concern",
+    "start": "concern:P9-2",
+    "v22": false,
+    "v23": false,
+    "v24": false,
+    "v24_no_unit": false
+   },
+   {
+    "i": 127,
+    "intent": "I-06",
+    "kinds": [
+     "key_family"
+    ],
+    "n_fact_hits": 1,
+    "no": "Q102",
+    "place": "1홉·2쪽+",
+    "skind": "family",
+    "start": "family:M8",
+    "v22": false,
+    "v23": false,
+    "v24": false,
+    "v24_no_unit": false
+   },
+   {
+    "i": 144,
+    "intent": "I-06",
+    "kinds": [
+     "key_family"
+    ],
+    "n_fact_hits": 1,
+    "no": "Q106",
+    "place": "1홉·1쪽",
+    "skind": "family",
+    "start": "family:M8",
+    "v22": false,
+    "v23": false,
+    "v24": true,
+    "v24_no_unit": true
+   },
+   {
+    "i": 148,
+    "intent": "I-07",
+    "n_fact_hits": 11,
+    "no": "Q112",
+    "owners": [
+     "procedure_relation"
+    ],
+    "place": "받을 곳 없음",
+    "skind": "family",
+    "start": "family:M8",
+    "v22": false,
+    "v23": false,
+    "v24": false,
+    "v24_no_unit": false
+   },
+   {
+    "i": 155,
+    "intent": "I-07",
+    "kinds": [
+     "concern_avoid",
+     "concern_avoid_unit",
+     "treats",
+     "treats_unit"
+    ],
+    "n_fact_hits": 1,
+    "no": "Q114",
+    "place": "1홉·1쪽",
+    "skind": "concern",
+    "start": "concern:P5-1",
+    "v22": false,
+    "v23": false,
+    "v24": true,
+    "v24_no_unit": true
+   },
+   {
+    "i": 157,
+    "intent": "I-11",
+    "kinds": [
+     "anchors_combo"
+    ],
+    "n_fact_hits": 1,
+    "no": "Q117",
+    "place": "1홉·2쪽+",
+    "skind": "concern",
+    "start": "concern:P6",
+    "v22": false,
+    "v23": false,
+    "v24": false,
+    "v24_no_unit": false
+   },
+   {
+    "i": 168,
+    "intent": "I-01",
+    "kinds": [
+     "key_family"
+    ],
+    "n_fact_hits": 1,
+    "no": "Q121",
+    "place": "1홉·1쪽",
+    "skind": "family",
+    "start": "family:M8",
+    "v22": false,
+    "v23": false,
+    "v24": true,
+    "v24_no_unit": true
+   },
+   {
+    "i": 180,
+    "intent": "I-04",
+    "kinds": [
+     "key_family",
+     "product_family"
+    ],
+    "n_fact_hits": 2,
+    "no": "Q124",
+    "place": "1홉·1쪽",
+    "skind": "family",
+    "start": "family:M8",
+    "v22": false,
+    "v23": true,
+    "v24": true,
+    "v24_no_unit": true
+   },
+   {
+    "i": 188,
+    "intent": "I-05",
+    "kinds": [
+     "treats",
+     "treats_unit"
+    ],
+    "n_fact_hits": 1,
+    "no": "Q131",
+    "place": "1홉·1쪽",
+    "skind": "concern",
+    "start": "concern:P6",
+    "v22": false,
+    "v23": true,
+    "v24": true,
+    "v24_no_unit": true
+   },
+   {
+    "i": 190,
+    "intent": "I-06",
+    "n_fact_hits": 1,
+    "no": "Q133",
+    "place": "2홉+",
+    "skind": "concern",
+    "start": "concern:P9",
+    "v22": false,
+    "v23": false,
+    "v24": false,
+    "v24_no_unit": false
+   },
+   {
+    "i": 197,
+    "intent": "I-03",
+    "kinds": [
+     "key_technique"
+    ],
+    "n_fact_hits": 2,
+    "no": "Q136",
+    "place": "1홉·2쪽+",
+    "skind": "technique",
+    "start": "technique:K04b",
+    "v22": false,
+    "v23": false,
+    "v24": false,
+    "v24_no_unit": false
+   },
+   {
+    "i": 206,
+    "intent": "I-05",
+    "kinds": [
+     "key_family"
+    ],
+    "n_fact_hits": 1,
+    "no": "Q140",
+    "place": "1홉·2쪽+",
+    "skind": "family",
+    "start": "family:M8",
+    "v22": false,
+    "v23": false,
+    "v24": false,
+    "v24_no_unit": false
+   },
+   {
+    "i": 207,
+    "intent": "I-09",
+    "kinds": [
+     "treats"
+    ],
+    "n_fact_hits": 1,
+    "no": "Q141",
+    "place": "1홉·2쪽+",
+    "skind": "concern",
+    "start": "concern:P9",
+    "v22": false,
+    "v23": false,
+    "v24": false,
+    "v24_no_unit": false
+   },
+   {
+    "i": 237,
+    "intent": "I-09",
+    "kinds": [
+     "requires_check_unit"
+    ],
+    "n_fact_hits": 5,
+    "no": "Q161",
+    "place": "1홉·1쪽",
+    "skind": "check_condition",
+    "start": "check_condition:C-PREG",
+    "v22": false,
+    "v23": true,
+    "v24": true,
+    "v24_no_unit": true
+   },
+   {
+    "i": 259,
+    "intent": "I-09",
+    "kinds": [
+     "requires_check"
+    ],
+    "n_fact_hits": 1,
+    "no": "Q169",
+    "place": "1홉·1쪽",
+    "skind": "family",
+    "start": "family:M15",
+    "v22": false,
+    "v23": true,
+    "v24": true,
+    "v24_no_unit": true
+   },
+   {
+    "i": 277,
+    "intent": "I-07",
+    "n_fact_hits": 2,
+    "no": "Q185",
+    "place": "2홉+",
+    "skind": "family",
+    "start": "family:M7",
+    "v22": false,
+    "v23": false,
+    "v24": false,
+    "v24_no_unit": false
+   },
+   {
+    "i": 278,
+    "intent": "I-07",
+    "n_fact_hits": 3,
+    "no": "Q186",
+    "owners": [
+     "procedure_relation"
+    ],
+    "place": "받을 곳 없음",
+    "skind": "family",
+    "start": "family:M7",
+    "v22": false,
+    "v23": false,
+    "v24": false,
+    "v24_no_unit": false
+   },
+   {
+    "i": 293,
+    "intent": "I-06",
+    "kinds": [
+     "treats",
+     "treats_unit"
+    ],
+    "n_fact_hits": 1,
+    "no": "Q198",
+    "place": "1홉·1쪽",
+    "skind": "concern",
+    "start": "concern:P14-3",
+    "v22": false,
+    "v23": true,
+    "v24": true,
+    "v24_no_unit": true
+   },
+   {
+    "i": 295,
+    "intent": "I-07",
+    "n_fact_hits": 1,
+    "no": "Q200",
+    "owners": [
+     "procedure_relation"
+    ],
+    "place": "받을 곳 없음",
+    "skind": "product",
+    "start": "product:auto-40-1774737181584",
+    "v22": false,
+    "v23": false,
+    "v24": false,
+    "v24_no_unit": false
+   },
+   {
+    "i": 298,
+    "intent": "I-07",
+    "n_fact_hits": 1,
+    "no": "Q201",
+    "owners": [
+     "procedure_relation"
+    ],
+    "place": "받을 곳 없음",
+    "skind": "family",
+    "start": "family:M8",
+    "v22": false,
+    "v23": false,
+    "v24": false,
+    "v24_no_unit": false
+   },
+   {
+    "i": 313,
+    "intent": "I-06",
+    "n_fact_hits": 1,
+    "no": "Q212",
+    "place": "2홉+",
+    "skind": "product",
+    "start": "product:M9-1-3",
+    "v22": false,
+    "v23": false,
+    "v24": false,
+    "v24_no_unit": false
+   },
+   {
+    "i": 320,
+    "intent": "I-05",
+    "n_fact_hits": 1,
+    "no": "Q215",
+    "owners": [
+     "scope"
+    ],
+    "place": "받을 곳 없음",
+    "skind": "unit_procedure",
+    "start": "unit_procedure:U5-018",
+    "v22": false,
+    "v23": false,
+    "v24": false,
+    "v24_no_unit": false
+   },
+   {
+    "i": 348,
+    "intent": "I-07",
+    "kinds": [
+     "key_family",
+     "procedure_relation"
+    ],
+    "n_fact_hits": 8,
+    "no": "Q233",
+    "place": "1홉·2쪽+",
+    "skind": "family",
+    "start": "family:M2",
+    "v22": false,
+    "v23": false,
+    "v24": false,
+    "v24_no_unit": false
+   },
+   {
+    "i": 358,
+    "intent": "I-04",
+    "n_fact_hits": 1,
+    "no": "Q239",
+    "place": "0홉·1쪽",
+    "sections": [
+     "safety.complications"
+    ],
+    "skind": "product",
+    "start": "product:M1-2-1",
+    "v22": true,
+    "v23": true,
+    "v24": true,
+    "v24_no_unit": true
+   }
+  ],
+  "summary": {
+   "missed_1hop_p1": [],
+   "note": "34 행 문항은 461 행(표 근거)과 겹친다 — 표본 안 · 상한 참고",
+   "place": {
+    "0홉·1쪽": 4,
+    "0홉·2쪽+": 1,
+    "1홉·1쪽": 8,
+    "1홉·2쪽+": 8,
+    "2홉+": 5,
+    "받을 곳 없음": 8,
+    "이름·속성만": 0
+   },
+   "rows": 34,
+   "shown": {
+    "v22": 4,
+    "v23": 9,
+    "v24": 12,
+    "v24_no_unit": 12
+   },
+   "shown_1hop": {
+    "v22": 0,
+    "v23": 5,
+    "v24": 8,
+    "v24_no_unit": 8
+   },
+   "zero_hop_p1": 4,
+   "zero_hop_p1_in_section2_intents": 3
+  }
+ },
+ "order_v24": {
+  "first_section_max_2": [
+   "I-02",
+   "I-03",
+   "I-04",
+   "I-05"
+  ],
+  "place_461": {
+   "0홉·1쪽": 93,
+   "0홉·2쪽+": 19,
+   "1홉·1쪽": 120,
+   "1홉·2쪽+": 94,
+   "2홉+": 75,
+   "받을 곳 없음": 33,
+   "이름·속성만": 27
+  },
+  "place_by_intent": {
+   "I-01": {
+    "0홉·1쪽": 2,
+    "0홉·2쪽+": 1,
+    "1홉·1쪽": 14,
+    "1홉·2쪽+": 19,
+    "2홉+": 12,
+    "받을 곳 없음": 2,
+    "이름·속성만": 3
+   },
+   "I-02": {
+    "0홉·1쪽": 9,
+    "0홉·2쪽+": 2,
+    "1홉·1쪽": 5,
+    "1홉·2쪽+": 6,
+    "2홉+": 2,
+    "받을 곳 없음": 0,
+    "이름·속성만": 2
+   },
+   "I-03": {
+    "0홉·1쪽": 16,
+    "0홉·2쪽+": 0,
+    "1홉·1쪽": 2,
+    "1홉·2쪽+": 10,
+    "2홉+": 2,
+    "받을 곳 없음": 0,
+    "이름·속성만": 0
+   },
+   "I-04": {
+    "0홉·1쪽": 27,
+    "0홉·2쪽+": 2,
+    "1홉·1쪽": 10,
+    "1홉·2쪽+": 10,
+    "2홉+": 1,
+    "받을 곳 없음": 0,
+    "이름·속성만": 6
+   },
+   "I-05": {
+    "0홉·1쪽": 21,
+    "0홉·2쪽+": 7,
+    "1홉·1쪽": 20,
+    "1홉·2쪽+": 16,
+    "2홉+": 4,
+    "받을 곳 없음": 5,
+    "이름·속성만": 0
+   },
+   "I-06": {
+    "0홉·1쪽": 13,
+    "0홉·2쪽+": 5,
+    "1홉·1쪽": 30,
+    "1홉·2쪽+": 11,
+    "2홉+": 27,
+    "받을 곳 없음": 2,
+    "이름·속성만": 9
+   },
+   "I-07": {
+    "0홉·1쪽": 1,
+    "0홉·2쪽+": 0,
+    "1홉·1쪽": 10,
+    "1홉·2쪽+": 3,
+    "2홉+": 13,
+    "받을 곳 없음": 22,
+    "이름·속성만": 2
+   },
+   "I-08": {
+    "0홉·1쪽": 0,
+    "0홉·2쪽+": 1,
+    "1홉·1쪽": 0,
+    "1홉·2쪽+": 0,
+    "2홉+": 0,
+    "받을 곳 없음": 2,
+    "이름·속성만": 0
+   },
+   "I-09": {
+    "0홉·1쪽": 3,
+    "0홉·2쪽+": 1,
+    "1홉·1쪽": 15,
+    "1홉·2쪽+": 15,
+    "2홉+": 9,
+    "받을 곳 없음": 0,
+    "이름·속성만": 3
+   },
+   "I-10": {
+    "0홉·1쪽": 1,
+    "0홉·2쪽+": 0,
+    "1홉·1쪽": 11,
+    "1홉·2쪽+": 2,
+    "2홉+": 4,
+    "받을 곳 없음": 0,
+    "이름·속성만": 0
+   },
+   "I-11": {
+    "0홉·1쪽": 0,
+    "0홉·2쪽+": 0,
+    "1홉·1쪽": 3,
+    "1홉·2쪽+": 2,
+    "2홉+": 1,
+    "받을 곳 없음": 0,
+    "이름·속성만": 2
+   }
+  },
+  "rule": "받는 자리 = 노드 자신의 section 줄 1쪽 · 1홉·1쪽 행(S 줄 1쪽에 없고 edge kind k 이웃 X 의 줄 1쪽에 있음)의 edge kind 셈 · n ≥ 10 이면 그 의도 · 아니면 전체 · 내림차순(동점 = 전체 셈 → 이름) · 의도 1홉·1쪽 행 90% 덮을 때까지(최소 3) · S 가 계열 · 제품이면 단위 이웃 종류 {'family': 'key_family', 'product': 'product_unit'} 를 늘 더함",
+  "table": {
+   "I-01": {
+    "counts": {
+     "has_statement": 1,
+     "key_family": 3,
+     "key_site": 3,
+     "procedure_relation": 1,
+     "requires_check_unit": 1,
+     "site_caution": 1,
+     "site_caution_unit": 3,
+     "treats": 5,
+     "treats_unit": 5
+    },
+    "covered": 13,
+    "kinds": [
+     "treats",
+     "treats_unit",
+     "key_family",
+     "key_site",
+     "site_caution_unit",
+     "procedure_relation",
+     "requires_check_unit"
+    ],
+    "n1": 14,
+    "source": "intent"
+   },
+   "I-02": {
+    "covered": 5,
+    "kinds": [
+     "treats",
+     "treats_unit",
+     "key_family",
+     "requires_check",
+     "product_family",
+     "procedure_relation",
+     "key_technique",
+     "anchors_combo",
+     "key_site"
+    ],
+    "n1": 5,
+    "source": "_all"
+   },
+   "I-03": {
+    "covered": 2,
+    "kinds": [
+     "treats",
+     "treats_unit",
+     "key_family",
+     "requires_check",
+     "product_family",
+     "procedure_relation",
+     "key_technique",
+     "anchors_combo",
+     "key_site"
+    ],
+    "n1": 2,
+    "source": "_all"
+   },
+   "I-04": {
+    "counts": {
+     "key_family": 8,
+     "key_technique": 1,
+     "procedure_relation": 2,
+     "product_family": 6
+    },
+    "covered": 9,
+    "kinds": [
+     "key_family",
+     "product_family",
+     "procedure_relation"
+    ],
+    "n1": 10,
+    "source": "intent"
+   },
+   "I-05": {
+    "counts": {
+     "anchors_combo": 1,
+     "has_statement": 1,
+     "key_family": 1,
+     "key_site": 1,
+     "key_technique": 4,
+     "product_family": 1,
+     "product_unit": 2,
+     "requires_check": 1,
+     "treats": 9,
+     "treats_unit": 7,
+     "uses_product": 2
+    },
+    "covered": 18,
+    "kinds": [
+     "treats",
+     "treats_unit",
+     "key_technique",
+     "product_unit",
+     "uses_product",
+     "key_family",
+     "requires_check",
+     "product_family"
+    ],
+    "n1": 20,
+    "source": "intent"
+   },
+   "I-06": {
+    "counts": {
+     "anchors_combo": 1,
+     "key_family": 9,
+     "key_technique": 3,
+     "procedure_relation": 7,
+     "product_family": 3,
+     "product_unit": 3,
+     "requires_check": 4,
+     "treats": 7,
+     "treats_unit": 7,
+     "uses_product": 2
+    },
+    "covered": 29,
+    "kinds": [
+     "key_family",
+     "treats",
+     "treats_unit",
+     "procedure_relation",
+     "requires_check",
+     "product_family",
+     "key_technique",
+     "product_unit"
+    ],
+    "n1": 30,
+    "source": "intent"
+   },
+   "I-07": {
+    "counts": {
+     "anchors_combo": 3,
+     "concern_avoid": 2,
+     "concern_avoid_unit": 2,
+     "key_family": 2,
+     "product_family": 1,
+     "requires_check": 3,
+     "treats": 3,
+     "treats_unit": 3
+    },
+    "covered": 9,
+    "kinds": [
+     "treats",
+     "treats_unit",
+     "requires_check",
+     "anchors_combo",
+     "key_family"
+    ],
+    "n1": 10,
+    "source": "intent"
+   },
+   "I-09": {
+    "counts": {
+     "has_complication": 1,
+     "key_family": 4,
+     "key_site": 1,
+     "procedure_pair": 1,
+     "procedure_relation": 1,
+     "product_family": 3,
+     "requires_check": 6,
+     "requires_check_unit": 3,
+     "treats": 1,
+     "treats_unit": 1
+    },
+    "covered": 14,
+    "kinds": [
+     "requires_check",
+     "key_family",
+     "product_family",
+     "requires_check_unit",
+     "treats",
+     "treats_unit",
+     "procedure_relation",
+     "key_site"
+    ],
+    "n1": 15,
+    "source": "intent"
+   },
+   "I-10": {
+    "counts": {
+     "anchors_combo": 1,
+     "key_family": 1,
+     "key_technique": 2,
+     "procedure_relation": 1,
+     "requires_check": 1,
+     "treats": 6,
+     "treats_unit": 6
+    },
+    "covered": 10,
+    "kinds": [
+     "treats",
+     "treats_unit",
+     "key_technique",
+     "key_family",
+     "requires_check"
+    ],
+    "n1": 11,
+    "source": "intent"
+   },
+   "I-11": {
+    "covered": 3,
+    "kinds": [
+     "treats",
+     "treats_unit",
+     "key_family",
+     "requires_check",
+     "product_family",
+     "procedure_relation",
+     "key_technique",
+     "anchors_combo",
+     "key_site"
+    ],
+    "n1": 3,
+    "source": "_all"
+   },
+   "_all": {
+    "counts": {
+     "anchors_combo": 8,
+     "concern_avoid": 2,
+     "concern_avoid_unit": 2,
+     "has_complication": 1,
+     "has_statement": 2,
+     "key_family": 30,
+     "key_site": 5,
+     "key_technique": 10,
+     "procedure_pair": 1,
+     "procedure_relation": 13,
+     "product_family": 15,
+     "product_unit": 5,
+     "requires_check": 17,
+     "requires_check_unit": 4,
+     "site_caution": 1,
+     "site_caution_unit": 3,
+     "treats": 33,
+     "treats_unit": 31,
+     "uses_product": 4
+    },
+    "covered": 108,
+    "kinds": [
+     "treats",
+     "treats_unit",
+     "key_family",
+     "requires_check",
+     "product_family",
+     "procedure_relation",
+     "key_technique",
+     "anchors_combo",
+     "key_site"
+    ],
+    "n1": 120
+   }
+  },
+  "unit_link": {
+   "family": "key_family",
+   "product": "product_unit"
+  },
+  "unit_link_adds_461": 0
+ },
+ "rows461": [
+  {
+   "case": "case3",
+   "intent": "I-01",
+   "place": "0홉·2쪽+",
+   "q": "Q001",
+   "src": "v4",
+   "start": "unit_procedure:U5-001"
+  },
+  {
+   "case": "case3",
+   "intent": "I-01",
+   "kinds": [
+    "requires_check_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q001",
+   "src": "v4",
+   "start": "unit_procedure:U5-001"
+  },
+  {
+   "case": "case3",
+   "intent": "I-01",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q002",
+   "src": "v4",
+   "start": "concern:auto-83-1774737181584"
+  },
+  {
+   "case": "case2",
+   "intent": "I-01",
+   "kinds": [
+    "key_site",
+    "site_caution",
+    "site_caution_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q003",
+   "src": "v4",
+   "start": "site:site.jawline"
+  },
+  {
+   "case": "case3",
+   "intent": "I-01",
+   "kinds": [
+    "key_site"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q003",
+   "src": "v4",
+   "start": "site:site.jawline"
+  },
+  {
+   "case": "case2",
+   "intent": "I-01",
+   "place": "2홉+",
+   "q": "Q004",
+   "src": "v4",
+   "start": "concern:auto-89-1774737181584"
+  },
+  {
+   "case": "case3",
+   "intent": "I-01",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q004",
+   "src": "v4",
+   "start": "concern:auto-89-1774737181584"
+  },
+  {
+   "case": "case2",
+   "intent": "I-01",
+   "place": "이름·속성만",
+   "q": "Q006",
+   "src": "v4",
+   "start": "concern:P6"
+  },
+  {
+   "case": "case3",
+   "intent": "I-01",
+   "place": "2홉+",
+   "q": "Q006",
+   "src": "v4",
+   "start": "concern:P6"
+  },
+  {
+   "case": "case2",
+   "intent": "I-01",
+   "kinds": [
+    "treats"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q007",
+   "src": "v4",
+   "start": "concern:J10"
+  },
+  {
+   "case": "case3",
+   "intent": "I-01",
+   "kinds": [
+    "treats"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q007",
+   "src": "v4",
+   "start": "concern:J10"
+  },
+  {
+   "case": "case3",
+   "intent": "I-09",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q008",
+   "src": "v4",
+   "start": "concern:P5-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-02",
+   "place": "0홉·1쪽",
+   "q": "Q009",
+   "src": "v4",
+   "start": "product:auto-40-1774737181584"
+  },
+  {
+   "case": "case3",
+   "intent": "I-02",
+   "place": "0홉·1쪽",
+   "q": "Q010",
+   "src": "v4",
+   "start": "family:M7"
+  },
+  {
+   "case": "case3",
+   "intent": "I-02",
+   "place": "0홉·1쪽",
+   "q": "Q010",
+   "src": "v4",
+   "start": "family:M7"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "place": "0홉·1쪽",
+   "q": "Q014",
+   "src": "v4",
+   "start": "family:M7"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "place": "0홉·1쪽",
+   "q": "Q015",
+   "src": "v4",
+   "start": "product:M9-1-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "0홉·1쪽",
+   "q": "Q015",
+   "src": "v4",
+   "start": "product:M9-1-1"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "place": "0홉·1쪽",
+   "q": "Q016",
+   "src": "v4",
+   "start": "product:M3-1-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "2홉+",
+   "q": "Q016",
+   "src": "v4",
+   "start": "product:M3-1-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-07",
+   "place": "받을 곳 없음",
+   "q": "Q019",
+   "src": "v4",
+   "start": "unit_procedure:U5-028"
+  },
+  {
+   "case": "case3",
+   "intent": "I-08",
+   "place": "받을 곳 없음",
+   "q": "Q020",
+   "src": "v4",
+   "start": "product:auto-40-1774737181584"
+  },
+  {
+   "case": "case3",
+   "intent": "I-11",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q026",
+   "src": "v4",
+   "start": "concern:P5"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "place": "0홉·2쪽+",
+   "q": "Q027",
+   "src": "v4",
+   "start": "unit_procedure:U5-001"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "place": "0홉·2쪽+",
+   "q": "Q027",
+   "src": "v4",
+   "start": "unit_procedure:U5-001"
+  },
+  {
+   "case": "case3",
+   "intent": "I-09",
+   "place": "2홉+",
+   "q": "Q028",
+   "src": "v4",
+   "start": "concern:P2-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "place": "0홉·1쪽",
+   "q": "Q031",
+   "src": "v4",
+   "start": "product:M1-2-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "place": "2홉+",
+   "q": "Q031",
+   "src": "v4",
+   "start": "product:M1-2-1"
+  },
+  {
+   "case": "case2",
+   "intent": "I-04",
+   "place": "0홉·2쪽+",
+   "q": "Q036",
+   "src": "v4",
+   "start": "product:M1-2-1"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "place": "2홉+",
+   "q": "Q039",
+   "src": "v4",
+   "start": "product:M1-2-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "2홉+",
+   "q": "Q039",
+   "src": "v4",
+   "start": "product:M1-2-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-02",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q046",
+   "src": "v4",
+   "start": "family:M2"
+  },
+  {
+   "case": "case2",
+   "intent": "I-04",
+   "place": "0홉·1쪽",
+   "q": "Q050",
+   "src": "v4",
+   "start": "family:M2"
+  },
+  {
+   "case": "case3",
+   "intent": "I-04",
+   "place": "0홉·1쪽",
+   "q": "Q050",
+   "src": "v4",
+   "start": "family:M2"
+  },
+  {
+   "case": "case3",
+   "intent": "I-04",
+   "place": "2홉+",
+   "q": "Q050",
+   "src": "v4",
+   "start": "family:M2"
+  },
+  {
+   "case": "case3",
+   "intent": "I-04",
+   "place": "0홉·1쪽",
+   "q": "Q055",
+   "src": "v4",
+   "start": "family:M2"
+  },
+  {
+   "case": "case3",
+   "intent": "I-04",
+   "place": "0홉·1쪽",
+   "q": "Q055",
+   "src": "v4",
+   "start": "family:M2"
+  },
+  {
+   "case": "case3",
+   "intent": "I-07",
+   "place": "받을 곳 없음",
+   "q": "Q056",
+   "src": "v4",
+   "start": "family:M2"
+  },
+  {
+   "case": "case3",
+   "intent": "I-07",
+   "place": "받을 곳 없음",
+   "q": "Q056",
+   "src": "v4",
+   "start": "family:M2"
+  },
+  {
+   "case": "case3",
+   "intent": "I-07",
+   "place": "받을 곳 없음",
+   "q": "Q056",
+   "src": "v4",
+   "start": "family:M2"
+  },
+  {
+   "case": "case2",
+   "intent": "I-04",
+   "place": "0홉·1쪽",
+   "q": "Q058",
+   "src": "v4",
+   "start": "product:M4-1-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "place": "0홉·1쪽",
+   "q": "Q060",
+   "src": "v4",
+   "start": "family:M4"
+  },
+  {
+   "case": "case3",
+   "intent": "I-07",
+   "place": "2홉+",
+   "q": "Q064",
+   "src": "v4",
+   "start": "family:M4"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "kinds": [
+    "product_family"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q067",
+   "src": "v4",
+   "start": "product:M3-4-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "2홉+",
+   "q": "Q067",
+   "src": "v4",
+   "start": "product:M3-4-1"
+  },
+  {
+   "case": "case2",
+   "intent": "I-04",
+   "place": "0홉·1쪽",
+   "q": "Q068",
+   "src": "v4",
+   "start": "family:M4"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "2홉+",
+   "q": "Q069",
+   "src": "v4",
+   "start": "family:M5"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "0홉·1쪽",
+   "q": "Q069",
+   "src": "v4",
+   "start": "family:M5"
+  },
+  {
+   "case": "case2",
+   "intent": "I-09",
+   "kinds": [
+    "procedure_relation",
+    "requires_check"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q070",
+   "src": "v4",
+   "start": "family:M4"
+  },
+  {
+   "case": "case3",
+   "intent": "I-09",
+   "kinds": [
+    "procedure_relation"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q070",
+   "src": "v4",
+   "start": "family:M4"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "place": "2홉+",
+   "q": "Q072",
+   "src": "v4",
+   "start": "product:M9-1-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "kinds": [
+    "product_unit",
+    "uses_product"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q072",
+   "src": "v4",
+   "start": "product:M9-1-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "2홉+",
+   "q": "Q072",
+   "src": "v4",
+   "start": "product:M9-1-1"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "place": "0홉·1쪽",
+   "q": "Q073",
+   "src": "v4",
+   "start": "product:M9-1-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "2홉+",
+   "q": "Q073",
+   "src": "v4",
+   "start": "product:M9-1-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "0홉·1쪽",
+   "q": "Q073",
+   "src": "v4",
+   "start": "product:M9-1-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-09",
+   "place": "0홉·2쪽+",
+   "q": "Q074",
+   "src": "v4",
+   "start": "family:M9"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "place": "0홉·1쪽",
+   "q": "Q075",
+   "src": "v4",
+   "start": "family:M9"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "kinds": [
+    "requires_check"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q075",
+   "src": "v4",
+   "start": "family:M9"
+  },
+  {
+   "case": "case3",
+   "intent": "I-02",
+   "place": "0홉·1쪽",
+   "q": "Q078",
+   "src": "v4",
+   "start": "family:M9"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "이름·속성만",
+   "q": "Q081",
+   "src": "v4",
+   "start": "family:M9"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "kinds": [
+    "key_family",
+    "procedure_relation",
+    "product_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q083",
+   "src": "v4",
+   "start": "family:M9"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "kinds": [
+    "key_family",
+    "procedure_relation",
+    "product_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q083",
+   "src": "v4",
+   "start": "family:M9"
+  },
+  {
+   "case": "case3",
+   "intent": "I-01",
+   "kinds": [
+    "key_site"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q086",
+   "src": "v4",
+   "start": "site:site.jawline"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "kinds": [
+    "treats"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q088",
+   "src": "v4",
+   "start": "concern:P7"
+  },
+  {
+   "case": "case3",
+   "intent": "I-01",
+   "place": "2홉+",
+   "q": "Q089",
+   "src": "v4",
+   "start": "concern:P9-1"
+  },
+  {
+   "case": "case2",
+   "intent": "I-03",
+   "place": "0홉·1쪽",
+   "q": "Q094",
+   "src": "v4",
+   "start": "family:M11"
+  },
+  {
+   "case": "case2",
+   "intent": "I-03",
+   "kinds": [
+    "key_family",
+    "product_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q095",
+   "src": "v4",
+   "start": "family:M11"
+  },
+  {
+   "case": "case3",
+   "intent": "I-03",
+   "kinds": [
+    "key_family",
+    "product_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q095",
+   "src": "v4",
+   "start": "family:M11"
+  },
+  {
+   "case": "case2",
+   "intent": "I-07",
+   "place": "받을 곳 없음",
+   "q": "Q097",
+   "src": "v4",
+   "start": "family:M11"
+  },
+  {
+   "case": "case3",
+   "intent": "I-07",
+   "place": "받을 곳 없음",
+   "q": "Q097",
+   "src": "v4",
+   "start": "family:M11"
+  },
+  {
+   "case": "case3",
+   "intent": "I-10",
+   "place": "0홉·1쪽",
+   "q": "Q098",
+   "src": "v4",
+   "start": "family:M11"
+  },
+  {
+   "case": "case3",
+   "intent": "I-10",
+   "kinds": [
+    "requires_check"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q098",
+   "src": "v4",
+   "start": "family:M11"
+  },
+  {
+   "case": "case3",
+   "intent": "I-09",
+   "place": "2홉+",
+   "q": "Q099",
+   "src": "v4",
+   "start": "concern:P9-2"
+  },
+  {
+   "case": "case2",
+   "intent": "I-11",
+   "place": "이름·속성만",
+   "q": "Q101",
+   "src": "v4",
+   "start": "family:M12"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q102",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q102",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q102",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q102",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-05",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q103",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-05",
+   "kinds": [
+    "procedure_relation"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q103",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "place": "0홉·2쪽+",
+   "q": "Q103",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "kinds": [
+    "has_statement"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q103",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-10",
+   "kinds": [
+    "key_technique"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q104",
+   "src": "v4",
+   "start": "technique:K04a"
+  },
+  {
+   "case": "case3",
+   "intent": "I-10",
+   "kinds": [
+    "key_technique"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q104",
+   "src": "v4",
+   "start": "technique:K04a"
+  },
+  {
+   "case": "case2",
+   "intent": "I-04",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q105",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-04",
+   "place": "0홉·1쪽",
+   "q": "Q105",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "kinds": [
+    "requires_check"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q106",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q106",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "0홉·1쪽",
+   "q": "Q106",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-09",
+   "kinds": [
+    "product_family"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q108",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-07",
+   "place": "2홉+",
+   "q": "Q112",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-07",
+   "place": "받을 곳 없음",
+   "q": "Q112",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "kinds": [
+    "key_technique"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q113",
+   "src": "v4",
+   "start": "technique:K04a"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "kinds": [
+    "key_technique"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q113",
+   "src": "v4",
+   "start": "technique:K04a"
+  },
+  {
+   "case": "case2",
+   "intent": "I-07",
+   "kinds": [
+    "concern_avoid",
+    "concern_avoid_unit",
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q114",
+   "src": "v4",
+   "start": "concern:P5-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-07",
+   "kinds": [
+    "concern_avoid",
+    "concern_avoid_unit",
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q114",
+   "src": "v4",
+   "start": "concern:P5-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-11",
+   "kinds": [
+    "anchors_combo"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q117",
+   "src": "v4",
+   "start": "concern:P6"
+  },
+  {
+   "case": "case3",
+   "intent": "I-11",
+   "place": "2홉+",
+   "q": "Q117",
+   "src": "v4",
+   "start": "concern:P6"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "place": "이름·속성만",
+   "q": "Q118",
+   "src": "v4",
+   "start": "concern:P6"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "2홉+",
+   "q": "Q118",
+   "src": "v4",
+   "start": "concern:P6"
+  },
+  {
+   "case": "case3",
+   "intent": "I-09",
+   "place": "2홉+",
+   "q": "Q120",
+   "src": "v4",
+   "start": "concern:P6"
+  },
+  {
+   "case": "case2",
+   "intent": "I-01",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q121",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-01",
+   "place": "이름·속성만",
+   "q": "Q121",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-01",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q121",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "place": "이름·속성만",
+   "q": "Q122",
+   "src": "v4",
+   "start": "concern:P6"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "이름·속성만",
+   "q": "Q122",
+   "src": "v4",
+   "start": "concern:P6"
+  },
+  {
+   "case": "case2",
+   "intent": "I-07",
+   "place": "이름·속성만",
+   "q": "Q123",
+   "src": "v4",
+   "start": "concern:P8-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-07",
+   "place": "이름·속성만",
+   "q": "Q123",
+   "src": "v4",
+   "start": "concern:P8-1"
+  },
+  {
+   "case": "case2",
+   "intent": "I-04",
+   "kinds": [
+    "key_family",
+    "product_family"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q124",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-04",
+   "kinds": [
+    "key_family",
+    "product_family"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q124",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-10",
+   "place": "2홉+",
+   "q": "Q127",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-10",
+   "place": "2홉+",
+   "q": "Q127",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-03",
+   "place": "0홉·1쪽",
+   "q": "Q129",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-05",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q131",
+   "src": "v4",
+   "start": "concern:P6"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q131",
+   "src": "v4",
+   "start": "concern:P6"
+  },
+  {
+   "case": "case2",
+   "intent": "I-02",
+   "place": "2홉+",
+   "q": "Q132",
+   "src": "v4",
+   "start": "concern:P9"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "2홉+",
+   "q": "Q133",
+   "src": "v4",
+   "start": "concern:P9"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "kinds": [
+    "treats"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q133",
+   "src": "v4",
+   "start": "concern:P9"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "place": "0홉·1쪽",
+   "q": "Q134",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-05",
+   "kinds": [
+    "key_technique"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q135",
+   "src": "v4",
+   "start": "technique:K04b"
+  },
+  {
+   "case": "case2",
+   "intent": "I-03",
+   "kinds": [
+    "key_technique"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q136",
+   "src": "v4",
+   "start": "technique:K04b"
+  },
+  {
+   "case": "case3",
+   "intent": "I-03",
+   "kinds": [
+    "key_technique"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q136",
+   "src": "v4",
+   "start": "technique:K04b"
+  },
+  {
+   "case": "case3",
+   "intent": "I-03",
+   "kinds": [
+    "key_technique"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q136",
+   "src": "v4",
+   "start": "technique:K04b"
+  },
+  {
+   "case": "case3",
+   "intent": "I-10",
+   "place": "2홉+",
+   "q": "Q137",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-09",
+   "place": "2홉+",
+   "q": "Q138",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-07",
+   "place": "2홉+",
+   "q": "Q139",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q140",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-09",
+   "kinds": [
+    "treats"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q141",
+   "src": "v4",
+   "start": "concern:P9"
+  },
+  {
+   "case": "case3",
+   "intent": "I-09",
+   "kinds": [
+    "treats"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q141",
+   "src": "v4",
+   "start": "concern:P9"
+  },
+  {
+   "case": "case2",
+   "intent": "I-01",
+   "place": "2홉+",
+   "q": "Q142",
+   "src": "v4",
+   "start": "concern:P7"
+  },
+  {
+   "case": "case3",
+   "intent": "I-01",
+   "kinds": [
+    "treats"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q142",
+   "src": "v4",
+   "start": "concern:P7"
+  },
+  {
+   "case": "case2",
+   "intent": "I-02",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q145",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-04",
+   "kinds": [
+    "key_technique"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q146",
+   "src": "v4",
+   "start": "technique:K04b"
+  },
+  {
+   "case": "case2",
+   "intent": "I-10",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q147",
+   "src": "v4",
+   "start": "concern:P10"
+  },
+  {
+   "case": "case3",
+   "intent": "I-10",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q147",
+   "src": "v4",
+   "start": "concern:P10"
+  },
+  {
+   "case": "case2",
+   "intent": "I-05",
+   "kinds": [
+    "product_family"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q148",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q148",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-09",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q149",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-09",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q150",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-09",
+   "kinds": [
+    "key_family",
+    "product_family"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q150",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-09",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q150",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-07",
+   "place": "2홉+",
+   "q": "Q153",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-07",
+   "kinds": [
+    "anchors_combo",
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q156",
+   "src": "v4",
+   "start": "concern:P10"
+  },
+  {
+   "case": "case3",
+   "intent": "I-07",
+   "kinds": [
+    "anchors_combo"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q156",
+   "src": "v4",
+   "start": "concern:P10"
+  },
+  {
+   "case": "case3",
+   "intent": "I-07",
+   "kinds": [
+    "anchors_combo"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q156",
+   "src": "v4",
+   "start": "concern:P10"
+  },
+  {
+   "case": "case3",
+   "intent": "I-04",
+   "kinds": [
+    "key_family",
+    "procedure_relation",
+    "product_family"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q158",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-10",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q159",
+   "src": "v4",
+   "start": "concern:P10"
+  },
+  {
+   "case": "case2",
+   "intent": "I-04",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q160",
+   "src": "v4",
+   "start": "concern:P10"
+  },
+  {
+   "case": "case3",
+   "intent": "I-04",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q160",
+   "src": "v4",
+   "start": "concern:P10"
+  },
+  {
+   "case": "case3",
+   "intent": "I-09",
+   "kinds": [
+    "requires_check_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q161",
+   "src": "v4",
+   "start": "check_condition:C-PREG"
+  },
+  {
+   "case": "case3",
+   "intent": "I-09",
+   "place": "이름·속성만",
+   "q": "Q161",
+   "src": "v4",
+   "start": "check_condition:C-PREG"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "kinds": [
+    "key_technique"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q162",
+   "src": "v4",
+   "start": "technique:K04b"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "kinds": [
+    "key_technique"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q162",
+   "src": "v4",
+   "start": "technique:K04b"
+  },
+  {
+   "case": "case2",
+   "intent": "I-04",
+   "place": "0홉·2쪽+",
+   "q": "Q163",
+   "src": "v4",
+   "start": "family:M15"
+  },
+  {
+   "case": "case3",
+   "intent": "I-04",
+   "place": "0홉·1쪽",
+   "q": "Q163",
+   "src": "v4",
+   "start": "family:M15"
+  },
+  {
+   "case": "case3",
+   "intent": "I-03",
+   "place": "2홉+",
+   "q": "Q164",
+   "src": "v4",
+   "start": "family:M2"
+  },
+  {
+   "case": "case2",
+   "intent": "I-05",
+   "place": "0홉·1쪽",
+   "q": "Q165",
+   "src": "v4",
+   "start": "family:M15"
+  },
+  {
+   "case": "case2",
+   "intent": "I-05",
+   "place": "0홉·1쪽",
+   "q": "Q165",
+   "src": "v4",
+   "start": "family:M15"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "place": "0홉·1쪽",
+   "q": "Q165",
+   "src": "v4",
+   "start": "family:M15"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "place": "0홉·2쪽+",
+   "q": "Q165",
+   "src": "v4",
+   "start": "family:M15"
+  },
+  {
+   "case": "case3",
+   "intent": "I-03",
+   "place": "0홉·1쪽",
+   "q": "Q166",
+   "src": "v4",
+   "start": "family:M15"
+  },
+  {
+   "case": "case3",
+   "intent": "I-03",
+   "place": "0홉·1쪽",
+   "q": "Q166",
+   "src": "v4",
+   "start": "family:M15"
+  },
+  {
+   "case": "case2",
+   "intent": "I-03",
+   "place": "0홉·1쪽",
+   "q": "Q167",
+   "src": "v4",
+   "start": "family:M15"
+  },
+  {
+   "case": "case3",
+   "intent": "I-09",
+   "kinds": [
+    "requires_check"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q169",
+   "src": "v4",
+   "start": "family:M15"
+  },
+  {
+   "case": "case3",
+   "intent": "I-09",
+   "kinds": [
+    "key_family",
+    "requires_check"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q169",
+   "src": "v4",
+   "start": "family:M15"
+  },
+  {
+   "case": "case2",
+   "intent": "I-04",
+   "place": "0홉·1쪽",
+   "q": "Q170",
+   "src": "v4",
+   "start": "family:M15"
+  },
+  {
+   "case": "case2",
+   "intent": "I-04",
+   "place": "0홉·1쪽",
+   "q": "Q170",
+   "src": "v4",
+   "start": "family:M15"
+  },
+  {
+   "case": "case2",
+   "intent": "I-07",
+   "place": "0홉·1쪽",
+   "q": "Q172",
+   "src": "v4",
+   "start": "family:M15"
+  },
+  {
+   "case": "case2",
+   "intent": "I-05",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q175",
+   "src": "v4",
+   "start": "concern:P9"
+  },
+  {
+   "case": "case3",
+   "intent": "I-04",
+   "place": "0홉·1쪽",
+   "q": "Q176",
+   "src": "v4",
+   "start": "family:M15"
+  },
+  {
+   "case": "case3",
+   "intent": "I-04",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q176",
+   "src": "v4",
+   "start": "family:M15"
+  },
+  {
+   "case": "case2",
+   "intent": "I-01",
+   "kinds": [
+    "procedure_relation"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q178",
+   "src": "v4",
+   "start": "family:M7"
+  },
+  {
+   "case": "case3",
+   "intent": "I-01",
+   "place": "0홉·1쪽",
+   "q": "Q178",
+   "src": "v4",
+   "start": "family:M7"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "place": "0홉·1쪽",
+   "q": "Q184",
+   "src": "v4",
+   "start": "family:M7"
+  },
+  {
+   "case": "case2",
+   "intent": "I-07",
+   "kinds": [
+    "key_family",
+    "procedure_relation",
+    "product_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q185",
+   "src": "v4",
+   "start": "family:M7"
+  },
+  {
+   "case": "case3",
+   "intent": "I-07",
+   "place": "2홉+",
+   "q": "Q185",
+   "src": "v4",
+   "start": "family:M7"
+  },
+  {
+   "case": "case3",
+   "intent": "I-07",
+   "place": "받을 곳 없음",
+   "q": "Q186",
+   "src": "v4",
+   "start": "family:M7"
+  },
+  {
+   "case": "case3",
+   "intent": "I-01",
+   "place": "2홉+",
+   "q": "Q187",
+   "src": "v4",
+   "start": "concern:P3-1"
+  },
+  {
+   "case": "case2",
+   "intent": "I-04",
+   "place": "이름·속성만",
+   "q": "Q189",
+   "src": "v4",
+   "start": "family:M7"
+  },
+  {
+   "case": "case3",
+   "intent": "I-04",
+   "place": "이름·속성만",
+   "q": "Q189",
+   "src": "v4",
+   "start": "family:M7"
+  },
+  {
+   "case": "case3",
+   "intent": "I-04",
+   "place": "0홉·1쪽",
+   "q": "Q190",
+   "src": "v4",
+   "start": "family:M7"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q191",
+   "src": "v4",
+   "start": "purpose:PU-01"
+  },
+  {
+   "case": "case2",
+   "intent": "I-01",
+   "place": "이름·속성만",
+   "q": "Q192",
+   "src": "v4",
+   "start": "concern:P12"
+  },
+  {
+   "case": "case2",
+   "intent": "I-01",
+   "kinds": [
+    "anchors_combo"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q192",
+   "src": "v4",
+   "start": "concern:P12"
+  },
+  {
+   "case": "case3",
+   "intent": "I-01",
+   "kinds": [
+    "anchors_combo"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q192",
+   "src": "v4",
+   "start": "concern:P12"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q193",
+   "src": "v4",
+   "start": "concern:P12-4"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "kinds": [
+    "key_technique"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q194",
+   "src": "v4",
+   "start": "technique:K08"
+  },
+  {
+   "case": "case3",
+   "intent": "I-09",
+   "kinds": [
+    "key_site"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q197",
+   "src": "v4",
+   "start": "site:site.abdomen"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "place": "2홉+",
+   "q": "Q198",
+   "src": "v4",
+   "start": "concern:P14-3"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q198",
+   "src": "v4",
+   "start": "concern:P14-3"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q198",
+   "src": "v4",
+   "start": "concern:P14-3"
+  },
+  {
+   "case": "case3",
+   "intent": "I-07",
+   "place": "받을 곳 없음",
+   "q": "Q200",
+   "src": "v4",
+   "start": "product:auto-40-1774737181584"
+  },
+  {
+   "case": "case2",
+   "intent": "I-07",
+   "place": "받을 곳 없음",
+   "q": "Q201",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-07",
+   "place": "받을 곳 없음",
+   "q": "Q201",
+   "src": "v4",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-09",
+   "place": "이름·속성만",
+   "q": "Q202",
+   "src": "v4",
+   "start": "check_condition:C-ISO"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "place": "0홉·1쪽",
+   "q": "Q209",
+   "src": "v4",
+   "start": "product:M4-1-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "0홉·1쪽",
+   "q": "Q209",
+   "src": "v4",
+   "start": "product:M4-1-1"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "place": "2홉+",
+   "q": "Q212",
+   "src": "v4",
+   "start": "product:M9-1-3"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "2홉+",
+   "q": "Q212",
+   "src": "v4",
+   "start": "product:M9-1-3"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "0홉·2쪽+",
+   "q": "Q212",
+   "src": "v4",
+   "start": "product:M9-1-3"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "place": "2홉+",
+   "q": "Q214",
+   "src": "v4",
+   "start": "product:M15-4-1"
+  },
+  {
+   "case": "case2",
+   "intent": "I-05",
+   "place": "받을 곳 없음",
+   "q": "Q215",
+   "src": "v4",
+   "start": "unit_procedure:U5-018"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "place": "받을 곳 없음",
+   "q": "Q215",
+   "src": "v4",
+   "start": "unit_procedure:U5-018"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "place": "0홉·1쪽",
+   "q": "Q216",
+   "src": "v4",
+   "start": "family:M4"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "kinds": [
+    "product_unit",
+    "uses_product"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q219",
+   "src": "v4",
+   "start": "product:M3-4-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "kinds": [
+    "product_unit",
+    "uses_product"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q219",
+   "src": "v4",
+   "start": "product:M3-4-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-02",
+   "place": "0홉·1쪽",
+   "q": "Q222",
+   "src": "v4",
+   "start": "product:M9-2-5"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "place": "0홉·1쪽",
+   "q": "Q224",
+   "src": "v4",
+   "start": "product:M3-4-1"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "place": "이름·속성만",
+   "q": "Q226",
+   "src": "v4",
+   "start": "concern:P10"
+  },
+  {
+   "case": "case3",
+   "intent": "I-01",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q227",
+   "src": "v4",
+   "start": "concern:P10"
+  },
+  {
+   "case": "case2",
+   "intent": "I-04",
+   "place": "이름·속성만",
+   "q": "Q228",
+   "src": "v4",
+   "start": "concern:P10"
+  },
+  {
+   "case": "case3",
+   "intent": "I-04",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q228",
+   "src": "v4",
+   "start": "concern:P10"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "kinds": [
+    "key_site"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q230",
+   "src": "v4",
+   "start": "site:site.axilla"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q231",
+   "src": "v4",
+   "start": "concern:P14-3"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "kinds": [
+    "key_site"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q232",
+   "src": "v4",
+   "start": "site:site.axilla"
+  },
+  {
+   "case": "case3",
+   "intent": "I-07",
+   "kinds": [
+    "key_family",
+    "procedure_relation"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q233",
+   "src": "v4",
+   "start": "family:M2"
+  },
+  {
+   "case": "case2",
+   "intent": "I-05",
+   "kinds": [
+    "anchors_combo",
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q234",
+   "src": "v4",
+   "start": "concern:P10"
+  },
+  {
+   "case": "case3",
+   "intent": "I-04",
+   "place": "0홉·1쪽",
+   "q": "Q235",
+   "src": "v4",
+   "start": "family:M9"
+  },
+  {
+   "case": "case3",
+   "intent": "I-04",
+   "place": "0홉·1쪽",
+   "q": "Q235",
+   "src": "v4",
+   "start": "family:M9"
+  },
+  {
+   "case": "case3",
+   "intent": "I-02",
+   "kinds": [
+    "concern_site"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q237",
+   "src": "v4",
+   "start": "concern:auto-83-1774737181584"
+  },
+  {
+   "case": "case3",
+   "intent": "I-02",
+   "kinds": [
+    "concern_site"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q237",
+   "src": "v4",
+   "start": "concern:auto-83-1774737181584"
+  },
+  {
+   "case": "case3",
+   "intent": "I-04",
+   "place": "0홉·1쪽",
+   "q": "Q239",
+   "src": "v4",
+   "start": "product:M1-2-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-04",
+   "kinds": [
+    "product_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q239",
+   "src": "v4",
+   "start": "product:M1-2-1"
+  },
+  {
+   "case": "case2",
+   "intent": "I-01",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q002",
+   "src": "v3",
+   "start": "concern:auto-83-1774737181584"
+  },
+  {
+   "case": "case3",
+   "intent": "I-01",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q002",
+   "src": "v3",
+   "start": "concern:auto-83-1774737181584"
+  },
+  {
+   "case": "case1",
+   "intent": "I-01",
+   "kinds": [
+    "key_site",
+    "site_caution",
+    "site_caution_unit"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q003",
+   "src": "v3",
+   "start": "site:site.jawline"
+  },
+  {
+   "case": "case2",
+   "intent": "I-01",
+   "kinds": [
+    "key_site",
+    "site_caution_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q003",
+   "src": "v3",
+   "start": "site:site.jawline"
+  },
+  {
+   "case": "case3",
+   "intent": "I-01",
+   "kinds": [
+    "key_site",
+    "site_caution_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q003",
+   "src": "v3",
+   "start": "site:site.jawline"
+  },
+  {
+   "case": "case1",
+   "intent": "I-01",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q004",
+   "src": "v3",
+   "start": "concern:auto-89-1774737181584"
+  },
+  {
+   "case": "case2",
+   "intent": "I-01",
+   "place": "받을 곳 없음",
+   "q": "Q004",
+   "src": "v3",
+   "start": "concern:auto-89-1774737181584"
+  },
+  {
+   "case": "case1",
+   "intent": "I-01",
+   "place": "받을 곳 없음",
+   "q": "Q006",
+   "src": "v3",
+   "start": "concern:P6"
+  },
+  {
+   "case": "case2",
+   "intent": "I-01",
+   "place": "2홉+",
+   "q": "Q006",
+   "src": "v3",
+   "start": "concern:P6"
+  },
+  {
+   "case": "case3",
+   "intent": "I-01",
+   "place": "2홉+",
+   "q": "Q006",
+   "src": "v3",
+   "start": "concern:P6"
+  },
+  {
+   "case": "case2",
+   "intent": "I-01",
+   "kinds": [
+    "treats"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q007",
+   "src": "v3",
+   "start": "concern:J10"
+  },
+  {
+   "case": "case3",
+   "intent": "I-01",
+   "kinds": [
+    "treats"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q007",
+   "src": "v3",
+   "start": "concern:J10"
+  },
+  {
+   "case": "case2",
+   "intent": "I-09",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q008",
+   "src": "v3",
+   "start": "concern:P5-1"
+  },
+  {
+   "case": "case2",
+   "intent": "I-09",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q008",
+   "src": "v3",
+   "start": "concern:P5-1"
+  },
+  {
+   "case": "case1",
+   "intent": "I-02",
+   "place": "0홉·2쪽+",
+   "q": "Q009",
+   "src": "v3",
+   "start": "product:auto-40-1774737181584"
+  },
+  {
+   "case": "case2",
+   "intent": "I-02",
+   "place": "0홉·1쪽",
+   "q": "Q010",
+   "src": "v3",
+   "start": "family:M7"
+  },
+  {
+   "case": "case3",
+   "intent": "I-02",
+   "place": "0홉·1쪽",
+   "q": "Q010",
+   "src": "v3",
+   "start": "family:M7"
+  },
+  {
+   "case": "case1",
+   "intent": "I-03",
+   "place": "0홉·1쪽",
+   "q": "Q011",
+   "src": "v3",
+   "start": "product:auto-40-1774737181584"
+  },
+  {
+   "case": "case2",
+   "intent": "I-05",
+   "place": "0홉·1쪽",
+   "q": "Q014",
+   "src": "v3",
+   "start": "family:M7"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "place": "0홉·1쪽",
+   "q": "Q014",
+   "src": "v3",
+   "start": "family:M7"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "place": "2홉+",
+   "q": "Q015",
+   "src": "v3",
+   "start": "product:M9-1-1"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "place": "2홉+",
+   "q": "Q015",
+   "src": "v3",
+   "start": "product:M9-1-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "2홉+",
+   "q": "Q015",
+   "src": "v3",
+   "start": "product:M9-1-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "0홉·2쪽+",
+   "q": "Q015",
+   "src": "v3",
+   "start": "product:M9-1-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "0홉·1쪽",
+   "q": "Q015",
+   "src": "v3",
+   "start": "product:M9-1-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "2홉+",
+   "q": "Q016",
+   "src": "v3",
+   "start": "product:M3-1-1"
+  },
+  {
+   "case": "case2",
+   "intent": "I-07",
+   "place": "받을 곳 없음",
+   "q": "Q017",
+   "src": "v3",
+   "start": "product:auto-40-1774737181584"
+  },
+  {
+   "case": "case3",
+   "intent": "I-07",
+   "place": "2홉+",
+   "q": "Q017",
+   "src": "v3",
+   "start": "product:auto-40-1774737181584"
+  },
+  {
+   "case": "case1",
+   "intent": "I-07",
+   "place": "받을 곳 없음",
+   "q": "Q019",
+   "src": "v3",
+   "start": "unit_procedure:U5-028"
+  },
+  {
+   "case": "case3",
+   "intent": "I-08",
+   "place": "0홉·2쪽+",
+   "q": "Q020",
+   "src": "v3",
+   "start": "product:auto-40-1774737181584"
+  },
+  {
+   "case": "case2",
+   "intent": "I-09",
+   "place": "이름·속성만",
+   "q": "Q021",
+   "src": "v3",
+   "start": "check_condition:C-ISO"
+  },
+  {
+   "case": "case2",
+   "intent": "I-11",
+   "kinds": [
+    "anchors_combo"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q026",
+   "src": "v3",
+   "start": "concern:P5"
+  },
+  {
+   "case": "case3",
+   "intent": "I-11",
+   "kinds": [
+    "anchors_combo"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q026",
+   "src": "v3",
+   "start": "concern:P5"
+  },
+  {
+   "case": "case2",
+   "intent": "I-05",
+   "place": "0홉·2쪽+",
+   "q": "Q027",
+   "src": "v3",
+   "start": "unit_procedure:U5-001"
+  },
+  {
+   "case": "case3",
+   "intent": "I-09",
+   "place": "2홉+",
+   "q": "Q028",
+   "src": "v3",
+   "start": "concern:P2-1"
+  },
+  {
+   "case": "case2",
+   "intent": "I-05",
+   "place": "0홉·1쪽",
+   "q": "Q031",
+   "src": "v3",
+   "start": "product:M1-2-1"
+  },
+  {
+   "case": "case2",
+   "intent": "I-05",
+   "place": "0홉·1쪽",
+   "q": "Q031",
+   "src": "v3",
+   "start": "product:M1-2-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-04",
+   "place": "0홉·1쪽",
+   "q": "Q036",
+   "src": "v3",
+   "start": "product:M1-2-1"
+  },
+  {
+   "case": "case1",
+   "intent": "I-06",
+   "kinds": [
+    "product_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q039",
+   "src": "v3",
+   "start": "product:M1-2-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "2홉+",
+   "q": "Q039",
+   "src": "v3",
+   "start": "product:M1-2-1"
+  },
+  {
+   "case": "case1",
+   "intent": "I-02",
+   "place": "0홉·1쪽",
+   "q": "Q046",
+   "src": "v3",
+   "start": "family:M2"
+  },
+  {
+   "case": "case3",
+   "intent": "I-03",
+   "kinds": [
+    "product_family"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q048",
+   "src": "v3",
+   "start": "family:M2"
+  },
+  {
+   "case": "case2",
+   "intent": "I-04",
+   "place": "0홉·1쪽",
+   "q": "Q050",
+   "src": "v3",
+   "start": "family:M2"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "kinds": [
+    "procedure_relation"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q054",
+   "src": "v3",
+   "start": "family:M2"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "kinds": [
+    "procedure_relation"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q054",
+   "src": "v3",
+   "start": "family:M2"
+  },
+  {
+   "case": "case2",
+   "intent": "I-07",
+   "place": "받을 곳 없음",
+   "q": "Q056",
+   "src": "v3",
+   "start": "family:M2"
+  },
+  {
+   "case": "case3",
+   "intent": "I-07",
+   "place": "받을 곳 없음",
+   "q": "Q056",
+   "src": "v3",
+   "start": "family:M2"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "0홉·1쪽",
+   "q": "Q057",
+   "src": "v3",
+   "start": "product:M4-1-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "place": "0홉·1쪽",
+   "q": "Q060",
+   "src": "v3",
+   "start": "family:M4"
+  },
+  {
+   "case": "case1",
+   "intent": "I-07",
+   "place": "2홉+",
+   "q": "Q064",
+   "src": "v3",
+   "start": "family:M4"
+  },
+  {
+   "case": "case1",
+   "intent": "I-07",
+   "place": "2홉+",
+   "q": "Q064",
+   "src": "v3",
+   "start": "family:M4"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "kinds": [
+    "product_unit",
+    "uses_product"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q067",
+   "src": "v3",
+   "start": "product:M3-4-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "2홉+",
+   "q": "Q067",
+   "src": "v3",
+   "start": "product:M3-4-1"
+  },
+  {
+   "case": "case2",
+   "intent": "I-04",
+   "place": "0홉·1쪽",
+   "q": "Q068",
+   "src": "v3",
+   "start": "family:M4"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q069",
+   "src": "v3",
+   "start": "family:M5"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "0홉·1쪽",
+   "q": "Q069",
+   "src": "v3",
+   "start": "family:M5"
+  },
+  {
+   "case": "case3",
+   "intent": "I-09",
+   "place": "0홉·1쪽",
+   "q": "Q070",
+   "src": "v3",
+   "start": "family:M4"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "place": "2홉+",
+   "q": "Q072",
+   "src": "v3",
+   "start": "product:M9-1-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "2홉+",
+   "q": "Q072",
+   "src": "v3",
+   "start": "product:M9-1-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "0홉·2쪽+",
+   "q": "Q072",
+   "src": "v3",
+   "start": "product:M9-1-1"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "place": "2홉+",
+   "q": "Q073",
+   "src": "v3",
+   "start": "product:M9-1-1"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "place": "0홉·2쪽+",
+   "q": "Q073",
+   "src": "v3",
+   "start": "product:M9-1-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "0홉·2쪽+",
+   "q": "Q073",
+   "src": "v3",
+   "start": "product:M9-1-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "2홉+",
+   "q": "Q073",
+   "src": "v3",
+   "start": "product:M9-1-1"
+  },
+  {
+   "case": "case1",
+   "intent": "I-09",
+   "place": "0홉·1쪽",
+   "q": "Q074",
+   "src": "v3",
+   "start": "family:M9"
+  },
+  {
+   "case": "case2",
+   "intent": "I-05",
+   "place": "0홉·1쪽",
+   "q": "Q075",
+   "src": "v3",
+   "start": "family:M9"
+  },
+  {
+   "case": "case1",
+   "intent": "I-02",
+   "kinds": [
+    "procedure_relation"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q078",
+   "src": "v3",
+   "start": "family:M9"
+  },
+  {
+   "case": "case2",
+   "intent": "I-02",
+   "place": "0홉·1쪽",
+   "q": "Q078",
+   "src": "v3",
+   "start": "family:M9"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "kinds": [
+    "key_family",
+    "procedure_relation"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q081",
+   "src": "v3",
+   "start": "family:M9"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "kinds": [
+    "procedure_relation"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q081",
+   "src": "v3",
+   "start": "family:M9"
+  },
+  {
+   "case": "case1",
+   "intent": "I-05",
+   "kinds": [
+    "procedure_relation",
+    "product_family",
+    "requires_check"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q083",
+   "src": "v3",
+   "start": "family:M9"
+  },
+  {
+   "case": "case1",
+   "intent": "I-01",
+   "kinds": [
+    "key_site",
+    "site_caution"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q086",
+   "src": "v3",
+   "start": "site:site.jawline"
+  },
+  {
+   "case": "case2",
+   "intent": "I-01",
+   "place": "2홉+",
+   "q": "Q086",
+   "src": "v3",
+   "start": "site:site.jawline"
+  },
+  {
+   "case": "case3",
+   "intent": "I-01",
+   "place": "2홉+",
+   "q": "Q086",
+   "src": "v3",
+   "start": "site:site.jawline"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "kinds": [
+    "procedure_relation"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q087",
+   "src": "v3",
+   "start": "family:M11"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "kinds": [
+    "requires_check"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q087",
+   "src": "v3",
+   "start": "family:M11"
+  },
+  {
+   "case": "case2",
+   "intent": "I-05",
+   "kinds": [
+    "treats"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q088",
+   "src": "v3",
+   "start": "concern:P7"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "kinds": [
+    "treats"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q088",
+   "src": "v3",
+   "start": "concern:P7"
+  },
+  {
+   "case": "case2",
+   "intent": "I-01",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q089",
+   "src": "v3",
+   "start": "concern:P9-1"
+  },
+  {
+   "case": "case2",
+   "intent": "I-01",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q089",
+   "src": "v3",
+   "start": "concern:P9-1"
+  },
+  {
+   "case": "case2",
+   "intent": "I-01",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q089",
+   "src": "v3",
+   "start": "concern:P9-1"
+  },
+  {
+   "case": "case3",
+   "intent": "I-01",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q089",
+   "src": "v3",
+   "start": "concern:P9-1"
+  },
+  {
+   "case": "case2",
+   "intent": "I-03",
+   "place": "0홉·1쪽",
+   "q": "Q094",
+   "src": "v3",
+   "start": "family:M11"
+  },
+  {
+   "case": "case1",
+   "intent": "I-03",
+   "kinds": [
+    "key_family",
+    "product_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q095",
+   "src": "v3",
+   "start": "family:M11"
+  },
+  {
+   "case": "case2",
+   "intent": "I-03",
+   "kinds": [
+    "key_family",
+    "product_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q095",
+   "src": "v3",
+   "start": "family:M11"
+  },
+  {
+   "case": "case3",
+   "intent": "I-03",
+   "kinds": [
+    "key_family",
+    "product_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q095",
+   "src": "v3",
+   "start": "family:M11"
+  },
+  {
+   "case": "case3",
+   "intent": "I-09",
+   "kinds": [
+    "has_complication"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q096",
+   "src": "v3",
+   "start": "family:M11"
+  },
+  {
+   "case": "case2",
+   "intent": "I-07",
+   "place": "받을 곳 없음",
+   "q": "Q097",
+   "src": "v3",
+   "start": "family:M11"
+  },
+  {
+   "case": "case3",
+   "intent": "I-07",
+   "kinds": [
+    "requires_check"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q097",
+   "src": "v3",
+   "start": "family:M11"
+  },
+  {
+   "case": "case3",
+   "intent": "I-11",
+   "place": "이름·속성만",
+   "q": "Q101",
+   "src": "v3",
+   "start": "family:M12"
+  },
+  {
+   "case": "case1",
+   "intent": "I-06",
+   "kinds": [
+    "key_family",
+    "procedure_relation",
+    "product_family",
+    "requires_check"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q102",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q102",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q102",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q102",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q102",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-05",
+   "place": "0홉·2쪽+",
+   "q": "Q103",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-04",
+   "place": "0홉·1쪽",
+   "q": "Q105",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-04",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q105",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case1",
+   "intent": "I-06",
+   "kinds": [
+    "key_family",
+    "procedure_relation",
+    "product_family",
+    "requires_check"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q106",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "이름·속성만",
+   "q": "Q106",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case1",
+   "intent": "I-03",
+   "place": "0홉·1쪽",
+   "q": "Q109",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-03",
+   "place": "0홉·1쪽",
+   "q": "Q109",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-03",
+   "place": "0홉·1쪽",
+   "q": "Q110",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-03",
+   "place": "0홉·1쪽",
+   "q": "Q110",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-03",
+   "place": "0홉·1쪽",
+   "q": "Q110",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-07",
+   "place": "받을 곳 없음",
+   "q": "Q112",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case1",
+   "intent": "I-06",
+   "kinds": [
+    "key_technique"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q113",
+   "src": "v3",
+   "start": "technique:K04a"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "kinds": [
+    "key_technique"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q113",
+   "src": "v3",
+   "start": "technique:K04a"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "kinds": [
+    "key_technique"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q113",
+   "src": "v3",
+   "start": "technique:K04a"
+  },
+  {
+   "case": "case3",
+   "intent": "I-07",
+   "place": "2홉+",
+   "q": "Q114",
+   "src": "v3",
+   "start": "concern:P5-1"
+  },
+  {
+   "case": "case2",
+   "intent": "I-04",
+   "kinds": [
+    "procedure_relation"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q115",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-11",
+   "kinds": [
+    "anchors_combo"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q117",
+   "src": "v3",
+   "start": "concern:P6"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "이름·속성만",
+   "q": "Q118",
+   "src": "v3",
+   "start": "concern:P6"
+  },
+  {
+   "case": "case1",
+   "intent": "I-07",
+   "place": "받을 곳 없음",
+   "q": "Q119",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-01",
+   "kinds": [
+    "has_statement"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q121",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-01",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q121",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "이름·속성만",
+   "q": "Q122",
+   "src": "v3",
+   "start": "concern:P6"
+  },
+  {
+   "case": "case2",
+   "intent": "I-04",
+   "kinds": [
+    "key_family",
+    "product_family"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q124",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-04",
+   "kinds": [
+    "key_family",
+    "product_family"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q124",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-04",
+   "kinds": [
+    "key_family",
+    "product_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q124",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-04",
+   "kinds": [
+    "key_family",
+    "procedure_relation"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q125",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-04",
+   "kinds": [
+    "key_family",
+    "product_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q125",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-09",
+   "kinds": [
+    "procedure_pair",
+    "requires_check_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q126",
+   "src": "v3",
+   "start": "unit_procedure:U5-030"
+  },
+  {
+   "case": "case3",
+   "intent": "I-09",
+   "place": "0홉·1쪽",
+   "q": "Q126",
+   "src": "v3",
+   "start": "unit_procedure:U5-030"
+  },
+  {
+   "case": "case2",
+   "intent": "I-10",
+   "place": "2홉+",
+   "q": "Q127",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case1",
+   "intent": "I-09",
+   "kinds": [
+    "key_family",
+    "requires_check"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q128",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case1",
+   "intent": "I-03",
+   "kinds": [
+    "requires_check"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q129",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-03",
+   "place": "0홉·1쪽",
+   "q": "Q129",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-02",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q132",
+   "src": "v3",
+   "start": "concern:P9"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "place": "받을 곳 없음",
+   "q": "Q134",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-05",
+   "kinds": [
+    "key_technique"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q135",
+   "src": "v3",
+   "start": "technique:K04b"
+  },
+  {
+   "case": "case2",
+   "intent": "I-05",
+   "kinds": [
+    "key_technique"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q135",
+   "src": "v3",
+   "start": "technique:K04b"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "place": "2홉+",
+   "q": "Q135",
+   "src": "v3",
+   "start": "technique:K04b"
+  },
+  {
+   "case": "case2",
+   "intent": "I-03",
+   "kinds": [
+    "key_technique"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q136",
+   "src": "v3",
+   "start": "technique:K04b"
+  },
+  {
+   "case": "case3",
+   "intent": "I-03",
+   "kinds": [
+    "key_technique"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q136",
+   "src": "v3",
+   "start": "technique:K04b"
+  },
+  {
+   "case": "case1",
+   "intent": "I-10",
+   "kinds": [
+    "procedure_relation"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q137",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-10",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q137",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-09",
+   "place": "2홉+",
+   "q": "Q138",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-09",
+   "place": "2홉+",
+   "q": "Q138",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-09",
+   "place": "2홉+",
+   "q": "Q138",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case1",
+   "intent": "I-07",
+   "place": "2홉+",
+   "q": "Q139",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-07",
+   "place": "2홉+",
+   "q": "Q139",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-07",
+   "kinds": [
+    "key_family",
+    "requires_check"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q139",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-07",
+   "place": "2홉+",
+   "q": "Q139",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-05",
+   "place": "0홉·1쪽",
+   "q": "Q140",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q140",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-09",
+   "kinds": [
+    "treats"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q141",
+   "src": "v3",
+   "start": "concern:P9"
+  },
+  {
+   "case": "case1",
+   "intent": "I-01",
+   "kinds": [
+    "treats"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q142",
+   "src": "v3",
+   "start": "concern:P7"
+  },
+  {
+   "case": "case1",
+   "intent": "I-02",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q145",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case1",
+   "intent": "I-02",
+   "kinds": [
+    "requires_check"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q145",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case1",
+   "intent": "I-10",
+   "kinds": [
+    "anchors_combo",
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q147",
+   "src": "v3",
+   "start": "concern:P10"
+  },
+  {
+   "case": "case2",
+   "intent": "I-10",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q147",
+   "src": "v3",
+   "start": "concern:P10"
+  },
+  {
+   "case": "case3",
+   "intent": "I-10",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q147",
+   "src": "v3",
+   "start": "concern:P10"
+  },
+  {
+   "case": "case2",
+   "intent": "I-05",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q148",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-05",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q148",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q148",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case1",
+   "intent": "I-09",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q149",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-09",
+   "place": "2홉+",
+   "q": "Q149",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-09",
+   "kinds": [
+    "requires_check"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q149",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case3",
+   "intent": "I-09",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q149",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-09",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q150",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-07",
+   "place": "받을 곳 없음",
+   "q": "Q156",
+   "src": "v3",
+   "start": "concern:P10"
+  },
+  {
+   "case": "case1",
+   "intent": "I-10",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q159",
+   "src": "v3",
+   "start": "concern:P10"
+  },
+  {
+   "case": "case3",
+   "intent": "I-10",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q159",
+   "src": "v3",
+   "start": "concern:P10"
+  },
+  {
+   "case": "case2",
+   "intent": "I-04",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q160",
+   "src": "v3",
+   "start": "concern:P10"
+  },
+  {
+   "case": "case3",
+   "intent": "I-09",
+   "kinds": [
+    "requires_check_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q161",
+   "src": "v3",
+   "start": "check_condition:C-PREG"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "2홉+",
+   "q": "Q162",
+   "src": "v3",
+   "start": "technique:K04b"
+  },
+  {
+   "case": "case2",
+   "intent": "I-04",
+   "place": "0홉·1쪽",
+   "q": "Q163",
+   "src": "v3",
+   "start": "family:M15"
+  },
+  {
+   "case": "case3",
+   "intent": "I-03",
+   "place": "2홉+",
+   "q": "Q164",
+   "src": "v3",
+   "start": "family:M2"
+  },
+  {
+   "case": "case2",
+   "intent": "I-05",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q165",
+   "src": "v3",
+   "start": "family:M15"
+  },
+  {
+   "case": "case2",
+   "intent": "I-05",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q165",
+   "src": "v3",
+   "start": "family:M15"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "place": "0홉·2쪽+",
+   "q": "Q165",
+   "src": "v3",
+   "start": "family:M15"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "place": "0홉·1쪽",
+   "q": "Q165",
+   "src": "v3",
+   "start": "family:M15"
+  },
+  {
+   "case": "case3",
+   "intent": "I-03",
+   "place": "0홉·1쪽",
+   "q": "Q166",
+   "src": "v3",
+   "start": "family:M15"
+  },
+  {
+   "case": "case3",
+   "intent": "I-03",
+   "place": "0홉·1쪽",
+   "q": "Q167",
+   "src": "v3",
+   "start": "family:M15"
+  },
+  {
+   "case": "case2",
+   "intent": "I-09",
+   "kinds": [
+    "key_family",
+    "requires_check"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q169",
+   "src": "v3",
+   "start": "family:M15"
+  },
+  {
+   "case": "case3",
+   "intent": "I-09",
+   "kinds": [
+    "product_family"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q169",
+   "src": "v3",
+   "start": "family:M15"
+  },
+  {
+   "case": "case2",
+   "intent": "I-04",
+   "place": "0홉·1쪽",
+   "q": "Q170",
+   "src": "v3",
+   "start": "family:M15"
+  },
+  {
+   "case": "case3",
+   "intent": "I-04",
+   "place": "0홉·1쪽",
+   "q": "Q170",
+   "src": "v3",
+   "start": "family:M15"
+  },
+  {
+   "case": "case2",
+   "intent": "I-07",
+   "kinds": [
+    "product_family"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q172",
+   "src": "v3",
+   "start": "family:M15"
+  },
+  {
+   "case": "case3",
+   "intent": "I-07",
+   "kinds": [
+    "requires_check"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q172",
+   "src": "v3",
+   "start": "family:M15"
+  },
+  {
+   "case": "case2",
+   "intent": "I-03",
+   "place": "0홉·1쪽",
+   "q": "Q174",
+   "src": "v3",
+   "start": "family:M15"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q175",
+   "src": "v3",
+   "start": "concern:P9"
+  },
+  {
+   "case": "case3",
+   "intent": "I-04",
+   "place": "0홉·1쪽",
+   "q": "Q176",
+   "src": "v3",
+   "start": "family:M15"
+  },
+  {
+   "case": "case3",
+   "intent": "I-04",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q176",
+   "src": "v3",
+   "start": "family:M15"
+  },
+  {
+   "case": "case2",
+   "intent": "I-01",
+   "kinds": [
+    "procedure_relation"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q178",
+   "src": "v3",
+   "start": "family:M7"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "place": "0홉·1쪽",
+   "q": "Q184",
+   "src": "v3",
+   "start": "family:M7"
+  },
+  {
+   "case": "case2",
+   "intent": "I-07",
+   "kinds": [
+    "key_family",
+    "product_family"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q185",
+   "src": "v3",
+   "start": "family:M7"
+  },
+  {
+   "case": "case3",
+   "intent": "I-07",
+   "place": "2홉+",
+   "q": "Q185",
+   "src": "v3",
+   "start": "family:M7"
+  },
+  {
+   "case": "case2",
+   "intent": "I-04",
+   "place": "이름·속성만",
+   "q": "Q189",
+   "src": "v3",
+   "start": "family:M7"
+  },
+  {
+   "case": "case3",
+   "intent": "I-04",
+   "place": "이름·속성만",
+   "q": "Q189",
+   "src": "v3",
+   "start": "family:M7"
+  },
+  {
+   "case": "case2",
+   "intent": "I-04",
+   "place": "0홉·1쪽",
+   "q": "Q190",
+   "src": "v3",
+   "start": "family:M7"
+  },
+  {
+   "case": "case2",
+   "intent": "I-04",
+   "place": "0홉·1쪽",
+   "q": "Q190",
+   "src": "v3",
+   "start": "family:M7"
+  },
+  {
+   "case": "case3",
+   "intent": "I-04",
+   "place": "0홉·1쪽",
+   "q": "Q190",
+   "src": "v3",
+   "start": "family:M7"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "place": "받을 곳 없음",
+   "q": "Q191",
+   "src": "v3",
+   "start": "purpose:PU-01"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q191",
+   "src": "v3",
+   "start": "purpose:PU-01"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "kinds": [
+    "anchors_combo"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q191",
+   "src": "v3",
+   "start": "purpose:PU-01"
+  },
+  {
+   "case": "case1",
+   "intent": "I-01",
+   "place": "2홉+",
+   "q": "Q192",
+   "src": "v3",
+   "start": "concern:P12"
+  },
+  {
+   "case": "case2",
+   "intent": "I-01",
+   "kinds": [
+    "anchors_combo"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q192",
+   "src": "v3",
+   "start": "concern:P12"
+  },
+  {
+   "case": "case3",
+   "intent": "I-01",
+   "place": "2홉+",
+   "q": "Q192",
+   "src": "v3",
+   "start": "concern:P12"
+  },
+  {
+   "case": "case3",
+   "intent": "I-01",
+   "place": "2홉+",
+   "q": "Q192",
+   "src": "v3",
+   "start": "concern:P12"
+  },
+  {
+   "case": "case1",
+   "intent": "I-05",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q193",
+   "src": "v3",
+   "start": "concern:P12-4"
+  },
+  {
+   "case": "case2",
+   "intent": "I-05",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q193",
+   "src": "v3",
+   "start": "concern:P12-4"
+  },
+  {
+   "case": "case3",
+   "intent": "I-09",
+   "kinds": [
+    "key_site"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q197",
+   "src": "v3",
+   "start": "site:site.abdomen"
+  },
+  {
+   "case": "case3",
+   "intent": "I-09",
+   "kinds": [
+    "key_site"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q197",
+   "src": "v3",
+   "start": "site:site.abdomen"
+  },
+  {
+   "case": "case3",
+   "intent": "I-09",
+   "kinds": [
+    "key_site"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q197",
+   "src": "v3",
+   "start": "site:site.abdomen"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q198",
+   "src": "v3",
+   "start": "concern:P14-3"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q198",
+   "src": "v3",
+   "start": "concern:P14-3"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q198",
+   "src": "v3",
+   "start": "concern:P14-3"
+  },
+  {
+   "case": "case2",
+   "intent": "I-07",
+   "place": "받을 곳 없음",
+   "q": "Q200",
+   "src": "v3",
+   "start": "product:auto-40-1774737181584"
+  },
+  {
+   "case": "case3",
+   "intent": "I-07",
+   "place": "받을 곳 없음",
+   "q": "Q200",
+   "src": "v3",
+   "start": "product:auto-40-1774737181584"
+  },
+  {
+   "case": "case1",
+   "intent": "I-07",
+   "kinds": [
+    "key_family"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q201",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-07",
+   "place": "받을 곳 없음",
+   "q": "Q201",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case1",
+   "intent": "I-08",
+   "place": "받을 곳 없음",
+   "q": "Q211",
+   "src": "v3",
+   "start": "family:M8"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "place": "2홉+",
+   "q": "Q212",
+   "src": "v3",
+   "start": "product:M9-1-3"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "place": "2홉+",
+   "q": "Q212",
+   "src": "v3",
+   "start": "product:M9-1-3"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "place": "2홉+",
+   "q": "Q212",
+   "src": "v3",
+   "start": "product:M9-1-3"
+  },
+  {
+   "case": "case2",
+   "intent": "I-05",
+   "place": "2홉+",
+   "q": "Q214",
+   "src": "v3",
+   "start": "product:M15-4-1"
+  },
+  {
+   "case": "case1",
+   "intent": "I-05",
+   "place": "받을 곳 없음",
+   "q": "Q215",
+   "src": "v3",
+   "start": "unit_procedure:U5-018"
+  },
+  {
+   "case": "case2",
+   "intent": "I-05",
+   "place": "받을 곳 없음",
+   "q": "Q215",
+   "src": "v3",
+   "start": "unit_procedure:U5-018"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "place": "받을 곳 없음",
+   "q": "Q215",
+   "src": "v3",
+   "start": "unit_procedure:U5-018"
+  },
+  {
+   "case": "case2",
+   "intent": "I-05",
+   "place": "0홉·1쪽",
+   "q": "Q216",
+   "src": "v3",
+   "start": "family:M4"
+  },
+  {
+   "case": "case3",
+   "intent": "I-05",
+   "place": "0홉·1쪽",
+   "q": "Q216",
+   "src": "v3",
+   "start": "family:M4"
+  },
+  {
+   "case": "case3",
+   "intent": "I-01",
+   "place": "0홉·1쪽",
+   "q": "Q221",
+   "src": "v3",
+   "start": "family:M7"
+  },
+  {
+   "case": "case1",
+   "intent": "I-02",
+   "place": "0홉·2쪽+",
+   "q": "Q222",
+   "src": "v3",
+   "start": "product:M9-2-5"
+  },
+  {
+   "case": "case2",
+   "intent": "I-02",
+   "place": "2홉+",
+   "q": "Q222",
+   "src": "v3",
+   "start": "product:M9-2-5"
+  },
+  {
+   "case": "case1",
+   "intent": "I-02",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q225",
+   "src": "v3",
+   "start": "concern:P10"
+  },
+  {
+   "case": "case2",
+   "intent": "I-02",
+   "place": "이름·속성만",
+   "q": "Q225",
+   "src": "v3",
+   "start": "concern:P10"
+  },
+  {
+   "case": "case2",
+   "intent": "I-02",
+   "place": "이름·속성만",
+   "q": "Q225",
+   "src": "v3",
+   "start": "concern:P10"
+  },
+  {
+   "case": "case1",
+   "intent": "I-06",
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q226",
+   "src": "v3",
+   "start": "concern:P10"
+  },
+  {
+   "case": "case2",
+   "intent": "I-06",
+   "place": "이름·속성만",
+   "q": "Q226",
+   "src": "v3",
+   "start": "concern:P10"
+  },
+  {
+   "case": "case3",
+   "intent": "I-06",
+   "kinds": [
+    "anchors_combo",
+    "treats",
+    "treats_unit"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q226",
+   "src": "v3",
+   "start": "concern:P10"
+  },
+  {
+   "case": "case2",
+   "intent": "I-04",
+   "place": "이름·속성만",
+   "q": "Q228",
+   "src": "v3",
+   "start": "concern:P10"
+  },
+  {
+   "case": "case2",
+   "intent": "I-04",
+   "kinds": [
+    "product_family"
+   ],
+   "place": "1홉·1쪽",
+   "q": "Q235",
+   "src": "v3",
+   "start": "family:M9"
+  },
+  {
+   "case": "case3",
+   "intent": "I-02",
+   "kinds": [
+    "concern_site"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q237",
+   "src": "v3",
+   "start": "concern:auto-83-1774737181584"
+  },
+  {
+   "case": "case3",
+   "intent": "I-02",
+   "kinds": [
+    "concern_site"
+   ],
+   "place": "1홉·2쪽+",
+   "q": "Q237",
+   "src": "v3",
+   "start": "concern:auto-83-1774737181584"
+  },
+  {
+   "case": "case3",
+   "intent": "I-04",
+   "place": "0홉·1쪽",
+   "q": "Q239",
+   "src": "v3",
+   "start": "product:M1-2-1"
+  }
+ ]
+}

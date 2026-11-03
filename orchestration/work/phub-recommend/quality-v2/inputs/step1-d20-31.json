@@ -1,0 +1,3167 @@
+{
+ "version": 1,
+ "generated_at": "2026-10-27",
+ "scope": "1단계 남은 조사 8묶음(D20 · D22 · D23 · D25 · D28 · D29 · D30 · D31) — 묶음별 추천 + 행별 근거",
+ "basis": "식약처 의료기기 품목허가 API(getMdlpPrdlstPrmisnItem05) · 의약품 허가 API(getDrugPrdtPrmsnInq08) · 의료기기 업체 API · emedi 품목 검색 · 병원 홈페이지(데이뷰의원 12개 지점 시술 메뉴/상세 약 1,040쪽 — d18 크롤 재사용 · data-anyang 안양범계 주변 17곳 read-only) · 제조/수입사 공식 · 보도. 추정 금지 · 원장 · 결정 파일 수정 없음",
+ "summary": {
+  "rows": 91,
+  "needs_user": 11,
+  "by_group": {
+   "D20": {
+    "count": 8,
+    "verdicts": {
+     "정체 확정 — 화장품": 3,
+     "정체 확정 — 의료기기": 1,
+     "정체 확정 — 인체조직": 2,
+     "확인 불가": 2
+    }
+   },
+   "D22": {
+    "count": 11,
+    "verdicts": {
+     "확인 불가": 10,
+     "실제 제품 · 국내 허가 못 찾음": 1
+    }
+   },
+   "D23": {
+    "count": 19,
+    "verdicts": {
+     "확인 불가": 17,
+     "메뉴명 · 일반명": 1,
+     "실제 제품 · 국내 허가 못 찾음": 1
+    }
+   },
+   "D25": {
+    "count": 29,
+    "verdicts": {
+     "바뀐 판정 맞음(추가)": 9,
+     "바뀐 판정 맞음(해제)": 12,
+     "바뀐 판정 맞음(교체)": 3,
+     "바뀐 판정 맞음(해제) · 단 후속 모델 허가 있음": 1,
+     "바뀐 판정 맞음(해제) · 현재 상태는 낡음": 2,
+     "바뀐 판정 맞음(교체) · 원천 업체 표기 틀림": 1,
+     "바뀐 판정 맞음(auto→정상)": 1
+    }
+   },
+   "D28": {
+    "count": 4,
+    "verdicts": {
+     "유지 — 근거 보강됨 · 허가 1건 더 있음": 1,
+     "유지 — 근거 보강됨": 2,
+     "유지 — 갈라짐 아님(바이리즌은 여러 제품 이름)": 1
+    }
+   },
+   "D29": {
+    "count": 13,
+    "verdicts": {
+     "실제 제품 · 현행 허가 찾음": 3,
+     "실제 제품 · 국내 허가 못 찾음": 1,
+     "확인 불가": 8,
+     "실제 제품 · 허가 취소(이력)만": 1
+    }
+   },
+   "D30": {
+    "count": 3,
+    "verdicts": {
+     "같은 제품(동의어)": 2,
+     "확인 불가(「프로」 근거 없음)": 1
+    }
+   },
+   "D31": {
+    "count": 4,
+    "verdicts": {
+     "허가 대상 아님 — 출처 부족(확인 불가 유지)": 3,
+     "허가 대상 아님 — 출처 확인": 1
+    }
+   }
+  }
+ },
+ "group_recommendations": {
+  "D20": "「원천(병원)에 확인」은 사용자 판단 3행(인에이블 · 도프ECM · AAPE)만 — 나머지 5행은 출처로 닫힘: 쥬브아셀 = 인체조직(허가 대상 아님 · 출처 있음) · NCTF = 해외 CE 의료기기 · 국내 허가 못 찾음(미허가 유지) · PRX필 = 해외 「전문가용 화장품」이나 국내 분류 출처 없음(확인 불가 유지) · 다복스 · 옥시덤 = 확인 불가 유지(다복스는 디스포트에 붙이지 않음)",
+  "D22": "「원천(병원)에 실제 제품명 확인」 — 11개 중 실제 제품은 셀엑소좀 1개뿐(프로스테믹스 제조 · 휴메딕스 판매 · 국내 허가 못 찾음, 원장에 둠). 10개는 웹 · 병원 · 식약처 모두 0이라 원천 답이 오기 전까지 원장에서 보류(메뉴명이라는 출처도 없어 5단계로 바로 넘기지 않음)",
+  "D23": "「원천(병원)에 실제 장비명 · 업체 확인」 — 19개 중 메뉴명 · 일반명 출처가 있는 것은 크라이오셀 1개(→5단계 시술 이름 후보), 실제 제품은 엔진리프팅(엔파인더스 N-Gine · 국내 허가 못 찾음) 1개. 아폴로는 후보 둘(위로 Apollo 현행 허가 / Pollogen Apollo 국내 0). 나머지 16개는 근거 0 — 원천 확인 전까지 보류",
+  "D25": "「전부 받기」 — 29건 모두 식약처 · emedi 모델명/제품명으로 바뀐 판정이 맞다. 다만 브이빔퍼펙타 · 젠틀맥스프로의 현재 상태(허가 취소)는 cancel-recheck 결과(정상 18-276 · 18-338)로 갱신할 것 · 테오시알 이력 2건(18-330 · 18-329 취하) 추가 · 튠페이스 원천 업체 「클래시스」는 알마로 고칠 후보",
+  "D28": "「유지」 — 4건 모두 emedi 제품명/모델명에 이름이 직접 있다(HydraFacial MD ELITE · ARTECOLL™ 아테콜 · BYRYZN Skinbooster HA · HP VITARAN). 바이리즌 · 비타란은 갈라진 게 아니라 둘 다 맞음(23-784 에 「BYRYZN PN」 · 「HP VITARAN」 둘 다). 하이드라페이셜은 정상 수입 허가 18-215(인터엠디) 추가 검토",
+  "D29": "「허가 확인된 것만 두고 확인 불가는 원천에 확인」 + 레티보는 보툴렉스(M1-1-1)에 합침 — 현행 허가 3(뉴럭스 · 피코웨이 · 인트라셀) 원장에 둠 · 레티보는 수출명 출처(Bizwatch) 있어 합침 · 리젠ACR 은 업체를 REGEN LAB SA 로 고치고 국내 현행 허가 없음 · 확인 불가 8 은 원천 확인",
+  "D30": "채움 · 프락셀은 「같은 제품(동의어)」(허가 제품명에 그 이름이 직접 있음) · 벨피엔은 동의어로 두되 원장 이름의 「프로」는 허가 · 보도에 없어 원천 확인",
+  "D31": "「받기」에 가깝되 노보젯은 다시 봄 — 오투덤은 「미용기기」 기사 출처로 확정 · 벨르업은 확인 불가 유지 · 메소건은 의료기기 허가 이력(현대메디텍 Meso-Pri 만료)이 있어 「허가 대상 아님」 대신 「메뉴명 · 일반명」 · 노보젯은 같은 회사의 정상 분사식주사기 허가가 있어 「허가 대상 아님」 확정 보류"
+ },
+ "needs_user": [
+  {
+   "group": "D20",
+   "ledger_id": "auto-M4-1775361749536",
+   "product": "인에이블",
+   "reason": "원천 tx_detail·overview 「LG화학 · PN 스킨부스터」와 실제 「인에이블」(동국제약 화장품)이 다른 제품이다. 원장 행이 동국제약 인에이블을 가리키는지, LG화학 PN(비타란)을 잘못 적은 것인지는 출처로 정할 수 없다"
+  },
+  {
+   "group": "D20",
+   "ledger_id": "auto-M3-hADM-1775404146754",
+   "product": "도프ECM",
+   "reason": "「도프ECM」이라는 이름의 출처가 없다. 쥬브아셀과는 업체(도프·바임)와 성분(hADM)만 일치하므로, 같은 제품으로 합칠지 사람이 정해야 한다(ESSALIA·세시엠 L이라는 다른 도프 hADM 제품도 있다)"
+  },
+  {
+   "group": "D20",
+   "ledger_id": "auto-M17-1775364775191",
+   "product": "AAPE",
+   "reason": "원천 적응증 「심부주름 개선」은 화장품 앰플 AAPE보다 취하된 의료기기 AAPE Progen(주름 개선 주입재)의 사용목적과 맞는다. 원장 행이 어느 쪽인지 출처로 정할 수 없다"
+  },
+  {
+   "group": "D23",
+   "ledger_id": "auto-M9-1775364775137",
+   "product": "아폴로",
+   "reason": "같은 이름의 실제 장비가 둘(국내 허가 있는 위로 Apollo Duet/Quattro · 허가 없는 Pollogen Apollo)이고 원천 「다중에너지」만으로 어느 쪽인지 정할 출처가 없음"
+  },
+  {
+   "group": "D23",
+   "ledger_id": "new-DEV-020",
+   "product": "엔진리프팅",
+   "reason": "현장 「엔진」 장비가 엔파인더스 N-Gine 인지 이번 출처로 닫지 못함(drjnb 403·말뭉치 0) — 현장 사진 라벨/명판으로 사람이 확인"
+  },
+  {
+   "group": "D25",
+   "ledger_id": "M8-4-1",
+   "product": "브이빔",
+   "reason": "원장 「브이빔」이 옛 Vbeam(취하)인지, 라인 이름이라 현행 Prima 를 붙일지 출처로 못 닫음"
+  },
+  {
+   "group": "D28",
+   "ledger_id": "M15-2-2",
+   "product": "하이드라페이셜",
+   "reason": "정상 수입 허가 2건(메디뷰랩 22-213 · 인터엠디 18-215) — 둘 다 붙일지(판매사 여러 개 규칙) 확인 필요"
+  },
+  {
+   "group": "D28",
+   "ledger_id": "auto-M4-1775361378128",
+   "product": "바이리즌",
+   "reason": "원장 「바이리즌」 한 행이 HA 부스터인지 브랜드 라인인지 — PN(23-784)을 같은 행 품목으로 둘지 정해야 함"
+  },
+  {
+   "group": "D29",
+   "ledger_id": "M5-P-0",
+   "product": "셀피아",
+   "reason": "업체(시지바이오)의 PRP 키트 허가는 있으나 '셀피아'와 같은 제품이라는 출처가 없음 — 붙일지 사람이 정해야 함"
+  },
+  {
+   "group": "D30",
+   "ledger_id": "auto-M4-1775360463217",
+   "product": "벨피엔 프로",
+   "reason": "원장 「벨피엔 프로」의 「프로」가 리도카인 신허가(26-757)를 가리키는 병원 표기인지 출처 없음"
+  },
+  {
+   "group": "D31",
+   "ledger_id": "auto-M15-1775360904089",
+   "product": "노보젯",
+   "reason": "제조사의 「미용기기분야」 표현과, 같은 회사의 미용 적응증 분사식주사기 허가(CRJ-001CD, 제품명 공란)가 부딪힌다. CRJ-001CD가 노보젯인지는 출처로 정할 수 없다"
+  }
+ ],
+ "items": [
+  {
+   "ledger_id": "auto-M4-1775361749536",
+   "product": "인에이블",
+   "verdict": "정체 확정 — 화장품",
+   "one_line": "인에이블(In.able)은 동국제약의 섬유아세포 엑소좀·FGF·콜라겐 주름개선 기능성 화장품이다. LG화학 PN 제품이라는 출처는 찾지 못했다. LG화학의 PN 스킨부스터는 「비타란」(비알팜 제조, 의료기기 허가 정상)이다. 허가 판정: 「허가 대상 아님(출처 있음 — 기능성 화장품)」. 원천의 「LG화학 PN」 기재와 충돌한다",
+   "real_name": "인에이블(In.able)",
+   "manufacturer": "동국제약",
+   "importer": null,
+   "sellers": [
+    "동국제약"
+   ],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "「동국제약 … 인에이블 … 주름개선 기능성 화장품, 2023년 7월 출시, 섬유아세포 배양 엑소좀·FGF·콜라겐」 — bizwatch 2023-10-04 (WebFetch 요약)",
+    "「동국제약도 최근 인에이블 론칭」 — 데일리팜 2025-04-05 부제",
+    "LG화학 PN 스킨부스터는 「비타란(HP VITARAN, 수출명 HP Cell VITARAN i)」 — 바이오스펙테이터 2025-01-10. 「LG화학 인에이블」로 검색한 결과에서 LG 제품명 「인에이블」은 확인되지 않았다",
+    "참고(연결 안 함): 비타란은 (주)비알팜 제허23-784호 조직수복용생체재료(정상)로, 인에이블과 다른 제품이다"
+   ],
+   "sources": [
+    "https://news.bizwatch.co.kr/article/mobile/2023/10/04/0034",
+    "https://m.dailypharm.com/user/news/7017",
+    "https://www.biospectator.com/news/view/24029",
+    "em.py query2=비타란 total=24 (제허23-784호 (주)비알팜)"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=인에이블 total=0",
+    "em.py query2=INABLE (무관 2건뿐)",
+    "dq.py item_name=인에이블 total=0",
+    "cg.py 인에이블 0 hits",
+    "WebSearch 「LG화학 \"인에이블\" 스킨부스터」 — LG 제품명 인에이블 없음"
+   ],
+   "needs_user": true,
+   "needs_user_reason": "원천 tx_detail·overview 「LG화학 · PN 스킨부스터」와 실제 「인에이블」(동국제약 화장품)이 다른 제품이다. 원장 행이 동국제약 인에이블을 가리키는지, LG화학 PN(비타란)을 잘못 적은 것인지는 출처로 정할 수 없다",
+   "recommendation": "이름을 기준으로 동국제약 인에이블(화장품)로 두고 원천의 「LG화학 · PN」 설명을 고치는 안을 추천한다. LG 비타란이 의도였다면 별도 행으로 둔다",
+   "group": "D20",
+   "license_now": "허가 대상 아님"
+  },
+  {
+   "ledger_id": "auto-M4-1775361364993",
+   "product": "NCTF 필로르가",
+   "verdict": "정체 확정 — 의료기기",
+   "one_line": "FILLMED(구 Filorga Medical) NCTF 135HA는 유럽에서 CE 표시 의료기기로 파는 메조테라피 주사액이다. 국내 수입사로 보도된 곳은 아이더마바이오(2019)인데, 이 제품의 국내 의료기기 허가는 찾지 못했다. 국내 화장품 분류 출처도 없다. 판정: 「실제 제품 · 국내 허가 못 찾음」. 「허가 대상 아님」으로 볼 근거는 없다",
+   "real_name": "FILLMED NCTF 135HA (NCTF BOOST 135HA)",
+   "manufacturer": "Fillmed Laboratories(구 Filorga Medical)",
+   "importer": "(주)아이더마바이오(보도상 독점 수입·유통 — 이 제품 허가는 없음)",
+   "sellers": [
+    "(주)아이더마바이오(보도)"
+   ],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "「FILLMED NCTF 135HA CE」 — Classification: CE marked medical device (ddgroup 제품 페이지, WebFetch)",
+    "아이더마바이오가 필메드 제품의 국내 독점 수입·유통을 맡는다는 보도가 있다. 기사는 NCTF 135HA의 국내 분류를 밝히지 않았다 — 메디게이트뉴스 2019-12-04",
+    "아이더마바이오의 의료기기 허가는 1건뿐이며 멸균주사침(수인15-1196, ELCAM)이다 — q.py ENTRPS=아이더마. 업체는 수입업 허가를 받았다(cq.py)",
+    "데이뷰의원 광주상무점: 「NCTF 135H는 국내에서 샤넬주사로 많이 알려져있습니다. 53가지 복합 영양성분…」"
+   ],
+   "sources": [
+    "https://www.ddgroup.com/facial-aesthetics/mesotherapy/600706--fillmed-nctf-135ha--ce",
+    "https://medigatenews.com/news/2391991345",
+    "q.py ENTRPS=아이더마 total=1",
+    "cq.py 아이더마 total=1(수입업)"
+   ],
+   "clinic": [
+    {
+     "clinic": "데이뷰의원 광주상무점",
+     "url": "https://www.daybeauclinic05.com/branch/procedure_detail.php?code=G620022",
+     "quote": "NCTF 135H는 국내에서 샤넬주사로 많이 알려져있습니다. 53가지 복합 영양성분(미네랄 6, 아미노산23, 비타민12, 항산화제)과 히알루론산의 완벽조합"
+    },
+    {
+     "clinic": "데이뷰의원 안양범계점",
+     "url": "/Users/kknaks/Downloads/data-anyang/prices/ours_데이뷰의원-안양범계점.json",
+     "quote": "[비급여표] 올리디아,쥬베룩,엑소좀,필로르가135NCTF,물광주사"
+    }
+   ],
+   "queries_zero": [
+    "em.py query2=NCTF total=0",
+    "em.py query2=필로르가 total=0",
+    "em.py query2=135HA total=0",
+    "em.py query2=FILLMED (DTS MG 롤러 2건뿐, 무관)",
+    "dq.py item_name=NCTF total=0",
+    "WebSearch 「샤넬주사 필로르가 NCTF 식약처 허가 화장품 분류」 — 국내 분류 출처 없음"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "허가 칸은 「실제 제품 · 국내 허가 못 찾음」으로 둔다. 「화장품으로 유통」이라는 출처가 생기기 전에는 「허가 대상 아님」으로 바꾸지 않는다",
+   "group": "D20",
+   "license_now": "미허가"
+  },
+  {
+   "ledger_id": "auto-20-1774737181584",
+   "product": "쥬브아셀",
+   "verdict": "정체 확정 — 인체조직",
+   "one_line": "쥬브아셀(Juveacell)은 바임글로벌이 도프와 함께 내놓은 hADM(무세포 동종진피) ECM 스킨부스터다. 3%·8% 1cc 프리필드이고, 도프가 조직은행이며 초임계 CO2 공정으로 만든다. 제조 측은 이 제품을 인체조직 제품으로 소개하고, 기사는 ECM 스킨부스터에 의료기기법이 아니라 인체조직법이 적용된다고 쓴다. 판정: 「허가 대상 아님(출처 있음 — 인체조직)」",
+   "real_name": "쥬브아셀 (Juveacell / JuveΓcell)",
+   "manufacturer": "주식회사 도프(DOF Inc. — 조직은행) · 바임글로벌(출시 주체)",
+   "importer": null,
+   "sellers": [
+    "바임글로벌"
+   ],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "「폴리락틱애시드(PLA) 스킨부스터 '쥬베룩'으로 유명한 바임글로벌이 도프와 함께 ECM 스킨부스터 '쥬브아셀'을 출시한 점도 눈여겨볼 대목이다.」 — 서울경제 2026-04-02",
+    "「이처럼 ECM 스킨부스터 신제품이 단기간 우후죽순 출시되는 것은 의료기기법이 아닌 인체조직안전 및 관리 등에 관한 법률(인체조직법)의 적용을 받은 결과로 풀이된다.」 — 같은 기사",
+    "「The manufacturer identifies Juveacell 3% and 8% as human-tissue products for skin reconstruction.」 · 「identifies DOF as the associated tissue bank」 · 「The manufacturer promotes ECELL supercritical-carbon-dioxide processing.」 — koreaclinicguide",
+    "「ECM 스킨부스터는 인체조직으로 분류돼 의료기기 품목허가 심사를 거치지 않는다」 — 비즈워치 2026-10-16. 이 기사에 나온 제품은 리투오·셀르디엠이고 쥬브아셀은 직접 언급되지 않는다",
+    "연결 안 함: 도프의 의료기기 ESSALIA(제허24-804호, 입자형 무세포 동종진피 코입술주름 개선, 정상)는 제품명이 달라 쥬브아셀과 같은 제품이라는 출처가 없다. (주)바임의 허가는 쥬베룩·비바벨라·Reversal(PDLLA 계열)뿐이다"
+   ],
+   "sources": [
+    "https://v.daum.net/v/20260402070323518",
+    "https://www.koreaclinicguide.com/de/blog/juveacell-korea",
+    "https://www.koreaclinicguide.com/procedure/juveacell",
+    "https://news.bizwatch.co.kr/article/healthcare/2026/10/16/0017",
+    "q.py ENTRPS=도프 total=5",
+    "q.py ENTRPS=바임 total=3"
+   ],
+   "clinic": [
+    {
+     "clinic": "미앤미의원 범계",
+     "url": "/Users/kknaks/Downloads/data-anyang/prices/c13_미앤미의원-범계.json",
+     "quote": "\"raw_name\": \"쥬브아셀\", \"price\": 820000 (정가) / 450000 (이벤트)"
+    },
+    {
+     "clinic": "서울아이성형외과(강남언니 이벤트)",
+     "url": "https://unni.app/events/149150",
+     "quote": "쥬브아셀 3% 539,000원 / 8% 649,000원 — 피부 속부터 회복시키는 재생 중심 시술입니다"
+    }
+   ],
+   "queries_zero": [
+    "em.py query2=쥬브아셀 total=0",
+    "em.py query2=쥬브 total=0",
+    "em.py query2=Juveacell total=0",
+    "WebSearch 「바임 BAIM 쥬브아셀 도프 계약」 무관",
+    "WebSearch 「쥬브아셀 초임계 도프 바임 유통」 무관"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "정체는 인체조직(hADM)이고 허가 칸은 「허가 대상 아님(출처 있음)」으로 둔다. 제조·판매 칸은 도프(조직은행)와 바임글로벌로 채운다. 도프ECM 행(auto-M3-hADM-1775404146754)과 같은 제품인지는 그 행에서 판단한다",
+   "group": "D20",
+   "license_now": "허가 대상 아님"
+  },
+  {
+   "ledger_id": "auto-M3-hADM-1775404146754",
+   "product": "도프ECM",
+   "verdict": "정체 확정 — 인체조직",
+   "one_line": "「도프ECM」이라는 정식 브랜드는 웹·식약처·병원 말뭉치 어디에도 없다. 원천의 「도프 · hADM · 바임 판매」에 맞는 실제 제품은 바임글로벌이 도프와 함께 출시한 hADM ECM 스킨부스터 「쥬브아셀」이다(서울경제). 인체조직법이 적용된다. 판정: 「허가 대상 아님(출처 있음 — 인체조직)」. 쥬브아셀 행과 같은 제품인지는 사용자 확인이 필요하다",
+   "real_name": "정식명 「도프ECM」 없음 — 업체·성분이 일치하는 제품은 쥬브아셀(Juveacell)",
+   "manufacturer": "주식회사 도프(DOF Inc.)",
+   "importer": null,
+   "sellers": [
+    "바임글로벌(쥬브아셀 기준)"
+   ],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "「바임글로벌이 도프와 함께 ECM 스킨부스터 '쥬브아셀'을 출시」 — 서울경제 2026-04-02",
+    "「의료기기법이 아닌 인체조직안전 및 관리 등에 관한 법률(인체조직법)의 적용」 — 같은 기사(ECM 스킨부스터 전반)",
+    "도프는 다른 hADM 제품도 있다. 파마리서치와 협력한 「세시엠 L(SCecm L)」(데일리팜 2024-05-30)과 자체 의료기기 ESSALIA(제허24-804호 정상, 「입자형태의 무세포 동종진피를 피하에 주입 … 코입술주름 일시적 개선」)다. 그래서 「도프 hADM」만으로는 한 제품으로 좁혀지지 않고, 「바임 판매」가 맞는 것은 쥬브아셀이다",
+    "도프는 의료기기 제조업 허가 업체다(cq.py). IMCAS Asia 2025 출품사로 이식용 인체조직·조직 기반 의료기기 등을 소개한다"
+   ],
+   "sources": [
+    "https://v.daum.net/v/20260402070323518",
+    "https://dailypharm.com/user/news/16611",
+    "https://www.imcas.com/zh/sponsor/imcas-asia-2025/view/17375",
+    "q.py ENTRPS=도프 total=5 (제허24-804 ESSALIA 정상 등)",
+    "em.py query2=ESSALIA total=3 lic=1"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=도프 total=0(업체명 미검색 — q.py ENTRPS로 대체)",
+    "cg.py 도프 0 hits",
+    "WebSearch 「\"도프ECM\" OR \"도프 ECM\" 시술」 무관",
+    "WebFetch http://www.biodof.com 본문 없음",
+    "WebSearch 「ESSALIA 에살리아 도프 무세포 동종진피」 — 시술 사용 출처 없음"
+   ],
+   "needs_user": true,
+   "needs_user_reason": "「도프ECM」이라는 이름의 출처가 없다. 쥬브아셀과는 업체(도프·바임)와 성분(hADM)만 일치하므로, 같은 제품으로 합칠지 사람이 정해야 한다(ESSALIA·세시엠 L이라는 다른 도프 hADM 제품도 있다)",
+   "recommendation": "쥬브아셀 행에 합치는 안을 추천한다(원천의 「바임 판매」가 근거). 합치지 않으면 「메뉴명·일반명」으로 표시한다",
+   "group": "D20",
+   "license_now": "허가 대상 아님"
+  },
+  {
+   "ledger_id": "auto-M1-1775360538524",
+   "product": "다복스",
+   "verdict": "확인 불가",
+   "one_line": "「다복스」라는 제품은 웹·식약처 의약품·의료기기 어디에서도 나오지 않는다. 갈더마가 개발 중인 차세대 톡신은 렐라보툴리눔톡신A(QM1114, 액상)이지만 「다복스」와 이어주는 출처가 없다. 디스포트 연결은 하지 않았다. 판정: 「확인 불가」",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "갈더마코리아 의약품 허가 15건은 외용제(디페린·에피듀오·수란트라 등)뿐이고 보툴리눔 제제는 없다 — dq.py entp_name=갈더마",
+    "갈더마의 차세대 톡신은 렐라보툴리눔톡신A로, 「독점적 액상 제형」이며 임상3상 READY 프로그램 중이다 — newswire 보도. 「다복스」라는 이름은 나오지 않는다",
+    "영문 검색 「다복스」 결과는 Revance의 Daxxify(다이복시보툴리눔톡신A)뿐이다. 갈더마 제품이 아니어서 연결하지 않았다"
+   ],
+   "sources": [
+    "dq.py entp_name=갈더마 total=15",
+    "https://www.newswire.co.kr/newsRead.php?no=911995",
+    "https://medigatenews.com/news/1834898375"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "dq.py item_name=다복스 total=0",
+    "dq.py item_name=렐라보툴리눔 total=0",
+    "em.py query2=다복스 total=0",
+    "cg.py 다복스 0 hits",
+    "WebSearch 「다복스 갈더마 보툴리눔」",
+    "WebSearch 「\"다복스\" 보톡스」(Daxxify만)",
+    "WebSearch 「갈더마 지속형 보툴리눔 톡신 신제품 국내」",
+    "WebSearch 「Galderma long-acting botulinum toxin Dabox/Davox/Daboxx」"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "원천(taxonomy) 작성자에게 「다복스」의 출처를 확인한다. 실체가 나오기 전에는 「확인 불가」로 두고 디스포트·Daxxify·렐라보툴리눔과 연결하지 않는다",
+   "group": "D20",
+   "license_now": "미허가"
+  },
+  {
+   "ledger_id": "auto-M15-1775401645338",
+   "product": "PRX필",
+   "verdict": "정체 확정 — 화장품",
+   "one_line": "PRX-T33은 이탈리아 WiQo(GPQ srl) 제품으로, TCA 33%·과산화수소·코직산을 섞어 피부에 바르는 비박리 필링이다. 미국 시장에서는 「전문가용 화장품」으로 소개된다. 국내 분류·수입사·허가 출처는 없다. 판정: 국내 허가 「확인 불가」 유지. 「허가 대상 아님」의 국내 출처도 없다",
+   "real_name": "PRX-T33 (현 PRX Derm Perfexion) by WiQo",
+   "manufacturer": "WiQo / GPQ srl (이탈리아 트리에스테)",
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "「PRX-T33 – a cosmetic for professional use recently launched on the US market」 · 「Wiqo PRX-T33」 — Dermatology Times(WiQo 파트너 콘텐츠). 미국 기준 분류다",
+    "WebSearch 요약에 나온 「CE marked Medical Device」라는 문구는 출처 URL을 확인하지 못해 쓰지 않았다(drszczyt·sebastianrose 페이지에 해당 문구 없음)",
+    "제조사 WiQo med(이탈리아) — 원천 IMCAS 기록"
+   ],
+   "sources": [
+    "https://www.dermatologytimes.com/view/wiqo-partner-content-fall-aa-issue",
+    "https://www.imcas.com/en/academy/profile/wiqo/products"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=PRX-T33 total=0",
+    "em.py query2=WiQo total=0",
+    "dq.py item_name=PRX total=0",
+    "cg.py PRX 0 hits",
+    "WebSearch 「PRX-T33 국내 수입 화장품 필링 PRX 필」 — 국내 수입사 없음",
+    "WebSearch 「\"PRX\" 필링 피부과 위코 WiQo 한국 공식 수입」 — 국내 없음",
+    "WebSearch 「PRX-T33 한국 피부과 PRX필 수입사」 — 국내 없음"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "정체는 WiQo PRX-T33(바르는 필링제)으로 적고, 허가 칸은 「확인 불가」로 유지한다. 국내 화장품 유통 출처(수입사·전성분 표시 등)가 나오면 「허가 대상 아님」으로 바꾼다",
+   "group": "D20",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-M15-1775362958625",
+   "product": "옥시덤",
+   "verdict": "확인 불가",
+   "one_line": "원천 설명(「산소 주입 피부관리 기기」)과 맞는 「옥시덤」 장비는 찾지 못했다. 같은 이름으로는 아나시스의 진정 크림 「케이-옥시덤」(화장품)과 TEI Spa의 가정용 오존기기 「OxyDerm」이 있는데, 둘 다 원천 설명과 맞지 않는다. 판정: 「확인 불가」",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "web4 기록: 아나시스(ANACIS) 「케이-옥시덤(K-Oxiderm)」은 비타민K1옥사이드 함유 시술 후 진정 크림(화장품)이다 — 장비가 아니어서 원천 설명과 다르다",
+    "「The OxyDerm is an at-home ozone facial device」 — TEI Spa 문서(cdn.shopify.com). 가정용 오존기기로, 고압 산소 주입 장비가 아니어서 연결하지 않았다",
+    "데이뷰 말뭉치에는 산소 관리로 「오투덤 산소필/오투덤 버블 테라피」가 있지만, 옥시덤과 같은 제품이라는 출처가 없다"
+   ],
+   "sources": [
+    "https://www.hwahae.co.kr (web4 기록)",
+    "https://cdn.shopify.com/s/files/1/1745/7533/files/TEISpaOxyDerm.pdf"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=옥시덤 total=0",
+    "em.py query2=OXY (388건 — 산소마스크·산소발생기 등 무관)",
+    "cg.py 옥시덤 0 hits",
+    "cg.py Oxy/OXY (무관)",
+    "WebSearch 「옥시덤 산소 피부관리 기기 제조사」",
+    "WebSearch 「Oxyderm oxygen infusion facial machine manufacturer」"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "원천 확인이 필요하다. 원천 이름의 실체(사진·병원 메뉴)가 나오기 전에는 「확인 불가」로 두고, 케이-옥시덤(크림)·오투덤(다른 회사 산소기)과 합치지 않는다",
+   "group": "D20",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-M17-1775364775191",
+   "product": "AAPE",
+   "verdict": "정체 확정 — 화장품",
+   "one_line": "AAPE는 프로스테믹스가 만든 지방유래 줄기세포 배양액(추출 단백질·엑소좀) 기반 병원용 앰플 브랜드다. 기사는 이를 「병원용 화장품」으로 소개한다. 같은 회사의 의료기기 「AAPE Progen」(제허19-756호, 주름 개선 조직수복용생체재료)은 2023-07-31에 취하됐다(취소가 아님). 판정: 「허가 대상 아님(출처 있음 — 병원용 화장품)」. 원천 적응증 「심부주름 개선」은 취하된 Progen의 사용목적과 겹친다",
+   "real_name": "AAPE® (AAPE Skin / AAPE Hair 병원용 앰플)",
+   "manufacturer": "(주)프로스테믹스(PROSTEMICS)",
+   "importer": null,
+   "sellers": [
+    "(주)프로스테믹스"
+   ],
+   "license_found": [],
+   "license_history": [
+    {
+     "no": "제허 19-756 호",
+     "holder": "(주)프로스테믹스",
+     "model": "AAPE Progen",
+     "state": "취하",
+     "date": "20230731",
+     "query": "em.py query2=AAPE · q.py ENTRPS=프로스테믹스 (사용목적 「성인의 안면부 주름을 일시적으로 개선하기 위해 사용」, 허가일 20191126)"
+    }
+   ],
+   "basis": [
+    "「대표 제품인 AAPE®는 피부, 두피 케어를 위한 병원용 앰플로 전세계 30개국에 수출되고 있다.」 — 데일리안 2019-04-30",
+    "프로스테믹스가 「탈모방지 병원용 화장품」을 일본에 출시했고, 주원료가 AAPE(지방유래 줄기세포 배양 여과물)이며 피부형 AAPE Skin·두피형 AAPE Hair가 있다 — 이투데이 2018-03-07(WebFetch 요약)",
+    "입력 기록의 「AAPE Progen 취소」는 틀렸다. 식약처 데이터상 상태는 취하(2023-07-31)다"
+   ],
+   "sources": [
+    "https://m.dailian.co.kr/news/view/791757",
+    "https://www.etoday.co.kr/news/view/1601280",
+    "https://www.medigatenews.com/news/2079343856",
+    "em.py query2=AAPE total=1",
+    "q.py ENTRPS=프로스테믹스 total=1",
+    "cq.py 프로스테믹스(제조업)"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=프로스테믹스 total=0(업체명은 q.py ENTRPS로 1건)",
+    "cg.py AAPE 0 hits"
+   ],
+   "needs_user": true,
+   "needs_user_reason": "원천 적응증 「심부주름 개선」은 화장품 앰플 AAPE보다 취하된 의료기기 AAPE Progen(주름 개선 주입재)의 사용목적과 맞는다. 원장 행이 어느 쪽인지 출처로 정할 수 없다",
+   "recommendation": "화장품 앰플 AAPE라면 「허가 대상 아님(출처 있음)」으로 두고 적응증 문구를 고친다. 주입 필러 AAPE Progen이라면 「실제 제품 · 허가 취하(이력)만」으로 둔다. 원천 확인 후 정한다",
+   "group": "D20",
+   "license_now": "허가 대상 아님"
+  },
+  {
+   "ledger_id": "auto-M3-1775364775146",
+   "product": "콜라겐핀",
+   "verdict": "확인 불가",
+   "one_line": "「콜라겐핀」이라는 제품·업체를 웹·병원 말뭉치·식약처 어디서도 못 찾음 — 실제 제품인지 메뉴명인지 판단할 출처 없음",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "웹 검색 「\"콜라겐핀\" 시술」·「콜라겐핀 인체유래 콜라겐 부스터 피부과」 결과에 이 이름의 제품/시술 페이지 없음(일반 콜라겐 주사 기사만)"
+   ],
+   "sources": [
+    "WebSearch \"콜라겐핀\" 시술",
+    "WebSearch 콜라겐핀 인체유래 콜라겐 부스터 피부과"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=콜라겐핀 total=0",
+    "em.py query2=콜라겐 핀 total=0",
+    "dq.py item_name=콜라겐핀 total=0",
+    "cg.py(데이뷰 12지점+data-anyang) 콜라겐핀 0 hits"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "원천(시술 목록 출처)에 제품/업체 확인 요청 — 확인 전엔 원장에서 보류",
+   "group": "D22",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-M3-1775364775148",
+   "product": "린피니",
+   "verdict": "확인 불가",
+   "one_line": "「린피니」라는 PCL 제품을 웹·병원·식약처 어디서도 못 찾음 — 국내 PCL 제품은 고우리·라풀렌 등이 검색되나 린피니는 없음",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "WebSearch 「린피니 PCL 주사 바이오스티뮬레이터 신제품」 — PCL 제품으로 고우리(GOURI)·라풀렌만 나오고 린피니 없음(https://www.stardailynews.co.kr/news/articleView.html?idxno=541185)"
+   ],
+   "sources": [
+    "WebSearch 린피니 PCL 필러 스킨부스터",
+    "WebSearch 린피니 PCL 주사 바이오스티뮬레이터 신제품"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=린피니 total=0",
+    "em.py query2=LINFINI total=0",
+    "em.py query2=Linfini total=0",
+    "q.py TYPE_NAME=LINFINI total=0",
+    "q.py TYPE_NAME=Linfini total=0",
+    "dq.py item_name=린피니 total=0",
+    "cg.py(데이뷰 12지점+data-anyang) 린피니 0 hits (PCL 은 142 hits 이나 린피니 표기 없음)"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "원천 확인 — 영문 표기·제조사 없이는 식별 불가, 보류",
+   "group": "D22",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-M4-1775362498539",
+   "product": "스네일샷",
+   "verdict": "확인 불가",
+   "one_line": "「스네일샷」 주사형 제품을 못 찾음 — 웹 결과는 해외 달팽이 페이셜·화장품뿐, 식약처·병원 말뭉치 0",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "WebSearch 「\"스네일샷\" 주사」 — 해외 snail facial·EscarGlow 등 에스테틱 기사만, 국내 주사 제품 없음(https://www.americanspa.com/skincare/snail-facials-are-sliding-spas)",
+    "이전 조사: 유사명은 VT 「스네일 리들샷」 화장품뿐(web4) — 이름이 달라 같은 제품으로 보지 않음"
+   ],
+   "sources": [
+    "WebSearch \"스네일샷\" 주사"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=스네일샷 total=0(이전)",
+    "em.py query2=스네일 total=0",
+    "dq.py item_name=스네일 → 손발톱 네일라카 5건만(무관)",
+    "cg.py(데이뷰 12지점+data-anyang) 스네일 0 hits · 스네일샷 0 hits"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "원천 확인 — 주사 제품 근거 없음, 보류(PN 기반이라는 원천 설명과 달팽이 설명도 서로 안 맞음)",
+   "group": "D22",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-M4-1775364775153",
+   "product": "레나토S",
+   "verdict": "확인 불가",
+   "one_line": "「레나토S/레나토 에스/Renato」 PN 제품을 웹·병원·식약처 어디서도 못 찾음",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "WebSearch 「\"레나토S\" 연어 PN 피부 힐러」 — 결과 페이지에 레나토S 없음(리쥬란 페이지만). 한 검색 요약문에 「레나토S는 연어 DNA…」 문장이 나왔으나 결과 링크 어디에도 원문이 없어 근거로 쓰지 않음"
+   ],
+   "sources": [
+    "WebSearch 레나토 PN 스킨부스터 Renato polynucleotide",
+    "WebSearch \"레나토\" 스킨부스터",
+    "WebSearch 레나토S 레나토에스 PN 주사 피부과",
+    "WebSearch \"레나토S\" 연어 PN 피부 힐러"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=레나토 total=0",
+    "em.py query2=레나토 에스 total=0",
+    "em.py query2=Renato total=0",
+    "em.py query2=RENATO total=0",
+    "q.py TYPE_NAME=Renato total=0",
+    "dq.py item_name=레나토 total=0",
+    "cg.py(데이뷰 12지점+data-anyang) 레나토 0 · Renato 0"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "원천 확인 — 보류",
+   "group": "D22",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-M4-1775364775154",
+   "product": "소노PDRN",
+   "verdict": "확인 불가",
+   "one_line": "「소노PDRN」 제품을 못 찾음 — 병원에선 「소노(케어/관리)」가 초음파 관리 메뉴로 쓰이지만 소노PDRN 표기는 없음",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "WebSearch 「\"소노PDRN\" OR \"소노 PDRN\" 피부과」 — PDRN 일반 기사만, 소노PDRN 없음",
+    "병원 말뭉치에 「소노」는 초음파 관리 구성 요소로만 나옴(소노PDRN 아님) — 메뉴명 판정 근거로는 부족"
+   ],
+   "sources": [
+    "WebSearch \"소노PDRN\" OR \"소노 PDRN\" 피부과",
+    "em.py query2=소노 total=18 — 침대·겔·초음파자극기 등, PDRN 주사 없음"
+   ],
+   "clinic": [
+    {
+     "clinic": "데이뷰의원",
+     "url": "https://www.daybeauclinic10.com/branch/procedure_detail.php?code=G527265",
+     "quote": "(호박필+중화+미백앰플(탭스c+솔루션)+소노관리+재생LED+모델링팩"
+    },
+    {
+     "clinic": "초이스피부과의원-평촌",
+     "url": "/Users/kknaks/Downloads/data-anyang/prices_img/c12_초이스피부과의원-평촌.json",
+     "quote": "관리/탄력보습 > 소노케어"
+    }
+   ],
+   "queries_zero": [
+    "em.py query2=소노PDRN total=0(이전)",
+    "dq.py 미질의(이름 무관)",
+    "cg.py(데이뷰 12지점+data-anyang) 소노PDRN 0 hits"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "원천 확인 — 「PDRN+초음파 관리」 조합 시술명일 수 있으나 출처 없음, 보류",
+   "group": "D22",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-M4-1775361371619",
+   "product": "셀엑소좀",
+   "verdict": "실제 제품 · 국내 허가 못 찾음",
+   "one_line": "프로스테믹스가 만들고 휴메딕스가 공동 판매하는 실제 스킨부스터 「셀엑소좀(CellExosome)」 — 식약처 의료기기·의약품에서 허가를 못 찾았고, 국내 화장품이라고 명시한 출처도 없음",
+   "real_name": "셀엑소좀(CellExosome) / 셀엑소좀 앰플",
+   "manufacturer": "(주)프로스테믹스(Prostemics)",
+   "importer": null,
+   "sellers": [
+    "(주)휴메딕스(국내 공동 판매)"
+   ],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "「휴메딕스는 … 프로스테믹스의 엑소좀 스킨부스터 ‘셀엑소좀(CellExosome)’에 대한 국내 공동 판매 계약을 체결했다」 — https://kormedi.com/1311313/ (2020-02-13)",
+    "「스킨부스터는 피부 컨디션에 맞는 유효 성분을 MTS롤러 등을 이용해 피부 재생과 탄력에 도움을 주는 피부 관리 시술이다」 — https://www.hitnews.co.kr/news/articleView.html?idxno=14876 (2020-02-13)",
+    "「셀엑소좀® (CellExosome®) 앰플은 … 엑소좀과 300여가지 성장인자를 포함하고 있는 전문가용 앰플」·미국 FDA OTC 등록 — http://www.mdon.co.kr/news/article.html?no=25738 (2020-02-25). 미국 분류만 있고 국내 화장품/의료기기 분류 문구는 없음",
+    "q.py ENTRPS=휴메딕스 32건 — 필러·PN·콜라겐 주입재 등만 있고 셀엑소좀/엑소좀 품목 없음",
+    "q.py ENTRPS=프로스테믹스 1건 — 제허 19-756 호 AAPE Progen(조직수복용생체재료, 2023-07-31 취소/취하 코드 2). 셀엑소좀과 다른 제품이라 이 행에 붙이지 않음",
+    "병원 페이지 VS라인 「KFDA 및 FDA 의 승인을 받은 제품들만 사용합니다」는 사이트 공통 문구로 허가번호 없음 — 허가 근거로 쓰지 않음"
+   ],
+   "sources": [
+    "https://kormedi.com/1311313/",
+    "https://www.hitnews.co.kr/news/articleView.html?idxno=14876",
+    "http://www.mdon.co.kr/news/article.html?no=25738",
+    "https://www.toxnfill.com/m/detail.php?c=&i=11839",
+    "https://vsline2.co.kr/skin-booster-06/",
+    "q.py ENTRPS=휴메딕스 total=32",
+    "q.py ENTRPS=프로스테믹스 total=1",
+    "cq.py 프로스테믹스 → (주)프로스테믹스 제조업 2019-11-05"
+   ],
+   "clinic": [
+    {
+     "clinic": "뮤즈의원-안양",
+     "url": "/Users/kknaks/Downloads/data-anyang/prices/c01_뮤즈의원-안양.json",
+     "quote": "내맘대로 모공부스터 5회 (더마샤인+[셀엑소좀/콜라움120 3cc]+[포텐자펌핑+셀엑소좀/콜라움120 2cc] 중 택+크라이오셀)"
+    },
+    {
+     "clinic": "VS라인 강남점",
+     "url": "https://vsline2.co.kr/skin-booster-06/",
+     "quote": "셀엑소좀(블랙라벨/줄기세포 고함량) 휴메딕스 정품 1회"
+    },
+    {
+     "clinic": "톡스앤필",
+     "url": "https://www.toxnfill.com/m/detail.php?c=&i=11839",
+     "quote": "FDA OTC 등록(2020)·CTFA 원료 등재(2006) 표기 — 국내 분류 문구 없음"
+    }
+   ],
+   "queries_zero": [
+    "em.py query2=셀엑소좀 total=0",
+    "em.py query2=엑소좀 total=0",
+    "q.py TYPE_NAME=CellExosome total=0",
+    "dq.py item_name=셀엑소좀 total=0",
+    "dq.py item_name=엑소좀 total=0",
+    "dq.py entp_name=프로스테믹스 total=0"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "원장에 두고 「국내 허가 못 찾음」 — 화장품 여부는 제조사/휴메딕스 제품 표시(화장품 책임판매업 표기) 확인 시에만 「허가 대상 아님」으로",
+   "group": "D22",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-M4-1775364775151",
+   "product": "카탈리스트",
+   "verdict": "확인 불가",
+   "one_line": "「카탈리스트/Catalyst」 엑소좀 제품을 못 찾음 — 식약처 Catalyst 품목은 카테터·휠체어·안경렌즈 등 무관",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "WebSearch 「카탈리스트 엑소좀 스킨부스터 차세대」·「Catalyst exosome skin booster Korea injectable」 — 엑소좀 제품(셀엑소좀·ASCE+·EXOMIDE·EXOVIS 등)만 나오고 Catalyst 없음",
+    "em.py query2=Catalyst total=73(22허가) — Stryker 카테터·Innokas 정위기·휠체어·안경렌즈·치과재료로 사용목적 불일치, 붙이지 않음"
+   ],
+   "sources": [
+    "WebSearch 카탈리스트 엑소좀 피부과 시술",
+    "WebSearch Catalyst exosome skin booster Korea injectable",
+    "WebSearch 카탈리스트 엑소좀 스킨부스터 차세대",
+    "em.py query2=Catalyst total=73"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=카탈리스트 total=0",
+    "dq.py item_name=카탈리스트 total=0",
+    "cg.py(데이뷰 12지점+data-anyang) 카탈리스트 0 · Catalyst 0"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "원천 확인 — 보류",
+   "group": "D22",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-M4-1775364775155",
+   "product": "드원셀",
+   "verdict": "확인 불가",
+   "one_line": "「드원셀」 엑소좀 제품을 웹·병원·식약처 어디서도 못 찾음",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "WebSearch 「드원셀 스킨부스터 엑소좀 국산」 — 셀엑소좀·세렉소·ASCE 등만 나오고 드원셀 없음"
+   ],
+   "sources": [
+    "WebSearch \"드원셀\" 엑소좀",
+    "WebSearch 드원셀 스킨부스터 엑소좀 국산"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=드원셀 total=0",
+    "dq.py item_name=드원셀 total=0",
+    "cg.py(데이뷰 12지점+data-anyang) 드원셀 0 hits"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "원천 확인 — 보류",
+   "group": "D22",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-M4-1775360452766",
+   "product": "리듐",
+   "verdict": "확인 불가",
+   "one_line": "「리듐/Lidium」 콜라겐 스킨부스터를 못 찾음 — 식약처 「리디움」은 진단키트(무관)",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "WebSearch 「\"리듐\" 스킨부스터 콜라겐」·「리듐 콜라겐 스킨부스터 진피 주입 피부과 이벤트」 — 리투오·셀르디엠·레디어스 등만, 리듐 없음",
+    "em.py query2=리디움 1건 — 녹십자엠에스 클로스트리디움 검출 키트(무관)"
+   ],
+   "sources": [
+    "WebSearch \"리듐\" 스킨부스터 콜라겐",
+    "WebSearch 리듐 콜라겐 스킨부스터 진피 주입 피부과 이벤트"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=리듐 total=0",
+    "em.py query2=Lidium total=0",
+    "em.py query2=LIDIUM total=0",
+    "q.py TYPE_NAME=Lidium total=0",
+    "dq.py item_name=리듐 total=0",
+    "cg.py(데이뷰 12지점+data-anyang) 리듐 0 · Lidium 0"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "원천 확인 — 보류",
+   "group": "D22",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-M4-1775360574999",
+   "product": "투 (TU)",
+   "verdict": "확인 불가",
+   "one_line": "「투(TU)」 인체 유래 I형 콜라겐 주사를 못 찾음 — 이름이 짧아 웹 식별 불가, 인체유래 콜라겐 기사엔 리투오·휴젤(젤라텍)만",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "WebSearch 「인체 유래 I형 콜라겐 주사 스킨부스터 2025 신제품 \"TU\" 투」 — 리투오, 휴젤-젤라텍 인체 유래 콜라겐(https://www.hankyung.com/article/2026051344101) 등만, TU 표기 없음"
+   ],
+   "sources": [
+    "WebSearch 인체 유래 I형 콜라겐 주사 스킨부스터 2025 신제품 \"TU\" 투"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=TU 스킨부스터 total=0(이전)",
+    "em.py query2=투콜라겐 total=0",
+    "cg.py(데이뷰 12지점+data-anyang) 투콜라겐 0 hits (\"TU\" 단독은 2글자라 말뭉치 grep 무의미)"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "원천 확인 — 리투오(Re2O) 약칭일 수도 있으나 출처 없음, 보류",
+   "group": "D22",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-M4-1775364775152",
+   "product": "SNP솔루션",
+   "verdict": "확인 불가",
+   "one_line": "「SNP솔루션」 콜라겐 주사를 못 찾음 — SNP 는 화장품 브랜드로만 검색, 식약처 SNP 품목은 치과·침대 등 무관",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "WebSearch 「SNP 콜라겐 스킨부스터 주사 국산 \"SNP솔루션\"」 — SNP 화장품(골드 콜라겐 아이패치 등)만 나옴(https://www.cosmorning.com/news/article.html?no=41475). 주사 제품 아님 — 같은 제품으로 보지 않음",
+    "em.py query2=SNP total=857 — 부목·치과 임플란트·의료용 침대 모델명, 사용목적 불일치"
+   ],
+   "sources": [
+    "WebSearch SNP 콜라겐 스킨부스터 주사 국산 SNP솔루션",
+    "em.py query2=SNP total=857"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=SNP솔루션 total=0(이전)",
+    "em.py query2=에스엔피 total=0",
+    "cg.py(데이뷰 12지점+data-anyang) SNP 0 hits"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "원천 확인 — 보류",
+   "group": "D22",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-M8-1775362943490",
+   "product": "트루피코",
+   "verdict": "확인 불가",
+   "one_line": "트루피코(TruPico)라는 장비를 웹·병원 말뭉치·식약처 어디서도 찾지 못함 — 실제 제품인지·허가 여부 확인 불가",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "원천 설명 「4파장 컬러 문신 특화 · K마크 인증」 외에 제품·제조사 단서 없음",
+    "웹 검색 「트루피코 레이저 문신 제거 4파장」「\"트루피코\" 피코레이저」 결과에 해당 이름 없음(게임 Tropico 등만)",
+    "식약처 em.py · q.py TYPE_NAME 대소문자 변형 전부 0건"
+   ],
+   "sources": [
+    "WebSearch: 트루피코 레이저 문신 제거 4파장 (해당 이름 없음)",
+    "WebSearch: \"트루피코\" 피코레이저 (해당 이름 없음)",
+    "cg.py 트루피코 TruPico 바이탈라이즈 Vitalize 로제라이트 하이푸니 에이전 리저브 클래리파이 Clarify 에브넥 바이캐빈 아폴로 Apollo → 전부 0 hits"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=트루피코 total=0",
+    "em.py query2=TruPico total=0",
+    "em.py query2=TRUPICO total=0",
+    "em.py query2=Trupico total=0",
+    "q.py TYPE_NAME=TruPico 0",
+    "q.py TYPE_NAME=TRUPICO 0",
+    "q.py TYPE_NAME=Trupico 0",
+    "cg.py 트루피코 TruPico 바이탈라이즈 Vitalize 로제라이트 하이푸니 에이전 리저브 클래리파이 Clarify 에브넥 바이캐빈 아폴로 Apollo → 전부 0 hits"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "원천(taxonomy 작성 출처)에서 제조사·영문명을 받아 오기 전까지 확인 불가 유지 — 근거 없는 이름이면 원장에서 빼는 것을 검토",
+   "group": "D23",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-M8-1775364775127",
+   "product": "바이탈라이즈",
+   "verdict": "확인 불가",
+   "one_line": "바이탈라이즈(Vitalize) IPL 장비를 웹·병원·식약처 어디서도 찾지 못함 — 확인 불가",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "원천 설명 「IPL재생」 외 단서 없음",
+    "웹 검색 「바이탈라이즈 IPL 피부과」「\"로제라이트\" OR \"바이탈라이즈\" 시술 피부과 IPL」에 해당 이름 없음(IPL 일반 자료만)",
+    "식약처 em.py · q.py TYPE_NAME 변형 전부 0건"
+   ],
+   "sources": [
+    "WebSearch: 바이탈라이즈 IPL 피부과 (해당 이름 없음)",
+    "WebSearch: \"로제라이트\" OR \"바이탈라이즈\" 시술 피부과 IPL (해당 이름 없음)",
+    "cg.py 트루피코 TruPico 바이탈라이즈 Vitalize 로제라이트 하이푸니 에이전 리저브 클래리파이 Clarify 에브넥 바이캐빈 아폴로 Apollo → 전부 0 hits"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=바이탈라이즈 total=0",
+    "em.py query2=VITALIZE total=0",
+    "em.py query2=Vitalize total=0",
+    "q.py TYPE_NAME=Vitalize 0",
+    "q.py TYPE_NAME=VITALIZE 0",
+    "cg.py 트루피코 TruPico 바이탈라이즈 Vitalize 로제라이트 하이푸니 에이전 리저브 클래리파이 Clarify 에브넥 바이캐빈 아폴로 Apollo → 전부 0 hits"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "확인 불가 유지 · 원천 확인 — 출처 없는 이름이면 원장에서 빼는 것을 검토",
+   "group": "D23",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-M8-1775364797146",
+   "product": "로제라이트",
+   "verdict": "확인 불가",
+   "one_line": "로제라이트(RoseLight) 홍조용 RF+IPL 장비를 웹·병원·식약처 어디서도 찾지 못함 — 확인 불가",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "원천 설명 「홍조전용RF+IPL」 외 단서 없음",
+    "웹 검색 「로제라이트 홍조 RF IPL 피부과」에 해당 이름 없음(ELOS·IPL 일반 자료만)",
+    "식약처 em.py · q.py TYPE_NAME 변형 전부 0건"
+   ],
+   "sources": [
+    "WebSearch: 로제라이트 홍조 RF IPL 피부과 (해당 이름 없음)",
+    "WebSearch: \"로제라이트\" OR \"바이탈라이즈\" 시술 피부과 IPL (해당 이름 없음)",
+    "cg.py 트루피코 TruPico 바이탈라이즈 Vitalize 로제라이트 하이푸니 에이전 리저브 클래리파이 Clarify 에브넥 바이캐빈 아폴로 Apollo → 전부 0 hits"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=로제라이트 total=0",
+    "em.py query2=ROSELIGHT total=0",
+    "em.py query2=Roselight total=0",
+    "q.py TYPE_NAME=RoseLight 0",
+    "q.py TYPE_NAME=ROSELIGHT 0",
+    "q.py TYPE_NAME=Roselight 0",
+    "cg.py 트루피코 TruPico 바이탈라이즈 Vitalize 로제라이트 하이푸니 에이전 리저브 클래리파이 Clarify 에브넥 바이캐빈 아폴로 Apollo → 전부 0 hits"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "확인 불가 유지 · 원천 확인",
+   "group": "D23",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-M9-1775364775133",
+   "product": "하이푸니",
+   "verdict": "확인 불가",
+   "one_line": "하이푸니라는 소형 HIFU 장비를 찾지 못함 — 이름이 걸리는 허가(HIFUNIT9000)는 종양용 집속초음파 수술기라 다른 제품, 확인 불가",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "원천 설명 「소형HIFU」 외 단서 없음",
+    "em.py query2=HIFUNI 1건: 「수허07-93호 | 정상 | 남북의료기상사 | mf:Shanhai A&S Science Technology Development Co., Ltd | 고강도 집속형 초음파 수술기 | 모델 HIFUNIT9000」 — 품목이 수술기이고 이름도 HIFUNIT 라 원천(소형 HIFU 리프팅)과 같다는 근거 없음",
+    "웹 검색 「하이푸니 소형 HIFU 리프팅」「\"하이푸니\" 피부과」에 해당 이름 없음"
+   ],
+   "sources": [
+    "em.py query2=HIFUNI total=1 (HIFUNIT9000 · 남북의료기상사 — 다른 제품)",
+    "q.py TYPE_NAME=HIFUNI total=1 (같은 건)",
+    "WebSearch: 하이푸니 소형 HIFU 리프팅 (해당 이름 없음)",
+    "WebSearch: \"하이푸니\" 피부과 (해당 이름 없음)",
+    "cg.py 트루피코 TruPico 바이탈라이즈 Vitalize 로제라이트 하이푸니 에이전 리저브 클래리파이 Clarify 에브넥 바이캐빈 아폴로 Apollo → 전부 0 hits"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=하이푸니 total=0",
+    "q.py TYPE_NAME=Hifuni 0",
+    "q.py TYPE_NAME=HIFU-NI 0",
+    "cg.py 트루피코 TruPico 바이탈라이즈 Vitalize 로제라이트 하이푸니 에이전 리저브 클래리파이 Clarify 에브넥 바이캐빈 아폴로 Apollo → 전부 0 hits"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "확인 불가 유지 · HIFUNIT9000 허가는 붙이지 않음 · 원천 확인",
+   "group": "D23",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-M9-1775362633910",
+   "product": "에이전",
+   "verdict": "확인 불가",
+   "one_line": "원천은 「제이시스 모노폴라 RF」지만 제이시스메디칼 허가 목록에 「에이전」에 해당하는 모델이 없음 — 확인 불가",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "원천 tx_detail 「제이시스 · 모노폴라 RF」",
+    "q.py ENTRPS=제이시스 total 103 중 고주파 전기수술기 정상 허가 모델: DENSITY Noir(제허 24-114 · 23-472), DENZA(제허 23-810), DENSITY System(제허 23-63), COTENZA(제허 25-857), POTENZA(제허 19-126 · 19-78), INTRAcel 계열, INTRAGen/IntraGen(제허 13-985 · 12-1398), I-Perfect, VutyGen 등 — 「에이전/AGEN」 이름 모델 없음",
+    "웹: 제이시스 모노폴라·바이폴라 RF 리프팅 장비는 「덴서티(DENSITY)」, 미주명 「DENZA」 — https://www.smarttoday.co.kr/ko-kr/articles/36417 (본문에 「에이전」 문자열 없음, WebFetch 확인)",
+    "em.py · q.py 의 AGEN/Agen 결과는 Collagen 등 부분 일치뿐"
+   ],
+   "sources": [
+    "q.py ENTRPS=제이시스 total=103",
+    "https://www.smarttoday.co.kr/ko-kr/articles/36417",
+    "WebSearch: \"에이전\" 고주파 리프팅 제이시스 (해당 이름 없음)",
+    "WebSearch: 제이시스메디칼 모노폴라 RF 장비 이름 덴서티",
+    "cg.py 트루피코 TruPico 바이탈라이즈 Vitalize 로제라이트 하이푸니 에이전 리저브 클래리파이 Clarify 에브넥 바이캐빈 아폴로 Apollo → 전부 0 hits"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=에이전 total=0",
+    "q.py TYPE_NAME=A-GEN 0",
+    "em.py query2=AGEN total=730 (Collagen 등 부분 일치 — 관련 없음)",
+    "q.py TYPE_NAME=AGEN 27 · Agen 7 (부분 일치 — 관련 없음)",
+    "cg.py 트루피코 TruPico 바이탈라이즈 Vitalize 로제라이트 하이푸니 에이전 리저브 클래리파이 Clarify 에브넥 바이캐빈 아폴로 Apollo → 전부 0 hits"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "원천 확인 — 「에이전」이 제이시스 어느 모델(덴서티 등)을 가리키는지 원천에서 받아야 함. 출처 없이 덴서티 허가를 붙이지 않음",
+   "group": "D23",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-M9-1775364775132",
+   "product": "리저브",
+   "verdict": "확인 불가",
+   "one_line": "리저브라는 국산 모노폴라 RF 장비를 웹·병원·식약처 어디서도 찾지 못함 — 확인 불가",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "원천 설명 「국산모노폴라」 외 단서 없음",
+    "웹 검색 「\"리저브\" 모노폴라 고주파 리프팅 국산」에 해당 이름 없음(볼뉴머·써니 등 다른 제품만)",
+    "em.py RESERVE 결과는 preserve 체외진단 시약뿐"
+   ],
+   "sources": [
+    "WebSearch: \"리저브\" 모노폴라 고주파 리프팅 국산 (해당 이름 없음)",
+    "em.py query2=RESERVE total=10 (Preserve 시약 — 관련 없음)",
+    "cg.py 트루피코 TruPico 바이탈라이즈 Vitalize 로제라이트 하이푸니 에이전 리저브 클래리파이 Clarify 에브넥 바이캐빈 아폴로 Apollo → 전부 0 hits"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=리저브 total=0",
+    "q.py TYPE_NAME=Reserve 0",
+    "q.py TYPE_NAME=RESERVE 0",
+    "cg.py 트루피코 TruPico 바이탈라이즈 Vitalize 로제라이트 하이푸니 에이전 리저브 클래리파이 Clarify 에브넥 바이캐빈 아폴로 Apollo → 전부 0 hits"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "확인 불가 유지 · 원천 확인",
+   "group": "D23",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-M9-1775364775139",
+   "product": "클래리파이",
+   "verdict": "확인 불가",
+   "one_line": "클래리파이(여드름·피지) 장비를 찾지 못함 — 웹의 Clarify 는 미국 Clarify Medical 의 NB-UVB 가정용 광선치료기(건선 등)로 원천 설명과 다르고, 식약처엔 염색 시약뿐 — 확인 불가",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "원천 설명 「여드름피지」, 분류 「마이크로웨이브」",
+    "웹: Clarify Medical(샌디에이고) Clarify System 은 「narrowband UVB … psoriasis, vitiligo, atopic dermatitis」 광선치료기 — https://www.mobihealthnews.com/news/clarify-gets-fda-clearance-connected-home-phototherapy-device — 여드름·마이크로웨이브와 맞지 않아 같은 제품 근거 없음",
+    "em.py query2=CLARIFY 2건은 ClearView Alcoholic Clarifying Reagent(세포 염색 시약) — 관련 없음",
+    "q.py TYPE_NAME=Clarify 1건(체외진단 시약 — 관련 없음)"
+   ],
+   "sources": [
+    "WebSearch: \"클래리파이\" 여드름 피부과 장비",
+    "https://www.mobihealthnews.com/news/clarify-gets-fda-clearance-connected-home-phototherapy-device",
+    "em.py query2=CLARIFY total=2 (시약)",
+    "cg.py 트루피코 TruPico 바이탈라이즈 Vitalize 로제라이트 하이푸니 에이전 리저브 클래리파이 Clarify 에브넥 바이캐빈 아폴로 Apollo → 전부 0 hits"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=클래리파이 total=0",
+    "q.py TYPE_NAME=CLARIFY 0",
+    "cg.py 트루피코 TruPico 바이탈라이즈 Vitalize 로제라이트 하이푸니 에이전 리저브 클래리파이 Clarify 에브넥 바이캐빈 아폴로 Apollo → 전부 0 hits"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "확인 불가 유지 · 원천 확인(마이크로웨이브 여드름 장비라면 실제 제품명 필요)",
+   "group": "D23",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-M9-1775364775135",
+   "product": "에브넥",
+   "verdict": "확인 불가",
+   "one_line": "에브넥(RF+초음파 목 리프팅) 장비를 웹·병원·식약처 어디서도 찾지 못함 — 확인 불가",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "원천 설명 「RF+초음파목」 외 단서 없음",
+    "웹 검색 「\"에브넥\" 목주름 리프팅」에 해당 이름 없음"
+   ],
+   "sources": [
+    "WebSearch: \"에브넥\" 목주름 리프팅 (해당 이름 없음)",
+    "cg.py 트루피코 TruPico 바이탈라이즈 Vitalize 로제라이트 하이푸니 에이전 리저브 클래리파이 Clarify 에브넥 바이캐빈 아폴로 Apollo → 전부 0 hits"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=에브넥 total=0",
+    "em.py query2=EVNECK total=0",
+    "q.py TYPE_NAME=EVNECK 0",
+    "q.py TYPE_NAME=Evneck 0",
+    "q.py TYPE_NAME=EvNeck 0",
+    "cg.py 트루피코 TruPico 바이탈라이즈 Vitalize 로제라이트 하이푸니 에이전 리저브 클래리파이 Clarify 에브넥 바이캐빈 아폴로 Apollo → 전부 0 hits"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "확인 불가 유지 · 원천 확인",
+   "group": "D23",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-M9-1775364775136",
+   "product": "바이캐빈",
+   "verdict": "확인 불가",
+   "one_line": "바이캐빈(RF+캐비테이션 바디) 장비를 웹·병원·식약처 어디서도 찾지 못함 — 확인 불가",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "원천 설명 「RF+캐비테이션」 외 단서 없음",
+    "웹 검색 「\"바이캐빈\" OR \"바이캐비\" RF 캐비테이션 바디」에 해당 이름 없음(RF 캐비테이션 일반 자료만)"
+   ],
+   "sources": [
+    "WebSearch: \"바이캐빈\" OR \"바이캐비\" RF 캐비테이션 바디 (해당 이름 없음)",
+    "cg.py 트루피코 TruPico 바이탈라이즈 Vitalize 로제라이트 하이푸니 에이전 리저브 클래리파이 Clarify 에브넥 바이캐빈 아폴로 Apollo → 전부 0 hits"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=바이캐빈 total=0",
+    "em.py query2=BYCAVIN total=0",
+    "q.py TYPE_NAME=BYCAVIN 0",
+    "q.py TYPE_NAME=Bycavin 0",
+    "q.py TYPE_NAME=ByCavin 0",
+    "cg.py 트루피코 TruPico 바이탈라이즈 Vitalize 로제라이트 하이푸니 에이전 리저브 클래리파이 Clarify 에브넥 바이캐빈 아폴로 Apollo → 전부 0 hits"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "확인 불가 유지 · 원천 확인",
+   "group": "D23",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-M9-1775364775137",
+   "product": "아폴로",
+   "verdict": "확인 불가",
+   "one_line": "「아폴로」라는 미용 RF 장비는 둘 있다 — (주)위로 Apollo Duet/Quattro(국내 현행 허가, 바이폴라 RF+전기천공)와 Pollogen Apollo(TriPollar RF, 국내 허가 0건). 원천 「다중에너지 리프팅」이 어느 쪽인지 출처로 못 닫음",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [
+    {
+     "no": "제허 24-31 호",
+     "holder": "(주)위로",
+     "model": "Apollo Duet (APD-4000)",
+     "state": "정상",
+     "date": "20240110",
+     "query": "em.py query2=Apollo · q.py ENTRPS=(주)위로 — 후보일 뿐, 원천과 같은 제품 근거 없음"
+    },
+    {
+     "no": "제허 21-153 호",
+     "holder": "(주)위로",
+     "model": "Apollo Duet (APD-1000, APD-4000)",
+     "state": "정상",
+     "date": "20210225",
+     "query": "em.py query2=Apollo — 후보일 뿐"
+    },
+    {
+     "no": "제허 26-11 호",
+     "holder": "(주)위로",
+     "model": "Apollo Quattro (APQ-10M)",
+     "state": "정상",
+     "date": null,
+     "query": "em.py query2=Apollo — 후보일 뿐"
+    }
+   ],
+   "license_history": [],
+   "basis": [
+    "(주)위로 Apollo Duet: 품목 「3등급 의료용 조합 자극기」, 사용목적 「고주파자극기: 고주파 에너지를 인체에 가하여 통증 완화」(q.py ENTRPS=(주)위로)",
+    "웹: Apollo Duet 은 「bipolar radiofrequency (RF) and electroporation … manufactured by WEERO (Suwon, South Korea)」 — https://www.4tmedical.com/product/devices/apollo-duet/ (WebSearch 요약)",
+    "이전 기록이 Pollogen 후보 근거로 든 theaestheticguide 「apollo-duet-offers…」 기사는 WEERO 후원 기사(검색 결과 「Sponsored by WEERO」) — Pollogen 제품 근거로 쓰면 안 됨",
+    "Pollogen Apollo: 「Apollo is powered by TriPollar … radiofrequency energy … Pollogen (the manufacturer) and Lumiere Medical」 — https://plasticsurgerypractice.com/client-objectives/dermatology/apollo-powered-by-tripollar-slated-to-debut-at-aad/",
+    "Pollogen 국내 수입 후보 루메니스비코리아 허가(q.py ENTRPS=루메니스 34건)에 Apollo 없음 — TriPollar 는 젤(수신26-898)·triLyft(수허26-75)·LEGEND PRO+(수허23-223)만"
+   ],
+   "sources": [
+    "em.py query2=Apollo total=293 lic=39",
+    "q.py TYPE_NAME=Apollo 12 · APOLLO 10 (미용 RF 없음)",
+    "q.py ENTRPS=(주)위로",
+    "q.py ENTRPS=루메니스 total=34",
+    "https://www.4tmedical.com/product/devices/apollo-duet/",
+    "https://plasticsurgerypractice.com/client-objectives/dermatology/apollo-powered-by-tripollar-slated-to-debut-at-aad/",
+    "https://www.theaestheticguide.com/energy-based-devices-treatments/apollo-duet-offers-physicians-versatility-with-noticeable-results (403, 검색 결과로만)",
+    "cg.py 트루피코 TruPico 바이탈라이즈 Vitalize 로제라이트 하이푸니 에이전 리저브 클래리파이 Clarify 에브넥 바이캐빈 아폴로 Apollo → 전부 0 hits"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=Pollogen total=0",
+    "em.py query2=POLLOGEN total=0",
+    "em.py query2=폴로젠 total=0",
+    "em.py query2=트리폴라 total=0",
+    "em.py query2=TriPollar total=1 (젤만 — 장비 0)",
+    "cg.py 트루피코 TruPico 바이탈라이즈 Vitalize 로제라이트 하이푸니 에이전 리저브 클래리파이 Clarify 에브넥 바이캐빈 아폴로 Apollo → 전부 0 hits"
+   ],
+   "needs_user": true,
+   "needs_user_reason": "같은 이름의 실제 장비가 둘(국내 허가 있는 위로 Apollo Duet/Quattro · 허가 없는 Pollogen Apollo)이고 원천 「다중에너지」만으로 어느 쪽인지 정할 출처가 없음",
+   "recommendation": "원천 확인 — 위로 Apollo 를 뜻한다는 출처가 오면 「실제 제품 · 현행 허가 찾음(제허 24-31 등)」, Pollogen 이면 「국내 허가 못 찾음」",
+   "group": "D23",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-M11-1775364775144",
+   "product": "프라임RF",
+   "verdict": "확인 불가",
+   "one_line": "「프라임RF」라는 국산 니들RF 장비를 웹·병원·식약처 어디서도 찾지 못함 — 제조사·허가 모두 확인 불가.",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "원천 설명 「국산니들RF」 「국산 기술로 개발된 니들 RF 장비」 외 제품을 특정할 정보 없음",
+    "식약처 「프라임」 부분 일치 56건(em.py)·TYPE_NAME=PRIME 97건/Prime 127건은 실펌엑스프라임 커플링 겔·포토프라임(펄스광)·Youlaser PRIME(레이저) 등 — 니들RF 고주파 장비 없음",
+    "데이뷰 메뉴의 「울쎄라피 프라임」은 울쎄라(초음파) 계열 메뉴로 니들RF 아님 — 갖다 붙이지 않음",
+    "WebSearch 「\"Prime RF\" microneedle Korea manufacturer」 결과에 그런 이름의 장비 없음(포텐자·지니어스·쿼드세시만)"
+   ],
+   "sources": [
+    "em.py query2=프라임 total=56(니들RF 없음)",
+    "q.py TYPE_NAME=PRIME total=97 · TYPE_NAME=Prime total=127(니들RF 없음)",
+    "cg.py 프라임RF 0 hits",
+    "WebFetch bing.com 한글 따옴표 검색 — 무관 결과만(네이버 포털·위키 등) 「\"프라임RF\" 피부과」",
+    "WebSearch \"Prime RF\" microneedle fractional radiofrequency Korea manufacturer"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "cg.py 프라임RF",
+    "q.py TYPE_NAME=Prime RF",
+    "q.py TYPE_NAME=PrimeRF",
+    "em.py query2=PRIME RF",
+    "em.py query2=프라임알에프"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "실제 제품명(영문·제조사)을 원천에서 다시 받기 전까지 확인 불가로 둠",
+   "group": "D23",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-M13-1775364775141",
+   "product": "뉴라클플라즈마",
+   "verdict": "확인 불가",
+   "one_line": "「뉴라클」 플라즈마 눈꺼풀 장비를 웹·병원·식약처에서 찾지 못함 — 업체도 식약처 업체 목록에 없음.",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "원천 설명 「비수술블레파로」 「플라즈마 에너지를 이용한 비수술적 눈꺼풀 리프팅 시술」",
+    "웹 검색 결과는 Plexr·Plasma IQ·Ultra V Plasma pen 등 다른 플라즈마 펜만 나옴 — 「뉴라클/Neuracle」 이름 장비 없음",
+    "식약처 업체 허가(cq.py 뉴라클) 0건 · 품목(ENTRPS/TYPE_NAME/em) 0건"
+   ],
+   "sources": [
+    "WebSearch \"뉴라클\" 플라즈마 블레파로",
+    "WebSearch Neuracle plasma eyelid device Korea",
+    "WebFetch bing.com 한글 따옴표 검색 — 무관 결과만(네이버 포털·위키 등) 「\"뉴라클\" 플라즈마」"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=뉴라클",
+    "em.py query2=NEURACLE",
+    "q.py TYPE_NAME=NEURACLE",
+    "q.py TYPE_NAME=Neuracle",
+    "q.py ENTRPS=뉴라클",
+    "cq.py 뉴라클",
+    "cg.py 뉴라클"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "확인 불가로 둠 — 제조사/영문명이 원천에서 나오면 재조사",
+   "group": "D23",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-M13-1775364775140",
+   "product": "플라스젠",
+   "verdict": "확인 불가",
+   "one_line": "「플라스젠」 콜드플라즈마 약물전달 장비를 찾지 못함 — 이전 근거 URL 은 다른 제품(치과 근관치료 「플라젠 PLAZEN」)이었음.",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "이전 basis 의 dentalnews 기사(no=48503)는 「덴토리 '근관치료의 새로운 접근!' 수중방전플라즈마」 — 덴토리바이오사이언스 「PLAZEN(플라젠)」 치과 근관치료 기술로, 피부 약물침투 장비가 아님 → 같은 제품 아님 — https://dentalnews.or.kr/news/article.html?no=48503",
+    "저밀도 플라즈마 경피 약물전달 보도는 「플라즈매직(PlazMagik®, 아그네스메디컬)」을 쓴 연구로, 이름이 달라 갖다 붙이지 않음 — https://sports.khan.co.kr/article/202502090747003",
+    "em.py 플라젠 45건 중 허가 1건은 (주)피알피사이언스 조직수복용 재료(올리디아 등) — 무관"
+   ],
+   "sources": [
+    "https://dentalnews.or.kr/news/article.html?no=48503",
+    "WebSearch \"플라스젠\" 플라즈마",
+    "WebSearch 플라스젠 플라즈마 피부 약물침투",
+    "WebFetch bing.com 한글 따옴표 검색 — 무관 결과만(네이버 포털·위키 등) 「\"플라스젠\"」",
+    "em.py query2=플라젠 total=45(무관)"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=플라스젠",
+    "em.py query2=PLASGEN",
+    "q.py TYPE_NAME=PLASGEN",
+    "q.py TYPE_NAME=Plasgen",
+    "q.py TYPE_NAME=PlasGen",
+    "q.py ENTRPS=플라스젠",
+    "cq.py 플라스젠",
+    "cg.py 플라스젠",
+    "cg.py PLASGEN"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "확인 불가로 둠 · 이전 basis 의 dentalnews URL 은 다른 제품이므로 근거에서 뺄 것",
+   "group": "D23",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-M14-1775364775188",
+   "product": "크라이오듀얼",
+   "verdict": "확인 불가",
+   "one_line": "「크라이오듀얼」이라는 양측 동시 냉각지방분해 장비를 특정하지 못함 — 식약처 0건, 이전 후보(Medibeauty)는 근거 없음.",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "원천 설명 「듀얼양측동시」 「양쪽을 동시에 시술하는 듀얼 냉각 지방 분해 시스템」 — 듀얼 어플리케이터는 여러 회사 장비의 공통 기능(Shape Tactics 220W·Polarys·Cryocell 등)이라 이름만으로 특정 불가 — WebSearch \"Cryo Dual\" cryolipolysis",
+    "식약처 「크라이오」 부분 일치는 (주)메쉬 의료용저온기 「크라이오마스터, Cryo-Master」(제인15-4003호) 1건 — 이름·용도가 달라 붙이지 않음",
+    "Medibeauty(벨기에) 후보는 국내 수입·허가 출처 없음"
+   ],
+   "sources": [
+    "em.py query2=크라이오 total=1(크라이오마스터, 무관)",
+    "WebSearch \"Cryo Dual\" OR \"Cryo-Dual\" cryolipolysis device two applicators",
+    "WebSearch 크라이오듀얼 냉각 지방분해",
+    "WebFetch bing.com 한글 따옴표 검색 — 무관 결과만(네이버 포털·위키 등) 「\"크라이오듀얼\"」(게임 결과만)",
+    "https://www.medibeauty.be/en/catalogue/catalogue-12/catalogue-12/mb-cryo360 (이전 기록, 재확인 안 함)"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=듀얼크라이오",
+    "em.py query2=CRYO-DUAL",
+    "q.py TYPE_NAME=Cryo-Dual",
+    "q.py TYPE_NAME=CRYO-DUAL",
+    "q.py TYPE_NAME=CryoDual",
+    "q.py TYPE_NAME=Cryo Dual",
+    "cg.py 크라이오듀얼"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "확인 불가로 둠 — 「듀얼」이 제품명인지 기능 설명인지 원천 확인 필요",
+   "group": "D23",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-M15-1775362992228",
+   "product": "셀라이트",
+   "verdict": "확인 불가",
+   "one_line": "「셀라이트」 LED 광치료 장비를 웹·병원·식약처에서 찾지 못함.",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "원천 설명 「LED 기반 피부재생 광치료」",
+    "웹 검색은 셀리턴(CELLRETURN) LED 마스크 등 다른 브랜드만 — 「셀라이트/Cellite」 장비 없음",
+    "식약처 품목·업체 모두 0건"
+   ],
+   "sources": [
+    "WebSearch 셀라이트 LED 피부과",
+    "WebSearch Cellite LED skin device Korea"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=셀라이트",
+    "em.py query2=CELLITE",
+    "q.py TYPE_NAME=CELLITE",
+    "q.py TYPE_NAME=Cellite",
+    "q.py TYPE_NAME=CelLite",
+    "q.py ENTRPS=셀라이트",
+    "cq.py 셀라이트",
+    "cg.py 셀라이트"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "확인 불가로 둠",
+   "group": "D23",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-M15-1775362998455",
+   "product": "데마루치",
+   "verdict": "확인 불가",
+   "one_line": "「데마루치/더마루치」 클리닉용 LED 마스크를 찾지 못함 — 식약처 「마루치」는 치과 회사라 무관.",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "원천 설명 「LED 마스크 · 클리닉용」",
+    "q.py ENTRPS=마루치 36건은 (주)마루치 치과 근관 파일·현미경 등 — LED 광치료 장비 없음, 무관",
+    "영문 유사명 검색(Dermaluchi)은 영국 Dermalux LED만 나옴 — 이름이 달라 같은 제품으로 붙이지 않음"
+   ],
+   "sources": [
+    "q.py ENTRPS=마루치 total=36(치과, 무관)",
+    "cq.py 마루치 → (주)마루치 제조업·수입업(치과)",
+    "WebSearch Dermaluchi LED mask clinic",
+    "WebFetch bing.com 한글 따옴표 검색 — 무관 결과만(네이버 포털·위키 등) 「\"데마루치\" LED」"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=마루치",
+    "em.py query2=더마루치",
+    "q.py TYPE_NAME=DERMALUCHI",
+    "q.py TYPE_NAME=Dermaluchi",
+    "q.py TYPE_NAME=DERMARUCHI",
+    "cg.py 데마루치",
+    "cg.py 더마루치",
+    "cg.py Dermaluchi"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "확인 불가로 둠 — 철자(더마룩스 Dermalux 오기 여부 등)는 원천 확인 대상",
+   "group": "D23",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-M15-1775364775179",
+   "product": "바이오프로톤",
+   "verdict": "확인 불가",
+   "one_line": "「바이오프로톤/바이오포톤」 광생물조절 장비를 찾지 못함.",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "원천 설명 「광생물조절」 「광생물조절 기술을 이용한 비침습적 피부 치료」",
+    "웹 검색(Biophoton LED photobiomodulation Korea)은 MCI·셀리턴 등 다른 회사만 — 같은 이름 장비 없음",
+    "식약처 품목·업체 0건"
+   ],
+   "sources": [
+    "WebSearch Biophoton LED photobiomodulation skin device Korea clinic",
+    "WebFetch bing.com 한글 따옴표 검색 — 무관 결과만(네이버 포털·위키 등) 「\"바이오프로톤\" 피부」"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=바이오포톤",
+    "em.py query2=BIOPHOTON",
+    "q.py TYPE_NAME=Biophoton",
+    "q.py TYPE_NAME=BIOPHOTON",
+    "q.py TYPE_NAME=BioPhoton",
+    "q.py ENTRPS=바이오포톤",
+    "cq.py 바이오포톤",
+    "cg.py 바이오프로톤",
+    "cg.py 바이오포톤"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "확인 불가로 둠",
+   "group": "D23",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-54-1774737181584",
+   "product": "크라이오셀",
+   "verdict": "메뉴명 · 일반명",
+   "one_line": "「크라이오셀」은 여러 피부과가 쓰는 냉각 진정관리 메뉴 이름 — 쓰는 장비명은 어느 병원도 밝히지 않았고, 식약처에 그 이름 허가 없음.",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "데이뷰의원 광주상무점: 「크라이오셀진정관리 1회 크라이오+LED+모델링팩」 「피부를 국소 냉동시키는 요법으로, 붉어지거나 달아오른 피부를 즉각 진정시키고 혈관을 수축시키는 아이스 관리입니다」 — 장비명 없음",
+    "서로 다른 안양 병원 6곳이 관리 패키지 구성 요소로 같은 이름을 씀(유앤아이·톤즈·아비쥬·뮤즈·블리비·라마르프리미어) — 메뉴 단계 이름으로 쓰임",
+    "해외에 같은 이름의 냉각지방분해 장비 「Cryocell cryolipolysis device」가 있으나 용도(지방분해)가 원천(진정관리)과 달라 붙이지 않음 — https://remma.fr/en/model/cryocell-cryolipolysis-device",
+    "원천의 「액화질소 냉각」 은 병원 페이지에서 확인 안 됨"
+   ],
+   "sources": [
+    "https://www.daybeauclinic05.com/branch/procedure_detail.php?code=G828290",
+    "cg.py 크라이오셀 34 hits",
+    "https://remma.fr/en/model/cryocell-cryolipolysis-device"
+   ],
+   "clinic": [
+    {
+     "clinic": "데이뷰의원 광주상무점",
+     "url": "https://www.daybeauclinic05.com/branch/procedure_detail.php?code=G828290",
+     "quote": "크라이오셀진정관리 1회 크라이오+LED+모델링팩 … 피부를 국소 냉동시키는 요법으로 … 아이스 관리입니다"
+    },
+    {
+     "clinic": "유앤아이의원 안양점(강남언니)",
+     "url": "/Users/kknaks/Downloads/data-anyang/gangnamunni-prices-2026-09-28.json",
+     "quote": "event 「유앤아이 인기 스킨케어 이벤트」 option 「크라이오」 treatment 「크라이오셀」"
+    },
+    {
+     "clinic": "톤즈의원 안양",
+     "url": "/Users/kknaks/Downloads/data-anyang/prices/c04_톤즈의원-안양.json",
+     "quote": "톤즈 맞춤 피부관리 패키지Ⅰ (스케일링/비타민/크라이오셀/재생/루비필/블랙필 택1, 10회+2회)"
+    },
+    {
+     "clinic": "아비쥬의원 범계",
+     "url": "/Users/kknaks/Downloads/data-anyang/prices/c08_아비쥬의원-범계.json",
+     "quote": "내맘대로 피부관리 10회 (산소필/크라이오셀/초음파/아쿠아필/블랙헤드/비타민/스켈링 중 선택)"
+    },
+    {
+     "clinic": "뮤즈의원 안양 / 블리비의원 안양점",
+     "url": "/Users/kknaks/Downloads/data-anyang/prices/c01_뮤즈의원-안양.json · prices/c02_블리비의원-안양점.json",
+     "quote": "리쥬란 풀 패키지(리쥬란힐러 2cc + 아이 리쥬란힐러 1cc + 크라이오셀) · …+크라이오셀+모델링"
+    },
+    {
+     "clinic": "라마르프리미어의원 범계역",
+     "url": "/Users/kknaks/Downloads/data-anyang/gangnamunni-vs-homepage.json",
+     "quote": "리쥬란힐러 2cc + 크라이오셀 관리 1회 · 319,000원"
+    }
+   ],
+   "queries_zero": [
+    "em.py query2=크라이오셀",
+    "em.py query2=CRYOCELL",
+    "q.py TYPE_NAME=Cryocell",
+    "q.py TYPE_NAME=CRYOCELL",
+    "q.py TYPE_NAME=CryoCell"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "장비 행이 아니라 시술(메뉴) 이름으로 다루고 장비 원장에서는 빼거나 메뉴명 표시 — 쓰는 냉각 장비가 확인되면 그 장비 행에 연결",
+   "group": "D23",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "new-DEV-020",
+   "product": "엔진리프팅",
+   "verdict": "실제 제품 · 국내 허가 못 찾음",
+   "one_line": "엔파인더스(주)의 「N-Gine(엔진)」 패치형 EMS 장비는 실재하나, 엔파인더스 식약처 품목 6건에 EMS/RF 장비가 없어 국내 허가를 못 찾음.",
+   "real_name": "N-Gine(엔진) / N-Gine Patch",
+   "manufacturer": "엔파인더스(주)(N-Finders Co., Ltd.)",
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "nfinders.com 제품 메뉴에 「N-Gine」, 쇼핑 섹션에 「N-Gine Patch」, 제품 페이지 키워드 「EMS, EM FACE, N-Gine, Face EMS, HIFES, HIFEM」 — https://nfinders.com/ · https://nfinders.com/eng/product_n-gine/ (허가·인증 문구는 페이지에 없음)",
+    "cq.py 엔파인더스: 엔파인더스(주) 제조업 허가(2013-12-03)·수입업 허가(2015-08-19) — 업체는 실재",
+    "q.py ENTRPS=엔파인더스 6건 = PDO 봉합사 3건·전기수술장치 CELPLEX(제허16-756)·큐렛·광선환부표시기(취하) — N-Gine/EMS/RF 리프팅 장비 없음",
+    "원장 「엔진리프팅」 ↔ N-Gine 대응은 이전 조사(web4, drjnb.com/69)에만 있고 이번엔 drjnb.com 403 으로 재확인 못 함 · 병원 말뭉치 「엔진」 0건"
+   ],
+   "sources": [
+    "https://nfinders.com/",
+    "https://nfinders.com/eng/product_n-gine/",
+    "https://nfinders.com/product_n-gine/",
+    "q.py ENTRPS=엔파인더스 total=6",
+    "cq.py 엔파인더스 total=2",
+    "http://www.drjnb.com/69 (403, 재확인 불가)"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "q.py TYPE_NAME=N-Gine",
+    "q.py TYPE_NAME=N-GINE",
+    "q.py TYPE_NAME=N-gine",
+    "em.py query2=엔파인더스",
+    "em.py query2=엔진패치",
+    "cg.py 엔진",
+    "cg.py 엔진리프팅",
+    "cg.py N-Gine",
+    "cg.py N-gine",
+    "em.py query2=N-Gine(101건 모두 치과 Engine File 등 무관)",
+    "em.py query2=엔진(치과 엔진만)"
+   ],
+   "needs_user": true,
+   "needs_user_reason": "현장 「엔진」 장비가 엔파인더스 N-Gine 인지 이번 출처로 닫지 못함(drjnb 403·말뭉치 0) — 현장 사진 라벨/명판으로 사람이 확인",
+   "recommendation": "현장 사진 명판으로 N-Gine 여부 확인 후, 맞으면 「실제 제품 · 국내 허가 못 찾음」 유지(엔파인더스 품목에 없음)",
+   "group": "D23",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "M2-1-7",
+   "product": "리쥬비엘",
+   "verdict": "바뀐 판정 맞음(추가)",
+   "one_line": "제허 22-777 의 emedi 제품명에 「리쥬비엘 더블유 플러스(REJUVIEL W Plus)」가 있어 추가가 맞다.",
+   "basis": [
+    "emedi 제허22-777호 (주)파마리서치 · 정상 · 제품명 「클레비엘 링클 플러스(CLEVIE Wrinkle Plus), 리쥬비엘 더블유 플러스(REJUVIEL W Plus)」 · 모델 ME7-001 · ME7-002",
+    "식약처 TYPE_NAME=REJUVIEL → 제허 15-83 호 「REJUVIEL W WITH LIDOCAINE외 6건」 정상"
+   ],
+   "sources": [
+    "emedi 품목 검색 POST https://emedi.mfds.go.kr/search/data/list query2=리쥬비엘 (total 2)",
+    "식약처 TYPE_NAME=REJUVIEL (total 1)"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "받기",
+   "group": "D25",
+   "license_now": "정상 · 제허 15-83 호(정상), 제허22-777호(정상)"
+  },
+  {
+   "ledger_id": "auto-9-1774737181584",
+   "product": "유스필",
+   "verdict": "바뀐 판정 맞음(추가)",
+   "one_line": "제허 19-31 · 16-936 · 21-641 모두 emedi 제품명에 「유스필 …(YOUTHFILL …)」이 있다(알에프바이오 HA 필러).",
+   "basis": [
+    "emedi 제허21-641호 정상 「유스필 쉐입(YOUTHFILL Shape)」",
+    "emedi 제허16-936호 정상 「유스필 임플란트 위드 리도카인 · 유스필 스파클 위드 리도카인」",
+    "emedi 제허19-31호 정상 · 유스필 질의(query2=유스필 total 38)로 걸림",
+    "참고: 같은 YOUTHFILL 이름의 PN(23-523 · 23-524 · 22-892 · 22-898 · 25-635) · CA(26-381) · COL(26-585 · 26-586)은 다른 성분 제품이라 연결하지 않은 것이 맞음"
+   ],
+   "sources": [
+    "emedi 품목 검색 POST https://emedi.mfds.go.kr/search/data/list query2=유스필 (total 38)",
+    "emedi 품목 검색 POST https://emedi.mfds.go.kr/search/data/list query2=YOUTHFILL (total 58)"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "받기",
+   "group": "D25",
+   "license_now": "정상 · 제허19-31호(정상), 제허16-936호(정상), 제허21-641호(정상)"
+  },
+  {
+   "ledger_id": "auto-M2-1775361463441",
+   "product": "큐젤",
+   "verdict": "바뀐 판정 맞음(추가)",
+   "one_line": "4건 모두 한국비엔씨 허가에 큐젤(Cutegel) 이름이 제품명 또는 모델명으로 있다.",
+   "basis": [
+    "emedi 제허11-1322호 제품명 「큐젤(Cutegel) …」",
+    "제허13-1868호 모델 「Cutegel (큐젤) Lidocaine Strong/Max …」",
+    "제허15-1313호 제품명 「큐젤 리도카인(Cutegel Lidocaine) …」",
+    "제허18-667호 제품명 「CUTEGEL-M」",
+    "참고(정할 것): 제허15-1616호(정상) 제품명 AQUABIEN · 모델 「Cutegel Hydro 2.0-5 …」 도 큐젤 이름 모델 — 이번 연결에 없음"
+   ],
+   "sources": [
+    "emedi 품목 검색 POST https://emedi.mfds.go.kr/search/data/list query2=큐젤 (total 64)",
+    "emedi 품목 검색 POST https://emedi.mfds.go.kr/search/data/list query2=Cutegel (total 105)"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "받기(15-1616 Cutegel Hydro 는 큐젤 라인 품목인지 따로 확인)",
+   "group": "D25",
+   "license_now": "정상 · 제허11-1322호(정상), 제허13-1868호(정상), 제허15-1313호(정상), 제허18-667호(정상)"
+  },
+  {
+   "ledger_id": "auto-M2-1775361728731",
+   "product": "큐젤MAX",
+   "verdict": "바뀐 판정 맞음(추가)",
+   "one_line": "13-1868 모델 「Cutegel (큐젤) Lidocaine Max」 · 11-1322 모델 「Max 1400」 — 큐젤 라인의 Max 품목이 맞다.",
+   "basis": [
+    "emedi 제허13-1868호 모델 「Cutegel (큐젤) Lidocaine Max」 「CUTEGEL Max Lidocaine」",
+    "emedi 제허11-1322호 제품명 큐젤(Cutegel) · 모델 「Max 1400」"
+   ],
+   "sources": [
+    "emedi 품목 검색 POST https://emedi.mfds.go.kr/search/data/list query2=Cutegel (total 105)"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "받기",
+   "group": "D25",
+   "license_now": "정상 · 제허13-1868호(정상), 제허11-1322호(정상)"
+  },
+  {
+   "ledger_id": "M2-2-4",
+   "product": "테오시알",
+   "verdict": "바뀐 판정 맞음(추가)",
+   "one_line": "TEOSYAL RHA2·3·4 허가 4건(26-92 · 26-91 · 19-48 · 19-49)이 정상이고 제조원 Teoxane — 추가가 맞다. 20-225 는 「취소」가 아니라 유효기간 만료(2025-11-03)로 표시가 다르다.",
+   "basis": [
+    "emedi 수허26-92호 이머고코리아 정상 「TEOSYAL RHA2, TEOSYAL RHA3」 · 수허26-91호 「TEOSYAL RHA4」 · 수허19-48 · 19-49 (주)제테마용인공장 같은 이름 · 제조원 Teoxane S.A.",
+    "수허20-225호 상태 「만료(유효기간) 2025-11-03」 · 수허18-330 · 18-329(RHA) 2026-05-13 취하 — 이력에 아직 없음"
+   ],
+   "sources": [
+    "emedi 품목 검색 POST https://emedi.mfds.go.kr/search/data/list query2=Teosyal (total 48)"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "받기(RHA 를 PureSense 와 같은 원장 행에 둘지는 라인+품목 규칙으로) · 이력에 18-330 · 18-329 취하 추가 · 20-225 상태 「만료」로 고침",
+   "group": "D25",
+   "license_now": "정상 · 수허 26-41 호(정상), 수허 14-2569 호(정상), 수허26-92호(정상), 수허26-91호(정상) 외 2 · 이력: 수허 20-225 호(취소), 수허 09-1110 호(취소), 수허 06-386 호(취소)"
+  },
+  {
+   "ledger_id": "M3-4-2",
+   "product": "쥬베룩볼륨",
+   "verdict": "바뀐 판정 맞음(추가)",
+   "one_line": "제허 17-972 제품명에 「쥬베룩볼륨(Juvelook Volume)」 · 모델 「쥬베룩볼륨(Juvelook Volume)100」이 있다.",
+   "basis": [
+    "emedi 제허17-972호 (주)바임 정상 · 제품명 「쥬베룩볼륨(Juvelook Volume)(수출명: Juvelook Volume200)」 · 모델 「쥬베룩볼륨(Juvelook Volume)100」"
+   ],
+   "sources": [
+    "emedi 품목 검색 POST https://emedi.mfds.go.kr/search/data/list query2=쥬베룩볼륨 (total 11)"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "받기",
+   "group": "D25",
+   "license_now": "정상 · 제허 17-972 호(정상)"
+  },
+  {
+   "ledger_id": "M4-1-2",
+   "product": "리쥬란아이",
+   "verdict": "바뀐 판정 맞음(추가)",
+   "one_line": "제허 14-825 제품명이 「리쥬란, 리쥬란 아이, 리쥬란 에스」라 같은 허가에 있다.",
+   "basis": [
+    "emedi 제허14-825호 (주)파마리서치 정상 · 제품명 「리쥬란, 리쥬란 아이, 리쥬란 에스, Rejuran, Rejuran i, Rejuran s」"
+   ],
+   "sources": [
+    "emedi 품목 검색 POST https://emedi.mfds.go.kr/search/data/list query2=리쥬란 (total 10)"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "받기",
+   "group": "D25",
+   "license_now": "정상 · 제허 14-825 호(정상)"
+  },
+  {
+   "ledger_id": "M4-1-3",
+   "product": "리쥬란HB+",
+   "verdict": "바뀐 판정 맞음(추가)",
+   "one_line": "제허 21-629 제품명 「리쥬란HB plus(REJURAN HB plus)」.",
+   "basis": [
+    "emedi 제허21-629호 (주)파마리서치 정상 · 제품명 「리쥬란HB plus, REJURAN HB plus …」 · 모델 PRM-003L · M8-001 · M8-005 · M8-006"
+   ],
+   "sources": [
+    "emedi 품목 검색 POST https://emedi.mfds.go.kr/search/data/list query2=리쥬란HB (total 4)"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "받기",
+   "group": "D25",
+   "license_now": "정상 · 제허21-629호(정상)"
+  },
+  {
+   "ledger_id": "auto-M4-1775364797153",
+   "product": "테오시알레디세스",
+   "verdict": "바뀐 판정 맞음(해제)",
+   "one_line": "Redensity 이름의 국내 허가는 0 — 초안의 PureSense 5건 연결은 이름이 달라 해제가 맞다.",
+   "basis": [
+    "emedi query2=Redensity · REDENSITY 0건",
+    "식약처 TYPE_NAME=Redensity · REDENSITY 0건",
+    "Teosyal 허가 11건(query2=Teosyal)의 제품명 · 모델 어디에도 Redensity 없음"
+   ],
+   "sources": [
+    "emedi 품목 검색 POST https://emedi.mfds.go.kr/search/data/list query2=Redensity (total 0)",
+    "emedi 품목 검색 POST https://emedi.mfds.go.kr/search/data/list query2=REDENSITY (total 0)",
+    "식약처 TYPE_NAME=Redensity (total 0)",
+    "emedi 품목 검색 POST https://emedi.mfds.go.kr/search/data/list query2=Teosyal (total 48)"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "받기(미허가 유지)",
+   "group": "D25",
+   "license_now": "미허가"
+  },
+  {
+   "ledger_id": "M7-3-2",
+   "product": "실루엣소프트",
+   "verdict": "바뀐 판정 맞음(추가)",
+   "one_line": "수허 15-878 제품명 「Silhouette Soft(실루엣소프트)」 · 수입 한국싱클레어.",
+   "basis": [
+    "emedi 수허15-878호 한국싱클레어 유한회사(수입) 정상 · 제품명 「Silhouette Soft(실루엣소프트)」 · 제조원 Vaupell Molding and Tooling, Inc. · 품목 안면조직고정용실"
+   ],
+   "sources": [
+    "emedi 품목 검색 POST https://emedi.mfds.go.kr/search/data/list query2=실루엣소프트 (total 6)"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "받기",
+   "group": "D25",
+   "license_now": "정상 · 수허15-878호(정상)"
+  },
+  {
+   "ledger_id": "auto-M8-1775364775119",
+   "product": "에코2에볼루션",
+   "verdict": "바뀐 판정 맞음(교체)",
+   "one_line": "제허 19-716 모델이 「eCO2 EVOLUTION＆SURGICAL」 — 맞고, 빠진 7건은 eCO2 3D · Plus 등 다른 모델이다.",
+   "basis": [
+    "식약처 제허 19-716 호 (주)루트로닉 「eCO2 EVOLUTION＆SURGICAL」 정상(2019-11-12)",
+    "제허 26-360 · 25-104 「eCO2 3D」 · 25-272 「eCO2 3D J」(사이노슈어루트로닉테크놀로지) · 24-674 「eCO2 3D외 1건」 · 12-1396 「eCO2 Plus외 1건」 — 모델명 다름"
+   ],
+   "sources": [
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 19-716 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 26-360 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 25-272 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 25-104 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 24-674 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 12-1396 호"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "받기",
+   "group": "D25",
+   "license_now": "정상 · 제허 19-716 호(정상)"
+  },
+  {
+   "ledger_id": "M8-4-1",
+   "product": "브이빔",
+   "verdict": "바뀐 판정 맞음(해제) · 단 후속 모델 허가 있음",
+   "one_line": "빠진 06-436 은 Vbeam Perfecta(별도 원장 행) 라 해제가 맞다. 다만 같은 이름의 현행 허가는 후속 모델(Vbeam Prima 수허 21-34 · Perfecta 18-276)뿐이라 원장 「브이빔」을 어느 모델로 볼지는 남는다(cancel-recheck).",
+   "basis": [
+    "식약처 수허 00-1160 호 (주)신한씨스텍 「Vbeam (Candela Sclero Long Pulse Laser System)」 2019-11-28 취하",
+    "수허 06-436 호 「Candela Family of Pulse Dye Laser System : Vbeam Perfecta」 2019-11-28 취하",
+    "step1-cancel-recheck.md: 수허 21-34 Vbeam Prima Basic(시너론켄델라코리아 · 정상) · 18-276 Vbeam Perfecta(정상)"
+   ],
+   "sources": [
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=수허 00-1160 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=수허 06-436 호",
+    "orchestration/work/phub-recommend/step1-cancel-recheck.md"
+   ],
+   "needs_user": true,
+   "needs_user_reason": "원장 「브이빔」이 옛 Vbeam(취하)인지, 라인 이름이라 현행 Prima 를 붙일지 출처로 못 닫음",
+   "recommendation": "해제는 받기 · 원장 브이빔은 라인 이름으로 볼지 사용자 결정",
+   "group": "D25",
+   "license_now": "허가 취소(이력) · 이력: 수허 00-1160 호(취소)"
+  },
+  {
+   "ledger_id": "M8-4-2",
+   "product": "엑셀브이",
+   "verdict": "바뀐 판정 맞음(교체)",
+   "one_line": "수허 20-60 모델 「Excel V Laser」(큐텍코리아 · Cutera) 정상. 빠진 20-31 은 「Excel V +」(별도 원장 행).",
+   "basis": [
+    "식약처 수허 20-60 호 (주)큐텍코리아 「Excel V Laser」 정상 · 제조 Cutera, Inc.",
+    "수허 20-31 호 「Excel V +」",
+    "수허 12-1052(코스모메디텍) · 11-1284(큐텍코리아) Excel V Laser 취하 — 이력"
+   ],
+   "sources": [
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=수허 20-60 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=수허 20-31 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=수허 12-1052 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=수허 11-1284 호"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "받기",
+   "group": "D25",
+   "license_now": "정상 · 수허 20-60 호(정상) · 이력: 수허 12-1052 호(취소), 수허 11-1284 호(취소)"
+  },
+  {
+   "ledger_id": "auto-M8-1775361179259",
+   "product": "엑셀V+",
+   "verdict": "바뀐 판정 맞음(교체)",
+   "one_line": "수허 20-31 모델 「Excel V +」 정상 — Excel V Laser 3건은 다른 품목이라 빠진 것이 맞다.",
+   "basis": [
+    "식약처 수허 20-31 호 (주)큐텍코리아 「 Excel V +」 정상(2020-02-12) · Cutera Inc."
+   ],
+   "sources": [
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=수허 20-31 호"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "받기",
+   "group": "D25",
+   "license_now": "정상 · 수허 20-31 호(정상)"
+  },
+  {
+   "ledger_id": "auto-M8-1775364775121",
+   "product": "브이빔퍼펙타",
+   "verdict": "바뀐 판정 맞음(해제) · 현재 상태는 낡음",
+   "one_line": "빠진 00-1160 은 옛 Vbeam 이라 해제가 맞다. 그런데 이 행 「허가 취소(이력)」 표시는 낡았다 — 수입사명 재조사로 현행 수허 18-276(시너론켄델라코리아 · Vbeam Perfecta) 이 있다.",
+   "basis": [
+    "식약처 수허 00-1160 호 「Vbeam (Candela Sclero Long Pulse Laser System)」 취하",
+    "step1-cancel-recheck.md: 수허 18-276 호 시너론켄델라코리아 「Vbeam Perfecta Laser System」 정상(2018-09-19)"
+   ],
+   "sources": [
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=수허 00-1160 호",
+    "orchestration/work/phub-recommend/step1-cancel-recheck.md"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "해제는 받기 · 상태는 cancel-recheck 결과(정상 18-276)로 갱신",
+   "group": "D25",
+   "license_now": "허가 취소(이력) · 이력: 수허 06-436 호(취소)"
+  },
+  {
+   "ledger_id": "auto-M8-1775364775122",
+   "product": "사이노슈어아이콘",
+   "verdict": "바뀐 판정 맞음(해제)",
+   "one_line": "현행 수허 17-299 모델 「Icon」(루트로닉 수입 · Cogmedix) 이 맞고, 빠진 2건은 치과 실리콘 연마기구다.",
+   "basis": [
+    "식약처 수허 17-299 호 (주)루트로닉 「Icon」 정상 · 제조 Cogmedix, Inc.",
+    "수허 12-1524 호 (주)이노메드 「Palomar IconTM System」 2018-11-01 취하 — 이력"
+   ],
+   "sources": [
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=수허 17-299 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=수허 12-1524 호"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "받기",
+   "group": "D25",
+   "license_now": "정상 · 수허 17-299 호(정상) · 이력: 수허 12-1524 호(취소)"
+  },
+  {
+   "ledger_id": "auto-36-1774737181584",
+   "product": "아포지엘리트플러스",
+   "verdict": "바뀐 판정 맞음(해제)",
+   "one_line": "수허 05-546 모델 「Elite+외 3건」(루트로닉 · Cogmedix) 이 맞다. 빠진 Elite iQ(22-273) · Elite MPX(10-385) 는 다른 품목이고 둘 다 2026-04-08 취하됐다.",
+   "basis": [
+    "식약처 수허 05-546 호 (주)루트로닉 「Elite+외 3건」 정상 · Cogmedix Inc.",
+    "수허 22-273 「Elite iQ」 · 10-385 「Elite MPX」 RTRCN 2026-04-08"
+   ],
+   "sources": [
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=수허 05-546 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=수허 22-273 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=수허 10-385 호"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "받기",
+   "group": "D25",
+   "license_now": "정상 · 수허 05-546 호(정상)"
+  },
+  {
+   "ledger_id": "auto-M8-1775361401143",
+   "product": "라이트쉬어듀엣",
+   "verdict": "바뀐 판정 맞음(해제)",
+   "one_line": "수허 10-37 모델 「Lightsheer DUET」 정상 — 빠진 01-1303 은 「LightSheer Desire」 다른 품목.",
+   "basis": [
+    "식약처 수허 10-37 호 루메니스비코리아 「Lightsheer DUET」 정상",
+    "수허 01-1303 호 「LightSheer Desire」 정상(다른 품목)"
+   ],
+   "sources": [
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=수허 10-37 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=수허 01-1303 호"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "받기",
+   "group": "D25",
+   "license_now": "정상 · 수허 10-37 호(정상)"
+  },
+  {
+   "ledger_id": "auto-M8-1775362612108",
+   "product": "젠틀맥스프로",
+   "verdict": "바뀐 판정 맞음(해제) · 현재 상태는 낡음",
+   "one_line": "빠진 26-194 「GentleMaxi Pro Plus」는 재제조품(재제조원 LUCENTRA)이라 정품이 아니고, 09-142 는 GentleMax(다른 품목) — 해제가 맞다. 이 행 「허가 취소(이력)」 표시는 낡았다 — 현행 수허 18-338(시너론켄델라코리아 · Gentle Max Pro) 이 있다.",
+   "basis": [
+    "식약처 수허 26-194 호 주식회사 밴스로컬 「GentleMaxi Pro Plus」 · MANUF_NM 「(원제조의뢰자: CANDELA CORPORATION, 원제조자: NPA de Mexico…), 재제조원: LUCENTRA LIMITED」",
+    "수허 13-466 호 (주)신한씨스텍 「GentleMax Pro」 2019-09-17 취하",
+    "step1-cancel-recheck.md: 수허 18-338 호 시너론켄델라코리아 「Gentle Max Pro, Gentle Max Pro Plus」 정상(2018-11-22) · 공식 사이트 https://gentlemaxproplus.co.kr/find"
+   ],
+   "sources": [
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=수허 26-194 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=수허 13-466 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=수허 09-142 호",
+    "orchestration/work/phub-recommend/step1-cancel-recheck.md"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "해제는 받기 · 상태는 cancel-recheck 결과(정상 18-338)로 갱신",
+   "group": "D25",
+   "license_now": "허가 취소(이력) · 이력: 수허 13-466 호(취소)"
+  },
+  {
+   "ledger_id": "auto-M8-1775360944918",
+   "product": "포토나SP다이나미스",
+   "verdict": "바뀐 판정 맞음(해제)",
+   "one_line": "수허 11-1328 모델 「SP Dynamis」 정상 — XS Dynamis 2건은 다른 품목.",
+   "basis": [
+    "식약처 수허 11-1328 호 (주)신한씨스텍 「SP Dynamis」 정상",
+    "수허 09-238 「XS Dynamis M002-2A」 · 16-652 「XS Dynamis(Smooth XS)」(2019 취하)"
+   ],
+   "sources": [
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=수허 11-1328 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=수허 09-238 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=수허 16-652 호"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "받기",
+   "group": "D25",
+   "license_now": "정상 · 수허 11-1328 호(정상)"
+  },
+  {
+   "ledger_id": "auto-M8-1775361179284",
+   "product": "할리우드스펙트라",
+   "verdict": "바뀐 판정 맞음(해제)",
+   "one_line": "남은 3건 모델이 모두 「HOLLYWOOD SPECTRA」 — 빠진 SPECTRA XT · SP 등은 다른 모델.",
+   "basis": [
+    "식약처 제허 26-401 · 25-673 (사이노슈어루트로닉테크놀로지) 「HOLLYWOOD SPECTRA」 · 10-1219 (루트로닉) 「The HOLLYWOOD SPECTRA (수출명: HOLLYWOOD SPECTRA)외 4건」 정상",
+    "제허 14-315 「SPECTRA XT PLUS외 1건」 · 10-37 「Spectra SP외 2건」(2019 취하)"
+   ],
+   "sources": [
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 26-401 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 25-673 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 10-1219 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 14-315 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 10-37 호"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "받기",
+   "group": "D25",
+   "license_now": "정상 · 제허 26-401 호(정상), 제허 25-673 호(정상), 제허 10-1219 호(정상)"
+  },
+  {
+   "ledger_id": "auto-M9-1775362640896",
+   "product": "SUNNY",
+   "verdict": "바뀐 판정 맞음(해제)",
+   "one_line": "남은 3건은 쉬엔비 「Sunny™ · Sunny RF · Sunny™ PLUS」(고주파 전기수술기) — 빠진 써니필(HA 필러) · Aqua Sunny(원텍) 는 다른 제품.",
+   "basis": [
+    "식약처 제허 24-513 (주)쉬엔비 「Sunny™」 · 24-242 「Sunny RF」 · 25-451 「Sunny™ PLUS」 정상",
+    "제허 17-374 (주)리엔젠 써니필(조직수복용생체재료) · 16-195 원텍 「Aqua Sunny RF」"
+   ],
+   "sources": [
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 24-513 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 24-242 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 25-451 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 17-374 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 16-195 호"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "받기",
+   "group": "D25",
+   "license_now": "정상 · 제허 24-513 호(정상), 제허 24-242 호(정상), 제허 25-451 호(정상)"
+  },
+  {
+   "ledger_id": "auto-M9-1775360627229",
+   "product": "튠페이스",
+   "verdict": "바뀐 판정 맞음(교체) · 원천 업체 표기 틀림",
+   "one_line": "수허 17-350 의 emedi 제품명에 「Tuneface(튠페이스)」가 직접 있다(알마코리아 · Alma Lasers). 원천의 「클래시스」 는 허가와 다르다.",
+   "basis": [
+    "emedi 수허17-350호 알마코리아 유한회사(수입) 정상 · 제조원 Alma Lasers Ltd · 제품명 「Accent Prime, Tuneface(튠페이스), Tunebody, Accentuate」 · 모델 Accent Prime",
+    "빠진 ACCENTO(비손메디칼 알렉산드라이트 레이저) · ACCENT ULTRA(조이엠지 · 2019 취하) 는 다른 제품"
+   ],
+   "sources": [
+    "emedi 품목 검색 POST https://emedi.mfds.go.kr/search/data/list query2=튠페이스 (total 1)",
+    "emedi 품목 검색 POST https://emedi.mfds.go.kr/search/data/list query2=TuneFace (total 1)",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=수허 17-350 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 15-1352 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=수허 06-373 호"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "받기 · 원천 taxonomy 의 「클래시스」 업체 표기는 알마로 고칠 후보(정할 것)",
+   "group": "D25",
+   "license_now": "정상 · 수허 17-350 호(정상)"
+  },
+  {
+   "ledger_id": "M10-2-2",
+   "product": "엠스컬프트네오",
+   "verdict": "바뀐 판정 맞음(해제)",
+   "one_line": "수허 21-146 모델 「EMSCULPT NEO」 정상 — 빠진 「EMSCULPT KOREA」(전자기 근육통 기기) 는 다른 품목.",
+   "basis": [
+    "식약처 수허 21-146 호 비티엘메디컬테크놀로지코리아 「EMSCULPT NEO」 정상",
+    "수인 19-4419 「EMSCULPT KOREA」 의료용전자기발생기"
+   ],
+   "sources": [
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=수허 21-146 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=수인 19-4419 호"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "받기",
+   "group": "D25",
+   "license_now": "정상 · 수허 21-146 호(정상)"
+  },
+  {
+   "ledger_id": "M11-1-2",
+   "product": "시크릿RF",
+   "verdict": "바뀐 판정 맞음(해제)",
+   "one_line": "제허 18-190 모델 「SECRET RF」(클래시스) 정상 — Secret DUO · PRO 는 다른 품목.",
+   "basis": [
+    "식약처 제허 18-190 (주)클래시스 「SECRET RF」 정상",
+    "제허 19-708 「Secret DUO」 · 15-415 「Secret PRO외 1건」"
+   ],
+   "sources": [
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 18-190 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 19-708 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 15-415 호"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "받기",
+   "group": "D25",
+   "license_now": "정상 · 제허 18-190 호(정상)"
+  },
+  {
+   "ledger_id": "M11-1-3",
+   "product": "실펌X",
+   "verdict": "바뀐 판정 맞음(해제)",
+   "one_line": "남은 3건이 「SYLFIRM X · SYLFIRM X™ · SYLFIRM X PRO」 — SYLFIRM H · 무표기 SYLFIRM 은 다른 품목.",
+   "basis": [
+    "식약처 제허 20-148 「SYLFIRM X」 · 19-531 「SYLFIRM X™」 · 24-257 「SYLFIRM X PRO」 (주)비올메디컬 정상",
+    "제허 26-728 · 26-394 「SYLFIRM H」 · 19-215 「SYLFIRM™」 · 15-28 「SYLFIRM」"
+   ],
+   "sources": [
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 20-148 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 19-531 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 24-257 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 26-728 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 19-215 호"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "받기(24-257 「X PRO」를 실펌X 품목으로 둘지는 라인+품목 규칙)",
+   "group": "D25",
+   "license_now": "정상 · 제허 20-148 호(정상), 제허 19-531 호(정상), 제허 24-257 호(정상)"
+  },
+  {
+   "ledger_id": "auto-M11-1775360637715",
+   "product": "스칼렛프로",
+   "verdict": "바뀐 판정 맞음(해제)",
+   "one_line": "남은 2건이 「SCARLET PRO · SCARLET PRO™」 — 빠진 SCARLET S · SE · C 등은 다른 품목.",
+   "basis": [
+    "식약처 제허 26-727 「SCARLET PRO™」 · 25-808 「SCARLET PRO」 (주)비올메디컬 정상",
+    "제허 17-678 「SCARLET SE」 · 15-29 「SCARLET S」"
+   ],
+   "sources": [
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 26-727 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 25-808 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 17-678 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 15-29 호"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "받기",
+   "group": "D25",
+   "license_now": "정상 · 제허 26-727 호(정상), 제허 25-808 호(정상)"
+  },
+  {
+   "ledger_id": "auto-M11-1775364775143",
+   "product": "인피니",
+   "verdict": "바뀐 판정 맞음(해제)",
+   "one_line": "남은 2건이 루트로닉 「INFINI HYBRID」 · 「INFINI LT외 1건」 — INFINI BODY(2020 취하 · 비만 고주파) 등은 다른 제품.",
+   "basis": [
+    "식약처 제허 19-607 「INFINI HYBRID」 · 11-381 「INFINI LT외 1건」 (주)루트로닉 정상",
+    "제인 17-4186 「INFINI BODY」 2020-08-13 취하"
+   ],
+   "sources": [
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 19-607 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제허 11-381 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제인 17-4186 호"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "받기",
+   "group": "D25",
+   "license_now": "정상 · 제허 19-607 호(정상), 제허 11-381 호(정상)"
+  },
+  {
+   "ledger_id": "M15-4-1",
+   "product": "LDM",
+   "verdict": "바뀐 판정 맞음(auto→정상)",
+   "one_line": "두 허가 모두 웰코멧아시아 「LDM-Triple외 3건」 · 「LDM-Smart Tri외 1건」 정상 — 제조 WELLCOMET GmbH.",
+   "basis": [
+    "식약처 수인 11-587 (주)웰코멧아시아 「LDM-Triple외 3건」 정상 · WELLCOMET GmbH",
+    "제인 21-5008 「LDM-Smart Tri외 1건」 정상"
+   ],
+   "sources": [
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=수인 11-587 호",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=제인 21-5008 호"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "받기",
+   "group": "D25",
+   "license_now": "정상 · 수인 11-587 호(정상), 제인 21-5008 호(정상)"
+  },
+  {
+   "ledger_id": "M15-2-2",
+   "product": "하이드라페이셜",
+   "verdict": "유지 — 근거 보강됨 · 허가 1건 더 있음",
+   "one_line": "emedi 제품명이 「HydraFacial MD ELITE」라 22-213 연결은 맞다. 같은 제품명의 정상 허가가 하나 더 있다(수허 18-215 · 인터엠디) — 수입사 2곳.",
+   "basis": [
+    "emedi 수허22-213호 주식회사메디뷰랩(수입) 정상 · 제품명 「HydraFacial MD ELITE」 · 모델 70290-03-01-KOR · 제조원 Hydrafacial, LLC.",
+    "emedi 수허18-215호 (주)인터엠디(수입) 정상 · 제품명 「HydraFacial MD ELITE」 · 같은 모델 · Hydrafacial, LLC.",
+    "수허18-283호 (주)제이스메디컬 2023-01-13 취소 · 수허07-728호 신한이앤아이 2010 취하 — 이력"
+   ],
+   "sources": [
+    "emedi 품목 검색 POST https://emedi.mfds.go.kr/search/data/list query2=HydraFacial (total 4)",
+    "emedi 품목 검색 POST https://emedi.mfds.go.kr/search/data/list query2=하이드라페이셜 (total 0)",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=수허 22-213 호"
+   ],
+   "needs_user": true,
+   "needs_user_reason": "정상 수입 허가 2건(메디뷰랩 22-213 · 인터엠디 18-215) — 둘 다 붙일지(판매사 여러 개 규칙) 확인 필요",
+   "recommendation": "유지 + 수허 18-215 추가 · 18-283 이력 추가",
+   "group": "D28",
+   "license_now": "정상 · 수허 22-213 호(정상) · 이력: 수허 07-728 호(취소)"
+  },
+  {
+   "ledger_id": "auto-M2-1775364775109",
+   "product": "아테콜",
+   "verdict": "유지 — 근거 보강됨",
+   "one_line": "emedi 제품명이 「ARTECOLL™ 아테콜」이고 모델이 ARTESENSE — 같은 허가에 이름이 직접 있다.",
+   "basis": [
+    "emedi 수허99-665호 (주)티알엠코리아(수입) 정상 · 제품명 「ARTECOLL™ 아테콜」 · 모델 ARTESENSE · 제조원 European Medical Contract Manufacturing B.V.",
+    "식약처 사용목적 「콜라겐과 인체 비흡수성 재료인 PMMA를 피하에 주입 …」 — 원천 「PMMA영구필러」와 맞음"
+   ],
+   "sources": [
+    "emedi 품목 검색 POST https://emedi.mfds.go.kr/search/data/list query2=ARTECOLL (total 1)",
+    "emedi 품목 검색 POST https://emedi.mfds.go.kr/search/data/list query2=아테콜 (total 1)",
+    "식약처 의료기기 품목허가 API getMdlpPrdlstPrmisnItem05 PRDUCT_PRMISN_NO=수허 99-665 호"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "유지",
+   "group": "D28",
+   "license_now": "정상 · 수허99-665호(정상)"
+  },
+  {
+   "ledger_id": "auto-M4-1775361378128",
+   "product": "바이리즌",
+   "verdict": "유지 — 갈라짐 아님(바이리즌은 여러 제품 이름)",
+   "one_line": "「BYRYZN Skinbooster HA」는 20-527(아크로스) 모델명에 직접 있다. 23-784(비알팜) 는 제품명 「BYRYZN PN(바이리즌 피엔)」 때문에 걸린 것 — 바이리즌은 HA · PN · Sub-Q 필러 · 크림 등 여러 허가에 걸친 휴젤 브랜드다.",
+   "basis": [
+    "emedi 제허20-527호 (주)아크로스 정상 · 모델 「BYRYZN Skinbooster HA, BYRYZN Skinbooster」",
+    "emedi 제허23-784호 (주)비알팜 정상 · 제품명에 「BYRYZN PN(바이리즌 피엔)」 「HP VITARAN(에이치피 비타란)」 「PN Vitaran(피엔 비타란)」",
+    "emedi 제허14-1762호 아크로스 모델 「BYRYZN Sub-Q with Lidocaine」 · 제인24-1040 현대메디텍 「BYRYZN OPULUXE」 · 제인20-4413 제뉴파마 「BYRYZN Cream MD」"
+   ],
+   "sources": [
+    "emedi 품목 검색 POST https://emedi.mfds.go.kr/search/data/list query2=BYRYZN (total 29)",
+    "emedi 품목 검색 POST https://emedi.mfds.go.kr/search/data/list query2=바이리즌 (total 24)"
+   ],
+   "needs_user": true,
+   "needs_user_reason": "원장 「바이리즌」 한 행이 HA 부스터인지 브랜드 라인인지 — PN(23-784)을 같은 행 품목으로 둘지 정해야 함",
+   "recommendation": "20-527 유지 · BYRYZN PN(23-784)은 바이리즌 라인 품목 후보로 표시",
+   "group": "D28",
+   "license_now": "정상 · 제허20-527호(정상)"
+  },
+  {
+   "ledger_id": "M4-1-7",
+   "product": "비타란",
+   "verdict": "유지 — 근거 보강됨",
+   "one_line": "23-784 제품명에 「HP VITARAN(에이치피 비타란)」 · 「HP VITARAN I/S」가 직접 있다 — 비타란 연결은 자기 이름으로 맞다.",
+   "basis": [
+    "emedi 제허23-784호 (주)비알팜 정상 · 제품명 「HP VITARAN I(에이치피 비타란 아이), HP VITARAN S(…), HP VITARAN(에이치피 비타란) …」 · 모델 「HP VITARAN PN SKINBOOSTER」",
+    "같은 업체 비타란 이름 허가가 더 있음(제허22-99 HP VITARAN J · 21-1012 HP cell Vitaran I · 15-1368 · 17-769 · 25-656 · 25-663 정상) — 같은 허가 · 다른 이름 규칙(라인+품목)으로 볼 대상"
+   ],
+   "sources": [
+    "emedi 품목 검색 POST https://emedi.mfds.go.kr/search/data/list query2=비타란 (total 24)",
+    "emedi 품목 검색 POST https://emedi.mfds.go.kr/search/data/list query2=VITARAN (total 56)"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "유지(바이리즌과 둘 다 맞음 — 하나만 남길 필요 없음)",
+   "group": "D28",
+   "license_now": "정상 · 제허23-784호(정상)"
+  },
+  {
+   "ledger_id": "M1-P-9",
+   "product": "뉴럭스",
+   "verdict": "실제 제품 · 현행 허가 찾음",
+   "one_line": "메디톡스 계열사 (주)뉴메코의 보툴리눔 톡신 '뉴럭스주(NEWLUX)' — 의약품 허가 2건 정상, 위탁 제조 메디톡스. taxonomy 업체 「메디톡스」는 계열사·제조원이라 틀린 건 아니나 허가권자는 뉴메코",
+   "real_name": "뉴럭스주 / NEWLUX Inj. (영문은 NEWLUX — 원장 synonym 「Neurox」는 출처 없음)",
+   "manufacturer": "(주)메디톡스(위탁 제조원 — 입력 행 의약품 허가 CNSGN_MANUF)",
+   "importer": null,
+   "sellers": [
+    "(주)뉴메코(허가권자)"
+   ],
+   "license_found": [
+    {
+     "no": "의약품 202302604",
+     "holder": "(주)뉴메코",
+     "model": "뉴럭스주(클로스트리디움보툴리눔독소A형) / NEWLUX Inj.",
+     "state": "정상",
+     "date": "20230831",
+     "query": "dq.py item_name=뉴럭스 · entp_name=뉴메코"
+    },
+    {
+     "no": "의약품 202601737",
+     "holder": "(주)뉴메코",
+     "model": "뉴럭스주200단위 / NEWLUX Inj. 200U",
+     "state": "정상",
+     "date": "20260619",
+     "query": "dq.py item_name=뉴럭스 · entp_name=뉴메코"
+    }
+   ],
+   "license_history": [],
+   "basis": [
+    "「메디톡스의 계열사 뉴메코가 … 보툴리눔 톡신 제제 '뉴럭스'의 품목허가를 획득했다」 — 한국경제 2025-10-20 https://www.hankyung.com/article/202510200183i",
+    "식약처 의약품 허가 영문명 「NEWLUX Inj.(Clostridium Botulinum Toxin Type A)」 — dq.py item_name=뉴럭스 total 2, entp_name=뉴메코 total 2(뉴럭스 2건뿐)"
+   ],
+   "sources": [
+    "dq.py item_name=뉴럭스 total=2",
+    "dq.py entp_name=뉴메코 total=2",
+    "https://www.hankyung.com/article/202510200183i"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "cg.py 뉴럭스 0(데이뷰·안양 말뭉치)"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "원장에 둠 — 허가권자 (주)뉴메코 · 제조 (주)메디톡스로 업체 칸을 나눠 적고, synonym 「Neurox」는 「NEWLUX」로 바꿈",
+   "group": "D29",
+   "license_now": "정상 · 202302604(정상), 202601737(정상)"
+  },
+  {
+   "ledger_id": "M1-P-10",
+   "product": "레티보",
+   "verdict": "실제 제품 · 국내 허가 못 찾음",
+   "one_line": "휴젤 보툴리눔 톡신의 해외 판매명(Letybo). 국내 제품명이 보툴렉스라는 기사 출처 있음 — 국내 허가는 '보툴렉스주' 이름으로만 있음(휴젤 5건 정상)",
+   "real_name": "레티보 / Letybo (letibotulinumtoxinA) — 국내 제품명 보툴렉스(Botulax)",
+   "manufacturer": "휴젤주식회사",
+   "importer": null,
+   "sellers": [
+    "휴젤주식회사",
+    "Hugel America(미국)"
+   ],
+   "license_found": [
+    {
+     "no": "의약품 200901953",
+     "holder": "휴젤주식회사",
+     "model": "보툴렉스주 / Botulax®",
+     "state": "정상",
+     "date": "20090313",
+     "query": "dq.py item_name=보툴렉스"
+    },
+    {
+     "no": "의약품 201001176",
+     "holder": "휴젤주식회사",
+     "model": "보툴렉스주200단위",
+     "state": "정상",
+     "date": "20100203",
+     "query": "dq.py item_name=보툴렉스"
+    },
+    {
+     "no": "의약품 201108443",
+     "holder": "휴젤주식회사",
+     "model": "보툴렉스주50단위",
+     "state": "정상",
+     "date": "20111012",
+     "query": "dq.py item_name=보툴렉스"
+    },
+    {
+     "no": "의약품 201602416",
+     "holder": "휴젤주식회사",
+     "model": "보툴렉스주150단위",
+     "state": "정상",
+     "date": "20160429",
+     "query": "dq.py item_name=보툴렉스"
+    },
+    {
+     "no": "의약품 202100911",
+     "holder": "휴젤주식회사",
+     "model": "보툴렉스주300단위",
+     "state": "정상",
+     "date": "20210128",
+     "query": "dq.py item_name=보툴렉스"
+    }
+   ],
+   "license_history": [],
+   "basis": [
+    "「보툴리눔 톡신 제제 '레티보(Letybo, 국내 제품명: 보툴렉스)' 50유닛(Unit)과 100유닛(Unit)에 대한 품목허가를 획득했다」 — 비즈워치 2024-03-04 「휴젤 보툴리눔 톡신 '레티보' 미국 FDA 허가 획득」 https://news.bizwatch.co.kr/article/mobile/2024/03/04/0001",
+    "FDA 2024-02-29 Hugel America Letybo(letibotulinumtoxinA-wlbg) 승인 — https://pharmexec.com/view/fda-approves-hugel-america-s-letybo-to-treat-moderate-to-severe-frown-lines-in-adults",
+    "입력 basis 의 dailypharm 56406(2020-12-09 '레티보' 중국 수출)은 본문에 보툴렉스와의 관계 문장이 없음(WebFetch 확인) — 근거로는 비즈워치 기사를 씀",
+    "license_found 는 '레티보' 이름의 허가가 아니라 같은 제품의 국내명 '보툴렉스주' 허가임"
+   ],
+   "sources": [
+    "https://news.bizwatch.co.kr/article/mobile/2024/03/04/0001",
+    "https://pharmexec.com/view/fda-approves-hugel-america-s-letybo-to-treat-moderate-to-severe-frown-lines-in-adults",
+    "https://www.dailypharm.com/user/news/56406",
+    "dq.py item_name=보툴렉스 total=5",
+    "dq.py item_name=레티보 total=0"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "dq.py item_name=레티보 0",
+    "em.py query2=Letybo 0",
+    "cg.py 레티보 · Letybo 0"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "다른 행과 합침 — 보툴렉스 행 M1-1-1 에 「레티보/Letybo(수출명)」을 synonym 으로 넣고 이 행은 지움(근거: 비즈워치 「국내 제품명: 보툴렉스」, 같은 휴젤 제품)",
+   "group": "D29",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "M2-P-7",
+   "product": "신펄",
+   "verdict": "확인 불가",
+   "one_line": "제테마의 '신펄'이라는 PLLA 필러는 웹·병원·식약처 어디서도 못 찾음. 제테마 허가 75건에 폴리락트산 조직수복재 없음(PCL·CaHA·HA+PN·HA·PDO 실만 있음)",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "q.py ENTRPS=제테마 total 75 — 조직수복용 재료는 CaHA(제허25-716/717)·PCL(제허24-347)·HA+PN(제허24-813)·HA(e.p.t.q) 뿐, 폴리락트산 재질 0",
+    "웹 「제테마 신펄 PLLA 필러」「\"신펄\" 필러」 — 제품 언급 0"
+   ],
+   "sources": [
+    "q.py ENTRPS=제테마 total=75",
+    "WebSearch 「제테마 신펄 PLLA 필러」",
+    "WebSearch 「\"신펄\" 필러」"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=신펄 · Synpurl · SYNPURL 0(입력 기록)",
+    "q.py TYPE_NAME=Synpurl 0(입력 기록)",
+    "cg.py 신펄 0",
+    "WebSearch \"신펄\" 필러 — 해당 제품 0"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "원천 확인 — 이름·업체 모두 출처 0. taxonomy 가 무엇을 보고 넣었는지 확인 전에는 원장에 올리지 않음",
+   "group": "D29",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "M3-P-5",
+   "product": "글로벨라",
+   "verdict": "확인 불가",
+   "one_line": "'글로벨라' PLLA 콜라겐부스터와 업체 '에이씨피바이오' 모두 출처 0 — 의료기기 업체 등록도, 품목 허가도 없음",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "cq.py 에이씨피 total 0 (의료기기 제조/수입업체 등록 없음)",
+    "q.py ENTRPS=에이씨피 total 0"
+   ],
+   "sources": [
+    "cq.py 에이씨피 total=0",
+    "q.py ENTRPS=에이씨피 total=0",
+    "WebSearch 「글로벨라 PLLA 콜라겐부스터」",
+    "WebSearch 「\"글로벨라\" 필러 OR 주사 피부과」",
+    "WebSearch 「에이씨피바이오 필러」"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=글로벨라 · Glovella · GLOVELLA 0(입력 기록)",
+    "q.py TYPE_NAME=Glovella 0(입력 기록)",
+    "q.py ENTRPS=에이씨피 0",
+    "cq.py 에이씨피 0",
+    "cg.py 글로벨라 · Glovella 0",
+    "WebSearch 3회 — 제품·업체 언급 0"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "원천 확인 — 제품·업체 실체 출처 없음",
+   "group": "D29",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "M5-P-0",
+   "product": "셀피아",
+   "verdict": "확인 불가",
+   "one_line": "'셀피아' 이름은 어디서도 못 찾음. taxonomy 업체 CGBio(국내 등록명 (주)시지바이오)에는 PRP 키트 'CGPRP kit' 허가(제허26-568, 2026-07 정상)가 있으나 그것이 '셀피아'라는 출처는 없음",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "q.py ENTRPS=시지바이오 total 182 · TYPE_NAME=PRP → 제허 26-568 호 (주)시지바이오 혈액 처리용 기구 「CGPRP kit」 20260723 「인체로부터 채취한 혈액을 재주입하기 위해 원심분리 방식을 이용하여 분리하는 기구」 — 이름 '셀피아'와 잇는 출처 없음",
+    "CGBio 의 국내 허가 업체명은 '씨지바이오'가 아니라 '(주)시지바이오'(입력 기록의 ENTRPS=씨지바이오 0 은 표기 차이)",
+    "웹 「\"셀피아\" PRP」 결과는 미국 Factor Medical 의 Selphyl® 만 나옴 — 셀피아=Selphyl 이라고 말하는 출처는 없음"
+   ],
+   "sources": [
+    "q.py ENTRPS=시지바이오 total=182",
+    "q.py TYPE_NAME=PRP total=53",
+    "WebSearch 「씨지바이오 셀피아 자가혈 PRP 키트」",
+    "WebSearch 「\"셀피아\" PRP」",
+    "https://www.imcas.com/en/sponsor/imcas-world-congress-2017/view/4638"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=셀피아 0",
+    "q.py ENTRPS=씨지바이오 0",
+    "cg.py 셀피아 · Selphyl 0",
+    "WebSearch 시지바이오 CGPRP 브랜드 — 셀피아 언급 0"
+   ],
+   "needs_user": true,
+   "needs_user_reason": "업체(시지바이오)의 PRP 키트 허가는 있으나 '셀피아'와 같은 제품이라는 출처가 없음 — 붙일지 사람이 정해야 함",
+   "recommendation": "원천 확인 — '셀피아'가 시지바이오 CGPRP kit 의 판매명인지(또는 Selphyl 의 음차인지) 원천 확인 전에는 허가를 붙이지 않음",
+   "group": "D29",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "M5-P-1",
+   "product": "리젠ACR",
+   "verdict": "실제 제품 · 허가 취소(이력)만",
+   "one_line": "스위스 REGEN LAB SA 의 PRP 키트 라인 RegenACR. 국내에선 과거 수입사 리젠코리아의 'Regen ACR-C'(진공채혈관) 신고가 2011년 취하된 이력만 있고 현행 허가 없음. taxonomy 업체 '리젠바이오텍'은 틀림",
+   "real_name": "RegenACR® (Regen ACR-C 등)",
+   "manufacturer": "REGEN LAB SA(스위스)",
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [
+    {
+     "no": "서울수신08-737호",
+     "holder": "리젠코리아",
+     "model": "Regen™ ACR-C (진공채혈관, 제조 Regen LAB)",
+     "state": "취하",
+     "date": "20110613",
+     "query": "q.py ENTRPS=리젠코리아"
+    },
+    {
+     "no": "서울수신10-1400호",
+     "holder": "리젠코리아",
+     "model": "Regen BCT-SP (진공채혈관, 제조 REGEN LAB SA)",
+     "state": "취하",
+     "date": "20150120",
+     "query": "em.py query2=BCT · q.py ENTRPS=리젠코리아"
+    },
+    {
+     "no": "서울수신08-1442호",
+     "holder": "(주)네오아시아",
+     "model": "RegenCentrilab 80-2 (의료용원심분리기)",
+     "state": "취하",
+     "date": "20120814",
+     "query": "em.py query2=Regen Lab"
+    }
+   ],
+   "basis": [
+    "「RegenACR® is one of the registered trademarks of REGEN LAB SA」 · A-PRP kit 라인 — https://www.regenlab.com/patents/",
+    "q.py ENTRPS=리젠코리아 total 5 — 전부 취하(Regen ACR-C 2011-06-13 취하 등)",
+    "리젠바이오텍 허가 5건(AestheFill·PowerFill)에 ACR 없음(입력 기록) · cq.py 리젠바이오텍 = 제조업 허가 업체(수입업 아님)"
+   ],
+   "sources": [
+    "https://www.regenlab.com/patents/",
+    "q.py ENTRPS=리젠코리아 total=5",
+    "em.py query2=Regen Lab total=1",
+    "em.py query2=BCT total=499",
+    "cq.py 리젠바이오텍 total=1"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=RegenACR 0",
+    "em.py query2=RegenKit 0",
+    "q.py TYPE_NAME=RegenKit 0",
+    "cq.py 리젠랩 0",
+    "cg.py 리젠 · RegenACR 0",
+    "WebSearch 국내 수입사 — 0"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "원장에 둠 — 업체를 REGEN LAB SA 로 정정, 국내 현행 허가 없음(리젠코리아 취하 이력만)으로 표시",
+   "group": "D29",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "M5-P-2",
+   "product": "마이셀",
+   "verdict": "확인 불가",
+   "one_line": "한스바이오메드의 '마이셀' 자가혈 제제는 출처 0. 한스바이오메드 허가 149건에 혈액처리용기구·PRP 키트 없음(봉합사·실·뼈 이식재 등). 이름이 비슷한 'Mycells'(스킨엠디코리아)는 다른 회사",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "q.py ENTRPS=한스바이오메드 total 149 — 혈액/PRP/원심/혈소판 키워드 품목 0",
+    "입력 기록: em.py query2=Mycell → 「Mycells」 (주)스킨엠디코리아 — 업체 다름, 붙이지 않음"
+   ],
+   "sources": [
+    "q.py ENTRPS=한스바이오메드 total=149",
+    "WebSearch 「한스바이오메드 \"마이셀\" PRP」",
+    "WebSearch 「한스바이오메드 PRP 키트 자가혈 혈소판」"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=마이셀 0(입력 기록)",
+    "cg.py 마이셀 0",
+    "WebSearch 2회 — 한스바이오메드 마이셀 언급 0"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "원천 확인 — 업체 허가 목록에 해당 품목 없음, 제품 실체 출처 없음",
+   "group": "D29",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "M5-P-4",
+   "product": "EXOSOME SKIN",
+   "verdict": "확인 불가",
+   "one_line": "업체 '엑소스템텍'은 실재(줄기세포 엑소좀 치료제 개발 바이오벤처)하나 'EXOSOME SKIN'이라는 제품은 출처 0. 의료기기 업체 등록·허가도 없음",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "「엑소스템텍 \"국내 첫 엑소좀 기반 치료제 임상 신청\"」 — 퇴행성관절염 'CARTISOME' 등 의약품 파이프라인 https://news.mtn.co.kr/news-detail/2022042116191033633",
+    "cq.py 엑소스템 total 0 · q.py ENTRPS=엑소스템텍 0(입력 기록) — 의료기기 업체 아님",
+    "입력 기록의 ExoSCRT 는 엑소코바이오 기술 — 엑소코바이오 허가 7건은 전부 HA(+PN) 필러, 엑소좀 제품 아님(q.py ENTRPS=엑소코바이오)"
+   ],
+   "sources": [
+    "https://news.mtn.co.kr/news-detail/2022042116191033633",
+    "https://thevc.kr/exostemtech",
+    "cq.py 엑소스템 total=0",
+    "q.py ENTRPS=엑소코바이오 total=7"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=EXOSOME 0",
+    "em.py query2=엑소좀 0",
+    "cq.py 엑소스템 0",
+    "cg.py \"EXOSOME SKIN\" 0",
+    "WebSearch 「엑소스템텍 화장품 스킨 브랜드 엑소좀 앰플」 — 제품 0"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "원천 확인 — 업체는 실재하나 해당 제품 출처 없음",
+   "group": "D29",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "M7-P-1",
+   "product": "에버라인",
+   "verdict": "확인 불가",
+   "one_line": "KL글로벌의 '에버라인' 복합 실은 출처 0. (주)케이엘글로벌 허가 7건에 봉합사·안면조직고정용실 없음(PLLA 필러 LACOS-S·피부자극기·레이저 등)",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "q.py ENTRPS=케이엘글로벌 total 7 — 제허23-1088 LACOS-S(폴리엘락틱산 조직수복재), 제허17-475 ACCUTONING(레이저), 의약품흡수유도피부자극기 등. 실 0",
+    "em.py query2=Everline 의 유일한 허가 hit 은 (주)용창 「Everline Cannula」(범용카테터캐뉼러, 제인20-4757) — 실 아님·업체 다름"
+   ],
+   "sources": [
+    "q.py ENTRPS=케이엘글로벌 total=7",
+    "em.py query2=Everline",
+    "WebSearch 「\"에버라인\" 실리프팅」",
+    "WebSearch 「Everline thread lift PDO PLLA PCL Korea」",
+    "https://unni.app/events/115051"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=에버라인 0",
+    "cg.py 에버라인 · Everline 0",
+    "WebSearch 2회 — 제품 언급 0 (강남언니 115051 본문에도 없음)"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "원천 확인 — 업체 허가 목록에 실 없음, 제품 출처 없음",
+   "group": "D29",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "M7-P-2",
+   "product": "미라클",
+   "verdict": "확인 불가",
+   "one_line": "메디텍의 '미라클' PDO 실은 출처 0. 이름이 겹치는 허가는 고메디칼코리아 'WOW미라클'(제허16-571 정상)뿐 — 업체가 달라 붙이지 않음. '메디텍'은 업체명 부분일치가 너무 많아 특정 불가",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "em.py query2=미라클 → 제허16-571호 고메디칼코리아 폴리디옥사논봉합사 제품명 「WOW매직, WOW바비코, WOW미라클, WOW오메가, WOW 로즈」 정상 — taxonomy 업체 메디텍과 다름",
+    "q.py ENTRPS=메디텍 total 4163(세원메디텍·비앤에스메디텍 등 부분일치) — 회사 특정 불가"
+   ],
+   "sources": [
+    "em.py query2=미라클 total=107",
+    "em.py query2=Miracle total=815",
+    "q.py ENTRPS=메디텍 total=4163",
+    "WebSearch 「\"미라클실\" OR \"미라클 실\" 리프팅 PDO 메디텍」"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=Miracle Thread 0(입력 기록)",
+    "cg.py 미라클 0",
+    "WebSearch — 메디텍 미라클 언급 0"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "원천 확인 — 'WOW미라클'(고메디칼코리아)을 뜻한 것인지 원천 확인 전에는 허가 붙이지 않음",
+   "group": "D29",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "M8-P-1",
+   "product": "피코웨이",
+   "verdict": "실제 제품 · 현행 허가 찾음",
+   "one_line": "Candela 의 피코초 Nd:YAG 레이저 PicoWay. 현행 허가 수허18-304호(시너론켄델라코리아 수입·NPA de Mexico 제조) — emedi 제품명 「Picoway」, 모델 코드 9914-J2-9060 · 9914-JB-9060",
+   "real_name": "피코웨이 / PicoWay",
+   "manufacturer": "NPA de Mexico S. de R.L. de C.V.",
+   "importer": "시너론켄델라코리아 유한회사",
+   "sellers": [
+    "시너론켄델라코리아 유한회사"
+   ],
+   "license_found": [
+    {
+     "no": "수허18-304호",
+     "holder": "시너론켄델라코리아 유한회사",
+     "model": "제품명 Picoway · 모델 9914-J2-9060, 9914-JB-9060 (엔디야그레이저수술기)",
+     "state": "정상",
+     "date": "20181019",
+     "query": "em.py query2=PicoWay · em.py query2=9914-JB-9060 · q.py ENTRPS=시너론"
+    }
+   ],
+   "license_history": [
+    {
+     "no": "수허15-1312호",
+     "holder": "(주)신한씨스텍",
+     "model": "PicoWay Laser System (제조 Candela Corporation)",
+     "state": "취하",
+     "date": "20191128",
+     "query": "em.py query2=PicoWay (입력 license_now 는 '취소'로 적혀 있으나 emedi 상태는 취하)"
+    }
+   ],
+   "basis": [
+    "em.py query2=9914-JB-9060 → 수허18-304호 정상 「제품명:Picoway | 모델 1: 9914-JB-9060」 — 모델 코드와 제품명이 같은 허가에 묶여 있음",
+    "PicoWay 는 Syneron Candela 피코초 레이저 — https://practicaldermatology.com/news/20141008-syneron_launches_picoway_picosecond_device_for_pigmented_lesion_treatment_and_tattoo_removal/2459094/"
+   ],
+   "sources": [
+    "em.py query2=PicoWay total=3",
+    "em.py query2=9914-JB-9060 total=1",
+    "q.py ENTRPS=시너론 total=30",
+    "https://practicaldermatology.com/news/20141008-syneron_launches_picoway_picosecond_device_for_pigmented_lesion_treatment_and_tattoo_removal/2459094/"
+   ],
+   "clinic": [
+    {
+     "clinic": "초이스피부과의원 평촌",
+     "url": "/Users/kknaks/Downloads/data-anyang/prices_img/c12_초이스피부과의원-평촌.json",
+     "quote": "「포토나 + 피코웨이 15회」 · 「피코웨이레이저 + 포토나레이저 + 브이빔레이저 + 스무스빔레이저 + 피부재생주사 1회」"
+    }
+   ],
+   "queries_zero": [
+    "em.py query2=피코웨이 0(입력 기록)"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "원장에 둠 — 현행 수허18-304호, 업체는 캔델라(브랜드)·시너론켄델라코리아(수입)·NPA de Mexico(제조)로 나눠 적음; 15-1312 는 '취하' 이력으로 정정",
+   "group": "D29",
+   "license_now": "정상 · 수허18-304호(정상) · 이력: 수허15-1312호(취소)"
+  },
+  {
+   "ledger_id": "M11-P-1",
+   "product": "인트라셀",
+   "verdict": "실제 제품 · 현행 허가 찾음",
+   "one_line": "(주)제이시스메디칼의 프락셔널 RF 마이크로니들 INTRAcel. 제이시스메디칼 제조 허가 여러 건 정상(INTRAcel system·NEW INTRAcel·INTRAcel Premium·INTRAcel K 2.0·INTRAcel PRO). 풍림파마텍 Intracell-P/F 는 다른 제품",
+   "real_name": "인트라셀 / INTRAcel (INTRAcel PRO · INTRAcel Premium · INTRAcel K 2.0 · NEW INTRAcel)",
+   "manufacturer": "(주)제이시스메디칼",
+   "importer": null,
+   "sellers": [
+    "(주)제이시스메디칼"
+   ],
+   "license_found": [
+    {
+     "no": "제허17-689호",
+     "holder": "(주)제이시스메디칼",
+     "model": "INTRAcel PRO (범용전기수술기)",
+     "state": "정상",
+     "date": "20170907",
+     "query": "q.py ENTRPS=제이시스메디칼 · em.py query2=INTRAcel"
+    },
+    {
+     "no": "제허13-1858호",
+     "holder": "(주)제이시스메디칼",
+     "model": "INTRAcel K 2.0",
+     "state": "정상",
+     "date": null,
+     "query": "em.py query2=INTRAcel"
+    },
+    {
+     "no": "제허13-1651호",
+     "holder": "(주)제이시스메디칼",
+     "model": "INTRAcel Premium (모델 INTRAcel™)",
+     "state": "정상",
+     "date": null,
+     "query": "em.py query2=INTRAcel"
+    },
+    {
+     "no": "제허12-1085호",
+     "holder": "(주)제이시스메디칼",
+     "model": "NEW INTRAcel",
+     "state": "정상",
+     "date": null,
+     "query": "em.py query2=INTRAcel"
+    },
+    {
+     "no": "제허09-747호",
+     "holder": "(주)제이시스메디칼",
+     "model": "INTRAcel system",
+     "state": "정상",
+     "date": null,
+     "query": "em.py query2=INTRAcel"
+    },
+    {
+     "no": "제허09-831호 · 제인09-1033호",
+     "holder": "(주)제이시스메디칼",
+     "model": "INTRAcel Tip (일회용 전극)",
+     "state": "정상",
+     "date": null,
+     "query": "em.py query2=INTRAcel"
+    }
+   ],
+   "license_history": [
+    {
+     "no": "제허09-682호",
+     "holder": "(주)제이시스메디칼",
+     "model": "INTRAcel (IEZ, INTRAcel)",
+     "state": "만료(유효기간)",
+     "date": "20260901",
+     "query": "em.py query2=INTRAcel"
+    },
+    {
+     "no": "제허12-1387호",
+     "holder": "모두케어",
+     "model": "INTRAcel K TM",
+     "state": "취하",
+     "date": "20150409",
+     "query": "em.py query2=INTRAcel (다른 업체)"
+    }
+   ],
+   "basis": [
+    "q.py ENTRPS=제이시스메디칼 → 제허 17-689 호 「INTRAcel PRO」 「고주파 전류를 사용하여 주름, 모공, 흉터 … 에 사용하는 기구」",
+    "GUDID 「DEVICE: INTRAcel (08800020101013)」 — 제조 Jeisys Medical https://accessgudid.nlm.nih.gov/devices/08800020101013",
+    "「INTRAcel® RF Microneedling」 — https://www.californiaskininstitute.com/?p=726"
+   ],
+   "sources": [
+    "em.py query2=INTRAcel total=24",
+    "q.py ENTRPS=제이시스메디칼 total=103",
+    "https://accessgudid.nlm.nih.gov/devices/08800020101013",
+    "https://www.californiaskininstitute.com/?p=726"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=인트라셀 0",
+    "cg.py 인트라셀 · INTRAcel 0"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "원장에 둠 — 업체 제이시스메디칼 맞음, 현행 허가는 INTRAcel 계열 여러 건(대표 제허17-689 INTRAcel PRO)",
+   "group": "D29",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "M17-P-1",
+   "product": "에스에프",
+   "verdict": "확인 불가",
+   "one_line": "'에스에프' 줄기세포 유래 주사제는 출처 0. 주식회사 에이치앤바이오는 의료기기 제조업 등록(2020)과 치과용연마제 허가 1건뿐, 의약품 허가 0",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "cq.py 에이치앤바이오 → 「주식회사 에이치앤바이오 | 제조업 | 2020-06-24」",
+    "q.py ENTRPS=에이치앤바이오 total 1(치과용연마제 — 입력 기록) · dq.py entp_name=에이치앤바이오 0(입력 기록)",
+    "웹 「에이치앤바이오 SF 줄기세포 주사 OR 에스에프 주사」 — 제품 언급 0"
+   ],
+   "sources": [
+    "cq.py 에이치앤바이오 total=1",
+    "q.py ENTRPS=에이치앤바이오 total=1",
+    "https://thevc.kr/hnbio",
+    "WebSearch 「에이치앤바이오 SF 줄기세포 주사 OR 에스에프 주사」"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "dq.py item_name=에스에프 0(입력 기록)",
+    "dq.py entp_name=에이치앤바이오 0(입력 기록)",
+    "em.py query2=SF Injection 0(입력 기록)",
+    "cg.py 에스에프 0",
+    "WebSearch — 제품 0"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "원천 확인 — 제품 실체 출처 없음, 업체 허가에도 해당 품목 없음",
+   "group": "D29",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "M2-1-2",
+   "product": "더채움",
+   "verdict": "같은 제품(동의어)",
+   "one_line": "허가 모델명이 「the 채움 …」 · 제품명 「더 채움」 — taxonomy 「채움」은 같은 제품의 줄인 이름이다.",
+   "basis": [
+    "emedi 제허14-860호 (주)아크로스 제품명 「더 채움」 · 모델 「the 채움 Mid 16 A」 등",
+    "제허20-527 · 17-809 · 14-1762 모델 「the 채움 …」 「더 채움 쉐이프 …」",
+    "「채움」 질의의 다른 결과(에셀채움 보사법 패치 · 아진메디칼 더채움 쉐이퍼 주입기구)는 다른 제품"
+   ],
+   "sources": [
+    "emedi 품목 검색 POST https://emedi.mfds.go.kr/search/data/list query2=채움 (total 91)"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "동의어로 둠",
+   "group": "D30",
+   "license_now": "정상 · 제허20-527호(정상), 제허17-809호(정상), 제허14-1762호(정상), 제허14-860호(정상)"
+  },
+  {
+   "ledger_id": "auto-M4-1775360463217",
+   "product": "벨피엔 프로",
+   "verdict": "확인 불가(「프로」 근거 없음)",
+   "one_line": "허가는 「밸피엔(BelPN)」 하나(26-757 · 2026-10-15 · 리도카인 포함)뿐이고 「프로」 이름의 허가 · 보도는 못 찾았다. taxonomy 「벨피엔」과 허가 이름은 같다.",
+   "basis": [
+    "emedi 제허26-757호 (주)휴메딕스 정상 · 모델 「밸피엔(BelPN)」 · 사용목적 「리도카인, 히알루론산나트륨, 폴리뉴클레오티드나트륨 … 눈꼬리 잔주름」",
+    "제허21-776호 밸피엔(BelPN) 2026-10-19 취하",
+    "보도: 휴메딕스 PN+HA 복합 필러 「밸피엔」 확증 임상 완료 · 리도카인 추가 · 「프로」 표기 없음 (https://www.sidae.com/article/2025121909090946675)"
+   ],
+   "sources": [
+    "emedi 품목 검색 POST https://emedi.mfds.go.kr/search/data/list query2=밸피엔 (total 2)",
+    "emedi 품목 검색 POST https://emedi.mfds.go.kr/search/data/list query2=벨피엔 (total 0)",
+    "emedi 품목 검색 POST https://emedi.mfds.go.kr/search/data/list query2=BelPN (total 2)",
+    "WebSearch 「휴메딕스 벨피엔 프로 출시」"
+   ],
+   "needs_user": true,
+   "needs_user_reason": "원장 「벨피엔 프로」의 「프로」가 리도카인 신허가(26-757)를 가리키는 병원 표기인지 출처 없음",
+   "recommendation": "taxonomy 「벨피엔」을 이 행 동의어로 두고 대표 이름은 허가 이름 「밸피엔」 — 「프로」는 원천 확인",
+   "group": "D30",
+   "license_now": "정상 · 제허26-757호(정상) · 이력: 제허21-776호(취하 2026-10-19)"
+  },
+  {
+   "ledger_id": "M8-2-4",
+   "product": "프락셀듀얼",
+   "verdict": "같은 제품(동의어)",
+   "one_line": "수허 10-500 의 emedi 제품명이 「프락셀, 프락셀 듀얼」 — 한 허가가 두 이름을 같이 쓴다. 다른 프락셀 허가 4건은 모두 취하 · 만료.",
+   "basis": [
+    "emedi 수허10-500호 솔타메디칼코리아(수입) 정상 · 제품명 「프락셀, 프락셀 듀얼」 · 모델 「Fraxel(R) DUAL 1550/1927, Fraxel(R) 1927」 · Solta Medical Inc.",
+    "수허08-727(re:pair) · 08-194(re:fine) · 06-1330(SR 1500) 2026-01-06 취하 · 05-352(SR) 2025-12-01 만료"
+   ],
+   "sources": [
+    "emedi 품목 검색 POST https://emedi.mfds.go.kr/search/data/list query2=Fraxel (total 6)",
+    "emedi 품목 검색 POST https://emedi.mfds.go.kr/search/data/list query2=프락셀 (total 2)"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "동의어로 둠(현행 국내 프락셀은 10-500 하나)",
+   "group": "D30",
+   "license_now": "정상 · 수허 10-500 호(정상)"
+  },
+  {
+   "ledger_id": "auto-M15-1775360904089",
+   "product": "노보젯",
+   "verdict": "허가 대상 아님 — 출처 부족(확인 불가 유지)",
+   "one_line": "제조사 바즈바이오메딕은 노보젯을 「미용기기분야」, 큐어젯을 「의료분야」 무바늘 약물전달기로 나눠 소개한다. 하지만 이것은 시장 구분일 뿐, 의료기기가 아니라는 문구는 아니다. 같은 회사는 미용 적응증(튼살·탈모·모공·색소침착)의 분사식주사기 허가 CRJ-001CD(제품명 공란, 정상)를 갖고 있고, 식약처 품목 정의상 무바늘 분사 주사기는 의료기기 품목(분사식주사기)이다. 그래서 「허가 대상 아님」으로 닫을 수 없다",
+   "real_name": "노보젯(NOVOJET)",
+   "manufacturer": "바즈바이오메딕 주식회사",
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "「NOVOJET: 미용기기분야 미세분할 무바늘 약물전달기기」 · 「CUREJET: 의료분야 미세분할 무바늘 약물전달기기」 — 원티드 회사 소개",
+    "같은 업체 허가(연결 안 함 — 노보젯이라는 출처 없음): 제인22-4335호 분사식주사기 CRJ-001CD 정상, 사용목적 「액체의 약액을 자기력, 스프링 등으로 미세하게 분사하여 피부를 통과시켜 주사하는 기구(튼살, 탈모, 모공, 색소침착)」, 제품명 공란 — q.py ENTRPS=바즈바이오",
+    "제인22-4689호 분사식주사기 Curejet CRJ-001 정상 — em.py query2=CUREJET",
+    "식약처 품목 「분사식주사기」 정의: 「액체의 약액을 … 미세하게 분사하여 피부를 통과시켜 주사하는 기구」 — 원천 설명(니들리스 고압 제트 약물 주입)과 기전이 같다"
+   ],
+   "sources": [
+    "https://www.wanted.co.kr/company/1525",
+    "q.py ENTRPS=바즈바이오 total=3",
+    "em.py query2=CRJ-001CD total=1",
+    "em.py query2=CUREJET total=1",
+    "https://www.phiclinic.com/treatment/novojet"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=노보젯 total=0",
+    "em.py query2=큐어젯 total=0",
+    "cg.py 노보젯 0 hits",
+    "cg.py NOVOJET 0 hits",
+    "WebSearch 「노보젯 식약처 허가 분사식주사기」 — 무관(Novo Nordisk)"
+   ],
+   "needs_user": true,
+   "needs_user_reason": "제조사의 「미용기기분야」 표현과, 같은 회사의 미용 적응증 분사식주사기 허가(CRJ-001CD, 제품명 공란)가 부딪힌다. CRJ-001CD가 노보젯인지는 출처로 정할 수 없다",
+   "recommendation": "「허가 대상 아님」을 내리고 「확인 불가」를 유지한다. 바즈바이오메딕에 노보젯 모델번호(CRJ-001CD 여부)를 확인하는 안을 추천한다",
+   "group": "D31",
+   "license_now": "허가 대상 아님"
+  },
+  {
+   "ledger_id": "new-DEV-049",
+   "product": "오투덤",
+   "verdict": "허가 대상 아님 — 출처 확인",
+   "one_line": "오투덤(O2toDerm)은 트리시스가 만든 산소·음이온 발생 돔 마스크다. 기사가 「미용기기이다」라고 직접 쓰고 미용기기 부문 수상을 보도했다. 트리시스의 의료기기 허가(WrinkleOne·AC_15J)에는 오투덤이 없다. 판정: 「허가 대상 아님 — 출처 확인」",
+   "real_name": "오투덤(O2toDerm)",
+   "manufacturer": "(주)트리시스",
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "「산소이온발생기 오투덤은 대기중의 공기를 흡입해 순수한 산소와 약 300만개의 음이온을 발생시켜 돔 형태의 마스크를 통해 피부에 전달해 지친 피부에 활력을 불어넣어 주는 미용기기이다.」 — 스포츠서울 2019-08-13",
+    "「2019 고객선호브랜드지수」 뷰티(미용기기) 부문 1위로 주식회사 트리시스의 오투덤이 수상 — 같은 기사. 기사에 「의료기기」라는 말은 없다",
+    "트리시스 의료기기 허가: 제허26-92 WrinkleOne(집속형 초음파), 제허15-1570 AC_15J(레이저, 취하) — 오투덤 없음(q.py ENTRPS=트리시스)"
+   ],
+   "sources": [
+    "https://www.sportsseoul.com/news/read/804413",
+    "q.py ENTRPS=트리시스 total=3",
+    "cq.py 트리시스(제조업)"
+   ],
+   "clinic": [
+    {
+     "clinic": "데이뷰의원(지점 08)",
+     "url": "https://www.daybeauclinic08.com/branch/procedure_detail.php?code=G951726",
+     "quote": "오투덤 버블 테라피 --> 오투덤 anti-aging … 고농도 산소와 음이온을 이용하"
+    },
+    {
+     "clinic": "데이뷰의원(지점 12)",
+     "url": "https://www.daybeauclinic12.com/branch/procedure_detail.php?code=G287140",
+     "quote": "오투덤 산소필 풍부한 산소 공급으로 피부를 깨끗하게 정화하고 생기 있게 가꿔주는 산소 필링"
+    }
+   ],
+   "queries_zero": [
+    "em.py query2=오투덤 total=0",
+    "em.py query2=O2toDerm total=0"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "「허가 대상 아님」을 유지하고, 근거를 스포츠서울 「…미용기기이다」 인용으로 바꾼다(제조사 자료가 아니라 2019년 기사라는 점은 함께 적는다)",
+   "group": "D31",
+   "license_now": "허가 대상 아님"
+  },
+  {
+   "ledger_id": "new-DEV-034",
+   "product": "벨르업",
+   "verdict": "허가 대상 아님 — 출처 부족(확인 불가 유지)",
+   "one_line": "판매처 (주)벨레브(벨루미에몰) 상품 페이지에는 가격(660만 원)과 판매자 정보만 있고 미용기기/의료기기 구분·제조사·인증 표기가 없다. 웹에서도 벨르업을 설명하는 출처를 찾지 못했다. 판정: 출처 부족, 「확인 불가」 유지",
+   "real_name": "벨르업(Belle Up)",
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [
+    "(주)벨레브(브랜드 벨루미에)"
+   ],
+   "license_found": [],
+   "license_history": [],
+   "basis": [
+    "상품 페이지 「벨르업 본체」 6,600,000원, 판매 (주)벨레브. 분류·제조사·인증·원리 표기가 없다(WebFetch)",
+    "벨레브·벨루미에는 의료기기 품목·업체 허가 조회에서 0건이다"
+   ],
+   "sources": [
+    "https://bellelumiemall.co.kr/product/%EB%B2%A8%EB%A5%B4%EC%97%85-%EB%B3%B8%EC%B2%B4/37/"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=벨르업 total=0",
+    "q.py ENTRPS=벨레브 total=0",
+    "q.py ENTRPS=벨루미에 total=0",
+    "cq.py 벨레브 total=0",
+    "cq.py 벨루미에 total=0",
+    "cg.py 벨르업 0 hits",
+    "WebSearch 「벨르업 벨루미에 리프팅 기기」(벨루티 리프팅만 — 다른 제품)",
+    "WebSearch 「\"벨르업\" 피부관리 미용기기」 무관"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "「확인 불가」를 유지한다. 실물 사진의 라벨(제조사·KC/전기용품 인증·의료기기 표시)이나 판매처 문의로 분류 근거를 얻는 안을 추천한다",
+   "group": "D31",
+   "license_now": "확인 불가"
+  },
+  {
+   "ledger_id": "auto-M15-1775360919010",
+   "product": "메소건",
+   "verdict": "허가 대상 아님 — 출처 부족(확인 불가 유지)",
+   "one_line": "「메소건(Mesogun)」은 여러 회사의 자동 메조테라피 주입기를 부르는 일반명이다. 그중 현대메디텍 Meso-Pri(Mesogun)는 식약처 「의약품직접주입기구」로 허가된 적이 있다(제인05-914호, 2026-01-01 유효기간 만료). 같은 종류의 장비가 의료기기로 허가된 적이 있으므로 「허가 대상 아님」의 근거가 없다. 판정: 출처 부족, 「확인 불가」 유지(성격은 일반명)",
+   "real_name": null,
+   "manufacturer": null,
+   "importer": null,
+   "sellers": [],
+   "license_found": [],
+   "license_history": [
+    {
+     "no": "제인 05-914 호",
+     "holder": "(주)현대메디텍",
+     "model": "Meso Pri",
+     "state": "만료(유효기간) 2026-01-01 — 같은 일반명의 한 제품, 원장 행과 같은 제품인지 미확인",
+     "date": "20260101",
+     "query": "em.py query2=Meso-Pri total=1 (품목 의약품직접주입기구)"
+    }
+   ],
+   "basis": [
+    "「Meso-Pri Mesotherapy Gun」, 제조 「Hyundae Meditech」, 「Mesogun」·「an automated mesotherapy device」 — remma.fr",
+    "Mavenus Medical Device의 「Mavenus meso-injector」 등 여러 회사가 같은 종류 장비를 판다 — IMCAS China 2025 출품사(WebSearch 요약)",
+    "Meso Pri 제인05-914호 의약품직접주입기구(만료 2026-01-01) — 이 장비 유형이 의료기기 품목이라는 식약처 기록이다"
+   ],
+   "sources": [
+    "https://remma.fr/en/model/meso-pri-mesotherapy-gun",
+    "https://www.imcas.com/en/sponsor/imcas-china-2025/view/18008",
+    "em.py query2=Meso-Pri total=1"
+   ],
+   "clinic": [],
+   "queries_zero": [
+    "em.py query2=메소건 total=0",
+    "em.py query2=메조건 total=0",
+    "em.py query2=MESOGUN total=0",
+    "cg.py 메소건 0 hits",
+    "cg.py 메조건 0 hits"
+   ],
+   "needs_user": false,
+   "needs_user_reason": null,
+   "recommendation": "「허가 대상 아님」을 내리고 「메뉴명·일반명」으로 표시하는 안을 추천한다(근거: Meso-Pri 등 여러 회사의 Mesogun). 병원이 쓰는 실제 장비가 확인되면 그 장비로 다시 판정한다",
+   "group": "D31",
+   "license_now": "확인 불가"
+  }
+ ]
+}

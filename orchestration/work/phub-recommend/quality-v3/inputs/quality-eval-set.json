@@ -1,0 +1,3255 @@
+{
+ "version": "quality-eval-set v1",
+ "generated_by": "quality-eval.py build_eval_set()",
+ "rule": "문항 = 샘플(S3p 11단계) · 원천 브론즈에 있는 말만 · 정답은 원천 칸 근거(없으면 「정답 미정」) · 가상 문장 없음",
+ "intents": [
+  "I-01",
+  "I-02",
+  "I-03",
+  "I-04",
+  "I-05",
+  "I-06",
+  "I-07",
+  "I-08",
+  "I-09",
+  "I-10",
+  "I-11",
+  "I-12"
+ ],
+ "n": 111,
+ "questions": [
+  {
+   "intent": "I-01",
+   "origin": "샘플 3단계",
+   "text": "이마 주름",
+   "slots": {
+    "concern_text": "이마 주름",
+    "site": "이마"
+   },
+   "answer": {
+    "families": [
+     "M1",
+     "M4",
+     "M9"
+    ],
+    "site": "이마",
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P2].complaints[0]",
+     "text": "이마주름 · 표정주름 → 보톡스(M1) · 리프팅기기(M9) · 스킨부스터(M4)"
+    }
+   ],
+   "id": "Q001"
+  },
+  {
+   "intent": "I-01",
+   "origin": "샘플 4단계",
+   "text": "팔자",
+   "slots": {
+    "concern_text": "팔자",
+    "site": "팔자"
+   },
+   "answer": {
+    "families": [
+     "M1",
+     "M2",
+     "M4",
+     "M9"
+    ],
+    "site": "팔자",
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P2].complaints[3]",
+     "text": "팔자주름 · 깊은주름 → 보톡스(M1) · 필러(M2) · 리프팅기기(M9) · 스킨부스터(M4)"
+    }
+   ],
+   "id": "Q002"
+  },
+  {
+   "intent": "I-01",
+   "origin": "샘플 5단계",
+   "text": "턱선 처짐",
+   "slots": {
+    "concern_text": "턱선 처짐",
+    "site": "턱선"
+   },
+   "answer": {
+    "families": [
+     "M4",
+     "M7",
+     "M9"
+    ],
+    "site": "턱선",
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P3].complaints[1]",
+     "text": "턱선무너짐 · 얼굴 쳐짐 → 리프팅기기(M9) · 실리프팅(M7) · 스킨부스터(M4)"
+    }
+   ],
+   "id": "Q003"
+  },
+  {
+   "intent": "I-01",
+   "origin": "원천 problem-packages(사이트 고민별 시술 추천)",
+   "text": "쁘띠시술 · 코필러",
+   "slots": {
+    "concern_text": "쁘띠시술",
+    "cc": "코필러",
+    "cc_group": "코",
+    "cc_detail": "콧대/코끝"
+   },
+   "answer": {
+    "families": [
+     "M1",
+     "M2"
+    ],
+    "sub_families": {
+     "M2": [
+      "히알루론산(HA)"
+     ]
+    },
+    "site_words": [
+     "코끝",
+     "콧등",
+     "코"
+    ],
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P1].complaints[0]",
+     "text": "코필러 [코] → 필러(M2, 볼륨 충전) · 보톡스(M1, 근이완 보조)"
+    }
+   ],
+   "id": "Q004"
+  },
+  {
+   "intent": "I-01",
+   "origin": "원천 problem-packages(사이트 고민별 시술 추천)",
+   "text": "쁘띠시술 · 이마필러",
+   "slots": {
+    "concern_text": "쁘띠시술",
+    "cc": "이마필러",
+    "cc_group": "이마/관자놀이",
+    "cc_detail": "볼륨/라운딩"
+   },
+   "answer": {
+    "families": [
+     "M1",
+     "M2"
+    ],
+    "sub_families": {
+     "M2": [
+      "히알루론산(HA)"
+     ]
+    },
+    "site_words": [
+     "이마(묶음)",
+     "이마"
+    ],
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P1].complaints[2]",
+     "text": "이마필러 [이마/관자놀이] → 필러(M2, 볼륨 충전) · 보톡스(M1, 근이완 보조)"
+    }
+   ],
+   "id": "Q005"
+  },
+  {
+   "intent": "I-01",
+   "origin": "원천 problem-packages(사이트 고민별 시술 추천)",
+   "text": "주름 · 이마주름",
+   "slots": {
+    "concern_text": "주름",
+    "cc": "이마주름",
+    "cc_group": "표정주름",
+    "cc_detail": "보톡스"
+   },
+   "answer": {
+    "families": [
+     "M1",
+     "M4",
+     "M9"
+    ],
+    "sub_families": {
+     "M4": [
+      "폴리뉴클레오타이드(PN·PDRN)"
+     ],
+     "M9": [
+      "HIFU",
+      "RF"
+     ]
+    },
+    "site_words": [
+     "이마"
+    ],
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P2].complaints[0]",
+     "text": "이마주름 [표정주름] → 보톡스(M1, 근육 이완으로 주름 완화) · 리프팅기기(M9, 피부 타이트닝) · 스킨부스터(M4, 피부 재생)"
+    }
+   ],
+   "id": "Q006"
+  },
+  {
+   "intent": "I-01",
+   "origin": "원천 problem-packages(사이트 고민별 시술 추천)",
+   "text": "주름 · 팔자주름",
+   "slots": {
+    "concern_text": "주름",
+    "cc": "팔자주름",
+    "cc_group": "깊은주름",
+    "cc_detail": "필러/바이오스티뮬레이터"
+   },
+   "answer": {
+    "families": [
+     "M1",
+     "M2",
+     "M4",
+     "M9"
+    ],
+    "sub_families": {
+     "M2": [
+      "히알루론산(HA)"
+     ],
+     "M4": [
+      "폴리뉴클레오타이드(PN·PDRN)"
+     ],
+     "M9": [
+      "HIFU",
+      "RF"
+     ]
+    },
+    "site_words": [
+     "팔자"
+    ],
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P2].complaints[3]",
+     "text": "팔자주름 [깊은주름] → 보톡스(M1, 근육 이완으로 주름 완화) · 필러(M2, 깊은 주름 볼륨 충전) · 리프팅기기(M9, 피부 타이트닝) · 스킨부스터(M4, 피부 재생·수분 공급으로 목주름·잔결 개선)"
+    }
+   ],
+   "id": "Q007"
+  },
+  {
+   "intent": "I-01",
+   "origin": "원천 problem-packages(사이트 고민별 시술 추천)",
+   "text": "쳐짐 · 볼쳐짐/불독살",
+   "slots": {
+    "concern_text": "쳐짐",
+    "cc": "볼쳐짐/불독살",
+    "cc_group": "얼굴 쳐짐",
+    "cc_detail": "기기리프팅/실리프팅"
+   },
+   "answer": {
+    "families": [
+     "M4",
+     "M7",
+     "M9"
+    ],
+    "sub_families": {
+     "M4": [
+      "폴리뉴클레오타이드(PN·PDRN)"
+     ],
+     "M7": [
+      "PDO"
+     ],
+     "M9": [
+      "HIFU",
+      "RF"
+     ]
+    },
+    "site_words": [
+     "볼"
+    ],
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P3].complaints[0]",
+     "text": "볼쳐짐/불독살 [얼굴 쳐짐] → 리프팅기기(M9, 피부 타이트닝) · 실리프팅(M7, 물리적 거상) · 스킨부스터(M4, 피부 재생)"
+    }
+   ],
+   "id": "Q008"
+  },
+  {
+   "intent": "I-01",
+   "origin": "원천 problem-packages(사이트 고민별 시술 추천)",
+   "text": "쳐짐 · 눈꺼풀쳐짐",
+   "slots": {
+    "concern_text": "쳐짐",
+    "cc": "눈꺼풀쳐짐",
+    "cc_group": "눈가 쳐짐",
+    "cc_detail": "기기리프팅/실리프팅"
+   },
+   "answer": {
+    "families": [
+     "M4",
+     "M7",
+     "M9"
+    ],
+    "sub_families": {
+     "M4": [
+      "폴리뉴클레오타이드(PN·PDRN)"
+     ],
+     "M7": [
+      "PDO"
+     ],
+     "M9": [
+      "HIFU",
+      "RF"
+     ]
+    },
+    "site_words": [
+     "눈꺼풀",
+     "눈가"
+    ],
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P3].complaints[3]",
+     "text": "눈꺼풀쳐짐 [눈가 쳐짐] → 리프팅기기(M9, 피부 타이트닝) · 실리프팅(M7, 물리적 거상) · 스킨부스터(M4, 피부 재생)"
+    }
+   ],
+   "id": "Q009"
+  },
+  {
+   "intent": "I-01",
+   "origin": "원천 problem-packages(사이트 고민별 시술 추천)",
+   "text": "항노화 · 스킨부스터시술",
+   "slots": {
+    "concern_text": "항노화",
+    "cc": "스킨부스터시술",
+    "cc_group": "피부재생/탄력",
+    "cc_detail": "리쥬란/쥬베룩 등"
+   },
+   "answer": {
+    "families": [
+     "M4",
+     "M9"
+    ],
+    "sub_families": {
+     "M4": [
+      "폴리뉴클레오타이드(PN·PDRN)"
+     ],
+     "M9": [
+      "HIFU",
+      "RF"
+     ]
+    },
+    "site_words": [],
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P4].complaints[0]",
+     "text": "스킨부스터시술 [피부재생/탄력] → 스킨부스터(M4, 피부 재생) · 리프팅기기(M9, 타이트닝)"
+    }
+   ],
+   "id": "Q010"
+  },
+  {
+   "intent": "I-01",
+   "origin": "원천 problem-packages(사이트 고민별 시술 추천)",
+   "text": "항노화 · 필러볼륨",
+   "slots": {
+    "concern_text": "항노화",
+    "cc": "필러볼륨",
+    "cc_group": "볼륨회복",
+    "cc_detail": "꺼진 부위 충전"
+   },
+   "answer": {
+    "families": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "sub_families": {
+     "M2": [
+      "히알루론산(HA)"
+     ],
+     "M3": [
+      "PCL",
+      "PLLA"
+     ]
+    },
+    "site_words": [],
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P4].complaints[3]",
+     "text": "필러볼륨 [볼륨회복] → 필러(M2, 볼륨 충전) · 보톡스(M1, 근이완 보조) · 바이오스티뮬레이터/콜라겐부스터(M3, 장기 콜라겐)"
+    }
+   ],
+   "id": "Q011"
+  },
+  {
+   "intent": "I-01",
+   "origin": "원천 problem-packages(사이트 고민별 시술 추천)",
+   "text": "색소/미백 · 레이저토닝",
+   "slots": {
+    "concern_text": "색소/미백",
+    "cc": "레이저토닝",
+    "cc_group": "기미",
+    "cc_detail": "1064nm 반복"
+   },
+   "answer": {
+    "families": [
+     "M4",
+     "M8"
+    ],
+    "sub_families": {
+     "M4": [
+      "폴리뉴클레오타이드(PN·PDRN)"
+     ],
+     "M8": [
+      "KTP",
+      "알렉산드라이트 레이저",
+      "엔디야그 레이저"
+     ]
+    },
+    "site_words": [],
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P5].complaints[0]",
+     "text": "레이저토닝 [기미] → 레이저(M8, 색소 파괴) · 스킨부스터(M4, 재생·톤개선)"
+    }
+   ],
+   "id": "Q012"
+  },
+  {
+   "intent": "I-01",
+   "origin": "원천 problem-packages(사이트 고민별 시술 추천)",
+   "text": "색소/미백 · 피코레이저",
+   "slots": {
+    "concern_text": "색소/미백",
+    "cc": "피코레이저",
+    "cc_group": "주근깨/잡티",
+    "cc_detail": "1~2회 집중"
+   },
+   "answer": {
+    "families": [
+     "M4",
+     "M8"
+    ],
+    "sub_families": {
+     "M4": [
+      "폴리뉴클레오타이드(PN·PDRN)"
+     ],
+     "M8": [
+      "KTP",
+      "알렉산드라이트 레이저",
+      "엔디야그 레이저"
+     ]
+    },
+    "site_words": [
+     "코"
+    ],
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P5].complaints[3]",
+     "text": "피코레이저 [주근깨/잡티] → 레이저(M8, 색소 파괴) · 스킨부스터(M4, 재생·톤개선)"
+    }
+   ],
+   "id": "Q013"
+  },
+  {
+   "intent": "I-01",
+   "origin": "원천 problem-packages(사이트 고민별 시술 추천)",
+   "text": "여드름 · 압출",
+   "slots": {
+    "concern_text": "여드름",
+    "cc": "압출",
+    "cc_group": "급성(활성) 여드름",
+    "cc_detail": "면포 제거 + 진정"
+   },
+   "answer": {
+    "families": [
+     "M11",
+     "M15"
+    ],
+    "sub_families": {},
+    "site_words": [],
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P6].complaints[0]",
+     "text": "압출 [급성(활성) 여드름] → 니들RF(M11, 피지선 파괴) · 메디컬스킨케어(M15, 각질 제거)"
+    }
+   ],
+   "id": "Q014"
+  },
+  {
+   "intent": "I-01",
+   "origin": "원천 problem-packages(사이트 고민별 시술 추천)",
+   "text": "여드름 · 아그네스",
+   "slots": {
+    "concern_text": "여드름",
+    "cc": "아그네스",
+    "cc_group": "피지/모공",
+    "cc_detail": "피지선 파괴 · 니들RF"
+   },
+   "answer": {
+    "families": [
+     "M11",
+     "M4"
+    ],
+    "sub_families": {},
+    "site_words": [],
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P6].complaints[3]",
+     "text": "아그네스 [피지/모공] → 니들RF(M11, 모공 수축) · 스킨부스터(M4, 콜라겐 재생)"
+    }
+   ],
+   "id": "Q015"
+  },
+  {
+   "intent": "I-01",
+   "origin": "원천 problem-packages(사이트 고민별 시술 추천)",
+   "text": "모공 · 스킨보톡스",
+   "slots": {
+    "concern_text": "모공",
+    "cc": "스킨보톡스",
+    "cc_group": "피지과다형",
+    "cc_detail": "피지↓"
+   },
+   "answer": {
+    "families": [
+     "M1",
+     "M11",
+     "M4"
+    ],
+    "sub_families": {
+     "M4": [
+      "폴리뉴클레오타이드(PN·PDRN)"
+     ]
+    },
+    "site_words": [],
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P7].complaints[0]",
+     "text": "스킨보톡스 [피지과다형] → 보톡스(M1, 진피내 피지선·입모근의 콜린성 신호 차단) · 스킨부스터(M4, 피부 재생) · 니들RF(M11, 모공 수축) · 스킨부스터(M4, 콜라겐 재생)"
+    }
+   ],
+   "id": "Q016"
+  },
+  {
+   "intent": "I-01",
+   "origin": "원천 problem-packages(사이트 고민별 시술 추천)",
+   "text": "모공 · 프락셔널레이저",
+   "slots": {
+    "concern_text": "모공",
+    "cc": "프락셔널레이저",
+    "cc_group": "탄력저하형",
+    "cc_detail": "콜라겐리모델링"
+   },
+   "answer": {
+    "families": [
+     "M11",
+     "M4",
+     "M9"
+    ],
+    "sub_families": {
+     "M9": [
+      "HIFU",
+      "RF"
+     ]
+    },
+    "site_words": [],
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P7].complaints[2]",
+     "text": "프락셔널레이저 [탄력저하형] → 니들RF(M11, 모공 수축) · 스킨부스터(M4, 콜라겐 재생) · 리프팅기기(M9, 처짐 개선)"
+    }
+   ],
+   "id": "Q017"
+  },
+  {
+   "intent": "I-01",
+   "origin": "원천 problem-packages(사이트 고민별 시술 추천)",
+   "text": "홍조/혈관 · V빔",
+   "slots": {
+    "concern_text": "홍조/혈관",
+    "cc": "V빔",
+    "cc_group": "안면홍조",
+    "cc_detail": "595nm PDL"
+   },
+   "answer": {
+    "families": [
+     "M4",
+     "M8"
+    ],
+    "sub_families": {
+     "M4": [
+      "폴리뉴클레오타이드(PN·PDRN)"
+     ],
+     "M8": [
+      "KTP",
+      "엔디야그 레이저"
+     ]
+    },
+    "site_words": [],
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P8].complaints[0]",
+     "text": "V빔 [안면홍조] → 혈관레이저(M8, 혈관 수축/파괴) · 스킨부스터(M4, 피부 장벽 강화)"
+    }
+   ],
+   "id": "Q018"
+  },
+  {
+   "intent": "I-01",
+   "origin": "원천 problem-packages(사이트 고민별 시술 추천)",
+   "text": "홍조/혈관 · 엑셀V",
+   "slots": {
+    "concern_text": "홍조/혈관",
+    "cc": "엑셀V",
+    "cc_group": "모세혈관확장",
+    "cc_detail": "532+1064nm"
+   },
+   "answer": {
+    "families": [
+     "M4",
+     "M8"
+    ],
+    "sub_families": {
+     "M4": [
+      "폴리뉴클레오타이드(PN·PDRN)"
+     ],
+     "M8": [
+      "KTP",
+      "엔디야그 레이저"
+     ]
+    },
+    "site_words": [],
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P8].complaints[3]",
+     "text": "엑셀V [모세혈관확장] → 혈관레이저(M8, 혈관 수축/파괴) · 스킨부스터(M4, 피부 장벽 강화)"
+    }
+   ],
+   "id": "Q019"
+  },
+  {
+   "intent": "I-01",
+   "origin": "원천 problem-packages(사이트 고민별 시술 추천)",
+   "text": "흉터 · 서브시전",
+   "slots": {
+    "concern_text": "흉터",
+    "cc": "서브시전",
+    "cc_group": "여드름흉터",
+    "cc_detail": "유착해제"
+   },
+   "answer": {
+    "families": [
+     "M11",
+     "M5",
+     "M8"
+    ],
+    "sub_families": {
+     "M5": [
+      "혈소판 농축물(PRP·PRF)"
+     ],
+     "M8": [
+      "Er:Glass",
+      "톨륨"
+     ]
+    },
+    "site_words": [],
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P9].complaints[0]",
+     "text": "서브시전 [여드름흉터] → 프락셔널(M8, 리서페이싱) · 서브시전(M8, 유착 박리) · PRP/자가혈(M5, 재생 촉진) · 니들RF(M11, 콜라겐 자극)"
+    }
+   ],
+   "id": "Q020"
+  },
+  {
+   "intent": "I-01",
+   "origin": "원천 problem-packages(사이트 고민별 시술 추천)",
+   "text": "흉터 · 스테로이드주사",
+   "slots": {
+    "concern_text": "흉터",
+    "cc": "스테로이드주사",
+    "cc_group": "켈로이드/비후성",
+    "cc_detail": "켈로이드 축소"
+   },
+   "answer": {
+    "families": [
+     "M1",
+     "M15",
+     "M8"
+    ],
+    "sub_families": {},
+    "site_words": [],
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P9].complaints[6]",
+     "text": "스테로이드주사 [켈로이드/비후성] → 병변내 스테로이드주사(M15, 1차 치료·켈로이드 축소) · 레이저(M8, 홍반·혈관성 및 흉터 보조 개선) · 보톡스(M1, 보조요법(두께 축소 근거 제한))"
+    }
+   ],
+   "id": "Q021"
+  },
+  {
+   "intent": "I-01",
+   "origin": "원천 problem-packages(사이트 고민별 시술 추천)",
+   "text": "제모 · 인중/구레나룻",
+   "slots": {
+    "concern_text": "제모",
+    "cc": "인중/구레나룻",
+    "cc_group": "얼굴",
+    "cc_detail": "제모레이저"
+   },
+   "answer": {
+    "families": [
+     "M8"
+    ],
+    "sub_families": {
+     "M8": [
+      "알렉산드라이트 레이저",
+      "엔디야그 레이저"
+     ]
+    },
+    "site_words": [
+     "구레나룻",
+     "인중"
+    ],
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P10].complaints[0]",
+     "text": "인중/구레나룻 [얼굴] → 제모레이저(M8, 모근 파괴)"
+    }
+   ],
+   "id": "Q022"
+  },
+  {
+   "intent": "I-01",
+   "origin": "원천 problem-packages(사이트 고민별 시술 추천)",
+   "text": "제모 · 겨드랑이/팔/다리",
+   "slots": {
+    "concern_text": "제모",
+    "cc": "겨드랑이/팔/다리",
+    "cc_group": "바디(여성)",
+    "cc_detail": "제모레이저"
+   },
+   "answer": {
+    "families": [
+     "M1",
+     "M8"
+    ],
+    "sub_families": {
+     "M8": [
+      "알렉산드라이트 레이저",
+      "엔디야그 레이저"
+     ]
+    },
+    "site_words": [
+     "겨드랑이",
+     "다리",
+     "바디",
+     "팔"
+    ],
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P10].complaints[1]",
+     "text": "겨드랑이/팔/다리 [바디(여성)] → 제모레이저(M8, 모근 파괴) · 보톡스(M1, 다한증 완화)"
+    }
+   ],
+   "id": "Q023"
+  },
+  {
+   "intent": "I-01",
+   "origin": "원천 problem-packages(사이트 고민별 시술 추천)",
+   "text": "얼굴윤곽 · 사각턱보톡스",
+   "slots": {
+    "concern_text": "얼굴윤곽",
+    "cc": "사각턱보톡스",
+    "cc_group": "사각턱",
+    "cc_detail": "교근축소"
+   },
+   "answer": {
+    "families": [
+     "M1",
+     "M2",
+     "M4"
+    ],
+    "sub_families": {
+     "M2": [
+      "히알루론산(HA)"
+     ],
+     "M4": [
+      "폴리뉴클레오타이드(PN·PDRN)"
+     ]
+    },
+    "site_words": [
+     "사각턱"
+    ],
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P11].complaints[0]",
+     "text": "사각턱보톡스 [사각턱] → 보톡스(M1, 근육 이완) · 스킨부스터(M4, 피부 재생) · 보톡스(M1, 교근 축소) · 필러(M2, 턱끝 볼륨)"
+    }
+   ],
+   "id": "Q024"
+  },
+  {
+   "intent": "I-01",
+   "origin": "원천 problem-packages(사이트 고민별 시술 추천)",
+   "text": "얼굴윤곽 · 윤곽주사",
+   "slots": {
+    "concern_text": "얼굴윤곽",
+    "cc": "윤곽주사",
+    "cc_group": "이중턱/턱밑",
+    "cc_detail": "지방분해"
+   },
+   "answer": {
+    "families": [
+     "M14",
+     "M9"
+    ],
+    "sub_families": {
+     "M9": [
+      "HIFU",
+      "RF"
+     ]
+    },
+    "site_words": [
+     "턱밑"
+    ],
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P11].complaints[1]",
+     "text": "윤곽주사 [이중턱/턱밑] → 지방분해(M14, 지방 감소) · 리프팅기기(M9, 턱라인 타이트닝)"
+    }
+   ],
+   "id": "Q025"
+  },
+  {
+   "intent": "I-01",
+   "origin": "원천 problem-packages(사이트 고민별 시술 추천)",
+   "text": "바디 · 쿨스컬프팅",
+   "slots": {
+    "concern_text": "바디",
+    "cc": "쿨스컬프팅",
+    "cc_group": "지방감소",
+    "cc_detail": "냉각지방분해"
+   },
+   "answer": {
+    "families": [
+     "M14",
+     "M9"
+    ],
+    "sub_families": {
+     "M9": [
+      "RF"
+     ]
+    },
+    "site_words": [],
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P12].complaints[0]",
+     "text": "쿨스컬프팅 [지방감소] → 크라이오(M14, 지방 동결 파괴) · 인모드(M9, RF 타이트닝)"
+    }
+   ],
+   "id": "Q026"
+  },
+  {
+   "intent": "I-01",
+   "origin": "원천 problem-packages(사이트 고민별 시술 추천)",
+   "text": "바디 · 엠스컬프트",
+   "slots": {
+    "concern_text": "바디",
+    "cc": "엠스컬프트",
+    "cc_group": "근육강화",
+    "cc_detail": "HIFEM"
+   },
+   "answer": {
+    "families": [
+     "M10"
+    ],
+    "sub_families": {
+     "M10": [
+      "HIFEM"
+     ]
+    },
+    "site_words": [],
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P12].complaints[7]",
+     "text": "엠스컬프트 [근육강화] → HIFES(M10, 근육 자극)"
+    }
+   ],
+   "id": "Q027"
+  },
+  {
+   "intent": "I-01",
+   "origin": "원천 problem-packages(사이트 고민별 시술 추천)",
+   "text": "두피/탈모 · 두피메조",
+   "slots": {
+    "concern_text": "두피/탈모",
+    "cc": "두피메조",
+    "cc_group": "주사치료",
+    "cc_detail": "성장인자 주사"
+   },
+   "answer": {
+    "families": [
+     "M12",
+     "M5"
+    ],
+    "sub_families": {
+     "M5": [
+      "혈소판 농축물(PRP·PRF)"
+     ]
+    },
+    "site_words": [
+     "두피"
+    ],
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P13].complaints[0]",
+     "text": "두피메조 [주사치료] → PRP/자가혈(M5, 모낭 활성화) · 마이크로니들링(MTS)(M12, 두피 자극)"
+    }
+   ],
+   "id": "Q028"
+  },
+  {
+   "intent": "I-01",
+   "origin": "원천 problem-packages(사이트 고민별 시술 추천)",
+   "text": "두피/탈모 · LLLT",
+   "slots": {
+    "concern_text": "두피/탈모",
+    "cc": "LLLT",
+    "cc_group": "장비치료",
+    "cc_detail": "저출력레이저 · LED · FDA"
+   },
+   "answer": {
+    "families": [
+     "M12",
+     "M8"
+    ],
+    "sub_families": {},
+    "site_words": [],
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P13].complaints[3]",
+     "text": "LLLT [장비치료] → 레이저(M8, 두피 혈류 촉진) · 마이크로니들링(MTS)(M12, 두피 자극)"
+    }
+   ],
+   "id": "Q029"
+  },
+  {
+   "intent": "I-01",
+   "origin": "원천 problem-packages(사이트 고민별 시술 추천)",
+   "text": "기타 · 점제거",
+   "slots": {
+    "concern_text": "기타",
+    "cc": "점제거",
+    "cc_group": "점/사마귀",
+    "cc_detail": "CO2 레이저"
+   },
+   "answer": {
+    "families": [
+     "M8"
+    ],
+    "sub_families": {},
+    "site_words": [],
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P14].complaints[0]",
+     "text": "점제거 [점/사마귀] → 레이저(M8, 병변 제거)"
+    }
+   ],
+   "id": "Q030"
+  },
+  {
+   "intent": "I-01",
+   "origin": "원천 problem-packages(사이트 고민별 시술 추천)",
+   "text": "기타 · 문신제거",
+   "slots": {
+    "concern_text": "기타",
+    "cc": "문신제거",
+    "cc_group": "문신제거",
+    "cc_detail": "피코레이저"
+   },
+   "answer": {
+    "families": [
+     "M8"
+    ],
+    "sub_families": {
+     "M8": [
+      "KTP",
+      "알렉산드라이트 레이저",
+      "엔디야그 레이저"
+     ]
+    },
+    "site_words": [
+     "코"
+    ],
+    "must_not": "다른 부위 · 다른 영역 단위 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-packages.json",
+     "path": "problems[P14].complaints[2]",
+     "text": "문신제거 [문신제거] → 피코레이저(M8, 문신 색소 파괴)"
+    }
+   ],
+   "id": "Q031"
+  },
+  {
+   "intent": "I-02",
+   "origin": "샘플 7단계",
+   "text": "소프웨이브",
+   "slots": {
+    "procedure": "소프웨이브"
+   },
+   "answer": {
+    "families": [
+     "M9"
+    ],
+    "must_show": [
+     "초음파나 고주파 에너지로 피부 깊은 층을 자극하여 처짐을 개선하는 비수술 시술입니다."
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "taxonomy.json",
+     "path": "modality[M9] 소프웨이브 원장 행(5단계 U5-140 근거)",
+     "text": "소프웨이브 · 초음파 1.5mm · 민감부위 적합"
+    },
+    {
+     "file": "patient-education.json",
+     "path": "categories[M9].simple_explanation",
+     "text": "초음파나 고주파 에너지로 피부 깊은 층을 자극하여 처짐을 개선하는 비수술 시술입니다."
+    }
+   ],
+   "id": "Q032"
+  },
+  {
+   "intent": "I-02",
+   "origin": "원천 patient-education",
+   "text": "보톡스",
+   "slots": {
+    "procedure": "보톡스"
+   },
+   "answer": {
+    "families": [
+     "M1"
+    ],
+    "must_show": [
+     "근육을 일시적으로 쉬게 해서 주름을 펴는 주사입니다."
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "patient-education.json",
+     "path": "categories[M1].simple_explanation",
+     "text": "근육을 일시적으로 쉬게 해서 주름을 펴는 주사입니다."
+    }
+   ],
+   "id": "Q033"
+  },
+  {
+   "intent": "I-02",
+   "origin": "원천 patient-education",
+   "text": "바이오스티뮬레이터/콜라겐부스터",
+   "slots": {
+    "procedure": "바이오스티뮬레이터/콜라겐부스터"
+   },
+   "answer": {
+    "families": [
+     "M3"
+    ],
+    "must_show": [
+     "피부 속에서 콜라겐(피부 탄력 성분)이 스스로 만들어지도록 돕는 주사입니다."
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "patient-education.json",
+     "path": "categories[M3].simple_explanation",
+     "text": "피부 속에서 콜라겐(피부 탄력 성분)이 스스로 만들어지도록 돕는 주사입니다."
+    }
+   ],
+   "id": "Q034"
+  },
+  {
+   "intent": "I-02",
+   "origin": "원천 patient-education",
+   "text": "PRP/자가혈",
+   "slots": {
+    "procedure": "PRP/자가혈"
+   },
+   "answer": {
+    "families": [
+     "M5"
+    ],
+    "must_show": [
+     "본인의 피를 뽑아서 재생 성분만 모은 뒤, 피부에 다시 주사하는 시술입니다."
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "patient-education.json",
+     "path": "categories[M5].simple_explanation",
+     "text": "본인의 피를 뽑아서 재생 성분만 모은 뒤, 피부에 다시 주사하는 시술입니다."
+    }
+   ],
+   "id": "Q035"
+  },
+  {
+   "intent": "I-02",
+   "origin": "원천 patient-education",
+   "text": "실리프팅",
+   "slots": {
+    "procedure": "실리프팅"
+   },
+   "answer": {
+    "families": [
+     "M7"
+    ],
+    "must_show": [
+     "녹는 실을 피부 아래에 넣어 처진 살을 당겨 올리는 시술입니다."
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "patient-education.json",
+     "path": "categories[M7].simple_explanation",
+     "text": "녹는 실을 피부 아래에 넣어 처진 살을 당겨 올리는 시술입니다."
+    }
+   ],
+   "id": "Q036"
+  },
+  {
+   "intent": "I-02",
+   "origin": "원천 patient-education",
+   "text": "기기 리프팅",
+   "slots": {
+    "procedure": "기기 리프팅"
+   },
+   "answer": {
+    "families": [
+     "M9"
+    ],
+    "must_show": [
+     "초음파나 고주파 에너지로 피부 깊은 층을 자극하여 처짐을 개선하는 비수술 시술입니다."
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "patient-education.json",
+     "path": "categories[M9].simple_explanation",
+     "text": "초음파나 고주파 에너지로 피부 깊은 층을 자극하여 처짐을 개선하는 비수술 시술입니다."
+    }
+   ],
+   "id": "Q037"
+  },
+  {
+   "intent": "I-02",
+   "origin": "원천 patient-education",
+   "text": "니들RF",
+   "slots": {
+    "procedure": "니들RF"
+   },
+   "answer": {
+    "families": [
+     "M11"
+    ],
+    "must_show": [
+     "아주 가는 바늘을 피부에 찔러 넣고, 바늘 끝에서 고주파 에너지를 쏘아 피부를 재생시키는 시술입니다."
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "patient-education.json",
+     "path": "categories[M11].simple_explanation",
+     "text": "아주 가는 바늘을 피부에 찔러 넣고, 바늘 끝에서 고주파 에너지를 쏘아 피부를 재생시키는 시술입니다."
+    }
+   ],
+   "id": "Q038"
+  },
+  {
+   "intent": "I-02",
+   "origin": "원천 patient-education",
+   "text": "플라즈마",
+   "slots": {
+    "procedure": "플라즈마"
+   },
+   "answer": {
+    "families": [
+     "M13"
+    ],
+    "must_show": [
+     "플라즈마(이온화된 기체) 에너지로 피부 표면을 재생시키고 탄력을 높이는 시술입니다."
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "patient-education.json",
+     "path": "categories[M13].simple_explanation",
+     "text": "플라즈마(이온화된 기체) 에너지로 피부 표면을 재생시키고 탄력을 높이는 시술입니다."
+    }
+   ],
+   "id": "Q039"
+  },
+  {
+   "intent": "I-02",
+   "origin": "원천 patient-education",
+   "text": "메디컬스킨케어",
+   "slots": {
+    "procedure": "메디컬스킨케어"
+   },
+   "answer": {
+    "families": [
+     "M15"
+    ],
+    "must_show": [
+     "의료 전문가가 시행하는 전문 피부 관리로, 필링, 약물 도포, 수분 관리 등을 포함합니다."
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "patient-education.json",
+     "path": "categories[M15].simple_explanation",
+     "text": "의료 전문가가 시행하는 전문 피부 관리로, 필링, 약물 도포, 수분 관리 등을 포함합니다."
+    }
+   ],
+   "id": "Q040"
+  },
+  {
+   "intent": "I-02",
+   "origin": "원천 patient-education",
+   "text": "줄기세포치료",
+   "slots": {
+    "procedure": "줄기세포치료"
+   },
+   "answer": {
+    "families": [
+     "M17"
+    ],
+    "must_show": [
+     "줄기세포에서 추출한 재생 성분을 이용하여 피부를 재생하는 시술입니다."
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "patient-education.json",
+     "path": "categories[M17].simple_explanation",
+     "text": "줄기세포에서 추출한 재생 성분을 이용하여 피부를 재생하는 시술입니다."
+    }
+   ],
+   "id": "Q041"
+  },
+  {
+   "intent": "I-03",
+   "origin": "샘플 8단계",
+   "text": "소프웨이브 · 사우나",
+   "slots": {
+    "procedure": "소프웨이브",
+    "topic": "aftercare"
+   },
+   "answer": {
+    "families": [
+     "M9"
+    ],
+    "must_show": [
+     "당일 사우나·격한 운동 피하기"
+    ],
+    "note": "샘플 「시술 후 2주 사우나」는 원천에 없음 — 원천은 「당일」(procedure-profiles) · 「24시간」(taxonomy 울쎄라 aftercare)"
+   },
+   "answer_state": "정답 있음(원천 2갈래 · 의료진 확인)",
+   "evidence": [
+    {
+     "file": "procedure-profiles.json",
+     "path": "profiles[M9].aftercare",
+     "text": "시술 직후 약간의 홍반·열감은 정상 (수 시간 내 소실) / 당일 사우나·격한 운동 피하기 / 보습 충분히 / 효과는 2~4주 후부터 점진적으로"
+    },
+    {
+     "file": "taxonomy.json",
+     "path": "modality[M9].items[M9-1-1].extracted.aftercare[0]",
+     "text": "시술 후 24시간 고온 환경(사우나, 찜질방) 회피"
+    }
+   ],
+   "id": "Q042"
+  },
+  {
+   "intent": "I-03",
+   "origin": "원천 procedure-profiles",
+   "text": "보톡스 · 사후관리",
+   "slots": {
+    "procedure": "보톡스",
+    "topic": "aftercare"
+   },
+   "answer": {
+    "families": [
+     "M1"
+    ],
+    "must_show": [
+     "시술 부위 압박·문지름 자제 (자세 제한의 확산 방지 효과는 근거 제한적)",
+     "시술 부위 문지르거나 마사지 금지 (24시간)",
+     "당일 음주·격한 운동 피하기",
+     "효과는 3~7일 후부터 나타남"
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "procedure-profiles.json",
+     "path": "profiles[M1].aftercare",
+     "text": "시술 부위 압박·문지름 자제 (자세 제한의 확산 방지 효과는 근거 제한적) / 시술 부위 문지르거나 마사지 금지 (24시간) / 당일 음주·격한 운동 피하기 / 효과는 3~7일 후부터 나타남"
+    }
+   ],
+   "id": "Q043"
+  },
+  {
+   "intent": "I-03",
+   "origin": "원천 procedure-profiles",
+   "text": "필러 · 사후관리",
+   "slots": {
+    "procedure": "필러",
+    "topic": "aftercare"
+   },
+   "answer": {
+    "families": [
+     "M2"
+    ],
+    "must_show": [
+     "급격한 시야흐림·시력저하, 주사부위의 불균형한 극심한 통증, 피부 창백·얼룩덜룩·둔탁한 변색 시 혈관 폐색·실명 위험이 있으므로 시간 지체 없이 즉시 응급 내원",
+     "시술 부위 강한 압박·마사지 금지 (2주)",
+     "사우나·찜질방 1~2주 피하기 (열에 의한 분해)",
+     "멍이 든 부위는 아르니카 크림 도포 가능",
+     "비대칭·결절 느껴지면 즉시 내원"
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "procedure-profiles.json",
+     "path": "profiles[M2].aftercare",
+     "text": "급격한 시야흐림·시력저하, 주사부위의 불균형한 극심한 통증, 피부 창백·얼룩덜룩·둔탁한 변색 시 혈관 폐색·실명 위험이 있으므로 시간 지체 없이 즉시 응급 내원 / 시술 부위 강한 압박·마사지 금지 (2주) / 사우나·찜질방 1~2주 피하기 (열에 의한 분해) / 멍이 든 부위는 아르니카 크림 도포 가능 / 비대칭·결절 느껴지면 즉시 내원"
+    }
+   ],
+   "id": "Q044"
+  },
+  {
+   "intent": "I-03",
+   "origin": "원천 procedure-profiles",
+   "text": "실리프팅 · 사후관리",
+   "slots": {
+    "procedure": "실리프팅",
+    "topic": "aftercare"
+   },
+   "answer": {
+    "families": [
+     "M7"
+    ],
+    "must_show": [
+     "2주간 큰 입 벌리기·과도한 표정 자제",
+     "옆으로 눕지 않기 (2주)",
+     "세안 시 부드럽게",
+     "실 촉지되면 자연스러운 것 (1~2개월 내 소실)"
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "procedure-profiles.json",
+     "path": "profiles[M7].aftercare",
+     "text": "2주간 큰 입 벌리기·과도한 표정 자제 / 옆으로 눕지 않기 (2주) / 세안 시 부드럽게 / 실 촉지되면 자연스러운 것 (1~2개월 내 소실)"
+    }
+   ],
+   "id": "Q045"
+  },
+  {
+   "intent": "I-03",
+   "origin": "원천 procedure-profiles",
+   "text": "레이저 · 사후관리",
+   "slots": {
+    "procedure": "레이저",
+    "topic": "aftercare"
+   },
+   "answer": {
+    "families": [
+     "M8"
+    ],
+    "must_show": [
+     "자외선 차단 필수 (SPF50+, 최소 4주)",
+     "어블레이티브 시술 후: 재생크림 도포, 딱지 억지로 떼지 않기",
+     "세안 시 미온수, 자극 클렌저 금지 (1주)",
+     "색소침착 예방: 자외선 차단 + 미백크림"
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "procedure-profiles.json",
+     "path": "profiles[M8].aftercare",
+     "text": "자외선 차단 필수 (SPF50+, 최소 4주) / 어블레이티브 시술 후: 재생크림 도포, 딱지 억지로 떼지 않기 / 세안 시 미온수, 자극 클렌저 금지 (1주) / 색소침착 예방: 자외선 차단 + 미백크림"
+    }
+   ],
+   "id": "Q046"
+  },
+  {
+   "intent": "I-03",
+   "origin": "원천 procedure-profiles",
+   "text": "스킨부스터 · 사후관리",
+   "slots": {
+    "procedure": "스킨부스터",
+    "topic": "aftercare"
+   },
+   "answer": {
+    "families": [
+     "M4"
+    ],
+    "must_show": [
+     "시술 부위 자잘한 구진(좁쌀 돌기)은 1~3일 내 소실",
+     "당일 메이크업 피하기",
+     "세안 시 문지르지 않기 (24시간)"
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "procedure-profiles.json",
+     "path": "profiles[M4].aftercare",
+     "text": "시술 부위 자잘한 구진(좁쌀 돌기)은 1~3일 내 소실 / 당일 메이크업 피하기 / 세안 시 문지르지 않기 (24시간)"
+    }
+   ],
+   "id": "Q047"
+  },
+  {
+   "intent": "I-03",
+   "origin": "원천 procedure-profiles",
+   "text": "니들RF · 사후관리",
+   "slots": {
+    "procedure": "니들RF",
+    "topic": "aftercare"
+   },
+   "answer": {
+    "families": [
+     "M11"
+    ],
+    "must_show": [
+     "시술 부위 24시간 세안 피하기",
+     "재생크림 도포",
+     "딱지 억지로 떼지 않기",
+     "자외선 차단 필수"
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "procedure-profiles.json",
+     "path": "profiles[M11].aftercare",
+     "text": "시술 부위 24시간 세안 피하기 / 재생크림 도포 / 딱지 억지로 떼지 않기 / 자외선 차단 필수"
+    }
+   ],
+   "id": "Q048"
+  },
+  {
+   "intent": "I-04",
+   "origin": "원천 complications",
+   "text": "보톡스 · 부작용",
+   "slots": {
+    "procedure": "보톡스"
+   },
+   "answer": {
+    "families": [
+     "M1"
+    ],
+    "must_show": [
+     "주사 부위 통증",
+     "멍 (타박상)",
+     "주사 부위 홍반·부종",
+     "두통",
+     "항체 내성 (면역 저항)",
+     "독감 유사 증상",
+     "안면 비대칭"
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "complications.json",
+     "path": "categories[M1].complications[].name",
+     "text": "주사 부위 통증(mild) · 멍 (타박상)(mild) · 주사 부위 홍반·부종(mild) · 두통(mild) · 항체 내성 (면역 저항)(moderate) · 독감 유사 증상(mild) · 안면 비대칭(mild)"
+    }
+   ],
+   "id": "Q049"
+  },
+  {
+   "intent": "I-04",
+   "origin": "원천 complications",
+   "text": "필러 · 부작용",
+   "slots": {
+    "procedure": "필러"
+   },
+   "answer": {
+    "families": [
+     "M2"
+    ],
+    "must_show": [
+     "멍 / 반상출혈 (Bruising / Ecchymosis)",
+     "부종 / 종창 (Swelling / Edema)",
+     "주사 통증 / 불편감 (Injection Pain / Discomfort)",
+     "홍반 (Erythema / Redness)",
+     "육아종 / 지연성 염증성 결절 (Granuloma / Delayed Inflammatory Nodule)",
+     "감염 (Infection, 기저 위험)",
+     "비대칭 (Asymmetry)"
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "complications.json",
+     "path": "categories[M2].complications[].name",
+     "text": "멍 / 반상출혈 (Bruising / Ecchymosis)(mild) · 부종 / 종창 (Swelling / Edema)(mild) · 주사 통증 / 불편감 (Injection Pain / Discomfort)(mild) · 홍반 (Erythema / Redness)(mild) · 육아종 / 지연성 염증성 결절 (Granuloma / Delayed Inflammatory Nodule)(moderate) · 감염 (Infection, 기저 위험)(severe) · 비대칭 (Asymmetry)(mild)"
+    }
+   ],
+   "id": "Q050"
+  },
+  {
+   "intent": "I-04",
+   "origin": "원천 complications",
+   "text": "바이오스티뮬레이터/콜라겐부스터 · 부작용",
+   "slots": {
+    "procedure": "바이오스티뮬레이터/콜라겐부스터"
+   },
+   "answer": {
+    "families": [
+     "M3"
+    ],
+    "must_show": [
+     "결절 (Nodule)",
+     "육아종 (Granuloma)",
+     "이물반응 (Foreign Body Reaction)",
+     "혈관폐색/색전 (Vascular Occlusion/Embolism)",
+     "주사 부위 반응 (부종·압통·멍·홍반)",
+     "감염 및 바이오필름 (Infection / Biofilm)"
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "complications.json",
+     "path": "categories[M3].complications[].name",
+     "text": "결절 (Nodule)(moderate) · 육아종 (Granuloma)(severe) · 이물반응 (Foreign Body Reaction)(moderate) · 혈관폐색/색전 (Vascular Occlusion/Embolism)(critical) · 주사 부위 반응 (부종·압통·멍·홍반)(mild) · 감염 및 바이오필름 (Infection / Biofilm)(severe)"
+    }
+   ],
+   "id": "Q051"
+  },
+  {
+   "intent": "I-04",
+   "origin": "원천 complications",
+   "text": "실리프팅 · 부작용",
+   "slots": {
+    "procedure": "실리프팅"
+   },
+   "answer": {
+    "families": [
+     "M7"
+    ],
+    "must_show": [
+     "실 노출 (Thread Exposure)",
+     "실 이동 (Thread Migration)",
+     "감염",
+     "비대칭",
+     "구형구축 (Capsular Contracture-like Reaction / 섬유성 결절)",
+     "피부 딤플링/주름짐 (Skin Dimpling/Puckering)",
+     "통증·당김감 (Pain / Tightness)",
+     "부종·멍(혈종) (Edema / Bruising / Hematoma)"
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "complications.json",
+     "path": "categories[M7].complications[].name",
+     "text": "실 노출 (Thread Exposure)(moderate) · 실 이동 (Thread Migration)(moderate) · 감염(severe) · 비대칭(mild) · 구형구축 (Capsular Contracture-like Reaction / 섬유성 결절)(moderate) · 피부 딤플링/주름짐 (Skin Dimpling/Puckering)(mild) · 통증·당김감 (Pain / Tightness)(mild) · 부종·멍(혈종) (Edema / Bruising / Hematoma)(mild)"
+    }
+   ],
+   "id": "Q052"
+  },
+  {
+   "intent": "I-04",
+   "origin": "원천 complications",
+   "text": "레이저 · 부작용",
+   "slots": {
+    "procedure": "레이저"
+   },
+   "answer": {
+    "families": [
+     "M8"
+    ],
+    "must_show": [
+     "PIH (시술 후 과색소침착)",
+     "홍반 (Erythema)",
+     "부종 (Edema)"
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "complications.json",
+     "path": "categories[M8].complications[].name",
+     "text": "PIH (시술 후 과색소침착)(moderate) · 홍반 (Erythema)(mild) · 부종 (Edema)(mild)"
+    }
+   ],
+   "id": "Q053"
+  },
+  {
+   "intent": "I-04",
+   "origin": "원천 complications",
+   "text": "기기 리프팅 · 부작용",
+   "slots": {
+    "procedure": "기기 리프팅"
+   },
+   "answer": {
+    "families": [
+     "M9"
+    ],
+    "must_show": [
+     "화상 (수포 포함)",
+     "홍반 (시술 직후 빨개짐)",
+     "부종 (붓기)",
+     "통증·열감 (시술 중/후)",
+     "일시적 감각이상 (따끔거림·저림·감각둔화)",
+     "색소침착 (염증후 과색소침착, PIH)"
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "complications.json",
+     "path": "categories[M9].complications[].name",
+     "text": "화상 (수포 포함)(severe) · 홍반 (시술 직후 빨개짐)(mild) · 부종 (붓기)(mild) · 통증·열감 (시술 중/후)(mild) · 일시적 감각이상 (따끔거림·저림·감각둔화)(mild) · 색소침착 (염증후 과색소침착, PIH)(moderate)"
+    }
+   ],
+   "id": "Q054"
+  },
+  {
+   "intent": "I-04",
+   "origin": "원천 complications",
+   "text": "니들RF · 부작용",
+   "slots": {
+    "procedure": "니들RF"
+   },
+   "answer": {
+    "families": [
+     "M11"
+    ],
+    "must_show": [
+     "반흔 (Scarring)",
+     "PIH (시술 후 과색소침착)",
+     "감염",
+     "화상 (열손상, Thermal Burn)",
+     "일시적 홍반·부종 (Transient Erythema/Edema)"
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "complications.json",
+     "path": "categories[M11].complications[].name",
+     "text": "반흔 (Scarring)(severe) · PIH (시술 후 과색소침착)(moderate) · 감염(severe) · 화상 (열손상, Thermal Burn)(severe) · 일시적 홍반·부종 (Transient Erythema/Edema)(mild)"
+    }
+   ],
+   "id": "Q055"
+  },
+  {
+   "intent": "I-04",
+   "origin": "원천 complications",
+   "text": "크라이오리포라이시스 · 부작용",
+   "slots": {
+    "procedure": "크라이오리포라이시스"
+   },
+   "answer": {
+    "families": [
+     "M14"
+    ],
+    "must_show": [
+     "PAH (역설적 지방 증식, Paradoxical Adipose Hyperplasia)",
+     "피부 괴사 (Skin Necrosis / 동상·지방괴사, Frostbite·Fat Necrosis)",
+     "일시적 감각저하·저림 (Transient Hypoesthesia / Paresthesia)",
+     "일시적 홍반·부종 (Erythema / Edema)",
+     "멍·타박상 (Bruising)",
+     "통증·불편감 및 지연성 통증 (Procedural Pain & Late-Onset Pain, LOP)",
+     "염증후 색소침착 (Post-inflammatory Hyperpigmentation, PIH)"
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "complications.json",
+     "path": "categories[M14].complications[].name",
+     "text": "PAH (역설적 지방 증식, Paradoxical Adipose Hyperplasia)(severe) · 피부 괴사 (Skin Necrosis / 동상·지방괴사, Frostbite·Fat Necrosis)(critical) · 일시적 감각저하·저림 (Transient Hypoesthesia / Paresthesia)(mild) · 일시적 홍반·부종 (Erythema / Edema)(mild) · 멍·타박상 (Bruising)(mild) · 통증·불편감 및 지연성 통증 (Procedural Pain & Late-Onset Pain, LOP)(moderate) · 염증후 색소침착 (Post-inflammatory Hyperpigmentation, PIH)(mild)"
+    }
+   ],
+   "id": "Q056"
+  },
+  {
+   "intent": "I-04",
+   "origin": "원천 complications",
+   "text": "메디컬스킨케어 · 부작용",
+   "slots": {
+    "procedure": "메디컬스킨케어"
+   },
+   "answer": {
+    "families": [
+     "M15"
+    ],
+    "must_show": [
+     "일시적 홍반 (Transient erythema)",
+     "자극감·작열감 (Stinging/burning)",
+     "건조·낙설(각질 박리) (Dryness/desquamation)",
+     "소양감 (Pruritus)"
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "complications.json",
+     "path": "categories[M15].complications[].name",
+     "text": "일시적 홍반 (Transient erythema)(mild) · 자극감·작열감 (Stinging/burning)(mild) · 건조·낙설(각질 박리) (Dryness/desquamation)(mild) · 소양감 (Pruritus)(mild)"
+    }
+   ],
+   "id": "Q057"
+  },
+  {
+   "intent": "I-04",
+   "origin": "원천 complications",
+   "text": "수액치료 · 부작용",
+   "slots": {
+    "procedure": "수액치료"
+   },
+   "answer": {
+    "families": [
+     "M16"
+    ],
+    "must_show": [
+     "부종·종창",
+     "통증·압통",
+     "멍·혈종",
+     "감각이상·저림 (표재 감각신경, 가역적)",
+     "경결·딱딱함(일시적 섬유화)",
+     "홍반·발적·가려움",
+     "주사부위 반응 (통증·발적·멍·경결)",
+     "혈관미주신경성 반응·실신 (vasovagal)",
+     "정맥염·혈관외유출(extravasation)",
+     "아나필락시스·즉시형 과민반응 (일반 baseline)",
+     "공기색전·카테터 관련 감염",
+     "수분·전해질 과부하 (심부전·신부전)"
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "complications.json",
+     "path": "categories[M16].complications[].name",
+     "text": "부종·종창(mild) · 통증·압통(mild) · 멍·혈종(mild) · 감각이상·저림 (표재 감각신경, 가역적)(mild) · 경결·딱딱함(일시적 섬유화)(mild) · 홍반·발적·가려움(mild) · 주사부위 반응 (통증·발적·멍·경결)(mild) · 혈관미주신경성 반응·실신 (vasovagal)(moderate) · 정맥염·혈관외유출(extravasation)(moderate) · 아나필락시스·즉시형 과민반응 (일반 baseline)(critical) · 공기색전·카테터 관련 감염(severe) · 수분·전해질 과부하 (심부전·신부전)(severe)"
+    }
+   ],
+   "id": "Q058"
+  },
+  {
+   "intent": "I-05",
+   "origin": "샘플 6단계",
+   "text": "기기 리프팅 · 회복",
+   "slots": {
+    "procedure": "기기 리프팅"
+   },
+   "answer": {
+    "families": [
+     "M9"
+    ],
+    "must_show": [
+     "거의 없음 - 약간의 붉은기와 붓기가 수시간~1일",
+     "약 6-12개월 지속되며, 3개월에 걸쳐 점진적으로 효과가 나타납니다."
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "patient-education.json",
+     "path": "categories[M9].downtime · duration_simple",
+     "text": "거의 없음 - 약간의 붉은기와 붓기가 수시간~1일 / 약 6-12개월 지속되며, 3개월에 걸쳐 점진적으로 효과가 나타납니다."
+    }
+   ],
+   "id": "Q059"
+  },
+  {
+   "intent": "I-05",
+   "origin": "원천 patient-education",
+   "text": "보톡스 · 회복",
+   "slots": {
+    "procedure": "보톡스"
+   },
+   "answer": {
+    "families": [
+     "M1"
+    ],
+    "must_show": [
+     "바로 일상 복귀 가능",
+     "약 3-6개월 지속됩니다."
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "patient-education.json",
+     "path": "categories[M1].downtime · duration_simple",
+     "text": "바로 일상 복귀 가능 / 약 3-6개월 지속됩니다."
+    }
+   ],
+   "id": "Q060"
+  },
+  {
+   "intent": "I-05",
+   "origin": "원천 patient-education",
+   "text": "필러 · 회복",
+   "slots": {
+    "procedure": "필러"
+   },
+   "answer": {
+    "families": [
+     "M2"
+    ],
+    "must_show": [
+     "가벼운 붓기가 2-3일, 멍이 들 수 있으나 일상생활 가능",
+     "약 6-18개월 지속됩니다 (제품과 부위에 따라 다름)."
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "patient-education.json",
+     "path": "categories[M2].downtime · duration_simple",
+     "text": "가벼운 붓기가 2-3일, 멍이 들 수 있으나 일상생활 가능 / 약 6-18개월 지속됩니다 (제품과 부위에 따라 다름)."
+    }
+   ],
+   "id": "Q061"
+  },
+  {
+   "intent": "I-05",
+   "origin": "원천 patient-education",
+   "text": "실리프팅 · 회복",
+   "slots": {
+    "procedure": "실리프팅"
+   },
+   "answer": {
+    "families": [
+     "M7"
+    ],
+    "must_show": [
+     "붓기 3-5일, 일상생활 2-3일 후 복귀 가능",
+     "실 종류에 따라 6개월-3년 지속됩니다."
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "patient-education.json",
+     "path": "categories[M7].downtime · duration_simple",
+     "text": "붓기 3-5일, 일상생활 2-3일 후 복귀 가능 / 실 종류에 따라 6개월-3년 지속됩니다."
+    }
+   ],
+   "id": "Q062"
+  },
+  {
+   "intent": "I-05",
+   "origin": "원천 patient-education",
+   "text": "레이저 · 회복",
+   "slots": {
+    "procedure": "레이저"
+   },
+   "answer": {
+    "families": [
+     "M8"
+    ],
+    "must_show": [
+     "토닝: 거의 없음 / 프락셔널: 붉은기 3-7일 / 어블레이티브: 1-2주 회복",
+     "시술 종류와 목적에 따라 다릅니다. 토닝은 주 1회씩 여러 차례, 색소 제거는 수회 반복이 필요합니다."
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "patient-education.json",
+     "path": "categories[M8].downtime · duration_simple",
+     "text": "토닝: 거의 없음 / 프락셔널: 붉은기 3-7일 / 어블레이티브: 1-2주 회복 / 시술 종류와 목적에 따라 다릅니다. 토닝은 주 1회씩 여러 차례, 색소 제거는 수회 반복이 필요합니다."
+    }
+   ],
+   "id": "Q063"
+  },
+  {
+   "intent": "I-06",
+   "origin": "샘플 10단계(조합 A ↔ B)",
+   "text": "Ulthera ↔ Sofwave",
+   "slots": {
+    "procedures": [
+     "Ulthera",
+     "Sofwave"
+    ]
+   },
+   "answer": {
+    "families_each": [
+     [
+      "M9"
+     ],
+     [
+      "M9"
+     ]
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "procedure-comparison.json",
+     "path": "comparisons[lifting].procedures[0]",
+     "text": "울쎄라 (HIFU) · M9"
+    },
+    {
+     "file": "taxonomy.json",
+     "path": "원장 소프웨이브 행",
+     "text": "소프웨이브 · 초음파 1.5mm"
+    }
+   ],
+   "id": "Q064"
+  },
+  {
+   "intent": "I-06",
+   "origin": "원천 procedure-comparison",
+   "text": "울쎄라 (HIFU) ↔ 써마지FLX (RF)",
+   "slots": {
+    "procedures": [
+     "울쎄라 (HIFU)",
+     "써마지FLX (RF)"
+    ]
+   },
+   "answer": {
+    "families_each": [
+     [
+      "M9"
+     ],
+     [
+      "M9"
+     ]
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "procedure-comparison.json",
+     "path": "comparisons[lifting].procedures[0:2]",
+     "text": "울쎄라 (HIFU)(M9) ↔ 써마지FLX (RF)(M9)"
+    }
+   ],
+   "id": "Q065"
+  },
+  {
+   "intent": "I-06",
+   "origin": "원천 procedure-comparison",
+   "text": "보톡스 (보툴리눔톡신) ↔ 히알루론산 필러",
+   "slots": {
+    "procedures": [
+     "보톡스 (보툴리눔톡신)",
+     "히알루론산 필러"
+    ]
+   },
+   "answer": {
+    "families_each": [
+     [
+      "M1"
+     ],
+     [
+      "M2"
+     ]
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "procedure-comparison.json",
+     "path": "comparisons[wrinkle].procedures[0:2]",
+     "text": "보톡스 (보툴리눔톡신)(M1) ↔ 히알루론산 필러(M2)"
+    }
+   ],
+   "id": "Q066"
+  },
+  {
+   "intent": "I-06",
+   "origin": "원천 procedure-comparison",
+   "text": "히알루론산 필러 ↔ 스컬트라 (PLLA)",
+   "slots": {
+    "procedures": [
+     "히알루론산 필러",
+     "스컬트라 (PLLA)"
+    ]
+   },
+   "answer": {
+    "families_each": [
+     [
+      "M2"
+     ],
+     [
+      "M3"
+     ]
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "procedure-comparison.json",
+     "path": "comparisons[volume].procedures[0:2]",
+     "text": "히알루론산 필러(M2) ↔ 스컬트라 (PLLA)(M3)"
+    }
+   ],
+   "id": "Q067"
+  },
+  {
+   "intent": "I-06",
+   "origin": "원천 procedure-comparison",
+   "text": "마이크로니들RF (시크릿/인모드) ↔ CO2 프랙셔널 레이저",
+   "slots": {
+    "procedures": [
+     "마이크로니들RF (시크릿/인모드)",
+     "CO2 프랙셔널 레이저"
+    ]
+   },
+   "answer": {
+    "families_each": [
+     [
+      "M11"
+     ],
+     [
+      "M8"
+     ]
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "procedure-comparison.json",
+     "path": "comparisons[skin_texture].procedures[0:2]",
+     "text": "마이크로니들RF (시크릿/인모드)(M11) ↔ CO2 프랙셔널 레이저(M8)"
+    }
+   ],
+   "id": "Q068"
+  },
+  {
+   "intent": "I-06",
+   "origin": "원천 procedure-comparison",
+   "text": "피코토닝 ↔ Q-스위치 Nd:YAG",
+   "slots": {
+    "procedures": [
+     "피코토닝",
+     "Q-스위치 Nd:YAG"
+    ]
+   },
+   "answer": {
+    "families_each": [
+     [
+      "M8"
+     ],
+     [
+      "M8"
+     ]
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "procedure-comparison.json",
+     "path": "comparisons[pigment].procedures[0:2]",
+     "text": "피코토닝(M8) ↔ Q-스위치 Nd:YAG(M8)"
+    }
+   ],
+   "id": "Q069"
+  },
+  {
+   "intent": "I-06",
+   "origin": "원천 procedure-comparison",
+   "text": "알렉산드라이트 (755nm) ↔ 다이오드 (808nm/810nm)",
+   "slots": {
+    "procedures": [
+     "알렉산드라이트 (755nm)",
+     "다이오드 (808nm/810nm)"
+    ]
+   },
+   "answer": {
+    "families_each": [
+     [
+      "M8"
+     ],
+     [
+      "M8"
+     ]
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "procedure-comparison.json",
+     "path": "comparisons[hair_removal].procedures[0:2]",
+     "text": "알렉산드라이트 (755nm)(M8) ↔ 다이오드 (808nm/810nm)(M8)"
+    }
+   ],
+   "id": "Q070"
+  },
+  {
+   "intent": "I-07",
+   "origin": "샘플 10단계 조합 A",
+   "text": "소프웨이브 + 팔자 필러 같은 날",
+   "slots": {
+    "procedures": [
+     "소프웨이브",
+     "팔자 필러"
+    ],
+    "same_day": true
+   },
+   "answer": {
+    "same_day": null,
+    "text": "필러↔기기 리프팅 warning · 4주 이상 간격 · HIFU/RF의 강한 열이 HA 필러를 분해·변형시킬 위험. 필러 안정화 후 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "contraindications.json",
+     "path": "rules[8]",
+     "text": "필러↔기기 리프팅 warning · 4주 이상 간격 · HIFU/RF의 강한 열이 HA 필러를 분해·변형시킬 위험. 필러 안정화 후 시술"
+    }
+   ],
+   "id": "Q071"
+  },
+  {
+   "intent": "I-07",
+   "origin": "샘플 10단계 조합 A",
+   "text": "소프웨이브 + 이마 보톡스 같은 날",
+   "slots": {
+    "procedures": [
+     "소프웨이브",
+     "이마 보톡스"
+    ],
+    "same_day": true
+   },
+   "answer": {
+    "same_day": null,
+    "text": "보톡스↔기기 리프팅 caution · 2주 간격 권장 · HIFU/RF의 열에너지가 보톡스 단백질에 영향. 리프팅 안정화 후 보톡스 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "contraindications.json",
+     "path": "rules[3]",
+     "text": "보톡스↔기기 리프팅 caution · 2주 간격 권장 · HIFU/RF의 열에너지가 보톡스 단백질에 영향. 리프팅 안정화 후 보톡스 시술"
+    }
+   ],
+   "id": "Q072"
+  },
+  {
+   "intent": "I-07",
+   "origin": "샘플 10단계 조합 A",
+   "text": "팔자 필러 + 이마 보톡스 같은 날",
+   "slots": {
+    "procedures": [
+     "팔자 필러",
+     "이마 보톡스"
+    ],
+    "same_day": true
+   },
+   "answer": {
+    "same_day": true,
+    "text": "보톡스↔필러 safe · 같은 날 가능 · 동일 부위는 보톡스 먼저 → 필러 순서 권장. 주입 부위가 다르면 순서 무관"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "contraindications.json",
+     "path": "rules[0]",
+     "text": "보톡스↔필러 safe · 같은 날 가능 · 동일 부위는 보톡스 먼저 → 필러 순서 권장. 주입 부위가 다르면 순서 무관"
+    }
+   ],
+   "id": "Q073"
+  },
+  {
+   "intent": "I-07",
+   "origin": "원천 treatment-sequence.incompatible_same_day",
+   "text": "CO2 프락셔널 + 필러 같은 날",
+   "slots": {
+    "procedures": [
+     "CO2 프락셔널",
+     "필러"
+    ],
+    "same_day": true,
+    "split_note": null
+   },
+   "answer": {
+    "same_day": false,
+    "text": "열린 상처에 필러 주입 감염 위험"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "treatment-sequence.json",
+     "path": "incompatible_same_day[0]",
+     "text": "['CO2 프락셔널', '필러'] — 열린 상처에 필러 주입 감염 위험"
+    }
+   ],
+   "id": "Q074"
+  },
+  {
+   "intent": "I-07",
+   "origin": "원천 treatment-sequence.incompatible_same_day",
+   "text": "심부 필링(페놀) + 레이저 같은 날",
+   "slots": {
+    "procedures": [
+     "심부 필링(페놀)",
+     "레이저"
+    ],
+    "same_day": true,
+    "split_note": null
+   },
+   "answer": {
+    "same_day": false,
+    "text": "이중 피부 손상"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "treatment-sequence.json",
+     "path": "incompatible_same_day[1]",
+     "text": "['심부 필링(페놀)', '레이저'] — 이중 피부 손상"
+    }
+   ],
+   "id": "Q075"
+  },
+  {
+   "intent": "I-07",
+   "origin": "원천 treatment-sequence.incompatible_same_day",
+   "text": "PDO실 + 비가교HA 같은 날",
+   "slots": {
+    "procedures": [
+     "PDO실",
+     "비가교HA"
+    ],
+    "same_day": true,
+    "split_note": null
+   },
+   "answer": {
+    "same_day": false,
+    "text": "HA가 PDO를 24-72시간 내 분해 가능 (in vitro 연구). 실제 임상에서는 병용 시술되는 경우가 많고 in vivo 재현성은 아직 검증 중 — 같은 부위 즉시 병용은 보수적으로 피함"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "treatment-sequence.json",
+     "path": "incompatible_same_day[2]",
+     "text": "['PDO실', '비가교HA'] — HA가 PDO를 24-72시간 내 분해 가능 (in vitro 연구). 실제 임상에서는 병용 시술되는 경우가 많고 in vivo 재현성은 아직 검증 중 — 같은 부위 즉시 병용은 보수적으로 피함"
+    }
+   ],
+   "id": "Q076"
+  },
+  {
+   "intent": "I-09",
+   "origin": "원천 treatment-sequence.incompatible_same_day(사람 조건)",
+   "text": "이소트레티노인 복용 중 · 프락셔널/필링",
+   "slots": {
+    "condition_text": "이소트레티노인 복용 중",
+    "procedure": "프락셔널/필링",
+    "source": "treatment-sequence.incompatible_same_day",
+    "source_index": 3
+   },
+   "answer": {
+    "condition_present": true,
+    "text": "활성 복용 중에는 의사 판단이 필요. 비박리성 프락셔널·얕은 필링은 중단 후 0~2개월 내에도 개별 위험평가 하에 고려 가능하며, 6개월 대기는 전안면 박리성 재표면화·기계적 박피에 한정"
+   },
+   "answer_state": "정답 있음(등급은 원문 「의사 판단」 — 등급 채점 안 함)",
+   "evidence": [
+    {
+     "file": "treatment-sequence.json",
+     "path": "incompatible_same_day[3]",
+     "text": "['이소트레티노인 복용 중', '프락셔널/필링'] — 활성 복용 중에는 의사 판단이 필요. 비박리성 프락셔널·얕은 필링은 중단 후 0~2개월 내에도 개별 위험평가 하에 고려 가능하며, 6개월 대기는 전안면 박리성 재표면화·기계적 박피에 한정"
+    }
+   ],
+   "id": "Q077"
+  },
+  {
+   "intent": "I-07",
+   "origin": "원천 treatment-sequence.incompatible_same_day",
+   "text": "HA 필러 + RF/HIFU 같은 날",
+   "slots": {
+    "procedures": [
+     "HA 필러",
+     "RF/HIFU"
+    ],
+    "same_day": true,
+    "split_note": "원문 한 칸 「A 주입 후 B」 → 규칙으로 나눔"
+   },
+   "answer": {
+    "same_day": false,
+    "text": "주입 후 HA가 고온(>55°C) 노출 시 분해/변형 위험 — 최소 14일 간격 권장. 역순(RF/HIFU 먼저 → 필러 나중)은 같은 날 가능. ASDS 2024 Filler Complication Guidelines; JCD 2023"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "treatment-sequence.json",
+     "path": "incompatible_same_day[4]",
+     "text": "['HA 필러 주입 후 RF/HIFU'] — 주입 후 HA가 고온(>55°C) 노출 시 분해/변형 위험 — 최소 14일 간격 권장. 역순(RF/HIFU 먼저 → 필러 나중)은 같은 날 가능. ASDS 2024 Filler Complication Guidelines; JCD 2023"
+    }
+   ],
+   "id": "Q078"
+  },
+  {
+   "intent": "I-07",
+   "origin": "원천 treatment-sequence.incompatible_same_day",
+   "text": "HA 필러 + 레이저 같은 날",
+   "slots": {
+    "procedures": [
+     "HA 필러",
+     "레이저"
+    ],
+    "same_day": true,
+    "split_note": null
+   },
+   "answer": {
+    "same_day": false,
+    "text": "부종/열 상호작용 — 최소 5일 간격 필요"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "treatment-sequence.json",
+     "path": "incompatible_same_day[5]",
+     "text": "['HA 필러', '레이저'] — 부종/열 상호작용 — 최소 5일 간격 필요"
+    }
+   ],
+   "id": "Q079"
+  },
+  {
+   "intent": "I-07",
+   "origin": "원천 treatment-sequence.incompatible_same_day",
+   "text": "심부 필링(TCA 50%+/페놀) + 모든 시술 같은 날",
+   "slots": {
+    "procedures": [
+     "심부 필링(TCA 50%+/페놀)",
+     "모든 시술"
+    ],
+    "same_day": true,
+    "split_note": null
+   },
+   "answer": {
+    "same_day": false,
+    "text": "피부 장벽 완전 파괴 상태 — 충분한 회복 후에만 다른 시술 가능"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "treatment-sequence.json",
+     "path": "incompatible_same_day[6]",
+     "text": "['심부 필링(TCA 50%+/페놀)', '모든 시술'] — 피부 장벽 완전 파괴 상태 — 충분한 회복 후에만 다른 시술 가능"
+    }
+   ],
+   "id": "Q080"
+  },
+  {
+   "intent": "I-09",
+   "origin": "원천 treatment-sequence.incompatible_same_day(사람 조건)",
+   "text": "이소트레티노인 복용 중 · 프락셔널 레이저",
+   "slots": {
+    "condition_text": "이소트레티노인 복용 중",
+    "procedure": "프락셔널 레이저",
+    "source": "treatment-sequence.incompatible_same_day",
+    "source_index": 7
+   },
+   "answer": {
+    "condition_present": true,
+    "text": "비박리성 얕은 프락셔널은 중단 후 0~2개월 내에도 의사 판단 하에 고려 가능. 전안면 박리성 재표면화는 중단 후 6개월 대기"
+   },
+   "answer_state": "정답 있음(등급은 원문 「의사 판단」 — 등급 채점 안 함)",
+   "evidence": [
+    {
+     "file": "treatment-sequence.json",
+     "path": "incompatible_same_day[7]",
+     "text": "['이소트레티노인 복용 중', '프락셔널 레이저'] — 비박리성 얕은 프락셔널은 중단 후 0~2개월 내에도 의사 판단 하에 고려 가능. 전안면 박리성 재표면화는 중단 후 6개월 대기"
+    }
+   ],
+   "id": "Q081"
+  },
+  {
+   "intent": "I-09",
+   "origin": "원천 treatment-sequence.incompatible_same_day(사람 조건)",
+   "text": "이소트레티노인 복용 중 · 케미컬 필링",
+   "slots": {
+    "condition_text": "이소트레티노인 복용 중",
+    "procedure": "케미컬 필링",
+    "source": "treatment-sequence.incompatible_same_day",
+    "source_index": 8
+   },
+   "answer": {
+    "condition_present": true,
+    "text": "얕은 필링은 중단 후 0~2개월 내에도 의사 판단 하에 고려 가능. 심부 필링·기계적 박피는 중단 후 6개월 대기"
+   },
+   "answer_state": "정답 있음(등급은 원문 「의사 판단」 — 등급 채점 안 함)",
+   "evidence": [
+    {
+     "file": "treatment-sequence.json",
+     "path": "incompatible_same_day[8]",
+     "text": "['이소트레티노인 복용 중', '케미컬 필링'] — 얕은 필링은 중단 후 0~2개월 내에도 의사 판단 하에 고려 가능. 심부 필링·기계적 박피는 중단 후 6개월 대기"
+    }
+   ],
+   "id": "Q082"
+  },
+  {
+   "intent": "I-07",
+   "origin": "원천 treatment-sequence.minimum_intervals",
+   "text": "HA 필러 → RF/HIFU 간격",
+   "slots": {
+    "procedures": [
+     "HA 필러",
+     "RF/HIFU"
+    ],
+    "self_pair": false
+   },
+   "answer": {
+    "min_days": 14,
+    "first": "a",
+    "text": "주입 후 HA가 고온(>55°C) 노출 시 분해/변형 위험. 역순은 같은 날 가능"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "treatment-sequence.json",
+     "path": "minimum_intervals[0]",
+     "text": "HA 필러 → RF/HIFU 14일 · 주입 후 HA가 고온(>55°C) 노출 시 분해/변형 위험. 역순은 같은 날 가능"
+    }
+   ],
+   "id": "Q083"
+  },
+  {
+   "intent": "I-07",
+   "origin": "원천 treatment-sequence.minimum_intervals",
+   "text": "HA 필러 → 레이저 간격",
+   "slots": {
+    "procedures": [
+     "HA 필러",
+     "레이저"
+    ],
+    "self_pair": false
+   },
+   "answer": {
+    "min_days": 5,
+    "first": "a",
+    "text": "부종/열 상호작용"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "treatment-sequence.json",
+     "path": "minimum_intervals[1]",
+     "text": "HA 필러 → 레이저 5일 · 부종/열 상호작용"
+    }
+   ],
+   "id": "Q084"
+  },
+  {
+   "intent": "I-09",
+   "origin": "원천 treatment-sequence.minimum_intervals(사람 조건)",
+   "text": "이소트레티노인 · 프락셔널/얕은 필링",
+   "slots": {
+    "condition_text": "이소트레티노인",
+    "procedure": "프락셔널/얕은 필링",
+    "source": "treatment-sequence.minimum_intervals",
+    "source_index": 2
+   },
+   "answer": {
+    "condition_present": true,
+    "text": "비박리성 프락셔널·얕은 필링은 6개월 일률 대기 근거가 부족하며 중단 후 0~2개월 범위에서 의사 판단. 6개월 대기는 전안면 박리성 재표면화·기계적 박피에 한정"
+   },
+   "answer_state": "정답 있음(등급 채점 안 함)",
+   "evidence": [
+    {
+     "file": "treatment-sequence.json",
+     "path": "minimum_intervals[2]",
+     "text": "이소트레티노인 → 프락셔널/얕은 필링 0개월 · 비박리성 프락셔널·얕은 필링은 6개월 일률 대기 근거가 부족하며 중단 후 0~2개월 범위에서 의사 판단. 6개월 대기는 전안면 박리성 재표면화·기계적 박피에 한정"
+    }
+   ],
+   "id": "Q085"
+  },
+  {
+   "intent": "I-09",
+   "origin": "원천 treatment-sequence.minimum_intervals(사람 조건)",
+   "text": "이소트레티노인 · 박리성(ablative) 레이저/심부 필링",
+   "slots": {
+    "condition_text": "이소트레티노인",
+    "procedure": "박리성(ablative) 레이저/심부 필링",
+    "source": "treatment-sequence.minimum_intervals",
+    "source_index": 3
+   },
+   "answer": {
+    "condition_present": true,
+    "text": "전안면 박리성 재표면화·기계적 박피에 한해 중단 후 6개월 대기. 국소 부위·비박리성 시술에는 적용하지 않음"
+   },
+   "answer_state": "정답 있음(등급 채점 안 함)",
+   "evidence": [
+    {
+     "file": "treatment-sequence.json",
+     "path": "minimum_intervals[3]",
+     "text": "이소트레티노인 → 박리성(ablative) 레이저/심부 필링 6개월 · 전안면 박리성 재표면화·기계적 박피에 한해 중단 후 6개월 대기. 국소 부위·비박리성 시술에는 적용하지 않음"
+    }
+   ],
+   "id": "Q086"
+  },
+  {
+   "intent": "I-07",
+   "origin": "원천 treatment-sequence.minimum_intervals",
+   "text": "심부 필링 → 레이저 간격",
+   "slots": {
+    "procedures": [
+     "심부 필링",
+     "레이저"
+    ],
+    "self_pair": false
+   },
+   "answer": {
+    "min_days": 14,
+    "first": "a",
+    "text": "피부 장벽 회복 필요"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "treatment-sequence.json",
+     "path": "minimum_intervals[4]",
+     "text": "심부 필링 → 레이저 14일 · 피부 장벽 회복 필요"
+    }
+   ],
+   "id": "Q087"
+  },
+  {
+   "intent": "I-07",
+   "origin": "원천 treatment-sequence.minimum_intervals",
+   "text": "프락셔널 CO2 → 필러 간격",
+   "slots": {
+    "procedures": [
+     "프락셔널 CO2",
+     "필러"
+    ],
+    "self_pair": false
+   },
+   "answer": {
+    "min_days": 14,
+    "first": "a",
+    "text": "열린 상처 회복 후 주입 안전성 확보"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "treatment-sequence.json",
+     "path": "minimum_intervals[5]",
+     "text": "프락셔널 CO2 → 필러 14일 · 열린 상처 회복 후 주입 안전성 확보"
+    }
+   ],
+   "id": "Q088"
+  },
+  {
+   "intent": "I-07",
+   "origin": "원천 treatment-sequence.minimum_intervals",
+   "text": "보톡스 → 필러 (별도 세션) 간격",
+   "slots": {
+    "procedures": [
+     "보톡스",
+     "필러"
+    ],
+    "self_pair": false
+   },
+   "answer": {
+    "min_days": 14,
+    "first": "a",
+    "text": "보톡스 효과 안정화 후 필러 위치 정밀 결정"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "treatment-sequence.json",
+     "path": "minimum_intervals[6]",
+     "text": "보톡스 → 필러 (별도 세션) 14일 · 보톡스 효과 안정화 후 필러 위치 정밀 결정"
+    }
+   ],
+   "id": "Q089"
+  },
+  {
+   "intent": "I-07",
+   "origin": "원천 treatment-sequence.minimum_intervals",
+   "text": "RF/HIFU → 필러 간격",
+   "slots": {
+    "procedures": [
+     "RF/HIFU",
+     "필러"
+    ],
+    "self_pair": false
+   },
+   "answer": {
+    "same_day": true,
+    "first": "a",
+    "text": "같은 날 가능 — 에너지 기기 먼저, 필러 나중에"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "treatment-sequence.json",
+     "path": "minimum_intervals[7]",
+     "text": "RF/HIFU → 필러 0일 · 같은 날 가능 — 에너지 기기 먼저, 필러 나중에"
+    }
+   ],
+   "id": "Q090"
+  },
+  {
+   "intent": "I-07",
+   "origin": "원천 treatment-sequence.minimum_intervals",
+   "text": "필러 → 필러 (동일 부위 재시술) 간격",
+   "slots": {
+    "procedures": [
+     "필러",
+     "필러"
+    ],
+    "self_pair": true
+   },
+   "answer": {
+    "min_days": 14,
+    "first": "a",
+    "text": "부종 해소 후 정확한 평가 가능"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "treatment-sequence.json",
+     "path": "minimum_intervals[8]",
+     "text": "필러 → 필러 (동일 부위 재시술) 14일 · 부종 해소 후 정확한 평가 가능"
+    }
+   ],
+   "id": "Q091"
+  },
+  {
+   "intent": "I-08",
+   "origin": "샘플 공통 칸(六週前施打過肉毒)",
+   "text": "6주 전 보톡스 → 소프웨이브",
+   "slots": {
+    "prior": "보톡스",
+    "procedure": "소프웨이브",
+    "elapsed_days": 42
+   },
+   "answer": {
+    "ok": true,
+    "text": "보톡스↔기기 리프팅 caution · 2주 간격 권장 · HIFU/RF의 열에너지가 보톡스 단백질에 영향. 리프팅 안정화 후 보톡스 시술"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "contraindications.json",
+     "path": "rules[3]",
+     "text": "M1↔M9 2주 간격 권장"
+    }
+   ],
+   "id": "Q092"
+  },
+  {
+   "intent": "I-09",
+   "origin": "원천 pre-procedure-checklist",
+   "text": "보톡스 · 신경근접합부 질환(중증근무력증 등) 확인",
+   "slots": {
+    "procedure": "보톡스",
+    "condition_text": "신경근접합부 질환(중증근무력증 등) 확인"
+   },
+   "answer": {
+    "families": [
+     "M1"
+    ],
+    "grade3": "금기",
+    "condition_text": "신경근접합부 질환(중증근무력증 등) 확인"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "pre-procedure-checklist.json",
+     "path": "category_specific[M1].checks[0]",
+     "text": "신경근접합부 질환(중증근무력증 등) 확인 (absolute_contraindication)"
+    }
+   ],
+   "id": "Q093"
+  },
+  {
+   "intent": "I-09",
+   "origin": "원천 pre-procedure-checklist",
+   "text": "바이오스티뮬레이터/콜라겐부스터 · 켈로이드 체질 확인",
+   "slots": {
+    "procedure": "바이오스티뮬레이터/콜라겐부스터",
+    "condition_text": "켈로이드 체질 확인"
+   },
+   "answer": {
+    "families": [
+     "M3"
+    ],
+    "grade3": "금기",
+    "condition_text": "켈로이드 체질 확인"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "pre-procedure-checklist.json",
+     "path": "category_specific[M3].checks[0]",
+     "text": "켈로이드 체질 확인 (absolute_contraindication)"
+    }
+   ],
+   "id": "Q094"
+  },
+  {
+   "intent": "I-09",
+   "origin": "원천 pre-procedure-checklist",
+   "text": "PRP/자가혈 · 혈소판감소증/혈액질환 여부",
+   "slots": {
+    "procedure": "PRP/자가혈",
+    "condition_text": "혈소판감소증/혈액질환 여부"
+   },
+   "answer": {
+    "families": [
+     "M5"
+    ],
+    "grade3": "금기",
+    "condition_text": "혈소판감소증/혈액질환 여부"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "pre-procedure-checklist.json",
+     "path": "category_specific[M5].checks[0]",
+     "text": "혈소판감소증/혈액질환 여부 (absolute_contraindication)"
+    }
+   ],
+   "id": "Q095"
+  },
+  {
+   "intent": "I-09",
+   "origin": "원천 pre-procedure-checklist",
+   "text": "지방이식 · 마취 알레르기 여부 (리도카인 등)",
+   "slots": {
+    "procedure": "지방이식",
+    "condition_text": "마취 알레르기 여부 (리도카인 등)"
+   },
+   "answer": {
+    "families": [
+     "M6"
+    ],
+    "grade3": "금기",
+    "condition_text": "마취 알레르기 여부 (리도카인 등)"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "pre-procedure-checklist.json",
+     "path": "category_specific[M6].checks[0]",
+     "text": "마취 알레르기 여부 (리도카인 등) (absolute_contraindication)"
+    }
+   ],
+   "id": "Q096"
+  },
+  {
+   "intent": "I-09",
+   "origin": "원천 pre-procedure-checklist",
+   "text": "실리프팅 · 시술 부위 활동성 감염 여부",
+   "slots": {
+    "procedure": "실리프팅",
+    "condition_text": "시술 부위 활동성 감염 여부"
+   },
+   "answer": {
+    "families": [
+     "M7"
+    ],
+    "grade3": "금기",
+    "condition_text": "시술 부위 활동성 감염 여부"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "pre-procedure-checklist.json",
+     "path": "category_specific[M7].checks[0]",
+     "text": "시술 부위 활동성 감염 여부 (absolute_contraindication)"
+    }
+   ],
+   "id": "Q097"
+  },
+  {
+   "intent": "I-09",
+   "origin": "원천 pre-procedure-checklist",
+   "text": "기기 리프팅 · 체내 금속 임플란트/페이스메이커 여부",
+   "slots": {
+    "procedure": "기기 리프팅",
+    "condition_text": "체내 금속 임플란트/페이스메이커 여부"
+   },
+   "answer": {
+    "families": [
+     "M9"
+    ],
+    "grade3": "금기",
+    "condition_text": "체내 금속 임플란트/페이스메이커 여부"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "pre-procedure-checklist.json",
+     "path": "category_specific[M9].checks[0]",
+     "text": "체내 금속 임플란트/페이스메이커 여부 (absolute_contraindication)"
+    }
+   ],
+   "id": "Q098"
+  },
+  {
+   "intent": "I-09",
+   "origin": "원천 pre-procedure-checklist",
+   "text": "HIFES/EMS · 체내 금속 임플란트/페이스메이커 여부",
+   "slots": {
+    "procedure": "HIFES/EMS",
+    "condition_text": "체내 금속 임플란트/페이스메이커 여부"
+   },
+   "answer": {
+    "families": [
+     "M10"
+    ],
+    "grade3": "금기",
+    "condition_text": "체내 금속 임플란트/페이스메이커 여부"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "pre-procedure-checklist.json",
+     "path": "category_specific[M10].checks[0]",
+     "text": "체내 금속 임플란트/페이스메이커 여부 (absolute_contraindication)"
+    }
+   ],
+   "id": "Q099"
+  },
+  {
+   "intent": "I-09",
+   "origin": "원천 pre-procedure-checklist",
+   "text": "니들RF · 체내 금속 임플란트 여부 (시술 부위)",
+   "slots": {
+    "procedure": "니들RF",
+    "condition_text": "체내 금속 임플란트 여부 (시술 부위)"
+   },
+   "answer": {
+    "families": [
+     "M11"
+    ],
+    "grade3": "금기",
+    "condition_text": "체내 금속 임플란트 여부 (시술 부위)"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "pre-procedure-checklist.json",
+     "path": "category_specific[M11].checks[0]",
+     "text": "체내 금속 임플란트 여부 (시술 부위) (absolute_contraindication)"
+    }
+   ],
+   "id": "Q100"
+  },
+  {
+   "intent": "I-09",
+   "origin": "샘플 공통 칸(對疼痛較敏感)",
+   "text": "소프웨이브 · 통증 민감",
+   "slots": {
+    "procedure": "소프웨이브",
+    "condition_text": "통증 민감"
+   },
+   "answer": {
+    "families": [
+     "M9"
+    ],
+    "must_show": [
+     "시술 중 열감과 뻐근함이 있음, 부위에 따라 마취 크림 사용"
+    ],
+    "note": "확인 조건 노드 아님 — 원천은 통증 · 마취 칸"
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "patient-education.json",
+     "path": "categories[M9].pain_level",
+     "text": "시술 중 열감과 뻐근함이 있음, 부위에 따라 마취 크림 사용"
+    },
+    {
+     "file": "procedure-profiles.json",
+     "path": "profiles[M9].needsAnesthesia",
+     "text": "topical_or_none"
+    }
+   ],
+   "id": "Q101"
+  },
+  {
+   "intent": "I-10",
+   "origin": "샘플 9단계(Juvéderm Voluma 2cc)",
+   "text": "Voluma",
+   "slots": {
+    "product": "Voluma",
+    "amount": "2cc"
+   },
+   "answer": null,
+   "answer_state": "정답 미정(원천 품목 없음)",
+   "evidence": [
+    {
+     "file": "products.json",
+     "path": "filler_ha.products[].name",
+     "text": "쥬비덤 · 레스틸렌 · 이브아르 · 벨로테로 · 엘라비에 · 채움 · 더채움"
+    }
+   ],
+   "id": "Q102"
+  },
+  {
+   "intent": "I-10",
+   "origin": "원천 products.json filler_ha",
+   "text": "쥬비덤",
+   "slots": {
+    "product": "쥬비덤"
+   },
+   "answer": {
+    "families": [
+     "M2"
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "products.json",
+     "path": "filler_ha.products[]",
+     "text": "쥬비덤 · Juvéderm · 앨러간/애브비"
+    }
+   ],
+   "id": "Q103"
+  },
+  {
+   "intent": "I-10",
+   "origin": "원천 products.json filler_ha",
+   "text": "레스틸렌",
+   "slots": {
+    "product": "레스틸렌"
+   },
+   "answer": {
+    "families": [
+     "M2"
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "products.json",
+     "path": "filler_ha.products[]",
+     "text": "레스틸렌 · Restylane · 갈더마"
+    }
+   ],
+   "id": "Q104"
+  },
+  {
+   "intent": "I-10",
+   "origin": "원천 products.json filler_ha",
+   "text": "이브아르",
+   "slots": {
+    "product": "이브아르"
+   },
+   "answer": {
+    "families": [
+     "M2"
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "products.json",
+     "path": "filler_ha.products[]",
+     "text": "이브아르 · Yvoire · LG화학"
+    }
+   ],
+   "id": "Q105"
+  },
+  {
+   "intent": "I-11",
+   "origin": "원천 problem-combos",
+   "text": "쁘띠시술 · 추천 조합",
+   "slots": {
+    "concern_text": "쁘띠시술"
+   },
+   "answer": {
+    "n_packages": 3,
+    "families": [
+     "M1",
+     "M2",
+     "M4"
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-combos.json",
+     "path": "combos[P1].packages[]",
+     "text": "보톡스 단독(M1) / 보톡스 + 필러(M1+M2) / 수입 보톡스 + 수입 필러 + 스킨부스터(M1+M2+M4)"
+    }
+   ],
+   "id": "Q106"
+  },
+  {
+   "intent": "I-11",
+   "origin": "원천 problem-combos",
+   "text": "주름 · 추천 조합",
+   "slots": {
+    "concern_text": "주름"
+   },
+   "answer": {
+    "n_packages": 4,
+    "families": [
+     "M1",
+     "M2",
+     "M4",
+     "M7",
+     "M9"
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-combos.json",
+     "path": "combos[P2].packages[]",
+     "text": "보톡스 기본(M1) / 보톡스 + 필러 + 스킨부스터(M1+M2+M4) / 보톡스 + 필러 + HIFU + 스킨부스터(M9+M1+M2+M4) / 실리프팅 + HIFU + 보톡스 + 필러 + 스킨부스터(M7+M9+M1+M2+M4)"
+    }
+   ],
+   "id": "Q107"
+  },
+  {
+   "intent": "I-11",
+   "origin": "원천 problem-combos",
+   "text": "처짐/탄력 · 추천 조합",
+   "slots": {
+    "concern_text": "처짐/탄력"
+   },
+   "answer": {
+    "n_packages": 4,
+    "families": [
+     "M1",
+     "M2",
+     "M4",
+     "M7",
+     "M9"
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-combos.json",
+     "path": "combos[P3].packages[]",
+     "text": "국산 HIFU 리프팅(M9) / 울쎄라 + 보톡스(M9+M1) / 울쎄라 + 보톡스 + 필러 + 스킨부스터(M9+M1+M2+M4) / 실리프팅 + 울쎄라 + 필러 + 보톡스(M7+M9+M2+M1)"
+    }
+   ],
+   "id": "Q108"
+  },
+  {
+   "intent": "I-11",
+   "origin": "원천 problem-combos",
+   "text": "피부결/톤/항노화 · 추천 조합",
+   "slots": {
+    "concern_text": "피부결/톤/항노화"
+   },
+   "answer": {
+    "n_packages": 3,
+    "families": [
+     "M12",
+     "M4",
+     "M5",
+     "M8"
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-combos.json",
+     "path": "combos[P4].packages[]",
+     "text": "스킨부스터 단독(M4) / MTS + PRP + 스킨부스터 (골든루틴)(M12+M5+M4) / 레이저 + MTS + PRP + 스킨부스터(M8+M12+M5+M4)"
+    }
+   ],
+   "id": "Q109"
+  },
+  {
+   "intent": "I-11",
+   "origin": "원천 problem-combos",
+   "text": "색소/미백 · 추천 조합",
+   "slots": {
+    "concern_text": "색소/미백"
+   },
+   "answer": {
+    "n_packages": 3,
+    "families": [
+     "M11",
+     "M4",
+     "M5",
+     "M8"
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-combos.json",
+     "path": "combos[P5].packages[]",
+     "text": "레이저 토닝(M8) / 레이저 토닝 + PRP + 스킨부스터(M8+M5+M4) / 피코레이저 + 니들RF + PRP + 스킨부스터(M8+M11+M5+M4)"
+    }
+   ],
+   "id": "Q110"
+  },
+  {
+   "intent": "I-11",
+   "origin": "원천 problem-combos",
+   "text": "모공 · 추천 조합",
+   "slots": {
+    "concern_text": "모공"
+   },
+   "answer": {
+    "n_packages": 3,
+    "families": [
+     "M1",
+     "M11",
+     "M4",
+     "M5",
+     "M8"
+    ]
+   },
+   "answer_state": "정답 있음",
+   "evidence": [
+    {
+     "file": "problem-combos.json",
+     "path": "combos[P7].packages[]",
+     "text": "스킨보톡스 + 레이저(M1+M8) / 니들RF + PRP(M11+M5) / 니들RF + 레이저 + PRP + 스킨부스터(M11+M8+M5+M4)"
+    }
+   ],
+   "id": "Q111"
+  }
+ ]
+}

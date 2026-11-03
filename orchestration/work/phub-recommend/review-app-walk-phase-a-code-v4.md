@@ -1,0 +1,17 @@
+# case3 반복 탐색 4차 코드 검수
+
+**종합 판정: FAIL — coverage 수락·활성화 보류.** 앱 HEAD `078ac99`, 현재 미커밋 diff 6개 파일을 SPEC-006 0.3.10 §3-4-1-5 및 WORK-012 WP-1~3/5에 대조했다. 서버·DB·평가 실행이나 앱 코드 수정은 하지 않았다. 격리 시험 5개(입력 한도 미설정, 원문 검증, 부분 답변, SDK/CLI 분할)는 통과했다. 기본 gate `walk_coverage_mode=False`는 유지된다(`config.py:73`).
+
+| 항목 | 판정 | 근거와 최소 수정안 |
+|---|---|---|
+| 대상별 facet·부분 답변 | **WARN** | `case3.py:1540–1568`은 resolve span 뒤의 절을 대상별로 잘라 명시 facet을 연결하고, `1918–1927,2015–2020`은 미완료 시 지원된 원문을 인용하고 미완료 facet만 유보한다. 이전 전체 보류 FAIL은 일반 경로에서 닫혔다. 다만 `1551`의 단순 `question.find(span)`은 동일 span 반복, 대상보다 앞에 나온 공통 facet, 접속사로 연결된 양쪽 질문을 제대로 귀속한다는 증거가 없다. 최소 수정: clause 파서의 위치/범위 기록과 반복·전치·공통 facet 시험을 추가한다. |
+| 답 주장·대상·facet·scope | **WARN** | `_supported_answer`(`case3.py:431–447`)는 한 줄이 정확히 `owner section: 원문 [[ID]]`인 경우만 허용해 재서술 허위 확신을 막는다. `1833–1856`은 owner와 `applies_to`를 확인한다. 그러나 검증은 fact가 **어느 target_key**를 지원하는지 대조하지 않고 `442–443`에서 동일 section의 임의 지원 facet만 찾는다. 일반 경로의 `2039–2043` 대상 검사는 원문 target span이 문장에 그대로 나타날 때만 작동하며, 허용되는 원문형 출력에는 대개 span이 없다. 최소 수정: 문장/인용마다 target_key·facet·owner·scope를 원장의 지원 관계와 대조하고 두 대상이 같은 section을 묻는 시험을 추가한다. |
+| 원문·제외 원장 | **PASS(코드 경로), WARN(실물)** | `case3.py:1790–1818`이 잠재 전달 fact의 원문·source·scope를 조회하고, `1842–1851`이 제외 fact의 slim/원문/출처/범위 및 이유를 남긴다. 이전 원장 삭제 WARN은 닫혔다. 실물 Hub의 동일 ID·원문/source 일치와 cut 계약은 아직 재생 증거가 없다. |
+| 미설정 provider cap과 프롬프트 바이트 | **PASS(설정 guard), WARN(운영 한도)** | `case3.py:402–409,1918–1928`은 `walk_input_max_bytes`가 없거나 0이면 모델 호출 없이 제한 답을 내고, `1931–1932,1953–1954,1972–1975`은 system+user UTF-8 바이트를 센다. 실물 Claude SDK/CLI·Codex CLI 컨텍스트 한도와 CLI 래핑 오버헤드는 검증되지 않아 활성화 전에 provider별 값 확정이 필요하다. |
+| 분할·합성·안전 고지 | **FAIL** | `case3.py:1935–2009`의 분할 성공 분기는 `2015–2020`의 미완료 유보 분기보다 먼저 반환한다. 관계 WP-4 blocked 또는 다른 미완료 facet이 있어도 분할 답은 지원 원문 줄만 출력해 해당 유보를 잃는다. 또한 분할에서는 `1970–1985`의 `must_show_flags`를 답에서 검사하지 않고, `2002–2009`의 최종 검증도 원문 일치만 보므로 필수 고지가 빠져도 `passed_source_contract`가 된다. `1942–1960`은 첫 facet 묶음에 같은 target의 다른 section fact를 넣고 그 ID를 `covered`로 표시할 수 있는데, `_source_answer(rows,[facet])`는 다른 section 지원 ID를 출력하지 않아 최종 답에서 빠질 수 있다. 최소 수정: 묶음별 fact를 그 지원 facet에 연결하거나 별도 묶음으로 보존하고, 분할 후 전체 지원 facet·안전 flags·미완료 유보를 재검증해 누락은 `blocked/incomplete`로 표시한다. |
+| 분할 실패 처리 | **FAIL** | CLI `_answer`가 `part_res['error']`를 반환해도 `case3.py:1980–1986`은 이를 검사하지 않고 빈/오류 답을 원문 인용으로 대체한다. `1987`의 실패 집합은 크기 초과만 추적하므로 실패한 묶음도 `2001–2009`에서 완료로 합성될 수 있다. 최소 수정: 각 part의 error/refusal/stop 상태와 실제 처리 성공을 확인하고 실패 facet을 `blocked/incomplete`로 남긴 뒤 성공 부분만 답한다. |
+| CLI 분할 비용·timing | **PASS(합산), WARN(형식)** | `case3.py:1980–1982,1493–1502`는 CLI part의 비용 추정치를 합산하고 전체 timer를 전달한다. 이전 비용 누락 FAIL은 닫혔다. 다만 합성 timing은 CLI의 `_timing` 결과가 아니라 `timer.as_dict()`(`1496`)라 CLI 전용 timing 보강 필드는 잃는다. 최소 수정: 합성 timing에 CLI `_timing`의 필드·stage 보강을 보존하는 회귀 시험을 추가한다. |
+| Jev·Hub deadline / page | **PASS(코드), WARN(실물)** | 이웃 Jev에 남은 deadline을 적용한다(`case3.py:1693–1710`); page `more`/remaining을 대조한다(`1712–1744`). 이전 Jev 무제한 WARN은 닫혔다. 120초의 실제 TTFT p50/p90, 2~7쪽 QID, 빈 목록·`more` 생략 계약은 미검증이다. |
+| 관계 WP-4 | **PASS(추정 차단), 미구현** | 관계 의도는 `case3.py:1573–1584,1888–1890`에서 blocked로 남고 값 추정은 허용하지 않는다. WP-4 어댑터는 아직 없으며 분할 미완료 유보 누락은 위 별도 FAIL이다. |
+
+**WP-4 발주: 코디의 WORK-011 공개 계약 및 §6-9 PASS 인계 증거가 없으므로 현재 보류.** 해당 선행 관문이 확인되면 WP-4 착수 가능 여부를 별도로 판단할 수 있다. **Coverage 활성화 전 관문:** 위 분할 FAIL 수정·대상/안전 검증, 실제 provider 입력 한도 설정, Hub/page·QID 개별 및 고정 50 재생, TTFT/오류 분포 확인. 기본 gate False는 현 결함의 기본 노출만 막는다.

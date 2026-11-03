@@ -1,0 +1,72 @@
+{
+ "note": "step3-fixture-test.py 가 읽는다. v5 범위 바로잡기 — 부위 원천이 이름 칸뿐이라 가상 문장(add_text) · 전수 시험(boundary) 케이스는 뺐다(브리프 「가상 문장 시험 하지 않는다」). remove_decision = 결정 strings 에서 key 한 줄을 빼면 open 이 나오는지(가드 시험). expect = open 라벨",
+ "cases": [
+  {
+   "id": "BASE",
+   "type": "baseline",
+   "expect": [],
+   "note": "원천 그대로 — open 0"
+  },
+  {
+   "id": "T2",
+   "type": "remove_decision",
+   "key": [
+    "하관",
+    "하관"
+   ],
+   "expect": [
+    "결정없음:하관|하관",
+    "트리밖행선지없음:하관"
+   ],
+   "note": "재검수 v2 T2"
+  },
+  {
+   "id": "N-이마",
+   "type": "remove_decision",
+   "key": [
+    "이마",
+    "이마"
+   ],
+   "expect": [
+    "결정없음:이마|이마"
+   ],
+   "note": "v5 이름 칸 가드 — 위험 부위 zone 이름 · 고민 메뉴 이름 칸"
+  },
+  {
+   "id": "N-forehead",
+   "type": "remove_decision",
+   "key": [
+    "forehead",
+    "forehead"
+   ],
+   "expect": [
+    "결정없음:forehead|forehead"
+   ],
+   "note": "v5 이름 칸 가드 — zone id · name_en 칸"
+  },
+  {
+   "id": "N-코필러",
+   "type": "remove_decision",
+   "key": [
+    "코필러",
+    "코필러"
+   ],
+   "expect": [
+    "결정없음:코필러|코필러"
+   ],
+   "note": "v5 이름 칸 가드 — 시장가 · CC · 고민 메뉴 이름 칸"
+  },
+  {
+   "id": "N-사각턱",
+   "type": "remove_decision",
+   "key": [
+    "사각턱",
+    "사각턱"
+   ],
+   "expect": [
+    "결정없음:사각턱|사각턱"
+   ],
+   "note": "v5 이름 칸 가드 — 시장가 · CC · 고민 메뉴 — 추가 지시 7 노드"
+  }
+ ]
+}

@@ -1,0 +1,365 @@
+<title>Procedure Hub 시술 축 분류표</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: 왼쪽 진행·필터 레일 + 오른쪽 시술군별 항목 리스트. 항목마다 원천 이름 → 종류 · 무엇을 · 어디에 · 어떻게 제안, 아래에 답(맞음/고침/보류 + 메모) */
+:root {
+  --bg: #f6f8f8; --surface: #ffffff; --ink: #172426; --muted: #5c6d70; --line: #dbe3e4;
+  --accent: #0f6b6a; --accent-soft: #e0efee;
+  --cat-a: #2f5f9e; --cat-b: #a5620a; --cat-c: #55666a; --cat-d: #6b4fa0; --cat-e: #8a3d3d;
+  --ok: #22744a; --hold: #7a6a1f; --ask: #a5620a;
+  --font-sans: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f1617; --surface: #172122; --ink: #e3ecec; --muted: #94a6a8; --line: #2a3a3c;
+  --accent: #5fc2bf; --accent-soft: #1d3434;
+  --cat-a: #82acec; --cat-b: #e5a24a; --cat-c: #a4b4b7; --cat-d: #b79ce8; --cat-e: #e48c8c;
+  --ok: #6cd197; --hold: #d4c26a; --ask: #e5a24a; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0f1617; --surface: #172122; --ink: #e3ecec; --muted: #94a6a8; --line: #2a3a3c;
+  --accent: #5fc2bf; --accent-soft: #1d3434;
+  --cat-a: #82acec; --cat-b: #e5a24a; --cat-c: #a4b4b7; --cat-d: #b79ce8; --cat-e: #e48c8c;
+  --ok: #6cd197; --hold: #d4c26a; --ask: #e5a24a; color-scheme: dark }
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-sans); font-size: 14px; line-height: 1.55; padding-inline: 16px; padding-block: 20px 48px }
+.wrap { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 28px; align-items: start }
+@media (max-width: 860px) { .wrap { grid-template-columns: minmax(0, 1fr) } aside { position: static !important } }
+header.top { max-width: 1180px; margin: 0 auto 20px; display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: baseline; justify-content: space-between }
+h1 { font-size: 22px; font-weight: 700; margin: 0; text-wrap: balance; letter-spacing: -0.01em }
+.meta { color: var(--muted); font-size: 12.5px; font-family: var(--font-mono) }
+aside { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px); display: flex; flex-direction: column; gap: 18px }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px }
+.label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 600; margin-bottom: 8px }
+.progress { display: flex; flex-direction: column; gap: 8px }
+.prow { display: grid; grid-template-columns: 22px minmax(0,1fr) auto; gap: 8px; align-items: center; font-size: 13px }
+.prow .n { font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--muted); font-size: 12px }
+.bar { grid-column: 2 / 4; height: 4px; background: var(--line); border-radius: 2px; overflow: hidden }
+.bar > i { display: block; height: 100%; background: var(--accent) }
+.cat { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 4px; font-weight: 700; font-size: 12px; color: var(--surface) }
+.cat-A { background: var(--cat-a) } .cat-B { background: var(--cat-b) } .cat-C { background: var(--cat-c) } .cat-D { background: var(--cat-d) } .cat-E { background: var(--cat-e) }
+.filters { display: flex; flex-direction: column; gap: 10px }
+.filters input[type=search] { width: 100%; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink); font: inherit }
+.chips { display: flex; flex-wrap: wrap; gap: 6px }
+.chip { border: 1px solid var(--line); background: var(--bg); color: var(--ink); border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 12.5px; cursor: pointer }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface) }
+.chip:focus-visible, button:focus-visible, textarea:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+.status { font-size: 12px; color: var(--muted); min-height: 1.2em }
+main { display: flex; flex-direction: column; gap: 28px; min-width: 0 }
+.empty { background: var(--surface); border: 1px dashed var(--line); border-radius: 8px; padding: 24px; color: var(--muted) }
+section.group { display: flex; flex-direction: column; gap: 10px; min-width: 0 }
+.ghead { display: grid; grid-template-columns: auto minmax(0,1fr) auto; gap: 10px; align-items: start }
+.ghead h2 { font-size: 16px; margin: 0; font-weight: 600; text-wrap: balance }
+.ghead .count { font-family: var(--font-mono); font-size: 12px; color: var(--muted); white-space: nowrap }
+.gbody { display: grid; grid-template-columns: minmax(0,1fr); gap: 6px; color: var(--muted); font-size: 13px; max-width: 72ch }
+.gbody b { color: var(--ink); font-weight: 600 }
+.ev { font-family: var(--font-mono); font-size: 11.5px }
+.items { display: flex; flex-direction: column; gap: 8px }
+article.item { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; min-width: 0 }
+article.item[data-state="fix"] { border-left: 3px solid var(--ok) }
+article.item[data-state="hold"] { border-left: 3px solid var(--hold) }
+article.item[data-state="ask"] { border-left: 3px solid var(--ask) }
+.loc { display: flex; flex-wrap: wrap; gap: 4px 10px; font-family: var(--font-mono); font-size: 11.5px; color: var(--muted) }
+.loc .id { color: var(--ink); font-weight: 500 }
+.flag { font-family: var(--font-sans); font-size: 11px; font-weight: 600; color: var(--cat-b); border: 1px solid currentColor; border-radius: 4px; padding: 0 6px }
+.change { display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); gap: 10px; align-items: start }
+@media (max-width: 560px) { .change { grid-template-columns: minmax(0,1fr) } .arrow { display: none } }
+.val { min-width: 0 }
+.val .k { font-size: 11px; color: var(--muted); letter-spacing: 0.04em }
+.val .v { font-size: 14.5px; font-weight: 600; overflow-wrap: anywhere }
+.val .v.none { color: var(--muted); font-weight: 400; font-style: italic }
+.val .cands { font-size: 12px; color: var(--muted); overflow-wrap: anywhere }
+.arrow { color: var(--muted); padding-top: 16px }
+.verdict { background: var(--accent-soft); border-radius: 6px; padding: 8px 10px; display: flex; flex-direction: column; gap: 2px }
+.verdict .vline { font-weight: 600; font-size: 14px }
+.verdict .why { color: var(--ink); opacity: .85 }
+.verdict.change { background: var(--bg); border: 1px dashed var(--line) }
+.qbox { border-top: 1px solid var(--line); padding-top: 10px; display: flex; flex-direction: column; gap: 8px }
+.qbox .vline { font-weight: 600 }
+.opts { display: flex; flex-direction: column; gap: 6px }
+.opt { display: flex; gap: 8px; align-items: flex-start; cursor: pointer }
+.opt input { margin-top: 3px }
+.qbox > input { font: inherit; font-size: 13px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink); padding: 6px 8px }
+.axes { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px 14px }
+@media (max-width: 640px) { .axes { grid-template-columns: repeat(2, minmax(0,1fr)) } }
+.why { font-size: 13px; color: var(--muted); max-width: 72ch }
+.answer { display: grid; grid-template-columns: auto minmax(0,1fr); gap: 10px; align-items: start; border-top: 1px solid var(--line); padding-top: 10px }
+@media (max-width: 560px) { .answer { grid-template-columns: minmax(0,1fr) } }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden }
+.seg button { border: 0; background: var(--bg); color: var(--ink); font: inherit; font-size: 12.5px; padding: 6px 10px; cursor: pointer; border-right: 1px solid var(--line) }
+.seg button:last-child { border-right: 0 }
+.seg button[aria-pressed="true"][data-v="fix"] { background: var(--ok); color: var(--surface) }
+.seg button[aria-pressed="true"][data-v="hold"] { background: var(--hold); color: var(--surface) }
+.seg button[aria-pressed="true"][data-v="ask"] { background: var(--ask); color: var(--surface) }
+.seg button:disabled { cursor: default; opacity: .6 }
+.note { display: flex; flex-direction: column; gap: 6px; min-width: 0 }
+.note textarea, .note input { width: 100%; font: inherit; font-size: 13px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink); padding: 6px 8px }
+.note textarea { min-height: 34px; resize: vertical }
+.saved { font-size: 11.5px; color: var(--muted); min-height: 1em }
+.more { align-self: flex-start; font: inherit; font-size: 13px; color: var(--accent); background: none; border: 0; cursor: pointer; padding: 4px 0 }
+@media (prefers-reduced-motion: no-preference) { article.item { transition: border-color .15s } }
+</style>
+
+<header class="top">
+  <h1>Procedure Hub 시술 축 분류표</h1>
+  <div class="meta" id="meta"></div>
+</header>
+<div class="wrap">
+  <aside>
+    <div class="panel">
+      <div class="label">시술군별 승인</div>
+      <div class="progress" id="progress"></div>
+    </div>
+    <div class="panel filters">
+      <div class="label">찾기</div>
+      <input type="search" id="q" placeholder="이름 · 부위 · 기법 · 메모 검색" aria-label="항목 검색">
+      <div class="chips" id="stChips" role="group" aria-label="상태"></div>
+      <div class="chips" id="catChips" role="group" aria-label="종류"></div>
+      <div class="chips" role="group" aria-label="답 상태">
+        <button class="chip" id="fUnanswered" aria-pressed="false">미결만</button>
+        <button class="chip" id="fRejected" aria-pressed="false">반려만</button>
+        <button class="chip" id="fMedical" aria-pressed="false">의료 검토 필요</button>
+        <button class="chip" id="fLow" aria-pressed="false">확신 낮음</button>
+      </div>
+    </div>
+    <div class="panel"><div class="label">답하는 법</div><div class="why"><b>2차(재판정)</b>: 기본으로 「다시 승인」과 「질문」만 보입니다. 다시 승인 카드는 점선 칸의 바뀐 점을 보고 판정이 맞으면 <b>승인</b>, 틀리면 <b>반려</b>하고 사유를 적어 주세요(사유 없이는 반려되지 않습니다). <b>승인된 카드만 다음 단계로 넘어갑니다.</b> 반려된 카드는 사유대로 다시 판정해 올립니다. 시술군 머리의 일괄 승인은 두 번 눌러야 실행됩니다. 질문 카드는 선택지 하나를 고르거나 다른 답을 적어 주세요. 식약처 대기·승인됨은 상태 칩을 켜면 볼 수 있습니다.</div></div>
+    <div class="status" id="status">답변 저장소에 연결하는 중…</div>
+  </aside>
+  <main id="main"></main>
+</div>
+
+<script id="data" type="application/json">/*__DATA__*/</script>
+<script>
+(() => {
+  const DATA = JSON.parse(document.getElementById('data').textContent);
+  const STATUS = { regate: '다시 승인', question: '질문', waiting_mfds: '식약처 대기', approved: '승인됨' };
+  const KIND = { purpose: '목적', product: '제품', site_or_purpose: '부위·목적', technique: '기법', package: '패키지', unit_procedure: '단위 시술', device: '장비', other: '시술 아님', unclear: '판정 못 함' };
+  const CHOICES = [['approve', '승인'], ['reject', '반려']];
+  const PAGE = 40;
+  const answers = {}, shown = {};
+  let db = null, canWrite = false;
+  const filt = { q: '', kinds: new Set(), statuses: new Set(['regate', 'question']), unanswered: false, rejected: false, medical: false, low: false };
+  const $ = (s) => document.querySelector(s);
+  const el = (tag, attrs = {}, ...kids) => {
+    const n = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs)) {
+      if (v == null) continue;
+      if (k === 'class') n.className = v; else if (k === 'text') n.textContent = v;
+      else if (k.startsWith('on')) n.addEventListener(k.slice(2), v); else n.setAttribute(k, v);
+    }
+    for (const c of kids) if (c != null) n.append(c);
+    return n;
+  };
+  const mods = DATA.modalities;
+  const byMod = {}; for (const m of mods) byMod[m.id] = [];
+  for (const it of DATA.items) (byMod[it.modality] ||= []).push(it);
+  const kinds = Object.keys(KIND).filter(k => DATA.items.some(i => i.kind === k));
+  $('#meta').textContent = `원본 ${DATA.source_snapshot} · 기준 ${DATA.basis} · 항목 ${DATA.items.length}`;
+  for (const k of kinds) {
+    const b = el('button', { class: 'chip', 'aria-pressed': 'false', text: `${KIND[k]} ${DATA.items.filter(i => i.kind === k).length}` });
+    b.addEventListener('click', () => { filt.kinds.has(k) ? filt.kinds.delete(k) : filt.kinds.add(k); b.setAttribute('aria-pressed', filt.kinds.has(k)); render(); });
+    $('#catChips').append(b);
+  }
+  for (const s of Object.keys(STATUS)) {
+    const n = DATA.items.filter(i => i.status === s).length;
+    const b = el('button', { class: 'chip', 'aria-pressed': String(filt.statuses.has(s)), text: `${STATUS[s]} ${n}` });
+    b.addEventListener('click', () => { filt.statuses.has(s) ? filt.statuses.delete(s) : filt.statuses.add(s); b.setAttribute('aria-pressed', filt.statuses.has(s)); render(); });
+    $('#stChips').append(b);
+  }
+  const toggle = (id, key) => $(id).addEventListener('click', (e) => { filt[key] = !filt[key]; e.currentTarget.setAttribute('aria-pressed', filt[key]); render(); });
+  toggle('#fUnanswered', 'unanswered'); toggle('#fRejected', 'rejected'); toggle('#fMedical', 'medical'); toggle('#fLow', 'low');
+  let qt; $('#q').addEventListener('input', (e) => { clearTimeout(qt); qt = setTimeout(() => { filt.q = e.target.value.trim().toLowerCase(); render(); }, 150); });
+  const arr = (x) => Array.isArray(x) ? x : (x ? [x] : []);
+  const match = (it) => {
+    if (filt.statuses.size && !filt.statuses.has(it.status)) return false;
+    if (filt.kinds.size && !filt.kinds.has(it.kind)) return false;
+    if (filt.unanswered && answers[it.id]?.decision) return false;
+    if (filt.rejected && answers[it.id]?.decision !== 'reject') return false;
+    if (filt.medical && !it.needs_medical_review) return false;
+    if (filt.low && it.confidence !== 'low') return false;
+    if (filt.q) {
+      const hay = [it.id, it.name, it.source_text, it.what, ...arr(it.where), ...arr(it.where_unmapped), ...arr(it.how_source), JSON.stringify(it.product || ''), it.purpose, ...arr(it.synonyms), answers[it.id]?.note].join(' ').toLowerCase();
+      if (!hay.includes(filt.q)) return false;
+    }
+    return true;
+  };
+  function progress() {
+    const box = $('#progress'); box.replaceChildren();
+    for (const m of mods) {
+      const its = (byMod[m.id] || []).filter(it => it.status === 'regate' || it.status === 'question');
+      if (!its.length) continue;
+      const ap = its.filter(it => ['approve', 'answer'].includes(answers[it.id]?.decision)).length, rj = its.filter(it => answers[it.id]?.decision === 'reject').length;
+      const done = ap;
+      const pct = its.length ? Math.round(done / its.length * 100) : 0;
+      box.append(el('div', { class: 'prow' }, el('span', { class: 'cat cat-C', text: m.id.replace('M', '') }), el('span', { text: m.name }), el('span', { class: 'n', text: `승인 ${ap}` + (rj ? ` · 반려 ${rj}` : '') + ` / ${its.length}` }), el('div', { class: 'bar' }, el('i', { style: `width:${pct}%` }))));
+    }
+  }
+  async function save(id, patch, savedEl) {
+    answers[id] = { ...(answers[id] || {}), ...patch };
+    progress();
+    if (!db || !canWrite) { savedEl.textContent = '저장 안 됨 — 저장소에 연결되지 않았습니다'; return; }
+    savedEl.textContent = '저장 중…';
+    try { await db.doc('answers_v2/' + id).set({ ...answers[id], updated_at: new Date().toISOString() }); savedEl.textContent = answers[id].decision === 'approve' ? '승인됨' : answers[id].decision === 'reject' ? '반려됨 — 사유 저장' : answers[id].decision === 'answer' ? '답 저장됨' : '저장됨'; }
+    catch (e) { savedEl.textContent = '저장 실패 — 권한이 없거나 연결이 끊겼습니다. 다시 눌러 주세요'; }
+  }
+  const field = (k, v) => el('div', { class: 'val' }, el('div', { class: 'k', text: k }), el('div', { class: 'v' + (v ? '' : ' none'), text: v || '—' }));
+
+  const list = (x) => arr(x).filter(Boolean).join(' · ');
+  const upText = (it) => arr(it.unit_procedures).map(u => [String(u.what || '').replace(/^M\d+\s*/, ''), list(u.where), u.how].filter(Boolean).join(' × ')).join(', ');
+  const indic = (it) => { const m = String(it.source_text || '').match(/적응증:\s*(.+)$/); return m ? m[1].replace(/;\s*/g, ' · ') : ''; };
+  const whatName = (it) => String(it.what || '').replace(/^M\d+\s*/, '') || '해당';
+  function verdict(it) {
+    const w = whatName(it); let a = '', b = '';
+    switch (it.kind) {
+      case 'product': a = `시술이 아니라 「${w}」 계열의 제품입니다.`; b = indic(it) ? `쓰이는 곳(적응증): ${indic(it)} → 그 단위 시술에 「쓰는 제품」으로 연결됩니다.` : '그 계열 단위 시술에 「쓰는 제품」으로 연결됩니다.'; break;
+      case 'device': a = `시술이 아니라 「${w}」 계열의 장비입니다.`; b = indic(it) ? `쓰이는 곳(적응증): ${indic(it)} → 그 단위 시술에 「쓰는 장비」로 연결됩니다.` : '그 계열 단위 시술에 「쓰는 장비」로 연결됩니다.'; break;
+      case 'site_or_purpose': a = `「${w}」을(를) 어디에 하는지(부위)입니다.`; b = upText(it) ? `단위 시술로 풀면: ${upText(it)}` + (it.purpose ? ` / 목적 「${it.purpose}」은 고민 → 시술 연결이 됩니다.` : '') : ''; break;
+      case 'purpose': a = `「${w}」로 하는 목적입니다. 고민 → 시술 연결이 됩니다.`; b = upText(it) ? `그 목적의 단위 시술: ${upText(it)}` : ''; break;
+      case 'technique': a = `「${w}」을(를) 하는 방법(기법)입니다.`; b = upText(it) ? `단위 시술로 풀면: ${upText(it)}` : ''; break;
+      case 'package': a = '여러 단위 시술을 묶은 패키지입니다.'; b = upText(it) ? `묶인 단위 시술: ${upText(it)}` : ''; break;
+      case 'unit_procedure': a = '이미 단위 시술(무엇을 × 어디에)에 가깝습니다.'; b = upText(it) ? `단위 시술: ${upText(it)}` : ''; break;
+      case 'other': a = '시술이 아닙니다(약물 등). 시술 원장에서 빠집니다.'; break;
+      default: a = '판정하지 못했습니다. 무엇인지 적어 주세요.';
+    }
+    return el('div', { class: 'verdict' }, el('div', { class: 'vline', text: a }), b ? el('div', { class: 'why', text: b }) : null);
+  }
+  function changeNode(it) {
+    const parts = [];
+    if (it.change_reason) parts.push(el('div', { class: 'vline', text: '바뀐 점: ' + it.change_reason }));
+    if (it.v1 && Object.keys(it.v1).length) parts.push(el('div', { class: 'why', text: '이전 판정: ' + Object.entries(it.v1).map(([k, v]) => `${k}=${Array.isArray(v) ? v.join('/') : (v && typeof v === 'object' ? JSON.stringify(v) : v)}`).join(' · ') }));
+    if (it.evidence && it.evidence.length) parts.push(el('div', { class: 'why', text: '근거: ' + it.evidence.map(e => typeof e === 'string' ? e : [e.summary || e.text, e.source].filter(Boolean).join(' — ')).join(' / ') }));
+    return parts.length ? el('div', { class: 'verdict change' }, ...parts) : null;
+  }
+  function questionNode(it, savedEl) {
+    const q = it.question || {}; const a = answers[it.id] || {};
+    const box = el('div', { class: 'qbox' }, el('div', { class: 'vline', text: (q.oq ? q.oq + ' · ' : '') + (q.text || '') }));
+    const opts = el('div', { class: 'opts', role: 'radiogroup' });
+    (q.options || []).forEach((o, i) => {
+      const id = `q-${it.id}-${i}`;
+      const inp = el('input', { type: 'radio', name: 'q-' + it.id, id, value: o });
+      if (a.decision === 'answer' && a.choice === o) inp.checked = true;
+      if (!canWrite && db) inp.disabled = true;
+      inp.addEventListener('change', () => { other.value = ''; save(it.id, { decision: 'answer', choice: o, other: '' }, savedEl); });
+      opts.append(el('label', { class: 'opt', for: id }, inp, el('span', { text: o })));
+    });
+    const other = el('input', { id: 'other-' + it.id, placeholder: '다른 답이면 여기에 적기', 'aria-label': it.id + ' 다른 답' });
+    other.value = a.other || '';
+    if (!canWrite && db) other.disabled = true;
+    other.addEventListener('change', () => { if (other.value.trim()) { for (const r of opts.querySelectorAll('input')) r.checked = false; save(it.id, { decision: 'answer', choice: null, other: other.value.trim() }, savedEl); } });
+    box.append(opts, other, savedEl);
+    return box;
+  }
+  function itemNode(it) {
+    const a = answers[it.id] || {};
+    const art = el('article', { class: 'item', 'data-state': a.decision === 'ok' ? 'fix' : a.decision === 'fix' ? 'ask' : (a.decision || '') });
+    const loc = el('div', { class: 'loc' },
+      el('span', { class: 'id', text: it.id }),
+      el('span', { text: `${STATUS[it.status] || ''} · ${KIND[it.kind] || it.kind} · 확신 ${it.confidence || '—'}` }),
+      it.needs_medical_review ? el('span', { class: 'flag', text: '의료 검토' }) : null);
+    const title = el('div', { class: 'val' }, el('div', { class: 'v', text: it.name }), it.source_text ? el('div', { class: 'cands', text: it.source_text }) : null);
+    const prod = it.product ? (typeof it.product === 'string' ? it.product : [it.product.name, it.product.maker || it.product.manufacturer].filter(Boolean).join(' · ')) : '';
+    const grid = el('div', { class: 'axes' },
+      field('무엇을', it.what), field('어디에', [...arr(it.where), ...arr(it.where_unmapped).map(x => x + '(트리 밖)')].join(' · ')),
+      field('어떻게(원천 표현)', arr(it.how_source).join(' · ')), field('제품', prod),
+      field('목적', it.purpose), field('동의어 후보', arr(it.synonyms).join(' · ')));
+    const ups = arr(it.unit_procedures);
+    const upl = ups.length ? el('div', { class: 'why', text: '단위 시술 후보: ' + ups.map(u => [u.what, arr(u.where).join('/') || u.where, u.how].filter(Boolean).join(' × ')).join('  |  ') }) : null;
+    const basis = it.basis ? el('div', { class: 'why', text: '근거: ' + it.basis + (it.notes ? ' — ' + it.notes : '') }) : null;
+    if (it.status === 'question') {
+      const sv = el('div', { class: 'saved' });
+      const art2 = el('article', { class: 'item', 'data-state': (answers[it.id]?.decision === 'answer') ? 'fix' : '' });
+      art2.append(...[loc, title, grid, basis, questionNode(it, sv)].filter(Boolean));
+      return art2;
+    }
+    if (it.status !== 'regate') {
+      const art3 = el('article', { class: 'item' });
+      art3.append(...[loc, title, verdict(it), it.status === 'waiting_mfds' ? el('div', { class: 'why', text: '식약처 원장이 생긴 뒤 다시 판정합니다.' }) : null, changeNode(it)].filter(Boolean));
+      return art3;
+    }
+    const savedEl = el('div', { class: 'saved' });
+    const stateOf = (d) => d === 'approve' ? 'fix' : d === 'reject' ? 'ask' : '';
+    art.dataset.state = stateOf(a.decision);
+    const seg = el('div', { class: 'seg', role: 'group', 'aria-label': it.id + ' 판정이 맞습니까' });
+    const reason = el('textarea', { id: 'reason-' + it.id, placeholder: '반려 사유 (필수) — 무엇이 틀렸고 무엇이 맞는지', 'aria-label': it.id + ' 반려 사유' });
+    reason.value = a.reason || '';
+    const reasonBox = el('div', { class: 'note' }, reason);
+    reasonBox.hidden = a.decision !== 'reject' && !a.pending_reject;
+    const paint = (d) => { for (const x of seg.children) x.setAttribute('aria-pressed', String(x.dataset.d === d)); art.dataset.state = stateOf(d); };
+    for (const [v, label] of CHOICES) {
+      const b = el('button', { 'data-v': v === 'approve' ? 'fix' : 'ask', 'data-d': v, 'aria-pressed': String(a.decision === v), text: label });
+      if (!canWrite && db) b.disabled = true;
+      b.addEventListener('click', () => {
+        if (v === 'approve') {
+          const next = answers[it.id]?.decision === 'approve' ? null : 'approve';
+          reasonBox.hidden = true; paint(next);
+          save(it.id, { decision: next, reason: next ? '' : (answers[it.id]?.reason || '') }, savedEl);
+        } else {
+          reasonBox.hidden = false; paint('reject');
+          if (reason.value.trim()) save(it.id, { decision: 'reject', reason: reason.value.trim() }, savedEl);
+          else { savedEl.textContent = '반려 사유를 적으면 반려가 저장됩니다'; reason.focus(); }
+        }
+      });
+      seg.append(b);
+    }
+    reason.addEventListener('change', () => {
+      const r = reason.value.trim();
+      if (r) save(it.id, { decision: 'reject', reason: r }, savedEl);
+      else { savedEl.textContent = '사유가 비어 반려가 저장되지 않았습니다'; }
+    });
+    if (!canWrite && db) reason.disabled = true;
+    const ask = el('div', { class: 'k', text: '이 판정이 맞습니까?' });
+    art.append(...[loc, title, changeNode(it), verdict(it), grid, upl, basis, el('div', { class: 'answer' }, el('div', { class: 'note' }, ask, seg), el('div', { class: 'note' }, reasonBox, savedEl))].filter(Boolean));
+    return art;
+  }
+  function render() {
+    const main = $('#main'); main.replaceChildren();
+    let any = false;
+    for (const m of mods) {
+      const all = byMod[m.id] || [];
+      const vis = all.filter(match);
+      if (!vis.length) continue;
+      any = true;
+      const n = shown[m.id] || PAGE;
+      const list = el('div', { class: 'items' });
+      for (const it of vis.slice(0, n)) list.append(itemNode(it));
+      const kc = {}; for (const it of all) kc[it.kind] = (kc[it.kind] || 0) + 1;
+      const sec = el('section', { class: 'group', id: 'g-' + m.id },
+        el('div', { class: 'ghead' }, el('span', { class: 'cat cat-C', text: m.id.replace('M', '') }), el('h2', { text: `${m.id} · ${m.name}` }), el('span', { class: 'count', text: `항목 ${all.length} · 표시 ${vis.length}` })),
+        el('div', { class: 'gbody' }, el('div', { class: 'ev', text: Object.entries(kc).map(([k, c]) => `${KIND[k] || k} ${c}`).join(' · ') + (m.subcategories ? '  /  하위 분류: ' + m.subcategories.map(s => s.label).join(' · ') : '') })),
+        list);
+      if (vis.length > n) sec.append(el('button', { class: 'more', text: `나머지 ${vis.length - n}개 더 보기`, onclick: () => { shown[m.id] = n + PAGE; render(); } }));
+      const pend = all.filter(it => it.status === 'regate' && !answers[it.id]?.decision);
+      if (pend.length && db && canWrite) {
+        const bulk = el('button', { class: 'more', text: `이 시술군 다시 승인 미결 ${pend.length}개 일괄 승인` });
+        let armed = false;
+        bulk.addEventListener('click', async () => {
+          if (!armed) { armed = true; bulk.textContent = `한 번 더 누르면 ${pend.length}개를 승인합니다`; setTimeout(() => { if (armed) { armed = false; bulk.textContent = `이 시술군 미결 ${pend.length}개 일괄 승인`; } }, 5000); return; }
+          armed = false; bulk.disabled = true; bulk.textContent = '승인 중…';
+          let ok = 0;
+          for (const it of pend) { try { answers[it.id] = { ...(answers[it.id] || {}), decision: 'approve', reason: '', bulk: true }; await db.doc('answers_v2/' + it.id).set({ ...answers[it.id], updated_at: new Date().toISOString() }); ok++; } catch (e) { delete answers[it.id].decision; } }
+          $('#status').textContent = `${m.name} ${ok}개 승인됨` + (ok < pend.length ? ` · ${pend.length - ok}개 실패 — 다시 눌러 주세요` : '');
+          render();
+        });
+        sec.querySelector('.ghead').after(bulk);
+      }
+      main.append(sec);
+    }
+    if (!any) main.append(el('div', { class: 'empty', text: '조건에 맞는 항목이 없습니다. 필터를 풀어 보세요.' }));
+    progress();
+  }
+  render();
+  (async () => {
+    try {
+      db = await window.claude?.use?.('db');
+      if (!db) { $('#status').textContent = '답변 저장소를 쓸 수 없습니다. 로그인한 상태로 열면 답을 저장할 수 있습니다.'; render(); return; }
+      const user = await window.claude.use('user');
+      const c = user?.can ? await user.can('data.write') : null;
+      canWrite = c !== false;
+      const snap = await db.collection('answers_v2').get();
+      for (const d of snap.docs) answers[d.id] = d.data() || {};
+      $('#status').textContent = canWrite ? `2차 — 승인 ${Object.values(answers).filter(x => x.decision === 'approve').length} · 반려 ${Object.values(answers).filter(x => x.decision === 'reject').length} · 질문 답 ${Object.values(answers).filter(x => x.decision === 'answer').length} 불러옴` : '읽기 전용으로 열었습니다';
+      render();
+    } catch (e) { $('#status').textContent = '답변을 불러오지 못했습니다. 새로고침해 주세요.'; }
+  })();
+})();
+</script>

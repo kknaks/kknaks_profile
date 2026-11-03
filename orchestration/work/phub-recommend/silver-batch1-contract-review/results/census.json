@@ -1,0 +1,34 @@
+{
+  "products": 395,
+  "active": 354,
+  "inactive": 41,
+  "families": 27,
+  "product_family": 354,
+  "active_mapping_id_sets_equal": true,
+  "family_null": 3,
+  "pending_director": 3,
+  "family_defaults_reachable": 27,
+  "baseline": {
+    "pilot검증": 78,
+    "계약만": 71,
+    "원문raw보존만": 33,
+    "미구현": 62,
+    "의미미확정": 3
+  },
+  "scope": {
+    "product": 14,
+    "family": 11,
+    "snapshot": 5,
+    "source_record": 8,
+    "scope": 6,
+    "claim": 14,
+    "mapping": 9,
+    "decision": 8,
+    "attachment": 9
+  },
+  "unresolved_baseline": [
+    "subfamily.key",
+    "subfamily.axis",
+    "purpose.id"
+  ]
+}

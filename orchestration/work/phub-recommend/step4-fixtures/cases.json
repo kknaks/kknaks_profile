@@ -1,0 +1,110 @@
+{
+ "note": "고정 시험은 「결정 한 줄 빼면 open」만(브리프 · 3단계 교훈 §5-2 — 원천에 없는 가상 문장은 넣지 않는다). 섹션마다 한 줄씩.",
+ "cases": [
+  {
+   "id": "R1",
+   "section": "expressions",
+   "match": {
+    "key": "zones[forehead].botox_specific.target_muscle"
+   },
+   "expect": [
+    "결정 없는 표현:zones[forehead].botox_specific.target_muscle"
+   ]
+  },
+  {
+   "id": "R2",
+   "section": "expressions",
+   "match": {
+    "key": "modality[M8].extracted.related_techniques",
+    "text": "프랙셔널 레이저 — 기존 박피 레이저의 다운타임을 줄인 최신 기술"
+   },
+   "expect": [
+    "결정 없는 표현:modality[M8].extracted.related_techniques"
+   ]
+  },
+  {
+   "id": "R3",
+   "section": "expressions",
+   "match": {
+    "key": "profiles[M1].mechanism",
+    "text": "injection"
+   },
+   "expect": [
+    "결정 없는 표현:profiles[M1].mechanism"
+   ]
+  },
+  {
+   "id": "R4",
+   "section": "expressions",
+   "match": {
+    "key": "sequence_order[4].categories",
+    "text": "M8-토닝"
+   },
+   "expect": [
+    "결정 없는 표현:sequence_order[4].categories"
+   ]
+  },
+  {
+   "id": "R5",
+   "section": "handoffs",
+   "match": {
+    "id": "H01"
+   },
+   "expect": [
+    "넘겨받은 것 행선지 없음:진피|조직층"
+   ]
+  },
+  {
+   "id": "R6",
+   "section": "handoffs",
+   "match": {
+    "id": "H07"
+   },
+   "expect": [
+    "근거 없는 대상 근육:Trapezius",
+    "넘겨받은 것 행선지 없음:승모근"
+   ]
+  },
+  {
+   "id": "R7",
+   "section": "handoffs",
+   "match": {
+    "id": "H15"
+   },
+   "expect": [
+    "근거 없는 대상 근육:Musculi faciei (mimetic muscles)",
+    "넘겨받은 것 행선지 없음:표정근|표정근"
+   ]
+  },
+  {
+   "id": "R8",
+   "section": "technique_hints",
+   "match": {
+    "ledger_id": "M8-1-3"
+   },
+   "expect": [
+    "결정 없는 technique_hint:M8-1-3"
+   ]
+  },
+  {
+   "id": "R9",
+   "section": "family_defaults",
+   "match": {
+    "family": "M7"
+   },
+   "expect": [
+    "결정 없는 계열 기본 기법:M7"
+   ]
+  },
+  {
+   "id": "R10",
+   "section": "draft_techniques",
+   "match": {
+    "id": "T04"
+   },
+   "expect": [
+    "결정 없는 초안 기법:T04"
+   ]
+  }
+ ]
+}

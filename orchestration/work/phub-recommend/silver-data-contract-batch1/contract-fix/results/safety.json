@@ -1,0 +1,983 @@
+{
+  "rows": 580,
+  "fields": 1394,
+  "scalar_leaves": 4170,
+  "raw_oracle_exact": true,
+  "candidate_rows": 19,
+  "preservation_only_rows": 37,
+  "required_not_created_fields": 132,
+  "remaining_rows_needing_owner_verification": 524,
+  "remaining_fields_needing_owner_verification": 1262,
+  "excluded_rows": [
+    {
+      "legacy_id": "auto-4-1774737181584",
+      "current_pointer": "/extracted/27",
+      "raw_pointer": "/modality/0/subcategories/2/items/9",
+      "attach": "원문 보관(6단계 패키지)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/0/subcategories/2/items/9/extracted/safety/common",
+        "/modality/0/subcategories/2/items/9/extracted/safety/serious",
+        "/modality/0/subcategories/2/items/9/extracted/aftercare"
+      ],
+      "field_count": 3,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-5-1774737181584",
+      "current_pointer": "/extracted/28",
+      "raw_pointer": "/modality/0/subcategories/2/items/10",
+      "attach": "원문 보관(6단계 패키지)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/0/subcategories/2/items/10/extracted/safety/common",
+        "/modality/0/subcategories/2/items/10/extracted/safety/serious",
+        "/modality/0/subcategories/2/items/10/extracted/aftercare"
+      ],
+      "field_count": 3,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-6-1774737181584",
+      "current_pointer": "/extracted/29",
+      "raw_pointer": "/modality/0/subcategories/2/items/11",
+      "attach": "원문 보관(6단계 패키지)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/0/subcategories/2/items/11/extracted/safety/common",
+        "/modality/0/subcategories/2/items/11/extracted/safety/contraindications",
+        "/modality/0/subcategories/2/items/11/extracted/aftercare"
+      ],
+      "field_count": 3,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-7-1774737181584",
+      "current_pointer": "/extracted/30",
+      "raw_pointer": "/modality/0/subcategories/2/items/12",
+      "attach": "원문 보관(6단계 패키지)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/0/subcategories/2/items/12/extracted/safety/common",
+        "/modality/0/subcategories/2/items/12/extracted/safety/serious",
+        "/modality/0/subcategories/2/items/12/extracted/aftercare"
+      ],
+      "field_count": 3,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-25-1774737181584",
+      "current_pointer": "/extracted/109",
+      "raw_pointer": "/modality/3/subcategories/2/items/1",
+      "attach": "단위 시술 후보",
+      "raw_candidates": [
+        "U5-019",
+        "U5-040",
+        "U5-142"
+      ],
+      "field_pointers": [
+        "/modality/3/subcategories/2/items/1/extracted/safety/common",
+        "/modality/3/subcategories/2/items/1/extracted/safety/serious",
+        "/modality/3/subcategories/2/items/1/extracted/aftercare"
+      ],
+      "field_count": 3,
+      "attachment_state": "not_created",
+      "attachment_reason": "candidate_only",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "M7-1-1",
+      "current_pointer": "/extracted/127",
+      "raw_pointer": "/modality/6/subcategories/0/items/0",
+      "attach": "단위 시술 후보",
+      "raw_candidates": [
+        "U5-022",
+        "U5-097",
+        "U5-098",
+        "U5-122"
+      ],
+      "field_pointers": [
+        "/modality/6/subcategories/0/items/0/extracted/safety/common",
+        "/modality/6/subcategories/0/items/0/extracted/safety/serious",
+        "/modality/6/subcategories/0/items/0/extracted/aftercare"
+      ],
+      "field_count": 3,
+      "attachment_state": "not_created",
+      "attachment_reason": "candidate_only",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "M7-1-2",
+      "current_pointer": "/extracted/128",
+      "raw_pointer": "/modality/6/subcategories/0/items/1",
+      "attach": "단위 시술 후보",
+      "raw_candidates": [
+        "U5-022",
+        "U5-097",
+        "U5-098",
+        "U5-122"
+      ],
+      "field_pointers": [
+        "/modality/6/subcategories/0/items/1/extracted/safety/common",
+        "/modality/6/subcategories/0/items/1/extracted/safety/serious",
+        "/modality/6/subcategories/0/items/1/extracted/aftercare"
+      ],
+      "field_count": 3,
+      "attachment_state": "not_created",
+      "attachment_reason": "candidate_only",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "M7-1-3",
+      "current_pointer": "/extracted/129",
+      "raw_pointer": "/modality/6/subcategories/0/items/2",
+      "attach": "단위 시술 후보",
+      "raw_candidates": [
+        "U5-022",
+        "U5-097",
+        "U5-098",
+        "U5-122"
+      ],
+      "field_pointers": [
+        "/modality/6/subcategories/0/items/2/extracted/safety/common",
+        "/modality/6/subcategories/0/items/2/extracted/safety/serious",
+        "/modality/6/subcategories/0/items/2/extracted/aftercare"
+      ],
+      "field_count": 3,
+      "attachment_state": "not_created",
+      "attachment_reason": "candidate_only",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-26-1774737181584",
+      "current_pointer": "/extracted/130",
+      "raw_pointer": "/modality/6/subcategories/0/items/3",
+      "attach": "단위 시술 후보",
+      "raw_candidates": [
+        "U5-022",
+        "U5-097",
+        "U5-098",
+        "U5-122"
+      ],
+      "field_pointers": [
+        "/modality/6/subcategories/0/items/3/extracted/safety/common",
+        "/modality/6/subcategories/0/items/3/extracted/safety/serious",
+        "/modality/6/subcategories/0/items/3/extracted/safety/contraindications",
+        "/modality/6/subcategories/0/items/3/extracted/aftercare"
+      ],
+      "field_count": 4,
+      "attachment_state": "not_created",
+      "attachment_reason": "candidate_only",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M7-1775361902160",
+      "current_pointer": "/extracted/131",
+      "raw_pointer": "/modality/6/subcategories/0/items/4",
+      "attach": "단위 시술 후보",
+      "raw_candidates": [
+        "U5-022",
+        "U5-097",
+        "U5-098",
+        "U5-122"
+      ],
+      "field_pointers": [
+        "/modality/6/subcategories/0/items/4/extracted/safety/common",
+        "/modality/6/subcategories/0/items/4/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "candidate_only",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M7-1775364775160",
+      "current_pointer": "/extracted/132",
+      "raw_pointer": "/modality/6/subcategories/0/items/5",
+      "attach": "단위 시술 후보",
+      "raw_candidates": [
+        "U5-022",
+        "U5-097",
+        "U5-098",
+        "U5-122"
+      ],
+      "field_pointers": [
+        "/modality/6/subcategories/0/items/5/extracted/safety/common",
+        "/modality/6/subcategories/0/items/5/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "candidate_only",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "M7-2-1",
+      "current_pointer": "/extracted/133",
+      "raw_pointer": "/modality/6/subcategories/1/items/0",
+      "attach": "단위 시술 후보",
+      "raw_candidates": [
+        "U5-022",
+        "U5-097",
+        "U5-098",
+        "U5-122"
+      ],
+      "field_pointers": [
+        "/modality/6/subcategories/1/items/0/extracted/safety/common",
+        "/modality/6/subcategories/1/items/0/extracted/safety/serious",
+        "/modality/6/subcategories/1/items/0/extracted/aftercare"
+      ],
+      "field_count": 3,
+      "attachment_state": "not_created",
+      "attachment_reason": "candidate_only",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "M7-2-2",
+      "current_pointer": "/extracted/134",
+      "raw_pointer": "/modality/6/subcategories/1/items/1",
+      "attach": "단위 시술 후보",
+      "raw_candidates": [
+        "U5-022",
+        "U5-097",
+        "U5-098",
+        "U5-122"
+      ],
+      "field_pointers": [
+        "/modality/6/subcategories/1/items/1/extracted/safety/common",
+        "/modality/6/subcategories/1/items/1/extracted/safety/serious",
+        "/modality/6/subcategories/1/items/1/extracted/aftercare"
+      ],
+      "field_count": 3,
+      "attachment_state": "not_created",
+      "attachment_reason": "candidate_only",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "M7-2-3",
+      "current_pointer": "/extracted/135",
+      "raw_pointer": "/modality/6/subcategories/1/items/2",
+      "attach": "단위 시술 후보",
+      "raw_candidates": [
+        "U5-022",
+        "U5-097",
+        "U5-098",
+        "U5-122"
+      ],
+      "field_pointers": [
+        "/modality/6/subcategories/1/items/2/extracted/safety/common",
+        "/modality/6/subcategories/1/items/2/extracted/safety/serious",
+        "/modality/6/subcategories/1/items/2/extracted/aftercare"
+      ],
+      "field_count": 3,
+      "attachment_state": "not_created",
+      "attachment_reason": "candidate_only",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M8-1775402572157",
+      "current_pointer": "/extracted/173",
+      "raw_pointer": "/modality/7/subcategories/0/items/13",
+      "attach": "원문 보관(6단계 패키지)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/7/subcategories/0/items/13/extracted/safety/common",
+        "/modality/7/subcategories/0/items/13/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M8-1775402586665",
+      "current_pointer": "/extracted/174",
+      "raw_pointer": "/modality/7/subcategories/0/items/14",
+      "attach": "원문 보관(6단계 패키지)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/7/subcategories/0/items/14/extracted/safety/common",
+        "/modality/7/subcategories/0/items/14/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M8-1775402736445",
+      "current_pointer": "/extracted/175",
+      "raw_pointer": "/modality/7/subcategories/0/items/15",
+      "attach": "원문 보관(6단계 패키지)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/7/subcategories/0/items/15/extracted/safety/common",
+        "/modality/7/subcategories/0/items/15/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M8-1775361951910",
+      "current_pointer": "/extracted/220",
+      "raw_pointer": "/modality/7/subcategories/5/items/4",
+      "attach": "단위 시술 후보",
+      "raw_candidates": [
+        "U5-024",
+        "U5-026"
+      ],
+      "field_pointers": [
+        "/modality/7/subcategories/5/items/4/extracted/safety/common",
+        "/modality/7/subcategories/5/items/4/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "candidate_only",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-41-1774737181584",
+      "current_pointer": "/extracted/274",
+      "raw_pointer": "/modality/8/subcategories/4/items/0",
+      "attach": "원문 보관(6단계 패키지)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/8/subcategories/4/items/0/extracted/safety/common",
+        "/modality/8/subcategories/4/items/0/extracted/safety/serious",
+        "/modality/8/subcategories/4/items/0/extracted/aftercare"
+      ],
+      "field_count": 3,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-42-1774737181584",
+      "current_pointer": "/extracted/275",
+      "raw_pointer": "/modality/8/subcategories/4/items/1",
+      "attach": "원문 보관(6단계 패키지)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/8/subcategories/4/items/1/extracted/safety/common",
+        "/modality/8/subcategories/4/items/1/extracted/safety/serious",
+        "/modality/8/subcategories/4/items/1/extracted/aftercare"
+      ],
+      "field_count": 3,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-44-1774737181584",
+      "current_pointer": "/extracted/291",
+      "raw_pointer": "/modality/10/subcategories/0/items/5",
+      "attach": "원문 보관(6단계 패키지)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/10/subcategories/0/items/5/extracted/safety/common",
+        "/modality/10/subcategories/0/items/5/extracted/safety/serious",
+        "/modality/10/subcategories/0/items/5/extracted/aftercare"
+      ],
+      "field_count": 3,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M14-1775402698241",
+      "current_pointer": "/extracted/314",
+      "raw_pointer": "/modality/13/subcategories/0/items/4",
+      "attach": "원문 보관(6단계 패키지)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/13/subcategories/0/items/4/extracted/safety/common",
+        "/modality/13/subcategories/0/items/4/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M15-1775401780659",
+      "current_pointer": "/extracted/358",
+      "raw_pointer": "/modality/14/subcategories/0/items/43",
+      "attach": "원문 보관(원장님 문의)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/14/subcategories/0/items/43/extracted/safety/common",
+        "/modality/14/subcategories/0/items/43/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M15-1775364797158",
+      "current_pointer": "/extracted/415",
+      "raw_pointer": "/modality/14/subcategories/9/items/7",
+      "attach": "원문 보관(값)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/14/subcategories/9/items/7/extracted/safety/common",
+        "/modality/14/subcategories/9/items/7/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M15-1775361793054",
+      "current_pointer": "/extracted/416",
+      "raw_pointer": "/modality/14/subcategories/10/items/0",
+      "attach": "원문 보관(값)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/14/subcategories/10/items/0/extracted/safety/common",
+        "/modality/14/subcategories/10/items/0/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M15-1775361802111",
+      "current_pointer": "/extracted/417",
+      "raw_pointer": "/modality/14/subcategories/10/items/1",
+      "attach": "원문 보관(값)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/14/subcategories/10/items/1/extracted/safety/common",
+        "/modality/14/subcategories/10/items/1/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M15-1775361818736",
+      "current_pointer": "/extracted/418",
+      "raw_pointer": "/modality/14/subcategories/10/items/2",
+      "attach": "원문 보관(값)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/14/subcategories/10/items/2/extracted/safety/common",
+        "/modality/14/subcategories/10/items/2/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M15-1775361951887",
+      "current_pointer": "/extracted/419",
+      "raw_pointer": "/modality/14/subcategories/10/items/3",
+      "attach": "원문 보관(값)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/14/subcategories/10/items/3/extracted/safety/common",
+        "/modality/14/subcategories/10/items/3/extracted/safety/serious",
+        "/modality/14/subcategories/10/items/3/extracted/aftercare"
+      ],
+      "field_count": 3,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M15-1775361951900",
+      "current_pointer": "/extracted/420",
+      "raw_pointer": "/modality/14/subcategories/10/items/4",
+      "attach": "원문 보관(값)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/14/subcategories/10/items/4/extracted/safety/common",
+        "/modality/14/subcategories/10/items/4/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M15-1775364775180",
+      "current_pointer": "/extracted/421",
+      "raw_pointer": "/modality/14/subcategories/10/items/5",
+      "attach": "원문 보관(값)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/14/subcategories/10/items/5/extracted/safety/common",
+        "/modality/14/subcategories/10/items/5/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M15-1775364775181",
+      "current_pointer": "/extracted/422",
+      "raw_pointer": "/modality/14/subcategories/10/items/6",
+      "attach": "원문 보관(값)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/14/subcategories/10/items/6/extracted/safety/common",
+        "/modality/14/subcategories/10/items/6/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M15-1775364775182",
+      "current_pointer": "/extracted/423",
+      "raw_pointer": "/modality/14/subcategories/10/items/7",
+      "attach": "원문 보관(값)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/14/subcategories/10/items/7/extracted/safety/common",
+        "/modality/14/subcategories/10/items/7/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M15-1775364775183",
+      "current_pointer": "/extracted/424",
+      "raw_pointer": "/modality/14/subcategories/10/items/8",
+      "attach": "원문 보관(값)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/14/subcategories/10/items/8/extracted/safety/common",
+        "/modality/14/subcategories/10/items/8/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M15-1775364775184",
+      "current_pointer": "/extracted/425",
+      "raw_pointer": "/modality/14/subcategories/10/items/9",
+      "attach": "원문 보관(값)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/14/subcategories/10/items/9/extracted/safety/common",
+        "/modality/14/subcategories/10/items/9/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M15-1775364797147",
+      "current_pointer": "/extracted/426",
+      "raw_pointer": "/modality/14/subcategories/10/items/10",
+      "attach": "원문 보관(값)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/14/subcategories/10/items/10/extracted/safety/common",
+        "/modality/14/subcategories/10/items/10/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M15-1775364797148",
+      "current_pointer": "/extracted/427",
+      "raw_pointer": "/modality/14/subcategories/10/items/11",
+      "attach": "원문 보관(값)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/14/subcategories/10/items/11/extracted/safety/common",
+        "/modality/14/subcategories/10/items/11/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M15-1775364797149",
+      "current_pointer": "/extracted/428",
+      "raw_pointer": "/modality/14/subcategories/10/items/12",
+      "attach": "원문 보관(값)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/14/subcategories/10/items/12/extracted/safety/common",
+        "/modality/14/subcategories/10/items/12/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M15-1775364797150",
+      "current_pointer": "/extracted/429",
+      "raw_pointer": "/modality/14/subcategories/10/items/13",
+      "attach": "원문 보관(값)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/14/subcategories/10/items/13/extracted/safety/common",
+        "/modality/14/subcategories/10/items/13/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M15-1775361864704",
+      "current_pointer": "/extracted/431",
+      "raw_pointer": "/modality/14/subcategories/11/items/1",
+      "attach": "원문 보관(값)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/14/subcategories/11/items/1/extracted/safety/common",
+        "/modality/14/subcategories/11/items/1/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M15-1775364775170",
+      "current_pointer": "/extracted/434",
+      "raw_pointer": "/modality/14/subcategories/11/items/4",
+      "attach": "원문 보관(값)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/14/subcategories/11/items/4/extracted/safety/common",
+        "/modality/14/subcategories/11/items/4/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M15-1775361878302",
+      "current_pointer": "/extracted/436",
+      "raw_pointer": "/modality/14/subcategories/12/items/0",
+      "attach": "원문 보관(시술 아님(다른 단계))",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/14/subcategories/12/items/0/extracted/safety/common",
+        "/modality/14/subcategories/12/items/0/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M15-1775361885031",
+      "current_pointer": "/extracted/437",
+      "raw_pointer": "/modality/14/subcategories/12/items/1",
+      "attach": "원문 보관(시술 아님(다른 단계))",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/14/subcategories/12/items/1/extracted/safety/common",
+        "/modality/14/subcategories/12/items/1/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M15-1775361951923",
+      "current_pointer": "/extracted/438",
+      "raw_pointer": "/modality/14/subcategories/12/items/2",
+      "attach": "원문 보관(시술 아님)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/14/subcategories/12/items/2/extracted/safety/common",
+        "/modality/14/subcategories/12/items/2/extracted/safety/serious",
+        "/modality/14/subcategories/12/items/2/extracted/aftercare"
+      ],
+      "field_count": 3,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M15-1775402626587",
+      "current_pointer": "/extracted/443",
+      "raw_pointer": "/modality/14/subcategories/13/items/0",
+      "attach": "원문 보관(6단계 패키지)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/14/subcategories/13/items/0/extracted/safety/common",
+        "/modality/14/subcategories/13/items/0/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M15-1775402736448",
+      "current_pointer": "/extracted/445",
+      "raw_pointer": "/modality/14/subcategories/13/items/2",
+      "attach": "원문 보관(6단계 패키지)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/14/subcategories/13/items/2/extracted/safety/common",
+        "/modality/14/subcategories/13/items/2/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M15-1775402736449",
+      "current_pointer": "/extracted/446",
+      "raw_pointer": "/modality/14/subcategories/13/items/3",
+      "attach": "원문 보관(6단계 패키지)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/14/subcategories/13/items/3/extracted/safety/common",
+        "/modality/14/subcategories/13/items/3/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M15-1775402736450",
+      "current_pointer": "/extracted/447",
+      "raw_pointer": "/modality/14/subcategories/13/items/4",
+      "attach": "원문 보관(6단계 패키지)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/14/subcategories/13/items/4/extracted/safety/common",
+        "/modality/14/subcategories/13/items/4/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M15-1775402736452",
+      "current_pointer": "/extracted/449",
+      "raw_pointer": "/modality/14/subcategories/13/items/6",
+      "attach": "원문 보관(6단계 패키지)",
+      "raw_candidates": null,
+      "field_pointers": [
+        "/modality/14/subcategories/13/items/6/extracted/safety/common",
+        "/modality/14/subcategories/13/items/6/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "out_of_batch_entity",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M16-1775402996209",
+      "current_pointer": "/extracted/491",
+      "raw_pointer": "/modality/15/subcategories/5/items/0",
+      "attach": "단위 시술 후보",
+      "raw_candidates": [
+        "U5-070",
+        "U5-071",
+        "U5-072",
+        "U5-073",
+        "U5-074"
+      ],
+      "field_pointers": [
+        "/modality/15/subcategories/5/items/0/extracted/safety/common",
+        "/modality/15/subcategories/5/items/0/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "candidate_only",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M16-1775403054538",
+      "current_pointer": "/extracted/493",
+      "raw_pointer": "/modality/15/subcategories/5/items/2",
+      "attach": "단위 시술 후보",
+      "raw_candidates": [
+        "U5-070",
+        "U5-071",
+        "U5-072",
+        "U5-073",
+        "U5-074",
+        "U5-077",
+        "U5-078",
+        "U5-079",
+        "U5-080"
+      ],
+      "field_pointers": [
+        "/modality/15/subcategories/5/items/2/extracted/safety/common",
+        "/modality/15/subcategories/5/items/2/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "candidate_only",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M16-1775403076220",
+      "current_pointer": "/extracted/496",
+      "raw_pointer": "/modality/15/subcategories/5/items/5",
+      "attach": "단위 시술 후보",
+      "raw_candidates": [
+        "U5-070",
+        "U5-071",
+        "U5-072",
+        "U5-073",
+        "U5-074"
+      ],
+      "field_pointers": [
+        "/modality/15/subcategories/5/items/5/extracted/safety/common",
+        "/modality/15/subcategories/5/items/5/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "candidate_only",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M16-1775403176935",
+      "current_pointer": "/extracted/497",
+      "raw_pointer": "/modality/15/subcategories/5/items/6",
+      "attach": "단위 시술 후보",
+      "raw_candidates": [
+        "U5-070",
+        "U5-071",
+        "U5-072",
+        "U5-073",
+        "U5-074"
+      ],
+      "field_pointers": [
+        "/modality/15/subcategories/5/items/6/extracted/safety/common",
+        "/modality/15/subcategories/5/items/6/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "candidate_only",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M16-1775403176936",
+      "current_pointer": "/extracted/498",
+      "raw_pointer": "/modality/15/subcategories/5/items/7",
+      "attach": "단위 시술 후보",
+      "raw_candidates": [
+        "U5-070",
+        "U5-071",
+        "U5-072",
+        "U5-073",
+        "U5-074",
+        "U5-077",
+        "U5-078",
+        "U5-079",
+        "U5-080"
+      ],
+      "field_pointers": [
+        "/modality/15/subcategories/5/items/7/extracted/safety/common",
+        "/modality/15/subcategories/5/items/7/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "candidate_only",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "auto-M16-1775361054038",
+      "current_pointer": "/extracted/501",
+      "raw_pointer": "/modality/15/subcategories/6/items/1",
+      "attach": "단위 시술 후보",
+      "raw_candidates": [
+        "U5-070",
+        "U5-071",
+        "U5-072",
+        "U5-073",
+        "U5-074",
+        "U5-077",
+        "U5-078",
+        "U5-079",
+        "U5-080"
+      ],
+      "field_pointers": [
+        "/modality/15/subcategories/6/items/1/extracted/safety/common",
+        "/modality/15/subcategories/6/items/1/extracted/aftercare"
+      ],
+      "field_count": 2,
+      "attachment_state": "not_created",
+      "attachment_reason": "candidate_only",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "M17-1-1",
+      "current_pointer": "/extracted/514",
+      "raw_pointer": "/modality/16/subcategories/0/items/0",
+      "attach": "단위 시술 후보",
+      "raw_candidates": [
+        "U5-081",
+        "U5-121",
+        "U5-143"
+      ],
+      "field_pointers": [
+        "/modality/16/subcategories/0/items/0/extracted/safety/common",
+        "/modality/16/subcategories/0/items/0/extracted/safety/serious",
+        "/modality/16/subcategories/0/items/0/extracted/aftercare"
+      ],
+      "field_count": 3,
+      "attachment_state": "not_created",
+      "attachment_reason": "candidate_only",
+      "claim_preservation_required": true
+    },
+    {
+      "legacy_id": "M17-3-1",
+      "current_pointer": "/extracted/517",
+      "raw_pointer": "/modality/16/subcategories/2/items/0",
+      "attach": "단위 시술 후보",
+      "raw_candidates": [
+        "U5-019",
+        "U5-040",
+        "U5-142"
+      ],
+      "field_pointers": [
+        "/modality/16/subcategories/2/items/0/extracted/safety/common",
+        "/modality/16/subcategories/2/items/0/extracted/safety/serious",
+        "/modality/16/subcategories/2/items/0/extracted/aftercare"
+      ],
+      "field_count": 3,
+      "attachment_state": "not_created",
+      "attachment_reason": "candidate_only",
+      "claim_preservation_required": true
+    }
+  ],
+  "coverage_equation": "all_raw_fields = eligible_fields disjoint-union not_created_fields; all preserve raw; eligible attachments>=1; not_created attachments=0",
+  "candidate_implementation_executed": false
+}

@@ -1,0 +1,683 @@
+[
+  {
+    "mutation": "alias_merge_overwrites_original_list",
+    "rejected": true,
+    "failed_checks": [
+      "normalized_revision_id",
+      "claim_immutable_value",
+      "safety_field_value",
+      "previously_lost_10_recovered_in_pilot",
+      "projection_source_facts_independent"
+    ],
+    "diagnostics": [
+      {
+        "check": "normalized_revision_id",
+        "pass": false,
+        "group": "claims",
+        "record": "clm:9121c3f74e6706aaa2d652c692ecca437543406caceea6c1c4ac9e3f076fec54"
+      },
+      {
+        "check": "claim_immutable_value",
+        "pass": false,
+        "claim": "clm:9121c3f74e6706aaa2d652c692ecca437543406caceea6c1c4ac9e3f076fec54"
+      },
+      {
+        "check": "safety_field_value",
+        "pass": false,
+        "pointer": "/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects"
+      },
+      {
+        "check": "previously_lost_10_recovered_in_pilot",
+        "pass": false,
+        "leaves": 7
+      },
+      {
+        "check": "projection_source_facts_independent",
+        "pass": false
+      }
+    ]
+  },
+  {
+    "mutation": "drop_whole_alias_source_claim",
+    "rejected": true,
+    "failed_checks": [
+      "typed_ref"
+    ],
+    "diagnostics": [
+      {
+        "check": "typed_ref",
+        "pass": false,
+        "path": "/attachments/2/claim_refs/0",
+        "target": "clm:e86246c68f7d2dd87f7f8b09487459089b0006faae555b578962d673711dcfea",
+        "target_type": "claims",
+        "reason": "wrong_type_or_missing"
+      },
+      {
+        "check": "typed_ref",
+        "pass": false,
+        "path": "/cases/2/claim_refs/0",
+        "target": "clm:e86246c68f7d2dd87f7f8b09487459089b0006faae555b578962d673711dcfea",
+        "target_type": "claims",
+        "reason": "wrong_type_or_missing"
+      }
+    ]
+  },
+  {
+    "mutation": "same_name_first_match_wrong_scope",
+    "rejected": true,
+    "failed_checks": [
+      "normalized_revision_id",
+      "cc_group_scope",
+      "stretch_correct_group"
+    ],
+    "diagnostics": [
+      {
+        "check": "normalized_revision_id",
+        "pass": false,
+        "group": "scopes",
+        "record": "scope:bf049f0ddacc564f7ebc9afd1d721a59dba75f32a05483a02e98984004f57142"
+      },
+      {
+        "check": "cc_group_scope",
+        "pass": false
+      },
+      {
+        "check": "stretch_correct_group",
+        "pass": false
+      }
+    ]
+  },
+  {
+    "mutation": "collapse_duplicate_legacy_occurrence",
+    "rejected": true,
+    "failed_checks": [
+      "strict_schema"
+    ],
+    "diagnostics": [
+      {
+        "check": "strict_schema",
+        "pass": false,
+        "errors": [
+          "$.legacy_aliases[0].targets: minItems"
+        ]
+      }
+    ]
+  },
+  {
+    "mutation": "duplicate_legacy_auto_selection",
+    "rejected": true,
+    "failed_checks": [
+      "legacy_ambiguous_not_selected"
+    ],
+    "diagnostics": [
+      {
+        "check": "legacy_ambiguous_not_selected",
+        "pass": false
+      }
+    ]
+  },
+  {
+    "mutation": "singleton_promoted_to_pair",
+    "rejected": true,
+    "failed_checks": [
+      "normalized_revision_id",
+      "combo_direction_unpromoted",
+      "singleton_not_pair"
+    ],
+    "diagnostics": [
+      {
+        "check": "normalized_revision_id",
+        "pass": false,
+        "group": "relation_claims",
+        "record": "rel:e4df9c463aa0318d25bf2ab6a53a4cbd49f5da8c9fd93753e56576ed0e2af039"
+      },
+      {
+        "check": "combo_direction_unpromoted",
+        "pass": false
+      },
+      {
+        "check": "singleton_not_pair",
+        "pass": false
+      }
+    ]
+  },
+  {
+    "mutation": "nary_member_deleted",
+    "rejected": true,
+    "failed_checks": [
+      "normalized_revision_id",
+      "relation_arity",
+      "combo_raw_members_and_order"
+    ],
+    "diagnostics": [
+      {
+        "check": "normalized_revision_id",
+        "pass": false,
+        "group": "relation_claims",
+        "record": "rel:5ba750f142344f0c7917e11cd21aa291eb8971f9c3bae62b2869d03432769251"
+      },
+      {
+        "check": "relation_arity",
+        "pass": false
+      },
+      {
+        "check": "combo_raw_members_and_order",
+        "pass": false,
+        "pointer": "/problems/8/complaints/0/combos/1"
+      }
+    ]
+  },
+  {
+    "mutation": "note_claim_reference_deleted",
+    "rejected": true,
+    "failed_checks": [
+      "strict_schema"
+    ],
+    "diagnostics": [
+      {
+        "check": "strict_schema",
+        "pass": false,
+        "errors": [
+          "$.notes[0].claim_refs: minItems"
+        ]
+      }
+    ]
+  },
+  {
+    "mutation": "note_wrong_R8",
+    "rejected": true,
+    "failed_checks": [
+      "normalized_revision_id",
+      "note_claim_witness"
+    ],
+    "diagnostics": [
+      {
+        "check": "normalized_revision_id",
+        "pass": false,
+        "group": "notes",
+        "record": "note:9ea4be5de54aaa73019bb7d9cad5a78bbbcae5d96f9f86d3c2f53ab76de6769d"
+      },
+      {
+        "check": "note_claim_witness",
+        "pass": false,
+        "note": 109
+      }
+    ]
+  },
+  {
+    "mutation": "first_condition_deleted",
+    "rejected": true,
+    "failed_checks": [
+      "normalized_revision_id",
+      "field_condition_keys"
+    ],
+    "diagnostics": [
+      {
+        "check": "normalized_revision_id",
+        "pass": false,
+        "group": "relation_claims",
+        "record": "rel:b8b8bc8f06b8a84f9216e93a4dd135e6f0957bba61c8c9c14f681c21af4ea11f"
+      },
+      {
+        "check": "field_condition_keys",
+        "pass": false
+      }
+    ]
+  },
+  {
+    "mutation": "first_unconditional_a",
+    "rejected": true,
+    "failed_checks": [
+      "normalized_revision_id",
+      "unknown_site_no_first",
+      "first_branches_preserved"
+    ],
+    "diagnostics": [
+      {
+        "check": "normalized_revision_id",
+        "pass": false,
+        "group": "relation_claims",
+        "record": "rel:b8b8bc8f06b8a84f9216e93a4dd135e6f0957bba61c8c9c14f681c21af4ea11f"
+      },
+      {
+        "check": "unknown_site_no_first",
+        "pass": false
+      },
+      {
+        "check": "first_branches_preserved",
+        "pass": false
+      }
+    ]
+  },
+  {
+    "mutation": "explicit_no_order_conflated_with_not_declared",
+    "rejected": true,
+    "failed_checks": [
+      "normalized_revision_id",
+      "first_branches_preserved"
+    ],
+    "diagnostics": [
+      {
+        "check": "normalized_revision_id",
+        "pass": false,
+        "group": "relation_claims",
+        "record": "rel:b8b8bc8f06b8a84f9216e93a4dd135e6f0957bba61c8c9c14f681c21af4ea11f"
+      },
+      {
+        "check": "first_branches_preserved",
+        "pass": false
+      }
+    ]
+  },
+  {
+    "mutation": "same_site_endpoint_swap",
+    "rejected": true,
+    "failed_checks": [
+      "normalized_revision_id",
+      "endpoint_a_M1_b_M2"
+    ],
+    "diagnostics": [
+      {
+        "check": "normalized_revision_id",
+        "pass": false,
+        "group": "relation_claims",
+        "record": "rel:b8b8bc8f06b8a84f9216e93a4dd135e6f0957bba61c8c9c14f681c21af4ea11f"
+      },
+      {
+        "check": "endpoint_a_M1_b_M2",
+        "pass": false
+      }
+    ]
+  },
+  {
+    "mutation": "candidate_promoted_to_selected",
+    "rejected": true,
+    "failed_checks": [
+      "normalized_revision_id",
+      "no_unfounded_selected_state",
+      "comparison_candidate_exact"
+    ],
+    "diagnostics": [
+      {
+        "check": "normalized_revision_id",
+        "pass": false,
+        "group": "mappings",
+        "record": "map:050229f6870747269b57b53e6f9044f4230eda0a23092f0e456b109075ea2548"
+      },
+      {
+        "check": "no_unfounded_selected_state",
+        "pass": false
+      },
+      {
+        "check": "comparison_candidate_exact",
+        "pass": false
+      }
+    ]
+  },
+  {
+    "mutation": "product_M4_override_extended_to_M2",
+    "rejected": true,
+    "failed_checks": [
+      "normalized_revision_id",
+      "override_M4_scope_metadata"
+    ],
+    "diagnostics": [
+      {
+        "check": "normalized_revision_id",
+        "pass": false,
+        "group": "scopes",
+        "record": "scope:a1eb517baf0cad6fe2d1b66630f6fbbfd64ea453286965b6df1cc5125a580e0d"
+      },
+      {
+        "check": "override_M4_scope_metadata",
+        "pass": false
+      }
+    ]
+  },
+  {
+    "mutation": "staff_check_promoted_to_confirmed",
+    "rejected": true,
+    "failed_checks": [
+      "normalized_revision_id",
+      "no_invented_clinical_approval",
+      "staff_check_preserved"
+    ],
+    "diagnostics": [
+      {
+        "check": "normalized_revision_id",
+        "pass": false,
+        "group": "claims",
+        "record": "clm:287ee0e412984a24f1cbe65ff2daa8c1a476a318c8f4671f5afde2d48e68a81c"
+      },
+      {
+        "check": "no_invented_clinical_approval",
+        "pass": false
+      },
+      {
+        "check": "staff_check_preserved",
+        "pass": false
+      }
+    ]
+  },
+  {
+    "mutation": "palja_neck_conflict_erased",
+    "rejected": true,
+    "failed_checks": [
+      "normalized_revision_id",
+      "combo_unknown_scope_preserved",
+      "palja_neck_conflict_unresolved"
+    ],
+    "diagnostics": [
+      {
+        "check": "normalized_revision_id",
+        "pass": false,
+        "group": "scopes",
+        "record": "scope:8b559c886ad09cf9490ecd7a28ecf36aede5d55ff1b0f3a09394a8a4fe9017ad"
+      },
+      {
+        "check": "combo_unknown_scope_preserved",
+        "pass": false
+      },
+      {
+        "check": "palja_neck_conflict_unresolved",
+        "pass": false
+      }
+    ]
+  },
+  {
+    "mutation": "ko_qualifier_omitted",
+    "rejected": true,
+    "failed_checks": [
+      "normalized_revision_id",
+      "claim_immutable_value",
+      "language_variants_all_five",
+      "ko_delayed_qualifier_preserved",
+      "projection_source_facts_independent"
+    ],
+    "diagnostics": [
+      {
+        "check": "normalized_revision_id",
+        "pass": false,
+        "group": "claims",
+        "record": "clm:5a630abf10b07f8918e600363e6772471a5df1cb715a517777eb4c8bebfa6c5c"
+      },
+      {
+        "check": "claim_immutable_value",
+        "pass": false,
+        "claim": "clm:5a630abf10b07f8918e600363e6772471a5df1cb715a517777eb4c8bebfa6c5c"
+      },
+      {
+        "check": "language_variants_all_five",
+        "pass": false
+      },
+      {
+        "check": "ko_delayed_qualifier_preserved",
+        "pass": false
+      },
+      {
+        "check": "projection_source_facts_independent",
+        "pass": false
+      }
+    ]
+  },
+  {
+    "mutation": "duration_alternative_erased",
+    "rejected": true,
+    "failed_checks": [
+      "normalized_revision_id",
+      "duration_resolution_policy"
+    ],
+    "diagnostics": [
+      {
+        "check": "normalized_revision_id",
+        "pass": false,
+        "group": "resolutions",
+        "record": "res:28acff56911e31fc7304dc7635647c93a0d2c57b9740c25797b8d0a88f04329e"
+      },
+      {
+        "check": "duration_resolution_policy",
+        "pass": false
+      }
+    ]
+  },
+  {
+    "mutation": "policy_promoted_to_clinical_consensus",
+    "rejected": true,
+    "failed_checks": [
+      "normalized_revision_id",
+      "resolution_not_consensus",
+      "duration_resolution_policy"
+    ],
+    "diagnostics": [
+      {
+        "check": "normalized_revision_id",
+        "pass": false,
+        "group": "resolutions",
+        "record": "res:28acff56911e31fc7304dc7635647c93a0d2c57b9740c25797b8d0a88f04329e"
+      },
+      {
+        "check": "resolution_not_consensus",
+        "pass": false
+      },
+      {
+        "check": "duration_resolution_policy",
+        "pass": false
+      }
+    ]
+  },
+  {
+    "mutation": "wrong_source_hash",
+    "rejected": true,
+    "failed_checks": [
+      "snapshot_hash_bytes",
+      "snapshot_identity_v2"
+    ],
+    "diagnostics": [
+      {
+        "check": "snapshot_hash_bytes",
+        "pass": false,
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/anatomy-danger-zones.json"
+      },
+      {
+        "check": "snapshot_identity_v2",
+        "pass": false
+      }
+    ]
+  },
+  {
+    "mutation": "wrong_source_pointer",
+    "rejected": true,
+    "failed_checks": [
+      "source_locator"
+    ],
+    "diagnostics": [
+      {
+        "check": "source_locator",
+        "pass": false,
+        "path": "/source_records/0",
+        "target": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-products.json#/no_such_field",
+        "target_type": "source_value",
+        "reason": "KeyError"
+      }
+    ]
+  },
+  {
+    "mutation": "existing_mapping_rule_dropped",
+    "rejected": true,
+    "failed_checks": [
+      "normalized_revision_id",
+      "comparison_candidate_exact"
+    ],
+    "diagnostics": [
+      {
+        "check": "normalized_revision_id",
+        "pass": false,
+        "group": "mappings",
+        "record": "map:050229f6870747269b57b53e6f9044f4230eda0a23092f0e456b109075ea2548"
+      },
+      {
+        "check": "comparison_candidate_exact",
+        "pass": false
+      }
+    ]
+  },
+  {
+    "mutation": "unknown_extra_field",
+    "rejected": true,
+    "failed_checks": [
+      "strict_schema"
+    ],
+    "diagnostics": [
+      {
+        "check": "strict_schema",
+        "pass": false,
+        "errors": [
+          "$.mappings[0]: unknown approval"
+        ]
+      }
+    ]
+  },
+  {
+    "mutation": "invalid_enum",
+    "rejected": true,
+    "failed_checks": [
+      "strict_schema"
+    ],
+    "diagnostics": [
+      {
+        "check": "strict_schema",
+        "pass": false,
+        "errors": [
+          "$.scopes[0].application_state: enum"
+        ]
+      }
+    ]
+  },
+  {
+    "mutation": "null_instead_of_empty_selected_list",
+    "rejected": true,
+    "failed_checks": [
+      "strict_schema"
+    ],
+    "diagnostics": [
+      {
+        "check": "strict_schema",
+        "pass": false,
+        "errors": [
+          "$.mappings[0].selected_refs: type array"
+        ]
+      }
+    ]
+  },
+  {
+    "mutation": "missing_required_raw_field",
+    "rejected": true,
+    "failed_checks": [
+      "strict_schema"
+    ],
+    "diagnostics": [
+      {
+        "check": "strict_schema",
+        "pass": false,
+        "errors": [
+          "$.claims[0]: missing raw_field"
+        ]
+      }
+    ]
+  },
+  {
+    "mutation": "identity_from_name",
+    "rejected": true,
+    "failed_checks": [
+      "typed_ref"
+    ],
+    "diagnostics": [
+      {
+        "check": "typed_ref",
+        "pass": false,
+        "path": "/claims/0/subject_ref",
+        "target": "product:M1-1-3",
+        "target_type": "entities",
+        "reason": "wrong_type_or_missing"
+      },
+      {
+        "check": "typed_ref",
+        "pass": false,
+        "path": "/claims/1/subject_ref",
+        "target": "product:M1-1-3",
+        "target_type": "entities",
+        "reason": "wrong_type_or_missing"
+      },
+      {
+        "check": "typed_ref",
+        "pass": false,
+        "path": "/attachments/0/target_ref",
+        "target": "product:M1-1-3",
+        "target_type": "entities",
+        "reason": "wrong_type_or_missing"
+      },
+      {
+        "check": "typed_ref",
+        "pass": false,
+        "path": "/scopes/0/axes/product/included/0",
+        "target": "product:M1-1-3",
+        "target_type": "entities",
+        "reason": "wrong_type_or_missing"
+      }
+    ]
+  },
+  {
+    "mutation": "duration_fake_reviewer",
+    "rejected": true,
+    "failed_checks": [
+      "normalized_revision_id",
+      "decision_authority_source",
+      "no_fabricated_reviewer"
+    ],
+    "diagnostics": [
+      {
+        "check": "normalized_revision_id",
+        "pass": false,
+        "group": "decisions",
+        "record": "dec:4920a8d33a5b0a4b169751c8807d610bf01532e912bfd7403a2b77860a3fc844"
+      },
+      {
+        "check": "decision_authority_source",
+        "pass": false
+      },
+      {
+        "check": "no_fabricated_reviewer",
+        "pass": false
+      }
+    ]
+  },
+  {
+    "mutation": "ambiguous_expansion_first_match",
+    "rejected": true,
+    "failed_checks": [
+      "normalized_revision_id",
+      "duplicate_expansion_not_first_match"
+    ],
+    "diagnostics": [
+      {
+        "check": "normalized_revision_id",
+        "pass": false,
+        "group": "relation_claims",
+        "record": "rel:faaa1ea9ef07739fa5c2041d09807dea6b88ea4f0d654aa137ee60711ac8f591"
+      },
+      {
+        "check": "duplicate_expansion_not_first_match",
+        "pass": false,
+        "id": "R8-0353"
+      }
+    ]
+  },
+  {
+    "mutation": "automatic_confirmed_graph_edge",
+    "rejected": true,
+    "failed_checks": [
+      "projection_matches_records",
+      "no_automatic_confirmed_edges"
+    ]
+  }
+]

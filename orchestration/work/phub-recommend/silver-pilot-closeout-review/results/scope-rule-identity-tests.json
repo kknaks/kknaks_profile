@@ -1,0 +1,104 @@
+{
+  "checks": [
+    {
+      "check": "actual_builder_reproduces_artifact",
+      "pass": true
+    },
+    {
+      "check": "relocation_snapshot_ids",
+      "pass": true
+    },
+    {
+      "check": "relocation_occurrence_ids",
+      "pass": true
+    },
+    {
+      "check": "relocation_entity_ids",
+      "pass": true
+    },
+    {
+      "check": "relocated_artifact_validator_accepts",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "check": "relocation_normalized_ids",
+      "pass": true
+    },
+    {
+      "check": "row_reorder_new_snapshot",
+      "pass": true
+    },
+    {
+      "check": "row_reorder_new_occurrences",
+      "pass": true
+    },
+    {
+      "check": "row_reorder_entity_ids_preserved",
+      "pass": true
+    },
+    {
+      "check": "display_name_entity_ids_preserved",
+      "pass": true
+    },
+    {
+      "check": "display_name_new_source_snapshot",
+      "pass": true
+    },
+    {
+      "check": "logical_file_rename_new_snapshot",
+      "pass": true
+    },
+    {
+      "check": "logical_file_rename_entity_ids_preserved",
+      "pass": true
+    },
+    {
+      "check": "same_bytes_different_full_logical_key",
+      "pass": true
+    },
+    {
+      "check": "same_bytes_different_domain",
+      "pass": true
+    },
+    {
+      "check": "same_basename_multi_manifest",
+      "pass": true
+    },
+    {
+      "check": "schema_revision_source_immutable",
+      "pass": true
+    },
+    {
+      "check": "schema_revision_entity_immutable",
+      "pass": true
+    },
+    {
+      "check": "schema_revision_normalized_revised",
+      "pass": true
+    },
+    {
+      "check": "rule_revision_source_immutable",
+      "pass": true
+    },
+    {
+      "check": "rule_revision_entity_immutable",
+      "pass": true
+    },
+    {
+      "check": "rule_revision_normalized_revised",
+      "pass": true
+    },
+    {
+      "check": "unrelated_design_hash_does_not_rekey",
+      "pass": true
+    },
+    {
+      "check": "original_raw21_unchanged",
+      "pass": true
+    }
+  ],
+  "passed": 24,
+  "failed": 0,
+  "scope": "Actual builder and its SourceRegistry; revision test versions are unpublished incompatible fixtures."
+}

@@ -1,0 +1,278 @@
+<title>Procedure Hub 원천 수정 목록</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: 왼쪽 요약·필터 레일 + 오른쪽 그룹별 항목 리스트. 항목마다 원천 위치 → 지금 값 → 제안 값, 아래에 답(수정/보류/확인 요청 + 메모) */
+:root {
+  --bg: #f6f8f8; --surface: #ffffff; --ink: #172426; --muted: #5c6d70; --line: #dbe3e4;
+  --accent: #0f6b6a; --accent-soft: #e0efee;
+  --cat-a: #2f5f9e; --cat-b: #a5620a; --cat-c: #55666a; --cat-d: #6b4fa0; --cat-e: #8a3d3d;
+  --ok: #22744a; --hold: #7a6a1f; --ask: #a5620a;
+  --font-sans: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f1617; --surface: #172122; --ink: #e3ecec; --muted: #94a6a8; --line: #2a3a3c;
+  --accent: #5fc2bf; --accent-soft: #1d3434;
+  --cat-a: #82acec; --cat-b: #e5a24a; --cat-c: #a4b4b7; --cat-d: #b79ce8; --cat-e: #e48c8c;
+  --ok: #6cd197; --hold: #d4c26a; --ask: #e5a24a; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0f1617; --surface: #172122; --ink: #e3ecec; --muted: #94a6a8; --line: #2a3a3c;
+  --accent: #5fc2bf; --accent-soft: #1d3434;
+  --cat-a: #82acec; --cat-b: #e5a24a; --cat-c: #a4b4b7; --cat-d: #b79ce8; --cat-e: #e48c8c;
+  --ok: #6cd197; --hold: #d4c26a; --ask: #e5a24a; color-scheme: dark }
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-sans); font-size: 14px; line-height: 1.55; padding-inline: 16px; padding-block: 20px 48px }
+.wrap { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 28px; align-items: start }
+@media (max-width: 860px) { .wrap { grid-template-columns: minmax(0, 1fr) } aside { position: static !important } }
+header.top { max-width: 1180px; margin: 0 auto 20px; display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: baseline; justify-content: space-between }
+h1 { font-size: 22px; font-weight: 700; margin: 0; text-wrap: balance; letter-spacing: -0.01em }
+.meta { color: var(--muted); font-size: 12.5px; font-family: var(--font-mono) }
+aside { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px); display: flex; flex-direction: column; gap: 18px }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px }
+.label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 600; margin-bottom: 8px }
+.progress { display: flex; flex-direction: column; gap: 8px }
+.prow { display: grid; grid-template-columns: 22px minmax(0,1fr) auto; gap: 8px; align-items: center; font-size: 13px }
+.prow .n { font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--muted); font-size: 12px }
+.bar { grid-column: 2 / 4; height: 4px; background: var(--line); border-radius: 2px; overflow: hidden }
+.bar > i { display: block; height: 100%; background: var(--accent) }
+.cat { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 4px; font-weight: 700; font-size: 12px; color: var(--surface) }
+.cat-A { background: var(--cat-a) } .cat-B { background: var(--cat-b) } .cat-C { background: var(--cat-c) } .cat-D { background: var(--cat-d) } .cat-E { background: var(--cat-e) }
+.filters { display: flex; flex-direction: column; gap: 10px }
+.filters input[type=search] { width: 100%; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink); font: inherit }
+.chips { display: flex; flex-wrap: wrap; gap: 6px }
+.chip { border: 1px solid var(--line); background: var(--bg); color: var(--ink); border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 12.5px; cursor: pointer }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface) }
+.chip:focus-visible, button:focus-visible, textarea:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+.status { font-size: 12px; color: var(--muted); min-height: 1.2em }
+main { display: flex; flex-direction: column; gap: 28px; min-width: 0 }
+.empty { background: var(--surface); border: 1px dashed var(--line); border-radius: 8px; padding: 24px; color: var(--muted) }
+section.group { display: flex; flex-direction: column; gap: 10px; min-width: 0 }
+.ghead { display: grid; grid-template-columns: auto minmax(0,1fr) auto; gap: 10px; align-items: start }
+.ghead h2 { font-size: 16px; margin: 0; font-weight: 600; text-wrap: balance }
+.ghead .count { font-family: var(--font-mono); font-size: 12px; color: var(--muted); white-space: nowrap }
+.gbody { display: grid; grid-template-columns: minmax(0,1fr); gap: 6px; color: var(--muted); font-size: 13px; max-width: 72ch }
+.gbody b { color: var(--ink); font-weight: 600 }
+.ev { font-family: var(--font-mono); font-size: 11.5px }
+.items { display: flex; flex-direction: column; gap: 8px }
+article.item { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; min-width: 0 }
+article.item[data-state="fix"] { border-left: 3px solid var(--ok) }
+article.item[data-state="hold"] { border-left: 3px solid var(--hold) }
+article.item[data-state="ask"] { border-left: 3px solid var(--ask) }
+.loc { display: flex; flex-wrap: wrap; gap: 4px 10px; font-family: var(--font-mono); font-size: 11.5px; color: var(--muted) }
+.loc .id { color: var(--ink); font-weight: 500 }
+.flag { font-family: var(--font-sans); font-size: 11px; font-weight: 600; color: var(--cat-b); border: 1px solid currentColor; border-radius: 4px; padding: 0 6px }
+.change { display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); gap: 10px; align-items: start }
+@media (max-width: 560px) { .change { grid-template-columns: minmax(0,1fr) } .arrow { display: none } }
+.val { min-width: 0 }
+.val .k { font-size: 11px; color: var(--muted); letter-spacing: 0.04em }
+.val .v { font-size: 14.5px; font-weight: 600; overflow-wrap: anywhere }
+.val .v.none { color: var(--muted); font-weight: 400; font-style: italic }
+.val .cands { font-size: 12px; color: var(--muted); overflow-wrap: anywhere }
+.arrow { color: var(--muted); padding-top: 16px }
+.why { font-size: 13px; color: var(--muted); max-width: 72ch }
+.answer { display: grid; grid-template-columns: auto minmax(0,1fr); gap: 10px; align-items: start; border-top: 1px solid var(--line); padding-top: 10px }
+@media (max-width: 560px) { .answer { grid-template-columns: minmax(0,1fr) } }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden }
+.seg button { border: 0; background: var(--bg); color: var(--ink); font: inherit; font-size: 12.5px; padding: 6px 10px; cursor: pointer; border-right: 1px solid var(--line) }
+.seg button:last-child { border-right: 0 }
+.seg button[aria-pressed="true"][data-v="fix"] { background: var(--ok); color: var(--surface) }
+.seg button[aria-pressed="true"][data-v="hold"] { background: var(--hold); color: var(--surface) }
+.seg button[aria-pressed="true"][data-v="ask"] { background: var(--ask); color: var(--surface) }
+.seg button:disabled { cursor: default; opacity: .6 }
+.note { display: flex; flex-direction: column; gap: 6px; min-width: 0 }
+.note textarea, .note input { width: 100%; font: inherit; font-size: 13px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink); padding: 6px 8px }
+.note textarea { min-height: 34px; resize: vertical }
+.saved { font-size: 11.5px; color: var(--muted); min-height: 1em }
+.more { align-self: flex-start; font: inherit; font-size: 13px; color: var(--accent); background: none; border: 0; cursor: pointer; padding: 4px 0 }
+@media (prefers-reduced-motion: no-preference) { article.item { transition: border-color .15s } }
+</style>
+
+<header class="top">
+  <h1>Procedure Hub 원천 수정 목록</h1>
+  <div class="meta" id="meta"></div>
+</header>
+<div class="wrap">
+  <aside>
+    <div class="panel">
+      <div class="label">답변 진행</div>
+      <div class="progress" id="progress"></div>
+    </div>
+    <div class="panel filters">
+      <div class="label">찾기</div>
+      <input type="search" id="q" placeholder="이름 · 위치 · 메모 검색" aria-label="항목 검색">
+      <div class="chips" id="catChips" role="group" aria-label="분류"></div>
+      <div class="chips" role="group" aria-label="답 상태">
+        <button class="chip" id="fUnanswered" aria-pressed="false">답 안 단 것만</button>
+        <button class="chip" id="fMedical" aria-pressed="false">의료 검토 필요</button>
+      </div>
+    </div>
+    <div class="status" id="status">답변 저장소에 연결하는 중…</div>
+  </aside>
+  <main id="main"></main>
+</div>
+
+<script id="data" type="application/json">/*__DATA__*/</script>
+<script>
+(() => {
+  const DATA = JSON.parse(document.getElementById('data').textContent);
+  const CAT_NAME = { A: '표기 · 이름', B: '값 오류 · 충돌', C: '연결 빈칸', D: '구조', E: '기타' };
+  const CHOICES = [['fix', '수정'], ['hold', '보류'], ['ask', '확인 요청']];
+  const PAGE = 40;
+  const answers = {};           // itemId -> {decision, note, proposed}
+  const shown = {};             // groupId -> visible count
+  let db = null, canWrite = false;
+  const filt = { q: '', cats: new Set(), unanswered: false, medical: false };
+  const $ = (s) => document.querySelector(s);
+  const el = (tag, attrs = {}, ...kids) => {
+    const n = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs)) {
+      if (v == null) continue;
+      if (k === 'class') n.className = v; else if (k === 'text') n.textContent = v;
+      else if (k.startsWith('on')) n.addEventListener(k.slice(2), v); else n.setAttribute(k, v);
+    }
+    for (const c of kids) if (c != null) n.append(c);
+    return n;
+  };
+  const groups = DATA.groups;
+  const itemsBy = {};
+  for (const g of groups) itemsBy[g.id] = [];
+  for (const it of DATA.items) (itemsBy[it.group] ||= []).push(it);
+  const cats = [...new Set(groups.map(g => g.category))];
+
+  $('#meta').textContent = `그래프 ${DATA.graph_version} · 원본 ${DATA.source_snapshot} · 항목 ${DATA.items.length}`;
+
+  // category chips
+  for (const c of cats) {
+    const b = el('button', { class: 'chip', 'aria-pressed': 'false', text: `${c} ${CAT_NAME[c] || ''}` });
+    b.addEventListener('click', () => { filt.cats.has(c) ? filt.cats.delete(c) : filt.cats.add(c); b.setAttribute('aria-pressed', filt.cats.has(c)); render(); });
+    $('#catChips').append(b);
+  }
+  const toggle = (id, key) => $(id).addEventListener('click', (e) => { filt[key] = !filt[key]; e.currentTarget.setAttribute('aria-pressed', filt[key]); render(); });
+  toggle('#fUnanswered', 'unanswered'); toggle('#fMedical', 'medical');
+  let qt; $('#q').addEventListener('input', (e) => { clearTimeout(qt); qt = setTimeout(() => { filt.q = e.target.value.trim().toLowerCase(); render(); }, 150); });
+
+  const match = (it) => {
+    const g = groups.find(x => x.id === it.group);
+    if (filt.cats.size && !filt.cats.has(g.category)) return false;
+    if (filt.unanswered && answers[it.id]?.decision) return false;
+    if (filt.medical && !it.needs_medical_review) return false;
+    if (filt.q) {
+      const hay = [it.id, it.current, it.proposed, it.location, it.endpoint, it.field, ...(it.candidates || []), answers[it.id]?.note].join(' ').toLowerCase();
+      if (!hay.includes(filt.q)) return false;
+    }
+    return true;
+  };
+
+  function progress() {
+    const box = $('#progress'); box.replaceChildren();
+    for (const c of cats) {
+      const its = DATA.items.filter(it => groups.find(g => g.id === it.group)?.category === c);
+      const done = its.filter(it => answers[it.id]?.decision).length;
+      const pct = its.length ? Math.round(done / its.length * 100) : 0;
+      const bar = el('div', { class: 'bar' }, el('i', { style: `width:${pct}%` }));
+      box.append(el('div', { class: 'prow' }, el('span', { class: `cat cat-${c}`, text: c }), el('span', { text: CAT_NAME[c] || c }), el('span', { class: 'n', text: `${done}/${its.length}` }), bar));
+    }
+  }
+
+  async function save(id, patch, savedEl) {
+    answers[id] = { ...(answers[id] || {}), ...patch };
+    progress();
+    if (!db || !canWrite) { savedEl.textContent = '저장 안 됨 — 저장소에 연결되지 않았습니다'; return; }
+    savedEl.textContent = '저장 중…';
+    try {
+      await db.doc('answers/' + id).set({ ...answers[id], updated_at: new Date().toISOString() });
+      savedEl.textContent = '저장됨';
+    } catch (e) {
+      savedEl.textContent = '저장 실패 — 권한이 없거나 연결이 끊겼습니다. 다시 눌러 주세요';
+    }
+  }
+
+  function itemNode(it) {
+    const a = answers[it.id] || {};
+    const art = el('article', { class: 'item', 'data-state': a.decision || '' , id: 'it-' + it.id });
+    const loc = el('div', { class: 'loc' },
+      el('span', { class: 'id', text: it.id }),
+      el('span', { text: [it.endpoint, it.location, it.field].filter(Boolean).join(' · ') }),
+      it.occurrences > 1 ? el('span', { text: `${it.occurrences}회` }) : null,
+      it.needs_medical_review ? el('span', { class: 'flag', text: '의료 검토' }) : null);
+    const cur = el('div', { class: 'val' }, el('div', { class: 'k', text: '지금' }), el('div', { class: 'v', text: it.current ?? '—' }));
+    const prop = el('div', { class: 'val' }, el('div', { class: 'k', text: '제안' }),
+      el('div', { class: 'v' + (it.proposed ? '' : ' none'), text: it.proposed || '제안 없음' }),
+      (it.candidates && it.candidates.length) ? el('div', { class: 'cands', text: '후보: ' + it.candidates.join(' · ') }) : null,
+      it.proposed_basis ? el('div', { class: 'cands', text: it.proposed_basis }) : null);
+    const change = el('div', { class: 'change' }, cur, el('div', { class: 'arrow', 'aria-hidden': 'true', text: '→' }), prop);
+    const why = it.why ? el('div', { class: 'why', text: it.why }) : null;
+
+    const savedEl = el('div', { class: 'saved' });
+    const seg = el('div', { class: 'seg', role: 'group', 'aria-label': it.id + ' 답' });
+    for (const [v, label] of CHOICES) {
+      const b = el('button', { 'data-v': v, 'aria-pressed': String(a.decision === v), text: label });
+      if (!canWrite && db) b.disabled = true;
+      b.addEventListener('click', () => {
+        const next = answers[it.id]?.decision === v ? null : v;
+        for (const x of seg.children) x.setAttribute('aria-pressed', String(x.dataset.v === next));
+        art.dataset.state = next || '';
+        save(it.id, { decision: next }, savedEl);
+      });
+      seg.append(b);
+    }
+    const noteId = 'note-' + it.id, propId = 'prop-' + it.id;
+    const ta = el('textarea', { id: noteId, placeholder: '메모 (이유 · 확인할 사람 · 다른 값)', 'aria-label': it.id + ' 메모' });
+    ta.value = a.note || '';
+    const pin = el('input', { id: propId, placeholder: '고칠 값을 직접 적기 (선택)', 'aria-label': it.id + ' 고칠 값' });
+    pin.value = a.proposed || '';
+    ta.addEventListener('change', () => save(it.id, { note: ta.value }, savedEl));
+    pin.addEventListener('change', () => save(it.id, { proposed: pin.value }, savedEl));
+    if (!canWrite && db) { ta.disabled = true; pin.disabled = true; }
+    const ans = el('div', { class: 'answer' }, seg, el('div', { class: 'note' }, pin, ta, savedEl));
+    art.append(loc, change, why, ans);
+    return art;
+  }
+
+  function render() {
+    const main = $('#main'); main.replaceChildren();
+    let any = false;
+    for (const g of groups) {
+      const all = itemsBy[g.id] || [];
+      const vis = all.filter(match);
+      if (filt.cats.size && !filt.cats.has(g.category)) continue;
+      if (!vis.length && (filt.q || filt.unanswered || filt.medical)) continue;
+      any = true;
+      const n = shown[g.id] || PAGE;
+      const list = el('div', { class: 'items' });
+      for (const it of vis.slice(0, n)) list.append(itemNode(it));
+      const sec = el('section', { class: 'group', id: 'g-' + g.id },
+        el('div', { class: 'ghead' }, el('span', { class: `cat cat-${g.category}`, text: g.category }), el('h2', { text: `${g.id} · ${g.title}` }),
+          el('span', { class: 'count', text: `원천 ${g.count ?? all.length}건 · 항목 ${vis.length}` })),
+        el('div', { class: 'gbody' },
+          g.why ? el('div', {}, el('b', { text: '왜 ' }), g.why) : null,
+          g.verify ? el('div', {}, el('b', { text: '고친 뒤 확인 ' }), g.verify) : null,
+          (g.evidence && g.evidence.length) ? el('div', { class: 'ev', text: '근거 · ' + g.evidence.join(' · ') }) : null),
+        list);
+      if (vis.length > n) sec.append(el('button', { class: 'more', text: `나머지 ${vis.length - n}개 더 보기`, onclick: () => { shown[g.id] = n + PAGE; render(); } }));
+      main.append(sec);
+    }
+    if (!any) main.append(el('div', { class: 'empty', text: '조건에 맞는 항목이 없습니다. 필터를 풀어 보세요.' }));
+    progress();
+  }
+
+  render();
+
+  (async () => {
+    try {
+      db = await window.claude?.use?.('db');
+      if (!db) { $('#status').textContent = '답변 저장소를 쓸 수 없습니다. 로그인한 상태로 열면 답을 저장할 수 있습니다.'; render(); return; }
+      const user = await window.claude.use('user');
+      const c = user?.can ? await user.can('data.write') : null;
+      canWrite = c !== false;
+      const snap = await db.collection('answers').get();
+      for (const d of snap.docs) answers[d.id] = d.data() || {};
+      $('#status').textContent = canWrite ? `답 ${Object.values(answers).filter(x => x.decision).length}개 불러옴 · 바꾸면 바로 저장됩니다` : '읽기 전용으로 열었습니다';
+      render();
+    } catch (e) {
+      $('#status').textContent = '답변을 불러오지 못했습니다. 새로고침해 주세요.';
+    }
+  })();
+})();
+</script>

@@ -1,0 +1,21 @@
+{
+  "version": "silver-issue-review/2",
+  "review_fingerprint": "e6f4dad3b8556b429c657ceff1667384e3771c6182abcbfc419eab61a9147971",
+  "candidate_output_fingerprint": "fb3a0e58493189e508764ebebd947b7e0920a948b4fdb3af8b0cdfe8685eebe1",
+  "exported_at": "2026-11-03T08:17:37.170Z",
+  "purpose": "사용자가 직접 논의하여 정한 후속 수정 방향. 정본·서비스 적용 이력이나 임상 승인 아님",
+  "decisions": [
+    {
+      "issue_id": "scope-hyperhidrosis",
+      "field_ids": [
+        "field:1f60b3066a6a260c08e1835060b5f83a5411639c29a901bc38cd7063028cb3f9",
+        "field:99654a4e72ab91beed8f9f7112be7a520ff2843dd56420b9ebbf3f76db0b72f9",
+        "field:e1f426efc65084e89138ee8ded68565149285d30679dcf83f7e3e5d6d9fb231c",
+        "field:f7c355dbc5709a33c475a45be0f86dc3d87bf7fe11cdf27f4836bc1e7d4e100e"
+      ],
+      "choice": "comment",
+      "note": "사용자 지시: “보톡스를 턱에 맞을 때 얘기 아니야 그럼?” → 사각턱 교근 반복 주사에 관한 내용이며 1.5% 수치는 출처 확인이 필요하다는 설명 후 “그렇게 넣어”. 결정: 다한증(M1-3-7)의 교근 섬유화 문장은 다한증 안전정보 적용에서 제외하고, 사각턱 보톡스(unit_procedure:U5-006, Masseter/교근) 범위의 설명으로 정리한다. 제안 문구: “교근에 보툴리눔 독소를 반복 주사한 뒤 교근 섬유화가 보고된 바 있음.” 1.5% 수치는 출처 미확인으로 본문에서 분리·보류한다. 원문은 출처 추적용으로 보존한다. 연구: https://pubmed.ncbi.nlm.nih.gov/37942679/ . 원문 작성자가 이 연구를 사용했는지와 1.5%의 출처는 미확인. 이 결정은 교근 섬유화 문장에 한정하며 다한증 행의 나머지 안전정보·사후관리 문장 적용을 승인하지 않는다. 현재 저장은 검토 방향 기록이며 고정 후보판·원문·기존 실버·골드·앱에 아직 적용하지 않았다.",
+      "decided_at": "2026-11-03T08:17:37.170Z"
+    }
+  ]
+}

@@ -1,0 +1,342 @@
+{
+  "total": 20,
+  "rejected": 20,
+  "probes": [
+    {
+      "probe": "language_family_erased",
+      "rejected": true,
+      "failed_checks": [
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        }
+      ],
+      "id_integrity_only_rejection": false
+    },
+    {
+      "probe": "language_application_promoted",
+      "rejected": true,
+      "failed_checks": [
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        }
+      ],
+      "id_integrity_only_rejection": false
+    },
+    {
+      "probe": "language_predicate_changed",
+      "rejected": true,
+      "failed_checks": [
+        {
+          "check": "language_predicate",
+          "pass": false
+        }
+      ],
+      "id_integrity_only_rejection": false
+    },
+    {
+      "probe": "language_variant_wrong_parent",
+      "rejected": true,
+      "failed_checks": [
+        {
+          "check": "language_variant_parent",
+          "pass": false
+        }
+      ],
+      "id_integrity_only_rejection": false
+    },
+    {
+      "probe": "combo_container_erased",
+      "rejected": true,
+      "failed_checks": [
+        {
+          "check": "combo_container_scope",
+          "pass": false
+        },
+        {
+          "check": "combo_unknown_scope_preserved",
+          "pass": false
+        }
+      ],
+      "id_integrity_only_rejection": false
+    },
+    {
+      "probe": "timing_zero_days_invented",
+      "rejected": true,
+      "failed_checks": [
+        {
+          "check": "timing_interval_no_numeric_invention",
+          "pass": false
+        }
+      ],
+      "id_integrity_only_rejection": false
+    },
+    {
+      "probe": "nary_direction_invented",
+      "rejected": true,
+      "failed_checks": [
+        {
+          "check": "combo_direction_unpromoted",
+          "pass": false
+        }
+      ],
+      "id_integrity_only_rejection": false
+    },
+    {
+      "probe": "exact_selection_erased",
+      "rejected": true,
+      "failed_checks": [
+        {
+          "check": "exact_identity_selection_preserved",
+          "pass": false,
+          "mapping": "map:066aeb4e22c29efc437818acb632b078a1f15754c2a66b2aef4db4ef5610f1a6"
+        },
+        {
+          "check": "positive_exact_identity8",
+          "pass": false
+        }
+      ],
+      "id_integrity_only_rejection": false
+    },
+    {
+      "probe": "exact_all_held",
+      "rejected": true,
+      "failed_checks": [
+        {
+          "check": "exact_identity_selection_preserved",
+          "pass": false,
+          "mapping": "map:c6508c214d4c45e7dda47acb15f9aaed764162628feb4754359dcb0face2d0ee"
+        },
+        {
+          "check": "exact_identity_selection_preserved",
+          "pass": false,
+          "mapping": "map:cbb54f6d351380453941eabbd749b12e9ff8984118f84c1933e39af597778b60"
+        },
+        {
+          "check": "exact_identity_selection_preserved",
+          "pass": false,
+          "mapping": "map:0e3d7e3b4adde7977f5eaf68fde6586a7bb317cbea23ff8c7549b0d62589102b"
+        },
+        {
+          "check": "exact_identity_selection_preserved",
+          "pass": false,
+          "mapping": "map:cbac8f5b638947300dfcfbdcd4157977b1046da943fc15b61dc901f98df86c1e"
+        },
+        {
+          "check": "exact_identity_selection_preserved",
+          "pass": false,
+          "mapping": "map:6e4182fbfa1190e74a709d3de203b1dc44ea86f4680a17966ade32c2c00f7c50"
+        },
+        {
+          "check": "exact_identity_selection_preserved",
+          "pass": false,
+          "mapping": "map:66aecf73d314e6361707306b609eb1f0d198a936af33e6419e536e3914d9179e"
+        },
+        {
+          "check": "exact_identity_selection_preserved",
+          "pass": false,
+          "mapping": "map:f987c9e1a871005f91d9be851817674ade3eda9b0974a8921e87667bf6077678"
+        },
+        {
+          "check": "exact_identity_selection_preserved",
+          "pass": false,
+          "mapping": "map:f792aff87a061042528325b15ed8e36616f3eecb699ec18031b00f278c55994e"
+        },
+        {
+          "check": "positive_exact_identity8",
+          "pass": false
+        },
+        {
+          "check": "endpoint_a_M1_b_M2",
+          "pass": false
+        },
+        {
+          "check": "duration_source_identity_mapping",
+          "pass": false
+        },
+        {
+          "check": "duration_source_identity_mapping",
+          "pass": false
+        },
+        {
+          "check": "projection_identity_lookup_independent",
+          "pass": false
+        }
+      ],
+      "id_integrity_only_rejection": false
+    },
+    {
+      "probe": "rule_version_changed",
+      "rejected": true,
+      "failed_checks": [
+        {
+          "check": "mapping_rule_id_version_hash",
+          "pass": false
+        }
+      ],
+      "id_integrity_only_rejection": false
+    },
+    {
+      "probe": "rule_id_changed",
+      "rejected": true,
+      "failed_checks": [
+        {
+          "check": "mapping_rule_id_version_hash",
+          "pass": false
+        },
+        {
+          "check": "existing_mapping_rule",
+          "pass": false
+        }
+      ],
+      "id_integrity_only_rejection": false
+    },
+    {
+      "probe": "rule_hash_changed",
+      "rejected": true,
+      "failed_checks": [
+        {
+          "check": "mapping_rule_id_version_hash",
+          "pass": false
+        },
+        {
+          "check": "existing_mapping_rule",
+          "pass": false
+        }
+      ],
+      "id_integrity_only_rejection": false
+    },
+    {
+      "probe": "native_id_changed",
+      "rejected": true,
+      "failed_checks": [
+        {
+          "check": "source_native_id",
+          "pass": false,
+          "source": "src:b8982cdd704f84ba90ca12775844725bab3e676552f219c8712602044b0681f9"
+        }
+      ],
+      "id_integrity_only_rejection": false
+    },
+    {
+      "probe": "raw_snapshot_as_generated",
+      "rejected": true,
+      "failed_checks": [
+        {
+          "check": "snapshot_domain_kind",
+          "pass": false
+        }
+      ],
+      "id_integrity_only_rejection": false
+    },
+    {
+      "probe": "human_without_reviewer",
+      "rejected": true,
+      "failed_checks": [
+        {
+          "check": "decision_authority_source",
+          "pass": false
+        }
+      ],
+      "id_integrity_only_rejection": false
+    },
+    {
+      "probe": "human_with_invented_reviewer",
+      "rejected": true,
+      "failed_checks": [
+        {
+          "check": "decision_authority_source",
+          "pass": false
+        },
+        {
+          "check": "no_fabricated_reviewer",
+          "pass": false
+        }
+      ],
+      "id_integrity_only_rejection": false
+    },
+    {
+      "probe": "decision_existing_wrong_target",
+      "rejected": true,
+      "failed_checks": [
+        {
+          "check": "decision_authority_source",
+          "pass": false
+        }
+      ],
+      "id_integrity_only_rejection": false
+    },
+    {
+      "probe": "override_existing_wrong_scope",
+      "rejected": true,
+      "failed_checks": [
+        {
+          "check": "override_scope_matches_claim",
+          "pass": false
+        },
+        {
+          "check": "override_M4_scope_metadata",
+          "pass": false
+        }
+      ],
+      "id_integrity_only_rejection": false
+    },
+    {
+      "probe": "case_existing_wrong_attachment",
+      "rejected": true,
+      "failed_checks": [
+        {
+          "check": "case_attachment_consistency",
+          "pass": false,
+          "case": "PATIENT-LANG-01"
+        }
+      ],
+      "id_integrity_only_rejection": false
+    },
+    {
+      "probe": "witness_real_refs_wrong_target",
+      "rejected": true,
+      "failed_checks": [
+        {
+          "check": "witness_mapping_source_target",
+          "pass": false
+        }
+      ],
+      "id_integrity_only_rejection": false
+    }
+  ],
+  "scope": "20 additional executions, deliberately overlapping historical semantic probes; all normalized revision IDs recalculated before validation."
+}

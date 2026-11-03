@@ -1,0 +1,5716 @@
+{
+ "version": "silver-questions v3.1 2026-10-30",
+ "note": "1~8단계 질문 — v2 뒤 더함: 8단계 Q8-19(부작용 예외 9 · 시맨틱 U2) · 7단계 Q7-03(흉터 필러 · R26) · 7단계 R27 원천 수정 후보(갈래 목록 복사) · 닫힌 것 뺌 · 10-30 충돌 하나로: 8단계 충돌 질문은 진짜 반대(R5)만(Q8-1 대기 · Q8-7 등급은 규칙으로 정해 뺌 · Q8-20 묶음 원칙 더함)",
+ "inputs": [
+  "step1-origin-questions.md",
+  "step2-origin-questions.md",
+  "step3-sites.json doctor_questions",
+  "step5-origin-questions.md",
+  "step6-origin-questions.md",
+  "step7-origin-questions.md",
+  "step8-origin-questions.md",
+  "step8-relations.json origin_questions · conflicts · conditions.grade_conflicts · conditions.wait_conflicts",
+  "_RESUME.md §2",
+  "step7-concerns.json origin_questions · source_fix_candidates(R27)",
+  "step7-source-fix.md",
+  "semantic.json attributes_not_nodes · reading.side_effects"
+ ],
+ "db": {
+  "collection": "answers",
+  "doc_id": "항목 id(v1 과 같음 — 저장된 답이 이어짐)",
+  "fields": [
+   "tab",
+   "choice",
+   "value",
+   "note",
+   "at"
+  ],
+  "choice": {
+   "doctor": "ok | fix | unknown (8단계 「어느 단위 시술」 = answered | unknown)",
+   "doctor_conflict": "choice = conflict · value = {충돌 id: A | B | C … | both | unknown} · note = 메모 · 직접 입력",
+   "hospital": "answered"
+  }
+ },
+ "counts": {
+  "doctor": 51,
+  "hospital": 154,
+  "added_v3": {
+   "doctor": 2,
+   "hospital": 25
+  },
+  "removed_v3": 2,
+  "removed_total": 90,
+  "added_step8": {
+   "doctor": 14,
+   "hospital": 4
+  }
+ },
+ "removed_ids": [
+  "s7-Q7-03",
+  "s7-Q7-04",
+  "s7-Q7-05",
+  "s7-Q7-06",
+  "s7-Q7-07",
+  "s7-Q7-08",
+  "s7-Q7-09",
+  "s7-Q7-10",
+  "s7-Q7-11",
+  "s7-Q7-12",
+  "s7-Q7-13",
+  "s7-Q7-14",
+  "s7-Q7-15",
+  "s7-Q7-16",
+  "s7-Q7-17",
+  "s7-Q7-18",
+  "s7-Q7-19",
+  "s7-Q7-20",
+  "s7-Q7-21",
+  "s7-Q7-22",
+  "s7-Q7-23",
+  "s7-Q7-24",
+  "s7-Q7-25",
+  "s7-Q7-26",
+  "s7-Q7-27",
+  "s7-Q7-28",
+  "s7-Q7-29",
+  "s7-Q7-30",
+  "s7-Q7-31",
+  "s7-Q7-32",
+  "s7-Q7-33",
+  "s7-Q7-34",
+  "s7-Q7-35",
+  "s7-Q7-36",
+  "s7-Q7-37",
+  "s7-Q7-38",
+  "s7-Q7-39",
+  "s7-Q7-40",
+  "s7-Q7-41",
+  "s7-Q7-42",
+  "s7-Q7-43",
+  "s7-Q7-44",
+  "s7-Q7-45",
+  "s7-Q7-46",
+  "s7-Q7-47",
+  "s7-Q7-48",
+  "s7-Q7-49",
+  "s7-Q7-50",
+  "s7-Q7-51",
+  "s7-Q7-52",
+  "s7-Q7-53",
+  "s7-Q7-54",
+  "s7-Q7-55",
+  "s7-Q7-56",
+  "s7-Q7-57",
+  "s7-Q7-58",
+  "s7-Q7-59",
+  "s7-Q7-60",
+  "s7-Q7-61",
+  "s7-Q7-62",
+  "s7-Q7-63",
+  "s7-Q7-64",
+  "s7-Q7-65",
+  "s7-Q7-66",
+  "s7-Q7-67",
+  "s7-Q7-68",
+  "s7-Q7-69",
+  "s7-Q7-70",
+  "s7-Q7-71",
+  "s7-Q7-72",
+  "s7-Q7-73",
+  "s7-Q7-74",
+  "s7-Q7-75",
+  "s7-Q7-76",
+  "s7-Q7-77",
+  "s7-Q7-78",
+  "s7-Q7-79",
+  "s7-Q7-80",
+  "s7-Q7-81",
+  "s7-Q7-82",
+  "s7-Q7-83",
+  "s7-Q7-84",
+  "s7-Q7-85",
+  "s7-Q7-86",
+  "s7-Q7-87",
+  "s7-Q7-88",
+  "s7-Q7-89",
+  "s7-Q7-90",
+  "s8-Q8-1",
+  "s8-Q8-7"
+ ],
+ "removed": [
+  {
+   "id": "s7-Q7-03",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-04",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-05",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-06",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-07",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-08",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-09",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-10",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-11",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-12",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-13",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-14",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-15",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-16",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-17",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-18",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-19",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-20",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-21",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-22",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-23",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-24",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-25",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-26",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-27",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-28",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-29",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-30",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-31",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-32",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-33",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-34",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-35",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-36",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-37",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-38",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-39",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-40",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-41",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-42",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-43",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-44",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-45",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-46",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-47",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-48",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-49",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-50",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-51",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-52",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-53",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-54",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-55",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-56",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-57",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-58",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-59",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-60",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-61",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-62",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-63",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-64",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-65",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-66",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-67",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-68",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-69",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-70",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-71",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-72",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-73",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-74",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-75",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-76",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-77",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-78",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-79",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-80",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-81",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-82",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-83",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-84",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-85",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-86",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-87",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-88",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-89",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s7-Q7-90",
+   "why": "7단계 사람 확인 게이트 — 규칙(R12~R19)으로 닫힘 · 남은 13 은 10-29 「추천대로」(_RESUME §2) · step7-origin-questions.md 지금 판에 사람 질문 0"
+  },
+  {
+   "id": "s8-Q8-1",
+   "why": "원 id Q8-1 — 10-30 충돌 하나로 규칙으로 정함(진짜 반대 아님): R6(더 긴 쪽) + R1(깊이 · 박리로 나눔) — 얕은 · 비박리 6개월 · 박리 · 심부 12개월 · 조건 모름 12개월(conditions.wait_resolved WR8-C-ISO)",
+   "when": "v3 2026-10-30"
+  },
+  {
+   "id": "s8-Q8-7",
+   "why": "원 id Q8-7 — 10-30 충돌 하나로 규칙으로 정함(진짜 반대 아님): R2(더 엄격한 쪽) — 등급 충돌 76 전부 conditions.resolved 로 하나(덜 엄격한 원문은 alternatives)",
+   "when": "v3 2026-10-30"
+  }
+ ],
+ "kept_check": {
+  "what": "v2 항목 178(의료진 · 병원)을 지금 판 원천 질문 파일과 대조 — 닫힌 것 2",
+  "basis": [
+   "항목마다 원 id 가 지금 판 1 · 2 · 5 · 6단계 원천 질문 md · step3-sites.json doctor_questions · step7-concerns.json · step8-relations.json origin_questions 에 남아 있으면 열림(남은 항목 id 그대로)",
+   "5 · 7 · 8단계 원천 질문 파일 10-30 갱신 — 5단계 24 id 전부 v2 항목에 있음 · 7단계 Q7-03 새로 · 8단계 Q8-19 새로(Q8-1~18 문구 · 걸린 행은 지금 판으로 다시 씀)",
+   "_RESUME §2 10-30 「R26 흉터 필러 · 튼살 = 계열만」은 추천값만 정함 — step7 Q7-03 은 지금 판에 남아 질문 유지",
+   "_RESUME §2 10-30 「엑셀V 동의어 + U5-138 KTP」 — step8 Q8-10(M8-혈관레이저 = 엑셀V · 브이빔)은 지금 판 origin_questions 에 남아 유지",
+   "step7-source-fix.md 「계열 코드 어긋남」 13 은 R7(이름 따름)으로 이미 정한 원천 수정 기록 — 질문으로 더하지 않음 · R27 갈래 목록 복사 60줄만 갈래마다 1 질문"
+  ]
+ },
+ "conflict_options": {
+  "sides": "원문 값(A · B · C …)",
+  "both": "조건별로 둘 다 맞음(메모)",
+  "unknown": "모름"
+ },
+ "tabs": [
+  {
+   "key": "doctor",
+   "title": "의료진",
+   "who": "의료진에게",
+   "items": [
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "임신선|복부"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 근거 약 문자열(B4)"
+     ],
+     "id": "s3-임신선_복부",
+     "group": "부위 — 근거 약 동의어",
+     "q": "「임신선」 을(를) 부위 「복부」 에 둔다",
+     "rec": "복부",
+     "basis": [
+      "근거 약 문자열(B4) — 원천에 이 말이 부위로 적힌 근거가 약하다 · 값은 넣어 둠"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "불독살|불독살"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 근거 약 문자열(B4)"
+     ],
+     "id": "s3-불독살_불독살",
+     "group": "부위 — 근거 약 동의어",
+     "q": "「불독살」 을(를) 부위 「턱선」 에 둔다",
+     "rec": "턱선",
+     "basis": [
+      "근거 약 문자열(B4) — 원천에 이 말이 부위로 적힌 근거가 약하다 · 값은 넣어 둠"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "팔뚝|팔뚝"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 근거 약 문자열(B4)"
+     ],
+     "id": "s3-팔뚝_팔뚝",
+     "group": "부위 — 근거 약 동의어",
+     "q": "「팔뚝」 을(를) 부위 「팔뚝」 에 둔다",
+     "rec": "팔뚝",
+     "basis": [
+      "근거 약 문자열(B4) — 원천에 이 말이 부위로 적힌 근거가 약하다 · 값은 넣어 둠"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "하관|하관"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 근거 약 문자열(B4)"
+     ],
+     "id": "s3-하관_하관",
+     "group": "부위 — 근거 약 동의어",
+     "q": "「하관」 을(를) 부위 「턱(묶음)」 에 둔다",
+     "rec": "턱(묶음)",
+     "basis": [
+      "근거 약 문자열(B4) — 원천에 이 말이 부위로 적힌 근거가 약하다 · 값은 넣어 둠"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "site.forehead-group"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 해부학 이름 — 근거 약(W5)"
+     ],
+     "id": "s3-site.forehead-group",
+     "group": "부위 — 해부학 이름 후보(근거 약)",
+     "q": "「이마(묶음)」 의 해부학 이름",
+     "rec": "이마부위 · Frontal region (regio frontalis)",
+     "basis": [
+      "근거: Terminologia Anatomica 2판(FIPAT 2019) https://fipat.library.dal.ca/ta2/ · 대한해부학회 『해부학용어』 6판(2014) — 레포에 묶음 이름 없음",
+      "수준: 약",
+      "노드: site.forehead-group"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "site.lateral-canthus"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 해부학 이름 — 근거 약(W5)"
+     ],
+     "id": "s3-site.lateral-canthus",
+     "group": "부위 — 해부학 이름 후보(근거 약)",
+     "q": "「눈가」 의 해부학 이름",
+     "rec": "가쪽눈구석 주변 · Lateral canthal area (crow's feet)",
+     "basis": [
+      "근거: 레포 zones[periorbital].botox_specific.target_muscle 「안륜근 (Orbicularis oculi) — 까마귀발」 · taxonomy indications 「눈가 주름(crow's feet)」 / 해부 이름 Terminologia Anatomica 2판(FIPAT 2019) https://fipat.library.dal.ca/ta2/(angulus oculi lateralis)",
+      "수준: 약",
+      "노드: site.lateral-canthus"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "site.nose"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 해부학 이름 — 근거 약(W5)"
+     ],
+     "id": "s3-site.nose",
+     "group": "부위 — 해부학 이름 후보(근거 약)",
+     "q": "「코」 의 해부학 이름",
+     "rec": "바깥코 · External nose",
+     "basis": [
+      "근거: Terminologia Anatomica 2판(FIPAT 2019) https://fipat.library.dal.ca/ta2/(nasus externus) — 레포에 좁은 「코」의 해부 이름 따로 없음",
+      "수준: 약",
+      "노드: site.nose"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "site.gingiva"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 해부학 이름 — 근거 약(W5)"
+     ],
+     "id": "s3-site.gingiva",
+     "group": "부위 — 해부학 이름 후보(근거 약)",
+     "q": "「잇몸」 의 해부학 이름",
+     "rec": "잇몸 · Gingiva (gummy smile 부위)",
+     "basis": [
+      "근거: 레포 literature-evidence.json M1 effects 「manages gummy smile」(PMID 33714246) — 해부 이름 자체는 Terminologia Anatomica 2판(FIPAT 2019) https://fipat.library.dal.ca/ta2/",
+      "수준: 약",
+      "노드: site.gingiva"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "site.chin-group"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 해부학 이름 — 근거 약(W5)"
+     ],
+     "id": "s3-site.chin-group",
+     "group": "부위 — 해부학 이름 후보(근거 약)",
+     "q": "「턱(묶음)」 의 해부학 이름",
+     "rec": "아래턱부위 · Mandibular region (lower jaw)",
+     "basis": [
+      "근거: Terminologia Anatomica 2판(FIPAT 2019) https://fipat.library.dal.ca/ta2/(mandibula) — 레포 「하악」은 뼈 이름",
+      "수준: 약",
+      "노드: site.chin-group"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "site.masseter"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 해부학 이름 — 근거 약(W5)"
+     ],
+     "id": "s3-site.masseter",
+     "group": "부위 — 해부학 이름 후보(근거 약)",
+     "q": "「사각턱」 의 해부학 이름",
+     "rec": "(KMA 표제어 없음 — TA2 이름만) · Parotideomasseteric region (regio parotideomasseterica)",
+     "basis": [
+      "근거: FIPAT TA2 Part 1(https://cdn.dal.ca/content/dam/dalhousie/pdf/library/FIPAT/TA2/FIPAT-TA2-Part-1.pdf) 214 Regio parotideomasseterica — 귀밑 · 아래턱 각 바깥 겉자리. KMA 의학용어 6.1판(term.kma.org, 2026-10-28 조회) 「parotideomasseteric」 등록 없음 → 한글 이름 비움",
+      "수준: 약",
+      "노드: site.masseter"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "site.submental"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 해부학 이름 — 근거 약(W5)"
+     ],
+     "id": "s3-site.submental",
+     "group": "부위 — 해부학 이름 후보(근거 약)",
+     "q": "「턱밑」 의 해부학 이름",
+     "rec": "턱끝밑부위 · Submental region (regio submentalis)",
+     "basis": [
+      "근거: Terminologia Anatomica 2판(FIPAT 2019) https://fipat.library.dal.ca/ta2/ — 레포는 「턱밑 · 턱 아래 · under the chin」(구어)뿐",
+      "수준: 약",
+      "노드: site.submental"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "site.full-face"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 해부학 이름 — 근거 약(W5)"
+     ],
+     "id": "s3-site.full-face",
+     "group": "부위 — 해부학 이름 후보(근거 약)",
+     "q": "「얼굴 전체」 의 해부학 이름",
+     "rec": "얼굴 전체 · Whole face",
+     "basis": [
+      "근거: 해부 표준 이름 없음(범위 이름) — 레포 「전안면」(complications) · 「안면 전체」",
+      "수준: 약",
+      "노드: site.full-face"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "site.neck"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 해부학 이름 — 근거 약(W5)"
+     ],
+     "id": "s3-site.neck",
+     "group": "부위 — 해부학 이름 후보(근거 약)",
+     "q": "「목」 의 해부학 이름",
+     "rec": "목 앞부위(앞목) — 경부 · Anterior region of neck (regio cervicalis anterior)",
+     "basis": [
+      "근거: FIPAT TA2 Part 1(https://cdn.dal.ca/content/dam/dalhousie/pdf/library/FIPAT/TA2/FIPAT-TA2-Part-1.pdf) 229 Regio cervicalis anterior · KMA 의학용어 6.1판(term.kma.org, 2026-10-28 조회) neck = 목, 경부 · anterior triangle of neck = 앞목삼각. 「앞목부위」는 KMA 등록 없음 — 레포 원천에 이 이름 없음(수준 범례: 약 = 레포 밖 표준 용어집만)",
+      "수준: 약",
+      "노드: site.neck"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "site.trapezius"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 해부학 이름 — 근거 약(W5)"
+     ],
+     "id": "s3-site.trapezius",
+     "group": "부위 — 해부학 이름 후보(근거 약)",
+     "q": "「승모근」 의 해부학 이름",
+     "rec": "목덜미부위 · 어깨 · Posterior region of neck (regio cervicalis posterior · nucha) · shoulder (omos)",
+     "basis": [
+      "근거: FIPAT TA2 Part 1(https://cdn.dal.ca/content/dam/dalhousie/pdf/library/FIPAT/TA2/FIPAT-TA2-Part-1.pdf) 243 Regio cervicalis posterior · 139 Omos · KMA 의학용어 6.1판(term.kma.org, 2026-10-28 조회) nuchal region = 목덜미부위 · shoulder = 어깨, 견갑. 「승모근 자리 = 목덜미 아래 ~ 어깨선」 대응은 표준 목록에 없어 약",
+      "수준: 약",
+      "노드: site.trapezius"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "site.body"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 해부학 이름 — 근거 약(W5)"
+     ],
+     "id": "s3-site.body",
+     "group": "부위 — 해부학 이름 후보(근거 약)",
+     "q": "「바디」 의 해부학 이름",
+     "rec": "몸통 · 팔다리 · Body (trunk · limbs)",
+     "basis": [
+      "근거: 해부 표준 단일 이름 없음(묶음) — 레포 「body」는 부위 뜻으로 안 쓰임",
+      "수준: 약",
+      "노드: site.body"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "site.axilla"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 해부학 이름 — 근거 약(W5)"
+     ],
+     "id": "s3-site.axilla",
+     "group": "부위 — 해부학 이름 후보(근거 약)",
+     "q": "「겨드랑이」 의 해부학 이름",
+     "rec": "겨드랑부위 · Axilla (regio axillaris)",
+     "basis": [
+      "근거: Terminologia Anatomica 2판(FIPAT 2019) https://fipat.library.dal.ca/ta2/ · 대한해부학회 『해부학용어』 6판(2014)",
+      "수준: 약",
+      "노드: site.axilla"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "site.upper-arm"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 해부학 이름 — 근거 약(W5)"
+     ],
+     "id": "s3-site.upper-arm",
+     "group": "부위 — 해부학 이름 후보(근거 약)",
+     "q": "「팔뚝」 의 해부학 이름",
+     "rec": "위팔 뒤부위 · Posterior upper arm (regio brachii posterior)",
+     "basis": [
+      "근거: Terminologia Anatomica 2판(FIPAT 2019) https://fipat.library.dal.ca/ta2/ — 「팔뚝」은 표준국어대사전에선 아래팔 뜻도 있다. 원천 문맥(쿨스컬프팅 · EMS · 바디 쳐짐)은 위팔 뒤",
+      "수준: 약",
+      "노드: site.upper-arm"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "site.thigh"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 해부학 이름 — 근거 약(W5)"
+     ],
+     "id": "s3-site.thigh",
+     "group": "부위 — 해부학 이름 후보(근거 약)",
+     "q": "「허벅지」 의 해부학 이름",
+     "rec": "넙다리부위 · Thigh (regio femoris)",
+     "basis": [
+      "근거: Terminologia Anatomica 2판(FIPAT 2019) https://fipat.library.dal.ca/ta2/ · 대한해부학회 『해부학용어』 6판(2014)",
+      "수준: 약",
+      "노드: site.thigh"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "site.calf"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 해부학 이름 — 근거 약(W5)"
+     ],
+     "id": "s3-site.calf",
+     "group": "부위 — 해부학 이름 후보(근거 약)",
+     "q": "「종아리」 의 해부학 이름",
+     "rec": "장딴지(종아리) · Calf (sura) · sural region (regio surae)",
+     "basis": [
+      "근거: FIPAT TA2 Part 1(https://cdn.dal.ca/content/dam/dalhousie/pdf/library/FIPAT/TA2/FIPAT-TA2-Part-1.pdf) 164 Sura · 328 Regio surae · KMA 의학용어 6.1판(term.kma.org, 2026-10-28 조회) calf = 장딴지. 「종아리부위」는 KMA 등록 없음 — 레포 원천에 이 이름 없음(수준 범례: 약 = 레포 밖 표준 용어집만)",
+      "수준: 약",
+      "노드: site.calf"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "site.whole-body"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 해부학 이름 — 근거 약(W5)"
+     ],
+     "id": "s3-site.whole-body",
+     "group": "부위 — 해부학 이름 후보(근거 약)",
+     "q": "「전신」 의 해부학 이름",
+     "rec": "온몸 피부 · Whole body surface",
+     "basis": [
+      "근거: 해부 표준 이름 없음(범위 이름)",
+      "수준: 약",
+      "노드: site.whole-body"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "site.hand"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 해부학 이름 — 근거 약(W5)"
+     ],
+     "id": "s3-site.hand",
+     "group": "부위 — 해부학 이름 후보(근거 약)",
+     "q": "「손」 의 해부학 이름",
+     "rec": "손 · Hand (manus)",
+     "basis": [
+      "근거: Terminologia Anatomica 2판(FIPAT 2019) https://fipat.library.dal.ca/ta2/ · 대한해부학회 『해부학용어』 6판(2014)",
+      "수준: 약",
+      "노드: site.hand"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "site.foot"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 해부학 이름 — 근거 약(W5)"
+     ],
+     "id": "s3-site.foot",
+     "group": "부위 — 해부학 이름 후보(근거 약)",
+     "q": "「발」 의 해부학 이름",
+     "rec": "발 · Foot (pes)",
+     "basis": [
+      "근거: Terminologia Anatomica 2판(FIPAT 2019) https://fipat.library.dal.ca/ta2/ · 대한해부학회 『해부학용어』 6판(2014)",
+      "수준: 약",
+      "노드: site.foot"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "site.bikini"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 해부학 이름 — 근거 약(W5)"
+     ],
+     "id": "s3-site.bikini",
+     "group": "부위 — 해부학 이름 후보(근거 약)",
+     "q": "「비키니」 의 해부학 이름",
+     "rec": "샅굴부위 · 두덩부위 · Inguinal · pubic region (regio inguinalis · regio pubica)",
+     "basis": [
+      "근거: Terminologia Anatomica 2판(FIPAT 2019) https://fipat.library.dal.ca/ta2/ — 「비키니」는 제모 상담 용어",
+      "수준: 약",
+      "노드: site.bikini"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "site.buttock"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 해부학 이름 — 근거 약(W5)"
+     ],
+     "id": "s3-site.buttock",
+     "group": "부위 — 해부학 이름 후보(근거 약)",
+     "q": "「힙」 의 해부학 이름",
+     "rec": "볼기부위 · Gluteal region (regio glutealis)",
+     "basis": [
+      "근거: Terminologia Anatomica 2판(FIPAT 2019) https://fipat.library.dal.ca/ta2/ · 대한해부학회 『해부학용어』 6판(2014)",
+      "수준: 약",
+      "노드: site.buttock"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "site.back"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 해부학 이름 — 근거 약(W5)"
+     ],
+     "id": "s3-site.back",
+     "group": "부위 — 해부학 이름 후보(근거 약)",
+     "q": "「등」 의 해부학 이름",
+     "rec": "등부위 · Back (dorsum · regiones dorsi)",
+     "basis": [
+      "근거: Terminologia Anatomica 2판(FIPAT 2019) https://fipat.library.dal.ca/ta2/ · 대한해부학회 『해부학용어』 6판(2014)",
+      "수준: 약",
+      "노드: site.back"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "site.flank"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 해부학 이름 — 근거 약(W5)"
+     ],
+     "id": "s3-site.flank",
+     "group": "부위 — 해부학 이름 후보(근거 약)",
+     "q": "「옆구리」 의 해부학 이름",
+     "rec": "옆구리 · Flank (regio lateralis abdominis)",
+     "basis": [
+      "근거: Terminologia Anatomica 2판(FIPAT 2019) https://fipat.library.dal.ca/ta2/ — 레포 영문 없음(「러브핸들」 구어)",
+      "수준: 약",
+      "노드: site.flank"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "site.arm"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 해부학 이름 — 근거 약(W5)"
+     ],
+     "id": "s3-site.arm",
+     "group": "부위 — 해부학 이름 후보(근거 약)",
+     "q": "「팔」 의 해부학 이름",
+     "rec": "팔 · Upper limb (membrum superius)",
+     "basis": [
+      "근거: Terminologia Anatomica 2판(FIPAT 2019) https://fipat.library.dal.ca/ta2/ · 대한해부학회 『해부학용어』 6판(2014)",
+      "수준: 약",
+      "노드: site.arm"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "site.chest"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 해부학 이름 — 근거 약(W5)"
+     ],
+     "id": "s3-site.chest",
+     "group": "부위 — 해부학 이름 후보(근거 약)",
+     "q": "「가슴」 의 해부학 이름",
+     "rec": "가슴부위 · Chest (regio pectoralis) · breast (mamma)",
+     "basis": [
+      "근거: Terminologia Anatomica 2판(FIPAT 2019) https://fipat.library.dal.ca/ta2/",
+      "수준: 약",
+      "노드: site.chest"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "site.beard"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 해부학 이름 — 근거 약(W5)"
+     ],
+     "id": "s3-site.beard",
+     "group": "부위 — 해부학 이름 후보(근거 약)",
+     "q": "「수염」 의 해부학 이름",
+     "rec": "수염 자리 · Beard area",
+     "basis": [
+      "근거: 해부 표준 이름 없음(제모 상담 용어)",
+      "수준: 약",
+      "노드: site.beard"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "site.sideburn"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 해부학 이름 — 근거 약(W5)"
+     ],
+     "id": "s3-site.sideburn",
+     "group": "부위 — 해부학 이름 후보(근거 약)",
+     "q": "「구레나룻」 의 해부학 이름",
+     "rec": "귀앞 털 자리 · Sideburn (preauricular) area",
+     "basis": [
+      "근거: 해부 표준 이름 없음(제모 상담 용어)",
+      "수준: 약",
+      "노드: site.sideburn"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "site.philtrum"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 해부학 이름 — 근거 약(W5)"
+     ],
+     "id": "s3-site.philtrum",
+     "group": "부위 — 해부학 이름 후보(근거 약)",
+     "q": "「인중」 의 해부학 이름",
+     "rec": "인중 · Philtrum",
+     "basis": [
+      "근거: Terminologia Anatomica 2판(FIPAT 2019) https://fipat.library.dal.ca/ta2/(philtrum) — 레포에 영문 없음",
+      "수준: 약",
+      "노드: site.philtrum"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "site.eyebrow"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 해부학 이름 — 근거 약(W5)"
+     ],
+     "id": "s3-site.eyebrow",
+     "group": "부위 — 해부학 이름 후보(근거 약)",
+     "q": "「눈썹」 의 해부학 이름",
+     "rec": "눈썹 · Eyebrow (supercilium)",
+     "basis": [
+      "근거: Terminologia Anatomica 2판(FIPAT 2019) https://fipat.library.dal.ca/ta2/ — 레포 「Mephisto sign(눈썹 처짐)」 · 눈썹 처짐 경고",
+      "수준: 약",
+      "노드: site.eyebrow"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "site.marionette"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 해부학 이름 — 근거 약(W5)"
+     ],
+     "id": "s3-site.marionette",
+     "group": "부위 — 해부학 이름 후보(근거 약)",
+     "q": "「마리오네트」 의 해부학 이름",
+     "rec": "입꼬리-턱 주름 자리 · Marionette line (labiomandibular fold)",
+     "basis": [
+      "근거: 레포 extracted.json M7 indications 「마리오네트 라인 (입꼬리에서 턱으로 내려가는 주름)」 — TA 표준 이름 없음(임상 용어)",
+      "수준: 약",
+      "노드: site.marionette"
+     ],
+     "status": "근거 약"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "DZ"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 위험 부위 대응(B9)"
+     ],
+     "id": "s3-DZ",
+     "group": "부위 — 위험 부위 대응",
+     "q": "위험 부위 표(periorbital · nose · cheek · neck)를 묶음 노드에, chin 을 턱끝에 댄다",
+     "rec": "periorbital → 눈가(묶음) · nose → 코(묶음) · cheek → 볼(묶음) · neck → 목(묶음) · chin → 턱끝",
+     "basis": [
+      "forehead → 이마 — 같음 (name_ko · name_en)",
+      "glabella → 미간 — 같음 (name_ko · name_en)",
+      "temple → 관자놀이 — 같음 (name_ko · name_en)",
+      "periorbital → 눈가(묶음) — 묶음 추천(확인 필요 → 근거 있음) (target_muscle 「안륜근 — 까마귀발, 눈밑 주름」 · tissue_data.tear_trough_anatomy · clinical_pearls 「하안검 보톡스」 · vessels 「내안각동맥 — 상하 안검 내측 주행」 — 눈가 · 눈밑 · 눈꺼풀 셋 다)",
+      "nose → 코(묶음) — 묶음 추천(확인 필요 → 근거 있음) (safe_injection_depth 「골막상 (코뼈 부위) 또는 연골막상 (비첨부)」 · vessels 주상동맥(비주) · 외비동맥(비익) · 배비동맥(코등) — 코끝 · 콧등 · 콧망울(새) 모두)",
+      "nasolabial → 팔자 — 같음 (고민 「주름」 뗌(D-07))",
+      "cheek → 볼(묶음) — 묶음 추천(확인 필요 → 근거 있음) (safe_injection_depth 「골막상 (관골부) 또는 피하 (협부)」 · filler_specific 「관골부(malar) … 협부: 피하 캐뉼러」 — 광대 · 볼을 따로 지시)",
+      "lips → 입술 — 같음 + 입꼬리 · 입가 · 인중(새) 관련 (clinical_pearls 「구각(oral commissure)」 · target_muscle 「입가 주름」 · 「상순」)",
+      "chin → 턱끝 — 턱끝 추천(확인 필요 → 근거 있음) (name_en 「Chin (Mentum)」 · safe_injection_depth 「이부 정중앙」 · target_muscle 「이근 (Mentalis)」 · vessels 「턱끝 상방」 — name_ko 「턱」만 넓음)",
+      "jawline → 턱선 — 같음 + 사각턱 관련 (name_en 「Mandibular border」 · target_muscle 「교근 (Masseter) — 사각턱」)",
+      "neck → 목(묶음) — 묶음 추천(확인 필요 → 근거 있음) (target_muscle 「광경근 (Platysma)」(목) + nerves 「부신경 — 승모근, 흉쇄유돌근 운동 — 손상 시 어깨 처짐」(승모근 쪽))"
+     ],
+     "status": "확인 대기"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      3
+     ],
+     "stage_label": "3단계",
+     "orig_ids": [
+      "AN"
+     ],
+     "where": [
+      "step3-sites.json doctor_questions · 해부학 이름(B10)"
+     ],
+     "id": "s3-AN",
+     "group": "부위 — 해부학 이름 후보(근거 강 · 중)",
+     "q": "근거 강 · 중 해부학 이름 후보 24개를 그대로 확정",
+     "rec": "후보 24개 그대로(접은 목록)",
+     "basis": [
+      "얼굴 — 얼굴 · Face (facies) (수준 강)",
+      "이마 — 이마 · Forehead (frons) (수준 강)",
+      "미간 — 미간 · Glabella (수준 강)",
+      "관자놀이 — 관자부위 · Temple / temporal region (regio temporalis) (수준 강)",
+      "눈가(묶음) — 눈확부위 · Periorbital region (regio orbitalis) (수준 강)",
+      "눈밑 — 눈확아래부위 · 눈물고랑 · Infraorbital region · tear trough (수준 강)",
+      "눈꺼풀 — 눈꺼풀 · Eyelid (palpebra) (수준 강)",
+      "코(묶음) — 코 · Nose (nasus) (수준 강)",
+      "코끝 — 코끝 · Tip of nose (apex nasi) · columella (수준 강)",
+      "콧등 — 콧등 · Dorsum of nose (dorsum nasi) (수준 강)",
+      "볼(묶음) — 볼 · Cheek (Malar/Buccal) (수준 강)",
+      "볼 — 볼부위 · Buccal region (regio buccalis) (수준 강)",
+      "광대 — 광대부위 · Zygomatic (malar) region (regio zygomatica) (수준 강)",
+      "입가 — 입부위 · Perioral region (regio oralis) (수준 강)",
+      "팔자 — 코입술고랑 · Nasolabial fold (sulcus nasolabialis) (수준 강)",
+      "입술 — 입술 · Lips (labia oris) (수준 강)",
+      "입꼬리 — 입꼬리 · Angle of mouth / oral commissure (angulus oris) (수준 강)",
+      "턱끝 — 턱끝부위 · Chin (mentum) · mental region (regio mentalis) (수준 강)",
+      "턱선 — (표준 체표 이름 없음 — 상담 용어 「턱선」) · Jawline (수준 중)",
+      "목(묶음) — 목 · Neck (collum) (수준 강)",
+      "두피 — 머리덮개 · Scalp (수준 중)",
+      "복부 — 배부위 · Abdomen (regio abdominalis) (수준 중)",
+      "다리 — 다리 · 하지 · Lower limb (membrum inferius) (수준 중)",
+      "콧망울 — 콧방울 · Ala of nose (ala nasi) (수준 강)"
+     ],
+     "status": "확인 대기"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      5
+     ],
+     "stage_label": "5단계",
+     "orig_ids": [
+      "줄기세포 관절치료"
+     ],
+     "id": "s5-줄기세포_관절치료",
+     "group": "시술 범위",
+     "where": [
+      "step5-origin-questions.md · 의료진 질문"
+     ],
+     "q": "줄기세포 관절치료를 Procedure Hub 시술로 다룰까",
+     "rec": "다루지 않음 — 피부 · 미용 범위 밖, 단위 시술 없이 가격 원문만 보관",
+     "basis": [
+      "줄기세포 관절치료를 Procedure Hub 시술로 다룰지 — 피부 · 미용 시술 범위 밖으로 보아 단위 시술을 세우지 않음 — (시장가) · 지금: 가격 원문만(단위 시술 없음) — S9"
+     ],
+     "status": "추천 제외"
+    },
+    {
+     "tab": "doctor",
+     "stages": [
+      7
+     ],
+     "stage_label": "7단계",
+     "orig_ids": [
+      "Q7-01"
+     ],
+     "id": "s7-Q7-01",
+     "group": "시술 범위",
+     "where": [
+      "step7-concerns.json origin_questions Q7-01 · RC-AN-40대+"
+     ],
+     "q": "「보톡스 풀페이스」(얼굴 전체 보톡스)는 스킨보톡스와 같은 시술인가",
+     "rec": "같은 시술로 봄 — 스킨보톡스(U5-009 · 진피 K01a) 후보로 연결, 확인 표시",
+     "basis": [
+      "「보톡스 풀페이스」 등 얼굴 전체 보톡스가 스킨보톡스(U5-009 · 진피 K01a)와 같은 시술인가 — 답 전까지 후보 + check 표시"
+     ],
+     "status": "확인 대기"
+    },
+    {
+     "id": "s8-Q8-2",
+     "orig_ids": [
+      "Q8-2"
+     ],
+     "stages": [
+      8
+     ],
+     "stage_label": "8단계",
+     "status": "확인 대기",
+     "where": [
+      "step8-origin-questions.md · Q8-2 · 걸린 행 X8-001 (1)"
+     ],
+     "tab": "doctor",
+     "q": "보톡스 ↔ 필러 순서 · 같은 날 — 같은 부위 「보톡스 먼저」(contraindications) · 같은 날 「필러 먼저」(원칙 · 규칙 · 최적화) · 별도 세션 「보톡스 먼저 2주」 — 같은 날 / 별도 세션 / 같은 부위 조건으로 나눠 맞나",
+     "kind": "conflict",
+     "group": "8단계 — 순서 · 같은 날 · 간격 충돌(원문 나란히)",
+     "blocks": [
+      {
+       "id": "X8-001",
+       "title": "순서 — 보툴리눔 톡신(M1) ↔ 성형용 필러(M2) 어느 쪽이 먼저",
+       "sides": [
+        {
+         "k": "A",
+         "label": "보툴리눔 톡신(M1) 먼저",
+         "lines": [
+          "[contraindications.rules] M1↔M2 같은 날 가능",
+          "[treatment-sequence.minimum_intervals] 보톡스 → 필러 (별도 세션)",
+          "[treatment-sequence.principles] 별도 세션 필러+보톡스: 보톡스 먼저 → 2주 후 필러 (보톡스 효과 안정 후 필러 위치 정밀 결정)",
+          "[treatment-optimization.by_concern.sequence] 같은날: 필러→스킨부스터→보톡스. 또는 보톡스 먼저 → 2주 후 필러",
+          "[treatment-optimization.by_concern.sequence] HIFU/RF 먼저 → 보톡스(같은날 가능) → 2주 후 필러 → 스킨부스터",
+          "[problem-combos.riskBenefit] 시술 순서 준수. HIFU→보톡스→필러→스킨부스터. 각 시술이 서로 다른 층·메커니즘이라 부작용 중복 없음",
+          "[problem-combos.riskBenefit] 선택한 에너지 시술(HIFU 또는 RF)→보톡스→필러 순서. 열 시술 후 주입으로 안전. 효과 대비 위험 비율 우수. 모노폴라 RF는 드물게 피하지방 위축(볼륨 손실)과 어두운 피부톤에서 PIH가 가능하므로 보수적 에너지·접촉냉각(contact cooling)이 필수이며, 볼륨 목표와 상충 가능성을 상담해야 함"
+         ]
+        },
+        {
+         "k": "B",
+         "label": "성형용 필러(M2) 먼저",
+         "lines": [
+          "[treatment-sequence.principles] 같은 날 필러+보톡스: 필러 먼저(위치 안정화) → 보톡스 나중에 (필러 위치 보존, 전문가 합의 기반 기본값, 같은 날엔 순서 유연)",
+          "[treatment-optimization.combination_rules] 같은날: 필러 먼저 → 보톡스 나중. 필러 위치 안정화 우선, 보톡스 확산 방지."
+         ]
+        }
+       ],
+       "now": "지금 앱 값: 순서 단정 안 함(R5) · 간격 14~14일(더 긴 쪽 · R3) · 걸린 엣지 · 쌍 14"
+      }
+     ],
+     "basis": [
+      "진짜 반대 1개 — 지금은 순서 단정 안 함 + 간격 더 긴 쪽(충돌 하나로 10-30 · R5 · R3) · 원문은 alternatives 보관 · 답이 오면 결정 파일 그 줄만 고치고 step8-apply.py 재실행"
+     ]
+    },
+    {
+     "id": "s8-Q8-3",
+     "orig_ids": [
+      "Q8-3"
+     ],
+     "stages": [
+      8
+     ],
+     "stage_label": "8단계",
+     "status": "확인 대기",
+     "where": [
+      "step8-origin-questions.md · Q8-3 · 걸린 행 X8-010 (1)"
+     ],
+     "tab": "doctor",
+     "q": "필러 ↔ 레이저 — 「레이저/IPL 은 필러 전에」 · 「필러 → 레이저 최소 5일」 · 「필러 후 레이저 2~4주(IPL 4주)」 · 「프락셔널 후 당일 필러 금지 · 4주」 — 레이저 종류별로 어느 값 · 어느 순서",
+     "kind": "conflict",
+     "group": "8단계 — 순서 · 같은 날 · 간격 충돌(원문 나란히)",
+     "blocks": [
+      {
+       "id": "X8-010",
+       "title": "순서 — 성형용 필러(M2) ↔ 레이저·광치료(M8) 어느 쪽이 먼저 (묶음 원칙 포함)",
+       "sides": [
+        {
+         "k": "A",
+         "label": "성형용 필러(M2) 먼저",
+         "lines": [
+          "[treatment-sequence.minimum_intervals] HA 필러 → 레이저",
+          "[treatment-sequence.principles] 필러 → 레이저: 최소 5일 간격 권장"
+         ]
+        },
+        {
+         "k": "B",
+         "label": "레이저·광치료(M8) 먼저",
+         "lines": [
+          "[treatment-sequence.minimum_intervals] 프락셔널 CO2 → 필러",
+          "[treatment-sequence.principles] 레이저/IPL은 필러 주입 전에 (부종 상태에서 레이저 위험)",
+          "[treatment-optimization.combination_rules] 프락셔널 후 당일 필러 금지",
+          "[treatment-optimization.by_concern.contraindicated_combos] 프락셔널 후 당일 필러 금지",
+          "[treatment-optimization.by_concern.contraindicated_combos] CO2 프락셔널 후 당일 필러 금지(감염 위험)",
+          "[treatment-optimization.by_concern.contraindicated_combos] CO2 후 당일 필러 금지",
+          "[problem-combos.riskBenefit] 열 시술 후 주입 시술 순서 준수 필수. 울쎄라의 SMAS 열응고가 장기적 콜라겐 리모델링을 유도하여 주름 재발 방지"
+         ]
+        }
+       ],
+       "now": "지금 앱 값: 순서 단정 안 함(R5) · 간격 14~28일(더 긴 쪽 · R3) · 걸린 엣지 · 쌍 5"
+      }
+     ],
+     "basis": [
+      "진짜 반대 1개 — 지금은 순서 단정 안 함 + 간격 더 긴 쪽(충돌 하나로 10-30 · R5 · R3) · 원문은 alternatives 보관 · 답이 오면 결정 파일 그 줄만 고치고 step8-apply.py 재실행"
+     ]
+    },
+    {
+     "id": "s8-Q8-4",
+     "orig_ids": [
+      "Q8-4"
+     ],
+     "stages": [
+      8
+     ],
+     "stage_label": "8단계",
+     "status": "확인 대기",
+     "where": [
+      "step8-origin-questions.md · Q8-4 · 걸린 행 X8-019 (1)"
+     ],
+     "tab": "doctor",
+     "q": "실리프팅 ↔ 에너지 리프팅 순서 · 간격 — 실리프팅 → 써마지 1개월 · 울쎄라 · HIFU 2~3개월 ↔ 울쎄라 → 실리프팅 1개월 · 2-4주(최적화 처짐 중증) — 어느 방향이 기본인가",
+     "kind": "conflict",
+     "group": "8단계 — 순서 · 같은 날 · 간격 충돌(원문 나란히)",
+     "blocks": [
+      {
+       "id": "X8-019",
+       "title": "순서 — 실리프팅(M7) ↔ HIFU·고주파 리프팅(M9) 어느 쪽이 먼저",
+       "sides": [
+        {
+         "k": "A",
+         "label": "실리프팅(M7) 먼저",
+         "lines": [
+          "[synergy.links] M7-실리프팅 다음에 M9-써마지 · 실리프팅 1개월 후 써마지",
+          "[synergy.links] M7-실리프팅 다음에 M9-울쎄라 · 실리프팅 후 2~3개월 뒤 울쎄라",
+          "[problem-combos.riskBenefit] 실리프팅 후 HIFU는 2~3개월 간격 필요 (같은 날이면 다른 부위). 실 부위와 HIFU 부위 겹침 주의. 그러나 각각의 시술 강도를 낮춰도 시너지로 우수한 결과",
+          "[problem-packages.complaints[].alternatives] 실 시술 후 2개월간 HIFU/RF 피할 것",
+          "[problem-packages.complaints[].alternatives] 실 시술 후 2개월간 HIFU/RF 피할 것"
+         ]
+        },
+        {
+         "k": "B",
+         "label": "HIFU·고주파 리프팅(M9) 먼저",
+         "lines": [
+          "[synergy.links] M9-울쎄라 다음에 M7-실리프팅 · 울쎄라 1개월 후 실리프팅",
+          "[treatment-optimization.by_concern.sequence] 울쎄라 HIFU → 2-4주 후 실리프팅 → 필러(볼륨 보충) → 바이오스티뮬레이터(유지)"
+         ]
+        }
+       ],
+       "now": "지금 앱 값: 순서 단정 안 함(R5) · 간격 60~90일(더 긴 쪽 · R3) · 걸린 엣지 · 쌍 3"
+      }
+     ],
+     "basis": [
+      "진짜 반대 1개 — 지금은 순서 단정 안 함 + 간격 더 긴 쪽(충돌 하나로 10-30 · R5 · R3) · 원문은 alternatives 보관 · 답이 오면 결정 파일 그 줄만 고치고 step8-apply.py 재실행"
+     ]
+    },
+    {
+     "id": "s8-Q8-5",
+     "orig_ids": [
+      "Q8-5"
+     ],
+     "stages": [
+      8
+     ],
+     "stage_label": "8단계",
+     "status": "확인 대기",
+     "where": [
+      "step8-origin-questions.md · Q8-5 · 걸린 행 X8-004, X8-006 (2)"
+     ],
+     "tab": "doctor",
+     "q": "니들RF ↔ 레이저 · 필링 순서 — P5-3 「레이저 → 니들RF」 ↔ P7-3 「니들RF → 레이저」 · 「니들RF 2주 후 필링」 ↔ 「필링 2주 후 니들RF」",
+     "kind": "conflict",
+     "group": "8단계 — 순서 · 같은 날 · 간격 충돌(원문 나란히)",
+     "blocks": [
+      {
+       "id": "X8-004",
+       "title": "순서 — 고주파 마이크로니들(니들RF)(M11) ↔ 외용 관리(M15) 어느 쪽이 먼저",
+       "sides": [
+        {
+         "k": "A",
+         "label": "고주파 마이크로니들(니들RF)(M11) 먼저",
+         "lines": [
+          "[synergy.links] M11-니들RF 다음에 M15-필링 · 니들RF 2주 후 필링"
+         ]
+        },
+        {
+         "k": "B",
+         "label": "외용 관리(M15) 먼저",
+         "lines": [
+          "[synergy.links] M15-필링 다음에 M11-니들RF · 필링 2주 후 니들RF"
+         ]
+        }
+       ],
+       "now": "지금 앱 값: 순서 단정 안 함(R5) · 걸린 엣지 · 쌍 2"
+      },
+      {
+       "id": "X8-006",
+       "title": "순서 — 고주파 마이크로니들(니들RF)(M11) ↔ 레이저·광치료(M8) 어느 쪽이 먼저",
+       "sides": [
+        {
+         "k": "A",
+         "label": "고주파 마이크로니들(니들RF)(M11) 먼저",
+         "lines": [
+          "[problem-combos.riskBenefit] 열 시술 2개(니들RF+레이저)이므로 순서·간격 주의. 니들RF→레이저→PRP→SB 순서. 효과는 최대이나 다운타임도 상대적으로 길 수 있음(3~5일)"
+         ]
+        },
+        {
+         "k": "B",
+         "label": "레이저·광치료(M8) 먼저",
+         "lines": [
+          "[problem-combos.riskBenefit] 니들RF 후 PIH 주의. 레이저→니들RF→PRP→SB 순서 엄수. 열 시술 2개이므로 간격 관리 중요"
+         ]
+        }
+       ],
+       "now": "지금 앱 값: 순서 단정 안 함(R5) · 간격 14~14일(더 긴 쪽 · R3) · 걸린 엣지 · 쌍 1"
+      }
+     ],
+     "basis": [
+      "진짜 반대 2개 — 지금은 순서 단정 안 함 + 간격 더 긴 쪽(충돌 하나로 10-30 · R5 · R3) · 원문은 alternatives 보관 · 답이 오면 결정 파일 그 줄만 고치고 step8-apply.py 재실행"
+     ]
+    },
+    {
+     "id": "s8-Q8-6",
+     "orig_ids": [
+      "Q8-6"
+     ],
+     "stages": [
+      8
+     ],
+     "stage_label": "8단계",
+     "status": "확인 대기",
+     "where": [
+      "step8-origin-questions.md · Q8-6 · 걸린 행 X8-008 (1)"
+     ],
+     "tab": "doctor",
+     "q": "필링 ↔ 레이저 같은 날 · 순서 — 「토닝 → 같은날 얕은 필링」 · 「레이저토닝 + 필링 같은 날」 ↔ 「심부 필링 + 레이저 같은 날 불가」 · 「제모 부위 필링 동시 금지」 — 깊이 · 부위 조건으로 설명되나",
+     "kind": "conflict",
+     "group": "8단계 — 순서 · 같은 날 · 간격 충돌(원문 나란히)",
+     "blocks": [
+      {
+       "id": "X8-008",
+       "title": "순서 — 외용 관리(M15) ↔ 레이저·광치료(M8) 어느 쪽이 먼저",
+       "sides": [
+        {
+         "k": "A",
+         "label": "외용 관리(M15) 먼저",
+         "lines": [
+          "[treatment-sequence.minimum_intervals] 심부 필링 → 레이저",
+          "[treatment-optimization.by_concern.sequence] ALA-PDT → 2주 간격 필링 → LED(매회 마무리)"
+         ]
+        },
+        {
+         "k": "B",
+         "label": "레이저·광치료(M8) 먼저",
+         "lines": [
+          "[treatment-optimization.combination_rules] 레이저 제모 후 2주 내 동일 부위 필링/프락셔널 금지. 피부 장벽 회복 필요.",
+          "[treatment-optimization.by_concern.sequence] 토닝 → 같은날 얕은 필링 가능 → 2주 후 스킨부스터",
+          "[treatment-optimization.by_concern.sequence] ALA-PDT → 2주 간격 필링 → LED(매회 마무리)"
+         ]
+        }
+       ],
+       "now": "지금 앱 값: 순서 단정 안 함(R5) · 걸린 엣지 · 쌍 1"
+      }
+     ],
+     "basis": [
+      "진짜 반대 1개 — 지금은 순서 단정 안 함 + 간격 더 긴 쪽(충돌 하나로 10-30 · R5 · R3) · 원문은 alternatives 보관 · 답이 오면 결정 파일 그 줄만 고치고 step8-apply.py 재실행"
+     ]
+    },
+    {
+     "id": "s8-Q8-8",
+     "orig_ids": [
+      "Q8-8"
+     ],
+     "stages": [
+      8
+     ],
+     "stage_label": "8단계",
+     "status": "확인 대기",
+     "where": [
+      "step8-origin-questions.md · Q8-8 · 걸린 행 R8-0220 (1)"
+     ],
+     "tab": "doctor",
+     "q": "「TCA Cross(아이스픽)」는 어느 단위 시술인가(정본에 키 없음)",
+     "kind": "open",
+     "group": "8단계 — 어느 단위 시술인가",
+     "rec": null,
+     "basis": [
+      "[treatment-optimization.by_concern.sequence] 서브시전 + TCA Cross(아이스픽) → 4주 후 CO2 프락셔널 → PRP 즉시 도포 → 필러(남은 함몰)"
+     ],
+     "now": "지금: 해석 안 됨 — 엣지 끝점 없음"
+    },
+    {
+     "id": "s8-Q8-12",
+     "orig_ids": [
+      "Q8-12"
+     ],
+     "stages": [
+      8
+     ],
+     "stage_label": "8단계",
+     "status": "확인 대기",
+     "where": [
+      "step8-origin-questions.md · Q8-12 · 걸린 행 K8-0002 (1)"
+     ],
+     "tab": "doctor",
+     "q": "「활성 여드름 시 침습 시술 금지」의 「침습 시술」은 어느 시술 범위인가(사전 · 정본에 묶음 낱말 없음)",
+     "kind": "open",
+     "group": "8단계 — 어느 단위 시술인가",
+     "rec": null,
+     "basis": [
+      "[treatment-optimization.by_concern.contraindicated_combos] 활성 여드름 시 침습 시술 금지"
+     ],
+     "now": "지금: 해석 안 됨 — 엣지 끝점 없음"
+    },
+    {
+     "id": "s8-Q8-14",
+     "orig_ids": [
+      "Q8-14"
+     ],
+     "stages": [
+      8
+     ],
+     "stage_label": "8단계",
+     "status": "확인 대기",
+     "where": [
+      "step8-origin-questions.md · Q8-14 · 걸린 행 X8-012 (1)"
+     ],
+     "tab": "doctor",
+     "q": "필러 ↔ HIFU/RF — 「RF/HIFU → 필러 같은 날 가능」 · 「필러 → RF/HIFU 14일 이상」 · contraindications 「4주 이상 간격」 · 최적화 「HIFU/RF 먼저 → 2주 후 필러」 — 방향별 값이 맞나",
+     "kind": "conflict",
+     "group": "8단계 — 순서 · 같은 날 · 간격 충돌(원문 나란히)",
+     "blocks": [
+      {
+       "id": "X8-012",
+       "title": "순서 — 성형용 필러(M2) ↔ HIFU·고주파 리프팅(M9) 어느 쪽이 먼저 (묶음 원칙 포함)",
+       "sides": [
+        {
+         "k": "A",
+         "label": "성형용 필러(M2) 먼저",
+         "lines": [
+          "[synergy.links] M2-필러 다음에 M9-리프팅기기 · 필러 2주 후 리프팅 기기",
+          "[treatment-sequence.incompatible_same_day] HA 필러 주입 후 RF/HIFU",
+          "[treatment-sequence.minimum_intervals] HA 필러 → RF/HIFU",
+          "[treatment-sequence.principles] HA 필러 → RF/HIFU: 최소 14일 간격 필수 (열에 의한 HA 분해 위험, JCD 2023)",
+          "[treatment-sequence.principles] RF/HIFU → 필러: 같은 날 가능 (에너지 기기 먼저, 필러 나중에). 역순(필러 주입 후 RF/HIFU)은 주입된 HA가 고열에 노출돼 분해/변형되므로 14일 이상 대기",
+          "[treatment-optimization.combination_rules] 보톡스와 HIFU/RF 열시술은 당일 시술 가능하나 웬만하면 열시술을 먼저 시행. MFU/HIFU는 보톡스 주입 후 2주 이내 효력을 감소시킬 수 있어 HIFU를 먼저 시행하거나 2주 이상 간격을 둔다. HA 필러는 필러 후 HIFU를 4주 이상 간격 권장하거나 HIFU를 먼저 시행한다. RF·IPL·비침습 레이저는 보톡스와 당일 병행 가능하므로 HIFU와 동일한 절대 규칙으로 취급하지 않음.",
+          "[treatment-optimization.combination_rules] HA 필러 주입 후 14일 이내 RF/HIFU 시 필러 용해 위험",
+          "[treatment-optimization.by_concern.contraindicated_combos] HA 필러 후 14일 이내 RF/HIFU 금지"
+         ]
+        },
+        {
+         "k": "B",
+         "label": "HIFU·고주파 리프팅(M9) 먼저",
+         "lines": [
+          "[treatment-sequence.minimum_intervals] RF/HIFU → 필러",
+          "[treatment-sequence.principles] RF/HIFU → 필러: 같은 날 가능 (에너지 기기 먼저, 필러 나중에). 역순(필러 주입 후 RF/HIFU)은 주입된 HA가 고열에 노출돼 분해/변형되므로 14일 이상 대기",
+          "[treatment-optimization.combination_rules] 보톡스와 HIFU/RF 열시술은 당일 시술 가능하나 웬만하면 열시술을 먼저 시행. MFU/HIFU는 보톡스 주입 후 2주 이내 효력을 감소시킬 수 있어 HIFU를 먼저 시행하거나 2주 이상 간격을 둔다. HA 필러는 필러 후 HIFU를 4주 이상 간격 권장하거나 HIFU를 먼저 시행한다. RF·IPL·비침습 레이저는 보톡스와 당일 병행 가능하므로 HIFU와 동일한 절대 규칙으로 취급하지 않음.",
+          "[problem-combos.riskBenefit] 열 시술 후 주입 시술 순서 준수 필수. 울쎄라의 SMAS 열응고가 장기적 콜라겐 리모델링을 유도하여 주름 재발 방지"
+         ]
+        }
+       ],
+       "now": "지금 앱 값: 순서 단정 안 함(R5) · 간격 28~28일(더 긴 쪽 · R3) · 걸린 엣지 · 쌍 23"
+      }
+     ],
+     "basis": [
+      "진짜 반대 1개 — 지금은 순서 단정 안 함 + 간격 더 긴 쪽(충돌 하나로 10-30 · R5 · R3) · 원문은 alternatives 보관 · 답이 오면 결정 파일 그 줄만 고치고 step8-apply.py 재실행"
+     ]
+    },
+    {
+     "id": "s8-Q8-15",
+     "orig_ids": [
+      "Q8-15"
+     ],
+     "stages": [
+      8
+     ],
+     "stage_label": "8단계",
+     "status": "확인 대기",
+     "where": [
+      "step8-origin-questions.md · Q8-15 · 걸린 행 X8-003 (1)"
+     ],
+     "tab": "doctor",
+     "q": "보톡스 ↔ HIFU/리프팅기기 순서 — 「HIFU 선행 또는 보톡스 후 2주 이상」(원칙 · 규칙) ↔ synergy 「보톡스 2주 후 리프팅」 — 같은 말(보톡스 먼저면 2주)로 읽어도 되나",
+     "kind": "conflict",
+     "group": "8단계 — 순서 · 같은 날 · 간격 충돌(원문 나란히)",
+     "blocks": [
+      {
+       "id": "X8-003",
+       "title": "순서 — 보툴리눔 톡신(M1) ↔ HIFU·고주파 리프팅(M9) 어느 쪽이 먼저 (묶음 원칙 포함)",
+       "sides": [
+        {
+         "k": "A",
+         "label": "보툴리눔 톡신(M1) 먼저",
+         "lines": [
+          "[synergy.links] M1-보톡스 다음에 M9-리프팅기기 · 보톡스 2주 후 리프팅",
+          "[treatment-sequence.principles] HIFU는 보톡스 주입 후 2주 이내 효력 저하 가능성을 고려해 HIFU 선행 또는 2주 이상 간격을 두며, RF·IPL·비침습 레이저는 당일 병행 가능",
+          "[treatment-optimization.combination_rules] 보톡스와 HIFU/RF 열시술은 당일 시술 가능하나 웬만하면 열시술을 먼저 시행. MFU/HIFU는 보톡스 주입 후 2주 이내 효력을 감소시킬 수 있어 HIFU를 먼저 시행하거나 2주 이상 간격을 둔다. HA 필러는 필러 후 HIFU를 4주 이상 간격 권장하거나 HIFU를 먼저 시행한다. RF·IPL·비침습 레이저는 보톡스와 당일 병행 가능하므로 HIFU와 동일한 절대 규칙으로 취급하지 않음."
+         ]
+        },
+        {
+         "k": "B",
+         "label": "HIFU·고주파 리프팅(M9) 먼저",
+         "lines": [
+          "[synergy.links] M9-더블로 다음에 M1-보톡스 · 더블로 2주 후 보톡스",
+          "[synergy.links] M9-슈링크 다음에 M1-보톡스 · 슈링크 2주 후 보톡스",
+          "[synergy.links] M9-울쎄라 다음에 M1-보톡스 · 리프팅 2주 후 보톡스",
+          "[synergy.links] M9-인모드 다음에 M1-보톡스 · 인모드 2주 후 보톡스",
+          "[treatment-sequence.principles] 보톡스와 HIFU/RF 열시술은 당일 병행 가능하나, 웬만하면 열시술을 먼저 시행",
+          "[treatment-sequence.principles] HIFU는 보톡스 주입 후 2주 이내 효력 저하 가능성을 고려해 HIFU 선행 또는 2주 이상 간격을 두며, RF·IPL·비침습 레이저는 당일 병행 가능",
+          "[treatment-optimization.combination_rules] 보톡스와 HIFU/RF 열시술은 당일 시술 가능하나 웬만하면 열시술을 먼저 시행. MFU/HIFU는 보톡스 주입 후 2주 이내 효력을 감소시킬 수 있어 HIFU를 먼저 시행하거나 2주 이상 간격을 둔다. HA 필러는 필러 후 HIFU를 4주 이상 간격 권장하거나 HIFU를 먼저 시행한다. RF·IPL·비침습 레이저는 보톡스와 당일 병행 가능하므로 HIFU와 동일한 절대 규칙으로 취급하지 않음.",
+          "[treatment-optimization.combination_rules] 보톡스와 HIFU/RF 열시술은 당일 시술 가능하나 웬만하면 열시술을 먼저 시행. MFU/HIFU는 보톡스 주입 후 2주 이내 효력을 감소시킬 수 있어 HIFU를 먼저 시행하거나 2주 이상 간격을 둔다. HA 필러는 필러 후 HIFU를 4주 이상 간격 권장하거나 HIFU를 먼저 시행한다. RF·IPL·비침습 레이저는 보톡스와 당일 병행 가능하므로 HIFU와 동일한 절대 규칙으로 취급하지 않음.",
+          "[treatment-optimization.by_concern.sequence] HIFU/RF 먼저 → 보톡스(같은날 가능) → 2주 후 필러 → 스킨부스터",
+          "[treatment-optimization.by_concern.sequence] HIFU 먼저 → 같은날 보톡스 가능 → 4주 후 바이오스티뮬레이터 시작",
+          "[problem-combos.riskBenefit] 울쎄라 열응고 후 보톡스 주입 순서 준수. 위험 낮고 효과 확실",
+          "[problem-combos.riskBenefit] 시술 순서 준수. HIFU→보톡스→필러→스킨부스터. 각 시술이 서로 다른 층·메커니즘이라 부작용 중복 없음",
+          "[problem-combos.riskBenefit] 선택한 에너지 시술(HIFU 또는 RF)→보톡스→필러 순서. 열 시술 후 주입으로 안전. 효과 대비 위험 비율 우수. 모노폴라 RF는 드물게 피하지방 위축(볼륨 손실)과 어두운 피부톤에서 PIH가 가능하므로 보수적 에너지·접촉냉각(contact cooling)이 필수이며, 볼륨 목표와 상충 가능성을 상담해야 함",
+          "[problem-combos.riskBenefit] 열 시술 후 주입 시술 순서 준수 필수. 울쎄라의 SMAS 열응고가 장기적 콜라겐 리모델링을 유도하여 주름 재발 방지"
+         ]
+        }
+       ],
+       "now": "지금 앱 값: 순서 단정 안 함(R5) · 간격 14~14일(더 긴 쪽 · R3) · 걸린 엣지 · 쌍 50"
+      }
+     ],
+     "basis": [
+      "진짜 반대 1개 — 지금은 순서 단정 안 함 + 간격 더 긴 쪽(충돌 하나로 10-30 · R5 · R3) · 원문은 alternatives 보관 · 답이 오면 결정 파일 그 줄만 고치고 step8-apply.py 재실행"
+     ]
+    },
+    {
+     "id": "s8-Q8-16",
+     "orig_ids": [
+      "Q8-16"
+     ],
+     "stages": [
+      8
+     ],
+     "stage_label": "8단계",
+     "status": "확인 대기",
+     "where": [
+      "step8-origin-questions.md · Q8-16 · 걸린 행 X8-005, X8-014, X8-015, X8-017, X8-018 (5)"
+     ],
+     "tab": "doctor",
+     "q": "그 밖 계열 쌍 순서 · 간격 충돌(원문 둘 다 보존) — 스킨부스터 ↔ 레이저 · HIFU · 바이오스티뮬레이터 / PRP ↔ 레이저 · 니들RF / MTS ↔ 레이저 간격 — 문맥(같은 날 · 별도 세션 · 하위 조건)으로 설명되는지 일괄 확인",
+     "kind": "conflict",
+     "group": "8단계 — 순서 · 같은 날 · 간격 충돌(원문 나란히)",
+     "blocks": [
+      {
+       "id": "X8-005",
+       "title": "순서 — 고주파 마이크로니들(니들RF)(M11) ↔ PRP·엑소좀(M5) 어느 쪽이 먼저 (묶음 원칙 포함)",
+       "sides": [
+        {
+         "k": "A",
+         "label": "고주파 마이크로니들(니들RF)(M11) 먼저",
+         "lines": [
+          "[treatment-optimization.by_concern.sequence] 서브시전(깊은 흉터 박리) → 4주 후 프락셔널/니들RF → PRP 동시 도포",
+          "[problem-combos.riskBenefit] 니들RF 후 PIH 주의. 레이저→니들RF→PRP→SB 순서 엄수. 열 시술 2개이므로 간격 관리 중요",
+          "[problem-combos.riskBenefit] 열 시술 후 주입 시술 순서 준수 필수. 울쎄라의 SMAS 열응고가 장기적 콜라겐 리모델링을 유도하여 주름 재발 방지"
+         ]
+        },
+        {
+         "k": "B",
+         "label": "PRP·엑소좀(M5) 먼저",
+         "lines": [
+          "[treatment-optimization.by_concern.sequence] CO2 프락셔널 → 직후 PRP/엑소좀 도포 → 4주 후 니들RF → 스킨부스터"
+         ]
+        }
+       ],
+       "now": "지금 앱 값: 순서 단정 안 함(R5) · 걸린 엣지 · 쌍 2"
+      },
+      {
+       "id": "X8-014",
+       "title": "순서 — 바이오스티뮬레이터(M3) ↔ 스킨부스터(M4) 어느 쪽이 먼저",
+       "sides": [
+        {
+         "k": "A",
+         "label": "바이오스티뮬레이터(M3) 먼저",
+         "lines": [
+          "[synergy.links] M3-래디어스 다음에 M4-스킨부스터 · 래디어스 4주 후 스킨부스터",
+          "[synergy.links] M3-스컬트라 다음에 M4-스킨부스터 · 스컬트라 4주 후 스킨부스터",
+          "[synergy.links] M3-바이오스티뮬레이터 다음에 M4-스킨부스터 · 바이오스티뮬레이터 4주 후 스킨부스터"
+         ]
+        },
+        {
+         "k": "B",
+         "label": "스킨부스터(M4) 먼저",
+         "lines": [
+          "[treatment-optimization.by_concern.sequence] HA 볼류마이징 스킨부스터 먼저 → 4주 간격 바이오스티뮬레이터"
+         ]
+        }
+       ],
+       "now": "지금 앱 값: 순서 단정 안 함(R5) · 간격 28~28일(더 긴 쪽 · R3) · 걸린 엣지 · 쌍 4"
+      },
+      {
+       "id": "X8-015",
+       "title": "순서 — 스킨부스터(M4) ↔ 레이저·광치료(M8) 어느 쪽이 먼저 (묶음 원칙 포함)",
+       "sides": [
+        {
+         "k": "A",
+         "label": "스킨부스터(M4) 먼저",
+         "lines": [
+          "[synergy.links] M4-리쥬란 다음에 M8-레이저토닝 · 리쥬란 2주 후 레이저토닝",
+          "[synergy.links] M4-스킨부스터 다음에 M8-레이저토닝 · 스킨부스터 2주 후 레이저토닝"
+         ]
+        },
+        {
+         "k": "B",
+         "label": "레이저·광치료(M8) 먼저",
+         "lines": [
+          "[contraindications.rules] M4↔M8 1주 간격 권장",
+          "[synergy.links] M8-프락셔널 다음에 M4-스킨부스터 · 프락셔널 2주 후 스킨부스터",
+          "[synergy.links] M8-피코토닝 다음에 M4-리쥬란 · 피코토닝 2주 후 리쥬란",
+          "[synergy.links] M8-피코토닝 다음에 M4-스킨부스터 · 피코토닝 1~2주 후 스킨부스터",
+          "[synergy.links] M8-혈관레이저 다음에 M4-스킨부스터 · 혈관레이저 2주 후 스킨부스터",
+          "[synergy.links] M8-CO2레이저 다음에 M4-스킨부스터 · CO2 2주 후 스킨부스터",
+          "[synergy.links] M8-IPL 다음에 M4-스킨부스터 · IPL 2주 후 스킨부스터",
+          "[treatment-optimization.by_concern.sequence] 토닝 먼저 → 2주 후 스킨부스터",
+          "[treatment-optimization.by_concern.sequence] 프락셔널 or 니들RF → 4주 간격 반복 → 사이사이 스킨부스터",
+          "[treatment-optimization.by_concern.sequence] 트라넥삼산 경구 시작 → 2주 후 피코토닝 + 저출력 IPL 교차(시험 조사·광차단 선행, 반동 색소 모니터링) → 스킨부스터(미백)",
+          "[treatment-sequence.common_combos.note] 에너지 기기(HIFU) 먼저 → 레이저 토닝 → 스킨부스터 마지막",
+          "[problem-combos.riskBenefit] 열 시술 후 주입 시술 순서 준수 필수. 울쎄라의 SMAS 열응고가 장기적 콜라겐 리모델링을 유도하여 주름 재발 방지"
+         ]
+        }
+       ],
+       "now": "지금 앱 값: 순서 단정 안 함(R5) · 간격 7~7일(더 긴 쪽 · R3) · 걸린 엣지 · 쌍 3"
+      },
+      {
+       "id": "X8-017",
+       "title": "순서 — 스킨부스터(M4) ↔ HIFU·고주파 리프팅(M9) 어느 쪽이 먼저 (묶음 원칙 포함)",
+       "sides": [
+        {
+         "k": "A",
+         "label": "스킨부스터(M4) 먼저",
+         "lines": [
+          "[synergy.links] M4-스킨부스터 다음에 M9-울쎄라 · 스킨부스터 2주 후 울쎄라"
+         ]
+        },
+        {
+         "k": "B",
+         "label": "HIFU·고주파 리프팅(M9) 먼저",
+         "lines": [
+          "[synergy.links] M9-더블로 다음에 M4-스킨부스터 · 더블로 2주 후 스킨부스터",
+          "[synergy.links] M9-슈링크 다음에 M4-스킨부스터 · 슈링크 2주 후 스킨부스터",
+          "[synergy.links] M9-울쎄라 다음에 M4-스킨부스터 · 리프팅 2주 후 스킨부스터",
+          "[synergy.links] M9-인모드 다음에 M4-스킨부스터 · 인모드 2주 후 스킨부스터",
+          "[synergy.links] M9-리프팅기기 다음에 M4-스킨부스터 · 2주 간격 순차 시술",
+          "[treatment-optimization.by_concern.sequence] RF 시술 → 2주 후 스킨부스터",
+          "[problem-combos.riskBenefit] 열 시술 후 주입 시술 순서 준수 필수. 울쎄라의 SMAS 열응고가 장기적 콜라겐 리모델링을 유도하여 주름 재발 방지"
+         ]
+        }
+       ],
+       "now": "지금 앱 값: 순서 단정 안 함(R5) · 간격 14~14일(더 긴 쪽 · R3) · 걸린 엣지 · 쌍 5"
+      },
+      {
+       "id": "X8-018",
+       "title": "순서 — PRP·엑소좀(M5) ↔ 레이저·광치료(M8) 어느 쪽이 먼저 (묶음 원칙 포함)",
+       "sides": [
+        {
+         "k": "A",
+         "label": "PRP·엑소좀(M5) 먼저",
+         "lines": [
+          "[synergy.links] M5-PRP 다음에 M8-레이저토닝 · PRP 2주 후 레이저토닝"
+         ]
+        },
+        {
+         "k": "B",
+         "label": "레이저·광치료(M8) 먼저",
+         "lines": [
+          "[treatment-optimization.by_concern.sequence] CO2 프락셔널 → 직후 PRP/엑소좀 도포 → 4주 후 니들RF → 스킨부스터",
+          "[treatment-optimization.by_concern.sequence] 서브시전(깊은 흉터 박리) → 4주 후 프락셔널/니들RF → PRP 동시 도포",
+          "[treatment-optimization.by_concern.sequence] 서브시전 + TCA Cross(아이스픽) → 4주 후 CO2 프락셔널 → PRP 즉시 도포 → 필러(남은 함몰)",
+          "[treatment-sequence.common_combos.note] 프락셔널+MTS 채널 오픈 후 PRP 성장인자 경피 침투 극대화",
+          "[problem-combos.riskBenefit] 열 시술 2개(니들RF+레이저)이므로 순서·간격 주의. 니들RF→레이저→PRP→SB 순서. 효과는 최대이나 다운타임도 상대적으로 길 수 있음(3~5일)",
+          "[problem-combos.riskBenefit] 열 시술 후 주입 시술 순서 준수 필수. 울쎄라의 SMAS 열응고가 장기적 콜라겐 리모델링을 유도하여 주름 재발 방지"
+         ]
+        }
+       ],
+       "now": "지금 앱 값: 순서 단정 안 함(R5) · 걸린 엣지 · 쌍 1"
+      }
+     ],
+     "basis": [
+      "진짜 반대 5개 — 지금은 순서 단정 안 함 + 간격 더 긴 쪽(충돌 하나로 10-30 · R5 · R3) · 원문은 alternatives 보관 · 답이 오면 결정 파일 그 줄만 고치고 step8-apply.py 재실행"
+     ]
+    },
+    {
+     "id": "s8-Q8-17",
+     "orig_ids": [
+      "Q8-17"
+     ],
+     "stages": [
+      8
+     ],
+     "stage_label": "8단계",
+     "status": "확인 대기",
+     "where": [
+      "step8-origin-questions.md · Q8-17 · 걸린 행 AV8-001, AV8-002, AV8-004 (3)"
+     ],
+     "tab": "doctor",
+     "q": "기미에 피할 고출력 · 고에너지 레이저는 어느 단위 시술인가 — 피코 · Q스위치 고출력 · 프락셔널 · IPL 등(같은 원문 「저출력 토닝만 권장」은 7단계 기미 → 토닝 추천과 같은 방향)",
+     "kind": "open",
+     "group": "8단계 — 어느 단위 시술인가",
+     "rec": null,
+     "basis": [
+      "[treatment-optimization.combination_rules] 기미 환자에 고출력 레이저 시 반동 색소침착(PIH) 위험. 저출력 토닝만 권장.",
+      "[treatment-optimization.by_concern.contraindicated_combos] 기미에 고에너지 레이저 금지(PIH 위험)",
+      "[treatment-optimization.by_concern.contraindicated_combos] 고출력 레이저 금지(반동 색소침착)"
+     ],
+     "now": "지금: 단위 시술 미특정 — 계열 전체로 열림 · 기본 적용 안 함"
+    },
+    {
+     "id": "s8-Q8-18",
+     "orig_ids": [
+      "Q8-18"
+     ],
+     "stages": [
+      8
+     ],
+     "stage_label": "8단계",
+     "status": "확인 대기",
+     "where": [
+      "step8-origin-questions.md · Q8-18 · 걸린 행 R8-0144, R8-0148, K8-0367 (3)"
+     ],
+     "tab": "doctor",
+     "q": "「심부 필링(페놀 · TCA 50%+)」 · 「박리성(ablative) 레이저」는 어느 단위 시술인가 — 5단계 키에 깊이 · 박리 칸이 없어 지금은 필링 단위 시술 · 레이저 계열 전체로 열림(같은 날 불가 · 간격 · 이소트레티노인 대기의 끝점)",
+     "kind": "open",
+     "group": "8단계 — 어느 단위 시술인가",
+     "rec": null,
+     "basis": [
+      "[treatment-sequence.incompatible_same_day] 심부 필링(페놀) ↔ 레이저",
+      "[treatment-sequence.incompatible_same_day] 심부 필링(TCA 50%+/페놀) ↔ 모든 시술",
+      "[treatment-sequence.minimum_intervals] 이소트레티노인 ↔ 박리성(ablative) 레이저/심부 필링"
+     ],
+     "now": "지금: 단위 시술 미특정 — 계열 전체로 열림 · 기본 적용 안 함"
+    },
+    {
+     "tab": "doctor",
+     "id": "s8-Q8-19",
+     "orig_ids": [
+      "Q8-19"
+     ],
+     "stages": [
+      8
+     ],
+     "stage_label": "8단계 · 시맨틱",
+     "status": "확인 대기",
+     "kind": "conflict",
+     "group": "8단계 — 부작용 · 합병증 경계(시맨틱 U2 예외)",
+     "where": [
+      "step8-origin-questions.md · Q8-19 · 걸린 행 SE-M1-02, SE-M1-04, SE-M1-06, SE-M1-07, SE-M2-01, SE-M2-07 … (9)",
+      "semantic.json attributes_not_nodes 부작용 · 의료진 질문 예외 9"
+     ],
+     "q": "아래 부작용(합병증 원천 severity mild)은 발생률 원문에 「흔함」 낱말이 없다 — 흔한 예상 반응(부작용)으로 둬도 되나, 드문 이상 결과(합병증)인가(비대칭 · 딤플링 · 두통 · 독감 유사 증상 · 멍 수치 · PIH)",
+     "blocks": [
+      {
+       "id": "SE-M1-02",
+       "title": "보톡스 (M1) — 멍 (타박상) · 발생률 약 11-25% (부위·기법에 따라)",
+       "sides": [
+        {
+         "k": "A",
+         "label": "부작용(흔한 예상 반응) — 지금 값",
+         "lines": [
+          "원천 severity mild(경미) · complications.json categories[].complications[](severity mild — U2 · B1)",
+          "발생 시술 당일 · 지속 -",
+          "대처: 즉시 압박, 24-48시간 냉찜질 후 온찜질, 아르니카/비타민K 크림. 대부분 7-14일 내 자연 소실. 심하면 레이저(PDL/KTP)"
+         ]
+        },
+        {
+         "k": "B",
+         "label": "합병증(드문 이상 결과)",
+         "lines": [
+          "기전: 바늘이 진피/피하 소혈관을 천자하여 혈관외 출혈. 어느 부위든 발생 가능하나 혈관이 풍부·표재한 부위(눈가 등)는 현저히 높음",
+          "위험 요인: 원문 없음",
+          "고르면 합병증 노드(계열 → 합병증 엣지)로 올림 — 원천 severity 는 바꾸지 않음"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "SE-M1-04",
+       "title": "보톡스 (M1) — 두통 · 발생률 5-10%",
+       "sides": [
+        {
+         "k": "A",
+         "label": "부작용(흔한 예상 반응) — 지금 값",
+         "lines": [
+          "원천 severity mild(경미) · complications.json categories[].complications[](severity mild — U2 · B1)",
+          "발생 시술 당일~2일 · 지속 1-3일 (자연 소실)",
+          "대처: 아세트아미노펜(타이레놀) 500-1000mg 경구 복용. NSAID(이부프로펜) 사용 가능하나 멍 위험 증가 고려. 대부분 1-3일 내 자연 소실. 지속 시 재진"
+         ]
+        },
+        {
+         "k": "B",
+         "label": "합병증(드문 이상 결과)",
+         "lines": [
+          "기전: 주사 자체의 물리적 자극, 근육 장력 변화에 따른 보상성 두통, 일시적 근막 긴장 패턴 변화. 만성 편두통 환자에서는 오히려 완화 효과",
+          "위험 요인: 이마/미간 부위 시술 · 다량 주입 · 긴장성 두통 병력 · 시술 중 과도한 불안",
+          "고르면 합병증 노드(계열 → 합병증 엣지)로 올림 — 원천 severity 는 바꾸지 않음"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "SE-M1-06",
+       "title": "보톡스 (M1) — 독감 유사 증상 · 발생률 1.7-20% (치료 방문의 약 14%)",
+       "sides": [
+        {
+         "k": "A",
+         "label": "부작용(흔한 예상 반응) — 지금 값",
+         "lines": [
+          "원천 severity mild(경미) · complications.json categories[].complications[](severity mild — U2 · B1)",
+          "발생 시술 후 수일~1개월 이내 · 지속 -",
+          "대처: 대증치료(수분 섭취, 안정, 아세트아미노펜). 대부분 경증이며 2주 이내 자연 소실. 지속·악화 또는 호흡·연하 곤란 동반 시 의인성 보툴리즘 감별 위해 즉시 재진"
+         ]
+        },
+        {
+         "k": "B",
+         "label": "합병증(드문 이상 결과)",
+         "lines": [
+          "기전: 보톡스 주입 후 발생하는 일과성 전신 면역/염증 반응. 미열·근육통·피로·전신 권태감·상기도감염 유사 증상. 특정 부위와 무관한 전신 반응",
+          "위험 요인: 원문 없음",
+          "고르면 합병증 노드(계열 → 합병증 엣지)로 올림 — 원천 severity 는 바꾸지 않음"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "SE-M1-07",
+       "title": "보톡스 (M1) — 안면 비대칭 · 발생률 3-8%",
+       "sides": [
+        {
+         "k": "A",
+         "label": "부작용(흔한 예상 반응) — 지금 값",
+         "lines": [
+          "원천 severity mild(경미) · complications.json categories[].complications[](severity mild — U2 · B1)",
+          "발생 7-14일 (2-4주 내 자연 소실 또는 보정 주사로 교정) · 지속 -",
+          "대처: 2주 후 경과 관찰. 비대칭 확인 시 약한 쪽에 소량(2-5U) 추가 주사. 강한 쪽 재주사는 금지(과교정 위험). 환자에게 2주 이내 재주사 불필요 교육"
+         ]
+        },
+        {
+         "k": "B",
+         "label": "합병증(드문 이상 결과)",
+         "lines": [
+          "기전: 좌우 근육량/활성도 차이, 주입 용량·깊이 비대칭, 기존 해부학적 비대칭의 노출. 어느 부위(이마·미간·눈가·교근 등)에서든 양측 시술 시 발생 가능한 공통 위험이므로 특정 부위에 귀속하지 않음 (미소 특이 비대칭은 입꼬리/perioral의 '비대칭 미소'로 별도 분리)",
+          "위험 요인: 원문 없음",
+          "고르면 합병증 노드(계열 → 합병증 엣지)로 올림 — 원천 severity 는 바꾸지 않음"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "SE-M2-01",
+       "title": "필러 (M2) — 멍 / 반상출혈 (Bruising / Ecchymosis) · 발생률 19-24% (필러 시술 전반, 부위·기법 무관하게 가장 흔한 부작용군)",
+       "sides": [
+        {
+         "k": "A",
+         "label": "부작용(흔한 예상 반응) — 지금 값",
+         "lines": [
+          "원천 severity mild(경미) · complications.json categories[].complications[](severity mild — U2 · B1)",
+          "발생 즉시~수시간 · 지속 -",
+          "대처: 냉찜질(시술 직후 10-15분), 압박, 아르니카/비타민K 국소도포. 광범위 멍은 585-595nm PDL/IPL로 흡수 촉진. 대개 7-14일 자연 소실."
+         ]
+        },
+        {
+         "k": "B",
+         "label": "합병증(드문 이상 결과)",
+         "lines": [
+          "기전: 니들/캐뉼러가 피부·피하 소혈관(정맥·모세혈관)을 천자하며 혈액이 조직으로 누출. 모든 주입 부위에서 발생하는 기계적 손상으로, 특정 부위 해부학과 무관.",
+          "위험 요인: 원문 없음",
+          "고르면 합병증 노드(계열 → 합병증 엣지)로 올림 — 원천 severity 는 바꾸지 않음"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "SE-M2-07",
+       "title": "필러 (M2) — 비대칭 (Asymmetry) · 발생률 5-10%",
+       "sides": [
+        {
+         "k": "A",
+         "label": "부작용(흔한 예상 반응) — 지금 값",
+         "lines": [
+          "원천 severity mild(경미) · complications.json categories[].complications[](severity mild — U2 · B1)",
+          "발생 즉시~2주 · 지속 -",
+          "대처: 2주 후 부종 소실 시점 재평가. 부족한 쪽 소량 touch-up, 과교정 쪽은 히알루로니다아제 부분 용해. 전후 사진 비교."
+         ]
+        },
+        {
+         "k": "B",
+         "label": "합병증(드문 이상 결과)",
+         "lines": [
+          "기전: 좌우 불균일한 주입량/깊이, 기존 해부학적 비대칭 노출, 부종의 비대칭 소실, 이차적 필러 이동. 볼륨을 넣는 모든 부위에서 발생 가능한 공통 술기 의존적 부작용.",
+          "위험 요인: 원문 없음",
+          "고르면 합병증 노드(계열 → 합병증 엣지)로 올림 — 원천 severity 는 바꾸지 않음"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "SE-M7-04",
+       "title": "실리프팅 (M7) — 비대칭 · 발생률 5-10%",
+       "sides": [
+        {
+         "k": "A",
+         "label": "부작용(흔한 예상 반응) — 지금 값",
+         "lines": [
+          "원천 severity mild(경미) · complications.json categories[].complications[](severity mild — U2 · B1)",
+          "발생 즉시~2주 · 지속 자연 교정(4-8주) 또는 재시술 필요",
+          "대처: 2-4주 경과 관찰(부종 소실 후 재평가). 지속적 비대칭: 부족한 쪽 추가 실 삽입 또는 과교정 쪽 실 텐션 조절. 시술 전후 사진 비교"
+         ]
+        },
+        {
+         "k": "B",
+         "label": "합병증(드문 이상 결과)",
+         "lines": [
+          "기전: 좌우 불균형한 실 배치, 텐션 차이, 편측 부종, 기존 해부학적 비대칭의 노출",
+          "위험 요인: 기존 안면 비대칭 · 좌우 불균형 실 배치 · 편측 부종 · 한쪽 실 조기 이완",
+          "고르면 합병증 노드(계열 → 합병증 엣지)로 올림 — 원천 severity 는 바꾸지 않음"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "SE-M7-06",
+       "title": "실리프팅 (M7) — 피부 딤플링/주름짐 (Skin Dimpling/Puckering) · 발생률 약 7-10%(50세 초과에서 최대 16%)",
+       "sides": [
+        {
+         "k": "A",
+         "label": "부작용(흔한 예상 반응) — 지금 값",
+         "lines": [
+          "원천 severity mild(경미) · complications.json categories[].complications[](severity mild — U2 · B1)",
+          "발생 즉시 · 지속 대부분 수주 내 자연 소실",
+          "대처: 대부분 수주 내 자연 소실. 지속 시 마사지·서브시전(subcision) 및 텐션 조절 고려"
+         ]
+        },
+        {
+         "k": "B",
+         "label": "합병증(드문 이상 결과)",
+         "lines": [
+          "기전: 표재성 barb/cog 거치 또는 과도한 텐션으로 진피가 당겨져 함몰·주름짐 발생",
+          "위험 요인: 표재성 실 거치 · 과도한 텐션 · 얇은 피부 · 고령 · 부적절한 벡터",
+          "고르면 합병증 노드(계열 → 합병증 엣지)로 올림 — 원천 severity 는 바꾸지 않음"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "SE-M14-07",
+       "title": "크라이오리포라이시스 (M14) — 염증후 색소침착 (Post-inflammatory Hyperpigmentation, PIH) · 발생률 드묾. Fitzpatrick IV-VI(진한 피부톤)에서 상대적으로 높음",
+       "sides": [
+        {
+         "k": "A",
+         "label": "부작용(흔한 예상 반응) — 지금 값",
+         "lines": [
+          "원천 severity mild(경미) · complications.json categories[].complications[](severity mild — U2 · B1)",
+          "발생 수주 · 지속 -",
+          "대처: 자외선 차단, 미백제(하이드로퀴논 등), 대개 수개월에 걸쳐 자연 호전"
+         ]
+        },
+        {
+         "k": "B",
+         "label": "합병증(드문 이상 결과)",
+         "lines": [
+          "기전: 냉각·염증 반응 후 멜라닌세포 활성화. 피부톤 관련 위험으로 치료 부위 무관 공통",
+          "위험 요인: 원문 없음",
+          "고르면 합병증 노드(계열 → 합병증 엣지)로 올림 — 원천 severity 는 바꾸지 않음"
+         ]
+        }
+       ]
+      }
+     ],
+     "basis": [
+      "U2 · B1 — 부작용(흔한 예상 반응) = 계열 속성 safety.side_effects · 합병증 노드 = complications.json severity moderate 이상만. 제품 × 계열 · 단위 시술에 값(5단계 extracted safety.common)이 있으면 그 값이 계열 값을 덮어씀 — 덮어쓰기는 골드 계산(B7 · 저장 안 함)",
+      "지금은 9개 모두 부작용(계열 속성 safety.side_effects) — 답이 오면 그 행만 고치고 step8-apply.py 재실행"
+     ]
+    },
+    {
+     "tab": "doctor",
+     "id": "s8-Q8-20",
+     "orig_ids": [
+      "Q8-20"
+     ],
+     "stages": [
+      8
+     ],
+     "stage_label": "8단계",
+     "status": "확인 대기",
+     "kind": "conflict",
+     "group": "8단계 — 순서 · 같은 날 · 간격 충돌(원문 나란히)",
+     "where": [
+      "step8-origin-questions.md · Q8-20 · 걸린 행 X8-020, X8-021, X8-022 (3)"
+     ],
+     "q": "「열 시술 후 주입 시술」(problem-combos 순서 원칙 · 묶음 낱말을 계열로 폄) ↔ 개별 원천 「주입 · 이식 먼저 → 열 시술」(스컬트라 · 엘란쎄 1개월 후 리프팅 기기 · 지방이식 후 2주 내 RF/HIFU 금지 · 지방분해주사 → RF) — 묶음 원칙이 이 계열(바이오스티뮬레이터 · 지방이식 · 지방분해주사)에도 해당하나, 개별 원천 순서가 기본인가(지금은 순서 단정 안 함 + 간격 더 긴 쪽)",
+     "blocks": [
+      {
+       "id": "X8-020",
+       "title": "순서 — 바이오스티뮬레이터(M3) ↔ HIFU·고주파 리프팅(M9) 어느 쪽이 먼저 (묶음 원칙 포함)",
+       "sides": [
+        {
+         "k": "A",
+         "label": "바이오스티뮬레이터(M3) 먼저",
+         "lines": [
+          "[synergy.links] M3-엘란쎄 다음에 M9-리프팅기기 · 엘란쎄 1개월 후 리프팅 기기",
+          "[synergy.links] M3-스컬트라 다음에 M9-써마지 · 스컬트라 1개월 후 써마지",
+          "[synergy.links] M3-스컬트라 다음에 M9-울쎄라 · 스컬트라 1개월 후 울쎄라"
+         ]
+        },
+        {
+         "k": "B",
+         "label": "HIFU·고주파 리프팅(M9) 먼저",
+         "lines": [
+          "[problem-combos.riskBenefit] 열 시술 후 주입 시술 순서 준수 필수. 울쎄라의 SMAS 열응고가 장기적 콜라겐 리모델링을 유도하여 주름 재발 방지"
+         ]
+        }
+       ],
+       "now": "지금 앱 값: 순서 단정 안 함(R5) · 간격 30~30일(더 긴 쪽 · R3) · 걸린 엣지 · 쌍 4"
+      },
+      {
+       "id": "X8-021",
+       "title": "순서 — 자가지방이식(M6) ↔ HIFU·고주파 리프팅(M9) 어느 쪽이 먼저 (묶음 원칙 포함)",
+       "sides": [
+        {
+         "k": "A",
+         "label": "자가지방이식(M6) 먼저",
+         "lines": [
+          "[treatment-optimization.by_concern.contraindicated_combos] 지방이식 후 2주 내 RF/HIFU 금지"
+         ]
+        },
+        {
+         "k": "B",
+         "label": "HIFU·고주파 리프팅(M9) 먼저",
+         "lines": [
+          "[problem-combos.riskBenefit] 열 시술 후 주입 시술 순서 준수 필수. 울쎄라의 SMAS 열응고가 장기적 콜라겐 리모델링을 유도하여 주름 재발 방지"
+         ]
+        }
+       ],
+       "now": "지금 앱 값: 순서 단정 안 함(R5) · 간격 90~90일(더 긴 쪽 · R3) · 걸린 엣지 · 쌍 2"
+      },
+      {
+       "id": "X8-022",
+       "title": "순서 — HIFU·고주파 리프팅(M9) ↔ 지방분해 주사(N1) 어느 쪽이 먼저 (묶음 원칙 포함)",
+       "sides": [
+        {
+         "k": "A",
+         "label": "HIFU·고주파 리프팅(M9) 먼저",
+         "lines": [
+          "[problem-combos.riskBenefit] 열 시술 후 주입 시술 순서 준수 필수. 울쎄라의 SMAS 열응고가 장기적 콜라겐 리모델링을 유도하여 주름 재발 방지"
+         ]
+        },
+        {
+         "k": "B",
+         "label": "지방분해 주사(N1) 먼저",
+         "lines": [
+          "[treatment-optimization.by_concern.sequence] 지방분해주사 or 크라이오 → 4주 간격 반복 → RF로 타이트닝 → 카복시로 순환 개선",
+          "[treatment-optimization.by_concern.contraindicated_combos] 지방분해주사 후 24시간 내 RF 금지"
+         ]
+        }
+       ],
+       "now": "지금 앱 값: 순서 단정 안 함(R5) · 걸린 엣지 · 쌍 2"
+      }
+     ],
+     "basis": [
+      "10-30 충돌 하나로 — 묶음 낱말 끝점을 계열로 펴 다시 센 순서 반대(X8 뒤에 더함 · 기존 X8 id 유지) · 지금은 순서 단정 안 함 + 간격 더 긴 쪽"
+     ]
+    }
+   ]
+  },
+  {
+   "key": "hospital",
+   "title": "병원 · 원장님",
+   "who": "원천(병원)에",
+   "items": [
+    {
+     "id": "s1-auto-M4-1775361749536",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M4-1775361749536"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "정체가 갈리는 것",
+     "q": "「인에이블」은 동국제약 화장품 인에이블인가요, LG화학 PN(비타란)을 잘못 적은 건가요?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 정체가 갈리는 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M3-hADM-1775404146754",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M3-hADM-1775404146754"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "정체가 갈리는 것",
+     "q": "「도프ECM」은 바임 쥬브아셀과 같은 제품인가요?",
+     "also": [],
+     "ctx": [
+      "1단계 — 도프 hADM 제품은 ESSALIA · 세시엠 L 도 있음"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 정체가 갈리는 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M9-1775364775137",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M9-1775364775137"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "정체가 갈리는 것",
+     "q": "쓰는 「아폴로」는 위로 Apollo Duet/Quattro 인가요, Pollogen Apollo 인가요?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 정체가 갈리는 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-M5-P-0",
+     "tab": "hospital",
+     "orig_ids": [
+      "M5-P-0"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "정체가 갈리는 것",
+     "q": "「셀피아」는 시지바이오 CGPRP kit(제허 26-568)인가요?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 정체가 갈리는 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M15-1775360904089",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M15-1775360904089"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "정체가 갈리는 것",
+     "q": "노보젯 모델 번호가 CRJ-001CD(바즈바이오메딕 분사식주사기)인가요?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 정체가 갈리는 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M8-1775362587235",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M8-1775362587235"
+     ],
+     "stages": [
+      1,
+      2
+     ],
+     "group": "정체가 갈리는 것",
+     "q": "「피코코어」는 블루코어 「피코어(Picore)」인가요?",
+     "also": [],
+     "ctx": [
+      "1단계 — 원천엔 루트로닉으로 적힘"
+     ],
+     "now": "M8 · 엔디야그 레이저",
+     "status": "근거 약",
+     "where": [
+      "step1-origin-questions.md · 정체가 갈리는 것",
+      "step2 근거 약 확인 9 — 값은 넣어 둠(evidence_level 약)"
+     ],
+     "stage_label": "1단계 · 2단계"
+    },
+    {
+     "id": "s1-auto-M8-1775364775128",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M8-1775364775128"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "정체가 갈리는 것",
+     "q": "「포토나스타발브」는 포토나 스타워커(StarWalker)인가요?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 정체가 갈리는 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M1-1775364775101",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M1-1775364775101"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "정체가 갈리는 것",
+     "q": "센독스 업체 「메디콕스」가 맞나요? 실제 제품명 · 제조사는?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 정체가 갈리는 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M4-1775360463217",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M4-1775360463217"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "정체가 갈리는 것",
+     "q": "「벨피엔 프로」의 「프로」는 리도카인 든 밸피엔(26-757)을 말하나요?",
+     "also": [
+      "1단계: 「벨피엔 프로」은 밸피엔 라인 중 어느 제품인가요?"
+     ],
+     "ctx": [],
+     "now": "",
+     "status": "확인 대기",
+     "where": [
+      "step1-origin-questions.md · 정체가 갈리는 것",
+      "step1 참고 — 라인에는 붙였지만 품목이 미정인 것(추천은 됨)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M14-1775361047443",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M14-1775361047443",
+      "auto-M10-1775361916636"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "정체가 갈리는 것",
+     "q": "바넥스 · 바넥스프로의 실제 제품명 · 제조사는?",
+     "also": [],
+     "ctx": [
+      "1단계 — Vanquish Me 는 기전이 달라 아님"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 정체가 갈리는 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M9-1775364797157",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M9-1775364797157"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "정체가 갈리는 것",
+     "q": "아큐어(국산 양극성 RF)의 실제 제품명 · 제조사는?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 정체가 갈리는 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-new-DEV-044",
+     "tab": "hospital",
+     "orig_ids": [
+      "new-DEV-044"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "정체가 갈리는 것",
+     "q": "힐퓨전프로는 힐룩스 「HFUSION」(2026-09 허가)인가요?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 정체가 갈리는 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-new-DEV-052",
+     "tab": "hospital",
+     "orig_ids": [
+      "new-DEV-052"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "정체가 갈리는 것",
+     "q": "트리필 프로는 엠큐어 허가 모델 TF2004NIWS(Olidia Booster)인가요?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 정체가 갈리는 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M12-1775363035813",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M12-1775363035813"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "정체가 갈리는 것",
+     "q": "스킨스탬프는 어느 회사 제품인가요?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 정체가 갈리는 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-new-DEV-071",
+     "tab": "hospital",
+     "orig_ids": [
+      "new-DEV-071"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "정체가 갈리는 것",
+     "q": "미라쥬(Mirage 3D P2) 수입사는 어디이고, 의료기기로 들여왔나요?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 정체가 갈리는 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M3-1775364775146",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M3-1775364775146"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "주사 · 스킨부스터 — 이름 근거 0 (D22 · 10개)",
+     "q": "콜라겐핀 실제 제품명 · 제조사는?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 주사 · 스킨부스터 — 이름 근거 0 (D22 · 10개)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M3-1775364775148",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M3-1775364775148"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "주사 · 스킨부스터 — 이름 근거 0 (D22 · 10개)",
+     "q": "린피니(PCL) 실제 제품명 · 제조사는?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 주사 · 스킨부스터 — 이름 근거 0 (D22 · 10개)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M4-1775362498539",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M4-1775362498539"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "주사 · 스킨부스터 — 이름 근거 0 (D22 · 10개)",
+     "q": "스네일샷 실제 제품명 · 제조사는?",
+     "also": [],
+     "ctx": [
+      "1단계 — PN 기반인가요, 달팽이 성분인가요?"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 주사 · 스킨부스터 — 이름 근거 0 (D22 · 10개)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M4-1775364775153",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M4-1775364775153"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "주사 · 스킨부스터 — 이름 근거 0 (D22 · 10개)",
+     "q": "레나토S(PN) 실제 제품명 · 제조사는?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 주사 · 스킨부스터 — 이름 근거 0 (D22 · 10개)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M4-1775364775154",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M4-1775364775154"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "주사 · 스킨부스터 — 이름 근거 0 (D22 · 10개)",
+     "q": "소노PDRN 은 제품인가요, PDRN + 초음파 관리 메뉴인가요?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 주사 · 스킨부스터 — 이름 근거 0 (D22 · 10개)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M4-1775364775151",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M4-1775364775151"
+     ],
+     "stages": [
+      1,
+      5
+     ],
+     "group": "주사 · 스킨부스터 — 이름 근거 0 (D22 · 10개)",
+     "q": "카탈리스트(엑소좀) 실제 제품명 · 제조사는?",
+     "also": [
+      "5단계: 「카탈리스트」(원천 「차세대엑소좀」)는 어떤 제품이고 주사 / 도포 중 어떻게 쓰나요?"
+     ],
+     "ctx": [
+      "5단계 — 1단계 종류 확인 불가 · 출처 없음 — 지금은 단위 시술 없음"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 주사 · 스킨부스터 — 이름 근거 0 (D22 · 10개)",
+      "step5 원천 질문 20"
+     ],
+     "stage_label": "1단계 · 5단계"
+    },
+    {
+     "id": "s1-auto-M4-1775364775155",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M4-1775364775155"
+     ],
+     "stages": [
+      1,
+      5
+     ],
+     "group": "주사 · 스킨부스터 — 이름 근거 0 (D22 · 10개)",
+     "q": "드원셀(엑소좀) 실제 제품명 · 제조사는?",
+     "also": [
+      "5단계: 「드원셀」(원천 「엑소좀국산」)은 어떤 제품이고 주사 / 도포 중 어떻게 쓰나요?"
+     ],
+     "ctx": [
+      "5단계 — 1단계 종류 확인 불가 · 출처 없음 — 지금은 단위 시술 없음"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 주사 · 스킨부스터 — 이름 근거 0 (D22 · 10개)",
+      "step5 원천 질문 20"
+     ],
+     "stage_label": "1단계 · 5단계"
+    },
+    {
+     "id": "s1-auto-M4-1775360452766",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M4-1775360452766"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "주사 · 스킨부스터 — 이름 근거 0 (D22 · 10개)",
+     "q": "리듐(콜라겐) 실제 제품명 · 제조사는?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 주사 · 스킨부스터 — 이름 근거 0 (D22 · 10개)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M4-1775360574999",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M4-1775360574999"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "주사 · 스킨부스터 — 이름 근거 0 (D22 · 10개)",
+     "q": "투(TU) 인체 유래 콜라겐은 리투오인가요? 실제 제품명은?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 주사 · 스킨부스터 — 이름 근거 0 (D22 · 10개)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M4-1775364775152",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M4-1775364775152"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "주사 · 스킨부스터 — 이름 근거 0 (D22 · 10개)",
+     "q": "SNP솔루션(콜라겐 주사) 실제 제품명 · 제조사는?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 주사 · 스킨부스터 — 이름 근거 0 (D22 · 10개)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M8-1775362943490",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M8-1775362943490"
+     ],
+     "stages": [
+      1,
+      2
+     ],
+     "group": "장비 — 이름 근거 0 (D23 · 16개)",
+     "q": "트루피코 실제 장비명(영문) · 제조사는?",
+     "also": [
+      "2단계: 트루피코의 실제 장비명(영문) · 제조사는?"
+     ],
+     "ctx": [],
+     "now": "M8 · 엔디야그 레이저",
+     "status": "근거 약",
+     "where": [
+      "step1-origin-questions.md · 장비 — 이름 근거 0 (D23 · 16개)",
+      "step2 근거 약 확인 9 — 값은 넣어 둠(evidence_level 약)"
+     ],
+     "stage_label": "1단계 · 2단계"
+    },
+    {
+     "id": "s1-auto-M8-1775364775127",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M8-1775364775127"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "장비 — 이름 근거 0 (D23 · 16개)",
+     "q": "바이탈라이즈(IPL) 실제 장비명 · 제조사는?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 장비 — 이름 근거 0 (D23 · 16개)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M8-1775364797146",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M8-1775364797146"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "장비 — 이름 근거 0 (D23 · 16개)",
+     "q": "로제라이트(홍조 RF+IPL) 실제 장비명 · 제조사는?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 장비 — 이름 근거 0 (D23 · 16개)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M9-1775364775133",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M9-1775364775133"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "장비 — 이름 근거 0 (D23 · 16개)",
+     "q": "하이푸니(소형 HIFU) 실제 장비명 · 제조사는?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 장비 — 이름 근거 0 (D23 · 16개)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M9-1775362633910",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M9-1775362633910"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "장비 — 이름 근거 0 (D23 · 16개)",
+     "q": "에이전은 제이시스 어느 모델인가요?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 장비 — 이름 근거 0 (D23 · 16개)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M9-1775364775132",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M9-1775364775132"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "장비 — 이름 근거 0 (D23 · 16개)",
+     "q": "리저브(국산 모노폴라 RF) 실제 장비명 · 제조사는?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 장비 — 이름 근거 0 (D23 · 16개)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M9-1775364775139",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M9-1775364775139"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "장비 — 이름 근거 0 (D23 · 16개)",
+     "q": "클래리파이(여드름 · 피지) 실제 장비명 · 제조사는?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 장비 — 이름 근거 0 (D23 · 16개)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M9-1775364775135",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M9-1775364775135"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "장비 — 이름 근거 0 (D23 · 16개)",
+     "q": "에브넥(목 리프팅) 실제 장비명 · 제조사는?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 장비 — 이름 근거 0 (D23 · 16개)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M9-1775364775136",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M9-1775364775136"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "장비 — 이름 근거 0 (D23 · 16개)",
+     "q": "바이캐빈(RF+캐비테이션) 실제 장비명 · 제조사는?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 장비 — 이름 근거 0 (D23 · 16개)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M11-1775364775144",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M11-1775364775144"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "장비 — 이름 근거 0 (D23 · 16개)",
+     "q": "프라임RF(니들RF) 실제 장비명 · 제조사는?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 장비 — 이름 근거 0 (D23 · 16개)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M13-1775364775141",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M13-1775364775141"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "장비 — 이름 근거 0 (D23 · 16개)",
+     "q": "뉴라클플라즈마(눈꺼풀) 실제 장비명 · 제조사는?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 장비 — 이름 근거 0 (D23 · 16개)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M13-1775364775140",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M13-1775364775140"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "장비 — 이름 근거 0 (D23 · 16개)",
+     "q": "플라스젠(콜드플라즈마) 실제 장비명 · 제조사는?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 장비 — 이름 근거 0 (D23 · 16개)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M14-1775364775188",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M14-1775364775188"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "장비 — 이름 근거 0 (D23 · 16개)",
+     "q": "크라이오듀얼은 장비 이름인가요, 양쪽 동시 냉각 기능 설명인가요?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 장비 — 이름 근거 0 (D23 · 16개)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M15-1775362992228",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M15-1775362992228"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "장비 — 이름 근거 0 (D23 · 16개)",
+     "q": "셀라이트(LED) 실제 장비명 · 제조사는?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 장비 — 이름 근거 0 (D23 · 16개)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M15-1775362998455",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M15-1775362998455"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "장비 — 이름 근거 0 (D23 · 16개)",
+     "q": "데마루치는 더마룩스(Dermalux)인가요? 실제 장비명은?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 장비 — 이름 근거 0 (D23 · 16개)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M15-1775364775179",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M15-1775364775179"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "장비 — 이름 근거 0 (D23 · 16개)",
+     "q": "바이오프로톤(광생물조절) 실제 장비명 · 제조사는?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 장비 — 이름 근거 0 (D23 · 16개)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-M2-P-7",
+     "tab": "hospital",
+     "orig_ids": [
+      "M2-P-7"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "taxonomy 새 제품 — 출처 0 (D29 · 셀피아 빼고 7개)",
+     "q": "신펄(제테마 PLLA)이 실제로 있나요? 제품명 · 허가는?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · taxonomy 새 제품 — 출처 0 (D29 · 셀피아 빼고 7개)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-M3-P-5",
+     "tab": "hospital",
+     "orig_ids": [
+      "M3-P-5"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "taxonomy 새 제품 — 출처 0 (D29 · 셀피아 빼고 7개)",
+     "q": "글로벨라(에이씨피바이오 PLLA) 실제 제품 · 업체는?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · taxonomy 새 제품 — 출처 0 (D29 · 셀피아 빼고 7개)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-M5-P-2",
+     "tab": "hospital",
+     "orig_ids": [
+      "M5-P-2"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "taxonomy 새 제품 — 출처 0 (D29 · 셀피아 빼고 7개)",
+     "q": "마이셀(한스바이오메드 자가혈) 실제 제품 · 업체는?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · taxonomy 새 제품 — 출처 0 (D29 · 셀피아 빼고 7개)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-M5-P-4",
+     "tab": "hospital",
+     "orig_ids": [
+      "M5-P-4"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "taxonomy 새 제품 — 출처 0 (D29 · 셀피아 빼고 7개)",
+     "q": "EXOSOME SKIN(엑소스템텍) 실제 제품명은?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · taxonomy 새 제품 — 출처 0 (D29 · 셀피아 빼고 7개)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-M7-P-1",
+     "tab": "hospital",
+     "orig_ids": [
+      "M7-P-1"
+     ],
+     "stages": [
+      1,
+      2
+     ],
+     "group": "taxonomy 새 제품 — 출처 0 (D29 · 셀피아 빼고 7개)",
+     "q": "에버라인(KL글로벌 실) 실제 제품 · 업체는?",
+     "also": [
+      "2단계: 「에버라인」(KL글로벌) 실 재질과 제조사는?"
+     ],
+     "ctx": [],
+     "now": "M7 · PDO + 보조 PLLA · PCL",
+     "status": "근거 약",
+     "where": [
+      "step1-origin-questions.md · taxonomy 새 제품 — 출처 0 (D29 · 셀피아 빼고 7개)",
+      "step2 근거 약 확인 9 — 값은 넣어 둠(evidence_level 약)"
+     ],
+     "stage_label": "1단계 · 2단계"
+    },
+    {
+     "id": "s1-M7-P-2",
+     "tab": "hospital",
+     "orig_ids": [
+      "M7-P-2"
+     ],
+     "stages": [
+      1,
+      2
+     ],
+     "group": "taxonomy 새 제품 — 출처 0 (D29 · 셀피아 빼고 7개)",
+     "q": "미라클(PDO 실)은 고메디칼코리아 「WOW미라클」인가요?",
+     "also": [
+      "2단계: 「미라클」 실은 고메디칼코리아 「WOW미라클」인가요? 제조사는?"
+     ],
+     "ctx": [],
+     "now": "M7 · PDO",
+     "status": "근거 약",
+     "where": [
+      "step1-origin-questions.md · taxonomy 새 제품 — 출처 0 (D29 · 셀피아 빼고 7개)",
+      "step2 근거 약 확인 9 — 값은 넣어 둠(evidence_level 약)"
+     ],
+     "stage_label": "1단계 · 2단계"
+    },
+    {
+     "id": "s1-M17-P-1",
+     "tab": "hospital",
+     "orig_ids": [
+      "M17-P-1"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "taxonomy 새 제품 — 출처 0 (D29 · 셀피아 빼고 7개)",
+     "q": "에스에프(줄기세포 유래 주사) 실제 제품 · 업체는?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · taxonomy 새 제품 — 출처 0 (D29 · 셀피아 빼고 7개)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M1-1775360538524",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M1-1775360538524"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "「다복스」는 어떤 톡신 제품인가요? 제품명 · 회사를 알려 주세요.",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-14-1774737181584",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-14-1774737181584"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "병원이 쓰는 「레티젠」은 어느 회사 제품인가요?",
+     "also": [],
+     "ctx": [
+      "1단계 — 같은 이름 허가는 인대·건 보충용이라 다름"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-15-1774737181584",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-15-1774737181584"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "병원이 쓰는 「미라콜」은 어느 회사 제품인가요?",
+     "also": [],
+     "ctx": [
+      "1단계 — 같은 이름 허가는 인대·근육 보충용이라 다름"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-M4-2-3",
+     "tab": "hospital",
+     "orig_ids": [
+      "M4-2-3"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "병원이 쓰는 「릴리이드M」은 어느 회사 제품인가요?",
+     "also": [],
+     "ctx": [
+      "1단계 — 같은 이름 허가는 내시경 점막 융기용이라 다름"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M7-1775362729861",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M7-1775362729861"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "「캐번실」은 네오닥터 캐번(지금은 잼버)인가요? 지금 쓰는 제품명은?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M8-1775362951135",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M8-1775362951135"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "「리레이저」는 르키드 「RELASER」(제허 19-69)인가요?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M8-1775364775119",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M8-1775364775119"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "현장에서 「에코2 에볼루션」이라 부르는 장비는 루트로닉 eCO2 어느 모델인가요?",
+     "also": [],
+     "ctx": [
+      "1단계 — EVOLUTION 은 수출용 허가뿐"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M8-1775362619619",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M8-1775362619619"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "「슬렌더엑스」는 어느 회사의 어떤 장비인가요?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M9-1775363058909",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M9-1775363058909"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "「시크릿맥스」는 클래시스 「QUADESSY」(제허 24-342)와 같은 장비인가요?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M15-1775364775115",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M15-1775364775115"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "「미라필링」 필링은 어느 회사 제품인가요? 병원에서 실제로 쓰나요?",
+     "also": [],
+     "ctx": [
+      "1단계 — 국내 병원 · 제조사 출처를 못 찾음"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M15-1775364775117",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M15-1775364775117"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "「옐로우필링」 필링은 어느 회사 제품인가요? 병원에서 실제로 쓰나요?",
+     "also": [],
+     "ctx": [
+      "1단계 — 국내 병원 · 제조사 출처를 못 찾음"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M15-1775364775118",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M15-1775364775118"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "「솔코세릴필링」 필링은 어느 회사 제품인가요? 병원에서 실제로 쓰나요?",
+     "also": [],
+     "ctx": [
+      "1단계 — 국내 병원 · 제조사 출처를 못 찾음"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M15-1775401645338",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M15-1775401645338"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "PRX필은 WiQo 「PRX-T33」인가요? 국내 수입사는 어디인가요?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M15-1775401653479",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M15-1775401653479"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "「CO2필」 필링은 어느 회사 제품인가요? 병원에서 실제로 쓰나요?",
+     "also": [],
+     "ctx": [
+      "1단계 — 국내 병원 · 제조사 출처를 못 찾음"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M15-1775401692083",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M15-1775401692083"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "「퀸즈필」 필링은 어느 회사 제품인가요? 병원에서 실제로 쓰나요?",
+     "also": [],
+     "ctx": [
+      "1단계 — 국내 병원 · 제조사 출처를 못 찾음"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M15-1775401700008",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M15-1775401700008"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "「살몬필」 필링은 어느 회사 제품인가요? 병원에서 실제로 쓰나요?",
+     "also": [],
+     "ctx": [
+      "1단계 — 국내 병원 · 제조사 출처를 못 찾음"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M15-1775401738092",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M15-1775401738092"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "「디멜라필」 필링은 어느 회사 제품인가요? 병원에서 실제로 쓰나요?",
+     "also": [],
+     "ctx": [
+      "1단계 — 국내 병원 · 제조사 출처를 못 찾음"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M15-1775401753203",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M15-1775401753203"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "「우유필」 필링은 어느 회사 제품인가요? 병원에서 실제로 쓰나요?",
+     "also": [],
+     "ctx": [
+      "1단계 — 국내 병원 · 제조사 출처를 못 찾음"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M15-1775401760736",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M15-1775401760736"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "「베이비필」 필링은 어느 회사 제품인가요? 병원에서 실제로 쓰나요?",
+     "also": [],
+     "ctx": [
+      "1단계 — 국내 병원 · 제조사 출처를 못 찾음"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M15-1775401767756",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M15-1775401767756"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "「골드필」 필링은 어느 회사 제품인가요? 병원에서 실제로 쓰나요?",
+     "also": [],
+     "ctx": [
+      "1단계 — 국내 병원 · 제조사 출처를 못 찾음"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M15-1775401773800",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M15-1775401773800"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "「마꾸필」 필링은 어느 회사 제품인가요? 병원에서 실제로 쓰나요?",
+     "also": [],
+     "ctx": [
+      "1단계 — 국내 병원 · 제조사 출처를 못 찾음"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M15-1775401780659",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M15-1775401780659"
+     ],
+     "stages": [
+      1,
+      2,
+      5
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "「알렉스필」 필링은 어느 회사 제품인가요? 병원에서 실제로 쓰나요?",
+     "also": [
+      "2단계: 「알렉스필」은 알렉산드라이트 레이저로 하는 시술 이름인가요(바르는 필링이 아닌)?",
+      "5단계: 「알렉스필」은 알렉산드라이트 레이저로 하는 시술 이름인가요(바르는 필링이 아닌)?"
+     ],
+     "ctx": [
+      "1단계 — 국내 병원 · 제조사 출처를 못 찾음",
+      "2단계 — 확인되면 바르는 필링이면 M15 「화학 박피」 · 알렉산드라이트 레이저 시술이면 레이저 시술 이름 → 5단계(시술 이름)"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+      "step2 원장님 문의 3 — 정체 미확인(family null · 추천 제외 그대로)",
+      "step5 참고 — 2단계 원장님 문의 3(5단계는 답 오기 전까지 단위 시술 없음)"
+     ],
+     "stage_label": "1단계 · 2단계 · 5단계"
+    },
+    {
+     "id": "s1-auto-M15-1775402057372",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M15-1775402057372"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "「크랜베리필」 필링은 어느 회사 제품인가요? 병원에서 실제로 쓰나요?",
+     "also": [],
+     "ctx": [
+      "1단계 — 국내 병원 · 제조사 출처를 못 찾음"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M15-1775402064126",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M15-1775402064126"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "「체리필」 필링은 어느 회사 제품인가요? 병원에서 실제로 쓰나요?",
+     "also": [],
+     "ctx": [
+      "1단계 — 국내 병원 · 제조사 출처를 못 찾음"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M15-1775402078232",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M15-1775402078232"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "「ASA필」 필링은 어느 회사 제품인가요? 병원에서 실제로 쓰나요?",
+     "also": [],
+     "ctx": [
+      "1단계 — 국내 병원 · 제조사 출처를 못 찾음"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M15-1775402093377",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M15-1775402093377"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "「이지피틱필」 필링은 어느 회사 제품인가요? 병원에서 실제로 쓰나요?",
+     "also": [],
+     "ctx": [
+      "1단계 — 국내 병원 · 제조사 출처를 못 찾음"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M15-1775402113508",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M15-1775402113508"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "「진주필」 필링은 어느 회사 제품인가요? 병원에서 실제로 쓰나요?",
+     "also": [],
+     "ctx": [
+      "1단계 — 국내 병원 · 제조사 출처를 못 찾음"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M15-1775402120118",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M15-1775402120118"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "「콜라겐필」 필링은 어느 회사 제품인가요? 병원에서 실제로 쓰나요?",
+     "also": [],
+     "ctx": [
+      "1단계 — 국내 병원 · 제조사 출처를 못 찾음"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M15-1775362958625",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M15-1775362958625"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "「옥시덤」은 어떤 장비인가요? 제품명 · 회사를 알려 주세요.",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-49-1774737181584",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-49-1774737181584"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "「아스트로돔」의 제조사 · 수입사는 어디인가요?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M16-DCA-1775404043067",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M16-DCA-1775404043067"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "「리포린주」 허가번호를 알 수 있나요?",
+     "also": [],
+     "ctx": [
+      "1단계 — 보도는 2025-08 허가, 식약처 조회는 0건"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-new-DEV-034",
+     "tab": "hospital",
+     "orig_ids": [
+      "new-DEV-034"
+     ],
+     "stages": [
+      1,
+      2,
+      5
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "「벨르업」 실물 라벨에 의료기기 표시(허가번호)가 있나요? 만든 회사는?",
+     "also": [
+      "2단계: 벨르업은 어떤 에너지(고주파 · 초음파 · EMS 등)를 쓰는 장비이고 제조사는 어디인가요?",
+      "5단계: 벨르업은 어떤 에너지(고주파 · 초음파 · EMS 등)를 쓰는 장비이고 제조사는 어디인가요?"
+     ],
+     "ctx": [
+      "2단계 — 확인되면 원리(에너지) 확인 후 그 계열 — 지금 출처는 사진 폴더 「2_리프팅」뿐"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+      "step2 원장님 문의 3 — 정체 미확인(family null · 추천 제외 그대로)",
+      "step5 참고 — 2단계 원장님 문의 3(5단계는 답 오기 전까지 단위 시술 없음)"
+     ],
+     "stage_label": "1단계 · 2단계 · 5단계"
+    },
+    {
+     "id": "s1-new-DEV-039",
+     "tab": "hospital",
+     "orig_ids": [
+      "new-DEV-039"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "현장 스텔라듀오(엘림텍)는 어디서 들여왔나요? 국내 허가번호가 붙어 있나요?",
+     "also": [],
+     "ctx": [
+      "1단계 — StellarDuo 허가는 수출용뿐"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-new-DEV-041",
+     "tab": "hospital",
+     "orig_ids": [
+      "new-DEV-041"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "현장 「듀오 하이드로젠(수소토닝)」 장비 라벨에 의료기기 허가번호가 있나요? 만든 회사는 어디인가요?",
+     "also": [],
+     "ctx": [
+      "1단계 — 식약처 HYDROGEN 0건 · 판매 세븐인터내셔널 표기만 확인"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-new-DEV-042",
+     "tab": "hospital",
+     "orig_ids": [
+      "new-DEV-042"
+     ],
+     "stages": [
+      1,
+      2,
+      5
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "현장 「더마큐어」 장비는 피글 「Dermacure」(제허 22-692)인가요?",
+     "also": [
+      "2단계: 쓰는 더마큐어는 피글(Feagle) 저온 플라즈마 장비(TS-3)인가요?",
+      "5단계: 쓰는 더마큐어는 피글(Feagle) 저온 플라즈마 장비(TS-3)인가요?"
+     ],
+     "ctx": [
+      "2단계 — 확인되면 피글 저온 플라즈마 TS-3 이면 M13 「콜드 플라즈마」"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+      "step2 원장님 문의 3 — 정체 미확인(family null · 추천 제외 그대로)",
+      "step5 참고 — 2단계 원장님 문의 3(5단계는 답 오기 전까지 단위 시술 없음)"
+     ],
+     "stage_label": "1단계 · 2단계 · 5단계"
+    },
+    {
+     "id": "s1-new-DEV-074",
+     "tab": "hospital",
+     "orig_ids": [
+      "new-DEV-074"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "「스케나」의 제조사 · 수입사는 어디인가요?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-step1-new-FASCELLA",
+     "tab": "hospital",
+     "orig_ids": [
+      "step1-new-FASCELLA"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "현장 「파셀라(FASCELLA)」 장비는 어느 회사 제품이고 의료기기 허가번호가 있나요?",
+     "also": [],
+     "ctx": [
+      "1단계 — 식약처 FASCELLA · 파셀라 0건"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M15-1775361951923",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M15-1775361951923"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것",
+     "q": "「아큐탄」으로 쓰는 약은 어느 회사 이소트레티노인 제품인가요?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step1-origin-questions.md · 그 밖의 확인 불가 — 이번 반영에서 질문을 붙인 것"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M2-1775364775107",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M2-1775364775107"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "참고 — 라인에는 붙였지만 품목이 미정인 것(추천은 됨)",
+     "q": "「엘라비에프라임」은 엘라비에 프리미어 라인 중 어느 제품인가요?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "확인 대기",
+     "where": [
+      "step1-origin-questions.md · 참고 — 라인에는 붙였지만 품목이 미정인 것(추천은 됨)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M9-1775364775134",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M9-1775364775134"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "참고 — 라인에는 붙였지만 품목이 미정인 것(추천은 됨)",
+     "q": "「더블로골드S」은 더블로 라인 중 어느 제품인가요?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "확인 대기",
+     "where": [
+      "step1-origin-questions.md · 참고 — 라인에는 붙였지만 품목이 미정인 것(추천은 됨)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s1-auto-M7-1775362579841",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M7-1775362579841"
+     ],
+     "stages": [
+      1
+     ],
+     "group": "참고 — 라인에는 붙였지만 품목이 미정인 것(추천은 됨)",
+     "q": "「오메가리프트」은 오메가브이 라인 중 어느 제품인가요?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "확인 대기",
+     "where": [
+      "step1-origin-questions.md · 참고 — 라인에는 붙였지만 품목이 미정인 것(추천은 됨)"
+     ],
+     "stage_label": "1단계"
+    },
+    {
+     "id": "s2-M7-3-2",
+     "tab": "hospital",
+     "orig_ids": [
+      "M7-3-2"
+     ],
+     "stages": [
+      2
+     ],
+     "group": "근거 약 확인 9 — 값은 넣어 둠(evidence_level 약)",
+     "q": "국내 실루엣소프트(수허 15-878) 실 재질이 PLLA 인가요, PLGA 인가요?",
+     "also": [],
+     "ctx": [],
+     "now": "M7 · PLLA",
+     "status": "근거 약",
+     "where": [
+      "step2-origin-questions.md · 근거 약 확인 9 — 값은 넣어 둠(evidence_level 약)"
+     ],
+     "stage_label": "2단계"
+    },
+    {
+     "id": "s2-auto-M8-1775364775122",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M8-1775364775122"
+     ],
+     "stages": [
+      2
+     ],
+     "group": "근거 약 확인 9 — 값은 넣어 둠(evidence_level 약)",
+     "q": "아이콘(Cynosure Icon)의 1540nm 핸드피스 광원이 Er:Glass 인가요?",
+     "also": [],
+     "ctx": [],
+     "now": "M8 · IPL + 보조 Er:Glass",
+     "status": "근거 약",
+     "where": [
+      "step2-origin-questions.md · 근거 약 확인 9 — 값은 넣어 둠(evidence_level 약)"
+     ],
+     "stage_label": "2단계"
+    },
+    {
+     "id": "s2-auto-M8-1775360593064",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M8-1775360593064"
+     ],
+     "stages": [
+      2
+     ],
+     "group": "근거 약 확인 9 — 값은 넣어 둠(evidence_level 약)",
+     "q": "디스커버리 피코의 주 광원은 Nd:YAG(1064 · 532nm)이고 루비(694nm)는 보조인가요?",
+     "also": [],
+     "ctx": [],
+     "now": "M8 · 엔디야그 레이저 + 보조 루비 레이저",
+     "status": "근거 약",
+     "where": [
+      "step2-origin-questions.md · 근거 약 확인 9 — 값은 넣어 둠(evidence_level 약)"
+     ],
+     "stage_label": "2단계"
+    },
+    {
+     "id": "s2-new-DEV-069",
+     "tab": "hospital",
+     "orig_ids": [
+      "new-DEV-069"
+     ],
+     "stages": [
+      2
+     ],
+     "group": "근거 약 확인 9 — 값은 넣어 둠(evidence_level 약)",
+     "q": "아톰 레이저의 광원이 반도체(다이오드) 레이저인가요?",
+     "also": [],
+     "ctx": [],
+     "now": "M8 · 반도체 레이저",
+     "status": "근거 약",
+     "where": [
+      "step2-origin-questions.md · 근거 약 확인 9 — 값은 넣어 둠(evidence_level 약)"
+     ],
+     "stage_label": "2단계"
+    },
+    {
+     "id": "s2-step1-new-APTOS",
+     "tab": "hospital",
+     "orig_ids": [
+      "step1-new-APTOS"
+     ],
+     "stages": [
+      2
+     ],
+     "group": "근거 약 확인 9 — 값은 넣어 둠(evidence_level 약)",
+     "q": "쓰는 압토스(수허 25-219) 실이 Excellence Visage(PLLA/PCL)인가요, 폴리프로필렌 실인가요?",
+     "also": [],
+     "ctx": [],
+     "now": "M7 · PLLA + 보조 PCL",
+     "status": "근거 약",
+     "where": [
+      "step2-origin-questions.md · 근거 약 확인 9 — 값은 넣어 둠(evidence_level 약)"
+     ],
+     "stage_label": "2단계"
+    },
+    {
+     "id": "s5-auto-M4-1775361371619",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M4-1775361371619"
+     ],
+     "stages": [
+      5
+     ],
+     "group": "원천 질문 20",
+     "q": "「셀엑소좀」(휴메딕스 · 프로스테믹스)은 어떻게 쓰나요 — 주사(진피 · 두피) / 도포(MTS · 레이저 후)?",
+     "also": [],
+     "ctx": [
+      "5단계 — 1단계 종류 확인 불가 · 출처 kormedi 에 투여 방식 없음 · hankyung 기사는 다른 제품 「이즈먼트」 — 지금은 단위 시술 없음 · 추천 가능 제품 예외"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step5-origin-questions.md · 원천 질문 20"
+     ],
+     "stage_label": "5단계"
+    },
+    {
+     "id": "s5-M5-3-1",
+     "tab": "hospital",
+     "orig_ids": [
+      "M5-3-1"
+     ],
+     "stages": [
+      5
+     ],
+     "group": "원천 질문 20",
+     "q": "「CPR」은 PRP(혈소판 농축물) 시술인가요?",
+     "also": [],
+     "ctx": [
+      "5단계 — 2단계 「MCT · ACT 확인 안 됨」 — 지금은 얼굴 전체 PRP 동의어 · 근거 약"
+     ],
+     "now": "U5-020 얼굴 전체 PRP · 근거 약",
+     "status": "근거 약",
+     "where": [
+      "step5-origin-questions.md · 원천 질문 20"
+     ],
+     "stage_label": "5단계"
+    },
+    {
+     "id": "s5-auto-M5-1775364775190",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M5-1775364775190"
+     ],
+     "stages": [
+      5
+     ],
+     "group": "원천 질문 20",
+     "q": "「ACR」은 PRP(혈소판 농축물) 시술인가요?",
+     "also": [],
+     "ctx": [
+      "5단계 — 지금은 얼굴 전체 PRP 동의어 · 근거 약"
+     ],
+     "now": "U5-020 얼굴 전체 PRP · 근거 약",
+     "status": "근거 약",
+     "where": [
+      "step5-origin-questions.md · 원천 질문 20"
+     ],
+     "stage_label": "5단계"
+    },
+    {
+     "id": "s5-M6-3-1",
+     "tab": "hospital",
+     "orig_ids": [
+      "M6-3-1"
+     ],
+     "stages": [
+      5
+     ],
+     "group": "원천 질문 20",
+     "q": "「SVF지방이식」은 지방이식에 SVF 를 보강하는 시술인가요?",
+     "also": [],
+     "ctx": [
+      "5단계 — 지금은 얼굴 전체 지방이식 + 속성 「SVF 보강」 · 근거 약"
+     ],
+     "now": "U5-021 얼굴 전체 지방이식 · 근거 약",
+     "status": "근거 약",
+     "where": [
+      "step5-origin-questions.md · 원천 질문 20"
+     ],
+     "stage_label": "5단계"
+    },
+    {
+     "id": "s5-auto-M8-1775364775123",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M8-1775364775123"
+     ],
+     "stages": [
+      5
+     ],
+     "group": "원천 질문 20",
+     "q": "「스마트사이드」(DEKA SmartXide · CO2+RF)는 프락셔널(분할 조사)로 쓰나요, 전면 박피 · 절개로 쓰나요?",
+     "also": [],
+     "ctx": [
+      "5단계 — 1단계 허가 SmartXide UltraSpeed2 · Smartxide2 「탄산가스 레이저 수술기」 · 원장 「CO2 레이저가 피부 표면을 정밀하게 제거」 — 프락셔널 출처 없음 · CO2 키는 얼굴 전체 CO2 프락셀(K04b)뿐 — 지금은 단위 시술 없음 · 추천 가능 제품 예외"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step5-origin-questions.md · 원천 질문 20"
+     ],
+     "stage_label": "5단계"
+    },
+    {
+     "id": "s5-auto-M8-1775364775194",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M8-1775364775194"
+     ],
+     "stages": [
+      5
+     ],
+     "group": "원천 질문 20",
+     "q": "「사파이어레이저」는 어떤 장비(매질)인가요?",
+     "also": [],
+     "ctx": [
+      "5단계 — 사파이어 = 제모 레이저 접촉 냉각 팁 이름 · 지금은 얼굴 전체 레이저 동의어"
+     ],
+     "now": "U5-031 얼굴 전체 레이저",
+     "status": "확인 대기",
+     "where": [
+      "step5-origin-questions.md · 원천 질문 20"
+     ],
+     "stage_label": "5단계"
+    },
+    {
+     "id": "s5-auto-M12-1775364775165",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M12-1775364775165"
+     ],
+     "stages": [
+      5
+     ],
+     "group": "원천 질문 20",
+     "q": "「에이팩」은 어떤 장비 · 시술인가요?",
+     "also": [],
+     "ctx": [
+      "5단계 — MFDS 에이팩 · APACK 0 · 웹 0 — 지금은 얼굴 전체 MTS 동의어 · 근거 약"
+     ],
+     "now": "U5-032 얼굴 전체 MTS · 근거 약",
+     "status": "근거 약",
+     "where": [
+      "step5-origin-questions.md · 원천 질문 20"
+     ],
+     "stage_label": "5단계"
+    },
+    {
+     "id": "s5-auto-55-1774737181584",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-55-1774737181584"
+     ],
+     "stages": [
+      5
+     ],
+     "group": "원천 질문 20",
+     "q": "「셀디톡스수액」에는 어떤 성분이 들어가나요?",
+     "also": [],
+     "ctx": [
+      "5단계 — 웹 · 허가에서 이 이름의 처방을 못 찾음 — 같은 이름은 건강기능식품"
+     ],
+     "now": "U5-133 셀디톡스 수액(성분 미상)",
+     "status": "확인 대기",
+     "where": [
+      "step5-origin-questions.md · 원천 질문 20"
+     ],
+     "stage_label": "5단계"
+    },
+    {
+     "id": "s5-auto-56-1774737181584",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-56-1774737181584"
+     ],
+     "stages": [
+      5
+     ],
+     "group": "원천 질문 20",
+     "q": "「에너지부스트수액」에는 어떤 성분이 들어가나요?",
+     "also": [],
+     "ctx": [
+      "5단계 — 원천 문장은 「비타민 B군 · 미네랄 · 항산화제」뿐 — 처방 근거 아님"
+     ],
+     "now": "U5-134 에너지부스트 수액(성분 미상)",
+     "status": "확인 대기",
+     "where": [
+      "step5-origin-questions.md · 원천 질문 20"
+     ],
+     "stage_label": "5단계"
+    },
+    {
+     "id": "s5-auto-58-1774737181584",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-58-1774737181584"
+     ],
+     "stages": [
+      5
+     ],
+     "group": "원천 질문 20",
+     "q": "「이뮨코어수액」에는 어떤 성분이 들어가나요?",
+     "also": [],
+     "ctx": [
+      "5단계 — 원천 문장은 「비타민C · 아연 · 셀레늄」뿐 — 처방 근거 아님"
+     ],
+     "now": "U5-135 이뮨코어 수액(성분 미상)",
+     "status": "확인 대기",
+     "where": [
+      "step5-origin-questions.md · 원천 질문 20"
+     ],
+     "stage_label": "5단계"
+    },
+    {
+     "id": "s5-auto-M16-1775361179334",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M16-1775361179334"
+     ],
+     "stages": [
+      5
+     ],
+     "group": "원천 질문 20",
+     "q": "「HP주사(감초주사)」 detail 「지방분해」는 HPL 지방분해 주사와 섞인 것인가요?",
+     "also": [],
+     "ctx": [
+      "5단계 — 시장가 「감초주사 (간해독)」은 감초 수액 — 원천 수정 후보"
+     ],
+     "now": "U5-075 감초(글리시리진) 수액 · 원천 수정 후보: detail 「지방분해」 → 감초(글리시리진) 수액 설명으로(HPL 지방분해와 혼동 · F7)",
+     "status": "확인 대기",
+     "where": [
+      "step5-origin-questions.md · 원천 질문 20"
+     ],
+     "stage_label": "5단계"
+    },
+    {
+     "id": "s5-auto-M16-1775364797151",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M16-1775364797151"
+     ],
+     "stages": [
+      5
+     ],
+     "group": "원천 질문 20",
+     "q": "「프로락틴주사(프로작 탈모주입)」의 성분은 무엇인가요?",
+     "also": [],
+     "ctx": [
+      "5단계 — MFDS 프로락틴 · 프로작 의약품 0 — 지금은 두피 스킨부스터 동의어 · 성분 미상"
+     ],
+     "now": "U5-041 두피 스킨부스터",
+     "status": "확인 대기",
+     "where": [
+      "step5-origin-questions.md · 원천 질문 20"
+     ],
+     "stage_label": "5단계"
+    },
+    {
+     "id": "s5-auto-M16-1775403120672",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M16-1775403120672"
+     ],
+     "stages": [
+      5
+     ],
+     "group": "원천 질문 20",
+     "q": "「셀룰라이트주사」는 허벅지에 하나요?",
+     "also": [],
+     "ctx": [
+      "5단계 — 부위 원천 없음 — v3 초안 값 허벅지 · 근거 약"
+     ],
+     "now": "U5-078 허벅지 지방분해주사 · 근거 약",
+     "status": "근거 약",
+     "where": [
+      "step5-origin-questions.md · 원천 질문 20"
+     ],
+     "stage_label": "5단계"
+    },
+    {
+     "id": "s5-auto-M17-1775364775192",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-M17-1775364775192"
+     ],
+     "stages": [
+      5
+     ],
+     "group": "원천 질문 20",
+     "q": "「MPE」는 어떤 줄기세포 제품인가요?",
+     "also": [],
+     "ctx": [
+      "5단계 — 같은 이름 줄기세포 제품 0 — 지금은 얼굴 전체 줄기세포 동의어 · 근거 약"
+     ],
+     "now": "U5-081 얼굴 전체 줄기세포 · 근거 약",
+     "status": "근거 약",
+     "where": [
+      "step5-origin-questions.md · 원천 질문 20"
+     ],
+     "stage_label": "5단계"
+    },
+    {
+     "id": "s5-auto-62-1774737181584",
+     "tab": "hospital",
+     "orig_ids": [
+      "auto-62-1774737181584"
+     ],
+     "stages": [
+      5
+     ],
+     "group": "원천 질문 20",
+     "q": "「미라셀」로 분리한 줄기세포는 어떻게 쓰나요 — 주사(진피 · 두피) / 도포(MTS · 레이저 후) / 정맥?",
+     "also": [],
+     "ctx": [
+      "5단계 — 1단계 출처 smarttoday · aanclinic 에 투여 방식 없음 — 지금은 단위 시술 없음 · 추천 가능 제품 예외"
+     ],
+     "now": "",
+     "status": "추천 제외",
+     "where": [
+      "step5-origin-questions.md · 원천 질문 20"
+     ],
+     "stage_label": "5단계"
+    },
+    {
+     "id": "s5-다이어트_수액",
+     "tab": "hospital",
+     "orig_ids": [
+      "다이어트 수액"
+     ],
+     "stages": [
+      5
+     ],
+     "group": "원천 질문 20",
+     "q": "「다이어트 수액」에는 어떤 성분이 들어가나요?",
+     "also": [],
+     "ctx": [
+      "5단계 — 병원마다 다름 — L-카르니틴 사례 1곳뿐 · 처방 근거 아님"
+     ],
+     "now": "U5-136 다이어트 수액(성분 미상)",
+     "status": "확인 대기",
+     "where": [
+      "step5-origin-questions.md · 원천 질문 20"
+     ],
+     "stage_label": "5단계"
+    },
+    {
+     "id": "s5-treatment-optimization_색소_기미_중증",
+     "tab": "hospital",
+     "orig_ids": [
+      "treatment-optimization 색소/기미|중증"
+     ],
+     "stages": [
+      5,
+      7
+     ],
+     "group": "원천 질문 20",
+     "q": "「트라넥삼산(경구+주사)」의 주사는 어디에 놓나요 — 진피 메조(스킨부스터) / 정맥?",
+     "also": [],
+     "ctx": [
+      "5단계 — 원천에 경로 없음 — 지금은 경구 = 시술 아님 · 주사 = U5-018 얼굴 전체 스킨부스터 후보",
+      "7단계 — 원천에 경로 없음 — 지금은 경구 = 시술 아님 · 주사 = U5-018 얼굴 전체 스킨부스터 후보 · 5단계 원천 질문과 같은 것"
+     ],
+     "now": "U5-018 얼굴 전체 스킨부스터 · 후보",
+     "status": "확인 대기",
+     "where": [
+      "step5-origin-questions.md · 원천 질문 20",
+      "step7-concerns.json origin_questions Q7-02 · treatment-optimization 색소/기미 중증 optimal_combo"
+     ],
+     "stage_label": "5단계 · 7단계"
+    },
+    {
+     "id": "s5-이모드_복부_이모드_힙_이모드_4회_패키지",
+     "tab": "hospital",
+     "orig_ids": [
+      "이모드 (복부) · 이모드 (힙) · 이모드 (4회 패키지)"
+     ],
+     "stages": [
+      5
+     ],
+     "group": "원천 질문 20",
+     "q": "「이모드」는 어떤 장비인가요? 「인모드 바디」와 같은 것인가요?",
+     "also": [],
+     "ctx": [
+      "5단계 — MFDS 이모드 · E-MOD 0 · 원천이 인모드를 M9 다른 행으로 따로 가짐"
+     ],
+     "now": "U5-105 복부 EMS, U5-106 힙 EMS",
+     "status": "확인 대기",
+     "where": [
+      "step5-origin-questions.md · 원천 질문 20"
+     ],
+     "stage_label": "5단계"
+    },
+    {
+     "id": "s6-Q01",
+     "tab": "hospital",
+     "orig_ids": [
+      "Q01"
+     ],
+     "stages": [
+      6
+     ],
+     "group": "패키지 구성",
+     "q": "「풀페이스큐레이션」은 어느 부위 보톡스로 구성되나요?",
+     "also": [],
+     "ctx": [
+      "6단계 — 원천 detail 「얼굴 전체 맞춤」 · 적응증에 이마 · 미간 · 눈가 · 목주름이 있으나 구성 목록은 없음"
+     ],
+     "now": "",
+     "status": "확인 대기",
+     "where": [
+      "step6-origin-questions.md · Q01 · P6-01"
+     ],
+     "stage_label": "6단계"
+    },
+    {
+     "id": "s6-Q02",
+     "tab": "hospital",
+     "orig_ids": [
+      "Q02"
+     ],
+     "stages": [
+      6
+     ],
+     "group": "패키지 구성",
+     "q": "「바디큐레이션」은 승모근 · 종아리 말고 어느 부위가 더 들어가나요?",
+     "also": [],
+     "ctx": [
+      "6단계 — 원천 detail 「승모근/종아리 등」"
+     ],
+     "now": "",
+     "status": "확인 대기",
+     "where": [
+      "step6-origin-questions.md · Q02 · P6-02"
+     ],
+     "stage_label": "6단계"
+    },
+    {
+     "id": "s6-Q03",
+     "tab": "hospital",
+     "orig_ids": [
+      "Q03"
+     ],
+     "stages": [
+      6
+     ],
+     "group": "패키지 구성",
+     "q": "「포토나4D」의 Er:YAG 단계는 프락셔널(분할 조사)인가요, 전면 조사 · 박피인가요? 4단계는 각각 무엇인가요?",
+     "also": [],
+     "ctx": [
+      "6단계 — 원천 「Er:YAG와 Nd:YAG 레이저를 단계별로 적용 · 4단계 프로토콜」"
+     ],
+     "now": "",
+     "status": "확인 대기",
+     "where": [
+      "step6-origin-questions.md · Q03 · 5단계 원장 행 포토나4D(U5-099 속성 protocol · secondary_medium) — 6단계 U1 로 패키지에서 빠짐"
+     ],
+     "stage_label": "6단계"
+    },
+    {
+     "id": "s6-Q04",
+     "tab": "hospital",
+     "orig_ids": [
+      "Q04"
+     ],
+     "stages": [
+      6
+     ],
+     "group": "패키지 구성",
+     "q": "「셀리부트프로그램」의 「튠」은 튠페이스(알마 Accent Prime)인가요?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "확인 대기",
+     "where": [
+      "step6-origin-questions.md · Q04 · P6-08"
+     ],
+     "stage_label": "6단계"
+    },
+    {
+     "id": "s6-Q05",
+     "tab": "hospital",
+     "orig_ids": [
+      "Q05"
+     ],
+     "stages": [
+      6
+     ],
+     "group": "패키지 구성",
+     "q": "패키지 안 「줄기세포」(셀리부트 · DNA리셋 24cc)는 주사인가요, 도포인가요?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "확인 대기",
+     "where": [
+      "step6-origin-questions.md · Q05 · P6-08, P6-09"
+     ],
+     "stage_label": "6단계"
+    },
+    {
+     "id": "s6-Q06",
+     "tab": "hospital",
+     "orig_ids": [
+      "Q06"
+     ],
+     "stages": [
+      6
+     ],
+     "group": "패키지 구성",
+     "q": "「쿨핏프로그램」은 어느 부위에 하나요?",
+     "also": [],
+     "ctx": [
+      "6단계 — 원천 「바디 컨투어링」뿐"
+     ],
+     "now": "",
+     "status": "확인 대기",
+     "where": [
+      "step6-origin-questions.md · Q06 · P6-11"
+     ],
+     "stage_label": "6단계"
+    },
+    {
+     "id": "s6-Q07",
+     "tab": "hospital",
+     "orig_ids": [
+      "Q07"
+     ],
+     "stages": [
+      6
+     ],
+     "group": "패키지 구성",
+     "q": "「인모드바디」는 어떤 장비(인모드 바디FX · 이볼브 등)이고 어느 부위에 하나요?",
+     "also": [],
+     "ctx": [
+      "6단계 — 5단계 원천 질문 「이모드 = 인모드 바디인가」와 같이"
+     ],
+     "now": "",
+     "status": "확인 대기",
+     "where": [
+      "step6-origin-questions.md · Q07 · P6-11"
+     ],
+     "stage_label": "6단계"
+    },
+    {
+     "id": "s6-Q08",
+     "tab": "hospital",
+     "orig_ids": [
+      "Q08"
+     ],
+     "stages": [
+      6
+     ],
+     "group": "패키지 구성",
+     "q": "「인형피부관리」의 보톡스 · 필러는 어느 부위에 하나요?",
+     "also": [],
+     "ctx": [
+      "6단계 — 원천 「보톡스로 주름 완화, 필러로 볼륨 보강」"
+     ],
+     "now": "",
+     "status": "확인 대기",
+     "where": [
+      "step6-origin-questions.md · Q08 · P6-14"
+     ],
+     "stage_label": "6단계"
+    },
+    {
+     "id": "s6-Q09",
+     "tab": "hospital",
+     "orig_ids": [
+      "Q09"
+     ],
+     "stages": [
+      6
+     ],
+     "group": "패키지 구성",
+     "q": "「스킨부스터오마카세」의 엑소좀은 주사인가요, 도포인가요?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "확인 대기",
+     "where": [
+      "step6-origin-questions.md · Q09 · P6-16"
+     ],
+     "stage_label": "6단계"
+    },
+    {
+     "id": "s6-Q10",
+     "tab": "hospital",
+     "orig_ids": [
+      "Q10"
+     ],
+     "stages": [
+      6
+     ],
+     "group": "패키지 구성",
+     "q": "「프리미엄 스킨케어 (풀코스)」에는 어떤 관리가 들어가나요?",
+     "also": [],
+     "ctx": [
+      "6단계 — 시장가 이름뿐 · M15 메디컬스킨케어"
+     ],
+     "now": "",
+     "status": "확인 대기",
+     "where": [
+      "step6-origin-questions.md · Q10 · P6-20"
+     ],
+     "stage_label": "6단계"
+    },
+    {
+     "id": "s6-Q11",
+     "tab": "hospital",
+     "orig_ids": [
+      "Q11"
+     ],
+     "stages": [
+      6
+     ],
+     "group": "패키지 구성",
+     "q": "「줄기세포 + MTS」의 줄기세포는 주사인가요, MTS 뒤 도포인가요? 허가된 멸균 시술용 제제인가요?",
+     "also": [],
+     "ctx": [
+      "6단계 — synergy 27 「배양액은 개방 채널에 사용하지 않음」"
+     ],
+     "now": "",
+     "status": "확인 대기",
+     "where": [
+      "step6-origin-questions.md · Q11 · P6-21"
+     ],
+     "stage_label": "6단계"
+    },
+    {
+     "id": "s6-Q12",
+     "tab": "hospital",
+     "orig_ids": [
+      "Q12"
+     ],
+     "stages": [
+      6
+     ],
+     "group": "패키지 구성",
+     "q": "「이모드 (4회 패키지)」는 어느 부위(복부 · 힙)에 4회인가요?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "확인 대기",
+     "where": [
+      "step6-origin-questions.md · Q12 · P6-23"
+     ],
+     "stage_label": "6단계"
+    },
+    {
+     "id": "s6-Q13",
+     "tab": "hospital",
+     "orig_ids": [
+      "Q13"
+     ],
+     "stages": [
+      6
+     ],
+     "group": "패키지 구성",
+     "q": "셀리부트 · DNA리셋 「써마지600」 · 「소프웨이브200」의 숫자는 샷 수인가요? 두 프로그램은 어느 병원 상품인가요(다른 병원도 같은 이름으로 파나요)?",
+     "also": [],
+     "ctx": [],
+     "now": "",
+     "status": "확인 대기",
+     "where": [
+      "step6-origin-questions.md · Q13 · P6-08, P6-09"
+     ],
+     "stage_label": "6단계"
+    },
+    {
+     "id": "s8-Q8-9",
+     "orig_ids": [
+      "Q8-9"
+     ],
+     "stages": [
+      8
+     ],
+     "stage_label": "8단계",
+     "status": "확인 대기",
+     "where": [
+      "step8-origin-questions.md · Q8-9 · 걸린 행 R8-0042, R8-0076, R8-0078, R8-0079, R8-0080, R8-0100 … (9)"
+     ],
+     "tab": "hospital",
+     "group": "8단계 — 원천 관리(병원)",
+     "q": "synergy 원천 시술군 코드 어긋남 — 「M4-쥬베룩」(정본 M3) · 「M8-서브시전」(정본 N4) · 「M17-엑소좀」(정본 M5) 원천 수정",
+     "also": [],
+     "now": "",
+     "ctx": [
+      "받는 사람: 병원(원천 관리)",
+      "[synergy.links] M12-MTS 함께 M17-엑소좀 · 같은 날 시술 가능",
+      "[synergy.links] M4-리쥬란 함께 M4-쥬베룩 · 같은 날 또는 2주 간격",
+      "[synergy.links] M4-쥬베룩 함께 M1-보톡스 · 같은 날 시술 가능",
+      "[synergy.links] M4-쥬베룩 함께 M11-니들RF · 같은 날 시술 가능",
+      "[synergy.links] M4-쥬베룩 함께 M5-PRP · 같은 날 시술 가능",
+      "[synergy.links] M8-서브시전 다음에 M11-니들RF · 서브시전 4주 후 니들RF",
+      "[synergy.links] M8-서브시전 함께 M2-필러 · 같은 날 시술 가능",
+      "[synergy.links] M8-서브시전 함께 M5-PRP · 같은 날 시술 가능",
+      "[synergy.links] M8-피코토닝 다음에 M4-쥬베룩 · 피코토닝 2주 후 쥬베룩"
+     ]
+    },
+    {
+     "id": "s8-Q8-10",
+     "orig_ids": [
+      "Q8-10"
+     ],
+     "stages": [
+      8
+     ],
+     "stage_label": "8단계",
+     "status": "확인 대기",
+     "where": [
+      "step8-origin-questions.md · Q8-10 · 걸린 행 R8-0112 (1)"
+     ],
+     "tab": "hospital",
+     "group": "8단계 — 장비 확인(병원)",
+     "q": "synergy 「M8-혈관레이저」 = 엑셀V · 브이빔 중 무엇(둘 다)인가",
+     "also": [],
+     "now": "",
+     "ctx": [
+      "받는 사람: 병원",
+      "[synergy.links] M8-혈관레이저 다음에 M4-스킨부스터 · 혈관레이저 2주 후 스킨부스터"
+     ]
+    },
+    {
+     "id": "s8-Q8-11",
+     "orig_ids": [
+      "Q8-11"
+     ],
+     "stages": [
+      8
+     ],
+     "stage_label": "8단계",
+     "status": "확인 대기",
+     "where": [
+      "step8-origin-questions.md · Q8-11 · 걸린 행 EV-GD-004 (1)"
+     ],
+     "tab": "hospital",
+     "group": "8단계 — 원천 관리(병원)",
+     "q": "treatment-sequence minimum_intervals 「프락셔널 CO2 → 필러 14일」의 source 칸 「피부 회복」은 출처가 아님 — 출처 보충",
+     "also": [],
+     "now": "",
+     "ctx": [
+      "받는 사람: 병원(원천 관리)",
+      "근거 칸 「피부 회복」 — 출처 아님(이유 문장) · 쓰는 행 R8-0152"
+     ]
+    },
+    {
+     "id": "s8-Q8-13",
+     "orig_ids": [
+      "Q8-13"
+     ],
+     "stages": [
+      8
+     ],
+     "stage_label": "8단계",
+     "status": "확인 대기",
+     "where": [
+      "step8-origin-questions.md · Q8-13 · 걸린 행 R8-0225 (1)"
+     ],
+     "tab": "hospital",
+     "group": "8단계 — 장비 확인(병원)",
+     "q": "제모 중증 「듀얼파장 레이저」는 어느 장비 · 단위 시술인가(지금 M8 낱말 교집합 후보가 넓음)",
+     "also": [],
+     "now": "",
+     "ctx": [
+      "받는 사람: 병원",
+      "[treatment-optimization.by_concern.sequence] 듀얼파장 레이저 → 8-10회 → 이후 IPL로 잔여 유지"
+     ]
+    },
+    {
+     "tab": "hospital",
+     "id": "s7-oq-Q7-03",
+     "orig_ids": [
+      "Q7-03"
+     ],
+     "stages": [
+      7
+     ],
+     "stage_label": "7단계",
+     "status": "확인 대기",
+     "group": "7단계 — 흉터 필러(R26)",
+     "where": [
+      "step7-origin-questions.md · Q7-03 · 원천(taxonomy · treatment-optimization 흉터)"
+     ],
+     "q": "흉터(함몰 · 박스카) 필러 단위 시술 — 원천은 「필러 · 볼륨 충전(흉터 함몰)」이라 쓰는데 5단계에 흉터 필러 단위 시술(부위 · 기법)이 없다. 흉터 필러를 따로 단위 시술로 세울지(부위 = 흉터 부위 · 병변 단위?)",
+     "also": [],
+     "now": "R26 — 흉터 필러 = 계열만(필러 M2 계열 추천 · 단위 시술 없음) · 튼살도 같음",
+     "ctx": [
+      "받는 사람: 원천(taxonomy · treatment-optimization 흉터)",
+      "걸린 곳: 엣지 ③ P9-1 · 갈래 여드름흉터 추천 시술 필러(M2) · CC 필러+서브시전",
+      "걸린 곳: 엣지 ④ opt:여드름/흉터 · 중증 (깊은 박스카/아이스픽 흉터) · 「필러(HA/CaHA)」 → 필러→부위 없음 · 후보 전부 · CaH",
+      "걸린 곳: 엣지 ⑤ P9-1 · 항목 이름 「필러+서브시전」 → 필러→부위 없음 · 후보 전부 · 서브시전→이름 일치",
+      "걸린 곳: 추천 조합 RC-OP-Acne-중증 · 필러(HA/CaHA)"
+     ]
+    },
+    {
+     "tab": "hospital",
+     "id": "s7-R27-앵커_없음_쁘띠시술",
+     "orig_ids": [
+      "(앵커 없음 — 쁘띠시술)"
+     ],
+     "stages": [
+      7
+     ],
+     "stage_label": "7단계",
+     "status": "원천 수정 후보",
+     "group": "7단계 — 원천 수정 후보(R27 갈래 목록 복사)",
+     "where": [
+      "step7-source-fix.md · 갈래 목록 복사(R27) · (앵커 없음 — 쁘띠시술) 3줄"
+     ],
+     "q": "갈래 「(앵커 없음 — 쁘띠시술)」 의 추천 시술 목록(M2 · M1 · M15)이 추천 조합 여러 개에 똑같이 복사돼 있습니다 — 조합마다 목록이 달랐어야 하나요, 같은 목록이 맞나요?",
+     "also": [],
+     "now": "R27 — 겹친 엣지는 하나로 합침(같은 목록이면 한 번만) · 원천 수정 후보로만 적음",
+     "ctx": [
+      "갈래 (앵커 없음 — 쁘띠시술) 추천 시술 필러(M2) 이 CC 2개(애교필러 · 다크서클필러)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 (앵커 없음 — 쁘띠시술) 추천 시술 보톡스(M1) 이 CC 2개(애교필러 · 다크서클필러)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 (앵커 없음 — 쁘띠시술) 추천 시술 반영구화장(M15) 이 CC 2개(아이라인반영구 · 헤어라인반영구)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지"
+     ]
+    },
+    {
+     "tab": "hospital",
+     "id": "s7-R27-P4_3",
+     "orig_ids": [
+      "P4-3"
+     ],
+     "stages": [
+      7
+     ],
+     "stage_label": "7단계",
+     "status": "원천 수정 후보",
+     "group": "7단계 — 원천 수정 후보(R27 갈래 목록 복사)",
+     "where": [
+      "step7-source-fix.md · 갈래 목록 복사(R27) · P4-3 2줄"
+     ],
+     "q": "갈래 「전신항노화」 의 추천 시술 목록(M16 · M4)이 추천 조합 여러 개에 똑같이 복사돼 있습니다 — 조합마다 목록이 달랐어야 하나요, 같은 목록이 맞나요?",
+     "also": [],
+     "now": "R27 — 겹친 엣지는 하나로 합침(같은 목록이면 한 번만) · 원천 수정 후보로만 적음",
+     "ctx": [
+      "갈래 전신항노화 추천 시술 수액(M16) 이 CC 2개(NAD+수액 · 항산화수액)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 전신항노화 추천 시술 스킨부스터(M4) 이 CC 2개(NAD+수액 · 항산화수액)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지"
+     ]
+    },
+    {
+     "tab": "hospital",
+     "id": "s7-R27-P5_1",
+     "orig_ids": [
+      "P5-1"
+     ],
+     "stages": [
+      7
+     ],
+     "stage_label": "7단계",
+     "status": "원천 수정 후보",
+     "group": "7단계 — 원천 수정 후보(R27 갈래 목록 복사)",
+     "where": [
+      "step7-source-fix.md · 갈래 목록 복사(R27) · P5-1 2줄"
+     ],
+     "q": "갈래 「기미」 의 추천 시술 목록(M8 · M4)이 추천 조합 여러 개에 똑같이 복사돼 있습니다 — 조합마다 목록이 달랐어야 하나요, 같은 목록이 맞나요?",
+     "also": [],
+     "now": "R27 — 겹친 엣지는 하나로 합침(같은 목록이면 한 번만) · 원천 수정 후보로만 적음",
+     "ctx": [
+      "갈래 기미 추천 시술 레이저(M8) 이 CC 3개(레이저토닝 · 피코토닝 · 미백필링)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 기미 추천 시술 스킨부스터(M4) 이 CC 3개(레이저토닝 · 피코토닝 · 미백필링)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지"
+     ]
+    },
+    {
+     "tab": "hospital",
+     "id": "s7-R27-P5_2",
+     "orig_ids": [
+      "P5-2"
+     ],
+     "stages": [
+      7
+     ],
+     "stage_label": "7단계",
+     "status": "원천 수정 후보",
+     "group": "7단계 — 원천 수정 후보(R27 갈래 목록 복사)",
+     "where": [
+      "step7-source-fix.md · 갈래 목록 복사(R27) · P5-2 2줄"
+     ],
+     "q": "갈래 「주근깨/잡티」 의 추천 시술 목록(M8 · M4)이 추천 조합 여러 개에 똑같이 복사돼 있습니다 — 조합마다 목록이 달랐어야 하나요, 같은 목록이 맞나요?",
+     "also": [],
+     "now": "R27 — 겹친 엣지는 하나로 합침(같은 목록이면 한 번만) · 원천 수정 후보로만 적음",
+     "ctx": [
+      "갈래 주근깨/잡티 추천 시술 레이저(M8) 이 CC 2개(피코레이저 · IPL)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 주근깨/잡티 추천 시술 스킨부스터(M4) 이 CC 2개(피코레이저 · IPL)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지"
+     ]
+    },
+    {
+     "tab": "hospital",
+     "id": "s7-R27-P5_4",
+     "orig_ids": [
+      "P5-4"
+     ],
+     "stages": [
+      7
+     ],
+     "stage_label": "7단계",
+     "status": "원천 수정 후보",
+     "group": "7단계 — 원천 수정 후보(R27 갈래 목록 복사)",
+     "where": [
+      "step7-source-fix.md · 갈래 목록 복사(R27) · P5-4 3줄"
+     ],
+     "q": "갈래 「전체미백」 의 추천 시술 목록(M8 · M4 · M16)이 추천 조합 여러 개에 똑같이 복사돼 있습니다 — 조합마다 목록이 달랐어야 하나요, 같은 목록이 맞나요?",
+     "also": [],
+     "now": "R27 — 겹친 엣지는 하나로 합침(같은 목록이면 한 번만) · 원천 수정 후보로만 적음",
+     "ctx": [
+      "갈래 전체미백 추천 시술 레이저(M8) 이 CC 2개(백옥주사 · 비타민C주사)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 전체미백 추천 시술 스킨부스터(M4) 이 CC 2개(백옥주사 · 비타민C주사)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 전체미백 추천 시술 미백주사(M16) 이 CC 2개(백옥주사 · 비타민C주사)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지"
+     ]
+    },
+    {
+     "tab": "hospital",
+     "id": "s7-R27-P6_1",
+     "orig_ids": [
+      "P6-1"
+     ],
+     "stages": [
+      7
+     ],
+     "stage_label": "7단계",
+     "status": "원천 수정 후보",
+     "group": "7단계 — 원천 수정 후보(R27 갈래 목록 복사)",
+     "where": [
+      "step7-source-fix.md · 갈래 목록 복사(R27) · P6-1 2줄"
+     ],
+     "q": "갈래 「급성(활성) 여드름」 의 추천 시술 목록(M11 · M15)이 추천 조합 여러 개에 똑같이 복사돼 있습니다 — 조합마다 목록이 달랐어야 하나요, 같은 목록이 맞나요?",
+     "also": [],
+     "now": "R27 — 겹친 엣지는 하나로 합침(같은 목록이면 한 번만) · 원천 수정 후보로만 적음",
+     "ctx": [
+      "갈래 급성(활성) 여드름 추천 시술 니들RF(M11) 이 CC 3개(압출 · PDT · 약물치료)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 급성(활성) 여드름 추천 시술 메디컬스킨케어(M15) 이 CC 3개(압출 · PDT · 약물치료)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지"
+     ]
+    },
+    {
+     "tab": "hospital",
+     "id": "s7-R27-P6_2",
+     "orig_ids": [
+      "P6-2"
+     ],
+     "stages": [
+      7
+     ],
+     "stage_label": "7단계",
+     "status": "원천 수정 후보",
+     "group": "7단계 — 원천 수정 후보(R27 갈래 목록 복사)",
+     "where": [
+      "step7-source-fix.md · 갈래 목록 복사(R27) · P6-2 2줄"
+     ],
+     "q": "갈래 「피지/모공」 의 추천 시술 목록(M11 · M4)이 추천 조합 여러 개에 똑같이 복사돼 있습니다 — 조합마다 목록이 달랐어야 하나요, 같은 목록이 맞나요?",
+     "also": [],
+     "now": "R27 — 겹친 엣지는 하나로 합침(같은 목록이면 한 번만) · 원천 수정 후보로만 적음",
+     "ctx": [
+      "갈래 피지/모공 추천 시술 니들RF(M11) 이 CC 3개(아그네스 · 스킨보톡스 · 케미컬필링)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 피지/모공 추천 시술 스킨부스터(M4) 이 CC 3개(아그네스 · 스킨보톡스 · 케미컬필링)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지"
+     ]
+    },
+    {
+     "tab": "hospital",
+     "id": "s7-R27-P6_3",
+     "orig_ids": [
+      "P6-3"
+     ],
+     "stages": [
+      7
+     ],
+     "stage_label": "7단계",
+     "status": "원천 수정 후보",
+     "group": "7단계 — 원천 수정 후보(R27 갈래 목록 복사)",
+     "where": [
+      "step7-source-fix.md · 갈래 목록 복사(R27) · P6-3 2줄"
+     ],
+     "q": "갈래 「여드름자국(PIH/PIE)」 의 추천 시술 목록(M8 · M4)이 추천 조합 여러 개에 똑같이 복사돼 있습니다 — 조합마다 목록이 달랐어야 하나요, 같은 목록이 맞나요?",
+     "also": [],
+     "now": "R27 — 겹친 엣지는 하나로 합침(같은 목록이면 한 번만) · 원천 수정 후보로만 적음",
+     "ctx": [
+      "갈래 여드름자국(PIH/PIE) 추천 시술 레이저(M8) 이 CC 2개(토닝 · 재생치료)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 여드름자국(PIH/PIE) 추천 시술 스킨부스터(M4) 이 CC 2개(토닝 · 재생치료)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지"
+     ]
+    },
+    {
+     "tab": "hospital",
+     "id": "s7-R27-P7_1",
+     "orig_ids": [
+      "P7-1"
+     ],
+     "stages": [
+      7
+     ],
+     "stage_label": "7단계",
+     "status": "원천 수정 후보",
+     "group": "7단계 — 원천 수정 후보(R27 갈래 목록 복사)",
+     "where": [
+      "step7-source-fix.md · 갈래 목록 복사(R27) · P7-1 2줄"
+     ],
+     "q": "갈래 「피지과다형 모공」 의 추천 시술 목록(M11 · M4)이 추천 조합 여러 개에 똑같이 복사돼 있습니다 — 조합마다 목록이 달랐어야 하나요, 같은 목록이 맞나요?",
+     "also": [],
+     "now": "R27 — 겹친 엣지는 하나로 합침(같은 목록이면 한 번만) · 원천 수정 후보로만 적음",
+     "ctx": [
+      "갈래 피지과다형 추천 시술 니들RF(M11) 이 CC 2개(스킨보톡스 · 아그네스)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 피지과다형 추천 시술 스킨부스터(M4) 이 CC 2개(스킨보톡스 · 아그네스)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지"
+     ]
+    },
+    {
+     "tab": "hospital",
+     "id": "s7-R27-P7_2",
+     "orig_ids": [
+      "P7-2"
+     ],
+     "stages": [
+      7
+     ],
+     "stage_label": "7단계",
+     "status": "원천 수정 후보",
+     "group": "7단계 — 원천 수정 후보(R27 갈래 목록 복사)",
+     "where": [
+      "step7-source-fix.md · 갈래 목록 복사(R27) · P7-2 3줄"
+     ],
+     "q": "갈래 「탄력저하형 모공」 의 추천 시술 목록(M11 · M4 · M9)이 추천 조합 여러 개에 똑같이 복사돼 있습니다 — 조합마다 목록이 달랐어야 하나요, 같은 목록이 맞나요?",
+     "also": [],
+     "now": "R27 — 겹친 엣지는 하나로 합침(같은 목록이면 한 번만) · 원천 수정 후보로만 적음",
+     "ctx": [
+      "갈래 탄력저하형 추천 시술 니들RF(M11) 이 CC 2개(프락셔널레이저 · 니들RF)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 탄력저하형 추천 시술 스킨부스터(M4) 이 CC 2개(프락셔널레이저 · 니들RF)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 탄력저하형 추천 시술 리프팅기기(M9) 이 CC 2개(프락셔널레이저 · 니들RF)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지"
+     ]
+    },
+    {
+     "tab": "hospital",
+     "id": "s7-R27-P7_3",
+     "orig_ids": [
+      "P7-3"
+     ],
+     "stages": [
+      7
+     ],
+     "stage_label": "7단계",
+     "status": "원천 수정 후보",
+     "group": "7단계 — 원천 수정 후보(R27 갈래 목록 복사)",
+     "where": [
+      "step7-source-fix.md · 갈래 목록 복사(R27) · P7-3 2줄"
+     ],
+     "q": "갈래 「흉터형(열린모공)」 의 추천 시술 목록(M11 · M4)이 추천 조합 여러 개에 똑같이 복사돼 있습니다 — 조합마다 목록이 달랐어야 하나요, 같은 목록이 맞나요?",
+     "also": [],
+     "now": "R27 — 겹친 엣지는 하나로 합침(같은 목록이면 한 번만) · 원천 수정 후보로만 적음",
+     "ctx": [
+      "갈래 흉터형(열린모공) 추천 시술 니들RF(M11) 이 CC 2개(CO2프락셀 · 서브시전)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 흉터형(열린모공) 추천 시술 스킨부스터(M4) 이 CC 2개(CO2프락셀 · 서브시전)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지"
+     ]
+    },
+    {
+     "tab": "hospital",
+     "id": "s7-R27-P8_1",
+     "orig_ids": [
+      "P8-1"
+     ],
+     "stages": [
+      7
+     ],
+     "stage_label": "7단계",
+     "status": "원천 수정 후보",
+     "group": "7단계 — 원천 수정 후보(R27 갈래 목록 복사)",
+     "where": [
+      "step7-source-fix.md · 갈래 목록 복사(R27) · P8-1 2줄"
+     ],
+     "q": "갈래 「홍조」 의 추천 시술 목록(M8 · M4)이 추천 조합 여러 개에 똑같이 복사돼 있습니다 — 조합마다 목록이 달랐어야 하나요, 같은 목록이 맞나요?",
+     "also": [],
+     "now": "R27 — 겹친 엣지는 하나로 합침(같은 목록이면 한 번만) · 원천 수정 후보로만 적음",
+     "ctx": [
+      "갈래 안면홍조 추천 시술 혈관레이저(M8) 이 CC 3개(V빔 · IPL홍조 · 리쥬란+LDM)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 안면홍조 추천 시술 스킨부스터(M4) 이 CC 3개(V빔 · IPL홍조 · 리쥬란+LDM)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지"
+     ]
+    },
+    {
+     "tab": "hospital",
+     "id": "s7-R27-P8_2",
+     "orig_ids": [
+      "P8-2"
+     ],
+     "stages": [
+      7
+     ],
+     "stage_label": "7단계",
+     "status": "원천 수정 후보",
+     "group": "7단계 — 원천 수정 후보(R27 갈래 목록 복사)",
+     "where": [
+      "step7-source-fix.md · 갈래 목록 복사(R27) · P8-2 2줄"
+     ],
+     "q": "갈래 「모세혈관확장」 의 추천 시술 목록(M8 · M4)이 추천 조합 여러 개에 똑같이 복사돼 있습니다 — 조합마다 목록이 달랐어야 하나요, 같은 목록이 맞나요?",
+     "also": [],
+     "now": "R27 — 겹친 엣지는 하나로 합침(같은 목록이면 한 번만) · 원천 수정 후보로만 적음",
+     "ctx": [
+      "갈래 모세혈관확장 추천 시술 혈관레이저(M8) 이 CC 2개(엑셀V · 혈관레이저)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 모세혈관확장 추천 시술 스킨부스터(M4) 이 CC 2개(엑셀V · 혈관레이저)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지"
+     ]
+    },
+    {
+     "tab": "hospital",
+     "id": "s7-R27-P9_1",
+     "orig_ids": [
+      "P9-1"
+     ],
+     "stages": [
+      7
+     ],
+     "stage_label": "7단계",
+     "status": "원천 수정 후보",
+     "group": "7단계 — 원천 수정 후보(R27 갈래 목록 복사)",
+     "where": [
+      "step7-source-fix.md · 갈래 목록 복사(R27) · P9-1 4줄"
+     ],
+     "q": "갈래 「여드름흉터」 의 추천 시술 목록(M8 · M5 · M11)이 추천 조합 여러 개에 똑같이 복사돼 있습니다 — 조합마다 목록이 달랐어야 하나요, 같은 목록이 맞나요?",
+     "also": [],
+     "now": "R27 — 겹친 엣지는 하나로 합침(같은 목록이면 한 번만) · 원천 수정 후보로만 적음",
+     "ctx": [
+      "갈래 여드름흉터 추천 시술 프락셔널(M8) 이 CC 7개(서브시전 · 에어서브시전 · TCA크로스 · CO2프락셔널 · 니들RF · 필러+서브시전 · 니들RF)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 여드름흉터 추천 시술 서브시전(M8) 이 CC 6개(서브시전 · 에어서브시전 · TCA크로스 · CO2프락셔널 · 니들RF · 필러+서브시전)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 여드름흉터 추천 시술 PRP/자가혈(M5) 이 CC 6개(서브시전 · 에어서브시전 · TCA크로스 · CO2프락셔널 · 니들RF · 필러+서브시전)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 여드름흉터 추천 시술 니들RF(M11) 이 CC 6개(서브시전 · 에어서브시전 · TCA크로스 · CO2프락셔널 · 니들RF · 필러+서브시전)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지"
+     ]
+    },
+    {
+     "tab": "hospital",
+     "id": "s7-R27-P9_2",
+     "orig_ids": [
+      "P9-2"
+     ],
+     "stages": [
+      7
+     ],
+     "stage_label": "7단계",
+     "status": "원천 수정 후보",
+     "group": "7단계 — 원천 수정 후보(R27 갈래 목록 복사)",
+     "where": [
+      "step7-source-fix.md · 갈래 목록 복사(R27) · P9-2 3줄"
+     ],
+     "q": "갈래 「켈로이드/비후성」 의 추천 시술 목록(M15 · M8 · M1)이 추천 조합 여러 개에 똑같이 복사돼 있습니다 — 조합마다 목록이 달랐어야 하나요, 같은 목록이 맞나요?",
+     "also": [],
+     "now": "R27 — 겹친 엣지는 하나로 합침(같은 목록이면 한 번만) · 원천 수정 후보로만 적음",
+     "ctx": [
+      "갈래 켈로이드/비후성 추천 시술 병변내 스테로이드주사(M15) 이 CC 2개(스테로이드주사 · 레이저치료)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 켈로이드/비후성 추천 시술 레이저(M8) 이 CC 2개(스테로이드주사 · 레이저치료)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 켈로이드/비후성 추천 시술 보톡스(M1) 이 CC 2개(스테로이드주사 · 레이저치료)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지"
+     ]
+    },
+    {
+     "tab": "hospital",
+     "id": "s7-R27-P9_3",
+     "orig_ids": [
+      "P9-3"
+     ],
+     "stages": [
+      7
+     ],
+     "stage_label": "7단계",
+     "status": "원천 수정 후보",
+     "group": "7단계 — 원천 수정 후보(R27 갈래 목록 복사)",
+     "where": [
+      "step7-source-fix.md · 갈래 목록 복사(R27) · P9-3 2줄"
+     ],
+     "q": "갈래 「수술흉터/화상흉터」 의 추천 시술 목록(M8 · M4)이 추천 조합 여러 개에 똑같이 복사돼 있습니다 — 조합마다 목록이 달랐어야 하나요, 같은 목록이 맞나요?",
+     "also": [],
+     "now": "R27 — 겹친 엣지는 하나로 합침(같은 목록이면 한 번만) · 원천 수정 후보로만 적음",
+     "ctx": [
+      "갈래 수술흉터/화상흉터 추천 시술 프락셔널(M8) 이 CC 3개(프락셔널레이저 · 실리콘시트 · 프락셔널레이저)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 수술흉터/화상흉터 추천 시술 스킨부스터(M4) 이 CC 3개(프락셔널레이저 · 실리콘시트 · 프락셔널레이저)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지"
+     ]
+    },
+    {
+     "tab": "hospital",
+     "id": "s7-R27-P11",
+     "orig_ids": [
+      "P11"
+     ],
+     "stages": [
+      7
+     ],
+     "stage_label": "7단계",
+     "status": "원천 수정 후보",
+     "group": "7단계 — 원천 수정 후보(R27 갈래 목록 복사)",
+     "where": [
+      "step7-source-fix.md · 갈래 목록 복사(R27) · P11 2줄"
+     ],
+     "q": "갈래 「얼굴윤곽」 의 추천 시술 목록(M1)이 추천 조합 여러 개에 똑같이 복사돼 있습니다 — 조합마다 목록이 달랐어야 하나요, 같은 목록이 맞나요?",
+     "also": [],
+     "now": "R27 — 겹친 엣지는 하나로 합침(같은 목록이면 한 번만) · 원천 수정 후보로만 적음",
+     "ctx": [
+      "갈래 얼굴윤곽 추천 시술 보톡스(M1) 이 CC 2개(사각턱보톡스 · 사각턱보톡스)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 얼굴윤곽 추천 시술 보톡스(M1) 이 CC 2개(승모근보톡스 · 승모근보톡스)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지"
+     ]
+    },
+    {
+     "tab": "hospital",
+     "id": "s7-R27-P11_2",
+     "orig_ids": [
+      "P11-2"
+     ],
+     "stages": [
+      7
+     ],
+     "stage_label": "7단계",
+     "status": "원천 수정 후보",
+     "group": "7단계 — 원천 수정 후보(R27 갈래 목록 복사)",
+     "where": [
+      "step7-source-fix.md · 갈래 목록 복사(R27) · P11-2 2줄"
+     ],
+     "q": "갈래 「이중턱」 의 추천 시술 목록(M14 · M9)이 추천 조합 여러 개에 똑같이 복사돼 있습니다 — 조합마다 목록이 달랐어야 하나요, 같은 목록이 맞나요?",
+     "also": [],
+     "now": "R27 — 겹친 엣지는 하나로 합침(같은 목록이면 한 번만) · 원천 수정 후보로만 적음",
+     "ctx": [
+      "갈래 이중턱/턱밑 추천 시술 지방분해(M14) 이 CC 2개(윤곽주사 · 브이올렛)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 이중턱/턱밑 추천 시술 리프팅기기(M9) 이 CC 2개(윤곽주사 · 브이올렛)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지"
+     ]
+    },
+    {
+     "tab": "hospital",
+     "id": "s7-R27-P12_3",
+     "orig_ids": [
+      "P12-3"
+     ],
+     "stages": [
+      7
+     ],
+     "stage_label": "7단계",
+     "status": "원천 수정 후보",
+     "group": "7단계 — 원천 수정 후보(R27 갈래 목록 복사)",
+     "where": [
+      "step7-source-fix.md · 갈래 목록 복사(R27) · P12-3 1줄"
+     ],
+     "q": "갈래 「탄력」 의 추천 시술 목록(M9)이 추천 조합 여러 개에 똑같이 복사돼 있습니다 — 조합마다 목록이 달랐어야 하나요, 같은 목록이 맞나요?",
+     "also": [],
+     "now": "R27 — 겹친 엣지는 하나로 합침(같은 목록이면 한 번만) · 원천 수정 후보로만 적음",
+     "ctx": [
+      "갈래 바디탄력 추천 시술 인모드(M9) 이 CC 2개(바디써마지 · 바디인모드)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지"
+     ]
+    },
+    {
+     "tab": "hospital",
+     "id": "s7-R27-P13",
+     "orig_ids": [
+      "P13"
+     ],
+     "stages": [
+      7
+     ],
+     "stage_label": "7단계",
+     "status": "원천 수정 후보",
+     "group": "7단계 — 원천 수정 후보(R27 갈래 목록 복사)",
+     "where": [
+      "step7-source-fix.md · 갈래 목록 복사(R27) · P13 6줄"
+     ],
+     "q": "갈래 「두피/탈모」 의 추천 시술 목록(M5 · M12 · M8 · M15)이 추천 조합 여러 개에 똑같이 복사돼 있습니다 — 조합마다 목록이 달랐어야 하나요, 같은 목록이 맞나요?",
+     "also": [],
+     "now": "R27 — 겹친 엣지는 하나로 합침(같은 목록이면 한 번만) · 원천 수정 후보로만 적음",
+     "ctx": [
+      "갈래 두피/탈모 추천 시술 PRP/자가혈(M5) 이 CC 5개(두피메조 · 두피PRP · 두피엑소좀 · FUE · FUT)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 두피/탈모 추천 시술 마이크로니들링(MTS)(M12) 이 CC 6개(두피메조 · 두피PRP · 두피엑소좀 · LLLT · 두피스케일링 · MTS두피)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 두피/탈모 추천 시술 레이저(M8) 이 CC 3개(LLLT · 두피스케일링 · MTS두피)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 두피/탈모 추천 시술 약물치료(M15) 이 CC 3개(미녹시딜 · 피나스테리드 · 두타스테리드)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 두피/탈모 추천 시술 PRP/자가혈(M5) 이 CC 3개(미녹시딜 · 피나스테리드 · 두타스테리드)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 두피/탈모 추천 시술 모발이식(M15) 이 CC 2개(FUE · FUT)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지"
+     ]
+    },
+    {
+     "tab": "hospital",
+     "id": "s7-R27-P14_1",
+     "orig_ids": [
+      "P14-1"
+     ],
+     "stages": [
+      7
+     ],
+     "stage_label": "7단계",
+     "status": "원천 수정 후보",
+     "group": "7단계 — 원천 수정 후보(R27 갈래 목록 복사)",
+     "where": [
+      "step7-source-fix.md · 갈래 목록 복사(R27) · P14-1 1줄"
+     ],
+     "q": "갈래 「점/사마귀」 의 추천 시술 목록(M8)이 추천 조합 여러 개에 똑같이 복사돼 있습니다 — 조합마다 목록이 달랐어야 하나요, 같은 목록이 맞나요?",
+     "also": [],
+     "now": "R27 — 겹친 엣지는 하나로 합침(같은 목록이면 한 번만) · 원천 수정 후보로만 적음",
+     "ctx": [
+      "갈래 점/사마귀 추천 시술 레이저(M8) 이 CC 2개(점제거 · 사마귀)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지"
+     ]
+    },
+    {
+     "tab": "hospital",
+     "id": "s7-R27-P14_4",
+     "orig_ids": [
+      "P14-4"
+     ],
+     "stages": [
+      7
+     ],
+     "stage_label": "7단계",
+     "status": "원천 수정 후보",
+     "group": "7단계 — 원천 수정 후보(R27 갈래 목록 복사)",
+     "where": [
+      "step7-source-fix.md · 갈래 목록 복사(R27) · P14-4 1줄"
+     ],
+     "q": "갈래 「피부질환(백반증 · 건선)」 의 추천 시술 목록(M8)이 추천 조합 여러 개에 똑같이 복사돼 있습니다 — 조합마다 목록이 달랐어야 하나요, 같은 목록이 맞나요?",
+     "also": [],
+     "now": "R27 — 겹친 엣지는 하나로 합침(같은 목록이면 한 번만) · 원천 수정 후보로만 적음",
+     "ctx": [
+      "갈래 피부질환 추천 시술 레이저(M8) 이 CC 2개(백반증 · 건선)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지"
+     ]
+    },
+    {
+     "tab": "hospital",
+     "id": "s7-R27-목적_볼륨_회복_충전",
+     "orig_ids": [
+      "목적:볼륨 회복(충전)"
+     ],
+     "stages": [
+      7
+     ],
+     "stage_label": "7단계",
+     "status": "원천 수정 후보",
+     "group": "7단계 — 원천 수정 후보(R27 갈래 목록 복사)",
+     "where": [
+      "step7-source-fix.md · 갈래 목록 복사(R27) · 목적:볼륨 회복(충전) 2줄"
+     ],
+     "q": "갈래 「목적:볼륨 회복(충전)」 의 추천 시술 목록(M2 · M3)이 추천 조합 여러 개에 똑같이 복사돼 있습니다 — 조합마다 목록이 달랐어야 하나요, 같은 목록이 맞나요?",
+     "also": [],
+     "now": "R27 — 겹친 엣지는 하나로 합침(같은 목록이면 한 번만) · 원천 수정 후보로만 적음",
+     "ctx": [
+      "갈래 목적:볼륨 회복(충전) 추천 시술 필러(M2) 이 CC 2개(필러볼륨 · 지방이식)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 목적:볼륨 회복(충전) 추천 시술 바이오스티뮬레이터/콜라겐부스터(M3) 이 CC 2개(필러볼륨 · 지방이식)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지"
+     ]
+    },
+    {
+     "tab": "hospital",
+     "id": "s7-R27-목적_지방분해_지방감소",
+     "orig_ids": [
+      "목적:지방분해(지방감소)"
+     ],
+     "stages": [
+      7
+     ],
+     "stage_label": "7단계",
+     "status": "원천 수정 후보",
+     "group": "7단계 — 원천 수정 후보(R27 갈래 목록 복사)",
+     "where": [
+      "step7-source-fix.md · 갈래 목록 복사(R27) · 목적:지방분해(지방감소) 2줄"
+     ],
+     "q": "갈래 「목적:지방분해(지방감소)」 의 추천 시술 목록(M14 · M9)이 추천 조합 여러 개에 똑같이 복사돼 있습니다 — 조합마다 목록이 달랐어야 하나요, 같은 목록이 맞나요?",
+     "also": [],
+     "now": "R27 — 겹친 엣지는 하나로 합침(같은 목록이면 한 번만) · 원천 수정 후보로만 적음",
+     "ctx": [
+      "갈래 목적:지방분해(지방감소) 추천 시술 크라이오(M14) 이 CC 6개(쿨스컬프팅 · 지방분해주사(PPC/DC) · HPL주사 · BNLS주사 · 컷슬린 · 바디HIFU)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지",
+      "갈래 목적:지방분해(지방감소) 추천 시술 인모드(M9) 이 CC 6개(쿨스컬프팅 · 지방분해주사(PPC/DC) · HPL주사 · BNLS주사 · 컷슬린 · 바디HIFU)에 같은 목록으로 복사 — CC 별 목록이 원래 의도였는지"
+     ]
+    }
+   ]
+  }
+ ]
+}

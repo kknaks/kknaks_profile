@@ -1,0 +1,380 @@
+{
+ "version": 1,
+ "decided_at": "2026-11-01",
+ "decision_ref": "사용자 11-01 「추천으로 데이터 결정하자」 — D9-1~D9-9 = step9-research 추천(D9-3 은 코디 추천 · D-13b 방향 · 사용자 승인) · 발주서 phub-recommend-step9-apply-brief",
+ "research": "step9-research.md · step9-research.json(조사 판 · 셈은 조사 때 값 — 반영 판은 step9-apply.py 가 다시 셈)",
+ "source": {
+  "path": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26",
+  "files": [
+   "taxonomy",
+   "extracted",
+   "products",
+   "procedure-profiles",
+   "problem-packages",
+   "complications",
+   "post-procedure-timeline"
+  ]
+ },
+ "canon": [
+  "step1-products.json",
+  "step2-families.json",
+  "step5-units.json",
+  "step7-concerns.json",
+  "step8-relations.json"
+ ],
+ "kinds": [
+  {
+   "id": "K1",
+   "name": "효과 시작 · 지속",
+   "regex": "onset_duration\\."
+  },
+  {
+   "id": "K2",
+   "name": "작용 원리",
+   "regex": "(extracted\\.mechanism|\\{code\\}\\.mechanism|moa_summary)$"
+  },
+  {
+   "id": "K3",
+   "name": "개요 · 설명",
+   "regex": "(extracted\\.overview|\\{code\\}\\.overview|items\\[\\]\\.detail|subcategories\\[\\]\\.description)$"
+  },
+  {
+   "id": "K4",
+   "name": "적응증",
+   "regex": "(?<!contra)indications\\."
+  },
+  {
+   "id": "K5",
+   "name": "합병증 설명",
+   "regex": "^complications\\.categories\\[\\]\\.complications\\[\\]\\.(management|prevention|duration|onset|incidence|mechanism|risk_factors\\[\\])$"
+  },
+  {
+   "id": "K6",
+   "name": "반응 · 중증도 단계(값 사전)",
+   "regex": "^(post-procedure-timeline\\.reaction_levels|complications\\.severity_levels)\\."
+  },
+  {
+   "id": "K7",
+   "name": "제품 메모",
+   "regex": "products\\[\\]\\.(note|ingredient|material|legal_warning|type)$"
+  },
+  {
+   "id": "K8",
+   "name": "대안",
+   "regex": "alternatives\\[\\]$"
+  },
+  {
+   "id": "K9",
+   "name": "관련 기법",
+   "regex": "related_techniques\\[\\]$"
+  },
+  {
+   "id": "K11",
+   "name": "고민 상세",
+   "regex": "(cc_detail|problem\\[\\]\\.subcategories\\[\\]\\.items\\[\\]\\.detail)$"
+  }
+ ],
+ "kinds_excluded": [
+  {
+   "id": "K10",
+   "why": "treatment-optimization severity_levels(rationale · sequence · expected_sessions …) = 7단계 조합에 이미 있음(골드 fact 24/24 · 조사 ②) — 9단계 대상 아님"
+  }
+ ],
+ "rules": [
+  {
+   "id": "R9-1",
+   "rule": "원장 항목 extracted 설명 키(mechanism · overview · onset_duration.* · indications.* · items[].detail)는 5단계 `extracted[].attach` 를 그대로 따른다 — 제품 → 제품 노드 · 단위 시술 → 그 단위 · 단위 시술 후보 → 후보 전부 + `candidates` 표시(8단계 aftercare 175 와 같은 선례) · 원문 보관 → 붙이지 않음(레코드에 status 만)",
+   "rows": 4284,
+   "attached": 3964
+  },
+  {
+   "id": "R9-2",
+   "rule": "taxonomy products extracted 설명 키 · products[].note · ingredient · material · type 는 5단계 `taxonomy_products[].attach`(제품 · S8 단위 시술) · products.json(B15 대조본)은 이름이 같은 taxonomy products 행에 대어 — taxonomy 에 같은 칸이 있으면 same_as(같음) · source_conflict(다름 · 싣지 않음), taxonomy 에 없는 칸(legal_warning 2 · 일부 ingredient · type)만 싣는다 · 이름이 없으면 5단계 원장 항목 이름 일치(볼뉴머 1 → R9-2b)",
+   "rows": 601,
+   "attached": 557
+  },
+  {
+   "id": "R9-2b",
+   "rule": "products.json 이름이 taxonomy products 에 없으면 5단계 원장 항목 이름 일치 — 같은 이름 항목들이 전부 같은 제품을 가리킬 때만 그 제품(볼뉴머 → M9-2-3)"
+  },
+  {
+   "id": "R9-3",
+   "rule": "계열 extracted 설명 키 · related_techniques 는 taxonomy.modality[].extracted 를 정본으로 계열 노드에 · extracted.json 은 대조만(같으면 same_as · 다르면 source_conflict 리포트 7칸 — 싣지 않음 · D9-4)",
+   "rows": 585,
+   "attached": 585
+  },
+  {
+   "id": "R9-4",
+   "rule": "procedure-profiles moa_summary 17 → 계열 method(B03 원문 보관 → fact)",
+   "rows": 17,
+   "attached": 17
+  },
+  {
+   "id": "R9-5",
+   "rule": "problem-packages alternatives · cc_detail · taxonomy.problem 항목 detail → 7단계 항목 해석(고민 노드 · 항목의 concern · 시술 이름 항목이면 resolve 단위 시술 + `cc:<CC>` 조건 표시) · 부위 · 시술 아님 항목 30행은 붙이지 않음(B09)",
+   "rows": 357,
+   "attached": 326
+  },
+  {
+   "id": "R9-6",
+   "rule": "complications.* 설명 칸은 8단계 실버(complications 35 · side_effects 72)에 이미 있다 — 실버 변경 없음 · 골드 빌드가 section 으로 내보냄(D9-1)",
+   "rows": 435,
+   "attached": 435
+  },
+  {
+   "id": "R9-7",
+   "rule": "post-procedure-timeline.reaction_levels 4 · complications.severity_levels 4 = 값 사전(B02) → 시맨틱 값 사전 + 골드 globals(D9-7)",
+   "rows": 8,
+   "attached": 8
+  },
+  {
+   "id": "R9-8",
+   "rule": "taxonomy 하위 분류 description → 계열 overview + sub_family:<하위 라벨> 표시(D9-9)"
+  },
+  {
+   "id": "G9-1",
+   "rule": "fact id = `{노드}#{section}#step9[{원장 파일}:{원장 경로}]` · 결정론 · 원문 그대로(요약 · 다시 쓰기 없음)"
+  },
+  {
+   "id": "R9-5b",
+   "rule": "고민 항목이 시술 이름인데 7단계 resolve 에 단위 시술이 없고 계열만 있으면(R21 no_unit_at_site) 그 계열에 붙인다"
+  }
+ ],
+ "section_map": {
+  "onset_duration": "recovery",
+  "mechanism": "method",
+  "moa_summary": "method",
+  "related_techniques": "method",
+  "overview": "overview",
+  "detail": "overview",
+  "description": "overview",
+  "indications": "overview",
+  "note": "overview",
+  "ingredient": "overview",
+  "material": "overview",
+  "type": "overview",
+  "legal_warning": "disclosure",
+  "alternatives": "overview",
+  "cc_detail": "overview",
+  "management": "safety.management",
+  "prevention": "safety.management",
+  "mechanism@complication": "safety.complications",
+  "onset@complication": "safety.complications",
+  "incidence@complication": "safety.complications",
+  "duration@complication": "safety.complications",
+  "risk_factors@complication": "safety.complications",
+  "mechanism@side_effect": "safety.side_effects",
+  "onset@side_effect": "safety.side_effects",
+  "incidence@side_effect": "safety.side_effects",
+  "duration@side_effect": "safety.side_effects",
+  "risk_factors@side_effect": "safety.side_effects"
+ },
+ "new_sections": [
+  {
+   "name": "safety.management",
+   "decision": "D9-1",
+   "what": "합병증 · 부작용 관리 · 예방(management · prevention) — 골드 반영은 다음 허브 발주"
+  }
+ ],
+ "attach_status_unattached": [
+  "원문 보관(6단계 패키지)",
+  "원문 보관(값)",
+  "원문 보관(시술 아님(다른 단계))",
+  "원문 보관(시술 아님)",
+  "원문 보관(원장님 문의)"
+ ],
+ "concern_item_unattached_kinds": [
+  "부위",
+  "시술 아님"
+ ],
+ "conflict_resolution": {
+  "id": "D9-3",
+  "classes": {
+   "①": "포함 관계 — 한쪽이 다른 쪽을 정규화 포함 · 또는 숫자 · 단위 집합이 같고 문장만 다름 → 긴 쪽 하나(짧은 쪽 same_as)",
+   "②": "숫자가 진짜 다름 → resolved 하나 · 나머지 alternatives(골드엔 resolved 만)",
+   "③": "숫자 없는 서로 다른 문장 → 둘 다 실음 · multi_source"
+  },
+  "list_slots": [
+   "indications.primary",
+   "indications.secondary",
+   "indications.extended",
+   "related_techniques",
+   "alternatives"
+  ],
+  "list_rule": "배열 칸은 원소마다 한 사실 — 다른 원천의 같은 원소(정규화 같음 · 포함)는 긴 쪽 하나(①) · 서로 다른 원소는 둘 다(③). 배열 칸은 ② 를 쓰지 않는다(원소는 서로 다른 적응증 · 대안)",
+  "time_units_days": {
+   "분": 0.000694,
+   "시간": 0.041667,
+   "일": 1,
+   "주": 7,
+   "개월": 30,
+   "달": 30,
+   "년": 365
+  },
+  "zero_words": [
+   "직후",
+   "즉시",
+   "즉각",
+   "당일",
+   "바로"
+  ],
+  "numeric_regex": "\\d+(?:\\.\\d+)?",
+  "range_regex": "(\\d+(?:\\.\\d+)?)\\s*(분|시간|일|주|개월|달|년)?\\s*(?:[-~∼–]|에서|부터)?\\s*(?:(\\d+(?:\\.\\d+)?)\\s*)?(분|시간|일|주|개월|달|년)",
+  "by_slot": [
+   {
+    "slot_regex": "onset_duration\\.(duration|maintenance)$",
+    "pick": "짧은 쪽",
+    "why": "지속 · 유지 기간은 짧은 쪽(더 보수적 — 기대를 낮게)",
+    "how": "기간을 일로 읽어 [하한, 상한] — 상한이 작은 쪽 · 같으면 하한"
+   },
+   {
+    "slot_regex": "onset_duration\\.onset$",
+    "pick": "늦은 쪽",
+    "why": "효과 시작은 늦은 쪽(더 보수적)",
+    "how": "[하한, 상한] — 하한이 큰 쪽 · 같으면 상한"
+   },
+   {
+    "slot_regex": "(interval|recovery|downtime|wait)",
+    "pick": "긴 쪽",
+    "why": "간격 · 회복 · 다운타임 · 대기는 긴 쪽(9단계 대상 칸엔 현재 없음 — 규칙만)",
+    "how": "[하한, 상한] — 상한이 큰 쪽 · 같으면 하한"
+   }
+  ],
+  "fallback": "그 밖 숫자 칸(peak · overview · mechanism · note …) 또는 기간을 못 읽은 값 = 원천 우선순위",
+  "source_priority": [
+   "그 노드 자신의 원장 항목(R9-1 · 단위 시술 · 제품)",
+   "taxonomy products(R9-2)",
+   "후보(R9-1 단위 시술 후보)",
+   "계열 · 프로파일(R9-3 · R9-4)",
+   "고민(R9-5)"
+  ],
+  "tie": "같은 순위 · 같은 값이면 원천 경로 정렬 첫 번째"
+ },
+ "extracted_json_rule": {
+  "id": "D9-4",
+  "rule": "extracted.json 은 taxonomy.modality[].extracted 대조만 — 같으면 same_as · 다르면 source_conflicts(싣지 않음)"
+ },
+ "products_json_rule": {
+  "id": "R9-2a",
+  "rule": "products.json 은 이름이 같은 taxonomy products 행에 대조 — taxonomy 에 같은 칸이 있으면 같음 = same_as · 다름 = source_conflicts(싣지 않음) · taxonomy 에 없는 칸만 싣는다 · 이름이 taxonomy products 에 없으면 5단계 원장 항목 이름 일치(R9-2b)"
+ },
+ "value_dictionary": {
+  "id": "D9-7",
+  "rule": "post-procedure-timeline.reaction_levels · complications.severity_levels = 시맨틱 값 사전(semantic.json value_dictionary) + 골드 globals(다음 허브 발주)"
+ },
+ "user_decisions": [
+  {
+   "id": "D9-1",
+   "what": "합병증 · 부작용 관리 · 예방(management · prevention)을 골드 어느 section 으로",
+   "options": [
+    "새 section safety.management(SPEC-005 V-4)",
+    "기존 safety.complications 안"
+   ],
+   "recommend": "새 section `safety.management`",
+   "basis": "A 닫힘 17행(2차 11 · v5a 6) 전부가 이 두 칸 · I-04 「합병증 관리」 질문이 부작용 목록과 다른 section 으로 묶여야 의도 묶음(§5-14 I-04)에 따로 넣을 수 있음 · 나머지 칸(mechanism · onset · incidence · duration · risk_factors)은 기존 safety.complications / safety.side_effects",
+   "decided": "사용자 11-01 「추천으로 데이터 결정하자」",
+   "value": "새 section `safety.management`"
+  },
+  {
+   "id": "D9-2",
+   "what": "적응증(indications.primary · secondary · extended · 2,267행)을 어느 section 으로",
+   "options": [
+    "overview",
+    "새 section indications"
+   ],
+   "recommend": "overview",
+   "basis": "새 section 은 SPEC-005 §4-3 · §5-14 의도 묶음 · INTENTS 전부를 바꿈 · I-02 기본 묶음에 overview 가 이미 있음 · 2차 A 에서 적응증 12행은 overview 로 닿음",
+   "decided": "사용자 11-01 「추천으로 데이터 결정하자」",
+   "value": "overview"
+  },
+  {
+   "id": "D9-3",
+   "what": "같은 노드 · 같은 칸 다른 값 606칸(단위 시술 334 · 제품 원장↔taxonomy products 186 · 제품 원장 여럿 79 · 계열 7) — 예 U5-009 지속 「1개월 후 완전한 효과 발현」 vs 「3-4개월」",
+   "options": [
+    "전부 싣기 + multi_source(C9-1)",
+    "원천 우선순위로 하나만"
+   ],
+   "recommend": "전부 싣기 + multi_source",
+   "basis": "설명 문장은 앱이 읽는 resolved 값이 아니라 근거 문장 — 하나만 고르면 원천에 있는 말을 「없음」으로 만든다(A 를 다시 만듦) · 숫자 차이는 원천마다 다른 제품 · 행이라서 생김 · 「충돌은 보수적으로 하나」(_RESUME)는 쌍 값 · 등급 · 대기 기간에만",
+   "decided": "사용자 11-01 「추천으로 데이터 결정하자」",
+   "value": "포함 관계 ① 합침 · 숫자 다름 ② resolved 하나(지속 짧은 · 시작 늦은 · 간격 긴 · 그 밖 원천 우선순위) + alternatives · 숫자 없는 다른 문장 ③ 둘 다"
+  },
+  {
+   "id": "D9-4",
+   "what": "extracted.json 이 taxonomy 정본과 다른 7칸(계열 mechanism 4 · overview 2 · indications.extended 1)",
+   "options": [
+    "싣지 않음(source_conflict 리포트만 · B15)",
+    "대조본도 원문으로 같이"
+   ],
+   "recommend": "싣지 않음",
+   "basis": "B15(정본 = taxonomy) · A 행 중 extracted.json 경로 인용 30행 전부가 정본 안에도 있음(Q087 M12 mechanism 은 정본과 다르지만 인용 문구는 정본 안) — 닫힘에 영향 0",
+   "decided": "사용자 11-01 「추천으로 데이터 결정하자」",
+   "value": "싣지 않음"
+  },
+  {
+   "id": "D9-5",
+   "what": "쁘띠(P1) 시술 이름 CC 의 alternatives · cc_detail 을 단위 시술에 붙여도 되나(198 + 95행)",
+   "options": [
+    "단위 시술 + `cc:<CC>` 조건",
+    "고민 노드가 없으면 붙이지 않음"
+   ],
+   "recommend": "단위 시술 + cc 조건",
+   "basis": "7단계 항목 resolve(시술 이름 → 단위 시술)를 그대로 씀 · Q117 · Q118 이 이 길로 닫힘 · 조건 표시로 다른 맥락 인용을 막음",
+   "decided": "사용자 11-01 「추천으로 데이터 결정하자」",
+   "value": "단위 시술 + cc 조건"
+  },
+  {
+   "id": "D9-6",
+   "what": "5단계 「원문 보관」 원장 항목 37개의 설명 키(320행)",
+   "options": [
+    "붙이지 않음(5단계 결정 유지)",
+    "가까운 계열에"
+   ],
+   "recommend": "붙이지 않음",
+   "basis": "5단계가 이미 정한 행선지(6단계 패키지 16 · 값 17 · 시술 아님 3 · 원장님 문의 1) — 9단계가 바꾸지 않음 · A 행 0",
+   "decided": "사용자 11-01 「추천으로 데이터 결정하자」",
+   "value": "붙이지 않음"
+  },
+  {
+   "id": "D9-7",
+   "what": "값 사전 8(반응 단계 4 · 중증도 4)",
+   "options": [
+    "시맨틱 값 사전 + 골드 globals",
+    "timeline · safety.complications section 의 전역 fact"
+   ],
+   "recommend": "시맨틱 값 사전 + 골드 globals(G16 과 같은 자리)",
+   "basis": "B02(등급 · 단계 정의 = 시맨틱 값 사전) · Q206 이 이 길로 닫힘",
+   "decided": "사용자 11-01 「추천으로 데이터 결정하자」",
+   "value": "시맨틱 값 사전 + 골드 globals(G16 과 같은 자리)"
+  },
+  {
+   "id": "D9-8",
+   "what": "제품 legal_warning 2(ASCE+ · EXOSOME SKIN) section",
+   "options": [
+    "disclosure",
+    "products"
+   ],
+   "recommend": "disclosure",
+   "basis": "법적 고지 성격 · B16 allowed_routes 와 같이 쓰임",
+   "decided": "사용자 11-01 「추천으로 데이터 결정하자」",
+   "value": "disclosure"
+  },
+  {
+   "id": "D9-9",
+   "what": "taxonomy 하위 분류 description 3(M3 hADM · M16 DCA · 지방분해 혼합)",
+   "options": [
+    "계열 overview + sub_family 표시",
+    "원문 보관"
+   ],
+   "recommend": "계열 overview + sub_family 표시",
+   "basis": "2단계 하위 계열(M16 성분 · M3) 정본과 같은 축 · A 행 0",
+   "decided": "사용자 11-01 「추천으로 데이터 결정하자」",
+   "value": "계열 overview + sub_family 표시"
+  }
+ ],
+ "human_check": {
+  "count": 0,
+  "why": "붙는 자리는 전부 5 · 7 · 8단계가 이미 정한 대응(extracted attach · taxonomy_products · 항목 resolve · 실버 complications)으로 풀리고, 충돌은 C9-1(전부 싣기 · 고르지 않음)로 규칙화된다. 5단계에서 이미 열린 원천 질문(알렉스필 「원장님 문의」 1항목 · 7행)은 새로 세지 않음"
+ },
+ "open_rule": "붙는 자리 없는 대상 행(원문 보관 · 붙지 않는 고민 항목 빼고) · 규칙 없는 원천 칸 · section 없는 칸 · ② 인데 resolved 를 못 고름 · 노드가 실버에 없음 = open"
+}

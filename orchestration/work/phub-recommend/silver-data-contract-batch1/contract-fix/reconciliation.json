@@ -1,0 +1,2801 @@
+{
+  "finding": "CR-H1",
+  "approval": "Task brief explicitly authorizes adopting current progress snapshot without modifying source/data; frozen bytes immutable",
+  "previous_expected": {
+    "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/_RESUME.md",
+    "logical_file_key": "_RESUME.md",
+    "domain": "decision-artifact",
+    "source_kind": "decision",
+    "sha256": "da701b275e2fd2e784d425fdc2d872e9e4f3f81ee600108ef9a6b7fa6e2428ba",
+    "bytes": 154536,
+    "note": "mutable coordinator log frozen at contract authoring; historical attribution only; input change must be explicitly reconciled"
+  },
+  "previous_original_bytes_available": false,
+  "previous_to_current_byte_diff": "unavailable: previous bytes not held; hash mismatch cannot prove append-only history; no reconstruction claimed",
+  "current_snapshot": {
+    "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-data-contract-batch1/contract-fix/frozen-inputs/coordinator-progress-2026-11-03.md",
+    "sha256": "c3394f487966cfc061439e5902541555fbc82460fd774e4feb92d6f9125fb974",
+    "bytes": 155396
+  },
+  "resume_citations": [
+    {
+      "current_pointer": "/decision",
+      "current_value": "_RESUME.md §2 2026-10-28 「2단계 계열 조사(step2-research) 반영 — 전부 추천대로(사용자)」",
+      "snapshot_anchor": "**2단계 계열 조사(step2-research)",
+      "snapshot_lines": [
+        {
+          "line": 311,
+          "text": "| 2026-10-28 | **2단계 계열 조사(step2-research) 반영 — 전부 추천대로(사용자)**: D01 지방분해주사 10행 = 새 계열 N1 「지방분해 주사」(17→18) · D04 LED 7행 = M8 정의를 「레이저·IPL·LED(광)」로 넓혀 편입 · D03 화학 박피 38 = M15 하위 계열 · D02 아큐탄 · 라이넥 · 멜스몬 = 계열 밖(의약품) · **카복시 N2 는 세우지 않음**(제품 행 트리필 프로 1뿐 · 5단계 카복시테라피에서 재검토 — 워커 후보 추천을 코디가 바꿈) · 나머지 13묶음(D05~D09 · D11~D16 · D17 이름 = 문헌 영문 한글화 · 국내 공식 출처 우선 · 없으면 「공식 출처 미확인」 · D18 하위 계열 규칙) 추천대로 · 판단 필요 6행(알렉스필 · 이브타이탄 · 벨르업 · 더마큐어 · 트리필 프로 · 헤어셀)은 원천 질문 | 사용자 「추천으로 가자」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/step7_delta/0/decided_by",
+      "current_value": "J7 G6(10-29 5단계 보강 · 사용자 「응 추천으로 가자」 — _RESUME §2 「5단계 보강(J7) G1~G10 — 전부 추천대로」)",
+      "snapshot_anchor": "**5단계 보강(J7)",
+      "snapshot_lines": [
+        {
+          "line": 276,
+          "text": "| 2026-10-29 | **5단계 보강(J7) G1~G10 — 전부 추천대로(사용자)**: 규칙 반영 제모 부위 8 · 바디 RF 1 + G1 미라드라이 · 바디 HIFU · 스컬프슈어 = M9 · M8 정의 대상 넓힘 · 키 3 · G2 M8 하위 엑시머 · G3 M8 하위 협대역 UVB · 정의 「자외선 광선」 · G4 경화요법 = N4 · 다리 · K01 · G5 N4 정의 냉동 파괴 · 병변 냉동치료(K08 also) · G6 새 계열 N8 기계적 흡입 마사지 · 기법 신설 · 바디 · G7 새 계열 N9 모발이식(수술 표시) · G8 새 계열 N10 지방흡입(수술 표시) · G9 IPL 제모 = 기존 키 후보 동의어 · G10 트라넥삼산 주사 = U5-018 후보 동의어 + 원천 질문 → 5단계 키 +19 · 계열 27 · 기법 26 | 사용자 「응 추천으로 가자」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/step7_delta/1/decided_by",
+      "current_value": "J7 G7(10-29 5단계 보강 · 사용자 「응 추천으로 가자」 — _RESUME §2 「5단계 보강(J7) G1~G10 — 전부 추천대로」)",
+      "snapshot_anchor": "**5단계 보강(J7)",
+      "snapshot_lines": [
+        {
+          "line": 276,
+          "text": "| 2026-10-29 | **5단계 보강(J7) G1~G10 — 전부 추천대로(사용자)**: 규칙 반영 제모 부위 8 · 바디 RF 1 + G1 미라드라이 · 바디 HIFU · 스컬프슈어 = M9 · M8 정의 대상 넓힘 · 키 3 · G2 M8 하위 엑시머 · G3 M8 하위 협대역 UVB · 정의 「자외선 광선」 · G4 경화요법 = N4 · 다리 · K01 · G5 N4 정의 냉동 파괴 · 병변 냉동치료(K08 also) · G6 새 계열 N8 기계적 흡입 마사지 · 기법 신설 · 바디 · G7 새 계열 N9 모발이식(수술 표시) · G8 새 계열 N10 지방흡입(수술 표시) · G9 IPL 제모 = 기존 키 후보 동의어 · G10 트라넥삼산 주사 = U5-018 후보 동의어 + 원천 질문 → 5단계 키 +19 · 계열 27 · 기법 26 | 사용자 「응 추천으로 가자」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/step7_delta/2/decided_by",
+      "current_value": "J7 G8(10-29 5단계 보강 · 사용자 「응 추천으로 가자」 — _RESUME §2 「5단계 보강(J7) G1~G10 — 전부 추천대로」)",
+      "snapshot_anchor": "**5단계 보강(J7)",
+      "snapshot_lines": [
+        {
+          "line": 276,
+          "text": "| 2026-10-29 | **5단계 보강(J7) G1~G10 — 전부 추천대로(사용자)**: 규칙 반영 제모 부위 8 · 바디 RF 1 + G1 미라드라이 · 바디 HIFU · 스컬프슈어 = M9 · M8 정의 대상 넓힘 · 키 3 · G2 M8 하위 엑시머 · G3 M8 하위 협대역 UVB · 정의 「자외선 광선」 · G4 경화요법 = N4 · 다리 · K01 · G5 N4 정의 냉동 파괴 · 병변 냉동치료(K08 also) · G6 새 계열 N8 기계적 흡입 마사지 · 기법 신설 · 바디 · G7 새 계열 N9 모발이식(수술 표시) · G8 새 계열 N10 지방흡입(수술 표시) · G9 IPL 제모 = 기존 키 후보 동의어 · G10 트라넥삼산 주사 = U5-018 후보 동의어 + 원천 질문 → 5단계 키 +19 · 계열 27 · 기법 26 | 사용자 「응 추천으로 가자」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/step7_delta/3/decided_by",
+      "current_value": "J7 G2(10-29 5단계 보강 · 사용자 「응 추천으로 가자」 — _RESUME §2 「5단계 보강(J7) G1~G10 — 전부 추천대로」)",
+      "snapshot_anchor": "**5단계 보강(J7)",
+      "snapshot_lines": [
+        {
+          "line": 276,
+          "text": "| 2026-10-29 | **5단계 보강(J7) G1~G10 — 전부 추천대로(사용자)**: 규칙 반영 제모 부위 8 · 바디 RF 1 + G1 미라드라이 · 바디 HIFU · 스컬프슈어 = M9 · M8 정의 대상 넓힘 · 키 3 · G2 M8 하위 엑시머 · G3 M8 하위 협대역 UVB · 정의 「자외선 광선」 · G4 경화요법 = N4 · 다리 · K01 · G5 N4 정의 냉동 파괴 · 병변 냉동치료(K08 also) · G6 새 계열 N8 기계적 흡입 마사지 · 기법 신설 · 바디 · G7 새 계열 N9 모발이식(수술 표시) · G8 새 계열 N10 지방흡입(수술 표시) · G9 IPL 제모 = 기존 키 후보 동의어 · G10 트라넥삼산 주사 = U5-018 후보 동의어 + 원천 질문 → 5단계 키 +19 · 계열 27 · 기법 26 | 사용자 「응 추천으로 가자」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/step7_delta/4/decided_by",
+      "current_value": "J7 G3(10-29 5단계 보강 · 사용자 「응 추천으로 가자」 — _RESUME §2 「5단계 보강(J7) G1~G10 — 전부 추천대로」)",
+      "snapshot_anchor": "**5단계 보강(J7)",
+      "snapshot_lines": [
+        {
+          "line": 276,
+          "text": "| 2026-10-29 | **5단계 보강(J7) G1~G10 — 전부 추천대로(사용자)**: 규칙 반영 제모 부위 8 · 바디 RF 1 + G1 미라드라이 · 바디 HIFU · 스컬프슈어 = M9 · M8 정의 대상 넓힘 · 키 3 · G2 M8 하위 엑시머 · G3 M8 하위 협대역 UVB · 정의 「자외선 광선」 · G4 경화요법 = N4 · 다리 · K01 · G5 N4 정의 냉동 파괴 · 병변 냉동치료(K08 also) · G6 새 계열 N8 기계적 흡입 마사지 · 기법 신설 · 바디 · G7 새 계열 N9 모발이식(수술 표시) · G8 새 계열 N10 지방흡입(수술 표시) · G9 IPL 제모 = 기존 키 후보 동의어 · G10 트라넥삼산 주사 = U5-018 후보 동의어 + 원천 질문 → 5단계 키 +19 · 계열 27 · 기법 26 | 사용자 「응 추천으로 가자」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/step7_delta/5/decided_by",
+      "current_value": "J7 G1 · G3(10-29 5단계 보강 · 사용자 「응 추천으로 가자」 — _RESUME §2 「5단계 보강(J7) G1~G10 — 전부 추천대로」)",
+      "snapshot_anchor": "**5단계 보강(J7)",
+      "snapshot_lines": [
+        {
+          "line": 276,
+          "text": "| 2026-10-29 | **5단계 보강(J7) G1~G10 — 전부 추천대로(사용자)**: 규칙 반영 제모 부위 8 · 바디 RF 1 + G1 미라드라이 · 바디 HIFU · 스컬프슈어 = M9 · M8 정의 대상 넓힘 · 키 3 · G2 M8 하위 엑시머 · G3 M8 하위 협대역 UVB · 정의 「자외선 광선」 · G4 경화요법 = N4 · 다리 · K01 · G5 N4 정의 냉동 파괴 · 병변 냉동치료(K08 also) · G6 새 계열 N8 기계적 흡입 마사지 · 기법 신설 · 바디 · G7 새 계열 N9 모발이식(수술 표시) · G8 새 계열 N10 지방흡입(수술 표시) · G9 IPL 제모 = 기존 키 후보 동의어 · G10 트라넥삼산 주사 = U5-018 후보 동의어 + 원천 질문 → 5단계 키 +19 · 계열 27 · 기법 26 | 사용자 「응 추천으로 가자」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/step7_delta/6/decided_by",
+      "current_value": "J7 G1(10-29 5단계 보강 · 사용자 「응 추천으로 가자」 — _RESUME §2 「5단계 보강(J7) G1~G10 — 전부 추천대로」)",
+      "snapshot_anchor": "**5단계 보강(J7)",
+      "snapshot_lines": [
+        {
+          "line": 276,
+          "text": "| 2026-10-29 | **5단계 보강(J7) G1~G10 — 전부 추천대로(사용자)**: 규칙 반영 제모 부위 8 · 바디 RF 1 + G1 미라드라이 · 바디 HIFU · 스컬프슈어 = M9 · M8 정의 대상 넓힘 · 키 3 · G2 M8 하위 엑시머 · G3 M8 하위 협대역 UVB · 정의 「자외선 광선」 · G4 경화요법 = N4 · 다리 · K01 · G5 N4 정의 냉동 파괴 · 병변 냉동치료(K08 also) · G6 새 계열 N8 기계적 흡입 마사지 · 기법 신설 · 바디 · G7 새 계열 N9 모발이식(수술 표시) · G8 새 계열 N10 지방흡입(수술 표시) · G9 IPL 제모 = 기존 키 후보 동의어 · G10 트라넥삼산 주사 = U5-018 후보 동의어 + 원천 질문 → 5단계 키 +19 · 계열 27 · 기법 26 | 사용자 「응 추천으로 가자」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/step7_delta/7/decided_by",
+      "current_value": "J7 G4 · G5(10-29 5단계 보강 · 사용자 「응 추천으로 가자」 — _RESUME §2 「5단계 보강(J7) G1~G10 — 전부 추천대로」)",
+      "snapshot_anchor": "**5단계 보강(J7)",
+      "snapshot_lines": [
+        {
+          "line": 276,
+          "text": "| 2026-10-29 | **5단계 보강(J7) G1~G10 — 전부 추천대로(사용자)**: 규칙 반영 제모 부위 8 · 바디 RF 1 + G1 미라드라이 · 바디 HIFU · 스컬프슈어 = M9 · M8 정의 대상 넓힘 · 키 3 · G2 M8 하위 엑시머 · G3 M8 하위 협대역 UVB · 정의 「자외선 광선」 · G4 경화요법 = N4 · 다리 · K01 · G5 N4 정의 냉동 파괴 · 병변 냉동치료(K08 also) · G6 새 계열 N8 기계적 흡입 마사지 · 기법 신설 · 바디 · G7 새 계열 N9 모발이식(수술 표시) · G8 새 계열 N10 지방흡입(수술 표시) · G9 IPL 제모 = 기존 키 후보 동의어 · G10 트라넥삼산 주사 = U5-018 후보 동의어 + 원천 질문 → 5단계 키 +19 · 계열 27 · 기법 26 | 사용자 「응 추천으로 가자」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/families/0/name_basis/0",
+      "current_value": "_RESUME.md §2 2026-10-27 「계열 이름 = 공식 일반명(M1 → 「보툴리눔 톡신」)」 · ATC M03AX01 「BOTULINUM TOXIN|보툴리눔 독소」(step1-products.json 보톡스 4_license.licenses[].kpic.atc)",
+      "snapshot_anchor": "계열 이름 = 공식 일반명",
+      "snapshot_lines": [
+        {
+          "line": 122,
+          "text": "| 2026-10-27 | **계열 이름 = 공식 일반명**(M1 → 「보툴리눔 톡신」, 동의어 보톡스·톡신). 「보톡스」는 엘러간 제품 이름. 「보톡스」 검색은 계열·제품 둘 다 → 외부 LLM 이 고르거나 되묻기 | 사용자 「가」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/families/0/sub_family_handling/1/basis",
+      "current_value": "_RESUME §2 OQ-317 「턱선보톡스 = 단위 시술(보톡스 × 턱선)」 · 부위 이름 = 단위 시술, 목적 이름 = 목적 엣지",
+      "snapshot_anchor": "OQ-317:",
+      "snapshot_lines": [
+        {
+          "line": 318,
+          "text": "| 2026-10-27 | OQ-317: 「턱선보톡스」= 턱선 + 보톡스 = **단위 시술**(보톡스 × 턱선). 분류표의 kind 「부위·목적」은 틀림. 같은 원리로 계열 아래 「용도별」 항목은 부위 이름이면 단위 시술(계열 × 부위), 목적 이름(다한증 · 주름)이면 목적 엣지 + 그 부위들의 단위 시술로 재판정 | 사용자 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/families/0/deferred/0/basis",
+      "current_value": "_RESUME §2 OQ-317 「턱선보톡스 = 단위 시술(보톡스 × 턱선)」 · 부위 이름 = 단위 시술, 목적 이름 = 목적 엣지",
+      "snapshot_anchor": "OQ-317:",
+      "snapshot_lines": [
+        {
+          "line": 318,
+          "text": "| 2026-10-27 | OQ-317: 「턱선보톡스」= 턱선 + 보톡스 = **단위 시술**(보톡스 × 턱선). 분류표의 kind 「부위·목적」은 틀림. 같은 원리로 계열 아래 「용도별」 항목은 부위 이름이면 단위 시술(계열 × 부위), 목적 이름(다한증 · 주름)이면 목적 엣지 + 그 부위들의 단위 시술로 재판정 | 사용자 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/families/7/literature_evidence/8/decision",
+      "current_value": "대상 넓힘 — 피하지방(스컬프슈어 1060nm 레이저 지방분해 · G1) · 광원 넓힘 — 자외선 광선(협대역 UVB · G3 · 엑시머 G2). K06 넓힘 선례(4단계 U6)(J7 G1 · G3(10-29 5단계 보강 · 사용자 「응 추천으로 가자」 — _RESUME §2 「5단계 보강(J7) G1~G10 — 전부 추천대로」))",
+      "snapshot_anchor": "**5단계 보강(J7)",
+      "snapshot_lines": [
+        {
+          "line": 276,
+          "text": "| 2026-10-29 | **5단계 보강(J7) G1~G10 — 전부 추천대로(사용자)**: 규칙 반영 제모 부위 8 · 바디 RF 1 + G1 미라드라이 · 바디 HIFU · 스컬프슈어 = M9 · M8 정의 대상 넓힘 · 키 3 · G2 M8 하위 엑시머 · G3 M8 하위 협대역 UVB · 정의 「자외선 광선」 · G4 경화요법 = N4 · 다리 · K01 · G5 N4 정의 냉동 파괴 · 병변 냉동치료(K08 also) · G6 새 계열 N8 기계적 흡입 마사지 · 기법 신설 · 바디 · G7 새 계열 N9 모발이식(수술 표시) · G8 새 계열 N10 지방흡입(수술 표시) · G9 IPL 제모 = 기존 키 후보 동의어 · G10 트라넥삼산 주사 = U5-018 후보 동의어 + 원천 질문 → 5단계 키 +19 · 계열 27 · 기법 26 | 사용자 「응 추천으로 가자」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/families/7/sub_family_handling/3/basis",
+      "current_value": "색소·혈관·제모는 「무엇을」이 아니라 목적 — _RESUME §2 10-27 「목적은 고민→시술 엣지」",
+      "snapshot_anchor": "목적은 고민",
+      "snapshot_lines": [
+        {
+          "line": 112,
+          "text": "| 2026-10-27 | taxonomy 는 시술 원장이 아니라 분류 트리(제품·부위·목적·기법·패키지 섞임). **시술 = 제일 작은 단위 행위 = 무엇을(약제·장비 계열) × 어디에(부위) × 어떻게(기법)**. 제품·용량은 속성, 목적은 고민→시술 엣지, 패키지는 단위 시술 묶음 | 사용자 · 코디 제안 동의 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/families/7/sub_family_handling/5/basis",
+      "current_value": "_RESUME.md §2 2026-10-28 WARN 3 처리",
+      "snapshot_anchor": "**M8 하위 계열 = 광원 매질 한 축**",
+      "snapshot_lines": [
+        {
+          "line": 310,
+          "text": "| 2026-10-28 | 2단계 재검수 v2 PASS(지적 6/6 닫힘 · 회귀 0) 뒤 WARN 3 처리 — **M8 하위 계열 = 광원 매질 한 축**(엔디야그 · 알렉산드라이트 · 반도체 · CO2 · Er:YAG · IPL · LED …), 피코초 · 프락셔널 · 롱펄스 · Q스위치 등 **방식은 4단계 기법**으로(deferred 표시) · 광원 2종 장비(스플렌더 X 등)는 null + open · M7 봉합사 품목명은 synonyms 에서 빼고 name_basis 에만 | 사용자 「추천으로 가자」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/families/7/sub_family_handling/6/basis",
+      "current_value": "원천 taxonomy P14-4 「백반증」 detail 「엑시머 308nm」 · M8 extracted 「백반증, 건선 치료 (엑시머 레이저)」 — 매질 = 엑시머(308nm)(J7 G2(10-29 5단계 보강 · 사용자 「응 추천으로 가자」 — _RESUME §2 「5단계 보강(J7) G1~G10 — 전부 추천대로」))",
+      "snapshot_anchor": "**5단계 보강(J7)",
+      "snapshot_lines": [
+        {
+          "line": 276,
+          "text": "| 2026-10-29 | **5단계 보강(J7) G1~G10 — 전부 추천대로(사용자)**: 규칙 반영 제모 부위 8 · 바디 RF 1 + G1 미라드라이 · 바디 HIFU · 스컬프슈어 = M9 · M8 정의 대상 넓힘 · 키 3 · G2 M8 하위 엑시머 · G3 M8 하위 협대역 UVB · 정의 「자외선 광선」 · G4 경화요법 = N4 · 다리 · K01 · G5 N4 정의 냉동 파괴 · 병변 냉동치료(K08 also) · G6 새 계열 N8 기계적 흡입 마사지 · 기법 신설 · 바디 · G7 새 계열 N9 모발이식(수술 표시) · G8 새 계열 N10 지방흡입(수술 표시) · G9 IPL 제모 = 기존 키 후보 동의어 · G10 트라넥삼산 주사 = U5-018 후보 동의어 + 원천 질문 → 5단계 키 +19 · 계열 27 · 기법 26 | 사용자 「응 추천으로 가자」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/families/7/sub_family_handling/7/basis",
+      "current_value": "원천 taxonomy P14-4 「건선」 detail 「UVB 광치료」 — 레이저가 아닌 협대역 UVB 램프(정의 「자외선 광선」 넓힘과 같이)(J7 G3(10-29 5단계 보강 · 사용자 「응 추천으로 가자」 — _RESUME §2 「5단계 보강(J7) G1~G10 — 전부 추천대로」))",
+      "snapshot_anchor": "**5단계 보강(J7)",
+      "snapshot_lines": [
+        {
+          "line": 276,
+          "text": "| 2026-10-29 | **5단계 보강(J7) G1~G10 — 전부 추천대로(사용자)**: 규칙 반영 제모 부위 8 · 바디 RF 1 + G1 미라드라이 · 바디 HIFU · 스컬프슈어 = M9 · M8 정의 대상 넓힘 · 키 3 · G2 M8 하위 엑시머 · G3 M8 하위 협대역 UVB · 정의 「자외선 광선」 · G4 경화요법 = N4 · 다리 · K01 · G5 N4 정의 냉동 파괴 · 병변 냉동치료(K08 also) · G6 새 계열 N8 기계적 흡입 마사지 · 기법 신설 · 바디 · G7 새 계열 N9 모발이식(수술 표시) · G8 새 계열 N10 지방흡입(수술 표시) · G9 IPL 제모 = 기존 키 후보 동의어 · G10 트라넥삼산 주사 = U5-018 후보 동의어 + 원천 질문 → 5단계 키 +19 · 계열 27 · 기법 26 | 사용자 「응 추천으로 가자」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/families/7/deferred/0/basis",
+      "current_value": "색소·혈관·제모는 「무엇을」이 아니라 목적 — _RESUME §2 10-27 「목적은 고민→시술 엣지」",
+      "snapshot_anchor": "목적은 고민",
+      "snapshot_lines": [
+        {
+          "line": 112,
+          "text": "| 2026-10-27 | taxonomy 는 시술 원장이 아니라 분류 트리(제품·부위·목적·기법·패키지 섞임). **시술 = 제일 작은 단위 행위 = 무엇을(약제·장비 계열) × 어디에(부위) × 어떻게(기법)**. 제품·용량은 속성, 목적은 고민→시술 엣지, 패키지는 단위 시술 묶음 | 사용자 · 코디 제안 동의 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/families/7/deferred/1/basis",
+      "current_value": "_RESUME.md §2 2026-10-28 「2단계 재검수 v2 PASS 뒤 WARN 3 처리 — M8 하위 계열 = 광원 매질 한 축」",
+      "snapshot_anchor": "**M8 하위 계열 = 광원 매질 한 축**",
+      "snapshot_lines": [
+        {
+          "line": 310,
+          "text": "| 2026-10-28 | 2단계 재검수 v2 PASS(지적 6/6 닫힘 · 회귀 0) 뒤 WARN 3 처리 — **M8 하위 계열 = 광원 매질 한 축**(엔디야그 · 알렉산드라이트 · 반도체 · CO2 · Er:YAG · IPL · LED …), 피코초 · 프락셔널 · 롱펄스 · Q스위치 등 **방식은 4단계 기법**으로(deferred 표시) · 광원 2종 장비(스플렌더 X 등)는 null + open · M7 봉합사 품목명은 synonyms 에서 빼고 name_basis 에만 | 사용자 「추천으로 가자」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/families/8/literature_evidence/6/decision",
+      "current_value": "대상 넓힘 — 땀샘(미라드라이 마이크로웨이브 · 다한증) · 피하지방(바디 HIFU · 리포셀). 하위 마이크로웨이브는 이미 칸에 있음. K06 넓힘 선례(4단계 U6)(J7 G1(10-29 5단계 보강 · 사용자 「응 추천으로 가자」 — _RESUME §2 「5단계 보강(J7) G1~G10 — 전부 추천대로」))",
+      "snapshot_anchor": "**5단계 보강(J7)",
+      "snapshot_lines": [
+        {
+          "line": 276,
+          "text": "| 2026-10-29 | **5단계 보강(J7) G1~G10 — 전부 추천대로(사용자)**: 규칙 반영 제모 부위 8 · 바디 RF 1 + G1 미라드라이 · 바디 HIFU · 스컬프슈어 = M9 · M8 정의 대상 넓힘 · 키 3 · G2 M8 하위 엑시머 · G3 M8 하위 협대역 UVB · 정의 「자외선 광선」 · G4 경화요법 = N4 · 다리 · K01 · G5 N4 정의 냉동 파괴 · 병변 냉동치료(K08 also) · G6 새 계열 N8 기계적 흡입 마사지 · 기법 신설 · 바디 · G7 새 계열 N9 모발이식(수술 표시) · G8 새 계열 N10 지방흡입(수술 표시) · G9 IPL 제모 = 기존 키 후보 동의어 · G10 트라넥삼산 주사 = U5-018 후보 동의어 + 원천 질문 → 5단계 키 +19 · 계열 27 · 기법 26 | 사용자 「응 추천으로 가자」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/families/8/sub_family_handling/3/basis",
+      "current_value": "_RESUME §2 10-27 「패키지는 단위 시술 묶음」",
+      "snapshot_anchor": "패키지",
+      "snapshot_lines": [
+        {
+          "line": 112,
+          "text": "| 2026-10-27 | taxonomy 는 시술 원장이 아니라 분류 트리(제품·부위·목적·기법·패키지 섞임). **시술 = 제일 작은 단위 행위 = 무엇을(약제·장비 계열) × 어디에(부위) × 어떻게(기법)**. 제품·용량은 속성, 목적은 고민→시술 엣지, 패키지는 단위 시술 묶음 | 사용자 · 코디 제안 동의 |"
+        },
+        {
+          "line": 135,
+          "text": "| 2026-10-27 | **실버는 원장 하나씩, 단계마다 미확인 0 이 끝 조건.** 순서: 1 제품(라인·품목·허가·규격·업체) → 2 계열 → 3 부위 → 4 기법 → 5 단위 시술 → 6 목적·패키지 → 7 고민 → 8 관계 → 빌드. 기존 실버 초안 파일은 지우지 않고 재료로 둔다. 1단계: 현장 기기 35 포함(진단 장비 4 는 「진단 장비」) · 같은 허가 원장 중복은 라인+품목 | 사용자 |"
+        },
+        {
+          "line": 242,
+          "text": "| 2026-10-30 | **SPEC-005 열린 것 O-1~O-4 추천대로(사용자)**: O-1 neighbors depth ≤ 2 · limit 50 · truncated · O-2 속도 기준은 실측 뒤 사용자 결정 · O-3 응답에 claude_contract{allowed_fact_ids, must_show_flags, rule} 블록 냄 · O-4 원장 「넥큐레이션」 확인 조건 3행 → 패키지 P6-03 | 사용자 「열린 것은 추천으로 가자」 |"
+        },
+        {
+          "line": 244,
+          "text": "| 2026-10-30 | SPEC-005 중 판단(코디): 판단 ② 「메뉴 이름 → 추천 조합」 = 사이트 추천 패키지 라벨 8개 전부(주름 · 처짐/탄력 · 쁘띠시술 · 피부결/톤/항노화 · 색소/미백 · 모공 · 흉터 · 얼굴윤곽) — 쁘띠시술만이면 Q109 · Q110 이 R12 앵커로 다른 고민 패키지가 섞여 틀림. 라벨은 골드 빌드가 resolve 사전에 kind menu(실버 수정 없음) · 고민 id 질의는 그대로 | 코디(워커 질문) |"
+        },
+        {
+          "line": 245,
+          "text": "| 2026-10-30 | **골드 규칙 판단 — 추천대로(사용자)**: D-01~D-14 추천대로(D-08 → 충돌은 resolved 하나만) · ① 구체 고민(CC) 슬롯을 골드 도구 입력에 둠(R28) · ② 메뉴 이름 → 추천 조합 경로(쁘띠시술 등 · J5 유지) · ③ 조합 기본 응답 = 「추천 패키지」 먼저 · 나머지 6종 종류 표시 「참고」 · ④ treats 계열만은 펼치지 않음(semantic I1 문구 정정 · W2 유지) · ⑤ 다파장 4(노블린 · 클라리티2 · 아포지 · 디스커버리 피코) KTP 보조 하위(원천 532nm 근거). 다음 = SPEC-005 · WORK-003(planner) | 사용자 「응 추천으로 가자」 |"
+        },
+        {
+          "line": 246,
+          "text": "| 2026-10-30 | **남은 8문항 처리(사용자)**: Q020 · Q025 = 측정 계열 대응을 결정 파일에서 읽게 · Q018 · Q019 = 2단계 엑셀V 하위 엔디야그(주) + KTP(보조)(다파장 전수) → 지금 고침 · Q106(메뉴 이름 → 조합 경로) · Q108~110(조합 기본 응답 = 추천 패키지 먼저 · 나머지 참고) = 골드 판단 표로. 골드 빈틈 2 와 같이 발주 | 사용자 「응 그렇게 발주해줘」 |"
+        },
+        {
+          "line": 277,
+          "text": "| 2026-10-29 | **7단계 조사(step7-research) 반영 — 전부 추천대로(사용자)**: R 묶음 · J1 taxonomy 항목 중 시술 이름 79 = 고민 노드 아님 · 상위 고민 → 단위 시술 엣지 · J2 기타 하위: 점/사마귀 · 다한증 · 피부질환 = 고민 노드 · 문신제거 = 목적 · J3 「제모」 「얼굴윤곽」 이름 유지(털 · 체모 · 윤곽 · V라인 동의어) · J4 목적 노드 13 + 목적 → 단위 시술 엣지 · 목적 ↔ 고민 대응표 · J5 P1 쁘띠시술 추천 패키지 3 = 앵커 없음 · 메뉴 이름 원문 · J6 피부결 = 새 노드 없음 · 대응표 게이트 · **J7 단위 시술 없는 시술 14묶음 + 제모 부위 8 = 5단계 보강으로 단위 시술 세움**(수술 모발이식 · 지방흡입은 「수술」 표시로 세울지 같은 판 · 처방약 · 외용제 시술 아님) → 7단계 엣지 다시 내림 · J8 자갈턱 = 고민 항목 @턱끝(P2 주름 아래) · J9 다크서클 · 꺼짐 등 = 새 노드 없음 · 대응표 게이트 · 면역 · 피로회복 · 영양 = 목적 · 대응표 사람 확인 83 = 추천값 초기값 | 사용자 「응 추천으로 가자」 |"
+        },
+        {
+          "line": 279,
+          "text": "| 2026-10-29 | **실버 6단계 마감 완료** — 데이터 · 과정 기록 · 패키지 판정 스킬(procedure-hub-package-check). 다음 = 7단계(고민 · 목적 · 추천 조합) 계획 → 사용자 승인 | 코디 |"
+        },
+        {
+          "line": 280,
+          "text": "| 2026-10-29 | **실버 6단계(패키지) 데이터 끝** — 검수 FAIL 1 · WARN 3(문구 · 숫자) 수정 · 코디 확인(패키지 24 · 구성 49 · 슬롯 8 · open 0 · 결정론). 정본 step6-packages.json · 결정 step6-decisions.json · 원천 질문 13 | 코디 |"
+        },
+        {
+          "line": 281,
+          "text": "| 2026-10-29 | **6단계 패키지 조사(step6-research) 반영 — 전부 추천대로(사용자)**: R1~R11 · U1 포토나4D = 단위 시술(U5-099 동의어 + 보조 매질 Er:YAG) · U2 리쥬하이 = 단위 시술(U5-018 동의어) · U3 셀리부트 · DNA리셋 = 패키지 kind 「병원 시그니처(고정 가격)」 · 추천 기본 제외 · 원천 질문 · U4 회차 묶음 3 = 6단계 노드(시장가 행 패키지로 · 1회 가격과 안 섞음) → 패키지 24 · 구성 칸 61(풀림 52 · 슬롯 9 원천 질문) · 묶음 이름 9 = 패키지 아님 · synergy 대조 38쌍은 8단계 메모 | 사용자 「응 추천으로 가자」 |"
+        },
+        {
+          "line": 282,
+          "text": "| 2026-10-29 | **실버 6단계(패키지) 시작 — 계획 승인**: 패키지 = 이름 있는 단위 시술 묶음(일반 패키지 + 회차 묶음) · 입력 = 원장 18 · 시장가 6 · 5단계 넘김 12 · 단위 시술 143 · 구성은 원천 적힌 만큼만(없으면 원천 질문 — OQ-204) · 포토나4D 단위 시술 여부 · 셀리부트 · DNA리셋 특정 병원 여부 판정. **패키지 → 구성 단위 시술 엣지는 6단계 · 시술↔시술 시너지 엣지는 8단계(원천 synergy 그대로) · 패키지는 시너지의 「함께 판매 사례」 근거로만 · 원천끼리 다르면(꿀광토닝 같은 날 ↔ synergy 2주 간격) 둘 다 남기고 충돌 표시(D-13b)** · 끝 조건 open 0 + 패키지인데 구성 없음 0(없으면 원천 질문) | 사용자 「응 오케이 6단계 가자」 |"
+        },
+        {
+          "line": 283,
+          "text": "| 2026-10-29 | **6단계 패키지 이해(사용자)**: 꿀광토닝(레이저토닝 + 스킨부스터)처럼 이름만으로 구성이 통하는 묶음은 **일반 패키지** — 6단계 패키지 노드(이름 → 구성 단위 시술) · 회차 묶음(스컬트라 3회 등)도 6단계 · 고가 고정 프로그램(셀리부트 950만 · DNA리셋 2000만)은 특정 병원일 수 있어 6단계에서 따로 판단 · 사이트 「추천」 화면의 「추천 패키지」(problem-combos)는 7단계 추천 조합 그대로(「추천 패키지」 동의어) · 6단계 이름은 「패키지」 유지 | 사용자 「꿀광토닝 하면 그걸 하는 거 같은데 · 일반적인 패키지 같은데」 |"
+        },
+        {
+          "line": 284,
+          "text": "| 2026-10-29 | **실버 5단계 마감 완료** — 데이터(재검수 v3 PASS) · 과정 기록 · 단위 시술 판정 스킬(procedure-hub-unit-check) 끝. 다음 = 6단계 경계 논의(패키지 ↔ 추천 조합) → 6단계 계획 | 코디 |"
+        },
+        {
+          "line": 286,
+          "text": "| 2026-10-29 | 5단계 검수 FAIL 1 · WARN 2 처리 — 추천대로(사용자): **F1** 제품 → 단위 시술 상속에 기법 호환 조건(계열 기법이 하나뿐이면 계열 기본 = 근거 — 코디 판단 · 워커 질문 A · 2단계 technique_hint · 4단계 device_attrs 근거) · 매질 미지정 키는 기법 근거 있는 제품만 · 근거 없으면 상속 안 함 · PIH 문구 재생성 / **W1** 온다 · 소프웨이브 = M9 마이크로웨이브 · SUPERB × 얼굴 전체 × K05 단위 시술 2 / **W2** 「진정관리(시술 후 재생팩)」 → U5-034 후보 동의어로. 6단계 경계(패키지 ↔ 추천 조합)는 5단계 끝난 뒤 논의 | 사용자 「추천으로 가자」 |"
+        },
+        {
+          "line": 297,
+          "text": "| 2026-10-28 | **원천 21 행선지 지도(source-map) 승인 — 전부 추천대로(사용자)**: 칸 517(끝 39 · 표시 99 · 결정됨 158 · 미정 221 → 전부 묶음 B01~B17 추천). **U1 단계 경계 조정**: 6 = 병원 메뉴 패키지만 · 7 = 고민 + 목적 + 추천 조합(combo-recipes · problem-combos · common_combos · 최적화 · 플랜 · 비교) · 8 = 관계 · 안전 · 사람 조건(확인 조건 원장) · 상담 콘텐츠 · 근거(번호 유지) · U2 고민 정본 = taxonomy problem(P id) + 대응표(게이트) · 쁘띠시술 · 기타 고민 아님 · U3 「추천 조합」 노드 한 타입 · 원천별 · 영업 문구 보관만 · U4 근거 노드 8단계 · U5 ASCE+ · EXOSOME SKIN 도포만 가드. 이후 단계마다 source-map.json 을 입력 목록으로 쓴다 | 사용자 「추천으로 가자」 |"
+        },
+        {
+          "line": 440,
+          "text": "| tool_dev(패키지 스킬) | `term_38dabbf9-b77e-42ea-adcb-75897e3c6874` | `task_ce5182138bd1` | `ctx_ee76a7a5c97f` | `phub-recommend-skill-package-brief.md` | 완료(check_packages.py 코디 실행) |"
+        },
+        {
+          "line": 441,
+          "text": "| researcher(6단계 반영) | `term_0933d258-4d62-4e51-b233-79a7c1ecea09` | `task_f0a74db4086d` | `ctx_5da88c494412` | `phub-recommend-step6-apply-brief.md` → `step6-packages.json`·`.md` | 완료(패키지 24 · 구성 49 · 슬롯 8 · open 0 · 코디 확인) |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/families/8/deferred/0/basis",
+      "current_value": "_RESUME §2 10-27 「패키지는 단위 시술 묶음」",
+      "snapshot_anchor": "패키지",
+      "snapshot_lines": [
+        {
+          "line": 112,
+          "text": "| 2026-10-27 | taxonomy 는 시술 원장이 아니라 분류 트리(제품·부위·목적·기법·패키지 섞임). **시술 = 제일 작은 단위 행위 = 무엇을(약제·장비 계열) × 어디에(부위) × 어떻게(기법)**. 제품·용량은 속성, 목적은 고민→시술 엣지, 패키지는 단위 시술 묶음 | 사용자 · 코디 제안 동의 |"
+        },
+        {
+          "line": 135,
+          "text": "| 2026-10-27 | **실버는 원장 하나씩, 단계마다 미확인 0 이 끝 조건.** 순서: 1 제품(라인·품목·허가·규격·업체) → 2 계열 → 3 부위 → 4 기법 → 5 단위 시술 → 6 목적·패키지 → 7 고민 → 8 관계 → 빌드. 기존 실버 초안 파일은 지우지 않고 재료로 둔다. 1단계: 현장 기기 35 포함(진단 장비 4 는 「진단 장비」) · 같은 허가 원장 중복은 라인+품목 | 사용자 |"
+        },
+        {
+          "line": 242,
+          "text": "| 2026-10-30 | **SPEC-005 열린 것 O-1~O-4 추천대로(사용자)**: O-1 neighbors depth ≤ 2 · limit 50 · truncated · O-2 속도 기준은 실측 뒤 사용자 결정 · O-3 응답에 claude_contract{allowed_fact_ids, must_show_flags, rule} 블록 냄 · O-4 원장 「넥큐레이션」 확인 조건 3행 → 패키지 P6-03 | 사용자 「열린 것은 추천으로 가자」 |"
+        },
+        {
+          "line": 244,
+          "text": "| 2026-10-30 | SPEC-005 중 판단(코디): 판단 ② 「메뉴 이름 → 추천 조합」 = 사이트 추천 패키지 라벨 8개 전부(주름 · 처짐/탄력 · 쁘띠시술 · 피부결/톤/항노화 · 색소/미백 · 모공 · 흉터 · 얼굴윤곽) — 쁘띠시술만이면 Q109 · Q110 이 R12 앵커로 다른 고민 패키지가 섞여 틀림. 라벨은 골드 빌드가 resolve 사전에 kind menu(실버 수정 없음) · 고민 id 질의는 그대로 | 코디(워커 질문) |"
+        },
+        {
+          "line": 245,
+          "text": "| 2026-10-30 | **골드 규칙 판단 — 추천대로(사용자)**: D-01~D-14 추천대로(D-08 → 충돌은 resolved 하나만) · ① 구체 고민(CC) 슬롯을 골드 도구 입력에 둠(R28) · ② 메뉴 이름 → 추천 조합 경로(쁘띠시술 등 · J5 유지) · ③ 조합 기본 응답 = 「추천 패키지」 먼저 · 나머지 6종 종류 표시 「참고」 · ④ treats 계열만은 펼치지 않음(semantic I1 문구 정정 · W2 유지) · ⑤ 다파장 4(노블린 · 클라리티2 · 아포지 · 디스커버리 피코) KTP 보조 하위(원천 532nm 근거). 다음 = SPEC-005 · WORK-003(planner) | 사용자 「응 추천으로 가자」 |"
+        },
+        {
+          "line": 246,
+          "text": "| 2026-10-30 | **남은 8문항 처리(사용자)**: Q020 · Q025 = 측정 계열 대응을 결정 파일에서 읽게 · Q018 · Q019 = 2단계 엑셀V 하위 엔디야그(주) + KTP(보조)(다파장 전수) → 지금 고침 · Q106(메뉴 이름 → 조합 경로) · Q108~110(조합 기본 응답 = 추천 패키지 먼저 · 나머지 참고) = 골드 판단 표로. 골드 빈틈 2 와 같이 발주 | 사용자 「응 그렇게 발주해줘」 |"
+        },
+        {
+          "line": 277,
+          "text": "| 2026-10-29 | **7단계 조사(step7-research) 반영 — 전부 추천대로(사용자)**: R 묶음 · J1 taxonomy 항목 중 시술 이름 79 = 고민 노드 아님 · 상위 고민 → 단위 시술 엣지 · J2 기타 하위: 점/사마귀 · 다한증 · 피부질환 = 고민 노드 · 문신제거 = 목적 · J3 「제모」 「얼굴윤곽」 이름 유지(털 · 체모 · 윤곽 · V라인 동의어) · J4 목적 노드 13 + 목적 → 단위 시술 엣지 · 목적 ↔ 고민 대응표 · J5 P1 쁘띠시술 추천 패키지 3 = 앵커 없음 · 메뉴 이름 원문 · J6 피부결 = 새 노드 없음 · 대응표 게이트 · **J7 단위 시술 없는 시술 14묶음 + 제모 부위 8 = 5단계 보강으로 단위 시술 세움**(수술 모발이식 · 지방흡입은 「수술」 표시로 세울지 같은 판 · 처방약 · 외용제 시술 아님) → 7단계 엣지 다시 내림 · J8 자갈턱 = 고민 항목 @턱끝(P2 주름 아래) · J9 다크서클 · 꺼짐 등 = 새 노드 없음 · 대응표 게이트 · 면역 · 피로회복 · 영양 = 목적 · 대응표 사람 확인 83 = 추천값 초기값 | 사용자 「응 추천으로 가자」 |"
+        },
+        {
+          "line": 279,
+          "text": "| 2026-10-29 | **실버 6단계 마감 완료** — 데이터 · 과정 기록 · 패키지 판정 스킬(procedure-hub-package-check). 다음 = 7단계(고민 · 목적 · 추천 조합) 계획 → 사용자 승인 | 코디 |"
+        },
+        {
+          "line": 280,
+          "text": "| 2026-10-29 | **실버 6단계(패키지) 데이터 끝** — 검수 FAIL 1 · WARN 3(문구 · 숫자) 수정 · 코디 확인(패키지 24 · 구성 49 · 슬롯 8 · open 0 · 결정론). 정본 step6-packages.json · 결정 step6-decisions.json · 원천 질문 13 | 코디 |"
+        },
+        {
+          "line": 281,
+          "text": "| 2026-10-29 | **6단계 패키지 조사(step6-research) 반영 — 전부 추천대로(사용자)**: R1~R11 · U1 포토나4D = 단위 시술(U5-099 동의어 + 보조 매질 Er:YAG) · U2 리쥬하이 = 단위 시술(U5-018 동의어) · U3 셀리부트 · DNA리셋 = 패키지 kind 「병원 시그니처(고정 가격)」 · 추천 기본 제외 · 원천 질문 · U4 회차 묶음 3 = 6단계 노드(시장가 행 패키지로 · 1회 가격과 안 섞음) → 패키지 24 · 구성 칸 61(풀림 52 · 슬롯 9 원천 질문) · 묶음 이름 9 = 패키지 아님 · synergy 대조 38쌍은 8단계 메모 | 사용자 「응 추천으로 가자」 |"
+        },
+        {
+          "line": 282,
+          "text": "| 2026-10-29 | **실버 6단계(패키지) 시작 — 계획 승인**: 패키지 = 이름 있는 단위 시술 묶음(일반 패키지 + 회차 묶음) · 입력 = 원장 18 · 시장가 6 · 5단계 넘김 12 · 단위 시술 143 · 구성은 원천 적힌 만큼만(없으면 원천 질문 — OQ-204) · 포토나4D 단위 시술 여부 · 셀리부트 · DNA리셋 특정 병원 여부 판정. **패키지 → 구성 단위 시술 엣지는 6단계 · 시술↔시술 시너지 엣지는 8단계(원천 synergy 그대로) · 패키지는 시너지의 「함께 판매 사례」 근거로만 · 원천끼리 다르면(꿀광토닝 같은 날 ↔ synergy 2주 간격) 둘 다 남기고 충돌 표시(D-13b)** · 끝 조건 open 0 + 패키지인데 구성 없음 0(없으면 원천 질문) | 사용자 「응 오케이 6단계 가자」 |"
+        },
+        {
+          "line": 283,
+          "text": "| 2026-10-29 | **6단계 패키지 이해(사용자)**: 꿀광토닝(레이저토닝 + 스킨부스터)처럼 이름만으로 구성이 통하는 묶음은 **일반 패키지** — 6단계 패키지 노드(이름 → 구성 단위 시술) · 회차 묶음(스컬트라 3회 등)도 6단계 · 고가 고정 프로그램(셀리부트 950만 · DNA리셋 2000만)은 특정 병원일 수 있어 6단계에서 따로 판단 · 사이트 「추천」 화면의 「추천 패키지」(problem-combos)는 7단계 추천 조합 그대로(「추천 패키지」 동의어) · 6단계 이름은 「패키지」 유지 | 사용자 「꿀광토닝 하면 그걸 하는 거 같은데 · 일반적인 패키지 같은데」 |"
+        },
+        {
+          "line": 284,
+          "text": "| 2026-10-29 | **실버 5단계 마감 완료** — 데이터(재검수 v3 PASS) · 과정 기록 · 단위 시술 판정 스킬(procedure-hub-unit-check) 끝. 다음 = 6단계 경계 논의(패키지 ↔ 추천 조합) → 6단계 계획 | 코디 |"
+        },
+        {
+          "line": 286,
+          "text": "| 2026-10-29 | 5단계 검수 FAIL 1 · WARN 2 처리 — 추천대로(사용자): **F1** 제품 → 단위 시술 상속에 기법 호환 조건(계열 기법이 하나뿐이면 계열 기본 = 근거 — 코디 판단 · 워커 질문 A · 2단계 technique_hint · 4단계 device_attrs 근거) · 매질 미지정 키는 기법 근거 있는 제품만 · 근거 없으면 상속 안 함 · PIH 문구 재생성 / **W1** 온다 · 소프웨이브 = M9 마이크로웨이브 · SUPERB × 얼굴 전체 × K05 단위 시술 2 / **W2** 「진정관리(시술 후 재생팩)」 → U5-034 후보 동의어로. 6단계 경계(패키지 ↔ 추천 조합)는 5단계 끝난 뒤 논의 | 사용자 「추천으로 가자」 |"
+        },
+        {
+          "line": 297,
+          "text": "| 2026-10-28 | **원천 21 행선지 지도(source-map) 승인 — 전부 추천대로(사용자)**: 칸 517(끝 39 · 표시 99 · 결정됨 158 · 미정 221 → 전부 묶음 B01~B17 추천). **U1 단계 경계 조정**: 6 = 병원 메뉴 패키지만 · 7 = 고민 + 목적 + 추천 조합(combo-recipes · problem-combos · common_combos · 최적화 · 플랜 · 비교) · 8 = 관계 · 안전 · 사람 조건(확인 조건 원장) · 상담 콘텐츠 · 근거(번호 유지) · U2 고민 정본 = taxonomy problem(P id) + 대응표(게이트) · 쁘띠시술 · 기타 고민 아님 · U3 「추천 조합」 노드 한 타입 · 원천별 · 영업 문구 보관만 · U4 근거 노드 8단계 · U5 ASCE+ · EXOSOME SKIN 도포만 가드. 이후 단계마다 source-map.json 을 입력 목록으로 쓴다 | 사용자 「추천으로 가자」 |"
+        },
+        {
+          "line": 440,
+          "text": "| tool_dev(패키지 스킬) | `term_38dabbf9-b77e-42ea-adcb-75897e3c6874` | `task_ce5182138bd1` | `ctx_ee76a7a5c97f` | `phub-recommend-skill-package-brief.md` | 완료(check_packages.py 코디 실행) |"
+        },
+        {
+          "line": 441,
+          "text": "| researcher(6단계 반영) | `term_0933d258-4d62-4e51-b233-79a7c1ecea09` | `task_f0a74db4086d` | `ctx_5da88c494412` | `phub-recommend-step6-apply-brief.md` → `step6-packages.json`·`.md` | 완료(패키지 24 · 구성 49 · 슬롯 8 · open 0 · 코디 확인) |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/families/9/sub_family_handling/0/basis",
+      "current_value": "얼굴/바디는 「어디에」 — _RESUME §2 시술 = 무엇을 × 어디에 × 어떻게",
+      "snapshot_anchor": "무엇을",
+      "snapshot_lines": [
+        {
+          "line": 112,
+          "text": "| 2026-10-27 | taxonomy 는 시술 원장이 아니라 분류 트리(제품·부위·목적·기법·패키지 섞임). **시술 = 제일 작은 단위 행위 = 무엇을(약제·장비 계열) × 어디에(부위) × 어떻게(기법)**. 제품·용량은 속성, 목적은 고민→시술 엣지, 패키지는 단위 시술 묶음 | 사용자 · 코디 제안 동의 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/families/9/deferred/0/basis",
+      "current_value": "얼굴/바디는 「어디에」 — _RESUME §2 시술 = 무엇을 × 어디에 × 어떻게",
+      "snapshot_anchor": "무엇을",
+      "snapshot_lines": [
+        {
+          "line": 112,
+          "text": "| 2026-10-27 | taxonomy 는 시술 원장이 아니라 분류 트리(제품·부위·목적·기법·패키지 섞임). **시술 = 제일 작은 단위 행위 = 무엇을(약제·장비 계열) × 어디에(부위) × 어떻게(기법)**. 제품·용량은 속성, 목적은 고민→시술 엣지, 패키지는 단위 시술 묶음 | 사용자 · 코디 제안 동의 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/families/18/decided_by",
+      "current_value": "U1(_RESUME §2 10-29 「5단계 추가 조사 반영」) · F1",
+      "snapshot_anchor": "**5단계 추가 조사(step5-research2)",
+      "snapshot_lines": [
+        {
+          "line": 288,
+          "text": "| 2026-10-29 | **5단계 추가 조사(step5-research2) 반영 — 추천대로(사용자)**: U1 새 계열 6(N2 카복시테라피 · N3 반영구 화장 · N4 피부 소수술 · N5 태반 추출물 주사 · N6 성장호르몬 주사 · N7 펄스 전자기장 치료 — N5~N7 근거 중 표시) · U2 트리필 프로 M4 그대로 · U3 4단계 K13 「미세색소주입」 신설 · U4 스테로이드 병변 내 주사 = N4 · 병변 단위 · U5 소마트로핀 1단계 행 안 더함 · U6 K06 정의 넓힘 · U7 **성분 미상 수액 4 = 단위 시술 세움(M16 · 해당 없음 · 정맥 · 성분 「미상」 + 원천 질문)** · U8 듀오 하이드로젠 장비 행 되살림 · U9 파셀라 = M9 × 얼굴 전체 × K05(1단계 새 제품 행 후보) · 보정: 카복시 = N2 × 바디 × 주입(기본값 표시) · 프로락틴주사 = M4 × 두피 × 주입 · 성분 미상 + 원천 질문 · 에이팩 · MPE · 이모드 = 기존 키 동의어 + 원천 질문 | 사용자 「응 그렇게 가자」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/families/19/decided_by",
+      "current_value": "U1(_RESUME §2 10-29 「5단계 추가 조사 반영」) · F1",
+      "snapshot_anchor": "**5단계 추가 조사(step5-research2)",
+      "snapshot_lines": [
+        {
+          "line": 288,
+          "text": "| 2026-10-29 | **5단계 추가 조사(step5-research2) 반영 — 추천대로(사용자)**: U1 새 계열 6(N2 카복시테라피 · N3 반영구 화장 · N4 피부 소수술 · N5 태반 추출물 주사 · N6 성장호르몬 주사 · N7 펄스 전자기장 치료 — N5~N7 근거 중 표시) · U2 트리필 프로 M4 그대로 · U3 4단계 K13 「미세색소주입」 신설 · U4 스테로이드 병변 내 주사 = N4 · 병변 단위 · U5 소마트로핀 1단계 행 안 더함 · U6 K06 정의 넓힘 · U7 **성분 미상 수액 4 = 단위 시술 세움(M16 · 해당 없음 · 정맥 · 성분 「미상」 + 원천 질문)** · U8 듀오 하이드로젠 장비 행 되살림 · U9 파셀라 = M9 × 얼굴 전체 × K05(1단계 새 제품 행 후보) · 보정: 카복시 = N2 × 바디 × 주입(기본값 표시) · 프로락틴주사 = M4 × 두피 × 주입 · 성분 미상 + 원천 질문 · 에이팩 · MPE · 이모드 = 기존 키 동의어 + 원천 질문 | 사용자 「응 그렇게 가자」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/families/20/literature_evidence/12/decision",
+      "current_value": "냉동 파괴 넓힘(사마귀 [냉동] · G5) — 4단계 N4 also K08. 경화요법(하지정맥류 경화제 주사)은 「병변 안에 약물을 직접 주사」 그대로(G4 · 정의 안 바꿈)(J7 G4 · G5(10-29 5단계 보강 · 사용자 「응 추천으로 가자」 — _RESUME §2 「5단계 보강(J7) G1~G10 — 전부 추천대로」))",
+      "snapshot_anchor": "**5단계 보강(J7)",
+      "snapshot_lines": [
+        {
+          "line": 276,
+          "text": "| 2026-10-29 | **5단계 보강(J7) G1~G10 — 전부 추천대로(사용자)**: 규칙 반영 제모 부위 8 · 바디 RF 1 + G1 미라드라이 · 바디 HIFU · 스컬프슈어 = M9 · M8 정의 대상 넓힘 · 키 3 · G2 M8 하위 엑시머 · G3 M8 하위 협대역 UVB · 정의 「자외선 광선」 · G4 경화요법 = N4 · 다리 · K01 · G5 N4 정의 냉동 파괴 · 병변 냉동치료(K08 also) · G6 새 계열 N8 기계적 흡입 마사지 · 기법 신설 · 바디 · G7 새 계열 N9 모발이식(수술 표시) · G8 새 계열 N10 지방흡입(수술 표시) · G9 IPL 제모 = 기존 키 후보 동의어 · G10 트라넥삼산 주사 = U5-018 후보 동의어 + 원천 질문 → 5단계 키 +19 · 계열 27 · 기법 26 | 사용자 「응 추천으로 가자」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/families/20/decided_by",
+      "current_value": "U1(_RESUME §2 10-29 「5단계 추가 조사 반영」) · F2 · U4",
+      "snapshot_anchor": "**5단계 추가 조사(step5-research2)",
+      "snapshot_lines": [
+        {
+          "line": 288,
+          "text": "| 2026-10-29 | **5단계 추가 조사(step5-research2) 반영 — 추천대로(사용자)**: U1 새 계열 6(N2 카복시테라피 · N3 반영구 화장 · N4 피부 소수술 · N5 태반 추출물 주사 · N6 성장호르몬 주사 · N7 펄스 전자기장 치료 — N5~N7 근거 중 표시) · U2 트리필 프로 M4 그대로 · U3 4단계 K13 「미세색소주입」 신설 · U4 스테로이드 병변 내 주사 = N4 · 병변 단위 · U5 소마트로핀 1단계 행 안 더함 · U6 K06 정의 넓힘 · U7 **성분 미상 수액 4 = 단위 시술 세움(M16 · 해당 없음 · 정맥 · 성분 「미상」 + 원천 질문)** · U8 듀오 하이드로젠 장비 행 되살림 · U9 파셀라 = M9 × 얼굴 전체 × K05(1단계 새 제품 행 후보) · 보정: 카복시 = N2 × 바디 × 주입(기본값 표시) · 프로락틴주사 = M4 × 두피 × 주입 · 성분 미상 + 원천 질문 · 에이팩 · MPE · 이모드 = 기존 키 동의어 + 원천 질문 | 사용자 「응 그렇게 가자」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/families/21/decided_by",
+      "current_value": "U1(_RESUME §2 10-29 「5단계 추가 조사 반영」) · F8",
+      "snapshot_anchor": "**5단계 추가 조사(step5-research2)",
+      "snapshot_lines": [
+        {
+          "line": 288,
+          "text": "| 2026-10-29 | **5단계 추가 조사(step5-research2) 반영 — 추천대로(사용자)**: U1 새 계열 6(N2 카복시테라피 · N3 반영구 화장 · N4 피부 소수술 · N5 태반 추출물 주사 · N6 성장호르몬 주사 · N7 펄스 전자기장 치료 — N5~N7 근거 중 표시) · U2 트리필 프로 M4 그대로 · U3 4단계 K13 「미세색소주입」 신설 · U4 스테로이드 병변 내 주사 = N4 · 병변 단위 · U5 소마트로핀 1단계 행 안 더함 · U6 K06 정의 넓힘 · U7 **성분 미상 수액 4 = 단위 시술 세움(M16 · 해당 없음 · 정맥 · 성분 「미상」 + 원천 질문)** · U8 듀오 하이드로젠 장비 행 되살림 · U9 파셀라 = M9 × 얼굴 전체 × K05(1단계 새 제품 행 후보) · 보정: 카복시 = N2 × 바디 × 주입(기본값 표시) · 프로락틴주사 = M4 × 두피 × 주입 · 성분 미상 + 원천 질문 · 에이팩 · MPE · 이모드 = 기존 키 동의어 + 원천 질문 | 사용자 「응 그렇게 가자」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/families/22/decided_by",
+      "current_value": "U1(_RESUME §2 10-29 「5단계 추가 조사 반영」) · F8",
+      "snapshot_anchor": "**5단계 추가 조사(step5-research2)",
+      "snapshot_lines": [
+        {
+          "line": 288,
+          "text": "| 2026-10-29 | **5단계 추가 조사(step5-research2) 반영 — 추천대로(사용자)**: U1 새 계열 6(N2 카복시테라피 · N3 반영구 화장 · N4 피부 소수술 · N5 태반 추출물 주사 · N6 성장호르몬 주사 · N7 펄스 전자기장 치료 — N5~N7 근거 중 표시) · U2 트리필 프로 M4 그대로 · U3 4단계 K13 「미세색소주입」 신설 · U4 스테로이드 병변 내 주사 = N4 · 병변 단위 · U5 소마트로핀 1단계 행 안 더함 · U6 K06 정의 넓힘 · U7 **성분 미상 수액 4 = 단위 시술 세움(M16 · 해당 없음 · 정맥 · 성분 「미상」 + 원천 질문)** · U8 듀오 하이드로젠 장비 행 되살림 · U9 파셀라 = M9 × 얼굴 전체 × K05(1단계 새 제품 행 후보) · 보정: 카복시 = N2 × 바디 × 주입(기본값 표시) · 프로락틴주사 = M4 × 두피 × 주입 · 성분 미상 + 원천 질문 · 에이팩 · MPE · 이모드 = 기존 키 동의어 + 원천 질문 | 사용자 「응 그렇게 가자」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/families/23/decided_by",
+      "current_value": "U1(_RESUME §2 10-29 「5단계 추가 조사 반영」) · F8",
+      "snapshot_anchor": "**5단계 추가 조사(step5-research2)",
+      "snapshot_lines": [
+        {
+          "line": 288,
+          "text": "| 2026-10-29 | **5단계 추가 조사(step5-research2) 반영 — 추천대로(사용자)**: U1 새 계열 6(N2 카복시테라피 · N3 반영구 화장 · N4 피부 소수술 · N5 태반 추출물 주사 · N6 성장호르몬 주사 · N7 펄스 전자기장 치료 — N5~N7 근거 중 표시) · U2 트리필 프로 M4 그대로 · U3 4단계 K13 「미세색소주입」 신설 · U4 스테로이드 병변 내 주사 = N4 · 병변 단위 · U5 소마트로핀 1단계 행 안 더함 · U6 K06 정의 넓힘 · U7 **성분 미상 수액 4 = 단위 시술 세움(M16 · 해당 없음 · 정맥 · 성분 「미상」 + 원천 질문)** · U8 듀오 하이드로젠 장비 행 되살림 · U9 파셀라 = M9 × 얼굴 전체 × K05(1단계 새 제품 행 후보) · 보정: 카복시 = N2 × 바디 × 주입(기본값 표시) · 프로락틴주사 = M4 × 두피 × 주입 · 성분 미상 + 원천 질문 · 에이팩 · MPE · 이모드 = 기존 키 동의어 + 원천 질문 | 사용자 「응 그렇게 가자」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/families/24/decided_by",
+      "current_value": "J7 G6(10-29 5단계 보강 · 사용자 「응 추천으로 가자」 — _RESUME §2 「5단계 보강(J7) G1~G10 — 전부 추천대로」)",
+      "snapshot_anchor": "**5단계 보강(J7)",
+      "snapshot_lines": [
+        {
+          "line": 276,
+          "text": "| 2026-10-29 | **5단계 보강(J7) G1~G10 — 전부 추천대로(사용자)**: 규칙 반영 제모 부위 8 · 바디 RF 1 + G1 미라드라이 · 바디 HIFU · 스컬프슈어 = M9 · M8 정의 대상 넓힘 · 키 3 · G2 M8 하위 엑시머 · G3 M8 하위 협대역 UVB · 정의 「자외선 광선」 · G4 경화요법 = N4 · 다리 · K01 · G5 N4 정의 냉동 파괴 · 병변 냉동치료(K08 also) · G6 새 계열 N8 기계적 흡입 마사지 · 기법 신설 · 바디 · G7 새 계열 N9 모발이식(수술 표시) · G8 새 계열 N10 지방흡입(수술 표시) · G9 IPL 제모 = 기존 키 후보 동의어 · G10 트라넥삼산 주사 = U5-018 후보 동의어 + 원천 질문 → 5단계 키 +19 · 계열 27 · 기법 26 | 사용자 「응 추천으로 가자」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/families/25/sub_family_handling/0/basis",
+      "current_value": "J7 G7(10-29 5단계 보강 · 사용자 「응 추천으로 가자」 — _RESUME §2 「5단계 보강(J7) G1~G10 — 전부 추천대로」)",
+      "snapshot_anchor": "**5단계 보강(J7)",
+      "snapshot_lines": [
+        {
+          "line": 276,
+          "text": "| 2026-10-29 | **5단계 보강(J7) G1~G10 — 전부 추천대로(사용자)**: 규칙 반영 제모 부위 8 · 바디 RF 1 + G1 미라드라이 · 바디 HIFU · 스컬프슈어 = M9 · M8 정의 대상 넓힘 · 키 3 · G2 M8 하위 엑시머 · G3 M8 하위 협대역 UVB · 정의 「자외선 광선」 · G4 경화요법 = N4 · 다리 · K01 · G5 N4 정의 냉동 파괴 · 병변 냉동치료(K08 also) · G6 새 계열 N8 기계적 흡입 마사지 · 기법 신설 · 바디 · G7 새 계열 N9 모발이식(수술 표시) · G8 새 계열 N10 지방흡입(수술 표시) · G9 IPL 제모 = 기존 키 후보 동의어 · G10 트라넥삼산 주사 = U5-018 후보 동의어 + 원천 질문 → 5단계 키 +19 · 계열 27 · 기법 26 | 사용자 「응 추천으로 가자」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/families/25/decided_by",
+      "current_value": "J7 G7(10-29 5단계 보강 · 사용자 「응 추천으로 가자」 — _RESUME §2 「5단계 보강(J7) G1~G10 — 전부 추천대로」)",
+      "snapshot_anchor": "**5단계 보강(J7)",
+      "snapshot_lines": [
+        {
+          "line": 276,
+          "text": "| 2026-10-29 | **5단계 보강(J7) G1~G10 — 전부 추천대로(사용자)**: 규칙 반영 제모 부위 8 · 바디 RF 1 + G1 미라드라이 · 바디 HIFU · 스컬프슈어 = M9 · M8 정의 대상 넓힘 · 키 3 · G2 M8 하위 엑시머 · G3 M8 하위 협대역 UVB · 정의 「자외선 광선」 · G4 경화요법 = N4 · 다리 · K01 · G5 N4 정의 냉동 파괴 · 병변 냉동치료(K08 also) · G6 새 계열 N8 기계적 흡입 마사지 · 기법 신설 · 바디 · G7 새 계열 N9 모발이식(수술 표시) · G8 새 계열 N10 지방흡입(수술 표시) · G9 IPL 제모 = 기존 키 후보 동의어 · G10 트라넥삼산 주사 = U5-018 후보 동의어 + 원천 질문 → 5단계 키 +19 · 계열 27 · 기법 26 | 사용자 「응 추천으로 가자」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/families/26/decided_by",
+      "current_value": "J7 G8(10-29 5단계 보강 · 사용자 「응 추천으로 가자」 — _RESUME §2 「5단계 보강(J7) G1~G10 — 전부 추천대로」)",
+      "snapshot_anchor": "**5단계 보강(J7)",
+      "snapshot_lines": [
+        {
+          "line": 276,
+          "text": "| 2026-10-29 | **5단계 보강(J7) G1~G10 — 전부 추천대로(사용자)**: 규칙 반영 제모 부위 8 · 바디 RF 1 + G1 미라드라이 · 바디 HIFU · 스컬프슈어 = M9 · M8 정의 대상 넓힘 · 키 3 · G2 M8 하위 엑시머 · G3 M8 하위 협대역 UVB · 정의 「자외선 광선」 · G4 경화요법 = N4 · 다리 · K01 · G5 N4 정의 냉동 파괴 · 병변 냉동치료(K08 also) · G6 새 계열 N8 기계적 흡입 마사지 · 기법 신설 · 바디 · G7 새 계열 N9 모발이식(수술 표시) · G8 새 계열 N10 지방흡입(수술 표시) · G9 IPL 제모 = 기존 키 후보 동의어 · G10 트라넥삼산 주사 = U5-018 후보 동의어 + 원천 질문 → 5단계 키 +19 · 계열 27 · 기법 26 | 사용자 「응 추천으로 가자」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/product_family/93/resolve_rule",
+      "current_value": "_RESUME.md §2 2026-10-28 「하위 계열도 주 · 보조로」",
+      "snapshot_anchor": "하위 계열도 주",
+      "snapshot_lines": [
+        {
+          "line": 308,
+          "text": "| 2026-10-28 | **하위 계열도 주 · 보조로**: 광원/재료가 2종인 행은 하위 계열 주 1 + 보조(also_sub_families) — null + open 로 두지 않는다. open 40 은 행마다 해결 값 + 출처를 가져온다(open 으로 남기는 안 금지) | 사용자 「주계열 보조 계열로 넣으면 돼 · 해결책을 가져와」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/product_family/111/resolve_rule",
+      "current_value": "_RESUME.md §2 2026-10-28 「하위 계열도 주 · 보조로」",
+      "snapshot_anchor": "하위 계열도 주",
+      "snapshot_lines": [
+        {
+          "line": 308,
+          "text": "| 2026-10-28 | **하위 계열도 주 · 보조로**: 광원/재료가 2종인 행은 하위 계열 주 1 + 보조(also_sub_families) — null + open 로 두지 않는다. open 40 은 행마다 해결 값 + 출처를 가져온다(open 으로 남기는 안 금지) | 사용자 「주계열 보조 계열로 넣으면 돼 · 해결책을 가져와」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/product_family/114/resolve_rule",
+      "current_value": "_RESUME.md §2 2026-10-28 「하위 계열도 주 · 보조로」 — 주 = 허가 품목 매질 → 없으면 원천 설명 첫 매질",
+      "snapshot_anchor": "하위 계열도 주",
+      "snapshot_lines": [
+        {
+          "line": 308,
+          "text": "| 2026-10-28 | **하위 계열도 주 · 보조로**: 광원/재료가 2종인 행은 하위 계열 주 1 + 보조(also_sub_families) — null + open 로 두지 않는다. open 40 은 행마다 해결 값 + 출처를 가져온다(open 으로 남기는 안 금지) | 사용자 「주계열 보조 계열로 넣으면 돼 · 해결책을 가져와」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/product_family/118/resolve_rule",
+      "current_value": "_RESUME.md §2 2026-10-28 「하위 계열도 주 · 보조로」 — 주 = 허가 품목 매질 → 없으면 원천 설명 첫 매질",
+      "snapshot_anchor": "하위 계열도 주",
+      "snapshot_lines": [
+        {
+          "line": 308,
+          "text": "| 2026-10-28 | **하위 계열도 주 · 보조로**: 광원/재료가 2종인 행은 하위 계열 주 1 + 보조(also_sub_families) — null + open 로 두지 않는다. open 40 은 행마다 해결 값 + 출처를 가져온다(open 으로 남기는 안 금지) | 사용자 「주계열 보조 계열로 넣으면 돼 · 해결책을 가져와」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/product_family/123/resolve_rule",
+      "current_value": "_RESUME.md §2 2026-10-28 「하위 계열도 주 · 보조로」 — 주 = 허가 품목 매질 → 없으면 원천 설명 첫 매질",
+      "snapshot_anchor": "하위 계열도 주",
+      "snapshot_lines": [
+        {
+          "line": 308,
+          "text": "| 2026-10-28 | **하위 계열도 주 · 보조로**: 광원/재료가 2종인 행은 하위 계열 주 1 + 보조(also_sub_families) — null + open 로 두지 않는다. open 40 은 행마다 해결 값 + 출처를 가져온다(open 으로 남기는 안 금지) | 사용자 「주계열 보조 계열로 넣으면 돼 · 해결책을 가져와」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/product_family/124/resolve_rule",
+      "current_value": "_RESUME.md §2 2026-10-28 「하위 계열도 주 · 보조로」 — 주 = 허가 품목 매질 → 없으면 원천 설명 첫 매질",
+      "snapshot_anchor": "하위 계열도 주",
+      "snapshot_lines": [
+        {
+          "line": 308,
+          "text": "| 2026-10-28 | **하위 계열도 주 · 보조로**: 광원/재료가 2종인 행은 하위 계열 주 1 + 보조(also_sub_families) — null + open 로 두지 않는다. open 40 은 행마다 해결 값 + 출처를 가져온다(open 으로 남기는 안 금지) | 사용자 「주계열 보조 계열로 넣으면 돼 · 해결책을 가져와」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/product_family/127/resolve_rule",
+      "current_value": "_RESUME.md §2 2026-10-28 「하위 계열도 주 · 보조로」",
+      "snapshot_anchor": "하위 계열도 주",
+      "snapshot_lines": [
+        {
+          "line": 308,
+          "text": "| 2026-10-28 | **하위 계열도 주 · 보조로**: 광원/재료가 2종인 행은 하위 계열 주 1 + 보조(also_sub_families) — null + open 로 두지 않는다. open 40 은 행마다 해결 값 + 출처를 가져온다(open 으로 남기는 안 금지) | 사용자 「주계열 보조 계열로 넣으면 돼 · 해결책을 가져와」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/product_family/128/resolve_rule",
+      "current_value": "_RESUME.md §2 2026-10-28 「하위 계열도 주 · 보조로」 — 주 = 허가 품목 매질 → 없으면 원천 설명 첫 매질",
+      "snapshot_anchor": "하위 계열도 주",
+      "snapshot_lines": [
+        {
+          "line": 308,
+          "text": "| 2026-10-28 | **하위 계열도 주 · 보조로**: 광원/재료가 2종인 행은 하위 계열 주 1 + 보조(also_sub_families) — null + open 로 두지 않는다. open 40 은 행마다 해결 값 + 출처를 가져온다(open 으로 남기는 안 금지) | 사용자 「주계열 보조 계열로 넣으면 돼 · 해결책을 가져와」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/product_family/129/resolve_rule",
+      "current_value": "_RESUME.md §2 2026-10-28 「하위 계열도 주 · 보조로」",
+      "snapshot_anchor": "하위 계열도 주",
+      "snapshot_lines": [
+        {
+          "line": 308,
+          "text": "| 2026-10-28 | **하위 계열도 주 · 보조로**: 광원/재료가 2종인 행은 하위 계열 주 1 + 보조(also_sub_families) — null + open 로 두지 않는다. open 40 은 행마다 해결 값 + 출처를 가져온다(open 으로 남기는 안 금지) | 사용자 「주계열 보조 계열로 넣으면 돼 · 해결책을 가져와」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/product_family/131/resolve_rule",
+      "current_value": "_RESUME.md §2 2026-10-28 「하위 계열도 주 · 보조로」 — 주 = 허가 품목 매질 → 없으면 원천 설명 첫 매질",
+      "snapshot_anchor": "하위 계열도 주",
+      "snapshot_lines": [
+        {
+          "line": 308,
+          "text": "| 2026-10-28 | **하위 계열도 주 · 보조로**: 광원/재료가 2종인 행은 하위 계열 주 1 + 보조(also_sub_families) — null + open 로 두지 않는다. open 40 은 행마다 해결 값 + 출처를 가져온다(open 으로 남기는 안 금지) | 사용자 「주계열 보조 계열로 넣으면 돼 · 해결책을 가져와」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/product_family/134/resolve_rule",
+      "current_value": "_RESUME.md §2 2026-10-28 「하위 계열도 주 · 보조로」 — 주 = 허가 품목 매질 → 없으면 원천 설명 첫 매질",
+      "snapshot_anchor": "하위 계열도 주",
+      "snapshot_lines": [
+        {
+          "line": 308,
+          "text": "| 2026-10-28 | **하위 계열도 주 · 보조로**: 광원/재료가 2종인 행은 하위 계열 주 1 + 보조(also_sub_families) — null + open 로 두지 않는다. open 40 은 행마다 해결 값 + 출처를 가져온다(open 으로 남기는 안 금지) | 사용자 「주계열 보조 계열로 넣으면 돼 · 해결책을 가져와」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/product_family/140/resolve_rule",
+      "current_value": "_RESUME.md §2 2026-10-28 「하위 계열도 주 · 보조로」 — 주 = 허가 품목 매질 → 없으면 원천 설명 첫 매질",
+      "snapshot_anchor": "하위 계열도 주",
+      "snapshot_lines": [
+        {
+          "line": 308,
+          "text": "| 2026-10-28 | **하위 계열도 주 · 보조로**: 광원/재료가 2종인 행은 하위 계열 주 1 + 보조(also_sub_families) — null + open 로 두지 않는다. open 40 은 행마다 해결 값 + 출처를 가져온다(open 으로 남기는 안 금지) | 사용자 「주계열 보조 계열로 넣으면 돼 · 해결책을 가져와」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/product_family/141/resolve_rule",
+      "current_value": "_RESUME.md §2 2026-10-28 「하위 계열도 주 · 보조로」 — 주 = 허가 품목 매질 → 없으면 원천 설명 첫 매질",
+      "snapshot_anchor": "하위 계열도 주",
+      "snapshot_lines": [
+        {
+          "line": 308,
+          "text": "| 2026-10-28 | **하위 계열도 주 · 보조로**: 광원/재료가 2종인 행은 하위 계열 주 1 + 보조(also_sub_families) — null + open 로 두지 않는다. open 40 은 행마다 해결 값 + 출처를 가져온다(open 으로 남기는 안 금지) | 사용자 「주계열 보조 계열로 넣으면 돼 · 해결책을 가져와」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/product_family/151/resolve_rule",
+      "current_value": "_RESUME.md §2 2026-10-28 「하위 계열도 주 · 보조로」 — 주 = 허가 품목 매질 → 없으면 원천 설명 첫 매질",
+      "snapshot_anchor": "하위 계열도 주",
+      "snapshot_lines": [
+        {
+          "line": 308,
+          "text": "| 2026-10-28 | **하위 계열도 주 · 보조로**: 광원/재료가 2종인 행은 하위 계열 주 1 + 보조(also_sub_families) — null + open 로 두지 않는다. open 40 은 행마다 해결 값 + 출처를 가져온다(open 으로 남기는 안 금지) | 사용자 「주계열 보조 계열로 넣으면 돼 · 해결책을 가져와」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/product_family/171/resolve_rule",
+      "current_value": "_RESUME.md §2 2026-10-28 「하위 계열도 주 · 보조로」 — 주 = 허가 품목 매질 → 없으면 원천 설명 첫 매질",
+      "snapshot_anchor": "하위 계열도 주",
+      "snapshot_lines": [
+        {
+          "line": 308,
+          "text": "| 2026-10-28 | **하위 계열도 주 · 보조로**: 광원/재료가 2종인 행은 하위 계열 주 1 + 보조(also_sub_families) — null + open 로 두지 않는다. open 40 은 행마다 해결 값 + 출처를 가져온다(open 으로 남기는 안 금지) | 사용자 「주계열 보조 계열로 넣으면 돼 · 해결책을 가져와」 |"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    },
+    {
+      "current_pointer": "/product_family/218/basis",
+      "current_value": "원천 「RF 에너지와 석션을 결합 … 지방 감소」 — 냉각(M14) 기전 없음(사후관리 냉각 문구는 원천 혼입, _RESUME 2단계 메모) · 31168833",
+      "snapshot_anchor": "2단계 메모:",
+      "snapshot_lines": [
+        {
+          "line": 44,
+          "text": "- 2단계 메모: auto- 항목 「설명 ↔ 계열」 대조(바넥스 M14 · 바넥스프로 M10) · 같은 제품이 다른 계열에 있던 것(볼뉴머 · 하모니카 — 제품은 합침, 계열 연결은 2단계)"
+        }
+      ],
+      "result": "Current attribution has matching context in approved frozen snapshot; preserve as historical attribution, no new name/clinical approval"
+    }
+  ],
+  "family_name_basis": [
+    {
+      "pointer": "/families/0",
+      "id": "M1",
+      "name": "보툴리눔 톡신",
+      "name_basis": [
+        "_RESUME.md §2 2026-10-27 「계열 이름 = 공식 일반명(M1 → 「보툴리눔 톡신」)」 · ATC M03AX01 「BOTULINUM TOXIN|보툴리눔 독소」(step1-products.json 보톡스 4_license.licenses[].kpic.atc)"
+      ],
+      "literature_evidence": [
+        {
+          "path": "literature-evidence.json#categories.M1.name",
+          "value": "Botulinum toxin type A (aesthetic)"
+        },
+        {
+          "path": "literature-evidence.json#categories.M1.moa[0]",
+          "statement": "Botulinum toxin type A inhibits the secretion of acetylcholine at the presynaptic neuromuscular junction.",
+          "pmid": "33714246",
+          "doi": "10.7181/acfs.2021.00003",
+          "title": "Scientific review of the aesthetic uses of botulinum toxin type A.",
+          "role": "정의 근거"
+        },
+        {
+          "path": "literature-evidence.json#categories.M1.moa[1]",
+          "statement": "Botulinum toxin type A weakens skeletal muscles by presynaptic blockade of the exocytosis of acetylcholine-containing vesicles in the neuromuscular junction.",
+          "pmid": "33714246",
+          "doi": "10.7181/acfs.2021.00003",
+          "title": "Scientific review of the aesthetic uses of botulinum toxin type A.",
+          "role": "정의 근거"
+        }
+      ],
+      "decided_by": null,
+      "rule": "name copied from current step2 source; log is historical basis only; no relabel or clinical decision"
+    },
+    {
+      "pointer": "/families/1",
+      "id": "M2",
+      "name": "성형용 필러",
+      "name_basis": [
+        "원천 이름 「필러」 = 상담 용어와 같음 · 식약처 안전정보 페이지 제목 「성형용 필러」(medical-codes.md §1 출처 「MFDS 성형용 필러 안전성정보」 링크 — 원문은 이번에 다시 열지 않음) · 식약처 품목명 「조직수복용생체재료」(step1 M2 행 허가 item)는 PN·콜라겐도 포함해 계열 이름으로 쓰기엔 넓음",
+        "검수 F1 반영: 식약처 「성형용 필러」 의료기기 안전성정보 홍보 — https://www.mfds.go.kr/brd/m_550/view.do?seq=200 · 2026-10-28 원문 다시 열어 확인(HTML 제목 · 본문 「성형용 필러로 인한 부작용이 지속적으로 발생」 · 첨부 「의료기기 안전성정보 홍보[성형용 필러].hwp」)"
+      ],
+      "literature_evidence": [
+        {
+          "path": "literature-evidence.json#categories.M2.name",
+          "value": "Hyaluronic acid dermal fillers"
+        },
+        {
+          "path": "literature-evidence.json#categories.M2.moa[0]",
+          "statement": "Crosslinking of hyaluronic acid with agents such as BDDE modifies viscoelastic properties and prolongs tissue residence time.",
+          "pmid": "30960626",
+          "doi": "10.3390/polym10070701",
+          "title": "Hyaluronic Acid in the Third Millennium.",
+          "role": "정의 근거"
+        },
+        {
+          "path": "literature-evidence.json#categories.M2.moa[1]",
+          "statement": "Hyaluronic acid fillers restore facial volume and contour lost due to ageing-related changes in skin, fat pads, bones, and muscles.",
+          "pmid": "33633459",
+          "doi": "10.2147/CCID.S292501",
+          "title": "Whole-Face Approach with Hyaluronic Acid Fillers.",
+          "role": "정의 근거"
+        }
+      ],
+      "decided_by": null,
+      "rule": "name copied from current step2 source; log is historical basis only; no relabel or clinical decision"
+    },
+    {
+      "pointer": "/families/2",
+      "id": "M3",
+      "name": "바이오스티뮬레이터",
+      "name_basis": [
+        "문헌 M3 영문 「biostimulators」 음역 — 한국 공식 일반명 출처 확인 안 됨",
+        "「콜라겐부스터」는 상담 용어(원천 이름 일부)"
+      ],
+      "literature_evidence": [
+        {
+          "path": "literature-evidence.json#categories.M3.name",
+          "value": "Collagen-stimulating biostimulators (PLLA/CaHA/PDLLA/PCL)"
+        },
+        {
+          "path": "literature-evidence.json#categories.M3.moa[0]",
+          "statement": "PLLA induces neocollagenesis through immune-mediated mechanisms involving macrophage activation and M2 polarization, distinct from mechanotransductive pathways",
+          "pmid": "38853456",
+          "doi": "10.1111/srt.13764",
+          "title": "A morphological analysis of calcium hydroxylapatite and poly-l-lactic acid biostimulator particles.",
+          "role": "정의 근거"
+        }
+      ],
+      "decided_by": null,
+      "rule": "name copied from current step2 source; log is historical basis only; no relabel or clinical decision"
+    },
+    {
+      "pointer": "/families/3",
+      "id": "M4",
+      "name": "스킨부스터",
+      "name_basis": [
+        "원천 이름 = 상담 용어 · 문헌 M4 근거 논문 제목 「Injectable \"Skin Boosters\"」(39544509, 한국 저자)"
+      ],
+      "literature_evidence": [
+        {
+          "path": "literature-evidence.json#categories.M4.name",
+          "value": "Skinboosters and mesotherapy (non-crosslinked HA, polynucleotides, amino-acid/vitamin cocktails)"
+        },
+        {
+          "path": "literature-evidence.json#categories.M4.moa[0]",
+          "statement": "Hyaluronic acid inhibits collagenase enzymes slowing collagen breakdown.",
+          "pmid": "39544509",
+          "doi": "10.1055/a-2366-3436",
+          "title": "Injectable \"Skin Boosters\" in Aging Skin Rejuvenation: A Current Overview.",
+          "role": "정의 근거"
+        },
+        {
+          "pmid": "39544509",
+          "doi": "10.1055/a-2366-3436",
+          "title": "Injectable \"Skin Boosters\" in Aging Skin Rejuvenation: A Current Overview.",
+          "journal": "Arch Plast Surg",
+          "year": "2024",
+          "quote": "목차: Hyaluronic Acid · Polynucleotide · Collagen · Polycomponent Products · Delivery Methods(Intradermal Injection Technique · Needle-free Jet Injectors) — 본문 「An example of this technology is the Curejet (Baz Biomedic, Seoul, Korea)」",
+          "verified": "NCBI ESummary 2026-10-28 (제목·저널·연도 일치)"
+        }
+      ],
+      "decided_by": null,
+      "rule": "name copied from current step2 source; log is historical basis only; no relabel or clinical decision"
+    },
+    {
+      "pointer": "/families/4",
+      "id": "M5",
+      "name": "PRP·엑소좀",
+      "name_basis": [
+        "문헌 M5 이름 「Platelet-rich plasma (PRP) and exosome therapies」 그대로 — 「혈소판풍부혈장」 한글 공식 출처는 이번에 확인 안 됨"
+      ],
+      "literature_evidence": [
+        {
+          "path": "literature-evidence.json#categories.M5.name",
+          "value": "Platelet-rich plasma (PRP) and exosome therapies"
+        },
+        {
+          "path": "literature-evidence.json#categories.M5.moa[0]",
+          "statement": "PRP delivers concentrated platelet-derived growth factors (PDGF, TGF-β, VEGF, EGF) that stimulate fibroblast proliferation and collagen synthesis.",
+          "pmid": "29457008",
+          "doi": "10.1159/000477353",
+          "title": "A Review of Platelet-Rich Plasma: History, Biology, Mechanism of Action, and Classification.",
+          "role": "정의 근거"
+        },
+        {
+          "path": "literature-evidence.json#categories.M5.moa[1]",
+          "statement": "Extracellular vesicles (exosomes) carry proteins, lipids, and microRNAs that modulate recipient cell signaling and extracellular matrix remodeling.",
+          "pmid": "27035812",
+          "doi": "10.1172/JCI81135",
+          "title": "The biology and function of exosomes in cancer.",
+          "role": "정의 근거"
+        }
+      ],
+      "decided_by": null,
+      "rule": "name copied from current step2 source; log is historical basis only; no relabel or clinical decision"
+    },
+    {
+      "pointer": "/families/5",
+      "id": "M6",
+      "name": "자가지방이식",
+      "name_basis": [
+        "문헌 M6 이름 「Autologous fat grafting」 직역 · 원천 이름 「지방이식」은 상담 용어"
+      ],
+      "literature_evidence": [
+        {
+          "path": "literature-evidence.json#categories.M6.name",
+          "value": "Autologous fat grafting / lipotransfer for facial rejuvenation"
+        },
+        {
+          "pmid": "37159906",
+          "doi": "10.1097/PRS.0000000000010643",
+          "title": "Technical Precision with Autologous Fat Grafting for Facial Rejuvenation: A Review of the Evolving Science.",
+          "journal": "Plast Reconstr Surg",
+          "year": "2024",
+          "quote": "Autologous fat grafting is … the preferred soft-tissue filler in the correction of facial atrophy … fat grafts to be divided based on parcel size and cell type into three major subtypes: macrofat, microfat, and nanofat.",
+          "verified": "NCBI ESummary 2026-10-28 (제목·저널·연도 일치)"
+        }
+      ],
+      "decided_by": null,
+      "rule": "name copied from current step2 source; log is historical basis only; no relabel or clinical decision"
+    },
+    {
+      "pointer": "/families/6",
+      "id": "M7",
+      "name": "실리프팅",
+      "name_basis": [
+        "원천 이름 = 상담 용어 · 식약처 품목명 「안면조직고정용실」(민트리프트 · 실루엣소프트 허가 item) · 「폴리디옥사논봉합사」(테스리프트 · 오메가리프트)",
+        "검수 F1 반영: 식약처 품목명(M7 행 허가 item): 「기타흡수성봉합사」 1행 · 「안면조직 고정용 실」 1행 · 「안면조직고정용실」 2행 · 「폴리디옥사논봉합사」 3행"
+      ],
+      "literature_evidence": [
+        {
+          "path": "literature-evidence.json#categories.M7.name",
+          "value": "Absorbable suspension threads (PDO/PLLA/PCL) for facial lifting"
+        },
+        {
+          "path": "literature-evidence.json#categories.M7.moa[1]",
+          "statement": "Absorbable barbed threads maintain mechanical lifting action for repositioning of sagging facial tissue.",
+          "pmid": "33469333",
+          "doi": "10.2147/CCID.S274160",
+          "title": "The Science of Absorbable Poly(L-Lactide-Co-ε-Caprolactone) Threads for Soft Tissue Repositioning of the Face: An Evidence-Based Evaluation of Their Physical Properties and Clinical Application.",
+          "role": "정의 근거"
+        },
+        {
+          "path": "literature-evidence.json#categories.M7.moa[2]",
+          "statement": "Thread insertion stimulates fibroblasts and synthesis of collagen, hyaluronic acid and elastin around the thread.",
+          "pmid": "33469333",
+          "doi": "10.2147/CCID.S274160",
+          "title": "The Science of Absorbable Poly(L-Lactide-Co-ε-Caprolactone) Threads for Soft Tissue Repositioning of the Face: An Evidence-Based Evaluation of Their Physical Properties and Clinical Application.",
+          "role": "정의 근거"
+        }
+      ],
+      "decided_by": null,
+      "rule": "name copied from current step2 source; log is historical basis only; no relabel or clinical decision"
+    },
+    {
+      "pointer": "/families/7",
+      "id": "M8",
+      "name": "레이저·광치료",
+      "name_basis": [
+        "문헌 M8 이름 「Aesthetic lasers and IPL」 · 원천 영문 「Laser & Light」 · 식약처 품목명은 광원별(엔디야그레이저수술기 · 알렉산드라이트 레이저 수술기 · 펄스광선조사기 …)",
+        "D04 반영 — step2-research M8 「묶음 D04 를 받으면 「레이저·광치료」」"
+      ],
+      "literature_evidence": [
+        {
+          "path": "literature-evidence.json#categories.M8.name",
+          "value": "Aesthetic lasers and IPL"
+        },
+        {
+          "path": "literature-evidence.json#categories.M8.moa[0]",
+          "statement": "Fractional ablative lasers vaporize the epidermis and heat the dermis to prompt collagen remodeling.",
+          "pmid": "32273965",
+          "doi": "10.34172/jlms.2020.35",
+          "title": "Assessment of Laser Effects on Skin Rejuvenation.",
+          "role": "정의 근거"
+        },
+        {
+          "path": "literature-evidence.json#categories.M8.moa[2]",
+          "statement": "Picosecond Nd:YAG laser reduces pigmentation in hyperpigmented scars.",
+          "pmid": "38525494",
+          "doi": "10.1097/GOX.0000000000005700",
+          "title": "Picosecond Nd:YAG versus Fractional CO(2) Lasers in Management of Postburn Scars.",
+          "role": "정의 근거"
+        },
+        {
+          "decision": "D04 반영: LED 편입 — PMID 40751922 「LED therapy employs narrow-spectrum, incoherent light for photobiomodulation」 · 원천 M8 영문 「Laser & Light」"
+        },
+        {
+          "pmid": "38230424",
+          "title": "Comparison of various excimer laser (EL) combination therapies for vitiligo: a systematic review and network meta-analysis.",
+          "year": 2024,
+          "role": "엑시머 레이저 백반증 NMA",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "J Dermatolog Treat"
+        },
+        {
+          "pmid": "31753182",
+          "title": "Optimizing Narrowband UVB Phototherapy Regimens for Psoriasis.",
+          "year": 2020,
+          "role": "협대역 UVB 건선 광선치료",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "Dermatol Clin"
+        },
+        {
+          "pmid": "37749418",
+          "title": "Non-invasive Body Contouring Technologies: An Updated Narrative Review.",
+          "year": 2024,
+          "role": "비침습 체형 기술 리뷰 — 레이저 · HIFU · RF 지방 감소",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "Aesthetic Plast Surg"
+        },
+        {
+          "pmid": "31753182",
+          "title": "Optimizing Narrowband UVB Phototherapy Regimens for Psoriasis.",
+          "year": 2020,
+          "role": "협대역 UVB 건선 광선치료",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "Dermatol Clin"
+        },
+        {
+          "decision": "대상 넓힘 — 피하지방(스컬프슈어 1060nm 레이저 지방분해 · G1) · 광원 넓힘 — 자외선 광선(협대역 UVB · G3 · 엑시머 G2). K06 넓힘 선례(4단계 U6)(J7 G1 · G3(10-29 5단계 보강 · 사용자 「응 추천으로 가자」 — _RESUME §2 「5단계 보강(J7) G1~G10 — 전부 추천대로」))"
+        }
+      ],
+      "decided_by": null,
+      "rule": "name copied from current step2 source; log is historical basis only; no relabel or clinical decision"
+    },
+    {
+      "pointer": "/families/8",
+      "id": "M9",
+      "name": "HIFU·고주파 리프팅",
+      "name_basis": [
+        "문헌 M9 이름 「Non-invasive skin tightening: HIFU and radiofrequency」 — 원천 이름 「기기 리프팅」·상담 「리프팅」은 동의어(사용자 10-28 「리프팅도 문헌 카테고리」) · 식약처 품목명 「집속형초음파자극시스템」 · 「범용전기수술기」(울쎄라 계열 · 볼뉴머 허가 item)"
+      ],
+      "literature_evidence": [
+        {
+          "path": "literature-evidence.json#categories.M9.name",
+          "value": "Non-invasive skin tightening: HIFU and radiofrequency"
+        },
+        {
+          "path": "literature-evidence.json#categories.M9.moa[0]",
+          "statement": "HIFU delivers focused ultrasound energy to generate thermal zones at specific depths in the dermis and SMAS layer, triggering collagen and elastin neogenesis",
+          "pmid": "37753689",
+          "doi": "10.1111/srt.13452",
+          "title": "Efficacy of radiofrequency combined with single-dot ultrasound efficacy for skin rejuvenation: A non-randomized split-face trial with blinded response evaluation.",
+          "role": "정의 근거"
+        },
+        {
+          "path": "literature-evidence.json#categories.M9.moa[1]",
+          "statement": "HIFU induces dermal collagen thickening and straightening of elastic fibers in the mid-to-deep dermis and SMAS, while RF causes neocollagenesis and neoelastogenesis more diffusely in the upper papillary dermis",
+          "pmid": "37753689",
+          "doi": "10.1111/srt.13452",
+          "title": "Efficacy of radiofrequency combined with single-dot ultrasound efficacy for skin rejuvenation: A non-randomized split-face trial with blinded response evaluation.",
+          "role": "정의 근거"
+        },
+        {
+          "pmid": "28281850",
+          "title": "A systematic review of microwave-based therapy for axillary hyperhidrosis.",
+          "year": 2017,
+          "role": "마이크로웨이브 액와 다한증 SR",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "J Cosmet Laser Ther"
+        },
+        {
+          "pmid": "31490305",
+          "title": "Efficacy and Safety of High-Intensity Focused Ultrasound for Noninvasive Abdominal Subcutaneous Fat Reduction.",
+          "year": 2020,
+          "role": "HIFU 복부 피하지방 감소",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "Dermatol Surg"
+        },
+        {
+          "pmid": "37749418",
+          "title": "Non-invasive Body Contouring Technologies: An Updated Narrative Review.",
+          "year": 2024,
+          "role": "비침습 체형 기술 리뷰 — 레이저 · HIFU · RF 지방 감소",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "Aesthetic Plast Surg"
+        },
+        {
+          "decision": "대상 넓힘 — 땀샘(미라드라이 마이크로웨이브 · 다한증) · 피하지방(바디 HIFU · 리포셀). 하위 마이크로웨이브는 이미 칸에 있음. K06 넓힘 선례(4단계 U6)(J7 G1(10-29 5단계 보강 · 사용자 「응 추천으로 가자」 — _RESUME §2 「5단계 보강(J7) G1~G10 — 전부 추천대로」))"
+        }
+      ],
+      "decided_by": null,
+      "rule": "name copied from current step2 source; log is historical basis only; no relabel or clinical decision"
+    },
+    {
+      "pointer": "/families/9",
+      "id": "M10",
+      "name": "HIFEM·EMS 근육 자극",
+      "name_basis": [
+        "문헌 M10 이름 「HIFEM/HIFES and EMS」 — 한글 공식 일반명 출처 확인 안 됨"
+      ],
+      "literature_evidence": [
+        {
+          "path": "literature-evidence.json#categories.M10.name",
+          "value": "HIFEM/HIFES and EMS"
+        },
+        {
+          "pmid": "33960109",
+          "doi": "10.1111/jocd.14203",
+          "title": "The role and clinical benefits of high-intensity focused electromagnetic devices for non-invasive lipolysis and beyond: A narrative review and position paper.",
+          "journal": "J Cosmet Dermatol",
+          "year": "2021",
+          "quote": "In 2018, the first device to use high-intensity focused electromagnetic (HIFEM) technology to non-invasively build muscle was brought to market.",
+          "verified": "NCBI ESummary 2026-10-28 (제목·저널·연도 일치)"
+        },
+        {
+          "pmid": "37957393",
+          "doi": "10.1007/s00266-023-03730-3",
+          "title": "High-Intensity Focused Electromagnetic (HIFEM) Energy With and Without Radiofrequency for Noninvasive Body Contouring: A Systematic Review.",
+          "journal": "Aesthetic Plast Surg",
+          "year": "2024",
+          "quote": null,
+          "verified": "NCBI ESummary 2026-10-28 (제목·저널·연도 일치)"
+        }
+      ],
+      "decided_by": null,
+      "rule": "name copied from current step2 source; log is historical basis only; no relabel or clinical decision"
+    },
+    {
+      "pointer": "/families/10",
+      "id": "M11",
+      "name": "고주파 마이크로니들(니들RF)",
+      "name_basis": [
+        "문헌 M11 이름 「Fractional radiofrequency microneedling」 · 원천·상담 「니들RF」"
+      ],
+      "literature_evidence": [
+        {
+          "path": "literature-evidence.json#categories.M11.name",
+          "value": "Fractional radiofrequency microneedling (RF microneedling)"
+        },
+        {
+          "pmid": "33577211",
+          "doi": "10.1097/DSS.0000000000002972",
+          "title": "Radiofrequency Microneedling: A Comprehensive and Critical Review.",
+          "journal": "Dermatol Surg",
+          "year": "2021",
+          "quote": "검색어 「\"radiofrequency microneedling\" OR \"fractional radiofrequency\" OR \"radiofrequency needling\" OR \"radiofrequency percutaneous collagen induction\"」 — RFMN 을 다른 에너지 기기와 나란히 독립 범주로 검토",
+          "verified": "NCBI ESummary 2026-10-28 (제목·저널·연도 일치)"
+        }
+      ],
+      "decided_by": null,
+      "rule": "name copied from current step2 source; log is historical basis only; no relabel or clinical decision"
+    },
+    {
+      "pointer": "/families/11",
+      "id": "M12",
+      "name": "마이크로니들링(MTS)",
+      "name_basis": [
+        "문헌 M12 이름 「Microneedling / percutaneous collagen induction」 · 상담 「MTS」 · 식약처 품목명 「의약품 흡수 유도 피부 자극기」(AUTO MTS 허가 제인 10-343)"
+      ],
+      "literature_evidence": [
+        {
+          "path": "literature-evidence.json#categories.M12.name",
+          "value": "Microneedling / percutaneous collagen induction (non-RF)"
+        },
+        {
+          "path": "literature-evidence.json#categories.M12.moa[0]",
+          "statement": "Microneedling creates micro-punctures in the skin that stimulate collagen production through percutaneous collagen induction.",
+          "pmid": "27559496",
+          "doi": "10.4103/2229-5178.185468",
+          "title": "Microneedling: Advances and widening horizons.",
+          "role": "정의 근거"
+        }
+      ],
+      "decided_by": null,
+      "rule": "name copied from current step2 source; log is historical basis only; no relabel or clinical decision"
+    },
+    {
+      "pointer": "/families/12",
+      "id": "M13",
+      "name": "플라즈마",
+      "name_basis": [
+        "문헌 M13 이름 「Plasma skin treatment」 · 원천·상담 이름 같음"
+      ],
+      "literature_evidence": [
+        {
+          "path": "literature-evidence.json#categories.M13.name",
+          "value": "Plasma skin treatment"
+        },
+        {
+          "pmid": "18038498",
+          "doi": null,
+          "title": "Plasma skin regeneration technology.",
+          "journal": "J Drugs Dermatol",
+          "year": "2007",
+          "quote": "Unlike lasers which rely on the principle of selective photothermolysis … plasma technology delivers heat energy directly to tissue upon contact without reliance on skin chromophores.",
+          "verified": "NCBI ESummary 2026-10-28 (제목·저널·연도 일치)"
+        }
+      ],
+      "decided_by": null,
+      "rule": "name copied from current step2 source; log is historical basis only; no relabel or clinical decision"
+    },
+    {
+      "pointer": "/families/13",
+      "id": "M14",
+      "name": "냉동지방분해",
+      "name_basis": [
+        "문헌 M14 「Cryolipolysis」 · 원천 상담 「냉각지방분해」 · 한글 공식 일반명 출처 확인 안 됨"
+      ],
+      "literature_evidence": [
+        {
+          "path": "literature-evidence.json#categories.M14.name",
+          "value": "Cryolipolysis"
+        },
+        {
+          "pmid": "26017594",
+          "doi": "10.1097/PRS.0000000000001236",
+          "title": "Cryolipolysis for fat reduction and body contouring: safety and efficacy of current treatment paradigms.",
+          "journal": "Plast Reconstr Surg",
+          "year": "2015",
+          "quote": "Cryolipolysis is a nonsurgical technique for localized fat reduction.",
+          "verified": "NCBI ESummary 2026-10-28 (제목·저널·연도 일치)"
+        }
+      ],
+      "decided_by": null,
+      "rule": "name copied from current step2 source; log is historical basis only; no relabel or clinical decision"
+    },
+    {
+      "pointer": "/families/14",
+      "id": "M15",
+      "name": "외용 관리",
+      "name_basis": [
+        "문헌 M15 「Topical cosmeceuticals」 의 「topical(외용)」 · 원천 「메디컬스킨케어」·상담 「스킨케어」·「필링」은 동의어"
+      ],
+      "literature_evidence": [
+        {
+          "path": "literature-evidence.json#categories.M15.name",
+          "value": "Topical cosmeceuticals"
+        },
+        {
+          "path": "literature-evidence.json#categories.M15.moa[0]",
+          "statement": "L-ascorbic acid acts as a cofactor for prolyl and lysyl hydroxylases in collagen synthesis and as a skin antioxidant.",
+          "pmid": "28805671",
+          "doi": "10.3390/nu9080866",
+          "title": "The Roles of Vitamin C in Skin Health.",
+          "role": "정의 근거"
+        },
+        {
+          "path": "literature-evidence.json#categories.M15.moa[1]",
+          "statement": "Topical retinoids bind to retinoic acid receptors in the skin, promoting cell turnover and increasing collagen production.",
+          "pmid": "34292058",
+          "doi": "10.1177/12034754211035091",
+          "title": "A Clinician's Guide to Topical Retinoids.",
+          "role": "정의 근거"
+        },
+        {
+          "pmid": "30550830",
+          "doi": "10.1016/j.jaad.2018.10.079",
+          "title": "Basic chemical peeling: Superficial and medium-depth peels.",
+          "journal": "J Am Acad Dermatol",
+          "year": "2019",
+          "quote": "Chemical peeling, or chemexfoliation …",
+          "verified": "NCBI ESummary 2026-10-28 (제목·저널·연도 일치)"
+        },
+        {
+          "pmid": "19146604",
+          "doi": "10.1111/j.1473-2165.2008.00406.x",
+          "title": "Hydradermabrasion: an innovative modality for nonablative facial rejuvenation.",
+          "journal": "J Cosmet Dermatol",
+          "year": "2008",
+          "quote": "Hydradermabrasion … combines crystal-free microdermabrasion with the pneumatic application of an antioxidant-based serum.",
+          "verified": "NCBI ESummary 2026-10-28 (제목·저널·연도 일치)"
+        },
+        {
+          "decision": "D03 · D09 반영: 화학 박피 · 기계적 박리·클렌징 · 흡수 보조 기기를 M15 하위로"
+        }
+      ],
+      "decided_by": null,
+      "rule": "name copied from current step2 source; log is historical basis only; no relabel or clinical decision"
+    },
+    {
+      "pointer": "/families/15",
+      "id": "M16",
+      "name": "정맥 영양 수액",
+      "name_basis": [
+        "문헌 M16 「Intravenous micronutrient / antioxidant therapy」 · 원천 「수액치료」·상담 「수액」·「백옥주사」 등은 동의어"
+      ],
+      "literature_evidence": [
+        {
+          "path": "literature-evidence.json#categories.M16.name",
+          "value": "Intravenous micronutrient / antioxidant therapy (aesthetic)"
+        },
+        {
+          "path": "literature-evidence.json#categories.M16.moa[0]",
+          "statement": "Glutathione inhibits tyrosinase activity and shifts melanogenesis from eumelanin toward pheomelanin in cultured melanocytes.",
+          "pmid": "27088927",
+          "doi": "10.4103/0378-6323.179088",
+          "title": "Glutathione as a skin whitening agent: Facts, myths, evidence and controversies.",
+          "role": "정의 근거"
+        },
+        {
+          "path": "literature-evidence.json#categories.M16.effects[0]",
+          "statement": "Intravenous glutathione for skin lightening is not supported by the US FDA or multiple national regulatory agencies and has insufficient high-quality efficacy evidence.",
+          "pmid": "27088927",
+          "doi": "10.4103/0378-6323.179088",
+          "title": "Glutathione as a skin whitening agent: Facts, myths, evidence and controversies.",
+          "role": "정의 근거"
+        },
+        {
+          "decision": "D01 반영: 지방분해주사는 N1 로 나감 · D02: 태반 제제는 계열 밖"
+        },
+        {
+          "decision": "10-29: 태반 제제(라이넥 · 멜스몬) = N5 태반 추출물 주사 · 성장호르몬 = N6(2단계 「계열 밖」 철회)(F8 · U1)"
+        }
+      ],
+      "decided_by": null,
+      "rule": "name copied from current step2 source; log is historical basis only; no relabel or clinical decision"
+    },
+    {
+      "pointer": "/families/16",
+      "id": "M17",
+      "name": "줄기세포·줄기세포 유래 제제",
+      "name_basis": [
+        "문헌 M17 「Stem cells and stem cell-derived products」 직역"
+      ],
+      "literature_evidence": [
+        {
+          "path": "literature-evidence.json#categories.M17.name",
+          "value": "Stem cells and stem cell-derived products"
+        },
+        {
+          "path": "literature-evidence.json#categories.M17.adverse_effects[0]",
+          "statement": "Unregulated stem cell products have caused serious adverse events including blindness after intra-ocular injection and tumor formation at ectopic sites.",
+          "pmid": "28296617",
+          "doi": "10.1056/NEJMoa1609583",
+          "title": "Vision Loss after Intravitreal Injection of Autologous \"Stem Cells\" for AMD.",
+          "role": "부작용 근거"
+        },
+        {
+          "pmid": "31247326",
+          "doi": "10.1016/j.arr.2019.100933",
+          "title": "Adipose-derived cellular and cell-derived regenerative therapies in dermatology and aesthetic rejuvenation.",
+          "journal": "Ageing Res Rev",
+          "year": "2019",
+          "role": "정의 근거",
+          "quote": "Cellular and cell-derived components of adipose-derived tissue for the purposes of dermatologic and aesthetic rejuvenation … include micro-fragmented fat (nanofat), the stromal vascular fraction (SVF), adipose-derived mesenchymal stem cells (ASC), and extracellular vesicles (EVs)",
+          "verified": "NCBI ESummary 2026-10-28 (제목·저널·연도 일치)"
+        }
+      ],
+      "decided_by": null,
+      "rule": "name copied from current step2 source; log is historical basis only; no relabel or clinical decision"
+    },
+    {
+      "pointer": "/families/17",
+      "id": "N1",
+      "name": "지방분해 주사",
+      "name_basis": [
+        "상담 용어 · 원천 하위 「지방분해주사」 · 문헌 「injection lipolysis」·「lipolytic agents」 직역"
+      ],
+      "literature_evidence": [
+        {
+          "pmid": "27785706",
+          "doi": "10.1007/s40257-016-0231-3",
+          "title": "Deoxycholic Acid: A Review in Submental Fat Contouring.",
+          "journal": "Am J Clin Dermatol",
+          "year": "2016",
+          "quote": "Deoxycholic acid is a secondary bile acid … that causes adipocyte lysis when injected into subcutaneous fat tissue.",
+          "verified": "NCBI ESummary 2026-10-28 (제목·저널·연도 일치)"
+        },
+        {
+          "pmid": "38297988",
+          "doi": "10.1111/srt.13601",
+          "title": "Lipolytic agents for submental fat reduction: Review.",
+          "journal": "Skin Res Technol",
+          "year": "2024",
+          "quote": null,
+          "verified": "NCBI ESummary 2026-10-28 (제목·저널·연도 일치)"
+        },
+        {
+          "path": "step1-products.json 브이올렛 4_license.licenses[0].kpic.kpic_class",
+          "value": "Deoxycholic Acid : 피부/피하조직질환 > 기타 약물 > 기타"
+        }
+      ],
+      "decided_by": null,
+      "rule": "name copied from current step2 source; log is historical basis only; no relabel or clinical decision"
+    },
+    {
+      "pointer": "/families/18",
+      "id": "N2",
+      "name": "카복시테라피",
+      "name_basis": [
+        "상담 용어 · 문헌 「Carboxytherapy」 직역(step5-research2 ① 계열 판정)",
+        "동의어: 원천 원장 이름 「카복시테라피」 · F1 「카복시」 검색"
+      ],
+      "literature_evidence": [
+        {
+          "pmid": "35124882",
+          "title": "Carboxytherapy in dermatology: A systematic review.",
+          "year": 2022,
+          "role": "독립 분야 근거(체계적 문헌고찰)",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "J Cosmet Dermatol"
+        },
+        {
+          "pmid": "40062597",
+          "title": "Carboxytherapy in Dermatologic Surgery and Aesthetic Medicine: Current Knowledge and Future Perspectives-A Systematic Review.",
+          "year": 2025,
+          "role": "독립 분야 근거(체계적 문헌고찰)",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "Dermatol Surg"
+        },
+        {
+          "pmid": "36999460",
+          "title": "An overview of the role of carboxytherapy in dermatology.",
+          "year": 2023,
+          "role": "개관",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "J Cosmet Dermatol"
+        }
+      ],
+      "decided_by": "U1(_RESUME §2 10-29 「5단계 추가 조사 반영」) · F1",
+      "rule": "name copied from current step2 source; log is historical basis only; no relabel or clinical decision"
+    },
+    {
+      "pointer": "/families/19",
+      "id": "N3",
+      "name": "반영구 화장",
+      "name_basis": [
+        "상담 용어 · 문헌 「Micropigmentation (cosmetic tattooing · permanent makeup)」 직역(step5-research2 ① 계열 판정)",
+        "동의어: 원천 문제 트리 P1-7 메뉴 「반영구」 · F1 「반영구」 검색"
+      ],
+      "literature_evidence": [
+        {
+          "pmid": "37727553",
+          "title": "Micropigmentation.",
+          "year": 2023,
+          "role": "독립 분야 근거(개관)",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "Indian Dermatol Online J"
+        },
+        {
+          "pmid": "16042938",
+          "title": "Micropigmentation: tattooing for medical purposes.",
+          "year": 2005,
+          "role": "독립 분야 근거(개관)",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "Dermatol Surg"
+        },
+        {
+          "pmid": "35947499",
+          "title": "Natural results of scalp micropigmentation: A review.",
+          "year": 2022,
+          "role": "두피(헤어라인) 하위 근거",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "J Cosmet Dermatol"
+        },
+        {
+          "pmid": "32694299",
+          "title": "Pathologic Scarring after Eyebrow Micropigmentation: A Case Report and Systematic Review.",
+          "year": 2020,
+          "role": "눈썹 부위 근거",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "Adv Skin Wound Care"
+        }
+      ],
+      "decided_by": "U1(_RESUME §2 10-29 「5단계 추가 조사 반영」) · F1",
+      "rule": "name copied from current step2 source; log is historical basis only; no relabel or clinical decision"
+    },
+    {
+      "pointer": "/families/20",
+      "id": "N4",
+      "name": "피부 소수술",
+      "name_basis": [
+        "상담 용어 · 문헌 「Minor dermatologic surgery (procedural dermatology)」 직역(step5-research2 ① 계열 판정)"
+      ],
+      "literature_evidence": [
+        {
+          "pmid": "30856634",
+          "title": "A Review and Update of Treatment Options Using the Acne Scar Classification System.",
+          "year": 2019,
+          "role": "서브시전 · 펀치를 한 치료 갈래로 다룸",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "Dermatol Surg"
+        },
+        {
+          "pmid": "11423843",
+          "title": "Acne scarring: a classification system and review of treatment options.",
+          "year": 2001,
+          "role": "흉터 수술 기법(펀치 · 서브시전) 분류",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "J Am Acad Dermatol"
+        },
+        {
+          "pmid": "36698445",
+          "title": "Subcision for Atrophic Acne Scarring: A Comprehensive Review of Surgical Instruments and Combinatorial Treatments.",
+          "year": 2023,
+          "role": "서브시전 = 수술 기구 시술",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "Clin Cosmet Investig Dermatol"
+        },
+        {
+          "pmid": "27529209",
+          "title": "Treatment Modalities for Acne.",
+          "year": 2016,
+          "role": "면포 압출 — 여드름 치료 수단",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "Molecules"
+        },
+        {
+          "pmid": "18418647",
+          "title": "Intralesional triamcinolone acetonide for keloid treatment: a systematic review.",
+          "year": 2008,
+          "role": "병변 내 스테로이드 주사",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "Aesthetic Plast Surg"
+        },
+        {
+          "pmid": "30087573",
+          "title": "Triamcinolone acetonide intralesional injection for the treatment of keloid scars: patient selection and perspectives.",
+          "year": 2018,
+          "role": "병변 내 스테로이드 주사",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "Clin Cosmet Investig Dermatol"
+        },
+        {
+          "pmid": "36688880",
+          "title": "Procedural dermatology and its unmet need.",
+          "year": 2023,
+          "role": "피부과 시술(procedural dermatology) = 독립 분야",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "Indian J Dermatol Venereol Leprol"
+        },
+        {
+          "pmid": "26497955",
+          "title": "[Cryosurgery in dermatology].",
+          "year": 2015,
+          "role": "피부과 냉동수술",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "Hautarzt"
+        },
+        {
+          "pmid": "9854156",
+          "title": "Cryosurgery in dermatology.",
+          "year": 1998,
+          "role": "피부과 냉동수술",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "Eur J Dermatol"
+        },
+        {
+          "pmid": "37876049",
+          "title": "Intralesional Bleomycin Versus Cryotherapy For Treatment Of Cutaneous Warts: A Randomized Controlled Trial.",
+          "year": 2023,
+          "role": "사마귀 냉동치료 RCT(병변 내 블레오마이신 비교)",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "J Pak Med Assoc"
+        },
+        {
+          "pmid": "38261698",
+          "title": "Sclerotherapy.",
+          "year": 2024,
+          "role": "경화요법(G4 — 정의 안 바꿈 · 근거만)",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "StatPearls"
+        },
+        {
+          "pmid": "28411713",
+          "title": "Cosmetic sclerotherapy.",
+          "year": 2017,
+          "role": "미용 경화요법(G4 — 근거만)",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "J Vasc Surg Venous Lymphat Disord"
+        },
+        {
+          "decision": "냉동 파괴 넓힘(사마귀 [냉동] · G5) — 4단계 N4 also K08. 경화요법(하지정맥류 경화제 주사)은 「병변 안에 약물을 직접 주사」 그대로(G4 · 정의 안 바꿈)(J7 G4 · G5(10-29 5단계 보강 · 사용자 「응 추천으로 가자」 — _RESUME §2 「5단계 보강(J7) G1~G10 — 전부 추천대로」))"
+        }
+      ],
+      "decided_by": "U1(_RESUME §2 10-29 「5단계 추가 조사 반영」) · F2 · U4",
+      "rule": "name copied from current step2 source; log is historical basis only; no relabel or clinical decision"
+    },
+    {
+      "pointer": "/families/21",
+      "id": "N5",
+      "name": "태반 추출물 주사",
+      "name_basis": [
+        "상담 용어 · 문헌 「Human placental extract injection」 직역(step5-research2 ① 계열 판정)",
+        "동의어: 원천 원장 이름 「태반주사(라엔넥)」 · 「태반주사멜스몬」"
+      ],
+      "literature_evidence": [
+        {
+          "pmid": "41470802",
+          "title": "Efficacy and Safety of Placental Extract on Menopausal Symptoms: A Systematic Review.",
+          "year": 2025,
+          "role": "태반 추출물 효능 SR(경구 포함)",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "Nutrients"
+        },
+        {
+          "pmid": "18090035",
+          "title": "Effect of human placental extract on menopausal symptoms, fatigue, and risk factors for cardiovascular disease in middle-aged Korean women.",
+          "year": 2008,
+          "role": "사람 태반 추출물 주사 RCT",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "Menopause"
+        },
+        {
+          "pmid": "26911970",
+          "title": "Human Placental Extract as a Subcutaneous Injection Is Effective in Chronic Fatigue Syndrome: A Multi-Center, Double-Blind, Randomized, Placebo-Controlled Study.",
+          "year": 2016,
+          "role": "피하 주사 RCT",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "Biol Pharm Bull"
+        },
+        {
+          "license": {
+            "product": "멜스몬주(자하거추출물)",
+            "item_seq": "200308393",
+            "efficacy": "갱년기 장애 증상의 개선",
+            "route": "1회 2 mL, 1주일에 3회씩 2주간(총 6회) 피하주사",
+            "atc": "G02CX 기타 부인과용제",
+            "source": "MFDS DrugPrdtPrmsnInfoService08 상세(2026-10-29 조회)"
+          }
+        },
+        {
+          "license": {
+            "product": "라이넥주(자하거가수분해물)",
+            "item_seq": "200512342",
+            "efficacy": "만성 간질환에 있어서의 간기능의 개선",
+            "route": "1일 1회 2 mL 피하 또는 근육주사(증상에 따라 1일 2~3회)",
+            "atc": "A05BA 간 치료제",
+            "source": "MFDS DrugPrdtPrmsnInfoService08 상세(2026-10-29 조회)"
+          }
+        }
+      ],
+      "decided_by": "U1(_RESUME §2 10-29 「5단계 추가 조사 반영」) · F8",
+      "rule": "name copied from current step2 source; log is historical basis only; no relabel or clinical decision"
+    },
+    {
+      "pointer": "/families/22",
+      "id": "N6",
+      "name": "성장호르몬 주사",
+      "name_basis": [
+        "상담 용어 · 문헌 「Growth hormone (somatropin) therapy — anti-aging use」 직역(step5-research2 ① 계열 판정)",
+        "동의어: 원천 원장 이름 「성장호르몬주사」"
+      ],
+      "literature_evidence": [
+        {
+          "pmid": "17227934",
+          "title": "Systematic review: the safety and efficacy of growth hormone in the healthy elderly.",
+          "year": 2007,
+          "role": "항노화 목적 GH 투여 SR",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "Ann Intern Med"
+        },
+        {
+          "pmid": "38489867",
+          "title": "Growth hormone treatment in aged patients with comorbidities: A systematic review.",
+          "year": 2024,
+          "role": "노인 GH SR",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "Growth Horm IGF Res"
+        },
+        {
+          "license": {
+            "product": "소마트로핀 제제(유트로핀 · 그로트로핀 · 노디트로핀 · 지노트로핀 등 28건)",
+            "source": "MFDS 의약품 검색 item_name=소마트로핀(2026-10-29)",
+            "efficacy": "성장호르몬 결핍증(유년기 개시형 등) — 항노화는 허가 효능 목록 첫머리에 없음(전문 미추출)"
+          }
+        }
+      ],
+      "decided_by": "U1(_RESUME §2 10-29 「5단계 추가 조사 반영」) · F8",
+      "rule": "name copied from current step2 source; log is historical basis only; no relabel or clinical decision"
+    },
+    {
+      "pointer": "/families/23",
+      "id": "N7",
+      "name": "펄스 전자기장 치료",
+      "name_basis": [
+        "상담 용어 · 문헌 「Pulsed electromagnetic field (PEMF) therapy」 직역(step5-research2 ① 계열 판정)"
+      ],
+      "literature_evidence": [
+        {
+          "pmid": "36345917",
+          "title": "The efficacy and safety of the combination of photobiomodulation therapy and pulsed electromagnetic field therapy on androgenetic alopecia.",
+          "year": 2023,
+          "role": "PEMF 병용 RCT",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "J Cosmet Dermatol"
+        },
+        {
+          "pmid": "14669818",
+          "title": "Essential oils and low-intensity electromagnetic pulses in the treatment of androgen-dependent alopecia.",
+          "year": 2003,
+          "role": "저강도 전자기 펄스 RCT",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "Adv Ther"
+        },
+        {
+          "pmid": "39630190",
+          "title": "Photobiostimulation Therapy (PBST) and Pulsed Electromagnetic Field Therapy (PEMF) in Hair Loss Treatment: Multicentric, Retrospective, Case-Control Study.",
+          "year": 2025,
+          "role": "PEMF 관찰",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "Aesthetic Plast Surg"
+        },
+        {
+          "pmid": "39124800",
+          "title": "Physical Treatments and Therapies for Androgenetic Alopecia.",
+          "year": 2024,
+          "role": "물리 치료 개관(제목 기준 · 전자기장 검색으로 걸림)",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "J Clin Med"
+        }
+      ],
+      "decided_by": "U1(_RESUME §2 10-29 「5단계 추가 조사 반영」) · F8",
+      "rule": "name copied from current step2 source; log is historical basis only; no relabel or clinical decision"
+    },
+    {
+      "pointer": "/families/24",
+      "id": "N8",
+      "name": "기계적 흡입 마사지",
+      "name_basis": [
+        "상담 용어 · 문헌 「mechanical suction massage (LPG endermologie)」 직역 · 원천 taxonomy P12-4 「엔더몰로지」 detail 「흡입마사지」"
+      ],
+      "literature_evidence": [
+        {
+          "pmid": "19261014",
+          "title": "Treatment of cellulite with LPG endermologie.",
+          "year": 2009,
+          "role": "LPG endermologie 셀룰라이트 치료",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "Int J Dermatol"
+        },
+        {
+          "pmid": "23581834",
+          "title": "An alternative treatment modality for cellulite: LPG endermologie.",
+          "year": 2013,
+          "role": "LPG endermologie 셀룰라이트 대안 치료",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "J Cosmet Laser Ther"
+        },
+        {
+          "pmid": "10654755",
+          "title": "Cellulite treatment: a myth or reality: a prospective randomized, controlled trial of two therapies, endermologie and aminophylline cream.",
+          "year": 1999,
+          "role": "endermologie RCT",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "Plast Reconstr Surg"
+        }
+      ],
+      "decided_by": "J7 G6(10-29 5단계 보강 · 사용자 「응 추천으로 가자」 — _RESUME §2 「5단계 보강(J7) G1~G10 — 전부 추천대로」)",
+      "rule": "name copied from current step2 source; log is historical basis only; no relabel or clinical decision"
+    },
+    {
+      "pointer": "/families/25",
+      "id": "N9",
+      "name": "모발이식",
+      "name_basis": [
+        "원천 taxonomy P13-4 「모발이식」 · problem-packages 시술 이름 「모발이식」 · 문헌 「Hair transplantation」"
+      ],
+      "literature_evidence": [
+        {
+          "pmid": "33905785",
+          "title": "Hair transplantation: Basic overview.",
+          "year": 2021,
+          "role": "모발이식 개관(FUE · FUT)",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "J Am Acad Dermatol"
+        },
+        {
+          "pmid": "40354670",
+          "title": "Hair Transplantation: State of the Art.",
+          "year": 2025,
+          "role": "모발이식 최신 개관",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "Dermatol Surg"
+        },
+        {
+          "pmid": "32312503",
+          "title": "Follicular Unit Excision: Current Practice and Future Developments.",
+          "year": 2020,
+          "role": "FUE 현황",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "Facial Plast Surg Clin North Am"
+        }
+      ],
+      "decided_by": "J7 G7(10-29 5단계 보강 · 사용자 「응 추천으로 가자」 — _RESUME §2 「5단계 보강(J7) G1~G10 — 전부 추천대로」)",
+      "rule": "name copied from current step2 source; log is historical basis only; no relabel or clinical decision"
+    },
+    {
+      "pointer": "/families/26",
+      "id": "N10",
+      "name": "지방흡입",
+      "name_basis": [
+        "원천 treatment-optimization 「지방흡입(리포)」 · sequence 「지방흡입(수술)」 · 문헌 「Liposuction」"
+      ],
+      "literature_evidence": [
+        {
+          "pmid": "16427970",
+          "title": "Liposuction: techniques and guidelines.",
+          "year": 2006,
+          "role": "지방흡입 기법 · 지침",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "Clin Plast Surg"
+        },
+        {
+          "pmid": "29330581",
+          "title": "[Liposuction].",
+          "year": 2018,
+          "role": "지방흡입 개관",
+          "verified": "NCBI ESummary 2026-10-29",
+          "journal": "Hautarzt"
+        }
+      ],
+      "decided_by": "J7 G8(10-29 5단계 보강 · 사용자 「응 추천으로 가자」 — _RESUME §2 「5단계 보강(J7) G1~G10 — 전부 추천대로」)",
+      "rule": "name copied from current step2 source; log is historical basis only; no relabel or clinical decision"
+    }
+  ],
+  "M1_independent_current_source_ATC": [
+    {
+      "pointer": "/items/0/4_license/licenses/0/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/0/4_license/licenses/1/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/1/4_license/licenses/0/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/2/4_license/licenses/0/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/2/4_license/licenses/1/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/4/4_license/licenses/0/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/4/4_license/licenses/1/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/4/4_license/licenses/2/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/4/4_license/licenses/3/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/4/4_license/licenses/4/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/5/4_license/licenses/0/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/5/4_license/licenses/1/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/5/4_license/licenses/2/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/5/4_license/licenses/3/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/6/4_license/licenses/0/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/6/4_license/licenses/1/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/6/4_license/licenses/2/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/6/4_license/licenses/3/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/7/4_license/licenses/0/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/8/4_license/licenses/0/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/9/4_license/licenses/0/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/9/4_license/licenses/1/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/9/4_license/reference/0/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/10/4_license/licenses/0/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/10/4_license/licenses/1/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/10/4_license/licenses/2/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/11/4_license/licenses/0/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/11/4_license/licenses/1/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/11/4_license/licenses/2/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/12/4_license/licenses/0/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/13/4_license/licenses/0/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/375/4_license/licenses/0/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/375/4_license/licenses/1/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/375/4_license/history/0/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/376/4_license/licenses/0/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    },
+    {
+      "pointer": "/items/376/4_license/licenses/1/kpic/atc",
+      "value": "M03AX01|BOTULINUM TOXIN|보툴리눔 독소"
+    }
+  ],
+  "M1_raw_literature_pointer": "literature-evidence.json#/categories/M1/name",
+  "M1_current_name": "보툴리눔 톡신",
+  "limitations": "Historical approval authenticity and missing old bytes are not recovered; source facts and current names remain unchanged. Raw/current literature and license references remain separate from log attribution.",
+  "family_source_corroboration": [
+    {
+      "family": "M1",
+      "current_pointer": "/families/0",
+      "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/literature-evidence.json",
+      "source_pointer": "/categories/M1/name",
+      "source_value": "Botulinum toxin type A (aesthetic)",
+      "compared_field": "literature_name",
+      "result": "exact current source agreement; log is additional historical attribution only"
+    },
+    {
+      "family": "M2",
+      "current_pointer": "/families/1",
+      "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/literature-evidence.json",
+      "source_pointer": "/categories/M2/name",
+      "source_value": "Hyaluronic acid dermal fillers",
+      "compared_field": "literature_name",
+      "result": "exact current source agreement; log is additional historical attribution only"
+    },
+    {
+      "family": "M3",
+      "current_pointer": "/families/2",
+      "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/literature-evidence.json",
+      "source_pointer": "/categories/M3/name",
+      "source_value": "Collagen-stimulating biostimulators (PLLA/CaHA/PDLLA/PCL)",
+      "compared_field": "literature_name",
+      "result": "exact current source agreement; log is additional historical attribution only"
+    },
+    {
+      "family": "M4",
+      "current_pointer": "/families/3",
+      "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/literature-evidence.json",
+      "source_pointer": "/categories/M4/name",
+      "source_value": "Skinboosters and mesotherapy (non-crosslinked HA, polynucleotides, amino-acid/vitamin cocktails)",
+      "compared_field": "literature_name",
+      "result": "exact current source agreement; log is additional historical attribution only"
+    },
+    {
+      "family": "M5",
+      "current_pointer": "/families/4",
+      "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/literature-evidence.json",
+      "source_pointer": "/categories/M5/name",
+      "source_value": "Platelet-rich plasma (PRP) and exosome therapies",
+      "compared_field": "literature_name",
+      "result": "exact current source agreement; log is additional historical attribution only"
+    },
+    {
+      "family": "M6",
+      "current_pointer": "/families/5",
+      "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/literature-evidence.json",
+      "source_pointer": "/categories/M6/name",
+      "source_value": "Autologous fat grafting / lipotransfer for facial rejuvenation",
+      "compared_field": "literature_name",
+      "result": "exact current source agreement; log is additional historical attribution only"
+    },
+    {
+      "family": "M7",
+      "current_pointer": "/families/6",
+      "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/literature-evidence.json",
+      "source_pointer": "/categories/M7/name",
+      "source_value": "Absorbable suspension threads (PDO/PLLA/PCL) for facial lifting",
+      "compared_field": "literature_name",
+      "result": "exact current source agreement; log is additional historical attribution only"
+    },
+    {
+      "family": "M8",
+      "current_pointer": "/families/7",
+      "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/literature-evidence.json",
+      "source_pointer": "/categories/M8/name",
+      "source_value": "Aesthetic lasers and IPL",
+      "compared_field": "literature_name",
+      "result": "exact current source agreement; log is additional historical attribution only"
+    },
+    {
+      "family": "M9",
+      "current_pointer": "/families/8",
+      "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/literature-evidence.json",
+      "source_pointer": "/categories/M9/name",
+      "source_value": "Non-invasive skin tightening: HIFU and radiofrequency",
+      "compared_field": "literature_name",
+      "result": "exact current source agreement; log is additional historical attribution only"
+    },
+    {
+      "family": "M10",
+      "current_pointer": "/families/9",
+      "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/literature-evidence.json",
+      "source_pointer": "/categories/M10/name",
+      "source_value": "HIFEM/HIFES and EMS",
+      "compared_field": "literature_name",
+      "result": "exact current source agreement; log is additional historical attribution only"
+    },
+    {
+      "family": "M11",
+      "current_pointer": "/families/10",
+      "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/literature-evidence.json",
+      "source_pointer": "/categories/M11/name",
+      "source_value": "Fractional radiofrequency microneedling (RF microneedling)",
+      "compared_field": "literature_name",
+      "result": "exact current source agreement; log is additional historical attribution only"
+    },
+    {
+      "family": "M12",
+      "current_pointer": "/families/11",
+      "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/literature-evidence.json",
+      "source_pointer": "/categories/M12/name",
+      "source_value": "Microneedling / percutaneous collagen induction (non-RF)",
+      "compared_field": "literature_name",
+      "result": "exact current source agreement; log is additional historical attribution only"
+    },
+    {
+      "family": "M13",
+      "current_pointer": "/families/12",
+      "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/literature-evidence.json",
+      "source_pointer": "/categories/M13/name",
+      "source_value": "Plasma skin treatment",
+      "compared_field": "literature_name",
+      "result": "exact current source agreement; log is additional historical attribution only"
+    },
+    {
+      "family": "M14",
+      "current_pointer": "/families/13",
+      "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/literature-evidence.json",
+      "source_pointer": "/categories/M14/name",
+      "source_value": "Cryolipolysis",
+      "compared_field": "literature_name",
+      "result": "exact current source agreement; log is additional historical attribution only"
+    },
+    {
+      "family": "M15",
+      "current_pointer": "/families/14",
+      "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/literature-evidence.json",
+      "source_pointer": "/categories/M15/name",
+      "source_value": "Topical cosmeceuticals",
+      "compared_field": "literature_name",
+      "result": "exact current source agreement; log is additional historical attribution only"
+    },
+    {
+      "family": "M16",
+      "current_pointer": "/families/15",
+      "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/literature-evidence.json",
+      "source_pointer": "/categories/M16/name",
+      "source_value": "Intravenous micronutrient / antioxidant therapy (aesthetic)",
+      "compared_field": "literature_name",
+      "result": "exact current source agreement; log is additional historical attribution only"
+    },
+    {
+      "family": "M17",
+      "current_pointer": "/families/16",
+      "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/literature-evidence.json",
+      "source_pointer": "/categories/M17/name",
+      "source_value": "Stem cells and stem cell-derived products",
+      "compared_field": "literature_name",
+      "result": "exact current source agreement; log is additional historical attribution only"
+    },
+    {
+      "family": "N1",
+      "current_pointer": "/families/17",
+      "source_file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-research.json",
+      "source_pointer": "/families/17/recommended_name",
+      "source_value": "지방분해 주사",
+      "compared_field": "name",
+      "result": "exact current source agreement; log is additional historical attribution only"
+    },
+    {
+      "family": "N2",
+      "current_pointer": "/families/18",
+      "source_file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-step5-decisions.json",
+      "source_pointer": "/new_families/0",
+      "source_value": {
+        "id": "N2",
+        "name": "카복시테라피",
+        "name_status": "공식 출처 미확인",
+        "name_basis": [
+          "상담 용어 · 문헌 「Carboxytherapy」 직역(step5-research2 ① 계열 판정)",
+          "동의어: 원천 원장 이름 「카복시테라피」 · F1 「카복시」 검색"
+        ],
+        "literature_name": "Carboxytherapy",
+        "definition": "의료용 이산화탄소(CO2) 가스를 피하·진피에 주입해 혈관 확장과 조직 산소 공급 증가를 일으키는 시술",
+        "literature_evidence": [
+          {
+            "pmid": "35124882",
+            "title": "Carboxytherapy in dermatology: A systematic review.",
+            "year": 2022,
+            "role": "독립 분야 근거(체계적 문헌고찰)",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "J Cosmet Dermatol"
+          },
+          {
+            "pmid": "40062597",
+            "title": "Carboxytherapy in Dermatologic Surgery and Aesthetic Medicine: Current Knowledge and Future Perspectives-A Systematic Review.",
+            "year": 2025,
+            "role": "독립 분야 근거(체계적 문헌고찰)",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "Dermatol Surg"
+          },
+          {
+            "pmid": "36999460",
+            "title": "An overview of the role of carboxytherapy in dermatology.",
+            "year": 2023,
+            "role": "개관",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "J Cosmet Dermatol"
+          }
+        ],
+        "license_evidence": null,
+        "evidence_level": "강",
+        "synonyms": [
+          "카복시"
+        ],
+        "sub_families": [],
+        "sub_family_handling": [],
+        "fit_existing": {
+          "verdict": "안 듦",
+          "checked": {
+            "M4": "재료(HA·PN·콜라겐·칵테일)를 진피에 소량 다점 주입 — CO2 기체 피하 주입은 재료 정의 밖",
+            "N1": "약물(데옥시콜산·콜산)로 지방세포 용해 — CO2 는 약물 정의 밖",
+            "M16": "정맥 미량영양소 — 경로 · 물질 다름",
+            "M14": "피부 밖 냉각 — 다름"
+          }
+        },
+        "default_technique": "K01 주입(층 = 피하 · 4단계 H03)",
+        "members_source": [
+          "auto-M16-1775361069392"
+        ],
+        "decided_by": "U1(_RESUME §2 10-29 「5단계 추가 조사 반영」) · F1",
+        "default_technique_research": "K01 주입(층 = 피하 · 4단계 H03)"
+      },
+      "compared_field": "name+name_basis",
+      "result": "exact current source agreement; log is additional historical attribution only"
+    },
+    {
+      "family": "N3",
+      "current_pointer": "/families/19",
+      "source_file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-step5-decisions.json",
+      "source_pointer": "/new_families/1",
+      "source_value": {
+        "id": "N3",
+        "name": "반영구 화장",
+        "name_status": "공식 출처 미확인",
+        "name_basis": [
+          "상담 용어 · 문헌 「Micropigmentation (cosmetic tattooing · permanent makeup)」 직역(step5-research2 ① 계열 판정)",
+          "동의어: 원천 문제 트리 P1-7 메뉴 「반영구」 · F1 「반영구」 검색"
+        ],
+        "literature_name": "Micropigmentation (cosmetic tattooing · permanent makeup)",
+        "definition": "바늘로 진피 상층에 색소를 심어 눈썹 · 아이라인 · 입술 · 두피(헤어라인)의 모양 · 색을 그려 넣는 시술",
+        "literature_evidence": [
+          {
+            "pmid": "37727553",
+            "title": "Micropigmentation.",
+            "year": 2023,
+            "role": "독립 분야 근거(개관)",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "Indian Dermatol Online J"
+          },
+          {
+            "pmid": "16042938",
+            "title": "Micropigmentation: tattooing for medical purposes.",
+            "year": 2005,
+            "role": "독립 분야 근거(개관)",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "Dermatol Surg"
+          },
+          {
+            "pmid": "35947499",
+            "title": "Natural results of scalp micropigmentation: A review.",
+            "year": 2022,
+            "role": "두피(헤어라인) 하위 근거",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "J Cosmet Dermatol"
+          },
+          {
+            "pmid": "32694299",
+            "title": "Pathologic Scarring after Eyebrow Micropigmentation: A Case Report and Systematic Review.",
+            "year": 2020,
+            "role": "눈썹 부위 근거",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "Adv Skin Wound Care"
+          }
+        ],
+        "license_evidence": null,
+        "evidence_level": "강",
+        "synonyms": [
+          "반영구"
+        ],
+        "sub_families": [],
+        "sub_family_handling": [],
+        "fit_existing": {
+          "verdict": "안 듦",
+          "checked": {
+            "M2": "충전 물질로 부피 — 색소 아님",
+            "M8": "레이저는 색소 제거 쪽(문신 제거) — 반대 방향",
+            "M12": "미세침 천공만(물질 남기지 않음)"
+          }
+        },
+        "default_technique": "K13 미세색소주입(U3 — 4단계 새 노드)",
+        "members_source": [
+          "auto-76-1774737181584",
+          "auto-77-1774737181584",
+          "auto-78-1774737181584",
+          "auto-79-1774737181584"
+        ],
+        "decided_by": "U1(_RESUME §2 10-29 「5단계 추가 조사 반영」) · F1",
+        "default_technique_research": "없음 — 4단계 노드 24개 중 「색소를 진피에 남기는」 기법 없음(K01 주입 = 주사기 주입 · K03 미세침 천공 = 물질 안 남김). 새 기법 노드 K13 「미세색소주입(micropigmentation)」 후보 = 사용자 판단 U3"
+      },
+      "compared_field": "name+name_basis",
+      "result": "exact current source agreement; log is additional historical attribution only"
+    },
+    {
+      "family": "N4",
+      "current_pointer": "/families/20",
+      "source_file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-step5-decisions.json",
+      "source_pointer": "/new_families/2",
+      "source_value": {
+        "id": "N4",
+        "name": "피부 소수술",
+        "name_status": "공식 출처 미확인",
+        "name_basis": [
+          "상담 용어 · 문헌 「Minor dermatologic surgery (procedural dermatology)」 직역(step5-research2 ① 계열 판정)"
+        ],
+        "literature_name": "Minor dermatologic surgery (procedural dermatology)",
+        "definition": "니들 · 펀치 · 압출기 같은 수술 도구로 흉터 · 병변 조직을 직접 절단 · 절제 · 제거하거나, 병변 안에 약물을 직접 주사하는 피부과 소수술",
+        "literature_evidence": [
+          {
+            "pmid": "30856634",
+            "title": "A Review and Update of Treatment Options Using the Acne Scar Classification System.",
+            "year": 2019,
+            "role": "서브시전 · 펀치를 한 치료 갈래로 다룸",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "Dermatol Surg"
+          },
+          {
+            "pmid": "11423843",
+            "title": "Acne scarring: a classification system and review of treatment options.",
+            "year": 2001,
+            "role": "흉터 수술 기법(펀치 · 서브시전) 분류",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "J Am Acad Dermatol"
+          },
+          {
+            "pmid": "36698445",
+            "title": "Subcision for Atrophic Acne Scarring: A Comprehensive Review of Surgical Instruments and Combinatorial Treatments.",
+            "year": 2023,
+            "role": "서브시전 = 수술 기구 시술",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "Clin Cosmet Investig Dermatol"
+          },
+          {
+            "pmid": "27529209",
+            "title": "Treatment Modalities for Acne.",
+            "year": 2016,
+            "role": "면포 압출 — 여드름 치료 수단",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "Molecules"
+          },
+          {
+            "pmid": "18418647",
+            "title": "Intralesional triamcinolone acetonide for keloid treatment: a systematic review.",
+            "year": 2008,
+            "role": "병변 내 스테로이드 주사",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "Aesthetic Plast Surg"
+          },
+          {
+            "pmid": "30087573",
+            "title": "Triamcinolone acetonide intralesional injection for the treatment of keloid scars: patient selection and perspectives.",
+            "year": 2018,
+            "role": "병변 내 스테로이드 주사",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "Clin Cosmet Investig Dermatol"
+          },
+          {
+            "pmid": "36688880",
+            "title": "Procedural dermatology and its unmet need.",
+            "year": 2023,
+            "role": "피부과 시술(procedural dermatology) = 독립 분야",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "Indian J Dermatol Venereol Leprol"
+          }
+        ],
+        "license_evidence": null,
+        "evidence_level": "강",
+        "synonyms": [],
+        "sub_families": [],
+        "sub_family_handling": [
+          {
+            "source": "흉터 수술(서브시전 · 펀치)",
+            "handling": "하위 칸 없음 — 기법(4단계 노드)으로 갈림",
+            "basis": "U4 · 4단계 K12a~c · K01"
+          },
+          {
+            "source": "면포 압출",
+            "handling": "하위 칸 없음 — 기법(4단계 노드)으로 갈림",
+            "basis": "U4 · 4단계 K12a~c · K01"
+          },
+          {
+            "source": "병변 내 주사(트리암시놀론) — 하위로 넣을지 사용자 판단 U4",
+            "handling": "하위 칸 없음 — 기법(4단계 노드)으로 갈림",
+            "basis": "U4 · 4단계 K12a~c · K01"
+          }
+        ],
+        "fit_existing": {
+          "verdict": "안 듦",
+          "checked": {
+            "M12": "미세침 천공(콜라겐 유도) — 섬유 밴드 절단 · 절제 · 압출은 아님",
+            "M15": "외용(바르기 · 박피 · 박리 기기) — 칼 · 바늘로 자르거나 짜내는 시술 아님",
+            "M1~M4": "주입 계열은 재료 · 약이 계열(톡신 · 필러 …) — 트리암시놀론 병변 내 주사는 17 정의 어디에도 없음"
+          }
+        },
+        "default_technique": "K12 소수술 · 병변 내 주사 = K01 주입(U4)",
+        "members_source": [
+          "auto-M15-1775361858045",
+          "auto-M15-1775364775169",
+          "auto-M15-1775364775172",
+          "auto-M15-1775361870269"
+        ],
+        "decided_by": "U1(_RESUME §2 10-29 「5단계 추가 조사 반영」) · F2 · U4",
+        "default_technique_research": "K12 소수술(4단계 노드 · 계열 기본 비어 있던 자리) — 병변 내 주사 하위는 K01 주입"
+      },
+      "compared_field": "name+name_basis",
+      "result": "exact current source agreement; log is additional historical attribution only"
+    },
+    {
+      "family": "N5",
+      "current_pointer": "/families/21",
+      "source_file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-step5-decisions.json",
+      "source_pointer": "/new_families/3",
+      "source_value": {
+        "id": "N5",
+        "name": "태반 추출물 주사",
+        "name_status": "공식 출처 미확인",
+        "name_basis": [
+          "상담 용어 · 문헌 「Human placental extract injection」 직역(step5-research2 ① 계열 판정)",
+          "동의어: 원천 원장 이름 「태반주사(라엔넥)」 · 「태반주사멜스몬」"
+        ],
+        "literature_name": "Human placental extract injection",
+        "definition": "사람 태반(자하거)에서 얻은 추출물 · 가수분해물을 피하 · 근육에 주사하는 시술",
+        "literature_evidence": [
+          {
+            "pmid": "41470802",
+            "title": "Efficacy and Safety of Placental Extract on Menopausal Symptoms: A Systematic Review.",
+            "year": 2025,
+            "role": "태반 추출물 효능 SR(경구 포함)",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "Nutrients"
+          },
+          {
+            "pmid": "18090035",
+            "title": "Effect of human placental extract on menopausal symptoms, fatigue, and risk factors for cardiovascular disease in middle-aged Korean women.",
+            "year": 2008,
+            "role": "사람 태반 추출물 주사 RCT",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "Menopause"
+          },
+          {
+            "pmid": "26911970",
+            "title": "Human Placental Extract as a Subcutaneous Injection Is Effective in Chronic Fatigue Syndrome: A Multi-Center, Double-Blind, Randomized, Placebo-Controlled Study.",
+            "year": 2016,
+            "role": "피하 주사 RCT",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "Biol Pharm Bull"
+          }
+        ],
+        "license_evidence": [
+          {
+            "product": "멜스몬주(자하거추출물)",
+            "item_seq": "200308393",
+            "efficacy": "갱년기 장애 증상의 개선",
+            "route": "1회 2 mL, 1주일에 3회씩 2주간(총 6회) 피하주사",
+            "atc": "G02CX 기타 부인과용제",
+            "source": "MFDS DrugPrdtPrmsnInfoService08 상세(2026-10-29 조회)"
+          },
+          {
+            "product": "라이넥주(자하거가수분해물)",
+            "item_seq": "200512342",
+            "efficacy": "만성 간질환에 있어서의 간기능의 개선",
+            "route": "1일 1회 2 mL 피하 또는 근육주사(증상에 따라 1일 2~3회)",
+            "atc": "A05BA 간 치료제",
+            "source": "MFDS DrugPrdtPrmsnInfoService08 상세(2026-10-29 조회)"
+          }
+        ],
+        "evidence_level": "중",
+        "synonyms": [
+          "태반주사"
+        ],
+        "sub_families": [],
+        "sub_family_handling": [],
+        "fit_existing": {
+          "verdict": "안 듦",
+          "checked": {
+            "M16": "정맥 · 미량영양소(비타민 · 글루타치온 · 아미노산) — 허가 용법 피하/근육 · 성분 자하거 추출물",
+            "M5": "자가혈 혈소판 · 엑소좀 — 동종 태반 아님",
+            "M17": "줄기세포 · 그 산물 — 태반 추출물 아님"
+          }
+        },
+        "default_technique": "K01 주입(허가 용법 피하 · 근육 — K01b 정맥 아님)",
+        "members_source": [
+          "M16-3-1",
+          "auto-M16-1775364775098"
+        ],
+        "decided_by": "U1(_RESUME §2 10-29 「5단계 추가 조사 반영」) · F8",
+        "default_technique_research": "K01 주입(허가 용법 피하 · 근육 — K01b 정맥 아님)"
+      },
+      "compared_field": "name+name_basis",
+      "result": "exact current source agreement; log is additional historical attribution only"
+    },
+    {
+      "family": "N6",
+      "current_pointer": "/families/22",
+      "source_file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-step5-decisions.json",
+      "source_pointer": "/new_families/4",
+      "source_value": {
+        "id": "N6",
+        "name": "성장호르몬 주사",
+        "name_status": "공식 출처 미확인",
+        "name_basis": [
+          "상담 용어 · 문헌 「Growth hormone (somatropin) therapy — anti-aging use」 직역(step5-research2 ① 계열 판정)",
+          "동의어: 원천 원장 이름 「성장호르몬주사」"
+        ],
+        "literature_name": "Growth hormone (somatropin) therapy — anti-aging use",
+        "definition": "유전자재조합 성장호르몬(소마트로핀)을 피하 주사해 IGF-1 을 올리는 시술(원천 목적 = 항노화)",
+        "literature_evidence": [
+          {
+            "pmid": "17227934",
+            "title": "Systematic review: the safety and efficacy of growth hormone in the healthy elderly.",
+            "year": 2007,
+            "role": "항노화 목적 GH 투여 SR",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "Ann Intern Med"
+          },
+          {
+            "pmid": "38489867",
+            "title": "Growth hormone treatment in aged patients with comorbidities: A systematic review.",
+            "year": 2024,
+            "role": "노인 GH SR",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "Growth Horm IGF Res"
+          }
+        ],
+        "license_evidence": [
+          {
+            "product": "소마트로핀 제제(유트로핀 · 그로트로핀 · 노디트로핀 · 지노트로핀 등 28건)",
+            "source": "MFDS 의약품 검색 item_name=소마트로핀(2026-10-29)",
+            "efficacy": "성장호르몬 결핍증(유년기 개시형 등) — 항노화는 허가 효능 목록 첫머리에 없음(전문 미추출)"
+          }
+        ],
+        "evidence_level": "중",
+        "synonyms": [
+          "성장호르몬주사"
+        ],
+        "sub_families": [],
+        "sub_family_handling": [],
+        "fit_existing": {
+          "verdict": "안 듦",
+          "checked": {
+            "M16": "미량영양소 정맥 — 호르몬(단백 의약품) · 피하 주사",
+            "N5": "태반 추출물 — 다른 물질"
+          }
+        },
+        "default_technique": "K01 주입(소마트로핀 허가 용법 피하)",
+        "members_source": [
+          "auto-M16-1775364775099"
+        ],
+        "decided_by": "U1(_RESUME §2 10-29 「5단계 추가 조사 반영」) · F8",
+        "default_technique_research": "K01 주입(소마트로핀 허가 용법 피하 — 원천 「수액치료」 문구는 경로 근거 아님)"
+      },
+      "compared_field": "name+name_basis",
+      "result": "exact current source agreement; log is additional historical attribution only"
+    },
+    {
+      "family": "N7",
+      "current_pointer": "/families/23",
+      "source_file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-step5-decisions.json",
+      "source_pointer": "/new_families/5",
+      "source_value": {
+        "id": "N7",
+        "name": "펄스 전자기장 치료",
+        "name_status": "공식 출처 미확인",
+        "name_basis": [
+          "상담 용어 · 문헌 「Pulsed electromagnetic field (PEMF) therapy」 직역(step5-research2 ① 계열 판정)"
+        ],
+        "literature_name": "Pulsed electromagnetic field (PEMF) therapy",
+        "definition": "몸 밖에서 저강도 펄스 전자기장을 걸어 조직(두피 모낭)을 자극하는 기기 시술 — 근육 수축을 목적으로 하지 않는 점에서 M10 과 다름",
+        "literature_evidence": [
+          {
+            "pmid": "36345917",
+            "title": "The efficacy and safety of the combination of photobiomodulation therapy and pulsed electromagnetic field therapy on androgenetic alopecia.",
+            "year": 2023,
+            "role": "PEMF 병용 RCT",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "J Cosmet Dermatol"
+          },
+          {
+            "pmid": "14669818",
+            "title": "Essential oils and low-intensity electromagnetic pulses in the treatment of androgen-dependent alopecia.",
+            "year": 2003,
+            "role": "저강도 전자기 펄스 RCT",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "Adv Ther"
+          },
+          {
+            "pmid": "39630190",
+            "title": "Photobiostimulation Therapy (PBST) and Pulsed Electromagnetic Field Therapy (PEMF) in Hair Loss Treatment: Multicentric, Retrospective, Case-Control Study.",
+            "year": 2025,
+            "role": "PEMF 관찰",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "Aesthetic Plast Surg"
+          },
+          {
+            "pmid": "39124800",
+            "title": "Physical Treatments and Therapies for Androgenetic Alopecia.",
+            "year": 2024,
+            "role": "물리 치료 개관(제목 기준 · 전자기장 검색으로 걸림)",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "J Clin Med"
+          }
+        ],
+        "license_evidence": null,
+        "evidence_level": "중",
+        "synonyms": [],
+        "sub_families": [],
+        "sub_family_handling": [],
+        "fit_existing": {
+          "verdict": "안 듦",
+          "checked": {
+            "M8": "레이저 · IPL · LED(광) — 허가 품목은 전자기발생기(광 아님 · D18)",
+            "M10": "HIFEM · EMS 로 근육을 강제 수축 — 같은 허가 품목명(CMSLIM MAXi = 의료용전자기발생기)이 M10 에 있지만 헤어셀은 근육 수축 목적 아님"
+          }
+        },
+        "default_technique": "K06 전자기 자극(U6 — 4단계 노드 정의 넓힘)",
+        "members_source": [
+          "auto-M15-1775364775178"
+        ],
+        "decided_by": "U1(_RESUME §2 10-29 「5단계 추가 조사 반영」) · F8",
+        "default_technique_research": "K06 전자기 자극(4단계 노드 · 의학명 「electromagnetic / electrical muscle stimulation」 — 근육 목적이 아닌 경우도 쓸지 4단계 노드 정의 넓힘 = 사용자 판단 U6)"
+      },
+      "compared_field": "name+name_basis",
+      "result": "exact current source agreement; log is additional historical attribution only"
+    },
+    {
+      "family": "N8",
+      "current_pointer": "/families/24",
+      "source_file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-step5-decisions.json",
+      "source_pointer": "/new_families/6",
+      "source_value": {
+        "id": "N8",
+        "name": "기계적 흡입 마사지",
+        "name_status": "공식 출처 미확인",
+        "name_basis": [
+          "상담 용어 · 문헌 「mechanical suction massage (LPG endermologie)」 직역 · 원천 taxonomy P12-4 「엔더몰로지」 detail 「흡입마사지」"
+        ],
+        "literature_name": "Mechanical suction massage (LPG endermologie)",
+        "definition": "음압 흡입과 롤러로 피부 · 피하 조직을 기계적으로 빨아들이며 주물러 셀룰라이트 · 피하 조직 상태를 바꾸는 기기 시술 — 피부를 뚫지 않고 열 · 전자기 에너지를 쓰지 않는다",
+        "literature_evidence": [
+          {
+            "pmid": "19261014",
+            "title": "Treatment of cellulite with LPG endermologie.",
+            "year": 2009,
+            "role": "LPG endermologie 셀룰라이트 치료",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "Int J Dermatol"
+          },
+          {
+            "pmid": "23581834",
+            "title": "An alternative treatment modality for cellulite: LPG endermologie.",
+            "year": 2013,
+            "role": "LPG endermologie 셀룰라이트 대안 치료",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "J Cosmet Laser Ther"
+          },
+          {
+            "pmid": "10654755",
+            "title": "Cellulite treatment: a myth or reality: a prospective randomized, controlled trial of two therapies, endermologie and aminophylline cream.",
+            "year": 1999,
+            "role": "endermologie RCT",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "Plast Reconstr Surg"
+          }
+        ],
+        "license_evidence": null,
+        "evidence_level": "중",
+        "synonyms": [
+          "엔더몰로지"
+        ],
+        "sub_families": [],
+        "sub_family_handling": [],
+        "fit_existing": {
+          "verdict": "안 듦",
+          "checked": {
+            "M15": "기계적 박리 · 클렌징 = 피부 표면(각질) — 흡입 마사지는 피하 조직",
+            "M10": "HIFEM · EMS 로 근육 수축 — 흡입 마사지는 근육 목적 아님",
+            "M9": "HIFU · RF 열 — 흡입 마사지는 열 없음"
+          }
+        },
+        "default_technique": "K14 흡입 마사지(4단계 새 노드 · G6)",
+        "members_source": [],
+        "decided_by": "J7 G6(10-29 5단계 보강 · 사용자 「응 추천으로 가자」 — _RESUME §2 「5단계 보강(J7) G1~G10 — 전부 추천대로」)"
+      },
+      "compared_field": "name+name_basis",
+      "result": "exact current source agreement; log is additional historical attribution only"
+    },
+    {
+      "family": "N9",
+      "current_pointer": "/families/25",
+      "source_file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-step5-decisions.json",
+      "source_pointer": "/new_families/7",
+      "source_value": {
+        "id": "N9",
+        "name": "모발이식",
+        "name_status": "공식 출처 미확인",
+        "name_basis": [
+          "원천 taxonomy P13-4 「모발이식」 · problem-packages 시술 이름 「모발이식」 · 문헌 「Hair transplantation」"
+        ],
+        "literature_name": "Hair transplantation",
+        "definition": "자기 두피(공여부)에서 모낭 단위를 떼어(FUE 낱개 채취 · FUT 띠 절제) 탈모 부위에 옮겨 심는 수술",
+        "literature_evidence": [
+          {
+            "pmid": "33905785",
+            "title": "Hair transplantation: Basic overview.",
+            "year": 2021,
+            "role": "모발이식 개관(FUE · FUT)",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "J Am Acad Dermatol"
+          },
+          {
+            "pmid": "40354670",
+            "title": "Hair Transplantation: State of the Art.",
+            "year": 2025,
+            "role": "모발이식 최신 개관",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "Dermatol Surg"
+          },
+          {
+            "pmid": "32312503",
+            "title": "Follicular Unit Excision: Current Practice and Future Developments.",
+            "year": 2020,
+            "role": "FUE 현황",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "Facial Plast Surg Clin North Am"
+          }
+        ],
+        "license_evidence": null,
+        "evidence_level": "중",
+        "synonyms": [],
+        "sub_families": [],
+        "sub_family_handling": [
+          {
+            "source": "FUE · FUT",
+            "handling": "하위 칸 없음 — 채취 방식은 단위 시술 속성(동의어)",
+            "basis": "J7 G7(10-29 5단계 보강 · 사용자 「응 추천으로 가자」 — _RESUME §2 「5단계 보강(J7) G1~G10 — 전부 추천대로」)"
+          }
+        ],
+        "fit_existing": {
+          "verdict": "안 듦",
+          "checked": {
+            "M15": "외용 관리 — 원천 CC 가 M15 로 적음(어긋남 · 원천 수정 후보)",
+            "M6": "자가지방이식 = 지방 — 모낭 아님",
+            "N4": "피부 소수술 = 흉터 · 병변 절제 — 모낭 이식 아님"
+          }
+        },
+        "surgery": true,
+        "default_technique": "K12 소수술(G7)",
+        "members_source": [],
+        "decided_by": "J7 G7(10-29 5단계 보강 · 사용자 「응 추천으로 가자」 — _RESUME §2 「5단계 보강(J7) G1~G10 — 전부 추천대로」)"
+      },
+      "compared_field": "name+name_basis",
+      "result": "exact current source agreement; log is additional historical attribution only"
+    },
+    {
+      "family": "N10",
+      "current_pointer": "/families/26",
+      "source_file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-step5-decisions.json",
+      "source_pointer": "/new_families/8",
+      "source_value": {
+        "id": "N10",
+        "name": "지방흡입",
+        "name_status": "공식 출처 미확인",
+        "name_basis": [
+          "원천 treatment-optimization 「지방흡입(리포)」 · sequence 「지방흡입(수술)」 · 문헌 「Liposuction」"
+        ],
+        "literature_name": "Liposuction",
+        "definition": "피하 지방층에 캐뉼라를 넣어 지방을 음압으로 빨아내는 수술",
+        "literature_evidence": [
+          {
+            "pmid": "16427970",
+            "title": "Liposuction: techniques and guidelines.",
+            "year": 2006,
+            "role": "지방흡입 기법 · 지침",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "Clin Plast Surg"
+          },
+          {
+            "pmid": "29330581",
+            "title": "[Liposuction].",
+            "year": 2018,
+            "role": "지방흡입 개관",
+            "verified": "NCBI ESummary 2026-10-29",
+            "journal": "Hautarzt"
+          }
+        ],
+        "license_evidence": null,
+        "evidence_level": "중",
+        "synonyms": [
+          "리포"
+        ],
+        "sub_families": [],
+        "sub_family_handling": [],
+        "fit_existing": {
+          "verdict": "안 듦",
+          "checked": {
+            "N1": "지방분해 주사 = 약물 — 흡입 아님",
+            "M14": "냉동지방분해 = 피부 밖 냉각",
+            "M6": "자가지방이식 = 채취 지방을 주입(지방흡입은 채취 자체가 목적)"
+          }
+        },
+        "surgery": true,
+        "default_technique": "K12 소수술(G8)",
+        "members_source": [],
+        "decided_by": "J7 G8(10-29 5단계 보강 · 사용자 「응 추천으로 가자」 — _RESUME §2 「5단계 보강(J7) G1~G10 — 전부 추천대로」)"
+      },
+      "compared_field": "name+name_basis",
+      "result": "exact current source agreement; log is additional historical attribution only"
+    }
+  ]
+}

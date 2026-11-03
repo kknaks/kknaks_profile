@@ -1,0 +1,499 @@
+{
+ "version": 1,
+ "generated_at": "2026-10-27",
+ "scope": "1단계 D18 — 비슷한 이름 허가 후보 11개 「같은 제품인가」",
+ "basis": "피부과 홈페이지 우선: 데이뷰의원 12개 지점(daybeauclinic01·05~15 시술 메뉴 289쪽 · 상세 751쪽 크롤) · 세라미크의원 강남/명동(사용자 지정 「세라믹의원」 — 검색상 세라미크의원 ceramiqueclinic.com 으로 대응) · data-anyang(안양범계 주변 17곳 메뉴 · 가격, read-only) → 제조·판매사 공식 · 보도 → 식약처 API(getMdlpPrdlstPrmisnItem05) · emedi 품목 상세(모델명 · 사용목적) → 현장 사진. 추정 금지. 원장 · 결정 파일은 건드리지 않음",
+ "summary": {
+  "rows": 11,
+  "같음": 3,
+  "다름": 3,
+  "확인 불가": 5
+ },
+ "items": [
+  {
+   "ledger_id": "auto-37-1774737181584",
+   "name": "쿨소닉",
+   "candidate": "제허 25-78 호 (주)아스테라시스 집속형 초음파 자극 시스템 「Liftera Cool외 1건」 · 정상(2025-02-07)",
+   "verdict": "같음",
+   "one_line": "쿨소닉 = 아스테라시스 제허 25-78. 허가 상세의 모델명이 「CoolSoniq」(브랜드 칸 Liftera Cool)로 들어 있다.",
+   "basis": [
+    "emedi 품목 상세: meddevItemNo 「제허 25-78 호」 · mebTypeName 「CoolSoniq」 · brandName 「Liftera Cool」 · 사용목적 「집속형 초음파를 이용하여 조직을 응고시켜 눈썹 리프팅에 사용하는 기구」 · 취소/취하 「아니오」",
+    "아스테라시스 IR(배포일 25.02.10) 「차세대 HIFU ‘쿨소닉’ 식약처 승인 획득」 「HIFU 리프팅 신제품 ‘쿨소닉(CoolSoniq)’을 출시」 — 허가일 2025-02-07 과 맞음",
+    "메디게이트뉴스(26.03.23) KIMES 2026 아스테라시스 출품 「리프테라2 · 쿨페이즈 · 쿨소닉」"
+   ],
+   "sources": [
+    "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=2025000659",
+    "https://file.alphasquare.co.kr/media/pdfs/company-ir/20250210아스테라시스_차세대_HIFU_‘쿨소닉’_식약처_승인_획득…연내_FDA_목표.pdf",
+    "https://medigatenews.com/news/930698722"
+   ],
+   "clinic": [
+    {
+     "clinic": "데이뷰의원 강남점 더프리미엄",
+     "url": "https://www.daybeauclinic07.com/branch/procedure_detail.php?code=G155590",
+     "quote": "쿨소닉 — 「열 자극은 정교하게, 피부는 편안하게 설계한 쿨링 초음파 리프팅」 「#쿨링 시스템 #초음파 리프팅」 「쿨소닉 5000샷」 「쿨소닉 5000샷+ 티타늄 60KJ」 「쿨소닉 5000샷+ 온다 6만J + 국산 프리미엄 턱선광경근 보톡스 6cc」 「쿨소닉 5000샷+ 소프웨이브 100펄스」 「*강력한 쿨링으로 통증은 DOWN, 리프팅 효과는 UP!」 (메뉴 분류 「리프팅」) · 같은 지점 올타이트 페이지 「올타이트400샷+쿨소닉5000샷」(https://www.daybeauclinic07.com/branch/procedure_detail.php?code=G010763) — 제조사 표기 없음"
+    },
+    {
+     "clinic": "데이뷰의원 안양범계점(data-anyang)",
+     "url": null,
+     "quote": "/Users/kknaks/Downloads/data-anyang 전 JSON(prices/ · prices_img/ · src/event_cards.json · gangnamunni-*.json · ours-menu.json · corrections.json · 안양범계-주변병원.json) raw_name·title·summary 검색 — 이름 0건"
+    }
+   ],
+   "conflicts": [
+    "사용목적: 허가 「눈썹 리프팅」 ↔ 원천 detail/추출 「얼굴 및 목」 리프팅 — 허가 사용목적 범위는 판정하지 않음"
+   ],
+   "note": "원장 연결(정상 25-78)과 같음 — 이번 확인으로 「모델명이 달라 게이트」 사유가 풀림(허가 상세 모델명 CoolSoniq)",
+   "queries": [
+    "emedi 품목 상세 meddevItemSeq=2025000659",
+    "식약처 API MdlpPrdlstPrmisnInfoService06/getMdlpPrdlstPrmisnItem05 TYPE_NAME=Liftera Cool · COOL · ENTRPS=아스테라시스",
+    "쿨소닉 아스테라시스 리프테라 쿨 식약처 허가",
+    "데이뷰의원 쿨소닉",
+    "데이뷰 지점 메뉴·상세 크롤(쿨소닉)"
+   ]
+  },
+  {
+   "ledger_id": "auto-M10-1775361916636",
+   "name": "바넥스프로",
+   "candidate": "수허 13-3408 호 비티엘메디컬테크놀로지코리아(유) 초단파자극기 「Vanquish Me」 · 제조 BTL Industries JSC. · 정상",
+   "verdict": "다름",
+   "one_line": "Vanquish Me 는 몸에 닿지 않는 고주파 기기(석션·EMS 없음)라 원천의 「RF+EMS+석션」과 다르다. 바넥스프로가 실제로 무엇인지는 못 찾았다.",
+   "basis": [
+    "식약처 API: 수허 13-3408 사용목적 「본 제품은 27.12MHz 고주파 에너지를 환부에 투과시켜 심부조직 열효과를 이용하여 통증의 완화 및 BMI 지수 25 kg/m2 이상 35 kg/m2 이하 비만환자의 허리둘레 감소에 사용하는 기구.」 — 석션 · EMS 언급 없음",
+    "BTL Vanquish ME 는 시술 부위 위에 떠서 쓰는 비접촉 고주파(「hovers above the treatment area rather than coming into direct contact with the skin」) — https://plasticsurgerypractice.com/treatment-solutions/products/btl-aesthetics-introduces-vanquish-large-volume-fat-reduction/",
+    "원천 taxonomy detail 「RF+EMS+석션 · 바디 컨투어링」",
+    "「바넥스」 · VANEX 든 국내 웹 · 병원 페이지 0, 식약처 이름 든 허가 0(이전 기록과 같음)"
+   ],
+   "sources": [
+    "식약처 API MdlpPrdlstPrmisnInfoService06/getMdlpPrdlstPrmisnItem05 TYPE_NAME=Vanquish",
+    "https://plasticsurgerypractice.com/treatment-solutions/products/btl-aesthetics-introduces-vanquish-large-volume-fat-reduction/"
+   ],
+   "clinic": [
+    {
+     "clinic": "데이뷰의원 12개 지점 · 세라미크의원",
+     "url": null,
+     "quote": "데이뷰의원 12개 지점(daybeauclinic01·05~15) 시술 메뉴 289쪽 · 상세 751쪽 · 세라미크의원 강남·명동(ceramiqueclinic.com) 장비·가격·비급여 페이지 — 이름 0건"
+    },
+    {
+     "clinic": "안양범계 주변 17곳(data-anyang)",
+     "url": null,
+     "quote": "/Users/kknaks/Downloads/data-anyang 전 JSON(prices/ · prices_img/ · src/event_cards.json · gangnamunni-*.json · ours-menu.json · corrections.json · 안양범계-주변병원.json) raw_name·title·summary 검색 — 이름 0건"
+    }
+   ],
+   "conflicts": [],
+   "note": "실제 제조사 · 국내 허가: 근거 없음(조사 기록 참조)",
+   "queries": [
+    "\"바넥스\" 피부과 바디 시술",
+    "\"바넥스\" OR \"바넥스프로\" 고주파 EMS 석션 바디",
+    "바넥스 바디 고주파 석션 피부과 장비 제조사",
+    "Vanquish ME BTL 반퀴시미 국내 피부과 바디 고주파 비접촉",
+    "식약처 API MdlpPrdlstPrmisnInfoService06/getMdlpPrdlstPrmisnItem05 TYPE_NAME=Vanquish"
+   ]
+  },
+  {
+   "ledger_id": "auto-M14-1775361047443",
+   "name": "바넥스",
+   "candidate": "수허 13-3408 호 BTL 「Vanquish Me」 초단파자극기 · 정상",
+   "verdict": "다름",
+   "one_line": "Vanquish Me 는 석션 없는 비접촉 고주파라 원천의 「RF+석션」과 다르다. 바넥스가 실제로 무엇인지는 못 찾았다.",
+   "basis": [
+    "수허 13-3408 사용목적(바넥스프로 행과 같음) — 27.12MHz 고주파 투과 · 석션 언급 없음",
+    "BTL Vanquish ME 비접촉 고주파(바넥스프로 행 출처)",
+    "원천 taxonomy detail 「RF+석션 바디 컨투어링」",
+    "「바넥스」 국내 웹 · 병원 페이지 · 식약처 이름 0"
+   ],
+   "sources": [
+    "식약처 API MdlpPrdlstPrmisnInfoService06/getMdlpPrdlstPrmisnItem05 TYPE_NAME=Vanquish",
+    "https://plasticsurgerypractice.com/treatment-solutions/products/btl-aesthetics-introduces-vanquish-large-volume-fat-reduction/"
+   ],
+   "clinic": [
+    {
+     "clinic": "데이뷰의원 12개 지점 · 세라미크의원",
+     "url": null,
+     "quote": "데이뷰의원 12개 지점(daybeauclinic01·05~15) 시술 메뉴 289쪽 · 상세 751쪽 · 세라미크의원 강남·명동(ceramiqueclinic.com) 장비·가격·비급여 페이지 — 이름 0건"
+    },
+    {
+     "clinic": "안양범계 주변 17곳(data-anyang)",
+     "url": null,
+     "quote": "/Users/kknaks/Downloads/data-anyang 전 JSON(prices/ · prices_img/ · src/event_cards.json · gangnamunni-*.json · ours-menu.json · corrections.json · 안양범계-주변병원.json) raw_name·title·summary 검색 — 이름 0건"
+    }
+   ],
+   "conflicts": [
+    "원장 계열 M14(냉각지방분해) ↔ 원천 detail 「RF+석션」 — 계열 판단은 이 조사 범위 밖"
+   ],
+   "note": "바넥스프로와 같은 제품군인지 출처 없음",
+   "queries": [
+    "바넥스프로 행과 같음"
+   ]
+  },
+  {
+   "ledger_id": "auto-M8-1775362587235",
+   "name": "피코코어",
+   "candidate": "제허 20-59 호 (주)블루코어컴퍼니 엔디야그레이저수술기 「Picore」 (같은 업체 Picore Max 제허 24-169 · Picorea-1 제허 21-834)",
+   "verdict": "확인 불가",
+   "one_line": "후보 Picore 의 국내 이름은 「피코어」(블루코어)이고, 원천이 말한 루트로닉 제품 목록에 「피코코어」는 없다 — 같은 제품인지 출처가 없다.",
+   "basis": [
+    "emedi 품목 상세: 제허 20-59 mebTypeName·brandName 「Picore」 · (주)블루코어컴퍼니",
+    "블루코어 Picore 의 국내 표기는 「피코어」(닥터다모아 상품명 「PICORE 피코어」 https://drdamoa.com/product/picore-%ED%94%BC%EC%BD%94%EC%96%B4/405/ · 메트로서울 2024-11-07 「피코어맥스」 https://www.metroseoul.co.kr/article/20241107500007)",
+    "루트로닉 공식 제품 페이지의 피코 레이저는 「PICOPLUS」 뿐 — https://kr.lutronic.com/product/sub03.html",
+    "원천 detail 「루트로닉 · 1064nm 피코초 · 경제형」",
+    "「피코코어」 국내 웹 · 병원 페이지 0"
+   ],
+   "sources": [
+    "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=2020000566 · 2024001165",
+    "식약처 API MdlpPrdlstPrmisnInfoService06/getMdlpPrdlstPrmisnItem05 TYPE_NAME=Picore",
+    "https://kr.lutronic.com/product/sub03.html",
+    "https://drdamoa.com/product/picore-%ED%94%BC%EC%BD%94%EC%96%B4/405/",
+    "https://www.metroseoul.co.kr/article/20241107500007"
+   ],
+   "clinic": [
+    {
+     "clinic": "데이뷰의원 12개 지점 · 세라미크의원",
+     "url": null,
+     "quote": "데이뷰의원 12개 지점(daybeauclinic01·05~15) 시술 메뉴 289쪽 · 상세 751쪽 · 세라미크의원 강남·명동(ceramiqueclinic.com) 장비·가격·비급여 페이지 — 이름 0건"
+    },
+    {
+     "clinic": "안양범계 주변 17곳(data-anyang)",
+     "url": null,
+     "quote": "/Users/kknaks/Downloads/data-anyang 전 JSON(prices/ · prices_img/ · src/event_cards.json · gangnamunni-*.json · ours-menu.json · corrections.json · 안양범계-주변병원.json) raw_name·title·summary 검색 — 이름 0건"
+    }
+   ],
+   "conflicts": [
+    "업체: 원장 루트로닉 ↔ 후보 허가 (주)블루코어컴퍼니 — 덮어쓰지 않음"
+   ],
+   "note": "이름 「피코코어」 와 「피코어」 · 「블루코어」 의 관계 출처 없음 — 원천(병원) 확인 대상",
+   "queries": [
+    "피코코어 레이저 피부과",
+    "\"피코코어\" 루트로닉",
+    "\"피코코어\" 레이저 토닝 피부과 1064",
+    "PicoCore laser Lutronic OR \"Pico Core\" picosecond 1064",
+    "블루코어컴퍼니 Picore 피코레이저 국내 이름 피코어"
+   ]
+  },
+  {
+   "ledger_id": "auto-M9-1775364797157",
+   "name": "아큐어",
+   "candidate": "제허 23-498 호 (주)뷰메딕스 반도체레이저수술기 「ACURE e」 · 제허 12-1640 호 주식회사 알테아 반도체 레이저 수술기 「Acure」 (· 아큐어프러스 제허 18-265 취하)",
+   "verdict": "다름",
+   "one_line": "후보 둘(ACURE e · Acure)은 반도체 레이저라 원천의 「양극성 RF 국산」 리프팅과 다르다. 아큐어가 실제로 무엇인지는 못 찾았다.",
+   "basis": [
+    "emedi 품목 상세: 제허 23-498 mebTypeName 「ACURE e」 · 품목 반도체레이저수술기 · 사용목적 「방사되는 광 에너지(레이저)를 이용하여 조직 등의 파괴, 제거를 목적으로 수술시 사용하는 레이저 기구」",
+    "식약처 API: 제허 12-1640 「Acure」 반도체 레이저 수술기 · 같은 사용목적",
+    "원천 detail 「양극성RF 국산」",
+    "「아큐어」 RF 장비 국내 웹 · 병원 페이지 0"
+   ],
+   "sources": [
+    "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=2023002269",
+    "식약처 API MdlpPrdlstPrmisnInfoService06/getMdlpPrdlstPrmisnItem05 TYPE_NAME=ACURE · Acure"
+   ],
+   "clinic": [
+    {
+     "clinic": "데이뷰의원 12개 지점 · 세라미크의원",
+     "url": null,
+     "quote": "데이뷰의원 12개 지점(daybeauclinic01·05~15) 시술 메뉴 289쪽 · 상세 751쪽 · 세라미크의원 강남·명동(ceramiqueclinic.com) 장비·가격·비급여 페이지 — 이름 0건"
+    },
+    {
+     "clinic": "안양범계 주변 17곳(data-anyang)",
+     "url": null,
+     "quote": "/Users/kknaks/Downloads/data-anyang 전 JSON(prices/ · prices_img/ · src/event_cards.json · gangnamunni-*.json · ours-menu.json · corrections.json · 안양범계-주변병원.json) raw_name·title·summary 검색 — 이름 0건"
+    }
+   ],
+   "conflicts": [],
+   "note": "실제 제조사 · 국내 허가: 근거 없음",
+   "queries": [
+    "\"아큐어\" 고주파 리프팅 피부과",
+    "\"아큐어\" 양극성 RF 국산 장비",
+    "식약처 API MdlpPrdlstPrmisnInfoService06/getMdlpPrdlstPrmisnItem05 TYPE_NAME=ACURE · Acure"
+   ]
+  },
+  {
+   "ledger_id": "auto-M15-1775364775178",
+   "name": "헤어셀",
+   "candidate": "제인 12-1201 호 (주)트리비스 의료용전자기발생기 「H-Cell ST」 · 정상(2012-09-19)",
+   "verdict": "같음",
+   "one_line": "헤어셀(헤어셀 S2)은 트리비스 「H-cell ST」의 국내 브랜드 이름이다 → 제인 12-1201. 단 실제 기기는 LED 가 아니라 자기장 헬멧이다.",
+   "basis": [
+    "에이빙(2023.03.24) 「트리비스는 ‘ETG Mark1’을 국산화한 모델 ‘H-cell ST’ 시리즈를 선보였다. 이는 현재 국내에서 ‘헤어셀 S2’이라는 브랜드로 명명된 제품군으로, 일주일에 한 번 또는 두 번을 주기로 회당 12분간 두피에 조사하는 방식」 · 「헤어셀 S2는 치료 시 특수한 파형의 미세자기장을 발생시켜 모발 생성에 관여하는 세포를 자극」",
+    "emedi 품목 상세: 제인 12-1201 mebTypeName 「H-Cell ST」 · (주)트리비스 · 사용목적 「근육통 완화 등을 목적으로 전자석의 자계를 이용하는 기구」 · 취소/취하 「아니오」",
+    "같은 업체 수허 08-551 「ETG Mark 1」(Current Technology Corporation) — 사용목적 「전기펄스 등을 이용하여 탈모치료를 목적으로 사용하는 기구」 · 취소(2026-06-01)"
+   ],
+   "sources": [
+    "https://kr.aving.net/news/articleView.html?idxno=1777456",
+    "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=2012005700",
+    "식약처 API MdlpPrdlstPrmisnInfoService06/getMdlpPrdlstPrmisnItem05 ENTRPS=트리비스"
+   ],
+   "clinic": [
+    {
+     "clinic": "닥터공 헤어라인의원(인천)",
+     "url": "http://www.drgong.co.kr/talmo_program_haircell.asp",
+     "quote": "헤어셀S2 페이지 — WebFetch 요약: KFDA 허가 탈모 치료 · 펄스 정전기장 방식 · 주 1회 12분(원문 문장 직접 인용 못 함)"
+    },
+    {
+     "clinic": "드림헤어라인의원",
+     "url": "https://www.dreamhairline.co.kr/talmo_program_haircell.asp",
+     "quote": "페이지 제목 「헤어셀S2」(본문 미열람)"
+    },
+    {
+     "clinic": "데이뷰의원 안양범계점(data-anyang)",
+     "url": null,
+     "quote": "장비명 0 — 탈모 메뉴는 「탈모 두피 쥬베룩 2cc + 두피 LED 1회」(prices/ours_데이뷰의원-안양범계점.json items/1225) 처럼 「두피 LED」만 적힘"
+    },
+    {
+     "clinic": "데이뷰의원 12개 지점 · 세라미크의원",
+     "url": null,
+     "quote": "데이뷰의원 12개 지점(daybeauclinic01·05~15) 시술 메뉴 289쪽 · 상세 751쪽 · 세라미크의원 강남·명동(ceramiqueclinic.com) 장비·가격·비급여 페이지 — 이름 0건"
+    }
+   ],
+   "conflicts": [
+    "원리: 원천 detail 「LED헬멧」 ↔ 웹 헤어셀 S2 「미세자기장」(에이빙) — 덮어쓰지 않음",
+    "허가 사용목적: 「근육통 완화」 — 탈모 사용목적은 취소된 ETG Mark 1(수허 08-551)에 있었음. 허가 범위는 판정하지 않음",
+    "같은 브랜드 신제품 「헤어셀 Mark1」(자기장 + 레이저 · LED 복합, 2023 보도)의 허가는 찾지 않음 — 현장 기기가 어느 모델인지 출처 없음"
+   ],
+   "note": "원장 이명 「Haircell S2」 와 출처가 일치",
+   "queries": [
+    "\"헤어셀\" LED 탈모 헬멧",
+    "Haircell S2 탈모 치료기 헤어셀",
+    "트리비스 헤어셀 탈모 치료기 전자기",
+    "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=2012005700",
+    "식약처 API MdlpPrdlstPrmisnInfoService06/getMdlpPrdlstPrmisnItem05 TYPE_NAME=H-Cell · ENTRPS=트리비스"
+   ]
+  },
+  {
+   "ledger_id": "new-DEV-044",
+   "name": "힐퓨전프로",
+   "candidate": "제인 26-4871 호 주식회사힐룩스 전동식 의료용 흡인기 「HFUSION」 · 정상(2026-09-21)",
+   "verdict": "확인 불가",
+   "one_line": "같은 회사(힐룩스) · 같은 흡입 방식이지만, 허가 모델명 「HFUSION」이 「힐퓨전 프로」라는 출처가 없다(제품은 2025 출시, 허가는 2026-09).",
+   "basis": [
+    "현장 사진 DEV-044: 본체 로고 「HEALUX」 · 기둥 「HealFusion Pro」",
+    "라포르시안(2025.06.24) 「힐룩스(대표 김도연)는 … 올해 출시한 피부관리 장비 ‘힐퓨전 프로’(Healfusion Pro)를 선보인다」 「3D 하이드로더마브레이젼 시술과 하이드로나노롤링 기술을 접목해 … K-필링 뷰티 디바이스」",
+    "emedi 품목 상세: 제인 26-4871 mebTypeName·brandName 「HFUSION」 · 사용목적 「혈액 및 체액 및 여드름을 흡인하는 의료용 전동식 기구로서 외부 진공압을 이용하는 것을 포함한다.」",
+    "힐룩스 공식 블로그(2025-02-28) · healfusion.com 에 허가 표기 없음"
+   ],
+   "sources": [
+    "https://www.rapportian.com/news/articleView.html?idxno=222899",
+    "https://www.rapportian.com/news/articleView.html?idxno=223110",
+    "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=2026006575",
+    "https://www.healfusion.com/"
+   ],
+   "clinic": [
+    {
+     "clinic": "데이뷰의원 전주점",
+     "url": "https://www.daybeauclinic14.com/branch/procedure_detail.php?code=G092298",
+     "quote": "에스테틱 메뉴 「힐퓨전 프로 1회」 「힐퓨전 프로 3회」 — 제조사 표기 없음"
+    },
+    {
+     "clinic": "데이뷰의원 전주점",
+     "url": "https://www.daybeauclinic14.com/branch/procedure_detail.php?code=G194494",
+     "quote": "모공/흉터 패키지 「6주 : 힐퓨전프로+크라이오진정관리 + LED + 모델링팩」"
+    },
+    {
+     "clinic": "데이뷰의원 전주점",
+     "url": "https://www.daybeauclinic14.com/branch/procedure_detail.php?code=G797469",
+     "quote": "원데이 패키지 「힐퓨전 프로 필링- 압출- 카프리레이저-크라이오진정관리」"
+    },
+    {
+     "clinic": "안양범계 주변 17곳(data-anyang)",
+     "url": null,
+     "quote": "/Users/kknaks/Downloads/data-anyang 전 JSON(prices/ · prices_img/ · src/event_cards.json · gangnamunni-*.json · ours-menu.json · corrections.json · 안양범계-주변병원.json) raw_name·title·summary 검색 — 이름 0건"
+    }
+   ],
+   "conflicts": [
+    "시기: 웹 「2025 출시」 ↔ 허가 HFUSION 2026-09-21 — 2025 출시분이 어느 허가로 팔렸는지 출처 없음"
+   ],
+   "note": "업체(힐룩스) 일치는 사진 로고 + 보도 + 허가 업체 세 출처가 같음",
+   "queries": [
+    "힐퓨전 프로 HealFusion Pro 힐룩스",
+    "힐룩스 힐퓨전 HFUSION 하이드로 식약처 인증 출시",
+    "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=2026006575",
+    "식약처 API MdlpPrdlstPrmisnInfoService06/getMdlpPrdlstPrmisnItem05 ENTRPS=힐룩스 · TYPE_NAME=HFUSION",
+    "데이뷰 지점 크롤(힐퓨전)"
+   ]
+  },
+  {
+   "ledger_id": "new-DEV-052",
+   "name": "트리필 프로",
+   "candidate": "제인 21-4246 호 (주)엠큐어 기복기 「TF2004NIWS외 1건」(emedi 모델 「Olidia Booster」) · 정상(2021-03-25)",
+   "verdict": "확인 불가",
+   "one_line": "엠큐어 제품이고 「CO2 가스 + 약물 주입」 기능은 허가(기복기)와 맞지만, 허가 모델명(TF2004NIWS · Olidia Booster)이 트리필 프로라는 출처가 없다.",
+   "basis": [
+    "현장 사진 DEV-052: 본체 「TriFill PRO」",
+    "엠큐어 공식 「TRIFILL Pro — State-of-the-art CO2 gas and Drug delivery system」 「Nodeless PLLA Infusion」 — 허가번호 표기 없음(국문 · 영문 · 인증현황 페이지)",
+    "emedi 품목 상세: 제인 21-4246 mebTypeName 「Olidia Booster」(API TYPE_NAME 「TF2004NIWS외 1건」) · 사용목적 「복강 내 검사 또는 시야확보를 위하여 복막 내에 가스(CO2)를 넣어 확장하는 데에 사용하는 기구 및 약액 등을 환자에게 일정량 주입할 때에 사용하는 기구.」",
+    "같은 업체 다른 CO2 · 주입 허가: 제인 14-1706 「Carbomeso Premium」 기복기 · 정상 / 제인 20-4371 「SP2005NIWS외 1건」 전동식의약품주입펌프 · 정상 — 이름 대응 없음"
+   ],
+   "sources": [
+    "https://mcure.co.kr/en/trifill-pro/",
+    "https://mcure.co.kr/trifill-pro/",
+    "https://mcure.co.kr/about-us/certification/",
+    "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=2021001524",
+    "식약처 API MdlpPrdlstPrmisnInfoService06/getMdlpPrdlstPrmisnItem05 ENTRPS=엠큐어"
+   ],
+   "clinic": [
+    {
+     "clinic": "데이뷰의원 광주상무점",
+     "url": "https://www.daybeauclinic05.com/branch/procedure_detail.php?code=G113509",
+     "quote": "「서브시전 (트리필프로)」 「트리필 프로는 CO2 가스를 활용해 피부 내부의 유착된 조직을 분리하고 형성된 에어포켓에 약물을 주입한 뒤 다시 CO2를 분사해 약물이 고르게 확산되는 방식」 · 「트리필프로 에어 서브시전 나비존 1회」 「트리필프로 에어 서브시전 얼굴전체 1회」 「트리필프로 에어 서브시전 흉터 패키지 1회」 · #여드름흉터 #패인흉터치료 — 제조사 표기 없음"
+    },
+    {
+     "clinic": "닥터디자이너의원 잠실점(보도)",
+     "url": "http://www.mdtoday.co.kr/news/articleView.html?idxno=457460",
+     "quote": "‘트리필 프로’ 도입 기사(본문 미열람)"
+    },
+    {
+     "clinic": "안양범계 주변 17곳(data-anyang)",
+     "url": null,
+     "quote": "/Users/kknaks/Downloads/data-anyang 전 JSON(prices/ · prices_img/ · src/event_cards.json · gangnamunni-*.json · ours-menu.json · corrections.json · 안양범계-주변병원.json) raw_name·title·summary 검색 — 이름 0건"
+    }
+   ],
+   "conflicts": [],
+   "note": "「Olidia Booster」 모델명과 PLLA 「올리디아」 제품의 관계 출처 없음",
+   "queries": [
+    "트리필 프로 엠큐어 CO2 서브시전 피부과 식약처",
+    "엠큐어 트리필 TF2004 OR \"올리디아 부스터\" OR \"Olidia Booster\"",
+    "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=2021001524",
+    "식약처 API MdlpPrdlstPrmisnInfoService06/getMdlpPrdlstPrmisnItem05 ENTRPS=엠큐어 · TYPE_NAME=TF2004",
+    "mcure.co.kr 국문·영문·인증현황 grep(제인·허가·TF2004·Olidia)"
+   ]
+  },
+  {
+   "ledger_id": "new-DEV-043",
+   "name": "오메가라이트",
+   "candidate": "(취하 · 취소만) 경인 제신 15-332 호 (주)오멜론 이동형조명기 「오메가라이트외 1건」 2018-11-30 취하 · 제인 16-4726 호 (주)다오닉 저출력광선조사기 「오메가라이트 듀얼」 2020-03-24 취하 · 경인 제신 13-402 호 혼콘코리아 이동형조명기 「오메가 라이트」 취소(2014-07-28)",
+   "verdict": "확인 불가",
+   "one_line": "현장 LED 는 오멜론(O'melon)의 「OMEGA light」다. 오멜론 이름의 허가(2015)는 2018년에 취하됐고, 지금 살아 있는 허가는 찾지 못했다.",
+   "basis": [
+    "현장 사진 DEV-043: 본체 표기 「OMEGA light」 · 아치형 2단 LED 패널",
+    "대한금융신문(2021-07-19) 「스킨케어 브랜드 오멜론, 피부 토털 케어 LED 미용 기기 오메가 라이트(OMEGA light) 2세대 출시」 — 「1,145개 LED와 IR 램프」 · 의료기기 허가 문구 없음 (https://www.kbanker.co.kr/news/articleView.html?idxno=99976)",
+    "오멜론 공식몰 위치 「홈 > 디바이스 > 전문가용 > 오메가 라이트 2세대」 (https://omelon.shop/product/%EC%98%A4%EB%A9%94%EA%B0%80-%EB%9D%BC%EC%9D%B4%ED%8A%B8-2%EC%84%B8%EB%8C%80/15/)",
+    "식약처 API ENTRPS=오멜론 1건뿐: 경인 제신 15-332 「오메가라이트외 1건」 이동형조명기 · 사용목적 「진료용 조명기의 모든 특성을 갖춘 이동형 조명기 …」 · 취하 2018-11-30",
+    "TYPE_NAME=Omega · OMEGA 에 LED 광선 장비 정상 허가 0"
+   ],
+   "sources": [
+    "https://www.kbanker.co.kr/news/articleView.html?idxno=99976",
+    "https://edaily.co.kr/News/Read?mediaCodeNo=257&newsId=01587526629116160",
+    "https://omelon.shop/product/%EC%98%A4%EB%A9%94%EA%B0%80-%EB%9D%BC%EC%9D%B4%ED%8A%B8-2%EC%84%B8%EB%8C%80/15/",
+    "식약처 API MdlpPrdlstPrmisnInfoService06/getMdlpPrdlstPrmisnItem05 ENTRPS=오멜론 · 다오닉 · 혼콘 · TYPE_NAME=Omega · OMEGA"
+   ],
+   "clinic": [
+    {
+     "clinic": "데이뷰의원 12개 지점",
+     "url": "https://www.daybeauclinic12.com/branch/procedure_detail.php?code=G401220",
+     "quote": "「오메가」 든 줄은 분당점 「…오메가-3모델링팩」(화장품)뿐 — 장비명 0. LED 는 「재생LED」 「LED」 같은 일반 표기"
+    },
+    {
+     "clinic": "데이뷰의원 안양범계점(data-anyang)",
+     "url": null,
+     "quote": "장비명 0 — 「[9월] 꼼꼼 피코토닝 + 진정보습시트팩 + 재생LED 5회」(prices/ours_데이뷰의원-안양범계점.json items/1958) · src/event_cards.json 67 summary2 「아쿠아필+ALA마스크+재생LED+시트팩」 처럼 「재생LED」만 적힘"
+    },
+    {
+     "clinic": "세라미크의원",
+     "url": null,
+     "quote": "이름 0"
+    }
+   ],
+   "conflicts": [
+    "다오닉 「오메가라이트 듀얼」 · 혼콘코리아 「오메가 라이트」 는 제조 · 허가 업체가 오멜론과 다름 — 같은 제품인지 출처 없음"
+   ],
+   "note": "판정 「확인 불가」 는 취하된 오멜론 허가(2015 · 이동형조명기)가 현장 2세대 기기와 같은 모델인지 출처가 없어서. 실제 제품(오멜론 OMEGA light)은 사진 표기 + 보도 + 공식몰로 확인. 현행 허가 0 — 의료기기가 아닌 미용기기로 파는지는 출처 없음",
+   "queries": [
+    "오메가라이트 LED 피부관리 장비 피부과 OMEGA light 제조사",
+    "식약처 API MdlpPrdlstPrmisnInfoService06/getMdlpPrdlstPrmisnItem05 ENTRPS=오멜론 · 다오닉 · 혼콘 · TYPE_NAME=Omega · OMEGA",
+    "zenithmedi 오메가라이트(403)",
+    "데이뷰 지점 크롤(오메가)"
+   ]
+  },
+  {
+   "ledger_id": "new-DEV-069",
+   "name": "아톰레이저",
+   "candidate": "제허 21-712 호 (주)대주메디테크엔지니어링 의료용 레이저 조사기 「TINEA외 1건」(emedi 모델 「ATOM Laser」) · 정상(2021-08-24)",
+   "verdict": "같음",
+   "one_line": "아톰레이저 = 제허 21-712. 허가 상세 모델명이 「ATOM Laser」이고 사용목적이 발톱 진균증 레이저 + 카메라로, 웹 · 병원의 아톰레이저(405·635nm 손발톱 무좀)와 같다. 사진의 「LCI」 로고와 허가 업체의 관계만 출처가 없다.",
+   "basis": [
+    "emedi 품목 상세: 제허 21-712 mebTypeName 「ATOM Laser」 · 사용목적 「의료용레이저조사기 : 비침습적인 방법으로 레이저를 이용하여 발톱 진균증(Onychomycrosis)의 개선을 목적으로 사용함 / 체외형의료용카메라 … / 레이저방어용안경 …」 · 취소/취하 「아니오」",
+    "메디뷰랩 제품 페이지 「아톰레이저(ATOM Laser)는 발톱진균증(Onychomycrosis)개선에 사용하는 비열성(non-themal)레이저」 「405nm & 635nm 듀얼 레이저 파장」 「식약의약품안전처 허가 의료기기」 · 사양에 「ATOM Cart Camera」",
+    "바이오타임즈(2026.09.23) 「㈜바디코스가 국내 총판을 담당하고 있는 의료용 레이저 장비 ‘아톰레이저(ATOM Laser)’」 「발톱진균증 개선에 사용되는 의료용 레이저 장비로, 405nm와 635nm의 두 가지 파장」",
+    "에이빙(2026.01.22) 바디코스플러스 KIMES 2026 「아톰 레이저(ATOM Laser)」 405nm · 635nm"
+   ],
+   "sources": [
+    "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=2021004712",
+    "http://medi-beau.com/page/product/atom.html",
+    "https://www.biotimes.co.kr/news/articleView.html?idxno=34708",
+    "https://kr.aving.net/news/articleView.html?idxno=1808164"
+   ],
+   "clinic": [
+    {
+     "clinic": "데이뷰의원 전주점",
+     "url": "https://www.daybeauclinic14.com/branch/procedure_detail.php?code=G351035",
+     "quote": "「아톰레이저 관리」 「손·발톱 무좀, 고민 말고 레이저로 관리하세요!」 「#아톰레이저 #무좀 #손톱 #발톱」 「기본관리 + 아톰레이저(한손or한발) 1회 120,000원」 「기본관리 +아톰레이저(양손or양발) 1회 200,000」 (분류 「제모/스페셜」) — 제조사 표기 없음. 같은 지점 「무좀 스케일링 관리」 페이지에도 「#아톰레이저」(code=G101782)"
+    },
+    {
+     "clinic": "안양범계 주변 17곳(data-anyang)",
+     "url": null,
+     "quote": "/Users/kknaks/Downloads/data-anyang 전 JSON(prices/ · prices_img/ · src/event_cards.json · gangnamunni-*.json · ours-menu.json · corrections.json · 안양범계-주변병원.json) raw_name·title·summary 검색 — 이름 0건"
+    }
+   ],
+   "sellers": [
+    {
+     "name": "(주)바디코스",
+     "role": "국내 총판",
+     "url": "https://www.biotimes.co.kr/news/articleView.html?idxno=34708",
+     "period": "2026-09 보도"
+    },
+    {
+     "name": "(주)메디뷰랩",
+     "role": "제품 소개 · 자사몰(판매 형태 표기 없음)",
+     "url": "http://medi-beau.com/page/product/atom.html",
+     "period": null
+    }
+   ],
+   "conflicts": [
+    "제조사: 사진 로고 「LCI」 ↔ 허가 (주)대주메디테크엔지니어링 — 「LCI」 질의(식약처 업체 · 웹) 결과 0, 관계 출처 없음 — 덮어쓰지 않음",
+    "원장 4_license.reason 의 「메디뷰랩 허가 2건 중 해당 없음」 — 메디뷰랩은 판매 · 소개 측이고 허가는 대주메디테크 명의"
+   ],
+   "note": "API TYPE_NAME 은 「TINEA외 1건」 이라 이름 질의(ATOM Laser)로 안 걸렸음 — emedi 상세에서만 「ATOM Laser」 확인",
+   "queries": [
+    "아톰 레이저 LCI 손발톱 무좀 405nm 635nm 대주메디테크",
+    "LCI 대주메디테크엔지니어링 레이저 브랜드",
+    "식약처 API MdlpPrdlstPrmisnInfoService06/getMdlpPrdlstPrmisnItem05 ENTRPS=대주메디테크 · 엘씨아이(0) · LCI(0) · TYPE_NAME=ATOM · Atom · ATOM L(0) · TINEA",
+    "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=2021004712",
+    "데이뷰 지점 크롤(아톰)"
+   ]
+  },
+  {
+   "ledger_id": "auto-M12-1775363035813",
+   "name": "스킨스탬프",
+   "candidate": "제인 23-4142 호 · 23-4176 호 대종의료기 주식회사 의약품흡수유도피부자극기(brandName 「Skin roller, Skin stamp」 · 「Skin roller-1, Skin stamp-1」) · 제인 19-4602 호 (주)비즈엔몰드(이전 기록 「Cie Skin Stamp」)",
+   "verdict": "확인 불가",
+   "one_line": "「스킨스탬프」는 여러 회사가 도장(스탬프)형 니들 기구를 부르는 형태 이름으로 쓴다 — 원장 항목이 어느 회사 제품인지 출처가 없다.",
+   "basis": [
+    "emedi 품목 상세: 제인 23-4142 brandName 「Skin roller, Skin stamp」(모델 SR10 등 「SS5외 11건」) · 제인 23-4176 brandName 「Skin roller-1, Skin stamp-1」(「SS1외 2건」) — 한 허가 안에서 롤러형 · 스탬프형을 나누는 이름으로 쓰임",
+    "제인 19-4602 (주)비즈엔몰드 「Tip Change Face Roller 600(2.00)외 15건」(emedi 대표 모델 「3in1 Roller(0.20)」) — 이전 기록의 「Cie Skin Stamp」 는 이번 상세 응답 첫 모델에 없음",
+    "국내 웹에서 MTS 는 「롤러형과 스탬프형」으로 나뉘고 「더마스탬프」 등 여러 이름 — 예 https://www.idclinic.co.kr/treatments/mts · http://www.senseworld.co.kr/skin/05_medical/medical04.php",
+    "원천 detail 「전동 스탬프형 MTS」 — 대종 · 비즈엔몰드 허가 사용목적에 전동 언급 없음"
+   ],
+   "sources": [
+    "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=2023000729 · 2023000926 · 2019004415",
+    "식약처 API MdlpPrdlstPrmisnInfoService06/getMdlpPrdlstPrmisnItem05 ENTRPS=대종의료기 · 비즈엔몰드 · TYPE_NAME=Skin stamp(0)",
+    "https://www.idclinic.co.kr/treatments/mts"
+   ],
+   "clinic": [
+    {
+     "clinic": "데이뷰의원 12개 지점 · 세라미크의원",
+     "url": null,
+     "quote": "데이뷰의원 12개 지점(daybeauclinic01·05~15) 시술 메뉴 289쪽 · 상세 751쪽 · 세라미크의원 강남·명동(ceramiqueclinic.com) 장비·가격·비급여 페이지 — 이름 0건 (「스탬프」 포함)"
+    },
+    {
+     "clinic": "안양범계 주변 17곳(data-anyang)",
+     "url": null,
+     "quote": "/Users/kknaks/Downloads/data-anyang 전 JSON(prices/ · prices_img/ · src/event_cards.json · gangnamunni-*.json · ours-menu.json · corrections.json · 안양범계-주변병원.json) raw_name·title·summary 검색 — 이름 0건 (「스탬프」 포함)"
+    }
+   ],
+   "conflicts": [],
+   "note": "일반 명칭인지에 대한 답: 허가 2건이 brandName 칸에 「Skin stamp」 를 형태 이름으로 씀 — 특정 브랜드 출처 없음",
+   "queries": [
+    "스킨스탬프 MTS 피부과 시술 더마스탬프",
+    "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=2023000729 · 2023000926 · 2019004415",
+    "식약처 API MdlpPrdlstPrmisnInfoService06/getMdlpPrdlstPrmisnItem05 ENTRPS=대종의료기 · 비즈엔몰드"
+   ]
+  }
+ ]
+}

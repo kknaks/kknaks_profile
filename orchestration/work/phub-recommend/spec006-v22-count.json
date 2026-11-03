@@ -1,0 +1,9807 @@
+{
+ "answer_kinds": {
+  "both": {
+   "all": {
+    "계열": 81,
+    "고민 관계": 17,
+    "금기 조건": 100,
+    "다른 시술": 15,
+    "부위": 1,
+    "부위 위험": 8,
+    "섹션(시작 노드)": 63,
+    "쌍 관계": 39,
+    "전역 · scope": 35,
+    "제품": 15,
+    "조합": 81,
+    "합병증": 6
+   },
+   "by_intent": {
+    "I-01": {
+     "계열": 2,
+     "고민 관계": 1,
+     "금기 조건": 24,
+     "다른 시술": 1,
+     "부위 위험": 5,
+     "섹션(시작 노드)": 1,
+     "쌍 관계": 5,
+     "전역 · scope": 3,
+     "제품": 1,
+     "조합": 9,
+     "합병증": 1
+    },
+    "I-02": {
+     "계열": 2,
+     "고민 관계": 2,
+     "금기 조건": 8,
+     "다른 시술": 1,
+     "부위 위험": 3,
+     "섹션(시작 노드)": 6,
+     "전역 · scope": 2,
+     "조합": 2
+    },
+    "I-03": {
+     "계열": 8,
+     "금기 조건": 4,
+     "다른 시술": 5,
+     "섹션(시작 노드)": 12,
+     "쌍 관계": 1
+    },
+    "I-04": {
+     "계열": 18,
+     "금기 조건": 5,
+     "다른 시술": 2,
+     "섹션(시작 노드)": 20,
+     "전역 · scope": 1,
+     "제품": 5,
+     "조합": 3,
+     "합병증": 2
+    },
+    "I-05": {
+     "계열": 17,
+     "고민 관계": 4,
+     "금기 조건": 16,
+     "다른 시술": 1,
+     "부위": 1,
+     "섹션(시작 노드)": 15,
+     "전역 · scope": 10,
+     "제품": 3,
+     "조합": 5,
+     "합병증": 1
+    },
+    "I-06": {
+     "계열": 23,
+     "고민 관계": 8,
+     "금기 조건": 15,
+     "다른 시술": 3,
+     "섹션(시작 노드)": 3,
+     "쌍 관계": 4,
+     "전역 · scope": 1,
+     "제품": 3,
+     "조합": 37
+    },
+    "I-07": {
+     "계열": 3,
+     "고민 관계": 1,
+     "금기 조건": 4,
+     "쌍 관계": 25,
+     "전역 · scope": 10,
+     "제품": 2,
+     "조합": 5,
+     "합병증": 1
+    },
+    "I-08": {
+     "금기 조건": 1,
+     "쌍 관계": 2
+    },
+    "I-09": {
+     "계열": 6,
+     "고민 관계": 1,
+     "금기 조건": 19,
+     "섹션(시작 노드)": 5,
+     "쌍 관계": 1,
+     "전역 · scope": 3,
+     "조합": 10,
+     "합병증": 1
+    },
+    "I-10": {
+     "금기 조건": 2,
+     "다른 시술": 2,
+     "섹션(시작 노드)": 1,
+     "쌍 관계": 1,
+     "전역 · scope": 5,
+     "제품": 1,
+     "조합": 6
+    },
+    "I-11": {
+     "계열": 2,
+     "금기 조건": 2,
+     "조합": 4
+    }
+   },
+   "hop": {
+    "0": 63,
+    "1": 218,
+    "2": 151,
+    "3": 24,
+    "4": 3,
+    "9": 2
+   },
+   "n": 461
+  },
+  "rows": [
+   {
+    "case": "case3",
+    "edges1": [
+     "procedure_relation"
+    ],
+    "group": "쌍 관계",
+    "hop": 1,
+    "intent": "I-01",
+    "item": "accuracy",
+    "q": "Q001",
+    "src": "v4",
+    "start": "unit_procedure:U5-001",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "requires_check_unit"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-01",
+    "item": "safety",
+    "q": "Q001",
+    "src": "v4",
+    "start": "unit_procedure:U5-001",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "부위 위험",
+    "hop": 2,
+    "intent": "I-01",
+    "item": "safety",
+    "q": "Q002",
+    "src": "v4",
+    "start": "concern:auto-83-1774737181584",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "site_caution"
+    ],
+    "group": "부위 위험",
+    "hop": 1,
+    "intent": "I-01",
+    "item": "accuracy",
+    "q": "Q003",
+    "src": "v4",
+    "start": "site:site.jawline",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-01",
+    "item": "accuracy",
+    "q": "Q003",
+    "src": "v4",
+    "start": "site:site.jawline",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-01",
+    "item": "safety",
+    "q": "Q003",
+    "src": "v4",
+    "start": "site:site.jawline",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "제품",
+    "hop": 3,
+    "intent": "I-01",
+    "item": "safety",
+    "q": "Q004",
+    "src": "v4",
+    "start": "concern:auto-89-1774737181584",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-01",
+    "item": "safety",
+    "q": "Q004",
+    "src": "v4",
+    "start": "concern:auto-89-1774737181584",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "child_of"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-01",
+    "item": "accuracy",
+    "q": "Q006",
+    "src": "v4",
+    "start": "concern:P6",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-01",
+    "item": "safety",
+    "q": "Q006",
+    "src": "v4",
+    "start": "concern:P6",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-01",
+    "item": "safety",
+    "q": "Q007",
+    "src": "v4",
+    "start": "concern:J10",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-01",
+    "item": "safety",
+    "q": "Q007",
+    "src": "v4",
+    "start": "concern:J10",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-09",
+    "item": "safety",
+    "q": "Q008",
+    "src": "v4",
+    "start": "concern:P5-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-02",
+    "item": "accuracy",
+    "q": "Q009",
+    "src": "v4",
+    "start": "product:auto-40-1774737181584",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-02",
+    "item": "accuracy",
+    "q": "Q009",
+    "src": "v4",
+    "start": "product:auto-40-1774737181584",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-02",
+    "item": "safety",
+    "q": "Q009",
+    "src": "v4",
+    "start": "product:auto-40-1774737181584",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-02",
+    "item": "safety",
+    "q": "Q010",
+    "src": "v4",
+    "start": "family:M7",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-02",
+    "item": "uncertainty",
+    "q": "Q010",
+    "src": "v4",
+    "start": "family:M7",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-05",
+    "item": "safety",
+    "q": "Q014",
+    "src": "v4",
+    "start": "family:M7",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q015",
+    "src": "v4",
+    "start": "product:M9-1-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q015",
+    "src": "v4",
+    "start": "product:M9-1-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "safety",
+    "q": "Q016",
+    "src": "v4",
+    "start": "product:M3-1-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q016",
+    "src": "v4",
+    "start": "product:M3-1-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-07",
+    "item": "safety",
+    "q": "Q018",
+    "src": "v4",
+    "start": null,
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-07",
+    "item": "safety",
+    "q": "Q018",
+    "src": "v4",
+    "start": null,
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "procedure_relation"
+    ],
+    "group": "쌍 관계",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q019",
+    "src": "v4",
+    "start": "unit_procedure:U5-028",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "쌍 관계",
+    "hop": 2,
+    "intent": "I-08",
+    "item": "accuracy",
+    "q": "Q020",
+    "src": "v4",
+    "start": "product:auto-40-1774737181584",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-11",
+    "item": "accuracy",
+    "q": "Q025",
+    "src": "v4",
+    "start": null,
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-11",
+    "item": "accuracy",
+    "q": "Q025",
+    "src": "v4",
+    "start": null,
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-11",
+    "item": "safety",
+    "q": "Q026",
+    "src": "v4",
+    "start": "concern:P5",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "key_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q027",
+    "src": "v4",
+    "start": "unit_procedure:U5-001",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "key_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "on_topic",
+    "q": "Q027",
+    "src": "v4",
+    "start": "unit_procedure:U5-001",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q028",
+    "src": "v4",
+    "start": "concern:P2-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q031",
+    "src": "v4",
+    "start": "product:M1-2-1",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-05",
+    "item": "safety",
+    "q": "Q031",
+    "src": "v4",
+    "start": "product:M1-2-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 3,
+    "intent": "I-05",
+    "item": "on_topic",
+    "q": "Q031",
+    "src": "v4",
+    "start": "product:M1-2-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q035",
+    "src": "v4",
+    "start": "product:M1-2-1",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q035",
+    "src": "v4",
+    "start": "product:M1-2-1",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q036",
+    "src": "v4",
+    "start": "product:M1-2-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q039",
+    "src": "v4",
+    "start": "product:M1-2-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q039",
+    "src": "v4",
+    "start": "product:M1-2-1",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q039",
+    "src": "v4",
+    "start": "product:M1-2-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-02",
+    "item": "accuracy",
+    "q": "Q040",
+    "src": "v4",
+    "start": "unit_procedure:U5-010",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-02",
+    "item": "accuracy",
+    "q": "Q040",
+    "src": "v4",
+    "start": "unit_procedure:U5-010",
+    "tier": "weak",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-01",
+    "item": "on_topic",
+    "q": "Q043",
+    "src": "v4",
+    "start": "family:M2",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "key_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-02",
+    "item": "accuracy",
+    "q": "Q046",
+    "src": "v4",
+    "start": "family:M2",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q047",
+    "src": "v4",
+    "start": "family:M2",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q047",
+    "src": "v4",
+    "start": "family:M2",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-03",
+    "item": "accuracy",
+    "q": "Q048",
+    "src": "v4",
+    "start": "family:M2",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q050",
+    "src": "v4",
+    "start": "family:M2",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q050",
+    "src": "v4",
+    "start": "family:M2",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-04",
+    "item": "on_topic",
+    "q": "Q050",
+    "src": "v4",
+    "start": "family:M2",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q054",
+    "src": "v4",
+    "start": "family:M2",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q055",
+    "src": "v4",
+    "start": "family:M2",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-04",
+    "item": "candidates",
+    "q": "Q055",
+    "src": "v4",
+    "start": "family:M2",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "procedure_relation"
+    ],
+    "group": "쌍 관계",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q056",
+    "src": "v4",
+    "start": "family:M2",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "쌍 관계",
+    "hop": 2,
+    "intent": "I-07",
+    "item": "safety",
+    "q": "Q056",
+    "src": "v4",
+    "start": "family:M2",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "procedure_relation"
+    ],
+    "group": "쌍 관계",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "on_topic",
+    "q": "Q056",
+    "src": "v4",
+    "start": "family:M2",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q058",
+    "src": "v4",
+    "start": "product:M4-1-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q060",
+    "src": "v4",
+    "start": "family:M4",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "procedure_relation"
+    ],
+    "group": "쌍 관계",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q064",
+    "src": "v4",
+    "start": "family:M4",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q065",
+    "src": "v4",
+    "start": "family:M4",
+    "tier": "weak",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q065",
+    "src": "v4",
+    "start": "family:M4",
+    "tier": "weak",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-09",
+    "item": "safety",
+    "q": "Q066",
+    "src": "v4",
+    "start": null,
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-09",
+    "item": "on_topic",
+    "q": "Q066",
+    "src": "v4",
+    "start": null,
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q067",
+    "src": "v4",
+    "start": "product:M3-4-1",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "safety",
+    "q": "Q067",
+    "src": "v4",
+    "start": "product:M3-4-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q067",
+    "src": "v4",
+    "start": "product:M3-4-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q068",
+    "src": "v4",
+    "start": "family:M4",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "계열",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q069",
+    "src": "v4",
+    "start": "family:M5",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q069",
+    "src": "v4",
+    "start": "family:M5",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q070",
+    "src": "v4",
+    "start": "family:M4",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "procedure_relation"
+    ],
+    "group": "쌍 관계",
+    "hop": 1,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q070",
+    "src": "v4",
+    "start": "family:M4",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q072",
+    "src": "v4",
+    "start": "product:M9-1-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "product_unit",
+     "uses_product"
+    ],
+    "group": "제품",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q072",
+    "src": "v4",
+    "start": "product:M9-1-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q072",
+    "src": "v4",
+    "start": "product:M9-1-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q073",
+    "src": "v4",
+    "start": "product:M9-1-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "다른 시술",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q073",
+    "src": "v4",
+    "start": "product:M9-1-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q073",
+    "src": "v4",
+    "start": "product:M9-1-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-09",
+    "item": "safety",
+    "q": "Q074",
+    "src": "v4",
+    "start": "family:M9",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q075",
+    "src": "v4",
+    "start": "family:M9",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q075",
+    "src": "v4",
+    "start": "family:M9",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "safety",
+    "q": "Q075",
+    "src": "v4",
+    "start": "family:M9",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-02",
+    "item": "accuracy",
+    "q": "Q078",
+    "src": "v4",
+    "start": "family:M9",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q081",
+    "src": "v4",
+    "start": "family:M9",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q081",
+    "src": "v4",
+    "start": "family:M9",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q082",
+    "src": "v4",
+    "start": null,
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-07",
+    "item": "on_topic",
+    "q": "Q082",
+    "src": "v4",
+    "start": null,
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q083",
+    "src": "v4",
+    "start": "family:M9",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "safety",
+    "q": "Q083",
+    "src": "v4",
+    "start": "family:M9",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-01",
+    "item": "safety",
+    "q": "Q086",
+    "src": "v4",
+    "start": "site:site.jawline",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q087",
+    "src": "v4",
+    "start": "family:M11",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q087",
+    "src": "v4",
+    "start": "family:M11",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-05",
+    "item": "safety",
+    "q": "Q088",
+    "src": "v4",
+    "start": "concern:P7",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-01",
+    "item": "accuracy",
+    "q": "Q089",
+    "src": "v4",
+    "start": "concern:P9-1",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-01",
+    "item": "accuracy",
+    "q": "Q089",
+    "src": "v4",
+    "start": "concern:P9-1",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-01",
+    "item": "on_topic",
+    "q": "Q089",
+    "src": "v4",
+    "start": "concern:P9-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-03",
+    "item": "on_topic",
+    "q": "Q094",
+    "src": "v4",
+    "start": "family:M11",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-03",
+    "item": "accuracy",
+    "q": "Q095",
+    "src": "v4",
+    "start": "family:M11",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-03",
+    "item": "on_topic",
+    "q": "Q095",
+    "src": "v4",
+    "start": "family:M11",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "procedure_relation"
+    ],
+    "group": "쌍 관계",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "candidates",
+    "q": "Q097",
+    "src": "v4",
+    "start": "family:M11",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "procedure_relation"
+    ],
+    "group": "쌍 관계",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q097",
+    "src": "v4",
+    "start": "family:M11",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-10",
+    "item": "accuracy",
+    "q": "Q098",
+    "src": "v4",
+    "start": "family:M11",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-10",
+    "item": "safety",
+    "q": "Q098",
+    "src": "v4",
+    "start": "family:M11",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q099",
+    "src": "v4",
+    "start": "concern:P9-2",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "family_technique"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-11",
+    "item": "accuracy",
+    "q": "Q101",
+    "src": "v4",
+    "start": "family:M12",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q102",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q102",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q102",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q102",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "key_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q103",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "uncertainty",
+    "q": "Q103",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q103",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-05",
+    "item": "safety",
+    "q": "Q103",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "key_technique"
+    ],
+    "group": "다른 시술",
+    "hop": 1,
+    "intent": "I-10",
+    "item": "accuracy",
+    "q": "Q104",
+    "src": "v4",
+    "start": "technique:K04a",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "key_technique"
+    ],
+    "group": "다른 시술",
+    "hop": 1,
+    "intent": "I-10",
+    "item": "accuracy",
+    "q": "Q104",
+    "src": "v4",
+    "start": "technique:K04a",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-10",
+    "item": "safety",
+    "q": "Q104",
+    "src": "v4",
+    "start": "technique:K04a",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q105",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-04",
+    "item": "on_topic",
+    "q": "Q105",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q105",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-04",
+    "item": "safety",
+    "q": "Q105",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q106",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "key_family",
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q106",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q106",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q108",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q112",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "procedure_relation"
+    ],
+    "group": "쌍 관계",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q112",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "key_technique"
+    ],
+    "group": "다른 시술",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q113",
+    "src": "v4",
+    "start": "technique:K04a",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "key_technique"
+    ],
+    "group": "다른 시술",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q113",
+    "src": "v4",
+    "start": "technique:K04a",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q114",
+    "src": "v4",
+    "start": "concern:P5-1",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "고민 관계",
+    "hop": 2,
+    "intent": "I-07",
+    "item": "on_topic",
+    "q": "Q114",
+    "src": "v4",
+    "start": "concern:P5-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q114",
+    "src": "v4",
+    "start": "concern:P5-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "anchors_combo"
+    ],
+    "group": "조합",
+    "hop": 1,
+    "intent": "I-11",
+    "item": "accuracy",
+    "q": "Q117",
+    "src": "v4",
+    "start": "concern:P6",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 3,
+    "intent": "I-11",
+    "item": "safety",
+    "q": "Q117",
+    "src": "v4",
+    "start": "concern:P6",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-11",
+    "item": "on_topic",
+    "q": "Q117",
+    "src": "v4",
+    "start": "concern:P6",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "고민 관계",
+    "hop": 3,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q118",
+    "src": "v4",
+    "start": "concern:P6",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "safety",
+    "q": "Q118",
+    "src": "v4",
+    "start": "concern:P6",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q118",
+    "src": "v4",
+    "start": "concern:P6",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-09",
+    "item": "safety",
+    "q": "Q120",
+    "src": "v4",
+    "start": "concern:P6",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-01",
+    "item": "accuracy",
+    "q": "Q121",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "treats"
+    ],
+    "group": "고민 관계",
+    "hop": 1,
+    "intent": "I-01",
+    "item": "on_topic",
+    "q": "Q121",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-01",
+    "item": "accuracy",
+    "q": "Q121",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "child_of"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q122",
+    "src": "v4",
+    "start": "concern:P6",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q122",
+    "src": "v4",
+    "start": "concern:P6",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "child_of"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q122",
+    "src": "v4",
+    "start": "concern:P6",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "제품",
+    "hop": 2,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q123",
+    "src": "v4",
+    "start": "concern:P8-1",
+    "tier": "partial",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "제품",
+    "hop": 2,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q123",
+    "src": "v4",
+    "start": "concern:P8-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-04",
+    "item": "on_topic",
+    "q": "Q124",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q124",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q126",
+    "src": "v4",
+    "start": "unit_procedure:U5-030",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-10",
+    "item": "accuracy",
+    "q": "Q127",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-10",
+    "item": "on_topic",
+    "q": "Q127",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-03",
+    "item": "on_topic",
+    "q": "Q129",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "anchors_combo"
+    ],
+    "group": "조합",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q131",
+    "src": "v4",
+    "start": "concern:P6",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "anchors_combo"
+    ],
+    "group": "조합",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q131",
+    "src": "v4",
+    "start": "concern:P6",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-02",
+    "item": "accuracy",
+    "q": "Q132",
+    "src": "v4",
+    "start": "concern:P9",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "계열",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q133",
+    "src": "v4",
+    "start": "concern:P9",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "safety",
+    "q": "Q133",
+    "src": "v4",
+    "start": "concern:P9",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q133",
+    "src": "v4",
+    "start": "concern:P9",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q134",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "계열",
+    "hop": 2,
+    "intent": "I-05",
+    "item": "on_topic",
+    "q": "Q135",
+    "src": "v4",
+    "start": "technique:K04b",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "key_technique"
+    ],
+    "group": "다른 시술",
+    "hop": 1,
+    "intent": "I-03",
+    "item": "on_topic",
+    "q": "Q136",
+    "src": "v4",
+    "start": "technique:K04b",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "key_technique"
+    ],
+    "group": "다른 시술",
+    "hop": 1,
+    "intent": "I-03",
+    "item": "accuracy",
+    "q": "Q136",
+    "src": "v4",
+    "start": "technique:K04b",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "key_technique"
+    ],
+    "group": "다른 시술",
+    "hop": 1,
+    "intent": "I-03",
+    "item": "on_topic",
+    "q": "Q136",
+    "src": "v4",
+    "start": "technique:K04b",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-10",
+    "item": "accuracy",
+    "q": "Q137",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-09",
+    "item": "on_topic",
+    "q": "Q138",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "on_topic",
+    "q": "Q139",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q140",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "key_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q140",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q141",
+    "src": "v4",
+    "start": "concern:P9",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-09",
+    "item": "safety",
+    "q": "Q141",
+    "src": "v4",
+    "start": "concern:P9",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-01",
+    "item": "accuracy",
+    "q": "Q142",
+    "src": "v4",
+    "start": "concern:P7",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-01",
+    "item": "safety",
+    "q": "Q142",
+    "src": "v4",
+    "start": "concern:P7",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-02",
+    "item": "accuracy",
+    "q": "Q145",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "key_technique"
+    ],
+    "group": "다른 시술",
+    "hop": 1,
+    "intent": "I-04",
+    "item": "on_topic",
+    "q": "Q146",
+    "src": "v4",
+    "start": "technique:K04b",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "제품",
+    "hop": 2,
+    "intent": "I-10",
+    "item": "accuracy",
+    "q": "Q147",
+    "src": "v4",
+    "start": "concern:P10",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-10",
+    "item": "on_topic",
+    "q": "Q147",
+    "src": "v4",
+    "start": "concern:P10",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q148",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q148",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "on_topic",
+    "q": "Q148",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q149",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q149",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "key_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q150",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "key_family",
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-09",
+    "item": "on_topic",
+    "q": "Q150",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "key_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-09",
+    "item": "on_topic",
+    "q": "Q150",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q153",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "anchors_combo"
+    ],
+    "group": "조합",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q156",
+    "src": "v4",
+    "start": "concern:P10",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "anchors_combo"
+    ],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q156",
+    "src": "v4",
+    "start": "concern:P10",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "anchors_combo"
+    ],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "on_topic",
+    "q": "Q156",
+    "src": "v4",
+    "start": "concern:P10",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "key_family",
+     "procedure_relation",
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q158",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-10",
+    "item": "accuracy",
+    "q": "Q159",
+    "src": "v4",
+    "start": "concern:P10",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "제품",
+    "hop": 2,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q160",
+    "src": "v4",
+    "start": "concern:P10",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "제품",
+    "hop": 2,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q160",
+    "src": "v4",
+    "start": "concern:P10",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q161",
+    "src": "v4",
+    "start": "check_condition:C-PREG",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-09",
+    "item": "safety",
+    "q": "Q161",
+    "src": "v4",
+    "start": "check_condition:C-PREG",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q162",
+    "src": "v4",
+    "start": "technique:K04b",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "계열",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q162",
+    "src": "v4",
+    "start": "technique:K04b",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "safety",
+    "q": "Q162",
+    "src": "v4",
+    "start": "technique:K04b",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q162",
+    "src": "v4",
+    "start": "technique:K04b",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q163",
+    "src": "v4",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q163",
+    "src": "v4",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-04",
+    "item": "safety",
+    "q": "Q163",
+    "src": "v4",
+    "start": "family:M15",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "계열",
+    "hop": 2,
+    "intent": "I-03",
+    "item": "on_topic",
+    "q": "Q164",
+    "src": "v4",
+    "start": "family:M2",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q165",
+    "src": "v4",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-05",
+    "item": "on_topic",
+    "q": "Q165",
+    "src": "v4",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-05",
+    "item": "safety",
+    "q": "Q165",
+    "src": "v4",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-05",
+    "item": "on_topic",
+    "q": "Q165",
+    "src": "v4",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-03",
+    "item": "accuracy",
+    "q": "Q166",
+    "src": "v4",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-03",
+    "item": "on_topic",
+    "q": "Q166",
+    "src": "v4",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-03",
+    "item": "on_topic",
+    "q": "Q167",
+    "src": "v4",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-03",
+    "item": "on_topic",
+    "q": "Q167",
+    "src": "v4",
+    "start": "family:M15",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q168",
+    "src": "v4",
+    "start": "concern:P6",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q168",
+    "src": "v4",
+    "start": "concern:P6",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q169",
+    "src": "v4",
+    "start": "family:M15",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q169",
+    "src": "v4",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-09",
+    "item": "safety",
+    "q": "Q169",
+    "src": "v4",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q170",
+    "src": "v4",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-04",
+    "item": "on_topic",
+    "q": "Q170",
+    "src": "v4",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q171",
+    "src": "v4",
+    "start": "family:M15",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q172",
+    "src": "v4",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q172",
+    "src": "v4",
+    "start": "family:M15",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "treats",
+     "treats_unit"
+    ],
+    "group": "고민 관계",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q175",
+    "src": "v4",
+    "start": "concern:P9",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q175",
+    "src": "v4",
+    "start": "concern:P9",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-04",
+    "item": "safety",
+    "q": "Q176",
+    "src": "v4",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "key_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-04",
+    "item": "candidates",
+    "q": "Q176",
+    "src": "v4",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "procedure_relation"
+    ],
+    "group": "쌍 관계",
+    "hop": 1,
+    "intent": "I-01",
+    "item": "safety",
+    "q": "Q178",
+    "src": "v4",
+    "start": "family:M7",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-01",
+    "item": "accuracy",
+    "q": "Q178",
+    "src": "v4",
+    "start": "family:M7",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-01",
+    "item": "safety",
+    "q": "Q178",
+    "src": "v4",
+    "start": "family:M7",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q179",
+    "src": "v4",
+    "start": "family:M7",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "safety",
+    "q": "Q184",
+    "src": "v4",
+    "start": "family:M7",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "key_family",
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q185",
+    "src": "v4",
+    "start": "family:M7",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q185",
+    "src": "v4",
+    "start": "family:M7",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "procedure_relation"
+    ],
+    "group": "쌍 관계",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q186",
+    "src": "v4",
+    "start": "family:M7",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 3,
+    "intent": "I-01",
+    "item": "safety",
+    "q": "Q187",
+    "src": "v4",
+    "start": "concern:P3-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "계열",
+    "hop": 3,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q189",
+    "src": "v4",
+    "start": "family:M7",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "계열",
+    "hop": 3,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q189",
+    "src": "v4",
+    "start": "family:M7",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-04",
+    "item": "safety",
+    "q": "Q190",
+    "src": "v4",
+    "start": "family:M7",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "safety",
+    "q": "Q191",
+    "src": "v4",
+    "start": "purpose:PU-01",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "anchors_combo"
+    ],
+    "group": "조합",
+    "hop": 1,
+    "intent": "I-01",
+    "item": "accuracy",
+    "q": "Q192",
+    "src": "v4",
+    "start": "concern:P12",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "anchors_combo"
+    ],
+    "group": "조합",
+    "hop": 1,
+    "intent": "I-01",
+    "item": "on_topic",
+    "q": "Q192",
+    "src": "v4",
+    "start": "concern:P12",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "anchors_combo"
+    ],
+    "group": "조합",
+    "hop": 1,
+    "intent": "I-01",
+    "item": "on_topic",
+    "q": "Q192",
+    "src": "v4",
+    "start": "concern:P12",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "treats"
+    ],
+    "group": "고민 관계",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "on_topic",
+    "q": "Q193",
+    "src": "v4",
+    "start": "concern:P12-4",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q194",
+    "src": "v4",
+    "start": "technique:K08",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "제품",
+    "hop": 2,
+    "intent": "I-05",
+    "item": "safety",
+    "q": "Q194",
+    "src": "v4",
+    "start": "technique:K08",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-09",
+    "item": "on_topic",
+    "q": "Q197",
+    "src": "v4",
+    "start": "site:site.abdomen",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "계열",
+    "hop": 3,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q198",
+    "src": "v4",
+    "start": "concern:P14-3",
+    "tier": "partial",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q198",
+    "src": "v4",
+    "start": "concern:P14-3",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "treats",
+     "treats_unit"
+    ],
+    "group": "고민 관계",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "safety",
+    "q": "Q198",
+    "src": "v4",
+    "start": "concern:P14-3",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "쌍 관계",
+    "hop": 4,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q200",
+    "src": "v4",
+    "start": "product:auto-40-1774737181584",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "쌍 관계",
+    "hop": 2,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q201",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "procedure_relation"
+    ],
+    "group": "쌍 관계",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q201",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q202",
+    "src": "v4",
+    "start": "check_condition:C-ISO",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q203",
+    "src": "v4",
+    "start": null,
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q203",
+    "src": "v4",
+    "start": null,
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-09",
+    "item": "safety",
+    "q": "Q203",
+    "src": "v4",
+    "start": null,
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-09",
+    "item": "safety",
+    "q": "Q204",
+    "src": "v4",
+    "start": null,
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-09",
+    "item": "on_topic",
+    "q": "Q204",
+    "src": "v4",
+    "start": null,
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-11",
+    "item": "accuracy",
+    "q": "Q205",
+    "src": "v4",
+    "start": null,
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "safety",
+    "q": "Q209",
+    "src": "v4",
+    "start": "product:M4-1-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "safety",
+    "q": "Q209",
+    "src": "v4",
+    "start": "product:M4-1-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q209",
+    "src": "v4",
+    "start": "product:M4-1-1",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q210",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-08",
+    "item": "accuracy",
+    "q": "Q211",
+    "src": "v4",
+    "start": "family:M8",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q212",
+    "src": "v4",
+    "start": "product:M9-1-3",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q212",
+    "src": "v4",
+    "start": "product:M9-1-3",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "safety",
+    "q": "Q212",
+    "src": "v4",
+    "start": "product:M9-1-3",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q214",
+    "src": "v4",
+    "start": "product:M15-4-1",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "계열",
+    "hop": 3,
+    "intent": "I-05",
+    "item": "on_topic",
+    "q": "Q214",
+    "src": "v4",
+    "start": "product:M15-4-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q215",
+    "src": "v4",
+    "start": "unit_procedure:U5-018",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q215",
+    "src": "v4",
+    "start": "unit_procedure:U5-018",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "safety",
+    "q": "Q216",
+    "src": "v4",
+    "start": "family:M4",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q218",
+    "src": "v4",
+    "start": "family:M9",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q218",
+    "src": "v4",
+    "start": "family:M9",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "product_unit",
+     "uses_product"
+    ],
+    "group": "제품",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q219",
+    "src": "v4",
+    "start": "product:M3-4-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "product_unit",
+     "uses_product"
+    ],
+    "group": "제품",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "on_topic",
+    "q": "Q219",
+    "src": "v4",
+    "start": "product:M3-4-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-01",
+    "item": "on_topic",
+    "q": "Q221",
+    "src": "v4",
+    "start": "family:M7",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-02",
+    "item": "accuracy",
+    "q": "Q222",
+    "src": "v4",
+    "start": "product:M9-2-5",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-02",
+    "item": "safety",
+    "q": "Q222",
+    "src": "v4",
+    "start": "product:M9-2-5",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q224",
+    "src": "v4",
+    "start": "product:M3-4-1",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "on_topic",
+    "q": "Q224",
+    "src": "v4",
+    "start": "product:M3-4-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "treats",
+     "treats_unit"
+    ],
+    "group": "고민 관계",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q226",
+    "src": "v4",
+    "start": "concern:P10",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-01",
+    "item": "safety",
+    "q": "Q227",
+    "src": "v4",
+    "start": "concern:P10",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "제품",
+    "hop": 99,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q228",
+    "src": "v4",
+    "start": "concern:P10",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-04",
+    "item": "safety",
+    "q": "Q228",
+    "src": "v4",
+    "start": "concern:P10",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q230",
+    "src": "v4",
+    "start": "site:site.axilla",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "key_site"
+    ],
+    "group": "부위",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "safety",
+    "q": "Q230",
+    "src": "v4",
+    "start": "site:site.axilla",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "on_topic",
+    "q": "Q231",
+    "src": "v4",
+    "start": "concern:P14-3",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "계열",
+    "hop": 2,
+    "intent": "I-05",
+    "item": "on_topic",
+    "q": "Q231",
+    "src": "v4",
+    "start": "concern:P14-3",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q232",
+    "src": "v4",
+    "start": "site:site.axilla",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-05",
+    "item": "safety",
+    "q": "Q232",
+    "src": "v4",
+    "start": "site:site.axilla",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q233",
+    "src": "v4",
+    "start": "family:M2",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "anchors_combo"
+    ],
+    "group": "조합",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q234",
+    "src": "v4",
+    "start": "concern:P10",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q235",
+    "src": "v4",
+    "start": "family:M9",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-04",
+    "item": "on_topic",
+    "q": "Q235",
+    "src": "v4",
+    "start": "family:M9",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "계열",
+    "hop": 2,
+    "intent": "I-02",
+    "item": "safety",
+    "q": "Q237",
+    "src": "v4",
+    "start": "concern:auto-83-1774737181584",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "부위 위험",
+    "hop": 2,
+    "intent": "I-02",
+    "item": "on_topic",
+    "q": "Q237",
+    "src": "v4",
+    "start": "concern:auto-83-1774737181584",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q238",
+    "src": "v4",
+    "start": null,
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-07",
+    "item": "on_topic",
+    "q": "Q238",
+    "src": "v4",
+    "start": null,
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-07",
+    "item": "on_topic",
+    "q": "Q238",
+    "src": "v4",
+    "start": null,
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "합병증",
+    "hop": 2,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q239",
+    "src": "v4",
+    "start": "product:M1-2-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-04",
+    "item": "on_topic",
+    "q": "Q239",
+    "src": "v4",
+    "start": "product:M1-2-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-01",
+    "item": "safety",
+    "q": "Q002",
+    "src": "v3",
+    "start": "concern:auto-83-1774737181584",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "부위 위험",
+    "hop": 2,
+    "intent": "I-01",
+    "item": "safety",
+    "q": "Q002",
+    "src": "v3",
+    "start": "concern:auto-83-1774737181584",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-01",
+    "item": "safety",
+    "q": "Q003",
+    "src": "v3",
+    "start": "site:site.jawline",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "site_caution"
+    ],
+    "group": "부위 위험",
+    "hop": 1,
+    "intent": "I-01",
+    "item": "accuracy",
+    "q": "Q003",
+    "src": "v3",
+    "start": "site:site.jawline",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "site_caution"
+    ],
+    "group": "부위 위험",
+    "hop": 1,
+    "intent": "I-01",
+    "item": "accuracy",
+    "q": "Q003",
+    "src": "v3",
+    "start": "site:site.jawline",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-01",
+    "item": "safety",
+    "q": "Q004",
+    "src": "v3",
+    "start": "concern:auto-89-1774737181584",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "쌍 관계",
+    "hop": 4,
+    "intent": "I-01",
+    "item": "uncertainty",
+    "q": "Q004",
+    "src": "v3",
+    "start": "concern:auto-89-1774737181584",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-01",
+    "item": "accuracy",
+    "q": "Q005",
+    "src": "v3",
+    "start": "site:site.axilla",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-01",
+    "item": "safety",
+    "q": "Q006",
+    "src": "v3",
+    "start": "concern:P6",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "쌍 관계",
+    "hop": 3,
+    "intent": "I-01",
+    "item": "uncertainty",
+    "q": "Q006",
+    "src": "v3",
+    "start": "concern:P6",
+    "tier": "partial",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "다른 시술",
+    "hop": 2,
+    "intent": "I-01",
+    "item": "accuracy",
+    "q": "Q006",
+    "src": "v3",
+    "start": "concern:P6",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 3,
+    "intent": "I-01",
+    "item": "on_topic",
+    "q": "Q006",
+    "src": "v3",
+    "start": "concern:P6",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-01",
+    "item": "safety",
+    "q": "Q007",
+    "src": "v3",
+    "start": "concern:J10",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-01",
+    "item": "safety",
+    "q": "Q007",
+    "src": "v3",
+    "start": "concern:J10",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "concern_avoid_unit",
+     "treats",
+     "treats_unit"
+    ],
+    "group": "고민 관계",
+    "hop": 1,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q008",
+    "src": "v3",
+    "start": "concern:P5-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-09",
+    "item": "safety",
+    "q": "Q008",
+    "src": "v3",
+    "start": "concern:P5-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-02",
+    "item": "safety",
+    "q": "Q009",
+    "src": "v3",
+    "start": "product:auto-40-1774737181584",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-02",
+    "item": "accuracy",
+    "q": "Q009",
+    "src": "v3",
+    "start": "product:auto-40-1774737181584",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-02",
+    "item": "accuracy",
+    "q": "Q009",
+    "src": "v3",
+    "start": "product:auto-40-1774737181584",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-02",
+    "item": "safety",
+    "q": "Q010",
+    "src": "v3",
+    "start": "family:M7",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-02",
+    "item": "safety",
+    "q": "Q010",
+    "src": "v3",
+    "start": "family:M7",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-03",
+    "item": "safety",
+    "q": "Q011",
+    "src": "v3",
+    "start": "product:auto-40-1774737181584",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "safety",
+    "q": "Q014",
+    "src": "v3",
+    "start": "family:M7",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-05",
+    "item": "on_topic",
+    "q": "Q014",
+    "src": "v3",
+    "start": "family:M7",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q015",
+    "src": "v3",
+    "start": "product:M9-1-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "safety",
+    "q": "Q015",
+    "src": "v3",
+    "start": "product:M9-1-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q015",
+    "src": "v3",
+    "start": "product:M9-1-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "safety",
+    "q": "Q015",
+    "src": "v3",
+    "start": "product:M9-1-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q015",
+    "src": "v3",
+    "start": "product:M9-1-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q016",
+    "src": "v3",
+    "start": "product:M3-1-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "쌍 관계",
+    "hop": 3,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q017",
+    "src": "v3",
+    "start": "product:auto-40-1774737181584",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "쌍 관계",
+    "hop": 4,
+    "intent": "I-07",
+    "item": "safety",
+    "q": "Q017",
+    "src": "v3",
+    "start": "product:auto-40-1774737181584",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q018",
+    "src": "v3",
+    "start": null,
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-07",
+    "item": "safety",
+    "q": "Q018",
+    "src": "v3",
+    "start": null,
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q019",
+    "src": "v3",
+    "start": "unit_procedure:U5-028",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-08",
+    "item": "safety",
+    "q": "Q020",
+    "src": "v3",
+    "start": "product:auto-40-1774737181584",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q021",
+    "src": "v3",
+    "start": "check_condition:C-ISO",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-11",
+    "item": "safety",
+    "q": "Q025",
+    "src": "v3",
+    "start": null,
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-11",
+    "item": "accuracy",
+    "q": "Q025",
+    "src": "v3",
+    "start": null,
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-11",
+    "item": "accuracy",
+    "q": "Q025",
+    "src": "v3",
+    "start": null,
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-11",
+    "item": "safety",
+    "q": "Q025",
+    "src": "v3",
+    "start": null,
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "anchors_combo"
+    ],
+    "group": "조합",
+    "hop": 1,
+    "intent": "I-11",
+    "item": "accuracy",
+    "q": "Q026",
+    "src": "v3",
+    "start": "concern:P5",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "anchors_combo"
+    ],
+    "group": "조합",
+    "hop": 1,
+    "intent": "I-11",
+    "item": "accuracy",
+    "q": "Q026",
+    "src": "v3",
+    "start": "concern:P5",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "key_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q027",
+    "src": "v3",
+    "start": "unit_procedure:U5-001",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q028",
+    "src": "v3",
+    "start": "concern:P2-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q031",
+    "src": "v3",
+    "start": "product:M1-2-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-05",
+    "item": "safety",
+    "q": "Q031",
+    "src": "v3",
+    "start": "product:M1-2-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q036",
+    "src": "v3",
+    "start": "product:M1-2-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [
+     "product_unit"
+    ],
+    "group": "제품",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "safety",
+    "q": "Q039",
+    "src": "v3",
+    "start": "product:M1-2-1",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q039",
+    "src": "v3",
+    "start": "product:M1-2-1",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q039",
+    "src": "v3",
+    "start": "product:M1-2-1",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q039",
+    "src": "v3",
+    "start": "product:M1-2-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-02",
+    "item": "accuracy",
+    "q": "Q040",
+    "src": "v3",
+    "start": "unit_procedure:U5-010",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q042",
+    "src": "v3",
+    "start": null,
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-06",
+    "item": "safety",
+    "q": "Q042",
+    "src": "v3",
+    "start": null,
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-02",
+    "item": "accuracy",
+    "q": "Q046",
+    "src": "v3",
+    "start": "family:M2",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q047",
+    "src": "v3",
+    "start": "family:M2",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q047",
+    "src": "v3",
+    "start": "family:M2",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-03",
+    "item": "accuracy",
+    "q": "Q048",
+    "src": "v3",
+    "start": "family:M2",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q050",
+    "src": "v3",
+    "start": "family:M2",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q054",
+    "src": "v3",
+    "start": "family:M2",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q054",
+    "src": "v3",
+    "start": "family:M2",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "procedure_relation"
+    ],
+    "group": "쌍 관계",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q054",
+    "src": "v3",
+    "start": "family:M2",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "procedure_relation"
+    ],
+    "group": "쌍 관계",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q054",
+    "src": "v3",
+    "start": "family:M2",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-04",
+    "item": "on_topic",
+    "q": "Q055",
+    "src": "v3",
+    "start": "family:M2",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "procedure_relation"
+    ],
+    "group": "쌍 관계",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q056",
+    "src": "v3",
+    "start": "family:M2",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "procedure_relation"
+    ],
+    "group": "쌍 관계",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q056",
+    "src": "v3",
+    "start": "family:M2",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q057",
+    "src": "v3",
+    "start": "product:M4-1-1",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "safety",
+    "q": "Q057",
+    "src": "v3",
+    "start": "product:M4-1-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "safety",
+    "q": "Q060",
+    "src": "v3",
+    "start": "family:M4",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [
+     "procedure_relation"
+    ],
+    "group": "쌍 관계",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q064",
+    "src": "v3",
+    "start": "family:M4",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "쌍 관계",
+    "hop": 2,
+    "intent": "I-07",
+    "item": "candidates",
+    "q": "Q064",
+    "src": "v3",
+    "start": "family:M4",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q065",
+    "src": "v3",
+    "start": "family:M4",
+    "tier": "weak",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q065",
+    "src": "v3",
+    "start": "family:M4",
+    "tier": "weak",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-09",
+    "item": "safety",
+    "q": "Q066",
+    "src": "v3",
+    "start": null,
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-09",
+    "item": "on_topic",
+    "q": "Q066",
+    "src": "v3",
+    "start": null,
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "product_unit",
+     "uses_product"
+    ],
+    "group": "제품",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q067",
+    "src": "v3",
+    "start": "product:M3-4-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q067",
+    "src": "v3",
+    "start": "product:M3-4-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q067",
+    "src": "v3",
+    "start": "product:M3-4-1",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q068",
+    "src": "v3",
+    "start": "family:M4",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q069",
+    "src": "v3",
+    "start": "family:M5",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "safety",
+    "q": "Q069",
+    "src": "v3",
+    "start": "family:M5",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q070",
+    "src": "v3",
+    "start": "family:M4",
+    "tier": "weak",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q070",
+    "src": "v3",
+    "start": "family:M4",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q072",
+    "src": "v3",
+    "start": "product:M9-1-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q072",
+    "src": "v3",
+    "start": "product:M9-1-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "safety",
+    "q": "Q072",
+    "src": "v3",
+    "start": "product:M9-1-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q073",
+    "src": "v3",
+    "start": "product:M9-1-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "safety",
+    "q": "Q073",
+    "src": "v3",
+    "start": "product:M9-1-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "safety",
+    "q": "Q073",
+    "src": "v3",
+    "start": "product:M9-1-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q073",
+    "src": "v3",
+    "start": "product:M9-1-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q074",
+    "src": "v3",
+    "start": "family:M9",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "safety",
+    "q": "Q075",
+    "src": "v3",
+    "start": "family:M9",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-02",
+    "item": "accuracy",
+    "q": "Q078",
+    "src": "v3",
+    "start": "family:M9",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-02",
+    "item": "accuracy",
+    "q": "Q078",
+    "src": "v3",
+    "start": "family:M9",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q081",
+    "src": "v3",
+    "start": "family:M9",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "safety",
+    "q": "Q081",
+    "src": "v3",
+    "start": "family:M9",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q082",
+    "src": "v3",
+    "start": null,
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q082",
+    "src": "v3",
+    "start": null,
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q083",
+    "src": "v3",
+    "start": "family:M9",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q084",
+    "src": "v3",
+    "start": null,
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-07",
+    "item": "safety",
+    "q": "Q084",
+    "src": "v3",
+    "start": null,
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-01",
+    "item": "safety",
+    "q": "Q086",
+    "src": "v3",
+    "start": "site:site.jawline",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-01",
+    "item": "accuracy",
+    "q": "Q086",
+    "src": "v3",
+    "start": "site:site.jawline",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-01",
+    "item": "on_topic",
+    "q": "Q086",
+    "src": "v3",
+    "start": "site:site.jawline",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "key_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q087",
+    "src": "v3",
+    "start": "family:M11",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q087",
+    "src": "v3",
+    "start": "family:M11",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "safety",
+    "q": "Q087",
+    "src": "v3",
+    "start": "family:M11",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q087",
+    "src": "v3",
+    "start": "family:M11",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "합병증",
+    "hop": 2,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q088",
+    "src": "v3",
+    "start": "concern:P7",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-05",
+    "item": "safety",
+    "q": "Q088",
+    "src": "v3",
+    "start": "concern:P7",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "계열",
+    "hop": 2,
+    "intent": "I-01",
+    "item": "accuracy",
+    "q": "Q089",
+    "src": "v3",
+    "start": "concern:P9-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-01",
+    "item": "safety",
+    "q": "Q089",
+    "src": "v3",
+    "start": "concern:P9-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "합병증",
+    "hop": 2,
+    "intent": "I-01",
+    "item": "uncertainty",
+    "q": "Q089",
+    "src": "v3",
+    "start": "concern:P9-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-01",
+    "item": "accuracy",
+    "q": "Q089",
+    "src": "v3",
+    "start": "concern:P9-1",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-01",
+    "item": "safety",
+    "q": "Q089",
+    "src": "v3",
+    "start": "concern:P9-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-01",
+    "item": "on_topic",
+    "q": "Q089",
+    "src": "v3",
+    "start": "concern:P9-1",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-03",
+    "item": "accuracy",
+    "q": "Q094",
+    "src": "v3",
+    "start": "family:M11",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-03",
+    "item": "accuracy",
+    "q": "Q095",
+    "src": "v3",
+    "start": "family:M11",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-03",
+    "item": "accuracy",
+    "q": "Q095",
+    "src": "v3",
+    "start": "family:M11",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-03",
+    "item": "accuracy",
+    "q": "Q095",
+    "src": "v3",
+    "start": "family:M11",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "has_complication"
+    ],
+    "group": "합병증",
+    "hop": 1,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q096",
+    "src": "v3",
+    "start": "family:M11",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "procedure_relation"
+    ],
+    "group": "쌍 관계",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q097",
+    "src": "v3",
+    "start": "family:M11",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "safety",
+    "q": "Q097",
+    "src": "v3",
+    "start": "family:M11",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "계열",
+    "hop": 3,
+    "intent": "I-11",
+    "item": "on_topic",
+    "q": "Q101",
+    "src": "v3",
+    "start": "family:M12",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "safety",
+    "q": "Q102",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "고민 관계",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q102",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q102",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q102",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q102",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q103",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q105",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-04",
+    "item": "on_topic",
+    "q": "Q105",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q105",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "safety",
+    "q": "Q106",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "계열",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q106",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-03",
+    "item": "accuracy",
+    "q": "Q109",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-03",
+    "item": "accuracy",
+    "q": "Q109",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-03",
+    "item": "accuracy",
+    "q": "Q110",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "has_complication",
+     "procedure_relation"
+    ],
+    "group": "쌍 관계",
+    "hop": 1,
+    "intent": "I-03",
+    "item": "safety",
+    "q": "Q110",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-03",
+    "item": "on_topic",
+    "q": "Q110",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "procedure_relation"
+    ],
+    "group": "쌍 관계",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q112",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q113",
+    "src": "v3",
+    "start": "technique:K04a",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q113",
+    "src": "v3",
+    "start": "technique:K04a",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q113",
+    "src": "v3",
+    "start": "technique:K04a",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q114",
+    "src": "v3",
+    "start": "concern:P5-1",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q114",
+    "src": "v3",
+    "start": "concern:P5-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q115",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-11",
+    "item": "accuracy",
+    "q": "Q117",
+    "src": "v3",
+    "start": "concern:P6",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "anchors_combo"
+    ],
+    "group": "조합",
+    "hop": 1,
+    "intent": "I-11",
+    "item": "accuracy",
+    "q": "Q117",
+    "src": "v3",
+    "start": "concern:P6",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q118",
+    "src": "v3",
+    "start": "concern:P6",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-06",
+    "item": "safety",
+    "q": "Q118",
+    "src": "v3",
+    "start": "concern:P6",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "child_of"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q118",
+    "src": "v3",
+    "start": "concern:P6",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [
+     "procedure_relation"
+    ],
+    "group": "쌍 관계",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q119",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-01",
+    "item": "accuracy",
+    "q": "Q121",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-01",
+    "item": "on_topic",
+    "q": "Q121",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "child_of"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q122",
+    "src": "v3",
+    "start": "concern:P6",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q123",
+    "src": "v3",
+    "start": "concern:P8-1",
+    "tier": "weak",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q123",
+    "src": "v3",
+    "start": "concern:P8-1",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-04",
+    "item": "on_topic",
+    "q": "Q124",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q124",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "key_family",
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-04",
+    "item": "on_topic",
+    "q": "Q124",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "key_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q125",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q125",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "requires_check_unit"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q126",
+    "src": "v3",
+    "start": "unit_procedure:U5-030",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "requires_check_unit"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q126",
+    "src": "v3",
+    "start": "unit_procedure:U5-030",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-10",
+    "item": "accuracy",
+    "q": "Q127",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q128",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case1",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-03",
+    "item": "safety",
+    "q": "Q129",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-03",
+    "item": "accuracy",
+    "q": "Q129",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-02",
+    "item": "on_topic",
+    "q": "Q132",
+    "src": "v3",
+    "start": "concern:P9",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q133",
+    "src": "v3",
+    "start": "concern:P9",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "procedure_relation"
+    ],
+    "group": "쌍 관계",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q134",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "계열",
+    "hop": 2,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q135",
+    "src": "v3",
+    "start": "technique:K04b",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "key_technique"
+    ],
+    "group": "다른 시술",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "on_topic",
+    "q": "Q135",
+    "src": "v3",
+    "start": "technique:K04b",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-05",
+    "item": "on_topic",
+    "q": "Q135",
+    "src": "v3",
+    "start": "technique:K04b",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "key_technique"
+    ],
+    "group": "다른 시술",
+    "hop": 1,
+    "intent": "I-03",
+    "item": "accuracy",
+    "q": "Q136",
+    "src": "v3",
+    "start": "technique:K04b",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "key_technique"
+    ],
+    "group": "다른 시술",
+    "hop": 1,
+    "intent": "I-03",
+    "item": "accuracy",
+    "q": "Q136",
+    "src": "v3",
+    "start": "technique:K04b",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [
+     "procedure_relation"
+    ],
+    "group": "쌍 관계",
+    "hop": 1,
+    "intent": "I-10",
+    "item": "accuracy",
+    "q": "Q137",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-10",
+    "item": "accuracy",
+    "q": "Q137",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q138",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q138",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-09",
+    "item": "on_topic",
+    "q": "Q138",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q139",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q139",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "safety",
+    "q": "Q139",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-07",
+    "item": "on_topic",
+    "q": "Q139",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q140",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q140",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "key_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q140",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "on_topic",
+    "q": "Q140",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q141",
+    "src": "v3",
+    "start": "concern:P9",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-01",
+    "item": "safety",
+    "q": "Q142",
+    "src": "v3",
+    "start": "concern:P7",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-02",
+    "item": "accuracy",
+    "q": "Q145",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case1",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-02",
+    "item": "safety",
+    "q": "Q145",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case1",
+    "edges1": [
+     "anchors_combo"
+    ],
+    "group": "조합",
+    "hop": 1,
+    "intent": "I-10",
+    "item": "accuracy",
+    "q": "Q147",
+    "src": "v3",
+    "start": "concern:P10",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-10",
+    "item": "accuracy",
+    "q": "Q147",
+    "src": "v3",
+    "start": "concern:P10",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-10",
+    "item": "accuracy",
+    "q": "Q147",
+    "src": "v3",
+    "start": "concern:P10",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q148",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "on_topic",
+    "q": "Q148",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q148",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q149",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q149",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-09",
+    "item": "safety",
+    "q": "Q149",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-09",
+    "item": "on_topic",
+    "q": "Q149",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "key_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q150",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "쌍 관계",
+    "hop": 3,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q156",
+    "src": "v3",
+    "start": "concern:P10",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-10",
+    "item": "safety",
+    "q": "Q159",
+    "src": "v3",
+    "start": "concern:P10",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-10",
+    "item": "accuracy",
+    "q": "Q159",
+    "src": "v3",
+    "start": "concern:P10",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "제품",
+    "hop": 2,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q160",
+    "src": "v3",
+    "start": "concern:P10",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-09",
+    "item": "uncertainty",
+    "q": "Q161",
+    "src": "v3",
+    "start": "check_condition:C-PREG",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q162",
+    "src": "v3",
+    "start": "technique:K04b",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q162",
+    "src": "v3",
+    "start": "technique:K04b",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "safety",
+    "q": "Q162",
+    "src": "v3",
+    "start": "technique:K04b",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-04",
+    "item": "on_topic",
+    "q": "Q163",
+    "src": "v3",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "계열",
+    "hop": 2,
+    "intent": "I-03",
+    "item": "on_topic",
+    "q": "Q164",
+    "src": "v3",
+    "start": "family:M2",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "key_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q165",
+    "src": "v3",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "key_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "safety",
+    "q": "Q165",
+    "src": "v3",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q165",
+    "src": "v3",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-05",
+    "item": "on_topic",
+    "q": "Q165",
+    "src": "v3",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-03",
+    "item": "on_topic",
+    "q": "Q166",
+    "src": "v3",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-03",
+    "item": "accuracy",
+    "q": "Q167",
+    "src": "v3",
+    "start": "family:M15",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-03",
+    "item": "accuracy",
+    "q": "Q167",
+    "src": "v3",
+    "start": "family:M15",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-03",
+    "item": "on_topic",
+    "q": "Q167",
+    "src": "v3",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q168",
+    "src": "v3",
+    "start": "concern:P6",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-09",
+    "item": "on_topic",
+    "q": "Q168",
+    "src": "v3",
+    "start": "concern:P6",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q168",
+    "src": "v3",
+    "start": "concern:P6",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q169",
+    "src": "v3",
+    "start": "family:M15",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-09",
+    "item": "safety",
+    "q": "Q169",
+    "src": "v3",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q169",
+    "src": "v3",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-04",
+    "item": "on_topic",
+    "q": "Q170",
+    "src": "v3",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q170",
+    "src": "v3",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q171",
+    "src": "v3",
+    "start": "family:M15",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q172",
+    "src": "v3",
+    "start": "family:M15",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "합병증",
+    "hop": 3,
+    "intent": "I-07",
+    "item": "safety",
+    "q": "Q172",
+    "src": "v3",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q172",
+    "src": "v3",
+    "start": "family:M15",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "safety",
+    "q": "Q172",
+    "src": "v3",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-03",
+    "item": "accuracy",
+    "q": "Q174",
+    "src": "v3",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-03",
+    "item": "on_topic",
+    "q": "Q174",
+    "src": "v3",
+    "start": "family:M15",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q175",
+    "src": "v3",
+    "start": "concern:P9",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q175",
+    "src": "v3",
+    "start": "concern:P9",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "treats",
+     "treats_unit"
+    ],
+    "group": "고민 관계",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "safety",
+    "q": "Q175",
+    "src": "v3",
+    "start": "concern:P9",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "섹션(시작 노드)",
+    "hop": 0,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q176",
+    "src": "v3",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "다른 시술",
+    "hop": 2,
+    "intent": "I-04",
+    "item": "on_topic",
+    "q": "Q176",
+    "src": "v3",
+    "start": "family:M15",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "procedure_relation"
+    ],
+    "group": "쌍 관계",
+    "hop": 1,
+    "intent": "I-01",
+    "item": "safety",
+    "q": "Q178",
+    "src": "v3",
+    "start": "family:M7",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-01",
+    "item": "on_topic",
+    "q": "Q178",
+    "src": "v3",
+    "start": "family:M7",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q179",
+    "src": "v3",
+    "start": "family:M7",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "safety",
+    "q": "Q184",
+    "src": "v3",
+    "start": "family:M7",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "key_family",
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q185",
+    "src": "v3",
+    "start": "family:M7",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q185",
+    "src": "v3",
+    "start": "family:M7",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "계열",
+    "hop": 3,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q189",
+    "src": "v3",
+    "start": "family:M7",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "계열",
+    "hop": 3,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q189",
+    "src": "v3",
+    "start": "family:M7",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q190",
+    "src": "v3",
+    "start": "family:M7",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-04",
+    "item": "safety",
+    "q": "Q190",
+    "src": "v3",
+    "start": "family:M7",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-04",
+    "item": "safety",
+    "q": "Q190",
+    "src": "v3",
+    "start": "family:M7",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "쌍 관계",
+    "hop": 3,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q191",
+    "src": "v3",
+    "start": "purpose:PU-01",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "anchors_combo"
+    ],
+    "group": "조합",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q191",
+    "src": "v3",
+    "start": "purpose:PU-01",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "anchors_combo"
+    ],
+    "group": "조합",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q191",
+    "src": "v3",
+    "start": "purpose:PU-01",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 3,
+    "intent": "I-01",
+    "item": "safety",
+    "q": "Q192",
+    "src": "v3",
+    "start": "concern:P12",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "anchors_combo"
+    ],
+    "group": "조합",
+    "hop": 1,
+    "intent": "I-01",
+    "item": "accuracy",
+    "q": "Q192",
+    "src": "v3",
+    "start": "concern:P12",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 3,
+    "intent": "I-01",
+    "item": "accuracy",
+    "q": "Q192",
+    "src": "v3",
+    "start": "concern:P12",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 3,
+    "intent": "I-01",
+    "item": "safety",
+    "q": "Q192",
+    "src": "v3",
+    "start": "concern:P12",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-05",
+    "item": "safety",
+    "q": "Q193",
+    "src": "v3",
+    "start": "concern:P12-4",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "treats"
+    ],
+    "group": "고민 관계",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q193",
+    "src": "v3",
+    "start": "concern:P12-4",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q197",
+    "src": "v3",
+    "start": "site:site.abdomen",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-09",
+    "item": "safety",
+    "q": "Q197",
+    "src": "v3",
+    "start": "site:site.abdomen",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-09",
+    "item": "on_topic",
+    "q": "Q197",
+    "src": "v3",
+    "start": "site:site.abdomen",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "treats",
+     "treats_unit"
+    ],
+    "group": "고민 관계",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q198",
+    "src": "v3",
+    "start": "concern:P14-3",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "treats"
+    ],
+    "group": "고민 관계",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q198",
+    "src": "v3",
+    "start": "concern:P14-3",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "treats",
+     "treats_unit"
+    ],
+    "group": "고민 관계",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q198",
+    "src": "v3",
+    "start": "concern:P14-3",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "쌍 관계",
+    "hop": 3,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q200",
+    "src": "v3",
+    "start": "product:auto-40-1774737181584",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "쌍 관계",
+    "hop": 3,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q200",
+    "src": "v3",
+    "start": "product:auto-40-1774737181584",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [
+     "key_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q201",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "쌍 관계",
+    "hop": 2,
+    "intent": "I-07",
+    "item": "accuracy",
+    "q": "Q201",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q203",
+    "src": "v3",
+    "start": null,
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q204",
+    "src": "v3",
+    "start": null,
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-09",
+    "item": "safety",
+    "q": "Q204",
+    "src": "v3",
+    "start": null,
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-09",
+    "item": "on_topic",
+    "q": "Q204",
+    "src": "v3",
+    "start": null,
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q206",
+    "src": "v3",
+    "start": null,
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q206",
+    "src": "v3",
+    "start": null,
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-04",
+    "item": "candidates",
+    "q": "Q210",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q210",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [
+     "procedure_relation"
+    ],
+    "group": "쌍 관계",
+    "hop": 1,
+    "intent": "I-08",
+    "item": "accuracy",
+    "q": "Q211",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-08",
+    "item": "accuracy",
+    "q": "Q211",
+    "src": "v3",
+    "start": "family:M8",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q212",
+    "src": "v3",
+    "start": "product:M9-1-3",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "on_topic",
+    "q": "Q212",
+    "src": "v3",
+    "start": "product:M9-1-3",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "조합",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q212",
+    "src": "v3",
+    "start": "product:M9-1-3",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q214",
+    "src": "v3",
+    "start": "product:M15-4-1",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "계열",
+    "hop": 3,
+    "intent": "I-05",
+    "item": "candidates",
+    "q": "Q214",
+    "src": "v3",
+    "start": "product:M15-4-1",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "on_topic",
+    "q": "Q214",
+    "src": "v3",
+    "start": "product:M15-4-1",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q214",
+    "src": "v3",
+    "start": "product:M15-4-1",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "on_topic",
+    "q": "Q215",
+    "src": "v3",
+    "start": "unit_procedure:U5-018",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q215",
+    "src": "v3",
+    "start": "unit_procedure:U5-018",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "전역 · scope",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q215",
+    "src": "v3",
+    "start": "unit_procedure:U5-018",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "safety",
+    "q": "Q216",
+    "src": "v3",
+    "start": "family:M4",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-05",
+    "item": "safety",
+    "q": "Q216",
+    "src": "v3",
+    "start": "family:M4",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-09",
+    "item": "accuracy",
+    "q": "Q218",
+    "src": "v3",
+    "start": "family:M9",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-09",
+    "item": "on_topic",
+    "q": "Q218",
+    "src": "v3",
+    "start": "family:M9",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "requires_check"
+    ],
+    "group": "금기 조건",
+    "hop": 1,
+    "intent": "I-01",
+    "item": "safety",
+    "q": "Q221",
+    "src": "v3",
+    "start": "family:M7",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-01",
+    "item": "on_topic",
+    "q": "Q221",
+    "src": "v3",
+    "start": "family:M7",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-02",
+    "item": "safety",
+    "q": "Q222",
+    "src": "v3",
+    "start": "product:M9-2-5",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "다른 시술",
+    "hop": 2,
+    "intent": "I-02",
+    "item": "accuracy",
+    "q": "Q222",
+    "src": "v3",
+    "start": "product:M9-2-5",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q224",
+    "src": "v3",
+    "start": "product:M3-4-1",
+    "tier": null,
+    "unknown": false
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-02",
+    "item": "safety",
+    "q": "Q225",
+    "src": "v3",
+    "start": "concern:P10",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "treats",
+     "treats_unit"
+    ],
+    "group": "고민 관계",
+    "hop": 1,
+    "intent": "I-02",
+    "item": "candidates",
+    "q": "Q225",
+    "src": "v3",
+    "start": "concern:P10",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "treats",
+     "treats_unit"
+    ],
+    "group": "고민 관계",
+    "hop": 1,
+    "intent": "I-02",
+    "item": "on_topic",
+    "q": "Q225",
+    "src": "v3",
+    "start": "concern:P10",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case1",
+    "edges1": [],
+    "group": "금기 조건",
+    "hop": 2,
+    "intent": "I-06",
+    "item": "safety",
+    "q": "Q226",
+    "src": "v3",
+    "start": "concern:P10",
+    "tier": "exact",
+    "unknown": false
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "treats",
+     "treats_unit"
+    ],
+    "group": "고민 관계",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q226",
+    "src": "v3",
+    "start": "concern:P10",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [
+     "anchors_combo"
+    ],
+    "group": "조합",
+    "hop": 1,
+    "intent": "I-06",
+    "item": "accuracy",
+    "q": "Q226",
+    "src": "v3",
+    "start": "concern:P10",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "제품",
+    "hop": 99,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q228",
+    "src": "v3",
+    "start": "concern:P10",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q230",
+    "src": "v3",
+    "start": "site:site.axilla",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q230",
+    "src": "v3",
+    "start": "site:site.axilla",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q231",
+    "src": "v3",
+    "start": "concern:P14-3",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q232",
+    "src": "v3",
+    "start": "site:site.axilla",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "골드에 없음",
+    "hop": 99,
+    "intent": "I-05",
+    "item": "accuracy",
+    "q": "Q232",
+    "src": "v3",
+    "start": "site:site.axilla",
+    "tier": null,
+    "unknown": true
+   },
+   {
+    "case": "case2",
+    "edges1": [
+     "product_family"
+    ],
+    "group": "계열",
+    "hop": 1,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q235",
+    "src": "v3",
+    "start": "family:M9",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "부위 위험",
+    "hop": 2,
+    "intent": "I-02",
+    "item": "accuracy",
+    "q": "Q237",
+    "src": "v3",
+    "start": "concern:auto-83-1774737181584",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "부위 위험",
+    "hop": 2,
+    "intent": "I-02",
+    "item": "on_topic",
+    "q": "Q237",
+    "src": "v3",
+    "start": "concern:auto-83-1774737181584",
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "시작 노드 없음",
+    "hop": 99,
+    "intent": "I-07",
+    "item": "on_topic",
+    "q": "Q238",
+    "src": "v3",
+    "start": null,
+    "tier": "exact",
+    "unknown": true
+   },
+   {
+    "case": "case3",
+    "edges1": [],
+    "group": "합병증",
+    "hop": 2,
+    "intent": "I-04",
+    "item": "accuracy",
+    "q": "Q239",
+    "src": "v3",
+    "start": "product:M1-2-1",
+    "tier": "exact",
+    "unknown": true
+   }
+  ],
+  "rows_total": 621,
+  "rows_with_gold_hit": 461,
+  "v3": {
+   "all": {
+    "계열": 35,
+    "고민 관계": 10,
+    "금기 조건": 60,
+    "다른 시술": 6,
+    "부위 위험": 5,
+    "섹션(시작 노드)": 26,
+    "쌍 관계": 23,
+    "전역 · scope": 20,
+    "제품": 4,
+    "조합": 43,
+    "합병증": 5
+   },
+   "by_intent": {
+    "I-01": {
+     "계열": 1,
+     "금기 조건": 13,
+     "다른 시술": 1,
+     "부위 위험": 3,
+     "섹션(시작 노드)": 1,
+     "쌍 관계": 3,
+     "전역 · scope": 2,
+     "조합": 3,
+     "합병증": 1
+    },
+    "I-02": {
+     "고민 관계": 2,
+     "금기 조건": 7,
+     "다른 시술": 1,
+     "부위 위험": 2,
+     "섹션(시작 노드)": 2,
+     "전역 · scope": 2
+    },
+    "I-03": {
+     "계열": 5,
+     "금기 조건": 4,
+     "다른 시술": 2,
+     "섹션(시작 노드)": 7,
+     "쌍 관계": 1
+    },
+    "I-04": {
+     "계열": 9,
+     "금기 조건": 3,
+     "다른 시술": 1,
+     "섹션(시작 노드)": 7,
+     "전역 · scope": 1,
+     "제품": 2,
+     "조합": 1,
+     "합병증": 1
+    },
+    "I-05": {
+     "계열": 6,
+     "고민 관계": 2,
+     "금기 조건": 10,
+     "다른 시술": 1,
+     "섹션(시작 노드)": 6,
+     "전역 · scope": 6,
+     "조합": 1,
+     "합병증": 1
+    },
+    "I-06": {
+     "계열": 9,
+     "고민 관계": 5,
+     "금기 조건": 8,
+     "쌍 관계": 4,
+     "제품": 2,
+     "조합": 24
+    },
+    "I-07": {
+     "계열": 2,
+     "금기 조건": 3,
+     "쌍 관계": 13,
+     "전역 · scope": 4,
+     "조합": 2,
+     "합병증": 1
+    },
+    "I-08": {
+     "금기 조건": 1,
+     "쌍 관계": 1
+    },
+    "I-09": {
+     "계열": 2,
+     "고민 관계": 1,
+     "금기 조건": 10,
+     "섹션(시작 노드)": 3,
+     "전역 · scope": 2,
+     "조합": 6,
+     "합병증": 1
+    },
+    "I-10": {
+     "금기 조건": 1,
+     "쌍 관계": 1,
+     "전역 · scope": 3,
+     "조합": 3
+    },
+    "I-11": {
+     "계열": 1,
+     "조합": 3
+    }
+   },
+   "hop": {
+    "0": 26,
+    "1": 115,
+    "2": 78,
+    "3": 15,
+    "4": 2,
+    "9": 1
+   },
+   "n": 237
+  },
+  "v4": {
+   "all": {
+    "계열": 46,
+    "고민 관계": 7,
+    "금기 조건": 40,
+    "다른 시술": 9,
+    "부위": 1,
+    "부위 위험": 3,
+    "섹션(시작 노드)": 37,
+    "쌍 관계": 16,
+    "전역 · scope": 15,
+    "제품": 11,
+    "조합": 38,
+    "합병증": 1
+   },
+   "by_intent": {
+    "I-01": {
+     "계열": 1,
+     "고민 관계": 1,
+     "금기 조건": 11,
+     "부위 위험": 2,
+     "쌍 관계": 2,
+     "전역 · scope": 1,
+     "제품": 1,
+     "조합": 6
+    },
+    "I-02": {
+     "계열": 2,
+     "금기 조건": 1,
+     "부위 위험": 1,
+     "섹션(시작 노드)": 4,
+     "조합": 2
+    },
+    "I-03": {
+     "계열": 3,
+     "다른 시술": 3,
+     "섹션(시작 노드)": 5
+    },
+    "I-04": {
+     "계열": 9,
+     "금기 조건": 2,
+     "다른 시술": 1,
+     "섹션(시작 노드)": 13,
+     "제품": 3,
+     "조합": 2,
+     "합병증": 1
+    },
+    "I-05": {
+     "계열": 11,
+     "고민 관계": 2,
+     "금기 조건": 6,
+     "부위": 1,
+     "섹션(시작 노드)": 9,
+     "전역 · scope": 4,
+     "제품": 3,
+     "조합": 4
+    },
+    "I-06": {
+     "계열": 14,
+     "고민 관계": 3,
+     "금기 조건": 7,
+     "다른 시술": 3,
+     "섹션(시작 노드)": 3,
+     "전역 · scope": 1,
+     "제품": 1,
+     "조합": 13
+    },
+    "I-07": {
+     "계열": 1,
+     "고민 관계": 1,
+     "금기 조건": 1,
+     "쌍 관계": 12,
+     "전역 · scope": 6,
+     "제품": 2,
+     "조합": 3
+    },
+    "I-08": {
+     "쌍 관계": 1
+    },
+    "I-09": {
+     "계열": 4,
+     "금기 조건": 9,
+     "섹션(시작 노드)": 2,
+     "쌍 관계": 1,
+     "전역 · scope": 1,
+     "조합": 4
+    },
+    "I-10": {
+     "금기 조건": 1,
+     "다른 시술": 2,
+     "섹션(시작 노드)": 1,
+     "전역 · scope": 2,
+     "제품": 1,
+     "조합": 3
+    },
+    "I-11": {
+     "계열": 1,
+     "금기 조건": 2,
+     "조합": 1
+    }
+   },
+   "hop": {
+    "0": 37,
+    "1": 103,
+    "2": 73,
+    "3": 9,
+    "4": 1,
+    "9": 1
+   },
+   "n": 224
+  },
+  "v4_case3_unknown": {
+   "all": {
+    "계열": 2,
+    "금기 조건": 10,
+    "섹션(시작 노드)": 6,
+    "쌍 관계": 2,
+    "전역 · scope": 2,
+    "조합": 1
+   },
+   "by_intent": {
+    "I-01": {
+     "금기 조건": 2,
+     "조합": 1
+    },
+    "I-02": {
+     "금기 조건": 1
+    },
+    "I-04": {
+     "금기 조건": 1,
+     "섹션(시작 노드)": 3
+    },
+    "I-05": {
+     "금기 조건": 2,
+     "섹션(시작 노드)": 3
+    },
+    "I-06": {
+     "계열": 2,
+     "금기 조건": 1
+    },
+    "I-07": {
+     "쌍 관계": 2,
+     "전역 · scope": 1
+    },
+    "I-09": {
+     "금기 조건": 1,
+     "전역 · scope": 1
+    },
+    "I-11": {
+     "금기 조건": 2
+    }
+   },
+   "hop": {
+    "0": 6,
+    "1": 7,
+    "2": 7,
+    "3": 2,
+    "4": 1
+   },
+   "n": 23
+  }
+ },
+ "budget": {
+  "collected_facts_per_walk": {
+   "median": 14.0,
+   "p95": 26
+  },
+  "collected_full_text_bytes_per_walk": {
+   "max": 4877,
+   "median": 2235.0,
+   "p95": 3903
+  },
+  "enough_noul_by_step": {
+   "1": {
+    "ge_0.3": 0,
+    "ge_0.5": 0,
+    "median": 0.05,
+    "n": 171
+   },
+   "2": {
+    "ge_0.3": 22,
+    "ge_0.5": 11,
+    "median": 0.08,
+    "n": 89
+   },
+   "3": {
+    "ge_0.3": 8,
+    "ge_0.5": 4,
+    "median": 0.125,
+    "n": 36
+   },
+   "4": {
+    "ge_0.3": 4,
+    "ge_0.5": 1,
+    "median": 0.17,
+    "n": 15
+   }
+  },
+  "fallback_reasons": {
+   "no_facts/budget/steps1/step1_first_call_excluded": 10,
+   "no_facts/budget/steps3": 2,
+   "no_facts/empty/steps2": 3,
+   "no_facts/empty/steps3": 1,
+   "no_facts/enough/steps1": 3,
+   "no_facts/enough/steps2": 3,
+   "no_facts/steps/steps4": 1,
+   "no_start/empty/steps0": 11
+  },
+  "line_n": 80,
+  "nb_slim_assumed_b": 300,
+  "section_call_short": {
+   "median": 2037,
+   "n": 387,
+   "p95": 2630
+  },
+  "walk4_by_sections_per_step": {
+   "1": {
+    "first_step_median": 2937,
+    "later_step_median": 2037,
+    "walk4_median": 9048,
+    "walk4_p95": 11420
+   },
+   "2": {
+    "first_step_median": 2937,
+    "later_step_median": 4074,
+    "walk4_median": 15159,
+    "walk4_p95": 19310
+   },
+   "3": {
+    "first_step_median": 2937,
+    "later_step_median": 6111,
+    "walk4_median": 21270,
+    "walk4_p95": 27200
+   }
+  }
+ },
+ "export_hash": "b031371c4c69cea1",
+ "order": {
+  "group_edges": {
+   "계열": [
+    "child_of",
+    "family_technique",
+    "key_family",
+    "product_family"
+   ],
+   "고민 관계": [
+    "concern_avoid",
+    "concern_avoid_unit",
+    "treats",
+    "treats_unit"
+   ],
+   "근거": [
+    "cites",
+    "has_statement",
+    "has_statement_unit"
+   ],
+   "금기 조건": [
+    "requires_check",
+    "requires_check_package",
+    "requires_check_product",
+    "requires_check_unit"
+   ],
+   "부위": [
+    "concern_site",
+    "key_site"
+   ],
+   "부위 위험": [
+    "site_caution",
+    "site_caution_unit"
+   ],
+   "쌍 관계": [
+    "procedure_pair",
+    "procedure_relation"
+   ],
+   "제품": [
+    "product_unit",
+    "uses_product"
+   ],
+   "조합": [
+    "anchors_combo",
+    "combo_component"
+   ],
+   "합병증": [
+    "has_complication",
+    "has_complication_unit"
+   ]
+  },
+  "rule": "n ≥ 10 이면 그 의도 · 아니면 전체 · 셈 내림차순 · 동점 = 전체 셈 → ('부위 위험', '금기 조건', '쌍 관계', '조합', '계열', '합병증', '고민 관계', '제품', '부위', '근거') 순 · 위 3",
+  "table": {
+   "I-01": {
+    "n": 53,
+    "order": [
+     "금기 조건",
+     "조합",
+     "쌍 관계"
+    ],
+    "section_rank1": false,
+    "section_rows": 1,
+    "source": "intent"
+   },
+   "I-02": {
+    "n": 26,
+    "order": [
+     "금기 조건",
+     "부위 위험",
+     "조합"
+    ],
+    "section_rank1": false,
+    "section_rows": 6,
+    "source": "intent"
+   },
+   "I-03": {
+    "n": 30,
+    "order": [
+     "계열",
+     "금기 조건",
+     "쌍 관계"
+    ],
+    "section_rank1": true,
+    "section_rows": 12,
+    "source": "intent"
+   },
+   "I-04": {
+    "n": 56,
+    "order": [
+     "계열",
+     "금기 조건",
+     "제품"
+    ],
+    "section_rank1": true,
+    "section_rows": 20,
+    "source": "intent"
+   },
+   "I-05": {
+    "n": 73,
+    "order": [
+     "계열",
+     "금기 조건",
+     "조합"
+    ],
+    "section_rank1": false,
+    "section_rows": 15,
+    "source": "intent"
+   },
+   "I-06": {
+    "n": 97,
+    "order": [
+     "조합",
+     "계열",
+     "금기 조건"
+    ],
+    "section_rank1": false,
+    "section_rows": 3,
+    "source": "intent"
+   },
+   "I-07": {
+    "n": 51,
+    "order": [
+     "쌍 관계",
+     "조합",
+     "금기 조건"
+    ],
+    "section_rank1": false,
+    "section_rows": 0,
+    "source": "intent"
+   },
+   "I-08": {
+    "n": 3,
+    "order": [
+     "금기 조건",
+     "조합",
+     "계열"
+    ],
+    "section_rank1": false,
+    "section_rows": 0,
+    "source": "_all"
+   },
+   "I-09": {
+    "n": 46,
+    "order": [
+     "금기 조건",
+     "조합",
+     "계열"
+    ],
+    "section_rank1": false,
+    "section_rows": 5,
+    "source": "intent"
+   },
+   "I-10": {
+    "n": 18,
+    "order": [
+     "조합",
+     "금기 조건",
+     "쌍 관계"
+    ],
+    "section_rank1": false,
+    "section_rows": 1,
+    "source": "intent"
+   },
+   "I-11": {
+    "n": 8,
+    "order": [
+     "금기 조건",
+     "조합",
+     "계열"
+    ],
+    "section_rank1": false,
+    "section_rows": 0,
+    "source": "_all"
+   },
+   "_all": {
+    "n": 461,
+    "order": [
+     "금기 조건",
+     "조합",
+     "계열"
+    ],
+    "section_rows": 63
+   }
+  }
+ },
+ "order_v23": {
+  "first_section_max_2": [
+   "I-03",
+   "I-04"
+  ],
+  "rule": "1홉 행 edge kind 셈 · n ≥ 10 이면 그 의도 · 아니면 전체 · 내림차순(동점 = 전체 셈 → 이름) · 1홉 행 90% 덮을 때까지(최소 3)",
+  "table": {
+   "I-01": {
+    "counts": {
+     "anchors_combo": 4,
+     "child_of": 1,
+     "procedure_relation": 3,
+     "requires_check": 2,
+     "requires_check_unit": 1,
+     "site_caution": 3,
+     "treats": 1
+    },
+    "covered": 14,
+    "kinds": [
+     "anchors_combo",
+     "procedure_relation",
+     "site_caution",
+     "requires_check",
+     "treats",
+     "child_of"
+    ],
+    "n1": 15,
+    "source": "intent"
+   },
+   "I-02": {
+    "covered": 7,
+    "kinds": [
+     "requires_check",
+     "product_family",
+     "procedure_relation",
+     "key_family",
+     "anchors_combo",
+     "treats",
+     "key_technique",
+     "treats_unit",
+     "child_of"
+    ],
+    "n1": 7,
+    "source": "_all"
+   },
+   "I-03": {
+    "counts": {
+     "has_complication": 1,
+     "key_technique": 5,
+     "procedure_relation": 1,
+     "product_family": 6,
+     "requires_check": 3
+    },
+    "covered": 14,
+    "kinds": [
+     "product_family",
+     "key_technique",
+     "requires_check"
+    ],
+    "n1": 15,
+    "source": "intent"
+   },
+   "I-04": {
+    "counts": {
+     "key_family": 4,
+     "key_technique": 1,
+     "procedure_relation": 1,
+     "product_family": 12,
+     "requires_check": 4
+    },
+    "covered": 18,
+    "kinds": [
+     "product_family",
+     "requires_check",
+     "key_family"
+    ],
+    "n1": 19,
+    "source": "intent"
+   },
+   "I-05": {
+    "counts": {
+     "anchors_combo": 3,
+     "key_family": 8,
+     "key_site": 1,
+     "key_technique": 1,
+     "product_family": 4,
+     "product_unit": 2,
+     "requires_check": 10,
+     "treats": 4,
+     "treats_unit": 2,
+     "uses_product": 2
+    },
+    "covered": 31,
+    "kinds": [
+     "requires_check",
+     "key_family",
+     "product_family",
+     "treats",
+     "anchors_combo",
+     "treats_unit",
+     "product_unit"
+    ],
+    "n1": 33,
+    "source": "intent"
+   },
+   "I-06": {
+    "counts": {
+     "anchors_combo": 3,
+     "child_of": 4,
+     "key_family": 2,
+     "key_technique": 2,
+     "procedure_relation": 3,
+     "product_family": 13,
+     "product_unit": 3,
+     "requires_check": 5,
+     "treats": 6,
+     "treats_unit": 5,
+     "uses_product": 2
+    },
+    "covered": 37,
+    "kinds": [
+     "product_family",
+     "treats",
+     "requires_check",
+     "treats_unit",
+     "child_of",
+     "procedure_relation",
+     "anchors_combo",
+     "product_unit"
+    ],
+    "n1": 40,
+    "source": "intent"
+   },
+   "I-07": {
+    "counts": {
+     "anchors_combo": 3,
+     "key_family": 3,
+     "procedure_relation": 15,
+     "product_family": 2,
+     "requires_check": 4
+    },
+    "covered": 25,
+    "kinds": [
+     "procedure_relation",
+     "requires_check",
+     "key_family",
+     "anchors_combo"
+    ],
+    "n1": 25,
+    "source": "intent"
+   },
+   "I-08": {
+    "covered": 1,
+    "kinds": [
+     "requires_check",
+     "product_family",
+     "procedure_relation",
+     "key_family",
+     "anchors_combo",
+     "treats",
+     "key_technique",
+     "treats_unit",
+     "child_of"
+    ],
+    "n1": 1,
+    "source": "_all"
+   },
+   "I-09": {
+    "counts": {
+     "concern_avoid_unit": 1,
+     "has_complication": 1,
+     "key_family": 4,
+     "procedure_relation": 1,
+     "product_family": 3,
+     "requires_check": 9,
+     "requires_check_unit": 2,
+     "treats": 1,
+     "treats_unit": 1
+    },
+    "covered": 18,
+    "kinds": [
+     "requires_check",
+     "key_family",
+     "product_family",
+     "requires_check_unit",
+     "procedure_relation"
+    ],
+    "n1": 20,
+    "source": "intent"
+   },
+   "I-10": {
+    "covered": 5,
+    "kinds": [
+     "requires_check",
+     "product_family",
+     "procedure_relation",
+     "key_family",
+     "anchors_combo",
+     "treats",
+     "key_technique",
+     "treats_unit",
+     "child_of"
+    ],
+    "n1": 5,
+    "source": "_all"
+   },
+   "I-11": {
+    "covered": 4,
+    "kinds": [
+     "requires_check",
+     "product_family",
+     "procedure_relation",
+     "key_family",
+     "anchors_combo",
+     "treats",
+     "key_technique",
+     "treats_unit",
+     "child_of"
+    ],
+    "n1": 5,
+    "source": "_all"
+   },
+   "_all": {
+    "counts": {
+     "anchors_combo": 18,
+     "child_of": 5,
+     "concern_avoid_unit": 1,
+     "family_technique": 1,
+     "has_complication": 2,
+     "key_family": 22,
+     "key_site": 1,
+     "key_technique": 11,
+     "procedure_relation": 26,
+     "product_family": 40,
+     "product_unit": 5,
+     "requires_check": 42,
+     "requires_check_unit": 3,
+     "site_caution": 3,
+     "treats": 14,
+     "treats_unit": 10,
+     "uses_product": 4
+    },
+    "covered": 171,
+    "kinds": [
+     "requires_check",
+     "product_family",
+     "procedure_relation",
+     "key_family",
+     "anchors_combo",
+     "treats",
+     "key_technique",
+     "treats_unit",
+     "child_of"
+    ],
+    "n1": 185
+   }
+  }
+ },
+ "short": {
+  "120": {
+   "calls": 444,
+   "ratio_median": 0.211,
+   "short_max": 3204,
+   "short_median": 1721.0,
+   "short_p95": 2693,
+   "step1_all_calls_left": {
+    "12000": {
+     "lt0": 0,
+     "median": 8052.5
+    },
+    "16000": {
+     "lt0": 0,
+     "median": 12052.5
+    },
+    "20000": {
+     "lt0": 0,
+     "median": 16052.5
+    }
+   }
+  },
+  "60": {
+   "calls": 444,
+   "ratio_median": 0.202,
+   "short_max": 2897,
+   "short_median": 1721.0,
+   "short_p95": 2552,
+   "step1_all_calls_left": {
+    "12000": {
+     "lt0": 0,
+     "median": 8378.5
+    },
+    "16000": {
+     "lt0": 0,
+     "median": 12378.5
+    },
+    "20000": {
+     "lt0": 0,
+     "median": 16378.5
+    }
+   }
+  },
+  "80": {
+   "calls": 444,
+   "ratio_median": 0.206,
+   "short_max": 3066,
+   "short_median": 1721.0,
+   "short_p95": 2584,
+   "step1_all_calls_left": {
+    "12000": {
+     "lt0": 0,
+     "median": 8219.0
+    },
+    "16000": {
+     "lt0": 0,
+     "median": 12219.0
+    },
+    "20000": {
+     "lt0": 0,
+     "median": 16219.0
+    }
+   }
+  }
+ },
+ "stray": {
+  "bytes_rule_all": true,
+  "case2_calls": 521,
+  "input_shape": {
+   "empty": 10,
+   "normal": 2,
+   "stringified_array": 3
+  },
+  "n": 15,
+  "next_same_name": 13,
+  "prev": {
+   "check_conditions": 1,
+   "procedure_card": 3,
+   "recommend": 1,
+   "resolve": 10
+  },
+  "questions": 15,
+  "rows": [
+   {
+    "bytes_eq_64_plus_name": true,
+    "cli_version": "2.1.284 (Claude Code)",
+    "err_bytes": 78,
+    "idx": 1,
+    "input_shape": "normal",
+    "n_calls": 3,
+    "name": "procedure_card",
+    "next": "procedure_card",
+    "next_ok": true,
+    "prev": "resolve",
+    "prompt_case2": "7f4810a3bab1",
+    "q": "Q031"
+   },
+   {
+    "bytes_eq_64_plus_name": true,
+    "cli_version": "2.1.284 (Claude Code)",
+    "err_bytes": 92,
+    "idx": 4,
+    "input_shape": "empty",
+    "n_calls": 6,
+    "name": "check_conditions_placeholder",
+    "next": "check_conditions",
+    "next_ok": true,
+    "prev": "resolve",
+    "prompt_case2": "7f4810a3bab1",
+    "q": "Q066"
+   },
+   {
+    "bytes_eq_64_plus_name": true,
+    "cli_version": "2.1.284 (Claude Code)",
+    "err_bytes": 70,
+    "idx": 2,
+    "input_shape": "stringified_array",
+    "n_calls": 4,
+    "name": "expand",
+    "next": "expand",
+    "next_ok": true,
+    "prev": "procedure_card",
+    "prompt_case2": "7f4810a3bab1",
+    "q": "Q089"
+   },
+   {
+    "bytes_eq_64_plus_name": true,
+    "cli_version": "2.1.284 (Claude Code)",
+    "err_bytes": 80,
+    "idx": 1,
+    "input_shape": "empty",
+    "n_calls": 3,
+    "name": "check_conditions",
+    "next": "check_conditions",
+    "next_ok": true,
+    "prev": "resolve",
+    "prompt_case2": "7f4810a3bab1",
+    "q": "Q109"
+   },
+   {
+    "bytes_eq_64_plus_name": true,
+    "cli_version": "2.1.284 (Claude Code)",
+    "err_bytes": 80,
+    "idx": 1,
+    "input_shape": "empty",
+    "n_calls": 3,
+    "name": "check_conditions",
+    "next": "procedure_card",
+    "next_ok": true,
+    "prev": "resolve",
+    "prompt_case2": "7f4810a3bab1",
+    "q": "Q115"
+   },
+   {
+    "bytes_eq_64_plus_name": true,
+    "cli_version": "2.1.284 (Claude Code)",
+    "err_bytes": 78,
+    "idx": 1,
+    "input_shape": "normal",
+    "n_calls": 4,
+    "name": "procedure_card",
+    "next": "procedure_card",
+    "next_ok": false,
+    "prev": "resolve",
+    "prompt_case2": "7f4810a3bab1",
+    "q": "Q125"
+   },
+   {
+    "bytes_eq_64_plus_name": true,
+    "cli_version": "2.1.284 (Claude Code)",
+    "err_bytes": 78,
+    "idx": 2,
+    "input_shape": "empty",
+    "n_calls": 4,
+    "name": "procedure_card",
+    "next": "procedure_card",
+    "next_ok": true,
+    "prev": "recommend",
+    "prompt_case2": "7f4810a3bab1",
+    "q": "Q149"
+   },
+   {
+    "bytes_eq_64_plus_name": true,
+    "cli_version": "2.1.284 (Claude Code)",
+    "err_bytes": 78,
+    "idx": 1,
+    "input_shape": "stringified_array",
+    "n_calls": 3,
+    "name": "procedure_card",
+    "next": "procedure_card",
+    "next_ok": true,
+    "prev": "resolve",
+    "prompt_case2": "7f4810a3bab1",
+    "q": "Q164"
+   },
+   {
+    "bytes_eq_64_plus_name": true,
+    "cli_version": "2.1.284 (Claude Code)",
+    "err_bytes": 78,
+    "idx": 2,
+    "input_shape": "empty",
+    "n_calls": 4,
+    "name": "procedure_card",
+    "next": "procedure_card",
+    "next_ok": true,
+    "prev": "resolve",
+    "prompt_case2": "7f4810a3bab1",
+    "q": "Q167"
+   },
+   {
+    "bytes_eq_64_plus_name": true,
+    "cli_version": "2.1.284 (Claude Code)",
+    "err_bytes": 73,
+    "idx": 3,
+    "input_shape": "empty",
+    "n_calls": 7,
+    "name": "neighbors",
+    "next": "neighbors",
+    "next_ok": true,
+    "prev": "resolve",
+    "prompt_case2": "7f4810a3bab1",
+    "q": "Q172"
+   },
+   {
+    "bytes_eq_64_plus_name": true,
+    "cli_version": "2.1.284 (Claude Code)",
+    "err_bytes": 70,
+    "idx": 3,
+    "input_shape": "empty",
+    "n_calls": 5,
+    "name": "combos",
+    "next": "combos",
+    "next_ok": true,
+    "prev": "procedure_card",
+    "prompt_case2": "7f4810a3bab1",
+    "q": "Q175"
+   },
+   {
+    "bytes_eq_64_plus_name": true,
+    "cli_version": "2.1.284 (Claude Code)",
+    "err_bytes": 68,
+    "idx": 2,
+    "input_shape": "empty",
+    "n_calls": 7,
+    "name": "peek",
+    "next": "peek",
+    "next_ok": true,
+    "prev": "check_conditions",
+    "prompt_case2": "7f4810a3bab1",
+    "q": "Q197"
+   },
+   {
+    "bytes_eq_64_plus_name": true,
+    "cli_version": "2.1.284 (Claude Code)",
+    "err_bytes": 70,
+    "idx": 3,
+    "input_shape": "empty",
+    "n_calls": 5,
+    "name": "expand",
+    "next": "expand",
+    "next_ok": true,
+    "prev": "procedure_card",
+    "prompt_case2": "7f4810a3bab1",
+    "q": "Q234"
+   },
+   {
+    "bytes_eq_64_plus_name": true,
+    "cli_version": "2.1.284 (Claude Code)",
+    "err_bytes": 80,
+    "idx": 1,
+    "input_shape": "empty",
+    "n_calls": 3,
+    "name": "check_conditions",
+    "next": "procedure_card",
+    "next_ok": true,
+    "prev": "resolve",
+    "prompt_case2": "7f4810a3bab1",
+    "q": "Q235"
+   },
+   {
+    "bytes_eq_64_plus_name": true,
+    "cli_version": "2.1.284 (Claude Code)",
+    "err_bytes": 78,
+    "idx": 1,
+    "input_shape": "stringified_array",
+    "n_calls": 3,
+    "name": "procedure_card",
+    "next": "procedure_card",
+    "next_ok": true,
+    "prev": "resolve",
+    "prompt_case2": "7f4810a3bab1",
+    "q": "Q239"
+   }
+  ]
+ },
+ "walk": {
+  "budget_stop_at_step1": 62,
+  "budget_stop_first_call_excluded": 17,
+  "budget_stop_with_queued_neighbors": 94,
+  "budget_stops": 104,
+  "fallback": 34,
+  "neighbor_fact_reached": 49,
+  "neighbor_peek_reached": 79,
+  "queued_neighbors_median": 3.0,
+  "runs": 182,
+  "section_call_bytes": {
+   "aftercare": {
+    "max": 57988,
+    "median": 39849,
+    "n": 7,
+    "p95": 57988
+   },
+   "checks": {
+    "max": 9016,
+    "median": 8693.5,
+    "n": 24,
+    "p95": 9016
+   },
+   "disclosure": {
+    "max": 7087,
+    "median": 6547.0,
+    "n": 2,
+    "p95": 7087
+   },
+   "emergency": {
+    "max": 7327,
+    "median": 6426.5,
+    "n": 2,
+    "p95": 7327
+   },
+   "evidence": {
+    "max": 10079,
+    "median": 5878,
+    "n": 15,
+    "p95": 9765
+   },
+   "method": {
+    "max": 8802,
+    "median": 8117,
+    "n": 51,
+    "p95": 8467
+   },
+   "ops": {
+    "max": 4498,
+    "median": 4465,
+    "n": 3,
+    "p95": 4498
+   },
+   "overview": {
+    "max": 9690,
+    "median": 9247,
+    "n": 25,
+    "p95": 9639
+   },
+   "products": {
+    "max": 8333,
+    "median": 3404,
+    "n": 5,
+    "p95": 8333
+   },
+   "recovery": {
+    "max": 3061,
+    "median": 2558.0,
+    "n": 38,
+    "p95": 2685
+   },
+   "safety.complications": {
+    "max": 6871,
+    "median": 5973,
+    "n": 13,
+    "p95": 6871
+   },
+   "safety.pih": {
+    "max": 5912,
+    "median": 5283.5,
+    "n": 4,
+    "p95": 5912
+   },
+   "safety.side_effects": {
+    "max": 21246,
+    "median": 9793.0,
+    "n": 28,
+    "p95": 16001
+   },
+   "site_caution": {
+    "max": 15201,
+    "median": 13901.0,
+    "n": 4,
+    "p95": 15201
+   },
+   "timeline": {
+    "max": 8011,
+    "median": 7583.0,
+    "n": 10,
+    "p95": 8011
+   }
+  },
+  "step1_picked_neighbors_ge1": 131,
+  "step1_picked_neighbors_median": 2.0,
+  "step1_picked_sections_median": 2.0,
+  "steps_n": {
+   "0": 11,
+   "1": 82,
+   "2": 53,
+   "3": 21,
+   "4": 15
+  },
+  "steps_n_median_all": 1.0,
+  "stop": {
+   "budget": 116,
+   "empty": 28,
+   "enough": 28,
+   "steps": 10
+  },
+  "walked": 148
+ }
+}

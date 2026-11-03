@@ -1,0 +1,1349 @@
+{
+  "1": {
+    "denominators": {
+      "shared_license": 28,
+      "open": 31,
+      "items": 395
+    },
+    "existing_summary": {
+      "rows_total": 395,
+      "rows_v1": 390,
+      "rows_new": 5,
+      "active_products": 354,
+      "merged": 18,
+      "moved_to_procedure_name": 23,
+      "status": {
+        "정상": 196,
+        "확인 불가": 86,
+        "허가 대상 아님": 33,
+        "허가 취소(이력)": 17,
+        "미허가": 15,
+        "허가번호 미확인": 7
+      },
+      "recommendable": {
+        "true": 236,
+        "false": 118
+      },
+      "lines": {
+        "count": 20,
+        "names": [
+          "BBL(Sciton)",
+          "DB FNS",
+          "더블로",
+          "더채움",
+          "라라",
+          "레스틸렌",
+          "리쥬란",
+          "바이리즌",
+          "밸피엔",
+          "벨로테로",
+          "브이빔",
+          "엘라비에",
+          "엘라비에 프리미어",
+          "오메가브이",
+          "온다",
+          "유스필",
+          "쥬베룩",
+          "쥬비덤",
+          "큐젤",
+          "테오시알"
+        ],
+        "item_undetermined": [
+          "더블로",
+          "밸피엔",
+          "엘라비에 프리미어",
+          "오메가브이"
+        ]
+      },
+      "companies_filled": {
+        "manufacturer": 253,
+        "importer": 234,
+        "seller": 56
+      },
+      "seller_filled": 56,
+      "export_only_unlinked": 121,
+      "kpic_enriched_licenses": 51,
+      "kpic_enriched_note": "연결 · 이력 · 참고 허가 중 kpic 이 붙은 수",
+      "kpic_linked": 46,
+      "review_v3": {
+        "R1_3line_removed": 176,
+        "R1_line_items_dropped": 1,
+        "R2_typo_search_removed": 2,
+        "R3_drug_importer_na": 1,
+        "F4_ref_dupes_rows": 7
+      },
+      "final_10_28": {
+        "domestic7": 7,
+        "n45_rows": 41,
+        "n45_distribution_confirmed": 23,
+        "n45_confirmed_by_source": 0,
+        "n45_unconfirmed": 18
+      },
+      "source_fix": 22,
+      "open_rows": 30,
+      "open_items": 31,
+      "origin_questions": 86,
+      "export_only_rows_need_recheck": []
+    },
+    "recount": {
+      "active": 354,
+      "open_entries": 31,
+      "rows_with_open": 30,
+      "active_license_status": {
+        "정상": 196,
+        "확인 불가": 86,
+        "미허가": 15,
+        "허가 취소(이력)": 17,
+        "허가 대상 아님": 33,
+        "허가번호 미확인": 7
+      }
+    }
+  },
+  "2": {
+    "denominators": {
+      "inputs": 7,
+      "rules": 3,
+      "step5_delta": 5,
+      "step7_delta": 8,
+      "v4_fix": 7,
+      "v3_delta": 49,
+      "v2_delta": 45,
+      "source_fix_candidates": 1,
+      "families": 27,
+      "product_family": 354,
+      "out_of_family": 5,
+      "open": 0,
+      "pending_director": 3
+    },
+    "existing_summary": {
+      "families": 27,
+      "rows": 354,
+      "verdicts": {
+        "맞음": 256,
+        "여러": 19,
+        "옮김": 71,
+        "판단 필요": 3,
+        "계열 밖": 5
+      },
+      "by_family": {
+        "M1": 19,
+        "M2": 29,
+        "M3": 14,
+        "M4": 41,
+        "M5": 8,
+        "M7": 12,
+        "M8": 69,
+        "M9": 51,
+        "M11": 13,
+        "M10": 8,
+        "M12": 3,
+        "M13": 3,
+        "M14": 3,
+        "M15": 55,
+        "판단 필요(family null)": 3,
+        "N7": 1,
+        "N5": 2,
+        "N1": 10,
+        "M17": 5,
+        "계열 밖": 5
+      },
+      "changed_rows": 79,
+      "open": 0,
+      "pending_director": 3,
+      "evidence_weak": 9,
+      "conflicts": 6,
+      "this_apply_changed_rows": 49,
+      "out_of_family": 5,
+      "step5_delta": 5,
+      "step7_delta": 8
+    },
+    "recount": {
+      "verdict": {
+        "맞음": 256,
+        "여러": 19,
+        "옮김": 71,
+        "판단 필요": 3,
+        "계열 밖": 5
+      },
+      "family_null": 3,
+      "weak": 9,
+      "conflict_nonempty": 6
+    }
+  },
+  "3": {
+    "denominators": {
+      "inputs": 5,
+      "nodes": 53,
+      "strings": 176,
+      "deferred": 23,
+      "open": 0,
+      "stale_decisions": 0,
+      "doctor_questions": 35,
+      "changes": 73,
+      "boundary_rules": 6,
+      "danger_zone_mapping": 11
+    },
+    "existing_summary": {
+      "source": {
+        "path": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26",
+        "files": 21,
+        "string_fields": 22749,
+        "string_fields_counted": 1953
+      },
+      "nodes": 53,
+      "nodes_by_status": {
+        "tree": 37,
+        "added_oq206": 6,
+        "added_step3": 10
+      },
+      "strings": 176,
+      "occurrences": 440,
+      "to_node": {
+        "strings": 153,
+        "occurrences": 393,
+        "synonyms": 76,
+        "compound": 82
+      },
+      "deferred": {
+        "strings": 23,
+        "occurrences": 47,
+        "by_stage": {
+          "1단계 제품": 8,
+          "7단계 고민": 6,
+          "4단계 기법": 3,
+          "5단계 단위 시술 경로": 2,
+          "계열 밖(비미용) — 부위 노드 없음": 1,
+          "2단계 계열": 1,
+          "사후관리 문구": 1,
+          "4단계 대상 근육": 1
+        }
+      },
+      "open": 0,
+      "open_by_type": {},
+      "stale_decisions": 0,
+      "residual_tokens_allowed": 421,
+      "weak_strings": 4,
+      "anatomical_level": {
+        "강": 20,
+        "약": 29,
+        "중": 4
+      },
+      "doctor_questions": 35,
+      "doctor_questions_by_kind": {
+        "근거 약 문자열(B4)": 4,
+        "해부학 이름 — 근거 약(W5)": 29,
+        "위험 부위 대응(B9)": 1,
+        "해부학 이름(B10)": 1
+      },
+      "changed": 73
+    },
+    "recount": {
+      "weak_strings": 4,
+      "anatomical_level": {
+        "강": 20,
+        "약": 29,
+        "중": 4
+      },
+      "doctor_questions": 35
+    }
+  },
+  "4": {
+    "denominators": {
+      "inputs": 7,
+      "nodes": 26,
+      "family_defaults": 27,
+      "draft_techniques": 65,
+      "handoffs": 15,
+      "expressions": 181,
+      "conflicts": 6,
+      "user_decisions": 2,
+      "oq_closed": 4,
+      "not_done": 3,
+      "open": 0,
+      "stale_decisions": 0
+    },
+    "existing_summary": {
+      "source": {
+        "path": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26",
+        "cells": 27,
+        "lines": 215,
+        "values": 181,
+        "unique_values": 164,
+        "dup_groups": 17,
+        "dup_lines": 51
+      },
+      "nodes": 26,
+      "nodes_by_level": {
+        "큰": 14,
+        "세부": 12
+      },
+      "by_bucket": {
+        "속성": 64,
+        "넘김": 59,
+        "노드로": 41,
+        "중복": 17
+      },
+      "by_verdict": {
+        "속성 값": 40,
+        "근거 수치": 11,
+        "근거 원문": 5,
+        "넘김": 59,
+        "근거 원문 + 넘김": 4,
+        "근거 원문(주입 지표)": 1,
+        "근거 원문(관통 금지 지표) + 넘김": 1,
+        "근거 출처": 1,
+        "속성 값 + 넘김": 1,
+        "기법 노드": 22,
+        "기법 노드 근거": 19,
+        "중복": 17
+      },
+      "handoff_by_stage": {
+        "8단계": 31,
+        "2단계": 21,
+        "계열 밖": 3,
+        "5단계": 2,
+        "시맨틱": 1,
+        "7단계": 1
+      },
+      "dictionaries": {
+        "layer": 13,
+        "pulse_mode": 3,
+        "ablative": 2,
+        "tool_form": 3,
+        "peel_depth": 3,
+        "modes": 1,
+        "target_muscle": 17
+      },
+      "safe_layer_sites": 17,
+      "safe_layer_sites_with_layers": 13,
+      "target_muscles": 17,
+      "landmarks": 2,
+      "handoffs": 15,
+      "hints": 25,
+      "family_defaults": 27,
+      "draft_techniques": {
+        "합침": 29,
+        "버림": 32,
+        "유지": 4
+      },
+      "conflicts": 6,
+      "oq_closed": 4,
+      "open": 0,
+      "open_by_type": {},
+      "stale_decisions": 0
+    },
+    "recount": {
+      "expression_verdict": {
+        "속성 값": 40,
+        "근거 수치": 11,
+        "근거 원문": 5,
+        "넘김": 59,
+        "근거 원문 + 넘김": 4,
+        "근거 원문(주입 지표)": 1,
+        "근거 원문(관통 금지 지표) + 넘김": 1,
+        "근거 출처": 1,
+        "속성 값 + 넘김": 1,
+        "기법 노드": 22,
+        "기법 노드 근거": 19,
+        "중복": 17
+      },
+      "conflicts": 6,
+      "not_done": 3
+    }
+  },
+  "5": {
+    "denominators": {
+      "inputs": 7,
+      "units": 162,
+      "ledger": 521,
+      "problem_P1": 17,
+      "market": 122,
+      "step1_market_copies": 38,
+      "product_links": 354,
+      "device_name_synonyms": 36,
+      "extracted": 521,
+      "taxonomy_products": 59,
+      "pih": 26,
+      "pih_not_applicable_units": 77,
+      "pih_gap_units": 63,
+      "step4_attrs": 38,
+      "dose_range": 11,
+      "origin_questions": 20,
+      "staff_questions": 1,
+      "open": 0,
+      "stale_decisions": 0
+    },
+    "existing_summary": {
+      "source": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26",
+      "units": 162,
+      "units_by_family": {
+        "M1": 17,
+        "M2": 8,
+        "M3": 1,
+        "M4": 3,
+        "M5": 5,
+        "M6": 6,
+        "M7": 4,
+        "M8": 31,
+        "M9": 9,
+        "M10": 5,
+        "M11": 2,
+        "M12": 2,
+        "M13": 5,
+        "M14": 5,
+        "M15": 5,
+        "M16": 25,
+        "M17": 3,
+        "N1": 9,
+        "N2": 1,
+        "N3": 4,
+        "N4": 6,
+        "N5": 1,
+        "N6": 1,
+        "N7": 1,
+        "N8": 1,
+        "N9": 1,
+        "N10": 1
+      },
+      "ledger_521": {
+        "total": 521,
+        "products": 309,
+        "procedures": 175,
+        "procedures_with_unit": 175,
+        "procedures_by_dest": {
+          "단위 시술": 151,
+          "제품 + 단위 시술": 9,
+          "다른 단계 이름": 15
+        },
+        "procedures_candidate": 19,
+        "package_6": 16,
+        "not_procedure": {
+          "시술 아님": 1,
+          "값": 17,
+          "시술 아님(다른 단계)": 2
+        },
+        "pending_director": 1,
+        "no_decision": 0,
+        "check": true
+      },
+      "ledger_by_dest": {
+        "제품": 309,
+        "단위 시술": 151,
+        "값": 17,
+        "6단계 패키지": 16,
+        "다른 단계 이름": 15,
+        "제품 + 단위 시술": 9,
+        "시술 아님(다른 단계)": 2,
+        "원장님 문의": 1,
+        "시술 아님": 1
+      },
+      "problem_P1": 17,
+      "market": {
+        "total": 122,
+        "by_kind": {
+          "시술 1회": 112,
+          "6단계 패키지": 9,
+          "계열 밖": 1
+        }
+      },
+      "step1_market_copies": 38,
+      "uses_product_stored": 44,
+      "products_with_stored": 36,
+      "product_links": {
+        "조회 때 상속 후보": 303,
+        "저장 uses_product": 36,
+        "계열 has_product 만(기법 호환 단위 시술 없음 — F1)": 7,
+        "계열 밖(단위 시술 없음)": 5,
+        "원장님 문의(계열 없음)": 3
+      },
+      "extracted": {
+        "제품 × 계열": 207,
+        "단위 시술": 147,
+        "원문 보관(6단계 패키지)": 16,
+        "제품 × 계열 × 키 하위": 111,
+        "단위 시술 후보": 19,
+        "원문 보관(원장님 문의)": 1,
+        "원문 보관(값)": 17,
+        "원문 보관(시술 아님(다른 단계))": 2,
+        "원문 보관(시술 아님)": 1
+      },
+      "taxonomy_products": 59,
+      "side_effect_override": {
+        "rows": {
+          "단위 시술": 148,
+          "단위 시술 후보": 19,
+          "안 실음(원문 보관(6단계 패키지))": 16,
+          "안 실음(원문 보관(값))": 17,
+          "안 실음(원문 보관(시술 아님(다른 단계)))": 2,
+          "안 실음(원문 보관(시술 아님))": 1,
+          "안 실음(원문 보관(원장님 문의))": 1,
+          "제품 × 계열": 207,
+          "제품 × 계열 × 키 하위": 111,
+          "제품 × 계열(taxonomy products extracted)": 58
+        },
+        "product_links": 376,
+        "units": 248,
+        "rule": "부작용 덮어쓰기 값(골드 빈틈 ① · 시맨틱 U2 · 골드 G9) — extracted 행(taxonomy 항목 · taxonomy products)의 안전 칸 safety.*(common · uncommon · serious · …) 원문을 붙는 수준 그대로 싣는다: 제품 × 계열(× 키 하위) → product_links[].side_effect_override · 단위 시술(후보) → units[].side_effect_override. 값은 원문 그대로(고치지 않음) · 덮이는 계열 값은 override_of(family:{계열} — 8단계 safety.side_effects)로 근거만 남김 · 원문 보관 행(값 · 패키지 · 시술 아님 · 원장님 문의)은 붙는 곳이 없어 안 실음(extracted[].source_text 에만)"
+      },
+      "pih": {
+        "rows": 26,
+        "units_with_pih": 22,
+        "not_applicable": 77,
+        "gap": 63
+      },
+      "ops": {
+        "families": 17,
+        "units_inherit": 136,
+        "gap_by_family": {
+          "N4": 6,
+          "N1": 9,
+          "N2": 1,
+          "N3": 4,
+          "N5": 1,
+          "N6": 1,
+          "N7": 1,
+          "N8": 1,
+          "N9": 1,
+          "N10": 1
+        }
+      },
+      "step4_attrs": {
+        "rows": 38,
+        "linked": 28,
+        "to_stage8": 10
+      },
+      "dose_range": {
+        "zones": 11,
+        "unit_links": 12,
+        "no_unit_sites": [
+          "관자놀이",
+          "눈밑",
+          "입가",
+          "입술",
+          "코",
+          "팔자"
+        ]
+      },
+      "handoffs": {
+        "1단계 moved_to": 23,
+        "2단계 deferred": 13,
+        "3단계 → 5단계": 2,
+        "4단계 → 5단계": 17,
+        "지도 5단계 칸": 63,
+        "7단계 → 5단계(J7)": 27
+      },
+      "device_name_synonyms": 36,
+      "synonym_multi_unit": 14,
+      "open": 0,
+      "open_by_type": {},
+      "stale_decisions": 0,
+      "origin_questions": 20,
+      "staff_questions": 1
+    },
+    "recount": {
+      "ledger_role": {
+        "이름": 502,
+        "후보": 19
+      },
+      "market_role": {
+        "이름": 119,
+        "후보": 3
+      },
+      "menu_role": {
+        "이름": 15,
+        "후보": 2
+      },
+      "extracted_attach": {
+        "제품 × 계열": 207,
+        "단위 시술": 147,
+        "원문 보관(6단계 패키지)": 16,
+        "제품 × 계열 × 키 하위": 111,
+        "단위 시술 후보": 19,
+        "원문 보관(원장님 문의)": 1,
+        "원문 보관(값)": 17,
+        "원문 보관(시술 아님(다른 단계))": 2,
+        "원문 보관(시술 아님)": 1
+      },
+      "inheritance_pairs": 1379,
+      "stored_pairs": 44,
+      "link_status": {
+        "조회 때 상속 후보": 303,
+        "저장 uses_product": 36,
+        "계열 has_product 만(기법 호환 단위 시술 없음 — F1)": 7,
+        "계열 밖(단위 시술 없음)": 5,
+        "원장님 문의(계열 없음)": 3
+      },
+      "raw_normalization_collisions": 3
+    }
+  },
+  "6": {
+    "denominators": {
+      "packages": 24,
+      "contains": 49,
+      "slots": 8,
+      "non_packages": 9,
+      "menu_groups_used": 2,
+      "handoffs": 4,
+      "step6-to-step8-notes": 37,
+      "origin_questions": 13,
+      "source_fix": 1,
+      "open": 0,
+      "stale_decisions": 0
+    },
+    "existing_summary": {
+      "source": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26",
+      "packages": 24,
+      "by_kind": {
+        "일반 패키지": 19,
+        "병원 시그니처": 2,
+        "회차 묶음": 3
+      },
+      "recommendable": 22,
+      "source_rows": {
+        "ledger": 16,
+        "market": 9
+      },
+      "edges": 49,
+      "edges_weak": 5,
+      "slots": 8,
+      "slots_missing_unit": 1,
+      "packages_full": 18,
+      "packages_no_edge": [
+        "P6-01",
+        "P6-11",
+        "P6-20",
+        "P6-23"
+      ],
+      "non_packages": 9,
+      "non_packages_by_to": {
+        "7단계 목적 원문": 7,
+        "패키지 속성 menu_group": 2
+      },
+      "handoffs": 4,
+      "step8_notes": 37,
+      "step8_verdicts": {
+        "다름": 12,
+        "synergy 링크 없음": 13,
+        "계열 수준 참고만": 2,
+        "같음": 9,
+        "같은 계열 · 대조 없음": 1
+      },
+      "origin_questions": 13,
+      "source_fix": 1,
+      "open": 0,
+      "open_by_type": {},
+      "stale_decisions": 0
+    },
+    "recount": {
+      "slots": 8,
+      "contains_weak": 5,
+      "questions": 13
+    }
+  },
+  "7": {
+    "denominators": {
+      "rules": 35,
+      "judgements": 14,
+      "correspondence": 249,
+      "purposes": 30,
+      "edges": 437,
+      "combos": 79,
+      "step8_notes": 245,
+      "unit_gaps": 0,
+      "not_procedure": 6,
+      "unresolved": 2,
+      "concern_unresolved": 0,
+      "check_flags": 6,
+      "origin_questions": 3,
+      "source_fix_candidates": 70,
+      "open": 0,
+      "stale_decisions": 0
+    },
+    "existing_summary": {
+      "concern_nodes": {
+        "category": 12,
+        "subcategory": 31,
+        "item": 14,
+        "item_from_decision": 3,
+        "total": 57
+      },
+      "taxonomy_layers": {
+        "category": 14,
+        "subcategory": 53,
+        "item": 117,
+        "item_kind": {
+          "시술 이름": 96,
+          "고민": 11,
+          "부위": 5,
+          "시술 아님": 5
+        },
+        "subcategory_kind": {
+          "부위": 11,
+          "시술 묶음": 5,
+          "고민": 21,
+          "고민 + 부위": 7,
+          "목적 + 고민": 1,
+          "목적": 6,
+          "부위 + 대상": 1,
+          "대상": 1
+        }
+      },
+      "correspondence": {
+        "rows": 249,
+        "by_source": {
+          "problem-packages": 131,
+          "problem-combos": 8,
+          "treatment-optimization": 23,
+          "synergy": 17,
+          "combo-recipes": 6,
+          "procedure-comparison": 9,
+          "step3 deferred": 6,
+          "step3 strings handoff": 42,
+          "step6 non_packages": 7
+        },
+        "by_class": {
+          "완전 일치": 151,
+          "규칙 J5": 1,
+          "규칙 R12": 14,
+          "규칙 R14": 6,
+          "규칙 R14 · R16": 5,
+          "규칙 R17": 2,
+          "규칙 R15": 4,
+          "규칙 R14 · R15": 2,
+          "규칙 R16": 1,
+          "규칙 J14": 3,
+          "규칙 R12 · R16": 3,
+          "규칙 R14 · R15 · R16": 1,
+          "규칙 R15 · R16": 2,
+          "규칙 R12 · R14": 2,
+          "규칙 R14 · R17": 1,
+          "규칙 R18": 1,
+          "규칙 J12 · R18": 2,
+          "규칙 R16 · R17": 10,
+          "규칙 R12 · R18": 1,
+          "규칙 J3 · R1": 4,
+          "규칙 J3 · R1 · R12": 2,
+          "규칙 3단계 원 문자열 = 완전 일치": 20,
+          "규칙 R1": 3,
+          "규칙 J14 · R17": 1,
+          "규칙 R1 · R12": 1,
+          "규칙 R12 · R16 · R17": 1,
+          "규칙 R12 · R19": 1,
+          "규칙 J9 · R12 · R16": 2,
+          "규칙 J9 · R16": 2
+        },
+        "human_check": 0,
+        "gate_status": {
+          "자동(완전 일치)": 151,
+          "자동(규칙)": 98
+        },
+        "auto": 249,
+        "auto_exact": 151,
+        "auto_rule": 98
+      },
+      "decision_nodes": {
+        "J8-자갈턱": {
+          "correspondence": 1,
+          "edges": 0,
+          "combos": 0,
+          "glosses": 0
+        },
+        "J10-피부결": {
+          "correspondence": 6,
+          "edges": 14,
+          "combos": 10,
+          "glosses": 2
+        },
+        "J14-잇몸미소": {
+          "correspondence": 1,
+          "edges": 1,
+          "combos": 0,
+          "glosses": 0
+        }
+      },
+      "purposes": {
+        "expressions": 30,
+        "nodes": 13,
+        "folded_into_concern": 17
+      },
+      "edges": {
+        "total": 437,
+        "by_source": {
+          "① P1 detail 목적 낱말": 7,
+          "① P1 detail 고민 낱말": 3,
+          "① taxonomy modality_ref": 26,
+          "⑤ taxonomy 항목 = 시술 이름": 79,
+          "③ problem-packages CC 추천 시술": 154,
+          "② problem-combos": 45,
+          "④ treatment-optimization optimal_combo": 74,
+          "⑧ 결정 노드 → 단위 시술": 1,
+          "⑥ 5단계 units[].purposes(원장 용도)": 39,
+          "⑥ 5단계 목적 키(제품 출처)": 2,
+          "⑦ 원장 메뉴 분류(6단계 넘김)": 7
+        },
+        "to_units": 352,
+        "family_only": 84,
+        "no_target": 1,
+        "unit_pairs": 667,
+        "site_check": {
+          "앵커 부위 없음": 267,
+          "부위 안": 119,
+          "상위 부위 얼굴 전체": 35,
+          "이 부위 단위 시술 없음 · 계열만": 13,
+          "원천 하위 안 정함 · 계열만(R31)": 3
+        },
+        "narrow": {
+          "R23": {
+            "edges": 17,
+            "units_cut": 187
+          },
+          "R22": {
+            "edges": 46,
+            "units_cut": 52
+          },
+          "R25": {
+            "edges": 5,
+            "units_cut": 5
+          },
+          "R26": {
+            "edges": 3,
+            "units_cut": 24
+          }
+        },
+        "merged_r27": {
+          "edges": 55,
+          "cc_rows": 155
+        },
+        "concern_region": {
+          "edges_cut": 46,
+          "units_cut": 52,
+          "no_region_untouched": 13
+        }
+      },
+      "combos": {
+        "total": 79,
+        "by_kind": {
+          "고민 패키지(사이트 「추천 패키지」)": 24,
+          "목적 레시피": 7,
+          "세션 조합(순서)": 8,
+          "중증도 조합": 24,
+          "연간 플랜": 3,
+          "연령 플랜": 4,
+          "비교": 9
+        },
+        "sales_copy_default_excluded": 24,
+        "component_units": {
+          "components": 462,
+          "members": 107,
+          "upgrade": 12,
+          "total": 581
+        },
+        "component_rows": {
+          "components": 199,
+          "members": 39,
+          "upgrade": 5
+        }
+      },
+      "step8_notes": {
+        "total": 245,
+        "by_kind": {
+          "순서": 27,
+          "금기 · 간격": 17,
+          "규칙(순서 · 간격 · 금기)": 8,
+          "후속 간격(원문 속성으로도 둠)": 28,
+          "시너지(쌍 주장)": 146,
+          "간격 · 금기(대안 칸에 섞임)": 6,
+          "순서 · 간격(위험 대비 효과 문장)": 13
+        }
+      },
+      "unit_gaps": 0,
+      "not_procedure_names": 6,
+      "p10_site_gaps": [],
+      "unresolved": 2,
+      "check_flags": 6,
+      "family_mismatch": {
+        "comparison": 4,
+        "cc": 8,
+        "taxonomy_item": 3
+      },
+      "open": 0,
+      "open_by_type": {},
+      "stale": 0
+    },
+    "recount": {
+      "edge_flags": {
+        "None": 255,
+        "no_unit_at_site": 13,
+        "sub_undecided": 3,
+        "ambiguous": 100,
+        "concern_without_site": 39,
+        "ambiguous,concern_without_site": 1,
+        "check": 5,
+        "unresolved": 19,
+        "not_procedure": 2
+      },
+      "family_only": 84,
+      "edge_target_kind": {
+        "단위 시술": 352,
+        "계열만": 84,
+        "대상 없음": 1
+      },
+      "correspondence_gate_status": {
+        "자동(완전 일치)": 151,
+        "자동(규칙)": 98
+      },
+      "combo_member_flags": {
+        "components": {
+          "concern_without_site": 60,
+          "ambiguous": 75,
+          "None": 61,
+          "unresolved": 2,
+          "not_procedure": 1
+        },
+        "members": {
+          "ambiguous": 18,
+          "concern_without_site": 4,
+          "None": 17
+        },
+        "upgrade": {
+          "None": 2,
+          "concern_without_site": 1,
+          "ambiguous": 1,
+          "ambiguous,no_unit_at_site": 1
+        }
+      },
+      "source_combo_arity": {
+        "2": 119,
+        "1": 21,
+        "3": 6
+      },
+      "note_rows_without_exact_locator": 245
+    }
+  },
+  "8": {
+    "denominators": {
+      "edges": 230,
+      "resolved_pairs": 105,
+      "claims": 395,
+      "conflicts": 22,
+      "avoid_edges": 5,
+      "sequence_rank": 11,
+      "principles_text_only": 5,
+      "optimization_principles": 4,
+      "package_evidence": 37,
+      "profile_attrs": 17,
+      "attrs": 56,
+      "origin_questions": 18,
+      "origin_questions_retired": 2,
+      "conflict_resolution_rules": 6,
+      "source_fix_candidates": 10,
+      "step7_reconcile": 8,
+      "coverage": 200,
+      "row_landing": 446,
+      "research_diff": 20,
+      "open": 0,
+      "stale_decisions": 0
+    },
+    "existing_summary": {
+      "claims": 395,
+      "claims_by_kind": {
+        "간격": 9,
+        "간격 금기": 13,
+        "같은 날 불가": 7,
+        "대체(택 1)": 16,
+        "병행 · 간격": 27,
+        "병행 · 간격(문장)": 6,
+        "순서 · 간격(다음에)": 49,
+        "순서 · 간격(문장)": 8,
+        "순서(문장 화살표)": 63,
+        "순서(문장)": 6,
+        "시너지(CC 조합)": 137,
+        "시너지(함께)": 50,
+        "재시술 간격(자기 쌍)": 1,
+        "조합 금기": 3
+      },
+      "claims_by_source": {
+        "contraindications.rules": 27,
+        "problem-combos.riskBenefit": 17,
+        "problem-packages.complaints[].alternatives": 2,
+        "problem-packages.complaints[].combos": 137,
+        "synergy.links": 115,
+        "taxonomy.modality[].products[].extracted.safety.contraindications": 1,
+        "treatment-optimization.by_concern.contraindicated_combos": 10,
+        "treatment-optimization.by_concern.sequence": 42,
+        "treatment-optimization.combination_rules": 13,
+        "treatment-sequence.common_combos.note": 5,
+        "treatment-sequence.incompatible_same_day": 6,
+        "treatment-sequence.minimum_intervals": 7,
+        "treatment-sequence.principles": 13
+      },
+      "edges": 230,
+      "edges_conflict": 0,
+      "conflicts": 22,
+      "conflicts_by_type": {
+        "간격 수치": 2,
+        "같은 날 가능 ↔ 불가": 4,
+        "순서(먼저 하는 쪽)": 16
+      },
+      "grade_conflicts": 76,
+      "wait_conflicts": 1,
+      "not_procedure_claims": 6,
+      "bundle_claims": 2,
+      "unresolved_claims": 1,
+      "interval_filled": 239,
+      "condition_nodes": 53,
+      "condition_claims": 336,
+      "not_condition_claims": 37,
+      "not_condition_by_kind": {
+        "고지 항목": 6,
+        "근거 수준 문장(조건 아님) → 계열 원문 속성": 1,
+        "부위 조건(사람 조건 아님) → 계열 원문 속성 · 부위 표시(site_caution 은 anatomy M1/M2 만)": 2,
+        "상담 항목": 22,
+        "시술 준비 항목": 5,
+        "효과 문장(조건 아님) → 계열 원문 속성": 1
+      },
+      "person_condition_claims": 330,
+      "grade3": {
+        "금기": 196,
+        "주의": 55,
+        "확인만": 74,
+        "확인만(고지)": 5
+      },
+      "avoid_edges": 5,
+      "complications": 35,
+      "complications_by_source": {
+        "U1 taxonomy": 8,
+        "complications.json": 27
+      },
+      "side_effects": 72,
+      "side_effect_exceptions": 9,
+      "side_effect_gap_families": 10,
+      "gap_filled_families": {
+        "M10": {
+          "부작용": 5
+        },
+        "M12": {
+          "부작용": 6,
+          "합병증": 1
+        },
+        "M13": {
+          "부작용": 3
+        },
+        "M17": {
+          "부작용": 3,
+          "합병증": 1
+        },
+        "M4": {
+          "부작용": 7,
+          "합병증": 2
+        },
+        "M5": {
+          "부작용": 4,
+          "합병증": 1
+        },
+        "M6": {
+          "부작용": 6,
+          "합병증": 3
+        }
+      },
+      "complication_gap_families": 12,
+      "complication_mild_only_families": [
+        "M15"
+      ],
+      "site_caution": 22,
+      "timelines": 10,
+      "pih": 26,
+      "evidence": {
+        "literature": 25,
+        "statements": 119,
+        "web": 29,
+        "guides": 15
+      },
+      "scope_conditional": {
+        "claims": 2,
+        "avoid_edges": 3,
+        "condition_claims": 1
+      },
+      "by_sub_condition": 2,
+      "web_evidence": {
+        "원문 출처 문자열(내부 · 통설)": 14,
+        "웹": 15,
+        "multi_url": 7
+      },
+      "attrs": 56,
+      "origin_questions": 18,
+      "source_fix_candidates": 10,
+      "coverage_fields": 200,
+      "source_rows": 446,
+      "open": 0,
+      "stale_decisions": 0,
+      "conflict_resolution": {
+        "x8": {
+          "보수적 선택": 3,
+          "의료진 확인": 16,
+          "조건 분리(가짜 충돌)": 3
+        },
+        "x8_from_bundle_new": 3,
+        "x8_with_bundle_sides": 7,
+        "grade_conflicts_conservative": 76,
+        "wait_conflicts_conservative": 1,
+        "fake_released": 3,
+        "conservative": 80,
+        "staff_true_opposition": 16,
+        "edges_by_status": {
+          "보수적 선택": 24,
+          "의료진 확인": 59,
+          "조건 분리": 3,
+          "하나": 144
+        },
+        "edges_by_review_status": {
+          "conservative": 24,
+          "ok": 147,
+          "staff_check": 59
+        },
+        "edges_by_sub_condition": 32,
+        "edges_by_direction_split": 4,
+        "edges_rules": {
+          "R1": 32,
+          "R3": 62,
+          "R4": 1,
+          "R5": 59
+        },
+        "claims_by_review_status": {
+          "conservative": 15,
+          "ok": 305,
+          "staff_check": 75
+        },
+        "resolved_pairs": 105,
+        "resolved_pairs_by_status": {
+          "보수적 선택": 35,
+          "의료진 확인": 63,
+          "하나": 7
+        },
+        "unit_pairs_checked": 4791,
+        "two_value_unit_pairs": 0,
+        "condition_resolved": 241,
+        "condition_resolved_conservative": 139,
+        "condition_resolved_unit_fold": 0,
+        "wait_resolved": 1,
+        "origin_questions_retired": [
+          "Q8-1",
+          "Q8-7"
+        ]
+      }
+    },
+    "recount": {
+      "claims_gate_status": {
+        "자동(규칙)": 395
+      },
+      "claims_review_status": {
+        "staff_check": 75,
+        "conservative": 15,
+        "ok": 305
+      },
+      "claims_resolved_true": 394,
+      "claim_endpoint_levels": {
+        "계열": 318,
+        "단위 시술": 353,
+        "부위 조건": 4,
+        "제품 → 단위 시술": 18,
+        "기법 조건": 33,
+        "하위 계열": 81,
+        "용도 조건": 4,
+        "복합(나눔)": 39,
+        "모든 시술": 1,
+        "조건 일치(낱말 교집합)": 6,
+        "시술 아님": 8,
+        "해석 안 됨": 1,
+        "계열 묶음": 2
+      },
+      "edge_review_status": {
+        "ok": 147,
+        "staff_check": 59,
+        "conservative": 24
+      },
+      "edge_resolved_status": {
+        "하나": 144,
+        "의료진 확인": 59,
+        "보수적 선택": 24,
+        "조건 분리": 3
+      },
+      "condition_resolved_status": {
+        "하나": 102,
+        "보수적 선택": 139
+      },
+      "source_locator_ambiguous_rows": 4
+    }
+  },
+  "9": {
+    "denominators": {
+      "records": 5847,
+      "node_slots": 2946,
+      "source_conflicts": 12,
+      "value_dictionary": 8,
+      "section_map": 435,
+      "new_sections": 1,
+      "open": 0
+    },
+    "existing_summary": {
+      "records": 5847,
+      "records_by_status": {
+        "source_conflict(싣지 않음)": 12,
+        "대조본 같음(same_as taxonomy products)": 38,
+        "대조본 같음(same_as taxonomy 정본)": 286,
+        "붙음": 5161,
+        "붙이지 않음(고민 CC → 붙을 노드 없음(부위))": 10,
+        "붙이지 않음(고민 CC → 붙을 노드 없음(시술 아님))": 10,
+        "붙이지 않음(고민 항목 → 붙을 노드 없음(부위))": 5,
+        "붙이지 않음(고민 항목 → 붙을 노드 없음(시술 아님))": 5,
+        "붙이지 않음(원문 보관(6단계 패키지))": 145,
+        "붙이지 않음(원문 보관(값))": 146,
+        "붙이지 않음(원문 보관(시술 아님(다른 단계)))": 14,
+        "붙이지 않음(원문 보관(시술 아님))": 8,
+        "붙이지 않음(원문 보관(원장님 문의))": 7
+      },
+      "records_by_rule": {
+        "R9-1": 4284,
+        "R9-2": 600,
+        "R9-2b": 1,
+        "R9-3": 585,
+        "R9-4": 17,
+        "R9-5": 357,
+        "R9-8": 3
+      },
+      "records_by_kind": {
+        "K1": 1283,
+        "K11": 115,
+        "K2": 631,
+        "K3": 1235,
+        "K4": 2267,
+        "K7": 89,
+        "K8": 125,
+        "K9": 102
+      },
+      "attached_records": 5161,
+      "node_slots": 2946,
+      "facts_out": 5312,
+      "d93": {
+        "한 원천": 2317,
+        "같음": 33,
+        "①": 43,
+        "②": 196,
+        "③": 357
+      },
+      "d93_by_slot": {
+        "① cc_detail": 2,
+        "① detail": 1,
+        "① indications.primary": 1,
+        "① mechanism": 10,
+        "① onset_duration.duration": 11,
+        "① onset_duration.onset": 8,
+        "① onset_duration.peak_effect": 3,
+        "① overview": 7,
+        "② cc_detail": 2,
+        "② detail": 11,
+        "② mechanism": 34,
+        "② onset_duration.duration": 69,
+        "② onset_duration.onset": 70,
+        "② overview": 10,
+        "③ alternatives": 32,
+        "③ cc_detail": 37,
+        "③ description": 1,
+        "③ detail": 72,
+        "③ indications.extended": 1,
+        "③ indications.primary": 89,
+        "③ indications.secondary": 2,
+        "③ mechanism": 46,
+        "③ onset_duration.duration": 4,
+        "③ overview": 73
+      },
+      "d93_resolved_by": {
+        "늦은 쪽": 68,
+        "원천 우선순위": 62,
+        "짧은 쪽": 66
+      },
+      "alternatives": 343,
+      "source_conflicts": 12,
+      "source_conflicts_by_rule": {
+        "D9-4": 7,
+        "R9-2a": 5
+      },
+      "value_dictionary": 8,
+      "section_map": 435,
+      "section_map_by_section": {
+        "safety.complications": 176,
+        "safety.management": 129,
+        "safety.side_effects": 130
+      },
+      "facts_by_section": {
+        "disclosure": 2,
+        "method": 638,
+        "overview": 3762,
+        "recovery": 910
+      },
+      "nodes_by_kind": {
+        "concern": 33,
+        "family": 156,
+        "product": 1956,
+        "unit_procedure": 801
+      },
+      "human_check": 0,
+      "open": 0
+    },
+    "recount": {
+      "record_status": {
+        "대조본 같음(same_as taxonomy 정본)": 286,
+        "source_conflict(싣지 않음)": 12,
+        "붙음": 5161,
+        "붙이지 않음(고민 CC → 붙을 노드 없음(시술 아님))": 10,
+        "붙이지 않음(고민 CC → 붙을 노드 없음(부위))": 10,
+        "대조본 같음(same_as taxonomy products)": 38,
+        "붙이지 않음(원문 보관(6단계 패키지))": 145,
+        "붙이지 않음(원문 보관(원장님 문의))": 7,
+        "붙이지 않음(원문 보관(값))": 146,
+        "붙이지 않음(원문 보관(시술 아님(다른 단계)))": 14,
+        "붙이지 않음(원문 보관(시술 아님))": 8,
+        "붙이지 않음(고민 항목 → 붙을 노드 없음(시술 아님))": 5,
+        "붙이지 않음(고민 항목 → 붙을 노드 없음(부위))": 5
+      },
+      "attach_status": {
+        "계열(extracted.json 대조본)": 293,
+        "고민 CC → 시술 이름 항목 → 단위 시술": 198,
+        "고민 CC → 붙을 노드 없음(시술 아님)": 10,
+        "고민 CC → 고민 노드": 22,
+        "고민 CC → 붙을 노드 없음(부위)": 10,
+        "계열(프로파일)": 17,
+        "제품 × 계열(taxonomy products extracted)": 591,
+        "제품 × 계열 × 키 하위": 933,
+        "단위 시술": 1206,
+        "계열(taxonomy 정본)": 292,
+        "제품 × 계열": 1680,
+        "원문 보관(6단계 패키지)": 145,
+        "원문 보관(원장님 문의)": 7,
+        "원문 보관(값)": 146,
+        "원문 보관(시술 아님(다른 단계))": 14,
+        "원문 보관(시술 아님)": 8,
+        "계열 하위 분류 설명(D9-9)": 3,
+        "단위 시술 후보": 155,
+        "고민 항목 → 시술 이름 항목 → 단위 시술": 95,
+        "고민 항목 → 붙을 노드 없음(시술 아님)": 5,
+        "고민 항목 → 고민 노드": 11,
+        "고민 항목 → 붙을 노드 없음(부위)": 5,
+        "고민 항목 → 시술 이름 항목 → 계열(7단계 resolve · 단위 시술 없음)": 1
+      },
+      "node_slot_class": {
+        "한 원천": 2317,
+        "③": 357,
+        "①": 43,
+        "②": 196,
+        "같음": 33
+      },
+      "alternatives": 343,
+      "resolved_by": {
+        "원천 우선순위": 62,
+        "늦은 쪽": 68,
+        "짧은 쪽": 66
+      }
+    }
+  }
+}

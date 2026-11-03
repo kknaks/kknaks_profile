@@ -1,0 +1,850 @@
+{
+  "files": [
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-entity-graph-design/design.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "generated",
+        "version_state": "value",
+        "source_version_raw": "2026-11-03-draft-1",
+        "source_version_type": "str",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-pilot-closeout-review/coverage.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "generated",
+        "version_state": "missing",
+        "source_version_raw": null,
+        "source_version_type": null,
+        "version_pointer": null,
+        "version_reason": "No top-level version member; text has no JSON version member"
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-apply.py",
+      "matches": true,
+      "meta": {
+        "source_kind": "generated",
+        "version_state": "missing",
+        "source_version_raw": null,
+        "source_version_type": null,
+        "version_pointer": null,
+        "version_reason": "No top-level version member; text has no JSON version member"
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-apply.py",
+      "matches": true,
+      "meta": {
+        "source_kind": "generated",
+        "version_state": "missing",
+        "source_version_raw": null,
+        "source_version_type": null,
+        "version_pointer": null,
+        "version_reason": "No top-level version member; text has no JSON version member"
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-apply.py",
+      "matches": true,
+      "meta": {
+        "source_kind": "generated",
+        "version_state": "missing",
+        "source_version_raw": null,
+        "source_version_type": null,
+        "version_pointer": null,
+        "version_reason": "No top-level version member; text has no JSON version member"
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step9-apply.py",
+      "matches": true,
+      "meta": {
+        "source_kind": "generated",
+        "version_state": "missing",
+        "source_version_raw": null,
+        "source_version_type": null,
+        "version_pointer": null,
+        "version_reason": "No top-level version member; text has no JSON version member"
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-data-contract-batch1/contract-fix/frozen-inputs/coordinator-progress-2026-11-03.md",
+      "matches": true,
+      "meta": {
+        "source_kind": "decision",
+        "version_state": "missing",
+        "source_version_raw": null,
+        "source_version_type": null,
+        "version_pointer": null,
+        "version_reason": "No top-level version member; text has no JSON version member"
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/gate-answers/classify-v1.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "decision",
+        "version_state": "missing",
+        "source_version_raw": null,
+        "source_version_type": null,
+        "version_pointer": null,
+        "version_reason": "No top-level version member; text has no JSON version member"
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/gate-answers/classify-v2.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "decision",
+        "version_state": "missing",
+        "source_version_raw": null,
+        "source_version_type": null,
+        "version_pointer": null,
+        "version_reason": "No top-level version member; text has no JSON version member"
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/gate-answers/company-relation-decisions.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "decision",
+        "version_state": "value",
+        "source_version_raw": 1,
+        "source_version_type": "int",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/gate-answers/product-match.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "decision",
+        "version_state": "missing",
+        "source_version_raw": null,
+        "source_version_type": null,
+        "version_pointer": null,
+        "version_reason": "No top-level version member; text has no JSON version member"
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/gate-answers/source-fix.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "decision",
+        "version_state": "missing",
+        "source_version_raw": null,
+        "source_version_type": null,
+        "version_pointer": null,
+        "version_reason": "No top-level version member; text has no JSON version member"
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/gate-answers/step1-decisions-db-2026-10-28.md",
+      "matches": true,
+      "meta": {
+        "source_kind": "decision",
+        "version_state": "missing",
+        "source_version_raw": null,
+        "source_version_type": null,
+        "version_pointer": null,
+        "version_reason": "No top-level version member; text has no JSON version member"
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-decisions.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "decision",
+        "version_state": "value",
+        "source_version_raw": 1,
+        "source_version_type": "int",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-step5-decisions.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "decision",
+        "version_state": "value",
+        "source_version_raw": 1,
+        "source_version_type": "int",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-step5-decisions.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "decision",
+        "version_state": "value",
+        "source_version_raw": 1,
+        "source_version_type": "int",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step4-decisions.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "decision",
+        "version_state": "value",
+        "source_version_raw": "v1",
+        "source_version_type": "str",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-decisions.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "decision",
+        "version_state": "value",
+        "source_version_raw": 1,
+        "source_version_type": "int",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step9-decisions.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "decision",
+        "version_state": "value",
+        "source_version_raw": 1,
+        "source_version_type": "int",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-apply-log.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "generated",
+        "version_state": "missing",
+        "source_version_raw": null,
+        "source_version_type": null,
+        "version_pointer": null,
+        "version_reason": "No top-level version member; text has no JSON version member"
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d17-2.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "generated",
+        "version_state": "value",
+        "source_version_raw": 1,
+        "source_version_type": "int",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d17.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "generated",
+        "version_state": "value",
+        "source_version_raw": 1,
+        "source_version_type": "int",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d18.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "generated",
+        "version_state": "value",
+        "source_version_raw": 1,
+        "source_version_type": "int",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d19.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "generated",
+        "version_state": "value",
+        "source_version_raw": 1,
+        "source_version_type": "int",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d20-31.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "generated",
+        "version_state": "value",
+        "source_version_raw": 1,
+        "source_version_type": "int",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-domestic7.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "generated",
+        "version_state": "missing",
+        "source_version_raw": null,
+        "source_version_type": null,
+        "version_pointer": null,
+        "version_reason": "No top-level version member; text has no JSON version member"
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-products-A.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "generated",
+        "version_state": "value",
+        "source_version_raw": 1,
+        "source_version_type": "int",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-products-B.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "generated",
+        "version_state": "value",
+        "source_version_raw": 1,
+        "source_version_type": "int",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-products-C.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "generated",
+        "version_state": "value",
+        "source_version_raw": "step1-C",
+        "source_version_type": "str",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-products.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "generated",
+        "version_state": "value",
+        "source_version_raw": 2,
+        "source_version_type": "int",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-source-fix.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "generated",
+        "version_state": "missing",
+        "source_version_raw": null,
+        "source_version_type": null,
+        "version_pointer": null,
+        "version_reason": "No top-level version member; text has no JSON version member"
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-families.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "generated",
+        "version_state": "value",
+        "source_version_raw": "step2-families v1",
+        "source_version_type": "str",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-families.v2.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "generated",
+        "version_state": "value",
+        "source_version_raw": "step2-families v1",
+        "source_version_type": "str",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-families.v3.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "generated",
+        "version_state": "value",
+        "source_version_raw": "step2-families v1",
+        "source_version_type": "str",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-open-resolve.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "generated",
+        "version_state": "value",
+        "source_version_raw": "step2-open-resolve v1",
+        "source_version_type": "str",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step4-techniques.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "generated",
+        "version_state": "value",
+        "source_version_raw": "v1",
+        "source_version_type": "str",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-units.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "generated",
+        "version_state": "value",
+        "source_version_raw": "step5-units v1",
+        "source_version_type": "str",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/anatomy-danger-zones.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "raw_snapshot",
+        "version_state": "value",
+        "source_version_raw": "1.2",
+        "source_version_type": "str",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/combo-recipes.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "raw_snapshot",
+        "version_state": "value",
+        "source_version_raw": "1.0",
+        "source_version_type": "str",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/complications.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "raw_snapshot",
+        "version_state": "missing",
+        "source_version_raw": null,
+        "source_version_type": null,
+        "version_pointer": null,
+        "version_reason": "No top-level version member; text has no JSON version member"
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "raw_snapshot",
+        "version_state": "value",
+        "source_version_raw": "1.3",
+        "source_version_type": "str",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "raw_snapshot",
+        "version_state": "value",
+        "source_version_raw": "1.1",
+        "source_version_type": "str",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/extracted.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "raw_snapshot",
+        "version_state": "missing",
+        "source_version_raw": null,
+        "source_version_type": null,
+        "version_pointer": null,
+        "version_reason": "No top-level version member; text has no JSON version member"
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/literature-evidence.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "raw_snapshot",
+        "version_state": "value",
+        "source_version_raw": "2.0",
+        "source_version_type": "str",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/market-pricing.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "raw_snapshot",
+        "version_state": "value",
+        "source_version_raw": "1.1",
+        "source_version_type": "str",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/patient-education.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "raw_snapshot",
+        "version_state": "value",
+        "source_version_raw": "1.3",
+        "source_version_type": "str",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pih-risk.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "raw_snapshot",
+        "version_state": "value",
+        "source_version_raw": "1.0",
+        "source_version_type": "str",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/post-procedure-timeline.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "raw_snapshot",
+        "version_state": "value",
+        "source_version_raw": "1.1",
+        "source_version_type": "str",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "raw_snapshot",
+        "version_state": "value",
+        "source_version_raw": "1.1",
+        "source_version_type": "str",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-combos.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "raw_snapshot",
+        "version_state": "value",
+        "source_version_raw": "1.2",
+        "source_version_type": "str",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "raw_snapshot",
+        "version_state": "value",
+        "source_version_raw": "6.2",
+        "source_version_type": "str",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/procedure-comparison.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "raw_snapshot",
+        "version_state": "value",
+        "source_version_raw": "1.3",
+        "source_version_type": "str",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/procedure-profiles.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "raw_snapshot",
+        "version_state": "value",
+        "source_version_raw": "3.3",
+        "source_version_type": "str",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/products.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "raw_snapshot",
+        "version_state": "value",
+        "source_version_raw": "1.2",
+        "source_version_type": "str",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "raw_snapshot",
+        "version_state": "value",
+        "source_version_raw": "1.3",
+        "source_version_type": "str",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "raw_snapshot",
+        "version_state": "missing",
+        "source_version_raw": null,
+        "source_version_type": null,
+        "version_pointer": null,
+        "version_reason": "No top-level version member; text has no JSON version member"
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "raw_snapshot",
+        "version_state": "value",
+        "source_version_raw": "1.4",
+        "source_version_type": "str",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "raw_snapshot",
+        "version_state": "value",
+        "source_version_raw": "1.3",
+        "source_version_type": "str",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-cancel-recheck.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "research",
+        "version_state": "value",
+        "source_version_raw": 1,
+        "source_version_type": "int",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d09-web.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "research",
+        "version_state": "value",
+        "source_version_raw": 1,
+        "source_version_type": "int",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d12-web.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "research",
+        "version_state": "value",
+        "source_version_raw": 1,
+        "source_version_type": "int",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d15-web.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "research",
+        "version_state": "value",
+        "source_version_raw": 1,
+        "source_version_type": "int",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d16-web.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "research",
+        "version_state": "value",
+        "source_version_raw": 1,
+        "source_version_type": "int",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-export-check.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "research",
+        "version_state": "missing",
+        "source_version_raw": null,
+        "source_version_type": null,
+        "version_pointer": null,
+        "version_reason": "No top-level version member; text has no JSON version member"
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-export-recheck.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "research",
+        "version_state": "missing",
+        "source_version_raw": null,
+        "source_version_type": null,
+        "version_pointer": null,
+        "version_reason": "No top-level version member; text has no JSON version member"
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-kpic.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "research",
+        "version_state": "missing",
+        "source_version_raw": null,
+        "source_version_type": null,
+        "version_pointer": null,
+        "version_reason": "No top-level version member; text has no JSON version member"
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-n45-check.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "research",
+        "version_state": "missing",
+        "source_version_raw": null,
+        "source_version_type": null,
+        "version_pointer": null,
+        "version_reason": "No top-level version member; text has no JSON version member"
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-products-v1-frozen.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "research",
+        "version_state": "value",
+        "source_version_raw": 1,
+        "source_version_type": "int",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-research.json",
+      "matches": true,
+      "meta": {
+        "source_kind": "research",
+        "version_state": "value",
+        "source_version_raw": "step2-research v1",
+        "source_version_type": "str",
+        "version_pointer": "/version",
+        "version_reason": null
+      }
+    }
+  ],
+  "counts": {
+    "raw21": 21,
+    "generated-silver": 18,
+    "research-artifact": 11,
+    "decision-artifact": 13,
+    "audit-artifact": 6
+  },
+  "P0_input_hashes_pass": true,
+  "file_version_positive": [
+    "missing",
+    "null",
+    "int",
+    "str"
+  ],
+  "actual_version_states": {
+    "value": 48,
+    "missing": 21
+  }
+}

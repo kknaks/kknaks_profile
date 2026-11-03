@@ -1,0 +1,126 @@
+{
+  "status": "design_examples_only_no_IDs_written_to_sources",
+  "primary_id_uniqueness": {
+    "raw.taxonomy.modality.items.id": {
+      "denominator": 521,
+      "distinct_ids": 521,
+      "duplicates": {}
+    },
+    "raw.taxonomy.modality.products.id": {
+      "denominator": 59,
+      "distinct_ids": 59,
+      "duplicates": {}
+    },
+    "step1.items.ledger_id": {
+      "denominator": 395,
+      "distinct_ids": 395,
+      "duplicates": {}
+    },
+    "step2.families.id": {
+      "denominator": 27,
+      "distinct_ids": 27,
+      "duplicates": {}
+    },
+    "step2.product_family.ledger_id": {
+      "denominator": 354,
+      "distinct_ids": 354,
+      "duplicates": {}
+    },
+    "step3.nodes.id": {
+      "denominator": 53,
+      "distinct_ids": 53,
+      "duplicates": {}
+    },
+    "step4.nodes.id": {
+      "denominator": 26,
+      "distinct_ids": 26,
+      "duplicates": {}
+    },
+    "step5.units.id": {
+      "denominator": 162,
+      "distinct_ids": 162,
+      "duplicates": {}
+    },
+    "step6.packages.id": {
+      "denominator": 24,
+      "distinct_ids": 24,
+      "duplicates": {}
+    },
+    "step7.combos.id": {
+      "denominator": 79,
+      "distinct_ids": 79,
+      "duplicates": {}
+    },
+    "step8.claims.id": {
+      "denominator": 395,
+      "distinct_ids": 395,
+      "duplicates": {}
+    },
+    "step8.conditions.all_claims.id": {
+      "denominator": 373,
+      "distinct_ids": 373,
+      "duplicates": {}
+    },
+    "step8.edges.id": {
+      "denominator": 230,
+      "distinct_ids": 230,
+      "duplicates": {}
+    },
+    "step9.records.id": {
+      "denominator": 5847,
+      "distinct_ids": 5847,
+      "duplicates": {}
+    }
+  },
+  "snapshot_algorithm": "sha256 UTF8 canonical JSON sorted [{file,sha256}] for full raw snapshot, sort_keys=True, separators=(comma,colon), ensure_ascii=False",
+  "example_snapshot_id": "snap:cba69a16bbfbdc0bdc74aeff85be67fa524ae648a0d4c51153494b6675a702e2",
+  "source_record_algorithm": "sha256 canonical JSON {snapshot,file,pointer}; immutable occurrence, not cross-version continuity",
+  "actual_collision_examples": [
+    {
+      "proposed_source_record_id": "sr:00fa21944b2c82696e44f16c63c3cb20c5fadcb0303af39a53c54f70cce6ebb2",
+      "inputs": {
+        "snapshot": "snap:cba69a16bbfbdc0bdc74aeff85be67fa524ae648a0d4c51153494b6675a702e2",
+        "file": "problem-packages.json",
+        "pointer": "/problems/8/complaints/4"
+      },
+      "legacy_alias": "P9:니들RF",
+      "raw_group": "여드름흉터",
+      "raw_detail": "포텐자/시크릿"
+    },
+    {
+      "proposed_source_record_id": "sr:27ce3ab8ae13310bfbd86af9ca66206afdacef25acdf91a9c1ee74a8a027a2df",
+      "inputs": {
+        "snapshot": "snap:cba69a16bbfbdc0bdc74aeff85be67fa524ae648a0d4c51153494b6675a702e2",
+        "file": "problem-packages.json",
+        "pointer": "/problems/8/complaints/8"
+      },
+      "legacy_alias": "P9:프락셔널레이저",
+      "raw_group": "수술흉터/화상흉터",
+      "raw_detail": "CO2/어븀"
+    },
+    {
+      "proposed_source_record_id": "sr:06f238b639c9cd6137e5932a8708c833f85384dd004db63a8a5f673c12f03240",
+      "inputs": {
+        "snapshot": "snap:cba69a16bbfbdc0bdc74aeff85be67fa524ae648a0d4c51153494b6675a702e2",
+        "file": "problem-packages.json",
+        "pointer": "/problems/8/complaints/10"
+      },
+      "legacy_alias": "P9:프락셔널레이저",
+      "raw_group": "튼살",
+      "raw_detail": "성장선/임신선"
+    },
+    {
+      "proposed_source_record_id": "sr:6dc4a12a0c18372f7aacb4bce017c7a64417db85ac444c303a46a3f497acf649",
+      "inputs": {
+        "snapshot": "snap:cba69a16bbfbdc0bdc74aeff85be67fa524ae648a0d4c51153494b6675a702e2",
+        "file": "problem-packages.json",
+        "pointer": "/problems/8/complaints/11"
+      },
+      "legacy_alias": "P9:니들RF",
+      "raw_group": "튼살",
+      "raw_detail": "콜라겐리모델링"
+    }
+  ],
+  "legacy_alias_policy": "alias -> set of target IDs; never first-match; mappings require snapshot/scope/decision validation",
+  "identity_is_not_semantic_approval": true
+}

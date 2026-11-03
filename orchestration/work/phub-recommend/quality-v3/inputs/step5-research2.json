@@ -1,0 +1,957 @@
+{
+ "version": "step5-research2 v1",
+ "generated_at": "2026-10-29",
+ "by": "researcher(read-only) · task_3afeae1cc7b6",
+ "inputs": [
+  "_RESUME.md §2 2026-10-29 · 10-28 계열 기준",
+  "step5-research.json/md",
+  "step2-families.json",
+  "step4-techniques.json",
+  "step3-sites.json",
+  "step1-products.json",
+  "phub-stg-2026-10-26/taxonomy.json · market-pricing.json · literature-evidence.json",
+  "MFDS 의료기기 · 의약품 허가 API(mfds-mcp 클라이언트 · 캐시 scratchpad)",
+  "NCBI E-utilities esearch+esummary(인용 PMID 전부 ESummary 로 실재 확인)",
+  "WebSearch · WebFetch"
+ ],
+ "summary": {
+  "new_families": 6,
+  "existing_families": 0,
+  "unit_keys_new": 11,
+  "identities_found": "3/7 정체 밝힘(사파이어 = 냉각 팁 · 파셀라 = RF 괄사 장비 · 수소토닝 = 듀오 하이드로젠 물 장비) · 수액 1/4 부분(다이어트 = 병원마다 다름 · L-카르니틴 자주) → 정체 밝힘 4/11 · 못 찾음 7(에이팩 · MPE · 프로락틴 · 이모드 · 셀디톡스 · 에너지부스트 · 이뮨코어)",
+  "user_judgments": 9
+ },
+ "family_verdicts": [
+  {
+   "item": "카복시테라피",
+   "ledger_ids": [
+    "auto-M16-1775361069392"
+   ],
+   "source_text": "CO2 가스 피하주입 · 혈류 촉진+지방 감소 / 「국소 지방감소 및 체형관리 · 피부탄력 개선 및 혈액순환 개선」",
+   "fit_existing": {
+    "verdict": "안 듦",
+    "checked": {
+     "M4": "재료(HA·PN·콜라겐·칵테일)를 진피에 소량 다점 주입 — CO2 기체 피하 주입은 재료 정의 밖",
+     "N1": "약물(데옥시콜산·콜산)로 지방세포 용해 — CO2 는 약물 정의 밖",
+     "M16": "정맥 미량영양소 — 경로 · 물질 다름",
+     "M14": "피부 밖 냉각 — 다름"
+    }
+   },
+   "literature_independent": true,
+   "literature": [
+    {
+     "pmid": "35124882",
+     "title": "Carboxytherapy in dermatology: A systematic review.",
+     "source": "J Cosmet Dermatol",
+     "year": 2022,
+     "role": "독립 분야 근거(체계적 문헌고찰)",
+     "verified": "NCBI ESummary 2026-10-29"
+    },
+    {
+     "pmid": "40062597",
+     "title": "Carboxytherapy in Dermatologic Surgery and Aesthetic Medicine: Current Knowledge and Future Perspectives-A Systematic Review.",
+     "source": "Dermatol Surg",
+     "year": 2025,
+     "role": "독립 분야 근거(체계적 문헌고찰)",
+     "verified": "NCBI ESummary 2026-10-29"
+    },
+    {
+     "pmid": "36999460",
+     "title": "An overview of the role of carboxytherapy in dermatology.",
+     "source": "J Cosmet Dermatol",
+     "year": 2023,
+     "role": "개관",
+     "verified": "NCBI ESummary 2026-10-29"
+    }
+   ],
+   "verdict": "새 계열",
+   "new_family": {
+    "id": "N2",
+    "name": "카복시테라피",
+    "literature_name": "Carboxytherapy",
+    "definition": "의료용 이산화탄소(CO2) 가스를 피하·진피에 주입해 혈관 확장과 조직 산소 공급 증가를 일으키는 시술",
+    "sub_families": [],
+    "default_technique": "K01 주입(층 = 피하 · 4단계 H03)",
+    "sites_from_source": [],
+    "related": "트리필 프로(new-DEV-052 · CO2 가스 박리 + 약물 주입) — 2단계에서 M4 로 옮김. N2 로 옮길지는 사용자 판단 U2"
+   },
+   "unit_keys": [],
+   "unit_keys_note": "원천 이름 · detail 에 부위 없음 · 몸 쪽 적응증(체형) → S3 「몸 계열 기본값 없음」 → 키 0, 이름 해석 = N2 단위 시술 후보 전부(F6 과 같은 처리). 원천에 부위를 부르는 카복시 행이 생기면 그때 키",
+   "evidence_level": "강"
+  },
+  {
+   "item": "반영구 화장(눈썹 · 아이라인 · 입술 · 헤어라인)",
+   "ledger_ids": [
+    "auto-76-1774737181584",
+    "auto-77-1774737181584",
+    "auto-78-1774737181584",
+    "auto-79-1774737181584"
+   ],
+   "source_text": "문제 트리 P1-7 「반영구화장」 메뉴 4(쁘띠시술)",
+   "fit_existing": {
+    "verdict": "안 듦",
+    "checked": {
+     "M2": "충전 물질로 부피 — 색소 아님",
+     "M8": "레이저는 색소 제거 쪽(문신 제거) — 반대 방향",
+     "M12": "미세침 천공만(물질 남기지 않음)"
+    }
+   },
+   "literature_independent": true,
+   "literature": [
+    {
+     "pmid": "37727553",
+     "title": "Micropigmentation.",
+     "source": "Indian Dermatol Online J",
+     "year": 2023,
+     "role": "독립 분야 근거(개관)",
+     "verified": "NCBI ESummary 2026-10-29"
+    },
+    {
+     "pmid": "16042938",
+     "title": "Micropigmentation: tattooing for medical purposes.",
+     "source": "Dermatol Surg",
+     "year": 2005,
+     "role": "독립 분야 근거(개관)",
+     "verified": "NCBI ESummary 2026-10-29"
+    },
+    {
+     "pmid": "35947499",
+     "title": "Natural results of scalp micropigmentation: A review.",
+     "source": "J Cosmet Dermatol",
+     "year": 2022,
+     "role": "두피(헤어라인) 하위 근거",
+     "verified": "NCBI ESummary 2026-10-29"
+    },
+    {
+     "pmid": "32694299",
+     "title": "Pathologic Scarring after Eyebrow Micropigmentation: A Case Report and Systematic Review.",
+     "source": "Adv Skin Wound Care",
+     "year": 2020,
+     "role": "눈썹 부위 근거",
+     "verified": "NCBI ESummary 2026-10-29"
+    }
+   ],
+   "verdict": "새 계열",
+   "new_family": {
+    "id": "N3",
+    "name": "반영구 화장",
+    "literature_name": "Micropigmentation (cosmetic tattooing · permanent makeup)",
+    "definition": "바늘로 진피 상층에 색소를 심어 눈썹 · 아이라인 · 입술 · 두피(헤어라인)의 모양 · 색을 그려 넣는 시술",
+    "sub_families": [],
+    "default_technique": "없음 — 4단계 노드 24개 중 「색소를 진피에 남기는」 기법 없음(K01 주입 = 주사기 주입 · K03 미세침 천공 = 물질 안 남김). 새 기법 노드 K13 「미세색소주입(micropigmentation)」 후보 = 사용자 판단 U3",
+    "sites_from_source": [
+     "site.eyebrow 눈썹",
+     "site.eyelid 눈꺼풀(아이라인)",
+     "site.lips 입술",
+     "site.scalp 두피(헤어라인 — 3단계에 헤어라인 노드 없음 · 두피 동의어)"
+    ]
+   },
+   "unit_keys": [
+    "N3 × 눈썹 × K13",
+    "N3 × 눈꺼풀 × K13",
+    "N3 × 입술 × K13",
+    "N3 × 두피 × K13"
+   ],
+   "unit_keys_note": "이름 = 눈썹반영구 · 아이라인반영구 · 입술반영구 · 헤어라인반영구(원천 메뉴명 = 이름 그대로). K13 을 안 세우면 기법 칸 후보 K03(근거 약)",
+   "evidence_level": "강"
+  },
+  {
+   "item": "소수술 4(서브시전 · 펀치 · 면포압출 · 스테로이드 병변 내 주사)",
+   "ledger_ids": [
+    "auto-M15-1775361858045",
+    "auto-M15-1775364775169",
+    "auto-M15-1775364775172",
+    "auto-M15-1775361870269"
+   ],
+   "source_text": "서브시전 「18G Nokor 니들 · rolling scar 섬유 밴드 절단」 · 펀치시술 「펀치이식」 · 면포압출 「코메도익스트랙터」 · 스테로이드 병변내 주사 「트리암시놀론 10-40mg/mL · 비후성 반흔/켈로이드」",
+   "fit_existing": {
+    "verdict": "안 듦",
+    "checked": {
+     "M12": "미세침 천공(콜라겐 유도) — 섬유 밴드 절단 · 절제 · 압출은 아님",
+     "M15": "외용(바르기 · 박피 · 박리 기기) — 칼 · 바늘로 자르거나 짜내는 시술 아님",
+     "M1~M4": "주입 계열은 재료 · 약이 계열(톡신 · 필러 …) — 트리암시놀론 병변 내 주사는 17 정의 어디에도 없음"
+    }
+   },
+   "literature_independent": true,
+   "literature": [
+    {
+     "pmid": "30856634",
+     "title": "A Review and Update of Treatment Options Using the Acne Scar Classification System.",
+     "source": "Dermatol Surg",
+     "year": 2019,
+     "role": "서브시전 · 펀치를 한 치료 갈래로 다룸",
+     "verified": "NCBI ESummary 2026-10-29"
+    },
+    {
+     "pmid": "11423843",
+     "title": "Acne scarring: a classification system and review of treatment options.",
+     "source": "J Am Acad Dermatol",
+     "year": 2001,
+     "role": "흉터 수술 기법(펀치 · 서브시전) 분류",
+     "verified": "NCBI ESummary 2026-10-29"
+    },
+    {
+     "pmid": "36698445",
+     "title": "Subcision for Atrophic Acne Scarring: A Comprehensive Review of Surgical Instruments and Combinatorial Treatments.",
+     "source": "Clin Cosmet Investig Dermatol",
+     "year": 2023,
+     "role": "서브시전 = 수술 기구 시술",
+     "verified": "NCBI ESummary 2026-10-29"
+    },
+    {
+     "pmid": "27529209",
+     "title": "Treatment Modalities for Acne.",
+     "source": "Molecules",
+     "year": 2016,
+     "role": "면포 압출 — 여드름 치료 수단",
+     "verified": "NCBI ESummary 2026-10-29"
+    },
+    {
+     "pmid": "18418647",
+     "title": "Intralesional triamcinolone acetonide for keloid treatment: a systematic review.",
+     "source": "Aesthetic Plast Surg",
+     "year": 2008,
+     "role": "병변 내 스테로이드 주사",
+     "verified": "NCBI ESummary 2026-10-29"
+    },
+    {
+     "pmid": "30087573",
+     "title": "Triamcinolone acetonide intralesional injection for the treatment of keloid scars: patient selection and perspectives.",
+     "source": "Clin Cosmet Investig Dermatol",
+     "year": 2018,
+     "role": "병변 내 스테로이드 주사",
+     "verified": "NCBI ESummary 2026-10-29"
+    },
+    {
+     "pmid": "36688880",
+     "title": "Procedural dermatology and its unmet need.",
+     "source": "Indian J Dermatol Venereol Leprol",
+     "year": 2023,
+     "role": "피부과 시술(procedural dermatology) = 독립 분야",
+     "verified": "NCBI ESummary 2026-10-29"
+    }
+   ],
+   "verdict": "새 계열",
+   "new_family": {
+    "id": "N4",
+    "name": "피부 소수술",
+    "literature_name": "Minor dermatologic surgery (procedural dermatology)",
+    "definition": "니들 · 펀치 · 압출기 같은 수술 도구로 흉터 · 병변 조직을 직접 절단 · 절제 · 제거하거나, 병변 안에 약물을 직접 주사하는 피부과 소수술",
+    "sub_families": [
+     "흉터 수술(서브시전 · 펀치)",
+     "면포 압출",
+     "병변 내 주사(트리암시놀론) — 하위로 넣을지 사용자 판단 U4"
+    ],
+    "default_technique": "K12 소수술(4단계 노드 · 계열 기본 비어 있던 자리) — 병변 내 주사 하위는 K01 주입",
+    "sites_from_source": [
+     "얼굴 전체(J2 기본값 — 여드름 흉터 · 면포)",
+     "병변 단위(F3 승인 특수 부위 — 켈로이드 · 비후성 반흔은 몸 어디든)"
+    ]
+   },
+   "unit_keys": [
+    "N4 × 얼굴 전체 × K12a 서브시전",
+    "N4 × 얼굴 전체 × K12b 펀치",
+    "N4 × 얼굴 전체 × K12c 압출",
+    "N4 × 병변 단위 × K01 주입(스테로이드)"
+   ],
+   "unit_keys_note": "step5-research F2 의 OUT 키 4(U5-045~048)를 N4 로 바꿈. 스테로이드는 F2 추천의 얼굴 전체 → 병변 단위로 바꾸는 추천(원천 「비후성 반흔/켈로이드」 = 몸 어디든 · F3 과 같은 논리)",
+   "evidence_level": "강"
+  },
+  {
+   "item": "태반주사 2(라이넥(원장 라엔넥) · 멜스몬)",
+   "ledger_ids": [
+    "M16-3-1",
+    "auto-M16-1775364775098"
+   ],
+   "source_text": "태반주사(라엔넥) 「인태반 추출물 · 근육/피하주사」 · 태반주사멜스몬 「HCl가수분해」 · 시장가 「태반주사 (라이넥) 1회」",
+   "fit_existing": {
+    "verdict": "안 듦",
+    "checked": {
+     "M16": "정맥 · 미량영양소(비타민 · 글루타치온 · 아미노산) — 허가 용법 피하/근육 · 성분 자하거 추출물",
+     "M5": "자가혈 혈소판 · 엑소좀 — 동종 태반 아님",
+     "M17": "줄기세포 · 그 산물 — 태반 추출물 아님"
+    }
+   },
+   "license": [
+    {
+     "product": "멜스몬주(자하거추출물)",
+     "item_seq": "200308393",
+     "efficacy": "갱년기 장애 증상의 개선",
+     "route": "1회 2 mL, 1주일에 3회씩 2주간(총 6회) 피하주사",
+     "atc": "G02CX 기타 부인과용제",
+     "source": "MFDS DrugPrdtPrmsnInfoService08 상세(2026-10-29 조회)"
+    },
+    {
+     "product": "라이넥주(자하거가수분해물)",
+     "item_seq": "200512342",
+     "efficacy": "만성 간질환에 있어서의 간기능의 개선",
+     "route": "1일 1회 2 mL 피하 또는 근육주사(증상에 따라 1일 2~3회)",
+     "atc": "A05BA 간 치료제",
+     "source": "MFDS DrugPrdtPrmsnInfoService08 상세(2026-10-29 조회)"
+    }
+   ],
+   "literature_independent": "약 — 주사 태반 추출물의 독립 리뷰 없음(RCT 단건 · SR 1건은 경구 돼지 태반 위주)",
+   "literature": [
+    {
+     "pmid": "41470802",
+     "title": "Efficacy and Safety of Placental Extract on Menopausal Symptoms: A Systematic Review.",
+     "source": "Nutrients",
+     "year": 2025,
+     "role": "태반 추출물 효능 SR(경구 포함)",
+     "verified": "NCBI ESummary 2026-10-29"
+    },
+    {
+     "pmid": "18090035",
+     "title": "Effect of human placental extract on menopausal symptoms, fatigue, and risk factors for cardiovascular disease in middle-aged Korean women.",
+     "source": "Menopause",
+     "year": 2008,
+     "role": "사람 태반 추출물 주사 RCT",
+     "verified": "NCBI ESummary 2026-10-29"
+    },
+    {
+     "pmid": "26911970",
+     "title": "Human Placental Extract as a Subcutaneous Injection Is Effective in Chronic Fatigue Syndrome: A Multi-Center, Double-Blind, Randomized, Placebo-Controlled Study.",
+     "source": "Biol Pharm Bull",
+     "year": 2016,
+     "role": "피하 주사 RCT",
+     "verified": "NCBI ESummary 2026-10-29"
+    }
+   ],
+   "verdict": "새 계열(근거 중 — 허가 강 · 문헌 독립성 약)",
+   "new_family": {
+    "id": "N5",
+    "name": "태반 추출물 주사",
+    "literature_name": "Human placental extract injection",
+    "definition": "사람 태반(자하거)에서 얻은 추출물 · 가수분해물을 피하 · 근육에 주사하는 시술",
+    "sub_families": [],
+    "default_technique": "K01 주입(허가 용법 피하 · 근육 — K01b 정맥 아님)",
+    "sites_from_source": [
+     "해당 없음(전신 투여 — S3 수액 「해당 없음」과 같은 값)"
+    ]
+   },
+   "unit_keys": [
+    "N5 × 해당 없음 × K01"
+   ],
+   "unit_keys_note": "키 1 · 쓰는 제품 = 라이넥 · 멜스몬(1단계 정본 제품 행 그대로 · uses_product 원천 근거 = 원장 이름 · 시장가 「태반주사 (라이넥)」). 2단계 out_of_family 2행 철회 대상",
+   "evidence_level": "중"
+  },
+  {
+   "item": "성장호르몬주사",
+   "ledger_ids": [
+    "auto-M16-1775364775099"
+   ],
+   "source_text": "GH 항노화 · 「성장호르몬 … 항노화와 신체활력 증진을 위한 수액치료」",
+   "fit_existing": {
+    "verdict": "안 듦",
+    "checked": {
+     "M16": "미량영양소 정맥 — 호르몬(단백 의약품) · 피하 주사",
+     "N5": "태반 추출물 — 다른 물질"
+    }
+   },
+   "license": [
+    {
+     "product": "소마트로핀 제제(유트로핀 · 그로트로핀 · 노디트로핀 · 지노트로핀 등 28건)",
+     "source": "MFDS 의약품 검색 item_name=소마트로핀(2026-10-29)",
+     "efficacy": "성장호르몬 결핍증(유년기 개시형 등) — 항노화는 허가 효능 목록 첫머리에 없음(전문 미추출)"
+    }
+   ],
+   "literature_independent": "중 — 건강한 노인 GH 투여의 체계적 문헌고찰이 독립 주제로 있음(결론: 효과 작고 부작용 많음)",
+   "literature": [
+    {
+     "pmid": "17227934",
+     "title": "Systematic review: the safety and efficacy of growth hormone in the healthy elderly.",
+     "source": "Ann Intern Med",
+     "year": 2007,
+     "role": "항노화 목적 GH 투여 SR",
+     "verified": "NCBI ESummary 2026-10-29"
+    },
+    {
+     "pmid": "38489867",
+     "title": "Growth hormone treatment in aged patients with comorbidities: A systematic review.",
+     "source": "Growth Horm IGF Res",
+     "year": 2024,
+     "role": "노인 GH SR",
+     "verified": "NCBI ESummary 2026-10-29"
+    }
+   ],
+   "verdict": "새 계열",
+   "new_family": {
+    "id": "N6",
+    "name": "성장호르몬 주사",
+    "literature_name": "Growth hormone (somatropin) therapy — anti-aging use",
+    "definition": "유전자재조합 성장호르몬(소마트로핀)을 피하 주사해 IGF-1 을 올리는 시술(원천 목적 = 항노화)",
+    "sub_families": [],
+    "default_technique": "K01 주입(소마트로핀 허가 용법 피하 — 원천 「수액치료」 문구는 경로 근거 아님)",
+    "sites_from_source": [
+     "해당 없음(전신 투여)"
+    ]
+   },
+   "unit_keys": [
+    "N6 × 해당 없음 × K01"
+   ],
+   "unit_keys_note": "키 1 · 쓰는 제품 = 원천이 품목을 부르지 않음 → 저장 uses_product 없음 · 1단계 제품 행 후보 = 사용자 판단 U5(소마트로핀 28건 중 무엇을 부르는지 원천에 없음)",
+   "evidence_level": "중"
+  },
+  {
+   "item": "헤어셀(자기장 탈모 치료기)",
+   "ledger_ids": [
+    "auto-M15-1775364775178"
+   ],
+   "source_text": "원장 「헤어셀 · LED헬멧 · 가정용 탈모 치료 기기」 — 1단계 D18 「원장 LED → 자기장 오류」 · 허가 제인 12-1201 H-Cell ST 「의료용전자기발생기」(트리비스)",
+   "fit_existing": {
+    "verdict": "안 듦",
+    "checked": {
+     "M8": "레이저 · IPL · LED(광) — 허가 품목은 전자기발생기(광 아님 · D18)",
+     "M10": "HIFEM · EMS 로 근육을 강제 수축 — 같은 허가 품목명(CMSLIM MAXi = 의료용전자기발생기)이 M10 에 있지만 헤어셀은 근육 수축 목적 아님"
+    }
+   },
+   "literature_independent": "약~중 — PEMF 탈모 RCT 2 · 다기관 관찰 1 · 물리치료 개관 1, 대부분 광치료와 병용",
+   "literature": [
+    {
+     "pmid": "36345917",
+     "title": "The efficacy and safety of the combination of photobiomodulation therapy and pulsed electromagnetic field therapy on androgenetic alopecia.",
+     "source": "J Cosmet Dermatol",
+     "year": 2023,
+     "role": "PEMF 병용 RCT",
+     "verified": "NCBI ESummary 2026-10-29"
+    },
+    {
+     "pmid": "14669818",
+     "title": "Essential oils and low-intensity electromagnetic pulses in the treatment of androgen-dependent alopecia.",
+     "source": "Adv Ther",
+     "year": 2003,
+     "role": "저강도 전자기 펄스 RCT",
+     "verified": "NCBI ESummary 2026-10-29"
+    },
+    {
+     "pmid": "39630190",
+     "title": "Photobiostimulation Therapy (PBST) and Pulsed Electromagnetic Field Therapy (PEMF) in Hair Loss Treatment: Multicentric, Retrospective, Case-Control Study.",
+     "source": "Aesthetic Plast Surg",
+     "year": 2025,
+     "role": "PEMF 관찰",
+     "verified": "NCBI ESummary 2026-10-29"
+    },
+    {
+     "pmid": "39124800",
+     "title": "Physical Treatments and Therapies for Androgenetic Alopecia.",
+     "source": "J Clin Med",
+     "year": 2024,
+     "role": "물리 치료 개관(제목 기준 · 전자기장 검색으로 걸림)",
+     "verified": "NCBI ESummary 2026-10-29"
+    }
+   ],
+   "verdict": "새 계열(근거 중 — 허가 강 · 문헌 독립성 약~중)",
+   "new_family": {
+    "id": "N7",
+    "name": "펄스 전자기장 치료",
+    "literature_name": "Pulsed electromagnetic field (PEMF) therapy",
+    "definition": "몸 밖에서 저강도 펄스 전자기장을 걸어 조직(두피 모낭)을 자극하는 기기 시술 — 근육 수축을 목적으로 하지 않는 점에서 M10 과 다름",
+    "sub_families": [],
+    "default_technique": "K06 전자기 자극(4단계 노드 · 의학명 「electromagnetic / electrical muscle stimulation」 — 근육 목적이 아닌 경우도 쓸지 4단계 노드 정의 넓힘 = 사용자 판단 U6)",
+    "sites_from_source": [
+     "site.scalp 두피"
+    ]
+   },
+   "unit_keys": [
+    "N7 × 두피 × K06"
+   ],
+   "unit_keys_note": "키 1 · 쓰는 제품 = 헤어셀(1단계 정본 · H-Cell ST). 원천 「가정용」 문구 — 클리닉 시술로 셀지는 원칙(「클리닉에서 하는 시술은 전부」) 그대로 · 원장에 있으므로 셈",
+   "evidence_level": "중"
+  }
+ ],
+ "identities": [
+  {
+   "item": "사파이어레이저",
+   "ledger_id": "auto-M8-1775364775194",
+   "source_text": "사파이어냉각팁 · 「사파이어냉각팁을 활용한 레이저 제모 및 모공관리 · 피부 표면을 -5도로 냉각 · 모낭 멜라닌 흡수」",
+   "identity": "특정 장비 아님 — 「사파이어」는 레이저 핸드피스의 접촉 냉각 창(사파이어 결정 팁) 이름. 레이저 제모 장비 여러 종이 쓰는 냉각 방식이라 매질(다이오드 · 알렉산드라이트 · Nd:YAG)은 이름으로 정해지지 않는다",
+   "evidence": [
+    {
+     "pmid": "10232811",
+     "title": "Contact cooling of the skin.",
+     "source": "Phys Med Biol",
+     "year": 1999,
+     "role": "접촉 냉각 원리",
+     "verified": "NCBI ESummary 2026-10-29"
+    },
+    {
+     "pmid": "29214662",
+     "title": "Airborne particulate concentration during laser hair removal: A comparison between cold sapphire with aqueous gel and cryogen skin cooling.",
+     "source": "Lasers Surg Med",
+     "year": 2018,
+     "role": "「cold sapphire」 = 제모 레이저 냉각 방식",
+     "verified": "NCBI ESummary 2026-10-29"
+    },
+    {
+     "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/6059820",
+     "note": "Tissue cooling rod for laser surgery(사파이어 냉각 로드 특허)"
+    }
+   ],
+   "searched": "MFDS 의료기기 TYPE_NAME SAPPHIRE 3건(안경렌즈 · 치과 브래킷 — 무관) · 웹 「사파이어 냉각팁 레이저 제모」 「사파이어 레이저 제모 피부과」 — 「사파이어레이저」라는 의료 장비 이름 0(가정용 IPL 「유라이크 사파이어」만)",
+   "evidence_level": "강(냉각 팁이라는 정체) · 매질은 못 찾음",
+   "destination": {
+    "kind": "기존 키 동의어",
+    "target": "U5-031 얼굴 전체 레이저(M8 × 얼굴 전체 × K04) — 매질 미지정",
+    "note": "원천 적응증이 제모 + 모공 · 부위 없음 → step5 F4 추천 그대로. 제모 부위 키(겨드랑이 등)로는 원천 근거 없음. 「사파이어 냉각」은 장비 속성(cooling = sapphire contact) 후보 · 1단계 새 제품 행 없음"
+   }
+  },
+  {
+   "item": "에이팩",
+   "ledger_id": "auto-M12-1775364775165",
+   "source_text": "진동형 · 「진동 기술을 활용한 마이크로니들링 시스템」",
+   "identity": "못 찾음",
+   "evidence": [],
+   "searched": "MFDS 의료기기 TYPE_NAME 에이팩 0 · APACK 0 · A-PACK 50(전부 체외진단 시약 AIA-PACK — 무관) · 웹(WebSearch 표준 · 확장) 「에이팩 진동 마이크로니들링」 「에이팩 MTS」 「\"에이팩\" 피부」 — 장비 · 제조사 언급 0",
+   "evidence_level": "없음",
+   "destination": {
+    "kind": "기존 키 동의어(근거 약 유지)",
+    "target": "U5-032 얼굴 전체 MTS(M12 × 얼굴 전체 × K03)",
+    "note": "정체는 원천 질문으로 남김(병원에 장비 이름 · 제조사). 1단계 새 제품 행 없음"
+   }
+  },
+  {
+   "item": "파셀라 메디컬 경락",
+   "ledger_id": "auto-53-1774737181584",
+   "source_text": "림프순환+리프팅 준비 · 「경락 자극으로 림프순환 개선 및 리프팅 준비」 · 원천 하위 M15 「추가」",
+   "identity": "장비 「파셀라(FASCELLA)」 — 괄사(gua sha) 모양 엣지스톤에서 2 MHz 고주파(RF)(+ 저주파 LF)를 내 심부근막(deep fascia) · SMAS 를 가열하는 리프팅 장비. 의료 시술(의원 메뉴 「파셀라 리프팅」 · 얼굴 · 바디). 「경락 · 림프순환」은 괄사 손동작을 부르는 말 — 손 관리(K11)가 아니라 고주파 기기",
+   "evidence": [
+    {
+     "url": "http://www.mdtoday.co.kr/news/articleView.html?idxno=495570",
+     "note": "메디컬투데이 「베일러의원, 리프팅 장비 파셀라 도입」 — 「괄사 방식의 엣지스톤에 … 2Mhz의 정제된 고주파 에너지 … 스마스층 · 유지인대 · 심부근막층」"
+    },
+    {
+     "url": "https://www.toxnfill28.com/m/detail.php?c=699&i=24259",
+     "note": "토앤필 「파셀라 페이스 리프팅」 — RF · LF · 심부근막 · 하관 18만 · 풀페이스 30만"
+    },
+    {
+     "url": "https://www.toxnfill43.com/m/brand/detail.php?c=1159&i=23302",
+     "note": "다른 지점 같은 메뉴"
+    },
+    {
+     "url": "https://www.elnb.co.kr/service/event/detail/79",
+     "note": "다른 병원 「파셀라」 메뉴"
+    }
+   ],
+   "searched": "MFDS 의료기기 TYPE_NAME FASCELLA · Fascella · 파셀라 0 — 허가 품목 · 제조사 못 찾음",
+   "evidence_level": "중(여러 병원 일치 · 제조사 · 허가 못 찾음)",
+   "destination": {
+    "kind": "기존 키로 옮김(계열 바뀜)",
+    "target": "M9 HIFU·고주파 리프팅 × 얼굴 전체 × K05 에너지 가열 — 기존 M9 얼굴 전체 고주파 키가 있으면 그 동의어, 없으면 키 1 신설",
+    "note": "step5 F4 추천(M15 박리 관리 동의어)을 바꾸는 추천 — 원천 「경락」 문구는 괄사 동작. 1단계 새 제품 행 후보 「파셀라(FASCELLA)」(장비 · 허가 미확인 · 제조사 미확인)"
+   }
+  },
+  {
+   "item": "MPE",
+   "ledger_id": "auto-M17-1775364775192",
+   "source_text": "다기능추출물 · 「줄기세포 다기능추출물을 이용한 세포재생과 피부개선 줄기세포치료」",
+   "identity": "못 찾음",
+   "evidence": [],
+   "searched": "MFDS 의료기기 TYPE_NAME MPE 32건(혈압계 · 전극 · 안경렌즈 — 무관) · 웹 「MPE 줄기세포 다기능추출물」 — 화장품 성분 MPE(Mentha piperita extract · 페퍼민트 추출물) 이름 충돌만 · 줄기세포 제품 「MPE」 0",
+   "evidence_level": "없음",
+   "destination": {
+    "kind": "기존 키 동의어(근거 약 유지)",
+    "target": "U5-081 얼굴 전체 줄기세포(M17 × 얼굴 전체 × K01)",
+    "note": "정체 원천 질문 유지 · 1단계 새 제품 행 없음"
+   }
+  },
+  {
+   "item": "프로락틴주사",
+   "ledger_id": "auto-M16-1775364797151",
+   "source_text": "프로작 탈모주입 · 「프로작 성분을 탈모부위에 직접 주입 … 프로락틴이 모낭의 성장기를 연장」",
+   "identity": "못 찾음 — 실제 쓰는 성분 · 원래 제품 확인 안 됨",
+   "evidence": [
+    {
+     "url": "https://mobile.hidoc.co.kr/healthqna/view/C0000588796",
+     "note": "하이닥 Q&A — 프로락틴 수치는 탈모 직접 원인 아님(전문의 답 · 「프로락틴 주사」 시술 언급 없음)"
+    }
+   ],
+   "searched": "MFDS 의약품 item_name 프로락틴 0 · 프로작 0 · 웹 「프로락틴주사 탈모」 — 탈모 주사 성분 소개(성장인자 · 비타민 · 스테로이드 · 엑소좀 · PRP)에 프로락틴 · 플루옥세틴 0",
+   "evidence_level": "없음",
+   "destination": {
+    "kind": "단위 시술 없음 유지 + 원천 질문",
+    "target": "—",
+    "note": "성분이 정해져야 계열이 정해짐(두피 메조면 M4 × 두피 × K01a). 이름 충돌(프로락틴 호르몬 · 프로작 항우울제) 그대로 원천 질문"
+   }
+  },
+  {
+   "item": "이모드",
+   "ledger_id": "market: 이모드 (복부) · (힙) · (복부+힙 동시) · (4회 패키지)",
+   "source_text": "market-pricing M10 「HIFES/EMS」 · 이모드 (복부) 1회 10/20/40만 · (힙) 같음 · 같은 파일 M9 에 「인모드 (풀페이스)」 별도 행",
+   "identity": "못 찾음",
+   "evidence": [],
+   "searched": "MFDS 의료기기 TYPE_NAME 이모드 0 · E-MOD 0 · E-MODE 0 · EMODE 0 · EMOD 1(혈액회로 — 무관) · 웹 「이모드 EMS 복부 힙」 「\"이모드\" 바디 EMS」 — 결과가 전부 「인모드(InMode · RF+EMS)」 · 「바디 인모드」로 바뀌어 나옴. 원천이 인모드를 다른 행(M9)으로 따로 가져 같은 것이라 볼 근거 없음",
+   "evidence_level": "없음",
+   "destination": {
+    "kind": "step5 F4 추천 유지",
+    "target": "U5-105 복부 EMS · U5-106 힙 EMS(M10 × 복부/힙 × K06) + 제품 「이모드(미확인)」 등급",
+    "note": "원천 질문에 「인모드 바디와 같은가」를 함께 묻는 안 — 같으면 M9 · M10 병용 장비라 키가 바뀜. 1단계 새 제품 행 없음(정체 미확인)"
+   }
+  },
+  {
+   "item": "수소토닝(듀오 하이드로젠)",
+   "ledger_id": "new-DEV-041(1단계 moved_to)",
+   "source_text": "1단계 web4 「고농도 수소수 · 살균수(오존수) · 아쿠아필 3모드 물 기반 피부관리 장비 — 수소토닝은 수소수 관리 메뉴명」",
+   "identity": "장비 「듀오 하이드로젠(DUO HYDROGEN)」 — 물을 전기분해해 고농도 수소수(1,600 ppb 표기)를 피부에 흘려 쓰는 관리 장비 · 모드 3(수소수 · 살균수(오존수) · 아쿠아필). 「수소토닝」 = 수소수 모드 메뉴명. 레이저 토닝 아님. 판매 = 세븐인터내셔널(세븐윈드) 표기",
+   "evidence": [
+    {
+     "url": "http://www.medisobizanews.com/news/articleView.html?idxno=69157",
+     "note": "메디소비자뉴스 건강칼럼 「고농도 수소 발생 '듀오 하이드로젠'」"
+    },
+    {
+     "url": "https://cuseven.co.kr/bbs/duo.php",
+     "note": "세븐인터내셔널 제품 페이지"
+    },
+    {
+     "url": "https://drdclinic.co.kr/dk/products/20842/",
+     "note": "닥터디자이너의원 「수소토닝」"
+    },
+    {
+     "url": "http://sooclinic.co.kr/bbs/board.php?bo_table=sub1&wr_id=11",
+     "note": "수클리닉 「수소토닝」"
+    },
+    {
+     "url": "http://www.romaskin.com/index.php?idx=melasma%2Fct_5b0fdc39c180a",
+     "note": "로마피부과 「수소토닝」(기미 메뉴 아래)"
+    },
+    {
+     "url": "https://sevenu.co.kr/bbs/board.php?bo_table=notice&wr_id=34",
+     "note": "레이필의원 듀오하이드로젠 관리"
+    },
+    {
+     "pmid": "33419292",
+     "title": "Antioxidant Activity of Hydrogen Water Mask Pack Composed of Gel-Type Emulsion and Hydrogen Generation Powder.",
+     "source": "Int J Mol Sci",
+     "year": 2020,
+     "role": "수소 외용 항산화 — 원리 근거(장비 아님)",
+     "verified": "NCBI ESummary 2026-10-29"
+    }
+   ],
+   "searched": "MFDS 의료기기 TYPE_NAME HYDROGEN 0 · DUO 50(무관) — 1단계 emedi 재조사 0 과 같음 · 허가 대상 여부 못 찾음",
+   "evidence_level": "중(제조 · 판매사 페이지 + 여러 병원 일치 · 허가 못 찾음)",
+   "destination": {
+    "kind": "기존 키 동의어",
+    "target": "U5-035 얼굴 전체 박리 관리(M15 × 얼굴 전체 × K11) — 아쿠아필 · 수소필링과 같은 키",
+    "note": "step5 F4 추천 그대로 · 근거 강화(장비 = 물 기반 관리 · 아쿠아필 모드 포함). 1단계 new-DEV-041(active=false · 「병원 메뉴명」)은 장비 행으로 되살릴지 = 사용자 판단 U8"
+   }
+  }
+ ],
+ "iv_components": [
+  {
+   "item": "셀디톡스수액",
+   "ledger_id": "auto-55-1774737181584",
+   "source_text": "해독·항산화 · 「항산화제 및 간 해독 성분의 복합」",
+   "found": "수액 성분 못 찾음 — 같은 이름 「셀디톡스(CELL DETOX)」는 HCBIOPHARM 건강기능식품(수액 아님 · 이름 충돌)",
+   "evidence": [
+    {
+     "url": "https://linktr.ee/hcbiopharm",
+     "note": "HCBIOPHARM 셀디톡스 = 건강기능식품"
+    }
+   ],
+   "searched": "웹 「셀디톡스 수액 성분」 「\"셀디톡스\"」 — 병원 수액 메뉴 0",
+   "evidence_level": "없음",
+   "common_components": null,
+   "destination": {
+    "kind": "단위 시술 없음 유지(F7) + 원천 질문",
+    "note": "원천 문장 「항산화제 · 간 해독 성분」만으로는 성분 키(안 C)를 못 고름. 글루타치온 수액 키 동의어로 두는 것은 추정이라 하지 않음"
+   }
+  },
+  {
+   "item": "에너지부스트수액",
+   "ledger_id": "auto-56-1774737181584",
+   "source_text": "피로회복 · 「비타민B군, 미네랄, 항산화제의 복합」",
+   "found": "그 이름의 병원 수액 성분 못 찾음 — 「셀 에너지 부스터」는 HCBIOPHARM 건강기능식품(이름 충돌)",
+   "evidence": [
+    {
+     "url": "https://linktr.ee/hcbiopharm",
+     "note": "셀 에너지 부스터 = 건강기능식품"
+    }
+   ],
+   "searched": "웹 「에너지부스트 수액 성분」 — 일반 영양수액(마이어스 칵테일 · 마늘주사) 설명만",
+   "evidence_level": "없음",
+   "common_components": "원천 문장 자체가 「비타민 B군 · 미네랄 · 항산화제」 — 마이어스 칵테일과 구성 이름은 겹치나 같은 처방이라는 근거 없음",
+   "destination": {
+    "kind": "성분이 여럿 — 키 처리 안 둘",
+    "options": [
+     "안 1: 단위 시술 없음 유지(F7) + 원천 질문",
+     "안 2: M16 × 「복합(비타민 B군 · 미네랄)」 성분 칸 × 해당 없음 × K01b — 원천 문장의 성분 이름만으로 복합 성분 키 1"
+    ],
+    "note": "사용자 판단 U7"
+   }
+  },
+  {
+   "item": "이뮨코어수액",
+   "ledger_id": "auto-58-1774737181584",
+   "source_text": "면역강화 · 「비타민C, 아연, 셀레늄, 항산화제 등의 복합」",
+   "found": "그 이름의 병원 수액 못 찾음",
+   "evidence": [],
+   "searched": "웹 「이뮨코어 수액 성분」 「\"이뮨코어\"」 — 경구 「오쏘몰 이뮨」 · 이뮨셀-LC(항암 세포치료) 이름 충돌만",
+   "evidence_level": "없음",
+   "common_components": "원천 문장 = 비타민C · 아연 · 셀레늄",
+   "destination": {
+    "kind": "성분이 여럿 — 키 처리 안 둘",
+    "options": [
+     "안 1: 단위 시술 없음 유지 + 원천 질문",
+     "안 2: M16 × 「복합(비타민C · 아연 · 셀레늄)」 × 해당 없음 × K01b — 원천 문장 성분으로 키 1"
+    ],
+    "note": "사용자 판단 U7"
+   }
+  },
+  {
+   "item": "다이어트 수액",
+   "ledger_id": "market: 다이어트 수액 1회 5/10/20만",
+   "source_text": "market-pricing M16 「다이어트 수액」 — 성분 원천 없음",
+   "found": "병원마다 다름 — 공통으로 자주 드는 성분은 L-카르니틴(엘칸액 등 허가 의약품) · 그 밖 아르기닌 · 비타민 B5 · C 조합 사례(한 곳). 「다이어트 수액」은 처방 이름이 아니라 목적 이름",
+   "evidence": [
+    {
+     "url": "https://fmclinic.co.kr/44/?bmode=view&idx=126707506",
+     "note": "에프엠의원 「다이어트 수액, 개인별 맞춤 처방 필요」 — 아르기닌 + 카르니틴 + 비타민 B5 · C"
+    },
+    {
+     "url": "https://nedrug.mfds.go.kr/pbp/CCBBB01/getItemDetailCache?cacheSeq=198300147aupdateTs2026-09-16+09%3A09%3A46.0b",
+     "note": "식약처 엘칸액(엘-카르니틴) — 경구 액제 허가(주사 아님 · 성분 근거만)"
+    }
+   ],
+   "searched": "웹 「다이어트 수액 성분 엘카르니틴」 · 병원 1곳 처방 · 공통 성분 단정할 다기관 자료 못 찾음",
+   "evidence_level": "약(한 곳)",
+   "common_components": "L-카르니틴(자주 언급 · 다기관 일치 근거는 못 찾음)",
+   "destination": {
+    "kind": "성분이 여럿 — 키 처리 안 둘",
+    "options": [
+     "안 1: 단위 시술 없음(F7 그대로) · 「다이어트 수액」 = 7단계 목적 이름(고민 → 수액 후보)",
+     "안 2: M16 × L-카르니틴 × 해당 없음 × K01b 동의어(근거 약)"
+    ],
+    "note": "사용자 판단 U7"
+   }
+  }
+ ],
+ "user_judgments": [
+  {
+   "id": "U1",
+   "q": "새 계열 6개(N2 카복시테라피 · N3 반영구 화장 · N4 피부 소수술 · N5 태반 추출물 주사 · N6 성장호르몬 주사 · N7 펄스 전자기장 치료)를 세우나",
+   "options": [
+    "6개 전부",
+    "문헌 강 3(N2 · N3 · N4)만 · N5 · N6 · N7 은 묶음 1계열 「전신·기기 기타」",
+    "하나씩 고름"
+   ],
+   "recommend": "6개 전부 — 원칙 「계열이 없으면 늘린다」 · 6개 다 17 정의 밖 확인. N5 · N7 은 문헌 독립성 중~약이라 evidence_level 중으로 표시",
+   "why": "2단계 기준(문헌 독립 분야)을 N5 · N7 은 반만 채움 — 기준을 원칙과 맞춰 읽는 것은 사람 판단"
+  },
+  {
+   "id": "U2",
+   "q": "트리필 프로(CO2 가스 박리 + 약물 주입 · 2단계 M4)를 N2 카복시로 옮기나",
+   "options": [
+    "M4 그대로",
+    "N2 로",
+    "둘 다(여러 계열)"
+   ],
+   "recommend": "M4 그대로 — 원천 행이 약물(스킨부스터 · PLLA) 주입 장비로 설명 · 2단계 결정 유지",
+   "why": "2단계 결정을 바꾸는 일"
+  },
+  {
+   "id": "U3",
+   "q": "반영구 화장의 기법 — 4단계에 새 노드 K13 「미세색소주입」을 세우나",
+   "options": [
+    "K13 신설",
+    "K03 미세침 천공으로",
+    "K01 주입으로"
+   ],
+   "recommend": "K13 신설 — 색소를 진피에 남기는 기법은 24 노드 어디에도 없음(K01 = 주사기 · K03 = 물질 안 남김)",
+   "why": "4단계 정본에 노드를 더하는 일"
+  },
+  {
+   "id": "U4",
+   "q": "스테로이드 병변 내 주사를 N4 피부 소수술 하위로 넣고 부위를 「병변 단위」로 하나",
+   "options": [
+    "N4 하위 · 병변 단위",
+    "N4 하위 · 얼굴 전체(F2 추천)",
+    "별도 계열"
+   ],
+   "recommend": "N4 하위 · 병변 단위 — 원천 적응증 켈로이드 · 비후성 반흔 = 몸 어디든(F3 과 같은 논리)",
+   "why": "F2 에서 승인한 부위 기본값을 바꾸는 일"
+  },
+  {
+   "id": "U5",
+   "q": "성장호르몬 주사의 쓰는 제품 — 소마트로핀 허가 28건을 1단계에 제품 행으로 더하나",
+   "options": [
+    "더하지 않음(원천이 품목을 부르지 않음)",
+    "대표 1건만",
+    "전부"
+   ],
+   "recommend": "더하지 않음 — 원천은 「GH」만 말함 · 1단계 기준 「원천이 부르는 것만」",
+   "why": "1단계 원장 범위"
+  },
+  {
+   "id": "U6",
+   "q": "헤어셀 기법 칸 — K06 「전자기 자극」 노드 정의를 근육 목적 밖까지 넓히나",
+   "options": [
+    "넓혀 K06",
+    "새 노드 K14 「펄스 전자기장」"
+   ],
+   "recommend": "넓혀 K06 — 이름(전자기 자극)이 이미 맞고 같은 허가 품목명(의료용전자기발생기)이 M10 장비와 같음",
+   "why": "4단계 정본 노드 정의 변경"
+  },
+  {
+   "id": "U7",
+   "q": "성분 미상 수액 4 — 원천 문장에 성분 이름이 있는 2(에너지부스트 · 이뮨코어)와 다이어트를 키로 세우나",
+   "options": [
+    "넷 다 단위 시술 없음 · 원천 질문(F7 그대로)",
+    "원천 문장 성분으로 복합 키 2(에너지부스트 · 이뮨코어) + 다이어트 L-카르니틴 동의어(근거 약) · 셀디톡스만 질문",
+    "넷 다 M16 계열 동의어만"
+   ],
+   "recommend": "넷 다 단위 시술 없음 · 원천 질문 — 웹에서 이 이름의 처방을 하나도 못 찾았고(셀디톡스 · 에너지부스터는 건강기능식품 이름 충돌) 다이어트는 병원마다 다름. 원천 문장 성분은 원천이 만든 설명이라 처방 근거가 아님",
+   "why": "원칙 「클리닉 시술은 전부 단위 시술」과 「추정 금지」가 부딪침 — 사람 판단"
+  },
+  {
+   "id": "U8",
+   "q": "듀오 하이드로젠(new-DEV-041 · active=false 「병원 메뉴명」)을 장비 행으로 되살리나",
+   "options": [
+    "되살림(장비 · 허가 미확인 · 판매 세븐인터내셔널)",
+    "그대로(메뉴명 · 동의어만)"
+   ],
+   "recommend": "되살림 — 제조 · 판매사 페이지와 병원 4곳이 장비로 부름 · 수소토닝은 이 장비의 메뉴명",
+   "why": "1단계 정본 행 상태 변경"
+  },
+  {
+   "id": "U9",
+   "q": "파셀라 메디컬 경락의 계열을 M15(박리 관리 동의어 · step5 F4 추천)에서 M9(고주파 리프팅)로 바꾸나",
+   "options": [
+    "M9 × 얼굴 전체 × K05",
+    "M15 그대로",
+    "원천 질문까지 보류"
+   ],
+   "recommend": "M9 × 얼굴 전체 × K05 — 파셀라 = 2 MHz RF 괄사 장비(병원 여러 곳 일치) · 「경락」은 괄사 동작 이름",
+   "why": "F4 승인 전 보류 항목 · 계열 판정이 바뀜"
+  }
+ ],
+ "step2_ledger_additions": [
+  {
+   "family": "N2",
+   "name": "카복시테라피",
+   "definition": "의료용 이산화탄소(CO2) 가스를 피하·진피에 주입해 혈관 확장과 조직 산소 공급 증가를 일으키는 시술",
+   "literature": [
+    "35124882",
+    "40062597",
+    "36999460"
+   ],
+   "default_technique": "K01",
+   "members": [
+    "auto-M16-1775361069392"
+   ]
+  },
+  {
+   "family": "N3",
+   "name": "반영구 화장",
+   "definition": "바늘로 진피 상층에 색소를 심어 눈썹 · 아이라인 · 입술 · 두피(헤어라인)의 모양 · 색을 그려 넣는 시술",
+   "literature": [
+    "37727553",
+    "16042938",
+    "35947499"
+   ],
+   "default_technique": "K13(U3) — 없으면 K03",
+   "members": [
+    "auto-76~79-1774737181584(문제 트리 P1-7 4)"
+   ]
+  },
+  {
+   "family": "N4",
+   "name": "피부 소수술",
+   "definition": "니들 · 펀치 · 압출기 같은 수술 도구로 흉터 · 병변 조직을 직접 절단 · 절제 · 제거하거나, 병변 안에 약물을 직접 주사하는 피부과 소수술",
+   "literature": [
+    "30856634",
+    "11423843",
+    "36698445",
+    "18418647",
+    "36688880"
+   ],
+   "default_technique": "K12",
+   "members": [
+    "auto-M15-1775361858045",
+    "auto-M15-1775364775169",
+    "auto-M15-1775364775172",
+    "auto-M15-1775361870269"
+   ]
+  },
+  {
+   "family": "N5",
+   "name": "태반 추출물 주사",
+   "definition": "사람 태반(자하거)에서 얻은 추출물 · 가수분해물을 피하 · 근육에 주사하는 시술",
+   "literature": [
+    "41470802",
+    "18090035",
+    "26911970"
+   ],
+   "default_technique": "K01",
+   "members": [
+    "M16-3-1 라이넥",
+    "auto-M16-1775364775098 멜스몬"
+   ],
+   "out_of_family_withdraw": [
+    "M16-3-1",
+    "auto-M16-1775364775098"
+   ]
+  },
+  {
+   "family": "N6",
+   "name": "성장호르몬 주사",
+   "definition": "유전자재조합 성장호르몬(소마트로핀)을 피하 주사해 IGF-1 을 올리는 시술(원천 목적 = 항노화)",
+   "literature": [
+    "17227934",
+    "38489867"
+   ],
+   "default_technique": "K01",
+   "members": [
+    "auto-M16-1775364775099"
+   ]
+  },
+  {
+   "family": "N7",
+   "name": "펄스 전자기장 치료",
+   "definition": "몸 밖에서 저강도 펄스 전자기장을 걸어 조직(두피 모낭)을 자극하는 기기 시술 — 근육 수축을 목적으로 하지 않는 점에서 M10 과 다름",
+   "literature": [
+    "36345917",
+    "14669818",
+    "39630190",
+    "39124800"
+   ],
+   "default_technique": "K06(U6)",
+   "members": [
+    "auto-M15-1775364775178 헤어셀"
+   ],
+   "out_of_family_withdraw": [
+    "auto-M15-1775364775178"
+   ]
+  }
+ ],
+ "step1_product_candidates": [
+  {
+   "candidate": "파셀라(FASCELLA)",
+   "kind": "장비",
+   "license": "못 찾음(MFDS FASCELLA · 파셀라 0)",
+   "manufacturer": "못 찾음",
+   "family": "M9(U9)",
+   "basis": "병원 메뉴 여러 곳 · 메디컬투데이 기사",
+   "status": "후보 — U9 승인 시"
+  },
+  {
+   "candidate": "듀오 하이드로젠(DUO HYDROGEN) — 기존 new-DEV-041 되살림",
+   "kind": "장비",
+   "license": "못 찾음(MFDS HYDROGEN 0)",
+   "manufacturer": "판매 세븐인터내셔널(제조사 표기 확인 안 됨)",
+   "family": "M15",
+   "basis": "cuseven.co.kr/bbs/duo.php · 병원 4곳",
+   "status": "후보 — U8"
+  },
+  {
+   "candidate": "(성장호르몬) 소마트로핀 제제",
+   "kind": "의약품",
+   "license": "허가 28건(유트로핀 · 그로트로핀 …)",
+   "family": "N6",
+   "status": "추천 = 더하지 않음(U5)"
+  }
+ ],
+ "notes": [
+  "literature-evidence.json M1~M17 에 carboxy · placent · growth hormone · subcision · micropig · electromagnetic · punch 0회 — 17 정의 밖 판정 보조",
+  "US 전용 WebSearch 라 한국 병원 페이지 검색 범위가 좁음 — 못 찾음 항목은 이 범위에서 0",
+  "원장 · 결정 · 원천 수정 없음"
+ ]
+}

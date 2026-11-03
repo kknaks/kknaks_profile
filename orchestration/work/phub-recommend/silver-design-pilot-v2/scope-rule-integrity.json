@@ -1,0 +1,258 @@
+{
+  "session_start_files": 295,
+  "changes": [
+    {
+      "before": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/contract.md",
+        "sha256": "62b2248547bcc3ecfee023b62fadc28b59705cdbd8a2d9d4e8fcccdd5cb80a40",
+        "bytes": 5758
+      },
+      "after": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/contract.md",
+        "sha256": "a191739b17fe4d6b5809aa6d1d565f60c14d1436d2828bb8228d89dae4af47a4",
+        "bytes": 10036
+      },
+      "authorized": true
+    },
+    {
+      "before": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/invariants.py",
+        "sha256": "b1a18db030eb20e3361b2e955ce574649162b2fd21bbe628d311642568ef595d",
+        "bytes": 10347
+      },
+      "after": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/invariants.py",
+        "sha256": "ce5188297d0a431a91e167e8ce49e00949b50cc5f9788f3f9f048c83a9466232",
+        "bytes": 15495
+      },
+      "authorized": true
+    },
+    {
+      "before": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/ref-contract.json",
+        "sha256": "18a97fc0e5aff54b4c250a0597376ff83c328990b7d2f5f02ac048192f6e6721",
+        "bytes": 101770
+      },
+      "after": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/ref-contract.json",
+        "sha256": "8afcda20841f3e85c1ab38a2c2f933ebca117da510ca8d3e2997a1d28bc86161",
+        "bytes": 102208
+      },
+      "authorized": true
+    },
+    {
+      "before": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/ref_contract.py",
+        "sha256": "3b6a753edfdac9f7c92469afe48a198b18295f0bbb4d9c23fc8c925f339f4212",
+        "bytes": 2792
+      },
+      "after": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/ref_contract.py",
+        "sha256": "597fd6ccda4b875e28990c491f6226a7f1b3b3e3410e283b129a928f1343b0f3",
+        "bytes": 3267
+      },
+      "authorized": true
+    },
+    {
+      "before": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/schema.json",
+        "sha256": "763f2730e49235ee836574bd2e9292529f0524ff801541f2e6e4e81dc713c62d",
+        "bytes": 66388
+      },
+      "after": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/schema.json",
+        "sha256": "a4c762c10372c7dedbaf92f9c7e67aea198dbba35613d263c90dc45f6d250654",
+        "bytes": 66442
+      },
+      "authorized": true
+    },
+    {
+      "before": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/schema.py",
+        "sha256": "a8a0cb51e466773d2c855959ba6ca1f41607d0696548847efee961957d915249",
+        "bytes": 10203
+      },
+      "after": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/schema.py",
+        "sha256": "121ddca33bf3372c6662e071a3f2dcc9064ca02147705573ea95b883f702cfd9",
+        "bytes": 10237
+      },
+      "authorized": true
+    }
+  ],
+  "unexpected_changes": [],
+  "unchanged_files": 289,
+  "historical_baseline_differences": {
+    "immutable": [],
+    "mutable_progress": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-11-03-procedure-hub-data-and-traversal/WORK.md",
+        "baseline_sha256": "9bc30bce3ea6c0f1184e135497f3b4118449cdcc138c624ff25f6971525ba68f",
+        "current_sha256": "0ed521b6b8d901e60c3b44e73ef8b1dd68c8700b544d931ffc13449e600f8ad2"
+      }
+    ]
+  },
+  "code_hashes": {
+    "build.py": "6ac8f07c83c4a069f031c7f89788626e01c621cbad13d854e3c62599eb924028",
+    "run.py": "d24d46b108324b5b766d59143107a6c525420bb9651adf97120f5e5691ca6ba6",
+    "source_review.py": "e1c907dce12ef513d24928d906dec6fca7f02492b3e5690232448a6d8eb971ca",
+    "semantic_probes.py": "24e6a750138925f749e8d35a605aa6111902d73d7d21a29679e6fe2413589137",
+    "positive_controls.py": "b38faf7aef4dd28d72d2181271a1360ca08907afc8109378125a4b271eb5280b",
+    "validate.py": "75a7f4cecefbfbef7d9e4d943c7719ce7fcea6bf98465bdf385b7de68292bd46",
+    "common.py": "925a08f1274b3f678c554c770d996fea28c349f630a0328c5e1117deb63088cd",
+    "ref_contract.py": "597fd6ccda4b875e28990c491f6226a7f1b3b3e3410e283b129a928f1343b0f3",
+    "probes.py": "b6e04482536bd3c2fa24f2afe22c4fbea4ad497ff3cc80df78340b1ff2f2751f",
+    "scope_rule_probes.py": "05805decb9b03dd96aa55076bf0d2c428c8045eabe67660cc7f0d0fe01ce9f14",
+    "identity_tests.py": "0d10c49c127d6bd40bc4273c55e5206c6d2fe8420a8bf151fe5d16ad866f3085",
+    "identity.py": "dccf33fec8b68da3c72adaeb1addc31214b17cd610d40f10e3f1307bd1729ace",
+    "report.py": "cd0129960f8f5440e131b0e13209a04254aedc7c14b7e10facbf6d2cf8153348",
+    "project.py": "64074c1173248041b6829e0af337e7922e0dc13d4b71b71643575dac7f3f5fc7",
+    "finish.py": "1f67a8be3a1525517808bed3e0ce93a5185192ca12a4272e470e610077b90e6c",
+    "invariants.py": "ce5188297d0a431a91e167e8ce49e00949b50cc5f9788f3f9f048c83a9466232",
+    "schema.py": "121ddca33bf3372c6662e071a3f2dcc9064ca02147705573ea95b883f702cfd9"
+  },
+  "unchanged_data_hashes": {
+    "pilot.json": "cc897e4cca29f0e50bab2605ee3ef06a7ab5fe7942544a2ca00b4b496f45c89f",
+    "graph-projection.json": "9fc347462b83bf675d903de2355e76370ba2d3d190f82f2146d68e756a257a2f",
+    "protected-start.json": "d9e5f014aeb70f183811610f27eb6ec96d3ed38e24b0cf02a453362a8a03de79",
+    "protected-end.json": "d9e5f014aeb70f183811610f27eb6ec96d3ed38e24b0cf02a453362a8a03de79"
+  },
+  "final_audit": true,
+  "files_modified": [
+    "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/contract.md",
+    "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/invariants.py",
+    "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/ref-contract.json",
+    "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/ref_contract.py",
+    "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/schema.json",
+    "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/schema.py",
+    "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-additional-probes.json",
+    "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-baseline.json",
+    "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-existing-mutations.json",
+    "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-extra-probes.json",
+    "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-fix-report.md",
+    "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-historical-rehashed.json",
+    "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-identity-tests.json",
+    "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-identity_tests.py.execution.json",
+    "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-independent-additional.json",
+    "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-independent-source.json",
+    "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-integrity.json",
+    "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-patch.json",
+    "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-positive-controls.json",
+    "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-positive_controls.py.execution.json",
+    "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-probe-summary.json",
+    "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-probes.py.execution.json",
+    "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-rehashed-semantic-probes.json",
+    "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-semantic_probes.py.execution.json",
+    "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-source_review.py.execution.json",
+    "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-start.json",
+    "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-summary.json",
+    "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope_rule_probes.py"
+  ],
+  "new_artifacts": [
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-additional-probes.json",
+      "sha256": "5da27dcdd10a206b68edd282e83c8f7c77ac2c88bec7a13105909a64bcf8ada5",
+      "bytes": 10917
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-baseline.json",
+      "sha256": "6a49b39b5901b6339c2a8cd7a9dbabcc0955b2b4ef2de92a8c0d34fb0290b9a9",
+      "bytes": 3189670
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-existing-mutations.json",
+      "sha256": "f3aaa9cd2d873fccf7419e1992c123aa81ac3be129858678b07cb27695cb4bf9",
+      "bytes": 16475
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-extra-probes.json",
+      "sha256": "406d039aa148feed44666126aa0d91933553943a204191433ffd9b5024659ffc",
+      "bytes": 22613
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-fix-report.md",
+      "sha256": "33df815bd28dd5808ad1ce2e16bd0cfe87eea3e3ec9fb0d1a7208c3604c20936",
+      "bytes": 10391
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-historical-rehashed.json",
+      "sha256": "8e2a2c5d2e2fa20b2ed8afc400a8af5901705821a6431073c286f1821db1f6d6",
+      "bytes": 21790
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-identity-tests.json",
+      "sha256": "50e5c6ab1a68f006f60fffaa78de21a3e2f806f9f4932f9ff5ff93791e26e083",
+      "bytes": 2139
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-identity_tests.py.execution.json",
+      "sha256": "e8517f6d4aa0ded315c18f131ec177ef4bb488df2d2f315e2d8258edc33dc51b",
+      "bytes": 157
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-independent-additional.json",
+      "sha256": "80f6ddfd576e97836f97e3bd4d1d4fe989fdc6df12a5ac0368a6629addc6ffa2",
+      "bytes": 5273
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-independent-source.json",
+      "sha256": "ae4c951bc106130fd0c0ba26a2e413f77e65b2b718a0195775ac407e173aa067",
+      "bytes": 254266
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-patch.json",
+      "sha256": "3c7bd4a9eda2a5622108673cbb73d511e3ed8efb32164e54d374aed2d68f9a84",
+      "bytes": 28089
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-positive-controls.json",
+      "sha256": "6c74bfaa5ec764871454ce053ee8e7235c27912dfa4053ae466b011db323a5b1",
+      "bytes": 508
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-positive_controls.py.execution.json",
+      "sha256": "7feeab8aa9673ce0af535aaee8d7137e2812722247819ad50f0c3eb19f378f15",
+      "bytes": 513
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-probe-summary.json",
+      "sha256": "ffab32fc0c17eb65985519e7a03b9fa9480f20d9f87cf8d2527cd46462d06a98",
+      "bytes": 318
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-probes.py.execution.json",
+      "sha256": "ad4665b1a1cd9458eb3e50ecff5cc11620392aec8a1f933aceac20d749056a6f",
+      "bytes": 425
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-rehashed-semantic-probes.json",
+      "sha256": "0bef6a5a76ae5c915ebcfb821eeb881daad83c126865dd6907cd771a12d5e9e6",
+      "bytes": 8815
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-semantic_probes.py.execution.json",
+      "sha256": "680948b0eb79c842f2f58bb9d8b271e125289772c9de1bddbedea5540f823951",
+      "bytes": 157
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-source_review.py.execution.json",
+      "sha256": "e1884a8801c6f97834498d0971ad85728023cf0bad67b7deaab66b76aa2ba6cb",
+      "bytes": 140
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-start.json",
+      "sha256": "6bda5e68093bef5d295abc4d07365081659191e9d572873b50bdb35daf4e9bd6",
+      "bytes": 404071
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-summary.json",
+      "sha256": "8f149bdd0a26f38b344066a7080052fc1cc35e6839f31fe1369d55add9569a73",
+      "bytes": 484
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope_rule_probes.py",
+      "sha256": "05805decb9b03dd96aa55076bf0d2c428c8045eabe67660cc7f0d0fe01ce9f14",
+      "bytes": 8128
+    }
+  ]
+}

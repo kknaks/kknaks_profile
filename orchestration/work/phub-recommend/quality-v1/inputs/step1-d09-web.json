@@ -1,0 +1,575 @@
+{
+ "version": 1,
+ "generated_at": "2026-10-27",
+ "scope": "1단계 D09 — 원장 업체 없이 이름으로 허가에 연결한 16행 + 코디 추가(캐번실 · 리니어펌 · 젠틀맥스프로 · 젠틀맥스프로+) · 대한민국 웹 · 식약처 API · emedi 확인",
+ "basis": "WebSearch(standard/extended) · WebFetch — 제조·수입사 공식 사이트 · 국내 보도 · 전시 · 병원 장비 소개. 추정 금지 · URL 없는 판매사 칸 없음 · 개인 실명 제외. 원장 · 결정 파일은 건드리지 않음",
+ "summary": {
+  "rows": 20,
+  "link": {
+   "일치": 15,
+   "확인 불가": 2,
+   "불일치": 1,
+   "현재 정품 허가 찾음": 2
+  },
+  "seller_found_products": 4,
+  "sellers_total": 4,
+  "conflicts": 4
+ },
+ "items": [
+  {
+   "ledger_id": "auto-M1-1775362462896",
+   "name": "톡스온",
+   "license": "202500353 톡스온주 · (주)에이티지씨",
+   "link": "일치",
+   "link_basis": "에이티지씨가 콤플렉스형 보툴리눔 톡신 「톡스온 주」 국내 품목허가 획득(2025-02-17 보도)",
+   "sources": [
+    "https://m.dailypharm.com/user/news/8363",
+    "https://www.hkn24.com/news/articleView.html?idxno=342968"
+   ],
+   "sellers": [
+    {
+     "name": "근거 없음",
+     "role": null,
+     "url": null,
+     "period": null,
+     "note": "조사 기록: 국내 판매·유통사 기사 0 — 보도된 판권 계약은 해외(메나리니 그룹 유럽·영국 독점 판권 2022, 싱클레어는 퓨어형 ATGC-110 글로벌 판권 2023)뿐"
+    }
+   ],
+   "conflicts": [],
+   "note": "원장 6_companies.seller 에 (주)에이티지씨가 들어 있으나 웹 출처상 에이티지씨는 품목허가 획득(허가권자) — 국내 판매사 출처는 없음",
+   "queries": [
+    "톡스온주 에이티지씨 판매 유통 계약",
+    "톡스온 보툴리눔 국내 판매 파트너 출시",
+    "에이티지씨 톡스온 국내 판권 판매 계약 제약사"
+   ]
+  },
+  {
+   "ledger_id": "M2-2-5",
+   "name": "퍼펙타",
+   "license": "수허 11-1381 · 10-1266 · 10-1267 · 한국싱클레어 유한회사 수입 · Sinclair France SAS",
+   "link": "일치",
+   "link_basis": "한국싱클레어 제품 페이지 Perfectha — 허가번호 수허 10-1266 · 11-1381 표기, 제조 Sinclair France SAS",
+   "sources": [
+    "https://sinclairkorea.co.kr/perfectha/"
+   ],
+   "sellers": [
+    {
+     "name": "디엔컴퍼니",
+     "role": "유통(기사 제목 「‘퍼펙타’ 유통 DN컴퍼니」) · 출시(「디엔컴퍼니, 티없는 필러 '퍼펙타' 출시」)",
+     "url": "https://www.hkn24.com/news/articleView.html?idxno=138645",
+     "period": "2014-11-24 보도 · 2015-10 프리미엄 브랜드 대상 보도(https://www.dailypharm.com/user/news/119408) — 현재도 유통하는지 출처 없음"
+    }
+   ],
+   "conflicts": [
+    {
+     "field": "제조사",
+     "license": "Sinclair France SAS",
+     "web": "프랑스 오비라인(Obvieline) 개발·제조",
+     "url": "https://www.dailypharm.com/user/news/119408",
+     "note": "2015 보도 표기 — 덮어쓰지 않음(같은 회사의 이전 이름인지 출처 없음)"
+    }
+   ],
+   "note": null,
+   "queries": [
+    "퍼펙타 필러 한국싱클레어 판매",
+    "\"퍼펙타\" 필러 싱클레어 국내 출시"
+   ]
+  },
+  {
+   "ledger_id": "M2-2-6",
+   "name": "아말리안",
+   "license": "수허 25-210 · 25-201 · 12-1958~1960 · 대화제약(주) 수입 · S&V Technologies GmbH",
+   "link": "일치",
+   "link_basis": "대화제약이 2014년 2월부터 S&V 개발 필러 「아말리안」 수입·판매, 2017 S&V 인수",
+   "sources": [
+    "https://m.dailypharm.com/user/news/13533",
+    "https://www.dailymedi.com/news/news_view.php?ca_id=2205&wr_id=916127",
+    "https://www.monews.co.kr/news/articleView.html?idxno=102232"
+   ],
+   "sellers": [
+    {
+     "name": "대화제약(주)",
+     "role": "국내 판매 담당 · 2014년부터 국내 독점 유통(S&V 인수 기사 — 원료 생산은 리독스바이오, 국내 판매는 대화제약) — 허가 수입사와 같은 회사",
+     "url": "https://www.monews.co.kr/news/articleView.html?idxno=102232",
+     "period": "2014~ (인수 보도 2017)"
+    }
+   ],
+   "conflicts": [],
+   "note": "관계: 대화제약이 제조사 S&V 를 2017 인수(https://www.monews.co.kr/news/articleView.html?idxno=102232) — 충돌 아님, 관계 기록",
+   "queries": [
+    "아말리안 필러 대화제약 판매 유통",
+    "아말리안 필러 국내 판매 코마케팅 대화제약"
+   ]
+  },
+  {
+   "ledger_id": "auto-M4-1775361743324",
+   "name": "매쿰7",
+   "license": "제허 26-616 매쿰7(McCoom7) · 주식회사 사치바이오",
+   "link": "일치",
+   "link_basis": "사치바이오 「매쿰7」 식약처 4등급 의료기기 허가(2026-08-28 보도) — PLLA 기반",
+   "sources": [
+    "https://edaily.co.kr/News/Read?mediaCodeNo=257&newsId=02801126645551912",
+    "https://www.enetnews.co.kr/news/articleView.html?idxno=25308"
+   ],
+   "sellers": [
+    {
+     "name": "근거 없음",
+     "role": null,
+     "url": null,
+     "period": null,
+     "note": "조사 기록: 판매·유통사 표기 0(허가 보도 · 해외 시연 보도). 사치바이오 회사 소개(https://www.saccibio.co.kr/Aboutus)는 403 으로 열람 실패"
+    }
+   ],
+   "conflicts": [],
+   "note": "참고: 출처상 성분은 PLLA + 히알루론산(원장 계열 M4 「스킨부스터 · HA(물광)」) — 계열 판단은 이 조사 범위 밖",
+   "queries": [
+    "매쿰7 사치바이오 스킨부스터",
+    "매쿰7 McCoom7 사치바이오",
+    "사치바이오 매쿰7 국내 판매 유통 제이시스메디칼 자회사"
+   ]
+  },
+  {
+   "ledger_id": "auto-M8-1775361486532",
+   "name": "트리니티",
+   "license": "제허 21-645 반도체 레이저 수술기 · (주)블루코어컴퍼니",
+   "link": "일치",
+   "link_basis": "블루코어컴퍼니 삼파장 다이오드(755·808·1064nm) 레이저 「트리니티(TRINITY) 리프토닝」, 제모 모드 탑재",
+   "sources": [
+    "https://kr.aving.net/news/articleView.html?idxno=1798049",
+    "https://www.kihoilbo.co.kr/news/articleView.html?idxno=1045027"
+   ],
+   "sellers": [
+    {
+     "name": "근거 없음",
+     "role": null,
+     "url": null,
+     "period": null,
+     "note": "조사 기록: 국내 판매·유통사 표기 0(KIMES 2025 · 2023 보도 — 제조사 자체 전시)"
+    }
+   ],
+   "conflicts": [],
+   "note": null,
+   "queries": [
+    "트리니티 제모 레이저 블루코어컴퍼니"
+   ]
+  },
+  {
+   "ledger_id": "auto-M8-1775362951135",
+   "name": "리레이저",
+   "license": "제허 19-69 엔디야그레이저수술기 · (주)르키드",
+   "link": "확인 불가",
+   "link_basis": "국내 웹에서 「리레이저」 · RELASER · 르키드 레이저 언급 0 — 원장 이름과 허가 제품이 같은지 출처 없음",
+   "sources": [],
+   "sellers": [
+    {
+     "name": "근거 없음",
+     "role": null,
+     "url": null,
+     "period": null,
+     "note": "조사 기록: 리레이저 · RELASER · 르키드 질의 결과에 제품 언급 없음"
+    }
+   ],
+   "conflicts": [],
+   "note": null,
+   "queries": [
+    "리레이저 르키드 레이저 RELASER",
+    "\"리레이저\" 토닝 피부과 장비",
+    "르키드 RELASER 엔디야그 레이저",
+    "르키드 레이저 의료기기 회사 리레이저",
+    "RELASER Nd:YAG laser Korea Lekid"
+   ]
+  },
+  {
+   "ledger_id": "auto-M9-1775360610416",
+   "name": "포커스듀얼",
+   "license": "제허 21-24 · 26-352 집속형 초음파 자극 시스템 · (주)은성글로벌",
+   "link": "일치",
+   "link_basis": "은성글로벌 「포커스듀얼(Focus Dual)」 — HIFU 와 RF 두 기술 사용 기기, KIMES 2023 · 2025 전시",
+   "sources": [
+    "https://www.bosa.co.kr/news/articleView.html?idxno=2193372",
+    "https://www.medifonews.com/news/article.html?no=201029"
+   ],
+   "sellers": [
+    {
+     "name": "근거 없음",
+     "role": null,
+     "url": null,
+     "period": null,
+     "note": "조사 기록: 국내 판매·유통사 표기 0 — 은성글로벌은 제조사(1995 설립)로만 보도"
+    }
+   ],
+   "conflicts": [],
+   "note": null,
+   "queries": [
+    "포커스듀얼 은성글로벌 리프팅 판매",
+    "\"포커스듀얼\" 하이푸 RF 은성글로벌"
+   ]
+  },
+  {
+   "ledger_id": "auto-M15-1775364775167",
+   "name": "소노퀸",
+   "license": "제허 14-1486 · 16-360 · (주)뉴퐁",
+   "link": "일치",
+   "link_basis": "뉴퐁 「소노퀸(Sonoqueen)」 — 4MHz · 7MHz 집속형 초음파 시스템(리프팅), KIMES 2023 출품",
+   "sources": [
+    "https://www.cosinkorea.com/mobile/article.html?no=47384",
+    "https://www.komachine.com/ko/companies/newpong/products/126865-sonoqueen-sonoqueen"
+   ],
+   "sellers": [
+    {
+     "name": "근거 없음",
+     "role": null,
+     "url": null,
+     "period": null,
+     "note": "조사 기록: 국내 판매·유통사 표기 0 — 뉴퐁 제조·판매로만 보도(https://www.k-health.com/news/articleView.html?idxno=56120)"
+    }
+   ],
+   "conflicts": [],
+   "note": null,
+   "queries": [
+    "소노퀸 뉴퐁 하이푸 판매"
+   ]
+  },
+  {
+   "ledger_id": "M15-6-2",
+   "name": "큐어젯",
+   "license": "제인 22-4689 분사식주사기 · 바즈바이오메딕 주식회사",
+   "link": "일치",
+   "link_basis": "바즈바이오메딕 무바늘 약물전달 시스템 「큐어젯(CUREJET)」 의료기기 인증(2022-09-22) · 2022-11 출시 예정",
+   "sources": [
+    "http://www.ikunkang.com/news/articleView.html?idxno=36649",
+    "https://www.ftoday.co.kr/news/articleView.html?idxno=353747"
+   ],
+   "sellers": [
+    {
+     "name": "근거 없음",
+     "role": null,
+     "url": null,
+     "period": null,
+     "note": "조사 기록: 국내 판매·유통사 표기 0 — 보도된 유통 계약은 해외 44개국. 헬스케어N 판매 시작 기사(https://m.healthcaren.com/news/news_article_yong.jsp?mn_idx=475040)는 인코딩 깨져 읽지 못함"
+    }
+   ],
+   "conflicts": [],
+   "note": null,
+   "queries": [
+    "큐어젯 바즈바이오메딕 무바늘 주사기 판매"
+   ]
+  },
+  {
+   "ledger_id": "auto-50-1774737181584",
+   "name": "하이쿡스",
+   "license": "제인 18-4066 · 16-4320 전동식의약품주입펌프 · (주)노바메디",
+   "link": "일치",
+   "link_basis": "하이쿡스(HYCOOX) 멀티 인젝터 — 노바메디 제조(병원 도입 보도 · 병원 장비 소개)",
+   "sources": [
+    "https://v.daum.net/v/ENu8AxuYPU",
+    "https://heydayclinic.co.kr/hycoox"
+   ],
+   "sellers": [
+    {
+     "name": "근거 없음",
+     "role": null,
+     "url": null,
+     "period": null,
+     "note": "조사 기록: 검색 요약에 「(주)디에이컴퍼니 · 노바메디 호남 총판 계약(2020-06)」이 나왔으나 출처 페이지(mediinculture.com)가 리다이렉트로 열리지 않아 URL 확인 불가 — 미채택"
+    }
+   ],
+   "conflicts": [],
+   "note": null,
+   "queries": [
+    "하이쿡스 노바메디 약물주입기",
+    "하이쿡스 HYCOOX 총판 국내 공급 계약",
+    "디에이컴퍼니 노바메디 하이쿡스 호남 총판"
+   ]
+  },
+  {
+   "ledger_id": "auto-M15-1775402736453",
+   "name": "올타이트",
+   "license": "제인 24-927 · 23-5136 초단파 자극기 · (주)이노서스",
+   "link": "일치",
+   "link_basis": "이노서스 독자 개발 DLTD 기술 리프팅 기기 「올타이트(Alltite)」 국내 정식 출시(2024-10-17 보도)",
+   "sources": [
+    "http://www.medisobizanews.com/news/articleView.html?idxno=120158",
+    "https://thevc.kr/innoxus"
+   ],
+   "sellers": [
+    {
+     "name": "근거 없음",
+     "role": null,
+     "url": null,
+     "period": null,
+     "note": "조사 기록: 국내 총판·판매사 표기 0 — 이노서스 출시 · 병원 도입 보도뿐"
+    }
+   ],
+   "conflicts": [],
+   "note": null,
+   "queries": [
+    "올타이트 이노서스 초단파 리프팅",
+    "올타이트 이노서스 국내 총판 판매 계약"
+   ]
+  },
+  {
+   "ledger_id": "new-DEV-013",
+   "name": "덴서티하이",
+   "license": "제허 23-472 범용전기수술기 · (주)제이시스메디칼",
+   "link": "일치",
+   "link_basis": "제이시스메디칼 업그레이드 신제품 「덴서티 하이(DENSITY HIGH)」 출시(2023-09-18) — 모노폴라+바이폴라 RF",
+   "sources": [
+    "https://www.pharmnews.com/news/articleView.html?idxno=230814",
+    "https://www.medigatenews.com/news/3040991993"
+   ],
+   "sellers": [
+    {
+     "name": "근거 없음",
+     "role": null,
+     "url": null,
+     "period": null,
+     "note": "조사 기록: 국내 판매·유통사 표기 0"
+    }
+   ],
+   "conflicts": [],
+   "note": null,
+   "queries": [
+    "덴서티 하이 제이시스메디칼 고주파 리프팅 DENSITY High"
+   ]
+  },
+  {
+   "ledger_id": "new-DEV-015",
+   "name": "이브타이탄",
+   "license": "제허 24-481 3등급 의료용 조합 자극기 · (주)위로",
+   "link": "일치",
+   "link_basis": "이브타이탄(EVE TITAN) 공식 사이트 — Manufacturer WEERO Co., Ltd., KFDA 허가 · 머니투데이 「의료용 미용기기 제조사 위로」",
+   "sources": [
+    "https://www.evetitan.com/titan/kr/index.php",
+    "https://www.mt.co.kr/future/2025/03/25/2025032516541522738"
+   ],
+   "sellers": [
+    {
+     "name": "근거 없음",
+     "role": null,
+     "url": null,
+     "period": null,
+     "note": "조사 기록: 병원 공급 보도는 위로가 직접 공급 — 별도 판매·유통사 표기 0"
+    }
+   ],
+   "conflicts": [],
+   "note": null,
+   "queries": [
+    "이브타이탄 위로 EVE Titan 리프팅"
+   ]
+  },
+  {
+   "ledger_id": "new-DEV-018",
+   "name": "이래비티",
+   "license": "제허 21-26 엔디야그레이저수술기 · (주)이노메드",
+   "link": "일치",
+   "link_basis": "이노메드 「이래비티(ERAVITY)」 1064nm 레이저 리프팅 — KOREADERMA 2024",
+   "sources": [
+    "https://www.aestheticnews.co.kr/news/articleView.html?idxno=10263",
+    "http://www.medisobizanews.com/news/articleView.html?idxno=112463"
+   ],
+   "sellers": [
+    {
+     "name": "근거 없음",
+     "role": null,
+     "url": null,
+     "period": null,
+     "note": "조사 기록: 국내 판매·유통사 표기 0 — 공식 사이트 eravity.kr 은 인증서 오류로 열람 실패"
+    }
+   ],
+   "conflicts": [],
+   "note": null,
+   "queries": [
+    "이래비티 이노메드 ERAVITY 레이저"
+   ]
+  },
+  {
+   "ledger_id": "new-DEV-056",
+   "name": "소노케어",
+   "license": "제인 17-4336 · 17-4264 초음파자극기 · (주)뉴퐁",
+   "link": "일치",
+   "link_basis": "뉴퐁 「소노케어(Sonocare)」 다중 주파수(1·3·10MHz) 초음파 자극기 — KIMES 2023 출품",
+   "sources": [
+    "https://www.cosinkorea.com/mobile/article.html?no=47384"
+   ],
+   "sellers": [
+    {
+     "name": "근거 없음",
+     "role": null,
+     "url": null,
+     "period": null,
+     "note": "조사 기록: 국내 판매·유통사 표기 0"
+    }
+   ],
+   "conflicts": [],
+   "note": null,
+   "queries": [
+    "소노퀸 뉴퐁 하이푸 판매(결과에 소노케어 포함)"
+   ]
+  },
+  {
+   "ledger_id": "new-DEV-042",
+   "name": "더마큐어",
+   "license": "제허 22-692 이학 진료용 기구 · (주)피글",
+   "link": "확인 불가",
+   "link_basis": "국내 웹의 「더마큐어」는 의약품 로션 등 다른 제품뿐 · 피글 보도는 플라즈마 기기 「트랜스킨」 · 「에르모듀」만 — 현장 장비가 피글 Dermacure 허가 제품인지 출처 없음",
+   "sources": [
+    "https://www.fnnews.com/news/202406021921314060"
+   ],
+   "sellers": [
+    {
+     "name": "근거 없음",
+     "role": null,
+     "url": null,
+     "period": null,
+     "note": "조사 기록: 피글 Dermacure 판매 언급 0"
+    }
+   ],
+   "conflicts": [],
+   "note": null,
+   "queries": [
+    "더마큐어 피글 의료기기 Dermacure",
+    "주식회사 피글 의료기기 더마큐어 이학진료용"
+   ]
+  },
+  {
+   "ledger_id": "auto-M7-1775362729861",
+   "name": "캐번실",
+   "license": "제허 18-61 폴리디옥사논봉합사 · (주)비알팜 · 제품명 'Angkor PDO Mono','Vita-lifts Mesh','Vita-lifts Cavern'",
+   "link": "불일치",
+   "link_basis": "국내 보도상 「캐번(Cavern)」은 네오닥터가 2017년 선보인 스프링형 실이고 2021 KIMES 에서 업그레이드 「잼버(JAMBER)」로 재탄생 — 비알팜 「Vita-lifts Cavern」은 이름 일부만 같은 다른 회사 제품(웹 언급 0). 네오닥터 허가 18건(식약처 API ENTRPS=네오닥터)은 모델명이 코드(예 제허 18-223 안면조직고정용실 ND3003870CVS외 1472건)라 어느 허가가 캐번인지 이름으로 특정 불가",
+   "sources": [
+    "http://www.bosa.co.kr/news/articleView.html?idxno=2146454",
+    "http://www.bosa.co.kr/news/articleView.html?idxno=2244042",
+    "https://emedi.mfds.go.kr/search/data/list (query2=Cavern → 제허18-61 비알팜만 · query2=캐번 0)"
+   ],
+   "sellers": [
+    {
+     "name": "근거 없음",
+     "role": null,
+     "url": null,
+     "period": null,
+     "note": "조사 기록: 캐번 판매·유통사 표기 0 — 네오닥터가 개발·출시로만 보도(bosa 2021-03-18)"
+    }
+   ],
+   "conflicts": [
+    {
+     "field": "제조사",
+     "license": "(주)비알팜(연결 허가)",
+     "web": "(주)네오닥터(캐번 개발·출시)",
+     "url": "http://www.bosa.co.kr/news/articleView.html?idxno=2146454",
+     "note": "연결 허가의 회사와 보도상 캐번 회사가 다름 — 덮어쓰지 않음"
+    }
+   ],
+   "note": "이전 기록 「캐번 = 네오닥터(잼버 이전 모델)」과 출처 일치. 원장 잼버실(auto-M7-1775361076707, 네오닥터 제허 24-743 등)과 같은 라인인지는 정할 것",
+   "queries": [
+    "캐번실 실리프팅 네오닥터 캐번",
+    "비알팜 Vita-lifts Cavern PDO 실",
+    "\"캐번\" 실 PDO 스프링 제조사 허가",
+    "네오닥터 잼버 캐번 실리프팅 신제품",
+    "비알팜 캐번 실리프팅 PDO 봉합사 판매",
+    "emedi query2=Cavern · CAVERN · 캐번",
+    "식약처 API ENTRPS=네오닥터"
+   ]
+  },
+  {
+   "ledger_id": "M9-1-9",
+   "name": "리니어펌",
+   "license": "제허 18-345 집속형초음파자극시스템 · (주)제이시스메디칼 · 모델 ULTRAcel Q+",
+   "link": "일치",
+   "link_basis": "리니어펌은 장비 자체 — 「2017년 출시한 제이시스메디칼의 HIFU 피부 미용 의료기기인 리니어펌(해외명 ULTRAcel Q+)」(팜뉴스 2023-11-27). 메디칼트리뷴(2021-07-26): 2014 울트라셀이 업그레이드를 거쳐 2020년 3월 「리니어 카트리지의 판매를 시작하며 리니어펌으로 재탄생」 — 리니어 카트리지는 리니어펌의 핵심 구성(선형 카트리지)이고 장비 이름이 리니어펌",
+   "sources": [
+    "https://www.pharmnews.com/news/articleView.html?idxno=235364",
+    "http://www.medical-tribune.co.kr/news/articleView.html?idxno=101314"
+   ],
+   "sellers": [
+    {
+     "name": "근거 없음",
+     "role": null,
+     "url": null,
+     "period": null,
+     "note": "조사 기록: 국내 판매·공동판매사 표기 0 — 보도된 판매망은 해외 법인(일본 · 호주 · 브라질 · 대만)"
+    }
+   ],
+   "conflicts": [
+    {
+     "field": "출시 시기(참고)",
+     "license": "—",
+     "web": "팜뉴스 「2017년 출시」 ↔ 메디칼트리뷴 「2020년 3월 리니어 카트리지 판매 시작하며 리니어펌으로 재탄생」",
+     "url": "http://www.medical-tribune.co.kr/news/articleView.html?idxno=101314",
+     "note": "두 보도 시기 표기 다름 — 판정하지 않음"
+    }
+   ],
+   "note": "원장 울트라셀Q+(auto-M9-1775362627041) · 울트라셀(auto-M9-1775363043305)과 같은 허가 18-345 — 리니어펌 = 울트라셀 Q+ 국내명이라는 출처(팜뉴스)",
+   "queries": [
+    "리니어펌 울트라셀 Q+ 카트리지 제이시스메디칼",
+    "리니어펌 제이시스메디칼 판매 유통 국내 공동판매"
+   ]
+  },
+  {
+   "ledger_id": "auto-M8-1775362612108",
+   "name": "젠틀맥스프로",
+   "license": "(현재 연결) 없음 · 이력 수허 13-466(신한씨스텍 · 취하)",
+   "link": "현재 정품 허가 찾음",
+   "link_basis": "현재 정품 허가 = 수허 18-338 알렉산드라이트레이저수술기 · 시너론켄델라코리아 유한회사(수입) · 정상(2018-11-22) · emedi 제품명 「Gentle Max Pro,Gentle Max Pro Plus」 · 모델 9914-00-9035 · 9914-CE-9036 · 제조원 NPA de Mexico S. de R.L. de C.V.(제조의뢰 Candela Corporation). 그 밖의 이름 든 허가: 수허 13-466 GentleMax Pro((주)신한씨스텍 · 2019-09-17 취하) · 수허 09-142 Candela Family of Multiple-Wavelength Laser Systems: GentleMax((주)신한씨스텍 · 2019-11-28 취하) · 수허 26-194 GentleMaxi Pro Plus(주식회사 밴스로컬 · 정상 2026-08-21 · **재제조** — 재제조원 LUCENTRA LIMITED, 원제조의뢰자 CANDELA CORPORATION · 원제조자 NPA de Mexico)",
+   "sources": [
+    "https://emedi.mfds.go.kr/search/data/list (query2=Gentle Max · 9914-CE-9036 → 수허18-338 · query2=GentleMax → 26-194 · 13-466 · 09-142)",
+    "식약처 API getMdlpPrdlstPrmisnItem05 ENTRPS=시너론 → 수허 18-338 TYPE_NAME 9914-CE-9036외 1건 · MANUF_NM NPA de Mexico",
+    "https://gentlemaxproplus.co.kr/find"
+   ],
+   "sellers": [
+    {
+     "name": "켄델라 코리아(시너론켄델라코리아 유한회사)",
+     "role": "공식 사이트 표기 — 제조사 Candela 의 한국 측(수허 18-338 표기) · 의료진 대상 행사 주최(「젠틀맥스 프로 플러스 리더스 나이트」) — 허가 수입사와 같은 회사",
+     "url": "https://gentlemaxproplus.co.kr/find",
+     "period": "행사 10-24 보도(https://feed.viewus.co.kr/ai/article/348542/)"
+    }
+   ],
+   "conflicts": [],
+   "note": "원장 연결은 바꾸지 않음(코디 판단). 수허 18-338 제품명에 「Gentle Max Pro」 가 들어 있음",
+   "queries": [
+    "식약처 API TYPE_NAME=GentleMax · Gentle · GENTLE · gentle · Candela · CANDELA / ENTRPS=시너론 · 켄델라 · 캔델라(0) · Candela(0)",
+    "emedi query2=GentleMax · Gentle · 젠틀맥스(0) · 젠틀 · Candela · Gentle Max · GentleMax Pro Plus · 9914-CE-9036 · 9914-00-9030",
+    "젠틀맥스 프로 플러스 캔델라 국내 출시 시너론캔델라코리아",
+    "캔델라코리아 젠틀맥스 유통 판매 계약 국내"
+   ]
+  },
+  {
+   "ledger_id": "M8-5-3",
+   "name": "젠틀맥스프로+",
+   "license": "(현재 연결) 수허 26-194 GentleMaxi Pro Plus · 주식회사 밴스로컬 — 재제조",
+   "link": "현재 정품 허가 찾음",
+   "link_basis": "현재 정품 허가 = 수허 18-338 알렉산드라이트레이저수술기 · 시너론켄델라코리아 유한회사(수입) · 정상(2018-11-22) · emedi 제품명 「Gentle Max Pro,Gentle Max Pro Plus」 · 모델 9914-00-9035 · 9914-CE-9036 · 제조원 NPA de Mexico S. de R.L. de C.V.(제조의뢰 Candela Corporation). 지금 연결된 수허 26-194 는 **재제조** 허가(재제조원 LUCENTRA LIMITED)로 정품 수입 허가와 구분. 그 밖의 이름 든 허가: 수허 13-466 GentleMax Pro((주)신한씨스텍 · 2019-09-17 취하) · 수허 09-142 Candela Family of Multiple-Wavelength Laser Systems: GentleMax((주)신한씨스텍 · 2019-11-28 취하) · 수허 26-194 GentleMaxi Pro Plus(주식회사 밴스로컬 · 정상 2026-08-21 · **재제조** — 재제조원 LUCENTRA LIMITED, 원제조의뢰자 CANDELA CORPORATION · 원제조자 NPA de Mexico)",
+   "sources": [
+    "https://emedi.mfds.go.kr/search/data/list (query2=Gentle Max · 9914-CE-9036 → 수허18-338 · query2=GentleMax → 26-194 · 13-466 · 09-142)",
+    "식약처 API getMdlpPrdlstPrmisnItem05 ENTRPS=시너론 → 수허 18-338 TYPE_NAME 9914-CE-9036외 1건 · MANUF_NM NPA de Mexico",
+    "https://gentlemaxproplus.co.kr/find",
+    "https://www.pharmnews.com/news/articleView.html?idxno=232418"
+   ],
+   "sellers": [
+    {
+     "name": "켄델라 코리아(시너론켄델라코리아 유한회사)",
+     "role": "공식 사이트 표기 — 제조사 Candela 의 한국 측(수허 18-338 표기) · 의료진 대상 행사 주최(「젠틀맥스 프로 플러스 리더스 나이트」) — 허가 수입사와 같은 회사",
+     "url": "https://gentlemaxproplus.co.kr/find",
+     "period": "행사 10-24 보도(https://feed.viewus.co.kr/ai/article/348542/)"
+    }
+   ],
+   "conflicts": [
+    {
+     "field": "수입사",
+     "license": "주식회사 밴스로컬(연결된 재제조 허가)",
+     "web": "시너론켄델라코리아 유한회사(정품 수허 18-338)",
+     "url": "https://gentlemaxproplus.co.kr/find",
+     "note": "재제조 허가 ↔ 정품 허가 — 덮어쓰지 않음"
+    }
+   ],
+   "note": "덤: 같은 수입사 정상 허가 수허 18-315 「Gentle Lase Pro-U」(모델 9914-00-9030 · 2018-11-02 · emedi query2=9914-00-9030) — 젠틀레이즈(auto-M8-1775362912344 · D03 남은 갈래)의 현행 허가 후보",
+   "queries": [
+    "식약처 API TYPE_NAME=GentleMax · Gentle · GENTLE · gentle · Candela · CANDELA / ENTRPS=시너론 · 켄델라 · 캔델라(0) · Candela(0)",
+    "emedi query2=GentleMax · Gentle · 젠틀맥스(0) · 젠틀 · Candela · Gentle Max · GentleMax Pro Plus · 9914-CE-9036 · 9914-00-9030",
+    "젠틀맥스 프로 플러스 캔델라 국내 출시 시너론캔델라코리아",
+    "캔델라코리아 젠틀맥스 유통 판매 계약 국내"
+   ]
+  }
+ ]
+}

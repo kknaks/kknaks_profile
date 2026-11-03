@@ -1,0 +1,108 @@
+{
+  "taxonomy.modality.items.name": {
+    "denominator": 521,
+    "distinct_keys": 520,
+    "duplicate_keys": 1,
+    "affected_rows": 2,
+    "duplicates": {
+      "볼뉴머": [
+        {
+          "id": "auto-M4-1775362490962",
+          "path": "$.modality[3].subcategories[1].items[8]"
+        },
+        {
+          "id": "M9-2-3",
+          "path": "$.modality[8].subcategories[1].items[3]"
+        }
+      ]
+    }
+  },
+  "taxonomy.modality.products.name": {
+    "denominator": 59,
+    "distinct_keys": 59,
+    "duplicate_keys": 0,
+    "affected_rows": 0,
+    "duplicates": {}
+  },
+  "market-pricing.items.name": {
+    "denominator": 122,
+    "distinct_keys": 122,
+    "duplicate_keys": 0,
+    "affected_rows": 0,
+    "duplicates": {}
+  },
+  "problem-packages.PID+CC": {
+    "denominator": 115,
+    "distinct_keys": 113,
+    "duplicate_keys": 2,
+    "affected_rows": 4,
+    "duplicates": {
+      "P9:니들RF": [
+        {
+          "path": "$.problems[8].complaints[4]",
+          "detail": "포텐자/시크릿",
+          "group": "여드름흉터"
+        },
+        {
+          "path": "$.problems[8].complaints[11]",
+          "detail": "콜라겐리모델링",
+          "group": "튼살"
+        }
+      ],
+      "P9:프락셔널레이저": [
+        {
+          "path": "$.problems[8].complaints[8]",
+          "detail": "CO2/어븀",
+          "group": "수술흉터/화상흉터"
+        },
+        {
+          "path": "$.problems[8].complaints[10]",
+          "detail": "성장선/임신선",
+          "group": "튼살"
+        }
+      ]
+    }
+  },
+  "step1.active.display_name": {
+    "denominator": 354,
+    "distinct_keys": 354,
+    "duplicate_keys": 0,
+    "affected_rows": 0,
+    "duplicates": {}
+  },
+  "step3.nodes.name": {
+    "denominator": 53,
+    "distinct_keys": 53,
+    "duplicate_keys": 0,
+    "affected_rows": 0,
+    "duplicates": {}
+  },
+  "step4.nodes.name": {
+    "denominator": 26,
+    "distinct_keys": 26,
+    "duplicate_keys": 0,
+    "affected_rows": 0,
+    "duplicates": {}
+  },
+  "step5.units.name": {
+    "denominator": 162,
+    "distinct_keys": 162,
+    "duplicate_keys": 0,
+    "affected_rows": 0,
+    "duplicates": {}
+  },
+  "step9.CC2.text": {
+    "denominator": 115,
+    "distinct_keys": 115,
+    "duplicate_keys": 0,
+    "affected_rows": 0,
+    "duplicates": {}
+  },
+  "normalization_call_sites": [
+    "step5-apply.py:flat at 613-621 (same dictionary overwrite used for every non-dict leaf)",
+    "step5-apply.py:safety_text at 628-629 -> extracted/source_text and taxonomy_products/source_text",
+    "step5-apply.py:638,662,664 -> keys inventory",
+    "step5-apply.py:674-699 -> side_effect_override values copied from already-normalized source_text",
+    "Gold build.py:842-890 -> source_text and override facts consume losses; no generator executed"
+  ]
+}

@@ -1,0 +1,2177 @@
+{
+ "version": 1,
+ "decided_at": "2026-10-29",
+ "decision_ref": "_RESUME.md §2 2026-10-29 「8단계 조사 반영 — G1~G14 추천대로 · U8-1 (나) 게이트 안 올림(화살표 분해 · 문장 쌍 38 도 규칙 · 안 되는 것만 질문) · U8-2 (가) 고민 「기미」 → 단위 시술 「피함」 엣지」 · 「게이트 → 규칙」 · 「7단계 재반영 결과 + 남은 13」 · 10-28 source-map B04 · B05 · B06 · B11 · B13 · C4 · C5 · C9 · C10 · DEC-001 D-03 · D-04 · D-13b · 10-29 검수(review-step8-report) F1 코디 선택 ⓑ · F2 · W1 · W2 · 10-30 사용자 「충돌이 있으면 안 되는 거 아니야」(D-13b 바꿈 — 충돌 하나로 · conflict_resolution)",
+ "research": [
+  "step8-research.json",
+  "step8-research.md"
+ ],
+ "source": {
+  "path": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26"
+ },
+ "canon": {
+  "step1": "step1-products.json",
+  "step2": "step2-families.json",
+  "step3": "step3-sites.json",
+  "step4": "step4-techniques.json",
+  "step5": "step5-units.json",
+  "step6": "step6-packages.json",
+  "step7": "step7-concerns.json",
+  "source_map": "source-map.json"
+ },
+ "user_decisions": [
+  {
+   "id": "G1~G14",
+   "decision": "조사 ① 표 추천대로",
+   "decided_by": "사용자(10-29)"
+  },
+  {
+   "id": "U8-1",
+   "decision": "(나) 사람 확인 게이트 없음 — 화살표 문장 분해 · 원칙/규칙/위험 문장 쌍도 규칙(사전 · 패턴)으로 결정론 처리 · 규칙으로 하나로 안 정해지는 것만 원천 질문 · 행별 대응표(manual_map) 두지 않음",
+   "decided_by": "사용자(10-29) 「규칙 기반으로」"
+  },
+  {
+   "id": "U8-2",
+   "decision": "(가) 고민 조건 금기 = 7단계 고민 노드 → 단위 시술 새 엣지 종류 「피함(금기 조합)」 · SPEC-004 개정은 빌드 때(여기선 데이터 · 엣지 타입 이름만)",
+   "decided_by": "사용자(10-29)"
+  },
+  {
+   "id": "간격",
+   "decision": "규칙 기반 숫자 칸 — 추천 · AI 는 interval.days · interval.first · interval.same_day 만 읽는다 · 원문은 보관만 · 간격 낱말 사전(interval_lexicon) · 원문 간격 낱말이 있는데 숫자 칸 · 표시가 비면 open",
+   "decided_by": "사용자(10-29) 「2주 후를 AI 알아들을 수 있을까 · 규칙 기반으로」"
+  },
+  {
+   "id": "충돌",
+   "decision": "순서 · 간격 · 같은 날 · 조건 등급 · 대기 기간 충돌 = 전부 보존 + 충돌 표시 · 자동으로 고르지 않음(D-13b)",
+   "decided_by": "사용자(10-29)",
+   "superseded_by": "충돌(10-30)",
+   "superseded_note": "10-30 사용자 — D-13b 바꿈. 이 줄은 이력으로만 남김(키 유지)"
+  },
+  {
+   "id": "F1(검수)",
+   "decision": "ⓑ 출력 · 깊이 한정어가 붙은 끝점을 묶음으로 연 피함 · 금기 · 같은 날 불가 = 「조건부 — 단위 시술 미특정」 · 기본 상속 · 기본 적용에서 뺌 · qualifier 원문 보관 · 의료진 질문. 같은 원문 「저출력 토닝만 권장」은 7단계 기미 → 토닝 추천과 같은 방향이라 그대로",
+   "decided_by": "코디(10-29 검수 수정 발주)"
+  },
+  {
+   "id": "F2(검수)",
+   "decision": "options 의 sub_condition 이 서로 다르면 겉 same_day · first · days 를 비우고 by_sub_condition 표시 · 하위 조건 없는 「또는」은 감싼 범위 그대로",
+   "decided_by": "코디(10-29 검수 수정 발주)"
+  },
+  {
+   "id": "충돌(10-30)",
+   "decision": "충돌을 하나로 — 안전 쪽 보수적 기본값(conflict_resolution.rules R1~R6) · 원문은 alternatives 로 보관 · 진짜 반대(순서 반대가 하위 조건으로 안 나뉨)만 의료진 질문 · 앱엔 resolved 하나만(두 값 나가는 엣지 · 단위 시술 쌍 · 단위 시술 × 조건 0)",
+   "decided_by": "사용자(10-30) 「충돌이 있으면 안 되는 거 아니야」 · 「8단계 일단 작업하자」"
+  }
+ ],
+ "avoid_edge_type": {
+  "name": "concern_avoid",
+  "label_ko": "피함(금기 조합)",
+  "from": "7단계 고민 노드",
+  "to": "단위 시술(끝점 해석)",
+  "spec_note": "SPEC-004 엣지 타입 +1 — 개정은 빌드 때(U8-2)"
+ },
+ "labels": {
+  "contra_level_site": {
+   "safe": "병행 가능",
+   "caution": "간격 필요",
+   "warning": "주의 필요"
+  },
+  "synergy_type": {
+   "함께": "시너지(함께)",
+   "다음에": "순서 · 간격(다음에)",
+   "대신": "대체(택 1)"
+  },
+  "precheck_type_site": {
+   "absolute_contraindication": "절대금기",
+   "relative_contraindication": "상대금기",
+   "must_check": "필수 확인",
+   "inform": "고지",
+   "safety_protocol": "시술 준비",
+   "counseling": "상담"
+  },
+  "opt_evidence_site": {
+   "high": "근거 강함",
+   "moderate": "근거 보통",
+   "low": "근거 제한적"
+  },
+  "opt_priority_site": {
+   "critical": "필수",
+   "important": "중요",
+   "moderate": "권고",
+   "caution": "주의"
+  },
+  "grade3": {
+   "absolute_contraindication": "금기",
+   "relative_contraindication": "주의",
+   "must_check": "확인만",
+   "inform": "확인만(고지)",
+   "absolute": "금기",
+   "relative": "주의",
+   "consent": "금기",
+   "item": "금기",
+   "iso_same_day": "금기",
+   "iso_wait": "주의",
+   "avoid": "주의",
+   "forbid": "금기"
+  },
+  "complication_severity_site": {
+   "mild": "경미",
+   "moderate": "중등도",
+   "severe": "중증",
+   "critical": "위급"
+  },
+  "timeline_label_site": {
+   "normal": "정상 반응",
+   "abnormal": "관찰",
+   "caution": "병원 연락",
+   "emergency": "즉시 연락"
+  }
+ },
+ "resolver": {
+  "strip_prefix": [
+   "이후",
+   "저출력",
+   "고출력",
+   "고에너지",
+   "선택한"
+  ],
+  "tail_words": [
+   "먼저",
+   "나중에",
+   "나중",
+   "마지막",
+   "시작",
+   "시술",
+   "시행",
+   "주입",
+   "도포",
+   "동시 도포",
+   "즉시 도포",
+   "단독",
+   "장기",
+   "유지",
+   "반복",
+   "교차",
+   "가능",
+   "열응고",
+   "순서",
+   "준수",
+   "엄수",
+   "반드시",
+   "필수",
+   "권장",
+   "병용",
+   "채널 오픈",
+   "오픈",
+   "위치 안정화",
+   "안정화"
+  ],
+  "tail_regex": [
+   "\\s*\\d+\\s*[\\-~]\\s*\\d+\\s*회$",
+   "\\s*\\d+\\s*회$"
+  ],
+  "cut_regex": [
+   "(로|으로)\\s+\\S.*$"
+  ],
+  "bundle_paren_rule": "묶음 낱말 + 괄호 안 시술 이름 = 괄호 이름으로 풀고 묶음 낱말은 qualifier",
+  "note_filters": {
+   "제모": {
+    "name_contains": [
+     "제모"
+    ]
+   },
+   "혈관": {
+    "synonym_contains": [
+     "혈관",
+     "브이빔",
+     "홍조"
+    ],
+    "name_contains": [
+     "PDL"
+    ]
+   }
+  },
+  "alias": [
+   {
+    "text": "실",
+    "target": {
+     "family": "M7"
+    },
+    "basis": "M7 동의어 「실 리프팅」의 줄임 — 원천 「PDO실」 「실 시술」"
+   },
+   {
+    "text": "PDO실",
+    "target": {
+     "family": "M7",
+     "sub": "PDO"
+    },
+    "basis": "M7 하위 계열 PDO(2단계) + 「실」"
+   },
+   {
+    "text": "비가교HA",
+    "target": {
+     "family": "M4",
+     "sub": "히알루론산"
+    },
+    "basis": "literature-evidence M4 이름 「non-crosslinked HA」 · 2단계 M4 하위 「히알루론산」"
+   },
+   {
+    "text": "HA필러",
+    "target": {
+     "family": "M2",
+     "sub": "히알루론산(HA)"
+    },
+    "basis": "위와 같음"
+   },
+   {
+    "text": "딥필러",
+    "target": {
+     "family": "M2"
+    },
+    "basis": "「필러」 + 깊이 수식(「딥」은 4단계 층 속성 — 단위 시술 키 아님)"
+   },
+   {
+    "text": "턱필러",
+    "target": {
+     "family": "M2",
+     "site": "턱(묶음)"
+    },
+    "basis": "필러 + 부위 「턱」(3단계 「턱」 = 턱(묶음))"
+   },
+   {
+    "text": "리프팅 기기",
+    "target": {
+     "family": "M9"
+    },
+    "basis": "M9 동의어 「기기 리프팅」(어순)"
+   },
+   {
+    "text": "크라이오",
+    "target": {
+     "family": "M14"
+    },
+    "basis": "M14 동의어 「크라이오리포라이시스」의 줄임"
+   },
+   {
+    "text": "HIFES",
+    "target": {
+     "family": "M10"
+    },
+    "basis": "M10 동의어 「HIFES/EMS」"
+   },
+   {
+    "text": "수액치료",
+    "target": {
+     "family": "M16"
+    },
+    "basis": "M16 동의어"
+   },
+   {
+    "text": "메디컬스킨케어",
+    "target": {
+     "family": "M15"
+    },
+    "basis": "M15 동의어"
+   },
+   {
+    "text": "저출력레이저",
+    "target": {
+     "family": "M8",
+     "sub": "반도체 레이저"
+    },
+    "basis": "5단계 U5-039 동의어 「LLLT (저출력 레이저)」"
+   },
+   {
+    "text": "혈관레이저",
+    "target": {
+     "family": "M8",
+     "note": "혈관"
+    },
+    "basis": "4단계 기법 조건 아님 — 용도 낱말. M8 단위 시술 중 혈관 용도 동의어(엑셀V · 브이빔)만 후보"
+   },
+   {
+    "text": "혈관",
+    "target": {
+     "family": "M8",
+     "note": "혈관"
+    },
+    "basis": "위와 같음"
+   },
+   {
+    "text": "토닝",
+    "target": {
+     "family": "M8",
+     "technique": "K04a"
+    },
+    "basis": "5단계 technique_term K04a 「토닝」"
+   },
+   {
+    "text": "프락셔널",
+    "target": {
+     "family": "M8",
+     "technique": "K04b"
+    },
+    "basis": "5단계 technique_term K04b 「프락셀」 · 원천 「프락셔널」"
+   },
+   {
+    "text": "프락셔널 레이저",
+    "target": {
+     "family": "M8",
+     "technique": "K04b"
+    },
+    "basis": "위와 같음"
+   },
+   {
+    "text": "프락셔널 CO2",
+    "target": {
+     "units": [
+      "U5-028"
+     ]
+    },
+    "basis": "위와 같음(어순)"
+   },
+   {
+    "text": "CO2레이저",
+    "target": {
+     "family": "M8",
+     "sub": "탄산가스 레이저"
+    },
+    "basis": "5단계 medium_term 「CO2」"
+   },
+   {
+    "text": "CO2",
+    "target": {
+     "family": "M8",
+     "sub": "탄산가스 레이저"
+    },
+    "basis": "위와 같음"
+   },
+   {
+    "text": "필링",
+    "target": {
+     "family": "M15",
+     "technique": "K09"
+    },
+    "basis": "M15 동의어 「필링」 · 5단계 U5-034 「얼굴 전체 필링」 K09"
+   },
+   {
+    "text": "얕은 필링",
+    "target": {
+     "family": "M15",
+     "technique": "K09",
+     "note": "얕은"
+    },
+    "basis": "필링 + 깊이 수식(원문 보관)"
+   },
+   {
+    "text": "케미컬 필링",
+    "target": {
+     "family": "M15",
+     "technique": "K09"
+    },
+    "basis": "「화학 박피」(2단계 M15 하위) = 케미컬 필링"
+   },
+   {
+    "text": "심부 필링",
+    "target": {
+     "family": "M15",
+     "technique": "K09",
+     "note": "심부"
+    },
+    "basis": "필링 + 깊이 수식 — 심부 필링 단위 시술은 없음(원문 보관)"
+   },
+   {
+    "text": "LED",
+    "target": {
+     "family": "M8",
+     "sub": "LED"
+    },
+    "basis": "2단계 M8 하위 LED(10-28 D04 편입)"
+   },
+   {
+    "text": "RF",
+    "target": {
+     "family": "M9",
+     "sub": "RF"
+    },
+    "basis": "5단계 sub_term M9|RF"
+   },
+   {
+    "text": "HIFU",
+    "target": {
+     "family": "M9",
+     "sub": "HIFU"
+    },
+    "basis": "5단계 sub_term M9|HIFU"
+   },
+   {
+    "text": "MFU",
+    "target": {
+     "family": "M9",
+     "sub": "HIFU"
+    },
+    "basis": "MFU = HIFU 계열 초음파(원문 「MFU/HIFU」 병기)"
+   },
+   {
+    "text": "니들RF",
+    "target": {
+     "family": "M11"
+    },
+    "basis": "M11 동의어"
+   },
+   {
+    "text": "MTS",
+    "target": {
+     "family": "M12"
+    },
+    "basis": "M12 동의어"
+   },
+   {
+    "text": "PRP",
+    "target": {
+     "family": "M5",
+     "sub": "혈소판 농축물(PRP·PRF)"
+    },
+    "basis": "5단계 sub_term M5|혈소판 농축물"
+   },
+   {
+    "text": "엑소좀",
+    "target": {
+     "family": "M5",
+     "sub": "엑소좀"
+    },
+    "basis": "5단계 sub_term M5|엑소좀 — 원천 코드 M17 은 원천 수정 후보(7단계 선례)"
+   },
+   {
+    "text": "바이오스티뮬",
+    "target": {
+     "family": "M3"
+    },
+    "basis": "M3 이름 줄임"
+   },
+   {
+    "text": "CaHA",
+    "target": {
+     "family": "M3",
+     "sub": "CaHA"
+    },
+    "basis": "2단계 M3 하위 CaHA"
+   },
+   {
+    "text": "지방분해주사",
+    "target": {
+     "family": "N1"
+    },
+    "basis": "N1 이름(5단계 family_term)"
+   },
+   {
+    "text": "카복시",
+    "target": {
+     "family": "N2"
+    },
+    "basis": "N2 동의어"
+   },
+   {
+    "text": "지방흡입",
+    "target": {
+     "family": "N10"
+    },
+    "basis": "N10 이름"
+   },
+   {
+    "text": "왁싱",
+    "target": {
+     "none": "시술 원장 밖(클리닉 시술 아님 — 원문 보관)"
+    },
+    "basis": "단위 시술 없음"
+   },
+   {
+    "text": "전기분해",
+    "target": {
+     "none": "단위 시술 없음(전기분해 제모 — 5단계에 키 없음)"
+    },
+    "basis": "단위 시술 없음"
+   },
+   {
+    "text": "레이저 제모",
+    "target": {
+     "family": "M8",
+     "note": "제모"
+    },
+    "basis": "5단계 레이저 제모 부위 10 단위 시술"
+   },
+   {
+    "text": "제모",
+    "target": {
+     "family": "M8",
+     "note": "제모"
+    },
+    "basis": "위와 같음"
+   },
+   {
+    "text": "다이오드",
+    "target": {
+     "family": "M8",
+     "sub": "반도체 레이저"
+    },
+    "basis": "5단계 medium_term 「다이오드」"
+   },
+   {
+    "text": "알렉산드라이트",
+    "target": {
+     "family": "M8",
+     "sub": "알렉산드라이트 레이저"
+    },
+    "basis": "5단계 medium_term"
+   },
+   {
+    "text": "비침습 레이저",
+    "target": {
+     "family": "M8",
+     "note": "비침습"
+    },
+    "basis": "M8 + 수식(원문 보관)"
+   },
+   {
+    "text": "박리성 레이저",
+    "target": {
+     "family": "M8",
+     "note": "박리"
+    },
+    "basis": "M8 + 박리 수식(4단계 장비 속성) — CO2 · Er:YAG 가 박리성(원문 contraindications M1-M8)"
+   },
+   {
+    "text": "열시술",
+    "target": {
+     "family_set": [
+      "M8",
+      "M9",
+      "M11"
+     ],
+     "note": "열시술(묶음 낱말)"
+    },
+    "basis": "원문 「HIFU/RF 열시술」 · profiles thermalLoad — 묶음 낱말이라 후보 계열 전부 표시"
+   },
+   {
+    "text": "모든 시술",
+    "target": {
+     "wildcard": true
+    },
+    "basis": "원문 「모든 시술」 — 모든 단위 시술(와일드카드 표시)"
+   },
+   {
+    "text": "지방이식",
+    "target": {
+     "family": "M6"
+    },
+    "basis": "M6 동의어"
+   },
+   {
+    "text": "스킨부스터",
+    "target": {
+     "family": "M4"
+    },
+    "basis": "M4 이름"
+   },
+   {
+    "text": "보톡스",
+    "target": {
+     "family": "M1"
+    },
+    "basis": "M1 동의어(제품 「보톡스」와 겹침 — 계열로 읽음 · 원천 문맥이 계열)"
+   },
+   {
+    "text": "필러",
+    "target": {
+     "family": "M2"
+    },
+    "basis": "M2 동의어"
+   },
+   {
+    "text": "실리프팅",
+    "target": {
+     "family": "M7"
+    },
+    "basis": "M7 이름"
+   },
+   {
+    "text": "레이저",
+    "target": {
+     "family": "M8"
+    },
+    "basis": "M8 동의어"
+   },
+   {
+    "text": "플라즈마",
+    "target": {
+     "family": "M13"
+    },
+    "basis": "M13 이름"
+   },
+   {
+    "text": "줄기세포",
+    "target": {
+     "family": "M17"
+    },
+    "basis": "M17 동의어"
+   },
+   {
+    "text": "바이오스티뮬레이터",
+    "target": {
+     "family": "M3"
+    },
+    "basis": "M3 이름"
+   },
+   {
+    "text": "써마지",
+    "target": {
+     "units": [
+      "U5-091",
+      "U5-104"
+     ]
+    },
+    "basis": "장비 이름 「써마지 FLX」(5단계 synonym_multi_unit U5-091 · U5-104)의 줄임 — 원천 「M9-써마지」"
+   },
+   {
+    "text": "주입 시술",
+    "target": {
+     "family_set": [
+      "M1",
+      "M2",
+      "M3",
+      "M4",
+      "M5",
+      "M6",
+      "M17",
+      "N1"
+     ],
+     "note": "주입 시술(묶음 낱말)"
+    },
+    "basis": "4단계 K01 주입 계열 기본(family_default) — 원문 「열 시술 후 주입 시술」"
+   },
+   {
+    "text": "SB",
+    "target": {
+     "family": "M4"
+    },
+    "basis": "원문 「PRP/SB」 — 스킨부스터 약칭(같은 문장 「재생(PRP/SB)」)"
+   },
+   {
+    "text": "마이크로니들",
+    "target": {
+     "family": "M12"
+    },
+    "basis": "M12 이름 「마이크로니들링」 줄임"
+   },
+   {
+    "text": "미백약",
+    "target": {
+     "none": "시술 아님(외용 · 처방약 — 7단계 not_procedure 선례)"
+    },
+    "basis": "시술 아님"
+   },
+   {
+    "text": "트라넥삼산 경구",
+    "target": {
+     "none": "시술 아님(처방약 — 7단계 not_procedure 「트라넥삼산 경구/국소」)"
+    },
+    "basis": "시술 아님"
+   },
+   {
+    "text": "국소",
+    "target": {
+     "none": "시술 아님(트라넥삼산 국소 — 7단계 not_procedure)"
+    },
+    "basis": "시술 아님"
+   },
+   {
+    "text": "비타민C",
+    "target": {
+     "none": "시술 아님(비타민C 도포 = 외용제 — 7단계 not_procedure 「외용제」) · 단 U5-036 「이온토포레시스 (비타민C)」와 구분 필요"
+    },
+    "basis": "시술 아님"
+   },
+   {
+    "text": "에너지 기기",
+    "target": {
+     "family_set": [
+      "M9",
+      "M8"
+     ],
+     "note": "에너지 기기(묶음 낱말)"
+    },
+    "basis": "원문 sequence_order phase 「에너지 기기」 = M9-HIFU · M9-RF · M8-IPL"
+   }
+  ],
+  "site_climb": {
+   "rule": "이름 · 장비 · 제품 · 조사 사전으로 잡은 단위 시술이 부위 힌트(CC 앵커 부위 · 괄호 부위)에 없으면, 전부로 되돌리지 않고(10-29 이전 「[부위 안] or 전부」) 3단계 부위 트리 상위 노드 자신 → 최상위 영역 「전체」 노드(「R 전체」 자식 · 없으면 R 자신 · 묶음이면 없음)까지 올라가 처음 찾은 층의 것만 · 최상위 영역(트리에서 부모 없는 노드) 경계를 넘지 않음 · 끝까지 없으면 계열 끝점만 + 「이 부위 단위 시술 없음 · 계열만」. 찾은 층은 끝점 site_layer · flag 에 적는다",
+   "basis": "7단계 R21(사용자 10-29 · 이중턱 · 목주름 지적) — 같은 성격 전수(step8 resolve_base · from_alias 의 부위 되돌림 4곳)",
+   "decided_by": "사용자 10-29 · 층 해석 코디 답 10-29 「B — 층 = 그 노드 자신」"
+  }
+ },
+ "interval_lexicon": {
+  "units_days": {
+   "시간": 0.0416667,
+   "일": 1,
+   "주": 7,
+   "개월": 30
+  },
+  "branches": [
+   {
+    "id": "L-ALT",
+    "pattern": "택\\s*1",
+    "set": {
+     "kind": "대체(택 1)",
+     "days": null,
+     "mark": "대체(택 1) — 간격 비움"
+    },
+    "note": "「택 1 시술」 → kind 대체 · 간격 비움"
+   },
+   {
+    "id": "L-MD",
+    "pattern": "의료진이.*(평가|판단).*(간격|결정)",
+    "set": {
+     "days": null,
+     "mark": "의료진 판단(간격 원천 없음)"
+    },
+    "note": "「의료진이 … 평가해 간격 결정」 → 간격 없음 + 의료진 판단 표시"
+   },
+   {
+    "id": "L-SEP",
+    "pattern": "별도\\s*세션",
+    "set": {
+     "same_day": false,
+     "mark": "별도 세션"
+    },
+    "note": "「별도 세션」 → same_day false"
+   },
+   {
+    "id": "L-SDNO",
+    "pattern": "(동시|같은\\s*날|같은날|당일)\\s*(시술\\s*)?(금지|불가)|당일\\s+\\S+\\s*금지|후\\s*당일",
+    "set": {
+     "same_day": false
+    },
+    "note": "「동시 금지 · 동시 시술 금지 · 당일 금지 · 같은 날 불가」 → same_day false"
+   },
+   {
+    "id": "L-SAMESITE",
+    "pattern": "(같은|동일)\\s*부위|같은\\s*날이면\\s*다른\\s*부위|부위\\s+\\S+\\s*동시",
+    "set": {
+     "condition": "같은 부위"
+    },
+    "note": "「같은 부위 · 동일 부위」 조건(같은 날 불가와 함께)"
+   },
+   {
+    "id": "L-SDIFFSITE",
+    "pattern": "같은\\s*날이면\\s*다른\\s*부위",
+    "set": {
+     "same_day": false,
+     "mark": "같은 날이면 다른 부위"
+    },
+    "note": "「같은 날이면 다른 부위」 → 같은 부위 같은 날 불가"
+   },
+   {
+    "id": "L-IMM",
+    "pattern": "직후|즉시",
+    "set": {
+     "same_day": true,
+     "days_if_none": [
+      0,
+      0
+     ]
+    },
+    "note": "「직후」 → same_day true · days [0,0]"
+   },
+   {
+    "id": "L-SDOK",
+    "pattern": "(같은\\s*날|같은날|당일)\\s*(시술\\s*|에\\s*)?(가능|병행|조합)|같은\\s*날\\s*또는|(같은\\s*날|같은날)\\s*$|^같은\\s*날|동시(?!\\s*(시술\\s*)?금지)",
+    "set": {
+     "same_day": true
+    },
+    "note": "「같은 날 가능 · 당일 병행 · 동시(금지 없이)」 → same_day true"
+   },
+   {
+    "id": "L-BEFORE",
+    "pattern": "전에",
+    "set": {
+     "mark": "순서만(「…전에」)"
+    },
+    "note": "「…전에」 → first 만"
+   },
+   {
+    "id": "L-BETWEEN",
+    "pattern": "사이사이",
+    "set": {
+     "days": null,
+     "mark": "반복 사이(사이사이) — 간격 없음"
+    },
+    "note": "「사이사이」 → 반복 표시 · 간격 없음"
+   },
+   {
+    "id": "L-REPEAT",
+    "pattern": "반복|매회",
+    "set": {
+     "repeat": true,
+     "mark": "반복"
+    },
+    "note": "「N주 간격 반복」 → 반복 표시(같은 시술 회차 간격)"
+   },
+   {
+    "id": "L-COUNT",
+    "pattern": "\\d+\\s*[\\-~]?\\s*\\d*\\s*회",
+    "set": {
+     "mark": "회차(횟수 — 간격 아님)"
+    },
+    "note": "「8-10회」 → 회차 표시"
+   },
+   {
+    "id": "L-ONLY",
+    "pattern": "에\\s*한해",
+    "set": {
+     "mark": "조건부(원문 「…에 한해」)"
+    },
+    "note": "「…에 한해 같은 날 가능」 → 조건부 표시"
+   },
+   {
+    "id": "L-FLEX",
+    "pattern": "순서\\s*(유연|무관)",
+    "set": {
+     "mark": "순서 유연(원문 「순서 유연 · 무관」)"
+    },
+    "note": "「같은 날엔 순서 유연 · 순서 무관」 → 표시"
+   },
+   {
+    "id": "L-SEQ",
+    "pattern": "순차",
+    "set": {
+     "first_from_source_order": true
+    },
+    "note": "「순차 시술」 → 원천 from → to 순서"
+   },
+   {
+    "id": "L-NUM",
+    "pattern": "(\\d+(?:\\.\\d+)?)\\s*(시간|일|주|개월)?\\s*(?:[~\\-]\\s*(\\d+(?:\\.\\d+)?))?\\s*(시간|일|주|개월)",
+    "set": {
+     "days": "number"
+    },
+    "note": "「N주/N일/N개월(후 · 이상 · 간격)」 → days [N,M] (단위 일) · open_high = 이상 · 최소 · 후 · 뒤 · 부터 · 이내/내 금지(그 기간이 지나야 함)"
+   }
+  ],
+  "word_branches": [
+   {
+    "word": "택\\s*1",
+    "branches": [
+     "L-ALT"
+    ]
+   },
+   {
+    "word": "의료진",
+    "branches": [
+     "L-MD"
+    ]
+   },
+   {
+    "word": "세션",
+    "branches": [
+     "L-SEP"
+    ]
+   },
+   {
+    "word": "사이사이",
+    "branches": [
+     "L-BETWEEN"
+    ]
+   },
+   {
+    "word": "직후|즉시",
+    "branches": [
+     "L-IMM"
+    ]
+   },
+   {
+    "word": "전에",
+    "branches": [
+     "L-BEFORE"
+    ]
+   },
+   {
+    "word": "반복|매회",
+    "branches": [
+     "L-REPEAT"
+    ]
+   },
+   {
+    "word": "순차",
+    "branches": [
+     "L-SEQ"
+    ]
+   },
+   {
+    "word": "에\\s*한해",
+    "branches": [
+     "L-ONLY"
+    ]
+   },
+   {
+    "word": "\\d+\\s*(시간|일|주|개월)",
+    "branches": [
+     "L-NUM"
+    ]
+   },
+   {
+    "word": "\\d+\\s*회",
+    "branches": [
+     "L-COUNT"
+    ]
+   },
+   {
+    "word": "같은\\s*날|같은날|당일|동시",
+    "branches": [
+     "L-SDOK",
+     "L-SDNO",
+     "L-SDIFFSITE",
+     "L-FLEX",
+     "L-SAMESITE"
+    ]
+   },
+   {
+    "word": "(같은|동일)\\s*부위",
+    "branches": [
+     "L-SAMESITE"
+    ]
+   }
+  ],
+  "word_branches_rule": "원문 간격 낱말마다 그 낱말을 읽는 사전 갈래가 돌아야 한다 — 안 돌면 open(사전 갈래를 빼면 걸림)",
+  "open_high_after": "^\\s*(이상|이후|후|뒤|부터|간\\s*(피할|금지)|이내|내)",
+  "open_high_before": "최소\\s*$",
+  "option_split": "\\s+/\\s+|\\s+또는\\s+|\\s*;\\s*",
+  "sub_condition_head": "^(.{2,40}?)[:：]\\s+",
+  "interval_words": "\\d+\\s*(시간|일|주|개월|회)|같은\\s*날|같은날|당일|동시|직후|즉시|간격|전에|택\\s*1|사이사이|결정|순차|반복|세션"
+ },
+ "sentence": {
+  "split_sentence": "(?<=[.。])\\s+(?=\\S)",
+  "split_clause": "(?<=며|으며|나|하나),\\s*",
+  "paren_chain": "\\(([^()]*→[^()]*)\\)",
+  "mixed_mode_fields": [
+   "treatment-sequence.principles",
+   "treatment-optimization.combination_rules",
+   "problem-combos.riskBenefit",
+   "problem-packages.complaints[].alternatives",
+   "treatment-optimization.by_concern.contraindicated_combos"
+  ],
+  "order_mode_fields": [
+   "treatment-optimization.by_concern.sequence",
+   "treatment-sequence.common_combos.note"
+  ],
+  "mixed_mode_rule": "섞인 문장 칸은 패턴에 맞는 절만 쌍 — 화살표 원소는 전부 시술 이름으로 풀릴 때만(꼬리 낱말만 뗌). 패턴 없는 문장은 그 칸의 기본 행선지(속성 · 원문)",
+  "order_mode_rule": "순서 칸(sequence · note)은 화살표 · 「A 후 B」를 늘 분해 — 원소 끝 낱말을 하나씩 떼며 풀고 못 풀면 「해석 안 됨」(원천 질문)",
+  "ellipsis_rule": "상대 생략 절(「X·Y는 당일 병행 가능」) = 같은 문장 앞 절의 B(「… 주입 후」 대상)",
+  "title_rule": "규칙 행은 detail 문장에서 쌍이 안 나오면 rule 제목 문장을 쓴다 · 이름 없는 간격 문장(「최소 4주 간격」 「동시 시술 금지」)은 같은 행 앞 주장에 붙인다 · 쌍이 하나도 없고 이름이 하나면 그 계열 원문 속성",
+  "patterns": [
+   {
+    "id": "S-CTXARROW",
+    "regex": "^(?P<CTX>같은\\s*날|같은날|별도\\s*세션)\\s*(?P<A>[^:+]+?)\\s*\\+\\s*(?P<B>[^:]+?)\\s*:\\s*(?P<REST>.+)$",
+    "emit": "chain",
+    "ctx": "CTX",
+    "note": "「같은 날 A+B: A 먼저 → B 나중에」 · 「별도 세션 A+B: B 먼저 → 2주 후 A」"
+   },
+   {
+    "id": "S-CTXCOLON",
+    "regex": "^(?P<CTX>같은\\s*날|같은날|별도\\s*세션)\\s*:\\s*(?P<REST>.+)$",
+    "emit": "chain",
+    "ctx": "CTX",
+    "note": "「같은날: A → B」"
+   },
+   {
+    "id": "S-ARROWCOLON",
+    "regex": "^(?P<A>[^→:]+?)\\s*→\\s*(?P<B>[^→:]+?)\\s*:\\s*(?P<IV>[^.(]+)",
+    "emit": "pair",
+    "first": "A",
+    "note": "「A → B: 최소 14일 간격」"
+   },
+   {
+    "id": "S-REVERSE",
+    "regex": "^역순\\s*\\(\\s*(?P<A>.+?)\\s*(주입\\s*)?후\\s+(?P<B>[^)]+?)\\s*\\).*?(?P<IV>\\d+\\s*\\S*\\s*이상\\s*대기)",
+    "emit": "pair",
+    "first": "A",
+    "note": "「역순(A 주입 후 B)은 … N일 이상 대기」"
+   },
+   {
+    "id": "S-FIRSTORGAP",
+    "regex": "^(?P<A>\\S+?)(은|는)\\s+(?P<B>.+?)\\s*주입\\s*후\\s.*?(?P<F>\\S+?)(를|을)?\\s*(선행|먼저\\s*시행)\\s*(하거나|또는)\\s*(?P<IV>\\d+\\s*\\S*\\s*이상\\s*간격)",
+    "emit": "first_or_gap",
+    "note": "「A는 B 주입 후 … A 선행 또는 N 이상 간격」 → 주장 둘: 순서(F 먼저) · 반대 방향 간격(B 먼저면 N 이상)"
+   },
+   {
+    "id": "S-GAPORFIRST",
+    "regex": "^(?P<A>.+?)(은|는)\\s+\\S+\\s*후\\s+(?P<B>.+?)(을|를)\\s*(?P<IV>\\d+\\s*\\S*\\s*이상\\s*간격)\\s*권장\\s*(하거나|또는)\\s*(?P<F>.+?)(을|를)\\s*먼저",
+    "emit": "gap_or_first",
+    "note": "「A는 A 후 B를 N 이상 간격 권장하거나 B를 먼저」 → 주장 둘: 간격(A 먼저 N 이상) · 순서(F 먼저)"
+   },
+   {
+    "id": "S-OKFIRST",
+    "regex": "^(?P<A>.+?)(와|과)\\s+(?P<B>.+?)(은|는)\\s+(?P<IV>(당일|같은\\s*날)\\s*(시술|병행)?\\s*가능)(하나|하지만)?,?\\s*(웬만하면\\s+)?(?P<F>.+?)(을|를)\\s*먼저",
+    "emit": "pair",
+    "first": "F",
+    "note": "「A와 B는 당일 병행 가능하나 웬만하면 F를 먼저」"
+   },
+   {
+    "id": "S-LISTPARTNER",
+    "regex": "^(?P<LIST>.+?)(은|는)\\s+(?P<B>\\S+?)(와|과)\\s+(?P<IV>(당일|같은\\s*날)\\s*병행\\s*가능)",
+    "emit": "list_pair",
+    "note": "「X·Y·Z는 B와 당일 병행 가능」"
+   },
+   {
+    "id": "S-LISTELLIPSIS",
+    "regex": "^(?P<LIST>[^,]+?)(은|는)\\s+(?P<IV>(당일|같은\\s*날)\\s*병행\\s*가능)\\s*$",
+    "emit": "list_ellipsis",
+    "note": "「X·Y·Z는 당일 병행 가능」(상대 생략 — ellipsis_rule)"
+   },
+   {
+    "id": "S-BEFORE",
+    "regex": "^(?P<A>.+?)(은|는)\\s+(?P<B>.+?)\\s*(주입\\s*)?(?P<IV>전에)",
+    "emit": "pair",
+    "first": "A",
+    "note": "「A는 B 주입 전에」"
+   },
+   {
+    "id": "S-WITHINRISK",
+    "regex": "^(?P<A>.+?)\\s*(주입\\s*)?후\\s+(?P<IV>\\d+\\s*\\S*\\s*(이내|내))\\s+(?P<B>.+?)\\s*(시|하면)\\s+.*위험",
+    "emit": "pair",
+    "first": "A",
+    "kind": "간격 금기",
+    "note": "「A 주입 후 N 이내 B 시 … 위험」"
+   },
+   {
+    "id": "S-AFTERFORBID",
+    "regex": "^(?P<A>.+?)\\s*후\\s+(?P<IV>(\\d+(?:\\s*[~\\-]\\s*\\d+)?\\s*(?:시간|일|주|개월)(?:간|\\s*이내|\\s*내)|당일))\\s+(?P<SITE>(같은|동일)\\s*부위\\s+)?(?P<B>.+?)\\s*(금지|피할\\s*것)",
+    "emit": "pair",
+    "first": "A",
+    "kind": "간격 금기",
+    "note": "「A 후 N 내(동일 부위) B 금지」 · 「A 후 당일 B 금지」 · 「A 후 N개월간 B 피할 것」"
+   },
+   {
+    "id": "S-SITESAMEFORBID",
+    "regex": "^(?P<A>.+?)\\s*부위\\s+(?P<B>.+?)\\s*(?P<IV>동시\\s*금지)",
+    "emit": "pair",
+    "first": null,
+    "kind": "같은 날 불가",
+    "note": "「A 부위 B 동시 금지」"
+   },
+   {
+    "id": "S-PLUSFORBID",
+    "regex": "^(?P<A>[^+]+?)\\s*\\+\\s*(?P<B>[^+(]+?)\\s*(?P<IV>(병합\\s*)?(금기|(동시\\s*)?(시술\\s*)?금지).*)$",
+    "emit": "pair",
+    "first": null,
+    "kind": "조합 금기",
+    "note": "「A + B (동시) 금지」 · 「A+B 병합 금기(N 내 시술 금지)」"
+   },
+   {
+    "id": "S-AFTERGAP",
+    "regex": "^(?P<A>.+?)\\s*후\\s+(?P<B>.+?)(은|는)\\s+(?P<IV>.+?간격.*)$",
+    "emit": "pair",
+    "first": "A",
+    "note": "「A 후 B는 N 간격 필요(…)」"
+   },
+   {
+    "id": "S-AFTERORDER",
+    "regex": "^(?P<A>.+?)\\s*후\\s+(?P<B>.+?)\\s*순서",
+    "emit": "pair",
+    "first": "A",
+    "kind": "순서(문장)",
+    "note": "「A 후 B 순서 준수」"
+   },
+   {
+    "id": "S-CONCERNFORBID",
+    "regex": "^(?P<C>\\S+?)(에|에는|\\s*환자에)\\s+(?P<B>.+?)\\s*(금지|시\\s.*위험)",
+    "emit": "concern_avoid",
+    "note": "「<고민>에 B 금지」 · 「<고민> 환자에 B 시 … 위험」 → 피함"
+   },
+   {
+    "id": "S-CONDFORBID",
+    "regex": "^(?P<K>.+?)\\s*시\\s+(?P<B>.+?)\\s*금지",
+    "emit": "condition_forbid",
+    "note": "「<사람 조건> 시 B 금지」 → 확인 조건"
+   },
+   {
+    "id": "S-BAREFORBID",
+    "regex": "^(?P<B>[^\\s(]+(\\s+[^\\s(]+)?)\\s*금지",
+    "emit": "row_concern_avoid",
+    "note": "주어 없는 「B 금지」 — 그 행 중증도 이름 안 고민 낱말(없으면 행 고민 앵커 전부) → 피함"
+   },
+   {
+    "id": "S-AFTERGENERIC",
+    "regex": "^(?P<A>.+?)\\s*후\\s+(?P<B>.+)$",
+    "emit": "pair",
+    "first": "A",
+    "kind": "순서(문장)",
+    "only_order_mode": true,
+    "note": "순서 칸 「A 후 B …」"
+   }
+  ],
+  "orphan_interval_regex": "(최소\\s*)?\\d+(\\s*[~\\-]\\s*\\d+)?\\s*(시간|일|주|개월)\\s*(이상\\s*)?(간격)?\\s*(권장|필요|필수)?|(동시|같은\\s*날|당일)\\s*(시술\\s*)?(금지|불가)",
+  "family_hint_rule": "제품 행(taxonomy products) 문장의 하위 계열 낱말이 여러 계열이면 그 제품 계열로 좁힘",
+  "qualifier_words": [
+   "고에너지",
+   "고출력",
+   "저출력",
+   "단독",
+   "단독·고출력"
+  ],
+  "text_only_rule": "패턴 · 화살표 쌍이 하나도 없는 문장 = 원문만(원칙 · 위험 문장) 또는 그 칸 기본 행선지 속성"
+ },
+ "concern_lookup": {
+  "from": "step7 concerns.categories/subcategories/extra_items 의 concern · source_label(노드인 것만)",
+  "row_anchor": "step7 combos(RC-OP-*) anchor.concern"
+ },
+ "conditions": [
+  {
+   "id": "C-PREG",
+   "name": "임신",
+   "pattern": "임신|임산부|임신 테스트"
+  },
+  {
+   "id": "C-BF",
+   "name": "수유",
+   "pattern": "수유"
+  },
+  {
+   "id": "C-KEL",
+   "name": "켈로이드 체질",
+   "pattern": "켈로이드|비후성 반흔"
+  },
+  {
+   "id": "C-ANTICOAG",
+   "name": "항응고제 · 항혈소판제",
+   "pattern": "항응고|항혈소판|아스피린|와파린|NOAC|오메가3|은행잎"
+  },
+  {
+   "id": "C-NSAID",
+   "name": "NSAIDs",
+   "pattern": "NSAID"
+  },
+  {
+   "id": "C-ISO",
+   "name": "이소트레티노인",
+   "pattern": "이소트레티노인|아큐탄"
+  },
+  {
+   "id": "C-RETIN",
+   "name": "레티노이드 처방",
+   "pattern": "레티노이드"
+  },
+  {
+   "id": "C-HSV",
+   "name": "헤르페스 병력",
+   "pattern": "헤르페스|구순포진"
+  },
+  {
+   "id": "C-AUTO",
+   "name": "자가면역질환",
+   "pattern": "자가면역|루푸스|류마티스|경피증|과도한 면역반응"
+  },
+  {
+   "id": "C-METAL",
+   "name": "체내 금속 · 금속 임플란트",
+   "pattern": "금속"
+  },
+  {
+   "id": "C-PACE",
+   "name": "심장박동기 · 이식형 전자장치",
+   "pattern": "페이스메이커|심장박동기|제세동기|전자 의료기기|심박조율기|이식형 전자장치"
+  },
+  {
+   "id": "C-ALLERGY",
+   "name": "알레르기 · 과민반응 병력",
+   "pattern": "알레르기|과민|피부반응검사에서 양성"
+  },
+  {
+   "id": "C-INFECT",
+   "name": "시술 부위 감염 · 염증",
+   "pattern": "감염|염증|패혈증|농양"
+  },
+  {
+   "id": "C-ACNE",
+   "name": "활동성 여드름",
+   "pattern": "여드름"
+  },
+  {
+   "id": "C-DERM",
+   "name": "시술 부위 피부질환 · 피부 상태(피부염 · 습진 · 건선 · 로사세아)",
+   "pattern": "피부염|습진|건선|활동성 피부질환|로사세아|피부 질환|피부 손상|피부 상태가 나쁜"
+  },
+  {
+   "id": "C-NMJ",
+   "name": "신경근 질환",
+   "pattern": "신경근|중증근무력증|루게릭|근육이 점점 약해지는"
+  },
+  {
+   "id": "C-EPI",
+   "name": "간질 · 경련성 질환",
+   "pattern": "간질|뇌전증|경련성"
+  },
+  {
+   "id": "C-NEURO",
+   "name": "신경계 질환",
+   "pattern": "신경계 질환"
+  },
+  {
+   "id": "C-BLEED",
+   "name": "출혈 경향 · 응고장애 · 혈액질환",
+   "pattern": "출혈 경향|응고장애|응고 장애|혈액 응고|혈소판감소|혈소판 기능|혈액질환|혈액 질환"
+  },
+  {
+   "id": "C-DM",
+   "name": "당뇨 · 면역저하 · 면역억제",
+   "pattern": "당뇨|면역저하|면역억제|면역결핍"
+  },
+  {
+   "id": "C-CANCER",
+   "name": "악성종양 · 암 병력",
+   "pattern": "악성종양|악성 종양|암 여부|암 환자|암 병력|혈액암"
+  },
+  {
+   "id": "C-CHF",
+   "name": "심부전 · 신장 질환",
+   "pattern": "심부전|신부전|신장 기능|신장질환|신장석|심폐질환"
+  },
+  {
+   "id": "C-G6PD",
+   "name": "G6PD 결핍증",
+   "pattern": "G6PD"
+  },
+  {
+   "id": "C-COLD",
+   "name": "한냉 질환(한냉두드러기 · 한냉글로불린 · 한냉혈색소뇨 · 레이노)",
+   "pattern": "한냉|한랭|냉글로불린|냉혈색소|레이노"
+  },
+  {
+   "id": "C-PHOTO",
+   "name": "광과민성 질환 · 약물",
+   "pattern": "광과민"
+  },
+  {
+   "id": "C-SUN",
+   "name": "일광노출 · 태닝 · 자외선 차단 불가",
+   "pattern": "일광|태닝|선탠|자외선 차단이 불가능"
+  },
+  {
+   "id": "C-AMINO",
+   "name": "아미노글리코시드 항생제",
+   "pattern": "아미노글리코시드|항생제 일부"
+  },
+  {
+   "id": "C-DPEN",
+   "name": "D-페니실라민",
+   "pattern": "페니실라민"
+  },
+  {
+   "id": "C-MUSCLE",
+   "name": "근이완제 등 특정 약물",
+   "pattern": "근이완제"
+  },
+  {
+   "id": "C-LIDO",
+   "name": "마취제 알레르기(리도카인)",
+   "pattern": "리도카인|마취 알레르기"
+  },
+  {
+   "id": "C-HYAL",
+   "name": "히알루로니다아제 알레르기",
+   "pattern": "히알루로니다아제 알레르기"
+  },
+  {
+   "id": "C-PRIOR",
+   "name": "최근 · 이전 시술 이력",
+   "pattern": "최근 .*시술|이전 .*시술|시술 이력|시술 시기|필링 간격|최근 골드 실|금속 실|필링 후 최소|최근 실리프팅|최근 필러 주입|실이 남아"
+  },
+  {
+   "id": "C-RESID",
+   "name": "잔여 필러 · 실 · 영구필러",
+   "pattern": "잔여|필러/실리콘 존재"
+  },
+  {
+   "id": "C-DENTAL",
+   "name": "최근 치과 시술",
+   "pattern": "치과"
+  },
+  {
+   "id": "C-FLIGHT",
+   "name": "48시간 이내 비행",
+   "pattern": "비행기"
+  },
+  {
+   "id": "C-CHRONINF",
+   "name": "만성감염(피부결핵 · 매독)",
+   "pattern": "결핵|매독"
+  },
+  {
+   "id": "C-FITZ",
+   "name": "Fitzpatrick 피부타입 · 어두운 피부 · PIH 위험",
+   "pattern": "Fitzpatrick|PIH 위험도|피부색이 어두운|피부 유형 IV"
+  },
+  {
+   "id": "C-SURG",
+   "name": "최근 수술 · 흉터(시술 부위)",
+   "pattern": "수술 이력|최근 수술"
+  },
+  {
+   "id": "C-HERNIA",
+   "name": "탈장",
+   "pattern": "탈장"
+  },
+  {
+   "id": "C-BMI",
+   "name": "체형 · 피하지방 두께 · 저체중",
+   "pattern": "BMI|지방층 두께|지방량|지방이 부족|지방이 충분하지|체지방이 적은|저체중"
+  },
+  {
+   "id": "C-LIVER",
+   "name": "간기능 · 지질 수치(레티노이드 처방)",
+   "pattern": "간기능|지질 수치|간질환"
+  },
+  {
+   "id": "C-SKINCARE",
+   "name": "사용 중 스킨케어 제품",
+   "pattern": "스킨케어 제품"
+  },
+  {
+   "id": "C-PEELALG",
+   "name": "필링 제제 알레르기",
+   "pattern": "필링 제제"
+  },
+  {
+   "id": "C-VASC",
+   "name": "혈관 접근 상태",
+   "pattern": "혈관 접근"
+  },
+  {
+   "id": "C-SUPPL",
+   "name": "복용 영양제 · 약물 상호작용",
+   "pattern": "영양제|복용 약물|복용 중인"
+  },
+  {
+   "id": "C-SMOKE",
+   "name": "흡연",
+   "pattern": "흡연"
+  },
+  {
+   "id": "C-GRAN",
+   "name": "이물반응 · 육아종 병력",
+   "pattern": "이물반응/육아종|육아종 병력"
+  },
+  {
+   "id": "C-CARDIO",
+   "name": "심혈관 질환(허혈성 심질환 · 고혈압)",
+   "pattern": "허혈성 심질환|고혈압"
+  },
+  {
+   "id": "C-RADIO",
+   "name": "방사선 치료 중",
+   "pattern": "방사선 치료"
+  },
+  {
+   "id": "C-HORMONE",
+   "name": "경구 피임약 · 에스트로겐",
+   "pattern": "피임약|에스트로겐"
+  },
+  {
+   "id": "C-INDIC",
+   "name": "적응 범위 밖(수술적 교정 필요)",
+   "pattern": "수술적 교정"
+  },
+  {
+   "id": "C-EXPECT",
+   "name": "비현실적 기대",
+   "pattern": "기대"
+  },
+  {
+   "id": "C-AGE",
+   "name": "연령대",
+   "pattern": "^\\d0대"
+  }
+ ],
+ "not_person_rules": [
+  {
+   "pattern": "얇은 피부 부위|피부가 얇은 부위",
+   "kind": "부위 조건(사람 조건 아님) → 계열 원문 속성 · 부위 표시(site_caution 은 anatomy M1/M2 만)"
+  },
+  {
+   "pattern": "치료 효과는 적은|효과는 적은 편",
+   "kind": "효과 문장(조건 아님) → 계열 원문 속성"
+  },
+  {
+   "pattern": "평가가 아직 미흡|근거가 부족",
+   "kind": "근거 수준 문장(조건 아님) → 계열 원문 속성"
+  }
+ ],
+ "age_avoid_patterns": [
+  {
+   "regex": "^(?P<Q>과도한|불필요한)\\s*(?P<B>필러|보톡스)(량)?\\s*(\\(|$)",
+   "target": "name"
+  },
+  {
+   "regex": "(?P<Q>과도한|회복력 초과)\\s*(?P<B>시술)\\s*빈도",
+   "target": "all",
+   "note": "「시술 빈도」 = 모든 시술(빈도 문장)"
+  }
+ ],
+ "guide_not_source_rule": {
+  "source_words": "[A-Za-z0-9]|가이드|논문|연구|컨센서스|교과서|경험|합의|consensus",
+  "note": "출처 낱말 없는 표기(「피부 회복」) = 출처 아님(이유 문장) · 원천 수정 후보"
+ },
+ "timeline_attach": {
+  "botox": {
+   "level": "계열",
+   "attach": "family:M1"
+  },
+  "ha-filler": {
+   "level": "계열(하위 HA — M2 단위 시술 키에 하위 없음 → 계열 전부)",
+   "attach": "family:M2"
+  },
+  "hifu-rf": {
+   "level": "하위 계열 HIFU · RF",
+   "attach": "family:M9",
+   "units_where": [
+    {
+     "family": "M9",
+     "sub": "HIFU"
+    },
+    {
+     "family": "M9",
+     "sub": "RF"
+    }
+   ]
+  },
+  "fractional-co2": {
+   "level": "단위 시술",
+   "attach": "unit:U5-028",
+   "units": [
+    "U5-028"
+   ]
+  },
+  "thread-lift": {
+   "level": "계열",
+   "attach": "family:M7"
+  },
+  "dca-injection": {
+   "level": "계열 N1(C5 — M16 원천 빌리지 않음)",
+   "attach": "family:N1"
+  },
+  "needle-rf": {
+   "level": "계열",
+   "attach": "family:M11"
+  },
+  "skin-booster": {
+   "level": "계열",
+   "attach": "family:M4"
+  },
+  "biostimulator": {
+   "level": "계열",
+   "attach": "family:M3"
+  },
+  "chemical-peel-mid": {
+   "level": "하위 계열 화학 박피 · 중간 깊이(단위 시술 U5-034 · 깊이 원문)",
+   "attach": "family:M15",
+   "units": [
+    "U5-034"
+   ]
+  }
+ },
+ "step7_note_sources": {
+  "problem-packages.complaints[].combos": [
+   "problem-packages.complaints[].combos",
+   "problem-packages.combos"
+  ],
+  "combo-recipes.followUp": [
+   "combo-recipes.followUp"
+  ],
+  "treatment-optimization.sequence": [
+   "treatment-optimization.by_concern.sequence"
+  ],
+  "treatment-optimization.contraindicated_combos": [
+   "treatment-optimization.by_concern.contraindicated_combos"
+  ],
+  "problem-combos.riskBenefit": [
+   "problem-combos.riskBenefit"
+  ],
+  "treatment-optimization.combination_rules": [
+   "treatment-optimization.combination_rules"
+  ],
+  "problem-packages.complaints[].alternatives": [
+   "problem-packages.complaints[].alternatives"
+  ],
+  "treatment-sequence.common_combos.note": [
+   "treatment-sequence.common_combos.note"
+  ]
+ },
+ "wide_candidates_threshold": 10,
+ "wide_candidates_levels": [
+  "조건 일치(낱말 교집합)",
+  "하위 계열",
+  "기법 조건",
+  "용도 조건",
+  "부위 조건"
+ ],
+ "purpose_ok": [
+  {
+   "note": "제모",
+   "basis": "5단계 레이저 제모 부위 단위 시술 — 이름에 「제모」(조사 G2 · 원천 질문 아님)"
+  }
+ ],
+ "wide_candidates_basis": "조사 O8-02 「듀얼파장 레이저 → M8 후보 31(넓음)」 — 계열 · 묶음 아닌 끝점의 후보가 이보다 많으면 「넓음」 · 원천 질문",
+ "field_handlers": [
+  {
+   "file": "anatomy-danger-zones",
+   "prefix": "consensus_method",
+   "section": "evidence.evidence_kind_by_file"
+  },
+  {
+   "file": "anatomy-danger-zones",
+   "prefix": "critical_safety_facts",
+   "section": "safety.critical_safety_facts"
+  },
+  {
+   "file": "anatomy-danger-zones",
+   "prefix": "zones[]",
+   "section": "safety.site_caution"
+  },
+  {
+   "file": "complications",
+   "prefix": "categories[]",
+   "section": "safety.complications · evidence.web"
+  },
+  {
+   "file": "consent-checklist",
+   "prefix": "categories[].contraindications",
+   "section": "conditions.claims"
+  },
+  {
+   "file": "consent-checklist",
+   "prefix": "categories[]",
+   "section": "safety.family_text"
+  },
+  {
+   "file": "contraindications",
+   "prefix": "rules[]",
+   "section": "claims"
+  },
+  {
+   "file": "extracted",
+   "prefix": "{code}.contraindications",
+   "section": "conditions.extracted_vs_taxonomy"
+  },
+  {
+   "file": "extracted",
+   "prefix": "{code}",
+   "section": "safety.family_text"
+  },
+  {
+   "file": "literature-evidence",
+   "prefix": "source_method",
+   "section": "evidence.evidence_kind_by_file"
+  },
+  {
+   "file": "literature-evidence",
+   "prefix": "categories.{code}",
+   "section": "evidence.statements · evidence.literature"
+  },
+  {
+   "file": "patient-education",
+   "prefix": "categories[]",
+   "section": "safety.family_text"
+  },
+  {
+   "file": "pih-risk",
+   "prefix": "procedures[]",
+   "section": "safety.pih"
+  },
+  {
+   "file": "post-procedure-timeline",
+   "prefix": "consensus_method",
+   "section": "evidence.evidence_kind_by_file"
+  },
+  {
+   "file": "post-procedure-timeline",
+   "prefix": "timelines[]",
+   "section": "safety.timelines"
+  },
+  {
+   "file": "pre-procedure-checklist",
+   "prefix": "universal_checks[]",
+   "section": "conditions.claims"
+  },
+  {
+   "file": "pre-procedure-checklist",
+   "prefix": "category_specific[]",
+   "section": "conditions.claims"
+  },
+  {
+   "file": "problem-packages",
+   "prefix": "problems[].complaints[].combos[]",
+   "section": "claims"
+  },
+  {
+   "file": "procedure-profiles",
+   "prefix": "profiles[].aftercare",
+   "section": "safety.family_text"
+  },
+  {
+   "file": "procedure-profiles",
+   "prefix": "profiles[]",
+   "section": "profile_attrs"
+  },
+  {
+   "file": "synergy",
+   "prefix": "links[]",
+   "section": "claims"
+  },
+  {
+   "file": "taxonomy",
+   "prefix": "modality[].subcategories[].items[].extracted.safety.contraindications",
+   "section": "conditions.claims"
+  },
+  {
+   "file": "taxonomy",
+   "prefix": "modality[].subcategories[].items[].extracted",
+   "section": "safety.item_text_counts(5단계 행선지)"
+  },
+  {
+   "file": "taxonomy",
+   "prefix": "modality[].extracted.contraindications",
+   "section": "conditions.claims"
+  },
+  {
+   "file": "taxonomy",
+   "prefix": "modality[].extracted",
+   "section": "safety.family_text"
+  },
+  {
+   "file": "taxonomy",
+   "prefix": "modality[].products[].extracted.safety.contraindications",
+   "section": "claims"
+  },
+  {
+   "file": "treatment-optimization",
+   "prefix": "consensus_method",
+   "section": "evidence.evidence_kind_by_file"
+  },
+  {
+   "file": "treatment-optimization",
+   "prefix": "optimization_principles",
+   "section": "optimization_principles"
+  },
+  {
+   "file": "treatment-optimization",
+   "prefix": "by_concern[].severity_levels[].contraindicated_combos",
+   "section": "claims · avoid_edges · conditions.claims"
+  },
+  {
+   "file": "treatment-optimization",
+   "prefix": "by_age_group[]",
+   "section": "conditions.claims"
+  },
+  {
+   "file": "treatment-optimization",
+   "prefix": "combination_rules[]",
+   "section": "claims · avoid_edges · attrs · evidence.guides"
+  },
+  {
+   "file": "treatment-sequence",
+   "prefix": "principles",
+   "section": "claims · principles_text_only"
+  },
+  {
+   "file": "treatment-sequence",
+   "prefix": "sequence_order[]",
+   "section": "sequence_rank"
+  },
+  {
+   "file": "treatment-sequence",
+   "prefix": "incompatible_same_day[]",
+   "section": "claims · conditions.claims(C10)"
+  },
+  {
+   "file": "treatment-sequence",
+   "prefix": "minimum_intervals[]",
+   "section": "claims · conditions.claims(C10) · evidence.guides"
+  }
+ ],
+ "origin_questions": [
+  {
+   "id": "Q8-2",
+   "to": "의료진",
+   "q": "보톡스 ↔ 필러 순서 · 같은 날 — 같은 부위 「보톡스 먼저」(contraindications) · 같은 날 「필러 먼저」(원칙 · 규칙 · 최적화) · 별도 세션 「보톡스 먼저 2주」 — 같은 날 / 별도 세션 / 같은 부위 조건으로 나눠 맞나",
+   "match": {
+    "type": "conflict",
+    "pairs": [
+     "M1↔M2"
+    ]
+   }
+  },
+  {
+   "id": "Q8-3",
+   "to": "의료진",
+   "q": "필러 ↔ 레이저 — 「레이저/IPL 은 필러 전에」 · 「필러 → 레이저 최소 5일」 · 「필러 후 레이저 2~4주(IPL 4주)」 · 「프락셔널 후 당일 필러 금지 · 4주」 — 레이저 종류별로 어느 값 · 어느 순서",
+   "match": {
+    "type": "conflict",
+    "pairs": [
+     "M2↔M8"
+    ]
+   }
+  },
+  {
+   "id": "Q8-4",
+   "to": "의료진",
+   "q": "실리프팅 ↔ 에너지 리프팅 순서 · 간격 — 실리프팅 → 써마지 1개월 · 울쎄라 · HIFU 2~3개월 ↔ 울쎄라 → 실리프팅 1개월 · 2-4주(최적화 처짐 중증) — 어느 방향이 기본인가",
+   "match": {
+    "type": "conflict",
+    "pairs": [
+     "M7↔M9"
+    ]
+   }
+  },
+  {
+   "id": "Q8-5",
+   "to": "의료진",
+   "q": "니들RF ↔ 레이저 · 필링 순서 — P5-3 「레이저 → 니들RF」 ↔ P7-3 「니들RF → 레이저」 · 「니들RF 2주 후 필링」 ↔ 「필링 2주 후 니들RF」",
+   "match": {
+    "type": "conflict",
+    "pairs": [
+     "M11↔M8",
+     "M11↔M15"
+    ]
+   }
+  },
+  {
+   "id": "Q8-6",
+   "to": "의료진",
+   "q": "필링 ↔ 레이저 같은 날 · 순서 — 「토닝 → 같은날 얕은 필링」 · 「레이저토닝 + 필링 같은 날」 ↔ 「심부 필링 + 레이저 같은 날 불가」 · 「제모 부위 필링 동시 금지」 — 깊이 · 부위 조건으로 설명되나",
+   "match": {
+    "type": "conflict",
+    "pairs": [
+     "M15↔M8"
+    ]
+   }
+  },
+  {
+   "id": "Q8-8",
+   "to": "의료진",
+   "q": "「TCA Cross(아이스픽)」는 어느 단위 시술인가(정본에 키 없음)",
+   "match": {
+    "type": "unresolved_name",
+    "texts": [
+     "TCA Cross"
+    ]
+   }
+  },
+  {
+   "id": "Q8-9",
+   "to": "병원(원천 관리)",
+   "q": "synergy 원천 시술군 코드 어긋남 — 「M4-쥬베룩」(정본 M3) · 「M8-서브시전」(정본 N4) · 「M17-엑소좀」(정본 M5) 원천 수정",
+   "match": {
+    "type": "code_mismatch",
+    "texts": [
+     "M4-쥬베룩",
+     "M8-서브시전",
+     "M17-엑소좀"
+    ]
+   }
+  },
+  {
+   "id": "Q8-10",
+   "to": "병원",
+   "q": "synergy 「M8-혈관레이저」 = 엑셀V · 브이빔 중 무엇(둘 다)인가",
+   "match": {
+    "type": "purpose_word",
+    "texts": [
+     "M8-혈관레이저"
+    ]
+   }
+  },
+  {
+   "id": "Q8-11",
+   "to": "병원(원천 관리)",
+   "q": "treatment-sequence minimum_intervals 「프락셔널 CO2 → 필러 14일」의 source 칸 「피부 회복」은 출처가 아님 — 출처 보충",
+   "match": {
+    "type": "guide_not_source",
+    "texts": [
+     "피부 회복"
+    ]
+   }
+  },
+  {
+   "id": "Q8-12",
+   "to": "의료진",
+   "q": "「활성 여드름 시 침습 시술 금지」의 「침습 시술」은 어느 시술 범위인가(사전 · 정본에 묶음 낱말 없음)",
+   "match": {
+    "type": "unresolved_name",
+    "texts": [
+     "침습 시술"
+    ]
+   }
+  },
+  {
+   "id": "Q8-13",
+   "to": "병원",
+   "q": "제모 중증 「듀얼파장 레이저」는 어느 장비 · 단위 시술인가(지금 M8 낱말 교집합 후보가 넓음)",
+   "match": {
+    "type": "wide_candidates",
+    "texts": [
+     "듀얼파장 레이저"
+    ]
+   }
+  },
+  {
+   "id": "Q8-14",
+   "to": "의료진",
+   "q": "필러 ↔ HIFU/RF — 「RF/HIFU → 필러 같은 날 가능」 · 「필러 → RF/HIFU 14일 이상」 · contraindications 「4주 이상 간격」 · 최적화 「HIFU/RF 먼저 → 2주 후 필러」 — 방향별 값이 맞나",
+   "match": {
+    "type": "conflict",
+    "pairs": [
+     "M2↔M9"
+    ]
+   }
+  },
+  {
+   "id": "Q8-15",
+   "to": "의료진",
+   "q": "보톡스 ↔ HIFU/리프팅기기 순서 — 「HIFU 선행 또는 보톡스 후 2주 이상」(원칙 · 규칙) ↔ synergy 「보톡스 2주 후 리프팅」 — 같은 말(보톡스 먼저면 2주)로 읽어도 되나",
+   "match": {
+    "type": "conflict",
+    "pairs": [
+     "M1↔M9"
+    ]
+   }
+  },
+  {
+   "id": "Q8-16",
+   "to": "의료진",
+   "q": "그 밖 계열 쌍 순서 · 간격 충돌(원문 둘 다 보존) — 스킨부스터 ↔ 레이저 · HIFU · 바이오스티뮬레이터 / PRP ↔ 레이저 · 니들RF / MTS ↔ 레이저 간격 — 문맥(같은 날 · 별도 세션 · 하위 조건)으로 설명되는지 일괄 확인",
+   "match": {
+    "type": "conflict",
+    "pairs": [
+     "M4↔M8",
+     "M4↔M9",
+     "M3↔M4",
+     "M5↔M8",
+     "M11↔M5",
+     "M12↔M8"
+    ]
+   }
+  },
+  {
+   "id": "Q8-17",
+   "to": "의료진",
+   "q": "기미에 피할 고출력 · 고에너지 레이저는 어느 단위 시술인가 — 피코 · Q스위치 고출력 · 프락셔널 · IPL 등(같은 원문 「저출력 토닝만 권장」은 7단계 기미 → 토닝 추천과 같은 방향)",
+   "match": {
+    "type": "scope_conditional",
+    "texts": [
+     "레이저",
+     "고출력 레이저",
+     "고에너지 레이저"
+    ]
+   }
+  },
+  {
+   "id": "Q8-18",
+   "to": "의료진",
+   "q": "「심부 필링(페놀 · TCA 50%+)」 · 「박리성(ablative) 레이저」는 어느 단위 시술인가 — 5단계 키에 깊이 · 박리 칸이 없어 지금은 필링 단위 시술 · 레이저 계열 전체로 열림(같은 날 불가 · 간격 · 이소트레티노인 대기의 끝점)",
+   "match": {
+    "type": "scope_conditional",
+    "texts": [
+     "심부 필링(페놀)",
+     "심부 필링(TCA 50%+/페놀)",
+     "심부 필링",
+     "박리성 레이저"
+    ]
+   }
+  },
+  {
+   "id": "Q8-19",
+   "to": "의료진",
+   "q": "아래 부작용(합병증 원천 severity mild)은 발생률 원문에 「흔함」 낱말이 없다 — 흔한 예상 반응(부작용)으로 둬도 되나, 드문 이상 결과(합병증)인가(비대칭 · 딤플링 · 두통 · 독감 유사 증상 · 멍 수치 · PIH)",
+   "match": {
+    "type": "side_effect_exception",
+    "all": true
+   }
+  },
+  {
+   "id": "Q8-20",
+   "to": "의료진",
+   "q": "「열 시술 후 주입 시술」(problem-combos 순서 원칙 · 묶음 낱말을 계열로 폄) ↔ 개별 원천 「주입 · 이식 먼저 → 열 시술」(스컬트라 · 엘란쎄 1개월 후 리프팅 기기 · 지방이식 후 2주 내 RF/HIFU 금지 · 지방분해주사 → RF) — 묶음 원칙이 이 계열(바이오스티뮬레이터 · 지방이식 · 지방분해주사)에도 해당하나, 개별 원천 순서가 기본인가(지금은 순서 단정 안 함 + 간격 더 긴 쪽)",
+   "match": {
+    "type": "conflict",
+    "pairs": [
+     "M3↔M9",
+     "M6↔M9",
+     "M9↔N1"
+    ]
+   },
+   "refs": []
+  }
+ ],
+ "scope_rule": {
+  "words": "고출력|고에너지|고강도|강한|박리성|박리|어블레이티브|ablative|심부",
+  "group_levels": [
+   "계열",
+   "기법 조건",
+   "하위 계열",
+   "용도 조건",
+   "부위 조건",
+   "조건 일치(낱말 교집합)",
+   "계열 묶음",
+   "모든 시술"
+  ],
+  "kinds": [
+   "간격 금기",
+   "같은 날 불가",
+   "조합 금기"
+  ],
+  "applies_also": "피함 엣지 전부 · 확인 조건 주장(대상이 시술 끝점인 것)",
+  "label": "조건부 — 단위 시술 미특정",
+  "rule": "끝점 원문(앞 낱말 · 괄호 · 수식 포함)에 출력 · 깊이 한정어가 있는데 끝점이 이름 일치 단위 시술이 아니라 묶음(계열 · 기법 · 하위 · 용도 · 부위 · 낱말 교집합)으로 열렸으면 = 조건부 · default_apply false(기본 상속 · 기본 응답에서 뺌) · 한정어 원문 보관 · 원천 질문(scope_conditional). 이름 일치 단위 시술(「IPL 단독·고출력」 → U5-030)은 그대로 — 5단계 키에 출력 · 깊이 칸이 없어 한정어로 좁힐 수 없다",
+  "basis": "검수 F1 · 코디 선택 ⓑ(10-29)"
+ },
+ "reading_contract": "추천 · AI 는 edges[].resolved 만 읽는다(10-30 · 충돌 하나로) — resolved.first(a | b | null = 순서 단정 안 함) · days = [하한, 상한](일) · open_high · same_day. 필드 겉 칸이 null 이고 resolved.by_sub_condition 이 true 면 resolved.options[] 중 그 field 의 sub_condition 맞는 것(조건을 모르면 sub_condition 「조건: 모름」 = 전부 접은 가장 보수적인 값). 같은 날 값이 먼저 하는 쪽에 따라 갈리면 resolved.by_direction.a|b.same_day(a = 엣지 a 끝 먼저 · 겉 same_day 는 null). 단위 시술 쌍은 resolved_pairs 에 있으면 그것 · 없으면 그 쌍에 닿는 가장 구체적인 엣지의 resolved(위 엣지 주장은 상속해 이미 접힘). 확인 조건 등급은 conditions.resolved(대상 키 × 조건 — 단위 시술 키 · 계열 키 · 공통 순으로 가장 구체적인 것) · 대기 기간은 conditions.wait_resolved. claims[].interval(원문 칸)은 근거 · alternatives 로만 — 앱에 바로 내지 않는다. 끝점 · 피함에 default_apply false(scope 「조건부 — 단위 시술 미특정」)면 기본 응답 · 계열 상속 · 값 접기에서 뺀다(조회 옵션으로만)",
+ "web_evidence_rule": {
+  "url_regex": "https?://[^\\s;,)]+",
+  "no_url_kind": "원문 출처 문자열(내부 · 통설)",
+  "rule": "URL 없는 출처 문자열 = 웹 아님 · 「;」로 이은 URL 여럿 = multi_url 표시(쪼개지 않음 — G14)",
+  "basis": "검수 W2"
+ },
+ "research_diff_reasons": {
+  "claims.problem-combos.riskBenefit": "조사 = 행별 대응표(순서 문장 8 → 15) · 반영 = 문장 패턴(화살표 · 「A 후 B 순서」 · 「A 후 B는 N 간격」) — P2-3 「열 시술 후 주입 시술」 · P3-3 화살표 3 등이 패턴으로 나뉨(U8-1 (나))",
+  "claims.treatment-optimization.combination_rules": "조사 = 대응표(규칙 6 → 11) · 반영 = 패턴 — 규칙 0 의 「선행 또는 N 이상」 · 「N 이상 또는 먼저」가 주장 둘씩(순서 · 반대 방향 간격) · 규칙 0 첫 문장 「보톡스와 HIFU/RF 열시술」 쌍이 더해짐",
+  "claims.treatment-sequence.common_combos.note": "세 번째 note 「프락셔널+MTS 채널 오픈 후 PRP …」를 조사는 화살표가 없어 버렸고, 반영은 순서 칸 「A 후 B」 패턴으로 쌍 하나를 만듦",
+  "claims.treatment-sequence.principles": "조사 = 대응표(쌍 문장 8 → 12) · 반영 = 패턴 — 원칙 2 가 순서 · 반대 방향 간격 · 생략 상대 3 = 5 주장(조사 4)",
+  "conflicts.간격 수치": "반영은 간격 사전 open_high(이상 · 후 · 뒤 = 위로 열림)로 겹침을 비교 — 조사의 「원문 범위 그대로 하한 비교」와 달라 X8-007(M15↔M4) · X8-012(M2↔M8) · X8-020/021(M7↔M9)이 빠지고 M4↔M8 · M12↔M8 이 생김. M2↔M8 · M7↔M9 는 순서 충돌로 질문 Q8-3 · Q8-4 에 남음",
+  "conflicts.순서(먼저 하는 쪽)": "패턴 분해로 순서 주장이 바뀌어 계열 쌍 순서 충돌이 다시 셈 — M12↔M8 등 쌍이 달라짐(전부 질문 Q8-2~6 · 14~16 에 걸림) · 10-30 충돌 하나로 전수 가드 — 묶음 낱말 끝점(「열 시술」 · 「주입 시술」)을 계열로 펴 순서 반대 3 쌍을 뒤에 더함(X8-020~022 · 기존 X8 id 유지)",
+  "condition_claims": "조사의 「고민 조건 금기(기미) 5」가 확인 조건에서 빠져 피함 엣지로 감(U8-2 (가))",
+  "avoid_edges": "조사 판에는 피함 엣지 타입이 없었음(U8-2 (가)로 새로 생김 — 기미 5)",
+  "bundle_claims": "조사의 묶음 낱말 주장 중 「에너지 기기(HIFU)」가 괄호 이름 규칙(bundle_paren_rule)으로 HIFU 로 풀려 묶음에서 빠짐",
+  "claim_kinds": "종류 이름이 패턴 종류로 재분배 — 원칙 문장(쌍) · 조합 규칙(쌍) 이 없어지고 순서(문장) · 순서 · 간격(문장) · 병행 · 간격(문장) · 조합 금기로 감 · 같은 날 불가 12 → 7(조사가 「같은 날 불가」로 둔 금기 문장 일부가 「간격 금기」 · 「조합 금기」 패턴으로 감)"
+ },
+ "semantic_apply": {
+  "decided_by": "사용자 10-30 「시맨틱 조사 반영 — 추천대로」(B1~B12 · U1~U3 · _RESUME §2) — 조사 semantic-research.json",
+  "complication_severities": [
+   "moderate",
+   "severe",
+   "critical"
+  ],
+  "side_effect_severities": [
+   "mild"
+  ],
+  "side_effect_rule": "U2 · B1 — 부작용(흔한 예상 반응) = 계열 속성 safety.side_effects · 합병증 노드 = complications.json severity moderate 이상만. 제품 × 계열 · 단위 시술에 값(5단계 extracted safety.common)이 있으면 그 값이 계열 값을 덮어씀 — 덮어쓰기는 골드 계산(B7 · 저장 안 함)",
+  "side_effect_common_incidence": "흔함|대부분|거의|전례|보편|일과성|사실상|일시적|필발",
+  "side_effect_exception_rule": "severity mild 인데 incidence 에 흔함 낱말이 없음 = 부작용으로 두되 의료진 질문(B1 예외)",
+  "gap_fill": {
+   "rule": "U1 — complications.json 에 없는 계열 중 taxonomy modality extracted.safety 에 문장이 있는 계열은 원천 안 문장으로 채움",
+   "serious": "합병증",
+   "common": "부작용",
+   "uncommon": "부작용",
+   "severity": "원천에 등급 칸 없음 — severity null · severity_site 「원문 serious(taxonomy)」"
+  },
+  "endpoint_candidates": "U3 · B3 — 끝점 묶음은 노드가 아니라 엣지 칸 endpoints.a|b{kind, id, qualifier, candidates[]} · 엣지 a · b 문자열은 그대로(뒤 호환)",
+  "not_condition_rule": "B8 — 확인 조건 주장 중 kind 가 「…항목」(상담 · 시술 준비 · 고지)이거나 사람 조건 · 연령대 조건이 아닌 것 = 확인 조건 엣지 아님 → conditions.not_condition(원문 보관) · 계열 대상은 safety.family_text 「상담 · 준비 · 고지 · 조건 아닌 문장」(G10 그대로) · 엣지 셈에서 뺌"
+ },
+ "conflict_resolution": {
+  "decided_by": "사용자 10-30 — D-13b 바꿈(_RESUME §2 「D-13b 바꿈 — 8단계 충돌을 하나로」)",
+  "rules": [
+   {
+    "id": "R1",
+    "name": "조건이 다른 가짜 충돌",
+    "text": "원문(간격 원문 · 끝점 원문 · 수식 · 하위 조건 원문)에 하위 조건(같은 날 / 별도 세션 · 먼저 하는 쪽(방향 — 「HA 필러 → RF/HIFU 같은 날 불가 · 역순은 같은 날 가능」) · 같은 부위 / 다른 부위 · 박리 / 비박리 · 깊이 · 출력 · 용도)이 적혀 있으면 그 축 값이 같은(또는 한쪽이 안 적은) 것끼리만 비교한다. 묶음마다 값이 다르면 by_sub_condition 으로 나누고 「조건 모름」 옵션(전부 접은 가장 보수적인 값)을 하나 더 둔다. 끝점 단위 시술이 겹치지 않는 주장(레이저 종류 등)은 애초에 같은 엣지 · 단위 시술 쌍에서 만나지 않는다 · 방향 축은 resolved.by_direction{a, b}.same_day 로 따로 남긴다(방향별로 접을 수 없으면 by_direction 안에서 R4)"
+   },
+   {
+    "id": "R2",
+    "name": "확인 조건 등급",
+    "text": "같은 대상 키(공통 · 계열 · 단위 시술 · 제품 · 원장 항목 — 위 키에서 상속한 것 포함) × 같은 조건이면 더 엄격한 쪽(금기 > 주의 > 확인만 > 확인만(고지))을 기본값으로 한다. 덜 엄격한 원문은 alternatives 로 보관"
+   },
+   {
+    "id": "R3",
+    "name": "간격 숫자",
+    "text": "같은 묶음 안 간격 숫자가 다르면 더 긴 간격 — 하한 = 하한들 중 큰 값 · 상한 = 상한들 중 큰 값 · open_high = 하나라도 위로 열림. 다른 원문은 alternatives 로 보관"
+   },
+   {
+    "id": "R4",
+    "name": "같은 날 가능 ↔ 불가",
+    "text": "R1 로 안 나뉘는 같은 날 가능 ↔ 불가는 불가(false). 「별도 세션」 문맥 표시로 생긴 false 는 금지 문장이 아니라 하위 조건 표시라 투표에서 뺀다(R1 세션 축)"
+   },
+   {
+    "id": "R5",
+    "name": "순서 반대",
+    "text": "R1 로 안 나뉘는 순서(먼저 하는 쪽) 반대는 진짜 반대 — first = null(순서 정보 없음 · 둘 다 가능이라는 뜻 아님 · 앱은 순서를 단정하지 않음) · 간격은 R3 · 의료진 질문(원천 질문)으로 보냄"
+   },
+   {
+    "id": "R6",
+    "name": "이소트레티노인 등 대기 기간",
+    "text": "같은 조건의 대기 기간(개월)이 원천마다 다르면 R3 — 더 긴 쪽. 원문 조각(, . ;)의 개월 숫자마다 가장 가까운 깊이 · 박리 낱말(앞쪽 우선 · 없으면 뒤쪽 — 얕은 · 비박리 / 박리 · 심부)로 R1 로 나누고, 조각에 깊이 낱말이 없으면 모든 묶음에 들어간다. 조건 모름 = 전부 중 가장 긴 값"
+   }
+  ],
+  "axes": [
+   {
+    "axis": "부위",
+    "values": [
+     {
+      "value": "다른 부위",
+      "pattern": "다른\\s*부위"
+     },
+     {
+      "value": "같은 부위",
+      "pattern": "(같은|동일)\\s*부위"
+     }
+    ]
+   },
+   {
+    "axis": "박리",
+    "values": [
+     {
+      "value": "비박리",
+      "pattern": "비박리|논\\s*어블레이티브|non-?ablative|비침습"
+     },
+     {
+      "value": "박리",
+      "pattern": "(?<!비)박리|(?<!논)(?<!논 )어블레이티브|(?<!non-)ablative"
+     }
+    ]
+   },
+   {
+    "axis": "깊이",
+    "values": [
+     {
+      "value": "심부",
+      "pattern": "심부|딥|깊은"
+     },
+     {
+      "value": "얕은",
+      "pattern": "얕은|표재"
+     }
+    ]
+   },
+   {
+    "axis": "출력",
+    "values": [
+     {
+      "value": "고출력",
+      "pattern": "고출력|고에너지|고강도"
+     },
+     {
+      "value": "저출력",
+      "pattern": "저출력"
+     }
+    ]
+   },
+   {
+    "axis": "용도",
+    "values": [
+     {
+      "value": "제모",
+      "pattern": "제모"
+     }
+    ]
+   }
+  ],
+  "session_axis": "세션 — 같은 날(same_day true) · 별도 세션(문장 머리 「별도 세션」 문맥 표시 · L-SEP · 또는 간격 하한 > 0). 순서 · 간격 비교에만 쓰고 같은 날 비교엔 안 씀(같은 날 비교는 순서 축)",
+  "session_label_marks": [
+   "같은 날 · 별도 세션 문맥(문장 머리)"
+  ],
+  "field_axes": {
+   "first": [
+    "세션",
+    "부위",
+    "박리",
+    "깊이",
+    "출력",
+    "용도"
+   ],
+   "same_day": [
+    "순서",
+    "부위",
+    "박리",
+    "깊이",
+    "출력",
+    "용도"
+   ],
+   "days": [
+    "세션",
+    "부위",
+    "박리",
+    "깊이",
+    "출력",
+    "용도"
+   ]
+  },
+  "field_axes_note": "같은 날 가능 ↔ 불가는 먼저 하는 쪽(순서)이 원문에 적혀 다르면 다른 조건(예: RF/HIFU → 필러 같은 날 가능 · 필러 → RF/HIFU 같은 날 불가)",
+  "unknown_condition_key": "조건",
+  "unknown_condition_label": "모름(전부 접음 — 가장 보수적)",
+  "grade_order": [
+   "금기",
+   "주의",
+   "확인만",
+   "확인만(고지)"
+  ],
+  "wait_axes": [
+   {
+    "axis": "깊이 · 박리",
+    "values": [
+     {
+      "value": "얕은 · 비박리",
+      "pattern": "비박리|얕은|표재|논\\s*어블레이티브"
+     },
+     {
+      "value": "박리 · 심부",
+      "pattern": "(?<!비)박리|심부|중간|(?<!논)(?<!논 )어블레이티브|(?<!non-)ablative"
+     }
+    ]
+   }
+  ],
+  "review_status": {
+   "하나": "ok",
+   "조건 분리": "ok",
+   "조건 분리(가짜 충돌)": "ok",
+   "보수적 선택": "conservative",
+   "의료진 확인": "staff_check"
+  },
+  "review_label": {
+   "ok": "",
+   "conservative": "보수적 선택",
+   "staff_check": "의료진 확인"
+  },
+  "x8_why": {
+   "R1": "하위 조건 축(세션 · 부위 · 박리 · 깊이 · 출력 · 용도 · 순서)이 다르거나 끝점 단위 시술이 겹치지 않아 같은 묶음에서 만나지 않음 — 충돌 해제(앱엔 조건별 값 · 조건 모름이면 전부 접은 값)",
+   "R3": "같은 묶음에서 간격 숫자가 다름 — 더 긴 간격",
+   "R4": "같은 묶음에서 같은 날 가능 ↔ 불가 — 불가",
+   "R5": "같은 묶음에서 순서가 반대 — 순서 단정 안 함 + 간격 R3 + 의료진 질문"
+  },
+  "guards": "전수 — ① 엣지마다 필드별 겉 칸 하나 또는(R1) 옵션 + 조건 모름 하나 ② 단위 시술 쌍마다 가장 구체적인 엣지 resolved 가 하나(형제 엣지가 겹쳐 둘이면 resolved_pairs 로 쌍 하나 접음) ③ 단위 시술 × 조건 등급 하나(형제 키 겹치면 단위 시술 키로 접음) ④ 순서 반대(의료진 확인) 묶음은 원천 질문에 걸린 X8 에서만 — 어기면 open"
+ },
+ "origin_questions_retired": [
+  {
+   "id": "Q8-1",
+   "to": "의료진",
+   "q": "이소트레티노인 중단 후 대기 기간 — 사전 체크 · 동의서(얕은 시술 6개월 · 박리성 12개월) ↔ 시술 순서(얕은 시술 0~2개월 · 박리성 6개월) 중 어느 쪽을 상담 기준으로 쓰나",
+   "match": {
+    "type": "wait_conflict",
+    "conditions": [
+     "C-ISO"
+    ]
+   },
+   "retired_at": "2026-10-30",
+   "retired_by": "충돌(10-30) — 규칙으로 정함(진짜 반대 아님)",
+   "resolution": "R6(더 긴 쪽) + R1(깊이 · 박리로 나눔) — 얕은 · 비박리 6개월 · 박리 · 심부 12개월 · 조건 모름 12개월(conditions.wait_resolved WR8-C-ISO)"
+  },
+  {
+   "id": "Q8-7",
+   "to": "의료진",
+   "q": "확인 조건 등급 — 같은 계열 · 같은 조건에 원천마다 금기 · 주의 · 확인만이 다름(예: 임신 · 수유 consent 「금기」 ↔ taxonomy 「상대」) — 계열별 등급 확인",
+   "match": {
+    "type": "grade_conflict",
+    "all": true
+   },
+   "retired_at": "2026-10-30",
+   "retired_by": "충돌(10-30) — 규칙으로 정함(진짜 반대 아님)",
+   "resolution": "R2(더 엄격한 쪽) — 등급 충돌 76 전부 conditions.resolved 로 하나(덜 엄격한 원문은 alternatives)"
+  }
+ ]
+}

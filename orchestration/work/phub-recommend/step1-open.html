@@ -1,0 +1,122 @@
+<title>1단계 남은 것</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+
+<style>
+/* Layout: 맨 위 상황 한 줄 + 다섯 구역. 항목 = 이름 · 한 줄(왜 남았나) · 추천 → 답 칸, 근거는 접힘 */
+:root{--bg:#f6f8f8;--surface:#fff;--ink:#172426;--muted:#5c6d70;--line:#dbe3e4;--accent:#0f6b6a;--accent-soft:#e0efee;--ok:#22744a;--warn:#a5620a;--bad:#9b3434;
+--sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1617;--surface:#172122;--ink:#e3ecec;--muted:#94a6a8;--line:#2a3a3c;--accent:#5fc2bf;--accent-soft:#1d3434;--ok:#6cd197;--warn:#e5a24a;--bad:#e48c8c;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1617;--surface:#172122;--ink:#e3ecec;--muted:#94a6a8;--line:#2a3a3c;--accent:#5fc2bf;--accent-soft:#1d3434;--ok:#6cd197;--warn:#e5a24a;--bad:#e48c8c;color-scheme:dark}
+*{box-sizing:border-box}body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.5;padding-inline:16px;padding-block:20px 48px;margin:0}
+.top{max-width:880px;margin:0 auto 16px;display:flex;flex-direction:column;gap:6px}
+h1{font-size:22px;margin:0;text-wrap:balance}
+.sit{font-size:14px}.sit b{font-family:var(--mono);font-weight:500}
+.bar{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;font-size:12.5px;color:var(--muted)}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:3px 10px;font:inherit;font-size:12.5px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+main{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+.sec{display:flex;flex-direction:column;gap:8px}
+.sec>h2{font-size:17px;margin:0;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.sec>h2 .n{font-family:var(--mono);font-size:12px;color:var(--muted);font-weight:400}
+.sec>p{margin:0;font-size:12.5px;color:var(--muted)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:4px 14px;display:flex;flex-direction:column;min-width:0}
+.sub{font-size:12.5px;font-weight:600;color:var(--muted);padding:10px 0 4px;border-bottom:1px solid var(--line)}
+.sub .g{font-family:var(--mono);font-weight:400;margin-left:6px}
+.it{display:flex;flex-direction:column;gap:5px;padding:10px 0;border-bottom:1px dashed var(--line)}
+.it:last-child{border-bottom:0}
+.it[data-done="1"]{border-left:3px solid var(--ok);padding-left:8px;margin-left:-11px}
+.l1{font-size:13.5px}.l1 .nm{font-weight:600}.l1 .why{color:var(--muted)}
+.cd{font-family:var(--mono);font-size:11px;color:var(--muted);margin-left:6px;word-break:break-all}
+.rec{font-size:13.5px}.rec b{color:var(--accent);font-weight:600}
+.ans{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center}
+.opt{display:flex;gap:6px;align-items:center;padding:3px 9px;border:1px solid var(--line);border-radius:6px;cursor:pointer;font-size:13px}
+.opt:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.opt input{margin:0;accent-color:var(--accent)}
+input[type=text]{font:inherit;font-size:13px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);padding:5px 8px;min-width:0;width:100%}
+.ans input[type=text]{flex:1;min-width:180px;width:auto}
+.sv{font-family:var(--mono);font-size:11.5px;color:var(--muted)}.sv.err{color:var(--bad)}
+details summary{cursor:pointer;font-size:12px;color:var(--accent)}
+details p{margin:4px 0 0;font-size:12.5px;color:var(--muted)}
+.ro{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-bottom:1px dashed var(--line);font-size:13.5px}
+.ro:last-child{border-bottom:0}
+.ro .mk{font-family:var(--mono);color:var(--muted);flex:none}
+.btn{border:1px solid var(--accent);background:var(--surface);color:var(--accent);border-radius:6px;padding:4px 10px;font:inherit;font-size:12.5px;cursor:pointer}
+.hdr{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+</style>
+<div class="top">
+ <h1>1단계 제품 원장 — 남은 것</h1>
+ <div class="sit" id="sit"></div>
+ <div class="bar"><button class="chip" id="onlyLeft" aria-pressed="false">답 안 한 것만</button><span id="status">답변 저장소에 연결하는 중…</span></div>
+</div>
+<main id="main"></main>
+<script id="data" type="application/json">{"groups_total": 30, "groups_decided": 21, "approve": [{"g": "D19", "t": "다시 찾아본 11개 (실제 제품인데 국내 허가를 못 찾았던 것)", "items": [{"id": "a-d19-bellasonic", "n": "벨라소닉", "c": "M15-6-4", "why": "띄어쓰기가 달라(BELLA SONIC) 전에 놓친 허가를 찾았다", "rec": "제인 16-4317 「BELLA SONIC 2X」(엘트라글로벌 · 정상)에 연결", "b": "같은 이름 로보맥스 17-4558 은 「수출용에 한함」이라 뺀다. 허가 브랜드 「2X」와 시판 이름이 같은 모델인지는 출처 없음 · step1-d19"}, {"id": "a-d19-belkyra", "n": "벨카이라 · 카이벨라", "c": "auto-M16-1775403024925 · auto-M16-DCA-1775404043061", "why": "같은 앨러간 제품 — 2020년 말 국내 철수 보도, 식약처 · nedrug 0건", "rec": "미허가 (추천 제외)", "b": "헬스코리아뉴스 2022-01-19 「엘러간이 2020년 말 판매 부진으로 벨카이라 철수」 · 애브비 의약품 허가 40건에 데옥시콜산 0 · 같은 성분 현행 허가 9건은 전부 다른 회사 제품"}, {"id": "a-d19-evolve", "n": "이볼브", "c": "auto-M10-1775363005172", "why": "인모드 수입사(신한네트웍스) 허가 3건에 없다", "rec": "미허가", "b": "26-107 EVOKE 는 얼굴용 다른 제품(이름 다름) · 19-352 · 21-205 는 플랫폼 · step1-d19"}, {"id": "a-d19-cooltone", "n": "쿨톤", "c": "auto-M10-1775363019549", "why": "한국애브비 허가 768행 전부에 없다 · 국내 판매 흔적도 없음", "rec": "미허가", "b": "같은 회사 바디 기기는 쿨스컬프팅 2건뿐 · step1-d19"}, {"id": "a-d19-dermapen4", "n": "더마펜4", "c": "auto-M12-1775363026852", "why": "본체(펜) 허가가 어느 업체에도 없다 — 바늘 카트리지 허가만 있음", "rec": "미허가", "b": "두원메디텍 제인 19-4223 은 카트리지(소모품) · 우리메카 15-4152 는 3세대 · 국내 수입사 못 찾음"}, {"id": "a-d19-iplus", "n": "시너론 아이플러스", "c": "auto-M8-1775362594611", "why": "시너론켄델라코리아 허가 39행에 「아이플러스」가 없다", "rec": "미허가", "b": "같은 회사 IPL 은 Nordlys(19-41) · elos Plus(15-1663) — 이름이 달라 붙이지 않음"}, {"id": "a-d19-mirage", "n": "미라쥬", "c": "new-DEV-071", "why": "수입사도, 의료기기인지 여부도 출처가 없다", "rec": "확인 불가 (추천 제외) — 수입사는 병원에 물음", "b": "데이뷰의원이 색소 진단 장비로 사용 · 제조 상하이잉쯔(Mirage 3D) · 「Mirage」 허가는 호흡기 마스크 · 휠체어뿐 · 비침습 ≠ 허가 대상 아님"}, {"id": "a-d19-slenderx", "n": "슬렌더엑스", "c": "auto-M8-1775362619619", "why": "이런 제품이 있다는 출처조차 못 찾았다", "rec": "확인 불가", "b": "사이노슈어루트로닉 허가 35건에 없음 · 「Slender」 허가는 슬렌더톤뿐"}, {"id": "a-d19-secretmax", "n": "시크릿맥스", "c": "auto-M9-1775363058909", "why": "허가받았다는 보도는 있는데 허가 목록에 모델이 없다", "rec": "확인 불가 · 비슷한 시기 허가 QUADESSY(24-342)는 붙이지 않음", "b": "이루다 2024-05 허가 보도 · 이루다는 2024-10 클래시스에 합병 · QUADESSY 와 같은 제품이라는 출처 없음(허가일 · 설명만 겹침)"}, {"id": "a-d19-liporin", "n": "리포린", "c": "auto-M16-DCA-1775404043067", "why": "2025-08 허가 보도가 있는데 식약처 조회는 0건", "rec": "확인 불가 — KPIC 로 한 번 더 확인 중", "b": "헬스코리아뉴스 2025-09-22 · 삼익제약 191품목에 없음 · 위탁 생산원 펜믹스의 「펜카이라주」는 다른 제품명"}]}, {"g": "D20–D31", "t": "8묶음 조사 — 워커 추천", "items": [{"id": "a-d25-all", "n": "초안에서 바뀐 연결 29건", "c": "D25", "why": "29건 모두 식약처 모델명 · 제품명으로 다시 맞춰 봤다", "rec": "전부 받기 + 브이빔퍼펙타(18-276) · 젠틀맥스프로(18-338) 상태를 「정상」으로 · 테오시알 취하 이력 2건(18-330 · 18-329) 추가 · 튠페이스 원천 업체 「클래시스」→ 알마는 원천 수정", "b": "리쥬비엘 · 유스필 · 큐젤 · 큐젤MAX · 테오시알 · 쥬베룩볼륨 · 리쥬란아이 · 리쥬란HB+ · 테오시알레디세스 · 실루엣소프트 · 에코2에볼루션 · 브이빔 · 엑셀브이 · 엑셀V+ · 브이빔퍼펙타 · 사이노슈어아이콘 · 아포지엘리트플러스 · 라이트쉬어듀엣 · 젠틀맥스프로 · 포토나SP다이나미스 · 할리우드스펙트라 · SUNNY · 튠페이스 · 엠스컬프트네오 · 시크릿RF · 실펌X · 스칼렛프로 · 인피니 · LDM"}, {"id": "a-d28-keep", "n": "근거가 약하던 연결 4건", "c": "D28", "why": "다시 보니 4건 모두 허가 제품명 · 모델명에 이름이 직접 있다", "rec": "유지", "b": "하이드라페이셜(HydraFacial MD ELITE) · 아테콜(ARTECOLL™ 아테콜) · 바이리즌(BYRYZN Skinbooster HA) · 비타란(HP VITARAN)"}, {"id": "a-d29-found", "n": "뉴럭스 · 피코웨이 · 인트라셀", "c": "D29", "why": "taxonomy 에서 새로 넣은 제품 중 현행 허가가 확인된 3개", "rec": "원장에 둠", "b": "뉴럭스 = 허가권자 뉴메코 · 제조 메디톡스(업체 칸 나눔) · 피코웨이 = 수허 18-304 · 인트라셀 = 제이시스메디칼 INTRAcel 계열"}, {"id": "a-d29-letybo", "n": "레티보", "c": "M1-P-10", "why": "휴젤 톡신의 해외 판매명 — 국내 이름은 보툴렉스", "rec": "보툴렉스(M1-1-1)에 합치고 「레티보/Letybo」는 검색 이름", "b": "비즈워치 「국내 제품명: 보툴렉스」"}, {"id": "a-d29-regen", "n": "리젠ACR", "c": "M5-P-1", "why": "taxonomy 업체 「리젠바이오텍」이 틀렸다 · 국내엔 취하 이력만", "rec": "업체를 REGEN LAB SA 로 고치고 「허가 취소(이력)」", "b": "리젠코리아 Regen ACR-C 신고 2011 취하"}, {"id": "a-d29-unknown", "n": "taxonomy 새 제품 중 출처 0인 8개", "c": "D29", "why": "이름 · 업체 모두 출처가 없다", "rec": "확인 불가로 두고 병원에 물음(아래 「원천에 물어볼 것」)", "b": "신펄 · 글로벨라 · 셀피아 · 마이셀 · EXOSOME SKIN · 에버라인 · 미라클 · 에스에프"}, {"id": "a-d30-syn", "n": "더채움 · 프락셀듀얼", "c": "D30", "why": "taxonomy 이름이 허가 제품명에 그대로 들어 있다", "rec": "같은 제품 — 검색 이름으로", "b": "「더 채움」 · 수허 10-500 「프락셀, 프락셀 듀얼」"}, {"id": "a-d31-o2toderm", "n": "오투덤", "c": "new-DEV-049", "why": "기사가 「미용기기」라고 직접 썼다", "rec": "허가 대상 아님 확정", "b": "스포츠서울 2019 기사 인용(제조사 자료 아님) · 트리시스 의료기기 허가에 없음"}, {"id": "a-d31-mesogun", "n": "메소건", "c": "auto-M15-1775360919010", "why": "여러 회사 주입기를 부르는 일반 이름 — 의료기기로 허가된 적도 있다", "rec": "「허가 대상 아님」 대신 「메뉴명 · 일반명」", "b": "현대메디텍 Meso-Pri(Mesogun) 제인 05-914 유효기간 만료"}, {"id": "a-d31-bellup", "n": "벨르업", "c": "new-DEV-034", "why": "판매 페이지에 분류 · 제조사 표기가 없다", "rec": "확인 불가 유지", "b": "벨루미에몰 상품 페이지 · 실물 라벨(KC · 의료기기 표시)이 나오면 다시"}, {"id": "a-d31-novojet", "n": "노보젯", "c": "auto-M15-1775360904089", "why": "같은 회사에 미용용 분사식주사기 허가가 있어 「허가 대상 아님」으로 닫을 수 없다", "rec": "확인 불가 유지 — 모델 번호는 병원(업체)에 물음", "b": "바즈바이오메딕 CRJ-001CD(제품명 공란 · 정상)"}, {"id": "a-d20-juveacell", "n": "쥬브아셀", "c": "auto-20-1774737181584", "why": "인체조직(무세포 동종진피) 제품이라는 출처가 있다", "rec": "허가 대상 아님(인체조직)", "b": "도프(조직은행) · 바임글로벌 · 인체조직법 적용 기사"}, {"id": "a-d20-nctf", "n": "NCTF 필로르가", "c": "auto-M4-1775361364993", "why": "유럽 CE 의료기기 — 국내 허가는 못 찾았다", "rec": "국내 허가 못 찾음(미허가 유지)", "b": "아이더마바이오 수입 보도(2019) · 화장품으로 유통된다는 출처 없음"}, {"id": "a-d20-prx", "n": "PRX필", "c": "auto-M15-1775401645338", "why": "바르는 필링제 — 국내 분류 출처가 없다", "rec": "확인 불가 유지", "b": "WiQo PRX-T33 · 미국에선 전문가용 화장품"}, {"id": "a-d20-dabox", "n": "다복스", "c": "auto-M1-1775360538524", "why": "이 이름의 제품을 어디서도 못 찾았다", "rec": "확인 불가 · 디스포트에 붙이지 않음", "b": "갈더마 차세대 톡신(렐라보툴리눔)과 이어주는 출처 없음"}, {"id": "a-d20-oxyderm", "n": "옥시덤", "c": "auto-M15-1775362958625", "why": "원천 설명(산소 주입 기기)에 맞는 장비가 없다", "rec": "확인 불가", "b": "케이-옥시덤(크림) · 가정용 OxyDerm 은 다른 제품"}, {"id": "a-d22-cellexo", "n": "셀엑소좀", "c": "auto-M4-1775361371619", "why": "실제 제품(프로스테믹스 제조 · 휴메딕스 판매) — 허가는 못 찾았다", "rec": "원장에 두고 「국내 허가 못 찾음」", "b": "화장품 표시가 확인될 때만 「허가 대상 아님」으로"}, {"id": "a-d23-cryocell", "n": "크라이오셀", "c": "auto-54-1774737181584", "why": "여러 병원이 쓰는 냉각 진정 메뉴 이름 — 장비 이름이 아니다", "rec": "제품 원장에서 빼고 5단계 시술 이름 후보로", "b": "쓰는 장비를 밝힌 병원 없음 · 그 이름 허가 없음"}]}, {"g": "규칙", "t": "정한 규칙을 적용하면 정해지는 것", "items": [{"id": "a-r-vbeam", "n": "브이빔", "c": "M8-4-1", "why": "원장 「브이빔」은 옛 모델(취하) — 지금 허가는 후속 모델뿐", "rec": "라인으로: Perfecta(수허 18-276) · Prima(수허 21-34) 품목 · 옛 Vbeam 은 이력", "b": "라인 = 상위 제품 규칙 · 취소 허가는 이력 규칙 · 20-108 은 2025 취하"}, {"id": "a-r-hydra", "n": "하이드라페이셜", "c": "M15-2-2", "why": "같은 제품의 정상 수입 허가가 둘이다", "rec": "둘 다 연결: 메디뷰랩 22-213 · 인터엠디 18-215", "b": "판매사 · 수입사 여러 개 규칙"}, {"id": "a-r-byryzn", "n": "바이리즌", "c": "auto-M4-1775361378128", "why": "한 브랜드에 HA · PN 등 여러 허가가 있다", "rec": "라인으로: HA(20-527) · PN(23-784) 품목", "b": "라인 = 상위 제품 규칙 · 휴젤 브랜드"}, {"id": "a-r-aape", "n": "AAPE", "c": "auto-M17-1775364775191", "why": "앰플 AAPE 는 병원용 화장품 — 원천 「심부주름」 문구만 의료기기 쪽과 겹친다", "rec": "병원용 화장품(허가 대상 아님) · 적응증 문구는 원천 수정", "b": "프로스테믹스 줄기세포 배양액 앰플 · 기사 「병원용 화장품」"}, {"id": "a-r-progen", "n": "AAPE Progen", "c": "auto-M17-1775364775191", "why": "같은 회사 의료기기(주름 개선 주입재)가 2023 취하됐다", "rec": "취하 이력으로만 기록", "b": "제허 19-756 · 2023-07-31 취하(취소 아님)"}]}], "ask": [{"t": "정체가 갈리는 것", "items": [{"id": "q-enable", "n": "인에이블", "c": "auto-M4-1775361749536", "q": "「인에이블」은 동국제약 화장품 인에이블인가요, LG화학 PN(비타란)을 잘못 적은 건가요?"}, {"id": "q-dopeecm", "n": "도프ECM", "c": "auto-M3-hADM-1775404146754", "q": "「도프ECM」은 바임 쥬브아셀과 같은 제품인가요? (도프 hADM 제품은 ESSALIA · 세시엠 L 도 있음)"}, {"id": "q-apollo", "n": "아폴로", "c": "auto-M9-1775364775137", "q": "쓰는 「아폴로」는 위로 Apollo Duet/Quattro 인가요, Pollogen Apollo 인가요?"}, {"id": "q-selphia", "n": "셀피아", "c": "M5-P-0", "q": "「셀피아」는 시지바이오 CGPRP kit(제허 26-568)인가요?"}, {"id": "q-novojet", "n": "노보젯", "c": "auto-M15-1775360904089", "q": "노보젯 모델 번호가 CRJ-001CD(바즈바이오메딕 분사식주사기)인가요?"}, {"id": "q-picocore", "n": "피코코어", "c": "auto-M8-1775362587235", "q": "「피코코어」는 블루코어 「피코어(Picore)」인가요? (원천엔 루트로닉으로 적힘)"}, {"id": "q-starwalker", "n": "포토나스타발브", "c": "auto-M8-1775364775128", "q": "「포토나스타발브」는 포토나 스타워커(StarWalker)인가요?"}, {"id": "q-sendox", "n": "센독스", "c": "auto-M1-1775364775101", "q": "센독스 업체 「메디콕스」가 맞나요? 실제 제품명 · 제조사는?"}, {"id": "q-belpn", "n": "벨피엔 프로", "c": "auto-M4-1775360463217", "q": "「벨피엔 프로」의 「프로」는 리도카인 든 밸피엔(26-757)을 말하나요?"}, {"id": "q-vanquish", "n": "바넥스 · 바넥스프로", "c": "auto-M14-1775361047443 · auto-M10-1775361916636", "q": "바넥스 · 바넥스프로의 실제 제품명 · 제조사는? (Vanquish Me 는 기전이 달라 아님)"}, {"id": "q-acure", "n": "아큐어", "c": "auto-M9-1775364797157", "q": "아큐어(국산 양극성 RF)의 실제 제품명 · 제조사는?"}, {"id": "q-healfusion", "n": "힐퓨전프로", "c": "new-DEV-044", "q": "힐퓨전프로는 힐룩스 「HFUSION」(2026-09 허가)인가요?"}, {"id": "q-trifill", "n": "트리필 프로", "c": "new-DEV-052", "q": "트리필 프로는 엠큐어 허가 모델 TF2004NIWS(Olidia Booster)인가요?"}, {"id": "q-skinstamp", "n": "스킨스탬프", "c": "auto-M12-1775363035813", "q": "스킨스탬프는 어느 회사 제품인가요?"}, {"id": "q-mirage", "n": "미라쥬", "c": "new-DEV-071", "q": "미라쥬(Mirage 3D P2) 수입사는 어디이고, 의료기기로 들여왔나요?"}]}, {"t": "주사 · 스킨부스터 — 이름 근거 0 (D22 · 10개)", "items": [{"id": "q-d22-collagenpin", "n": "콜라겐핀", "c": "auto-M3-1775364775146", "q": "콜라겐핀 실제 제품명 · 제조사는?"}, {"id": "q-d22-linfini", "n": "린피니", "c": "auto-M3-1775364775148", "q": "린피니(PCL) 실제 제품명 · 제조사는?"}, {"id": "q-d22-snail", "n": "스네일샷", "c": "auto-M4-1775362498539", "q": "스네일샷 실제 제품명 · 제조사는? (PN 기반인가요, 달팽이 성분인가요?)"}, {"id": "q-d22-renato", "n": "레나토S", "c": "auto-M4-1775364775153", "q": "레나토S(PN) 실제 제품명 · 제조사는?"}, {"id": "q-d22-sonopdrn", "n": "소노PDRN", "c": "auto-M4-1775364775154", "q": "소노PDRN 은 제품인가요, PDRN + 초음파 관리 메뉴인가요?"}, {"id": "q-d22-catalyst", "n": "카탈리스트", "c": "auto-M4-1775364775151", "q": "카탈리스트(엑소좀) 실제 제품명 · 제조사는?"}, {"id": "q-d22-dwoncell", "n": "드원셀", "c": "auto-M4-1775364775155", "q": "드원셀(엑소좀) 실제 제품명 · 제조사는?"}, {"id": "q-d22-lidium", "n": "리듐", "c": "auto-M4-1775360452766", "q": "리듐(콜라겐) 실제 제품명 · 제조사는?"}, {"id": "q-d22-tu", "n": "투 (TU)", "c": "auto-M4-1775360574999", "q": "투(TU) 인체 유래 콜라겐은 리투오인가요? 실제 제품명은?"}, {"id": "q-d22-snp", "n": "SNP솔루션", "c": "auto-M4-1775364775152", "q": "SNP솔루션(콜라겐 주사) 실제 제품명 · 제조사는?"}]}, {"t": "장비 — 이름 근거 0 (D23 · 16개)", "items": [{"id": "q-d23-trupico", "n": "트루피코", "c": "auto-M8-1775362943490", "q": "트루피코 실제 장비명(영문) · 제조사는?"}, {"id": "q-d23-vitalize", "n": "바이탈라이즈", "c": "auto-M8-1775364775127", "q": "바이탈라이즈(IPL) 실제 장비명 · 제조사는?"}, {"id": "q-d23-roselight", "n": "로제라이트", "c": "auto-M8-1775364797146", "q": "로제라이트(홍조 RF+IPL) 실제 장비명 · 제조사는?"}, {"id": "q-d23-hifuni", "n": "하이푸니", "c": "auto-M9-1775364775133", "q": "하이푸니(소형 HIFU) 실제 장비명 · 제조사는?"}, {"id": "q-d23-agen", "n": "에이전", "c": "auto-M9-1775362633910", "q": "에이전은 제이시스 어느 모델인가요?"}, {"id": "q-d23-reserve", "n": "리저브", "c": "auto-M9-1775364775132", "q": "리저브(국산 모노폴라 RF) 실제 장비명 · 제조사는?"}, {"id": "q-d23-clarify", "n": "클래리파이", "c": "auto-M9-1775364775139", "q": "클래리파이(여드름 · 피지) 실제 장비명 · 제조사는?"}, {"id": "q-d23-evneck", "n": "에브넥", "c": "auto-M9-1775364775135", "q": "에브넥(목 리프팅) 실제 장비명 · 제조사는?"}, {"id": "q-d23-bycavin", "n": "바이캐빈", "c": "auto-M9-1775364775136", "q": "바이캐빈(RF+캐비테이션) 실제 장비명 · 제조사는?"}, {"id": "q-d23-primerf", "n": "프라임RF", "c": "auto-M11-1775364775144", "q": "프라임RF(니들RF) 실제 장비명 · 제조사는?"}, {"id": "q-d23-neuracle", "n": "뉴라클플라즈마", "c": "auto-M13-1775364775141", "q": "뉴라클플라즈마(눈꺼풀) 실제 장비명 · 제조사는?"}, {"id": "q-d23-plasgen", "n": "플라스젠", "c": "auto-M13-1775364775140", "q": "플라스젠(콜드플라즈마) 실제 장비명 · 제조사는?"}, {"id": "q-d23-cryodual", "n": "크라이오듀얼", "c": "auto-M14-1775364775188", "q": "크라이오듀얼은 장비 이름인가요, 양쪽 동시 냉각 기능 설명인가요?"}, {"id": "q-d23-celight", "n": "셀라이트", "c": "auto-M15-1775362992228", "q": "셀라이트(LED) 실제 장비명 · 제조사는?"}, {"id": "q-d23-demaruchi", "n": "데마루치", "c": "auto-M15-1775362998455", "q": "데마루치는 더마룩스(Dermalux)인가요? 실제 장비명은?"}, {"id": "q-d23-bioproton", "n": "바이오프로톤", "c": "auto-M15-1775364775179", "q": "바이오프로톤(광생물조절) 실제 장비명 · 제조사는?"}]}, {"t": "taxonomy 새 제품 — 출처 0 (D29 · 셀피아 빼고 7개)", "items": [{"id": "q-d29-synpearl", "n": "신펄", "c": "M2-P-7", "q": "신펄(제테마 PLLA)이 실제로 있나요? 제품명 · 허가는?"}, {"id": "q-d29-globella", "n": "글로벨라", "c": "M3-P-5", "q": "글로벨라(에이씨피바이오 PLLA) 실제 제품 · 업체는?"}, {"id": "q-d29-mycell", "n": "마이셀", "c": "M5-P-2", "q": "마이셀(한스바이오메드 자가혈) 실제 제품 · 업체는?"}, {"id": "q-d29-exoskin", "n": "EXOSOME SKIN", "c": "M5-P-4", "q": "EXOSOME SKIN(엑소스템텍) 실제 제품명은?"}, {"id": "q-d29-everline", "n": "에버라인", "c": "M7-P-1", "q": "에버라인(KL글로벌 실) 실제 제품 · 업체는?"}, {"id": "q-d29-miracle", "n": "미라클", "c": "M7-P-2", "q": "미라클(PDO 실)은 고메디칼코리아 「WOW미라클」인가요?"}, {"id": "q-d29-sf", "n": "에스에프", "c": "M17-P-1", "q": "에스에프(줄기세포 유래 주사) 실제 제품 · 업체는?"}]}], "mine": [{"id": "m-engine", "n": "엔진리프팅", "c": "new-DEV-020", "what": "현장 명판이 엔파인더스 「N-Gine」인지 — 맞으면 「실제 제품 · 국내 허가 못 찾음」 유지"}, {"id": "m-bbl", "n": "BBL", "c": "auto-29-1774737181584", "what": "본체 모델(JOULE · mJOULE) · HERO 표시 · 국내 허가번호 — 확인되면 시술 연결 (현행 장비 허가는 mJoule 21-192 뿐)"}, {"id": "m-morpheus8", "n": "모르페우스8", "c": "M11-1-4", "what": "국내 허가번호 — 인모드 19-352 · 21-205 의 첨부 구성품에 드는지 (첨부 내려받기 실패 · 21-205 비공개)"}, {"id": "m-geneox", "n": "제네오X", "c": "auto-M15-1775402654237", "what": "국내 본체 허가가 있는지 · 국내 구성(OxyGeneo · LUX · LIFT) — 비침습이라고 허가 대상 아닌 건 아님"}, {"id": "m-lalajet", "n": "라라젯", "c": "auto-48-1774737181584 · auto-52-1774737181584", "what": "비의료기기인지 출처 — 의료기기 허가는 2024-09 취하, 지금 렌탈로 유통 중"}, {"id": "m-tyemvers", "n": "타임버스", "c": "M1-P-8", "what": "국내 허가 「티엠버스주」(종근당바이오)와 같은 제품인지 — 영문 TYEMVERS · 업체는 같고 국문 표기만 다름"}, {"id": "m-cancel", "n": "취소(이력) 후보 2개", "c": "auto-32-1774737181584 · auto-M8-1775361417735", "what": "BBL스킨타이트 → Joule 플랫폼(18-144) 안인가 · E-MAX → 같은 수입사 elos Plus(15-1663)인가"}], "running": [{"n": "KPIC MCP 설치 · 검증", "why": "리포린 · 벨카이라 등 의약품을 다른 경로로 한 번 더 확인하려고 — 결과 나오면 리포린 항목 다시 봄"}], "after": ["원장 반영 — 390행 이름 규칙(대표 한글 이름 1 · 허가 이름 · 검색 이름[])", "원장 반영 — 수출용 허가 빼기", "원장 반영 — 취소 · 취하는 이력으로", "원장 반영 — 라인 / 품목 나누기", "원장 반영 — 판매사 여러 개", "원장 반영 — 원천 수정 목록에 오기 · 업체 표기 추가", "결정 카드 질문에 제품 이름 넣기", "재검수 → 1단계 끝", "2단계(계열) — 바넥스 등 자동 추가(auto-) 항목의 「설명 ↔ 계열」 대조"]}</script>
+<script>
+(()=>{
+const D=JSON.parse(document.getElementById('data').textContent);
+const $=s=>document.querySelector(s);
+const el=(t,a={},...k)=>{const e=document.createElement(t);for(const[n,v]of Object.entries(a)){if(v==null)continue;if(n==='text')e.textContent=v;else e.setAttribute(n,v)}for(const c of k)if(c!=null)e.append(c);return e};
+const A={};let db=null,canWrite=false,onlyLeft=false;
+const apIt=D.approve.flatMap(s=>s.items),askIt=D.ask.flatMap(s=>s.items);
+// 승인 = 고르면 끝(「다르게」는 메모 필수) · 질문 · 직접 확인 = 메모가 있으면 끝
+const done=(id,kind)=>{const a=A[id];if(!a)return false;const n=(a.note||'').trim();return kind==='ap'?(a.choice==='rec'||(a.choice==='other'&&!!n)):!!n};
+function sit(){const left=(xs,k)=>xs.filter(i=>!done(i.id,k)).length;
+ const la=left(apIt,'ap'),lq=left(askIt,'q'),lm=left(D.mine,'m');
+ $('#sit').replaceChildren('30묶음 중 ',el('b',{text:String(D.groups_decided)}),'묶음 정해짐 · 남은 항목 ',el('b',{text:String(la+lq+lm)}),
+  ' — 승인 ',el('b',{text:String(la)}),' · 병원에 물을 것 ',el('b',{text:String(lq)}),' · 직접 볼 것 ',el('b',{text:String(lm)}),' · 진행 중 ',el('b',{text:String(D.running.length)}))}
+async function save(id,patch,sv,row,kind){const prev=A[id]||{choice:null,note:''};A[id]={...prev,...patch};row.dataset.done=done(id,kind)?'1':'';sit();
+ if(!db||!canWrite){sv.textContent='저장 안 됨 — 저장소에 연결되지 않았습니다';sv.className='sv err';return}
+ sv.textContent='저장 중…';sv.className='sv';
+ try{await db.doc('answers/'+id).set({choice:A[id].choice??null,note:A[id].note||'',updated_at:new Date().toISOString()});
+  sv.textContent=(kind==='ap'&&A[id].choice==='other'&&!(A[id].note||'').trim())?'저장됨 · 메모를 적어 주세요':'저장됨'}
+ catch(e){sv.textContent='저장 실패 — 다시 입력해 주세요';sv.className='sv err'}}
+const head=(n,c,why)=>el('div',{class:'l1'},el('span',{class:'nm',text:n}),why?el('span',{class:'why',text:' — '+why}):null,el('span',{class:'cd',text:c}));
+function apRow(i){const a=A[i.id]||{};const row=el('div',{class:'it','data-done':done(i.id,'ap')?'1':''});const sv=el('span',{class:'sv',text:a.updated_at?'저장됨':''});
+ row.append(head(i.n,i.c,i.why),el('div',{class:'rec'},el('b',{text:'추천 '}),i.rec));
+ const note=el('input',{type:'text',placeholder:'다르게 — 어떻게 할지 메모','aria-label':i.n+' 메모'});note.value=a.note||'';
+ const ans=el('div',{class:'ans',role:'radiogroup','aria-label':i.n});
+ for(const[v,t]of[['rec','추천대로'],['other','다르게']]){const r=el('input',{type:'radio',name:'r-'+i.id,value:v});r.checked=a.choice===v;
+  r.onchange=()=>{save(i.id,{choice:v},sv,row,'ap');if(v==='other')note.focus()};ans.append(el('label',{class:'opt'},r,el('span',{text:t})))}
+ note.onchange=()=>save(i.id,{note:note.value},sv,row,'ap');ans.append(note,sv);row.append(ans);
+ if(i.b)row.append(el('details',{},el('summary',{text:'근거'}),el('p',{text:i.b})));
+ return row}
+function memoRow(i,kind,text,ph){const a=A[i.id]||{};const row=el('div',{class:'it','data-done':done(i.id,kind)?'1':''});const sv=el('span',{class:'sv',text:a.updated_at?'저장됨':''});
+ row.append(head(i.n,i.c,null),el('div',{class:'rec',text:text}));
+ const note=el('input',{type:'text',placeholder:ph,'aria-label':i.n+' '+ph});note.value=a.note||'';
+ note.onchange=()=>save(i.id,{choice:note.value.trim()?'answered':null,note:note.value},sv,row,kind);
+ row.append(el('div',{class:'ans'},note,sv));return row}
+const sec=(title,n,desc,...k)=>el('section',{class:'sec'},el('h2',{},title,el('span',{class:'n',text:n})),desc?el('p',{text:desc}):null,...k);
+function render(){const m=$('#main');m.replaceChildren();
+ // 1. 승인
+ const c1=el('div',{class:'card'});let n1=0;
+ for(const s of D.approve){const xs=s.items.filter(i=>!onlyLeft||!done(i.id,'ap'));if(!xs.length)continue;
+  c1.append(el('div',{class:'sub'},s.t,el('span',{class:'g',text:s.g})));for(const i of xs){c1.append(apRow(i));n1++}}
+ if(!n1)c1.append(el('div',{class:'it',text:'남은 항목이 없습니다.'}));
+ m.append(sec('1. 승인만 하면 되는 것',`${apIt.length}개`,'추천이 붙어 있다. 맞으면 「추천대로」, 아니면 「다르게」를 고르고 메모.',c1));
+ // 2. 병원에 물을 것
+ const c2=el('div',{class:'card'});let n2=0;
+ for(const s of D.ask){const xs=s.items.filter(i=>!onlyLeft||!done(i.id,'q'));if(!xs.length)continue;
+  c2.append(el('div',{class:'sub',text:s.t}));for(const i of xs){c2.append(memoRow(i,'q',i.q,'받은 답'));n2++}}
+ if(!n2)c2.append(el('div',{class:'it',text:'남은 질문이 없습니다.'}));
+ const cp=el('button',{class:'btn',type:'button',text:'질문 전체 복사'});const cps=el('span',{class:'sv'});
+ cp.onclick=async()=>{let k=0;const txt=D.ask.map(s=>`[${s.t}]\n`+s.items.map(i=>`${++k}. ${i.q}`).join('\n')).join('\n\n');
+  try{await navigator.clipboard.writeText(txt);cps.textContent=`${k}개 복사됨`;cps.className='sv'}catch(e){cps.textContent='복사 실패 — 브라우저가 막았습니다';cps.className='sv err'}};
+ m.append(sec('2. 원천(병원)에 물어볼 것',`${askIt.length}개`,null,el('div',{class:'hdr'},el('p',{style:'margin:0;font-size:12.5px;color:var(--muted)',text:'출처로 닫지 못해 병원 답이 있어야 정해진다. 답을 받으면 칸에 적는다.'}),el('span',{},cp,' ',cps)),c2));
+ // 3. 직접 볼 것
+ const c3=el('div',{class:'card'});const xs3=D.mine.filter(i=>!onlyLeft||!done(i.id,'m'));
+ for(const i of xs3)c3.append(memoRow(i,'m',i.what,'확인한 것 메모'));
+ if(!xs3.length)c3.append(el('div',{class:'it',text:'남은 항목이 없습니다.'}));
+ m.append(sec('3. 확인 중 · 직접 볼 것',`${D.mine.length}개`,'현장 명판 · 허가 첨부 등 직접 봐야 닫힌다.',c3));
+ // 4. 진행 중
+ m.append(sec('4. 진행 중 (워커)',`${D.running.length}개`,null,el('div',{class:'card'},...D.running.map(r=>el('div',{class:'ro'},el('span',{class:'mk',text:'…'}),el('span',{},el('b',{text:r.n}),' — '+r.why))))));
+ // 5. 그 뒤
+ m.append(sec('5. 답을 다 받은 뒤 할 일',`${D.after.length}단계`,null,el('div',{class:'card'},...D.after.map((t,k)=>el('div',{class:'ro'},el('span',{class:'mk',text:String(k+1).padStart(2,'0')}),el('span',{text:t}))))));
+ sit()}
+$('#onlyLeft').onclick=()=>{onlyLeft=!onlyLeft;$('#onlyLeft').setAttribute('aria-pressed',String(onlyLeft));render()};
+render();
+(async()=>{try{db=await window.claude?.use?.('db');if(!db){$('#status').textContent='답변 저장소를 쓸 수 없습니다. 로그인한 상태로 열어 주세요.';return}
+ const u=await window.claude.use('user');const cw=u?.can?await u.can('data.write'):null;canWrite=cw!==false;
+ const s=await db.collection('answers').get();for(const d of s.docs)A[d.id]=d.data()||{};
+ $('#status').textContent=`답 ${Object.keys(A).length}개 불러옴 · 입력하면 바로 저장됩니다`;render()}
+ catch(e){$('#status').textContent='답을 불러오지 못했습니다. 새로고침해 주세요.'}})();
+})();
+</script>

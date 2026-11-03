@@ -1,0 +1,2609 @@
+{
+ "version": "step6-packages v1",
+ "generated_by": "step6-apply.py",
+ "decision_ref": "_RESUME §2 2026-10-29 「6단계 패키지 조사 반영」(사용자 「추천으로 가자」) — step6-research R1~R11 · U1~U4 전부 추천대로",
+ "rules": {
+  "R1": "구성 원천 = 이름 · detail · extracted overview/mechanism 의 시술 낱말만. indications 는 구성 아님",
+  "R2": "구성 낱말 → 키: 레이저토닝 · 피코토닝 → U5-023 / 매질 없는 「토닝」 → U5-025 / IPL · BBL → U5-030 / 스킨부스터 · 물광 · 히알루론산 · 리투오 → U5-018 / 필링 → U5-034 / LED → U5-050 / MTS → U5-032 / PRP → U5-020 / 포텐자 → U5-110 / 서브시전 → U5-045 / 쥬베룩 → U5-090 / 써마지 → U5-091 / 소프웨이브 → U5-140 / 튠 → U5-091(근거 약) / 줄기세포 → U5-081(근거 약) / 엑소좀 → U5-019(근거 약)",
+  "R3": "부위 = 원천 부위 → 없으면 J2(얼굴 계열 = 얼굴 전체 · 기본값 표시). M1 · M2 · 몸 계열은 기본값 없음 → 슬롯 + 원천 질문",
+  "R4": "키로 못 푸는 구성 = 슬롯(unit null · 원문 · 후보 키 · 원천 질문 · 없는 키는 missing_unit) — 「구성 없음」으로 세지 않음",
+  "R5": "근거 약 구성(튠 · 줄기세포 · 엑소좀) = 키 넣고 evidence_level 약 + 원천 질문",
+  "R6": "시장가 「PRP + MTS 콤보」 ↔ 「MTS + PRP (전체얼굴)」 = 한 패키지 · 가격 2행 따로",
+  "R7": "패키지 가격 = 원장 · 시장가 원문 그대로. 단위 시술 1회 가격 합으로 만들지 않음. 수량(600 · 200 · 2병 · 24cc · N회) = 구성 엣지 속성 원문",
+  "R8": "같은 날 여부 = 원천 문구 그대로(same_day_raw). 명시는 「동시」(이모드 복부+힙 · 페이스앤넥 mechanism) · 「단계별」(포토나4D)뿐 · 나머지 「명시 없음」",
+  "R9": "묶음 이름 9 = 패키지 아님: 메뉴 분류 7 → 7단계 목적 원문 · 시그니처 2 → 패키지 속성 menu_group",
+  "R10": "synergy 대조는 메모만(8단계 몫) · 다름 = D-13b 충돌 표시 후보 · 줄기세포+MTS 는 안전 충돌 후보",
+  "R11": "원천 수정 후보 1 — DNA리셋 extracted"
+ },
+ "summary": {
+  "source": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26",
+  "packages": 24,
+  "by_kind": {
+   "일반 패키지": 19,
+   "병원 시그니처": 2,
+   "회차 묶음": 3
+  },
+  "recommendable": 22,
+  "source_rows": {
+   "ledger": 16,
+   "market": 9
+  },
+  "edges": 49,
+  "edges_weak": 5,
+  "slots": 8,
+  "slots_missing_unit": 1,
+  "packages_full": 18,
+  "packages_no_edge": [
+   "P6-01",
+   "P6-11",
+   "P6-20",
+   "P6-23"
+  ],
+  "non_packages": 9,
+  "non_packages_by_to": {
+   "7단계 목적 원문": 7,
+   "패키지 속성 menu_group": 2
+  },
+  "handoffs": 4,
+  "step8_notes": 37,
+  "step8_verdicts": {
+   "다름": 12,
+   "synergy 링크 없음": 13,
+   "계열 수준 참고만": 2,
+   "같음": 9,
+   "같은 계열 · 대조 없음": 1
+  },
+  "origin_questions": 13,
+  "source_fix": 1,
+  "open": 0,
+  "open_by_type": {},
+  "stale_decisions": 0
+ },
+ "packages": [
+  {
+   "id": "P6-01",
+   "name": "풀페이스큐레이션",
+   "kind": "일반 패키지",
+   "shape": "일반 패키지(부위 묶음 · 같은 계열)",
+   "menu_group": null,
+   "same_day_raw": "명시 없음",
+   "recommendable": true,
+   "synonyms": [
+    {
+     "text": "풀페이스큐레이션",
+     "type": "원장 이름",
+     "src": "auto-4-1774737181584"
+    }
+   ],
+   "price": [],
+   "description": {
+    "overview": "Clostridium botulinum Type A 독소를 활용한 얼굴 전체 맞춤형 미용시술 제품으로, 표정근 이완을 통해 주름 개선 및 안티에이징 효과를 제공합니다.",
+    "mechanism": "Clostridium botulinum Type A는 신경근 접합부에서 SNARE 복합체(SNAP-25)를 절단하여 아세틀콜린 분비를 차단함으로써 근육 수축을 억제합니다. 900kDa의 단백질 복합체 형태로 존재하며, 활성 성분인 150kDa의 순수 독소가 신경 말단에서 작용합니다.",
+    "onset_duration": {
+     "onset": "2-3일부터 효과 시작",
+     "duration": "1개월 후 완전 효과, 3-4개월 지속"
+    }
+   },
+   "notes": [
+    "M1 단위 시술 키는 부위마다(17) — 「얼굴 전체 보톡스(K01)」 키 없음 · U5-009 스킨보톡스(K01a)는 다른 기법"
+   ],
+   "decided_by": "step6-research 추천 · R1~R11 · U3 · U4(10-29 사용자 「추천으로 가자」)",
+   "source_fix": null,
+   "research_id": "P6-01",
+   "ledger_id": "auto-4-1774737181584",
+   "source_family": "M1",
+   "source_sub": "M1-3",
+   "detail_raw": "얼굴 전체 맞춤",
+   "components": 1
+  },
+  {
+   "id": "P6-02",
+   "name": "바디큐레이션",
+   "kind": "일반 패키지",
+   "shape": "일반 패키지(부위 묶음 · 같은 계열)",
+   "menu_group": null,
+   "same_day_raw": "명시 없음",
+   "recommendable": true,
+   "synonyms": [
+    {
+     "text": "바디큐레이션",
+     "type": "원장 이름",
+     "src": "auto-5-1774737181584"
+    }
+   ],
+   "price": [],
+   "description": {
+    "overview": "Clostridium botulinum Type A 독소를 이용한 근육이완형 바디 성형 시술로, 승모근, 종아리 등 굵은 근육을 선택적으로 축소시키는 제품",
+    "mechanism": "보톡스는 신경-근육 접합부에서 SNARE 복합체(SNAP-25)를 절단하여 아세틸콜린 분비를 차단합니다. 이를 통해 근수축을 억제하고 근육의 점진적인 위축을 유도합니다.",
+    "onset_duration": {
+     "onset": "2-3일 후 효과 시작",
+     "peak": "1개월 후 완전한 효과 도달",
+     "duration": "3-4개월 지속"
+    }
+   },
+   "notes": [
+    "indications 「방형근 완화 · 사각턱 개선」은 7단계 근거 — 구성 아님"
+   ],
+   "decided_by": "step6-research 추천 · R1~R11 · U3 · U4(10-29 사용자 「추천으로 가자」)",
+   "source_fix": null,
+   "research_id": "P6-02",
+   "ledger_id": "auto-5-1774737181584",
+   "source_family": "M1",
+   "source_sub": "M1-3",
+   "detail_raw": "승모근/종아리 등",
+   "components": 3
+  },
+  {
+   "id": "P6-03",
+   "name": "넥큐레이션",
+   "kind": "일반 패키지",
+   "shape": "일반 패키지(부위 묶음 · 같은 계열)",
+   "menu_group": null,
+   "same_day_raw": "명시 없음",
+   "recommendable": true,
+   "synonyms": [
+    {
+     "text": "넥큐레이션",
+     "type": "원장 이름",
+     "src": "auto-6-1774737181584"
+    }
+   ],
+   "price": [],
+   "description": {
+    "overview": "목주름과 턱선 개선에 특화된 보툴리눔 톡신 A형 제품으로, 정밀한 부위별 시술을 통해 목과 턱 라인을 집중 관리합니다.",
+    "mechanism": "Clostridium botulinum Type A가 신경근접합부의 SNARE 복합체(SNAP-25)를 절단하여 아세틸콜린 분비를 차단합니다. 900kDa 단백질 복합체로 안정화된 순수독소(150kDa)는 근육 수축을 선택적으로 억제하여 주름을 개선합니다.",
+    "onset_duration": {
+     "onset": "2-3일",
+     "peak_effect": "1개월",
+     "duration": "3-4개월"
+    }
+   },
+   "notes": [],
+   "decided_by": "step6-research 추천 · R1~R11 · U3 · U4(10-29 사용자 「추천으로 가자」)",
+   "source_fix": null,
+   "research_id": "P6-03",
+   "ledger_id": "auto-6-1774737181584",
+   "source_family": "M1",
+   "source_sub": "M1-3",
+   "detail_raw": "목주름+턱선 집중",
+   "components": 2
+  },
+  {
+   "id": "P6-04",
+   "name": "페이스앤넥큐레이션",
+   "kind": "일반 패키지",
+   "shape": "일반 패키지(부위 묶음 · 같은 계열)",
+   "menu_group": null,
+   "same_day_raw": "「동시에 보톡스로 치료」(mechanism) — 같은 날로 읽힘",
+   "recommendable": true,
+   "synonyms": [
+    {
+     "text": "페이스앤넥큐레이션",
+     "type": "원장 이름",
+     "src": "auto-7-1774737181584"
+    }
+   ],
+   "price": [],
+   "description": {
+    "overview": "얼굴과 목 풀케어 통합 시술",
+    "mechanism": "얼굴의 표정근(미간, 이마, 눈가)과 목의 플래티스마근을 동시에 보톡스로 치료하여 얼굴과 목의 주름을 종합적으로 개선한다.",
+    "onset_duration": {
+     "onset": "3-7일 (완전 효과까지 2주)",
+     "duration": "3-4개월"
+    }
+   },
+   "notes": [],
+   "decided_by": "step6-research 추천 · R1~R11 · U3 · U4(10-29 사용자 「추천으로 가자」)",
+   "source_fix": null,
+   "research_id": "P6-04",
+   "ledger_id": "auto-7-1774737181584",
+   "source_family": "M1",
+   "source_sub": "M1-3",
+   "detail_raw": "얼굴+목 풀케어",
+   "components": 4
+  },
+  {
+   "id": "P6-05",
+   "name": "꿀광토닝",
+   "kind": "일반 패키지",
+   "shape": "일반 패키지(다른 계열)",
+   "menu_group": null,
+   "same_day_raw": "명시 없음 — overview 「결합하여 … 동시에 제공하는 복합 시술」(「동시에」는 효과 문장)",
+   "recommendable": true,
+   "synonyms": [
+    {
+     "text": "꿀광토닝",
+     "type": "원장 이름",
+     "src": "auto-M8-1775402572157"
+    }
+   ],
+   "price": [],
+   "description": {
+    "overview": "레이저토닝과 스킨부스터를 결합하여 피부 톤 개선과 보습을 동시에 제공하는 복합 시술",
+    "mechanism": "레이저토닝으로 멜라닌 색소를 파괴하고 콜라겐 생성을 촉진하여 피부톤을 개선합니다. 스킨부스터의 히알루론산 주입으로 진피층에 수분을 공급하여 피부 탄력과 광채를 증진시킵니다.",
+    "onset_duration": {
+     "onset": "1-2주",
+     "duration": "3-6개월"
+    }
+   },
+   "notes": [
+    "_RESUME 10-29 의 「꿀광토닝 같은 날」은 원천 문구로는 「복합 시술」 — 「같은 날」 낱말은 없다. 충돌 표시(D-13b)는 「묶음 판매 ↔ 2주 간격」으로 적는 것을 추천"
+   ],
+   "decided_by": "step6-research 추천 · R1~R11 · U3 · U4(10-29 사용자 「추천으로 가자」)",
+   "source_fix": null,
+   "research_id": "P6-05",
+   "ledger_id": "auto-M8-1775402572157",
+   "source_family": "M8",
+   "source_sub": "M8-1",
+   "detail_raw": "레이저토닝+스킨부스터 조합 · 광채+보습",
+   "components": 2
+  },
+  {
+   "id": "P6-06",
+   "name": "브라이트닝레이저",
+   "kind": "일반 패키지",
+   "shape": "일반 패키지(같은 계열 · 다른 하위)",
+   "menu_group": null,
+   "same_day_raw": "명시 없음 — 「결합한 … 복합 레이저 치료」",
+   "recommendable": true,
+   "synonyms": [
+    {
+     "text": "브라이트닝레이저",
+     "type": "원장 이름",
+     "src": "auto-M8-1775402586665"
+    }
+   ],
+   "price": [],
+   "description": {
+    "overview": "IPL과 레이저토닝을 결합한 미백 특화 복합 레이저 치료",
+    "mechanism": "IPL(Intense Pulsed Light)이 표피층의 멜라닌과 혈관성 병변을 선택적으로 파괴하고, 레이저토닝이 진피층의 멜라닌을 점진적으로 분해합니다. 두 시술의 시너지 효과로 다층적 색소 개선과 전반적인 피부톤 균일화를 달성합니다.",
+    "onset_duration": {
+     "onset": "2-3주",
+     "duration": "6-12개월"
+    }
+   },
+   "notes": [],
+   "decided_by": "step6-research 추천 · R1~R11 · U3 · U4(10-29 사용자 「추천으로 가자」)",
+   "source_fix": null,
+   "research_id": "P6-06",
+   "ledger_id": "auto-M8-1775402586665",
+   "source_family": "M8",
+   "source_sub": "M8-1",
+   "detail_raw": "IPL+토닝 조합 · 미백 특화",
+   "components": 2
+  },
+  {
+   "id": "P6-07",
+   "name": "여신토닝",
+   "kind": "일반 패키지",
+   "shape": "일반 패키지(같은 계열 · 다른 하위)",
+   "menu_group": null,
+   "same_day_raw": "명시 없음 — 「조합한 복합 레이저 시술」",
+   "recommendable": true,
+   "synonyms": [
+    {
+     "text": "여신토닝",
+     "type": "원장 이름",
+     "src": "auto-M8-1775402736445"
+    }
+   ],
+   "price": [],
+   "description": {
+    "overview": "피코토닝과 IPL을 조합한 복합 레이저 시술로 색소침착 개선과 피부 톤 균일화를 목적으로 함",
+    "mechanism": "피코초 레이저로 멜라닌 입자를 미세하게 파괴하고 IPL로 혈관 확장과 색소 병변을 동시 개선",
+    "onset_duration": {
+     "onset": "2-4주",
+     "duration": "6-12개월"
+    }
+   },
+   "notes": [],
+   "decided_by": "step6-research 추천 · R1~R11 · U3 · U4(10-29 사용자 「추천으로 가자」)",
+   "source_fix": null,
+   "research_id": "P6-07",
+   "ledger_id": "auto-M8-1775402736445",
+   "source_family": "M8",
+   "source_sub": "M8-1",
+   "detail_raw": "피코토닝+IPL 조합",
+   "components": 2
+  },
+  {
+   "id": "P6-08",
+   "name": "셀리부트프로그램",
+   "kind": "병원 시그니처",
+   "shape": "병원 시그니처(고정 가격) — 경계",
+   "menu_group": "M9-SIG 「시그니처 프로그램」",
+   "same_day_raw": "명시 없음 — 「결합한 복합 리프팅 프로그램」 · aftercare 「줄기세포 효과 극대화를 위해 3회 시술 권장」",
+   "recommendable": false,
+   "synonyms": [
+    {
+     "text": "셀리부트프로그램",
+     "type": "원장 이름",
+     "src": "auto-41-1774737181584"
+    }
+   ],
+   "price": [
+    {
+     "src": "원장 detail",
+     "raw": "950만원"
+    }
+   ],
+   "description": {
+    "overview": "써마지600 RF + BBL + 튠 + 줄기세포를 결합한 복합 리프팅 프로그램으로 피부 전층 개선과 깊은 조직 재생을 동시에 달성",
+    "mechanism": "써마지600의 모노폴라 RF는 심부 조직(지방층)에 이온진동으로 열을 발생시켜 콜라겐을 수축시키고 신생 콜라겐 생성을 촉진합니다. BBL과 튠의 가벼운 에너지로는 얕은 층 개선을 안전하게 진행하며, 줄기세포 성분이 피부 재생과 항염을 강화합니다.",
+    "onset_duration": {
+     "onset": "3-7일부터 점진적 개선, 3주 후 확연한 변화",
+     "duration": "6-12개월 지속 (줄기세포 재생 효과 포함)"
+    }
+   },
+   "notes": [],
+   "decided_by": "step6-research 추천 · R1~R11 · U3 · U4(10-29 사용자 「추천으로 가자」)",
+   "source_fix": null,
+   "research_id": "P6-09",
+   "ledger_id": "auto-41-1774737181584",
+   "source_family": "M9",
+   "source_sub": "M9-SIG",
+   "detail_raw": "써마지600+BBL+튠+줄기세포 · 950만원",
+   "components": 4
+  },
+  {
+   "id": "P6-09",
+   "name": "DNA리셋프로그램",
+   "kind": "병원 시그니처",
+   "shape": "병원 시그니처(고정 가격) — 경계",
+   "menu_group": "M9-SIG 「시그니처 프로그램」",
+   "same_day_raw": "명시 없음",
+   "recommendable": false,
+   "synonyms": [
+    {
+     "text": "DNA리셋프로그램",
+     "type": "원장 이름",
+     "src": "auto-42-1774737181584"
+    }
+   ],
+   "price": [
+    {
+     "src": "원장 detail",
+     "raw": "2000만원"
+    }
+   ],
+   "description": {
+    "overview": "HIFU 집속 초음파 리프팅",
+    "mechanism": "고강도 집속 초음파(HIFU)로 SMAS층까지 60°C 이상 응고 괴사와 음향 캐비테이션을 형성하며, Pre-focal zone 효과로 다층 리프팅을 구현합니다.",
+    "onset_duration": {
+     "onset": "2-6주",
+     "duration": "12-18개월"
+    }
+   },
+   "notes": [],
+   "decided_by": "step6-research 추천 · R1~R11 · U3 · U4(10-29 사용자 「추천으로 가자」)",
+   "source_fix": "extracted 가 프로그램이 아니라 「HIFU 집속 초음파 리프팅」 설명(소프웨이브는 SUPERB 초음파 · HIFU 아님) — 구성(써마지 · 소프웨이브 · 리투오 · 줄기세포)과 안 맞음 → 원천 수정 후보",
+   "research_id": "P6-10",
+   "ledger_id": "auto-42-1774737181584",
+   "source_family": "M9",
+   "source_sub": "M9-SIG",
+   "detail_raw": "써마지600+소프웨이브200+리투오2병+줄기세포24cc · 2000만원",
+   "components": 4
+  },
+  {
+   "id": "P6-10",
+   "name": "텍스쳐스무딩",
+   "kind": "일반 패키지",
+   "shape": "일반 패키지(다른 계열)",
+   "menu_group": null,
+   "same_day_raw": "명시 없음 — 「복합 시술 · 다층 접근」",
+   "recommendable": true,
+   "synonyms": [
+    {
+     "text": "텍스쳐스무딩",
+     "type": "원장 이름",
+     "src": "auto-44-1774737181584"
+    }
+   ],
+   "price": [],
+   "description": {
+    "overview": "포텐자 + 서브시전 + 필링 복합 시술",
+    "mechanism": "절연 마이크로니들 RF(포텐자)로 진피 콜라겐 리모델링을 유도하고, 서브시전으로 섬유성 변성 조직을 박리하며, 화학 필링으로 표피 갱신을 촉진합니다. 다층 접근으로 극대화된 질감 개선 효과를 생성합니다.",
+    "onset_duration": {
+     "onset": "3-4주",
+     "duration": "9-15개월"
+    }
+   },
+   "notes": [],
+   "decided_by": "step6-research 추천 · R1~R11 · U3 · U4(10-29 사용자 「추천으로 가자」)",
+   "source_fix": null,
+   "research_id": "P6-11",
+   "ledger_id": "auto-44-1774737181584",
+   "source_family": "M11",
+   "source_sub": "M11-1",
+   "detail_raw": "포텐자+서브시전+필링 복합",
+   "components": 3
+  },
+  {
+   "id": "P6-11",
+   "name": "쿨핏프로그램",
+   "kind": "일반 패키지",
+   "shape": "일반 패키지(다른 계열)",
+   "menu_group": null,
+   "same_day_raw": "명시 없음 — 「결합한 비수술 바디 컨투어링 프로그램」",
+   "recommendable": true,
+   "synonyms": [
+    {
+     "text": "쿨핏프로그램",
+     "type": "원장 이름",
+     "src": "auto-M14-1775402698241"
+    }
+   ],
+   "price": [],
+   "description": {
+    "overview": "쿨스컬프팅과 인모드바디를 결합한 비수술 바디 컨투어링 프로그램",
+    "mechanism": "쿨스컬프팅은 냉각기술로 지방세포를 선택적으로 동결파괴시켜 자연적인 대사과정을 통해 제거합니다. 인모드바디는 RF 에너지로 피하지방을 가열하고 콜라겐 재생을 촉진하여 피부탄력과 바디라인을 개선합니다.",
+    "onset_duration": {
+     "onset": "2-4주",
+     "duration": "6-12개월"
+    }
+   },
+   "notes": [],
+   "decided_by": "step6-research 추천 · R1~R11 · U3 · U4(10-29 사용자 「추천으로 가자」)",
+   "source_fix": null,
+   "research_id": "P6-12",
+   "ledger_id": "auto-M14-1775402698241",
+   "source_family": "M14",
+   "source_sub": "M14-1",
+   "detail_raw": "쿨스컬프팅+인모드바디 조합 · 바디 컨투어링",
+   "components": 2
+  },
+  {
+   "id": "P6-12",
+   "name": "유리피부관리",
+   "kind": "일반 패키지",
+   "shape": "일반 패키지(다른 계열)",
+   "menu_group": "M15 「시그니처프로그램」",
+   "same_day_raw": "명시 없음 — 「조합 · 복합 관리 프로그램」",
+   "recommendable": true,
+   "synonyms": [
+    {
+     "text": "유리피부관리",
+     "type": "원장 이름",
+     "src": "auto-M15-1775402626587"
+    }
+   ],
+   "price": [],
+   "description": {
+    "overview": "토닝, 필링, 스킨부스터를 조합하여 투명하고 광채나는 유리같은 피부질감을 만드는 복합 관리 프로그램",
+    "mechanism": "토닝으로 색소침착과 모공을 개선하고 필링으로 각질층을 제거하여 피부 턴오버를 촉진합니다. 스킨부스터로 진피층에 히알루론산을 주입하여 수분과 탄력을 보충하고 피부 광채를 극대화합니다.",
+    "onset_duration": {
+     "onset": "1-2주",
+     "duration": "2-3개월"
+    }
+   },
+   "notes": [],
+   "decided_by": "step6-research 추천 · R1~R11 · U3 · U4(10-29 사용자 「추천으로 가자」)",
+   "source_fix": null,
+   "research_id": "P6-13",
+   "ledger_id": "auto-M15-1775402626587",
+   "source_family": "M15",
+   "source_sub": "auto-1775402620",
+   "detail_raw": "토닝+필링+스킨부스터 조합 · 투명 광채",
+   "components": 3
+  },
+  {
+   "id": "P6-13",
+   "name": "도자기피부관리",
+   "kind": "일반 패키지",
+   "shape": "일반 패키지(다른 계열)",
+   "menu_group": "M15 「시그니처프로그램」",
+   "same_day_raw": "「순차적으로 시행」(overview) — 같은 날인지 원천 없음",
+   "recommendable": true,
+   "synonyms": [
+    {
+     "text": "도자기피부관리",
+     "type": "원장 이름",
+     "src": "auto-M15-1775402736448"
+    }
+   ],
+   "price": [],
+   "description": {
+    "overview": "IPL, 토닝, 물광주사를 순차적으로 시행하여 도자기처럼 매끄럽고 균일한 피부를 만드는 복합 관리",
+    "mechanism": "IPL로 색소와 혈관 개선, 토닝으로 피부 결 정리, 물광주사로 수분과 윤기 공급",
+    "onset_duration": {
+     "onset": "즉시-1주",
+     "duration": "2-3개월"
+    }
+   },
+   "notes": [],
+   "decided_by": "step6-research 추천 · R1~R11 · U3 · U4(10-29 사용자 「추천으로 가자」)",
+   "source_fix": null,
+   "research_id": "P6-14",
+   "ledger_id": "auto-M15-1775402736448",
+   "source_family": "M15",
+   "source_sub": "auto-1775402620",
+   "detail_raw": "IPL+토닝+물광",
+   "components": 3
+  },
+  {
+   "id": "P6-14",
+   "name": "인형피부관리",
+   "kind": "일반 패키지",
+   "shape": "일반 패키지(다른 계열)",
+   "menu_group": "M15 「시그니처프로그램」",
+   "same_day_raw": "명시 없음 — 「조합 · 종합 관리」",
+   "recommendable": true,
+   "synonyms": [
+    {
+     "text": "인형피부관리",
+     "type": "원장 이름",
+     "src": "auto-M15-1775402736449"
+    }
+   ],
+   "price": [],
+   "description": {
+    "overview": "보톡스, 필러, 토닝, 물광주사를 조합하여 인형처럼 매끄럽고 탄력 있는 피부를 만드는 종합 관리",
+    "mechanism": "보톡스로 주름 완화, 필러로 볼륨 보강, 토닝으로 피부결 개선, 물광주사로 수분 공급",
+    "onset_duration": {
+     "onset": "3-7일",
+     "duration": "4-6개월"
+    }
+   },
+   "notes": [],
+   "decided_by": "step6-research 추천 · R1~R11 · U3 · U4(10-29 사용자 「추천으로 가자」)",
+   "source_fix": null,
+   "research_id": "P6-15",
+   "ledger_id": "auto-M15-1775402736449",
+   "source_family": "M15",
+   "source_sub": "auto-1775402620",
+   "detail_raw": "보톡스+필러+토닝+물광",
+   "components": 4
+  },
+  {
+   "id": "P6-15",
+   "name": "허니스킨관리",
+   "kind": "일반 패키지",
+   "shape": "일반 패키지(다른 계열)",
+   "menu_group": "M15 「시그니처프로그램」",
+   "same_day_raw": "명시 없음 — 「결합 · 복합 관리」",
+   "recommendable": true,
+   "synonyms": [
+    {
+     "text": "허니스킨관리",
+     "type": "원장 이름",
+     "src": "auto-M15-1775402736450"
+    }
+   ],
+   "price": [],
+   "description": {
+    "overview": "필링, 물광주사, LED 치료를 결합하여 꿀처럼 촉촉하고 윤기 있는 피부를 만드는 복합 관리",
+    "mechanism": "필링으로 각질 제거, 물광주사로 수분 공급, LED로 콜라겐 합성 촉진",
+    "onset_duration": {
+     "onset": "즉시-3일",
+     "duration": "1-2개월"
+    }
+   },
+   "notes": [],
+   "decided_by": "step6-research 추천 · R1~R11 · U3 · U4(10-29 사용자 「추천으로 가자」)",
+   "source_fix": null,
+   "research_id": "P6-16",
+   "ledger_id": "auto-M15-1775402736450",
+   "source_family": "M15",
+   "source_sub": "auto-1775402620",
+   "detail_raw": "필링+물광+LED",
+   "components": 3
+  },
+  {
+   "id": "P6-16",
+   "name": "스킨부스터오마카세",
+   "kind": "일반 패키지",
+   "shape": "일반 패키지(다른 계열 · 순차)",
+   "menu_group": "M15 「시그니처프로그램」",
+   "same_day_raw": "「순차」(detail) · 「순차적으로 시행」(overview) — 같은 날인지 원천 없음",
+   "recommendable": true,
+   "synonyms": [
+    {
+     "text": "스킨부스터오마카세",
+     "type": "원장 이름",
+     "src": "auto-M15-1775402736452"
+    }
+   ],
+   "price": [],
+   "description": {
+    "overview": "리쥬란, 쥬베룩, 엑소좀을 순차적으로 시행하여 최적의 피부 재생과 개선 효과를 제공하는 프리미엄 관리",
+    "mechanism": "리쥬란으로 재생 기반 조성, 쥬베룩으로 콜라겐 합성, 엑소좀으로 세포 활성화",
+    "onset_duration": {
+     "onset": "2-4주",
+     "duration": "8-12개월"
+    }
+   },
+   "notes": [],
+   "decided_by": "step6-research 추천 · R1~R11 · U3 · U4(10-29 사용자 「추천으로 가자」)",
+   "source_fix": null,
+   "research_id": "P6-18",
+   "ledger_id": "auto-M15-1775402736452",
+   "source_family": "M15",
+   "source_sub": "auto-1775402620",
+   "detail_raw": "리쥬란+쥬베룩+엑소좀 순차",
+   "components": 3
+  },
+  {
+   "id": "P6-17",
+   "name": "MTS + PRP (전체얼굴)",
+   "kind": "일반 패키지",
+   "shape": "일반 패키지(다른 계열)",
+   "menu_group": null,
+   "same_day_raw": "명시 없음(「콤보」)",
+   "recommendable": true,
+   "synonyms": [
+    {
+     "text": "MTS + PRP (전체얼굴)",
+     "type": "시장가 이름",
+     "src": "market-pricing M12"
+    },
+    {
+     "text": "PRP + MTS 콤보",
+     "type": "시장가 이름",
+     "src": "market-pricing M5"
+    }
+   ],
+   "price": [
+    {
+     "src": "market-pricing M12",
+     "name": "MTS + PRP (전체얼굴)",
+     "unit_raw": "1회",
+     "low": 150000,
+     "mid": 300000,
+     "high": 500000,
+     "currency": "KRW"
+    },
+    {
+     "src": "market-pricing M5",
+     "name": "PRP + MTS 콤보",
+     "unit_raw": "1회",
+     "low": 200000,
+     "mid": 350000,
+     "high": 600000,
+     "currency": "KRW"
+    }
+   ],
+   "description": null,
+   "notes": [
+    "시장가 두 행(M12 · M5 분류)이 구성 같음 → 한 패키지 · 가격 두 행 따로(합치지 않음)"
+   ],
+   "decided_by": "step6-research 추천 · R1~R11 · U3 · U4(10-29 사용자 「추천으로 가자」)",
+   "source_fix": null,
+   "research_id": "P6-19",
+   "source_family": "M12",
+   "components": 2
+  },
+  {
+   "id": "P6-18",
+   "name": "이모드 (복부+힙 동시)",
+   "kind": "일반 패키지",
+   "shape": "일반 패키지(부위 묶음 · 같은 계열)",
+   "menu_group": null,
+   "same_day_raw": "「동시」 — 같은 회(원천 명시)",
+   "recommendable": true,
+   "synonyms": [
+    {
+     "text": "이모드 (복부+힙 동시)",
+     "type": "시장가 이름",
+     "src": "market-pricing M10"
+    }
+   ],
+   "price": [
+    {
+     "src": "market-pricing M10",
+     "name": "이모드 (복부+힙 동시)",
+     "unit_raw": "1회",
+     "low": 180000,
+     "mid": 350000,
+     "high": 600000,
+     "currency": "KRW"
+    }
+   ],
+   "description": null,
+   "notes": [
+    "이모드 정체는 5단계 원천 질문 그대로(「인모드 바디와 같은가」)"
+   ],
+   "decided_by": "step6-research 추천 · R1~R11 · U3 · U4(10-29 사용자 「추천으로 가자」)",
+   "source_fix": null,
+   "research_id": "P6-20",
+   "source_family": "M10",
+   "components": 2
+  },
+  {
+   "id": "P6-19",
+   "name": "MTS + 스킨부스터",
+   "kind": "일반 패키지",
+   "shape": "일반 패키지(다른 계열)",
+   "menu_group": null,
+   "same_day_raw": "명시 없음",
+   "recommendable": true,
+   "synonyms": [
+    {
+     "text": "MTS + 스킨부스터",
+     "type": "시장가 이름",
+     "src": "market-pricing M12"
+    }
+   ],
+   "price": [
+    {
+     "src": "market-pricing M12",
+     "name": "MTS + 스킨부스터",
+     "unit_raw": "1회",
+     "low": 100000,
+     "mid": 200000,
+     "high": 400000,
+     "currency": "KRW"
+    }
+   ],
+   "description": null,
+   "notes": [],
+   "decided_by": "step6-research 추천 · R1~R11 · U3 · U4(10-29 사용자 「추천으로 가자」)",
+   "source_fix": null,
+   "research_id": "P6-21",
+   "source_family": "M12",
+   "components": 2
+  },
+  {
+   "id": "P6-20",
+   "name": "프리미엄 스킨케어 (풀코스)",
+   "kind": "일반 패키지",
+   "shape": "일반 패키지(구성 원천 없음)",
+   "menu_group": null,
+   "same_day_raw": "원천 없음",
+   "recommendable": true,
+   "synonyms": [
+    {
+     "text": "프리미엄 스킨케어 (풀코스)",
+     "type": "시장가 이름",
+     "src": "market-pricing M15"
+    }
+   ],
+   "price": [
+    {
+     "src": "market-pricing M15",
+     "name": "프리미엄 스킨케어 (풀코스)",
+     "unit_raw": "1회",
+     "low": 100000,
+     "mid": 200000,
+     "high": 400000,
+     "currency": "KRW"
+    }
+   ],
+   "description": null,
+   "notes": [],
+   "decided_by": "step6-research 추천 · R1~R11 · U3 · U4(10-29 사용자 「추천으로 가자」)",
+   "source_fix": null,
+   "research_id": "P6-22",
+   "source_family": "M15",
+   "components": 1
+  },
+  {
+   "id": "P6-21",
+   "name": "줄기세포 + MTS (전체얼굴)",
+   "kind": "일반 패키지",
+   "shape": "일반 패키지(다른 계열)",
+   "menu_group": null,
+   "same_day_raw": "명시 없음",
+   "recommendable": true,
+   "synonyms": [
+    {
+     "text": "줄기세포 + MTS (전체얼굴)",
+     "type": "시장가 이름",
+     "src": "market-pricing M17"
+    }
+   ],
+   "price": [
+    {
+     "src": "market-pricing M17",
+     "name": "줄기세포 + MTS (전체얼굴)",
+     "unit_raw": "1회",
+     "low": 350000,
+     "mid": 700000,
+     "high": 1300000,
+     "currency": "KRW"
+    }
+   ],
+   "description": null,
+   "notes": [],
+   "decided_by": "step6-research 추천 · R1~R11 · U3 · U4(10-29 사용자 「추천으로 가자」)",
+   "source_fix": null,
+   "research_id": "P6-23",
+   "source_family": "M17",
+   "components": 2
+  },
+  {
+   "id": "P6-22",
+   "name": "스컬트라 (3회 패키지)",
+   "kind": "회차 묶음",
+   "shape": "회차 묶음",
+   "menu_group": null,
+   "same_day_raw": "회차 간격 원천 없음",
+   "recommendable": true,
+   "synonyms": [
+    {
+     "text": "스컬트라 (3회 패키지)",
+     "type": "시장가 이름",
+     "src": "market-pricing M3"
+    }
+   ],
+   "price": [
+    {
+     "src": "market-pricing M3",
+     "name": "스컬트라 (3회 패키지)",
+     "unit_raw": "3회",
+     "low": 500000,
+     "mid": 900000,
+     "high": 1500000,
+     "currency": "KRW"
+    }
+   ],
+   "description": null,
+   "notes": [
+    "5단계에선 시술 1회 행(sessions 3) — 6단계 회차 묶음 노드로 옮김 — U4 결정(10-29)"
+   ],
+   "decided_by": "step6-research 추천 · R1~R11 · U3 · U4(10-29 사용자 「추천으로 가자」)",
+   "source_fix": null,
+   "research_id": "P6-24",
+   "source_family": "M3",
+   "components": 1
+  },
+  {
+   "id": "P6-23",
+   "name": "이모드 (4회 패키지)",
+   "kind": "회차 묶음",
+   "shape": "회차 묶음",
+   "menu_group": null,
+   "same_day_raw": "회차 간격 원천 없음",
+   "recommendable": true,
+   "synonyms": [
+    {
+     "text": "이모드 (4회 패키지)",
+     "type": "시장가 이름",
+     "src": "market-pricing M10"
+    }
+   ],
+   "price": [
+    {
+     "src": "market-pricing M10",
+     "name": "이모드 (4회 패키지)",
+     "unit_raw": "4회",
+     "low": 350000,
+     "mid": 700000,
+     "high": 1200000,
+     "currency": "KRW"
+    }
+   ],
+   "description": null,
+   "notes": [
+    "5단계에선 시술 1회 행(sessions 4) — 6단계 회차 묶음 노드로 옮김 — U4 결정(10-29)"
+   ],
+   "decided_by": "step6-research 추천 · R1~R11 · U3 · U4(10-29 사용자 「추천으로 가자」)",
+   "source_fix": null,
+   "research_id": "P6-25",
+   "source_family": "M10",
+   "components": 1
+  },
+  {
+   "id": "P6-24",
+   "name": "줄기세포 3회 패키지 (전체얼굴)",
+   "kind": "회차 묶음",
+   "shape": "회차 묶음",
+   "menu_group": null,
+   "same_day_raw": "회차 간격 원천 없음",
+   "recommendable": true,
+   "synonyms": [
+    {
+     "text": "줄기세포 3회 패키지 (전체얼굴)",
+     "type": "시장가 이름",
+     "src": "market-pricing M17"
+    }
+   ],
+   "price": [
+    {
+     "src": "market-pricing M17",
+     "name": "줄기세포 3회 패키지 (전체얼굴)",
+     "unit_raw": "3회",
+     "low": 800000,
+     "mid": 1500000,
+     "high": 3000000,
+     "currency": "KRW"
+    }
+   ],
+   "description": null,
+   "notes": [
+    "5단계에선 시술 1회 행(sessions 3) — 6단계 회차 묶음 노드로 옮김 — U4 결정(10-29)"
+   ],
+   "decided_by": "step6-research 추천 · R1~R11 · U3 · U4(10-29 사용자 「추천으로 가자」)",
+   "source_fix": null,
+   "research_id": "P6-26",
+   "source_family": "M17",
+   "components": 1
+  }
+ ],
+ "contains": [
+  {
+   "package": "P6-02",
+   "package_name": "바디큐레이션",
+   "order": 1,
+   "text": "승모근",
+   "basis": "detail 「승모근/종아리 등」",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-007",
+   "unit_name": "승모근 보톡스",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-02",
+   "package_name": "바디큐레이션",
+   "order": 2,
+   "text": "종아리",
+   "basis": "detail 「승모근/종아리 등」",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-008",
+   "unit_name": "종아리 보톡스",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-03",
+   "package_name": "넥큐레이션",
+   "order": 1,
+   "text": "목주름",
+   "basis": "detail 「목주름+턱선 집중」",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-017",
+   "unit_name": "목 보톡스",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-03",
+   "package_name": "넥큐레이션",
+   "order": 2,
+   "text": "턱선",
+   "basis": "detail 「목주름+턱선 집중」",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-016",
+   "unit_name": "턱선 보톡스",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-04",
+   "package_name": "페이스앤넥큐레이션",
+   "order": 1,
+   "text": "미간",
+   "basis": "mechanism 「얼굴의 표정근(미간, 이마, 눈가)과 목의 플래티스마근을 동시에 보톡스로」",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-002",
+   "unit_name": "미간 보톡스",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-04",
+   "package_name": "페이스앤넥큐레이션",
+   "order": 2,
+   "text": "이마",
+   "basis": "mechanism 같은 문장",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-001",
+   "unit_name": "이마 보톡스",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-04",
+   "package_name": "페이스앤넥큐레이션",
+   "order": 3,
+   "text": "눈가",
+   "basis": "mechanism 같은 문장",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-003",
+   "unit_name": "눈가 보톡스",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-04",
+   "package_name": "페이스앤넥큐레이션",
+   "order": 4,
+   "text": "목(플래티스마근)",
+   "basis": "mechanism 같은 문장 · 넓은목근 = 4단계 H06 대상 근육",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-017",
+   "unit_name": "목 보톡스",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-05",
+   "package_name": "꿀광토닝",
+   "order": 1,
+   "text": "레이저토닝",
+   "basis": "detail · 5단계 U5-023 동의어 「레이저토닝」",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-023",
+   "unit_name": "얼굴 전체 토닝",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-05",
+   "package_name": "꿀광토닝",
+   "order": 2,
+   "text": "스킨부스터",
+   "basis": "detail · mechanism 「스킨부스터의 히알루론산 주입」 · 부위 J2 얼굴 전체",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-018",
+   "unit_name": "얼굴 전체 스킨부스터",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-06",
+   "package_name": "브라이트닝레이저",
+   "order": 1,
+   "text": "IPL",
+   "basis": "detail 「IPL+토닝 조합」",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-030",
+   "unit_name": "얼굴 전체 IPL",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-06",
+   "package_name": "브라이트닝레이저",
+   "order": 2,
+   "text": "토닝",
+   "basis": "mechanism 「레이저토닝이 진피층의 멜라닌을」 — 토닝 = 레이저토닝 → U5-023 동의어",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-023",
+   "unit_name": "얼굴 전체 토닝",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-07",
+   "package_name": "여신토닝",
+   "order": 1,
+   "text": "피코토닝",
+   "basis": "detail · U5-023 동의어 「피코토닝」",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-023",
+   "unit_name": "얼굴 전체 토닝",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-07",
+   "package_name": "여신토닝",
+   "order": 2,
+   "text": "IPL",
+   "basis": "detail",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-030",
+   "unit_name": "얼굴 전체 IPL",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-08",
+   "package_name": "셀리부트프로그램",
+   "order": 1,
+   "text": "써마지600",
+   "basis": "detail · 써마지 FLX 저장 uses_product U5-091(얼굴 전체 고주파) · 부위 J2",
+   "quantity_raw": "600(단위 원문 없음)",
+   "sessions": null,
+   "unit": "U5-091",
+   "unit_name": "얼굴 전체 고주파 리프팅",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-08",
+   "package_name": "셀리부트프로그램",
+   "order": 2,
+   "text": "BBL",
+   "basis": "detail · 1단계 BBL(M8 IPL) 상속 후보 U5-030",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-030",
+   "unit_name": "얼굴 전체 IPL",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-08",
+   "package_name": "셀리부트프로그램",
+   "order": 3,
+   "text": "튠",
+   "basis": "detail 「튠」 — 1단계 「튠페이스」(어센트 프라임 · M9 RF · 원장 이름) 앞 글자 일치뿐 · 상속 후보 U5-091 · U5-104 · 부위 J2",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-091",
+   "unit_name": "얼굴 전체 고주파 리프팅",
+   "evidence_level": "약",
+   "candidates": null,
+   "origin_question": "Q04"
+  },
+  {
+   "package": "P6-08",
+   "package_name": "셀리부트프로그램",
+   "order": 4,
+   "text": "줄기세포",
+   "basis": "detail 「줄기세포」 — 투여 방식 원천 없음(mechanism 「줄기세포 성분이 피부 재생」) · 5단계 S9 선례: 시장가 「줄기세포 …(전체얼굴)」 → U5-081",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-081",
+   "unit_name": "얼굴 전체 줄기세포",
+   "evidence_level": "약",
+   "candidates": [
+    "U5-081",
+    "U5-143"
+   ],
+   "origin_question": "Q05"
+  },
+  {
+   "package": "P6-09",
+   "package_name": "DNA리셋프로그램",
+   "order": 1,
+   "text": "써마지600",
+   "basis": "detail · 써마지 FLX → U5-091",
+   "quantity_raw": "600(단위 원문 없음)",
+   "sessions": null,
+   "unit": "U5-091",
+   "unit_name": "얼굴 전체 고주파 리프팅",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-09",
+   "package_name": "DNA리셋프로그램",
+   "order": 2,
+   "text": "소프웨이브200",
+   "basis": "detail · 소프웨이브 저장 uses_product U5-140",
+   "quantity_raw": "200(단위 원문 없음)",
+   "sessions": null,
+   "unit": "U5-140",
+   "unit_name": "얼굴 전체 초음파 리프팅(SUPERB)",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-09",
+   "package_name": "DNA리셋프로그램",
+   "order": 3,
+   "text": "리투오2병",
+   "basis": "detail · 1단계 리투오(M4 hADM) 상속 후보 U5-018 · U5-041 → 부위 J2 얼굴 전체",
+   "quantity_raw": "2병",
+   "sessions": null,
+   "unit": "U5-018",
+   "unit_name": "얼굴 전체 스킨부스터",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-09",
+   "package_name": "DNA리셋프로그램",
+   "order": 4,
+   "text": "줄기세포24cc",
+   "basis": "detail · S9 선례 · 투여 방식 원천 없음",
+   "quantity_raw": "24cc",
+   "sessions": null,
+   "unit": "U5-081",
+   "unit_name": "얼굴 전체 줄기세포",
+   "evidence_level": "약",
+   "candidates": [
+    "U5-081",
+    "U5-143"
+   ],
+   "origin_question": "Q05"
+  },
+  {
+   "package": "P6-10",
+   "package_name": "텍스쳐스무딩",
+   "order": 1,
+   "text": "포텐자",
+   "basis": "detail · 포텐자 저장 uses_product U5-110",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-110",
+   "unit_name": "얼굴 전체 니들RF",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-10",
+   "package_name": "텍스쳐스무딩",
+   "order": 2,
+   "text": "서브시전",
+   "basis": "detail · U5-045 동의어",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-045",
+   "unit_name": "얼굴 전체 서브시전",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-10",
+   "package_name": "텍스쳐스무딩",
+   "order": 3,
+   "text": "필링",
+   "basis": "detail 「필링」 · mechanism 「화학 필링으로 표피 갱신」",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-034",
+   "unit_name": "얼굴 전체 필링",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-12",
+   "package_name": "유리피부관리",
+   "order": 1,
+   "text": "토닝",
+   "basis": "detail 「토닝」 · mechanism 「토닝으로 색소침착과 모공」 — 매질 원천 없음 → 매질 미지정 토닝 키",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-025",
+   "unit_name": "얼굴 전체 토닝 (매질 미지정)",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-12",
+   "package_name": "유리피부관리",
+   "order": 2,
+   "text": "필링",
+   "basis": "detail",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-034",
+   "unit_name": "얼굴 전체 필링",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-12",
+   "package_name": "유리피부관리",
+   "order": 3,
+   "text": "스킨부스터",
+   "basis": "detail · mechanism 「진피층에 히알루론산을 주입」",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-018",
+   "unit_name": "얼굴 전체 스킨부스터",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-13",
+   "package_name": "도자기피부관리",
+   "order": 1,
+   "text": "IPL",
+   "basis": "detail",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-030",
+   "unit_name": "얼굴 전체 IPL",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-13",
+   "package_name": "도자기피부관리",
+   "order": 2,
+   "text": "토닝",
+   "basis": "detail · mechanism 「토닝으로 피부 결 정리」 — 매질 없음",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-025",
+   "unit_name": "얼굴 전체 토닝 (매질 미지정)",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-13",
+   "package_name": "도자기피부관리",
+   "order": 3,
+   "text": "물광",
+   "basis": "detail 「물광」 · overview 「물광주사」 · 시장가 「스킨부스터 물광주사 (전체얼굴)」 = U5-018 동의어",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-018",
+   "unit_name": "얼굴 전체 스킨부스터",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-14",
+   "package_name": "인형피부관리",
+   "order": 3,
+   "text": "토닝",
+   "basis": "detail · mechanism 「토닝으로 피부결 개선」 — 매질 없음",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-025",
+   "unit_name": "얼굴 전체 토닝 (매질 미지정)",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-14",
+   "package_name": "인형피부관리",
+   "order": 4,
+   "text": "물광",
+   "basis": "detail · 물광주사 = U5-018 동의어",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-018",
+   "unit_name": "얼굴 전체 스킨부스터",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-15",
+   "package_name": "허니스킨관리",
+   "order": 1,
+   "text": "필링",
+   "basis": "detail",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-034",
+   "unit_name": "얼굴 전체 필링",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-15",
+   "package_name": "허니스킨관리",
+   "order": 2,
+   "text": "물광",
+   "basis": "detail · 물광주사 = U5-018",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-018",
+   "unit_name": "얼굴 전체 스킨부스터",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-15",
+   "package_name": "허니스킨관리",
+   "order": 3,
+   "text": "LED",
+   "basis": "detail 「LED」 · mechanism 「LED로 콜라겐 합성 촉진」 · 부위 J2 얼굴 전체",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-050",
+   "unit_name": "얼굴 전체 LED",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-16",
+   "package_name": "스킨부스터오마카세",
+   "order": 1,
+   "text": "리쥬란",
+   "basis": "detail · 리쥬란 → U5-018",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-018",
+   "unit_name": "얼굴 전체 스킨부스터",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-16",
+   "package_name": "스킨부스터오마카세",
+   "order": 2,
+   "text": "쥬베룩",
+   "basis": "detail · 쥬베룩(정본 M3 PDLLA) 저장 uses_product U5-090",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-090",
+   "unit_name": "얼굴 전체 콜라겐부스터",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-16",
+   "package_name": "스킨부스터오마카세",
+   "order": 3,
+   "text": "엑소좀",
+   "basis": "detail 「엑소좀」 — 투여 방식 원천 없음 · 5단계 선례: 시장가 「엑소좀 (전체얼굴)」 → U5-019(주입)",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-019",
+   "unit_name": "얼굴 전체 엑소좀",
+   "evidence_level": "약",
+   "candidates": [
+    "U5-019",
+    "U5-142"
+   ],
+   "origin_question": "Q09"
+  },
+  {
+   "package": "P6-17",
+   "package_name": "MTS + PRP (전체얼굴)",
+   "order": 1,
+   "text": "MTS",
+   "basis": "시장가 이름 · 「전체얼굴」 / 콤보는 부위 없음 → J2",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-032",
+   "unit_name": "얼굴 전체 MTS",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-17",
+   "package_name": "MTS + PRP (전체얼굴)",
+   "order": 2,
+   "text": "PRP",
+   "basis": "시장가 이름 · 부위 같음",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-020",
+   "unit_name": "얼굴 전체 PRP",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-18",
+   "package_name": "이모드 (복부+힙 동시)",
+   "order": 1,
+   "text": "복부",
+   "basis": "시장가 이름 「복부+힙 동시」 · 5단계 이모드 (복부) → U5-105",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-105",
+   "unit_name": "복부 EMS",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-18",
+   "package_name": "이모드 (복부+힙 동시)",
+   "order": 2,
+   "text": "힙",
+   "basis": "같음 · 이모드 (힙) → U5-106",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-106",
+   "unit_name": "힙 EMS",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-19",
+   "package_name": "MTS + 스킨부스터",
+   "order": 1,
+   "text": "MTS",
+   "basis": "시장가 이름 · 부위 없음 → J2",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-032",
+   "unit_name": "얼굴 전체 MTS",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-19",
+   "package_name": "MTS + 스킨부스터",
+   "order": 2,
+   "text": "스킨부스터",
+   "basis": "시장가 이름 · J2",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-018",
+   "unit_name": "얼굴 전체 스킨부스터",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-21",
+   "package_name": "줄기세포 + MTS (전체얼굴)",
+   "order": 1,
+   "text": "줄기세포",
+   "basis": "시장가 이름 · 5단계 S9 선례(줄기세포 → U5-081) · 투여 방식 원천 없음",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-081",
+   "unit_name": "얼굴 전체 줄기세포",
+   "evidence_level": "약",
+   "candidates": [
+    "U5-081",
+    "U5-143"
+   ],
+   "origin_question": "Q11"
+  },
+  {
+   "package": "P6-21",
+   "package_name": "줄기세포 + MTS (전체얼굴)",
+   "order": 2,
+   "text": "MTS",
+   "basis": "시장가 이름 「전체얼굴」",
+   "quantity_raw": null,
+   "sessions": null,
+   "unit": "U5-032",
+   "unit_name": "얼굴 전체 MTS",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-22",
+   "package_name": "스컬트라 (3회 패키지)",
+   "order": 1,
+   "text": "얼굴 전체 콜라겐부스터 × 3회",
+   "basis": "시장가 이름 · 5단계 market units · sessions 3",
+   "quantity_raw": "3회",
+   "sessions": 3,
+   "unit": "U5-090",
+   "unit_name": "얼굴 전체 콜라겐부스터",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  },
+  {
+   "package": "P6-24",
+   "package_name": "줄기세포 3회 패키지 (전체얼굴)",
+   "order": 1,
+   "text": "얼굴 전체 줄기세포 × 3회",
+   "basis": "시장가 이름 · 5단계 market units · sessions 3",
+   "quantity_raw": "3회",
+   "sessions": 3,
+   "unit": "U5-081",
+   "unit_name": "얼굴 전체 줄기세포",
+   "evidence_level": null,
+   "candidates": null,
+   "origin_question": null
+  }
+ ],
+ "slots": [
+  {
+   "package": "P6-01",
+   "package_name": "풀페이스큐레이션",
+   "order": 1,
+   "text": "얼굴 전체 맞춤(부위 목록 없음)",
+   "basis": "detail · overview 「얼굴 전체 맞춤형」 — 부위 열거 없음 · indications(이마 · 미간 · 눈가 · 목주름)는 7단계 근거라 구성으로 안 씀",
+   "quantity_raw": null,
+   "sessions": null,
+   "candidates": [
+    "U5-001",
+    "U5-002",
+    "U5-003",
+    "U5-017"
+   ],
+   "candidate_names": [
+    "이마 보톡스",
+    "미간 보톡스",
+    "눈가 보톡스",
+    "목 보톡스"
+   ],
+   "origin_question": "Q01",
+   "missing_unit": null
+  },
+  {
+   "package": "P6-02",
+   "package_name": "바디큐레이션",
+   "order": 3,
+   "text": "등(그 밖 부위)",
+   "basis": "detail 끝 「등」 = 나열 열림 — 나머지 부위 원천 없음",
+   "quantity_raw": null,
+   "sessions": null,
+   "candidates": [],
+   "candidate_names": [],
+   "origin_question": "Q02",
+   "missing_unit": null
+  },
+  {
+   "package": "P6-11",
+   "package_name": "쿨핏프로그램",
+   "order": 1,
+   "text": "쿨스컬프팅",
+   "basis": "detail · 쿨스컬프팅 저장 uses_product 5키(복부 · 옆구리 · 턱밑 · 허벅지 · 팔뚝) — 부위 원천 없음 · 몸 계열은 기본값 없음(J2)",
+   "quantity_raw": null,
+   "sessions": null,
+   "candidates": [
+    "U5-116",
+    "U5-117",
+    "U5-118",
+    "U5-119",
+    "U5-120"
+   ],
+   "candidate_names": [
+    "복부 냉각지방분해",
+    "옆구리 냉각지방분해",
+    "턱밑 냉각지방분해",
+    "허벅지 냉각지방분해",
+    "팔뚝 냉각지방분해"
+   ],
+   "origin_question": "Q06",
+   "missing_unit": null
+  },
+  {
+   "package": "P6-11",
+   "package_name": "쿨핏프로그램",
+   "order": 2,
+   "text": "인모드바디",
+   "basis": "detail — 1단계 「인모드」(M9-2-5)는 얼굴 RF 키(U5-091 · U5-104)뿐 · 이볼브(M10 · 「인모드 이볼브」)는 EMS · 바디 RF 키 없음",
+   "quantity_raw": null,
+   "sessions": null,
+   "candidates": [],
+   "candidate_names": [],
+   "origin_question": "Q07",
+   "missing_unit": "M9 RF × 바디 부위 × K05 — 5단계에 없음 · synergy 21 은 「M9-인모드(바디)」로 부름"
+  },
+  {
+   "package": "P6-14",
+   "package_name": "인형피부관리",
+   "order": 1,
+   "text": "보톡스",
+   "basis": "detail · mechanism 「보톡스로 주름 완화」 — 부위 없음 · M1 은 부위 키뿐(기본값 없음)",
+   "quantity_raw": null,
+   "sessions": null,
+   "candidates": [
+    "U5-001",
+    "U5-002",
+    "U5-003"
+   ],
+   "candidate_names": [
+    "이마 보톡스",
+    "미간 보톡스",
+    "눈가 보톡스"
+   ],
+   "origin_question": "Q08",
+   "missing_unit": null
+  },
+  {
+   "package": "P6-14",
+   "package_name": "인형피부관리",
+   "order": 2,
+   "text": "필러",
+   "basis": "detail · mechanism 「필러로 볼륨 보강」 — 부위 없음 · M2 는 부위 키뿐",
+   "quantity_raw": null,
+   "sessions": null,
+   "candidates": [
+    "U5-082",
+    "U5-083",
+    "U5-084",
+    "U5-085",
+    "U5-086",
+    "U5-087",
+    "U5-088",
+    "U5-089"
+   ],
+   "candidate_names": [
+    "팔자 필러",
+    "입술 필러",
+    "코 필러",
+    "턱끝 필러",
+    "이마 필러",
+    "볼 필러",
+    "눈밑 필러",
+    "관자놀이 필러"
+   ],
+   "origin_question": "Q08",
+   "missing_unit": null
+  },
+  {
+   "package": "P6-20",
+   "package_name": "프리미엄 스킨케어 (풀코스)",
+   "order": 1,
+   "text": "풀코스(구성 없음)",
+   "basis": "시장가 이름뿐 · M15 메디컬스킨케어 분류 · 설명 칸 없음",
+   "quantity_raw": null,
+   "sessions": null,
+   "candidates": [],
+   "candidate_names": [],
+   "origin_question": "Q10",
+   "missing_unit": null
+  },
+  {
+   "package": "P6-23",
+   "package_name": "이모드 (4회 패키지)",
+   "order": 1,
+   "text": "이모드 × 4회(부위 없음)",
+   "basis": "시장가 이름에 부위 없음 · 5단계는 U5-105 · U5-106 둘 다 이음",
+   "quantity_raw": "4회",
+   "sessions": 4,
+   "candidates": [
+    "U5-105",
+    "U5-106"
+   ],
+   "candidate_names": [
+    "복부 EMS",
+    "힙 EMS"
+   ],
+   "origin_question": "Q12",
+   "missing_unit": null
+  }
+ ],
+ "non_packages": [
+  {
+   "id": "M8-1",
+   "label": "색소/토닝",
+   "verdict": "패키지 아님 — 메뉴 분류 이름(묶음 판매 아님 · 항목마다 단위 시술로 이미 판정)",
+   "to": "7단계 목적 원문(10-28 U1 · 7 = 고민 + 목적)",
+   "family": "M8",
+   "items": 17
+  },
+  {
+   "id": "M8-4",
+   "label": "혈관",
+   "verdict": "패키지 아님 — 메뉴 분류 이름(묶음 판매 아님 · 항목마다 단위 시술로 이미 판정)",
+   "to": "7단계 목적 원문(10-28 U1 · 7 = 고민 + 목적)",
+   "family": "M8",
+   "items": 10
+  },
+  {
+   "id": "M8-5",
+   "label": "제모",
+   "verdict": "패키지 아님 — 메뉴 분류 이름(묶음 판매 아님 · 항목마다 단위 시술로 이미 판정)",
+   "to": "7단계 목적 원문(10-28 U1 · 7 = 고민 + 목적)",
+   "family": "M8",
+   "items": 13
+  },
+  {
+   "id": "M16-1",
+   "label": "미백/항산화",
+   "verdict": "패키지 아님 — 메뉴 분류 이름(묶음 판매 아님 · 항목마다 단위 시술로 이미 판정)",
+   "to": "7단계 목적 원문(10-28 U1 · 7 = 고민 + 목적)",
+   "family": "M16",
+   "items": 7
+  },
+  {
+   "id": "M16-2",
+   "label": "피로회복",
+   "verdict": "패키지 아님 — 메뉴 분류 이름(묶음 판매 아님 · 항목마다 단위 시술로 이미 판정)",
+   "to": "7단계 목적 원문(10-28 U1 · 7 = 고민 + 목적)",
+   "family": "M16",
+   "items": 8
+  },
+  {
+   "id": "M16-3",
+   "label": "재생/면역",
+   "verdict": "패키지 아님 — 메뉴 분류 이름(묶음 판매 아님 · 항목마다 단위 시술로 이미 판정)",
+   "to": "7단계 목적 원문(10-28 U1 · 7 = 고민 + 목적)",
+   "family": "M16",
+   "items": 9
+  },
+  {
+   "id": "M16-4",
+   "label": "영양보충",
+   "verdict": "패키지 아님 — 메뉴 분류 이름(묶음 판매 아님 · 항목마다 단위 시술로 이미 판정)",
+   "to": "7단계 목적 원문(10-28 U1 · 7 = 고민 + 목적)",
+   "family": "M16",
+   "items": 5
+  },
+  {
+   "id": "M9-SIG",
+   "label": "시그니처 프로그램",
+   "verdict": "패키지 아님 — 묶음 이름",
+   "to": "패키지 속성 menu_group(P6-08 · P6-09 — 셀리부트 · DNA리셋)",
+   "family": "M9",
+   "items": 2
+  },
+  {
+   "id": "auto-1775402620",
+   "label": "시그니처프로그램",
+   "verdict": "패키지 아님 — 묶음 이름 · 안 항목 8 중 5 = 패키지 · 리쥬하이 = 단위 시술(U2) · 제네오X · 올타이트 = 1단계 제품(그대로)",
+   "to": "패키지 속성 menu_group(P6-12~16 — 유리 · 도자기 · 인형 · 허니스킨 · 스킨부스터오마카세)",
+   "family": "M15",
+   "items": 8
+  }
+ ],
+ "menu_groups_used": [
+  "M15 「시그니처프로그램」",
+  "M9-SIG 「시그니처 프로그램」"
+ ],
+ "handoffs": [
+  {
+   "source": "M8-1 색소/토닝 · M8-4 혈관 · M8-5 제모",
+   "family": "M8",
+   "covered_by": [
+    "M8-1",
+    "M8-4",
+    "M8-5"
+   ],
+   "note": null
+  },
+  {
+   "source": "M9-SIG 시그니처 프로그램",
+   "family": "M9",
+   "covered_by": [
+    "M9-SIG"
+   ],
+   "note": null
+  },
+  {
+   "source": "시그니처프로그램 · M15-7/M15-8 「추가」 · 도포/팩(빈 하위)",
+   "family": "M15",
+   "covered_by": [
+    "auto-1775402620"
+   ],
+   "note": "「추가」 2 · 도포/팩 = 5단계에서 끝(handoff to 문장)"
+  },
+  {
+   "source": "M16-1~4 미백/항산화 · 피로회복 · 재생/면역 · 영양보충",
+   "family": "M16",
+   "covered_by": [
+    "M16-1",
+    "M16-2",
+    "M16-3",
+    "M16-4"
+   ],
+   "note": null
+  }
+ ],
+ "step6-to-step8-notes": [
+  {
+   "package": "P6-05",
+   "name": "꿀광토닝",
+   "pair": [
+    "U5-023",
+    "U5-018"
+   ],
+   "verdict": "다름 — synergy 「스킨부스터 2주 후 레이저토닝」(다음에) ↔ 패키지 「결합 · 복합 시술」",
+   "links": [
+    {
+     "i": 56,
+     "from": "M4-스킨부스터",
+     "to": "M8-레이저토닝",
+     "type": "다음에",
+     "timing": "스킨부스터 2주 후 레이저토닝"
+    }
+   ]
+  },
+  {
+   "package": "P6-06",
+   "name": "브라이트닝레이저",
+   "pair": [
+    "U5-030",
+    "U5-023"
+   ],
+   "verdict": "synergy 링크 없음",
+   "links": []
+  },
+  {
+   "package": "P6-07",
+   "name": "여신토닝",
+   "pair": [
+    "U5-023",
+    "U5-030"
+   ],
+   "verdict": "synergy 링크 없음",
+   "links": []
+  },
+  {
+   "package": "P6-08",
+   "name": "셀리부트프로그램",
+   "pair": [
+    "U5-091",
+    "U5-030"
+   ],
+   "verdict": "synergy 링크 없음",
+   "links": []
+  },
+  {
+   "package": "P6-08",
+   "name": "셀리부트프로그램",
+   "pair": [
+    "U5-091",
+    "U5-091(튠)"
+   ],
+   "verdict": "계열 수준 참고만 — M9 RF 끼리 synergy 는 「대신(택 1)」(써마지↔올리지오 · 인모드↔써마지) ↔ 패키지는 함께 · 튠 직접 링크 없음",
+   "links": [
+    {
+     "i": 102,
+     "from": "M9-써마지",
+     "to": "M9-올리지오",
+     "type": "대신",
+     "timing": "택 1 시술"
+    },
+    {
+     "i": 112,
+     "from": "M9-인모드",
+     "to": "M9-써마지",
+     "type": "대신",
+     "timing": "택 1 시술"
+    }
+   ]
+  },
+  {
+   "package": "P6-08",
+   "name": "셀리부트프로그램",
+   "pair": [
+    "U5-091",
+    "U5-081"
+   ],
+   "verdict": "synergy 링크 없음",
+   "links": []
+  },
+  {
+   "package": "P6-08",
+   "name": "셀리부트프로그램",
+   "pair": [
+    "U5-030",
+    "U5-081"
+   ],
+   "verdict": "synergy 링크 없음",
+   "links": []
+  },
+  {
+   "package": "P6-09",
+   "name": "DNA리셋프로그램",
+   "pair": [
+    "U5-091",
+    "U5-140"
+   ],
+   "verdict": "계열 수준 참고만 — synergy 는 HIFU(슈링크 · 울쎄라)+써마지 「같은 날」 · 소프웨이브(SUPERB) 직접 링크 없음",
+   "links": [
+    {
+     "i": 100,
+     "from": "M9-슈링크",
+     "to": "M9-써마지",
+     "type": "함께",
+     "timing": "같은 날 시술 가능"
+    },
+    {
+     "i": 108,
+     "from": "M9-울쎄라",
+     "to": "M9-써마지",
+     "type": "함께",
+     "timing": "같은 날 시술 가능"
+    }
+   ]
+  },
+  {
+   "package": "P6-09",
+   "name": "DNA리셋프로그램",
+   "pair": [
+    "U5-091",
+    "U5-018"
+   ],
+   "verdict": "다름 — 「리프팅기기 → 스킨부스터 2주 간격 순차」",
+   "links": [
+    {
+     "i": 114,
+     "from": "M9-리프팅기기",
+     "to": "M4-스킨부스터",
+     "type": "다음에",
+     "timing": "2주 간격 순차 시술"
+    }
+   ]
+  },
+  {
+   "package": "P6-09",
+   "name": "DNA리셋프로그램",
+   "pair": [
+    "U5-140",
+    "U5-018"
+   ],
+   "verdict": "다름 — 같은 링크(리프팅기기 → 스킨부스터 2주)",
+   "links": [
+    {
+     "i": 114,
+     "from": "M9-리프팅기기",
+     "to": "M4-스킨부스터",
+     "type": "다음에",
+     "timing": "2주 간격 순차 시술"
+    }
+   ]
+  },
+  {
+   "package": "P6-09",
+   "name": "DNA리셋프로그램",
+   "pair": [
+    "U5-081",
+    "U5-018"
+   ],
+   "verdict": "같음 — 「줄기세포 → 스킨부스터 같은 날 시술 가능」",
+   "links": [
+    {
+     "i": 28,
+     "from": "M17-줄기세포",
+     "to": "M4-스킨부스터",
+     "type": "함께",
+     "timing": "같은 날 시술 가능"
+    }
+   ]
+  },
+  {
+   "package": "P6-10",
+   "name": "텍스쳐스무딩",
+   "pair": [
+    "U5-110",
+    "U5-034"
+   ],
+   "verdict": "다름 — 「니들RF 2주 후 필링」 · 「필링 2주 후 니들RF」",
+   "links": [
+    {
+     "i": 11,
+     "from": "M11-니들RF",
+     "to": "M15-필링",
+     "type": "다음에",
+     "timing": "니들RF 2주 후 필링"
+    },
+    {
+     "i": 22,
+     "from": "M15-필링",
+     "to": "M11-니들RF",
+     "type": "다음에",
+     "timing": "필링 2주 후 니들RF"
+    }
+   ]
+  },
+  {
+   "package": "P6-10",
+   "name": "텍스쳐스무딩",
+   "pair": [
+    "U5-045",
+    "U5-110"
+   ],
+   "verdict": "다름 — 「서브시전 4주 후 니들RF」",
+   "links": [
+    {
+     "i": 72,
+     "from": "M8-서브시전",
+     "to": "M11-니들RF",
+     "type": "다음에",
+     "timing": "서브시전 4주 후 니들RF"
+    }
+   ]
+  },
+  {
+   "package": "P6-10",
+   "name": "텍스쳐스무딩",
+   "pair": [
+    "U5-045",
+    "U5-034"
+   ],
+   "verdict": "synergy 링크 없음",
+   "links": []
+  },
+  {
+   "package": "P6-11",
+   "name": "쿨핏프로그램",
+   "pair": [
+    "M14 냉각지방분해",
+    "M9 인모드(바디)"
+   ],
+   "verdict": "같음(부분) — 「같은 날 또는 2주 간격」",
+   "links": [
+    {
+     "i": 21,
+     "from": "M14-크라이오",
+     "to": "M9-인모드(바디)",
+     "type": "함께",
+     "timing": "같은 날 또는 2주 간격"
+    }
+   ]
+  },
+  {
+   "package": "P6-12",
+   "name": "유리피부관리",
+   "pair": [
+    "토닝",
+    "U5-034"
+   ],
+   "verdict": "같음 — 「레이저토닝 + 필링 같은 날」",
+   "links": [
+    {
+     "i": 83,
+     "from": "M8-레이저토닝",
+     "to": "M15-필링",
+     "type": "함께",
+     "timing": "같은 날 시술 가능"
+    }
+   ]
+  },
+  {
+   "package": "P6-12",
+   "name": "유리피부관리",
+   "pair": [
+    "토닝",
+    "U5-018"
+   ],
+   "verdict": "다름 — 「스킨부스터 2주 후 레이저토닝」",
+   "links": [
+    {
+     "i": 56,
+     "from": "M4-스킨부스터",
+     "to": "M8-레이저토닝",
+     "type": "다음에",
+     "timing": "스킨부스터 2주 후 레이저토닝"
+    }
+   ]
+  },
+  {
+   "package": "P6-12",
+   "name": "유리피부관리",
+   "pair": [
+    "U5-034",
+    "U5-018"
+   ],
+   "verdict": "다름 — 「필링 1주 후 스킨부스터」",
+   "links": [
+    {
+     "i": 24,
+     "from": "M15-필링",
+     "to": "M4-스킨부스터",
+     "type": "다음에",
+     "timing": "필링 1주 후 스킨부스터"
+    },
+    {
+     "i": 54,
+     "from": "M4-스킨부스터",
+     "to": "M15-필링",
+     "type": "다음에",
+     "timing": "필링 1주 후 스킨부스터"
+    }
+   ]
+  },
+  {
+   "package": "P6-13",
+   "name": "도자기피부관리",
+   "pair": [
+    "U5-030",
+    "토닝"
+   ],
+   "verdict": "synergy 링크 없음",
+   "links": []
+  },
+  {
+   "package": "P6-13",
+   "name": "도자기피부관리",
+   "pair": [
+    "U5-030",
+    "U5-018"
+   ],
+   "verdict": "다름 — 「IPL 2주 후 스킨부스터」",
+   "links": [
+    {
+     "i": 92,
+     "from": "M8-IPL",
+     "to": "M4-스킨부스터",
+     "type": "다음에",
+     "timing": "IPL 2주 후 스킨부스터"
+    }
+   ]
+  },
+  {
+   "package": "P6-13",
+   "name": "도자기피부관리",
+   "pair": [
+    "토닝",
+    "U5-018"
+   ],
+   "verdict": "다름 — 「스킨부스터 2주 후 레이저토닝」",
+   "links": [
+    {
+     "i": 56,
+     "from": "M4-스킨부스터",
+     "to": "M8-레이저토닝",
+     "type": "다음에",
+     "timing": "스킨부스터 2주 후 레이저토닝"
+    }
+   ]
+  },
+  {
+   "package": "P6-14",
+   "name": "인형피부관리",
+   "pair": [
+    "M1",
+    "M2"
+   ],
+   "verdict": "같음 — 「같은 날 시술 가능」",
+   "links": [
+    {
+     "i": 0,
+     "from": "M1-보톡스",
+     "to": "M2-필러",
+     "type": "함께",
+     "timing": "같은 날 시술 가능"
+    },
+    {
+     "i": 30,
+     "from": "M2-필러",
+     "to": "M1-보톡스",
+     "type": "함께",
+     "timing": "같은 날 시술 가능"
+    }
+   ]
+  },
+  {
+   "package": "P6-14",
+   "name": "인형피부관리",
+   "pair": [
+    "M1",
+    "U5-018"
+   ],
+   "verdict": "같음 — 같은 날",
+   "links": [
+    {
+     "i": 1,
+     "from": "M1-보톡스",
+     "to": "M4-스킨부스터",
+     "type": "함께",
+     "timing": "같은 날 시술 가능"
+    }
+   ]
+  },
+  {
+   "package": "P6-14",
+   "name": "인형피부관리",
+   "pair": [
+    "M2",
+    "U5-018"
+   ],
+   "verdict": "다름 — 「필러 2주 후 스킨부스터」",
+   "links": [
+    {
+     "i": 31,
+     "from": "M2-필러",
+     "to": "M4-스킨부스터",
+     "type": "다음에",
+     "timing": "필러 2주 후 스킨부스터"
+    }
+   ]
+  },
+  {
+   "package": "P6-14",
+   "name": "인형피부관리",
+   "pair": [
+    "토닝",
+    "U5-018"
+   ],
+   "verdict": "다름 — 2주",
+   "links": [
+    {
+     "i": 56,
+     "from": "M4-스킨부스터",
+     "to": "M8-레이저토닝",
+     "type": "다음에",
+     "timing": "스킨부스터 2주 후 레이저토닝"
+    }
+   ]
+  },
+  {
+   "package": "P6-14",
+   "name": "인형피부관리",
+   "pair": [
+    "M1",
+    "토닝"
+   ],
+   "verdict": "synergy 링크 없음",
+   "links": []
+  },
+  {
+   "package": "P6-14",
+   "name": "인형피부관리",
+   "pair": [
+    "M2",
+    "토닝"
+   ],
+   "verdict": "synergy 링크 없음",
+   "links": []
+  },
+  {
+   "package": "P6-15",
+   "name": "허니스킨관리",
+   "pair": [
+    "U5-034",
+    "U5-018"
+   ],
+   "verdict": "다름 — 「필링 1주 후 스킨부스터」",
+   "links": [
+    {
+     "i": 24,
+     "from": "M15-필링",
+     "to": "M4-스킨부스터",
+     "type": "다음에",
+     "timing": "필링 1주 후 스킨부스터"
+    },
+    {
+     "i": 54,
+     "from": "M4-스킨부스터",
+     "to": "M15-필링",
+     "type": "다음에",
+     "timing": "필링 1주 후 스킨부스터"
+    }
+   ]
+  },
+  {
+   "package": "P6-15",
+   "name": "허니스킨관리",
+   "pair": [
+    "U5-034",
+    "U5-050"
+   ],
+   "verdict": "synergy 링크 없음",
+   "links": []
+  },
+  {
+   "package": "P6-15",
+   "name": "허니스킨관리",
+   "pair": [
+    "U5-018",
+    "U5-050"
+   ],
+   "verdict": "synergy 링크 없음",
+   "links": []
+  },
+  {
+   "package": "P6-16",
+   "name": "스킨부스터오마카세",
+   "pair": [
+    "U5-018",
+    "U5-090"
+   ],
+   "verdict": "같음(부분) — 「같은 날 또는 2주 간격」 · synergy 는 쥬베룩을 M4 로 부름(정본 M3 — 5단계 충돌 기록과 같은 꼴)",
+   "links": [
+    {
+     "i": 48,
+     "from": "M4-리쥬란",
+     "to": "M4-쥬베룩",
+     "type": "함께",
+     "timing": "같은 날 또는 2주 간격"
+    }
+   ]
+  },
+  {
+   "package": "P6-16",
+   "name": "스킨부스터오마카세",
+   "pair": [
+    "U5-018",
+    "U5-019"
+   ],
+   "verdict": "synergy 링크 없음",
+   "links": []
+  },
+  {
+   "package": "P6-16",
+   "name": "스킨부스터오마카세",
+   "pair": [
+    "U5-090",
+    "U5-019"
+   ],
+   "verdict": "synergy 링크 없음",
+   "links": []
+  },
+  {
+   "package": "P6-17",
+   "name": "MTS + PRP (전체얼굴)",
+   "pair": [
+    "U5-032",
+    "U5-020"
+   ],
+   "verdict": "같음 — 「같은 날 시술 가능」",
+   "links": [
+    {
+     "i": 16,
+     "from": "M12-MTS",
+     "to": "M5-PRP",
+     "type": "함께",
+     "timing": "같은 날 시술 가능"
+    }
+   ]
+  },
+  {
+   "package": "P6-18",
+   "name": "이모드 (복부+힙 동시)",
+   "pair": [
+    "U5-105",
+    "U5-106"
+   ],
+   "verdict": "같은 계열 · 대조 없음",
+   "links": []
+  },
+  {
+   "package": "P6-19",
+   "name": "MTS + 스킨부스터",
+   "pair": [
+    "U5-032",
+    "U5-018"
+   ],
+   "verdict": "같음 — 「같은 날 시술 가능」",
+   "links": [
+    {
+     "i": 15,
+     "from": "M12-MTS",
+     "to": "M4-스킨부스터",
+     "type": "함께",
+     "timing": "같은 날 시술 가능"
+    },
+    {
+     "i": 53,
+     "from": "M4-스킨부스터",
+     "to": "M12-MTS",
+     "type": "함께",
+     "timing": "같은 날 시술 가능"
+    }
+   ]
+  },
+  {
+   "package": "P6-21",
+   "name": "줄기세포 + MTS (전체얼굴)",
+   "pair": [
+    "U5-081",
+    "U5-032"
+   ],
+   "verdict": "같음(timing) — 「같은 날 시술 가능」 · 그러나 synergy reason 이 「MTS 미세채널을 통한 화장품 전달은 미허가·위법 소지 … 개방 채널에 사용하지 않음」 → 8단계 안전 충돌 표시 후보",
+   "links": [
+    {
+     "i": 27,
+     "from": "M17-줄기세포",
+     "to": "M12-MTS",
+     "type": "함께",
+     "timing": "같은 날 시술 가능"
+    }
+   ]
+  }
+ ],
+ "origin_questions": [
+  {
+   "id": "Q01",
+   "question": "「풀페이스큐레이션」은 어느 부위 보톡스로 구성되나요? (원천 detail 「얼굴 전체 맞춤」 · 적응증에 이마 · 미간 · 눈가 · 목주름이 있으나 구성 목록은 없음)",
+   "packages": [
+    "P6-01"
+   ]
+  },
+  {
+   "id": "Q02",
+   "question": "「바디큐레이션」은 승모근 · 종아리 말고 어느 부위가 더 들어가나요? (원천 detail 「승모근/종아리 등」)",
+   "packages": [
+    "P6-02"
+   ]
+  },
+  {
+   "id": "Q03",
+   "question": "「포토나4D」의 Er:YAG 단계는 프락셔널(분할 조사)인가요, 전면 조사 · 박피인가요? 4단계는 각각 무엇인가요? (원천 「Er:YAG와 Nd:YAG 레이저를 단계별로 적용 · 4단계 프로토콜」)",
+   "packages": [],
+   "target": "5단계 원장 행 포토나4D(U5-099 속성 protocol · secondary_medium) — 6단계 U1 로 패키지에서 빠짐"
+  },
+  {
+   "id": "Q04",
+   "question": "「셀리부트프로그램」의 「튠」은 튠페이스(알마 Accent Prime)인가요?",
+   "packages": [
+    "P6-08"
+   ]
+  },
+  {
+   "id": "Q05",
+   "question": "패키지 안 「줄기세포」(셀리부트 · DNA리셋 24cc)는 주사인가요, 도포인가요?",
+   "packages": [
+    "P6-08",
+    "P6-09"
+   ]
+  },
+  {
+   "id": "Q06",
+   "question": "「쿨핏프로그램」은 어느 부위에 하나요? (원천 「바디 컨투어링」뿐)",
+   "packages": [
+    "P6-11"
+   ]
+  },
+  {
+   "id": "Q07",
+   "question": "「인모드바디」는 어떤 장비(인모드 바디FX · 이볼브 등)이고 어느 부위에 하나요? (5단계 원천 질문 「이모드 = 인모드 바디인가」와 같이)",
+   "packages": [
+    "P6-11"
+   ]
+  },
+  {
+   "id": "Q08",
+   "question": "「인형피부관리」의 보톡스 · 필러는 어느 부위에 하나요? (원천 「보톡스로 주름 완화, 필러로 볼륨 보강」)",
+   "packages": [
+    "P6-14"
+   ]
+  },
+  {
+   "id": "Q09",
+   "question": "「스킨부스터오마카세」의 엑소좀은 주사인가요, 도포인가요?",
+   "packages": [
+    "P6-16"
+   ]
+  },
+  {
+   "id": "Q10",
+   "question": "「프리미엄 스킨케어 (풀코스)」에는 어떤 관리가 들어가나요? (시장가 이름뿐 · M15 메디컬스킨케어)",
+   "packages": [
+    "P6-20"
+   ]
+  },
+  {
+   "id": "Q11",
+   "question": "「줄기세포 + MTS」의 줄기세포는 주사인가요, MTS 뒤 도포인가요? 허가된 멸균 시술용 제제인가요? (synergy 27 「배양액은 개방 채널에 사용하지 않음」)",
+   "packages": [
+    "P6-21"
+   ]
+  },
+  {
+   "id": "Q12",
+   "question": "「이모드 (4회 패키지)」는 어느 부위(복부 · 힙)에 4회인가요?",
+   "packages": [
+    "P6-23"
+   ]
+  },
+  {
+   "id": "Q13",
+   "question": "셀리부트 · DNA리셋 「써마지600」 · 「소프웨이브200」의 숫자는 샷 수인가요? 두 프로그램은 어느 병원 상품인가요(다른 병원도 같은 이름으로 파나요)?",
+   "packages": [
+    "P6-08",
+    "P6-09"
+   ]
+  }
+ ],
+ "source_fix": [
+  {
+   "ledger_id": "auto-42-1774737181584",
+   "name": "DNA리셋프로그램",
+   "field": "extracted",
+   "now": "overview 「HIFU 집속 초음파 리프팅」 · mechanism HIFU SMAS",
+   "proposal": "프로그램 구성(써마지 · 소프웨이브 · 리투오 · 줄기세포) 설명으로 · 소프웨이브 = SUPERB 초음파(HIFU 아님 · 5단계 W1)"
+  }
+ ],
+ "open": [],
+ "stale_decisions": []
+}

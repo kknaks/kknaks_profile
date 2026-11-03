@@ -1,0 +1,907 @@
+{
+  "total": 38,
+  "rejected": 38,
+  "probes": [
+    {
+      "probe": "all_axis_overlap_product",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "scope_axis_disjoint",
+          "pass": false,
+          "scope": "scope:a3d8cefb8de8683ba153340f8f481e9a439fd293710cd67511cfc5f97a7d0c0f",
+          "axis": "product"
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "all_axis_duplicate_product",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "scope_axis_unique",
+          "pass": false,
+          "scope": "scope:25caeb4711c84e2182ec0a07b96728bf65b198e1d9baf3a27e012fbee66fabce",
+          "axis": "product"
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "all_axis_overlap_family",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "scope_axis_disjoint",
+          "pass": false,
+          "scope": "scope:4474069370c75b3dcc97cdb6a478399bffe1833eac3e4fb45dd20b7184ab2bed",
+          "axis": "family"
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "all_axis_duplicate_family",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "scope_axis_unique",
+          "pass": false,
+          "scope": "scope:97e2b16e255b2fc42138ca2b27cc40f06fb0def3a12a3626a5967ce381796ae9",
+          "axis": "family"
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "all_axis_overlap_unit_procedure",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "scope_axis_disjoint",
+          "pass": false,
+          "scope": "scope:a741625e36950510d0a56392279548e94ed130c498edd60f688c2706185dc6b1",
+          "axis": "unit_procedure"
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "all_axis_duplicate_unit_procedure",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "scope_axis_unique",
+          "pass": false,
+          "scope": "scope:9c505dea132eb07a71fec7335f3f9a7a523a72158cfca6213dcf03a4d13abbaf",
+          "axis": "unit_procedure"
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "all_axis_overlap_concern",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "scope_axis_disjoint",
+          "pass": false,
+          "scope": "scope:f884e724288f6a826d5833cb129fd56f8fa694726427437db411048e7cfbd294",
+          "axis": "concern"
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "all_axis_duplicate_concern",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "scope_axis_unique",
+          "pass": false,
+          "scope": "scope:653568c27b5a8e2010ecf27e2c5bbb029b3145539ed1c4eb331d52ede9c90838",
+          "axis": "concern"
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "all_axis_overlap_target",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "scope_axis_disjoint",
+          "pass": false,
+          "scope": "scope:282cd357a4e1c2bd340039d1307baeac25626d192ea1397b0de1db2b2f4a2433",
+          "axis": "target"
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "all_axis_duplicate_target",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "scope_axis_unique",
+          "pass": false,
+          "scope": "scope:2b2e43a8627f1c6b7c62cc923f9612d2266cb5aab4d2f94d0fc052b9f8a534da",
+          "axis": "target"
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "all_axis_overlap_container",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "scope_axis_disjoint",
+          "pass": false,
+          "scope": "scope:e251771e46848142d2b3b3480777bcdd9d7459544c7e7d3e4124112b281d4b55",
+          "axis": "container"
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "all_axis_duplicate_container",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "scope_axis_unique",
+          "pass": false,
+          "scope": "scope:a1b3df3e50df2b48e27c795df0dae6de8fc55d8f6579409a78c88a996dec24e4",
+          "axis": "container"
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "all_axis_overlap_site_relation",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "scope_axis_disjoint",
+          "pass": false,
+          "scope": "scope:c9efe5621addb7fe599352223b131f07cb09dede90d49bf9966a1ae7c2938f7d",
+          "axis": "site_relation"
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "all_axis_duplicate_site_relation",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "scope_axis_unique",
+          "pass": false,
+          "scope": "scope:6974ee243d1791c9183f8daca0e805172529575eabc03c1c1beccd43d2c767ae",
+          "axis": "site_relation"
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "all_axis_overlap_site",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "axis_entity_namespace",
+          "pass": false,
+          "path": "/scopes/163/axes/site",
+          "target": "family:M2"
+        },
+        {
+          "check": "axis_entity_namespace",
+          "pass": false,
+          "path": "/scopes/163/axes/site",
+          "target": "family:M2"
+        }
+      ]
+    },
+    {
+      "probe": "all_axis_duplicate_site",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "axis_entity_namespace",
+          "pass": false,
+          "path": "/scopes/163/axes/site",
+          "target": "family:M2"
+        },
+        {
+          "check": "axis_entity_namespace",
+          "pass": false,
+          "path": "/scopes/163/axes/site",
+          "target": "family:M2"
+        }
+      ]
+    },
+    {
+      "probe": "all_axis_overlap_statement_site",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "strict_schema",
+          "pass": false,
+          "errors": [
+            "$.scopes[163].axes.statement_site.included: maxItems",
+            "$.scopes[163].axes.statement_site.excluded: maxItems"
+          ]
+        }
+      ]
+    },
+    {
+      "probe": "all_axis_duplicate_statement_site",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "strict_schema",
+          "pass": false,
+          "errors": [
+            "$.scopes[163].axes.statement_site.included: maxItems"
+          ]
+        }
+      ]
+    },
+    {
+      "probe": "all_axis_overlap_patient_conditions",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "strict_schema",
+          "pass": false,
+          "errors": [
+            "$.scopes[163].axes.patient_conditions.included: maxItems",
+            "$.scopes[163].axes.patient_conditions.excluded: maxItems"
+          ]
+        }
+      ]
+    },
+    {
+      "probe": "all_axis_duplicate_patient_conditions",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "strict_schema",
+          "pass": false,
+          "errors": [
+            "$.scopes[163].axes.patient_conditions.included: maxItems"
+          ]
+        }
+      ]
+    },
+    {
+      "probe": "valued_family_not_declared",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "scope_axis_source_knowledge",
+          "pass": false,
+          "scope": "scope:d3e9a0e0ca9f357df7bacd349536b648581ddeb2ada2803f782bfba4dcdbfce9",
+          "axis": "family"
+        },
+        {
+          "check": "scope_axis_knowledge_values",
+          "pass": false,
+          "scope": "scope:d3e9a0e0ca9f357df7bacd349536b648581ddeb2ada2803f782bfba4dcdbfce9",
+          "axis": "family"
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "valued_family_not_applicable",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "scope_axis_source_knowledge",
+          "pass": false,
+          "scope": "scope:aef50b1887ffbff6fd8c3830745218b95d0854cab8e78511b2f689bcb8bca809",
+          "axis": "family"
+        },
+        {
+          "check": "scope_axis_knowledge_values",
+          "pass": false,
+          "scope": "scope:aef50b1887ffbff6fd8c3830745218b95d0854cab8e78511b2f689bcb8bca809",
+          "axis": "family"
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "explicit_empty_family",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "scope_axis_knowledge_values",
+          "pass": false,
+          "scope": "scope:1578af85d67444f936d81c96b9e788cfff27f927916e110593c372d3568c873f",
+          "axis": "family"
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "explicit_missing_evidence",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "scope_axis_knowledge_values",
+          "pass": false,
+          "scope": "scope:5fbc6e5fcdc77f7c4daa05bcbeb00815d1ce9d60f74cf7db7bddfe7df42db265",
+          "axis": "container"
+        },
+        {
+          "check": "scope_parent_source_context",
+          "pass": false,
+          "scope": "scope:89be90c651daf58517bb2d25f5b5d09abdebb2a67510c75b9efb36e96cb8b1ba"
+        }
+      ]
+    },
+    {
+      "probe": "source_container_duplicate_extra",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "scope_axis_unique",
+          "pass": false,
+          "scope": "scope:d8f0a07b1cc983424125cd8b9328f8b44fe17351acf83d4c8e3401e70c79a97c",
+          "axis": "container"
+        },
+        {
+          "check": "combo_container_scope",
+          "pass": false
+        },
+        {
+          "check": "combo_scope_source_axes",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "source_container_wrong_evidence",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "combo_scope_source_axes",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "comparison_other_context_parent",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "scope_parent_source_context",
+          "pass": false,
+          "scope": "scope:92a30f65970e460c7430719f84a590ba4c792e7f5b44c398f7e38b59c4bda684"
+        },
+        {
+          "check": "comparison_context_literal",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "comparison_missing_parent",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "scope_parent_source_context",
+          "pass": false,
+          "scope": "scope:e48e76dd1489a9ff31c4752c7d398af66135280ef10922a76677540a62ac9f8b"
+        },
+        {
+          "check": "comparison_context_literal",
+          "pass": false
+        },
+        {
+          "check": "comparison_scope_unresolved",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "comparison_context_nested_parent",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "scope_parent_source_context",
+          "pass": false,
+          "scope": "scope:187b698954b83116a892eaefedb0a396052a95c942b4c4a02065f031e03c756e"
+        },
+        {
+          "check": "scope_parent_source_context",
+          "pass": false,
+          "scope": "scope:f420af42b075092bd457bd1f0e498196f0e4ceece0c3452addf46a46b9b399e8"
+        }
+      ]
+    },
+    {
+      "probe": "self_parent",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "scope_parent_acyclic",
+          "pass": false,
+          "scope": "scope:7668416f344d602eaa2f2a0c8ff4493055fcfe5c55d2c70936d03f227652d9cf"
+        }
+      ]
+    },
+    {
+      "probe": "cycle_parent",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "scope_parent_acyclic",
+          "pass": false,
+          "scope": "scope:2545fb3878f564eefcc053be368a66de62ea4f2b2fb6ba80a74bbecb4bdc85c7"
+        },
+        {
+          "check": "scope_parent_acyclic",
+          "pass": false,
+          "scope": "scope:ca24d97d1648c31e81dc6538a1e9df6b80ede2982f8e93c09706a0c6aa6294b6"
+        }
+      ]
+    },
+    {
+      "probe": "combo_unrelated_parent",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "scope_parent_source_context",
+          "pass": false,
+          "scope": "scope:06b41ad4ae8c4c894f145e0b394a0257117d5291f829bafea75f7b0e4f864a76"
+        },
+        {
+          "check": "combo_scope_source_axes",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "resolution_wrong_id",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "resolution_policy_exact_source_version",
+          "pass": false
+        },
+        {
+          "check": "duration_resolution_policy",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "resolution_wrong_hash",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "resolution_policy_exact_source_version",
+          "pass": false
+        },
+        {
+          "check": "duration_resolution_policy",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "attachment_wrong_version",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "strict_schema",
+          "pass": false,
+          "errors": [
+            "$.attachments[0].rule.version: enum"
+          ]
+        }
+      ]
+    },
+    {
+      "probe": "attachment_wrong_id",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "strict_schema",
+          "pass": false,
+          "errors": [
+            "$.attachments[0].rule.id: enum"
+          ]
+        }
+      ]
+    },
+    {
+      "probe": "attachment_unrelated_resolution",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "attachment_rule_resolution",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "attachment_wrong_existing_target",
+      "rejected": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "attachment_rule_source_application",
+          "pass": false
+        },
+        {
+          "check": "attachment_claim_scope_target",
+          "pass": false
+        }
+      ]
+    }
+  ]
+}

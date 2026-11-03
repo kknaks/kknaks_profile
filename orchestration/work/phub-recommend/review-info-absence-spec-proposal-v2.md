@@ -1,0 +1,32 @@
+# case3 정보 없음 계약 변경안 재검수
+
+**종합 판정: WARN — 1차 FAIL F-1/F-2/F-3의 문구상 결함은 닫혔으나, 공식 SPEC·구현 발주 전 열린 계약을 확정해야 한다.** 막는 항목은 T4의 주장·대안별 출처와 Q139 전역 메모 읽기 계약, 페이지 비용 경로 선택, 대상·facet 상태 기계와 안전 추가 페이지 정책, 추가 호출 timeout 및 고정 50 승격 문턱이다. 이 초안을 현 API가 이미 충족하는 구현 계약으로 승인할 수는 없다. 새 평가나 재생은 하지 않았다.
+
+## 읽은 판과 근거
+
+- 검수 대상 `info-absence-spec-proposal.md` 2026-11-02 수정본(3~5, 149~159행), 1차 `review-info-absence-spec-proposal.md`(15~25행), 정본 `SPEC-005.md` v3.4 패치 0.3.5(49~50행), `SPEC-006.md` v2.8 0.3.8(40행)을 읽었다. `_RESUME.md` 2026-11-01~02 결정(136~159행), `info-absence-remediation-plan.md`, ignored audit의 `root-cause-next.md`, `direct-fact-worktable.md`, `partial-claims-worktable.md`도 대조했다.
+- 코드 읽기 전용 판: Hub `PROCEDURE-HUB/phub-recommend/backend` HEAD `2edc190e70d4322f69672cc0e9e23417169e63cd`, 앱 `clinic_chat/hub-evals` HEAD `078ac99b2f307de65acdcdecc9beb94bcda1249c`. 아래 `Hub tools.py`는 `backend/app/modules/gold/tools.py`, `앱 case3.py`는 `clinic_chat/cases/case3.py`다. 기준 실행 `b202611020020-edc407`, Gold build `567677edfe7123e9`는 `direct-fact-worktable.md:3-5`의 기록이며 이번에 서버·실행 설정값을 새로 확인하지 않았다.
+
+## 1차 지적 재판정과 계약별 검수
+
+| 판정 | 검수 대상 파일:줄 | 반대 근거 파일:줄 / 확인 결과 |
+|---|---|---|
+| **PASS F-1 수정: T4 반환 한계** | `info-absence-spec-proposal.md:29-45,153` | 기본/evidence/all 차이와 미수신 상태를 명시했다. `Hub tools.py:1401-1410,1507-1518`은 evidence가 주장 원문만 늘리고 짧은 응답의 alternatives는 개수, options/by_direction의 from/rule은 제거함을 확인한다. `Hub tools.py:1376-1378,1464-1467`의 claim row에는 source가 없고 pair의 source 한 칸은 주장·대안별 출처가 아니다. 따라서 **신규 출처 연결 계약은 여전히 구현 전 차단 결정**이며 현 API로 충족 판정할 수 없다. |
+| **PASS F-1 수정: 생략 쌍과 방향** | `info-absence-spec-proposal.md:39-45,153` | 실물 `Hub tools.py:1441-1450,1519-1525,1537-1543`의 `pairs_more_n` 개수와 grouped `pairs`를 정확히 분리하고, 확정 단위 쌍 재호출을 지정했다. 정본 `SPEC-005.md:607-613`에는 여전히 `pairs_more[[a,b]]`라고 적혀 있으므로 **공식 005의 칸 이름·반환 계약 패치가 필요**하다. 방향은 정본 613행과 `Hub tools.py:1327-1331`에 맞게 보존한다. |
+| **WARN W-1: 전역 메모와 관계 없음** | `info-absence-spec-proposal.md:33-37,43,139` | Q139의 `scope:all#evidence#step8_notes[26]`은 현재 `relations_all.global`의 `#sequence_rank` 필터(`Hub tools.py:779-781`)와 별개다. `root-cause-next.md:7`과 `direct-fact-worktable.md:42,47,64-65,72`의 관계 5문장/4질문은 node×section 미노출 판정일 뿐 T4 성공 판정이 아니다. 메모의 적용 범위·fact ID/text/source·인용 자격과 관계 없음/미조회/배제의 식별 계약을 확정해야 한다. |
+| **PASS F-2 수정: 대상 충족과 enough** | `info-absence-spec-proposal.md:82-92,154` | `received_supported`에 적용 범위가 맞는 인용 가능 fact와 필요한 resolved/대안/방향/출처를 요구하고, empty·unresolved·blocked를 분리했다. `SPEC-006.md:283-300`의 Noul≥0.8·일반 예산 80%·4걸음을 유지하면서 필수 facet 미충족 시 enough를 금지한다. 현 앱은 `앱 case3.py:1363-1379`에서 queue가 남아도 enough 가능하고, `root-cause-next.md:17-19`의 Q015/Q072·Q069/Q173은 이를 고칠 근거다. queue 전체 소진을 요구하지 않는 범위도 타당하다. |
+| **WARN W-3: resolve 대상 확정** | `info-absence-spec-proposal.md:82-88,142,154` | span/role/basis와 명시 비교 양쪽 seed, 경쟁 동의어 비강제, 모호성 전파는 `direct-fact-worktable.md:38,50-53,73` 및 `root-cause-next.md:17-19`에 맞다. 단위 쌍이 확정되기 전 T4를 성공 처리하지 않는 조항도 맞다. Jev 선택 결과와 target_key의 식별·중복 합침·4걸음 내 seed 우선순위를 공식 006 상태 기계로 내려야 하며, Q067.2/Q099.1은 `direct-fact-worktable.md:49,58,81-84`대로 미확정으로 유지해야 한다. |
+| **PASS F-3 수정: 관계 초과 응답** | `info-absence-spec-proposal.md:45,88,106,129,155` | 호출 전 general/full 소유권 고정, compact 전체 초과 결과 통째 배제, blocked_budget·enough 금지·인용 금지·채택 사실만 부분 답변이 연결됐다. `SPEC-005.md:495,507`은 T4 기본 중앙 18,536B/p95 26,493B이며 evidence는 주장 원문 전부라 15KB 수용 보장이 없다. `Hub tools.py:113-127`의 의도 묶음까지 포함한 응답 전체 크기를 재야 한다. 64는 `SPEC-005.md:821,842`의 expand fact_ids 상한이지 T4 상한이 아니다. 선택적 T4 원문/크기 제한은 아직 **신규 계약**이며 수혜를 약속할 수 없다. |
+| **PASS: 페이지와 more 의미** | `info-absence-spec-proposal.md:49-51,63-75,156` | `SPEC-005.md:821-824,845-846` 및 `Hub tools.py:2254-2257,2277-2291,2302-2308`에 따라 page≥1, 12줄, more는 요청 페이지 뒤 남은 줄 수이며 0이면 생략된다. 단일 section 요청이면 페이지 전진과 fact ID 중복을 분리하는 상태 기계가 맞다. 현 앱은 `앱 case3.py:865-888,1045-1048`과 `clients/hub_rest.py:59-65`에서 section 단위 taken, page 인자 부재다. `direct-fact-worktable.md:27,56-57,63,70`의 2~7쪽 원인은 관측 사실이다. |
+| **WARN W-2: 다음 쪽 비용·fill 순서** | `info-absence-spec-proposal.md:51,67-76,140-141,156` | 현 `Hub tools.py:2302-2312`에는 next_page_bytes가 없고 `SPEC-005.md:845`의 peek bytes는 **1쪽** 기본 응답만 뜻한다. metadata 계산/호환성과 실제 호출 후 전체 배제 중 하나를 공식 계약으로 선택해야 한다. 또한 초안 69행은 의도 묶음이 비었을 때만 기존 미수신 section fill을 언급한다. 현 006은 방문 노드의 아직 안 받은 section을 예산까지 채운다(`SPEC-006.md:283-285`); 의도 묶음에 fact가 있지만 필요한 다른 section이 남은 경우 fill 순서를 명확히 해야 한다. 기존 186호출은 1쪽 **ID 순서** 일치만 관측됐다(`direct-fact-worktable.md:5`). |
+| **PASS: 세 예산 소유권** | `info-absence-spec-proposal.md:19-23,45,67-78,129,143` | `SPEC-006.md:291-315,428-437`은 안전 8KB, 일반 20KB, cut 원문 15KB/64를 분리한다. 앱 기본값은 `config.py:72-95`에 일치한다. actual과 accepted 장부를 나누고 중복 fact에도 응답 바이트를 환급하지 않는 규칙은 우회가 없다. 현 서버 실행 설정은 확인하지 않았으며 `info-absence-spec-proposal.md:22`의 조건부 표현이 정확하다. |
+| **PASS: 부분 답변의 근거 범위** | `info-absence-spec-proposal.md:102-108,123-125` | `info-absence-remediation-plan.md:24-26,33-38` 및 `partial-claims-worktable.md:13-25`와 일치한다. 89행은 지원 Gold ID 미전달 84·전달 3·미매핑 2(`partial-claims-worktable.md:7-15`)이며 84개 retrieval 오류 확정이 아니다. Q017 RF/HIFU→소프웨이브, Q050 응급→통상 용해, Q147 토닝 owner→제모 PIH 전이를 금지하고 retrieval_limits를 사실 근거가 아닌 수집 상태로 둔 점이 맞다. |
+| **WARN W-4: 고정 50 승격** | `info-absence-spec-proposal.md:112,127,131,144,157` | `info-absence-remediation-plan.md:40-45`의 작은 50×1 후 239×3 순서를 지켰다. 고정 50 QID, timeout/오류 포함 분모, baseline 짝 비교, 안전·인용 위반 0건 추천은 명시됐다. `_RESUME.md:157`의 58/90/7 사용자 수락은 182×2 평균 기준인데 정본 `SPEC-006.md:792`의 W-4는 아직 열린 표기다. 50×1을 최종 합격으로 읽지 않고 정확성 최소 개선량·TTFT 허용 악화 폭을 사용자 결정으로 남긴 것은 적절하다. `_RESUME.md:136`의 fullrun-v2 안전 87.5% 미달도 기준선으로 보존했다. |
+
+## 구현 전 닫을 결정
+
+**계약·기술:** (1) T4의 R8 claim별 원문·출처, 대안별 값·출처·적용 쌍 연결, 생략 쌍 식별과 `pairs_more_n` 정본 패치, Q139 전역 메모 접근. (2) 관계 default/evidence/all 또는 선택 원문 모드별 예산 소유권을 005/006 규범과 trace에 반영. (3) next_page_bytes metadata의 정의·정확성·호환성 또는 호출 후 배제 중 한 경로, 미수신 section fill 순서. (4) question_targets와 target_key·facet 상태/empty 완료 신호, seed·enough·hard stop 상태 전이. (5) 추가 호출의 전체 deadline/개별 timeout 수치와 실패·지연 trace. 근거는 위 표의 대상·반대 근거 줄에 연결했다.
+
+**사용자 제품 정책:** 안전 첫 1쪽과 추가 페이지의 rank 갱신·우선순위, 안전 8KB 절단 뒤 일반 예산 사용 여부(`info-absence-spec-proposal.md:72,78,141`; `SPEC-006.md:295-300`); hard stop에서 답할 부분의 범위(`info-absence-spec-proposal.md:106,143`); 50×1에서 요구할 정확성 최소 개선량과 TTFT p50/p90 허용 악화 폭, 239×3 승격 결정(`info-absence-spec-proposal.md:131,144`; `_RESUME.md:157`). 기존 4걸음·20/8/15KB 변경도 사용자 결정이다.
+
+직접 근거 45는 문장 행(미전달 42·전달 1·Gold 미확인 2)이다(`direct-fact-worktable.md:3,9-25`). 42문항 개선, 5개 관계 문장의 5개 독립 질문, 대표 사례 통과의 전체 회복은 주장하지 않는다. 실제 회복 여부는 이후 개별 재생·고정 50 실행에서 별도로 판정해야 한다.

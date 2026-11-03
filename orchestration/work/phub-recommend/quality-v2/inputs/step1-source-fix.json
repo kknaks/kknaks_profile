@@ -1,0 +1,285 @@
+{
+ "generated_at": "2026-10-28",
+ "scope": "1단계 원장 반영에서 새로 생긴 원천 수정(기존 source-fix-list 와 별도)",
+ "count": 22,
+ "items": [
+  {
+   "id": "SF-D02-1",
+   "ledger_id": "M9-1-10",
+   "name": "텐쎄라",
+   "field": "원장 업체",
+   "now": "원텍",
+   "fix": "(주)아스테라시스 — 업체 표기 확인",
+   "why": "식약처 허가권자(국내 제조)는 (주)아스테라시스 · 원텍과의 관계 근거 0",
+   "decision": "D02",
+   "source": "company-relation-check.json",
+   "also_in_source_fix_list": null
+  },
+  {
+   "id": "SF-D04-1",
+   "ledger_id": "auto-M1-1775364775100",
+   "name": "에이비오톡신",
+   "field": "설명",
+   "now": "「에이비오에서 제조」",
+   "fix": "디스포트(입센) 성분 abobotulinumtoxinA 를 부르는 이름 — 제조사 설명 고침",
+   "why": "설명 오류 후보 — 에이비오라는 제조사 근거 없음",
+   "decision": "D04",
+   "source": null,
+   "also_in_source_fix_list": null
+  },
+  {
+   "id": "SF-D06-1",
+   "ledger_id": "auto-M2-1775364775108",
+   "name": "더채움프리미어",
+   "field": "제품 이름",
+   "now": "더채움프리미어",
+   "fix": "더채움 프리미엄",
+   "why": "허가 제허 20-527 제품명 「더채움 프리미엄」 · 보도 라인명도 「더채움 프리미엄」",
+   "decision": "D06",
+   "source": null,
+   "also_in_source_fix_list": [
+    "E8-003"
+   ]
+  },
+  {
+   "id": "SF-D12-auto-10-1774737181584",
+   "ledger_id": "auto-10-1774737181584",
+   "name": "올리디아",
+   "field": "원장 업체",
+   "now": "PRP사이언스",
+   "fix": "(주)피알피사이언스",
+   "why": "같은 회사 표기 차이 — 허가 업체명이 정식(D12 ①)",
+   "decision": "D12",
+   "source": "company-relation-check.json",
+   "also_in_source_fix_list": [
+    "E7-001"
+   ]
+  },
+  {
+   "id": "SF-D12-auto-M2-1775362477273",
+   "ledger_id": "auto-M2-1775362477273",
+   "name": "스타일에이지",
+   "field": "원장 업체",
+   "now": "비비안비",
+   "fix": "(주)에코라 · 제조 Laboratoires VIVACY",
+   "why": "같은 회사 표기 차이 — 허가 업체명이 정식(D12 ①)",
+   "decision": "D12",
+   "source": "company-relation-check.json",
+   "also_in_source_fix_list": null
+  },
+  {
+   "id": "SF-D12-auto-M2-1775362470502",
+   "ledger_id": "auto-M2-1775362470502",
+   "name": "프린세스",
+   "field": "원장 업체",
+   "now": "크로마비전",
+   "fix": "엠엔엘 · 제조 CROMA-PHARMA GmbH",
+   "why": "같은 회사 표기 차이 — 허가 업체명이 정식(D12 ①)",
+   "decision": "D12",
+   "source": "company-relation-check.json",
+   "also_in_source_fix_list": null
+  },
+  {
+   "id": "SF-D12-auto-19-1774737181584",
+   "ledger_id": "auto-19-1774737181584",
+   "name": "셀르디엠",
+   "field": "원장 업체",
+   "now": "한스바이오파마",
+   "fix": "한스바이오메드(주)",
+   "why": "같은 회사 표기 차이 — 허가 업체명이 정식(D12 ①)",
+   "decision": "D12",
+   "source": "company-relation-check.json",
+   "also_in_source_fix_list": [
+    "E7-009"
+   ]
+  },
+  {
+   "id": "SF-D12-auto-16-1774737181584",
+   "ledger_id": "auto-16-1774737181584",
+   "name": "라풀렌",
+   "field": "원장 업체",
+   "now": "삼양홀딩스",
+   "fix": "(주)삼양바이오팜",
+   "why": "같은 회사 표기 차이 — 허가 업체명이 정식(D12 ①)",
+   "decision": "D12",
+   "source": "company-relation-check.json",
+   "also_in_source_fix_list": null
+  },
+  {
+   "id": "SF-D12-tess",
+   "ledger_id": "M7-3-3",
+   "name": "테스리프트",
+   "field": "원장 업체",
+   "now": "리젠바이오텍",
+   "fix": "주식회사 테스(제조) · 판매 대한뉴팜",
+   "why": "리젠바이오텍 ↔ 테스리프트 연결 출처 0 — 국내 판매사 출처는 대한뉴팜(D12 웹 확인)",
+   "decision": "D12",
+   "source": "step1-d12-web.json",
+   "also_in_source_fix_list": [
+    "E7-008"
+   ]
+  },
+  {
+   "id": "SF-D13-리즈톡스",
+   "ledger_id": "M1-1-7",
+   "name": "리즈톡신",
+   "field": "제품 이름",
+   "now": "리즈톡신",
+   "fix": "리즈톡스",
+   "why": "허가 · 사진 라벨 · 공식 표기로 오기 확인",
+   "decision": "D13",
+   "source": null,
+   "also_in_source_fix_list": [
+    "E8-001"
+   ]
+  },
+  {
+   "id": "SF-D13-아스트로돔",
+   "ledger_id": "auto-49-1774737181584",
+   "name": "아스트로더",
+   "field": "제품 이름",
+   "now": "아스트로더",
+   "fix": "아스트로돔",
+   "why": "허가 · 사진 라벨 · 공식 표기로 오기 확인",
+   "decision": "D13",
+   "source": null,
+   "also_in_source_fix_list": [
+    "E8-006"
+   ]
+  },
+  {
+   "id": "SF-D13-스케나",
+   "ledger_id": "new-DEV-074",
+   "name": "스캐나",
+   "field": "제품 이름",
+   "now": "스캐나",
+   "fix": "스케나",
+   "why": "허가 · 사진 라벨 · 공식 표기로 오기 확인",
+   "decision": "D13",
+   "source": null,
+   "also_in_source_fix_list": null
+  },
+  {
+   "id": "SF-D14-lifsera",
+   "ledger_id": "auto-M9-1775363051791",
+   "name": "리프세라",
+   "field": "원장 행",
+   "now": "리프세라(별도 행)",
+   "fix": "리프테라(M9-1-8)와 같은 제품 — 행 합침",
+   "why": "원장 자동 병합 때 중복 생성(사용자 확인 D14)",
+   "decision": "D14",
+   "source": null,
+   "also_in_source_fix_list": null
+  },
+  {
+   "id": "SF-D18-haircell",
+   "ledger_id": "auto-M15-1775364775178",
+   "name": "헤어셀",
+   "field": "설명(원리)",
+   "now": "「LED헬멧」",
+   "fix": "미세자기장 헬멧(허가 품목 의료용전자기발생기)",
+   "why": "웹 헤어셀 S2 「미세자기장」 · 허가 H-Cell ST 의료용전자기발생기(D18)",
+   "decision": "D18",
+   "source": "step1-d18.json",
+   "also_in_source_fix_list": null
+  },
+  {
+   "id": "SF-AAPE-1",
+   "ledger_id": "auto-M17-1775364775191",
+   "name": "AAPE",
+   "field": "적응증",
+   "now": "「심부주름 개선」",
+   "fix": "병원용 화장품 앰플 설명으로(주름 개선 주입재 AAPE Progen 은 2023 취하)",
+   "why": "적응증 문구만 의료기기 쪽과 겹침(규칙 5)",
+   "decision": "10-28 승인 33",
+   "source": "step1-d20-31.json",
+   "also_in_source_fix_list": null
+  },
+  {
+   "id": "SF-dabox-1",
+   "ledger_id": "auto-M1-1775360538524",
+   "name": "다복스",
+   "field": "적응증 글자",
+   "now": "「눈\\ufffd리」(깨진 글자)",
+   "fix": "깨진 글자 바로잡기(원문 확인)",
+   "why": "원천 깨진 글자 1건 — _RESUME §1 「원천 수정 목록에 추가할 것」",
+   "decision": "_RESUME §1",
+   "source": null,
+   "also_in_source_fix_list": null
+  },
+  {
+   "id": "SF-vanquish-1",
+   "ledger_id": "auto-M14-1775361047443",
+   "name": "바넥스",
+   "field": "계열 · 설명",
+   "now": "M14 냉각지방분해 · 설명 「RF+석션」 · 사후관리에 냉각 PAH 문구 섞임",
+   "fix": "설명 ↔ 계열 대조 후 바로잡기(2단계)",
+   "why": "자동 추가(auto-) 항목 계열 오배치 의심 — 실제 제품은 확인 불가(D18)",
+   "decision": "_RESUME §2 10-27 2단계 메모 · D18",
+   "source": "step1-d18.json",
+   "also_in_source_fix_list": null
+  },
+  {
+   "id": "SF-vanquish-2",
+   "ledger_id": "auto-M10-1775361916636",
+   "name": "바넥스프로",
+   "field": "계열 · 설명",
+   "now": "M10 · 설명 「RF+EMS+석션」",
+   "fix": "설명 ↔ 계열 대조 후 바로잡기(2단계)",
+   "why": "바넥스와 같은 계열 문제 — Vanquish Me 와 기전 다름(D18)",
+   "decision": "_RESUME §2 10-27 2단계 메모 · D18",
+   "source": "step1-d18.json",
+   "also_in_source_fix_list": null
+  },
+  {
+   "id": "SF-D25-tune",
+   "ledger_id": "auto-M9-1775360627229",
+   "name": "튠페이스",
+   "field": "원장 업체",
+   "now": "클래시스",
+   "fix": "알마(수입 알마코리아 · 수허 17-350)",
+   "why": "원천 taxonomy 업체 표기 틀림(D25 추천)",
+   "decision": "D25",
+   "source": "step1-d20-31.json",
+   "also_in_source_fix_list": [
+    "E7-012"
+   ]
+  },
+  {
+   "id": "SF-D29-regen",
+   "ledger_id": "M5-P-1",
+   "name": "리젠ACR",
+   "field": "업체",
+   "now": "리젠바이오텍",
+   "fix": "REGEN LAB SA(국내 이력 리젠코리아)",
+   "why": "taxonomy 업체 「리젠바이오텍」 틀림 — 리젠바이오텍 허가 5건에 ACR 없음(D29)",
+   "decision": "D29",
+   "source": "step1-d20-31.json",
+   "also_in_source_fix_list": null
+  },
+  {
+   "id": "SF-D32-contra",
+   "ledger_id": "auto-M15-1775364775171",
+   "name": "컨트라투벡스",
+   "field": "제품 이름",
+   "now": "컨트라투벡스",
+   "fix": "콘투락투벡스겔(메디팁)",
+   "why": "식약처 · KPIC 한글 표기(D32)",
+   "decision": "D32",
+   "source": "KPIC drugcode A11AOOOOO9487",
+   "also_in_source_fix_list": null
+  },
+  {
+   "id": "SF-D32-laennec",
+   "ledger_id": "M16-3-1",
+   "name": "라엔넥",
+   "field": "제품 이름",
+   "now": "라엔넥",
+   "fix": "라이넥주(녹십자웰빙)",
+   "why": "식약처 · KPIC 한글 표기(D32)",
+   "decision": "D32",
+   "source": "KPIC drugcode A11AOOOOO6804",
+   "also_in_source_fix_list": null
+  }
+ ]
+}

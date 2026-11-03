@@ -1,0 +1,1435 @@
+{
+  "files": [
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-recommend/backend/app/modules/gold/build.py",
+      "sha256": "4a428aa4b2387ec770387f466e130df592cc18c84fcca19f8700c6e8a0bf8584",
+      "bytes": 103205
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-recommend/backend/app/modules/gold/facts.py",
+      "sha256": "ec1ab39999a202a74654f7ec78eb3df157c2e776ac79aa4046968c199fe713b7",
+      "bytes": 4790
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-recommend/backend/app/modules/gold/inputs.py",
+      "sha256": "86622e65660ec137d18d8c6e71a5ad5c74f69b8e9fb5064fb7d6ef45eef624f3",
+      "bytes": 2476
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-recommend/backend/app/modules/gold/memory.py",
+      "sha256": "f8c88fb155af6a40bcf444f7d207958670ff53c48566cf23bd702e9715ab48df",
+      "bytes": 6487
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-recommend/backend/app/modules/gold/tools.py",
+      "sha256": "ac1d2fbb58363907f37b3c5a774a50462252ea98bd4f3e4c822b851354106478",
+      "bytes": 148987
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-recommend/backend/app/modules/raw/config.py",
+      "sha256": "8224a09ec597890be83135357746c03546e6c0e0989789190b768e0cb0aaef95",
+      "bytes": 773
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-recommend/backend/app/schema/gold.py",
+      "sha256": "5ef1644348fead63126a9194f6c6182a00730bfc3ab0ea65ef3d63a4dcd71a18",
+      "bytes": 5309
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-recommend/backend/app/schema/graph.py",
+      "sha256": "cbb5c207ba7b8547543b8d7717273b8ce7d3425e9ea2b4934a07d258a0440a58",
+      "bytes": 6300
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-recommend/backend/raw-manifest.json",
+      "sha256": "6b5d501290c21cddcadb9b4b17b52f1c8433a5276b03ebbffd96b02cd9d4aaf9",
+      "bytes": 2117
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-recommend/backend/scripts/gold_build.py",
+      "sha256": "3a47fda3777ef1da8edfa01d1813c31aadca79cf31d3fbaadfba34b0014c6c29",
+      "bytes": 3357
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-recommend/backend/scripts/gold_ingest.py",
+      "sha256": "bbbeb1624cdc9bccad427382f59683904bc356232df5ca11e1729920df8ed348",
+      "bytes": 1974
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/anatomy-danger-zones.json",
+      "sha256": "34b2a2de737a2770828ce52e49c3f4f17dc54c21ad9754362c24ebf4fced69a4",
+      "bytes": 29555
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/combo-recipes.json",
+      "sha256": "1bb7c309e8ec72768ae9c5db94e1911188be240f4c7d770d54244008aeab0c94",
+      "bytes": 6486
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/complications.json",
+      "sha256": "7bf0573efa955225f63cc33d96b68a20693ddaac647ee2a0c679c1de32d3d932",
+      "bytes": 58333
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+      "sha256": "4e138ffb64414995483e4201396bc4f185ec34e4d150f825ec151b0fe07512e5",
+      "bytes": 21047
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+      "sha256": "964b729594b1756036c160823dc2e8d27ea38fe85d7aefb7559733522d7c53c2",
+      "bytes": 6390
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/extracted.json",
+      "sha256": "b829d499e3e3fd7f6119f2dc23092cf50f7c13e57ee18e9d3131a14c7e350f2c",
+      "bytes": 56589
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/literature-evidence.json",
+      "sha256": "6e179872a9c234491ca62c20899757fca3aa5388833aa6bc4d1ac28a032aebfd",
+      "bytes": 118979
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/market-pricing.json",
+      "sha256": "601d7e7b4db29731bf15304ff3ec9489ba38838e9f5ba2144c2c181cfd15e477",
+      "bytes": 12214
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/patient-education.json",
+      "sha256": "6c96520c514b76ef7f93d7f685e53023afe91b05133a9b9ca5db0a95d42d91ac",
+      "bytes": 26551
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pih-risk.json",
+      "sha256": "cb6e9305113d0b47f447eb314ce3bb34d0278bbc8bdf26bc3303d323028575c8",
+      "bytes": 11875
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/post-procedure-timeline.json",
+      "sha256": "d04c9fe494acd318d656f6dea6d19e33cb944a20440e312ca9bad41309c9742e",
+      "bytes": 20081
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+      "sha256": "0de87bff91f721fe685884025d31749017d44da250492b2db9d49109a61e4086",
+      "bytes": 14569
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-combos.json",
+      "sha256": "74453c724800975ef7f3fa8b81546fe69fa014bfbc7a8f7e60c75774c2cf2262",
+      "bytes": 25026
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+      "bytes": 73526
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/procedure-comparison.json",
+      "sha256": "eba7ae5af919ef77ff52cb07b2f6117b458751319f530f38cf30c61e94989571",
+      "bytes": 18002
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/procedure-profiles.json",
+      "sha256": "a1fe389d83430002f3d78e7c07ead4a7675d4afcfb68d28f9ac94042a5423f3e",
+      "bytes": 19548
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/products.json",
+      "sha256": "090955cccd35468ace2882024f0e0f216d3ebdb58b38d77693c0cf402338b854",
+      "bytes": 8322
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+      "sha256": "5b17a72f2ff31d29c081af7fbfaa63127799d5ef5210399af1e4c5bce8f9da19",
+      "bytes": 32905
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+      "sha256": "7e92abcd81b344cee947f001b809555e7549f1adaa4c622ef425a9cf55ee68f6",
+      "bytes": 660497
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+      "sha256": "70efff35f35a3400333bd64d02c101b212c31eb25f9081d8929e2431b7146bf8",
+      "bytes": 22887
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+      "sha256": "13e3d39658e53c717fa1a9f729f546e16dbeeb19efbe01110b83c74461ef6d86",
+      "bytes": 8964
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/semantic-build.py",
+      "sha256": "aef70db545de98e726b86cf98ff681b94bda27cb625c8c527497446cf57fc3e1",
+      "bytes": 78963
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/semantic.json",
+      "sha256": "6c43231e82939a444b89222ead4600a5313e5f1e016a5024ed4b925e89b124c3",
+      "bytes": 1367293
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot/.gitignore",
+      "sha256": "32dae3052f331ee34d628ef535709b301259a45df7c7522c4d35dcf49873f00b",
+      "bytes": 13
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot/__pycache__/common.cpython-314.pyc",
+      "sha256": "116187cad3d35052f1028e10d972d2a662736af7d13562e4e5a1ccdd36e066e9",
+      "bytes": 4941
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot/__pycache__/project.cpython-314.pyc",
+      "sha256": "eb4c691e05ca00574ee34609831174343d5e3060b9f74b7e0f5b90bd55b6625a",
+      "bytes": 3032
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot/__pycache__/schema.cpython-314.pyc",
+      "sha256": "ddfdc8e1f28172f078aa89318b1fb9b41aef1905b2d62a18ecd117b17687f761",
+      "bytes": 15374
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot/build.py",
+      "sha256": "ba506a6e88d9f3c4262349e4c7cda77f80edb616ea04eb3c1279cca668e4f731",
+      "bytes": 20355
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot/case-traces.json",
+      "sha256": "a80fc58b21fe5b2e87867ef0e2c772fb3598d80272cf64364e28f357391f3e3e",
+      "bytes": 99023
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot/common.py",
+      "sha256": "925a08f1274b3f678c554c770d996fea28c349f630a0328c5e1117deb63088cd",
+      "bytes": 1538
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot/gaps.md",
+      "sha256": "088623828f53c7e7510f2e9a77c232e6bfdad2872af9b1bf71e8ca00534287d3",
+      "bytes": 8116
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot/graph-projection.json",
+      "sha256": "83650583c313defdd70fcd5b49fce1073c8ee7c9fd724b0fa40a2882c6e6f82b",
+      "bytes": 1904053
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot/inputs-end.json",
+      "sha256": "33e4b8a39fecb499e935bbac11c9d015a2c5c79fee5556bc9b0c081b56c12eaf",
+      "bytes": 46642
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot/inputs-start.json",
+      "sha256": "33e4b8a39fecb499e935bbac11c9d015a2c5c79fee5556bc9b0c081b56c12eaf",
+      "bytes": 46642
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot/pilot.json",
+      "sha256": "1ed9bbb4111da7ebbffae0bbec2f28ff4ecefb3cc8eb73b79fe8262a77797186",
+      "bytes": 1897946
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot/project.py",
+      "sha256": "29465272b9ff7964be1830c4fd588c023b2db79b9bb565aa1151b62eae60273e",
+      "bytes": 1266
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot/report.md",
+      "sha256": "2764983aeca0568954de6d7d14cfb84b154af5073d90405ec8c9106c8b018596",
+      "bytes": 24570
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot/report.py",
+      "sha256": "1a35b49ea4cb9b096a91c7ffb66ea73fc11bc0434cd8efe0fbd59a0aac8029cb",
+      "bytes": 13127
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot/run.py",
+      "sha256": "275f60d3dd7047995e1b7683231f950a2c46f2eafc9d733fa722fbb55810a39e",
+      "bytes": 385
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot/schema.json",
+      "sha256": "34989d4ac6e3f5aa74ffb1e63bbc667e5145f2162390d6c760ba67e466e27c11",
+      "bytes": 49333
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot/schema.py",
+      "sha256": "1ba583a1f13a84093b77014299851832391646b594e827268efab762298b438a",
+      "bytes": 8252
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot/validate.py",
+      "sha256": "936837b6dc19c574c9e205c375e33a43792c5e641b49160797b1f5288aa991cf",
+      "bytes": 31102
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot/validation.json",
+      "sha256": "93973e213708662b08300cd8a50589913a87a56fb2f372b8479a815392d27bcf",
+      "bytes": 1498654
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-review/additional-probes.json",
+      "sha256": "4564ea19abaeac89d5eb4ffe41a5c1a629ff18f28c5e9e68bb085cfb57cddaeb",
+      "bytes": 3463
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-review/builder-repro.json",
+      "sha256": "fc25450cb91e93c13b56f26a0091d3f7f1b7f2f7fe586128a0cd07e6b8d08dd4",
+      "bytes": 50
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-review/existing-rerun.json",
+      "sha256": "975d9b2b5b2ecd7df540148170d0ec30b1cd21e5c614da85f6cea111b047fa0d",
+      "bytes": 1530042
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-review/immutability.json",
+      "sha256": "24f2e2370be594188074a54dde042268ef8c7d665788efa836d8308653fc46ff",
+      "bytes": 40
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-review/independent-source.json",
+      "sha256": "ae4c951bc106130fd0c0ba26a2e413f77e65b2b718a0195775ac407e173aa067",
+      "bytes": 254266
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-review/probe.py",
+      "sha256": "3f5bb0391fba9b7b69938b36020af3910577dd437d8d63d14dacf4dc5f69ee79",
+      "bytes": 6714
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-review/relocation.json",
+      "sha256": "d4924b2abeacff37ef6690496d9bb4aefe3a9f58058edc417ff738654ab45e0d",
+      "bytes": 941
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-review/report.md",
+      "sha256": "ecfc6ab8d3f340043c8386845cc161d43f36ea15b280a9af6a39e615e999b449",
+      "bytes": 20382
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-review/review-end.json",
+      "sha256": "12c43b55e8be131dd0f1a6eac54402c20b11b0698f9f671662fa019f1282d8c9",
+      "bytes": 52053
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-review/review-start.json",
+      "sha256": "12c43b55e8be131dd0f1a6eac54402c20b11b0698f9f671662fa019f1282d8c9",
+      "bytes": 52053
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-review/source_review.py",
+      "sha256": "1fd6b3b476a8516f8ecb92ad1b36821fc0030e12b7ad20c5713e2d079a7ee84e",
+      "bytes": 5926
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/additional-probes.json",
+      "sha256": "4d390f0372cb6c84ff0d64272faf5bdd8a90ecfce1d8300863ae3cff7bd2ba0b",
+      "bytes": 10834
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/build.py",
+      "sha256": "6ac8f07c83c4a069f031c7f89788626e01c621cbad13d854e3c62599eb924028",
+      "bytes": 20719
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/common.py",
+      "sha256": "925a08f1274b3f678c554c770d996fea28c349f630a0328c5e1117deb63088cd",
+      "bytes": 1538
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/contract.md",
+      "sha256": "a191739b17fe4d6b5809aa6d1d565f60c14d1436d2828bb8228d89dae4af47a4",
+      "bytes": 10036
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/existing-mutations.json",
+      "sha256": "f3aaa9cd2d873fccf7419e1992c123aa81ac3be129858678b07cb27695cb4bf9",
+      "bytes": 16475
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/finish.py",
+      "sha256": "1f67a8be3a1525517808bed3e0ce93a5185192ca12a4272e470e610077b90e6c",
+      "bytes": 4830
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/graph-projection.json",
+      "sha256": "9fc347462b83bf675d903de2355e76370ba2d3d190f82f2146d68e756a257a2f",
+      "bytes": 2162297
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/identity-tests.json",
+      "sha256": "50e5c6ab1a68f006f60fffaa78de21a3e2f806f9f4932f9ff5ff93791e26e083",
+      "bytes": 2139
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/identity.py",
+      "sha256": "dccf33fec8b68da3c72adaeb1addc31214b17cd610d40f10e3f1307bd1729ace",
+      "bytes": 2653
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/identity_tests.py",
+      "sha256": "0d10c49c127d6bd40bc4273c55e5206c6d2fe8420a8bf151fe5d16ad866f3085",
+      "bytes": 6089
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/immutability.json",
+      "sha256": "f738aca33b6a3ff8c23a33ece8b97ea504f8ac2efe4df40ec9ef30eb278c9914",
+      "bytes": 613
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/independent-source.json",
+      "sha256": "ae4c951bc106130fd0c0ba26a2e413f77e65b2b718a0195775ac407e173aa067",
+      "bytes": 254266
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/invariants.py",
+      "sha256": "ce5188297d0a431a91e167e8ce49e00949b50cc5f9788f3f9f048c83a9466232",
+      "bytes": 15495
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/migration-map.json",
+      "sha256": "6f893afe372196c6de3c2e0f6639fbad2065117147966c8ea621d9e16c55dbe6",
+      "bytes": 402753
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/pilot.json",
+      "sha256": "cc897e4cca29f0e50bab2605ee3ef06a7ab5fe7942544a2ca00b4b496f45c89f",
+      "bytes": 2042708
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/positive-controls.json",
+      "sha256": "6c74bfaa5ec764871454ce053ee8e7235c27912dfa4053ae466b011db323a5b1",
+      "bytes": 508
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/positive_controls.py",
+      "sha256": "b38faf7aef4dd28d72d2181271a1360ca08907afc8109378125a4b271eb5280b",
+      "bytes": 1228
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/probe-summary.json",
+      "sha256": "ffab32fc0c17eb65985519e7a03b9fa9480f20d9f87cf8d2527cd46462d06a98",
+      "bytes": 318
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/probes.py",
+      "sha256": "b6e04482536bd3c2fa24f2afe22c4fbea4ad497ff3cc80df78340b1ff2f2751f",
+      "bytes": 4552
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/project.py",
+      "sha256": "64074c1173248041b6829e0af337e7922e0dc13d4b71b71643575dac7f3f5fc7",
+      "bytes": 1697
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/protected-end.json",
+      "sha256": "d9e5f014aeb70f183811610f27eb6ec96d3ed38e24b0cf02a453362a8a03de79",
+      "bytes": 57256
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/protected-start.json",
+      "sha256": "d9e5f014aeb70f183811610f27eb6ec96d3ed38e24b0cf02a453362a8a03de79",
+      "bytes": 57256
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/ref-contract.json",
+      "sha256": "8afcda20841f3e85c1ab38a2c2f933ebca117da510ca8d3e2997a1d28bc86161",
+      "bytes": 102208
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/ref_contract.py",
+      "sha256": "597fd6ccda4b875e28990c491f6226a7f1b3b3e3410e283b129a928f1343b0f3",
+      "bytes": 3267
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/rehashed-semantic-probes.json",
+      "sha256": "dce81bb4d6c3be25fa7d19445329f13bfd9be4701208bd10a3dfa1bc9ebcc3b2",
+      "bytes": 8622
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/report.md",
+      "sha256": "2390b3b5207329e4d93b1e6065ba972438d2b06a7779a197f8ec5a5da45dedfb",
+      "bytes": 9626
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/report.py",
+      "sha256": "cd0129960f8f5440e131b0e13209a04254aedc7c14b7e10facbf6d2cf8153348",
+      "bytes": 10361
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/run.py",
+      "sha256": "d24d46b108324b5b766d59143107a6c525420bb9651adf97120f5e5691ca6ba6",
+      "bytes": 486
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/schema.json",
+      "sha256": "a4c762c10372c7dedbaf92f9c7e67aea198dbba35613d263c90dc45f6d250654",
+      "bytes": 66442
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/schema.py",
+      "sha256": "121ddca33bf3372c6662e071a3f2dcc9064ca02147705573ea95b883f702cfd9",
+      "bytes": 10237
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-additional-probes.json",
+      "sha256": "5da27dcdd10a206b68edd282e83c8f7c77ac2c88bec7a13105909a64bcf8ada5",
+      "bytes": 10917
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-baseline.json",
+      "sha256": "6a49b39b5901b6339c2a8cd7a9dbabcc0955b2b4ef2de92a8c0d34fb0290b9a9",
+      "bytes": 3189670
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-existing-mutations.json",
+      "sha256": "f3aaa9cd2d873fccf7419e1992c123aa81ac3be129858678b07cb27695cb4bf9",
+      "bytes": 16475
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-extra-probes.json",
+      "sha256": "406d039aa148feed44666126aa0d91933553943a204191433ffd9b5024659ffc",
+      "bytes": 22613
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-fix-report.md",
+      "sha256": "33df815bd28dd5808ad1ce2e16bd0cfe87eea3e3ec9fb0d1a7208c3604c20936",
+      "bytes": 10391
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-historical-rehashed.json",
+      "sha256": "8e2a2c5d2e2fa20b2ed8afc400a8af5901705821a6431073c286f1821db1f6d6",
+      "bytes": 21790
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-identity-tests.json",
+      "sha256": "50e5c6ab1a68f006f60fffaa78de21a3e2f806f9f4932f9ff5ff93791e26e083",
+      "bytes": 2139
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-identity_tests.py.execution.json",
+      "sha256": "e8517f6d4aa0ded315c18f131ec177ef4bb488df2d2f315e2d8258edc33dc51b",
+      "bytes": 157
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-independent-additional.json",
+      "sha256": "80f6ddfd576e97836f97e3bd4d1d4fe989fdc6df12a5ac0368a6629addc6ffa2",
+      "bytes": 5273
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-independent-source.json",
+      "sha256": "ae4c951bc106130fd0c0ba26a2e413f77e65b2b718a0195775ac407e173aa067",
+      "bytes": 254266
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-integrity.json",
+      "sha256": "44af0478e02f5e11693a7974471feef827cf522c98e876fab40851bf610f8192",
+      "bytes": 17446
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-patch.json",
+      "sha256": "3c7bd4a9eda2a5622108673cbb73d511e3ed8efb32164e54d374aed2d68f9a84",
+      "bytes": 28089
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-positive-controls.json",
+      "sha256": "6c74bfaa5ec764871454ce053ee8e7235c27912dfa4053ae466b011db323a5b1",
+      "bytes": 508
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-positive_controls.py.execution.json",
+      "sha256": "7feeab8aa9673ce0af535aaee8d7137e2812722247819ad50f0c3eb19f378f15",
+      "bytes": 513
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-probe-summary.json",
+      "sha256": "ffab32fc0c17eb65985519e7a03b9fa9480f20d9f87cf8d2527cd46462d06a98",
+      "bytes": 318
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-probes.py.execution.json",
+      "sha256": "ad4665b1a1cd9458eb3e50ecff5cc11620392aec8a1f933aceac20d749056a6f",
+      "bytes": 425
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-rehashed-semantic-probes.json",
+      "sha256": "0bef6a5a76ae5c915ebcfb821eeb881daad83c126865dd6907cd771a12d5e9e6",
+      "bytes": 8815
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-semantic_probes.py.execution.json",
+      "sha256": "680948b0eb79c842f2f58bb9d8b271e125289772c9de1bddbedea5540f823951",
+      "bytes": 157
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-source_review.py.execution.json",
+      "sha256": "e1884a8801c6f97834498d0971ad85728023cf0bad67b7deaab66b76aa2ba6cb",
+      "bytes": 140
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-start.json",
+      "sha256": "6bda5e68093bef5d295abc4d07365081659191e9d572873b50bdb35daf4e9bd6",
+      "bytes": 404071
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope-rule-summary.json",
+      "sha256": "8f149bdd0a26f38b344066a7080052fc1cc35e6839f31fe1369d55add9569a73",
+      "bytes": 484
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/scope_rule_probes.py",
+      "sha256": "05805decb9b03dd96aa55076bf0d2c428c8045eabe67660cc7f0d0fe01ce9f14",
+      "bytes": 8128
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/semantic_probes.py",
+      "sha256": "24e6a750138925f749e8d35a605aa6111902d73d7d21a29679e6fe2413589137",
+      "bytes": 3797
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/source_review.py",
+      "sha256": "e1c907dce12ef513d24928d906dec6fca7f02492b3e5690232448a6d8eb971ca",
+      "bytes": 5906
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/validate.py",
+      "sha256": "75a7f4cecefbfbef7d9e4d943c7719ce7fcea6bf98465bdf385b7de68292bd46",
+      "bytes": 32580
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2/validation.json",
+      "sha256": "d653238ec1bc0e55ce103abb33ff6f1dd24a1c223e93dbfaab4b81c56d007f60",
+      "bytes": 2879117
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2-review/additional-probes.json",
+      "sha256": "4d390f0372cb6c84ff0d64272faf5bdd8a90ecfce1d8300863ae3cff7bd2ba0b",
+      "bytes": 10834
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2-review/additional.py",
+      "sha256": "c2bc41c795c94043c4a2a7fdf750d70471ff40eabd416188205b195df9d853db",
+      "bytes": 2740
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2-review/baseline.json",
+      "sha256": "b04326d6b557fd99418949fc1630a50b50f9e781f05aeee075ca58e30bbdf8fa",
+      "bytes": 2879143
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2-review/existing-mutations.json",
+      "sha256": "f3aaa9cd2d873fccf7419e1992c123aa81ac3be129858678b07cb27695cb4bf9",
+      "bytes": 16475
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2-review/identity-tests.json",
+      "sha256": "50e5c6ab1a68f006f60fffaa78de21a3e2f806f9f4932f9ff5ff93791e26e083",
+      "bytes": 2139
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2-review/identity_tests.py.execution.json",
+      "sha256": "0d02778fae1d3202904e4ec1ce8692e9354dee6a64367307664be9b13c37f43e",
+      "bytes": 214
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2-review/immutability.json",
+      "sha256": "4b13955c15007cb7fe816be0f2cc4e3bb5edb434844a7dca9d244e6568f47988",
+      "bytes": 57
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2-review/independent-additional.json",
+      "sha256": "b233477529686cd759c6ae3d8307ac8cf07477ebc680b225f614b6ce233ec5bd",
+      "bytes": 2668
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2-review/independent-source.json",
+      "sha256": "ae4c951bc106130fd0c0ba26a2e413f77e65b2b718a0195775ac407e173aa067",
+      "bytes": 254266
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2-review/positive-controls.json",
+      "sha256": "6c74bfaa5ec764871454ce053ee8e7235c27912dfa4053ae466b011db323a5b1",
+      "bytes": 508
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2-review/positive_controls.py.execution.json",
+      "sha256": "32d135d4b1e600955e95677538ea7d16ae7acf63d7831eece5d07a799e389614",
+      "bytes": 570
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2-review/probe-summary.json",
+      "sha256": "ffab32fc0c17eb65985519e7a03b9fa9480f20d9f87cf8d2527cd46462d06a98",
+      "bytes": 318
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2-review/probe.py",
+      "sha256": "19392b9b417193572e49e472edab002657ba5dc41b41b100565dd9a887cec992",
+      "bytes": 2706
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2-review/probes.py.execution.json",
+      "sha256": "a608aaba91abc5cf9aae320e42ddc05f344f25c564f58bc4c9091b3399b33666",
+      "bytes": 482
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2-review/rehashed-semantic-probes.json",
+      "sha256": "dce81bb4d6c3be25fa7d19445329f13bfd9be4701208bd10a3dfa1bc9ebcc3b2",
+      "bytes": 8622
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2-review/report.md",
+      "sha256": "38751746ff60dd40285ad92324a5301867d4147bda6a2b0fff92f051f2ba4a1a",
+      "bytes": 19985
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2-review/rerun-integrity.json",
+      "sha256": "c9ce7e479b72c288c75a6ff989bdb5f75b997fd5a8b292a095e0c041b53fa62c",
+      "bytes": 4567
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2-review/review-end.json",
+      "sha256": "fb07b192d570e7ed8f34b8406e6c859c9d8cd24130d40a77db7b51b8039d7cc1",
+      "bytes": 64423
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2-review/review-start.json",
+      "sha256": "fb07b192d570e7ed8f34b8406e6c859c9d8cd24130d40a77db7b51b8039d7cc1",
+      "bytes": 64423
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2-review/semantic_probes.py.execution.json",
+      "sha256": "16521e111dde2e2619f545aecd6fd70bc56ecf9e4fe26ec511d5d336d3100f92",
+      "bytes": 214
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-design-pilot-v2-review/source_review.py.execution.json",
+      "sha256": "ea595c83c78f3ce6c7716e0cf948436523557173172a67d55c822b1160e16efa",
+      "bytes": 197
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-entity-graph-design/browser-check.mjs",
+      "sha256": "c4e4796f8d509f158d76aa0e6f1699df7b89d52186ed1a15a41ebc61f51bd43c",
+      "bytes": 6158
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-entity-graph-design/build.py",
+      "sha256": "64c65bd063c2a42fc17d71d6874c4accb95d6284b5dc312b79a75e26c3166543",
+      "bytes": 77818
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-entity-graph-design/design.json",
+      "sha256": "d742c65d072a48e705a26b9ce6daf23ed23441437f7c7441967b8b8d73f7e382",
+      "bytes": 4844165
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-entity-graph-design/evidence.md",
+      "sha256": "77f8549220438462c65f39b56523631e832ff6aab51248b47e416712cc02c124",
+      "bytes": 51428
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-entity-graph-design/index.html",
+      "sha256": "2492eeddced39587cafae0f6ba00be32890952760a3cc6e74a854a15a83ef371",
+      "bytes": 3593936
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-entity-graph-design/validate.py",
+      "sha256": "27e99f32a8c5afea73eb5ff79c732f5d691d36da1cf7ec46c1bc5ca6455cb90f",
+      "bytes": 6089
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-entity-graph-design/validation.json",
+      "sha256": "139871cf7faf5a06ef18024944e73a6f5ab9399411f693419f1db24de3449d91",
+      "bytes": 200854
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-origin-structure-audit/audit.py",
+      "sha256": "167d35a1c39f0c850bea3c8a11b8e156d3392ef378ca89c17b221b59cb228b02",
+      "bytes": 32317
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-origin-structure-audit/curate.py",
+      "sha256": "cea65166787af8cb16b6b1860f783976671565d0e5ad0cf8bfc8d21e5dcb208d",
+      "bytes": 16895
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-origin-structure-audit/decision-uncertainty-hits.json",
+      "sha256": "e882381b305f338c282b972e82322ed51f7fcc34afb13d71eb549dfc8baab6f3",
+      "bytes": 275349
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-origin-structure-audit/direct-comparisons.json",
+      "sha256": "1e0cda4f98772b12f0e63656f661bbce0050ad0068e590c01ebe61a96629ad4b",
+      "bytes": 2260271
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-origin-structure-audit/duplicate-cc-evidence.json",
+      "sha256": "268edefb5df91ea9f992df3b8d03ab2f9307ec931078a9de65ae40c86069a35e",
+      "bytes": 9028
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-origin-structure-audit/field-census.json",
+      "sha256": "a8659d944cd70b78b7226ccc57de1db3a926959a0692edb863098510d5bfbd35",
+      "bytes": 4997270
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-origin-structure-audit/id-design.json",
+      "sha256": "af7d3d28007b0f95f3a4b7c090016a54fb2c57fe2a5836524aacaaf70a2ef06f",
+      "bytes": 4053
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-origin-structure-audit/identity-collisions.json",
+      "sha256": "5b5723c1fefd8afa2a1d0c3165a19fe6c2e569b0721126cb3d0e8f10f5f8c911",
+      "bytes": 2808
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-origin-structure-audit/inventory.json",
+      "sha256": "0019dcd1fafd8e5e2c8c188f7325b42489e0e7592be3b7beb7912cf2a1f9ec57",
+      "bytes": 54791
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-origin-structure-audit/issues.json",
+      "sha256": "d1550ec5ecac9238b885d03c9eab2b2fc812e2b8acfd0b4a4f655146dc23916f",
+      "bytes": 150592
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-origin-structure-audit/normalization-collisions.json",
+      "sha256": "2b92c49526d84d199a70094daff64598ba2863e2e7f6ac8d819dfe3dbe1f3a8b",
+      "bytes": 2635
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-origin-structure-audit/propose.py",
+      "sha256": "5082f8a5304dfdba19d7ff9a6c40634b627da45ee232525a9f43f0f4ebf6daf6",
+      "bytes": 17786
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-origin-structure-audit/provenance-coverage.json",
+      "sha256": "05f97705553a7ab2cd4ca424a39b84667ccab122abc83ac5f0447a6c262ee5d7",
+      "bytes": 90274
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-origin-structure-audit/report.md",
+      "sha256": "d9d2304c12bcdffb55f51862221a2e261a520fd916ad7aef5e0ddaaf7db5ddea",
+      "bytes": 41290
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-origin-structure-audit/schema-proposal.json",
+      "sha256": "58505c92ae726c662a3377d20350bbf3fc49ff055effc69576f0fdb50a209204",
+      "bytes": 31711
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-origin-structure-audit/stage-metrics.json",
+      "sha256": "bd2a67f8c6d4b7859091db407ddace0c0b91d04e53491db81735db559b02e6cd",
+      "bytes": 36729
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-origin-structure-audit/step8-origin-locators.json",
+      "sha256": "d3b674e4d49a3eb471948a66e2593425f727223f8400c310ddf7679a6424a7f9",
+      "bytes": 180789
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-origin-structure-audit/uncertainty-hits.json",
+      "sha256": "6dee110a7306babc09abe6784f08050147719312717256c602306b83a1c72ae3",
+      "bytes": 2229771
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-origin-structure-audit/verification.json",
+      "sha256": "f1a2eff877514e2b52401b03230c8ba578d3b088dd7a27f83b08a26cb5680050",
+      "bytes": 60176
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-origin-structure-audit/verify.py",
+      "sha256": "93d15b9197d8ec1c4d78bb5364e8f796d81c68640a13960f85e97ef7d72a056c",
+      "bytes": 3545
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/source-map.json",
+      "sha256": "791134cc920115704ebac4b08fc5e1d9e4a03f16f586412fba0818625da5362a",
+      "bytes": 377868
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-apply-log.json",
+      "sha256": "baf69503a6ff2608af2138a33efb37eb100a771344e90772a42db645e5e5bf35",
+      "bytes": 122922
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-apply.py",
+      "sha256": "965f3451aa9853b5e17bafcb076ca9b5fa7b4caff8aa1f26519d724bf4257e83",
+      "bytes": 121497
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-cancel-recheck.json",
+      "sha256": "f59f726679d1333923d46dbd8f6025c1f1c1182d852aca04bc364ef85c091bf0",
+      "bytes": 30029
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d09-web.json",
+      "sha256": "81a99c318b78a57642a2001728e80dc60bdc2e56b6f771f90dd5a3844c33c7d4",
+      "bytes": 25626
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d12-web.json",
+      "sha256": "5a4377138ca6b364f5c02202341b71f00da33d4d4eedf9542e713eaba46621d4",
+      "bytes": 21607
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d15-web.json",
+      "sha256": "d89b0082ed43b0e17a3e44fbb349753ae6f2bdeacc562c9c7f8f59f60ecc9a7c",
+      "bytes": 18315
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d16-web.json",
+      "sha256": "2f11cd05098d23f28f6eca95437947bd544665e9c6d4b2f2f4a68ce92a4178f6",
+      "bytes": 6057
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d17-2.json",
+      "sha256": "f7d09123491f31a69910c54fb25de5332c459aa790aa642ad96f7957e41e5e5d",
+      "bytes": 10190
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d17.json",
+      "sha256": "87ad3c49047ea02acde8c8a61e5d825ce1ae1b221636434f7403010cf39ad265",
+      "bytes": 11501
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d18.json",
+      "sha256": "565182ff248994780b5a3db2d0d782816e257f4d7db60791082282278d21934d",
+      "bytes": 35217
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d19.json",
+      "sha256": "0229fb85e518382d9dbac55743d6d9268017d768478fc3a0b2955fa2b1b15868",
+      "bytes": 30114
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d20-31.json",
+      "sha256": "70bb15eb58ca1795e044c5b12b71d28706119d688a5df73823c49931918be2eb",
+      "bytes": 162281
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-decisions.json",
+      "sha256": "c80fcb9bef132ec0fc7956d4c76efe4bd1cf208496fbfdb324a96ac7b9a1a4e2",
+      "bytes": 163650
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-domestic7.json",
+      "sha256": "45c558d5ff2cecac5af0b9d1574dc7fd7266bc560fb7cef2162267978a60715d",
+      "bytes": 14694
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-export-check.json",
+      "sha256": "df54ebd658872f279bc83ea51594f11676907464954445f7bab2c0e81644799f",
+      "bytes": 171512
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-export-recheck.json",
+      "sha256": "db0a9debf27fdef9ad3de7170edaba99657cd459c51f654857e58db7252ee40d",
+      "bytes": 47505
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-kpic.json",
+      "sha256": "6c23db8436729ddc96dc5cbbefc4b8d55b12cc65ed990259796d78561f09166a",
+      "bytes": 43443
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-n45-check.json",
+      "sha256": "1357bd589e77226c31ff5360dd2a8af33c93dc2925b91755583b27fde0429d14",
+      "bytes": 23938
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-products-A.json",
+      "sha256": "88c8f158a6ecb23ccdd99f0a7d9def210060628cb3f11d48e59b83024627deba",
+      "bytes": 682203
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-products-B.json",
+      "sha256": "c23c640524049029e08ef190fe4802c5a7095a9143faf0c079980eef7a3f04ac",
+      "bytes": 514967
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-products-C.json",
+      "sha256": "8509cd15b7eb774ebde88f5819bc0b1f6f07173cf0f0230a3dbccfc52efadb3c",
+      "bytes": 264736
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-products-v1-frozen.json",
+      "sha256": "a54facb305240468750a2fe4dd813ca0f557dd7545c513517fc7338fcf435f61",
+      "bytes": 1658968
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-products.json",
+      "sha256": "41128c7d5bce171bb186afdf13ec76d6f98adb092efb34be1af55461792354fd",
+      "bytes": 1830115
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-source-fix.json",
+      "sha256": "40cf271ba9a066cd592d07a5cd9f8b80d99ba164bbfb18fb7ac2461562bd776b",
+      "bytes": 9093
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-step5-decisions.json",
+      "sha256": "7b68c082945f797a53b338f78fa0186094b29a473fe6f68f14b450a4b329ba91",
+      "bytes": 3108
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-apply.py",
+      "sha256": "4015505f29e680ec1039cb4825a54cbeceacc409851037e4148312d2445beb85",
+      "bytes": 51891
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-families.json",
+      "sha256": "42eef4dc7dc70b264cb855cb7563863f4ba6cc901b36133132659d66c963c3a4",
+      "bytes": 450121
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-families.v2.json",
+      "sha256": "02600fee48f00334eeee188a7faec8defd30eaae67451a1864cab11a5e1fd697",
+      "bytes": 287168
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-families.v3.json",
+      "sha256": "09e0e7c2433113dcdeaf9935a5cc17794990f45f299705642cd9745a921d592e",
+      "bytes": 309414
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-open-resolve.json",
+      "sha256": "ccedc7370a9d71fba3cfc42bd226087fba0a28350e32a1556d4d17476baeaddf",
+      "bytes": 48611
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-research.json",
+      "sha256": "5fd185211e8d80d5ae39676580765f4d79a80b0a5cf9cfe4e15e19d47011a48a",
+      "bytes": 232245
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-step5-decisions.json",
+      "sha256": "03b48c98c05536220c50a7f7977bbc6726f471aeccd36cddfdfe60e77183894f",
+      "bytes": 35549
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step3-apply.py",
+      "sha256": "47880b5615ad18a8ec572cc78a9657ceace0ce035ba69442e164c65a60bc0ade",
+      "bytes": 28445
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step3-decisions.json",
+      "sha256": "2519fac5ac527f6be141f72551e025d1d7f37dcd4038f3f620d56049cb11af1e",
+      "bytes": 311097
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step3-lexicon.json",
+      "sha256": "c3b4effa7662af8cfe92cc82b02759cd20829ac6d98ea890071daf2fd147650b",
+      "bytes": 54318
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step3-research.json",
+      "sha256": "11a6abba3ca0b8a145a5ff7974b252017cce90a63ec6f631de8fccbd1d747891",
+      "bytes": 761184
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step3-sites.json",
+      "sha256": "f92f4a8411c15cd15275b435fff6893a32df5502514533c859340d629de00d40",
+      "bytes": 270807
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step4-apply.py",
+      "sha256": "61ba9fa55fd82935d06692aae238ba83e73fe81b1f61cf8c9931806b013763af",
+      "bytes": 28551
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step4-decisions.json",
+      "sha256": "1114e9160a9e429289c31043d638d67abb06a449bcd3fce60eece9348af0ae2c",
+      "bytes": 174496
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step4-research.json",
+      "sha256": "2abeb3ac4990deec60a4576cc5525a968a5c375d046d920dbcab8431c062e851",
+      "bytes": 164492
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step4-techniques.json",
+      "sha256": "cc6c0291a0b3506abf72982e5b5151eb0c9ed1a72102c62bcecf601aee705038",
+      "bytes": 225390
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-apply.py",
+      "sha256": "fe9322fcc8c880cae4cba57524b8ce6e1220a63c0ce8d6ce29ec86e4714e8061",
+      "bytes": 72159
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-decisions.json",
+      "sha256": "a638bb256afc012920b0134c790d69df5a1aae9b325d8895767f06210a1e6886",
+      "bytes": 405661
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-research.json",
+      "sha256": "2f714c5f066ea3a2d97818db88212c805583e8477fe73c9d7d9c2493240d9669",
+      "bytes": 743000
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-research2.json",
+      "sha256": "85ee413db6c35aa5e7186c4724fb91070384709f0f28b3a929aaf76a3006c999",
+      "bytes": 44324
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-units.json",
+      "sha256": "38bcc0853547edb751cdb6c8c2e13b6525ee4999c9d4346d304574dd3e2b6cd1",
+      "bytes": 1847285
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-units.v-pre7.json",
+      "sha256": "02ff6cfd759bcf505b2c54805008f14ee5c80650b51b3aa8578ce19b864b756f",
+      "bytes": 1224695
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step6-apply.py",
+      "sha256": "3abb712e038be36f47ab962eb6a16e08771d390fc09b73f237d2b8105310c84a",
+      "bytes": 17528
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step6-decisions.json",
+      "sha256": "6485fa8f8a5a94915e6e5e8fb9eee2b95c0c41913a9bc4923f3752c1c017d055",
+      "bytes": 40201
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step6-packages.json",
+      "sha256": "293b50e565ddf61e62ece45c0ab002d4ee55393c11339dac5dcecac10455e811",
+      "bytes": 74738
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step6-research.json",
+      "sha256": "87fda6510c40a70336f946e9b03b55105f821bcd48ba423a3d54b7b17db9eddd",
+      "bytes": 89768
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+      "sha256": "67b3cd578527521112b8b67960c8c4b359030cd1bd03ec27337c05e24595613d",
+      "bytes": 135449
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+      "bytes": 975907
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-decisions.json",
+      "sha256": "ae73f09bced8c13b6559c2ff30a74bbec79e7ccd5b84b409b2f3269f36f1edb6",
+      "bytes": 84265
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-research.json",
+      "sha256": "0303ba5d4b1af7b33d527e2be8d2f1bc179ae5b5d9849b796b7e865c453ddbc2",
+      "bytes": 660306
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py",
+      "sha256": "fa1a3250cb4a71682957e26f71f1ace0f110132b1e867e6162aedb3a7036ff9f",
+      "bytes": 164592
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-decisions.json",
+      "sha256": "2fbeb45c010185e6471ee330938d21d3df0b2a04de3c4a25a0390061c2076440",
+      "bytes": 69118
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-relations.json",
+      "sha256": "4f91a2abe7e3aae2a1b5beedf9902daac76873df221eaf6f61d59cf3fc8bbb11",
+      "bytes": 2657176
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-research.json",
+      "sha256": "8bc32ce8527469676aeb473a2433ece92c84db264ea0728f9ca0cb0f8ed71aa7",
+      "bytes": 1360886
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step9-apply.py",
+      "sha256": "d51265e14d7d618c5a4b6e2aedc06b2905b4713c6191bf4c53a2518353488c19",
+      "bytes": 27876
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step9-decisions.json",
+      "sha256": "7a9a52e09ac266d45e3473bbb396b753ec0e3149378b7dac1c1320a02e81d341",
+      "bytes": 16358
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step9-effect.json",
+      "sha256": "077405ab97459d354edaa46c4d0ca78e067fbb557e02e502dec9664494d1e90d",
+      "bytes": 33963
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step9-explanations.json",
+      "sha256": "5d394f87dca53602902a557e20c0a9cfe33efd485ced27901929bbe26c635d1b",
+      "bytes": 5872047
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step9-research.json",
+      "sha256": "624ee14477d22e82f30cd607bb64e19f63b46ea2549607f1b83ac7119a666d90",
+      "bytes": 433272
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/README.md",
+      "sha256": "de0df28712b314c00720a40de347b6114feb87c741f775ccac656b25d573ed6c",
+      "bytes": 56944
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-concern-check/SKILL.md",
+      "sha256": "b5962f7431737dfc565a44c974c29024c610cf1e4c63a77037c9ef482f11c6e4",
+      "bytes": 48520
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-concern-check/references/concern-rules.md",
+      "sha256": "a1d7d38d443371b4c61954c097c973813bd6faa1dc6e7ca1ae38a34b3a142c7f",
+      "bytes": 18719
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-concern-check/references/mistakes.md",
+      "sha256": "d90f681d1f51e7e316eba6ca1539b2fc0114af5d9d31cbe8477a5679baec39c9",
+      "bytes": 11992
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-concern-check/references/record-schema.md",
+      "sha256": "11f15a37830f34ca80a349f67f612070416d4ae6a3ee0e321806ac45e573db3a",
+      "bytes": 11138
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-explanation-check/SKILL.md",
+      "sha256": "50f67dd61b085c75cb4882b6cd3b19702e91c6d96bae52c1ca38fa68e6b27099",
+      "bytes": 9728
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-explanation-check/references/mistakes.md",
+      "sha256": "789cfbb4b3aa8709ddd067577e863b1a0b0c1d7263a9cd990f05e82f4656a617",
+      "bytes": 2423
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-explanation-check/references/record-schema.md",
+      "sha256": "6fafb306b0050844ab6d7d277e66f9ac98ff7d73ade8d9e1b84fd6946fd6a23e",
+      "bytes": 3289
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-explanation-check/references/rules.md",
+      "sha256": "26f737f92ba0d7b93641ce57bc50eab5a97d41cd2fff2eebe94c164c58d06bcf",
+      "bytes": 4110
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-family-check/SKILL.md",
+      "sha256": "63583e8eb9e65ff7b5c2eaa699dd01c56c9337e01cc8d666cffda49b06805cc0",
+      "bytes": 22469
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-family-check/references/families.md",
+      "sha256": "52b306b05346241ada984a08819d8ebb8d94f67f875fa30bd55c3d268b80045a",
+      "bytes": 35563
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-family-check/references/mistakes.md",
+      "sha256": "a8098a1e321859b5562ad88778427fbca880fed6f48112a9090c33b35fac45b2",
+      "bytes": 6690
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-family-check/references/record-schema.md",
+      "sha256": "f5909d421d44f87735042df526ce7528fc379d2df19d517a80c11d3dc296de51",
+      "bytes": 12022
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-package-check/SKILL.md",
+      "sha256": "c315d882569ff35001c40539ec3f92764e41fcf47e89257ce89b56f1c1220db6",
+      "bytes": 18813
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-package-check/references/mistakes.md",
+      "sha256": "8db4351b521e9713a7a1bd539eedbdbeead109500d156db7ea11d2f486b884b9",
+      "bytes": 4501
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-package-check/references/package-rules.md",
+      "sha256": "1b0ccbe7bb28db91fdba0d5846c0501dafb93fc89d7878bec60653d75f495f4f",
+      "bytes": 6256
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-package-check/references/record-schema.md",
+      "sha256": "0e0cee5e5cf4a261cde10fe46acdcc5b3c515abefbf24db27f02d80c5b6521ed",
+      "bytes": 6458
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-product-check/SKILL.md",
+      "sha256": "77c4aab9f54f87ea769eaf7c45872a4b7a6da83261d78e0e3329d947a445f0ed",
+      "bytes": 9896
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-product-check/references/mistakes.md",
+      "sha256": "6ed86fe32dbd3a1ede61bda62e2f918b30217679c3fab9527f7f058d240ada1d",
+      "bytes": 4361
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-product-check/references/query-patterns.md",
+      "sha256": "afc20cc77eff303b52dc9de6f8e7ecb143ea2acd6b18cdfda7570befbeb2c683",
+      "bytes": 6012
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-product-check/references/record-schema.md",
+      "sha256": "858e01899f522431a225f4db97b8c4fc1651d49405d5d7c574627ba74bddec95",
+      "bytes": 12087
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-product-check/references/rules.md",
+      "sha256": "073318f48fad589c6723515a1c5ba40f8df687ff3b9bc6a319a2acd2dbdad23a",
+      "bytes": 7900
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-quality-eval/SKILL.md",
+      "sha256": "2d1df30a7b0f9ee3b9fb47f2fc56c6af654bdea5bfc9b1ccb65467c6e98c2e39",
+      "bytes": 17685
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-quality-eval/references/measures.md",
+      "sha256": "9f5f092aacb111ab40b44267c005244131f4c99a4f7f3cc63c794a7bfb70f1b5",
+      "bytes": 6178
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-quality-eval/references/mistakes.md",
+      "sha256": "08b86afe5928f638ff9fbe07b00158fbb370dd5e056cacc05d98eddff81b780f",
+      "bytes": 4667
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-quality-eval/references/record-schema.md",
+      "sha256": "b1d5545edc9e1509d3e81f24ce0d6d5f665e5f81cd0ac662776a03bc0d6e1bae",
+      "bytes": 5324
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-relation-check/SKILL.md",
+      "sha256": "b16f000661e126cb294d7a7ba4a152193de74b7762e42c1524722637597febb0",
+      "bytes": 21664
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-relation-check/references/mistakes.md",
+      "sha256": "1a0cf9407bcd09e21249125b723a8483f0403dda6f5ef41ff4bba75b1ed38f4e",
+      "bytes": 4732
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-relation-check/references/record-schema.md",
+      "sha256": "3ae2c78e9d7107eababc56a549b36541fae3576bf1bf32a00be1912240701d78",
+      "bytes": 8505
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-relation-check/references/relation-rules.md",
+      "sha256": "2e8b81ee286a1862634cdc7a2cea8ddeeab845a7bc76cfe15e29bcb0725eb64f",
+      "bytes": 8400
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-semantic-check/SKILL.md",
+      "sha256": "37adc29fff223f9617a30718cdc27b322eef7f0fc9d24acff314d9896ce1f500",
+      "bytes": 20257
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-semantic-check/references/mistakes.md",
+      "sha256": "e75e207d9cf36cdf6b3790c6b83e28d9aa76e556924667db4f43f0d9d05fce37",
+      "bytes": 4483
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-semantic-check/references/record-schema.md",
+      "sha256": "1f1e62acd8753c015fa331f57078807ab9a260bb64122477555887ed3884734c",
+      "bytes": 5247
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-semantic-check/references/semantic-rules.md",
+      "sha256": "bcaa87d07502d40250972daf3b1394d88683d0171e53dfcfc564f6af7c10f516",
+      "bytes": 6610
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-site-check/SKILL.md",
+      "sha256": "acb9bd3eb3bae8f1814a352942f23bc721226d228d55f32e957aa6d2a99b4fc2",
+      "bytes": 23031
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-site-check/references/mistakes.md",
+      "sha256": "cb16a0b37b56b7d64df9868f1506d67632fb8f8471ea2bd1102d43edc6e28d96",
+      "bytes": 7671
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-site-check/references/name-fields.md",
+      "sha256": "b3254f24c05b05512f0f965ce741e854e60c97f23b6a7b1fc1278e902b31b7ce",
+      "bytes": 4543
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-site-check/references/nodes.md",
+      "sha256": "825c353c87fb53546c7ed36dcd2d80507fcc6224a549b851ee906ee3e08ebf5b",
+      "bytes": 25680
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-site-check/references/record-schema.md",
+      "sha256": "c0b79c311c13cb5996a2b039c6fe90dd045600d812842f7d12ab47e63e29cc1e",
+      "bytes": 13446
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-technique-check/SKILL.md",
+      "sha256": "c9b1e9ef73cda866d5aca77c5a1129c92205243ee935e23178324c5553dd5d51",
+      "bytes": 24106
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-technique-check/references/family-defaults.md",
+      "sha256": "234083bffa6d6d6f0dd582c6f3ab7d62d3b1d176227c92ed7aec878d33719bf0",
+      "bytes": 5207
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-technique-check/references/mistakes.md",
+      "sha256": "0e4f5028920fbcaa293272617291aceb41f50751dfe26a6c20bf90d936033651",
+      "bytes": 7562
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-technique-check/references/nodes.md",
+      "sha256": "045fee600d9bd45e6803fb593fbf61e530a7487cf1fbe34597811cbfdcfc4b73",
+      "bytes": 13930
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-technique-check/references/record-schema.md",
+      "sha256": "6b88e0d615a6a379260d9e3703d16f4db02681fe105bd22139001c3ad55fb4bb",
+      "bytes": 20704
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-technique-check/references/value-dictionary.md",
+      "sha256": "abaa14de4ba600c79ef47480104575b4dcfd09013d96163a9d93f553cf42c037",
+      "bytes": 8710
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-unit-check/SKILL.md",
+      "sha256": "1de4ef185f79ed227276514f2fd5e2c40ac11e2876a28cdede98e30268891327",
+      "bytes": 31225
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-unit-check/references/inheritance-rules.md",
+      "sha256": "9caefaaf8a648d54b595c0c11a8d982d0b7fe741b14712e90123053164a40371",
+      "bytes": 10842
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-unit-check/references/key-rules.md",
+      "sha256": "7da9fb51f302687041829c948449b76bb37df83e50138137dedc62bf6a89fc44",
+      "bytes": 10170
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-unit-check/references/mistakes.md",
+      "sha256": "09cf3bd6ee85815e50b08d51392e0fe02961a9d9314dfe976a761758e5147583",
+      "bytes": 10641
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-unit-check/references/origin-questions.md",
+      "sha256": "0949b349cc946958c9c4391d7d5eb6859352691aa0ddee479e4acaae3ac8e665",
+      "bytes": 5454
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-unit-check/references/record-schema.md",
+      "sha256": "a1fd741bd334708ee9bc2ec8602d60fbf72fc024e6dd52e9d50aa6fc3c8c4f5e",
+      "bytes": 12248
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-11-03-procedure-hub-data-and-traversal/WORK.md",
+      "sha256": "e917b7e95c0b64cf1bb0c499ea505a71656a492b550457db70515d5744cb6a9a",
+      "bytes": 11999
+    }
+  ],
+  "count": 286
+}

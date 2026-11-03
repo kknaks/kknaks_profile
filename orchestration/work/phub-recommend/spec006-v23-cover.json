@@ -1,0 +1,495 @@
+{
+ "build": "b031371c4c69cea1",
+ "rows": [
+  {
+   "i": 32,
+   "intent": "I-08",
+   "no": "Q020",
+   "owners": [
+    "procedure_relation"
+   ],
+   "place": "어느 노드 섹션에도 없음",
+   "start": "product:auto-40-1774737181584",
+   "v22": false,
+   "v23": false,
+   "why_005": "방문 노드에서 1홉"
+  },
+  {
+   "first_section_max_2": false,
+   "i": 36,
+   "intent": "I-05",
+   "no": "Q027",
+   "place": "0홉 · S 섹션",
+   "sections": [
+    "timeline"
+   ],
+   "start": "unit_procedure:U5-001",
+   "v22": true,
+   "v23": true,
+   "why_005": "방문 노드에서 1홉"
+  },
+  {
+   "first_section_max_2": true,
+   "i": 63,
+   "intent": "I-04",
+   "no": "Q055",
+   "place": "0홉 · S 섹션",
+   "sections": [
+    "disclosure"
+   ],
+   "start": "family:M2",
+   "v22": true,
+   "v23": true,
+   "why_005": "방문 노드 · 그 section 안 고름"
+  },
+  {
+   "i": 65,
+   "intent": "I-07",
+   "no": "Q056",
+   "owners": [
+    "procedure_relation"
+   ],
+   "place": "어느 노드 섹션에도 없음",
+   "start": "family:M2",
+   "v22": false,
+   "v23": false,
+   "why_005": "방문 노드 · 그 section 안 고름"
+  },
+  {
+   "hops": 2,
+   "i": 71,
+   "intent": "I-07",
+   "no": "Q064",
+   "place": "2홉+ · 대기열로만",
+   "start": "family:M4",
+   "v22": false,
+   "v23": false,
+   "why_005": "방문 노드 · 그 section 안 고름"
+  },
+  {
+   "i": 85,
+   "intent": "I-09",
+   "kind_n": 42,
+   "kinds": [
+    "procedure_relation",
+    "product_family"
+   ],
+   "no": "Q070",
+   "place": "1홉 · 순서 표 · 앞 4 밖",
+   "start": "family:M4",
+   "v22": false,
+   "v23": true,
+   "why_005": "방문 노드에서 1홉"
+  },
+  {
+   "first_section_max_2": false,
+   "i": 97,
+   "intent": "I-02",
+   "no": "Q078",
+   "place": "0홉 · S 섹션",
+   "sections": [
+    "overview"
+   ],
+   "start": "family:M9",
+   "v22": true,
+   "v23": true,
+   "why_005": "방문 노드 · 그 section 안 고름"
+  },
+  {
+   "first_section_max_2": false,
+   "i": 104,
+   "intent": "I-05",
+   "no": "Q083",
+   "place": "0홉 · S 섹션",
+   "sections": [
+    "aftercare"
+   ],
+   "start": "family:M9",
+   "v22": true,
+   "v23": true,
+   "why_005": "방문 노드에서 1홉"
+  },
+  {
+   "i": 119,
+   "intent": "I-07",
+   "no": "Q097",
+   "owners": [
+    "procedure_relation"
+   ],
+   "place": "어느 노드 섹션에도 없음",
+   "start": "family:M11",
+   "v22": false,
+   "v23": false,
+   "why_005": "방문 노드 · 그 section 안 고름"
+  },
+  {
+   "first_section_max_2": false,
+   "i": 120,
+   "intent": "I-10",
+   "no": "Q098",
+   "place": "0홉 · S 섹션",
+   "sections": [
+    "overview"
+   ],
+   "start": "family:M11",
+   "v22": true,
+   "v23": true,
+   "why_005": "방문 노드 · 그 section 안 고름"
+  },
+  {
+   "hops": 2,
+   "i": 122,
+   "intent": "I-09",
+   "no": "Q099",
+   "place": "2홉+ · 대기열로만",
+   "start": "concern:P9-2",
+   "v22": false,
+   "v23": false,
+   "why_005": "방문 노드에서 1홉"
+  },
+  {
+   "first_section_max_2": false,
+   "i": 127,
+   "intent": "I-06",
+   "no": "Q102",
+   "place": "0홉 · S 섹션",
+   "sections": [
+    "evidence"
+   ],
+   "start": "family:M8",
+   "v22": true,
+   "v23": true,
+   "why_005": "방문 노드에서 1홉"
+  },
+  {
+   "first_section_max_2": false,
+   "i": 144,
+   "intent": "I-06",
+   "no": "Q106",
+   "place": "0홉 · S 섹션",
+   "sections": [
+    "timeline"
+   ],
+   "start": "family:M8",
+   "v22": true,
+   "v23": true,
+   "why_005": "방문 노드에서 1홉"
+  },
+  {
+   "i": 148,
+   "intent": "I-07",
+   "no": "Q112",
+   "owners": [
+    "procedure_relation"
+   ],
+   "place": "어느 노드 섹션에도 없음",
+   "start": "family:M8",
+   "v22": false,
+   "v23": false,
+   "why_005": "방문 노드 · 그 section 안 고름"
+  },
+  {
+   "i": 155,
+   "intent": "I-07",
+   "kind_n": 5,
+   "kinds": [
+    "concern_avoid",
+    "concern_avoid_unit",
+    "treats",
+    "treats_unit"
+   ],
+   "no": "Q114",
+   "place": "1홉 · 순서 표 밖 종류",
+   "start": "concern:P5-1",
+   "v22": false,
+   "v23": false,
+   "why_005": "방문 노드 · 그 section 안 고름"
+  },
+  {
+   "i": 157,
+   "intent": "I-11",
+   "kind_n": 2,
+   "kinds": [
+    "anchors_combo"
+   ],
+   "no": "Q117",
+   "place": "1홉 · 순서 표 · 앞 4 안",
+   "start": "concern:P6",
+   "v22": true,
+   "v23": true,
+   "why_005": "방문 노드 · 그 section 펼침 · 1쪽 밖(more)"
+  },
+  {
+   "first_section_max_2": false,
+   "i": 168,
+   "intent": "I-01",
+   "no": "Q121",
+   "place": "0홉 · S 섹션",
+   "sections": [
+    "evidence"
+   ],
+   "start": "family:M8",
+   "v22": true,
+   "v23": true,
+   "why_005": "방문 노드에서 1홉"
+  },
+  {
+   "first_section_max_2": true,
+   "i": 180,
+   "intent": "I-04",
+   "no": "Q124",
+   "place": "0홉 · S 섹션",
+   "sections": [
+    "safety.side_effects"
+   ],
+   "start": "family:M8",
+   "v22": true,
+   "v23": true,
+   "why_005": "방문 노드에서 1홉"
+  },
+  {
+   "i": 188,
+   "intent": "I-05",
+   "kind_n": 5,
+   "kinds": [
+    "anchors_combo",
+    "treats",
+    "treats_unit"
+   ],
+   "no": "Q131",
+   "place": "1홉 · 순서 표 · 앞 4 안",
+   "start": "concern:P6",
+   "v22": true,
+   "v23": true,
+   "why_005": "방문 노드 · 그 section 안 고름"
+  },
+  {
+   "hops": 2,
+   "i": 190,
+   "intent": "I-06",
+   "no": "Q133",
+   "place": "2홉+ · 대기열로만",
+   "start": "concern:P9",
+   "v22": false,
+   "v23": false,
+   "why_005": "방문 노드에서 1홉"
+  },
+  {
+   "i": 197,
+   "intent": "I-03",
+   "kind_n": 4,
+   "kinds": [
+    "key_technique"
+   ],
+   "no": "Q136",
+   "place": "1홉 · 순서 표 밖 종류",
+   "start": "technique:K04b",
+   "v22": false,
+   "v23": true,
+   "why_005": "방문 노드에서 1홉"
+  },
+  {
+   "first_section_max_2": false,
+   "i": 206,
+   "intent": "I-05",
+   "no": "Q140",
+   "place": "0홉 · S 섹션",
+   "sections": [
+    "timeline"
+   ],
+   "start": "family:M8",
+   "v22": true,
+   "v23": true,
+   "why_005": "방문 노드에서 1홉"
+  },
+  {
+   "i": 207,
+   "intent": "I-09",
+   "kind_n": 7,
+   "kinds": [
+    "treats"
+   ],
+   "no": "Q141",
+   "place": "1홉 · 순서 표 밖 종류",
+   "start": "concern:P9",
+   "v22": false,
+   "v23": false,
+   "why_005": "방문 노드에서 1홉"
+  },
+  {
+   "first_section_max_2": false,
+   "i": 237,
+   "intent": "I-09",
+   "no": "Q161",
+   "place": "0홉 · S 섹션",
+   "sections": [
+    "checks"
+   ],
+   "start": "check_condition:C-PREG",
+   "v22": true,
+   "v23": true,
+   "why_005": "방문 노드 · 그 section 펼침 · 1쪽 밖(more)"
+  },
+  {
+   "first_section_max_2": false,
+   "i": 259,
+   "intent": "I-09",
+   "no": "Q169",
+   "place": "0홉 · S 섹션",
+   "sections": [
+    "checks"
+   ],
+   "start": "family:M15",
+   "v22": true,
+   "v23": true,
+   "why_005": "방문 노드에서 1홉"
+  },
+  {
+   "hops": 2,
+   "i": 277,
+   "intent": "I-07",
+   "no": "Q185",
+   "place": "2홉+ · 대기열로만",
+   "start": "family:M7",
+   "v22": false,
+   "v23": false,
+   "why_005": "방문 노드에서 2홉"
+  },
+  {
+   "i": 278,
+   "intent": "I-07",
+   "no": "Q186",
+   "owners": [
+    "procedure_relation"
+   ],
+   "place": "어느 노드 섹션에도 없음",
+   "start": "family:M7",
+   "v22": false,
+   "v23": false,
+   "why_005": "방문 노드 · 그 section 안 고름"
+  },
+  {
+   "i": 293,
+   "intent": "I-06",
+   "kind_n": 11,
+   "kinds": [
+    "treats",
+    "treats_unit"
+   ],
+   "no": "Q198",
+   "place": "1홉 · 순서 표 밖 종류",
+   "start": "concern:P14-3",
+   "v22": false,
+   "v23": true,
+   "why_005": "방문 노드에서 1홉"
+  },
+  {
+   "i": 295,
+   "intent": "I-07",
+   "no": "Q200",
+   "owners": [
+    "procedure_relation"
+   ],
+   "place": "어느 노드 섹션에도 없음",
+   "start": "product:auto-40-1774737181584",
+   "v22": false,
+   "v23": false,
+   "why_005": "6홉 안 연결 없음"
+  },
+  {
+   "i": 298,
+   "intent": "I-07",
+   "no": "Q201",
+   "owners": [
+    "procedure_relation"
+   ],
+   "place": "어느 노드 섹션에도 없음",
+   "start": "family:M8",
+   "v22": false,
+   "v23": false,
+   "why_005": "방문 노드 · 그 section 안 고름"
+  },
+  {
+   "hops": 2,
+   "i": 313,
+   "intent": "I-06",
+   "no": "Q212",
+   "place": "2홉+ · 대기열로만",
+   "start": "product:M9-1-3",
+   "v22": false,
+   "v23": false,
+   "why_005": "방문 노드에서 1홉"
+  },
+  {
+   "i": 320,
+   "intent": "I-05",
+   "no": "Q215",
+   "owners": [
+    "scope"
+   ],
+   "place": "어느 노드 섹션에도 없음",
+   "start": "unit_procedure:U5-018",
+   "v22": false,
+   "v23": false,
+   "why_005": "6홉 안 연결 없음"
+  },
+  {
+   "first_section_max_2": false,
+   "i": 348,
+   "intent": "I-07",
+   "no": "Q233",
+   "place": "0홉 · S 섹션",
+   "sections": [
+    "evidence"
+   ],
+   "start": "family:M2",
+   "v22": true,
+   "v23": true,
+   "why_005": "방문 노드에서 1홉"
+  },
+  {
+   "first_section_max_2": true,
+   "i": 358,
+   "intent": "I-04",
+   "no": "Q239",
+   "place": "0홉 · S 섹션",
+   "sections": [
+    "safety.complications"
+   ],
+   "start": "product:M1-2-1",
+   "v22": true,
+   "v23": true,
+   "why_005": "방문 노드에서 2홉"
+  }
+ ],
+ "summary": {
+  "by_place": {
+   "0홉 · S 섹션": 14,
+   "1홉 · 순서 표 · 앞 4 밖": 1,
+   "1홉 · 순서 표 · 앞 4 안": 2,
+   "1홉 · 순서 표 밖 종류": 4,
+   "2홉+ · 대기열로만": 5,
+   "어느 노드 섹션에도 없음": 8
+  },
+  "no_holder": 8,
+  "no_holder_owner_kinds": {
+   "procedure_relation": 7,
+   "scope": 1
+  },
+  "note": "34 행은 461 행(순서 표 근거)의 부분집합과 겹친다 — 표본 안 셈 · 상한 참고 · 끝 조건은 「선택지에 뜸」 수까지만",
+  "rows": 34,
+  "two_hop_plus": 5,
+  "v22_shown": 16,
+  "v22_shown_1hop": 2,
+  "v23_missed_1hop_kinds": {
+   "concern_avoid": 1,
+   "concern_avoid_unit": 1,
+   "treats": 2,
+   "treats_unit": 1
+  },
+  "v23_shown": 19,
+  "v23_shown_1hop": 5,
+  "zero_hop": 14,
+  "zero_hop_in_section2_intents": 3
+ }
+}
