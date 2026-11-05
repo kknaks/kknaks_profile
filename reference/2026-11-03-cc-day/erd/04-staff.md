@@ -91,7 +91,8 @@ KOS 명동점: 직원 90 · 의사 10 · 상담 31 · 직무 21 · 분류 태그
 
 | 필드 | 타입 | 필수 | 설명 | 외부(KOS) |
 |---|---|---|---|---|
-| `id` | uuid PK | ✓ | DAY 로그인 세션 — 쿠키가 가리킨다 |  |
+| `id` | uuid PK | ✓ | DAY 로그인 세션 |  |
+| `token_hash` | varchar UNIQUE | ✓ | 세션 토큰의 해시 — 쿠키 · Bearer 에는 따로 만든 무작위 토큰을 주고 DB 에는 해시만 둔다(세션 id 를 그대로 쓰지 않는다 · 사용자 2026-11-05) |  |
 | `account_id` | uuid FK → account | ✓ |  |  |
 | `hospital_id` | uuid FK → hospital | ✓ | 지금 고른 병원 — KOS 사용자가 여러 테넌트에 속하면 로그인 뒤 고른다 | get-user-tenants |
 | `staff_id` | uuid FK → staff | ✓ | 그 병원에서의 직원 | get-user-account |
@@ -113,5 +114,18 @@ KOS 명동점: 직원 90 · 의사 10 · 상담 31 · 직무 21 · 분류 태그
 
 ## 정할 것
 
-1. KOS 계정에 2단계 인증(`mfaMethods`)이 켜진 경우의 로그인 흐름 — HAR 계정은 꺼져 있었다.
+1. ~~KOS 계정에 2단계 인증(`mfaMethods`)이 켜진 경우의 로그인 흐름~~ → 정함(2026-11-05): 1차는 다루지 않고 막고 안내 — cc 처리 없음 · 명동점 직원 계정 90개 중 0개. DAY-SPEC-001 OQ-6.
 2. `permission_key` 목록 — 화면이 정해질 때 코드에서 정한다.
+
+## 로그인 · 세션 계약 (2026-11-05 사용자 결정 — DAY-SPEC-001)
+
+| 주제 | 정한 것 |
+|---|---|
+| API 경로 | 웹 · 앱 공용 JSON — `POST /api/auth/login` · `GET /api/auth/me` · `POST /api/auth/hospital`(병원 고르기) · `POST /api/auth/logout` |
+| 세션 전달 | 웹 쿠키 `day_session`(httpOnly · SameSite=Lax · Secure · CSRF `X-CSRF-Token`) · 앱 `Authorization: Bearer` — 같은 `login_session` 한 행. 토큰은 무작위 값, DB 에는 `token_hash` |
+| 세션 길이 | DAY 세션 만료 = KOS 토큰 만료. 여러 기기 동시 로그인 허용 |
+| 병원 고르기 | 연결된 병원이 하나면 바로 세션. 여럿이면 짧은 임시 토큰(5분) → 병원을 고르면 진짜 세션 |
+| 오류 | 401 `invalid_credentials` · 503 `kos_unavailable`(KOS 장애 · KOS 403 `Unsupported client.` 포함) · 403 `no_connected_hospital` · 403 `no_staff_account` · 403 `mfa_not_supported` · 403 `account_inactive` · 403 `staff_inactive` · 401 `session_expired`(만료만) · 401 `unauthorized`(세션 없음 · 로그아웃된 세션) · 403 `forbidden`(권한 없음) |
+| 재로그인 | KOS 401 → 세션 끝 · 다시 로그인. 토큰 만료 직원의 쓰기 큐는 다시 로그인까지 「반영 중」. 로그아웃은 KOS 에 알리지 않는다 |
+| 1차 범위 | 병원 직원만. 본사 · 시스템 관리자 로그인은 1차 밖(`login_session` 개정과 함께). 2단계 인증 계정은 막고 안내 |
+| 그 밖 | 로그인 후 병원 바꾸기 = 다시 로그인 · 비활성 직원 = 로그인 막기(판정 = 기준 정보 동기화 `get-accounts.activate` 로 채운 `staff.is_active`) · dev 서버 = 데모 연결 병원만 · 권한 행 없는 직무 = 아무것도 못 함 · 처음 만든 `account.is_active` = true · KOS 호출 시간 제한 15초(cc 값) · 이메일 · 비밀번호 형식 검사는 KOS 에 맡긴다 · 안내 문구는 화면 SPEC(예시만) |
