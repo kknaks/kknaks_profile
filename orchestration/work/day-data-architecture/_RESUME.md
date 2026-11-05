@@ -1,7 +1,7 @@
 
 # 재개 노트 — day-data-architecture (day)
 
-**지금**: Delivery #224 뼈대 구현 완료 · 코디 확인 통과 → 검수 WARN → fix1 반영 · 코디 확인 → **Code PR #228(CENTURION_DAY → v2-dev, 머지는 사용자 · 구현 뒤)** · **#225 구현 완료 · 코디 확인 → reviewer 검수 중**(진행 중 코디 허용: compose ENCRYPTION_KEY 1줄 · env.py import day.models · env.py autogenerate 비교 수정)(코디 기본값: product_option_id FK 없음 · 정해진 enum 은 DB 에서 막고 열린 enum 은 varchar · 07 그대로 · OQ-03-1 보류 칸 안 만듦 · 암호 키 없으면 기동 실패 · W6 timeout · day_test fixture). 넘긴 것: #225 브리프 = W6 쿼리 timeout · in-process 스키마 격리 / #226 브리프 = W5 Redis timeout 분리 · W9 worker migrate 의존 · 태스크 테스트 fixture / prod 배포 = W8 offline SQL · APP_ENV 필수 · 화면 단계 = 시안 DS gap 17종 · medikit 기준 HTMX 키트 1.3.0 추천 · 동작 규칙은 cc 구현 기준(마취 20 · 호출 5 · 카드/방 순서 · 탭)(CENTURION_DAY 워크트리 `day-data-architecture` · 브랜치 `kknaksss/day-data-architecture` · base `v2-dev`). PR #909 머지는 사용자가 구현 뒤에 한다 — 머지 요청하지 말 것. Delivery #224~#227(CENTURION_DAY) 생성 — 전부 `delivery-plan:review`(사용자 계약 승인 대기) · `spec-baseline:pending`(PR #909 머지 대기). PR #909 보정 커밋 `60fae27b`
+**지금**: Delivery #224 뼈대 구현 완료 · 코디 확인 통과 → 검수 WARN → fix1 반영 · 코디 확인 → **Code PR #228(CENTURION_DAY → v2-dev, 머지는 사용자 · 구현 뒤)** · **#225 구현 완료 · 코디 확인 → 검수 WARN → fix1 중 · SPEC-000 동기화 planner 중**. 넘긴 것: prod 배포 = W7 키 canary / #226 = Redis timeout · 필수 bool 은 동기화가 전부 채움(진행 중 코디 허용: compose ENCRYPTION_KEY 1줄 · env.py import day.models · env.py autogenerate 비교 수정)(코디 기본값: product_option_id FK 없음 · 정해진 enum 은 DB 에서 막고 열린 enum 은 varchar · 07 그대로 · OQ-03-1 보류 칸 안 만듦 · 암호 키 없으면 기동 실패 · W6 timeout · day_test fixture). 넘긴 것: #225 브리프 = W6 쿼리 timeout · in-process 스키마 격리 / #226 브리프 = W5 Redis timeout 분리 · W9 worker migrate 의존 · 태스크 테스트 fixture / prod 배포 = W8 offline SQL · APP_ENV 필수 · 화면 단계 = 시안 DS gap 17종 · medikit 기준 HTMX 키트 1.3.0 추천 · 동작 규칙은 cc 구현 기준(마취 20 · 호출 5 · 카드/방 순서 · 탭)(CENTURION_DAY 워크트리 `day-data-architecture` · 브랜치 `kknaksss/day-data-architecture` · base `v2-dev`). PR #909 머지는 사용자가 구현 뒤에 한다 — 머지 요청하지 말 것. Delivery #224~#227(CENTURION_DAY) 생성 — 전부 `delivery-plan:review`(사용자 계약 승인 대기) · `spec-baseline:pending`(PR #909 머지 대기). PR #909 보정 커밋 `60fae27b`
 **다음**: SPEC 먼저 닫는다(사용자 2026-11-05 — 「스펙도 없는데 wp를 만든거야?」): SPEC-001 로그인 · 세션(PR #909 에 같이) → 검수 → #909 머지 · SPEC 확정 → Delivery #224~#226 재결속 · 승인, #227 은 SPEC-001 기준으로 계약 다시 → backend 발주
 
 세팅: `scripts/new-work.sh day day-data-architecture` · 설정 SSOT `config/projects/day.json`
@@ -26,6 +26,7 @@
 
 | 날짜 | 결정 | 근거 |
 |---|---|---|
+| 2026-11-05 | **유일(UNIQUE)은 살아 있는 행만**(부분 유일 WHERE deleted_at IS NULL) · **chat_room.direct_key 병원별 유일** — 원천 erd README · 07 반영 | 사용자 |
 | 2026-11-05 | **코드 PR 은 #228 하나 — 시안(화면)까지 다 만들 때까지.** 백엔드 #224~#227 · 화면 전부 같은 브랜치 `kknaksss/day-data-architecture` 에 Issue 별 커밋으로 쌓는다. 묻지 말 것 | 사용자 |
 | 2026-11-05 | 시술 현황 시안 = `screen/시술현황_프로토타입 (1).html` · medikit 에 없는 컴포넌트 있음 → frontend 워커 조사(있음/없음 목록) | 사용자 |
 | 2026-11-05 | **구현 먼저 · 머지는 나중**(사용자: 「왜 자꾸 머지하라는 거야 일단 구현하고 머지할 건데」) — #224 계약 승인으로 보고 backend 발주 | 사용자 |
@@ -47,7 +48,9 @@
 |---|---|---|---|---|---|
 | planner | `term_8117e457-5427-4f0c-9dd5-6fc68f77f6f4` | `task_256e3ec1a806` | `ctx_e497e1180940` | `day-data-architecture-spec-brief.md` | 완료(터미널 유지 — 수정 재발주용) |
 | reviewer_doc | `term_441c2cdb-68e6-4463-b694-d8d6adfc7210` | `task_0fbf4462273f` | `ctx_6b32d164d0aa` | `day-data-architecture-review-doc-brief.md` | 1판 FAIL(터미널 유지) |
-| reviewer #225 코드 검수 | `term_ad2a4487-a45e-4f07-bd10-b6fa67936898` | `task_94cd7c9fad9e` | `ctx_adf86ce0f990` | `review-225-brief.md` | 발주 · 진행 |
+| backend #225 fix1(W1~W6 + 부분 유일 · direct_key) | `term_a35ac44d-5a0f-4901-9681-51c4c9b6de8f` | `task_e628c11fdab2` | `ctx_9302d3e803a7` | `backend-225-fix1-instructions.md` | 발주 · 진행 |
+| planner SPEC-000 동기화(#225) | `term_8117e457-5427-4f0c-9dd5-6fc68f77f6f4` | `task_ab2374dfca48` | `ctx_382678641efc` | `planner-spec000-sync-instructions.md` | 발주 · 진행 |
+| reviewer #225 코드 검수 | `term_ad2a4487-a45e-4f07-bd10-b6fa67936898` | `task_94cd7c9fad9e` | `ctx_adf86ce0f990` | `review-225-brief.md` | 완료 · WARN(FAIL 0 · W1~W8) |
 | backend #225 데이터 모델 | `term_a35ac44d-5a0f-4901-9681-51c4c9b6de8f` | `task_8a5467385cab` | `ctx_e467fd28fa38` | `backend-225-brief.md` | 완료 · 코디 확인(51 테이블 · enum 28 · 0002 · 80 passed · 대조 51/51) |
 | backend #224 fix1(W1~W4 · W7 · 정리) | `term_a35ac44d-5a0f-4901-9681-51c4c9b6de8f` | `task_ce3aedaa6948` | `ctx_3cd0483672a2` | `backend-224-fix1-instructions.md` | 완료 · 코디 확인(37 passed · 무인프라 31/6 skip · ruff · compose ready 200 · day.ping) |
 | reviewer #224 코드 검수 | `term_ad2a4487-a45e-4f07-bd10-b6fa67936898` | `task_7839c062a1d2` | `ctx_49ebc47c594f` | `day-data-architecture-review-brief.md` | 완료 · WARN(FAIL 0 · W1~W9) |

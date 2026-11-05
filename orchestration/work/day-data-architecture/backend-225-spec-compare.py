@@ -26,6 +26,10 @@ KEYWORDS = ("uuid", "varchar", "text", "bool", "int", "bigint", "numeric", "date
 OPEN_ENUMS = {("customer", "gender"), ("external_ref", "entity_type"), ("visit_task", "unit_type"),
               ("notification_setting", "kind"), ("display_request", "kind"),
               ("identity_check", "status"), ("identity_check", "method"), ("id_photo", "doc_type")}
+# SPEC 표에 없지만 모델에 있어도 되는 칸 — §2 「삭제 — 모든 테이블에 deleted_at」(표보다 우선).
+# 이 밖의 「모델에만 있는 칸」은 불일치로 센다.
+ALLOWED_EXTRA = {("event_log", "deleted_at"), ("push_log", "deleted_at"),
+                 ("external_outbox", "deleted_at")}
 
 
 def split_names(cell: str) -> list[str]:
@@ -147,7 +151,9 @@ def main() -> int:
         table = models[name]
         spec_cols = {r[0] for r in made}
         model_cols = {c.name for c in table.columns}
-        extra = sorted(model_cols - spec_cols)
+        extra_all = sorted(model_cols - spec_cols)
+        allowed = [c for c in extra_all if (name, c) in ALLOWED_EXTRA]
+        extra = [c for c in extra_all if (name, c) not in ALLOWED_EXTRA]
         missing = sorted(spec_cols - model_cols)
         type_bad, req_bad, pk_bad, notes = [], [], [], []
         for field, t, required, pk in made:
@@ -178,13 +184,15 @@ def main() -> int:
         if uniques:
             cell.append("UNIQUE " + " / ".join(f"({u})" for u in sorted(set(uniques))))
         cell.append(f"FK {fks}")
+        if allowed:
+            cell.append("§2 로 더함 " + ",".join(allowed))
         if extra:
-            cell.append("모델에만 " + ",".join(extra))
+            cell.append("**모델에만(불일치)** " + ",".join(extra))
         if held:
             cell.append("보류 " + ",".join(held))
         cell += sorted(set(notes))
         diff = "없음" if not missing else "SPEC 만 " + ",".join(missing)
-        bad = bool(missing or type_bad or req_bad or pk_bad)
+        bad = bool(missing or extra or type_bad or req_bad or pk_bad)
         problems += bad
         pk_cols = ",".join(c.name for c in table.primary_key.columns)
         print(f"| `{name}` | {len(rows)} | {len(held)} | {len(model_cols)} | {diff} | "

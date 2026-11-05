@@ -22,8 +22,8 @@ SPEC 테이블 51 · 모델 테이블 51 · SPEC 만 [] · 모델만 []
 | `doctor_call` | 9 | 0 | 9 | 없음 | 맞음 | 맞음 | (id) | FK 4 |
 | `doctor_call_accept` | 8 | 0 | 8 | 없음 | 맞음 | 맞음 | (id) | FK 3 |
 | `doctor_call_task` | 5 | 0 | 5 | 없음 | 맞음 | 맞음 | (call_id,task_id) | FK 2 |
-| `event_log` | 8 | 0 | 9 | 없음 | 맞음 | 맞음 | (id) | FK 3 · 모델에만 deleted_at |
-| `external_outbox` | 16 | 0 | 17 | 없음 | 맞음 | 맞음 | (id) | FK 2 · 모델에만 deleted_at |
+| `event_log` | 8 | 0 | 9 | 없음 | 맞음 | 맞음 | (id) | FK 3 · §2 로 더함 deleted_at |
+| `external_outbox` | 16 | 0 | 17 | 없음 | 맞음 | 맞음 | (id) | FK 2 · §2 로 더함 deleted_at |
 | `external_ref` | 15 | 0 | 15 | 없음 | 맞음 | 맞음 | (id) | UNIQUE (hospital_id,vendor,entity_type,external_id) · FK 1 · entity_type=열린 enum→varchar |
 | `external_session` | 8 | 0 | 8 | 없음 | 맞음 | 맞음 | (session_id) | FK 1 |
 | `funnel` | 10 | 0 | 10 | 없음 | 맞음 | 맞음 | (id) | FK 2 |
@@ -37,7 +37,7 @@ SPEC 테이블 51 · 모델 테이블 51 · SPEC 만 [] · 모델만 []
 | `notice` | 7 | 0 | 7 | 없음 | 맞음 | 맞음 | (id) | FK 1 |
 | `notification` | 12 | 0 | 12 | 없음 | 맞음 | 맞음 | (id) | FK 4 |
 | `notification_setting` | 6 | 0 | 6 | 없음 | 맞음 | 맞음 | (account_id,kind) | FK 1 · kind=열린 enum→varchar |
-| `push_log` | 16 | 0 | 17 | 없음 | 맞음 | 맞음 | (id) | FK 5 · 모델에만 deleted_at |
+| `push_log` | 16 | 0 | 17 | 없음 | 맞음 | 맞음 | (id) | FK 5 · §2 로 더함 deleted_at |
 | `questionnaire_history` | 13 | 0 | 13 | 없음 | 맞음 | 맞음 | (id) | FK 4 |
 | `reservation_group` | 9 | 0 | 9 | 없음 | 맞음 | 맞음 | (id) | FK 1 |
 | `reservation_group_capacity` | 6 | 0 | 6 | 없음 | 맞음 | 맞음 | (group_id,zone_id) | FK 2 |

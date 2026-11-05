@@ -135,7 +135,7 @@
 | `id` | uuid PK | ✓ |  | cc chat_room |
 | `hospital_id` | uuid FK → hospital | ✓ | 병원 안 채팅 |  |
 | `kind` | enum direct · group | ✓ |  | cc chat_room.kind |
-| `direct_key` | varchar UNIQUE |  | 1:1 만 「작은 account id:큰 account id」 | cc chat_room.direct_key |
+| `direct_key` | varchar |  | 1:1 만 「작은 account id:큰 account id」. **병원별 유일 — UNIQUE(hospital_id, direct_key)**(사용자 2026-11-05 · 계정은 여러 병원에 속한다) | cc chat_room.direct_key |
 | `title` | varchar |  |  | cc chat_room.title |
 | `created_by_account_id` | uuid FK → account | ✓ |  | cc chat_room.created_by |
 | `last_message_at` | timestamptz |  | 방 목록 정렬 | cc chat_room.last_message_at |
