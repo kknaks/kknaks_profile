@@ -1,7 +1,7 @@
 
 # 재개 노트 — day-data-architecture (day)
 
-**지금**: SPEC-001 로그인 · 세션 완료(PR #909 커밋) — **사용자 PR #909 리뷰 · 머지 대기**. Delivery #224~#227(CENTURION_DAY) 생성 — 전부 `delivery-plan:review`(사용자 계약 승인 대기) · `spec-baseline:pending`(PR #909 머지 대기). PR #909 보정 커밋 `60fae27b`
+**지금**: backend 워커 — Delivery #224 뼈대 구현 중(CENTURION_DAY 워크트리 `day-data-architecture` · 브랜치 `kknaksss/day-data-architecture` · base `v2-dev`). PR #909 머지는 사용자가 구현 뒤에 한다 — 머지 요청하지 말 것. Delivery #224~#227(CENTURION_DAY) 생성 — 전부 `delivery-plan:review`(사용자 계약 승인 대기) · `spec-baseline:pending`(PR #909 머지 대기). PR #909 보정 커밋 `60fae27b`
 **다음**: SPEC 먼저 닫는다(사용자 2026-11-05 — 「스펙도 없는데 wp를 만든거야?」): SPEC-001 로그인 · 세션(PR #909 에 같이) → 검수 → #909 머지 · SPEC 확정 → Delivery #224~#226 재결속 · 승인, #227 은 SPEC-001 기준으로 계약 다시 → backend 발주
 
 세팅: `scripts/new-work.sh day day-data-architecture` · 설정 SSOT `config/projects/day.json`
@@ -26,6 +26,7 @@
 
 | 날짜 | 결정 | 근거 |
 |---|---|---|
+| 2026-11-05 | **구현 먼저 · 머지는 나중**(사용자: 「왜 자꾸 머지하라는 거야 일단 구현하고 머지할 건데」) — #224 계약 승인으로 보고 backend 발주 | 사용자 |
 | 2026-11-05 | SPEC-001 로그인 · 세션 OQ 11개 전부 권장대로(경로 `/api/auth/*` · 웹 쿠키 `day_session` + 앱 Bearer · 세션 = KOS 토큰 만료 · 1차는 병원 직원만 · 2단계 인증 계정은 막고 안내(명동점 90개 중 0개) 등) | 사용자 |
 | 2026-11-05 | ~~Delivery 를 SPEC 머지 전에 연다~~ → **SPEC 먼저 닫고 Delivery**. #227 은 대상 SPEC 없이 열린 것(코디 실수) — SPEC-001 뒤 계약 다시 | 사용자 지적 |
 | 2026-11-05 | 백엔드 작업 계획은 mediness 새 규칙 — GitHub Delivery Issue(start-delivery). WP 파일 안 씀. 디자인 변동 가능 → 백엔드만, 로그인까지 4개 | 사용자 |
@@ -44,6 +45,7 @@
 |---|---|---|---|---|---|
 | planner | `term_8117e457-5427-4f0c-9dd5-6fc68f77f6f4` | `task_256e3ec1a806` | `ctx_e497e1180940` | `day-data-architecture-spec-brief.md` | 완료(터미널 유지 — 수정 재발주용) |
 | reviewer_doc | `term_441c2cdb-68e6-4463-b694-d8d6adfc7210` | `task_0fbf4462273f` | `ctx_6b32d164d0aa` | `day-data-architecture-review-doc-brief.md` | 1판 FAIL(터미널 유지) |
+| backend #224 | `term_a35ac44d-5a0f-4901-9681-51c4c9b6de8f` | `task_b55365041983` | `ctx_54b11e55fc04` | `day-data-architecture-be-brief.md` | 발주 · 진행 |
 | planner SPEC-001 결정 반영 | `term_8117e457-5427-4f0c-9dd5-6fc68f77f6f4` | `task_23966603a026` | `ctx_f348cbceb7b3` | `planner-spec001-fix-instructions.md` | 발주 · 진행 |
 | planner SPEC-001 | `term_8117e457-5427-4f0c-9dd5-6fc68f77f6f4` | `task_a536db100de3` | `ctx_34532b18e680` | `planner-spec001-instructions.md` | 완료(OQ 11) |
 | planner delivery | `term_8117e457-5427-4f0c-9dd5-6fc68f77f6f4` | `task_226ed1ca2070` | `ctx_65b9ce7dbcbe` | `planner-delivery-instructions.md` | 완료(human gate) · request JSON → `delivery/` |
