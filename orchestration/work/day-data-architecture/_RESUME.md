@@ -1,7 +1,7 @@
 
 # 재개 노트 — day-data-architecture (day)
 
-**지금**: 재검수 PASS → mediness PR #909 OPEN(사용자 리뷰 · 머지 대기)
+**지금**: PR #909 OPEN — SPEC-000 · 40-architecture(시스템 런타임 · 코드 구조) 전부 올라감, 사용자 리뷰 · 머지 대기
 **다음**: PR #909 머지 확인 → 워커 터미널 2개 정리 · 아카이브(archive-work.sh) 여부 사용자와
 
 세팅: `scripts/new-work.sh day day-data-architecture` · 설정 SSOT `config/projects/day.json`
@@ -40,6 +40,7 @@
 |---|---|---|---|---|---|
 | planner | `term_8117e457-5427-4f0c-9dd5-6fc68f77f6f4` | `task_256e3ec1a806` | `ctx_e497e1180940` | `day-data-architecture-spec-brief.md` | 완료(터미널 유지 — 수정 재발주용) |
 | reviewer_doc | `term_441c2cdb-68e6-4463-b694-d8d6adfc7210` | `task_0fbf4462273f` | `ctx_6b32d164d0aa` | `day-data-architecture-review-doc-brief.md` | 1판 FAIL(터미널 유지) |
+| planner arch | `term_8117e457-5427-4f0c-9dd5-6fc68f77f6f4` | `task_78d14ef22adb` | `ctx_51d128cdd28e` | `planner-arch-instructions.md` | 완료 · 검수 WARN → 해소 |
 | planner 수정 1판 | `term_8117e457-5427-4f0c-9dd5-6fc68f77f6f4` | `task_18d832312263` | `ctx_91b93dee59be` | `planner-fix-1-instructions.md` | 발주 · 진행 |
 
 핸들은 세션 재연결로 바뀐다. 바뀌면 **덮어쓴다.** 워커 보고는 dispatch preamble 의 값을 따르므로
@@ -47,13 +48,15 @@
 
 ## 4. 산출물
 
-- spec PR: https://github.com/MediSolveAIDev/mediness/pull/909 (`f92a8acb` · `974caeac`)
+- spec PR: https://github.com/MediSolveAIDev/mediness/pull/909 (`f92a8acb` · `974caeac` · `e71e3849`)
+- 코드 레포: CENTURION_DAY v2-dev `8e4fb4b5` — AGENTS.md 「아직 정하지 않은 것」 로그인 · 배포 제거(사용자 2026-11-05)
 - code PR: <링크>
 - 리포트: `<review-*-report.md>` · `<research-*.md>`
 - 커밋: `<sha>` — <한 줄>
 
 ## 5. 이력 (최신이 위)
 
+- `2026-11-05` 40-architecture 추가(planner) → 검수 WARN(정본 낡음) → AGENTS.md 갱신 · PR #909 커밋
 - `2026-11-03` 수정 2판 → 재검수 PASS → mediness PR #909
 - `2026-11-03` 검수 FAIL → 원천 수정 · planner 수정 1판 발주
 - `2026-11-03` planner 완료 → reviewer_doc 발주
