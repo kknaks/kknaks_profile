@@ -26,6 +26,12 @@
 버튼 하나의 흐름(예: 시술 완료): `api` 가 DB 에 쓰고 쓰기 큐에 넣고 「반영 중」으로 바로 응답 → `worker` 가 KOS 에 보내고 다음 조회로 확인 →
 확인되면 「반영 중」이 풀리고 Redis 로 `api` 에 알림 → SSE 로 화면 갱신.
 
+## 위험 — KOS 내부 API 차단 (2026-11-04 확인)
+
+2026-11-03 18:23 KST 부터 KOS 내부 API 가 브라우저 UA 가 아닌 요청을 403 `Unsupported client.` 로 막는다. cc-prototype 이 KOS 웹 헤더
+(User-Agent · Origin · kos-client-uri)를 실어 풀었다(#20 · `77173cf`). DAY 의 로그인 · 일정 · 쓰기가 전부 내부 API 라 **같은 헤더가 필요**하고,
+KOS 가 더 막으면 멈출 수 있다 — 공식 API(공개 API · KOS 요청)로 옮길 수 있는 것은 옮길 후보로 둔다.
+
 ## 서버
 
 Azure VM 2코어 / 4GB(예정) 기준 예상 메모리: caddy ~50MB · api 768MB · worker 384MB · scheduler 384MB · redis 256MB ≈ 1.9GB — 여유 있음(RabbitMQ 없음).
