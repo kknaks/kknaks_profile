@@ -1,7 +1,7 @@
 
 # 재개 노트 — day-data-architecture (day)
 
-**지금**: Delivery #224~#227(CENTURION_DAY) 생성 — 전부 `delivery-plan:review`(사용자 계약 승인 대기) · `spec-baseline:pending`(PR #909 머지 대기). PR #909 보정 커밋 `60fae27b`
+**지금**: SPEC-001 로그인 · 세션 완료(PR #909 커밋) — **사용자 PR #909 리뷰 · 머지 대기**. Delivery #224~#227(CENTURION_DAY) 생성 — 전부 `delivery-plan:review`(사용자 계약 승인 대기) · `spec-baseline:pending`(PR #909 머지 대기). PR #909 보정 커밋 `60fae27b`
 **다음**: SPEC 먼저 닫는다(사용자 2026-11-05 — 「스펙도 없는데 wp를 만든거야?」): SPEC-001 로그인 · 세션(PR #909 에 같이) → 검수 → #909 머지 · SPEC 확정 → Delivery #224~#226 재결속 · 승인, #227 은 SPEC-001 기준으로 계약 다시 → backend 발주
 
 세팅: `scripts/new-work.sh day day-data-architecture` · 설정 SSOT `config/projects/day.json`
@@ -55,7 +55,7 @@
 
 ## 4. 산출물
 
-- spec PR: https://github.com/MediSolveAIDev/mediness/pull/909 (`f92a8acb` · `974caeac` · `e71e3849`)
+- spec PR: https://github.com/MediSolveAIDev/mediness/pull/909 (`f92a8acb` · `974caeac` · `e71e3849` · `60fae27b` · SPEC-001 커밋)
 - Delivery: CENTURION_DAY #224 뼈대(L2) · #225 데이터 모델(L3) · #226 KOS 연동(L3) · #227 로그인(L3) — plan_digest 는 `planner-delivery-report.md`
 - 코드 레포: CENTURION_DAY v2-dev `8e4fb4b5` — AGENTS.md 「아직 정하지 않은 것」 로그인 · 배포 제거(사용자 2026-11-05)
 - code PR: <링크>
