@@ -38,3 +38,46 @@
 ## 변경 파일(이번 fix1)
 
 `backend/common/config.py` · `backend/common/crypto.py` · `backend/common/db/session.py` · `backend/day/db.py` · `backend/migrations/env.py` · `deploy/compose.local.yaml` · `backend/tests/conftest.py` · `backend/tests/common/test_crypto.py` · `backend/tests/migrations/test_alembic.py` · 새 `backend/tests/migrations/test_offline_sql.py` · 새 `backend/tests/day/test_enum_labels.py` · 새 `backend/tests/day/test_column_snapshot.py` · 새 `backend/tests/runtime/test_startup_key.py` · 저장소 밖 `work/day-data-architecture/backend-225-spec-compare.py`(+ 출력 `.out.md` 갱신)
+
+---
+
+## 추가(사용자 결정 2026-11-05) — 유일은 살아 있는 행만 · direct_key 병원별
+
+### 바꾼 제약 전체 목록 (grep 전수 — 모델의 UNIQUE 8개 전부, 모두 `deleted_at` 있는 테이블)
+
+| # | 전 (UNIQUE 제약 · 이름) | 후 (부분 유일 인덱스 `WHERE deleted_at IS NULL`) |
+|---|---|---|
+| 1 | `brand.code` · `uq_brand_code` | `uq_brand_code` (code) |
+| 2 | `customer(hospital_id, chart_number)` · `uq_customer_hospital_id` | `uq_customer_hospital_id_chart_number` |
+| 3 | `external_ref(hospital_id, vendor, entity_type, external_id)` · `uq_external_ref_hospital_id` | `uq_external_ref_hospital_id_vendor_entity_type_external_id` |
+| 4 | `login_session.token_hash` · `uq_login_session_token_hash` | `uq_login_session_token_hash` |
+| 5 | `device.install_id` · `uq_device_install_id` | `uq_device_install_id` |
+| 6 | `chat_room.direct_key` · `uq_chat_room_direct_key` | **`uq_chat_room_hospital_id_direct_key` (hospital_id, direct_key)** — 병원별 유일 |
+| 7 | `chat_message(room_id, seq)` · `uq_chat_message_room_id` | `uq_chat_message_room_id_seq` |
+| 8 | `chat_message(account_id, client_id)` · `uq_chat_message_account_id` | `uq_chat_message_account_id_client_id` |
+
+- 전 이름은 naming convention(`uq_%(table_name)s_%(column_0_name)s`)이 첫 칸만 써서 복합 제약 이름이 잘려 있었다 — 새 이름은 칸 전부(`live_unique` 가 정함).
+- **복합 PK 13개는 그대로**(crm_connection · customer_category_link · account_brand_access · job_role_permission · external_session · visit_task_staff · doctor_call_task · board_card_order · reservation_group_capacity · reservation_group_timetable · visit_occupied_resource_doctor · notification_setting · chat_member) — 지운 행이어도 막는다.
+- 인덱스(비유일) `ix_customer_name` · `ix_customer_phone_number` · `ix_external_ref_entity_type_entity_id` 는 그대로.
+- 주의(다음 Delivery): 부분 유일 인덱스에 `INSERT … ON CONFLICT` 를 쓸 때는 같은 `WHERE deleted_at IS NULL` 을 줘야 한다(`index_where`) — `backend/day/models/_columns.py` `live_unique` docstring 에 적음.
+
+### 고친 곳
+
+| 파일 | 내용 |
+|---|---|
+| `backend/day/models/_columns.py` | `live_unique(table, *columns)` — `Index(uq_…, unique=True, postgresql_where=deleted_at IS NULL)` · 머리말에 규칙 |
+| `backend/day/models/{hospital,customer,staff,misc}.py` | `unique=True` · `UniqueConstraint` 8곳 → `__table_args__` 의 `live_unique(...)`. `chat_room` 은 (hospital_id, direct_key). 모델에 `UniqueConstraint` · `unique=True` 칸 0 |
+| `backend/migrations/versions/20261105_0002_data_model_first_data_model.py` | (아직 어디에도 적용 안 된 0002 를 고침) `create_table` 안의 `sa.UniqueConstraint` 8개 제거 → 맨 위 `LIVE_UNIQUE` 목록 + 테이블 생성 뒤 `op.create_index(..., unique=True, postgresql_where=deleted_at IS NULL)` · downgrade 맨 앞에서 `drop_index` |
+| `backend/tests/day/test_constraints.py` | 살아 있는 행끼리 23505(기존 8 사례 · chat_room 은 같은 병원) + **새** `test_지운_행과_같은_값은_다시_넣을_수_있다` 8 사례 · `test_direct_key_는_병원이_다르면_같아도_된다` · `test_유일_사례는_모델의_부분_유일_인덱스_전부다`(모델에 UniqueConstraint 0 · 유일 인덱스는 전부 `deleted_at IS NULL` · 테스트 사례 집합 == 모델 유일 인덱스 집합 — 새 유일 칸이 생기면 사례를 강제) |
+| 대조 스크립트 | 유일 인덱스를 「UNIQUE (… 살아 있는 행)」으로 표시. **SPEC 이 17:20 에 바뀌어(미커밋 — #225 결정 반영: §2 「유일 · 삭제」 · §2.1 FK 대상 · 「코드 테이블 타입 · 필수」 표 · `direct_key` 병원별) 파서가 깨져** 고침: 새 「코드 테이블 타입 · 필수」 표를 읽어 코드 테이블 5개도 타입 · 필수를 대조한다(전에는 「타입 미표기」로 건너뜀). 음성 확인: `funnel.name` NULL 허용 · `customer_category.color` int 로 바꾸면 불일치 2 |
+
+### 수치
+
+| 명령 | 결과 |
+|---|---|
+| `scripts/test.sh -q` | **153 passed** in 12.51s (+10: 지운 행 재사용 8 · direct_key 병원별 1 · 인덱스 전수 1) |
+| `uv run pytest -q` (인프라 없이) | 104 passed, 49 skipped |
+| `uv run ruff check backend` | All checks passed! |
+| 대조 스크립트 | SPEC 51 · 모델 51 · 불일치 0 (코드 테이블 타입 · 필수 포함) |
+| `alembic check` 테스트(diff 0) · 빈 스키마 upgrade/downgrade/upgrade 테스트 | 통과 |
+| 로컬 `day_dev` | 옛 0002(UNIQUE 제약 8, 행 0)라 새 0002 의 downgrade(인덱스 drop)가 맞지 않아 **스키마를 DROP**(로컬 · 빈 스키마) → compose migrate(키 없음)가 `-> 0001 -> 0002` 로 다시 만듦 · `pg_constraint` UNIQUE **0** · `pg_indexes` 부분 유일 **8**(전부 `WHERE (deleted_at IS NULL)`) · api `/health/ready` 200 · worker `day.ping` 실행 · `down` |

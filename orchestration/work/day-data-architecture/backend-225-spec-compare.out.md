@@ -5,26 +5,26 @@ SPEC 테이블 51 · 모델 테이블 51 · SPEC 만 [] · 모델만 []
 | `account` | 9 | 0 | 9 | 없음 | 맞음 | 맞음 | (id) | FK 0 |
 | `account_brand_access` | 5 | 0 | 5 | 없음 | 맞음 | 맞음 | (account_id,brand_id) | FK 2 |
 | `board_card_order` | 8 | 0 | 8 | 없음 | 맞음 | 맞음 | (hospital_id,board_date,visit_id) | FK 3 |
-| `brand` | 7 | 0 | 7 | 없음 | 맞음 | 맞음 | (id) | UNIQUE (code) · FK 0 |
+| `brand` | 7 | 0 | 7 | 없음 | 맞음 | 맞음 | (id) | UNIQUE (code 살아 있는 행) · FK 0 |
 | `chat_attachment` | 15 | 0 | 15 | 없음 | 맞음 | 맞음 | (id) | FK 3 |
 | `chat_member` | 12 | 0 | 12 | 없음 | 맞음 | 맞음 | (room_id,account_id) | FK 2 |
-| `chat_message` | 12 | 0 | 12 | 없음 | 맞음 | 맞음 | (id) | UNIQUE (account_id,client_id) / (room_id,seq) · FK 3 |
-| `chat_room` | 11 | 0 | 11 | 없음 | 맞음 | 맞음 | (id) | UNIQUE (direct_key) · FK 2 |
+| `chat_message` | 12 | 0 | 12 | 없음 | 맞음 | 맞음 | (id) | UNIQUE (account_id,client_id 살아 있는 행) / (room_id,seq 살아 있는 행) · FK 3 |
+| `chat_room` | 11 | 0 | 11 | 없음 | 맞음 | 맞음 | (id) | UNIQUE (hospital_id,direct_key 살아 있는 행) · FK 2 |
 | `consultation` | 10 | 1 | 9 | 없음 | 맞음 | 맞음 | (id) | FK 3 · 보류 procedures |
 | `consultation_procedure` | 13 | 0 | 13 | 없음 | 맞음 | 맞음 | (id) | FK 1 |
 | `crm_connection` | 7 | 0 | 7 | 없음 | 맞음 | 맞음 | (hospital_id) | FK 1 |
-| `customer` | 41 | 0 | 41 | 없음 | 맞음 | 맞음 | (id) | UNIQUE (hospital_id,chart_number) · FK 7 · gender=열린 enum→varchar |
+| `customer` | 41 | 0 | 41 | 없음 | 맞음 | 맞음 | (id) | UNIQUE (hospital_id,chart_number 살아 있는 행) · FK 7 · gender=열린 enum→varchar |
 | `customer_category` | 9 | 0 | 9 | 없음 | 맞음 | 맞음 | (id) | FK 1 |
 | `customer_category_link` | 5 | 0 | 5 | 없음 | 맞음 | 맞음 | (customer_id,category_id) | FK 2 |
 | `customer_type` | 6 | 0 | 6 | 없음 | 맞음 | 맞음 | (id) | FK 1 |
-| `device` | 10 | 0 | 10 | 없음 | 맞음 | 맞음 | (id) | UNIQUE (install_id) · FK 1 |
+| `device` | 10 | 0 | 10 | 없음 | 맞음 | 맞음 | (id) | UNIQUE (install_id 살아 있는 행) · FK 1 |
 | `display_request` | 15 | 0 | 15 | 없음 | 맞음 | 맞음 | (id) | FK 4 · kind=열린 enum→varchar |
 | `doctor_call` | 9 | 0 | 9 | 없음 | 맞음 | 맞음 | (id) | FK 4 |
 | `doctor_call_accept` | 8 | 0 | 8 | 없음 | 맞음 | 맞음 | (id) | FK 3 |
 | `doctor_call_task` | 5 | 0 | 5 | 없음 | 맞음 | 맞음 | (call_id,task_id) | FK 2 |
 | `event_log` | 8 | 0 | 9 | 없음 | 맞음 | 맞음 | (id) | FK 3 · §2 로 더함 deleted_at |
 | `external_outbox` | 16 | 0 | 17 | 없음 | 맞음 | 맞음 | (id) | FK 2 · §2 로 더함 deleted_at |
-| `external_ref` | 15 | 0 | 15 | 없음 | 맞음 | 맞음 | (id) | UNIQUE (hospital_id,vendor,entity_type,external_id) · FK 1 · entity_type=열린 enum→varchar |
+| `external_ref` | 15 | 0 | 15 | 없음 | 맞음 | 맞음 | (id) | UNIQUE (hospital_id,vendor,entity_type,external_id 살아 있는 행) · FK 1 · entity_type=열린 enum→varchar |
 | `external_session` | 8 | 0 | 8 | 없음 | 맞음 | 맞음 | (session_id) | FK 1 |
 | `funnel` | 10 | 0 | 10 | 없음 | 맞음 | 맞음 | (id) | FK 2 |
 | `funnel_category` | 8 | 0 | 8 | 없음 | 맞음 | 맞음 | (id) | FK 1 |
@@ -33,7 +33,7 @@ SPEC 테이블 51 · 모델 테이블 51 · SPEC 만 [] · 모델만 []
 | `identity_check` | 12 | 0 | 12 | 없음 | 맞음 | 맞음 | (id) | FK 5 · method=열린 enum→varchar · status=열린 enum→varchar |
 | `job_role` | 8 | 0 | 8 | 없음 | 맞음 | 맞음 | (id) | FK 1 |
 | `job_role_permission` | 6 | 0 | 6 | 없음 | 맞음 | 맞음 | (job_role_id,permission_key) | FK 1 |
-| `login_session` | 11 | 0 | 11 | 없음 | 맞음 | 맞음 | (id) | UNIQUE (token_hash) · FK 3 |
+| `login_session` | 11 | 0 | 11 | 없음 | 맞음 | 맞음 | (id) | UNIQUE (token_hash 살아 있는 행) · FK 3 |
 | `notice` | 7 | 0 | 7 | 없음 | 맞음 | 맞음 | (id) | FK 1 |
 | `notification` | 12 | 0 | 12 | 없음 | 맞음 | 맞음 | (id) | FK 4 |
 | `notification_setting` | 6 | 0 | 6 | 없음 | 맞음 | 맞음 | (account_id,kind) | FK 1 · kind=열린 enum→varchar |

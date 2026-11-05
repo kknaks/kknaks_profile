@@ -54,24 +54,31 @@ def split_types(cell: str, count: int) -> tuple[list[str], bool]:
     return merged, pk
 
 
+CODE_TABLES = ("customer_type", "customer_category", "funnel_category", "funnel",
+               "customer_category_link")
+
+
 def parse_spec() -> dict[str, list[tuple[str, str, bool, bool]]]:
     tables: dict[str, list[tuple[str, str, bool, bool]]] = {}
+    code_types: dict[tuple[str, str], tuple[str, bool]] = {}  # (테이블, 칸) → (타입, 필수)
     cur = None
     header: list[str] | None = None
-    code = False
+    mode = ""  # "code" = 코드 테이블 표 · "code_types" = 코드 테이블 타입 · 필수 표
+    prev_tables: list[str] = []
     for line in open(SPEC, encoding="utf-8"):
         if line.startswith("## 4."):
             break
         if line.startswith("#"):
             m = HEAD.match(line)
             cur = m.group(1) if m and m.group(1) != "config" else None
-            code = "코드 테이블" in line
+            mode = ("code_types" if "코드 테이블 타입" in line
+                    else "code" if "코드 테이블" in line else "")
             header = None
             continue
         if not line.startswith("|"):
             continue
         cells = [c.strip() for c in line.strip().strip("|").split("|")]
-        if code and line.startswith("| `"):
+        if mode == "code" and line.startswith("| `"):
             name = cells[0].strip("`")
             fields = re.findall(r"`([a-z_]+)`", cells[1])
             if "생성/수정 시각" in cells[1]:
@@ -80,6 +87,21 @@ def parse_spec() -> dict[str, list[tuple[str, str, bool, bool]]]:
             pkset = set(pk[0]) if pk else {"id"}
             fields = [x for x in fields if x != "funnel_category" and x != name]
             tables[name] = [(x, "(코드 표 — 타입 미표기)", False, x in pkset) for x in fields]
+            continue
+        if mode == "code_types" and line.startswith("| `"):
+            names = split_names(cells[0])
+            types, pk = split_types(cells[1], len(names))
+            required = cells[2] == "✓"
+            if "모두" in cells[3]:
+                targets = list(CODE_TABLES)
+            elif cells[3] == "같음":
+                targets = prev_tables
+            else:
+                targets = [t for t in re.findall(r"`([a-z_]+)`", cells[3]) if t in CODE_TABLES]
+            prev_tables = targets
+            for t in targets:
+                for n, ty in zip(names, types, strict=True):
+                    code_types[(t, n)] = (ty, required)
             continue
         if cur is None:
             continue
@@ -96,6 +118,14 @@ def parse_spec() -> dict[str, list[tuple[str, str, bool, bool]]]:
         required = cells[hi["필수"]] == "✓"
         for n, t in zip(names, types, strict=True):
             tables.setdefault(cur, []).append((n, t, required, pk or "PK" in t))
+    # 코드 테이블 — 타입 · 필수 표(#225 로 정함, SPEC 에 반영됨)가 있으면 그것으로 채운다
+    for name in CODE_TABLES:
+        rows = []
+        for field, t, required, pk in tables.get(name, []):
+            if (name, field) in code_types:
+                t, required = code_types[(name, field)]
+            rows.append((field, t, required, pk))
+        tables[name] = rows
     return tables
 
 
@@ -179,6 +209,9 @@ def main() -> int:
         uniques = [",".join(c.name for c in u.columns) for u in table.constraints
                    if u.__class__.__name__ == "UniqueConstraint"]
         uniques += [c.name for c in table.columns if c.unique]
+        # 살아 있는 행만 유일(사용자 2026-11-05) — deleted_at IS NULL 부분 유일 인덱스
+        uniques += [",".join(c.name for c in i.columns) + " 살아 있는 행"
+                    for i in table.indexes if i.unique]
         fks = len(table.foreign_keys)
         cell = []
         if uniques:
