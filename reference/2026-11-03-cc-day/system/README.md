@@ -19,6 +19,8 @@
 | 3 | Redis | **둔다**(정식) — taskiq 브로커 · 결과 저장 · 프로세스 사이 화면 알림(SSE 갱신 신호) · 잠금 | 사용자 2026-11-03 |
 | 4 | taskiq 브로커 | **Redis**(`taskiq-redis`) — RabbitMQ 를 두지 않는다(centurion Linky 와 다름). VM 메모리를 아낀다 | 사용자 2026-11-03 |
 | 5 | 10초 폴링 | **taskiq scheduler 의 `interval` 스케줄** — `schedule=[{"interval": 10}]`(초 단위 · 정수 · 1초 이상). 기준 정보는 `interval: 3600`. taskiq 0.12.6(centurion 고정 버전)에서 지원 확인 | taskiq `scheduler/scheduled_task/v2.py` · 2026-11-03 확인 |
+| 7 | DB · 환경 분리 | **관리형 PostgreSQL 1대 · DB 1개(새 DB 권한 없음) → 스키마로 env 분리** — `DB_SCHEMA=day_dev` / `day_prod`. 코드는 같고 env 만 다르다: 모델 `MetaData(schema=…)` · alembic `version_table_schema` · 접속 `search_path` 를 이 값으로. DB 계정도 스키마별로 둘(dev 계정은 `day_prod` 권한 없음). migration 은 dev 에 먼저 → prod 에 같은 것 | 사용자 2026-11-05 |
+| 8 | 지금 범위 | **개발(dev)만 먼저** — 로컬 compose PostgreSQL 도 같은 방식(`DB_SCHEMA`). prod 는 배포 때 env 만 바꿔 같은 migration 적용 | 사용자 2026-11-05 |
 | 6 | 중복 실행 막기 | 병원별 Redis 잠금 — 같은 병원을 두 번 폴링 · 같은 쓰기를 두 번 보내지 않는다(이전 폴링이 10초를 넘기면 다음 회차는 건너뜀) | 코디 기본값 |
 
 버튼 하나의 흐름(예: 시술 완료): `api` 가 DB 에 쓰고 쓰기 큐에 넣고 「반영 중」으로 바로 응답 → `worker` 가 KOS 에 보내고 다음 조회로 확인 →
@@ -29,7 +31,7 @@
 Azure VM 2코어 / 4GB(예정) 기준 예상 메모리: caddy ~50MB · api 768MB · worker 384MB · scheduler 384MB · redis 256MB ≈ 1.9GB — 여유 있음(RabbitMQ 없음).
 조건: PostgreSQL 은 VM 밖(Azure 관리형) · 파일은 Azure Blob. centurion 은 prod `Standard_B2ms`(2/8) · stg `Standard_B2s`(2/4) · DB 는 VM 밖 PostgreSQL.
 
-요청할 것: **VM 2코어/4GB + Azure 관리형 PostgreSQL + Azure Blob**.
+요청할 것: **VM 2코어/4GB + Azure 관리형 PostgreSQL(1대 · DB 1개 — 확정 2026-11-05) + Azure Blob**.
 
 ## 기본값 (코디 추천 — 바꿀 때만 말하기)
 

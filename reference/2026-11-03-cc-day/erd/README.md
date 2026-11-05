@@ -41,7 +41,7 @@ DAY  ── 시술실 · 의국 (현황판 · 직원 앱)
 
 | 규칙 | 내용 | 근거 |
 |---|---|---|
-| DB | PostgreSQL · `day` 스키마 · SQLAlchemy 2 async · alembic | AGENTS.md 「계층 규칙」 · centurion `crm/db.py` |
+| DB | PostgreSQL · **스키마 이름은 env(`DB_SCHEMA` — dev `day_dev` / prod `day_prod`)** · SQLAlchemy 2 async · alembic (2026-11-05 — DB 1개라 스키마로 환경 분리, system/README 7) | AGENTS.md 「계층 규칙」 · centurion `crm/db.py` |
 | id | `uuid` | centurion |
 | 시각 | `timestamptz` — **UTC 로 통일**. KST 변환 · 날짜 계산은 프론트가 한다 | 사용자 2026-11-03 · cc 의 TEXT 시각을 쓰지 않는다 |
 | 병원 | 업무 테이블에 `hospital_id` (→ `hospital.id`). 브랜드 조회는 `hospital.brand_id` 로 묶는다 — 업무 테이블에 `brand_id` 를 따로 두지 않는다 | 01 — 한 서버가 여러 병원을 받고, 브랜드는 소속 지점 전체를 본다 |
