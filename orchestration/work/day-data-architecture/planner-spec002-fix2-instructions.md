@@ -6,7 +6,7 @@
 2. **N2 — 코디 판정(리뷰어 전제 정정)**: DAY worker 는 이미 **병원 연결 설정의 시스템 계정**(`crm_connection.config` `system_email` · `system_password`)으로 sign-in 하고 `get-user-account` 로 그 계정 id 를 얻는다(#226 · 코드 `backend/day/emr/kos/` · PR #228 `8c85233a`). #226 은 `staff.is_system_account = true` 를 **그 sign-in 계정 하나에만** 켠다(공용 · 마취용 등 다른 사람 아닌 계정은 KOS 에 표시 칸이 없어 켜지 않음 — #226 검수 W8 · 사용자 결정 대기). 그러니:
    - 규칙 25 `assigneeIds` = 「그 병원 연결의 시스템 계정(sign-in 계정 = `is_system_account` 인 직원) KOS id」 — 하나로 정해진다. 새 칸 없음.
    - 규칙 19 · OQ-11(원장 목록에서 마취용 · 공용 계정 빼기)은 **다시 연다**: 지금 `is_system_account` 는 sign-in 계정 하나뿐이라 마취용 · 공용은 빠지지 않는다. 「뺄 계정을 어디서 표시할지 = 사용자 결정(#226 W8)」 OQ 로.
-3. **사용자 결정 반영**(원천 `reference/2026-11-03-cc-day/screen/procedure-board-decisions.md` 「결정 — SPEC-002 검수에서 올라온 것」): OQ-01(웹 = 화면 라우트 HTML 조각 · JSON = 앱 전용 — API 표 · 실시간 갱신 절을 이 구조로) · OQ-04(재호출 = 시안처럼 고르는 창 — 「모든 의사」 | 원장 한 명 · 기본 선택 = 처음 호출 대상 — 「OQ-04 대기」 표시 걷기) · OQ-07(실패 토스트만 · 복구는 KOS 에서 고치면 폴링이 맞춤) · 공용 계정(다시 연 OQ-11 → 병원 연결 설정 `crm_connection.config` 에 뺄 KOS 계정 id 목록 · SPEC-000 01 config 표에 키 추가). 이로써 사용자 OQ 0 — HAR 요청만 남는다.
+3. **사용자 결정 반영**(원천 `reference/2026-11-03-cc-day/screen/procedure-board-decisions.md` 「결정 — SPEC-002 검수에서 올라온 것」): OQ-01(웹 = 화면 라우트 HTML 조각 · JSON = 앱 전용 — API 표 · 실시간 갱신 절을 이 구조로) · OQ-04(재호출 = 시안처럼 고르는 창 — 「모든 의사」 | 원장 한 명 · 기본 선택 = 처음 호출 대상 — 「OQ-04 대기」 표시 걷기) · OQ-07(실패 토스트만 · 복구는 KOS 에서 고치면 폴링이 맞춤) · 공용 계정(다시 연 OQ-11 → **1차는 빼지 않고 다 넣는다** · 새 칸 · 설정 없음 · sign-in 시스템 계정만 빠짐 — SPEC-000 변경 없음). 이로써 사용자 OQ 0 — HAR 요청만 남는다.
 4. log 한 줄 · lint `--strict` 1회.
 
 리포트 `/Users/kknaks/orca/workspaces/kknaks_profile/day/orchestration/work/day-data-architecture/planner-spec002-fix2-report.md`. 완료는 preamble 의 worker_done 절차대로(둘 다).
