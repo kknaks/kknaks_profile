@@ -1,55 +1,58 @@
 {
  "product_id": "day",
  "document_root": "products/day",
- "contract_version": 1,
+ "contract_version": 2,
  "target_specs": [
   "DAY-SPEC-001"
  ],
  "spec_baseline_revision": "d93b921013af517570b9c04bd14a0668650f4887",
  "idempotency_key": "day/v2-login-page",
- "title": "DAY v2 로그인 화면(웹) — 로그인 · 병원 고르기 · 로그아웃 (#229 매크로 · DAY-SPEC-001)",
+ "title": "DAY v2 로그인 화면(웹) — 로그인 · 병원 고르기 · 로그아웃 (#229 매크로 · DAY-SPEC-001 웹 화면)",
  "risk_level": "L2",
  "target_delta": [
-  "medikit HTMX 기반(#229)이 끝난 뒤 로그인 화면을 #229 매크로로만 조립한다(사용자 2026-11-06). 시안이 없으므로 centurion 로그인 화면 모양(origin/main backend/sso/templates/login/login.html — 가운데 카드 하나 · 제목 · 안내 · 오류 칸 · 버튼 / login/choose.html — 고르기 목록 + 로그아웃)을 따르고, 시안이 나오면 그때 맞춘다.",
-  "로그인 페이지 — 이메일 · 비밀번호 입력 · 로그인 버튼 · 오류 칸. 오류 문구는 DAY-SPEC-001 케이스 매트릭스 줄마다(400 invalid_request 빈 입력 · 401 invalid_credentials · 503 kos_unavailable · 403 account_inactive · no_connected_hospital · no_staff_account · mfa_not_supported · staff_inactive · 401 session_expired) 매트릭스의 뜻 그대로 — 새로 지어내지 않는다.",
-  "병원 고르기 — 연결 병원이 둘 이상이면 후보 목록(choose.html 모양)에서 고른다. 임시 토큰(5분)이 지나면 session_expired 문구로 로그인부터 다시(DAY-SPEC-001 U-2 · S-3).",
-  "로그아웃 — POST(CSRF) 뒤 로그인 화면으로. 로그인 안 한 요청 · 만료 · 로그아웃된 세션은 로그인 화면으로 보낸다(일반 요청 303 · HTMX 요청 204 + HX-Redirect — centurion medikit-htmx-kit README 「HTMX 쪽 규칙」).",
-  "로그인 뒤 갈 곳 — 1차는 #229 견본 페이지(dev) 또는 빈 홈. 시술 현황(#231)이 생기면 그쪽으로.",
-  "웹 = 화면 라우트(HTML 조각) 원칙(DAY-SPEC-002 OQ-01 과 같은 구조): 로그인 화면 라우트는 #227 의 로그인 service(PR #228 fb2508e4 — services/auth.py · services/sessions.py · session.py)를 그대로 부르고 day_session 쿠키 · CSRF 를 그대로 쓴다. 백엔드 변경은 화면 라우트 추가와 리다이렉트 처리만(최소).",
-  "SPEC-001 에 화면 절(화면 · 흐름 · 오류 문구)이 없으므로 그 절을 SPEC-001 에 더하는 것을 첫 phase 로 한다 — 문구는 매트릭스의 뜻 그대로, 모르는 것은 OQ(사용자 결정)."
+  "DAY-SPEC-001 §2 「웹 화면」 절(사용자 2026-11-06 확정 — 화면 라우트 · 흐름 · 매트릭스 13줄 + 로그아웃의 화면 처리 · 문구 · 임시 토큰 · 이메일 유지 · 갈 곳)을 그대로 구현한다. 문구는 그 표 그대로 — 새로 짓지 않는다.",
+  "medikit HTMX 기반(#229)이 끝난 뒤 #229 매크로로만 조립한다. 생김새 = centurion origin/main backend/sso/templates/login/login.html(가운데 카드) · login/choose.html(병원 고르기 목록 + 로그아웃) 모양(SPEC-001 §2 Placement).",
+  "웹 화면 라우트 새로(검수 4절 ①): GET · POST /login · POST /login/hospital · POST /logout — routers/(login) + 템플릿. service(services/auth.py · services/sessions.py)는 그대로 쓴다.",
+  "쿠키 심기를 웹 화면 라우트로 옮긴다(4절 ②): day_session 쿠키는 웹 라우트가 session.set_session_cookie 로 심는다. JSON /api/auth/* 는 앱 전용이므로 LoginRequest · HospitalRequest 의 client 기본값을 app 으로 바꾸거나 칸을 없애 JSON 이 기본으로 웹 쿠키를 심지 않게 한다(#227 코드 변경).",
+  "웹 로그아웃(4절 ③): POST /logout 이 같은 service 로 세션을 끝내고 쿠키를 지운 뒤 /login?reason=logged_out 으로 이동한다. CSRF 는 form csrf_token 칸(session.py 가 이미 읽음). /api/auth/logout 은 앱 전용.",
+  "CSRF(4절 ④): 로그인 전 요청 — 웹 POST /login · POST /login/hospital · 앱 /api/auth/login · /api/auth/hospital — 은 CSRF 를 걸지 않는다(writable_session 을 쓰지 않음 · session.py 주석에 웹 둘을 더함). POST /logout 은 건다.",
+  "웹 화면용 오류 응답(4절 ⑤): 미로그인 · 만료(unauthorized · session_expired)는 일반 303 · HTMX 204 + HX-Redirect 로 /login(?reason=session_expired), forbidden 은 권한 없음 화면, csrf_failed 는 오류 토스트 조각 — JSON 핸들러(runtime/main.py)와 HTML 응답을 HX-Request · 경로로 가르는 의존성 · 핸들러를 둔다.",
+  "임시 토큰 = 병원 고르기 조각의 숨은 폼 칸 → POST /login/hospital 본문 · URL · 쿠키 · 로그에 남기지 않음. 로그인 실패 = 오류 조각(이메일 유지 · 비밀번호 비움). 로그인 뒤 갈 곳 = dev 견본(#229) / 그 밖 빈 홈."
  ],
  "acceptance": [
-  "A1: 브라우저 실물 — 데모 지점 계정으로 로그인 → (연결 병원이 여럿이면 병원 고르기) → 로그인 뒤 화면 → 로그아웃 흐름이 되고 스크린샷을 남긴다.",
-  "A2: 오류 화면 — 틀린 비밀번호(invalid_credentials) · 빈 입력(invalid_request, KOS 를 부르지 않음) 스크린샷. 나머지 매트릭스 오류는 조각 렌더 테스트로 줄마다 문구가 나온다.",
-  "A3: 로그인 안 한 요청 → 로그인 화면(일반 303 · HTMX 204 + HX-Redirect) · 로그아웃 뒤 이전 화면으로 돌아가지 못한다(401 unauthorized → 로그인).",
-  "A4: 손 CSS 0(style 속성 · tailwind 임의값 · 새 값 없음 — #229 매크로 · 토큰만) · 인라인 스크립트 0(script 본문 · on* · hx-on 없음) — grep · architecture 테스트.",
-  "A5: 로그아웃 · 병원 고르기 등 쓰기 요청은 CSRF(DAY-SPEC-001 「CSRF (웹)」)를 지킨다 — 로그인 전 요청(로그인 · 병원 고르기)은 CSRF 미적용 · SameSite=Lax.",
-  "A6: SPEC-001 화면 절이 PR 로 들어가 있다(문구 · 흐름 — 매트릭스와 대응표). 정하지 못한 문구는 OQ 로 남아 있다."
+  "A1: 브라우저 실물 — 데모 지점 계정으로 /login → (연결 병원이 여럿이면 병원 고르기) → 로그인 뒤 갈 곳 → 로그아웃 → /login?reason=logged_out 흐름 스크린샷.",
+  "A2: 오류 화면 스크린샷 — 틀린 비밀번호(invalid_credentials) · 빈 입력(invalid_request · KOS 안 부름). 매트릭스 13줄 + 로그아웃 각각의 화면 처리 · 문구가 SPEC-001 「웹 화면」 대응표와 같다(조각 · 라우트 렌더 테스트 — 13줄 기준).",
+  "A3: 미로그인 · 만료 요청 → /login(일반 303 · HTMX 204 + HX-Redirect · 만료는 ?reason=session_expired 안내) · forbidden → 권한 없음 화면 · csrf_failed → 오류 토스트. 로그아웃 뒤 이전 화면으로 못 돌아간다.",
+  "A4: 손 CSS 0(style 속성 · tailwind 임의값 · 새 값 없음) · 인라인 스크립트 0(script 본문 · on* · hx-on 없음) — grep · architecture 테스트.",
+  "A5: 쿠키 세션의 쓰기(POST /logout)는 CSRF 를 지키고, 로그인 전 요청(웹 POST /login · /login/hospital · 앱 /api/auth/login · /hospital)은 CSRF 미적용 · SameSite=Lax.",
+  "A6: JSON /api/auth/login · /hospital 은 기본으로 웹 쿠키를 심지 않는다(client 기본값 app 또는 칸 없음) — 앱 경로 회귀 테스트(#227 테스트 갱신).",
+  "A7: 임시 토큰은 숨은 폼 칸으로만 오가며 URL · 쿠키 · 로그에 없다 · 5분 지나거나 한 번 쓰이면 session_expired."
  ],
  "non_goals": [
   "시술 현황 화면(#231)",
   "앱(Flutter) 로그인 화면",
   "디자인 새로 만들기 — 새 매크로 · 토큰이 필요하면 #229 로 되돌림",
-  "로그인 · 세션 규칙 변경(#227 · DAY-SPEC-001 계약 그대로) · 본사 · 시스템 관리자 로그인 · 2단계 인증 지원",
+  "로그인 · 세션 규칙 변경(service · KOS 호출 · 세션 · 오류 코드는 #227 · DAY-SPEC-001 그대로) · 본사 · 시스템 관리자 로그인 · 2단계 인증 지원",
+  "SPEC 문서 작성 — SPEC-001 「웹 화면」 절은 이미 닫힘(이 Delivery 는 구현만)",
   "prod 배포"
  ],
  "review_surface": [
-  "target DAY-SPEC-001 은 mediness PR #909(미머지)에만 있다 — spec-baseline:pending",
-  "위험 L2 근거: 화면 · 화면 라우트만 — 인증 규칙 · 데이터 · 외부 write 변경 없음(#227 service 재사용). 단 화면 라우트 경로 · 리다이렉트는 외부 계약(AGENTS.md)",
-  "DAY-SPEC-001 §3 은 「웹(HTMX)과 앱이 같은 JSON /api/auth/* 를 쓴다」인데 사용자 결정(웹 = 화면 라우트 HTML 조각)은 SPEC-002 OQ-01 에서 나왔다 — 로그인 화면도 화면 라우트로 갈지(이 계약 기본값) · SPEC-001 화면 절에 같이 적을지",
-  "centurion 로그인 템플릿은 tailwind 임의값(rounded-[16px] 등)을 쓴다 — DAY 는 손 CSS 0 이라 모양만 따르고 #229 매크로 · 토큰으로 근사한다",
-  "오류 문구 — SPEC-001 은 mfa 안내 예시 하나만 있다. 나머지 문구는 매트릭스의 뜻 그대로 쓰되 사용자 확인이 필요하다(SPEC-001 화면 절 OQ)",
-  "로그인 뒤 갈 곳 — 1차 견본 페이지(dev) 또는 빈 홈. prod 에는 견본이 없으므로 빈 홈"
+  "target DAY-SPEC-001(「웹 화면」 절 포함)은 mediness PR #909(미머지)에만 있다 — spec-baseline:pending",
+  "위험 L2 근거: 화면 라우트 · 템플릿 + #227 웹 쪽 손질(쿠키 심는 자리 · JSON client 기본값 · 웹 오류 응답) — 인증 규칙 · 데이터 · 외부 write 변경 없음. 단 화면 라우트 경로 · 리다이렉트 · JSON client 기본값은 외부 계약(AGENTS.md) — 앱이 client 를 생략해도 쿠키를 받지 않게 바뀐다",
+  "웹 = 화면 라우트 · /api/auth/* = 앱 전용 · 문구 13줄 · 숨은 폼 칸 · 이메일 유지 · 갈 곳은 사용자 2026-11-06 결정(원천 04) — 이 계약의 기본값이 아니다",
+  "centurion 로그인 템플릿은 tailwind 임의값을 쓴다 — DAY 는 손 CSS 0 이라 모양만 따르고 #229 매크로 · 토큰으로 근사",
+  "원천 04 「CSRF (웹)」 줄은 아직 /api/auth/* 만 미적용으로 적혀 있다 — SPEC-001 은 웹 /login · /login/hospital 도 미적용(로그인 전 요청의 뜻 그대로 확장 · 코디가 원천을 맞출지)"
  ],
  "implementation_starting_points": [
   "centurion origin/main backend/sso/templates/login/login.html · login/choose.html · backend/admin/routers/session.py — 모양 · 흐름만, volatile",
-  "PR #228 fb2508e4 backend/day/routers/api/auth.py · services/auth.py · services/sessions.py · session.py — 재사용"
+  "PR #228 fb2508e4 backend/day/routers/api/auth.py(_signed_in · set_session_cookie) · schemas/auth.py(client 기본값) · services/auth.py · services/sessions.py · session.py · runtime/main.py(오류 핸들러)"
  ],
  "execution": {
   "code_surface": [
-   "products/day/20-spec/spec-001-login-session.md(mediness — 화면 절)",
-   "backend/day/routers/(login — 화면 라우트 · 리다이렉트)",
-   "backend/day/templates/(login.html · 병원 고르기 · partials 오류 조각)",
+   "backend/day/routers/(login — 웹 화면 라우트 · 리다이렉트 · 웹 오류 응답)",
+   "backend/day/routers/api/auth.py · schemas/auth.py(쿠키 심기 이동 · client 기본값 app)",
+   "backend/day/session.py(CSRF 미적용 주석 · 웹 이동 의존성) · runtime/main.py(HTML / JSON 오류 가르기)",
+   "backend/day/templates/(login.html · 병원 고르기 · 권한 없음 · partials 오류 조각)",
    "backend/tests/day/ · tests/architecture/"
   ],
   "domain_candidates": [],
@@ -58,14 +61,15 @@
    "로그인 · 세션(day/v2-login · #227 · PR #228 fb2508e4)"
   ],
   "phases": [
-   "SPEC-001 화면 절(화면 · 흐름 · 오류 문구 — 모르는 것은 OQ)",
-   "화면 라우트(로그인 · 병원 고르기 · 로그아웃) — #227 service 재사용 · 리다이렉트",
-   "템플릿(#229 매크로만) · 오류 조각",
-   "브라우저 실물 · 스크린샷(데모 지점 계정)"
+   "웹 화면 라우트(/login · /login/hospital · /logout) — service 재사용 · 쿠키 심기 이동 · JSON client 기본값 app",
+   "웹 오류 응답 — 이동(303 · HX-Redirect · ?reason) · 권한 없음 화면 · CSRF 토스트",
+   "템플릿(#229 매크로만) · 문구 = SPEC-001 대응표",
+   "테스트(13줄 렌더 · CSRF · 앱 회귀) · 브라우저 실물 · 스크린샷(데모 지점 계정)"
   ],
   "verification": [
-   "조각 렌더 테스트(오류 매트릭스 줄마다 문구)",
-   "라우트 테스트(303 · HX-Redirect · CSRF)",
+   "조각 · 라우트 렌더 테스트(매트릭스 13줄 + 로그아웃 — SPEC-001 대응표 문구)",
+   "라우트 테스트(303 · HX-Redirect · CSRF 적용/미적용 · 임시 토큰 숨은 칸)",
+   "앱 JSON 회귀 테스트(client 기본값 · 쿠키 안 심음)",
    "architecture 테스트(손 CSS · 인라인 스크립트)",
    "브라우저 실물 · 스크린샷"
   ],
@@ -73,9 +77,7 @@
   "rollback": [
    "Code PR revert — 로그인 API(#227)는 그대로"
   ],
-  "open_questions": [
-   "오류 문구(매트릭스 뜻 그대로 — 사용자 확인)",
-   "로그인 화면도 화면 라우트로(SPEC-001 §3 JSON 공용과의 관계)"
-  ]
- }
+  "open_questions": []
+ },
+ "scope_delta": "contract v2 — #232 검수 W1 ~ W5 + SPEC-001 화면 절 검수 4절 ① ~ ⑤ 반영. SPEC-001 「웹 화면」 절(개정 ④ · ⑤ — 사용자 2026-11-06 확정)을 target 정본으로 인용하고, 계약 안에서 SPEC 을 쓰던 phase 1 · A6 · code_surface 의 mediness 줄을 뺐다(W1). 웹 = 화면 라우트는 사용자 결정(원천 04 「웹 화면」)이라 기본값이 아니다(W2). 임시 토큰 = 숨은 폼 칸(W3). 매트릭스 13줄 + 로그아웃 렌더 테스트(W4). A5 CSRF 문장 정리(W5). #227 코드 변경을 계약에 담음: ① 웹 화면 라우트 새로 ② 쿠키 심기를 웹 라우트로 · JSON client 기본값 app ③ 웹 로그아웃(쿠키 지움 · form csrf_token) ④ CSRF 미적용 주석 ⑤ 미로그인 · 만료 · 권한 · CSRF 를 HTML(이동 · 권한 없음 화면 · 토스트)로 내는 의존성 — 「백엔드는 라우트 · 리다이렉트만」 문장을 고침."
 }
