@@ -53,7 +53,7 @@
 | reviewer_doc | `term_441c2cdb-68e6-4463-b694-d8d6adfc7210` | `task_0fbf4462273f` | `ctx_6b32d164d0aa` | `day-data-architecture-review-doc-brief.md` | 1판 FAIL(터미널 유지) |
 | planner #227 재계약 v2(SPEC-001) | `term_33d8da4d-2ead-4828-bc2f-3316d4b4bbbe` | (task-list) | (dispatch) | `planner-delivery227-v2-instructions.md` | 발주 · 진행 → 끝나면 reviewer 자동 |
 | reviewer #226 fix2 재검수 | `term_93d7dafc-cadb-4d5c-b78f-2ebd18f0aafc` | `task_b99db8e4b21b` | `ctx_a79a0765ae1e` | `review-226-fix2-brief.md` | 완료 · PASS → **#226 커밋 `8c85233a`(PR #228)** |
-| reviewer SPEC-002 fix1 재검수 | `term_75e030e5-a3f9-4ed9-96a9-489fef7ec748` | `task_a14f0d53b6df` | `ctx_124c805a9fda` | `review-spec002-fix1-brief.md` | 발주 · 진행(자동) |
+| reviewer SPEC-002 fix1 재검수 | `term_75e030e5-a3f9-4ed9-96a9-489fef7ec748` | `task_a14f0d53b6df` | `ctx_124c805a9fda` | `review-spec002-fix1-brief.md` | 완료 · WARN · W1~W11 닫힘 · 새 N1(대리 수락 → 방문 뒤 쓰기 멈춤 서술) · N2(규칙 25 계정 — 코디 판정: sign-in 계정 하나 · OQ-11 다시 열림) → fix2 대기(planner 가 #227 재계약 끝난 뒤 발주) |
 | backend #226 fix2(N1~N3) | `term_adbc21b4-456a-447f-8dc5-a3899532a4e5` | `task_f31756aff8ee` | `ctx_7600caad89ba` | `backend-226-fix2-instructions.md` | 완료 · 코디 확인(not infra 155 · 전체 222 · ruff) |
 | planner SPEC-002 fix1(W1~W11 · 답 있는 OQ 닫기) | `term_33d8da4d-2ead-4828-bc2f-3316d4b4bbbe` | `task_5e5df92efb20` | `ctx_dc288a2290c5` | `planner-spec002-fix1-instructions.md` | 완료 · lint 0 · OQ 7 닫음 · 사용자 OQ 3(01 · 04 · 07) 대기 |
 | reviewer #226 fix1 재검수 | `term_93d7dafc-cadb-4d5c-b78f-2ebd18f0aafc` | `task_a382c748f20f` | `ctx_fce434e5246b` | `review-226-fix1-brief.md` | 완료 · WARN · W1~W6 · 경계 닫힘 · 새 N1~N3 |
