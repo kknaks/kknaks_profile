@@ -119,7 +119,7 @@
 | E01 | 앱 틀 | `base.html` `.day-app` · `.day-main` | G1 | 셸 그 자체(모든 페이지) |
 | E02 | 아이콘 줄 | `base.html` `.day-rail` + `menu.py` | G1 | 기본(42%) · 현재(100%) — `00-viewport` |
 | E03 | 헤더 | `base.html` `.day-header` | G1 | 〃 |
-| E04 | 병원 이름 | `base.html` `.day-hospital`(값 = `hospital_name`) | ― | 견본은 가짜 이름 · 홈은 `me().hospital_name` |
+| E04 | 병원 이름 | `base.html` `.day-hospital`(값 = `hospital_name`) | ― | 로그인 세션의 병원 이름(`me().hospital_name`) — fix1 |
 | E05 | 헤더 탭 | `base.html` `.day-tab` · `ui.tabs(variant=header)` | G2 | 현재 · 꺼짐(화면 없음) — `12-tabs` |
 | E06 | 고객 검색 28 (자리만) | `ui.search(size="ss", header=true)` | ― | 빈 칸 — `04-inputs` |
 | E07 | 페이지 머리 | `ui.page_head` | ― | 날짜 글자 — `02-shell` |
