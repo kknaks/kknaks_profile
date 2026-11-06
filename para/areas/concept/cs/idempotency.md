@@ -8,6 +8,7 @@ aliases:
   - idempotent
   - idempotency
 up:
+  - 2026-11-06-agency-settlement
   - 2026-09-12-sc-meeting
   - 2026-08-10-idempotency-in-our-decisions
   - C-030-idempotency-patterns-for-safe-api-retries
@@ -94,6 +95,7 @@ Idempotency-Key: 6f5484e8-3dc7-4cb6-8987-e95d65b48767
 - **TTL은 단순한 저장 공간 설정이 아니다** — 재시도 창보다 짧으면 늦게 도착한 중복 요청이 새 작업이 된다. 반대로 영구적인 중복 방지가 필요하면 TTL 레코드와 별도로 비즈니스 키의 유일성을 유지해야 한다.
 - **락만으로 결과의 원자성이 생기지는 않는다** — 결제와 멱등성 응답 저장이 서로 다른 시스템에 있으면 하나만 성공할 수 있다. 가능한 작업은 같은 트랜잭션으로 묶고, 외부 호출은 상태 조회·아웃박스·상태 머신으로 복구 가능하게 만든다.
 - **재시도 자체가 부하를 늘린다** — 멱등하다고 무한정 다시 보내면 상대를 더 밀어붙인다. 제한된 횟수와 [[exponential-backoff]]를 함께 사용한다.
+- **증분 수집의 중복 판정을 시각으로 하지 않는다** — 원천 목록에 만든 시각이 없고 「마지막 변경 시각」만 있으면, 「마지막 이후만」으로 자르는 순간 같은 수단 · 같은 금액의 새 결제가 「이미 받은 것」으로 버려진다. 목록은 매번 범위 전체를 받고 **묶음 키(수납 · 상태 · 수단 · 금액 · 통화)별 개수 차이**로 새 행을 고르며, 비싼 조회만 새 것에 한다
 
 ## 함께 보는 개념
 
@@ -114,3 +116,4 @@ Idempotency-Key: 6f5484e8-3dc7-4cb6-8987-e95d65b48767
 - 2026-09-12-sc-meeting §2 — ax-workspace `platform/soniox.py`(결과 GET 재시도, 커밋 e252dee)
 - [[2026-10-03-strong-hajin-polish2]] §2 — Strong Hajin WORK-009 「초안 저장」의 회차 판정(`review-be-p1b-report.md` · 커밋 `4789647`)
 - [[2026-10-30-internal-chat]] §2 「안 읽음 · 다시 받기를 메시지 id 로」 — `since >=` + id 겹침 지움 · 대상별 `clientId`
+- [[2026-11-06-agency-settlement]] §2 — 운영 KOS 결제 증분(SPEC-001 §4.5 · OQ-123 · `review-doc-r3-report.md` F-2)
