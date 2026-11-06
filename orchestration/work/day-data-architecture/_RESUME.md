@@ -51,8 +51,10 @@
 |---|---|---|---|---|---|
 | planner | `term_8117e457-5427-4f0c-9dd5-6fc68f77f6f4` | `task_256e3ec1a806` | `ctx_e497e1180940` | `day-data-architecture-spec-brief.md` | 완료(터미널 유지 — 수정 재발주용) |
 | reviewer_doc | `term_441c2cdb-68e6-4463-b694-d8d6adfc7210` | `task_0fbf4462273f` | `ctx_6b32d164d0aa` | `day-data-architecture-review-doc-brief.md` | 1판 FAIL(터미널 유지) |
+| reviewer #226 fix1 재검수 | `term_93d7dafc-cadb-4d5c-b78f-2ebd18f0aafc` | `task_a382c748f20f` | `ctx_fce434e5246b` | `review-226-fix1-brief.md` | 발주 · 진행(compose 금지) |
+| backend #226 실물 확인 2(needs_master) | `term_adbc21b4-456a-447f-8dc5-a3899532a4e5` | `task_4840ee6b85b9` | `ctx_11b9e8fa45f7` | `backend-226-live2-instructions.md` | 발주 · 진행 |
 | reviewer DAY-SPEC-002 문서 검수 | `term_75e030e5-a3f9-4ed9-96a9-489fef7ec748` | `task_a6d882be4de6` | `ctx_2d43268f7499` | `review-spec002-brief.md` | 발주 · 진행(자동) |
-| backend #226 fix1(W1~W6 · 병원 경계) | `term_adbc21b4-456a-447f-8dc5-a3899532a4e5` | `task_42ebb6c6f004` | `ctx_89f641df77dd` | `backend-226-fix1-instructions.md` | 발주 · 진행 |
+| backend #226 fix1(W1~W6 · 병원 경계) | `term_adbc21b4-456a-447f-8dc5-a3899532a4e5` | `task_42ebb6c6f004` | `ctx_89f641df77dd` | `backend-226-fix1-instructions.md` | 완료 · 코디 확인(not infra 153 · 전체 220 · ruff) |
 | reviewer #226 코드 검수 | `term_93d7dafc-cadb-4d5c-b78f-2ebd18f0aafc` | `task_48ba455ecfc4` | `ctx_b25b91f03c06` | `review-226-brief.md` | 완료 · WARN(FAIL 0 · W1~W8) |
 | planner DAY-SPEC-002 시술 현황 | `term_33d8da4d-2ead-4828-bc2f-3316d4b4bbbe` | `task_70c80e1f4154` | `ctx_7f6be83ad3f2` | `planner-spec002-instructions.md` | 완료 · 미커밋(lint 0) · 사용자 OQ 8 · HAR 요청 5 |
 | reviewer 시술 현황 시안 검수(읽기 전용) | `term_e22da864-5b18-46cf-9db2-332b95aae73c` | `task_82e401a05433` | `ctx_75dfcc9a03ec` | `review-screen-procedure-brief.md` | 완료 · WARN · 결정 12 → 원천 `screen/procedure-board-decisions.md` |
