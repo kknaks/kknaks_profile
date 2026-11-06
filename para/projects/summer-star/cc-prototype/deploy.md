@@ -117,3 +117,4 @@ xcrun altool --upload-app --type ios -f build/ios/ipa/*.ipa \
 | 2026-10-29 | 직원 앱 내부 채팅(1:1 · 그룹 · 사진 · 동영상 · 수정 · 푸시) — back 만 배포(`back.imageTag`) · ingress 업로드 한도 100m · TestFlight **빌드 12**(운영 주소) | 코드 #17 `a6c4123` · infra #44 `d9041ed` |
 | 2026-10-29 | 채팅 [공유] = 앱 안 전달 · 시스템 공유 걷어냄 · 파일 마지막 참조 삭제 · 통역 드로어 높이 결함 · 바텀 시트 10곳 — back 만 · TestFlight **빌드 13** | 코드 #18 `b988f21` · infra #45 `f67ac5d` |
 | 2026-10-29 | 채팅 모아보기 · 초대(1:1 → 새 그룹) · 들어온 뒤 대화만(DB 열 추가 · 배포 전 운영 DB 사본 `/data/procedure.db.bak-20261029-invite`) · 시트 정렬 — back 만 · TestFlight **빌드 14** | 코드 #19 `bf30db4` · infra #46 `15a1b39` |
+| 2026-11-04 | **핫픽스** KOS 내부 API `403 Unsupported client.`(11-03 18:23 KST 부터 비브라우저 User-Agent 차단) — 내부 요청에 UA · Origin · `kos-client-uri` · back 만 | 코드 #20 `77173cf` · infra #47 `5ebc4dc` |
