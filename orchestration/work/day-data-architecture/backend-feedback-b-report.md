@@ -65,8 +65,30 @@
 
 - failed 라 동기화 가드가 풀려 그 칸은 KOS 값을 따른다. 새 규칙으로 다시 보내지 않았다 — 옛 행에는 누른 사람이 없다(수락 actor = 의사). 같은 조작을 화면에서 다시 누르면 새 규칙으로 나간다.
 
-## 7. 실물(데모 지점 KOS 쓰기)
-- (아래 「실물 결과」 — 사용자가 화면에서 누른 뒤 채움)
+## 7. 실물(데모 지점 KOS 쓰기 · 사용자가 화면에서 누름 · 16:34 ~ 16:45 KST)
+새 코드에서 쌓인 op 전부가 **누른 사람 토큰**(`sender_staff_id` 있음)으로 나가 **전부 confirmed** 다. failed 0 · pending/sent 0 이다(상태 · 건수만 · 값 없음).
+
+| 쓰기 | confirmed | 비고 |
+|---|---|---|
+| `change-tasks-room` | 1 | 호출 1단계 |
+| `change-tasks-assignees` | 5 | 호출 2단계 |
+| `call-tasks-doctors` | 5 | 처음 호출 + **다시 호출**(이미 WAITING/READY — OQ-09 실물 확인) |
+| `change-tasks-doctors` | 3 | 수락 — 누른 사람 토큰 |
+| `change-flow-step PROCEDURE` | 1 | 첫 시작 |
+| `change-tasks-complete true` | 7 | 종료 |
+| `change-tasks-complete false` | 1 | **완료 취소 — 실물 확인**(`status_not = done` 확인) |
+| `cancel-flow-tasks` | 2 | **귀가 대기 ① — 실물 확인** |
+| `change-flow-step PROCEDURE_DONE` | 2 | **귀가 대기 ② — 실물 확인**(내부 경로 `{id, step}`) |
+
+- **「시작 취소」 `PROCEDURE_WAITING` 은 실물로 나가지 않았다.**
+  - 이번 시작 취소 1회는 그 고객에 다른 진행/완료 시술이 남아 `flowStepChanged = false` 였다. 규칙 13 대로 DAY 만 바뀌었다.
+  - 확인하려면 고객의 **유일한 진행 시술**을 시작 취소해야 한다. 남은 것에 둔다.
+- 옛 코드 때 귀가 대기 2회(16:10 이전)는 `not_supported` 로 남았다. 새 코드의 2회는 op 2개씩 confirmed 다.
+
+## 남은 것
+- 「시작 취소」로 고객이 시술 대기로 돌아가는 경우(`PROCEDURE_WAITING`) 실물 1회.
+- 운영 연결에 열기(`KOS_TRIAL_WRITES_ON_LIVE`) — 위 실물 결과로 코디 · 사용자 결정. 「시작 취소」 실물 확인 뒤에 켜기를 권한다.
+- SPEC: 완료 취소 확인 조건 `status_not = done`(cc `statusNot`) · `sender_staff_id` 옛 행 = event actor 로 대신 찾음 — planner 반영 여부 확인.
 
 ## 검증
 | 명령 | 결과 |

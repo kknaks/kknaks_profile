@@ -131,3 +131,4 @@
 - 2026-11-06: 사용자 화면 피드백 모음 시작 — `board-feedback.md`(F1 수락 창 = 모달 → 시안처럼 팝오버). 모아서 한 번에 발주
 - 2026-11-06: 화면 피드백 발주 — planner SPEC-002(F3 · F4 · F5 · F6 · F7 · F10) · frontend F1 · F9 · backend F8. SPEC PASS 뒤 2차분(F3 · F4 · F5 · F6 · F7 · F10 구현 + outbox 멈춘 행 정리)
 - 2026-11-06: SPEC-002 ⑥⑦ PASS → PR #909 `6386f746`. 2차분 발주: planner #230 v6 · #231 v2 / backend F3 F4 F5 F7 F10 + 실물(데모 · 사용자가 화면에서 쓰기 중 = 허락) / frontend F3 F5 F6 F7
+- 2026-11-06: 피드백 2차 백엔드 완료 — 데모 지점 실물 KOS 쓰기 전부 confirmed(호출 · 다시 호출 · 수락 · 시작 · 종료 · 완료 취소 · 귀가 대기). 시작 취소 PROCEDURE_WAITING 만 미확인(유일 진행 시술 취소 필요). 운영 연결은 KOS_TRIAL_WRITES_ON_LIVE=false 로 막음. 다음 = F16 바로 보내기 · F15 · 그 뒤 피드백 묶음 코드 리뷰 → PR #228
