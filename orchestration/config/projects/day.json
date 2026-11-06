@@ -176,6 +176,16 @@
         "(read-only — 리포 파일 수정 금지. 산출물은 브리프가 지정한 리포트 파일 1개뿐)"
       ],
       "verify": "각 지적에 파일:줄 + 근거(SPEC 절 · DEC D-번호). 판정 FAIL · WARN · PASS. 「조용히 통과하는 자리」를 따로 본다"
+    },
+    "qa": {
+      "repo": "code",
+      "agent": "claude",
+      "brief_suffix": "qa",
+      "roles_dir": "roles/day/qa",
+      "allowed_paths": [
+        "(read-only — 레포 파일 수정 금지 · 브리프가 e2e 테스트 파일을 맡기면 그것만) · 리포트 1개 · 스크린샷 폴더"
+      ],
+      "verify": "시나리오별 PASS/FAIL 표 · 브라우저 실물 스크린샷 · FAIL 재현 절차 · 키/토큰/실명 0"
     }
   },
   "default_workers": [
