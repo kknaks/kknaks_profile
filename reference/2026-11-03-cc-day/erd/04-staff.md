@@ -130,5 +130,6 @@ KOS 명동점: 직원 90 · 의사 10 · 상담 31 · 직무 21 · 분류 태그
 | CSRF (웹) | **centurion admin 방식** — 세션마다 CSRF 토큰 하나(`login_session` 과 같이) · 웹 화면(`base.html`)이 `hx-headers` 로 `X-CSRF-Token` 을 싣는다 · 없거나 틀리면 **403 `csrf_failed`**. 로그인 전 요청(웹 `/login` · `/login/hospital` · 앱 `/api/auth/login` · `/api/auth/hospital`)은 세션이 없어 CSRF 를 걸지 않고 `SameSite=Lax` 쿠키로 막는다. 앱(Bearer)은 CSRF 없음 (사용자 2026-11-06) |
 | 빈 입력 | 이메일 · 비밀번호 중 하나라도 비어 있으면 KOS 를 부르지 않고 **400 `invalid_request`**(틀린 비밀번호 401 `invalid_credentials` 와 구분) (사용자 2026-11-06) |
 | 웹 화면 | **웹 로그인은 화면 라우트**(`/login` · `/login/hospital` · 로그아웃) — 폼을 받아 오류는 HTML 조각 · 성공은 이동. **`/api/auth/*` JSON 은 앱 전용**. 로직은 같은 service(#227). 시술 현황(SPEC-002 OQ-01)과 같은 규칙 — 11-05 「웹 · 앱 같은 JSON」을 바꿈 (사용자 2026-11-06) |
+| 웹 화면 문구 · 흐름 | **SPEC-001 화면 절 추천안 그대로**(13줄 문구 — KOS 장애도 「KOS 연결에 문제가 있어 로그인할 수 없습니다. 잠시 뒤 다시 시도해 주세요」) · 병원 고르기 임시 토큰 = **숨은 폼 칸**(`POST /login/hospital` 본문) · 로그인 실패 때 **이메일 유지 · 비밀번호 비움** · 로그인 뒤 갈 곳 = dev 견본 / 그 밖 빈 홈 (사용자 2026-11-06) |
 | 1차 범위 | 병원 직원만. 본사 · 시스템 관리자 로그인은 1차 밖(`login_session` 개정과 함께). 2단계 인증 계정은 막고 안내 |
 | 그 밖 | 로그인 후 병원 바꾸기 = 다시 로그인 · 비활성 직원 = 로그인 막기(판정 = 기준 정보 동기화 `get-accounts.activate` 로 채운 `staff.is_active`) · dev 서버 = 데모 연결 병원만 · 권한 행 없는 직무 = 아무것도 못 함 · 처음 만든 `account.is_active` = true · KOS 호출 시간 제한 15초(cc 값) · 이메일 · 비밀번호 형식 검사는 KOS 에 맡긴다 · 안내 문구는 화면 SPEC(예시만) |
