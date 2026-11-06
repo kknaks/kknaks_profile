@@ -26,6 +26,7 @@
 
 | 날짜 | 결정 | 근거 |
 |---|---|---|
+| 2026-11-06 | **단계마다 리뷰 자동** — 스펙 → WP → 코드 각 단계 done 이면 코디 확인 뒤 같은 턴에 reviewer 발주(묻지 않음) | 사용자 |
 | 2026-11-06 | **시술 현황 화면 결정**(원천 `reference/2026-11-03-cc-day/screen/procedure-board-decisions.md`): U1 담당의 있으면 호출 없이 시작 · U2 호출은 cc 팝오버 · U3 재호출 = 새 행 + 기존 호출 닫음 · U4 의사 본인 또는 간호사가 대신 · 남기는 건 수락한 의사만 · U7 cc 그대로(시술 3단계만 — 시술 준비 현황) · U6 빈 방 안 보임 · U8 · U10 cc 그대로 · U9 수납 필요 시안에 · U12 마취 · 호출만. U6 순서 = 카드 · 생성 순(먼저 생긴 게 앞) · D&D 로 바꿈 · U5 방 옮기기 · U11 차트 작성은 다음 스펙(HAR 뒤) | 사용자 |
 | 2026-11-06 | 프론트 검수 먼저 — **시술 현황만**, 시안 ↔ 명동 업무 흐름(workflow-v2 · v3 경계) ↔ KOS HAR(main 체크아웃 · gitignore) ↔ cc-prototype 코드 ↔ SPEC-000 대조(reviewer) | 사용자 |
 | 2026-11-05 | **유일(UNIQUE)은 살아 있는 행만**(부분 유일 WHERE deleted_at IS NULL) · **chat_room.direct_key 병원별 유일** — 원천 erd README · 07 반영 | 사용자 |
@@ -50,8 +51,10 @@
 |---|---|---|---|---|---|
 | planner | `term_8117e457-5427-4f0c-9dd5-6fc68f77f6f4` | `task_256e3ec1a806` | `ctx_e497e1180940` | `day-data-architecture-spec-brief.md` | 완료(터미널 유지 — 수정 재발주용) |
 | reviewer_doc | `term_441c2cdb-68e6-4463-b694-d8d6adfc7210` | `task_0fbf4462273f` | `ctx_6b32d164d0aa` | `day-data-architecture-review-doc-brief.md` | 1판 FAIL(터미널 유지) |
+| reviewer #226 코드 검수 | `term_93d7dafc-cadb-4d5c-b78f-2ebd18f0aafc` | `task_48ba455ecfc4` | `ctx_b25b91f03c06` | `review-226-brief.md` | 발주 · 진행 |
+| planner DAY-SPEC-002 시술 현황 | `term_33d8da4d-2ead-4828-bc2f-3316d4b4bbbe` | `task_70c80e1f4154` | `ctx_7f6be83ad3f2` | `planner-spec002-instructions.md` | 발주 · 진행 → 끝나면 reviewer_doc 자동 |
 | reviewer 시술 현황 시안 검수(읽기 전용) | `term_e22da864-5b18-46cf-9db2-332b95aae73c` | `task_82e401a05433` | `ctx_75dfcc9a03ec` | `review-screen-procedure-brief.md` | 완료 · WARN · 결정 12 → 원천 `screen/procedure-board-decisions.md` |
-| backend #226 KOS 연동 | `term_adbc21b4-456a-447f-8dc5-a3899532a4e5`(새 터미널 — 옛 `term_a35ac44d` 는 에이전트 없음) | `task_1fa1aed8d5fb` | `ctx_f04c9725151a` | `backend-226-brief.md` | 발주 · 진행 |
+| backend #226 KOS 연동 | `term_adbc21b4-456a-447f-8dc5-a3899532a4e5`(새 터미널 — 옛 `term_a35ac44d` 는 에이전트 없음) | `task_1fa1aed8d5fb` | `ctx_f04c9725151a` | `backend-226-brief.md` | 완료 · 코디 확인(203 passed · not infra 131/2.2s · KOS 쓰기 0) |
 | backend #225 fix1(W1~W6 + 부분 유일 · direct_key) | `term_a35ac44d-5a0f-4901-9681-51c4c9b6de8f` | `task_e628c11fdab2` | `ctx_9302d3e803a7` | `backend-225-fix1-instructions.md` | 완료 · 코디 확인(153 passed · 부분 유일 8 · UNIQUE 제약 0 · 대조 51/51) — worker_done 없이 끝남 |
 | planner SPEC-000 동기화(#225) | `term_8117e457-5427-4f0c-9dd5-6fc68f77f6f4` | `task_ab2374dfca48` | `ctx_382678641efc` | `planner-spec000-sync-instructions.md` | 완료 · PR #909 `dcce1eea` |
 | reviewer #225 코드 검수 | `term_ad2a4487-a45e-4f07-bd10-b6fa67936898` | `task_94cd7c9fad9e` | `ctx_adf86ce0f990` | `review-225-brief.md` | 완료 · WARN(FAIL 0 · W1~W8) |
