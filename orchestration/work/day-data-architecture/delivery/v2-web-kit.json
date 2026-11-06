@@ -1,7 +1,7 @@
 {
  "product_id": "day",
  "document_root": "products/day",
- "contract_version": 1,
+ "contract_version": 2,
  "target_specs": [
   "DAY-SPEC-002"
  ],
@@ -11,23 +11,25 @@
  "risk_level": "L2",
  "target_delta": [
   "시술 현황 화면을 만들기 전에 DAY 웹(Jinja2 + HTMX) 기반을 만든다 — 시술 현황 화면은 이후 이 매크로만으로 조립한다(사용자 2026-11-06).",
-  "centurion medikit HTMX 키트(docs/development/medikit-htmx-kit — medikit.css · medikit.js · example.html · medikit-htmx-design-guide.md)를 DAY 레포에 가져다 쓴다. htmx.min.js 는 벤더링하고 라이선스 파일을 같이 둔다(CDN 금지 · AGENTS.md 「웹 화면」). centurion 키트 자체는 고치지 않는다.",
+  "centurion medikit HTMX 키트(docs/development/medikit-htmx-kit — medikit.css · medikit.js · example.html · medikit-htmx-design-guide.md)를 DAY 레포에 가져다 쓴다. htmx.min.js 와 htmx SSE 확장(sse.js — SPEC-002 hx-trigger=\"sse:board\" · sse-swap 토스트가 쓴다)을 벤더링하고 라이선스 파일을 같이 둔다(CDN 금지 · AGENTS.md 「웹 화면」). centurion 키트 자체는 고치지 않는다.",
   "base.html — CRM 셸(DS 조사 G1: 아이콘 줄 46 · 헤더 44 · 둥근 main) · htmx-config(allowEval:false 등 키트 README) · 모달 자리 · 토스트 자리 · CSRF 를 실을 hx-headers 자리.",
-  "ui.html 매크로 — 기존(centurion admin ui.html: btn · input_box · badge · chip · banner · card · table) + HTMX 키트에 없는 6개(툴팁 G3 · 팝오버 + 메뉴/목록 G16 · 콤보박스 목록 · 아코디언 G4 · 토스트 · 체크박스 혼합 G11) + 시술 현황 gap(소형 탭 · 세그먼트 G2 · 밀집 카드 G5 · 사각 상태 배지 · 칩 버튼 G6 · 찾은 글자 표시 G7 · 도메인 아이콘 G8 · 끌어서 순서 G9 · 접히는 메모 G10 · 시술 행 G12 · 실시간 경과 G13 · 하단 액션 바 G14 · 의사 아바타 G17 · 의사 호출 모달(원천 「화면 참고 — 의사 호출 창」) · 「수납 필요」 표시 자리).",
-  "DAY 토큰 확장 파일(backend/day/styles/) — medikit 토큰(--ms-*)을 확장해 CRM 브랜드색 · 고객 상태 팔레트(DS 조사 §1 · §4 토큰 밖 값)를 DAY 토큰으로 둔다(사용자 2026-11-06).",
+  "ui.html 매크로 — 기존(centurion admin ui.html: btn · input_box · badge · chip · banner · card · table) + HTMX 키트에 없는 6개(툴팁 G3 · 팝오버 + 메뉴/목록 G16 · 콤보박스 목록 · 아코디언 G4 · 토스트 · 체크박스 혼합 G11) + 시술 현황 gap(소형 탭 · 세그먼트 G2 · 밀집 카드 G5 · 사각 상태 배지 · 칩 버튼 G6 · 찾은 글자 표시 G7 · 도메인 아이콘 G8 · 끌어서 순서 G9 · 접히는 메모 G10 · 시술 행 G12 · 실시간 경과 G13 · 하단 액션 바 G14 · 의사 아바타 G17 · 의사 호출 모달(원천 「화면 참고 — 의사 호출 창」) · 「수납 필요」 표시 자리 + 검색 입력 28h E06 · 정사각 아이콘 버튼 E09 · 입력 지우기 X E25 · 빈 상태 E27 · 24h 줄 버튼 E44 · 차트 모달 읽기 전용 E55 · 글 칸 E56 — 기존 매크로의 크기 · 변형으로 처리해도 된다).",
+  "DAY 토큰 확장 — 레포 AGENTS.md 「웹 화면」 · 저장소 구조대로 **빌드 방식**: backend/day/styles/(app.css · medikit-preset.json · tailwind.config.mjs · build.mjs)에서 medikit 토큰(--ms-*)을 확장해 CRM 브랜드색 · 고객 상태 팔레트(DS 조사 §1 · §4 토큰 밖 값)를 DAY 토큰으로 두고, 빌드된 CSS 를 static 에 커밋한다(손으로 고치지 않음). centurion 키트 README 의 「빌드 없음」은 centurion admin 사정 — 키트 CSS · JS 는 가져다 쓰되 DAY 토큰은 빌드로(사용자 2026-11-06 · AGENTS.md).",
   "static/day.js — 이벤트 위임 + data-* 만(인라인 스크립트 · eval 금지 · CSP). 실시간 경과(1초) · 끌어서 순서 · 팝오버 · 토스트 · 체크박스 혼합 등 매크로가 쓰는 동작.",
   "컴포넌트 견본 페이지 — dev(APP_ENV=dev)에서만 열리고 모든 매크로를 상태별로 보여 준다. 리뷰 기준.",
-  "새로 만든 컴포넌트는 DAY 레포 안(templates/ui.html · static/ · styles/)에 두고 「키트로 올릴 후보」 목록으로 남긴다."
+  "새로 만든 컴포넌트는 DAY 레포 안(templates/ui.html · static/ · styles/)에 두고 「키트로 올릴 후보」 목록으로 남긴다.",
+  "CSRF 연결(마지막 phase) — #227(session.py · CSRF)이 PR #228 브랜치에 들어온 뒤, base.html 한 곳에서 세션의 login_session.csrf_token 을 hx-headers 로 X-CSRF-Token 에 싣는다(DAY-SPEC-001 「CSRF (웹)」). 그 전 phase 들은 자리만 둔다."
  ],
  "acceptance": [
   "A1: 견본 페이지(dev 전용 · prod 에서는 404)에서 모든 매크로가 상태별로(기본 · hover/선택 · 꺼짐 · 오류 · 빈 상태 등 DS 조사 요소 표의 상태) 보인다.",
-  "A2: 손 CSS 0 — 템플릿 · 매크로에 style 속성 · 새 색/치수 값이 없고 --ms-* · DAY 토큰과 클래스만 쓴다(grep 기준).",
-  "A3: 인라인 스크립트 0 — <script> 본문 · on* 속성 · eval 없음. JS 는 static/day.js · medikit.js · htmx.min.js 만(grep 기준).",
-  "A4: 매크로마다 시안 요소 번호(E01 ~ E56 · DS 조사)와 G 번호 대응표가 있다(1차 범위 밖 요소 E47 · E48 · E53 · E54 방 옮기기 쓰임은 「안 만듦」으로 표시).",
+  "A2: 손 CSS 0 — 템플릿 · 매크로에 style 속성 · tailwind 임의값 클래스(`[...]` 안의 색 · 치수) · 새 색/치수 값이 없고 --ms-* · DAY 토큰 · 클래스만 쓴다. 새 값(시안 값 · E14 스크롤바 등)은 DAY 토큰 파일(styles/)에만 둔다(grep 기준).",
+  "A3: 인라인 스크립트 0 — <script> 본문 · on* 속성 · hx-on / hx-on:* 속성 · eval 없음. JS 는 static/day.js · medikit.js · htmx.min.js · htmx SSE 확장만(grep 기준).",
+  "A4: 대응표 = DAY-SPEC-002 화면 구성 절의 1차 요소 전부(E01 ~ E56 중 「넣음」) → 매크로 또는 조합, 칸은 「매크로 · E 번호 · G 번호 · 그린 상태(견본에 보인 상태 목록)」 — A1 · A7 스크린샷과 맞춰 본다. 「안 만듦」 = E33 방 이름 버튼 · E47 · E48 · E49 · E53 · E54 방 옮기기 쓰임.",
   "A5: 「키트로 올릴 후보」 목록이 있다(새로 만든 매크로 · 토큰 · JS 동작).",
-  "A6: htmx.min.js 벤더링 · 라이선스 파일 · htmx-config(allowEval:false · allowScriptTags:false) 가 있다.",
+  "A6: htmx.min.js · htmx SSE 확장 벤더링 · 각 라이선스 파일 · htmx-config(allowEval:false · allowScriptTags:false)가 있다.",
   "A7: 브라우저 실물 확인 — 견본 페이지 스크린샷(데스크톱 1280×720 이상)을 남긴다.",
-  "A8: 의사 호출 모달 매크로가 원천 「화면 참고」 모양(모달 · 머리 「의사 호출」 + 방 · 고객 · 왼쪽 검색 → 추천 「모든 의사」 → 원장 줄 · 오른쪽 선택됨 · 호출할 시술 N개 · 고르기 전 꺼진 「의사를 선택하세요」)으로 견본에 보인다."
+  "A8: 의사 호출 모달 매크로가 원천 「화면 참고」 모양(모달 · 머리 「의사 호출」 + 방 · 고객 · 왼쪽 검색 → 추천 「모든 의사」 → 원장 줄 · 오른쪽 선택됨 · 호출할 시술 N개 · 고르기 전 꺼진 「의사를 선택하세요」)으로 견본에 보인다.",
+  "A9: (#227 이 PR #228 에 들어온 뒤) base.html 이 세션의 login_session.csrf_token 을 hx-headers 로 싣고, 견본 페이지에서 로그인한 세션의 HTMX POST 1건이 403 csrf_failed 없이 통과한다 · 토큰을 빼면 403 csrf_failed."
  ],
  "non_goals": [
   "시술 현황 화면(판 · 인박스 · 조작) — 다음 Delivery 가 이 매크로로 조립",
@@ -41,10 +43,10 @@
  "review_surface": [
   "target SPEC DAY-SPEC-002 는 mediness PR #909 워크트리에 미커밋 draft 로만 있다 — spec-baseline:pending. 머지 뒤 같은 key · version+1 로 재결속",
   "위험 L2 근거: 새 웹 공통 기반(셸 · 매크로 · JS)이 이후 모든 화면의 외부 모양 계약이 된다. 데이터 migration · 외부 write · 인증 변경 없음 → L3 아님",
-  "빌드 방식 충돌: AGENTS.md 저장소 구조는 styles/(app.css · medikit-preset.json · tailwind.config.mjs · build.mjs) · 「빌드된 CSS 는 커밋」이고, centurion 키트 README 는 「빌드 없음 · 파일 두 개 복사」다 — 토큰 확장을 어느 쪽으로 할지",
   "medikit 버전: 키트는 medikit 1.3.0 기준 · DS 조사 대조 기준은 React 1.4.0 — 차이 나는 값은 DAY 토큰에서 정하는지",
-  "의존 순서: CSRF hx-headers 연결은 #227(session.py · CSRF)이 PR #228 브랜치에 들어온 뒤. 그 전엔 자리만 둔다. 웹 앱 조립(web.py · Jinja2)이 #224 뼈대에 없으면 이 Delivery 가 만든다",
-  "Figma 에만 있는 부품(시안 「메디킷 ○○」)과 코드 medikit 의 차이(DS 조사 §6) — 시안 값을 DAY 토큰으로 올릴지 근사할지"
+  "의존 순서: CSRF hx-headers 연결은 이 Delivery 의 마지막 phase — #227(session.py · CSRF)이 PR #228 브랜치에 들어온 뒤(A9). 그 전 phase 는 자리만. 웹 앱 조립(web.py · Jinja2)이 #224 뼈대에 없으면 이 Delivery 가 만든다",
+  "Figma 에만 있는 부품(시안 「메디킷 ○○」)과 코드 medikit 의 차이(DS 조사 §6) — 시안 값을 DAY 토큰으로 올릴지 근사할지",
+  "빌드 방식은 레포 AGENTS.md 「웹 화면」(빌드된 CSS 커밋 · tailwind preset)으로 닫았다 — centurion 키트의 무빌드 CSS · JS 는 가져다 쓰기만"
  ],
  "implementation_starting_points": [
   "centurion origin/main docs/development/medikit-htmx-kit/* · medikit-htmx-design-guide.md · backend/admin/templates/{base,ui,icons}.html · backend/admin/web 조립 — 모양만, volatile",
@@ -54,35 +56,36 @@
  "execution": {
   "code_surface": [
    "backend/day/templates/(base.html · ui.html · icons.html · 견본 페이지)",
-   "backend/day/static/(day.js · medikit.js · medikit.css · htmx.min.js · HTMX-LICENSE.txt)",
-   "backend/day/styles/(DAY 토큰 확장)",
+   "backend/day/static/(day.js · medikit.js · medikit.css · htmx.min.js · htmx SSE 확장 · 라이선스 파일 · 빌드된 css)",
+   "backend/day/styles/(app.css · medikit-preset.json · tailwind.config.mjs · build.mjs — DAY 토큰 확장)",
    "backend/day/web.py · routers/(견본 페이지 — dev 전용)",
    "backend/tests/architecture/(손 CSS · 인라인 스크립트 grep 테스트)"
   ],
   "domain_candidates": [],
   "dependencies": [
    "백엔드 뼈대 Delivery(day/v2-backend-skeleton · #224) — 앱 조립 · 설정(APP_ENV)",
-   "로그인 Delivery(day/v2-login · #227) — CSRF hx-headers 연결은 그 뒤"
+   "로그인 Delivery(day/v2-login · #227) — 마지막 phase(CSRF 연결)만 그 뒤"
   ],
   "phases": [
-   "키트 가져오기 · htmx 벤더링 · 라이선스 · htmx-config",
-   "DAY 토큰 확장(CRM 브랜드색 · 고객 상태 팔레트)",
+   "키트 가져오기 · htmx + SSE 확장 벤더링 · 라이선스 · htmx-config",
+   "DAY 토큰 확장 — tailwind preset + 빌드(AGENTS.md)",
    "base.html 셸(G1) · 기존 매크로",
    "HTMX 에 없는 6개 매크로 + day.js 동작",
-   "시술 현황 gap 매크로(G2 · G5 ~ G14 · G16 · G17 · 의사 호출 모달)",
-   "견본 페이지(dev 전용) · 요소 대응표 · 키트 후보 목록 · 스크린샷"
+   "시술 현황 gap 매크로(G2 · G5 ~ G14 · G16 · G17 · 의사 호출 모달 · E06 · E09 · E25 · E27 · E44 · E55 · E56)",
+   "견본 페이지(dev 전용) · 요소 대응표(그린 상태 칸) · 키트 후보 목록 · 스크린샷",
+   "CSRF 연결 — #227 이 PR #228 에 들어온 뒤 base.html hx-headers(A9)"
   ],
   "verification": [
    "견본 페이지 라우트 테스트(dev 200 · prod 404)",
-   "architecture 테스트 — 템플릿 style 속성 · 인라인 script · on* 속성 0",
-   "브라우저 실물 확인 스크린샷"
+   "architecture 테스트 — 템플릿 style 속성 · tailwind 임의값 · 인라인 script · on* · hx-on 속성 0",
+   "브라우저 실물 확인 스크린샷",
+   "CSRF — 견본 HTMX POST 통과 · 토큰 없으면 403(A9)"
   ],
   "predeploy": [],
   "rollback": [
    "Code PR revert — 화면이 아직 이 매크로를 쓰지 않으므로 영향 없음"
   ],
-  "open_questions": [
-   "토큰 확장 방식(빌드 CSS vs 키트식 무빌드)"
-  ]
- }
+  "open_questions": []
+ },
+ "scope_delta": "contract v2 — #229 검수 W1 ~ W6 반영(코디 결정 포함): ① 매크로 목록에 E06 검색 28h · E09 정사각 아이콘 버튼 · E25 지우기 X · E27 빈 상태 · E44 24h 줄 버튼 · E55 차트 모달(읽기) · E56 글 칸 추가 · A4 대응표 = SPEC-002 1차 요소 전부 + 「안 만듦」에 E33 방 이름 버튼 · E49 (W1) ② CSRF hx-headers 연결 = 이 Delivery 의 마지막 phase(#227 이 PR #228 에 들어온 뒤 · base.html 한 곳) + Acceptance (W2) ③ htmx SSE 확장 벤더링 + 라이선스를 이 Delivery 에 (W3) ④ 빌드 방식 = 레포 AGENTS.md 「웹 화면」(tailwind preset + 토큰 확장 · 빌드된 CSS 커밋)으로 닫음 · A2 grep 에 tailwind 임의값 (W4) ⑤ A3 grep 에 hx-on · A2 「새 값은 토큰 파일에만」 (W5) ⑥ A4 대응표에 「그린 상태」 칸 (W6)."
 }
