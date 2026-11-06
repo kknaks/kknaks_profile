@@ -61,7 +61,7 @@ KOS 명동점: 직원 90 · 의사 10 · 상담 31 · 직무 21 · 분류 태그
 | `job_role_id` | uuid FK → job_role |  | 직무 (병원별 이름 — 원장 · 간호 · 코디 …) | roleId · roleName |
 | `default_zone_id` | uuid FK |  | 기본 근무 구역(층) | defaultWorkingZoneId |
 | `is_active` | bool | ✓ | 재직(활성) — 퇴사자는 끈다 | activate |
-| `is_system_account` | bool | ✓ | 사람이 아닌 계정(시스템 · 공용) — 원장 목록 등에서 뺀다 (cc KOS_EXCLUDE_ACCOUNT_IDS) |  |
+| `is_system_account` | bool | ✓ | 병원 연결의 sign-in 시스템 계정 하나 — 원장 목록에서 빠지고 KOS 담당자(`assigneeIds`)로 쓴다. 마취용 · 공용 계정은 1차에 빼지 않는다(사용자 2026-11-06 · `screen/procedure-board-decisions.md`) |  |
 | `created_at · updated_at` | timestamptz | ✓ |  |  |
 | `deleted_at` | timestamptz | | 소프트 딜리트 — null = 살아 있음 | |
 
