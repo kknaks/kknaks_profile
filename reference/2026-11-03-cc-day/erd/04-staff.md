@@ -127,5 +127,7 @@ KOS 명동점: 직원 90 · 의사 10 · 상담 31 · 직무 21 · 분류 태그
 | 병원 고르기 | 연결된 병원이 하나면 바로 세션. 여럿이면 짧은 임시 토큰(5분) → 병원을 고르면 진짜 세션 |
 | 오류 | 401 `invalid_credentials` · 503 `kos_unavailable`(KOS 장애 · KOS 403 `Unsupported client.` 포함) · 403 `no_connected_hospital` · 403 `no_staff_account` · 403 `mfa_not_supported` · 403 `account_inactive` · 403 `staff_inactive` · 401 `session_expired`(만료 — KOS 토큰이 일찍 끝난 경우(KOS 조기 401) · 병원 고르기 임시 토큰(5분) 만료 포함) · 401 `unauthorized`(세션 없음 · 로그아웃된 세션) · 403 `forbidden`(권한 없음) |
 | 재로그인 | KOS 401 → 세션 끝(`login_session.expires_at` 을 지금으로 당긴다 — `revoked_at` 은 로그아웃에만) · 다시 로그인. 토큰 만료 직원의 쓰기 큐는 다시 로그인까지 「반영 중」. 로그아웃은 KOS 에 알리지 않는다 |
+| CSRF (웹) | **centurion admin 방식** — 세션마다 CSRF 토큰 하나(`login_session` 과 같이) · 웹 화면(`base.html`)이 `hx-headers` 로 `X-CSRF-Token` 을 싣는다 · 없거나 틀리면 **403 `csrf_failed`**. 로그인 전 요청(`/api/auth/login` · `/api/auth/hospital`)은 세션이 없어 CSRF 를 걸지 않고 `SameSite=Lax` 쿠키로 막는다. 앱(Bearer)은 CSRF 없음 (사용자 2026-11-06) |
+| 빈 입력 | 이메일 · 비밀번호 중 하나라도 비어 있으면 KOS 를 부르지 않고 **400 `invalid_request`**(틀린 비밀번호 401 `invalid_credentials` 와 구분) (사용자 2026-11-06) |
 | 1차 범위 | 병원 직원만. 본사 · 시스템 관리자 로그인은 1차 밖(`login_session` 개정과 함께). 2단계 인증 계정은 막고 안내 |
 | 그 밖 | 로그인 후 병원 바꾸기 = 다시 로그인 · 비활성 직원 = 로그인 막기(판정 = 기준 정보 동기화 `get-accounts.activate` 로 채운 `staff.is_active`) · dev 서버 = 데모 연결 병원만 · 권한 행 없는 직무 = 아무것도 못 함 · 처음 만든 `account.is_active` = true · KOS 호출 시간 제한 15초(cc 값) · 이메일 · 비밀번호 형식 검사는 KOS 에 맡긴다 · 안내 문구는 화면 SPEC(예시만) |
