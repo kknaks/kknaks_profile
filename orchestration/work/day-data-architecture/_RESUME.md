@@ -26,6 +26,7 @@
 
 | 날짜 | 결정 | 근거 |
 |---|---|---|
+| 2026-11-06 | 프론트 검수 먼저 — **시술 현황만**, 시안 ↔ 명동 업무 흐름(workflow-v2 · v3 경계) ↔ KOS HAR(main 체크아웃 · gitignore) ↔ cc-prototype 코드 ↔ SPEC-000 대조(reviewer) | 사용자 |
 | 2026-11-05 | **유일(UNIQUE)은 살아 있는 행만**(부분 유일 WHERE deleted_at IS NULL) · **chat_room.direct_key 병원별 유일** — 원천 erd README · 07 반영 | 사용자 |
 | 2026-11-05 | **코드 PR 은 #228 하나 — 시안(화면)까지 다 만들 때까지.** 백엔드 #224~#227 · 화면 전부 같은 브랜치 `kknaksss/day-data-architecture` 에 Issue 별 커밋으로 쌓는다. 묻지 말 것 | 사용자 |
 | 2026-11-05 | 시술 현황 시안 = `screen/시술현황_프로토타입 (1).html` · medikit 에 없는 컴포넌트 있음 → frontend 워커 조사(있음/없음 목록) | 사용자 |
@@ -48,6 +49,7 @@
 |---|---|---|---|---|---|
 | planner | `term_8117e457-5427-4f0c-9dd5-6fc68f77f6f4` | `task_256e3ec1a806` | `ctx_e497e1180940` | `day-data-architecture-spec-brief.md` | 완료(터미널 유지 — 수정 재발주용) |
 | reviewer_doc | `term_441c2cdb-68e6-4463-b694-d8d6adfc7210` | `task_0fbf4462273f` | `ctx_6b32d164d0aa` | `day-data-architecture-review-doc-brief.md` | 1판 FAIL(터미널 유지) |
+| reviewer 시술 현황 시안 검수(읽기 전용) | `term_e22da864-5b18-46cf-9db2-332b95aae73c` | `task_82e401a05433` | `ctx_75dfcc9a03ec` | `review-screen-procedure-brief.md` | 발주 · 진행 |
 | backend #226 KOS 연동 | `term_adbc21b4-456a-447f-8dc5-a3899532a4e5`(새 터미널 — 옛 `term_a35ac44d` 는 에이전트 없음) | `task_1fa1aed8d5fb` | `ctx_f04c9725151a` | `backend-226-brief.md` | 발주 · 진행 |
 | backend #225 fix1(W1~W6 + 부분 유일 · direct_key) | `term_a35ac44d-5a0f-4901-9681-51c4c9b6de8f` | `task_e628c11fdab2` | `ctx_9302d3e803a7` | `backend-225-fix1-instructions.md` | 완료 · 코디 확인(153 passed · 부분 유일 8 · UNIQUE 제약 0 · 대조 51/51) — worker_done 없이 끝남 |
 | planner SPEC-000 동기화(#225) | `term_8117e457-5427-4f0c-9dd5-6fc68f77f6f4` | `task_ab2374dfca48` | `ctx_382678641efc` | `planner-spec000-sync-instructions.md` | 완료 · PR #909 `dcce1eea` |
