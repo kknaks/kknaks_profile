@@ -1,0 +1,7 @@
+# [reviewer · WP] Delivery #229 웹 기반 · medikit HTMX 검수
+
+너는 day reviewer(문서) 다. **읽기 전용** — Issue · 파일 수정 금지 · 승인 금지.
+대상: Issue #229(`gh issue view 229 -R MediSolveAIDev/CENTURION_DAY`) · `/Users/kknaks/orca/workspaces/kknaks_profile/day/orchestration/work/day-data-architecture/delivery/` 의 웹 기반 JSON · 작성 지시 `/Users/kknaks/orca/workspaces/kknaks_profile/day/orchestration/work/day-data-architecture/planner-delivery-webkit-instructions.md` · 작성 리포트 `/Users/kknaks/orca/workspaces/kknaks_profile/day/orchestration/work/day-data-architecture/planner-delivery-webkit-report.md`.
+기준: 사용자 결정(지시서 「사용자 결정」) · 레포 `AGENTS.md` 「웹 화면」 · centurion 키트 · admin 본 · DS 조사 `/Users/kknaks/orca/workspaces/kknaks_profile/day/orchestration/work/day-data-architecture/frontend-ds-research-report.md` · SPEC-002(`/Users/kknaks/orca/workspaces/mediness-mediness/day-data-architecture-spec/products/day/20-spec/spec-002-procedure-board.md` — 방금 PASS) 화면 구성 · 원천 `/Users/kknaks/orca/workspaces/kknaks_profile/day/reference/2026-11-03-cc-day/screen/procedure-board-decisions.md`.
+볼 것: 계약이 사용자 결정 3개를 담았나 · **시술 현황 화면(SPEC-002)이 쓸 컴포넌트가 빠짐없이 들어갔나**(SPEC-002 화면 구성 E 번호 ↔ 계약 매크로 목록 전수 대조) · 하지 않는 것(화면 · API · 키트 수정) · Acceptance 가 확인 가능한가(견본 페이지 · 손 CSS grep 0 · 인라인 스크립트 0 · 브라우저 스크린샷) · #227 CSRF 의존 순서 · 승인 라벨 없음.
+리포트 `/Users/kknaks/orca/workspaces/kknaks_profile/day/orchestration/work/day-data-architecture/review-delivery229-report.md`. 완료는 preamble 의 worker_done 절차대로(둘 다).

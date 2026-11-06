@@ -87,7 +87,7 @@
 
 ## 4. 산출물
 
-- spec PR: https://github.com/MediSolveAIDev/mediness/pull/909 (`f92a8acb` · `974caeac` · `e71e3849` · `60fae27b` · SPEC-001 커밋)
+- spec PR: https://github.com/MediSolveAIDev/mediness/pull/909 (SPEC-002 · SPEC-001 개정 `3c14633b` · `f92a8acb` · `974caeac` · `e71e3849` · `60fae27b` · SPEC-001 커밋)
 - Delivery: CENTURION_DAY #224 뼈대(L2) · #225 데이터 모델(L3) · #226 KOS 연동(L3) · #227 로그인(L3) — plan_digest 는 `planner-delivery-report.md`
 - 코드 레포: CENTURION_DAY v2-dev `8e4fb4b5` — AGENTS.md 「아직 정하지 않은 것」 로그인 · 배포 제거(사용자 2026-11-05)
 - code PR: <링크>
@@ -104,3 +104,5 @@
 - `2026-11-03` new-work.sh · `products/day` 스캐폴드(`scaffold-product.sh day DAY DAY`) · planner 브리프 작성
 
 이 절은 **재개에 필요한 만큼만** 쓴다. 회고·배운 것은 `SUMMARY.md` 몫이다.
+
+- 2026-11-06: SPEC-002 PASS → PR #909 커밋 `3c14633b`. Delivery #229 웹 기반 생성(승인 대기) → 검수 발주. 시술 현황 Delivery(백엔드 · 화면 둘) planner 발주.
