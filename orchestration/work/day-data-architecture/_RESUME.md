@@ -26,6 +26,7 @@
 
 | 날짜 | 결정 | 근거 |
 |---|---|---|
+| 2026-11-06 | **CSRF = centurion admin 방식(403 csrf_failed · 로그인 전 미적용) · 빈 입력 = 400 invalid_request · 의사 호출 창 = 왼쪽 고르기(검색 · 모든 의사 · 원장+상태) / 오른쪽 선택된 시술**(원천 04-staff · procedure-board-decisions) | 사용자 |
 | 2026-11-06 | **SPEC-002 사용자 OQ 닫음(추천대로)**: OQ-01 웹 = 화면 라우트 HTML 조각 · JSON 앱 전용 · OQ-04 재호출 = 시안처럼 고르는 창(모든 의사 | 원장 한 명 · 기본 = 처음 대상 — 처음 「모든 의사만」에서 바꿈) · OQ-07 실패 토스트만(KOS 에서 고치면 폴링이 맞춤) · 공용 계정 = 1차는 다 넣음(빼지 않음 · 처음 「뺄 id 목록」에서 바꿈) — 원천 procedure-board-decisions.md | 사용자 |
 | 2026-11-06 | **단계마다 리뷰 자동** — 스펙 → WP → 코드 각 단계 done 이면 코디 확인 뒤 같은 턴에 reviewer 발주(묻지 않음) | 사용자 |
 | 2026-11-06 | **시술 현황 화면 결정**(원천 `reference/2026-11-03-cc-day/screen/procedure-board-decisions.md`): U1 담당의 있으면 호출 없이 시작 · U2 호출은 cc 팝오버 · U3 재호출 = 새 행 + 기존 호출 닫음 · U4 의사 본인 또는 간호사가 대신 · 남기는 건 수락한 의사만 · U7 cc 그대로(시술 3단계만 — 시술 준비 현황) · U6 빈 방 안 보임 · U8 · U10 cc 그대로 · U9 수납 필요 시안에 · U12 마취 · 호출만. U6 순서 = 카드 · 생성 순(먼저 생긴 게 앞) · D&D 로 바꿈 · U5 방 옮기기 · U11 차트 작성은 다음 스펙(HAR 뒤) | 사용자 |
@@ -52,6 +53,7 @@
 |---|---|---|---|---|---|
 | planner | `term_8117e457-5427-4f0c-9dd5-6fc68f77f6f4` | `task_256e3ec1a806` | `ctx_e497e1180940` | `day-data-architecture-spec-brief.md` | 완료(터미널 유지 — 수정 재발주용) |
 | reviewer_doc | `term_441c2cdb-68e6-4463-b694-d8d6adfc7210` | `task_0fbf4462273f` | `ctx_6b32d164d0aa` | `day-data-architecture-review-doc-brief.md` | 1판 FAIL(터미널 유지) |
+| planner SPEC-001 CSRF 개정 + #227 v3 | `term_33d8da4d-2ead-4828-bc2f-3316d4b4bbbe` | (task-list) | (dispatch) | `planner-spec001-csrf-delivery227-v3-instructions.md` | 발주 · 진행 → 끝나면 리뷰 자동 |
 | planner #227 재계약 v2(SPEC-001) | `term_33d8da4d-2ead-4828-bc2f-3316d4b4bbbe` | (task-list) | (dispatch) | `planner-delivery227-v2-instructions.md` | 발주 · 진행 → 끝나면 reviewer 자동 |
 | reviewer #226 fix2 재검수 | `term_93d7dafc-cadb-4d5c-b78f-2ebd18f0aafc` | `task_b99db8e4b21b` | `ctx_a79a0765ae1e` | `review-226-fix2-brief.md` | 완료 · PASS → **#226 커밋 `8c85233a`(PR #228)** |
 | reviewer SPEC-002 fix1 재검수 | `term_75e030e5-a3f9-4ed9-96a9-489fef7ec748` | `task_a14f0d53b6df` | `ctx_124c805a9fda` | `review-spec002-fix1-brief.md` | 완료 · WARN · W1~W11 닫힘 · 새 N1(대리 수락 → 방문 뒤 쓰기 멈춤 서술) · N2(규칙 25 계정 — 코디 판정: sign-in 계정 하나 · OQ-11 다시 열림) → fix2 대기(planner 가 #227 재계약 끝난 뒤 발주) |
