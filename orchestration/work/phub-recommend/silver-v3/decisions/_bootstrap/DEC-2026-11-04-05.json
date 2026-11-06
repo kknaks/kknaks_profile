@@ -1,0 +1,26 @@
+{
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자",
+ "erd_pointer": "erd-v2.4.json#/decisions/4",
+ "id": "DEC-2026-11-04-05",
+ "kind": "scope_review",
+ "new_value": {
+  "disposition": "경구약 4(약물치료·미녹시딜·피나스테리드·두타스테리드) = ② 「피부과 허브 범위 밖」 격리 묶음, 범위 검토 표시. 미배정 0"
+ },
+ "reason": "재검토 8-5: 질문 14 두 묶음과 실제 26 항목 이름의 대조 — v1.1 발주서 §A 처분",
+ "source_refs": [
+  {
+   "kind": "brief",
+   "ref": "erd-v1.1-brief.md §A (사용자 승인 「그렇게 진행하자」)"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v1.md §8-5"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "erd_ref": "§9.2 질문 14 표 · q14_bundles",
+  "review_item": "8-5"
+ }
+}

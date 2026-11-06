@@ -1,0 +1,50 @@
+{
+ "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+ "decided_at": null,
+ "decided_by": null,
+ "effect": "닫히는 문구 자리 0/4(unlinked → auto) · 근거 영문 낱말 「HA」 ↔ 「PDLLA+HA」",
+ "gate_item": "b4-sit/010",
+ "gate_option": "syn_1",
+ "gate_recommended": false,
+ "id": "DEC-2026-11-05-B4-SIT-010a",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "PDLLA+HA",
+  "category": null,
+  "synonyms": [
+   "HA"
+  ]
+ },
+ "proposal_item": "b4-sit/010",
+ "reason": "결정 묶음 4 — 문구 조각 「HA」 을 ingredient_material 「PDLLA+HA」 의 동의어로(근거: 영문 낱말 「HA」 ↔ 「PDLLA+HA」)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].emergency[]@7/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "consent-checklist.json:categories[].mandatory_disclosures[]@1/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "consent-checklist.json:categories[].mandatory_disclosures[]@1/6"
+  },
+  {
+   "kind": "ledger",
+   "ref": "consent-checklist.json:categories[].mandatory_disclosures[]@3/2"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.1.md §5.2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+  }
+ ],
+ "status": "proposed",
+ "target": {
+  "dictionary": "ingredient_material"
+ }
+}

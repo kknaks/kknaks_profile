@@ -1,0 +1,26 @@
+{
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자",
+ "erd_pointer": "erd-v2.4.json#/decisions/0",
+ "id": "DEC-2026-11-04-01",
+ "kind": "conflict_resolution",
+ "new_value": {
+  "disposition": "3 유지 + 「AI 컨센서스 추정」 표시(trust_flag)"
+ },
+ "reason": "재검토 8-1: complications.json 의 신뢰 순위 — 발주서 목록은 4, 원장엔 판단 키가 없다 — v1.1 발주서 §A 처분",
+ "source_refs": [
+  {
+   "kind": "brief",
+   "ref": "erd-v1.1-brief.md §A (사용자 승인 「그렇게 진행하자」)"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v1.md §8-1"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "erd_ref": "§5.1 · source_file.trust_flag",
+  "review_item": "8-1"
+ }
+}

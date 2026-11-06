@@ -1,0 +1,42 @@
+{
+ "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+ "decided_at": null,
+ "decided_by": null,
+ "effect": "풀리는 ⑨ 참조 0/2(원장 자리 0) · 근거 「주입장비」 ⊃ 조각 「주입」",
+ "gate_item": "b4-prc/049",
+ "gate_option": "map_1",
+ "gate_recommended": false,
+ "id": "DEC-2026-11-05-B4-PRC-049a",
+ "kind": "canonical_mapping",
+ "new_value": {
+  "to_id": "SUB-7a55a09d24"
+ },
+ "proposal_item": "b4-prc/049",
+ "reason": "결정 묶음 4 — 참조 조각 「주입」 을 그 참조들(⑨ 2)에서 modality_subcategory_label 「주입장비」(SUB-7a55a09d24)로 읽는다(근거: 「주입장비」 ⊃ 조각 「주입」)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "treatment-sequence.json:incompatible_same_day[].pair[]@4/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@16/0"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.1.md §5.2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+  }
+ ],
+ "status": "proposed",
+ "target": {
+  "from_ref": "주입",
+  "scope": [
+   "REF-576bed0942",
+   "REF-d3bcd921bc"
+  ]
+ }
+}

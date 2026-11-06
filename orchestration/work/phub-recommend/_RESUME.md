@@ -1,3 +1,33 @@
+> **2026-11-06 밤 현재 — 정본 진행 기록은 `HANDOFF-2026-11-05.md` 의 「11-06」 절들.** ERD v3.3 작성(동결 전) · 원장 3판(bronze/phub-ledger · 2판 복원본 phub-ledger-v2) · 실버 8차(kiwi 분석기 · baseline/manifest-8차.json) · 게이트 6 사용자 답 = `decisions-batch6c-semantic.json` + `decisions-batch6b-dup-classification.json` · 다음 = 형용사 점수 초안 검토 → 시술 축 드라이런 → ERD v3.3 동결 → 4판 → 9차.
+
+# phub-recommend — _RESUME
+
+## ⚠ 2026-11-04 리셋 — 메달리온을 처음부터 (이 절이 정본, 아래 구절은 이력)
+
+사용자: 「기존 작업 싹 다 무시하고 원장 JSON 부터」. 이전 실버 1~9단계 · silver-batch1-candidate · silver-entity-graph-design 은 **실패한 판**으로 입력에서 제외(파일은 보존). 서브에이전트(Agent 툴)로 진행 — 문서 작성·동결 검토 = fable, 코드 = opus.
+
+**순서**: 원장 컬럼 리포트 → ERD(시맨틱) 동결 → 실버 빌드(+결정 게이트) → 골드 → 탐색.
+
+| 단계 | 상태 | 정본 |
+|---|---|---|
+| 원장 컬럼 리포트 | 끝 | `bronze-ledger-column-report.md` · scan.py/.json |
+| ERD v1 → v2.4 → v3 → v3.1 → **v3.2** | **v3.2 동결(11-05)** | `ERD-FROZEN.md` → `erd-v3.2.*` · 검토 7회 · 원칙 「분류 먼저 · 사전에 없으면 새 노드 · 미연결 없음」 |
+| 실버 빌드 1~4차 | 끝(11-05 · 4차 = 브론즈 2판 + 결정 2B) | `silver-v3/` · 결정 batch1·2a·2b · 게이트 아티팩트 DTxDRvQ2LWjJSA69f8fWWa |
+| 브론즈 2판(원장의 집) | 확정(11-05) | `bronze/phub-ledger/` · CHANGELOG · README 작성 규칙 |
+| 실버 5차(ERD v3 + 묶음 3 approved 24) · 적합성 시험 82(2,289 경우) | 끝(11-05) | `silver-v3/` · `tests/` · 묶음 3 proposed 게이트 아티팩트 6j7kpk4Njxrhw3nGf4uEBB |
+| 실버 6차(ERD v3.1 · 엑소좀 적용) | 끝(11-05) | `silver-v3/` · 적합성 2,514 |
+| 실버 7차(ERD v3.2 · 미연결 0) · 게이트 5 (432 자리 · 아티팩트 HtKteBQdzcNMGsCemUrd3v) | 끝(11-05) | `silver-v3/out/gate/batch5.*` · 축소본은 별도 파일 |
+| 열린 결정: 접기·토큰화 규칙 v3.3 으로 사람 몫 ~50 vs 432 그대로 | 사용자 | 자동 분류 100% 아님(쓰레기 핵심어) |
+
+
+**11-05 저녁 — 원칙 교정(사용자 질책)**: 원장 문구는 먼저 「어느 테이블 것인가」(부작용 문구/타임라인/동의서/체크리스트/메모·문헌) 분류. 부작용 문구에서 사전에 없는 사건은 **새 노드로 세운다**(출처·설명·미검토). 비슷한 건 ⑦ 접기 후보로 사람에게. 「미연결」상태 없음 · 추정 매칭 0 · 조각 단위 게이트(묶음4 202개) 폐기. v3.2 가 이를 담아 **동결됨(11-05 · 검토 S-1~S-4 반영 · 검산 52/52)**. 다음 게이트 = **새 노드 목록 + ⑦ 접기 쌍**(노드 단위).
+
+**ERD 를 다시 여는 조건**: 개체·관계·규칙 문장 변경뿐. 사전·동의어·매핑·충돌 판정은 결정 레코드(ERD 안 엶). 미해결 수는 개정 사유 아님.
+**결정 입구 둘**: 판정·매핑 = 결정 레코드(approved 만 빌드가 읽음) / 새 사실 = 브론즈 새 원천 파일(해시·날짜). 실버에 손으로 값 넣지 않음.
+**브론즈** = `bronze/phub-ledger/*.json`(21 · 2판 · 원장의 집 · CHANGELOG) + `step1-products.json`(22번째 · 조사 산출물 · 허가 필드 신뢰 2). 1판 `/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/` 보존.
+
+---
+
 
 # 재개 노트 — phub-recommend (procedure-hub)
 

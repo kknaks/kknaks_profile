@@ -1,0 +1,188 @@
+{
+ "approval_note": "결정 묶음 2B — 사용자 게이트 답(아티팩트 저장소 덤프 2026-11-05)",
+ "decided_at": "2026-11-05",
+ "decided_by": "사용자(이건학)",
+ "gate_answer": {
+  "item": "technique-inheritance-9/M1",
+  "label": "붙인다 → technique injection",
+  "note": "톡신 전부 주사. 출처 procedure-profiles mechanism",
+  "option": "apply"
+ },
+ "id": "DEC-2026-11-04-B2B-TEC-01",
+ "kind": "canonical_mapping",
+ "new_value": {
+  "to_id": "TEC-545a700199"
+ },
+ "reason": "결정 묶음 2B — 계열 M1 기법 「injection」을 분류 항목 31 튜플에 붙인다(§9.5.6) · 사용자 메모: 톡신 전부 주사. 출처 procedure-profiles mechanism",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "procedure-profiles.json:profiles[].mechanism[]@0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/0/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/0/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/1/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/1/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/1/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/1/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/1/4"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/1/5"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/1/6"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/1/7"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/1/8"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/1/9"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/1/10"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/1/11"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/1/12"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/1/13"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/2/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/2/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/2/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/2/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/2/4"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/2/5"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/2/6"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/2/7"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/2/8"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/2/9"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/2/10"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/2/11"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/2/12"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4.md §12"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "from_ref": "R5:M1",
+  "scope": [
+   "CAT-6965975e4c",
+   "CAT-ebf6e7d503",
+   "CAT-6ffc78adb2",
+   "CAT-3ecdef5045",
+   "CAT-aeeecf36e0",
+   "CAT-e91c5c5f50",
+   "CAT-fee4877abb",
+   "CAT-55e95a471c",
+   "CAT-26d6ad6ad6",
+   "CAT-d463a63896",
+   "CAT-151442cf59",
+   "CAT-5ed7f7728a",
+   "CAT-7d9aefd9df",
+   "CAT-33d31ebbc2",
+   "CAT-dc0e0160e9",
+   "CAT-ed330d370c",
+   "CAT-660560ac3d",
+   "CAT-c5c7ecdaae",
+   "CAT-0f8dad7ca6",
+   "CAT-84b578630a",
+   "CAT-58d2f4a7a9",
+   "CAT-c665d4c0c7",
+   "CAT-02872f92d5",
+   "CAT-85fde7a930",
+   "CAT-b836ff318b",
+   "CAT-06bb376060",
+   "CAT-35b8d5974c",
+   "CAT-0d2eb26819",
+   "CAT-9aebb2f7df",
+   "CAT-c62f009141",
+   "CAT-0400fda6ae"
+  ]
+ }
+}

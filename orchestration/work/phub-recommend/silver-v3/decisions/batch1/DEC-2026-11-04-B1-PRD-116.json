@@ -1,0 +1,69 @@
+{
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(이건학)",
+ "evidence": [
+  {
+   "detail": "제허 18-399 호 · 전기 수술 장치",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].license_no@242/0"
+  },
+  {
+   "detail": "https://aestheticsjournal.com/news/plasma-device-pladuo-debuts-in-the-uk/",
+   "kind": "web",
+   "ref": "step1-products.json:items[].evidence[].urls[]@242/2/0"
+  },
+  {
+   "detail": "https://www.theaestheticguide.com/aesthetic-guide/dual-plasma-device-adds-advantages-argon-plasma",
+   "kind": "web",
+   "ref": "step1-products.json:items[].evidence[].urls[]@242/2/1"
+  }
+ ],
+ "id": "DEC-2026-11-04-B1-PRD-116",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "플라듀오",
+  "category": null,
+  "code": "M13",
+  "synonyms": [
+   "PLADUO",
+   "PLADUOpro"
+  ]
+ },
+ "reason": "step1 조사 산출물 — 1_identity.kind ['장비'] · 근거 1 허가 건 · 2 웹 · ledger_id auto-M13-1775361440978 · 분류 항목 「플라듀오」 이름과 같다 — 승인되면 그 항목 튜플의 what 이 이 제품이 된다(겹침 규칙 8-11: 참조 자리에서는 항목 우선)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.display_name@242"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].license_no@242/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].evidence[].urls[]@242/2/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].evidence[].urls[]@242/2/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@242/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@242/1"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-brief.md 결정 묶음 1-1"
+  }
+ ],
+ "status": "approved",
+ "synonyms_dropped": [],
+ "target": {
+  "dictionary": "product_name"
+ },
+ "approval_note": "결정 묶음 1 일괄 승인 — 사용자 「응 그렇게 가자」(2026-11-04)"
+}

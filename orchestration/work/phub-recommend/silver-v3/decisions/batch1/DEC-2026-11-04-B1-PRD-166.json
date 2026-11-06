@@ -1,0 +1,51 @@
+{
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(이건학)",
+ "evidence": [
+  {
+   "detail": "수허 25-219 호 · Aptos",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@390/0"
+  }
+ ],
+ "id": "DEC-2026-11-04-B1-PRD-166",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "압토스",
+  "category": null,
+  "code": "M7",
+  "synonyms": [
+   "Aptos",
+   "아프토스"
+  ]
+ },
+ "reason": "step1 조사 산출물 — 1_identity.kind ['제품(의료기기)'] · 근거 1 허가 건 · 0 웹 · ledger_id step1-new-APTOS",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.display_name@390"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@390/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@390/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@390/1"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-brief.md 결정 묶음 1-1"
+  }
+ ],
+ "status": "approved",
+ "synonyms_dropped": [],
+ "target": {
+  "dictionary": "product_name"
+ },
+ "approval_note": "결정 묶음 1 일괄 승인 — 사용자 「응 그렇게 가자」(2026-11-04)"
+}

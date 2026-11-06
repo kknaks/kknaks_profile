@@ -1,0 +1,26 @@
+{
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(워커 처리안 일괄 확정)",
+ "erd_pointer": "erd-v2.4.json#/decisions/5",
+ "id": "DEC-2026-11-04-06",
+ "kind": "conflict_resolution",
+ "new_value": {
+  "disposition": "product_tier 7 표면형 전부 정준값, 병합 안 함"
+ },
+ "reason": "재검토 8-6: product_tier 7 표면형 병합 — v1.1 발주서 §A 처분",
+ "source_refs": [
+  {
+   "kind": "brief",
+   "ref": "erd-v1.1-brief.md §A (사용자 승인 「그렇게 진행하자」) — 「나머지 15건은 워커 처리대로 확정」"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v1.md §8-6"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "erd_ref": "§4 product_tier",
+  "review_item": "8-6"
+ }
+}

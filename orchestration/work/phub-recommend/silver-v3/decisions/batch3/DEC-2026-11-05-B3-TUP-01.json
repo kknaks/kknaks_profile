@@ -1,0 +1,28 @@
+{
+ "id": "DEC-2026-11-05-B3-TUP-01",
+ "kind": "tuple_assign",
+ "target": {
+  "catalog_item_id": "CAT-b3860c9514"
+ },
+ "new_value": {
+  "what_kind": "modality_subcategory",
+  "what_id": "SUB-9088d13466",
+  "site_id": "SIT-886ae927b5",
+  "technique_id": "TEC-29796b316e"
+ },
+ "reason": "엑소좀 통합 ④ — 「엑소좀필」= (엑소좀, 얼굴, 도포).",
+ "decided_by": "사용자(이건학)",
+ "decided_at": "2026-11-05",
+ "status": "approved",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@14/0/57"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-v3/decisions/_batch3-candidates.md — 사용자 2026-11-05 ④ 「엑소좀필」→ (엑소좀, 얼굴, 도포)"
+  }
+ ],
+ "batch": "결정 묶음 3 (2026-11-05 · 발주서 silver-build-5-brief.md)"
+}

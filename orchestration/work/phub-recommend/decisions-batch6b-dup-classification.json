@@ -1,0 +1,397 @@
+{
+ "decided_by": "사용자",
+ "decided_at": "2026-11-06",
+ "user_words": "36쌍 분류는 그렇게 가면 될거 같아",
+ "note": "코디 분류 추천을 사용자가 승인 · verdict user_pending 5 는 게이트 6 에 남김 · 결정 파일(fold_approve/exclude)은 8차 뒤 batch6b 로 생성",
+ "pairs": [
+  {
+   "n": 1,
+   "a": "손상",
+   "b": "깊이 손상",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "same_decompose",
+   "keep": "손상",
+   "attr_route": "깊이→정도 · 진피→부위 · 과도한 깊이 설정→조건"
+  },
+  {
+   "n": 2,
+   "a": "손상",
+   "b": "표정 손상",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "different"
+  },
+  {
+   "n": 3,
+   "a": "반응",
+   "b": "알레르기 반응",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "fragment_not_node"
+  },
+  {
+   "n": 4,
+   "a": "알레르기 반응",
+   "b": "알레르기",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "same_decompose",
+   "keep": "알레르기 반응",
+   "attr_route": "줄임 표기"
+  },
+  {
+   "n": 5,
+   "a": "각질",
+   "b": "각질 탈락",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "user_pending"
+  },
+  {
+   "n": 6,
+   "a": "흉터",
+   "b": "흉터 악화",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "same_decompose",
+   "keep": "흉터",
+   "attr_route": "악화→경과"
+  },
+  {
+   "n": 7,
+   "a": "각질",
+   "b": "필링 각질",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "same_decompose",
+   "keep": "각질",
+   "attr_route": "「필링 후」→조건"
+  },
+  {
+   "n": 8,
+   "a": "약화",
+   "b": "근력 약화",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "same_decompose",
+   "keep": "근력 약화",
+   "attr_route": "근력/근육→대상"
+  },
+  {
+   "n": 9,
+   "a": "근육통",
+   "b": "근육통 유사 감각",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "same_decompose",
+   "keep": "근육통",
+   "attr_route": "환자 표현(운동 후와 비슷한 느낌)"
+  },
+  {
+   "n": 10,
+   "a": "출혈",
+   "b": "점상 출혈",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "same_decompose",
+   "keep": "출혈",
+   "attr_route": "점상→양상"
+  },
+  {
+   "n": 11,
+   "a": "박피",
+   "b": "박리",
+   "rules": [
+    "jamo1"
+   ],
+   "verdict": "different"
+  },
+  {
+   "n": 12,
+   "a": "자국",
+   "b": "자극",
+   "rules": [
+    "jamo1"
+   ],
+   "verdict": "different"
+  },
+  {
+   "n": 13,
+   "a": "출혈",
+   "b": "충혈",
+   "rules": [
+    "jamo1"
+   ],
+   "verdict": "different"
+  },
+  {
+   "n": 14,
+   "a": "염증 반응",
+   "b": "염증",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "same_decompose",
+   "keep": "염증",
+   "attr_route": "반응은 조각"
+  },
+  {
+   "n": 15,
+   "a": "메스꺼움",
+   "b": "미량원소 과잉 메스꺼움",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "same_decompose",
+   "keep": "메스꺼움",
+   "attr_route": "「미량원소 과잉 시」→조건"
+  },
+  {
+   "n": 16,
+   "a": "민감성",
+   "b": "민감성 자극반응",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "user_pending"
+  },
+  {
+   "n": 17,
+   "a": "반응",
+   "b": "염증 반응",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "fragment_not_node"
+  },
+  {
+   "n": 18,
+   "a": "자극",
+   "b": "부위 자극",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "same_decompose",
+   "keep": "자극",
+   "attr_route": "「도포 부위」→상대 부위"
+  },
+  {
+   "n": 19,
+   "a": "처짐",
+   "b": "턱밑 처짐",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "same_decompose",
+   "keep": "처짐",
+   "attr_route": "턱밑→부위"
+  },
+  {
+   "n": 20,
+   "a": "필링",
+   "b": "필링 각질",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "different"
+  },
+  {
+   "n": 21,
+   "a": "약화",
+   "b": "약화 확산",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "same_decompose",
+   "keep": "근력 약화",
+   "attr_route": "확산→양상"
+  },
+  {
+   "n": 22,
+   "a": "염증 반응",
+   "b": "이상 염증반응",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "same_decompose",
+   "keep": "염증",
+   "attr_route": "이상→정도"
+  },
+  {
+   "n": 23,
+   "a": "감각",
+   "b": "근육통 유사 감각",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "fragment_not_node"
+  },
+  {
+   "n": 24,
+   "a": "감각",
+   "b": "마늘 냄새 감각",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "fragment_not_node"
+  },
+  {
+   "n": 25,
+   "a": "감각 변화",
+   "b": "감각",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "fragment_not_node"
+  },
+  {
+   "n": 26,
+   "a": "광과민성",
+   "b": "광과민성 반응",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "same_decompose",
+   "keep": "광과민성",
+   "attr_route": "반응은 조각"
+  },
+  {
+   "n": 27,
+   "a": "반응",
+   "b": "이물질 반응",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "same_decompose",
+   "keep": "이물반응",
+   "attr_route": "사전 「이물반응」 표기 변형"
+  },
+  {
+   "n": 28,
+   "a": "반응",
+   "b": "광과민성 반응",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "fragment_not_node"
+  },
+  {
+   "n": 29,
+   "a": "반응",
+   "b": "면역 반응",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "fragment_not_node"
+  },
+  {
+   "n": 30,
+   "a": "알레르기성 접촉피부염",
+   "b": "접촉 피부염",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "user_pending"
+  },
+  {
+   "n": 31,
+   "a": "표정 경직",
+   "b": "경직",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "user_pending"
+  },
+  {
+   "n": 32,
+   "a": "알레르기",
+   "b": "화학적 차단제 알레르기",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "same_decompose",
+   "keep": "알레르기 반응",
+   "attr_route": "「화학적 차단제」→조건(물질)"
+  },
+  {
+   "n": 33,
+   "a": "증식",
+   "b": "세포 증식 변이",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "fragment_not_node"
+  },
+  {
+   "n": 34,
+   "a": "최소 반응성",
+   "b": "최소",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "fragment_not_node"
+  },
+  {
+   "n": 35,
+   "a": "혈관계 합병증",
+   "b": "합병증",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "fragment_not_node"
+  },
+  {
+   "n": 36,
+   "a": "화학화상",
+   "b": "접촉 화학화상",
+   "rules": [
+    "word_contains"
+   ],
+   "verdict": "user_pending"
+  },
+  {
+   "n": 37,
+   "a": "가려움증",
+   "b": "소양감",
+   "rules": [
+    "suffix_증"
+   ],
+   "verdict": "same_decompose",
+   "keep": "소양감",
+   "attr_route": "한자어/우리말"
+  },
+  {
+   "n": 38,
+   "a": "저림감",
+   "b": "감각 이상",
+   "rules": [
+    "suffix_감"
+   ],
+   "verdict": "same_decompose",
+   "keep": "감각 이상",
+   "attr_route": "사전 동의어 저림"
+  },
+  {
+   "n": 39,
+   "a": "압통감",
+   "b": "통증",
+   "rules": [
+    "suffix_감"
+   ],
+   "verdict": "same_decompose",
+   "keep": "통증",
+   "attr_route": "사전 동의어 압통"
+  }
+ ]
+}

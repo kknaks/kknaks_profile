@@ -1,0 +1,42 @@
+{
+ "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+ "decided_at": null,
+ "decided_by": null,
+ "effect": "풀리는 ⑨ 참조 1/2(원장 자리 1) · 근거 원장 이름 병기 「IPL(광선치료)」",
+ "gate_item": "b4-prc/035",
+ "gate_option": "map_1",
+ "gate_recommended": false,
+ "id": "DEC-2026-11-05-B4-PRC-035a",
+ "kind": "canonical_mapping",
+ "new_value": {
+  "to_id": "SUB-ed961f40d7"
+ },
+ "proposal_item": "b4-prc/035",
+ "reason": "결정 묶음 4 — 참조 조각 「광선치료」 을 그 참조들(⑨ 2)에서 modality_subcategory_label 「IPL」(SUB-ed961f40d7)로 읽는다(근거: 원장 이름 병기 「IPL(광선치료)」)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "procedure-comparison.json:comparisons[].procedures[].name@4/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@14/3"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.1.md §5.2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+  }
+ ],
+ "status": "proposed",
+ "target": {
+  "from_ref": "광선치료",
+  "scope": [
+   "REF-a6defde176",
+   "REF-b7c6b137a0"
+  ]
+ }
+}

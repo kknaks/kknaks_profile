@@ -1,0 +1,42 @@
+{
+ "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+ "decided_at": null,
+ "decided_by": null,
+ "effect": "닫히는 문구 자리 0/2(unlinked → auto) · 근거 조각 「필러를」 ⊃ 「필러」 — 표기 변형(접미 감·함·증 또는 조사 한 글자)",
+ "gate_item": "b4-sit/030",
+ "gate_option": "syn_1",
+ "gate_recommended": false,
+ "id": "DEC-2026-11-05-B4-SIT-030a",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "필러",
+  "category": null,
+  "synonyms": [
+   "필러를"
+  ]
+ },
+ "proposal_item": "b4-sit/030",
+ "reason": "결정 묶음 4 — 문구 조각 「필러를」 을 adverse_qualifier 「필러」 의 동의어로(근거: 조각 「필러를」 ⊃ 「필러」 — 표기 변형(접미 감·함·증 또는 조사 한 글자))",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "extracted.json:{code}.safety.serious[]@M2/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].extracted.safety.serious[]@1/2"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.1.md §5.2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+  }
+ ],
+ "status": "proposed",
+ "target": {
+  "dictionary": "adverse_qualifier"
+ }
+}

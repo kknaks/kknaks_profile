@@ -1,0 +1,26 @@
+{
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자",
+ "erd_pointer": "erd-v2.4.json#/decisions/3",
+ "id": "DEC-2026-11-04-04",
+ "kind": "scope_review",
+ "new_value": {
+  "disposition": "하위분류 label 64 를 기법 사전에서 제거, modality_subcategory 개체로만. 기법 사전 = mechanism[] 12 값만(energy_device type → product_type 사전, pih subcategory → 하위분류 라벨 일치)"
+ },
+ "reason": "재검토 8-4: 기법 사전의 경계 — taxonomy 하위분류 label 전부를 기법 후보로 넣었다 — v1.1 발주서 §A 처분",
+ "source_refs": [
+  {
+   "kind": "brief",
+   "ref": "erd-v1.1-brief.md §A (사용자 승인 「그렇게 진행하자」)"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v1.md §8-4"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "erd_ref": "§4 technique · R5 · R15.subcategory_label",
+  "review_item": "8-4"
+ }
+}

@@ -1,0 +1,38 @@
+{
+ "id": "DEC-2026-11-05-B3-PRD-03",
+ "kind": "dictionary_add",
+ "target": {
+  "dictionary": "product_name"
+ },
+ "new_value": {
+  "canonical": "ASCEplus",
+  "category": null,
+  "code": "M5",
+  "synonyms": [
+   "ASCE+엑소좀"
+  ]
+ },
+ "reason": "엑소좀 통합 ① — 제품 ASCEplus(동의어 ASCE+)의 동의어 「ASCE+엑소좀」(M4 분류 항목 이름). 제품 계열을 M5 → M4 로 옮기는 ② 는 kind 가 없어 제안으로(batch3-proposed).",
+ "decided_by": "사용자(이건학)",
+ "decided_at": "2026-11-05",
+ "status": "approved",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "products.json:prp_exosome.products[].name@3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "products.json:prp_exosome.products[].name_en@3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@3/2/0"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-v3/decisions/_batch3-candidates.md — 사용자 2026-11-05 **확정 방향 — 엑소좀 통합** ① ASCE+(동의어 ASCEplus·ASCE+엑소좀)"
+  }
+ ],
+ "batch": "결정 묶음 3 (2026-11-05 · 발주서 silver-build-5-brief.md)"
+}

@@ -1,0 +1,43 @@
+{
+ "id": "DEC-2026-11-05-B3-P-ADV-01",
+ "kind": "adverse_tuple_assign",
+ "target": {
+  "locator": "complications.json:categories[].complications[].name@M16/10",
+  "kind": "raw_name"
+ },
+ "new_value": {
+  "tuples": [
+   {
+    "event_id": "DIC-3bf5dbf749",
+    "site_id": "none",
+    "course_id": "DIC-589c42f2e4",
+    "qualifier_id": "DIC-63c2d43a83"
+   },
+   {
+    "event_id": "DIC-61a83687ae",
+    "site_id": "none",
+    "course_id": "DIC-589c42f2e4",
+    "qualifier_id": "none"
+   }
+  ]
+ },
+ "reason": "「공기색전·카테터 관련 감염」[M16] = (색전, none, 미상, 공기)+(감염, none, 미상) — V3-1 수식 칸으로 「공기색전」이 (색전 · 공기)로 갈린다. 「카테터 관련」은 감염의 원인 문맥(사전 밖 조각) — 버릴지·사전에 넣을지 사람 확인.",
+ "decided_by": null,
+ "decided_at": null,
+ "status": "proposed",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "complications.json:categories[].complications[].name@M16/10"
+  },
+  {
+   "kind": "ledger",
+   "ref": "consent-checklist.json:categories[].emergency_signs[]@15/2"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.md §12 V3-1 후속 · 검토 D-3"
+  }
+ ],
+ "batch": "결정 묶음 3 (2026-11-05 · 발주서 silver-build-5-brief.md)"
+}

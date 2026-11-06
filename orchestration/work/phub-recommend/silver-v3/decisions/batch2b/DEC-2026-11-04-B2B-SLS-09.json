@@ -1,0 +1,34 @@
+{
+ "approval_note": "결정 묶음 2B — 사용자 게이트 답(아티팩트 저장소 덤프 2026-11-05)",
+ "decided_at": "2026-11-05",
+ "decided_by": "사용자(이건학)",
+ "gate_answer": {
+  "item": "slash-together-or/09",
+  "label": "「또는」 — 바깥 M9-1 HIFU (초음파) 하나(괄호 안 제품은 예시)",
+  "note": "괄호 안은 장비 예시 → 바깥 HIFU 하나",
+  "option": "outer_only"
+ },
+ "id": "DEC-2026-11-04-B2B-SLS-09",
+ "kind": "tuple_assign",
+ "new_value": {
+  "site_id": "none",
+  "technique_id": "none",
+  "what_id": "SUB-4d2dd83586",
+  "what_kind": "modality_subcategory"
+ },
+ "reason": "결정 묶음 2B — 「HIFU(울쎄라/슈링크)」 = M9-1 HIFU (초음파) · 사용자 메모: 괄호 안은 장비 예시 → 바깥 HIFU 하나",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@2/1/0"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4.md §12"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "ref_id": "REF-919f782e1e"
+ }
+}

@@ -1,0 +1,38 @@
+{
+ "approval_note": "결정 묶음 2B — 사용자 게이트 답(아티팩트 저장소 덤프 2026-11-05)",
+ "decided_at": "2026-11-05",
+ "decided_by": "사용자(이건학)",
+ "gate_answer": {
+  "item": "paren-synonym-unknown-tuples-4/#58",
+  "label": "미상 튜플을 뺀다 → (경결, none, 일시)",
+  "note": "사용자 2026-11-05: (경결, 일시) 하나. 괄호 안 섬유화는 분리된 사건으로",
+  "option": "drop_unknown"
+ },
+ "id": "DEC-2026-11-04-B2B-PAR-04",
+ "kind": "adverse_tuple_assign",
+ "new_value": {
+  "tuples": [
+   {
+    "course_id": "DIC-ff4e6c4fd1",
+    "event_id": "DIC-962963588f",
+    "site_id": "none"
+   }
+  ]
+ },
+ "reason": "결정 묶음 2B — 「경결·딱딱함(일시적 섬유화)」의 괄호 안 동의어가 만든 미상 튜플을 뺀다(§9.6.2a · 검토 v2.4 #58) · 사용자 메모: 사용자 2026-11-05: (경결, 일시) 하나. 괄호 안 섬유화는 분리된 사건으로",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "complications.json:categories[].complications[].name@M16/4"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4.md §12"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "kind": "raw_name",
+  "locator": "complications.json:categories[].complications[].name@M16/4"
+ }
+}

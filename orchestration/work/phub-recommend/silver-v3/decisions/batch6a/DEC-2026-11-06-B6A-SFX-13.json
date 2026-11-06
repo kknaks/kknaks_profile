@@ -1,0 +1,35 @@
+{
+ "id": "DEC-2026-11-06-B6A-SFX-13",
+ "kind": "fold_approve",
+ "target": {
+  "dictionary": "adverse_event_type",
+  "canonical": "박탈감",
+  "into": "박탈"
+ },
+ "new_value": {
+  "keep": "박탈"
+ },
+ "reason": "사용자 2026-11-06 「형성은 같은거고 … 둘다 증상아니야 ?」→「응 같다고 하자」 — ~감·~증·~형성 접미사 쌍은 같은 사건(V3.3-D · 대표 이름 = 현상 이름) · §9.22 #13 「박탈감」 ↔ 「박탈」(규칙 suffix_감 · ⑦ strong) · 대표 이름 박탈 → 원장 노드 「박탈감」를 「박탈」(원장 노드)에 접는다. 원문은 phrase_dictionary raw_variants 에 그대로.",
+ "decided_by": "사용자",
+ "decided_at": "2026-11-06",
+ "status": "approved",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@14/10/12/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@14/10/2/0"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.3.json#/tuple_rules/phrase_kinds/suffix_pairs_v33/12"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-8-brief.md §3 · HANDOFF-2026-11-05.md 「2026-11-06 추가」"
+  }
+ ],
+ "batch": "결정 묶음 6-A (2026-11-06 · 발주서 silver-build-8-brief.md §3 · ERD v3.3 · 8차 적용)"
+}

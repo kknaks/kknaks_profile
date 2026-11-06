@@ -1,0 +1,53 @@
+{
+ "id": "DEC-2026-11-05-B3-ADV-04",
+ "kind": "adverse_tuple_assign",
+ "target": {
+  "locator": "complications.json:categories[].complications[].name@M14/1",
+  "kind": "raw_name"
+ },
+ "new_value": {
+  "tuples": [
+   {
+    "event_id": "DIC-e0f7b99d08",
+    "site_id": "SIT-2ab0610329",
+    "course_id": "DIC-589c42f2e4",
+    "qualifier_id": "none"
+   },
+   {
+    "event_id": "DIC-e0f7b99d08",
+    "site_id": "SIT-6ef07f5cdf",
+    "course_id": "DIC-589c42f2e4",
+    "qualifier_id": "none"
+   },
+   {
+    "event_id": "DIC-f0167cab8d",
+    "site_id": "none",
+    "course_id": "DIC-589c42f2e4",
+    "qualifier_id": "none"
+   }
+  ]
+ },
+ "reason": "「피부 괴사 (Skin Necrosis / 동상·지방괴사, Frostbite·Fat Necrosis)」[M14] — 「피부 괴사」=(괴사, 피부) · 「지방괴사」=(괴사, 피하 지방층) · 「동상」은 원인 사건(묶음 2B EVS-02 로 분리)으로 그대로 둔다. 사건 「괴사」는 하나(사용자: 괴사가 더 큰 범위).",
+ "decided_by": "사용자(이건학)",
+ "decided_at": "2026-11-05",
+ "status": "approved",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "complications.json:categories[].complications[].name@M14/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "complications.json:categories[].complications[].mechanism@7/1"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-v3/decisions/_batch3-candidates.md — 사용자 2026-11-05 「지방괴사도 지방 조직이 손상된 거 아니야」"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-v3/decisions/_batch3-candidates.md — 사용자 2026-11-05 「괴사가 더 큰 범위」"
+  }
+ ],
+ "batch": "결정 묶음 3 (2026-11-05 · 발주서 silver-build-5-brief.md)"
+}

@@ -1,0 +1,38 @@
+{
+ "id": "DEC-2026-11-06-B6A-ING-05",
+ "kind": "dictionary_add",
+ "target": {
+  "dictionary": "ingredient_material"
+ },
+ "new_value": {
+  "canonical": "살리실산",
+  "synonyms": []
+ },
+ "reason": "사용자 결정 2026-11-06 오후(HANDOFF 「성분 씨앗 17: HA·히알루론산·TCA·글리콜산·살리실산·페놀 6 추가」) — 성분 사전 값 「살리실산」 · 근거 발주서 명시(필링 산·성분) · 원장 자리 4 · 라벨 살리실산 필링, 필링(살리실산/글리콜산), 화학 박피 (살리실산/글리콜산). HA 와 히알루론산은 ERD §9.21 에 따로 선 값 둘(한 값+동의어로 묶는 것은 사용자 결정 없음 · 그대로 둠).",
+ "decided_by": "사용자",
+ "decided_at": "2026-11-06",
+ "status": "approved",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@14/0/10"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@5/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@14/1"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.3.json#/tuple_rules/seed/approved_v33/ingredient_material/4"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-8-brief.md §3 · HANDOFF-2026-11-05.md 「2026-11-06 추가」"
+  }
+ ],
+ "batch": "결정 묶음 6-A (2026-11-06 · 발주서 silver-build-8-brief.md §3 · ERD v3.3 · 8차 적용)"
+}

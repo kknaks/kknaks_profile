@@ -1,0 +1,22 @@
+{
+ "decided_at": null,
+ "decided_by": null,
+ "id": "DEC-2026-11-04-B1-TPL-event-split",
+ "kind": "event_split",
+ "new_value": {
+  "new_events": []
+ },
+ "note": "빈 템플릿 — 값은 사람이 채운다(사건 동의어 분리(과민반응·동상·지방괴사·섬유화·공기색전))",
+ "reason": "",
+ "source_refs": [
+  {
+   "kind": "erd",
+   "ref": "ERD-FROZEN.md 「결정으로 넘긴 것」: 사건 동의어 분리(과민반응·동상·지방괴사·섬유화·공기색전)"
+  }
+ ],
+ "status": "proposed",
+ "target": {
+  "event": null
+ },
+ "template": true
+}

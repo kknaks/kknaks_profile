@@ -1,0 +1,32 @@
+{
+ "id": "DEC-2026-11-05-B3-PRD-04",
+ "kind": "dictionary_add",
+ "target": {
+  "dictionary": "product_name"
+ },
+ "new_value": {
+  "canonical": "셀엑소좀",
+  "category": null,
+  "code": "M4",
+  "synonyms": []
+ },
+ "reason": "엑소좀 통합 ① — 제품 사전에 「셀엑소좀」(M4 엑소좀/성장인자 분류 항목 이름). step1 조사 항목(@93)은 1_identity.kind 「확인 불가」라 묶음 1 제외였다 — 사용자 확정 방향(엑소좀 통합 ①)이 근거.",
+ "decided_by": "사용자(이건학)",
+ "decided_at": "2026-11-05",
+ "status": "approved",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@3/2/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.display_name@93"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-v3/decisions/_batch3-candidates.md — 사용자 2026-11-05 **확정 방향 — 엑소좀 통합** ① 셀엑소좀, code M4"
+  }
+ ],
+ "batch": "결정 묶음 3 (2026-11-05 · 발주서 silver-build-5-brief.md)"
+}

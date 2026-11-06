@@ -1,0 +1,38 @@
+{
+ "id": "DEC-2026-11-05-B3-CAT-01",
+ "kind": "dictionary_add",
+ "target": {
+  "dictionary": "catalog_item_name"
+ },
+ "new_value": {
+  "canonical": "스킨보톡스",
+  "category": null,
+  "synonyms": [
+   "더모톡신",
+   "메조보톡스"
+  ]
+ },
+ "reason": "「더모톡신」·「메조보톡스」는 제품·회사가 아니라 시술(보툴리눔 톡신 × 얼굴 전체 × 진피내 소량 주입) — 분류 항목 「스킨보톡스」(원장 note 「별도 제품 아님」)의 동의어. 기법 사전 추가안(진피내 주사)은 고르지 않았다.",
+ "decided_by": "사용자(이건학)",
+ "decided_at": "2026-11-05",
+ "status": "approved",
+ "source_refs": [
+  {
+   "kind": "brief",
+   "ref": "silver-v3/sources/2026-11-05-dermatoxin-uni114.md — 웹 tier 4 · 사용자 제공 「더모톡신 설명 자료가 이거」"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].extracted.related_techniques[]@0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].extracted.related_techniques[]@3/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/2/0"
+  }
+ ],
+ "batch": "결정 묶음 3 (2026-11-05 · 발주서 silver-build-5-brief.md)"
+}

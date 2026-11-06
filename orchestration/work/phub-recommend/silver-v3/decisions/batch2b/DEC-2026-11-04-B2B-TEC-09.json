@@ -1,0 +1,253 @@
+{
+ "approval_note": "결정 묶음 2B — 사용자 게이트 답(아티팩트 저장소 덤프 2026-11-05)",
+ "decided_at": "2026-11-05",
+ "decided_by": "사용자(이건학)",
+ "gate_answer": {
+  "item": "technique-inheritance-9/M9",
+  "label": "붙인다 → technique thermal",
+  "note": "HIFU·RF 전부 열 응고",
+  "option": "apply"
+ },
+ "id": "DEC-2026-11-04-B2B-TEC-09",
+ "kind": "canonical_mapping",
+ "new_value": {
+  "to_id": "TEC-cb2ac09362"
+ },
+ "reason": "결정 묶음 2B — 계열 M9 기법 「thermal」을 분류 항목 44 튜플에 붙인다(§9.5.6) · 사용자 메모: HIFU·RF 전부 열 응고",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "procedure-profiles.json:profiles[].mechanism[]@8/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/0/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/0/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/0/4"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/0/5"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/0/6"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/0/7"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/0/8"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/0/9"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/0/10"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/0/11"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/0/12"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/0/13"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/0/14"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/0/15"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/1/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/1/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/1/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/1/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/1/4"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/1/5"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/1/6"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/1/7"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/1/8"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/1/9"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/1/10"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/1/11"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/1/12"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/1/13"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/1/14"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/1/15"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/1/16"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/2/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/2/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/3/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/3/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/3/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/3/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/3/4"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/3/5"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/3/6"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/4/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/4/1"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4.md §12"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "from_ref": "R5:M9",
+  "scope": [
+   "CAT-83a25f8d92",
+   "CAT-6930ad2e52",
+   "CAT-b0449b9a25",
+   "CAT-01c7237669",
+   "CAT-a2a8b54851",
+   "CAT-3c3169984e",
+   "CAT-000766a064",
+   "CAT-0158317211",
+   "CAT-5feac9b5bc",
+   "CAT-214efe4d6d",
+   "CAT-ec637df0c8",
+   "CAT-61e0e476a6",
+   "CAT-9e4c8fd946",
+   "CAT-633bdd3dbf",
+   "CAT-31ac07fe45",
+   "CAT-428eebe812",
+   "CAT-deeee2f86b",
+   "CAT-00864ad58d",
+   "CAT-034f572396",
+   "CAT-102bed4c6f",
+   "CAT-bd1d93db49",
+   "CAT-9860292243",
+   "CAT-663bc994c8",
+   "CAT-d02cb5f6d2",
+   "CAT-c94e99a8ed",
+   "CAT-3555509429",
+   "CAT-b1d734a953",
+   "CAT-1bc36de49a",
+   "CAT-ec97abb2f0",
+   "CAT-ca288b80ed",
+   "CAT-f8703c0e47",
+   "CAT-631aaead00",
+   "CAT-e323c4b83b",
+   "CAT-d418c24050",
+   "CAT-cebb75b22e",
+   "CAT-4c18f58a27",
+   "CAT-7e7ea7efb3",
+   "CAT-524bb22e97",
+   "CAT-ce22aa045c",
+   "CAT-5999336fbb",
+   "CAT-270ae30310",
+   "CAT-7cdbea8668",
+   "CAT-8bff5e0102",
+   "CAT-49044f56a3"
+  ]
+ }
+}

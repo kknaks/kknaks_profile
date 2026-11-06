@@ -1,0 +1,198 @@
+{
+ "approval_note": "결정 묶음 2B — 사용자 게이트 답(아티팩트 저장소 덤프 2026-11-05)",
+ "decided_at": "2026-11-05",
+ "decided_by": "사용자(이건학)",
+ "gate_answer": {
+  "item": "technique-inheritance-9/M7",
+  "label": "붙인다 → technique mechanical",
+  "note": "실리프팅 = 물리적 거상",
+  "option": "apply"
+ },
+ "id": "DEC-2026-11-04-B2B-TEC-08",
+ "kind": "canonical_mapping",
+ "new_value": {
+  "to_id": "TEC-96ae0f875b"
+ },
+ "reason": "결정 묶음 2B — 계열 M7 기법 「mechanical」을 분류 항목 33 튜플에 붙인다(§9.5.6) · 사용자 메모: 실리프팅 = 물리적 거상",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "procedure-profiles.json:profiles[].mechanism[]@6/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/0/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/0/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/0/4"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/0/5"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/1/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/1/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/1/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/2/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/2/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/2/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/2/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/2/4"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/2/5"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/2/6"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/2/7"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/2/8"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/2/9"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/2/10"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/2/11"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/2/12"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/2/13"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/2/14"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/2/15"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/2/16"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/2/17"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/2/18"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/2/19"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/2/20"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/2/21"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/2/22"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/2/23"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4.md §12"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "from_ref": "R5:M7",
+  "scope": [
+   "CAT-4839fe2677",
+   "CAT-593fe618bc",
+   "CAT-bcd3331375",
+   "CAT-72d70487d9",
+   "CAT-16aabd1b2f",
+   "CAT-a099d43b25",
+   "CAT-be114529cb",
+   "CAT-e10b36ed0c",
+   "CAT-78b1fd3370",
+   "CAT-8620066867",
+   "CAT-34310fa1fe",
+   "CAT-c385fb0dfe",
+   "CAT-8651227607",
+   "CAT-9acf01f98a",
+   "CAT-b8d6d063bb",
+   "CAT-b86fc1b238",
+   "CAT-c72c19fc93",
+   "CAT-c4aab9b063",
+   "CAT-d2388afd01",
+   "CAT-3ffbc8e401",
+   "CAT-3abea35209",
+   "CAT-577dcf45d7",
+   "CAT-f7d490261c",
+   "CAT-7e7346faf1",
+   "CAT-a9f8c1845c",
+   "CAT-7fd25fbe8e",
+   "CAT-d912513a6a",
+   "CAT-d24d47ec89",
+   "CAT-e78cb80e2e",
+   "CAT-4ad500b52d",
+   "CAT-1b975c02d8",
+   "CAT-0e8e82baf9",
+   "CAT-4305fe0023"
+  ]
+ }
+}

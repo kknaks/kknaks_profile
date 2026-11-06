@@ -1,0 +1,42 @@
+{
+ "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+ "decided_at": null,
+ "decided_by": null,
+ "effect": "풀리는 ⑨ 참조 2/2(원장 자리 2) · 근거 원장 이름 병기 「울쎄라(턱라인)」",
+ "gate_item": "b4-prc/051",
+ "gate_option": "map_1",
+ "gate_recommended": false,
+ "id": "DEC-2026-11-05-B4-PRC-051a",
+ "kind": "canonical_mapping",
+ "new_value": {
+  "to_id": "PRD-83a25f8d92"
+ },
+ "proposal_item": "b4-prc/051",
+ "reason": "결정 묶음 4 — 참조 조각 「턱라인」 을 그 참조들(⑨ 2)에서 product_name 「울쎄라」(PRD-83a25f8d92)로 읽는다(근거: 원장 이름 병기 「울쎄라(턱라인)」)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@8/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@8/3"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.1.md §5.2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+  }
+ ],
+ "status": "proposed",
+ "target": {
+  "from_ref": "턱라인",
+  "scope": [
+   "REF-6837397cee",
+   "REF-6c699710fd"
+  ]
+ }
+}

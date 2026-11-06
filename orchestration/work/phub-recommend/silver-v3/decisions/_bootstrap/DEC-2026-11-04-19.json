@@ -1,0 +1,26 @@
+{
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(워커 처리안 일괄 확정)",
+ "erd_pointer": "erd-v2.4.json#/decisions/18",
+ "id": "DEC-2026-11-04-19",
+ "kind": "conflict_resolution",
+ "new_value": {
+  "disposition": "comparison 비교값은 R12 엣지 속성"
+ },
+ "reason": "재검토 8-19: procedure-comparison 의 시술별 비교값(통증·다운타임·비용 …)을 R12 엣지 속성에 — v1.1 발주서 §A 처분",
+ "source_refs": [
+  {
+   "kind": "brief",
+   "ref": "erd-v1.1-brief.md §A (사용자 승인 「그렇게 진행하자」) — 「나머지 15건은 워커 처리대로 확정」"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v1.md §8-19"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "erd_ref": "R12",
+  "review_item": "8-19"
+ }
+}

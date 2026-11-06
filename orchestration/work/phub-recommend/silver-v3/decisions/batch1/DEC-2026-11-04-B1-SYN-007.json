@@ -1,0 +1,75 @@
+{
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(이건학)",
+ "evidence": {
+  "fragment": "토닝",
+  "fragment_count": 5,
+  "fragment_occurrence_locators": [
+   "treatment-optimization.json:by_age_group[].recommended_base[]@0/2",
+   "treatment-optimization.json:annual_plans[].schedule[].procedures[]@0/0/0",
+   "treatment-optimization.json:annual_plans[].schedule[].procedures[]@2/1/1",
+   "treatment-sequence.json:sequence_order[].categories[]@3/0",
+   "treatment-sequence.json:common_combos[].sequence[]@6/1"
+  ],
+  "label_locators": [
+   "taxonomy.json:modality[].subcategories[].label@7/0"
+  ],
+  "target": {
+   "canonical": "색소/토닝",
+   "code": "M8",
+   "dictionary": "modality_subcategory_label",
+   "pointer": "erd-v2.4-dictionaries.json#/dictionaries/38/entries/27/canonical",
+   "rule": "조합 멤버 일치 「색소/토닝」",
+   "value": "색소/토닝"
+  }
+ },
+ "id": "DEC-2026-11-04-B1-SYN-007",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "색소/토닝",
+  "category": null,
+  "synonyms": [
+   "토닝"
+  ]
+ },
+ "reason": "발주서: 해당 하위분류 라벨(근거가 계열 라벨뿐이면 계열) — 조각 「토닝」 ↔ modality_subcategory_label 「색소/토닝」(M8) : 조합 멤버 일치 「색소/토닝」",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].label@7/0"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4-dictionaries.json#/dictionaries/38/entries/27/canonical"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_age_group[].recommended_base[]@0/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@0/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@2/1/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-sequence.json:sequence_order[].categories[]@3/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-sequence.json:common_combos[].sequence[]@6/1"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-brief.md 결정 묶음 1-2"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "dictionary": "modality_subcategory_label"
+ },
+ "approval_note": "결정 묶음 1 일괄 승인 — 사용자 「응 그렇게 가자」(2026-11-04)"
+}

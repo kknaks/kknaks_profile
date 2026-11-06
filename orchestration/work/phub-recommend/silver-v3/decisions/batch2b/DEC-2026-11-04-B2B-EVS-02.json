@@ -1,0 +1,43 @@
+{
+ "approval_note": "결정 묶음 2B — 사용자 게이트 답(아티팩트 저장소 덤프 2026-11-05)",
+ "decided_at": "2026-11-05",
+ "decided_by": "사용자(이건학)",
+ "gate_answer": {
+  "item": "event-split/동상",
+  "label": "「동상」을 새 사건으로",
+  "note": "사용자 2026-11-05: 동상은 원인, 괴사는 결과(필러 혈관폐색도 괴사로). 동상→괴사 인과는 묶음 3 edge_create",
+  "option": "split"
+ },
+ "id": "DEC-2026-11-04-B2B-EVS-02",
+ "kind": "event_split",
+ "new_value": {
+  "new_events": [
+   {
+    "canonical": "동상",
+    "category": "구조/이물",
+    "synonyms": [
+     "Frostbite"
+    ]
+   }
+  ]
+ },
+ "reason": "결정 묶음 2B — 사건 사전 「괴사」에서 「동상」을 따로 세운다(검토 2-C) · 사용자 메모: 사용자 2026-11-05: 동상은 원인, 괴사는 결과(필러 혈관폐색도 괴사로). 동상→괴사 인과는 묶음 3 edge_create",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "complications.json:categories[].complications[].name@M14/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "consent-checklist.json:categories[].emergency_signs[]@M14/1"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4.md §12"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "event": "괴사"
+ }
+}

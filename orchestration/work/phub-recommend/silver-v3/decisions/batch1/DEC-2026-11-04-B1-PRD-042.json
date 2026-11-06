@@ -1,0 +1,82 @@
+{
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(이건학)",
+ "evidence": [
+  {
+   "detail": "수허 13-1473 호 · Restylane Skinboosters Vital Light Lidocaine 1.0 ml",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@91/0"
+  },
+  {
+   "detail": "수허 12-702 호 · Restylane Skinboosters Vital Light 1.0 ml",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@91/1"
+  },
+  {
+   "detail": "수허 12-703 호 · Restylane Skinboosters Vital Lidocaine 1.0ml",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@91/2"
+  },
+  {
+   "detail": "web: https://www.ddgroup.com/facial-aesthetics/fillers/600201--restylane-skinboosters-vital-lidocaine-1ml-d16/",
+   "kind": "web",
+   "ref": "step1-products.json:items[].evidence[]@91/4"
+  },
+  {
+   "detail": "web: https://www.dmi.co.uk/products/restylane-vital-with-lido-skinboosters-1ml-600201.html",
+   "kind": "web",
+   "ref": "step1-products.json:items[].evidence[]@91/5"
+  }
+ ],
+ "id": "DEC-2026-11-04-B1-PRD-042",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "레스틸렌스킨부스터",
+  "category": null,
+  "code": "M4",
+  "synonyms": [
+   "Restylane Skinboosters"
+  ]
+ },
+ "reason": "step1 조사 산출물 — 1_identity.kind ['제품(의료기기)'] · 근거 3 허가 건 · 2 웹 · ledger_id auto-M4-1775364797154 · 분류 항목 「레스틸렌스킨부스터」 이름과 같다 — 승인되면 그 항목 튜플의 what 이 이 제품이 된다(겹침 규칙 8-11: 참조 자리에서는 항목 우선)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.display_name@91"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@91/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@91/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@91/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].evidence[]@91/4"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].evidence[]@91/5"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@91/0"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-brief.md 결정 묶음 1-1"
+  }
+ ],
+ "status": "approved",
+ "synonyms_dropped": [],
+ "target": {
+  "dictionary": "product_name"
+ },
+ "approval_note": "결정 묶음 1 일괄 승인 — 사용자 「응 그렇게 가자」(2026-11-04)"
+}

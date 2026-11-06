@@ -1,0 +1,30 @@
+{
+ "id": "DEC-2026-11-05-B3-P-SIT-04",
+ "kind": "dictionary_add",
+ "target": {
+  "dictionary": "site"
+ },
+ "new_value": {
+  "canonical": "이중턱/턱밑",
+  "category": null,
+  "synonyms": [
+   "턱밑",
+   "이중턱"
+  ]
+ },
+ "reason": "해부 이름 → 부위 동의어(미등록 조각에서 추출 · 사람 확인) — 부위 라벨 「이중턱/턱밑」의 각 조각.",
+ "decided_by": null,
+ "decided_at": null,
+ "status": "proposed",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@13/2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-v3/decisions/_batch3-candidates.md — 사용자 2026-11-05 해부 이름 → 부위 라벨 동의어 묶음(광경근→목 · 코끝→코 등) — 「교근」과 같은 원칙"
+  }
+ ],
+ "batch": "결정 묶음 3 (2026-11-05 · 발주서 silver-build-5-brief.md)"
+}

@@ -1,0 +1,60 @@
+{
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(이건학)",
+ "evidence": [
+  {
+   "detail": "200512342 · 라이넥주",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@393/0"
+  },
+  {
+   "detail": "201100874 · 라이넥주바이알",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@393/1"
+  }
+ ],
+ "id": "DEC-2026-11-04-B1-PRD-168",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "라이넥",
+  "category": null,
+  "code": "M16",
+  "synonyms": [
+   "라엔넥",
+   "Laennec"
+  ]
+ },
+ "reason": "step1 조사 산출물 — 1_identity.kind ['제품(의약품)'] · 근거 2 허가 건 · 0 웹 · ledger_id M16-3-1",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.display_name@393"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@393/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@393/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.ledger_name@393"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@393/1"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-brief.md 결정 묶음 1-1"
+  }
+ ],
+ "status": "approved",
+ "synonyms_dropped": [],
+ "target": {
+  "dictionary": "product_name"
+ },
+ "approval_note": "결정 묶음 1 일괄 승인 — 사용자 「응 그렇게 가자」(2026-11-04)"
+}

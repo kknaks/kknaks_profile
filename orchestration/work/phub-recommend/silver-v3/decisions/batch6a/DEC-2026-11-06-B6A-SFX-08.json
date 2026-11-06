@@ -1,0 +1,39 @@
+{
+ "id": "DEC-2026-11-06-B6A-SFX-08",
+ "kind": "fold_approve",
+ "target": {
+  "dictionary": "adverse_event_type",
+  "canonical": "건조증",
+  "into": "건조"
+ },
+ "new_value": {
+  "keep": "건조"
+ },
+ "reason": "사용자 2026-11-06 「형성은 같은거고 … 둘다 증상아니야 ?」→「응 같다고 하자」 — ~감·~증·~형성 접미사 쌍은 같은 사건(V3.3-D · 대표 이름 = 현상 이름) · §9.22 #8 「건조증」 ↔ 「건조」(규칙 suffix_증 · ⑦ strong) · 대표 이름 건조 → 원장 노드 「건조증」를 「건조」(사전 사건)에 접는다. 원문은 phrase_dictionary raw_variants 에 그대로.",
+ "decided_by": "사용자",
+ "decided_at": "2026-11-06",
+ "status": "approved",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@8/0/4/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@8/1/0/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@10/0/4/2"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.3.json#/tuple_rules/phrase_kinds/suffix_pairs_v33/7"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-8-brief.md §3 · HANDOFF-2026-11-05.md 「2026-11-06 추가」"
+  }
+ ],
+ "batch": "결정 묶음 6-A (2026-11-06 · 발주서 silver-build-8-brief.md §3 · ERD v3.3 · 8차 적용)"
+}

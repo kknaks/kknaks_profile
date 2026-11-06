@@ -1,0 +1,73 @@
+{
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(이건학)",
+ "evidence": [
+  {
+   "detail": "제허19-31호 · RBMD-4SL-01SW",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@27/0"
+  },
+  {
+   "detail": "제허21-641호 · RBMD-4SN-01SW",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@27/1"
+  },
+  {
+   "detail": "web: https://thevc.kr/youthfill",
+   "kind": "web",
+   "ref": "step1-products.json:items[].evidence[]@27/6"
+  },
+  {
+   "detail": "web: https://www.beautetrade.com/suppliers/ido-healthcare-83068/",
+   "kind": "web",
+   "ref": "step1-products.json:items[].evidence[]@27/7"
+  }
+ ],
+ "id": "DEC-2026-11-04-B1-PRD-012",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "유스필",
+  "category": null,
+  "code": "M2",
+  "synonyms": [
+   "YOUTHFILL"
+  ]
+ },
+ "reason": "step1 조사 산출물 — 1_identity.kind ['제품(의료기기)'] · 근거 2 허가 건 · 2 웹 · ledger_id auto-9-1774737181584 · 분류 항목 「유스필」 이름과 같다 — 승인되면 그 항목 튜플의 what 이 이 제품이 된다(겹침 규칙 8-11: 참조 자리에서는 항목 우선)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.display_name@27"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@27/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@27/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].evidence[]@27/6"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].evidence[]@27/7"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@27/0"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-brief.md 결정 묶음 1-1"
+  }
+ ],
+ "status": "approved",
+ "synonyms_dropped": [],
+ "target": {
+  "dictionary": "product_name"
+ },
+ "approval_note": "결정 묶음 1 일괄 승인 — 사용자 「응 그렇게 가자」(2026-11-04)"
+}

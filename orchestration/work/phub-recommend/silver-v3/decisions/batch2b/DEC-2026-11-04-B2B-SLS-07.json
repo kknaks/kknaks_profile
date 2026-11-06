@@ -1,0 +1,44 @@
+{
+ "approval_note": "결정 묶음 2B — 사용자 게이트 답(아티팩트 저장소 덤프 2026-11-05)",
+ "decided_at": "2026-11-05",
+ "decided_by": "사용자(이건학)",
+ "gate_answer": {
+  "item": "slash-together-or/07",
+  "label": "「또는」 — 기록만(ERD 규칙 개정 사유)",
+  "note": "규칙: 재질 대안 → 또는",
+  "option": "or_record"
+ },
+ "id": "DEC-2026-11-04-B2B-SLS-07",
+ "kind": "scope_review",
+ "new_value": {
+  "disposition": "「실리프팅(PCL/PDO)」의 `/` 는 「또는」"
+ },
+ "reason": "결정 묶음 2B — 「실리프팅(PCL/PDO)」의 `/` 해석 기록 · 사용자 메모: 규칙: 재질 대안 → 또는",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@1/2/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_age_group[].upgrade[]@2/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@6/0/0"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4.md §12"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "erd_ref": "§1.4 조합 규칙 `/` · REF-99a20595d6",
+  "review_item": "§12 `/`"
+ }
+}

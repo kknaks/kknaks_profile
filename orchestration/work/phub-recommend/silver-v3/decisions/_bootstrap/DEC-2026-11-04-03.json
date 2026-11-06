@@ -1,0 +1,26 @@
+{
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(워커 처리안 일괄 확정)",
+ "erd_pointer": "erd-v2.4.json#/decisions/2",
+ "id": "DEC-2026-11-04-03",
+ "kind": "conflict_resolution",
+ "new_value": {
+  "disposition": "secondary → extended 동의 키 정규화 유지"
+ },
+ "reason": "재검토 8-3: taxonomy 항목 `indications.secondary` ≡ `extended` 가정 — v1.1 발주서 §A 처분",
+ "source_refs": [
+  {
+   "kind": "brief",
+   "ref": "erd-v1.1-brief.md §A (사용자 승인 「그렇게 진행하자」) — 「나머지 15건은 워커 처리대로 확정」"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v1.md §8-3"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "erd_ref": "§2 procedure.indications_extended",
+  "review_item": "8-3"
+ }
+}

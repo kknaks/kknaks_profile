@@ -1,0 +1,43 @@
+{
+ "id": "DEC-2026-11-05-B3-EXO-02A",
+ "kind": "product_reclassify",
+ "target": {
+  "product_id": "PRD-be57673deb"
+ },
+ "new_value": {
+  "to_modality_code": "M4"
+ },
+ "reason": "엑소좀 통합 ② — M5(PRP/자가혈) 제품 ASCEplus 는 자가혈이 아니라 엑소좀 화장품(원장 note 「화장품 허가」) — M4 로 재분류(PRD- 재계산 PRD-be57673deb → PRD-e45033395c · 옛 id alias · ERD v3.1 §9.7.1 예).",
+ "decided_by": "사용자(이건학)",
+ "decided_at": "2026-11-05",
+ "status": "approved",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "products.json:prp_exosome.products[].name@3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].products[].name@4/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].products[].note@4/3"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.1.md §5.2 product_reclassify · §9.7.1"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-v3/decisions/_batch3-candidates.md — 사용자 2026-11-05 **확정 방향 — 엑소좀 통합** ②⑤⑥"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-6-brief.md A — 엑소좀 EXO-02·05·06 approved 로 올려 적용"
+  }
+ ],
+ "batch": "결정 묶음 3 (엑소좀 · ERD v3.1 반영 뒤 approved)",
+ "approval_note": "발주서 silver-build-6-brief.md — 엑소좀 EXO-02·05·06 을 ERD v3.1 kind·관계로 올려 적용(사용자 확정 방향 2026-11-05 「엑소좀 통합」)",
+ "supersedes_proposal": "DEC-2026-11-05-B3-P-EXO-02"
+}

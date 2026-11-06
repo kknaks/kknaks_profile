@@ -1,0 +1,53 @@
+{
+ "id": "DEC-2026-11-05-B3-R30-02",
+ "kind": "edge_create",
+ "target": {
+  "relation": "R30",
+  "from_ref": {
+   "kind": "adverse_tuple",
+   "tuple": {
+    "event": "혈관 폐색",
+    "site": "none",
+    "course": "미상",
+    "qualifier": "none"
+   }
+  },
+  "to_ref": {
+   "kind": "adverse_tuple",
+   "tuple": {
+    "event": "괴사",
+    "site": "none",
+    "course": "미상",
+    "qualifier": "none"
+   }
+  }
+ },
+ "new_value": {
+  "attrs": {
+   "basis": "consent M2 「혈관폐색 시 피부 괴사 …」 · complications M3 혈관폐색 incidence 「피부괴사·실명 등」"
+  }
+ },
+ "reason": "인과 R30 leads_to: 혈관 폐색 → 괴사.",
+ "decided_by": "사용자(이건학)",
+ "decided_at": "2026-11-05",
+ "status": "approved",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "consent-checklist.json:categories[].mandatory_disclosures[]@1/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "complications.json:categories[].complications[].incidence@2/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "extracted.json:{code}.safety.serious[]@M6/2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-v3/decisions/_batch3-candidates.md — 사용자 2026-11-05 「필러에서도 괴사가 일어나잖아」"
+  }
+ ],
+ "batch": "결정 묶음 3 (2026-11-05 · 발주서 silver-build-5-brief.md)"
+}

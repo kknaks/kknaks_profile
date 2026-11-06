@@ -1,0 +1,33 @@
+{
+ "id": "DEC-2026-11-05-B3-ADV-02",
+ "kind": "adverse_tuple_assign",
+ "target": {
+  "locator": "complications.json:categories[].complications[].name@M14/2",
+  "kind": "raw_name"
+ },
+ "new_value": {
+  "tuples": [
+   {
+    "event_id": "DIC-db962671c9",
+    "site_id": "DIC-f4bd839bbf",
+    "course_id": "DIC-ff4e6c4fd1",
+    "qualifier_id": "none"
+   }
+  ]
+ },
+ "reason": "「일시적 감각저하·저림 (…)」[M14] = (감각 이상, 시술 부위, 일시). 묶음 2B PAR-02 를 대신한다.",
+ "decided_by": "사용자(이건학)",
+ "decided_at": "2026-11-05",
+ "status": "approved",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "complications.json:categories[].complications[].name@M14/2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-v3/decisions/_batch3-candidates.md — 사용자 2026-11-05 「감각이상이 시술 부위 일시적으로 나오는 거 아니야?」"
+  }
+ ],
+ "batch": "결정 묶음 3 (2026-11-05 · 발주서 silver-build-5-brief.md)"
+}

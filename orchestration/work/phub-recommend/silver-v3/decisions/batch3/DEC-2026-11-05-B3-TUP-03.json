@@ -1,0 +1,28 @@
+{
+ "id": "DEC-2026-11-05-B3-TUP-03",
+ "kind": "tuple_assign",
+ "target": {
+  "ref_id": "REF-4445947203"
+ },
+ "new_value": {
+  "what_kind": "modality_subcategory",
+  "what_id": "SUB-9088d13466",
+  "site_id": "SIT-446031b79e",
+  "technique_id": "none"
+ },
+ "reason": "엑소좀 통합 ⑥ — 시장가 M5 메뉴 「엑소좀 (전체얼굴)」 → M4 엑소좀 시술(부위 = 묶음 1 의 「얼굴 전체」 · 기법은 원장에 없어 none).",
+ "decided_by": "사용자(이건학)",
+ "decided_at": "2026-11-05",
+ "status": "approved",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@4/2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-v3/decisions/_batch3-candidates.md — 사용자 2026-11-05 ⑥ 메뉴 「엑소좀 (전체얼굴)」「엑소좀 (두피)」→ M4 엑소좀 시술"
+  }
+ ],
+ "batch": "결정 묶음 3 (2026-11-05 · 발주서 silver-build-5-brief.md)"
+}

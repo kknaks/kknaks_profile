@@ -1,0 +1,128 @@
+{
+ "approval_note": "결정 묶음 2A — 코디 추천을 사용자 승인",
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(이건학)",
+ "evidence": {
+  "fragment": "다이오드",
+  "fragment_count": 5,
+  "fragment_occurrence_locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@5/1",
+   "synergy.json:links[].to@85",
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@6/0/0",
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@6/1/1",
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@6/2/0"
+  ],
+  "other_axis_note": "다른 축(부작용 표현) 출현은 이 결정이 바꾸지 않는다 — 시술 축 분해 사전만 바뀐다",
+  "other_axis_occurrence_locators": {},
+  "target": {
+   "canonical": "제모",
+   "code": "M8",
+   "dictionary": "modality_subcategory_label",
+   "entity_id": "SUB-5ca76e37a4",
+   "label_locators": [
+    "taxonomy.json:modality[].subcategories[].label@7/4",
+    "taxonomy.json:modality[].subcategories[].id@7/4"
+   ],
+   "pointer": "erd-v2.4-dictionaries.json#/dictionaries/38/entries/31/canonical"
+  },
+  "unresolved_references": [
+   {
+    "hint": "M8",
+    "label": "다이오드 (808nm/810nm)",
+    "locators": [
+     "procedure-comparison.json:comparisons[].procedures[].name@5/1"
+    ],
+    "ref_id": "REF-0de4c32307",
+    "relation": "R12"
+   },
+   {
+    "hint": "M8",
+    "label": "다이오드",
+    "locators": [
+     "synergy.json:links[].to@85"
+    ],
+    "ref_id": "REF-5c17b9cb53",
+    "relation": "R18"
+   },
+   {
+    "hint": null,
+    "label": "다이오드 레이저(810nm)",
+    "locators": [
+     "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@6/0/0"
+    ],
+    "ref_id": "REF-c062302516",
+    "relation": "R12"
+   },
+   {
+    "hint": null,
+    "label": "다이오드(810nm)",
+    "locators": [
+     "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@6/1/1"
+    ],
+    "ref_id": "REF-d927401fa0",
+    "relation": "R12"
+   },
+   {
+    "hint": null,
+    "label": "듀얼파장(알렉+다이오드 or 다이오드+Nd:YAG)",
+    "locators": [
+     "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@6/2/0"
+    ],
+    "ref_id": "REF-16dcc3a613",
+    "relation": "R12"
+   }
+  ]
+ },
+ "id": "DEC-2026-11-04-B2A-SYN-005",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "제모",
+  "category": null,
+  "synonyms": [
+   "다이오드"
+  ]
+ },
+ "reason": "결정 묶음 2A(코디 추천 · 사용자 승인) — 조각 「다이오드」 → 하위분류 M8-5 「제모」(M8). 사전 modality_subcategory_label 정준값 「제모」에 동의어로 더한다(결정 묶음 1 SYN 과 같은 방식). 1차·2차 빌드에서 「다이오드」는 시술 축 미등록 조각 5 곳.",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].label@7/4"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].id@7/4"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4-dictionaries.json#/dictionaries/38/entries/31/canonical"
+  },
+  {
+   "kind": "ledger",
+   "ref": "procedure-comparison.json:comparisons[].procedures[].name@5/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@85"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@6/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@6/1/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@6/2/0"
+  },
+  {
+   "kind": "approval",
+   "ref": "사용자 2026-11-04 「진행」 — 결정 묶음 2A"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "dictionary": "modality_subcategory_label"
+ }
+}

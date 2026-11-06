@@ -1,0 +1,144 @@
+{
+ "approval_note": "결정 묶음 2A — 코디 추천을 사용자 승인",
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(이건학)",
+ "evidence": {
+  "fragment": "크라이오",
+  "fragment_count": 5,
+  "fragment_occurrence_locators": [
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@2/2/2/0",
+   "problem-packages.json:problems[].complaints[].procedures[].name@2/2/3",
+   "synergy.json:links[].from@19",
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/0/0",
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/1/1"
+  ],
+  "other_axis_note": "다른 축(부작용 표현) 출현은 이 결정이 바꾸지 않는다 — 시술 축 분해 사전만 바뀐다",
+  "other_axis_occurrence_locators": {},
+  "target": {
+   "canonical": "크라이오리포라이시스",
+   "code": "M14",
+   "dictionary": "modality",
+   "entity_id": "MOD-ac3d1a916c",
+   "label_locators": [
+    "taxonomy.json:modality[].category@13",
+    "taxonomy.json:modality[].id@13"
+   ],
+   "pointer": "erd-v2.4-dictionaries.json#/dictionaries/0/entries/13/canonical"
+  },
+  "unresolved_references": [
+   {
+    "hint": null,
+    "label": "크라이오",
+    "locators": [
+     "problem-packages.json:problems[].complaints[].combos[].combo[]@11/0/0/0",
+     "problem-packages.json:problems[].complaints[].combos[].combo[]@11/1/0/0",
+     "problem-packages.json:problems[].complaints[].combos[].combo[]@11/2/0/0",
+     "problem-packages.json:problems[].complaints[].combos[].combo[]@11/3/0/0",
+     "problem-packages.json:problems[].complaints[].combos[].combo[]@11/4/0/0",
+     "problem-packages.json:problems[].complaints[].combos[].combo[]@11/5/0/0",
+     "problem-packages.json:problems[].complaints[].combos[].combo[]@11/6/0/0",
+     "problem-packages.json:problems[].complaints[].combos[].combo[]@2/2/2/0"
+    ],
+    "ref_id": "REF-2efd905851",
+    "relation": "R12"
+   },
+   {
+    "hint": "M14",
+    "label": "크라이오",
+    "locators": [
+     "problem-packages.json:problems[].complaints[].procedures[].name@11/0/0",
+     "problem-packages.json:problems[].complaints[].procedures[].name@11/1/0",
+     "problem-packages.json:problems[].complaints[].procedures[].name@11/2/0",
+     "problem-packages.json:problems[].complaints[].procedures[].name@11/3/0",
+     "problem-packages.json:problems[].complaints[].procedures[].name@11/4/0",
+     "problem-packages.json:problems[].complaints[].procedures[].name@11/5/0",
+     "problem-packages.json:problems[].complaints[].procedures[].name@11/6/0",
+     "problem-packages.json:problems[].complaints[].procedures[].name@2/2/3"
+    ],
+    "ref_id": "REF-7df1913809",
+    "relation": "R9"
+   },
+   {
+    "hint": "M14",
+    "label": "크라이오",
+    "locators": [
+     "synergy.json:links[].from@19",
+     "synergy.json:links[].from@20",
+     "synergy.json:links[].from@21"
+    ],
+    "ref_id": "REF-7df1913809",
+    "relation": "R18"
+   },
+   {
+    "hint": null,
+    "label": "크라이오",
+    "locators": [
+     "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/1/1"
+    ],
+    "ref_id": "REF-2efd905851",
+    "relation": "R12"
+   },
+   {
+    "hint": null,
+    "label": "크라이오(냉동지방분해)",
+    "locators": [
+     "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/0/0"
+    ],
+    "ref_id": "REF-5e0fb0e488",
+    "relation": "R12"
+   }
+  ]
+ },
+ "id": "DEC-2026-11-04-B2A-SYN-001",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "크라이오리포라이시스",
+  "category": null,
+  "synonyms": [
+   "크라이오"
+  ]
+ },
+ "reason": "결정 묶음 2A(코디 추천 · 사용자 승인) — 조각 「크라이오」 → 계열 M14 「크라이오리포라이시스」. 사전 modality 정준값 「크라이오리포라이시스」에 동의어로 더한다(결정 묶음 1 SYN 과 같은 방식). 1차·2차 빌드에서 「크라이오」는 시술 축 미등록 조각 5 곳.",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].category@13"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].id@13"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4-dictionaries.json#/dictionaries/0/entries/13/canonical"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@2/2/2/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@2/2/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].from@19"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/1/1"
+  },
+  {
+   "kind": "approval",
+   "ref": "사용자 2026-11-04 「진행」 — 결정 묶음 2A"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "dictionary": "modality"
+ }
+}

@@ -1,0 +1,91 @@
+{
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(이건학)",
+ "evidence": [
+  {
+   "detail": "제허 22-434 호 · D42223(수출명: Elravie Premier Soft D42223)외 2건",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@34/0"
+  },
+  {
+   "detail": "제허 20-867 호 · 엘라비에 프리미어 라이트 L(Elravie Premier Light L)외 7건",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@34/1"
+  },
+  {
+   "detail": "제허 20-206 호 · 엘라비에 프리미어 볼루마이징-L",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@34/2"
+  },
+  {
+   "detail": "제허 19-21 호 · 엘라비에 프리미어 볼루마이징 1mL 27G(Elravie Premier Volumizing 1mL 27G)외 2건",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@34/3"
+  },
+  {
+   "detail": "web: https://m.dailypharm.com/user/news/98235",
+   "kind": "web",
+   "ref": "step1-products.json:items[].evidence[]@34/1"
+  },
+  {
+   "detail": "web: https://medigatenews.com/news/3970810179",
+   "kind": "web",
+   "ref": "step1-products.json:items[].evidence[]@34/2"
+  }
+ ],
+ "id": "DEC-2026-11-04-B1-PRD-016",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "엘라비에 프리미어",
+  "category": null,
+  "code": "M2",
+  "synonyms": []
+ },
+ "reason": "step1 조사 산출물 — 1_identity.kind ['제품'] · 근거 4 허가 건 · 2 웹 · ledger_id auto-M2-1775364775107",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.display_name@34"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@34/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@34/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@34/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@34/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].evidence[]@34/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].evidence[]@34/2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-brief.md 결정 묶음 1-1"
+  }
+ ],
+ "status": "approved",
+ "synonyms_dropped": [
+  {
+   "locator": "step1-products.json:items[].2_names.ledger_name@34",
+   "value": "엘라비에프라임",
+   "why": "다른 분류 항목 이름 「엘라비에프라임」 과 같다 — 그 항목의 what 을 바꾸게 된다"
+  }
+ ],
+ "target": {
+  "dictionary": "product_name"
+ },
+ "approval_note": "결정 묶음 1 일괄 승인 — 사용자 「응 그렇게 가자」(2026-11-04)"
+}

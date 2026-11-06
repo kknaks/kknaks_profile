@@ -1,0 +1,58 @@
+{
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(이건학)",
+ "evidence": [
+  {
+   "detail": "제허 13-151 호 · 오메가브이L, OMEGA VL, IMIT, 수미오G, 수미오N, Soft LF, Omega Plus C, OMEGA VL FOR DUO, Dr.MONO-C",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@114/0"
+  },
+  {
+   "detail": "제허 13-150 호 · 오메가브이M, OMEGA VM, 수미오M, 수미오S, OMEGA VM FOR DUO, Omega Plus M, Dr.MONO",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@114/1"
+  },
+  {
+   "detail": "제허 15-188 호 · OMEGA VS, 오메가브이S",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@114/2"
+  }
+ ],
+ "id": "DEC-2026-11-04-B1-PRD-046",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "오메가리프트",
+  "category": null,
+  "code": "M7",
+  "synonyms": []
+ },
+ "reason": "step1 조사 산출물 — 1_identity.kind ['제품(의료기기)'] · 근거 3 허가 건 · 0 웹 · ledger_id auto-M7-1775362579841 · 분류 항목 「오메가리프트」 이름과 같다 — 승인되면 그 항목 튜플의 what 이 이 제품이 된다(겹침 규칙 8-11: 참조 자리에서는 항목 우선)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.display_name@114"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@114/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@114/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@114/2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-brief.md 결정 묶음 1-1"
+  }
+ ],
+ "status": "approved",
+ "synonyms_dropped": [],
+ "target": {
+  "dictionary": "product_name"
+ },
+ "approval_note": "결정 묶음 1 일괄 승인 — 사용자 「응 그렇게 가자」(2026-11-04)"
+}
