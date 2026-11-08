@@ -145,3 +145,4 @@
 - 2026-11-08: 권한 · F21 문구 마무리 — PR #228 `34ac05b9`(기본 권한) · `8f26612f`(문구) · PR #909 `d356c3d2` · `1e299d94` · SPEC ⑪ 커밋
 - 2026-11-08: 모바일 배포 문서 planner 완료·release. 새 파일 mobile-deployment.md + README/system 링크. reviewer task `task_3d51782e2303` / dispatch `ctx_ca60017ddc0f` / terminal `term_82a9db1c-bdb8-43e2-8112-7da07fa6881f`. 코디 직접 lint: 0 error / 263 타 제품 warning, DAY 출력 없음. 상대 링크 검사 PASS, diff --check PASS.
 - 2026-11-08: 서버 배포 방법 논의 시작(사용자) — researcher 에 centurion 배포 방식 조사 + DAY 대입 · 정할 것 목록(term_f4158b30 · task_ef6b841cd519)
+- 2026-11-08: 배포 결정 — 앞단 = Caddy(사용자) · 원천 system/README 「배포 결정」

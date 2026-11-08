@@ -39,6 +39,12 @@ Azure VM 2코어 / 4GB(예정) 기준 예상 메모리: caddy ~50MB · api 768MB
 
 요청할 것: **VM 2코어/4GB + Azure 관리형 PostgreSQL(1대 · DB 1개 — 확정 2026-11-05) + Azure Blob**.
 
+## 배포 결정 (사용자 2026-11-08 ~)
+
+| 주제 | 결정 |
+|---|---|
+| 앞단(리버스 프록시) | **Caddy** — VM 안 맨 앞 · HTTPS 인증서 자동 발급 · 갱신 · 외부엔 80/443 만 · api 로 전달(SSE 포함). centurion 과 같은 방식(`deploy/Caddyfile` · `compose.caddy.yaml`) |
+
 ## 기본값 (코디 추천 — 바꿀 때만 말하기)
 
 | 주제 | 기본값 |
