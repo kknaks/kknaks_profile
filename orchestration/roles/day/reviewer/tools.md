@@ -1,6 +1,6 @@
 # @day-reviewer — 도구
 
-- **가장 먼저 읽는다**: `/Users/kknaks/git/CENTURION_DAY` 의 `AGENTS.md`(v2-dev — `git show origin/v2-dev:AGENTS.md`) — 저장소 구조 · 계층 규칙 · 외부 CRM 연동 · 웹 화면 · 앱 규칙의 정본.
+- **가장 먼저 읽는다**: `/Users/kknaks/git/CENTURION_DAY` 의 `AGENTS.md`(dev — `git show origin/dev:AGENTS.md`) — 저장소 구조 · 계층 규칙 · 외부 CRM 연동 · 웹 화면 · 앱 규칙의 정본.
 
 - `git diff <base>...HEAD` + untracked 로 범위 산정.
 - 수정 · 테스트 실행 금지(결과가 필요하면 워커 리포트를 인용). 문서 모드의 lint-pipeline 1회만 예외.

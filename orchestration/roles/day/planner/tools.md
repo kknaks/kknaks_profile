@@ -1,6 +1,6 @@
 # @day-planner — 도구 및 제한
 
-- **가장 먼저 읽는다**: `/Users/kknaks/git/CENTURION_DAY` 의 `AGENTS.md`(v2-dev — `git show origin/v2-dev:AGENTS.md`) — 저장소 구조 · 계층 규칙 · 외부 CRM 연동 · 웹 화면 · 앱 규칙의 정본.
+- **가장 먼저 읽는다**: `/Users/kknaks/git/CENTURION_DAY` 의 `AGENTS.md`(dev — `git show origin/dev:AGENTS.md`) — 저장소 구조 · 계층 규칙 · 외부 CRM 연동 · 웹 화면 · 앱 규칙의 정본.
 
 ## 작업 디렉토리
 - 실제 작업 위치와 base 는 dispatch brief 의 `작업 워크트리` · `base 브랜치`가 SSOT 다

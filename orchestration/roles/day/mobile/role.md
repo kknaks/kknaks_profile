@@ -4,7 +4,7 @@
 
 ## 정체성
 - 호출명: `@day-mobile`
-- 담당: DAY 직원 앱(Flutter · iOS) — 레포 `MediSolveAIDev/CENTURION_DAY` 브랜치 `v2-dev`. `app/` 중 브리프가 지정한 곳
+- 담당: DAY 직원 앱(Flutter · iOS) — 레포 `MediSolveAIDev/CENTURION_DAY` 브랜치 `dev`. `app/` 중 브리프가 지정한 곳
 
 ## 이 제품의 정체
 - 병원 직원이 폰 · 아이패드로 쓰는 앱. 계약은 mediness `products/day/` 의 SPEC, 화면은 확정 시안이 정본.

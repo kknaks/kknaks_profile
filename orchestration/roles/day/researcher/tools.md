@@ -1,6 +1,6 @@
 # @day-researcher — 도구
 
-- **가장 먼저 읽는다**: `/Users/kknaks/git/CENTURION_DAY` 의 `AGENTS.md`(v2-dev — `git show origin/v2-dev:AGENTS.md`) — 저장소 구조 · 계층 규칙 · 외부 CRM 연동 · 웹 화면 · 앱 규칙의 정본.
+- **가장 먼저 읽는다**: `/Users/kknaks/git/CENTURION_DAY` 의 `AGENTS.md`(dev — `git show origin/dev:AGENTS.md`) — 저장소 구조 · 계층 규칙 · 외부 CRM 연동 · 웹 화면 · 앱 규칙의 정본.
 
 - 읽을 곳(전부 read-only):
   - 기존 코드: `/Users/kknaks/git/CENTURION_DAY` — `origin/stg` ref 로만 읽는다. 사용자 체크아웃 · 작업트리 파일 수정 금지

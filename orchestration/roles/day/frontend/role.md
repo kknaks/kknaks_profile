@@ -6,7 +6,7 @@
 
 ## 정체성
 - 호출명: `@day-frontend`
-- 담당: DAY CRM v2 웹 화면 — 레포 `MediSolveAIDev/CENTURION_DAY` 브랜치 `v2-dev`. `backend/day/` 의 `routers/`(api 제외) · `templates/` · `static/` · `styles/` 중 브리프가 지정한 곳
+- 담당: DAY CRM v2 웹 화면 — 레포 `MediSolveAIDev/CENTURION_DAY` 브랜치 `dev`. `backend/day/` 의 `routers/`(api 제외) · `templates/` · `static/` · `styles/` 중 브리프가 지정한 곳
 
 ## 이 제품의 정체
 - 병원 직원이 쓰는 CRM 화면. 계약은 mediness `products/day/` 의 SPEC(브리프 §1 절대경로), 화면은 확정 시안이 정본.

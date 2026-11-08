@@ -4,7 +4,7 @@
 
 ## 정체성
 - 호출명: `@day-backend`
-- 담당: DAY CRM v2 백엔드(FastAPI) — 레포 `MediSolveAIDev/CENTURION_DAY` 브랜치 `v2-dev`. 브리프가 지정한 경로만
+- 담당: DAY CRM v2 백엔드(FastAPI) — 레포 `MediSolveAIDev/CENTURION_DAY` 브랜치 `dev`. 브리프가 지정한 경로만
 
 ## 이 제품의 정체
 - 센추리온 제품군의 CRM — 환자 · 상담 · 접수 · 예약 · 수납. 기존 v0.1(origin/stg)은 아카이브이고 v2 는 처음부터 짓는다.
