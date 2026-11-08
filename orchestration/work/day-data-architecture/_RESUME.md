@@ -143,3 +143,5 @@
 
 - 2026-11-08: 모바일 환경·비공개 배포 아키텍처 문서 발주. 사용자: iOS 먼저, iOS·Android 모두 메디니스에 기록, 회사 이름 medisolveai, 첫 회사 앱 구축. 식별자 후보 `com.medisolveai.day(.dev)`는 미확정. 회사 Apple Team 사용 가능은 사용자 응답 기준. Run `run_11499c9fc451` / planner task `task_dac90911f487` / dispatch `ctx_5c9dd0aadb9b` / terminal `term_8a850fb5-af31-469a-9af3-d0dfcaf87ca1`. 브리프 `mobile-deployment-planner-brief.md`. 범위: mediness `products/day/40-architecture/`, 코드·계정 변경 없음. 다음: 산출물 확인→문서 reviewer→직접 lint/diff 확인.
 - 2026-11-08: 권한 · F21 문구 마무리 — PR #228 `34ac05b9`(기본 권한) · `8f26612f`(문구) · PR #909 `d356c3d2` · `1e299d94` · SPEC ⑪ 커밋
+- 2026-11-08: 모바일 배포 문서 planner 완료·release. 새 파일 mobile-deployment.md + README/system 링크. reviewer task `task_3d51782e2303` / dispatch `ctx_ca60017ddc0f` / terminal `term_82a9db1c-bdb8-43e2-8112-7da07fa6881f`. 코디 직접 lint: 0 error / 263 타 제품 warning, DAY 출력 없음. 상대 링크 검사 PASS, diff --check PASS.
+- 2026-11-08: 서버 배포 방법 논의 시작(사용자) — researcher 에 centurion 배포 방식 조사 + DAY 대입 · 정할 것 목록(term_f4158b30 · task_ef6b841cd519)
