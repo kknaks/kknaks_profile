@@ -140,3 +140,6 @@
 - 2026-11-06: F20(의사 계정 수락 = 본인) 보류 — 공용 컴퓨터는 로그인 계정 ≠ 누르는 사람. 앱 · 기기 구분 정할 때. 권한 기본안(직무 태그 → board 보기/수정/수락) 사용자 답 대기
 - 2026-11-08: (취소 — 코디 오독) 권한 = 「지금처럼」은 「보여 드린 표대로」였다. 아래 줄이 맞다
 - 2026-11-08: **시술 현황 1차 기본 권한 표 확정**(원천 「결정 — 시술 현황 1차 기본 권한」 · 수락 = 간호사 · 원장 모두) → SPEC-002 · 백엔드 시드 발주
+
+- 2026-11-08: 모바일 환경·비공개 배포 아키텍처 문서 발주. 사용자: iOS 먼저, iOS·Android 모두 메디니스에 기록, 회사 이름 medisolveai, 첫 회사 앱 구축. 식별자 후보 `com.medisolveai.day(.dev)`는 미확정. 회사 Apple Team 사용 가능은 사용자 응답 기준. Run `run_11499c9fc451` / planner task `task_dac90911f487` / dispatch `ctx_5c9dd0aadb9b` / terminal `term_8a850fb5-af31-469a-9af3-d0dfcaf87ca1`. 브리프 `mobile-deployment-planner-brief.md`. 범위: mediness `products/day/40-architecture/`, 코드·계정 변경 없음. 다음: 산출물 확인→문서 reviewer→직접 lint/diff 확인.
+- 2026-11-08: 권한 · F21 문구 마무리 — PR #228 `34ac05b9`(기본 권한) · `8f26612f`(문구) · PR #909 `d356c3d2` · `1e299d94` · SPEC ⑪ 커밋
