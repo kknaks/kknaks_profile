@@ -151,3 +151,4 @@
 - 2026-11-08: 사용자 요청으로 모바일 배포 문서 보정·log 이력을 기존 mediness PR #909에 추가. lint 0 error / 263 타 제품 warning, diff --check PASS. main 최신 브리핑 10커밋 위로 rebase(충돌 없음), DAY 내용 동일 확인 후 lease 보호 push. PR head f7a1ba4e, 본문에 iOS·Android/dev·prod 후보/미결 및 검증 추가. 머지하지 않음. 워커 ctx_7ca8a774e030 완료·release.
 - 2026-11-08: 배포 결정 — 브랜치 dev/prod · dev 도메인 day-dev.medisolveai.com(DNS 사용자) · 백업 기본 · 배포 시간 제한 없음 · Azure 권한 사용자 · 나머지 조사 추천대로(원천 system/README 「배포 결정」). 남은 질문: prod 도메인 · v2-dev 와 dev 관계
 - 2026-11-08: **CENTURION_DAY 브랜치 정리(사용자 지시)** — 옛 코드 = `archive` 브랜치(옛 dev=stg=release 11e27b08) + 옛 브랜치 끝 전부 태그 `archive/<이름>`(19). `dev` = v2(강제 갱신 · 기본 브랜치 그대로 dev) · `prod` 새로 · PR #228 대상 = dev · 나머지 브랜치(main · stg · release · bugfix/* · fix/* · v2-dev) 삭제. 남은 브랜치: archive · dev · prod · kknaksss/day-data-architecture. 설정 · 역할 문서 base = origin/dev
+- 2026-11-08: 배포 — planner 40-architecture/deployment.md 발주(스펙 단계) → 검수 → Delivery(WP) → 구현
