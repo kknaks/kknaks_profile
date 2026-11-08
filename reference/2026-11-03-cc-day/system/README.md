@@ -43,6 +43,7 @@ Azure VM 2코어 / 4GB(예정) 기준 예상 메모리: caddy ~50MB · api 768MB
 
 | 주제 | 결정 |
 |---|---|
+| 서버 · DB 개수 | **dev 와 prod 는 VM 한 대에 같이**(Azure VM 2코어/4GB · 한 대) · **관리형 PostgreSQL 도 한 대**(DB 1개 · 스키마 `day_dev` / `day_prod` 로 나눔) |
 | 앞단(리버스 프록시) | **Caddy** — VM 안 맨 앞 · HTTPS 인증서 자동 발급 · 갱신 · 외부엔 80/443 만 · api 로 전달(SSE 포함). centurion 과 같은 방식(`deploy/Caddyfile` · `compose.caddy.yaml`) |
 
 ## 기본값 (코디 추천 — 바꿀 때만 말하기)
