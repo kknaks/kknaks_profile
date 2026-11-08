@@ -152,3 +152,4 @@
 - 2026-11-08: 배포 결정 — 브랜치 dev/prod · dev 도메인 day-dev.medisolveai.com(DNS 사용자) · 백업 기본 · 배포 시간 제한 없음 · Azure 권한 사용자 · 나머지 조사 추천대로(원천 system/README 「배포 결정」). 남은 질문: prod 도메인 · v2-dev 와 dev 관계
 - 2026-11-08: **CENTURION_DAY 브랜치 정리(사용자 지시)** — 옛 코드 = `archive` 브랜치(옛 dev=stg=release 11e27b08) + 옛 브랜치 끝 전부 태그 `archive/<이름>`(19). `dev` = v2(강제 갱신 · 기본 브랜치 그대로 dev) · `prod` 새로 · PR #228 대상 = dev · 나머지 브랜치(main · stg · release · bugfix/* · fix/* · v2-dev) 삭제. 남은 브랜치: archive · dev · prod · kknaksss/day-data-architecture. 설정 · 역할 문서 base = origin/dev
 - 2026-11-08: 배포 — planner 40-architecture/deployment.md 발주(스펙 단계) → 검수 → Delivery(WP) → 구현
+- 2026-11-08: **배포는 지금 문서 작업만(사용자)** — deployment.md(커밋됨) · #233 계약 v2 · 검수까지. 코드 구현(수동 배포 파일 · 자동 배포) 발주 안 함 — 방식(① 두 단계 / ② 한 번에)은 구현 때 정함

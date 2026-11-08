@@ -1,0 +1,96 @@
+{
+ "product_id": "day",
+ "document_root": "products/day",
+ "contract_version": 2,
+ "target_specs": [
+  "DAY-DEPLOYMENT"
+ ],
+ "spec_baseline_revision": "3a220ace12ebb8e0f66073c96878d7b14488bd52",
+ "idempotency_key": "day/v2-server-deploy",
+ "title": "DAY v2 서버 배포 — dev · prod 한 VM(GitHub Actions · ACR · Caddy · compose 셋 · JSON 로그)",
+ "risk_level": "L3",
+ "target_delta": [
+  "정본 = mediness products/day/40-architecture/deployment.md(DAY-DEPLOYMENT · PR #909) — 원천 system 「배포 결정」(사용자 2026-11-08)을 구현한다. 그 문서에 없는 값(VM 이름 · 리소스 그룹 · IP · Key Vault · identity 이름)은 짓지 않고 GitHub 변수 · 사용자 준비로 둔다.",
+  "GitHub Actions: ① dev 브랜치 push → 이미지 빌드(runner) · ACR push(태그 = 40자 commit SHA · 있으면 재사용) → VM run-command 로 dev 배포(migration 자동 → day-dev up → /health/live · /health/ready · 외부 https://day-dev.medisolveai.com TLS 확인) ② prod 브랜치 fast-forward push → 빌드 안 함 · 같은 SHA 이미지가 ACR 에 없으면 중지 → prod 배포(head 확인만 · 다르면 중지 → day-prod up → 헬스 · https://day.medisolveai.com) ③ prod migration = 따로 승인해서 실행하는 수동 워크플로 — **입력 = dev 에서 확인한 SHA**, 그 SHA 의 이미지로 migration 을 돌리고 「dev 에 같은 revision 이 이미 적용됨」을 확인한 뒤 upgrade head(prod 순서 ① migration → ② 배포) ④ 롤백 = 수동 워크플로(입력 = 환경 · 이전 성공 SHA) → 그 이미지로 다시 배포 · migration 은 되돌리지 않음(forward-only). **롤백은 브랜치 머리를 되돌리지 않는다 — VM 만 이전 이미지가 되고, 다음 그 브랜치 push 가 다시 최신을 올린다.** 두 환경 배포는 한 concurrency group(VM 한 대).",
+  "VM 배포 스크립트(run-command · SSH 아님): VM identity 로 Key Vault 비밀값 + Git config(deploy/config/dev.env · prod.env) → /etc/day/{dev,prod}/ env(root 0600 · 이전 것 보존) · /opt/day/{dev,prod,edge}/ 에 compose · Caddyfile · ACR pull(digest) · 성공 이미지 이력 기록(롤백 입력용).",
+  "compose project 셋: day-edge(Caddy 하나 · 80/443 · 인증서 volume) · day-dev · day-prod(각 api · worker · scheduler · redis · APP_ENV · DB_SCHEMA=day_dev / day_prod). redis 환경마다(비밀번호 · appendonly · maxmemory < mem_limit · noeviction). 메모리 상한 = deployment.md 표(prod 768/384/384/256 · dev 384/256/192/128 · caddy 50 ≈ 2,802MB). 호스트에 여는 포트는 Caddy 80/443 뿐 — api 는 edge 네트워크 별칭(day-dev-api · day-prod-api)으로만.",
+  "Caddyfile: 사이트 블록 둘 — day-dev.medisolveai.com → day-dev-api:8000 · day.medisolveai.com → day-prod-api:8000(SSE 포함 · 자동 HTTPS · 인증서 volume 영속).",
+  "JSON 로그: 구조화 JSON stdout(centurion 형식) · 모든 줄에 app_env 필드 · Docker json-file 회전(10m × 5).",
+  "APP_ENV 필수화: 배포 env 에 APP_ENV 가 없으면 api · worker · scheduler 가 뜨지 않는다(지금 코드 기본값 dev 로 조용히 뜨지 않게) · 로컬은 env 예시 그대로.",
+  "앞 검수에서 넘긴 것 중 배포에 필요한 것: #225 W5 — alembic offline(--sql) 출력 맨 앞에 CREATE SCHEMA IF NOT EXISTS <DB_SCHEMA> + SET search_path TO <DB_SCHEMA>, public · #225 W7 — ENCRYPTION_KEY canary(기동 때 또는 /health/ready 에서 알려진 암호문 하나를 풀어 다른 환경 키를 잡는다) · #225 W8(공용 Redis timeout 분리)은 #226 에서 반영됨 — 회귀 테스트만.",
+  "레포 AGENTS.md 의 「v2-dev」 문구를 dev · prod 브랜치 체계(2026-11-08)로 고친다.",
+  "환경별 env 는 deployment.md 「환경별 env」 이름 그대로 — 비밀값(DATABASE_URL · REDIS_URL · ENCRYPTION_KEY)은 Key Vault, 일반 설정은 Git config. prod 첫 배포 KOS_TRIAL_WRITES_ON_LIVE=false. 저장소에는 placeholder 만 든 *.env.example 만.",
+  "작업 브랜치: #233 구현은 #224 ~ #232 와 **같은 브랜치 `kknaksss/day-data-architecture` · 같은 PR #228(→ `dev`)** 에 쌓는다(사용자 결정 「PR 하나로」). 머지는 구현 뒤 사용자가 한다 — 머지 = dev 브랜치 push = 첫 dev 배포 시작."
+ ],
+ "acceptance": [
+  "A1: 로컬에서 prod 모양 compose(day-edge · day-dev · day-prod)로 두 환경이 함께 뜬다 — 호스트 포트는 Caddy 80/443 뿐 · api 는 edge 별칭으로 닿음 · 각 서비스 mem_limit 이 deployment.md 표와 같다 · 한쪽 project 의 up --remove-orphans 가 다른 쪽 컨테이너를 건드리지 않는다(로컬 실물 · 도메인은 로컬 대체).",
+  "A2: GitHub Actions 워크플로(dev 배포 · prod 배포 · prod migration · 롤백)가 문법 검사(actionlint)를 통과하고, prod 배포는 같은 SHA 이미지가 없으면 · head 가 다르면 중지하며, **prod migration 워크플로는 dev 가 같은 revision 이 아니면 중지**하는 분기를 가진다(dry-run · 단위 검사).",
+  "A3: VM 배포 스크립트 dry-run — 입력(환경 · SHA)에 따라 만들 env 파일 · compose 명령 · 이력 기록을 출력만 하고 실제로 바꾸지 않는다. 비밀값은 출력에 안 나온다.",
+  "A4: JSON 로그 테스트 — 로그 줄이 JSON 이고 app_env 필드가 있다(단위 테스트).",
+  "A5: APP_ENV 가 없으면 기동이 실패한다 · alembic --sql 출력 맨 앞에 CREATE SCHEMA IF NOT EXISTS · SET search_path 가 있다 · 다른 환경 ENCRYPTION_KEY 로는 canary 가 실패한다(단위 · 기동 테스트).",
+  "A6: 레포에 비밀값 · 실제 Azure 이름이 없다(*.env.example 은 placeholder 만 · 워크플로는 GitHub 변수 참조) — grep.",
+  "A7: 실제 Azure 배포는 **사용자가 Azure · GitHub 쪽을 준비하고(deployment.md 「사용자가 Azure 에서 준비할 것」) PR #228 을 `dev` 에 머지한 뒤**(머지 = 첫 dev 배포) — dev 1회(머지로 시작) → prod 1회(fast-forward · migration 승인 실행 뒤) 실물로 헬스 · 두 도메인 TLS 를 확인한다. 그 전 완료 조건은 A1 ~ A6 · A8.",
+  "A8: AGENTS.md 에 「v2-dev」가 남지 않는다(grep)."
+ ],
+ "non_goals": [
+  "Azure 리소스 만들기(VM · VNet/NSG · 공인 IP · DNS · Key Vault · ACR 권한 · OIDC identity · GitHub Environments · 브랜치 규칙) — 사용자 몫. 이 Delivery 는 deployment.md 목록만 따른다",
+  "브랜치 만들기 · 바꾸기(v2-dev → dev · prod 새로)는 2026-11-08 정리됨 — 이 Delivery 몫 아님",
+  "운영 KOS 쓰기 켜기(KOS_TRIAL_WRITES_ON_LIVE=true) — 데모 지점 실물 확인 뒤 별도",
+  "직원 앱(Flutter) 배포 — mobile-deployment.md",
+  "스키마 단위 백업 · Azure Monitor 수집 · Bicep(infra 코드) — 나중"
+ ],
+ "review_surface": [
+  "target = mediness products/day/40-architecture/deployment.md(DAY-DEPLOYMENT · 아키텍처 문서 · PR #909 미머지) — SPEC 이 아니라 아키텍처 정본을 target 으로 둔다 · spec-baseline:pending · 머지 뒤 같은 key · version+1 로 재결속",
+  "위험 L3 근거: 배포 · 외부 계약(도메인 · 경로 · 인증서) · credential(Key Vault · OIDC) · prod migration 경로 · 같은 VM 에 prod 가 함께 있어 dev 배포 권한 = 사실상 prod VM root",
+  "실제 Azure 배포(A7)는 사용자가 Azure · GitHub 쪽을 준비한 뒤에만 — 그 전 완료 조건은 로컬 · 문법 · dry-run",
+  "deployment.md 미결이 구현을 막을 수 있다: 실측 메모리 · PG 백업 설정 · KOS IP 제한 · 스키마 생성 권한(migration 계정의 CREATE SCHEMA) · prod migration 승인 세부(승인 문자열 등) · 신뢰 프록시(X-Forwarded-*)",
+  "롤백 뒤 브랜치 머리 ≠ 돌고 있는 이미지 — 다음 push 가 최신을 다시 올린다(의도된 동작)",
+  "의존 · 순서: 배포할 앱(#224 ~ #232)은 PR #228(`kknaksss/day-data-architecture`)에만 있고 원격 `dev`(8e4fb4b5)에는 AGENTS.md 뿐이다 — #233 도 같은 PR 에 쌓고, A7 실물은 PR #228 이 `dev` 에 머지된 뒤",
+  "로컬 브랜치 이름 겹침: 로컬 체크아웃의 `dev` 가 옛 release/v0.1.0-rc.14 계열이라 실수로 push 하면 옛 코드가 dev 서버로 간다 — 실물 배포(A7) 전에 사용자가 로컬 브랜치를 정리"
+ ],
+ "implementation_starting_points": [
+  "centurion origin/main .github/workflows/deploy-stg.yaml · deploy-prod.yaml · scripts/infrastructure/manual-app-deploy.sh · prepare-image.sh · deploy/compose.yaml · Caddyfile — 모양만, volatile",
+  "조사 day/orchestration/work/day-data-architecture/researcher-deploy-report.md §1 · §2"
+ ],
+ "execution": {
+  "code_surface": [
+   ".github/workflows/(deploy-dev · deploy-prod · migrate-prod · rollback)",
+   "deploy/(compose.yaml · compose.edge.yaml · Caddyfile · config/dev.env · config/prod.env · *.env.example)",
+   "scripts/deploy/(run-command 스크립트 · dry-run)",
+   "backend/common/(config — APP_ENV 필수 · logging JSON · crypto canary)",
+   "backend/migrations/env.py(offline CREATE SCHEMA · search_path)",
+   "backend/tests/ · AGENTS.md"
+  ],
+  "domain_candidates": [],
+  "dependencies": [
+   "#224 ~ #232 앱 전부(백엔드 뼈대 · 데이터 모델 · KOS 연동 · 로그인 · 웹 기반 · 시술 현황 백엔드 · 화면 · 로그인 화면) — PR #228(kknaksss/day-data-architecture → dev) · #233 도 같은 PR",
+   "사용자 Azure · GitHub 준비 + PR #228 의 dev 머지 — A7 실물 배포만"
+  ],
+  "phases": [
+   "앱 쪽 — APP_ENV 필수 · JSON 로그(app_env) · offline SQL CREATE SCHEMA · ENCRYPTION_KEY canary",
+   "배포 compose 셋 · Caddyfile · config · 메모리 상한 — 로컬 prod 모양 기동(A1)",
+   "VM 배포 스크립트(run-command · Key Vault → env · 이력) + dry-run(A3)",
+   "GitHub Actions 네 개 + actionlint(A2)",
+   "AGENTS.md 브랜치 문구",
+   "사용자 준비 + PR #228 dev 머지 뒤 실물 — dev 1회(머지로 시작) → prod 1회(A7)"
+  ],
+  "verification": [
+   "로컬 compose 기동 · docker stats",
+   "actionlint",
+   "스크립트 dry-run",
+   "단위 테스트(JSON 로그 · APP_ENV · offline SQL · canary)",
+   "실물 dev → prod(사용자 준비 뒤)"
+  ],
+  "predeploy": [
+   "Azure · GitHub 준비(사용자) · DNS A 레코드 먼저 · prod 첫 배포 KOS_TRIAL_WRITES_ON_LIVE=false",
+   "로컬 dev 브랜치 정리(옛 rc.14 계열 — 실수 push 방지)"
+  ],
+  "rollback": [
+   "롤백 워크플로(환경 · 이전 성공 SHA) · migration forward-only"
+  ],
+  "open_questions": [
+   "prod migration 승인 세부 · 스키마 생성 권한 · 신뢰 프록시"
+  ]
+ },
+ "scope_delta": "contract v2 — #233 검수 W1 ~ W3(코디 결정 · 사용자 결정 「PR 하나로 · 머지는 구현 뒤 사용자」 그대로): 의존을 #224 ~ #232(앱 전부 · PR #228 kknaksss/day-data-architecture → dev)로 넓히고, #233 구현도 같은 브랜치 · 같은 PR #228 에 쌓는다. 실제 Azure 배포(dev 1회 → prod 1회)는 사용자가 PR #228 을 dev 에 머지한 뒤(머지 = 첫 dev 배포 시작). A2 에 prod migration 의 「dev 에 같은 revision 이 아니면 중지」 검사. 로컬 dev 브랜치 이름 겹침은 실물 배포 전 정리 줄로."
+}

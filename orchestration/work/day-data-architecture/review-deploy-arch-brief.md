@@ -1,0 +1,5 @@
+# [reviewer · 문서] 40-architecture/deployment.md 검수
+**읽기 전용.** 대상: `/Users/kknaks/orca/workspaces/mediness-mediness/day-data-architecture-spec/products/day/40-architecture/deployment.md` + system.md · README · log diff.
+기준: 원천 `/Users/kknaks/orca/workspaces/kknaks_profile/day/reference/2026-11-03-cc-day/system/README.md` 「배포 결정」(사용자 결정 전부) · 조사 `/Users/kknaks/orca/workspaces/kknaks_profile/day/orchestration/work/day-data-architecture/researcher-deploy-report.md` · 지시 `/Users/kknaks/orca/workspaces/kknaks_profile/day/orchestration/work/day-data-architecture/planner-deploy-arch-instructions.md` · 작성 리포트 `/Users/kknaks/orca/workspaces/kknaks_profile/day/orchestration/work/day-data-architecture/planner-deploy-arch-report.md` · DAY 코드 `/Users/kknaks/orca/workspaces/CENTURION_DAY/day-data-architecture`(deploy · config env 이름).
+볼 것: 사용자 결정이 빠짐 · 바뀜 없이 · 발명한 값(이름 · IP · 리소스) 없음 · env 이름이 코드와 같음 · 흐름(브랜치 → 배포 · prod 같은 이미지 · migration · 롤백)에 빈칸 · 모순 · 사용자 준비 목록이 실행 가능한가 · 미결이 정직한가.
+리포트 `/Users/kknaks/orca/workspaces/kknaks_profile/day/orchestration/work/day-data-architecture/review-deploy-arch-report.md`. 완료는 preamble 의 worker_done 절차대로(둘 다).
