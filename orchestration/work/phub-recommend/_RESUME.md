@@ -1,4 +1,4 @@
-> **2026-11-06 밤 현재 — 정본 진행 기록은 `HANDOFF-2026-11-05.md` 의 「11-06」 절들.** ERD v3.3 작성(동결 전) · 원장 3판(bronze/phub-ledger · 2판 복원본 phub-ledger-v2) · 실버 8차(kiwi 분석기 · baseline/manifest-8차.json) · 게이트 6 사용자 답 = `decisions-batch6c-semantic.json` + `decisions-batch6b-dup-classification.json` · 다음 = 형용사 점수 초안 검토 → 시술 축 드라이런 → ERD v3.3 동결 → 4판 → 9차.
+> **2026-11-06 저녁 현재 — 정본 진행 기록은 `HANDOFF-2026-11-05.md` 의 「11-06」 절들(마지막 「순서 재변경」 줄이 정본).** ERD v3.3 작성(동결 전) · 원장 3판 · 실버 8차 · 게이트 6 사용자 답 완료 · 점수 초안 `modifier-scale/` 검토 일부(`decisions-modifier-scale.json` MS-1~3 · paused). 다음 = **시술 축 드라이런**(⑧ 480 · ⑨ 240) → ERD v3.3 마무리(점수 칸 구조 + 수식 칸 채우기 규칙 · 값은 비움) → 동결 → 4판 → 9차 → 값 충돌·사람 조건·고지·징후·문헌 → 점수 매핑 → 골드.
 
 # phub-recommend — _RESUME
 
