@@ -1,0 +1,2 @@
+# [planner] SPEC-001 한 줄 — 「권한 표 시드는 만들지 않는다」 범위 좁히기
+미커밋 · 커밋 금지. 원천 `/Users/kknaks/orca/workspaces/kknaks_profile/day/reference/2026-11-03-cc-day/erd/04-staff.md` 「전체 권한 계정」 줄(코디가 고침) 그대로 SPEC-001 문장을 맞춘다 · 근거 `/Users/kknaks/orca/workspaces/kknaks_profile/day/orchestration/work/day-data-architecture/review-spec002-perm-names-report.md` 참고. log · lint. 리포트 `/Users/kknaks/orca/workspaces/kknaks_profile/day/orchestration/work/day-data-architecture/planner-spec001-perm-scope-report.md`(짧게). 완료는 preamble 의 worker_done 절차대로(둘 다).
