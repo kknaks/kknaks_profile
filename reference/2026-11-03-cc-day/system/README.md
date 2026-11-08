@@ -44,6 +44,13 @@ Azure VM 2코어 / 4GB(예정) 기준 예상 메모리: caddy ~50MB · api 768MB
 | 주제 | 결정 |
 |---|---|
 | 서버 · DB 개수 | **dev 와 prod 는 VM 한 대에 같이**(Azure VM 2코어/4GB · 한 대) · **관리형 PostgreSQL 도 한 대**(DB 1개 · 스키마 `day_dev` / `day_prod` 로 나눔) |
+| 배포 시작(브랜치) | **브랜치 `dev` · `prod` 로 관리** — `dev` 에 들어가면 dev 배포 · `prod` 에 들어가면 prod 배포(사용자 2026-11-08). prod 는 dev 에서 확인한 같은 이미지(조사 D5) |
+| 도메인 · DNS | dev = **`day-dev.medisolveai.com`** · DNS 는 사용자가 관리 · prod 도메인은 아직 |
+| HTTPS | Caddy 자동 발급(ACME) |
+| 백업 | **기본값만**(관리형 PostgreSQL 자동 백업) — 스키마 단위 백업 등은 나중 |
+| 배포 시간 | 제한 없음 — 배포는 사용자 혼자 관리 |
+| Azure 권한 | VM · Azure 권한은 사용자에게 있다 — VM · 네트워크 · Key Vault · ACR 권한 · 배포 계정(OIDC) 준비는 사용자가 |
+| 그 밖 | 조사(`work/day-data-architecture/researcher-deploy-report.md` §3) 추천대로: compose project 셋(`day-edge` Caddy 하나 · `day-dev` · `day-prod`) · redis 환경마다 · dev 메모리 상한 낮춤(첫 배포 뒤 실측 · 모자라면 VM 2/8) · 회사 공용 ACR · migration dev 자동 / prod 따로 승인 · 비밀값 Key Vault · JSON 로그(구현 필요) · 롤백 = 이전 이미지 · prod 첫 배포는 `KOS_TRIAL_WRITES_ON_LIVE=false` |
 | 앞단(리버스 프록시) | **Caddy** — VM 안 맨 앞 · HTTPS 인증서 자동 발급 · 갱신 · 외부엔 80/443 만 · api 로 전달(SSE 포함). centurion 과 같은 방식(`deploy/Caddyfile` · `compose.caddy.yaml`) |
 
 ## 기본값 (코디 추천 — 바꿀 때만 말하기)
