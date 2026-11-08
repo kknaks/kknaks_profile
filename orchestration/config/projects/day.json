@@ -35,14 +35,15 @@
       "canonical_path": "/Users/kknaks/git/CENTURION_DAY",
       "remote": "https://github.com/MediSolveAIDev/CENTURION_DAY.git",
       "base": "origin/dev",
-      "pr_base": "v2-dev",
+      "pr_base": "dev",
       "worktree_suffix": "",
       "notes": [
         "회사 org 레포. canonical 은 사용자 체크아웃(stg) — pull/checkout 금지, fetch 만.",
         "v2-dev = 2026-11-02 만든 빈 orphan 브랜치(9ed23b84). 새 코드는 여기에만.",
         "기존 코드(v0.1.0-rc.14)는 origin/stg = origin/main(11e27b08)에 있다 — 참고 읽기만(git show origin/stg:<path>). 거기서 끌어올릴 때는 그대로 복사하지 않는다.",
         "브랜치 정리(아카이브 브랜치 · 나머지 삭제 · main 비우기 · 기본 브랜치 dev→?)는 관리자 권한 대기(2026-11-02 기준 push 권한만). stg 에 없는 브랜치 4개(KimMarin 3 · sobokki 1)는 처분 미정.",
-        "회사 org 푸시 범위는 발행 전 사용자 확인."
+        "회사 org 푸시 범위는 발행 전 사용자 확인.",
+        "2026-11-08 브랜치 정리: dev(기본 · v2 코드) · prod(배포) · archive(옛 v0.1 코드) · 옛 브랜치 끝은 태그 archive/<이름>. v2-dev 는 지움 — dev 로 대체"
       ]
     },
     "reference_cc": {
