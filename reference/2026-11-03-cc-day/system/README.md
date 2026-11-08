@@ -44,8 +44,8 @@ Azure VM 2코어 / 4GB(예정) 기준 예상 메모리: caddy ~50MB · api 768MB
 | 주제 | 결정 |
 |---|---|
 | 서버 · DB 개수 | **dev 와 prod 는 VM 한 대에 같이**(Azure VM 2코어/4GB · 한 대) · **관리형 PostgreSQL 도 한 대**(DB 1개 · 스키마 `day_dev` / `day_prod` 로 나눔) |
-| 배포 시작(브랜치) | **브랜치 `dev` · `prod` 로 관리** — `dev` 에 들어가면 dev 배포 · `prod` 에 들어가면 prod 배포(사용자 2026-11-08). prod 는 dev 에서 확인한 같은 이미지(조사 D5) |
-| 도메인 · DNS | dev = **`day-dev.medisolveai.com`** · DNS 는 사용자가 관리 · prod 도메인은 아직 |
+| 배포 시작(브랜치) | **브랜치 `dev` · `prod` 로 관리** — `v2-dev` 가 `dev` 가 되고 `prod` 는 새로(사용자 2026-11-08 · 추천) — `dev` 에 들어가면 dev 배포 · `prod` 에 들어가면 prod 배포(사용자 2026-11-08). prod 는 dev 에서 확인한 같은 이미지(조사 D5) |
+| 도메인 · DNS | dev = **`day-dev.medisolveai.com`** · prod = **`day.medisolveai.com`** · DNS 는 사용자가 관리 |
 | HTTPS | Caddy 자동 발급(ACME) |
 | 백업 | **기본값만**(관리형 PostgreSQL 자동 백업) — 스키마 단위 백업 등은 나중 |
 | 배포 시간 | 제한 없음 — 배포는 사용자 혼자 관리 |
