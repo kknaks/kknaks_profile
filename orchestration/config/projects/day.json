@@ -145,7 +145,8 @@
       "user": "구독 Owner · Key Vault Secrets Officer(KV)",
       "github_vars": "AZURE_CLIENT_ID=c887d3c7-f51a-4b1f-93f8-5db5b0931014 · AZURE_TENANT_ID · AZURE_SUBSCRIPTION_ID(az account show) · DAY_RESOURCE_GROUP · DAY_VM_NAME · DAY_ACR_NAME · DAY_IMAGE_REPOSITORY · DAY_KEY_VAULT",
       "nsg": "nsg-vm-centurion-day-prod — 22 출처 1곳만(유지) · **80/443 = Internet 전체 공개(사용자 2026-11-09 ①)**"
-    }
+    },
+    "dns": "가비아 · A day-dev · day → VM 공인 IP (2026-11-09 등록 · 8.8.8.8 · 1.1.1.1 반영 확인)"
   },
   "workers": {
     "researcher": {
