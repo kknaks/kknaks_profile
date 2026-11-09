@@ -626,6 +626,11 @@ para/areas/
 | 511 | `front` | `ios-input-auto-zoom` | iOS Safari 는 16px 미만 입력 포커스에 확대. 입력만 16px · 확대 잠금은 접근성 때문에 안 씀 |  |
 | 512 | `back` | `minimal-api-surface` | 밖으로는 필요한 경로 · 필드만. 허용 경로 목록 고정 시험 · 일반 오류 문구 · docs 끔 · 빌드 산출물 grep |  |
 | 513 | `front` | `mrz-continuous-scan` | 한 장 촬영 대신 프레임마다 MRZ 자리만 기기 안 OCR. 칸별 보정 · 검사 숫자 셋 · 연속 2 프레임 확정 · [촬영] 늘 · 실기기에서만 |  |
+| 514 | `front` | `server-rendered-fragments` | 웹은 서버가 HTML 조각을 그려 갈아 끼우고(HTMX) JSON 은 앱 전용. 상태 · 권한 표시가 서버 한 곳 · 쿠키 세션이라 CSRF |  |
+| 515 | `qa` | `test-tiering` | 기본 실행은 DB 없이 수 초, 실제 인프라 시험은 표식으로 전체 실행에서만. 계층 구조가 빠른 층을 만든다 |  |
+| 516 | `infra` | `workload-identity` | 장기 키 대신 실행체 자신의 신원(OIDC 연합 · 관리 ID)으로 단기 토큰. 신원과 역할 배정은 다른 단계 |  |
+| 517 | `infra` | `secret-store` | 비밀은 레포 밖 보관소, 서버는 자기 신원으로 읽는다. 외부 시스템 주소도 비밀 · 방화벽은 열면 바로 닫기 |  |
+| 518 | `back` | `database-tls-verification` | libpq 의 sslmode=verify-full 은 asyncpg 에서 안 먹는다. ssl 인자 + 루트 CA 경로 + 기동 검사 · 실제 DB 로 1회 |  |
 
 ---
 

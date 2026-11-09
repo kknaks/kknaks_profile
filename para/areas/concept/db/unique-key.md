@@ -9,7 +9,12 @@ aliases:
   - unique 제약
   - unique constraint
   - 유일성 제약
+  - 부분 유일 인덱스
+  - partial unique index
+  - 살아 있는 행만 유일
+  - soft delete 유일
 up:
+  - 2026-11-09-day-data-architecture
   - 2024-08-06-Day51
 tags:
   - database
@@ -86,6 +91,7 @@ insert into test1(no,name,age,kor,eng,math) values(4,'c',20,81,81,81);
 - **collation 이 중복 판정을 바꾼다** — Day51 이 데이터베이스를 만들 때 고른 `utf8_general_ci` 는 대소문자를 구분하지 않으므로 `'Kim'` 을 넣은 뒤 `'kim'` 을 넣으면 **중복으로 거절된다.** 문자열의 유일성은 제약이 아니라 **비교 규칙**이 정하고, 그래서 서버 설정이 다르면 같은 `insert` 가 한쪽에서만 통한다. 자바에서 `equals` 와 `equalsIgnoreCase` 를 고르던 결정이 여기서는 **테이블을 만들 때 이미 끝나 있다** → [[database-schema]] · [[string-comparison]]
 - **제약 이름을 지어 주는 것이 값을 갖는다** — Day51 은 `test1_uk` 로 이름을 줬다. 생략하면 MySQL 이 컬럼명으로 이름을 만들고, 나중에 지우거나 오류 메시지에서 「어느 제약이 걸렸는지」를 읽을 때 그 이름이 필요하다. **오류 메시지가 사용자에게 보여 줄 문구를 고르는 열쇠가 제약 이름**이 되는 경우가 많다.
 - **유니크는 「중복 데이터가 없다」를 뜻하지 않는다** — 지정한 컬럼만 본다. Day51 의 테이블에서 `kor`·`eng`·`math` 가 똑같은 행은 얼마든지 들어가고, 앞 절에서 문제로 적은 「데이터의 중복성」은 **어느 컬럼 조합을 골랐는가만큼만 해결된다.** 무엇이 「같은 데이터」인지를 정하는 일은 여전히 설계자의 몫이다 → [[object-equality]]
+- **지운 행을 남기면(soft delete) 유일 제약이 되살리기를 막는다 — 살아 있는 행만 유일하게** — `deleted_at` 으로 지운 표시만 하는 표에 평범한 unique 를 걸면, 지운 행이 값을 쥐고 있어 같은 값을 다시 넣을 수 없다. PostgreSQL 은 조건을 단 유일 인덱스로 푼다 — `CREATE UNIQUE INDEX ... WHERE deleted_at IS NULL`. 함정은 upsert 다. `INSERT ... ON CONFLICT (컬럼)` 은 그 컬럼의 **조건 없는** 유일 인덱스를 찾으므로, 부분 인덱스를 쓰려면 `ON CONFLICT (컬럼) WHERE deleted_at IS NULL` 처럼 **같은 조건을 다시 적어야** 인덱스를 고른다. DAY 데이터 모델(51 테이블)이 이렇게 갔고, 스펙의 「유일」 도 「살아 있는 행만 유일」 로 고쳐 맞췄다
 - **`alter table ... add constraint unique` 는 기존 데이터에 걸려 실패할 수 있다** — 운영 중인 테이블에 유니크를 더하는 순간 **이미 들어 있는 중복이 드러난다.** 「제약을 나중에 걸면 된다」가 실제로는 「중복을 먼저 청소해야 한다」인 자리다 → [[ddl]]
 
 ## 함께 보는 개념
@@ -102,4 +108,5 @@ insert into test1(no,name,age,kor,eng,math) values(4,'c',20,81,81,81);
 
 ## 출처
 
+- [[2026-11-09-day-data-architecture]] §2 — DAY 데이터 모델의 유일 = 살아 있는 행만(`WHERE deleted_at IS NULL`) · upsert `ON CONFLICT` 에 같은 `WHERE` 반복(코드 `b6f23b42` · SPEC-000 동기화)
 - [[2024-08-06-Day51]] — 「primary key 만 적용하면 다른 칼럼들의 중복을 막을 수 없다」를 이유로 `constraint test1_uk unique (name, age)` 를 걸고, 네 행을 넣은 뒤 **번호가 중복된 경우와 번호는 새것인데 `(name, age)` 가 중복된 경우** 두 가지 거절을 주석으로 구분해 남겼다. 들어간 데이터에 `name = 'a'` 가 두 번 있는 것이 복합 유니크가 조합만 본다는 증거다. 제약에 `test1_uk` 라는 이름을 지어 준 형태와, `alter table ... add constraint 키이름 unique(컬럼명)` 로 나중에 더하는 문법도 함께 적었다
