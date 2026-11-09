@@ -91,6 +91,46 @@
       ]
     }
   },
+  "infra": {
+    "_doc": "DAY 서버 · DB(인프라 담당 2026-11-09 전달). 비밀번호는 여기 · 레포 어디에도 두지 않는다 — 사용자 로컬 ~/.pgpass 에만. 상세 · 결정은 reference/2026-11-03-cc-day/system/README.md 「배포 결정」 · 배포 구조는 mediness products/day/40-architecture/deployment.md",
+    "vm": {
+      "name": "vm-centurion-day-prod",
+      "public_ip": "52.231.77.47",
+      "size": "B2s (2 vCPU · 4GiB) · Ubuntu 24.04 · 64GiB",
+      "user": "azureuser (sudo)",
+      "ssh_key": "~/.ssh/azure_crmproject",
+      "ssh_alias": "day-vm",
+      "ports_open": [
+        22,
+        80,
+        443
+      ]
+    },
+    "db": {
+      "host": "pg-centurion-day-prod.postgres.database.azure.com",
+      "engine": "PostgreSQL 16",
+      "database": "day",
+      "schemas": {
+        "dev": "day_dev",
+        "prod": "day_prod"
+      },
+      "admin_user": "dayadmin (초기 설정용 — 앱은 별도 계정)",
+      "public_access": false,
+      "tunnel": "ssh -N day-db → 127.0.0.1:15432",
+      "local_psql": "psql service=day (~/.pg_service.conf · ~/.pgpass)",
+      "tls": "verify-full"
+    },
+    "domains": {
+      "dev": "day-dev.medisolveai.com",
+      "prod": "day.medisolveai.com"
+    },
+    "branches": {
+      "dev": "dev",
+      "prod": "prod",
+      "archive": "archive (옛 v0.1 · 태그 archive/*)"
+    },
+    "locks": "VM · DB 삭제 방지 잠금"
+  },
   "workers": {
     "researcher": {
       "repo": "app",

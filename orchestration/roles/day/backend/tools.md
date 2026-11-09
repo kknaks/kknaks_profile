@@ -22,3 +22,8 @@
 
 ## 데이터 기본 규칙
 - `orchestration/config/projects/day.json` 의 `data_rules` 를 먼저 읽는다 — 원장 · 동기화 · 사본 범위 · 외부 연결 · 차트번호.
+
+## 서버 · DB (배포 · 운영 작업 때)
+
+- 위치 · 접속은 `config/projects/day.json` 의 `infra` 가 정본 — VM `ssh day-vm` · DB 터널 `ssh -N day-db` → `psql service=day`.
+- **DB 비밀번호는 레포 · 리포트 · 브리프에 쓰지 않는다**(사용자 로컬 `~/.pgpass` 에만). 운영 DB · VM 에 쓰는 작업은 사용자 승인 뒤에만.
