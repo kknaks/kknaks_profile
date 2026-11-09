@@ -117,8 +117,13 @@
       "admin_user": "dayadmin (초기 설정용 — 앱은 별도 계정)",
       "public_access": false,
       "tunnel": "ssh -N day-db → 127.0.0.1:15432",
-      "local_psql": "psql service=day (~/.pg_service.conf · ~/.pgpass)",
-      "tls": "verify-full"
+      "local_psql": "psql service=day(dayadmin) · day-dev · day-prod (~/.pg_service.conf · ~/.pgpass)",
+      "tls": "verify-full",
+      "app_users": {
+        "dev": "day_dev_app (day_dev 주인 · search_path day_dev · migration 도 이 계정)",
+        "prod": "day_prod_app (day_prod 주인 · search_path day_prod)"
+      },
+      "created": "2026-11-09 스키마 · 계정 생성(사용자 승인) — 서로 스키마 접근 막힘 · public CREATE 회수 확인"
     },
     "domains": {
       "dev": "day-dev.medisolveai.com",
