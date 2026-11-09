@@ -1,0 +1,48 @@
+{
+  "segment": "SEG-03",
+  "read_status": "direct_read_done",
+  "read_note": "/by_concern/2 (볼륨 손실) 전체 필드와 severity_levels 3단계를 원문 순서로 직접 읽음",
+  "observations": [
+    {"id": "O03-1", "pointers": ["/by_concern/2/severity_levels/0/optimal_combo/0", "/by_concern/2/severity_levels/0/rationale"], "status": "P", "text": "「HA 볼류마이징 스킨부스터」는 재질(HA)+성질(볼류마이징)+계열(스킨부스터)을 붙여 쓴 한 이름. rationale 은 같은 것을 「주사형 HA 제품」으로 다시 부른다(잠정 동일 지시, 연결 확정 안 함)."},
+    {"id": "O03-2", "pointers": ["/by_concern/2/severity_levels/0/optimal_combo/1", "/by_concern/2/severity_levels/0/rationale"], "status": "P", "text": "optimal_combo 「바이오스티뮬레이터(쥬베룩)」의 괄호 제품명을 rationale 은 단독 「쥬베룩으로」 주어로 쓴다. 같은 원장 다른 단계는 괄호 안에 제품 두 개(스컬트라/엘란쎄)를 둔다."},
+    {"id": "O03-3", "pointers": ["/by_concern/2/severity_levels/0/sequence", "/by_concern/2/severity_levels/1/sequence"], "status": "P", "text": "「4주 간격 바이오스티뮬레이터」(경미)는 반복 간격으로도, 앞 시술과의 간격으로도 읽힐 수 있다. 중등도의 「4주 후」와 표기가 다르다(간격 vs 후). 두 뜻을 구분하지 않고 원문만 보존한다(B)."},
+    {"id": "O03-4", "pointers": ["/by_concern/2/severity_levels/1/sequence"], "status": "P", "text": "sequence 안에 효과 서술(「즉각 볼륨」, 괄호 「콜라겐 장기 재생」)이 순서와 섞여 있다. 「즉각」 은 속도/시간 수식."},
+    {"id": "O03-5", "pointers": ["/by_concern/2/severity_levels/2/optimal_combo/0", "/by_concern/2/severity_levels/2/sequence", "/by_concern/2/severity_levels/2/rationale", "/by_concern/2/severity_levels/2/expected_sessions"], "status": "F", "text": "같은 대상이 「HA 필러(딥)」「딥필러」「딥 필러」 세 표기로 나온다. 괄호 「(딥)」은 깊이 수식이다."},
+    {"id": "O03-6", "pointers": ["/by_concern/2/severity_levels/2/sequence"], "status": "P", "text": "「지방이식 or 딥필러」: 영어 접속사 `or` 로 대안을 표시한다(다른 곳은 `/`·「또는」). 「→ 유지」 는 시술명이 아닌 단계명."},
+    {"id": "O03-7", "pointers": ["/by_concern/2/severity_levels/2/optimal_combo/1", "/by_concern/2/severity_levels/2/sequence", "/by_concern/2/severity_levels/2/expected_sessions"], "status": "I", "text": "optimal_combo 에 「CaHA(레디에스)」가 따로 있고 sequence·rationale 은 「CaHA/바이오스티뮬」로 묶지만 expected_sessions 에는 CaHA 회차가 없다(「딥필러/지방이식 1회 + 바이오스티뮬 3-4회」). CaHA 가 바이오스티뮬 회차에 포함되는지 원문에 없다."},
+    {"id": "O03-8", "pointers": ["/by_concern/2/severity_levels/2/expected_sessions"], "status": "P", "text": "「딥필러/지방이식 1회」의 `/` 는 sequence 의 「or」와 같은 대안으로 읽힌다(잠정)."},
+    {"id": "O03-9", "pointers": ["/by_concern/2/severity_levels/2/contraindicated_combos/0"], "status": "P", "text": "「지방이식 후 2주 내 RF/HIFU 금지」: 이 단계 optimal_combo 에는 RF/HIFU 가 없다. 다른 고민의 추천과 섞을 때 걸리는 규칙으로 읽히나 원문은 범위를 말하지 않는다. 「2주 내」 와 SEG-01 「14일 이내」 의 표기가 다르다."},
+    {"id": "O03-10", "pointers": ["/by_concern/2/severity_levels/2/level"], "status": "P", "text": "「(심한 볼륨 손실/골격 변화)」의 `/` 는 상태 나열이다."}
+  ],
+  "manual_expressions": [
+    {"pointer": "/by_concern/2/severity_levels/0/level", "text": "(미세 볼륨 저하)", "kinds": ["parenthetical", "severity", "degree_modifier"]},
+    {"pointer": "/by_concern/2/severity_levels/0/optimal_combo/0", "text": "HA 볼류마이징 스킨부스터", "kinds": ["procedure_like", "material", "language_mixed"]},
+    {"pointer": "/by_concern/2/severity_levels/0/optimal_combo/1", "text": "바이오스티뮬레이터(쥬베룩)", "kinds": ["procedure_like", "product_like", "parenthetical"]},
+    {"pointer": "/by_concern/2/severity_levels/0/sequence", "text": "HA 볼류마이징 스킨부스터 먼저", "kinds": ["order_sequence"]},
+    {"pointer": "/by_concern/2/severity_levels/0/sequence", "text": "4주 간격 바이오스티뮬레이터", "kinds": ["interval_repeat_or_after", "time"]},
+    {"pointer": "/by_concern/2/severity_levels/0/rationale", "text": "주사형 HA 제품으로 미세 볼륨·수분 보완", "kinds": ["effect_purpose", "manner", "degree_modifier", "effect_complement"]},
+    {"pointer": "/by_concern/2/severity_levels/0/rationale", "text": "쥬베룩으로 자가 콜라겐 재생", "kinds": ["product_like", "effect_purpose"]},
+    {"pointer": "/by_concern/2/severity_levels/0/expected_sessions", "text": "바이오스티뮬 2-3회", "kinds": ["session_count", "range", "abbreviation"]},
+    {"pointer": "/by_concern/2/severity_levels/1/level", "text": "(눈에 띄는 볼륨 감소)", "kinds": ["parenthetical", "severity", "degree_modifier"]},
+    {"pointer": "/by_concern/2/severity_levels/1/optimal_combo/1", "text": "바이오스티뮬레이터(스컬트라/엘란쎄)", "kinds": ["procedure_like", "product_like", "parenthetical", "alternative"]},
+    {"pointer": "/by_concern/2/severity_levels/1/sequence", "text": "필러로 즉각 볼륨", "kinds": ["effect_purpose", "speed_time"]},
+    {"pointer": "/by_concern/2/severity_levels/1/sequence", "text": "4주 후 바이오스티뮬레이터(콜라겐 장기 재생)", "kinds": ["interval_after", "time", "parenthetical", "effect_purpose", "duration_long"]},
+    {"pointer": "/by_concern/2/severity_levels/1/rationale", "text": "필러로 구조적 볼륨 복원", "kinds": ["effect_purpose", "manner"]},
+    {"pointer": "/by_concern/2/severity_levels/1/rationale", "text": "자가 콜라겐 생성으로 장기 유지", "kinds": ["effect_purpose", "maintenance", "duration_long"]},
+    {"pointer": "/by_concern/2/severity_levels/2/level", "text": "(심한 볼륨 손실/골격 변화)", "kinds": ["parenthetical", "severity", "degree_modifier", "slash_non_alternative"]},
+    {"pointer": "/by_concern/2/severity_levels/2/optimal_combo/0", "text": "HA 필러(딥)", "kinds": ["procedure_like", "material", "parenthetical", "layer_depth"]},
+    {"pointer": "/by_concern/2/severity_levels/2/optimal_combo/1", "text": "CaHA(레디에스)", "kinds": ["material", "product_like", "parenthetical"]},
+    {"pointer": "/by_concern/2/severity_levels/2/sequence", "text": "지방이식 or 딥필러", "kinds": ["alternative", "language_en", "layer_depth"]},
+    {"pointer": "/by_concern/2/severity_levels/2/sequence", "text": "4주 후 CaHA/바이오스티뮬(콜라겐 유도)", "kinds": ["interval_after", "time", "alternative", "parenthetical", "effect_purpose"]},
+    {"pointer": "/by_concern/2/severity_levels/2/sequence", "text": "→ 유지", "kinds": ["maintenance", "order_sequence"]},
+    {"pointer": "/by_concern/2/severity_levels/2/rationale", "text": "딥 필러/지방이식으로 구조 복원", "kinds": ["alternative", "layer_depth", "effect_purpose"]},
+    {"pointer": "/by_concern/2/severity_levels/2/rationale", "text": "CaHA/바이오스티뮬로 장기 콜라겐", "kinds": ["alternative", "duration_long", "effect_purpose"]},
+    {"pointer": "/by_concern/2/severity_levels/2/rationale", "text": "자연스러운 유지", "kinds": ["manner", "maintenance"]},
+    {"pointer": "/by_concern/2/severity_levels/2/expected_sessions", "text": "딥필러/지방이식 1회", "kinds": ["session_count", "alternative"]},
+    {"pointer": "/by_concern/2/severity_levels/2/contraindicated_combos/0", "text": "지방이식 후 2주 내 RF/HIFU 금지", "kinds": ["avoid_prohibit", "interval_within", "order_sequence", "time", "alternative"]}
+  ],
+  "issues": [
+    {"id": "B-03-1", "class": "B", "pointers": ["/by_concern/2/severity_levels/0/sequence"], "text": "「4주 간격」이 반복 간격인지 앞 시술과의 간격인지 원문에 없다."},
+    {"id": "I-03-1", "class": "I", "pointers": ["/by_concern/2/severity_levels/2/optimal_combo/1", "/by_concern/2/severity_levels/2/expected_sessions"], "text": "CaHA 가 optimal_combo·sequence·rationale 에 있으나 expected_sessions 에 회차가 없다(원문 내 불일치 후보). 원본 수정 제안은 후속 확인 후보로만 둔다."}
+  ]
+}

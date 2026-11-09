@@ -1,0 +1,33 @@
+{
+ "segment": "S07", "direct_read": true, "read_note": "M7 실리프팅 7항목 전부 직접 읽음.",
+ "last_pointer": "/categories/6/items/6/high",
+ "observations": [
+  ["/categories/6/items/0/name", "'PDO 실 (10줄 기준)' unit '10줄' — '기준' 은 가격이 10줄을 기준으로 한다는 표현. 줄 수가 달라질 때의 가격은 원문에 없음.", "P"],
+  ["/categories/6/items/1/name", "'코그 실 리프팅 (양쪽 8줄)' unit '8줄' — 괄호에 양측성('양쪽')과 수량이 함께. unit 에는 '양쪽' 이 빠짐(8줄이 양쪽 합계인지 한쪽인지 원문 명시는 name 의 '양쪽 8줄' 뿐).", "P"],
+  ["/categories/6/items/2/name", "'민트 리프팅 (양쪽)' unit '1회' — 줄 수 없음.", "B"],
+  ["/categories/6/items/3/name", "'몰딩 실 (V라인)' — 괄호가 목표 윤곽/부위('V라인'). 영문+한글 혼합.", "P"],
+  ["/categories/6/items/5/name", "'풀페이스 실리프팅 (20줄 이상)' unit '1회' — '이상' 은 하한만 있는 범위. 가격이 20줄 이상 전체에 같은지 원문에 없음. name 의 수량 기준(줄)과 unit(회)이 다름.", "P"],
+  ["/categories/6/items/4/name", "'코 실리프팅'·'목 실리프팅' — 부위가 앞에, 괄호 없음. '실리프팅'(붙임)·'실 리프팅'(띄움, items/1) 띄어쓰기 혼재.", "P"],
+  ["/categories/6/items/0/low", "7항목 모두 low < mid < high.", "P"]
+ ],
+ "expressions": [
+  ["/categories/6/items/0/name", "PDO 실", ["재질 후보", "시술명 후보"], "'PDO' 영문 약어."],
+  ["/categories/6/items/0/name", "(10줄 기준)", ["수량·단위", "가격 기준"], "'기준'."],
+  ["/categories/6/items/1/name", "코그 실 리프팅", ["시술명 후보", "실 형태 후보"], "'코그' — 실 형태 수식 후보. '코'(부위)와 첫 글자 같음 — 부분일치 오탐 위험."],
+  ["/categories/6/items/1/name", "(양쪽 8줄)", ["양측성", "수량·단위"], ""],
+  ["/categories/6/items/1/name", "양쪽", ["양측성"], ""],
+  ["/categories/6/items/2/name", "민트 리프팅", ["시술명/제품명 후보"], ""],
+  ["/categories/6/items/2/name", "(양쪽)", ["양측성"], ""],
+  ["/categories/6/items/3/name", "몰딩 실", ["실 형태 후보", "시술명 후보"], ""],
+  ["/categories/6/items/3/name", "(V라인)", ["목표 윤곽/부위 후보", "영한 혼합"], ""],
+  ["/categories/6/items/4/name", "코 실리프팅", ["부위 후보", "시술명 후보"], ""],
+  ["/categories/6/items/5/name", "풀페이스 실리프팅", ["적용 범위", "시술명 후보"], ""],
+  ["/categories/6/items/5/name", "(20줄 이상)", ["범위", "수량·단위"], "'이상' — 하한."],
+  ["/categories/6/items/6/name", "목 실리프팅", ["부위 후보", "시술명 후보"], ""]
+ ],
+ "issues": [
+  ["B-S07-1", "B", ["/categories/6/items/0/name"], "'10줄 기준' 외 줄 수의 가격, 실 종류별(PDO 외) 차이가 없다."],
+  ["B-S07-2", "B", ["/categories/6/items/2/name", "/categories/6/items/3/name", "/categories/6/items/4/name", "/categories/6/items/6/name"], "unit '1회' 항목들의 줄 수가 없다."],
+  ["I-S07-1", "I", ["/categories/6/items/5/name", "/categories/6/items/5/unit"], "name 은 줄 수 기준('20줄 이상'), unit 은 '1회' — 가격 기준 표기가 항목 안에서 다르다. 원본 보존, 후속 확인 후보."]
+ ]
+}

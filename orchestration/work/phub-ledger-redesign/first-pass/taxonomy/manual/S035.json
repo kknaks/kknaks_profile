@@ -1,0 +1,294 @@
+{
+ "section": "S035",
+ "state": "read",
+ "last_pointer": "/modality/11/name",
+ "observations": [
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/11/subcategories/0/label",
+    "/modality/11/subcategories/1/label",
+    "/modality/11/products"
+   ],
+   "note": "M12 하위분류는 구동 방식 축('수동 MTS','전동 MTS'). 항목은 기구 형태(더마롤러·더마스탬프·펜타입)와 제품명(더마펜4·에이팩·MTS롤러)이 섞인다. products 빈 배열."
+  },
+  {
+   "status": "I",
+   "pointers": [
+    "/modality/11/subcategories/0/items/1/extracted/overview"
+   ],
+   "note": "'스탐프형' 오기(detail 은 '스탬프형'). 원문 보존."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/11/subcategories/0/items/0/extracted/aftercare/5"
+   ],
+   "note": "M12 상용구 '[시술 주기 참고] 피부 회복 후 재시술 (보통 4-6주). 과도한 채널 생성 시 장벽 손상 주의 …'. 더마스탬프 duration '월 1회 정기 시술 권장' 과 병존."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/11/subcategories/0/items/2/extracted/indications/primary/1",
+    "/modality/11/subcategories/1/items/0/extracted/indications/primary/5"
+   ],
+   "note": "적응증에 '제품 흡수율 향상','약물 침투 증대' — 다른 시술·성분의 전달 수단으로서의 용도."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/11/extracted/safety/serious/0"
+   ],
+   "note": "M12 serious '쾨브너현상 (건선 등 피부질환이 있는 환자에서 …)' — 기저질환 조건부 부작용."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/11/extracted/contraindications/absolute/2"
+   ],
+   "note": "절대금기 '조절이 안 되는 당뇨병' — M4 의 '당뇨병 환자'(무조건)와 조건 표현 다름."
+  }
+ ],
+ "expressions": [
+  {
+   "pointer": "/modality/11/subcategories/0/items/0/extracted/mechanism",
+   "text": "롤러형 기구의 바늘(0.2~2.0mm)",
+   "kinds": [
+    "수량·단위·시간",
+    "범위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/11/subcategories/0/items/0/extracted/safety/serious/0",
+   "text": "심한 감염 (무균 처리 미흡 시)",
+   "kinds": [
+    "수식",
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/11/subcategories/0/items/0/extracted/safety/serious/1",
+   "text": "색소 이상 (색소침착/감소)",
+   "kinds": [
+    "기호"
+   ],
+   "note": "반대 방향 '/'"
+  },
+  {
+   "pointer": "/modality/11/subcategories/0/items/0/extracted/aftercare/2",
+   "text": "시술 후 5일간 자극적인 성분 (레티놀, 비타민C, AHA/BHA) 피하기",
+   "kinds": [
+    "수량·단위·시간",
+    "부정"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/11/subcategories/0/items/0/extracted/aftercare/5",
+   "text": "과도한 채널 생성 시 장벽 손상 주의",
+   "kinds": [
+    "조건",
+    "가능성·빈도"
+   ],
+   "note": "상용구"
+  },
+  {
+   "pointer": "/modality/11/subcategories/0/items/1/extracted/aftercare/0",
+   "text": "시술 12시간 동안 물로만 세안",
+   "kinds": [
+    "수량·단위·시간",
+    "조건"
+   ],
+   "note": "'만' 한정"
+  },
+  {
+   "pointer": "/modality/11/subcategories/0/items/1/extracted/aftercare/3",
+   "text": "항생제 연고 도포 권장 (의료진 지시 시)",
+   "kinds": [
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/11/subcategories/0/items/2/detail",
+   "text": "192핀수동",
+   "kinds": [
+    "수량·단위·시간"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/11/subcategories/1/items/0/extracted/mechanism",
+   "text": "분당 1,200~2,000회 진동",
+   "kinds": [
+    "수량·단위·시간",
+    "범위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/11/subcategories/1/items/0/extracted/mechanism",
+   "text": "깊이(0.5~2.5mm) 조절이 정확하고",
+   "kinds": [
+    "수량·단위·시간",
+    "범위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/11/subcategories/1/items/0/extracted/safety/serious/1",
+   "text": "과도한 깊이 설정 시 진피 손상",
+   "kinds": [
+    "조건",
+    "수식"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/11/subcategories/1/items/0/extracted/safety/serious/2",
+   "text": "색소 변화 (특히 어두운 피부)",
+   "kinds": [
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/11/subcategories/1/items/0/extracted/aftercare/3",
+   "text": "자외선 차단제 매 2시간마다 재도포",
+   "kinds": [
+    "수량·단위·시간"
+   ],
+   "note": "빈도"
+  },
+  {
+   "pointer": "/modality/11/subcategories/1/items/0/extracted/aftercare/4",
+   "text": "시술 후 1주일간 화학 필링, 레이저 시술 자제",
+   "kinds": [
+    "수량·단위·시간",
+    "부정",
+    "참조"
+   ],
+   "note": "다른 시술과의 간격"
+  },
+  {
+   "pointer": "/modality/11/subcategories/1/items/1/detail",
+   "text": "더마펜월드 · 전동 마이크로니들 · 16핀",
+   "kinds": [
+    "수량·단위·시간"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/11/extracted/mechanism",
+   "text": "PDGF, TGF-α/β 등 다양한 성장인자",
+   "kinds": [
+    "기호"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/11/extracted/mechanism",
+   "text": "흉터 부위에 시술하면 흉터의 콜라겐 밴드를 물리적으로 끊어줘서",
+   "kinds": [
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/11/extracted/indications/extended/1",
+   "text": "탈모 치료 (두피 MTS + PRP 또는 성장인자)",
+   "kinds": [
+    "부위",
+    "기호",
+    "참조"
+   ],
+   "note": "'+' 병행, '또는' 대안"
+  },
+  {
+   "pointer": "/modality/11/extracted/contraindications/relative/0",
+   "text": "출혈성 질환이 있거나 아스피린 등 혈액 응고에 영향을 주는 약을 복용 중인 경우 주의",
+   "kinds": [
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/11/extracted/safety/uncommon/1",
+   "text": "색소침착 (특히 진피까지 깊이 치료한 경우)",
+   "kinds": [
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/11/extracted/onset_duration/peak",
+   "text": "3~6회 반복시술 후 최대 효과 (콜라겐 리모델링에 수주~수개월 소요)",
+   "kinds": [
+    "수량·단위·시간",
+    "범위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/11/extracted/aftercare/2",
+   "text": "출혈이 생긴 정도로 진피까지 치료한 경우 2~4일 화장 피하기",
+   "kinds": [
+    "조건",
+    "수량·단위·시간",
+    "범위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/11/extracted/aftercare/3",
+   "text": "롤러는 반드시 멸균 상태에서 1회용으로 사용할 것",
+   "kinds": [
+    "조건",
+    "수식"
+   ],
+   "note": "시술자 지시"
+  },
+  {
+   "pointer": "/modality/11/extracted/related_techniques/1",
+   "text": "MTS + 약물 투입 — 비타민C, 히알루론산 등 유효 성분 경피 흡수 촉진",
+   "kinds": [
+    "기호",
+    "참조"
+   ],
+   "note": ""
+  }
+ ],
+ "seg_errors": [
+  {
+   "scope": "all",
+   "surface": "더마롤러",
+   "issue": "더/MAG 마/MAG 롤러/NNG — 'derma' 의 '더' 를 비교 부사로",
+   "impact": "기구명 분해·부사 오탐(더마스탬프·더마펜4·더마브이도 같은 패턴)"
+  },
+  {
+   "scope": "all",
+   "surface": "더마스탬프",
+   "issue": "더/MAG 마/NNG 스탬프/NNG",
+   "impact": "기구명 분해"
+  },
+  {
+   "scope": "all",
+   "surface": "더마펜4",
+   "issue": "더/MAG 마/NNG 펜/NNG 4/SN",
+   "impact": "제품명 분해"
+  }
+ ],
+ "issues": [
+  {
+   "id": "S035-I01",
+   "status": "I",
+   "pointers": [
+    "/modality/11/subcategories/0/items/1/extracted/overview"
+   ],
+   "note": "'스탐프형' 오기.",
+   "impact": "표기 보존"
+  }
+ ]
+}

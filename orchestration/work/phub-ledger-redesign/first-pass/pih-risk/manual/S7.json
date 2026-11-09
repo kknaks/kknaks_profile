@@ -1,0 +1,40 @@
+{
+ "direct_read": true,
+ "status": "read",
+ "last_read_pointer": "/procedures/22/prevention",
+ "observations": [
+  {"status": "P", "pointers": ["/procedures/21/procedure_ref", "/procedures/22/procedure_ref", "/procedures/21/name", "/procedures/22/name"], "text": "21·22 번 모두 procedure_ref 'M13'(카테고리 수준)이고 name 은 '플라즈마 (콜드플라즈마)' / '플라즈마 (열플라즈마/플렉서)' 로 괄호에서만 갈린다. pih_risk 도 low/moderate 로 다르다(P1)."},
+  {"status": "P", "pointers": ["/procedures/21/fitzpatrick_note"], "text": "'표피 미세손상 부위에서 PIH 가능' 의 '부위' 는 해부학적 시술 부위가 아니라 손상이 생긴 자리를 가리킨다. 부위 역할 구분 시 이 출현을 해부 부위로 합치지 않는다."},
+  {"status": "P", "pointers": ["/procedures/21/fitzpatrick_note", "/procedures/22/fitzpatrick_note"], "text": "21번 '저온 플라즈마로 열손상 최소화' ↔ 22번 '고온 플라즈마는 표피에 점상 열손상을 유발하여 PIH 위험 증가' — 같은 계열 두 행이 온도로 대조된다."},
+  {"status": "P", "pointers": ["/procedures/22/name"], "text": "'열플라즈마/플렉서' — '/' 로 방식명과 장비명(으로 보이는 것)이 묶임. 정체 확정은 후속."},
+  {"status": "B", "pointers": ["/procedures/22/prevention"], "text": "'SPF 50+ 자외선 차단 4주 이상' 기준 시점 없음(B3)."},
+  {"status": "P", "pointers": ["/procedures/21/risk_factors/1", "/procedures/22/risk_factors/1"], "text": "'과도한 조사 시간'(시간 길이) · '조밀한 점상 조사'(밀도) — 조사(照射)의 서로 다른 속성이 위험요인. 수치 없음."}
+ ],
+ "open": [
+  "B-S7-1 '4주 이상' 기준 시점 (issues.md B3)",
+  "P-S7-1 procedure_ref 카테고리 수준 다중 행 (issues.md P1)"
+ ],
+ "expressions": [
+  ["/procedures/21/name", "플라즈마 (콜드플라즈마)", ["name_candidate"], "", "P"],
+  ["/procedures/21/pih_rate", "2-5%", ["range", "rate"], "", "P"],
+  ["/procedures/21/fitzpatrick_note", "저온 플라즈마로 열손상 최소화", ["cause_reason", "device_param", "effect_change"], "", "P"],
+  ["/procedures/21/fitzpatrick_note", "표피 미세손상 부위에서 PIH 가능", ["condition", "possibility", "tissue_layer"], "'부위' = 손상 자리", "P"],
+  ["/procedures/21/risk_factors/0", "높은 에너지", ["risk_factor_phrase", "degree"], "", "B"],
+  ["/procedures/21/risk_factors/1", "과도한 조사 시간", ["risk_factor_phrase", "time", "degree"], "", "B"],
+  ["/procedures/21/risk_factors/2", "어두운 피부", ["risk_factor_phrase", "population"], "", "P"],
+  ["/procedures/21/prevention", "적정 에너지", ["recommendation"], "", "B"],
+  ["/procedures/21/prevention", "SPF 50+ 자외선 차단", ["recommendation"], "", "P"],
+  ["/procedures/22/name", "플라즈마 (열플라즈마/플렉서)", ["name_candidate", "symbol_ambiguity"], "", "F"],
+  ["/procedures/22/pih_rate", "5-15%", ["range", "rate"], "", "P"],
+  ["/procedures/22/fitzpatrick_note", "고온 플라즈마는 표피에 점상 열손상을 유발하여 PIH 위험 증가", ["cause_reason", "tissue_layer", "effect_change", "device_param"], "", "P"],
+  ["/procedures/22/risk_factors/0", "높은 에너지", ["risk_factor_phrase", "degree"], "", "B"],
+  ["/procedures/22/risk_factors/1", "조밀한 점상 조사", ["risk_factor_phrase", "device_param", "degree"], "", "B"],
+  ["/procedures/22/risk_factors/2", "어두운 피부", ["risk_factor_phrase", "population"], "", "P"],
+  ["/procedures/22/prevention", "적정 에너지·밀도", ["recommendation", "device_param"], "", "B"],
+  ["/procedures/22/prevention", "SPF 50+ 자외선 차단 4주 이상", ["recommendation", "time", "comparison"], "기준 시점 없음", "B"]
+ ],
+ "segmentation": [
+  ["/procedures/21/risk_factors/1", "조사", "조사/NNG", "동형이의어(照射) 구분 없음", "K"],
+  ["/procedures/22/risk_factors/1", "조사", "조사/NNG", "동형이의어(照射)", "K"]
+ ]
+}

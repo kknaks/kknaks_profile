@@ -1,0 +1,321 @@
+{
+ "section": "S049",
+ "state": "read",
+ "last_pointer": "/modality/15/name",
+ "observations": [
+  {
+   "status": "I",
+   "pointers": [
+    "/modality/15/subcategories/6/items/3/name",
+    "/modality/15/subcategories/6/items/3/extracted/overview",
+    "/modality/15/subcategories/6/items/3/extracted/mechanism"
+   ],
+   "note": "'HP주사(감초주사)' — 이름 괄호 '감초주사' 인데 overview '대두 레시틴+데옥시콜산', mechanism 'PPC … 데옥시콜산' — 감초 성분 언급 없음. 또한 PPC 사용 항목(S048-I01 과 같은 긴장)."
+  },
+  {
+   "status": "I",
+   "pointers": [
+    "/modality/15/subcategories/6/items/7/name",
+    "/modality/15/subcategories/6/items/7/detail",
+    "/modality/15/subcategories/6/items/7/extracted/overview"
+   ],
+   "note": "'프로락틴주사' 이름·mechanism '프로락틴' vs detail·overview '프로작'. 서로 다른 물질명으로 보이는 표기가 한 레코드에 공존(어느 쪽인지 판단 안 함)."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/15/subcategories/6/items/11/name",
+    "/modality/15/subcategories/2/items/1/name",
+    "/modality/15/subcategories/2/items/3/name"
+   ],
+   "note": "'나드주사'(NAD+ 정맥주사) — M16 안 NAD+ 계열 세 번째 항목(NAD+, NAD+ 주사, 나드주사)."
+  },
+  {
+   "status": "I",
+   "pointers": [
+    "/modality/15/subcategories/6/items/5/name",
+    "/modality/15/subcategories/6/items/5/extracted/aftercare/0",
+    "/modality/14/subcategories/3/items/0/name",
+    "/modality/8/products/6/name"
+   ],
+   "note": "'LDM초음파관리'(M16 기타) — LDM 계열 레코드가 원장에 세 곳(M9 제품, M15-4, M16). 비침습 초음파 관리인데 aftercare '주사 부위 압박 수분간' 상용 문장이 붙어 있다."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/15/subcategories/6/items/9/extracted/mechanism",
+    "/modality/15/subcategories/6/items/10/extracted/mechanism"
+   ],
+   "note": "러브핸들주사·셀룰라이트주사 mechanism '포스파티딜콜린, 데옥시콜산 등' — PPC 언급 항목 추가."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/15/subcategories/6/label",
+    "/modality/15/subcategories/6/items/6/name",
+    "/modality/15/subcategories/6/items/8/name"
+   ],
+   "note": "M16 '기타' 하위분류에 호르몬(성장호르몬), 관절 보조(콘드로이틴, '관절염 완화'), 탈모 메조(미녹시딜), 부위별 지방분해(러브핸들·복부슬림·등살) 등 이질적 항목."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/15/subcategories/6/items/12/extracted/mechanism",
+    "/modality/15/subcategories/6/items/13/extracted/mechanism"
+   ],
+   "note": "복부슬림주사·등살주사 mechanism 이 성분 미기재('지방분해 성분으로', '맞춤형 지방분해 성분 적용')(B)."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/15/extracted/mechanism",
+    "/modality/15/extracted/contraindications/absolute/1"
+   ],
+   "note": "M16 모달리티 설명은 정맥 투여 기준(생체이용률 '거의 100%', 경구 '10~30%'). 금기에 'G6PD 결핍증 … 고용량 비타민C' — 항목(고농도C)의 serious 와 대응하는 원문."
+  }
+ ],
+ "expressions": [
+  {
+   "pointer": "/modality/15/subcategories/6/items/3/extracted/indications/primary/4",
+   "text": "허벅지 국소지방",
+   "kinds": [
+    "부위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/15/subcategories/6/items/3/extracted/safety/serious/0",
+   "text": "피부 괴사(과량 주입 시)",
+   "kinds": [
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/15/subcategories/6/items/3/extracted/onset_duration/duration",
+   "text": "2-4주 간격 3-5회",
+   "kinds": [
+    "수량·단위·시간",
+    "범위"
+   ],
+   "note": "duration 칸 시술 계획"
+  },
+  {
+   "pointer": "/modality/15/subcategories/6/items/4/extracted/aftercare/1",
+   "text": "24시간 내 음주 및 사우나 자제",
+   "kinds": [
+    "수량·단위·시간",
+    "부정"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/15/subcategories/6/items/5/detail",
+   "text": "제이시스 · 국소동적미세마사지 · HA 합성 촉진",
+   "kinds": [
+    "시술·제품명"
+   ],
+   "note": "LDM 풀이(국소동적미세마사지)"
+  },
+  {
+   "pointer": "/modality/15/subcategories/6/items/6/extracted/aftercare/0",
+   "text": "정기적인 혈액검사",
+   "kinds": [
+    "수량·단위·시간"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/15/subcategories/6/items/7/detail",
+   "text": "프로작 탈모주입",
+   "kinds": [
+    "시술·제품명"
+   ],
+   "note": "S049-I02"
+  },
+  {
+   "pointer": "/modality/15/subcategories/6/items/8/detail",
+   "text": "관절+피부 보조",
+   "kinds": [
+    "기호",
+    "부위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/15/subcategories/6/items/9/extracted/indications/primary/1",
+   "text": "허리라인 개선 희망자",
+   "kinds": [
+    "조건"
+   ],
+   "note": "적응증 칸의 환자 표현"
+  },
+  {
+   "pointer": "/modality/15/subcategories/6/items/10/extracted/overview",
+   "text": "지방분해효소나 혈관확장제를 주사하여",
+   "kinds": [
+    "조건"
+   ],
+   "note": "대안"
+  },
+  {
+   "pointer": "/modality/15/subcategories/6/items/10/extracted/indications/primary/1",
+   "text": "국소적인 오렌지껍질 피부 개선",
+   "kinds": [
+    "수식"
+   ],
+   "note": "비유 표현"
+  },
+  {
+   "pointer": "/modality/15/subcategories/6/items/12/extracted/aftercare/0",
+   "text": "복대 착용",
+   "kinds": [],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/15/subcategories/6/items/13/extracted/aftercare/0",
+   "text": "꽉 끼는 속옷 피하기",
+   "kinds": [
+    "부정",
+    "수식"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/15/extracted/overview",
+   "text": "'백옥주사(글루타치온)', '신데렐라주사(알파리포산)', '마늘주사(비타민B1)' 등의 이름으로",
+   "kinds": [
+    "시술·제품명",
+    "참조"
+   ],
+   "note": "마케팅명(성분) 쌍"
+  },
+  {
+   "pointer": "/modality/15/extracted/mechanism",
+   "text": "생체이용률(몸이 실제로 사용하는 비율)이 거의 100%에 가깝다",
+   "kinds": [
+    "수량·단위·시간",
+    "수식"
+   ],
+   "note": "근사"
+  },
+  {
+   "pointer": "/modality/15/extracted/mechanism",
+   "text": "경구 복용 시 흡수율이 10~30%에 불과한 비타민C",
+   "kinds": [
+    "수량·단위·시간",
+    "범위",
+    "비교"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/15/extracted/indications/extended/2",
+   "text": "체중 감량 보조 (지방 대사 촉진 성분)",
+   "kinds": [
+    "수식"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/15/extracted/contraindications/absolute/1",
+   "text": "G6PD 결핍증 환자 (고용량 비타민C 투여 시 용혈 위험)",
+   "kinds": [
+    "조건",
+    "가능성·빈도"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/15/extracted/contraindications/relative/1",
+   "text": "당뇨병 환자 (포도당 포함 수액 주의)",
+   "kinds": [
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/15/extracted/safety/serious/0",
+   "text": "아나필락시스 (심각한 전신 알레르기 반응 -- 극히 드묾)",
+   "kinds": [
+    "가능성·빈도",
+    "수식"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/15/extracted/onset_duration/peak",
+   "text": "시술 후 1~3일 뒤 피부 톤 개선 체감",
+   "kinds": [
+    "수량·단위·시간",
+    "범위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/15/extracted/aftercare/0",
+   "text": "주사 부위를 5분 이상 눌러서 지혈",
+   "kinds": [
+    "범위",
+    "수량·단위·시간"
+   ],
+   "note": "항목 상용구 '압박 수분간' 과 대응"
+  }
+ ],
+ "seg_errors": [
+  {
+   "scope": "all",
+   "surface": "복부슬림주사",
+   "issue": "복/NNG 부/NNG 슬/MAG 림/NNG 주사/NNG — '복부'·'슬림' 분해, 부사 오탐",
+   "impact": "부위어 '복부' 소실"
+  },
+  {
+   "scope": "all",
+   "surface": "초회통과효과",
+   "issue": "초/NNB 회/NNB 통과/NNG — '초회(first-pass)'를 단위 명사 두 개로",
+   "impact": "수량 단위 오탐(초·회)"
+  }
+ ],
+ "issues": [
+  {
+   "id": "S049-I01",
+   "status": "I",
+   "pointers": [
+    "/modality/15/subcategories/6/items/3/name",
+    "/modality/15/subcategories/6/items/3/extracted/overview"
+   ],
+   "note": "HP주사(감초주사) 이름 vs 성분 서술(PPC+DCA).",
+   "impact": "성분·안전 정보 채택 전 확인 — 원본 확인 후보"
+  },
+  {
+   "id": "S049-I02",
+   "status": "I",
+   "pointers": [
+    "/modality/15/subcategories/6/items/7/detail",
+    "/modality/15/subcategories/6/items/7/extracted/mechanism"
+   ],
+   "note": "프로락틴/프로작 표기 혼재.",
+   "impact": "물질 식별 불가 — 원본 확인 후보"
+  },
+  {
+   "id": "S049-B01",
+   "status": "B",
+   "pointers": [
+    "/modality/15/subcategories/6/items/12/extracted/mechanism",
+    "/modality/15/subcategories/6/items/13/extracted/mechanism"
+   ],
+   "note": "부위별 지방분해주사 성분 미기재.",
+   "impact": "성분 축 분류 불가"
+  },
+  {
+   "id": "S049-F01",
+   "status": "F",
+   "pointers": [
+    "/modality/15/subcategories/6/items/5",
+    "/modality/15/subcategories/6/items/11"
+   ],
+   "note": "LDM·NAD+ 계열 중복 레코드.",
+   "impact": "개체 병합 후속(S042-F01, S047-F01 과 묶음)"
+  }
+ ]
+}

@@ -1,0 +1,325 @@
+{
+ "segment": "S02",
+ "read_status": "direct_read",
+ "last_read_pointer": "/categories/1/common_concerns/2/a",
+ "expressions": {
+  "/name": [
+   [
+    "필러",
+    "name",
+    ""
+   ]
+  ],
+  "/patient_name": [
+   [
+    "볼륨 필러",
+    "name,effect",
+    "효과(볼륨)+시술명"
+   ]
+  ],
+  "/simple_explanation": [
+   [
+    "피부 아래에 젤 형태의 물질을 넣어서 꺼진 부위를 채우거나 윤곽을 잡아주는 주사입니다.",
+    "sentence",
+    ""
+   ],
+   [
+    "피부 아래에",
+    "site,depth",
+    "층 표현 — 깊이 수치 없음"
+   ],
+   [
+    "젤 형태의 물질",
+    "substance",
+    "물질명 미기재"
+   ],
+   [
+    "꺼진 부위를 채우거나",
+    "concern,effect,site",
+    "「거나」 대안 나열"
+   ],
+   [
+    "윤곽을 잡아주는",
+    "effect",
+    ""
+   ],
+   [
+    "주사",
+    "route",
+    ""
+   ]
+  ],
+  "/how_it_works": [
+   [
+    "우리 피부에 원래 있는 히알루론산(수분을 잡아주는 성분)과 비슷한 젤을 주사로 넣어서 볼륨을 만들어줍니다.",
+    "sentence",
+    ""
+   ],
+   [
+    "히알루론산(수분을 잡아주는 성분)",
+    "substance,paraphrase",
+    ""
+   ],
+   [
+    "히알루론산(수분을 잡아주는 성분)과 비슷한 젤",
+    "substance,comparison",
+    "「비슷한」 — 같은 물질인지 미단정"
+   ],
+   [
+    "볼륨을 만들어줍니다",
+    "effect",
+    ""
+   ],
+   [
+    "팔자주름, 입술, 광대 등에 사용합니다.",
+    "sentence,site",
+    "「등」 열린 목록"
+   ],
+   [
+    "팔자주름",
+    "site,concern",
+    "고민 명칭이 적용 부위 자리에 쓰임"
+   ],
+   [
+    "입술",
+    "site",
+    ""
+   ],
+   [
+    "광대",
+    "site",
+    ""
+   ],
+   [
+    "우리 피부에 원래 있는",
+    "site,course",
+    "내인성 성분이라는 서술 · 별도 읽기 검토(형태소 수식어 대조)로 보충"
+   ]
+  ],
+  "/duration_simple": [
+   [
+    "약 6-18개월 지속됩니다 (제품과 부위에 따라 다름).",
+    "sentence,time,approx,range,quantity,condition",
+    ""
+   ],
+   [
+    "약 6-18개월",
+    "approx,range,quantity",
+    ""
+   ],
+   [
+    "(제품과 부위에 따라 다름)",
+    "condition",
+    "변동 조건 — 제품별·부위별 값 미기재"
+   ]
+  ],
+  "/pain_level": [
+   [
+    "마취 크림을 바르고 시술하여 약간의 압박감 정도",
+    "sensory,degree,approx,condition",
+    ""
+   ],
+   [
+    "마취 크림",
+    "substance",
+    ""
+   ],
+   [
+    "약간의 압박감 정도",
+    "degree,sensory,approx",
+    ""
+   ]
+  ],
+  "/downtime": [
+   [
+    "가벼운 붓기가 2-3일, 멍이 들 수 있으나 일상생활 가능",
+    "adverse,time,range,possibility",
+    ""
+   ],
+   [
+    "가벼운 붓기가 2-3일",
+    "degree,adverse,time,range,quantity",
+    "지속 기간"
+   ],
+   [
+    "멍이 들 수 있으나",
+    "adverse,possibility",
+    ""
+   ],
+   [
+    "일상생활 가능",
+    "possibility",
+    ""
+   ]
+  ],
+  "/common_concerns/0/q": [
+   [
+    "필러가 뭉치거나 울퉁불퉁해질 수 있나요?",
+    "sentence,adverse,possibility",
+    ""
+   ]
+  ],
+  "/common_concerns/0/a": [
+   [
+    "숙련된 의사가 시술하면 매우 드뭅니다.",
+    "sentence,condition,actor,frequency",
+    "빈도의 대상(뭉침·울퉁불퉁) 생략"
+   ],
+   [
+    "숙련된 의사가 시술하면",
+    "condition,actor",
+    ""
+   ],
+   [
+    "매우 드뭅니다",
+    "frequency,degree",
+    "수치 없음"
+   ],
+   [
+    "혹시 발생하더라도 가볍게 마사지하거나, 히알루론산 필러는 녹이는 약이 있어서 교정할 수 있어요.",
+    "sentence,condition,management,possibility",
+    ""
+   ],
+   [
+    "혹시 발생하더라도",
+    "condition,possibility",
+    ""
+   ],
+   [
+    "가볍게 마사지하거나",
+    "degree,management",
+    "「거나」 대안"
+   ],
+   [
+    "히알루론산 필러는",
+    "scope,name",
+    "교정 수단을 히알루론산 필러로 한정"
+   ],
+   [
+    "녹이는 약",
+    "substance",
+    "약 이름 미기재"
+   ],
+   [
+    "교정할 수 있어요",
+    "possibility,management",
+    ""
+   ]
+  ],
+  "/common_concerns/1/q": [
+   [
+    "필러가 얼굴에서 이동하나요?",
+    "sentence,adverse,site",
+    ""
+   ]
+  ],
+  "/common_concerns/1/a": [
+   [
+    "최신 필러는 점성이 높아서 주입한 자리에 잘 머뭅니다.",
+    "sentence,scope,rationale",
+    ""
+   ],
+   [
+    "최신 필러는",
+    "scope",
+    "「최신」 기준 미기재"
+   ],
+   [
+    "점성이 높아서",
+    "degree,rationale",
+    ""
+   ],
+   [
+    "주입한 자리에 잘 머뭅니다",
+    "site,effect",
+    ""
+   ],
+   [
+    "시술 직후 세게 누르지 않으면 됩니다.",
+    "sentence,time,degree,negation,instruction,condition",
+    ""
+   ],
+   [
+    "시술 직후",
+    "time",
+    ""
+   ],
+   [
+    "세게 누르지 않으면",
+    "degree,negation,condition,avoid",
+    ""
+   ]
+  ],
+  "/common_concerns/2/q": [
+   [
+    "필러 맞다가 혈관에 문제가 생길 수 있나요?",
+    "sentence,time,site,adverse,possibility",
+    ""
+   ],
+   [
+    "혈관에 문제",
+    "adverse,site",
+    "문제의 내용 미특정"
+   ]
+  ],
+  "/common_concerns/2/a": [
+   [
+    "매우 드물지만 가능한 위험이므로, 반드시 해부학에 능숙한 전문의에게 시술받으세요.",
+    "sentence,frequency,possibility,instruction,actor",
+    ""
+   ],
+   [
+    "매우 드물지만 가능한 위험",
+    "frequency,degree,possibility,adverse",
+    ""
+   ],
+   [
+    "반드시 해부학에 능숙한 전문의에게 시술받으세요",
+    "instruction,actor",
+    "「반드시」 강한 권고"
+   ],
+   [
+    "응급 대처가 가능한 병원에서 시술받는 것이 중요합니다.",
+    "sentence,emergency,instruction,actor",
+    ""
+   ],
+   [
+    "응급 대처가 가능한 병원",
+    "emergency,actor",
+    ""
+   ]
+  ]
+ },
+ "observations": [
+  [
+   "/how_it_works",
+   "P",
+   "히알루론산은 「과 비슷한 젤」로 비교 대상이며, 필러 성분이 히알루론산이라고 단정하지 않는다. 같은 카테고리 a(/common_concerns/0/a)는 「히알루론산 필러는」으로 하위 종류를 한정해 필러에 다른 종류가 있음을 시사"
+  ],
+  [
+   "/how_it_works",
+   "P",
+   "「팔자주름」은 고민 명칭이 부위 나열(입술·광대)에 함께 쓰였다. 부위/고민 구분은 후속"
+  ],
+  [
+   "/duration_simple",
+   "B",
+   "제품별·부위별 지속 기간 값은 원문에 없다(「따라 다름」만)"
+  ],
+  [
+   "/common_concerns/0/a",
+   "B",
+   "「녹이는 약」 이름 미기재. 「매우 드뭅니다」 수치 없음 — 백분율로 바꾸지 않는다"
+  ],
+  [
+   "/common_concerns/2/a",
+   "B",
+   "혈관 문제의 구체 사건·응급 징후·대처 방법이 기재되지 않음(「응급 대처가 가능한 병원」만)"
+  ],
+  [
+   "/common_concerns/2/q",
+   "F",
+   "「혈관에 문제」가 어떤 사건을 가리키는지는 다른 원장(합병증 등)과 연결해 판단할 후속 과제"
+  ]
+ ]
+}

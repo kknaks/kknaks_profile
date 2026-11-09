@@ -1,0 +1,7519 @@
+{
+ "source": {
+  "path": "orchestration/work/phub-recommend/bronze/phub-ledger/combo-recipes.json",
+  "bytes": 6486,
+  "code_points": 4026,
+  "sha256": "1bb7c309e8ec72768ae9c5db94e1911188be240f4c7d770d54244008aeab0c94",
+  "encoding": "UTF-8",
+  "bom": false,
+  "newlines": 0,
+  "backslash_count": 0,
+  "non_bmp_chars": 0
+ },
+ "span_note": "span = 파일 텍스트의 코드 포인트 [start,end) (JSON 리터럴 전체, 문자열은 따옴표 포함). value_span = 디코딩 문자열이 놓인 코드 포인트 구간(이스케이프 없을 때만; 이 원장은 이스케이프 0). byte_span = UTF-8 바이트 [start,end).",
+ "duplicate_keys": [],
+ "nodes": [
+  {
+   "pointer": "",
+   "parent": null,
+   "key": null,
+   "index": null,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "version",
+    "updated",
+    "description",
+    "recipes"
+   ],
+   "child_count": 4,
+   "span": [
+    0,
+    4026
+   ],
+   "byte_span": [
+    0,
+    6486
+   ],
+   "literal": null,
+   "doc_order": 0,
+   "leaf": false,
+   "path_pattern": "(root)",
+   "segment": "S0"
+  },
+  {
+   "pointer": "/version",
+   "parent": "",
+   "key": "version",
+   "index": null,
+   "key_span": [
+    1,
+    10
+   ],
+   "type": "string",
+   "value": "1.0",
+   "has_escape": false,
+   "value_span": [
+    12,
+    15
+   ],
+   "span": [
+    11,
+    16
+   ],
+   "byte_span": [
+    11,
+    16
+   ],
+   "literal": "\"1.0\"",
+   "doc_order": 1,
+   "leaf": true,
+   "path_pattern": "/version",
+   "segment": "S0"
+  },
+  {
+   "pointer": "/updated",
+   "parent": "",
+   "key": "updated",
+   "index": null,
+   "key_span": [
+    17,
+    26
+   ],
+   "type": "string",
+   "value": "2026-04-04",
+   "has_escape": false,
+   "value_span": [
+    28,
+    38
+   ],
+   "span": [
+    27,
+    39
+   ],
+   "byte_span": [
+    27,
+    39
+   ],
+   "literal": "\"2026-04-04\"",
+   "doc_order": 2,
+   "leaf": true,
+   "path_pattern": "/updated",
+   "segment": "S0"
+  },
+  {
+   "pointer": "/description",
+   "parent": "",
+   "key": "description",
+   "index": null,
+   "key_span": [
+    40,
+    53
+   ],
+   "type": "string",
+   "value": "대표원장급 검증 조합 레시피 — 목적별 프리셋 + 기대 효과 + 후속 프로토콜",
+   "has_escape": false,
+   "value_span": [
+    55,
+    98
+   ],
+   "span": [
+    54,
+    99
+   ],
+   "byte_span": [
+    54,
+    157
+   ],
+   "literal": "\"대표원장급 검증 조합 레시피 — 목적별 프리셋 + 기대 효과 + 후속 프로토콜\"",
+   "doc_order": 3,
+   "leaf": true,
+   "path_pattern": "/description",
+   "segment": "S0"
+  },
+  {
+   "pointer": "/recipes",
+   "parent": "",
+   "key": "recipes",
+   "index": null,
+   "key_span": [
+    100,
+    109
+   ],
+   "type": "array",
+   "child_count": 7,
+   "span": [
+    110,
+    4025
+   ],
+   "byte_span": [
+    168,
+    6485
+   ],
+   "literal": null,
+   "doc_order": 4,
+   "leaf": false,
+   "path_pattern": "/recipes",
+   "segment": "S0"
+  },
+  {
+   "pointer": "/recipes/0",
+   "parent": "/recipes",
+   "key": null,
+   "index": 0,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "id",
+    "name",
+    "subtitle",
+    "goal",
+    "intensity",
+    "procedures",
+    "expectedResults",
+    "patientExplanation",
+    "analogy",
+    "repeatCycle",
+    "followUp"
+   ],
+   "child_count": 11,
+   "span": [
+    111,
+    617
+   ],
+   "byte_span": [
+    169,
+    1003
+   ],
+   "literal": null,
+   "doc_order": 5,
+   "leaf": false,
+   "path_pattern": "/recipes/[]",
+   "segment": "S1"
+  },
+  {
+   "pointer": "/recipes/0/id",
+   "parent": "/recipes/0",
+   "key": "id",
+   "index": null,
+   "key_span": [
+    112,
+    116
+   ],
+   "type": "string",
+   "value": "R1",
+   "has_escape": false,
+   "value_span": [
+    118,
+    120
+   ],
+   "span": [
+    117,
+    121
+   ],
+   "byte_span": [
+    175,
+    179
+   ],
+   "literal": "\"R1\"",
+   "doc_order": 6,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/id",
+   "segment": "S1"
+  },
+  {
+   "pointer": "/recipes/0/name",
+   "parent": "/recipes/0",
+   "key": "name",
+   "index": null,
+   "key_span": [
+    122,
+    128
+   ],
+   "type": "string",
+   "value": "리프팅 기본",
+   "has_escape": false,
+   "value_span": [
+    130,
+    136
+   ],
+   "span": [
+    129,
+    137
+   ],
+   "byte_span": [
+    187,
+    205
+   ],
+   "literal": "\"리프팅 기본\"",
+   "doc_order": 7,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/name",
+   "segment": "S1"
+  },
+  {
+   "pointer": "/recipes/0/subtitle",
+   "parent": "/recipes/0",
+   "key": "subtitle",
+   "index": null,
+   "key_span": [
+    138,
+    148
+   ],
+   "type": "string",
+   "value": "처진 살 올리기 입문",
+   "has_escape": false,
+   "value_span": [
+    150,
+    161
+   ],
+   "span": [
+    149,
+    162
+   ],
+   "byte_span": [
+    217,
+    246
+   ],
+   "literal": "\"처진 살 올리기 입문\"",
+   "doc_order": 8,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/subtitle",
+   "segment": "S1"
+  },
+  {
+   "pointer": "/recipes/0/goal",
+   "parent": "/recipes/0",
+   "key": "goal",
+   "index": null,
+   "key_span": [
+    163,
+    169
+   ],
+   "type": "string",
+   "value": "lifting",
+   "has_escape": false,
+   "value_span": [
+    171,
+    178
+   ],
+   "span": [
+    170,
+    179
+   ],
+   "byte_span": [
+    254,
+    263
+   ],
+   "literal": "\"lifting\"",
+   "doc_order": 9,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/goal",
+   "segment": "S1"
+  },
+  {
+   "pointer": "/recipes/0/intensity",
+   "parent": "/recipes/0",
+   "key": "intensity",
+   "index": null,
+   "key_span": [
+    180,
+    191
+   ],
+   "type": "string",
+   "value": "기본",
+   "has_escape": false,
+   "value_span": [
+    193,
+    195
+   ],
+   "span": [
+    192,
+    196
+   ],
+   "byte_span": [
+    276,
+    284
+   ],
+   "literal": "\"기본\"",
+   "doc_order": 10,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/intensity",
+   "segment": "S1"
+  },
+  {
+   "pointer": "/recipes/0/procedures",
+   "parent": "/recipes/0",
+   "key": "procedures",
+   "index": null,
+   "key_span": [
+    197,
+    209
+   ],
+   "type": "array",
+   "child_count": 2,
+   "span": [
+    210,
+    221
+   ],
+   "byte_span": [
+    298,
+    309
+   ],
+   "literal": null,
+   "doc_order": 11,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/procedures",
+   "segment": "S1"
+  },
+  {
+   "pointer": "/recipes/0/procedures/0",
+   "parent": "/recipes/0/procedures",
+   "key": null,
+   "index": 0,
+   "key_span": null,
+   "type": "string",
+   "value": "M9",
+   "has_escape": false,
+   "value_span": [
+    212,
+    214
+   ],
+   "span": [
+    211,
+    215
+   ],
+   "byte_span": [
+    299,
+    303
+   ],
+   "literal": "\"M9\"",
+   "doc_order": 12,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/procedures/[]",
+   "segment": "S1"
+  },
+  {
+   "pointer": "/recipes/0/procedures/1",
+   "parent": "/recipes/0/procedures",
+   "key": null,
+   "index": 1,
+   "key_span": null,
+   "type": "string",
+   "value": "M1",
+   "has_escape": false,
+   "value_span": [
+    217,
+    219
+   ],
+   "span": [
+    216,
+    220
+   ],
+   "byte_span": [
+    304,
+    308
+   ],
+   "literal": "\"M1\"",
+   "doc_order": 13,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/procedures/[]",
+   "segment": "S1"
+  },
+  {
+   "pointer": "/recipes/0/expectedResults",
+   "parent": "/recipes/0",
+   "key": "expectedResults",
+   "index": null,
+   "key_span": [
+    222,
+    239
+   ],
+   "type": "string",
+   "value": "턱선 정리 + 볼처짐 개선. 자연스러운 리프팅. 주변에서 '좀 쉬었나?' 수준",
+   "has_escape": false,
+   "value_span": [
+    241,
+    284
+   ],
+   "span": [
+    240,
+    285
+   ],
+   "byte_span": [
+    328,
+    427
+   ],
+   "literal": "\"턱선 정리 + 볼처짐 개선. 자연스러운 리프팅. 주변에서 '좀 쉬었나?' 수준\"",
+   "doc_order": 14,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/expectedResults",
+   "segment": "S1"
+  },
+  {
+   "pointer": "/recipes/0/patientExplanation",
+   "parent": "/recipes/0",
+   "key": "patientExplanation",
+   "index": null,
+   "key_span": [
+    286,
+    306
+   ],
+   "type": "string",
+   "value": "초음파로 피부 아래 콜라겐을 조여서 당기고, 보톡스로 아래로 당기는 근육을 쉬게 해서 올라간 효과를 오래 유지시킵니다.",
+   "has_escape": false,
+   "value_span": [
+    308,
+    374
+   ],
+   "span": [
+    307,
+    375
+   ],
+   "byte_span": [
+    449,
+    615
+   ],
+   "literal": "\"초음파로 피부 아래 콜라겐을 조여서 당기고, 보톡스로 아래로 당기는 근육을 쉬게 해서 올라간 효과를 오래 유지시킵니다.\"",
+   "doc_order": 15,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/patientExplanation",
+   "segment": "S1"
+  },
+  {
+   "pointer": "/recipes/0/analogy",
+   "parent": "/recipes/0",
+   "key": "analogy",
+   "index": null,
+   "key_span": [
+    376,
+    385
+   ],
+   "type": "string",
+   "value": "HIFU = 옷감을 다림질해서 팽팽하게, 보톡스 = 늘어진 고무줄을 리셋",
+   "has_escape": false,
+   "value_span": [
+    387,
+    427
+   ],
+   "span": [
+    386,
+    428
+   ],
+   "byte_span": [
+    626,
+    716
+   ],
+   "literal": "\"HIFU = 옷감을 다림질해서 팽팽하게, 보톡스 = 늘어진 고무줄을 리셋\"",
+   "doc_order": 16,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/analogy",
+   "segment": "S1"
+  },
+  {
+   "pointer": "/recipes/0/repeatCycle",
+   "parent": "/recipes/0",
+   "key": "repeatCycle",
+   "index": null,
+   "key_span": [
+    429,
+    442
+   ],
+   "type": "string",
+   "value": "3~6개월 간격 반복",
+   "has_escape": false,
+   "value_span": [
+    444,
+    455
+   ],
+   "span": [
+    443,
+    456
+   ],
+   "byte_span": [
+    731,
+    756
+   ],
+   "literal": "\"3~6개월 간격 반복\"",
+   "doc_order": 17,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/repeatCycle",
+   "segment": "S1"
+  },
+  {
+   "pointer": "/recipes/0/followUp",
+   "parent": "/recipes/0",
+   "key": "followUp",
+   "index": null,
+   "key_span": [
+    457,
+    467
+   ],
+   "type": "array",
+   "child_count": 3,
+   "span": [
+    468,
+    616
+   ],
+   "byte_span": [
+    768,
+    1002
+   ],
+   "literal": null,
+   "doc_order": 18,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp",
+   "segment": "S1"
+  },
+  {
+   "pointer": "/recipes/0/followUp/0",
+   "parent": "/recipes/0/followUp",
+   "key": null,
+   "index": 0,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "week",
+    "action"
+   ],
+   "child_count": 2,
+   "span": [
+    469,
+    517
+   ],
+   "byte_span": [
+    769,
+    845
+   ],
+   "literal": null,
+   "doc_order": 19,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp/[]",
+   "segment": "S1"
+  },
+  {
+   "pointer": "/recipes/0/followUp/0/week",
+   "parent": "/recipes/0/followUp/0",
+   "key": "week",
+   "index": null,
+   "key_span": [
+    470,
+    476
+   ],
+   "type": "integer",
+   "value": 4,
+   "span": [
+    477,
+    478
+   ],
+   "byte_span": [
+    777,
+    778
+   ],
+   "literal": "4",
+   "doc_order": 20,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/week",
+   "segment": "S1"
+  },
+  {
+   "pointer": "/recipes/0/followUp/0/action",
+   "parent": "/recipes/0/followUp/0",
+   "key": "action",
+   "index": null,
+   "key_span": [
+    479,
+    487
+   ],
+   "type": "string",
+   "value": "경과 확인. 효과 부족 부위 추가 HIFU 가능",
+   "has_escape": false,
+   "value_span": [
+    489,
+    515
+   ],
+   "span": [
+    488,
+    516
+   ],
+   "byte_span": [
+    788,
+    844
+   ],
+   "literal": "\"경과 확인. 효과 부족 부위 추가 HIFU 가능\"",
+   "doc_order": 21,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/action",
+   "segment": "S1"
+  },
+  {
+   "pointer": "/recipes/0/followUp/1",
+   "parent": "/recipes/0/followUp",
+   "key": null,
+   "index": 1,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "week",
+    "action"
+   ],
+   "child_count": 2,
+   "span": [
+    518,
+    558
+   ],
+   "byte_span": [
+    846,
+    908
+   ],
+   "literal": null,
+   "doc_order": 22,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp/[]",
+   "segment": "S1"
+  },
+  {
+   "pointer": "/recipes/0/followUp/1/week",
+   "parent": "/recipes/0/followUp/1",
+   "key": "week",
+   "index": null,
+   "key_span": [
+    519,
+    525
+   ],
+   "type": "integer",
+   "value": 12,
+   "span": [
+    526,
+    528
+   ],
+   "byte_span": [
+    854,
+    856
+   ],
+   "literal": "12",
+   "doc_order": 23,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/week",
+   "segment": "S1"
+  },
+  {
+   "pointer": "/recipes/0/followUp/1/action",
+   "parent": "/recipes/0/followUp/1",
+   "key": "action",
+   "index": null,
+   "key_span": [
+    529,
+    537
+   ],
+   "type": "string",
+   "value": "보톡스 터치업 (효과 감소 시)",
+   "has_escape": false,
+   "value_span": [
+    539,
+    556
+   ],
+   "span": [
+    538,
+    557
+   ],
+   "byte_span": [
+    866,
+    907
+   ],
+   "literal": "\"보톡스 터치업 (효과 감소 시)\"",
+   "doc_order": 24,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/action",
+   "segment": "S1"
+  },
+  {
+   "pointer": "/recipes/0/followUp/2",
+   "parent": "/recipes/0/followUp",
+   "key": null,
+   "index": 2,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "week",
+    "action"
+   ],
+   "child_count": 2,
+   "span": [
+    559,
+    615
+   ],
+   "byte_span": [
+    909,
+    1001
+   ],
+   "literal": null,
+   "doc_order": 25,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp/[]",
+   "segment": "S1"
+  },
+  {
+   "pointer": "/recipes/0/followUp/2/week",
+   "parent": "/recipes/0/followUp/2",
+   "key": "week",
+   "index": null,
+   "key_span": [
+    560,
+    566
+   ],
+   "type": "integer",
+   "value": 24,
+   "span": [
+    567,
+    569
+   ],
+   "byte_span": [
+    917,
+    919
+   ],
+   "literal": "24",
+   "doc_order": 26,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/week",
+   "segment": "S1"
+  },
+  {
+   "pointer": "/recipes/0/followUp/2/action",
+   "parent": "/recipes/0/followUp/2",
+   "key": "action",
+   "index": null,
+   "key_span": [
+    570,
+    578
+   ],
+   "type": "string",
+   "value": "리프팅 유지 시술 (HIFU 반복 or 실리프팅 업그레이드)",
+   "has_escape": false,
+   "value_span": [
+    580,
+    613
+   ],
+   "span": [
+    579,
+    614
+   ],
+   "byte_span": [
+    929,
+    1000
+   ],
+   "literal": "\"리프팅 유지 시술 (HIFU 반복 or 실리프팅 업그레이드)\"",
+   "doc_order": 27,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/action",
+   "segment": "S1"
+  },
+  {
+   "pointer": "/recipes/1",
+   "parent": "/recipes",
+   "key": null,
+   "index": 1,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "id",
+    "name",
+    "subtitle",
+    "goal",
+    "intensity",
+    "procedures",
+    "expectedResults",
+    "patientExplanation",
+    "analogy",
+    "repeatCycle",
+    "followUp"
+   ],
+   "child_count": 11,
+   "span": [
+    618,
+    1248
+   ],
+   "byte_span": [
+    1004,
+    2029
+   ],
+   "literal": null,
+   "doc_order": 28,
+   "leaf": false,
+   "path_pattern": "/recipes/[]",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/1/id",
+   "parent": "/recipes/1",
+   "key": "id",
+   "index": null,
+   "key_span": [
+    619,
+    623
+   ],
+   "type": "string",
+   "value": "R2",
+   "has_escape": false,
+   "value_span": [
+    625,
+    627
+   ],
+   "span": [
+    624,
+    628
+   ],
+   "byte_span": [
+    1010,
+    1014
+   ],
+   "literal": "\"R2\"",
+   "doc_order": 29,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/id",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/1/name",
+   "parent": "/recipes/1",
+   "key": "name",
+   "index": null,
+   "key_span": [
+    629,
+    635
+   ],
+   "type": "string",
+   "value": "리프팅 풀패키지",
+   "has_escape": false,
+   "value_span": [
+    637,
+    645
+   ],
+   "span": [
+    636,
+    646
+   ],
+   "byte_span": [
+    1022,
+    1046
+   ],
+   "literal": "\"리프팅 풀패키지\"",
+   "doc_order": 30,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/name",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/1/subtitle",
+   "parent": "/recipes/1",
+   "key": "subtitle",
+   "index": null,
+   "key_span": [
+    647,
+    657
+   ],
+   "type": "string",
+   "value": "확실한 리프팅 + 볼륨 복원",
+   "has_escape": false,
+   "value_span": [
+    659,
+    674
+   ],
+   "span": [
+    658,
+    675
+   ],
+   "byte_span": [
+    1058,
+    1095
+   ],
+   "literal": "\"확실한 리프팅 + 볼륨 복원\"",
+   "doc_order": 31,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/subtitle",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/1/goal",
+   "parent": "/recipes/1",
+   "key": "goal",
+   "index": null,
+   "key_span": [
+    676,
+    682
+   ],
+   "type": "string",
+   "value": "lifting",
+   "has_escape": false,
+   "value_span": [
+    684,
+    691
+   ],
+   "span": [
+    683,
+    692
+   ],
+   "byte_span": [
+    1103,
+    1112
+   ],
+   "literal": "\"lifting\"",
+   "doc_order": 32,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/goal",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/1/intensity",
+   "parent": "/recipes/1",
+   "key": "intensity",
+   "index": null,
+   "key_span": [
+    693,
+    704
+   ],
+   "type": "string",
+   "value": "풀패키지",
+   "has_escape": false,
+   "value_span": [
+    706,
+    710
+   ],
+   "span": [
+    705,
+    711
+   ],
+   "byte_span": [
+    1125,
+    1139
+   ],
+   "literal": "\"풀패키지\"",
+   "doc_order": 33,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/intensity",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/1/procedures",
+   "parent": "/recipes/1",
+   "key": "procedures",
+   "index": null,
+   "key_span": [
+    712,
+    724
+   ],
+   "type": "array",
+   "child_count": 4,
+   "span": [
+    725,
+    746
+   ],
+   "byte_span": [
+    1153,
+    1174
+   ],
+   "literal": null,
+   "doc_order": 34,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/procedures",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/1/procedures/0",
+   "parent": "/recipes/1/procedures",
+   "key": null,
+   "index": 0,
+   "key_span": null,
+   "type": "string",
+   "value": "M7",
+   "has_escape": false,
+   "value_span": [
+    727,
+    729
+   ],
+   "span": [
+    726,
+    730
+   ],
+   "byte_span": [
+    1154,
+    1158
+   ],
+   "literal": "\"M7\"",
+   "doc_order": 35,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/procedures/[]",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/1/procedures/1",
+   "parent": "/recipes/1/procedures",
+   "key": null,
+   "index": 1,
+   "key_span": null,
+   "type": "string",
+   "value": "M9",
+   "has_escape": false,
+   "value_span": [
+    732,
+    734
+   ],
+   "span": [
+    731,
+    735
+   ],
+   "byte_span": [
+    1159,
+    1163
+   ],
+   "literal": "\"M9\"",
+   "doc_order": 36,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/procedures/[]",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/1/procedures/2",
+   "parent": "/recipes/1/procedures",
+   "key": null,
+   "index": 2,
+   "key_span": null,
+   "type": "string",
+   "value": "M2",
+   "has_escape": false,
+   "value_span": [
+    737,
+    739
+   ],
+   "span": [
+    736,
+    740
+   ],
+   "byte_span": [
+    1164,
+    1168
+   ],
+   "literal": "\"M2\"",
+   "doc_order": 37,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/procedures/[]",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/1/procedures/3",
+   "parent": "/recipes/1/procedures",
+   "key": null,
+   "index": 3,
+   "key_span": null,
+   "type": "string",
+   "value": "M1",
+   "has_escape": false,
+   "value_span": [
+    742,
+    744
+   ],
+   "span": [
+    741,
+    745
+   ],
+   "byte_span": [
+    1169,
+    1173
+   ],
+   "literal": "\"M1\"",
+   "doc_order": 38,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/procedures/[]",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/1/expectedResults",
+   "parent": "/recipes/1",
+   "key": "expectedResults",
+   "index": null,
+   "key_span": [
+    747,
+    764
+   ],
+   "type": "string",
+   "value": "확실한 턱선 + 볼/관자놀이 볼륨 복원 + 주름 개선. '5살 어려 보이는' 수준",
+   "has_escape": false,
+   "value_span": [
+    766,
+    811
+   ],
+   "span": [
+    765,
+    812
+   ],
+   "byte_span": [
+    1193,
+    1292
+   ],
+   "literal": "\"확실한 턱선 + 볼/관자놀이 볼륨 복원 + 주름 개선. '5살 어려 보이는' 수준\"",
+   "doc_order": 39,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/expectedResults",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/1/patientExplanation",
+   "parent": "/recipes/1",
+   "key": "patientExplanation",
+   "index": null,
+   "key_span": [
+    813,
+    833
+   ],
+   "type": "string",
+   "value": "실로 처진 뼈대를 올리고(텐트 기둥), 초음파로 주변을 단단하게 고정한 뒤, 꺼진 곳은 필러로 채우고(쿠션), 주름 잡는 근육은 보톡스로 쉬게 합니다.",
+   "has_escape": false,
+   "value_span": [
+    835,
+    919
+   ],
+   "span": [
+    834,
+    920
+   ],
+   "byte_span": [
+    1314,
+    1514
+   ],
+   "literal": "\"실로 처진 뼈대를 올리고(텐트 기둥), 초음파로 주변을 단단하게 고정한 뒤, 꺼진 곳은 필러로 채우고(쿠션), 주름 잡는 근육은 보톡스로 쉬게 합니다.\"",
+   "doc_order": 40,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/patientExplanation",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/1/analogy",
+   "parent": "/recipes/1",
+   "key": "analogy",
+   "index": null,
+   "key_span": [
+    921,
+    930
+   ],
+   "type": "string",
+   "value": "실 = 텐트 기둥 세우기, HIFU = 천을 팽팽하게, 필러 = 쿠션 넣기, 보톡스 = 찡그리는 습관 리셋",
+   "has_escape": false,
+   "value_span": [
+    932,
+    991
+   ],
+   "span": [
+    931,
+    992
+   ],
+   "byte_span": [
+    1525,
+    1648
+   ],
+   "literal": "\"실 = 텐트 기둥 세우기, HIFU = 천을 팽팽하게, 필러 = 쿠션 넣기, 보톡스 = 찡그리는 습관 리셋\"",
+   "doc_order": 41,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/analogy",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/1/repeatCycle",
+   "parent": "/recipes/1",
+   "key": "repeatCycle",
+   "index": null,
+   "key_span": [
+    993,
+    1006
+   ],
+   "type": "string",
+   "value": "실리프팅 12개월, HIFU 6개월, 보톡스 3~4개월, 필러 6~12개월",
+   "has_escape": false,
+   "value_span": [
+    1008,
+    1049
+   ],
+   "span": [
+    1007,
+    1050
+   ],
+   "byte_span": [
+    1663,
+    1740
+   ],
+   "literal": "\"실리프팅 12개월, HIFU 6개월, 보톡스 3~4개월, 필러 6~12개월\"",
+   "doc_order": 42,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/repeatCycle",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/1/followUp",
+   "parent": "/recipes/1",
+   "key": "followUp",
+   "index": null,
+   "key_span": [
+    1051,
+    1061
+   ],
+   "type": "array",
+   "child_count": 5,
+   "span": [
+    1062,
+    1247
+   ],
+   "byte_span": [
+    1752,
+    2028
+   ],
+   "literal": null,
+   "doc_order": 43,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/1/followUp/0",
+   "parent": "/recipes/1/followUp",
+   "key": null,
+   "index": 0,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "week",
+    "action"
+   ],
+   "child_count": 2,
+   "span": [
+    1063,
+    1105
+   ],
+   "byte_span": [
+    1753,
+    1822
+   ],
+   "literal": null,
+   "doc_order": 44,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp/[]",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/1/followUp/0/week",
+   "parent": "/recipes/1/followUp/0",
+   "key": "week",
+   "index": null,
+   "key_span": [
+    1064,
+    1070
+   ],
+   "type": "integer",
+   "value": 2,
+   "span": [
+    1071,
+    1072
+   ],
+   "byte_span": [
+    1761,
+    1762
+   ],
+   "literal": "2",
+   "doc_order": 45,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/week",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/1/followUp/0/action",
+   "parent": "/recipes/1/followUp/0",
+   "key": "action",
+   "index": null,
+   "key_span": [
+    1073,
+    1081
+   ],
+   "type": "string",
+   "value": "부종 완화 확인. 실 위치·대칭 체크",
+   "has_escape": false,
+   "value_span": [
+    1083,
+    1103
+   ],
+   "span": [
+    1082,
+    1104
+   ],
+   "byte_span": [
+    1772,
+    1821
+   ],
+   "literal": "\"부종 완화 확인. 실 위치·대칭 체크\"",
+   "doc_order": 46,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/action",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/1/followUp/1",
+   "parent": "/recipes/1/followUp",
+   "key": null,
+   "index": 1,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "week",
+    "action"
+   ],
+   "child_count": 2,
+   "span": [
+    1106,
+    1146
+   ],
+   "byte_span": [
+    1823,
+    1889
+   ],
+   "literal": null,
+   "doc_order": 47,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp/[]",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/1/followUp/1/week",
+   "parent": "/recipes/1/followUp/1",
+   "key": "week",
+   "index": null,
+   "key_span": [
+    1107,
+    1113
+   ],
+   "type": "integer",
+   "value": 6,
+   "span": [
+    1114,
+    1115
+   ],
+   "byte_span": [
+    1831,
+    1832
+   ],
+   "literal": "6",
+   "doc_order": 48,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/week",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/1/followUp/1/action",
+   "parent": "/recipes/1/followUp/1",
+   "key": "action",
+   "index": null,
+   "key_span": [
+    1116,
+    1124
+   ],
+   "type": "string",
+   "value": "필러 안착 확인. 부족하면 터치업",
+   "has_escape": false,
+   "value_span": [
+    1126,
+    1144
+   ],
+   "span": [
+    1125,
+    1145
+   ],
+   "byte_span": [
+    1842,
+    1888
+   ],
+   "literal": "\"필러 안착 확인. 부족하면 터치업\"",
+   "doc_order": 49,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/action",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/1/followUp/2",
+   "parent": "/recipes/1/followUp",
+   "key": null,
+   "index": 2,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "week",
+    "action"
+   ],
+   "child_count": 2,
+   "span": [
+    1147,
+    1177
+   ],
+   "byte_span": [
+    1890,
+    1932
+   ],
+   "literal": null,
+   "doc_order": 50,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp/[]",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/1/followUp/2/week",
+   "parent": "/recipes/1/followUp/2",
+   "key": "week",
+   "index": null,
+   "key_span": [
+    1148,
+    1154
+   ],
+   "type": "integer",
+   "value": 16,
+   "span": [
+    1155,
+    1157
+   ],
+   "byte_span": [
+    1898,
+    1900
+   ],
+   "literal": "16",
+   "doc_order": 51,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/week",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/1/followUp/2/action",
+   "parent": "/recipes/1/followUp/2",
+   "key": "action",
+   "index": null,
+   "key_span": [
+    1158,
+    1166
+   ],
+   "type": "string",
+   "value": "보톡스 재시술",
+   "has_escape": false,
+   "value_span": [
+    1168,
+    1175
+   ],
+   "span": [
+    1167,
+    1176
+   ],
+   "byte_span": [
+    1910,
+    1931
+   ],
+   "literal": "\"보톡스 재시술\"",
+   "doc_order": 52,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/action",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/1/followUp/3",
+   "parent": "/recipes/1/followUp",
+   "key": null,
+   "index": 3,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "week",
+    "action"
+   ],
+   "child_count": 2,
+   "span": [
+    1178,
+    1211
+   ],
+   "byte_span": [
+    1933,
+    1974
+   ],
+   "literal": null,
+   "doc_order": 53,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp/[]",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/1/followUp/3/week",
+   "parent": "/recipes/1/followUp/3",
+   "key": "week",
+   "index": null,
+   "key_span": [
+    1179,
+    1185
+   ],
+   "type": "integer",
+   "value": 24,
+   "span": [
+    1186,
+    1188
+   ],
+   "byte_span": [
+    1941,
+    1943
+   ],
+   "literal": "24",
+   "doc_order": 54,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/week",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/1/followUp/3/action",
+   "parent": "/recipes/1/followUp/3",
+   "key": "action",
+   "index": null,
+   "key_span": [
+    1189,
+    1197
+   ],
+   "type": "string",
+   "value": "HIFU 유지 시술",
+   "has_escape": false,
+   "value_span": [
+    1199,
+    1209
+   ],
+   "span": [
+    1198,
+    1210
+   ],
+   "byte_span": [
+    1953,
+    1973
+   ],
+   "literal": "\"HIFU 유지 시술\"",
+   "doc_order": 55,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/action",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/1/followUp/4",
+   "parent": "/recipes/1/followUp",
+   "key": null,
+   "index": 4,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "week",
+    "action"
+   ],
+   "child_count": 2,
+   "span": [
+    1212,
+    1246
+   ],
+   "byte_span": [
+    1975,
+    2027
+   ],
+   "literal": null,
+   "doc_order": 56,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp/[]",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/1/followUp/4/week",
+   "parent": "/recipes/1/followUp/4",
+   "key": "week",
+   "index": null,
+   "key_span": [
+    1213,
+    1219
+   ],
+   "type": "integer",
+   "value": 52,
+   "span": [
+    1220,
+    1222
+   ],
+   "byte_span": [
+    1983,
+    1985
+   ],
+   "literal": "52",
+   "doc_order": 57,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/week",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/1/followUp/4/action",
+   "parent": "/recipes/1/followUp/4",
+   "key": "action",
+   "index": null,
+   "key_span": [
+    1223,
+    1231
+   ],
+   "type": "string",
+   "value": "실리프팅 재시술 검토",
+   "has_escape": false,
+   "value_span": [
+    1233,
+    1244
+   ],
+   "span": [
+    1232,
+    1245
+   ],
+   "byte_span": [
+    1995,
+    2026
+   ],
+   "literal": "\"실리프팅 재시술 검토\"",
+   "doc_order": 58,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/action",
+   "segment": "S2"
+  },
+  {
+   "pointer": "/recipes/2",
+   "parent": "/recipes",
+   "key": null,
+   "index": 2,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "id",
+    "name",
+    "subtitle",
+    "goal",
+    "intensity",
+    "procedures",
+    "expectedResults",
+    "patientExplanation",
+    "analogy",
+    "repeatCycle",
+    "followUp"
+   ],
+   "child_count": 11,
+   "span": [
+    1249,
+    1850
+   ],
+   "byte_span": [
+    2030,
+    3002
+   ],
+   "literal": null,
+   "doc_order": 59,
+   "leaf": false,
+   "path_pattern": "/recipes/[]",
+   "segment": "S3"
+  },
+  {
+   "pointer": "/recipes/2/id",
+   "parent": "/recipes/2",
+   "key": "id",
+   "index": null,
+   "key_span": [
+    1250,
+    1254
+   ],
+   "type": "string",
+   "value": "R3",
+   "has_escape": false,
+   "value_span": [
+    1256,
+    1258
+   ],
+   "span": [
+    1255,
+    1259
+   ],
+   "byte_span": [
+    2036,
+    2040
+   ],
+   "literal": "\"R3\"",
+   "doc_order": 60,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/id",
+   "segment": "S3"
+  },
+  {
+   "pointer": "/recipes/2/name",
+   "parent": "/recipes/2",
+   "key": "name",
+   "index": null,
+   "key_span": [
+    1260,
+    1266
+   ],
+   "type": "string",
+   "value": "피부 재생 골든루틴",
+   "has_escape": false,
+   "value_span": [
+    1268,
+    1278
+   ],
+   "span": [
+    1267,
+    1279
+   ],
+   "byte_span": [
+    2048,
+    2076
+   ],
+   "literal": "\"피부 재생 골든루틴\"",
+   "doc_order": 61,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/name",
+   "segment": "S3"
+  },
+  {
+   "pointer": "/recipes/2/subtitle",
+   "parent": "/recipes/2",
+   "key": "subtitle",
+   "index": null,
+   "key_span": [
+    1280,
+    1290
+   ],
+   "type": "string",
+   "value": "MTS + PRP + 스킨부스터",
+   "has_escape": false,
+   "value_span": [
+    1292,
+    1309
+   ],
+   "span": [
+    1291,
+    1310
+   ],
+   "byte_span": [
+    2088,
+    2117
+   ],
+   "literal": "\"MTS + PRP + 스킨부스터\"",
+   "doc_order": 62,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/subtitle",
+   "segment": "S3"
+  },
+  {
+   "pointer": "/recipes/2/goal",
+   "parent": "/recipes/2",
+   "key": "goal",
+   "index": null,
+   "key_span": [
+    1311,
+    1317
+   ],
+   "type": "string",
+   "value": "regeneration",
+   "has_escape": false,
+   "value_span": [
+    1319,
+    1331
+   ],
+   "span": [
+    1318,
+    1332
+   ],
+   "byte_span": [
+    2125,
+    2139
+   ],
+   "literal": "\"regeneration\"",
+   "doc_order": 63,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/goal",
+   "segment": "S3"
+  },
+  {
+   "pointer": "/recipes/2/intensity",
+   "parent": "/recipes/2",
+   "key": "intensity",
+   "index": null,
+   "key_span": [
+    1333,
+    1344
+   ],
+   "type": "string",
+   "value": "표준",
+   "has_escape": false,
+   "value_span": [
+    1346,
+    1348
+   ],
+   "span": [
+    1345,
+    1349
+   ],
+   "byte_span": [
+    2152,
+    2160
+   ],
+   "literal": "\"표준\"",
+   "doc_order": 64,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/intensity",
+   "segment": "S3"
+  },
+  {
+   "pointer": "/recipes/2/procedures",
+   "parent": "/recipes/2",
+   "key": "procedures",
+   "index": null,
+   "key_span": [
+    1350,
+    1362
+   ],
+   "type": "array",
+   "child_count": 3,
+   "span": [
+    1363,
+    1380
+   ],
+   "byte_span": [
+    2174,
+    2191
+   ],
+   "literal": null,
+   "doc_order": 65,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/procedures",
+   "segment": "S3"
+  },
+  {
+   "pointer": "/recipes/2/procedures/0",
+   "parent": "/recipes/2/procedures",
+   "key": null,
+   "index": 0,
+   "key_span": null,
+   "type": "string",
+   "value": "M12",
+   "has_escape": false,
+   "value_span": [
+    1365,
+    1368
+   ],
+   "span": [
+    1364,
+    1369
+   ],
+   "byte_span": [
+    2175,
+    2180
+   ],
+   "literal": "\"M12\"",
+   "doc_order": 66,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/procedures/[]",
+   "segment": "S3"
+  },
+  {
+   "pointer": "/recipes/2/procedures/1",
+   "parent": "/recipes/2/procedures",
+   "key": null,
+   "index": 1,
+   "key_span": null,
+   "type": "string",
+   "value": "M5",
+   "has_escape": false,
+   "value_span": [
+    1371,
+    1373
+   ],
+   "span": [
+    1370,
+    1374
+   ],
+   "byte_span": [
+    2181,
+    2185
+   ],
+   "literal": "\"M5\"",
+   "doc_order": 67,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/procedures/[]",
+   "segment": "S3"
+  },
+  {
+   "pointer": "/recipes/2/procedures/2",
+   "parent": "/recipes/2/procedures",
+   "key": null,
+   "index": 2,
+   "key_span": null,
+   "type": "string",
+   "value": "M4",
+   "has_escape": false,
+   "value_span": [
+    1376,
+    1378
+   ],
+   "span": [
+    1375,
+    1379
+   ],
+   "byte_span": [
+    2186,
+    2190
+   ],
+   "literal": "\"M4\"",
+   "doc_order": 68,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/procedures/[]",
+   "segment": "S3"
+  },
+  {
+   "pointer": "/recipes/2/expectedResults",
+   "parent": "/recipes/2",
+   "key": "expectedResults",
+   "index": null,
+   "key_span": [
+    1381,
+    1398
+   ],
+   "type": "string",
+   "value": "피부결 개선 + 톤 균일 + 잔주름 완화 + 탄력 향상. 3~5회 반복 시 확연한 차이",
+   "has_escape": false,
+   "value_span": [
+    1400,
+    1448
+   ],
+   "span": [
+    1399,
+    1449
+   ],
+   "byte_span": [
+    2210,
+    2312
+   ],
+   "literal": "\"피부결 개선 + 톤 균일 + 잔주름 완화 + 탄력 향상. 3~5회 반복 시 확연한 차이\"",
+   "doc_order": 69,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/expectedResults",
+   "segment": "S3"
+  },
+  {
+   "pointer": "/recipes/2/patientExplanation",
+   "parent": "/recipes/2",
+   "key": "patientExplanation",
+   "index": null,
+   "key_span": [
+    1450,
+    1470
+   ],
+   "type": "string",
+   "value": "미세 바늘로 피부에 수천 개의 아주 작은 통로를 만들고, 거기에 본인 피의 성장인자(PRP)와 수분·영양 성분(스킨부스터)을 넣어서 피부가 스스로 재생하게 만듭니다.",
+   "has_escape": false,
+   "value_span": [
+    1472,
+    1564
+   ],
+   "span": [
+    1471,
+    1565
+   ],
+   "byte_span": [
+    2334,
+    2555
+   ],
+   "literal": "\"미세 바늘로 피부에 수천 개의 아주 작은 통로를 만들고, 거기에 본인 피의 성장인자(PRP)와 수분·영양 성분(스킨부스터)을 넣어서 피부가 스스로 재생하게 만듭니다.\"",
+   "doc_order": 70,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/patientExplanation",
+   "segment": "S3"
+  },
+  {
+   "pointer": "/recipes/2/analogy",
+   "parent": "/recipes/2",
+   "key": "analogy",
+   "index": null,
+   "key_span": [
+    1566,
+    1575
+   ],
+   "type": "string",
+   "value": "MTS = 밭에 씨앗구멍 파기, PRP = 비료 뿌리기, 스킨부스터 = 물 주기",
+   "has_escape": false,
+   "value_span": [
+    1577,
+    1621
+   ],
+   "span": [
+    1576,
+    1622
+   ],
+   "byte_span": [
+    2566,
+    2654
+   ],
+   "literal": "\"MTS = 밭에 씨앗구멍 파기, PRP = 비료 뿌리기, 스킨부스터 = 물 주기\"",
+   "doc_order": 71,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/analogy",
+   "segment": "S3"
+  },
+  {
+   "pointer": "/recipes/2/repeatCycle",
+   "parent": "/recipes/2",
+   "key": "repeatCycle",
+   "index": null,
+   "key_span": [
+    1623,
+    1636
+   ],
+   "type": "string",
+   "value": "2~4주 간격, 총 3~5회가 1클",
+   "has_escape": false,
+   "value_span": [
+    1638,
+    1657
+   ],
+   "span": [
+    1637,
+    1658
+   ],
+   "byte_span": [
+    2669,
+    2704
+   ],
+   "literal": "\"2~4주 간격, 총 3~5회가 1클\"",
+   "doc_order": 72,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/repeatCycle",
+   "segment": "S3"
+  },
+  {
+   "pointer": "/recipes/2/followUp",
+   "parent": "/recipes/2",
+   "key": "followUp",
+   "index": null,
+   "key_span": [
+    1659,
+    1669
+   ],
+   "type": "array",
+   "child_count": 4,
+   "span": [
+    1670,
+    1849
+   ],
+   "byte_span": [
+    2716,
+    3001
+   ],
+   "literal": null,
+   "doc_order": 73,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp",
+   "segment": "S3"
+  },
+  {
+   "pointer": "/recipes/2/followUp/0",
+   "parent": "/recipes/2/followUp",
+   "key": null,
+   "index": 0,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "week",
+    "action"
+   ],
+   "child_count": 2,
+   "span": [
+    1671,
+    1709
+   ],
+   "byte_span": [
+    2717,
+    2775
+   ],
+   "literal": null,
+   "doc_order": 74,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp/[]",
+   "segment": "S3"
+  },
+  {
+   "pointer": "/recipes/2/followUp/0/week",
+   "parent": "/recipes/2/followUp/0",
+   "key": "week",
+   "index": null,
+   "key_span": [
+    1672,
+    1678
+   ],
+   "type": "integer",
+   "value": 3,
+   "span": [
+    1679,
+    1680
+   ],
+   "byte_span": [
+    2725,
+    2726
+   ],
+   "literal": "3",
+   "doc_order": 75,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/week",
+   "segment": "S3"
+  },
+  {
+   "pointer": "/recipes/2/followUp/0/action",
+   "parent": "/recipes/2/followUp/0",
+   "key": "action",
+   "index": null,
+   "key_span": [
+    1681,
+    1689
+   ],
+   "type": "string",
+   "value": "2회차 시술 (동일 프로토콜)",
+   "has_escape": false,
+   "value_span": [
+    1691,
+    1707
+   ],
+   "span": [
+    1690,
+    1708
+   ],
+   "byte_span": [
+    2736,
+    2774
+   ],
+   "literal": "\"2회차 시술 (동일 프로토콜)\"",
+   "doc_order": 76,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/action",
+   "segment": "S3"
+  },
+  {
+   "pointer": "/recipes/2/followUp/1",
+   "parent": "/recipes/2/followUp",
+   "key": null,
+   "index": 1,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "week",
+    "action"
+   ],
+   "child_count": 2,
+   "span": [
+    1710,
+    1738
+   ],
+   "byte_span": [
+    2776,
+    2812
+   ],
+   "literal": null,
+   "doc_order": 77,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp/[]",
+   "segment": "S3"
+  },
+  {
+   "pointer": "/recipes/2/followUp/1/week",
+   "parent": "/recipes/2/followUp/1",
+   "key": "week",
+   "index": null,
+   "key_span": [
+    1711,
+    1717
+   ],
+   "type": "integer",
+   "value": 6,
+   "span": [
+    1718,
+    1719
+   ],
+   "byte_span": [
+    2784,
+    2785
+   ],
+   "literal": "6",
+   "doc_order": 78,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/week",
+   "segment": "S3"
+  },
+  {
+   "pointer": "/recipes/2/followUp/1/action",
+   "parent": "/recipes/2/followUp/1",
+   "key": "action",
+   "index": null,
+   "key_span": [
+    1720,
+    1728
+   ],
+   "type": "string",
+   "value": "3회차 시술",
+   "has_escape": false,
+   "value_span": [
+    1730,
+    1736
+   ],
+   "span": [
+    1729,
+    1737
+   ],
+   "byte_span": [
+    2795,
+    2811
+   ],
+   "literal": "\"3회차 시술\"",
+   "doc_order": 79,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/action",
+   "segment": "S3"
+  },
+  {
+   "pointer": "/recipes/2/followUp/2",
+   "parent": "/recipes/2/followUp",
+   "key": null,
+   "index": 2,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "week",
+    "action"
+   ],
+   "child_count": 2,
+   "span": [
+    1739,
+    1782
+   ],
+   "byte_span": [
+    2813,
+    2882
+   ],
+   "literal": null,
+   "doc_order": 80,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp/[]",
+   "segment": "S3"
+  },
+  {
+   "pointer": "/recipes/2/followUp/2/week",
+   "parent": "/recipes/2/followUp/2",
+   "key": "week",
+   "index": null,
+   "key_span": [
+    1740,
+    1746
+   ],
+   "type": "integer",
+   "value": 9,
+   "span": [
+    1747,
+    1748
+   ],
+   "byte_span": [
+    2821,
+    2822
+   ],
+   "literal": "9",
+   "doc_order": 81,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/week",
+   "segment": "S3"
+  },
+  {
+   "pointer": "/recipes/2/followUp/2/action",
+   "parent": "/recipes/2/followUp/2",
+   "key": "action",
+   "index": null,
+   "key_span": [
+    1749,
+    1757
+   ],
+   "type": "string",
+   "value": "4회차 시술 (경과에 따라 강도 조절)",
+   "has_escape": false,
+   "value_span": [
+    1759,
+    1780
+   ],
+   "span": [
+    1758,
+    1781
+   ],
+   "byte_span": [
+    2832,
+    2881
+   ],
+   "literal": "\"4회차 시술 (경과에 따라 강도 조절)\"",
+   "doc_order": 82,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/action",
+   "segment": "S3"
+  },
+  {
+   "pointer": "/recipes/2/followUp/3",
+   "parent": "/recipes/2/followUp",
+   "key": null,
+   "index": 3,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "week",
+    "action"
+   ],
+   "child_count": 2,
+   "span": [
+    1783,
+    1848
+   ],
+   "byte_span": [
+    2883,
+    3000
+   ],
+   "literal": null,
+   "doc_order": 83,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp/[]",
+   "segment": "S3"
+  },
+  {
+   "pointer": "/recipes/2/followUp/3/week",
+   "parent": "/recipes/2/followUp/3",
+   "key": "week",
+   "index": null,
+   "key_span": [
+    1784,
+    1790
+   ],
+   "type": "integer",
+   "value": 12,
+   "span": [
+    1791,
+    1793
+   ],
+   "byte_span": [
+    2891,
+    2893
+   ],
+   "literal": "12",
+   "doc_order": 84,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/week",
+   "segment": "S3"
+  },
+  {
+   "pointer": "/recipes/2/followUp/3/action",
+   "parent": "/recipes/2/followUp/3",
+   "key": "action",
+   "index": null,
+   "key_span": [
+    1794,
+    1802
+   ],
+   "type": "string",
+   "value": "5회차 완료 → 결과 비교 사진. 유지 프로그램 전환 (월 1회 스킨부스터)",
+   "has_escape": false,
+   "value_span": [
+    1804,
+    1846
+   ],
+   "span": [
+    1803,
+    1847
+   ],
+   "byte_span": [
+    2903,
+    2999
+   ],
+   "literal": "\"5회차 완료 → 결과 비교 사진. 유지 프로그램 전환 (월 1회 스킨부스터)\"",
+   "doc_order": 85,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/action",
+   "segment": "S3"
+  },
+  {
+   "pointer": "/recipes/3",
+   "parent": "/recipes",
+   "key": null,
+   "index": 3,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "id",
+    "name",
+    "subtitle",
+    "goal",
+    "intensity",
+    "procedures",
+    "expectedResults",
+    "patientExplanation",
+    "analogy",
+    "repeatCycle",
+    "followUp"
+   ],
+   "child_count": 11,
+   "span": [
+    1851,
+    2435
+   ],
+   "byte_span": [
+    3003,
+    3971
+   ],
+   "literal": null,
+   "doc_order": 86,
+   "leaf": false,
+   "path_pattern": "/recipes/[]",
+   "segment": "S4"
+  },
+  {
+   "pointer": "/recipes/3/id",
+   "parent": "/recipes/3",
+   "key": "id",
+   "index": null,
+   "key_span": [
+    1852,
+    1856
+   ],
+   "type": "string",
+   "value": "R4",
+   "has_escape": false,
+   "value_span": [
+    1858,
+    1860
+   ],
+   "span": [
+    1857,
+    1861
+   ],
+   "byte_span": [
+    3009,
+    3013
+   ],
+   "literal": "\"R4\"",
+   "doc_order": 87,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/id",
+   "segment": "S4"
+  },
+  {
+   "pointer": "/recipes/3/name",
+   "parent": "/recipes/3",
+   "key": "name",
+   "index": null,
+   "key_span": [
+    1862,
+    1868
+   ],
+   "type": "string",
+   "value": "탄력 + 주름 집중",
+   "has_escape": false,
+   "value_span": [
+    1870,
+    1880
+   ],
+   "span": [
+    1869,
+    1881
+   ],
+   "byte_span": [
+    3021,
+    3045
+   ],
+   "literal": "\"탄력 + 주름 집중\"",
+   "doc_order": 88,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/name",
+   "segment": "S4"
+  },
+  {
+   "pointer": "/recipes/3/subtitle",
+   "parent": "/recipes/3",
+   "key": "subtitle",
+   "index": null,
+   "key_span": [
+    1882,
+    1892
+   ],
+   "type": "string",
+   "value": "에너지기기 + 보톡스 + 스킨부스터",
+   "has_escape": false,
+   "value_span": [
+    1894,
+    1913
+   ],
+   "span": [
+    1893,
+    1914
+   ],
+   "byte_span": [
+    3057,
+    3104
+   ],
+   "literal": "\"에너지기기 + 보톡스 + 스킨부스터\"",
+   "doc_order": 89,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/subtitle",
+   "segment": "S4"
+  },
+  {
+   "pointer": "/recipes/3/goal",
+   "parent": "/recipes/3",
+   "key": "goal",
+   "index": null,
+   "key_span": [
+    1915,
+    1921
+   ],
+   "type": "string",
+   "value": "tightening",
+   "has_escape": false,
+   "value_span": [
+    1923,
+    1933
+   ],
+   "span": [
+    1922,
+    1934
+   ],
+   "byte_span": [
+    3112,
+    3124
+   ],
+   "literal": "\"tightening\"",
+   "doc_order": 90,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/goal",
+   "segment": "S4"
+  },
+  {
+   "pointer": "/recipes/3/intensity",
+   "parent": "/recipes/3",
+   "key": "intensity",
+   "index": null,
+   "key_span": [
+    1935,
+    1946
+   ],
+   "type": "string",
+   "value": "표준",
+   "has_escape": false,
+   "value_span": [
+    1948,
+    1950
+   ],
+   "span": [
+    1947,
+    1951
+   ],
+   "byte_span": [
+    3137,
+    3145
+   ],
+   "literal": "\"표준\"",
+   "doc_order": 91,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/intensity",
+   "segment": "S4"
+  },
+  {
+   "pointer": "/recipes/3/procedures",
+   "parent": "/recipes/3",
+   "key": "procedures",
+   "index": null,
+   "key_span": [
+    1952,
+    1964
+   ],
+   "type": "array",
+   "child_count": 3,
+   "span": [
+    1965,
+    1981
+   ],
+   "byte_span": [
+    3159,
+    3175
+   ],
+   "literal": null,
+   "doc_order": 92,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/procedures",
+   "segment": "S4"
+  },
+  {
+   "pointer": "/recipes/3/procedures/0",
+   "parent": "/recipes/3/procedures",
+   "key": null,
+   "index": 0,
+   "key_span": null,
+   "type": "string",
+   "value": "M9",
+   "has_escape": false,
+   "value_span": [
+    1967,
+    1969
+   ],
+   "span": [
+    1966,
+    1970
+   ],
+   "byte_span": [
+    3160,
+    3164
+   ],
+   "literal": "\"M9\"",
+   "doc_order": 93,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/procedures/[]",
+   "segment": "S4"
+  },
+  {
+   "pointer": "/recipes/3/procedures/1",
+   "parent": "/recipes/3/procedures",
+   "key": null,
+   "index": 1,
+   "key_span": null,
+   "type": "string",
+   "value": "M1",
+   "has_escape": false,
+   "value_span": [
+    1972,
+    1974
+   ],
+   "span": [
+    1971,
+    1975
+   ],
+   "byte_span": [
+    3165,
+    3169
+   ],
+   "literal": "\"M1\"",
+   "doc_order": 94,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/procedures/[]",
+   "segment": "S4"
+  },
+  {
+   "pointer": "/recipes/3/procedures/2",
+   "parent": "/recipes/3/procedures",
+   "key": null,
+   "index": 2,
+   "key_span": null,
+   "type": "string",
+   "value": "M4",
+   "has_escape": false,
+   "value_span": [
+    1977,
+    1979
+   ],
+   "span": [
+    1976,
+    1980
+   ],
+   "byte_span": [
+    3170,
+    3174
+   ],
+   "literal": "\"M4\"",
+   "doc_order": 95,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/procedures/[]",
+   "segment": "S4"
+  },
+  {
+   "pointer": "/recipes/3/expectedResults",
+   "parent": "/recipes/3",
+   "key": "expectedResults",
+   "index": null,
+   "key_span": [
+    1982,
+    1999
+   ],
+   "type": "string",
+   "value": "피부 타이트닝 + 주름 개선 + 피부결 향상. 시술 다음날부터 일상 가능",
+   "has_escape": false,
+   "value_span": [
+    2001,
+    2041
+   ],
+   "span": [
+    2000,
+    2042
+   ],
+   "byte_span": [
+    3194,
+    3288
+   ],
+   "literal": "\"피부 타이트닝 + 주름 개선 + 피부결 향상. 시술 다음날부터 일상 가능\"",
+   "doc_order": 96,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/expectedResults",
+   "segment": "S4"
+  },
+  {
+   "pointer": "/recipes/3/patientExplanation",
+   "parent": "/recipes/3",
+   "key": "patientExplanation",
+   "index": null,
+   "key_span": [
+    2043,
+    2063
+   ],
+   "type": "string",
+   "value": "초음파/고주파로 피부 속 콜라겐을 자극해서 스스로 조여지게 하고, 보톡스로 주름 잡는 근육을 쉬게 하고, 스킨부스터로 영양을 넣어 회복을 도와줍니다.",
+   "has_escape": false,
+   "value_span": [
+    2065,
+    2148
+   ],
+   "span": [
+    2064,
+    2149
+   ],
+   "byte_span": [
+    3310,
+    3517
+   ],
+   "literal": "\"초음파/고주파로 피부 속 콜라겐을 자극해서 스스로 조여지게 하고, 보톡스로 주름 잡는 근육을 쉬게 하고, 스킨부스터로 영양을 넣어 회복을 도와줍니다.\"",
+   "doc_order": 97,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/patientExplanation",
+   "segment": "S4"
+  },
+  {
+   "pointer": "/recipes/3/analogy",
+   "parent": "/recipes/3",
+   "key": "analogy",
+   "index": null,
+   "key_span": [
+    2150,
+    2159
+   ],
+   "type": "string",
+   "value": "HIFU/RF = 세탁기 건조(수축), 보톡스 = 다림질(주름 펴기), 스킨부스터 = 섬유유연제(부드럽게)",
+   "has_escape": false,
+   "value_span": [
+    2161,
+    2220
+   ],
+   "span": [
+    2160,
+    2221
+   ],
+   "byte_span": [
+    3528,
+    3651
+   ],
+   "literal": "\"HIFU/RF = 세탁기 건조(수축), 보톡스 = 다림질(주름 펴기), 스킨부스터 = 섬유유연제(부드럽게)\"",
+   "doc_order": 98,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/analogy",
+   "segment": "S4"
+  },
+  {
+   "pointer": "/recipes/3/repeatCycle",
+   "parent": "/recipes/3",
+   "key": "repeatCycle",
+   "index": null,
+   "key_span": [
+    2222,
+    2235
+   ],
+   "type": "string",
+   "value": "HIFU 6개월, 보톡스 3~4개월, 스킨부스터 월 1회",
+   "has_escape": false,
+   "value_span": [
+    2237,
+    2268
+   ],
+   "span": [
+    2236,
+    2269
+   ],
+   "byte_span": [
+    3666,
+    3727
+   ],
+   "literal": "\"HIFU 6개월, 보톡스 3~4개월, 스킨부스터 월 1회\"",
+   "doc_order": 99,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/repeatCycle",
+   "segment": "S4"
+  },
+  {
+   "pointer": "/recipes/3/followUp",
+   "parent": "/recipes/3",
+   "key": "followUp",
+   "index": null,
+   "key_span": [
+    2270,
+    2280
+   ],
+   "type": "array",
+   "child_count": 4,
+   "span": [
+    2281,
+    2434
+   ],
+   "byte_span": [
+    3739,
+    3970
+   ],
+   "literal": null,
+   "doc_order": 100,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp",
+   "segment": "S4"
+  },
+  {
+   "pointer": "/recipes/3/followUp/0",
+   "parent": "/recipes/3/followUp",
+   "key": null,
+   "index": 0,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "week",
+    "action"
+   ],
+   "child_count": 2,
+   "span": [
+    2282,
+    2324
+   ],
+   "byte_span": [
+    3740,
+    3810
+   ],
+   "literal": null,
+   "doc_order": 101,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp/[]",
+   "segment": "S4"
+  },
+  {
+   "pointer": "/recipes/3/followUp/0/week",
+   "parent": "/recipes/3/followUp/0",
+   "key": "week",
+   "index": null,
+   "key_span": [
+    2283,
+    2289
+   ],
+   "type": "integer",
+   "value": 4,
+   "span": [
+    2290,
+    2291
+   ],
+   "byte_span": [
+    3748,
+    3749
+   ],
+   "literal": "4",
+   "doc_order": 102,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/week",
+   "segment": "S4"
+  },
+  {
+   "pointer": "/recipes/3/followUp/0/action",
+   "parent": "/recipes/3/followUp/0",
+   "key": "action",
+   "index": null,
+   "key_span": [
+    2292,
+    2300
+   ],
+   "type": "string",
+   "value": "보톡스 효과 확인. 스킨부스터 2회차",
+   "has_escape": false,
+   "value_span": [
+    2302,
+    2322
+   ],
+   "span": [
+    2301,
+    2323
+   ],
+   "byte_span": [
+    3759,
+    3809
+   ],
+   "literal": "\"보톡스 효과 확인. 스킨부스터 2회차\"",
+   "doc_order": 103,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/action",
+   "segment": "S4"
+  },
+  {
+   "pointer": "/recipes/3/followUp/1",
+   "parent": "/recipes/3/followUp",
+   "key": null,
+   "index": 1,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "week",
+    "action"
+   ],
+   "child_count": 2,
+   "span": [
+    2325,
+    2356
+   ],
+   "byte_span": [
+    3811,
+    3856
+   ],
+   "literal": null,
+   "doc_order": 104,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp/[]",
+   "segment": "S4"
+  },
+  {
+   "pointer": "/recipes/3/followUp/1/week",
+   "parent": "/recipes/3/followUp/1",
+   "key": "week",
+   "index": null,
+   "key_span": [
+    2326,
+    2332
+   ],
+   "type": "integer",
+   "value": 8,
+   "span": [
+    2333,
+    2334
+   ],
+   "byte_span": [
+    3819,
+    3820
+   ],
+   "literal": "8",
+   "doc_order": 105,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/week",
+   "segment": "S4"
+  },
+  {
+   "pointer": "/recipes/3/followUp/1/action",
+   "parent": "/recipes/3/followUp/1",
+   "key": "action",
+   "index": null,
+   "key_span": [
+    2335,
+    2343
+   ],
+   "type": "string",
+   "value": "스킨부스터 3회차",
+   "has_escape": false,
+   "value_span": [
+    2345,
+    2354
+   ],
+   "span": [
+    2344,
+    2355
+   ],
+   "byte_span": [
+    3830,
+    3855
+   ],
+   "literal": "\"스킨부스터 3회차\"",
+   "doc_order": 106,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/action",
+   "segment": "S4"
+  },
+  {
+   "pointer": "/recipes/3/followUp/2",
+   "parent": "/recipes/3/followUp",
+   "key": null,
+   "index": 2,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "week",
+    "action"
+   ],
+   "child_count": 2,
+   "span": [
+    2357,
+    2398
+   ],
+   "byte_span": [
+    3857,
+    3924
+   ],
+   "literal": null,
+   "doc_order": 107,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp/[]",
+   "segment": "S4"
+  },
+  {
+   "pointer": "/recipes/3/followUp/2/week",
+   "parent": "/recipes/3/followUp/2",
+   "key": "week",
+   "index": null,
+   "key_span": [
+    2358,
+    2364
+   ],
+   "type": "integer",
+   "value": 16,
+   "span": [
+    2365,
+    2367
+   ],
+   "byte_span": [
+    3865,
+    3867
+   ],
+   "literal": "16",
+   "doc_order": 108,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/week",
+   "segment": "S4"
+  },
+  {
+   "pointer": "/recipes/3/followUp/2/action",
+   "parent": "/recipes/3/followUp/2",
+   "key": "action",
+   "index": null,
+   "key_span": [
+    2368,
+    2376
+   ],
+   "type": "string",
+   "value": "보톡스 재시술 + 스킨부스터 유지",
+   "has_escape": false,
+   "value_span": [
+    2378,
+    2396
+   ],
+   "span": [
+    2377,
+    2397
+   ],
+   "byte_span": [
+    3877,
+    3923
+   ],
+   "literal": "\"보톡스 재시술 + 스킨부스터 유지\"",
+   "doc_order": 109,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/action",
+   "segment": "S4"
+  },
+  {
+   "pointer": "/recipes/3/followUp/3",
+   "parent": "/recipes/3/followUp",
+   "key": null,
+   "index": 3,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "week",
+    "action"
+   ],
+   "child_count": 2,
+   "span": [
+    2399,
+    2433
+   ],
+   "byte_span": [
+    3925,
+    3969
+   ],
+   "literal": null,
+   "doc_order": 110,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp/[]",
+   "segment": "S4"
+  },
+  {
+   "pointer": "/recipes/3/followUp/3/week",
+   "parent": "/recipes/3/followUp/3",
+   "key": "week",
+   "index": null,
+   "key_span": [
+    2400,
+    2406
+   ],
+   "type": "integer",
+   "value": 24,
+   "span": [
+    2407,
+    2409
+   ],
+   "byte_span": [
+    3933,
+    3935
+   ],
+   "literal": "24",
+   "doc_order": 111,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/week",
+   "segment": "S4"
+  },
+  {
+   "pointer": "/recipes/3/followUp/3/action",
+   "parent": "/recipes/3/followUp/3",
+   "key": "action",
+   "index": null,
+   "key_span": [
+    2410,
+    2418
+   ],
+   "type": "string",
+   "value": "HIFU 재시술 검토",
+   "has_escape": false,
+   "value_span": [
+    2420,
+    2431
+   ],
+   "span": [
+    2419,
+    2432
+   ],
+   "byte_span": [
+    3945,
+    3968
+   ],
+   "literal": "\"HIFU 재시술 검토\"",
+   "doc_order": 112,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/action",
+   "segment": "S4"
+  },
+  {
+   "pointer": "/recipes/4",
+   "parent": "/recipes",
+   "key": null,
+   "index": 4,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "id",
+    "name",
+    "subtitle",
+    "goal",
+    "intensity",
+    "procedures",
+    "expectedResults",
+    "patientExplanation",
+    "analogy",
+    "repeatCycle",
+    "followUp"
+   ],
+   "child_count": 11,
+   "span": [
+    2436,
+    2970
+   ],
+   "byte_span": [
+    3972,
+    4808
+   ],
+   "literal": null,
+   "doc_order": 113,
+   "leaf": false,
+   "path_pattern": "/recipes/[]",
+   "segment": "S5"
+  },
+  {
+   "pointer": "/recipes/4/id",
+   "parent": "/recipes/4",
+   "key": "id",
+   "index": null,
+   "key_span": [
+    2437,
+    2441
+   ],
+   "type": "string",
+   "value": "R5",
+   "has_escape": false,
+   "value_span": [
+    2443,
+    2445
+   ],
+   "span": [
+    2442,
+    2446
+   ],
+   "byte_span": [
+    3978,
+    3982
+   ],
+   "literal": "\"R5\"",
+   "doc_order": 114,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/id",
+   "segment": "S5"
+  },
+  {
+   "pointer": "/recipes/4/name",
+   "parent": "/recipes/4",
+   "key": "name",
+   "index": null,
+   "key_span": [
+    2447,
+    2453
+   ],
+   "type": "string",
+   "value": "모공/흉터 집중",
+   "has_escape": false,
+   "value_span": [
+    2455,
+    2463
+   ],
+   "span": [
+    2454,
+    2464
+   ],
+   "byte_span": [
+    3990,
+    4012
+   ],
+   "literal": "\"모공/흉터 집중\"",
+   "doc_order": 115,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/name",
+   "segment": "S5"
+  },
+  {
+   "pointer": "/recipes/4/subtitle",
+   "parent": "/recipes/4",
+   "key": "subtitle",
+   "index": null,
+   "key_span": [
+    2465,
+    2475
+   ],
+   "type": "string",
+   "value": "니들RF + PRP",
+   "has_escape": false,
+   "value_span": [
+    2477,
+    2487
+   ],
+   "span": [
+    2476,
+    2488
+   ],
+   "byte_span": [
+    4024,
+    4040
+   ],
+   "literal": "\"니들RF + PRP\"",
+   "doc_order": 116,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/subtitle",
+   "segment": "S5"
+  },
+  {
+   "pointer": "/recipes/4/goal",
+   "parent": "/recipes/4",
+   "key": "goal",
+   "index": null,
+   "key_span": [
+    2489,
+    2495
+   ],
+   "type": "string",
+   "value": "texture",
+   "has_escape": false,
+   "value_span": [
+    2497,
+    2504
+   ],
+   "span": [
+    2496,
+    2505
+   ],
+   "byte_span": [
+    4048,
+    4057
+   ],
+   "literal": "\"texture\"",
+   "doc_order": 117,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/goal",
+   "segment": "S5"
+  },
+  {
+   "pointer": "/recipes/4/intensity",
+   "parent": "/recipes/4",
+   "key": "intensity",
+   "index": null,
+   "key_span": [
+    2506,
+    2517
+   ],
+   "type": "string",
+   "value": "적극",
+   "has_escape": false,
+   "value_span": [
+    2519,
+    2521
+   ],
+   "span": [
+    2518,
+    2522
+   ],
+   "byte_span": [
+    4070,
+    4078
+   ],
+   "literal": "\"적극\"",
+   "doc_order": 118,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/intensity",
+   "segment": "S5"
+  },
+  {
+   "pointer": "/recipes/4/procedures",
+   "parent": "/recipes/4",
+   "key": "procedures",
+   "index": null,
+   "key_span": [
+    2523,
+    2535
+   ],
+   "type": "array",
+   "child_count": 2,
+   "span": [
+    2536,
+    2548
+   ],
+   "byte_span": [
+    4092,
+    4104
+   ],
+   "literal": null,
+   "doc_order": 119,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/procedures",
+   "segment": "S5"
+  },
+  {
+   "pointer": "/recipes/4/procedures/0",
+   "parent": "/recipes/4/procedures",
+   "key": null,
+   "index": 0,
+   "key_span": null,
+   "type": "string",
+   "value": "M11",
+   "has_escape": false,
+   "value_span": [
+    2538,
+    2541
+   ],
+   "span": [
+    2537,
+    2542
+   ],
+   "byte_span": [
+    4093,
+    4098
+   ],
+   "literal": "\"M11\"",
+   "doc_order": 120,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/procedures/[]",
+   "segment": "S5"
+  },
+  {
+   "pointer": "/recipes/4/procedures/1",
+   "parent": "/recipes/4/procedures",
+   "key": null,
+   "index": 1,
+   "key_span": null,
+   "type": "string",
+   "value": "M5",
+   "has_escape": false,
+   "value_span": [
+    2544,
+    2546
+   ],
+   "span": [
+    2543,
+    2547
+   ],
+   "byte_span": [
+    4099,
+    4103
+   ],
+   "literal": "\"M5\"",
+   "doc_order": 121,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/procedures/[]",
+   "segment": "S5"
+  },
+  {
+   "pointer": "/recipes/4/expectedResults",
+   "parent": "/recipes/4",
+   "key": "expectedResults",
+   "index": null,
+   "key_span": [
+    2549,
+    2566
+   ],
+   "type": "string",
+   "value": "모공 축소 + 여드름 흉터 개선 + 피부결 정돈. 3~5회 반복 시 확연한 개선",
+   "has_escape": false,
+   "value_span": [
+    2568,
+    2612
+   ],
+   "span": [
+    2567,
+    2613
+   ],
+   "byte_span": [
+    4123,
+    4219
+   ],
+   "literal": "\"모공 축소 + 여드름 흉터 개선 + 피부결 정돈. 3~5회 반복 시 확연한 개선\"",
+   "doc_order": 122,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/expectedResults",
+   "segment": "S5"
+  },
+  {
+   "pointer": "/recipes/4/patientExplanation",
+   "parent": "/recipes/4",
+   "key": "patientExplanation",
+   "index": null,
+   "key_span": [
+    2614,
+    2634
+   ],
+   "type": "string",
+   "value": "미세 바늘이 피부 속으로 들어가서 고주파 열을 쏩니다. 이 열이 늘어난 모공과 흉터 조직을 수축시키고, PRP 성장인자가 새 피부 재생을 촉진합니다.",
+   "has_escape": false,
+   "value_span": [
+    2636,
+    2719
+   ],
+   "span": [
+    2635,
+    2720
+   ],
+   "byte_span": [
+    4241,
+    4440
+   ],
+   "literal": "\"미세 바늘이 피부 속으로 들어가서 고주파 열을 쏩니다. 이 열이 늘어난 모공과 흉터 조직을 수축시키고, PRP 성장인자가 새 피부 재생을 촉진합니다.\"",
+   "doc_order": 123,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/patientExplanation",
+   "segment": "S5"
+  },
+  {
+   "pointer": "/recipes/4/analogy",
+   "parent": "/recipes/4",
+   "key": "analogy",
+   "index": null,
+   "key_span": [
+    2721,
+    2730
+   ],
+   "type": "string",
+   "value": "니들RF = 피부 속에서 정밀 용접, PRP = 용접 부위에 영양제",
+   "has_escape": false,
+   "value_span": [
+    2732,
+    2769
+   ],
+   "span": [
+    2731,
+    2770
+   ],
+   "byte_span": [
+    4451,
+    4528
+   ],
+   "literal": "\"니들RF = 피부 속에서 정밀 용접, PRP = 용접 부위에 영양제\"",
+   "doc_order": 124,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/analogy",
+   "segment": "S5"
+  },
+  {
+   "pointer": "/recipes/4/repeatCycle",
+   "parent": "/recipes/4",
+   "key": "repeatCycle",
+   "index": null,
+   "key_span": [
+    2771,
+    2784
+   ],
+   "type": "string",
+   "value": "4~6주 간격, 총 3~5회",
+   "has_escape": false,
+   "value_span": [
+    2786,
+    2801
+   ],
+   "span": [
+    2785,
+    2802
+   ],
+   "byte_span": [
+    4543,
+    4570
+   ],
+   "literal": "\"4~6주 간격, 총 3~5회\"",
+   "doc_order": 125,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/repeatCycle",
+   "segment": "S5"
+  },
+  {
+   "pointer": "/recipes/4/followUp",
+   "parent": "/recipes/4",
+   "key": "followUp",
+   "index": null,
+   "key_span": [
+    2803,
+    2813
+   ],
+   "type": "array",
+   "child_count": 4,
+   "span": [
+    2814,
+    2969
+   ],
+   "byte_span": [
+    4582,
+    4807
+   ],
+   "literal": null,
+   "doc_order": 126,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp",
+   "segment": "S5"
+  },
+  {
+   "pointer": "/recipes/4/followUp/0",
+   "parent": "/recipes/4/followUp",
+   "key": null,
+   "index": 0,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "week",
+    "action"
+   ],
+   "child_count": 2,
+   "span": [
+    2815,
+    2855
+   ],
+   "byte_span": [
+    4583,
+    4645
+   ],
+   "literal": null,
+   "doc_order": 127,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp/[]",
+   "segment": "S5"
+  },
+  {
+   "pointer": "/recipes/4/followUp/0/week",
+   "parent": "/recipes/4/followUp/0",
+   "key": "week",
+   "index": null,
+   "key_span": [
+    2816,
+    2822
+   ],
+   "type": "integer",
+   "value": 5,
+   "span": [
+    2823,
+    2824
+   ],
+   "byte_span": [
+    4591,
+    4592
+   ],
+   "literal": "5",
+   "doc_order": 128,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/week",
+   "segment": "S5"
+  },
+  {
+   "pointer": "/recipes/4/followUp/0/action",
+   "parent": "/recipes/4/followUp/0",
+   "key": "action",
+   "index": null,
+   "key_span": [
+    2825,
+    2833
+   ],
+   "type": "string",
+   "value": "2회차 (에너지 레벨 조절 가능)",
+   "has_escape": false,
+   "value_span": [
+    2835,
+    2853
+   ],
+   "span": [
+    2834,
+    2854
+   ],
+   "byte_span": [
+    4602,
+    4644
+   ],
+   "literal": "\"2회차 (에너지 레벨 조절 가능)\"",
+   "doc_order": 129,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/action",
+   "segment": "S5"
+  },
+  {
+   "pointer": "/recipes/4/followUp/1",
+   "parent": "/recipes/4/followUp",
+   "key": null,
+   "index": 1,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "week",
+    "action"
+   ],
+   "child_count": 2,
+   "span": [
+    2856,
+    2882
+   ],
+   "byte_span": [
+    4646,
+    4676
+   ],
+   "literal": null,
+   "doc_order": 130,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp/[]",
+   "segment": "S5"
+  },
+  {
+   "pointer": "/recipes/4/followUp/1/week",
+   "parent": "/recipes/4/followUp/1",
+   "key": "week",
+   "index": null,
+   "key_span": [
+    2857,
+    2863
+   ],
+   "type": "integer",
+   "value": 10,
+   "span": [
+    2864,
+    2866
+   ],
+   "byte_span": [
+    4654,
+    4656
+   ],
+   "literal": "10",
+   "doc_order": 131,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/week",
+   "segment": "S5"
+  },
+  {
+   "pointer": "/recipes/4/followUp/1/action",
+   "parent": "/recipes/4/followUp/1",
+   "key": "action",
+   "index": null,
+   "key_span": [
+    2867,
+    2875
+   ],
+   "type": "string",
+   "value": "3회차",
+   "has_escape": false,
+   "value_span": [
+    2877,
+    2880
+   ],
+   "span": [
+    2876,
+    2881
+   ],
+   "byte_span": [
+    4666,
+    4675
+   ],
+   "literal": "\"3회차\"",
+   "doc_order": 132,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/action",
+   "segment": "S5"
+  },
+  {
+   "pointer": "/recipes/4/followUp/2",
+   "parent": "/recipes/4/followUp",
+   "key": null,
+   "index": 2,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "week",
+    "action"
+   ],
+   "child_count": 2,
+   "span": [
+    2883,
+    2923
+   ],
+   "byte_span": [
+    4677,
+    4737
+   ],
+   "literal": null,
+   "doc_order": 133,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp/[]",
+   "segment": "S5"
+  },
+  {
+   "pointer": "/recipes/4/followUp/2/week",
+   "parent": "/recipes/4/followUp/2",
+   "key": "week",
+   "index": null,
+   "key_span": [
+    2884,
+    2890
+   ],
+   "type": "integer",
+   "value": 15,
+   "span": [
+    2891,
+    2893
+   ],
+   "byte_span": [
+    4685,
+    4687
+   ],
+   "literal": "15",
+   "doc_order": 134,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/week",
+   "segment": "S5"
+  },
+  {
+   "pointer": "/recipes/4/followUp/2/action",
+   "parent": "/recipes/4/followUp/2",
+   "key": "action",
+   "index": null,
+   "key_span": [
+    2894,
+    2902
+   ],
+   "type": "string",
+   "value": "4회차 (개선도 평가 후 결정)",
+   "has_escape": false,
+   "value_span": [
+    2904,
+    2921
+   ],
+   "span": [
+    2903,
+    2922
+   ],
+   "byte_span": [
+    4697,
+    4736
+   ],
+   "literal": "\"4회차 (개선도 평가 후 결정)\"",
+   "doc_order": 135,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/action",
+   "segment": "S5"
+  },
+  {
+   "pointer": "/recipes/4/followUp/3",
+   "parent": "/recipes/4/followUp",
+   "key": null,
+   "index": 3,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "week",
+    "action"
+   ],
+   "child_count": 2,
+   "span": [
+    2924,
+    2968
+   ],
+   "byte_span": [
+    4738,
+    4806
+   ],
+   "literal": null,
+   "doc_order": 136,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp/[]",
+   "segment": "S5"
+  },
+  {
+   "pointer": "/recipes/4/followUp/3/week",
+   "parent": "/recipes/4/followUp/3",
+   "key": "week",
+   "index": null,
+   "key_span": [
+    2925,
+    2931
+   ],
+   "type": "integer",
+   "value": 20,
+   "span": [
+    2932,
+    2934
+   ],
+   "byte_span": [
+    4746,
+    4748
+   ],
+   "literal": "20",
+   "doc_order": 137,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/week",
+   "segment": "S5"
+  },
+  {
+   "pointer": "/recipes/4/followUp/3/action",
+   "parent": "/recipes/4/followUp/3",
+   "key": "action",
+   "index": null,
+   "key_span": [
+    2935,
+    2943
+   ],
+   "type": "string",
+   "value": "5회차 완료 → 유지: 3개월마다 1회",
+   "has_escape": false,
+   "value_span": [
+    2945,
+    2966
+   ],
+   "span": [
+    2944,
+    2967
+   ],
+   "byte_span": [
+    4758,
+    4805
+   ],
+   "literal": "\"5회차 완료 → 유지: 3개월마다 1회\"",
+   "doc_order": 138,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/action",
+   "segment": "S5"
+  },
+  {
+   "pointer": "/recipes/5",
+   "parent": "/recipes",
+   "key": null,
+   "index": 5,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "id",
+    "name",
+    "subtitle",
+    "goal",
+    "intensity",
+    "procedures",
+    "expectedResults",
+    "patientExplanation",
+    "analogy",
+    "repeatCycle",
+    "followUp"
+   ],
+   "child_count": 11,
+   "span": [
+    2971,
+    3483
+   ],
+   "byte_span": [
+    4809,
+    5633
+   ],
+   "literal": null,
+   "doc_order": 139,
+   "leaf": false,
+   "path_pattern": "/recipes/[]",
+   "segment": "S6"
+  },
+  {
+   "pointer": "/recipes/5/id",
+   "parent": "/recipes/5",
+   "key": "id",
+   "index": null,
+   "key_span": [
+    2972,
+    2976
+   ],
+   "type": "string",
+   "value": "R6",
+   "has_escape": false,
+   "value_span": [
+    2978,
+    2980
+   ],
+   "span": [
+    2977,
+    2981
+   ],
+   "byte_span": [
+    4815,
+    4819
+   ],
+   "literal": "\"R6\"",
+   "doc_order": 140,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/id",
+   "segment": "S6"
+  },
+  {
+   "pointer": "/recipes/5/name",
+   "parent": "/recipes/5",
+   "key": "name",
+   "index": null,
+   "key_span": [
+    2982,
+    2988
+   ],
+   "type": "string",
+   "value": "동안 쁘띠 패키지",
+   "has_escape": false,
+   "value_span": [
+    2990,
+    2999
+   ],
+   "span": [
+    2989,
+    3000
+   ],
+   "byte_span": [
+    4827,
+    4852
+   ],
+   "literal": "\"동안 쁘띠 패키지\"",
+   "doc_order": 141,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/name",
+   "segment": "S6"
+  },
+  {
+   "pointer": "/recipes/5/subtitle",
+   "parent": "/recipes/5",
+   "key": "subtitle",
+   "index": null,
+   "key_span": [
+    3001,
+    3011
+   ],
+   "type": "string",
+   "value": "보톡스 + 필러 (런치타임 시술)",
+   "has_escape": false,
+   "value_span": [
+    3013,
+    3031
+   ],
+   "span": [
+    3012,
+    3032
+   ],
+   "byte_span": [
+    4864,
+    4906
+   ],
+   "literal": "\"보톡스 + 필러 (런치타임 시술)\"",
+   "doc_order": 142,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/subtitle",
+   "segment": "S6"
+  },
+  {
+   "pointer": "/recipes/5/goal",
+   "parent": "/recipes/5",
+   "key": "goal",
+   "index": null,
+   "key_span": [
+    3033,
+    3039
+   ],
+   "type": "string",
+   "value": "anti-aging",
+   "has_escape": false,
+   "value_span": [
+    3041,
+    3051
+   ],
+   "span": [
+    3040,
+    3052
+   ],
+   "byte_span": [
+    4914,
+    4926
+   ],
+   "literal": "\"anti-aging\"",
+   "doc_order": 143,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/goal",
+   "segment": "S6"
+  },
+  {
+   "pointer": "/recipes/5/intensity",
+   "parent": "/recipes/5",
+   "key": "intensity",
+   "index": null,
+   "key_span": [
+    3053,
+    3064
+   ],
+   "type": "string",
+   "value": "기본",
+   "has_escape": false,
+   "value_span": [
+    3066,
+    3068
+   ],
+   "span": [
+    3065,
+    3069
+   ],
+   "byte_span": [
+    4939,
+    4947
+   ],
+   "literal": "\"기본\"",
+   "doc_order": 144,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/intensity",
+   "segment": "S6"
+  },
+  {
+   "pointer": "/recipes/5/procedures",
+   "parent": "/recipes/5",
+   "key": "procedures",
+   "index": null,
+   "key_span": [
+    3070,
+    3082
+   ],
+   "type": "array",
+   "child_count": 2,
+   "span": [
+    3083,
+    3094
+   ],
+   "byte_span": [
+    4961,
+    4972
+   ],
+   "literal": null,
+   "doc_order": 145,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/procedures",
+   "segment": "S6"
+  },
+  {
+   "pointer": "/recipes/5/procedures/0",
+   "parent": "/recipes/5/procedures",
+   "key": null,
+   "index": 0,
+   "key_span": null,
+   "type": "string",
+   "value": "M1",
+   "has_escape": false,
+   "value_span": [
+    3085,
+    3087
+   ],
+   "span": [
+    3084,
+    3088
+   ],
+   "byte_span": [
+    4962,
+    4966
+   ],
+   "literal": "\"M1\"",
+   "doc_order": 146,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/procedures/[]",
+   "segment": "S6"
+  },
+  {
+   "pointer": "/recipes/5/procedures/1",
+   "parent": "/recipes/5/procedures",
+   "key": null,
+   "index": 1,
+   "key_span": null,
+   "type": "string",
+   "value": "M2",
+   "has_escape": false,
+   "value_span": [
+    3090,
+    3092
+   ],
+   "span": [
+    3089,
+    3093
+   ],
+   "byte_span": [
+    4967,
+    4971
+   ],
+   "literal": "\"M2\"",
+   "doc_order": 147,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/procedures/[]",
+   "segment": "S6"
+  },
+  {
+   "pointer": "/recipes/5/expectedResults",
+   "parent": "/recipes/5",
+   "key": "expectedResults",
+   "index": null,
+   "key_span": [
+    3095,
+    3112
+   ],
+   "type": "string",
+   "value": "주름 개선 + 볼륨 복원. 30분 내 완료. 바로 일상 복귀",
+   "has_escape": false,
+   "value_span": [
+    3114,
+    3147
+   ],
+   "span": [
+    3113,
+    3148
+   ],
+   "byte_span": [
+    4991,
+    5062
+   ],
+   "literal": "\"주름 개선 + 볼륨 복원. 30분 내 완료. 바로 일상 복귀\"",
+   "doc_order": 148,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/expectedResults",
+   "segment": "S6"
+  },
+  {
+   "pointer": "/recipes/5/patientExplanation",
+   "parent": "/recipes/5",
+   "key": "patientExplanation",
+   "index": null,
+   "key_span": [
+    3149,
+    3169
+   ],
+   "type": "string",
+   "value": "보톡스로 주름 잡는 근육을 쉬게 해서 이마·미간·눈가 주름을 펴고, 필러로 꺼진 팔자·볼·턱을 자연스럽게 채워서 동안 얼굴을 만듭니다.",
+   "has_escape": false,
+   "value_span": [
+    3171,
+    3246
+   ],
+   "span": [
+    3170,
+    3247
+   ],
+   "byte_span": [
+    5084,
+    5271
+   ],
+   "literal": "\"보톡스로 주름 잡는 근육을 쉬게 해서 이마·미간·눈가 주름을 펴고, 필러로 꺼진 팔자·볼·턱을 자연스럽게 채워서 동안 얼굴을 만듭니다.\"",
+   "doc_order": 149,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/patientExplanation",
+   "segment": "S6"
+  },
+  {
+   "pointer": "/recipes/5/analogy",
+   "parent": "/recipes/5",
+   "key": "analogy",
+   "index": null,
+   "key_span": [
+    3248,
+    3257
+   ],
+   "type": "string",
+   "value": "보톡스 = 구겨진 종이를 펴는 것, 필러 = 꺼진 곳에 솜 넣기",
+   "has_escape": false,
+   "value_span": [
+    3259,
+    3294
+   ],
+   "span": [
+    3258,
+    3295
+   ],
+   "byte_span": [
+    5282,
+    5361
+   ],
+   "literal": "\"보톡스 = 구겨진 종이를 펴는 것, 필러 = 꺼진 곳에 솜 넣기\"",
+   "doc_order": 150,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/analogy",
+   "segment": "S6"
+  },
+  {
+   "pointer": "/recipes/5/repeatCycle",
+   "parent": "/recipes/5",
+   "key": "repeatCycle",
+   "index": null,
+   "key_span": [
+    3296,
+    3309
+   ],
+   "type": "string",
+   "value": "보톡스 3~4개월, 필러 6~12개월",
+   "has_escape": false,
+   "value_span": [
+    3311,
+    3331
+   ],
+   "span": [
+    3310,
+    3332
+   ],
+   "byte_span": [
+    5376,
+    5416
+   ],
+   "literal": "\"보톡스 3~4개월, 필러 6~12개월\"",
+   "doc_order": 151,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/repeatCycle",
+   "segment": "S6"
+  },
+  {
+   "pointer": "/recipes/5/followUp",
+   "parent": "/recipes/5",
+   "key": "followUp",
+   "index": null,
+   "key_span": [
+    3333,
+    3343
+   ],
+   "type": "array",
+   "child_count": 4,
+   "span": [
+    3344,
+    3482
+   ],
+   "byte_span": [
+    5428,
+    5632
+   ],
+   "literal": null,
+   "doc_order": 152,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp",
+   "segment": "S6"
+  },
+  {
+   "pointer": "/recipes/5/followUp/0",
+   "parent": "/recipes/5/followUp",
+   "key": null,
+   "index": 0,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "week",
+    "action"
+   ],
+   "child_count": 2,
+   "span": [
+    3345,
+    3386
+   ],
+   "byte_span": [
+    5429,
+    5498
+   ],
+   "literal": null,
+   "doc_order": 153,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp/[]",
+   "segment": "S6"
+  },
+  {
+   "pointer": "/recipes/5/followUp/0/week",
+   "parent": "/recipes/5/followUp/0",
+   "key": "week",
+   "index": null,
+   "key_span": [
+    3346,
+    3352
+   ],
+   "type": "integer",
+   "value": 2,
+   "span": [
+    3353,
+    3354
+   ],
+   "byte_span": [
+    5437,
+    5438
+   ],
+   "literal": "2",
+   "doc_order": 154,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/week",
+   "segment": "S6"
+  },
+  {
+   "pointer": "/recipes/5/followUp/0/action",
+   "parent": "/recipes/5/followUp/0",
+   "key": "action",
+   "index": null,
+   "key_span": [
+    3355,
+    3363
+   ],
+   "type": "string",
+   "value": "보톡스 효과 확인. 부족하면 터치업",
+   "has_escape": false,
+   "value_span": [
+    3365,
+    3384
+   ],
+   "span": [
+    3364,
+    3385
+   ],
+   "byte_span": [
+    5448,
+    5497
+   ],
+   "literal": "\"보톡스 효과 확인. 부족하면 터치업\"",
+   "doc_order": 155,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/action",
+   "segment": "S6"
+  },
+  {
+   "pointer": "/recipes/5/followUp/1",
+   "parent": "/recipes/5/followUp",
+   "key": null,
+   "index": 1,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "week",
+    "action"
+   ],
+   "child_count": 2,
+   "span": [
+    3387,
+    3417
+   ],
+   "byte_span": [
+    5499,
+    5541
+   ],
+   "literal": null,
+   "doc_order": 156,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp/[]",
+   "segment": "S6"
+  },
+  {
+   "pointer": "/recipes/5/followUp/1/week",
+   "parent": "/recipes/5/followUp/1",
+   "key": "week",
+   "index": null,
+   "key_span": [
+    3388,
+    3394
+   ],
+   "type": "integer",
+   "value": 4,
+   "span": [
+    3395,
+    3396
+   ],
+   "byte_span": [
+    5507,
+    5508
+   ],
+   "literal": "4",
+   "doc_order": 157,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/week",
+   "segment": "S6"
+  },
+  {
+   "pointer": "/recipes/5/followUp/1/action",
+   "parent": "/recipes/5/followUp/1",
+   "key": "action",
+   "index": null,
+   "key_span": [
+    3397,
+    3405
+   ],
+   "type": "string",
+   "value": "필러 안착 확인",
+   "has_escape": false,
+   "value_span": [
+    3407,
+    3415
+   ],
+   "span": [
+    3406,
+    3416
+   ],
+   "byte_span": [
+    5518,
+    5540
+   ],
+   "literal": "\"필러 안착 확인\"",
+   "doc_order": 158,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/action",
+   "segment": "S6"
+  },
+  {
+   "pointer": "/recipes/5/followUp/2",
+   "parent": "/recipes/5/followUp",
+   "key": null,
+   "index": 2,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "week",
+    "action"
+   ],
+   "child_count": 2,
+   "span": [
+    3418,
+    3448
+   ],
+   "byte_span": [
+    5542,
+    5584
+   ],
+   "literal": null,
+   "doc_order": 159,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp/[]",
+   "segment": "S6"
+  },
+  {
+   "pointer": "/recipes/5/followUp/2/week",
+   "parent": "/recipes/5/followUp/2",
+   "key": "week",
+   "index": null,
+   "key_span": [
+    3419,
+    3425
+   ],
+   "type": "integer",
+   "value": 16,
+   "span": [
+    3426,
+    3428
+   ],
+   "byte_span": [
+    5550,
+    5552
+   ],
+   "literal": "16",
+   "doc_order": 160,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/week",
+   "segment": "S6"
+  },
+  {
+   "pointer": "/recipes/5/followUp/2/action",
+   "parent": "/recipes/5/followUp/2",
+   "key": "action",
+   "index": null,
+   "key_span": [
+    3429,
+    3437
+   ],
+   "type": "string",
+   "value": "보톡스 재시술",
+   "has_escape": false,
+   "value_span": [
+    3439,
+    3446
+   ],
+   "span": [
+    3438,
+    3447
+   ],
+   "byte_span": [
+    5562,
+    5583
+   ],
+   "literal": "\"보톡스 재시술\"",
+   "doc_order": 161,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/action",
+   "segment": "S6"
+  },
+  {
+   "pointer": "/recipes/5/followUp/3",
+   "parent": "/recipes/5/followUp",
+   "key": null,
+   "index": 3,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "week",
+    "action"
+   ],
+   "child_count": 2,
+   "span": [
+    3449,
+    3481
+   ],
+   "byte_span": [
+    5585,
+    5631
+   ],
+   "literal": null,
+   "doc_order": 162,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp/[]",
+   "segment": "S6"
+  },
+  {
+   "pointer": "/recipes/5/followUp/3/week",
+   "parent": "/recipes/5/followUp/3",
+   "key": "week",
+   "index": null,
+   "key_span": [
+    3450,
+    3456
+   ],
+   "type": "integer",
+   "value": 48,
+   "span": [
+    3457,
+    3459
+   ],
+   "byte_span": [
+    5593,
+    5595
+   ],
+   "literal": "48",
+   "doc_order": 163,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/week",
+   "segment": "S6"
+  },
+  {
+   "pointer": "/recipes/5/followUp/3/action",
+   "parent": "/recipes/5/followUp/3",
+   "key": "action",
+   "index": null,
+   "key_span": [
+    3460,
+    3468
+   ],
+   "type": "string",
+   "value": "필러 재시술 검토",
+   "has_escape": false,
+   "value_span": [
+    3470,
+    3479
+   ],
+   "span": [
+    3469,
+    3480
+   ],
+   "byte_span": [
+    5605,
+    5630
+   ],
+   "literal": "\"필러 재시술 검토\"",
+   "doc_order": 164,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/action",
+   "segment": "S6"
+  },
+  {
+   "pointer": "/recipes/6",
+   "parent": "/recipes",
+   "key": null,
+   "index": 6,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "id",
+    "name",
+    "subtitle",
+    "goal",
+    "intensity",
+    "procedures",
+    "expectedResults",
+    "patientExplanation",
+    "analogy",
+    "repeatCycle",
+    "followUp"
+   ],
+   "child_count": 11,
+   "span": [
+    3484,
+    4024
+   ],
+   "byte_span": [
+    5634,
+    6484
+   ],
+   "literal": null,
+   "doc_order": 165,
+   "leaf": false,
+   "path_pattern": "/recipes/[]",
+   "segment": "S7"
+  },
+  {
+   "pointer": "/recipes/6/id",
+   "parent": "/recipes/6",
+   "key": "id",
+   "index": null,
+   "key_span": [
+    3485,
+    3489
+   ],
+   "type": "string",
+   "value": "R7",
+   "has_escape": false,
+   "value_span": [
+    3491,
+    3493
+   ],
+   "span": [
+    3490,
+    3494
+   ],
+   "byte_span": [
+    5640,
+    5644
+   ],
+   "literal": "\"R7\"",
+   "doc_order": 166,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/id",
+   "segment": "S7"
+  },
+  {
+   "pointer": "/recipes/6/name",
+   "parent": "/recipes/6",
+   "key": "name",
+   "index": null,
+   "key_span": [
+    3495,
+    3501
+   ],
+   "type": "string",
+   "value": "레이저 토닝 + 재생",
+   "has_escape": false,
+   "value_span": [
+    3503,
+    3514
+   ],
+   "span": [
+    3502,
+    3515
+   ],
+   "byte_span": [
+    5652,
+    5679
+   ],
+   "literal": "\"레이저 토닝 + 재생\"",
+   "doc_order": 167,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/name",
+   "segment": "S7"
+  },
+  {
+   "pointer": "/recipes/6/subtitle",
+   "parent": "/recipes/6",
+   "key": "subtitle",
+   "index": null,
+   "key_span": [
+    3516,
+    3526
+   ],
+   "type": "string",
+   "value": "색소/톤 개선 + 피부 회복",
+   "has_escape": false,
+   "value_span": [
+    3528,
+    3543
+   ],
+   "span": [
+    3527,
+    3544
+   ],
+   "byte_span": [
+    5691,
+    5726
+   ],
+   "literal": "\"색소/톤 개선 + 피부 회복\"",
+   "doc_order": 168,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/subtitle",
+   "segment": "S7"
+  },
+  {
+   "pointer": "/recipes/6/goal",
+   "parent": "/recipes/6",
+   "key": "goal",
+   "index": null,
+   "key_span": [
+    3545,
+    3551
+   ],
+   "type": "string",
+   "value": "tone",
+   "has_escape": false,
+   "value_span": [
+    3553,
+    3557
+   ],
+   "span": [
+    3552,
+    3558
+   ],
+   "byte_span": [
+    5734,
+    5740
+   ],
+   "literal": "\"tone\"",
+   "doc_order": 169,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/goal",
+   "segment": "S7"
+  },
+  {
+   "pointer": "/recipes/6/intensity",
+   "parent": "/recipes/6",
+   "key": "intensity",
+   "index": null,
+   "key_span": [
+    3559,
+    3570
+   ],
+   "type": "string",
+   "value": "표준",
+   "has_escape": false,
+   "value_span": [
+    3572,
+    3574
+   ],
+   "span": [
+    3571,
+    3575
+   ],
+   "byte_span": [
+    5753,
+    5761
+   ],
+   "literal": "\"표준\"",
+   "doc_order": 170,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/intensity",
+   "segment": "S7"
+  },
+  {
+   "pointer": "/recipes/6/procedures",
+   "parent": "/recipes/6",
+   "key": "procedures",
+   "index": null,
+   "key_span": [
+    3576,
+    3588
+   ],
+   "type": "array",
+   "child_count": 3,
+   "span": [
+    3589,
+    3605
+   ],
+   "byte_span": [
+    5775,
+    5791
+   ],
+   "literal": null,
+   "doc_order": 171,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/procedures",
+   "segment": "S7"
+  },
+  {
+   "pointer": "/recipes/6/procedures/0",
+   "parent": "/recipes/6/procedures",
+   "key": null,
+   "index": 0,
+   "key_span": null,
+   "type": "string",
+   "value": "M8",
+   "has_escape": false,
+   "value_span": [
+    3591,
+    3593
+   ],
+   "span": [
+    3590,
+    3594
+   ],
+   "byte_span": [
+    5776,
+    5780
+   ],
+   "literal": "\"M8\"",
+   "doc_order": 172,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/procedures/[]",
+   "segment": "S7"
+  },
+  {
+   "pointer": "/recipes/6/procedures/1",
+   "parent": "/recipes/6/procedures",
+   "key": null,
+   "index": 1,
+   "key_span": null,
+   "type": "string",
+   "value": "M5",
+   "has_escape": false,
+   "value_span": [
+    3596,
+    3598
+   ],
+   "span": [
+    3595,
+    3599
+   ],
+   "byte_span": [
+    5781,
+    5785
+   ],
+   "literal": "\"M5\"",
+   "doc_order": 173,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/procedures/[]",
+   "segment": "S7"
+  },
+  {
+   "pointer": "/recipes/6/procedures/2",
+   "parent": "/recipes/6/procedures",
+   "key": null,
+   "index": 2,
+   "key_span": null,
+   "type": "string",
+   "value": "M4",
+   "has_escape": false,
+   "value_span": [
+    3601,
+    3603
+   ],
+   "span": [
+    3600,
+    3604
+   ],
+   "byte_span": [
+    5786,
+    5790
+   ],
+   "literal": "\"M4\"",
+   "doc_order": 174,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/procedures/[]",
+   "segment": "S7"
+  },
+  {
+   "pointer": "/recipes/6/expectedResults",
+   "parent": "/recipes/6",
+   "key": "expectedResults",
+   "index": null,
+   "key_span": [
+    3606,
+    3623
+   ],
+   "type": "string",
+   "value": "색소 개선 + 톤 균일 + 피부 광채. 5~10회 반복 시 확연한 개선",
+   "has_escape": false,
+   "value_span": [
+    3625,
+    3664
+   ],
+   "span": [
+    3624,
+    3665
+   ],
+   "byte_span": [
+    5810,
+    5891
+   ],
+   "literal": "\"색소 개선 + 톤 균일 + 피부 광채. 5~10회 반복 시 확연한 개선\"",
+   "doc_order": 175,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/expectedResults",
+   "segment": "S7"
+  },
+  {
+   "pointer": "/recipes/6/patientExplanation",
+   "parent": "/recipes/6",
+   "key": "patientExplanation",
+   "index": null,
+   "key_span": [
+    3666,
+    3686
+   ],
+   "type": "string",
+   "value": "레이저가 색소를 잘게 부수고, PRP 성장인자와 스킨부스터가 새 피부 재생을 촉진해서 맑고 균일한 피부톤을 만듭니다.",
+   "has_escape": false,
+   "value_span": [
+    3688,
+    3753
+   ],
+   "span": [
+    3687,
+    3754
+   ],
+   "byte_span": [
+    5913,
+    6072
+   ],
+   "literal": "\"레이저가 색소를 잘게 부수고, PRP 성장인자와 스킨부스터가 새 피부 재생을 촉진해서 맑고 균일한 피부톤을 만듭니다.\"",
+   "doc_order": 176,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/patientExplanation",
+   "segment": "S7"
+  },
+  {
+   "pointer": "/recipes/6/analogy",
+   "parent": "/recipes/6",
+   "key": "analogy",
+   "index": null,
+   "key_span": [
+    3755,
+    3764
+   ],
+   "type": "string",
+   "value": "레이저 = 얼룩 지우개, PRP = 새 도화지 만들기, 스킨부스터 = 코팅",
+   "has_escape": false,
+   "value_span": [
+    3766,
+    3807
+   ],
+   "span": [
+    3765,
+    3808
+   ],
+   "byte_span": [
+    6083,
+    6170
+   ],
+   "literal": "\"레이저 = 얼룩 지우개, PRP = 새 도화지 만들기, 스킨부스터 = 코팅\"",
+   "doc_order": 177,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/analogy",
+   "segment": "S7"
+  },
+  {
+   "pointer": "/recipes/6/repeatCycle",
+   "parent": "/recipes/6",
+   "key": "repeatCycle",
+   "index": null,
+   "key_span": [
+    3809,
+    3822
+   ],
+   "type": "string",
+   "value": "2~4주 간격, 레이저 5~10회 + 재생 3~5회",
+   "has_escape": false,
+   "value_span": [
+    3824,
+    3852
+   ],
+   "span": [
+    3823,
+    3853
+   ],
+   "byte_span": [
+    6185,
+    6235
+   ],
+   "literal": "\"2~4주 간격, 레이저 5~10회 + 재생 3~5회\"",
+   "doc_order": 178,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/repeatCycle",
+   "segment": "S7"
+  },
+  {
+   "pointer": "/recipes/6/followUp",
+   "parent": "/recipes/6",
+   "key": "followUp",
+   "index": null,
+   "key_span": [
+    3854,
+    3864
+   ],
+   "type": "array",
+   "child_count": 4,
+   "span": [
+    3865,
+    4023
+   ],
+   "byte_span": [
+    6247,
+    6483
+   ],
+   "literal": null,
+   "doc_order": 179,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp",
+   "segment": "S7"
+  },
+  {
+   "pointer": "/recipes/6/followUp/0",
+   "parent": "/recipes/6/followUp",
+   "key": null,
+   "index": 0,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "week",
+    "action"
+   ],
+   "child_count": 2,
+   "span": [
+    3866,
+    3900
+   ],
+   "byte_span": [
+    6248,
+    6296
+   ],
+   "literal": null,
+   "doc_order": 180,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp/[]",
+   "segment": "S7"
+  },
+  {
+   "pointer": "/recipes/6/followUp/0/week",
+   "parent": "/recipes/6/followUp/0",
+   "key": "week",
+   "index": null,
+   "key_span": [
+    3867,
+    3873
+   ],
+   "type": "integer",
+   "value": 3,
+   "span": [
+    3874,
+    3875
+   ],
+   "byte_span": [
+    6256,
+    6257
+   ],
+   "literal": "3",
+   "doc_order": 181,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/week",
+   "segment": "S7"
+  },
+  {
+   "pointer": "/recipes/6/followUp/0/action",
+   "parent": "/recipes/6/followUp/0",
+   "key": "action",
+   "index": null,
+   "key_span": [
+    3876,
+    3884
+   ],
+   "type": "string",
+   "value": "2회차 레이저 + 재생",
+   "has_escape": false,
+   "value_span": [
+    3886,
+    3898
+   ],
+   "span": [
+    3885,
+    3899
+   ],
+   "byte_span": [
+    6267,
+    6295
+   ],
+   "literal": "\"2회차 레이저 + 재생\"",
+   "doc_order": 182,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/action",
+   "segment": "S7"
+  },
+  {
+   "pointer": "/recipes/6/followUp/1",
+   "parent": "/recipes/6/followUp",
+   "key": null,
+   "index": 1,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "week",
+    "action"
+   ],
+   "child_count": 2,
+   "span": [
+    3901,
+    3935
+   ],
+   "byte_span": [
+    6297,
+    6345
+   ],
+   "literal": null,
+   "doc_order": 183,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp/[]",
+   "segment": "S7"
+  },
+  {
+   "pointer": "/recipes/6/followUp/1/week",
+   "parent": "/recipes/6/followUp/1",
+   "key": "week",
+   "index": null,
+   "key_span": [
+    3902,
+    3908
+   ],
+   "type": "integer",
+   "value": 6,
+   "span": [
+    3909,
+    3910
+   ],
+   "byte_span": [
+    6305,
+    6306
+   ],
+   "literal": "6",
+   "doc_order": 184,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/week",
+   "segment": "S7"
+  },
+  {
+   "pointer": "/recipes/6/followUp/1/action",
+   "parent": "/recipes/6/followUp/1",
+   "key": "action",
+   "index": null,
+   "key_span": [
+    3911,
+    3919
+   ],
+   "type": "string",
+   "value": "3회차 (에너지 조절)",
+   "has_escape": false,
+   "value_span": [
+    3921,
+    3933
+   ],
+   "span": [
+    3920,
+    3934
+   ],
+   "byte_span": [
+    6316,
+    6344
+   ],
+   "literal": "\"3회차 (에너지 조절)\"",
+   "doc_order": 185,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/action",
+   "segment": "S7"
+  },
+  {
+   "pointer": "/recipes/6/followUp/2",
+   "parent": "/recipes/6/followUp",
+   "key": null,
+   "index": 2,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "week",
+    "action"
+   ],
+   "child_count": 2,
+   "span": [
+    3936,
+    3979
+   ],
+   "byte_span": [
+    6346,
+    6417
+   ],
+   "literal": null,
+   "doc_order": 186,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp/[]",
+   "segment": "S7"
+  },
+  {
+   "pointer": "/recipes/6/followUp/2/week",
+   "parent": "/recipes/6/followUp/2",
+   "key": "week",
+   "index": null,
+   "key_span": [
+    3937,
+    3943
+   ],
+   "type": "integer",
+   "value": 12,
+   "span": [
+    3944,
+    3946
+   ],
+   "byte_span": [
+    6354,
+    6356
+   ],
+   "literal": "12",
+   "doc_order": 187,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/week",
+   "segment": "S7"
+  },
+  {
+   "pointer": "/recipes/6/followUp/2/action",
+   "parent": "/recipes/6/followUp/2",
+   "key": "action",
+   "index": null,
+   "key_span": [
+    3947,
+    3955
+   ],
+   "type": "string",
+   "value": "중간 평가. 필요시 레이저 종류 변경",
+   "has_escape": false,
+   "value_span": [
+    3957,
+    3977
+   ],
+   "span": [
+    3956,
+    3978
+   ],
+   "byte_span": [
+    6366,
+    6416
+   ],
+   "literal": "\"중간 평가. 필요시 레이저 종류 변경\"",
+   "doc_order": 188,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/action",
+   "segment": "S7"
+  },
+  {
+   "pointer": "/recipes/6/followUp/3",
+   "parent": "/recipes/6/followUp",
+   "key": null,
+   "index": 3,
+   "key_span": null,
+   "type": "object",
+   "keys": [
+    "week",
+    "action"
+   ],
+   "child_count": 2,
+   "span": [
+    3980,
+    4022
+   ],
+   "byte_span": [
+    6418,
+    6482
+   ],
+   "literal": null,
+   "doc_order": 189,
+   "leaf": false,
+   "path_pattern": "/recipes/[]/followUp/[]",
+   "segment": "S7"
+  },
+  {
+   "pointer": "/recipes/6/followUp/3/week",
+   "parent": "/recipes/6/followUp/3",
+   "key": "week",
+   "index": null,
+   "key_span": [
+    3981,
+    3987
+   ],
+   "type": "integer",
+   "value": 24,
+   "span": [
+    3988,
+    3990
+   ],
+   "byte_span": [
+    6426,
+    6428
+   ],
+   "literal": "24",
+   "doc_order": 190,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/week",
+   "segment": "S7"
+  },
+  {
+   "pointer": "/recipes/6/followUp/3/action",
+   "parent": "/recipes/6/followUp/3",
+   "key": "action",
+   "index": null,
+   "key_span": [
+    3991,
+    3999
+   ],
+   "type": "string",
+   "value": "유지: 월 1회 토닝 + 스킨부스터",
+   "has_escape": false,
+   "value_span": [
+    4001,
+    4020
+   ],
+   "span": [
+    4000,
+    4021
+   ],
+   "byte_span": [
+    6438,
+    6481
+   ],
+   "literal": "\"유지: 월 1회 토닝 + 스킨부스터\"",
+   "doc_order": 191,
+   "leaf": true,
+   "path_pattern": "/recipes/[]/followUp/[]/action",
+   "segment": "S7"
+  }
+ ],
+ "key_occurrences": [
+  {
+   "pointer": "/version",
+   "key": "version",
+   "span": [
+    1,
+    10
+   ],
+   "byte_span": [
+    1,
+    10
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/updated",
+   "key": "updated",
+   "span": [
+    17,
+    26
+   ],
+   "byte_span": [
+    17,
+    26
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/description",
+   "key": "description",
+   "span": [
+    40,
+    53
+   ],
+   "byte_span": [
+    40,
+    53
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes",
+   "key": "recipes",
+   "span": [
+    100,
+    109
+   ],
+   "byte_span": [
+    158,
+    167
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/0/id",
+   "key": "id",
+   "span": [
+    112,
+    116
+   ],
+   "byte_span": [
+    170,
+    174
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/0/name",
+   "key": "name",
+   "span": [
+    122,
+    128
+   ],
+   "byte_span": [
+    180,
+    186
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/0/subtitle",
+   "key": "subtitle",
+   "span": [
+    138,
+    148
+   ],
+   "byte_span": [
+    206,
+    216
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/0/goal",
+   "key": "goal",
+   "span": [
+    163,
+    169
+   ],
+   "byte_span": [
+    247,
+    253
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/0/intensity",
+   "key": "intensity",
+   "span": [
+    180,
+    191
+   ],
+   "byte_span": [
+    264,
+    275
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/0/procedures",
+   "key": "procedures",
+   "span": [
+    197,
+    209
+   ],
+   "byte_span": [
+    285,
+    297
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/0/expectedResults",
+   "key": "expectedResults",
+   "span": [
+    222,
+    239
+   ],
+   "byte_span": [
+    310,
+    327
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/0/patientExplanation",
+   "key": "patientExplanation",
+   "span": [
+    286,
+    306
+   ],
+   "byte_span": [
+    428,
+    448
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/0/analogy",
+   "key": "analogy",
+   "span": [
+    376,
+    385
+   ],
+   "byte_span": [
+    616,
+    625
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/0/repeatCycle",
+   "key": "repeatCycle",
+   "span": [
+    429,
+    442
+   ],
+   "byte_span": [
+    717,
+    730
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/0/followUp",
+   "key": "followUp",
+   "span": [
+    457,
+    467
+   ],
+   "byte_span": [
+    757,
+    767
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/0/followUp/0/week",
+   "key": "week",
+   "span": [
+    470,
+    476
+   ],
+   "byte_span": [
+    770,
+    776
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/0/followUp/0/action",
+   "key": "action",
+   "span": [
+    479,
+    487
+   ],
+   "byte_span": [
+    779,
+    787
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/0/followUp/1/week",
+   "key": "week",
+   "span": [
+    519,
+    525
+   ],
+   "byte_span": [
+    847,
+    853
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/0/followUp/1/action",
+   "key": "action",
+   "span": [
+    529,
+    537
+   ],
+   "byte_span": [
+    857,
+    865
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/0/followUp/2/week",
+   "key": "week",
+   "span": [
+    560,
+    566
+   ],
+   "byte_span": [
+    910,
+    916
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/0/followUp/2/action",
+   "key": "action",
+   "span": [
+    570,
+    578
+   ],
+   "byte_span": [
+    920,
+    928
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/1/id",
+   "key": "id",
+   "span": [
+    619,
+    623
+   ],
+   "byte_span": [
+    1005,
+    1009
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/1/name",
+   "key": "name",
+   "span": [
+    629,
+    635
+   ],
+   "byte_span": [
+    1015,
+    1021
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/1/subtitle",
+   "key": "subtitle",
+   "span": [
+    647,
+    657
+   ],
+   "byte_span": [
+    1047,
+    1057
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/1/goal",
+   "key": "goal",
+   "span": [
+    676,
+    682
+   ],
+   "byte_span": [
+    1096,
+    1102
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/1/intensity",
+   "key": "intensity",
+   "span": [
+    693,
+    704
+   ],
+   "byte_span": [
+    1113,
+    1124
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/1/procedures",
+   "key": "procedures",
+   "span": [
+    712,
+    724
+   ],
+   "byte_span": [
+    1140,
+    1152
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/1/expectedResults",
+   "key": "expectedResults",
+   "span": [
+    747,
+    764
+   ],
+   "byte_span": [
+    1175,
+    1192
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/1/patientExplanation",
+   "key": "patientExplanation",
+   "span": [
+    813,
+    833
+   ],
+   "byte_span": [
+    1293,
+    1313
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/1/analogy",
+   "key": "analogy",
+   "span": [
+    921,
+    930
+   ],
+   "byte_span": [
+    1515,
+    1524
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/1/repeatCycle",
+   "key": "repeatCycle",
+   "span": [
+    993,
+    1006
+   ],
+   "byte_span": [
+    1649,
+    1662
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/1/followUp",
+   "key": "followUp",
+   "span": [
+    1051,
+    1061
+   ],
+   "byte_span": [
+    1741,
+    1751
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/1/followUp/0/week",
+   "key": "week",
+   "span": [
+    1064,
+    1070
+   ],
+   "byte_span": [
+    1754,
+    1760
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/1/followUp/0/action",
+   "key": "action",
+   "span": [
+    1073,
+    1081
+   ],
+   "byte_span": [
+    1763,
+    1771
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/1/followUp/1/week",
+   "key": "week",
+   "span": [
+    1107,
+    1113
+   ],
+   "byte_span": [
+    1824,
+    1830
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/1/followUp/1/action",
+   "key": "action",
+   "span": [
+    1116,
+    1124
+   ],
+   "byte_span": [
+    1833,
+    1841
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/1/followUp/2/week",
+   "key": "week",
+   "span": [
+    1148,
+    1154
+   ],
+   "byte_span": [
+    1891,
+    1897
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/1/followUp/2/action",
+   "key": "action",
+   "span": [
+    1158,
+    1166
+   ],
+   "byte_span": [
+    1901,
+    1909
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/1/followUp/3/week",
+   "key": "week",
+   "span": [
+    1179,
+    1185
+   ],
+   "byte_span": [
+    1934,
+    1940
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/1/followUp/3/action",
+   "key": "action",
+   "span": [
+    1189,
+    1197
+   ],
+   "byte_span": [
+    1944,
+    1952
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/1/followUp/4/week",
+   "key": "week",
+   "span": [
+    1213,
+    1219
+   ],
+   "byte_span": [
+    1976,
+    1982
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/1/followUp/4/action",
+   "key": "action",
+   "span": [
+    1223,
+    1231
+   ],
+   "byte_span": [
+    1986,
+    1994
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/2/id",
+   "key": "id",
+   "span": [
+    1250,
+    1254
+   ],
+   "byte_span": [
+    2031,
+    2035
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/2/name",
+   "key": "name",
+   "span": [
+    1260,
+    1266
+   ],
+   "byte_span": [
+    2041,
+    2047
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/2/subtitle",
+   "key": "subtitle",
+   "span": [
+    1280,
+    1290
+   ],
+   "byte_span": [
+    2077,
+    2087
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/2/goal",
+   "key": "goal",
+   "span": [
+    1311,
+    1317
+   ],
+   "byte_span": [
+    2118,
+    2124
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/2/intensity",
+   "key": "intensity",
+   "span": [
+    1333,
+    1344
+   ],
+   "byte_span": [
+    2140,
+    2151
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/2/procedures",
+   "key": "procedures",
+   "span": [
+    1350,
+    1362
+   ],
+   "byte_span": [
+    2161,
+    2173
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/2/expectedResults",
+   "key": "expectedResults",
+   "span": [
+    1381,
+    1398
+   ],
+   "byte_span": [
+    2192,
+    2209
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/2/patientExplanation",
+   "key": "patientExplanation",
+   "span": [
+    1450,
+    1470
+   ],
+   "byte_span": [
+    2313,
+    2333
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/2/analogy",
+   "key": "analogy",
+   "span": [
+    1566,
+    1575
+   ],
+   "byte_span": [
+    2556,
+    2565
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/2/repeatCycle",
+   "key": "repeatCycle",
+   "span": [
+    1623,
+    1636
+   ],
+   "byte_span": [
+    2655,
+    2668
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/2/followUp",
+   "key": "followUp",
+   "span": [
+    1659,
+    1669
+   ],
+   "byte_span": [
+    2705,
+    2715
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/2/followUp/0/week",
+   "key": "week",
+   "span": [
+    1672,
+    1678
+   ],
+   "byte_span": [
+    2718,
+    2724
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/2/followUp/0/action",
+   "key": "action",
+   "span": [
+    1681,
+    1689
+   ],
+   "byte_span": [
+    2727,
+    2735
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/2/followUp/1/week",
+   "key": "week",
+   "span": [
+    1711,
+    1717
+   ],
+   "byte_span": [
+    2777,
+    2783
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/2/followUp/1/action",
+   "key": "action",
+   "span": [
+    1720,
+    1728
+   ],
+   "byte_span": [
+    2786,
+    2794
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/2/followUp/2/week",
+   "key": "week",
+   "span": [
+    1740,
+    1746
+   ],
+   "byte_span": [
+    2814,
+    2820
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/2/followUp/2/action",
+   "key": "action",
+   "span": [
+    1749,
+    1757
+   ],
+   "byte_span": [
+    2823,
+    2831
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/2/followUp/3/week",
+   "key": "week",
+   "span": [
+    1784,
+    1790
+   ],
+   "byte_span": [
+    2884,
+    2890
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/2/followUp/3/action",
+   "key": "action",
+   "span": [
+    1794,
+    1802
+   ],
+   "byte_span": [
+    2894,
+    2902
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/3/id",
+   "key": "id",
+   "span": [
+    1852,
+    1856
+   ],
+   "byte_span": [
+    3004,
+    3008
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/3/name",
+   "key": "name",
+   "span": [
+    1862,
+    1868
+   ],
+   "byte_span": [
+    3014,
+    3020
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/3/subtitle",
+   "key": "subtitle",
+   "span": [
+    1882,
+    1892
+   ],
+   "byte_span": [
+    3046,
+    3056
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/3/goal",
+   "key": "goal",
+   "span": [
+    1915,
+    1921
+   ],
+   "byte_span": [
+    3105,
+    3111
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/3/intensity",
+   "key": "intensity",
+   "span": [
+    1935,
+    1946
+   ],
+   "byte_span": [
+    3125,
+    3136
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/3/procedures",
+   "key": "procedures",
+   "span": [
+    1952,
+    1964
+   ],
+   "byte_span": [
+    3146,
+    3158
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/3/expectedResults",
+   "key": "expectedResults",
+   "span": [
+    1982,
+    1999
+   ],
+   "byte_span": [
+    3176,
+    3193
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/3/patientExplanation",
+   "key": "patientExplanation",
+   "span": [
+    2043,
+    2063
+   ],
+   "byte_span": [
+    3289,
+    3309
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/3/analogy",
+   "key": "analogy",
+   "span": [
+    2150,
+    2159
+   ],
+   "byte_span": [
+    3518,
+    3527
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/3/repeatCycle",
+   "key": "repeatCycle",
+   "span": [
+    2222,
+    2235
+   ],
+   "byte_span": [
+    3652,
+    3665
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/3/followUp",
+   "key": "followUp",
+   "span": [
+    2270,
+    2280
+   ],
+   "byte_span": [
+    3728,
+    3738
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/3/followUp/0/week",
+   "key": "week",
+   "span": [
+    2283,
+    2289
+   ],
+   "byte_span": [
+    3741,
+    3747
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/3/followUp/0/action",
+   "key": "action",
+   "span": [
+    2292,
+    2300
+   ],
+   "byte_span": [
+    3750,
+    3758
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/3/followUp/1/week",
+   "key": "week",
+   "span": [
+    2326,
+    2332
+   ],
+   "byte_span": [
+    3812,
+    3818
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/3/followUp/1/action",
+   "key": "action",
+   "span": [
+    2335,
+    2343
+   ],
+   "byte_span": [
+    3821,
+    3829
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/3/followUp/2/week",
+   "key": "week",
+   "span": [
+    2358,
+    2364
+   ],
+   "byte_span": [
+    3858,
+    3864
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/3/followUp/2/action",
+   "key": "action",
+   "span": [
+    2368,
+    2376
+   ],
+   "byte_span": [
+    3868,
+    3876
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/3/followUp/3/week",
+   "key": "week",
+   "span": [
+    2400,
+    2406
+   ],
+   "byte_span": [
+    3926,
+    3932
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/3/followUp/3/action",
+   "key": "action",
+   "span": [
+    2410,
+    2418
+   ],
+   "byte_span": [
+    3936,
+    3944
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/4/id",
+   "key": "id",
+   "span": [
+    2437,
+    2441
+   ],
+   "byte_span": [
+    3973,
+    3977
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/4/name",
+   "key": "name",
+   "span": [
+    2447,
+    2453
+   ],
+   "byte_span": [
+    3983,
+    3989
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/4/subtitle",
+   "key": "subtitle",
+   "span": [
+    2465,
+    2475
+   ],
+   "byte_span": [
+    4013,
+    4023
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/4/goal",
+   "key": "goal",
+   "span": [
+    2489,
+    2495
+   ],
+   "byte_span": [
+    4041,
+    4047
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/4/intensity",
+   "key": "intensity",
+   "span": [
+    2506,
+    2517
+   ],
+   "byte_span": [
+    4058,
+    4069
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/4/procedures",
+   "key": "procedures",
+   "span": [
+    2523,
+    2535
+   ],
+   "byte_span": [
+    4079,
+    4091
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/4/expectedResults",
+   "key": "expectedResults",
+   "span": [
+    2549,
+    2566
+   ],
+   "byte_span": [
+    4105,
+    4122
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/4/patientExplanation",
+   "key": "patientExplanation",
+   "span": [
+    2614,
+    2634
+   ],
+   "byte_span": [
+    4220,
+    4240
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/4/analogy",
+   "key": "analogy",
+   "span": [
+    2721,
+    2730
+   ],
+   "byte_span": [
+    4441,
+    4450
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/4/repeatCycle",
+   "key": "repeatCycle",
+   "span": [
+    2771,
+    2784
+   ],
+   "byte_span": [
+    4529,
+    4542
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/4/followUp",
+   "key": "followUp",
+   "span": [
+    2803,
+    2813
+   ],
+   "byte_span": [
+    4571,
+    4581
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/4/followUp/0/week",
+   "key": "week",
+   "span": [
+    2816,
+    2822
+   ],
+   "byte_span": [
+    4584,
+    4590
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/4/followUp/0/action",
+   "key": "action",
+   "span": [
+    2825,
+    2833
+   ],
+   "byte_span": [
+    4593,
+    4601
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/4/followUp/1/week",
+   "key": "week",
+   "span": [
+    2857,
+    2863
+   ],
+   "byte_span": [
+    4647,
+    4653
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/4/followUp/1/action",
+   "key": "action",
+   "span": [
+    2867,
+    2875
+   ],
+   "byte_span": [
+    4657,
+    4665
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/4/followUp/2/week",
+   "key": "week",
+   "span": [
+    2884,
+    2890
+   ],
+   "byte_span": [
+    4678,
+    4684
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/4/followUp/2/action",
+   "key": "action",
+   "span": [
+    2894,
+    2902
+   ],
+   "byte_span": [
+    4688,
+    4696
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/4/followUp/3/week",
+   "key": "week",
+   "span": [
+    2925,
+    2931
+   ],
+   "byte_span": [
+    4739,
+    4745
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/4/followUp/3/action",
+   "key": "action",
+   "span": [
+    2935,
+    2943
+   ],
+   "byte_span": [
+    4749,
+    4757
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/5/id",
+   "key": "id",
+   "span": [
+    2972,
+    2976
+   ],
+   "byte_span": [
+    4810,
+    4814
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/5/name",
+   "key": "name",
+   "span": [
+    2982,
+    2988
+   ],
+   "byte_span": [
+    4820,
+    4826
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/5/subtitle",
+   "key": "subtitle",
+   "span": [
+    3001,
+    3011
+   ],
+   "byte_span": [
+    4853,
+    4863
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/5/goal",
+   "key": "goal",
+   "span": [
+    3033,
+    3039
+   ],
+   "byte_span": [
+    4907,
+    4913
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/5/intensity",
+   "key": "intensity",
+   "span": [
+    3053,
+    3064
+   ],
+   "byte_span": [
+    4927,
+    4938
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/5/procedures",
+   "key": "procedures",
+   "span": [
+    3070,
+    3082
+   ],
+   "byte_span": [
+    4948,
+    4960
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/5/expectedResults",
+   "key": "expectedResults",
+   "span": [
+    3095,
+    3112
+   ],
+   "byte_span": [
+    4973,
+    4990
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/5/patientExplanation",
+   "key": "patientExplanation",
+   "span": [
+    3149,
+    3169
+   ],
+   "byte_span": [
+    5063,
+    5083
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/5/analogy",
+   "key": "analogy",
+   "span": [
+    3248,
+    3257
+   ],
+   "byte_span": [
+    5272,
+    5281
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/5/repeatCycle",
+   "key": "repeatCycle",
+   "span": [
+    3296,
+    3309
+   ],
+   "byte_span": [
+    5362,
+    5375
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/5/followUp",
+   "key": "followUp",
+   "span": [
+    3333,
+    3343
+   ],
+   "byte_span": [
+    5417,
+    5427
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/5/followUp/0/week",
+   "key": "week",
+   "span": [
+    3346,
+    3352
+   ],
+   "byte_span": [
+    5430,
+    5436
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/5/followUp/0/action",
+   "key": "action",
+   "span": [
+    3355,
+    3363
+   ],
+   "byte_span": [
+    5439,
+    5447
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/5/followUp/1/week",
+   "key": "week",
+   "span": [
+    3388,
+    3394
+   ],
+   "byte_span": [
+    5500,
+    5506
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/5/followUp/1/action",
+   "key": "action",
+   "span": [
+    3397,
+    3405
+   ],
+   "byte_span": [
+    5509,
+    5517
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/5/followUp/2/week",
+   "key": "week",
+   "span": [
+    3419,
+    3425
+   ],
+   "byte_span": [
+    5543,
+    5549
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/5/followUp/2/action",
+   "key": "action",
+   "span": [
+    3429,
+    3437
+   ],
+   "byte_span": [
+    5553,
+    5561
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/5/followUp/3/week",
+   "key": "week",
+   "span": [
+    3450,
+    3456
+   ],
+   "byte_span": [
+    5586,
+    5592
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/5/followUp/3/action",
+   "key": "action",
+   "span": [
+    3460,
+    3468
+   ],
+   "byte_span": [
+    5596,
+    5604
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/6/id",
+   "key": "id",
+   "span": [
+    3485,
+    3489
+   ],
+   "byte_span": [
+    5635,
+    5639
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/6/name",
+   "key": "name",
+   "span": [
+    3495,
+    3501
+   ],
+   "byte_span": [
+    5645,
+    5651
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/6/subtitle",
+   "key": "subtitle",
+   "span": [
+    3516,
+    3526
+   ],
+   "byte_span": [
+    5680,
+    5690
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/6/goal",
+   "key": "goal",
+   "span": [
+    3545,
+    3551
+   ],
+   "byte_span": [
+    5727,
+    5733
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/6/intensity",
+   "key": "intensity",
+   "span": [
+    3559,
+    3570
+   ],
+   "byte_span": [
+    5741,
+    5752
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/6/procedures",
+   "key": "procedures",
+   "span": [
+    3576,
+    3588
+   ],
+   "byte_span": [
+    5762,
+    5774
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/6/expectedResults",
+   "key": "expectedResults",
+   "span": [
+    3606,
+    3623
+   ],
+   "byte_span": [
+    5792,
+    5809
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/6/patientExplanation",
+   "key": "patientExplanation",
+   "span": [
+    3666,
+    3686
+   ],
+   "byte_span": [
+    5892,
+    5912
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/6/analogy",
+   "key": "analogy",
+   "span": [
+    3755,
+    3764
+   ],
+   "byte_span": [
+    6073,
+    6082
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/6/repeatCycle",
+   "key": "repeatCycle",
+   "span": [
+    3809,
+    3822
+   ],
+   "byte_span": [
+    6171,
+    6184
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/6/followUp",
+   "key": "followUp",
+   "span": [
+    3854,
+    3864
+   ],
+   "byte_span": [
+    6236,
+    6246
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/6/followUp/0/week",
+   "key": "week",
+   "span": [
+    3867,
+    3873
+   ],
+   "byte_span": [
+    6249,
+    6255
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/6/followUp/0/action",
+   "key": "action",
+   "span": [
+    3876,
+    3884
+   ],
+   "byte_span": [
+    6258,
+    6266
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/6/followUp/1/week",
+   "key": "week",
+   "span": [
+    3902,
+    3908
+   ],
+   "byte_span": [
+    6298,
+    6304
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/6/followUp/1/action",
+   "key": "action",
+   "span": [
+    3911,
+    3919
+   ],
+   "byte_span": [
+    6307,
+    6315
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/6/followUp/2/week",
+   "key": "week",
+   "span": [
+    3937,
+    3943
+   ],
+   "byte_span": [
+    6347,
+    6353
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/6/followUp/2/action",
+   "key": "action",
+   "span": [
+    3947,
+    3955
+   ],
+   "byte_span": [
+    6357,
+    6365
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/6/followUp/3/week",
+   "key": "week",
+   "span": [
+    3981,
+    3987
+   ],
+   "byte_span": [
+    6419,
+    6425
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  },
+  {
+   "pointer": "/recipes/6/followUp/3/action",
+   "key": "action",
+   "span": [
+    3991,
+    3999
+   ],
+   "byte_span": [
+    6429,
+    6437
+   ],
+   "has_escape": false,
+   "occurrence_in_object": 0
+  }
+ ],
+ "field_names": {
+  "action": [
+   "/recipes/0/followUp/0/action",
+   "/recipes/0/followUp/1/action",
+   "/recipes/0/followUp/2/action",
+   "/recipes/1/followUp/0/action",
+   "/recipes/1/followUp/1/action",
+   "/recipes/1/followUp/2/action",
+   "/recipes/1/followUp/3/action",
+   "/recipes/1/followUp/4/action",
+   "/recipes/2/followUp/0/action",
+   "/recipes/2/followUp/1/action",
+   "/recipes/2/followUp/2/action",
+   "/recipes/2/followUp/3/action",
+   "/recipes/3/followUp/0/action",
+   "/recipes/3/followUp/1/action",
+   "/recipes/3/followUp/2/action",
+   "/recipes/3/followUp/3/action",
+   "/recipes/4/followUp/0/action",
+   "/recipes/4/followUp/1/action",
+   "/recipes/4/followUp/2/action",
+   "/recipes/4/followUp/3/action",
+   "/recipes/5/followUp/0/action",
+   "/recipes/5/followUp/1/action",
+   "/recipes/5/followUp/2/action",
+   "/recipes/5/followUp/3/action",
+   "/recipes/6/followUp/0/action",
+   "/recipes/6/followUp/1/action",
+   "/recipes/6/followUp/2/action",
+   "/recipes/6/followUp/3/action"
+  ],
+  "analogy": [
+   "/recipes/0/analogy",
+   "/recipes/1/analogy",
+   "/recipes/2/analogy",
+   "/recipes/3/analogy",
+   "/recipes/4/analogy",
+   "/recipes/5/analogy",
+   "/recipes/6/analogy"
+  ],
+  "description": [
+   "/description"
+  ],
+  "expectedResults": [
+   "/recipes/0/expectedResults",
+   "/recipes/1/expectedResults",
+   "/recipes/2/expectedResults",
+   "/recipes/3/expectedResults",
+   "/recipes/4/expectedResults",
+   "/recipes/5/expectedResults",
+   "/recipes/6/expectedResults"
+  ],
+  "followUp": [
+   "/recipes/0/followUp",
+   "/recipes/1/followUp",
+   "/recipes/2/followUp",
+   "/recipes/3/followUp",
+   "/recipes/4/followUp",
+   "/recipes/5/followUp",
+   "/recipes/6/followUp"
+  ],
+  "goal": [
+   "/recipes/0/goal",
+   "/recipes/1/goal",
+   "/recipes/2/goal",
+   "/recipes/3/goal",
+   "/recipes/4/goal",
+   "/recipes/5/goal",
+   "/recipes/6/goal"
+  ],
+  "id": [
+   "/recipes/0/id",
+   "/recipes/1/id",
+   "/recipes/2/id",
+   "/recipes/3/id",
+   "/recipes/4/id",
+   "/recipes/5/id",
+   "/recipes/6/id"
+  ],
+  "intensity": [
+   "/recipes/0/intensity",
+   "/recipes/1/intensity",
+   "/recipes/2/intensity",
+   "/recipes/3/intensity",
+   "/recipes/4/intensity",
+   "/recipes/5/intensity",
+   "/recipes/6/intensity"
+  ],
+  "name": [
+   "/recipes/0/name",
+   "/recipes/1/name",
+   "/recipes/2/name",
+   "/recipes/3/name",
+   "/recipes/4/name",
+   "/recipes/5/name",
+   "/recipes/6/name"
+  ],
+  "patientExplanation": [
+   "/recipes/0/patientExplanation",
+   "/recipes/1/patientExplanation",
+   "/recipes/2/patientExplanation",
+   "/recipes/3/patientExplanation",
+   "/recipes/4/patientExplanation",
+   "/recipes/5/patientExplanation",
+   "/recipes/6/patientExplanation"
+  ],
+  "procedures": [
+   "/recipes/0/procedures",
+   "/recipes/1/procedures",
+   "/recipes/2/procedures",
+   "/recipes/3/procedures",
+   "/recipes/4/procedures",
+   "/recipes/5/procedures",
+   "/recipes/6/procedures"
+  ],
+  "recipes": [
+   "/recipes"
+  ],
+  "repeatCycle": [
+   "/recipes/0/repeatCycle",
+   "/recipes/1/repeatCycle",
+   "/recipes/2/repeatCycle",
+   "/recipes/3/repeatCycle",
+   "/recipes/4/repeatCycle",
+   "/recipes/5/repeatCycle",
+   "/recipes/6/repeatCycle"
+  ],
+  "subtitle": [
+   "/recipes/0/subtitle",
+   "/recipes/1/subtitle",
+   "/recipes/2/subtitle",
+   "/recipes/3/subtitle",
+   "/recipes/4/subtitle",
+   "/recipes/5/subtitle",
+   "/recipes/6/subtitle"
+  ],
+  "updated": [
+   "/updated"
+  ],
+  "version": [
+   "/version"
+  ],
+  "week": [
+   "/recipes/0/followUp/0/week",
+   "/recipes/0/followUp/1/week",
+   "/recipes/0/followUp/2/week",
+   "/recipes/1/followUp/0/week",
+   "/recipes/1/followUp/1/week",
+   "/recipes/1/followUp/2/week",
+   "/recipes/1/followUp/3/week",
+   "/recipes/1/followUp/4/week",
+   "/recipes/2/followUp/0/week",
+   "/recipes/2/followUp/1/week",
+   "/recipes/2/followUp/2/week",
+   "/recipes/2/followUp/3/week",
+   "/recipes/3/followUp/0/week",
+   "/recipes/3/followUp/1/week",
+   "/recipes/3/followUp/2/week",
+   "/recipes/3/followUp/3/week",
+   "/recipes/4/followUp/0/week",
+   "/recipes/4/followUp/1/week",
+   "/recipes/4/followUp/2/week",
+   "/recipes/4/followUp/3/week",
+   "/recipes/5/followUp/0/week",
+   "/recipes/5/followUp/1/week",
+   "/recipes/5/followUp/2/week",
+   "/recipes/5/followUp/3/week",
+   "/recipes/6/followUp/0/week",
+   "/recipes/6/followUp/1/week",
+   "/recipes/6/followUp/2/week",
+   "/recipes/6/followUp/3/week"
+  ]
+ }
+}

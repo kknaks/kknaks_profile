@@ -1,0 +1,50 @@
+{
+  "segment": "SEG-01",
+  "read_status": "direct_read_done",
+  "read_note": "/by_concern/0 (주름 개선) concern·concern_en·icon 과 severity_levels 3단계의 모든 필드·배열 원소를 원문 순서로 직접 읽음",
+  "observations": [
+    {"id": "O01-1", "pointers": ["/by_concern/0/severity_levels/0/level", "/by_concern/0/severity_levels/1/level", "/by_concern/0/severity_levels/2/level"], "status": "P", "text": "level 은 「한국어 단계명 (영어 보충)」 형식(경미/중등도/중증 + fine lines/moderate wrinkles/deep wrinkles). 단계 기준(무엇으로 경미·중증을 가르나)은 원문에 없다."},
+    {"id": "O01-2", "pointers": ["/by_concern/0/severity_levels/0/optimal_combo/0", "/by_concern/0/severity_levels/0/sequence", "/by_concern/0/severity_levels/0/expected_sessions"], "status": "F", "text": "optimal_combo 는 「레이저토닝」, sequence·expected_sessions·rationale 은 「토닝」으로 줄여 부른다. 같은 대상을 가리키는지는 문맥상 그럴듯하나 원문 표기만으로 연결하지 않았다."},
+    {"id": "O01-3", "pointers": ["/by_concern/0/severity_levels/0/optimal_combo/1"], "status": "P", "text": "「스킨부스터(리쥬란)」의 괄호는 README 「괄호 안 대안은 예시」 형식과 같은 꼴이나, 리쥬란이 유일 예시인지 고정 제품인지는 원문에 없다."},
+    {"id": "O01-4", "pointers": ["/by_concern/0/severity_levels/1/sequence"], "status": "P", "text": "sequence 하나에 두 안이 「또는」으로 나뉜다: (가) 같은날 필러→스킨부스터→보톡스, (나) 보톡스 먼저 → 2주 후 필러. (나)에는 스킨부스터가 빠져 있다. 「.」로 두 문장을 가른다. 화살표 앞뒤 공백 유무가 섞인다."},
+    {"id": "O01-5", "pointers": ["/by_concern/0/severity_levels/1/rationale"], "status": "P", "text": "rationale 의 괄호는 제품 예시가 아니라 각 시술이 겨냥하는 대상(동적주름·정적주름/볼륨·피부결)이다. 같은 원장 안에서 괄호의 역할이 필드마다 다르다. 「정적주름/볼륨」의 `/` 는 대안이 아니라 대상 나열로 읽힌다(잠정)."},
+    {"id": "O01-6", "pointers": ["/by_concern/0/severity_levels/0/expected_sessions", "/by_concern/0/severity_levels/1/expected_sessions", "/by_concern/0/severity_levels/2/expected_sessions"], "status": "P", "text": "expected_sessions 의 `+` 는 시술별 회차를 잇는 나열이다. 같은 날 함께 한다는 뜻인지 README `+`(함께 시술)와 같은 뜻인지는 원문에 없다. 회차 범위 「5-10회」「1-2회」는 하이픈 범위."},
+    {"id": "O01-7", "pointers": ["/by_concern/0/severity_levels/2/sequence"], "status": "B", "text": "「HIFU/RF 먼저 → 보톡스(같은날 가능) → 2주 후 필러 → 스킨부스터」: 보톡스는 같은날 「가능」(필수 아님), 필러는 2주 후, 스킨부스터는 간격이 적혀 있지 않다. 「2주 후」의 기준점이 HIFU/RF 인지 보톡스인지 원문에 없다."},
+    {"id": "O01-8", "pointers": ["/by_concern/0/severity_levels/2/contraindicated_combos/0", "/by_concern/0/severity_levels/2/sequence"], "status": "P", "text": "금지 「HA 필러 후 14일 이내 RF/HIFU 금지」는 순서(필러 후)·기간(14일 이내)·대상(RF/HIFU)·금지를 한 문장에 담는다. 같은 단계 sequence 는 HIFU/RF 를 필러보다 먼저 두어 금지 방향과 충돌하지 않는다. optimal_combo 는 「필러」라고만 쓰므로 그 필러가 HA 인지는 원문에 없다(B). 「2주」와 「14일」을 같은 값으로 환산하지 않았다."},
+    {"id": "O01-9", "pointers": ["/by_concern/0/severity_levels/2/rationale"], "status": "P", "text": "rationale 은 HIFU 만 언급(「HIFU로 SMAS 리프팅」)하고 optimal_combo 의 「HIFU/RF」 중 RF 의 역할은 적지 않았다."},
+    {"id": "O01-10", "pointers": ["/by_concern/0/severity_levels/0/contraindicated_combos", "/by_concern/0/severity_levels/1/contraindicated_combos"], "status": "B", "text": "빈 배열 []: 금지 조합이 없다는 뜻인지, 기록하지 않았다는 뜻인지 원문에 없다."},
+    {"id": "O01-11", "pointers": ["/by_concern/0/severity_levels/0/evidence_level", "/by_concern/0/severity_levels/1/evidence_level", "/by_concern/0/severity_levels/2/evidence_level"], "status": "B", "text": "evidence_level(moderate·high) 은 단계 전체에 대한 값이다. 어느 근거·어떤 등급 체계인지, 조합 중 어느 부분에 대한 등급인지 원문에 없다."}
+  ],
+  "manual_expressions": [
+    {"pointer": "/by_concern/0/severity_levels/0/level", "text": "(fine lines)", "kinds": ["parenthetical", "language_en", "severity"]},
+    {"pointer": "/by_concern/0/severity_levels/0/optimal_combo/1", "text": "스킨부스터(리쥬란)", "kinds": ["procedure_like", "product_like", "parenthetical"]},
+    {"pointer": "/by_concern/0/severity_levels/0/sequence", "text": "토닝 먼저", "kinds": ["order_sequence"]},
+    {"pointer": "/by_concern/0/severity_levels/0/sequence", "text": "2주 후 스킨부스터", "kinds": ["interval_after", "time"]},
+    {"pointer": "/by_concern/0/severity_levels/0/rationale", "text": "토닝으로 표피 리뉴얼 후", "kinds": ["effect_purpose", "layer_depth", "order_sequence"]},
+    {"pointer": "/by_concern/0/severity_levels/0/rationale", "text": "스킨부스터로 진피 재생", "kinds": ["effect_purpose", "layer_depth"]},
+    {"pointer": "/by_concern/0/severity_levels/0/expected_sessions", "text": "토닝 5-10회", "kinds": ["session_count", "range"]},
+    {"pointer": "/by_concern/0/severity_levels/0/total_duration", "text": "3-6개월", "kinds": ["time", "range"]},
+    {"pointer": "/by_concern/0/severity_levels/1/level", "text": "(moderate wrinkles)", "kinds": ["parenthetical", "language_en", "severity"]},
+    {"pointer": "/by_concern/0/severity_levels/1/sequence", "text": "같은날: 필러→스킨부스터→보톡스", "kinds": ["same_day", "order_sequence"]},
+    {"pointer": "/by_concern/0/severity_levels/1/sequence", "text": "또는 보톡스 먼저 → 2주 후 필러", "kinds": ["alternative", "order_sequence", "interval_after"]},
+    {"pointer": "/by_concern/0/severity_levels/1/rationale", "text": "보톡스(동적주름)", "kinds": ["parenthetical", "target_concern"]},
+    {"pointer": "/by_concern/0/severity_levels/1/rationale", "text": "필러(정적주름/볼륨)", "kinds": ["parenthetical", "target_concern", "slash_non_alternative"]},
+    {"pointer": "/by_concern/0/severity_levels/1/rationale", "text": "스킨부스터(피부결)", "kinds": ["parenthetical", "target_concern"]},
+    {"pointer": "/by_concern/0/severity_levels/1/total_duration", "text": "2-4개월", "kinds": ["time", "range"]},
+    {"pointer": "/by_concern/0/severity_levels/2/level", "text": "(deep wrinkles)", "kinds": ["parenthetical", "language_en", "severity", "layer_depth"]},
+    {"pointer": "/by_concern/0/severity_levels/2/sequence", "text": "HIFU/RF 먼저", "kinds": ["alternative", "order_sequence"]},
+    {"pointer": "/by_concern/0/severity_levels/2/sequence", "text": "보톡스(같은날 가능)", "kinds": ["same_day", "possibility", "parenthetical"]},
+    {"pointer": "/by_concern/0/severity_levels/2/sequence", "text": "2주 후 필러", "kinds": ["interval_after", "time"]},
+    {"pointer": "/by_concern/0/severity_levels/2/sequence", "text": "→ 스킨부스터", "kinds": ["order_sequence", "interval_unspecified"]},
+    {"pointer": "/by_concern/0/severity_levels/2/rationale", "text": "HIFU로 SMAS 리프팅", "kinds": ["effect_purpose", "layer_depth", "language_mixed"]},
+    {"pointer": "/by_concern/0/severity_levels/2/rationale", "text": "필러로 볼륨/깊은주름", "kinds": ["effect_purpose", "degree_modifier", "slash_non_alternative"]},
+    {"pointer": "/by_concern/0/severity_levels/2/expected_sessions", "text": "HIFU 1-2회", "kinds": ["session_count", "range"]},
+    {"pointer": "/by_concern/0/severity_levels/2/expected_sessions", "text": "필러 1-2회", "kinds": ["session_count", "range"]},
+    {"pointer": "/by_concern/0/severity_levels/2/contraindicated_combos/0", "text": "HA 필러 후 14일 이내 RF/HIFU 금지", "kinds": ["avoid_prohibit", "interval_within", "order_sequence", "time", "alternative"]},
+    {"pointer": "/by_concern/0/severity_levels/2/contraindicated_combos/0", "text": "14일 이내", "kinds": ["interval_within", "range", "time"]}
+  ],
+  "issues": [
+    {"id": "B-01-1", "class": "B", "pointers": ["/by_concern/0/severity_levels/2/sequence"], "text": "「2주 후 필러」의 기준 시점과 스킨부스터의 간격이 원문에 없다."},
+    {"id": "B-01-2", "class": "B", "pointers": ["/by_concern/0/severity_levels/2/optimal_combo/2", "/by_concern/0/severity_levels/2/contraindicated_combos/0"], "text": "optimal_combo 「필러」가 금지 문구의 「HA 필러」와 같은지 원문에 없다."}
+  ]
+}

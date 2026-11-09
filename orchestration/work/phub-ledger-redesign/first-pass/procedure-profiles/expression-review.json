@@ -1,0 +1,170 @@
+{
+ "note": "regex·keyword 표현 후보 중 원문 대조로 오탐 판정한 출현 목록. 출현(pointer·span·범주) 단위로만 적용하며 같은 단어의 다른 출현에 일괄 적용하지 않는다. 형태소 오태깅 유래 오탐은 build 가 segmentation-occurrence-review.json 과 연결해 따로 표시한다.",
+ "entries": [
+  {
+   "pointer": "/profiles/1/moa_summary",
+   "span": [
+    12,
+    15
+   ],
+   "category_candidate": "negation_prohibition",
+   "text": "피하에",
+   "verdict": "false_positive",
+   "reason": "이 출현의 '피하'는 皮下(진피~피하) — '피하다' keyword 오탐"
+  },
+  {
+   "pointer": "/profiles/1/aftercare/0",
+   "span": [
+    81,
+    83
+   ],
+   "category_candidate": "condition_scope",
+   "text": "즉시",
+   "verdict": "false_positive",
+   "reason": "'시' 접미 regex 가 이 출현의 부사 '즉시'에 걸림 — 조건 아님"
+  },
+  {
+   "pointer": "/profiles/1/aftercare/4",
+   "span": [
+    12,
+    14
+   ],
+   "category_candidate": "condition_scope",
+   "text": "즉시",
+   "verdict": "false_positive",
+   "reason": "'시' 접미 regex 가 이 출현의 부사 '즉시'에 걸림 — 조건 아님"
+  },
+  {
+   "pointer": "/profiles/2/prepNotes",
+   "span": [
+    49,
+    51
+   ],
+   "category_candidate": "condition_scope",
+   "text": "즉시",
+   "verdict": "false_positive",
+   "reason": "'시' 접미 regex 가 이 출현의 부사 '즉시'에 걸림 — 조건 아님"
+  },
+  {
+   "pointer": "/profiles/2/prepNotes",
+   "span": [
+    96,
+    98
+   ],
+   "category_candidate": "condition_scope",
+   "text": "즉시",
+   "verdict": "false_positive",
+   "reason": "'시' 접미 regex 가 이 출현의 부사 '즉시'에 걸림 — 조건 아님"
+  },
+  {
+   "pointer": "/profiles/2/practicalNotes/0",
+   "span": [
+    53,
+    55
+   ],
+   "category_candidate": "condition_scope",
+   "text": "즉시",
+   "verdict": "false_positive",
+   "reason": "'시' 접미 regex 가 이 출현의 부사 '즉시'에 걸림 — 조건 아님"
+  },
+  {
+   "pointer": "/profiles/2/aftercare/1",
+   "span": [
+    8,
+    10
+   ],
+   "category_candidate": "condition_scope",
+   "text": "즉시",
+   "verdict": "false_positive",
+   "reason": "'시' 접미 regex 가 이 출현의 부사 '즉시'에 걸림 — 조건 아님"
+  },
+  {
+   "pointer": "/profiles/3/prepNotes",
+   "span": [
+    0,
+    2
+   ],
+   "category_candidate": "condition_scope",
+   "text": "즉시",
+   "verdict": "false_positive",
+   "reason": "'시' 접미 regex 가 이 출현의 부사 '즉시'에 걸림 — 조건 아님"
+  },
+  {
+   "pointer": "/profiles/5/moa_summary",
+   "span": [
+    15,
+    17
+   ],
+   "category_candidate": "condition_scope",
+   "text": "안면",
+   "verdict": "false_positive",
+   "reason": "'면' regex 가 이 출현의 명사 '안면'(顔面)에 걸림 — 조건 아님"
+  },
+  {
+   "pointer": "/profiles/6/moa_summary",
+   "span": [
+    16,
+    18
+   ],
+   "category_candidate": "negation_prohibition",
+   "text": "피하",
+   "verdict": "false_positive",
+   "reason": "이 출현의 '피하'는 皮下(피하~SMAS) — '피하다' keyword 오탐"
+  },
+  {
+   "pointer": "/profiles/6/moa_summary",
+   "span": [
+    13,
+    18
+   ],
+   "category_candidate": "negation_phrase",
+   "text": "실을 피하",
+   "verdict": "false_positive",
+   "reason": "이 출현의 '피하'는 皮下(피하~SMAS) — '피하다' 패턴 오탐"
+  },
+  {
+   "pointer": "/profiles/8/practicalNotes/4",
+   "span": [
+    10,
+    13
+   ],
+   "category_candidate": "condition_scope",
+   "text": "반드시",
+   "verdict": "false_positive",
+   "reason": "'시' 접미 regex 가 이 출현의 부사 '반드시'에 걸림 — 조건 아님(필수 표현은 necessity 에서 수집)"
+  },
+  {
+   "pointer": "/profiles/12/moa_summary",
+   "span": [
+    18,
+    20
+   ],
+   "category_candidate": "condition_scope",
+   "text": "표면",
+   "verdict": "false_positive",
+   "reason": "'면' regex 가 이 출현의 명사 '표면'에 걸림 — 조건 아님"
+  },
+  {
+   "pointer": "/profiles/15/practicalNotes/1",
+   "span": [
+    111,
+    113
+   ],
+   "category_candidate": "condition_scope",
+   "text": "즉시",
+   "verdict": "false_positive",
+   "reason": "'시' 접미 regex 가 이 출현의 부사 '즉시'에 걸림 — 조건 아님"
+  },
+  {
+   "pointer": "/profiles/15/aftercare/3",
+   "span": [
+    47,
+    49
+   ],
+   "category_candidate": "condition_scope",
+   "text": "즉시",
+   "verdict": "false_positive",
+   "reason": "'시' 접미 regex 가 이 출현의 부사 '즉시'에 걸림 — 조건 아님"
+  }
+ ]
+}

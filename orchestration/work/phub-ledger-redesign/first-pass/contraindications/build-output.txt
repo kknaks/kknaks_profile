@@ -1,0 +1,7 @@
+source orchestration/work/phub-recommend/bronze/phub-ledger/contraindications.json bytes 6390 sha256 964b729594b1756036c160823dc2e8d27ea38fe85d7aefb7559733522d7c53c2
+nodes 221 keys 193 dup_keys 0 escapes 0
+rules 27 ids ['M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7', 'M8', 'M9', 'M11', 'M12'] pair_dups {} levels {'caution': 14, 'safe': 8, 'warning': 5}
+kiwi 0.24.1 cong workers 1
+morph records 109 tokens 741 excluded 83 seg_rows 141 known_issue occurrences 23
+expressions manual 107 regex 185 exact_dups 0 same_span_groups(intended overlaps) 5
+source sha256 unchanged True

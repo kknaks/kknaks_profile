@@ -1,0 +1,29 @@
+{
+  "segment": "SEG-12",
+  "read_status": "direct_read_done",
+  "read_note": "/annual_plans/1 (30대 동안 유지 플랜) 상위 필드와 schedule 12개월 각 month·procedures 전 원소를 원문 순서로 직접 읽음",
+  "observations": [
+    {"id": "O12-1", "pointers": ["/annual_plans/1/schedule/0/procedures/0"], "status": "P", "text": "「보톡스 이마+미간」: README 「부위 나열은 +」 예시와 같은 문자열. 이 원장에서 부위가 괄호 없이 띄어 붙는 유일한 보톡스 표기다(다른 곳은 「보톡스(턱선+광대)」)."},
+    {"id": "O12-2", "pointers": ["/annual_plans/1/schedule/0/procedures/0", "/annual_plans/1/schedule/2/procedures/0", "/annual_plans/1/schedule/5/procedures/0", "/annual_plans/1/schedule/8/procedures/0", "/annual_plans/1/schedule/11/procedures/0", "/by_age_group/1/maintenance"], "status": "P", "text": "보톡스는 1월(이마+미간)·3월(터치업)·6·9·12월. 「터치업」 은 보완 시술로 읽히며 회차 셈에 들어가는지 원문에 없다(B). 1·6·9·12월 간격은 by_age_group/1 「보톡스 3-4개월」 과 대체로 맞으나 1→6월은 5개월이다(판정 안 함)."},
+    {"id": "O12-3", "pointers": ["/annual_plans/1/schedule/5/procedures/1", "/annual_plans/1/schedule/6/procedures/0", "/annual_plans/1/schedule/7/procedures/0"], "status": "P", "text": "「바이오스티뮬레이터 1차~3차」 가 6·7·8월 연속(월 1회). 같은 원장 by_concern 의 「4주 간격」 표현과 같은 뜻인지 연결하지 않았다."},
+    {"id": "O12-4", "pointers": ["/annual_plans/1/schedule/0/procedures/1", "/annual_plans/1/schedule/3/procedures/0", "/annual_plans/1/schedule/7/procedures/1", "/annual_plans/1/schedule/10/procedures/0"], "status": "P", "text": "「스킨부스터」 는 1·4·8·11월에 차수 없이 쓰인다(20대 플랜은 차수 표기)."},
+    {"id": "O12-5", "pointers": ["/annual_plans/1/schedule/1/procedures/0", "/by_age_group/1/maintenance"], "status": "I", "text": "「토닝 4회」 가 7개월(2·4·5·7·9·10·11월)에 있고 by_age_group/1 maintenance 는 「토닝 월 1-2회」(원문 내 불일치 후보, SEG-11 과 같은 꼴)."},
+    {"id": "O12-6", "pointers": ["/annual_plans/1/schedule/5/procedures", "/annual_plans/1/schedule/0/procedures"], "status": "B", "text": "같은 달에 보톡스+바이오스티뮬레이터(6월), 보톡스+스킨부스터(1월)가 있다. 같은 날인지·순서는 원문에 없다."},
+    {"id": "O12-7", "pointers": ["/annual_plans/1/focus", "/by_age_group/1/annual_focus"], "status": "P", "text": "focus 「노화 예방, 동적주름 관리, 콜라겐 투자 시작」 은 by_age_group/1 annual_focus 와 표현이 거의 같다(「노화 예방 시작」 vs 「노화 예방」, 「보톡스로 동적주름 관리」 vs 「동적주름 관리」)."}
+  ],
+  "manual_expressions": [
+    {"pointer": "/annual_plans/1/plan_name", "text": "30대 동안 유지 플랜", "kinds": ["age", "plan_name", "maintenance"]},
+    {"pointer": "/annual_plans/1/annual_budget_range", "text": "200-500만원", "kinds": ["cost", "range", "quantity_unit"]},
+    {"pointer": "/annual_plans/1/focus", "text": "콜라겐 투자 시작", "kinds": ["focus", "series_start"]},
+    {"pointer": "/annual_plans/1/schedule/0/procedures/0", "text": "보톡스 이마+미간", "kinds": ["procedure_like", "body_part", "plus_list"]},
+    {"pointer": "/annual_plans/1/schedule/2/procedures/0", "text": "보톡스 터치업", "kinds": ["touch_up", "language_mixed"]},
+    {"pointer": "/annual_plans/1/schedule/5/procedures/1", "text": "바이오스티뮬레이터 1차", "kinds": ["series_order"]},
+    {"pointer": "/annual_plans/1/schedule/6/procedures/0", "text": "바이오스티뮬레이터 2차", "kinds": ["series_order"]},
+    {"pointer": "/annual_plans/1/schedule/7/procedures/0", "text": "바이오스티뮬레이터 3차", "kinds": ["series_order"]},
+    {"pointer": "/annual_plans/1/schedule/11/procedures/1", "text": "연말 특별 관리(필링+LED)", "kinds": ["season", "degree_modifier", "parenthetical", "plus_list", "bundle_name"]}
+  ],
+  "issues": [
+    {"id": "I-12-1", "class": "I", "pointers": ["/annual_plans/1/schedule", "/by_age_group/1/maintenance"], "text": "30대 토닝 빈도: plan 월 4회 vs maintenance 월 1-2회(원문 내 불일치 후보)."},
+    {"id": "B-12-1", "class": "B", "pointers": ["/annual_plans/1/schedule/2/procedures/0"], "text": "「터치업」 의 범위(부위·용량)와 회차 셈 포함 여부가 원문에 없다."}
+  ]
+}

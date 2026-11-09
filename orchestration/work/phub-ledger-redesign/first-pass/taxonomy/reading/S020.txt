@@ -1,0 +1,211 @@
+# S020  scope=M8 레이저  units=id | category | category_en | group | subcategories 컨테이너 | M8-1 items/0 | M8-1 items/1 | M8-1 items/2 | M8-1 items/3 | M8-1 items/4 | M8-1 items/5 | M8-1 items/6 | M8-1 items/7 | M8-1 items/8 | M8-1 items/9 | M8-1 items/10 | M8-1 items/11
+# 상위 문맥: []
+@ /modality/7 M8 레이저 레이저
+  . {id,category,category_en,group,subcategories,extracted,products,name}
+  /id = "M8"
+  /category = "레이저"
+  /category_en = "Laser & Light"
+  /group = "시술/기기"
+  /subcategories [7]
+@ /modality/7/subcategories/0 M8-1 색소/토닝
+  . {id,label,items}
+  /id = "M8-1"
+  /label = "색소/토닝"
+  /items [17]
+@ /modality/7/subcategories/0/items/0 M8-1-3 피코슈어
+  . {id,name,detail,extracted}
+  /id = "M8-1-3"
+  /name = "피코슈어"
+  /detail = "사이노슈어 · 피코초 펄스 755nm"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "755nm 알렉산드라이트 레이저를 이용한 초단펄스 피코초 기술로 표피 손상을 최소화하면서 멜라닌 색소와 문신 제거에 특화된 시술"
+  /extracted/mechanism = "755nm 파장이 멜라닌에 선택적으로 흡수되어 선택적 광열용해(Anderson&Parrish 1983)를 유도합니다. 피코초 단위의 극도로 짧은 펄스폭으로 열확산을 최소화하고 광음향 효과를 극대화하여 색소를 미세한 입자로 분쇄합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [6] = 0:"검버섯/노인성 색소반" ‖ 1:"주근깨" ‖ 2:"오타모반/밀도모반" ‖ 3:"문신 제거" ‖ 4:"색소성 병변" ‖ 5:"피부톤 개선"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [4] = 0:"일시적 홍반" ‖ 1:"부종" ‖ 2:"경미한 결막" ‖ 3:"일시적 색소침착"
+  /extracted/safety/serious [3] = 0:"흉터 형성" ‖ 1:"영구적 색소탈실" ‖ 2:"수포 형성(과도 에너지 시)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "색소 제거는 누적 시술 필요, 주근깨 5-7회, 문신 10-20회 이상"
+  /extracted/aftercare [7] = 0:"시술 후 3시간 내 냉찜질" ‖ 1:"7일간 자외선 차단(SPF 50+)" ‖ 2:"2주간 사우나/찜질방 자제" ‖ 3:"시술 부위 문지르지 않기" ‖ 4:"색소침착 위험 시 미백 제품 병행" ‖ 5:"감염 징후 시 의료진 상담" ‖ 6:"[시술 주기 참고] 토닝 — 1-2주 간격 누적 시술. 반응 보며 간격 조절. 과도한 반복 시 PIH/저색소증 위험 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/0/items/1 M8-1-1 레이저토닝
+  . {id,name,detail,extracted}
+  /id = "M8-1-1"
+  /name = "레이저토닝"
+  /detail = "1064nm · Nd:YAG"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "저에너지의 1064nm Nd:YAG 레이저를 이용하여 멜라닌에 선택적으로 작용하면서 피부손상을 최소화하는 비박피성 토닝 시술"
+  /extracted/mechanism = "Anderson & Parrish의 선택적 광열용해 원리에 따라 1064nm 파장이 멜라닌에 흡수되어 색소 입자를 파괴합니다. 저에너지 반복 조사로 표피 손상 없이 진피층의 색소만 선택적으로 제거하여 PIH 발생률을 최소화합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [6] = 0:"색소침착" ‖ 1:"주근깨" ‖ 2:"기미" ‖ 3:"문신" ‖ 4:"피부톤 개선" ‖ 5:"모공축소"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [4] = 0:"일시적 홍반" ‖ 1:"부종" ‖ 2:"따가움감" ‖ 3:"경미한 가피형성"
+  /extracted/safety/serious [1] = 0:"색소침착후(PIH): 저에너지 반복 조사 시 낮으나 QS Nd:YAG 기반이므로 ~10% 가능의 매우 낮은 발생률"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시 ~ 1주일"
+  /extracted/onset_duration/duration = "누적 시술로 4-6주 후 최대 효과"
+  /extracted/aftercare [5] = 0:"자외선 차단제 SPF50+ 필수" ‖ 1:"시술 후 24시간 고온 환경 피하기" ‖ 2:"보습 강화" ‖ 3:"레티놀 등 자극성 제품 1주일 중단" ‖ 4:"[시술 주기 참고] 토닝 — 1-2주 간격 누적 시술. 반응 보며 간격 조절. 과도한 반복 시 PIH/저색소증 위험 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/0/items/2 M8-1-2 피코토닝
+  . {id,name,detail,extracted}
+  /id = "M8-1-2"
+  /name = "피코토닝"
+  /detail = "피코초 펄스 1064nm Nd:YAG"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "피코초 단위의 초단파 펄스를 방출하는 1064nm Nd:YAG 레이저로 멜라닌에 선택적으로 작용하여 색소질환을 치료하는 시술"
+  /extracted/mechanism = "1064nm 파장이 멜라닌에 선택적으로 흡수되어 광열용해를 일으키고, 피코초 단위의 극단파 펄스로 멜라닌 입자를 미세한 파편으로 분쇄하여 체내 흡수 및 배출을 촉진한다. Anderson & Parrish의 선택적 광열용해 이론에 기반하여 주변 조직 손상을 최소화하면서 표피 색소를 효과적으로 제거한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [6] = 0:"기미" ‖ 1:"주근깨" ‖ 2:"오타모반" ‖ 3:"문신 제거" ‖ 4:"검은 반점" ‖ 5:"피부 톤 개선"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"일시적 홍반" ‖ 1:"미세한 부종" ‖ 2:"건조함"
+  /extracted/safety/serious [1] = 0:"염증후색소침착(PIH): 1% 이하(QS-Nd:YAG 10%에 비해 현저히 낮음)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "시술 직후부터 효과 감지, 3-7일 후 눈에 띄는 변화"
+  /extracted/onset_duration/duration = "누적 효과, 회당 시술 간격 2-4주, 완전한 결과는 4-6회 시술 후 (개인차)"
+  /extracted/aftercare [5] = 0:"시술 직후 24시간 이내 과도한 일광 노출 피하기" ‖ 1:"SPF 50 이상 자외선 차단제 매일 사용" ‖ 2:"시술 부위 세정 시 자극적인 제품 피하기" ‖ 3:"일주일간 과도한 운동이나 사우나 제한" ‖ 4:"[시술 주기 참고] 토닝 — 1-2주 간격 누적 시술. 반응 보며 간격 조절. 과도한 반복 시 PIH/저색소증 위험 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/0/items/3 auto-27-1774737181584 알렉스토닝
+  . {id,name,detail,extracted}
+  /id = "auto-27-1774737181584"
+  /name = "알렉스토닝"
+  /detail = "롱펄스 755nm"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "멜라닌에 선택적으로 흡수되는 755nm 롱펄스 레이저로 색소 질환 및 제모에 효과적인 미용 시술 장비"
+  /extracted/mechanism = "선택적 광열용해 원리에 따라 755nm 파장이 표피의 멜라닌에 선택적으로 흡수되어 열에너지로 변환되며, 이를 통해 색소 병변과 모낭을 파괴합니다. 긴 펄스폭으로 인해 표피 손상을 최소화하면서 진피층까지 충분한 에너지 전달이 가능합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"기미/주근깨" ‖ 1:"검버섯" ‖ 2:"제모" ‖ 3:"문신 제거" ‖ 4:"이상혈관종"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"일시적 홍반" ‖ 1:"부종" ‖ 2:"작열감"
+  /extracted/safety/serious [3] = 0:"PIH (염증후 색소침착) 1% 이하" ‖ 1:"수포/궤양" ‖ 2:"영구적 색소 변화"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "직후 발적, 3-7일 내 색소 침착 가시화"
+  /extracted/onset_duration/duration = "효과는 4-6주에 걸쳐 점진적으로 나타남"
+  /extracted/aftercare [6] = 0:"시술 후 24시간 냉찜질" ‖ 1:"자외선 차단제(SPF 50+) 필수" ‖ 2:"3주간 자외선 노출 최소화" ‖ 3:"문제 부위 자극(문지르기, 마사지) 자제" ‖ 4:"과도한 열 노출(찜질방, 사우나) 2주 회피" ‖ 5:"[시술 주기 참고] 토닝 — 1-2주 간격 누적 시술. 반응 보며 간격 조절. 과도한 반복 시 PIH/저색소증 위험 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/0/items/4 auto-28-1774737181584 제네시스토닝
+  . {id,name,detail,extracted}
+  /id = "auto-28-1774737181584"
+  /name = "제네시스토닝"
+  /detail = "롱펄스 1064nm"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "멜라닌에 선택적으로 흡수되는 1064nm 근적외선을 이용하여 표피 손상 없이 진피층의 색소병변을 개선하는 비절제 토닝 시술"
+  /extracted/mechanism = "Anderson & Parrish의 선택적 광열용해 원리에 따라 1064nm 파장이 멜라닌에 우선적으로 흡수되어 색소 입자를 분해합니다. 롱펄스 설정으로 표피 손상을 최소화하면서 진피층의 색소에 열손상을 유도하여 점진적인 개선을 도모합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"잡티/검은기미" ‖ 1:"갈색반점" ‖ 2:"색소침착" ‖ 3:"칙칙한 피부톤" ‖ 4:"멜라즘"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [4] = 0:"일시적 홍반" ‖ 1:"부종" ‖ 2:"경미한 따가움" ‖ 3:"건조함"
+  /extracted/safety/serious [3] = 0:"염증후색소침착(PIH) - 약 1%" ‖ 1:"수포형성" ‖ 2:"흉터 형성(극드문)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "직후~1주일(초기 개선), 4주 이후(전체 효과)"
+  /extracted/onset_duration/duration = "회당 효과 점진적, 복합시술로 누적 효과 (횟수는 개인차)"
+  /extracted/aftercare [6] = 0:"자외선 차단(SPF50+) 필수" ‖ 1:"시술 후 48시간 자극적 제품 회피" ‖ 2:"냉찜질로 부종 관리" ‖ 3:"과도한 문지르기 자제" ‖ 4:"색소침착 위험군은 전문의 상담 필수" ‖ 5:"[시술 주기 참고] 토닝 — 1-2주 간격 누적 시술. 반응 보며 간격 조절. 과도한 반복 시 PIH/저색소증 위험 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/0/items/5 auto-M8-1775361386532 레블라이트SI
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1775361386532"
+  /name = "레블라이트SI"
+  /detail = "사이노슈어 · QS Nd:YAG 업그레이드 · 기미/흉터"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "큐스위치 Nd:YAG 레이저를 이용한 색소성 병변 및 흉터 개선 시술"
+  /extracted/mechanism = "1064nm와 532nm 파장의 큐스위치 레이저가 멜라닌 색소를 선택적으로 파괴합니다. 짧은 펄스폭으로 주변 조직 손상을 최소화하면서 색소 입자를 미세하게 분해하여 자연스럽게 배출시킵니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"기미, 주근깨, 잡티 등 색소성 병변" ‖ 1:"여드름 흉터, 모공 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 일시적 홍반과 부종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [5] = 0:"자외선 차단제 필수 사용" ‖ 1:"시술 후 2-3일간 세안 시 자극 자제" ‖ 2:"딱지 제거 자제" ‖ 3:"보습 관리 철저" ‖ 4:"[시술 주기 참고] 토닝 — 1-2주 간격 누적 시술. 반응 보며 간격 조절. 과도한 반복 시 PIH/저색소증 위험 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/0/items/6 auto-M8-1775361394023 피코케어
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1775361394023"
+  /name = "피코케어"
+  /detail = "원텍 · 1064/532nm 피코초"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "1064/532nm 파장의 피코초 레이저를 이용하여 색소질환과 피부재생을 동시에 개선하는 미용시술"
+  /extracted/mechanism = "피코초(10^-12초) 단위의 극초단파 레이저가 멜라닌 색소를 미세하게 파쇄하여 자연 배출을 유도합니다. 동시에 진피층에 광음향 효과를 일으켜 콜라겐 재생과 피부 탄력 개선을 촉진합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"기미, 주근깨, 잡티 등 색소질환" ‖ 1:"피부톤 개선 및 모공축소"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 후 일시적 홍반 및 부종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [4] = 0:"자외선 차단제 필수 사용" ‖ 1:"보습 관리 강화" ‖ 2:"사우나/찜질방 1주일 자제" ‖ 3:"[시술 주기 참고] 토닝 — 1-2주 간격 누적 시술. 반응 보며 간격 조절. 과도한 반복 시 PIH/저색소증 위험 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/0/items/7 auto-M8-1775361826073 루비레이저
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1775361826073"
+  /name = "루비레이저"
+  /detail = "694nm · Q-switched · 색소/문신"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "694nm 파장의 Q-switched 루비레이저로 멜라닌과 문신 색소를 선택적으로 파괴하는 색소 치료 레이저"
+  /extracted/mechanism = "694nm 파장이 멜라닌과 특정 문신 색소에 선택적으로 흡수되어 광열분해를 일으킨다. Q-switched 기술로 나노초 단위의 짧은 펄스를 전달하여 주변 조직 손상 없이 표적 색소만을 파괴한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"기미, 주근깨, 흑자 등 멜라닌 색소질환" ‖ 1:"검은색, 파란색 문신 제거"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 후 일시적 홍반 및 부종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "영구적 (완전 제거 시)"
+  /extracted/aftercare [6] = 0:"자외선 차단제 필수 사용" ‖ 1:"자외선 차단 (PIH 예방 — 피부 장벽 손상 상태)" ‖ 2:"자극적 제품(레티놀, AHA/BHA) 며칠 자제" ‖ 3:"시술 부위 보습 유지" ‖ 4:"가피 형성 시 자연 탈락 대기 (인위적 제거 자제)" ‖ 5:"[시술 주기 참고] 토닝 — 1-2주 간격 누적 시술. 반응 보며 간격 조절. 과도한 반복 시 PIH/저색소증 위험 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/0/items/8 auto-M8-1775362587235 피코코어
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1775362587235"
+  /name = "피코코어"
+  /detail = "루트로닉 · 1064nm 피코초 · 경제형"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "1064nm 파장의 피코초 레이저를 이용한 경제형 색소 치료 장비"
+  /extracted/mechanism = "피코초(10^-12초) 단위의 극초단파 레이저로 멜라닌 색소를 미세하게 파쇄시킵니다. 기존 나노초 레이저 대비 열손상을 최소화하면서 효과적인 색소 제거가 가능합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"기미, 주근깨, 잡티 등 색소성 병변" ‖ 1:"문신 제거"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 일시적 홍반 및 부종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시-2주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [6] = 0:"시술 후 2주간 자외선 차단제 필수 사용" ‖ 1:"자외선 차단 (PIH 예방 — 피부 장벽 손상 상태)" ‖ 2:"자극적 제품(레티놀, AHA/BHA) 며칠 자제" ‖ 3:"시술 부위 보습 유지" ‖ 4:"가피 형성 시 자연 탈락 대기 (인위적 제거 자제)" ‖ 5:"[시술 주기 참고] 토닝 — 1-2주 간격 누적 시술. 반응 보며 간격 조절. 과도한 반복 시 PIH/저색소증 위험 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/0/items/9 auto-M8-1775362943490 트루피코
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1775362943490"
+  /name = "트루피코"
+  /detail = "4파장 컬러 문신 특화 · K마크 인증"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "4파장 레이저 시스템을 이용한 컬러 문신 제거 전용 의료기기"
+  /extracted/mechanism = "4개의 서로 다른 파장(532nm, 694nm, 755nm, 1064nm)을 이용하여 다양한 색소에 선택적으로 에너지를 전달합니다. Q-switched 기술로 극초단파 펄스를 생성하여 문신 색소를 파괴하고 자연적인 대사 과정을 통해 제거됩니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"다색상 문신 제거" ‖ 1:"색소 침착 치료"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 일시적 홍반 및 부종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시"
+  /extracted/onset_duration/duration = "4-8주 간격 다회 시술 (의사 판단)"
+  /extracted/aftercare [6] = 0:"시술 후 냉찜질 및 자외선 차단" ‖ 1:"자외선 차단 (PIH 예방 — 피부 장벽 손상 상태)" ‖ 2:"자극적 제품(레티놀, AHA/BHA) 며칠 자제" ‖ 3:"시술 부위 보습 유지" ‖ 4:"가피 형성 시 자연 탈락 대기 (인위적 제거 자제)" ‖ 5:"[시술 주기 참고] 토닝 — 1-2주 간격 누적 시술. 반응 보며 간격 조절. 과도한 반복 시 PIH/저색소증 위험 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/0/items/10 auto-M8-1775362951135 리레이저
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1775362951135"
+  /name = "리레이저"
+  /detail = "Q-switched Nd:YAG 532/1064nm · FDA/CE"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "Q-switched Nd:YAG 레이저를 이용한 색소성 병변 및 문신 제거용 의료기기"
+  /extracted/mechanism = "532nm와 1064nm 파장의 Q-switched 레이저가 멜라닌과 문신 색소에 선택적으로 흡수되어 광열분해를 유도합니다. 색소 입자가 파괴되면 대식세포에 의해 제거되어 병변이 개선됩니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"색소성 병변 치료(기미, 주근깨, 태양흑자)" ‖ 1:"문신 제거 및 색소침착 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 일시적 홍반 및 부종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [6] = 0:"시술 부위 자외선 차단 및 보습 관리" ‖ 1:"자외선 차단 (PIH 예방 — 피부 장벽 손상 상태)" ‖ 2:"자극적 제품(레티놀, AHA/BHA) 며칠 자제" ‖ 3:"시술 부위 보습 유지" ‖ 4:"가피 형성 시 자연 탈락 대기 (인위적 제거 자제)" ‖ 5:"[시술 주기 참고] 토닝 — 1-2주 간격 누적 시술. 반응 보며 간격 조절. 과도한 반복 시 PIH/저색소증 위험 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/0/items/11 auto-M8-1775364775120 스타워커
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1775364775120"
+  /name = "스타워커"
+  /detail = "포토나피코나노"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "포토나 피코나노 기술의 프리미엄 레이저 시술"
+  /extracted/mechanism = "피코초 단위의 초단시간 레이저 에너지가 멜라닌 색소를 선택적으로 파괴합니다. 나노초 펄스와 피코초 펄스를 결합하여 색소 제거와 동시에 피부 재생 효과를 극대화합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"기미" ‖ 1:"주근깨" ‖ 2:"문신 제거"
+  /extracted/safety {common}
+  /extracted/safety/common [2] = 0:"일시적 홍조" ‖ 1:"딱지 형성"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "반영구적"
+  /extracted/aftercare [3] = 0:"자외선 차단제 필수 사용" ‖ 1:"딱지 제거 자제" ‖ 2:"[시술 주기 참고] 토닝 — 1-2주 간격 누적 시술. 반응 보며 간격 조절. 과도한 반복 시 PIH/저색소증 위험 (개인차 있으며, 의사와 상의하여 결정)"

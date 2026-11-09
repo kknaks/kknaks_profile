@@ -1,0 +1,45 @@
+# S019  scope=M7 실리프팅  units=M7-P-3 | M7-P-4 | name
+# 상위 문맥: [{"pointer": "/modality/6", "id": "M7", "category": "실리프팅", "name": "실리프팅"}]
+@ /modality/6/products/3 M7-P-3 테스리프트
+  . {id,name,name_en,manufacturer,country,mfds,material,extracted}
+  /id = "M7-P-3"
+  /name = "테스리프트"
+  /name_en = "TESSLift"
+  /manufacturer = "리젠바이오텍"
+  /country = "KR"
+  /mfds = true
+  /material = "PDO+PCL"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "PDO, PLLA, PCL 복합 구성의 다층 시간차 흡수 실리프팅으로 즉각적 거상과 장기 콜라겐 재생을 동시에 제공하는 제품"
+  /extracted/mechanism = "PDO 실(6개월)은 즉각적 물리적 거상을 제공하며, PLLA(12-18개월)와 PCL(24-36개월)은 점진적 조직 자극으로 신생콜라겐 생성, 섬유가교 형성, 혈관신생을 유도한다. 48주간 24% 조직수축을 통해 지속적인 리프팅 효과와 피부 탄력 개선을 달성한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"중안면부 처짐" ‖ 1:"팔자주름" ‖ 2:"마리오네트선" ‖ 3:"턱선 이완" ‖ 4:"전체 얼굴 거상"
+  /extracted/safety {common}
+  /extracted/safety/common [4] = 0:"부종" ‖ 1:"멍" ‖ 2:"일시적 통증" ‖ 3:"표면 울퉁불퉁함(2-4주 내 개선)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉각(물리적 거상) / 점진적(3-6개월 콜라겐 생성)"
+  /extracted/onset_duration/duration = "최대 24-36개월(PCL 기반)"
+  /extracted/aftercare [5] = 0:"시술 후 72시간 과도한 얼굴 움직임 제한" ‖ 1:"1주일 금주, 금연" ‖ 2:"강한 마사지/미용시술 2주 회피" ‖ 3:"부종 관리를 위한 냉찜질(첫 48시간)" ‖ 4:"충분한 수면과 수분섭취"
+@ /modality/6/products/4 M7-P-4 실루엣소프트
+  . {id,name,name_en,manufacturer,country,mfds,material,extracted}
+  /id = "M7-P-4"
+  /name = "실루엣소프트"
+  /name_en = "Silhouette Soft"
+  /manufacturer = "싱클레어"
+  /country = "NL"
+  /mfds = true
+  /material = "PLLA"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "PLLA 양방향 톱니실과 생분해성 원뿔로 구조 복원 및 신생콜라겐 자극"
+  /extracted/mechanism = "PLLA 기반 양방향 톱니 실과 생분해성 폴리락타이드 원뿔이 인대선 고정점에서 즉각적 기계적 지지와 동시에 24-36개월 점진적 분해 동안 신생콜라겐, 섬유 가교, 혈관신생(모세혈관 2배 증가)을 유도합니다. 원뿔은 추가적 부피 재건으로 지방 위축 보상을 제공합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"경도~중등도 안면 처짐" ‖ 1:"광대 볼륨 손실" ‖ 2:"턱선 정의" ‖ 3:"얼굴 형태 복원"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [4] = 0:"일시적 부종 및 타박상" ‖ 1:"감각 이상" ‖ 2:"실 촉감" ‖ 3:"경미한 비대칭"
+  /extracted/safety/serious [4] = 0:"신경 손상" ‖ 1:"혈종" ‖ 2:"감염" ‖ 3:"이물 반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시~3주"
+  /extracted/onset_duration/duration = "18~24개월"
+  /extracted/aftercare [5] = 0:"배치 후 1주일 압박 및 마사지 금지" ‖ 1:"4주간 강한 표정 제한" ‖ 2:"고온 노출(찜질, 사우나) 2주 피하기" ‖ 3:"배치 부위 수평 누움 1주일 제한" ‖ 4:"Pitanguy line 주변 충격 방지"
+@ /modality/6 M7 실리프팅 실리프팅
+  /name = "실리프팅"

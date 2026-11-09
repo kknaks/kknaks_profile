@@ -1,0 +1,200 @@
+{
+ "segment": "S17",
+ "reading_state": "read_direct",
+ "last_read_pointer": "/categories/M17/effects",
+ "read_note": "M17 진술 1개(adverse_effects 1, moa·effects 빈 배열) 모든 값 직접 읽음.",
+ "observations": [
+  {
+   "id": "S17-O1",
+   "status": "P",
+   "pointers": [
+    "/categories/M17/adverse_effects/0/statement"
+   ],
+   "text": "'Unregulated stem cell products have caused serious adverse events including blindness after intra-ocular injection and tumor formation at ectopic sites.' — 조건(Unregulated)·정도(serious)·사건 예시 2개 각각 경로/부위 조건(after intra-ocular injection, at ectopic sites)."
+  },
+  {
+   "id": "S17-O2",
+   "status": "P",
+   "pointers": [
+    "/categories/M17/adverse_effects/0/citations/0/title"
+   ],
+   "text": "인용 제목 'Vision Loss after Intravitreal Injection of Autologous \"Stem Cells\" for AMD.' — 원문 리터럴에 이스케이프 따옴표. 제목상 안과(AMD) 맥락."
+  },
+  {
+   "id": "S17-O3",
+   "status": "P",
+   "pointers": [
+    "/categories/M17/adverse_effects/0/patient_ko",
+    "/categories/M17/adverse_effects/0/patient_en",
+    "/categories/M17/adverse_effects/0/patient_ja"
+   ],
+   "text": "patient_ko '검증되지 않은 성분을 잘못 사용할 경우 드물게 시력 손상이나 이상 조직이 생길 위험' — '드물게'·'잘못 사용할 경우' 추가, 'stem cell' 이 '성분'으로. patient_en/zh 는 사건 예시를 모두 뺌, ja 'まれに' 추가."
+  },
+  {
+   "id": "S17-O4",
+   "status": "P",
+   "pointers": [
+    "/categories/M17/moa",
+    "/categories/M17/effects"
+   ],
+   "text": "moa·effects 빈 배열."
+  }
+ ],
+ "expressions": [
+  {
+   "id": "S17-X1",
+   "pointer": "/categories/M17/name",
+   "text": "Stem cells and stem cell-derived products",
+   "facets": [
+    "name_candidate",
+    "conjunction"
+   ]
+  },
+  {
+   "id": "S17-X2",
+   "pointer": "/categories/M17/adverse_effects/0/statement",
+   "text": "Unregulated stem cell products",
+   "facets": [
+    "condition",
+    "negation",
+    "regulatory"
+   ]
+  },
+  {
+   "id": "S17-X3",
+   "pointer": "/categories/M17/adverse_effects/0/statement",
+   "text": "have caused serious adverse events",
+   "facets": [
+    "event",
+    "degree",
+    "evidence_status"
+   ]
+  },
+  {
+   "id": "S17-X4",
+   "pointer": "/categories/M17/adverse_effects/0/statement",
+   "text": "blindness after intra-ocular injection",
+   "facets": [
+    "event",
+    "time",
+    "route",
+    "anatomy_site"
+   ]
+  },
+  {
+   "id": "S17-X5",
+   "pointer": "/categories/M17/adverse_effects/0/statement",
+   "text": "tumor formation at ectopic sites",
+   "facets": [
+    "event",
+    "anatomy_site"
+   ]
+  },
+  {
+   "id": "S17-X6",
+   "pointer": "/categories/M17/adverse_effects/0/accuracy_note",
+   "text": "검증되지 않은 줄기세포 시술은",
+   "facets": [
+    "condition",
+    "negation"
+   ]
+  },
+  {
+   "id": "S17-X7",
+   "pointer": "/categories/M17/adverse_effects/0/accuracy_note",
+   "text": "종양 형성이나 심각한 손상(실명 등) 위험이 있음",
+   "facets": [
+    "event",
+    "degree",
+    "possibility"
+   ]
+  },
+  {
+   "id": "S17-X8",
+   "pointer": "/categories/M17/adverse_effects/0/patient_ko",
+   "text": "검증되지 않은 성분을 잘못 사용할 경우",
+   "facets": [
+    "condition",
+    "negation"
+   ],
+   "status": "I",
+   "note": "'잘못 사용' 조건 추가"
+  },
+  {
+   "id": "S17-X9",
+   "pointer": "/categories/M17/adverse_effects/0/patient_ko",
+   "text": "드물게 시력 손상이나 이상 조직이 생길 위험이 있습니다",
+   "facets": [
+    "frequency",
+    "event",
+    "possibility"
+   ],
+   "status": "I",
+   "note": "statement 에 빈도 없음"
+  },
+  {
+   "id": "S17-X10",
+   "pointer": "/categories/M17/adverse_effects/0/patient_en",
+   "text": "can lead to very serious and unexpected health concerns",
+   "facets": [
+    "possibility",
+    "degree"
+   ],
+   "status": "I",
+   "note": "사건 예시 탈락"
+  },
+  {
+   "id": "S17-X11",
+   "pointer": "/categories/M17/adverse_effects/0/patient_ja",
+   "text": "まれに深刻なお身体への影響が出る恐れがございます",
+   "facets": [
+    "frequency",
+    "degree",
+    "possibility"
+   ]
+  },
+  {
+   "id": "S17-X12",
+   "pointer": "/categories/M17/adverse_effects/0/citations/0/title",
+   "text": "Intravitreal Injection of Autologous \"Stem Cells\" for AMD",
+   "facets": [
+    "context_scope",
+    "route",
+    "escaped_quote"
+   ]
+  },
+  {
+   "id": "S17-R1",
+   "pointer": "/categories/M17/adverse_effects/0/patient_en",
+   "text": "Unregulated treatments",
+   "facets": [
+    "condition",
+    "negation",
+    "regulatory"
+   ],
+   "note": "읽기 검토(정규식 미포함 후보 대조)에서 추가"
+  }
+ ],
+ "issues": [
+  {
+   "id": "S17-I1",
+   "class": "I",
+   "pointers": [
+    "/categories/M17/adverse_effects/0/patient_ko",
+    "/categories/M17/adverse_effects/0/patient_en",
+    "/categories/M17/adverse_effects/0/patient_ja"
+   ],
+   "text": "'드물게'·'まれに'·'잘못 사용할 경우' 추가, 사건 예시 탈락. I-LANG."
+  },
+  {
+   "id": "S17-B1",
+   "class": "B",
+   "pointers": [
+    "/categories/M17/adverse_effects/0/statement",
+    "/categories/M17/moa",
+    "/categories/M17/effects"
+   ],
+   "text": "빈도 없음. 기전·효과 진술 없음."
+  }
+ ]
+}

@@ -1,0 +1,366 @@
+# S052  scope=problem  units=P10-1 items/0 | P10-2 items/0 | P10-2 items/1 | P10-3 items/0 | id | category | category_en | subcategories 컨테이너 | P11-1 items/0 | P11-2 items/0 | P11-2 items/1 | P11-3 items/0 | P11-4 items/0 | P11-5 items/0 | P11-5 items/1 | id | category | category_en | subcategories 컨테이너 | P12-1 items/0 | P12-1 items/1 | P12-1 items/2 | P12-1 items/3 | P12-1 items/4 | P12-1 items/5 | P12-1 items/6 | P12-2 items/0 | P12-3 items/0 | P12-3 items/1 | P12-4 items/0 | id | category | category_en | subcategories 컨테이너 | P13-1 items/0 | P13-1 items/1 | P13-1 items/2 | P13-2 items/0 | P13-2 items/1 | P13-2 items/2 | P13-3 items/0 | P13-3 items/1 | P13-3 items/2 | P13-4 items/0 | P13-4 items/1 | id | category | category_en | subcategories 컨테이너 | P14-1 items/0 | P14-1 items/1 | P14-2 items/0 | P14-3 items/0 | P14-3 items/1 | P14-4 items/0 | P14-4 items/1
+# 상위 문맥: [{"pointer": "/problem/9", "id": "P10", "category": "제모"}]
+@ /problem/9/subcategories/0 P10-1 얼굴
+  . {id,label,items}
+  /id = "P10-1"
+  /label = "얼굴"
+  /items [1]
+@ /problem/9/subcategories/0/items/0 auto-140-1774737181584 인중/구레나룻
+  . {id,name,detail,modality_ref}
+  /id = "auto-140-1774737181584"
+  /name = "인중/구레나룻"
+  /detail = "제모레이저"
+  /modality_ref [1] = 0:"M8"
+@ /problem/9/subcategories/1 P10-2 바디(여성)
+  . {id,label,items}
+  /id = "P10-2"
+  /label = "바디(여성)"
+  /items [2]
+@ /problem/9/subcategories/1/items/0 auto-141-1774737181584 겨드랑이/팔/다리
+  . {id,name,detail,modality_ref}
+  /id = "auto-141-1774737181584"
+  /name = "겨드랑이/팔/다리"
+  /detail = "제모레이저"
+  /modality_ref [1] = 0:"M8"
+@ /problem/9/subcategories/1/items/1 auto-142-1774737181584 비키니
+  . {id,name,detail,modality_ref}
+  /id = "auto-142-1774737181584"
+  /name = "비키니"
+  /detail = "제모레이저"
+  /modality_ref [1] = 0:"M8"
+@ /problem/9/subcategories/2 P10-3 남성
+  . {id,label,items}
+  /id = "P10-3"
+  /label = "남성"
+  /items [1]
+@ /problem/9/subcategories/2/items/0 auto-143-1774737181584 수염/가슴/등
+  . {id,name,detail,modality_ref}
+  /id = "auto-143-1774737181584"
+  /name = "수염/가슴/등"
+  /detail = "제모레이저 · Nd:YAG"
+  /modality_ref [1] = 0:"M8"
+@ /problem/10 P11 얼굴윤곽
+  . {id,category,category_en,subcategories}
+  /id = "P11"
+  /category = "얼굴윤곽"
+  /category_en = "Facial Contouring"
+  /subcategories [5]
+@ /problem/10/subcategories/0 P11-1 사각턱
+  . {id,label,items}
+  /id = "P11-1"
+  /label = "사각턱"
+  /items [1]
+@ /problem/10/subcategories/0/items/0 auto-144-1774737181584 사각턱보톡스
+  . {id,name,detail,modality_ref}
+  /id = "auto-144-1774737181584"
+  /name = "사각턱보톡스"
+  /detail = "교근축소"
+  /modality_ref [1] = 0:"M1"
+@ /problem/10/subcategories/1 P11-2 이중턱/턱밑
+  . {id,label,items}
+  /id = "P11-2"
+  /label = "이중턱/턱밑"
+  /items [2]
+@ /problem/10/subcategories/1/items/0 auto-145-1774737181584 윤곽주사
+  . {id,name,detail,modality_ref}
+  /id = "auto-145-1774737181584"
+  /name = "윤곽주사"
+  /detail = "지방분해"
+  /modality_ref [0]
+@ /problem/10/subcategories/1/items/1 auto-146-1774737181584 브이올렛
+  . {id,name,detail,modality_ref}
+  /id = "auto-146-1774737181584"
+  /name = "브이올렛"
+  /detail = "턱밑 FDA"
+  /modality_ref [0]
+@ /problem/10/subcategories/2 P11-3 승모근
+  . {id,label,items}
+  /id = "P11-3"
+  /label = "승모근"
+  /items [1]
+@ /problem/10/subcategories/2/items/0 auto-147-1774737181584 승모근보톡스
+  . {id,name,detail,modality_ref}
+  /id = "auto-147-1774737181584"
+  /name = "승모근보톡스"
+  /detail = "어깨라인"
+  /modality_ref [1] = 0:"M1"
+@ /problem/10/subcategories/3 P11-4 광대
+  . {id,label,items}
+  /id = "P11-4"
+  /label = "광대"
+  /items [1]
+@ /problem/10/subcategories/3/items/0 auto-148-1774737181584 광대축소주사
+  . {id,name,detail,modality_ref}
+  /id = "auto-148-1774737181584"
+  /name = "광대축소주사"
+  /detail = "보톡스/윤곽주사"
+  /modality_ref [1] = 0:"M1"
+@ /problem/10/subcategories/4 P11-5 볼/관자놀이
+  . {id,label,items}
+  /id = "P11-5"
+  /label = "볼/관자놀이"
+  /items [2]
+@ /problem/10/subcategories/4/items/0 auto-149-1774737181584 볼볼륨충전
+  . {id,name,detail,modality_ref}
+  /id = "auto-149-1774737181584"
+  /name = "볼볼륨충전"
+  /detail = "필러/지방이식/바이오스티뮬레이터"
+  /modality_ref [3] = 0:"M2" ‖ 1:"M3" ‖ 2:"M6"
+@ /problem/10/subcategories/4/items/1 auto-150-1774737181584 관자놀이충전
+  . {id,name,detail,modality_ref}
+  /id = "auto-150-1774737181584"
+  /name = "관자놀이충전"
+  /detail = "필러/지방이식"
+  /modality_ref [2] = 0:"M2" ‖ 1:"M6"
+@ /problem/11 P12 바디
+  . {id,category,category_en,subcategories}
+  /id = "P12"
+  /category = "바디"
+  /category_en = "Body"
+  /subcategories [4]
+@ /problem/11/subcategories/0 P12-1 지방감소
+  . {id,label,items}
+  /id = "P12-1"
+  /label = "지방감소"
+  /items [7]
+@ /problem/11/subcategories/0/items/0 auto-151-1774737181584 쿨스컬프팅
+  . {id,name,detail,modality_ref}
+  /id = "auto-151-1774737181584"
+  /name = "쿨스컬프팅"
+  /detail = "냉각지방분해"
+  /modality_ref [1] = 0:"M14"
+@ /problem/11/subcategories/0/items/1 auto-152-1774737181584 지방분해주사(PPC/DC)
+  . {id,name,detail,modality_ref}
+  /id = "auto-152-1774737181584"
+  /name = "지방분해주사(PPC/DC)"
+  /detail = "포스파티딜콜린/데옥시콜산"
+  /modality_ref [0]
+@ /problem/11/subcategories/0/items/2 auto-153-1774737181584 HPL주사
+  . {id,name,detail,modality_ref}
+  /id = "auto-153-1774737181584"
+  /name = "HPL주사"
+  /detail = "고농도 지방분해"
+  /modality_ref [0]
+@ /problem/11/subcategories/0/items/3 auto-154-1774737181584 BNLS주사
+  . {id,name,detail,modality_ref}
+  /id = "auto-154-1774737181584"
+  /name = "BNLS주사"
+  /detail = "식물추출 지방분해"
+  /modality_ref [0]
+@ /problem/11/subcategories/0/items/4 auto-155-1774737181584 브이올렛
+  . {id,name,detail,modality_ref}
+  /id = "auto-155-1774737181584"
+  /name = "브이올렛"
+  /detail = "턱밑 FDA · 데옥시콜산"
+  /modality_ref [0]
+@ /problem/11/subcategories/0/items/5 auto-156-1774737181584 컷슬린
+  . {id,name,detail,modality_ref}
+  /id = "auto-156-1774737181584"
+  /name = "컷슬린"
+  /detail = "지방분해 주사"
+  /modality_ref [0]
+@ /problem/11/subcategories/0/items/6 auto-157-1774737181584 바디HIFU
+  . {id,name,detail,modality_ref}
+  /id = "auto-157-1774737181584"
+  /name = "바디HIFU"
+  /detail = "리포소닉스 등"
+  /modality_ref [1] = 0:"M9"
+@ /problem/11/subcategories/1 P12-2 근육강화
+  . {id,label,items}
+  /id = "P12-2"
+  /label = "근육강화"
+  /items [1]
+@ /problem/11/subcategories/1/items/0 auto-158-1774737181584 엠스컬프트
+  . {id,name,detail,modality_ref}
+  /id = "auto-158-1774737181584"
+  /name = "엠스컬프트"
+  /detail = "HIFEM"
+  /modality_ref [1] = 0:"M10"
+@ /problem/11/subcategories/2 P12-3 바디탄력
+  . {id,label,items}
+  /id = "P12-3"
+  /label = "바디탄력"
+  /items [2]
+@ /problem/11/subcategories/2/items/0 auto-159-1774737181584 바디써마지
+  . {id,name,detail,modality_ref}
+  /id = "auto-159-1774737181584"
+  /name = "바디써마지"
+  /detail = "RF 타이트닝"
+  /modality_ref [1] = 0:"M9"
+@ /problem/11/subcategories/2/items/1 auto-160-1774737181584 바디인모드
+  . {id,name,detail,modality_ref}
+  /id = "auto-160-1774737181584"
+  /name = "바디인모드"
+  /detail = "RF+IR"
+  /modality_ref [1] = 0:"M9"
+@ /problem/11/subcategories/3 P12-4 셀룰라이트
+  . {id,label,items}
+  /id = "P12-4"
+  /label = "셀룰라이트"
+  /items [1]
+@ /problem/11/subcategories/3/items/0 auto-161-1774737181584 엔더몰로지
+  . {id,name,detail,modality_ref}
+  /id = "auto-161-1774737181584"
+  /name = "엔더몰로지"
+  /detail = "흡입마사지"
+  /modality_ref [0]
+@ /problem/12 P13 두피/탈모
+  . {id,category,category_en,subcategories}
+  /id = "P13"
+  /category = "두피/탈모"
+  /category_en = "Scalp & Hair Loss"
+  /subcategories [4]
+@ /problem/12/subcategories/0 P13-1 주사치료
+  . {id,label,items}
+  /id = "P13-1"
+  /label = "주사치료"
+  /items [3]
+@ /problem/12/subcategories/0/items/0 auto-162-1774737181584 두피메조
+  . {id,name,detail,modality_ref}
+  /id = "auto-162-1774737181584"
+  /name = "두피메조"
+  /detail = "성장인자 주사"
+  /modality_ref [0]
+@ /problem/12/subcategories/0/items/1 auto-163-1774737181584 두피PRP
+  . {id,name,detail,modality_ref}
+  /id = "auto-163-1774737181584"
+  /name = "두피PRP"
+  /detail = "자가혈"
+  /modality_ref [1] = 0:"M5"
+@ /problem/12/subcategories/0/items/2 auto-164-1774737181584 두피엑소좀
+  . {id,name,detail,modality_ref}
+  /id = "auto-164-1774737181584"
+  /name = "두피엑소좀"
+  /detail = "ASCE+"
+  /modality_ref [1] = 0:"M17"
+@ /problem/12/subcategories/1 P13-2 장비치료
+  . {id,label,items}
+  /id = "P13-2"
+  /label = "장비치료"
+  /items [3]
+@ /problem/12/subcategories/1/items/0 auto-165-1774737181584 LLLT
+  . {id,name,detail,modality_ref}
+  /id = "auto-165-1774737181584"
+  /name = "LLLT"
+  /detail = "저출력레이저 · LED · FDA"
+  /modality_ref [1] = 0:"M8"
+@ /problem/12/subcategories/1/items/1 auto-166-1774737181584 두피스케일링
+  . {id,name,detail,modality_ref}
+  /id = "auto-166-1774737181584"
+  /name = "두피스케일링"
+  /detail = "각질/피지제거"
+  /modality_ref [1] = 0:"M15"
+@ /problem/12/subcategories/1/items/2 auto-167-1774737181584 MTS두피
+  . {id,name,detail,modality_ref}
+  /id = "auto-167-1774737181584"
+  /name = "MTS두피"
+  /detail = "약물침투"
+  /modality_ref [1] = 0:"M12"
+@ /problem/12/subcategories/2 P13-3 약물치료
+  . {id,label,items}
+  /id = "P13-3"
+  /label = "약물치료"
+  /items [3]
+@ /problem/12/subcategories/2/items/0 auto-168-1774737181584 미녹시딜
+  . {id,name,detail,modality_ref}
+  /id = "auto-168-1774737181584"
+  /name = "미녹시딜"
+  /detail = "외용"
+  /modality_ref [0]
+@ /problem/12/subcategories/2/items/1 auto-169-1774737181584 피나스테리드
+  . {id,name,detail,modality_ref}
+  /id = "auto-169-1774737181584"
+  /name = "피나스테리드"
+  /detail = "경구"
+  /modality_ref [0]
+@ /problem/12/subcategories/2/items/2 auto-170-1774737181584 두타스테리드
+  . {id,name,detail,modality_ref}
+  /id = "auto-170-1774737181584"
+  /name = "두타스테리드"
+  /detail = "경구"
+  /modality_ref [0]
+@ /problem/12/subcategories/3 P13-4 모발이식
+  . {id,label,items}
+  /id = "P13-4"
+  /label = "모발이식"
+  /items [2]
+@ /problem/12/subcategories/3/items/0 auto-171-1774737181584 FUE
+  . {id,name,detail,modality_ref}
+  /id = "auto-171-1774737181584"
+  /name = "FUE"
+  /detail = "모낭단위추출"
+  /modality_ref [0]
+@ /problem/12/subcategories/3/items/1 auto-172-1774737181584 FUT
+  . {id,name,detail,modality_ref}
+  /id = "auto-172-1774737181584"
+  /name = "FUT"
+  /detail = "모낭단위이식"
+  /modality_ref [0]
+@ /problem/13 P14 기타
+  . {id,category,category_en,subcategories}
+  /id = "P14"
+  /category = "기타"
+  /category_en = "Others"
+  /subcategories [4]
+@ /problem/13/subcategories/0 P14-1 점/사마귀
+  . {id,label,items}
+  /id = "P14-1"
+  /label = "점/사마귀"
+  /items [2]
+@ /problem/13/subcategories/0/items/0 auto-173-1774737181584 점제거
+  . {id,name,detail,modality_ref}
+  /id = "auto-173-1774737181584"
+  /name = "점제거"
+  /detail = "CO2 레이저"
+  /modality_ref [1] = 0:"M8"
+@ /problem/13/subcategories/0/items/1 auto-174-1774737181584 사마귀
+  . {id,name,detail,modality_ref}
+  /id = "auto-174-1774737181584"
+  /name = "사마귀"
+  /detail = "냉동/CO2"
+  /modality_ref [1] = 0:"M8"
+@ /problem/13/subcategories/1 P14-2 문신제거
+  . {id,label,items}
+  /id = "P14-2"
+  /label = "문신제거"
+  /items [1]
+@ /problem/13/subcategories/1/items/0 auto-175-1774737181584 문신제거
+  . {id,name,detail,modality_ref}
+  /id = "auto-175-1774737181584"
+  /name = "문신제거"
+  /detail = "피코레이저"
+  /modality_ref [1] = 0:"M8"
+@ /problem/13/subcategories/2 P14-3 다한증
+  . {id,label,items}
+  /id = "P14-3"
+  /label = "다한증"
+  /items [2]
+@ /problem/13/subcategories/2/items/0 auto-176-1774737181584 보톡스
+  . {id,name,detail,modality_ref}
+  /id = "auto-176-1774737181584"
+  /name = "보톡스"
+  /detail = "겨드랑이/손/발"
+  /modality_ref [1] = 0:"M1"
+@ /problem/13/subcategories/2/items/1 auto-177-1774737181584 미라드라이
+  . {id,name,detail,modality_ref}
+  /id = "auto-177-1774737181584"
+  /name = "미라드라이"
+  /detail = "마이크로웨이브 · 영구적"
+  /modality_ref [0]
+@ /problem/13/subcategories/3 P14-4 피부질환
+  . {id,label,items}
+  /id = "P14-4"
+  /label = "피부질환"
+  /items [2]
+@ /problem/13/subcategories/3/items/0 auto-178-1774737181584 백반증
+  . {id,name,detail,modality_ref}
+  /id = "auto-178-1774737181584"
+  /name = "백반증"
+  /detail = "엑시머 308nm"
+  /modality_ref [1] = 0:"M8"
+@ /problem/13/subcategories/3/items/1 auto-179-1774737181584 건선
+  . {id,name,detail,modality_ref}
+  /id = "auto-179-1774737181584"
+  /name = "건선"
+  /detail = "UVB 광치료"
+  /modality_ref [1] = 0:"M8"

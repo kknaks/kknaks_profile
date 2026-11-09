@@ -1,0 +1,43 @@
+# S07 /timelines/6 needle-rf — 직접 읽기 2026-11-09
+id | needle-rf | id_code |
+category | M11 | id_code |
+name | 니들RF (미세침 고주파) | procedure_name,mixed_script,gloss | 괄호 = 풀이
+phases/0/period | Day 0 | period |
+phases/0/label | 시술 당일 | reference_point |
+phases/0/normal/0 | 홍반/발적 (수시간 지속) | alt,duration,approx_time |
+phases/0/normal/1 | 침자국 (미세한 점상 출혈) | gloss,size,pattern |
+phases/0/normal/2 | 경미한 부종 | severity |
+phases/0/normal/3 | 화끈감/열감 | alt |
+phases/0/abnormal/0 | 예상보다 심한 출혈점 | comparison,severity |
+phases/0/abnormal/1 | 뚜렷한 부종 | degree |
+phases/0/caution/0 | 수포 형성 | formation |
+phases/0/caution/1 | 비정상적 심한 통증 | degree,severity |
+phases/0/emergency/0 | 광범위 화상/수포 | extent,alt |
+phases/0/emergency/1 | 아나필락시스 (마취크림 관련) | label,cause_ref |
+phases/1/period | Day 1-3 | period,time_range |
+phases/1/label | 회복기 | phase_label |
+phases/1/normal/0 | 홍반 점차 감소 (Day 1-2 소실) | speed,change,resolution,time_range |
+phases/1/normal/1 | 침자국 소실 | resolution |
+phases/1/normal/2 | 부종 감소 | change |
+phases/1/normal/3 | 약간의 건조함/각질 | degree,alt |
+phases/1/abnormal/0 | 홍반 3일 이상 지속 | duration_threshold,persistence |
+phases/1/abnormal/1 | 미세 가피 형성 | size,formation |
+phases/1/caution/0 | 감염 징후 (농성 분비물 + 발적 확대) | early_sign,co_occurrence,extent |
+phases/1/caution/1 | 화상 진행 (수포/가피) | progress,alt |
+phases/1/emergency/0 | 감염 (고열 + 농 + 봉와직염) | co_occurrence |
+phases/1/emergency/1 | 반흔 형성 (비후성/켈로이드) | formation,alt |
+phases/2/period | Day 3-7 | period,time_range |
+phases/2/label | 안정/효과 시작기 | phase_label,alt,onset |
+phases/2/normal/0 | 피부 완전 정상화 | degree,recovery |
+phases/2/normal/1 | 피부결 개선 느낌 시작 | subjective,onset |
+phases/2/normal/2 | 메이크업 가능 | activity,possibility | 조건 없음(CO2 는 「재상피화 후」)
+phases/2/normal/3 | 콜라겐 리모델링 진행 시작 | mechanism,onset |
+phases/2/abnormal/0 | 지속적 홍반 | persistence |
+phases/2/abnormal/1 | PIH (색소침착) 시작 | abbreviation,gloss,onset |
+phases/2/caution/0 | PIH 진행 | abbreviation,progress |
+phases/2/caution/1 | 반흔 초기 징후 | early_sign |
+phases/2/emergency/0 | 감염 (지연성) | delayed_onset |
+phases/2/emergency/1 | 비후성 반흔/켈로이드 | alt |
+O | 기간 3개뿐(Day 0 / 1-3 / 3-7). Day 7 이후 기간이 없다. 효과 발현·재시술 판단 시점 값이 없다.
+O | 「반흔 형성 (비후성/켈로이드)」 이 Day 1-3 emergency 에 있다. 다른 시술에서는 같은 계열 사건이 더 뒤 기간에 나온다(잠정 비교, 구획 간).
+Q | B | phases | Day 7 이후 경과(효과 발현·재시술)가 원문에 없다.

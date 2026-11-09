@@ -1,0 +1,33 @@
+/problems/9  problem_id='P10' problem='제모' complaints[4]
+
+## c0 /problems/9/complaints/0  cc='인중/구레나룻' | cc_detail='제모레이저' | cc_group='얼굴'
+  P0 name='제모레이저' category='M8' role='모근 파괴' products=['클라리티2']
+  B0 name='제모 시리즈' combo=['제모레이저']
+     reason='다회차 시술로 영구적 모발 감소(반영구)'
+     evidence='5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음'
+  A0 'IPL 제모도 대안'
+
+## c1 /problems/9/complaints/1  cc='겨드랑이/팔/다리' | cc_detail='제모레이저' | cc_group='바디(여성)'
+  P0 name='제모레이저' category='M8' role='모근 파괴' products=['클라리티2']
+  P1 name='보톡스' category='M1' role='다한증 완화' products=['보톡스', '나보타']
+  B0 name='제모 시리즈' combo=['제모레이저']
+     reason='다회차 시술로 영구적 모발 감소(반영구)'
+     evidence='5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음'
+  B1 name='제모 + 다한증보톡스' combo=['제모레이저', '보톡스']
+     reason='털 제거 + 땀 감소'
+     evidence='동시 시술 가능'
+  A0 'IPL 제모도 대안'
+
+## c2 /problems/9/complaints/2  cc='비키니' | cc_detail='제모레이저' | cc_group='바디(여성)'
+  P0 name='제모레이저' category='M8' role='모근 파괴' products=['클라리티2']
+  B0 name='제모 시리즈' combo=['제모레이저']
+     reason='다회차 시술로 영구적 모발 감소(반영구)'
+     evidence='5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음'
+  A0 'IPL 제모도 대안'
+
+## c3 /problems/9/complaints/3  cc='수염/가슴/등' | cc_detail='제모레이저 · Nd:YAG' | cc_group='남성'
+  P0 name='제모레이저' category='M8' role='모근 파괴' products=['클라리티2']
+  B0 name='제모 시리즈' combo=['제모레이저']
+     reason='다회차 시술로 영구적 모발 감소(반영구)'
+     evidence='5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음'
+  A0 'IPL 제모도 대안'

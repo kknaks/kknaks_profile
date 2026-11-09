@@ -1,0 +1,130 @@
+# S010  scope=M3 바이오스티뮬레이터/콜라겐부스터  units=M3-P-0 | M3-P-1 | M3-P-2 | M3-P-3 | M3-P-4 | M3-P-5 | name
+# 상위 문맥: [{"pointer": "/modality/2", "id": "M3", "category": "바이오스티뮬레이터/콜라겐부스터", "name": "바이오스티뮬레이터/콜라겐부스터"}]
+@ /modality/2/products/0 M3-P-0 엘란쎄
+  . {id,name,name_en,manufacturer,country,mfds,ingredient,extracted}
+  /id = "M3-P-0"
+  /name = "엘란쎄"
+  /name_en = "Ellansé"
+  /manufacturer = "싱클레어"
+  /country = "NL"
+  /mfds = true
+  /ingredient = "PCL"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "PCL 마이크로캡슐 4년 지속형"
+  /extracted/mechanism = "PCL 마이크로캡슐이 진피층에서 서서히 분해되며 이물반응으로 콜라겐 신생 유도. 4년 이상 입자 잔존으로 지속적 구조 재형성 및 볼륨 증대."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"심각한 주름" ‖ 1:"피부 처짐" ‖ 2:"윤곽 재구성"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"만져질 수 있는 미세입자" ‖ 1:"경결" ‖ 2:"부종"
+  /extracted/safety/serious [2] = 0:"과도한 경결" ‖ 1:"육아종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "4~12주"
+  /extracted/onset_duration/duration = "36~48개월"
+  /extracted/aftercare [3] = 0:"마사지 4~6주 금지" ‖ 1:"강한 운동 2주 제한" ‖ 2:"정기 추적관찰"
+@ /modality/2/products/1 M3-P-1 스컬트라
+  . {id,name,name_en,manufacturer,country,mfds,ingredient,extracted}
+  /id = "M3-P-1"
+  /name = "스컬트라"
+  /name_en = "Sculptra"
+  /manufacturer = "갈더마"
+  /country = "FR"
+  /mfds = true
+  /ingredient = "PLLA"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "PLLA 미세구 2년+ 장기형"
+  /extracted/mechanism = "PLLA 미세구가 진피 내 이물반응을 유도하여 자가 콜라겐 생성을 촉진. 시간 경과에 따라 PLLA는 분해되고 신생 콜라겐으로 대체되어 2년 이상 지속."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"깊은 주름" ‖ 1:"페이스 리프트" ‖ 2:"페이스 볼륨 재건"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"주입 부위 부종" ‖ 1:"경결" ‖ 2:"압통"
+  /extracted/safety/serious [2] = 0:"육아종" ‖ 1:"과도한 이물반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "4~6주"
+  /extracted/onset_duration/duration = "24~36개월"
+  /extracted/aftercare [3] = 0:"5-5-5 마사지는 선택 (결절 예방효과 RCT 미입증; 결절 예방의 핵심은 희석·수화·주입 깊이)" ‖ 1:"5일간 냉찜질" ‖ 2:"과도한 표정 제한"
+@ /modality/2/products/2 M3-P-2 래디어스
+  . {id,name,name_en,manufacturer,country,mfds,ingredient,extracted}
+  /id = "M3-P-2"
+  /name = "래디어스"
+  /name_en = "Radiesse"
+  /manufacturer = "멀츠"
+  /country = "DE"
+  /mfds = true
+  /ingredient = "CaHA"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "CaHA 미세구 + CMC 겔 볼륨제"
+  /extracted/mechanism = "칼슘하이드록시아파타이트 미세구가 즉각적 구조 지지를 제공하고, CMC 겔 캐리어가 균일한 분산 유지. 동시에 콜라겐 생성 자극으로 장기 효과."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"광대 볼륨" ‖ 1:"팔자주름" ‖ 2:"턱선 정의"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"주입 부위 경결" ‖ 1:"부종" ‖ 2:"국소 발적"
+  /extracted/safety/serious [2] = 0:"이물 육아종" ‖ 1:"감염"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1~2주"
+  /extracted/onset_duration/duration = "12~18개월"
+  /extracted/aftercare [3] = 0:"마사지 2주 제한" ‖ 1:"냉찜질" ‖ 2:"감염 모니터링"
+@ /modality/2/products/3 M3-P-3 쥬베룩
+  . {id,name,name_en,manufacturer,country,mfds,ingredient,extracted}
+  /id = "M3-P-3"
+  /name = "쥬베룩"
+  /name_en = "Juvelook"
+  /manufacturer = "LG화학"
+  /country = "KR"
+  /mfds = true
+  /ingredient = "PDLLA"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "PDLLA+HA 이중 작용 복합제"
+  /extracted/mechanism = "PDLLA 입자 이물반응으로 콜라겐 신생을 유도하고, HA 하이드로겔이 즉각 볼륨 제공. 진피층 재구성을 통한 단계적 효과 증대."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"볼륨 손실" ‖ 1:"팔자주름" ‖ 2:"입가주름"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"부종" ‖ 1:"경결감" ‖ 2:"일시 경직"
+  /extracted/safety/serious [2] = 0:"이물 육아종" ‖ 1:"과민반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시~2주"
+  /extracted/onset_duration/duration = "12~18개월"
+  /extracted/aftercare [3] = 0:"마사지 1주 금지" ‖ 1:"냉찜질 48시간" ‖ 2:"과도한 움직임 제한"
+@ /modality/2/products/4 M3-P-4 쥬베룩볼륨
+  . {id,name,name_en,manufacturer,country,mfds,ingredient,extracted}
+  /id = "M3-P-4"
+  /name = "쥬베룩볼륨"
+  /name_en = "Juvelook Volume"
+  /manufacturer = "LG화학"
+  /country = "KR"
+  /mfds = true
+  /ingredient = "PDLLA"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "PDLLA+HA 대용량 볼륨형"
+  /extracted/mechanism = "증량된 PDLLA+HA 복합체로 광범위 진피 재구성 및 강화된 이물반응 기반 콜라겐 유도. 대용량 주입 시에도 균일한 분산과 자연스러운 결과."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"광범위 볼륨 손실" ‖ 1:"심각한 페이스 처짐" ‖ 2:"대면적 주름"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"부종" ‖ 1:"경결" ‖ 2:"만져질 수 있는 입자"
+  /extracted/safety/serious [2] = 0:"과도한 경결" ‖ 1:"이물반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1~4주"
+  /extracted/onset_duration/duration = "12~24개월"
+  /extracted/aftercare [3] = 0:"마사지 금지 1주" ‖ 1:"냉찜질" ‖ 2:"정기 추적관찰"
+@ /modality/2/products/5 M3-P-5 글로벨라
+  . {id,name,name_en,manufacturer,country,mfds,ingredient,extracted}
+  /id = "M3-P-5"
+  /name = "글로벨라"
+  /name_en = "Glovella"
+  /manufacturer = "에이씨피바이오"
+  /country = "KR"
+  /mfds = true
+  /ingredient = "PDLLA+HA"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "PLLA 기반 콜라겐부스터 필러"
+  /extracted/mechanism = "폴리-L-락트산(PLLA) 미세입자가 진피 내 이물반응을 유도하여 자체 콜라겐 생성을 촉진합니다. 즉각적인 물리적 볼륨 제공과 장기적 콜라겐 리모델링이 동시에 일어나는 이중 작용 메커니즘입니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"글로벨라 주름(눈썹 사이 수직주름)" ‖ 1:"얕은~중등도 주름 개선" ‖ 2:"피부 탄력도 개선"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [4] = 0:"주사 부위 부종" ‖ 1:"홍반" ‖ 2:"압통" ‖ 3:"경미한 딤플링(수개월 내 소실)"
+  /extracted/safety/serious [3] = 0:"이물반응성 육아종(드물음)" ‖ 1:"감염" ‖ 2:"신경혈관손상"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉각적 볼륨(주입 직후) ~ 콜라겐 유도 효과 4-8주"
+  /extracted/onset_duration/duration = "24-36개월(개별차이 있음)"
+  /extracted/aftercare [4] = 0:"주입 후 2주간 과도한 운동·자외선 노출 제한" ‖ 1:"부종 관리: 냉찜질(처음 24시간), 온찜질(48시간 후)" ‖ 2:"마사지 금지(4주간) - 입자 이동 방지" ‖ 3:"과도한 표정 활동 최소화(1주)"
+@ /modality/2 M3 바이오스티뮬레이터/콜라겐부스터 바이오스티뮬레이터/콜라겐부스터
+  /name = "바이오스티뮬레이터/콜라겐부스터"

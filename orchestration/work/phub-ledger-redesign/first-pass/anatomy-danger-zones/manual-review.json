@@ -1,0 +1,2449 @@
+{
+  "_about": "에이전트 직접 읽기 기록(수동). 원문 전체를 S00→S11 순서로 읽으며 남긴 잠정 관찰·수동 복합 표현·미결 연결. expressions 의 [pointer, 원문 부분 문자열(정확 일치), 탐색 관점, (선택)메모]. 탐색 관점은 확정 분류가 아니다. build.py 가 원문에서 구간을 찾아 검증한다(못 찾으면 실패). observations 의 status: P=잠정, I=원문 불일치 후보, B=원문 정보 부족, F=후속 의미 조사, K=알려진 분석 한계.",
+  "reading_log": {
+    "order": [
+      "S00",
+      "S01",
+      "S02",
+      "S03",
+      "S04",
+      "S05",
+      "S06",
+      "S07",
+      "S08",
+      "S09",
+      "S10",
+      "S11"
+    ],
+    "last_read": "S11",
+    "remaining": [],
+    "method": "원본 파일 전체(한 줄, 29555 바이트)를 터미널에 출력해 위에서 아래로 읽은 뒤, 구획별로 값 하나씩 다시 대조하며 표현·관찰을 기록했다. 기계 추출(build.py)은 경로·구간·형태소·정규식 후보만 담당한다.",
+    "name_label_policy": "name_ko·name_en·vessels/nerves 의 name, 짧은 감각 부위 설명(significance)처럼 값 전체가 하나의 이름·라벨인 값은 별도 수동 구간을 두지 않는다. 값 전체가 source-map·morphology 에 보존되고 이름 표기 차이는 issues.md ADZ-F13 에 기록했다. 읽기 검토에서 수동 표현이 없는 텍스트 값 76개를 전부 다시 보고, 수식·통계·조건이 있는 9개 값을 추가했다."
+  },
+  "sections": {
+    "S00": {
+      "observations": [
+        [
+          "P",
+          [
+            "/consensus_method"
+          ],
+          "자료 생성 방식이 '3-AI Expert Consensus' 로 적혀 있다. 원장 전체 수치·권고의 출처 성격(문헌 인용과 AI 합의 혼재)을 보여주는 메타데이터다. 임상적 타당성은 1차에서 판단하지 않는다.",
+          "ADZ-B18"
+        ],
+        [
+          "P",
+          [
+            "/critical_safety_facts/minimum_filler_for_blindness"
+          ],
+          "한 값 안에 세 혈관별 수치(0.0397/0.0409/0.0368mL), 단일 경로 부피(0.085mL, 범위 0.04-0.12mL), 두 인용, 단서('절대 안전 기준이 아님')가 함께 있다. 수치와 단서를 분리하면 단서가 사라진다.",
+          null
+        ],
+        [
+          "F",
+          [
+            "/critical_safety_facts/blindness_highest_risk_zones"
+          ],
+          "부위 이름 '코·미간·이마·비순주름'이 zones 의 name_ko(코·미간·이마·팔자주름)와 대응하는지 원문은 연결하지 않는다. '비순주름' 과 '팔자주름' 은 다른 표기다.",
+          "ADZ-F14"
+        ],
+        [
+          "P",
+          [
+            "/critical_safety_facts/mechanism"
+          ],
+          "'—' 뒤 '→' 로 경로(역류→허혈)를 적었다. 화살표의 기능은 원장 안에서 여러 가지다.",
+          "ADZ-P09"
+        ],
+        [
+          "P",
+          [
+            "/critical_safety_facts/caveat"
+          ],
+          "'이 수치들은' 은 같은 객체의 앞 필드 수치를 가리키는 지시 표현이다. 금지 지시('말 것'), 조건부 가능성('주입이면 실명 가능'), 부정('보장하지 않는') 이 한 값에 있다.",
+          null
+        ]
+      ],
+      "expressions": [
+        [
+          "/consensus_method",
+          "3-AI Expert Consensus (Perplexity research + Gemini analysis + Claude textbook)",
+          "출처·방법,기호(+)"
+        ],
+        [
+          "/critical_safety_facts/minimum_filler_for_blindness",
+          "약 0.04mL",
+          "수량·단위,근사(약)"
+        ],
+        [
+          "/critical_safety_facts/minimum_filler_for_blindness",
+          "supratrochlear 0.0397mL",
+          "영문 혈관 표기,수량·단위"
+        ],
+        [
+          "/critical_safety_facts/minimum_filler_for_blindness",
+          "supraorbital 0.0409mL",
+          "영문 혈관 표기,수량·단위"
+        ],
+        [
+          "/critical_safety_facts/minimum_filler_for_blindness",
+          "dorsal nasal 0.0368mL",
+          "영문 혈관 표기,수량·단위"
+        ],
+        [
+          "/critical_safety_facts/minimum_filler_for_blindness",
+          "Yi et al., J Cosmet Dermatol 2024",
+          "인용"
+        ],
+        [
+          "/critical_safety_facts/minimum_filler_for_blindness",
+          "Supratrochlear 단일 경로 부피는 약 0.085mL",
+          "수량·단위,근사(약)"
+        ],
+        [
+          "/critical_safety_facts/minimum_filler_for_blindness",
+          "범위 0.04-0.12mL",
+          "범위"
+        ],
+        [
+          "/critical_safety_facts/minimum_filler_for_blindness",
+          "Khan et al., Aesthetic Surgery Journal 2017;37(2):203-208",
+          "인용"
+        ],
+        [
+          "/critical_safety_facts/minimum_filler_for_blindness",
+          "수치는 혈관 부피 기반 이론값으로 실제 임계량은 변이가 있어 절대 안전 기준이 아님",
+          "단서,부정(아님),불확실성"
+        ],
+        [
+          "/critical_safety_facts/blindness_highest_risk_zones",
+          "코 56.3%",
+          "부위+비율"
+        ],
+        [
+          "/critical_safety_facts/blindness_highest_risk_zones",
+          "미간 27.1%",
+          "부위+비율"
+        ],
+        [
+          "/critical_safety_facts/blindness_highest_risk_zones",
+          "이마 18.8%",
+          "부위+비율"
+        ],
+        [
+          "/critical_safety_facts/blindness_highest_risk_zones",
+          "비순주름 14.6%",
+          "부위+비율",
+          "zones 에는 '팔자주름'"
+        ],
+        [
+          "/critical_safety_facts/blindness_highest_risk_zones",
+          "Beleznay et al., Aesthet Surg J 2019;39(6):662-674",
+          "인용"
+        ],
+        [
+          "/critical_safety_facts/blindness_highest_risk_zones",
+          "코가 현재 최고위험부위",
+          "시간(현재),최상급"
+        ],
+        [
+          "/critical_safety_facts/mechanism",
+          "역행성 동맥 색전 — 안동맥(ophthalmic artery)으로 역류 → 망막 허혈",
+          "경로(→),영문 병기"
+        ],
+        [
+          "/critical_safety_facts/caveat",
+          "이 수치들은 시술자 경계를 느슨하게 만들지 말 것",
+          "금지 지시,지시 표현(이 수치들)"
+        ],
+        [
+          "/critical_safety_facts/caveat",
+          "어떤 주사라도 혈관 내 주입이면 실명 가능",
+          "조건(이면),가능성"
+        ],
+        [
+          "/critical_safety_facts/caveat",
+          "흡인은 음성 결과가 안전을 보장하지 않는 보조 수단이며",
+          "부정(않는)"
+        ],
+        [
+          "/critical_safety_facts/caveat",
+          "저압·저속·소량 주입·캐뉼러 사용·hyaluronidase 상비가 핵심",
+          "나열(·),권고"
+        ]
+      ]
+    },
+    "S01": {
+      "observations": [
+        [
+          "P",
+          [
+            "/zones/0/vessels/0/depth_mm",
+            "/zones/0/vessels/0/note",
+            "/zones/0/vessels/0/depth_range_mm"
+          ],
+          "depth_mm 1.8 은 note 에서 '평균' 으로 한정되고 depth_range_mm [0.5,2.2] 가 따로 있다. 숫자 칸만 읽으면 '평균'·'개인 변이'·'아시아인' 한정이 사라진다.",
+          null
+        ],
+        [
+          "P",
+          [
+            "/zones/0/tissue_data/notes",
+            "/zones/0/clinical_pearls/0"
+          ],
+          "tissue_data.notes 와 clinical_pearls[0] 이 문자열 완전 일치다(중복 출현, 각자 위치 유지).",
+          "ADZ-P15"
+        ],
+        [
+          "P",
+          [
+            "/zones/0/tissue_data/skin_to_periosteum_mm",
+            "/zones/0/tissue_data/notes"
+          ],
+          "숫자 5.0(_mm) 과 문장 '평균 0.5cm' 은 단위가 다르게 적혀 있다. 환산 일치 여부는 판단하지 않고 기록만 한다. '피부-골막' 의 '-' 는 범위가 아니라 두 구조를 잇는 표기다.",
+          "ADZ-P11"
+        ],
+        [
+          "P",
+          [
+            "/zones/0/botox_specific/diffusion_range_cm",
+            "/zones/0/botox_specific/key_warning"
+          ],
+          "diffusion_range_cm 은 숫자형이 아닌 문자열 '1.5-3.0' 이며 이 필드는 forehead 에만 있다. key_warning 에는 '1.5-3cm' 로 다시 나온다.",
+          "ADZ-P12"
+        ],
+        [
+          "P",
+          [
+            "/zones/0/botox_specific/dose_range"
+          ],
+          "단위가 'units' 와 'U' 두 표기로 한 값에 공존한다.",
+          "ADZ-P12"
+        ],
+        [
+          "P",
+          [
+            "/zones/0/filler_specific/preferred_product"
+          ],
+          "괄호 안에 제외 이유(CaHA 용해 불가)와 적용 범위('실명 위험 부위에서는')가 붙어 있다. 괄호를 떼면 조건이 사라진다.",
+          null
+        ]
+      ],
+      "expressions": [
+        [
+          "/zones/0/vessels/0/name",
+          "활차상동맥 (Supratrochlear artery)",
+          "혈관명,영문 병기"
+        ],
+        [
+          "/zones/0/vessels/0/course",
+          "안와상연에서 상방으로 주행, 이마 중앙선 근처",
+          "위치·방향"
+        ],
+        [
+          "/zones/0/vessels/0/danger",
+          "역행성 색전 시 실명 위험",
+          "조건(시),위험"
+        ],
+        [
+          "/zones/0/vessels/0/note",
+          "평균 1.8mm이나 아시아인 피부는 더 얇고 개인 변이가 커 0.5mm 수준까지 표재성일 수 있음",
+          "평균,대조(이나),집단 한정,가능성(수 있음)"
+        ],
+        [
+          "/zones/0/vessels/0/note",
+          "Anat Rec 2024 cadaver",
+          "인용(약식)"
+        ],
+        [
+          "/zones/0/vessels/1/danger",
+          "안동맥 분지 — 역행성 색전 위험",
+          "위험"
+        ],
+        [
+          "/zones/0/vessels/1/note",
+          "평균값이며 개인 변이 큼 — 고정 깊이 신뢰 금지",
+          "평균,금지"
+        ],
+        [
+          "/zones/0/nerves/0/significance",
+          "이마 내측 감각",
+          "부위+기능"
+        ],
+        [
+          "/zones/0/safe_injection_depth",
+          "골막상층 (supraperiosteal) — 혈관은 표재성이므로 깊은 층이 안전",
+          "층,이유(이므로),비교"
+        ],
+        [
+          "/zones/0/tissue_data/notes",
+          "이마 피부-골막 거리 평균 0.5cm — 매우 얇음",
+          "평균,수량·단위,정도(매우),연결 하이픈"
+        ],
+        [
+          "/zones/0/clinical_pearls/1",
+          "활차상동맥은 중앙선 근처에서 표재성 → 정중선 주사 주의",
+          "결과(→),주의"
+        ],
+        [
+          "/zones/0/clinical_pearls/2",
+          "캐뉼러 사용 권장 (니들 대비 혈관 천자 위험 감소)",
+          "권고,비교(대비)"
+        ],
+        [
+          "/zones/0/clinical_pearls/3",
+          "소량 다점 주사 (0.1mL 이하/점)",
+          "상한(이하),단위당(/점)"
+        ],
+        [
+          "/zones/0/botox_specific/risk",
+          "눈꺼풀 처짐 (보톡스 확산 시 상안검거근 영향)",
+          "조건(시),부작용"
+        ],
+        [
+          "/zones/0/botox_specific/safe_zone",
+          "안와상연 상방 2cm 이상",
+          "거리 하한(이상)"
+        ],
+        [
+          "/zones/0/botox_specific/safe_zone",
+          "외측은 측두선 내측",
+          "경계"
+        ],
+        [
+          "/zones/0/botox_specific/key_warning",
+          "보톡스 확산 1.5-3cm → 안와상연 너무 가까이 주사 시 안검하수",
+          "범위,조건(시),정도(너무)"
+        ],
+        [
+          "/zones/0/botox_specific/dose_range",
+          "10-30 units",
+          "범위,단위(units)"
+        ],
+        [
+          "/zones/0/botox_specific/dose_range",
+          "2-5 포인트/측",
+          "범위,단위당(/측)"
+        ],
+        [
+          "/zones/0/botox_specific/dose_range",
+          "2-5U/포인트",
+          "범위,단위당(/포인트)"
+        ],
+        [
+          "/zones/0/filler_specific/primary_risk",
+          "역행성 색전 → 실명",
+          "경로·결과(→)"
+        ],
+        [
+          "/zones/0/filler_specific/safe_technique",
+          "골막상 캐뉼러, 소량 다점, 저압 주입",
+          "기법 나열"
+        ],
+        [
+          "/zones/0/filler_specific/preferred_product",
+          "용해 가능한 저점도 HA",
+          "수식(용해 가능한·저점도)"
+        ],
+        [
+          "/zones/0/filler_specific/preferred_product",
+          "CaHA는 hyaluronidase로 용해 불가하여 실명 위험 부위에서는 권장하지 않음",
+          "불가,이유(하여),적용 범위,부정(않음)"
+        ],
+        [
+          "/zones/0/clinical_pearls/0",
+          "이마 피부-골막 거리 평균 0.5cm — 매우 얇음",
+          "평균,수량·단위,정도(매우),연결 하이픈",
+          "tissue_data/notes 와 동일 문자열"
+        ],
+        [
+          "/zones/0/botox_specific/diffusion_range_cm",
+          "1.5-3.0",
+          "범위(문자열형),단위는 필드명(_cm)에만"
+        ]
+      ]
+    },
+    "S02": {
+      "observations": [
+        [
+          "P",
+          [
+            "/zones/1/vessels/0/depth_range_mm",
+            "/zones/1/vessels/1"
+          ],
+          "vessels[0] 에는 depth_range_mm 이 있고 vessels[1] 에는 없다(선택적 필드).",
+          "ADZ-P16"
+        ],
+        [
+          "P",
+          [
+            "/zones/1/tissue_data/csm_mean_thickness_mm",
+            "/zones/1/tissue_data/csm_thickness_variation_mm",
+            "/zones/1/tissue_data/notes"
+          ],
+          "숫자 1.62 와 0.4 가 notes 의 '1.62±0.4mm' 에 대응해 보이나 variation 의 통계적 의미(SD 등)는 원문에 없다.",
+          "ADZ-B17"
+        ],
+        [
+          "P",
+          [
+            "/zones/1/tissue_data/notes"
+          ],
+          "'기존 15mm/21mm 값은 ... 삭제했으며' 처럼 편집 이력이 데이터 값 안에 있다.",
+          "ADZ-P19"
+        ],
+        [
+          "I",
+          [
+            "/zones/1/filler_specific/primary_risk",
+            "/critical_safety_facts/blindness_highest_risk_zones",
+            "/zones/4/clinical_pearls/0"
+          ],
+          "미간 filler primary_risk 에 '(최고 위험)' 이 있으나 critical_safety_facts 는 '코가 현재 최고위험부위', 코 pearls 는 '실명 원인 부위 1위' 라고 한다.",
+          "ADZ-I01"
+        ],
+        [
+          "I",
+          [
+            "/zones/1/botox_specific/target_muscle",
+            "/zones/4/botox_specific/target_muscle"
+          ],
+          "'비근근' 이 미간에서는 'Procerus', 코에서는 'Nasalis' 와 병기된다.",
+          "ADZ-I02"
+        ],
+        [
+          "F",
+          [
+            "/zones/1/filler_specific/emergency_protocol"
+          ],
+          "'미간-상활차/상안와/비배부 혈관경로' 의 '비배부' 는 vessels 의 '배비동맥 (Dorsal nasal artery)' 과 표기가 다르다. 대응 여부는 후속.",
+          "ADZ-F13"
+        ],
+        [
+          "P",
+          [
+            "/zones/1/filler_specific/emergency_protocol"
+          ],
+          "한 값에 조건·시간(즉시·지체 없이)·하한(≥1,500U)·반복 조건·상한 부정(총량 상한 없음)·시행자 한정·금지가 연쇄된다. 범위 구분자는 en dash '–'(1,500–3,000U) 다.",
+          "ADZ-P11"
+        ]
+      ],
+      "expressions": [
+        [
+          "/zones/1/vessels/0/course",
+          "미간 정중앙에서 상방 주행, 양측 교차 문합",
+          "위치·방향"
+        ],
+        [
+          "/zones/1/vessels/0/danger",
+          "0.0397mL로 안동맥 폐색 가능",
+          "수량·단위,가능성"
+        ],
+        [
+          "/zones/1/vessels/0/danger",
+          "미간은 주요 실명 고위험 부위(2019 업데이트 27.1%)",
+          "시간(2019 업데이트),비율"
+        ],
+        [
+          "/zones/1/vessels/1/course",
+          "내안각에서 코등으로 하행, 미간과 코 경계부",
+          "위치·방향,타 부위 언급(코)"
+        ],
+        [
+          "/zones/1/vessels/1/danger",
+          "안동맥 직접 분지 — 역행성 색전 고위험",
+          "위험"
+        ],
+        [
+          "/zones/1/safe_injection_depth",
+          "절대 피하층 주사 금지",
+          "강조(절대),금지"
+        ],
+        [
+          "/zones/1/tissue_data/notes",
+          "추미근(CSM, corrugator supercilii muscle) 평균 두께 약 1.62±0.4mm",
+          "평균,근사(약),±"
+        ],
+        [
+          "/zones/1/tissue_data/notes",
+          "기존 15mm/21mm 값은 근육 두께로 해부학적으로 성립하지 않아 삭제했으며",
+          "편집 이력,부정(않아)"
+        ],
+        [
+          "/zones/1/tissue_data/notes",
+          "특정 인종 간 두께 차이로 혈관 표재성을 단정할 근거는 불충분",
+          "불확실성,근거 부족"
+        ],
+        [
+          "/zones/1/clinical_pearls/0",
+          "2015 초기 리뷰 38.8%",
+          "시간,비율"
+        ],
+        [
+          "/zones/1/clinical_pearls/0",
+          "Beleznay 2019 업데이트 27.1%",
+          "인용(약식),시간,비율"
+        ],
+        [
+          "/zones/1/clinical_pearls/0",
+          "코 56.3% 다음",
+          "순위,타 부위 언급(코)"
+        ],
+        [
+          "/zones/1/clinical_pearls/1",
+          "0.0397mL(0.04mL 미만)로 안동맥 폐색 → 실명",
+          "수량,상한(미만),결과(→)"
+        ],
+        [
+          "/zones/1/clinical_pearls/2",
+          "추미근 평균 두께는 약 1.62±0.4mm이며 개인별 해부 변이가 커 고정 깊이 수치만으로 안전을 판단할 수 없음",
+          "평균,불가(수 없음),한정(만으로)"
+        ],
+        [
+          "/zones/1/clinical_pearls/3",
+          "양측 활차상동맥이 정중선에서 교차 문합",
+          "해부 관계"
+        ],
+        [
+          "/zones/1/clinical_pearls/4",
+          "흡인 검사는 보조 수단이며 음성 결과가 혈관 내 주입 안전을 보장하지 않음",
+          "부정(않음)"
+        ],
+        [
+          "/zones/1/clinical_pearls/4",
+          "저압·저속·소량 주입과 캐뉼러 사용을 병행",
+          "나열,병행"
+        ],
+        [
+          "/zones/1/clinical_pearls/5",
+          "캐뉼러 사용 강력 권장",
+          "권고,강도(강력)"
+        ],
+        [
+          "/zones/1/clinical_pearls/5",
+          "니들 사용 시 최소량",
+          "조건(시),수량 수식"
+        ],
+        [
+          "/zones/1/botox_specific/target_muscle",
+          "추미근 (Corrugator supercilii), 비근근 (Procerus)",
+          "근육명,영문 병기"
+        ],
+        [
+          "/zones/1/botox_specific/risk",
+          "눈썹 처짐 (과다 주사 시)",
+          "조건(시)"
+        ],
+        [
+          "/zones/1/botox_specific/risk",
+          "이마 보상적 주름 증가",
+          "부작용,타 부위 언급(이마)"
+        ],
+        [
+          "/zones/1/botox_specific/safe_zone",
+          "추미근 body 내 주사, 안와상연 상방 1cm 이상",
+          "위치,거리 하한(이상)"
+        ],
+        [
+          "/zones/1/botox_specific/key_warning",
+          "추미근 외측 과다 주사 → 눈썹 처짐(Mephisto sign)",
+          "결과(→),영문 병기"
+        ],
+        [
+          "/zones/1/botox_specific/dose_range",
+          "추미근 10-25U",
+          "근육+범위"
+        ],
+        [
+          "/zones/1/botox_specific/dose_range",
+          "비근근 5-10U",
+          "근육+범위"
+        ],
+        [
+          "/zones/1/filler_specific/primary_risk",
+          "역행성 색전 → 실명 (최고 위험)",
+          "결과(→),최상급"
+        ],
+        [
+          "/zones/1/filler_specific/safe_technique",
+          "0.05mL 이하/점",
+          "상한(이하),단위당"
+        ],
+        [
+          "/zones/1/filler_specific/safe_technique",
+          "흡인은 보조 수단으로만 사용",
+          "한정(만)"
+        ],
+        [
+          "/zones/1/filler_specific/preferred_product",
+          "저점도 HA (hyaluronidase로 용해 가능한 제품만)",
+          "한정(만),조건"
+        ],
+        [
+          "/zones/1/filler_specific/emergency_protocol",
+          "시력저하·안통 발생 시 즉시 주입 중단/응급콜 및 망막안과·응급실 이송(지체 없이 즉각 대응)",
+          "조건(시),시간(즉시),기호(/)"
+        ],
+        [
+          "/zones/1/filler_specific/emergency_protocol",
+          "HA 필러는 주입부·허혈부 및 미간-상활차/상안와/비배부 혈관경로에 hyaluronidase ≥1,500U(IU) 광범위 다점 침윤 후 필요 시 반복(총량 상한 없음)",
+          "적용 대상(HA 필러는),하한(≥),순서(후),조건(필요 시),부정(없음)"
+        ],
+        [
+          "/zones/1/filler_specific/emergency_protocol",
+          "≥1,500U(IU)",
+          "하한,단위 병기"
+        ],
+        [
+          "/zones/1/filler_specific/emergency_protocol",
+          "총량 상한 없음",
+          "부정(없음),한계"
+        ],
+        [
+          "/zones/1/filler_specific/emergency_protocol",
+          "안구마사지·안압강하제는 보조",
+          "보조 지위"
+        ],
+        [
+          "/zones/1/filler_specific/emergency_protocol",
+          "retrobulbar/peribulbar 1,500–3,000U는 안과/숙련자만 시행하고 이송 지연 금지",
+          "범위(–),시행자 한정(만),금지"
+        ],
+        [
+          "/zones/1/nerves/0/significance",
+          "미간 및 이마 내측 감각",
+          "부위 나열(및)"
+        ]
+      ]
+    },
+    "S03": {
+      "observations": [
+        [
+          "P",
+          [
+            "/zones/2/vessels/0/diameter_mm",
+            "/zones/2/vessels/0/danger"
+          ],
+          "diameter_mm 1.5 와 danger 의 '직경 1-2mm' 가 같은 값 안팎에서 점값/범위로 적혀 있다.",
+          null
+        ],
+        [
+          "F",
+          [
+            "/zones/2/nerves/0/name",
+            "/zones/2/clinical_pearls/1",
+            "/zones/2/botox_specific/key_warning"
+          ],
+          "nerves 이름은 '측두신경 (Temporal branch of facial nerve)', pearls·key_warning 은 '안면신경 측두분지' 다. 같은 대상인지 후속.",
+          "ADZ-F13"
+        ],
+        [
+          "P",
+          [
+            "/zones/2/tissue_data/pitanguy_line"
+          ],
+          "여기 '→' 는 인과가 아니라 두 기준점을 잇는 선(A 지점 → B 지점)이다.",
+          "ADZ-P09"
+        ],
+        [
+          "F",
+          [
+            "/zones/2/clinical_pearls/6"
+          ],
+          "'관자궁' 은 원장 다른 곳(cheek '관골궁')과 표기가 다르다. 오기 여부는 원문 확인 후보이며 원본은 그대로 둔다. '중측두정맥' 은 vessels 목록(측두동맥 중간가지)에 없다.",
+          "ADZ-F06"
+        ],
+        [
+          "F",
+          [
+            "/zones/2/filler_specific/primary_risk"
+          ],
+          "'심부측두동맥' 은 이 zone vessels 목록에 없다.",
+          "ADZ-P21"
+        ],
+        [
+          "F",
+          [
+            "/zones/2/clinical_pearls/5",
+            "/zones/2/botox_specific/dose_range"
+          ],
+          "'안과 응급 프로토콜 준용', '관자놀이 필러와 병행 시 주의' 는 다른 필드/다른 시술을 가리키는 참조 표현이다. temple 에는 emergency_protocol 필드가 없다.",
+          "ADZ-F14"
+        ],
+        [
+          "P",
+          [
+            "/zones/2/botox_specific/target_muscle"
+          ],
+          "관자놀이 zone 의 botox 대상 설명에 '이갈이/사각턱 보조' 가 붙어 다른 부위 적응을 언급한다.",
+          "ADZ-F14"
+        ]
+      ],
+      "expressions": [
+        [
+          "/zones/2/vessels/0/course",
+          "이주(tragus) 전방에서 상방 주행, 측두근막 표면",
+          "위치·방향,영문 병기"
+        ],
+        [
+          "/zones/2/vessels/0/danger",
+          "직경 1-2mm의 굵은 동맥",
+          "범위,수식(굵은)"
+        ],
+        [
+          "/zones/2/vessels/0/danger",
+          "천자 시 대량 출혈, 혈종",
+          "조건(시),결과"
+        ],
+        [
+          "/zones/2/vessels/1/name",
+          "측두동맥 중간가지 (Middle temporal artery)",
+          "혈관명,영문 병기"
+        ],
+        [
+          "/zones/2/vessels/1/danger",
+          "깊은 층 주사 시 손상 위험",
+          "수식(깊은),조건(시)"
+        ],
+        [
+          "/zones/2/nerves/0/name",
+          "측두신경 (Temporal branch of facial nerve)",
+          "신경명,영문 병기"
+        ],
+        [
+          "/zones/2/nerves/0/significance",
+          "손상 시 이마 거상 불가, 눈썹 처짐",
+          "조건(시),불가"
+        ],
+        [
+          "/zones/2/safe_injection_depth",
+          "심부측두근막 심층 (deep temporal fascia deep layer) 또는 골막상",
+          "층,대안(또는)"
+        ],
+        [
+          "/zones/2/tissue_data/stl_entry_point",
+          "STL(상측두융합선, Superior temporal line)에서 측두근막이 두 층으로 분리",
+          "약어·병기,해부 관계"
+        ],
+        [
+          "/zones/2/tissue_data/pitanguy_line",
+          "이주(tragus) 하부 0.5cm → 눈썹 외측 1.5cm 상방을 잇는 선",
+          "거리,선 정의(→ 는 지점 연결)"
+        ],
+        [
+          "/zones/2/tissue_data/notes",
+          "이 선 위 피하층 주사 주의",
+          "지시 표현(이 선),주의"
+        ],
+        [
+          "/zones/2/clinical_pearls/0",
+          "주사 전 반드시 촉진으로 위치 확인",
+          "시간(전),필수(반드시)"
+        ],
+        [
+          "/zones/2/clinical_pearls/2",
+          "STL(상측두융합선)에서 측두근막이 두 층으로 분리 → 층 확인 중요",
+          "결과(→)"
+        ],
+        [
+          "/zones/2/clinical_pearls/3",
+          "측두근 위축(관자놀이 함몰) 교정 시 심부 주사 필수",
+          "조건(시),필수"
+        ],
+        [
+          "/zones/2/clinical_pearls/4",
+          "표재성 주사 시 혈종 + 안면신경 손상 동시 위험",
+          "조건(시),기호(+),동시"
+        ],
+        [
+          "/zones/2/clinical_pearls/5",
+          "관자놀이도 실명 위험 부위",
+          "보조사(도)"
+        ],
+        [
+          "/zones/2/clinical_pearls/5",
+          "색전 시 안과 응급 프로토콜 준용",
+          "조건(시),참조(준용)"
+        ],
+        [
+          "/zones/2/clinical_pearls/6",
+          "중측두정맥은 관자궁 상방 약 2cm에서 대구경으로 주행하므로 정맥 색전 주의",
+          "거리,근사(약),이유(므로),주의"
+        ],
+        [
+          "/zones/2/botox_specific/target_muscle",
+          "측두근 (Temporalis) — 이갈이/사각턱 보조",
+          "근육명,기호(/),보조"
+        ],
+        [
+          "/zones/2/botox_specific/risk",
+          "측두부 함몰(과도 위축)",
+          "정도(과도)"
+        ],
+        [
+          "/zones/2/botox_specific/risk",
+          "씹는 힘 약화",
+          "기능 저하"
+        ],
+        [
+          "/zones/2/botox_specific/key_warning",
+          "표재성 주사 → 안면신경 측두분지 마비 → 이마 거상 불가",
+          "연쇄(→),불가"
+        ],
+        [
+          "/zones/2/botox_specific/dose_range",
+          "20-40U/측 (이갈이)",
+          "범위,단위당,적응 한정"
+        ],
+        [
+          "/zones/2/botox_specific/dose_range",
+          "관자놀이 필러와 병행 시 주의",
+          "조건(병행 시),참조"
+        ],
+        [
+          "/zones/2/filler_specific/primary_risk",
+          "천측두동맥-안동맥 및 심부측두동맥-안동맥 문합 경로를 통한 역행성 색전 → 시력손실/실명",
+          "경로(연결 하이픈),결과(→),기호(/)"
+        ],
+        [
+          "/zones/2/filler_specific/primary_risk",
+          "천측두동맥 천자 → 대량 출혈/혈종",
+          "결과(→),기호(/)"
+        ],
+        [
+          "/zones/2/filler_specific/safe_technique",
+          "심부측두근막 심층 캐뉼러 주입, 동맥 촉진 후 주사",
+          "층,순서(후)"
+        ],
+        [
+          "/zones/2/filler_specific/preferred_product",
+          "실명 위험 부위이므로 비가역적 CaHA보다 용해 가능한 HA를 우선 고려",
+          "이유(이므로),비교(보다),우선"
+        ],
+        [
+          "/zones/2/filler_specific/preferred_product",
+          "CaHA 사용 시 심부 골막상·저압·소량 주입하며",
+          "조건(시),기법"
+        ],
+        [
+          "/zones/2/filler_specific/preferred_product",
+          "응급 hyaluronidase는 HA 성분에만 유효함",
+          "한정(만)"
+        ],
+        [
+          "/zones/2/clinical_pearls/1",
+          "Pitanguy line 위에서 안면신경 측두분지가 표재성 주행",
+          "참조(Pitanguy line = tissue_data.pitanguy_line),위치"
+        ],
+        [
+          "/zones/2/botox_specific/safe_zone",
+          "측두근 중앙부, 깊은 층",
+          "위치,수식(깊은)"
+        ]
+      ]
+    },
+    "S04": {
+      "observations": [
+        [
+          "P",
+          [
+            "/zones/3/vessels/1/danger"
+          ],
+          "한 값에 시간 수치 두 묶음(현대 문헌 약 12-15분 / 고전적 90-100분 동물모델 상한값)이 출처 성격과 함께 있다. 수치만 떼면 '동물모델 상한값' 한정이 사라진다.",
+          null
+        ],
+        [
+          "F",
+          [
+            "/zones/3/vessels/2/name"
+          ],
+          "한글 '내안각동맥' 과 영문 'Medial palpebral artery' 병기. 두 명칭의 대응은 후속.",
+          "ADZ-F13"
+        ],
+        [
+          "P",
+          [
+            "/zones/3/filler_specific/safe_technique",
+            "/zones/3/filler_specific/max_per_point_ml"
+          ],
+          "'0.1mL/측' 과 max_per_point_ml 0.05 는 기준(측/점)이 달라 직접 비교하지 않는다.",
+          "ADZ-P20"
+        ],
+        [
+          "P",
+          [
+            "/zones/3/tissue_data/notes",
+            "/zones/3/clinical_pearls/0"
+          ],
+          "notes '9.0mm'(교과서) 와 pearls '9mm' — 표기만 다르다.",
+          null
+        ],
+        [
+          "F",
+          [
+            "/zones/3/vessels/1/danger",
+            "/zones/3/filler_specific/emergency_protocol"
+          ],
+          "'히알루로니다제' 와 'hyaluronidase' 가 원장 안에서 혼용된다.",
+          "ADZ-F13"
+        ]
+      ],
+      "expressions": [
+        [
+          "/zones/3/vessels/0/course",
+          "내안각 내측 9.0mm, 비순구를 따라 상행 → 안동맥과 문합",
+          "거리,경로(→)"
+        ],
+        [
+          "/zones/3/vessels/0/danger",
+          "안동맥과 직접 문합 — 역행성 색전 시 실명",
+          "조건(시),결과"
+        ],
+        [
+          "/zones/3/vessels/1/course",
+          "안와 내 주행, 망막중심동맥 분지",
+          "위치"
+        ],
+        [
+          "/zones/3/vessels/1/danger",
+          "망막 허혈 내성은 실질적으로 매우 짧아",
+          "정도(매우),수식(실질적으로)"
+        ],
+        [
+          "/zones/3/vessels/1/danger",
+          "현대 문헌 약 12-15분",
+          "시간,범위,근사(약),출처 성격"
+        ],
+        [
+          "/zones/3/vessels/1/danger",
+          "고전적 90-100분은 동물모델 상한값",
+          "시간,범위,출처 한정,상한"
+        ],
+        [
+          "/zones/3/vessels/1/danger",
+          "시야 변화 시 사실상 즉각·비가역적일 수 있음",
+          "조건(시),가능성(수 있음),수식(사실상)"
+        ],
+        [
+          "/zones/3/vessels/1/danger",
+          "지체 없이 구후(retrobulbar) 히알루로니다제 및 안과 응급 프로토콜 가동",
+          "시간(지체 없이),부정형 수식(없이),영문 병기"
+        ],
+        [
+          "/zones/3/vessels/2/name",
+          "내안각동맥 (Medial palpebral artery)",
+          "혈관명,영문 병기"
+        ],
+        [
+          "/zones/3/vessels/2/danger",
+          "안와내 역류 경로",
+          "경로"
+        ],
+        [
+          "/zones/3/nerves/0/significance",
+          "하안검, 코 외측, 상구순 감각 — 안와하공에서 출현",
+          "부위 나열,위치"
+        ],
+        [
+          "/zones/3/safe_injection_depth",
+          "안와연(orbital rim) 외측, 골막상",
+          "위치,층"
+        ],
+        [
+          "/zones/3/tissue_data/tear_trough_anatomy",
+          "눈물고랑(tear trough)은 안와연 바로 아래",
+          "위치(바로 아래)"
+        ],
+        [
+          "/zones/3/tissue_data/tear_trough_anatomy",
+          "안륜근(orbicularis oculi) 매우 얇음",
+          "정도(매우)"
+        ],
+        [
+          "/zones/3/tissue_data/muscle_fiber_data",
+          "눈물고랑 부위 안륜근 섬유 두께 0.5-1.0mm (SRA 2024)",
+          "범위,인용(약식)"
+        ],
+        [
+          "/zones/3/tissue_data/orbital_septum",
+          "관통 시 안와 내 합병증",
+          "조건(시)"
+        ],
+        [
+          "/zones/3/tissue_data/notes",
+          "각동맥: 내안각에서 medial 9.0mm, 깊이 2.3mm, 직경 1.7mm (교과서)",
+          "수량 나열,출처(교과서)"
+        ],
+        [
+          "/zones/3/clinical_pearls/0",
+          "각동맥은 내안각 9mm 내측, 깊이 2.3mm — 매우 표재성",
+          "거리,정도(매우)"
+        ],
+        [
+          "/zones/3/clinical_pearls/1",
+          "눈물고랑(tear trough) 필러는 안와연 아래에서 골막상 주사",
+          "위치,층"
+        ],
+        [
+          "/zones/3/clinical_pearls/2",
+          "안와격막 절대 관통 금지",
+          "강조(절대),금지"
+        ],
+        [
+          "/zones/3/clinical_pearls/2",
+          "안와 내 주입 시 시신경 압박",
+          "조건(시),결과"
+        ],
+        [
+          "/zones/3/clinical_pearls/3",
+          "눈물고랑 근육 섬유 매우 얇음(0.5-1mm) → 필러 비침(Tyndall effect) 주의",
+          "정도,범위,결과(→),영문 병기"
+        ],
+        [
+          "/zones/3/clinical_pearls/4",
+          "하안검 보톡스는 1-2U 소량만",
+          "범위,한정(만)"
+        ],
+        [
+          "/zones/3/clinical_pearls/4",
+          "과다 시 안검외반(ectropion)",
+          "조건(시)"
+        ],
+        [
+          "/zones/3/botox_specific/target_muscle",
+          "안륜근 (Orbicularis oculi) — 까마귀발, 눈밑 주름",
+          "근육명,적응"
+        ],
+        [
+          "/zones/3/botox_specific/risk",
+          "하안검 외반(ectropion), 복시(diplopia), 안구건조",
+          "부작용 나열"
+        ],
+        [
+          "/zones/3/botox_specific/safe_zone",
+          "외안각 외측 1cm, 안와연 외측",
+          "거리,위치"
+        ],
+        [
+          "/zones/3/botox_specific/key_warning",
+          "안와연 내측 보톡스 → 안검하수/외반 위험",
+          "결과(→),기호(/)"
+        ],
+        [
+          "/zones/3/botox_specific/dose_range",
+          "까마귀발 4-12U/측 (2-4포인트)",
+          "적응+범위,단위당"
+        ],
+        [
+          "/zones/3/botox_specific/dose_range",
+          "눈밑 1-2U (1포인트)",
+          "적응+범위"
+        ],
+        [
+          "/zones/3/filler_specific/primary_risk",
+          "역행성 색전 → 실명 (각동맥 → 안동맥)",
+          "결과(→),경로(→)"
+        ],
+        [
+          "/zones/3/filler_specific/safe_technique",
+          "눈물고랑: 안와연 아래 골막상 캐뉼러, 극소량(0.1mL/측), 저점도 HA",
+          "적용 대상(눈물고랑:),수량,단위당(/측)"
+        ],
+        [
+          "/zones/3/filler_specific/preferred_product",
+          "저점도 연성 HA (눈물고랑 전용 제품)",
+          "수식,전용"
+        ],
+        [
+          "/zones/3/filler_specific/emergency_protocol",
+          "시야 변화 즉시 → hyaluronidase + 안과 응급",
+          "시간(즉시),순서(→),기호(+)"
+        ]
+      ]
+    },
+    "S05": {
+      "observations": [
+        [
+          "P",
+          [
+            "/zones/4/clinical_pearls/0"
+          ],
+          "같은 부위의 비율이 시점별로 세 개(2015 초기 25.5%, 2019 56.3%, 2023/24 40.6%) 있다. critical_safety_facts 의 '현재' 주장은 2019 값(56.3%)과 함께 쓰였다. '2023/24' 의 '/' 는 연도 묶음이다.",
+          "ADZ-P10"
+        ],
+        [
+          "F",
+          [
+            "/zones/4/clinical_pearls/0"
+          ],
+          "'글라벨라' 는 zone name_ko '미간'(name_en Glabella)과 다른 표기다.",
+          "ADZ-F13"
+        ],
+        [
+          "P",
+          [
+            "/zones/4/vessels/1/name"
+          ],
+          "영문 명칭 두 개를 '/' 로 병기(External nasal artery / Lateral nasal artery). README 의 '/ = 둘 중 하나' 규칙을 이름 병기에 기계 적용하지 않는다.",
+          "ADZ-P10"
+        ],
+        [
+          "P",
+          [
+            "/zones/4/tissue_data/rhinion_data_source"
+          ],
+          "출처가 약식('JCD 2024, USG n=52')이며 같은 tissue_data 의 nasal_tip_skin_thickness_mm 에는 출처 칸이 없다.",
+          "ADZ-B18"
+        ],
+        [
+          "P",
+          [
+            "/zones/4/filler_specific/emergency_protocol"
+          ],
+          "단계 순서(→), 수량(약 900IU급), 반복 간격 범위(15~60분, '~' 구분자), 종료 조건(CRT 정상화까지), 투약 수치(300mg 로딩 후 75~100mg/일), 조건부 이송이 이어진다. '~' 는 이 원장에서 nose·neck 에만 나온다.",
+          "ADZ-P11"
+        ]
+      ],
+      "expressions": [
+        [
+          "/zones/4/vessels/0/course",
+          "코등(dorsum)을 따라 하행, 안동맥의 직접 분지",
+          "경로,영문 병기"
+        ],
+        [
+          "/zones/4/vessels/0/danger",
+          "0.0368mL로 안동맥 폐색 → 실명 (최소 용량)",
+          "수량,결과(→),최상급"
+        ],
+        [
+          "/zones/4/vessels/1/name",
+          "외비동맥 (External nasal artery / Lateral nasal artery)",
+          "혈관명,영문 이중 병기(/)"
+        ],
+        [
+          "/zones/4/vessels/1/course",
+          "비익(ala) 외측, 안면동맥 분지",
+          "위치"
+        ],
+        [
+          "/zones/4/vessels/1/danger",
+          "비익 괴사 위험",
+          "위험"
+        ],
+        [
+          "/zones/4/vessels/2/course",
+          "비주(columella) 내 주행",
+          "위치"
+        ],
+        [
+          "/zones/4/vessels/2/danger",
+          "비첨부 주사 시 손상 위험",
+          "조건(시)"
+        ],
+        [
+          "/zones/4/nerves/0/significance",
+          "코끝, 코등 하부 감각",
+          "부위 나열"
+        ],
+        [
+          "/zones/4/nerves/1/name",
+          "안와하신경 비측분지",
+          "신경명(영문 병기 없음)"
+        ],
+        [
+          "/zones/4/safe_injection_depth",
+          "골막상 (코뼈 부위) 또는 연골막상 (비첨부)",
+          "층,대안(또는),위치 한정"
+        ],
+        [
+          "/zones/4/tissue_data/rhinion_data_source",
+          "JCD 2024, USG n=52",
+          "인용(약식),표본 수"
+        ],
+        [
+          "/zones/4/tissue_data/notes",
+          "Rhinion 피하조직 2.02mm (초음파 측정) — 혈관이 매우 표재성",
+          "수량,측정 방법,정도(매우)"
+        ],
+        [
+          "/zones/4/clinical_pearls/0",
+          "실명 원인 부위 1위",
+          "순위"
+        ],
+        [
+          "/zones/4/clinical_pearls/0",
+          "최신 문헌에서 코가 글라벨라를 제치고 최다 부위",
+          "시간(최신),비교,최상급"
+        ],
+        [
+          "/zones/4/clinical_pearls/0",
+          "Beleznay 2019 업데이트 56.3%",
+          "인용(약식),시간,비율"
+        ],
+        [
+          "/zones/4/clinical_pearls/0",
+          "2023/24 업데이트 40.6%",
+          "시간(연도 묶음 /),비율"
+        ],
+        [
+          "/zones/4/clinical_pearls/0",
+          "25.5%는 2015년 초기 리뷰 값",
+          "비율,시간"
+        ],
+        [
+          "/zones/4/clinical_pearls/1",
+          "배비동맥: 0.0368mL로 안동맥 폐색 — 모든 부위 중 최소 용량",
+          "수량,최상급,전 부위 비교"
+        ],
+        [
+          "/zones/4/clinical_pearls/2",
+          "Rhinion 피하조직 2.02mm — 혈관이 피부 바로 아래",
+          "수량,위치"
+        ],
+        [
+          "/zones/4/clinical_pearls/3",
+          "니들 구부러짐 위험 (비골/연골 접촉 시) → 연골 손상 가능",
+          "조건(시),기호(/),가능성"
+        ],
+        [
+          "/zones/4/clinical_pearls/4",
+          "코 필러 후 피부 색상 변화(blanching) 즉시 확인",
+          "시간(후·즉시),영문 병기"
+        ],
+        [
+          "/zones/4/clinical_pearls/5",
+          "비첨부는 end-artery 영역 → 혈관 폐색 시 괴사 고위험",
+          "조건(시),결과(→)"
+        ],
+        [
+          "/zones/4/clinical_pearls/6",
+          "코 필러 시술 전 hyaluronidase 반드시 준비",
+          "시간(전),필수(반드시)"
+        ],
+        [
+          "/zones/4/botox_specific/target_muscle",
+          "비근근 (Nasalis) — bunny lines, 코끝 처짐(depressor septi nasi)",
+          "근육명,적응,영문 병기"
+        ],
+        [
+          "/zones/4/botox_specific/risk",
+          "비익 함몰(alar collapse), 비밸브 기능장애 → 호흡곤란",
+          "부작용,결과(→)"
+        ],
+        [
+          "/zones/4/botox_specific/safe_zone",
+          "비중격하강근(depressor septi nasi)은 비주 기시부",
+          "위치"
+        ],
+        [
+          "/zones/4/botox_specific/key_warning",
+          "비근근 외측 과다 주사 → 비익 함몰 → 코 호흡 장애",
+          "연쇄(→),정도(과다)"
+        ],
+        [
+          "/zones/4/botox_specific/dose_range",
+          "Bunny lines 2-4U/측",
+          "적응+범위,단위당"
+        ],
+        [
+          "/zones/4/botox_specific/dose_range",
+          "비중격하강근 2-5U",
+          "근육+범위"
+        ],
+        [
+          "/zones/4/filler_specific/primary_risk",
+          "역행성 색전 → 실명 + 코 피부 괴사",
+          "결과(→),기호(+)"
+        ],
+        [
+          "/zones/4/filler_specific/safe_technique",
+          "코등: 골막상 캐뉼러, 정중선, 극소량",
+          "적용 대상(코등:),기법"
+        ],
+        [
+          "/zones/4/filler_specific/safe_technique",
+          "비첨: 니들 소량 다점",
+          "적용 대상(비첨:),기법"
+        ],
+        [
+          "/zones/4/filler_specific/preferred_product",
+          "HA 필수 (hyaluronidase 용해 가능)",
+          "필수,이유"
+        ],
+        [
+          "/zones/4/filler_specific/preferred_product",
+          "코에 CaHA/PLLA 금기",
+          "금기,기호(/)"
+        ],
+        [
+          "/zones/4/filler_specific/emergency_protocol",
+          "blanching 즉시 → 주입 중단 → 고용량 pulsed hyaluronidase 다점 침윤",
+          "시간(즉시),순서(→)"
+        ],
+        [
+          "/zones/4/filler_specific/emergency_protocol",
+          "코 침범 시 약 900IU급",
+          "조건(시),근사(약·급)"
+        ],
+        [
+          "/zones/4/filler_specific/emergency_protocol",
+          "CRT 정상화까지 15~60분 간격 반복",
+          "종료 조건(까지),범위(~),반복"
+        ],
+        [
+          "/zones/4/filler_specific/emergency_protocol",
+          "warm compress + massage + aspirin 300mg 로딩 후 75~100mg/일",
+          "기호(+),수량,순서(후),범위(~),단위당(/일)"
+        ],
+        [
+          "/zones/4/filler_specific/emergency_protocol",
+          "시각증상 동반 시 즉시 안과 이송",
+          "조건(시),시간(즉시)"
+        ]
+      ]
+    },
+    "S06": {
+      "observations": [
+        [
+          "P",
+          [
+            "/zones/5/vessels/0/course",
+            "/zones/5/tissue_data/notes",
+            "/zones/5/clinical_pearls/0"
+          ],
+          "vessels[0].course 에 주행 경로가 아니라 통계(93.3%, 42.9%)가 들어 있고, 같은 문장이 clinical_pearls[0] 과 완전 일치, notes 와는 어미만 다르다.",
+          "ADZ-P22"
+        ],
+        [
+          "B",
+          [
+            "/zones/5/tissue_data/asian_adjacent_distribution_percent"
+          ],
+          "필드명에 'asian' 이 있으나 원문 문장은 대상 집단을 말하지 않는다. 집단 한정의 근거는 필드명뿐이다.",
+          "ADZ-B08"
+        ],
+        [
+          "P",
+          [
+            "/zones/5/vessels/0/depth_mm",
+            "/zones/5/tissue_data/facial_artery_distance_to_nlf_mm"
+          ],
+          "두 필드가 같은 수 5.0 이나 의미(깊이/NLF 까지 거리)가 다르다. 값 일치만으로 연결하지 않는다.",
+          null
+        ],
+        [
+          "P",
+          [
+            "/zones/5/clinical_pearls/1"
+          ],
+          "'하악 1.9mm → 비측 0.8mm' 의 '→' 는 위치에 따른 변화(점감)다.",
+          "ADZ-P09"
+        ],
+        [
+          "F",
+          [
+            "/critical_safety_facts/blindness_highest_risk_zones",
+            "/zones/5/name_ko",
+            "/zones/5/name_en"
+          ],
+          "'비순주름'(critical), '팔자주름'(name_ko), 'Nasolabial Fold'/'NLF' 표기가 공존한다.",
+          "ADZ-F13"
+        ],
+        [
+          "P",
+          [
+            "/zones/5/botox_specific/safe_zone",
+            "/zones/5/botox_specific/key_warning"
+          ],
+          "safe_zone 칸에 위치가 아닌 병행·빈도('보톡스 단독은 드묾') 정보가 있다.",
+          "ADZ-P22"
+        ]
+      ],
+      "expressions": [
+        [
+          "/zones/5/vessels/0/course",
+          "안면동맥 분지가 NLF 인접부에 존재 93.3%",
+          "비율"
+        ],
+        [
+          "/zones/5/vessels/0/course",
+          "이 중 NLF 5mm 이내 주행은 약 42.9%",
+          "부분집합(이 중),거리 상한(이내),근사(약),비율"
+        ],
+        [
+          "/zones/5/vessels/0/danger",
+          "NLF 필러 시 안면동맥 천자 → 피부 괴사, 역행성 색전",
+          "조건(시),결과(→)"
+        ],
+        [
+          "/zones/5/vessels/1/course",
+          "NLF 상단부에서 내안각 방향으로 주행, 안면동맥의 말단",
+          "위치·방향"
+        ],
+        [
+          "/zones/5/vessels/1/danger",
+          "안동맥과 문합 — 역행성 색전 경로",
+          "경로"
+        ],
+        [
+          "/zones/5/nerves/1/name",
+          "협근신경 (Buccal branch of facial nerve)",
+          "신경명,영문 병기"
+        ],
+        [
+          "/zones/5/nerves/1/significance",
+          "협근, 구륜근 상부 운동",
+          "기능"
+        ],
+        [
+          "/zones/5/safe_injection_depth",
+          "피하 또는 피하-근막 경계 (SMAS 상방)",
+          "층,대안(또는),연결 하이픈"
+        ],
+        [
+          "/zones/5/tissue_data/notes",
+          "안면동맥 분지가 NLF 인접부에 존재하는 비율은 93.3%이며, 이 중 NLF 5mm 이내 주행은 약 42.9%",
+          "비율,부분집합,거리 상한"
+        ],
+        [
+          "/zones/5/clinical_pearls/1",
+          "안면동맥 직경: 하악 1.9mm → 비측 0.8mm (상방으로 가늘어짐)",
+          "위치별 수치,변화(→)"
+        ],
+        [
+          "/zones/5/clinical_pearls/2",
+          "NLF 상단부에서 각동맥으로 이행 → 안동맥 문합 → 실명 위험",
+          "연쇄(→)"
+        ],
+        [
+          "/zones/5/clinical_pearls/3",
+          "캐뉼러 사용 시 혈관 천자 위험 현저히 감소",
+          "조건(시),정도(현저히)"
+        ],
+        [
+          "/zones/5/clinical_pearls/4",
+          "깊은 층(SMAS 하방) 절대 금지",
+          "강조(절대),금지"
+        ],
+        [
+          "/zones/5/clinical_pearls/4",
+          "안면동맥은 심부 주행",
+          "위치"
+        ],
+        [
+          "/zones/5/botox_specific/target_muscle",
+          "상순거근 (Levator labii superioris) — NLF 보조 치료",
+          "근육명,보조"
+        ],
+        [
+          "/zones/5/botox_specific/risk",
+          "상순 거상 약화 → 미소 비대칭, 음식물 흘림",
+          "결과(→)"
+        ],
+        [
+          "/zones/5/botox_specific/safe_zone",
+          "NLF 필러와 병행",
+          "병행,참조"
+        ],
+        [
+          "/zones/5/botox_specific/safe_zone",
+          "보톡스 단독은 드묾",
+          "빈도(드묾)"
+        ],
+        [
+          "/zones/5/botox_specific/key_warning",
+          "NLF 보톡스는 부작용 위험 대비 효과 제한적 — 필러 우선",
+          "비교(대비),한계(제한적),우선"
+        ],
+        [
+          "/zones/5/botox_specific/dose_range",
+          "2-4U/측 (NLF 보조 시)",
+          "범위,단위당,조건(시)"
+        ],
+        [
+          "/zones/5/filler_specific/primary_risk",
+          "안면동맥 천자 → 피부 괴사 + 역행성 색전",
+          "결과(→),기호(+)"
+        ],
+        [
+          "/zones/5/filler_specific/safe_technique",
+          "캐뉼러 선형 역행 주입, SMAS 상방, 소량 다점",
+          "기법,층"
+        ],
+        [
+          "/zones/5/filler_specific/preferred_product",
+          "중점도 HA (NLF 전용)",
+          "수식,전용"
+        ],
+        [
+          "/zones/5/clinical_pearls/0",
+          "이 중 NLF 5mm 이내 주행은 약 42.9%",
+          "부분집합(이 중),거리 상한(이내),근사(약),비율",
+          "vessels/0/course 와 동일 문자열"
+        ]
+      ]
+    },
+    "S07": {
+      "observations": [
+        [
+          "P",
+          [
+            "/zones/6/name_en"
+          ],
+          "'Cheek (Malar/Buccal)' — 괄호 안 '/' 병기. README 의 괄호·'/' 규칙을 부위 명칭에 기계 적용하지 않는다.",
+          "ADZ-P10"
+        ],
+        [
+          "F",
+          [
+            "/zones/6/botox_specific/target_muscle",
+            "/zones/6/botox_specific/key_warning"
+          ],
+          "'광대근 (Zygomaticus)', '관골근(zygomaticus major)·소근' 이 한 zone 안에서 다른 표기로 나온다.",
+          "ADZ-F13"
+        ],
+        [
+          "F",
+          [
+            "/zones/6/botox_specific",
+            "/zones/9/botox_specific"
+          ],
+          "볼 zone 의 botox 대상이 교근(사각턱)이며 같은 용량 표현 '교근 25-50U/측' 이 턱선 zone 에도 있다. zone 간 중복·소속은 후속.",
+          "ADZ-F14"
+        ],
+        [
+          "P",
+          [
+            "/zones/6/tissue_data/sub_smas_vs_subcutaneous"
+          ],
+          "'A: 설명 / B: 설명' 형식으로 '/' 가 두 쌍을 나누는 구분자로 쓰였다.",
+          "ADZ-P10"
+        ],
+        [
+          "P",
+          [
+            "/zones/6/botox_specific/key_warning"
+          ],
+          "발생률(약 2.4%)·경과(대개 4주 내 자연 회복)·회피 지시가 한 값에 있다. '대개' 는 빈도 수식이다.",
+          null
+        ],
+        [
+          "F",
+          [
+            "/zones/6/clinical_pearls/2",
+            "/zones/6/filler_specific/safe_technique"
+          ],
+          "'볼류메트릭' 과 '볼루스' 는 다른 낱말이며 표기 대응은 후속.",
+          "ADZ-F13"
+        ]
+      ],
+      "expressions": [
+        [
+          "/zones/6/name_en",
+          "Cheek (Malar/Buccal)",
+          "영문 명칭,기호(/)"
+        ],
+        [
+          "/zones/6/vessels/0/course",
+          "관골궁 하방, 이하선관 상방 주행",
+          "위치"
+        ],
+        [
+          "/zones/6/vessels/0/danger",
+          "협부 충전 시 깊은 층에서 손상 가능",
+          "조건(시),가능성"
+        ],
+        [
+          "/zones/6/vessels/1/course",
+          "안와하공에서 출현, 협부 상방",
+          "위치"
+        ],
+        [
+          "/zones/6/vessels/1/danger",
+          "상협부 깊은 주사 시 손상",
+          "조건(시)"
+        ],
+        [
+          "/zones/6/nerves/2/name",
+          "관골신경 (Zygomatic branch of facial nerve)",
+          "신경명,영문 병기"
+        ],
+        [
+          "/zones/6/nerves/2/significance",
+          "안륜근 하부, 관골근 운동",
+          "기능"
+        ],
+        [
+          "/zones/6/safe_injection_depth",
+          "골막상 (관골부) 또는 피하 (협부), Sub-SMAS 층 주의",
+          "층,대안(또는),위치 한정,주의"
+        ],
+        [
+          "/zones/6/tissue_data/buccal_fat_pad",
+          "협지방체(Buccal fat pad): SMAS 심층에 위치, 저작공간까지 연장",
+          "위치,범위(까지)"
+        ],
+        [
+          "/zones/6/tissue_data/sub_smas_vs_subcutaneous",
+          "Sub-SMAS: 볼륨 리프팅 / Subcutaneous: 표재성 주름 교정",
+          "대비 쌍,구분자(/)"
+        ],
+        [
+          "/zones/6/tissue_data/notes",
+          "협지방체는 관골, 측두, 협부, 익구개 공간에 걸쳐 있음",
+          "범위"
+        ],
+        [
+          "/zones/6/tissue_data/notes",
+          "감염 시 파급 위험",
+          "조건(시)"
+        ],
+        [
+          "/zones/6/clinical_pearls/0",
+          "협지방체(Buccal fat pad)는 여러 공간에 걸쳐 있어 감염 파급 경로",
+          "이유(어),경로"
+        ],
+        [
+          "/zones/6/clinical_pearls/1",
+          "Sub-SMAS vs subcutaneous 층 구분 중요",
+          "대비(vs)"
+        ],
+        [
+          "/zones/6/clinical_pearls/2",
+          "관골부(malar): 골막상 볼류메트릭 충전이 안전",
+          "적용 대상,층"
+        ],
+        [
+          "/zones/6/clinical_pearls/3",
+          "협부 하방은 상대적으로 안전하나 이하선관(Stensen's duct) 주의",
+          "정도(상대적으로),대조(나),주의"
+        ],
+        [
+          "/zones/6/clinical_pearls/4",
+          "필러 이동(migration) 주의",
+          "주의"
+        ],
+        [
+          "/zones/6/clinical_pearls/4",
+          "중력 방향으로 처질 수 있음",
+          "가능성(수 있음)"
+        ],
+        [
+          "/zones/6/botox_specific/target_muscle",
+          "교근 (Masseter) — 사각턱, 광대근 (Zygomaticus) — gummy smile",
+          "근육명,적응"
+        ],
+        [
+          "/zones/6/botox_specific/risk",
+          "교근 과위축 → 안면 함몰, 씹는 힘 약화",
+          "정도(과),결과(→)"
+        ],
+        [
+          "/zones/6/botox_specific/safe_zone",
+          "교근 하방 1/3, 근육 body 내",
+          "분수(1/3),위치"
+        ],
+        [
+          "/zones/6/botox_specific/key_warning",
+          "교근 상방·전방·표재 주사 시 독소가 관골근(zygomaticus major)·소근으로 확산 → 미소 비대칭",
+          "조건(시),결과(→)"
+        ],
+        [
+          "/zones/6/botox_specific/key_warning",
+          "문헌상 발생률 약 2.4%, 대개 4주 내 자연 회복",
+          "비율,근사(약),빈도(대개),시간(4주 내)"
+        ],
+        [
+          "/zones/6/botox_specific/key_warning",
+          "관골뼈 위·교근 전연 인접 주입을 피하고 하방·후방 body에 주입",
+          "회피 지시,위치"
+        ],
+        [
+          "/zones/6/botox_specific/dose_range",
+          "교근 25-50U/측",
+          "근육+범위,단위당"
+        ],
+        [
+          "/zones/6/botox_specific/dose_range",
+          "광대근 2-4U/측",
+          "근육+범위,단위당"
+        ],
+        [
+          "/zones/6/filler_specific/primary_risk",
+          "필러 이동, 부종, 안면횡동맥 손상",
+          "위험 나열"
+        ],
+        [
+          "/zones/6/filler_specific/safe_technique",
+          "관골부: 골막상 볼루스",
+          "적용 대상,기법"
+        ],
+        [
+          "/zones/6/filler_specific/safe_technique",
+          "협부: 피하 캐뉼러 fan technique",
+          "적용 대상,기법"
+        ],
+        [
+          "/zones/6/filler_specific/preferred_product",
+          "고점도 HA (관골부), 중점도 HA (협부)",
+          "수식,위치 한정"
+        ]
+      ]
+    },
+    "S08": {
+      "observations": [
+        [
+          "P",
+          [
+            "/zones/7/vessels/0",
+            "/zones/7/vessels/1"
+          ],
+          "lips 의 두 vessels 에는 depth_mm 이 없고 depth_range_mm 만 있다(다른 zone 과 구조 차이).",
+          "ADZ-P16"
+        ],
+        [
+          "B",
+          [
+            "/zones/7/tissue_data/labial_artery_depth_range_mm",
+            "/zones/7/vessels/0/depth_range_mm",
+            "/zones/7/vessels/1/depth_range_mm"
+          ],
+          "tissue_data.labial_artery_depth_range_mm [3.0,6.0] 은 이름상 상·하순 구분이 없고 값은 vessels[1](하순동맥)과 같으며 vessels[0](상순동맥) [3.2,5.6] 과 다르다. 어느 혈관 기준인지 원문에 없다.",
+          "ADZ-B05"
+        ],
+        [
+          "I",
+          [
+            "/zones/7/safe_injection_depth",
+            "/zones/7/tissue_data/notes"
+          ],
+          "safe_injection_depth 는 '진피 내 또는 점막하' 를 안전 깊이로 적었고, notes 는 '구각부 심부·정중/중간 vermillion 점막하 주입은 ... 금지' 라고 한다. 적용 범위가 다른지 원문만으로 알 수 없다.",
+          "ADZ-I03"
+        ],
+        [
+          "P",
+          [
+            "/zones/7/vessels/0/course"
+          ],
+          "'대부분 ... (약 58.5%)', '평균 약 4.5-5.6mm', '가장 얕은 경우 약 3.2mm' 처럼 빈도·평균·극값 수식이 겹쳐 있다. depth_range_mm [3.2,5.6] 의 두 끝값이 서로 다른 성격(최솟값/평균 범위 상단)에서 왔다.",
+          null
+        ],
+        [
+          "P",
+          [
+            "/zones/7/safe_injection_depth",
+            "/zones/7/filler_specific/safe_technique"
+          ],
+          "'vermillion' 철자를 원문 그대로 보존한다(교정하지 않음). 'Vermillion' 대문자 출현도 있다.",
+          null
+        ],
+        [
+          "P",
+          [
+            "/zones/7/filler_specific/preferred_product"
+          ],
+          "'저-중점도' 의 '-' 는 점도 단계 범위다.",
+          "ADZ-P11"
+        ]
+      ],
+      "expressions": [
+        [
+          "/zones/7/vessels/0/course",
+          "대부분 점막하층(약 58.5%)에서 점막면 기준 평균 약 4.5-5.6mm 깊이로 주행하며 가장 얕은 경우 약 3.2mm",
+          "빈도(대부분),비율,기준면,평균,범위,극값(가장 얕은 경우)"
+        ],
+        [
+          "/zones/7/vessels/0/course",
+          "구각 쪽에서 더 깊게 후방 주행",
+          "비교(더)"
+        ],
+        [
+          "/zones/7/vessels/0/danger",
+          "혈관 천자 → 출혈, 혈종, 드물게 조직 괴사",
+          "결과(→),빈도(드물게)"
+        ],
+        [
+          "/zones/7/vessels/1/course",
+          "하순 내 주행, 상순동맥과 유사 경로",
+          "참조(유사)"
+        ],
+        [
+          "/zones/7/vessels/1/danger",
+          "혈관 천자 → 출혈/혈종",
+          "결과(→),기호(/)"
+        ],
+        [
+          "/zones/7/nerves/0/name",
+          "안와하신경 순측분지 (Labial branch of infraorbital nerve)",
+          "신경명,영문 병기"
+        ],
+        [
+          "/zones/7/nerves/1/name",
+          "이신경 순측분지 (Labial branch of mental nerve)",
+          "신경명,영문 병기"
+        ],
+        [
+          "/zones/7/safe_injection_depth",
+          "점막-피부 경계(vermillion border) 진피 내 또는 점막하",
+          "층,대안(또는),연결 하이픈"
+        ],
+        [
+          "/zones/7/tissue_data/notes",
+          "상순동맥은 대부분 점막하층에 위치(약 58.5%)하고",
+          "빈도,비율"
+        ],
+        [
+          "/zones/7/tissue_data/notes",
+          "점막면에서 평균 약 4.5-5.6mm(가장 얕은 경우 약 3.2mm) 깊이로 주행하며",
+          "평균,범위,극값"
+        ],
+        [
+          "/zones/7/tissue_data/notes",
+          "구각(구각에서 0.5cm 이내 유입) 쪽에서 더 깊다",
+          "거리 상한(이내),비교"
+        ],
+        [
+          "/zones/7/tissue_data/notes",
+          "후방 주행 덕분에 vermillion border의 표재성 진피 내 소량 주입이 가장 안전하며",
+          "이유(덕분에),최상급"
+        ],
+        [
+          "/zones/7/tissue_data/notes",
+          "구각부 심부·정중/중간 vermillion 점막하 주입은 동맥 손상 위험이 높아 금지",
+          "적용 범위,기호(/),이유,금지"
+        ],
+        [
+          "/zones/7/clinical_pearls/1",
+          "상순동맥은 구각에서 0.5cm 이내로 유입되고 구각 쪽에서 더 깊게 후방 주행",
+          "거리 상한,비교"
+        ],
+        [
+          "/zones/7/clinical_pearls/2",
+          "구각(oral commissure) 부근 주사 시 혈관 천자 위험 높음",
+          "조건(시),위험"
+        ],
+        [
+          "/zones/7/clinical_pearls/3",
+          "진피 내(intradermal) 소량 주사가 가장 안전",
+          "최상급"
+        ],
+        [
+          "/zones/7/clinical_pearls/4",
+          "과충전 시 sausage lip → 입술 기능 장애 (발음, 식사)",
+          "조건(시),결과(→)"
+        ],
+        [
+          "/zones/7/clinical_pearls/5",
+          "이전 영구 필러(실리콘 등) 존재 시 HA 필러 금기",
+          "시간(이전),조건(시),금기"
+        ],
+        [
+          "/zones/7/botox_specific/target_muscle",
+          "구륜근 (Orbicularis oris) — lip flip, 입가 주름",
+          "근육명,적응"
+        ],
+        [
+          "/zones/7/botox_specific/risk",
+          "구강 기능 장애 (빨대 사용, 발음, 식사 불편)",
+          "부작용,예시 나열"
+        ],
+        [
+          "/zones/7/botox_specific/safe_zone",
+          "상순 vermillion border, 구각에서 멀리",
+          "위치,거리(멀리)"
+        ],
+        [
+          "/zones/7/botox_specific/key_warning",
+          "과다 주사 → 입술 마비 → 발음/식사 장애 (lip incompetence)",
+          "연쇄(→),기호(/)"
+        ],
+        [
+          "/zones/7/botox_specific/dose_range",
+          "Lip flip: 4-6U (상순)",
+          "적응+범위"
+        ],
+        [
+          "/zones/7/botox_specific/dose_range",
+          "구각 거상: 2-4U/측",
+          "적응+범위,단위당"
+        ],
+        [
+          "/zones/7/filler_specific/primary_risk",
+          "혈종, 부종, 드물게 조직 괴사 (상순동맥 폐색 시)",
+          "빈도(드물게),조건(시)"
+        ],
+        [
+          "/zones/7/filler_specific/safe_technique",
+          "Vermillion border 진피 내, 소량 연속 주입, 캐뉼러 또는 미세 니들",
+          "층,기법,대안(또는)"
+        ],
+        [
+          "/zones/7/filler_specific/preferred_product",
+          "저-중점도 HA (연성, 자연스러운 촉감)",
+          "범위(저-중),수식"
+        ],
+        [
+          "/zones/7/clinical_pearls/0",
+          "대부분 점막하층(약 58.5%)에서 점막면 기준 평균 약 4.5-5.6mm 깊이로 주행하며 가장 얕은 경우 약 3.2mm",
+          "빈도(대부분),비율,평균,범위,극값",
+          "vessels/0/course 앞부분과 같은 문구"
+        ]
+      ]
+    },
+    "S09": {
+      "observations": [
+        [
+          "B",
+          [
+            "/zones/8/tissue_data/dao_coverage",
+            "/zones/8/clinical_pearls/0",
+            "/zones/8/tissue_data/notes"
+          ],
+          "'DAO 의 67.7% 가 이신경공을 덮고 있음' 의 67.7% 가 무엇의 비율(사례/면적 등)인지 원문에 없다. 세 곳에 같은 수치가 반복된다.",
+          "ADZ-B07"
+        ],
+        [
+          "P",
+          [
+            "/zones/8/vessels/1/name",
+            "/zones/8/vessels/1"
+          ],
+          "vessels[1].name '하순동맥 분지' 에는 영문 병기가 없다(다른 vessels 와 형식 차이).",
+          "ADZ-P16"
+        ],
+        [
+          "F",
+          [
+            "/zones/8/botox_specific/risk",
+            "/zones/7/botox_specific/key_warning"
+          ],
+          "'lip incompetence' 가 chin 에서는 '하순 외반', lips 에서는 '입술 마비 → 발음/식사 장애' 와 병기된다.",
+          "ADZ-F13"
+        ],
+        [
+          "F",
+          [
+            "/zones/8/name_ko",
+            "/zones/9/name_ko"
+          ],
+          "'턱'(Chin (Mentum)) 과 '턱선'(Jawline (Mandibular border)) 은 별개 zone 이다. 'Chin' 이 다른 원장에서 어떤 표기로 쓰이는지는 이번 범위 밖.",
+          "ADZ-F14"
+        ]
+      ],
+      "expressions": [
+        [
+          "/zones/8/name_en",
+          "Chin (Mentum)",
+          "영문 명칭,괄호 병기"
+        ],
+        [
+          "/zones/8/vessels/0/course",
+          "이신경공(mental foramen)에서 출현, 하악 전면",
+          "위치,영문 병기"
+        ],
+        [
+          "/zones/8/vessels/0/danger",
+          "이신경공 주변 깊은 주사 시 손상",
+          "수식(깊은),조건(시)"
+        ],
+        [
+          "/zones/8/vessels/1/course",
+          "턱끝 상방, 하순에서 연장",
+          "위치"
+        ],
+        [
+          "/zones/8/vessels/1/danger",
+          "턱끝 상방 주사 시 주의",
+          "조건(시),주의"
+        ],
+        [
+          "/zones/8/nerves/0/significance",
+          "손상 시 하순/턱 감각 마비",
+          "조건(시),기호(/)"
+        ],
+        [
+          "/zones/8/safe_injection_depth",
+          "골막상 (이부 정중앙) — 이신경공 외측 피할 것",
+          "층,회피 지시"
+        ],
+        [
+          "/zones/8/tissue_data/mental_foramen_location",
+          "하악 제2소구치 하방, 하악연에서 상방 약 13mm",
+          "위치,거리,근사(약)"
+        ],
+        [
+          "/zones/8/tissue_data/dao_coverage",
+          "DAO(구각하제근)의 67.7%가 이신경공을 덮고 있음",
+          "약어,비율(기준 불명)"
+        ],
+        [
+          "/zones/8/tissue_data/notes",
+          "DAO 보톡스 시 이신경 손상 주의",
+          "조건(시),주의"
+        ],
+        [
+          "/zones/8/clinical_pearls/1",
+          "이신경공은 제2소구치 하방 위치 — 이 부위 깊은 주사 주의",
+          "지시 표현(이 부위),주의"
+        ],
+        [
+          "/zones/8/clinical_pearls/2",
+          "턱끝 정중앙은 상대적으로 안전 (혈관/신경 희소)",
+          "정도(상대적으로),기호(/)"
+        ],
+        [
+          "/zones/8/clinical_pearls/3",
+          "골막상 볼루스 주사로 턱 윤곽 교정",
+          "기법"
+        ],
+        [
+          "/zones/8/clinical_pearls/4",
+          "턱끝 외측으로 갈수록 이신경/이동맥 위험 증가",
+          "점증(갈수록),기호(/)"
+        ],
+        [
+          "/zones/8/botox_specific/target_muscle",
+          "이근 (Mentalis) — 턱 딤플(peach pit chin)",
+          "근육명,적응"
+        ],
+        [
+          "/zones/8/botox_specific/risk",
+          "하순 외반(lip incompetence), 이부 처짐",
+          "부작용"
+        ],
+        [
+          "/zones/8/botox_specific/key_warning",
+          "이근 과다 마비 → 하순 처짐 + 음식물 흘림",
+          "정도(과다),결과(→),기호(+)"
+        ],
+        [
+          "/zones/8/botox_specific/dose_range",
+          "4-8U (정중앙 1-2포인트)",
+          "범위,위치"
+        ],
+        [
+          "/zones/8/filler_specific/primary_risk",
+          "이신경 손상(감각 마비), 이동맥 손상",
+          "위험 나열"
+        ],
+        [
+          "/zones/8/filler_specific/safe_technique",
+          "정중앙 골막상 볼루스 + 캐뉼러 외측 확장",
+          "기법,기호(+)"
+        ],
+        [
+          "/zones/8/filler_specific/preferred_product",
+          "고점도 HA 또는 CaHA (윤곽 교정용)",
+          "대안(또는),용도"
+        ],
+        [
+          "/zones/8/clinical_pearls/0",
+          "DAO의 67.7%가 덮고 있음",
+          "비율(기준 불명)"
+        ],
+        [
+          "/zones/8/botox_specific/safe_zone",
+          "이부 정중앙, 이근 body 내",
+          "위치"
+        ]
+      ]
+    },
+    "S10": {
+      "observations": [
+        [
+          "I",
+          [
+            "/zones/9/tissue_data/marginal_mandibular_depth",
+            "/zones/9/clinical_pearls/2"
+          ],
+          "tissue_data 는 '(20% 환자에서 하악연 하방 1cm까지)', pearls 는 '(20%는 1cm 하방)' 으로 같은 20% 를 다른 범위 표현으로 적었다.",
+          "ADZ-I04"
+        ],
+        [
+          "P",
+          [
+            "/zones/9/filler_specific/primary_risk"
+          ],
+          "'occlusion→necrosis' 는 공백 없이 붙은 화살표다. 형태소 분석에서 한 덩어리 또는 분리 처리될 수 있다.",
+          "ADZ-K"
+        ],
+        [
+          "P",
+          [
+            "/zones/9/vessels/0/danger"
+          ],
+          "조기 징후 네 개를 가운뎃점으로 나열(blanching·livedo reticularis·지연성 capillary refill·통증 증가). 한·영 혼합 나열이다.",
+          null
+        ],
+        [
+          "P",
+          [
+            "/zones/9/clinical_pearls/5"
+          ],
+          "'발생 4-6시간 내' 시간 창과 '고용량 반복' 이 같은 문장에 있다.",
+          null
+        ],
+        [
+          "F",
+          [
+            "/zones/9/clinical_pearls/1",
+            "/zones/9/nerves/0/type"
+          ],
+          "'모터 신경' 과 type 값 'motor' — 한글 음차와 영문 코드값.",
+          "ADZ-F13"
+        ]
+      ],
+      "expressions": [
+        [
+          "/zones/9/name_en",
+          "Jawline (Mandibular border)",
+          "영문 명칭,괄호 병기"
+        ],
+        [
+          "/zones/9/vessels/0/course",
+          "하악각 전방에서 하악연을 넘어 상방 주행",
+          "위치·방향"
+        ],
+        [
+          "/zones/9/vessels/0/course",
+          "하악 부위에서 가장 굵음(1.9mm)",
+          "최상급,수량"
+        ],
+        [
+          "/zones/9/vessels/0/danger",
+          "하악연 주변 깊은 주사 시 대량 출혈·혈종",
+          "조건(시),결과"
+        ],
+        [
+          "/zones/9/vessels/0/danger",
+          "동맥 내 주입 시 혈관 폐색 → 피부 괴사",
+          "조건(시),결과(→)"
+        ],
+        [
+          "/zones/9/vessels/0/danger",
+          "blanching·livedo reticularis·지연성 capillary refill·통증 증가가 조기 징후",
+          "징후 나열,시간(조기)"
+        ],
+        [
+          "/zones/9/vessels/1/course",
+          "안면동맥보다 외측, 하악연을 따라 주행",
+          "비교(보다),위치"
+        ],
+        [
+          "/zones/9/vessels/1/danger",
+          "정맥 천자 → 혈종, 드물게 정맥 혈전",
+          "결과(→),빈도(드물게)"
+        ],
+        [
+          "/zones/9/nerves/0/significance",
+          "하순하제근(DLI), 이근 운동 — 손상 시 비대칭 미소 (하순 하강 불가)",
+          "기능,조건(시),불가"
+        ],
+        [
+          "/zones/9/safe_injection_depth",
+          "골막상 또는 피하 (하악연 위/아래 구분)",
+          "층,대안(또는),기호(/)"
+        ],
+        [
+          "/zones/9/tissue_data/marginal_mandibular_depth",
+          "하악연에서 1-2cm 하방에서 표재성 주행",
+          "범위,위치"
+        ],
+        [
+          "/zones/9/tissue_data/marginal_mandibular_depth",
+          "20% 환자에서 하악연 하방 1cm까지",
+          "비율,범위(까지)"
+        ],
+        [
+          "/zones/9/tissue_data/facial_artery_crossing",
+          "안면동맥은 하악연의 교근 전연(anterior border of masseter)에서 교차",
+          "해부 관계,영문 병기"
+        ],
+        [
+          "/zones/9/tissue_data/notes",
+          "안면동맥: 하악각 부위에서 직경 1.9mm로 가장 굵음",
+          "수량,최상급"
+        ],
+        [
+          "/zones/9/tissue_data/notes",
+          "하악연 주사 최대 위험 혈관",
+          "최상급"
+        ],
+        [
+          "/zones/9/clinical_pearls/0",
+          "교근 전연에서 하악연 교차",
+          "해부 관계"
+        ],
+        [
+          "/zones/9/clinical_pearls/1",
+          "하악변연신경: 모터 신경 → 손상 시 비대칭 미소 (하순 하강 불가)",
+          "결과(→),조건(시),불가"
+        ],
+        [
+          "/zones/9/clinical_pearls/2",
+          "하악변연신경은 하악연 하방 1-2cm에서 표재성 주행 (20%는 1cm 하방)",
+          "범위,비율"
+        ],
+        [
+          "/zones/9/clinical_pearls/3",
+          "하악연 주사 전 안면동맥 촉진 필수",
+          "시간(전),필수"
+        ],
+        [
+          "/zones/9/clinical_pearls/4",
+          "턱선 필러는 하악연 위(상방)에서 골막상 주사가 가장 안전",
+          "위치,최상급"
+        ],
+        [
+          "/zones/9/clinical_pearls/5",
+          "혈관폐색 의심 시 즉시 시술 중단",
+          "조건(의심 시),시간(즉시)"
+        ],
+        [
+          "/zones/9/clinical_pearls/5",
+          "발생 4-6시간 내 고용량 반복 히알루로니다제 시행",
+          "시간 창(4-6시간 내),수식(고용량·반복)"
+        ],
+        [
+          "/zones/9/botox_specific/target_muscle",
+          "교근 (Masseter) — 사각턱, 광경근 (Platysma) — 턱선 리프트",
+          "근육명,적응"
+        ],
+        [
+          "/zones/9/botox_specific/risk",
+          "하악변연신경 마비 → 비대칭 미소, 교근 과위축",
+          "결과(→)"
+        ],
+        [
+          "/zones/9/botox_specific/safe_zone",
+          "교근 하방 1/3, 하악연 상방",
+          "분수(1/3),위치"
+        ],
+        [
+          "/zones/9/botox_specific/key_warning",
+          "교근 전연 상방 주사 → 하악변연신경/협근신경 마비 위험",
+          "결과(→),기호(/)"
+        ],
+        [
+          "/zones/9/botox_specific/dose_range",
+          "교근 25-50U/측",
+          "근육+범위,단위당"
+        ],
+        [
+          "/zones/9/botox_specific/dose_range",
+          "Nefertiti lift (광경근) 2-4U x 4-6포인트",
+          "시술명,범위,곱(x)"
+        ],
+        [
+          "/zones/9/filler_specific/primary_risk",
+          "안면동맥 내 주입에 의한 occlusion→necrosis",
+          "원인(에 의한),결과(→ 붙임)"
+        ],
+        [
+          "/zones/9/filler_specific/primary_risk",
+          "안면동맥 천자(1.9mm 굵은 동맥)",
+          "수량,수식"
+        ],
+        [
+          "/zones/9/filler_specific/safe_technique",
+          "하악연 상방 골막상 캐뉼러, 동맥 촉진 후 회피, 소량 연속",
+          "순서(후),기법"
+        ],
+        [
+          "/zones/9/filler_specific/preferred_product",
+          "고점도 HA 또는 CaHA (턱선 윤곽용)",
+          "대안(또는),용도"
+        ]
+      ]
+    },
+    "S11": {
+      "observations": [
+        [
+          "P",
+          [
+            "/zones/10/clinical_pearls/3",
+            "/zones/10/filler_specific"
+          ],
+          "pearls 는 '목 필러는 거의 사용하지 않음' 이라 하나 filler_specific 객체는 다른 zone 과 같은 구조로 채워져 있다(max_per_point_ml 0.1 등).",
+          "ADZ-P23"
+        ],
+        [
+          "P",
+          [
+            "/zones/10/vessels/0/diameter_mm",
+            "/zones/10/clinical_pearls/1"
+          ],
+          "diameter_mm 5.0 과 pearls '직경 5mm 이상' — 점값과 하한 표현.",
+          null
+        ],
+        [
+          "P",
+          [
+            "/zones/10/safe_injection_depth",
+            "/zones/10/botox_specific/safe_zone",
+            "/zones/10/filler_specific/safe_technique"
+          ],
+          "층 표현이 '광경근 내 또는 피내 (진피층)', '피하 표재성', '피내 주사 위주' 로 필드마다 다르다.",
+          null
+        ],
+        [
+          "P",
+          [
+            "/zones/10/tissue_data/platysma_coverage"
+          ],
+          "'쇄골~하악연까지' 의 '~' 는 공간 범위다.",
+          "ADZ-P11"
+        ],
+        [
+          "F",
+          [
+            "/zones/10/clinical_pearls/2",
+            "/zones/9/botox_specific/dose_range"
+          ],
+          "'Nefertiti lift' 가 neck pearls 와 jawline dose_range 양쪽에 나온다.",
+          "ADZ-F14"
+        ],
+        [
+          "P",
+          [
+            "/zones/10/filler_specific/preferred_product"
+          ],
+          "제품명 'Profhilo' 가 '등' 과 함께 예시로 나온다. 제품 체계와의 연결은 후속(다른 원장 범위).",
+          "ADZ-F14"
+        ]
+      ],
+      "expressions": [
+        [
+          "/zones/10/vessels/0/course",
+          "흉쇄유돌근(SCM) 표면을 사선으로 주행",
+          "위치·방향,약어"
+        ],
+        [
+          "/zones/10/vessels/0/danger",
+          "대형 정맥 — 천자 시 대량 출혈",
+          "조건(시),결과"
+        ],
+        [
+          "/zones/10/vessels/1/course",
+          "정중선 양측, 피하 주행",
+          "위치"
+        ],
+        [
+          "/zones/10/vessels/1/danger",
+          "정중선 목 주사 시 주의",
+          "조건(시),주의"
+        ],
+        [
+          "/zones/10/nerves/0/significance",
+          "이개, 이하부 감각 — SCM 중간부 표면에서 표재성",
+          "기능,위치"
+        ],
+        [
+          "/zones/10/nerves/1/name",
+          "부신경 (Spinal accessory nerve, CN XI)",
+          "신경명,영문 병기,코드(CN XI)"
+        ],
+        [
+          "/zones/10/nerves/1/significance",
+          "승모근, 흉쇄유돌근 운동 — 손상 시 어깨 처짐",
+          "기능,조건(시)"
+        ],
+        [
+          "/zones/10/safe_injection_depth",
+          "광경근(Platysma) 내 또는 피내 (진피층)",
+          "층,대안(또는)"
+        ],
+        [
+          "/zones/10/tissue_data/platysma_coverage",
+          "광경근은 쇄골~하악연까지",
+          "공간 범위(~·까지)"
+        ],
+        [
+          "/zones/10/tissue_data/platysma_coverage",
+          "정중선에서 결손 부위 있음",
+          "존재"
+        ],
+        [
+          "/zones/10/tissue_data/notes",
+          "광경근(Platysma) 하방에 외경정맥 등 주요 혈관 — 광경근 관통 주사 주의",
+          "위치,예시(등),주의"
+        ],
+        [
+          "/zones/10/clinical_pearls/0",
+          "광경근(Platysma) 하방에 주요 혈관/신경 → 피내 또는 광경근 내 주사",
+          "결과(→),대안(또는),기호(/)"
+        ],
+        [
+          "/zones/10/clinical_pearls/1",
+          "외경정맥은 직경 5mm 이상 — 촉진/가시적 확인 가능",
+          "하한(이상),가능,기호(/)"
+        ],
+        [
+          "/zones/10/clinical_pearls/2",
+          "목 보톡스(Nefertiti lift)는 광경근 band에 소량 다점 주사",
+          "시술명,기법"
+        ],
+        [
+          "/zones/10/clinical_pearls/3",
+          "목 필러는 거의 사용하지 않음",
+          "빈도(거의),부정(않음)"
+        ],
+        [
+          "/zones/10/clinical_pearls/3",
+          "스킨부스터/바이오스티뮬레이터 위주",
+          "기호(/),위주"
+        ],
+        [
+          "/zones/10/clinical_pearls/4",
+          "갑상선, 경동맥 등 심부 구조물에 대한 안전 거리 확보",
+          "예시(등),지시"
+        ],
+        [
+          "/zones/10/botox_specific/target_muscle",
+          "광경근 (Platysma) — platysmal bands, 목 주름",
+          "근육명,적응"
+        ],
+        [
+          "/zones/10/botox_specific/risk",
+          "연하곤란(dysphagia), 경부 약화, 호흡 불편",
+          "부작용 나열"
+        ],
+        [
+          "/zones/10/botox_specific/safe_zone",
+          "광경근 band 직상, 피하 표재성",
+          "위치,층"
+        ],
+        [
+          "/zones/10/botox_specific/key_warning",
+          "깊은 주사 → 인두근/후두근 마비 → 연하곤란/발성장애",
+          "연쇄(→),기호(/)"
+        ],
+        [
+          "/zones/10/botox_specific/dose_range",
+          "Platysmal band 2-4U x 4-6포인트/band",
+          "범위,곱(x),단위당(/band)"
+        ],
+        [
+          "/zones/10/botox_specific/dose_range",
+          "총 20-60U",
+          "총량,범위"
+        ],
+        [
+          "/zones/10/filler_specific/primary_risk",
+          "외경정맥 천자(혈종), 깊은 주사 시 기도/식도 위험",
+          "조건(시),기호(/)"
+        ],
+        [
+          "/zones/10/filler_specific/safe_technique",
+          "피내 주사 위주, 스킨부스터/바이오스티뮬레이터 사용",
+          "위주,기호(/)"
+        ],
+        [
+          "/zones/10/filler_specific/preferred_product",
+          "스킨부스터(Profhilo 등) 또는 희석 CaHA",
+          "제품명 예시,대안(또는),수식(희석)"
+        ]
+      ]
+    }
+  }
+}

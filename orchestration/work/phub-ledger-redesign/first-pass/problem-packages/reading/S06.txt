@@ -1,0 +1,71 @@
+/problems/5  problem_id='P6' problem='여드름' complaints[8]
+
+## c0 /problems/5/complaints/0  cc='압출' | cc_detail='면포 제거 + 진정' | cc_group='급성(활성) 여드름'
+  P0 name='니들RF' category='M11' role='피지선 파괴' products=['포텐자', '제니스']
+  P1 name='메디컬스킨케어' category='M15' role='각질 제거' products=[]
+  B0 name='니들RF + 필링' combo=['니들RF', '필링']
+     reason='피지선 파괴 + 각질 제거'
+     evidence='피지 줄이고 모공 열어줌'
+  A0 '약물치료 병행 추천'
+
+## c1 /problems/5/complaints/1  cc='PDT' | cc_detail='감광제+LED' | cc_group='급성(활성) 여드름'
+  P0 name='니들RF' category='M11' role='피지선 파괴' products=['포텐자', '제니스']
+  P1 name='메디컬스킨케어' category='M15' role='각질 제거' products=[]
+  B0 name='니들RF + 필링' combo=['니들RF', '필링']
+     reason='피지선 파괴 + 각질 제거'
+     evidence='피지 줄이고 모공 열어줌'
+  A0 '약물치료 병행 추천'
+
+## c2 /problems/5/complaints/2  cc='약물치료' | cc_detail='이소트레티노인 등' | cc_group='급성(활성) 여드름'
+  P0 name='니들RF' category='M11' role='피지선 파괴' products=['포텐자', '제니스']
+  P1 name='메디컬스킨케어' category='M15' role='각질 제거' products=[]
+  B0 name='니들RF + 필링' combo=['니들RF', '필링']
+     reason='피지선 파괴 + 각질 제거'
+     evidence='피지 줄이고 모공 열어줌'
+  A0 '약물치료 병행 추천'
+
+## c3 /problems/5/complaints/3  cc='아그네스' | cc_detail='피지선 파괴 · 니들RF' | cc_group='피지/모공'
+  P0 name='니들RF' category='M11' role='모공 수축' products=['포텐자', '시크릿', '제니스']
+  P1 name='스킨부스터' category='M4' role='콜라겐 재생' products=['쥬베룩']
+  B0 name='니들RF + 스킨부스터' combo=['니들RF', '스킨부스터']
+     reason='모공 수축 + 재생'
+     evidence='쥬베룩이 모공에 특화'
+  A0 '약물치료 병행 추천'
+
+## c4 /problems/5/complaints/4  cc='스킨보톡스' | cc_detail='피지↓ 모공↓' | cc_group='피지/모공'
+  P0 name='보톡스' category='M1' role='진피내 피지선·입모근의 콜린성 신호 차단' products=['보톡스', '나보타', '보툴렉스']
+  P1 name='스킨부스터' category='M4' role='피부 재생' products=['리쥬란 HB+', '쥬베룩']
+  P2 name='니들RF' category='M11' role='모공 수축' products=['포텐자', '시크릿', '제니스']
+  P3 name='스킨부스터' category='M4' role='콜라겐 재생' products=['쥬베룩']
+  B0 name='보톡스 + 스킨부스터' combo=['보톡스', '스킨부스터']
+     reason='마이크로보톡스로 피지·모공 감소 + 스킨부스터로 피부 재생 보조'
+     evidence='마이크로보톡스는 피지선의 콜린성 신호 차단으로 피지·모공을 감소시킴'
+  B1 name='니들RF + 스킨부스터' combo=['니들RF', '스킨부스터']
+     reason='모공 수축 + 재생'
+     evidence='쥬베룩이 모공에 특화'
+  A0 '효과 부족 시 리프팅기기 추가'
+  A1 '약물치료 병행 추천'
+
+## c5 /problems/5/complaints/5  cc='케미컬필링' | cc_detail='AHA/BHA' | cc_group='피지/모공'
+  P0 name='니들RF' category='M11' role='모공 수축' products=['포텐자', '시크릿', '제니스']
+  P1 name='스킨부스터' category='M4' role='콜라겐 재생' products=['쥬베룩']
+  B0 name='니들RF + 스킨부스터' combo=['니들RF', '스킨부스터']
+     reason='모공 수축 + 재생'
+     evidence='쥬베룩이 모공에 특화'
+  A0 '약물치료 병행 추천'
+
+## c6 /problems/5/complaints/6  cc='토닝' | cc_detail='색소자국 개선' | cc_group='여드름자국(PIH/PIE)'
+  P0 name='레이저' category='M8' role='색소 제거' products=['피코슈어', '엑셀V']
+  P1 name='스킨부스터' category='M4' role='재생' products=['리쥬란 힐러', '쥬베룩']
+  B0 name='레이저 + 스킨부스터' combo=['레이저', '스킨부스터']
+     reason='색소제거 + 재생'
+     evidence='자국 빠르게 개선'
+  A0 '약물치료 병행 추천'
+
+## c7 /problems/5/complaints/7  cc='재생치료' | cc_detail='리쥬란/엑소좀. 엑소좀은 국내 허가된 주사 의약품이 아닌 화장품 분류 제품으로 주사·MTS 채널 전달은 미허가·위법 소지와 감염·이물육아종 위험이 있으며 미용 효과의 임상 검증은 제한적' | cc_group='여드름자국(PIH/PIE)'
+  P0 name='레이저' category='M8' role='색소 제거' products=['피코슈어', '엑셀V']
+  P1 name='스킨부스터' category='M4' role='재생' products=['리쥬란 힐러', '쥬베룩']
+  B0 name='레이저 + 스킨부스터' combo=['레이저', '스킨부스터']
+     reason='색소제거 + 재생'
+     evidence='자국 빠르게 개선'
+  A0 '약물치료 병행 추천'

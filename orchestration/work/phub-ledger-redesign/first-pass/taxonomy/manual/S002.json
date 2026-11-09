@@ -1,0 +1,49 @@
+{"section":"S002","state":"read","last_pointer":"/modality/0/subcategories/2/items/6/extracted/aftercare/3",
+"observations":[
+ {"status":"P","pointers":["/modality/0/subcategories/2","/modality/0/subcategories/2/items/0/name","/modality/0/subcategories/2/items/3/name"],"note":"M1-3 '용도별' 하위분류의 items 는 제품이 아니라 부위·고민·용도 이름(주름, 사각턱, 승모근, 종아리, 스킨보톡스, 다한증, 입꼬리/잇몸미소/코끝)이다. 같은 깊이(items)의 M1-1·M1-2 는 제품 브랜드다. 같은 깊이를 같은 개체로 보지 않는다."},
+ {"status":"P","pointers":["/modality/0/subcategories/2/items/0/detail","/modality/0/subcategories/2/items/5/detail"],"note":"용도별 항목 detail 은 ' · ' 로 부위를 나열한다('이마 · 미간 · 눈가 · 자갈턱 · 콧등', '겨드랑이 · 손 · 발'). 제품 항목 detail 은 회사·국가다. 같은 키가 항목 종류에 따라 다른 정보를 담는다."},
+ {"status":"P","pointers":["/modality/0/subcategories/2/items/4/detail"],"note":"detail '모공↓ 피지↓ 탄력↑' — 화살표 기호로 방향(감소/증가)을 표기. 기호가 의미를 진다."},
+ {"status":"P","pointers":["/modality/0/subcategories/2/items/5/id","/modality/0/subcategories/2/items/4/id"],"note":"M1-3 id 가 M1-3-5 다음 M1-3-7 로 이어진다(M1-3-6 없음). 원문 그대로."},
+ {"status":"P","pointers":["/modality/0/subcategories/1/items/9/detail","/modality/0/subcategories/1/items/9/verification_needed","/modality/0/subcategories/1/items/9/extracted/overview"],"note":"톡스온은 detail·verification_needed·overview 모두 '자동 수집 데이터, 허가 미검증' 상태 메모다. 다른 항목의 detail(회사명)과 정보 종류가 다르다. 항목 자체의 실재·허가 상태가 원문에서 미확정."},
+ {"status":"I","pointers":["/modality/0/subcategories/2/items/5/extracted/safety/note","/modality/0/subcategories/2/items/5/detail"],"note":"다한증(겨드랑이·손·발) 항목 safety/note 가 '교근 섬유화 가능성' 을 적는다. 같은 문장이 M1 여러 항목(디스포트·제오민·주름·사각턱)에 반복된다. 부위와 맞는지 원문만으로 판단하지 않음 — 반복 상용구 여부는 후속."},
+ {"status":"I","pointers":["/modality/0/subcategories/2/items/4/extracted/onset_duration/duration","/modality/0/subcategories/2/items/4/extracted/onset_duration/maintenance"],"note":"스킨보톡스 duration 값이 '1개월 후 완전한 효과 발현'(정점 시점 내용), maintenance='반복 시술 권장'. 키 이름과 내용 종류가 어긋난다."},
+ {"status":"P","pointers":["/modality/0/subcategories/1/items/8/extracted/safety/common/0","/modality/0/subcategories/1/items/8/extracted/indications/primary/0"],"note":"배열 원소 하나에 여러 값을 쉼표로 넣은 경우가 있다('주사 부위 일시적 부종, 멍, 두통, 드물게 눈꺼풀 처짐'). 원소 단위 ≠ 부작용 단위."},
+ {"status":"P","pointers":["/modality/0/subcategories/2/items/6/name"],"note":"name '입꼬리/잇몸미소/코끝' — '/' 로 세 부위를 한 항목에 묶는다. README 의 '/'=대안 규칙과 '여러 부위 묶음' 중 어느 쪽인지 기호만으로 확정하지 않음(GLOBAL-F01)."}
+],
+"expressions":[
+ {"pointer":"/modality/0/subcategories/1/items/8/extracted/safety/common/0","text":"드물게 눈꺼풀 처짐","kinds":["가능성·빈도"],"note":"빈도 부사. 비율로 바꾸지 않음"},
+ {"pointer":"/modality/0/subcategories/1/items/8/extracted/indications/primary/1","text":"겨드랑이, 손바닥, 발바닥 다한증 치료","kinds":["부위"],"note":"부위 3개 + 적응증"},
+ {"pointer":"/modality/0/subcategories/1/items/9/verification_needed","text":"확인 전까지 '신규 허가' 표현 사용 금지","kinds":["조건","부정"],"note":"운영 지시"},
+ {"pointer":"/modality/0/subcategories/1/items/9/extracted/aftercare/1","text":"이상 반응(심한 두통, 호흡곤란, 연하곤란) 발생 시 즉시 내원","kinds":["조건","수식","수량·단위·시간"],"note":""},
+ {"pointer":"/modality/0/subcategories/1/items/11/extracted/aftercare/1","text":"당일 격렬한 운동 자제 권장 (다음날부터 가능)","kinds":["수량·단위·시간","부정","가능성·빈도"],"note":"금지 기간과 허용 시점"},
+ {"pointer":"/modality/0/subcategories/1/items/12/extracted/overview","text":"안전성과 효과가 검증된","kinds":["주장"],"note":"근거 미기재 주장"},
+ {"pointer":"/modality/0/subcategories/1/items/12/extracted/aftercare/0","text":"주사 직후 수시간은 화장 자제 권장","kinds":["수량·단위·시간","부정"],"note":""},
+ {"pointer":"/modality/0/subcategories/1/items/13/extracted/overview","text":"높은 순도와 안정성을 자랑하는","kinds":["주장","수식"],"note":""},
+ {"pointer":"/modality/0/subcategories/2/items/0/extracted/aftercare/1","text":"7-10일간 격렬한 운동 및 사우나 자제","kinds":["수량·단위·시간","범위","부정"],"note":""},
+ {"pointer":"/modality/0/subcategories/2/items/0/extracted/safety/long_term/0","text":"반복 시술 시 1.5% 교근 섬유화 위험","kinds":["조건","수량·단위·시간"],"note":"long_term 키(이 원장 유일)"},
+ {"pointer":"/modality/0/subcategories/2/items/1/extracted/safety/serious/0","text":"반복 시술 시 교근 섬유화(1.5%)","kinds":["조건","수량·단위·시간"],"note":""},
+ {"pointer":"/modality/0/subcategories/2/items/1/extracted/indications/primary/0","text":"사각턱 (발달된 교근)","kinds":["부위","수식"],"note":""},
+ {"pointer":"/modality/0/subcategories/2/items/2/extracted/safety/serious/0","text":"과다 주입 시 근력 약화","kinds":["조건"],"note":""},
+ {"pointer":"/modality/0/subcategories/2/items/2/extracted/safety/serious/1","text":"호흡곤란(극히 드문 경우)","kinds":["가능성·빈도"],"note":""},
+ {"pointer":"/modality/0/subcategories/2/items/2/extracted/indications/primary/0","text":"승모근 과도한 발달로 인한 어깨 답답함","kinds":["부위","수식"],"note":"원인-증상 구조"},
+ {"pointer":"/modality/0/subcategories/2/items/3/extracted/safety/serious/0","text":"과도한 확산에 따른 인접 근육 약화","kinds":["조건","수식"],"note":""},
+ {"pointer":"/modality/0/subcategories/2/items/3/extracted/aftercare/1","text":"장기 반복 시술 시 섬유화 위험 모니터링","kinds":["조건","수량·단위·시간"],"note":""},
+ {"pointer":"/modality/0/subcategories/2/items/4/extracted/aftercare/1","text":"시술 후 24-당일 동안 격한 운동 자제","kinds":["범위","수량·단위·시간","부정"],"note":"'24-당일' 범위 표기 깨짐 → S002-B01"},
+ {"pointer":"/modality/0/subcategories/2/items/5/extracted/safety/serious/1","text":"호흡 곤란(매우 드문)","kinds":["가능성·빈도"],"note":""},
+ {"pointer":"/modality/0/subcategories/2/items/5/extracted/safety/note","text":"반복 시술 시 1.5% 정도의 교근 섬유화 가능성","kinds":["조건","수량·단위·시간","가능성·빈도"],"note":""},
+ {"pointer":"/modality/0/subcategories/2/items/5/extracted/onset_duration/duration","text":"약 1개월 완전 발현, 3-6개월 유지","kinds":["수량·단위·시간","범위"],"note":"duration 칸에 정점+유지 두 시점"},
+ {"pointer":"/modality/0/subcategories/2/items/5/extracted/aftercare/2","text":"수평 자세 유지 (겨드랑이 시술 시 팔 올린 상태 유지)","kinds":["조건","부위"],"note":""},
+ {"pointer":"/modality/0/subcategories/2/items/5/extracted/aftercare/4","text":"항생제 연고 도포 (의사 지시 시)","kinds":["조건"],"note":""},
+ {"pointer":"/modality/0/subcategories/2/items/6/extracted/aftercare/2","text":"효과 안정화까지 재시술 자제 (최소 며칠)","kinds":["조건","범위","부정"],"note":"하한 '최소' + 비수치 '며칠'"}
+],
+"seg_errors":[
+ {"scope":"all","surface":"휴메딕스의","issue":"'휴메딕스의' 전체를 NNG 하나로(조사 '의' 미분리)","impact":"회사명 표면형에 조사 포함"},
+ {"scope":"all","surface":"비복근의","issue":"비/NNG 복/NNG 근/NNG 의/JKG — 근육명 '비복근' 분해(같은 원장 다른 곳은 비복근/NNG)","impact":"부위 용어 일관성 없음"},
+ {"scope":"all","surface":"사다리꼴근","issue":"사다리꼴/NNG 근/NNG","impact":"근육명 분해"},
+ {"scope":"all","surface":"저작근","issue":"저작/NNG 근/NNG","impact":"근육명 분해"}
+],
+"issues":[
+ {"id":"S002-B01","status":"B","pointers":["/modality/0/subcategories/2/items/4/extracted/aftercare/1"],"note":"'시술 후 24-당일 동안' — 범위의 한쪽이 숫자(24, 단위 없음), 다른 쪽이 '당일'. 원문만으로 의도(24시간~당일?) 확정 불가.","impact":"시간 범위 해석 제한"},
+ {"id":"S002-B02","status":"B","pointers":["/modality/0/subcategories/1/items/9"],"note":"톡스온은 원문 스스로 허가·임상 미검증이라고 적는다. 제품 실재·허가 상태 정보 부족.","impact":"제품 항목 채택 여부 판단 제한(후속)"},
+ {"id":"S002-I01","status":"I","pointers":["/modality/0/subcategories/2/items/4/extracted/onset_duration/duration"],"note":"duration 키에 정점 시점 문장.","impact":"키 기준 자동 분류 시 오분류"}
+]}

@@ -1,0 +1,370 @@
+{
+ "section": "S018",
+ "state": "read",
+ "last_pointer": "/modality/6/products/2/extracted/aftercare/4",
+ "observations": [
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/6/subcategories/2/items/17/detail",
+    "/modality/6/subcategories/2/items/17/extracted/overview"
+   ],
+   "note": "프린스리프트 detail '코안면전문', overview '코안면 전문의가 개발한' — detail 이 재질·형태가 아니라 개발자 배경."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/6/subcategories/2/items/21/detail",
+    "/modality/6/subcategories/2/items/21/extracted/onset_duration/duration",
+    "/modality/6/subcategories/2/items/21/extracted/aftercare/1"
+   ],
+   "note": "면사리프트 '면봉합사응용' — 흡수성 실 계열과 다르고 duration '2-3년', aftercare '실밥 제거 전까지 세안 주의'. 그런데도 '실 흡수 후 재시술' 상용구가 붙어 있다(GLOBAL-I01)."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/6/subcategories/2/items/19/detail",
+    "/modality/6/subcategories/2/items/19/extracted/mechanism"
+   ],
+   "note": "엘리실 detail '엘라스틴유도', mechanism '특수 설계된 실' — 재질 미기재(B)."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/6/subcategories/2/items/22/name",
+    "/modality/6/subcategories/2/items/22/detail"
+   ],
+   "note": "'텐선실' name, detail 'PDO 텐션형 코그' — name 표기('텐선')와 detail('텐션') 차이."
+  },
+  {
+   "status": "I",
+   "pointers": [
+    "/modality/6/products/1/material",
+    "/modality/6/products/1/extracted/overview",
+    "/modality/6/products/1/extracted/mechanism"
+   ],
+   "note": "에버라인 material 'PDO' 인데 overview 'PDO, PLLA, PCL 3가지 재질의 복합 스레드'."
+  },
+  {
+   "status": "I",
+   "pointers": [
+    "/modality/6/products/1/extracted/safety"
+   ],
+   "note": "에버라인 safety 에 common_side_effects 와 common 이 공존(코어톡스 S001-I01 과 같은 키 변형)."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/6/products/0/material",
+    "/modality/6/products/0/name",
+    "/modality/6/subcategories/2/items/0/name"
+   ],
+   "note": "M7 products 에 material 필드(M3 는 ingredient). 제품 민트리프트와 브랜드 항목 민트리프트가 따로 있다(연결 키 없음)."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/6/extracted/mechanism"
+   ],
+   "note": "M7 모달리티 mechanism 이 '네 가지 기전'(보강·스캐폴드·리프팅·조직학적)을 첫째~넷째로 열거 — 서수 구조가 있는 서술."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/6/extracted/safety/uncommon/4",
+    "/modality/6/extracted/contraindications/relative/4"
+   ],
+   "note": "safety/uncommon 에 '불만족스러운 결과', 상대금기에 '이전 리프팅 시술 이력' — 임상 부작용 외 항목 포함."
+  }
+ ],
+ "expressions": [
+  {
+   "pointer": "/modality/6/subcategories/2/items/16/extracted/onset_duration/onset",
+   "text": "즉시 (최대 효과 3-4주)",
+   "kinds": [
+    "수량·단위·시간",
+    "범위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/6/subcategories/2/items/16/extracted/aftercare/2",
+   "text": "항염 연고 적용",
+   "kinds": [],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/6/subcategories/2/items/18/extracted/safety/common/1",
+   "text": "실 돌출감",
+   "kinds": [],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/6/subcategories/2/items/20/extracted/mechanism",
+   "text": "360도 방향으로 균등한 리프팅 효과",
+   "kinds": [
+    "수량·단위·시간",
+    "수식"
+   ],
+   "note": "각도"
+  },
+  {
+   "pointer": "/modality/6/subcategories/2/items/21/extracted/mechanism",
+   "text": "이물질 반응을 최소화하면서도 강력한 리프팅 효과를 장기간 유지할 수 있습니다",
+   "kinds": [
+    "수식",
+    "가능성·빈도",
+    "주장"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/6/subcategories/2/items/21/extracted/aftercare/1",
+   "text": "실밥 제거 전까지 세안 주의",
+   "kinds": [
+    "조건",
+    "수량·단위·시간"
+   ],
+   "note": "사건 기준 기간"
+  },
+  {
+   "pointer": "/modality/6/subcategories/2/items/22/extracted/mechanism",
+   "text": "처짐 방향과 반대로 지속적인 텐션을 가해",
+   "kinds": [
+    "수식"
+   ],
+   "note": "방향"
+  },
+  {
+   "pointer": "/modality/6/subcategories/2/items/22/extracted/safety/common/2",
+   "text": "비대칭 위험",
+   "kinds": [
+    "가능성·빈도"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/6/extracted/overview",
+   "text": "필러나 보톡스만으로는 한계가 있는 얼굴 하부(볼, 턱선, 팔자주름) 처짐 교정",
+   "kinds": [
+    "비교",
+    "부위",
+    "참조"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/6/extracted/indications/extended/4",
+   "text": "이마/미간 주름 개선 (모노실)",
+   "kinds": [
+    "부위",
+    "조건"
+   ],
+   "note": "형태 조건"
+  },
+  {
+   "pointer": "/modality/6/extracted/contraindications/relative/2",
+   "text": "이전 골 수술이나 안면 수술 이력이 있는 경우 의사와 상의",
+   "kinds": [
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/6/extracted/safety/serious/0",
+   "text": "안면신경 일시적 마비 (드물게 발생, 대부분 회복됨)",
+   "kinds": [
+    "가능성·빈도",
+    "수량·단위·시간"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/6/extracted/safety/serious/1",
+   "text": "안면신경 영구 손상 (극히 드묾)",
+   "kinds": [
+    "가능성·빈도",
+    "수량·단위·시간"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/6/extracted/safety/serious/4",
+   "text": "침샘 관통 (이하선 손상)",
+   "kinds": [
+    "부위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/6/extracted/onset_duration/duration",
+   "text": "코그실 6~18개월, 모노실 6~12개월 (실 소재와 종류에 따라 다름)",
+   "kinds": [
+    "수량·단위·시간",
+    "범위",
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/6/extracted/aftercare/0",
+   "text": "시술 후 2~4주간 입을 크게 벌리거나 과도한 표정 짓기 피하기",
+   "kinds": [
+    "수량·단위·시간",
+    "범위",
+    "부정"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/6/extracted/related_techniques/2",
+   "text": "고주파(RF)/HIFU -- 피부 타이트닝과 시너지",
+   "kinds": [
+    "참조",
+    "기호"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/6/products/0/extracted/onset_duration/onset",
+   "text": "즉시 효과 (시술 직후 30-50% 리프팅), 최대 효과 8-12주",
+   "kinds": [
+    "수량·단위·시간",
+    "범위"
+   ],
+   "note": "백분율 기준 미기재"
+  },
+  {
+   "pointer": "/modality/6/products/0/extracted/onset_duration/duration",
+   "text": "6-12개월 (PDO 흡수 시간)",
+   "kinds": [
+    "수량·단위·시간"
+   ],
+   "note": "지속=흡수 시간으로 표기"
+  },
+  {
+   "pointer": "/modality/6/products/0/extracted/safety/common/2",
+   "text": "입과 입술 움직임 제한 (수일)",
+   "kinds": [
+    "수량·단위·시간",
+    "부위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/6/products/0/extracted/aftercare/3",
+   "text": "항생제 복용 지시",
+   "kinds": [],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/6/products/1/extracted/onset_duration/duration",
+   "text": "6-36개월 (사용 스레드 구성에 따라 다단계 지속)",
+   "kinds": [
+    "수량·단위·시간",
+    "범위",
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/6/products/1/extracted/aftercare/5",
+   "text": "비가교HA 제품과 72시간 이내 중복 시술 금지",
+   "kinds": [
+    "범위",
+    "부정",
+    "수량·단위·시간"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/6/products/2/extracted/safety/common/3",
+   "text": "드물게 감염 위험",
+   "kinds": [
+    "가능성·빈도"
+   ],
+   "note": "common 안의 '드물게'"
+  },
+  {
+   "pointer": "/modality/6/products/2/extracted/safety/contraindications/0",
+   "text": "PDO+비가교HA 병합 금기(24-72시간 내 시술 금지)",
+   "kinds": [
+    "부정",
+    "기호",
+    "수량·단위·시간"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/6/products/2/extracted/aftercare/4",
+   "text": "PDO+비가교HA 병합 금지(72시간 이상 간격 필수)",
+   "kinds": [
+    "부정",
+    "범위",
+    "수량·단위·시간"
+   ],
+   "note": "같은 제품 안에서 24-72시간 vs 72시간 이상"
+  },
+  {
+   "pointer": "/modality/6/products/2/extracted/onset_duration/duration",
+   "text": "6개월 지속(분해 후 콜라겐 재생 효과는 추가 유지)",
+   "kinds": [
+    "수량·단위·시간",
+    "조건"
+   ],
+   "note": ""
+  }
+ ],
+ "seg_errors": [
+  {
+   "scope": "all",
+   "surface": "대이개신경",
+   "issue": "대/XPN 이/NR 개/NNB 신경/NNG — 신경명(great auricular nerve)을 접두사+수사 '이(2)'+단위 '개'로 분석",
+   "impact": "수량 오탐(2개) — 수치 추출 시 거짓 양"
+  },
+  {
+   "scope": "all",
+   "surface": "면봉합사",
+   "issue": "면/NNG 봉합/NNG 사/NNG",
+   "impact": "재질어 분해"
+  },
+  {
+   "scope": "all",
+   "surface": "텐선실",
+   "issue": "텐/NNG 선/NNG 실/NNG",
+   "impact": "제품명 분해"
+  }
+ ],
+ "issues": [
+  {
+   "id": "S018-I01",
+   "status": "I",
+   "pointers": [
+    "/modality/6/products/1/material",
+    "/modality/6/products/1/extracted/overview"
+   ],
+   "note": "에버라인 material PDO vs 3재질 복합 서술.",
+   "impact": "재질 축 채택 시 확인"
+  },
+  {
+   "id": "S018-I02",
+   "status": "I",
+   "pointers": [
+    "/modality/6/products/2/extracted/safety/contraindications/0",
+    "/modality/6/products/2/extracted/aftercare/4"
+   ],
+   "note": "미라클 비가교HA 간격이 '24-72시간 내 금지' 와 '72시간 이상 간격' 으로 표현 차이.",
+   "impact": "간격 기준 후속"
+  },
+  {
+   "id": "S018-B01",
+   "status": "B",
+   "pointers": [
+    "/modality/6/subcategories/2/items/19/extracted/mechanism",
+    "/modality/6/subcategories/2/items/20/detail"
+   ],
+   "note": "엘리실·로즈실 재질 미기재.",
+   "impact": "재질 축 분류 불가"
+  }
+ ]
+}

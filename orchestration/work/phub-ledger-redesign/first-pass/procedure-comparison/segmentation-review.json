@@ -1,0 +1,1533 @@
+{
+ "note": "직접 원문 대조(tokens-readable.txt 전체 열람)로 확인한 오분절·오태깅 서명. make-segmentation-review.py 가 모든 값에서 같은 토큰열 출현을 전부 찾아 segmentation-review.json(출현 단위)로 펼친다. 교정하지 않는다.",
+ "occurrences": [
+  {
+   "signature": "S01",
+   "pointer": "/comparisons/0/evidence_notes/3",
+   "phrase": "RCT는",
+   "phrase_span": [
+    101,
+    105
+   ],
+   "tokens": [
+    [
+     "RCT",
+     "SL",
+     [
+      101,
+      104
+     ]
+    ],
+    [
+     "늘",
+     "VV",
+     [
+      104,
+      105
+     ]
+    ],
+    [
+     "ᆫ",
+     "ETM",
+     [
+      104,
+      105
+     ]
+    ]
+   ],
+   "kind": "mis_segmentation_meaning_risk",
+   "issue": "주제 보조사 '는'을 동사 '늘다'+관형형 어미로 분석",
+   "impact": "원문에 없는 '늘다(증가)' 용언이 생기고 주제 표지가 사라진다. 'RCT는 부족'의 부족 대상 연결이 토큰만으로는 끊긴다"
+  },
+  {
+   "signature": "S02",
+   "pointer": "/comparisons/0/procedures/2/mechanism_simple",
+   "phrase": "실로",
+   "phrase_span": [
+    0,
+    2
+   ],
+   "tokens": [
+    [
+     "실로",
+     "MAG",
+     [
+      0,
+      2
+     ]
+    ]
+   ],
+   "kind": "mis_segmentation_meaning_risk",
+   "issue": "'실(명사)+로(도구 조사)'를 부사 '실로(참으로)'로 분석",
+   "impact": "도구·재료 '실'이 명사 목록에서 빠지고, 수식어 후보(modifier_phrase)가 오탐으로 생긴다"
+  },
+  {
+   "signature": "S03",
+   "pointer": "/comparisons/1/procedures/1/name",
+   "phrase": "필러",
+   "phrase_span": [
+    6,
+    8
+   ],
+   "tokens": [
+    [
+     "필",
+     "NNG",
+     [
+      6,
+      7
+     ]
+    ],
+    [
+     "러",
+     "EC",
+     [
+      7,
+      8
+     ]
+    ]
+   ],
+   "kind": "mis_segmentation_meaning_risk",
+   "issue": "'필러'를 '필'+연결어미 '러'로 분절",
+   "impact": "제품·시술 계열 명칭 '필러'가 토큰에서 사라진다(같은 문자열의 다른 출현은 NNP 로 정상 분절 — 출현마다 다름)"
+  },
+  {
+   "signature": "S03",
+   "pointer": "/comparisons/2/procedures/0/name",
+   "phrase": "필러",
+   "phrase_span": [
+    6,
+    8
+   ],
+   "tokens": [
+    [
+     "필",
+     "NNG",
+     [
+      6,
+      7
+     ]
+    ],
+    [
+     "러",
+     "EC",
+     [
+      7,
+      8
+     ]
+    ]
+   ],
+   "kind": "mis_segmentation_meaning_risk",
+   "issue": "'필러'를 '필'+연결어미 '러'로 분절",
+   "impact": "제품·시술 계열 명칭 '필러'가 토큰에서 사라진다(같은 문자열의 다른 출현은 NNP 로 정상 분절 — 출현마다 다름)"
+  },
+  {
+   "signature": "S04",
+   "pointer": "/comparisons/2/procedures/0/limitations",
+   "phrase": "필러",
+   "phrase_span": [
+    10,
+    12
+   ],
+   "tokens": [
+    [
+     "피",
+     "XPN",
+     [
+      10,
+      11
+     ]
+    ],
+    [
+     "ᆯ러",
+     "EC",
+     [
+      10,
+      12
+     ]
+    ]
+   ],
+   "kind": "mis_segmentation_meaning_risk",
+   "issue": "'필러'를 접두사 '피'+어미 'ᆯ러'로 분절",
+   "impact": "'필러 이동'의 이동 주체가 토큰에서 사라진다"
+  },
+  {
+   "signature": "S05",
+   "pointer": "/comparisons/1/procedures/3/downtime",
+   "phrase": "잔뾰루지",
+   "phrase_span": [
+    5,
+    9
+   ],
+   "tokens": [
+    [
+     "자",
+     "NNG",
+     [
+      5,
+      6
+     ]
+    ],
+    [
+     "ᆫ",
+     "ETM",
+     [
+      5,
+      6
+     ]
+    ],
+    [
+     "뾰루지",
+     "NNG",
+     [
+      6,
+      9
+     ]
+    ]
+   ],
+   "kind": "mis_segmentation_meaning_risk",
+   "issue": "'잔(작은)'을 '자'+관형형 어미로 분절",
+   "impact": "크기 수식 '잔'이 형태로 남지 않고 '자다/자' 계열 가짜 형태가 생긴다"
+  },
+  {
+   "signature": "S05",
+   "pointer": "/comparisons/8/procedures/0/downtime",
+   "phrase": "잔뾰루지",
+   "phrase_span": [
+    5,
+    9
+   ],
+   "tokens": [
+    [
+     "자",
+     "NNG",
+     [
+      5,
+      6
+     ]
+    ],
+    [
+     "ᆫ",
+     "ETM",
+     [
+      5,
+      6
+     ]
+    ],
+    [
+     "뾰루지",
+     "NNG",
+     [
+      6,
+      9
+     ]
+    ]
+   ],
+   "kind": "mis_segmentation_meaning_risk",
+   "issue": "'잔(작은)'을 '자'+관형형 어미로 분절",
+   "impact": "크기 수식 '잔'이 형태로 남지 않고 '자다/자' 계열 가짜 형태가 생긴다"
+  },
+  {
+   "signature": "S05",
+   "pointer": "/comparisons/8/procedures/3/downtime",
+   "phrase": "잔뾰루지",
+   "phrase_span": [
+    5,
+    9
+   ],
+   "tokens": [
+    [
+     "자",
+     "NNG",
+     [
+      5,
+      6
+     ]
+    ],
+    [
+     "ᆫ",
+     "ETM",
+     [
+      5,
+      6
+     ]
+    ],
+    [
+     "뾰루지",
+     "NNG",
+     [
+      6,
+      9
+     ]
+    ]
+   ],
+   "kind": "mis_segmentation_meaning_risk",
+   "issue": "'잔(작은)'을 '자'+관형형 어미로 분절",
+   "impact": "크기 수식 '잔'이 형태로 남지 않고 '자다/자' 계열 가짜 형태가 생긴다"
+  },
+  {
+   "signature": "S06",
+   "pointer": "/comparisons/2/procedures/0/mechanism_simple",
+   "phrase": "즉각",
+   "phrase_span": [
+    6,
+    8
+   ],
+   "tokens": [
+    [
+     "즉",
+     "MAJ",
+     [
+      6,
+      7
+     ]
+    ],
+    [
+     "각",
+     "MM",
+     [
+      7,
+      8
+     ]
+    ]
+   ],
+   "kind": "mis_segmentation_meaning_risk",
+   "issue": "'즉각'을 접속부사 '즉'+관형사 '각'으로 분절",
+   "impact": "시점 표현 '즉각(효과 발현 시점)'이 사라지고 '각(各)' 범위 수식이 오탐으로 생긴다"
+  },
+  {
+   "signature": "S07",
+   "pointer": "/comparisons/2/procedures/2/onset",
+   "phrase": "즉시",
+   "phrase_span": [
+    0,
+    2
+   ],
+   "tokens": [
+    [
+     "즉",
+     "MAG",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "시",
+     "NNG",
+     [
+      1,
+      2
+     ]
+    ]
+   ],
+   "kind": "mis_segmentation_meaning_risk",
+   "issue": "'즉시'를 '즉'+'시'로 분절",
+   "impact": "시점 '즉시'가 사라지고 '시'가 조건 표지(…시)와 같은 형태로 남아 조건 오탐 위험"
+  },
+  {
+   "signature": "S08",
+   "pointer": "/comparisons/2/procedures/1/onset",
+   "phrase": "점진",
+   "phrase_span": [
+    6,
+    8
+   ],
+   "tokens": [
+    [
+     "점",
+     "NNG",
+     [
+      6,
+      7
+     ]
+    ],
+    [
+     "진",
+     "NNG",
+     [
+      7,
+      8
+     ]
+    ]
+   ],
+   "kind": "term_split",
+   "issue": "'점진'을 '점'+'진'으로 분절",
+   "impact": "변화 속도 표현 '점진'이 토큰에서 사라진다"
+  },
+  {
+   "signature": "S08",
+   "pointer": "/comparisons/8/procedures/4/onset",
+   "phrase": "점진",
+   "phrase_span": [
+    6,
+    8
+   ],
+   "tokens": [
+    [
+     "점",
+     "NNG",
+     [
+      6,
+      7
+     ]
+    ],
+    [
+     "진",
+     "NNG",
+     [
+      7,
+      8
+     ]
+    ]
+   ],
+   "kind": "term_split",
+   "issue": "'점진'을 '점'+'진'으로 분절",
+   "impact": "변화 속도 표현 '점진'이 토큰에서 사라진다"
+  },
+  {
+   "signature": "S09",
+   "pointer": "/comparisons/2/procedures/2/mechanism_simple",
+   "phrase": "겔",
+   "phrase_span": [
+    18,
+    19
+   ],
+   "tokens": [
+    [
+     "것",
+     "NNB",
+     [
+      18,
+      19
+     ]
+    ],
+    [
+     "이",
+     "VCP",
+     [
+      18,
+      19
+     ]
+    ],
+    [
+     "ᆯ",
+     "ETM",
+     [
+      18,
+      19
+     ]
+    ]
+   ],
+   "kind": "mis_segmentation_meaning_risk",
+   "issue": "'겔'을 '것+이+ᆯ'(-ㄹ 것)로 복원",
+   "impact": "제형 '겔'이 사라지고 원문에 없는 의존명사·서술격 조사가 생긴다"
+  },
+  {
+   "signature": "S10",
+   "pointer": "/comparisons/2/procedures/0/mechanism_simple",
+   "phrase": "겔로",
+   "phrase_span": [
+    3,
+    5
+   ],
+   "tokens": [
+    [
+     "겔로",
+     "NNG",
+     [
+      3,
+      5
+     ]
+    ]
+   ],
+   "kind": "mis_tag_minor",
+   "issue": "'겔'+도구 조사 '로'를 한 명사로 묶음",
+   "impact": "제형 '겔'과 도구 관계 조사가 분리되지 않는다"
+  },
+  {
+   "signature": "S11",
+   "pointer": "/comparisons/2/evidence_notes/2",
+   "phrase": "생착",
+   "phrase_span": [
+    6,
+    8
+   ],
+   "tokens": [
+    [
+     "생",
+     "XPN",
+     [
+      6,
+      7
+     ]
+    ],
+    [
+     "착",
+     "NNG",
+     [
+      7,
+      8
+     ]
+    ]
+   ],
+   "kind": "term_split",
+   "issue": "'생착'을 접두사 '생'+'착'으로 분절",
+   "impact": "기준 시점 '생착 후'의 '생착'이 토큰에서 사라진다"
+  },
+  {
+   "signature": "S11",
+   "pointer": "/comparisons/2/procedures/3/onset",
+   "phrase": "생착",
+   "phrase_span": [
+    7,
+    9
+   ],
+   "tokens": [
+    [
+     "생",
+     "XPN",
+     [
+      7,
+      8
+     ]
+    ],
+    [
+     "착",
+     "NNG",
+     [
+      8,
+      9
+     ]
+    ]
+   ],
+   "kind": "term_split",
+   "issue": "'생착'을 접두사 '생'+'착'으로 분절",
+   "impact": "기준 시점 '생착 후'의 '생착'이 토큰에서 사라진다"
+  },
+  {
+   "signature": "S12",
+   "pointer": "/comparisons/2/procedures/3/duration",
+   "phrase": "반영구",
+   "phrase_span": [
+    0,
+    3
+   ],
+   "tokens": [
+    [
+     "반영",
+     "NNG",
+     [
+      0,
+      2
+     ]
+    ],
+    [
+     "구",
+     "NNG",
+     [
+      2,
+      3
+     ]
+    ]
+   ],
+   "kind": "mis_segmentation_meaning_risk",
+   "issue": "'반(半)+영구'를 '반영(反映)'+'구'로 분절",
+   "impact": "지속 특성 '반영구'가 사라지고 무관한 '반영'이 생긴다(같은 문자열의 다른 출현은 반/XPN+영구 로 정상)"
+  },
+  {
+   "signature": "S13",
+   "pointer": "/comparisons/2/procedures/3/limitations",
+   "phrase": "채취부",
+   "phrase_span": [
+    17,
+    20
+   ],
+   "tokens": [
+    [
+     "채취",
+     "NNG",
+     [
+      17,
+      19
+     ]
+    ],
+    [
+     "부",
+     "XPN",
+     [
+      19,
+      20
+     ]
+    ]
+   ],
+   "kind": "mis_tag_minor",
+   "issue": "'채취부(채취 부위)'의 '부'를 접두사로 태깅",
+   "impact": "통증 발생 위치(채취 부위) 표지가 접두사로 남는다"
+  },
+  {
+   "signature": "S14",
+   "pointer": "/comparisons/3/evidence_notes/1",
+   "phrase": "CO2",
+   "phrase_span": [
+    0,
+    3
+   ],
+   "tokens": [
+    [
+     "CO",
+     "SL",
+     [
+      0,
+      2
+     ]
+    ],
+    [
+     "2",
+     "SN",
+     [
+      2,
+      3
+     ]
+    ]
+   ],
+   "kind": "term_split",
+   "issue": "'CO2'를 'CO'+'2'로 분절",
+   "impact": "장비·레이저 명칭이 쪼개지고 숫자 '2'가 수량처럼 남는다"
+  },
+  {
+   "signature": "S14",
+   "pointer": "/comparisons/3/evidence_notes/3",
+   "phrase": "CO2",
+   "phrase_span": [
+    46,
+    49
+   ],
+   "tokens": [
+    [
+     "CO",
+     "SL",
+     [
+      46,
+      48
+     ]
+    ],
+    [
+     "2",
+     "SN",
+     [
+      48,
+      49
+     ]
+    ]
+   ],
+   "kind": "term_split",
+   "issue": "'CO2'를 'CO'+'2'로 분절",
+   "impact": "장비·레이저 명칭이 쪼개지고 숫자 '2'가 수량처럼 남는다"
+  },
+  {
+   "signature": "S14",
+   "pointer": "/comparisons/3/procedures/1/name",
+   "phrase": "CO2",
+   "phrase_span": [
+    0,
+    3
+   ],
+   "tokens": [
+    [
+     "CO",
+     "SL",
+     [
+      0,
+      2
+     ]
+    ],
+    [
+     "2",
+     "SN",
+     [
+      2,
+      3
+     ]
+    ]
+   ],
+   "kind": "term_split",
+   "issue": "'CO2'를 'CO'+'2'로 분절",
+   "impact": "장비·레이저 명칭이 쪼개지고 숫자 '2'가 수량처럼 남는다"
+  },
+  {
+   "signature": "S14",
+   "pointer": "/comparisons/3/procedures/1/mechanism_simple",
+   "phrase": "CO2",
+   "phrase_span": [
+    0,
+    3
+   ],
+   "tokens": [
+    [
+     "CO",
+     "SL",
+     [
+      0,
+      2
+     ]
+    ],
+    [
+     "2",
+     "SN",
+     [
+      2,
+      3
+     ]
+    ]
+   ],
+   "kind": "term_split",
+   "issue": "'CO2'를 'CO'+'2'로 분절",
+   "impact": "장비·레이저 명칭이 쪼개지고 숫자 '2'가 수량처럼 남는다"
+  },
+  {
+   "signature": "S15",
+   "pointer": "/comparisons/3/evidence_notes/1",
+   "phrase": "효과지만",
+   "phrase_span": [
+    31,
+    35
+   ],
+   "tokens": [
+    [
+     "이",
+     "VCP",
+     [
+      33,
+      33
+     ]
+    ]
+   ],
+   "kind": "zero_length_token",
+   "issue": "서술격 조사 '이'를 길이 0 구간 [33,33]으로 복원",
+   "impact": "surface 가 빈 문자열인 토큰이다. 원문 구간 재현 검사는 빈 구간을 허용해야 한다. 같은 원장의 다른 길이 0 토큰('과다' 안 이/VCP)은 S23 에 포함"
+  },
+  {
+   "signature": "S16",
+   "pointer": "/comparisons/3/evidence_notes/3",
+   "phrase": ">",
+   "phrase_span": [
+    34,
+    35
+   ],
+   "tokens": [
+    [
+     ">",
+     "SSC",
+     [
+      34,
+      35
+     ]
+    ]
+   ],
+   "kind": "mis_segmentation_meaning_risk",
+   "issue": "비교·순서 기호 '>'를 닫는 괄호(SSC)로 태깅",
+   "impact": "'니들RF > 피코 프랙셔널 > CO2 프랙셔널 순 안전'의 순서 관계가 괄호 닫힘으로 보인다"
+  },
+  {
+   "signature": "S16",
+   "pointer": "/comparisons/3/evidence_notes/3",
+   "phrase": ">",
+   "phrase_span": [
+    44,
+    45
+   ],
+   "tokens": [
+    [
+     ">",
+     "SSC",
+     [
+      44,
+      45
+     ]
+    ]
+   ],
+   "kind": "mis_segmentation_meaning_risk",
+   "issue": "비교·순서 기호 '>'를 닫는 괄호(SSC)로 태깅",
+   "impact": "'니들RF > 피코 프랙셔널 > CO2 프랙셔널 순 안전'의 순서 관계가 괄호 닫힘으로 보인다"
+  },
+  {
+   "signature": "S17",
+   "pointer": "/comparisons/3/evidence_notes/3",
+   "phrase": "피코",
+   "phrase_span": [
+    36,
+    38
+   ],
+   "tokens": [
+    [
+     "피",
+     "NNG",
+     [
+      36,
+      37
+     ]
+    ],
+    [
+     "코",
+     "NNG",
+     [
+      37,
+      38
+     ]
+    ]
+   ],
+   "kind": "mis_segmentation_meaning_risk",
+   "issue": "'피코'를 '피'+'코'로 분절",
+   "impact": "장비 명칭이 사라지고 신체 부위 단어와 같은 형태 '코'가 생겨 부위 오탐 위험"
+  },
+  {
+   "signature": "S18",
+   "pointer": "/comparisons/3/procedures/0/name",
+   "phrase": "마이크로니들RF",
+   "phrase_span": [
+    0,
+    8
+   ],
+   "tokens": [
+    [
+     "마이크로니",
+     "NNG",
+     [
+      0,
+      5
+     ]
+    ],
+    [
+     "들",
+     "XSN",
+     [
+      5,
+      6
+     ]
+    ]
+   ],
+   "kind": "mis_segmentation_meaning_risk",
+   "issue": "'마이크로니들'을 '마이크로니'+복수 접미사 '들'로 분절",
+   "impact": "명칭이 깨지고 원문에 없는 복수 표지가 생긴다"
+  },
+  {
+   "signature": "S19",
+   "pointer": "/comparisons/4/procedures/0/limitations",
+   "phrase": "다회",
+   "phrase_span": [
+    0,
+    2
+   ],
+   "tokens": [
+    [
+     "다",
+     "MAG",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "회",
+     "NNG",
+     [
+      1,
+      2
+     ]
+    ]
+   ],
+   "kind": "mis_segmentation_meaning_risk",
+   "issue": "'다회(여러 회)'를 부사 '다'+'회'로 분절",
+   "impact": "회차 수식 '다회'가 '다(모두)' 부사로 바뀌어 범위 오탐 위험"
+  },
+  {
+   "signature": "S20",
+   "pointer": "/comparisons/4/procedures/2/mechanism_simple",
+   "phrase": "타겟",
+   "phrase_span": [
+    17,
+    19
+   ],
+   "tokens": [
+    [
+     "타",
+     "VV",
+     [
+      17,
+      18
+     ]
+    ],
+    [
+     "게",
+     "EC",
+     [
+      18,
+      19
+     ]
+    ],
+    [
+     "ᆺ",
+     "Z_CODA",
+     [
+      18,
+      19
+     ]
+    ]
+   ],
+   "kind": "mis_segmentation_meaning_risk",
+   "issue": "'타겟'을 동사 '타다'+어미로 분절",
+   "impact": "작용 대상 관계어 '타겟'이 사라지고 원문에 없는 용언이 생긴다(같은 문자열 다른 출현은 NNG 로 정상)"
+  },
+  {
+   "signature": "S21",
+   "pointer": "/comparisons/5/procedures/0/duration",
+   "phrase": "감모",
+   "phrase_span": [
+    3,
+    5
+   ],
+   "tokens": [
+    [
+     "감",
+     "NNG",
+     [
+      3,
+      4
+     ]
+    ],
+    [
+     "모",
+     "NNG",
+     [
+      4,
+      5
+     ]
+    ]
+   ],
+   "kind": "term_split",
+   "issue": "'감모(모발 감소)'를 '감'+'모'로 분절",
+   "impact": "'영구 감모'가 '영구'만 남아 영구 제거로 오독될 위험"
+  },
+  {
+   "signature": "S21",
+   "pointer": "/comparisons/5/procedures/1/duration",
+   "phrase": "감모",
+   "phrase_span": [
+    3,
+    5
+   ],
+   "tokens": [
+    [
+     "감",
+     "NNG",
+     [
+      3,
+      4
+     ]
+    ],
+    [
+     "모",
+     "NNG",
+     [
+      4,
+      5
+     ]
+    ]
+   ],
+   "kind": "term_split",
+   "issue": "'감모(모발 감소)'를 '감'+'모'로 분절",
+   "impact": "'영구 감모'가 '영구'만 남아 영구 제거로 오독될 위험"
+  },
+  {
+   "signature": "S21",
+   "pointer": "/comparisons/5/procedures/2/duration",
+   "phrase": "감모",
+   "phrase_span": [
+    3,
+    5
+   ],
+   "tokens": [
+    [
+     "감",
+     "NNG",
+     [
+      3,
+      4
+     ]
+    ],
+    [
+     "모",
+     "NNG",
+     [
+      4,
+      5
+     ]
+    ]
+   ],
+   "kind": "term_split",
+   "issue": "'감모(모발 감소)'를 '감'+'모'로 분절",
+   "impact": "'영구 감모'가 '영구'만 남아 영구 제거로 오독될 위험"
+  },
+  {
+   "signature": "S22",
+   "pointer": "/comparisons/6/procedures/0/best_for",
+   "phrase": "복부",
+   "phrase_span": [
+    7,
+    9
+   ],
+   "tokens": [
+    [
+     "복",
+     "NNG",
+     [
+      7,
+      8
+     ]
+    ],
+    [
+     "부",
+     "NNG",
+     [
+      8,
+      9
+     ]
+    ]
+   ],
+   "kind": "term_split",
+   "issue": "부위 '복부'를 '복'+'부'로 분절",
+   "impact": "부위 명칭이 토큰에서 사라진다(다른 출현은 NNG 한 토큰으로 정상)"
+  },
+  {
+   "signature": "S23",
+   "pointer": "/comparisons/7/procedures/0/best_for",
+   "phrase": "과다",
+   "phrase_span": [
+    13,
+    15
+   ],
+   "tokens": [
+    [
+     "과",
+     "NNG",
+     [
+      13,
+      14
+     ]
+    ],
+    [
+     "이",
+     "VCP",
+     [
+      14,
+      14
+     ]
+    ],
+    [
+     "다",
+     "EF",
+     [
+      14,
+      15
+     ]
+    ]
+   ],
+   "kind": "mis_segmentation_meaning_risk",
+   "issue": "'과다'를 '과'+서술격 조사(길이 0)+종결어미로 분석",
+   "impact": "정도 표현 '과다'가 사라지고 원문에 없는 종결 서술이 생긴다"
+  },
+  {
+   "signature": "S24",
+   "pointer": "/comparisons/7/procedures/3/limitations",
+   "phrase": "재발",
+   "phrase_span": [
+    7,
+    9
+   ],
+   "tokens": [
+    [
+     "재",
+     "XPN",
+     [
+      7,
+      8
+     ]
+    ],
+    [
+     "발",
+     "NNG",
+     [
+      8,
+      9
+     ]
+    ]
+   ],
+   "kind": "mis_segmentation_meaning_risk",
+   "issue": "'재발'을 접두사 '재'+'발'로 분절",
+   "impact": "경과 표현 '재발'이 사라지고 신체 부위 단어와 같은 형태 '발'이 생겨 부위 오탐 위험"
+  },
+  {
+   "signature": "S25",
+   "pointer": "/comparisons/8/procedures/0/duration",
+   "phrase": "리쥬란",
+   "phrase_span": [
+    0,
+    3
+   ],
+   "tokens": [
+    [
+     "리쥬",
+     "NNP",
+     [
+      0,
+      2
+     ]
+    ],
+    [
+     "란",
+     "JX",
+     [
+      2,
+      3
+     ]
+    ]
+   ],
+   "kind": "mis_segmentation_meaning_risk",
+   "issue": "제품명 '리쥬란'을 '리쥬'+보조사 '란'으로 분절",
+   "impact": "제품별 지속기간 대응(리쥬란 약 6개월)의 제품명이 깨진다"
+  },
+  {
+   "signature": "S26",
+   "pointer": "/comparisons/8/procedures/2/best_for",
+   "phrase": "항노화",
+   "phrase_span": [
+    7,
+    10
+   ],
+   "tokens": [
+    [
+     "항",
+     "NNG",
+     [
+      7,
+      8
+     ]
+    ],
+    [
+     "노화",
+     "NNG",
+     [
+      8,
+      10
+     ]
+    ]
+   ],
+   "kind": "mis_segmentation_meaning_risk",
+   "issue": "반대 의미 접두 '항(抗)'을 독립 명사로 분절",
+   "impact": "'노화'만 따로 쓰면 의미가 뒤집힌다(항노화 → 노화)"
+  },
+  {
+   "signature": "S27",
+   "pointer": "/comparisons/0/procedures/0/best_for",
+   "phrase": "중등도",
+   "phrase_span": [
+    0,
+    3
+   ],
+   "tokens": [
+    [
+     "중등",
+     "NNG",
+     [
+      0,
+      2
+     ]
+    ],
+    [
+     "도",
+     "JX",
+     [
+      2,
+      3
+     ]
+    ]
+   ],
+   "kind": "mis_segmentation_meaning_risk",
+   "issue": "정도 표현 '중등도'를 '중등'+보조사 '도(也)'로 분절",
+   "impact": "처짐 정도 수식이 사라지고 원문에 없는 첨가 의미 '도'가 생긴다"
+  },
+  {
+   "signature": "S28",
+   "pointer": "/comparisons/3/evidence_notes/2",
+   "phrase": "필:",
+   "phrase_span": [
+    4,
+    6
+   ],
+   "tokens": [
+    [
+     "필",
+     "NNB",
+     [
+      4,
+      5
+     ]
+    ]
+   ],
+   "kind": "mis_tag_minor",
+   "issue": "'케미컬 필'의 '필(peel)'을 의존명사로 태깅",
+   "impact": "시술 계열 명칭이 의존명사로 남는다"
+  },
+  {
+   "signature": "S29",
+   "pointer": "/comparisons/0/procedures/3/name",
+   "phrase": "인모드FX",
+   "phrase_span": [
+    0,
+    5
+   ],
+   "tokens": [
+    [
+     "인",
+     "NNG",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "모드",
+     "NNG",
+     [
+      1,
+      3
+     ]
+    ]
+   ],
+   "kind": "term_split",
+   "issue": "제품명 '인모드'를 '인'+'모드'로 분절",
+   "impact": "제품명 대조 시 '인모드'(다른 출현은 NNG 한 토큰)와 형태가 달라진다"
+  },
+  {
+   "signature": "S30",
+   "pointer": "/comparisons/3/procedures/0/limitations",
+   "phrase": "박스카",
+   "phrase_span": [
+    3,
+    6
+   ],
+   "tokens": [
+    [
+     "박스",
+     "NNG",
+     [
+      3,
+      5
+     ]
+    ],
+    [
+     "카",
+     "NNG",
+     [
+      5,
+      6
+     ]
+    ]
+   ],
+   "kind": "term_split",
+   "issue": "흉터 유형 '박스카'를 '박스'+'카'로 분절",
+   "impact": "흉터 유형 명칭이 출현마다 형태가 다르다(다른 출현은 한 토큰)"
+  },
+  {
+   "signature": "S31",
+   "pointer": "/comparisons/7/procedures/2/downtime",
+   "phrase": "각질",
+   "phrase_span": [
+    8,
+    10
+   ],
+   "tokens": [
+    [
+     "각",
+     "NNG",
+     [
+      8,
+      9
+     ]
+    ],
+    [
+     "질",
+     "XSN",
+     [
+      9,
+      10
+     ]
+    ]
+   ],
+   "kind": "term_split",
+   "issue": "'각질'을 '각'+접미사 '질'로 분절",
+   "impact": "증상 명칭이 출현마다 형태가 다르다(다른 출현은 NNG 한 토큰)"
+  },
+  {
+   "signature": "S32",
+   "pointer": "/comparisons/7/procedures/4/mechanism_simple",
+   "phrase": "롱펄스",
+   "phrase_span": [
+    7,
+    10
+   ],
+   "tokens": [
+    [
+     "롱",
+     "NNG",
+     [
+      7,
+      8
+     ]
+    ],
+    [
+     "펄스",
+     "NNG",
+     [
+      8,
+      10
+     ]
+    ]
+   ],
+   "kind": "term_split",
+   "issue": "'롱펄스'를 '롱'+'펄스'로 분절",
+   "impact": "장비 방식 명칭이 출현마다 다르다(이름 필드 출현은 NNP 한 토큰)"
+  },
+  {
+   "signature": "S33",
+   "pointer": "/comparisons/7/procedures/3/mechanism_simple",
+   "phrase": "아쿠아필",
+   "phrase_span": [
+    12,
+    16
+   ],
+   "tokens": [
+    [
+     "아쿠아",
+     "NNP",
+     [
+      12,
+      15
+     ]
+    ],
+    [
+     "필",
+     "NNG",
+     [
+      15,
+      16
+     ]
+    ]
+   ],
+   "kind": "term_split",
+   "issue": "'아쿠아필'을 '아쿠아'+'필'로 분절",
+   "impact": "제품·시술명이 출현마다 다르다(다른 출현은 NNG 한 토큰)"
+  },
+  {
+   "signature": "S34",
+   "pointer": "/comparisons/2/procedures/2/mechanism_simple",
+   "phrase": "마이크로스피어",
+   "phrase_span": [
+    4,
+    11
+   ],
+   "tokens": [
+    [
+     "마이크로",
+     "NNG",
+     [
+      4,
+      8
+     ]
+    ],
+    [
+     "스피어",
+     "NNP",
+     [
+      8,
+      11
+     ]
+    ]
+   ],
+   "kind": "term_split",
+   "issue": "'마이크로스피어'를 둘로 분절",
+   "impact": "재질 형태 명칭이 쪼개진다"
+  },
+  {
+   "signature": "S35",
+   "pointer": "/comparisons/4/procedures/2/mechanism_simple",
+   "phrase": "빛으로",
+   "phrase_span": [
+    4,
+    7
+   ],
+   "tokens": [
+    [
+     "빛으로",
+     "NNP",
+     [
+      4,
+      7
+     ]
+    ]
+   ],
+   "kind": "mis_tag_minor",
+   "issue": "'빛'+도구 조사 '으로'를 한 고유명사로 묶음",
+   "impact": "작용 수단 '빛'과 도구 관계 조사가 분리되지 않는다"
+  },
+  {
+   "signature": "S35",
+   "pointer": "/comparisons/5/procedures/3/mechanism_simple",
+   "phrase": "빛으로",
+   "phrase_span": [
+    4,
+    7
+   ],
+   "tokens": [
+    [
+     "빛으로",
+     "NNP",
+     [
+      4,
+      7
+     ]
+    ]
+   ],
+   "kind": "mis_tag_minor",
+   "issue": "'빛'+도구 조사 '으로'를 한 고유명사로 묶음",
+   "impact": "작용 수단 '빛'과 도구 관계 조사가 분리되지 않는다"
+  },
+  {
+   "signature": "S36",
+   "pointer": "/comparisons/0/procedures/0/mechanism_simple",
+   "phrase": "초음파",
+   "phrase_span": [
+    0,
+    3
+   ],
+   "tokens": [
+    [
+     "초",
+     "XPN",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "음파",
+     "NNG",
+     [
+      1,
+      3
+     ]
+    ]
+   ],
+   "kind": "term_split",
+   "issue": "'초음파'를 접두사 '초'+'음파'로 분절",
+   "impact": "에너지원 명칭이 쪼개진다"
+  },
+  {
+   "signature": "S36",
+   "pointer": "/comparisons/6/procedures/1/mechanism_simple",
+   "phrase": "초음파",
+   "phrase_span": [
+    4,
+    7
+   ],
+   "tokens": [
+    [
+     "초",
+     "XPN",
+     [
+      4,
+      5
+     ]
+    ],
+    [
+     "음파",
+     "NNG",
+     [
+      5,
+      7
+     ]
+    ]
+   ],
+   "kind": "term_split",
+   "issue": "'초음파'를 접두사 '초'+'음파'로 분절",
+   "impact": "에너지원 명칭이 쪼개진다"
+  },
+  {
+   "signature": "S37",
+   "pointer": "/comparisons/0/procedures/2/mechanism_simple",
+   "phrase": "당김",
+   "phrase_span": [
+    7,
+    9
+   ],
+   "tokens": [
+    [
+     "당김",
+     "NNP",
+     [
+      7,
+      9
+     ]
+    ]
+   ],
+   "kind": "mis_tag_minor",
+   "issue": "동사 명사형 '당김'을 고유명사로 태깅",
+   "impact": "작용(당기다) 서술이 고유명사로 남는다"
+  },
+  {
+   "signature": "S38",
+   "pointer": "/comparisons/4/procedures/0/limitations",
+   "phrase": "가능",
+   "phrase_span": [
+    13,
+    15
+   ],
+   "tokens": [
+    [
+     "가능",
+     "XR",
+     [
+      13,
+      15
+     ]
+    ]
+   ],
+   "kind": "mis_tag_minor",
+   "issue": "'재발 가능'의 '가능'을 어근(XR)으로 태깅(다른 출현은 NNG)",
+   "impact": "가능성 표현의 품사가 출현마다 다르다 — 품사로 가능성 후보를 고르면 누락"
+  },
+  {
+   "signature": "S39",
+   "pointer": "/comparisons/3/evidence_notes/2",
+   "phrase": "%+",
+   "phrase_span": [
+    36,
+    38
+   ],
+   "tokens": [
+    [
+     "%+",
+     "SW",
+     [
+      36,
+      38
+     ]
+    ]
+   ],
+   "kind": "mis_tag_minor",
+   "issue": "'%'와 '이상'을 뜻하는 '+'를 한 기호로 묶음",
+   "impact": "'50%+'의 하한(이상) 표지가 단위 기호와 분리되지 않는다"
+  }
+ ]
+}

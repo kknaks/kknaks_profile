@@ -1,0 +1,315 @@
+{
+ "segment": "S14",
+ "read_status": "direct_read",
+ "last_read_pointer": "/categories/13/common_concerns/2/a",
+ "expressions": {
+  "/name": [
+   [
+    "크라이오리포라이시스",
+    "name",
+    "음역 전문어"
+   ]
+  ],
+  "/patient_name": [
+   [
+    "냉각 지방분해 (쿨스컬프팅 등)",
+    "name,mechanism,paraphrase",
+    "괄호 제품명 · 「등」"
+   ],
+   [
+    "쿨스컬프팅",
+    "name",
+    ""
+   ]
+  ],
+  "/simple_explanation": [
+   [
+    "차가운 온도로 지방세포를 선택적으로 없애는 비수술 지방 감소 시술입니다.",
+    "sentence,device_param,manner,mechanism,negation,effect",
+    ""
+   ],
+   [
+    "차가운 온도",
+    "device_param,degree",
+    "온도 수치 미기재"
+   ],
+   [
+    "선택적으로",
+    "manner,scope",
+    ""
+   ],
+   [
+    "비수술 지방 감소 시술",
+    "negation,effect,name",
+    ""
+   ]
+  ],
+  "/how_it_works": [
+   [
+    "시술 부위에 냉각 장치를 대면, 지방세포가 다른 세포보다 낮은 온도에 취약한 성질을 이용해 지방세포만 선택적으로 파괴합니다.",
+    "sentence,site,device,condition,comparison,mechanism,scope",
+    ""
+   ],
+   [
+    "지방세포가 다른 세포보다 낮은 온도에 취약한 성질",
+    "comparison,degree,mechanism",
+    ""
+   ],
+   [
+    "지방세포만 선택적으로 파괴합니다",
+    "scope,manner,mechanism",
+    ""
+   ],
+   [
+    "파괴된 지방세포는 수 주에 걸쳐 몸 밖으로 자연 배출됩니다.",
+    "sentence,time,approx,course,mechanism",
+    ""
+   ],
+   [
+    "수 주에 걸쳐",
+    "time,approx",
+    "수치 불명확"
+   ]
+  ],
+  "/duration_simple": [
+   [
+    "3개월 후 최대 효과, 파괴된 지방세포는 재생되지 않아 반영구적입니다.",
+    "time,quantity,degree,negation,course,rationale",
+    ""
+   ],
+   [
+    "3개월 후 최대 효과",
+    "time,quantity,degree,effect",
+    "시간 역할=최대 효과 시점"
+   ],
+   [
+    "재생되지 않아 반영구적",
+    "negation,course",
+    "「반영구적」 — 지속 기간 수치 아님"
+   ]
+  ],
+  "/pain_level": [
+   [
+    "냉각 시작 시 차가움과 당김감, 수 분 후 감각이 둔해져 편안해짐",
+    "time,sensory,approx,course",
+    ""
+   ],
+   [
+    "냉각 시작 시",
+    "time",
+    ""
+   ],
+   [
+    "수 분 후 감각이 둔해져 편안해짐",
+    "time,approx,sensory,course",
+    ""
+   ]
+  ],
+  "/downtime": [
+   [
+    "시술 부위 일시적 붉은기, 저림감, 가벼운 멍 가능.",
+    "site,course,adverse,sensory,degree,possibility",
+    ""
+   ],
+   [
+    "일시적 붉은기",
+    "course,adverse",
+    ""
+   ],
+   [
+    "저림감",
+    "adverse,sensory",
+    ""
+   ],
+   [
+    "가벼운 멍 가능",
+    "degree,adverse,possibility",
+    ""
+   ],
+   [
+    "일상생활 바로 가능",
+    "time,possibility",
+    ""
+   ]
+  ],
+  "/common_concerns/0/q": [
+   [
+    "다이어트와 뭐가 다른가요?",
+    "sentence,comparison",
+    ""
+   ]
+  ],
+  "/common_concerns/0/a": [
+   [
+    "다이어트는 지방세포 크기를 줄이는 것이고, 이 시술은 지방세포 수 자체를 줄입니다.",
+    "sentence,comparison,mechanism",
+    ""
+   ],
+   [
+    "따라서 요요 가능성이 낮아요.",
+    "sentence,rationale,possibility,degree",
+    ""
+   ],
+   [
+    "다만 전체 체중 감량 목적이 아니라 국소 지방 감소에 적합합니다.",
+    "sentence,negation,scope,effect",
+    ""
+   ],
+   [
+    "전체 체중 감량 목적이 아니라",
+    "negation,scope",
+    ""
+   ],
+   [
+    "국소 지방 감소에 적합합니다",
+    "scope,effect",
+    ""
+   ],
+   [
+    "요요 가능성이 낮아요",
+    "possibility,degree,course",
+    "regex 대조 후 보충(구절 누락 수정)"
+   ],
+   [
+    "다만",
+    "contrast",
+    "별도 읽기 검토(형태소 수식어 대조)로 보충"
+   ]
+  ],
+  "/common_concerns/1/q": [
+   [
+    "한 번에 얼마나 빠지나요?",
+    "sentence,quantity,frequency",
+    ""
+   ]
+  ],
+  "/common_concerns/1/a": [
+   [
+    "1회 시술로 해당 부위 지방의 약 20-25%가 감소합니다.",
+    "sentence,quantity,frequency,site,approx,range,effect",
+    ""
+   ],
+   [
+    "1회 시술로",
+    "quantity,frequency",
+    ""
+   ],
+   [
+    "해당 부위 지방의 약 20-25%",
+    "site,approx,range,quantity",
+    "분모=해당 부위 지방 · 측정 방법·출처 미기재"
+   ],
+   [
+    "눈에 띄는 변화는 보통 3개월 후에 나타나요.",
+    "sentence,degree,frequency,time,quantity,effect",
+    ""
+   ],
+   [
+    "보통 3개월 후에 나타나요",
+    "frequency,time,quantity,effect",
+    "기준 시점 생략 · regex 대조 후 보충(구절 누락 수정)"
+   ]
+  ],
+  "/common_concerns/2/q": [
+   [
+    "PAH(역설적 지방 비대)가 뭔가요?",
+    "sentence,adverse,paraphrase",
+    ""
+   ],
+   [
+    "PAH(역설적 지방 비대)",
+    "adverse,paraphrase",
+    "약어 괄호 풀이"
+   ]
+  ],
+  "/common_concerns/2/a": [
+   [
+    "드물지만 시술 부위 지방이 오히려 딱딱하게 커지는 현상입니다(보고 발생률 약 0.2~0.5%).",
+    "sentence,frequency,site,comparison,degree,adverse,quantity,approx,range,evidence",
+    ""
+   ],
+   [
+    "드물지만",
+    "frequency",
+    ""
+   ],
+   [
+    "오히려 딱딱하게 커지는",
+    "comparison,degree,adverse",
+    ""
+   ],
+   [
+    "(보고 발생률 약 0.2~0.5%)",
+    "evidence,quantity,approx,range,frequency",
+    "「보고」 발생률 — 분모·출처 미기재"
+   ],
+   [
+    "실제로는 과소보고 가능성이 있어 이보다 높을 수 있고 남성에서 더 흔합니다.",
+    "sentence,evidence,possibility,comparison,target,frequency",
+    ""
+   ],
+   [
+    "과소보고 가능성이 있어 이보다 높을 수 있고",
+    "evidence,possibility,comparison",
+    ""
+   ],
+   [
+    "남성에서 더 흔합니다",
+    "target,comparison,frequency",
+    "대상 집단 비교 — 수치 없음"
+   ],
+   [
+    "한번 발생하면 자연 소실되지 않고 지방흡입·절제 등 수술적 제거가 필요할 수 있습니다.",
+    "sentence,condition,negation,course,management,possibility",
+    ""
+   ],
+   [
+    "자연 소실되지 않고",
+    "negation,course",
+    ""
+   ],
+   [
+    "지방흡입·절제 등 수술적 제거가 필요할 수 있습니다",
+    "management,name,possibility",
+    "「등」 열린 목록"
+   ],
+   [
+    "한번 발생하면",
+    "condition,frequency",
+    "regex 대조 후 보충(구절 누락 수정)"
+   ],
+   [
+    "실제로는",
+    "evidence,contrast",
+    "보고 수치와 실제의 대비 · 별도 읽기 검토(형태소 수식어 대조)로 보충"
+   ]
+  ]
+ },
+ "observations": [
+  [
+   "/common_concerns/2/a",
+   "P",
+   "빈도 표현 3층: 「드물지만」(어휘)·「보고 발생률 약 0.2~0.5%」(보고 수치)·「과소보고 가능성 … 이보다 높을 수 있고」(수치 한정). 보고 수치를 환자 실제 발생률로 바꾸지 않는다"
+  ],
+  [
+   "/common_concerns/2/a",
+   "B",
+   "보고 발생률의 분모·출처·기간 미기재 · 「남성에서 더 흔합니다」 비교 수치 없음"
+  ],
+  [
+   "/common_concerns/1/a",
+   "B",
+   "「약 20-25%」 측정 방법·출처 미기재"
+  ],
+  [
+   "/duration_simple",
+   "P",
+   "이 키는 지속 기간이 아니라 최대 효과 시점(3개월 후)과 「반영구적」 성질을 담는다"
+  ],
+  [
+   "/downtime",
+   "P",
+   "값 안에 마침표로 두 문장 — 이 키에서 문장 종결형이 있는 값"
+  ]
+ ]
+}

@@ -1,0 +1,11 @@
+{"segment":"S13","reading_state":"read_direct","last_read_pointer":"/categories/M13/effects",
+"read_note":"M13 name 과 빈 배열 3개 직접 확인.",
+"observations":[
+{"id":"S13-O1","status":"P","pointers":["/categories/M13/moa","/categories/M13/adverse_effects","/categories/M13/effects"],"text":"세 배열 모두 빈 배열. name 'Plasma skin treatment' 만 있다."}
+],
+"expressions":[
+{"id":"S13-X1","pointer":"/categories/M13/name","text":"Plasma skin treatment","facets":["name_candidate"]}
+],
+"issues":[
+{"id":"S13-B1","class":"B","pointers":["/categories/M13/moa","/categories/M13/adverse_effects","/categories/M13/effects"],"text":"진술 0개."}
+]}

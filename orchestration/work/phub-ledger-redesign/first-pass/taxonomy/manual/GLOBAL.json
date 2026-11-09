@@ -1,0 +1,127 @@
+{
+ "section": "GLOBAL",
+ "preamble": "구획을 가로지르는 반복 패턴은 GLOBAL-* 로 묶고, 각 구획 기록이 그 ID 를 참조한다. 출현별 위치는 expressions.json(auto 후보)·morphology.json(known_segmentation_errors)에 있다. 사용자 결정(C) 대기는 0건이다 — 원본 변경 후보는 모두 후속 확인 후보(F/I)로 두었고 지금 선택을 요청하지 않는다.",
+ "seg_errors": [
+  {
+   "scope": "all",
+   "tag": "W_SERIAL",
+   "surface": "(tag W_SERIAL)",
+   "issue": "kiwi 가 '3-7', '1.5/3.0', '755/808/1064', '5-5-5' 같은 숫자 연쇄를 W_SERIAL 한 토큰으로 묶는다 — 범위·목록·기법명이 같은 태그",
+   "impact": "형태소만으로 범위 하한·상한, 목록 원소를 구분할 수 없음. expressions auto(수량·단위) 원문 구간을 함께 써야 함"
+  }
+ ],
+ "issues": [
+  {
+   "id": "GLOBAL-I01",
+   "status": "I",
+   "pointers": [
+    "/modality/0/subcategories/0/items/0/extracted/aftercare/3",
+    "/modality/1/subcategories/0/items/0/extracted/aftercare/2",
+    "/modality/2/subcategories/0/items/0/extracted/aftercare/2",
+    "/modality/3/subcategories/0/items/0/extracted/aftercare/2",
+    "/modality/4/subcategories/0/items/0/extracted/aftercare/3",
+    "/modality/6/subcategories/0/items/0/extracted/aftercare/3",
+    "/modality/7/subcategories/0/items/0/extracted/aftercare/6",
+    "/modality/8/subcategories/0/items/0/extracted/aftercare/3",
+    "/modality/9/subcategories/0/items/0/extracted/aftercare/3",
+    "/modality/10/subcategories/0/items/0/extracted/aftercare/2",
+    "/modality/11/subcategories/0/items/0/extracted/aftercare/5",
+    "/modality/13/subcategories/0/items/0/extracted/aftercare/5"
+   ],
+   "note": "'[시술 주기 참고] … (개인차 있으며, 의사와 상의하여 결정)' 상용구가 M1·M2·M3·M4·M5·M7·M8(하위분류별 5종)·M9(출력별 3종)·M10·M11(출력별 3종)·M12·M14 항목 aftercare 마지막 원소에 반복된다. M6·M13·M15·M16·M17 항목과 모든 products 에는 없다. 상용구 수치가 같은 항목 onset_duration·overview 수치와 다른 경우가 많고, 하위분류 성격과 맞지 않는 항목(비HA 필러, 면사, 문신 장비 등)에도 붙어 있다.",
+   "impact": "기간·간격 정보가 두 칸에 서로 다르게 존재. 어느 쪽이 기준인지는 후속 의미 조사"
+  },
+  {
+   "id": "GLOBAL-F01",
+   "status": "F",
+   "pointers": [
+    "/modality/0/group",
+    "/modality/0/subcategories/2/items/6/name",
+    "/modality/2/subcategories/0/items/0/extracted/aftercare/2",
+    "/modality/8/subcategories/4/items/0/detail",
+    "/problem/1/subcategories/1/items/0/detail"
+   ],
+   "note": "'/' 와 '+' 기호가 README 규칙(+ 함께, / 대안) 외에도 나열·병기·and/or·성분 결합·상표 일부('리쥬란HB+','젠틀맥스프로+')·하한('24개월+','SPF 50+','2000곳+')으로 쓰인다. '→' 는 절차·결과, '·' 는 detail 속성 구분, '>' 는 canonical_category 경로·비교.",
+   "impact": "이름 분해·관계 추출 단계에서 출현별 판단 필요. 기호만으로 관계 확정 금지"
+  },
+  {
+   "id": "GLOBAL-F02",
+   "status": "F",
+   "pointers": [
+    "/modality/0/products",
+    "/modality/0/subcategories/1/items",
+    "/modality/3/subcategories/1/items/8",
+    "/modality/8/subcategories/1/items/3",
+    "/modality/8/subcategories/1/items/15"
+   ],
+   "note": "같은 이름(또는 표기만 다른 이름)의 레코드가 products·items·여러 하위분류·여러 모달리티에 흩어져 있고 연결 키가 없다(예: 디스포트·제오민 제품/항목, 볼뉴머 3레코드, LDM 3곳, 라라젯 2곳, NAD+ 3항목, 엑셀V/엑셀브이/엑셀V+, 옴니룩스/옴니럭스).",
+   "impact": "개체 식별·병합은 설계 단계 과제. 1차에서는 출현별 원문만 보존"
+  },
+  {
+   "id": "GLOBAL-F03",
+   "status": "F",
+   "pointers": [
+    "/modality/0/subcategories/2",
+    "/modality/6/subcategories",
+    "/modality/14/subcategories/9",
+    "/modality/8/subcategories/4",
+    "/problem/0"
+   ],
+   "note": "같은 깊이(subcategories·items·problem 최상위)가 서로 다른 종류(제품 브랜드/부위·용도/재질/형태/에너지원/고민/판매 패키지/외용약)를 담는다.",
+   "impact": "개체 유형은 값 단위로 분해해야 함(설계 단계)"
+  },
+  {
+   "id": "GLOBAL-F04",
+   "status": "F",
+   "pointers": [
+    "/modality/3/subcategories/1/items/8/classification_issue",
+    "/modality/8/subcategories/1/items/4/classification_issue",
+    "/modality/8/subcategories/1/items/4/reclassified_to",
+    "/modality/7/subcategories/4/items/11/correction_note"
+   ],
+   "note": "원문이 스스로 오분류·정정을 기록한 필드(classification_issue 2, reclassified_to 1, correction_note 1)가 있으나 구조상 레코드 위치는 바뀌지 않았다.",
+   "impact": "재분류 반영은 원본 변경 후보 — 현재 원본 보존 지시 아래 후속 확인"
+  },
+  {
+   "id": "GLOBAL-K01",
+   "status": "K",
+   "pointers": [
+    "/modality/0/subcategories/0/items/0/extracted/onset_duration/onset",
+    "/modality/7/subcategories/4/items/5/detail"
+   ],
+   "note": "W_SERIAL 토큰(숫자 연쇄)은 범위·목록·기법명을 구분하지 않는다. '3~7일' 은 3/SN ~/SO 7/SN 으로 분리되어 같은 뜻의 범위가 표기에 따라 다르게 분석된다.",
+   "impact": "형태소만으로 범위 수치를 뽑으면 표기별로 결과가 달라짐. morphology.json known_segmentation_errors 에 W_SERIAL 출현별 기록"
+  },
+  {
+   "id": "GLOBAL-K02",
+   "status": "K",
+   "pointers": [
+    "/modality/0/subcategories/0/items/0/extracted/safety/serious/0",
+    "/modality/0/subcategories/0/items/1/extracted/safety/serious/0"
+   ],
+   "note": "같은 전문어가 문맥에 따라 다르게 분절된다(안검하수·다한증·압통·셀르디엠·이소트레티노인·비가교HA 등). 브랜드·장비명 상당수가 조사·어미·부사로 오분석된다(구획별 seg_errors). 사용자 사전 없이 기본 결과를 보존했다.",
+   "impact": "토큰 기반 빈도·병합이 표기 아닌 분석 결과에 흔들림. 고유명은 원문 구간(expressions) 기준으로 다뤄야 함"
+  },
+  {
+   "id": "GLOBAL-K03",
+   "status": "K",
+   "pointers": [
+    "/modality/7/subcategories/2/items/3/extracted/indications/primary/2",
+    "/modality/14/subcategories/2/items/1/extracted/indications/primary/1"
+   ],
+   "note": "'주사'(질환 주사비/rosacea)와 '주사'(시술 injection)가 같은 형태소. '대이개신경'·'삼염화초산'·'초회통과효과' 처럼 수사·단위 오탐(이/NR 개/NNB, 삼/NR, 초/NNB 회/NNB)이 생기는 어휘가 있다.",
+   "impact": "키워드·수량 자동 추출 시 오탐 — 원문 대조 필수"
+  },
+  {
+   "id": "GLOBAL-B01",
+   "status": "B",
+   "pointers": [
+    "/modality/0/subcategories/0/items/3/extracted/indications/primary/2",
+    "/modality/7/subcategories/5/items/13/extracted",
+    "/modality/14/subcategories/14/items"
+   ],
+   "note": "원문 자체 정보 부족 묶음: U+FFFD 손상 1, 빈 extracted 2항목, 빈 items 하위분류 2, 빈 문자열 값 22(주로 detail), mfds null 17, '-' 자리표시 2, 정의 없는 약어(ASCE·MCT·CPR·ACT·ACR·IDS·IED·MoD·SMP·DC 등), 기준 모집단 없는 비율(38.8%, 0.04mL, PIH %), 기준 시점 없는 '출시 예정'·허가 연월.",
+   "impact": "해당 정보로 판단 불가 — 원본 확인 후보"
+  }
+ ]
+}

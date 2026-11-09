@@ -1,0 +1,630 @@
+{
+ "source": {
+  "path": "orchestration/work/phub-recommend/bronze/phub-ledger/combo-recipes.json",
+  "sha256": "1bb7c309e8ec72768ae9c5db94e1911188be240f4c7d770d54244008aeab0c94"
+ },
+ "note": "machine_extraction=기계 열거·분석 완료, direct_read=에이전트가 그 구획 원문을 직접 읽음. 원장이 작아(6,486 bytes) 구획 8개를 한 세션에서 순차로 읽었다.",
+ "last_read_position": "S7 끝(/recipes/6/followUp/3/action)",
+ "remaining_segments": [],
+ "segments": [
+  {
+   "id": "S0",
+   "label": "상위 메타데이터와 recipes 컨테이너",
+   "root_pointers": [
+    "",
+    "/version",
+    "/updated",
+    "/description",
+    "/recipes"
+   ],
+   "pointer_range": [
+    "",
+    "/recipes"
+   ],
+   "owned_pointers": [
+    "",
+    "/version",
+    "/updated",
+    "/description",
+    "/recipes"
+   ],
+   "owned_leaf_pointers": [
+    "/version",
+    "/updated",
+    "/description"
+   ],
+   "file_span": [
+    0,
+    4026
+   ],
+   "context_refs": [],
+   "context_note": "S0 는 루트 객체·상위 스칼라·recipes 배열 컨테이너만 소유. 배열 원소는 S1~S7 소유.",
+   "machine_extraction": "done",
+   "direct_read": "done",
+   "read_log": "2026-11-09 원본 한 줄 전체를 출력해 상위 키 4개와 recipes 배열 길이·각 원소 키 순서를 직접 읽었다. 이후 구획 S1~S7 을 이 상위 문맥(description)과 함께 읽었다.",
+   "observation_ids": [
+    "S0-1",
+    "S0-2",
+    "S0-3",
+    "S0-4"
+   ],
+   "review_file": "review.md",
+   "review_anchor": "#s0"
+  },
+  {
+   "id": "S1",
+   "label": "/recipes/0 (R1 리프팅 기본)",
+   "root_pointers": [
+    "/recipes/0"
+   ],
+   "pointer_range": [
+    "/recipes/0",
+    "/recipes/0/followUp/2/action"
+   ],
+   "owned_pointers": [
+    "/recipes/0",
+    "/recipes/0/id",
+    "/recipes/0/name",
+    "/recipes/0/subtitle",
+    "/recipes/0/goal",
+    "/recipes/0/intensity",
+    "/recipes/0/procedures",
+    "/recipes/0/procedures/0",
+    "/recipes/0/procedures/1",
+    "/recipes/0/expectedResults",
+    "/recipes/0/patientExplanation",
+    "/recipes/0/analogy",
+    "/recipes/0/repeatCycle",
+    "/recipes/0/followUp",
+    "/recipes/0/followUp/0",
+    "/recipes/0/followUp/0/week",
+    "/recipes/0/followUp/0/action",
+    "/recipes/0/followUp/1",
+    "/recipes/0/followUp/1/week",
+    "/recipes/0/followUp/1/action",
+    "/recipes/0/followUp/2",
+    "/recipes/0/followUp/2/week",
+    "/recipes/0/followUp/2/action"
+   ],
+   "owned_leaf_pointers": [
+    "/recipes/0/id",
+    "/recipes/0/name",
+    "/recipes/0/subtitle",
+    "/recipes/0/goal",
+    "/recipes/0/intensity",
+    "/recipes/0/procedures/0",
+    "/recipes/0/procedures/1",
+    "/recipes/0/expectedResults",
+    "/recipes/0/patientExplanation",
+    "/recipes/0/analogy",
+    "/recipes/0/repeatCycle",
+    "/recipes/0/followUp/0/week",
+    "/recipes/0/followUp/0/action",
+    "/recipes/0/followUp/1/week",
+    "/recipes/0/followUp/1/action",
+    "/recipes/0/followUp/2/week",
+    "/recipes/0/followUp/2/action"
+   ],
+   "file_span": [
+    111,
+    614
+   ],
+   "context_refs": [
+    "/description",
+    "/recipes"
+   ],
+   "context_note": "S0 의 루트·/recipes 컨테이너는 S0 가 소유하고, S1~S7 은 /description 을 문맥으로 함께 읽었다(소유 아님).",
+   "machine_extraction": "done",
+   "direct_read": "done",
+   "read_log": "/recipes/0 의 11필드와 followUp 3원소를 위에서 아래로 직접 읽음. procedures [M9,M1] 와 본문 명칭(초음파·HIFU·보톡스·실리프팅)을 나란히 대조.",
+   "observation_ids": [
+    "S1-1",
+    "S1-2",
+    "S1-3",
+    "S1-4",
+    "S1-5",
+    "S1-6"
+   ],
+   "review_file": "review.md",
+   "review_anchor": "#s1"
+  },
+  {
+   "id": "S2",
+   "label": "/recipes/1 (R2 리프팅 풀패키지)",
+   "root_pointers": [
+    "/recipes/1"
+   ],
+   "pointer_range": [
+    "/recipes/1",
+    "/recipes/1/followUp/4/action"
+   ],
+   "owned_pointers": [
+    "/recipes/1",
+    "/recipes/1/id",
+    "/recipes/1/name",
+    "/recipes/1/subtitle",
+    "/recipes/1/goal",
+    "/recipes/1/intensity",
+    "/recipes/1/procedures",
+    "/recipes/1/procedures/0",
+    "/recipes/1/procedures/1",
+    "/recipes/1/procedures/2",
+    "/recipes/1/procedures/3",
+    "/recipes/1/expectedResults",
+    "/recipes/1/patientExplanation",
+    "/recipes/1/analogy",
+    "/recipes/1/repeatCycle",
+    "/recipes/1/followUp",
+    "/recipes/1/followUp/0",
+    "/recipes/1/followUp/0/week",
+    "/recipes/1/followUp/0/action",
+    "/recipes/1/followUp/1",
+    "/recipes/1/followUp/1/week",
+    "/recipes/1/followUp/1/action",
+    "/recipes/1/followUp/2",
+    "/recipes/1/followUp/2/week",
+    "/recipes/1/followUp/2/action",
+    "/recipes/1/followUp/3",
+    "/recipes/1/followUp/3/week",
+    "/recipes/1/followUp/3/action",
+    "/recipes/1/followUp/4",
+    "/recipes/1/followUp/4/week",
+    "/recipes/1/followUp/4/action"
+   ],
+   "owned_leaf_pointers": [
+    "/recipes/1/id",
+    "/recipes/1/name",
+    "/recipes/1/subtitle",
+    "/recipes/1/goal",
+    "/recipes/1/intensity",
+    "/recipes/1/procedures/0",
+    "/recipes/1/procedures/1",
+    "/recipes/1/procedures/2",
+    "/recipes/1/procedures/3",
+    "/recipes/1/expectedResults",
+    "/recipes/1/patientExplanation",
+    "/recipes/1/analogy",
+    "/recipes/1/repeatCycle",
+    "/recipes/1/followUp/0/week",
+    "/recipes/1/followUp/0/action",
+    "/recipes/1/followUp/1/week",
+    "/recipes/1/followUp/1/action",
+    "/recipes/1/followUp/2/week",
+    "/recipes/1/followUp/2/action",
+    "/recipes/1/followUp/3/week",
+    "/recipes/1/followUp/3/action",
+    "/recipes/1/followUp/4/week",
+    "/recipes/1/followUp/4/action"
+   ],
+   "file_span": [
+    618,
+    1245
+   ],
+   "context_refs": [
+    "/description",
+    "/recipes"
+   ],
+   "context_note": "S0 의 루트·/recipes 컨테이너는 S0 가 소유하고, S1~S7 은 /description 을 문맥으로 함께 읽었다(소유 아님).",
+   "machine_extraction": "done",
+   "direct_read": "done",
+   "read_log": "/recipes/1 11필드·followUp 5원소 직접 읽음. repeatCycle 의 시술별 주기 4개와 followUp week 를 대조.",
+   "observation_ids": [
+    "S2-1",
+    "S2-2",
+    "S2-3",
+    "S2-4",
+    "S2-5",
+    "S2-6"
+   ],
+   "review_file": "review.md",
+   "review_anchor": "#s2"
+  },
+  {
+   "id": "S3",
+   "label": "/recipes/2 (R3 피부 재생 골든루틴)",
+   "root_pointers": [
+    "/recipes/2"
+   ],
+   "pointer_range": [
+    "/recipes/2",
+    "/recipes/2/followUp/3/action"
+   ],
+   "owned_pointers": [
+    "/recipes/2",
+    "/recipes/2/id",
+    "/recipes/2/name",
+    "/recipes/2/subtitle",
+    "/recipes/2/goal",
+    "/recipes/2/intensity",
+    "/recipes/2/procedures",
+    "/recipes/2/procedures/0",
+    "/recipes/2/procedures/1",
+    "/recipes/2/procedures/2",
+    "/recipes/2/expectedResults",
+    "/recipes/2/patientExplanation",
+    "/recipes/2/analogy",
+    "/recipes/2/repeatCycle",
+    "/recipes/2/followUp",
+    "/recipes/2/followUp/0",
+    "/recipes/2/followUp/0/week",
+    "/recipes/2/followUp/0/action",
+    "/recipes/2/followUp/1",
+    "/recipes/2/followUp/1/week",
+    "/recipes/2/followUp/1/action",
+    "/recipes/2/followUp/2",
+    "/recipes/2/followUp/2/week",
+    "/recipes/2/followUp/2/action",
+    "/recipes/2/followUp/3",
+    "/recipes/2/followUp/3/week",
+    "/recipes/2/followUp/3/action"
+   ],
+   "owned_leaf_pointers": [
+    "/recipes/2/id",
+    "/recipes/2/name",
+    "/recipes/2/subtitle",
+    "/recipes/2/goal",
+    "/recipes/2/intensity",
+    "/recipes/2/procedures/0",
+    "/recipes/2/procedures/1",
+    "/recipes/2/procedures/2",
+    "/recipes/2/expectedResults",
+    "/recipes/2/patientExplanation",
+    "/recipes/2/analogy",
+    "/recipes/2/repeatCycle",
+    "/recipes/2/followUp/0/week",
+    "/recipes/2/followUp/0/action",
+    "/recipes/2/followUp/1/week",
+    "/recipes/2/followUp/1/action",
+    "/recipes/2/followUp/2/week",
+    "/recipes/2/followUp/2/action",
+    "/recipes/2/followUp/3/week",
+    "/recipes/2/followUp/3/action"
+   ],
+   "file_span": [
+    1249,
+    1847
+   ],
+   "context_refs": [
+    "/description",
+    "/recipes"
+   ],
+   "context_note": "S0 의 루트·/recipes 컨테이너는 S0 가 소유하고, S1~S7 은 /description 을 문맥으로 함께 읽었다(소유 아님).",
+   "machine_extraction": "done",
+   "direct_read": "done",
+   "read_log": "/recipes/2 11필드·followUp 4원소 직접 읽음. 회차와 week 간격을 대조.",
+   "observation_ids": [
+    "S3-1",
+    "S3-2",
+    "S3-3",
+    "S3-4",
+    "S3-5"
+   ],
+   "review_file": "review.md",
+   "review_anchor": "#s3"
+  },
+  {
+   "id": "S4",
+   "label": "/recipes/3 (R4 탄력 + 주름 집중)",
+   "root_pointers": [
+    "/recipes/3"
+   ],
+   "pointer_range": [
+    "/recipes/3",
+    "/recipes/3/followUp/3/action"
+   ],
+   "owned_pointers": [
+    "/recipes/3",
+    "/recipes/3/id",
+    "/recipes/3/name",
+    "/recipes/3/subtitle",
+    "/recipes/3/goal",
+    "/recipes/3/intensity",
+    "/recipes/3/procedures",
+    "/recipes/3/procedures/0",
+    "/recipes/3/procedures/1",
+    "/recipes/3/procedures/2",
+    "/recipes/3/expectedResults",
+    "/recipes/3/patientExplanation",
+    "/recipes/3/analogy",
+    "/recipes/3/repeatCycle",
+    "/recipes/3/followUp",
+    "/recipes/3/followUp/0",
+    "/recipes/3/followUp/0/week",
+    "/recipes/3/followUp/0/action",
+    "/recipes/3/followUp/1",
+    "/recipes/3/followUp/1/week",
+    "/recipes/3/followUp/1/action",
+    "/recipes/3/followUp/2",
+    "/recipes/3/followUp/2/week",
+    "/recipes/3/followUp/2/action",
+    "/recipes/3/followUp/3",
+    "/recipes/3/followUp/3/week",
+    "/recipes/3/followUp/3/action"
+   ],
+   "owned_leaf_pointers": [
+    "/recipes/3/id",
+    "/recipes/3/name",
+    "/recipes/3/subtitle",
+    "/recipes/3/goal",
+    "/recipes/3/intensity",
+    "/recipes/3/procedures/0",
+    "/recipes/3/procedures/1",
+    "/recipes/3/procedures/2",
+    "/recipes/3/expectedResults",
+    "/recipes/3/patientExplanation",
+    "/recipes/3/analogy",
+    "/recipes/3/repeatCycle",
+    "/recipes/3/followUp/0/week",
+    "/recipes/3/followUp/0/action",
+    "/recipes/3/followUp/1/week",
+    "/recipes/3/followUp/1/action",
+    "/recipes/3/followUp/2/week",
+    "/recipes/3/followUp/2/action",
+    "/recipes/3/followUp/3/week",
+    "/recipes/3/followUp/3/action"
+   ],
+   "file_span": [
+    1851,
+    2432
+   ],
+   "context_refs": [
+    "/description",
+    "/recipes"
+   ],
+   "context_note": "S0 의 루트·/recipes 컨테이너는 S0 가 소유하고, S1~S7 은 /description 을 문맥으로 함께 읽었다(소유 아님).",
+   "machine_extraction": "done",
+   "direct_read": "done",
+   "read_log": "/recipes/3 11필드·followUp 4원소 직접 읽음. subtitle 「에너지기기」와 analogy 「HIFU/RF」, procedures [M9,M1,M4] 를 대조.",
+   "observation_ids": [
+    "S4-1",
+    "S4-2",
+    "S4-3"
+   ],
+   "review_file": "review.md",
+   "review_anchor": "#s4"
+  },
+  {
+   "id": "S5",
+   "label": "/recipes/4 (R5 모공/흉터 집중)",
+   "root_pointers": [
+    "/recipes/4"
+   ],
+   "pointer_range": [
+    "/recipes/4",
+    "/recipes/4/followUp/3/action"
+   ],
+   "owned_pointers": [
+    "/recipes/4",
+    "/recipes/4/id",
+    "/recipes/4/name",
+    "/recipes/4/subtitle",
+    "/recipes/4/goal",
+    "/recipes/4/intensity",
+    "/recipes/4/procedures",
+    "/recipes/4/procedures/0",
+    "/recipes/4/procedures/1",
+    "/recipes/4/expectedResults",
+    "/recipes/4/patientExplanation",
+    "/recipes/4/analogy",
+    "/recipes/4/repeatCycle",
+    "/recipes/4/followUp",
+    "/recipes/4/followUp/0",
+    "/recipes/4/followUp/0/week",
+    "/recipes/4/followUp/0/action",
+    "/recipes/4/followUp/1",
+    "/recipes/4/followUp/1/week",
+    "/recipes/4/followUp/1/action",
+    "/recipes/4/followUp/2",
+    "/recipes/4/followUp/2/week",
+    "/recipes/4/followUp/2/action",
+    "/recipes/4/followUp/3",
+    "/recipes/4/followUp/3/week",
+    "/recipes/4/followUp/3/action"
+   ],
+   "owned_leaf_pointers": [
+    "/recipes/4/id",
+    "/recipes/4/name",
+    "/recipes/4/subtitle",
+    "/recipes/4/goal",
+    "/recipes/4/intensity",
+    "/recipes/4/procedures/0",
+    "/recipes/4/procedures/1",
+    "/recipes/4/expectedResults",
+    "/recipes/4/patientExplanation",
+    "/recipes/4/analogy",
+    "/recipes/4/repeatCycle",
+    "/recipes/4/followUp/0/week",
+    "/recipes/4/followUp/0/action",
+    "/recipes/4/followUp/1/week",
+    "/recipes/4/followUp/1/action",
+    "/recipes/4/followUp/2/week",
+    "/recipes/4/followUp/2/action",
+    "/recipes/4/followUp/3/week",
+    "/recipes/4/followUp/3/action"
+   ],
+   "file_span": [
+    2436,
+    2967
+   ],
+   "context_refs": [
+    "/description",
+    "/recipes"
+   ],
+   "context_note": "S0 의 루트·/recipes 컨테이너는 S0 가 소유하고, S1~S7 은 /description 을 문맥으로 함께 읽었다(소유 아님).",
+   "machine_extraction": "done",
+   "direct_read": "done",
+   "read_log": "/recipes/4 11필드·followUp 4원소 직접 읽음. 조건 「평가 후 결정」의 범위를 앞뒤 원소와 함께 읽음.",
+   "observation_ids": [
+    "S5-1",
+    "S5-2",
+    "S5-3",
+    "S5-4",
+    "S5-5"
+   ],
+   "review_file": "review.md",
+   "review_anchor": "#s5"
+  },
+  {
+   "id": "S6",
+   "label": "/recipes/5 (R6 동안 쁘띠 패키지)",
+   "root_pointers": [
+    "/recipes/5"
+   ],
+   "pointer_range": [
+    "/recipes/5",
+    "/recipes/5/followUp/3/action"
+   ],
+   "owned_pointers": [
+    "/recipes/5",
+    "/recipes/5/id",
+    "/recipes/5/name",
+    "/recipes/5/subtitle",
+    "/recipes/5/goal",
+    "/recipes/5/intensity",
+    "/recipes/5/procedures",
+    "/recipes/5/procedures/0",
+    "/recipes/5/procedures/1",
+    "/recipes/5/expectedResults",
+    "/recipes/5/patientExplanation",
+    "/recipes/5/analogy",
+    "/recipes/5/repeatCycle",
+    "/recipes/5/followUp",
+    "/recipes/5/followUp/0",
+    "/recipes/5/followUp/0/week",
+    "/recipes/5/followUp/0/action",
+    "/recipes/5/followUp/1",
+    "/recipes/5/followUp/1/week",
+    "/recipes/5/followUp/1/action",
+    "/recipes/5/followUp/2",
+    "/recipes/5/followUp/2/week",
+    "/recipes/5/followUp/2/action",
+    "/recipes/5/followUp/3",
+    "/recipes/5/followUp/3/week",
+    "/recipes/5/followUp/3/action"
+   ],
+   "owned_leaf_pointers": [
+    "/recipes/5/id",
+    "/recipes/5/name",
+    "/recipes/5/subtitle",
+    "/recipes/5/goal",
+    "/recipes/5/intensity",
+    "/recipes/5/procedures/0",
+    "/recipes/5/procedures/1",
+    "/recipes/5/expectedResults",
+    "/recipes/5/patientExplanation",
+    "/recipes/5/analogy",
+    "/recipes/5/repeatCycle",
+    "/recipes/5/followUp/0/week",
+    "/recipes/5/followUp/0/action",
+    "/recipes/5/followUp/1/week",
+    "/recipes/5/followUp/1/action",
+    "/recipes/5/followUp/2/week",
+    "/recipes/5/followUp/2/action",
+    "/recipes/5/followUp/3/week",
+    "/recipes/5/followUp/3/action"
+   ],
+   "file_span": [
+    2971,
+    3480
+   ],
+   "context_refs": [
+    "/description",
+    "/recipes"
+   ],
+   "context_note": "S0 의 루트·/recipes 컨테이너는 S0 가 소유하고, S1~S7 은 /description 을 문맥으로 함께 읽었다(소유 아님).",
+   "machine_extraction": "done",
+   "direct_read": "done",
+   "read_log": "/recipes/5 11필드·followUp 4원소 직접 읽음. 부위 나열과 시술의 짝을 문장 구조로 확인.",
+   "observation_ids": [
+    "S6-1",
+    "S6-2",
+    "S6-3",
+    "S6-4"
+   ],
+   "review_file": "review.md",
+   "review_anchor": "#s6"
+  },
+  {
+   "id": "S7",
+   "label": "/recipes/6 (R7 레이저 토닝 + 재생)",
+   "root_pointers": [
+    "/recipes/6"
+   ],
+   "pointer_range": [
+    "/recipes/6",
+    "/recipes/6/followUp/3/action"
+   ],
+   "owned_pointers": [
+    "/recipes/6",
+    "/recipes/6/id",
+    "/recipes/6/name",
+    "/recipes/6/subtitle",
+    "/recipes/6/goal",
+    "/recipes/6/intensity",
+    "/recipes/6/procedures",
+    "/recipes/6/procedures/0",
+    "/recipes/6/procedures/1",
+    "/recipes/6/procedures/2",
+    "/recipes/6/expectedResults",
+    "/recipes/6/patientExplanation",
+    "/recipes/6/analogy",
+    "/recipes/6/repeatCycle",
+    "/recipes/6/followUp",
+    "/recipes/6/followUp/0",
+    "/recipes/6/followUp/0/week",
+    "/recipes/6/followUp/0/action",
+    "/recipes/6/followUp/1",
+    "/recipes/6/followUp/1/week",
+    "/recipes/6/followUp/1/action",
+    "/recipes/6/followUp/2",
+    "/recipes/6/followUp/2/week",
+    "/recipes/6/followUp/2/action",
+    "/recipes/6/followUp/3",
+    "/recipes/6/followUp/3/week",
+    "/recipes/6/followUp/3/action"
+   ],
+   "owned_leaf_pointers": [
+    "/recipes/6/id",
+    "/recipes/6/name",
+    "/recipes/6/subtitle",
+    "/recipes/6/goal",
+    "/recipes/6/intensity",
+    "/recipes/6/procedures/0",
+    "/recipes/6/procedures/1",
+    "/recipes/6/procedures/2",
+    "/recipes/6/expectedResults",
+    "/recipes/6/patientExplanation",
+    "/recipes/6/analogy",
+    "/recipes/6/repeatCycle",
+    "/recipes/6/followUp/0/week",
+    "/recipes/6/followUp/0/action",
+    "/recipes/6/followUp/1/week",
+    "/recipes/6/followUp/1/action",
+    "/recipes/6/followUp/2/week",
+    "/recipes/6/followUp/2/action",
+    "/recipes/6/followUp/3/week",
+    "/recipes/6/followUp/3/action"
+   ],
+   "file_span": [
+    3484,
+    4021
+   ],
+   "context_refs": [
+    "/description",
+    "/recipes"
+   ],
+   "context_note": "S0 의 루트·/recipes 컨테이너는 S0 가 소유하고, S1~S7 은 /description 을 문맥으로 함께 읽었다(소유 아님).",
+   "machine_extraction": "done",
+   "direct_read": "done",
+   "read_log": "/recipes/6 11필드·followUp 4원소 직접 읽음. 「재생」이 가리키는 시술 묶음을 subtitle·repeatCycle·followUp 에서 대조.",
+   "observation_ids": [
+    "S7-1",
+    "S7-2",
+    "S7-3",
+    "S7-4"
+   ],
+   "review_file": "review.md",
+   "review_anchor": "#s7"
+  }
+ ]
+}

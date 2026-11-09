@@ -1,0 +1,333 @@
+{
+ "note": "잠정 관찰. 원문 값과 분리. 확정 데이터가 아니다.",
+ "observations": [
+  {
+   "id": "O01",
+   "text": "최상위는 메타 3키(version·updated·description) 다음 분류 묶음 8키. 묶음 키는 영문 snake_case 이고 한국어 이름 칸이 없다. 묶음의 뜻은 키 이름과 category_id 코드로만 드러난다.",
+   "pointers": [
+    "/version",
+    "/updated",
+    "/description",
+    "/botulinum_toxin",
+    "/stem_cell"
+   ],
+   "status": "잠정",
+   "issue": "F1"
+  },
+  {
+   "id": "O02",
+   "text": "description 은 manufacturer 칸이 '유통사 아닌 제조사 기준' 이라고 파일 수준에서 선언한다. 각 항목의 manufacturer 값이 이 기준을 따르는지는 원문으로 확인할 수 없다.",
+   "pointers": [
+    "/description"
+   ],
+   "status": "원문부족",
+   "issue": "B5"
+  },
+  {
+   "id": "O03",
+   "text": "category_id 는 7개 묶음에서 string(M1·M2·M3·M4·M7·M5·M17), energy_device 에서만 array [M8,M9,M11] 이다. 파일 순서는 코드 숫자 순이 아니다(M7 다음 M8~ 다음 M5). 코드의 뜻은 이 파일에 없다.",
+   "pointers": [
+    "/botulinum_toxin/category_id",
+    "/thread_lift/category_id",
+    "/energy_device/category_id",
+    "/prp_exosome/category_id",
+    "/stem_cell/category_id"
+   ],
+   "status": "원문부족",
+   "issue": "B2"
+  },
+  {
+   "id": "O04",
+   "text": "energy_device 의 18개 항목 각각이 M8·M9·M11 중 어느 코드에 속하는지 항목 단위 표시가 없다.",
+   "pointers": [
+    "/energy_device/category_id",
+    "/energy_device/products"
+   ],
+   "status": "원문부족",
+   "issue": "B2"
+  },
+  {
+   "id": "O05",
+   "text": "파일에 나오지 않는 코드: M6·M10·M12~M16. 다른 원장에 있는지 이 조사는 열지 않았다.",
+   "pointers": [
+    "/botulinum_toxin/category_id",
+    "/stem_cell/category_id"
+   ],
+   "status": "후속",
+   "issue": "F1"
+  },
+  {
+   "id": "O06",
+   "text": "mfds 는 boolean. 키 이름 외에 뜻(무엇의 허가·신고 여부인지)을 설명하는 원문이 없다. energy_device 18항목은 mfds 키 자체가 없다 — '키 없음' 과 false 는 다른 상태로 보존한다.",
+   "pointers": [
+    "/botulinum_toxin/products/0/mfds",
+    "/skin_booster/products/3/mfds",
+    "/energy_device/products/0"
+   ],
+   "status": "원문부족",
+   "issue": "B1"
+  },
+  {
+   "id": "O07",
+   "text": "스킨보톡스 항목: note 가 '보톡스 희석 피내주사법 (별도 제품 아님)' 이고 manufacturer·country 가 '-', mfds false. products 배열 안에 있으나 스스로 제품이 아니라고 서술한다. 항목의 종류(제품/기법)는 후속에서 정한다.",
+   "pointers": [
+    "/skin_booster/products/3/name",
+    "/skin_booster/products/3/note",
+    "/skin_booster/products/3/manufacturer",
+    "/skin_booster/products/3/country",
+    "/skin_booster/products/3/mfds"
+   ],
+   "status": "잠정",
+   "issue": "P1"
+  },
+  {
+   "id": "O08",
+   "text": "'-' 자리표시 2건(스킨보톡스 manufacturer·country). '해당 없음' 인지 '미상' 인지 원문에 없다.",
+   "pointers": [
+    "/skin_booster/products/3/manufacturer",
+    "/skin_booster/products/3/country"
+   ],
+   "status": "원문부족",
+   "issue": "B3"
+  },
+  {
+   "id": "O09",
+   "text": "벨피엔 note '2026 하반기 출시 예정, PN+HA 복합' — 예정 상태. 파일 updated 는 2026-07-26. 현재 출시 여부·상태 갱신 시점은 원문에 없다. 다른 항목은 ingredient 칸에 성분을 두는데 벨피엔은 note 안에 'PN+HA 복합' 을 둔다(ingredient 키 없음).",
+   "pointers": [
+    "/skin_booster/products/4/note",
+    "/skin_booster/products/4/mfds",
+    "/updated",
+    "/skin_booster/products/4"
+   ],
+   "status": "원문부족",
+   "issue": "B4"
+  },
+  {
+   "id": "O10",
+   "text": "레티보 note '휴젤 보툴렉스의 수출용 브랜드명(미국·중국·유럽 등)' 은 같은 묶음의 보툴렉스(manufacturer 휴젤)를 가리키는 말로 읽힌다. 두 항목은 별도 항목으로 있고 mfds 는 둘 다 true. 관계는 확정하지 않는다.",
+   "pointers": [
+    "/botulinum_toxin/products/10/note",
+    "/botulinum_toxin/products/3/name",
+    "/botulinum_toxin/products/10/mfds",
+    "/botulinum_toxin/products/3/mfds"
+   ],
+   "status": "후속",
+   "issue": "F2"
+  },
+  {
+   "id": "O11",
+   "text": "뉴럭스 manufacturer '뉴메코(Newmeco, 메디톡스 계열)' — 괄호 안에 로마자명과 계열 표현이 함께 있다. '메디톡스' 는 메디톡신 항목의 manufacturer 값과 같은 문자열이다.",
+   "pointers": [
+    "/botulinum_toxin/products/9/manufacturer",
+    "/botulinum_toxin/products/5/manufacturer"
+   ],
+   "status": "후속",
+   "issue": "F2"
+  },
+  {
+   "id": "O12",
+   "text": "스킨보톡스 note '보톡스 희석' 의 '보톡스' 는 /botulinum_toxin/products/0/name 과 같은 문자열이다.",
+   "pointers": [
+    "/skin_booster/products/3/note",
+    "/botulinum_toxin/products/0/name"
+   ],
+   "status": "후속",
+   "issue": "F2"
+  },
+  {
+   "id": "O13",
+   "text": "같은 제조사로 보이는 값의 표기 변형: '클래시스'(2회) vs '클래시스(Classys)'(1회), '바임(VAIM/바임글로벌)'(2회). 괄호·'/' 의 역할이 원문에 정의되어 있지 않다. README 의 '/'·'+' 규칙은 시술 이름 작성 규칙이다.",
+   "pointers": [
+    "/energy_device/products/2/manufacturer",
+    "/energy_device/products/3/manufacturer",
+    "/energy_device/products/4/manufacturer",
+    "/biostimulator/products/3/manufacturer"
+   ],
+   "status": "후속",
+   "issue": "F3"
+  },
+  {
+   "id": "O14",
+   "text": "manufacturer '앨러간/애브비' 2회 — '/' 가 대안·병기·인수 관계 중 무엇인지 원문에 없다.",
+   "pointers": [
+    "/botulinum_toxin/products/0/manufacturer",
+    "/filler_ha/products/0/manufacturer"
+   ],
+   "status": "원문부족",
+   "issue": "B6"
+  },
+  {
+   "id": "O15",
+   "text": "같은 manufacturer 문자열이 여러 항목에 나온다(값 그대로 셈): 멀츠 4항목·4묶음, 휴젤 4항목·2묶음(레티보 note 본문에도 1회), 사이노슈어 3·1묶음, 파마리서치 3·1묶음, 앨러간/애브비 2·2묶음, 갈더마 2·2묶음, 휴메딕스 2·2묶음, 싱클레어 2·2묶음, 한스바이오메드 2·2묶음, 리젠바이오텍 2·2묶음, 바임(VAIM/바임글로벌) 2·1묶음, 솔타메디컬 2·1묶음, 클래시스 2·1묶음(+ '클래시스(Classys)' 1), 제이시스메디칼 2·1묶음. 문자열 일치일 뿐 동일 개체로 확정하지 않는다.",
+   "pointers": [
+    "/botulinum_toxin/products/2/manufacturer",
+    "/filler_ha/products/3/manufacturer",
+    "/biostimulator/products/2/manufacturer",
+    "/energy_device/products/0/manufacturer"
+   ],
+   "status": "후속",
+   "issue": "F3"
+  },
+  {
+   "id": "O16",
+   "text": "country 가 같은 manufacturer 문자열에 대해 항목마다 다르다: 멀츠 DE(제오민·벨로테로·래디어스) vs US(울쎄라), 갈더마 SE(레스틸렌) vs FR(스컬트라). country 가 제품·제조사·생산지 중 무엇의 국가인지 원문에 없다. 외부 확인은 하지 않았다.",
+   "pointers": [
+    "/botulinum_toxin/products/2/country",
+    "/energy_device/products/0/country",
+    "/filler_ha/products/1/country",
+    "/biostimulator/products/0/country"
+   ],
+   "status": "원문부족",
+   "issue": "B7"
+  },
+  {
+   "id": "O17",
+   "text": "name 과 name_en 이 음역·번역으로 바로 대응하지 않는 항목: 제니스/AGNES, EXOSOME SKIN/ExoSCRT, ASCEplus/ASCE+, LDM/LDM-MED, 미라클/Miracle Thread, 시크릿/Secret RF, 리쥬란아이/Rejuran i, 에스에프/SF Injection, 클라리티2/Clarity II. 어느 쪽이 맞는지 원문만으로 정할 수 없다.",
+   "pointers": [
+    "/energy_device/products/10/name",
+    "/energy_device/products/10/name_en",
+    "/prp_exosome/products/4/name",
+    "/prp_exosome/products/4/name_en",
+    "/prp_exosome/products/3/name",
+    "/energy_device/products/17/name",
+    "/thread_lift/products/4/name_en",
+    "/energy_device/products/9/name_en",
+    "/skin_booster/products/2/name_en",
+    "/stem_cell/products/1/name_en",
+    "/energy_device/products/13/name_en"
+   ],
+   "status": "후속",
+   "issue": "F4"
+  },
+  {
+   "id": "O18",
+   "text": "name 칸이 한글이 아닌 항목: ASCEplus, EXOSOME SKIN, LDM.",
+   "pointers": [
+    "/prp_exosome/products/3/name",
+    "/prp_exosome/products/4/name",
+    "/energy_device/products/17/name"
+   ],
+   "status": "잠정",
+   "issue": "F4"
+  },
+  {
+   "id": "O19",
+   "text": "type 키는 묶음마다 담는 말의 종류가 다르다: energy_device 는 방식·매질(HIFU·RF·니들RF·피코레이저·Nd:YAG+알렉산드라이트·초음파 등), prp_exosome 은 형태(PRP키트·엑소좀), stem_cell 은 구성물(성장인자·줄기세포배양액). 같은 키 이름이 같은 정보 종류라는 근거는 없다.",
+   "pointers": [
+    "/energy_device/products/0/type",
+    "/energy_device/products/13/type",
+    "/prp_exosome/products/0/type",
+    "/prp_exosome/products/3/type",
+    "/stem_cell/products/0/type"
+   ],
+   "status": "잠정",
+   "issue": "P2"
+  },
+  {
+   "id": "O20",
+   "text": "성분·재질은 묶음에 따라 다른 키에 있다: biostimulator·skin_booster 는 ingredient, thread_lift 는 material. 값 안의 '+'(PDLLA+HA·PN+HA·PDO+PCL)와 '/'(PN/PDRN)의 뜻(혼합·대안·병기)은 원문에 없다.",
+   "pointers": [
+    "/biostimulator/products/3/ingredient",
+    "/skin_booster/products/0/ingredient",
+    "/skin_booster/products/1/ingredient",
+    "/thread_lift/products/1/material"
+   ],
+   "status": "후속",
+   "issue": "F5"
+  },
+  {
+   "id": "O21",
+   "text": "이름 끝 '+' 는 연산자로 볼 피연산자가 없다: '리쥬란 HB+'·'Rejuran HB+'·'ASCE+'. ASCEplus 는 '+' 를 'plus' 로 적은 것으로 보이나 확정하지 않는다.",
+   "pointers": [
+    "/skin_booster/products/1/name",
+    "/skin_booster/products/1/name_en",
+    "/prp_exosome/products/3/name_en",
+    "/prp_exosome/products/3/name"
+   ],
+   "status": "잠정",
+   "issue": "F4"
+  },
+  {
+   "id": "O22",
+   "text": "이름 계열로 보이는 항목군: 리쥬란 힐러·리쥬란 HB+·리쥬란아이, 쥬베룩·쥬베룩볼륨, 채움·더채움, 보톡스·스킨보톡스. 항목 사이의 제품군·변형 관계는 원문에 표시되어 있지 않다.",
+   "pointers": [
+    "/skin_booster/products/0/name",
+    "/skin_booster/products/1/name",
+    "/skin_booster/products/2/name",
+    "/biostimulator/products/3/name",
+    "/biostimulator/products/4/name",
+    "/filler_ha/products/5/name",
+    "/filler_ha/products/6/name"
+   ],
+   "status": "후속",
+   "issue": "F6"
+  },
+  {
+   "id": "O23",
+   "text": "ASCEplus·EXOSOME SKIN 두 항목은 note·legal_warning·regulatory_status 세 값이 글자 단위로 같다. 이 세 키는 파일에서 이 두 항목에만 있다(note 는 다른 항목에도 있음). 법령·식약처 관련 서술은 원장의 서술이며 사실 확인하지 않았다.",
+   "pointers": [
+    "/prp_exosome/products/3/note",
+    "/prp_exosome/products/4/note",
+    "/prp_exosome/products/3/legal_warning",
+    "/prp_exosome/products/4/legal_warning",
+    "/prp_exosome/products/3/regulatory_status",
+    "/prp_exosome/products/4/regulatory_status"
+   ],
+   "status": "후속",
+   "issue": "F7"
+  },
+  {
+   "id": "O24",
+   "text": "ASCEplus·EXOSOME SKIN 두 항목은 note·legal_warning·regulatory_status 세 값이 글자 단위로 같다. legal_warning·regulatory_status 키는 파일 전체에서 이 두 항목에만 있다(note 는 5항목). 법령·식약처 관련 서술은 원장의 서술이며 사실 확인하지 않았다.",
+   "pointers": [
+    "/prp_exosome/products/3/legal_warning"
+   ],
+   "status": "후속",
+   "issue": "F7"
+  },
+  {
+   "id": "O25",
+   "text": "note '화장품 허가. 주사/주입 사용 금지' 와 regulatory_status '화장품 허가만 받은 제품 — 식약처의 주사·주입 용도 허가 없음' 은 같은 항목 안에서 '주사/주입'(슬래시)·'주사·주입'(가운뎃점) 으로 다르게 나열한다.",
+   "pointers": [
+    "/prp_exosome/products/3/note",
+    "/prp_exosome/products/3/regulatory_status"
+   ],
+   "status": "잠정",
+   "issue": "F7"
+  },
+  {
+   "id": "O26",
+   "text": "stem_cell 묶음 항목의 type 은 '성장인자'·'줄기세포배양액' 이다. 묶음 키 'stem_cell' 과 type 값이 같은 정보 종류인지 원문에 없다. 두 항목 모두 mfds false 이고 note 가 없다.",
+   "pointers": [
+    "/stem_cell",
+    "/stem_cell/products/0/type",
+    "/stem_cell/products/1/type",
+    "/stem_cell/products/0/mfds"
+   ],
+   "status": "잠정",
+   "issue": "P2"
+  },
+  {
+   "id": "O27",
+   "text": "항목 59개의 키 구성은 묶음마다 다르다(§2 컬럼 구성 표의 '선택 필드'·'키 구성' 행). 모든 항목에 공통인 키는 name·name_en·manufacturer·country 4개다. mfds 41·type 25·ingredient 9·note 5·material 5·legal_warning 2·regulatory_status 2.",
+   "pointers": [
+    "/botulinum_toxin/products/0",
+    "/energy_device/products/0",
+    "/prp_exosome/products/3"
+   ],
+   "status": "잠정",
+   "issue": ""
+  },
+  {
+   "id": "O28",
+   "text": "인모드 항목은 name 과 manufacturer 가 같은 문자열 '인모드' 이다(name_en 'InMode'). 제품명·제조사명이 같은 것인지 원문 서술은 없다.",
+   "pointers": [
+    "/energy_device/products/6/name",
+    "/energy_device/products/6/manufacturer",
+    "/energy_device/products/6/name_en"
+   ],
+   "status": "잠정",
+   "issue": "F3"
+  }
+ ]
+}

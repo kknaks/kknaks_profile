@@ -1,0 +1,28 @@
+{"segment":"S00","reading_state":"read_direct","last_read_pointer":"/accuracy_summary/patient_translations_coverage/ja",
+"read_note":"루트 5키·accuracy_summary 전 값 직접 읽음. 집계 수치는 S01~S17 의 accuracy_score 17개로 재계산해 대조(validation.md).",
+"observations":[
+{"id":"S00-O1","status":"P","pointers":["/source_method"],"text":"원장 스스로 v1.0 의 후속 큐레이션이며 인용 신원·메타데이터는 NCBI ESummary 로 정규화, 검증 안 된 인용·인용 없는 주장은 제외했다고 적는다. 동시에 'Clinical claim support requires separate dermatologist review' — 진술의 임상적 지지는 승인되지 않은 상태라는 원문 자기 한정."},
+{"id":"S00-O2","status":"P","pointers":["/accuracy_summary/scored_by"],"text":"점수는 'Legacy content-quality scores retained for surviving statements; not a clinical claim approval' — 남은 진술의 옛 품질 점수일 뿐 임상 승인 아님(원문 부정 표현)."},
+{"id":"S00-O3","status":"P","pointers":["/accuracy_summary/rubric"],"text":"rubric 은 점수 구간 5개를 '구간=설명' 쉼표 나열로 담은 한 문자열(영어 consensus 혼용). 구간 경계(95-100, 85-94 …)는 범위 표현."},
+{"id":"S00-O4","status":"P","pointers":["/accuracy_summary/overall_average","/accuracy_summary/n_scored","/accuracy_summary/by_field_average","/accuracy_summary/by_category_average"],"text":"accuracy_score 를 가진 진술은 17개(S01~S17 집계)이며 overall 95.0·by_field·by_category 평균이 모두 그 17개로 재현된다(validation.md 재계산). by_category_average 에는 점수 진술이 있는 M1·M2·M5·M12·M15·M16·M17 만 있다."},
+{"id":"S00-O5","status":"P","pointers":["/accuracy_summary/patient_ko_coverage","/accuracy_summary/patient_translations_coverage"],"text":"'119/119' 는 진술 수 119 와 일치하며 각 진술에 patient_ko/en/zh/ja 가 모두 있다. 단 coverage 는 값 존재만 뜻하고 번역 충실도는 아니다 — 언어 간 수식·가능성 차이가 다수 관찰됨(각 구획 I 항목)."},
+{"id":"S00-O6","status":"P","pointers":["/categories"],"text":"categories 는 M1~M17 17개 키(객체). 각 카테고리는 name·moa·adverse_effects·effects 4키. M6·M10·M11·M13·M14 는 세 배열이 모두 빈 배열."}
+],
+"expressions":[
+{"id":"S00-X1","pointer":"/source_method","text":"Curated successor of v1.0","facets":["provenance","version_ref"]},
+{"id":"S00-X2","pointer":"/source_method","text":"Citation identity and metadata normalized from NCBI ESummary","facets":["provenance"]},
+{"id":"S00-X3","pointer":"/source_method","text":"unverified citations and claims without verified citations excluded","facets":["negation","condition","provenance"]},
+{"id":"S00-X4","pointer":"/source_method","text":"Clinical claim support requires separate dermatologist review.","facets":["evidence_status","condition"]},
+{"id":"S00-X5","pointer":"/accuracy_summary/scored_by","text":"Legacy content-quality scores retained for surviving statements","facets":["provenance"]},
+{"id":"S00-X6","pointer":"/accuracy_summary/scored_by","text":"not a clinical claim approval","facets":["negation","evidence_status"]},
+{"id":"S00-X7","pointer":"/accuracy_summary/rubric","text":"95-100=교과서 consensus","facets":["range","score_band"]},
+{"id":"S00-X8","pointer":"/accuracy_summary/rubric","text":"85-94=주류 표준","facets":["range","score_band"]},
+{"id":"S00-X9","pointer":"/accuracy_summary/rubric","text":"70-84=뉘앙스 보정","facets":["range","score_band"]},
+{"id":"S00-X10","pointer":"/accuracy_summary/rubric","text":"50-69=근거 약함","facets":["range","score_band","degree"]},
+{"id":"S00-X11","pointer":"/accuracy_summary/rubric","text":"0-49=부정확","facets":["range","score_band","negation"]},
+{"id":"S00-X12","pointer":"/accuracy_summary/patient_ko_coverage","text":"119/119","facets":["ratio"]}
+],
+"issues":[
+{"id":"S00-K1","class":"K","pointers":["/source_method","/accuracy_summary/scored_by"],"text":"영어 텍스트는 Kiwi 적용 제외(K-ENG). 직접 읽기·수동 표현으로만 수식·부정을 수집했다."},
+{"id":"S00-F1","class":"F","pointers":["/accuracy_summary/rubric"],"text":"점수 구간 설명('뉘앙스 보정' 등)이 진술의 어떤 성질을 평가하는지, 점수가 없는 102개 진술의 상태가 무엇인지는 원문만으로 정해지지 않는다 — 후속 의미 조사."}
+]}

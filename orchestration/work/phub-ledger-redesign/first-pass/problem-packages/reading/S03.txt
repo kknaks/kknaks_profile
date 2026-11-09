@@ -1,0 +1,65 @@
+/problems/2  problem_id='P3' problem='쳐짐' complaints[5]
+
+## c0 /problems/2/complaints/0  cc='볼쳐짐/불독살' | cc_detail='기기리프팅/실리프팅' | cc_group='얼굴 쳐짐'
+  P0 name='리프팅기기' category='M9' role='피부 타이트닝' products=['울쎄라', '써마지FLX', '슈링크유니버스']
+  P1 name='실리프팅' category='M7' role='물리적 거상' products=['민트리프트', '테스리프트']
+  P2 name='스킨부스터' category='M4' role='피부 재생' products=['리쥬란 힐러', '쥬베룩']
+  B0 name='리프팅기기 + 스킨부스터' combo=['리프팅기기', '스킨부스터']
+     reason='타이트닝 + 재생'
+     evidence='기기 후 2주 뒤 스킨부스터'
+  B1 name='실리프팅 + 리프팅기기' combo=['실리프팅', '리프팅기기']
+     reason='물리적 거상 + 열 타이트닝'
+     evidence='시술 2개월 간격 권장'
+  A0 '바이오스티뮬레이터로 장기 관리'
+
+## c1 /problems/2/complaints/1  cc='턱선무너짐' | cc_detail='실리프팅/기기리프팅' | cc_group='얼굴 쳐짐'
+  P0 name='리프팅기기' category='M9' role='피부 타이트닝' products=['울쎄라', '써마지FLX', '슈링크유니버스']
+  P1 name='실리프팅' category='M7' role='물리적 거상' products=['민트리프트', '테스리프트']
+  P2 name='스킨부스터' category='M4' role='피부 재생' products=['리쥬란 힐러', '쥬베룩']
+  B0 name='리프팅기기 + 스킨부스터' combo=['리프팅기기', '스킨부스터']
+     reason='타이트닝 + 재생'
+     evidence='기기 후 2주 뒤 스킨부스터'
+  B1 name='실리프팅 + 리프팅기기' combo=['실리프팅', '리프팅기기']
+     reason='물리적 거상 + 열 타이트닝'
+     evidence='시술 2개월 간격 권장'
+  A0 '바이오스티뮬레이터로 장기 관리'
+
+## c2 /problems/2/complaints/2  cc='이중턱' | cc_detail='윤곽주사/크라이오/기기리프팅' | cc_group='얼굴 쳐짐'
+  P0 name='리프팅기기' category='M9' role='피부 타이트닝' products=['울쎄라', '써마지FLX', '슈링크유니버스']
+  P1 name='실리프팅' category='M7' role='물리적 거상' products=['민트리프트', '테스리프트']
+  P2 name='스킨부스터' category='M4' role='피부 재생' products=['리쥬란 힐러', '쥬베룩']
+  P3 name='크라이오' category='M14' role='지방 감소' products=[]
+  B0 name='리프팅기기 + 스킨부스터' combo=['리프팅기기', '스킨부스터']
+     reason='타이트닝 + 재생'
+     evidence='기기 후 2주 뒤 스킨부스터'
+  B1 name='실리프팅 + 리프팅기기' combo=['실리프팅', '리프팅기기']
+     reason='물리적 거상 + 열 타이트닝'
+     evidence='시술 2개월 간격 권장'
+  B2 name='크라이오 + 리프팅기기' combo=['크라이오', '리프팅기기']
+     reason='지방감소 + 타이트닝'
+     evidence='이중턱 원인(지방) 해결'
+  A0 '바이오스티뮬레이터로 장기 관리'
+
+## c3 /problems/2/complaints/3  cc='눈꺼풀쳐짐' | cc_detail='기기리프팅/실리프팅' | cc_group='눈가 쳐짐'
+  P0 name='리프팅기기' category='M9' role='피부 타이트닝' products=['울쎄라', '써마지FLX', '슈링크유니버스']
+  P1 name='실리프팅' category='M7' role='물리적 거상' products=['민트리프트', '테스리프트']
+  P2 name='스킨부스터' category='M4' role='피부 재생' products=['리쥬란 힐러', '쥬베룩']
+  B0 name='리프팅기기 + 스킨부스터' combo=['리프팅기기', '스킨부스터']
+     reason='타이트닝 + 재생'
+     evidence='기기 후 2주 뒤 스킨부스터'
+  B1 name='실리프팅 + 리프팅기기' combo=['실리프팅', '리프팅기기']
+     reason='물리적 거상 + 열 타이트닝'
+     evidence='시술 2개월 간격 권장'
+  A0 '바이오스티뮬레이터로 장기 관리'
+
+## c4 /problems/2/complaints/4  cc='팔뚝/복부/허벅지' | cc_detail='바디리프팅 기기' | cc_group='바디 쳐짐'
+  P0 name='리프팅기기' category='M9' role='피부 타이트닝' products=['울쎄라', '써마지FLX', '슈링크유니버스']
+  P1 name='실리프팅' category='M7' role='물리적 거상' products=['민트리프트', '테스리프트']
+  P2 name='스킨부스터' category='M4' role='피부 재생' products=['리쥬란 힐러', '쥬베룩']
+  B0 name='리프팅기기 + 스킨부스터' combo=['리프팅기기', '스킨부스터']
+     reason='타이트닝 + 재생'
+     evidence='기기 후 2주 뒤 스킨부스터'
+  B1 name='실리프팅 + 리프팅기기' combo=['실리프팅', '리프팅기기']
+     reason='물리적 거상 + 열 타이트닝'
+     evidence='시술 2개월 간격 권장'
+  A0 '바이오스티뮬레이터로 장기 관리'

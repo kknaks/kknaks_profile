@@ -1,0 +1,958 @@
+{
+ "note": "Kiwi 원시 출력의 알려진 오분절·오태깅 규칙. build.py 가 각 규칙을 원문 전체에서 찾아 '해당 구간과 겹치는 원시 토큰 = raw_tokens' 인 출현만 morphology.json segmentation_review 에 출현별로 기록한다. 원시 토큰은 교정하지 않는다(표시됨·교정 아님). 규칙은 직접 읽기에서 의심 품사(NNP 일부·NR·MM·NP·MAJ·MAG 일부·VA/VV 일부·NNB 일부·인접 SL)와 시간·부정·가능성·용어 낱말을 출현별로 대조해 정했다. 이 밖 토큰의 정확성은 보장하지 않는다.",
+ "rules": [
+  {
+   "id": "S01",
+   "phrase": "즉시",
+   "raw_tokens": [
+    [
+     "즉",
+     "MAG"
+    ],
+    [
+     "시",
+     "NNG"
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "시간어 '즉시'가 부사 '즉'(즉, 곧)+명사 '시'로 분리",
+   "impact": "onset 등 발현 시점 '즉시'가 토큰에서 사라지고 '시'가 조건 표지 '…시'처럼 보일 수 있다"
+  },
+  {
+   "id": "S02",
+   "phrase": "내",
+   "raw_tokens": [
+    [
+     "나",
+     "NP"
+    ],
+    [
+     "의",
+     "JKG"
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "기간 한정 '…일 내'의 '내'가 대명사 '나'+속격조사 '의'로 분석",
+   "impact": "소실·회복의 기간 상한(이내) 정보가 토큰에서 사라진다"
+  },
+  {
+   "id": "S03",
+   "phrase": "안내",
+   "raw_tokens": [
+    [
+     "안",
+     "MAG"
+    ],
+    [
+     "내",
+     "VV"
+    ],
+    [
+     "어",
+     "EF"
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "명사 '안내'가 부정 부사 '안'+동사 '내다'로 분석",
+   "impact": "거짓 부정 표지가 생긴다(원문에 부정 없음)"
+  },
+  {
+   "id": "S04",
+   "phrase": "이전",
+   "raw_tokens": [
+    [
+     "이",
+     "NNP"
+    ],
+    [
+     "전",
+     "MM"
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'이전 시술 시'의 시간어 '이전'이 '이'+관형사 '전'으로 분리",
+   "impact": "과거 시점 표지가 약해지고 '전(全)'으로 오독될 수 있다"
+  },
+  {
+   "id": "S05",
+   "phrase": "수일",
+   "raw_tokens": [
+    [
+     "수",
+     "NNB"
+    ],
+    [
+     "일",
+     "NNG"
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'수일'(며칠)의 '수'가 의존명사(가능성 구문 '…ㄹ 수 있다'의 수)로 분석",
+   "impact": "거짓 가능성 표지 위험. 기간어 '수일' 소실"
+  },
+  {
+   "id": "S06",
+   "phrase": "수일",
+   "raw_tokens": [
+    [
+     "수",
+     "NNB"
+    ],
+    [
+     "일",
+     "NNB"
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'수일'의 '수'가 의존명사로 분석",
+   "impact": "S05 와 같음"
+  },
+  {
+   "id": "S07",
+   "phrase": "수화",
+   "raw_tokens": [
+    [
+     "수",
+     "NNB"
+    ],
+    [
+     "화",
+     "XSN"
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "용어 '수화'(재구성 시 수분 공급)가 의존명사 '수'+접미사 '화'로 분석",
+   "impact": "용어 소실 + 거짓 가능성 표지 위험"
+  },
+  {
+   "id": "S08",
+   "phrase": "지속",
+   "raw_tokens": [
+    [
+     "지",
+     "NP"
+    ],
+    [
+     "속",
+     "NNG"
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'지속 부종'의 '지속'이 대명사+명사로 분석",
+   "impact": "지속성(시간) 수식이 사라진다"
+  },
+  {
+   "id": "S09",
+   "phrase": "보고",
+   "raw_tokens": [
+    [
+     "보",
+     "VV"
+    ],
+    [
+     "고",
+     "EC"
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "명사 '보고'(report)가 동사 '보다'+연결어미로 분석",
+   "impact": "근거 수준 표지(…보고됨/보고 있음)가 토큰에서 사라진다"
+  },
+  {
+   "id": "S10",
+   "phrase": "근막",
+   "raw_tokens": [
+    [
+     "근",
+     "MM"
+    ],
+    [
+     "막",
+     "NNG"
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'근막'이 관형사 '근'(近, 거의)+'막'으로 분석",
+   "impact": "용어 소실 + 거짓 근사 표지"
+  },
+  {
+   "id": "S11",
+   "phrase": "세럼",
+   "raw_tokens": [
+    [
+     "세",
+     "MM"
+    ],
+    [
+     "럼",
+     "NNG"
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'세럼'이 수 관형사 '세'(셋)+'럼'으로 분석",
+   "impact": "용어 소실 + 거짓 수량(3)"
+  },
+  {
+   "id": "S12",
+   "phrase": "전처치",
+   "raw_tokens": [
+    [
+     "전",
+     "MM"
+    ],
+    [
+     "처치",
+     "NNG"
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'전처치'의 접두 '전(前)'이 관형사 MM 으로 분석",
+   "impact": "선행 처치(시간 선후) 의미가 '전(全)'과 구분되지 않는다"
+  },
+  {
+   "id": "S13",
+   "phrase": "전실신",
+   "raw_tokens": [
+    [
+     "전",
+     "MM"
+    ],
+    [
+     "실신",
+     "NNG"
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'전실신'(실신 전 단계)의 '전'이 관형사로 분석",
+   "impact": "'모든 실신'처럼 오독 가능. 사건 단계 구분 소실"
+  },
+  {
+   "id": "S14",
+   "phrase": "전부하",
+   "raw_tokens": [
+    [
+     "전",
+     "MM"
+    ],
+    [
+     "부하",
+     "NNG"
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'전부하'(preload)의 '전'이 관형사로 분석",
+   "impact": "'모든 부하'처럼 오독 가능. 용어 소실"
+  },
+  {
+   "id": "S15",
+   "phrase": "전",
+   "raw_tokens": [
+    [
+     "저",
+     "NP"
+    ],
+    [
+     "ᆫ",
+     "JX"
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'있어 전 시술 공통'의 범위 관형사 '전(全)'이 대명사 '저'+보조사로 분석",
+   "impact": "적용 범위 '전 시술'의 '전'이 사라진다"
+  },
+  {
+   "id": "S16",
+   "phrase": "이나",
+   "raw_tokens": [
+    [
+     "이",
+     "NP"
+    ],
+    [
+     "나",
+     "JC"
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'빈도↑이나'의 양보 연결 '이나'(…이지만)가 대명사+접속조사로 분석",
+   "impact": "앞뒤 절의 대조(빈도 높음 ↔ 부위 전반 발생) 연결이 사라진다"
+  },
+  {
+   "id": "S17",
+   "phrase": "개구",
+   "raw_tokens": [
+    [
+     "개",
+     "NNB"
+    ],
+    [
+     "구",
+     "NR"
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'개구'(입 벌림)가 의존명사 '개'+수사 '구'(9)로 분석",
+   "impact": "용어 소실 + 거짓 수량(9)"
+  },
+  {
+   "id": "S18",
+   "phrase": "멍",
+   "raw_tokens": [
+    [
+     "멍",
+     "MAG"
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "사건명 '멍'이 부사로 분석",
+   "impact": "부작용 사건 명사가 품사 기반 수집에서 빠질 수 있다"
+  },
+  {
+   "id": "S19",
+   "phrase": "이상이",
+   "raw_tokens": [
+    [
+     "이상",
+     "NNG"
+    ],
+    [
+     "이",
+     "MM"
+    ]
+   ],
+   "kind": "tag-error",
+   "issue": "'50mL 이상이'의 주격조사 '이'가 관형사로 분석",
+   "impact": "범위 표지 '이상'은 유지. 영향 낮음"
+  },
+  {
+   "id": "T01",
+   "phrase": "홍반",
+   "raw_tokens": [
+    [
+     "홍",
+     "NNP"
+    ],
+    [
+     "반",
+     "NNG"
+    ]
+   ],
+   "kind": "term-split",
+   "issue": "'홍반'이 '홍'+'반'으로 분리",
+   "impact": "사건명 소실"
+  },
+  {
+   "id": "T02",
+   "phrase": "홍반",
+   "raw_tokens": [
+    [
+     "홍",
+     "NNG"
+    ],
+    [
+     "반",
+     "NNG"
+    ]
+   ],
+   "kind": "term-split",
+   "issue": "'홍반'이 '홍'+'반'으로 분리",
+   "impact": "사건명 소실"
+  },
+  {
+   "id": "T03",
+   "phrase": "절개배농",
+   "raw_tokens": [
+    [
+     "절개배",
+     "NNP"
+    ],
+    [
+     "농",
+     "NNG"
+    ]
+   ],
+   "kind": "term-split",
+   "issue": "'절개배농'(절개+배농)이 '절개배'+'농'으로 잘못된 경계",
+   "impact": "처치명 소실"
+  },
+  {
+   "id": "T04",
+   "phrase": "아목시실린",
+   "raw_tokens": [
+    [
+     "아목시실",
+     "NNP"
+    ],
+    [
+     "린",
+     "NNG"
+    ]
+   ],
+   "kind": "term-split",
+   "issue": "약물명 분리",
+   "impact": "약물명 소실"
+  },
+  {
+   "id": "T05",
+   "phrase": "니들",
+   "raw_tokens": [
+    [
+     "니",
+     "NP"
+    ],
+    [
+     "들",
+     "XSN"
+    ]
+   ],
+   "kind": "term-split",
+   "issue": "'니들'(needle)이 대명사 '니'+복수 접미사 '들'로",
+   "impact": "도구명 소실 + 거짓 복수 표지"
+  },
+  {
+   "id": "T06",
+   "phrase": "필러",
+   "raw_tokens": [
+    [
+     "필",
+     "NNP"
+    ],
+    [
+     "러",
+     "EC"
+    ]
+   ],
+   "kind": "term-split",
+   "issue": "'필러'가 '필'+어미 '러'로",
+   "impact": "시술·제품군명 소실"
+  },
+  {
+   "id": "T07",
+   "phrase": "필러",
+   "raw_tokens": [
+    [
+     "필",
+     "NNG"
+    ],
+    [
+     "러",
+     "EC"
+    ]
+   ],
+   "kind": "term-split",
+   "issue": "'필러'가 '필'+어미 '러'로",
+   "impact": "시술·제품군명 소실"
+  },
+  {
+   "id": "T08",
+   "phrase": "용해",
+   "raw_tokens": [
+    [
+     "용하",
+     "VA"
+    ],
+    [
+     "어",
+     "EC"
+    ]
+   ],
+   "kind": "term-split",
+   "issue": "'용해'가 형용사 '용하다'+어미로",
+   "impact": "처치·성질어 '용해' 소실"
+  },
+  {
+   "id": "T09",
+   "phrase": "용해",
+   "raw_tokens": [
+    [
+     "용하",
+     "VA"
+    ],
+    [
+     "어",
+     "EF"
+    ]
+   ],
+   "kind": "term-split",
+   "issue": "'용해'가 형용사 '용하다'+종결어미로",
+   "impact": "T08 과 같음"
+  },
+  {
+   "id": "T10",
+   "phrase": "거치",
+   "raw_tokens": [
+    [
+     "거",
+     "NNB"
+    ],
+    [
+     "치",
+     "XSN"
+    ]
+   ],
+   "kind": "term-split",
+   "issue": "시술 용어 '거치'(실·카테터를 걸어 둠)가 '거'+'치'로",
+   "impact": "용어 소실"
+  },
+  {
+   "id": "T11",
+   "phrase": "거치",
+   "raw_tokens": [
+    [
+     "거",
+     "NNB"
+    ],
+    [
+     "하",
+     "XSV"
+    ],
+    [
+     "지",
+     "EF"
+    ]
+   ],
+   "kind": "term-split",
+   "issue": "'거치'가 '거'+'하'+'지'로",
+   "impact": "용어 소실"
+  },
+  {
+   "id": "T12",
+   "phrase": "거치",
+   "raw_tokens": [
+    [
+     "거치",
+     "VV"
+    ]
+   ],
+   "kind": "tag-error",
+   "issue": "명사 '거치'가 동사 '거치다'(지나다)로",
+   "impact": "형태는 같으나 뜻이 다른 동사로 기록"
+  },
+  {
+   "id": "T13",
+   "phrase": "박피",
+   "raw_tokens": [
+    [
+     "박",
+     "NNP"
+    ],
+    [
+     "피",
+     "NNG"
+    ]
+   ],
+   "kind": "term-split",
+   "issue": "'박피'가 '박'+'피'로",
+   "impact": "시술 성질어 소실"
+  },
+  {
+   "id": "T14",
+   "phrase": "박피",
+   "raw_tokens": [
+    [
+     "박",
+     "NNG"
+    ],
+    [
+     "피",
+     "NNG"
+    ]
+   ],
+   "kind": "term-split",
+   "issue": "'박피'가 '박'+'피'로",
+   "impact": "시술 성질어 소실"
+  },
+  {
+   "id": "T15",
+   "phrase": "동상",
+   "raw_tokens": [
+    [
+     "동",
+     "NNP"
+    ],
+    [
+     "상",
+     "NNG"
+    ]
+   ],
+   "kind": "term-split",
+   "issue": "'동상'(frostbite)이 '동'+'상'으로",
+   "impact": "사건명 소실"
+  },
+  {
+   "id": "T16",
+   "phrase": "관자",
+   "raw_tokens": [
+    [
+     "관",
+     "NNG"
+    ],
+    [
+     "자",
+     "NNG"
+    ]
+   ],
+   "kind": "term-split",
+   "issue": "부위어 '관자'가 '관'+'자'로",
+   "impact": "부위명 소실"
+  },
+  {
+   "id": "T17",
+   "phrase": "저작",
+   "raw_tokens": [
+    [
+     "저",
+     "MM"
+    ],
+    [
+     "작",
+     "NNG"
+    ]
+   ],
+   "kind": "term-split",
+   "issue": "'저작'(씹기)이 관형사 '저'+'작'으로",
+   "impact": "행위명 소실"
+  },
+  {
+   "id": "T18",
+   "phrase": "말초",
+   "raw_tokens": [
+    [
+     "말",
+     "NNB"
+    ],
+    [
+     "초",
+     "NNB"
+    ]
+   ],
+   "kind": "term-split",
+   "issue": "'말초'가 '말'+'초'로",
+   "impact": "'말초 IV'의 혈관 범위 수식 소실"
+  },
+  {
+   "id": "T19",
+   "phrase": "골막",
+   "raw_tokens": [
+    [
+     "골",
+     "NNG"
+    ],
+    [
+     "막",
+     "MAG"
+    ]
+   ],
+   "kind": "term-split",
+   "issue": "'골막'이 '골'+부사 '막'으로",
+   "impact": "부위·조직명 소실, 거짓 부사(막=방금)"
+  },
+  {
+   "id": "T20",
+   "phrase": "온찜질",
+   "raw_tokens": [
+    [
+     "온",
+     "MM"
+    ],
+    [
+     "찜",
+     "NNG"
+    ],
+    [
+     "질",
+     "XSN"
+    ]
+   ],
+   "kind": "term-split",
+   "issue": "'온찜질'이 관형사 '온'(全)+'찜'+'질'로",
+   "impact": "처치명 소실, '온'이 '전체'로 오독 가능. 같은 원장 /categories/9/complications/8/management 에선 한 토큰"
+  },
+  {
+   "id": "T21",
+   "phrase": "뉴비쥬",
+   "raw_tokens": [
+    [
+     "뉴",
+     "NNG"
+    ],
+    [
+     "비쥬",
+     "NNP"
+    ]
+   ],
+   "kind": "term-split",
+   "issue": "제품명 분리",
+   "impact": "제품명 소실"
+  },
+  {
+   "id": "T22",
+   "phrase": "외용제",
+   "raw_tokens": [
+    [
+     "외",
+     "NNG"
+    ],
+    [
+     "용",
+     "XSN"
+    ],
+    [
+     "저",
+     "NP"
+    ],
+    [
+     "의",
+     "JKG"
+    ]
+   ],
+   "kind": "term-split",
+   "issue": "'외용제'의 '제'가 '저+의'로",
+   "impact": "제형명 소실 + 거짓 대명사"
+  },
+  {
+   "id": "T23",
+   "phrase": "수포",
+   "raw_tokens": [
+    [
+     "수",
+     "NNG"
+    ],
+    [
+     "포",
+     "NNG"
+    ]
+   ],
+   "kind": "term-split",
+   "issue": "'수포'(물집)가 '수'+'포'로",
+   "impact": "사건명 소실"
+  },
+  {
+   "id": "T24",
+   "phrase": "발적",
+   "raw_tokens": [
+    [
+     "발",
+     "NNG"
+    ],
+    [
+     "적",
+     "XSN"
+    ]
+   ],
+   "kind": "term-split",
+   "issue": "'발적'이 '발'+'적'으로",
+   "impact": "사건명 소실, '발'이 신체부위(발)로 오독 가능"
+  },
+  {
+   "id": "T25",
+   "phrase": "수화",
+   "raw_tokens": [
+    [
+     "수",
+     "NNG"
+    ],
+    [
+     "화",
+     "XSN"
+    ]
+   ],
+   "kind": "term-split",
+   "issue": "'수화'가 '수'+'화'로",
+   "impact": "용어 소실"
+  },
+  {
+   "id": "T26",
+   "phrase": "측두의",
+   "raw_tokens": [
+    [
+     "측두의",
+     "NNP"
+    ]
+   ],
+   "kind": "term-split",
+   "issue": "'측두'+속격조사 '의'가 한 고유명사로",
+   "impact": "부위명에 조사가 붙어 표준형과 어긋남"
+  },
+  {
+   "id": "T27",
+   "phrase": "티오황산나트륨",
+   "raw_tokens": [
+    [
+     "티오황산 나트륨",
+     "NNP"
+    ]
+   ],
+   "kind": "term-split",
+   "issue": "form 에 원문에 없는 공백이 들어감(form≠surface)",
+   "impact": "form 을 원문으로 쓰면 원문 변형. surface 로 대조해야 한다"
+  },
+  {
+   "id": "T28",
+   "phrase": "taxonomy.json",
+   "raw_tokens": [
+    [
+     "tax",
+     "SL"
+    ],
+    [
+     "onomy.json",
+     "SL"
+    ]
+   ],
+   "kind": "term-split",
+   "issue": "파일명 참조가 'tax'+'onomy.json'으로",
+   "impact": "다른 원장 참조 표현이 깨진다(참조는 expressions 의 cross_reference·manual 에 원문 구간으로 보존)"
+  },
+  {
+   "id": "T29",
+   "phrase": "Streptococcus.",
+   "raw_tokens": [
+    [
+     "Streptococ",
+     "SL"
+    ],
+    [
+     "cus.",
+     "SL"
+    ]
+   ],
+   "kind": "term-split",
+   "issue": "균 이름 분리",
+   "impact": "균 이름 소실"
+  },
+  {
+   "id": "T30",
+   "phrase": "debridement.",
+   "raw_tokens": [
+    [
+     "debridem",
+     "SL"
+    ],
+    [
+     "ent.",
+     "SL"
+    ]
+   ],
+   "kind": "term-split",
+   "issue": "처치명 분리",
+   "impact": "처치명 소실"
+  },
+  {
+   "id": "T31",
+   "phrase": "NSAIDs.",
+   "raw_tokens": [
+    [
+     "N",
+     "SL"
+    ],
+    [
+     "SAIDs.",
+     "SL"
+    ]
+   ],
+   "kind": "term-split",
+   "issue": "약물군 약어 분리",
+   "impact": "약물군명 소실"
+  },
+  {
+   "id": "G01",
+   "phrase": "깊이",
+   "raw_tokens": [
+    [
+     "깊이",
+     "MAG"
+    ]
+   ],
+   "kind": "tag-error",
+   "issue": "명사 '깊이'(depth)가 부사로",
+   "impact": "주입·에너지 깊이 파라미터가 품사 기반 수집에서 빠질 수 있다"
+  },
+  {
+   "id": "G02",
+   "phrase": "진정",
+   "raw_tokens": [
+    [
+     "진정",
+     "MAG"
+    ]
+   ],
+   "kind": "tag-error",
+   "issue": "명사 '진정'(soothing)이 부사(정말)로",
+   "impact": "관리 행위명이 강조 부사처럼 보인다"
+  },
+  {
+   "id": "G03",
+   "phrase": "고려",
+   "raw_tokens": [
+    [
+     "고려",
+     "NNP"
+    ]
+   ],
+   "kind": "tag-error",
+   "issue": "권고 표지 '고려'가 고유명사로",
+   "impact": "'…고려'(권고 강도·가능성) 수집에서 품사 기반이면 빠진다"
+  },
+  {
+   "id": "G04",
+   "phrase": "흔함",
+   "raw_tokens": [
+    [
+     "흔함",
+     "NNP"
+    ]
+   ],
+   "kind": "tag-error",
+   "issue": "빈도 서술 '흔함'이 고유명사로",
+   "impact": "빈도 표지가 품사 기반 수집에서 빠진다"
+  },
+  {
+   "id": "G05",
+   "phrase": "경미",
+   "raw_tokens": [
+    [
+     "경미",
+     "NNP"
+    ]
+   ],
+   "kind": "tag-error",
+   "issue": "정도 표지 '경미'가 고유명사로",
+   "impact": "정도 표지 품사 소실(형태는 유지)"
+  },
+  {
+   "id": "G06",
+   "phrase": "이차",
+   "raw_tokens": [
+    [
+     "이",
+     "NR"
+    ],
+    [
+     "차",
+     "NNB"
+    ]
+   ],
+   "kind": "tag-error",
+   "issue": "'이차'(secondary)가 수사 '이'+'차'로",
+   "impact": "'2차'로 읽힘. 뜻 차이는 작다"
+  },
+  {
+   "id": "G07",
+   "phrase": "수주",
+   "raw_tokens": [
+    [
+     "수",
+     "NNG"
+    ],
+    [
+     "주",
+     "NNG"
+    ]
+   ],
+   "kind": "tag-error",
+   "issue": "'수주'(몇 주)의 '수'가 일반명사로",
+   "impact": "기간어가 둘로 쪼개짐. 영향 낮음"
+  }
+ ]
+}

@@ -1,0 +1,37 @@
+{"section":"S045","state":"read","last_pointer":"/modality/14/name",
+"observations":[
+ {"status":"P","pointers":["/modality/14/subcategories/13/items/3/detail","/modality/14/subcategories/13/items/6/detail","/modality/14/subcategories/13/items/7/detail"],"note":"시그니처프로그램 나머지 항목도 다른 모달리티 시술·제품 조합: '보톡스+필러+토닝+물광'(M1+M2+M8+M4), '리쥬란+쥬베룩+엑소좀 순차'(M4 제품+M3 제품+M4-3), 'RF+HIFU 복합리프팅'(M9). 리쥬하이 '리쥬란+히알루론산 조합'. '순차' 는 순서 정보."},
+ {"status":"P","pointers":["/modality/14/subcategories/14","/modality/14/subcategories/14/items","/modality/14/subcategories/15/items"],"note":"M15-도포('약물 도포 관리'), M15-팩('진정팩 관리') — items 빈 배열 []. id 에 한글('M15-도포','M15-팩')이 들어간 하위분류는 이 둘뿐."},
+ {"status":"P","pointers":["/modality/14/products"],"note":"M15 products 빈 배열."},
+ {"status":"P","pointers":["/modality/14/extracted/mechanism"],"note":"M15 모달리티 mechanism 이 필링 깊이 3단계(얕은/중간/깊은)를 성분·층위와 함께 정의 — 항목들의 '표재성/중간/심층' 표현과 대응할 원문 근거(대응 확정은 후속)."},
+ {"status":"P","pointers":["/modality/14/extracted/contraindications/absolute/0","/modality/14/extracted/contraindications/relative/3"],"note":"절대금기 '피부 유형 IV~VI형 … 깊은 필링은' — 조건(깊은 필링) 붙은 절대금기. 상대금기 '과도한 기대를 하는 경우' (심리적)."},
+ {"status":"P","pointers":["/modality/14/extracted/aftercare/4"],"note":"aftercare 마지막 원소가 '클렌징-pH 밸런싱-앰플관리-마스크-보습-메이크업 순서' — '-' 로 순서 있는 단계 나열."}
+],
+"expressions":[
+ {"pointer":"/modality/14/subcategories/13/items/3/detail","text":"보톡스+필러+토닝+물광","kinds":["기호","참조","시술·제품명"],"note":""},
+ {"pointer":"/modality/14/subcategories/13/items/3/extracted/safety/common/3","text":"비대칭 가능성","kinds":["가능성·빈도"],"note":""},
+ {"pointer":"/modality/14/subcategories/13/items/3/extracted/aftercare/0","text":"4시간 눕지 않기","kinds":["수량·단위·시간","부정"],"note":"M1 상용구 등에서는 자세 제한 근거 부족 진술"},
+ {"pointer":"/modality/14/subcategories/13/items/4/detail","text":"필링+물광+LED","kinds":["기호","참조"],"note":""},
+ {"pointer":"/modality/14/subcategories/13/items/5/detail","text":"리쥬란+히알루론산 조합","kinds":["기호","참조","시술·제품명"],"note":""},
+ {"pointer":"/modality/14/subcategories/13/items/6/detail","text":"리쥬란+쥬베룩+엑소좀 순차","kinds":["기호","참조","수량·단위·시간"],"note":"순서"},
+ {"pointer":"/modality/14/subcategories/13/items/6/extracted/aftercare/3","text":"항염제 복용 가능","kinds":["가능성·빈도"],"note":""},
+ {"pointer":"/modality/14/subcategories/13/items/7/extracted/safety/common/2","text":"일시적 신경 마비","kinds":["수량·단위·시간"],"note":"common 칸"},
+ {"pointer":"/modality/14/subcategories/13/items/7/extracted/aftercare/1","text":"마사지 금지 1개월","kinds":["부정","수량·단위·시간"],"note":""},
+ {"pointer":"/modality/14/extracted/mechanism","text":"얕은필링(AHA, 저농도 TCA)은 각질층~표피층만 벗겨내고, 중간필링(고농도 TCA)은 유두진피까지, 깊은필링(페놀)은 망상진피 하부까지","kinds":["부위","범위","비교"],"note":"깊이 3단계"},
+ {"pointer":"/modality/14/extracted/indications/primary/0","text":"칙칙한 피부 (거무칙칙함) 개선 -- 가장 흔한 적응증","kinds":["가능성·빈도"],"note":""},
+ {"pointer":"/modality/14/extracted/contraindications/absolute/0","text":"피부 유형 IV~VI형 (어두운 피부)에서 깊은 필링은 색소장애 위험","kinds":["조건","범위","가능성·빈도"],"note":""},
+ {"pointer":"/modality/14/extracted/contraindications/relative/0","text":"비타민유도체(이소트레티노인) 복용 중인 경우 박피 후 반흔 우려","kinds":["조건","가능성·빈도","참조"],"note":""},
+ {"pointer":"/modality/14/extracted/contraindications/relative/5","text":"흡연 및 경구 피임약, 갱년기 에스트로겐 복용 중","kinds":["조건"],"note":""},
+ {"pointer":"/modality/14/extracted/safety/serious/0","text":"반흔 (중층박피 후 비후성 반흔 발생빈도 1% 이내)","kinds":["조건","범위","수량·단위·시간"],"note":""},
+ {"pointer":"/modality/14/extracted/safety/serious/2","text":"색소탈실 (피부가 하얗게 변하는 것, 특히 페놀 필링)","kinds":["조건"],"note":""},
+ {"pointer":"/modality/14/extracted/onset_duration/onset","text":"얕은 필링은 시술 직후부터, 중간/깊은 필링은 1~2주 후 회복되면서 효과 시작","kinds":["조건","수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/14/extracted/aftercare/0","text":"SPF 30 이상 자외선차단제를 2~3시간 간격으로 재도포","kinds":["범위","수량·단위·시간"],"note":""},
+ {"pointer":"/modality/14/extracted/aftercare/1","text":"최소 시술 후 3개월간은 강박적으로 자외선 차단제 사용","kinds":["범위","수량·단위·시간","수식"],"note":""},
+ {"pointer":"/modality/14/extracted/aftercare/3","text":"필링 후 통증이 3~4일 지속되면 바이러스 감염 의심하고 대응","kinds":["조건","수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/14/extracted/aftercare/4","text":"클렌징-pH 밸런싱-앰플관리-마스크-보습-메이크업 순서","kinds":["기호","수량·단위·시간"],"note":"'-' 순서"}
+],
+"seg_errors":[],
+"issues":[
+ {"id":"S045-B01","status":"B","pointers":["/modality/14/subcategories/14/items","/modality/14/subcategories/15/items"],"note":"M15-도포·M15-팩 하위분류 items 빈 배열.","impact":"해당 관리 항목 정보 없음"},
+ {"id":"S045-F01","status":"F","pointers":["/modality/14/subcategories/13"],"note":"시그니처프로그램 조합 항목이 다른 모달리티 시술·제품명 문자열로 구성(연결 키 없음).","impact":"조합 관계 설계 과제(S030-F01·S044-F02)"}
+]}

@@ -1,0 +1,19 @@
+# S00 상위 메타데이터 — 직접 읽기 2026-11-09
+# 형식: 키 | 구절(원문 부분문자열, 같은 값에 여러 번이면 끝에 #N) | 탐색 관점(쉼표) | 메모
+# 키는 구획 기준 상대 경로. S00 은 루트 기준.
+/version | 1.1 | version_id | 원장 판 번호. 형태소 제외 대상(ID/코드)
+/updated | 2026-07-11 | date | 갱신일. 시술 후 시간 아님
+/consensus_method | Perplexity(리서치) + Gemini(분석) + Claude(교과서 종합) 3-AI 컨센서스 | provenance | 작성 방법 전문. 도구명 3개와 괄호 속 역할
+/consensus_method | Claude(교과서 종합) | provenance | 「교과서 종합」— 어떤 교과서인지 원문 없음
+/consensus_method | 3-AI 컨센서스 | provenance,quantity | 세 도구 합의라는 서술. 합의 방식·불일치 처리 원문 없음
+/reaction_levels/normal | 정상 반응 -- 예상 범위, 조치 불필요 | level_def,negation | 「불필요」 = 조치 부정
+/reaction_levels/normal | 예상 범위 | range | 무엇의 범위인지(증상 정도·기간) 원문 없음
+/reaction_levels/abnormal | 이상 반응 -- 모니터링 필요, 경과 관찰 | level_def,recommendation | 필요 = 권고 강도 단서
+/reaction_levels/caution | 주의 반응 -- 24-48시간 내 클리닉 연락 | level_def,action_time,time_range | 24-48시간 = 연락 시한. 기준 시점(증상 인지 후인지) 원문 없음
+/reaction_levels/emergency | 응급 반응 -- 즉시 응급실/클리닉 | level_def,action_time,alt | 「즉시」 시한, 「응급실/클리닉」 대안
+O | 상위 키 5개 중 reaction_levels 의 키 4개(normal·abnormal·caution·emergency)가 timelines[*].phases[*] 의 배열 키 이름과 같다. 이름 일치는 구조적 사실이고, 각 배열이 이 정의를 따른다는 연결은 잠정 관찰이다(P).
+O | reaction_levels 값은 모두 「<등급명> -- <설명>, <조치>」 형태이고 구분자는 ASCII 「--」 와 「, 」 이다. caution·emergency 는 조치에 시한(24-48시간 내·즉시)을 담는다.
+O | consensus_method 는 원장 전체에 대한 작성 방법 하나뿐이고, 항목별 출처·근거는 원장 어디에도 없다.
+Q | B | /consensus_method | 항목별 근거·문헌·합의 불일치 기록이 원문에 없다. 개별 시간·빈도 표현의 출처 확인이 제한된다.
+Q | B | /reaction_levels/caution | 「24-48시간 내」의 기준 시점(증상 발견 시·시술 시)이 원문에 없다.
+Q | P | /reaction_levels | 등급 키와 phases 배열 키의 이름 일치를 정의 참조로 볼지는 후속 의미 조사(F-LEVEL)에서 정한다.

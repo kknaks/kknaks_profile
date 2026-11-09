@@ -1,0 +1,36 @@
+{
+ "segment": "S03", "direct_read": true, "read_note": "M3 바이오스티뮬레이터/콜라겐부스터 7항목 전부 직접 읽음.",
+ "last_pointer": "/categories/2/items/6/high",
+ "observations": [
+  ["/categories/2/name", "카테고리 이름 '바이오스티뮬레이터/콜라겐부스터' — '/' 로 두 명칭을 이음. 대안(둘 중 하나)인지 같은 계열의 별칭 병기인지 원문만으로 확정 불가.", "P"],
+  ["/categories/2/items/0/name", "항목 name 이 부위가 아닌 제품명 후보(스컬트라·엘란쎄·쥬베룩 볼륨·래디에스)+괄호 용량/회차. 부위 정보가 없음 — 필러 카테고리(부위 중심)와 이름 구성 방식이 다름.", "P"],
+  ["/categories/2/items/1/name", "'스컬트라 (3회 패키지)' unit '3회' — 3회 묶음 가격으로 읽히나, 회당 용량(바이알 수)·회차 간격은 원문에 없음. items/0 '1바이알' 과 단위 종류가 다름(바이알 vs 회).", "B"],
+  ["/categories/2/items/2/name", "'엘란쎄 S'·'엘란쎄 M' — 이름 뒤 S·M 이 제품 변형 표시 후보. 뜻(지속기간 등)은 원문에 없음.", "B"],
+  ["/categories/2/items/4/name", "'쥬베룩 볼륨' 은 2cc·4cc 두 항목. 4cc 가격(low 350000)이 2cc 의 2배(400000)보다 낮음 — 원문 값 그대로 보존, 해석하지 않음.", "P"],
+  ["/categories/2/items/6/unit", "'1.5cc' 소수 용량.", "P"],
+  ["/categories/2/items/0/low", "7항목 모두 low < mid < high.", "P"]
+ ],
+ "expressions": [
+  ["/categories/2/name", "바이오스티뮬레이터/콜라겐부스터", ["분류명", "'/' 연결"], "README '/'=대안 규칙이 카테고리 이름에도 적용되는지 미확정."],
+  ["/categories/2/items/0/name", "스컬트라", ["제품명 후보"], ""],
+  ["/categories/2/items/0/name", "(1바이알)", ["수량·단위"], "용기 단위."],
+  ["/categories/2/items/1/name", "스컬트라", ["제품명 후보"], ""],
+  ["/categories/2/items/1/name", "(3회 패키지)", ["회차", "판매 구성"], "'패키지' — 묶음 판매."],
+  ["/categories/2/items/2/name", "엘란쎄 S", ["제품명 후보", "변형 표시"], ""],
+  ["/categories/2/items/2/name", "(1cc)", ["수량·단위"], ""],
+  ["/categories/2/items/3/name", "엘란쎄 M", ["제품명 후보", "변형 표시"], ""],
+  ["/categories/2/items/3/name", "(1cc)", ["수량·단위"], ""],
+  ["/categories/2/items/4/name", "쥬베룩 볼륨", ["제품명 후보"], "'볼륨' 이 제품명 일부인지 목적인지 미확정(M4 '쥬베룩 파인'·'쥬베룩 울트라' 와 대조 필요 — 같은 원장 안)."],
+  ["/categories/2/items/4/name", "(2cc)", ["수량·단위"], ""],
+  ["/categories/2/items/5/name", "쥬베룩 볼륨", ["제품명 후보"], ""],
+  ["/categories/2/items/5/name", "(4cc)", ["수량·단위"], ""],
+  ["/categories/2/items/6/name", "래디에스", ["제품명 후보"], ""],
+  ["/categories/2/items/6/name", "(1.5cc)", ["수량·단위"], "소수."]
+ ],
+ "issues": [
+  ["B-S03-1", "B", ["/categories/2/items/1/name", "/categories/2/items/1/unit"], "'3회 패키지' 의 회당 용량·간격·총 바이알 수가 없다. 회당 가격 비교가 제한된다."],
+  ["B-S03-2", "B", ["/categories/2/items/2/name", "/categories/2/items/3/name"], "'S'·'M' 변형의 뜻이 원문에 없다."],
+  ["P-S03-1", "P", ["/categories/2/name"], "카테고리 이름의 '/' 의미(대안·별칭·병기) 잠정. 같은 형식이 M5·M9·M10 에도 있음."],
+  ["F-S03-1", "F", ["/categories/2/items/4/name", "/categories/3/items/2/name"], "'쥬베룩 볼륨'(M3)과 '쥬베룩 파인'·'쥬베룩 울트라'(M4)가 서로 다른 카테고리에 있다 — 제품 계열·변형 관계는 후속 연결 과제."]
+ ]
+}

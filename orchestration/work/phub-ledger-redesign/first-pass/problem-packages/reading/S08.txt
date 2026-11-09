@@ -1,0 +1,41 @@
+/problems/7  problem_id='P8' problem='홍조/혈관' complaints[5]
+
+## c0 /problems/7/complaints/0  cc='V빔' | cc_detail='595nm PDL' | cc_group='안면홍조'
+  P0 name='혈관레이저' category='M8' role='혈관 수축/파괴' products=['엑셀V']
+  P1 name='스킨부스터' category='M4' role='피부 장벽 강화' products=['리쥬란 힐러', '리쥬란 HB+']
+  B0 name='혈관레이저 + 스킨부스터' combo=['혈관레이저', '스킨부스터']
+     reason='혈관 수축 + 장벽 강화'
+     evidence='레이저 후 재생 촉진'
+  A0 'LDM 진정 관리 병행'
+
+## c1 /problems/7/complaints/1  cc='IPL홍조' | cc_detail='광범위' | cc_group='안면홍조'
+  P0 name='혈관레이저' category='M8' role='혈관 수축/파괴' products=['엑셀V']
+  P1 name='스킨부스터' category='M4' role='피부 장벽 강화' products=['리쥬란 힐러', '리쥬란 HB+']
+  B0 name='혈관레이저 + 스킨부스터' combo=['혈관레이저', '스킨부스터']
+     reason='혈관 수축 + 장벽 강화'
+     evidence='레이저 후 재생 촉진'
+  A0 'LDM 진정 관리 병행'
+
+## c2 /problems/7/complaints/2  cc='리쥬란+LDM' | cc_detail='장벽강화+재생' | cc_group='안면홍조'
+  P0 name='혈관레이저' category='M8' role='혈관 수축/파괴' products=['엑셀V']
+  P1 name='스킨부스터' category='M4' role='피부 장벽 강화' products=['리쥬란 힐러', '리쥬란 HB+']
+  B0 name='혈관레이저 + 스킨부스터' combo=['혈관레이저', '스킨부스터']
+     reason='혈관 수축 + 장벽 강화'
+     evidence='레이저 후 재생 촉진'
+  A0 'LDM 진정 관리 병행'
+
+## c3 /problems/7/complaints/3  cc='엑셀V' | cc_detail='532+1064nm' | cc_group='모세혈관확장'
+  P0 name='혈관레이저' category='M8' role='혈관 수축/파괴' products=['엑셀V']
+  P1 name='스킨부스터' category='M4' role='피부 장벽 강화' products=['리쥬란 힐러', '리쥬란 HB+']
+  B0 name='혈관레이저 + 스킨부스터' combo=['혈관레이저', '스킨부스터']
+     reason='혈관 수축 + 장벽 강화'
+     evidence='레이저 후 재생 촉진'
+  A0 'LDM 진정 관리 병행'
+
+## c4 /problems/7/complaints/4  cc='혈관레이저' | cc_detail='선택적 혈관파괴' | cc_group='모세혈관확장'
+  P0 name='혈관레이저' category='M8' role='혈관 수축/파괴' products=['엑셀V']
+  P1 name='스킨부스터' category='M4' role='피부 장벽 강화' products=['리쥬란 힐러', '리쥬란 HB+']
+  B0 name='혈관레이저 + 스킨부스터' combo=['혈관레이저', '스킨부스터']
+     reason='혈관 수축 + 장벽 강화'
+     evidence='레이저 후 재생 촉진'
+  A0 'LDM 진정 관리 병행'

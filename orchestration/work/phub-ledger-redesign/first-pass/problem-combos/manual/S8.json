@@ -1,0 +1,251 @@
+{
+ "segment_id": "S8",
+ "read_pointers_prefix": "/combos/7",
+ "observations": [
+  {
+   "pointer": "/combos/7/packages/0/products/0",
+   "status": "P",
+   "note": "\"나보타(교근) + 이브아르(턱)\" — 괄호가 시술 부위를 표기. 이 원장 안 괄호는 브랜드(엘러간)·변형(희석)·부위(교근/턱)·별칭(골든루틴) 등 여러 쓰임."
+  },
+  {
+   "pointer": "/combos/7/packages/1/name",
+   "status": "P",
+   "note": "name \"리프팅(HIFU 또는 고주파)\" — 한국어 '또는' 대안. 같은 원장에 'or'·'/'·'또는' 세 가지 대안 표기."
+  },
+  {
+   "pointer": "/combos/7/packages/1/procedures",
+   "status": "I",
+   "note": "procedures는 M9만(M9,M1,M2). name·products·riskBenefit는 HIFU 또는 RF(올리지오) 대안을 말함. RF 대안에 해당하는 코드가 배열에 없음 — 원문 내 대응 불일치 후보(M9 코드 범위가 RF를 포함하는지 이 원장으로 판단 불가)."
+  },
+  {
+   "pointer": "/combos/7/packages/1/riskBenefit",
+   "status": "P",
+   "note": "\"드물게 피하지방 위축(볼륨 손실)\" — 빈도 부사 '드물게'. 백분율로 바꾸지 않음. \"볼륨 목표와 상충 가능성을 상담해야 함\" — 상담 지시."
+  },
+  {
+   "pointer": "/combos/7/packages/1/salesPitch",
+   "status": "P",
+   "note": "salesPitch 문체가 다른 항목의 구어체(-요)와 달리 설명체(-입니다)이고 '(수술 대체가 아닌 보완적 프로그램)' 고지 포함."
+  },
+  {
+   "pointer": "/combos/7/packages/0/clinicalRationale",
+   "status": "P",
+   "note": "name '턱필러'와 rationale '턱끝 필러', products '(턱)' — 부위 표면형 차이(턱/턱끝). 동일 부위 여부 확정 안 함."
+  },
+  {
+   "pointer": "/combos/7",
+   "status": "P",
+   "note": "P11 묶음은 packages 2개(entry·recommended)."
+  }
+ ],
+ "expressions": [
+  {
+   "pointer": "/combos/7/packages/0/name",
+   "text": "사각턱 보톡스 + 턱필러",
+   "kind": "부위+시술 결합",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/7/packages/0/products/0",
+   "text": "나보타(교근) + 이브아르(턱)",
+   "kind": "제품+부위",
+   "note": "괄호=부위"
+  },
+  {
+   "pointer": "/combos/7/packages/0/priceRange",
+   "text": "20~40만",
+   "kind": "수량·범위",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/7/packages/0/expectedResult",
+   "text": "사각턱 축소 + 턱선 정리",
+   "kind": "부위·효과",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/7/packages/0/expectedResult",
+   "text": "V라인 효과",
+   "kind": "형태 표현",
+   "note": "영문+한국어"
+  },
+  {
+   "pointer": "/combos/7/packages/0/expectedResult",
+   "text": "2~4주 후 확연한 변화",
+   "kind": "시간·범위",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/7/packages/0/salesPitch",
+   "text": "사각턱 보톡스로 턱을 좁히고, 턱 필러로 라인을 잡으면 확 달라져요",
+   "kind": "부위·조건",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/7/packages/0/salesPitch",
+   "text": "20분이면 끝",
+   "kind": "시간",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/7/packages/0/upsellHook",
+   "text": "턱선을 더 확실하게 잡으시려면 실리프팅으로 올려주는 것도 있어요",
+   "kind": "조건·업셀",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/7/packages/0/clinicalRationale",
+   "text": "교근 보톡스(근육 위축 → 턱폭 감소)",
+   "kind": "부위·기전 인과",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/7/packages/0/clinicalRationale",
+   "text": "턱끝 필러(하안면 길이 증가 → V라인 비율 개선)",
+   "kind": "부위·기전 인과",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/7/packages/0/clinicalRationale",
+   "text": "비수술 윤곽의 기본 조합",
+   "kind": "평가",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/7/packages/0/riskBenefit",
+   "text": "교근 보톡스는 씹는 힘 일시 감소 가능 → 단단한 음식 주의 안내",
+   "kind": "부작용·시간·가능성·관리",
+   "note": "'일시'"
+  },
+  {
+   "pointer": "/combos/7/packages/0/riskBenefit",
+   "text": "턱필러는 혈관 폐색 주의",
+   "kind": "부작용",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/7/packages/1/name",
+   "text": "보톡스 + 필러 + 리프팅(HIFU 또는 고주파)",
+   "kind": "시술 결합+대안",
+   "note": "'또는'"
+  },
+  {
+   "pointer": "/combos/7/packages/1/products/0",
+   "text": "울쎄라(HIFU) 또는 올리지오(모노폴라 RF) + 보톡스 + 쥬비덤",
+   "kind": "제품 대안+결합",
+   "note": "괄호=계열"
+  },
+  {
+   "pointer": "/combos/7/packages/1/priceRange",
+   "text": "80~150만",
+   "kind": "수량·범위",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/7/packages/1/expectedResult",
+   "text": "윤곽 축소 + 리프팅 + 볼륨 재배치",
+   "kind": "효과 나열",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/7/packages/1/expectedResult",
+   "text": "얼굴형 자체가 달라지는 수준",
+   "kind": "정도",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/7/packages/1/salesPitch",
+   "text": "보톡스로 교근을 축소하며",
+   "kind": "부위·기전",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/7/packages/1/salesPitch",
+   "text": "수술 대체가 아닌 보완적 프로그램",
+   "kind": "부정·고지",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/7/packages/1/upsellHook",
+   "text": "바이오스티뮬레이터(스컬트라)를 추가하면 볼륨이 점점 차오르면서 더 자연스러워요",
+   "kind": "조건·시간·비교",
+   "note": "괄호=제품 예"
+  },
+  {
+   "pointer": "/combos/7/packages/1/clinicalRationale",
+   "text": "울쎄라(HIFU 심부 리프팅) 또는 올리지오(모노폴라 RF 진피 타이트닝)",
+   "kind": "대안·층",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/7/packages/1/clinicalRationale",
+   "text": "필러(볼륨 재배치·턱 윤곽)",
+   "kind": "시술-부위",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/7/packages/1/clinicalRationale",
+   "text": "목표와 작용 깊이에 맞춰 윤곽을 교정",
+   "kind": "조건",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/7/packages/1/riskBenefit",
+   "text": "선택한 에너지 시술(HIFU 또는 RF)→보톡스→필러 순서",
+   "kind": "순서·대안",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/7/packages/1/riskBenefit",
+   "text": "열 시술 후 주입으로 안전",
+   "kind": "순서·인과",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/7/packages/1/riskBenefit",
+   "text": "모노폴라 RF는 드물게 피하지방 위축(볼륨 손실)과 어두운 피부톤에서 PIH가 가능하므로",
+   "kind": "빈도·부작용·조건·가능성",
+   "note": "'드물게' 백분율 변환 금지"
+  },
+  {
+   "pointer": "/combos/7/packages/1/riskBenefit",
+   "text": "보수적 에너지·접촉냉각(contact cooling)이 필수",
+   "kind": "조건·관리",
+   "note": "한영 병기"
+  },
+  {
+   "pointer": "/combos/7/packages/1/riskBenefit",
+   "text": "볼륨 목표와 상충 가능성을 상담해야 함",
+   "kind": "가능성·상담 지시",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/7/packages/1/salesPitch",
+   "text": "울쎄라(HIFU) 또는 올리지오(모노폴라 RF)로 턱선을 타이트닝하고",
+   "kind": "제품 대안·부위",
+   "note": "",
+   "added_in": "읽기 검토"
+  },
+  {
+   "pointer": "/combos/7/packages/1/clinicalRationale",
+   "text": "보톡스(교근 축소)",
+   "kind": "시술-부위-기전",
+   "note": "",
+   "added_in": "읽기 검토"
+  }
+ ],
+ "issues": [
+  {
+   "id": "I-PC-15",
+   "status": "I",
+   "pointer": "/combos/7/packages/1/procedures",
+   "note": "RF(올리지오) 대안이 텍스트엔 있으나 procedures엔 M9만 — 코드 범위 미확인, 후속 연결(F)"
+  },
+  {
+   "id": "I-PC-16",
+   "status": "I",
+   "pointer": "/combos/*/packages/*/products/*",
+   "note": "대안 표기 'or'·'/'·'또는' 세 가지 혼용(원문 내 불일치)"
+  }
+ ]
+}

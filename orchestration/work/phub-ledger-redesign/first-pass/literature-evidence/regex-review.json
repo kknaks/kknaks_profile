@@ -1,0 +1,225 @@
+{
+ "note": "수동 표현에 포함되지 않은 정규식 후보 전부를 원문 문맥과 함께 읽고 판정. 오탐은 expressions.json 에서 status=K·regex_verdict=false_positive 로 표시(삭제하지 않음). 나머지 미포함 후보는 citation_marker(정규식 전수 수집이 정본)·mixed_hangul(I) 뿐.",
+ "verdicts": [
+  {
+   "pointer": "/categories/M1/adverse_effects/1/patient_en",
+   "span_in_value": [
+    46,
+    51
+   ],
+   "regex": "en_negation",
+   "text": "under",
+   "verdict": "false_positive",
+   "reason": "전치사 under(부위 표현 under the chin/skin) — 부정 아님"
+  },
+  {
+   "pointer": "/categories/M1/adverse_effects/3/patient_ko",
+   "span_in_value": [
+    30,
+    33
+   ],
+   "regex": "ko_negation",
+   "text": "분비를",
+   "verdict": "false_positive",
+   "reason": "분비(分泌)의 '불' 아님 — 정규식 오탐(부/분 아님, '비' 포함 어절)"
+  },
+  {
+   "pointer": "/categories/M1/effects/1/patient_en",
+   "span_in_value": [
+    71,
+    76
+   ],
+   "regex": "en_compare",
+   "text": "lower",
+   "verdict": "false_positive",
+   "reason": "lower face 의 해부 위치 — 비교 아님"
+  },
+  {
+   "pointer": "/categories/M2/effects/1/patient_ko",
+   "span_in_value": [
+    23,
+    25
+   ],
+   "regex": "ko_degree",
+   "text": "더해",
+   "verdict": "false_positive",
+   "reason": "더하다(add) — 정도 부사 아님"
+  },
+  {
+   "pointer": "/categories/M3/moa/1/statement",
+   "span_in_value": [
+    169,
+    171
+   ],
+   "regex": "number_unit",
+   "text": "6 ",
+   "verdict": "false_positive",
+   "reason": "CXCL6 유전자명 일부 — 수량 아님"
+  },
+  {
+   "pointer": "/categories/M3/moa/2/statement",
+   "span_in_value": [
+    99,
+    101
+   ],
+   "regex": "number_unit",
+   "text": "2 ",
+   "verdict": "false_positive",
+   "reason": "M2 polarization·CO2 의 화학식·명칭 일부 — 수량 아님"
+  },
+  {
+   "pointer": "/categories/M5/moa/1/patient_ko",
+   "span_in_value": [
+    6,
+    9
+   ],
+   "regex": "ko_negation",
+   "text": "불리는",
+   "verdict": "false_positive",
+   "reason": "불리다(be called) — 부정 접두 아님"
+  },
+  {
+   "pointer": "/categories/M7/moa/3/patient_en",
+   "span_in_value": [
+    39,
+    44
+   ],
+   "regex": "en_negation",
+   "text": "under",
+   "verdict": "false_positive",
+   "reason": "전치사 under(부위 표현 under the chin/skin) — 부정 아님"
+  },
+  {
+   "pointer": "/categories/M8/moa/4/statement",
+   "span_in_value": [
+    11,
+    13
+   ],
+   "regex": "number_unit",
+   "text": "2 ",
+   "verdict": "false_positive",
+   "reason": "M2 polarization·CO2 의 화학식·명칭 일부 — 수량 아님"
+  },
+  {
+   "pointer": "/categories/M8/moa/4/patient_ko",
+   "span_in_value": [
+    6,
+    8
+   ],
+   "regex": "number_unit",
+   "text": "2 ",
+   "verdict": "false_positive",
+   "reason": "M2 polarization·CO2 의 화학식·명칭 일부 — 수량 아님"
+  },
+  {
+   "pointer": "/categories/M8/moa/6/statement",
+   "span_in_value": [
+    11,
+    13
+   ],
+   "regex": "number_unit",
+   "text": "2 ",
+   "verdict": "false_positive",
+   "reason": "M2 polarization·CO2 의 화학식·명칭 일부 — 수량 아님"
+  },
+  {
+   "pointer": "/categories/M8/moa/6/patient_ko",
+   "span_in_value": [
+    6,
+    8
+   ],
+   "regex": "number_unit",
+   "text": "2 ",
+   "verdict": "false_positive",
+   "reason": "M2 polarization·CO2 의 화학식·명칭 일부 — 수량 아님"
+  },
+  {
+   "pointer": "/categories/M8/adverse_effects/0/statement",
+   "span_in_value": [
+    13,
+    15
+   ],
+   "regex": "number_unit",
+   "text": "2 ",
+   "verdict": "false_positive",
+   "reason": "M2 polarization·CO2 의 화학식·명칭 일부 — 수량 아님"
+  },
+  {
+   "pointer": "/categories/M8/adverse_effects/0/patient_ko",
+   "span_in_value": [
+    7,
+    9
+   ],
+   "regex": "number_unit",
+   "text": "2 ",
+   "verdict": "false_positive",
+   "reason": "M2 polarization·CO2 의 화학식·명칭 일부 — 수량 아님"
+  },
+  {
+   "pointer": "/categories/M8/adverse_effects/4/statement",
+   "span_in_value": [
+    13,
+    15
+   ],
+   "regex": "number_unit",
+   "text": "2 ",
+   "verdict": "false_positive",
+   "reason": "M2 polarization·CO2 의 화학식·명칭 일부 — 수량 아님"
+  },
+  {
+   "pointer": "/categories/M8/adverse_effects/4/patient_ko",
+   "span_in_value": [
+    5,
+    7
+   ],
+   "regex": "number_unit",
+   "text": "2 ",
+   "verdict": "false_positive",
+   "reason": "M2 polarization·CO2 의 화학식·명칭 일부 — 수량 아님"
+  },
+  {
+   "pointer": "/categories/M8/effects/1/statement",
+   "span_in_value": [
+    13,
+    15
+   ],
+   "regex": "number_unit",
+   "text": "2 ",
+   "verdict": "false_positive",
+   "reason": "M2 polarization·CO2 의 화학식·명칭 일부 — 수량 아님"
+  },
+  {
+   "pointer": "/categories/M8/effects/1/patient_ko",
+   "span_in_value": [
+    7,
+    9
+   ],
+   "regex": "number_unit",
+   "text": "2 ",
+   "verdict": "false_positive",
+   "reason": "M2 polarization·CO2 의 화학식·명칭 일부 — 수량 아님"
+  },
+  {
+   "pointer": "/categories/M8/effects/4/patient_ko",
+   "span_in_value": [
+    21,
+    23
+   ],
+   "regex": "number_unit",
+   "text": "2 ",
+   "verdict": "false_positive",
+   "reason": "M2 polarization·CO2 의 화학식·명칭 일부 — 수량 아님"
+  },
+  {
+   "pointer": "/categories/M15/moa/0/accuracy_note",
+   "span_in_value": [
+    0,
+    3
+   ],
+   "regex": "ko_negation",
+   "text": "비타민",
+   "verdict": "false_positive",
+   "reason": "비타민(vitamin) — 부정 접두 아님"
+  }
+ ]
+}

@@ -1,0 +1,317 @@
+{
+ "section": "S013",
+ "state": "read",
+ "last_pointer": "/modality/3/name",
+ "observations": [
+  {
+   "status": "I",
+   "pointers": [
+    "/modality/3/products/3/note",
+    "/modality/3/products/3/extracted/overview",
+    "/modality/3/products/3/extracted/mechanism"
+   ],
+   "note": "제품 스킨보톡스: note '보톡스 희석 피내주사법 (별도 제품 아님)' 인데 overview '아르기닌 함유 저분자 성장인자 복합체', mechanism '성장인자(EGF, FGF 등)와 아미노산 복합물' — 같은 레코드 안에서 대상이 다르다."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/3/products/3/manufacturer",
+    "/modality/3/products/3/country",
+    "/modality/3/products/3/mfds"
+   ],
+   "note": "스킨보톡스 manufacturer='-', country='-' (자리표시 문자), mfds=false. '-' 는 빈 값 대용으로 보이나 원문 그대로 문자열."
+  },
+  {
+   "status": "I",
+   "pointers": [
+    "/modality/3/products/4/note",
+    "/modality/3/products/4/extracted/overview",
+    "/modality/3/subcategories/3/items/2/detail",
+    "/modality/3/subcategories/3/items/2/extracted/overview"
+   ],
+   "note": "벨피엔: 제품 note 'PN+HA 복합' vs overview '펩타이드 기반'. 항목 '벨피엔 프로' detail '차세대 PN' vs overview '고농도 플라센타 추출물과 다중 성장인자'. 성분 서술이 네 칸에서 서로 다르다."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/3/products/4/note",
+    "/modality/3/products/4/mfds"
+   ],
+   "note": "벨피엔 note '2026 하반기 출시 예정' — 미출시 제품, mfds=false. 기준 시점 미기재."
+  },
+  {
+   "status": "I",
+   "pointers": [
+    "/modality/3/products/1/extracted/mechanism",
+    "/modality/3/products/1/ingredient",
+    "/modality/3/products/2/ingredient",
+    "/modality/3/products/2/extracted/overview"
+   ],
+   "note": "리쥬란 HB+ mechanism 'PDRN(폴리뉴클레오타이드)'(ingredient 는 PN+HA), 리쥬란아이 ingredient 'PN' 인데 overview '전용 PDRN 제품'. PN 과 PDRN 표기가 혼용된다."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/3/products/0/name",
+    "/modality/3/subcategories/0/items/0/name"
+   ],
+   "note": "제품 '리쥬란 힐러'(띄어씀)와 항목 '리쥬란힐러'(붙여씀), 제품 '리쥬란 HB+' 와 항목 '리쥬란HB+'. 띄어쓰기만 다른 이름 쌍."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/3/extracted/contraindications/absolute/1",
+    "/modality/3/extracted/contraindications/absolute/2",
+    "/modality/3/extracted/contraindications/relative/1"
+   ],
+   "note": "M4 모달리티 절대금기에 '당뇨병 환자', '신장질환 환자', 상대금기에 '생리 중인 경우 주의'. 다른 모달리티 금기 목록과 구성이 다르다(비교는 후속)."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/3/extracted/indications/extended/2",
+    "/modality/3/extracted/related_techniques/2"
+   ],
+   "note": "스킨부스터 모달리티 설명이 두피(메조페시아)·셀룰라이트·튼살까지 확장 적응증으로 포함."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/3/subcategories/3/items/4/detail"
+   ],
+   "note": "바이리즌 detail '휴젤 · 주사/도포/화장품 라인업' — 주사가 아닌 도포·화장품 라인까지 한 항목."
+  }
+ ],
+ "expressions": [
+  {
+   "pointer": "/modality/3/subcategories/3/items/1/detail",
+   "text": "5세대 엑소좀 · 줄기세포 배양액 기반",
+   "kinds": [
+    "주장",
+    "수량·단위·시간"
+   ],
+   "note": "세대 표기"
+  },
+  {
+   "pointer": "/modality/3/subcategories/3/items/2/extracted/safety/serious/2",
+   "text": "이상반응 시 즉시 의료진 상담",
+   "kinds": [
+    "조건"
+   ],
+   "note": "부작용 칸의 지시문"
+  },
+  {
+   "pointer": "/modality/3/subcategories/3/items/3/detail",
+   "text": "인체 유래 I형 콜라겐 직접 주입 · 2025 신규",
+   "kinds": [
+    "수량·단위·시간"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/3/subcategories/3/items/3/extracted/aftercare/0",
+   "text": "주입 부위 강한 압박 자제 (가볍게는 무방)",
+   "kinds": [
+    "부정",
+    "수식"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/3/subcategories/3/items/4/detail",
+   "text": "주사/도포/화장품 라인업",
+   "kinds": [
+    "기호"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/3/subcategories/3/items/5/extracted/aftercare/2",
+   "text": "비타민C 세럼 사용 권장",
+   "kinds": [
+    "시술·제품명"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/3/extracted/overview",
+   "text": "한국에서는 '물광주사'로 널리 알려져 있으며",
+   "kinds": [
+    "참조"
+   ],
+   "note": "통칭"
+  },
+  {
+   "pointer": "/modality/3/extracted/mechanism",
+   "text": "기존 필러와 같은 연조직 확대 기능보다는",
+   "kinds": [
+    "비교"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/3/extracted/indications/extended/2",
+   "text": "탈모증 (두피 메조테라피, 메조페시아)",
+   "kinds": [
+    "부위",
+    "시술·제품명"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/3/extracted/contraindications/relative/0",
+   "text": "항응고제 복용 중인 경우 (멍이 잘 들 수 있음)",
+   "kinds": [
+    "조건",
+    "가능성·빈도"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/3/extracted/contraindications/relative/1",
+   "text": "임산부, 생리 중인 경우 주의 필요",
+   "kinds": [
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/3/extracted/safety/serious/1",
+   "text": "드물게 심한 알레르기 반응",
+   "kinds": [
+    "가능성·빈도",
+    "수식"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/3/extracted/onset_duration/onset",
+   "text": "시술 직후~2일 이내 피부 광채 효과 시작",
+   "kinds": [
+    "범위",
+    "수량·단위·시간"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/3/extracted/onset_duration/duration",
+   "text": "1~3개월 유지 (반복 시술 시 효과 누적)",
+   "kinds": [
+    "수량·단위·시간",
+    "조건"
+   ],
+   "note": "항목 상용구 '3-6개월' 과 다름"
+  },
+  {
+   "pointer": "/modality/3/extracted/related_techniques/1",
+   "text": "메조보톡스 -- 보톡스를 진피층에 소량 주사해 모공/탄력 개선",
+   "kinds": [
+    "시술·제품명",
+    "참조"
+   ],
+   "note": "M1 related_techniques 에도 등장"
+  },
+  {
+   "pointer": "/modality/3/products/2/extracted/mechanism",
+   "text": "안와 주변 얇은 피부(0.5-1mm)",
+   "kinds": [
+    "부위",
+    "수량·단위·시간"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/3/products/2/extracted/safety/common/2",
+   "text": "결막 충혈(드물음)",
+   "kinds": [
+    "가능성·빈도"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/3/products/3/note",
+   "text": "보톡스 희석 피내주사법 (별도 제품 아님)",
+   "kinds": [
+    "부정",
+    "참조"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/3/products/3/extracted/aftercare/1",
+   "text": "5일간 활성화 에센스/토너 사용 최소화",
+   "kinds": [
+    "수량·단위·시간",
+    "수식"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/3/products/4/note",
+   "text": "2026 하반기 출시 예정, PN+HA 복합",
+   "kinds": [
+    "수량·단위·시간",
+    "기호"
+   ],
+   "note": ""
+  }
+ ],
+ "seg_errors": [
+  {
+   "scope": "all",
+   "surface": "벨피엔",
+   "issue": "벨피/NNG 엔/NNG 또는 벨피/NNG 에/JKB ᆫ/JX — 제품명이 조사로 분해",
+   "impact": "제품명 소실·문맥별 불일치"
+  },
+  {
+   "scope": "all",
+   "surface": "암침",
+   "issue": "암/NNG 침/NNG — '암침(暗沈, 칙칙함)'을 '암'(cancer?) 으로 분리",
+   "impact": "의미 오탐 위험"
+  }
+ ],
+ "issues": [
+  {
+   "id": "S013-I01",
+   "status": "I",
+   "pointers": [
+    "/modality/3/products/3/note",
+    "/modality/3/products/3/extracted/overview"
+   ],
+   "note": "스킨보톡스 제품 레코드: note(보톡스 희석법) vs extracted(성장인자 복합체).",
+   "impact": "레코드 내용 혼입 의심 — 원본 확인 후보"
+  },
+  {
+   "id": "S013-I02",
+   "status": "I",
+   "pointers": [
+    "/modality/3/products/4/note",
+    "/modality/3/products/4/extracted/overview",
+    "/modality/3/subcategories/3/items/2/detail",
+    "/modality/3/subcategories/3/items/2/extracted/overview"
+   ],
+   "note": "벨피엔 성분 서술 4종 불일치.",
+   "impact": "성분 축 채택 시 확인"
+  },
+  {
+   "id": "S013-I03",
+   "status": "I",
+   "pointers": [
+    "/modality/3/products/1/extracted/mechanism",
+    "/modality/3/products/2/extracted/overview"
+   ],
+   "note": "PN/PDRN 혼용.",
+   "impact": "성분명 정규화 시 후속"
+  },
+  {
+   "id": "S013-B01",
+   "status": "B",
+   "pointers": [
+    "/modality/3/products/3/manufacturer",
+    "/modality/3/products/3/country"
+   ],
+   "note": "'-' 자리표시 값.",
+   "impact": "제조사·국가 없음"
+  }
+ ]
+}

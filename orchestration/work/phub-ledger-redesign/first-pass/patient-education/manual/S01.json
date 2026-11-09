@@ -1,0 +1,345 @@
+{
+ "segment": "S01",
+ "read_status": "direct_read",
+ "last_read_pointer": "/categories/0/common_concerns/2/a",
+ "expressions": {
+  "/name": [
+   [
+    "보톡스",
+    "name",
+    "카테고리명"
+   ]
+  ],
+  "/patient_name": [
+   [
+    "주름 보톡스",
+    "name,concern",
+    "환자용 명칭 — 고민(주름)+시술명 결합"
+   ],
+   [
+    "주름",
+    "concern",
+    ""
+   ]
+  ],
+  "/simple_explanation": [
+   [
+    "근육을 일시적으로 쉬게 해서 주름을 펴는 주사입니다.",
+    "sentence",
+    "전체 문장"
+   ],
+   [
+    "근육을 일시적으로 쉬게 해서",
+    "mechanism,course",
+    "작용 설명"
+   ],
+   [
+    "일시적으로",
+    "course",
+    "지속 특성 수식 — 시간 기준 없음"
+   ],
+   [
+    "주름을 펴는",
+    "effect,concern",
+    ""
+   ],
+   [
+    "주사",
+    "route",
+    "투여 형태"
+   ]
+  ],
+  "/how_it_works": [
+   [
+    "주름을 만드는 근육에 약을 주사하면 근육이 쉬면서 주름이 펴집니다.",
+    "sentence,condition,mechanism",
+    ""
+   ],
+   [
+    "주름을 만드는 근육",
+    "site",
+    "시술 대상 부위를 기능으로 표현"
+   ],
+   [
+    "약을 주사하면",
+    "condition,route",
+    "약 이름 미기재"
+   ],
+   [
+    "주름이 펴집니다",
+    "effect",
+    ""
+   ],
+   [
+    "칼로 자르거나 꿰매지 않아요.",
+    "sentence,negation",
+    "비수술임을 부정형으로 설명"
+   ]
+  ],
+  "/duration_simple": [
+   [
+    "약 3-6개월 지속됩니다.",
+    "sentence,time,approx,range,quantity",
+    "지속 대상(효과) 생략"
+   ],
+   [
+    "약 3-6개월",
+    "approx,range,quantity",
+    ""
+   ]
+  ],
+  "/pain_level": [
+   [
+    "모기 물린 정도의 따끔함",
+    "sensory,degree,approx",
+    "통증을 비유로 표현"
+   ],
+   [
+    "정도의",
+    "approx",
+    ""
+   ]
+  ],
+  "/downtime": [
+   [
+    "바로 일상 복귀 가능",
+    "time,possibility",
+    ""
+   ],
+   [
+    "바로",
+    "time",
+    "시점 — 수치 없음"
+   ]
+  ],
+  "/common_concerns/0/q": [
+   [
+    "보톡스 맞으면 표정이 굳나요?",
+    "sentence,condition,adverse",
+    "환자 질문"
+   ],
+   [
+    "표정이 굳나요",
+    "adverse",
+    ""
+   ]
+  ],
+  "/common_concerns/0/a": [
+   [
+    "적절한 양을 맞으면 자연스러운 표정을 유지할 수 있어요.",
+    "sentence,condition,possibility",
+    ""
+   ],
+   [
+    "적절한 양을 맞으면",
+    "condition,degree",
+    "양의 기준 미기재"
+   ],
+   [
+    "과도하게 맞는 경우에만 표정이 어색할 수 있습니다.",
+    "sentence,condition,scope,possibility,adverse",
+    ""
+   ],
+   [
+    "과도하게 맞는 경우에만",
+    "condition,scope,degree",
+    "「~에만」 한정"
+   ],
+   [
+    "표정이 어색할 수 있습니다",
+    "adverse,possibility",
+    ""
+   ]
+  ],
+  "/common_concerns/1/q": [
+   [
+    "보톡스에 중독되나요?",
+    "sentence,adverse",
+    ""
+   ]
+  ],
+  "/common_concerns/1/a": [
+   [
+    "의학적으로 중독성은 없어요.",
+    "sentence,negation,evidence",
+    "근거 출처 미기재"
+   ],
+   [
+    "중독성은 없어요",
+    "negation",
+    ""
+   ],
+   [
+    "효과가 빠지면 원래 상태로 돌아갑니다.",
+    "sentence,condition,course",
+    ""
+   ],
+   [
+    "효과가 빠지면",
+    "condition,course",
+    ""
+   ]
+  ],
+  "/common_concerns/2/q": [
+   [
+    "보톡스 맞고 바로 운동해도 되나요?",
+    "sentence,time,instruction",
+    ""
+   ],
+   [
+    "바로",
+    "time",
+    ""
+   ]
+  ],
+  "/common_concerns/2/a": [
+   [
+    "가벼운 활동은 바로 가능하고, 격한 운동·사우나·음주는 시술 당일(대략 24시간) 삼가는 것이 안전합니다.",
+    "sentence,possibility,avoid,time",
+    "문장 전체 — 허용(가벼운 활동 바로)과 회피(격한 운동 등 당일)가 한 문장 · verify 문장 탈락 검사로 보충"
+   ],
+   [
+    "가벼운 활동은 바로 가능하고",
+    "degree,time,possibility",
+    ""
+   ],
+   [
+    "가벼운 활동",
+    "degree",
+    ""
+   ],
+   [
+    "격한 운동·사우나·음주는 시술 당일(대략 24시간) 삼가는 것이 안전합니다.",
+    "sentence,avoid,time,approx,quantity",
+    ""
+   ],
+   [
+    "격한 운동·사우나·음주",
+    "degree,avoid",
+    "회피 대상 3개 나열(·)"
+   ],
+   [
+    "시술 당일(대략 24시간)",
+    "time,approx,quantity",
+    "「당일」과 「대략 24시간」 두 기준 병기"
+   ],
+   [
+    "삼가는 것이 안전합니다",
+    "avoid,instruction",
+    ""
+   ],
+   [
+    "시술 후 약 4시간은 눕지 말고 주사 부위를 문지르지 마세요.",
+    "sentence,time,approx,quantity,avoid,negation,site",
+    ""
+   ],
+   [
+    "시술 후 약 4시간",
+    "time,approx,quantity",
+    "기준 시점=시술 후"
+   ],
+   [
+    "눕지 말고",
+    "avoid,negation",
+    ""
+   ],
+   [
+    "주사 부위를 문지르지 마세요",
+    "avoid,negation,site",
+    ""
+   ],
+   [
+    "최근 연구는 톡신이 수 시간 내 결합해 운동에 의한 이동 위험이 크지 않을 수 있다고 보지만",
+    "evidence,time,negation,possibility,degree",
+    "연구 출처 미기재 · 단정 회피"
+   ],
+   [
+    "톡신",
+    "name",
+    "카테고리명 「보톡스」와 다른 호칭"
+   ],
+   [
+    "수 시간 내",
+    "time,approx",
+    "수치 불명확"
+   ],
+   [
+    "크지 않을 수 있다",
+    "negation,possibility,degree",
+    ""
+   ],
+   [
+    "이 주의사항은 멍·홍조, 톡신 확산으로 인한 눈꺼풀 처짐(안검하수), 운동·사우나로 인한 땀·오염에 따른 감염 위험을 줄이기 위한 것입니다.",
+    "sentence,rationale,adverse",
+    ""
+   ],
+   [
+    "멍·홍조",
+    "adverse",
+    ""
+   ],
+   [
+    "톡신 확산으로 인한 눈꺼풀 처짐(안검하수)",
+    "adverse,cause,site,paraphrase",
+    "원인→사건, 괄호는 전문어"
+   ],
+   [
+    "눈꺼풀",
+    "site",
+    "부작용 발생 부위"
+   ],
+   [
+    "운동·사우나로 인한 땀·오염에 따른 감염 위험",
+    "adverse,cause",
+    "원인 연쇄 2단"
+   ],
+   [
+    "최근 연구는 톡신이 수 시간 내 결합해 운동에 의한 이동 위험이 크지 않을 수 있다고 보지만, 이 주의사항은 멍·홍조, 톡신 확산으로 인한 눈꺼풀 처짐(안검하수), 운동·사우나로 인한 땀·오염에 따른 감염 위험을 줄이기 위한 것입니다.",
+    "sentence,evidence,rationale,adverse",
+    "문장 전체 — 연구 서술(…보지만)과 주의사항 근거가 한 문장 · verify 문장 탈락 검사로 보충"
+   ],
+   [
+    "이 주의사항은",
+    "reference",
+    "앞 문장 지시사항 참조 · 별도 읽기 검토(형태소 수식어 대조)로 보충"
+   ]
+  ]
+ },
+ "observations": [
+  [
+   "/duration_simple",
+   "B",
+   "무엇이 3-6개월 지속되는지(효과) 문장에 주어가 생략됨"
+  ],
+  [
+   "/how_it_works",
+   "B",
+   "주사하는 「약」의 이름·성분이 이 항목에 없다"
+  ],
+  [
+   "/common_concerns/0/a",
+   "B",
+   "「적절한 양」「과도하게」의 기준값 미기재"
+  ],
+  [
+   "/common_concerns/1/a",
+   "B",
+   "「의학적으로」의 근거 출처 미기재"
+  ],
+  [
+   "/common_concerns/2/a",
+   "P",
+   "행동 지시(삼가·눕지 말고·문지르지 마세요)와 근거 설명(최근 연구…·이 주의사항은…)이 한 값에 섞여 있다. 시간 기준이 「당일(대략 24시간)」「시술 후 약 4시간」 두 개"
+  ],
+  [
+   "/common_concerns/2/a",
+   "F",
+   "「톡신」과 name 「보톡스」의 관계(호칭 차이)는 의미 단계 과제. 「최근 연구」의 주장과 주의사항이 서로 다른 강도라 구조화 시 근거·지시 분리 필요"
+  ],
+  [
+   "/common_concerns/2/a",
+   "B",
+   "「최근 연구」의 출처 미기재"
+  ]
+ ]
+}

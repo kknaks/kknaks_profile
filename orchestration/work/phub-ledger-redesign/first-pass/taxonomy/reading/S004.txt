@@ -1,0 +1,142 @@
+# S004  scope=M1 보톡스  units=M1-P-4 | M1-P-5 | M1-P-6 | M1-P-7 | M1-P-8 | M1-P-9 | M1-P-10 | name
+# 상위 문맥: [{"pointer": "/modality/0", "id": "M1", "category": "보톡스", "name": "보톡스"}]
+@ /modality/0/products/4 M1-P-4 보툴렉스
+  . {id,name,name_en,manufacturer,country,mfds,extracted}
+  /id = "M1-P-4"
+  /name = "보툴렉스"
+  /name_en = "Botulax"
+  /manufacturer = "휴젤"
+  /country = "KR"
+  /mfds = true
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "클로스트리디움 보툴리눔 A형 독소를 정제한 신경근 차단제로, 안면 주름 개선 및 얼굴 윤곽 시술에 사용되는 미용주사 제품입니다."
+  /extracted/mechanism = "SNARE 복합체(SNAP-25)를 절단하여 신경말단에서 아세틸콜린의 분비를 차단합니다. 이로 인해 근육의 수축이 억제되어 주름이 개선되며, 900kDa 복합체 형태로 공급되어 150kDa 순수독소 대비 안정적인 국소 효과를 제공합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"이마 주름" ‖ 1:"미간 주름" ‖ 2:"눈가 주름(까치발)" ‖ 3:"턱선 개선" ‖ 4:"사각턱 완화"
+  /extracted/safety {common}
+  /extracted/safety/common [5] = 0:"일시적 근력약화" ‖ 1:"주입부위 통증/부종" ‖ 2:"두통" ‖ 3:"안검하수(드문)" ‖ 4:"반복 시술 시 1.5% 교근 섬유화 가능성"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3일부터 효과 시작"
+  /extracted/onset_duration/duration = "약 1개월에 완전한 효과 발현, 3-4개월 지속"
+  /extracted/aftercare [5] = 0:"시술 직후 시술 부위 압박·문지름 자제 (자세 제한의 확산 방지 효과는 근거 제한적)" ‖ 1:"시술 당일 심한 운동 피하기" ‖ 2:"과도한 얼굴 마사지 피하기" ‖ 3:"2주 이내 동일 부위 재시술 금지" ‖ 4:"반복 시술 시 충분한 간격(3개월) 유지"
+@ /modality/0/products/5 M1-P-5 나보타
+  . {id,name,name_en,manufacturer,country,mfds,extracted}
+  /id = "M1-P-5"
+  /name = "나보타"
+  /name_en = "Nabota"
+  /manufacturer = "대웅제약"
+  /country = "KR"
+  /mfds = true
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "Clostridium botulinum Type A 독소를 기반으로 한 신경독소 제제로, 근육의 수축을 억제하여 주름을 개선하는 미용시술 제품입니다."
+  /extracted/mechanism = "SNARE 복합체(SNAP-25)를 절단하여 신경말단에서의 아세틸콜린 분비를 차단합니다. 이를 통해 근육 수축을 억제하고 동적 주름 형성을 방지합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"이마 주름" ‖ 1:"미간 주름" ‖ 2:"눈가 주름(까마귀발)" ‖ 3:"교근 과발달로 인한 사각턱"
+  /extracted/safety {common}
+  /extracted/safety/common [4] = 0:"주입 부위 부종" ‖ 1:"멍" ‖ 2:"두통" ‖ 3:"안검하수(드물게)"
+  /extracted/onset_duration {onset,peak_effect,duration,diffusion}
+  /extracted/onset_duration/onset = "2-3일 내 시작"
+  /extracted/onset_duration/peak_effect = "1개월 완전 발현"
+  /extracted/onset_duration/duration = "개인차 있음"
+  /extracted/onset_duration/diffusion = "1U당 1.5-3cm 확산"
+  /extracted/aftercare [4] = 0:"시술 당일 과도한 운동 피하기" ‖ 1:"주사 부위 마사지 금지(최소 24시간)" ‖ 2:"2주 후 효과 안정화 확인" ‖ 3:"3-4개월 후 유지 시술 권장"
+@ /modality/0/products/6 M1-P-6 리즈톡스
+  . {id,name,name_en,manufacturer,country,mfds,extracted}
+  /id = "M1-P-6"
+  /name = "리즈톡스"
+  /name_en = "Liztox"
+  /manufacturer = "휴온스바이오파마"
+  /country = "KR"
+  /mfds = true
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "클로스트리디움 보툴리눔 A형 독소 기반 신경독소로, 근육 수축을 억제하여 주름 개선 효과를 제공하는 미용시술 제품"
+  /extracted/mechanism = "SNARE 복합체(SNAP-25)를 절단하여 신경-근육 접합부에서 아세틸콜린의 분비를 차단한다. 이를 통해 표정근의 수축을 억제하고 동적 주름을 개선한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"이마 주름" ‖ 1:"미간 주름" ‖ 2:"눈가 주름(까치발)" ‖ 3:"표정근 과활동으로 인한 동적 주름"
+  /extracted/safety {common}
+  /extracted/safety/common [5] = 0:"주입 부위 부종" ‖ 1:"멍(혈종)" ‖ 2:"두통" ‖ 3:"눈꺼풀 처짐(안검하수)" ‖ 4:"표정 부자연스러움"
+  /extracted/onset_duration {onset,peak_effect,duration}
+  /extracted/onset_duration/onset = "2-3일"
+  /extracted/onset_duration/peak_effect = "1개월"
+  /extracted/onset_duration/duration = "개인차에 따라 3-4개월"
+  /extracted/aftercare [5] = 0:"시술 후 4시간 이내 세안 및 화장 제한" ‖ 1:"시술 당일 시술 부위 압박·문지름 자제 (자세 제한의 확산 방지 효과는 근거 제한적)" ‖ 2:"3-5일간 고강도 운동 피하기" ‖ 3:"과도한 열(사우나, 찜질방) 노출 피하기" ‖ 4:"효과 안정화까지 2주간 주입 부위 문지르지 않기"
+@ /modality/0/products/7 M1-P-7 더톡신
+  . {id,name,name_en,manufacturer,country,mfds,extracted}
+  /id = "M1-P-7"
+  /name = "더톡신"
+  /name_en = "The Toxin"
+  /manufacturer = "제테마"
+  /country = "KR"
+  /mfds = true
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "클로스트리디움 보툴리눔 A형 독소를 주성분으로 하는 신경독성 미용시술 제품"
+  /extracted/mechanism = "Clostridium botulinum Type A 독소가 신경근 접합부의 SNARE 복합체(SNAP-25)를 절단하여 아세틸콜린 분비를 차단한다. 이를 통해 안면 근육의 수축을 억제하고 주름 형성을 방지한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"이마 주름" ‖ 1:"눈썹 사이 주름(글라벨라)" ‖ 2:"눈가 주름(까마귀발)"
+  /extracted/safety {common}
+  /extracted/safety/common [5] = 0:"주입 부위 부종" ‖ 1:"멍" ‖ 2:"두통" ‖ 3:"안검하수" ‖ 4:"표정 부자연스러움"
+  /extracted/onset_duration {onset,peak_effect,duration}
+  /extracted/onset_duration/onset = "2-3일 후 효과 시작"
+  /extracted/onset_duration/peak_effect = "1개월 후 완전한 효과"
+  /extracted/onset_duration/duration = "3-4개월"
+  /extracted/aftercare [5] = 0:"시술 직후 시술 부위 압박·문지름 자제 (자세 제한의 확산 방지 효과는 근거 제한적)" ‖ 1:"시술 당일 격렬한 운동 금지" ‖ 2:"마사지 및 압박 금지(최소 24시간)" ‖ 3:"시술 후 1주일간 열 노출 최소화" ‖ 4:"완전한 효과 평가는 2주 후 가능"
+@ /modality/0/products/8 M1-P-8 타임버스
+  . {id,name,name_en,manufacturer,country,mfds,extracted}
+  /id = "M1-P-8"
+  /name = "타임버스"
+  /name_en = "Timbus"
+  /manufacturer = "종근당바이오"
+  /country = "KR"
+  /mfds = true
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "Clostridium botulinum Type A 독소 기반의 신경독소 주입제로, 표정근의 수축을 억제하여 주름 개선 효과를 제공합니다."
+  /extracted/mechanism = "SNARE 복합체(SNAP-25)를 절단하여 신경-근육 접합부에서의 아세틸콜린 분비를 차단합니다. 900kDa 복합체 형태로 공급되며, 순수 독소(150kDa)에 비해 안정성과 지속성이 개선됩니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"이마 주름(전두근)" ‖ 1:"눈썹 사이 주름(글라벨라)" ‖ 2:"눈가 주름(까치발)"
+  /extracted/safety {common}
+  /extracted/safety/common [4] = 0:"주입 부위 부종/발적" ‖ 1:"두통" ‖ 2:"안검하수(눈꺼풀 처짐)" ‖ 3:"얼굴 비대칭"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3일"
+  /extracted/onset_duration/duration = "1개월(완전 효과)"
+  /extracted/aftercare [4] = 0:"시술 당일 세안 및 화장품 사용 금지" ‖ 1:"1주일 동안 과도한 안면 표정 및 운동 피하기" ‖ 2:"마사지 및 압박 자극 최소화" ‖ 3:"알코올 섭취 및 자극적 음식 제한"
+@ /modality/0/products/9 M1-P-9 뉴럭스
+  . {id,name,name_en,manufacturer,country,mfds,extracted}
+  /id = "M1-P-9"
+  /name = "뉴럭스"
+  /name_en = "Neurox"
+  /manufacturer = "메디톡스"
+  /country = "KR"
+  /mfds = true
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "Clostridium botulinum Type A 독소를 주성분으로 하는 신경근 차단제로, 근육 수축을 억제하여 주름 개선 및 얼굴 윤곽 시술에 사용되는 미용 제품"
+  /extracted/mechanism = "SNARE 복합체(SNAP-25)를 절단하여 신경말단에서 아세틸콜린의 분비를 차단함으로써 근육 수축을 억제한다. 900kDa 복합체로 존재하는 독소는 150kDa의 순수 독소 성분으로 작용하여 근신경접합부에서 신경전달을 차단한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [6] = 0:"이마 주름" ‖ 1:"미간 주름" ‖ 2:"눈가 주름(까마귀발)" ‖ 3:"입가 주름" ‖ 4:"턱선 정의" ‖ 5:"사각턱 완화"
+  /extracted/safety {common}
+  /extracted/safety/common [7] = 0:"주입 부위 부종" ‖ 1:"발적" ‖ 2:"타박상" ‖ 3:"두통" ‖ 4:"안검하수" ‖ 5:"안면 비대칭" ‖ 6:"표정 경직감"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3일부터 효과 시작, 1개월에 완전한 효과 도달"
+  /extracted/onset_duration/duration = "3-4개월"
+  /extracted/aftercare [5] = 0:"24시간 동안 격렬한 운동 피하기" ‖ 1:"마사지 및 압박 피하기" ‖ 2:"고온 노출(사우나, 찜질방) 최소 1주일 피하기" ‖ 3:"과도한 알코올 섭취 제한" ‖ 4:"항염증제 사용 상담"
+@ /modality/0/products/10 M1-P-10 레티보
+  . {id,name,name_en,manufacturer,country,mfds,note,extracted}
+  /id = "M1-P-10"
+  /name = "레티보"
+  /name_en = "Letibo"
+  /manufacturer = "휴젤"
+  /country = "KR"
+  /mfds = true
+  /note = "중국 수출명"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "휴젤(Hugel) 900kDa 복합체 보툴리눔 독소 A"
+  /extracted/mechanism = "Clostridium botulinum Type A 독소가 SNAP-25를 절단하여 아세틸콜린 분비를 차단한다. 900kDa 복합체 형태로 안정성이 높다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [6] = 0:"이마 주름" ‖ 1:"눈가 주름(까치발)" ‖ 2:"미간 주름" ‖ 3:"목주름" ‖ 4:"사각턱(교근 축소)" ‖ 5:"들린 입꼬리"
+  /extracted/safety {common}
+  /extracted/safety/common [6] = 0:"주입 부위 부종" ‖ 1:"발적" ‖ 2:"멍" ‖ 3:"두통" ‖ 4:"눈꺼풀 처짐(안검하수)" ‖ 5:"표정 부자연스러움"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3일 후 효과 시작"
+  /extracted/onset_duration/duration = "1개월 완전 효과 도달, 3-4개월 지속"
+  /extracted/aftercare [5] = 0:"시술 직후 시술 부위 압박·문지름 자제 (자세 제한의 확산 방지 효과는 근거 제한적)" ‖ 1:"당일 음주, 사우나, 고온 활동 금지" ‖ 2:"과도한 마사지 금지" ‖ 3:"반복 시술 시 교근 섬유화(1.5%) 가능성 고려" ‖ 4:"2주 후 재평가 권장"
+@ /modality/0 M1 보톡스 보톡스
+  /name = "보톡스"

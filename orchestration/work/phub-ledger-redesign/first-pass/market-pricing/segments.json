@@ -1,0 +1,27 @@
+{
+  "source": "orchestration/work/phub-recommend/bronze/phub-ledger/market-pricing.json",
+  "source_sha256": "601d7e7b4db29731bf15304ff3ec9489ba38838e9f5ba2144c2c181cfd15e477",
+  "source_bytes": 12214,
+  "plan_basis": "실제 구조 확인 결과: 루트 객체 키 5개(version·updated·currency·note·categories), categories 배열 17개, 각 카테고리 {id,name,items}, items 배열 원소 {name,unit,low,mid,high}. 카테고리 하나를 문맥 단위 구획으로 둔다(카테고리 id·name 이 항목 이름 해석의 상위 문맥). 루트 메타(통화·note)는 S00 이 소유하고 모든 카테고리 구획이 공동 참조한다.",
+  "segments": [
+    {"id": "S00", "title": "루트 메타 (version·updated·currency·note) + 루트 객체·categories 배열 컨테이너", "own_rule": "pointer in ['', '/version', '/updated', '/currency', '/note', '/categories']", "context_refs": []},
+    {"id": "S01", "category_index": 0},
+    {"id": "S02", "category_index": 1},
+    {"id": "S03", "category_index": 2},
+    {"id": "S04", "category_index": 3},
+    {"id": "S05", "category_index": 4},
+    {"id": "S06", "category_index": 5},
+    {"id": "S07", "category_index": 6},
+    {"id": "S08", "category_index": 7},
+    {"id": "S09", "category_index": 8},
+    {"id": "S10", "category_index": 9},
+    {"id": "S11", "category_index": 10},
+    {"id": "S12", "category_index": 11},
+    {"id": "S13", "category_index": 12},
+    {"id": "S14", "category_index": 13},
+    {"id": "S15", "category_index": 14},
+    {"id": "S16", "category_index": 15},
+    {"id": "S17", "category_index": 16}
+  ],
+  "category_segment_rule": "S{n:02d} 는 /categories/{n-1} 와 그 하위 모든 Pointer 를 소유한다. 상위 문맥 참조: /currency, /note, /updated (S00 소유)."
+}

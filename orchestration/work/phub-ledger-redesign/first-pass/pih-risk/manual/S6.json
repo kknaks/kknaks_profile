@@ -1,0 +1,59 @@
+{
+ "direct_read": true,
+ "status": "read",
+ "last_read_pointer": "/procedures/20/prevention",
+ "observations": [
+  {"status": "P", "pointers": ["/procedures/18/procedure_ref", "/procedures/19/procedure_ref", "/procedures/18/name", "/procedures/19/name"], "text": "18·19 번이 같은 procedure_ref 'M11-1' 을 갖고 name 은 '니들RF - 절연침 …' / '니들RF - 비절연침' 으로 바늘 종류만 다르다. ' - ' 는 상위명과 변형을 가르는 구분 기호로 쓰였다(이 원장에서 이 두 행만)."},
+  {"status": "P", "pointers": ["/procedures/18/risk_factors/0", "/procedures/19/name"], "text": "18번(절연침) 의 risk_factors '비절연 니들 사용 시 표피 손상' 은 19번 행의 변형을 쓰는 상황을 위험요인으로 든다. 행 간 참조로 보이나 연결 확정은 후속(F3)."},
+  {"status": "F", "pointers": ["/procedures/19/fitzpatrick_note", "/procedures/19/prevention"], "text": "19번 '절연침 대비 PIH 위험 약간 높음', 'Fitzpatrick III-IV에서 절연침 우선' 은 18번을 비교 대상·대안으로 지칭하는 것으로 보인다(F3)."},
+  {"status": "P", "pointers": ["/procedures/18/fitzpatrick_note"], "text": "18번 note 두 문장: '… 진피에 직접 RF 전달, PIH 거의 없음' + '어두운 피부에도 안전'. 층위(표피 우회 → 진피)가 이유."},
+  {"status": "P", "pointers": ["/procedures/20/category", "/procedures/20/procedure_ref"], "text": "20번 MTS 는 category 'M12' 와 procedure_ref 'M12' 가 같다 — 참조 코드가 카테고리 수준에 머문다(P1)."},
+  {"status": "P", "pointers": ["/procedures/20/name"], "text": "20번 name '마이크로니들링 (MTS, 더마롤러/더마펜)' — 괄호 안 쉼표 앞은 약어, 뒤는 '/' 로 묶인 도구 두 개."},
+  {"status": "P", "pointers": ["/procedures/20/fitzpatrick_note", "/procedures/20/risk_factors/0"], "text": "note '깊은 침 깊이 시 약간 증가' 의 '깊은' 기준은 같은 항목 risk_factors '깊은 니들 깊이(1.5mm+)' 에만 수치로 있다. 같은 대상에 '침' 과 '니들' 두 표기."},
+  {"status": "P", "pointers": ["/procedures/20/risk_factors/2"], "text": "'과도한 시술 빈도' 의 '빈도' 는 시술 반복 빈도다 — PIH 발생 빈도가 아니다. 빈도 표현을 대상 없이 합치지 않는다."},
+  {"status": "P", "pointers": ["/procedures/20/fitzpatrick_note"], "text": "'열에너지 없이 물리적 미세손상만 유발하므로 PIH 낮음' — 부정(없이)·한정(만)·이유(므로)가 한 절에 있다."}
+ ],
+ "open": [
+  "F-S6-1 18↔19 행 간 비교·대안·위험요인 참조 연결 (issues.md F3)",
+  "P-S6-1 procedure_ref 카테고리 수준(M12) (issues.md P1)"
+ ],
+ "expressions": [
+  ["/procedures/18/subcategory", "니들RF", ["name_candidate", "mixed_language"], "", "P"],
+  ["/procedures/18/name", "니들RF - 절연침", ["name_candidate", "symbol_ambiguity"], "' - ' 구분", "P"],
+  ["/procedures/18/name", "포텐자, 시크릿RF 등", ["name_candidate"], "열린 예시 목록", "F"],
+  ["/procedures/18/pih_rate", "< 1%", ["comparison", "rate"], "", "P"],
+  ["/procedures/18/fitzpatrick_note", "절연침이 표피를 우회하여 진피에 직접 RF 전달", ["cause_reason", "tissue_layer", "device_param"], "", "P"],
+  ["/procedures/18/fitzpatrick_note", "PIH 거의 없음", ["negation", "possibility", "degree"], "", "P"],
+  ["/procedures/18/fitzpatrick_note", "어두운 피부에도 안전", ["population", "degree"], "", "P"],
+  ["/procedures/18/risk_factors/0", "비절연 니들 사용 시 표피 손상", ["risk_factor_phrase", "condition", "negation", "reference", "tissue_layer"], "19번 변형 지칭으로 보임", "F"],
+  ["/procedures/18/risk_factors/1", "과도한 에너지", ["risk_factor_phrase", "degree"], "", "B"],
+  ["/procedures/18/prevention", "절연침(insulated needle) 사용", ["recommendation", "device_param", "mixed_language"], "", "P"],
+  ["/procedures/18/prevention", "적정 에너지", ["recommendation"], "", "B"],
+  ["/procedures/19/subcategory", "니들RF", ["name_candidate"], "", "P"],
+  ["/procedures/19/name", "니들RF - 비절연침", ["name_candidate", "negation", "symbol_ambiguity"], "", "P"],
+  ["/procedures/19/pih_rate", "2-5%", ["range", "rate"], "", "P"],
+  ["/procedures/19/fitzpatrick_note", "비절연침은 표피에도 RF 전달되어", ["cause_reason", "tissue_layer", "negation"], "", "P"],
+  ["/procedures/19/fitzpatrick_note", "절연침 대비 PIH 위험 약간 높음", ["comparison", "degree", "reference"], "", "F"],
+  ["/procedures/19/risk_factors/0", "표피 열손상", ["risk_factor_phrase", "tissue_layer"], "", "P"],
+  ["/procedures/19/risk_factors/1", "어두운 피부", ["risk_factor_phrase", "population"], "", "P"],
+  ["/procedures/19/risk_factors/2", "높은 에너지", ["risk_factor_phrase", "degree"], "", "B"],
+  ["/procedures/19/prevention", "Fitzpatrick III-IV에서 절연침 우선", ["condition", "population", "recommendation", "reference"], "", "F"],
+  ["/procedures/19/prevention", "에너지 조절", ["recommendation"], "방향·수치 없음", "B"],
+  ["/procedures/20/name", "마이크로니들링", ["name_candidate"], "", "P"],
+  ["/procedures/20/name", "MTS, 더마롤러/더마펜", ["name_candidate", "symbol_ambiguity", "mixed_language"], "", "F"],
+  ["/procedures/20/pih_rate", "1-5%", ["range", "rate"], "", "P"],
+  ["/procedures/20/fitzpatrick_note", "열에너지 없이 물리적 미세손상만 유발하므로 PIH 낮음", ["negation", "cause_reason", "degree"], "", "P"],
+  ["/procedures/20/fitzpatrick_note", "깊은 침 깊이 시 약간 증가", ["condition", "degree", "effect_change", "device_param"], "", "P"],
+  ["/procedures/20/risk_factors/0", "깊은 니들 깊이(1.5mm+)", ["risk_factor_phrase", "device_param", "quantity_unit", "comparison"], "1.5mm 대상 = 니들 깊이", "P"],
+  ["/procedures/20/risk_factors/1", "불충분한 자외선 차단", ["risk_factor_phrase", "negation"], "", "P"],
+  ["/procedures/20/risk_factors/2", "과도한 시술 빈도", ["risk_factor_phrase", "degree", "time"], "빈도 대상 = 시술 반복", "P"],
+  ["/procedures/20/prevention", "적정 니들 깊이", ["recommendation", "device_param"], "", "B"],
+  ["/procedures/20/prevention", "SPF 50+ 자외선 차단", ["recommendation"], "", "P"],
+  ["/procedures/20/prevention", "시술 간격 4주 이상", ["time", "comparison", "recommendation"], "", "P"]
+ ],
+ "segmentation": [
+  ["/procedures/20/name", "더마롤러", "더/MAG 마/MAG 롤러/NNG", "도구명이 부사 두 개+명사로 분해(심각)", "K"],
+  ["/procedures/20/prevention", "니들 깊이", "니/NP 들/XSN 깊이/MAG", "'니들'(needle) 이 대명사+접미사, '깊이' 가 부사로 — 세팅 대상 소실(심각)", "K"],
+  ["/procedures/18/name", "절연침", "절연침/NNG", "같은 말이 note 에선 절연/NNG 침/NNG, prevention 에선 절연침/NNP — 칸마다 분절·품사 다름", "K"]
+ ]
+}

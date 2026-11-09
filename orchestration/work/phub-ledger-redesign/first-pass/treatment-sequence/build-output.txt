@@ -1,0 +1,17 @@
+nodes=255 keys=142 duplicates=0
+segmentation review occurrences=69 errors=0
+manual phrases=142 errors=0
+expressions=922 duplicate_generation=0
+[OK] 노드 정방향(Pointer 해소·span 재파싱·byte_span 디코딩) nodes=255 bad=0
+[OK] 노드 역방향(json.loads 위치 전부 존재) loads=255 nodes=255
+[OK] 중복 키 0 0
+[OK] 문자열 value_span == 값 
+[OK] 문자열 노드 = analyze + exclude strings=164 analyze=155 exclude=9
+[OK] 형태소 surface == text[span] tokens=1429
+[OK] 표현 text == 값[span] expressions=922
+[OK] 표현 생성 중복 0 []
+[OK] 수동 표현 원문 존재 0
+[OK] 오분절 기록 원문·원시토큰 일치 0
+[OK] 알려진 오탐 기록 대응 0
+[OK] 원본 해시 불변(build 시작/끝) e2f74d41d75a0b4b9d1f6216ccc17402af64bbd455b1c1627395a819ce76cfaf
+stats {"nodes": 255, "keys": 142, "field_names": 22, "string_nodes": 164, "analyzed_values": 155, "excluded_values": 9, "non_string_leaves": 20, "tokens": 1429, "field_name_tokens": 38, "expressions": 922, "manual_phrases": 142, "segmentation_occurrences": 69, "known_false_positives": 19}

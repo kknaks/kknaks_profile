@@ -1,0 +1,225 @@
+# S028  scope=M9 기기 리프팅  units=M9-1 items/12 | M9-1 items/13 | M9-1 items/14 | M9-1 items/15 | M9-2 items/0 | M9-2 items/1 | M9-2 items/2 | M9-2 items/3 | M9-2 items/4 | M9-2 items/5 | M9-2 items/6 | M9-2 items/7 | M9-2 items/8
+# 상위 문맥: [{"pointer": "/modality/8", "id": "M9", "category": "기기 리프팅", "name": "기기 리프팅"}, {"pointer": "/modality/8/subcategories/0", "id": "M9-1", "label": "HIFU (초음파)"}]
+@ /modality/8/subcategories/0/items/12 auto-M9-1775363043305 울트라셀
+  . {id,name,detail,extracted}
+  /id = "auto-M9-1775363043305"
+  /name = "울트라셀"
+  /detail = "제이시스 · HIFU 오리지널"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "고강도 집속 초음파(HIFU) 기술을 이용한 비침습적 리프팅 및 타이트닝 시술"
+  /extracted/mechanism = "고강도 집속 초음파를 진피 깊숙이 전달하여 65-70도의 열을 발생시킵니다. 이로 인해 콜라겐 변성과 수축이 일어나며, 새로운 콜라겐 합성을 촉진하여 피부 탄력과 리프팅 효과를 제공합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"얼굴 및 목 부위 피부 처짐 개선" ‖ 1:"주름 완화 및 피부 탄력 증진"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 직후 일시적 홍조 및 부종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3개월"
+  /extracted/onset_duration/duration = "12-18개월"
+  /extracted/aftercare [4] = 0:"홍반/부종은 수시간~수일 내 자연 소실" ‖ 1:"냉찜질로 통증/부종 완화 가능" ‖ 2:"당일 보습 관리 권장" ‖ 3:"[시술 주기 참고] 중출력 EBD — 3-6개월 간격 권장. 콜라겐 리모델링 진행 상황 평가 후 재시술 판단. 아무리 빨라도 1개월 이상 간격 필수 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/8/subcategories/0/items/13 auto-M9-1775363051791 리프세라
+  . {id,name,detail,extracted}
+  /id = "auto-M9-1775363051791"
+  /name = "리프세라"
+  /detail = "HIFU · 국산"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "고강도 집속 초음파(HIFU)를 이용한 비수술적 리프팅 치료 장비"
+  /extracted/mechanism = "고강도 집속 초음파 에너지를 피부 진피층과 SMAS층에 정확히 전달하여 열응고점을 형성합니다. 이로 인한 콜라겐 수축과 재생성을 통해 즉각적인 리프팅 효과와 지속적인 탄력 개선을 유도합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"안면 리프팅 및 탄력 개선" ‖ 1:"목주름 및 이중턱 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 일시적 부종 및 발적"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시-2주"
+  /extracted/onset_duration/duration = "12-18개월"
+  /extracted/aftercare [5] = 0:"시술 당일 사우나, 찜질방 등 고온 환경 피하기" ‖ 1:"홍반/부종은 수시간~수일 내 자연 소실" ‖ 2:"냉찜질로 통증/부종 완화 가능" ‖ 3:"당일 보습 관리 권장" ‖ 4:"[시술 주기 참고] 중출력 EBD — 3-6개월 간격 권장. 콜라겐 리모델링 진행 상황 평가 후 재시술 판단. 아무리 빨라도 1개월 이상 간격 필수 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/8/subcategories/0/items/14 auto-M9-1775364775133 하이푸니
+  . {id,name,detail,extracted}
+  /id = "auto-M9-1775364775133"
+  /name = "하이푸니"
+  /detail = "소형HIFU"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "소형 HIFU 기술을 이용한 비침습적 리프팅 시술"
+  /extracted/mechanism = "초음파 에너지를 진피 깊숙한 SMAS층에 집중 조사하여 65-70도의 열응고점을 형성합니다. 이로 인해 콜라겐이 수축하고 재생되어 리프팅 효과가 나타납니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"페이스 리프팅" ‖ 1:"턱선 개선" ‖ 2:"목주름 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"시술 후 부종" ‖ 1:"근육통" ‖ 2:"일시적 감각저하"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "12-18개월"
+  /extracted/aftercare [4] = 0:"충분한 수분섭취" ‖ 1:"강한 마사지 당일 자제" ‖ 2:"열 자극 피하기" ‖ 3:"[시술 주기 참고] 저출력 EBD — 최소 1개월 이상 간격, 보통 3개월 간격 권장. 과도한 열 누적 주의. 효과 평가 후 재시술 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/8/subcategories/0/items/15 auto-M9-1775364775134 더블로골드S
+  . {id,name,detail,extracted}
+  /id = "auto-M9-1775364775134"
+  /name = "더블로골드S"
+  /detail = "히로닉최신"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "히로닉 최신 기술을 적용한 프리미엄 HIFU 리프팅"
+  /extracted/mechanism = "2MHz와 4MHz의 듀얼 주파수로 서로 다른 깊이의 조직층에 초음파 에너지를 전달합니다. 정밀한 깊이 조절로 SMAS층과 진피층을 동시에 타겟하여 강력한 리프팅 효과를 제공합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"강력한 페이스 리프팅" ‖ 1:"이중턱 개선" ‖ 2:"탄력 증진"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"시술 후 붓기" ‖ 1:"멍" ‖ 2:"압박감"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "3-4주"
+  /extracted/onset_duration/duration = "15-24개월"
+  /extracted/aftercare [4] = 0:"냉찜질" ‖ 1:"음주 자제" ‖ 2:"격렬한 운동 자제" ‖ 3:"[시술 주기 참고] 중출력 EBD — 3-6개월 간격 권장. 콜라겐 리모델링 진행 상황 평가 후 재시술 판단. 아무리 빨라도 1개월 이상 간격 필수 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/8/subcategories/1 M9-2 RF (고주파)
+  . {id,label,items}
+  /id = "M9-2"
+  /label = "RF (고주파)"
+  /items [17]
+@ /modality/8/subcategories/1/items/0 M9-2-1 써마지FLX
+  . {id,name,detail,extracted}
+  /id = "M9-2-1"
+  /name = "써마지FLX"
+  /detail = "솔타 · 모노폴라"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "고주파 에너지를 이용하여 피부 깊숙한 층의 콜라겐을 수축·재생시키는 비침습적 리프팅 시술"
+  /extracted/mechanism = "모노폴라 RF는 이온진동을 통해 심부 조직에 열을 전달하여 즉각적인 콜라겐 수축을 유도하고, 동시에 신생 콜라겐 생성을 자극하여 지속적인 피부 탄력 개선을 실현한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"얼굴 전체 처짐 및 탄력 저하" ‖ 1:"목 및 턱선 처짐" ‖ 2:"이마 주름 및 미간 주름" ‖ 3:"눈가 처짐" ‖ 4:"뺨 처짐"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [4] = 0:"일시적 발적" ‖ 1:"부종" ‖ 2:"따끔거림" ‖ 3:"피부 건조증"
+  /extracted/safety/serious [3] = 0:"화상" ‖ 1:"신경 손상" ‖ 2:"색소침착 이상"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-3개월"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [4] = 0:"시술 후 24시간 동안 고온 노출 피하기" ‖ 1:"과도한 운동 및 발한 활동 3일간 제한" ‖ 2:"보습 및 진정 스킨케어 집중" ‖ 3:"[시술 주기 참고] 고출력 EBD — 최소 6개월 이상 간격 권장. 콜라겐 리모델링 완료(3-6개월)를 기다린 후 효과 평가. 리모델링 중 재시술은 과도한 열 누적/지방위축 위험. 아무리 빨라도 1개월 이상 간격 필수 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/8/subcategories/1/items/1 M9-2-2 올리지오
+  . {id,name,detail,extracted}
+  /id = "M9-2-2"
+  /name = "올리지오"
+  /detail = "원텍  · 모노폴라"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "모노폴라 RF 에너지를 이용하여 깊은 진피층과 피하지방까지 열을 전달해 즉각적인 콜라겐 수축과 장기간의 신생콜라겐 생성을 유도하는 리프팅 기기"
+  /extracted/mechanism = "고주파(RF) 에너지가 조직 내 이온 진동을 유발하여 심부 열을 발생시키고, 이로 인해 기존 콜라겐이 즉시 수축되며 동시에 새로운 콜라겐 합성이 자극된다. 모노폴라 방식으로 단극 깊은 침투가 가능하여 SMAS층까지 효과적으로 작용하면서 안면 및 목 리프팅 효과를 제공한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"얼굴 처짐 및 탄력 저하" ‖ 1:"목 주름 및 이중턱" ‖ 2:"팔뚝 처짐" ‖ 3:"복부 피부 탄력 개선"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"시술 직후 발적" ‖ 1:"일시적 부종" ‖ 2:"따뜻함 또는 열감"
+  /extracted/safety/serious [2] = 0:"신경 손상" ‖ 1:"화상"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "시술 직후 즉각적 콜라겐 수축, 점진적 개선은 4-8주"
+  /extracted/onset_duration/duration = "3-6개월"
+  /extracted/aftercare [4] = 0:"시술 후 24시간 과도한 열 노출 자제" ‖ 1:"고온 목욕, 사우나 최소 1주일 회피" ‖ 2:"수면 중 과도한 얼굴 압박 피하기" ‖ 3:"[시술 주기 참고] 중출력 EBD — 3-6개월 간격 권장. 콜라겐 리모델링 진행 상황 평가 후 재시술 판단. 아무리 빨라도 1개월 이상 간격 필수 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/8/subcategories/1/items/2 M9-2-5 인모드
+  . {id,name,detail,extracted}
+  /id = "M9-2-5"
+  /name = "인모드"
+  /detail = "인모드 · 바이폴라 RF"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "InMode Bipolar RF + IR(적외선) 복합 리프팅 기기"
+  /extracted/mechanism = "Bipolar RF와 적외선(IR) 광을 동시 조사하여 진피층에 균일한 열을 전달한다. RF는 심부 콜라겐 수축 및 신생콜라겐을 유도하고, IR은 표피-진피 접합부까지의 균일한 가열을 보조한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"얼굴 및 목 주름 개선" ‖ 1:"피부 탄력도 저하" ‖ 2:"브이라인 리프팅" ‖ 3:"팔뚝/무릎 등 신체 처짐"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"시술 직후 일시적 홍반" ‖ 1:"열감" ‖ 2:"부종"
+  /extracted/safety/serious [2] = 0:"화상(과도한 에너지 사용 시)" ‖ 1:"신경손상(극히 드문)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주부터 효과 시작, 3개월에 최대 효과"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [4] = 0:"24시간 이내 고온 환경 회피" ‖ 1:"과도한 세안 및 자극 피하기" ‖ 2:"시술 후 냉찜질로 부종 관리" ‖ 3:"[시술 주기 참고] 저출력 EBD — 최소 1개월 이상 간격, 보통 3개월 간격 권장. 과도한 열 누적 주의. 효과 평가 후 재시술 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/8/subcategories/1/items/3 M9-2-3 볼뉴머
+  . {id,name,detail,extracted}
+  /id = "M9-2-3"
+  /name = "볼뉴머"
+  /detail = "클래시스  ·  모노폴라"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "모노폴라 RF 에너지로 깊은 진피층과 피하지방을 타겟하여 강력한 리프팅 효과를 제공하는 고주파 미용기기"
+  /extracted/mechanism = "고주파(RF) 이온진동이 조직 내 저항을 극복하면서 심부열을 발생시켜 콜라겐을 즉각 수축시킵니다. 동시에 신생콜라겐 재생을 유도하여 지속적인 피부 탄력 개선 효과를 만듭니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"얼굴 및 목 처짐" ‖ 1:"피부 탄력 저하" ‖ 2:"볼 리프팅" ‖ 3:"페이스라인 개선" ‖ 4:"주름 개선"
+  /extracted/safety {common,serious,contraindications}
+  /extracted/safety/common [3] = 0:"시술 후 홍반" ‖ 1:"경미한 부종" ‖ 2:"열감"
+  /extracted/safety/serious [2] = 0:"화상" ‖ 1:"신경 손상"
+  /extracted/safety/contraindications [3] = 0:"금속 임플란트 부위" ‖ 1:"심장박동기 장착자" ‖ 2:"임신 중"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주 후부터 콜라겐 재생으로 점진적 효과 발현"
+  /extracted/onset_duration/duration = "3-6개월 지속, 정기적 시술로 장기 효과 유지"
+  /extracted/aftercare [4] = 0:"24시간 고온 환경(사우나, 찜질방) 자제" ‖ 1:"자극적인 스킨케어 제품 3-5일 회피" ‖ 2:"과도한 안면 운동 제한" ‖ 3:"[시술 주기 참고] 중출력 EBD — 3-6개월 간격 권장. 콜라겐 리모델링 진행 상황 평가 후 재시술 판단. 아무리 빨라도 1개월 이상 간격 필수 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/8/subcategories/1/items/4 M9-2-4 소프라노 티타늄
+  . {id,name,detail,classification_issue,reclassified_to,extracted}
+  /id = "M9-2-4"
+  /name = "소프라노 티타늄"
+  /detail = "알마(Alma) · 3파장 다이오드 레이저(제모/피부재생) — M9-2(RF) 섹션에 잘못 등재됨"
+  /classification_issue = "본 엔트리는 현재 M9-2(RF/에너지) 섹션에 있으나 실제 에너지원은 레이저(다이오드·알렉산드라이트·Nd:YAG)이므로 M8(레이저·광기기)가 정확한 분류. UI/검색 시 M8로도 노출되도록 cross-reference 처리 권장"
+  /reclassified_to = "M8"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "알마 소프라노 티타늄 — 3파장(755/810/1064nm) 다이오드 레이저 플랫폼으로 제모와 보조적 피부 재생에 사용. 본 데이터는 RF(M9-2) 섹션에 오분류돼 있으나 실제는 레이저 장비"
+  /extracted/mechanism = "알렉산드라이트(755nm), 다이오드(810nm), Nd:YAG(1064nm) 3파장을 동시 또는 순차 조사하여 모발 멜라닌 및 표재~심부 타겟에 도달. 제모가 1차 적응증이며 피부 타입 I-VI 대응이 특징."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"안면 처짐 및 주름개선" ‖ 1:"턱선 및 페이스라인 리프팅" ‖ 2:"피부 탄력도 저하" ‖ 3:"콜라겐 손실로 인한 피부노화"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"시술 후 홍반" ‖ 1:"경미한 부종" ‖ 2:"열감"
+  /extracted/safety/serious [3] = 0:"화상" ‖ 1:"색소침착" ‖ 2:"흉터"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉각적 수축 효과는 시술 직후 감지, 콜라겐 신생 효과는 2-4주부터 발현"
+  /extracted/onset_duration/duration = "6개월-1년 지속 (추가 시술로 연장 가능)"
+  /extracted/aftercare [4] = 0:"24시간 냉찜질 및 보습 관리 필수" ‖ 1:"1주일간 고온 환경(사우나, 찜질방) 회피" ‖ 2:"자극적 화장품 사용 자제" ‖ 3:"[시술 주기 참고] 저출력 EBD — 최소 1개월 이상 간격, 보통 3개월 간격 권장. 과도한 열 누적 주의. 효과 평가 후 재시술 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/8/subcategories/1/items/5 auto-38-1774737181584 쿨페이즈
+  . {id,name,detail,extracted}
+  /id = "auto-38-1774737181584"
+  /name = "쿨페이즈"
+  /detail = "아스테라시스 · 모노폴라"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "모노폴라 RF 에너지를 깊은 진피층과 SMAS까지 전달하여 즉각적인 콜라겐 수축과 장기간의 신생콜라겐 생성을 유도하는 비침습적 리프팅 기기"
+  /extracted/mechanism = "고주파 이온진동으로 심부 조직에 열을 발생시켜 기존 콜라겐을 수축시키고 섬유아세포를 자극한다. 모노폴라 방식으로 깊은 지방층까지 열 전달이 가능하여 강력한 리프팅 효과와 지방위축을 동시에 달성한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"안면 처짐 및 주름" ‖ 1:"목 처짐" ‖ 2:"팔뚝 처짐" ‖ 3:"복부 피부 탄력 저하" ‖ 4:"전체 얼굴 리프팅"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [4] = 0:"시술 후 일시적 홍반" ‖ 1:"부종" ‖ 2:"따뜻한 감각" ‖ 3:"피부 민감도 증가"
+  /extracted/safety/serious [2] = 0:"화상" ‖ 1:"신경 손상 (깊은 모노폴라 사용 시 주의)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉각적 (콜라겐 수축): 시술 직후 ~ 2주"
+  /extracted/onset_duration/duration = "6개월 ~ 1년 (신생콜라겐 생성 단계적 진행)"
+  /extracted/aftercare [6] = 0:"24시간 이상 고온 환경(사우나, 찜질방) 피하기" ‖ 1:"과도한 운동 3-5일 자제" ‖ 2:"강한 마찰이나 문지르는 행동 피하기" ‖ 3:"보습 크림 집중 사용" ‖ 4:"필요시 냉찜질로 부종 완화" ‖ 5:"[시술 주기 참고] 저출력 EBD — 최소 1개월 이상 간격, 보통 3개월 간격 권장. 과도한 열 누적 주의. 효과 평가 후 재시술 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/8/subcategories/1/items/6 auto-39-1774737181584 텐써마
+  . {id,name,detail,extracted}
+  /id = "auto-39-1774737181584"
+  /name = "텐써마"
+  /detail = "텐텍 ·  모노폴라"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "모노폴라 RF 에너지로 심부 조직을 가열하여 즉각적인 콜라겐 수축과 장기적 신생 콜라겐 생성을 유도하는 비침습적 리프팅 기기"
+  /extracted/mechanism = "고주파 이온진동이 조직 저항을 극복하며 심부 열을 발생시켜 SMAS층까지 도달하여 콜라겐을 수축시킨다. 이후 치유 반응으로 신생 콜라겐이 지속적으로 생성되어 장기간의 리프팅 효과를 제공한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"얼굴 처짐 및 탄력 감소" ‖ 1:"목 및 턱선 리프팅" ‖ 2:"팔뚝, 복부 등 전신 처짐" ‖ 3:"깊은 주름 개선"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"시술 직후 홍반" ‖ 1:"일시적 부종" ‖ 2:"따뜻한 감각"
+  /extracted/safety/serious [3] = 0:"신경 손상(저설정시)" ‖ 1:"화상(과도한 에너지)" ‖ 2:"지방 위축(모노폴라의 심부 열로 인한 위험)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉각적 콜라겐 수축 후 2-4주부터 신생 콜라겐 효과 증가"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [4] = 0:"48시간 이내 고온 자극(찜질, 사우나) 자제" ‖ 1:"보습 및 진정 관리" ‖ 2:"강한 자극성 제품 일시적 중단" ‖ 3:"[시술 주기 참고] 중출력 EBD — 3-6개월 간격 권장. 콜라겐 리모델링 진행 상황 평가 후 재시술 판단. 아무리 빨라도 1개월 이상 간격 필수 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/8/subcategories/1/items/7 auto-M9-1775361433713 버츄RF
+  . {id,name,detail,extracted}
+  /id = "auto-M9-1775361433713"
+  /name = "버츄RF"
+  /detail = "비올 · 고주파 리프팅"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "고주파 에너지를 이용하여 피부 깊숙한 층까지 열을 전달해 콜라겐 재생을 촉진하는 리프팅 시술"
+  /extracted/mechanism = "미세 바늘을 통해 진피층과 피하지방층에 고주파 에너지를 전달하여 조직을 가열합니다. 이로 인해 기존 콜라겐이 수축되고 새로운 콜라겐 합성이 촉진되어 피부 탄력과 리프팅 효과를 얻습니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"얼굴 및 목 부위 처짐 개선" ‖ 1:"피부 탄력 저하 및 주름 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 일시적 부종 및 발적"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "4-6주"
+  /extracted/onset_duration/duration = "12-18개월"
+  /extracted/aftercare [5] = 0:"시술 후 24-48시간 냉찜질 적용" ‖ 1:"홍반/부종은 수시간~수일 내 자연 소실" ‖ 2:"냉찜질로 통증/부종 완화 가능" ‖ 3:"당일 보습 관리 권장" ‖ 4:"[시술 주기 참고] 저출력 EBD — 최소 1개월 이상 간격, 보통 3개월 간격 권장. 과도한 열 누적 주의. 효과 평가 후 재시술 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/8/subcategories/1/items/8 auto-M9-1775361486532 올리지오X
+  . {id,name,detail,extracted}
+  /id = "auto-M9-1775361486532"
+  /name = "올리지오X"
+  /detail = "클래시스 GX모드 입체가열"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "클래시스 모노폴라 RF 업그레이드 (GX 입체가열)"
+  /extracted/mechanism = "모노폴라 RF 에너지를 GX 모드 입체 가열 알고리즘으로 전달하여 진피~피하지방층에 균일한 열을 발생시킨다. 콜라겐 수축과 신생콜라겐 생성을 동시에 유도하여 타이트닝 효과를 제공한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"안면 처짐" ‖ 1:"피부 탄력 저하" ‖ 2:"턱선 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"일시적 홍반" ‖ 1:"부종" ‖ 2:"열감"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시 수축 + 2-3개월 점진 개선"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [3] = 0:"24시간 고온 노출 피하기" ‖ 1:"보습 강화" ‖ 2:"[시술 주기 참고] 중출력 EBD — 3-6개월 간격 권장. 콜라겐 리모델링 진행 상황 평가 후 재시술 판단. 아무리 빨라도 1개월 이상 간격 필수 (개인차 있으며, 의사와 상의하여 결정)"

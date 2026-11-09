@@ -1,0 +1,156 @@
+# S035  scope=M12 마이크로니들링(MTS)  units=id | category | category_en | group | subcategories 컨테이너 | M12-1 items/0 | M12-1 items/1 | M12-1 items/2 | M12-2 items/0 | M12-2 items/1 | M12-2 items/2 | M12-2 items/3 | extracted | products 컨테이너 | name
+# 상위 문맥: []
+@ /modality/11 M12 마이크로니들링(MTS) 마이크로니들링(MTS)
+  . {id,category,category_en,group,subcategories,extracted,products,name}
+  /id = "M12"
+  /category = "마이크로니들링(MTS)"
+  /category_en = "Microneedling"
+  /group = "시술/기기"
+  /subcategories [2]
+@ /modality/11/subcategories/0 M12-1 수동 MTS
+  . {id,label,items}
+  /id = "M12-1"
+  /label = "수동 MTS"
+  /items [3]
+@ /modality/11/subcategories/0/items/0 M12-1-1 더마롤러
+  . {id,name,detail,extracted}
+  /id = "M12-1-1"
+  /name = "더마롤러"
+  /detail = "롤러형"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "롤러형 마이크로니들로 피부에 미세한 자극을 주는 시술"
+  /extracted/mechanism = "손으로 조작하는 롤러형 기구의 바늘(0.2~2.0mm)이 피부 표면을 균일하게 자극하여 콜라겐 생성을 유도한다. 롤러의 크기와 방향에 따라 넓은 면적을 효율적으로 시술할 수 있다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"피부 노화 개선 (주름, 잔주름)" ‖ 1:"피부 탄력 개선" ‖ 2:"흉터 개선 (위축성 흉터, 여드름 흉터)" ‖ 3:"모공 축소" ‖ 4:"색소침착 개선"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [4] = 0:"시술 직후 홍반" ‖ 1:"미세한 출혈" ‖ 2:"일시적 부종" ‖ 3:"가려움증"
+  /extracted/safety/serious [2] = 0:"심한 감염 (무균 처리 미흡 시)" ‖ 1:"색소 이상 (색소침착/감소)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "3~7일 후부터 콜라겐 재생 시작, 2~4주 후 시각적 개선"
+  /extracted/onset_duration/duration = "시술 효과는 3~6개월 지속, 정기적 시술로 누적 효과 기대"
+  /extracted/aftercare [6] = 0:"시술 24시간 후 세안 및 화장품 사용 재개" ‖ 1:"자외선 차단제 필수 사용 (SPF 30 이상)" ‖ 2:"시술 후 5일간 자극적인 성분 (레티놀, 비타민C, AHA/BHA) 피하기" ‖ 3:"심한 홍반이나 부종 시 냉찜질" ‖ 4:"회복 기간 중 과도한 운동 및 발한 피하기" ‖ 5:"[시술 주기 참고] 피부 회복 후 재시술 (보통 4-6주). 과도한 채널 생성 시 장벽 손상 주의 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/11/subcategories/0/items/1 auto-45-1774737181584 더마스탬프
+  . {id,name,detail,extracted}
+  /id = "auto-45-1774737181584"
+  /name = "더마스탬프"
+  /detail = "스탬프형"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "스탐프형 마이크로니들로 정확한 압력으로 시술하는 기구"
+  /extracted/mechanism = "손잡이에 달린 스탬프 헤드의 바늘 묶음이 수직으로 피부를 자극하여 일정한 깊이와 강도로 상처를 유도한다. 롤러보다 정밀한 시술이 가능하고 압력 조절로 시술 강도를 더 세밀하게 조정할 수 있다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"피부 탄력 개선" ‖ 1:"흉터 개선 (위축성 흉터, 여드름 흉터)" ‖ 2:"피부 톤 균일화" ‖ 3:"모공 축소" ‖ 4:"피부 재생"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [4] = 0:"시술 직후 홍반" ‖ 1:"점상 출혈" ‖ 2:"부종" ‖ 3:"작열감"
+  /extracted/safety/serious [2] = 0:"감염 위험 (부적절한 소독 시)" ‖ 1:"과도한 손상으로 인한 색소 변화"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1~2주 후 콜라겐 합성 증가, 3~4주 후 개선 효과 확인"
+  /extracted/onset_duration/duration = "한 번의 시술 효과는 3~4개월 지속, 월 1회 정기 시술 권장"
+  /extracted/aftercare [6] = 0:"시술 12시간 동안 물로만 세안" ‖ 1:"고자극성 스킨케어 3~5일 자제" ‖ 2:"자외선 차단제 매일 사용 (SPF 50+)" ‖ 3:"항생제 연고 도포 권장 (의료진 지시 시)" ‖ 4:"시술 후 1주일간 사우나, 찜질방 자제" ‖ 5:"[시술 주기 참고] 피부 회복 후 재시술 (보통 4-6주). 과도한 채널 생성 시 장벽 손상 주의 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/11/subcategories/0/items/2 auto-M12-1775364775166 MTS롤러
+  . {id,name,detail,extracted}
+  /id = "auto-M12-1775364775166"
+  /name = "MTS롤러"
+  /detail = "192핀수동"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "192개의 미세 바늘이 장착된 수동 마이크로니들링 롤러"
+  /extracted/mechanism = "192개의 미세 바늘이 피부에 균일한 미세 손상을 만들어 자연 치유 과정을 활성화합니다. 콜라겐과 엘라스틴 생성을 촉진하여 피부 재생과 유효성분 흡수를 개선합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"피부 재생" ‖ 1:"제품 흡수율 향상"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 후 미세한 점상출혈"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "2-4개월"
+  /extracted/aftercare [3] = 0:"소독 관리" ‖ 1:"재생 세럼 사용" ‖ 2:"[시술 주기 참고] 피부 회복 후 재시술 (보통 4-6주). 과도한 채널 생성 시 장벽 손상 주의 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/11/subcategories/1 M12-2 전동 MTS
+  . {id,label,items}
+  /id = "M12-2"
+  /label = "전동 MTS"
+  /items [4]
+@ /modality/11/subcategories/1/items/0 M12-2-2 펜타입
+  . {id,name,detail,extracted}
+  /id = "M12-2-2"
+  /name = "펜타입"
+  /detail = "전자동"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "전자동 펜형 기구로 정밀하고 깊이 조절이 가능한 시술"
+  /extracted/mechanism = "전자동 펜 형태의 기구가 분당 1,200~2,000회 진동하며 미세한 바늘이 피부에 수직으로 펌핑 운동을 한다. 깊이(0.5~2.5mm) 조절이 정확하고 시술 속도가 빨라 균일한 자극을 제공하며, 동시에 유효 성분의 흡수를 극대화할 수 있다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [6] = 0:"피부 주름 개선 (특히 깊은 주름)" ‖ 1:"피부 탄력 강화" ‖ 2:"흉터 개선 (위축성 흉터)" ‖ 3:"색소침착 개선" ‖ 4:"피부 톤 및 결 개선" ‖ 5:"약물 침투 증대 (비타민, 성장인자 등)"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [4] = 0:"시술 직후 홍반 (24~48시간)" ‖ 1:"점상 출혈" ‖ 2:"부종" ‖ 3:"따끔거림"
+  /extracted/safety/serious [3] = 0:"감염 (멸균 불충분 시)" ‖ 1:"과도한 깊이 설정 시 진피 손상" ‖ 2:"색소 변화 (특히 어두운 피부)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "3~5일 후 초기 개선, 2~3주 후 명백한 효과"
+  /extracted/onset_duration/duration = "단일 시술 효과 4~6개월, 4주 간격 월 1회 시술로 누적 효과"
+  /extracted/aftercare [8] = 0:"시술 첫 24시간 얼굴 접촉 최소화" ‖ 1:"순한 클렌징 제품만 사용 (24시간 후)" ‖ 2:"보습 집중 관리 (히알루론산, 세라마이드)" ‖ 3:"자외선 차단제 매 2시간마다 재도포" ‖ 4:"시술 후 1주일간 화학 필링, 레이저 시술 자제" ‖ 5:"항염증제 복용 (의료진 지시 시)" ‖ 6:"림프 배수 마사지로 부종 완화" ‖ 7:"[시술 주기 참고] 피부 회복 후 재시술 (보통 4-6주). 과도한 채널 생성 시 장벽 손상 주의 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/11/subcategories/1/items/1 auto-M12-1775363026852 더마펜4
+  . {id,name,detail,extracted}
+  /id = "auto-M12-1775363026852"
+  /name = "더마펜4"
+  /detail = "더마펜월드 · 전동 마이크로니들 · 16핀"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "16개 초미세 바늘이 장착된 전동 마이크로니들링 장비로 피부 재생과 콜라겐 합성을 촉진하는 미용의학 시술 도구"
+  /extracted/mechanism = "16개의 미세 바늘이 진피층에 미세한 상처를 생성하여 자연 치유 과정을 활성화시킵니다. 이 과정에서 콜라겐과 엘라스틴 합성이 증가하며 피부 재생과 재구조화가 진행됩니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"여드름 흉터 및 모공 개선" ‖ 1:"피부 탄력 증진 및 주름 완화"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 후 일시적 홍조 및 부종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "4-6주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [5] = 0:"시술 후 24시간 동안 화장품 및 자외선 노출 자제" ‖ 1:"자외선 차단 (마이크로채널 → PIH 예방)" ‖ 2:"당일 자극적 제품 자제" ‖ 3:"홍반은 1-2일 내 자연 소실" ‖ 4:"[시술 주기 참고] 피부 회복 후 재시술 (보통 4-6주). 과도한 채널 생성 시 장벽 손상 주의 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/11/subcategories/1/items/2 auto-M12-1775363035813 스킨스탬프
+  . {id,name,detail,extracted}
+  /id = "auto-M12-1775363035813"
+  /name = "스킨스탬프"
+  /detail = "전동 스탬프형 MTS"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "미세바늘을 이용해 피부에 미세한 천공을 만들어 콜라겐 생성을 촉진하는 피부 재생 시술"
+  /extracted/mechanism = "미세바늘이 진피층까지 침투하여 인위적인 미세손상을 유발한다. 이 과정에서 상처 치유 반응이 활성화되어 콜라겐과 엘라스틴 합성이 증가하고 피부 재생이 촉진된다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"여드름 흉터 개선" ‖ 1:"모공 축소" ‖ 2:"피부 탄력 개선" ‖ 3:"잔주름 완화"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"일시적 홍반과 부종" ‖ 1:"따끔거림과 가벼운 출혈" ‖ 2:"가피 형성"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "3-6개월"
+  /extracted/aftercare [5] = 0:"시술 후 24-48시간 세안 자제" ‖ 1:"자외선 차단제 필수 사용" ‖ 2:"보습제 충분한 도포" ‖ 3:"알코올 성분 화장품 사용 자제" ‖ 4:"[시술 주기 참고] 피부 회복 후 재시술 (보통 4-6주). 과도한 채널 생성 시 장벽 손상 주의 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/11/subcategories/1/items/3 auto-M12-1775364775165 에이팩
+  . {id,name,detail,extracted}
+  /id = "auto-M12-1775364775165"
+  /name = "에이팩"
+  /detail = "진동형"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "진동 기술을 활용한 마이크로니들링 시스템으로 피부 재생을 촉진하는 시술"
+  /extracted/mechanism = "미세한 바늘이 진동하며 피부에 미세 채널을 생성합니다. 이를 통해 콜라겐 생성이 촉진되고 유효성분의 침투가 향상됩니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"흉터 개선" ‖ 1:"모공 축소" ‖ 2:"피부 탄력 증진" ‖ 3:"색소침착 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"일시적 홍조" ‖ 1:"경미한 부종" ‖ 2:"따끔거림"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [4] = 0:"자외선 차단" ‖ 1:"충분한 보습" ‖ 2:"음주 자제 48시간" ‖ 3:"[시술 주기 참고] 피부 회복 후 재시술 (보통 4-6주). 과도한 채널 생성 시 장벽 손상 주의 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/11 M12 마이크로니들링(MTS) 마이크로니들링(MTS)
+  /extracted {overview,mechanism,indications,contraindications,safety,onset_duration,aftercare,related_techniques}
+  /extracted/overview = "MTS는 아주 가느다란 바늘이 많이 달린 롤러나 스탬프로 피부에 미세한 구멍을 내서, 피부가 스스로 상처를 치유하는 과정에서 콜라겐(피부 탄력 단백질)이 새로 만들어지게 유도하는 시술이다. 바늘 구멍을 통해 비타민, 히알루론산 등 유효 성분의 흡수를 높이는 효과도 있다."
+  /extracted/mechanism = "MTS 롤러의 미세한 바늘(0.2~2.0mm)이 피부 표피층과 진피층을 자극하면, 피부에 작은 상처가 생긴다. 이 상처를 회복하기 위해 PDGF, TGF-α/β 등 다양한 성장인자(세포 성장을 돕는 단백질)가 분비되고, 이들이 섬유모세포(콜라겐을 만드는 세포)를 활성화시킨다. 그 결과 새로운 콜라겐과 엘라스틴(피부 탄력 성분)이 만들어져 피부 탄력이 좋아지고, 각질층도 두꺼워진다. 흉터 부위에 시술하면 흉터의 콜라겐 밴드를 물리적으로 끊어줘서 흉터가 부드러워진다."
+  /extracted/indications {primary,extended}
+  /extracted/indications/primary [3] = 0:"피부 노화 개선 (주름, 잔주름, 피부 탄력 저하)" ‖ 1:"여드름흉터" ‖ 2:"피부결 개선"
+  /extracted/indications/extended [5] = 0:"색소침착 개선 (약물 투입과 병행 시)" ‖ 1:"탈모 치료 (두피 MTS + PRP 또는 성장인자)" ‖ 2:"넓은 모공 개선" ‖ 3:"각종 유효 성분(비타민, 플라센타, 히알루론산 등) 흡수 촉진" ‖ 4:"수술 후 흉터 개선"
+  /extracted/contraindications {absolute,relative}
+  /extracted/contraindications/absolute [4] = 0:"피부에 감염성 질환이 있는 경우" ‖ 1:"심한 여드름이 진행 중인 경우" ‖ 2:"조절이 안 되는 당뇨병" ‖ 3:"켈로이드 체질 (흉터가 비정상적으로 부풀어오르는 체질)"
+  /extracted/contraindications/relative [2] = 0:"출혈성 질환이 있거나 아스피린 등 혈액 응고에 영향을 주는 약을 복용 중인 경우 주의" ‖ 1:"혈액으로 인한 감염성 질환이 있는 경우 주의"
+  /extracted/safety {common,uncommon,serious}
+  /extracted/safety/common [3] = 0:"시술 중 약간의 출혈과 진물" ‖ 1:"시술 후 피부가 빨개지고 약간 부을 수 있음 (1~2일 내 호전)" ‖ 2:"출혈에 의해 일시적으로 멍이 들 수 있음"
+  /extracted/safety/uncommon [3] = 0:"감염 (무균 관리가 안 될 경우)" ‖ 1:"색소침착 (특히 진피까지 깊이 치료한 경우)" ‖ 2:"알레르기성 접촉피부염 (도포 약물에 의한 반응)"
+  /extracted/safety/serious [1] = 0:"쾨브너현상 (건선 등 피부질환이 있는 환자에서 시술 부위에 병변이 새로 생기는 현상)"
+  /extracted/onset_duration {onset,peak,duration}
+  /extracted/onset_duration/onset = "시술 후 1~2주부터 피부결 개선 느껴짐"
+  /extracted/onset_duration/peak = "3~6회 반복시술 후 최대 효과 (콜라겐 리모델링에 수주~수개월 소요)"
+  /extracted/onset_duration/duration = "반복시술 시 피부가 점점 두꺼워지고 효과가 누적됨"
+  /extracted/aftercare [4] = 0:"시술 후 보습제와 자외선차단제 꼭 사용하기" ‖ 1:"가벼운 세안과 샤워는 괜찮지만, 탕목욕이나 사우나는 피하기" ‖ 2:"출혈이 생긴 정도로 진피까지 치료한 경우 2~4일 화장 피하기" ‖ 3:"롤러는 반드시 멸균 상태에서 1회용으로 사용할 것"
+  /extracted/related_techniques [3] = 0:"MTS + PRP — 미세 구멍 후 PRP 도포로 피부 재생 효과 극대화" ‖ 1:"MTS + 약물 투입 — 비타민C, 히알루론산 등 유효 성분 경피 흡수 촉진" ‖ 2:"프랙셔널 레이저 — 비슷한 원리(미세 열손상 → 재생)이지만 레이저 에너지 사용"
+  /products [0]
+  /name = "마이크로니들링(MTS)"

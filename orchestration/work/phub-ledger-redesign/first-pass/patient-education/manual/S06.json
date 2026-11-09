@@ -1,0 +1,300 @@
+{
+ "segment": "S06",
+ "read_status": "direct_read",
+ "last_read_pointer": "/categories/5/common_concerns/2/a",
+ "expressions": {
+  "/name": [
+   [
+    "지방이식",
+    "name",
+    ""
+   ]
+  ],
+  "/patient_name": [
+   [
+    "내 지방으로 볼륨 채우기",
+    "name,substance,effect",
+    ""
+   ]
+  ],
+  "/simple_explanation": [
+   [
+    "본인의 지방을 다른 부위에서 채취해서 얼굴에 넣어주는 시술입니다.",
+    "sentence,sequence",
+    ""
+   ],
+   [
+    "다른 부위에서 채취해서",
+    "site,sequence",
+    "채취 부위(역할 다름)"
+   ],
+   [
+    "얼굴에 넣어주는",
+    "site",
+    "주입 부위"
+   ]
+  ],
+  "/how_it_works": [
+   [
+    "복부나 허벅지 같은 부위에서 소량의 지방을 뽑아 정제한 뒤, 얼굴의 꺼진 부위(볼, 이마, 관자놀이 등)에 미세하게 주입합니다.",
+    "sentence,site,degree,sequence,manner",
+    ""
+   ],
+   [
+    "복부나 허벅지 같은 부위",
+    "site",
+    "채취 부위 예시 · 「같은」 열린 목록"
+   ],
+   [
+    "소량의 지방",
+    "degree,substance",
+    "수치 없음"
+   ],
+   [
+    "정제한 뒤",
+    "sequence",
+    ""
+   ],
+   [
+    "얼굴의 꺼진 부위(볼, 이마, 관자놀이 등)",
+    "site,concern,paraphrase",
+    "주입 부위 · 「등」 열린 목록"
+   ],
+   [
+    "미세하게 주입합니다",
+    "manner,degree",
+    ""
+   ],
+   [
+    "생착된 지방은 오래 유지됩니다.",
+    "sentence,condition,course",
+    "「오래」 수치 없음"
+   ],
+   [
+    "생착된 지방",
+    "condition,substance",
+    ""
+   ],
+   [
+    "오래 유지됩니다",
+    "course",
+    "수치 없음 · 별도 읽기 검토(형태소 수식어 대조)로 보충"
+   ]
+  ],
+  "/duration_simple": [
+   [
+    "생착률은 개인차·부위차가 커서 평균 약 40~50% 정도가 유지되는 것으로 보고됩니다.",
+    "sentence,quantity,approx,range,condition,evidence",
+    ""
+   ],
+   [
+    "개인차·부위차가 커서",
+    "condition,degree",
+    ""
+   ],
+   [
+    "평균 약 40~50% 정도",
+    "quantity,approx,range",
+    "「~」는 범위 · 「약」「정도」 근사 중복 · 분모·대상 집단 미기재"
+   ],
+   [
+    "유지되는 것으로 보고됩니다",
+    "evidence,hedge",
+    "보고 출처 미기재"
+   ],
+   [
+    "코·이마 등은 상대적으로 낮고 볼·턱은 높은 편이라, 일부 흡수를 고려해 여유 있게 주입합니다.",
+    "sentence,site,comparison,degree,rationale",
+    ""
+   ],
+   [
+    "코·이마 등은 상대적으로 낮고",
+    "site,comparison,degree",
+    "생착률 비교 — 수치 없음"
+   ],
+   [
+    "볼·턱은 높은 편",
+    "site,comparison,degree",
+    ""
+   ],
+   [
+    "일부 흡수를 고려해 여유 있게 주입합니다",
+    "rationale,degree,manner",
+    ""
+   ],
+   [
+    "생착된 조직은 유지되지만 노화에 따른 전반적 볼륨 감소는 계속됩니다.",
+    "sentence,course,condition",
+    ""
+   ],
+   [
+    "노화에 따른 전반적 볼륨 감소는 계속됩니다",
+    "cause,course",
+    ""
+   ],
+   [
+    "생착된 조직은 유지되지만",
+    "condition,course,contrast",
+    "별도 읽기 검토(형태소 수식어 대조)로 보충"
+   ]
+  ],
+  "/pain_level": [
+   [
+    "국소 마취 하에 시술, 시술 중 통증 거의 없음",
+    "condition,time,sensory,degree,negation",
+    ""
+   ],
+   [
+    "국소 마취 하에",
+    "condition",
+    ""
+   ],
+   [
+    "시술 중 통증 거의 없음",
+    "time,sensory,degree,negation",
+    "「거의」 근사 부정"
+   ]
+  ],
+  "/downtime": [
+   [
+    "붓기와 멍이 1-3주, 사회 활동 복귀까지 약 1주",
+    "adverse,time,range,quantity,approx",
+    "시간 역할 두 개(증상 지속·복귀)"
+   ],
+   [
+    "붓기와 멍이 1-3주",
+    "adverse,time,range,quantity",
+    ""
+   ],
+   [
+    "사회 활동 복귀까지 약 1주",
+    "time,approx,quantity",
+    ""
+   ]
+  ],
+  "/common_concerns/0/q": [
+   [
+    "지방이 다 흡수되지는 않나요?",
+    "sentence,negation,scope",
+    ""
+   ]
+  ],
+  "/common_concerns/0/a": [
+   [
+    "일부 흡수가 일어나므로 의사가 약간 여유 있게 넣습니다.",
+    "sentence,rationale,actor,degree",
+    ""
+   ],
+   [
+    "약간 여유 있게",
+    "degree",
+    ""
+   ],
+   [
+    "보통 3개월 후 안정화되며, 생착된 지방은 오래 유지돼요.",
+    "sentence,frequency,time,quantity,course",
+    ""
+   ],
+   [
+    "보통 3개월 후 안정화",
+    "frequency,time,quantity,course",
+    "기준 시점 생략"
+   ],
+   [
+    "오래 유지돼요",
+    "course",
+    "수치 없음"
+   ],
+   [
+    "일부 흡수가 일어나므로",
+    "scope,course,rationale",
+    "별도 읽기 검토(형태소 수식어 대조)로 보충"
+   ]
+  ],
+  "/common_concerns/1/q": [
+   [
+    "지방 뽑는 부위가 움푹 꺼지지 않나요?",
+    "sentence,site,adverse,negation",
+    ""
+   ]
+  ],
+  "/common_concerns/1/a": [
+   [
+    "소량만 채취하고 균일하게 뽑기 때문에 눈에 띄는 변화는 없어요.",
+    "sentence,degree,scope,manner,rationale,negation",
+    ""
+   ],
+   [
+    "소량만",
+    "degree,scope",
+    ""
+   ],
+   [
+    "균일하게",
+    "manner",
+    ""
+   ],
+   [
+    "눈에 띄는 변화는 없어요",
+    "negation,degree",
+    ""
+   ]
+  ],
+  "/common_concerns/2/q": [
+   [
+    "살이 찌면 넣은 지방도 커지나요?",
+    "sentence,condition",
+    ""
+   ]
+  ],
+  "/common_concerns/2/a": [
+   [
+    "생착된 지방세포는 정상 지방세포처럼 작동하므로 체중 변화에 따라 약간의 볼륨 변화가 있을 수 있습니다.",
+    "sentence,comparison,rationale,condition,degree,possibility",
+    ""
+   ],
+   [
+    "정상 지방세포처럼",
+    "comparison",
+    ""
+   ],
+   [
+    "체중 변화에 따라",
+    "condition",
+    ""
+   ],
+   [
+    "약간의 볼륨 변화가 있을 수 있습니다",
+    "degree,possibility",
+    ""
+   ]
+  ]
+ },
+ "observations": [
+  [
+   "/duration_simple",
+   "P",
+   "이 키는 다른 카테고리처럼 「N개월 지속」이 아니라 생착률(%)·부위별 비교·노화 경과를 담는다. 같은 키 이름 아래 정보 종류가 다르다"
+  ],
+  [
+   "/duration_simple",
+   "B",
+   "「평균 약 40~50%」의 분모·대상 집단·측정 시점·보고 출처 미기재. 환자 실제 생착률로 바꾸지 않는다"
+  ],
+  [
+   "/duration_simple",
+   "P",
+   "「~」가 이 값에서는 범위 기호로 쓰였다(다른 값은 「-」). 근사 표현 「약」「정도」가 함께 붙음"
+  ],
+  [
+   "/how_it_works",
+   "P",
+   "부위 역할 두 개: 채취(복부·허벅지)와 주입(볼·이마·관자놀이). duration_simple 의 코·이마·볼·턱은 생착률 비교 대상 부위로 how_it_works 목록과 다르다(코·턱은 how_it_works 에 없음, 「등」으로 열림)"
+  ],
+  [
+   "/common_concerns/0/a",
+   "P",
+   "「보통 3개월 후 안정화」 기준 시점 생략(시술 후로 보임)"
+  ]
+ ]
+}

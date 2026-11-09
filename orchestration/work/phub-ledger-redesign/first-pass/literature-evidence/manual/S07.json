@@ -1,0 +1,834 @@
+{
+ "segment": "S07",
+ "reading_state": "read_direct",
+ "last_read_pointer": "/categories/M7/effects/6/added_at",
+ "read_note": "M7 진술 20개(moa 7·adverse_effects 6·effects 7) 모든 값 직접 읽음.",
+ "observations": [
+  {
+   "id": "S07-O1",
+   "status": "P",
+   "pointers": [
+    "/categories/M7/name",
+    "/categories/M7/moa/0/statement",
+    "/categories/M7/moa/5/statement",
+    "/categories/M7/effects/4/statement"
+   ],
+   "text": "name 'Absorbable suspension threads (PDO/PLLA/PCL) for facial lifting'. 진술 재질 표현: PCL threads(moa/0, effects/1), Poly(L-lactide-co-ε-caprolactone)(moa/5, AE/5), Polydioxanone(effects/4·5), 재질 미지정 'Absorbable barbed threads'·'Thread insertion'·'Bioabsorbable threads'. 'Poly(L-lactide-co-ε-caprolactone)' 는 name 의 '/' 대안 목록 어느 하나와 문자열이 같지 않다(공중합체)."
+  },
+  {
+   "id": "S07-O2",
+   "status": "P",
+   "pointers": [
+    "/categories/M7/moa/0/citations/0",
+    "/categories/M7/effects/1/citations/0"
+   ],
+   "text": "moa/0·effects/1 의 근거는 Cho 2021 'Efficacy study of the new polycaprolactone thread compared with other commercialized threads in a murine model.' — 제목상 동물(쥐) 모델 비교 연구. effects/1 'The new PCL thread exhibits superior skin rejuvenation effect' 의 비교 대상('superior' 의 기준)은 statement 안에 없고 제목에만 'compared with other commercialized threads' 로 있다."
+  },
+  {
+   "id": "S07-O3",
+   "status": "P",
+   "pointers": [
+    "/categories/M7/adverse_effects/1/statement",
+    "/categories/M7/adverse_effects/3/statement"
+   ],
+   "text": "AE/1 과 AE/3 은 'successfully' 유무만 다른 거의 같은 문장(경미한 수술 후 부종, 비스테로이드 약 치료). 중복 여부 후속."
+  },
+  {
+   "id": "S07-O4",
+   "status": "P",
+   "pointers": [
+    "/categories/M7/moa/0/statement",
+    "/categories/M7/moa/6/statement"
+   ],
+   "text": "moa/0 'PCL threads stimulate collagen synthesis providing greater structure and elasticity to the skin.' 와 moa/6 'Thread insertion stimulates collagen synthesis providing greater structure and elasticity to the skin.' 는 주어만 다름(재질 한정 ↔ 일반). 인용도 다름(Cho ↔ Wong)."
+  },
+  {
+   "id": "S07-O5",
+   "status": "P",
+   "pointers": [
+    "/categories/M7/moa/6/patient_ko"
+   ],
+   "text": "moa/6 patient_ko '실 모아넣기 시술' — statement 'Thread insertion' 에 대응하는 한국어로 이 원장 다른 곳(moa/2 '실 삽입')과 다른 표현. 오역 가능성은 후속 확인."
+  },
+  {
+   "id": "S07-O6",
+   "status": "P",
+   "pointers": [
+    "/categories/M7/adverse_effects/0/statement",
+    "/categories/M7/adverse_effects/2/statement",
+    "/categories/M7/adverse_effects/4/statement",
+    "/categories/M7/adverse_effects/5/statement"
+   ],
+   "text": "부작용 배열의 다수가 사건이 아닌 안전성 요약: 'minor and reversible adverse effects', 'No acute inflammatory responses are elicited', 'Most adverse responses resolve spontaneously or with minimal supportive therapy', 'low tissue reactivity'. 부정·정도·경과·비율('Most') 표현이 핵심."
+  },
+  {
+   "id": "S07-O7",
+   "status": "P",
+   "pointers": [
+    "/categories/M7/adverse_effects/2/statement",
+    "/categories/M7/adverse_effects/2/patient_en"
+   ],
+   "text": "AE/2 statement 는 절대 부정('No acute inflammatory responses'), patient_ko 도 '일으키지 않습니다'. patient_en/zh/ja 는 'typically avoids any harsh reactions'·'通常'·'通常は' 로 빈도 한정(typically)이 붙고 대상이 'acute inflammatory'에서 'harsh reactions' 로 바뀜. S03 moa/1 의 PLLA 'pronounced inflammatory response'(기전) 와 대비되는 표현이지만 재질·카테고리가 다르다(연결은 후속)."
+  },
+  {
+   "id": "S07-O8",
+   "status": "P",
+   "pointers": [
+    "/categories/M7/effects/0/statement",
+    "/categories/M7/effects/3/patient_en"
+   ],
+   "text": "부위: 'facial and neck soft tissue'(effects/0), 'facial soft tissue'(effects/2), 'ptotic facial tissue'(effects/6). effects/3 statement 'three-dimensional tissue repositioning' 을 patient_en 'allow for natural movements' 로 바꿈 — 내용 상이."
+  },
+  {
+   "id": "S07-O9",
+   "status": "P",
+   "pointers": [
+    "/categories/M7/moa/4/statement"
+   ],
+   "text": "시술 방법 기술 'inserted subcutaneously along a planned course' — 깊이(피하)·경로. 기전 배열에 들어 있는 절차 서술."
+  }
+ ],
+ "expressions": [
+  {
+   "id": "S07-X1",
+   "pointer": "/categories/M7/name",
+   "text": "Absorbable suspension threads (PDO/PLLA/PCL)",
+   "facets": [
+    "name_candidate",
+    "material",
+    "alternative_list"
+   ]
+  },
+  {
+   "id": "S07-X2",
+   "pointer": "/categories/M7/name",
+   "text": "for facial lifting",
+   "facets": [
+    "purpose",
+    "anatomy_site"
+   ]
+  },
+  {
+   "id": "S07-X3",
+   "pointer": "/categories/M7/moa/0/statement",
+   "text": "PCL threads",
+   "facets": [
+    "material",
+    "name_candidate"
+   ]
+  },
+  {
+   "id": "S07-X4",
+   "pointer": "/categories/M7/moa/0/statement",
+   "text": "providing greater structure and elasticity to the skin",
+   "facets": [
+    "effect",
+    "comparison"
+   ]
+  },
+  {
+   "id": "S07-X5",
+   "pointer": "/categories/M7/moa/0/citations/0/title",
+   "text": "compared with other commercialized threads in a murine model",
+   "facets": [
+    "comparison",
+    "evidence_context"
+   ]
+  },
+  {
+   "id": "S07-X6",
+   "pointer": "/categories/M7/moa/1/statement",
+   "text": "Absorbable barbed threads",
+   "facets": [
+    "material",
+    "form"
+   ]
+  },
+  {
+   "id": "S07-X7",
+   "pointer": "/categories/M7/moa/1/statement",
+   "text": "maintain mechanical lifting action for repositioning of sagging facial tissue",
+   "facets": [
+    "mechanism",
+    "duration",
+    "anatomy_site"
+   ]
+  },
+  {
+   "id": "S07-X8",
+   "pointer": "/categories/M7/moa/1/patient_ko",
+   "text": "흡수되는 미늘 실",
+   "facets": [
+    "material",
+    "form"
+   ]
+  },
+  {
+   "id": "S07-X9",
+   "pointer": "/categories/M7/moa/1/patient_en",
+   "text": "areas that have moved",
+   "facets": [
+    "concern"
+   ],
+   "status": "I",
+   "note": "sagging facial tissue 일반화"
+  },
+  {
+   "id": "S07-X10",
+   "pointer": "/categories/M7/moa/2/statement",
+   "text": "stimulates fibroblasts and synthesis of collagen, hyaluronic acid and elastin around the thread",
+   "facets": [
+    "mechanism",
+    "scope"
+   ]
+  },
+  {
+   "id": "S07-X11",
+   "pointer": "/categories/M7/moa/2/patient_ko",
+   "text": "[2]",
+   "facets": [
+    "citation_marker"
+   ],
+   "status": "I"
+  },
+  {
+   "id": "S07-X12",
+   "pointer": "/categories/M7/moa/2/patient_en",
+   "text": "more natural hydrating factors",
+   "facets": [
+    "comparison"
+   ],
+   "status": "I",
+   "note": "콜라겐·엘라스틴 탈락"
+  },
+  {
+   "id": "S07-X13",
+   "pointer": "/categories/M7/moa/3/statement",
+   "text": "form a support structure under the skin",
+   "facets": [
+    "mechanism",
+    "depth"
+   ]
+  },
+  {
+   "id": "S07-X14",
+   "pointer": "/categories/M7/moa/3/statement",
+   "text": "mechanically reposition sagging facial tissue",
+   "facets": [
+    "mechanism",
+    "concern"
+   ]
+  },
+  {
+   "id": "S07-X15",
+   "pointer": "/categories/M7/moa/3/patient_ko",
+   "text": "흡수되는 가시 실",
+   "facets": [
+    "material",
+    "form"
+   ]
+  },
+  {
+   "id": "S07-X16",
+   "pointer": "/categories/M7/moa/3/patient_ko",
+   "text": "[1][2]",
+   "facets": [
+    "citation_marker"
+   ],
+   "status": "I"
+  },
+  {
+   "id": "S07-X17",
+   "pointer": "/categories/M7/moa/4/statement",
+   "text": "inserted subcutaneously along a planned course",
+   "facets": [
+    "procedure_step",
+    "depth",
+    "route"
+   ]
+  },
+  {
+   "id": "S07-X18",
+   "pointer": "/categories/M7/moa/4/statement",
+   "text": "lift ptotic facial tissue",
+   "facets": [
+    "purpose",
+    "concern"
+   ]
+  },
+  {
+   "id": "S07-X19",
+   "pointer": "/categories/M7/moa/4/patient_ko",
+   "text": "피부 아래에 녹는 실을 넣어서",
+   "facets": [
+    "procedure_step",
+    "depth",
+    "material"
+   ]
+  },
+  {
+   "id": "S07-X20",
+   "pointer": "/categories/M7/moa/5/statement",
+   "text": "Poly(L-lactide-co-ε-caprolactone) threads",
+   "facets": [
+    "material",
+    "name_candidate"
+   ]
+  },
+  {
+   "id": "S07-X21",
+   "pointer": "/categories/M7/moa/5/statement",
+   "text": "provide a scaffold for development of connective tissue and angiogenesis",
+   "facets": [
+    "mechanism"
+   ]
+  },
+  {
+   "id": "S07-X22",
+   "pointer": "/categories/M7/moa/5/patient_en",
+   "text": "healthy circulation and tissue health",
+   "facets": [
+    "mechanism"
+   ],
+   "status": "I"
+  },
+  {
+   "id": "S07-X23",
+   "pointer": "/categories/M7/moa/6/patient_ko",
+   "text": "실 모아넣기 시술",
+   "facets": [
+    "name_candidate"
+   ],
+   "status": "I",
+   "note": "statement 'Thread insertion'"
+  },
+  {
+   "id": "S07-X24",
+   "pointer": "/categories/M7/adverse_effects/0/statement",
+   "text": "is associated with minor and reversible adverse effects",
+   "facets": [
+    "event",
+    "degree",
+    "reversibility",
+    "evidence_status"
+   ]
+  },
+  {
+   "id": "S07-X25",
+   "pointer": "/categories/M7/adverse_effects/0/patient_ko",
+   "text": "가벼운 부작용이 생기며 이는 되돌릴 수 있습니다",
+   "facets": [
+    "degree",
+    "reversibility",
+    "possibility"
+   ]
+  },
+  {
+   "id": "S07-X26",
+   "pointer": "/categories/M7/adverse_effects/0/patient_en",
+   "text": "typically involves very mild reactions",
+   "facets": [
+    "frequency",
+    "degree"
+   ]
+  },
+  {
+   "id": "S07-X27",
+   "pointer": "/categories/M7/adverse_effects/0/patient_zh",
+   "text": "非常轻微且暂时",
+   "facets": [
+    "degree",
+    "duration_quality"
+   ],
+   "status": "I",
+   "note": "zh 만 '暂时' 추가"
+  },
+  {
+   "id": "S07-X28",
+   "pointer": "/categories/M7/adverse_effects/1/statement",
+   "text": "Mild post-operation tumefaction occurs",
+   "facets": [
+    "event",
+    "degree",
+    "time"
+   ]
+  },
+  {
+   "id": "S07-X29",
+   "pointer": "/categories/M7/adverse_effects/1/statement",
+   "text": "is successfully treated with non-steroidal drugs",
+   "facets": [
+    "management",
+    "negation"
+   ]
+  },
+  {
+   "id": "S07-X30",
+   "pointer": "/categories/M7/adverse_effects/1/patient_ko",
+   "text": "비스테로이드 약으로 잘 치료됩니다",
+   "facets": [
+    "management",
+    "negation"
+   ]
+  },
+  {
+   "id": "S07-X31",
+   "pointer": "/categories/M7/adverse_effects/1/patient_en",
+   "text": "can be managed simply and comfortably",
+   "facets": [
+    "management",
+    "possibility"
+   ],
+   "status": "I",
+   "note": "non-steroidal drugs 탈락"
+  },
+  {
+   "id": "S07-X32",
+   "pointer": "/categories/M7/adverse_effects/2/statement",
+   "text": "No acute inflammatory responses are elicited",
+   "facets": [
+    "negation",
+    "event",
+    "onset_quality"
+   ]
+  },
+  {
+   "id": "S07-X33",
+   "pointer": "/categories/M7/adverse_effects/2/patient_ko",
+   "text": "급성 염증 반응을 일으키지 않습니다",
+   "facets": [
+    "negation",
+    "event"
+   ]
+  },
+  {
+   "id": "S07-X34",
+   "pointer": "/categories/M7/adverse_effects/2/patient_ko",
+   "text": "[1][2]",
+   "facets": [
+    "citation_marker"
+   ],
+   "status": "I"
+  },
+  {
+   "id": "S07-X35",
+   "pointer": "/categories/M7/adverse_effects/2/patient_en",
+   "text": "typically avoids any harsh reactions",
+   "facets": [
+    "frequency",
+    "negation",
+    "degree"
+   ],
+   "status": "I",
+   "note": "절대 부정 → typically"
+  },
+  {
+   "id": "S07-X36",
+   "pointer": "/categories/M7/adverse_effects/3/statement",
+   "text": "is treated with non-steroidal drugs",
+   "facets": [
+    "management",
+    "negation"
+   ]
+  },
+  {
+   "id": "S07-X37",
+   "pointer": "/categories/M7/adverse_effects/3/patient_en",
+   "text": "shortly after the session is normal",
+   "facets": [
+    "time",
+    "normality"
+   ]
+  },
+  {
+   "id": "S07-X38",
+   "pointer": "/categories/M7/adverse_effects/4/statement",
+   "text": "Most adverse responses",
+   "facets": [
+    "proportion"
+   ]
+  },
+  {
+   "id": "S07-X39",
+   "pointer": "/categories/M7/adverse_effects/4/statement",
+   "text": "resolve spontaneously or with minimal supportive therapy",
+   "facets": [
+    "course",
+    "management",
+    "alternative_list",
+    "degree"
+   ]
+  },
+  {
+   "id": "S07-X40",
+   "pointer": "/categories/M7/adverse_effects/4/patient_ko",
+   "text": "대부분의 부작용은 저절로 사라지거나 간단한 보조 치료로 좋아집니다",
+   "facets": [
+    "proportion",
+    "course",
+    "management"
+   ]
+  },
+  {
+   "id": "S07-X41",
+   "pointer": "/categories/M7/adverse_effects/4/patient_en",
+   "text": "usually fade away naturally with minimal care",
+   "facets": [
+    "frequency",
+    "course"
+   ]
+  },
+  {
+   "id": "S07-X42",
+   "pointer": "/categories/M7/adverse_effects/5/statement",
+   "text": "has low tissue reactivity",
+   "facets": [
+    "degree",
+    "event"
+   ]
+  },
+  {
+   "id": "S07-X43",
+   "pointer": "/categories/M7/adverse_effects/5/patient_ko",
+   "text": "조직과 반응이 적습니다",
+   "facets": [
+    "degree"
+   ]
+  },
+  {
+   "id": "S07-X44",
+   "pointer": "/categories/M7/effects/0/statement",
+   "text": "corrects ptosis in facial and neck soft tissue",
+   "facets": [
+    "effect",
+    "concern",
+    "anatomy_site"
+   ]
+  },
+  {
+   "id": "S07-X45",
+   "pointer": "/categories/M7/effects/0/patient_ko",
+   "text": "얼굴과 목의 처진 피부",
+   "facets": [
+    "anatomy_site",
+    "concern"
+   ]
+  },
+  {
+   "id": "S07-X46",
+   "pointer": "/categories/M7/effects/1/statement",
+   "text": "The new PCL thread exhibits superior skin rejuvenation effect",
+   "facets": [
+    "comparison",
+    "effect",
+    "material"
+   ]
+  },
+  {
+   "id": "S07-X47",
+   "pointer": "/categories/M7/effects/1/patient_ko",
+   "text": "피부 재생 효과가 더 뛰어납니다",
+   "facets": [
+    "comparison",
+    "effect"
+   ]
+  },
+  {
+   "id": "S07-X48",
+   "pointer": "/categories/M7/effects/1/patient_en",
+   "text": "subtle and refined ways",
+   "facets": [
+    "degree"
+   ],
+   "status": "I",
+   "note": "superior 비교 탈락"
+  },
+  {
+   "id": "S07-X49",
+   "pointer": "/categories/M7/effects/2/statement",
+   "text": "corrects ptosis in facial soft tissue",
+   "facets": [
+    "effect",
+    "concern",
+    "anatomy_site"
+   ]
+  },
+  {
+   "id": "S07-X50",
+   "pointer": "/categories/M7/effects/2/patient_ko",
+   "text": "[1]",
+   "facets": [
+    "citation_marker"
+   ]
+  },
+  {
+   "id": "S07-X51",
+   "pointer": "/categories/M7/effects/3/statement",
+   "text": "enable three-dimensional tissue repositioning",
+   "facets": [
+    "effect",
+    "possibility"
+   ]
+  },
+  {
+   "id": "S07-X52",
+   "pointer": "/categories/M7/effects/3/patient_ko",
+   "text": "입체적으로 위치 조정할 수 있습니다",
+   "facets": [
+    "effect",
+    "possibility"
+   ]
+  },
+  {
+   "id": "S07-X53",
+   "pointer": "/categories/M7/effects/3/patient_ko",
+   "text": "[1]",
+   "facets": [
+    "citation_marker"
+   ]
+  },
+  {
+   "id": "S07-X54",
+   "pointer": "/categories/M7/effects/3/patient_en",
+   "text": "allow for natural movements while keeping the look refreshed",
+   "facets": [
+    "effect"
+   ],
+   "status": "I",
+   "note": "3차원 재배치 내용 상이"
+  },
+  {
+   "id": "S07-X55",
+   "pointer": "/categories/M7/effects/4/statement",
+   "text": "provide a noticeable lifting effect for sagging tissue",
+   "facets": [
+    "effect",
+    "degree",
+    "concern"
+   ]
+  },
+  {
+   "id": "S07-X56",
+   "pointer": "/categories/M7/effects/4/patient_ko",
+   "text": "눈에 띄게 들어올려줍니다",
+   "facets": [
+    "degree",
+    "effect"
+   ]
+  },
+  {
+   "id": "S07-X57",
+   "pointer": "/categories/M7/effects/4/patient_en",
+   "text": "a gentle but clear way",
+   "facets": [
+    "degree"
+   ]
+  },
+  {
+   "id": "S07-X58",
+   "pointer": "/categories/M7/effects/5/statement",
+   "text": "Polydioxanone threads revitalize tissue",
+   "facets": [
+    "material",
+    "effect"
+   ]
+  },
+  {
+   "id": "S07-X59",
+   "pointer": "/categories/M7/effects/5/patient_ko",
+   "text": "[1][2][4]",
+   "facets": [
+    "citation_marker"
+   ],
+   "status": "I"
+  },
+  {
+   "id": "S07-X60",
+   "pointer": "/categories/M7/effects/6/statement",
+   "text": "provides rejuvenation of ptotic facial tissue",
+   "facets": [
+    "effect",
+    "concern",
+    "anatomy_site"
+   ]
+  },
+  {
+   "id": "S07-X61",
+   "pointer": "/categories/M7/effects/6/patient_ko",
+   "text": "의료용 실로 끌어올려 젊어 보이게 만드는 시술입니다",
+   "facets": [
+    "mechanism",
+    "effect"
+   ]
+  },
+  {
+   "id": "S07-R1",
+   "pointer": "/categories/M7/moa/0/patient_en",
+   "text": "for a more structured and firm appearance",
+   "facets": [
+    "comparison",
+    "effect"
+   ],
+   "note": "읽기 검토(정규식 미포함 후보 대조)에서 추가"
+  },
+  {
+   "id": "S07-R2",
+   "pointer": "/categories/M7/moa/6/statement",
+   "text": "providing greater structure and elasticity to the skin",
+   "facets": [
+    "effect",
+    "comparison"
+   ],
+   "note": "읽기 검토(정규식 미포함 후보 대조)에서 추가"
+  },
+  {
+   "id": "S07-R3",
+   "pointer": "/categories/M7/adverse_effects/1/patient_ko",
+   "text": "수술 후 가벼운 부기가 생기며",
+   "facets": [
+    "time",
+    "degree",
+    "event"
+   ],
+   "note": "읽기 검토(정규식 미포함 후보 대조)에서 추가"
+  },
+  {
+   "id": "S07-R4",
+   "pointer": "/categories/M7/adverse_effects/1/patient_en",
+   "text": "Mild temporary puffiness can occur",
+   "facets": [
+    "degree",
+    "duration_quality",
+    "possibility",
+    "event"
+   ],
+   "note": "읽기 검토(정규식 미포함 후보 대조)에서 추가"
+  },
+  {
+   "id": "S07-R5",
+   "pointer": "/categories/M7/adverse_effects/3/patient_ko",
+   "text": "수술 후 가벼운 부기가 생기며",
+   "facets": [
+    "time",
+    "degree",
+    "event"
+   ],
+   "note": "읽기 검토(정규식 미포함 후보 대조)에서 추가"
+  },
+  {
+   "id": "S07-R6",
+   "pointer": "/categories/M7/adverse_effects/3/patient_ko",
+   "text": "비스테로이드 약으로 치료합니다",
+   "facets": [
+    "management",
+    "negation"
+   ],
+   "note": "읽기 검토(정규식 미포함 후보 대조)에서 추가"
+  },
+  {
+   "id": "S07-R7",
+   "pointer": "/categories/M7/adverse_effects/3/patient_en",
+   "text": "can be easily managed",
+   "facets": [
+    "management",
+    "possibility",
+    "degree"
+   ],
+   "note": "읽기 검토(정규식 미포함 후보 대조)에서 추가"
+  },
+  {
+   "id": "S07-R8",
+   "pointer": "/categories/M7/effects/2/patient_en",
+   "text": "for a more defined profile",
+   "facets": [
+    "comparison",
+    "effect"
+   ],
+   "note": "읽기 검토(정규식 미포함 후보 대조)에서 추가"
+  },
+  {
+   "id": "S07-R9",
+   "pointer": "/categories/M7/effects/6/patient_en",
+   "text": "for a more youthful look",
+   "facets": [
+    "comparison",
+    "effect"
+   ],
+   "note": "읽기 검토(정규식 미포함 후보 대조)에서 추가"
+  }
+ ],
+ "issues": [
+  {
+   "id": "S07-I1",
+   "class": "I",
+   "pointers": [
+    "/categories/M7/adverse_effects/2/patient_en",
+    "/categories/M7/adverse_effects/1/patient_en",
+    "/categories/M7/effects/1/patient_en",
+    "/categories/M7/effects/3/patient_en",
+    "/categories/M7/moa/2/patient_en",
+    "/categories/M7/adverse_effects/0/patient_zh"
+   ],
+   "text": "patient_en/zh/ja 가 절대 부정→'typically', 약물명·비교(superior)·3차원 재배치 탈락, zh 만 '暂时' 추가. I-LANG."
+  },
+  {
+   "id": "S07-I2",
+   "class": "I",
+   "pointers": [
+    "/categories/M7/moa/2/patient_ko",
+    "/categories/M7/moa/3/patient_ko",
+    "/categories/M7/adverse_effects/2/patient_ko",
+    "/categories/M7/effects/5/patient_ko"
+   ],
+   "text": "인용 표지 vs citations 1개. I-CITE."
+  },
+  {
+   "id": "S07-I3",
+   "class": "I",
+   "pointers": [
+    "/categories/M7/moa/6/patient_ko"
+   ],
+   "text": "'실 모아넣기 시술' — statement 'Thread insertion' 과 대응 불명. 원문 보존, 후속 확인."
+  },
+  {
+   "id": "S07-F1",
+   "class": "F",
+   "pointers": [
+    "/categories/M7/adverse_effects/1",
+    "/categories/M7/adverse_effects/3",
+    "/categories/M7/moa/0",
+    "/categories/M7/moa/6",
+    "/categories/M7/effects/0",
+    "/categories/M7/effects/2"
+   ],
+   "text": "근접 중복 진술 쌍의 동일성·병합 여부 — 후속."
+  },
+  {
+   "id": "S07-F2",
+   "class": "F",
+   "pointers": [
+    "/categories/M7/moa/5/statement",
+    "/categories/M7/adverse_effects/5/statement",
+    "/categories/M7/name"
+   ],
+   "text": "'Poly(L-lactide-co-ε-caprolactone)' 가 name 의 PLLA·PCL 중 어디에 해당하는지(또는 별도 재질인지) — 원문 기호만으로 확정하지 않음."
+  },
+  {
+   "id": "S07-B1",
+   "class": "B",
+   "pointers": [
+    "/categories/M7/effects/1/statement"
+   ],
+   "text": "'superior' 의 비교 기준이 statement 에 없다(제목에만). 동물 모델 결과의 사람 적용 여부도 원문에 없음."
+  },
+  {
+   "id": "S07-B2",
+   "class": "B",
+   "pointers": [
+    "/categories/M7/adverse_effects/4/statement",
+    "/categories/M7/adverse_effects/0/statement"
+   ],
+   "text": "'Most'·'minor' 의 비율·정도 기준 없음, 지속 기간 없음."
+  }
+ ]
+}

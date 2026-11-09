@@ -1,0 +1,1237 @@
+{
+ "scope": {
+  "sweep_tags": [
+   "MAG",
+   "MM",
+   "NR",
+   "NP",
+   "MAJ"
+  ],
+  "signatures": [
+   [
+    "피하",
+    "VV"
+   ],
+   [
+    "비추",
+    "VV"
+   ],
+   [
+    "돌",
+    "VV"
+   ],
+   [
+    "김",
+    "NNP"
+   ],
+   [
+    "간",
+    "NNG"
+   ],
+   [
+    "재수",
+    "NNG"
+   ],
+   [
+    "X",
+    "SL"
+   ],
+   [
+    "간신",
+    "NNG"
+   ],
+   [
+    "미",
+    "NNP"
+   ],
+   [
+    "유",
+    "NNP"
+   ],
+   [
+    "배",
+    "NNP"
+   ],
+   [
+    "신",
+    "NNP"
+   ],
+   [
+    "수화",
+    "NNP"
+   ],
+   [
+    "다",
+    "NNG"
+   ],
+   [
+    "겔로",
+    "NNG"
+   ],
+   [
+    "미",
+    "NNG"
+   ]
+  ],
+  "note": "이 품사 전부와 의미위험 규칙의 (형태,품사) 서명 전부를 모든 값에서 훑어 출현마다 판정했다. 범위 밖 품사(NNG·VV 일반 등)는 규칙(segmentation-review-rules.json) 단위 대조만 했다."
+ },
+ "occurrences": [
+  {
+   "pointer": "/profiles/0/practicalNotes/0",
+   "span": [
+    9,
+    10
+   ],
+   "form": "열",
+   "tag": "NR",
+   "surface": "열",
+   "verdict": "mis-tag-meaning",
+   "rule": "SR01/SR02",
+   "reason": "열(熱)이 수사 '열(10)'로 분석"
+  },
+  {
+   "pointer": "/profiles/0/aftercare/2",
+   "span": [
+    12,
+    14
+   ],
+   "form": "피하",
+   "tag": "VV",
+   "surface": "피하",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 '피하기/피하'(avoid) — 태그 맞음"
+  },
+  {
+   "pointer": "/profiles/1/moa_summary",
+   "span": [
+    21,
+    23
+   ],
+   "form": "즉각",
+   "tag": "MAG",
+   "surface": "즉각",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/1/practicalNotes/0",
+   "span": [
+    8,
+    9
+   ],
+   "form": "열",
+   "tag": "NR",
+   "surface": "열",
+   "verdict": "mis-tag-meaning",
+   "rule": "SR01/SR02",
+   "reason": "열(熱)이 수사 '열(10)'로 분석"
+  },
+  {
+   "pointer": "/profiles/1/aftercare/0",
+   "span": [
+    40,
+    44
+   ],
+   "form": "얼룩덜룩",
+   "tag": "MAG",
+   "surface": "얼룩덜룩",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/1/aftercare/0",
+   "span": [
+    78,
+    80
+   ],
+   "form": "없이",
+   "tag": "MAG",
+   "surface": "없이",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/1/aftercare/0",
+   "span": [
+    81,
+    83
+   ],
+   "form": "즉시",
+   "tag": "MAG",
+   "surface": "즉시",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/1/aftercare/2",
+   "span": [
+    13,
+    15
+   ],
+   "form": "피하",
+   "tag": "VV",
+   "surface": "피하",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 '피하기/피하'(avoid) — 태그 맞음"
+  },
+  {
+   "pointer": "/profiles/2/prepNotes",
+   "span": [
+    27,
+    29
+   ],
+   "form": "재수",
+   "tag": "NNG",
+   "surface": "재수",
+   "verdict": "mis-tag-meaning",
+   "rule": "SR14",
+   "reason": "'재수화'가 재수+화로 분석"
+  },
+  {
+   "pointer": "/profiles/2/prepNotes",
+   "span": [
+    42,
+    43
+   ],
+   "form": "다",
+   "tag": "NNG",
+   "surface": "다",
+   "verdict": "mis-split",
+   "rule": "SR28",
+   "reason": "'다기관'이 다+기관으로 분절"
+  },
+  {
+   "pointer": "/profiles/2/prepNotes",
+   "span": [
+    53,
+    55
+   ],
+   "form": "수화",
+   "tag": "NNP",
+   "surface": "수화",
+   "verdict": "mis-split",
+   "rule": "SR14",
+   "reason": "'재수화'가 재/XPN+수화/NNP로 분절(뜻은 유지, 태그 비일관)"
+  },
+  {
+   "pointer": "/profiles/2/prepNotes",
+   "span": [
+    93,
+    95
+   ],
+   "form": "겔로",
+   "tag": "NNG",
+   "surface": "겔로",
+   "verdict": "mis-split",
+   "rule": "SR27",
+   "reason": "'겔'+조사 '로'가 미분리"
+  },
+  {
+   "pointer": "/profiles/2/moa_summary",
+   "span": [
+    14,
+    15
+   ],
+   "form": "미",
+   "tag": "NNG",
+   "surface": "미",
+   "verdict": "mis-split",
+   "rule": "SR13",
+   "reason": "'미립자'가 미+립+자로 분절"
+  },
+  {
+   "pointer": "/profiles/2/practicalNotes/0",
+   "span": [
+    50,
+    52
+   ],
+   "form": "또는",
+   "tag": "MAG",
+   "surface": "또는",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/2/practicalNotes/0",
+   "span": [
+    53,
+    55
+   ],
+   "form": "즉시",
+   "tag": "MAG",
+   "surface": "즉시",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/2/practicalNotes/0",
+   "span": [
+    56,
+    58
+   ],
+   "form": "재수",
+   "tag": "NNG",
+   "surface": "재수",
+   "verdict": "mis-tag-meaning",
+   "rule": "SR14",
+   "reason": "'재수화'가 재수+화로 분석"
+  },
+  {
+   "pointer": "/profiles/2/practicalNotes/1",
+   "span": [
+    0,
+    1
+   ],
+   "form": "열",
+   "tag": "NR",
+   "surface": "열",
+   "verdict": "mis-tag-meaning",
+   "rule": "SR01/SR02",
+   "reason": "열(熱)이 수사 '열(10)'로 분석"
+  },
+  {
+   "pointer": "/profiles/3/prepNotes",
+   "span": [
+    0,
+    2
+   ],
+   "form": "즉시",
+   "tag": "MAG",
+   "surface": "즉시",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/3/practicalNotes/0",
+   "span": [
+    8,
+    10
+   ],
+   "form": "모든",
+   "tag": "MM",
+   "surface": "모든",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/3/practicalNotes/2",
+   "span": [
+    0,
+    1
+   ],
+   "form": "열",
+   "tag": "NR",
+   "surface": "열",
+   "verdict": "mis-tag-meaning",
+   "rule": "SR01/SR02",
+   "reason": "열(熱)이 수사 '열(10)'로 분석"
+  },
+  {
+   "pointer": "/profiles/3/aftercare/0",
+   "span": [
+    16,
+    17
+   ],
+   "form": "돌",
+   "tag": "VV",
+   "surface": "돌",
+   "verdict": "mis-tag-meaning",
+   "rule": "SR30",
+   "reason": "명사 '돌기'가 '돌다'+'기'로 분석"
+  },
+  {
+   "pointer": "/profiles/3/aftercare/1",
+   "span": [
+    8,
+    10
+   ],
+   "form": "피하",
+   "tag": "VV",
+   "surface": "피하",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 '피하기/피하'(avoid) — 태그 맞음"
+  },
+  {
+   "pointer": "/profiles/4/prepNotes",
+   "span": [
+    27,
+    29
+   ],
+   "form": "미리",
+   "tag": "MAG",
+   "surface": "미리",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/4/practicalNotes/0",
+   "span": [
+    7,
+    8
+   ],
+   "form": "맨",
+   "tag": "MM",
+   "surface": "맨",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/4/practicalNotes/0",
+   "span": [
+    22,
+    24
+   ],
+   "form": "다른",
+   "tag": "MM",
+   "surface": "다른",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/4/practicalNotes/2",
+   "span": [
+    7,
+    8
+   ],
+   "form": "열",
+   "tag": "NR",
+   "surface": "열",
+   "verdict": "mis-tag-meaning",
+   "rule": "SR01/SR02",
+   "reason": "열(熱)이 수사 '열(10)'로 분석"
+  },
+  {
+   "pointer": "/profiles/4/practicalNotes/3",
+   "span": [
+    64,
+    65
+   ],
+   "form": "니",
+   "tag": "NP",
+   "surface": "니",
+   "verdict": "mis-split",
+   "rule": "SR12",
+   "reason": "'니들'(needle)이 대명사+접미사로 분절"
+  },
+  {
+   "pointer": "/profiles/4/aftercare/0",
+   "span": [
+    12,
+    14
+   ],
+   "form": "피하",
+   "tag": "VV",
+   "surface": "피하",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 '피하기/피하'(avoid) — 태그 맞음"
+  },
+  {
+   "pointer": "/profiles/5/practicalNotes/0",
+   "span": [
+    25,
+    26
+   ],
+   "form": "김",
+   "tag": "NNP",
+   "surface": "김",
+   "verdict": "mis-tag-meaning",
+   "rule": "SR09",
+   "reason": "'김'(길다+ㅁ)이 고유명사로 분석"
+  },
+  {
+   "pointer": "/profiles/5/practicalNotes/1",
+   "span": [
+    13,
+    14
+   ],
+   "form": "열",
+   "tag": "NR",
+   "surface": "열",
+   "verdict": "mis-tag-meaning",
+   "rule": "SR01/SR02",
+   "reason": "열(熱)이 수사 '열(10)'로 분석"
+  },
+  {
+   "pointer": "/profiles/5/practicalNotes/1",
+   "span": [
+    17,
+    19
+   ],
+   "form": "절대",
+   "tag": "MAG",
+   "surface": "절대",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/5/practicalNotes/3",
+   "span": [
+    0,
+    2
+   ],
+   "form": "다른",
+   "tag": "MM",
+   "surface": "다른",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/5/practicalNotes/3",
+   "span": [
+    13,
+    15
+   ],
+   "form": "비추",
+   "tag": "VV",
+   "surface": "비추",
+   "verdict": "mis-tag-meaning",
+   "rule": "SR10",
+   "reason": "구어 '비추(비추천)'가 '비추다'로 분석"
+  },
+  {
+   "pointer": "/profiles/5/aftercare/1",
+   "span": [
+    5,
+    7
+   ],
+   "form": "절대",
+   "tag": "MAG",
+   "surface": "절대",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/6/moa_summary",
+   "span": [
+    16,
+    18
+   ],
+   "form": "피하",
+   "tag": "VV",
+   "surface": "피하",
+   "verdict": "mis-tag-meaning",
+   "rule": "SR04",
+   "reason": "피하(皮下)가 동사 '피하다'로 분석"
+  },
+  {
+   "pointer": "/profiles/6/practicalNotes/0",
+   "span": [
+    9,
+    11
+   ],
+   "form": "가장",
+   "tag": "MAG",
+   "surface": "가장",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/6/practicalNotes/0",
+   "span": [
+    12,
+    14
+   ],
+   "form": "먼저",
+   "tag": "MAG",
+   "surface": "먼저",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/6/aftercare/0",
+   "span": [
+    2,
+    3
+   ],
+   "form": "간",
+   "tag": "NNG",
+   "surface": "간",
+   "verdict": "mis-tag-meaning",
+   "rule": "SR25",
+   "reason": "기간 접미 '간'이 명사로 분석"
+  },
+  {
+   "pointer": "/profiles/7/prepNotes",
+   "span": [
+    33,
+    36
+   ],
+   "form": "깨끗이",
+   "tag": "MAG",
+   "surface": "깨끗이",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/7/practicalNotes/1",
+   "span": [
+    24,
+    25
+   ],
+   "form": "젤",
+   "tag": "MAG",
+   "surface": "젤",
+   "verdict": "mis-tag-meaning",
+   "rule": "SR05",
+   "reason": "젤(gel) 명사가 부사로 분석"
+  },
+  {
+   "pointer": "/profiles/7/aftercare/1",
+   "span": [
+    25,
+    28
+   ],
+   "form": "억지로",
+   "tag": "MAG",
+   "surface": "억지로",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/7/aftercare/2",
+   "span": [
+    5,
+    6
+   ],
+   "form": "미",
+   "tag": "NNP",
+   "surface": "미",
+   "verdict": "mis-split",
+   "rule": "SR11",
+   "reason": "'미온수'가 미+온수로 분절"
+  },
+  {
+   "pointer": "/profiles/8/moa_summary",
+   "span": [
+    40,
+    41
+   ],
+   "form": "신",
+   "tag": "NNP",
+   "surface": "신",
+   "verdict": "mis-split",
+   "rule": "SR24",
+   "reason": "'신생'이 신+생으로 분절"
+  },
+  {
+   "pointer": "/profiles/8/moa_summary",
+   "span": [
+    44,
+    45
+   ],
+   "form": "젤",
+   "tag": "MAG",
+   "surface": "젤",
+   "verdict": "mis-tag-meaning",
+   "rule": "SR05",
+   "reason": "젤(gel) 명사가 부사로 분석"
+  },
+  {
+   "pointer": "/profiles/8/practicalNotes/3",
+   "span": [
+    0,
+    1
+   ],
+   "form": "열",
+   "tag": "NR",
+   "surface": "열",
+   "verdict": "mis-tag-meaning",
+   "rule": "SR01/SR02",
+   "reason": "열(熱)이 수사 '열(10)'로 분석"
+  },
+  {
+   "pointer": "/profiles/8/practicalNotes/3",
+   "span": [
+    5,
+    7
+   ],
+   "form": "가장",
+   "tag": "MAG",
+   "surface": "가장",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/8/practicalNotes/3",
+   "span": [
+    13,
+    15
+   ],
+   "form": "다른",
+   "tag": "MM",
+   "surface": "다른",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/8/practicalNotes/3",
+   "span": [
+    16,
+    17
+   ],
+   "form": "열",
+   "tag": "NR",
+   "surface": "열",
+   "verdict": "mis-tag-meaning",
+   "rule": "SR01/SR02",
+   "reason": "열(熱)이 수사 '열(10)'로 분석"
+  },
+  {
+   "pointer": "/profiles/8/practicalNotes/4",
+   "span": [
+    10,
+    13
+   ],
+   "form": "반드시",
+   "tag": "MAG",
+   "surface": "반드시",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/8/practicalNotes/4",
+   "span": [
+    14,
+    16
+   ],
+   "form": "먼저",
+   "tag": "MAG",
+   "surface": "먼저",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/8/aftercare/0",
+   "span": [
+    21,
+    22
+   ],
+   "form": "수",
+   "tag": "MM",
+   "surface": "수",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/8/aftercare/1",
+   "span": [
+    13,
+    15
+   ],
+   "form": "피하",
+   "tag": "VV",
+   "surface": "피하",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 '피하기/피하'(avoid) — 태그 맞음"
+  },
+  {
+   "pointer": "/profiles/8/aftercare/2",
+   "span": [
+    3,
+    6
+   ],
+   "form": "충분히",
+   "tag": "MAG",
+   "surface": "충분히",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/9/practicalNotes/0",
+   "span": [
+    3,
+    4
+   ],
+   "form": "열",
+   "tag": "NR",
+   "surface": "열",
+   "verdict": "mis-tag-meaning",
+   "rule": "SR01/SR02",
+   "reason": "열(熱)이 수사 '열(10)'로 분석"
+  },
+  {
+   "pointer": "/profiles/9/practicalNotes/1",
+   "span": [
+    0,
+    1
+   ],
+   "form": "열",
+   "tag": "NR",
+   "surface": "열",
+   "verdict": "mis-tag-meaning",
+   "rule": "SR01/SR02",
+   "reason": "열(熱)이 수사 '열(10)'로 분석"
+  },
+  {
+   "pointer": "/profiles/9/aftercare/0",
+   "span": [
+    12,
+    13
+   ],
+   "form": "안",
+   "tag": "MAG",
+   "surface": "안",
+   "verdict": "mis-tag-meaning",
+   "rule": "SR06",
+   "reason": "'세안'의 '안'이 부정 부사로 분석 — 거짓 부정"
+  },
+  {
+   "pointer": "/profiles/9/aftercare/0",
+   "span": [
+    14,
+    16
+   ],
+   "form": "피하",
+   "tag": "VV",
+   "surface": "피하",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 '피하기/피하'(avoid) — 태그 맞음"
+  },
+  {
+   "pointer": "/profiles/9/aftercare/2",
+   "span": [
+    3,
+    6
+   ],
+   "form": "억지로",
+   "tag": "MAG",
+   "surface": "억지로",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/10/prepNotes",
+   "span": [
+    12,
+    14
+   ],
+   "form": "깊이",
+   "tag": "MAG",
+   "surface": "깊이",
+   "verdict": "mis-tag-meaning",
+   "rule": "SR07",
+   "reason": "명사 깊이(depth)가 부사로 분석"
+  },
+  {
+   "pointer": "/profiles/10/moa_summary",
+   "span": [
+    6,
+    8
+   ],
+   "form": "수천",
+   "tag": "NR",
+   "surface": "수천",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/10/practicalNotes/1",
+   "span": [
+    0,
+    1
+   ],
+   "form": "젤",
+   "tag": "MAG",
+   "surface": "젤",
+   "verdict": "mis-tag-meaning",
+   "rule": "SR05",
+   "reason": "젤(gel) 명사가 부사로 분석"
+  },
+  {
+   "pointer": "/profiles/10/practicalNotes/1",
+   "span": [
+    17,
+    18
+   ],
+   "form": "X",
+   "tag": "SL",
+   "surface": "X",
+   "verdict": "symbol",
+   "rule": "SR31",
+   "reason": "금지 기호 X가 외국어로 분석 — 금지 의미가 형태소에 없음"
+  },
+  {
+   "pointer": "/profiles/10/practicalNotes/3",
+   "span": [
+    6,
+    7
+   ],
+   "form": "니",
+   "tag": "NP",
+   "surface": "니",
+   "verdict": "mis-split",
+   "rule": "SR12",
+   "reason": "'니들'(needle)이 대명사+접미사로 분절"
+  },
+  {
+   "pointer": "/profiles/10/practicalNotes/3",
+   "span": [
+    9,
+    11
+   ],
+   "form": "깊이",
+   "tag": "MAG",
+   "surface": "깊이",
+   "verdict": "mis-tag-meaning",
+   "rule": "SR07",
+   "reason": "명사 깊이(depth)가 부사로 분석"
+  },
+  {
+   "pointer": "/profiles/10/practicalNotes/3",
+   "span": [
+    24,
+    25
+   ],
+   "form": "수",
+   "tag": "MM",
+   "surface": "수",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/10/practicalNotes/3",
+   "span": [
+    29,
+    31
+   ],
+   "form": "수십",
+   "tag": "NR",
+   "surface": "수십",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/10/practicalNotes/3",
+   "span": [
+    53,
+    54
+   ],
+   "form": "약",
+   "tag": "MM",
+   "surface": "약",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/10/practicalNotes/3",
+   "span": [
+    67,
+    70
+   ],
+   "form": "대체로",
+   "tag": "MAG",
+   "surface": "대체로",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/10/practicalNotes/3",
+   "span": [
+    113,
+    115
+   ],
+   "form": "점차",
+   "tag": "MAG",
+   "surface": "점차",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/10/practicalNotes/3",
+   "span": [
+    127,
+    130
+   ],
+   "form": "가급적",
+   "tag": "MAG",
+   "surface": "가급적",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/10/aftercare/0",
+   "span": [
+    6,
+    7
+   ],
+   "form": "안",
+   "tag": "MAG",
+   "surface": "안",
+   "verdict": "mis-tag-meaning",
+   "rule": "SR06",
+   "reason": "'세안'의 '안'이 부정 부사로 분석 — 거짓 부정"
+  },
+  {
+   "pointer": "/profiles/10/aftercare/0",
+   "span": [
+    8,
+    10
+   ],
+   "form": "피하",
+   "tag": "VV",
+   "surface": "피하",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 '피하기/피하'(avoid) — 태그 맞음"
+  },
+  {
+   "pointer": "/profiles/11/moa_summary",
+   "span": [
+    4,
+    5
+   ],
+   "form": "전",
+   "tag": "MM",
+   "surface": "전",
+   "verdict": "mis-tag-meaning",
+   "rule": "SR19",
+   "reason": "'전자기장'의 '전'이 관형사로 분석"
+  },
+  {
+   "pointer": "/profiles/12/aftercare/0",
+   "span": [
+    3,
+    5
+   ],
+   "form": "자연",
+   "tag": "MAG",
+   "surface": "자연",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "'가피 자연 탈락' — 부사 '자연(저절로)'로 읽을 수 있어 오태깅으로 보지 않음(복합명사 해석도 가능 — 후속 확인)"
+  },
+  {
+   "pointer": "/profiles/12/aftercare/1",
+   "span": [
+    6,
+    8
+   ],
+   "form": "절대",
+   "tag": "MAG",
+   "surface": "절대",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/13/aftercare/3",
+   "span": [
+    11,
+    12
+   ],
+   "form": "약",
+   "tag": "MM",
+   "surface": "약",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/14/practicalNotes/1",
+   "span": [
+    4,
+    5
+   ],
+   "form": "니",
+   "tag": "NP",
+   "surface": "니",
+   "verdict": "mis-split",
+   "rule": "SR12",
+   "reason": "'니들'(needle)이 대명사+접미사로 분절"
+  },
+  {
+   "pointer": "/profiles/14/practicalNotes/1",
+   "span": [
+    12,
+    14
+   ],
+   "form": "진정",
+   "tag": "MAG",
+   "surface": "진정",
+   "verdict": "mis-tag-meaning",
+   "rule": "SR08",
+   "reason": "진정(鎭靜)이 부사 '진정(정말로)'로 분석"
+  },
+  {
+   "pointer": "/profiles/15/moa_summary",
+   "span": [
+    23,
+    25
+   ],
+   "form": "직접",
+   "tag": "MAG",
+   "surface": "직접",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/15/practicalNotes/0",
+   "span": [
+    6,
+    8
+   ],
+   "form": "너무",
+   "tag": "MAG",
+   "surface": "너무",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/15/practicalNotes/1",
+   "span": [
+    82,
+    84
+   ],
+   "form": "간신",
+   "tag": "NNG",
+   "surface": "간신",
+   "verdict": "mis-tag-meaning",
+   "rule": "SR26",
+   "reason": "'간신기능'이 간신+기능으로 분석"
+  },
+  {
+   "pointer": "/profiles/16/moa_summary",
+   "span": [
+    18,
+    20
+   ],
+   "form": "또는",
+   "tag": "MAG",
+   "surface": "또는",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/16/moa_summary",
+   "span": [
+    34,
+    35
+   ],
+   "form": "유",
+   "tag": "NNP",
+   "surface": "유",
+   "verdict": "mis-split",
+   "rule": "SR22",
+   "reason": "'유래'가 유+래로 분절"
+  },
+  {
+   "pointer": "/profiles/16/practicalNotes/0",
+   "span": [
+    0,
+    1
+   ],
+   "form": "배",
+   "tag": "NNP",
+   "surface": "배",
+   "verdict": "mis-split",
+   "rule": "SR23",
+   "reason": "'배양'이 배+양으로 분절"
+  },
+  {
+   "pointer": "/profiles/16/practicalNotes/0",
+   "span": [
+    63,
+    66
+   ],
+   "form": "명확히",
+   "tag": "MAG",
+   "surface": "명확히",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/16/practicalNotes/1",
+   "span": [
+    38,
+    39
+   ],
+   "form": "및",
+   "tag": "MAG",
+   "surface": "및",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "접속 부사 '및' — 의미 영향 없음(MAJ 아님은 태그 차이만)"
+  },
+  {
+   "pointer": "/profiles/16/practicalNotes/2",
+   "span": [
+    19,
+    21
+   ],
+   "form": "대개",
+   "tag": "MAG",
+   "surface": "대개",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/16/practicalNotes/2",
+   "span": [
+    30,
+    32
+   ],
+   "form": "또는",
+   "tag": "MAG",
+   "surface": "또는",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  },
+  {
+   "pointer": "/profiles/16/practicalNotes/3",
+   "span": [
+    8,
+    10
+   ],
+   "form": "다른",
+   "tag": "MM",
+   "surface": "다른",
+   "verdict": "correct",
+   "rule": null,
+   "reason": "원문 대조 — 태그가 문맥과 맞음"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{"section":"S052","state":"read","last_pointer":"/problem/13/subcategories/3/items/1/modality_ref/0",
+"observations":[
+ {"status":"P","pointers":["/problem/9/subcategories/1/label","/problem/9/subcategories/2/label"],"note":"P10 제모 하위분류 축이 부위('얼굴')·성별('바디(여성)','남성')로 섞인다. 항목명은 부위 나열('겨드랑이/팔/다리','수염/가슴/등')."},
+ {"status":"P","pointers":["/problem/12/subcategories/0/label","/problem/12/subcategories/1/label","/problem/12/subcategories/2/label","/problem/12/subcategories/3/label"],"note":"P13 두피/탈모 하위분류는 치료 방식 축(주사치료·장비치료·약물치료·모발이식) — P1(부위), P10(부위·성별)과 축이 다르다."},
+ {"status":"P","pointers":["/problem/10/subcategories/1/items/1/modality_ref","/problem/11/subcategories/0/items/4/modality_ref","/modality/15/subcategories/4/items/0/name"],"note":"'브이올렛' 이 problem 에 두 번(P11, P12) 나오며 둘 다 modality_ref []. M16-DCA 에 '브이올렛' 항목이 있다(참조 없음)."},
+ {"status":"P","pointers":["/problem/11/subcategories/0/items/1/name","/modality/15/subcategories/4/description"],"note":"P12 '지방분해주사(PPC/DC)' detail '포스파티딜콜린/데옥시콜산' — M16-DCA description 의 PPC 사용 금지 진술과 같은 긴장(S048-I01). 'DC' 약어(DCA?)는 원문 정의 없음."},
+ {"status":"P","pointers":["/problem/11/subcategories/0/items/2/name","/problem/11/subcategories/0/items/3/name","/problem/11/subcategories/0/items/5/name","/problem/11/subcategories/3/items/0/name"],"note":"HPL주사·BNLS주사·컷슬린·엔더몰로지 — modality 쪽에 대응 항목이 없는 이름(참조 []). 바디HIFU detail '리포소닉스 등' 도 taxonomy 항목에 없음."},
+ {"status":"P","pointers":["/problem/12/subcategories/0/items/2/detail","/problem/12/subcategories/0/items/2/modality_ref"],"note":"두피엑소좀 detail 'ASCE+', ref [M17] — ASCE+ 는 M4-3 항목명·M5 제품(name_en)에 있다. 참조 계열과 이름 출처 계열이 다르다."},
+ {"status":"P","pointers":["/problem/12/subcategories/2/items/1/detail","/modality/14/subcategories/9/items/7/name"],"note":"피나스테리드 detail '경구' — M15 의 '피나스테리드도포'(국소)와 다른 투여형."},
+ {"status":"P","pointers":["/problem/13/subcategories/2/items/1/detail","/problem/13/subcategories/2/items/1/modality_ref","/modality/8/subcategories/2/label"],"note":"미라드라이 detail '마이크로웨이브 · 영구적' — M9-3 '마이크로웨이브' 하위분류가 있으나 ref []."},
+ {"status":"P","pointers":["/problem/10/subcategories/3/items/0/detail","/problem/10/subcategories/3/items/0/modality_ref"],"note":"광대축소주사 detail '보톡스/윤곽주사' — ref [M1] 만(윤곽주사 대응 없음, S051-I01 과 같은 성격)."},
+ {"status":"P","pointers":["/problem/13/subcategories/3/items/0/detail","/modality/7/extracted/indications/extended/4"],"note":"백반증 '엑시머 308nm' ref [M8] — M8 모달리티 extended 적응증에 '백반증, 건선 치료 (엑시머 레이저)' 가 있다(항목은 없음)."},
+ {"status":"P","pointers":["/problem/12/subcategories/1/items/0/detail"],"note":"LLLT detail '저출력레이저 · LED · FDA', ref [M8] — 같은 이름 항목이 M8-6(빈 extracted)과 M15 탈모(내용 있음) 두 곳."},
+ {"status":"P","pointers":["/problem"],"note":"problem 전체: 14 카테고리·53 하위분류·117 항목, modality_ref 원소 105개, 빈 배열 26항목. 참조되는 id 는 M1~M17 중 M13(플라즈마)만 한 번도 참조되지 않는다(기계 집계 — 의미 판단 아님). 모든 참조 id 는 원장의 modality id 에 존재."}
+],
+"expressions":[
+ {"pointer":"/problem/9/subcategories/2/items/0/detail","text":"제모레이저 · Nd:YAG","kinds":["시술·제품명"],"note":""},
+ {"pointer":"/problem/10/subcategories/0/items/0/detail","text":"교근축소","kinds":["부위"],"note":""},
+ {"pointer":"/problem/10/subcategories/1/items/1/detail","text":"턱밑 FDA","kinds":["부위","주장"],"note":""},
+ {"pointer":"/problem/10/subcategories/3/items/0/detail","text":"보톡스/윤곽주사","kinds":["참조","기호"],"note":""},
+ {"pointer":"/problem/10/subcategories/4/items/0/detail","text":"필러/지방이식/바이오스티뮬레이터","kinds":["참조","기호"],"note":"[M2, M3, M6]"},
+ {"pointer":"/problem/11/subcategories/0/items/1/name","text":"지방분해주사(PPC/DC)","kinds":["시술·제품명","기호"],"note":""},
+ {"pointer":"/problem/11/subcategories/0/items/3/detail","text":"식물추출 지방분해","kinds":[],"note":""},
+ {"pointer":"/problem/11/subcategories/0/items/4/detail","text":"턱밑 FDA · 데옥시콜산","kinds":["부위","주장"],"note":""},
+ {"pointer":"/problem/11/subcategories/0/items/6/detail","text":"리포소닉스 등","kinds":["시술·제품명","참조"],"note":"taxonomy 밖 이름"},
+ {"pointer":"/problem/11/subcategories/2/items/1/detail","text":"RF+IR","kinds":["기호"],"note":""},
+ {"pointer":"/problem/12/subcategories/0/items/2/detail","text":"ASCE+","kinds":["시술·제품명","참조"],"note":""},
+ {"pointer":"/problem/12/subcategories/1/items/0/detail","text":"저출력레이저 · LED · FDA","kinds":["시술·제품명","주장"],"note":""},
+ {"pointer":"/problem/12/subcategories/3/items/0/detail","text":"모낭단위추출","kinds":[],"note":"FUE 풀이"},
+ {"pointer":"/problem/13/subcategories/0/items/1/detail","text":"냉동/CO2","kinds":["기호"],"note":"대안"},
+ {"pointer":"/problem/13/subcategories/2/items/0/detail","text":"겨드랑이/손/발","kinds":["부위","기호"],"note":""},
+ {"pointer":"/problem/13/subcategories/2/items/1/detail","text":"마이크로웨이브 · 영구적","kinds":["수량·단위·시간"],"note":""},
+ {"pointer":"/problem/13/subcategories/3/items/0/detail","text":"엑시머 308nm","kinds":["수량·단위·시간","시술·제품명"],"note":""},
+ {"pointer":"/problem/13/subcategories/3/items/1/detail","text":"UVB 광치료","kinds":["시술·제품명"],"note":""}
+],
+"seg_errors":[],
+"issues":[
+ {"id":"S052-F01","status":"F","pointers":["/problem/10/subcategories/1/items/0/modality_ref","/problem/10/subcategories/1/items/1/modality_ref","/problem/11/subcategories/0/items/1/modality_ref","/problem/11/subcategories/0/items/4/modality_ref","/problem/12/subcategories/0/items/0/modality_ref","/problem/12/subcategories/2/items/0/modality_ref","/problem/13/subcategories/2/items/1/modality_ref"],"note":"modality_ref 빈 배열 항목 중 대응 후보가 modality 쪽에 이름으로 존재하는 것(윤곽주사↔M16-LIPO, 브이올렛↔M16-DCA, 두피메조↔M15, 미녹시딜↔M16, 미라드라이↔M9-3 마이크로웨이브 등).","impact":"참조 보강 여부는 후속(원본 변경 후보, 지금 선택 대기 아님)"},
+ {"id":"S052-B01","status":"B","pointers":["/problem/11/subcategories/0/items/2","/problem/11/subcategories/0/items/3","/problem/11/subcategories/0/items/5","/problem/11/subcategories/3/items/0","/problem/12/subcategories/3/items/0","/problem/12/subcategories/3/items/1"],"note":"HPL·BNLS·컷슬린·엔더몰로지·FUE·FUT 는 이름·짧은 detail 만 있고 modality 쪽 대응 항목이 없다.","impact":"시술 내용 정보 부족"},
+ {"id":"S052-I01","status":"I","pointers":["/problem/11/subcategories/0/items/1","/modality/15/subcategories/4/description"],"note":"PPC 사용 금지 진술 vs PPC 지방분해주사 항목(problem 쪽).","impact":"S048-I01 과 같은 원본 확인 후보"}
+]}

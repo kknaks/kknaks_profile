@@ -1,0 +1,26 @@
+{"note":"Kiwi 0.24.1(cong) 출력 137값 3,144토큰을 원문과 함께 전수로 직접 대조해 찾은 알려진 분석 오류. 교정하지 않고 출현별로 표시한다(morphology.json tokens[].known_issue, segmentation_occurrences). 서명은 연속 토큰 (form, tag) 열. 목록 밖 토큰의 정답을 보장하지 않는다.",
+"rules":[
+{"id":"W01","kind":"mis_segmentation","surface":"필러","signature":[["필","NNG"],["러","EC"]],"impact":"제품군 명칭 '필러'가 사라지고 어미로 분석됨. '필러가'는 가/VV 까지 동사로 오분석 — 주어·대상 연결 손실"},
+{"id":"W02","kind":"mis_segmentation","surface":"하안면","signature":[["하","VX"],["안면","NNG"]],"impact":"'하안면'(아래 얼굴)의 '하'가 보조용언으로 분리 — 부위 범위(하부) 손실"},
+{"id":"W03","kind":"wrong_sense_split","surface":"거미스마일","signature":[["거미","NNG"],["스마일","NNG"]],"impact":"고민 명칭이 '거미'(동물)+'스마일' 로 분리. 기본형 '거미'를 개념으로 쓰면 오탐"},
+{"id":"W04","kind":"mis_segmentation","surface":"이물","signature":[["이","MM"],["물","NNG"]],"impact":"'이물 반응 육아종'의 '이물'(foreign-body)이 관형사 '이'+'물' — 사건 명칭 손실"},
+{"id":"W05","kind":"mis_segmentation","surface":"가교","signature":[["가","VV"],["어","EC"],["교","NNG"]],"impact":"'가교'(crosslinked)가 동사 '가-'+'교' — 재질 조건(가교/비가교) 손실"},
+{"id":"W06","kind":"mis_segmentation","surface":"내","signature":[["나","NP"],["의","JKG"]],"impact":"'PRP 내'(PRP 안의)가 대명사 '나'+'의' — 소속 관계 손실"},
+{"id":"W07","kind":"mis_segmentation","surface":"섬유아세포","signature":[["섬","NNG"],["유아","NNG"],["세포","NNG"]],"impact":"'섬유아세포'가 '섬'+'유아'+'세포' — 세포 명칭 손실, '유아'(infant) 오탐"},
+{"id":"W08a","kind":"mis_segmentation","surface":"실은","signature":[["실은","MAG"]],"impact":"'실(thread)+은'이 부사 '실은'(사실은) — 시술 재료 주어 손실"},
+{"id":"W08b","kind":"mis_segmentation","surface":"실로","signature":[["실로","MAG"]],"impact":"'실(thread)+로'가 부사 '실로' — 도구 표현 손실"},
+{"id":"W09","kind":"mis_segmentation","surface":"붉은기와","signature":[["붉","VA"],["은","ETM"],["기와","NNG"]],"impact":"'붉은기+와'가 '붉은'+'기와'(roof tile) — 고민 '붉은기' 손실, 나열 접속 '와' 손실"},
+{"id":"W10","kind":"oversplit","surface":"폴리엘엘락산","signature":[["폴리","NNG"],["엘","NNG"],["엘","NNG"],["락","NNG"],["산","NNG"]],"impact":"재질명이 5조각 — 재질 명칭 인식 불가"},
+{"id":"W11","kind":"oversplit","surface":"피코초","signature":[["피코","NNP"],["초","NNB"]],"impact":"'피코초'(펄스 시간 단위)가 '피코'+'초' — 장비 명칭 일부가 시간 단위 '초'로 분리, 시간 표현 오탐 가능"},
+{"id":"W12","kind":"oversplit","surface":"외분비","signature":[["외","NNG"],["분비","NNG"]],"impact":"'외분비'(exocrine)가 '외'+'분비' — 뜻은 남지만 용어 경계 손실"},
+{"id":"W13a","kind":"oversplit","surface":"초음파","signature":[["초","XPN"],["음파","NNG"]],"impact":"장비 에너지 명칭이 접두사+명사 — 용어 경계 손실"},
+{"id":"W13b","kind":"oversplit","surface":"고주파","signature":[["고","XPN"],["주파","NNG"]],"impact":"장비 명칭(RF) 경계 손실"},
+{"id":"W14","kind":"ambiguous_split","surface":"미세침술","signature":[["미세","NNG"],["침","NNG"],["술","NNG"]],"impact":"'미세침술' 경계(미세침+술 / 미세+침술) 모호 — '침술'로 읽으면 다른 시술로 오탐"},
+{"id":"W15","kind":"mis_tag","surface":"만드는","signature":[["만들","VX"],["는","ETM"],["과정","NNG"]],"impact":"본용언 '만들다'가 보조용언(VX)으로 태깅 — 품사 기반 필터 시 행위 누락"},
+{"id":"W16","kind":"mis_tag","surface":"바르는","signature":[["바르","VA"],["는","ETM"],["비타민","NNG"]],"impact":"'(피부에) 바르는'이 형용사 '바르다'(곧다)로 태깅 — 투여 경로(topical) 표현 손실"}
+],
+"notes":[
+{"id":"N01","kind":"multiword_token","surface":"스티븐스-존슨 증후군","text":"Kiwi 가 공백 포함 구를 NNP 한 토큰으로 냈다(기본 사전 다어절 항목). 오류는 아니며 토큰 구간이 공백을 포함함을 기록"},
+{"id":"N02","kind":"embedded_negation","surface":"비가교","text":"'비가교'는 NNG 한 토큰 — 부정 접두 '비'가 분리되지 않아 품사만으로 부정을 찾으면 누락(M4 effects/1 patient_ko). 비/XPN 으로 분리된 '비절제·비자가·비위생·비스테로이드'와 다르게 처리됨"},
+{"id":"N03","kind":"citation_marker","surface":"[n]","text":"patient_ko 끝 인용 표지는 SSO/SN/SSC 로 토큰화됨. 숫자 SN 은 수량이 아니라 참조 번호(I-CITE)"}
+]}

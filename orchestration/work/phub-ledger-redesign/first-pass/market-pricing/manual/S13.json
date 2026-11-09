@@ -1,0 +1,28 @@
+{
+ "segment": "S13", "direct_read": true, "read_note": "M13 플라즈마 6항목 전부 직접 읽음.",
+ "last_pointer": "/categories/12/items/5/high",
+ "observations": [
+  ["/categories/12/items/0/name", "모든 항목이 '플라즈마' 로 시작. 괄호는 부위·범위(전체얼굴), 부위+고민(눈가 주름), 목적(여드름 치료), 대상 병변+수량(쥐젖/사마귀 1개), 고민+시술방식(눈꺼풀 처짐 비수술), 목적(진정/재생)로 역할이 섞임.", "P"],
+  ["/categories/12/items/3/name", "'플라즈마 (쥐젖/사마귀 1개)' unit '1개' — 병변 1개 기준. '/' 는 두 병변 대안 또는 나열 — 확정 불가.", "P"],
+  ["/categories/12/items/4/name", "'(눈꺼풀 처짐 비수술)' — '비수술' 은 수술이 아님을 나타내는 부정 접두 표현(비-). 형태소상 '비/XPN + 수술/NNG'.", "P"],
+  ["/categories/12/items/5/name", "'플라즈마 샤워 (진정/재생)' — '샤워' 가 기법명 일부. 괄호는 효과/목적 두 가지.", "P"],
+  ["/categories/12/items/0/low", "6항목 모두 low < mid < high.", "P"]
+ ],
+ "expressions": [
+  ["/categories/12/items/0/name", "플라즈마 리프팅", ["시술명 후보"], ""],
+  ["/categories/12/items/0/name", "(전체얼굴)", ["적용 범위", "부위 후보"], ""],
+  ["/categories/12/items/1/name", "(눈가 주름)", ["부위 후보", "고민 후보"], ""],
+  ["/categories/12/items/2/name", "(여드름 치료)", ["고민/목적 후보"], ""],
+  ["/categories/12/items/3/name", "(쥐젖/사마귀 1개)", ["병변 후보", "'/' 연결", "수량·단위"], ""],
+  ["/categories/12/items/3/name", "쥐젖/사마귀", ["병변 후보", "'/' 연결"], ""],
+  ["/categories/12/items/4/name", "(눈꺼풀 처짐 비수술)", ["부위 후보", "고민 후보", "부정"], ""],
+  ["/categories/12/items/4/name", "눈꺼풀 처짐", ["부위 후보", "고민 후보"], ""],
+  ["/categories/12/items/4/name", "비수술", ["부정", "시술 방식"], "'비-' 부정 접두."],
+  ["/categories/12/items/5/name", "플라즈마 샤워", ["시술명 후보"], ""],
+  ["/categories/12/items/5/name", "(진정/재생)", ["효과/목적 후보", "'/' 연결"], ""]
+ ],
+ "issues": [
+  ["P-S13-1", "P", ["/categories/12/items/4/name"], "'비수술' 이 수술 대비 방식을 말하는 부정 표현이라는 것은 잠정. 수식 대상(시술 전체)은 원문 위치로만 보존."],
+  ["B-S13-1", "B", ["/categories/12/items/1/name", "/categories/12/items/2/name", "/categories/12/items/4/name"], "부위·범위 크기 없이 고민·목적만 있는 항목의 시술 범위가 없다."]
+ ]
+}

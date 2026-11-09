@@ -1,0 +1,1371 @@
+{
+ "method": "원문 전체를 읽으며 함께 보존해야 할 구절을 직접 고른 목록. 정확한 부분문자열로 적고 build.py 가 원문 위치를 찾는다(없으면 실패). 범주명은 탐색 관점이며 확정 분류표가 아니다. note 는 잠정 관찰.",
+ "phrases": [
+  {
+   "pointer": "/description",
+   "text": "동일 세션 시술 조합 순서 가이드",
+   "category_candidate": "scope_statement",
+   "note": "원장 자체의 적용 범위 선언(동일 세션). 아래 별도 세션·간격 항목과 범위가 겹치는지는 후속",
+   "occurrence": 0,
+   "id": "MX001"
+  },
+  {
+   "pointer": "/description",
+   "text": "안전성과 효과 최적화 기준",
+   "category_candidate": "criterion",
+   "note": "순서 판단 기준 두 가지 병렬",
+   "occurrence": 0,
+   "id": "MX002"
+  },
+  {
+   "pointer": "/principles/0",
+   "text": "클렌징 → 마취 → 시술 → 진정 순서 기본",
+   "category_candidate": "order_chain",
+   "note": "4단 순서 + '기본'(기본값 수식)",
+   "occurrence": 0,
+   "id": "MX003"
+  },
+  {
+   "pointer": "/principles/1",
+   "text": "보톡스와 HIFU/RF 열시술은 당일 병행 가능하나",
+   "category_candidate": "same_day_possibility",
+   "note": "가능 + 양보 연결 '-나'",
+   "occurrence": 0,
+   "id": "MX004"
+  },
+  {
+   "pointer": "/principles/1",
+   "text": "HIFU/RF 열시술",
+   "category_candidate": "procedure_group_like",
+   "note": "'/' 대안 + 묶음명 '열시술' — 열시술이 HIFU/RF 만인지 상위 묶음인지 원문만으로 불명",
+   "occurrence": 0,
+   "id": "MX005"
+  },
+  {
+   "pointer": "/principles/1",
+   "text": "웬만하면 열시술을 먼저 시행",
+   "category_candidate": "order_preference_hedged",
+   "note": "선호 강도 '웬만하면'(필수 아님)",
+   "occurrence": 0,
+   "id": "MX006"
+  },
+  {
+   "pointer": "/principles/2",
+   "text": "보톡스 주입 후 2주 이내 효력 저하 가능성",
+   "category_candidate": "time_window_possibility",
+   "note": "기준 시점(보톡스 주입 후)·기간(2주 이내)·가능성. '효력'의 대상(보톡스 효력인지)은 원문에 명시 없음",
+   "occurrence": 0,
+   "id": "MX007"
+  },
+  {
+   "pointer": "/principles/2",
+   "text": "HIFU 선행 또는 2주 이상 간격을 두며",
+   "category_candidate": "alternative_condition",
+   "note": "선택지 둘: 순서(HIFU 선행) 또는 간격(2주 이상)",
+   "occurrence": 0,
+   "id": "MX008"
+  },
+  {
+   "pointer": "/principles/2",
+   "text": "RF·IPL·비침습 레이저는 당일 병행 가능",
+   "category_candidate": "same_day_possibility",
+   "note": "'·' 나열 + 부정 접두 '비침습'. 병행 상대가 보톡스인지는 앞 절 문맥",
+   "occurrence": 0,
+   "id": "MX009"
+  },
+  {
+   "pointer": "/principles/3",
+   "text": "레이저/IPL은 필러 주입 전에",
+   "category_candidate": "order_relation",
+   "note": "서술어 생략 문장",
+   "occurrence": 0,
+   "id": "MX010"
+  },
+  {
+   "pointer": "/principles/3",
+   "text": "(부종 상태에서 레이저 위험)",
+   "category_candidate": "condition_risk_reason",
+   "note": "조건(부종 상태) + 위험. 부종의 원인(필러 주입)은 문맥 추론",
+   "occurrence": 0,
+   "id": "MX011"
+  },
+  {
+   "pointer": "/principles/4",
+   "text": "MTS/니들RF 후 약물 도포는",
+   "category_candidate": "time_condition",
+   "note": "기준 시점 'MTS/니들RF 후'",
+   "occurrence": 0,
+   "id": "MX012"
+  },
+  {
+   "pointer": "/principles/4",
+   "text": "멸균·시술용으로 허가된 성장인자·펩타이드·PRP·ALA 등 의료 제제로 한정",
+   "category_candidate": "restriction_open_list",
+   "note": "한정 + 열린 나열 '등'",
+   "occurrence": 0,
+   "id": "MX013"
+  },
+  {
+   "pointer": "/principles/4",
+   "text": "화장품 분류 엑소좀·배양액의 개방 채널 전달은",
+   "category_candidate": "prohibited_subject",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX014"
+  },
+  {
+   "pointer": "/principles/4",
+   "text": "미허가·위법 소지와 감염·육아종 위험이 있어 금지",
+   "category_candidate": "reason_prohibition",
+   "note": "법적 가능성('소지')·위험 나열 → 금지",
+   "occurrence": 0,
+   "id": "MX015"
+  },
+  {
+   "pointer": "/principles/5",
+   "text": "⚠️",
+   "category_candidate": "warning_marker",
+   "note": "경고 기호. 다른 principle 에는 없음",
+   "occurrence": 0,
+   "id": "MX016"
+  },
+  {
+   "pointer": "/principles/5",
+   "text": "채널 오픈(MTS/니들RF/프락셔널) 후 도포는",
+   "category_candidate": "time_condition",
+   "note": "괄호 안 '/' 대안 3개",
+   "occurrence": 0,
+   "id": "MX017"
+  },
+  {
+   "pointer": "/principles/5",
+   "text": "멸균·시술용으로 허가된 의료 제제만 사용",
+   "category_candidate": "restriction",
+   "note": "'만' 한정",
+   "occurrence": 0,
+   "id": "MX018"
+  },
+  {
+   "pointer": "/principles/5",
+   "text": "화장품·코스메슈티컬(비타민C 세럼·비타민E 오일·식물추출물·향료·색소·보습젤 등)의 개방 채널 내 도포 금지",
+   "category_candidate": "prohibition_open_list",
+   "note": "괄호 예시 + '등'",
+   "occurrence": 0,
+   "id": "MX019"
+  },
+  {
+   "pointer": "/principles/5",
+   "text": "진피 내 이물 잔류로 육아종·지연성 과민반응·전신 과민반응 위험",
+   "category_candidate": "mechanism_risk",
+   "note": "원인(이물 잔류) → 위험 3개",
+   "occurrence": 0,
+   "id": "MX020"
+  },
+  {
+   "pointer": "/principles/6",
+   "text": "침습도 높은 시술 먼저",
+   "category_candidate": "relative_order",
+   "note": "비교 기준 '침습도'의 값·척도는 원문에 없음",
+   "occurrence": 0,
+   "id": "MX021"
+  },
+  {
+   "pointer": "/principles/6",
+   "text": "낮은 시술 나중에",
+   "category_candidate": "relative_order",
+   "note": "'침습도'가 생략된 대구",
+   "occurrence": 0,
+   "id": "MX022"
+  },
+  {
+   "pointer": "/principles/7",
+   "text": "출혈 위험 시술은 마지막에",
+   "category_candidate": "relative_order",
+   "note": "어떤 시술이 출혈 위험 시술인지 목록 없음",
+   "occurrence": 0,
+   "id": "MX023"
+  },
+  {
+   "pointer": "/principles/8",
+   "text": "같은 날 필러+보톡스",
+   "category_candidate": "scope_condition",
+   "note": "'+' 함께 시술, 같은 날 조건",
+   "occurrence": 0,
+   "id": "MX024"
+  },
+  {
+   "pointer": "/principles/8",
+   "text": "필러 먼저(위치 안정화) → 보톡스 나중에",
+   "category_candidate": "order_relation",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX025"
+  },
+  {
+   "pointer": "/principles/8",
+   "text": "전문가 합의 기반 기본값",
+   "category_candidate": "evidence_level_default",
+   "note": "근거 수준 + 기본값",
+   "occurrence": 0,
+   "id": "MX026"
+  },
+  {
+   "pointer": "/principles/8",
+   "text": "같은 날엔 순서 유연",
+   "category_candidate": "exception_relaxation",
+   "note": "같은 문장 앞의 순서를 완화",
+   "occurrence": 0,
+   "id": "MX027"
+  },
+  {
+   "pointer": "/principles/9",
+   "text": "별도 세션 필러+보톡스",
+   "category_candidate": "scope_condition",
+   "note": "같은 날(8)과 대비되는 조건",
+   "occurrence": 0,
+   "id": "MX028"
+  },
+  {
+   "pointer": "/principles/9",
+   "text": "보톡스 먼저 → 2주 후 필러",
+   "category_candidate": "order_interval",
+   "note": "순서 + 간격",
+   "occurrence": 0,
+   "id": "MX029"
+  },
+  {
+   "pointer": "/principles/9",
+   "text": "보톡스 효과 안정 후 필러 위치 정밀 결정",
+   "category_candidate": "reason",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX030"
+  },
+  {
+   "pointer": "/principles/10",
+   "text": "HA 필러 → RF/HIFU",
+   "category_candidate": "order_relation",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX031"
+  },
+  {
+   "pointer": "/principles/10",
+   "text": "최소 14일 간격 필수",
+   "category_candidate": "interval_necessity",
+   "note": "강도 '필수' — /incompatible_same_day/4 는 같은 간격을 '권장'",
+   "occurrence": 0,
+   "id": "MX032"
+  },
+  {
+   "pointer": "/principles/10",
+   "text": "열에 의한 HA 분해 위험",
+   "category_candidate": "mechanism_risk",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX033"
+  },
+  {
+   "pointer": "/principles/10",
+   "text": "JCD 2023",
+   "category_candidate": "evidence_citation",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX034"
+  },
+  {
+   "pointer": "/principles/11",
+   "text": "RF/HIFU → 필러: 같은 날 가능",
+   "category_candidate": "same_day_possibility",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX035"
+  },
+  {
+   "pointer": "/principles/11",
+   "text": "에너지 기기 먼저, 필러 나중에",
+   "category_candidate": "order_relation",
+   "note": "'에너지 기기'가 RF/HIFU 를 가리키는 묶음명으로 쓰임(잠정)",
+   "occurrence": 0,
+   "id": "MX036"
+  },
+  {
+   "pointer": "/principles/11",
+   "text": "역순(필러 주입 후 RF/HIFU)은",
+   "category_candidate": "reverse_order_reference",
+   "note": "역방향을 괄호로 풀어 씀",
+   "occurrence": 0,
+   "id": "MX037"
+  },
+  {
+   "pointer": "/principles/11",
+   "text": "주입된 HA가 고열에 노출돼 분해/변형되므로",
+   "category_candidate": "mechanism_reason",
+   "note": "'/' 대안 결과",
+   "occurrence": 0,
+   "id": "MX038"
+  },
+  {
+   "pointer": "/principles/11",
+   "text": "14일 이상 대기",
+   "category_candidate": "interval",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX039"
+  },
+  {
+   "pointer": "/principles/12",
+   "text": "필러 → 레이저: 최소 5일 간격 권장",
+   "category_candidate": "order_interval_recommendation",
+   "note": "강도 '권장' — /incompatible_same_day/5 는 '필요'",
+   "occurrence": 0,
+   "id": "MX040"
+  },
+  {
+   "pointer": "/sequence_order/0/reason",
+   "text": "시술 부위 청결",
+   "category_candidate": "purpose",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX041"
+  },
+  {
+   "pointer": "/sequence_order/0/reason",
+   "text": "메이크업 제거",
+   "category_candidate": "purpose",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX042"
+  },
+  {
+   "pointer": "/sequence_order/1/reason",
+   "text": "시술 30-60분 전 도포",
+   "category_candidate": "time_before",
+   "note": "기준 시점(시술 전)·범위(30-60분)",
+   "occurrence": 0,
+   "id": "MX043"
+  },
+  {
+   "pointer": "/sequence_order/2/reason",
+   "text": "보톡스와 당일 병행 가능하나 웬만하면 열시술 먼저",
+   "category_candidate": "same_day_possibility_hedged",
+   "note": "principles/1 과 같은 내용의 다른 표면형",
+   "occurrence": 0,
+   "id": "MX044"
+  },
+  {
+   "pointer": "/sequence_order/2/reason",
+   "text": "HIFU는 보톡스 주입 후 2주 이내 효력 저하 가능성을 고려",
+   "category_candidate": "truncated_consideration",
+   "note": "'고려'로 끝나며 그 결과 행동(순서·간격)이 이 값에는 없음 — principles/2 에만 있음",
+   "occurrence": 0,
+   "id": "MX045"
+  },
+  {
+   "pointer": "/sequence_order/3/reason",
+   "text": "에너지 기기 다음, 주사 전",
+   "category_candidate": "relative_order_by_phase",
+   "note": "다른 phase 이름으로 앞뒤를 지정",
+   "occurrence": 0,
+   "id": "MX046"
+  },
+  {
+   "pointer": "/sequence_order/4/reason",
+   "text": "채널 오픈 → 이후 약물 흡수 촉진",
+   "category_candidate": "mechanism_purpose",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX047"
+  },
+  {
+   "pointer": "/sequence_order/5/reason",
+   "text": "같은 날 조합 시 필러 먼저",
+   "category_candidate": "scope_order",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX048"
+  },
+  {
+   "pointer": "/sequence_order/5/reason",
+   "text": "필러는 몰딩/마사지가 필요하고",
+   "category_candidate": "procedure_requirement",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX049"
+  },
+  {
+   "pointer": "/sequence_order/5/reason",
+   "text": "보톡스 주입 부위는 이후 마사지 시 독소 확산(근육 처짐) 위험이 있어(ASPS 권고)",
+   "category_candidate": "condition_risk_evidence",
+   "note": "조건(이후 마사지 시) → 위험 → 출처",
+   "occurrence": 0,
+   "id": "MX050"
+  },
+  {
+   "pointer": "/sequence_order/5/reason",
+   "text": "독소 확산(근육 처짐)",
+   "category_candidate": "risk_with_consequence",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX051"
+  },
+  {
+   "pointer": "/sequence_order/5/reason",
+   "text": "필러를 먼저 완료해 보톡스 부위를 건드리지 않게 함",
+   "category_candidate": "purpose_negation",
+   "note": "부정 '않게'",
+   "occurrence": 0,
+   "id": "MX052"
+  },
+  {
+   "pointer": "/sequence_order/5/reason",
+   "text": "순서 자체의 근거는 전문가 컨센서스(Global Aesthetics Consensus 2016; Derm Surg)로",
+   "category_candidate": "evidence_level",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX053"
+  },
+  {
+   "pointer": "/sequence_order/5/reason",
+   "text": "같은 날이면 어느 순서든 허용되며",
+   "category_candidate": "exception_relaxation",
+   "note": "앞의 '필러 먼저'를 완화",
+   "occurrence": 0,
+   "id": "MX054"
+  },
+  {
+   "pointer": "/sequence_order/5/reason",
+   "text": "RCT 근거는 아님(이론적/합의 수준)",
+   "category_candidate": "evidence_negation",
+   "note": "부정 '아님' + 근거 수준",
+   "occurrence": 0,
+   "id": "MX055"
+  },
+  {
+   "pointer": "/sequence_order/6/reason",
+   "text": "필러 위치 확정 후 넓은 범위 스킨부스터",
+   "category_candidate": "order_scope",
+   "note": "'넓은 범위'(범위 정도, 수치 없음)",
+   "occurrence": 0,
+   "id": "MX056"
+  },
+  {
+   "pointer": "/sequence_order/7/reason",
+   "text": "같은 날 조합 시 보톡스 마지막",
+   "category_candidate": "scope_order",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX057"
+  },
+  {
+   "pointer": "/sequence_order/7/reason",
+   "text": "단백질 약물이므로 열 시술 뒤에",
+   "category_candidate": "reason_order",
+   "note": "이 phase 는 8번째, PRP·약물 도포·진정이 뒤에 있음 — '마지막'의 범위는 주사 묶음 안인지 불명",
+   "occurrence": 0,
+   "id": "MX058"
+  },
+  {
+   "pointer": "/sequence_order/7/reason",
+   "text": "필러 위치 확정 후 투여",
+   "category_candidate": "order_relation",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX059"
+  },
+  {
+   "pointer": "/sequence_order/8/reason",
+   "text": "MTS/니들RF 후 채널 통해 성장인자 흡수 극대화",
+   "category_candidate": "mechanism_purpose",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX060"
+  },
+  {
+   "pointer": "/sequence_order/9/reason",
+   "text": "MTS/니들RF 후 채널을 통한 경피 전달은",
+   "category_candidate": "time_condition",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX061"
+  },
+  {
+   "pointer": "/sequence_order/9/reason",
+   "text": "멸균·허가 의료 제제(성장인자·펩타이드·PRP·ALA 등)로 한정",
+   "category_candidate": "restriction_open_list",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX062"
+  },
+  {
+   "pointer": "/sequence_order/9/reason",
+   "text": "화장품 분류 엑소좀·배양액 및 코스메슈티컬의 채널 내 도포는",
+   "category_candidate": "prohibited_subject",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX063"
+  },
+  {
+   "pointer": "/sequence_order/9/reason",
+   "text": "미허가·위법 소지와 감염·육아종·과민반응 위험이 있어 금지",
+   "category_candidate": "reason_prohibition",
+   "note": "principles/4 와 비교해 '과민반응'이 추가",
+   "occurrence": 0,
+   "id": "MX064"
+  },
+  {
+   "pointer": "/sequence_order/10/reason",
+   "text": "항염, 진정, 재생 촉진",
+   "category_candidate": "purpose_list",
+   "note": "'촉진'이 셋 모두에 걸리는지 마지막에만 걸리는지 불명",
+   "occurrence": 0,
+   "id": "MX065"
+  },
+  {
+   "pointer": "/incompatible_same_day/0/reason",
+   "text": "열린 상처에 필러 주입 감염 위험",
+   "category_candidate": "condition_risk",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX066"
+  },
+  {
+   "pointer": "/incompatible_same_day/1/pair/0",
+   "text": "심부 필링(페놀)",
+   "category_candidate": "procedure_like_with_agent",
+   "note": "괄호 성분",
+   "occurrence": 0,
+   "id": "MX067"
+  },
+  {
+   "pointer": "/incompatible_same_day/1/reason",
+   "text": "이중 피부 손상",
+   "category_candidate": "risk",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX068"
+  },
+  {
+   "pointer": "/incompatible_same_day/2/reason",
+   "text": "HA가 PDO를 24-72시간 내 분해 가능",
+   "category_candidate": "time_window_possibility",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX069"
+  },
+  {
+   "pointer": "/incompatible_same_day/2/reason",
+   "text": "(in vitro 연구)",
+   "category_candidate": "evidence_level",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX070"
+  },
+  {
+   "pointer": "/incompatible_same_day/2/reason",
+   "text": "실제 임상에서는 병용 시술되는 경우가 많고",
+   "category_candidate": "counter_evidence",
+   "note": "같은 항목의 '피함'과 반대 방향 사실 서술",
+   "occurrence": 0,
+   "id": "MX071"
+  },
+  {
+   "pointer": "/incompatible_same_day/2/reason",
+   "text": "in vivo 재현성은 아직 검증 중",
+   "category_candidate": "evidence_uncertainty",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX072"
+  },
+  {
+   "pointer": "/incompatible_same_day/2/reason",
+   "text": "같은 부위 즉시 병용은 보수적으로 피함",
+   "category_candidate": "scope_avoidance_hedged",
+   "note": "범위(같은 부위·즉시) + 강도(보수적으로)",
+   "occurrence": 0,
+   "id": "MX073"
+  },
+  {
+   "pointer": "/incompatible_same_day/3/pair/0",
+   "text": "이소트레티노인 복용 중",
+   "category_candidate": "state_condition",
+   "note": "시술이 아닌 복용 상태가 pair 원소로 들어감",
+   "occurrence": 0,
+   "id": "MX074"
+  },
+  {
+   "pointer": "/incompatible_same_day/3/reason",
+   "text": "활성 복용 중에는 의사 판단이 필요",
+   "category_candidate": "condition_judgement",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX075"
+  },
+  {
+   "pointer": "/incompatible_same_day/3/reason",
+   "text": "비박리성 프락셔널·얕은 필링은 중단 후 0~2개월 내에도 개별 위험평가 하에 고려 가능하며",
+   "category_candidate": "scope_time_condition_possibility",
+   "note": "범위·기준 시점(중단 후)·기간·조건(개별 위험평가 하에)·가능",
+   "occurrence": 0,
+   "id": "MX076"
+  },
+  {
+   "pointer": "/incompatible_same_day/3/reason",
+   "text": "중단 후 0~2개월 내에도",
+   "category_candidate": "time_window",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX077"
+  },
+  {
+   "pointer": "/incompatible_same_day/3/reason",
+   "text": "6개월 대기는 전안면 박리성 재표면화·기계적 박피에 한정",
+   "category_candidate": "restriction_scope",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX078"
+  },
+  {
+   "pointer": "/incompatible_same_day/4/pair/0",
+   "text": "HA 필러 주입 후 RF/HIFU",
+   "category_candidate": "single_element_order_pair",
+   "note": "원소 1개 pair 에 순서가 문자열로 들어감",
+   "occurrence": 0,
+   "id": "MX079"
+  },
+  {
+   "pointer": "/incompatible_same_day/4/reason",
+   "text": "고온(>55°C) 노출 시 분해/변형 위험",
+   "category_candidate": "threshold_condition_risk",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX080"
+  },
+  {
+   "pointer": "/incompatible_same_day/4/reason",
+   "text": "최소 14일 간격 권장",
+   "category_candidate": "interval_recommendation",
+   "note": "principles/10 은 '필수'",
+   "occurrence": 0,
+   "id": "MX081"
+  },
+  {
+   "pointer": "/incompatible_same_day/4/reason",
+   "text": "역순(RF/HIFU 먼저 → 필러 나중)은 같은 날 가능",
+   "category_candidate": "reverse_order_possibility",
+   "note": "'같은 날 불가' 블록 안의 '같은 날 가능' 서술",
+   "occurrence": 0,
+   "id": "MX082"
+  },
+  {
+   "pointer": "/incompatible_same_day/4/reason",
+   "text": "ASDS 2024 Filler Complication Guidelines; JCD 2023",
+   "category_candidate": "evidence_citation",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX083"
+  },
+  {
+   "pointer": "/incompatible_same_day/5/reason",
+   "text": "부종/열 상호작용",
+   "category_candidate": "mechanism",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX084"
+  },
+  {
+   "pointer": "/incompatible_same_day/5/reason",
+   "text": "최소 5일 간격 필요",
+   "category_candidate": "interval_necessity",
+   "note": "principles/12 는 '권장'",
+   "occurrence": 0,
+   "id": "MX085"
+  },
+  {
+   "pointer": "/incompatible_same_day/6/pair/0",
+   "text": "심부 필링(TCA 50%+/페놀)",
+   "category_candidate": "procedure_like_with_agent_threshold",
+   "note": "괄호 안 농도 하한 '50%+' 와 '/' 대안",
+   "occurrence": 0,
+   "id": "MX086"
+  },
+  {
+   "pointer": "/incompatible_same_day/6/pair/0",
+   "text": "TCA 50%+",
+   "category_candidate": "quantity_threshold",
+   "note": "'+'가 '이상'의 뜻으로 쓰임(잠정) — README 의 '+'(함께) 규칙과 다른 용법",
+   "occurrence": 0,
+   "id": "MX087"
+  },
+  {
+   "pointer": "/incompatible_same_day/6/pair/1",
+   "text": "모든 시술",
+   "category_candidate": "universal_scope",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX088"
+  },
+  {
+   "pointer": "/incompatible_same_day/6/reason",
+   "text": "피부 장벽 완전 파괴 상태",
+   "category_candidate": "state",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX089"
+  },
+  {
+   "pointer": "/incompatible_same_day/6/reason",
+   "text": "충분한 회복 후에만 다른 시술 가능",
+   "category_candidate": "condition_possibility",
+   "note": "'충분한'의 기간 값 없음",
+   "occurrence": 0,
+   "id": "MX090"
+  },
+  {
+   "pointer": "/incompatible_same_day/7/reason",
+   "text": "비박리성 얕은 프락셔널은 중단 후 0~2개월 내에도 의사 판단 하에 고려 가능",
+   "category_candidate": "scope_time_condition_possibility",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX091"
+  },
+  {
+   "pointer": "/incompatible_same_day/7/reason",
+   "text": "전안면 박리성 재표면화는 중단 후 6개월 대기",
+   "category_candidate": "scope_interval",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX092"
+  },
+  {
+   "pointer": "/incompatible_same_day/8/reason",
+   "text": "얕은 필링은 중단 후 0~2개월 내에도 의사 판단 하에 고려 가능",
+   "category_candidate": "scope_time_condition_possibility",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX093"
+  },
+  {
+   "pointer": "/incompatible_same_day/8/reason",
+   "text": "심부 필링·기계적 박피는 중단 후 6개월 대기",
+   "category_candidate": "scope_interval",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX094"
+  },
+  {
+   "pointer": "/common_combos/0/sequence/0",
+   "text": "슈링크 HIFU",
+   "category_candidate": "product_family_like",
+   "note": "장비/브랜드명 + 계열명 순서",
+   "occurrence": 0,
+   "id": "MX095"
+  },
+  {
+   "pointer": "/common_combos/0/sequence/1",
+   "text": "보톡스 이마+미간",
+   "category_candidate": "procedure_site_like",
+   "note": "README '+' = 함께(부위 나열)",
+   "occurrence": 0,
+   "id": "MX096"
+  },
+  {
+   "pointer": "/common_combos/0/sequence/2",
+   "text": "필러 팔자",
+   "category_candidate": "procedure_site_like",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX097"
+  },
+  {
+   "pointer": "/common_combos/2/sequence/0",
+   "text": "울쎄라 HIFU",
+   "category_candidate": "product_family_like",
+   "note": "/common_combos/6/sequence/0 'HIFU 울쎄라'와 어순 반대",
+   "occurrence": 0,
+   "id": "MX098"
+  },
+  {
+   "pointer": "/common_combos/2/sequence/1",
+   "text": "보톡스 턱선",
+   "category_candidate": "procedure_site_like",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX099"
+  },
+  {
+   "pointer": "/common_combos/2/sequence/2",
+   "text": "필러 볼+턱",
+   "category_candidate": "procedure_site_like",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX100"
+  },
+  {
+   "pointer": "/common_combos/3/sequence/0",
+   "text": "MTS(미세채널 오픈)",
+   "category_candidate": "procedure_with_purpose",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX101"
+  },
+  {
+   "pointer": "/common_combos/3/sequence/1",
+   "text": "ALA 도포·배양",
+   "category_candidate": "procedure_steps_like",
+   "note": "'·' 두 행위",
+   "occurrence": 0,
+   "id": "MX102"
+  },
+  {
+   "pointer": "/common_combos/3/sequence/2",
+   "text": "광조사(PDT)",
+   "category_candidate": "procedure_with_alias",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX103"
+  },
+  {
+   "pointer": "/common_combos/4/sequence/2",
+   "text": "비타민C 이온토포레시스",
+   "category_candidate": "agent_method_like",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX104"
+  },
+  {
+   "pointer": "/common_combos/5/name",
+   "text": "보톡스+필러+스킨부스터 원데이",
+   "category_candidate": "combo_name_with_session",
+   "note": "'원데이'(같은 날) 수식",
+   "occurrence": 0,
+   "id": "MX105"
+  },
+  {
+   "pointer": "/common_combos/5/sequence/0",
+   "text": "필러 팔자+볼",
+   "category_candidate": "procedure_site_like",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX106"
+  },
+  {
+   "pointer": "/common_combos/5/sequence/1",
+   "text": "스킨부스터 리쥬란",
+   "category_candidate": "family_product_like",
+   "note": "계열 + 제품명 순서",
+   "occurrence": 0,
+   "id": "MX107"
+  },
+  {
+   "pointer": "/common_combos/5/note",
+   "text": "필러 위치 안정화 먼저 → 스킨부스터 → 보톡스 마지막 순서 준수",
+   "category_candidate": "order_chain_necessity",
+   "note": "'준수'(지켜야 함) — principles/8 의 '순서 유연'과 강도가 다름",
+   "occurrence": 0,
+   "id": "MX108"
+  },
+  {
+   "pointer": "/common_combos/6/name",
+   "text": "리프팅 + 피부결",
+   "category_candidate": "combo_name",
+   "note": "'+' 앞뒤 공백 있음",
+   "occurrence": 0,
+   "id": "MX109"
+  },
+  {
+   "pointer": "/common_combos/6/note",
+   "text": "에너지 기기(HIFU) 먼저 → 레이저 토닝 → 스킨부스터 마지막",
+   "category_candidate": "order_chain",
+   "note": "sequence 의 '토닝'을 note 는 '레이저 토닝'으로 씀",
+   "occurrence": 0,
+   "id": "MX110"
+  },
+  {
+   "pointer": "/common_combos/7/note",
+   "text": "프락셔널+MTS 채널 오픈 후",
+   "category_candidate": "time_condition",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX111"
+  },
+  {
+   "pointer": "/common_combos/7/note",
+   "text": "PRP 성장인자 경피 침투 극대화",
+   "category_candidate": "mechanism_purpose",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX112"
+  },
+  {
+   "pointer": "/principles/2",
+   "text": "HIFU는 보톡스 주입 후 2주 이내 효력 저하 가능성을 고려해 HIFU 선행 또는 2주 이상 간격을 두며",
+   "category_candidate": "consideration_alternative_clause",
+   "note": "고려 사유 → 선택지 둘. /sequence_order/2/reason 에는 앞부분만 있음",
+   "occurrence": 0,
+   "id": "MX113"
+  },
+  {
+   "pointer": "/incompatible_same_day/4/reason",
+   "text": "주입 후 HA가 고온(>55°C) 노출 시 분해/변형 위험",
+   "category_candidate": "threshold_condition_risk",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX114"
+  },
+  {
+   "pointer": "/minimum_intervals/2/reason",
+   "text": "비박리성 프락셔널·얕은 필링은 6개월 일률 대기 근거가 부족하며",
+   "category_candidate": "scope_evidence_negation",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX115"
+  },
+  {
+   "pointer": "/incompatible_same_day/2/pair/1",
+   "text": "비가교HA",
+   "category_candidate": "procedure_like_negation_prefix",
+   "note": "부정 접두 '비'가 붙은 재질 표현",
+   "occurrence": 0,
+   "id": "MX116"
+  },
+  {
+   "pointer": "/incompatible_same_day/2/pair/0",
+   "text": "PDO실",
+   "category_candidate": "material_product_like",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX117"
+  },
+  {
+   "pointer": "/sequence_order/5/phase",
+   "text": "주사-필러",
+   "category_candidate": "phase_group_label",
+   "note": "'주사-' 접두로 묶인 phase 이름(구조 사실: 네 phase 가 같은 접두). 상하 관계 확정 아님",
+   "occurrence": 0,
+   "id": "MX118"
+  },
+  {
+   "pointer": "/sequence_order/6/phase",
+   "text": "주사-스킨부스터",
+   "category_candidate": "phase_group_label",
+   "note": "'주사-' 접두로 묶인 phase 이름(구조 사실: 네 phase 가 같은 접두). 상하 관계 확정 아님",
+   "occurrence": 0,
+   "id": "MX119"
+  },
+  {
+   "pointer": "/sequence_order/7/phase",
+   "text": "주사-보톡스",
+   "category_candidate": "phase_group_label",
+   "note": "'주사-' 접두로 묶인 phase 이름(구조 사실: 네 phase 가 같은 접두). 상하 관계 확정 아님",
+   "occurrence": 0,
+   "id": "MX120"
+  },
+  {
+   "pointer": "/sequence_order/8/phase",
+   "text": "주사-PRP/성장인자",
+   "category_candidate": "phase_group_label",
+   "note": "'주사-' 접두로 묶인 phase 이름(구조 사실: 네 phase 가 같은 접두). 상하 관계 확정 아님",
+   "occurrence": 0,
+   "id": "MX121"
+  },
+  {
+   "pointer": "/sequence_order/4/phase",
+   "text": "니들RF/MTS",
+   "category_candidate": "phase_alternative_label",
+   "note": "'/' 대안",
+   "occurrence": 0,
+   "id": "MX122"
+  },
+  {
+   "pointer": "/sequence_order/9/phase",
+   "text": "약물 도포/침투",
+   "category_candidate": "phase_alternative_label",
+   "note": "'/' 두 행위",
+   "occurrence": 0,
+   "id": "MX123"
+  },
+  {
+   "pointer": "/minimum_intervals/5/source",
+   "text": "피부 회복",
+   "category_candidate": "source_non_citation",
+   "note": "source 칸에 출처가 아닌 사유성 문구",
+   "occurrence": 0,
+   "id": "MX124"
+  },
+  {
+   "pointer": "/minimum_intervals/1/source",
+   "text": "임상 가이드",
+   "category_candidate": "source_unspecified",
+   "note": "특정 문헌이 아닌 일반 표현(/minimum_intervals/4·7·8 동일)",
+   "occurrence": 0,
+   "id": "MX125"
+  },
+  {
+   "pointer": "/common_combos/1/sequence/1",
+   "text": "레이저토닝",
+   "category_candidate": "procedure_like_variant",
+   "note": "/common_combos/6/sequence/1 '토닝', /common_combos/6/note '레이저 토닝' 과 표면형이 다름",
+   "occurrence": 0,
+   "id": "MX126"
+  },
+  {
+   "pointer": "/minimum_intervals/0/reason",
+   "text": "주입 후 HA가 고온(>55°C) 노출 시 분해/변형 위험",
+   "category_candidate": "threshold_condition_risk",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX127"
+  },
+  {
+   "pointer": "/minimum_intervals/0/reason",
+   "text": "역순은 같은 날 가능",
+   "category_candidate": "reverse_order_possibility",
+   "note": "역순의 대상은 from/to 를 뒤집은 것(잠정)",
+   "occurrence": 0,
+   "id": "MX128"
+  },
+  {
+   "pointer": "/minimum_intervals/2/to",
+   "text": "프락셔널/얕은 필링",
+   "category_candidate": "procedure_alternative_like",
+   "note": "'얕은'이 필링에만 걸리는지 원문만으로 확정 불가",
+   "occurrence": 0,
+   "id": "MX129"
+  },
+  {
+   "pointer": "/minimum_intervals/2/reason",
+   "text": "6개월 일률 대기 근거가 부족하며",
+   "category_candidate": "evidence_negation",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX130"
+  },
+  {
+   "pointer": "/minimum_intervals/2/reason",
+   "text": "중단 후 0~2개월 범위에서 의사 판단",
+   "category_candidate": "time_window_judgement",
+   "note": "min_months=0 과 '0~2개월' 범위가 함께 있음",
+   "occurrence": 0,
+   "id": "MX131"
+  },
+  {
+   "pointer": "/minimum_intervals/2/reason",
+   "text": "6개월 대기는 전안면 박리성 재표면화·기계적 박피에 한정",
+   "category_candidate": "restriction_scope",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX132"
+  },
+  {
+   "pointer": "/minimum_intervals/3/to",
+   "text": "박리성(ablative) 레이저/심부 필링",
+   "category_candidate": "procedure_alternative_like",
+   "note": "'박리성(ablative)'이 레이저에만 걸리는지 불명",
+   "occurrence": 0,
+   "id": "MX133"
+  },
+  {
+   "pointer": "/minimum_intervals/3/reason",
+   "text": "전안면 박리성 재표면화·기계적 박피에 한해 중단 후 6개월 대기",
+   "category_candidate": "restriction_scope_interval",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX134"
+  },
+  {
+   "pointer": "/minimum_intervals/3/reason",
+   "text": "국소 부위·비박리성 시술에는 적용하지 않음",
+   "category_candidate": "scope_exclusion_negation",
+   "note": "to 의 '레이저/심부 필링' 중 적용 제외 범위",
+   "occurrence": 0,
+   "id": "MX135"
+  },
+  {
+   "pointer": "/minimum_intervals/4/reason",
+   "text": "피부 장벽 회복 필요",
+   "category_candidate": "reason_necessity",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX136"
+  },
+  {
+   "pointer": "/minimum_intervals/5/reason",
+   "text": "열린 상처 회복 후 주입 안전성 확보",
+   "category_candidate": "reason_purpose",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX137"
+  },
+  {
+   "pointer": "/minimum_intervals/6/to",
+   "text": "필러 (별도 세션)",
+   "category_candidate": "procedure_with_session_condition",
+   "note": "to 값 안에 세션 조건이 괄호로 들어감",
+   "occurrence": 0,
+   "id": "MX138"
+  },
+  {
+   "pointer": "/minimum_intervals/6/reason",
+   "text": "보톡스 효과 안정화 후 필러 위치 정밀 결정",
+   "category_candidate": "reason",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX139"
+  },
+  {
+   "pointer": "/minimum_intervals/7/reason",
+   "text": "같은 날 가능 — 에너지 기기 먼저, 필러 나중에",
+   "category_candidate": "same_day_order",
+   "note": "min_days=0 과 대응",
+   "occurrence": 0,
+   "id": "MX140"
+  },
+  {
+   "pointer": "/minimum_intervals/8/to",
+   "text": "필러 (동일 부위 재시술)",
+   "category_candidate": "procedure_with_site_condition",
+   "note": "같은 시술의 재시술 조건",
+   "occurrence": 0,
+   "id": "MX141"
+  },
+  {
+   "pointer": "/minimum_intervals/8/reason",
+   "text": "부종 해소 후 정확한 평가 가능",
+   "category_candidate": "reason_possibility",
+   "note": null,
+   "occurrence": 0,
+   "id": "MX142"
+  }
+ ],
+ "known_false_positives": [
+  {
+   "id": "FP01",
+   "pointer": "/principles/1",
+   "span": [
+    33,
+    34
+   ],
+   "category_candidate": "condition_scope",
+   "kind": "부분일치",
+   "note": "'웬만하면'의 '면' — 조건절이 아니라 선호 강도 부사의 일부",
+   "segmentation_id": null
+  },
+  {
+   "id": "FP02",
+   "pointer": "/sequence_order/2/reason",
+   "span": [
+    19,
+    20
+   ],
+   "category_candidate": "condition_scope",
+   "kind": "부분일치",
+   "note": "'웬만하면'의 '면'",
+   "segmentation_id": null
+  },
+  {
+   "id": "FP03",
+   "pointer": "/incompatible_same_day/2/reason",
+   "span": [
+    83,
+    84
+   ],
+   "category_candidate": "condition_scope",
+   "kind": "범주 불일치",
+   "note": "'검증 중' — 진행 상태이며 적용 조건이 아님",
+   "segmentation_id": null
+  },
+  {
+   "id": "FP04",
+   "pointer": "/incompatible_same_day/2/reason",
+   "span": [
+    77,
+    79
+   ],
+   "category_candidate": "negation_prohibition",
+   "kind": "범주 불일치",
+   "note": "'아직' — 부정이 아니라 미완(불확실성) 표지",
+   "segmentation_id": null
+  },
+  {
+   "id": "FP05",
+   "pointer": "/common_combos/0/name",
+   "span": [
+    3,
+    5
+   ],
+   "category_candidate": "hedge_degree",
+   "kind": "범주 불일치",
+   "note": "조합 이름 '동안 기본'의 일부",
+   "segmentation_id": null
+  },
+  {
+   "id": "FP06",
+   "pointer": "/principles/5",
+   "span": [
+    70,
+    96
+   ],
+   "category_candidate": "modifier_phrase",
+   "kind": "오태깅 유래",
+   "note": "세/MM — 실제는 '세럼'",
+   "segmentation_id": "S008"
+  },
+  {
+   "id": "FP07",
+   "pointer": "/principles/5",
+   "span": [
+    122,
+    128
+   ],
+   "category_candidate": "modifier_phrase",
+   "kind": "오태깅 유래",
+   "note": "이/MM — 실제는 '이물'",
+   "segmentation_id": "S009"
+  },
+  {
+   "id": "FP08",
+   "pointer": "/sequence_order/5/reason",
+   "span": [
+    22,
+    34
+   ],
+   "category_candidate": "modifier_phrase",
+   "kind": "오태깅 유래",
+   "note": "딩/MAG — 실제는 '몰딩'",
+   "segmentation_id": "S016"
+  },
+  {
+   "id": "FP09",
+   "pointer": "/sequence_order/10/phase",
+   "span": [
+    0,
+    6
+   ],
+   "category_candidate": "modifier_phrase",
+   "kind": "오태깅 유래",
+   "note": "진정/MAG — 처치 단계명",
+   "segmentation_id": "S006"
+  },
+  {
+   "id": "FP10",
+   "pointer": "/sequence_order/10/reason",
+   "span": [
+    4,
+    10
+   ],
+   "category_candidate": "modifier_phrase",
+   "kind": "오태깅 유래",
+   "note": "진정/MAG — 목적 명사",
+   "segmentation_id": "S007"
+  },
+  {
+   "id": "FP11",
+   "pointer": "/minimum_intervals/3/reason",
+   "span": [
+    21,
+    26
+   ],
+   "category_candidate": "modifier_phrase",
+   "kind": "오태깅 유래",
+   "note": "한/MM — 실제는 '(에) 한해'",
+   "segmentation_id": "S038"
+  },
+  {
+   "id": "FP12",
+   "pointer": "/common_combos/0/sequence/1",
+   "span": [
+    4,
+    9
+   ],
+   "category_candidate": "modifier_phrase",
+   "kind": "오태깅 유래",
+   "note": "이/MM — 실제는 부위 '이마'",
+   "segmentation_id": "S040"
+  },
+  {
+   "id": "FP13",
+   "pointer": "/common_combos/5/sequence/2",
+   "span": [
+    4,
+    9
+   ],
+   "category_candidate": "modifier_phrase",
+   "kind": "오태깅 유래",
+   "note": "이/MM — 실제는 부위 '이마'",
+   "segmentation_id": "S041"
+  },
+  {
+   "id": "FP14",
+   "pointer": "/sequence_order/0/categories/0",
+   "span": [
+    0,
+    4
+   ],
+   "category_candidate": "latin_term",
+   "kind": "부분일치",
+   "note": "코드 접두 'M15-'만 잡힘(코드값은 category_code_ref 로 따로 잡힘)",
+   "segmentation_id": null
+  },
+  {
+   "id": "FP15",
+   "pointer": "/sequence_order/9/categories/0",
+   "span": [
+    0,
+    4
+   ],
+   "category_candidate": "latin_term",
+   "kind": "부분일치",
+   "note": "코드 접두 'M15-'만 잡힘(코드값은 category_code_ref 로 따로 잡힘)",
+   "segmentation_id": null
+  },
+  {
+   "id": "FP16",
+   "pointer": "/sequence_order/10/categories/1",
+   "span": [
+    0,
+    4
+   ],
+   "category_candidate": "latin_term",
+   "kind": "부분일치",
+   "note": "코드 접두 'M15-'만 잡힘(코드값은 category_code_ref 로 따로 잡힘)",
+   "segmentation_id": null
+  },
+  {
+   "id": "FP17",
+   "pointer": "/sequence_order/3/categories/0",
+   "span": [
+    0,
+    3
+   ],
+   "category_candidate": "latin_term",
+   "kind": "부분일치",
+   "note": "코드 접두 'M8-'만 잡힘",
+   "segmentation_id": null
+  },
+  {
+   "id": "FP18",
+   "pointer": "/sequence_order/3/categories/1",
+   "span": [
+    0,
+    3
+   ],
+   "category_candidate": "latin_term",
+   "kind": "부분일치",
+   "note": "코드 접두 'M8-'만 잡힘",
+   "segmentation_id": null
+  },
+  {
+   "id": "FP19",
+   "pointer": "/sequence_order/3/categories/2",
+   "span": [
+    0,
+    3
+   ],
+   "category_candidate": "latin_term",
+   "kind": "부분일치",
+   "note": "코드 접두 'M8-'만 잡힘",
+   "segmentation_id": null
+  }
+ ]
+}

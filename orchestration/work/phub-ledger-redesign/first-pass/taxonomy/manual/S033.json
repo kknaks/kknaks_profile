@@ -1,0 +1,234 @@
+{
+ "section": "S033",
+ "state": "read",
+ "last_pointer": "/modality/10/subcategories/0/items/12/extracted/aftercare/2",
+ "observations": [
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/10/subcategories",
+    "/modality/10/subcategories/0/label"
+   ],
+   "note": "M11 하위분류 1개 'M11-1 니들RF 장비'."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/10/subcategories/0/items/0/extracted/aftercare/2",
+    "/modality/10/subcategories/0/items/1/extracted/aftercare/2",
+    "/modality/10/subcategories/0/items/6/extracted/aftercare/5"
+   ],
+   "note": "M11 상용구 3종: 고출력 니들RF('최소 6-8주 이상 간격 … 아무리 빨라도 1개월 이상'), 일반 니들RF('4-8주 간격'), 저출력 니들RF('3-4주 간격 가능'). M9 처럼 등급이 상용구로만 드러남(판정 근거 B)."
+  },
+  {
+   "status": "I",
+   "pointers": [
+    "/modality/10/subcategories/0/items/0/detail",
+    "/modality/10/subcategories/0/items/2/extracted/overview",
+    "/modality/10/subcategories/0/items/2/detail"
+   ],
+   "note": "포텐자 detail '사이노슈어(Cynosure)'; 실펌X detail '비올', overview 'Viol/Jeisys' — 제조사 표기 차이."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/10/subcategories/0/items/8/extracted/overview",
+    "/modality/10/subcategories/0/items/8/extracted/mechanism"
+   ],
+   "note": "셀리뉴는 overview '모노폴라 RF … 비침습적' — 니들 서술이 없다(니들RF 하위분류에 비침습 RF). 판단 후속."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/10/subcategories/0/items/5/detail",
+    "/modality/10/subcategories/0/items/5/extracted/mechanism"
+   ],
+   "note": "텍스쳐스무딩 = '포텐자+서브시전+필링 복합' — 같은 하위분류 항목(포텐자)과 다른 기법(서브시전·화학필링)을 결합한 시술명. '+' 함께."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/10/subcategories/0/items/6/detail"
+   ],
+   "note": "트윈픽셀 detail '2025 허가' — 허가 시점 주장(기준 미기재)."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/10/subcategories/0/items/1/detail"
+   ],
+   "note": "시크릿RF detail 빈 문자열."
+  }
+ ],
+ "expressions": [
+  {
+   "pointer": "/modality/10/subcategories/0/items/0/extracted/mechanism",
+   "text": "약 20% 분획 열손상을 유도",
+   "kinds": [
+    "수량·단위·시간"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/10/subcategories/0/items/0/extracted/indications/primary/4",
+   "text": "비흡수성 스트레치마크",
+   "kinds": [
+    "부정",
+    "수식"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/10/subcategories/0/items/0/extracted/safety/serious/0",
+   "text": "색소침착 과다 (깊은 피부톤)",
+   "kinds": [
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/10/subcategories/0/items/0/extracted/aftercare/2",
+   "text": "고출력 니들RF — 최소 6-8주 이상 간격",
+   "kinds": [
+    "범위",
+    "수량·단위·시간",
+    "조건"
+   ],
+   "note": "상용구 고출력판"
+  },
+  {
+   "pointer": "/modality/10/subcategories/0/items/0/extracted/aftercare/2",
+   "text": "표피 회복 + 진피 리모델링 완료 후 재시술",
+   "kinds": [
+    "조건",
+    "기호"
+   ],
+   "note": "'+' = 그리고"
+  },
+  {
+   "pointer": "/modality/10/subcategories/0/items/1/extracted/aftercare/2",
+   "text": "니들RF — 4-8주 간격, 피부 회복 확인 후 재시술",
+   "kinds": [
+    "수량·단위·시간",
+    "조건"
+   ],
+   "note": "상용구 일반판"
+  },
+  {
+   "pointer": "/modality/10/subcategories/0/items/2/extracted/mechanism",
+   "text": "이중 메커니즘(물리적 미세손상 + RF 열에너지)",
+   "kinds": [
+    "기호"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/10/subcategories/0/items/2/extracted/safety/serious/0",
+   "text": "신경 손상 (부적절한 깊이)",
+   "kinds": [
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/10/subcategories/0/items/4/extracted/safety/serious/0",
+   "text": "색소이상 (낮은 피부톤에서 탈색)",
+   "kinds": [
+    "조건"
+   ],
+   "note": "'낮은 피부톤' 의미 모호"
+  },
+  {
+   "pointer": "/modality/10/subcategories/0/items/5/extracted/aftercare/3",
+   "text": "6-8주 간격 반복 가능",
+   "kinds": [
+    "수량·단위·시간",
+    "가능성·빈도"
+   ],
+   "note": "같은 배열 상용구는 4-8주"
+  },
+  {
+   "pointer": "/modality/10/subcategories/0/items/6/detail",
+   "text": "은성글로벌 · RF마이크로니들+이온도입 · 2025 허가",
+   "kinds": [
+    "기호",
+    "수량·단위·시간",
+    "주장"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/10/subcategories/0/items/6/extracted/aftercare/5",
+   "text": "저출력 니들RF — 3-4주 간격 가능",
+   "kinds": [
+    "수량·단위·시간",
+    "가능성·빈도"
+   ],
+   "note": "상용구 저출력판"
+  },
+  {
+   "pointer": "/modality/10/subcategories/0/items/7/extracted/safety/common/3",
+   "text": "일시적 색소침착 가능성",
+   "kinds": [
+    "가능성·빈도"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/10/subcategories/0/items/8/extracted/aftercare/1",
+   "text": "자외선 차단 (표피 관통 → PIH 예방)",
+   "kinds": [
+    "기호",
+    "조건"
+   ],
+   "note": "'→' 인과"
+  },
+  {
+   "pointer": "/modality/10/subcategories/0/items/10/extracted/mechanism",
+   "text": "여드름의 근본 원인인 피지 과다분비를 효과적으로 억제",
+   "kinds": [
+    "주장"
+   ],
+   "note": ""
+  }
+ ],
+ "seg_errors": [
+  {
+   "scope": "all",
+   "surface": "실펌X",
+   "issue": "실/NNG 퍼/NNG ᆷ/ETN X/SL — 장비명을 명사화 어미로",
+   "impact": "장비명 소실"
+  }
+ ],
+ "issues": [
+  {
+   "id": "S033-B01",
+   "status": "B",
+   "pointers": [
+    "/modality/10/subcategories/0/items/0/extracted/aftercare/2",
+    "/modality/10/subcategories/0/items/1/extracted/aftercare/2",
+    "/modality/10/subcategories/0/items/6/extracted/aftercare/5"
+   ],
+   "note": "니들RF 출력 등급 판정 근거 없음.",
+   "impact": "S027-B01 과 같은 성격"
+  },
+  {
+   "id": "S033-B02",
+   "status": "B",
+   "pointers": [
+    "/modality/10/subcategories/0/items/1/detail"
+   ],
+   "note": "시크릿RF detail 빈 문자열.",
+   "impact": "제조사 정보 없음"
+  },
+  {
+   "id": "S033-F01",
+   "status": "F",
+   "pointers": [
+    "/modality/10/subcategories/0/items/8"
+   ],
+   "note": "니들RF 하위분류에 비침습 모노폴라 RF 서술 항목.",
+   "impact": "계열 경계 후속"
+  }
+ ]
+}

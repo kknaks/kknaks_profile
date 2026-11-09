@@ -1,0 +1,52 @@
+{
+  "segment": "SEG-02",
+  "read_status": "direct_read_done",
+  "read_note": "/by_concern/1 (처짐/탄력) 전체 필드와 severity_levels 3단계를 원문 순서로 직접 읽음",
+  "observations": [
+    {"id": "O02-1", "pointers": ["/by_concern/1/concern", "/by_concern/1/concern_en"], "status": "P", "text": "concern 「처짐/탄력」, concern_en 「Sagging / Elasticity」: `/` 가 시술 대안이 아니라 고민 두 개를 묶는다. 영어 쪽은 `/` 앞뒤 공백이 있다."},
+    {"id": "O02-2", "pointers": ["/by_concern/1/severity_levels/0/optimal_combo/0", "/by_concern/1/severity_levels/0/sequence"], "status": "F", "text": "「써마지/RF」는 장비명과 계열명을 `/` 로 잇는다. README `/`(둘 중 하나)로 읽을지 동격(써마지=RF 장비)으로 읽을지 원문만으로 정하지 않았다. sequence 는 「RF 시술」로만 부른다."},
+    {"id": "O02-3", "pointers": ["/by_concern/1/severity_levels/1/optimal_combo/0", "/by_concern/1/severity_levels/1/optimal_combo/1"], "status": "P", "text": "「HIFU(슈링크/울쎄라)」는 README 예시와 같은 꼴(괄호 = 장비 예시, `/` = 둘 중 하나). 「보톡스(턱선+광대)」의 괄호는 부위이고 `+` 는 부위 나열(README 「부위 나열은 +」와 같은 꼴)."},
+    {"id": "O02-4", "pointers": ["/by_concern/1/severity_levels/1/sequence"], "status": "P", "text": "「HIFU 먼저 → 같은날 보톡스 가능 → 4주 후 바이오스티뮬레이터 시작」: 같은날은 가능(선택), 4주 후는 시리즈 「시작」 시점. 4주의 기준이 HIFU 인지 원문 위치상 앞 단계 전체인지 불명(B)."},
+    {"id": "O02-5", "pointers": ["/by_concern/1/severity_levels/1/rationale", "/by_concern/1/severity_levels/1/expected_sessions", "/by_concern/1/severity_levels/2/rationale", "/by_concern/1/severity_levels/2/expected_sessions"], "status": "F", "text": "optimal_combo 의 「바이오스티뮬레이터」를 rationale·expected_sessions 는 「바이오스티뮬」로 줄여 쓴다. 표기 차이만 기록했다."},
+    {"id": "O02-6", "pointers": ["/by_concern/1/severity_levels/2/optimal_combo/0", "/by_concern/1/severity_levels/1/optimal_combo/0"], "status": "P", "text": "중증은 「울쎄라 HIFU」(장비명 앞, 공백), 중등도는 「HIFU(슈링크/울쎄라)」. 같은 장비를 다른 표기 구조로 쓴다. 중증에서는 장비를 하나로 고정한 것처럼 읽히나 확정하지 않았다."},
+    {"id": "O02-7", "pointers": ["/by_concern/1/severity_levels/2/sequence"], "status": "P", "text": "「울쎄라 HIFU → 2-4주 후 실리프팅 → 필러(볼륨 보충) → 바이오스티뮬레이터(유지)」: 간격은 실리프팅 앞에만 범위로 있다. 괄호는 목적(볼륨 보충·유지). 필러·바이오스티뮬레이터의 간격은 원문에 없다(B)."},
+    {"id": "O02-8", "pointers": ["/by_concern/1/severity_levels/2/contraindicated_combos/0", "/by_concern/1/severity_levels/2/optimal_combo/1", "/by_concern/1/severity_levels/2/optimal_combo/2"], "status": "P", "text": "「PDO실 + 비가교HA 동시 금지」: `+` 가 「함께 시술」 표기를 금지 대상 조합에 쓴다. 「동시」가 같은 날·같은 회차·같은 부위 중 무엇인지 원문에 없다(B). optimal_combo 는 「실리프팅(PDO/PCL)」「필러」로 적어 PCL·가교 여부와의 관계는 원문에 없다."}
+  ],
+  "manual_expressions": [
+    {"pointer": "/by_concern/1/concern", "text": "처짐/탄력", "kinds": ["target_concern", "slash_non_alternative"]},
+    {"pointer": "/by_concern/1/concern_en", "text": "Sagging / Elasticity", "kinds": ["language_en", "slash_non_alternative"]},
+    {"pointer": "/by_concern/1/severity_levels/0/level", "text": "(초기 처짐)", "kinds": ["parenthetical", "severity", "time"]},
+    {"pointer": "/by_concern/1/severity_levels/0/optimal_combo/0", "text": "써마지/RF", "kinds": ["product_like", "procedure_like", "alternative"]},
+    {"pointer": "/by_concern/1/severity_levels/0/sequence", "text": "RF 시술 → 2주 후 스킨부스터", "kinds": ["order_sequence", "interval_after", "time"]},
+    {"pointer": "/by_concern/1/severity_levels/0/rationale", "text": "RF로 콜라겐 리모델링", "kinds": ["effect_purpose"]},
+    {"pointer": "/by_concern/1/severity_levels/0/rationale", "text": "스킨부스터로 진피 수분/탄력 보충", "kinds": ["effect_purpose", "layer_depth", "slash_non_alternative"]},
+    {"pointer": "/by_concern/1/severity_levels/0/expected_sessions", "text": "RF 1-2회", "kinds": ["session_count", "range"]},
+    {"pointer": "/by_concern/1/severity_levels/0/total_duration", "text": "3-4개월", "kinds": ["time", "range"]},
+    {"pointer": "/by_concern/1/severity_levels/1/level", "text": "(눈에 띄는 처짐)", "kinds": ["parenthetical", "severity", "degree_modifier"]},
+    {"pointer": "/by_concern/1/severity_levels/1/optimal_combo/0", "text": "HIFU(슈링크/울쎄라)", "kinds": ["procedure_like", "product_like", "parenthetical", "alternative"]},
+    {"pointer": "/by_concern/1/severity_levels/1/optimal_combo/1", "text": "보톡스(턱선+광대)", "kinds": ["procedure_like", "body_part", "parenthetical", "plus_list"]},
+    {"pointer": "/by_concern/1/severity_levels/1/sequence", "text": "HIFU 먼저", "kinds": ["order_sequence"]},
+    {"pointer": "/by_concern/1/severity_levels/1/sequence", "text": "같은날 보톡스 가능", "kinds": ["same_day", "possibility"]},
+    {"pointer": "/by_concern/1/severity_levels/1/sequence", "text": "4주 후 바이오스티뮬레이터 시작", "kinds": ["interval_after", "time", "series_start"]},
+    {"pointer": "/by_concern/1/severity_levels/1/rationale", "text": "HIFU로 SMAS 수축", "kinds": ["effect_purpose", "layer_depth", "language_mixed"]},
+    {"pointer": "/by_concern/1/severity_levels/1/rationale", "text": "보톡스로 근육 이완(턱선 슬림)", "kinds": ["effect_purpose", "body_part", "parenthetical"]},
+    {"pointer": "/by_concern/1/severity_levels/1/rationale", "text": "바이오스티뮬로 콜라겐 장기 재생", "kinds": ["effect_purpose", "duration_long", "abbreviation"]},
+    {"pointer": "/by_concern/1/severity_levels/1/expected_sessions", "text": "바이오스티뮬 3-4회", "kinds": ["session_count", "range", "abbreviation"]},
+    {"pointer": "/by_concern/1/severity_levels/1/total_duration", "text": "4-8개월", "kinds": ["time", "range"]},
+    {"pointer": "/by_concern/1/severity_levels/2/level", "text": "(뚜렷한 처짐)", "kinds": ["parenthetical", "severity", "degree_modifier"]},
+    {"pointer": "/by_concern/1/severity_levels/2/optimal_combo/0", "text": "울쎄라 HIFU", "kinds": ["product_like", "procedure_like"]},
+    {"pointer": "/by_concern/1/severity_levels/2/optimal_combo/1", "text": "실리프팅(PDO/PCL)", "kinds": ["procedure_like", "material", "parenthetical", "alternative"]},
+    {"pointer": "/by_concern/1/severity_levels/2/sequence", "text": "2-4주 후 실리프팅", "kinds": ["interval_after", "range", "time"]},
+    {"pointer": "/by_concern/1/severity_levels/2/sequence", "text": "필러(볼륨 보충)", "kinds": ["parenthetical", "effect_purpose", "interval_unspecified"]},
+    {"pointer": "/by_concern/1/severity_levels/2/sequence", "text": "바이오스티뮬레이터(유지)", "kinds": ["parenthetical", "maintenance", "interval_unspecified"]},
+    {"pointer": "/by_concern/1/severity_levels/2/rationale", "text": "HIFU로 깊은층 수축", "kinds": ["effect_purpose", "layer_depth", "degree_modifier"]},
+    {"pointer": "/by_concern/1/severity_levels/2/rationale", "text": "실리프팅으로 물리적 거상", "kinds": ["effect_purpose", "manner"]},
+    {"pointer": "/by_concern/1/severity_levels/2/rationale", "text": "바이오스티뮬로 장기 유지", "kinds": ["maintenance", "duration_long", "abbreviation"]},
+    {"pointer": "/by_concern/1/severity_levels/2/total_duration", "text": "6-12개월", "kinds": ["time", "range"]},
+    {"pointer": "/by_concern/1/severity_levels/2/contraindicated_combos/0", "text": "PDO실 + 비가교HA 동시 금지", "kinds": ["avoid_prohibit", "same_time", "material", "plus_in_prohibition"]}
+  ],
+  "issues": [
+    {"id": "B-02-1", "class": "B", "pointers": ["/by_concern/1/severity_levels/1/sequence", "/by_concern/1/severity_levels/2/sequence"], "text": "간격(4주 후·2-4주 후)의 기준 시점과 뒤 단계(필러·바이오스티뮬레이터) 간격이 원문에 없다."},
+    {"id": "B-02-2", "class": "B", "pointers": ["/by_concern/1/severity_levels/2/contraindicated_combos/0"], "text": "「동시」의 범위(같은 날·같은 회차·같은 부위)가 원문에 없다."}
+  ]
+}

@@ -1,0 +1,203 @@
+# S032  scope=M10 HIFES/EMS  units=id | category | category_en | group | subcategories 컨테이너 | M10-1 items/0 | M10-1 items/1 | M10-2 items/0 | M10-2 items/1 | M10-2 items/2 | M10-2 items/3 | M10-2 items/4 | M10-2 items/5 | M10-2 items/6 | M10-2 items/7 | extracted | products 컨테이너 | name
+# 상위 문맥: []
+@ /modality/9 M10 HIFES/EMS HIFES/EMS
+  . {id,category,category_en,group,subcategories,extracted,products,name}
+  /id = "M10"
+  /category = "HIFES/EMS"
+  /category_en = "HIFES/EMS"
+  /group = "시술/기기"
+  /subcategories [2]
+@ /modality/9/subcategories/0 M10-1 페이셜 EMS
+  . {id,label,items}
+  /id = "M10-1"
+  /label = "페이셜 EMS"
+  /items [2]
+@ /modality/9/subcategories/0/items/0 M10-1-1 엠페이스(EMFACE)
+  . {id,name,detail,extracted}
+  /id = "M10-1-1"
+  /name = "엠페이스(EMFACE)"
+  /detail = "BTL · RF+HIFES · 근육+피부 동시"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "RF와 HIFES를 결합한 얼굴 근육강화 및 피부 재생 시술"
+  /extracted/mechanism = "방사주파(RF) 에너지가 진피층의 콜라겐을 가열하여 재생을 유도하면서, 동시에 HIFES가 얼굴 표정근을 강화하여 피부 탄력 개선과 근육량 증대를 동시에 달성한다. 이는 피부 표면의 리프팅 효과와 깊은 층의 근육 강화를 통합적으로 제공한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"얼굴 처짐 개선" ‖ 1:"표정근 강화" ‖ 2:"피부 탄력도 증가" ‖ 3:"주름 개선" ‖ 4:"얼굴 윤곽 개선"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"시술 후 일시적 홍반" ‖ 1:"근육통 유사 감각" ‖ 2:"가벼운 부종"
+  /extracted/safety/serious [1] = 0:"금속 임플란트 부위의 화상 위험 (사전 확인 필수)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주 후부터 단계적 개선, 4주 후 명확한 효과"
+  /extracted/onset_duration/duration = "3-6개월 유지, 정기적 시술로 지속 효과"
+  /extracted/aftercare [4] = 0:"시술 24시간 후 스킨케어 재개" ‖ 1:"고강도 운동 48시간 자제" ‖ 2:"충분한 수분 섭취" ‖ 3:"[시술 주기 참고] 3개월 간격 권장. 근육 적응 및 지방 대사 완료 후 재시술 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/9/subcategories/0/items/1 auto-M10-1775364775186 엠페이스
+  . {id,name,detail,extracted}
+  /id = "auto-M10-1775364775186"
+  /name = "엠페이스"
+  /detail = "BTL안면HIFES"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "BTL사의 안면 전용 HIFES 근육 강화 장비"
+  /extracted/mechanism = "고강도 집속 전자기장(HIFES)이 안면 근육에 강력한 수축을 유발합니다. 근육 강화를 통해 자연스러운 리프팅과 윤곽 개선을 달성합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"안면 근육 강화" ‖ 1:"자연스러운 리프팅"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 후 근육 피로감"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "6-9개월"
+  /extracted/aftercare [3] = 0:"충분한 휴식" ‖ 1:"근육 마사지" ‖ 2:"[시술 주기 참고] 3개월 간격 권장. 근육 적응 및 지방 대사 완료 후 재시술 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/9/subcategories/1 M10-2 바디 EMS
+  . {id,label,items}
+  /id = "M10-2"
+  /label = "바디 EMS"
+  /items [8]
+@ /modality/9/subcategories/1/items/0 M10-2-1 엠스컬프트
+  . {id,name,detail,extracted}
+  /id = "M10-2-1"
+  /name = "엠스컬프트"
+  /detail = "BTL · HIFEM · 근육수축+지방감소"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "HIFEM 기술로 근육 강화와 지방 감소를 동시 달성"
+  /extracted/mechanism = "고강도 집속 전자기장(HIFEM)이 운동신경을 자극하여 근육의 초극대 수축(supramaximal contraction)을 유발한다. 30분 시술로 수만 회의 강력한 근육 수축을 통해 근비대와 신규 근섬유 생성을 유도하며, 근육 수축의 대사 산물이 인접 지방세포의 자연사(apoptosis)를 유발하여 지방 감소를 동시에 달성한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"복부 근육 강화 및 복부 지방 감소" ‖ 1:"엉덩이 리프팅 (힙업)" ‖ 2:"팔뚝 근육 강화" ‖ 3:"허벅지 근육 강화 및 지방 감소" ‖ 4:"종아리 근육 강화"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"시술 중 강한 근육 수축감" ‖ 1:"시술 후 근육통 (48-72시간)" ‖ 2:"가벼운 부종"
+  /extracted/safety/serious [2] = 0:"심박동기, 금속 임플란트 보유자 금기" ‖ 1:"임신 중 금지"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2주 후부터 근육 증가 감지, 4주 후 지각 가능한 변화"
+  /extracted/onset_duration/duration = "3-6개월 효과 유지, 월 1-2회 시술로 지속"
+  /extracted/aftercare [5] = 0:"시술 후 충분한 수분 섭취" ‖ 1:"24시간 내 격한 운동 자제" ‖ 2:"근육통 완화를 위해 가벼운 스트레칭 권고" ‖ 3:"최소 48시간 후 정상 운동 재개" ‖ 4:"[시술 주기 참고] 3개월 간격 권장. 근육 적응 및 지방 대사 완료 후 재시술 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/9/subcategories/1/items/1 M10-2-2 엠스컬프트네오
+  . {id,name,detail,extracted}
+  /id = "M10-2-2"
+  /name = "엠스컬프트네오"
+  /detail = "BTL · HIFEM+RF 동시"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "HIFEM+RF 결합으로 근육 강화와 피부 개선 동시 달성"
+  /extracted/mechanism = "HIFEM이 근육의 초극대 수축을 유발하여 근비대와 지방 감소를 달성하면서, 동시에 적용된 RF(방사주파) 에너지가 진피층의 콜라겐을 열변성시켜 즉각적인 피부 수축과 장기적 콜라겐 재생을 유도한다. 이를 통해 근육 강화, 지방 감소, 피부 탄력 개선을 통합적으로 제공한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"복부 근육 강화, 지방 감소, 피부 탄력도 개선" ‖ 1:"엉덩이 리프팅 및 피부 개선" ‖ 2:"팔뚝 근육강화 및 처짐 개선" ‖ 3:"허벅지 근육강화 및 피부 탄력도 증가" ‖ 4:"피부 질감 개선"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [4] = 0:"강한 근육 수축감" ‖ 1:"시술 후 근육통 (48-72시간)" ‖ 2:"일시적 홍반" ‖ 3:"경미한 부종"
+  /extracted/safety/serious [3] = 0:"심박동기, 금속 임플란트 보유자 금기" ‖ 1:"임신 중 금지" ‖ 2:"활성 피부 감염 부위 시술 금지"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉각적인 피부 수축감, 2주 후 근육 증가 감지, 4-6주 후 현저한 변화"
+  /extracted/onset_duration/duration = "3-6개월 효과 유지, 월 1-2회 정기 시술로 지속"
+  /extracted/aftercare [5] = 0:"시술 후 24시간 집중 보습 및 진정 팩 권고" ‖ 1:"48시간 내 격한 운동 자제" ‖ 2:"충분한 수분 섭취" ‖ 3:"최소 48시간 후 일반 운동 재개" ‖ 4:"[시술 주기 참고] 3개월 간격 권장. 근육 적응 및 지방 대사 완료 후 재시술 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/9/subcategories/1/items/2 auto-M10-1775361916636 바넥스프로
+  . {id,name,detail,extracted}
+  /id = "auto-M10-1775361916636"
+  /name = "바넥스프로"
+  /detail = "RF+EMS+석션 · 바디 컨투어링"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "RF 고주파, EMS 근육자극, 석션 기술을 결합한 비침습적 바디 컨투어링 장비"
+  /extracted/mechanism = "RF 고주파 에너지로 진피층 가열하여 콜라겐 재생성과 지방세포 파괴를 유도합니다. EMS 전기자극으로 근육수축을 증가시키고 석션으로 혈액순환을 개선하여 바디라인 개선 효과를 제공합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"국소 지방 감소" ‖ 1:"바디라인 개선" ‖ 2:"셀룰라이트 개선" ‖ 3:"근육 토닝"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"시술 부위 일시적 홍조" ‖ 1:"가벼운 부종" ‖ 2:"근육 피로감"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [5] = 0:"충분한 수분 섭취" ‖ 1:"가벼운 마사지" ‖ 2:"규칙적인 운동 병행" ‖ 3:"음주 자제 24시간" ‖ 4:"[시술 주기 참고] 3개월 간격 권장. 근육 적응 및 지방 대사 완료 후 재시술 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/9/subcategories/1/items/3 auto-M10-1775363005172 이볼브
+  . {id,name,detail,extracted}
+  /id = "auto-M10-1775363005172"
+  /name = "이볼브"
+  /detail = "인모드 · RF+EMS 바디 근육+피부"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "인모드 기반 RF와 EMS를 결합한 바디 컨투어링 및 근육 강화 복합 시술"
+  /extracted/mechanism = "RF 에너지가 피하지방층과 진피층을 가열하여 콜라겐 재생성과 지방세포 파괴를 유도합니다. EMS 전기자극이 근육 수축을 강제로 유발하여 근육량 증가와 기초대사율 향상을 동시에 달성합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"복부, 팔, 허벅지 등 바디 컨투어링" ‖ 1:"근육 톤업 및 체형 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 일시적 발적과 부종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [4] = 0:"충분한 수분 섭취 및 가벼운 운동 권장" ‖ 1:"시술 후 근육통은 정상 반응 (1-3일)" ‖ 2:"충분한 수분 섭취 권장" ‖ 3:"[시술 주기 참고] 3개월 간격 권장. 근육 적응 및 지방 대사 완료 후 재시술 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/9/subcategories/1/items/4 auto-M10-1775363013079 트루스컬프트
+  . {id,name,detail,extracted}
+  /id = "auto-M10-1775363013079"
+  /name = "트루스컬프트"
+  /detail = "큐테라 · RF 바디 지방감소"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "큐테라사의 RF(고주파) 기술을 이용한 비침습적 바디 컨투어링 및 지방감소 시술"
+  /extracted/mechanism = "1.8MHz RF 에너지가 피하지방층 깊숙이 침투하여 지방세포의 온도를 45-50도까지 상승시킵니다. 열손상을 받은 지방세포는 자연적으로 파괴되어 림프계를 통해 체외로 배출됩니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"복부, 허벅지, 팔뚝 등 국소 지방 감소" ‖ 1:"바디 윤곽 개선 및 타이트닝"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 일시적 발적 및 부종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "4-6주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [4] = 0:"시술 후 충분한 수분 섭취로 지방세포 배출 촉진" ‖ 1:"시술 후 근육통은 정상 반응 (1-3일)" ‖ 2:"충분한 수분 섭취 권장" ‖ 3:"[시술 주기 참고] 3개월 간격 권장. 근육 적응 및 지방 대사 완료 후 재시술 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/9/subcategories/1/items/5 auto-M10-1775363019549 쿨톤
+  . {id,name,detail,extracted}
+  /id = "auto-M10-1775363019549"
+  /name = "쿨톤"
+  /detail = "앨러간 · 쿨스컬프팅+EMS 근육"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "앨러간의 크라이오리폴리시스와 EMS 근육자극을 결합한 체형관리 시술"
+  /extracted/mechanism = "크라이오리폴리시스를 통해 지방세포를 선택적으로 냉동시켜 자연사멸을 유도합니다. 동시에 EMS로 근육수축을 자극하여 근육량 증가와 지방분해를 촉진합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"국소 지방감소" ‖ 1:"근육량 증가 및 체형교정"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술부위 일시적 부종 및 멍"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "6개월-1년"
+  /extracted/aftercare [4] = 0:"시술 후 마사지 권장" ‖ 1:"충분한 수분섭취" ‖ 2:"규칙적인 운동 병행" ‖ 3:"[시술 주기 참고] 3개월 간격 권장. 근육 적응 및 지방 대사 완료 후 재시술 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/9/subcategories/1/items/6 auto-M10-1775364775185 스팀슈어
+  . {id,name,detail,extracted}
+  /id = "auto-M10-1775364775185"
+  /name = "스팀슈어"
+  /detail = "RF+EMS"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "RF와 EMS를 결합한 피부 탄력 및 근육 강화 복합 치료"
+  /extracted/mechanism = "고주파(RF)로 피부 깊숙한 콜라겐 생성을 촉진하고 EMS로 근육을 강화합니다. 피부와 근육을 동시에 개선하여 종합적인 리프팅 효과를 제공합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"피부 탄력 개선" ‖ 1:"근육 토닝"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 일시적 발적"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3주"
+  /extracted/onset_duration/duration = "4-8개월"
+  /extracted/aftercare [3] = 0:"보습 관리" ‖ 1:"가벼운 운동" ‖ 2:"[시술 주기 참고] 3개월 간격 권장. 근육 적응 및 지방 대사 완료 후 재시술 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/9/subcategories/1/items/7 auto-M10-1775364775187 엠스컬프트NEO
+  . {id,name,detail,extracted}
+  /id = "auto-M10-1775364775187"
+  /name = "엠스컬프트NEO"
+  /detail = "HIFEM+RF"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "HIFEM과 RF를 동시 적용하는 혁신적인 바디컨투어링 장비"
+  /extracted/mechanism = "고강도 집속 전자기장(HIFEM)으로 근육을 강화하고 RF로 지방을 감소시킵니다. 근육 증가와 지방 감소를 동시에 달성하여 이상적인 바디라인을 조성합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"근육량 증가" ‖ 1:"지방 감소"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 후 근육통"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [3] = 0:"충분한 수분 섭취" ‖ 1:"근육 회복 관리" ‖ 2:"[시술 주기 참고] 3개월 간격 권장. 근육 적응 및 지방 대사 완료 후 재시술 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/9 M10 HIFES/EMS HIFES/EMS
+  /extracted {overview,mechanism,indications,contraindications,safety,onset_duration,aftercare,related_techniques}
+  /extracted/overview = "HIFES(고강도 집속 전자기 자극)와 EMS(전기근육자극)는 전자기 에너지를 이용해 근육을 강제로 수축시키는 시술이다. 한국에서는 '엠스컬프', '테슬라포머' 등의 브랜드명으로 알려져 있으며, 복부, 엉덩이, 팔, 다리 등의 근육 강화와 지방 감소를 목적으로 사용된다."
+  /extracted/mechanism = "고강도 집속 전자기장(HIFEM)이 운동신경을 자극하여 단시간에 수만 회의 근육 초극대 수축(supramaximal contraction)을 유발한다. 이는 일반적인 운동으로는 달성할 수 없는 강도의 근육 수축으로, 근육 섬유의 재구성(근비대)과 새로운 근섬유 생성(근섬유 증가)을 유도한다. 동시에 근육 수축으로 인해 주변 지방세포에 대사 스트레스가 가해져, 지방세포의 자연사(세포자멸사, apoptosis)가 유도되어 지방 감소 효과도 나타난다."
+  /extracted/indications {primary,extended}
+  /extracted/indications/primary [3] = 0:"복부 근육 강화 및 지방 감소" ‖ 1:"엉덩이 리프팅 (힙업)" ‖ 2:"허벅지 근육 강화"
+  /extracted/indications/extended [4] = 0:"팔뚝 근육 토닝" ‖ 1:"종아리 근육 강화" ‖ 2:"산후 복직근이개 (배 근육 벌어짐) 개선" ‖ 3:"골반저근 강화 (요실금 개선)"
+  /extracted/contraindications {absolute,relative}
+  /extracted/contraindications/absolute [3] = 0:"체내 금속 임플란트가 시술 부위에 있는 경우" ‖ 1:"심장박동기(페이스메이커) 또는 이식형 제세동기 사용자" ‖ 2:"임신 중인 경우"
+  /extracted/contraindications/relative [3] = 0:"간질(뇌전증) 환자" ‖ 1:"심각한 심폐질환 환자" ‖ 2:"최근 수술 이력이 있는 부위"
+  /extracted/safety {common,uncommon}
+  /extracted/safety/common [3] = 0:"시술 부위 근육통 (운동 후와 비슷한 느낌)" ‖ 1:"일시적 근육 경련" ‖ 2:"시술 중 약간의 불편감"
+  /extracted/safety/uncommon [2] = 0:"시술 부위 피부 발적 (빨개짐)" ‖ 1:"일시적 관절/건 불편감"
+  /extracted/onset_duration {onset,peak,duration}
+  /extracted/onset_duration/onset = "시술 직후 근육 피로감, 2~4주 후 근육 강화 체감"
+  /extracted/onset_duration/peak = "마지막 시술 후 2~4주 뒤"
+  /extracted/onset_duration/duration = "6~12개월 유지 (운동 병행 시 더 오래 유지)"
+  /extracted/aftercare [3] = 0:"특별한 다운타임 없이 일상생활 바로 가능" ‖ 1:"충분한 수분 섭취" ‖ 2:"운동 병행 시 효과 극대화"
+  /extracted/related_techniques [3] = 0:"크라이오리포라이시스 (냉동지방분해) -- 지방 감소에 병합" ‖ 1:"고주파(RF) 바디 -- 피부 타이트닝과 시너지" ‖ 2:"지방흡입 -- 더 적극적인 지방 제거가 필요한 경우"
+  /products [0]
+  /name = "HIFES/EMS"

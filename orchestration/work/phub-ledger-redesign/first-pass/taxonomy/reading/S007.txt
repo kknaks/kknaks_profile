@@ -1,0 +1,192 @@
+# S007  scope=M2 필러  units=extracted | products 컨테이너 | M2-P-0 | M2-P-1 | M2-P-2 | M2-P-3 | M2-P-4 | M2-P-5 | M2-P-6 | M2-P-7 | name
+# 상위 문맥: [{"pointer": "/modality/1", "id": "M2", "category": "필러", "name": "필러"}]
+@ /modality/1 M2 필러 필러
+  /extracted {overview,mechanism,indications,contraindications,safety,onset_duration,aftercare,related_techniques}
+  /extracted/overview = "필러는 피부 속 부피가 줄어든 부위에 채움 물질을 주입해서 주름을 펴거나 윤곽을 잡아주는 미용 시술이다. 1893년부터 시작된 오랜 역사를 가진 시술로, 히알루론산(HA) 필러가 현재 가장 많이 사용된다. 콜라겐 자극형 필러(칼슘 필러, PLLA 등)도 있어서 목적에 따라 다양한 종류를 선택할 수 있다."
+  /extracted/mechanism = "필러는 피부 연조직의 결손부위(꺼진 곳, 주름, 흉터)에 물질을 채워 넣어 즉각적으로 볼륨을 만들어준다. 히알루론산 필러의 경우, 주입된 히알루론산이 주변의 수분을 끌어당겨 부피가 커지면서 피부를 안쪽에서 밀어올린다. 칼슘 기반 필러(래디에스 등)는 주입 직후 볼륨 효과에 더해, 시간이 지나면서 우리 몸의 콜라겐(피부 탄력 단백질) 생성을 촉진해 더 오래 유지된다."
+  /extracted/indications {primary,extended}
+  /extracted/indications/primary [3] = 0:"주름치료 — 이마주름, 미간주름, 눈가주름, 팔자주름(코입술주름), 입꼬리주름, 목주름, 잔주름" ‖ 1:"윤곽성형 — 이마 키우기, 관자놀이 키우기, 볼 키우기, 턱 키우기, 코 보형, 입술확대" ‖ 2:"흉터치료 — 여드름흉터, 수두자국, 위축성 흉터 (살이 꺼진 흉터)"
+  /extracted/indications/extended [7] = 0:"꺼진 눈 교정" ‖ 1:"다크서클 교정 (눈밑 꺼짐)" ‖ 2:"애교살 키우기" ‖ 3:"상악골 윤곽성형 (위턱뼈 주변)" ‖ 4:"입술라인 및 인중선 확대" ‖ 5:"손등회춘술 (손등 볼륨 채움)" ‖ 6:"히알루론산 메조테라피 (물광주사)"
+  /extracted/contraindications {absolute,relative}
+  /extracted/contraindications/absolute [4] = 0:"필러 성분(히알루론산, 콜라겐 등)에 알레르기가 있는 경우" ‖ 1:"주사 맞을 부위에 염증이나 감염이 진행 중인 경우" ‖ 2:"소 콜라겐 필러 사용 시 피부반응검사에서 양성 반응이 나온 경우" ‖ 3:"켈로이드 체질 (흉터가 비정상적으로 부풀어오르는 체질)"
+  /extracted/contraindications/relative [3] = 0:"임신 중이거나 수유 중일 때는 미루는 게 좋음" ‖ 1:"혈액 응고에 영향을 주는 약물(아스피린 등) 복용 중이면 멍이 잘 들 수 있으니 의사에게 알릴 것" ‖ 2:"자가면역질환이 있는 경우 의사와 상의 필요"
+  /extracted/safety {common,uncommon,serious}
+  /extracted/safety/common [4] = 0:"주사 부위 홍반 (빨개짐)" ‖ 1:"멍" ‖ 2:"부종 (붓기)" ‖ 3:"압통 (누르면 아픈 느낌)"
+  /extracted/safety/uncommon [4] = 0:"필러가 만져지는 느낌 (덩어리감)" ‖ 1:"필러가 원래 위치에서 옆으로 이동하는 현상" ‖ 2:"색소침착 (시술 부위가 어두워지는 현상)" ‖ 3:"감염 (무균 관리가 안 될 경우)"
+  /extracted/safety/serious [4] = 0:"혈관 막힘 (필러가 혈관에 들어가 피부 괴사를 일으킬 수 있음 — 드물지만 위험)" ‖ 1:"시술 부위 피부 괴사 (혈류 차단으로 피부 조직이 죽는 것)" ‖ 2:"이물반응 (몸이 필러를 이물질로 인식해 염증을 일으키는 것)" ‖ 3:"실명 위험 (코, 이마 등 혈관이 눈동맥과 연결된 부위 시술 시 극히 드물게 발생)"
+  /extracted/onset_duration {onset,peak,duration}
+  /extracted/onset_duration/onset = "시술 직후 즉각적인 볼륨 효과"
+  /extracted/onset_duration/peak = "붓기가 빠진 후 1~2주 뒤 최종 결과 확인"
+  /extracted/onset_duration/duration = "히알루론산 필러 6~18개월, 칼슘 필러 12~24개월, 자가지방이식 6~12개월 (생착률에 따라 다름)"
+  /extracted/aftercare [3] = 0:"시술 후 강한 압력으로 시술 부위를 누르거나 마사지하지 않기" ‖ 1:"시술 당일 과도한 음주, 사우나, 격렬한 운동 피하기" ‖ 2:"감염 예방을 위해 청결 유지"
+  /extracted/related_techniques [3] = 0:"히알루론산 메조테라피 (물광주사) — 피부 속 수분·탄력 개선" ‖ 1:"자가지방이식 — 본인 지방으로 볼륨 채움, 알레르기 위험 없음" ‖ 2:"진피절제주입법 (서브시전 + 필러) — 흉터 치료에 병합 활용"
+  /products [8]
+@ /modality/1/products/0 M2-P-0 쥬비덤
+  . {id,name,name_en,manufacturer,country,mfds,extracted}
+  /id = "M2-P-0"
+  /name = "쥬비덤"
+  /name_en = "Juvéderm"
+  /manufacturer = "앨러간/애브비"
+  /country = "US"
+  /mfds = true
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "앨러간(Allergan) Vycross 기술 HA 필러"
+  /extracted/mechanism = "Vycross 기술(고분자량 HA + 저분자량 HA 혼합)로 G' 50-120 Pa 범위 조정 가능. 동적 교차결합으로 주입층별 맞춤 점도 제공. 안동맥 역행성 색전 위험(supratrochlear/supraorbital 분지)에 특히 주의 필요."
+  /extracted/indications {primary,secondary}
+  /extracted/indications/primary [3] = 0:"주름 개선" ‖ 1:"볼륨 복원" ‖ 2:"입술 형성"
+  /extracted/indications/secondary [2] = 0:"혼합층 주입" ‖ 1:"얕은/깊은 모든 층"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [2] = 0:"일시적 부종·멍" ‖ 1:"주입부위 발적"
+  /extracted/safety/serious [2] = 0:"실명(미간 38.8%, 코 25.5%)" ‖ 1:"혈관폐색 육아종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "주입 직후~2주"
+  /extracted/onset_duration/duration = "9~12개월"
+  /extracted/aftercare [3] = 0:"미간/코 주입 후 안구 증상 모니터링" ‖ 1:"역행성 색전 증상(시야흐림·안통) 응급처치 준비" ‖ 2:"72시간 음주 금지"
+@ /modality/1/products/1 M2-P-1 레스틸렌
+  . {id,name,name_en,manufacturer,country,mfds,extracted}
+  /id = "M2-P-1"
+  /name = "레스틸렌"
+  /name_en = "Restylane"
+  /manufacturer = "갈더마"
+  /country = "SE"
+  /mfds = true
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "갈더마 NASHA HA 필러"
+  /extracted/mechanism = "NASHA(Non-Animal Stabilized HA) 기술로 동물 유래 성분 제거. G' 범위 60-150 Pa로 정교한 레올로지 조절. 최소 MoD(1-8%)에서 최대 겔 강도로 오래된 표준 필러. 안면동맥 분지 분포(미간·코) 고려 필수."
+  /extracted/indications {primary,secondary}
+  /extracted/indications/primary [3] = 0:"중등도 주름" ‖ 1:"이마" ‖ 2:"광대뼈"
+  /extracted/indications/secondary [2] = 0:"비순홈" ‖ 1:"턱선 보강"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"부종(3~5일)" ‖ 1:"멍" ‖ 2:"일시적 경결"
+  /extracted/safety/serious [2] = 0:"동맥 폐색(0.04mL)" ‖ 1:"시력상실 위험"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2~4주"
+  /extracted/onset_duration/duration = "12~18개월"
+  /extracted/aftercare [3] = 0:"미간·코 주입 시 supratrochlear/supraorbital 분지 회피" ‖ 1:"저용량 다중 주입 권장" ‖ 2:"안압 모니터링"
+@ /modality/1/products/2 M2-P-2 벨로테로
+  . {id,name,name_en,manufacturer,country,mfds,extracted}
+  /id = "M2-P-2"
+  /name = "벨로테로"
+  /name_en = "Belotero"
+  /manufacturer = "멀츠"
+  /country = "DE"
+  /mfds = true
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "멀츠(Merz, 독일) CPM 기술 HA 필러"
+  /extracted/mechanism = "CPM(Cohesive Polydensified Matrix) 기술의 동적 교차결합으로 균일한 겔 밀도를 유지하면서 자연스러운 조직 통합. 얕은 층 주입에 최적화."
+  /extracted/indications {primary,secondary}
+  /extracted/indications/primary [3] = 0:"주름 개선" ‖ 1:"입술" ‖ 2:"안면 윤곽"
+  /extracted/indications/secondary [2] = 0:"콧등 보강" ‖ 1:"비순홈"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [2] = 0:"일시적 부종" ‖ 1:"주입부위 발적"
+  /extracted/safety/serious [1] = 0:"역행성 색전"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "주입 직후~2주"
+  /extracted/onset_duration/duration = "12~15개월"
+  /extracted/aftercare [3] = 0:"고강도 운동 72시간 회피" ‖ 1:"주입부위 마사지 금지" ‖ 2:"극단적 온도 환경 제한(1주)"
+@ /modality/1/products/3 M2-P-3 이브아르
+  . {id,name,name_en,manufacturer,country,mfds,extracted}
+  /id = "M2-P-3"
+  /name = "이브아르"
+  /name_en = "Yvoire"
+  /manufacturer = "LG화학"
+  /country = "KR"
+  /mfds = true
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "LG화학(LG Chem) 국산 HA 필러"
+  /extracted/mechanism = "동적 교차결합으로 G' 70-130 Pa의 유연한 레올로지. 얕은 진피층부터 깊은 치골궁까지 다층 주입 설계. 한국인 피부 특성 고려 개발로 섬세한 주름 개선."
+  /extracted/indications {primary,secondary}
+  /extracted/indications/primary [3] = 0:"미세 주름" ‖ 1:"입술 볼륨" ‖ 2:"혼합층 주입"
+  /extracted/indications/secondary [2] = 0:"이마" ‖ 1:"관자놀이"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [2] = 0:"경미한 부종" ‖ 1:"일시적 멍"
+  /extracted/safety/serious [1] = 0:"혈관폐색(드물음)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1~2주"
+  /extracted/onset_duration/duration = "10~14개월"
+  /extracted/aftercare [3] = 0:"주입 후 냉찜질(15분)" ‖ 1:"마사지 회피(48시간)" ‖ 2:"자외선 차단(2주)"
+@ /modality/1/products/4 M2-P-4 엘라비에
+  . {id,name,name_en,manufacturer,country,mfds,extracted}
+  /id = "M2-P-4"
+  /name = "엘라비에"
+  /name_en = "Elravie"
+  /manufacturer = "휴메딕스"
+  /country = "KR"
+  /mfds = true
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "휴메딕스(Humedix) 국산 HA 필러"
+  /extracted/mechanism = "낮은 교차결합도로 G' 40-70 Pa의 유동성 우수. 얕은 진피 주입에 최적화되어 자연스러운 라인 형성. 점도 낮아 미세 주름 충전에 적합."
+  /extracted/indications {primary,secondary}
+  /extracted/indications/primary [3] = 0:"얕은 주름" ‖ 1:"피부 탄력 개선" ‖ 2:"광대뼈 윤곽"
+  /extracted/indications/secondary [2] = 0:"이마 라인" ‖ 1:"눈가 주름"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [2] = 0:"최소 부종" ‖ 1:"일시적 발적"
+  /extracted/safety/serious [1] = 0:"드문 혈관 합병증"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "주입 직후~1주"
+  /extracted/onset_duration/duration = "8~12개월"
+  /extracted/aftercare [3] = 0:"마사지 회피(72시간)" ‖ 1:"운동 제한(3일)" ‖ 2:"냉찜질 권장"
+@ /modality/1/products/5 M2-P-5 채움
+  . {id,name,name_en,manufacturer,country,mfds,extracted}
+  /id = "M2-P-5"
+  /name = "채움"
+  /name_en = "Chaeum"
+  /manufacturer = "휴젤"
+  /country = "KR"
+  /mfds = true
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "휴젤 고강도 HA 필러"
+  /extracted/mechanism = "강화된 교차결합으로 G' 150-200 Pa의 높은 탄성계수. 응집력 >0.5 N으로 리프팅 효과. 깊은 조직층 주입으로 구조적 볼륨 복원."
+  /extracted/indications {primary,secondary}
+  /extracted/indications/primary [3] = 0:"깊은 주름" ‖ 1:"볼륨 손실" ‖ 2:"턱선 강화"
+  /extracted/indications/secondary [2] = 0:"광대뼈 리프팅" ‖ 1:"안면 골격 정의"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [2] = 0:"부종(5~7일)" ‖ 1:"제한된 가동범위"
+  /extracted/safety/serious [1] = 0:"혈관폐색(주의 필요)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2~4주"
+  /extracted/onset_duration/duration = "15~18개월"
+  /extracted/aftercare [3] = 0:"깊은 마사지 금지(1개월)" ‖ 1:"고강도 운동 회피(1주)" ‖ 2:"냉찜질 초기 단계"
+@ /modality/1/products/6 M2-P-6 더채움
+  . {id,name,name_en,manufacturer,country,mfds,extracted}
+  /id = "M2-P-6"
+  /name = "더채움"
+  /name_en = "The Chaeum"
+  /manufacturer = "휴젤"
+  /country = "KR"
+  /mfds = true
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "휴젤(Hugel) 프리미엄 HA 필러"
+  /extracted/mechanism = "고순도 HA(><99.5%)로 입자 오염 최소화. G' 90-150 Pa의 균형잡힌 탄성. 정교한 분자 배치로 응집력·점도 최적화. 안동맥 분지(angular artery: 내안각 medial 9mm, 깊이 2.3mm) 고려 설계."
+  /extracted/indications {primary,secondary}
+  /extracted/indications/primary [3] = 0:"중등도~깊은 주름" ‖ 1:"입술 형성" ‖ 2:"혼합층"
+  /extracted/indications/secondary [2] = 0:"비순홈" ‖ 1:"턱선 보강"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [2] = 0:"부종" ‖ 1:"일시적 결절"
+  /extracted/safety/serious [1] = 0:"역행성 색전(각동맥 분지 위험)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2~3주"
+  /extracted/onset_duration/duration = "12~16개월"
+  /extracted/aftercare [3] = 0:"내안각 주입 시 각동맥 분지 확인(9mm medial)" ‖ 1:"안와상부 얕은 주입 금지" ‖ 2:"혈관폐색 증상 교육"
+@ /modality/1/products/7 M2-P-7 신펄
+  . {id,name,name_en,manufacturer,country,mfds,extracted}
+  /id = "M2-P-7"
+  /name = "신펄"
+  /name_en = "Synpurl"
+  /manufacturer = "제테마"
+  /country = "KR"
+  /mfds = true
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "제테마의 PLLA(폴리락틱산) 콜라겐 자극형 필러"
+  /extracted/mechanism = "PLLA 미립자가 진피층에 주입되어 생체적합성 물질로서 작용하며, 시간이 지나면서 대식세포가 인식해 염증 반응을 유발함으로써 피부 자체의 콜라겐 생성을 활성화시키고 부피를 점진적으로 증가시킨다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [6] = 0:"광범위한 주름 치료" ‖ 1:"얼굴 전체 볼륨 손실 개선" ‖ 2:"피부 탄력도 저하" ‖ 3:"팔자주름" ‖ 4:"이마 및 미간주름" ‖ 5:"얼굴 하반부 처짐"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [4] = 0:"초기 부종" ‖ 1:"발적" ‖ 2:"압통" ‖ 3:"경미한 멍"
+  /extracted/safety/serious [3] = 0:"결절 형성 (드물음)" ‖ 1:"육아종 (매우 드물음)" ‖ 2:"지연성 알레르기 반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "4-6주 (콜라겐 재형성 과정)"
+  /extracted/onset_duration/duration = "24-36개월 (콜라겐 축적으로 장기 지속)"
+  /extracted/aftercare [5] = 0:"시술 후 24시간 동안 세안, 메이크업 피하기" ‖ 1:"1주일간 마사지 및 강한 자극 금지" ‖ 2:"2주일간 사우나, 찜질, 격렬한 운동 제한" ‖ 3:"냉찜질로 초기 부종 완화" ‖ 4:"최적의 결과 위해 4주 간격으로 2-3회 시술 권장"
+@ /modality/1 M2 필러 필러
+  /name = "필러"

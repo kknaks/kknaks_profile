@@ -1,0 +1,264 @@
+# S005  scope=M2 필러  units=id | category | category_en | group | subcategories 컨테이너 | M2-1 items/0 | M2-1 items/1 | M2-1 items/2 | M2-1 items/3 | M2-1 items/4 | M2-1 items/5 | M2-1 items/6 | M2-1 items/7 | M2-1 items/8 | M2-1 items/9 | M2-1 items/10 | M2-1 items/11 | M2-1 items/12 | M2-1 items/13 | M2-1 items/14
+# 상위 문맥: []
+@ /modality/1 M2 필러 필러
+  . {id,category,category_en,group,subcategories,extracted,products,name}
+  /id = "M2"
+  /category = "필러"
+  /category_en = "Filler"
+  /group = "주사/주입"
+  /subcategories [3]
+@ /modality/1/subcategories/0 M2-1 국산 HA
+  . {id,label,items}
+  /id = "M2-1"
+  /label = "국산 HA"
+  /items [18]
+@ /modality/1/subcategories/0/items/0 M2-1-5 이브아르
+  . {id,name,detail,extracted}
+  /id = "M2-1-5"
+  /name = "이브아르"
+  /detail = "LG화학"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "LG화학 HA 필러, 중간 탄성"
+  /extracted/mechanism = "교차결합 HA가 진피층에 부피를 제공하며, G' 100-200 Pa 범위로 중등도 리프팅을 구현. 응집력 0.5-1.0 N으로 안정적인 3차원 구조 유지."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"팔자주름" ‖ 1:"입술 풍부화" ‖ 2:"광대 보강"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"부종" ‖ 1:"홍반" ‖ 2:"결절감"
+  /extracted/safety/serious [3] = 0:"혈관 폐색(미간·코)" ‖ 1:"실명" ‖ 2:"육아종(주로 cystic형, 드물게 sclerosing 가능)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "3-7일"
+  /extracted/onset_duration/duration = "8-12개월"
+  /extracted/aftercare [3] = 0:"염증 부위 냉찜질" ‖ 1:"혈관주사제 접근성 확보" ‖ 2:"[시술 주기 참고] HA 필러 지속 6-18개월 (제품/부위별 상이). 재시술은 6개월 이상 간격 권장. 잔여 필러 확인 후 추가 주입 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/1/subcategories/0/items/1 M2-1-8 엘라비에
+  . {id,name,detail,extracted}
+  /id = "M2-1-8"
+  /name = "엘라비에"
+  /detail = "휴메딕스"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "휴메딕스 HA 필러, 가벼운 질감"
+  /extracted/mechanism = "자체 HA 교차결합 기술으로 최소 변형도(1-8%)에서 최대 겔 강도 달성. 저점도로 세밀한 라인 교정 및 피부 톤 개선에 적합."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"눈가 미세주름" ‖ 1:"입술 윤곽" ‖ 2:"피부 재생"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"건성" ‖ 1:"가려움증" ‖ 2:"얕은 결절"
+  /extracted/safety/serious [2] = 0:"혈관 폐색" ‖ 1:"실명(0.04mL 기준)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-3일"
+  /extracted/onset_duration/duration = "6-9개월"
+  /extracted/aftercare [3] = 0:"보습 관리 강화" ‖ 1:"당일 세안 최소화" ‖ 2:"[시술 주기 참고] HA 필러 지속 6-18개월 (제품/부위별 상이). 재시술은 6개월 이상 간격 권장. 잔여 필러 확인 후 추가 주입 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/1/subcategories/0/items/2 M2-1-2 더채움
+  . {id,name,detail,extracted}
+  /id = "M2-1-2"
+  /name = "더채움"
+  /detail = "휴젤"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "휴젤 HA 필러, 높은 응집력"
+  /extracted/mechanism = "G' 200-400 Pa의 높은 탄성계수와 응집력 1.0-1.5 N으로 리프팅 효과 극대화. 중분자 HA로 장기 지속성 제공."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"법령선" ‖ 1:"볼 처짐" ‖ 2:"턱선 정의"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"경화감" ‖ 1:"만져지는 결절" ‖ 2:"부종"
+  /extracted/safety/serious [3] = 0:"혈관 폐색(미간 38.8%, 코 25.5%)" ‖ 1:"실명" ‖ 2:"주로 cystic, 드물게 sclerosing 가능 육아종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "7-14일"
+  /extracted/onset_duration/duration = "12-18개월"
+  /extracted/aftercare [3] = 0:"주입 부위 강한 마사지 자제 (형태 유지 목적, 가볍게는 무방)" ‖ 1:"혈관 역행성 색전 모니터링" ‖ 2:"[시술 주기 참고] HA 필러 지속 6-18개월 (제품/부위별 상이). 재시술은 6개월 이상 간격 권장. 잔여 필러 확인 후 추가 주입 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/1/subcategories/0/items/3 M2-1-1 뉴라미스
+  . {id,name,detail,extracted}
+  /id = "M2-1-1"
+  /name = "뉴라미스"
+  /detail = "메디톡스"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "메디톡스 HA 필러, 다층 라인업"
+  /extracted/mechanism = "자체 HA 교차결합 기술로 G' 4-857 Pa 범위(라이트 4 Pa, 스탠다드 100-200 Pa). 변형도 최소화로 안정적인 폴리머 네트워크 형성."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"얕은주름(라이트)" ‖ 1:"중등도 주름(스탠다드)" ‖ 2:"깊은 주름(딥/컨투어)"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"주입부위 압통" ‖ 1:"비대칭" ‖ 2:"이물감"
+  /extracted/safety/serious [3] = 0:"혈관계 합병증(안동맥 역행성 색전)" ‖ 1:"실명" ‖ 2:"주로 cystic, 드물게 sclerosing 가능 육아종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "3-10일"
+  /extracted/onset_duration/duration = "6-18개월(제품 선택에 따라)"
+  /extracted/aftercare [3] = 0:"주입 부위별 깊이 모니터링" ‖ 1:"역행성 색전 징후 감시" ‖ 2:"[시술 주기 참고] HA 필러 지속 6-18개월 (제품/부위별 상이). 재시술은 6개월 이상 간격 권장. 잔여 필러 확인 후 추가 주입 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/1/subcategories/0/items/4 M2-1-3 벨라스트
+  . {id,name,detail,extracted}
+  /id = "M2-1-3"
+  /name = "벨라스트"
+  /detail = "동국제약"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "동국제약 HA 필러, 중간 입자"
+  /extracted/mechanism = "중분자 HA 기반으로 피부 진피층 장기 부피 유지. 응집력 0.5-1.0 N으로 자연스러운 확산 방지."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"팔자주름" ‖ 1:"눈밑 탄력 저하" ‖ 2:"볼살 재구성"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"부종" ‖ 1:"경미한 결절" ‖ 2:"색변화"
+  /extracted/safety/serious [3] = 0:"혈관 폐색(0.04mL 임계량)" ‖ 1:"실명" ‖ 2:"육아종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "5-10일"
+  /extracted/onset_duration/duration = "9-15개월"
+  /extracted/aftercare [3] = 0:"안면부 주입 당일 음주 자제" ‖ 1:"냉찜질 첫 24시간" ‖ 2:"[시술 주기 참고] HA 필러 지속 6-18개월 (제품/부위별 상이). 재시술은 6개월 이상 간격 권장. 잔여 필러 확인 후 추가 주입 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/1/subcategories/0/items/5 M2-1-4 에피티크
+  . {id,name,detail,extracted}
+  /id = "M2-1-4"
+  /name = "에피티크"
+  /detail = "제테마"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "제테마 HA 필러, 높은 순도"
+  /extracted/mechanism = "비동물 유래 HA로 입자 오염 최소화(>10μm 입자 <119,856개/시린지). 높은 순도로 염증반응 감소."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"민감한 피부 필러" ‖ 1:"눈가 시술" ‖ 2:"반복 시술 부위"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [2] = 0:"최소 반응성" ‖ 1:"경미한 홍반"
+  /extracted/safety/serious [2] = 0:"혈관 폐색(각 동맥계 위치별 위험)" ‖ 1:"실명"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-5일"
+  /extracted/onset_duration/duration = "8-12개월"
+  /extracted/aftercare [3] = 0:"기초 미용만 3일간" ‖ 1:"고순도 제품의 안정성 유지" ‖ 2:"[시술 주기 참고] HA 필러 지속 6-18개월 (제품/부위별 상이). 재시술은 6개월 이상 간격 권장. 잔여 필러 확인 후 추가 주입 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/1/subcategories/0/items/6 M2-1-6 아띠에르
+  . {id,name,detail,extracted}
+  /id = "M2-1-6"
+  /name = "아띠에르"
+  /detail = "메디톡스"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "메디톡스 HA 필러, 안정화 기술"
+  /extracted/mechanism = "안정화된 HA 젤로 분해 저항성 증대. 자체 교차결합 기술로 장기 교정 구현."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"중등도 주름 및 체적 감소" ‖ 1:"광대 보강" ‖ 2:"턱 라인 재정의"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"주입 직후 경화감" ‖ 1:"부종(5-7일)" ‖ 2:"미세 결절"
+  /extracted/safety/serious [3] = 0:"혈관 폐색(미간·코·내안각)" ‖ 1:"실명(0.04mL)" ‖ 2:"주로 cystic, 드물게 sclerosing 가능 육아종(입자형)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "7-14일"
+  /extracted/onset_duration/duration = "12-15개월"
+  /extracted/aftercare [3] = 0:"주입 부위 강한 마사지 자제 (형태 유지 목적, 가볍게는 무방)" ‖ 1:"혈관계 합병증 조기 감지" ‖ 2:"[시술 주기 참고] HA 필러 지속 6-18개월 (제품/부위별 상이). 재시술은 6개월 이상 간격 권장. 잔여 필러 확인 후 추가 주입 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/1/subcategories/0/items/7 M2-1-7 리쥬비엘
+  . {id,name,detail,extracted}
+  /id = "M2-1-7"
+  /name = "리쥬비엘"
+  /detail = "파마리서치"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "파마리서치 HA 필러, 부드러운 질감"
+  /extracted/mechanism = "저G' HA(50-150 Pa)로 피부 적응성 우수. 응집력 <0.5 N으로 자연스러운 확산, 얇은 층 시술에 최적."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"표피 수분화" ‖ 1:"미세주름 개선" ‖ 2:"피부톤 균일화"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [2] = 0:"최소 부작용" ‖ 1:"일시적 부종"
+  /extracted/safety/serious [2] = 0:"혈관 폐색(각 부위 위험도 상이)" ‖ 1:"실명"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-3일"
+  /extracted/onset_duration/duration = "6-9개월"
+  /extracted/aftercare [5] = 0:"보습 집중" ‖ 1:"주입 부위 강한 압박/마사지 자제 (형태 유지 목적)" ‖ 2:"혈관 폐색 징후(시야 변화, 심한 통증, 피부 변색) 발생 시 즉시 내원 — 응급" ‖ 3:"멍/부종은 수일 내 자연 소실" ‖ 4:"[시술 주기 참고] HA 필러 지속 6-18개월 (제품/부위별 상이). 재시술은 6개월 이상 간격 권장. 잔여 필러 확인 후 추가 주입 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/1/subcategories/0/items/8 auto-8-1774737181584 셀레스텔라
+  . {id,name,detail,extracted}
+  /id = "auto-8-1774737181584"
+  /name = "셀레스텔라"
+  /detail = "더에쓰씨"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "더에쓰씨 HA 필러, 프리미엄 라인"
+  /extracted/mechanism = "고도 정제 HA와 안정화 기술로 높은 순도와 지속성 겸립. G' 범위 100-300 Pa로 중등도-중증 주름 교정."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"깊은 주름" ‖ 1:"체적 감소" ‖ 2:"피부 탄력 복원"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [2] = 0:"부종(3-5일)" ‖ 1:"경미한 불편감"
+  /extracted/safety/serious [3] = 0:"혈관 폐색(Angular artery 내안각 medial 9.0mm, 깊이 2.3mm 주의)" ‖ 1:"실명" ‖ 2:"주로 cystic, 드물게 sclerosing 가능·주로 cystic, 드물게 sclerosing 가능 육아종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "5-10일"
+  /extracted/onset_duration/duration = "12-18개월"
+  /extracted/aftercare [3] = 0:"내안각 부위 신중한 주입" ‖ 1:"혈관 역행성 색전 모니터링" ‖ 2:"[시술 주기 참고] HA 필러 지속 6-18개월 (제품/부위별 상이). 재시술은 6개월 이상 간격 권장. 잔여 필러 확인 후 추가 주입 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/1/subcategories/0/items/9 auto-9-1774737181584 유스필
+  . {id,name,detail,extracted}
+  /id = "auto-9-1774737181584"
+  /name = "유스필"
+  /detail = "알에프바이오"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "알에프바이오 HA 필러, 톤 밝히기"
+  /extracted/mechanism = "낮은 점도의 HA로 표피층 깊숙이 주입 가능. 피부 재생 유도 및 톤 개선에 특화."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"피부 톤 개선" ‖ 1:"텍스처 정상화" ‖ 2:"피로 회복"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"건성" ‖ 1:"가려움" ‖ 2:"얕은 결절"
+  /extracted/safety/serious [2] = 0:"혈관 폐색(극소량 주입에도 위험)" ‖ 1:"실명"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-7일"
+  /extracted/onset_duration/duration = "6-10개월"
+  /extracted/aftercare [5] = 0:"보습 관리" ‖ 1:"주입 부위 강한 압박/마사지 자제 (형태 유지 목적)" ‖ 2:"혈관 폐색 징후(시야 변화, 심한 통증, 피부 변색) 발생 시 즉시 내원 — 응급" ‖ 3:"멍/부종은 수일 내 자연 소실" ‖ 4:"[시술 주기 참고] HA 필러 지속 6-18개월 (제품/부위별 상이). 재시술은 6개월 이상 간격 권장. 잔여 필러 확인 후 추가 주입 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/1/subcategories/0/items/10 auto-M2-1775361463441 큐젤
+  . {id,name,detail,extracted}
+  /id = "auto-M2-1775361463441"
+  /name = "큐젤"
+  /detail = "국산 HA 필러"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "국산 히알루론산 기반 진피 필러로 주름 개선 및 볼륨 증강에 사용되는 미용시술용 제품"
+  /extracted/mechanism = "가교결합된 히알루론산이 진피층에 주입되어 수분을 끌어당기고 보유하여 즉각적인 볼륨 효과를 제공합니다. 시간이 지나면서 자연스럽게 분해되며 콜라겐 생성을 촉진하여 지속적인 피부 개선 효과를 나타냅니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"비강 주름 및 얕은 주름 개선" ‖ 1:"입술 볼륨 증강 및 윤곽 형성"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"주입 부위 부종, 발적, 멍 등의 일시적 반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "시술 즉시"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [5] = 0:"주입 부위 강한 마사지 자제 (형태 유지 목적, 가볍게는 무방)" ‖ 1:"주입 부위 강한 압박/마사지 자제 (형태 유지 목적)" ‖ 2:"혈관 폐색 징후(시야 변화, 심한 통증, 피부 변색) 발생 시 즉시 내원 — 응급" ‖ 3:"멍/부종은 수일 내 자연 소실" ‖ 4:"[시술 주기 참고] HA 필러 지속 6-18개월 (제품/부위별 상이). 재시술은 6개월 이상 간격 권장. 잔여 필러 확인 후 추가 주입 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/1/subcategories/0/items/11 auto-M2-1775361728731 큐젤MAX
+  . {id,name,detail,extracted}
+  /id = "auto-M2-1775361728731"
+  /name = "큐젤MAX"
+  /detail = "한국비엔씨 · 하이드로리프팅 물광용"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "히알루론산 기반 하이드로리프팅 필러로 수분공급과 동시에 자연스러운 볼륨감을 제공하는 물광주사용 제품"
+  /extracted/mechanism = "저분자 히알루론산이 진피층 깊숙이 침투하여 수분을 강력하게 결합시키고 보유합니다. 동시에 콜라겐 합성을 촉진하여 피부 탄력과 볼륨을 개선시킵니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"피부 수분부족 및 건조함 개선" ‖ 1:"얼굴 전체적인 볼륨감 및 윤기 향상"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술부위 일시적 부종 및 발적"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시-1주"
+  /extracted/onset_duration/duration = "6-9개월"
+  /extracted/aftercare [5] = 0:"시술 후 24시간 사우나, 찜질방 등 고온환경 피하기" ‖ 1:"주입 부위 강한 압박/마사지 자제 (형태 유지 목적)" ‖ 2:"혈관 폐색 징후(시야 변화, 심한 통증, 피부 변색) 발생 시 즉시 내원 — 응급" ‖ 3:"멍/부종은 수일 내 자연 소실" ‖ 4:"[시술 주기 참고] HA 필러 지속 6-18개월 (제품/부위별 상이). 재시술은 6개월 이상 간격 권장. 잔여 필러 확인 후 추가 주입 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/1/subcategories/0/items/12 auto-M2-1775361736267 큐티필
+  . {id,name,detail,extracted}
+  /id = "auto-M2-1775361736267"
+  /name = "큐티필"
+  /detail = "에스테팜 · 국산 HA 필러"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "에스테팜에서 개발한 국산 히알루론산 필러로 주름 개선과 볼륨 증대에 사용되는 미용의학 제품"
+  /extracted/mechanism = "히알루론산이 피부 진피층에 주입되어 수분을 흡수하고 콜라겐 합성을 촉진한다. 젤 형태의 가교화된 히알루론산이 조직을 지지하여 즉각적인 볼륨 효과를 제공한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"비수술적 주름 개선" ‖ 1:"안면 볼륨 증대 및 윤곽 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"주입 부위 부종, 발적, 멍"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [5] = 0:"주입 부위 강한 마사지 자제 (형태 유지 목적, 가볍게는 무방)" ‖ 1:"주입 부위 강한 압박/마사지 자제 (형태 유지 목적)" ‖ 2:"혈관 폐색 징후(시야 변화, 심한 통증, 피부 변색) 발생 시 즉시 내원 — 응급" ‖ 3:"멍/부종은 수일 내 자연 소실" ‖ 4:"[시술 주기 참고] HA 필러 지속 6-18개월 (제품/부위별 상이). 재시술은 6개월 이상 간격 권장. 잔여 필러 확인 후 추가 주입 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/1/subcategories/0/items/13 auto-M2-1775364775104 에피로크
+  . {id,name,detail,extracted}
+  /id = "auto-M2-1775364775104"
+  /name = "에피로크"
+  /detail = "국산HA"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "국산 히알루론산 필러로 자연스러운 볼륨 증가와 주름 개선 효과 제공"
+  /extracted/mechanism = "히알루론산이 피부 진피층에 수분을 결합하여 볼륨을 증가시킵니다. 콜라겐 생성을 촉진하고 피부 탄력을 개선하여 지속적인 안티에이징 효과를 제공합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"볼륨 증가" ‖ 1:"깊은 주름 개선" ‖ 2:"윤곽 정리"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"주사 부위 부종" ‖ 1:"경미한 멍" ‖ 2:"일시적 압통"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시"
+  /extracted/onset_duration/duration = "12-18개월"
+  /extracted/aftercare [4] = 0:"시술 후 당일 사우나 자제" ‖ 1:"주입 부위 강한 마사지 2-3일 자제" ‖ 2:"충분한 보습 관리" ‖ 3:"[시술 주기 참고] HA 필러 지속 6-18개월 (제품/부위별 상이). 재시술은 6개월 이상 간격 권장. 잔여 필러 확인 후 추가 주입 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/1/subcategories/0/items/14 auto-M2-1775364775105 앨리필
+  . {id,name,detail,extracted}
+  /id = "auto-M2-1775364775105"
+  /name = "앨리필"
+  /detail = "국산HA"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "국산 히알루론산 기반 필러로 자연스러운 볼륨감과 우수한 지속력 제공"
+  /extracted/mechanism = "교차결합된 히알루론산이 조직 내에서 수분을 흡수하여 즉각적인 볼륨 효과를 나타냅니다. 서서히 분해되면서 콜라겐 재생을 유도하여 장기간 개선 효과를 유지합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"팔자주름 개선" ‖ 1:"입술 볼륨 증가" ‖ 2:"뺨 볼륨 복원"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"시술 부위 붓기" ‖ 1:"가벼운 발적" ‖ 2:"압박감"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시"
+  /extracted/onset_duration/duration = "10-15개월"
+  /extracted/aftercare [4] = 0:"시술 당일 진한 화장 피하기" ‖ 1:"2-3일 격렬한 운동 제한" ‖ 2:"정기적인 피부 관리" ‖ 3:"[시술 주기 참고] HA 필러 지속 6-18개월 (제품/부위별 상이). 재시술은 6개월 이상 간격 권장. 잔여 필러 확인 후 추가 주입 (개인차 있으며, 의사와 상의하여 결정)"

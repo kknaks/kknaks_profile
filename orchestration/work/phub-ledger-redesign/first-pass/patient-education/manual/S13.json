@@ -1,0 +1,270 @@
+{
+ "segment": "S13",
+ "read_status": "direct_read",
+ "last_read_pointer": "/categories/12/common_concerns/2/a",
+ "expressions": {
+  "/name": [
+   [
+    "플라즈마",
+    "name",
+    ""
+   ]
+  ],
+  "/patient_name": [
+   [
+    "플라즈마 피부 시술",
+    "name,site",
+    ""
+   ]
+  ],
+  "/simple_explanation": [
+   [
+    "플라즈마(이온화된 기체) 에너지로 피부 표면을 재생시키고 탄력을 높이는 시술입니다.",
+    "sentence,device_param,paraphrase,site,effect",
+    ""
+   ],
+   [
+    "플라즈마(이온화된 기체)",
+    "device_param,paraphrase",
+    ""
+   ],
+   [
+    "피부 표면",
+    "site,depth",
+    ""
+   ]
+  ],
+  "/how_it_works": [
+   [
+    "기기에서 발생하는 플라즈마 에너지가 피부에 닿으면, 피부 표면의 묵은 각질을 제거하고 피부 깊은 층의 콜라겐 재생을 자극합니다.",
+    "sentence,condition,device_param,site,depth,mechanism",
+    ""
+   ],
+   [
+    "피부 표면의 묵은 각질을 제거하고",
+    "site,mechanism",
+    ""
+   ],
+   [
+    "피부 깊은 층의 콜라겐 재생",
+    "site,depth,mechanism",
+    ""
+   ],
+   [
+    "즉각적인 타이트닝 효과와 함께 피부결이 개선됩니다.",
+    "sentence,time,effect",
+    ""
+   ],
+   [
+    "즉각적인 타이트닝 효과",
+    "time,effect",
+    ""
+   ]
+  ],
+  "/duration_simple": [
+   [
+    "즉시 효과가 나타나며, 약 3-6개월 지속됩니다.",
+    "sentence,time,approx,range,quantity",
+    "발현(즉시)·지속"
+   ],
+   [
+    "즉시 효과가 나타나며",
+    "time,effect",
+    "발현 · regex 대조 후 보충(구절 누락 수정)"
+   ],
+   [
+    "약 3-6개월 지속됩니다",
+    "time,approx,range,quantity",
+    "지속 · regex 대조 후 보충(구절 누락 수정)"
+   ]
+  ],
+  "/pain_level": [
+   [
+    "가벼운 열감과 따끔함, 부위에 따라 마취 크림 사용",
+    "degree,sensory,condition,site,substance",
+    ""
+   ],
+   [
+    "부위에 따라 마취 크림 사용",
+    "condition,site,substance",
+    "부위 미기재"
+   ]
+  ],
+  "/downtime": [
+   [
+    "가벼운 붉은기 수시간~1일, 미세한 가피(딱지) 형성 시 자연 탈락 대기",
+    "degree,adverse,time,range,approx,condition,paraphrase,instruction",
+    ""
+   ],
+   [
+    "가벼운 붉은기 수시간~1일",
+    "degree,adverse,time,range,approx",
+    ""
+   ],
+   [
+    "미세한 가피(딱지) 형성 시 자연 탈락 대기",
+    "degree,adverse,paraphrase,condition,instruction",
+    "조건부 행동 지시"
+   ]
+  ],
+  "/common_concerns/0/q": [
+   [
+    "플라즈마가 뭔가요? 위험하지 않나요?",
+    "sentence,adverse,negation",
+    "두 질문 한 값"
+   ]
+  ],
+  "/common_concerns/0/a": [
+   [
+    "플라즈마는 피부 표면에 의도적인 열손상과 가피를 만드는 시술입니다.",
+    "sentence,site,mechanism,adverse",
+    ""
+   ],
+   [
+    "의도적인 열손상과 가피",
+    "mechanism,adverse",
+    "의도된 손상 — 부작용과 기전 경계"
+   ],
+   [
+    "시술 후 색소침착(PIH)·흉터·저색소증 위험이 있으며, 특히 피부색이 진한 편이면 색소침착 위험이 높아 의료진의 적절한 평가가 필요합니다.",
+    "sentence,time,adverse,target,condition,degree,instruction,actor",
+    ""
+   ],
+   [
+    "색소침착(PIH)·흉터·저색소증 위험",
+    "adverse,paraphrase",
+    "약어 괄호 · 3개 나열"
+   ],
+   [
+    "특히 피부색이 진한 편이면",
+    "target,condition,degree",
+    "위험 증가 조건"
+   ],
+   [
+    "색소침착 위험이 높아",
+    "adverse,degree",
+    ""
+   ],
+   [
+    "의료진의 적절한 평가가 필요합니다",
+    "actor,instruction",
+    ""
+   ],
+   [
+    "시술 후 색소침착(PIH)·흉터·저색소증 위험이 있으며",
+    "time,adverse,paraphrase",
+    "regex 대조 후 보충(구절 누락 수정)"
+   ]
+  ],
+  "/common_concerns/1/q": [
+   [
+    "눈꺼풀 처짐에도 효과가 있나요?",
+    "sentence,concern,site",
+    ""
+   ],
+   [
+    "눈꺼풀 처짐",
+    "concern,site",
+    "S01 에서는 부작용(안검하수)으로 쓰인 같은 표현이 여기서는 고민"
+   ]
+  ],
+  "/common_concerns/1/a": [
+   [
+    "일부 클리닉에서 비수술적 눈꺼풀 시술에 사용되나, 눈 주변은 색소침착·흉터 위험이 있어 의료진 상담이 필요합니다.",
+    "sentence,scope,place,site,adverse,instruction,actor",
+    ""
+   ],
+   [
+    "일부 클리닉에서",
+    "scope,place",
+    "효과 여부 답 대신 사용 현황"
+   ],
+   [
+    "비수술적 눈꺼풀 시술",
+    "negation,site,name",
+    ""
+   ],
+   [
+    "눈 주변은 색소침착·흉터 위험이 있어",
+    "site,adverse",
+    "부위 조건부 위험"
+   ],
+   [
+    "의료진 상담이 필요합니다",
+    "instruction,actor",
+    ""
+   ]
+  ],
+  "/common_concerns/2/q": [
+   [
+    "시술 후 딱지가 생기나요?",
+    "sentence,time,adverse",
+    ""
+   ]
+  ],
+  "/common_concerns/2/a": [
+   [
+    "미세한 점 형태의 가피가 생길 수 있어요.",
+    "sentence,degree,adverse,possibility",
+    ""
+   ],
+   [
+    "절대 억지로 떼지 말고 자연스럽게 떨어지길 기다려주세요.",
+    "sentence,avoid,negation,instruction,degree,manner",
+    "「절대」 강한 금지"
+   ],
+   [
+    "절대 억지로 떼지 말고",
+    "avoid,negation,degree",
+    ""
+   ],
+   [
+    "보통 5-7일이면 사라집니다.",
+    "sentence,frequency,time,range,quantity,course",
+    "소실"
+   ],
+   [
+    "미세한 점 형태의 가피",
+    "degree,adverse",
+    "regex 대조 후 보충(구절 누락 수정)"
+   ],
+   [
+    "자연스럽게 떨어지길 기다려주세요",
+    "manner,instruction",
+    "regex 대조 후 보충(구절 누락 수정)"
+   ],
+   [
+    "보통 5-7일이면 사라집니다",
+    "frequency,time,range,quantity,course",
+    "regex 대조 후 보충(구절 누락 수정)"
+   ]
+  ]
+ },
+ "observations": [
+  [
+   "/common_concerns/0/a",
+   "P",
+   "「피부색이 진한 편이면」 대상 조건 + 위험 증가 · 「적절한 평가」 내용 미기재(B). 임상적으로 승인하지 않는다"
+  ],
+  [
+   "/common_concerns/1/a",
+   "P",
+   "질문(효과 있나)에 효과 단정 없이 「일부 클리닉에서 사용」과 위험만 답한다 — 효과 정보 부재(B)"
+  ],
+  [
+   "/common_concerns/1/q",
+   "F",
+   "「눈꺼풀 처짐」이 S01 a 에서는 부작용, 여기서는 고민으로 쓰인다 — 같은 문자열의 역할이 다르다. 병합하지 않는다"
+  ],
+  [
+   "/downtime",
+   "P",
+   "가피(딱지) 소실 시간: downtime 은 「자연 탈락 대기」만, cc2 a 는 「보통 5-7일」 — 같은 카테고리 내 값 분산"
+  ],
+  [
+   "/pain_level",
+   "B",
+   "마취 크림 사용 부위 미기재"
+  ]
+ ]
+}

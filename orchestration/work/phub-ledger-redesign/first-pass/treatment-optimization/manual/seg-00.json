@@ -1,0 +1,24 @@
+{
+  "segment": "SEG-00",
+  "read_status": "direct_read_done",
+  "read_note": "루트 객체 키 순서 8개, /version /updated /consensus_method /optimization_principles 4원소, 네 블록 배열 길이(8·4·8·3)를 원문 한 줄에서 직접 읽음",
+  "observations": [
+    {"id": "O00-1", "pointers": ["/consensus_method"], "status": "P", "text": "consensus_method 의 `+` 는 AI 도구 이름(Perplexity·Gemini·Claude)을 잇는다. README 의 `+`(함께 시술) 규칙과 다른 쓰임이다. 이 값은 합의 방법 서술이며 각 추천 문구의 출처 검증 정보는 아니다."},
+    {"id": "O00-2", "pointers": ["/optimization_principles/0", "/optimization_principles/1", "/optimization_principles/2", "/optimization_principles/3"], "status": "P", "text": "원칙 4개 중 3개가 「한국어 표제 (괄호 보충)」 형식이고 0번의 괄호는 영어(Do No Harm), 1·2번은 한국어 보충, 3번은 괄호 없음. 괄호가 번역·목적·보충을 섞어 담는다."},
+    {"id": "O00-3", "pointers": ["/optimization_principles"], "status": "B", "text": "배열 순서가 우선순위인지 원문에 없다(「우선」은 0번 문구 안에만 있음). 원칙들이 아래 by_concern·combination_rules 의 어느 값에 적용되는지 연결 정보가 없다."}
+  ],
+  "manual_expressions": [
+    {"pointer": "/consensus_method", "text": "3-AI Expert Panel Consensus", "kinds": ["quantity_unit", "language_en", "source_method"]},
+    {"pointer": "/consensus_method", "text": "(Perplexity+Gemini+Claude)", "kinds": ["parenthetical", "plus_non_procedure", "language_en"]},
+    {"pointer": "/optimization_principles/0", "text": "안전성 우선", "kinds": ["priority_preference"]},
+    {"pointer": "/optimization_principles/0", "text": "(Do No Harm)", "kinds": ["parenthetical", "language_en", "negation"]},
+    {"pointer": "/optimization_principles/1", "text": "시너지 극대화", "kinds": ["degree_modifier", "effect_complement"]},
+    {"pointer": "/optimization_principles/1", "text": "(상호 보완 효과)", "kinds": ["parenthetical", "effect_complement"]},
+    {"pointer": "/optimization_principles/2", "text": "다운타임 최소화", "kinds": ["degree_modifier", "downtime"]},
+    {"pointer": "/optimization_principles/2", "text": "(환자 편의)", "kinds": ["parenthetical", "purpose"]},
+    {"pointer": "/optimization_principles/3", "text": "비용 효율성 고려", "kinds": ["cost", "consideration"]}
+  ],
+  "issues": [
+    {"id": "B-00-1", "class": "B", "pointers": ["/optimization_principles"], "text": "원칙 배열 순서의 의미(우선순위 여부)와 적용 대상 연결이 원문에 없다. 원칙별 가중·충돌 시 처리 규칙을 원장만으로 정할 수 없다."}
+  ]
+}
