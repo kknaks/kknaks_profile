@@ -158,3 +158,4 @@
   · backend 터미널 새로(옛 term_adbc21b4 에이전트 없음) → term_c1a4666c-02fb-4b61-bd67-ea7e9cf6bdb1
 - 2026-11-09: 받은 VM · DB 정보를 system/README 「배포 결정」에 기록(비밀번호 제외) · 로컬 ssh 별칭 day-vm / day-db · psql service=day
 - 2026-11-09: **DB 스키마 · 계정 생성(사용자 승인)** — day_dev/day_dev_app · day_prod/day_prod_app · 격리 확인. deployment.md 미결 「스키마 생성 권한」 닫힘 → 다음 planner 수정 때 반영할 것
+- 2026-11-09: VM docker 설치(사용자 승인) — Docker 29.9 · compose v5.7 · 로그 회전
