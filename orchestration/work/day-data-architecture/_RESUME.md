@@ -160,3 +160,4 @@
 - 2026-11-09: **DB 스키마 · 계정 생성(사용자 승인)** — day_dev/day_dev_app · day_prod/day_prod_app · 격리 확인. deployment.md 미결 「스키마 생성 권한」 닫힘 → 다음 planner 수정 때 반영할 것
 - 2026-11-09: VM docker 설치(사용자 승인) — Docker 29.9 · compose v5.7 · 로그 회전
 - 2026-11-09: **Azure 권한 실측(읽기만)** — 사용자 = 구독 Owner(직접 부여 가능) · VM system identity 있음 · 역할 0(ACR 401 · RG 403) · ACR acrcspmedisolveaishared(rg-centurion-shared) · Key Vault **kv-centurion-day-prod 이미 있음**(RBAC · 방화벽 Deny + VM 서브넷만 허용 → 로컬 PC 에서 비밀 못 넣음) · KV 역할 0 · DAY OIDC 앱 없음 · NSG 22/80/443 출처 1곳만(승인 출처) → Caddy 인증서 발급 · 지점 접속 막힐 수 있음(확인 필요) · DNS 둘 미등록
+- 2026-11-09: **Azure 권한 부여(사용자 승인)** — VM identity: AcrPull · KV Secrets User · 사용자: KV Secrets Officer · 앱 등록 day-deployer(OIDC environment dev/prod · AcrPush · VM Contributor). VM 실측 ACR 200 · KV 200. 남음: GitHub Environments · 변수 · KV 비밀 넣기 · DNS(가비아) · NSG 80/443

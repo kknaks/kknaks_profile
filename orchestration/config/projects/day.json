@@ -135,7 +135,17 @@
       "prod": "prod",
       "archive": "archive (옛 v0.1 · 태그 archive/*)"
     },
-    "locks": "VM · DB 삭제 방지 잠금"
+    "locks": "VM · DB 삭제 방지 잠금",
+    "azure": {
+      "resource_group": "rg-centurion-prod",
+      "acr": "acrcspmedisolveaishared (rg-centurion-shared)",
+      "key_vault": "kv-centurion-day-prod (RBAC · 방화벽 = VM 서브넷만 → 로컬에서 비밀 넣을 땐 IP 잠깐 허용 또는 VM 에서)",
+      "deployer": "앱 등록 day-deployer · OIDC repo:MediSolveAIDev/CENTURION_DAY:environment:{dev,prod} · AcrPush(ACR) · Virtual Machine Contributor(VM)",
+      "vm_identity": "system · AcrPull(ACR) · Key Vault Secrets User(KV) — 2026-11-09 VM 에서 실측 ACR 200 · KV 200",
+      "user": "구독 Owner · Key Vault Secrets Officer(KV)",
+      "github_vars": "AZURE_CLIENT_ID=c887d3c7-f51a-4b1f-93f8-5db5b0931014 · AZURE_TENANT_ID · AZURE_SUBSCRIPTION_ID(az account show) · DAY_RESOURCE_GROUP · DAY_VM_NAME · DAY_ACR_NAME · DAY_IMAGE_REPOSITORY · DAY_KEY_VAULT",
+      "nsg": "nsg-vm-centurion-day-prod — 22/80/443 출처 1곳만(2026-11-09) · 80/443 은 사용자 결정 대기"
+    }
   },
   "workers": {
     "researcher": {
