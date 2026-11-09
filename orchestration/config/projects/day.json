@@ -204,7 +204,8 @@
   "default_workers": [
     "planner"
   ],
-  "summary_dest": "/Users/kknaks/git/toy_pr2/kknaks_profile/para/projects/company/day/log",
+  "document_root": "para/projects/company/day",
+  "summary_dest": "para/projects/company/day/log",
   "rules": {
     "spec_and_app_use_separate_prs": true,
     "workers_commit_or_push": false,

@@ -36,3 +36,9 @@ day/
 - 설정 SSOT: `orchestration/config/projects/day.json`
 - 워커: researcher · planner · reviewer_doc · designer · backend · frontend · mobile · reviewer (역할: `orchestration/roles/day/` — cc-prototype 에서 가져옴). v2-dev 레포 구조는 레포 루트 `AGENTS.md` 가 정본(2026-11-03). 배포는 DAY 전용 Azure 서버를 할당받을 예정 — infra 워커는 그 뒤에(2026-11-02)
 - 진행 중 작업: `orchestration/work/<slug>/_RESUME.md`
+
+<!-- work-links:start -->
+## 작업 기록
+
+[[para/projects/company/day/work-index|진행 중·완료된 작업 목록]]
+<!-- work-links:end -->

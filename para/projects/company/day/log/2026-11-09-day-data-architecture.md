@@ -130,3 +130,9 @@ GitHub Actions · ACR · Key Vault 로 첫 dev 배포를 올렸다.
 - 다음 스펙: 방 옮기기 · 차트 작성(HAR 뒤)
 - F20 의사 계정 수락 = 본인(앱 · 기기 구분 정할 때) · QA 역할(Playwright) 다듬기
 - 정본 클론 `~/git/CENTURION_DAY` = `dev` · `deploy/local.env` 여기 · `day-local` 은 내려 둠(볼륨 남음)
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/day/day-data-architecture/README|day-data-architecture]]
+<!-- work-links:end -->
