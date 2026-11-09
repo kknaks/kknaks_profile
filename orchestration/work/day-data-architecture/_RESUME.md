@@ -156,3 +156,4 @@
 - 2026-11-08: #233 계약 v2 재확인 PASS — 배포 문서 작업 끝(deployment.md · #233 승인 대기). 구현은 나중(방식 미정)
 - 2026-11-09: **#233 배포 구현 발주(설계대로 ACR · Actions · run-command · Key Vault)** — 코디가 수동/SSH 를 다시 제안했다가 사용자 지적(「설계에 ACR 쓰는데 왜 수동」)
   · backend 터미널 새로(옛 term_adbc21b4 에이전트 없음) → term_c1a4666c-02fb-4b61-bd67-ea7e9cf6bdb1
+- 2026-11-09: 받은 VM · DB 정보를 system/README 「배포 결정」에 기록(비밀번호 제외) · 로컬 ssh 별칭 day-vm / day-db · psql service=day
