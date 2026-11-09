@@ -8,8 +8,8 @@
 
 | 항목 | 결과 |
 |---|---|
-| 원천과 맞나 | ✓ VM 이름 · B2s · Ubuntu 24.04 · 64GB · `azureuser`(sudo) · 22/80/443 · 처음엔 docker 없음 · DB 호스트 · PG 16 · DB `day` · 스키마 주인 `day_dev_app` / `day_prod_app` · search_path · 서로 · `public` 쓰기 막힘 · `dayadmin` 초기 설정용 · 공개 꺼짐 · TLS verify-full · 삭제 방지 잠금 — README 54행 · day.json 과 전부 일치. 지어낸 값 없음 |
-| IP · 비밀번호 없음 | ✓ grep(IP 정규식 · pgpass · password · 키 이름 `azure_crmproject` · 터널 15432 · 별칭 `day-vm`/`day-db`) — deployment.md · log.md 에 IP 0건 · 비밀번호 0건. 남은 「비밀번호」 단어는 "두지 않는다" · redis 설정 항목뿐. 리소스 그룹 · 지역 · 공인 IP 값은 "안 적음" 으로 명시 |
+| 원천과 맞나 | ✓ VM 이름 · B2s · Ubuntu 24.04 · 64GB · `<VM 사용자>`(sudo) · 22/80/443 · 처음엔 docker 없음 · DB 호스트 · PG 16 · DB `day` · 스키마 주인 `day_dev_app` / `day_prod_app` · search_path · 서로 · `public` 쓰기 막힘 · `dayadmin` 초기 설정용 · 공개 꺼짐 · TLS verify-full · 삭제 방지 잠금 — README 54행 · day.json 과 전부 일치. 지어낸 값 없음 |
+| IP · 비밀번호 없음 | ✓ grep(IP 정규식 · pgpass · password · 키 이름 `<SSH 키>` · 터널 15432 · 별칭 `day-vm`/`day-db`) — deployment.md · log.md 에 IP 0건 · 비밀번호 0건. 남은 「비밀번호」 단어는 "두지 않는다" · redis 설정 항목뿐. 리소스 그룹 · 지역 · 공인 IP 값은 "안 적음" 으로 명시 |
 | 준비됨 / 아직 구분 | ✓ 준비됨 = VM · 네트워크 22/80/443 · 공인 IP · 관리형 PG(모두 원천에 있음). 아직 = Docker · 로그 회전 · DNS A 레코드 둘 · Key Vault · ACR · OIDC · VM identity(지시와 같음). **DNS 는 `dig` 로 실측 — `day-dev.medisolveai.com` · `day.medisolveai.com` 둘 다 응답 없음 → 「아직 없음」 맞음** |
 | 미결 닫힘 = 사용자 승인 | ✓ 「스키마 생성 권한」 닫음 = 앱 계정이 주인 · migration 도 앱 계정 · 별도 migration 계정 없음 — README 54행 "**migration 도 앱 계정으로**(별도 migration 계정 없음 — 코디 추천 · 사용자 승인)" 과 동일. 승인 범위 밖으로 넓힌 것 없음 |
 | 새 모순 | ✓ 없음. system.md 「DB · 환경 분리」(스키마별 계정 · dev 는 `day_prod` 권한 없음) · 결정 요약 · 그림 · env 표 서로 일치. `DATABASE_URL` 행의 호스트 · TLS · VM 경유 = 원천과 같음 |

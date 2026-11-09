@@ -25,5 +25,5 @@
 
 ## 서버 · DB (배포 · 운영 작업 때)
 
-- 위치 · 접속은 `config/projects/day.json` 의 `infra` 가 정본 — VM `ssh day-vm` · DB 터널 `ssh -N day-db` → `psql service=day`.
+- 위치 · 접속 값은 사용자 로컬 `~/.config/day/infra.json` 이 정본(공개 레포라 IP · ID · 리소스 이름은 레포에 두지 않는다) — VM `ssh day-vm` · DB 터널 `ssh -N day-db` → `psql service=day`.
 - **DB 비밀번호는 레포 · 리포트 · 브리프에 쓰지 않는다**(사용자 로컬 `~/.pgpass` 에만). 운영 DB · VM 에 쓰는 작업은 사용자 승인 뒤에만.

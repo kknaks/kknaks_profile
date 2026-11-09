@@ -92,40 +92,7 @@
     }
   },
   "infra": {
-    "_doc": "DAY 서버 · DB(인프라 담당 2026-11-09 전달). 비밀번호는 여기 · 레포 어디에도 두지 않는다 — 사용자 로컬 ~/.pgpass 에만. 상세 · 결정은 reference/2026-11-03-cc-day/system/README.md 「배포 결정」 · 배포 구조는 mediness products/day/40-architecture/deployment.md",
-    "vm": {
-      "name": "vm-centurion-day-prod",
-      "public_ip": "52.231.77.47",
-      "size": "B2s (2 vCPU · 4GiB) · Ubuntu 24.04 · 64GiB",
-      "user": "azureuser (sudo)",
-      "ssh_key": "~/.ssh/azure_crmproject",
-      "ssh_alias": "day-vm",
-      "ports_open": [
-        22,
-        80,
-        443
-      ],
-      "installed": "2026-11-09 Docker 29.9 · compose v5.7 · python3.12 · 로그 회전(json-file 10m×5) · azureuser docker 그룹"
-    },
-    "db": {
-      "host": "pg-centurion-day-prod.postgres.database.azure.com",
-      "engine": "PostgreSQL 16",
-      "database": "day",
-      "schemas": {
-        "dev": "day_dev",
-        "prod": "day_prod"
-      },
-      "admin_user": "dayadmin (초기 설정용 — 앱은 별도 계정)",
-      "public_access": false,
-      "tunnel": "ssh -N day-db → 127.0.0.1:15432",
-      "local_psql": "psql service=day(dayadmin) · day-dev · day-prod (~/.pg_service.conf · ~/.pgpass)",
-      "tls": "verify-full",
-      "app_users": {
-        "dev": "day_dev_app (day_dev 주인 · search_path day_dev · migration 도 이 계정)",
-        "prod": "day_prod_app (day_prod 주인 · search_path day_prod)"
-      },
-      "created": "2026-11-09 스키마 · 계정 생성(사용자 승인) — 서로 스키마 접근 막힘 · public CREATE 회수 확인"
-    },
+    "_doc": "DAY 서버 · DB · Azure 값(IP · ID · 리소스 이름)은 이 공개 레포에 두지 않는다 — 사용자 로컬 ~/.config/day/infra.json(600)이 정본(2026-11-09 공개 레포 노출 정리). 접속은 ssh day-vm / ssh -N day-db → psql service=day(-dev|-prod). 비밀번호는 ~/.pgpass · 비밀값은 Key Vault. 구조 · 결정은 mediness products/day/40-architecture/deployment.md(비공개 레포)",
     "domains": {
       "dev": "day-dev.medisolveai.com",
       "prod": "day.medisolveai.com"
@@ -134,19 +101,7 @@
       "dev": "dev",
       "prod": "prod",
       "archive": "archive (옛 v0.1 · 태그 archive/*)"
-    },
-    "locks": "VM · DB 삭제 방지 잠금",
-    "azure": {
-      "resource_group": "rg-centurion-prod",
-      "acr": "acrcspmedisolveaishared (rg-centurion-shared)",
-      "key_vault": "kv-centurion-day-prod (RBAC · 방화벽 = VM 서브넷만 → 로컬에서 비밀 넣을 땐 IP 잠깐 허용 또는 VM 에서)",
-      "deployer": "앱 등록 day-deployer · OIDC repo:MediSolveAIDev/CENTURION_DAY:environment:{dev,prod} · AcrPush + Reader(ACR · 2026-11-09 검수 권고로 미리) · Virtual Machine Contributor(VM)",
-      "vm_identity": "system · AcrPull(ACR) · Key Vault Secrets User(KV) — 2026-11-09 VM 에서 실측 ACR 200 · KV 200",
-      "user": "구독 Owner · Key Vault Secrets Officer(KV)",
-      "github_vars": "AZURE_CLIENT_ID=c887d3c7-f51a-4b1f-93f8-5db5b0931014 · AZURE_TENANT_ID · AZURE_SUBSCRIPTION_ID(az account show) · DAY_RESOURCE_GROUP · DAY_VM_NAME · DAY_ACR_NAME · DAY_IMAGE_REPOSITORY · DAY_KEY_VAULT",
-      "nsg": "nsg-vm-centurion-day-prod — 22 출처 1곳만(유지) · **80/443 = Internet 전체 공개(사용자 2026-11-09 ①)**"
-    },
-    "dns": "가비아 · A day-dev · day → VM 공인 IP (2026-11-09 등록 · 8.8.8.8 · 1.1.1.1 반영 확인)"
+    }
   },
   "workers": {
     "researcher": {

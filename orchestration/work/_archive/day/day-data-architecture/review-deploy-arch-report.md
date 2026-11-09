@@ -50,7 +50,7 @@ lint `--strict` → 0 error · `products/day/` 경고 0.
 - `/etc/day/{dev,prod}` · `day-dev-api` · `day-prod-api` 별칭은 조사 L88-89 에서 왔다.
 - `config/{dev,prod}.env` 는 조사 D7 · D13(centurion `deploy/config/prod.env` 모양) 에서 왔다.
 - redis 설정은 조사 §2-1 에서 왔다.
-- ACR 은 「회사 공용」으로만 적었다. 조사의 실제 이름 `acrcspmedisolveaishared` 를 옮기지 않았고, repo 는 「미정(예 `day-api`)」이다.
+- ACR 은 「회사 공용」으로만 적었다. 조사의 실제 이름 `<공용 ACR>` 를 옮기지 않았고, repo 는 「미정(예 `day-api`)」이다.
 - 문서 스스로 「아직 아무것도 만들지 않았다 · `.github/` · 배포 compose 없음」이라 적었다. 코드도 그렇다(`.github` 없음 · `deploy/` = `compose.local.yaml` · `Dockerfile` · `local.env*`).
 
 ## env 이름 ↔ 코드

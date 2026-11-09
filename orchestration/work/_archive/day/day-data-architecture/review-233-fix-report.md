@@ -37,7 +37,7 @@
 | `Azure/login`(OIDC · `environment:<env>` subject) | federated credential 둘 | `repo:MediSolveAIDev/CENTURION_DAY:environment:{dev,prod}` | 맞음 — 워크플로 job 이 `environment:` 를 쓴다 |
 | `az acr login` · `az acr repository show-tags` · `show` | 데이터 평면 pull/push(AcrPush 에 들어 있음). `--name` 으로 레지스트리를 찾을 때 ARM `registries/read` 도 쓴다 | AcrPush 만 | **대체로 OK · 첫 실물에서 확인** — ARM 조회가 안 되면 az 가 `<name>.azurecr.io` 로 짐작해 넘어간다(경고). centurion 도 같은 공용 ACR 에 같은 명령을 쓴다. 실패하면 ACR 에 Reader 를 주거나 `--name` 대신 login server 를 쓴다 |
 | `docker build` · `docker push` | AcrPush | 있음 | OK |
-| `az vm run-command invoke` | `virtualMachines/runCommand/action` | VM 에 Virtual Machine Contributor | OK. ACR 은 다른 RG(`rg-centurion-shared`)지만 run-command 는 `DAY_RESOURCE_GROUP` 의 VM 만 부른다 |
+| `az vm run-command invoke` | `virtualMachines/runCommand/action` | VM 에 Virtual Machine Contributor | OK. ACR 은 다른 RG(`<공용 RG>`)지만 run-command 는 `DAY_RESOURCE_GROUP` 의 VM 만 부른다 |
 | `az account set`(login 의 subscription-id) | 그 구독 안 어딘가의 역할 | VM 범위 역할 | 대체로 OK — 리소스 범위 역할만 있어도 구독이 보인다. 첫 실물에서 확인 |
 | VM: IMDS → `oauth2/exchange` → `docker pull` | AcrPull | 있음(실측 200) | OK |
 | VM: Key Vault `GET secrets/day-<env>-*` | Key Vault Secrets User(RBAC) · 방화벽이 VM 서브넷 허용 | 있음(실측 200) | OK |

@@ -19,7 +19,7 @@
  ┌──────────────────────────── GitHub runner (ubuntu-24.04) ────────────────────────────┐
  │ ① 출처 고정: dispatch SHA · 실행자 권한 확인(prod 는 허용 actor 목록)                   │
  │ ② Azure 로그인 = OIDC(장기 키 없음) → ACR 로그인                                       │
- │ ③ 이미지: ACR `acrcspmedisolveaishared/centurion-api:<40자 SHA>` 있으면 재사용, 없으면 빌드·push │
+ │ ③ 이미지: ACR `<공용 ACR>/centurion-api:<40자 SHA>` 있으면 재사용, 없으면 빌드·push │
  │    → 이후 전부 digest(`@sha256:…`)로 지칭                                              │
  └──────────────┬─────────────────────────────────────────────────────────────────────┘
                 │  az vm run-command invoke (SSH 아님 · 스크립트를 base64 로 실어 VM root 로 실행)
@@ -45,7 +45,7 @@
 | 출처 · 실행자 확인 | 브랜치 ref · SHA 형식 · 그 SHA 가 원격 브랜치에 있는지. stg 는 write 권한자, prod 는 `PROD_ALLOWED_ACTORS` 목록 + `PROD_DEPLOYMENT_ENABLED` | `C:scripts/infrastructure/deployment_source.py:13-48` · `deploy-prod.yaml:34-35,54-62` |
 | 승인 | GitHub Team private repo 라 Environment required reviewer 미지원 → 「허용 actor 목록」이 사실상 승인. 브랜치 writer 를 신뢰하는 모델이라고 문서가 명시 | `C:docs/migration/prod-cicd-runbook.md:48-51,79-84` · `stg-cicd-runbook.md:91-92` |
 | Azure 인증 | `Azure/login` OIDC, `vars.AZURE_CLIENT_ID/TENANT/SUBSCRIPTION`. stg identity = AcrPush, prod identity = AcrPull + VM 한 대 Run Command 만 | `C:deploy-stg.yaml:64-77` · `prod-cicd-runbook.md:61-71,98-100` · `stg-cicd-runbook.md:44-68` |
-| 레지스트리 | 회사 공용 ACR `acrcspmedisolveaishared`, repo `centurion-api`, 태그 = 40자 SHA, 있으면 재빌드 안 함 | `C:scripts/infrastructure/prepare-image.sh:14-44` |
+| 레지스트리 | 회사 공용 ACR `<공용 ACR>`, repo `centurion-api`, 태그 = 40자 SHA, 있으면 재빌드 안 함 | `C:scripts/infrastructure/prepare-image.sh:14-44` |
 | 빌드 비밀값 | `PRIVATE_PYPI_USERNAME/PASSWORD`(Environment secret) — 임시 파일로만 | `C:deploy-stg.yaml:79-89` · `prepare-image.sh:26-33` |
 | VM 전달 | `az vm run-command invoke --command-id RunShellScript` · 스크립트 base64 · 성공 marker 문자열 검사. **SSH 아님**(prod 는 SSH ingress 없음) | `C:scripts/infrastructure/manual-app-deploy.sh:96-117` · `docs/migration/deployment-baseline.md:13` |
 | VM 파일 자리 | `/etc/centurion`(root 0600 env · 이력) · `/opt/centurion`(compose.yaml · Caddyfile · config/<env>.env) | `C:manual-app-deploy.sh:640-701,886-930` |
@@ -140,7 +140,7 @@
 | D1 | compose 나누기 | (a) project 셋 `day-edge`·`day-dev`·`day-prod` (b) caddy 를 prod project 안에 (c) 한 project 에 서비스 이름 접미사로 두 벌 | **(a)** — 한쪽 배포 · 복구가 다른 쪽을 안 건드린다(§2-1). (c) 는 `--remove-orphans` 한 번에 둘 다 영향 |
 | D2 | redis | (a) 환경마다 1개 (b) 1개 공유 + DB 번호 · key prefix | **(a)** — pub/sub 이 DB 번호를 무시(`C:deployment-baseline.md:67-69`), 이득은 ~100–250MB |
 | D3 | 메모리 상한 | (a) 두 벌 원천 수치 그대로(3.6GB) (b) dev 낮춤(≈2.8GB) (c) VM 을 B2ms(2/8)로 | **(b)** + 첫 배포 뒤 실측으로 재조정. 실측이 모자라면 (c) — centurion prod 가 B2ms(`C:infrastructure-deployment-runbook.md:36`) |
-| D4 | 레지스트리 | (a) 회사 공용 ACR `acrcspmedisolveaishared`(repo 예: `day-api`) (b) GHCR (c) VM 에서 직접 빌드 | **(a)** — VM managed identity 로 pull, centurion 도구 그대로. 권한 부여(AcrPush/AcrPull)는 Azure 관리자가 해야 함. (c) 는 4GB 에서 비권장 |
+| D4 | 레지스트리 | (a) 회사 공용 ACR `<공용 ACR>`(repo 예: `day-api`) (b) GHCR (c) VM 에서 직접 빌드 | **(a)** — VM managed identity 로 pull, centurion 도구 그대로. 권한 부여(AcrPush/AcrPull)는 Azure 관리자가 해야 함. (c) 는 4GB 에서 비권장 |
 | D5 | 배포 트리거 · 실행 권한 | (a) 둘 다 수동 dispatch(환경 선택) (b) main 병합 → dev 자동, prod 수동 (c) 태그 → prod | **(b)** — dev 는 자주 올리고, prod 는 「dev 에서 확인한 같은 digest」만 수동 승격. prod 실행자는 허용 actor 목록(centurion 방식, Team plan 이라 reviewer 불가 `C:prod-cicd-runbook.md:79-84`). 주의: VM 이 하나라 dev 배포 권한 = 사실상 prod VM root(`C:prod-cicd-runbook.md:74-77` 같은 이유) — dev 배포 권한자도 prod 와 같은 사람으로 |
 | D6 | migration 누가 · 언제 | (a) 배포 workflow 가 매번 `migrate` 먼저(로컬과 같음) (b) centurion 처럼 배포 밖 수동 gate, 배포는 head 확인만 (c) dev 는 (a) · prod 는 (b) | **(c)** — 원천 「dev 먼저 → prod 같은 것」(`R:22`)과 맞는다. prod 배포 전 「dev 에 같은 revision 적용됨」 확인. 함께 정할 것: `env.py` 가 `CREATE SCHEMA` 를 하므로(`D:backend/migrations/env.py:80-88`) migration 계정에 DB 의 CREATE 권한을 줄지, DBA 가 `day_dev`·`day_prod` 를 미리 만들어 둘지 · migration 계정을 앱 계정과 나눌지 |
 | D7 | 비밀값 자리 | (a) 처음부터 Key Vault(centurion 모양) (b) 우선 VM root-only env 파일 → 나중에 Key Vault (c) GitHub Environment secret 을 배포 때 실어 보냄 | **(a)** — 이관을 두 번 하지 않는다. 특히 `ENCRYPTION_KEY` 를 잃으면 암호화 칸(KOS 접속값 등)을 못 읽는다(`D:config.py:8-11,50-52`) → purge protection 있는 Vault 가 보관처로 맞다. Vault 하나에 `dev-`/`prod-` 접두로 둘지, 둘로 나눌지도 함께 — VM identity 가 하나라 나눠도 VM 에서는 둘 다 읽힌다 |
