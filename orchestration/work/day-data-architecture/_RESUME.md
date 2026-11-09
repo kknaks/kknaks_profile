@@ -165,3 +165,4 @@
 - 2026-11-09: DNS 등록(사용자 · 가비아) — day-dev · day 반영 확인
 - 2026-11-09: **KOS 주소 3개 = 레포 env 금지 → Key Vault(사용자)** — backend 발주
 - 2026-11-09: **Key Vault dev 비밀 6개 넣음(dev 만 · 데모 테넌트로 — 사용자)** — 로컬 IP 잠깐 허용 후 제거 · VM 에서 6개 읽힘. prod 는 나중
+- 2026-11-09: **첫 dev 배포 성공** — PR #228 dev squash 머지(91728737 · 사용자 지시) · Actions Deploy DAY dev 2m41s 전부 ✓ · https://day-dev.medisolveai.com live/ready(db · redis · encryption ok) · Let's Encrypt · 메모리 1.0/3.8GB · 데모 연결 시드(api 컨테이너 · 값 stdin) → KOS 토큰 · 일정 11 · 마스터(구역 2 · 방 41) 동기화 확인. 남음: 화면 눈 확인(사용자) · prod
