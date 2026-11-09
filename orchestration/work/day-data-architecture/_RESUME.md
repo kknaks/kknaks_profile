@@ -163,3 +163,4 @@
 - 2026-11-09: **Azure 권한 부여(사용자 승인)** — VM identity: AcrPull · KV Secrets User · 사용자: KV Secrets Officer · 앱 등록 day-deployer(OIDC environment dev/prod · AcrPush · VM Contributor). VM 실측 ACR 200 · KV 200. 남음: GitHub Environments · 변수 · KV 비밀 넣기 · DNS(가비아) · NSG 80/443
 - 2026-11-09: **NSG 80/443 = Internet 공개(사용자 ①)** — 22 는 승인 출처 1곳 유지
 - 2026-11-09: DNS 등록(사용자 · 가비아) — day-dev · day 반영 확인
+- 2026-11-09: **KOS 주소 3개 = 레포 env 금지 → Key Vault(사용자)** — backend 발주
