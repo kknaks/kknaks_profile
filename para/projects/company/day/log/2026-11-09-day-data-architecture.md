@@ -126,7 +126,7 @@ GitHub Actions · ACR · Key Vault 로 첫 dev 배포를 올렸다.
 - **prod 배포**: Key Vault prod 비밀 6 · `prod` fast-forward · prod migration 승인 · 운영 KOS 나가는 IP 확인 · `KOS_TRIAL_WRITES_ON_LIVE` 는 false 로 시작
 - GitHub Environments `dev`/`prod` 배포 브랜치 제한 걸기(관리자 — 사용자)
 - dev 화면 눈 확인(사용자) · 실측 메모리로 compose 상한 다시
-- 시작 취소(`PROCEDURE_WAITING`) KOS 쓰기 실물 미확인
+- ~~시작 취소(`PROCEDURE_WAITING`) KOS 쓰기 실물 미확인~~ → 11-09 사용자: 시작 취소는 KOS 에 안 쓴다(의사 호출이면 KOS 가 자동 진행 중). 코드 · SPEC-002 에서 쓰기 빼기 = 다음 작업
 - 다음 스펙: 방 옮기기 · 차트 작성(HAR 뒤)
 - F20 의사 계정 수락 = 본인(앱 · 기기 구분 정할 때) · QA 역할(Playwright) 다듬기
 - 정본 클론 `~/git/CENTURION_DAY` = `dev` · `deploy/local.env` 여기 · `day-local` 은 내려 둠(볼륨 남음)
