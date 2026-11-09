@@ -635,6 +635,11 @@ para/areas/
 | 522 | `front` | [[para/areas/concept/front/storybook\|storybook]] | UI 컴포넌트의 상태를 독립적으로 개발·문서화·검증하는 환경 |  |
 | 523 | `pm` | [[para/areas/concept/pm/conversion-rate\|conversion-rate]] | 기준 집단에서 구매·가입 등 목표 행동으로 이어진 비율과 분모·기간의 해석 |  |
 | 524 | `pm` | [[para/areas/concept/pm/product-planning\|product-planning]] | 고객과 사업의 목표를 문제·가설·우선순위·실행 계획으로 구체화하는 과정 |  |
+| 525 | `front` | [[para/areas/concept/front/server-rendered-fragments\|server-rendered-fragments]] | 웹은 서버가 HTML 조각을 그려 갈아 끼우고(HTMX) JSON 은 앱 전용. 상태 · 권한 표시가 서버 한 곳 · 쿠키 세션이라 CSRF |  |
+| 526 | `qa` | [[para/areas/concept/qa/test-tiering\|test-tiering]] | 기본 실행은 DB 없이 수 초, 실제 인프라 시험은 표식으로 전체 실행에서만. 계층 구조가 빠른 층을 만든다 |  |
+| 527 | `infra` | [[para/areas/concept/infra/workload-identity\|workload-identity]] | 장기 키 대신 실행체 자신의 신원(OIDC 연합 · 관리 ID)으로 단기 토큰. 신원과 역할 배정은 다른 단계 |  |
+| 528 | `infra` | [[para/areas/concept/infra/secret-store\|secret-store]] | 비밀은 레포 밖 보관소, 서버는 자기 신원으로 읽는다. 외부 시스템 주소도 비밀 · 방화벽은 열면 바로 닫기 |  |
+| 529 | `back` | [[para/areas/concept/back/database-tls-verification\|database-tls-verification]] | libpq 의 sslmode=verify-full 은 asyncpg 에서 안 먹는다. ssl 인자 + 루트 CA 경로 + 기동 검사 · 실제 DB 로 1회 |  |
 
 ---
 

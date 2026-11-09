@@ -1,0 +1,168 @@
+
+# 재개 노트 — day-data-architecture (day)
+
+**지금**: Delivery #224 뼈대 구현 완료 · 코디 확인 통과 → 검수 WARN → fix1 반영 · 코디 확인 → **Code PR #228(CENTURION_DAY → v2-dev, 머지는 사용자 · 구현 뒤)** · **#225 구현 완료 · 코디 확인 → 검수 WARN → fix1 → **PR #228 커밋 `b6f23b42`** · SPEC-000 동기화 PR #909 `dcce1eea`**. **#226 완료 · PR #228 커밋 `8c85233a`** · **#227 로그인: v2 → 검수 WARN → v3(SPEC-001 CSRF · 빈 입력 개정 포함) → 검수 WARN 가벼움(kos-client-uri — HAR 로 답, SPEC-001 한 줄 planner) → backend 구현 발주**(Delivery 승인 라벨은 사용자 몫 · 미승인)(넘긴 것: W7 outbox 중복 발송 · SENT 정체 · 빈 expect + (visit_id, seq) 유일 migration = 첫 실제 쓰기 Delivery(SPEC-002) / W8 공용 계정 표시 위치 = 사용자 결정 — 정할 때까지 원장 목록에 공용 계정이 보일 수 있음)(코디 기본값: outbox 는 기반만 · 실제 KOS 쓰기 0 · 공개 API 이전 안 함 · 후보 목록만 · OQ-02-2 는 필드 확인만 · 실물 = 데모 지점 폴링 1회 필수 · 데모 접속값은 local.env 만). 열린 것(알림 · 채팅 때): account 에 달린 device · notification_setting · push_log · chat_member 는 병원 무관인지. #226 주의: 부분 유일이라 ON CONFLICT 에 WHERE deleted_at IS NULL 반복. 넘긴 것: prod 배포 = W7 키 canary / #226 = Redis timeout · 필수 bool 은 동기화가 전부 채움(진행 중 코디 허용: compose ENCRYPTION_KEY 1줄 · env.py import day.models · env.py autogenerate 비교 수정)(코디 기본값: product_option_id FK 없음 · 정해진 enum 은 DB 에서 막고 열린 enum 은 varchar · 07 그대로 · OQ-03-1 보류 칸 안 만듦 · 암호 키 없으면 기동 실패 · W6 timeout · day_test fixture). 넘긴 것: #225 브리프 = W6 쿼리 timeout · in-process 스키마 격리 / #226 브리프 = W5 Redis timeout 분리 · W9 worker migrate 의존 · 태스크 테스트 fixture / prod 배포 = W8 offline SQL · APP_ENV 필수 · 화면 단계 = 시안 DS gap 17종 · medikit 기준 HTMX 키트 1.3.0 추천 · 동작 규칙은 cc 구현 기준(마취 20 · 호출 5 · 카드/방 순서 · 탭)(CENTURION_DAY 워크트리 `day-data-architecture` · 브랜치 `kknaksss/day-data-architecture` · base `v2-dev`). PR #909 머지는 사용자가 구현 뒤에 한다 — 머지 요청하지 말 것. Delivery #224~#227(CENTURION_DAY) 생성 — 전부 `delivery-plan:review`(사용자 계약 승인 대기) · `spec-baseline:pending`(PR #909 머지 대기). PR #909 보정 커밋 `60fae27b`
+**다음**: SPEC 먼저 닫는다(사용자 2026-11-05 — 「스펙도 없는데 wp를 만든거야?」): SPEC-001 로그인 · 세션(PR #909 에 같이) → 검수 → #909 머지 · SPEC 확정 → Delivery #224~#226 재결속 · 승인, #227 은 SPEC-001 기준으로 계약 다시 → backend 발주
+
+세팅: `scripts/new-work.sh day day-data-architecture` · 설정 SSOT `config/projects/day.json`
+코디handle: `term_70b6f193-86a2-4c1d-8965-4e2220cef9b3`
+
+## 워크트리
+
+- `spec`: `/Users/kknaks/orca/workspaces/mediness-mediness/day-data-architecture-spec` (branch `kknaksss/day-data-architecture-spec`, base `origin/main` → PR `main`)
+
+## 1. 지금
+
+열린 것만 둔다. 닫히면 지우고 §5 이력으로 내린다.
+
+- [!] mediness PR #909 — 사용자 리뷰 · 머지
+- [ ] 워커 터미널 2개(planner · reviewer) 정리 — 머지 뒤
+- [!] `reference/2026-11-03-cc-day/screen/시술현황_프로토타입.html`(3MB · 사용자 추가) — public 레포라 내용 확인 전 미커밋
+- [!] planner 미결 13항(planner-report.md) — 사용자 판단 필요분 있음(product_option_id FK · ESC 기본값 · version · context/products.md 등)
+- [!] 원천 문서가 `reference/2026-11-03-cc-day/erd/` 로 옮겨짐(사용자 · 내용 동일) + `screen/` 추가 — 프로필 미커밋
+- [ ] PR — mediness `main`(spec 레포) · 원천 문서는 profile `kknaksss/day`(이미 push)
+
+## 2. 결정 (SoT)
+
+| 날짜 | 결정 | 근거 |
+|---|---|---|
+| 2026-11-06 | **전체 권한 계정 = env DAY_ADMIN_EMAILS**(권한 표 시드 대신 · 값은 사용자가 직접 env 에) · **시술 현황 계속 → #230 구현 발주** | 사용자 |
+| 2026-11-06 | **로그인 화면부터 먼저 — 로컬 브라우저 확인용**(사용자: 「로그인 페이지부터 만들라니까 · 로컬에서 확인한다니까」) → frontend #229 중단 · 로그인 화면 우선(#232 계약은 planner v2 진행 중 — 구현이 앞섬) · api 컨테이너는 사용자 확인 위해 띄워 둠 | 사용자 |
+| 2026-11-06 | **추천안 확정**: 로그인 화면 문구 13줄 · 임시 토큰 숨은 폼 칸 · 실패 때 이메일 유지 · #230 W6 = HAR 미확인 동작은 KOS 쓰기 닫음(DAY 는 동작) — W8 데모 원장 계정은 사용자 대기 | 사용자 |
+| 2026-11-06 | **웹 로그인 = 화면 라우트(/login · /login/hospital) HTML 조각 · /api/auth/* 는 앱 전용**(11-05 「웹 · 앱 같은 JSON」 바꿈 — 원천 04-staff) | 사용자 |
+| 2026-11-06 | **로그인 화면 = #229(medikit) 끝난 뒤 별도 Delivery** · 시안 없음 → centurion admin 로그인 모양 · #229 매크로로만 | 사용자 |
+| 2026-11-06 | **medikit HTMX 기반 먼저**(시술 현황 화면 전) — 새 컴포넌트는 DAY 레포 안(ui.html · static · styles) · 키트 올릴 후보 목록 · CRM 브랜드색 · 상태 팔레트는 DAY 토큰 확장 · 별도 Delivery 로 #227 과 병렬(CSRF 연결만 #227 뒤) | 사용자 |
+| 2026-11-06 | **CSRF = centurion admin 방식(403 csrf_failed · 로그인 전 미적용) · 빈 입력 = 400 invalid_request · 의사 호출 창 = 왼쪽 고르기(검색 · 모든 의사 · 원장+상태) / 오른쪽 선택된 시술**(원천 04-staff · procedure-board-decisions) | 사용자 |
+| 2026-11-06 | **SPEC-002 사용자 OQ 닫음(추천대로)**: OQ-01 웹 = 화면 라우트 HTML 조각 · JSON 앱 전용 · OQ-04 재호출 = 시안처럼 고르는 창(모든 의사 | 원장 한 명 · 기본 = 처음 대상 — 처음 「모든 의사만」에서 바꿈) · OQ-07 실패 토스트만(KOS 에서 고치면 폴링이 맞춤) · 공용 계정 = 1차는 다 넣음(빼지 않음 · 처음 「뺄 id 목록」에서 바꿈) — 원천 procedure-board-decisions.md | 사용자 |
+| 2026-11-06 | **단계마다 리뷰 자동** — 스펙 → WP → 코드 각 단계 done 이면 코디 확인 뒤 같은 턴에 reviewer 발주(묻지 않음) | 사용자 |
+| 2026-11-06 | **시술 현황 화면 결정**(원천 `reference/2026-11-03-cc-day/screen/procedure-board-decisions.md`): U1 담당의 있으면 호출 없이 시작 · U2 호출은 cc 팝오버 · U3 재호출 = 새 행 + 기존 호출 닫음 · U4 의사 본인 또는 간호사가 대신 · 남기는 건 수락한 의사만 · U7 cc 그대로(시술 3단계만 — 시술 준비 현황) · U6 빈 방 안 보임 · U8 · U10 cc 그대로 · U9 수납 필요 시안에 · U12 마취 · 호출만. U6 순서 = 카드 · 생성 순(먼저 생긴 게 앞) · D&D 로 바꿈 · U5 방 옮기기 · U11 차트 작성은 다음 스펙(HAR 뒤) | 사용자 |
+| 2026-11-06 | 프론트 검수 먼저 — **시술 현황만**, 시안 ↔ 명동 업무 흐름(workflow-v2 · v3 경계) ↔ KOS HAR(main 체크아웃 · gitignore) ↔ cc-prototype 코드 ↔ SPEC-000 대조(reviewer) | 사용자 |
+| 2026-11-05 | **유일(UNIQUE)은 살아 있는 행만**(부분 유일 WHERE deleted_at IS NULL) · **chat_room.direct_key 병원별 유일** — 원천 erd README · 07 반영 | 사용자 |
+| 2026-11-05 | **코드 PR 은 #228 하나 — 시안(화면)까지 다 만들 때까지.** 백엔드 #224~#227 · 화면 전부 같은 브랜치 `kknaksss/day-data-architecture` 에 Issue 별 커밋으로 쌓는다. 묻지 말 것 | 사용자 |
+| 2026-11-05 | 시술 현황 시안 = `screen/시술현황_프로토타입 (1).html` · medikit 에 없는 컴포넌트 있음 → frontend 워커 조사(있음/없음 목록) | 사용자 |
+| 2026-11-05 | **구현 먼저 · 머지는 나중**(사용자: 「왜 자꾸 머지하라는 거야 일단 구현하고 머지할 건데」) — #224 계약 승인으로 보고 backend 발주 | 사용자 |
+| 2026-11-05 | SPEC-001 로그인 · 세션 OQ 11개 전부 권장대로(경로 `/api/auth/*` · 웹 쿠키 `day_session` + 앱 Bearer · 세션 = KOS 토큰 만료 · 1차는 병원 직원만 · 2단계 인증 계정은 막고 안내(명동점 90개 중 0개) 등) | 사용자 |
+| 2026-11-05 | ~~Delivery 를 SPEC 머지 전에 연다~~ → **SPEC 먼저 닫고 Delivery**. #227 은 대상 SPEC 없이 열린 것(코디 실수) — SPEC-001 뒤 계약 다시 | 사용자 지적 |
+| 2026-11-05 | 백엔드 작업 계획은 mediness 새 규칙 — GitHub Delivery Issue(start-delivery). WP 파일 안 씀. 디자인 변동 가능 → 백엔드만, 로그인까지 4개 | 사용자 |
+| 2026-11-05 | cc-prototype #20 — KOS 내부 API 브라우저 헤더 필수 → DAY 연동 · 로그인에 반영 | cc-prototype `77173cf` |
+| 2026-11-03 | 테이블 설계 01~07 확정 — 원천 `reference/2026-11-03-cc-day/` | 사용자 칸 단위 검토(아티팩트 승인/반려) |
+| 2026-11-03 | mediness 제품 slug `day` · ID prefix `DAY` | 코디(카탈로그 slug `day` · 스캐폴드 기본값) |
+| 2026-11-03 | 검수 FAIL 대응: 원천 묶은 행 42개 분리(deleted_at NULL 허용) · `consultation_procedure` · `visit_occupied_resource_doctor` 칸 표 추가 · ESC-001 값 그대로 | 사용자 「둘 다 그대로 가고 재발주」 |
+| 2026-11-03 | 컬럼 수준 계약은 SPEC-000(데이터 모델), architecture 는 관계 · invariant 만 | mediness `rules/document-pipeline.md` · selly SPEC-000 선례 |
+
+뒤집힌 결정은 지우지 않는다. ~~취소선~~ 을 긋고 같은 행에 뒤집은 날짜와 사유를 남긴다 —
+지우면 왜 그렇게 갔는지가 사라져서 같은 논의를 다시 한다.
+
+## 3. 발주 (살아 있는 것만)
+
+| 워커 | handle | task_id | dispatch_id | 브리프 | 상태 |
+|---|---|---|---|---|---|
+| planner | `term_8117e457-5427-4f0c-9dd5-6fc68f77f6f4` | `task_256e3ec1a806` | `ctx_e497e1180940` | `day-data-architecture-spec-brief.md` | 완료(터미널 유지 — 수정 재발주용) |
+| reviewer_doc | `term_441c2cdb-68e6-4463-b694-d8d6adfc7210` | `task_0fbf4462273f` | `ctx_6b32d164d0aa` | `day-data-architecture-review-doc-brief.md` | 1판 FAIL(터미널 유지) |
+| planner SPEC-001 CSRF 개정 + #227 v3 | `term_33d8da4d-2ead-4828-bc2f-3316d4b4bbbe` | (task-list) | (dispatch) | `planner-spec001-csrf-delivery227-v3-instructions.md` | 발주 · 진행 → 끝나면 리뷰 자동 |
+| planner #227 재계약 v2(SPEC-001) | `term_33d8da4d-2ead-4828-bc2f-3316d4b4bbbe` | (task-list) | (dispatch) | `planner-delivery227-v2-instructions.md` | 발주 · 진행 → 끝나면 reviewer 자동 |
+| reviewer #226 fix2 재검수 | `term_93d7dafc-cadb-4d5c-b78f-2ebd18f0aafc` | `task_b99db8e4b21b` | `ctx_a79a0765ae1e` | `review-226-fix2-brief.md` | 완료 · PASS → **#226 커밋 `8c85233a`(PR #228)** |
+| reviewer SPEC-002 fix1 재검수 | `term_75e030e5-a3f9-4ed9-96a9-489fef7ec748` | `task_a14f0d53b6df` | `ctx_124c805a9fda` | `review-spec002-fix1-brief.md` | 완료 · WARN · W1~W11 닫힘 · 새 N1(대리 수락 → 방문 뒤 쓰기 멈춤 서술) · N2(규칙 25 계정 — 코디 판정: sign-in 계정 하나 · OQ-11 다시 열림) → fix2 대기(planner 가 #227 재계약 끝난 뒤 발주) |
+| backend #226 fix2(N1~N3) | `term_adbc21b4-456a-447f-8dc5-a3899532a4e5` | `task_f31756aff8ee` | `ctx_7600caad89ba` | `backend-226-fix2-instructions.md` | 완료 · 코디 확인(not infra 155 · 전체 222 · ruff) |
+| planner SPEC-002 fix1(W1~W11 · 답 있는 OQ 닫기) | `term_33d8da4d-2ead-4828-bc2f-3316d4b4bbbe` | `task_5e5df92efb20` | `ctx_dc288a2290c5` | `planner-spec002-fix1-instructions.md` | 완료 · lint 0 · OQ 7 닫음 · 사용자 OQ 3(01 · 04 · 07) 대기 |
+| reviewer #226 fix1 재검수 | `term_93d7dafc-cadb-4d5c-b78f-2ebd18f0aafc` | `task_a382c748f20f` | `ctx_fce434e5246b` | `review-226-fix1-brief.md` | 완료 · WARN · W1~W6 · 경계 닫힘 · 새 N1~N3 |
+| backend #226 실물 확인 2(needs_master) | `term_adbc21b4-456a-447f-8dc5-a3899532a4e5` | `task_4840ee6b85b9` | `ctx_11b9e8fa45f7` | `backend-226-live2-instructions.md` | 완료 · needs_master 실물 1회 정상(잠금 skip 0 · 오류 0 · 로그 누출 0) |
+| reviewer DAY-SPEC-002 문서 검수 | `term_75e030e5-a3f9-4ed9-96a9-489fef7ec748` | `task_a6d882be4de6` | `ctx_2d43268f7499` | `review-spec002-brief.md` | 완료 · WARN 11(FAIL 0) · 사용자 OQ 01 · 04 대상 · 07 복구 |
+| backend #226 fix1(W1~W6 · 병원 경계) | `term_adbc21b4-456a-447f-8dc5-a3899532a4e5` | `task_42ebb6c6f004` | `ctx_89f641df77dd` | `backend-226-fix1-instructions.md` | 완료 · 코디 확인(not infra 153 · 전체 220 · ruff) |
+| reviewer #226 코드 검수 | `term_93d7dafc-cadb-4d5c-b78f-2ebd18f0aafc` | `task_48ba455ecfc4` | `ctx_b25b91f03c06` | `review-226-brief.md` | 완료 · WARN(FAIL 0 · W1~W8) |
+| planner DAY-SPEC-002 시술 현황 | `term_33d8da4d-2ead-4828-bc2f-3316d4b4bbbe` | `task_70c80e1f4154` | `ctx_7f6be83ad3f2` | `planner-spec002-instructions.md` | 완료 · 미커밋(lint 0) · 사용자 OQ 8 · HAR 요청 5 |
+| reviewer 시술 현황 시안 검수(읽기 전용) | `term_e22da864-5b18-46cf-9db2-332b95aae73c` | `task_82e401a05433` | `ctx_75dfcc9a03ec` | `review-screen-procedure-brief.md` | 완료 · WARN · 결정 12 → 원천 `screen/procedure-board-decisions.md` |
+| backend #226 KOS 연동 | `term_adbc21b4-456a-447f-8dc5-a3899532a4e5`(새 터미널 — 옛 `term_a35ac44d` 는 에이전트 없음) | `task_1fa1aed8d5fb` | `ctx_f04c9725151a` | `backend-226-brief.md` | 완료 · 코디 확인(203 passed · not infra 131/2.2s · KOS 쓰기 0) |
+| backend #225 fix1(W1~W6 + 부분 유일 · direct_key) | `term_a35ac44d-5a0f-4901-9681-51c4c9b6de8f` | `task_e628c11fdab2` | `ctx_9302d3e803a7` | `backend-225-fix1-instructions.md` | 완료 · 코디 확인(153 passed · 부분 유일 8 · UNIQUE 제약 0 · 대조 51/51) — worker_done 없이 끝남 |
+| planner SPEC-000 동기화(#225) | `term_8117e457-5427-4f0c-9dd5-6fc68f77f6f4` | `task_ab2374dfca48` | `ctx_382678641efc` | `planner-spec000-sync-instructions.md` | 완료 · PR #909 `dcce1eea` |
+| reviewer #225 코드 검수 | `term_ad2a4487-a45e-4f07-bd10-b6fa67936898` | `task_94cd7c9fad9e` | `ctx_adf86ce0f990` | `review-225-brief.md` | 완료 · WARN(FAIL 0 · W1~W8) |
+| backend #225 데이터 모델 | `term_a35ac44d-5a0f-4901-9681-51c4c9b6de8f` | `task_8a5467385cab` | `ctx_e467fd28fa38` | `backend-225-brief.md` | 완료 · 코디 확인(51 테이블 · enum 28 · 0002 · 80 passed · 대조 51/51) |
+| backend #224 fix1(W1~W4 · W7 · 정리) | `term_a35ac44d-5a0f-4901-9681-51c4c9b6de8f` | `task_ce3aedaa6948` | `ctx_3cd0483672a2` | `backend-224-fix1-instructions.md` | 완료 · 코디 확인(37 passed · 무인프라 31/6 skip · ruff · compose ready 200 · day.ping) |
+| reviewer #224 코드 검수 | `term_ad2a4487-a45e-4f07-bd10-b6fa67936898` | `task_7839c062a1d2` | `ctx_49ebc47c594f` | `day-data-architecture-review-brief.md` | 완료 · WARN(FAIL 0 · W1~W9) |
+| frontend 조사(DS gap) | `term_8fb75a5f-ce60-4682-a22f-25481c9d3f39` | `task_e281fee9db7c` | `ctx_cef3e5796f11` | `frontend-ds-research-instructions.md` | 발주 · 진행(코디 워크트리 · 읽기 전용) |
+| backend #224 | `term_a35ac44d-5a0f-4901-9681-51c4c9b6de8f` | `task_b55365041983` | `ctx_54b11e55fc04` | `day-data-architecture-be-brief.md` | 완료 · 코디 확인(compose · health 200 · 32 passed · ruff · day.ping) |
+| planner SPEC-001 결정 반영 | `term_8117e457-5427-4f0c-9dd5-6fc68f77f6f4` | `task_23966603a026` | `ctx_f348cbceb7b3` | `planner-spec001-fix-instructions.md` | 발주 · 진행 |
+| planner SPEC-001 | `term_8117e457-5427-4f0c-9dd5-6fc68f77f6f4` | `task_a536db100de3` | `ctx_34532b18e680` | `planner-spec001-instructions.md` | 완료(OQ 11) |
+| planner delivery | `term_8117e457-5427-4f0c-9dd5-6fc68f77f6f4` | `task_226ed1ca2070` | `ctx_65b9ce7dbcbe` | `planner-delivery-instructions.md` | 완료(human gate) · request JSON → `delivery/` |
+| planner arch | `term_8117e457-5427-4f0c-9dd5-6fc68f77f6f4` | `task_78d14ef22adb` | `ctx_51d128cdd28e` | `planner-arch-instructions.md` | 완료 · 검수 WARN → 해소 |
+| planner 수정 1판 | `term_8117e457-5427-4f0c-9dd5-6fc68f77f6f4` | `task_18d832312263` | `ctx_91b93dee59be` | `planner-fix-1-instructions.md` | 발주 · 진행 |
+
+핸들은 세션 재연결로 바뀐다. 바뀌면 **덮어쓴다.** 워커 보고는 dispatch preamble 의 값을 따르므로
+여기 옛 핸들을 남겨 두면 어느 것이 산 것인지 판단이 안 된다.
+
+## 4. 산출물
+
+- spec PR: https://github.com/MediSolveAIDev/mediness/pull/909 (SPEC-002 · SPEC-001 개정 `3c14633b` · `f92a8acb` · `974caeac` · `e71e3849` · `60fae27b` · SPEC-001 커밋)
+- Delivery: CENTURION_DAY #224 뼈대(L2) · #225 데이터 모델(L3) · #226 KOS 연동(L3) · #227 로그인(L3) — plan_digest 는 `planner-delivery-report.md`
+- 코드 레포: CENTURION_DAY v2-dev `8e4fb4b5` — AGENTS.md 「아직 정하지 않은 것」 로그인 · 배포 제거(사용자 2026-11-05)
+- code PR: <링크>
+- 리포트: `<review-*-report.md>` · `<research-*.md>`
+- 커밋: `<sha>` — <한 줄>
+
+## 5. 이력 (최신이 위)
+
+- `2026-11-05` 40-architecture 추가(planner) → 검수 WARN(정본 낡음) → AGENTS.md 갱신 · PR #909 커밋
+- `2026-11-03` 수정 2판 → 재검수 PASS → mediness PR #909
+- `2026-11-03` 검수 FAIL → 원천 수정 · planner 수정 1판 발주
+- `2026-11-03` planner 완료 → reviewer_doc 발주
+- `2026-11-03` 사용자 승인 → planner 발주(run `run_86b1e890ecc2`)
+- `2026-11-03` new-work.sh · `products/day` 스캐폴드(`scaffold-product.sh day DAY DAY`) · planner 브리프 작성
+
+이 절은 **재개에 필요한 만큼만** 쓴다. 회고·배운 것은 `SUMMARY.md` 몫이다.
+
+- 2026-11-06: SPEC-002 PASS → PR #909 커밋 `3c14633b`. Delivery #229 웹 기반 생성(승인 대기) → 검수 발주. 시술 현황 Delivery(백엔드 · 화면 둘) planner 발주.
+- 2026-11-06: #230(백엔드 L3) · #231(화면 L2) 생성 → 검수 발주 · #229 검수 WARN 6 → v2 발주(CSRF 연결 · SSE 확장 = #229)
+- 2026-11-06: #227 구현 완료 · 코디 확인(not infra 175 · 전체 265 · 실물 로그인 10단계) → 코드 검수 발주. #230/#231 검수 WARN 8 → v2(W1~W5 · W7) 발주 · W6(HAR 미확인 동작 1차 처리) · W8(데모 원장 계정) 사용자 질문
+- 2026-11-06: #230/#231 v2 재검수 PASS(W6 · W8 사용자 답 대기 → v3)
+- 2026-11-06: #227 코드 검수 WARN(W1 임시 토큰 동시 사용 · W2 repr · W3 복호화 범위 · W4 테스트) → fix1 발주
+- 2026-11-06: #227 fix1 재검수 PASS → **PR #228 커밋 `fb2508e4`** — 백엔드 1차(#224~#227) 완료. 다음 = #229 웹 기반(검수 v2 대기) · #230/#231(W6 · W8 사용자 답 대기)
+- 2026-11-06: #229 v2 재검수 PASS(10:56 — 코디가 알림 놓침, 사용자 지적) → frontend #229 구현 발주(term_9cf55b31 · task_5725534585b1 · ctx_684bf7d3c27f)
+- 2026-11-06: #232 검수 WARN 5 → SPEC-001 화면 절 먼저(planner) → 사용자 문구 확인 → #232 v2
+- 2026-11-06: #229 + 웹 로그인 구현 완료(로컬 http://127.0.0.1:11040/login 띄움) → 코드 검수 FAIL(F1 견본에 실제 지점 이름 · F2 JSON client 기본값 web · F3 권한 없음 화면 · CSRF 토스트 핸들러) → fix1 발주(compose 유지 · api 만 재빌드)
+- 2026-11-06: #229 fix1 재검수 PASS → **PR #228 커밋 `9c7376ca`**(웹 기반 + 웹 로그인 · #232 화면 포함). 다음 = #230 시술 현황 백엔드(W8 데모 원장 계정 대기 — 수락 실물만) · dev 권한 시드 여부 사용자 질문
+- 2026-11-06: 전체 권한 계정 · #230 v5 PASS → PR #909 `739f3bb2`. #230 backend 사용량 제한으로 중간 정지 → 사용자 재로그인 → 재개. 방배정.har 에 PROCEDURE_WAITING(시작 취소 값) 있음 — W6 대로 닫힘 · 사용자 결정 대상
+- 2026-11-06: #230 구현 완료 · 코디 확인(255/385 · ruff · KOS 쓰기 0) → 코드 검수 발주 + #231 화면 병렬 발주
+- 2026-11-06: #230 코드 검수 FAIL(F1 SSE 세션 재확인 없음 · F2 query-count 테스트 없음 · W1~W7) → fix1 발주(#231 과 병렬 · 파일 분리)
+- 2026-11-06: #231 화면 완료(견본 /dev/kit/board · 실제 /board 는 DAY_ADMIN_EMAILS 필요) → 코드 검수 발주 · #230 fix1 진행 중
+- 2026-11-06: #231 검수 WARN(W1 늦음 빨강 규칙 · W2 권한 없는 조작 안 보임 · W3 다시 받기 · W4 실물은 DAY_ADMIN_EMAILS 뒤) → fix1 발주
+- 2026-11-06: #230 fix1 재검수 PASS — 커밋은 #231 fix1 PASS 뒤 함께(같은 워크트리 · 파일 섞임)
+- 2026-11-06: #231 fix1 완료 → 백엔드 요청 2(권한 넘기기 · lateAt = U12) → #230 fix2 발주 · 그 뒤 #231 fix1 + #230 fix2 함께 재검수
+- 2026-11-06: #230+#231 최종 재검수 PASS → **PR #228 커밋 `3cbb2e08`** — 시술 현황 1차 백엔드 · 화면. 남은 것: 실물 /board(사용자 DAY_ADMIN_EMAILS) · PROCEDURE_WAITING 열지(사용자) · 실제 KOS 쓰기 실물(사용자 허락 · 데모 원장 계정 W8) · HAR 6 · 방 옮기기 · 차트 작성(다음 스펙) · PR #909 · #228 머지(사용자)
+- 2026-11-06: 사용자 화면 피드백 모음 시작 — `board-feedback.md`(F1 수락 창 = 모달 → 시안처럼 팝오버). 모아서 한 번에 발주
+- 2026-11-06: 화면 피드백 발주 — planner SPEC-002(F3 · F4 · F5 · F6 · F7 · F10) · frontend F1 · F9 · backend F8. SPEC PASS 뒤 2차분(F3 · F4 · F5 · F6 · F7 · F10 구현 + outbox 멈춘 행 정리)
+- 2026-11-06: SPEC-002 ⑥⑦ PASS → PR #909 `6386f746`. 2차분 발주: planner #230 v6 · #231 v2 / backend F3 F4 F5 F7 F10 + 실물(데모 · 사용자가 화면에서 쓰기 중 = 허락) / frontend F3 F5 F6 F7
+- 2026-11-06: 피드백 2차 백엔드 완료 — 데모 지점 실물 KOS 쓰기 전부 confirmed(호출 · 다시 호출 · 수락 · 시작 · 종료 · 완료 취소 · 귀가 대기). 시작 취소 PROCEDURE_WAITING 만 미확인(유일 진행 시술 취소 필요). 운영 연결은 KOS_TRIAL_WRITES_ON_LIVE=false 로 막음. 다음 = F16 바로 보내기 · F15 · 그 뒤 피드백 묶음 코드 리뷰 → PR #228
+- 2026-11-06: 피드백 묶음 검수 WARN(FAIL 0) → **PR #228 커밋 `4c2cebab`** · WARN 수정 발주(backend W1~W3 · W5 · W6 / frontend W4 · W5). 방 없는 시술 대기 = 기록대로(코디가 KOS 에서 방 배정 · 판에 안 나옴) — 간호사 방 배정이면 다음 스펙(사용자 확인 대기)
+- 2026-11-06: 피드백 WARN 재검수 PASS → PR #228 커밋 — 시술 현황 1차 + 화면 피드백 마무리
+- 2026-11-06: 피드백 F17 · F18 · F19 frontend 발주
+- 2026-11-06: F17 · F18 · F19 PASS → PR #228 커밋. 화면 피드백 F1 · F3 ~ F19 전부 반영(F2 취소 · F8 결론)
+- 2026-11-06: **방 배정 = 데스크(코디)가 KOS 에서** — 간호사 몫 아님(사용자 확인). DAY 는 지금 규칙(방 있는 시술 단계 방문만 판에) 그대로 · 이 항목 닫음
+- 2026-11-06: F20(의사 계정 수락 = 본인) 보류 — 공용 컴퓨터는 로그인 계정 ≠ 누르는 사람. 앱 · 기기 구분 정할 때. 권한 기본안(직무 태그 → board 보기/수정/수락) 사용자 답 대기
+- 2026-11-08: (취소 — 코디 오독) 권한 = 「지금처럼」은 「보여 드린 표대로」였다. 아래 줄이 맞다
+- 2026-11-08: **시술 현황 1차 기본 권한 표 확정**(원천 「결정 — 시술 현황 1차 기본 권한」 · 수락 = 간호사 · 원장 모두) → SPEC-002 · 백엔드 시드 발주
+
+- 2026-11-08: 모바일 환경·비공개 배포 아키텍처 문서 발주. 사용자: iOS 먼저, iOS·Android 모두 메디니스에 기록, 회사 이름 medisolveai, 첫 회사 앱 구축. 식별자 후보 `com.medisolveai.day(.dev)`는 미확정. 회사 Apple Team 사용 가능은 사용자 응답 기준. Run `run_11499c9fc451` / planner task `task_dac90911f487` / dispatch `ctx_5c9dd0aadb9b` / terminal `term_8a850fb5-af31-469a-9af3-d0dfcaf87ca1`. 브리프 `mobile-deployment-planner-brief.md`. 범위: mediness `products/day/40-architecture/`, 코드·계정 변경 없음. 다음: 산출물 확인→문서 reviewer→직접 lint/diff 확인.
+- 2026-11-08: 권한 · F21 문구 마무리 — PR #228 `34ac05b9`(기본 권한) · `8f26612f`(문구) · PR #909 `d356c3d2` · `1e299d94` · SPEC ⑪ 커밋
+- 2026-11-08: 모바일 배포 문서 planner 완료·release. 새 파일 mobile-deployment.md + README/system 링크. reviewer task `task_3d51782e2303` / dispatch `ctx_ca60017ddc0f` / terminal `term_82a9db1c-bdb8-43e2-8112-7da07fa6881f`. 코디 직접 lint: 0 error / 263 타 제품 warning, DAY 출력 없음. 상대 링크 검사 PASS, diff --check PASS.
+- 2026-11-08: 서버 배포 방법 논의 시작(사용자) — researcher 에 centurion 배포 방식 조사 + DAY 대입 · 정할 것 목록(term_f4158b30 · task_ef6b841cd519)
+- 2026-11-08: 배포 결정 — 앞단 = Caddy(사용자) · 원천 system/README 「배포 결정」
+- 2026-11-08: 배포 결정 — dev · prod = VM 한 대 · 관리형 PostgreSQL 한 대(사용자) · researcher 에 전제 전달
+- 2026-11-08: 모바일 배포 문서 reviewer WARN(FAIL 0) 후 planner 보정 완료(task `task_fc88639f1d80`, dispatch `ctx_b620a4f5ea94`). WARN1~7 반영: push 발송/등록 구분, Team ID 저장 범위 M-16, iOS 우선 순서, Android 시점 M-17, prod 데모 배제 M-18 미결. 코디 최종 lint 0 error / 263 타 제품 warning 및 diff --check PASS. 초안 05b9a195 커밋은 작업 중 다른 주체가 생성한 것으로 관찰됨; 본 세션은 커밋/push 안 함. 후속 보정은 미커밋. 문서 기록 요청 완료. 정식 PR 머지 전 log.md arch-change 행 필요(현 범위 밖). 다음 실제 환경 구축 전 M-1 설치 대상·M-4 식별자·M-5 회사 Team 역할부터 확인.
+- 2026-11-08: 사용자 요청으로 모바일 배포 문서 보정·log 이력을 기존 mediness PR #909에 추가. lint 0 error / 263 타 제품 warning, diff --check PASS. main 최신 브리핑 10커밋 위로 rebase(충돌 없음), DAY 내용 동일 확인 후 lease 보호 push. PR head f7a1ba4e, 본문에 iOS·Android/dev·prod 후보/미결 및 검증 추가. 머지하지 않음. 워커 ctx_7ca8a774e030 완료·release.
+- 2026-11-08: 배포 결정 — 브랜치 dev/prod · dev 도메인 day-dev.medisolveai.com(DNS 사용자) · 백업 기본 · 배포 시간 제한 없음 · Azure 권한 사용자 · 나머지 조사 추천대로(원천 system/README 「배포 결정」). 남은 질문: prod 도메인 · v2-dev 와 dev 관계
+- 2026-11-08: **CENTURION_DAY 브랜치 정리(사용자 지시)** — 옛 코드 = `archive` 브랜치(옛 dev=stg=release 11e27b08) + 옛 브랜치 끝 전부 태그 `archive/<이름>`(19). `dev` = v2(강제 갱신 · 기본 브랜치 그대로 dev) · `prod` 새로 · PR #228 대상 = dev · 나머지 브랜치(main · stg · release · bugfix/* · fix/* · v2-dev) 삭제. 남은 브랜치: archive · dev · prod · kknaksss/day-data-architecture. 설정 · 역할 문서 base = origin/dev
+- 2026-11-08: 배포 — planner 40-architecture/deployment.md 발주(스펙 단계) → 검수 → Delivery(WP) → 구현
+- 2026-11-08: **배포는 지금 문서 작업만(사용자)** — deployment.md(커밋됨) · #233 계약 v2 · 검수까지. 코드 구현(수동 배포 파일 · 자동 배포) 발주 안 함 — 방식(① 두 단계 / ② 한 번에)은 구현 때 정함
+- 2026-11-08: #233 계약 v2 재확인 PASS — 배포 문서 작업 끝(deployment.md · #233 승인 대기). 구현은 나중(방식 미정)
+- 2026-11-09: **#233 배포 구현 발주(설계대로 ACR · Actions · run-command · Key Vault)** — 코디가 수동/SSH 를 다시 제안했다가 사용자 지적(「설계에 ACR 쓰는데 왜 수동」)
+  · backend 터미널 새로(옛 term_adbc21b4 에이전트 없음) → term_c1a4666c-02fb-4b61-bd67-ea7e9cf6bdb1
+- 2026-11-09: 받은 VM · DB 정보를 system/README 「배포 결정」에 기록(비밀번호 제외) · 로컬 ssh 별칭 day-vm / day-db · psql service=day
+- 2026-11-09: **DB 스키마 · 계정 생성(사용자 승인)** — day_dev/day_dev_app · day_prod/day_prod_app · 격리 확인. deployment.md 미결 「스키마 생성 권한」 닫힘 → 다음 planner 수정 때 반영할 것
+- 2026-11-09: VM docker 설치(사용자 승인) — Docker 29.9 · compose v5.7 · 로그 회전
+- 2026-11-09: **Azure 권한 실측(읽기만)** — 사용자 = 구독 Owner(직접 부여 가능) · VM system identity 있음 · 역할 0(ACR 401 · RG 403) · ACR <공용 ACR>(<공용 RG>) · Key Vault **<Key Vault> 이미 있음**(RBAC · 방화벽 Deny + VM 서브넷만 허용 → 로컬 PC 에서 비밀 못 넣음) · KV 역할 0 · DAY OIDC 앱 없음 · NSG 22/80/443 출처 1곳만(승인 출처) → Caddy 인증서 발급 · 지점 접속 막힐 수 있음(확인 필요) · DNS 둘 미등록
+- 2026-11-09: **Azure 권한 부여(사용자 승인)** — VM identity: AcrPull · KV Secrets User · 사용자: KV Secrets Officer · 앱 등록 <배포 앱>(OIDC environment dev/prod · AcrPush · VM Contributor). VM 실측 ACR 200 · KV 200. 남음: GitHub Environments · 변수 · KV 비밀 넣기 · DNS(가비아) · NSG 80/443
+- 2026-11-09: **NSG 80/443 = Internet 공개(사용자 ①)** — 22 는 승인 출처 1곳 유지
+- 2026-11-09: DNS 등록(사용자 · 가비아) — day-dev · day 반영 확인
+- 2026-11-09: **KOS 주소 3개 = 레포 env 금지 → Key Vault(사용자)** — backend 발주
+- 2026-11-09: **Key Vault dev 비밀 6개 넣음(dev 만 · 데모 테넌트로 — 사용자)** — 로컬 IP 잠깐 허용 후 제거 · VM 에서 6개 읽힘. prod 는 나중
+- 2026-11-09: **첫 dev 배포 성공** — PR #228 dev squash 머지(91728737 · 사용자 지시) · Actions Deploy DAY dev 2m41s 전부 ✓ · https://day-dev.medisolveai.com live/ready(db · redis · encryption ok) · Let's Encrypt · 메모리 1.0/3.8GB · 데모 연결 시드(api 컨테이너 · 값 stdin) → KOS 토큰 · 일정 11 · 마스터(구역 2 · 방 41) 동기화 확인. 남음: 화면 눈 확인(사용자) · prod

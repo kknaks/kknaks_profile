@@ -1,0 +1,7 @@
+# [reviewer] Delivery #227 로그인 · 세션 — 코드 검수 (L3)
+
+너는 #226 을 검수한 day reviewer 다. **읽기 전용** · KOS 호출 금지 · 포트 11040 · 11042 · 11043 만(다른 워커 compose 없음 — 써도 됨, 끝나면 `down`).
+워크트리 `/Users/kknaks/orca/workspaces/CENTURION_DAY/day-data-architecture` — #224 ~ #226 커밋됨, #227 미커밋(`git status` · `git diff`).
+읽을 것: 계약 Issue #227(contract v3) · 정본 DAY-SPEC-001 `/Users/kknaks/orca/workspaces/mediness-mediness/day-data-architecture-spec/products/day/20-spec/spec-001-login-session.md`(PR #909 `3c14633b` — CSRF · 빈 입력 · kos-client-uri 개정 포함) · 발주서 `/Users/kknaks/orca/workspaces/kknaks_profile/day/orchestration/work/day-data-architecture/backend-227-brief.md` · 구현 리포트 `/Users/kknaks/orca/workspaces/kknaks_profile/day/orchestration/work/day-data-architecture/backend-227-report.md`(특히 「계약에 없어 구현이 정한 것」 판정) · v2/v3 계약 검수 `/Users/kknaks/orca/workspaces/kknaks_profile/day/orchestration/work/day-data-architecture/review-delivery227-v2-report.md` · `review-spec001-csrf-delivery227-v3-report.md` · centurion admin CSRF 본.
+볼 것: A1 ~ A10 · **시스템 계정 경로와 섞이지 않음**(직원 401 재시도 0 · 연결 설정 자격 미사용) · 비밀번호 · 토큰 · 이메일 · 테넌트 id 누출(로그 · 예외 · 응답 · repr) · 세션 토큰 해시 · 쿠키 플래그 · CSRF(쿠키 쓰기만 · 로그인 전 미적용 · form 토큰 · 타이밍 안전 비교) · 임시 토큰(5분 · 한 번만) · 동시 로그인 · 병원 경계 · migration 0003 · 테스트 규칙(DB 없는 단위 테스트) · 「조용히 통과」.
+리포트 `/Users/kknaks/orca/workspaces/kknaks_profile/day/orchestration/work/day-data-architecture/review-227-report.md`. 완료는 preamble 의 worker_done 절차대로(둘 다).

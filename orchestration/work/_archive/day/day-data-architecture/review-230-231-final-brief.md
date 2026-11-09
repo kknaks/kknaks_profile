@@ -1,0 +1,6 @@
+# [reviewer] #231 fix1 + #230 fix2 함께 재검수 (커밋 전 마지막)
+
+너는 #230 · #231 을 검수한 day reviewer 다(앞 리포트 `/Users/kknaks/orca/workspaces/kknaks_profile/day/orchestration/work/day-data-architecture/review-231-report.md` · `review-230-fix1-report.md`). **읽기 전용** · KOS 호출 금지 · compose down · 재시작 금지 · 테스트는 `uv run pytest -m "not infra"` 만(전체 431 은 수정 리포트 · 코디 확인).
+읽을 것: `/Users/kknaks/orca/workspaces/kknaks_profile/day/orchestration/work/day-data-architecture/frontend-231-fix1-instructions.md` · `/Users/kknaks/orca/workspaces/kknaks_profile/day/orchestration/work/day-data-architecture/frontend-231-fix1-report.md` · `/Users/kknaks/orca/workspaces/kknaks_profile/day/orchestration/work/day-data-architecture/backend-230-fix2-instructions.md` · `/Users/kknaks/orca/workspaces/kknaks_profile/day/orchestration/work/day-data-architecture/backend-230-fix2-report.md` · 새 스크린샷 `/Users/kknaks/orca/workspaces/kknaks_profile/day/orchestration/work/day-data-architecture/frontend-231-shots/`.
+볼 것: #231 W1 ~ W3 · #230 fix1 영향 3건 반영 · #230 fix2(권한 · is_admin 이 판 조각에 · lateAt = U12 — 호출 5분(열린 호출부터) · 마취 20분 · 그 밖 없음) · 둘이 맞물리는지(버튼 숨김이 실제로 동작) · backend 가 고친 frontend 테스트 기대값이 맞는지 · 새 「조용히 통과」. PASS 면 PR #228 커밋 가능 판정.
+리포트 `/Users/kknaks/orca/workspaces/kknaks_profile/day/orchestration/work/day-data-architecture/review-230-231-final-report.md`. 완료는 preamble 의 worker_done 절차대로(둘 다).

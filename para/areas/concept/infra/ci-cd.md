@@ -16,7 +16,14 @@ aliases:
   - 경로 필터
   - 바뀐 쪽 이미지만
   - back.imageTag
+  - 같은 digest 승격
+  - prod fast-forward
+  - build once
+  - concurrency group
+  - run-command
+  - ACR
 up:
+  - 2026-11-09-day-data-architecture
   - 2025-01-13-Day10
   - 2025-01-17-Day14
   - 2026-08-31-task-redesign
@@ -99,6 +106,16 @@ command: |
 
 **서버에 열린 SSH 포트가 필요 없다**는 것이 이 방식의 이점이다 → [[infrastructure-as-code]]
 
+### 한 번 빌드해서 승격 — dev 에서 성공한 그 이미지를 prod 로
+
+DAY 는 VM 한 대에 dev · prod 두 환경을 올린다. `dev` 브랜치 push 가 빌드 → 레지스트리(ACR) → 배포 → migration 을 자동으로 돌리고, `prod` 는 **다시 빌드하지 않고 dev 에서 성공한 같은 이미지 digest 만** 받는다.
+
+- **prod 브랜치는 fast-forward 로만 올린다** — merge · squash 로 올리면 커밋이 새로 생겨 sha 가 달라지고, 「dev 에서 검증한 그 이미지」 를 sha 로 찾을 수 없다. fast-forward 면 prod 의 커밋이 dev 의 커밋과 같다
+- **원격 실행은 SSH 없이 클라우드 명령으로** — Azure VM run-command 로 배포 스크립트를 부른다. 앞의 SSM 과 같은 발상이고, 키 없이 들어가는 신원은 [[workload-identity]] 가 맡는다
+- **같은 concurrency group 은 기다리는 실행을 취소한다** — dev · prod 워크플로가 한 group 을 쓰자 대기 중인 실행이 조용히 취소됐다. group 을 워크플로별로 가르고, 같은 VM 을 동시에 만지는 것은 VM 안의 파일 잠금(`flock`)으로 막았다 → [[distributed-lock]]
+- **실패 복구는 「배포 직전 스냅샷」 으로만** — 자동 되돌리기가 「이전 태그」 를 따로 계산하다 두 판 전 이미지로 내려가는 구멍이 있었다. 배포 직전에 지금 떠 있는 이미지를 적어 두고, 실패하면 그것으로만 돌린다
+- **비밀은 저장소 Secrets 가 아니라 비밀 보관소에서** — 서버가 시작할 때 자기 신원으로 읽는다 → [[secret-store]]
+
 ## 왜 중요한가
 
 **배포가 사람의 기억에서 파일로 옮겨 간다.** 손으로 하던 여섯 단계(로그인·클론·설정·빌드·실행·확인)는 **누가 하느냐에 따라 달라지고 한 단계를 빠뜨리면 조용히 틀린다.** 파일에 적혀 있으면 언제나 같은 순서로 돈다 → [[infrastructure-as-code]] · [[build]]
@@ -133,9 +150,12 @@ GitHub 이 주는 러너 대신 **내 클러스터의 파드가 잡을 받는** 
 - [[git]] — 이벤트가 나오는 곳
 - [[reverse-proxy]] — 배포된 것 앞에 서는 것
 - [[kubernetes]] — 배포 대상이 클러스터가 될 때
+- [[workload-identity]] — 장기 키 없이 배포 · 레지스트리에 붙는 신원
+- [[secret-store]] — 배포가 읽는 비밀의 자리
 
 ## 출처
 
+- [[2026-11-09-day-data-architecture]] §2 — DAY 한 VM 두 환경: `dev` push → 빌드 · 배포 · migration, `prod` 는 fast-forward 로 같은 digest 만 · run-command · 워크플로별 concurrency group + VM flock · 실패 복구 = 배포 직전 스냅샷(코드 `937dbb68` · `1ccc101b`)
 - [[2026-10-27-interpret-pwa-poc]] §2 — 폴더별 이미지 빌드라 front 만 바뀐 sha 에 back 이미지가 없음 → `front.imageTag` / `back.imageTag` 오버라이드 → 같은 sha 배포에서 하나로 정리(`charts/interpret-pwa/values-prod.yaml` · infra #29 · #30 · #32 · #33)
 - [[2026-10-28-overall-board]] §2 — Actions 경로 필터로 바뀐 쪽 이미지만 빌드 → back 만 바뀐 머지는 `back.imageTag` 로 한쪽만 올림(`deploy.md` ② · infra #39)
 - [[2026-10-22-myeongdong-poc-v2]] §2 — 이미지 태그 = 커밋 전체 sha(40자) · 차트 `required image.tag` · ArgoCD 수동 sync(`procedure-back-image.yml` · infra #22 · #24)
