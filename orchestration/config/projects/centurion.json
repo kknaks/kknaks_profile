@@ -1,6 +1,7 @@
 {
   "_doc": "centurion(회사 — MediSolveAIDev/centurion. 메디솔브 통합 백엔드: SSO·Linky·common·admin·catalog·crm 을 한 ASGI 프로세스로. Python 3.13 + FastAPI, uv) 오케스트레이션 설정 SSOT. scripts/new-work.sh 가 읽는 유일한 곳. 값 하드코딩 금지. 우리 작업 대상은 backend/crm = 우리 CRM(데이터 허브 + 시술관제, 외부 CRM ↔ 우리 CRM ↔ linky·charty·watch). cc-prototype(시연)과는 별개 프로젝트 — 2026-10-12.",
   "project": "centurion",
+  "document_root": "para/projects/company/centurion",
   "worktree_root": "/Users/kknaks/orca/workspaces",
   "use_worktree": true,
   "repos": {
@@ -81,7 +82,7 @@
   "default_workers": [
     "backend"
   ],
-  "summary_dest": "/Users/kknaks/git/toy_pr2/kknaks_profile/para/projects/company/centurion/log",
+  "summary_dest": "para/projects/company/centurion/log",
   "rules": {
     "spec_and_app_use_separate_prs": true,
     "workers_commit_or_push": false,

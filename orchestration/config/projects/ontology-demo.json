@@ -1,6 +1,7 @@
 {
   "_doc": "온톨로지 데모(app/ontology-agent) 오케스트레이션 설정 SSOT. scripts/new-work.sh 가 읽는 유일한 곳. 값 하드코딩 금지. 명세 SoT 는 para/resources/note/ontology/2026-09-01-ontology-09-agent-app-plan.md (기록 09).",
   "project": "ontology-demo",
+  "document_root": "para/projects/summer-star/ontology-demo",
   "worktree_root": "/Users/kknaks/orca/workspaces",
   "use_worktree": true,
 
@@ -67,7 +68,7 @@
 
   "default_workers": ["backend"],
 
-  "summary_dest": "/Users/kknaks/orca/workspaces/kknaks_profile/ontology-demo/para/projects/summer-star/ontology-demo/log",
+  "summary_dest": "para/projects/summer-star/ontology-demo/log",
 
   "local_dev": {
     "_doc": "로컬 기동 참고. redis·codex worker 는 app/back compose 재사용 (namespace·queue 는 ontology 전용으로 분리).",

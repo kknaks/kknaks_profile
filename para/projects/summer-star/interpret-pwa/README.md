@@ -46,3 +46,9 @@ status: active
 - 2026-10-27: 용어집을 우리 시드로(D-33 · 4차 배포 main 9befd18). [전체 이력](log.md)
 - 2026-10-27: 마감 — 회고 [log/2026-10-27-interpret-pwa-poc.md](log/2026-10-27-interpret-pwa-poc.md) · 8차 배포(fe8475e)
 - 2026-10-26: 제품 착수. 사용자 대화를 BASE-001 로, 대화에서 닫은 것을 DEC-001(proposed)로. 빈 레포 `kknaksss/interpret-pwa` 생성. [전체 이력](log.md)
+
+<!-- work-links:start -->
+## 작업 기록
+
+[[para/projects/summer-star/interpret-pwa/work-index|진행 중·완료된 작업 목록]]
+<!-- work-links:end -->

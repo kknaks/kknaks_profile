@@ -34,9 +34,9 @@ SCAX의 사용자-facing 기능·권한·lifecycle 계약과 ubiquitous language
 |---|---|---|
 | 업무와 판단 | SCAX-SPEC-001, 002 | [업무 관리](20-spec/spec-001-work-management.md) · [판단 항목 검토](20-spec/spec-002-action-item-review.md) |
 | 기록과 회의 | SCAX-SPEC-003, 004 | [업무 기록·일일보고](20-spec/spec-003-work-record-daily-report.md) · [회의·미팅노트](20-spec/spec-004-meeting-note.md) |
-| 조직과 자료 | SCAX-SPEC-005, 006 | [조직·사람·권한](20-spec/spec-005-organization-people-access.md) · [자료 검색·출처 계보](20-spec/spec-006-material-search-lineage.md) |
+| 조직과 자료 | SCAX-SPEC-005, 006 | [조직·사람·권한](spec-005-organization-people-access.md) · [자료 검색·출처 계보](20-spec/spec-006-material-search-lineage.md) |
 | 일정과 AX | SCAX-SPEC-007, 008 | [일정·캘린더](20-spec/spec-007-calendar-connected-service.md) · [AX 대화·제안](20-spec/spec-008-ax-conversation-suggestion.md) |
-| 관계와 Project | SCAX-SPEC-009, 010 | [관계 탐색](20-spec/spec-009-relationship-exploration.md) · [프로젝트 협업·프로젝트 범위 권한](20-spec/spec-010-project-collaboration-access.md) |
+| 관계와 Project | SCAX-SPEC-009, 010 | [관계 탐색](20-spec/spec-009-relationship-exploration.md) · [프로젝트 협업·프로젝트 범위 권한](spec-010-project-collaboration-access.md) |
 
 ## SPEC List
 
@@ -46,12 +46,12 @@ SCAX의 사용자-facing 기능·권한·lifecycle 계약과 ubiquitous language
 | SCAX-SPEC-002 | 판단 항목 검토 | 사람 판단 | draft | [spec-002-action-item-review.md](20-spec/spec-002-action-item-review.md) |
 | SCAX-SPEC-003 | 업무 기록·일일보고 | 기록·보고 | draft | [spec-003-work-record-daily-report.md](20-spec/spec-003-work-record-daily-report.md) |
 | SCAX-SPEC-004 | 회의·미팅노트 | 회의 | draft | [spec-004-meeting-note.md](20-spec/spec-004-meeting-note.md) |
-| SCAX-SPEC-005 | 조직·사람·권한 | 조직·권한 | draft | [spec-005-organization-people-access.md](20-spec/spec-005-organization-people-access.md) |
+| SCAX-SPEC-005 | 조직·사람·권한 | 조직·권한 | draft | [spec-005-organization-people-access.md](spec-005-organization-people-access.md) |
 | SCAX-SPEC-006 | 자료 검색·출처 계보 | 자료·검색 | draft | [spec-006-material-search-lineage.md](20-spec/spec-006-material-search-lineage.md) |
 | SCAX-SPEC-007 | 일정·캘린더 | 일정 | draft | [spec-007-calendar-connected-service.md](20-spec/spec-007-calendar-connected-service.md) |
 | SCAX-SPEC-008 | AX 대화·제안 | AX | draft | [spec-008-ax-conversation-suggestion.md](20-spec/spec-008-ax-conversation-suggestion.md) |
 | SCAX-SPEC-009 | 관계 탐색 | 관계 graph | draft | [spec-009-relationship-exploration.md](20-spec/spec-009-relationship-exploration.md) |
-| SCAX-SPEC-010 | 프로젝트 협업·프로젝트 범위 권한 | Project | draft | [spec-010-project-collaboration-access.md](20-spec/spec-010-project-collaboration-access.md) |
+| SCAX-SPEC-010 | 프로젝트 협업·프로젝트 범위 권한 | Project | draft | [spec-010-project-collaboration-access.md](spec-010-project-collaboration-access.md) |
 
 ## 제공 범위 요약
 
@@ -72,7 +72,7 @@ SCAX의 사용자-facing 기능·권한·lifecycle 계약과 ubiquitous language
 |---|---|
 | 업무 생성·배정·납품 | SCAX-SPEC-001 → 002 → [Work & Decision Model](40-architecture/work-decision-model.md) |
 | 보고·회의 근거 | SCAX-SPEC-003 또는 004 → 001 → 006 |
-| 조직·Project 권한 | SCAX-SPEC-005 → 010 → [Organization & Access](40-architecture/organization-access.md) |
+| 조직·Project 권한 | SCAX-SPEC-005 → 010 → [Organization & Access](organization-access.md) |
 | 자료와 AX 답변 근거 | SCAX-SPEC-006 → 008 |
 | 관계 탐색·mini graph | SCAX-SPEC-009 → 008 → 010 |
 | 일정 | SCAX-SPEC-007 → 001 또는 004 |

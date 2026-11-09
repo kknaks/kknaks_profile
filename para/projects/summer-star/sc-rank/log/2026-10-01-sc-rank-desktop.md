@@ -84,3 +84,9 @@ Windows 설치 파일은 GitHub Actions 가 만든다.
 - 블로그 이미지 모드 `found` 경로는 실물로 못 봤다(1.png 가 결과에 없었다)
 - 엑셀 「광고 수」가 수집 목록 전체 기준이라 「전체 순위 − 광고 수」로 읽힐 수 있다 — 열 이름 변경·「타겟 앞 광고 수」 열은 이번 범위 밖, 개선 후보
 - Release 배포(`v0.1.0` 태그) 여부 미정 — 지금은 로그인해야 받는 Actions 산출물뿐
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/sc-rank/sc-rank-desktop/README|sc-rank-desktop]]
+<!-- work-links:end -->

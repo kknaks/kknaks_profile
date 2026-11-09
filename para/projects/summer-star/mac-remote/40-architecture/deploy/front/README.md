@@ -1,6 +1,6 @@
 # Frontend Deploy — iOS
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > iOS 앱(MacRemote)의 배포 *구조/환경*. 실행 *절차*(TestFlight·App Store 심사)는 [70-runbook/runbook-002](../../../70-runbook/runbook-002-ios-testflight-appstore.md).
 

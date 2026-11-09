@@ -1,12 +1,12 @@
 # Database Architecture
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > task-management v1 의 스키마 정본. **여기 적힌 것은 「이렇게 한다」다** — 모델 클래스도 마이그레이션도 이 문서를 따른다.
 >
 > 근거 표기: `DEC-00x §y` = `10-decision/`, 파일명 = `00-design/`, `§A/§C` = `orchestration/work/docs-v1/design-requests.md`.
 
-관련 문서 — `../system/README.md`(구성·흐름) · `../backend/README.md`(계층·규약).
+관련 문서 — [[para/projects/summer-star/task-management/40-architecture/system/README|../system/README.md]](구성·흐름) · [[para/projects/summer-star/task-management/40-architecture/backend/README|../backend/README.md]](계층·규약).
 
 ## 0. 스키마 전역 규약
 
@@ -349,7 +349,7 @@ erDiagram
 | 회의 **일시** | **`meeting.start_at` · `meeting.end_at`** | **시간 일정**(회의는 시간이 사실상 필수) |
 
 > **2026-09-06 개정 — §A-4 번복.** 업무의 일정은 **4필드**다(`start_date`·`due_date` 계획 / `started_at`·`completed_at` 실적 —
-> `domains/task.md` T-1). **실적 2개는 `schedule` 로 파생하지 않는다** — 캘린더는 계획만 그린다(사용자 확정).
+> [[para/projects/summer-star/task-management/40-architecture/database/domains/task|domains/task.md]] T-1). **실적 2개는 `schedule` 로 파생하지 않는다** — 캘린더는 계획만 그린다(사용자 확정).
 > **계획이 둘 다 없는 업무는 캘린더에 뜨지 않는다.** 「내 업무」 오늘 화면에만 매일 뜬다(DEC-002).
 
 `schedule` 이 갖는 것은 **시간축 배치뿐** — `start_at` · `end_at` · `is_all_day`. **기한 같은 도메인 속성을 담지 않는다.**
@@ -382,7 +382,7 @@ erDiagram
 `source_type` + `source_id` 다형 참조로 둔다. 근거 — DEC-005 §3 이 v2 확장값으로 `external` 을 명시했다. 외부 캘린더 일정은 우리 테이블에 원본 행이 없으므로 FK 를 걸면 그 자리가 막힌다. 대신 둘로 보완한다.
 
 - 원본 쓰기와 `schedule` 파생은 **같은 트랜잭션**이다.
-- 고아 행 점검은 **테스트**로 잡는다(`../backend/README.md` §12).
+- 고아 행 점검은 **테스트**로 잡는다([[para/projects/summer-star/task-management/40-architecture/backend/README|../backend/README.md]] §12).
 
 **소프트 딜리트·취소 상태를 `schedule` 에 복제하지 않는다.** 캘린더 조회와 겹침 검사는 `source_type` 으로 갈라 원본을 조인해 거른다 — 같은 사실을 두 곳에 두지 않는다는 원칙은 상태에도 그대로 적용한다. 조인 비용은 DEC-005 §3 이 수용했다.
 
@@ -413,7 +413,7 @@ erDiagram
 | `task_relation` | `UNIQUE (low_task_id, high_task_id)`, `(high_task_id)` | 무방향 1행 + 역방향 조회 |
 | `meeting` | `(account_id, status) WHERE deleted_at IS NULL` | 목록 |
 | `meeting_line` | `(meeting_id, track, agenda_id, order_index)` | 탭 하나 = 트랙 하나를 통째로 읽는다. **AI 트랙 전량 교체(M-7)도 이 인덱스로 DELETE 한다** |
-| ~~`meeting_line`~~ | ~~`UNIQUE (source_human_line_id) …` · `UNIQUE (source_ai_line_id) …`~~ | **삭제(2026-09-07)** — 통합 규칙과 함께 컬럼이 없어졌다(MF-56 · 57 · `domains/meeting.md` 컬럼 변경 표) |
+| ~~`meeting_line`~~ | ~~`UNIQUE (source_human_line_id) …` · `UNIQUE (source_ai_line_id) …`~~ | **삭제(2026-09-07)** — 통합 규칙과 함께 컬럼이 없어졌다(MF-56 · 57 · [[para/projects/summer-star/task-management/40-architecture/database/domains/meeting\|domains/meeting.md]] 컬럼 변경 표) |
 | `meeting_agenda` | `UNIQUE (meeting_id) WHERE track='human' AND state='active'` | 사람 트랙의 「논의 중」 안건은 최대 하나 (SPEC-007 §7-C · M-5-c) |
 | `meeting_attachment` | `UNIQUE (meeting_id, document_id) WHERE document_id IS NOT NULL` | 같은 문서 중복 첨부 금지 (SPEC-006 §7 · §4) |
 | `meeting_transcript` | `(meeting_id, at_ms)` | 근거 칩 클릭 → 해당 발화로 스크롤 |
@@ -429,11 +429,11 @@ erDiagram
 
 | Domain | Description | File |
 |---|---|---|
-| account | 계정·세션·경력·유형·프로젝트 | `domains/account.md` |
-| task | 업무와 그 자식들 — 완료 게이트·상태 전이 | `domains/task.md` |
-| meeting | 회의록 — 2트랙 + 최종 회의록, 트랜스크립트(재전사), 배치 이력. 일시 소유 | `domains/meeting.md` |
-| calendar | `schedule` 파생 규칙과 겹침 검사 | `domains/calendar.md` |
-| library | 문서함 — PARA 폴더·md 문서·연결 | `domains/library.md` |
+| account | 계정·세션·경력·유형·프로젝트 | [[para/projects/summer-star/task-management/40-architecture/database/domains/account\|domains/account.md]] |
+| task | 업무와 그 자식들 — 완료 게이트·상태 전이 | [[para/projects/summer-star/task-management/40-architecture/database/domains/task\|domains/task.md]] |
+| meeting | 회의록 — 2트랙 + 최종 회의록, 트랜스크립트(재전사), 배치 이력. 일시 소유 | [[para/projects/summer-star/task-management/40-architecture/database/domains/meeting\|domains/meeting.md]] |
+| calendar | `schedule` 파생 규칙과 겹침 검사 | [[para/projects/summer-star/task-management/40-architecture/database/domains/calendar\|domains/calendar.md]] |
+| library | 문서함 — PARA 폴더·md 문서·연결 | [[para/projects/summer-star/task-management/40-architecture/database/domains/library\|domains/library.md]] |
 
 ## Open Questions
 

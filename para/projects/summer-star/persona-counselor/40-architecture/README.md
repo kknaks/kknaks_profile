@@ -1,6 +1,6 @@
 # Architecture Index
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > 여러 spec/work가 공유하는 장기 구조를 관리한다.
 > 단일 work 안에서 끝나는 구현 메모는 `30-work/`에 둔다.
@@ -9,9 +9,9 @@
 
 | Area | Purpose | Index |
 |---|---|---|
-| database | ERD, 테이블, 도메인 데이터 구조 | `database/README.md` |
-| system | 시스템 아키텍처와 구성요소 | `system/README.md` |
-| deploy | 배포 프로세스와 환경 | `deploy/README.md` |
+| database | ERD, 테이블, 도메인 데이터 구조 | [[para/projects/summer-star/persona-counselor/40-architecture/database/README\|database/README.md]] |
+| system | 시스템 아키텍처와 구성요소 | [[para/projects/summer-star/persona-counselor/40-architecture/system/README\|system/README.md]] |
+| deploy | 배포 프로세스와 환경 | [[para/projects/summer-star/persona-counselor/40-architecture/deploy/README\|deploy/README.md]] |
 
 ## 원칙
 

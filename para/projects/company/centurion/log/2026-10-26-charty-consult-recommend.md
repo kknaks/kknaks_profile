@@ -66,3 +66,9 @@
 - 태블릿 「가격 표시」·추천 설명(`taxonomy-subset.json`)과 Hub 스냅샷 이중화 — 태블릿 정리 때 하나로
 - 앵커 6점은 이 고객 메시 기준 고정값(`meshBytes` 가드) — 다른 스캔이 오면 다시 찍어야 함
 - `reference/2026-10-21-charty-poc.zip`(0바이트, 10-26 16:18, 출처 모름) 손대지 않음
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/centurion/charty-consult-recommend/README|charty-consult-recommend]]
+<!-- work-links:end -->

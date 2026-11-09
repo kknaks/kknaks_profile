@@ -4,6 +4,7 @@
 
 | Date | Entry | Links |
 |---|---|---|
+| 2026-11-06 | 문서 목차 링크 정리와 프로젝트·작업 기록 연결 | [[para/projects/summer-star/interpret-pwa/work-index\|목록]] |
 | 2026-10-26 | 제품 착수. 사용자 입력(ccc 통역을 떼어 별도 PWA · 실시간 통역 · 로그인 · Procedure Hub 용어집 → Soniox)을 BASE-001 로, 대화에서 닫은 것(양방향 + 시작 때 언어 고르기 · 단일 계정 · medikit · 화면 구성 · 새 레포 · 로컬 확인 뒤 Mac Studio 배포)을 DEC-001(proposed)로. 빈 레포 `kknaksss/interpret-pwa` 생성. 코드 미착수 | [입력](00-baseline/baseline-001-interpret-pwa.md) · [결정](10-decision/decision-001-interpret-pwa.md) |
 | 2026-10-26 | DEC-001 accepted — 사용자 「응 그렇게 가」. OQ-001~004 를 기본값으로 닫음(D-13~D-16) | [결정](10-decision/decision-001-interpret-pwa.md) |
 | 2026-10-26 | DEC-001 D-17 추가 — 중국어 번체는 back 에서 변환(Soniox 는 간체만 · 자막만 번체 · TTS 는 간체, ccc 방식). 사용자 지적 | [결정](10-decision/decision-001-interpret-pwa.md) |

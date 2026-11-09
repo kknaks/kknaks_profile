@@ -1,6 +1,6 @@
 # Database Architecture
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > ERD, 테이블 정보, 도메인 데이터 구조를 관리한다.
 > 여러 spec/work가 공유하는 장기 구조만 둔다. schema/migration 전문은 코드가 SoT다.

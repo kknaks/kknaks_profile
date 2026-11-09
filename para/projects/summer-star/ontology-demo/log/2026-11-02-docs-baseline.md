@@ -58,3 +58,9 @@ spec 은 코드 작업(work-001-data-foundation)과 함께 24차례 상호 개�
 
 - DEC-004 `up: []` — front 개념 출처 노트가 생기면 잇는다
 - nexus 13종 컬럼 스키마 미고정(`columns_note` 로 표기) — 필요 시 SPEC-001 확장
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/ontology-demo/docs-baseline/README|docs-baseline]]
+<!-- work-links:end -->

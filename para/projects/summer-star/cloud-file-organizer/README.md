@@ -4,7 +4,7 @@
 
 Google Drive 데모를 통해 파일 업로드, AI 메타데이터 후보, 사람 승인 흐름을 검증하는 제품의 SSOT다. 부서별 문서 관리는 트리축(물리 귀속)과 지식그래프축(논리 연결)의 이중 축으로 확정했다(DEC-004/DEC-005).
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > ID prefix: frontmatter `id`는 전역 유일성을 위해 `CFO-` prefix를 쓴다 (`CFO-SPEC-001` 등, AXKG/MRT 컨벤션 동일). 본문/표의 `BASE/DEC/SPEC/WORK-###` 표기는 제품 내 축약형이다.
 
@@ -31,17 +31,17 @@ Google Drive 데모를 통해 파일 업로드, AI 메타데이터 후보, 사�
 
 | Stage | Index |
 |---|---|
-| 00-baseline | `00-baseline/README.md` |
-| 10-decision | `10-decision/README.md` |
-| 20-spec | `20-spec/README.md` |
-| 30-work | `30-work/README.md` |
-| 40-architecture | `40-architecture/README.md` |
+| 00-baseline | [[para/projects/summer-star/cloud-file-organizer/00-baseline/README\|00-baseline/README.md]] |
+| 10-decision | [[para/projects/summer-star/cloud-file-organizer/10-decision/README\|10-decision/README.md]] |
+| 20-spec | [[para/projects/summer-star/cloud-file-organizer/20-spec/README\|20-spec/README.md]] |
+| 30-work | [[para/projects/summer-star/cloud-file-organizer/30-work/README\|30-work/README.md]] |
+| 40-architecture | [[para/projects/summer-star/cloud-file-organizer/40-architecture/README\|40-architecture/README.md]] |
 
 > 60-release / 70-runbook 은 필요해질 때 생성한다 (optional).
 
 ## 최근 로그
 
-전체 이력은 `log.md`.
+전체 이력은 [[para/projects/summer-star/cloud-file-organizer/log|log.md]].
 
 - 2026-07-08 제품 문서 스캐폴딩 생성 및 BASE-001 등록
 - 2026-07-08 DEC-001 작성 — Google Drive-only 데모, Drive changes.watch 기반 후킹, AI 제안/사람 승인, DB 링크 저장 결정

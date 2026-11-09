@@ -46,3 +46,9 @@
 ## 7. 잔여
 
 - 없음 — 과거 자동완료분 소급 없음은 결정 사항(잔여 아님)
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/mediness/task-complete-gate/README|task-complete-gate]]
+<!-- work-links:end -->

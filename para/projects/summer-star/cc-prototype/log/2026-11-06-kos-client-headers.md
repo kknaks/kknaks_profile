@@ -57,3 +57,9 @@ back 만 재배포했고 새 pod 에서 403 이 사라졌다.
 - KOS 쓰기(예약 등록 · 방 배정 등)는 같은 헤더 함수를 거치지만 실호출로는 확인 안 함 — 다음 실제 등록 때 운영 로그로 확인
 - KOS 403 이 하루 동안 알림 없이 이어졌다 — 연동 끊김을 사람이 알 수단(헬스 · 알림)을 둘지 사용자 판단
 - 403 `Unsupported client.` 는 재시도 대상이 아니라 10초마다 같은 실패를 쌓는다 — 그대로 둘지 사용자 판단
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/cc-prototype/kos-client-headers/README|kos-client-headers]]
+<!-- work-links:end -->

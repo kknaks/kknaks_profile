@@ -191,6 +191,11 @@ work 본문은 phase 단위로 추적한다. phase 상태(`TODO` `IN_PROGRESS` `
 문서를 만들거나 고치면 **해당 단계 index(README) 와 `log.md` 를 같이 갱신한다.**
 연결된 상위 index(예: decision 을 고치면 baseline index)도 함께 본다.
 
+목차의 문서 이름은 실제 링크로 쓴다. 백틱으로 감싼 파일명만으로 목록을 만들지 않는다.
+`README.md`처럼 이름이 겹치면 레포 루트 기준 전체 경로의 wikilink나 정확한 상대경로의
+Markdown 링크를 쓴다. 외부 레포의 파일명을 현재 레포의 동명 파일로 연결하지 않는다.
+아직 작성하지 않은 문서는 미작성이라고 적고 실제 링크로 만들지 않는다.
+
 `log.md` 는 제품 단위 통합 로그다. 단계별 디렉토리에 별도 로그를 두지 않는다.
 
 ```markdown
@@ -237,24 +242,61 @@ frontmatter `work_type: release`, 양식은 `templates/projects/30-work/work-rel
 
 ## 4. 맵
 
+### 프로젝트와 작업 기록
+
+**작업은 프로젝트에 속한다.** 제품의 기능 계약·구현 계획(`30-work/`)과,
+그 계획을 수행한 오케스트레이션 작업 묶음(`orchestration/work/<slug>/`)은 구분한다.
+WORK 번호가 늘어도 오케스트레이션 작업을 새로 만들지 않는다.
+
+탐색 경로는 **프로젝트 README → `work-index.md` → 작업 README → 회고·당시 문서**다.
+회고를 거치지 않고도 프로젝트에서 브리프·재개 노트·조사·검증 리포트를 찾을 수 있어야 한다.
+
+- 소속의 원천은 `orchestration/config/projects/<project>.json`의 `document_root`다.
+  현재 체크아웃 기준의 프로젝트 문서 디렉토리를 상대경로로 적는다.
+- `work-index.md`는 진행 폴더와 아카이브를 함께 연결한다. 종료는 소속 변경이 아니다.
+  `para/archive/`로 프로젝트를 옮길 때도 `document_root`를 갱신하고 연결을 재생성한다.
+- 회고는 기존 `summary_dest` 규약에 따라 한 곳에만 둔다. 작업 README는 원본을 링크한다.
+  `summary_dest`는 레포 루트 기준 상대경로로 적어 다른 체크아웃으로 회고가 빠지지 않게 한다.
+  제품 `log/`에 있는 회고에서도 해당 작업 README로 돌아갈 수 있어야 한다.
+- 작업 아카이브의 본문·브리프·리포트는 당시 근거로 보존한다. 종료 뒤 새 판단은 후속 작업에 쓴다.
+  목차 재생성, 링크·경로 복구는 허용하며 당시 결과를 바꾸지 않는다.
+- 목차는 `orchestration/scripts/sync-work-links.py`로 재생성한다. 생성 파일과
+  `work-links` 마커 안의 내용은 수동 편집하지 않는다. 목차에는 본문을 복사하지 않는다.
+  원본이 없는 회고는 미확인으로 표시하고, 다른 기록을 같은 회고라고 추측해서 연결하지 않는다.
+
+프로젝트·작업·회고 연결은 [[orchestration/work/README|프로젝트별 작업 목록]]에서 확인한다.
+`reference/`는 외부 자료 보관함이며 이 연결 정합성 관리 대상에서 제외한다.
+브리프나 리포트의 실제 근거로 쓰인 외부 자료 경로는 기록에 남길 수 있다.
+
+### 제품 맵
+
 | 구분 | 소속 | 제품 | 내용 | 비고 |
 | --- | --- | --- | --- | --- |
-| 1 | `company` | `mediness` | 사내전용 AX 프로젝트 | 스펙은 회사 레포 |
-| 2 | `company` | `sc-ax` | sc 경영관리 AX 프로젝트 | 스펙은 회사 레포(mediness `sc-ax` 브랜치) |
-| 3 | `summer-star` | `ax-knowledge-graph` | AX 기사 · 영상 · 링크를 모아 개념 · 사례 · 도구 관계를 지식그래프로 전환 |  |
-| 4 | `summer-star` | `cloud-file-organizer` | Google Drive 파일을 AI 가 메타데이터 후보를 내고 사람이 승인하는 부서 문서 관리 |  |
-| 5 | `summer-star` | `kknaks-agents` | LLM 을 교체 가능한 추론 모듈로 쓰는 최소 Python 런타임 라이브러리 |  |
-| 6 | `summer-star` | `kknaks-dev` | 이 포트폴리오 사이트와 레포 자체 |  |
-| 7 | `summer-star` | `language-diary` | AI 와 음성 대화로 일기를 만들고 영어 학습 포인트를 주는 모바일 앱 |  |
-| 8 | `summer-star` | `mac-remote` | iPhone 을 Mac 리모컨으로 쓰는 앱 | DeskDeck 으로 App Store 출시 |
-| 9 | `summer-star` | `mini-game` | 매일 커피 내기를 하는 모바일 웹 미니게임 |  |
-| 10 | `summer-star` | `mykakao` | 카카오톡 대화를 내보내기 없이 로컬에서 추출 |  |
-| 11 | `summer-star` | `open-kknaks` | PTY 기반 Claude Code CLI 태스크 큐 라이브러리 + MCP 서버 |  |
-| 12 | `summer-star` | `persona-counselor` | 영향받은 책 · 인물 · 철학으로 AI 상담사 페르소나를 만들어 대화 |  |
-| 13 | `summer-star` | `study-timelapse` | 공부하는 모습을 녹화해 자동 타임랩스 생성 |  |
+| 1 | `company` | [[para/projects/company/mediness/README\|mediness]] | 사내전용 AX 프로젝트 | 스펙은 회사 레포 |
+| 2 | `company` | [[para/projects/company/sc-ax/README\|sc-ax]] | sc 경영관리 AX 프로젝트 | 스펙은 회사 레포(mediness `sc-ax` 브랜치) |
+| 3 | `summer-star` | [[para/projects/summer-star/ax-knowledge-graph/README\|ax-knowledge-graph]] | AX 기사 · 영상 · 링크를 모아 개념 · 사례 · 도구 관계를 지식그래프로 전환 |  |
+| 4 | `summer-star` | [[para/projects/summer-star/cloud-file-organizer/README\|cloud-file-organizer]] | Google Drive 파일을 AI 가 메타데이터 후보를 내고 사람이 승인하는 부서 문서 관리 |  |
+| 5 | `summer-star` | [[para/projects/summer-star/kknaks-agents/README\|kknaks-agents]] | LLM 을 교체 가능한 추론 모듈로 쓰는 최소 Python 런타임 라이브러리 |  |
+| 6 | `summer-star` | [[para/projects/summer-star/kknaks-dev/README\|kknaks-dev]] | 이 포트폴리오 사이트와 레포 자체 |  |
+| 7 | `summer-star` | [[para/projects/summer-star/language-diary/README\|language-diary]] | AI 와 음성 대화로 일기를 만들고 영어 학습 포인트를 주는 모바일 앱 |  |
+| 8 | `summer-star` | [[para/projects/summer-star/mac-remote/README\|mac-remote]] | iPhone 을 Mac 리모컨으로 쓰는 앱 | DeskDeck 으로 App Store 출시 |
+| 9 | `summer-star` | [[para/projects/summer-star/mini-game/README\|mini-game]] | 매일 커피 내기를 하는 모바일 웹 미니게임 |  |
+| 10 | `summer-star` | [[para/projects/summer-star/mykakao/README\|mykakao]] | 카카오톡 대화를 내보내기 없이 로컬에서 추출 |  |
+| 11 | `summer-star` | [[para/projects/summer-star/open-kknaks/README\|open-kknaks]] | PTY 기반 Claude Code CLI 태스크 큐 라이브러리 + MCP 서버 |  |
+| 12 | `summer-star` | [[para/projects/summer-star/persona-counselor/README\|persona-counselor]] | 영향받은 책 · 인물 · 철학으로 AI 상담사 페르소나를 만들어 대화 |  |
+| 13 | `summer-star` | [[para/projects/summer-star/study-timelapse/README\|study-timelapse]] | 공부하는 모습을 녹화해 자동 타임랩스 생성 |  |
 | 14 | `summer-star` | `summer-star-company` | NFC 카드로 사무실 출퇴근 자동 트래킹 |  |
-| 15 | `summer-star` | `task-management` | Tauri 기반 태스크 관리 앱 — Next.js 프론트 + FastAPI 백엔드, iOS · Windows 타겟 | 코드는 `kknaks/task_management` 레포 |
-| 16 | `summer-star` | `wine-log` | 와인 기록 · 관리 모바일 앱 + 관리자 웹 + AI 라벨 분석 |  |
+| 15 | `summer-star` | [[para/projects/summer-star/task-management/README\|task-management]] | Tauri 기반 태스크 관리 앱 — Next.js 프론트 + FastAPI 백엔드, iOS · Windows 타겟 | 코드는 `kknaks/task_management` 레포 |
+| 16 | `summer-star` | [[para/projects/summer-star/wine-log/README\|wine-log]] | 와인 기록 · 관리 모바일 앱 + 관리자 웹 + AI 라벨 분석 |  |
+| 17 | `company` | [[para/projects/company/ax-clinic-project/README\|ax-clinic-project]] | 제품 문서와 작업 기록 |  |
+| 18 | `company` | [[para/projects/company/centurion/README\|centurion]] | 제품 문서와 작업 기록 |  |
+| 19 | `company` | [[para/projects/company/db-backup/README\|db-backup]] | 제품 문서와 작업 기록 |  |
+| 20 | `summer-star` | [[para/projects/summer-star/agency-settlement/README\|agency-settlement]] | 제품 문서와 작업 기록 |  |
+| 21 | `summer-star` | [[para/projects/summer-star/cc-prototype/README\|cc-prototype]] | 제품 문서와 작업 기록 |  |
+| 22 | `summer-star` | [[para/projects/summer-star/interpret-pwa/README\|interpret-pwa]] | 제품 문서와 작업 기록 |  |
+| 23 | `summer-star` | [[para/projects/summer-star/ontology-demo/README\|ontology-demo]] | 제품 문서와 작업 기록 |  |
+| 24 | `summer-star` | [[para/projects/summer-star/sc-rank/README\|sc-rank]] | 제품 문서와 작업 기록 |  |
+| 25 | `summer-star` | [[para/projects/summer-star/strong-hajin/README\|strong-hajin]] | 제품 문서와 작업 기록 |  |
 
 ---
 

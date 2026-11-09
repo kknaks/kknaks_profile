@@ -1,6 +1,7 @@
 {
   "_doc": "task-management(Tauri 태스크 관리 앱 — Next.js 정적 빌드 프론트 + FastAPI 백엔드, macOS·Windows 데스크톱 타겟) 오케스트레이션 설정 SSOT. scripts/new-work.sh 가 읽는 유일한 곳. 값 하드코딩 금지.",
   "project": "task-management",
+  "document_root": "para/projects/summer-star/task-management",
   "worktree_root": "/Users/kknaks/orca/workspaces",
   "use_worktree": true,
   "repos": {
@@ -106,7 +107,7 @@
     "backend",
     "frontend"
   ],
-  "summary_dest": "/Users/kknaks/orca/workspaces/kknaks_profile/task-management-app/para/projects/summer-star/task-management/log",
+  "summary_dest": "para/projects/summer-star/task-management/log",
   "rules": {
     "spec_and_app_use_separate_prs": true,
     "workers_commit_or_push": false,

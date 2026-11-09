@@ -1,6 +1,6 @@
 # Architecture Index
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > 여러 spec/work가 공유하는 장기 구조를 관리한다. 단일 구현 메모가 아니라, 코드 스캐폴딩과 작업 분해의 기준이 되는 시스템/DB/배포 구조를 둔다.
 

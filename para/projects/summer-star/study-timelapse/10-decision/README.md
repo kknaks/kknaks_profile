@@ -1,6 +1,6 @@
 # Decision Index
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > study-timelapse 의 결정 로그. 원본 `study_timelapse/medi_docs/current/adr/` 의 ADR 21건(adr-01~22, **adr-03 결번**)을 큐레이션 이관한 것이다. 각 decision 의 `구현 현황` 섹션에 실제 코드 grounding 을 남겼다.
 > 이관 범위: 10-decision + 20-spec. baseline/work 는 미이관. Spec 컬럼은 20-spec 이관(STL-SPEC-001~013, 011 결번) 후 실제 링크로 승격했다. relationship SSOT 는 각 spec frontmatter `links.decisions` 이며 아래 표는 derived view.

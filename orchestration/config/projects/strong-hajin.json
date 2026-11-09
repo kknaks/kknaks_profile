@@ -1,6 +1,7 @@
 {
   "_doc": "strong-hajin(회의·업무 워크스페이스 — modular monolith. backend/ = Python 3.12 + FastAPI + SQLAlchemy 2 + psycopg, uv · frontend/ = React 19 + Vite + vitest) 오케스트레이션 설정 SSOT. scripts/new-work.sh 가 읽는 유일한 곳. 값 하드코딩 금지. sc-ax(회사 ax-workspace)를 개인 프로젝트로 가져온 것 — 2026-09-15.",
   "project": "strong-hajin",
+  "document_root": "para/projects/summer-star/strong-hajin",
   "worktree_root": "/Users/kknaks/orca/workspaces",
   "use_worktree": true,
   "repos": {
@@ -212,7 +213,7 @@
     "backend",
     "frontend"
   ],
-  "summary_dest": "/Users/kknaks/git/toy_pr2/kknaks_profile/para/projects/summer-star/strong-hajin/log",
+  "summary_dest": "para/projects/summer-star/strong-hajin/log",
   "rules": {
     "docs_and_code_use_separate_prs": true,
     "workers_commit_or_push": false,

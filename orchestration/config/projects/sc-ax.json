@@ -1,6 +1,7 @@
 {
   "_doc": "sc-ax 오케스트레이션 설정 SSOT. scripts/new-work.sh 가 읽는 유일한 곳. 값을 다른 데 하드코딩하지 말 것. 분리형(런북 §1 프로젝트 유형): 문서는 mediness 문서 리포 products/sc-ax/, 코드는 ax-workspace(SCAX 상용 시스템 modular monolith — 2026-09-07 추가).",
   "project": "sc-ax",
+  "document_root": "para/projects/company/sc-ax",
   "worktree_root": "/Users/kknaks/orca/workspaces",
   "use_worktree": true,
   "repos": {
@@ -103,7 +104,7 @@
       "mediness k8s(lima VM)도 이 서버 위 — 상세 운영 정보는 config/projects/mediness.json 의 environments 가 소유. 여기 복사하지 않는다."
     ]
   },
-  "summary_dest": "/Users/kknaks/orca/workspaces/kknaks_profile/sc-ax/para/projects/company/sc-ax/log",
+  "summary_dest": "para/projects/company/sc-ax/log",
   "rules": {
     "spec_and_app_use_separate_prs": true,
     "workers_commit_or_push": false,

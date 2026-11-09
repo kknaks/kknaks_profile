@@ -67,3 +67,9 @@ WORK-001~005 다섯 WP 를 backend·frontend 워커가 구현하고 WP 마다 re
 - 홈서버 실배포 · Vercel env — README 「배포」 절차, 사용자 실행. 2026-11-02 기준 미배포
 - 로컬 E2E 7단계 중 게이트 5-③(칩 클릭 하이라이트) 육안 확인 기록 없음
 - nexus 13종 컬럼 스키마 계약 미고정
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/ontology-demo/work-001-data-foundation/README|work-001-data-foundation]]
+<!-- work-links:end -->

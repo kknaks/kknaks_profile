@@ -1,6 +1,7 @@
 {
   "_doc": "agency-settlement(에이전시 수수료 정산 PoC — 운영 명동점 KOS 결제를 월별 품목 리스트로. back = FastAPI · front = Next.js, 디자인은 cc-prototype procedure/front 복사) 오케스트레이션 설정 SSOT. scripts/new-work.sh 가 읽는 유일한 곳. 값 하드코딩 금지. 2026-10-29 빈 레포 kknaksss/agency-settlement 에서 착수.",
   "project": "agency-settlement",
+  "document_root": "para/projects/summer-star/agency-settlement",
   "worktree_root": "/Users/kknaks/orca/workspaces",
   "use_worktree": true,
   "repos": {
@@ -125,7 +126,7 @@
     "backend",
     "frontend"
   ],
-  "summary_dest": "/Users/kknaks/git/toy_pr2/kknaks_profile/para/projects/summer-star/agency-settlement/log",
+  "summary_dest": "para/projects/summer-star/agency-settlement/log",
   "rules": {
     "spec_and_app_use_separate_prs": true,
     "workers_commit_or_push": false,

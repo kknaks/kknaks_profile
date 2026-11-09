@@ -2,7 +2,7 @@
 
 회사에서 매일 커피 내기를 하기 위한 모바일 웹 미니게임 제품 문서 세트다. 매일 다른 게임을 운영할 수 있는 구조를 전제로 한다.
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 ## 코드 레포
 
@@ -25,10 +25,10 @@
 
 | Stage | Index |
 |---|---|
-| 00-baseline | `00-baseline/README.md` |
-| 10-decision | `10-decision/README.md` |
-| 20-spec | `20-spec/README.md` |
-| 30-work | `30-work/README.md` |
+| 00-baseline | [[para/projects/summer-star/mini-game/00-baseline/README\|00-baseline/README.md]] |
+| 10-decision | [[para/projects/summer-star/mini-game/10-decision/README\|10-decision/README.md]] |
+| 20-spec | [[para/projects/summer-star/mini-game/20-spec/README\|20-spec/README.md]] |
+| 30-work | [[para/projects/summer-star/mini-game/30-work/README\|30-work/README.md]] |
 
 ## 최근 로그
 

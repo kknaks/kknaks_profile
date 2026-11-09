@@ -1,6 +1,6 @@
 # Deploy Architecture
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > mac-remote는 두 artifact를 따로 배포한다 — Mac 헬퍼는 Developer ID 사인 DMG, iOS 앱은 TestFlight.
 > 원본: `mac-remote/doc/Architecture.md` §8, `mac-remote/doc/runbook/`.
@@ -26,8 +26,8 @@
 
 | Area | Index |
 |---|---|
-| Backend (Mac 헬퍼 DMG) | `back/README.md` |
-| Frontend (iOS TestFlight) | `front/README.md` |
+| Backend (Mac 헬퍼 DMG) | [[para/projects/summer-star/mac-remote/40-architecture/deploy/back/README\|back/README.md]] |
+| Frontend (iOS TestFlight) | [[para/projects/summer-star/mac-remote/40-architecture/deploy/front/README\|front/README.md]] |
 
 ## Release Flow
 

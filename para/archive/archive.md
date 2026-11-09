@@ -36,7 +36,7 @@ company/<제품>/
 └── log/           작업 회고 — YYYY-MM-DD-<slug>.md (있으면)
 ```
 
-**`showcase.md` 는 현역과 같은 양식이다.** [[showcase|templates/projects/showcase.md]] 를
+**`showcase.md` 는 현역과 같은 양식이다.** [[templates/projects/showcase|showcase 양식]] 를
 따른다 — frontmatter 없이 본문만(메타는 DB), 채용 담당자가 위에서 아래로 읽는 순서로.
 아카이브라고 양식을 낮추지 않는다. 경력의 증거다.
 

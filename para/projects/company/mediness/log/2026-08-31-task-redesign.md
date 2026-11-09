@@ -76,3 +76,9 @@ mediness 의 업무 태스크가 세 원장(`tasks` 정본 / `version_wbs_task` 
 - **다음 작업(신규 슬러그)**: 업무요청 테스크 — 결정 7건 확정 상태(게이트 없음·파생 구분·member 축·due/expected 분담·슬랙 DM 전달·진입점 2곳·페이지 리디자인은 사용자 주도)
 - 후속 판단: 결제 복구 후 CHARTY CD runs-on 원복 여부 · mediness build 셀프호스트 유지(arm64 네이티브라 유리) · 러너 이미지에 az 굽기 · self-hosted-ci.md 갱신분 커밋 경로
 - 이월 OQ: 알림/DM·게이트 에스컬레이션(OQ-2) · 좌초 responding run 소급 처분 · SPEC-153 콘솔 본체 · WP-114 소유 조정(OI-1) · 회의록 어휘 코드 반영은 WP-126 P6 완료로 닫힘
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/mediness/task-redesign/README|task-redesign]]
+<!-- work-links:end -->

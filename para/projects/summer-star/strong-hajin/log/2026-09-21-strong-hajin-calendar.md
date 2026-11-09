@@ -130,3 +130,8 @@
 - **`material_*` 계열 병렬 격리** — `reference/2026-09-21-test-flaky/` 에 남겼다. 다음 작업
 - **`_release_orphan_reservation` 이 호출자 0개인 죽은 코드** (기존 부채)
 
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/strong-hajin/strong-hajin-calendar/README|strong-hajin-calendar]]
+<!-- work-links:end -->
