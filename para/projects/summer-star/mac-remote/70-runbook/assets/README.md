@@ -1,6 +1,6 @@
 # Assets Manifest — mac-remote
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > App Store 제출용 바이너리 자산을 모으고 상태를 추적한다. 절차는 [RB-002](../runbook-002-ios-testflight-appstore.md).
 > 자산 파일은 `appstore/` 하위에, 이 README는 manifest.

@@ -15,7 +15,7 @@ sources:
 
 실제 서버 session과 generic Principal을 기준으로 조직·사람을 탐색하고, versioned capability·role·grant를 조직 축과 Project 축에 적용하는 계약이다.
 
-> Project 자체와 ProjectAssignment lifecycle은 [SCAX-SPEC-010](spec-010-project-collaboration-access.md)이 소유한다. 내부 권한 합성은 [Organization & Access](../40-architecture/organization-access.md)가 소유한다.
+> Project 자체와 ProjectAssignment lifecycle은 [SCAX-SPEC-010](spec-010-project-collaboration-access.md)이 소유한다. 내부 권한 합성은 [Organization & Access](organization-access.md)가 소유한다.
 
 ## 1. 인증과 Principal
 

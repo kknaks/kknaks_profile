@@ -1,6 +1,6 @@
 # Product Map — ontology-demo
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 피부과 의원 데이터를 메달리온(브론즈→실버→골드) + 온톨로지 그래프로 쌓고, AI 에이전트가
 관계를 근거로 답하는 데모 앱. 기록 01~09(`para/resources/note/ontology/`)를 계약으로 굳혀
@@ -31,10 +31,10 @@
 
 | Stage | Index |
 |---|---|
-| 00-baseline | `00-baseline/README.md` |
-| 10-decision | `10-decision/README.md` |
-| 20-spec | `20-spec/README.md` |
-| 30-work | `30-work/README.md` |
+| 00-baseline | [[para/projects/summer-star/ontology-demo/00-baseline/README\|00-baseline/README.md]] |
+| 10-decision | [[para/projects/summer-star/ontology-demo/10-decision/README\|10-decision/README.md]] |
+| 20-spec | [[para/projects/summer-star/ontology-demo/20-spec/README\|20-spec/README.md]] |
+| 30-work | [[para/projects/summer-star/ontology-demo/30-work/README\|30-work/README.md]] |
 
 ## 최근 로그
 
@@ -44,4 +44,10 @@
 - 2026-09-02 SPEC-001·002·003·005 작성(draft) — SPEC-004(화면)는 결번.
 - 2026-09-02 DEC-001~005 확정 · BASE-001 `accepted`.
 - 2026-09-02 BASE-001 등재 — 기록 09(데모 에이전트 앱 구축 계획)를 날것 입력으로.
-- 2026-09-02 제품 디렉토리 스캐폴딩. 전체 이력은 `log.md`.
+- 2026-09-02 제품 디렉토리 스캐폴딩. 전체 이력은 [[para/projects/summer-star/ontology-demo/log|log.md]].
+
+<!-- work-links:start -->
+## 작업 기록
+
+[[para/projects/summer-star/ontology-demo/work-index|진행 중·완료된 작업 목록]]
+<!-- work-links:end -->

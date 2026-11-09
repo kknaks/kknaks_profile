@@ -75,3 +75,9 @@
 - **DS-gaps**: 검정 solid 단추(채팅만) · 초안 카드 제목 줄 · 채워지는 4칸 바 · 체크리스트 장식 상자 · 추천 대화 가로 칩 — 디자인 시스템에 올릴지
 - **기준선 날짜 의존 테스트 5건**(CreateWork 시작일 4 · CreateWorkLayout 1) — 10월이라 9월 칸이 없어 실패, 오늘을 고정하는 테스트로 고칠 것
 - 남은 OQ: SPEC-001 OQ-K(간트/타임라인 화면 자리) · DEC-007 OQ(로그인 시도 제한 · M-5 · 개인판 origin · 백업 정책 · 노드 codex 업그레이드 · Releases)
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/strong-hajin/strong-hajin-polish/README|strong-hajin-polish]]
+<!-- work-links:end -->

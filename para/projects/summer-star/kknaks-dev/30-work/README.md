@@ -1,6 +1,6 @@
 # Work Index
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > 적용 순서 핵심: enforcement(L1~L4 ERROR + 부팅 fail-fast)는 **WORK-007 맨 마지막**에 켠다. 그 전엔 검증기를 report-only로 둬야 라이브 서버가 안 죽는다.
 
@@ -76,31 +76,31 @@
 
 | ID | Title | 담당 | Status | Covers Spec | Depends | File |
 |---|---|---|---|---|---|---|
-| WORK-001 | 그래프 빌더 수술 + 검증기(report-only) | BE | done | SPEC-002·004 | — | `work-001-graph-builder-validator.md` |
-| WORK-002 | 검증기 정교화 (code-fence 스킵·navigational 제외·orphan 범위, report-only) | BE | done | SPEC-002·004 | 001 | `work-002-validator-refinement.md` |
-| WORK-003 | 지식층 scaffold + 작성 규약(분류·정제·up·archive + agent.md) | BE/문서 | done | SPEC-001·003 | 002 | `work-003-knowledge-layer-scaffold.md` |
-| WORK-004 | projects → products/showcase 재편 (+`/projects` 라우트가 `products/*/showcase.md`를 읽도록 재배선 + loader가 products showcase 노출 + inputs.py) | BE+FE | done | SPEC-001 | 003 | `work-004-migrate-projects.md` |
-| WORK-005 | notes → reference 재편 (+ reference 라우트·loader 키 신설/재정의 — `/notes` 유지 vs `/reference` 네이밍은 발주 직전 admin 결정) | BE+FE | done | SPEC-001 | 003 | `work-005-migrate-notes.md` |
-| WORK-006 | contents 잔류 확정(마이그레이션 철회)+문서정정 (DEC-008 신설·DEC-002 amend·SPEC-001 정정, 코드 0, /posts 배선 연기) | 문서 | done | SPEC-001 | 003 | `work-006-migrate-contents.md` |
-| WORK-007 | enforcement ON (L1~L4 ERROR fail-fast + pre-commit + kill-switch GRAPH_ENFORCE) — 단일 지점 load_persona, boot propagate/reload catch, 메커니즘 4종 실증 | BE | done | SPEC-004 | 004·005 | `work-007-enforce-validation.md` |
-| WORK-008 | 전역 그래프 /graph (_graph.json API + force-directed) | BE+FE | done | SPEC-005 | 007 | `work-008-global-graph.md` |
-| WORK-009 | 노트별 로컬 그래프 (이웃+백링크) | FE | done | SPEC-005 | 008 | `work-009-local-graph.md` |
-| WORK-010 | permanent 층 그래프 배선 — 영구노트를 _graph 에 연결 (BE-only, WORK-005 미러) | BE | done | SPEC-001·003 | 005 | `work-010-wire-permanent.md` |
-| WORK-011 | 관리자 인증 MVP — DB 토대(Postgres·async SQLAlchemy·Alembic) + 쿠키 JWT 로그인 + admin 목 | BE+FE | done | SPEC-006 | — | `work-011-admin-auth-mvp.md` |
-| WORK-012 | Slack bridge를 back에 흡수 + 쓰기 소유권 정리 (sink DI 리팩터·lifespan 흡수·compose 정리·OKK-SPEC-011 §4 개정) | BE | **done** | SPEC-007(선행분) | — | `work-012-slack-bridge-absorb.md` |
-| WORK-013 | concept 층 도입 — 4층 재편·검증 재정의·규칙/템플릿 (report-only 선행 → enforce) | BE+문서 | **done** | SPEC-001·002·003·004 | — | `work-013-concept-layer.md` |
-| WORK-014 | 승인 큐 + route 게이트 MVP (스키마·접수·자동준비·게이트 공통계약·admin 큐 화면) | BE+FE | done | SPEC-007·008(route)·009 | 012·013 | `work-014-queue-and-route-gate.md` |
-| WORK-016 | 비동기 실행 + 진행 표시 UI (제출/수확 분리·완료 대기·진행 표시) | BE+FE | done | SPEC-008·009 | 015 | `work-016-async-execution-and-progress-ui.md` |
-| WORK-015 | 유튜브 체인 완성 + Apply Executor (source_note·concept·derived + 원자적 발행) | BE+FE | doing 80% (BE·FE 전부 done, 실전 e2e 만 남음) | SPEC-008·010·004 | 014 | `work-015-youtube-chain-and-executor.md` |
-| WORK-017 | 잔디 커밋 파이프라인 — 형식 SoT·준비부 일반화·더미 collect·발행부·화면·진짜 git 수집 (5 phase) | BE+FE+Ops | **done (2026-08-03)** — 서버 하루치 실 push 완주(`a8c44b4`). 로컬 e2e 가 결함 10건을 꺼내 9건 수정, 818 passed | SPEC-011·012·013·010 | 016 | `work-017-grass-commit-pipeline.md` |
-| WORK-019 | 지식층 디렉토리 이관 — `resources/{source,concept,synthesis}/` · `archive/` 최상위 · 「양식 원천」 명칭 전환 (4 phase) | BE+문서+Ops | **done (2026-08-03)** — 이동 전후 그래프 동일(`nodes 287·ERROR 0`), 서버 실측도 같다. 잠복 버그 1건 발견·수정. 887 passed | SPEC-001·005 | 013 | `work-019-resources-layout-migration.md` |
-| WORK-018 | 제품 레지스트리 — 형식 SoT+트리 정리 · `product_slug` 컬럼 + **`repository/` 계층 신설** · 결정적 스캐폴딩 · 미등록 발견 · 관리 화면 (5 phase) | BE+FE+Ops | **done (2026-08-03)** — 배포·시드 17행·클론 295MB 완주. 로컬 e2e 가 결함 4건을 꺼냈고 **서버에서 "한 달 57건 누락" 이 재현됐다**. 887 passed | SPEC-014·011·001 | 017 | `work-018-product-registry-admin.md` |
-| WORK-020 | 개념 후보 좁히기 — alias seed + 그래프 1홉 (`concept`·`daily` 게이트 입력에서 전량 투입 제거, 5 phase) | BE | **done (2026-08-12)** — payload 70,554 → 11,359자(84% 감소), 회수율 87%. 문서 행이 `todo` 로 남아 있던 것을 2026-08-13 에 바로잡았다 | SPEC-008 | — | `work-020-concept-candidate-retrieval.md` |
-| WORK-021 | 노트 출력 계약에서 JSON 을 뺀다 — 구분자 레코드 (`source_note`·`concept`·`derived`·`post`, 6 phase) | BE | **in_progress 90%** — P1~P4·P6 done. **실전(#3881)에서 다섯 스테이지 전부 1차 통과·재시도 0** — 이 발주가 풀려던 문제는 닫혔다. 발행은 다른 사유(`type` 누락·dead link)로 거부됐고 하나는 P6 로 닫았다(OQ-3) | SPEC-008 | — | `work-021-note-output-delimiter.md` |
-| WORK-022 | 스테이지 사이 세션 이어받기 — 앞 게이트 승계 · `cancelled` 제외 · 실패 세션 보존 · 원문 재전송 제거 · **죽은 세션 복구** (6 phase) | BE | **in_progress 85%** — P1~P4·P6 done. 실전(#3881)에서 게이트 넷이 한 세션임을 확인했고, **배포가 세션을 죽여 항목이 멎는 구멍**을 P6 로 닫았다. P5 재측정만 남았다 | SPEC-009 | — | `work-022-stage-session-inheritance.md` |
-| WORK-023 | 채용담당자 채팅 BE — 세션·대화 API · MCP 서버 · 제출·소비자 (4 phase) | BE | **done (2026-08-28)** — 워커 구현 + 리뷰 fix1 + e2e 실측 fix2(제출-커밋 순서). back 133·mcp 24 passed, 로컬 compose e2e 완주(15~20초). PR 대기 | SPEC-017 | — | `work-023-recruiter-chat-backend.md` |
-| WORK-024 | 채용담당자 채팅 FE — 홈 재구성 · /chat · 폴링 대화 표면 (3 phase) | FE | **done (2026-08-28)** — 워커 구현 + fix1(retry·색). tsc 0, 로컬 dev 실 API 연동 확인. PR 대기 | SPEC-017 | WORK-023 | `work-024-recruiter-chat-frontend.md` |
-| WORK-025 | 어드민 채팅 열람·인사이트 — 사이드바 탭 · 목록/상세 · 위젯 3종 (2 phase) | BE+FE | **done (2026-08-29)** — API 3종(집계 요청 시 계산·DB 무변경) + 「방문자 › 채팅」 화면. 186 passed · tsc 0 · jsonb 'null' 실버그 수정 | SPEC-017 U-8 | 023 | `work-025-admin-chat-insights.md` |
+| WORK-001 | 그래프 빌더 수술 + 검증기(report-only) | BE | done | SPEC-002·004 | — | [[para/projects/summer-star/kknaks-dev/30-work/work-001-graph-builder-validator\|work-001-graph-builder-validator.md]] |
+| WORK-002 | 검증기 정교화 (code-fence 스킵·navigational 제외·orphan 범위, report-only) | BE | done | SPEC-002·004 | 001 | [[para/projects/summer-star/kknaks-dev/30-work/work-002-validator-refinement\|work-002-validator-refinement.md]] |
+| WORK-003 | 지식층 scaffold + 작성 규약(분류·정제·up·archive + agent.md) | BE/문서 | done | SPEC-001·003 | 002 | [[para/projects/summer-star/kknaks-dev/30-work/work-003-knowledge-layer-scaffold\|work-003-knowledge-layer-scaffold.md]] |
+| WORK-004 | projects → products/showcase 재편 (+`/projects` 라우트가 `products/*/showcase.md`를 읽도록 재배선 + loader가 products showcase 노출 + inputs.py) | BE+FE | done | SPEC-001 | 003 | [[para/projects/summer-star/kknaks-dev/30-work/work-004-migrate-projects\|work-004-migrate-projects.md]] |
+| WORK-005 | notes → reference 재편 (+ reference 라우트·loader 키 신설/재정의 — `/notes` 유지 vs `/reference` 네이밍은 발주 직전 admin 결정) | BE+FE | done | SPEC-001 | 003 | [[para/projects/summer-star/kknaks-dev/30-work/work-005-migrate-notes\|work-005-migrate-notes.md]] |
+| WORK-006 | contents 잔류 확정(마이그레이션 철회)+문서정정 (DEC-008 신설·DEC-002 amend·SPEC-001 정정, 코드 0, /posts 배선 연기) | 문서 | done | SPEC-001 | 003 | [[para/projects/summer-star/kknaks-dev/30-work/work-006-migrate-contents\|work-006-migrate-contents.md]] |
+| WORK-007 | enforcement ON (L1~L4 ERROR fail-fast + pre-commit + kill-switch GRAPH_ENFORCE) — 단일 지점 load_persona, boot propagate/reload catch, 메커니즘 4종 실증 | BE | done | SPEC-004 | 004·005 | [[para/projects/summer-star/kknaks-dev/30-work/work-007-enforce-validation\|work-007-enforce-validation.md]] |
+| WORK-008 | 전역 그래프 /graph (_graph.json API + force-directed) | BE+FE | done | SPEC-005 | 007 | [[para/projects/summer-star/kknaks-dev/30-work/work-008-global-graph\|work-008-global-graph.md]] |
+| WORK-009 | 노트별 로컬 그래프 (이웃+백링크) | FE | done | SPEC-005 | 008 | [[para/projects/summer-star/kknaks-dev/30-work/work-009-local-graph\|work-009-local-graph.md]] |
+| WORK-010 | permanent 층 그래프 배선 — 영구노트를 _graph 에 연결 (BE-only, WORK-005 미러) | BE | done | SPEC-001·003 | 005 | [[para/projects/summer-star/kknaks-dev/30-work/work-010-wire-permanent\|work-010-wire-permanent.md]] |
+| WORK-011 | 관리자 인증 MVP — DB 토대(Postgres·async SQLAlchemy·Alembic) + 쿠키 JWT 로그인 + admin 목 | BE+FE | done | SPEC-006 | — | [[para/projects/summer-star/kknaks-dev/30-work/work-011-admin-auth-mvp\|work-011-admin-auth-mvp.md]] |
+| WORK-012 | Slack bridge를 back에 흡수 + 쓰기 소유권 정리 (sink DI 리팩터·lifespan 흡수·compose 정리·OKK-SPEC-011 §4 개정) | BE | **done** | SPEC-007(선행분) | — | [[para/projects/summer-star/kknaks-dev/30-work/work-012-slack-bridge-absorb\|work-012-slack-bridge-absorb.md]] |
+| WORK-013 | concept 층 도입 — 4층 재편·검증 재정의·규칙/템플릿 (report-only 선행 → enforce) | BE+문서 | **done** | SPEC-001·002·003·004 | — | [[para/projects/summer-star/kknaks-dev/30-work/work-013-concept-layer\|work-013-concept-layer.md]] |
+| WORK-014 | 승인 큐 + route 게이트 MVP (스키마·접수·자동준비·게이트 공통계약·admin 큐 화면) | BE+FE | done | SPEC-007·008(route)·009 | 012·013 | [[para/projects/summer-star/kknaks-dev/30-work/work-014-queue-and-route-gate\|work-014-queue-and-route-gate.md]] |
+| WORK-016 | 비동기 실행 + 진행 표시 UI (제출/수확 분리·완료 대기·진행 표시) | BE+FE | done | SPEC-008·009 | 015 | [[para/projects/summer-star/kknaks-dev/30-work/work-016-async-execution-and-progress-ui\|work-016-async-execution-and-progress-ui.md]] |
+| WORK-015 | 유튜브 체인 완성 + Apply Executor (source_note·concept·derived + 원자적 발행) | BE+FE | doing 80% (BE·FE 전부 done, 실전 e2e 만 남음) | SPEC-008·010·004 | 014 | [[para/projects/summer-star/kknaks-dev/30-work/work-015-youtube-chain-and-executor\|work-015-youtube-chain-and-executor.md]] |
+| WORK-017 | 잔디 커밋 파이프라인 — 형식 SoT·준비부 일반화·더미 collect·발행부·화면·진짜 git 수집 (5 phase) | BE+FE+Ops | **done (2026-08-03)** — 서버 하루치 실 push 완주(`a8c44b4`). 로컬 e2e 가 결함 10건을 꺼내 9건 수정, 818 passed | SPEC-011·012·013·010 | 016 | [[para/projects/summer-star/kknaks-dev/30-work/work-017-grass-commit-pipeline\|work-017-grass-commit-pipeline.md]] |
+| WORK-019 | 지식층 디렉토리 이관 — `resources/{source,concept,synthesis}/` · `archive/` 최상위 · 「양식 원천」 명칭 전환 (4 phase) | BE+문서+Ops | **done (2026-08-03)** — 이동 전후 그래프 동일(`nodes 287·ERROR 0`), 서버 실측도 같다. 잠복 버그 1건 발견·수정. 887 passed | SPEC-001·005 | 013 | [[para/projects/summer-star/kknaks-dev/30-work/work-019-resources-layout-migration\|work-019-resources-layout-migration.md]] |
+| WORK-018 | 제품 레지스트리 — 형식 SoT+트리 정리 · `product_slug` 컬럼 + **`repository/` 계층 신설** · 결정적 스캐폴딩 · 미등록 발견 · 관리 화면 (5 phase) | BE+FE+Ops | **done (2026-08-03)** — 배포·시드 17행·클론 295MB 완주. 로컬 e2e 가 결함 4건을 꺼냈고 **서버에서 "한 달 57건 누락" 이 재현됐다**. 887 passed | SPEC-014·011·001 | 017 | [[para/projects/summer-star/kknaks-dev/30-work/work-018-product-registry-admin\|work-018-product-registry-admin.md]] |
+| WORK-020 | 개념 후보 좁히기 — alias seed + 그래프 1홉 (`concept`·`daily` 게이트 입력에서 전량 투입 제거, 5 phase) | BE | **done (2026-08-12)** — payload 70,554 → 11,359자(84% 감소), 회수율 87%. 문서 행이 `todo` 로 남아 있던 것을 2026-08-13 에 바로잡았다 | SPEC-008 | — | [[para/projects/summer-star/kknaks-dev/30-work/work-020-concept-candidate-retrieval\|work-020-concept-candidate-retrieval.md]] |
+| WORK-021 | 노트 출력 계약에서 JSON 을 뺀다 — 구분자 레코드 (`source_note`·`concept`·`derived`·`post`, 6 phase) | BE | **in_progress 90%** — P1~P4·P6 done. **실전(#3881)에서 다섯 스테이지 전부 1차 통과·재시도 0** — 이 발주가 풀려던 문제는 닫혔다. 발행은 다른 사유(`type` 누락·dead link)로 거부됐고 하나는 P6 로 닫았다(OQ-3) | SPEC-008 | — | [[para/projects/summer-star/kknaks-dev/30-work/work-021-note-output-delimiter\|work-021-note-output-delimiter.md]] |
+| WORK-022 | 스테이지 사이 세션 이어받기 — 앞 게이트 승계 · `cancelled` 제외 · 실패 세션 보존 · 원문 재전송 제거 · **죽은 세션 복구** (6 phase) | BE | **in_progress 85%** — P1~P4·P6 done. 실전(#3881)에서 게이트 넷이 한 세션임을 확인했고, **배포가 세션을 죽여 항목이 멎는 구멍**을 P6 로 닫았다. P5 재측정만 남았다 | SPEC-009 | — | [[para/projects/summer-star/kknaks-dev/30-work/work-022-stage-session-inheritance\|work-022-stage-session-inheritance.md]] |
+| WORK-023 | 채용담당자 채팅 BE — 세션·대화 API · MCP 서버 · 제출·소비자 (4 phase) | BE | **done (2026-08-28)** — 워커 구현 + 리뷰 fix1 + e2e 실측 fix2(제출-커밋 순서). back 133·mcp 24 passed, 로컬 compose e2e 완주(15~20초). PR 대기 | SPEC-017 | — | [[para/projects/summer-star/kknaks-dev/30-work/work-023-recruiter-chat-backend\|work-023-recruiter-chat-backend.md]] |
+| WORK-024 | 채용담당자 채팅 FE — 홈 재구성 · /chat · 폴링 대화 표면 (3 phase) | FE | **done (2026-08-28)** — 워커 구현 + fix1(retry·색). tsc 0, 로컬 dev 실 API 연동 확인. PR 대기 | SPEC-017 | WORK-023 | [[para/projects/summer-star/kknaks-dev/30-work/work-024-recruiter-chat-frontend\|work-024-recruiter-chat-frontend.md]] |
+| WORK-025 | 어드민 채팅 열람·인사이트 — 사이드바 탭 · 목록/상세 · 위젯 3종 (2 phase) | BE+FE | **done (2026-08-29)** — API 3종(집계 요청 시 계산·DB 무변경) + 「방문자 › 채팅」 화면. 186 passed · tsc 0 · jsonb 'null' 실버그 수정 | SPEC-017 U-8 | 023 | [[para/projects/summer-star/kknaks-dev/30-work/work-025-admin-chat-insights\|work-025-admin-chat-insights.md]] |
 
 ## Status Board
 

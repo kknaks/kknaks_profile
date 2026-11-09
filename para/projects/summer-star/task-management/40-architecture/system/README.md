@@ -1,13 +1,13 @@
 # System Architecture
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > task-management v1 의 시스템 구성요소, 외부 연동, 주요 요청 흐름. **여기 적힌 것은 「이렇게 한다」다** —
 > spec·코드 워커가 이 문서를 계약으로 읽고, 리뷰어가 판정 기준으로 삼는다.
 >
 > 근거 표기: `DEC-00x §y` = `10-decision/`, `F-xx·P-xx·Q-xx` = `orchestration/work/docs-v1/docs-v1-design-report.md`,
 > `§C` = `orchestration/work/docs-v1/design-requests.md`, `soniox` = `orchestration/work/docs-v1/soniox-study.md`,
-> **`MF-n` = `reference/2026-09-06-task-management-app/Meeting flow.md` §0(2026-09-07 결정 34건 — `MF-1 ~ MF-70`).**
+> **`MF-n` = [[reference/2026-09-06-task-management-app/Meeting flow|reference/2026-09-06-task-management-app/Meeting flow.md]] §0(2026-09-07 결정 34건 — `MF-1 ~ MF-70`).**
 >
 > **2026-09-07 개정(MF).** 흐름 ③ 이 바뀌었다 — `/start` 즉시 응답 + 웜스타트 큐(MF-1) · AI 는 MCP 도구 7개로 읽는다(MF-2 · 50) ·
 > 배치는 AI 트랙 전체를 낸다(MF-53) · 종료는 **async 재전사 → 최종 회의록 호출 한 번**(MF-37 · 56). 종료 시 배치·통합 호출이 없다.
@@ -15,7 +15,7 @@
 > **2026-09-07 저녁 추가 — MF-68 · 69 · 70(SYS-OQ-4 닫힘).** **MCP 서버는 별도 컨테이너**다(`app/mcp/` — compose 에 back · worker · **mcp** 셋) ·
 > **단명 토큰은 `auth_session` 의 `kind='meeting'` 행**이다(`/start` INSERT → 헤더 → ② 종결 시 행 DELETE) · **웜스타트 실패 처리를 만들지 않는다**(MF-70).
 
-관련 문서 — `../database/README.md`(스키마 정본) · `../backend/README.md`(계층·규약).
+관련 문서 — [[para/projects/summer-star/task-management/40-architecture/database/README|../database/README.md]](스키마 정본) · [[para/projects/summer-star/task-management/40-architecture/backend/README|../backend/README.md]](계층·규약).
 
 ## Overview
 
@@ -108,7 +108,7 @@ flowchart LR
 
 ### codex 설정 — allow list 로 잠근다 (MF-3 · 2026-09-07, codex 0.147.0 실측)
 
-**프롬프트에도 적지만 실제 차단은 설정이 한다.** 실행 옵션 빌더(`../backend/README.md` §5-2)가 매 제출에 아래를 함께 만든다.
+**프롬프트에도 적지만 실제 차단은 설정이 한다.** 실행 옵션 빌더([[para/projects/summer-star/task-management/40-architecture/backend/README|../backend/README.md]] §5-2)가 매 제출에 아래를 함께 만든다.
 
 ```text
 features.shell_tool=false            셸
@@ -130,7 +130,7 @@ mcp_servers.<key>.http_headers={Authorization="Bearer <회의별 단명 토큰>"
 
 **권한 경계는 백엔드가 진다.** MCP 는 API 의 얇은 래퍼이고 두 번째 게이트가 아니다. 사용자 세션 JWT 를 그대로 주지 않고 **회의(turn)마다 본인 계정으로 단명 토큰을 새로 발급**해 헤더로 주며, 회의가 끝나면 best-effort 로 폐기한다 — 실패는 자연 만료로 흡수(MF-4 · mediness landing-chat 방식). `--bearer-token-env-var` · OAuth · 설정 파일은 쓰지 않는다.
 
-**토큰의 실체는 `auth_session` 행이다**(**MF-69** · SYS-OQ-4 닫힘 · `../database/domains/account.md` A-13). `kind='meeting'` 행을 하나 더한다 — **발급**은 `/start` 가 본인 계정으로 INSERT(**원문을 `meeting_token` 컬럼에** — A-13 · 2026-09-07 사용자 확정. refresh 처럼 해시만 두지 않는다), **검증**은 mcp 가 부르는 REST 가 그 행으로 계정 · 회의 범위를 보는 것, **폐기는 행 삭제**(② 종결 시 · best-effort). **무상태 JWT 짧은 TTL 은 쓰지 않는다** — 폐기 표면이 없어 MF-4 의 「best-effort 폐기」가 성립하지 않는다.
+**토큰의 실체는 `auth_session` 행이다**(**MF-69** · SYS-OQ-4 닫힘 · [[para/projects/summer-star/task-management/40-architecture/database/domains/account|../database/domains/account.md]] A-13). `kind='meeting'` 행을 하나 더한다 — **발급**은 `/start` 가 본인 계정으로 INSERT(**원문을 `meeting_token` 컬럼에** — A-13 · 2026-09-07 사용자 확정. refresh 처럼 해시만 두지 않는다), **검증**은 mcp 가 부르는 REST 가 그 행으로 계정 · 회의 범위를 보는 것, **폐기는 행 삭제**(② 종결 시 · best-effort). **무상태 JWT 짧은 TTL 은 쓰지 않는다** — 폐기 표면이 없어 MF-4 의 「best-effort 폐기」가 성립하지 않는다.
 
 ## External Integrations
 
@@ -332,7 +332,7 @@ sequenceDiagram
 | 1 | 프론트는 Soniox 를 모른다. 오디오는 **반드시** 백엔드를 거친다 | DEC-003 §STT |
 | 2 | 녹음 원본 적재는 중계와 같은 경로에서 일어난다 — 별도 업로드가 없다. **그 원본이 종료 후 재전사의 입력**이다 | DEC-003 §3 · MF-37 |
 | 3 | **확정 토큰만 DB 에 남는다.** 잠정 토큰은 화면으로만 흘려보낸다. **종료 후 재전사 결과가 실시간 블록을 전량 교체한다** — `at_ms` 기준이 같아 근거 칩은 시각(ms)으로 매칭한다 | DEC-003 §3 · MF-37 |
-| 4 | 회의 중 AI 는 **AI 트랙에만 쓴다.** 사람 트랙을 고치지도 제안하지도 않는다 — **사람 안건·줄은 배치 입력에 싣지 않고 AI 가 MCP 도구로 조회한다**(2026-09-07 · `../database/domains/meeting.md` M-6) | DEC-003 §4 · MF-50 · MF-51 |
+| 4 | 회의 중 AI 는 **AI 트랙에만 쓴다.** 사람 트랙을 고치지도 제안하지도 않는다 — **사람 안건·줄은 배치 입력에 싣지 않고 AI 가 MCP 도구로 조회한다**(2026-09-07 · [[para/projects/summer-star/task-management/40-architecture/database/domains/meeting\|../database/domains/meeting.md]] M-6) | DEC-003 §4 · MF-50 · MF-51 |
 | 5 | 회의 중 배치는 **매번 AI 트랙 전체를 낸다.** 서버는 검증 통과분으로 **전량 교체**한다 — 앞 배치의 잘못을 다음 배치가 고친다. 세션이 앞 발화를 기억하므로 넘기는 것은 이번 구간뿐이다 | MF-53 |
 | 6 | codex 세션은 **회의 하나에 하나**다. 매 배치와 최종 호출이 `resume` 으로 같은 세션을 이어 쓴다. **`/start` 는 세션을 기다리지 않는다** — 세션이 없는 동안 배치는 돌지 않는다 | DEC-003 §STT · MF-1 |
 | 7 | 최종 회의록은 **AI 가 한 번에 쓴다** — 사람이 적은 줄도 다듬는다. 「사람 문장 그대로 복사」 규칙은 없다. 최종이 끝나면 AI 정리본 = 회의록 | MF-56 · MF-57 |
@@ -345,7 +345,7 @@ sequenceDiagram
 | 14 | **단명 토큰은 `auth_session(kind='meeting')` 행이다.** `/start` 가 INSERT 하고 ② 종결이 **행을 DELETE** 한다(best-effort). 무상태 JWT 를 쓰지 않는다 — 폐기 표면이 없다 | **MF-69** |
 | 15 | **웜스타트 실패에 처리를 만들지 않는다.** 예외 전파 로그뿐이고, 회의 중이면 배치 미제출 · 종료 후면 ② 가 `final_failed` 로 간다 — 이미 있는 경로다 | **MF-70** |
 
-**웹소켓은 이 하나뿐이다.** 회의 스트림 채널이 오디오 업·토큰 다운·AI 증분 push 를 겸한다. 종료하면 닫고, 그 뒤의 「생성중」은 **작업(job) 폴링**으로 본다(§ 비동기 API — `../backend/README.md`). 통지 경로를 둘로 두지 않는다 — 재연결·인증 표면이 하나로 준다.
+**웹소켓은 이 하나뿐이다.** 회의 스트림 채널이 오디오 업·토큰 다운·AI 증분 push 를 겸한다. 종료하면 닫고, 그 뒤의 「생성중」은 **작업(job) 폴링**으로 본다(§ 비동기 API — [[para/projects/summer-star/task-management/40-architecture/backend/README|../backend/README.md]]). 통지 경로를 둘로 두지 않는다 — 재연결·인증 표면이 하나로 준다.
 
 **300분 초과는 다루지 않는다**(DEC-003 §4). Soniox 스트림 한도를 넘는 재연결·세션 경계 처리를 v1 에 넣지 않는다.
 같은 결로 **WS 끊김에 자동 재연결을 넣지 않는다** — 설계한 실패 목록에 없다(DEC-003 §7). 끊기면 녹음을 멈춘 상태로 바꾸고 화면에 드러낸다.

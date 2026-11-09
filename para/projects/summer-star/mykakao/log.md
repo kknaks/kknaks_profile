@@ -4,6 +4,7 @@
 
 | Date | Type | IDs | Summary | Links |
 |---|---|---|---|---|
+| 2026-11-06 | docs | — | 문서 목차 링크 정리와 프로젝트·작업 기록 연결 | [[para/projects/summer-star/mykakao/work-index\|목록]] |
 | 2026-06-12 | scaffold | — | 제품 문서 스캐폴딩 생성 (README, log, 00~30 index) | — |
 | 2026-06-12 | baseline-add | BASE-001 | 카톡 대화 로컬 자동 추출(내보내기 없이) 아이디어 등록 | baseline-001 |
 | 2026-06-12 | decision-add | DEC-001 | 추출 방식 = 로컬 SQLCipher DB 복호화(kakaocli) 채택 | decision-001 |

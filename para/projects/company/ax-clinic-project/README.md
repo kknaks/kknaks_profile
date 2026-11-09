@@ -1,6 +1,6 @@
 # Product Map — ax-clinic-project
 
-규칙: `para/projects/project.md` (`company/` — `sot: external`)
+규칙: [[para/projects/project|para/projects/project.md]] (`company/` — `sot: external`)
 
 병원 AX 전환 사업(회사 업무)의 문서 작업. 지점별 AX 전환 전략(명동 · 안양)을 세우는 일이다 —
 현황 · 조사 · KPI · 과제 · 실행계획, 인터뷰 정리. 문서의 원천은 사업 레포 `ax-clinic-project` 이고,
@@ -30,3 +30,9 @@ ax-clinic-project/
 - 설정 SSOT: `orchestration/config/projects/ax-clinic-project.json`
 - 워커: writer(사업 레포 문서) · researcher · reviewer (역할: `orchestration/roles/ax-clinic-project/`)
 - 진행 중 작업: `orchestration/work/<slug>/_RESUME.md` — 초기 구성 `clinic-ax-bootstrap` 진행 중
+
+<!-- work-links:start -->
+## 작업 기록
+
+[[para/projects/company/ax-clinic-project/work-index|진행 중·완료된 작업 목록]]
+<!-- work-links:end -->

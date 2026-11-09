@@ -44,3 +44,9 @@ status: active
 - 2026-10-10: cc 아이디어 노트 BASE-003 — 병원 현황판(도면 위 실시간 위치). sts 는 cc 로 통합될 듯
 - 2026-10-10: sts 아이디어 노트 BASE-002 — Soniox STT(번역 내장)+TTS 로 된다(문서 조사). 결정 전
 - 2026-10-10: 제품 착수. 레포 구조·스택·기능 독립을 DEC-001(proposed)로. 배포 대상은 미정. [전체 이력](log.md)
+
+<!-- work-links:start -->
+## 작업 기록
+
+[[para/projects/summer-star/cc-prototype/work-index|진행 중·완료된 작업 목록]]
+<!-- work-links:end -->

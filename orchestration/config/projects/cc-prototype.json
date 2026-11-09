@@ -1,6 +1,7 @@
 {
   "_doc": "cc-prototype(고객 데모용 기능별 실험 모음 — 기능 폴더마다 front = Next.js · back = FastAPI, 기능끼리 공유 없음) 오케스트레이션 설정 SSOT. scripts/new-work.sh 가 읽는 유일한 곳. 값 하드코딩 금지. 2026-10-10 빈 레포 kknaksss/cc-prototype 에서 착수(DEC-001).",
   "project": "cc-prototype",
+  "document_root": "para/projects/summer-star/cc-prototype",
   "worktree_root": "/Users/kknaks/orca/workspaces",
   "use_worktree": true,
   "repos": {
@@ -164,7 +165,7 @@
     "backend",
     "frontend"
   ],
-  "summary_dest": "/Users/kknaks/git/toy_pr2/kknaks_profile/para/projects/summer-star/cc-prototype/log",
+  "summary_dest": "para/projects/summer-star/cc-prototype/log",
   "rules": {
     "spec_and_app_use_separate_prs": true,
     "workers_commit_or_push": false,

@@ -20,16 +20,16 @@
 
 읽는 순서:
 
-1. `spec-003-source-inbox.md`
-2. `spec-001-curation-pipeline.md`
-3. `spec-002-approval-gate-feedback-loop.md`
-4. `spec-004-documentation-approval-gate.md`
-5. `spec-005-document-link-graph-contract.md`
-6. `spec-006-graph-chat.md`
-7. `spec-007-ai-provider-settings.md`
-8. `spec-008-simple-token-auth.md`
-9. `spec-009-prompt-dynamic-management.md`
-10. `spec-010-document-template-management.md`
-11. `spec-011-ai-execution-pipeline.md`
-12. `spec-012-source-collection-adapter.md`
-13. `spec-013-document-library.md`
+1. [[para/projects/summer-star/ax-knowledge-graph/20-spec/spec-003-source-inbox|spec-003-source-inbox.md]]
+2. [[para/projects/summer-star/ax-knowledge-graph/20-spec/spec-001-curation-pipeline|spec-001-curation-pipeline.md]]
+3. [[para/projects/summer-star/ax-knowledge-graph/20-spec/spec-002-approval-gate-feedback-loop|spec-002-approval-gate-feedback-loop.md]]
+4. [[para/projects/summer-star/ax-knowledge-graph/20-spec/spec-004-documentation-approval-gate|spec-004-documentation-approval-gate.md]]
+5. [[para/projects/summer-star/ax-knowledge-graph/20-spec/spec-005-document-link-graph-contract|spec-005-document-link-graph-contract.md]]
+6. [[para/projects/summer-star/ax-knowledge-graph/20-spec/spec-006-graph-chat|spec-006-graph-chat.md]]
+7. [[para/projects/summer-star/ax-knowledge-graph/20-spec/spec-007-ai-provider-settings|spec-007-ai-provider-settings.md]]
+8. [[para/projects/summer-star/ax-knowledge-graph/20-spec/spec-008-simple-token-auth|spec-008-simple-token-auth.md]]
+9. [[para/projects/summer-star/ax-knowledge-graph/20-spec/spec-009-prompt-dynamic-management|spec-009-prompt-dynamic-management.md]]
+10. [[para/projects/summer-star/ax-knowledge-graph/20-spec/spec-010-document-template-management|spec-010-document-template-management.md]]
+11. [[para/projects/summer-star/ax-knowledge-graph/20-spec/spec-011-ai-execution-pipeline|spec-011-ai-execution-pipeline.md]]
+12. [[para/projects/summer-star/ax-knowledge-graph/20-spec/spec-012-source-collection-adapter|spec-012-source-collection-adapter.md]]
+13. [[para/projects/summer-star/ax-knowledge-graph/20-spec/spec-013-document-library|spec-013-document-library.md]]

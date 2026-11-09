@@ -4,6 +4,7 @@
 
 | Date | Entry | Links |
 |---|---|---|
+| 2026-11-06 | 문서 목차 링크 정리와 프로젝트·작업 기록 연결 | [[para/projects/summer-star/mini-game/README\|목록]] |
 | 2026-07-14 | mini-game 제품 문서 스캐폴딩 생성. | `README.md`, `00-baseline/README.md`, `10-decision/README.md`, `20-spec/README.md`, `30-work/README.md` |
 | 2026-07-14 | 매일 바뀌는 모바일 커피 내기 미니게임 baseline 추가. 첫 게임 후보는 윷놀이 게이지 게임. | `00-baseline/baseline-001-daily-mobile-coffee-game.md` |
 | 2026-07-14 | baseline OQ를 해소하며 daily game platform과 yut gauge first game decision 작성. | `10-decision/decision-001-daily-game-platform.md`, `10-decision/decision-002-yut-gauge-game.md` |

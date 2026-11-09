@@ -85,3 +85,9 @@ mediness 에서 남에게 일을 시키는 통로가 샤라웃(의사결정 등�
 - **문서 마감**: WP-129/130 frontmatter status done 승격(P0 prod 실측·P8 CI 는 이번 릴리스로 실증됨) + 실기동 수리분 WP-131 등재 — 스펙 레포 후속 커밋 1건
 - **공지 2건**: slack 미매핑 5명은 요청 DM 미수신(태스크는 생성) · 기존 decision/incident 태스크 배경·목표 빈 값(description fallback)
 - **v2 이월 5건**: «내가 요청한 일» 화면(OQ-22) · 역할/상태별 수정 게이팅(OQ-23) · @멘션(OQ-24) · 기존 초안에 첨부 추가(수정 경로 바인딩 설계) · task.draft 참조자/완료예정 축(초안 LLM 스키마)
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/mediness/task-improve/README|task-improve]]
+<!-- work-links:end -->

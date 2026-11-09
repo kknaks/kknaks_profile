@@ -72,3 +72,9 @@
 - **lima-worker-1 CPU 예약 98%** — 다른 앱 requests 정리나 노드 자원은 사내 인프라 판단
 - **데모 원탭 로그인 끄기**(이전 작업부터 남음)
 - `.6` 대만 「검수 전」 항목 · 사람 목소리 E2E(이전 작업부터 남음)
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/interpret-pwa/interpret-pwa-v2/README|interpret-pwa-v2]]
+<!-- work-links:end -->

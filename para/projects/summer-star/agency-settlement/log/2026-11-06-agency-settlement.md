@@ -86,3 +86,9 @@
 - **운영 데이터 위치** — 로컬 docker PG `agency-settlement-pg`(127.0.0.1:5434 · volume `agency-settlement-pg-data`) · 접속 값은 `/Users/kknaks/git/toy_pr2/agency-settlement/back/.env`(gitignore) · 로컬 서버 8800 · 3800 은 main 체크아웃에서 실행 중
 - 9 · 10월 미연결 품목(삭제된 상품) — 테스트 데이터라 두거나 수동 연결
 - claude design 시안 v3 업로드 — 계정 바뀐 뒤 /design-login 필요해 로컬 사본만
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/agency-settlement/agency-settlement/README|agency-settlement]]
+<!-- work-links:end -->

@@ -80,3 +80,9 @@ Linky → cc → KOS 예약 흐름을 데모 버튼으로 흉내 내는 예약�
 - **기획자 피드백 「안 함(일단)」 항목**: D2 · W2 ~ W6 · N1 ~ N4 · C1 · C2 · D11 · D12 — BASE-007 표. 특히 N1(마취 준비 단계) · C2(오더 대조)는 시술 관제 개념의 중심이라 다음 판
 - **기획자에게 답**: 「확인 필요」 상태의 뜻(BASE-007 확인 요청 표에 코드 기준 답을 적어 둠)
 - 시연 현장 확인(1차 `workflow.md` 「현장 확인할 것」)
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/cc-prototype/cc-nav-resv/README|cc-nav-resv]]
+<!-- work-links:end -->

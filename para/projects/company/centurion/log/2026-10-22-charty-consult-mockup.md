@@ -60,3 +60,9 @@ M3D(미가메디) 3D 피부 스캐너 리포트를 재구성해 피부과 상담
 - 데모 가격표에 첫방문이벤트 0건 — 재방문 숨김은 단위 테스트로만 확인
 - 실 3D 스캔 업체 API 가 오면 어댑터만 갈아 끼운다(응답 형태 미정)
 - 기기 두 대 동기화는 중계 서버가 필요(목업 범위 밖)
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/centurion/charty-consult-mockup/README|charty-consult-mockup]]
+<!-- work-links:end -->

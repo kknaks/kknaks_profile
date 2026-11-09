@@ -78,3 +78,9 @@
     - 수신함: 같은 프로젝트 안 — 파일 이름은 받지 않았다(워커가 프로젝트 파일 목록에서 찾는다)
   - 읽는 법: **orca 워커가 DesignSync 로** 읽는다(코디가 직접 받지 않는다). 확정 시안이 정본 — 시안대로 SPEC·WP, 기획과 다른 점은 한 줄 목록만
 - 그다음 후보: Slack·Gmail(회사 Workspace)·카카오톡 수집 — 카톡은 mykakao 재사용(로컬 DB 복호화 + 폴링, Mac 호스트 전용, `config/projects/mykakao.json` canonical 경로가 Windows 로 낡음)
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/strong-hajin/strong-hajin-polish3/README|strong-hajin-polish3]]
+<!-- work-links:end -->

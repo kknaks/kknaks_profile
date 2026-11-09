@@ -72,3 +72,9 @@
 - 노드 codex 0.146(개발 0.158) — provenance 일부 필드 None
 - 운영 이미지는 cdb0f3f(웹). #6~#8 은 데스크톱 셸만이라 재배포 불필요
 - **공개 레포 노출 점검**: `reference/2026-09-04-SC-org_data/` 의 회사 조직도 CSV(169행, 인사 정보)가 PUBLIC 레포에 추적 중 — 사용자 판단 필요
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/strong-hajin/strong-hajin-deploy/README|strong-hajin-deploy]]
+<!-- work-links:end -->

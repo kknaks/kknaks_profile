@@ -49,3 +49,9 @@
 - 뉴럭스(ph-028)가 대만 Neuronox 와 같은 제품인지 불명
 - zh(대륙)의 한국 전용 제품 표기(Procedure Hub 값 그대로) — 영문으로 바꿀지
 - infra `values-prod.yaml` 에 `back.imageTag` 오버라이드가 다시 있다 — 다음에 back · front 가 같이 빌드되면 `image.tag` 하나로 정리
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/interpret-pwa/interpret-pwa-seed-tw/README|interpret-pwa-seed-tw]]
+<!-- work-links:end -->

@@ -146,3 +146,9 @@
 - **옛 `cc-db` PVC · scenario/staff Secret** — infra #22 에서 keep · 지울지 미정
 - **접근 제한 비밀번호가 약하다** — 사용자 선택으로 그대로(공개 주소 · 데모 데이터). 운영 전에 다시
 - SPEC-004 범위 코드 리뷰(WORK-004 WP6)는 하지 않았다 · `.env.example` 에 `PROC_SESSION_HOURS` · `PROC_BCRYPT_ROUNDS` 없음
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/cc-prototype/myeongdong-poc-v2/README|myeongdong-poc-v2]]
+<!-- work-links:end -->

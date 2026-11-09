@@ -1,6 +1,7 @@
 {
   "_doc": "mykakao 오케스트레이션 설정 SSOT. scripts/new-work.sh 가 읽는 유일한 곳. CLAUDE.md·브리프·스크립트에 여기 값을 하드코딩하지 말 것.",
   "project": "mykakao",
+  "document_root": "para/projects/summer-star/mykakao",
   "worktree_root": "C:/Users/sc971/orca/workspaces",
   "use_worktree": true,
   "_platform": {
@@ -123,7 +124,7 @@
       "이미 떠 있던 셸은 설치 전 PATH 를 물고 있다. 새 터미널을 열어야 python3 가 잡힌다"
     ]
   },
-  "summary_dest": "C:/Users/sc971/orca/workspaces/kknaks_profile/mykakao/para/projects/summer-star/mykakao/log",
+  "summary_dest": "para/projects/summer-star/mykakao/log",
   "rules": {
     "spec_and_app_use_separate_prs": true,
     "workers_commit_or_push": false,

@@ -40,3 +40,9 @@ cc-prototype 과 **같은 방식**(문서 = 이 폴더 · 코드 = 별도 레포
 - 2026-10-29: 구현 — 운영 KOS 조회 전용 · SQLite 저장/증분 · 에이전트별 탭 · 엑셀 · 최종 결제만(D-18) · 코드 PR #1
 
 - 2026-10-29: 착수 — 운영 명동점 KOS 조사 · 에이전시 판정 = 고객 최초 유입 채널 · 월별 매출 리스트(DEC-001 · SPEC-001 · WORK-001). cc-prototype 안에 잘못 두었던 문서를 이 프로젝트로 옮김
+
+<!-- work-links:start -->
+## 작업 기록
+
+[[para/projects/summer-star/agency-settlement/work-index|진행 중·완료된 작업 목록]]
+<!-- work-links:end -->

@@ -1,6 +1,6 @@
 # Product Map — sc-ax
 
-규칙: `para/projects/project.md` (`company/` — `sot: external`)
+규칙: [[para/projects/project|para/projects/project.md]] (`company/` — `sot: external`)
 
 sc 경영관리 AX 프로젝트. SCAX 상용 시스템 — 고객사(SC) 조직·업무·요청·판단·회의·자료·보고와 내장 AX 대화를
 하나의 원장 위에 올리는 회사 제품이다. 기획·스펙·ERD 의 원천은 회사 레포에 있고, **여기에는 내 경험(작업 회고)만 쌓인다.**
@@ -29,3 +29,9 @@ sc-ax/
 - 설정 SSOT: `orchestration/config/projects/sc-ax.json`
 - 워커: planner(spec) · backend · frontend · reviewer_spec · reviewer_code
 - 진행 중 작업: `orchestration/work/<slug>/_RESUME.md` · 지난 발주 기록: `orchestration/work/_archive/sc-ax/`
+
+<!-- work-links:start -->
+## 작업 기록
+
+[[para/projects/company/sc-ax/work-index|진행 중·완료된 작업 목록]]
+<!-- work-links:end -->
