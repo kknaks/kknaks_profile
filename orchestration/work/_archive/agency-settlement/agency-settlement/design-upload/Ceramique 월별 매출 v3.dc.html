@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/medikit-aea7ac33-f044-4445-9164-87b8b69474dc/fonts/fonts.css">
+  <link rel="stylesheet" href="_ds/medikit-aea7ac33-f044-4445-9164-87b8b69474dc/_ds_bundle.css">
+  <link rel="stylesheet" href="_ds/medikit-aea7ac33-f044-4445-9164-87b8b69474dc/styles.css">
+  <link rel="stylesheet" href="ceramique-theme.css">
+  <link rel="stylesheet" href="medikit-patches.css">
+  <script src="_ds/medikit-aea7ac33-f044-4445-9164-87b8b69474dc/_ds_bundle.js"></script>
+  <!-- agency-settlement front/app/globals.css 그대로(html,body · a · .cc-btn) + 이 시안 전용(표 줄 · 스피너 · 탭 · 수수료율 입력 · 명세서 A4 · 모달) -->
+  <style>html,body{margin:0;min-height:100%;}a{color:#2498bd;}a:hover{color:#1d7f9e;}
+  :where(.cc-btn){background:none;border-width:0;padding:0;font:inherit;cursor:pointer;text-align:left;}
+  .ms-num{font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .ms-one{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .ms-tab{display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 2px;border-bottom-width:2px;border-bottom-style:solid;box-sizing:border-box;white-space:nowrap;cursor:pointer;flex-shrink:0;}
+  .ms-link{text-decoration:underline;text-underline-offset:2px;white-space:nowrap;}
+  .ms-link[disabled]{opacity:.4;cursor:default;}
+  .ms-scroll{scrollbar-width:none;}.ms-scroll::-webkit-scrollbar{display:none;}
+  .ms-in{box-sizing:border-box;height:32px;border:1px solid #d9dde3;border-radius:6px;padding:0 10px;font:inherit;font-size:14px;color:#1f2933;background:#fff;outline:none;}
+  .ms-in:focus{border-color:#2498bd;box-shadow:0 0 0 3px rgba(36,152,189,.15);}
+  .ms-in[disabled]{background:#f3f4f6;color:#9aa1ab;cursor:not-allowed;}
+  .ms-rate{width:64px;text-align:right;font-variant-numeric:tabular-nums;}
+  .ms-chk{width:16px;height:16px;margin:0;accent-color:#2498bd;cursor:pointer;}
+  .ms-pill{display:inline-flex;align-items:center;gap:4px;height:30px;padding:0 12px;border-radius:15px;border-width:1px;border-style:solid;white-space:nowrap;cursor:pointer;flex-shrink:0;box-sizing:border-box;}
+  .ms-a4{width:794px;min-height:1123px;box-sizing:border-box;padding:56px 56px 40px;background:#fff;box-shadow:0 4px 24px rgba(0,0,0,.12);display:flex;flex-direction:column;gap:18px;color:#1f2933;}
+  .ms-a4 table{width:100%;border-collapse:collapse;font-size:12px;}
+  .ms-a4 th{background:#f3f4f6;font-weight:600;text-align:left;padding:7px 8px;border-top:1.5px solid #1f2933;border-bottom:1px solid #c9ced6;white-space:nowrap;}
+  .ms-a4 td{padding:6px 8px;border-bottom:1px solid #eceef1;vertical-align:top;}
+  .ms-a4 .r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .ms-a4 tr.sub td{background:#fafbfc;font-weight:600;border-bottom:1px solid #c9ced6;}
+  .ms-a4 tr.tot td{font-weight:700;font-size:13px;border-top:1.5px solid #1f2933;border-bottom:1.5px solid #1f2933;}
+  .ms-warn{color:#c2410c;}.ms-warn-bg{background:#fff4ec;}.ms-warn-bd{border-color:#f59e0b !important;}.ms-sel-bg{background:#eef8fb;}.ms-sum-bg{background:#fafbfc;}.ms-bold{font-weight:700;}
+  .ms-veil{position:absolute;inset:0;background:rgba(17,24,39,.42);display:flex;align-items:flex-start;justify-content:center;z-index:50;}
+  </style>
+</helmet>
+<!-- 프레임 — 데스크톱 = 화면 폭(안쪽 1600 가운데) · 태블릿 = 1024 · 폰 = 390. 코드에선 폭 구간(≥1280 / 768~1279 / <768)으로 같은 갈래 -->
+<div data-product="ceramique" data-screen-label="월별 매출 v3" style="min-height:100vh;background:#e5e7eb;">
+<div style="position:relative;width:{{ frameW }};margin:0 auto;min-height:100vh;display:flex;flex-direction:column;background:#f3f4f6;overflow:hidden;">
+
+  <!-- 공통 헤더 — 메뉴 = 월별 조회 | 유입채널 | 설정(피드백 7) -->
+  <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+    <header class="bg-ms-white border-ms-gray-200" style="position:sticky;top:0;z-index:30;height:57px;box-sizing:border-box;display:flex;align-items:center;padding:0 {{ padX }};border-bottom-width:1px;border-bottom-style:solid;">
+      <div style="width:100%;max-width:1600px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;">
+        <div style="display:flex;align-items:center;gap:{{ navGapOuter }};min-width:0;">
+          <a style="display:flex;align-items:center;"><img src="assets/ceramique-logo-color.svg" alt="CÉRAMIQUE" style="height:22px;display:block;"></a>
+          <nav style="display:flex;align-items:center;gap:{{ navGap }};">
+            <sc-for list="{{ navs }}" as="n" hint-placeholder-count="3">
+              <a onClick="{{ n.go }}" class="{{ n.cls }}" style="white-space:nowrap;cursor:pointer;">{{ n.name }}</a>
+            </sc-for>
+          </nav>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;min-width:0;">
+          <span class="text-typo-heading-sm-400 text-ms-gray-700" style="white-space:nowrap;">세라미크 명동점</span>
+          <span class="bg-ms-gray-100 text-typo-caption-md-500 text-ms-gray-600" style="white-space:nowrap;padding:2px 8px;border-radius:4px;">운영 · 조회 전용</span>
+        </div>
+      </div>
+    </header>
+  </sc-if>
+  <!-- 폰 헤더 — 1줄 로고 · 지점 / 2줄 메뉴(가로 스크롤) -->
+  <sc-if value="{{ mob }}" hint-placeholder-val="{{ false }}">
+    <header class="bg-ms-white border-ms-gray-200" style="position:sticky;top:0;z-index:30;box-sizing:border-box;border-bottom-width:1px;border-bottom-style:solid;">
+      <div style="height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;">
+        <img src="assets/ceramique-logo-color.svg" alt="CÉRAMIQUE" style="height:18px;display:block;">
+        <span class="bg-ms-gray-100 text-typo-caption-md-500 text-ms-gray-600" style="white-space:nowrap;padding:2px 8px;border-radius:4px;">명동점 · 조회 전용</span>
+      </div>
+      <nav class="ms-scroll" style="display:flex;gap:4px;padding:0 12px;overflow-x:auto;">
+        <sc-for list="{{ navs }}" as="n" hint-placeholder-count="3">
+          <a onClick="{{ n.go }}" class="ms-tab {{ n.cls }}" style="border-bottom-color:{{ n.line }};padding:0 8px;height:40px;">{{ n.name }}</a>
+        </sc-for>
+      </nav>
+    </header>
+  </sc-if>
+
+  <main style="flex:1;box-sizing:border-box;padding:{{ padMain }};">
+  <div style="max-width:1600px;margin:0 auto;display:flex;flex-direction:column;gap:12px;">
+
+  <!-- ================= 월별 조회 · 유입채널 ================= -->
+  <sc-if value="{{ isSales }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <!-- 툴바 — 제목 · 월 · 받기 상태 · 받은 시각 / 오른쪽 [전체 다시 받기] · [거래 명세서(PDF)] 또는 [전체 내보내기] -->
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px 24px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:{{ toolGap }};flex-wrap:wrap;min-width:0;">
+          <h1 class="{{ titleCls }} text-ms-gray-800" style="margin:0;white-space:nowrap;">{{ title }}</h1>
+          <div style="display:flex;align-items:center;gap:6px;">
+            <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="sm" disabled="{{ prevOff }}" on-click="{{ prev }}" hint-size="36px,32px">‹</x-import>
+            <span class="text-typo-heading-md-500 text-ms-gray-800 ms-num" style="min-width:108px;text-align:center;">{{ monthLabel }}</span>
+            <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="sm" disabled="{{ nextOff }}" on-click="{{ next }}" hint-size="36px,32px">›</x-import>
+          </div>
+          <sc-if value="{{ sync.cur }}" hint-placeholder-val="{{ false }}">
+            <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="blue" size="sm" disabled="{{ sync.pullOff }}" on-click="{{ sync.pull }}" hint-size="104px,32px">{{ sync.pullLabel }}</x-import>
+          </sc-if>
+          <sc-if value="{{ sync.closed }}" hint-placeholder-val="{{ true }}">
+            <span class="bg-ms-white border-ms-gray-300 text-typo-caption-md-600 text-ms-gray-700" style="display:inline-flex;align-items:center;gap:4px;padding:5px 10px;border-radius:6px;border-width:1px;border-style:solid;white-space:nowrap;">✓ 확정 · 저장됨</span>
+          </sc-if>
+          <span class="text-typo-body-400 text-ms-gray-600 ms-num" style="white-space:nowrap;">{{ sync.atLead }}<span class="text-typo-body-600 text-ms-gray-800">{{ sync.atText }}</span></span>
+          <sc-if value="{{ sync.note }}" hint-placeholder-val="{{ false }}">
+            <span class="text-typo-body-400 text-ms-gray-500 ms-num" style="white-space:nowrap;">{{ sync.noteText }}</span>
+          </sc-if>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;{{ toolRight }}">
+          <button class="cc-btn ms-link text-typo-caption-md-500 text-ms-gray-500" title="저장된 이 달을 버리고 KOS 에서 처음부터 다시 받아요">전체 다시 받기</button>
+          <sc-if value="{{ exp.pdf }}" hint-placeholder-val="{{ false }}">
+            <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="sm" on-click="{{ exp.pdfGo }}" hint-size="132px,32px">거래 명세서(PDF)</x-import>
+          </sc-if>
+          <sc-if value="{{ exp.zip }}" hint-placeholder-val="{{ true }}">
+            <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="sm" on-click="{{ exp.zipGo }}" hint-size="132px,32px">전체 내보내기(zip)</x-import>
+          </sc-if>
+        </div>
+      </div>
+
+      <!-- 유입채널 탭 — 「전체」 + 최초 유입 채널마다 하나(값 그대로 · 「(에이전시)」 꼬리만 뗌 · (없음) 포함). 오른쪽 안내 없음(피드백 1). 폰 = 가로 스크롤 -->
+      <sc-if value="{{ isChannel }}" hint-placeholder-val="{{ false }}">
+        <div class="bg-ms-white ms-scroll" style="border-radius:12px;padding:0 {{ tabPad }};display:flex;align-items:flex-end;gap:{{ tabGap }};flex-wrap:nowrap;overflow-x:auto;box-shadow:0px 2px 10px 0px rgba(0,0,0,0.04);">
+          <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="6">
+            <a class="ms-tab {{ t.cls }}" style="border-bottom-color:{{ t.line }};" onClick="{{ t.pick }}" title="{{ t.full }}">{{ t.name }}<span class="{{ t.nCls }} ms-num">{{ t.n }}</span></a>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <!-- 월별 요약 줄 — 건수 + 실결제 합 · 수수료 합 · 미설정 -->
+      <sc-if value="{{ isMonthly }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <sc-for list="{{ chips }}" as="c" hint-placeholder-count="5">
+            <span class="bg-ms-white border-ms-gray-200" style="display:inline-flex;align-items:baseline;gap:6px;padding:6px 12px;border-radius:8px;border-width:1px;border-style:solid;">
+              <span class="text-typo-caption-md-500 text-ms-gray-600" style="white-space:nowrap;">{{ c.name }}</span>
+              <span class="{{ c.cls }} ms-num">{{ c.value }}</span>
+            </span>
+          </sc-for>
+          <span class="text-typo-caption-md-400 text-ms-gray-500" style="padding:0 4px;">{{ grayCounts }}</span>
+          <span class="text-typo-caption-md-400 text-ms-gray-500" style="{{ noteStyle }}">ⓘ 수수료 = 상품 실결제 × {{ rateMonth }} 수수료율 · 미설정은 0</span>
+        </div>
+      </sc-if>
+
+      <!-- ===== 결산 표(피드백 2) — 「전체」 탭 = 채널마다 한 줄 + 합계 · 채널 탭 = 그 채널 한 줄 ===== -->
+      <sc-if value="{{ hasSettle }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;">
+            <span class="text-typo-heading-sm-600 text-ms-gray-800">{{ settleTitle }}</span>
+            <span class="text-typo-caption-md-400 text-ms-gray-500">{{ settleSub }}</span>
+          </div>
+          <!-- 데스크톱 · 태블릿 = 표 -->
+          <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+            <div class="bg-ms-white" style="border-radius:12px;box-shadow:0px 2px 10px 0px rgba(0,0,0,0.04);overflow:hidden;">
+              <div class="bg-ms-gray-100 border-ms-gray-200 text-typo-caption-md-600 text-ms-gray-700" style="display:grid;grid-template-columns:{{ settleCols }};gap:16px;align-items:center;padding:10px 20px;border-bottom-width:1px;border-bottom-style:solid;">
+                <span>유입 채널</span><span style="text-align:right;">손님</span><span style="text-align:right;">결제 손님</span><span style="text-align:right;">실결제</span><span style="text-align:right;">수수료</span><span style="text-align:right;">미설정 품목</span><span style="text-align:right;">거래 명세서</span>
+              </div>
+              <sc-for list="{{ settle }}" as="r" hint-placeholder-count="6">
+                <div class="border-ms-gray-200 {{ r.rowCls }}" style="display:grid;grid-template-columns:{{ settleCols }};gap:16px;align-items:center;padding:0 20px;min-height:{{ r.h }};border-bottom-width:1px;border-bottom-style:solid;">
+                  <a class="{{ r.nameCls }} ms-one" onClick="{{ r.pick }}" title="{{ r.full }}" style="cursor:pointer;">{{ r.name }}</a>
+                  <span class="{{ r.numCls }} ms-num" style="text-align:right;">{{ r.people }}</span>
+                  <span class="{{ r.numCls }} ms-num" style="text-align:right;">{{ r.paid }}</span>
+                  <span class="{{ r.netCls }} ms-num" style="text-align:right;">{{ r.net }}</span>
+                  <span class="{{ r.feeCls }} ms-num" style="text-align:right;">{{ r.fee }}</span>
+                  <span class="{{ r.unsetCls }} ms-num" style="text-align:right;">{{ r.unset }}</span>
+                  <span style="display:flex;justify-content:flex-end;">
+                    <sc-if value="{{ r.canPdf }}" hint-placeholder-val="{{ true }}">
+                      <button class="cc-btn ms-link text-typo-caption-md-500 text-primary" onClick="{{ r.pdf }}">PDF</button>
+                    </sc-if>
+                  </span>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+          <!-- 폰 = 카드 -->
+          <sc-if value="{{ mob }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <sc-for list="{{ settle }}" as="r" hint-placeholder-count="4">
+                <div class="bg-ms-white {{ r.cardCls }}" style="border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;box-shadow:0px 2px 10px 0px rgba(0,0,0,0.04);">
+                  <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+                    <a class="{{ r.nameCls }} ms-one" onClick="{{ r.pick }}">{{ r.name }}</a>
+                    <span class="{{ r.feeCls }} ms-num">수수료 {{ r.fee }}</span>
+                  </div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+                    <span class="text-typo-caption-md-500 text-ms-gray-600 ms-num">손님 {{ r.people }} · 결제 {{ r.paid }} · 미설정 {{ r.unset }}</span>
+                    <span class="{{ r.netCls }} ms-num">{{ r.net }}</span>
+                  </div>
+                  <sc-if value="{{ r.canPdf }}" hint-placeholder-val="{{ true }}">
+                    <button class="cc-btn ms-link text-typo-caption-md-500 text-primary" style="align-self:flex-end;" onClick="{{ r.pdf }}">거래 명세서(PDF)</button>
+                  </sc-if>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{ settleNote }}" hint-placeholder-val="{{ false }}">
+            <span class="text-typo-caption-md-400 text-ms-gray-500">{{ settleNoteText }}</span>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <!-- 빈 상태 -->
+      <sc-if value="{{ empty.on }}" hint-placeholder-val="{{ false }}">
+        <div class="bg-ms-white" style="border-radius:12px;min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:32px 20px;">
+          <span class="bg-ms-gray-100 text-ms-gray-500" style="width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;">—</span>
+          <span class="text-typo-heading-md-500 text-ms-gray-800">{{ empty.title }}</span>
+          <span class="text-typo-body-400 text-ms-gray-600">{{ empty.sub }}</span>
+        </div>
+      </sc-if>
+
+      <!-- ===== 손님 묶음 — 데스크톱 · 태블릿 = 두 층 표(피드백 6: 금액 칸 = 상품 실결제 | 수수료율 | 수수료) ===== -->
+      <sc-if value="{{ tableOn }}" hint-placeholder-val="{{ true }}">
+        <div class="bg-ms-white" style="border-radius:12px;box-shadow:0px 2px 10px 0px rgba(0,0,0,0.04);overflow:hidden;">
+          <div class="bg-ms-gray-100 border-ms-gray-200" style="border-bottom-width:1px;border-bottom-style:solid;padding:8px 20px 6px;display:flex;flex-direction:column;gap:4px;">
+            <div class="text-typo-caption-md-600 text-ms-gray-700" style="display:grid;grid-template-columns:{{ headCols }};gap:{{ colGap }};align-items:center;">
+              <span>결제일</span><span>손님 이름</span>
+              <sc-if value="{{ full }}" hint-placeholder-val="{{ true }}"><span>방문일</span></sc-if>
+              <span>최초 유입 채널</span><span>{{ payHead }}</span><span></span>
+              <span style="text-align:right;">실결제</span><span></span><span style="text-align:right;">수수료</span>
+            </div>
+            <div class="text-typo-caption-md-500 text-ms-gray-500" style="display:grid;grid-template-columns:{{ lineCols }};gap:{{ colGap }};align-items:center;padding-left:30px;">
+              <span>품목 종류</span><span>상품</span><span>옵션</span><span>상태</span><span style="text-align:right;">상품 실결제</span><span style="text-align:right;">수수료율</span><span style="text-align:right;">수수료</span>
+            </div>
+          </div>
+          <sc-for list="{{ groups }}" as="g" hint-placeholder-count="8">
+            <div class="border-ms-gray-200" style="border-bottom-width:1px;border-bottom-style:solid;padding:10px 20px 12px;">
+              <div style="display:grid;grid-template-columns:{{ headCols }};gap:{{ colGap }};align-items:center;min-height:32px;">
+                <span class="{{ g.atCls }} ms-num">{{ g.at }}</span>
+                <span class="{{ g.nameCls }} ms-one">{{ g.name }}<span class="text-typo-caption-md-400 text-ms-gray-400" style="margin-left:6px;">{{ g.nameWhy }}</span></span>
+                <sc-if value="{{ full }}" hint-placeholder-val="{{ true }}"><span class="text-typo-body-400 text-ms-gray-700 ms-num">{{ g.visit }}</span></sc-if>
+                <span class="{{ g.funnelCls }} ms-one" title="{{ g.funnelFull }}">{{ g.funnel }}</span>
+                <span style="display:flex;align-items:center;gap:6px;min-width:0;">
+                  <sc-if value="{{ full }}" hint-placeholder-val="{{ true }}"><span class="text-typo-caption-md-500 text-ms-gray-600" style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;white-space:nowrap;">{{ g.pid }}</span></sc-if>
+                  <sc-for list="{{ g.pays }}" as="p" hint-placeholder-count="1">
+                    <span class="bg-ms-gray-200 text-typo-caption-md-500 text-ms-gray-700" style="padding:1px 6px;border-radius:4px;white-space:nowrap;">{{ p }}</span>
+                  </sc-for>
+                </span>
+                <span style="display:flex;align-items:center;justify-content:flex-end;gap:8px;min-width:0;">
+                  <span class="text-typo-caption-md-400 text-ms-gray-400 ms-num" title="{{ g.goneTip }}">{{ g.gone }}</span>
+                  <sc-for list="{{ g.flags }}" as="f" hint-placeholder-count="0">
+                    <x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="{{ f.variant }}" size="sm" hint-size="92px,22px">{{ f.text }}</x-import>
+                  </sc-for>
+                </span>
+                <span class="{{ g.netCls }} ms-num" style="text-align:right;">{{ g.net }}</span>
+                <span></span>
+                <span class="{{ g.feeCls }} ms-num" style="text-align:right;">{{ g.fee }}</span>
+              </div>
+              <div class="border-ms-gray-200" style="margin:6px 0 0 8px;padding-left:20px;border-left-width:2px;border-left-style:solid;display:flex;flex-direction:column;">
+                <sc-if value="{{ g.note }}" hint-placeholder-val="{{ false }}">
+                  <span class="{{ g.noteCls }}" style="padding:4px 0;">{{ g.noteText }}</span>
+                </sc-if>
+                <sc-for list="{{ g.lines }}" as="l" hint-placeholder-count="2">
+                  <div style="display:grid;grid-template-columns:{{ lineCols }};gap:{{ colGap }};align-items:center;min-height:{{ l.h }};">
+                    <span class="{{ l.typeCls }}" style="white-space:nowrap;">{{ l.type }}</span>
+                    <span class="{{ l.nameCls }} ms-one" title="{{ l.name }}">{{ l.name }}</span>
+                    <span class="{{ l.optCls }} ms-one">{{ l.opt }}</span>
+                    <span style="display:flex;align-items:center;">
+                      <sc-if value="{{ l.badge }}" hint-placeholder-val="{{ true }}">
+                        <x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="{{ l.variant }}" size="sm" hint-size="64px,22px">{{ l.status }}</x-import>
+                      </sc-if>
+                      <sc-if value="{{ l.quiet }}" hint-placeholder-val="{{ false }}">
+                        <span class="text-typo-caption-md-400 text-ms-gray-400">{{ l.status }}</span>
+                      </sc-if>
+                    </span>
+                    <span class="{{ l.amtCls }} ms-num" style="text-align:right;">{{ l.amt }}</span>
+                    <span class="{{ l.rateCls }} ms-num" style="text-align:right;">{{ l.rate }}</span>
+                    <span class="{{ l.feeCls }} ms-num" style="text-align:right;">{{ l.fee }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <!-- ===== 손님 묶음 — 폰 = 카드(피드백 0) ===== -->
+      <sc-if value="{{ cardsOn }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <sc-for list="{{ groups }}" as="g" hint-placeholder-count="4">
+            <div class="bg-ms-white" style="border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:8px;box-shadow:0px 2px 10px 0px rgba(0,0,0,0.04);">
+              <div style="display:flex;align-items:baseline;justify-content:space-between;gap:8px;">
+                <span class="{{ g.nameCls }} ms-one">{{ g.name }}<span class="text-typo-caption-md-400 text-ms-gray-400" style="margin-left:6px;">{{ g.nameWhy }}</span></span>
+                <span class="{{ g.netCls }} ms-num">{{ g.net }}</span>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+                <span class="text-typo-caption-md-500 text-ms-gray-500 ms-one"><span class="{{ g.atCls }}">{{ g.at }}</span> · {{ g.funnel }} · {{ g.payText }}</span>
+                <span class="{{ g.feeCls }} ms-num">{{ g.feeMob }}</span>
+              </div>
+              <sc-if value="{{ g.hasMarks }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+                  <sc-for list="{{ g.flags }}" as="f" hint-placeholder-count="0">
+                    <x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="{{ f.variant }}" size="sm" hint-size="92px,22px">{{ f.text }}</x-import>
+                  </sc-for>
+                  <span class="text-typo-caption-md-400 text-ms-gray-400">{{ g.gone }}</span>
+                </div>
+              </sc-if>
+              <sc-if value="{{ g.note }}" hint-placeholder-val="{{ false }}">
+                <span class="{{ g.noteCls }}">{{ g.noteText }}</span>
+              </sc-if>
+              <sc-for list="{{ g.lines }}" as="l" hint-placeholder-count="2">
+                <div class="border-ms-gray-200" style="border-top-width:1px;border-top-style:solid;padding-top:8px;display:flex;flex-direction:column;gap:4px;">
+                  <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+                    <span class="{{ l.nameCls }} ms-one">{{ l.name }}<span class="text-typo-caption-md-400 text-ms-gray-500" style="margin-left:6px;">{{ l.optMob }}</span></span>
+                    <sc-if value="{{ l.badge }}" hint-placeholder-val="{{ true }}">
+                      <x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="{{ l.variant }}" size="sm" hint-size="64px,22px">{{ l.status }}</x-import>
+                    </sc-if>
+                  </div>
+                  <div style="display:flex;align-items:center;justify-content:flex-end;gap:10px;">
+                    <span class="{{ l.amtCls }} ms-num">{{ l.amt }}</span>
+                    <span class="{{ l.rateCls }} ms-num">× {{ l.rate }}</span>
+                    <span class="{{ l.feeCls }} ms-num">= {{ l.fee }}</span>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+    </div>
+  </sc-if>
+
+  <!-- ================= 설정 — 상품별 수수료율 · 달별 스냅샷(피드백 5) ================= -->
+  <sc-if value="{{ isSettings }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px 24px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:{{ toolGap }};flex-wrap:wrap;">
+          <h1 class="{{ titleCls }} text-ms-gray-800" style="margin:0;white-space:nowrap;">설정</h1>
+          <div style="display:flex;align-items:center;gap:6px;">
+            <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="sm" disabled="{{ set.prevOff }}" on-click="{{ set.prev }}" hint-size="36px,32px">‹</x-import>
+            <span class="text-typo-heading-md-500 text-ms-gray-800 ms-num" style="min-width:108px;text-align:center;">{{ set.monthLabel }}</span>
+            <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="sm" disabled="{{ set.nextOff }}" on-click="{{ set.next }}" hint-size="36px,32px">›</x-import>
+          </div>
+          <span class="{{ set.stateCls }}" style="display:inline-flex;align-items:center;gap:4px;padding:5px 10px;border-radius:6px;border-width:1px;border-style:solid;white-space:nowrap;">{{ set.stateText }}</span>
+        </div>
+        <!-- 저장 상태 · 저장 · 확정 -->
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;{{ toolRight }}">
+          <span class="{{ set.saveCls }} ms-num" style="white-space:nowrap;">{{ set.saveText }}</span>
+          <sc-if value="{{ set.dirty }}" hint-placeholder-val="{{ false }}">
+            <button class="cc-btn ms-link text-typo-caption-md-500 text-ms-gray-500" onClick="{{ set.revert }}">되돌리기</button>
+            <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="filled" color="blue" size="sm" on-click="{{ set.save }}" hint-size="64px,32px">저장</x-import>
+          </sc-if>
+          <sc-if value="{{ set.canLock }}" hint-placeholder-val="{{ true }}">
+            <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="sm" disabled="{{ set.lockOff }}" on-click="{{ set.lock }}" hint-size="112px,32px">이 달 확정</x-import>
+          </sc-if>
+        </div>
+      </div>
+
+      <!-- 이 달 수수료율 머리 판 -->
+      <div class="bg-ms-white" style="border-radius:12px;padding:16px 20px;display:flex;flex-direction:column;gap:6px;box-shadow:0px 2px 10px 0px rgba(0,0,0,0.04);">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:8px 16px;flex-wrap:wrap;">
+          <span class="text-typo-heading-md-600 text-ms-gray-800">{{ set.heading }}</span>
+          <span style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+            <span class="text-typo-caption-md-400 text-ms-gray-500 ms-num">{{ set.kosText }}</span>
+            <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="sm" disabled="{{ set.kosOff }}" on-click="{{ set.kos }}" hint-size="136px,32px">{{ set.kosLabel }}</x-import>
+          </span>
+        </div>
+        <span class="text-typo-body-400 text-ms-gray-600">{{ set.explain }}</span>
+        <sc-if value="{{ set.banner }}" hint-placeholder-val="{{ false }}">
+          <div class="{{ set.bannerCls }}" style="margin-top:6px;border-radius:8px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:8px 12px;flex-wrap:wrap;">
+            <span class="text-typo-body-500 text-ms-gray-800">{{ set.bannerText }}</span>
+            <sc-if value="{{ set.locked }}" hint-placeholder-val="{{ false }}">
+              <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="sm" on-click="{{ set.unlockAsk }}" hint-size="72px,32px">고치기</x-import>
+            </sc-if>
+          </div>
+        </sc-if>
+      </div>
+
+      <!-- 찾기 · 카테고리 · 미설정만 -->
+      <div style="display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap;">
+        <input class="ms-in" style="width:{{ searchW }};" placeholder="상품 · 옵션 이름 찾기" value="{{ set.q }}" onChange="{{ set.search }}">
+        <div class="ms-scroll" style="display:flex;align-items:center;gap:6px;overflow-x:auto;max-width:100%;">
+          <sc-for list="{{ set.cats }}" as="k" hint-placeholder-count="6">
+            <a class="ms-pill {{ k.cls }}" onClick="{{ k.pick }}">{{ k.name }}<span class="ms-num" style="opacity:.7;">{{ k.n }}</span></a>
+          </sc-for>
+          <a class="ms-pill {{ set.unsetCls }}" onClick="{{ set.unsetGo }}">미설정만<span class="ms-num">{{ set.unsetN }}</span></a>
+        </div>
+      </div>
+
+      <!-- 일괄 적용 — 대상 = 선택한 상품 / 카테고리 · 미리보기 -->
+      <div class="bg-ms-white border-ms-gray-200" style="border-radius:10px;border-width:1px;border-style:solid;padding:10px 14px;display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap;">
+        <span class="text-typo-body-600 text-ms-gray-800" style="white-space:nowrap;">일괄 적용</span>
+        <a class="ms-pill {{ set.bulkSelCls }}" onClick="{{ set.bulkSel }}">선택한 상품 {{ set.selN }}개</a>
+        <a class="ms-pill {{ set.bulkCatCls }}" onClick="{{ set.bulkCat }}">카테고리</a>
+        <select class="ms-in" style="width:128px;" disabled="{{ set.catSelOff }}" value="{{ set.bulkCatVal }}" onChange="{{ set.bulkCatPick }}">
+          <sc-for list="{{ set.catOpts }}" as="o" hint-placeholder-count="5"><option value="{{ o }}">{{ o }}</option></sc-for>
+        </select>
+        <span style="display:inline-flex;align-items:center;gap:6px;"><input class="ms-in ms-rate" value="{{ set.bulkVal }}" disabled="{{ set.bulkInOff }}" onChange="{{ set.bulkInput }}" inputmode="decimal"><span class="text-typo-body-400 text-ms-gray-600">%</span></span>
+        <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="blue" size="sm" disabled="{{ set.bulkOff }}" on-click="{{ set.bulkApply }}" hint-size="56px,32px">적용</x-import>
+        <span class="text-typo-caption-md-400 {{ set.bulkHintCls }}">{{ set.bulkHint }}</span>
+      </div>
+
+      <!-- 상품 표 — 데스크톱 · 태블릿 -->
+      <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+        <div class="bg-ms-white" style="border-radius:12px;box-shadow:0px 2px 10px 0px rgba(0,0,0,0.04);overflow:hidden;">
+          <div class="bg-ms-gray-100 border-ms-gray-200 text-typo-caption-md-600 text-ms-gray-700" style="display:grid;grid-template-columns:{{ setCols }};gap:16px;align-items:center;padding:10px 20px;border-bottom-width:1px;border-bottom-style:solid;">
+            <input type="checkbox" class="ms-chk" checked="{{ set.allOn }}" disabled="{{ set.chkOff }}" onChange="{{ set.allToggle }}">
+            <span>상품 · 옵션</span><span>카테고리</span><span style="text-align:right;">{{ set.prevHead }}</span><span style="text-align:right;">{{ set.curHead }}</span><span>상태</span>
+          </div>
+          <sc-for list="{{ set.rows }}" as="pr" hint-placeholder-count="10">
+            <div class="border-ms-gray-200 {{ pr.rowCls }}" style="display:grid;grid-template-columns:{{ setCols }};gap:16px;align-items:center;padding:8px 20px;min-height:52px;box-sizing:border-box;border-bottom-width:1px;border-bottom-style:solid;">
+              <input type="checkbox" class="ms-chk" checked="{{ pr.on }}" disabled="{{ pr.chkOff }}" onChange="{{ pr.toggle }}">
+              <span style="display:flex;flex-direction:column;gap:2px;min-width:0;">
+                <span class="text-typo-body-500 text-ms-gray-800 ms-one" title="{{ pr.name }}">{{ pr.name }}</span>
+                <span class="text-typo-caption-md-400 text-ms-gray-500 ms-one">{{ pr.opts }}</span>
+              </span>
+              <span class="text-typo-body-400 text-ms-gray-700" style="white-space:nowrap;">{{ pr.cat }}</span>
+              <span class="text-typo-body-400 text-ms-gray-500 ms-num" style="text-align:right;">{{ pr.prev }}</span>
+              <span style="display:flex;align-items:center;justify-content:flex-end;gap:6px;">
+                <input class="ms-in ms-rate" value="{{ pr.rate }}" placeholder="—" disabled="{{ pr.off }}" onChange="{{ pr.set }}" inputmode="decimal">
+                <span class="text-typo-body-400 text-ms-gray-600">%</span>
+              </span>
+              <span style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+                <sc-for list="{{ pr.marks }}" as="m" hint-placeholder-count="1">
+                  <x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="{{ m.variant }}" size="sm" hint-size="72px,22px">{{ m.text }}</x-import>
+                </sc-for>
+              </span>
+            </div>
+          </sc-for>
+          <sc-if value="{{ set.none }}" hint-placeholder-val="{{ false }}">
+            <div class="text-typo-body-400 text-ms-gray-500" style="padding:32px;text-align:center;">찾는 상품이 없어요</div>
+          </sc-if>
+        </div>
+      </sc-if>
+      <!-- 상품 목록 — 폰 -->
+      <sc-if value="{{ mob }}" hint-placeholder-val="{{ false }}">
+        <div class="bg-ms-white" style="border-radius:10px;box-shadow:0px 2px 10px 0px rgba(0,0,0,0.04);overflow:hidden;">
+          <sc-for list="{{ set.rows }}" as="pr" hint-placeholder-count="8">
+            <div class="border-ms-gray-200 {{ pr.rowCls }}" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom-width:1px;border-bottom-style:solid;">
+              <input type="checkbox" class="ms-chk" checked="{{ pr.on }}" disabled="{{ pr.chkOff }}" onChange="{{ pr.toggle }}">
+              <span style="flex:1;display:flex;flex-direction:column;gap:2px;min-width:0;">
+                <span class="text-typo-body-500 text-ms-gray-800 ms-one">{{ pr.name }}</span>
+                <span class="text-typo-caption-md-400 text-ms-gray-500 ms-one">{{ pr.cat }} · {{ pr.opts }} · {{ pr.prevMob }}</span>
+                <span style="display:flex;gap:4px;flex-wrap:wrap;">
+                  <sc-for list="{{ pr.marks }}" as="m" hint-placeholder-count="1">
+                    <x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="{{ m.variant }}" size="sm" hint-size="72px,22px">{{ m.text }}</x-import>
+                  </sc-for>
+                </span>
+              </span>
+              <span style="display:flex;align-items:center;gap:4px;">
+                <input class="ms-in ms-rate" style="width:56px;" value="{{ pr.rate }}" placeholder="—" disabled="{{ pr.off }}" onChange="{{ pr.set }}" inputmode="decimal">
+                <span class="text-typo-body-400 text-ms-gray-600">%</span>
+              </span>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+    </div>
+  </sc-if>
+
+  <!-- ================= 거래 명세서(PDF) 한 장 — A4 세로 ================= -->
+  <sc-if value="{{ isPdf }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-direction:column;gap:12px;align-items:center;">
+      <div style="width:794px;max-width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+        <span class="text-typo-heading-sm-600 text-ms-gray-800">거래 명세서 미리보기 · {{ pdf.chShort }} · {{ pdf.monthText }}</span>
+        <span style="display:flex;gap:8px;">
+          <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="sm" on-click="{{ pdf.close }}" hint-size="56px,32px">닫기</x-import>
+          <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="filled" color="blue" size="sm" hint-size="112px,32px">PDF 내려받기</x-import>
+        </span>
+      </div>
+      <div class="ms-a4">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid #1f2933;padding-bottom:12px;">
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <span style="font-size:26px;font-weight:700;letter-spacing:6px;">거래 명세서</span>
+            <span style="font-size:12px;color:#5b6470;">유입 채널 수수료 정산</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:2px;align-items:flex-end;font-size:12px;color:#5b6470;">
+            <span>명세서 번호 {{ pdf.no }}</span><span>발행일 {{ pdf.issued }}</span>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:12px;">
+          <div style="border:1px solid #c9ced6;border-radius:4px;padding:10px 12px;display:flex;flex-direction:column;gap:4px;">
+            <span style="color:#5b6470;">발행 (병원)</span><span style="font-size:15px;font-weight:700;">세라미크 명동점</span><span style="color:#5b6470;">CÉRAMIQUE · 운영 KOS 기준</span>
+          </div>
+          <div style="border:1px solid #c9ced6;border-radius:4px;padding:10px 12px;display:flex;flex-direction:column;gap:4px;">
+            <span style="color:#5b6470;">받는 곳 (유입 채널)</span><span style="font-size:15px;font-weight:700;">{{ pdf.chShort }}</span><span style="color:#5b6470;">KOS 값 「{{ pdf.chFull }}」</span>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);border:1px solid #c9ced6;border-radius:4px;font-size:12px;">
+          <div style="padding:8px 12px;border-right:1px solid #eceef1;"><div style="color:#5b6470;">기간</div><div style="font-weight:600;margin-top:2px;">{{ pdf.period }}</div></div>
+          <div style="padding:8px 12px;border-right:1px solid #eceef1;"><div style="color:#5b6470;">손님 · 결제 손님</div><div style="font-weight:600;margin-top:2px;">{{ pdf.people }}</div></div>
+          <div style="padding:8px 12px;border-right:1px solid #eceef1;"><div style="color:#5b6470;">실결제 합</div><div style="font-weight:600;margin-top:2px;" class="ms-num">{{ pdf.net }}</div></div>
+          <div style="padding:8px 12px;background:#eef8fb;"><div style="color:#5b6470;">수수료 합</div><div style="font-weight:700;font-size:16px;margin-top:2px;color:#1d7f9e;" class="ms-num">{{ pdf.fee }}</div></div>
+        </div>
+        <table>
+          <thead><tr><th>결제일</th><th>손님</th><th>상품</th><th>옵션</th><th class="r">실결제</th><th class="r">수수료율</th><th class="r">수수료</th></tr></thead>
+          <tbody>
+            <sc-for list="{{ pdf.rows }}" as="x" hint-placeholder-count="8">
+              <tr class="{{ x.cls }}"><td class="r" style="text-align:left;">{{ x.at }}</td><td>{{ x.who }}</td><td>{{ x.name }}</td><td>{{ x.opt }}</td><td class="r">{{ x.amt }}</td><td class="r">{{ x.rate }}</td><td class="r">{{ x.fee }}</td></tr>
+            </sc-for>
+            <tr class="tot"><td colspan="4">합계</td><td class="r">{{ pdf.net }}</td><td></td><td class="r">{{ pdf.fee }}</td></tr>
+          </tbody>
+        </table>
+        <div style="font-size:11px;color:#5b6470;display:flex;flex-direction:column;gap:3px;">
+          <sc-for list="{{ pdf.notes }}" as="nt" hint-placeholder-count="3"><span>· {{ nt }}</span></sc-for>
+        </div>
+        <div style="margin-top:auto;display:flex;justify-content:space-between;font-size:11px;color:#9aa1ab;border-top:1px solid #eceef1;padding-top:8px;">
+          <span>세라미크 명동점 · {{ pdf.no }}</span><span>1 / 1</span>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  </div>
+  </main>
+
+  <!-- ===== 전체 내보내기 확인(zip) ===== -->
+  <sc-if value="{{ zip.on }}" hint-placeholder-val="{{ false }}">
+    <div class="ms-veil" style="padding:{{ veilPad }};">
+      <div class="bg-ms-white" style="width:{{ modalW }};max-width:100%;border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.2);display:flex;flex-direction:column;overflow:hidden;">
+        <div style="padding:20px 24px 8px;display:flex;flex-direction:column;gap:4px;">
+          <span class="text-typo-heading-md-600 text-ms-gray-800">전체 내보내기 — {{ zip.monthText }}</span>
+          <span class="text-typo-body-400 text-ms-gray-600">유입 채널마다 거래 명세서 PDF 를 하나씩 만들어 <b>{{ zip.file }}</b> 하나로 묶어요</span>
+        </div>
+        <div style="padding:8px 24px;display:flex;flex-direction:column;">
+          <sc-for list="{{ zip.rows }}" as="z" hint-placeholder-count="6">
+            <div class="border-ms-gray-200" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;border-bottom-width:1px;border-bottom-style:solid;opacity:{{ z.op }};">
+              <span style="display:flex;flex-direction:column;min-width:0;">
+                <span class="text-typo-body-500 text-ms-gray-800 ms-one" style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;">{{ z.file }}</span>
+                <span class="text-typo-caption-md-400 text-ms-gray-500">{{ z.sub }}</span>
+              </span>
+              <span class="{{ z.feeCls }} ms-num">{{ z.fee }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="padding:8px 24px;display:flex;flex-direction:column;gap:6px;">
+          <sc-for list="{{ zip.warns }}" as="w" hint-placeholder-count="2">
+            <span class="bg-yellow-100 text-typo-caption-md-500 text-ms-gray-800" style="padding:8px 10px;border-radius:6px;">⚠ {{ w }}</span>
+          </sc-for>
+        </div>
+        <div style="padding:12px 24px 20px;display:flex;justify-content:flex-end;gap:8px;">
+          <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="m" on-click="{{ zip.close }}" hint-size="72px,40px">취소</x-import>
+          <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="filled" color="blue" size="m" on-click="{{ zip.close }}" hint-size="160px,40px">{{ zip.go }}</x-import>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ===== 확정 달 고치기 확인 ===== -->
+  <sc-if value="{{ unlock.on }}" hint-placeholder-val="{{ false }}">
+    <div class="ms-veil" style="padding:{{ veilPad }};">
+      <div class="bg-ms-white" style="width:420px;max-width:100%;border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.2);padding:22px 24px;display:flex;flex-direction:column;gap:10px;">
+        <span class="text-typo-heading-md-600 text-ms-gray-800">{{ unlock.title }}</span>
+        <span class="text-typo-body-400 text-ms-gray-600" style="word-break:keep-all;">{{ unlock.sub }}</span>
+        <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:8px;">
+          <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="m" on-click="{{ unlock.no }}" hint-size="72px,40px">그대로 둠</x-import>
+          <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="filled" color="red" size="m" on-click="{{ unlock.yes }}" hint-size="88px,40px">고칠게요</x-import>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;scene&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;monthly&quot;, &quot;monthly-sep&quot;, &quot;channel-all&quot;, &quot;channel-one&quot;, &quot;settings&quot;, &quot;settings-month-locked&quot;, &quot;settings-bulk&quot;, &quot;statement-pdf&quot;, &quot;export-zip&quot;, &quot;monthly-tablet&quot;, &quot;monthly-mobile&quot;, &quot;channel-all-tablet&quot;, &quot;channel-all-mobile&quot;, &quot;channel-one-tablet&quot;, &quot;channel-one-mobile&quot;, &quot;settings-tablet&quot;, &quot;settings-mobile&quot;], &quot;default&quot;: &quot;monthly&quot;, &quot;tsType&quot;: &quot;&#x27;monthly&#x27;|&#x27;monthly-sep&#x27;|&#x27;channel-all&#x27;|&#x27;channel-one&#x27;|&#x27;settings&#x27;|&#x27;settings-month-locked&#x27;|&#x27;settings-bulk&#x27;|&#x27;statement-pdf&#x27;|&#x27;export-zip&#x27;|&#x27;monthly-tablet&#x27;|&#x27;monthly-mobile&#x27;|&#x27;channel-all-tablet&#x27;|&#x27;channel-all-mobile&#x27;|&#x27;channel-one-tablet&#x27;|&#x27;channel-one-mobile&#x27;|&#x27;settings-tablet&#x27;|&#x27;settings-mobile&#x27;&quot;}}">
+// ===== 월별 매출 v3 — v2 + 지금 구현(D-18 최종 결제만) + 피드백 2026-11-02 묶음 0 ~ 7 =====
+// 이름 · 채널 · 금액은 전부 가짜(홍길동 꼴 가명 · 채널A(에이전시) · 본사 꼴 일반 이름 · 둥근 금액). 오늘 = 2026-11-02 · 이번 달 = 11월 · 10월 = 확정 달
+const pad = (n) => String(n).padStart(2, '0');
+const NUM = (v) => (v < 0 ? '−' : '') + Math.abs(v).toLocaleString('en-US');
+const NOW = { y: 2026, m: 11 };
+const idx = (ym) => ym.y * 12 + ym.m - 1;
+const add = (ym, n) => { const i = idx(ym) + n; return { y: Math.floor(i / 12), m: (i % 12) + 1 }; };
+const ymKey = (ym) => ym.y + '-' + pad(ym.m);
+const mText = (ym) => ym.y + '년 ' + ym.m + '월';
+
+// lib/labels.ts 와 같은 이름(D-18 — 줄 상태는 결제 완료 · 부분 환불뿐)
+const ITEM_STATUS = { ACCEPTED: ['결제 완료', 'primary'], PAID: ['결제 완료', 'primary'], PARTIALLY_REFUNDED: ['부분 환불', 'warning'] };
+const PAY = { CARD: '카드', CASH: '현금', EASY_PAY: '간편결제', PREPAID_CARD: '선불카드' };
+const TYPE_OF_CAT = { '기타 상품': '기타 상품', '선불카드': '선불카드' };
+
+// ---- KOS 상품 목록(가짜) — 상품 → 옵션 · 카테고리. since = KOS 에 처음 보인 달(그 전 달 설정 표엔 없음)
+const PRODUCTS = [
+  { id: 'P01', name: '[10월 이벤트] 울쎄라피프라임300샷+써마지600샷', cat: '리프팅', opts: ['1회'] },
+  { id: 'P02', name: '울쎄라피프라임 300샷', cat: '리프팅', opts: ['1회', '구성품'] },
+  { id: 'P03', name: '써마지 FLX 600샷', cat: '리프팅', opts: ['1회', '구성품'] },
+  { id: 'P04', name: '[첫방문] 써마지 FLX', cat: '리프팅', opts: ['300샷', '600샷'] },
+  { id: 'P05', name: '[오픈] 울써마지 300샷', cat: '리프팅', opts: ['1회'] },
+  { id: 'P06', name: '[9월 이벤트] 슈링크 유니버스 300샷', cat: '리프팅', opts: ['1회'] },
+  { id: 'P07', name: '[11월 이벤트] 온다 리프팅 300kJ', cat: '리프팅', opts: ['1회'], since: '2026-11', isNew: true },
+  { id: 'P08', name: '보톡스 이마', cat: '보톡스', opts: ['1회', '3회'] },
+  { id: 'P09', name: '리쥬란 힐러 2cc', cat: '스킨부스터', opts: ['1회', '3회'] },
+  { id: 'P10', name: '리쥬란 힐러 4cc', cat: '스킨부스터', opts: ['1회', '2회'] },
+  { id: 'P11', name: '아쿠아필', cat: '관리', opts: ['1회'] },
+  { id: 'P12', name: '진정 관리', cat: '기타 상품', opts: [] },
+  { id: 'P13', name: '마취 크림', cat: '기타 상품', opts: [] },
+  { id: 'P14', name: '사은품 마스크팩', cat: '기타 상품', opts: [] },
+  { id: 'P15', name: '선불카드 50만원권', cat: '선불카드', opts: [] },
+  { id: 'P16', name: '선불카드 200만원권', cat: '선불카드', opts: [] }
+];
+const PROD = Object.fromEntries(PRODUCTS.map((p) => [p.id, p]));
+const CATS = ['리프팅', '보톡스', '스킨부스터', '관리', '기타 상품', '선불카드'];
+const KOS_AT = '11-02 09:58';
+
+// ---- 달별 수수료율 스냅샷(%) — 저장된 값. null = 미설정. 9월 · 10월 = 확정(잠금) · 11월 = 10월 복사로 시작 → 보톡스 10 → 30 · 리쥬란 2cc 10 → 12 고침
+const R = (lift, botox, skin, care, etc) => ({ P01: lift, P02: lift, P03: lift, P04: lift, P05: lift, P06: lift, P08: botox, P09: skin, P10: skin, P11: care, P12: etc, P13: 0, P14: 0, P15: null, P16: null });
+const SAVED0 = {
+  '2026-09': R(15, 10, 10, 10, 5),
+  '2026-10': R(15, 10, 10, 10, 5),
+  '2026-11': { ...R(15, 30, 10, 10, 5), P09: 12, P07: null }
+};
+const LOCK0 = { '2026-09': '10-01 10:00', '2026-10': '11-01 09:30' };
+const SAVED_AT0 = { '2026-09': '10-01 09:55', '2026-10': '11-01 09:28', '2026-11': '11-02 10:12' };
+const SET_FIRST = { y: 2026, m: 9 }; // 설정이 처음 생긴 달
+
+// ---- 가짜 저장 매출(D-18 꼴 — 머리 = 실결제 · 줄 = 최종 결제된 품목만 · 취소 · 환불은 숫자만)
+const L = (p, opt, amt, st) => ({ p, opt, amt, st: st || 'ACCEPTED' });
+const CH_A = '채널A(에이전시)', CH_B = '채널B(에이전시)', CH_C = '채널C(에이전시)';
+const OCT = [
+  { id: 'o01', pid: 'a1b2c3', at: '10-02 11:20', name: '홍길동', visit: '10-02', funnel: CH_A, pays: ['CARD'], lines: [L('P01', '1회', 3300000), L('P02', '구성품', 0), L('P03', '구성품', 0)] },
+  { id: 'o02', pid: 'd4e5f6', at: '10-03 15:05', name: '김철수', visit: '10-03', funnel: '네이버 검색', pays: ['CARD', 'CASH'], lines: [L('P04', '300샷', 1000000), L('P14', null, 0, 'PAID'), L('P13', null, 30000, 'PAID')] },
+  { id: 'o03', pid: 'aabbcc', at: '10-08 09:40', name: '박가명', visit: '10-08', funnel: CH_A, pays: ['PREPAID_CARD'], cancels: 1, lines: [L('P05', '1회', 600000)] },
+  { id: 'o04', pid: 'ddeeff', at: '10-11 17:45', name: '정예시', visit: '10-11', funnel: '지인 소개', pays: ['CARD'], lines: [L('P05', '1회', 200000), L('P11', '1회', 100000)] },
+  { id: 'o05', pid: '123abc', at: '10-14 12:00', name: null, visit: null, funnel: CH_C, pays: ['CASH'], missing: true, lines: [] },
+  // 앞 달 결제의 이 달 취소 — 머리만 · 음수 · 결제일 칸 = 「앞 달 결제 취소」(0.4.3)
+  { id: 'o06', pid: '6a7b8c', at: null, name: '강샘플', visit: '09-20', funnel: CH_A, pays: [], priorCancel: -300000, firstAt: '09-20', cancels: 2, lines: [] },
+  { id: 'o07', pid: '789fed', at: '10-20 13:30', name: '오가나', visit: '10-20', funnel: '본사', pays: ['EASY_PAY'], cancels: 1, lines: [L('P15', null, 300000, 'PARTIALLY_REFUNDED')] },
+  { id: 'o08', pid: 'cba987', at: '10-24 16:40', name: '윤테스트', visit: '10-24', funnel: CH_B, pays: ['CARD'], cancels: 1, refunds: 1, lines: [L('P01', '1회', 2000000, 'PAID'), L('P02', '구성품', 0, 'PAID'), L('P03', '구성품', 0, 'PAID')] },
+  { id: 'o09', pid: 'f0e1d2', at: '10-26 11:10', name: '마가명', visit: '10-26', funnel: '네이버 검색', pays: ['CARD'], mismatch: true, lines: [L('P10', '2회', 1200000)] },
+  { id: 'o10', pid: '5c6d7e', at: '10-27 14:20', name: '진샘플', visit: '10-27', funnel: '본사_대만', pays: ['CARD'], lines: [L('P08', '1회', 250000), L('P12', null, 50000, 'PAID')] },
+  { id: 'o11', pid: '8f9a0b', at: '10-28 10:05', name: '피예시', visit: '10-28', funnel: '워크인', pays: ['CASH'], lines: [L('P09', '3회', 900000)] },
+  { id: 'o12', pid: 'b4c5d6', at: '10-29 15:05', name: '류가짜', visit: '10-29', funnel: null, pays: ['CASH'], lines: [L('P12', null, 120000, 'PAID')] },
+  { id: 'o13', pid: 'c7d8e9', at: '10-30 16:00', name: '탁더미', visit: '10-30', funnel: '인스타그램', pays: ['CARD'], lines: [L('P11', '1회', 150000)] },
+  { id: 'o14', pid: 'e1f2a3', at: '10-31 12:30', name: '노샘플', visit: '10-31', funnel: CH_C, pays: ['CARD'], lines: [L('P09', '1회', 700000)] }
+];
+// 9월 — 문예제: 8월 결제를 9월에 취소하고 다시 결제(재결제). 결제 순액(−400,000 + 600,000) ≠ 품목 600,000 이지만 차이 = 앞 달 결제의 이 달 취소 → ⚠ 안 띄움(피드백 + 앞서 쌓인 것)
+const SEP = [
+  { id: 's01', pid: '0a1b2c', at: '09-03 10:30', name: '최가상', visit: '09-03', funnel: CH_A, pays: ['CARD'], lines: [L('P06', '1회', 1500000)] },
+  { id: 's02', pid: '3d4e5f', at: '09-07 16:10', name: '문예제', visit: '09-07', funnel: CH_B, pays: ['CASH'], priorPayCancel: -400000, lines: [L('P09', '1회', 600000, 'PAID')] },
+  { id: 's03', pid: '6a7b8c', at: '09-20 15:40', name: '강샘플', visit: '09-20', funnel: CH_A, pays: ['CARD', 'CASH'], lines: [L('P11', '1회', 300000), L('P12', null, 50000, 'PAID')] },
+  { id: 's04', pid: '9d0e1f', at: '09-22 13:15', name: '서임시', visit: '09-22', funnel: '인스타그램', pays: ['CARD'], lines: [L('P04', '300샷', 900000)] },
+  { id: 's05', pid: '2a3b4c', at: '09-27 18:00', name: '백더미', visit: '09-27', funnel: '본사', pays: ['EASY_PAY'], lines: [L('P16', null, 2000000, 'PAID')] }
+];
+const NOV = [
+  { id: 'n01', pid: '4e5f6a', at: '11-01 13:20', name: '하가명', visit: '11-01', funnel: CH_A, pays: ['CARD'], lines: [L('P08', '1회', 250000)] },
+  { id: 'n02', pid: '7b8c9d', at: '11-02 09:40', name: '구예제', visit: '11-02', funnel: '워크인', pays: ['CARD'], lines: [L('P07', '1회', 1100000)] }
+];
+const DATA = { '2026-08': [], '2026-09': SEP, '2026-10': OCT, '2026-11': NOV };
+const GOT = { '2026-08': '10-29 13:57', '2026-09': '10-29 13:58', '2026-10': '11-01 09:12', '2026-11': '11-02 10:05' };
+
+// 유입 채널 — 저장된 모든 달의 값 그대로(짐작 · 묶기 없음). 글자만 「(에이전시)」 꼬리를 뗌 · 빈 값 = 「(없음)」 탭 하나(코디 기본값)
+const NONE = '(없음)';
+const chOf = (g) => g.funnel || NONE;
+const short = (f) => f.replace(/\(에이전시\)$/, '').trim() || f;
+const CHANNELS = [...new Set(Object.values(DATA).flat().map(chOf))].sort((a, b) => {
+  const k = (x) => (x === NONE ? 3 : x.endsWith('(에이전시)') ? 0 : x.startsWith('본사') ? 1 : 2);
+  return k(a) - k(b) || a.localeCompare(b);
+});
+const ALL = '*';
+
+class Component extends DCLogic {
+  state = this.initial();
+  initial() {
+    return { page: 'monthly', ym: { y: 2026, m: 10 }, ch: ALL, lay: 'desk', pdfCh: null, modal: null, pulled: false,
+      sym: { y: 2026, m: 11 }, saved: JSON.parse(JSON.stringify(SAVED0)), draft: JSON.parse(JSON.stringify(SAVED0)),
+      lock: { ...LOCK0 }, savedAt: { ...SAVED_AT0 }, kosAt: KOS_AT, kosBusy: false,
+      sel: {}, q: '', cat: null, unsetOnly: false, bulk: { mode: 'sel', cat: '스킨부스터', val: '' } };
+  }
+  componentDidMount() { this.applyScene(this.props.scene); }
+  componentDidUpdate(prev) { if (prev && prev.scene !== this.props.scene) this.applyScene(this.props.scene); }
+  componentWillUnmount() { clearTimeout(this.t); }
+
+  applyScene(scene) {
+    const s = this.initial();
+    const base = scene.replace(/-(tablet|mobile)$/, '');
+    if (scene.endsWith('-tablet')) s.lay = 'tab';
+    if (scene.endsWith('-mobile')) s.lay = 'mob';
+    if (base === 'monthly-sep') s.ym = { y: 2026, m: 9 };
+    if (base === 'channel-all') s.page = 'channel';
+    if (base === 'channel-one') { s.page = 'channel'; s.ch = CH_A; }
+    if (base === 'export-zip') { s.page = 'channel'; s.modal = 'zip'; }
+    if (base === 'statement-pdf') { s.page = 'pdf'; s.pdfCh = CH_A; }
+    if (base.startsWith('settings')) s.page = 'settings';
+    if (base === 'settings-month-locked') s.sym = { y: 2026, m: 10 };
+    if (base === 'settings-bulk') {
+      s.sel = { P09: true, P10: true, P11: true, P15: true }; s.bulk = { mode: 'sel', cat: '스킨부스터', val: '20' };
+      s.draft['2026-11'].P07 = '18'; // 저장 안 한 변경 1개
+    }
+    this.setState(s);
+  }
+
+  // ---- 수수료 — 그 달 「저장된」 수수료율 스냅샷으로(피드백 5 · 10월 자료 = 10월 값)
+  rateOf(k, pid) { const t = this.state.saved[k]; if (!t || !(pid in t) || t[pid] === null || t[pid] === '') return null; return Number(t[pid]); }
+  calc(g, k) {
+    let fee = 0, unset = 0;
+    const lines = g.lines.map((l) => {
+      const r = this.rateOf(k, l.p);
+      const f = r === null ? 0 : Math.round((l.amt * r) / 100); // 원 단위 반올림(정할 것)
+      fee += f; if (r === null && l.amt !== 0) unset += 1;
+      return { ...l, r, f };
+    });
+    const net = g.priorCancel !== undefined ? g.priorCancel : g.lines.reduce((a, l) => a + l.amt, 0);
+    return { ...g, lines, fee, unset, net };
+  }
+  monthGroups(ym) { const k = ymKey(ym); return (DATA[k] || []).map((g) => this.calc(g, k)); }
+  people(gs) { return { people: new Set(gs.map((g) => g.name || g.id)).size, paid: new Set(gs.filter((g) => g.pays.length > 0).map((g) => g.name || g.id)).size }; }
+  settleRow(ch, gs) {
+    const n = this.people(gs);
+    return { ch, n: gs.length, people: n.people, paid: n.paid, net: gs.reduce((a, g) => a + g.net, 0), fee: gs.reduce((a, g) => a + g.fee, 0), unset: gs.reduce((a, g) => a + g.unset, 0), prior: gs.filter((g) => g.priorCancel !== undefined).length };
+  }
+
+  lineVals(l) {
+    const zero = l.amt === 0;
+    const [st, variant] = ITEM_STATUS[l.st] || [l.st, 'neutral'];
+    const p = PROD[l.p];
+    const quietTxt = 'text-typo-caption-md-400 text-ms-gray-400';
+    const unset = l.r === null;
+    return {
+      h: zero ? '26px' : '34px',
+      type: zero ? '└' : (TYPE_OF_CAT[p.cat] || '상품'), typeCls: zero ? quietTxt : 'text-typo-body-400 text-ms-gray-700',
+      name: p.name, nameCls: zero ? 'text-typo-caption-md-400 text-ms-gray-500' : 'text-typo-body-500 text-ms-gray-800',
+      opt: l.opt || '—', optMob: l.opt || '', optCls: zero ? quietTxt : (l.opt ? 'text-typo-body-400 text-ms-gray-700' : 'text-typo-body-400 text-ms-gray-400'),
+      status: st, variant, badge: !zero, quiet: zero,
+      amt: NUM(l.amt), amtCls: zero ? quietTxt : 'text-typo-body-500 text-ms-gray-800',
+      // 미설정 = 「미설정」(수수료 0) · 0원 줄은 율이 있어도 흐리게
+      rate: unset ? '미설정' : l.r + '%', rateCls: zero ? quietTxt : (unset ? 'text-typo-caption-md-600 ms-warn' : 'text-typo-body-400 text-ms-gray-700'),
+      fee: NUM(l.f), feeCls: zero || unset ? quietTxt : 'text-typo-body-500 text-primary'
+    };
+  }
+
+  groupVals(g) {
+    const prior = g.priorCancel !== undefined;
+    const flags = [];
+    if (g.mismatch) flags.push({ text: '⚠ 결제 ≠ 품목', variant: 'warning' });
+    const gone = [g.cancels ? '취소 ' + g.cancels : null, g.refunds ? '환불 ' + g.refunds : null, g.priorPayCancel ? '앞 달 결제 취소 1' : null].filter(Boolean).join(' · ');
+    const noteText = g.missing ? '품목을 찾지 못했어요 — 수수료 0' : prior ? '품목은 다른 달에 · 첫 승인 ' + g.firstAt + ' · 수수료 되돌림은 정할 것' : '';
+    return {
+      at: prior ? '앞 달 결제 취소' : g.at, atCls: prior ? 'text-typo-body-600 text-red' : 'text-typo-body-600 text-ms-gray-800',
+      name: g.name || '—', nameWhy: g.name ? '' : '이름 없음', nameCls: g.name ? 'text-typo-body-600 text-ms-gray-800' : 'text-typo-body-400 text-ms-gray-400',
+      visit: g.visit || '—',
+      funnel: g.funnel ? short(g.funnel) : NONE, funnelFull: g.funnel || '최초 유입 채널 없음', funnelCls: g.funnel ? 'text-typo-body-500 text-ms-gray-700' : 'text-typo-body-400 text-ms-gray-400',
+      pid: g.pid, pays: g.pays.map((p) => PAY[p] || p), payText: g.pays.map((p) => PAY[p] || p).join(' · ') || '결제 없음',
+      flags, gone, goneTip: g.priorPayCancel ? '8월 결제를 이 달에 취소(' + NUM(g.priorPayCancel) + ') — 결제 ≠ 품목 비교에서 뺐어요' : '',
+      hasMarks: flags.length > 0 || !!gone,
+      net: NUM(g.net), netCls: g.net < 0 ? 'text-typo-body-600 text-red' : g.net ? 'text-typo-body-600 text-ms-gray-800' : 'text-typo-body-400 text-ms-gray-400',
+      fee: prior ? '—' : NUM(g.fee), feeMob: prior ? '수수료 —' : '수수료 ' + NUM(g.fee), feeCls: prior || !g.fee ? 'text-typo-body-400 text-ms-gray-400' : 'text-typo-body-600 text-primary',
+      note: !!noteText, noteText, noteCls: 'text-typo-caption-md-400 text-ms-gray-500',
+      lines: g.lines.map((l) => this.lineVals(l))
+    };
+  }
+
+  // ---- 설정 화면 값
+  setVals() {
+    const s = this.state, k = ymKey(s.sym), pk = ymKey(add(s.sym, -1));
+    const locked = !!s.lock[k];
+    const draft = s.draft[k] || {}, saved = s.saved[k] || {}, prevT = s.saved[pk];
+    const live = PRODUCTS.filter((p) => !p.since || p.since <= k);
+    const val = (pid) => (draft[pid] === null || draft[pid] === undefined ? '' : String(draft[pid]));
+    const dirtyIds = live.filter((p) => String(saved[p.id] ?? '') !== val(p.id)).map((p) => p.id);
+    const unsetIds = live.filter((p) => val(p.id) === '').map((p) => p.id);
+    const q = s.q.trim();
+    const shown = live.filter((p) => (!s.cat || p.cat === s.cat) && (!s.unsetOnly || val(p.id) === '') && (!q || (p.name + ' ' + p.opts.join(' ')).includes(q)));
+    const selIds = Object.keys(s.sel).filter((id) => s.sel[id] && live.some((p) => p.id === id));
+    const prevNum = (pid) => (prevT && prevT[pid] !== null && prevT[pid] !== undefined ? prevT[pid] + '%' : '—');
+    const setDraft = (pid, v) => this.setState({ draft: { ...s.draft, [k]: { ...draft, [pid]: v === '' ? null : v } } });
+    const bulkTargets = s.bulk.mode === 'sel' ? selIds : live.filter((p) => p.cat === s.bulk.cat).map((p) => p.id);
+    const bv = String(s.bulk.val).trim();
+    const bulkValid = bv !== '' && !isNaN(Number(bv)) && Number(bv) >= 0 && Number(bv) <= 100;
+    const tv = (e) => (e && e.target ? e.target.value : e);
+    const rows = shown.map((p) => {
+      const v = val(p.id), was = saved[p.id], pr = prevT ? prevT[p.id] : undefined;
+      const marks = [];
+      if (v === '') marks.push({ text: '미설정', variant: 'warning' });
+      if (dirtyIds.includes(p.id)) marks.push({ text: '저장 안 됨', variant: 'primary' });
+      else if (prevT && v !== '' && String(pr ?? '') !== v) marks.push({ text: pk.slice(5).replace(/^0/, '') + '월 ' + (pr === null || pr === undefined ? '—' : pr + '%') + ' → ' + v + '%', variant: 'neutral' });
+      if (p.isNew && p.since === k) marks.push({ text: '새 상품', variant: 'primary' });
+      return {
+        id: p.id, name: p.name, opts: p.opts.length ? '옵션 ' + p.opts.join(' · ') : '옵션 없음', cat: p.cat,
+        prev: prevNum(p.id), prevMob: pk.slice(5).replace(/^0/, '') + '월 ' + prevNum(p.id),
+        rate: v, off: locked, set: (e) => setDraft(p.id, tv(e)),
+        on: !!s.sel[p.id], chkOff: locked, toggle: () => this.setState({ sel: { ...s.sel, [p.id]: !s.sel[p.id] } }),
+        marks, rowCls: s.sel[p.id] ? 'ms-sel-bg' : '', was
+      };
+    });
+    const saveText = locked ? '확정 ' + s.lock[k] + ' · 잠김' : dirtyIds.length ? '저장 안 한 변경 ' + dirtyIds.length + '개' : '저장됨 ' + (s.savedAt[k] || '');
+    return {
+      key: k, monthLabel: mText(s.sym), heading: mText(s.sym) + ' 수수료율',
+      prevOff: idx(s.sym) <= idx(SET_FIRST), nextOff: idx(s.sym) >= idx(NOW),
+      prev: () => this.setState({ sym: add(s.sym, -1), sel: {} }), next: () => this.setState({ sym: add(s.sym, 1), sel: {} }),
+      locked, stateText: locked ? '🔒 확정 · 잠김' : '편집 중', stateCls: locked ? 'bg-ms-white border-ms-gray-300 text-typo-caption-md-600 text-ms-gray-700' : 'bg-ms-white border-primary text-typo-caption-md-600 text-primary',
+      saveText, saveCls: dirtyIds.length && !locked ? 'text-typo-body-500 ms-warn' : 'text-typo-body-400 text-ms-gray-500',
+      dirty: !locked && dirtyIds.length > 0, dirtyN: dirtyIds.length,
+      save: () => this.setState({ saved: { ...s.saved, [k]: { ...saved, ...Object.fromEntries(live.map((p) => [p.id, val(p.id) === '' ? null : Number(val(p.id))])) } }, savedAt: { ...s.savedAt, [k]: '11-02 10:14' } }),
+      revert: () => this.setState({ draft: { ...s.draft, [k]: { ...saved } } }),
+      canLock: !locked && idx(s.sym) < idx(NOW), lockOff: dirtyIds.length > 0,
+      lock: () => this.setState({ lock: { ...s.lock, [k]: '11-02 10:20' } }),
+      explain: mText(s.sym) + ' 매출의 수수료는 이 값으로 계산해요 — 다른 달 값을 바꿔도 이 달 정산 · 거래 명세서는 그대로예요. 미설정 상품은 수수료 0',
+      banner: locked || idx(s.sym) === idx(NOW),
+      bannerText: locked ? '확정된 달이에요 · ' + s.lock[k] + ' — 이 값으로 ' + s.sym.m + '월 거래 명세서가 나가요. 고치려면 [고치기]' : add(s.sym, -1).m + '월 값을 복사해서 시작했어요 — 바꾼 상품만 「' + add(s.sym, -1).m + '월 → 」로 보여요',
+      bannerCls: locked ? 'bg-ms-gray-100' : 'ms-sel-bg',
+      unlockAsk: () => this.setState({ modal: 'unlock' }),
+      kosText: '상품 ' + live.length + '개 · KOS 에서 받은 시각 ' + s.kosAt, kosLabel: s.kosBusy ? '받는 중…' : 'KOS 상품 다시 받기', kosOff: s.kosBusy,
+      kos: () => { clearTimeout(this.t); this.setState({ kosBusy: true }); this.t = setTimeout(() => this.setState({ kosBusy: false, kosAt: '11-02 10:16' }), 1000); },
+      q: s.q, search: (e) => this.setState({ q: tv(e) || '' }),
+      cats: [null, ...CATS].map((c) => ({ name: c || '전체', n: String(live.filter((p) => !c || p.cat === c).length), cls: s.cat === c ? 'ms-sel-bg border-primary text-typo-caption-md-600 text-primary' : 'bg-ms-white border-ms-gray-200 text-typo-caption-md-500 text-ms-gray-700', pick: () => this.setState({ cat: c }) })),
+      unsetN: String(unsetIds.length), unsetCls: s.unsetOnly ? 'ms-warn-bg ms-warn-bd text-typo-caption-md-600 ms-warn' : 'bg-ms-white border-ms-gray-200 text-typo-caption-md-500 ms-warn',
+      unsetGo: () => this.setState({ unsetOnly: !s.unsetOnly }),
+      selN: String(selIds.length),
+      bulkSelCls: s.bulk.mode === 'sel' ? 'ms-sel-bg border-primary text-typo-caption-md-600 text-primary' : 'bg-ms-white border-ms-gray-200 text-typo-caption-md-500 text-ms-gray-700',
+      bulkCatCls: s.bulk.mode === 'cat' ? 'ms-sel-bg border-primary text-typo-caption-md-600 text-primary' : 'bg-ms-white border-ms-gray-200 text-typo-caption-md-500 text-ms-gray-700',
+      bulkSel: () => this.setState({ bulk: { ...s.bulk, mode: 'sel' } }), bulkCat: () => this.setState({ bulk: { ...s.bulk, mode: 'cat' } }),
+      catOpts: CATS, bulkCatVal: s.bulk.cat, catSelOff: locked || s.bulk.mode !== 'cat', bulkCatPick: (e) => this.setState({ bulk: { ...s.bulk, cat: tv(e) } }),
+      bulkVal: s.bulk.val, bulkInOff: locked, bulkInput: (e) => this.setState({ bulk: { ...s.bulk, val: tv(e) } }),
+      bulkOff: locked || !bulkValid || bulkTargets.length === 0,
+      bulkApply: () => this.setState({ draft: { ...s.draft, [k]: { ...draft, ...Object.fromEntries(bulkTargets.map((id) => [id, bv])) } }, sel: {} }),
+      bulkHint: locked ? '확정된 달은 일괄 적용도 잠겨요' : bulkTargets.length === 0 ? (s.bulk.mode === 'sel' ? '표에서 상품을 골라 주세요' : '이 카테고리에 상품이 없어요') : !bulkValid ? '0 ~ 100 사이 숫자를 넣어 주세요' : '→ ' + bulkTargets.length + '개 상품을 ' + bv + '% 로 (저장 전까지 표에만) · ' + bulkTargets.map((id) => PROD[id].name + ' ' + (val(id) || '—') + '→' + bv).join(', '),
+      bulkHintCls: !locked && bulkTargets.length && bulkValid ? 'text-primary' : 'text-ms-gray-500',
+      allOn: shown.length > 0 && shown.every((p) => s.sel[p.id]), chkOff: locked,
+      allToggle: () => { const on = !(shown.length > 0 && shown.every((p) => s.sel[p.id])); this.setState({ sel: { ...s.sel, ...Object.fromEntries(shown.map((p) => [p.id, on])) } }); },
+      prevHead: pk.slice(5).replace(/^0/, '') + '월(앞 달)', curHead: s.sym.m + '월 수수료율',
+      rows, none: rows.length === 0
+    };
+  }
+
+  // ---- 거래 명세서 한 장(채널 · 달)
+  pdfVals(ch, ym) {
+    const k = ymKey(ym);
+    const gs = this.monthGroups(ym).filter((g) => chOf(g) === ch);
+    const sr = this.settleRow(ch, gs);
+    const rows = [];
+    for (const g of gs) {
+      const who = g.name || '(이름 없음)';
+      if (g.priorCancel !== undefined) { rows.push({ cls: '', at: '앞 달 결제 취소', who, name: '첫 승인 ' + g.firstAt + ' 수납의 이 달 취소', opt: '', amt: NUM(g.net), rate: '—', fee: '—' }); continue; }
+      const paid = g.lines.filter((l) => l.amt !== 0);
+      if (!paid.length) { rows.push({ cls: '', at: g.at, who, name: '품목을 찾지 못했어요', opt: '', amt: NUM(g.net), rate: '—', fee: '0' }); continue; }
+      paid.forEach((l, i) => rows.push({ cls: '', at: i ? '' : g.at, who: i ? '' : who, name: PROD[l.p].name, opt: l.opt || '', amt: NUM(l.amt), rate: l.r === null ? '미설정' : l.r + '%', fee: NUM(l.f) }));
+      if (paid.length > 1) rows.push({ cls: 'sub', at: '', who: '', name: who + ' 소계', opt: '', amt: NUM(g.net), rate: '', fee: NUM(g.fee) });
+    }
+    const lastDay = new Date(ym.y, ym.m, 0).getDate();
+    const notes = ['수수료 = 상품 실결제 × ' + mText(ym) + ' 수수료율(' + (this.state.lock[k] ? '확정 ' + this.state.lock[k] : '확정 전') + ') · 원 단위 반올림'];
+    if (sr.unset) notes.push('수수료율 미설정 품목 ' + sr.unset + '줄은 수수료 0 으로 넣었어요');
+    if (sr.prior) notes.push('「앞 달 결제 취소」는 실결제에서 빼고 수수료는 되돌리지 않았어요(정할 것)');
+    notes.push('금액은 받은 시점 기준 최종 결제예요 — 취소 · 전액 환불 품목은 넣지 않았어요 · 0원 구성품 줄 생략');
+    notes.push('KOS 받은 시각 ' + (GOT[k] || '—') + ' · 손님 이름은 화면과 같음(가림 여부 정할 것)');
+    return {
+      chShort: short(ch), chFull: ch, monthText: mText(ym), no: 'AS-' + k.replace('-', '') + '-' + short(ch), issued: '2026-11-02',
+      period: k + '-01 ~ ' + k + '-' + lastDay, people: sr.people + '명 · ' + sr.paid + '명', net: NUM(sr.net), fee: NUM(sr.fee),
+      rows, notes, close: () => this.setState({ page: 'channel', ch, pdfCh: null })
+    };
+  }
+
+  renderVals() {
+    const s = this.state, lay = s.lay, mob = lay === 'mob', tab = lay === 'tab';
+    const k = ymKey(s.ym);
+    const sales = s.page === 'monthly' || s.page === 'channel';
+    const isCh = s.page === 'channel';
+    const month = this.monthGroups(s.ym);
+    const gs = isCh && s.ch !== ALL ? month.filter((g) => chOf(g) === s.ch) : isCh ? [] : month;
+    const cur = idx(s.ym) === idx(NOW), closed = idx(s.ym) < idx(NOW);
+    const go = (page) => () => this.setState({ page, ch: ALL, modal: null });
+    const pick = (c) => () => this.setState({ ch: c });
+    const rowsSettle = CHANNELS.map((c) => this.settleRow(c, month.filter((g) => chOf(g) === c)));
+    const total = this.settleRow('합계', month);
+    const fmtSettle = (r, sum) => ({
+      name: sum ? '합계 (' + rowsSettle.filter((x) => x.n).length + '개 채널)' : short(r.ch), full: r.ch === NONE ? '최초 유입 채널 없음' : r.ch,
+      people: r.people + '명', paid: r.paid + '명', net: NUM(r.net), fee: NUM(r.fee), unset: r.unset ? r.unset + '줄' : '—',
+      nameCls: sum ? 'text-typo-body-600 ms-bold text-ms-gray-800' : (r.n ? 'text-typo-body-600 text-primary' : 'text-typo-body-500 text-ms-gray-400'),
+      numCls: r.n || sum ? 'text-typo-body-500 text-ms-gray-800' : 'text-typo-body-400 text-ms-gray-400',
+      netCls: r.net < 0 ? 'text-typo-body-600 text-red' : sum ? 'text-typo-body-600 ms-bold text-ms-gray-800' : r.n ? 'text-typo-body-600 text-ms-gray-800' : 'text-typo-body-400 text-ms-gray-400',
+      feeCls: sum ? 'text-typo-body-600 ms-bold text-primary' : r.fee ? 'text-typo-body-600 text-primary' : 'text-typo-body-400 text-ms-gray-400',
+      unsetCls: r.unset ? 'text-typo-body-600 ms-warn' : 'text-typo-body-400 text-ms-gray-400',
+      rowCls: sum ? 'ms-sum-bg' : '', cardCls: sum ? 'border-primary' : '', h: sum ? '52px' : '46px',
+      pick: sum ? () => {} : pick(r.ch), canPdf: !sum && r.n > 0, pdf: () => this.setState({ page: 'pdf', pdfCh: r.ch, modal: null })
+    });
+    const settle = isCh ? (s.ch === ALL ? [...rowsSettle.map((r) => fmtSettle(r, false)), fmtSettle(total, true)] : [fmtSettle(rowsSettle.find((r) => r.ch === s.ch), false)]) : [];
+    const one = isCh && s.ch !== ALL ? rowsSettle.find((r) => r.ch === s.ch) : null;
+    const allLines = month.flatMap((g) => g.lines);
+    const zipRows = rowsSettle.map((r) => ({ file: '거래명세서_' + k + '_' + short(r.ch) + '.pdf', sub: r.n ? '손님 ' + r.people + '명 · 실결제 ' + NUM(r.net) + (r.unset ? ' · 미설정 ' + r.unset + '줄' : '') : '이 달 손님 없음 — 만들지 않아요', fee: r.n ? '수수료 ' + NUM(r.fee) : '—', feeCls: r.n ? 'text-typo-body-600 text-primary' : 'text-typo-body-400 text-ms-gray-400', op: r.n ? '1' : '0.45', n: r.n }));
+    const made = zipRows.filter((z) => z.n).length;
+    const warns = [];
+    if (total.unset) warns.push('수수료율 미설정 품목 ' + total.unset + '줄 — 수수료 0 으로 들어가요(설정에서 먼저 채울 수 있어요)');
+    if (!s.lock[k]) warns.push(mText(s.ym) + ' 수수료율이 아직 확정 전이에요');
+    if (total.prior) warns.push('「앞 달 결제 취소」 ' + total.prior + '건은 실결제에서만 빠지고 수수료는 되돌리지 않아요(정할 것)');
+    const unlockK = ymKey(s.sym);
+    const widths = { desk: '100%', tab: '1024px', mob: '390px' };
+    return {
+      frameW: widths[lay], wide: !mob, mob, full: lay === 'desk',
+      padX: tab ? '20px' : '28px', padMain: mob ? '12px 12px 32px' : tab ? '16px 20px 32px' : '20px 28px 40px',
+      navGapOuter: tab ? '28px' : '48px', navGap: tab ? '24px' : '40px', toolGap: mob ? '10px' : '20px',
+      titleCls: mob ? 'text-typo-title-sm-600' : 'text-typo-title-md-600', toolRight: mob ? 'width:100%;justify-content:space-between;' : '',
+      tabPad: mob ? '12px' : '20px', tabGap: mob ? '20px' : '28px', searchW: mob ? '100%' : '260px', veilPad: mob ? '64px 12px' : '96px 24px', modalW: '560px',
+      noteStyle: mob ? '' : 'margin-left:auto;white-space:nowrap;',
+      navs: [{ name: '월별 조회', v: 'monthly' }, { name: '유입채널', v: 'channel' }, { name: '설정', v: 'settings' }].map((n) => {
+        const on = n.v === s.page || (n.v === 'channel' && s.page === 'pdf');
+        return { name: n.name, go: go(n.v), cls: on ? 'text-typo-heading-md-500 text-primary' : 'text-typo-heading-md-400 text-ms-gray-800', line: on ? '#2498bd' : 'transparent' };
+      }),
+      isSales: sales, isMonthly: s.page === 'monthly', isChannel: isCh, isSettings: s.page === 'settings', isPdf: s.page === 'pdf',
+      title: isCh ? '유입채널' : '월별 매출', monthLabel: mText(s.ym),
+      prev: () => this.setState({ ym: add(s.ym, -1), pulled: false }), next: () => this.setState({ ym: add(s.ym, 1), pulled: false }),
+      prevOff: false, nextOff: idx(s.ym) >= idx(NOW),
+      sync: {
+        cur, closed, pullOff: false, pullLabel: '새 결제 받기',
+        pull: () => this.setState({ pulled: true }),
+        atLead: mob ? '받은 시각 ' : '마지막으로 받은 시각 ', atText: GOT[k] || '—',
+        note: cur && s.pulled, noteText: '새 결제 없음 · 10:20 확인'
+      },
+      exp: {
+        pdf: isCh && s.ch !== ALL && !!one && one.n > 0, pdfGo: () => this.setState({ page: 'pdf', pdfCh: s.ch }),
+        zip: !(isCh && s.ch !== ALL), zipGo: () => this.setState({ modal: 'zip' })
+      },
+      tabs: [ALL, ...CHANNELS].map((c) => {
+        const on = c === s.ch;
+        const n = c === ALL ? month.length : month.filter((g) => chOf(g) === c).length;
+        return { name: c === ALL ? '전체' : short(c), full: c === ALL ? '모든 유입 채널' : c === NONE ? '최초 유입 채널 없음' : c, n: String(n),
+          cls: on ? 'text-typo-heading-sm-600 text-primary' : n ? 'text-typo-heading-sm-400 text-ms-gray-700' : 'text-typo-heading-sm-400 text-ms-gray-400',
+          nCls: on ? 'text-typo-caption-md-600 text-primary' : 'text-typo-caption-md-500 text-ms-gray-400', line: on ? '#2498bd' : 'transparent', pick: pick(c) };
+      }),
+      chips: [
+        { name: '수납', value: month.length + '건', cls: 'text-typo-body-600 text-ms-gray-800' },
+        { name: '품목', value: allLines.length + '줄', cls: 'text-typo-body-600 text-ms-gray-800' },
+        { name: '실결제 합', value: NUM(total.net), cls: 'text-typo-body-600 text-ms-gray-800' },
+        { name: '수수료 합', value: NUM(total.fee), cls: 'text-typo-body-600 text-primary' },
+        { name: '미설정 품목', value: total.unset + '줄', cls: total.unset ? 'text-typo-body-600 ms-warn' : 'text-typo-body-600 text-ms-gray-500' }
+      ],
+      grayCounts: k === '2026-10' ? '취소된 결제 5건 · 전액 환불 품목 1개 · 숨긴 수납 2' : k === '2026-09' ? '앞 달 결제 취소 1건(재결제 — ⚠ 비교에서 뺌)' : '',
+      rateMonth: s.ym.m + '월',
+      hasSettle: isCh && month.length > 0,
+      settleTitle: s.ch === ALL ? mText(s.ym) + ' 유입 채널 결산' : short(s.ch) + ' · ' + mText(s.ym) + ' 결산',
+      settleSub: s.ch === ALL ? '채널 이름을 누르면 그 채널 손님이 보여요 · 수수료 = ' + s.ym.m + '월 수수료율' : '',
+      settleCols: mob ? '1fr' : tab ? 'minmax(140px,1.4fr) 64px 76px 1fr 1fr 84px 72px' : 'minmax(200px,1.6fr) 1fr 1fr 1.2fr 1.2fr 1fr 120px',
+      settle,
+      settleNote: isCh && s.ch === ALL && total.prior > 0, settleNoteText: 'ⓘ 실결제에는 「앞 달 결제 취소」(음수)가 들어 있어요 · 그 수수료 되돌림은 정할 것(지금은 —)',
+      empty: { on: sales && ((isCh && s.ch !== ALL && gs.length === 0) || month.length === 0), title: isCh && s.ch !== ALL ? '이 달에는 이 채널 손님의 결제가 없어요' : '이 달에는 결제가 없어요', sub: (isCh && s.ch !== ALL ? short(s.ch) + ' · ' : '') + mText(s.ym) },
+      tableOn: sales && !mob && gs.length > 0, cardsOn: sales && mob && gs.length > 0,
+      colGap: tab ? '12px' : '16px', payHead: lay === 'desk' ? '수납 · 결제 수단' : '결제 수단',
+      headCols: lay === 'desk' ? '132px 140px 72px minmax(140px,1fr) minmax(180px,1.2fr) minmax(120px,1fr) 120px 72px 120px' : '120px 96px minmax(96px,1fr) minmax(96px,1fr) minmax(60px,auto) 104px 64px 96px',
+      lineCols: lay === 'desk' ? '88px minmax(280px,2fr) minmax(100px,1fr) 96px 120px 72px 120px' : '68px minmax(160px,1fr) 64px 76px 104px 64px 96px',
+      groups: gs.map((g) => this.groupVals(g)),
+      set: this.setVals(),
+      setCols: tab ? '24px minmax(240px,1fr) 96px 88px 120px 160px' : '24px minmax(320px,2fr) 120px 110px 140px minmax(200px,1fr)',
+      pdf: this.pdfVals(s.pdfCh || CH_A, s.ym),
+      zip: { on: s.modal === 'zip', monthText: mText(s.ym), file: '거래명세서_' + k + '.zip', rows: zipRows, warns, go: 'zip 내려받기 (PDF ' + made + '개)', close: () => this.setState({ modal: null }) },
+      unlock: { on: s.modal === 'unlock', title: mText(s.sym) + ' 수수료율을 고칠까요?',
+        sub: '확정 ' + (s.lock[unlockK] || '') + ' 뒤에 나간 ' + s.sym.m + '월 거래 명세서와 금액이 달라질 수 있어요. 고친 뒤 다시 [이 달 확정]을 눌러 주세요.',
+        no: () => this.setState({ modal: null }), yes: () => { const lk = { ...s.lock }; delete lk[unlockK]; this.setState({ modal: null, lock: lk }); } }
+    };
+  }
+}
+</script>
+</body>
+</html>

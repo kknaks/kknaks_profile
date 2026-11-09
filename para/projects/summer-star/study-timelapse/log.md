@@ -2,6 +2,7 @@
 
 | Date | Type | IDs | Summary | Links |
 |---|---|---|---|---|
+| 2026-11-06 | docs | — | 문서 목차 링크 정리와 프로젝트·작업 기록 연결 | [[para/projects/summer-star/study-timelapse/README\|목록]] |
 | 2026-08-10 | doc-change | STL-SPEC-004, 006, 007 | Spec Coverage 에 「이관 전 구현(WP 없음)」 행 추가. 2026-06-09 이관이 계약 표면만 옮겨 구현 WP 가 없는 spec 이라, 소급 WP 대신 derived view 에 사실을 적었다 | `30-work/README.md` |
 | 2026-06-21 | work-add | STL-WORK-003 | 다음날 기록이 사라져 보이는 문제 조사 결과, daily_focus 집계 날짜/Stats 기본 날짜/모바일 today 계산/세션 완료 idempotency/PUT 실패 무시 리스크를 닫기 위한 bugfix WP 추가 | `30-work/work-003-session-stats-persistence-timezone.md`, `30-work/README.md` |
 | 2026-06-21 | work-add | STL-WORK-002 | TestFlight/App Review 전 모바일 Apple Sign-In 미연동 gap을 닫기 위한 WP 추가. 구현 전 capability/bundle id/backend client id 확인부터 진행 | `30-work/work-002-mobile-apple-sign-in.md`, `30-work/README.md` |

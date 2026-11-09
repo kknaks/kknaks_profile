@@ -1,6 +1,7 @@
 {
   "_doc": "sc-rank(네이버 순위 조회 데스크톱 앱 — Tauri 2 + Rust, 서버 없음, 운영 Windows) 오케스트레이션 설정 SSOT. scripts/new-work.sh 가 읽는 유일한 곳. 값 하드코딩 금지. 2026-09-30 웹 PoC(reference/2026-09-09-sc-prototype) 이식으로 시작. 2026-10-01 코드를 kknaksss/sc-rank 로 분리(Windows 빌드에 git 레포 필요, DEC-001 D-07 개정).",
   "project": "sc-rank",
+  "document_root": "para/projects/summer-star/sc-rank",
   "worktree_root": "/Users/kknaks/orca/workspaces",
   "use_worktree": true,
   "repos": {
@@ -68,7 +69,7 @@
   "default_workers": [
     "desktop"
   ],
-  "summary_dest": "/Users/kknaks/git/toy_pr2/kknaks_profile/para/projects/summer-star/sc-rank/log",
+  "summary_dest": "para/projects/summer-star/sc-rank/log",
   "rules": {
     "spec_and_app_use_separate_prs": true,
     "workers_commit_or_push": false,

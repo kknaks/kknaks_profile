@@ -1,6 +1,6 @@
 # System Architecture Index
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > 시스템 구성요소, 외부 연동, 주요 흐름을 관리한다.
 

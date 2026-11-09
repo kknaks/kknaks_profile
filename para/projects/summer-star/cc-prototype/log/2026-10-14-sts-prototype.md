@@ -94,3 +94,9 @@
 - **차티 연동**: 상담 종료 때 상담내역 · 상품이 차티 → 관제 → KOS 로 오는 경로(지금은 이벤트 파일이 대신함)
 - **재시드**: 배포 DB 는 PVC 에 남아 있다 — 데이터를 바꾸면 PVC 의 `cc.db` 삭제 후 back 재시작
 - **통역 지연**: 확정 발화 뒤 TTS(문장 단위) — 번역 토큰 스트리밍 TTS 로 줄일 수 있음(미적용)
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/cc-prototype/sts-prototype/README|sts-prototype]]
+<!-- work-links:end -->

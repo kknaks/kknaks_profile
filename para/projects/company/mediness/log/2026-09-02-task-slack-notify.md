@@ -54,3 +54,9 @@
 - 09-03 09:00 첫 크론 실발송 확인 (테스트 발송은 오늘 실채널로 검증됨)
 - v2 후보(계약 아님): 주간 합계 리포트 · 마감 임박 D-3 개인 DM
 - 문서 환류 누적분: WP-131(09-01 실기동 수리분) 등재 · SPEC-060 툴 표(62종) 정합
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/mediness/task-slack-notify/README|task-slack-notify]]
+<!-- work-links:end -->

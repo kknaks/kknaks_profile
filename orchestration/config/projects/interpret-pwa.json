@@ -1,6 +1,7 @@
 {
   "_doc": "interpret-pwa(실시간 통역 PWA PoC — 한국어 ↔ 외국어 양방향 · Procedure Hub 용어집을 Soniox 번역 용어로) 오케스트레이션 설정 SSOT. scripts/new-work.sh 가 읽는 유일한 곳. 값 하드코딩 금지. 2026-10-26 빈 레포 kknaksss/interpret-pwa 에서 착수(cc-prototype 의 sts 통역에서 떼어 새로 세운다).",
   "project": "interpret-pwa",
+  "document_root": "para/projects/summer-star/interpret-pwa",
   "worktree_root": "/Users/kknaks/orca/workspaces",
   "use_worktree": true,
   "repos": {
@@ -139,7 +140,7 @@
     "backend",
     "frontend"
   ],
-  "summary_dest": "/Users/kknaks/git/toy_pr2/kknaks_profile/para/projects/summer-star/interpret-pwa/log",
+  "summary_dest": "para/projects/summer-star/interpret-pwa/log",
   "rules": {
     "spec_and_app_use_separate_prs": true,
     "workers_commit_or_push": false,

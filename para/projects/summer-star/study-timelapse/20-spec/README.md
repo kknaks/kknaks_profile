@@ -1,6 +1,6 @@
 # Spec Index
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > decision으로 확정된 내용을 기능 계약으로 구체화한 spec 목록. 원본 `study_timelapse/medi_docs/current/spec/` 12건(spec-01~10, 12, 13, **spec-11 결번**)을 큐레이션 이관했다. 원본의 구현 본문(Swift/Python/TS)·옵션 deliberation 은 제외하고 계약 표면만 남겼으며, 각 spec 의 `구현 현황` 섹션에 실제 코드 grounding(file:line)을 남겼다.
 > status 는 코드 상태 반영 — 대부분 `implemented`, 미구현 요소가 있는 2건은 `in_dev`(본문 Open Questions 에 gap 플래그).

@@ -6,9 +6,9 @@ AX Knowledge Graph의 구현 아키텍처는 **Next.js + FastAPI + PostgreSQL + 
 
 | Area | Path |
 |---|---|
-| System | `system/README.md` — monorepo layout, service boundaries, runtime flows |
-| Database | `database/README.md` — PostgreSQL schema, indexes, payload boundaries |
-| Deploy | `deploy/README.md` — local/deploy runtime topology and document mount |
+| System | [[para/projects/summer-star/ax-knowledge-graph/40-architecture/system/README\|system/README.md]] — monorepo layout, service boundaries, runtime flows |
+| Database | [[para/projects/summer-star/ax-knowledge-graph/40-architecture/database/README\|database/README.md]] — PostgreSQL schema, indexes, payload boundaries |
+| Deploy | [[para/projects/summer-star/ax-knowledge-graph/40-architecture/deploy/README\|deploy/README.md]] — local/deploy runtime topology and document mount |
 
 ## Stack Summary
 

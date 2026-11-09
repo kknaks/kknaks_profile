@@ -159,3 +159,9 @@
 - **`WorkModals.tsx` 2847줄 분해** — 업무 플로우가 바뀔 예정이라 미룸
 - **부품별 CSS 동거** — 부품 경계가 굳은 뒤에
 - 이 작업 전부터 있던 것: 순환 참조 `meetings/stream.ts` ↔ `microphone.ts` · `work` ↔ `action` 쌍방향
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/sc-ax/sc-meeting-redesign/README|sc-meeting-redesign]]
+<!-- work-links:end -->

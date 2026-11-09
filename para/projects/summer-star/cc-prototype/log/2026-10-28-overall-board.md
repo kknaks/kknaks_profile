@@ -108,3 +108,9 @@
 - 상담사 계정 env(`CCC_COUNSELOR_*`) — 연결할 데모 상담사 미정 · 상담사 호출 푸시 실기기 미확인
 - 앱 claim · `ccc://` 딥링크 경로 정리(QR 읽기 뺀 뒤 쓰는 곳 없음)
 - KOS 소켓(Socket.IO) 검토 · 운영 지점 시스템 계정 id 를 제외 env 에
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/cc-prototype/overall-board/README|overall-board]]
+<!-- work-links:end -->

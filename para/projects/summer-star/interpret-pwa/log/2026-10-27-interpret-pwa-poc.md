@@ -99,3 +99,9 @@ ccc(cc-prototype)의 통역이 피부과 시술명을 직역한다(중국어에�
 - **데모 원탭 로그인 끄기** — Secret `INTERPRET_DEMO_LOGIN` 지우고 back 재시작. 켜져 있는 동안 주소만 알면 통역 사용(Soniox 과금)
 - **누르고 말하기 실기기 감각** — 누름 반응 · 뗄 때 말 끝 잘림을 폰에서 확인
 - **SPEC-001 0.5.0 동기** — planner 진행 중(D-35 ~ D-37 · 장애) → #106 에 포함
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/interpret-pwa/interpret-pwa-poc/README|interpret-pwa-poc]]
+<!-- work-links:end -->

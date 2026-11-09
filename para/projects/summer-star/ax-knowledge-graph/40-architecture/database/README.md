@@ -8,11 +8,11 @@ PostgreSQL = operational state / approval workflow / draft payload / document in
 Redis = optional volatile queue/cache/lock, never durable workflow SoT
 ```
 
-관련 decision: `../../10-decision/decision-002-markdown-sot-postgres-storage.md`
+관련 decision: [[para/projects/summer-star/ax-knowledge-graph/10-decision/decision-002-markdown-sot-postgres-storage|../../10-decision/decision-002-markdown-sot-postgres-storage.md]]
 
 ## Design Rules
 
-- 접속 계층은 SQLAlchemy 2.0 async + `postgresql+psycopg`(psycopg3 async)를 사용한다. Alembic도 async 설정으로 구성한다. 레포지토리 계층만 DB session에 접근한다(`../system/README.md` API Layering).
+- 접속 계층은 SQLAlchemy 2.0 async + `postgresql+psycopg`(psycopg3 async)를 사용한다. Alembic도 async 설정으로 구성한다. 레포지토리 계층만 DB session에 접근한다([[para/projects/summer-star/ax-knowledge-graph/40-architecture/system/README|../system/README.md]] API Layering).
 - Use UUID primary keys for application entities.
 - Use `created_at`, `updated_at` on mutable operational tables.
 - Use explicit enum-like text columns plus `CHECK` constraints in first migration.

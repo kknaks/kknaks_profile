@@ -38,6 +38,9 @@
 세팅: `scripts/new-work.sh <PROJECT> <SLUG>` · 설정 SSOT `config/projects/<PROJECT>.json`
 코디handle: `<코디handle>`
 
+프로젝트·회고·당시 문서의 탐색은 이 폴더의 작업 목차(`README.md`)가 맡는다.
+`sync-work-links.py`로 생성하며, 종료 후에도 프로젝트에서 같은 작업을 찾을 수 있어야 한다.
+
 ## 워크트리
 
 <WORKTREES>

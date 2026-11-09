@@ -1,16 +1,16 @@
 # Baseline Index
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 ## 아이디어 목록
 
 | ID | Title | Source | Status | Decision | File |
 |---|---|---|---|---|---|
-| KDEV-BL-001 | 레포를 지식그래프로 — 상향식/하향식 메모 연결 | idea | accepted | (작성 예정) | `baseline-001-repo-knowledge-graph.md` |
-| KDEV-BL-002 | md-only 운영에서 애플리케이션 DB화 + 관리자 기능 | idea | accepted | DEC-009 | `baseline-002-app-db-and-admin.md` |
-| KDEV-BL-003 | inbox 승인 게이트 파이프라인 + 원자 개념(concept) 층 | idea | accepted | DEC-010/011/012/013 | `baseline-003-inbox-approval-pipeline.md` |
-| KDEV-BL-004 | 커밋 잔디 파이프라인 — 로컬 클론 상세조사 + 승인 게이트 + career 누적 | idea | accepted | DEC-014/015/016 | `baseline-004-commit-pipeline-and-career.md` |
-| KDEV-BL-005 | 제품·프로젝트·커리어 연동 + 레지스트리 관리 화면 | idea | raw | DEC-017 | `baseline-005-product-project-career-link.md` |
-| KDEV-BL-006 | PARA 정렬과 SoT 지도 — 지식층 디렉토리 재편 | idea | raw | DEC-018 | `baseline-006-para-alignment-and-sot-map.md` |
-| KDEV-BL-007 | 업데이트 라인 케이스 정리 — 서버 승인 게이트 · 로컬 작업 | idea | raw | — | `baseline-007-update-lines-by-case.md` |
-| KDEV-BL-008 | 채용담당자 채팅 — 홈에서 질문하면 이력 데이터가 대답한다 | idea | accepted | DEC-025/026/027 | `baseline-008-recruiter-chat.md` |
+| KDEV-BL-001 | 레포를 지식그래프로 — 상향식/하향식 메모 연결 | idea | accepted | (작성 예정) | [[para/projects/summer-star/kknaks-dev/00-baseline/baseline-001-repo-knowledge-graph\|baseline-001-repo-knowledge-graph.md]] |
+| KDEV-BL-002 | md-only 운영에서 애플리케이션 DB화 + 관리자 기능 | idea | accepted | DEC-009 | [[para/projects/summer-star/kknaks-dev/00-baseline/baseline-002-app-db-and-admin\|baseline-002-app-db-and-admin.md]] |
+| KDEV-BL-003 | inbox 승인 게이트 파이프라인 + 원자 개념(concept) 층 | idea | accepted | DEC-010/011/012/013 | [[para/projects/summer-star/kknaks-dev/00-baseline/baseline-003-inbox-approval-pipeline\|baseline-003-inbox-approval-pipeline.md]] |
+| KDEV-BL-004 | 커밋 잔디 파이프라인 — 로컬 클론 상세조사 + 승인 게이트 + career 누적 | idea | accepted | DEC-014/015/016 | [[para/projects/summer-star/kknaks-dev/00-baseline/baseline-004-commit-pipeline-and-career\|baseline-004-commit-pipeline-and-career.md]] |
+| KDEV-BL-005 | 제품·프로젝트·커리어 연동 + 레지스트리 관리 화면 | idea | raw | DEC-017 | [[para/projects/summer-star/kknaks-dev/00-baseline/baseline-005-product-project-career-link\|baseline-005-product-project-career-link.md]] |
+| KDEV-BL-006 | PARA 정렬과 SoT 지도 — 지식층 디렉토리 재편 | idea | raw | DEC-018 | [[para/projects/summer-star/kknaks-dev/00-baseline/baseline-006-para-alignment-and-sot-map\|baseline-006-para-alignment-and-sot-map.md]] |
+| KDEV-BL-007 | 업데이트 라인 케이스 정리 — 서버 승인 게이트 · 로컬 작업 | idea | raw | — | [[para/projects/summer-star/kknaks-dev/00-baseline/baseline-007-update-lines-by-case\|baseline-007-update-lines-by-case.md]] |
+| KDEV-BL-008 | 채용담당자 채팅 — 홈에서 질문하면 이력 데이터가 대답한다 | idea | accepted | DEC-025/026/027 | [[para/projects/summer-star/kknaks-dev/00-baseline/baseline-008-recruiter-chat\|baseline-008-recruiter-chat.md]] |

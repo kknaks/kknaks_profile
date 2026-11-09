@@ -98,3 +98,9 @@
 - **전 직원 계정 발급**(OQ-901): 지금은 역할별 PoC 계정만 채팅 상대로 보임
 - **운영 DB 사본** `/data/procedure.db.bak-20261029-invite`(PVC 안) — 이상 없으면 지울지 사용자 판단
 - SPEC-004 §7.3 경로 수 49 ↔ 코드(채팅 전 51 · 지금 71) 문장 낡음(OQ-920)
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/cc-prototype/internal-chat/README|internal-chat]]
+<!-- work-links:end -->

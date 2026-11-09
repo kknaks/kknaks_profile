@@ -1,6 +1,6 @@
 # Architecture Index
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > 여러 spec/work가 공유하는 장기 구조를 관리한다.
 > 단일 work 안에서 끝나는 구현 메모는 `30-work/`에 둔다.

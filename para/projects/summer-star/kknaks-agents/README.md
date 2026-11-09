@@ -4,7 +4,7 @@
 
 특정 agent 제품에 종속되지 않고 LLM을 **교체 가능한 추론 모듈**로 쓰는 최소 Python runtime 라이브러리의 SSOT다. tool 등록·검증·실행, model 호출 반복과 종료 조건, session 원본 상태, context 구성과 compaction, skill 선택은 전부 라이브러리와 호스트 애플리케이션이 소유하고, provider는 한 번의 공통 요청을 한 번의 공통 응답으로 바꾸는 adapter로만 남긴다.
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > ID prefix: frontmatter `id`는 전역 유일성을 위해 `KAG-` prefix를 쓴다 (`KAG-BL-001`, 이후 `KAG-DEC-001` 등). MRT/CFO/AXKG 컨벤션과 동일하다.
 
@@ -36,11 +36,11 @@
 
 | Stage | Index |
 |---|---|
-| 00-baseline | `00-baseline/README.md` |
-| 10-decision | `10-decision/README.md` |
-| 20-spec | `20-spec/README.md` |
-| 30-work | `30-work/README.md` |
-| 40-architecture | `40-architecture/README.md` |
+| 00-baseline | [[para/projects/summer-star/kknaks-agents/00-baseline/README\|00-baseline/README.md]] |
+| 10-decision | [[para/projects/summer-star/kknaks-agents/10-decision/README\|10-decision/README.md]] |
+| 20-spec | [[para/projects/summer-star/kknaks-agents/20-spec/README\|20-spec/README.md]] |
+| 30-work | [[para/projects/summer-star/kknaks-agents/30-work/README\|30-work/README.md]] |
+| 40-architecture | [[para/projects/summer-star/kknaks-agents/40-architecture/README\|40-architecture/README.md]] |
 
 > `60-release` / `70-runbook` / `showcase`는 필요해질 때 생성한다 (optional).
 
@@ -58,7 +58,7 @@
 
 ## 최근 로그
 
-전체 이력은 `log.md`.
+전체 이력은 [[para/projects/summer-star/kknaks-agents/log|log.md]].
 
 - 2026-08-07 제품 문서 스캐폴딩 생성 (README, log, 00~40 index) 및 `products/README.md` 등록
 - 2026-08-07 KAG-BL-001 작성 — provider-neutral LLM runtime 라이브러리 baseline

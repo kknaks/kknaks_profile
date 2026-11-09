@@ -1,6 +1,6 @@
 # Spec Index
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > decision으로 확정된 내용을 기능 계약으로 구체화한 spec 목록을 관리한다.
 

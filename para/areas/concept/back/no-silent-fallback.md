@@ -51,7 +51,7 @@ tags:
 
 ## 함께 보는 개념
 
-- [[idempotency]] · [[two-pass-transcription]] · [[fault-isolation]]
+- [[idempotency]] · [[two-pass-transcription]] · `fault-isolation` (개념 노트 미작성)
 - [[failure-reason-classification]] — 드러낸 `failed` 안에서 사유가 판정 근거만큼 맞는가
 
 ## 출처
