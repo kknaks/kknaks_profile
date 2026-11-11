@@ -1,0 +1,127 @@
+{
+  "title": "DAY 시술 현황 — 기획안 맞추기 1차: 고객 카드 · 고객 검색 · 확인 필요 5상황 · 마취 회차 · 수락 표시 · 원장 변경 · 확인 모달 · 카드 순서 고정 (DAY-SPEC-002 개정 ⑬ · ⑭ · ⑮)",
+  "labels": [
+    "execution-plan:ready",
+    "spec-baseline:pending",
+    "delivery-plan:approved"
+  ],
+  "contract": {
+    "contract_version": 3,
+    "plan_digest": "sha256:bde890a013b7ce2f2b679a070e1586f80e0898d6dc28c26ebeec7b3689ac2351",
+    "spec_baseline_revision": "3f57c1af09afa7ce185cd754244c714bf1ec11e5",
+    "spec_baseline_state": "pending",
+    "risk_level": "L3",
+    "authorization_mode": "plan-review-required",
+    "digest": "sha256:b9d34c39153144b064d17a5bd877b912eb13193b9b547183b8db0d84edaf0318",
+    "target_specs": [
+      "DAY-SPEC-002"
+    ],
+    "target_delta": [
+      "① [A 고객 카드] 체크박스 · pickable = 준비중 · 호출 중(수락 전) 줄 — 수락 · 진행중 줄은 꺼지고 완료 줄은 체크된 채 눌리지 않는다. 「전체 선택」(E40)은 켜진 줄(준비중 · 호출) 전부 고르기 / 모두 골라져 있으면 풀기(부분 선택 가능) · 켜진 줄이 없으면 꺼짐. 호출 중 줄을 체크해 [의사 호출 · N건]으로 다른 원장(또는 「모든 의사」)에게 새로 부르면 = 수락 전 원장 바꾸기 — 그 줄은 앞 호출에서 빠져 새 호출로 가고(새 호출은 앞 호출 사슬이 아님 · reassigned_from_call_id 없음) 앞 호출에 남은 줄이 없으면 closed_at. KOS 3단계는 호출 중 작업에도 같게. 수락 · 진행중 · 완료가 섞인 호출은 409 task_not_pickable(U-3 · 규칙 5 · 개정 ⑮).",
+      "② [A] 고객 이름은 누르는 동작이 없다(U-3).",
+      "③ [A] 시술 이름을 누르면 차트 모달(E55) — 내용은 지금 읽기 전용(assigneeNote · doctorNote · 규칙 23). 전체 차트는 차트 작업(기획 4-2)이 한다. 차트 조각 라우트(제안 GET /board/visits/{visit_id}/chart · 앱 짝 GET /api/visits/{visit_id}/chart)는 오늘 판 방문 · 「시술 완료」 탭 방문만 연다.",
+      "④ [A] 진행중 · 완료 줄의 「⋯」 더보기(E45)는 호버 없이 늘 보인다.",
+      "⑤ [A] 스크롤 — 카드 안 스크롤을 먼저 하고, 카드 스크롤이 끝이거나 없으면 판(화면)이 스크롤한다(지금 .day-card__scroll overscroll-behavior contain 이 판으로 넘기지 않음 · 카드 안 스크롤은 유지).",
+      "⑥ [B 고객 검색] 인박스 「시술 완료」 탭 검색(E25 · U-13 · 규칙 26) — 검색 칸 안내 글자 「고객 · 원장 · 관리실」 · 대상 = 그 탭 고객만(오늘 귀가 대기 · 귀가 · 지난 방문 없음) · 찾는 말 = 고객 이름(한글 발음 · 영문 — 낱말 순서 무관) + 담당 원장 이름 + 관리실(방) 이름(빈칸 · 대소문자 무시 · 부분 일치 · 차트 번호 X) · 결과 = 맞는 방문만 남긴 탭 카드 그대로(순서 그대로 · 결과 줄 · 최근 방문일 · 따로 정렬 없음) · 없으면 「검색 결과 없음」 + [조건 지우기] · 빈 검색어면 거르지 않은 원래 목록 · 걸러진 카드의 시술 줄을 누르면 ③ 과 같은 차트. 담당 원장 · 관리실 이름은 탭 카드에 없으므로 서버 라우트(제안 GET /board/search?q= · GET /api/board/search?q= — JSON 항목 = 스냅샷 doneTab[] 모양)로 거른다.",
+      "⑦ [B] 상단 고객 검색 칸(E06)은 화면에서 뺀다.",
+      "⑧ [C 확인 필요] 상황 5개(U-10 「확인할 상황」 · 규칙 16): 마취 전 대기(카드가 생긴 뒤 5분 · 마취 · 호출 · 시작 없음 · 「대기 n분째」) · 마취 초과(20분 · 「마취 n분째」) · 받지 않은 호출(5분 · 「호출 n분째」) · 수락 뒤 미시작(수락 뒤 5분 · 「{원장} 수락 n분째」 · 버튼 없음) · 귀가 대기 전(즉시 · 「귀가 대기 전」). 상황마다 since · 풀리는 때는 U-10 표 · 규칙 16 대로. 상황 1개 = 카드 1장 · 걸린 시각(since + limitMin) 이른 순 · 인박스(사이드) 「확인 필요」 칸에 보이기만(팝업 · 알림 · 고객 카드 표시 없음) · 확인 필요 카드는 빨강(마취 20분 초과 칩 포함) · 판 카드에는 경고 아이콘(E35) · 빨강 테두리 없음(확인 필요는 인박스 칸에만). 기준 분 = 서버 설정(처음 값 5 · 20 · 5 · 5 · 설정 화면 없음). 스냅샷 need → needs[] · limits{waitMin, anesMin, callMin, acceptMin}.",
+      "⑨ [C] 「귀가 대기 전」 확인 필요 카드에 [귀가 대기] 버튼 — U-9 와 같은 동작(확인 창 없음).",
+      "⑩ [C] [재호출] = 이미 호출한 대상에게 그대로 다시 — 창 없이 처음 호출 대상(사슬 맨 처음 호출의 kind · target) 그대로 · 단위 = 호출 통째 · 새 호출 행 + 기존 닫음(규칙 6) · API 재호출 본문에 target 없음. **판 카드 시술 줄에는 [재호출]이 없다**(기획자 「지저분」) · **사이드(인박스)에만 — 경과와 상관없이 수락 안 된 호출이면 그 호출이 보이는 카드 어디서나**(확인 필요 「받지 않은 호출」 E22 · 시술 대기 칸 원장 줄 E20 · 호출 탭 수락 대기 E23) · 스냅샷 canRecall 은 tasks[] 에서 빼고 calls[].canRecall(수락 안 된 호출 · 경과 무관). [재호출] 글자 = 검정(U-5 · 개정 ⑮).",
+      "⑪ [D 마취] [마취 시작] → 진행 중 「마취중 mm:ss」 + [마취 종료] → 끝나면 「마취 완료 mm:ss」 + [마취 시작] → 다시 누르면 새 회차(횟수 제한 없음 · 회차마다 쌓음 · 화면은 마지막 회차 · 스냅샷 lastSeconds). KOS 쓰기 없음(U-8 · 규칙 15).",
+      "⑫ [D] [귀가 대기]를 누르면 열린 마취를 같은 transaction 에서 닫는다(ended_at = 지금 · ended_by = 누른 직원 · event_log visit.home 1행 payload 에 닫은 회차 · 규칙 17).",
+      "⑬ [E 호출 · 수락 · 상태] 수락 줄 「{원장} 수락 완료 HH:MM」 · 진행 중 「{원장} · 진행 mm:ss」 · 완료 「{원장} · n분」({원장} = 담당 원장 · U-3 · U-6 · U-7).",
+      "⑭ [E] 담당 원장 바꾸기(규칙 27 · U-3): 수락 · 진행중 줄의 원장 이름에 호버하면 툴팁 「원장 변경」(목록 머리 · 버튼 글자도 「원장 변경」 · 원장 이름은 평소 줄 글자 그대로 · 호버 · 포커스 때만 옅은 배경) · 누르면 원장 목록(규칙 19)에서 고른다(제안 POST /board/tasks/{task_id}/doctor · /api 짝 · doctorStaffId · 수락 · 진행중이 아니면 409 task_not_assignable · 토스트 「원장을 변경할 수 없습니다.」). 시술 상태 · started_at · 수락 시각은 그대로, 그 시술의 담당 원장이 새 원장 — 화면 {원장} 글자 · 스냅샷 · 원장 상태 · 고객 검색 담당의가 새 원장을 본다. 같은 원장이면 바꾸지 않음. KOS 집도의도 바꾼다 — change-tasks-doctors {scheduleId, sequences:[그 시술], doctorIds:[새 원장 1명]} 1건 = 집도의 목록 덮어쓰기(SPEC-002 KOS 쓰기 표 · OQ-31 닫음 · 토큰 = 누른 사람). 수락 뒤 미시작 확인 필요 카드는 닫히고 바꾼 시각부터 다시 센다. 이전 원장 취소 · 새 원장 변경 알림은 앱(day-app) 연결 전까지 event_log task.doctor_change(제안 · 이전 원장 · 새 원장 · 바꾼 직원 · 시각) 기록만(OQ-29).",
+      "⑮ [E] 동시 수락 — 먼저 저장된 수락이 남고, 이미 수락된 호출에 뒤에 온 수락은 409 call_already_accepted · 토스트 「다른 원장이 먼저 받았습니다」(규칙 8 · 기획 3-2 예외 1).",
+      "⑯ [E] 「시작 취소」 · 「완료 취소」는 확인 모달(E54)을 거친다 — 「{시술} 시작을 취소할까요?」 · 「{시술} 완료를 취소할까요?」 · 버튼 「시작 취소」 / 「완료 취소」 · 「닫기」(U-7 · 규칙 13 · 14). 확인 창 모양 = medikit ConfirmModal 경고형(DAY 화면 글자 크기 · 경고 아이콘 · 가운데 제목 · [닫기] 테두리 · [시작 취소] / [완료 취소] 빨강 채움). 되돌리기 동작 · KOS 쓰기는 그대로.",
+      "⑰ [F 카드 순서 · 새] 판 카드 처음 자리 = **판에 처음 오른 순**으로 한 번 저장되고 자동으로 바뀌지 않는다 — 새 카드는 판에 처음 오를 때 그날 순서 목록(board_card_order) 맨 뒤에 붙어 저장(늦게 입실했어도 먼저 오른 카드가 앞 · 이미 있는 카드 자리를 밀지 않음 · 같이 오르면 입실 순 · 입실 빈 카드는 그 뒤 · 같으면 방문 id). 그 뒤 동기화로 입실 시각이 바뀌어도 · 다시 그려도 그대로 · 그 뒤 순서는 사람이 끌어서 바꾼다(U-2 · 규칙 18 · F2). 「카드가 생긴 시각」(마취 전 대기 since)은 처음 procedure_waiting 과 입실 중 늦은 것 · 둘 다 비면 board_card_order.created_at(OQ-35).",
+      "⑱ [G 「⋯」 · 새] [시작]을 누르면 진행중 줄의 [종료]와 「⋯」가 같이 바로 보인다 — KOS 반영 중이어도 숨기지 않는다. 반영 중에는 「시작 취소」를 누를 때 막는다(canUndoStart false · 규칙 13 · 규칙 22 의 유일한 예외 · 막을 때 글자 · 거절 코드는 OQ-36 — 정해지기 전엔 막기만) (F7).",
+      "⑲ [H 갱신 범위 · 새] 동작을 누른 화면은 그 카드만 바뀌고 다른 카드는 다시 그리지 않는다 — 웹 조작 응답 = 누른 카드 조각 + 함께 맞출 조각(OOB · 인박스 현황 세 칸 · 호출 탭 · 탭 숫자 E16 · 원장 상태) + 그 조작 뒤 스냅샷 version · 웹 board 신호 본문 = version 숫자 하나 · 화면은 가진 version 이하 신호를 건너뛰고 더 크면 지금처럼 GET /board(실시간 갱신 「갱신 범위」 · F8). 다른 화면도 바뀐 카드만인지는 OQ-37 — 이번엔 판 전체 다시 받기 그대로."
+    ],
+    "non_goals": [
+      "기획안 중 이번에 안 하는 것(DAY-SPEC-002 §1 「기획안 중 이번에 안 하는 것」 표 전부): 통역 필요 · 오더 메모 7항목 · 변경 표시 · 시술 미진행 · 근무 스케줄 원장 목록 · 「전체 호출」 · 「지정 호출」 두 버튼 · 호출 중 줄 「시작」 · 줄 단위 재호출 · 지정 원장 표시 · 지난 방문 검색 · 최근 방문일 · 마지막 관리실 · 고객 카드의 확인 필요 글자 · 확인 필요 팝업 알림 · 「다시 알림」 · 시술 변경 상황 · 기준 분 설정 화면 · 카드 상태 글자(OQ-27) · 귀가 대기 취소 · 원장 이름 간호사 계정만 누름(OQ-30)",
+      "관리실 이동(기획 2-1) · 관리실 기록(6-1) · 전체 차트 · 차팅 쓰기(기획 4-2 · ④ 차트 작업)",
+      "원장 바꾸기 알림의 앱 푸시(day-app · OQ-29) — 이번엔 event_log 기록만",
+      "화면 문구 새로 만들기 · 국적 코드 → 이름(OQ-24) · 반영 중 「시작 취소」를 막을 때 글자(OQ-36) · 「○○ 응답 없음」(E21) 보일 때(OQ-34) · 다른 화면의 board 신호도 바뀐 카드만(OQ-37 — 이번엔 판 전체 다시 받기)",
+      "Flutter 앱 화면(별도 slug day-app) — /api JSON 짝만 같은 service 로 · migration",
+      "같은 Code PR 의 개발 도구 — scripts/seed_demo_board.py 생년월일 넣기(F6) · backend/tests/scripts/ — 결과 계약 범위 밖(Acceptance 판정 대상 아님)"
+    ],
+    "review_surface": [
+      "target SPEC DAY-SPEC-002 개정 ⑬ · ⑭ · ⑮ 는 mediness PR #920(미머지 · bd029f3c)에만 있다 — spec-baseline:pending. 머지 뒤 같은 key · version+1 로 재결속",
+      "위험 L3 근거(v1 L2 에서 올림): 원장 바꾸기가 새 KOS 외부 쓰기(change-tasks-doctors 집도의 덮어쓰기)를 연다 · 시술 현황 동작이 넓게 바뀐다(체크박스 · 확인 필요 5상황 · 검색 · 차트 · 마취 회차 · 귀가 대기 마취 닫기 · 수락 표시 · 동시 수락 · 확인 모달) · 새 라우트 3쌍(검색 · 차트 · 원장 바꾸기 — 경로는 제안) · migration 없음",
+      "원장 바꾸기 KOS 동작 근거 = HAR(집도의변경.har · 삭제후의사호출.har) + 사용자 확인 — DAY 에서 보낸 실물은 A7 데모 실물로 확인",
+      "기획안과 다른 사용자 결정: 마취 초과 20분(기획 40분) · 확인 필요 팝업 없음 · 고객 카드 확인 필요 표시 없음 · 「다시 알림」 없음 · 호출 버튼 하나 · 수락 없이 시작 없음 · 고객 검색 = 시술 완료 탭 고객만(2026-11-10 바로잡음) · 관리실 = 지금 방",
+      "열린 질문: OQ-03(관리실 검색 근거) · OQ-24 국적 글자 · OQ-26 검색 입력 대기 시간 · OQ-27 카드 상태 글자 · OQ-29 원장 변경 알림 · OQ-30 원장 변경 권한 · OQ-32 담당의 여럿 표시 · OQ-34 「○○ 응답 없음」 · OQ-35 입실 빈 카드 since · OQ-36 반영 중 시작 취소 글자 · 코드 · OQ-37 다른 화면 갱신 범위",
+      "의존: CENTURION_DAY#234(같은 브랜치 kknaksss/day-procedure-board-2 · 커밋 96fff917 위 · 같은 코드 PR → dev)",
+      "v3 변경(사용자 2026-11-10 로컬 화면 확인 · e2e F1 ~ F8): 체크박스에 호출 중 줄 더함(수락 전 원장 바꾸기 길) · [재호출] 판 카드에서 뺌 · 사이드 어디서나 · 창 없이 처음 대상 · 「원장 변경」 글자 · 토스트 · 검색 칸 글자 · 확인 창 모양 · 새: 카드 순서 고정 · 「⋯」 바로 · 반영 중 시작 취소 막음 · 누른 카드만 갱신(웹 board 신호에 version — 신호 모양 바뀜)",
+      "설계 세부(planner — 결정에 없던 것 · 결과는 결정과 맞음): 호출 중 줄의 새 호출은 앞 호출 사슬이 아니다 → 그 뒤 [재호출]은 새로 고른 원장에게 간다 · 인박스 「호출 +mm:ss」는 새 호출부터",
+      "의존 갱신: 코드는 a1c90b9d(#236 v2 구현) 위 + 미커밋 F1 · F5 · F6(디자인 · 시드) — v3 Delta 대부분이 a1c90b9d 를 고치는 일"
+    ],
+    "missing_target_specs": [
+      "DAY-SPEC-002"
+    ],
+    "acceptance": [
+      "A1(①): 규칙 단위 테스트 — pickable 은 준비중 · 호출(수락 전) true · 수락 · 진행중 · 완료 false · 전체 선택(켜진 줄 없음 → 꺼짐). API 테스트 — 수락 · 진행중 · 완료가 섞인 호출 409 task_not_pickable · 호출 중 시술을 고른 새 호출이 그 시술을 새 호출로 옮기고(reassigned_from 없음) 앞 호출에 남은 줄이 없으면 closed_at · KOS op 3단계가 호출 중 작업에도 쌓임. 화면 — 체크박스 켜짐/꺼짐 · 전체/부분 선택 스크린샷.",
+      "A2(② · ③ · ④ · ⑤ · ⑦): 화면 테스트(스크린샷 · 수동) — 고객 이름 누르기 없음 · 시술 이름 → 차트 모달(읽기 전용) · 「⋯」 호버 없이 보임 · 카드 안 스크롤이 끝/없으면 판 스크롤 · 상단 검색 칸(E06) 없음 · 판 카드에 경고 아이콘(E35) · 빨강 테두리 없음. API 테스트 — 차트 라우트가 오늘 판 · 시술 완료 탭 방문의 메모를 주고 다른 병원 · 카드가 생긴 적 없는 방문은 404 not_found.",
+      "A3(⑥): 고객 검색 테스트(infra) — 시술 완료 탭 고객만 대상(판 카드 고객 · 지난 방문 안 나옴) · 한글 발음 부분 · 영문 낱말 순서 뒤바꿈 · 빈칸 · 대소문자 · 담당 원장 이름 · 관리실 이름으로 맞음 · 차트 번호로는 안 맞음 · 다른 병원 안 나옴 · 순서 = 탭 목록 그대로 · 빈 검색어 = 원래 목록 · 결과 0 = 「검색 결과 없음」. 화면 — 검색 칸 안내 글자 「고객 · 원장 · 관리실」 · 걸러진 카드 시술 줄 → 같은 차트.",
+      "A4(⑧ · ⑨ · ⑩): 확인 필요 단위 테스트 — 5상황 각각 걸리는 때 · 풀리는 때 · since · 상황 1개 = needs 1개 · 한 고객 여러 상황 · 호출 하나 = 카드 하나 · 걸린 시각 이른 순 · 귀가 대기 방문 없음 · 기준 분 설정을 바꾸면 따라 바뀜 · 받지 않은 호출은 그 호출의 줄을 새로 호출해 앞 호출이 닫히면 풀림. 재호출 — 스냅샷 tasks[] 에 canRecall 없음 · calls[].canRecall = 수락 안 된 호출(경과 무관) · API 테스트: 재호출이 target 없이 처음 호출 대상(kind · target)으로 새 호출 행 + 기존 닫음 · 귀가 대기 전 카드의 [귀가 대기]. 화면 — 판 카드 시술 줄에 [재호출] 없음 · 인박스 확인 필요 · 시술 대기 · 호출 탭 카드에 [재호출](5분 전 포함) · 누르면 창 없이 바로 · 글자 검정 · 확인 필요 카드 빨강 · 마취 초과 칩 빨강 · 팝업 없음.",
+      "A5(⑪ · ⑫): API 테스트 — 마취 끝난 뒤 [마취 시작]이 새 회차 · 스냅샷 마지막 회차 lastSeconds · 마취 중 [귀가 대기] = 귀가 대기 + 열린 마취 닫힘(ended_by = 누른 직원 · event_log visit.home 1행) · 마취는 KOS op 없음. 화면 — 마취 자리 세 상태 스크린샷.",
+      "A6(⑬): 화면 · 스냅샷 테스트 — 「{원장} 수락 완료 HH:MM」 · 「{원장} · 진행 mm:ss」 · 「{원장} · n분」 글자.",
+      "A7(⑭): API 테스트 — 수락 · 진행중 시술의 원장 바꾸기가 담당 원장을 새 원장으로(상태 · started_at · accepted_at 그대로) · 같은 원장이면 변화 없음 · 다른 상태 409 task_not_assignable · 원장 목록 밖 원장 거절 · external_outbox 에 change-tasks-doctors(doctorIds = 새 원장 1명 · 토큰 = 누른 사람) 1건 · event_log task.doctor_change 1행 · 수락 뒤 미시작 카드 닫힘 · 다시 셈. 화면 — 툴팁 · 목록 머리 · 버튼 「원장 변경」 · 원장 이름은 평소 줄 글자 · 호버 때만 옅은 배경 · 거절 토스트 「원장을 변경할 수 없습니다.」. **데모 실물** — DAY dev(KOS 데모 지점)에서 원장을 바꾸면 KOS 집도의가 새 원장 1명으로 바뀌고 다음 조회가 그 값을 준다(실제 병원에는 쓰지 않음).",
+      "A8(⑮): API 테스트 — 같은 호출에 수락 두 번(뒤 쪽) 409 call_already_accepted · 먼저 저장된 수락만 남음 · 토스트 글자 「다른 원장이 먼저 받았습니다」.",
+      "A9(⑯): 화면 테스트 — 「시작 취소」 · 「완료 취소」가 medikit ConfirmModal 경고형 확인 창(경고 아이콘 · 가운데 제목 · [닫기] 테두리 · 취소 버튼 빨강 채움 · DAY 글자 크기)을 거치고 「닫기」면 아무 일도 없음 · 확인하면 지금 되돌리기 동작 그대로(API 테스트 회귀).",
+      "A11(⑰): 카드 순서 테스트 — 판에 새로 오른 카드가 board_card_order 맨 뒤에 저장 · 같이 오르면 입실 순 · 입실 빈 카드는 그 뒤 · 늦게 입실했지만 먼저 오른 카드가 앞 · 그 뒤 room_assigned_at 이 바뀌어도(동기화) · 다시 그려도 순서 그대로 · 사람이 끌면 통째 바꾸기 · 입실 빈 카드의 마취 전 대기 since = board_card_order.created_at.",
+      "A12(⑱): 규칙 · API 테스트 — 첫 [시작] KOS 쓰기가 반영 중이면 canUndoStart false · 「시작 취소」 요청을 막음(코드 · 글자는 OQ-36 — 구현 제안 코드 + 기존 글자 표 밖 새 글자 0) · 반영 끝나면 켜짐. 화면 — [시작] 직후 [종료]와 「⋯」가 한 번에 보임(따로 늦게 뜨지 않음).",
+      "A13(⑲): 화면 · 라우트 테스트 — 조작 응답이 누른 카드 조각 + OOB(인박스 세 칸 · 호출 탭 · 탭 숫자 · 원장 상태) + version 이고 다른 판 카드를 바꾸지 않음 · 웹 board 신호 본문 = version · 가진 version 이하 신호는 GET /board 를 부르지 않음 · 더 큰 version 은 다시 받음.",
+      "A10: 화면 문구는 SPEC-002 의 「」 글자만(새 글자 0) · uv run pytest -q -m 'not infra' · compose 위 scripts/test.sh -q · uv run ruff check backend scripts 통과."
+    ]
+  },
+  "execution": {
+    "verification": [
+      "tests/day/board/test_board_rules.py — pickable · 전체 선택 · calls canRecall · canUndoStart 반영 중 · needs 5상황 · 카드 순서(A1 · A4 · A11 · A12)",
+      "tests/day/board/test_board_api.py — task_not_pickable · 호출 중 시술 새 호출 · 앞 호출 닫힘 · 재호출 target 없음 · 원장 변경 · call_already_accepted · 시작 취소 반영 중 막음 · 되돌리기 회귀 · 카드 순서 저장 · 동기화 뒤 그대로(A1 · A4 · A7 · A8 · A9 · A11 · A12)",
+      "tests/day/board/test_board_queries.py — 고객 검색(A3) · tests/day/board/test_board_sse.py — board 신호 version(A13) · tests/day/web/test_board_page.py — 조각 · OOB · 글자(A2 · A6 · A13)",
+      "a1c90b9d 의 테스트 중 「준비중만」 · 판 줄 canRecall · 재호출 target · 「원장 교체」 를 단언하는 것은 새 규칙으로 고친다",
+      "화면 상태별 스크린샷(A1 · A2 · A4 · A5 · A6 · A9 · A12 · A13)",
+      "uv run pytest -q -m 'not infra' · scripts/test.sh -q · uv run ruff check backend scripts(A10)",
+      "dev 배포 뒤 원장 변경 · 호출 중 줄 새 호출 데모 실물(A7)"
+    ],
+    "code_surface": [
+      "backend/day/services/board_rules.py — pickable(준비중 · 호출) · 전체 선택 · calls canRecall(수락 안 된 호출) · tasks canRecall 뺌 · canUndoStart(반영 중 false) · 카드 순서(처음 오른 순 · now 대체) · 카드가 생긴 시각",
+      "backend/day/services/board.py — call()(호출 중 시술을 새 호출로 옮김 · 앞 호출 닫기 · 사슬 아님) · recall()(target 없이 처음 대상) · undo_start 반영 중 막기 · 카드 순서 저장(처음 오를 때 board_card_order 맨 뒤)",
+      "backend/day/queries/board.py · backend/day/emr/(동기화 뒤 새 카드 순서 저장 위치는 구현)",
+      "backend/day/routers/board.py · backend/day/routers/api/board.py — recall 본문 target 뺌 · 조작 응답 = 카드 조각 + OOB + version · SSE board 신호 본문 version · task_not_assignable 글자",
+      "backend/day/templates/partials/board_main.html · board_parts.html · kit_page.html · ui.html · backend/day/static/day.js · day.css · styles/app.css — 체크박스 · 판 줄 [재호출] 뺌 · 인박스 카드 [재호출](확인 필요 · 시술 대기 · 호출 탭) · 「원장 변경」 · 원장 이름 호버 · 검색 칸 글자 · ConfirmModal 경고형 · 「⋯」 바로 · 카드만 바꾸기 · version 거르기 · E35 · 빨강 테두리 없음",
+      "backend/tests/day/board/(test_board_rules · test_board_api · test_board_queries · test_board_sse) · backend/tests/day/web/test_board_page.py"
+    ],
+    "dependencies": [
+      "코드 a1c90b9d(#236 v2 구현) 위 + 미커밋 F1 · F5 · F6 — 같은 브랜치 kknaksss/day-procedure-board-2 · 같은 코드 PR(#234 와 함께)",
+      "mediness PR #920 머지 → baseline 재결속"
+    ],
+    "phases": [
+      "1 backend 규칙 · 서비스 — pickable(호출 중 더함) · 새 호출이 호출 중 시술을 옮김 · 재호출 처음 대상 · calls canRecall · canUndoStart 반영 중 false · 카드 순서 저장(처음 오른 순) + 단위 · API 테스트(A1 · A4 · A11 · A12)",
+      "2 backend 라우트 · SSE — recall 본문 · 조작 응답(카드 조각 + OOB + version) · board 신호 version · 토스트 글자 + 라우트 · SSE 테스트(A7 · A13)",
+      "3 frontend — 체크박스 · 판 줄 [재호출] 뺌 · 인박스 [재호출] · 「원장 변경」 · 원장 이름 호버 · 검색 칸 글자 · ConfirmModal 경고형(F1 미커밋분 정리) · 「⋯」 바로 · 카드만 바꾸기 · version 거르기 · E35 · 빨강 테두리 없음 + 상태별 스크린샷(A2 · A3 · A4 · A6 · A9 · A12 · A13)",
+      "4 전체 검증(A10) · Code PR(#234 와 같은 PR → dev) → review-delivery · dev 배포 뒤 원장 변경 · 호출 중 줄 새 호출 데모 실물(A7)"
+    ],
+    "open_questions": [
+      "DAY-SPEC-002 OQ-03 · OQ-24 · OQ-26 · OQ-27 · OQ-29 · OQ-30 · OQ-32 · OQ-34 · OQ-35 · OQ-36 · OQ-37",
+      "검색 · 차트 · 원장 변경 라우트 경로 · event_log 이름 · 반영 중 시작 취소 거절 코드는 제안 — 구현이 바꾸면 spec-sync 에서 SPEC 에 반영"
+    ],
+    "domain_candidates": [
+      "시술 현황 판(BoardRules · BVisit · BTask · BCall) · 고객 검색(조회 전용) · 담당 원장 바꾸기(visit_task_staff · doctor_call_accept · outbox)"
+    ],
+    "rollback": [
+      "Code PR revert 후 dev 재배포 — migration 없음(마취 회차 · event_log 행은 쌓이기만)",
+      "원장 바꾸기 KOS 쓰기가 잘못 나가면 데스크가 KOS 데모 지점에서 집도의를 바로잡고 다음 조회가 DAY 를 맞춘다(SPEC-002 OQ-07)"
+    ],
+    "predeploy": [
+      "확인 필요 기준 분 env 를 deploy/config/dev.env 에 넣거나 기본값으로 둠 · 40-architecture/deployment.md env 표는 spec-sync 때",
+      "원장 바꾸기 KOS 쓰기는 dev(데모 지점)에서만 실물 확인 · prod 배포 없음"
+    ]
+  },
+  "state": "open",
+  "comment_markers": [
+    "mediness:delivery-plan-approval:sha256-1a23966d9c0dec1c4d7cddd9e7d398221b4dff69ec19557c97049f8feb947090",
+    "mediness:delivery-plan-approval:sha256-bde890a013b7ce2f2b679a070e1586f80e0898d6dc28c26ebeec7b3689ac2351"
+  ]
+}

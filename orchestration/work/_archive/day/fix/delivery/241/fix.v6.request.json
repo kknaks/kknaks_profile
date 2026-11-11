@@ -1,0 +1,118 @@
+{
+  "idempotency_key": "day/fix-device-feedback-interpret",
+  "title": "DAY 직원 앱 실기기 피드백 반영 · 통역 서버 — 시술현황 카드 모두 완료 · [귀가 대기] · 확인 필요 표시 · 채팅 403 · 그룹 이름 바꾸기 · 채팅 전체 알림 · 길게 누르기 자리 · 대화 화면 하단 탭 숨김 · 메시지 읽음 표시 · WS /api/interpret (DAY-SPEC-003 · 004 · 005 · 000)",
+  "product_id": "day",
+  "document_root": "products/day",
+  "contract_version": 6,
+  "risk_level": "L3",
+  "target_specs": [
+    "DAY-SPEC-003",
+    "DAY-SPEC-004",
+    "DAY-SPEC-005",
+    "DAY-SPEC-000"
+  ],
+  "spec_baseline_revision": "1a450bcf7f0ed97128a7210bdccb7331ed0fa890",
+  "target_delta": [
+    "시술현황 목록 카드(앱): 시술 줄이 전부 완료면 현재 상황 상자 = 「시술 모두 완료」 / 「마지막 종료 {HH:MM}」(방 상세와 같은 글자 · 계산 · 새 상태값 없음) · 카드 맨 아래 [귀가 대기](수락 버튼 자리 · 서버 canHome + board edit · 동작은 방 상세 U-9 와 같음) — DAY-SPEC-003 개정 ⑧ U-3 · U-9",
+    "확인 필요 표시(앱): 카드 전체 빨간 테두리 없앰 → 현재 상황 상자에 옅은 빨강 바탕(Ms.red100) + 왼쪽 띠(Ms.red) · 붙는 조건(서버 needs[])은 그대로 · 겹침 색 = OQ-A37 (가) — DAY-SPEC-003 U-3",
+    "앱 후속 2건: 판 스냅샷 version 같은 값도 받음(미만만 버림) · [재호출] 노출 = 서버 calls[].canRecall — DAY-SPEC-003 U-12 · U-4 · OQ-A33(스펙은 이미 있음 · 코드만)",
+    "채팅(앱): 채팅 요청 403 forbidden = 채팅 탭 본문에 DAY-SPEC-001 forbidden 글자 + [로그아웃] · 「서버에 연결 중…」 · 로딩이 남지 않음 · 조작 중 403 도 본문 안내만 · 앱이 앞으로 올 때 · 다시 로그인 · 앱 다시 열 때 한 번 다시 봄 — DAY-SPEC-004 개정 ① U-1",
+    "그룹 이름 바꾸기(서버 · 앱): 새 PUT /api/chat/rooms/{roomId}/title · 그룹의 지금 참여자 누구나 · 그룹만 · 40자 · 빈 값 = 참여자 이름 나열 · 시스템 줄 없음 · 기존 chat_room SSE 로 다른 참여자 화면 갱신 · 방 정보 [✓] 「저장」 · [✕] 「수정 취소」 — DAY-SPEC-004 개정 ② U-7 · §3 #22",
+    "채팅 전체 알림(서버 · 앱): 알림 설정 종류 chat(받는 종류 = 채팅 활성 직원 · 저장 없으면 켜짐 · 계정 단위) · 설정 탭 「채팅」 스위치 · 끄면 모든 방 채팅 푸시 · 앱 안 배너 없음 · 방별 muted 값 보존 · migration 없음 — DAY-SPEC-005 2026-11-11 개정 · DAY-SPEC-004 개정 ③ · DAY-SPEC-000 notification_setting",
+    "통역 서버(서버만 · 앱 무수정): interpret-pwa back(17c26b5)을 DAY 서버로 옮김 — WS /api/interpret · 앱 Bearer + board view · accept 전 1008 · 프레임 · 언어 7 · 오류 코드 앱과 필드 단위로 같음 · 사전 = interpret-pwa 시드 사본(기동 때 검사 · 깨지면 기동 실패) · Soniox 중계 · 동시 세션 상한 6(DAY_INTERPRET_MAX_SESSIONS · 넘으면 session_limit) · 자리는 어떤 경로로 끝나도 한 번만 반납 · 기록 없음 · 키 = 선택 비밀 day-<env>-soniox-api-key(DAY_SONIOX_API_KEY) · 새 의존성 opencc-python-reimplemented — DAY-SPEC-003 개정 ⑨ §3 「통역」",
+    "길게 누르기 자리(앱 · 버그 8): 키보드가 열린 채 말풍선을 길게 눌러도 떠오른 복사본 · 메뉴가 화면이 다시 잡힌 뒤의 그 말풍선 자리에 붙고 메뉴가 화면 밖으로 나가지 않는다(고치는 방법은 구현 몫) — DAY-SPEC-004 개정 ④ U-4",
+    "폰 대화 화면 하단 4메뉴 숨김(앱 · 피드백 9 · 사용자 확정): 채팅 목록에서만 보임 · 대화 화면(과 그 위 채팅 화면 — OQ-C16 기본값)에서 숨김 · 지금 메뉴 = 채팅 · 보고 있는 방 · 배너 · 푸시 · 배지 값 그대로 · 아이패드 레일 그대로 — DAY-SPEC-004 개정 ④ U-2 · DAY-SPEC-003 개정 ⑩",
+    "메시지별 읽음 표시 카톡식(서버 · 앱 · 피드백 10 · 사용자 확정): 말풍선 옆 안 읽은 사람 수 · 읽을 때마다 줄고 0 이면 사라짐 · 범위 = OQ-C17 기본값 · 수는 앱이 셈 · 서버 = Room.members[] 에 lastReadSeq · fromSeq + 새 이벤트 chat_member_read {roomId, accountId, lastReadSeq}(오를 때만 · 다른 지금 멤버) · migration 없음 · 목록 Badge · 탭 배지 · 푸시 그대로 — DAY-SPEC-004 개정 ④ U-2 · §3 · DAY-SPEC-000 chat_member",
+    "파일 저장소 연결(서버 · 피드백 밖 사용자 지시 2026-11-11): DAY 파일 저장소 규칙 한 곳(deployment.md 「파일 저장소(Blob)」 — 환경 = 컨테이너(DAY_BLOB_CONTAINER · dev 컨테이너 dev · prod 컨테이너 prod — 있음(2026-11-11 · VM 관리 ID 목록 읽기 확인)) · 키 = {용도}/{병원 id}/… · 용도 셋 chat(씀) · identity · before-after(이름만 예약 · 사용자 확정) · 서버 경유) · 채팅 첨부 인증 = VM 시스템 할당 관리 ID(연결 문자열 · 선택 비밀 chat-blob-connection-string 없앰 · 설정 DAY_BLOB_ACCOUNT_URL · DAY_BLOB_CONTAINER — 비밀 아님) · 채팅 키 = chat/{병원 id}/…(지금 모양 그대로) · 저장소 접근 실패 = 503 photo_disabled(기존 글자 · 앱 무수정) · 새 의존성 azure-identity — DAY-SPEC-004 개정 ⑤ · 정정 3 · DAY-SPEC-000"
+  ],
+  "acceptance": [
+    "A1 (WP-APP-1 · 구현 워커 · 테스트 더블) DAY-SPEC-003 A-9 · A-22 · A-28 · A-33 · A-37 · A-41 · A-42 · A-43 — 모두 완료 상태 · 목록 [귀가 대기](보기만 직무 없음 · 방 상세와 같은 잠금) · 테두리 없음 + 상자 표시 · version 같은 값 받음 · calls[].canRecall · fvm flutter analyze 0 · fvm flutter test 통과",
+    "A2 (WP-APP-2 · 구현 워커 · 테스트 더블 + BE-1 뒤 로컬) DAY-SPEC-004 C-A19 · C-A20 · C-A21(앱) · DAY-SPEC-005 N-A10 · N-A13(앱) — 403 안내 · 토스트 0 · 재연결 0 · 이름 바꾸기 ✓ ✕ · 「채팅」 스위치 · 배너 억제 · chat 항목 없으면 켜짐",
+    "A3 (WP-BE-1 · 구현 워커 · 로컬) DAY-SPEC-004 C-A14 · C-A20 · C-A21(서버) · DAY-SPEC-005 N-A5 · N-A13 — #22 성공 · 41자 400 · 1:1 400 chat_group_only · 404 · 403 · 같은 값 이벤트 0 · chat_room 지금 멤버 전부 · chat 끈 계정 푸시 0 · 받는 종류 · uv run pytest · scripts/test.sh -q · ruff 통과 · migration 0",
+    "A4 (WP-BE-2 · 구현 워커 · 서버 단위) DAY-SPEC-003 A-14 · A-14b · A-44 — 인증 갈래 · bad_request · no_api_key · session_limit · soniox_unavailable 두 문구 · 문구에 env 이름 없음 · accept 뒤 1008 없음 · 자리 반납 갈래 전부(자리 0 · 음수 아님) · 깨진 시드 기동 실패 · 시드 버전 로그 · test_import_boundaries 통과",
+    "A5 (WP-BE-2 · 구현 워커 · 실제 Soniox · dev 키) DAY-SPEC-003 A-45 — 7개 언어 start → ready · ko ↔ 한 언어 왕복 · 멈춤 35초 뒤 두 번째 발화",
+    "A6 (WP-BE-2 · 구현 워커 · 로컬 키 비움) DAY-SPEC-003 A-47 — error.code = no_api_key · board view 없는 계정 핸드셰이크 403",
+    "A7 (사용자 실기기 · dev 배포 + TestFlight 다음 빌드 뒤) DAY-SPEC-003 A-46(통역 자막 양쪽 · 번역 음성 · 언어 바꾸기 · 종료 · 듣는 상태 누적 약 3분 20초 이상 긴 세션) · A-41 ~ A-43 · DAY-SPEC-004 C-A19 · C-A20 · C-A21(두 기기) · DAY-SPEC-005 N-A13 — wp-plan §7 목록",
+    "A8 (코디) dev 배포 뒤 서버 로그 glossary seed loaded: version=2026-10-27.6 · 코드 PR 하나 → dev(앱 포함)",
+    "A9 (WP-BE-3 · 구현 워커 · 로컬) DAY-SPEC-004 C-A11(7종) · C-A24 — members[].lastReadSeq · fromSeq · chat_member_read 오를 때만 · 다른 지금 멤버만 · migration 0 · 쿼리 수 그대로 · pytest · test.sh · ruff 통과",
+    "A10 (WP-APP-3 · 구현 워커 · 테스트 더블 + BE-3 뒤 로컬 두 계정) DAY-SPEC-004 C-A22 · C-A23 · C-A25 · C-A16 · C-A12 회귀 — 키보드 열림 길게 누르기 자리 · 하단 4메뉴 숨김 범위 · 읽음 숫자 · 0 사라짐 · fvm flutter analyze 0 · test 통과",
+    "A11 (사용자 실기기) DAY-SPEC-004 C-A22(그림 8 재현 안 됨) · C-A23 · C-A25(두 계정 이상) — wp-plan §7 8 ~ 10",
+    "A12 (WP-BE-4 · 구현 워커 · 서버 단위) DAY-SPEC-004 C-A26 — 키 모양 chat/{병원 id}/… · 컨테이너 이름은 설정에서만 · 설정 · 배포 계약(연결 문자열 없음 · 선택 비밀 2) · 접근 실패 503(ContainerNotFound 503 · BlobNotFound 404 · 토큰 30초) · 기동 안 막음 · pytest · test.sh · ruff 통과",
+    "A13 (WP-BE-4 실물 · 구현 워커 · 코디 — dev 배포 뒤) DAY-SPEC-004 C-A27 ① — dev api 컨테이너에서 관리 ID 로 올리기 → 속성 → 범위 읽기(206) → 지우기 · 컨테이너 dev 안 경로 chat/{병원 id}/… · 없는 키 = 404",
+    "A14 (사용자 실기기) DAY-SPEC-004 C-A27 ② — TestFlight 사진 · 동영상 보내기 · 받기 · 크게 보기 · 재생 · 모아보기"
+  ],
+  "non_goals": [
+    "통역 기록(interpret-pwa D-41) · 병원별 사전 · 사전 API · 편집 화면 · 연결 중 세션 재확인 · 세션 수명/무활동 상한(OQ-A46 사용자 답 전) · ?token= · Origin 허용 출처",
+    "앱 통역 코드 수정 · 앱 거절 문구 변경(OQ-A42)",
+    "그룹 이름 바꿈 시스템 줄(OQ-C14) · 알림 목록 · 종 배지에 채팅 넣기 · 방별 muted 를 전체 스위치로 바꾸기",
+    "DB migration · 웹 화면 변경 · 새 채팅 이벤트 종류(예외 = 읽음 표시의 chat_member_read 하나 — 피드백 10 · 4판) · 메시지 응답에 읽음 수 싣기 · 목록 Badge · 탭 배지 · 푸시 계산 바꾸기",
+    "prod 배포 · prod Key Vault 값 넣기 · 실기기 확인 대행 · 2차 Delivery(#234 · #235 · #236 · #239) 변경",
+    "같은 작업(fix)에서 먼저 머지된 설정 PR #240(앱 아이콘 · 수출 규정 키 · dev.env 앱 연결 설정)은 이 Delivery 범위 밖",
+    "신분증 · 고객 전후 사진 기능(폴더 이름만 예약 · 세부 경로 · 암호화 · 보관 · 열람 기록은 그 기능 때) · 로컬에서 Blob 붙는 길 · 저장소 · Key Vault · 컨테이너 생성 · 권한 설정(사람 · 인프라) · soft delete 켜기(사용자 미결)"
+  ],
+  "review_surface": [
+    "target SPEC 변경(DAY-SPEC-003 개정 ⑧ · ⑨ · DAY-SPEC-004 · 005 · 000 2026-11-11 개정)은 mediness kknaksss/fix-spec 미커밋(스펙 PR 아직 없음) — spec-baseline:pending · 스펙 PR 머지 뒤 같은 key · version+1 로 재결속. DAY-SPEC-000 은 main 에서 status draft",
+    "위험 L3 근거: 새 외부 서비스 연동(Soniox 실시간 STT · TTS — 고객 발화 음성을 외부로 보냄) · 새 선택 비밀(day-<env>-soniox-api-key) · 새 공개 API(PUT /api/chat/rooms/{roomId}/title · WS /api/interpret) · 새 의존성(opencc-python-reimplemented) · 깨진 시드 = api 기동 실패(로그인 · 시술현황 · 채팅까지 멈춤) · migration 없음",
+    "코디 기본값 적용 · 사용자 통보 · 뒤집을 수 있음: DAY-SPEC-003 OQ-A37 · A38 · A39 ~ A42 · A44 · A45 · DAY-SPEC-004 OQ-C11 · C12 · C14 · C15 · DAY-SPEC-005 OQ-N7",
+    "사용자에게 남은 질문: DAY-SPEC-003 OQ-A43(상한 찼을 때 글자 — 지금 「통역 서버를 쓸 수 없어요」 재사용) · OQ-A46(통역 세션 수명 · 무활동 상한)",
+    "구현 때 확인(DAY-SPEC-003 I-1 ~ I-5): Soniox 동시 한도 · Caddy request_body 6MiB 가 WS 에 걸리는지 · OpenCC × Python 3.13 · 루프 막힘 · 메모리",
+    "4판 추가(사용자 확정 8 · 9 · 10 · 그 밖 범위 변경 없음): 코디 · planner 기본값 OQ-C16(하단 메뉴 숨김 범위) · OQ-C17(읽음 세는 사람 · 범위) · OQ-C18(숫자 자리 · 색 Ms.primary) — 사용자 통보 · 뒤집을 수 있음",
+    "7판 · 9판(파일 저장소 · 그 밖 범위 변경 없음): 폴더 이름 chat · identity · before-after = 사용자 확정 · 환경 = 컨테이너 dev · prod(인프라 담당이 만든 이름 · 있음 2026-11-11 · VM 관리 ID 목록 읽기 확인 · 처음 만든 files 컨테이너는 쓰지 않음) · 같은 VM 관리 ID 가 두 컨테이너 권한을 다 가지면 권한상 서로 읽을 수 있음 · 보관 · 복구 꺼짐(사용자 미결) · 저장소 계정 · 주소 값은 문서에 없음 · Docker 안 관리 ID 토큰 = 코디 확인 · 앱 SDK 연동은 실물 A13 에서"
+  ],
+  "execution": {
+    "code_surface": [
+      "backend/day/routers/api/chat.py · backend/day/schemas/chat.py · backend/day/services/chat.py · backend/day/services/chat_push.py · backend/day/services/notifications.py (WP-BE-1)",
+      "새 backend/day/routers/api/interpret.py · backend/day/services/interpret/ · backend/day/services/glossary.py · backend/day/dtos/glossary.py · backend/day/seed/glossary.json · backend/day/public.py · backend/runtime/main.py · backend/common/config.py · scripts/deploy/day_vm.py · deploy/compose.local.yaml · deploy/local.env.example · deploy/config/dev.env · prod.env(주석) · pyproject.toml · uv.lock · 새 scripts/interpret_live_check.py (WP-BE-2)",
+      "app/lib/ui/board_screen.dart · room_screen.dart · format.dart · app/lib/model/board.dart · app/lib/data/board_stream.dart (WP-APP-1)",
+      "app/lib/chat/chat_state.dart · chat_stream.dart · chat_kit.dart · chat_api.dart · chat_model.dart · chat_copy.dart · screens/chat_list_screen.dart · screens/chat_info_screen.dart · app/lib/ui/shell.dart · app/lib/notify/notification_settings.dart · notification_model.dart · notification_api.dart · notification_controller.dart · app/lib/state/push_coordinator.dart (WP-APP-2)",
+      "backend/day/queries/chat.py · backend/day/services/chat.py(read) · backend/day/services/chat_events.py (WP-BE-3)",
+      "app/lib/chat/screens/chat_room_screen.dart · app/lib/ui/shell.dart · app/lib/chat/chat_model.dart · chat_stream.dart · chat_state.dart (WP-APP-3)",
+      "backend/day/services/chat_storage.py · backend/day/services/chat.py(첨부 올리기 · 열기 · 전달) · backend/day/errors.py · backend/common/config.py · scripts/deploy/day_vm.py · deploy/config/dev.env · prod.env · deploy/compose.local.yaml · deploy/local.env.example · pyproject.toml · uv.lock · docs/development/deployment.md (WP-BE-4)"
+    ],
+    "domain_candidates": [],
+    "dependencies": [
+      "mediness 스펙 PR(kknaksss/fix-app-re1-spec) 머지 → baseline 재결속(같은 key · version+1)",
+      "WP-APP-2 로컬 실물 확인은 WP-BE-1 뒤",
+      "A5 = Soniox dev 키(사용자가 Key Vault day-dev-soniox-api-key 에 넣음)",
+      "A7 = dev 배포 + TestFlight 다음 빌드(번호 2 이상)",
+      "코드 브랜치 kknaksss/fix-app-re1(base origin/dev) — 코드 PR 하나 → dev(앱 포함)",
+      "WP-APP-3 의 C-A25 로컬 확인은 WP-BE-3 뒤(앱은 계약 표로 동시에 짓는다)",
+      "A13 = dev 설정 값(DAY_BLOB_CONTAINER=dev — 코디가 넣음) + dev 배포"
+    ],
+    "phases": [
+      "WP-BE-1 채팅 · 알림 서버(그룹 이름 API · chat 알림 종류 · 푸시 받는 사람) — backend 워커 · 끝남",
+      "WP-BE-2 통역 서버(라우트 · 서비스 · 사전 시드 · 상한 · 설정 · 선택 비밀 · 의존성 · 실물 스크립트) — backend 워커 · 끝남 · BE-1 뒤",
+      "WP-APP-1 시술현황 카드(모두 완료 · [귀가 대기] · 확인 필요 표시) + 앱 후속 2건 — mobile 워커 · 끝남 · BE-1 과 동시",
+      "WP-APP-2 채팅 · 설정(403 안내 · 그룹 이름 바꾸기 · 「채팅」 스위치 · 앱 안 배너) — mobile 워커 · 끝남 · APP-1 뒤",
+      "WP-BE-3 읽음 표시 서버(members[] lastReadSeq · fromSeq · chat_member_read) — backend 워커",
+      "WP-APP-3 채팅 화면(8 길게 누르기 자리 · 9 하단 4메뉴 숨김 · 10 읽음 숫자) — mobile 워커 · BE-3 과 동시",
+      "WP-BE-4 파일 저장소(관리 ID · 환경 경로 · 접근 실패 503 · 설정 · 배포 계약) — backend 워커 · 앱 변경 없음"
+    ],
+    "verification": [
+      "backend: uv run pytest -q -m \"not infra\" · scripts/test.sh -q · uv run ruff check backend · tests/architecture/test_import_boundaries.py 통과",
+      "app: fvm flutter analyze · fvm flutter test · 캡처 visual_capture_test · chat_capture_test",
+      "실제 Soniox: scripts/interpret_live_check.py(seed · idle · zhhant 갈래)",
+      "사용자 실기기: wp-plan §7(A-46 긴 세션 포함)",
+      "사용자 실기기: 그림 8 재현 · 하단 메뉴 · 두 계정 읽음(wp-plan §7 8 ~ 10)",
+      "파일 저장소: dev api 컨테이너 관리 ID 올리기 → 읽기 → 지우기(A13) · TestFlight 사진 · 동영상(A14)"
+    ],
+    "predeploy": [
+      "dev Key Vault 선택 비밀 day-dev-soniox-api-key 있음(사용자 2026-11-11) · prod 는 prod 배포 때",
+      "시드 sha256 = interpret-pwa 17c26b5 back/seed/glossary.json 과 같음",
+      "배포 중 열린 통역 세션은 끊김(앱 [다시 연결])",
+      "dev 설정 DAY_CHAT_STORAGE=blob · DAY_BLOB_ACCOUNT_URL(안내문 값 · 코디) · DAY_BLOB_CONTAINER=dev / prod 는 값 없음(prod 배포 때 사용자 · prod) · Key Vault 선택 비밀 chat-blob-connection-string 은 더 쓰지 않음 · 컨테이너 dev · prod 있음(정정 4)"
+    ],
+    "rollback": [
+      "코드 PR revert(일반 머지 되돌리기) → dev 재배포 · 이전 이미지 롤백 워크플로",
+      "migration 없음 · notification_setting chat 행은 남아도 옛 코드가 읽지 않음",
+      "통역 끄기 = 선택 비밀 비우기(no_api_key) — 기동은 유지",
+      "파일 저장소: DAY_CHAT_STORAGE 비우기 = 첨부 꺼짐(409 photo_disabled) · 메시지 · 푸시는 그대로"
+    ],
+    "open_questions": [
+      "DAY-SPEC-003 OQ-A43 · OQ-A46(사용자)",
+      "I-1 ~ I-5(구현 때 확인)",
+      "DAY-SPEC-004 OQ-C16 ~ C18(코디 · planner 기본값 — 뒤집을 때만)",
+      "파일 저장소 사용자 미결: 보관/복구(deployment.md 미결) · (컨테이너 dev · prod 있음 — 정정 4)"
+    ]
+  }
+}
