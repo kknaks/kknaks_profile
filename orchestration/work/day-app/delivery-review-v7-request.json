@@ -1,0 +1,455 @@
+{
+  "delivery_issue": 235,
+  "contract_digest": "sha256:00d8e5772c3ebf8dadfafdc89f8cc6cafe68a37ac9aebae707c5e72afd1a0700",
+  "contract_version": 7,
+  "spec_baseline_revision": "9692e1fb461bf8c4e52bf489e37ab8ff875f9918",
+  "code_pr": 237,
+  "code_pr_head_sha": "3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+  "code_merge_sha": null,
+  "acceptance": [
+    {
+      "id": "완료 정의(누적 v7)",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "v7 전체 서버765/앱245 + 변경후 관련120 회귀 통과; 기존 인수 경로 유지. 라이브/실키/실기기는 완료조건과 분리한 pending."
+      ]
+    },
+    {
+      "id": "A1",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "v6 기존인수근거 보존: app/test/ui/app_flow_test.dart",
+        "v7 전체 서버765/앱245 + 변경후 관련120 회귀 통과; 기존 인수 경로 유지. 라이브/실키/실기기는 완료조건과 분리한 pending."
+      ]
+    },
+    {
+      "id": "A2",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "v6 기존인수근거 보존: app/test/ui/actions_test.dart",
+        "v7 전체 서버765/앱245 + 변경후 관련120 회귀 통과; 기존 인수 경로 유지. 라이브/실키/실기기는 완료조건과 분리한 pending."
+      ]
+    },
+    {
+      "id": "A3",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "v6 기존인수근거 보존: backend/tests/day/auth/test_environments_api.py — v1 D1 기존663 검증, 이후 backend변경0",
+        "v7 전체 서버765/앱245 + 변경후 관련120 회귀 통과; 기존 인수 경로 유지. 라이브/실키/실기기는 완료조건과 분리한 pending."
+      ]
+    },
+    {
+      "id": "A4",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "v6 기존인수근거 보존: app/test/state/session_controller_test.dart",
+        "v7 전체 서버765/앱245 + 변경후 관련120 회귀 통과; 기존 인수 경로 유지. 라이브/실키/실기기는 완료조건과 분리한 pending."
+      ]
+    },
+    {
+      "id": "A5",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "v6 기존인수근거 보존: app/test/ui/session_race_test.dart",
+        "v7 전체 서버765/앱245 + 변경후 관련120 회귀 통과; 기존 인수 경로 유지. 라이브/실키/실기기는 완료조건과 분리한 pending."
+      ]
+    },
+    {
+      "id": "A6",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "v6 기존인수근거 보존: app/test/core/origin_test.dart",
+        "v7 전체 서버765/앱245 + 변경후 관련120 회귀 통과; 기존 인수 경로 유지. 라이브/실키/실기기는 완료조건과 분리한 pending."
+      ]
+    },
+    {
+      "id": "A7",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "v6 기존인수근거 보존: app/test/data/board_stream_test.dart",
+        "v7 전체 서버765/앱245 + 변경후 관련120 회귀 통과; 기존 인수 경로 유지. 라이브/실키/실기기는 완료조건과 분리한 pending."
+      ]
+    },
+    {
+      "id": "A8",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "v6 기존인수근거 보존: app/test/ui/actions_test.dart",
+        "v7 전체 서버765/앱245 + 변경후 관련120 회귀 통과; 기존 인수 경로 유지. 라이브/실키/실기기는 완료조건과 분리한 pending."
+      ]
+    },
+    {
+      "id": "A9",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "v6 기존인수근거 보존: app/test/interpret/interpret_test.dart — D3 서버는범위밖, 클라이언트검증",
+        "v7 전체 서버765/앱245 + 변경후 관련120 회귀 통과; 기존 인수 경로 유지. 라이브/실키/실기기는 완료조건과 분리한 pending."
+      ]
+    },
+    {
+      "id": "A10",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "v6 기존인수근거 보존: app/test/state/push_coordinator_test.dart — D2 서버는범위밖, 클라이언트검증",
+        "v7 전체 서버765/앱245 + 변경후 관련120 회귀 통과; 기존 인수 경로 유지. 라이브/실키/실기기는 완료조건과 분리한 pending."
+      ]
+    },
+    {
+      "id": "A11",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "v6 기존인수근거 보존: 코디 경로/비밀패턴 검사0·native 변경0·서명없음",
+        "v7 전체 서버765/앱245 + 변경후 관련120 회귀 통과; 기존 인수 경로 유지. 라이브/실키/실기기는 완료조건과 분리한 pending."
+      ]
+    },
+    {
+      "id": "A12",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "v6 기존인수근거 보존: 전체198pass·analyze0·unsignedbuild17.5MB; backend는이전663 이후무변경",
+        "v7 전체 서버765/앱245 + 변경후 관련120 회귀 통과; 기존 인수 경로 유지. 라이브/실키/실기기는 완료조건과 분리한 pending."
+      ]
+    },
+    {
+      "id": "A13",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "v6 기존인수근거 보존: 이번4ee33f95대비app3파일뿐·누적0b776e90대비app29파일뿐·PR237→dev하나·미머지",
+        "v7 전체 서버765/앱245 + 변경후 관련120 회귀 통과; 기존 인수 경로 유지. 라이브/실키/실기기는 완료조건과 분리한 pending."
+      ]
+    },
+    {
+      "id": "A14",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "v6 기존인수근거 보존: app/lib/ui/shell.dart · app/test/ui/app_flow_test.dart",
+        "v7 전체 서버765/앱245 + 변경후 관련120 회귀 통과; 기존 인수 경로 유지. 라이브/실키/실기기는 완료조건과 분리한 pending."
+      ]
+    },
+    {
+      "id": "A15",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "v6 기존인수근거 보존: app/lib/ui/shell.dart · app/test/ui/app_flow_test.dart",
+        "v7 전체 서버765/앱245 + 변경후 관련120 회귀 통과; 기존 인수 경로 유지. 라이브/실키/실기기는 완료조건과 분리한 pending."
+      ]
+    },
+    {
+      "id": "A16",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "v6 기존인수근거 보존: app/test/ui/status_box_test.dart · phone-status-4states/phone320-status-long PNG",
+        "v7 전체 서버765/앱245 + 변경후 관련120 회귀 통과; 기존 인수 경로 유지. 라이브/실키/실기기는 완료조건과 분리한 pending."
+      ]
+    },
+    {
+      "id": "A17",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "v6 기존인수근거 보존: app/test/ui/status_box_test.dart · 마취/doing mm:ss/lastSeconds÷60/대표행/빈담당의/320폭",
+        "v7 전체 서버765/앱245 + 변경후 관련120 회귀 통과; 기존 인수 경로 유지. 라이브/실키/실기기는 완료조건과 분리한 pending."
+      ]
+    },
+    {
+      "id": "A18",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "v6 기존인수근거 보존: app/lib/ui/accept.dart · app/test/ui/actions_test.dart · phone-call-wait-list-nurse PNG",
+        "v7 전체 서버765/앱245 + 변경후 관련120 회귀 통과; 기존 인수 경로 유지. 라이브/실키/실기기는 완료조건과 분리한 pending."
+      ]
+    },
+    {
+      "id": "A19",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "v6 기존인수근거 보존: app/test/ui/detail_polish_test.dart — 헤더전체폭중앙/미수락호출만/5상태/둘째줄조작/서버canStart/readonly/취소경로",
+        "v6 기존인수근거 보존: review-detail-polish-code-report.md PASS(FAIL0/WARN0)",
+        "v7 전체 서버765/앱245 + 변경후 관련120 회귀 통과; 기존 인수 경로 유지. 라이브/실키/실기기는 완료조건과 분리한 pending."
+      ]
+    },
+    {
+      "id": "A20",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "v6 기존인수근거 보존: app/lib/ui/doctor_picker.dart · app/test/ui/actions_test.dart · 호출시트폰방/고객",
+        "v7 전체 서버765/앱245 + 변경후 관련120 회귀 통과; 기존 인수 경로 유지. 라이브/실키/실기기는 완료조건과 분리한 pending."
+      ]
+    },
+    {
+      "id": "A21",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "v6 기존인수근거 보존: app/test/ui/app_flow_test.dart · all-done/home와needs중복제거",
+        "v7 전체 서버765/앱245 + 변경후 관련120 회귀 통과; 기존 인수 경로 유지. 라이브/실키/실기기는 완료조건과 분리한 pending."
+      ]
+    },
+    {
+      "id": "A22",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "v6 기존인수근거 보존: app/lib/ui/interpret_widgets.dart · interpret-drawer/quick-chip PNG",
+        "v7 전체 서버765/앱245 + 변경후 관련120 회귀 통과; 기존 인수 경로 유지. 라이브/실키/실기기는 완료조건과 분리한 pending."
+      ]
+    },
+    {
+      "id": "A23",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "v6 기존인수근거 보존: app/test/interpret/interpret_test.dart · TW zh-Hant/고객별언어",
+        "v7 전체 서버765/앱245 + 변경후 관련120 회귀 통과; 기존 인수 경로 유지. 라이브/실키/실기기는 완료조건과 분리한 pending."
+      ]
+    },
+    {
+      "id": "A24",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "v6 기존인수근거 보존: app/test/ui/session_race_test.dart · app/test/ui/app_flow_test.dart · 자기2xx/화면수명/토스트",
+        "v7 전체 서버765/앱245 + 변경후 관련120 회귀 통과; 기존 인수 경로 유지. 라이브/실키/실기기는 완료조건과 분리한 pending."
+      ]
+    },
+    {
+      "id": "A25",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "v6 기존인수근거 보존: tabs-removal-evidence/screens PNG82fixture/27capture pass·phone/iPad/320 탭없고필터→카드·실제sim조회복원·독립시각PASS",
+        "v7 전체 서버765/앱245 + 변경후 관련120 회귀 통과; 기존 인수 경로 유지. 라이브/실키/실기기는 완료조건과 분리한 pending."
+      ]
+    },
+    {
+      "id": "A26",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "v6 기존인수근거 보존: app/test/data/board_stream_test.dart · app/test/ui/actions_test.dart · needs/canRecall/lastSeconds/새오류",
+        "v7 전체 서버765/앱245 + 변경후 관련120 회귀 통과; 기존 인수 경로 유지. 라이브/실키/실기기는 완료조건과 분리한 pending."
+      ]
+    },
+    {
+      "id": "A27",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "v6 기존인수근거 보존: app/test/ui/detail_polish_test.dart — readycanStarttrue/호출중false/부분수락/상단수락보존/취소확인·기존판회귀",
+        "v6 기존인수근거 보존: 독립관문65pass·전체198pass/29capture skip·코디analyze0·후속app4파일만",
+        "v7 전체 서버765/앱245 + 변경후 관련120 회귀 통과; 기존 인수 경로 유지. 라이브/실키/실기기는 완료조건과 분리한 pending."
+      ]
+    },
+    {
+      "id": "A28",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "v6 기존인수근거 보존: app/test/ui/app_flow_test.dart — 상단3탭/별도목록검색없음·4필터/cards/4메뉴·카드수락/상세수락유지",
+        "v6 기존인수근거 보존: review-tabs-removal-code-report.md PASS·모델calls/doneTab수신/SSE/푸시/귀가처리diff0",
+        "v7 전체 서버765/앱245 + 변경후 관련120 회귀 통과; 기존 인수 경로 유지. 라이브/실키/실기기는 완료조건과 분리한 pending."
+      ]
+    },
+    {
+      "id": "A29",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "chat-backend-rereview.md: HTTP/기기/첨부/격리/SSE/멱등 실PG/Redis96 및 스트림7x3 pass; 전체765는 작성자 실행",
+        "chat-mobile-review.md: 앱245pass/analyze0/native54, HTTP계약·세션·채팅권한·원형대조 PASS",
+        "chat-mobile-layout-rereview.md + chat-mobile-keyboard-matrix-report.md: 제품보완 PASS, 관련120·레이아웃7 pass(코디7재현)"
+      ]
+    },
+    {
+      "id": "A30",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "chat-backend-rereview.md: HTTP/기기/첨부/격리/SSE/멱등 실PG/Redis96 및 스트림7x3 pass; 전체765는 작성자 실행",
+        "chat-mobile-review.md: 앱245pass/analyze0/native54, HTTP계약·세션·채팅권한·원형대조 PASS",
+        "chat-mobile-layout-rereview.md + chat-mobile-keyboard-matrix-report.md: 제품보완 PASS, 관련120·레이아웃7 pass(코디7재현)"
+      ]
+    },
+    {
+      "id": "A31",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "chat-backend-rereview.md: HTTP/기기/첨부/격리/SSE/멱등 실PG/Redis96 및 스트림7x3 pass; 전체765는 작성자 실행",
+        "chat-mobile-review.md: 앱245pass/analyze0/native54, HTTP계약·세션·채팅권한·원형대조 PASS",
+        "chat-mobile-layout-rereview.md + chat-mobile-keyboard-matrix-report.md: 제품보완 PASS, 관련120·레이아웃7 pass(코디7재현)"
+      ]
+    },
+    {
+      "id": "A32",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "chat-backend-rereview.md: HTTP/기기/첨부/격리/SSE/멱등 실PG/Redis96 및 스트림7x3 pass; 전체765는 작성자 실행",
+        "chat-mobile-review.md: 앱245pass/analyze0/native54, HTTP계약·세션·채팅권한·원형대조 PASS",
+        "chat-mobile-layout-rereview.md + chat-mobile-keyboard-matrix-report.md: 제품보완 PASS, 관련120·레이아웃7 pass(코디7재현)"
+      ]
+    },
+    {
+      "id": "A33",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "chat-backend-rereview.md: HTTP/기기/첨부/격리/SSE/멱등 실PG/Redis96 및 스트림7x3 pass; 전체765는 작성자 실행",
+        "chat-mobile-review.md: 앱245pass/analyze0/native54, HTTP계약·세션·채팅권한·원형대조 PASS",
+        "chat-mobile-layout-rereview.md + chat-mobile-keyboard-matrix-report.md: 제품보완 PASS, 관련120·레이아웃7 pass(코디7재현)"
+      ]
+    },
+    {
+      "id": "A34",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "chat-backend-rereview.md: HTTP/기기/첨부/격리/SSE/멱등 실PG/Redis96 및 스트림7x3 pass; 전체765는 작성자 실행",
+        "chat-mobile-review.md: 앱245pass/analyze0/native54, HTTP계약·세션·채팅권한·원형대조 PASS",
+        "chat-mobile-layout-rereview.md + chat-mobile-keyboard-matrix-report.md: 제품보완 PASS, 관련120·레이아웃7 pass(코디7재현)"
+      ]
+    },
+    {
+      "id": "A35",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "chat-backend-rereview.md: HTTP/기기/첨부/격리/SSE/멱등 실PG/Redis96 및 스트림7x3 pass; 전체765는 작성자 실행",
+        "chat-mobile-review.md: 앱245pass/analyze0/native54, HTTP계약·세션·채팅권한·원형대조 PASS",
+        "chat-mobile-layout-rereview.md + chat-mobile-keyboard-matrix-report.md: 제품보완 PASS, 관련120·레이아웃7 pass(코디7재현)"
+      ]
+    },
+    {
+      "id": "A36",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "chat-backend-rereview.md: HTTP/기기/첨부/격리/SSE/멱등 실PG/Redis96 및 스트림7x3 pass; 전체765는 작성자 실행",
+        "chat-mobile-review.md: 앱245pass/analyze0/native54, HTTP계약·세션·채팅권한·원형대조 PASS",
+        "chat-mobile-layout-rereview.md + chat-mobile-keyboard-matrix-report.md: 제품보완 PASS, 관련120·레이아웃7 pass(코디7재현)"
+      ]
+    },
+    {
+      "id": "A37",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "chat-backend-rereview.md: HTTP/기기/첨부/격리/SSE/멱등 실PG/Redis96 및 스트림7x3 pass; 전체765는 작성자 실행",
+        "chat-mobile-review.md: 앱245pass/analyze0/native54, HTTP계약·세션·채팅권한·원형대조 PASS",
+        "chat-mobile-layout-rereview.md + chat-mobile-keyboard-matrix-report.md: 제품보완 PASS, 관련120·레이아웃7 pass(코디7재현)"
+      ]
+    },
+    {
+      "id": "A38",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "chat-backend-rereview.md: HTTP/기기/첨부/격리/SSE/멱등 실PG/Redis96 및 스트림7x3 pass; 전체765는 작성자 실행",
+        "chat-mobile-review.md: 앱245pass/analyze0/native54, HTTP계약·세션·채팅권한·원형대조 PASS",
+        "chat-mobile-layout-rereview.md + chat-mobile-keyboard-matrix-report.md: 제품보완 PASS, 관련120·레이아웃7 pass(코디7재현)"
+      ]
+    },
+    {
+      "id": "A39",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "chat-backend-rereview.md: HTTP/기기/첨부/격리/SSE/멱등 실PG/Redis96 및 스트림7x3 pass; 전체765는 작성자 실행",
+        "chat-mobile-review.md: 앱245pass/analyze0/native54, HTTP계약·세션·채팅권한·원형대조 PASS",
+        "chat-mobile-layout-rereview.md + chat-mobile-keyboard-matrix-report.md: 제품보완 PASS, 관련120·레이아웃7 pass(코디7재현)"
+      ]
+    },
+    {
+      "id": "A40",
+      "result": "pass",
+      "evidence": [
+        "code head 3aaa97806684b8cea7f7fb777adbcdcff7ae0de6",
+        "구현/테스트 기준: SPEC003/004/000/001 @53adbd49 + UI진입 사실명확화 @b0f71ec3 (미머지 PR921; main baseline pending)",
+        "chat-backend-rereview.md: HTTP/기기/첨부/격리/SSE/멱등 실PG/Redis96 및 스트림7x3 pass; 전체765는 작성자 실행",
+        "chat-mobile-review.md: 앱245pass/analyze0/native54, HTTP계약·세션·채팅권한·원형대조 PASS",
+        "chat-mobile-layout-rereview.md + chat-mobile-keyboard-matrix-report.md: 제품보완 PASS, 관련120·레이아웃7 pass(코디7재현)"
+      ]
+    }
+  ],
+  "per_spec": [
+    {
+      "spec": "DAY-SPEC-003",
+      "result": "update-required"
+    },
+    {
+      "spec": "DAY-SPEC-001",
+      "result": "update-required"
+    },
+    {
+      "spec": "DAY-SPEC-004",
+      "result": "update-required"
+    },
+    {
+      "spec": "DAY-SPEC-000",
+      "result": "update-required"
+    }
+  ],
+  "implementation": "conformant",
+  "merged": false
+}

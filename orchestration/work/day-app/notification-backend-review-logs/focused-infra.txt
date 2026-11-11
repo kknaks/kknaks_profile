@@ -1,0 +1,78 @@
+........................................................................ [ 38%]
+...............................F........................................ [ 77%]
+..........................................                               [100%]
+=================================== FAILURES ===================================
+_______________________ test_받는_사람과_기기는_커밋_뒤_다시_읽은_규칙대로 ________________________
+
+world = World(client=<httpx.AsyncClient object at 0x1164abb90>, a=UUID('e1c8bc20-8e56-4599-a3cf-60222327bd23'), b=UUID('1abb11...t-of-kknaks/pytest-1692/test_받는_사람과_기기는_커밋_뒤_다시_읽은_규칙대0/files'), kicked=[UUID('096dcf39-67c4-4a86-a255-33d3a7fea5aa')])
+redis = <redis.asyncio.client.Redis(<redis.asyncio.connection.ConnectionPool(<redis.asyncio.connection.Connection(password=<REDACTED>,host=127.0.0.1,port=11043,db=15)>)>)>
+
+    async def test_받는_사람과_기기는_커밋_뒤_다시_읽은_규칙대로(world: World, redis: Redis) -> None:
+        room = await world.group(world.nurse, world.doctor, world.coord, world.multi_a, title="오후")
+        rid = room["id"]
+        await world.ok(world.coord, "PUT", f"/api/chat/rooms/{rid}/mute", {"muted": True})
+        d_doctor, d_coord, d_multi_b, d_nurse = (str(uuid.uuid4()) for _ in range(4))
+        await put(world, world.doctor, d_doctor, token(10))
+        await put(world, world.coord, d_coord, token(11))  # 알림 끔
+        await put(world, world.multi_b, d_multi_b, token(12))  # 같은 계정 · B 병원 세션 기기
+        await put(world, world.nurse, d_nurse, token(13))  # 보낸 사람
+        legacy = str(uuid.uuid4())
+        async with get_async_session() as s:  # 옛 행 — 세션 결속 없음
+            s.add(Device(install_id=legacy, account_id=world.doctor.account_id, push_token=token(14)))
+            await s.commit()
+        m = await world.send(world.nurse, rid, "줄1\n줄2")
+        fake = FakeApns()
+        out = await chat_push.send_message(
+            uuid.UUID(m["id"]), client_factory=lambda _: fake, redis=redis, settings=keyed()
+        )
+        assert out == {"sent": 1, "failed": 0, "removed": 0, "skipped": 0}
+        assert [s["token"] for s in fake.sent] == [token(10)]
+        sent = fake.sent[0]
+        assert sent["topic"] == APP and sent["env"] == "sandbox"
+        assert sent["payload"] == {
+            "aps": {
+                "alert": {"title": "가간호 · 오후", "body": "줄1 줄2"},
+                "sound": "default",
+                "thread-id": f"chat-{rid}",
+            },
+            "kind": "chat",
+            "environment": "dev",
+            "hospitalId": str(world.a),
+            "roomId": rid,
+            "messageId": m["id"],
+        }
+        assert sent["expiration"] > int(datetime.now(UTC).timestamp()) + 86_000
+        rows = await logs(m["id"])
+        assert [(r.status, r.kind, r.attempts, r.token_tail) for r in rows] == [
+            (PushStatus.SENT, PushKind.CHAT, 1, token(10)[-6:])
+        ]
+        assert rows[0].sent_at is not None
+        async with get_async_session() as s:
+>           assert (await s.scalars(select(Notification))).all() == []  # 알림함을 쓰지 않는다
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           assert [<day.models....64dcdd0>, ...] == []
+E             
+E             Left contains 88 more items, first extra item: <day.models.misc.Notification object at 0x116705790>
+E             Use -v to get more diff
+
+backend/tests/day/chat/test_devices_push.py:277: AssertionError
+----------------------------- Captured stdout call -----------------------------
+{"timestamp": "2026-11-10T11:02:22.197+00:00", "level": "INFO", "logger": "day.services.chat", "message": "chat group created room=99273caa-d095-41a1-9417-d03cc4bf5114 account=5f0837a1-f52a-4530-b21e-0027c5adc539 members=4", "app_env": "dev"}
+{"timestamp": "2026-11-10T11:02:22.224+00:00", "level": "INFO", "logger": "day.services.devices", "message": "device registered install=d507cfb6-0716-4838-a57c-5b62d1f01061 token=…0a0a0a", "app_env": "dev"}
+{"timestamp": "2026-11-10T11:02:22.230+00:00", "level": "INFO", "logger": "day.services.devices", "message": "device registered install=b86f1a5b-66e9-467f-a912-c7c798f7eb03 token=…0b0b0b", "app_env": "dev"}
+{"timestamp": "2026-11-10T11:02:22.235+00:00", "level": "INFO", "logger": "day.services.devices", "message": "device registered install=2e64e925-1ac2-4e94-a16c-37940e2d8be8 token=…0c0c0c", "app_env": "dev"}
+{"timestamp": "2026-11-10T11:02:22.241+00:00", "level": "INFO", "logger": "day.services.devices", "message": "device registered install=26e65c81-7b81-4728-9353-6119e798536a token=…0d0d0d", "app_env": "dev"}
+{"timestamp": "2026-11-10T11:02:22.255+00:00", "level": "INFO", "logger": "day.services.chat", "message": "chat sent room=99273caa-d095-41a1-9417-d03cc4bf5114 message=096dcf39-67c4-4a86-a255-33d3a7fea5aa account=5f0837a1-f52a-4530-b21e-0027c5adc539", "app_env": "dev"}
+{"timestamp": "2026-11-10T11:02:22.273+00:00", "level": "INFO", "logger": "day.services.push", "message": "push chat message=096dcf39-67c4-4a86-a255-33d3a7fea5aa sent=1 failed=0 removed=0", "app_env": "dev"}
+------------------------------ Captured log call -------------------------------
+INFO     day.services.chat:chat.py:530 chat group created room=99273caa-d095-41a1-9417-d03cc4bf5114 account=5f0837a1-f52a-4530-b21e-0027c5adc539 members=4
+INFO     day.services.devices:devices.py:161 device registered install=d507cfb6-0716-4838-a57c-5b62d1f01061 token=…0a0a0a
+INFO     day.services.devices:devices.py:161 device registered install=b86f1a5b-66e9-467f-a912-c7c798f7eb03 token=…0b0b0b
+INFO     day.services.devices:devices.py:161 device registered install=2e64e925-1ac2-4e94-a16c-37940e2d8be8 token=…0c0c0c
+INFO     day.services.devices:devices.py:161 device registered install=26e65c81-7b81-4728-9353-6119e798536a token=…0d0d0d
+INFO     day.services.chat:chat.py:798 chat sent room=99273caa-d095-41a1-9417-d03cc4bf5114 message=096dcf39-67c4-4a86-a255-33d3a7fea5aa account=5f0837a1-f52a-4530-b21e-0027c5adc539
+INFO     day.services.push:push.py:333 push chat message=096dcf39-67c4-4a86-a255-33d3a7fea5aa sent=1 failed=0 removed=0
+=========================== short test summary info ============================
+FAILED backend/tests/day/chat/test_devices_push.py::test_받는_사람과_기기는_커밋_뒤_다시_읽은_규칙대로
+1 failed, 185 passed in 33.95s
+exit 1

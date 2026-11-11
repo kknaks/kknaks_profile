@@ -1,0 +1,23 @@
+# fvm flutter build ios --no-codesign (app/, 1회, 2026-11-09) — 출력 끝부분 그대로
+Warning: Building for device with codesigning disabled. You will have to manually codesign before deploying to device.
+Building com.example.day.placeholder for device (ios-release)...
+The following plugins do not support Swift Package Manager for ios:
+  - flutter_pcm_sound
+  - flutter_tts
+This will become an error in a future version of Flutter. Please contact the plugin maintainers to request Swift Package Manager adoption.
+Running pod install...                                             593ms
+Running Xcode build...
+Xcode build done.                                           29.3s
+✓ Built build/ios/iphoneos/Runner.app (17.6MB)
+
+# 산출물 검사
+  "CFBundleDisplayName" => "DAY"
+  "CFBundleIdentifier" => "com.example.day.placeholder"
+  "NSMicrophoneUsageDescription" => "통역할 때 의료진과 고객의 말을 듣기 위해 마이크를 사용합니다."
+app/build/ios/iphoneos/Runner.app: code object is not signed at all
+
+# 소스 검사 — Team ID · 서명 · 실주소 · 키
+0
+       0
+
+# 변경 경로(app/ 밖 0)

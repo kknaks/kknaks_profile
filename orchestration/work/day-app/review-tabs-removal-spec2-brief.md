@@ -1,0 +1,2 @@
+# 상단 탭 제거 SPEC/WPv6 좁은 재검수
+기존 review-tabs-removal-spec-brief.md read-only/하위위임0 경계그대로. 이번 tabs-removal-spec-fix-report.md 기준 W1 ASCII레일예약현황칸복원·개정④역사문장꼬리·baseline현재필드9692e1fb정정만. gitdiff3f57..9692 products/day변경없음/SPEC003없음/SPEC001draft그대로는코디/플래너이미검증. 결과계약의미/AC/기존권한변경없고pending유지여부 확인. 전체스펙/테스트반복불필요. 산출물 review-tabs-removal-spec2-report.md 짧게 PASS/WARN/FAIL·실제diff근거, 수정0. livepreambleID/outcome/report-path worker_done한번후idle.

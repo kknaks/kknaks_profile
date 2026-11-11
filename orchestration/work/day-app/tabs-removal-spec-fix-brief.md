@@ -1,0 +1,3 @@
+# 상단 탭 제거 문서 WARN1+최신 baseline 최소 정정
+기존 tabs-removal-spec-brief.md 역할/경계그대로. read review-tabs-removal-spec-report.md. W1: SPEC003아이패드ASCII에서상단인박스줄삭제할때왼쪽레일예약현황의「현황」칸함께지워짐. 하단/레일4메뉴는유지하므로그칸만복원(본문새기능0). 필요하면개정④역사문장「호출탭」에개정⑤이후없음꼬리참고만. 보고tabs-removal-spec-fix-report.md.
+추가코디preflight: origin/main을방금fetch하니 9692e1fb461bf8c4e52bf489e37ab8ff875f9918(docs(casty)#926)로전진. gitdiff3f57c1af..9692e1fb --products/day/ 는비어있고mainSPEC001draft·SPEC003없음그대로. WPv6아직미적용이므로root spec_baseline_revision과현재latestmain을설명하는scope_delta/review_surface/dependency현재문장만새9692로정정하고pending유지. 과거v5계약/digest/원천3f역사값은그대로. targetDelta/AC/권한/코드scope0변경. 모델/JSON검증과diffcheck만, 전체lint재반복불필요. specrepo/CLI/GitHubwrite·코드·commit/push/merge·하위위임0. 완료전메일check·livepreambleID/outcome/report-path worker_done1회후idle.

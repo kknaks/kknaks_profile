@@ -1,0 +1,16 @@
+diff --git a/backend/tests/day/chat/test_devices_push.py b/backend/tests/day/chat/test_devices_push.py
+index c02e912c..87fa3cd6 100644
+--- a/backend/tests/day/chat/test_devices_push.py
++++ b/backend/tests/day/chat/test_devices_push.py
+@@ -274,7 +274,10 @@ async def test_받는_사람과_기기는_커밋_뒤_다시_읽은_규칙대로(
+     ]
+     assert rows[0].sent_at is not None
+     async with get_async_session() as s:
+-        assert (await s.scalars(select(Notification))).all() == []  # 알림함을 쓰지 않는다
++        # 알림함을 쓰지 않는다 — 이 시험의 두 병원(시험마다 새로 만듦) 범위만 본다
++        # (다른 시험이 남긴 알림 행과 무관)
++        mine = select(Notification).where(Notification.hospital_id.in_([world.a, world.b]))
++        assert (await s.scalars(mine)).all() == []
+     again = await chat_push.send_message(
+         uuid.UUID(m["id"]), client_factory=lambda _: fake, redis=redis, settings=keyed()
+     )

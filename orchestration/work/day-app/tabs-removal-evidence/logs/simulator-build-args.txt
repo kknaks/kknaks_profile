@@ -1,0 +1,1 @@
+fvm flutter build ios --simulator --debug --dart-define=DAY_LOGIN_ENTRY=http://127.0.0.1:11040 --dart-define=DAY_DEV_LOCAL_ORIGIN=http://127.0.0.1:11040 --dart-define=DAY_REQUIRE_ENVIRONMENT=false --dart-define=DAY_APNS_ENV=sandbox
