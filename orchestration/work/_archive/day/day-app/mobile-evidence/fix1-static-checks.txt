@@ -1,0 +1,9 @@
+# fix1 정적 검사
+변경 경로(app/ 밖):
+(끝)
+DEVELOPMENT_TEAM: 0
+  "CFBundleIdentifier" => "com.example.day.placeholder"
+  "NSMicrophoneUsageDescription" => "통역할 때 의료진과 고객의 말을 듣기 위해 마이크를 사용합니다."
+app/build/ios/iphoneos/Runner.app: code object is not signed at all
+lib 실주소: 0
+mutation check(F1 가드 제거 시 session_race_test 5/6 실패 · 복원 뒤 6/6 통과) — 작업 중 실행 기록

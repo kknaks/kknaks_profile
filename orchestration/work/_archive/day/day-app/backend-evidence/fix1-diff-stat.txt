@@ -1,0 +1,10 @@
+ AGENTS.md                          |  3 +-
+ backend/common/config.py           | 69 +++++++++++++++++++++++++++++++++++++-
+ backend/day/routers/api/auth.py    | 54 ++++++++++++++++++++++++-----
+ backend/day/schemas/auth.py        | 13 +++++++
+ backend/tests/day/auth/conftest.py |  3 +-
+ deploy/compose.local.yaml          |  4 +++
+ deploy/config/dev.env              |  6 ++++
+ deploy/config/prod.env             |  7 ++++
+ deploy/local.env.example           |  8 +++++
+ 9 files changed, 156 insertions(+), 11 deletions(-)

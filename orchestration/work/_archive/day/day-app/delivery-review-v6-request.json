@@ -1,0 +1,258 @@
+{
+  "delivery_issue": 235,
+  "contract_digest": "sha256:6352e9c4f5c27196ac1e85617fe20bae3da22b4ca8536693e2d8288ac273285e",
+  "contract_version": 6,
+  "spec_baseline_revision": "9692e1fb461bf8c4e52bf489e37ab8ff875f9918",
+  "code_pr": 237,
+  "code_pr_head_sha": "b6c034bfa239bd4f12f1a29c6e58c74d82c87de6",
+  "code_merge_sha": null,
+  "acceptance": [
+    {
+      "id": "완료 정의(누적 v6)",
+      "result": "pass",
+      "evidence": [
+        "code head b6c034bfa239bd4f12f1a29c6e58c74d82c87de6",
+        "전체198pass/27capture skip·analyze0·독립관문70pass·코드시각PASS(FAIL0/WARN0)·unsigned17.4MB·사용자세션보존PID45830"
+      ]
+    },
+    {
+      "id": "A1",
+      "result": "pass",
+      "evidence": [
+        "code head b6c034bfa239bd4f12f1a29c6e58c74d82c87de6",
+        "app/test/ui/app_flow_test.dart"
+      ]
+    },
+    {
+      "id": "A2",
+      "result": "pass",
+      "evidence": [
+        "code head b6c034bfa239bd4f12f1a29c6e58c74d82c87de6",
+        "app/test/ui/actions_test.dart"
+      ]
+    },
+    {
+      "id": "A3",
+      "result": "pass",
+      "evidence": [
+        "code head b6c034bfa239bd4f12f1a29c6e58c74d82c87de6",
+        "backend/tests/day/auth/test_environments_api.py — v1 D1 기존663 검증, 이후 backend변경0"
+      ]
+    },
+    {
+      "id": "A4",
+      "result": "pass",
+      "evidence": [
+        "code head b6c034bfa239bd4f12f1a29c6e58c74d82c87de6",
+        "app/test/state/session_controller_test.dart"
+      ]
+    },
+    {
+      "id": "A5",
+      "result": "pass",
+      "evidence": [
+        "code head b6c034bfa239bd4f12f1a29c6e58c74d82c87de6",
+        "app/test/ui/session_race_test.dart"
+      ]
+    },
+    {
+      "id": "A6",
+      "result": "pass",
+      "evidence": [
+        "code head b6c034bfa239bd4f12f1a29c6e58c74d82c87de6",
+        "app/test/core/origin_test.dart"
+      ]
+    },
+    {
+      "id": "A7",
+      "result": "pass",
+      "evidence": [
+        "code head b6c034bfa239bd4f12f1a29c6e58c74d82c87de6",
+        "app/test/data/board_stream_test.dart"
+      ]
+    },
+    {
+      "id": "A8",
+      "result": "pass",
+      "evidence": [
+        "code head b6c034bfa239bd4f12f1a29c6e58c74d82c87de6",
+        "app/test/ui/actions_test.dart"
+      ]
+    },
+    {
+      "id": "A9",
+      "result": "pass",
+      "evidence": [
+        "code head b6c034bfa239bd4f12f1a29c6e58c74d82c87de6",
+        "app/test/interpret/interpret_test.dart — D3 서버는범위밖, 클라이언트검증"
+      ]
+    },
+    {
+      "id": "A10",
+      "result": "pass",
+      "evidence": [
+        "code head b6c034bfa239bd4f12f1a29c6e58c74d82c87de6",
+        "app/test/state/push_coordinator_test.dart — D2 서버는범위밖, 클라이언트검증"
+      ]
+    },
+    {
+      "id": "A11",
+      "result": "pass",
+      "evidence": [
+        "code head b6c034bfa239bd4f12f1a29c6e58c74d82c87de6",
+        "코디 경로/비밀패턴 검사0·native 변경0·서명없음"
+      ]
+    },
+    {
+      "id": "A12",
+      "result": "pass",
+      "evidence": [
+        "code head b6c034bfa239bd4f12f1a29c6e58c74d82c87de6",
+        "전체198pass·analyze0·unsignedbuild17.5MB; backend는이전663 이후무변경"
+      ]
+    },
+    {
+      "id": "A13",
+      "result": "pass",
+      "evidence": [
+        "code head b6c034bfa239bd4f12f1a29c6e58c74d82c87de6",
+        "이번4ee33f95대비app3파일뿐·누적0b776e90대비app29파일뿐·PR237→dev하나·미머지"
+      ]
+    },
+    {
+      "id": "A14",
+      "result": "pass",
+      "evidence": [
+        "code head b6c034bfa239bd4f12f1a29c6e58c74d82c87de6",
+        "app/lib/ui/shell.dart · app/test/ui/app_flow_test.dart"
+      ]
+    },
+    {
+      "id": "A15",
+      "result": "pass",
+      "evidence": [
+        "code head b6c034bfa239bd4f12f1a29c6e58c74d82c87de6",
+        "app/lib/ui/shell.dart · app/test/ui/app_flow_test.dart"
+      ]
+    },
+    {
+      "id": "A16",
+      "result": "pass",
+      "evidence": [
+        "code head b6c034bfa239bd4f12f1a29c6e58c74d82c87de6",
+        "app/test/ui/status_box_test.dart · phone-status-4states/phone320-status-long PNG"
+      ]
+    },
+    {
+      "id": "A17",
+      "result": "pass",
+      "evidence": [
+        "code head b6c034bfa239bd4f12f1a29c6e58c74d82c87de6",
+        "app/test/ui/status_box_test.dart · 마취/doing mm:ss/lastSeconds÷60/대표행/빈담당의/320폭"
+      ]
+    },
+    {
+      "id": "A18",
+      "result": "pass",
+      "evidence": [
+        "code head b6c034bfa239bd4f12f1a29c6e58c74d82c87de6",
+        "app/lib/ui/accept.dart · app/test/ui/actions_test.dart · phone-call-wait-list-nurse PNG"
+      ]
+    },
+    {
+      "id": "A19",
+      "result": "pass",
+      "evidence": [
+        "code head b6c034bfa239bd4f12f1a29c6e58c74d82c87de6",
+        "app/test/ui/detail_polish_test.dart — 헤더전체폭중앙/미수락호출만/5상태/둘째줄조작/서버canStart/readonly/취소경로",
+        "review-detail-polish-code-report.md PASS(FAIL0/WARN0)"
+      ]
+    },
+    {
+      "id": "A20",
+      "result": "pass",
+      "evidence": [
+        "code head b6c034bfa239bd4f12f1a29c6e58c74d82c87de6",
+        "app/lib/ui/doctor_picker.dart · app/test/ui/actions_test.dart · 호출시트폰방/고객"
+      ]
+    },
+    {
+      "id": "A21",
+      "result": "pass",
+      "evidence": [
+        "code head b6c034bfa239bd4f12f1a29c6e58c74d82c87de6",
+        "app/test/ui/app_flow_test.dart · all-done/home와needs중복제거"
+      ]
+    },
+    {
+      "id": "A22",
+      "result": "pass",
+      "evidence": [
+        "code head b6c034bfa239bd4f12f1a29c6e58c74d82c87de6",
+        "app/lib/ui/interpret_widgets.dart · interpret-drawer/quick-chip PNG"
+      ]
+    },
+    {
+      "id": "A23",
+      "result": "pass",
+      "evidence": [
+        "code head b6c034bfa239bd4f12f1a29c6e58c74d82c87de6",
+        "app/test/interpret/interpret_test.dart · TW zh-Hant/고객별언어"
+      ]
+    },
+    {
+      "id": "A24",
+      "result": "pass",
+      "evidence": [
+        "code head b6c034bfa239bd4f12f1a29c6e58c74d82c87de6",
+        "app/test/ui/session_race_test.dart · app/test/ui/app_flow_test.dart · 자기2xx/화면수명/토스트"
+      ]
+    },
+    {
+      "id": "A25",
+      "result": "pass",
+      "evidence": [
+        "code head b6c034bfa239bd4f12f1a29c6e58c74d82c87de6",
+        "tabs-removal-evidence/screens PNG82fixture/27capture pass·phone/iPad/320 탭없고필터→카드·실제sim조회복원·독립시각PASS"
+      ]
+    },
+    {
+      "id": "A26",
+      "result": "pass",
+      "evidence": [
+        "code head b6c034bfa239bd4f12f1a29c6e58c74d82c87de6",
+        "app/test/data/board_stream_test.dart · app/test/ui/actions_test.dart · needs/canRecall/lastSeconds/새오류"
+      ]
+    },
+    {
+      "id": "A27",
+      "result": "pass",
+      "evidence": [
+        "code head b6c034bfa239bd4f12f1a29c6e58c74d82c87de6",
+        "app/test/ui/detail_polish_test.dart — readycanStarttrue/호출중false/부분수락/상단수락보존/취소확인·기존판회귀",
+        "독립관문65pass·전체198pass/29capture skip·코디analyze0·후속app4파일만"
+      ]
+    },
+    {
+      "id": "A28",
+      "result": "pass",
+      "evidence": [
+        "code head b6c034bfa239bd4f12f1a29c6e58c74d82c87de6",
+        "app/test/ui/app_flow_test.dart — 상단3탭/별도목록검색없음·4필터/cards/4메뉴·카드수락/상세수락유지",
+        "review-tabs-removal-code-report.md PASS·모델calls/doneTab수신/SSE/푸시/귀가처리diff0"
+      ]
+    }
+  ],
+  "per_spec": [
+    {
+      "spec": "DAY-SPEC-003",
+      "result": "update-required"
+    },
+    {
+      "spec": "DAY-SPEC-001",
+      "result": "update-required"
+    }
+  ],
+  "implementation": "conformant",
+  "merged": false
+}

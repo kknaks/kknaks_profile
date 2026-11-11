@@ -58,3 +58,4 @@ DB 비밀번호 · 외부 API 키 · 외부 시스템 주소처럼 **레포에 �
 ## 출처
 
 - [[2026-11-09-day-data-architecture]] §2 · §3 — DAY: VM 신원으로 Key Vault 읽기 · 보관소는 VM 서브넷만 · 비밀 넣을 때 로컬 IP 를 잠깐 열고 닫기 · 외부 CRM 주소 레포 env → Key Vault(코드 `1ccc101b`) · 관리자 env 파일 → `~/.pgpass`
+- [[2026-11-11-day-app]] §2 — 선택 비밀(채팅 Blob · APNs 키)은 보관소에 없으면 app.env 에 안 넣고 기능만 꺼짐(fail-closed) · 배포는 성공(`scripts/deploy/day_vm.py` OPTIONAL_SECRETS)

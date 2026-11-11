@@ -88,3 +88,4 @@ apns-priority: 10          apns-expiration: 0
 - [[2026-10-28-overall-board]] §2 — 토큰 = 행이라 같은 폰이 두 대로 뜸 → 설치 id 로 행 하나 · 옛 행은 대상에서만 뺌 · 기기 이름 = 기종 자동(코드 `333f30f` · `affac41` · `app-e2e-feedback-batch1.md` #1 · `-batch2.md` #1 · #3)
 - [[2026-10-22-myeongdong-poc-v2]] §2 — 명동 PoC v2 원장 호출 푸시 · 알림 [수락](SPEC-004 §5-1 · `push/apns.py` · `service/push.py` · `api/actions.py` · `AppDelegate.swift`)
 - [[2026-10-30-internal-chat]] §2 「푸시 · SSE 는 커밋 뒤」 — 동기 핸들러 = 푸시 0 · 만료 · thread-id
+- [[2026-11-11-day-app]] §2 — DAY 직원 채팅 · 원장 호출 알림 서버 APNs 직접 · 키는 나중 연결(코드 1dc1ec3d · 39a3dad8 · SPEC-004 · 005)

@@ -1,0 +1,133 @@
+{
+  "delivery_issue": 235,
+  "contract_digest": "sha256:f3d03f99835bfaa232d08bd27203c6022741d872dcbb931cbc56985aeb210eb8",
+  "contract_version": 1,
+  "spec_baseline_revision": "b4cd1a004cd99c8e57761ad8cccd434d5e237b38",
+  "code_pr": 237,
+  "code_pr_head_sha": "0b776e900cc229f3a447cb0e937400534b6bc709",
+  "code_merge_sha": null,
+  "acceptance": [
+    {
+      "id": "완료 정의",
+      "result": "pass",
+      "evidence": [
+        "PR head 0b776e900cc229f3a447cb0e937400534b6bc709 — 앱155/Swift47/analyze0/unsigned build, backend663(infra포함), 독립재검수PASS, diff/경로/비밀검사"
+      ]
+    },
+    {
+      "id": "A1",
+      "result": "pass",
+      "evidence": [
+        "app/test/ui/app_flow_test.dart — 보기/수정/수락 권한 위젯"
+      ]
+    },
+    {
+      "id": "A2",
+      "result": "pass",
+      "evidence": [
+        "app/test/ui/app_flow_test.dart",
+        "app/test/ui/actions_test.dart — 대리/본인수락 및 재호출조건·정확한API경로"
+      ]
+    },
+    {
+      "id": "A3",
+      "result": "pass",
+      "evidence": [
+        "backend/tests/day/auth/test_environments.py",
+        "backend/tests/day/auth/test_environments_api.py — dev넘김/장애/행0",
+        "app/test/state/session_controller_test.dart — 전체75초"
+      ]
+    },
+    {
+      "id": "A4",
+      "result": "pass",
+      "evidence": [
+        "app/test/state/session_controller_test.dart — 병원대상/환경일치 및만료"
+      ]
+    },
+    {
+      "id": "A5",
+      "result": "pass",
+      "evidence": [
+        "app/test/state/session_controller_test.dart",
+        "app/test/ui/session_race_test.dart",
+        "app/ios/Runner/AppDelegate.swift — 단일레코드 조건부원자삭제"
+      ]
+    },
+    {
+      "id": "A6",
+      "result": "pass",
+      "evidence": [
+        "app/test/core/origin_test.dart",
+        "app/test/state/session_controller_test.dart — release필수환경/허용origin"
+      ]
+    },
+    {
+      "id": "A7",
+      "result": "pass",
+      "evidence": [
+        "app/test/data/board_stream_test.dart",
+        "app/test/ui/actions_test.dart — SSE/조작/오류"
+      ]
+    },
+    {
+      "id": "A8",
+      "result": "pass",
+      "evidence": [
+        "app/test/ui/actions_test.dart",
+        "app/test/ui/session_race_test.dart — 599/600/320 및 iPad모달수명"
+      ]
+    },
+    {
+      "id": "A9",
+      "result": "pass",
+      "evidence": [
+        "app/test/interpret/interpret_test.dart",
+        "app/test/interpret/handshake_test.dart — 7언어/WS/마이크정리, D3서버실물은범위밖pending"
+      ]
+    },
+    {
+      "id": "A10",
+      "result": "pass",
+      "evidence": [
+        "app/test/state/push_coordinator_test.dart",
+        "app/ios/NativeLogicTests/main.swift — 세션대상/401재확인/알림본인수락, D2실물범위밖pending"
+      ]
+    },
+    {
+      "id": "A11",
+      "result": "pass",
+      "evidence": [
+        "코디 staged/source 검사: 서명파일/개인절대경로/Team/배포주소/키마커0, 앱Info.plist마이크만, 71파일허용경로"
+      ]
+    },
+    {
+      "id": "A12",
+      "result": "pass",
+      "evidence": [
+        "mobile-evidence/fix1-flutter-test.txt",
+        "mobile-evidence/fix1-flutter-build-ios.txt",
+        "backend-evidence/coordinator-fix1-full-pytest.txt"
+      ]
+    },
+    {
+      "id": "A13",
+      "result": "pass",
+      "evidence": [
+        "git diff --name-only origin/dev...0b776e900cc229f3a447cb0e937400534b6bc709 — app 및 D1, D1변수전달필수 local Compose3줄포함; PR단일→dev; merge0"
+      ]
+    }
+  ],
+  "per_spec": [
+    {
+      "spec": "DAY-SPEC-003",
+      "result": "update-required"
+    },
+    {
+      "spec": "DAY-SPEC-001",
+      "result": "update-required"
+    }
+  ],
+  "implementation": "conformant",
+  "merged": false
+}

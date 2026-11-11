@@ -1,0 +1,37 @@
+ M backend/common/config.py
+ M backend/day/enums/misc.py
+ M backend/day/errors.py
+ M backend/day/models/misc.py
+ M backend/day/models/task.py
+ M backend/day/public.py
+ M backend/day/tasks/__init__.py
+ M backend/tests/day/test_column_snapshot.py
+ M backend/tests/day/test_enum_labels.py
+ M backend/tests/deploy/test_day_vm.py
+ M backend/tests/migrations/test_alembic.py
+ M deploy/Dockerfile
+ M deploy/compose.local.yaml
+ M deploy/config/dev.env
+ M deploy/config/prod.env
+ M deploy/local.env.example
+ M pyproject.toml
+ M scripts/deploy/day_vm.py
+ M uv.lock
+?? backend/day/queries/chat.py
+?? backend/day/routers/api/chat.py
+?? backend/day/routers/api/devices.py
+?? backend/day/schemas/chat.py
+?? backend/day/schemas/devices.py
+?? backend/day/services/apns.py
+?? backend/day/services/chat.py
+?? backend/day/services/chat_events.py
+?? backend/day/services/chat_push.py
+?? backend/day/services/chat_storage.py
+?? backend/day/services/devices.py
+?? backend/day/tasks/chat.py
+?? backend/migrations/versions/20261110_0006_event_log_visit_type.py
+?? backend/migrations/versions/20261110_0007_chat_device.py
+?? backend/tests/day/chat/
+?? backend/tests/day/test_chat_device_schema.py
+?? backend/tests/deploy/test_chat_env_contract.py
+?? backend/tests/migrations/test_chat_device_migration.py

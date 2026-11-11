@@ -1,0 +1,639 @@
+// 시술현황 탭(DAY-SPEC-003 U-2 · U-3 · U-10 · U-11) — 공통 머리 · 끊김 줄 · 인박스 탭(현황 · 호출 n · 시술 완료 n).
+// 「현황」 = 칩(서버 inbox.section 으로 거르기만 · cards[] 서버 순서) + 카드(폰 한 열 · 아이패드 최소 폭 격자).
+// 카드 모양 = 프로토 RoomCard(둥근 14 · 지금 상자) 위에 사용자 확정 네 줄(방 · 수납 / 이름 · 발음 / 나이 · 국적 · 기타 / 지금 상자).
+import 'dart:math' as math;
+
+import 'package:flutter/material.dart';
+
+import '../data/day_api.dart';
+import '../model/board.dart';
+import '../state/board_controller.dart';
+import '../state/interpret_controller.dart';
+import '../state/session_controller.dart';
+import '../core/copy.dart';
+import 'accept.dart';
+import 'chart_sheet.dart';
+import 'doctor_picker.dart';
+import 'format.dart';
+import 'room_screen.dart';
+import 'shell.dart';
+import 'theme.dart';
+import 'widgets.dart';
+
+enum BoardChip { all, need, startable, waiting }
+
+const _chipLabels = {BoardChip.all: '전체', BoardChip.need: '확인 필요', BoardChip.startable: '시작 가능', BoardChip.waiting: '시술 대기'};
+const _chipSection = {BoardChip.need: 'need', BoardChip.startable: 'startable', BoardChip.waiting: 'waiting'};
+
+/// 칩으로 거른 카드 — `inbox.section` 만 보고 서버 순서를 그대로 둔다(U-2 · OQ-A2).
+List<BoardCard> filterCards(List<BoardCard> cards, BoardChip chip) =>
+    chip == BoardChip.all ? cards : cards.where((c) => c.section == _chipSection[chip]).toList();
+
+class BoardScreen extends StatefulWidget {
+  final BoardController board;
+  final SessionController session;
+  final ToastBus toasts;
+  final InterpretDeps interpretDeps;
+  const BoardScreen({
+    super.key,
+    required this.board,
+    required this.session,
+    required this.toasts,
+    required this.interpretDeps,
+    required this.presence,
+  });
+  final ScreenPresence presence;
+  @override
+  State<BoardScreen> createState() => _BoardScreenState();
+}
+
+class _BoardScreenState extends State<BoardScreen> with PresenceAware {
+  @override
+  ScreenPresence get presence => widget.presence;
+
+  int _tab = 0;
+  BoardChip _chip = BoardChip.all; // 화면 안에만(저장 안 함)
+  String _doneQuery = '';
+  final TextEditingController _doneSearch = TextEditingController();
+
+  BoardController get b => widget.board;
+  Me get me => widget.session.me!;
+
+  @override
+  void initState() {
+    super.initState();
+    b.openVisitRequest.addListener(_openRequested);
+    b.addListener(_openRequested);
+    WidgetsBinding.instance.addPostFrameCallback((_) => _openRequested());
+  }
+
+  @override
+  void dispose() {
+    b.openVisitRequest.removeListener(_openRequested);
+    b.removeListener(_openRequested);
+    _doneSearch.dispose();
+    disposePresence();
+    super.dispose();
+  }
+
+  bool _alive() => present();
+
+  /// 푸시를 눌러 연 방문 — 첫 스냅샷 뒤 그 룸 상세 · 카드가 없으면 프로토 토스트.
+  void _openRequested() {
+    final visitId = b.openVisitRequest.value;
+    final snap = b.snapshot;
+    if (visitId == null || snap == null || !mounted) return;
+    b.openVisitRequest.value = null;
+    if (snap.card(visitId) == null) {
+      widget.toasts.show(callGoneToast, error: false);
+      return;
+    }
+    Navigator.of(context).popUntil((r) => r.isFirst);
+    openRoom(visitId);
+  }
+
+  void openRoom(String visitId) {
+    Navigator.of(context).push(MaterialPageRoute<void>(
+      settings: const RouteSettings(name: 'room'),
+      builder: (_) => RoomScreen(
+        visitId: visitId,
+        board: b,
+        me: me,
+        toasts: widget.toasts,
+        interpretDeps: widget.interpretDeps,
+        presence: widget.presence,
+      ),
+    ));
+  }
+
+  @override
+  Widget build(BuildContext context) => ListenableBuilder(
+        listenable: b,
+        builder: (context, _) {
+          final snap = b.snapshot;
+          return TabHeaderColumn(children: [
+            ConnectionLine(status: b.status, hasBoard: snap != null),
+            _tabs(snap),
+            Expanded(
+              child: snap == null
+                  ? const Center(child: CircularProgressIndicator(key: Key('board-loading'), strokeWidth: 2))
+                  : IndexedStack(index: _tab, children: [
+                      _nowTab(snap),
+                      _callsTab(snap),
+                      _doneTab(snap),
+                    ]),
+            ),
+          ]);
+        },
+      );
+
+  // 인박스 탭 — 하단 메뉴가 아니라 시술현황 화면 맨 위 탭(U-2)
+  Widget _tabs(BoardSnapshot? snap) {
+    final labels = ['현황', '호출 ${snap?.waitingCallCount ?? 0}', '시술 완료 ${snap?.homeCount ?? 0}'];
+    return Container(
+      color: Ms.white,
+      child: Row(children: [
+        for (var i = 0; i < 3; i++)
+          Expanded(
+            child: InkWell(
+              key: Key('tab-$i'),
+              onTap: () => setState(() => _tab = i),
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                decoration: BoxDecoration(
+                  border: Border(bottom: BorderSide(color: _tab == i ? Ms.primary : Ms.gray200, width: _tab == i ? 2 : 1)),
+                ),
+                alignment: Alignment.center,
+                child: Text(labels[i],
+                    style: Typo.body600.copyWith(color: _tab == i ? Ms.primary : Ms.gray600)),
+              ),
+            ),
+          ),
+      ]),
+    );
+  }
+
+  // ---- 현황 ---------------------------------------------------------------------------
+  Widget _nowTab(BoardSnapshot snap) {
+    final tablet = isTablet(context);
+    final side = tablet ? 24.0 : 16.0;
+    final counts = {
+      BoardChip.all: snap.cards.length,
+      for (final c in [BoardChip.need, BoardChip.startable, BoardChip.waiting]) c: filterCards(snap.cards, c).length,
+    };
+    final cards = filterCards(snap.cards, _chip);
+    return Column(children: [
+      SizedBox(
+        height: 52,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          padding: EdgeInsets.fromLTRB(side, 10, side, 10),
+          children: [
+            for (final chip in BoardChip.values)
+              Padding(
+                padding: const EdgeInsets.only(right: 6),
+                child: _StatusChip(
+                  key: Key('chip-${chip.name}'),
+                  label: _chipLabels[chip]!,
+                  count: counts[chip]!,
+                  dot: switch (chip) {
+                    BoardChip.all => Ms.gray300,
+                    BoardChip.need => Ms.red,
+                    BoardChip.startable => Ms.primary,
+                    BoardChip.waiting => Day.procWait,
+                  },
+                  ring: chip == BoardChip.waiting,
+                  selected: _chip == chip,
+                  alert: chip == BoardChip.need && counts[chip]! > 0,
+                  onTap: () => setState(() => _chip = chip),
+                ),
+              ),
+          ],
+        ),
+      ),
+      Expanded(child: _cardList(snap, cards, side)),
+    ]);
+  }
+
+  Widget _cardList(BoardSnapshot snap, List<BoardCard> cards, double side) {
+    if (snap.cards.isEmpty) return const SizedBox.expand(key: Key('board-empty')); // OQ-A5 — 빈 칸
+    if (cards.isEmpty) {
+      return Center(child: Text('조건에 맞는 고객이 없어요', style: Typo.body500.copyWith(color: Ms.gray600)));
+    }
+    return Ticking(
+      now: b.now,
+      builder: (context, now) {
+        Widget item(BoardCard c) => RoomCard(
+              card: c,
+              snap: snap,
+              me: me,
+              now: now,
+              board: b,
+              alive: _alive,
+              onTap: () => openRoom(c.visitId),
+            );
+        if (!isTablet(context)) {
+          return ListView.separated(
+            key: const Key('card-list'),
+            padding: EdgeInsets.fromLTRB(side, 0, side, 24),
+            itemCount: cards.length,
+            separatorBuilder: (_, _) => const SizedBox(height: 8),
+            itemBuilder: (_, i) => item(cards[i]),
+          );
+        }
+        return LayoutBuilder(builder: (context, box) {
+          const gap = 12.0;
+          final usable = box.maxWidth - side * 2;
+          final minWidth = 270 * tabletTextScale(MediaQuery.sizeOf(context)); // 프로토 board_screen.dart:121-142
+          final columns = math.max(1, ((usable + gap) / (minWidth + gap)).floor());
+          final width = (usable - gap * (columns - 1)) / columns;
+          return SingleChildScrollView(
+            key: const Key('card-grid'),
+            padding: EdgeInsets.fromLTRB(side, 0, side, 24),
+            child: SizedBox(
+              width: double.infinity,
+              child: Wrap(spacing: gap, runSpacing: gap, children: [
+                for (final c in cards) SizedBox(width: width, child: item(c)),
+              ]),
+            ),
+          );
+        });
+      },
+    );
+  }
+
+  // ---- 호출 탭(U-10) -----------------------------------------------------------------------
+  Widget _callsTab(BoardSnapshot snap) {
+    final far = DateTime.utc(9999);
+    final waiting = snap.calls.where((c) => c.acceptedBy == null).toList()
+      ..sort((a, b) => (a.createdAt ?? far).compareTo(b.createdAt ?? far)); // 오래 기다린 순
+    final accepted = snap.calls.where((c) => c.acceptedBy != null).toList()
+      ..sort((a, b) => (a.acceptedAt ?? far).compareTo(b.acceptedAt ?? far)); // 수락 순
+    final side = isTablet(context) ? 24.0 : 16.0;
+    return Ticking(
+      now: b.now,
+      builder: (context, now) => ListView(
+        key: const Key('calls-tab'),
+        padding: EdgeInsets.fromLTRB(side, 4, side, 24),
+        children: [
+          _groupLabel('수락 대기 ${waiting.length}'),
+          for (final c in waiting) _callCard(snap, c, now),
+          _groupLabel('수락함 ${accepted.length}'),
+          for (final c in accepted) _callCard(snap, c, now),
+        ],
+      ),
+    );
+  }
+
+  Widget _groupLabel(String text) => Padding(
+        padding: const EdgeInsets.fromLTRB(2, 12, 2, 6),
+        child: Text(text, style: Typo.caption600.copyWith(color: Ms.gray700)),
+      );
+
+  Widget _callCard(BoardSnapshot snap, CallItem c, DateTime now) {
+    final waiting = c.acceptedBy == null;
+    final who = waiting
+        ? '${callTargetLabel(snap, c.kind, c.targetStaffId)} · 수락 대기'
+        : '${snap.doctorName(c.acceptedBy) ?? ''} 수락';
+    final n = c.taskTitles.length;
+    return Padding(
+      key: Key('call-${c.callId}'),
+      padding: const EdgeInsets.only(bottom: 8),
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: snap.card(c.visitId) == null ? null : () => openRoom(c.visitId),
+        child: Container(
+          padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
+          decoration: BoxDecoration(
+            color: Ms.white,
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(color: Ms.gray200),
+          ),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+            Row(children: [
+              Text(c.roomTitle, style: Typo.headingMd500),
+              const SizedBox(width: 8),
+              Expanded(child: CustomerName(c.customer.name, c.customer.phoneticName, size: 13)),
+            ]),
+            const SizedBox(height: 4),
+            Text(c.taskTitles.join(' · '), style: Typo.caption400.copyWith(color: Ms.gray700)),
+            const SizedBox(height: 8),
+            Row(children: [
+              Expanded(
+                child: Text(waiting ? '$who · ${elapsedMin(c.createdAt, now)}' : who,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Typo.body600.copyWith(color: Ms.primary)),
+              ),
+              if (waiting && me.canAccept)
+                Builder(
+                  builder: (btn) => MsButton(
+                    acceptLabel(snap, me, n),
+                    key: Key('call-accept-${c.callId}'),
+                    size: BtnSize.sm,
+                    onPressed: b.isBusy('accept:${c.callId}')
+                        ? null
+                        : () => acceptCall(btn,
+                            board: b,
+                            snap: snap,
+                            me: me,
+                            callId: c.callId,
+                            kind: c.kind,
+                            targetStaffId: c.targetStaffId,
+                            room: c.roomTitle,
+                            customer: c.customer.name,
+                            procs: c.taskTitles,
+                            alive: _alive,
+                            anchor: rectOf(btn)),
+                  ),
+                ),
+            ]),
+          ]),
+        ),
+      ),
+    );
+  }
+
+  // ---- 시술 완료 탭(U-11) --------------------------------------------------------------------
+  Widget _doneTab(BoardSnapshot snap) {
+    final q = _doneQuery.trim();
+    final items = snap.doneTab
+        .where((d) => q.isEmpty || d.customer.name.contains(q) || (d.customer.phoneticName ?? '').contains(q))
+        .toList();
+    final side = isTablet(context) ? 24.0 : 16.0;
+    return ListView(
+      key: const Key('done-tab'),
+      padding: EdgeInsets.fromLTRB(side, 12, side, 24),
+      children: [
+        TextField(
+          key: const Key('done-search'),
+          controller: _doneSearch,
+          decoration: const InputDecoration(
+            hintText: '고객 이름',
+            labelText: '고객 이름으로 찾기',
+            prefixIcon: Icon(Icons.search, size: 18),
+          ),
+          onChanged: (v) => setState(() => _doneQuery = v),
+        ),
+        const SizedBox(height: 8),
+        if (items.isEmpty)
+          Padding(
+            padding: const EdgeInsets.only(top: 40),
+            child: Column(children: [
+              Text('조건에 맞는 고객이 없어요', style: Typo.body500.copyWith(color: Ms.gray600)),
+              if (q.isNotEmpty)
+                TextButton(
+                  onPressed: () => setState(() {
+                    _doneQuery = '';
+                    _doneSearch.clear();
+                  }),
+                  child: const Text('조건 지우기'),
+                ),
+            ]),
+          ),
+        for (final d in items) _doneCard(d),
+      ],
+    );
+  }
+
+  Widget _doneCard(DoneItem d) => Padding(
+        key: Key('done-${d.visitId}'),
+        padding: const EdgeInsets.only(bottom: 8),
+        child: Boxed(
+          border: Ms.gray200,
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Row(children: [
+              Expanded(child: CustomerName(d.customer.name, d.customer.phoneticName, size: 14)),
+              d.state == 'home'
+                  ? const PillBadge('귀가 대기', fg: Day.goingWait, bg: Day.goingWait100)
+                  : const PillBadge('귀가', fg: Day.gone, bg: Day.gone100),
+            ]),
+            Text('${hm(d.inAt)}-${hm(d.homeAt)}', style: Typo.caption400.copyWith(color: Ms.gray600)),
+            for (final t in d.tasks)
+              InkWell(
+                onTap: () => showChart(context, d.customer.name, d.customer.phoneticName,
+                    [for (final x in d.tasks) ChartEntry(x.title, x.assigneeNote, x.doctorNote)]),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4),
+                  child: Row(children: [
+                    Expanded(child: Text(t.title, style: Typo.body400)),
+                    Icon(Icons.edit_note, size: 16, color: (t.assigneeNote ?? '').isEmpty ? Ms.gray500 : Ms.primary),
+                    Icon(Icons.medical_services_outlined,
+                        size: 16, color: (t.doctorNote ?? '').isEmpty ? Ms.gray500 : Ms.primary),
+                  ]),
+                ),
+              ),
+          ]),
+        ),
+      );
+}
+
+/// 칩(프로토 StatusChip — 점 · 이름 · 수 · 둥근 알약).
+class _StatusChip extends StatelessWidget {
+  final String label;
+  final int count;
+  final Color dot;
+  final bool ring;
+  final bool selected;
+  final bool alert;
+  final VoidCallback onTap;
+  const _StatusChip({
+    super.key,
+    required this.label,
+    required this.count,
+    required this.dot,
+    required this.ring,
+    required this.selected,
+    required this.alert,
+    required this.onTap,
+  });
+  @override
+  Widget build(BuildContext context) {
+    final fg = alert ? Ms.red : (selected ? Ms.primary : Ms.gray800);
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: selected ? (alert ? Ms.red100 : Ms.primary100) : Ms.white,
+          borderRadius: BorderRadius.circular(999),
+          border: Border.all(color: selected ? fg : (alert ? Ms.red : Ms.gray300)),
+        ),
+        child: Row(mainAxisSize: MainAxisSize.min, children: [
+          Container(
+            width: 8,
+            height: 8,
+            decoration: BoxDecoration(
+              color: ring ? Ms.white : dot,
+              shape: BoxShape.circle,
+              border: ring ? Border.all(color: dot, width: 1.5) : null,
+            ),
+          ),
+          const SizedBox(width: 6),
+          Text('$label $count', style: Typo.body500.copyWith(color: fg, height: 1.2)),
+        ]),
+      ),
+    );
+  }
+}
+
+/// 카드(U-3) — 네 줄 + (수락 대기 호출이 있으면) 호출 줄. 「확인 필요」(서버 needs) = 빨간 테두리.
+/// 버튼 밖을 누르면 룸 상세. 마취 줄은 누르면 룸 상세(카드에서 마취 조작 없음).
+class RoomCard extends StatelessWidget {
+  final BoardCard card;
+  final BoardSnapshot snap;
+  final Me me;
+  final DateTime now;
+  final BoardController board;
+  final bool Function() alive;
+  final VoidCallback onTap;
+  const RoomCard({
+    super.key,
+    required this.card,
+    required this.snap,
+    required this.me,
+    required this.now,
+    required this.board,
+    required this.alive,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final c = card;
+    final v = vitals(c.customer, now);
+    final need = c.needsCheck;
+    final waitingCalls = [for (final oc in openCalls(c)) if (oc.waiting) oc];
+    return GestureDetector(
+      key: Key('card-${c.visitId}'),
+      behavior: HitTestBehavior.opaque,
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
+        decoration: BoxDecoration(
+          color: Ms.white,
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(color: need ? Ms.red : (c.state == 'doing' ? Ms.primary : Ms.gray200), width: need ? 2 : 1),
+        ),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          // 1. 방 · 수납 필요
+          Row(children: [
+            Expanded(
+              child: Text(c.roomTitle,
+                  maxLines: 1, overflow: TextOverflow.ellipsis, style: Typo.headingMd600),
+            ),
+            if (c.paymentRequired) ...[const SizedBox(width: 8), const Tag.payment()],
+          ]),
+          const SizedBox(height: 2),
+          // 2. 이름 · 한글 발음
+          CustomerName(c.customer.name, c.customer.phoneticName, size: 15),
+          // 3. 나이 | 국적 | 기타 제공 정보 — 값 있는 칸만
+          if (v.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(top: 2),
+              child: Text(v.join(' | '),
+                  key: Key('vitals-${c.visitId}'),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: Typo.caption500.copyWith(color: Ms.gray600)),
+            ),
+          const SizedBox(height: 8),
+          // 4. 지금 상자
+          waitingCalls.isNotEmpty ? _callBox(waitingCalls.first) : _nowBox(),
+          // 호출 줄 — 수락 대기 호출마다 하나(서버 줄 순서)
+          for (final oc in waitingCalls) _callLine(context, oc),
+        ]),
+      ),
+    );
+  }
+
+  Widget _box({required Color bg, required Widget child, Key? key}) => Container(
+        key: key,
+        padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
+        decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(8)),
+        child: child,
+      );
+
+  Widget _line(String left, String right, {required Color fg, Color? rightFg, bool big = false}) => Row(children: [
+        Expanded(
+          child: Text(left, maxLines: 1, overflow: TextOverflow.ellipsis, style: Typo.body600.copyWith(color: fg)),
+        ),
+        const SizedBox(width: 8),
+        Text(right,
+            style: big
+                ? TextStyle(fontSize: 18, fontWeight: FontWeight.w600, height: 1.2, color: rightFg ?? fg, fontFeatures: tabular)
+                : Typo.caption500.copyWith(color: rightFg ?? Ms.gray700)),
+      ]);
+
+  // 시술 대기 · 마취 중 · 마취 끝난 대기 · 시술 중 — 한 줄(왼쪽 상태 · 오른쪽 담당의 또는 경과)
+  Widget _nowBox() {
+    final a = card.anesthesia;
+    final doctor = cardDoctor(card);
+    if (a.runningSince != null) {
+      final red = a.long; // 서버 판정만
+      final limit = snap.limits.anesMin;
+      final text = ['마취 중', '${hm(a.runningSince)} 시작', if (limit != null) '기준 $limit분'].join(' · ');
+      return _box(
+        key: Key('now-anes-${card.visitId}'),
+        bg: red ? Ms.red100 : Day.anes100,
+        child: _line(text, elapsedMin(a.runningSince, now), fg: red ? Ms.red : Day.anes, big: true),
+      );
+    }
+    if (card.state == 'doing') {
+      return _box(key: Key('now-doing-${card.visitId}'), bg: Ms.primary100, child: _line('시술 중', doctor, fg: Ms.primary));
+    }
+    final last = lastAnesMinutes(a.lastSeconds);
+    return _box(
+      key: Key('now-wait-${card.visitId}'),
+      bg: Ms.gray100,
+      child: _line(last == null ? '시술 대기' : '시술 대기 - 마취 완료 $last분', doctor, fg: Ms.gray800),
+    );
+  }
+
+  // 호출 뒤 — 호출 대상 + 「수락 대기」 · 호출한 시술 · 경과(지금 − 처음 호출)
+  Widget _callBox(OpenCall oc) {
+    final c = oc.call;
+    final red = callIsLate(card, c.id);
+    final fg = red ? Ms.red : Ms.primary;
+    return _box(
+      key: Key('now-call-${card.visitId}'),
+      bg: red ? Ms.red100 : Ms.primary100,
+      child: Row(children: [
+        Expanded(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text('${callTargetLabel(snap, c.kind, c.targetStaffId)} · 수락 대기',
+                maxLines: 1, overflow: TextOverflow.ellipsis, style: Typo.body600.copyWith(color: fg)),
+            Text(oc.tasks.map((t) => t.title).join(' · '),
+                maxLines: 2, overflow: TextOverflow.ellipsis, style: Typo.caption500.copyWith(color: Ms.gray700)),
+          ]),
+        ),
+        const SizedBox(width: 8),
+        Text(elapsedMin(c.firstCalledAt, now),
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, height: 1, color: fg, fontFeatures: tabular)),
+      ]),
+    );
+  }
+
+  // 호출 줄 — 대상 · 건수 + 직무별 수락 버튼(board.accept edit 일 때만)
+  Widget _callLine(BuildContext context, OpenCall oc) {
+    final c = oc.call;
+    final n = oc.calledTasks.length;
+    return Container(
+      key: Key('call-line-${c.id}'),
+      margin: const EdgeInsets.only(top: 8),
+      padding: const EdgeInsets.only(top: 8),
+      decoration: const BoxDecoration(border: Border(top: BorderSide(color: Ms.gray200))),
+      child: Row(children: [
+        Expanded(
+          child: Text('${callTargetLabel(snap, c.kind, c.targetStaffId)} · $n건',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: Typo.body600.copyWith(color: callIsLate(card, c.id) ? Ms.red : Ms.primary)),
+        ),
+        if (me.canAccept)
+          Builder(
+            builder: (btn) => MsButton(
+              acceptLabel(snap, me, n),
+              key: Key('card-accept-${c.id}'),
+              onPressed: board.isBusy('accept:${c.id}')
+                  ? null
+                  : () => acceptCall(btn,
+                      board: board,
+                      snap: snap,
+                      me: me,
+                      callId: c.id,
+                      kind: c.kind,
+                      targetStaffId: c.targetStaffId,
+                      room: card.roomTitle,
+                      customer: card.customer.name,
+                      procs: [for (final t in oc.calledTasks) t.title],
+                      alive: alive,
+                      anchor: rectOf(btn)),
+            ),
+          ),
+      ]),
+    );
+  }
+}

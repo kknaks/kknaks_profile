@@ -1,0 +1,58 @@
+PASS parse full bundle
+PASS partial bundle (no staff_id) rejected
+PASS partial bundle (no expires_at) rejected
+PASS unreadable expires_at rejected
+PASS empty staff_id rejected
+PASS non-uuid staff_id rejected
+PASS unknown environment rejected
+PASS dev legacy null environment parsed (accept then ignores it)
+PASS no keychain record
+PASS accept goes to session api_base_url only
+PASS POST
+PASS Bearer = session token
+PASS doctorStaffId = session staff_id (본인 수락)
+PASS other environment push ignored
+PASS push without environment ignored
+PASS no session → login message
+PASS integer (proto) call id rejected
+PASS path injection rejected
+PASS expired session → not sent
+PASS expired title = DAY 글자
+PASS unsafe stored origin refused: http://dev.example.test
+PASS unsafe stored origin refused: https://u:p@dev.example.test
+PASS unsafe stored origin refused: https://dev.example.test:8443
+PASS unsafe stored origin refused: https://dev.example.test/api
+PASS unsafe stored origin refused: https://dev.example.test/
+PASS unsafe stored origin refused: https://dev.example.test?x=1
+PASS unsafe stored origin refused: https://Dev.example.test
+PASS unsafe stored origin refused: ftp://dev.example.test
+PASS debug build: local http (Dart 가 명시 설정만 저장)
+PASS release build: http refused
+PASS 401 session_expired ends session
+PASS 401 unauthorized ends session
+PASS 403 keeps session
+PASS same session → clear
+PASS re-logged-in session kept
+PASS nothing stored → nothing to clear
+PASS clearIf: same token+target (even if other fields broken)
+PASS clearIf: new session kept
+PASS clearIf: nothing stored
+PASS non-uuid staff → not sent
+PASS 401 expired title
+PASS room from alert body
+PASS success title
+PASS 409 → DAY 글자
+PASS 403 forbidden → DAY 글자
+PASS network
+PASS unknown code shown as code (no invented copy)
+PASS chat foreground → Dart(roomId · messageId · hospitalId)
+PASS chat foreground carries alert title · body · environment
+PASS chat foreground = listed keys only (no aps · no extra)
+PASS Dart not ready → system banner (nil)
+PASS doctor_call foreground → system banner unchanged
+PASS chat tap keys (roomId · hospitalId) · no aps
+PASS doctor_call tap keys unchanged
+PASS doctor_call foreground → Dart (tap keys)
+PASS doctor_call foreground before Dart ready → nothing
+PASS chat is not doctor_call foreground
+ALL PASS
