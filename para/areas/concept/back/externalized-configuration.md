@@ -74,6 +74,7 @@ public NcpObjectStorageService(@Value("${ncp.accesskey}") String accessKey, ...)
 - **`${user.home}` 은 스프링이 푸는 것이 아니라 시스템 속성이다** — 자바가 제공하는 값이라 OS 마다 다른 곳을 가리킨다. **환경 차이를 없애려고 쓴 표현이 환경마다 다른 경로가 되는** 자리다 → [[filesystem-path]] · [[platform-dependency]]
 - **설정을 뺐다고 안전해지지 않는다** — 서버에 올려둔 그 파일의 권한이 열려 있으면 같은 이야기다. **위치를 옮긴 것과 접근을 막은 것은 다르다**
 - **환경 변수와 파일 중 무엇이 맞는지는 상황이 정한다** — 이 회차는 파일만 쓴다. 컨테이너로 배포하면 환경 변수 쪽이 더 자연스러워지고, 스프링은 둘 다 같은 `${...}` 로 읽는다
+- **빌드 종류에 따라 읽히는 설정은 그 빌드가 실제 서버에 붙기 전까지 시험되지 않는다** — 앱 release 빌드만 「로그인 응답에 서버 주소 · 환경이 둘 다 있어야」 통과하게 해 두면, 그 칸을 비워 둔 서버 설정은 웹(그 칸을 안 씀)과 debug 빌드(검사 건너뜀)에서 초록이다. 처음 붙는 순간 로그인이 막힌다. fail-closed 검사를 넣을 때는 그 검사를 실제로 밟는 경로(정식 빌드 × 실제 서버)를 배포 전 확인 목록에 같이 넣는다
 
 ## 함께 보는 개념
 
@@ -92,3 +93,4 @@ public NcpObjectStorageService(@Value("${ncp.accesskey}") String accessKey, ...)
 - [[2024-10-18-Day96]] — 이 주 뒤. **속성 파일이 「내가 정한 이름」에서 「프레임워크가 아는 이름」으로 바뀐다.** `@Value("${jdbc.url}")` 처럼 우리가 이름을 정하고 읽던 것이, `spring.datasource.url` 처럼 **부트가 미리 아는 키**가 되어 읽는 코드조차 사라진다. 다만 이 회차의 `application.properties` 에는 `spring.datasource.password=1111` 이 그대로 적혀 있어, Day84 가 스토리지 키를 홈 디렉토리로 뺐던 기준과 어긋난다 → [[spring-boot]]
 - [[2024-10-04-Day88]] — 닷새 뒤. **읽은 값을 꺼내는 방법이 셋으로 정리된다.** `@PropertySource` 에 파일을 **여럿** 지정할 수 있고(배열), 그 값을 ① `@Autowired Environment env` 로 주입받아 `env.getProperty("jdbc.username")` 으로 꺼내기 ② 필드에 `@Value("${jdbc.url}")` ③ `@Bean` 메서드의 매개변수에 `@Value` — 세 자리를 한 `AppConfig` 안에 나란히 놓은 예제가 실려 있다. `Environment` 쪽은 **이름을 실행 중에 정할 수 있다**는 점에서 `@Value` 와 성격이 다른데, 그 구별은 적혀 있지 않다
 - [[2024-09-29-Day84]] — 「Spring에 불러오기」가 `@PropertySource("classpath:config/jdvc.properties")` 로 DB 접속 정보를 빼고, 「bucket 생성」이 스토리지 정보를 **`@PropertySource("file:${user.home}/config/ncp.properties")`** 로 뺀다 — **같은 노트에서 `classpath:` 와 `file:` 두 접두어가 나란히 쓰이는 것**이 이 개념의 핵심 대비다(다만 왜 갈라 쓰는지는 적혀 있지 않다). `NcpObjectStorageService` 의 코드가 `@Value` 를 **필드와 생성자 매개변수 두 자리**에 쓰는 예도 함께 보인다. 파일명 `jdvc.properties` 는 `jdbc` 의 오기로 보이고, 예시 클래스에 `@Service` 가 두 번 붙어 있다
+- [[2026-11-11-fix]] §2 「release 빌드에서만 드러나는 설정 구멍」 — DAY dev 서버 `DAY_PUBLIC_API_BASE` 빈칸 → TestFlight 앱 `environment_unavailable`(`be-dev-env-report.md` · CENTURION_DAY#240)

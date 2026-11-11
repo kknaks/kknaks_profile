@@ -93,6 +93,7 @@
   },
   "infra": {
     "_doc": "DAY 서버 · DB · Azure 값(IP · ID · 리소스 이름)은 이 공개 레포에 두지 않는다 — 사용자 로컬 ~/.config/day/infra.json(600)이 정본(2026-11-09 공개 레포 노출 정리). 접속은 ssh day-vm / ssh -N day-db → psql service=day(-dev|-prod). 비밀번호는 ~/.pgpass · 비밀값은 Key Vault. 구조 · 결정은 mediness products/day/40-architecture/deployment.md(비공개 레포)",
+    "blob": "채팅 첨부 등 파일 저장소(Azure Blob) — 2026-11-11 인프라 담당이 만들어 줌. 계정 · 컨테이너 이름 · 주소 · 권한 · 확인 결과는 사용자 로컬 ~/.config/day/blob-guide-2026-11-11.md(600 · 공개 레포 금지). 인증 = VM 관리 ID(계정 키 · 연결 문자열 · 익명 접근 꺼짐) — DAY 서버 코드는 아직 연결 문자열 방식(chat_storage.py)이라 바꿔야 붙는다. 2026-11-11 추가 확인(코디): 컨테이너 dev · prod 가 있고 환경마다 자기 컨테이너를 본다(설정 DAY_BLOB_CONTAINER) · dev 서버 컨테이너 안에서 관리 ID 로 두 컨테이너 목록 읽기 됨 · 올리기/읽기/지우기는 코드 배포 뒤",
     "domains": {
       "dev": "day-dev.medisolveai.com",
       "prod": "day.medisolveai.com"
@@ -102,6 +103,40 @@
       "prod": "prod",
       "archive": "archive (옛 v0.1 · 태그 archive/*)"
     }
+  },
+  "apple": {
+    "_doc": "DAY iOS 앱의 Apple 설정이 어디 있는지(2026-11-11). 값(Key ID · Issuer ID · Team ID · 키 내용 · 토큰)은 이 공개 레포에 두지 않는다 — 사용자 로컬 ~/.config/day/apple/(폴더 700 · 파일 600)이 정본. 여기에는 경로 · 칸 이름 · 비밀이 아닌 값만 적는다. 워커 · 코디는 칸을 읽어 쓰되 값을 리포트 · 로그 · 브리프에 출력하지 않는다.",
+    "credentials": "~/.config/day/apple/credentials.local.json",
+    "credentials_fields": [
+      "app_store_connect.key_id · issuer_id · private_key_path — App Store Connect API 키(Bundle ID 등록 · 앱 record · 업로드)",
+      "apns.key_id · private_key_path · environment · team_id — 푸시 발송 키",
+      "team_id — Apple Team ID(10자리 · 2026-11-11 확인: 채워져 있음)",
+      "bundle_id · bundle_resource_id · app_name · push_notifications_enabled · distribution · apns_environment — 정식 앱",
+      "dev_app.bundle_id · app_name · bundle_resource_id · push_notifications_enabled — 개발 앱(2026-11-11 추가)"
+    ],
+    "key_files": "~/.config/day/apple/AuthKey_<Key ID>.p8 — ASC API 키 1개 · APNs 키 1개. 어느 것이 어느 키인지는 credentials 의 private_key_path 로 확인한다(파일 이름으로 추측하지 않는다)",
+    "simulator_login": "~/.config/day/apple/simulator-login.local.json — 시뮬레이터 로그인용 임시 토큰(만료 있음). 실기기 · TestFlight 에는 쓰지 않는다",
+    "apps": {
+      "dev": "day.medisolveai.dev · 이름 DAY Dev → day-dev 서버 (TestFlight 먼저 올리는 쪽)",
+      "prod": "day.medisolveai · 이름 DAY → prod 서버 (나중)"
+    },
+    "build_identity": "Bundle ID · 이름은 소스에 없다 — Xcode 빌드 설정 DAY_BUNDLE_ID · DAY_DISPLAY_NAME 을 명령줄로 넣는다(기본값은 placeholder). 명령은 CENTURION_DAY app/README.md 「개발 / 정식 빌드」",
+    "icon": "CENTURION_DAY app/assets/brand/app-icon.svg (메인 색 #1D8BFF · 흰 배경) — 개발 / 정식 같은 아이콘",
+    "distribution": "testflight",
+    "apns_environment": "production (TestFlight 빌드는 APNs production)",
+    "upload": "xcodebuild archive → exportArchive → altool. ⚠ ~/.appstoreconnect/private_keys/ 에 있는 키는 DAY 키가 아니다(2026-11-11 확인) — DAY 는 credentials 의 app_store_connect.private_key_path 를 쓴다(altool 은 API_PRIVATE_KEYS_DIR 로 폴더 지정). 서명 · 업로드는 사용자 승인 뒤에만",
+    "state": [
+      "2026-11-10 Bundle ID day.medisolveai 등록 · PUSH_NOTIFICATIONS 활성 확인(ASC API)",
+      "2026-11-11 Bundle ID day.medisolveai.dev(DAY Dev) 등록 · PUSH_NOTIFICATIONS 활성 · 앱 아이콘 19칸(코드 미머지 — fix 작업)",
+      "2026-11-11 DAY Dev 0.1.0 (2) TestFlight 업로드 · VALID · 수출 규정은 Info.plist 키로 자동 통과(빌드 2 는 dev 머지 코드 7b099e8f 와 같은 내용). 다음 업로드는 빌드 3",
+      "2026-11-11 DAY Dev 0.1.0 (1) TestFlight 업로드 · 처리 VALID. 서명은 우회 절차(팀 기기 0개라 자동 서명 archive 불가) — orchestration/work/fix/app-testflight-upload-report.md",
+      "2026-11-11 App Store Connect 앱 record 「DAY Dev」 생성(사용자). 정식 「DAY」 record · 실기기 푸시 수신 — 아직 안 함",
+      "2026-11-11 dev 서버 APNs 설정 완료 — dev.env(Key ID · Team ID · 허용 앱 day.medisolveai.dev) + Key Vault day-dev-apns-auth-key. prod 는 아직"
+    ],
+    "open": [
+      "실기기 푸시 수신 확인 · 채팅 첨부 Blob 저장소(없음)"
+    ],
+    "history": "orchestration/work/_archive/day/day-app/_RESUME.md (Apple 줄)"
   },
   "workers": {
     "researcher": {

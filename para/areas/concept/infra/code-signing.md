@@ -75,6 +75,8 @@ iOS 는 서명 없는 앱이 기기에 아예 못 깔린다. 명동 PoC v2 시�
 - **SmartScreen ≠ SAC** — 전자는 우회 가능한 평판 경고, 후자는 우회 불가한 실행 차단이다. 개발기에서 자기 산출물이 막히면 SAC 를 의심한다.
 - **평판은 시간이 든다** — EV 인증서로 서명해도 신규 배포는 평판이 쌓일 때까지 경고가 남을 수 있다.
 - **개발 도구도 대상이다** — 컴파일러가 낸 미서명 바이너리를 SAC 가 막으면 개발 자체가 멈춘다.
+- **등록 기기가 0대인 팀은 자동 서명 archive 가 안 된다** — Xcode 자동 서명은 archive 를 개발 서명으로 하는데, 팀에 기기가 없으면 개발 프로파일을 만들 수 없다. 서명 없이 archive → 앱 번들만 저장소 entitlements 로 ad-hoc 서명 → export 단계에서 배포 서명으로 돌면 된다. ad-hoc 서명을 빼면 export 가 넣을 근거가 없어 푸시 entitlement(`aps-environment`)가 빠진 IPA 가 나온다 — 올리기 전에 IPA 의 entitlements 를 연다
+- **수출 규정 답은 Info.plist 로 한 번에** — `ITSAppUsesNonExemptEncryption` 이 없으면 빌드마다 「수출 규정 누락」으로 선다. TLS · OS 키체인 · 해시만 쓰는지 의존성을 훑어 근거를 남기고 `false` 를 넣으면 다음 빌드부터 자동으로 통과한다
 
 ## 함께 보는 개념
 
@@ -89,3 +91,4 @@ iOS 는 서명 없는 앱이 기기에 아예 못 깔린다. 명동 PoC v2 시�
 - [[2026-10-01-strong-hajin-deploy]] — macOS Developer ID 서명 → 공증 → staple → spctl 로 회사판 medi-ax 배포. ad-hoc 판이 깨져 종료된 사고
 - [[2026-10-22-myeongdong-poc-v2]] §2 — Flutter iOS 시술실 앱을 TestFlight 내부 테스터로 아이폰 · 아이패드에 설치, 빌드 번호 +1 · 심사 없음(SPEC-004 §2.4 · 코드 #4 · #5)
 - [[2026-10-07-strong-hajin-inbox]] §3 — 약관 만료로 공증 403, 동의 뒤 반영 지연을 재시도로 통과
+- [[2026-11-11-fix]] §3 — DAY Dev 첫 TestFlight: 기기 0대 팀의 서명 우회 · 수출 규정 키 · 빌드 2 자동 통과(`app-testflight-upload-report.md` · `app-export-compliance-report.md` · `app-testflight-upload-2-report.md`)

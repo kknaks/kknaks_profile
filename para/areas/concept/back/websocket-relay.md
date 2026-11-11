@@ -54,6 +54,9 @@ tags:
 - 컨테이너 포맷(webm/opus)은 길이 헤더가 있어 외부가 끝을 안다. raw pcm 은 없다 — 직접 테스트는 pcm 으로.
 - **keepalive 는 외부의 공식 제어 메시지로** — 원형 코드에서 복사한 「빈 메시지」 는 어떤 서비스에선 무시되고 어떤 서비스에선 검증 오류다. 연결마다 문서의 형식을 확인하고, 다른 스트림의 오류가 지금 요청을 죽이지 않게 가른다
 - 외부 세션이 둘이면 **수명도 둘**이다 — 한쪽만 닫히면 과금 · 동시 한도가 남는다. 세션 단위로 묶어 함께 닫고, 그걸 시험으로 확인한다. 외부 API 의 「오류 없음」 은 「맞음」 이 아니다 — 실물 왕복(TTS → STT)으로 확인한다
+- **옮겨 온 중계 코드는 원천과 구조 단위로 대조한다** — 「그대로 가져왔다」는 보고는 믿을 근거가 아니다. docstring 을 빼고 import 경로를 맞춘 뒤 AST 를 비교하면 달라진 파일이 드러난다(DAY 통역 이식: 다섯 파일 동일 · 세션 파일 하나만 다름 · 달라진 줄마다 스펙 근거)
+- **동시 세션 자리는 「잡은 뒤 어떤 경로로 끝나도 한 번만」** — 정상 종료만 시험하면 예외 · 취소 · 상대가 닫는 프레임 없이 사라짐에서 자리가 샌다. 반납을 한 곳(`finally`)에 두고 종료 경로를 표로 세어 각각 「자리 0 · 음수 아님」을 본다. 반납 줄을 끄면 시험이 실패하는지(변이)로 시험 자체를 검증한다
+- **우리 상한은 업체 한도를 물어본 뒤 정한다** — 업체 문서의 숫자가 아니라 계정의 실제 한도를 API 로 조회한다(Soniox `GET /v1/concurrency-limits` — 음성 인식 10 · 음성 합성 3 · 조직 전체). 중계 하나가 STT · TTS 두 연결을 쓰면 더 작은 쪽이 실제 상한이다
 
 ## 함께 보는 개념
 
@@ -69,3 +72,4 @@ tags:
 - 2026-09-12-sc-meeting §2 · ax-workspace `modules/meetings/stream.py`·`stream_service.py` · SCAX-SPEC-004 §5.3 · D41
 - [[2026-10-14-sts-prototype]] §2 — cc-prototype 통역: STT(two_way) + TTS 두 연결 중계 · 국적 → 언어 · 번체는 자막만(`wp2-be-report.md` 실물 호출 4건)
 - [[2026-10-27-interpret-pwa-poc]] §2 — 통키: TTS keepalive `{}` → `{"keep_alive": true}` · 다른 stream_id 오류는 경고만(`back/app/service/interpret/soniox.py` · `session.py` · `d35-be-report.md` 장애 절 · 코드 #6)
+- [[2026-11-11-fix]] §2 「옮겨 온 코드는 원천과 줄 단위로 대조한다」 — DAY 통역 서버: interpret-pwa back 이식 · DAY 세션 인증 · 동시 세션 상한 · 실제 Soniox 7개 언어(`research-interpret-report.md` · `be-2-report.md` · `review-be-report.md`)
