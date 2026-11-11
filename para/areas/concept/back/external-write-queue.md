@@ -76,6 +76,10 @@ cc-prototype 명동 PoC v2 의 `kos_op` 표와 루프(`kos/ops.py` · `kos/runti
 - **낙관적 UI 의 되돌리기는 없다** — 실패해도 우리에게만 있는 기록(이벤트 · 호출 · 수락)은 지우지 않는다. 원천 기준 필드만 원천 값으로 돌아간다. 되돌리기 정책은 따로 정할 몫
 - **실패를 삼키지 않는다** — `failed` 는 이벤트(`kos_failed`)와 카드 표시로 드러낸다 → [[no-silent-fallback]]
 
+## 새로 만든 원천 행에 기대는 쓰기 — 순서
+
+원천이 만들기 응답으로 새 id 를 돌려주지 않으면(`{}`), 그 행을 기준으로 다른 행을 옮기는 쓰기는 **만들기 → 다시 읽어 확인 → 나머지** 순서여야 한다. 거꾸로 하면 동기화가 중간 상태를 읽어 화면이 원래 자리로 되돌아간다. 원천 칸 하나를 통째 덮어쓰는 글(메모)은 DAY 쪽에 이력을 쌓아 원천에 없는 작성자 · 시각을 보존하고, 반영 확인 전에는 동기화가 덮지 않게 막는다.
+
 ## 함께 보는 개념
 
 - [[public-vs-internal-api]] — 이 대기열이 보내는 내부 쓰기 체인
@@ -91,3 +95,4 @@ cc-prototype 명동 PoC v2 의 `kos_op` 표와 루프(`kos/ops.py` · `kos/runti
 - [[2026-10-28-overall-board]] §2 — 여권 사진 KOS 업로드 200 · `ok` 인데 일정 탭에 안 보임 → 일정(`scheduleId`) · 분류 「여권」(있는 지점만)을 실음. 근거는 사용자 HAR(KOS 웹 여권 스캔) · 데모 재조회(`app-backend-report.md` 「E2E batch 2 #5」 · 「여권 사진 분류」 · 코드 `fad8b56` · `96441df`). 고객 문진 다시 제출 → 읽기는 첫 제출본(`app-backend-report.md` 「WORK-010 건강 정보 반영」)
 - [[2026-11-09-day-data-architecture]] §2 — DAY 의 KOS 쓰기 `external_outbox`: 같은 행 중복 발송 → 보내기 전 claim · 오래 멈춘 SENT → 실패 · 쓰기 토큰 = 누른 직원(`sender_staff_id`) · 즉시 kick 상한 1초(코드 `8c85233a` · `292d0996` · SPEC-002 ⑥⑦)
 - [[2026-10-22-myeongdong-poc-v2]] §2 — 명동 PoC v2 `kos_op` 대기열(SPEC-003 §4.3 · §4.4 · `kos/runtime.py` · `kos/ops.py` · 리뷰 r1 W1 · W2 · r2 N2 · E2E-6)
+- [[2026-11-11-day-procedure-board-2]] §2 — DAY 점유 이동: 「방 배정」 add-flow-tasks → 확인 → 원래 방 → 나머지 새 방(리뷰 W1) · 차트 메모 이력 `visit_task_chart_log`(source kos 포함) · guard(코드 b8a59cc3 · SPEC-002 개정 ⑰)

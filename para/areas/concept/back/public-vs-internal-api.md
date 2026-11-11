@@ -88,3 +88,4 @@ tags:
 - [[2026-11-09-day-data-architecture]] §2 — KOS 내부 API 가 브라우저 UA · Origin · 단계별 `kos-client-uri` 없으면 403 · HAR 은 경로 · 값 모양만 · 확인 안 된 쓰기는 데모에서만(`KOS_TRIAL_WRITES_ON_LIVE`) · SPEC-001 개정 · #227
 - [[2026-10-22-myeongdong-poc-v2]] §2 — 데모 지점에서 내부 API 쓰기 체인을 실호출로 확인해 씀: 200 무시 · 같은 단계 400 · 방 → 담당자 → 호출 · 귀가 대기 = 작업 취소 → 단계 변경(`kos_ops.py` · SPEC-003 §8 · `e2e-feedback-batch-1.md` #1 · #3)
 - [[2026-11-06-kos-client-headers]] §2 · §3 — KOS 내부 API 가 비브라우저 UA 를 403 으로 막아 운영 연동이 하루 멈춤 → 운영 pod 에서 헤더 소거로 원인 확인 · 내부 요청에 UA · Origin · `kos-client-uri`(코드 #20 `77173cf`)
+- [[2026-11-11-day-procedure-board-2]] §2 — 시작 취소 · 집도의 변경 · 방 이동 · 차트 메모를 KOS 웹 HAR(경로 · 칸만) + 데모 실물로 확인 · 의사차트는 집도의를 골라야 쓰이고 고르면 수락 → 진행 중 · 완료 시술은 안 바뀜 → 시술 전 의사차트는 DAY 에만(`research-har-room-chart-report.md` · SPEC-002 KOS 쓰기 표)

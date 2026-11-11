@@ -51,6 +51,10 @@ GET  /api/...               → 앱 전용 JSON(웹은 안 씀)
 - **서버 렌더라도 출력 이스케이프는 템플릿이 한다** — 자동 이스케이프를 끄는 자리가 XSS 의 입구다 → [[output-escaping]]
 - **[[rest-api]] 를 버리는 것이 아니다** — 앱 계약은 그대로 JSON 이다. 가른 것은 「누가 쓰는 표면인가」 다
 
+## 누른 카드만 갈아 끼우기 — version 과 OOB
+
+버튼 응답이 판 전체 조각을 다시 그리고 실시간 신호로 한 번 더 그리면, 다른 카드까지 깜빡이고 메뉴가 늦게 뜬다. 응답 = 누른 카드 조각 + OOB(숫자 · 사이드) + 판 version, 실시간 신호는 version 만. 받는 쪽은 **자기 조작으로 받은 version 만** 건너뛴다 — 응답 version 을 「다 봤다」로 쓰면 그보다 작은 남의 변경 신호를 놓친다. 앱이 같은 version 을 소비하면 뜻(판이 바뀔 때만 오름 · 같은 값은 받음)을 한 번에 맞춘다.
+
 ## 함께 보는 개념
 
 - [[server-sent-events]] — 조각을 밀어 보내는 통로
@@ -62,3 +66,4 @@ GET  /api/...               → 앱 전용 JSON(웹은 안 씀)
 ## 출처
 
 - [[2026-11-09-day-data-architecture]] §2 — DAY 웹 = Jinja2 + HTMX + SSE · 화면 라우트 HTML 조각 · JSON `/api/*` 는 앱 전용 · CSRF 는 사내 기존 관리자 앱 방식(코드 `9c7376ca` · `3cbb2e08` · 결정 2026-11-06)
+- [[2026-11-11-day-procedure-board-2]] §2 — DAY 시술 현황 #236 v3 · 로컬 확인 F7 · F8 · 리뷰 W1 · 앱 스펙과 version 뜻 맞춤(`review-236v3-report.md` · `review-doc-merge921-report.md` F1)

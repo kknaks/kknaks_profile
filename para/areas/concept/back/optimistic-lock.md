@@ -105,3 +105,4 @@ UPDATE post SET username = ?, version = 3 WHERE id = 1 AND version = 2
 - [[2026-10-03-strong-hajin-polish2]] §2 — Strong Hajin WORK-009 「초안 저장」(SPEC-002 §4 · `review-be-p1-report.md` · `review-fe-p2a1-report.md` · 커밋 `6efdac1`)
 - [[2026-10-05-strong-hajin-polish3]] §2 — Strong Hajin WORK-010 업무 상세 인라인 즉시 저장(SPEC-007 §2.10.4 · `review-fe-p2a-report.md` W1 · `review-fe-p2b-report.md` W1 · 커밋 `cc64d18` · `58e591a`)
 - [[2026-10-07-strong-hajin-enhance]] §2 — Strong Hajin WORK-012 회의 세션 기록 CAS(웜스타트 경주) · AX 초안 v+1 수정
+- [[2026-11-11-day-procedure-board-2]] §2 — DAY 차트 자동 저장: 연 때 이력 id(`baseLogId`)를 들고 저장 · 다르면 409 `chart_conflict` · 외부(KOS) 수정은 동기화로 이력에 쌓고 양쪽 동시면 외부가 이김(SPEC-002 U-14 · 규칙 31 · 32)

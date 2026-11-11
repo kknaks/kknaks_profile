@@ -78,3 +78,4 @@ cc-prototype 2차는 기획자 피드백 31개를 KOS 캡처 177건으로 셌다
 - [[2026-10-14-sts-prototype]] §2 — cc-prototype 메모 양식 가공 · 「지정」 · 위험 단어 강조 삭제(SPEC-001 0.3.0 §0-b · `e2e-feedback-batch-2.md` #25 #27 · `api-source-audit-report.md` 그대로/가공/추정 판정)
 - [[2026-10-19-cc-nav-resv]] §2 — 기획자 피드백 31개를 KOS 캡처 177건의 채움률로 가능 · 부분 · 불가로 거름(BASE-007 「데이터 확인 결과」 · DEC-004 D-24)
 - [[2026-11-06-agency-settlement]] §2 — 0원 품목 190줄 판정(`feedback-2026-11-02-b.md` 1 · 3 · 5)
+- [[2026-11-11-day-procedure-board-2]] §2 · §3 — 「방 배정」 기타 작업을 이름 · 「방 붙음 + 호출 안 함」 구조로 짐작했다가 기타 작업 15건을 다 숨김 → 원천 구조 값(`etceteraTaskId`)을 병원 설정 id 와 대조(`e2e-feedback.md` F10 · 코드 b8a59cc3)

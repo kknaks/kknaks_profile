@@ -44,6 +44,10 @@ tags:
 - **가짜 입력 검증은 「상대가 그 입력에서 무엇을 확인하는가」에 달렸다** — 상대가 앞단에서 거절하면 뒤의 값은 확인되지 않은 채다
 - 로컬에만 있는 차이도 있다 — 로컬 CA 번들에 루트가 없어 실패한 것은 운영 결함이 아니다 → [[ssrf-guarded-proxy]]
 
+## 환경 이름으로 동작을 가르지 않는다
+
+같은 API 에 테넌트만 다른 데모 · 운영 연결을 「확인 안 된 쓰기는 데모만」 플래그로 갈라 두면, 확인 단계가 없어 가드가 굳고 같은 코드가 두 곳에서 다르게 돈다. 환경 분리는 연결 데이터(스키마 · 연결 행)로 이미 되어 있다 — 확인은 데모 실물로 하고, 확인된 동작은 모든 연결에 같게 연다. 표시용 칸(`is_demo`)은 남기되 「칸 · 시드에만 쓰임」을 구조 시험으로 지킨다.
+
 ## 함께 보는 개념
 
 - [[externalized-configuration]] — 환경 차이를 코드 밖으로 모으는 자리
@@ -55,3 +59,4 @@ tags:
 
 - [[2026-11-09-day-data-architecture]] §2 — asyncpg TLS 설정을 터널로 실제 DB 에 앱 코드 경로 그대로 1회 연결해 확인(#233 검수 H1)
 - [[2026-10-07-strong-hajin-inbox]] §3 — Strong Hajin WORK-011 카톡 수집기 https 결함(PR #13) · 슬랙 비밀값 오판정
+- [[2026-11-11-day-procedure-board-2]] §2 — DAY `trial_writes` · `KOS_TRIAL_WRITES_ON_LIVE` · dev `is_demo` 거르기 제거 · 갈림 23자리 전수조사(`research-demo-vs-live-report.md` · 코드 96fff917 · Delivery #234)
