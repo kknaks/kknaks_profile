@@ -10,6 +10,7 @@ aliases:
   - 레포 env 금지
   - Key Vault 방화벽
 up:
+  - 2026-11-12-prod-deploy-re1
   - 2026-11-09-day-data-architecture
 tags:
   - 인프라
@@ -62,3 +63,4 @@ DB 비밀번호 · 외부 API 키 · 외부 시스템 주소처럼 **레포에 �
 - [[2026-11-09-day-data-architecture]] §2 · §3 — DAY: VM 신원으로 Key Vault 읽기 · 보관소는 VM 서브넷만 · 비밀 넣을 때 로컬 IP 를 잠깐 열고 닫기 · 외부 CRM 주소 레포 env → Key Vault(코드 `1ccc101b`) · 관리자 env 파일 → `~/.pgpass`
 - [[2026-11-11-day-app]] §2 — 선택 비밀(채팅 Blob · APNs 키)은 보관소에 없으면 app.env 에 안 넣고 기능만 꺼짐(fail-closed) · 배포는 성공(`scripts/deploy/day_vm.py` OPTIONAL_SECRETS)
 - [[2026-11-11-fix]] §2 「방화벽 뒤 비밀 저장소에 허용된 경로로 넣기」 — APNs · Soniox 키를 VM 경유로 Key Vault 에 · `RETIRED_SECRETS`(`be-4-report.md` · `review-doc-3-report.md` W5)
+- [[2026-11-12-prod-deploy-re1]] §2 「비밀을 화면에 안 내는 운영 등록」 — 운영 연결 값을 prod 컨테이너 안 `--stdin` 1회로 · 테넌트 id 는 컨테이너에서 받아 로컬 600 파일에만 · 값 파일은 쓰자마자 삭제(`backend/day/register_connection.py` · `be-1-report.md`)
