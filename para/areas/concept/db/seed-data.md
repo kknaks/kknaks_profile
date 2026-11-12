@@ -21,6 +21,7 @@ aliases:
   - 시드 사전
   - 용어집 시드
 up:
+  - 2026-11-12-seed-demo-re1
   - 2026-10-01-strong-hajin-deploy
   - 2026-10-14-sts-prototype
   - 2026-10-19-cc-nav-resv
@@ -99,6 +100,10 @@ Strong Hajin 은 `seed_catalog(demo_organization=False)` 로 카탈로그만 깔
 - [[strangler-fig]] — 원천을 감싸 조회하면 시드도 원천 쪽에 들어간다
 - [[translation-glossary-normalization]] — 원천을 가져와 우리 시드로 바꿀 때의 칸 나누기
 
+## 시험할 경로가 데이터에 있어야 한다
+
+외부 원천(KOS 데모 지점)에 넣는 시험 데이터는 **화면이 시험할 경로를 빠짐없이 갖춰야** 한다. DAY 시드는 기타 작업을 목록에서 돌려 골라 「방 배정」 이 10명 중 3명에만 걸렸고, 같은 점유 이동이 두 경로로 갈라져 보였다. 병원 설정의 「방 배정」 을 모든 방문에 넣고(없으면 쓰기 전에 멈춤), 이름 · 오더 메모도 병원 실제 양식으로 맞췄다. 가짜 이름 조합은 유명인 이름을 빼야 한다 — 성 × 이름 300개에 13개가 남아 10명 한 번에 36% 로 나왔다.
+
 ## 출처
 
 - [[2026-10-01-strong-hajin-deploy]] — 조직도 9표 양식 → mediness prod 4명 조회 → 로컬 import → dump 로 운영 복원
@@ -106,3 +111,4 @@ Strong Hajin 은 `seed_catalog(demo_organization=False)` 로 카탈로그만 깔
 - [[2026-10-19-cc-nav-resv]] §2 — KOS 에 있는 칸(`phoneticName` · `phone` · `categories`)을 시드에 더함(DEC-004 D-24 · SPEC-002 §5.1), 재시드 때 볼륨의 `seed.json` 도 지움(§3)
 - [[2026-10-22-myeongdong-poc-v2]] §2 — KOS 데모 지점에 국적별 예약 칸 · 슬롯당 2명 데모 환자를 공개 API 로 채움 · 데모 표식 가드 · 메모 표식 · `reserveByTimeSlot` → `reserveV2`(`tools/kos_demo_patients.py` · 스킬 `kos-demo-patients` · `demo-patients-2026-10-22.md`)
 - [[2026-10-27-interpret-pwa-poc]] §2 — Procedure Hub 용어집을 1회 가져와 git 시드 사전으로(정규화 · 157 term × 7개 언어) · 깨지면 기동 실패 · 시험이 게이트(`back/seed/glossary.json` · `back/scripts/import_glossary.py` · `back/tests/test_seed.py` · DEC-001 D-33 · 코드 #4)
+- [[2026-11-12-seed-demo-re1]] §2 — KOS 데모 지점 시드: 「방 배정」 기본 · 한국어 가짜 이름(유명인 제외) · 상담 양식 오더 메모(시술 줄 = KOS 실제 제목 · 반영 지연 대기) · 시술 4 ~ 6개(`scripts/seed_demo_board.py` · CENTURION_DAY#248)
