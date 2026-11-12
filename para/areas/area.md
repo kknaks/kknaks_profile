@@ -644,6 +644,8 @@ para/areas/
 | 531 | `infra` | [[para/areas/concept/infra/artifact-promotion\|artifact-promotion]] | prod 에서 다시 빌드하지 않고 dev 에서 확인한 커밋을 fast-forward 로 올림. migration 은 따로 · 첫 배포의 정상 멈춤 |  |
 | 532 | `infra` | [[para/areas/concept/infra/app-privacy-disclosure\|app-privacy-disclosure]] | App Store 「수집」 = 기기에서 보내 실시간보다 오래 보관. 남에게서 받은 데이터 · 미저장 스트림은 빠짐 · API 없음 |  |
 | 533 | `infra` | [[para/areas/concept/infra/unlisted-app-distribution\|unlisted-app-distribution]] | 검색엔 없고 링크로만 받는 App Store 앱. 웹 신청서 · 이후 버전 모두 · 되돌릴 수 없음 · 보안은 로그인 몫 |  |
+| 534 | `back` | [[para/areas/concept/back/tolerant-reader\|tolerant-reader]] | 읽는 쪽이 쓰는 칸만 꺼내고 모르는 칸 · 없는 칸 · 모르는 값에 안 깨지게. 빼기는 버티고 이름 · 모양 바꾸기는 못 버틴다 |  |
+| 535 | `front` | [[para/areas/concept/front/measured-overflow-toggle\|measured-overflow-toggle]] | 펼치기 버튼을 줄바꿈 수가 아니라 scrollHeight > clientHeight 로 켠다. 서버는 숨겨 두고 그릴 때마다 잰다 |  |
 
 ---
 

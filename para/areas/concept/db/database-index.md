@@ -12,6 +12,7 @@ aliases:
 up:
   - 2024-08-06-Day51
   - 2026-10-07-strong-hajin-enhance
+  - 2026-11-12-fix-web
 tags:
   - database
   - SQL
@@ -89,6 +90,8 @@ alter table 테이블명
 - **자동 증가 기본키는 인덱스에 가장 친절한 형태다** — InnoDB 는 데이터를 기본키 순서로 보관하므로, 번호가 계속 커지면 **새 행이 언제나 끝에 붙는다.** 임의의 값(UUID·주민번호)을 기본키로 쓰면 중간에 끼워 넣게 되어 페이지가 쪼개진다. Day51 의 「자동 증가」 절과 이 절이 붙어 있는 것이 우연이 아니다 → [[surrogate-key]] · [[primary-key]]
 - **운영 중인 큰 표에 인덱스를 더하는 것 자체가 쓰기를 막는다** — PostgreSQL 은 `CREATE INDEX CONCURRENTLY` 로 쓰기를 막지 않고 만들 수 있지만 **트랜잭션 블록 안에서는 못 돌고**, 중간에 실패하면 **무효 인덱스(`indisvalid = f`)** 가 남아 쓰기 비용만 낸다. 그래서 칸 추가와 인덱스를 다른 판으로 가르고 적용 뒤 `indisvalid` 를 본다 → [[online-schema-change]]
 
+- **외래키를 걸었다고 인덱스가 생기지 않는다(PostgreSQL)** — MySQL InnoDB 는 FK 컬럼에 인덱스를 자동으로 만들지만 PostgreSQL 은 만들지 않는다. DAY 의 `consultation.visit_id` 는 FK 만 있어서, 판 조회 `WHERE visit_id IN (…)` 가 판을 다시 읽을 때마다(SSE) 상담 표 전체를 훑었다. 개발 데이터 수십 건에선 안 보이고 리뷰가 잡았다. 소프트 딜리트 표라 살아 있는 행만 담는 **부분 인덱스**(`WHERE deleted_at IS NULL`)로 만들고, 조회 조건에 같은 술어가 있어야 플래너가 쓴다 — 그래서 「그 조회가 인덱스를 타는지」를 `EXPLAIN` 으로 보는 가드 시험을 같이 둔다 → [[foreign-key]] · [[2026-11-12-fix-web]]
+
 ## 함께 보는 개념
 
 - [[search-index]] — 같은 이름을 쓰는 검색엔진 쪽 구조
@@ -105,3 +108,4 @@ alter table 테이블명
 
 - [[2024-08-06-Day51]] — 「검색 조건으로 사용되는 컬럼인 경우 따로 정렬 해 두면 데이터를 빨리 찾을 수 있다」로 시작해 **갱신 비용과 조회 이득의 교환**을 네 줄로 정리하고, `create table` 안에 `fulltext index test1_name_idx (name)` 를 기본키·유니크와 나란히 적었다. `alter table ... add fulltext index 인덱스이름(컬럼명)` 로 나중에 더하는 문법도 함께 있다. 다만 전문 인덱스는 `MATCH ... AGAINST` 전용이라 이 예제의 조회에는 쓰이지 않으며, 이어지는 네 `insert` 는 테이블에 없는 `kor`·`eng`·`math` 컬럼을 지정해 그대로는 실행되지 않는다. 「별도의 테이블로 관리」라는 설명도 실물(정렬된 트리)과는 다르다
 - [[2026-10-07-strong-hajin-enhance]] §2 — Strong Hajin WORK-012 운영 SQL 을 칸 판 · `.concurrent.sql` 로 가르고 `indisvalid=t` 확인
+- [[2026-11-12-fix-web]] §2 — DAY `consultation(visit_id)` FK 에 인덱스가 없어 판 조회가 전체를 훑음 → 부분 인덱스(migration 0009) + 인덱스를 타는지 가드 시험 · 표가 작아 CONCURRENTLY 불필요
