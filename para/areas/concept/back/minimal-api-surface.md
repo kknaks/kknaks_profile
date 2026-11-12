@@ -86,3 +86,4 @@ def test_no_seed_words_in_any_response(client):
 
 - [[2026-10-27-interpret-pwa-poc]] §2 — 「외부 api에 json이 노출 되면 안돼」: 용어집 API · 메뉴 삭제 · health/me `{ok}` · 오류 일반 문구 4종 · docs/openapi 끔 · 허용 경로 6개 고정 시험 · 빌드 산출물 grep(`back/tests/test_api_surface.py` · `front/tests/minimal-exposure.test.ts` · `d37-be-report.md` · `d37-fe-report.md` · DEC-001 D-37 · 코드 #8)
 - [[2026-10-28-interpret-pwa-v2]] §2 — 내부 검토용 통역 기록을 화면 · API 없이 서버 PVC 의 날짜별 JSONL 로 · 꺼내기는 kubectl · 음성 · 토큰 · IP · 계정값 없음 · 7일 삭제 · 쓰기 실패는 통역을 안 끊음 · 허용 경로 고정 시험이 수정 없이 통과(`back/app/service/records.py` · `back/tests/test_records.py` · `test_api_surface.py` · DEC-001 D-41 · SPEC-001 §5.9)
+- [[2026-11-12-api-swagger-docs]] §2 — 협업자에게 admin 계정을 공유하던 것을 연동처별 키 + `/api/ext` 6개로 좁힘 · 메모 · 의사 · 담당자 · KOS 고객 id 미노출 · 이름 · 이메일은 URL 에 두지 않고 Swagger parameters 시험으로 고정(`date` 하나만 허용 · 코드 #22 · #23)
