@@ -640,6 +640,10 @@ para/areas/
 | 527 | `infra` | [[para/areas/concept/infra/workload-identity\|workload-identity]] | 장기 키 대신 실행체 자신의 신원(OIDC 연합 · 관리 ID)으로 단기 토큰. 신원과 역할 배정은 다른 단계 |  |
 | 528 | `infra` | [[para/areas/concept/infra/secret-store\|secret-store]] | 비밀은 레포 밖 보관소, 서버는 자기 신원으로 읽는다. 외부 시스템 주소도 비밀 · 방화벽은 열면 바로 닫기 |  |
 | 529 | `back` | [[para/areas/concept/back/database-tls-verification\|database-tls-verification]] | libpq 의 sslmode=verify-full 은 asyncpg 에서 안 먹는다. ssl 인자 + 루트 CA 경로 + 기동 검사 · 실제 DB 로 1회 |  |
+| 530 | `back` | [[para/areas/concept/back/pending-write-action-guard\|pending-write-action-guard]] | 외부에 보낸 쓰기가 확인 전이면 엇갈릴 다음 조작을 화면은 숨기고 서버는 거절. 빨라진 결과가 되돌리기 버튼을 앞당긴다 |  |
+| 531 | `infra` | [[para/areas/concept/infra/artifact-promotion\|artifact-promotion]] | prod 에서 다시 빌드하지 않고 dev 에서 확인한 커밋을 fast-forward 로 올림. migration 은 따로 · 첫 배포의 정상 멈춤 |  |
+| 532 | `infra` | [[para/areas/concept/infra/app-privacy-disclosure\|app-privacy-disclosure]] | App Store 「수집」 = 기기에서 보내 실시간보다 오래 보관. 남에게서 받은 데이터 · 미저장 스트림은 빠짐 · API 없음 |  |
+| 533 | `infra` | [[para/areas/concept/infra/unlisted-app-distribution\|unlisted-app-distribution]] | 검색엔 없고 링크로만 받는 App Store 앱. 웹 신청서 · 이후 버전 모두 · 되돌릴 수 없음 · 보안은 로그인 몫 |  |
 
 ---
 
