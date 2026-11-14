@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="480" viewBox="0 0 1100 480" font-family="AppleGothic, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif">
+<title>2단계 모식도 — 통역 + 원격 통역 + 오늘 동선 안내 · 호출</title>
+<defs><marker id="ah2498bd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2498bd"/></marker><marker id="ah7a5bd6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7a5bd6"/></marker><marker id="ahd9822b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d9822b"/></marker></defs>
+<rect width="1100" height="480" fill="#ffffff"/>
+<text x="24" y="34" font-size="17" fill="#222" text-anchor="start" font-weight="bold">2단계 — 같은 고객 화면에 「오늘 동선」 과 「호출」 이 더해진다</text>
+<rect x="24" y="70" width="320" height="330" rx="8" fill="#fafafa" stroke="#999" stroke-width="1.2" stroke-dasharray="6 4"/>
+<text x="40" y="94" font-size="12" fill="#666" text-anchor="start" font-weight="normal">고객이 있는 곳(방 · 대기 공간 · 이동 중)</text>
+<rect x="90" y="110" width="180" height="260" rx="14" fill="#fff" stroke="#222" stroke-width="2"/>
+<text x="180" y="136" font-size="11" fill="#222" text-anchor="middle" font-weight="normal">고객 폰 = 고객 화면</text>
+<rect x="104" y="150" width="152" height="50" rx="6" fill="#fff" stroke="#2498bd" stroke-width="1.2"/>
+<text x="180" y="170" font-size="10" fill="#2498bd" text-anchor="middle" font-weight="normal">오늘 동선</text>
+<text x="180" y="185" font-size="10" fill="#2498bd" text-anchor="middle" font-weight="normal">접수 → … → 수납(예시)</text>
+<rect x="104" y="210" width="152" height="36" rx="6" fill="#fdf1e4" stroke="#d9822b" stroke-width="1.2"/>
+<text x="180" y="233" font-size="10" fill="#d9822b" text-anchor="middle" font-weight="normal">🔔 호출: 다음 방으로</text>
+<rect x="104" y="256" width="152" height="100" rx="6" fill="#f4f5f7" stroke="#ddd" stroke-width="1.2"/>
+<text x="180" y="310" font-size="10" fill="#666" text-anchor="middle" font-weight="normal">통역(1단계 그대로)</text>
+<rect x="440" y="140" width="220" height="130" rx="8" fill="#eef0f3" stroke="#666" stroke-width="1.2"/>
+<text x="550.0" y="164" font-size="14" fill="#222" text-anchor="middle" font-weight="bold">통키 서버</text>
+<text x="550.0" y="186" font-size="11" fill="#666" text-anchor="middle" font-weight="normal">통역(1단계)</text>
+<text x="550.0" y="202" font-size="11" fill="#666" text-anchor="middle" font-weight="normal">+ 고객별 동선 단계</text>
+<text x="550.0" y="218" font-size="11" fill="#666" text-anchor="middle" font-weight="normal">+ 호출을 고객 언어로</text>
+<text x="550.0" y="234" font-size="11" fill="#666" text-anchor="middle" font-weight="normal">   글 · 음성으로</text>
+<rect x="756" y="70" width="320" height="330" rx="8" fill="#fafafa" stroke="#999" stroke-width="1.2" stroke-dasharray="6 4"/>
+<text x="772" y="94" font-size="12" fill="#666" text-anchor="start" font-weight="normal">로비 · 데스크</text>
+<rect x="780" y="110" width="270" height="170" rx="10" fill="#fff" stroke="#222" stroke-width="2"/>
+<text x="796" y="136" font-size="11" fill="#222" text-anchor="start" font-weight="normal">직원 화면(선택지 A / B)</text>
+<text x="796" y="158" font-size="11" fill="#222" text-anchor="start" font-weight="normal">· 고객별 지금 단계</text>
+<text x="796" y="180" font-size="11" fill="#222" text-anchor="start" font-weight="normal">· [다음 단계] · [호출]</text>
+<text x="796" y="202" font-size="11" fill="#222" text-anchor="start" font-weight="normal">· 통역(1단계 화면)</text>
+<line x1="778" y1="170" x2="662" y2="170" stroke="#d9822b" stroke-width="1.8" marker-end="url(#ahd9822b)"/>
+<text x="709" y="146" font-size="10" fill="#d9822b" text-anchor="middle" font-weight="normal">단계 바꿈</text>
+<text x="709" y="158" font-size="10" fill="#d9822b" text-anchor="middle" font-weight="normal">· 호출</text>
+<line x1="438" y1="170" x2="272" y2="170" stroke="#d9822b" stroke-width="1.8" marker-end="url(#ahd9822b)"/>
+<text x="392" y="146" font-size="10" fill="#d9822b" text-anchor="middle" font-weight="normal">동선 · 호출</text>
+<text x="392" y="158" font-size="10" fill="#d9822b" text-anchor="middle" font-weight="normal">(고객 언어)</text>
+<line x1="272" y1="300" x2="438" y2="240" stroke="#7a5bd6" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#ah7a5bd6)" marker-start="url(#ah7a5bd6)"/>
+<text x="398" y="288" font-size="10" fill="#7a5bd6" text-anchor="middle" font-weight="normal">통역</text>
+<text x="398" y="300" font-size="10" fill="#7a5bd6" text-anchor="middle" font-weight="normal">(1단계)</text>
+<line x1="662" y1="240" x2="778" y2="240" stroke="#2498bd" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#ah2498bd)" marker-start="url(#ah2498bd)"/>
+<text x="709" y="260" font-size="10" fill="#2498bd" text-anchor="middle" font-weight="normal">통역</text>
+<text x="709" y="272" font-size="10" fill="#2498bd" text-anchor="middle" font-weight="normal">(1단계)</text>
+<line x1="420" y1="320" x2="454" y2="320" stroke="#d9822b" stroke-width="1.8" marker-end="url(#ahd9822b)"/>
+<text x="464" y="324" font-size="11" fill="#666" text-anchor="start" font-weight="normal">동선 · 호출</text>
+<line x1="420" y1="340" x2="454" y2="340" stroke="#7a5bd6" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#ah7a5bd6)"/>
+<text x="464" y="344" font-size="11" fill="#666" text-anchor="start" font-weight="normal">고객 쪽 통역</text>
+<line x1="420" y1="360" x2="454" y2="360" stroke="#2498bd" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#ah2498bd)"/>
+<text x="464" y="364" font-size="11" fill="#666" text-anchor="start" font-weight="normal">직원 쪽 통역</text>
+<text x="24" y="446" font-size="12" fill="#666" text-anchor="start" font-weight="normal">※ 동선 단계는 일반적인 피부과 흐름 예시(특정 병원 흐름 아님). 동선을 어디서 가져오는지 · 누가 · 어디서 바꾸는지는 열린 것.</text>
+</svg>
