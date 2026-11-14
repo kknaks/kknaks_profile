@@ -2,11 +2,11 @@
 type: spec
 id: SPEC-001
 title: "통역 PWA — 로그인 · 용어집 context · 통역 WS · 화면 · PWA 계약"
-version: 0.6.1
+version: 0.7.0
 status: draft
 product: interpret-pwa
 created_at: 2026-10-26
-updated_at: 2026-10-28
+updated_at: 2026-11-14
 tags:
   - product/interpret-pwa
   - doc/spec
@@ -22,7 +22,7 @@ links:
   releases: []
   related: []
 sources:
-  - para/projects/summer-star/interpret-pwa/10-decision/decision-001-interpret-pwa.md (D-01 ~ D-41 · accepted — D-13 · D-32 는 뒤집힘 · D-41 이 Scope Out 「통역 기록 저장」을 In 으로)
+  - para/projects/summer-star/interpret-pwa/10-decision/decision-001-interpret-pwa.md (D-01 ~ D-42 · accepted — D-13 · D-32 는 뒤집힘 · D-41 이 Scope Out 「통역 기록 저장」을 In 으로 · D-42 가 D-41 의 「7일 뒤 자동 삭제」를 뒤집음)
   - 확정 시안 — Claude Design 캔버스 「Interpret PWA」(r3 · D-22 ~ D-24 · D-28 ~ D-30 반영 · r7 D-36 `Mode-Auto-Idle` · `PTT-Ready` · `PTT-Pressed` · r8 D-37 `Glossary` 삭제 · 화면 21개) 로컬 사본 interpret-pwa-poc 코드 워크트리 design/{README.md,project/*.dc.html,project/ceramique-theme.css} (D-20 · D-21 · 화면 19개)
   - 구현 kknaksss/interpret-pwa main d0a91a7(배포본 · D-22 ~ D-32 반영 — 0.4.0 은 이 코드에 맞춰 적고, 다르면 DEC 를 따른다) · main 9befd18(PR #4 · D-33 시드 — 0.4.1 대조) · main fe8475e(PR #5 ~ #8 · D-34 ~ D-37 · 운영 장애 수정 — 0.5.0 대조) · main 2a9d5a5(PR #9 · D-38 시드 `.5` — 0.6.0 대조) · **main 17c26b5(PR #10 · 시드 `.6` · 통역 기록 · 언어별 한도 — 0.6.1 대조 · 지금 back 배포본)**
   - orchestration/work/interpret-pwa-poc/{research-tw-names-report.md,d35-be-report.md,live-check-d35-2026-10-27.json,d36-fe-report.md,design-r7-report.md,d37-be-report.md,d37-fe-report.md,design-r8-report.md} (대만 현지명 조사 77/157 · D-35 시드 · 운영 장애 2026-10-27 02:07 원인 · D-36 · D-37 구현)
@@ -50,7 +50,7 @@ sources:
 > 통역 중계는 cc-prototype 원형(`procedure/back` 의 `service/interpret/` · `api/interpret.py`)을 **복사해서** 쓰고,
 > 이 문서는 원형과 **달라지는 자리**와 새로 생기는 것(로그인 · 용어집 · 화면 · PWA)을 정한다.
 >
-> SSOT 순서(이기는 순): ① DEC-001 D-01 ~ D-41 ② 화면 = 확정 시안(D-20) ③ 통역 로직 = 원형 코드(`origin/main`) ④ Soniox 공식 문서 · 실물 결과(§9.3) ⑤ 이 문서의 기본값.
+> SSOT 순서(이기는 순): ① DEC-001 D-01 ~ D-42 ② 화면 = 확정 시안(D-20) ③ 통역 로직 = 원형 코드(`origin/main`) ④ Soniox 공식 문서 · 실물 결과(§9.3) ⑤ 이 문서의 기본값.
 > **화면 정본은 확정 시안이다(0.3.0 · D-20 · D-21)** — Claude Design 캔버스 「Interpret PWA」(사용자가 직접 고친다). 로컬 사본은 코드 레포 `design/project/*.dc.html` — 참고 자료이고 빌드에 넣지 않는다. 시안이 바뀌면 사본을 다시 받고 §6 · §7 을 맞춘다. **시안과 DEC 가 다르면 DEC 가 이긴다**(D-22 ~ D-25 · D-29 · D-31 은 시안보다 뒤에 정했거나 시안을 고친 결정이다). 시안에 없는 자리(네트워크 실패 로그인 · 오프라인 화면)는 이 문서 문구를 따른다.
 >
 > 이 레포는 public — Soniox 키 · 로그인 아이디 · 비밀번호 · 세션 비밀값 · 실명을 쓰지 않는다. env 는 **이름만**(D-06 · D-11).
@@ -59,6 +59,7 @@ sources:
 
 | 버전 | 날짜 | 무엇 |
 |---|---|---|
+| 0.7.0 | 2026-11-14 | 보관 기간 env — DEC D-42 반영(배포본 main 17c26b5 대조 · 코드는 WP19 에서 따라온다): **§5.9 「7일 뒤 삭제」 → 「보관 기간 — env」** — `INTERPRET_RECORD_KEEP_DAYS` · **비어 있으면 삭제 안 함**(기동 때 삭제 0 · 24시간 배경 작업을 만들지 않음 · 기동 로그 `keep_days=off`) · 양의 정수 N 이면 0.6.0 규칙 그대로 7 자리에 N(`keep_days=N`) · 그 밖의 값(0 · 음수 · 숫자 아님)은 경고 1줄 뒤 삭제 안 함(기동은 멈추지 않음) · 기록 끔이면 값과 무관 / §2.4 env 행 / §1 · §2.1 디렉토리 설명 / §9.1 「기록」 ⑦ · ⑨ 시험 / §9.3 주 / **§9.6** — 운영 ConfigMap 에 넣지 않음(infra 는 이미지 태그만) · 크기 근거(무기한 · 실측 4일 44KB) · 배포 뒤 확인 0.7.0(WP20) / §10 OQ-020(베타가 끝나는 때 · 넣을 값) / 부록 A D-42. D-41 의 나머지(넣는 것 · 안 넣는 것 · 화면 · API 없음 · 꺼내기 kubectl · 허용 경로 6개)는 그대로 |
 | 0.6.1 | 2026-10-28 | v2 마감 동기 — 배포본 code main 17c26b5(PR #10) · infra PR #35 · #36 · WP16 「처분 2」 · 「처분 3」 대조: **§2.4 · §4.6 한도 = 언어별 표**(en 23,424 · ja 20,419 · zh 20,933 · zh-Hant 21,689 · th 21,343 · vi 22,891 · yue 21,123 — 시드 `.6` 실측 통과 최대치 × 0.9 내림 · `GLOSSARY_CONTEXT_MAX_CHARS` 는 값이 있으면 모든 언어를 덮는 하나의 값 · 운영은 넣지 않음) / **OQ-018 닫음 — ⑤ 뒤집음**(ph-130 ko 별칭 「써마지」 지움 — 「써마지 CPT」 가 FLX 로 오역 · 실물 ⑳) · ① ~ ④ 처분 반영을 **§4.2.3 D** 로 기록 / §4.2.1 모호어 표 · §4.2.2 · §5.9 「더 긴 일치」 예 · §9.1 시드 · context · 기록 시험 / **§9.3 ⑲ ~ ㉑ 결과**(5차) / **§9.5 배포 기록 10 · 11 · §9.6 back `requests.cpu` 50m**(lima-worker-1 CPU 예약 98% — PVC 고정 노드에 새 pod Pending · limit 1 그대로) · 배포 뒤 확인 결과 / §10 OQ-019(사용자 청취 대기) · OQ-017 ④ 새 시술 미적중 |
 | 0.6.0 | 2026-10-27 | interpret-pwa-v2 — DEC D-38 ~ D-41 반영(배포본 main 2a9d5a5 대조): **§4.2.1 사전 내용 규칙을 언어 공통으로 다시 씀** — 현지 허가명 · 공식명 우선(대륙 = NMPA · 브랜드 대륙 공식명 · D-40) · **「현지에 없음 = 영문」을 7개 언어 공통 규칙**으로 · 옛 표기는 alias · 모호어 목록(언어별) · 묘사 꼬리 · 제조사 접두 · 대소문자 변형은 alias 로 안 넣음 · `reviewed` = 독립 현지 출처 2+ · **홍콩(yue)은 대만(zh-Hant)과 독립** · D-38(시드 `.5`) 기록 / **§4.2.2 새 시술 13개**(D-39 · term id `kr-001` ~ `kr-013` — Procedure Hub 밖 · N13 울트라셰이프 제외) × 7개 언어 표 / **§4.2.3 기존 표기 변경**(zh 대륙 공식명 · 미허가 톡신 · 한국 전용 제품 영문 · 포텐자 · 장르어 제거 · th 쥬베룩 · 스컬트라 · yue · vi 결함) / §4.2 검사 7 「보이지 않는 글자 0」(`白毒` 의 U+200C) · term `id` 규칙 · `version` `2026-10-27.6` / §4.6 `.6` 크기는 실측 ⑲ 로 · 기본값 20,251 그대로 / **§5.9 통역 기록 신설**(D-41 — back PVC · `INTERPRET_RECORD_DIR` · 날짜별 JSONL · 세션 시작/발화/끝 줄 · 걸린 term 판정 · 음성 · 토큰 · IP · 계정값 0 · 7일 삭제 · 쓰기 실패는 통역을 끊지 않음 · 화면 · API 없음 · 꺼내기 = kubectl) / §1 범위 · §2.4 env · §3.5 / §9.1 「시드」 · 「기록」 시험 · §9.3 ⑲ ~ ㉑ · **§9.6 배포 — back PVC(local-path · `lima-worker-1` 노드 고정 · 1Gi · keep)** / §10 OQ-018 · OQ-019 |
 | 0.5.0 | 2026-10-27 | fix5 — 마감 동기. DEC D-35 ~ D-37 · 운영 장애를 최종 배포본 main fe8475e(PR #5 ~ #8)와 맞춤: **§4 시드** — 대만 현지명(조사 77/157 · zh-Hant `name` · 초안은 `aliases` · 출처 2+ 만 `reviewed:true`) · `source` 에 `web-research YYYY-MM-DD` · zh 구어 별칭(热玛吉) · 모호어 제외(zh · zh-Hant) · 볼뉴머 카테고리 · `version` `.4`(D-35) / **§4.7 용어집 메뉴 API 삭제 · §7.6 메뉴 = 로그아웃만**(D-37 · D-13 뒤집힘) / **§5.6 zh-Hant 자막 = `s2tw` + 「激光 → 雷射」**(D-35 · D-32 의 `s2twp` 폐기) · 가져오기 초안도 같은 변환 / §5.4 · §3.3 오류 문구 일반화 · `/api/auth/me` · `/api/health` = `{ok}` · `/docs` · `/openapi.json` 끔 · 허용 경로 6개(D-37 · §3.5) / **§5.8 TTS keepalive `{"keep_alive": true}` · 다른 stream_id 오류는 발화를 끊지 않음**(운영 장애 2026-10-27 02:07) / **§7.7 누르고 말하기 모드**(D-36 · 시안 r7) / §9 시험 · 실물 ⑰ ⑱ · 배포 기록 5 ~ 8 / §10 OQ 정리(남은 것: 사람 목소리 E2E · 못 찾은 대만명 80 · 데모 로그인 끄기) |
@@ -76,13 +77,14 @@ sources:
 - `OQ-nnn` = 근거로 닫지 못해 §10 에 남긴 것.
 - 0.4.0 — 0.3.0 의 §4.3(조립) · §4.4(한도) · §4.4.1(거절) · §4.6(메뉴)은 **§4.5 · §4.6 · §4.6.1 · §4.7** 로 옮겼다. 다른 절의 참조는 새 번호다.
 
-## 1. 범위 — D-01 · D-02 · DEC Scope · D-41
+## 1. 범위 — D-01 · D-02 · DEC Scope · D-41 · D-42
 
 | In | Out(DEC Scope Out) |
 |---|---|
 | 로그인(계정 하나) · 통역 화면(양방향 실시간 · 자막 · TTS) · 듣기 방식 전환(자동 듣기 · 누르고 말하기 — D-36) · 용어집 context · **통역 기록 — 서버에만(D-41 · §5.9)** · PWA · 로컬 실행 · Mac Studio 배포 | 통역 기록을 보는 화면 · API(D-41 「내부 검토용」) · 여러 계정 · 권한 · 자동 언어 맞추기(DEC Option B) · ccc(cc-prototype) 변경 |
 
-- **0.6.0 — 통역 기록은 back 의 볼륨(PVC)에만 남긴다**(D-41 · §5.9): 세션 언어 · 시작/끝 시각 · 확정 발화의 원문 · 번역 · 말한 쪽 · 걸린 term id · 날짜별 JSONL · 7일 뒤 삭제 · 음성 없음. 화면 · API 로는 내지 않는다(§3.5 허용 경로 6개 그대로) — 꺼내는 건 코디가 클러스터에서(§9.6). front 는 지금처럼 화면을 떠나면 지운다. (0.5.0 까지의 「어디에도 저장하지 않는다」는 D-41 로 바뀌었다.)
+- **0.6.0 — 통역 기록은 back 의 볼륨(PVC)에만 남긴다**(D-41 · §5.9): 세션 언어 · 시작/끝 시각 · 확정 발화의 원문 · 번역 · 말한 쪽 · 걸린 term id · 날짜별 JSONL · 7일 뒤 삭제(0.7.0 에서 바뀜 — 아래) · 음성 없음. 화면 · API 로는 내지 않는다(§3.5 허용 경로 6개 그대로) — 꺼내는 건 코디가 클러스터에서(§9.6). front 는 지금처럼 화면을 떠나면 지운다. (0.5.0 까지의 「어디에도 저장하지 않는다」는 D-41 로 바뀌었다.)
+- **0.7.0 — 베타 테스트 기간에는 기록을 지우지 않는다**(D-42 · §5.9 「보관 기간」): 보관 기간은 env `INTERPRET_RECORD_KEEP_DAYS` · **비어 있으면 삭제 안 함**(운영 기본 — ConfigMap 에 넣지 않는다 · §9.6). 베타가 끝나면 코드 수정 없이 값만 넣어 다시 켠다. D-41 의 나머지는 그대로다.
 - **용어집 메뉴(읽기 전용)는 0.5.0 에서 뺐다**(D-37 — D-13 뒤집음). 용어집(시드)은 back 안에서 Soniox `context` 로만 쓰고 화면 · 응답에 나가지 않는다(§3.5 · §4.7).
 
 ## 2. 구성 · 실행 — D-01 · D-02 · D-06 · D-11 · D-12
@@ -100,7 +102,7 @@ interpret-pwa/                 # 레포 루트 (D-01)
 │   ├── app/
 │   │   ├── main.py · config.py · container.py
 │   │   ├── api/               # router — auth.py(login · me · config · demo) · health.py · interpret.py (0.5.0 — glossary.py 삭제 · D-37)
-│   │   ├── service/           # auth.py · glossary.py(시드 로더 · 검사 · context — 메뉴 행 없음) · interpret/{session,soniox,assembler,chinese,langs}.py · records.py(통역 기록 · 걸린 term · 7일 삭제 — 0.6.0 · §5.9)
+│   │   ├── service/           # auth.py · glossary.py(시드 로더 · 검사 · context — 메뉴 행 없음) · interpret/{session,soniox,assembler,chinese,langs}.py · records.py(통역 기록 · 걸린 term · 보관 기간 삭제 — 0.6.0 · 0.7.0 env · §5.9)
 │   │   ├── domain/            # errors.py (DomainError)
 │   │   └── schemas/           # front 계약(pydantic) — auth.py · health.py
 │   └── tests/                 # 0.6.0 — test_records.py(§9.1 「기록」)
@@ -147,6 +149,7 @@ interpret-pwa/                 # 레포 루트 (D-01)
 | `INTERPRET_FRONT_ORIGIN` | back — CORS 허용 출처 · 통역 WS Origin 검사 | `http://localhost:3800` | 원형 `PROC_FRONT_ORIGIN` |
 | `INTERPRET_DEMO_LOGIN` | back — 데모 원탭 로그인 스위치(§3.4). `true` · `1` = 켬 | `false`(꺼짐 — `POST /api/auth/demo` 404) | D-30 (0.4.0) |
 | `INTERPRET_RECORD_DIR` | back — 통역 기록 JSONL 을 쓰는 폴더(§5.9 · 0.6.0). 운영 = PVC 마운트 아래 `/data/records`(ConfigMap · §9.6) | **기록 끔** — 파일 · 삭제 작업 없음 · 기동 로그 1줄 `interpret records: off`(로컬 · 시험 기본) | D-41 · 기본값 |
+| `INTERPRET_RECORD_KEEP_DAYS` | back — 통역 기록 보관 기간(일 · §5.9 「보관 기간」 · 0.7.0). 양의 정수 N = 날짜가 오늘(한국 시간) − N 이하인 날짜 파일을 지운다(기동 1회 + 24시간마다) | **삭제 안 함** — 비어 있음 · 없음 · 공백만 모두 · 기동 때 삭제 0 · 24시간 배경 작업 없음 · 기동 로그 `keep_days=off`. 0 · 음수 · 숫자 아님도 경고 로그 1줄 뒤 삭제 안 함(기동은 멈추지 않는다). `INTERPRET_RECORD_DIR` 이 비었으면 이 값과 무관하게 기록 끔. **운영 ConfigMap · Secret 에는 넣지 않는다**(= 삭제 안 함 · §9.6) | D-42 · 기본값(잘못된 값 · 공백만 처리) |
 | `GLOSSARY_CONTEXT_MAX_CHARS` | back — context 줄이기 기준(§4.6). **값이 있으면 7개 언어 모두를 그 값 하나로 덮는다**(언어별 표보다 작든 크든) | **언어별 표**(§4.6 — en 23,424 · ja 20,419 · zh 20,933 · zh-Hant 21,689 · th 21,343 · vi 22,891 · yue 21,123 · 시드 `.6` 실측 통과 최대치 × 0.9 내림). **운영 ConfigMap · Secret 에는 넣지 않는다**(넣으면 언어별 표가 꺼진다) | WP16 코디 처분 3 2026-10-27 (0.6.1 — 0.4.1 의 단일 기본값 20251 을 고침) |
 | `NEXT_PUBLIC_API_BASE_URL` | front 빌드 — 브라우저가 부르는 back 주소(http · ws 둘 다 여기서) · 읽는 곳은 §2.3 한 줄 | `http://localhost:8800` | 원형 |
 
@@ -611,7 +614,7 @@ cd back && uv run python scripts/import_glossary.py [--url <matrix 주소>] [--o
 - 시드의 `name` 에는 괄호가 없다(§4.2 검사 4) → 용어집이 번역문에 괄호를 들여오는 길은 닫힌다. 정방향 target 이 현지명이라 TTS 는 **현지명을 읽는다**(예 zh 「美版热玛吉FLX」 — 영문 상표명이 아니라 · D-33 「써마지가 영어로 들어가는 게 아니라 중국어 · 대만어로」).
 - 그래도 **§5.7 `strip_parens` 는 지우지 않는다** — 실물 ⑤(2026-10-26)에서 괄호는 Soniox 번역이 **스스로 만들기도** 했다(ja 「チャウム（補充）」 — 용어집 원문에 없던 괄호). D-19 「TTS 입력에서만 괄호를 뺀다」는 용어집과 무관하게 계속 맞다.
 
-## 5. 통역 WS — D-03 · D-04 · D-17 · D-19 · D-28 · D-33 · D-35 · D-37 · D-41
+## 5. 통역 WS — D-03 · D-04 · D-17 · D-19 · D-28 · D-33 · D-35 · D-37 · D-41 · D-42
 
 ### 5.1 원형과 무엇이 같고 무엇이 다른가
 
@@ -745,7 +748,7 @@ cd back && uv run python scripts/import_glossary.py [--url <matrix 주소>] [--o
 
 - 원형(cc-prototype `procedure/back` `soniox.py`)에도 같은 `{}` 가 있을 수 있다 — 이 레포 범위 밖(DEC Scope Out 「ccc 변경」).
 
-### 5.9 통역 기록 — 서버 볼륨에만 · 화면 · API 없음 (0.6.0 — D-41)
+### 5.9 통역 기록 — 서버 볼륨에만 · 화면 · API 없음 (0.6.0 — D-41 · 0.7.0 보관 기간 — D-42)
 
 > 「어떤 통역을 했는지 궁금해서」 · 「poc 라 시연 정도만」 · 「화면이 필요 없다 · 내부 검토용」(D-41). 기록은 back 이 볼륨에 쓰고, 코디가 클러스터에서 꺼내 본다(§9.6). **밖으로 내는 것은 그대로 6개 경로뿐**(§3.5 · D-37).
 
@@ -753,8 +756,8 @@ cd back && uv run python scripts/import_glossary.py [--url <matrix 주소>] [--o
 
 | 항목 | 계약 |
 |---|---|
-| 폴더 | env **`INTERPRET_RECORD_DIR`**(§2.4). 운영 = back PVC 마운트 `/data` 아래 **`/data/records`**(§9.6). **비면 기록 끔**(로컬 · 시험 기본) — 파일도 삭제 작업도 없다 |
-| 기동 | lifespan 에서 ① 폴더가 비었으면 정보 로그 1줄 `interpret records: off` ② 있으면 `mkdir -p` · 쓰기 가능한지 확인 → 정보 로그 1줄 `interpret records: on dir=<경로> keep_days=7` ③ 만들기 · 쓰기 확인이 실패하면 **경고 로그 1줄(예외 종류만) 뒤 그 프로세스는 기록 끔으로 뜬다** — 기록 때문에 기동을 멈추지 않는다(시드와 다르다 · §4.4 — 기록은 통역의 부속이다) ④ 7일 삭제 1회(아래) |
+| 폴더 | env **`INTERPRET_RECORD_DIR`**(§2.4). 운영 = back PVC 마운트 `/data` 아래 **`/data/records`**(§9.6). **비면 기록 끔**(로컬 · 시험 기본) — 파일도 삭제 작업도 없다(`INTERPRET_RECORD_KEEP_DAYS` 값과 무관 · 0.7.0) |
+| 기동 | lifespan 에서 ① 폴더가 비었으면 정보 로그 1줄 `interpret records: off` ② 있으면 `mkdir -p` · 쓰기 가능한지 확인 → 정보 로그 1줄 `interpret records: on dir=<경로> keep_days=<N 또는 off>`(0.7.0 — 보관 기간 env 가 양의 정수 N 이면 `keep_days=N` · 아니면 `keep_days=off` · 아래 「보관 기간」) ③ 만들기 · 쓰기 확인이 실패하면 **경고 로그 1줄(예외 종류만) 뒤 그 프로세스는 기록 끔으로 뜬다** — 기록 때문에 기동을 멈추지 않는다(시드와 다르다 · §4.4 — 기록은 통역의 부속이다) ④ **보관 기간이 N 일 때만** 삭제 1회(아래) — `off` 면 기동 때 지우지 않고 24시간 배경 작업도 만들지 않는다(0.7.0 · D-42) |
 | 파일 | **날짜별 하나** — `<폴더>/<YYYY-MM-DD>.jsonl`. 날짜 = 그 줄 `at` 의 **한국 시간(UTC+9 고정 · 서머타임 없음)** 날짜. 자정을 넘긴 세션은 두 파일에 나뉜다(세션 id 로 잇는다). 인코딩 UTF-8 · 한 줄 = JSON 객체 하나(`ensure_ascii=False` · 줄바꿈 없음) · 끝에 `\n` |
 | 쓰기 | 줄마다 append 1회(`open(…, "a")` · 한 번의 `write` · flush · fsync 하지 않음). 한 프로세스 안 쓰기는 직렬(이벤트 루프에서 동기 append 또는 잠금). 줄 하나는 수 KB 이하라 같은 노드의 두 pod 가 겹쳐 써도(롤링 · §9.6) 줄이 섞이지 않는다 — 기본값 |
 
@@ -804,15 +807,29 @@ cd back && uv run python scripts/import_glossary.py [--url <matrix 주소>] [--o
 
 **넣지 않는 것** — 음성(PCM) · 토큰 · `?token=` · 로그인 아이디 · 비밀번호 · IP · `Origin` · User-Agent · TTS 입력 문자열 · Soniox `request_id` · 키. 기록은 **대화 문장만** 갖는다(D-41 「음성 없음」 · public 레포 원칙과 같은 선).
 
-**7일 뒤 삭제**
+**보관 기간 — env (0.7.0 — D-42 · 0.6.0 의 「7일 뒤 삭제」를 고침)**
+
+> 「지금 베타 테스트 기간이라 데이터 모아야하는데 7일 보관 없애자」(D-42). 0.6.0 은 7일로 고정하고 env 로 못 바꾸게 했다 — 0.7.0 은 보관 기간을 env 로 빼고 **비어 있으면 지우지 않는다**. 베타가 끝나면 코드 수정 없이 값만 넣어 다시 켠다(언제 · 몇 일인지는 OQ-020).
+
+| `INTERPRET_RECORD_KEEP_DAYS`(§2.4) | 동작 | 기동 로그(위 「기동」 ②) |
+|---|---|---|
+| 비어 있음 · 없음 · 공백만(앞뒤 공백을 지우고 판정 — 코디 기본값) | **삭제 안 함** — 기동 때 삭제 0 · 24시간 배경 작업을 **만들지 않는다** | `interpret records: on dir=<경로> keep_days=off` |
+| 양의 정수 N — 앞뒤 공백을 지운 뒤 **십진 숫자로만 된 1 이상의 값**(`7` · ` 7 ` · `07` = 7 · 코디 기본값) | 아래 삭제 규칙(0.6.0 규칙 그대로 · 7 자리에 N) — 기동 1회 + 24시간마다 | `interpret records: on dir=<경로> keep_days=N` |
+| 그 밖의 값(0 · 음수 · 숫자 아님 — `+7` · `7.0` · `7d` 포함) | **경고 로그 1줄 뒤 삭제 안 함** — 기동은 멈추지 않는다(기록은 통역의 부속 · 위 「기동」 ③과 같은 결 · 코디 기본값) | 경고 1줄 + `… keep_days=off` |
+| (기록 끔 — `INTERPRET_RECORD_DIR` 비었음) | 0.6.0 그대로 파일 · 삭제 작업 없음 — 이 값과 무관 | `interpret records: off` |
+
+- 운영은 이 값을 **ConfigMap 에 넣지 않는다**(= 삭제 안 함 · §9.6). 로컬 · 시험 기본도 비어 있다.
+- 잘못된 값 때문에 기동이 멈추면 안 된다 — 설정을 읽는 단계의 정수 변환 실패로 프로세스가 죽지 않게 한다(값 판정은 위 표대로 · 방법은 backend).
+
+**삭제 규칙 — 보관 기간이 N 일 때만**
 
 | 항목 | 계약 |
 |---|---|
-| 대상 | 폴더 안 이름이 정확히 `YYYY-MM-DD.jsonl` 이고 그 날짜가 **오늘(한국 시간) − 7일 이하**인 파일 — 예 10-28 에는 10-21 파일까지 지운다(그날 쓴 기록은 꽉 찬 7일을 산다). 이름이 그 모양이 아닌 파일 · 폴더는 건드리지 않는다 |
-| 때 | **기동 때 1회 + 그 뒤 24시간마다**(lifespan 의 배경 작업 · 종료 때 취소). 기록 끔이면 돌지 않는다 |
+| 대상 | 폴더 안 이름이 정확히 `YYYY-MM-DD.jsonl` 이고 그 날짜가 **오늘(한국 시간) − N 일 이하**인 파일 — 예 N=7 이면 10-28 에는 10-21 파일까지 지운다(그날 쓴 기록은 꽉 찬 N 일을 산다). 이름이 그 모양이 아닌 파일 · 폴더는 건드리지 않는다 |
+| 때 | **기동 때 1회 + 그 뒤 24시간마다**(lifespan 의 배경 작업 · 종료 때 취소). 기록 끔 · 보관 기간 `off` 면 돌지 않는다(배경 작업 자체가 없다) |
 | 실패 | 파일 하나 지우기 실패 → 경고 로그 1줄(예외 종류 · 파일 이름) 뒤 다음 파일 계속. 작업 전체가 죽지 않는다 |
-| 로그 | 지운 파일 수 1줄(`interpret records sweep: deleted=N`) — 내용 0 |
-| 보관 기간 | **7일 고정**(D-41 · 코디 기본값) — env 로 바꾸지 않는다. 바꾸려면 DEC → 이 절 |
+| 로그 | 지운 파일 수 1줄(`interpret records sweep: deleted=N`) — 내용 0. 보관 기간 `off` 면 이 줄은 나오지 않는다 |
+| 보관 기간 | env `INTERPRET_RECORD_KEEP_DAYS`(위 표 · D-42). 0.6.0 의 「7일 고정 — env 로 바꾸지 않는다」(D-41 · 코디 기본값)는 D-42 로 없어졌다 |
 
 **쓰기 실패는 통역을 끊지 않는다**
 
@@ -1028,7 +1045,7 @@ front 는 아래 상태 중 하나다. 판정은 **위에서부터**(먼저 맞�
 | 화면 꺼짐 방지 | 통역 화면에서 `navigator.wakeLock.request("screen")`. 탭이 다시 보이면(`visibilitychange`) 다시 요청. 지원하지 않으면 조용히 넘어간다(기능 감지) — 기본값 |
 | 끊김 · 재연결 | **자동 재연결 없음**. WS 가 끊기거나 `error` 면 「오류」 상태 + [다시 연결](§7.3) — 누르면 새 WS · 새 `start`. 앱이 백그라운드로 가면(`visibilitychange` hidden) `stop` 보내고 닫는다 → 돌아오면 **「시작 전」(§7.3 #1) 오버레이** — 언어 단추를 누르면 새 WS · 새 `start`(0.4.1 · D-34)(0.2.0 — WARN-1 · 기본값 — 원형 SPEC-004 §4.3 「백그라운드면 닫는다」 · 개념 websocket-relay 「끊김을 그대로 드러낸다」) |
 
-## 9. 검증 — 완료 조건 — D-03 · D-05 · D-12 · D-33 · D-35 ~ D-41
+## 9. 검증 — 완료 조건 — D-03 · D-05 · D-12 · D-33 · D-35 ~ D-42
 
 ### 9.1 back 시험 (pytest · Soniox 가짜 · 시드는 가짜 + 실제 파일)
 
@@ -1042,7 +1059,7 @@ front 는 아래 상태 중 하나다. 판정은 **위에서부터**(먼저 맞�
 | **밖으로 내는 것(0.5.0 · §3.5 · D-37)** | `tests/test_api_surface.py` — **앱 경로가 정확히 6개**(그 밖 Route 가 있으면 실패) · `/docs` · `/redoc` · `/openapi.json` · `/docs/oauth2-redirect` · `/api/glossary` → 404 일반 문구 · 응답 최소 모양(health `{ok:true}` · me `{ok:true}` · config `{demoLogin}`) · **허용 경로 전부(성공 · 401 · 404)의 응답에 시드 판 · 시드 낱말 0** · `app/api` · `app/schemas` 소스에 `glossary` · `.terms` · `.entries` · `menu_rows` · `load_seed` · `build_context` 0 · 오류 일반 문구(검증 400 · 405 · 데모 꺼짐 404 · 처리기 밖 예외 500 — 예외 내용이 응답에 없고 로그에 종류) · WS 문구 4개에 `SONIOX` · `Soniox` · `.env` · `API_KEY` · `start` · `type` · `JSON` 0 · 받은 `lang` 을 되돌려 보내지 않음 |
 | 가져오기 스크립트(0.4.0 · §4.8) | 저장한 matrix 가짜(`--from-file`)로: 괄호 분해 다섯 모양(없음 · 라틴(현지) · 현지(라틴) · 같음 · 그 밖 → `reviewed:false` · 괄호 뺀 이름 · `raw`) · 반각 · 전각 · 앞 공백 · 줄바꿈 정리 · 같은 `ko` 행 합치기(뒤 행 다른 표기 → 처음 term `aliases`) · zh-Hant = 분해 뒤 zh 의 `to_display("zh-Hant")`(0.5.0 — 「离子导入 → 離子導入」 · 「激光导入 → 雷射導入」 · 「特色项目 → 特色項目」) · `draft-s2twp` · `reviewed:false` · 빈 칸이면 entry 없음 · `id` = `ph-001` 순서 · 머리 `imported_from` · 출력이 §4.2 검사 통과 · **출력 파일이 이미 있으면 쓰지 않고 0 아닌 코드** · 같은 입력 두 번 → 같은 바이트(결정적) |
 | 통역 | 원형 `test_interpret.py` 복사분(묶기 · 갱신 · 번체 자막 · TTS 간체 · flush · bad start · 전체 흐름 · 닫기 정리 · 오류 코드 · Origin · 토큰) + `lang` **7개** 매핑(§5.5) · `yue` · `zh-Hant` 는 Soniox 에 `zh` · **자막 변환 yue `s2tw`(「激光治療」) · zh-Hant `s2tw` + 표(「雷射治療」 · 「離子導入」 · 0.5.0 D-35) · `to_display` 「激光 软件 导入 项目 → 雷射 軟件 導入 項目」 · zh 간체 · 셋 다 TTS 입력은 간체**(§5.6) · `traditional` 이 와도 무시 · STT 설정에 `context` 가 들어감 · §5.7 괄호 제거 목록 — TTS 입력만 괄호 없음 · caption 은 괄호 그대로 · **(0.5.0 · §5.8) TTS keepalive 가 `{"keep_alive": true}` · 스트림 밖 검증 오류(`stream_id: ""`)가 와도 그 발화 오디오가 끝까지 나옴 + 경고 로그 · 자기 스트림 오류는 `SonioxError(channel="tts")` · 중계 중 오류 로그에 channel · message · lang · paused · stt_last · tts_last(len · lang) — 번역문 · 키 0** |
-| **기록(0.6.0 · §5.9 · D-41)** | `tests/test_records.py` — 가짜 Soniox · `tmp_path` 폴더 · 시계 주입: ① 세션 1회(`start` → final caption 2 · non-final 1 → `stop`) → 오늘 파일 1개 · 줄 = `session_start` · `utterance` 2 · `session_end`(`reason=stop` · `utterances=2`) · 키 순서 · 여기 없는 키 0 · `at` `+09:00` · `seed` = 시드 판 ② 파일 날짜 = UTC+9 날짜(UTC 15:00 = 다음 날 파일) ③ `final:false` 안 씀 · 같은 `id` 두 번 → 1줄 · 둘 다 빈 caption 안 씀 ④ `bad_request`(lang 밖 · 첫 프레임 아님) → 줄 0 · `no_api_key` → start + end(`error` · `no_api_key`) · Soniox 거절 → end `soniox_unavailable` · 브라우저 닫힘 → `close` ⑤ **판정**: ko 대표명 · ko 별칭(0.6.1 — 레포 시드에 ko 별칭이 0개라 가짜 시드로) · L name · L alias 각각 걸림 · 「써마지 하실래요」 → `[]`(0.6.1 — 「써마지」 단독은 아무 term 도 아님) · zh-Hant 번체 자막 ↔ 시드(`t2s`) · 라틴 경계(「contact」 → `ACT` 아님 · 「ACT 시술」 → 걸림) · 공백 무시(「써마지 FLX」 → ph-130) · **더 긴 일치**(「써마지 CPT」 → `kr-001` 만 · 「벨로테로 리바이브」 → `kr-009` 만 · 짧은 이름이 ko 별칭인 경우는 가짜 시드) · `entries[L]` 없는 term 은 ko 로만 · 순서 = 시드 순서 · 없으면 `[]` ⑥ **넣지 않는 것**: 가짜 토큰 · 로그인 아이디 · 주입한 IP · Origin 문자열 · PCM 바이트가 파일에 0 ⑦ 폴더 비면 파일 0 · 삭제 작업 없음 · 로그 `off` / 쓸 수 없는 폴더 → 기동 성공 · 경고 1줄 · 기록 끔 ⑧ **쓰기 실패**(쓰기 함수가 `OSError`) → 그 세션 caption · 오디오 · `ready` 가 기록 없을 때와 같음 · `error` 프레임 0 · 경고 로그 세션당 1줄 ⑨ **7일 삭제**: 오늘 − 7 · − 8 일 파일 지움 · − 6 일 · 오늘 남김 · 이름이 다른 파일(`note.txt` · `2026-10-01.jsonl.bak`) 남김 · 기동 때 1회 · 24시간 뒤 다시(시계 · 잠 주입) · 지우기 실패 파일 하나 → 나머지 계속 ⑩ 표면: 허용 경로 6개 그대로(`test_api_surface.py` 변경 없이 통과) · 일반 로그 캡처에 발화 문장 0 |
+| **기록(0.6.0 · §5.9 · D-41 · 0.7.0 ⑦ · ⑨ — D-42)** | `tests/test_records.py` — 가짜 Soniox · `tmp_path` 폴더 · 시계 주입: ① 세션 1회(`start` → final caption 2 · non-final 1 → `stop`) → 오늘 파일 1개 · 줄 = `session_start` · `utterance` 2 · `session_end`(`reason=stop` · `utterances=2`) · 키 순서 · 여기 없는 키 0 · `at` `+09:00` · `seed` = 시드 판 ② 파일 날짜 = UTC+9 날짜(UTC 15:00 = 다음 날 파일) ③ `final:false` 안 씀 · 같은 `id` 두 번 → 1줄 · 둘 다 빈 caption 안 씀 ④ `bad_request`(lang 밖 · 첫 프레임 아님) → 줄 0 · `no_api_key` → start + end(`error` · `no_api_key`) · Soniox 거절 → end `soniox_unavailable` · 브라우저 닫힘 → `close` ⑤ **판정**: ko 대표명 · ko 별칭(0.6.1 — 레포 시드에 ko 별칭이 0개라 가짜 시드로) · L name · L alias 각각 걸림 · 「써마지 하실래요」 → `[]`(0.6.1 — 「써마지」 단독은 아무 term 도 아님) · zh-Hant 번체 자막 ↔ 시드(`t2s`) · 라틴 경계(「contact」 → `ACT` 아님 · 「ACT 시술」 → 걸림) · 공백 무시(「써마지 FLX」 → ph-130) · **더 긴 일치**(「써마지 CPT」 → `kr-001` 만 · 「벨로테로 리바이브」 → `kr-009` 만 · 짧은 이름이 ko 별칭인 경우는 가짜 시드) · `entries[L]` 없는 term 은 ko 로만 · 순서 = 시드 순서 · 없으면 `[]` ⑥ **넣지 않는 것**: 가짜 토큰 · 로그인 아이디 · 주입한 IP · Origin 문자열 · PCM 바이트가 파일에 0 ⑦ 폴더 비면 파일 0 · 삭제 작업 없음 · 로그 `off`(0.7.0 — `INTERPRET_RECORD_KEEP_DAYS=7` 을 줘도 같다) / 쓸 수 없는 폴더 → 기동 성공 · 경고 1줄 · 기록 끔 ⑧ **쓰기 실패**(쓰기 함수가 `OSError`) → 그 세션 caption · 오디오 · `ready` 가 기록 없을 때와 같음 · `error` 프레임 0 · 경고 로그 세션당 1줄 ⑨ **보관 기간(0.7.0 · D-42)**: **(a) 비었음 · 없음 · 공백만(`"   "`)** → 경고 0 · 오래된 날짜 파일(오늘 − 8 일 등)이 기동 뒤에도 그대로(삭제 0) · 24시간 배경 작업이 만들어지지 않음 · 로그 `keep_days=off` · `sweep: deleted=` 줄 0 **(b) N=7**(` 7 ` · `07` 도 7) → 0.6.0 ⑨ 그대로: 오늘 − 7 · − 8 일 파일 지움 · − 6 일 · 오늘 남김 · 이름이 다른 파일(`note.txt` · `2026-10-01.jsonl.bak`) 남김 · 기동 때 1회 · 24시간 뒤 다시(시계 · 잠 주입) · 지우기 실패 파일 하나 → 나머지 계속 · 로그 `keep_days=7` **(c) 잘못된 값**(`0` · `-1` · `abc` · `+7` · `7.0` 각각) → 경고 로그 1줄 · 삭제 0 · 배경 작업 없음 · 로그 `keep_days=off` · **기동 성공**(기록은 켜진 채 — 오늘 파일에 줄이 써진다) ⑩ 표면: 허용 경로 6개 그대로(`test_api_surface.py` 변경 없이 통과) · 일반 로그 캡처에 발화 문장 0 |
 | 비밀값 | 로그 캡처에 토큰 · 키 · 비밀번호 0 |
 
 ### 9.2 front 확인
@@ -1119,7 +1136,7 @@ front 는 아래 상태 중 하나다. 판정은 **위에서부터**(먼저 맞�
 | ⑳ | **새 시술 정방향** — 한국어 문장 3개(①「써마지 CPT」 · 「소프웨이브」 ② 「프로파일로」 · 「뉴라미스」 ③ 「엑시온」 · 「덴서티」 · 「엠페이스」)를 **zh-Hant · ja · en** 3개 언어로(합성 음성 · `say` 또는 PCM) | 언어별 번역에 §4.2.2 name 이 나온 수(적중 / 시도) · TTS 입력 문자열 기록 · **en 의 대문자 name(EXION · DENSITY · EMFACE) TTS 를 사람이 들어 본 결과** 한 줄(글자 읽기인지 낱말 읽기인지 — OQ-019). 적중 수는 판정 기준이 아니다(기록 · 코디 · 사용자 판정) |
 | ㉑ | **통역 기록** — ⑳ 세션을 `INTERPRET_RECORD_DIR` 켠 back 으로 | 오늘 파일 1개 · 세션마다 `session_start` · `utterance` · `session_end` · `utterance.terms` 에 ⑳ 의 `kr-…` id · 파일에 키 · 토큰 · IP 0(grep) · 일부러 폴더 권한을 뺀 실행 1회 → 통역은 끝까지 · 경고 로그 1줄 |
 
-- ⑲ ~ ㉑ 은 backend 가 로컬에서(WP16) · ⑳ 의 일부(3개 언어 1회) · ㉑ · 7일 삭제는 운영에서 다시(WP18 · §9.6).
+- ⑲ ~ ㉑ 은 backend 가 로컬에서(WP16) · ⑳ 의 일부(3개 언어 1회) · ㉑ · 7일 삭제는 운영에서 다시(WP18 · §9.6). (0.7.0 — 보관 기간이 env 로 바뀐 뒤의 운영 확인은 §9.6 「배포 뒤 확인 (0.7.0 · WP20)」.)
 
 **5차 결과 — WP16 backend 2026-10-27 (`live-check-wp16-*.json` · 시드 `2026-10-27.6` · 결과 JSON 에 키 문자열 0)** — 배포 main 17c26b5(PR #10). 시험 `pytest` 295 passed · `ruff` 통과.
 
@@ -1165,14 +1182,14 @@ front 는 아래 상태 중 하나다. 판정은 **위에서부터**(먼저 맞�
 - 운영은 **데모 로그인 켬**(`INTERPRET_DEMO_LOGIN=true` — Secret · D-30). 데모가 끝나면 값만 지우고 back 재시작.
 - **배포 주소 확인(코디 · 8차)**: `/api/health` · `/api/auth/me` → `{ok}` · `/api/glossary` 404 · `/docs` 404 · `wss /api/interpret` `start` → `ready`. (4차까지: 로그인 200 · manifest `name` 통키 · `short_name` Tongky · 데모 로그인 `demoLogin:true` · `/api/auth/demo` 200.) **사람 목소리 폰 E2E(D-35 대만명 · D-36 길게 누름)는 남음**(OQ-017).
 
-### 9.6 배포 — 통역 기록 PVC (0.6.0 — D-41 · 선례 cc-prototype `procedure-db`)
+### 9.6 배포 — 통역 기록 PVC (0.6.0 — D-41 · 0.7.0 보관 기간 — D-42 · 선례 cc-prototype `procedure-db`)
 
 **infra 차트 `charts/interpret-pwa`(k8s_infra_mac)** — 지금 back 은 볼륨 없는 무상태(차트 주석 「Stateless (no DB, no volume)」 · `podSecurityContext` 에 `fsGroup` 없음). 아래를 더한다.
 
 | 항목 | 값 | 근거 |
 |---|---|---|
 | PVC | 이름 **`interpret-pwa-records`** · `ReadWriteOnce` · **`storageClassName: local-path`** · **1Gi** · 주석 `helm.sh/resource-policy: keep`(차트를 지워도 남는다) · 템플릿 `templates/back-pvc.yaml` · 이름 · 크기는 values(`back.recordsPvcName` · `back.recordsStorage` 류) | cc-prototype `back-pvc.yaml`(`procedure-db` · local-path · keep · 1Gi) |
-| 크기 근거 | 한 줄 수백 B ~ 수 KB · 시연 규모(하루 발화 수백 ~ 수천) · 7일만 보관 → 수 MB. 1Gi 는 선례와 같은 최소 단위 · 남는 여유 | 기본값 |
+| 크기 근거 | 한 줄 수백 B ~ 수 KB. **0.7.0 — 보관은 무기한**(D-42 · 운영은 삭제 안 함): 운영 실측 **11-11 ~ 11-14 4일에 44KB**(하루 약 11KB — 하루 수십 KB 안쪽) → 이 속도면 1년에 약 4MB · 1Gi 는 그대로 여유(크기 변경 없음). (0.6.0 근거: 시연 규모 · 7일만 보관 → 수 MB · 1Gi 는 선례와 같은 최소 단위) | 실측(코디 2026-11-14) · 기본값 |
 | 마운트 | back 컨테이너 `/data` ← PVC · **ConfigMap `INTERPRET_RECORD_DIR=/data/records`**(비밀 아님 · `checksum/config` 로 pod 재시작) — 하위 폴더는 back 이 기동 때 만든다(§5.9) | §2.4 |
 | 쓰기 권한 | `podSecurityContext.fsGroup: 10001` 을 더한다(이미지 uid/gid 10001 · `runAsUser` · `runAsGroup` 그대로) | cc-prototype values `fsGroup: 10001` |
 | **노드 고정(prod)** | `values-prod.yaml` 에 **`back.nodeSelector: {kubernetes.io/hostname: lima-worker-1}`** · 템플릿에 `nodeSelector` 블록. **local-path 는 `lima-worker-1` 에서만 프로비저닝된다**(local-path-config `nodePathMap`) — WaitForFirstConsumer 라 다른 노드에 잡히면 PVC 가 Pending 으로 남고 back 이 뜨지 않는다 | cc-prototype `values-prod.yaml` 주석(fix1 2026-10-13 — Pending 사고) |
@@ -1180,6 +1197,7 @@ front 는 아래 상태 중 하나다. 판정은 **위에서부터**(먼저 맞�
 | **CPU 예약(0.6.1)** | back `resources.requests.cpu` **50m**(100m 에서 · memory 256Mi · limits cpu 1 · memory 1Gi 그대로). 노드 고정으로 back 은 `lima-worker-1` 에만 뜰 수 있는데 그 노드의 CPU 예약이 3,950m(98%)라 request 100m 새 pod 가 **Pending**(infra PR #36). back 은 Soniox 중계라 평소 사용량이 작다 — 실제 사용은 limit 1 까지 그대로 | 배포 10 실측 · 코디 |
 | 차트 주석 · NOTES | 「Stateless (no DB, no volume)」 · 「No volumes → no fsGroup」 주석을 고친다 | — |
 | 비밀값 | 바뀌지 않는다(Secret 키 목록 그대로). `INTERPRET_RECORD_DIR` 은 ConfigMap | §2.4 |
+| **보관 기간(0.7.0)** | `INTERPRET_RECORD_KEEP_DAYS` 는 **ConfigMap · Secret 에 넣지 않는다**(= 삭제 안 함 · §5.9). 0.7.0 배포에서 infra 가 바꾸는 것은 **이미지 태그뿐**(차트 · PVC · ConfigMap 키 그대로). 베타가 끝나 다시 켤 때 ConfigMap 에 값만 넣는다(OQ-020) | D-42 |
 
 **꺼내기 — kubectl(코디 · 배포 문서 `docs/interpret-pwa-deploy.md` 에 절을 더한다)**
 
@@ -1193,7 +1211,7 @@ kubectl -n interpret-pwa-prod cp <back pod>:/data/records/<YYYY-MM-DD>.jsonl ./<
 - 꺼낸 파일에는 **대화 문장**이 들어 있다 — **레포(특히 public 문서 레포) · PR · 보고서 본문에 붙이지 않는다**. 로컬 작업 폴더(git 밖)에서 보고 지운다. 보고에는 줄 수 · term 적중 수 같은 **수치만**.
 - 기록을 지우고 싶으면(시연 전 초기화 등) 같은 방식으로 `exec … rm /data/records/<파일>` — back 은 파일이 없어도 다음 줄에서 새로 만든다.
 
-**배포 뒤 확인(WP18 · 운영 주소)** — ① back 기동 로그 `glossary seed loaded: version=2026-10-27.6 …` · `interpret records: on dir=/data/records keep_days=7` ② PVC `Bound` · back pod 가 `lima-worker-1` ③ **새 시술 3개 언어 실발화 1회**(⑳ 과 같은 문장 · zh-Hant · ja · en — 폰 또는 합성 음성) ④ **오늘 파일이 생기고** 그 세션의 start · utterance · end 줄 · `terms` 에 `kr-…` ⑤ **7일 삭제**: `exec` 로 `<오늘−8일>.jsonl` · `<오늘−6일>.jsonl` · `keep.txt` 를 만들고 back 을 재시작(`rollout restart` — 기동 때 삭제) → −8일 파일만 사라짐 · 로그 `sweep: deleted=1` → 시험 파일 정리 ⑥ §3.5 표면 그대로(`/api/health` `{ok}` · `/api/glossary` · `/docs` 404) ⑦ 롤아웃이 PVC 를 다시 붙이며 끝남(Pending 0).
+**배포 뒤 확인(0.6.0 · WP18 · 운영 주소 — 0.7.0 확인은 아래 「배포 뒤 확인 (0.7.0 · WP20)」)** — ① back 기동 로그 `glossary seed loaded: version=2026-10-27.6 …` · `interpret records: on dir=/data/records keep_days=7` ② PVC `Bound` · back pod 가 `lima-worker-1` ③ **새 시술 3개 언어 실발화 1회**(⑳ 과 같은 문장 · zh-Hant · ja · en — 폰 또는 합성 음성) ④ **오늘 파일이 생기고** 그 세션의 start · utterance · end 줄 · `terms` 에 `kr-…` ⑤ **7일 삭제**: `exec` 로 `<오늘−8일>.jsonl` · `<오늘−6일>.jsonl` · `keep.txt` 를 만들고 back 을 재시작(`rollout restart` — 기동 때 삭제) → −8일 파일만 사라짐 · 로그 `sweep: deleted=1` → 시험 파일 정리 ⑥ §3.5 표면 그대로(`/api/health` `{ok}` · `/api/glossary` · `/docs` 404) ⑦ 롤아웃이 PVC 를 다시 붙이며 끝남(Pending 0).
 
 **배포 뒤 확인 결과 (0.6.1 — 코디 · 배포 10 · 11)**
 
@@ -1207,14 +1225,29 @@ kubectl -n interpret-pwa-prod cp <back pod>:/data/records/<YYYY-MM-DD>.jsonl ./<
 
 - 운영 `GLOSSARY_CONTEXT_MAX_CHARS` 는 비어 있어야 언어별 표가 쓰인다(§2.4) — 위 zh-Hant 기준 21,689 가 로그에 나온 것이 그 확인이다.
 
+**배포 뒤 확인 (0.7.0 · WP20 · 운영 주소 — D-42)** — 운영에는 지금 11-11 ~ 11-14 날짜 파일이 있고, 0.6.x 배포본이 떠 있으면 **11-11 파일이 11-18 에 지워진다** — 그 전에 0.7.0 back 이 떠 있어야 한다.
+
+| # | 확인 |
+|---|---|
+| ① | back 기동 로그 `interpret records: on dir=/data/records keep_days=off`(시드 로드 줄은 0.6.1 과 같다 — 시드는 안 바뀐다) · `interpret records sweep: deleted=` 줄 0 |
+| ② | 배포 전 `exec … ls -l /data/records` 로 **가장 오래된 날짜 파일 이름 · 파일 수**를 적어 둔다 → 배포(롤아웃 = 재시작) 뒤 다시 `ls` → **가장 오래된 날짜 파일이 그대로 남고 파일 수가 줄지 않았다** |
+| ③ | 렌더된 ConfigMap 에 `INTERPRET_RECORD_KEEP_DAYS` 키가 **없다** · infra 변경은 이미지 태그뿐 |
+| ④ | §3.5 표면 그대로(`/api/health` `{ok}` · `/api/glossary` · `/docs` 404) · 오늘 파일에 줄이 계속 써진다(세션 1회 뒤 줄 수 증가 — 수치만) |
+| ⑤ | 롤아웃이 PVC 를 다시 붙이며 끝남(Pending 0) · back pod `lima-worker-1` |
+
+- 운영 파일을 지우거나 고쳐서 시험하지 않는다(0.6.0 ⑤ 의 시험 파일 만들기는 0.7.0 에서 하지 않는다 — 삭제가 꺼져 있다). 확인 결과에는 파일 이름(날짜) · 줄 수 같은 **수치만** 적는다(문장 0).
+- 결과는 WP20 뒤 이 자리에 적는다(지금은 배포 전).
+
 ## 10. 열린 것 — 근거(DEC · 공식 문서 · 원형)로 닫지 못한 것
 
 > 0.5.0 마감 정리 — **남은 것은 셋**: 사람 목소리 E2E(OQ-017) · 못 찾은 대만명 80(OQ-016) · 데모 로그인 끄기(OQ-008). 나머지는 닫았거나 합쳤다(근거는 각 행).
 > 0.6.0 — **둘을 더한다**: 처분 밖에 남은 모호 · 근거 없는 시드 값(OQ-018) · 대문자 영문 name 의 TTS · 일반 단어 역방향(OQ-019). OQ-016 에 0.6.0 의 `reviewed:false` 가 더해진다.
+> 0.7.0 — **하나를 더한다**: 베타가 끝나는 때 · 그때 넣을 보관 기간(OQ-020 · D-42).
 > 0.6.1 마감 — **OQ-018 닫음**(처분 ① ~ ⑤ · ⑤ 는 뒤집음 · §4.2.3 D). **남은 것**: 사람 목소리 E2E(OQ-017 · ④ 새 시술 미적중 더함) · 시드 검수 숙제(OQ-016) · 데모 로그인 끄기(OQ-008) · 대문자 영문 TTS · 일반 단어 역방향(OQ-019 — 사용자 청취 대기). 계약 안에서 안고 가는 손실: zh-Hant 역방향 별칭 33(§4.6 — 별칭 정리나 줄이기 순서 변경이 필요해지면 새 결정).
 
 | ID | 무엇 | 지금 | 왜 못 닫나 · 권장 |
 |---|---|---|---|
+| **OQ-020** | **(0.7.0) 베타가 끝나는 때 · 그때 넣을 보관 기간** — D-42 는 「베타가 끝나면 값만 넣어 다시 켠다」까지만 정했다. 언제 끝나는지 · `INTERPRET_RECORD_KEEP_DAYS` 에 몇 일을 넣는지 · 그동안 쌓인 파일을 그때 한꺼번에 지워도 되는지(값을 넣으면 첫 기동에 N 일보다 오래된 파일이 모두 지워진다 · §5.9)는 정해지지 않았다 | 운영 = 삭제 안 함(값 없음) · 기록이 계속 쌓인다(§9.6 크기 근거 — 4일 44KB) | 사용자가 베타 종료를 정할 때 같이 정한다. 할 일: 필요한 기록을 먼저 꺼낸 뒤(§9.6 kubectl) infra ConfigMap 에 값만 넣고 back 재시작 — 코드 수정 없음(D-42). 용량 경보 · 압축 같은 정책은 계약에 없다(짓지 않는다) |
 | **OQ-017** | **사람 목소리 E2E**(0.5.0 — OQ-001 · OQ-007 의 남은 확인을 합침) — ① 대만 현지명 양방향: 한국어 「울쎄라」 · 「써마지FLX」 → 대만명이 합성 음성에서 상표명 · 음역으로 나옴(⑰ 1/4 — 짝은 context 에 있음 · 줄이기와 무관) ② `yue` = 표준 문어(번체 자막) + 만다린 음성(OQ-001) ③ iPhone 길게 누름(D-36 — 선택 · 확대 · 콘텍스트 메뉴 · 원 밖으로 미끄러짐) · 누르는 중에 TTS 가 오면 송신 막힘(반이중 그대로 · DEC 에 따로 없음) ④ **(0.6.1) 새 시술 미적중**(⑳ 합성 음성 · 짝은 context 에 있음): 프로파일로 → STT 가 「프로파일」로 들음(3개 언어 모두 · 번역 전) · 뉴라미스 zh-Hant → 「優美思」 · ja 「サーマジCPT」(시드 name `サーマクールCPT` 와 다른 음역 — ja alias 로 넣을 근거 없음 · 조사 R4 · R5) · 덴서티 ja → 「デンソティ」 · zh-Hant 에서 Exion · density · 엠페이스가 영문 | 코드 · 시드로 더 할 것이 보이지 않음 · 배포 fe8475e(④ 는 17c26b5) | 합성 음성 표본 1문장씩이라 판정 못 함. 권장: 사용자가 폰(배포 주소)에서 사람 목소리로 1회 — 결과로 시드(대만명 별칭 · ④ 의 음역 alias 는 근거가 생기면) 또는 DEC 를 고친다. 운영 기록(§5.9)의 `terms` 로 적중을 셀 수 있다 |
 | **OQ-016** | **시드 검수 숙제(사용자 PR)** — ① **대만 현지명을 못 찾은 80 term**(zh-Hant = 초안 · `draft-s2twp` · `reviewed:false` — `.5`(D-38)로 일부 정리) ② 출처 1개뿐인 대만명(`web-research` · `reviewed:false`) ③ 첫 가져오기 「그 밖」 괄호 60(OQ-012 를 합침 — 괄호를 뺀 이름 + `raw` 보존 · `reviewed:false`) ④ **(0.6.0) 새 시술 · 대륙 변경의 ✗ 칸**(§4.2.2 · §4.2.3 — 「현지에 없음 = 영문」 · 출처 1) · **C 결함 4칸의 현지 표기**(`manual` · 영문으로 둠) | 데이터 그대로 · context 에는 들어감(§4.2 — 검수 여부로 빼지 않음). 메뉴가 없어(D-37) 목록은 시드에서 `reviewed:false` 로 찾는다 | 현지명 · 별칭은 사람이 정한다(D-32 · D-33 · D-35 — 우리가 짓지 않는다). 권장: 사용자가 시드 PR(§4.2.1 규칙) → 재배포(§9.5) |
 | **OQ-008** | **데모 로그인 끄기** · 로그아웃해도 토큰은 만료(기본 12시간)까지 유효 | 운영 **데모 켬**(`INTERPRET_DEMO_LOGIN=true`) — 주소만 알면 로그인된다 · 서버 토큰 무효화 없음 | 데모가 끝나는 때는 사용자가 정한다. 할 일: Secret 에서 `INTERPRET_DEMO_LOGIN` 값만 지우고 back 재시작(D-30 · §3.4). 토큰 무효화는 PoC 범위 밖 |
@@ -1279,5 +1312,6 @@ kubectl -n interpret-pwa-prod cp <back pod>:/data/records/<YYYY-MM-DD>.jsonl ./<
 | D-38 대만어 사전 2차(시드 `.5` — 톡신 대만 허가명 · 한국 전용 제품 영문 · 모호어 제거) | §4.2.1 「지금까지 반영한 판」 · §9.5 배포 9 (0.6.0 에서 뒤늦게 기록) |
 | D-39 사전 밖 시술 7개 언어 추가 — 현지 피부과 표기 · 출처 2+ 만 reviewed | §4.2 `id` 규칙(`kr-`) · §4.2.1 R1 ~ R9 · **§4.2.2** · §4.6 0.6.0 · §9.1 「시드」 ⑥ · §9.3 ⑲ ⑳ · OQ-016 ④ · OQ-019 |
 | D-40 대륙 중국어 검증 — 대륙 공식명 · 한국 전용 제품 영문 · 모호어 제거 | §4.2.1 R1 · R2 · 모호어 목록 · **§4.2.3 A** · **§4.2.3 D**(0.6.1 OQ-018 처분) |
-| D-41 통역 기록 — 서버에만 · 화면 · API 없음 · 날짜별 JSONL · 음성 없음 · 7일 삭제 · kubectl(Scope Out → In) | §1 · §2.1 · §2.4 · §3.5 · §5.1 · **§5.9** · §9.1 「기록」 · §9.3 ㉑ · **§9.6** |
+| D-41 통역 기록 — 서버에만 · 화면 · API 없음 · 날짜별 JSONL · 음성 없음 · 7일 삭제(D-42 가 뒤집음) · kubectl(Scope Out → In) | §1 · §2.1 · §2.4 · §3.5 · §5.1 · **§5.9** · §9.1 「기록」 · §9.3 ㉑ · **§9.6** |
+| D-42 베타 기간에는 기록을 지우지 않는다 — 보관 기간 env `INTERPRET_RECORD_KEEP_DAYS` · 비면 삭제 안 함(운영 기본) · 값만 넣어 다시 켬(D-41 의 7일 삭제를 뒤집음) | §1 · §2.1 · **§2.4** · **§5.9 「보관 기간」** · §9.1 「기록」 ⑦ · ⑨ · **§9.6**(크기 근거 · 보관 기간 행 · 배포 뒤 확인 0.7.0) · OQ-020 |
 | (DEC 밖) 운영 장애 2026-10-27 02:07 — TTS keepalive 형식 | §5.1 · §5.8 · §9.1 · §9.3 ⑱ |
