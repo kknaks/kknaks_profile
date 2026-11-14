@@ -2,7 +2,7 @@
 type: spec
 id: SPEC-001
 title: "통역 PWA — 로그인 · 용어집 context · 통역 WS · 화면 · PWA 계약"
-version: 0.7.0
+version: 0.8.1
 status: draft
 product: interpret-pwa
 created_at: 2026-10-26
@@ -22,9 +22,12 @@ links:
   releases: []
   related: []
 sources:
-  - para/projects/summer-star/interpret-pwa/10-decision/decision-001-interpret-pwa.md (D-01 ~ D-42 · accepted — D-13 · D-32 는 뒤집힘 · D-41 이 Scope Out 「통역 기록 저장」을 In 으로 · D-42 가 D-41 의 「7일 뒤 자동 삭제」를 뒤집음)
+  - para/projects/summer-star/interpret-pwa/10-decision/decision-001-interpret-pwa.md (D-01 ~ D-50 · accepted — D-13 · D-32 는 뒤집힘 · D-41 이 Scope Out 「통역 기록 저장」을 In 으로 · D-42 가 D-41 의 「7일 뒤 자동 삭제」를 뒤집음 · D-43 ~ D-50 품질 개선(D-47 방향 바로잡음 · D-49 = SPEC OQ-025 · D-50 = SPEC OQ-029) · 「열린 것 (2026-11-14 · 품질 개선)」 OQ-021 ~ 023 닫힘)
+  - orchestration/work/interpreter-idea/review-quality-doc-report.md (0.8.0 문서 검수 WARN W-1 ~ W-6 — 0.8.1)
   - 확정 시안 — Claude Design 캔버스 「Interpret PWA」(r3 · D-22 ~ D-24 · D-28 ~ D-30 반영 · r7 D-36 `Mode-Auto-Idle` · `PTT-Ready` · `PTT-Pressed` · r8 D-37 `Glossary` 삭제 · 화면 21개) 로컬 사본 interpret-pwa-poc 코드 워크트리 design/{README.md,project/*.dc.html,project/ceramique-theme.css} (D-20 · D-21 · 화면 19개)
-  - 구현 kknaksss/interpret-pwa main d0a91a7(배포본 · D-22 ~ D-32 반영 — 0.4.0 은 이 코드에 맞춰 적고, 다르면 DEC 를 따른다) · main 9befd18(PR #4 · D-33 시드 — 0.4.1 대조) · main fe8475e(PR #5 ~ #8 · D-34 ~ D-37 · 운영 장애 수정 — 0.5.0 대조) · main 2a9d5a5(PR #9 · D-38 시드 `.5` — 0.6.0 대조) · **main 17c26b5(PR #10 · 시드 `.6` · 통역 기록 · 언어별 한도 — 0.6.1 대조 · 지금 back 배포본)**
+  - 구현 kknaksss/interpret-pwa main d0a91a7(배포본 · D-22 ~ D-32 반영 — 0.4.0 은 이 코드에 맞춰 적고, 다르면 DEC 를 따른다) · main 9befd18(PR #4 · D-33 시드 — 0.4.1 대조) · main fe8475e(PR #5 ~ #8 · D-34 ~ D-37 · 운영 장애 수정 — 0.5.0 대조) · main 2a9d5a5(PR #9 · D-38 시드 `.5` — 0.6.0 대조) · **main 17c26b5(PR #10 · 시드 `.6` · 통역 기록 · 언어별 한도 — 0.6.1 대조)** · **main e0fbda8(PR #11 · 보관 기간 env — 0.8.0 대조 · 지금 back 배포본 · `back/app/service/{glossary.py,interpret/soniox.py,interpret/langs.py,interpret/assembler.py,interpret/session.py}` · `front/lib/view.ts`)**
+  - Soniox 공식 문서 2026-11-14 — stt/models(v6 2026-11-03 · v5 Deprecated · 2026-12-15 제거) · stt/concepts/context(`text` 칸 · 8,000토큰) · stt/rt/endpoint-detection(끊김 값 넷 · 범위 · 기본값) (0.8.0 §4.5 · §5.10)
+  - 품질 시험 목록 T01 ~ T33 — 프로필 레포 워킹트리 `reference/2026-11-12-interpreter-idea/test-sentences.md`(**로컬 전용 · git 제외** — DEC OQ-021 · 이 문서에는 번호 · 분류 · 판정 방식만 · 0.8.0 §9.3)
   - orchestration/work/interpret-pwa-poc/{research-tw-names-report.md,d35-be-report.md,live-check-d35-2026-10-27.json,d36-fe-report.md,design-r7-report.md,d37-be-report.md,d37-fe-report.md,design-r8-report.md} (대만 현지명 조사 77/157 · D-35 시드 · 운영 장애 2026-10-27 02:07 원인 · D-36 · D-37 구현)
   - orchestration/work/interpret-pwa-v2/{research-r1-zh-report.md,research-r2-ja-en-tw-report.md,research-r3-th-vi-yue-report.md,research-dispositions.md} (D-39 · D-40 조사 3갈래 2026-10-27 · **코디 처분이 기준** — 0.6.0 §4.2.1 ~ §4.2.3)
   - orchestration/work/interpret-pwa-v2/{wp16-be-report.md,wp17-infra-report.md,live-check-wp16-{seed,seed-2,seed-3,ceiling,newterms,newterms-2,records}.json} (WP16 「처분 2」 · 「처분 3」 — 언어별 한도 · OQ-018 ⑤ 뒤집음 · 실물 ⑲ ~ ㉑ · WP17 PVC — 0.6.1)
@@ -34,7 +37,7 @@ sources:
   - orchestration/work/interpret-pwa-poc/{wp9-be-report.md,wp9-fe-report.md,live-check-wp9-2026-10-27.json} (시드 실물 ⑫ ~ ⑯ · 한도 20251 처분)
   - orchestration/work/interpret-pwa-poc/{wp6-be-report.md,wp6-fe-report.md,fix-phone1-be-report.md,fix-phone1-fe-report.md,fix-phone2-be-report.md,fix-phone2-fe-report.md,fix-phone2-design-report.md,fix-phone3-be-report.md,fix-phone3-fe-report.md,live-check-wp6-2026-10-26.json} (D-22 ~ D-32 구현 · 실물 ⑧ ~ ⑪ · 한도 18832)
   - orchestration/work/interpret-pwa-poc/{design-report.md,live-check-2026-10-26.json,review-code-report.md,e2e-feedback-batch-1.md} (시안 제안 · Soniox 실물 ① ~ ⑦ · 코드 리뷰 FAIL-1 · WARN 1 ~ 6)
-  - para/projects/summer-star/interpret-pwa/00-baseline/baseline-001-interpret-pwa.md (입력 1 ~ 4 · 확인한 사실)
+  - para/projects/summer-star/interpret-pwa/00-baseline/baseline-001-interpret-pwa.md (입력 1 ~ 5 · 확인한 사실 2026-10-26 · 2026-11-14)
   - cc-prototype origin/main procedure/back/app/{api/interpret.py,service/interpret/*.py,service/auth.py,config.py,main.py,domain/errors.py} · tests/test_interpret.py (통역 · 로그인 원형 — 로직 정본)
   - cc-prototype origin/main _archive/cc/front/lib/interpret.ts (브라우저 마이크 · 재생 · 반이중 원형)
   - cc-prototype origin/main procedure/front/{tailwind.config.ts,app/layout.tsx,app/styles/medikit-patches.css,package.json} · _archive/cc/design/_ds/medikit-*/README.md (medikit 붙이는 법)
@@ -50,7 +53,7 @@ sources:
 > 통역 중계는 cc-prototype 원형(`procedure/back` 의 `service/interpret/` · `api/interpret.py`)을 **복사해서** 쓰고,
 > 이 문서는 원형과 **달라지는 자리**와 새로 생기는 것(로그인 · 용어집 · 화면 · PWA)을 정한다.
 >
-> SSOT 순서(이기는 순): ① DEC-001 D-01 ~ D-42 ② 화면 = 확정 시안(D-20) ③ 통역 로직 = 원형 코드(`origin/main`) ④ Soniox 공식 문서 · 실물 결과(§9.3) ⑤ 이 문서의 기본값.
+> SSOT 순서(이기는 순): ① DEC-001 D-01 ~ D-50 ② 화면 = 확정 시안(D-20) ③ 통역 로직 = 원형 코드(`origin/main`) ④ Soniox 공식 문서 · 실물 결과(§9.3) ⑤ 이 문서의 기본값.
 > **화면 정본은 확정 시안이다(0.3.0 · D-20 · D-21)** — Claude Design 캔버스 「Interpret PWA」(사용자가 직접 고친다). 로컬 사본은 코드 레포 `design/project/*.dc.html` — 참고 자료이고 빌드에 넣지 않는다. 시안이 바뀌면 사본을 다시 받고 §6 · §7 을 맞춘다. **시안과 DEC 가 다르면 DEC 가 이긴다**(D-22 ~ D-25 · D-29 · D-31 은 시안보다 뒤에 정했거나 시안을 고친 결정이다). 시안에 없는 자리(네트워크 실패 로그인 · 오프라인 화면)는 이 문서 문구를 따른다.
 >
 > 이 레포는 public — Soniox 키 · 로그인 아이디 · 비밀번호 · 세션 비밀값 · 실명을 쓰지 않는다. env 는 **이름만**(D-06 · D-11).
@@ -59,6 +62,8 @@ sources:
 
 | 버전 | 날짜 | 무엇 |
 |---|---|---|
+| 0.8.1 | 2026-11-14 | 품질 개선 보완 — DEC **D-49 · D-50** · 고친 **D-47** · 문서 검수 WARN 6(`review-quality-doc-report.md`): **§4.5 문안 = S1 ~ S4 네 문장**(D-49 — 「시술은 수술이 아닌 미용 시술」 · OQ-025 닫음 · 424자) · **§4.6 다시 계산**(문안 439자 — zh-Hant 역방향 별칭 33 → **44** · th 여유 **100**) / **§9.3 손님 쪽 문장 = 7개 언어 × 3 = 21**(D-50 · OQ-029 닫음) / **§9.3 「조합」 — 끄는 길**(W-1: 조립 · 세션 함수의 선택 인자로만 · 운영 기본값 = 켬 · env · WS 로 못 끔 · A · B 확인에 「막힌 빈 원문 수 0」) · **3절 = 기대한 수의 발화**(W-2: 규칙 파일에 문장마다 기대 확정 발화 수 · 조각 수 = 실제 − 기대) · **기계 판정 규칙 종류 넷**(W-3: 글자 그대로 · 정규식 · 발화 수 · 기계로 못 옮기면 사람 판정) · **합성 언어 = 말할 문장의 언어**(W-4) / §9.1 「기본값 = 켬」 시험 / **§5.10 · OQ-027 `endpoint_sensitivity` 방향 단정**(공식 「Higher values make endpoints more likely」 → 덜 끊으려면 낮춘다 · D-47) / 부록 A D-47 · D-49 · D-50 |
+| 0.8.0 | 2026-11-14 | 품질 개선 — DEC D-43 ~ D-48 · DEC OQ-021 ~ 023 반영(배포본 main e0fbda8 대조 · 코드는 WP21 · 시드는 WP23 에서 따라온다): **§5.10 STT 모델 `stt-rt-v6`**(D-43 — 모델 이름만 · 다른 STT 설정 그대로) · **끊김 값**(D-47 — 1루프 `max_endpoint_delay_ms` 1000 그대로 · 올릴지는 시험 3절 뒤 사용자 · 공식 문서의 이름 · 범위만 인용) / **§5.11 빈 원문 막기**(D-48 — 원문에 글자 · 숫자가 하나도 없는 발화는 자막 · TTS 로 내보내지 않음) / **§4.5 context 서술 칸 `text`**(D-45 — 역할 · 방향 문안 초안 · `general` 은 그대로 · 일반 낱말 짝은 `translation_terms` 에 넣지 않음) · **§4.6 `text` 는 줄이지 않는 칸** · 언어별 여유 계산 방법 · 시드 `.6` 기준 추정(zh-Hant 역방향 별칭 33 → 42) / **§4.2.4 시드 `.7` 보정 절 — 자리만**(D-46 — 근거 · 규칙 · 처분 절차 · 이름 겹침 원칙 · 확인된 오류 목록 · **바꿀 값 표는 조사 뒤 채움**) / **§9.3 「6차 — 품질 시험」**(D-44 — 목록 위치 · 분류 5개 · 조합 A · B · C · 입력 = Soniox TTS 음성 파일 · 기계 / 사람 판정 · 손님 쪽 문장 조건 · 울쎄라 원인 가르기 · 결과는 번호 · 수치만) / §9.1 시험(STT 설정 · context `text` · 빈 원문) / §9.6 배포 뒤 확인 0.8.0(WP25) / §5.1 표 / §10 OQ-024 ~ OQ-029 / 부록 A D-43 ~ D-48. 새 env 없음 · WS 메시지 모양 · 허용 경로 6개 · 통역 기록 줄 모양은 그대로 |
 | 0.7.0 | 2026-11-14 | 보관 기간 env — DEC D-42 반영(배포본 main 17c26b5 대조 · 코드는 WP19 에서 따라온다): **§5.9 「7일 뒤 삭제」 → 「보관 기간 — env」** — `INTERPRET_RECORD_KEEP_DAYS` · **비어 있으면 삭제 안 함**(기동 때 삭제 0 · 24시간 배경 작업을 만들지 않음 · 기동 로그 `keep_days=off`) · 양의 정수 N 이면 0.6.0 규칙 그대로 7 자리에 N(`keep_days=N`) · 그 밖의 값(0 · 음수 · 숫자 아님)은 경고 1줄 뒤 삭제 안 함(기동은 멈추지 않음) · 기록 끔이면 값과 무관 / §2.4 env 행 / §1 · §2.1 디렉토리 설명 / §9.1 「기록」 ⑦ · ⑨ 시험 / §9.3 주 / **§9.6** — 운영 ConfigMap 에 넣지 않음(infra 는 이미지 태그만) · 크기 근거(무기한 · 실측 4일 44KB) · 배포 뒤 확인 0.7.0(WP20) / §10 OQ-020(베타가 끝나는 때 · 넣을 값) / 부록 A D-42. D-41 의 나머지(넣는 것 · 안 넣는 것 · 화면 · API 없음 · 꺼내기 kubectl · 허용 경로 6개)는 그대로 |
 | 0.6.1 | 2026-10-28 | v2 마감 동기 — 배포본 code main 17c26b5(PR #10) · infra PR #35 · #36 · WP16 「처분 2」 · 「처분 3」 대조: **§2.4 · §4.6 한도 = 언어별 표**(en 23,424 · ja 20,419 · zh 20,933 · zh-Hant 21,689 · th 21,343 · vi 22,891 · yue 21,123 — 시드 `.6` 실측 통과 최대치 × 0.9 내림 · `GLOSSARY_CONTEXT_MAX_CHARS` 는 값이 있으면 모든 언어를 덮는 하나의 값 · 운영은 넣지 않음) / **OQ-018 닫음 — ⑤ 뒤집음**(ph-130 ko 별칭 「써마지」 지움 — 「써마지 CPT」 가 FLX 로 오역 · 실물 ⑳) · ① ~ ④ 처분 반영을 **§4.2.3 D** 로 기록 / §4.2.1 모호어 표 · §4.2.2 · §5.9 「더 긴 일치」 예 · §9.1 시드 · context · 기록 시험 / **§9.3 ⑲ ~ ㉑ 결과**(5차) / **§9.5 배포 기록 10 · 11 · §9.6 back `requests.cpu` 50m**(lima-worker-1 CPU 예약 98% — PVC 고정 노드에 새 pod Pending · limit 1 그대로) · 배포 뒤 확인 결과 / §10 OQ-019(사용자 청취 대기) · OQ-017 ④ 새 시술 미적중 |
 | 0.6.0 | 2026-10-27 | interpret-pwa-v2 — DEC D-38 ~ D-41 반영(배포본 main 2a9d5a5 대조): **§4.2.1 사전 내용 규칙을 언어 공통으로 다시 씀** — 현지 허가명 · 공식명 우선(대륙 = NMPA · 브랜드 대륙 공식명 · D-40) · **「현지에 없음 = 영문」을 7개 언어 공통 규칙**으로 · 옛 표기는 alias · 모호어 목록(언어별) · 묘사 꼬리 · 제조사 접두 · 대소문자 변형은 alias 로 안 넣음 · `reviewed` = 독립 현지 출처 2+ · **홍콩(yue)은 대만(zh-Hant)과 독립** · D-38(시드 `.5`) 기록 / **§4.2.2 새 시술 13개**(D-39 · term id `kr-001` ~ `kr-013` — Procedure Hub 밖 · N13 울트라셰이프 제외) × 7개 언어 표 / **§4.2.3 기존 표기 변경**(zh 대륙 공식명 · 미허가 톡신 · 한국 전용 제품 영문 · 포텐자 · 장르어 제거 · th 쥬베룩 · 스컬트라 · yue · vi 결함) / §4.2 검사 7 「보이지 않는 글자 0」(`白毒` 의 U+200C) · term `id` 규칙 · `version` `2026-10-27.6` / §4.6 `.6` 크기는 실측 ⑲ 로 · 기본값 20,251 그대로 / **§5.9 통역 기록 신설**(D-41 — back PVC · `INTERPRET_RECORD_DIR` · 날짜별 JSONL · 세션 시작/발화/끝 줄 · 걸린 term 판정 · 음성 · 토큰 · IP · 계정값 0 · 7일 삭제 · 쓰기 실패는 통역을 끊지 않음 · 화면 · API 없음 · 꺼내기 = kubectl) / §1 범위 · §2.4 env · §3.5 / §9.1 「시드」 · 「기록」 시험 · §9.3 ⑲ ~ ㉑ · **§9.6 배포 — back PVC(local-path · `lima-worker-1` 노드 고정 · 1Gi · keep)** / §10 OQ-018 · OQ-019 |
@@ -85,6 +90,7 @@ sources:
 
 - **0.6.0 — 통역 기록은 back 의 볼륨(PVC)에만 남긴다**(D-41 · §5.9): 세션 언어 · 시작/끝 시각 · 확정 발화의 원문 · 번역 · 말한 쪽 · 걸린 term id · 날짜별 JSONL · 7일 뒤 삭제(0.7.0 에서 바뀜 — 아래) · 음성 없음. 화면 · API 로는 내지 않는다(§3.5 허용 경로 6개 그대로) — 꺼내는 건 코디가 클러스터에서(§9.6). front 는 지금처럼 화면을 떠나면 지운다. (0.5.0 까지의 「어디에도 저장하지 않는다」는 D-41 로 바뀌었다.)
 - **0.7.0 — 베타 테스트 기간에는 기록을 지우지 않는다**(D-42 · §5.9 「보관 기간」): 보관 기간은 env `INTERPRET_RECORD_KEEP_DAYS` · **비어 있으면 삭제 안 함**(운영 기본 — ConfigMap 에 넣지 않는다 · §9.6). 베타가 끝나면 코드 수정 없이 값만 넣어 다시 켠다. D-41 의 나머지는 그대로다.
+- **0.8.0 — 품질 개선(D-43 ~ D-48)**: STT 모델 v6(§5.10) · 역할 context(§4.5 `text`) · 빈 원문 막기(§5.11) · 사전 전체 보정(§4.2.4 — 값은 조사 뒤) · 완료 조건 = 품질 시험(§9.3 「6차」). 범위 표(In · Out)는 바뀌지 않는다 — front · 화면 · API · 기록 줄 모양 그대로. LLM 번역으로 바꾸기 · 다른 STT 회사 비교 같은 것은 DEC 에 없다(하지 않는다).
 - **용어집 메뉴(읽기 전용)는 0.5.0 에서 뺐다**(D-37 — D-13 뒤집음). 용어집(시드)은 back 안에서 Soniox `context` 로만 쓰고 화면 · 응답에 나가지 않는다(§3.5 · §4.7).
 
 ## 2. 구성 · 실행 — D-01 · D-02 · D-06 · D-11 · D-12
@@ -156,6 +162,7 @@ interpret-pwa/                 # 레포 루트 (D-01)
 - **`GLOSSARY_MATRIX_URL` 은 지운다(0.4.0 · D-33)** — back 은 Procedure Hub 를 부르지 않는다. matrix 주소는 가져오기 스크립트 상수 · `--url` 인자로만(§4.8). 시드 경로는 env 가 아니다(`back/seed/glossary.json` 고정 · §4.2).
 - `.env.example` 은 이름만 — `INTERPRET_DEMO_LOGIN=` · `GLOSSARY_CONTEXT_MAX_CHARS=` · `INTERPRET_RECORD_DIR=`(0.6.0) 도 값을 비우고 주석에 기본값만(WP6-BE · 폰 피드백 2 방식). `GLOSSARY_CONTEXT_MAX_CHARS` 주석 = 「비면 언어별 표 · 넣으면 모든 언어를 그 값 하나로」(0.6.1).
 - `INTERPRET_RECORD_DIR` 은 비밀값이 아니다(경로) — 운영은 ConfigMap(§9.6). 로컬에서 켜 보려면 **레포 밖 경로**(기록 파일에 대화 문장이 들어간다 — 레포 · 커밋에 들어가지 않게).
+- **0.8.0 — 새 env 없음.** STT 모델 이름(§5.10) · context `text` 문안(§4.5) · 끊김 값(§5.10)은 코드 상수다(env 로 빼라는 결정이 없다). 품질 시험(§9.3 「6차」)의 조합 바꾸기는 시험 스크립트 인자로만 한다 — 운영 설정이 아니다.
 - 로그인 아이디 값(DEC D-06 의 사용자 지정 계정)도 **문서 · 코드 · 시험 · `.env.example` 에 쓰지 않는다** — 시험은 가짜 값을 주입한다.
 - 로그에 키 · 비밀번호 · 토큰 · 쿼리 문자열(`?token=`)을 남기지 않는다(원형 — 접근 로그 쿼리 지움).
 - `INTERPRET_FRONT_ORIGIN` 은 **정확히 같은 문자열**만 통과한다 — `http://127.0.0.1:3800` 으로 열면 CORS · WS(1008)가 막힌다. 로컬은 `localhost` 로 연다.
@@ -227,11 +234,12 @@ interpret-pwa/                 # 레포 루트 (D-01)
 | WS 오류 문구 | §5.4 — 코드 + 일반 문구 4종 · 받은 값을 되돌려 보내지 않는다 |
 | front | 설정 · env 이름이 든 문구를 쓰지 않는다 — back 주소가 비었을 때도 「서버에 연결하지 못했어요」. 서버 `message` 는 그대로 보여 준다 |
 
-## 4. 용어집 — 우리 시드 파일 — D-33(D-05 · D-13 · D-14 개정) · D-17 · D-18 · D-19 · D-28 · D-32 · D-35 · D-37 · D-38 · D-39 · D-40
+## 4. 용어집 — 우리 시드 파일 — D-33(D-05 · D-13 · D-14 개정) · D-17 · D-18 · D-19 · D-28 · D-32 · D-35 · D-37 · D-38 · D-39 · D-40 · D-45 · D-46
 
 > 0.4.0 — **용어집 정본은 레포의 시드 파일**이다(D-33). Procedure Hub matrix 는 **첫 가져오기 원천**일 뿐 back 이 런타임에 부르지 않는다.
 > 0.5.0 — 시드에 **대만 현지명**을 넣었다(D-35 · §4.2.1) · **용어집 메뉴 API 를 지웠다**(D-37 · §4.7) — 시드는 Soniox `context` 로만 쓴다.
 > 0.6.0 — 사전 밖 **새 시술 13개**를 7개 언어로 더하고(D-39 · §4.2.2) **대륙 중국어를 검증**했다(D-40 · §4.2.3). 내용 규칙을 언어 공통으로 다시 썼다(§4.2.1). 스키마 · 로더 · context 조립 · 줄이기 규칙은 그대로다(검사 7 하나만 더함).
+> 0.8.0 — context 에 **서술 칸 `text`**(역할 · 방향 · D-45 · §4.5)를 더하고, **사전 전체 보정**(시드 `.7` · D-46)의 절차 · 규칙 · 자리를 둔다(§4.2.4 — **값은 조사 · 코디 처분 뒤 채운다**). 스키마 · 검사 · 로더 · 줄이기 순서는 그대로다.
 > 0.3.0 의 「기동 때 matrix 를 읽음 · 실패면 빈 용어집」(0.3.0 §4.1 · §4.2)은 **폐기**. 정방향 · 역방향 · 줄이기 · 2초 확인 · 재연결(0.3.0 §4.4 · §4.4.1 → 이 판 §4.6 · §4.6.1)은 그대로 두고 **짝을 만드는 재료만 시드로** 바꾼다.
 
 ### 4.1 무엇이 바뀌나
@@ -255,7 +263,7 @@ interpret-pwa/                 # 레포 루트 (D-01)
 | 필드 | 필수 | 타입 | 뜻 |
 |---|---|---|---|
 | `schema` | 필수 | 정수 `1` | 스키마 판. 다르면 기동 실패 |
-| `version` | 필수 | 문자열 `YYYY-MM-DD.n` | 시드 판. **고칠 때마다 올린다**(PR 마다). back 기동 로그 · 통역 기록 세션 시작 줄(§5.9)에만 쓴다(0.5.0 — 응답에 내지 않음 · §3.5). 배포본 main 2a9d5a5 = `2026-10-27.5`(D-38) → **0.6.0 판 = `2026-10-27.6`**(§4.2.2 · §4.2.3 · 판 번호를 이어 간다) |
+| `version` | 필수 | 문자열 `YYYY-MM-DD.n` | 시드 판. **고칠 때마다 올린다**(PR 마다). back 기동 로그 · 통역 기록 세션 시작 줄(§5.9)에만 쓴다(0.5.0 — 응답에 내지 않음 · §3.5). 배포본 main 2a9d5a5 = `2026-10-27.5`(D-38) → **0.6.0 판 = `2026-10-27.6`**(§4.2.2 · §4.2.3 · 판 번호를 이어 간다) → **0.8.0 판 = `<시드 PR 날짜>.7`**(§4.2.4 · D-46 — 날짜는 그 PR 날짜 · 번호 7 · 이 문서는 「시드 `.7`」 로 부른다) |
 | `langs` | 필수 | 문자열 배열 | 이 파일이 다루는 앱 lang — **정확히 7개** `["en","ja","zh","zh-Hant","th","vi","yue"]`(back `langs.py` `APP_LANGS` 와 같은 집합 · 순서 무관) |
 | `imported_from` | 선택 | 객체 `{source, url, version, count, at}` | 첫 가져오기 기록(§4.8). 런타임은 읽기만 하고 쓰지 않는다 |
 | `terms` | 필수 | 배열(1개 이상) | 시술. **배열 순서 = context 순서** |
@@ -364,6 +372,7 @@ interpret-pwa/                 # 레포 루트 (D-01)
 | `.4` | D-35 | zh-Hant 대만 현지명(조사 77/157) · 초안은 alias · 「鐳射」 → 「雷射」 · zh 「热玛吉」 alias(**0.6.0 에서 뺌**) · 볼뉴머 카테고리 기기 리프팅 | `web-research` 77 · `reviewed:true` 38 |
 | `.5` | D-38 | zh-Hant 2차(대만 클리닉 3곳 전수 대조 · 40 term) — 톡신 대만 허가명(保提拉 · 優力柔 · 娜柏塔) · **대만에 없는 한국 전용 제품 19개 = 영문 name**(`manual` · `reviewed:false` — 이 판은 「현지에 없음」도 `manual` 로 적었다) · 대륙식 · `s2twp` 오변환 정리 · 모호어 제거 · 포텐자 zh-Hant 無限電波(검수 전) | 배포 main 2a9d5a5(PR #9) · infra #34 — 0.6.0 에서 뒤늦게 기록 |
 | **`.6`** | **D-39 · D-40** | **새 시술 13 term × 7개 언어**(§4.2.2) · **기존 표기 변경**(§4.2.3) · 검사 7 | §4.2.2 · §4.2.3 표 그대로 |
+| `.7`(예정) | D-46 | 사전 전체 보정 — 7개 언어 × 그 나라 클리닉 공식 사이트 · 170 term(§4.2.4) | **조사 뒤 채움**(§4.2.4 표) |
 
 ### 4.2.2 새 시술 13개 — `kr-001` ~ `kr-013` (0.6.0 — D-39)
 
@@ -472,6 +481,66 @@ interpret-pwa/                 # 레포 루트 (D-01)
 
 - `manual` 칸의 `note` = 「OQ-018 처분 ① · ③ — …(코디 2026-10-27)」. 0.5.0 OQ-014 의 「써마지FLX ko 별칭」 은 이로써 뒤집혔다 — 상담사가 FLX 없이 「써마지」 라고만 하면 이제 정방향 짝이 없다(Soniox 번역에 맡김).
 
+### 4.2.4 시드 `.7` — 사전 전체 보정 (0.8.0 — D-46 · **자리만 · 값은 조사 뒤 채움**)
+
+> 이 절은 **절차 · 규칙 · 표의 자리**만 정한다. **바꿀 값(현지명 · 별칭 · `reviewed`)은 이 판에 없다** — 조사 리포트가 아직 없고, 값을 우리가 짓지 않는다(§4.2.1 머리말 · D-32 · D-33 · D-35). 조사 → 코디 처분이 끝나면 planner 가 아래 「바꿀 값 표」를 채워 판을 올리고(0.8.x), 그 뒤에 backend 가 시드를 고친다(WORK WP23). **표가 비어 있는 동안 시드를 고치지 않는다.**
+
+**무엇을 · 어디서 (D-46)**
+
+| 항목 | 계약 | 근거 |
+|---|---|---|
+| 대상 | 시드 `.6` 의 **170 term 전부** × 7개 언어 | D-46 |
+| 나라 | en = **미국** · ja = 일본 · zh = 중국 대륙 · zh-Hant = 대만 · th = 태국 · vi = 베트남 · yue = 홍콩 | D-46 · 입력 5 「미국을 기본으로 할거야 영어는」 |
+| 근거 사이트 | 언어마다 **그 나라 피부과 · 미용 클리닉 공식 홈페이지 6곳** — 시술 메뉴 · 가격표가 있는 곳. 사용자가 주는 사이트가 있으면 6곳 안에 우선 | D-46 |
+| 근거에서 빼는 것 | 블로그 · 중개 플랫폼 · **한국 병원의 외국어 페이지**(한국식 직역이 섞인다). 이번 조사에서는 6곳에 넣지 않는다(§4.2.1 머리말 · R7 의 출처 범위보다 좁다 — `.7` 조사에 한해) | D-46 |
+| 못 읽은 사이트 | 못 읽었다고 리포트에 남긴다(차단 · 로그인 · 스크립트). 6곳을 못 채우면 몇 곳인지 그대로 | D-46 · D-40 |
+
+**규칙** — §4.2.1 R1 ~ R9 를 그대로 쓴다. `.7` 에서 다시 못 박는 것:
+
+| # | 규칙 | 근거 |
+|---|---|---|
+| Q1 | **현지어 우선 · 현지에 그 말이 없을 때만 영어**(R1 · R2 와 같은 방향 — 영어가 기본이 아니다). 현지 클리닉도 영문 브랜드명을 쓰면 그 영문이 곧 현지명이다(R2′) | D-46 · 입력 5 「최대한 현지어 … 없으면 영어 부득이 하게」 · D-38 ② · D-40 |
+| Q2 | **`reviewed: true` = 독립 현지 출처 2개 이상**(R7 그대로). 하나뿐이면 이름만 바꾸고 `false` | D-35 |
+| Q3 | 옛 `name` 은 `aliases` 로 내린다(R3) · 모호어 · 결함 값은 남기지 않는다(R3 예외 · R4) · alias 로 넣지 않는 꼴(R5) · yue 는 zh-Hant 에서 복사하지 않는다(R6) | §4.2.1 |
+| Q4 | **이름 겹침**(같은 언어에서 다른 term 이 같은 `name`): 현지 클리닉이 장비 · 제품을 따로 부르면 그 이름으로 가른다. **앞 처분으로 일부러 같게 한 것은 그대로 둔다 — zh `乐提葆` = ph-031 레티보 · ph-042 보툴렉스**(보툴렉스의 수출명이 레티보 · §4.2.3 A). 같은 시술의 ko 이름이 둘인 겹침은 문제가 아니다(§4.2 「같은 현지명 허용」) | D-46 · 처분 r1-2 |
+| Q5 | 앞 처분(§4.2.2 · §4.2.3 · `research-dispositions.md`)으로 정한 값은 **새 근거가 없으면 뒤집지 않는다.** 뒤집을 근거가 있으면 리포트가 「처분과 다름」으로 따로 올리고 코디가 정한다 | D-46 「앞 처분 … 그대로」 |
+| Q6 | **일반 낱말은 사전에 넣지 않는다** — 「시술」 · 「접수」 · 「상담」 같은 말은 term 이 아니다(§4.5 「넣지 않는 것」 · D-45). 조사 리포트의 현장 일반어 표는 §4.5 `text` 문안의 참고일 뿐이다 | D-45 |
+
+**처분 절차**
+
+1. **조사**(researcher · read-only) — 언어 묶음별 리포트: 사이트 표(6곳 · 읽음/못 읽음) · **바뀌는 칸만**의 표(term id · 언어 · 지금 name · 제안 name · aliases · 판정 · 출처 번호 · `reviewed` 제안) · 언어별 집계. 판정 말 = 유지 · 변경 · 별칭 추가 · 현지도 영문 · 현지에 없음 → 영문 · 못 찾음 · 처분과 다름.
+2. **코디 처분** — 리포트를 칸마다 채택 · 보류 · 기각으로 가르고, 규칙 밖 판단(어느 이름을 name 으로 · 처분 뒤집기 · 새 term)은 사용자와 정한다. 품질 시험 「울쎄라 원인 가르기」 결과(§9.3 「6차」)가 `Ultherapy` 별칭 처분의 근거로 들어간다.
+3. **표** — planner 가 처분 결과를 아래 「바꿀 값 표」에 옮긴다(§4.2.2 · §4.2.3 과 같은 모양 — term · 언어 · 지금 · `.7` name · aliases · `reviewed` · `source` · 근거). 표에 없는 entry 는 바꾸지 않는다.
+4. **시드** — backend 가 표 그대로 고치고 `version` 을 `.7` 로 올린다(WP23). `source` = `web-research <조사 날짜>` · `note` = 대표 URL 또는 `현지 출처 없음 — <리포트>`(§4.2 entry 표). 시험(§9.1 「시드」)은 표 대조로 — 개수 고정값을 두지 않는다(0.6.0 방식).
+5. 새 term 이 생기면 `id` 는 `kr-014` 부터(§4.2 — 번호를 다시 쓰지 않는다) · 배열 맨 뒤.
+
+**확인된 오류 · 꼭 처분할 것 — BASE-001 「확인한 사실 (코디 2026-11-14)」 그대로** (지금 값은 배포 시드 `.6` · 고칠 값은 비어 있다)
+
+| # | term · 언어 | 지금(`.6`) | 무엇이 문제인가 | `.7` 값 |
+|---|---|---|---|---|
+| E1 | ph-012 토닝 · zh | `提亮`(`reviewed: true`) | 효과를 가리키는 말 — 사전대로 나가 현장 지적(입력 5 ①) | 조사 뒤 채움 |
+| E2 | ph-012 토닝 · yue | `調色` | 색 보정이라는 뜻 | 조사 뒤 채움 |
+| E3 | ph-010 색소 · ph-012 토닝 · ja | `レーザートーニング` · `肝斑治療` | 두 칸이 뒤바뀐 듯 | 조사 뒤 채움 |
+| E4 | ph-026 턱선(카테고리 보톡스 — BASE 표기 「턱선 보톡스」) · ja | `顎ライ` | 뒤가 잘림 | 조사 뒤 채움 |
+| E5 | 「써마지」(브랜드 단독) | term 없음 — `써마지FLX`(ph-130) · `써마지 CPT`(kr-001)만 · ko 별칭 「써마지」는 0.6.1 에서 지움(§4.2.3 D ⑤) | 직원이 「써마지」라고만 하면 짝이 없어 영문으로 나간다(입력 5 ②) | 조사 · 처분 뒤 채움(term 을 새로 둘지 · 어느 이름으로 — §4.2.3 D ⑤ 를 뒤집는 판단이라 코디 · 사용자) |
+| E6 | 리투오 | term 없음 | 사전 밖 스킨부스터 — 현지 표기가 있으면 새 term 후보 | 조사 뒤 채움 |
+| E7 | ph-121 울쎄라 · zh 별칭 `Ultherapy` | name `美版超声刀` · aliases `Ultherapy` | 짝이 context 에 들어갔는데 번역이 영문으로 나감 — 별칭이 역방향 짝(`Ultherapy → 울쎄라`)으로 들어가는 것이 원인인지 **실물 미확인** | 품질 시험 「울쎄라 원인 가르기」(§9.3) 결과 · 조사 뒤 처분 |
+| E8 | zh `激光` = ph-014 레이저 · ph-019 레블라이트 · ph-020 클라리티2 · ph-023 엑셀V | 넷이 같은 name | 장비명이 사라진다 | 조사 뒤 채움(Q4) |
+| E9 | zh `水光针` = ph-074 스킨부스터 · ph-078 HA (물광) | 둘이 같은 name | 확인 필요 | 조사 뒤 채움(Q4) |
+| E10 | ph-097 「시그니처프로그램」 · ph-127 「시그니처 프로그램」 | 띄어쓰기만 다른 중복 항목 | 중복 | 처분 뒤 채움(하나로 합칠지 · 합치면 남는 `id` — 통역 기록의 term id 가 걸려 있다 · §5.9) |
+| E11 | zh `乐提葆` = ph-031 · ph-042 | 같은 name | **문제 아님 — 유지**(Q4) | 바꾸지 않는다 |
+
+- 기계 점검(`.6` · BASE): 그 언어 글자가 없는(영문만) `name` — zh 40 · zh-Hant 27 · yue 54 · th 23 · ja 7. `reviewed: false` — zh-Hant 113 · zh 39 · vi 36 · en 20 · ja 13 · th 9 · yue 9. 조사가 이 칸들을 「현지도 영문」 · 「현지에 없음 → 영문」 · 「변경」으로 가른다.
+- 역방향은 같은 이름이면 처음 것 하나만 남는다(§4.5) — E8 · E9 는 정방향 target 이 뭉개지는 문제이고 역방향은 이미 한 짝이다.
+
+**바꿀 값 표 — 조사 뒤 채움** (지금 비어 있다 · 행을 짓지 않는다)
+
+| term | ko | 언어 | 지금(`.6`) name · aliases | `.7` name · aliases | `reviewed` | `source` | 근거(리포트 · 처분 번호) |
+|---|---|---|---|---|---|---|---|
+| — | — | — | — | **조사 뒤 채움** | — | — | — |
+
+- 채운 뒤 따라 고칠 자리: §4.2.1 모호어 목록(늘면) · 「지금까지 반영한 판」 `.7` 행 수치 · §4.6 언어별 표(다시 재면) · §9.1 「시드」 표 대조 항목 · §9.3 「6차」 손님 쪽 문장의 시술명.
+
 ### 4.3 기동 때 읽기 (D-33 · D-14 개정)
 
 - back 기동(lifespan) 때 한 번 `load_seed(path) -> Glossary` — 파일 읽기 → §4.2 검사 → 메모리. 다시 읽지 않는다.
@@ -488,38 +557,76 @@ interpret-pwa/                 # 레포 루트 (D-01)
 - 그래서 `loaded=false` 경로는 **없어진다**. 0.5.0 — `loaded` 필드 자체를 응답에서 지웠다(`/api/health` = `{ok}` · 메뉴 없음 · §3.5).
 - 시드에 term 이 있는데 **고른 언어 entry 가 하나도 없으면** 그 언어는 `context` 없이 연결한다(빈 용어집과 같은 경로 · 0.3.0 §4.5 「빈 용어집이면 `context` 키 없음」). 기동 실패가 아니다(언어별로 채워 가는 중일 수 있다).
 
-### 4.5 언어별 `context` 조립 (D-05 · D-18 · D-33)
+### 4.5 언어별 `context` 조립 (D-05 · D-18 · D-33 · D-45 · D-49)
 
-통역 연결(§5.3 `start`) 때 고른 언어 `L` 로 Soniox STT 설정에 `context` 를 넣는다. 칸(`general` 고정 3쌍 · `text` 안 넣음)은 0.3.0 그대로.
+통역 연결(§5.3 `start`) 때 고른 언어 `L` 로 Soniox STT 설정에 `context` 를 넣는다. 칸은 넷 — `general`(고정 3쌍 · 0.3.0 그대로) · **`text`(0.8.0 — 역할 · 방향 서술 · D-45 · 0.8.1 넷째 문장 D-49 · 아래)** · `terms` · `translation_terms`. (0.7.0 까지는 `text` 를 넣지 않았다.)
 
 **재료** — 시드 순서대로 `entries[L]` 이 있는 term 만. 간체화 `norm`: **`L ∈ {yue, zh-Hant}` 면 OpenCC `t2s`**(Soniox 의 중국어 출력은 간체 — 번체 source/target 이 간체 출력 사이에 섞이고 TTS 로 가면 발음이 깨진다 · D-17 · 0.3.0 §4.3 의 yue 이유와 같음), 그 밖은 그대로. 괄호는 시드에 없다(§4.2) — 가공 없음.
 
 | 칸 | 넣는 것(이 순서) | 근거 |
 |---|---|---|
-| `general` | 0.3.0 고정 3쌍 그대로 | 입력 1 |
+| `general` | 0.3.0 고정 3쌍 그대로(0.8.0 에서도 안 바꾼다 — 아래 「`general` 은 그대로」) | 입력 1 |
+| **`text`** | **고정 문안 하나**(아래 「서술 칸 `text`」 — 네 문장) — 언어와 무관하게 같은 문자열 | D-45 · D-49 |
 | `terms` | ① ko 대표명 전부(시드 순서) ② 그 뒤 ko 별칭 전부(시드 순서 · term 안 순서) | D-05 「`terms` 는 ko 표기」 |
 | `translation_terms` | **정방향 기본** `{source: ko, target: norm(name)}` → **정방향 별칭** `{source: ko 별칭, target: norm(name)}` → **역방향 기본** `{source: norm(name), target: ko}` → **역방향 별칭** `{source: norm(alias), target: ko}` | D-05 정방향 · D-18 역방향 · D-33 「정방향 = ko 대표명 · ko 별칭 → 현지명, 역방향 = 현지명 · 별칭 → ko 대표명」 |
 
 - 역방향 source 중복(다른 시술의 같은 현지명 · `norm` 뒤 같아진 것 · 현지명과 다른 시술 별칭이 같음)은 **위 순서에서 처음 짝만** 둔다(0.3.0 규칙 그대로 — 기본 짝이 별칭 짝보다 앞).
 - 정방향 source 중복은 §4.2 검사 3 이 막는다(조립에서 다시 거르지 않는다).
 - **zh-Hant 는 zh-Hant entry 를 쓴다(0.4.0)** — 0.3.0 · D-28 의 「zh-Hant target 은 zh 열」은 시드에 zh-Hant 표기가 없을 때의 대안이었다. D-33 이 zh-Hant 표기를 시드에 두고 D-32 가 「대만 현지 별명은 그 언어 표기를 추가해서 해결」이라 했으므로, 대만 손님이 부르는 이름(예 美國音波)이 Soniox 에 닿으려면 zh-Hant entry 가 context 재료여야 한다. **0.5.0 — D-35 로 대만 현지명 77개가 들어가 zh-Hant context 는 zh 와 실제로 다르다**(정방향 target 美國音波 · 역방향 source 美國音波 · 極線音波 등 → `t2s` 뒤 美国音波 …). OQ-013 닫음.
-- 크기 로그(§4.6 5번)는 칸 수를 넷으로 나눠 적는다: `terms` · 정방향(기본 · 별칭) · 역방향(기본 · 별칭) · 뺀 수 · 글자 수.
+- 크기 로그(§4.6 5번)는 칸 수를 넷으로 나눠 적는다: `terms` · 정방향(기본 · 별칭) · 역방향(기본 · 별칭) · 뺀 수 · 글자 수 · (0.8.0) `text` 글자 수.
 
-**구조로 들고 다닌다(0.4.0)** — 조립 결과를 Soniox dict 하나로 합쳐 두고 나중에 「앞 정방향의 거울인 첫 짝」으로 정방향/역방향 경계를 다시 찾지 않는다(별칭 짝이 생기면 거울 추측이 틀린다 · 0.3.0 `split_translation_terms`). `build_context` 는 네 묶음을 따로 가진 값(예 `ContextParts{general, terms, forward, forward_alias, reverse, reverse_alias}`)을 내고, Soniox 설정 dict 는 `to_soniox(parts)` 로 만든다. `forward_only(parts)` · `is_forward_only(parts)` 도 이 값으로.
+**서술 칸 `text` — 역할 · 방향 · 시술의 뜻 (0.8.0 · D-45 · 0.8.1 · D-49)**
 
-### 4.6 한도 — 줄이기 (D-05 · D-18 · 0.3.0 §4.4 를 넷으로)
+> 기록 분석(BASE-001 2026-11-14): 문제 44줄 가운데 약 10줄이 「상황 · 역할을 모르고 일반 뜻으로 옮김」, 약 4줄이 말투(높임)다 — 손님이 하는 접수를 직원이 응대하는 말로, 고민을 걱정으로, 이름 묻기를 반말로 옮겼다. context 는 `general` 세 줄뿐이었다. Soniox 공식 문서는 `text` 를 「Longer background, written however you like」 로, `general` 값은 「a name or short label, not a sentence」 로 적는다 — 역할 · 방향처럼 문장으로 써야 하는 것은 `text` 자리다.
+
+| 항목 | 계약 | 근거 |
+|---|---|---|
+| 내용 | ① **역할** — 한국어로 말하는 쪽 = 클리닉 직원 · 다른 언어로 말하는 쪽 = 손님(환자) ② **한국어 → 외국어** = 손님이 **듣는** 말 · 높임 ③ **외국어 → 한국어** = 손님이 **한** 말 ④ **여기서 말하는 시술은 수술이 아니라 미용 시술**(0.8.1) | D-45 · D-49 |
+| 문안 | 아래 **S1 ~ S4 네 문장**(영어 · 한 벌 · 글자 그대로). back 상수 **한 곳**(`service/glossary.py` — `GENERAL` 옆 `CONTEXT_TEXT` 류)에 둔다. 문장 사이는 `\n` | 문안 = 이 문서(S4 를 넣는 것은 D-49) · 언어 선택은 OQ-024 |
+| 언어 | **영어 · 7개 언어 공통 한 벌**(고른 언어 이름을 넣지 않고 「the other language」 로 쓴다). 지금 `general` 이 영어이고, 한 벌이면 언어마다 크기가 같아 한도 계산(§4.6)이 단순하다. 공식 문서의 「Write the context in the language people speak」 는 한 세션에 두 언어가 오가는 이 앱에 그대로 맞지 않는다 — **한 벌 영어가 언어별 문안보다 나은지는 근거가 없다(OQ-024)** | 기본값 |
+| 넣는 때 | `context` 를 넣는 모든 연결(= 그 언어 entry 가 하나라도 있을 때 · §4.4). 조립 결과가 `None`(entry 0)이면 지금처럼 `context` 키 자체가 없다. **운영에서는 늘 넣는다** — 빼는 길은 조립 함수의 선택 인자뿐이고 품질 시험 스크립트만 쓴다(env · WS 로는 못 뺀다 · §9.3 「조합」) | 0.4.0 그대로 · 0.8.1 W-1 |
+| 줄이기 | **줄이지 않는 칸** — `general` 과 같은 취급(§4.6). `forward_only`(재연결 설정)에도 남는다 | D-45 「자리를 어떻게 낼지는 SPEC」 · 기본값 |
+| 밖으로 | 응답 · front 번들 · WS 메시지에 나가지 않는다(§3.5 그대로). 로그에는 글자 수만(`text=<n>` · §4.6 5번) | D-37 |
+
+**문안**(영어 · 네 문장 · **424자** — `json.dumps` 로는 429자 · 0.8.1 — 0.8.0 초안은 S1 ~ S3 347자)
+
+```text
+The Korean speaker is a staff member of a dermatology clinic. The speaker of the other language is a customer of the clinic.
+Korean into the other language: these are words the customer hears. Translate them politely and respectfully, as staff speaking to a customer.
+The other language into Korean: these are words the customer said to the staff.
+Procedures discussed here are non-surgical cosmetic treatments, not surgery.
+```
+
+| 문장 | 무엇 | DEC |
+|---|---|---|
+| S1 | 역할 — 한국어 쪽 = 직원 · 상대 = 손님 | D-45 「한국어 쪽은 클리닉 직원, 상대는 손님(환자)」 |
+| S2 | 한 → 외 = 손님이 듣는 말 · 높임 | D-45 「손님이 듣는 말 · 높임으로」 |
+| S3 | 외 → 한 = 손님이 한 말 | D-45 「손님이 한 말로」 |
+| **S4**(0.8.1) | 여기서 말하는 시술은 수술이 아니라 미용 시술 | **D-49** 「시술은 수술이 아니라 미용 시술 문장을 더한다」 — 입력 5 ③(시술 → 수술 뉘앙스)을 다룰 자리가 context 뿐(0.8.0 OQ-025 닫음) |
+
+- 문안은 **품질 시험(§9.3 「6차」 — S1 ~ S3 은 2절 T11 ~ T22 · S4 는 1절의 T05 · T06)으로 판정한다** — 조합 B(문안 없음)와 C(문안 있음)의 차이가 이 문안의 효과다(C 는 시드도 같이 바뀐다 — 사전 대상이 아닌 문장에서만 문안 효과로 읽는다). 문안을 고치면 이 절 · 상수 · 시험(§9.1)을 같이 고친다(코디 → planner).
+- **`general` 은 그대로**(0.8.0) — D-45 는 「`text` 와 `general` 에 역할 · 방향을 적는다」고 했고, `general` 의 `setting`(「Face-to-face interpretation between a Korean clinic staff member and a foreign patient」)이 이미 역할을 적고 있다. 방향 · 높임은 문장이라 `text` 로 갔다. 전후 비교(§9.3)에서 바뀌는 칸을 `text` 하나로 두려고 `general` 은 건드리지 않는다 — 시험 뒤 `general` 을 손볼 근거가 생기면 그때 고친다.
+
+**`translation_terms` 에 넣지 않는 것 (0.8.0 · D-45)**
+
+- **일반 낱말 짝을 넣지 않는다** — 「접수」 → 그 언어의 「등록」 같은 짝은 손님 쪽 문장을 고치려다 직원 쪽 문장(「접수 받았어요」)을 거꾸로 틀리게 만든다(D-45). `translation_terms` 의 재료는 **시드 term 뿐**이다 — 모든 짝의 ko 쪽은 시드의 `ko` · `ko_aliases`, 상대 쪽은 그 언어 entry 의 `name` · `aliases` 여야 한다(시험 · §9.1 「context」). 코드에 따로 박은 짝 0.
+- 「시술」 · 「접수」 · 「상담」 · 「고민」 같은 말은 시드 term 으로도 넣지 않는다(§4.2.4 Q6). 이런 말의 옮김은 `text` 의 역할 · 방향에 맡긴다.
+
+**구조로 들고 다닌다(0.4.0)** — 조립 결과를 Soniox dict 하나로 합쳐 두고 나중에 「앞 정방향의 거울인 첫 짝」으로 정방향/역방향 경계를 다시 찾지 않는다(별칭 짝이 생기면 거울 추측이 틀린다 · 0.3.0 `split_translation_terms`). `build_context` 는 네 묶음을 따로 가진 값(예 `ContextParts{general, terms, forward, forward_alias, reverse, reverse_alias}`)을 내고, Soniox 설정 dict 는 `to_soniox(parts)` 로 만든다. `forward_only(parts)` · `is_forward_only(parts)` 도 이 값으로. **0.8.0 — `ContextParts` 에 `text`(문자열)를 더한다**: `to_soniox` 의 키 순서 = `general` → `text` → `terms` → `translation_terms` · `forward_only` 는 `general` + `text` + 정방향 기본 · `is_forward_only` 판정은 그대로(`text` 는 판정에 넣지 않는다 — 운영에서는 늘 있다). **0.8.1 — 조립 함수(`build_context`)는 선택 인자 둘을 받는다**: 문안 넣기(기본 = 넣음) · 뺄 역방향 짝의 source 목록(기본 = 없음). 둘 다 **품질 시험 스크립트만** 준다 — 통역 API 경로는 인자를 주지 않아 늘 기본값이다(§9.3 「조합」 · W-1).
+
+### 4.6 한도 — 줄이기 (D-05 · D-18 · D-45 · 0.3.0 §4.4 를 넷으로)
 
 Soniox context 한도는 **8,000토큰** · 넘으면 `invalid_request`(공식 문서). back 은 글자 수로 미리 줄이고, 그래도 거절되면 한 번 더 줄인다.
 
-1. `to_soniox(parts)` 를 `json.dumps(ensure_ascii=False)` 한 길이를 잰다.
+1. `to_soniox(parts)` 를 `json.dumps(ensure_ascii=False)` 한 길이를 잰다(0.8.0 — `text` 칸이 든 채로 잰다).
 2. **그 언어의 기준**(아래 언어별 표 · env `GLOSSARY_CONTEXT_MAX_CHARS` 가 있으면 그 값)을 넘으면 아래 순서로 **하나씩 뺀다** — 넘지 않을 때까지.
    1. **`terms`** — 뒤에서부터(ko 별칭이 먼저 빠지고 그다음 대표명 뒤쪽부터)
    2. **역방향 별칭** — 뒤에서부터
    3. **역방향 기본** — 뒤에서부터
    4. **정방향 별칭** — 뒤에서부터
-   5. **정방향 기본 · `general` 은 줄이지 않는다**(D-05 우선). 다 빼도 넘으면 그대로 연결해 본다(4번이 받는다)
+   5. **정방향 기본 · `general` · `text`(0.8.0 · D-45)는 줄이지 않는다**(D-05 우선). 다 빼도 넘으면 그대로 연결해 본다(4번이 받는다)
 3. 2번을 거친 설정으로 STT 를 연다(§4.6.1 확인).
-4. 연결 직후 `invalid_request` 로 거절되면 **`general` + 정방향 기본만**(`forward_only`)으로 STT 만 1회 다시 연결. 그것도 거절되면 `error soniox_unavailable`. 보낸 설정이 이미 정방향 기본만이면 재연결 없이 바로 `soniox_unavailable`. 용어집 없이 몰래 연결하지 않는다.
+4. 연결 직후 `invalid_request` 로 거절되면 **`general` + `text`(0.8.0) + 정방향 기본만**(`forward_only`)으로 STT 만 1회 다시 연결. 그것도 거절되면 `error soniox_unavailable`. 보낸 설정이 이미 정방향 기본만이면 재연결 없이 바로 `soniox_unavailable`. 용어집 없이 몰래 연결하지 않는다.
 5. 실제로 보낸 칸 수(§4.5 끝)를 언어별 정보 로그 1줄 — 용어 문자열 0 · 끝에 `max=<그 언어 기준>`(0.6.1).
 
 **줄이기 기준 = 언어별 표 (0.6.1 · 시드 `.6` 실측 · WP16 코디 처분 3)**
@@ -540,6 +647,29 @@ Soniox context 한도는 **8,000토큰** · 넘으면 `invalid_request`(공식 �
 - **왜 언어별로**(0.6.0 → 0.6.1): `.6` 에서 공통 기본값(가장 작은 ja 기준)으로는 zh-Hant 역방향 별칭 63 · th `terms` 38 이 빠졌다(20,419 · ⑲ 다시) — 다른 언어의 한도에 묶여 넉넉한 언어가 짝을 잃었다. 언어별 표로 th 뺀 수 0 · zh-Hant 역방향 별칭 63 → 33.
 - **남는 손실**: zh-Hant — `terms` 170 전부 · 역방향 별칭 33(시드 뒤쪽 = 새 시술 · 대만 2차 별칭). 전체가 실제 한도를 넘어 줄이기 없이는 거절되므로 피할 수 없다 — 더 살리려면 별칭 정리(시드) 또는 줄이기 순서 변경(계약)이고 0.6.1 은 둘 다 하지 않는다. 다른 6개 언어 뺀 수 0.
 - 시드가 다시 크게 바뀌면(별칭 · term 추가) ⑬′ 방법으로 다시 재서 이 표 · `langs.py` 를 같이 고친다(코디 · 사용자 판정 — 워커가 표를 바꾸지 않는다).
+
+**`text` 칸의 자리 — 언어별 여유 · 계산 방법 (0.8.0 · D-45)**
+
+`text` 는 줄이지 않으므로, 그만큼의 글자가 **줄이기 대상 칸에서 빠진다**. 언어별 기준(위 표)은 바꾸지 않는다 — 한도는 Soniox 의 것이고 `text` 도 같은 8,000토큰 안에 든다.
+
+- **`text` 가 차지하는 글자** `c` = `len(json.dumps(text, ensure_ascii=False))` + 키 · 구분자 10자(`, "text": `). 문안 S1 ~ S4 = 429 + 10 = **439자**(0.8.0 초안 S1 ~ S3 은 361자).
+- **계산 방법**(시드 판 · 문안이 바뀔 때마다 · 순수 함수 — 키 필요 없음): 언어 `L` 마다 ① 줄이기 없는 전체 `full(L)` = `build_context(max_chars=아주 큰 값)` 의 `context_size`(문안 포함) ② `full(L) ≤ 기준(L)` 이면 뺀 수 0 · 남는 여유 = `기준(L) − full(L)` ③ 넘으면 `build_context(max_chars=기준(L))` 을 돌려 **묶음별 뺀 수**(`report` 의 `dropped_terms` · `dropped_reverse_alias` · `dropped_reverse` · `dropped_forward_alias`)를 읽는다 ④ 같은 계산을 문안 없이 한 번 더 해 **문안 때문에 더 빠진 수** = ③ 의 차이. 결과는 언어 7개 × (전체 글자 · 기준 · 여유 또는 묶음별 뺀 수 · 문안 때문에 더 빠진 수) 표로 보고한다.
+- **판정**: 정방향(기본 · 별칭)이 빠지는 언어가 생기면 코디 보고(0.6.0 판정 그대로 — 워커가 기준 · 문안 · 순서를 바꾸지 않는다). `terms` · 역방향만 빠지면 기록.
+
+**시드 `.6` 기준 추정**(2026-11-14 · 배포본 코드의 `build_context` 로 계산 · 문안 S1 ~ S4 = 439자(0.8.1 · D-49) · 실물 연결 아님 — **`.7` 확정 뒤 WP23 에서 다시 잰다**)
+
+| lang | 기준 | 줄이기 없는 전체(`.6` · 문안 없음) | 지금 여유 | 문안 넣은 뒤 여유 | 문안 때문에 더 빠지는 것 |
+|---|---|---|---|---|---|
+| en | 23,424 | 17,589 | 5,835 | 5,396 | 0 |
+| ja | 20,419 | 19,408 | 1,011 | 572 | 0 |
+| zh | 20,933 | 18,565 | 2,368 | 1,929 | 0 |
+| zh-Hant | 21,689 | 24,750 | **없음**(이미 줄임 — 보낸 글자 21,658 · `terms` 170 · 역방향 별칭 33 빠짐) | 없음 | **역방향 별칭 33 → 44**(11 더 — 0.8.0 세 문장 추정은 42) |
+| th | 21,343 | 20,804 | 539 | **100**(0.8.0 세 문장 추정은 178) | 0 |
+| vi | 22,891 | 17,596 | 5,295 | 4,856 | 0 |
+| yue | 21,123 | 17,636 | 3,487 | 3,048 | 0 |
+
+- 읽는 법: **zh-Hant 만 문안 값을 치른다**(역방향 별칭 11개 — 시드 뒤쪽의 별칭부터 · 정방향 뺀 수 0). **th 는 여유가 100자 · ja 는 572자**라, 시드 `.7` 이 별칭 · term 을 조금만 늘려도 th 는 `terms` 부터 줄이기가 시작된다.
+- **이 표의 기준은 `stt-rt-v5` · 시드 `.6` 으로 잰 값이다**(0.6.1 ⑬′). v6(§5.10)에서 같은 글자 수가 통과하는지는 재지 않았다 — 공식 문서의 한도 문구(8,000토큰 · 약 1만 자)는 v6 에서도 같지만 글자 → 토큰 환산은 실측만 안다. **WP23 이 v6 · 시드 `.7` · 문안 포함으로 ⑬′ 방법을 다시 돌려**(§9.3 「6차」 ㉒) 통과 최대치 · 거절 최소치를 보고하고, 표 · `langs.py` 를 고칠지는 코디 · 사용자가 정한다(OQ-028).
 
 **옛 단일 기본값 — 기록 (0.4.1 ~ 0.6.0 · `GLOSSARY_CONTEXT_MAX_CHARS` 기본값 20251)**
 
@@ -614,7 +744,7 @@ cd back && uv run python scripts/import_glossary.py [--url <matrix 주소>] [--o
 - 시드의 `name` 에는 괄호가 없다(§4.2 검사 4) → 용어집이 번역문에 괄호를 들여오는 길은 닫힌다. 정방향 target 이 현지명이라 TTS 는 **현지명을 읽는다**(예 zh 「美版热玛吉FLX」 — 영문 상표명이 아니라 · D-33 「써마지가 영어로 들어가는 게 아니라 중국어 · 대만어로」).
 - 그래도 **§5.7 `strip_parens` 는 지우지 않는다** — 실물 ⑤(2026-10-26)에서 괄호는 Soniox 번역이 **스스로 만들기도** 했다(ja 「チャウム（補充）」 — 용어집 원문에 없던 괄호). D-19 「TTS 입력에서만 괄호를 뺀다」는 용어집과 무관하게 계속 맞다.
 
-## 5. 통역 WS — D-03 · D-04 · D-17 · D-19 · D-28 · D-33 · D-35 · D-37 · D-41 · D-42
+## 5. 통역 WS — D-03 · D-04 · D-17 · D-19 · D-28 · D-33 · D-35 · D-37 · D-41 · D-42 · D-43 · D-45 · D-47 · D-48
 
 ### 5.1 원형과 무엇이 같고 무엇이 다른가
 
@@ -623,12 +753,14 @@ cd back && uv run python scripts/import_glossary.py [--url <matrix 주소>] [--o
 | 중계 구조 | 브라우저 WS 하나 ↔ back ↔ Soniox STT(two_way) + TTS 두 연결 · 세션이 끝나면 둘 다 닫음 | **그대로** | D-03 · 개념 websocket-relay |
 | 메시지 종류 · 오디오 형식 | §5.3 표 | **그대로** | 원형 `interpret-ws-contract.md` · `session.py` |
 | 발화 묶기 · 자막 갱신 | `assembler.py`(`<end>`/`<fin>` 까지 한 발화 · non-final 갈아 끼움 · 같은 caption 재전송 안 함 · zh · ja · th 빈칸 정리) | **그대로** | 원형 · 개념 nondeterministic-stt-output |
-| Soniox 모델 · 음색 · 샘플레이트 · keepalive 주기 | `stt-rt-v5` · `tts-rt-v2` · 음색 `Jiwoo` · 16k 입력 · 24k 출력 · 10초/20초 keepalive · stop 뒤 3초 드레인 | **그대로** | 원형 `soniox.py` · `session.py` |
+| Soniox 모델 · 음색 · 샘플레이트 · keepalive 주기 | `stt-rt-v5` · `tts-rt-v2` · 음색 `Jiwoo` · 16k 입력 · 24k 출력 · 10초/20초 keepalive · stop 뒤 3초 드레인 | **STT 모델만 `stt-rt-v6`**(0.8.0 · D-43 · §5.10) · 나머지 그대로(0.7.0 까지는 전부 그대로 — STT `stt-rt-v5`) | 원형 `soniox.py` · `session.py` · D-43 |
+| 끊김(발화 끝 감지) 설정 | `enable_endpoint_detection: true` · `max_endpoint_delay_ms: 1000` | **그대로**(0.8.0 1루프 · D-47 · §5.10 — 올릴지는 품질 시험 3절 뒤) | 원형 `stt_config` · D-47 |
+| 빈 원문 발화 | 원문이 비어도 번역이 있으면 자막 · TTS 로 나감 | **내보내지 않는다**(0.8.0 · D-48 · §5.11) | D-48 |
 | TTS keepalive **메시지 모양** | `{}` | **`{"keep_alive": true}`**(공식 형식) · 다른 stream_id 의 오류는 발화를 끊지 않음(§5.8 · 0.5.0) | 운영 장애 2026-10-27 · Soniox 공식 문서 |
 | `start` 의 `lang` | 8개 `{zh,en,ja,th,fr,es,tl,hi}` | **7개 `{en, ja, zh, zh-Hant, th, vi, yue}`** — 앱 언어 코드(§5.5 · 0.4.0 zh-Hant 추가) | D-04 · D-28 |
 | `start` 의 `traditional` | front 가 보냄 | **없앤다** — 번체 여부는 `lang` 이 정한다(§5.6). 와도 무시 | D-17 |
 | `start` 의 `scheduleId` | 받아서 버림 | 없앤다(와도 무시). 0.6.0 통역 기록(§5.9)은 back 이 세션 id 를 스스로 만든다 — front 가 보내는 값을 쓰지 않는다 | Scope · D-41 |
-| STT 설정 | `context` 없음 | **`context` 를 넣는다**(§4.5 · §4.6 — 시드의 정방향 + 역방향 · 0.4.0) | D-05 · D-18 · D-33 |
+| STT 설정 | `context` 없음 | **`context` 를 넣는다**(§4.5 · §4.6 — 시드의 정방향 + 역방향 · 0.4.0 · **0.8.0 서술 칸 `text`** — 역할 · 방향) | D-05 · D-18 · D-33 · D-45 |
 | TTS 입력 | 번역문 그대로 | **괄호 부분을 뺀 문자열**(§5.7) — 자막은 그대로 | D-19 |
 | `ready` 시점 | STT · TTS 를 열자마자 | STT 설정 확인(최대 2초 · 필요하면 정방향 기본만으로 1회 재연결) → TTS 열기 → `ready`(§4.6.1) · `SonioxError` 에 `error_type` (0.2.0) | D-05 · 공식 error-handling |
 | 인증 | 헤더 Bearer 또는 `?token=` · accept 전 검증 · Origin 있으면 허용 출처만 | **그대로** — 토큰은 §3.2, 허용 출처는 `INTERPRET_FRONT_ORIGIN` | 원형 `api/interpret.py` · SPEC-004 §4.2 |
@@ -841,6 +973,74 @@ cd back && uv run python scripts/import_glossary.py [--url <matrix 주소>] [--o
 
 - 일반 로그에는 지금처럼 발화 원문 · 번역문을 쓰지 않는다(§5.8) — 대화 문장은 기록 파일에만.
 
+### 5.10 STT 모델 · 끊김 설정 (0.8.0 — D-43 · D-47)
+
+**모델 — `stt-rt-v6` (D-43)**
+
+| 항목 | 계약 | 근거 |
+|---|---|---|
+| `STT_MODEL` | **`stt-rt-v6`**(back `service/interpret/soniox.py` 상수 한 곳 · 0.7.0 까지 `stt-rt-v5`) | D-43 |
+| 그 밖의 STT 설정 | **그대로** — `audio_format` · `sample_rate` 16,000 · `num_channels` · `language_hints` · `enable_endpoint_detection` · `max_endpoint_delay_ms` · `translation`(two_way) · `context`. 키를 더하거나 빼지 않는다(v6 의 새 값 `enable_agent_text_input` 도 쓰지 않는다 — 음성 에이전트용 · 결정 없음) | 공식 `stt/models`(2026-11-14): 「The v6 models are fully compatible with the existing v5 models and Soniox API. To upgrade, simply replace the model name in your API request」 |
+| TTS | `tts-rt-v2` 그대로 | 결정 없음 |
+| 왜 지금 | `stt-rt-v5` 는 Deprecated · **2026-12-15 제거**(그 뒤 v5 요청은 v6 로 자동 연결). v6(2026-11-03)의 관련 변경 — 「More accurate real-time translation that adjusts how much speech it gathers before translating」 · context 를 더 잘 씀 · 이름 · 전문 용어 인식 | 공식 `stt/models` · BASE-001 확인한 사실(2026-11-14) |
+| 순서 | **v6 단독 효과를 먼저 본다** — 다른 손질(`text` · 시드 `.7`) 없이 모델만 바꾼 조합 B 를 시험 목록으로 돌린다(§9.3 「6차」) | D-43 「다른 손질보다 먼저 v6 단독 효과를」 |
+
+- 한도(§4.6 언어별 표)는 v5 로 잰 값이다 — v6 에서 다시 잰다(§9.3 ㉒ · OQ-028).
+
+**끊김(발화 끝 감지) — 1루프는 그대로 (D-47)**
+
+> 기록(BASE-001 2026-11-14): 한국어 발화 112줄 중 62줄이 6자 이하 · 29줄이 문장 중간에서 끊겼고, 끊긴 조각이 오역으로 이어졌다.
+
+| 항목 | 계약 | 근거 |
+|---|---|---|
+| 1루프 값 | **`max_endpoint_delay_ms: 1000` 그대로** · `enable_endpoint_detection: true` 그대로 · 다른 끊김 값은 보내지 않는다(= Soniox 기본) | D-47 「v6 로 먼저 보고」 |
+| 손보는 조건 | 품질 시험 **3절(T23 ~ T26 — 문장 중간 쉼)이 v6(조합 B · C)에서도 조각나면**(조각 수 = 실제 확정 발화 수 − 기대 수 > 0 · §9.3) **덜 끊는 쪽으로** 끊김 값을 손본다 | D-47 |
+| 얼마로 | **이 문서는 정하지 않는다**(OQ-027) — 값을 올리면 말이 끝난 뒤 자막 · 음성이 그만큼 늦는다. 그 맞바꿈은 **사용자가 실물에서** 판단한다. 품질 시험이 3절의 조각 수와 지연(발화 끝 → 확정까지)을 수치로 올린다 | D-47 「지연이 느는 만큼은 실물에서 사용자가 판단」 |
+| 바꾸는 방법 | 값이 정해지면 이 절 · `stt_config` · 시험(§9.1 「통역」)을 같이 고친다(코디 → planner → backend) | — |
+
+**공식 문서의 끊김 값**(`stt/rt/endpoint-detection` · 2026-11-14 — 이름 · 범위 · 기본값만 인용 · 어느 모델이 받는지는 그 문서에 없다)
+
+| 이름 | 범위 | 기본 | 공식 설명 | 지금 |
+|---|---|---|---|---|
+| `enable_endpoint_detection` | bool | (문서에 기본값 없음) | 켜면 발화 끝에서 `<end>` 토큰 | `true` |
+| `max_endpoint_delay_ms` | 500 ~ 3000 | 2000 | 「sets the maximum time Soniox can wait before returning an endpoint after speech has ended」 | **1000** |
+| `endpoint_sensitivity` | −1.0 ~ 1.0 | 0.0 | 「controls how likely Soniox is to emit an endpoint」 | 안 보냄 |
+| `endpoint_latency_adjustment_level` | 0 · 1 · 2 · 3 | 0 | 「reduces endpoint latency compared to the default endpointing behavior」 | 안 보냄 |
+
+- D-47 의 「끊김 감도」 = 위 `endpoint_sensitivity` 다. 이 값들은 **v6 전용이 아니다** — 공식 v6 변경 목록에 끊김 값 이야기는 없다(v6 가 끊김에 주는 영향은 「번역 전에 모으는 말의 양을 조절」 한 줄뿐).
+- **덜 끊는 쪽의 방향(0.8.1 · D-47)**: `max_endpoint_delay_ms` 는 **올린다** · `endpoint_sensitivity` 는 **낮춘다** — 공식 문서 「Higher values make endpoints more likely」(값이 클수록 더 잘 끊는다). `endpoint_latency_adjustment_level` 은 끊김을 앞당기는 값이라 덜 끊으려는 손질에는 쓰지 않는다(0 그대로). 얼마로 할지는 실물로 확인한 값만 쓴다(OQ-027).
+- 「누르고 말하기」(D-36)는 뗄 때 `pause` → finalize 로 발화가 확정된다 — 끊김 값과 무관하다(그대로).
+
+### 5.11 빈 원문 막기 (0.8.0 — D-48)
+
+> 기록(BASE-001 2026-11-14): 원문이 마침표뿐인 발화에 원문에 없는 번역이 붙어 손님에게 나간 줄이 있다. Soniox 가 소리 없는 구간 · 잡음에서 번역만 지어낸 것이다.
+
+**빈 원문 판정** — 발화의 원문(그 시점까지의 원문 토큰을 이은 문자열)에 **유니코드 범주 `L`(글자) · `N`(숫자)인 글자가 하나도 없으면** 빈 원문이다.
+
+| 예 | 판정 |
+|---|---|
+| 빈 문자열 · 공백 · 줄바꿈뿐 | 빈 원문 |
+| 문장부호뿐 — 마침표 · 쉼표 · 물음표 · 느낌표 · 말줄임표 · 따옴표 · 괄호 · 줄표(반각 · 전각 · CJK `。` `、` `？` `！` `…` 포함 — 범주 `P`) | 빈 원문 |
+| 기호뿐 — `~` · `♪` 같은 것(범주 `S`) · 보이지 않는 글자(범주 `C`) · 결합 부호만(범주 `M`) | 빈 원문(기본값 — D-48 의 「문장부호뿐」 을 「글자 · 숫자 없음」 으로 넓게 읽는다) |
+| 글자 · 숫자가 하나라도 있음 — 「네.」 · 「어,」 · 「30」 | **빈 원문 아님**(그대로 나간다 — 짧은 말을 막지 않는다) |
+
+**동작**
+
+| 항목 | 계약 |
+|---|---|
+| 확정 발화 | 빈 원문으로 확정된 발화는 **자막(`caption`)으로도 TTS 로도 내보내지 않는다** — 번역문이 있어도. `audio_start` · 오디오 · `audio_end` 없음 |
+| 확정 전(`final:false`) | 그 시점 원문이 빈 원문이면 그 caption 을 보내지 않는다(번역만 든 말풍선이 뜨지 않게). 원문에 글자가 생기면 그때부터 지금처럼 보낸다 |
+| 이미 보인 말풍선 | 같은 `id` 의 `final:false` caption 이 **이미 나간 뒤** 빈 원문으로 확정되면(확정 전 글자가 확정에서 사라진 경우) `original` · `translation` 이 **둘 다 빈 문자열인 `final:true` caption 을 1번** 보낸다 — front 는 글이 빈 말풍선을 그리지 않는다(`front/lib/view.ts` · 배포본) → 화면에서 사라진다. 나간 적이 없으면 아무것도 보내지 않는다 |
+| WS 메시지 모양 | **그대로**(§5.3 — 새 종류 · 새 필드 없음). front 코드는 바꾸지 않는다 |
+| 발화 `id` | 막힌 발화가 번호를 써도 된다(`u3` 다음이 `u5` 일 수 있다) — `id` 는 발화를 가르는 이름일 뿐이다(§5.3) |
+| 통역 기록(§5.9) | §5.9 문구 그대로 — utterance 줄은 「`final:true` caption 이 **나갈 때**」 쓴다. 막힌 발화는 나가지 않으므로 **줄이 없다**(둘 다 빈 `final:true` 도 §5.9 「둘 다 비면 쓰지 않는다」). **막힌 발화를 기록에 남길지는 DEC 에 없다 → OQ-026** |
+| 로그 | 막을 때 정보 로그 1줄 — `interpret blank original dropped: id · side · 원문 글자 수 · 번역 글자 수`(문장 0) |
+| 자리 | 판정 함수는 한 곳(`assembler.py` — `strip_parens` 옆) · 내보내는 자리(`CaptionAssembler` 또는 `session._emit`)에서 한 번만 건다. TTS 큐에 넣기 전에 걸러 `_tts_worker` 는 건드리지 않는다 |
+| 끄는 길(0.8.1 · W-1) | **운영에서는 늘 켠다.** 세션(`InterpretSession`)이 받는 선택 인자(기본 = 켬)로만 끌 수 있고 **품질 시험 스크립트만** 끈다(조합 A · B) — env · WS `start` 로는 못 끈다 · 통역 API 경로는 인자를 주지 않는다(§9.3 「조합」) |
+
+- **막지 않는 것**: 원문에 글자가 있는데 번역이 틀리거나 지어낸 경우(원문과 번역을 견주는 판정은 없다) · 원문은 있고 번역이 빈 경우(지금 그대로 — 자막만 나가고 TTS 없음).
+- `side` 판정 · 발화 묶기 · 괄호 제거(§5.7)는 그대로다.
+
 ## 6. 화면 공통 — D-07 · D-10 · D-20 · D-21 · D-30
 
 > 0.3.0 — **화면 정본 = 확정 시안**(D-20). 화면마다 근거 시안 파일을 단다(`design/project/<파일>`). 시안의 마크업은 medikit JS 없이 medikit 1.4.0 클래스 값을 옮긴 것이다(`design/README.md`) — **구현은 진짜 medikit 컴포넌트**를 쓰고 크기 · 색 · 글자 클래스를 시안 값에 맞춘다.
@@ -1045,7 +1245,7 @@ front 는 아래 상태 중 하나다. 판정은 **위에서부터**(먼저 맞�
 | 화면 꺼짐 방지 | 통역 화면에서 `navigator.wakeLock.request("screen")`. 탭이 다시 보이면(`visibilitychange`) 다시 요청. 지원하지 않으면 조용히 넘어간다(기능 감지) — 기본값 |
 | 끊김 · 재연결 | **자동 재연결 없음**. WS 가 끊기거나 `error` 면 「오류」 상태 + [다시 연결](§7.3) — 누르면 새 WS · 새 `start`. 앱이 백그라운드로 가면(`visibilitychange` hidden) `stop` 보내고 닫는다 → 돌아오면 **「시작 전」(§7.3 #1) 오버레이** — 언어 단추를 누르면 새 WS · 새 `start`(0.4.1 · D-34)(0.2.0 — WARN-1 · 기본값 — 원형 SPEC-004 §4.3 「백그라운드면 닫는다」 · 개념 websocket-relay 「끊김을 그대로 드러낸다」) |
 
-## 9. 검증 — 완료 조건 — D-03 · D-05 · D-12 · D-33 · D-35 ~ D-42
+## 9. 검증 — 완료 조건 — D-03 · D-05 · D-12 · D-33 · D-35 ~ D-50
 
 ### 9.1 back 시험 (pytest · Soniox 가짜 · 시드는 가짜 + 실제 파일)
 
@@ -1060,6 +1260,10 @@ front 는 아래 상태 중 하나다. 판정은 **위에서부터**(먼저 맞�
 | 가져오기 스크립트(0.4.0 · §4.8) | 저장한 matrix 가짜(`--from-file`)로: 괄호 분해 다섯 모양(없음 · 라틴(현지) · 현지(라틴) · 같음 · 그 밖 → `reviewed:false` · 괄호 뺀 이름 · `raw`) · 반각 · 전각 · 앞 공백 · 줄바꿈 정리 · 같은 `ko` 행 합치기(뒤 행 다른 표기 → 처음 term `aliases`) · zh-Hant = 분해 뒤 zh 의 `to_display("zh-Hant")`(0.5.0 — 「离子导入 → 離子導入」 · 「激光导入 → 雷射導入」 · 「特色项目 → 特色項目」) · `draft-s2twp` · `reviewed:false` · 빈 칸이면 entry 없음 · `id` = `ph-001` 순서 · 머리 `imported_from` · 출력이 §4.2 검사 통과 · **출력 파일이 이미 있으면 쓰지 않고 0 아닌 코드** · 같은 입력 두 번 → 같은 바이트(결정적) |
 | 통역 | 원형 `test_interpret.py` 복사분(묶기 · 갱신 · 번체 자막 · TTS 간체 · flush · bad start · 전체 흐름 · 닫기 정리 · 오류 코드 · Origin · 토큰) + `lang` **7개** 매핑(§5.5) · `yue` · `zh-Hant` 는 Soniox 에 `zh` · **자막 변환 yue `s2tw`(「激光治療」) · zh-Hant `s2tw` + 표(「雷射治療」 · 「離子導入」 · 0.5.0 D-35) · `to_display` 「激光 软件 导入 项目 → 雷射 軟件 導入 項目」 · zh 간체 · 셋 다 TTS 입력은 간체**(§5.6) · `traditional` 이 와도 무시 · STT 설정에 `context` 가 들어감 · §5.7 괄호 제거 목록 — TTS 입력만 괄호 없음 · caption 은 괄호 그대로 · **(0.5.0 · §5.8) TTS keepalive 가 `{"keep_alive": true}` · 스트림 밖 검증 오류(`stream_id: ""`)가 와도 그 발화 오디오가 끝까지 나옴 + 경고 로그 · 자기 스트림 오류는 `SonioxError(channel="tts")` · 중계 중 오류 로그에 channel · message · lang · paused · stt_last · tts_last(len · lang) — 번역문 · 키 0** |
 | **기록(0.6.0 · §5.9 · D-41 · 0.7.0 ⑦ · ⑨ — D-42)** | `tests/test_records.py` — 가짜 Soniox · `tmp_path` 폴더 · 시계 주입: ① 세션 1회(`start` → final caption 2 · non-final 1 → `stop`) → 오늘 파일 1개 · 줄 = `session_start` · `utterance` 2 · `session_end`(`reason=stop` · `utterances=2`) · 키 순서 · 여기 없는 키 0 · `at` `+09:00` · `seed` = 시드 판 ② 파일 날짜 = UTC+9 날짜(UTC 15:00 = 다음 날 파일) ③ `final:false` 안 씀 · 같은 `id` 두 번 → 1줄 · 둘 다 빈 caption 안 씀 ④ `bad_request`(lang 밖 · 첫 프레임 아님) → 줄 0 · `no_api_key` → start + end(`error` · `no_api_key`) · Soniox 거절 → end `soniox_unavailable` · 브라우저 닫힘 → `close` ⑤ **판정**: ko 대표명 · ko 별칭(0.6.1 — 레포 시드에 ko 별칭이 0개라 가짜 시드로) · L name · L alias 각각 걸림 · 「써마지 하실래요」 → `[]`(0.6.1 — 「써마지」 단독은 아무 term 도 아님) · zh-Hant 번체 자막 ↔ 시드(`t2s`) · 라틴 경계(「contact」 → `ACT` 아님 · 「ACT 시술」 → 걸림) · 공백 무시(「써마지 FLX」 → ph-130) · **더 긴 일치**(「써마지 CPT」 → `kr-001` 만 · 「벨로테로 리바이브」 → `kr-009` 만 · 짧은 이름이 ko 별칭인 경우는 가짜 시드) · `entries[L]` 없는 term 은 ko 로만 · 순서 = 시드 순서 · 없으면 `[]` ⑥ **넣지 않는 것**: 가짜 토큰 · 로그인 아이디 · 주입한 IP · Origin 문자열 · PCM 바이트가 파일에 0 ⑦ 폴더 비면 파일 0 · 삭제 작업 없음 · 로그 `off`(0.7.0 — `INTERPRET_RECORD_KEEP_DAYS=7` 을 줘도 같다) / 쓸 수 없는 폴더 → 기동 성공 · 경고 1줄 · 기록 끔 ⑧ **쓰기 실패**(쓰기 함수가 `OSError`) → 그 세션 caption · 오디오 · `ready` 가 기록 없을 때와 같음 · `error` 프레임 0 · 경고 로그 세션당 1줄 ⑨ **보관 기간(0.7.0 · D-42)**: **(a) 비었음 · 없음 · 공백만(`"   "`)** → 경고 0 · 오래된 날짜 파일(오늘 − 8 일 등)이 기동 뒤에도 그대로(삭제 0) · 24시간 배경 작업이 만들어지지 않음 · 로그 `keep_days=off` · `sweep: deleted=` 줄 0 **(b) N=7**(` 7 ` · `07` 도 7) → 0.6.0 ⑨ 그대로: 오늘 − 7 · − 8 일 파일 지움 · − 6 일 · 오늘 남김 · 이름이 다른 파일(`note.txt` · `2026-10-01.jsonl.bak`) 남김 · 기동 때 1회 · 24시간 뒤 다시(시계 · 잠 주입) · 지우기 실패 파일 하나 → 나머지 계속 · 로그 `keep_days=7` **(c) 잘못된 값**(`0` · `-1` · `abc` · `+7` · `7.0` · `36501` · `1000000` · 4,300 자리 넘는 숫자 각각) → 경고 로그 1줄 · 삭제 0 · 배경 작업 없음 · 로그 `keep_days=off` · **기동 성공**(기록은 켜진 채 — 오늘 파일에 줄이 써진다) ⑩ 표면: 허용 경로 6개 그대로(`test_api_surface.py` 변경 없이 통과) · 일반 로그 캡처에 발화 문장 0 |
+| **STT 설정(0.8.0 · §5.10 · D-43 · D-47)** | `stt_config` 결과의 `model == "stt-rt-v6"` · **그 밖의 키 · 값이 0.7.0 과 같다**(키 집합 = `model` · `audio_format` · `sample_rate` · `num_channels` · `language_hints` · `enable_endpoint_detection` · `max_endpoint_delay_ms` · `translation` (+ `context`) · `max_endpoint_delay_ms == 1000`) · `endpoint_sensitivity` · `endpoint_latency_adjustment_level` · `enable_agent_text_input` 키 없음 · 코드 · 시험에 `stt-rt-v5` 문자열은 품질 시험 스크립트의 조합 A 인자 말고는 0 |
+| **context `text`(0.8.0 · §4.5 · §4.6 · D-45)** | `to_soniox` 결과에 `text` 키 · 값 = 문안 상수(**§4.5 S1 ~ S4 네 문장과 글자 그대로** · 424자 · 줄바꿈 3 — 0.8.1 · D-49) · 키 순서 `general` → `text` → `terms` → `translation_terms` · 7개 언어 모두 같은 문자열 · **줄이기에서 `text` 가 줄지 않음**(기준을 아주 작게 줘도 `text` · `general` · 정방향 기본 그대로) · 크기 계산에 `text` 가 들어감(문안 길이만큼 기준을 낮춘 것과 묶음별 뺀 수가 같음) · `forward_only` 에 `text` 남음 · `is_forward_only` 판정은 0.7.0 과 같음 · entry 0 인 언어는 `context` 키 없음 그대로 · 로그에 `text=<글자 수>`(문안 0) · **`translation_terms` 의 모든 짝이 시드에서 왔다** — 레포 시드로 7개 언어 조립 결과의 ko 쪽 ∈ 시드 `ko` ∪ `ko_aliases` · 상대 쪽 ∈ 그 언어 entry `name` ∪ `aliases`(`norm` 뒤) · 그 밖 0(일반 낱말 짝 금지) · `GENERAL` 3쌍은 0.7.0 과 같음 · §4.6.1 가짜 Soniox 6건 그대로 통과(재연결 설정에 `text` 가 든 것만 다름) |
+| **빈 원문(0.8.0 · §5.11 · D-48)** | 판정 함수: 빈 문자열 · 공백뿐 · 문장부호뿐(반각 · 전각 · CJK) · 기호뿐 → 참 / 한 글자 · 숫자 하나 · 글자 + 문장부호 → 거짓. 가짜 Soniox 로: ① 원문 문장부호뿐 + 번역 있음으로 확정 → 브라우저로 `caption` 0 · `audio_start` 0 · TTS 연결에 보낸 글 0 · 로그 1줄(문장 0) ② 원문 빈 채 번역 토큰만 온 `final:false` → caption 0 ③ 원문에 글자가 생기면 그때부터 caption 이 나감 ④ `final:false` 가 나간 뒤 빈 원문으로 확정 → 같은 `id` 의 둘 다 빈 `final:true` caption 1번 · 오디오 0 ⑤ 짧은 정상 발화(글자 1 ~ 2개 + 마침표)는 0.7.0 과 같이 나감(caption · TTS) ⑥ 원문 있음 · 번역 빔 → 0.7.0 과 같음 ⑦ 막힌 발화 앞뒤의 정상 발화가 영향을 받지 않음(순서 · 오디오) ⑧ 기록 켠 채 ① → utterance 줄 0 · `session_end.utterances` 에 안 세어짐(OQ-026 닫히기 전 동작) ⑨ `pause` · `stop` flush 로 확정된 빈 원문도 같은 규칙 |
+| **기본값 = 켬(0.8.1 · W-1 · §9.3 「조합」)** | 선택 인자를 주지 않은 조립 · 세션은 **문안 넣음 · 빈 원문 막기 켬 · `stt-rt-v6` · 기동 때 읽은 시드 · 뺀 역방향 짝 0** · 통역 API 경로(`api/interpret.py` · `container.py`)가 이 인자들을 넘기지 않는다(소스에 인자 이름 0) · `config.py` · `.env.example` 에 조합용 이름 0 · WS `start` 에 그런 키(문안 · 막기 · 모델 등)를 넣어 보내도 무시(설정 · 동작이 기본값과 같음) · 인자로 끈 경우만: 문안 뺌 → `to_soniox` 에 `text` 키 없음 · 막기 끔 → 빈 원문 발화가 0.7.0 처럼 나감 · 역방향 짝 하나 뺌 → 그 source 짝만 없고 나머지 같음 |
 | 비밀값 | 로그 캡처에 토큰 · 키 · 비밀번호 0 |
 
 ### 9.2 front 확인
@@ -1150,6 +1354,124 @@ front 는 아래 상태 중 하나다. 판정은 **위에서부터**(먼저 맞�
 | ⑳ (다시) | ko 별칭 「써마지」 지운 뒤(`newterms-2.json`) | zh-Hant **2/7** — 「써마지 CPT」 → **`黃金電波`(kr-001 · 맞음)** · 기록 판정도 `kr-001`. ja **4/7** — サーマジCPT 그대로(시드 name `サーマクールCPT` 와 다른 음역 · ko 별칭과 무관) · エムフェイス 이번엔 적중(합성 음성 · 비결정). 오류 0 | 기록 — 남은 미적중은 STT · 번역 쪽(짝은 context 에 있음 · OQ-017 ④) |
 | ⑳ TTS | 대문자 name 소리(`tts-samples/` — `EXION` · `DENSITY` · `EMFACE` × en · zh · th · vi 12개 + en 문장 1) | 길이 en 0.77 ~ 0.94초 · **`EMFACE-zh` 2.39초**(확연히 김 — 글자 읽기일 수 있음). 글자 / 낱말 읽기 판정은 **사람이 아직 안 들음** | **OQ-019 — 사용자 청취 대기** |
 | ㉑ | 기록(⑳ 9세션 · 폴더 = 레포 밖) | 오늘 파일 1개 · 27줄 = 9 × start · utterance · end(`reason=stop`) · `terms` 에 kr-001 · 002 · 003 · 004 · 005 · 007 · 008(번역에 나온 것과 같음) · 키 · `Bearer` · token · IP 꼴 · `http` 0. **권한 뺀 폴더 1회** → 통역 끝까지(final 1 · error 0) · 경고 1줄 `interpret record write failed: PermissionError` · 파일 0 | 통과 |
+
+**6차 — 품질 시험(0.8.0 · D-43 ~ D-48 · DEC OQ-021 ~ 023 · WORK WP21 ~ WP24)** — **품질 개선의 완료 조건**(D-44).
+
+> 베타 기록에서 문제가 됐던 문장으로 만든 시험 목록을, 고치기 전과 고친 뒤에 **같은 소리로** 돌려 비교한다. **이 문서에는 문장을 쓰지 않는다**(실제 상담 문장을 다듬은 것 — DEC OQ-021) — 번호 · 분류 · 판정 방식 · 파일 위치만.
+
+**시험 목록**
+
+| 항목 | 계약 |
+|---|---|
+| 위치 | 프로필 레포 워킹트리 `reference/2026-11-12-interpreter-idea/test-sentences.md` — **로컬 전용 · git 제외**(DEC OQ-021). 레포 · PR · 보고에 그 문장을 붙이지 않는다 |
+| 문장 수 | **T01 ~ T33**(33개) — zh 19 · en 8 · ja 6. 한 → 외(직원이 말함) 31 · 외 → 한(손님이 말함) 2(T10 · T22) |
+| 문장마다 든 것 | 번호 · 언어 · 방향 · 말할 문장 · 기대(뜻) · **「나오면 FAIL」 문구** · 출처(기록 날짜 · 세션). 시술명의 정답 표기는 목록이 정하지 않는다 — 시드 `.7`(§4.2.4)을 따른다 |
+
+| 절 | 분류 | 번호 | 수 | 언어 | 무엇을 보나 | 고치는 자리 |
+|---|---|---|---|---|---|---|
+| 1 | 시술명 | T01 ~ T10 | 10 | zh 6 · en 2 · ja 2 | 시술 · 제품 이름이 현지 표기로 나오는가(영문 · 직역 · 수술 뉘앙스가 아닌가) | 시드 `.7`(§4.2.4) · `text`(§4.5) |
+| 2 | 손님에게 하는 말 | T11 ~ T22 | 12 | zh 6 · en 4 · ja 2 | 손님이 듣는 말로 · 높임으로 옮겨지는가(직원 쪽 낱말 · 반말이 아닌가) | `text`(§4.5) |
+| 3 | 끊김 | T23 ~ T26 | 4 | zh 2 · en 2 | 쉼이 있어도 **기대한 수의 발화**로 나오는가(문장마다 기대 수가 다르다 — 한 발화로 묶여야 하는 문장 · 두 발화로 나뉘어야 하는 문장이 섞여 있다 · 기대 수는 규칙 파일에) | v6(§5.10) · 남으면 끊김 값(OQ-027) |
+| 4 | 인식 | T27 ~ T29 | 3 | zh 3 | 한국어를 바르게 듣는가 · 말이 없을 때 번역을 지어내지 않는가(T29) | v6 · 빈 원문 막기(§5.11) |
+| 5 | 사전 겹침 · 오류 값 | T30 ~ T33 | 4 | zh 2 · ja 2 | 의도된 겹침이 유지되는가(T30) · 겹침 · 뒤바뀜 · 잘림이 고쳐졌는가 | 시드 `.7`(§4.2.4 E3 · E4 · E8 · E11) |
+
+**조합 — 전후 비교**
+
+| 조합 | STT 모델 | 시드 | context `text` | 빈 원문 막기 | 끊김 | 무엇 |
+|---|---|---|---|---|---|---|
+| **A 「전」** | `stt-rt-v5` | `.6` | 없음 | 없음 | 1000 | **지금 운영 조합**(main `e0fbda8`) — 고치기 전 |
+| **B 「v6 단독」** | `stt-rt-v6` | `.6` | 없음 | 없음 | 1000 | 모델만 바꿈 — v6 단독 효과(D-43) · 3절이 v6 에서도 조각나는지(D-47) |
+| **C 「후」** | `stt-rt-v6` | `.7` | 있음 | 있음 | 1000 | 고친 뒤 전부(WP21 + WP23) |
+
+- **A 는 2026-12-15 전에만 돌릴 수 있다** — 그날 `stt-rt-v5` 가 없어지고 v5 요청은 v6 로 간다(§5.10). A 를 먼저 끝낸다.
+- A 가 운영과 같다는 확인: 조합 A 의 STT 설정(모델 · 끊김 · context 칸 · 글자 수)이 main `e0fbda8` 의 `stt_config` · `build_context` 결과와 같음을 결과 JSON 에 수치로 남긴다(언어별 context 글자 수 = §4.6 「줄이기 없는 전체」 · zh-Hant 21,658).
+- **A 에서 막기가 꺼졌다는 확인(0.8.1 · W-1)**: 조합 A · B 의 결과에서 **막힌 빈 원문 수 = 0**(막기 꺼짐 — 33문장 합계) · `text` 글자 수 = 0. C 는 `text` 글자 수 = 424.
+- **조합을 바꾸는 길(0.8.1 · W-1)** — A · B · C 는 **같은 코드(WP21 뒤)** 위에서 돈다(A 를 옛 커밋 체크아웃으로 돌리지 않는다). 다섯 가지를 **조립 · 세션 함수의 선택 인자로만** 바꾸고, 시험 스크립트가 그 인자를 준다:
+
+| 바꾸는 것 | 받는 자리 | 기본값(= 운영) | A · B | 그 밖 |
+|---|---|---|---|---|
+| context 문안 넣기 | 조립 함수(`build_context`) | **넣음** | 뺌 | — |
+| 빈 원문 막기 | 세션(`InterpretSession`) | **켬** | 끔 | — |
+| STT 모델 이름 | 세션 → `stt_config` | `stt-rt-v6` | A = `stt-rt-v5` · B = 기본 | — |
+| 시드(용어집) | 세션에 넘기는 용어집 — 스크립트가 시드 파일을 `load_seed` 로 읽어 준다 | 기동 때 읽은 `back/seed/glossary.json` | 시드 `.6` 파일 | C = `.7` |
+| 역방향 짝 하나 빼기 | 조립 함수(뺄 source 목록) | 없음 | 울쎄라 원인 가르기에서만 | — |
+| 끊김 값 | 세션 → `stt_config` | §5.10(1000 · 다른 값 안 보냄) | 기본 | OQ-027 추가 실행에서만 |
+
+- **운영 기본값은 전부 「켬」(위 표의 기본값)이고 env · WS 메시지로는 못 바꾼다** — `config.py` 에 조합용 이름을 두지 않고(§2.4), `start` 메시지에 키를 더하지 않으며(§5.3 그대로), 통역 API 경로는 이 인자를 주지 않는다. 시험(§9.1 「기본값 = 켬」)이 막는다.
+- 스크립트는 조립 결과를 손으로 고쳐 넣지 않는다 — 위 인자로만. 그래야 A · B · C 가 운영과 같은 길(조립 → 세션 → Soniox)을 탄다.
+- 끊김 값을 바꿔 보는 실행(OQ-027)은 조합 C 에 값만 달리한 **추가 실행**으로 하고 값마다 따로 적는다.
+
+**입력 — Soniox TTS 로 만든 음성 파일(DEC OQ-022)**
+
+| 항목 | 계약 |
+|---|---|
+| 만들기 | 목록의 「말할 문장」을 **Soniox TTS**(`tts-rt-v2` · **말할 문장의 언어** — 한 → 외 = `ko` · 외 → 한 = 목록 「언어」 칸의 언어(Soniox 코드 · §5.5) · 앱과 같은 음색)로 합성해 STT 입력 형식(PCM s16le · 16,000 Hz · mono)의 파일로 둔다. **문장마다 파일 하나 · 한 번 만들어 A · B · C 에 같은 파일**(파일 해시를 결과에 남겨 같은 소리임을 보인다) |
+| 3절(쉼) | 목록의 쉼 표시 자리마다 **무음 1.0초**를 넣은 파일을 따로 만든다(조각을 따로 합성해 이어 붙임) |
+| T29(말 없음) | 말 없는 5초 파일(무음 또는 낮은 잡음 — 무엇을 썼는지 결과에 적는다) |
+| 재생 | back 을 거쳐(프로세스 안 · `live_check.py` 방식 — 브라우저 없음) **실시간 속도로** 40 ms 조각씩 보낸다(끊김 판정이 시간에 달렸다 — 한꺼번에 밀어 넣지 않는다). 파일 끝 뒤 무음 꼬리를 붙여 발화 끝을 기다린 다음 `stop`. **문장마다 새 세션** — `start` 의 `lang` = **목록 「언어」 칸의 언어**(한 → 외 문장도 그 언어 세션이다 — 말은 한국어 · 0.8.1 W-4) |
+| 보관 | 음성 파일은 문장과 같은 것이다 — **레포에 넣지 않는다**(레포 밖 또는 git 제외 폴더) |
+| 한계 | 합성 음성은 사람 목소리가 아니다 — 사람 목소리 확인은 OQ-017 그대로 남는다. 판정이 실행마다 갈리는 문장은 다시 돌린 횟수와 결과를 적는다(Soniox 출력은 결정적이지 않다 — ⑳) |
+
+**판정**
+
+| 누가 | 무엇을 | 어떻게 |
+|---|---|---|
+| **기계** | 「나오면 FAIL」 조건 | 목록의 FAIL 칸을 문장마다 **규칙**으로 옮겨 목록 옆 **규칙 파일**(로컬 전용)에 둔다. 규칙에 하나라도 걸리면 그 문장은 FAIL. **규칙 종류는 아래 넷뿐**(0.8.1 · W-3) |
+| **기계** | 발화 수 | 한 파일에서 나온 **확정 발화 수** · 막힌 빈 원문 수 · 번역 줄 수를 센다. 규칙 파일에 **문장마다 기대 확정 발화 수**를 적고(33문장 전부 — 3절은 문장마다 다르다 · T29 는 번역 줄 0) **조각 수 = 실제 − 기대**(0.8.1 · W-2). 조각 수 > 0 이면 조각남 · < 0 이면 묶이면 안 될 것이 묶임 — 둘 다 그 수 그대로 적는다 |
+| **기계** | 지연 | 파일의 말이 끝난 때 → 마지막 확정 caption 까지(ms) — 끊김 값 판단(OQ-027)의 재료 |
+| **사람** | 기계로 못 옮긴 조건 | 규칙 ④ 로 남긴 문장 — 목록의 FAIL 칸을 사람이 읽고 걸렸는지 본다(걸리면 아래 등급에서 「오역」 · 「어색」 쪽으로) |
+| **사람** | 뜻 · 자연스러움 | 목록의 「기대」와 견줘 발화마다 **좋음 · 어색 · 오역 · 인식 · 빈값**(BASE-001 2026-11-14 평가와 같은 분류). 코디가 먼저 보고 **중국어는 중국 코디 확인을 권장**(D-44). 사람 판정은 로컬 결과 파일(원문 · 번역이 든 것)을 보고 한다 |
+
+**기계 판정 규칙 — 종류 넷(0.8.1 · W-3)** — 규칙 파일의 규칙은 이 가운데 하나다. 워커가 다른 종류를 만들지 않는다.
+
+| # | 종류 | 무엇 | 적는 것 |
+|---|---|---|---|
+| ① | **글자 그대로** | 정한 문자열이 확정 발화에 나오면 걸림 | 문자열 · 찾을 쪽(원문 · 번역) · 대소문자를 가르는지 · 중국어는 양쪽을 간체로 맞춘 뒤(`t2s`) |
+| ② | **정규식** | 글자 그대로로 못 적는 꼴 — 「영문으로 나오면」(라틴 글자열) · 소문자로 시작 같은 것 | 정규식 · 찾을 쪽 · 건너뛸 낱말(그 문장에서 영문이 정상인 것)이 있으면 그 목록 |
+| ③ | **발화 수** | 기대 확정 발화 수와 다르면 걸림(위 「발화 수」) | 기대 수 · T29 는 번역 줄 0 |
+| ④ | **기계 판정 없음 → 사람 판정** | 기계로 옮길 수 없는 조건 — 「뜻이 바뀌면」 · 「앞말이 붙으면」 · 「이름이 깨지면」 · 「다른 것으로 바뀌면」 처럼 위치 · 뜻을 봐야 하는 것 · FAIL 칸이 빈 문장 | 「없음」 과 왜 못 옮기는지 한 줄 |
+
+- 한 문장에 규칙이 여럿일 수 있다(예 ① + ③). ④ 만 있는 문장의 기계 판정은 「없음」 — 전후 비교의 기계 FAIL 수에서 **분모에서도 뺀다**(기계 판정이 있는 문장 수를 같이 적는다).
+- 애매하면 ④ 로 둔다 — 억지 정규식으로 옮기지 않는다(해석에 따라 전후 FAIL 수가 달라진다).
+- **규칙 파일은 코디가 확인한 뒤에 조합 A 를 돌린다**(WORK WP22 ①). A 를 돌린 뒤에는 규칙을 바꾸지 않는다 — 바꾸면 A · B · C 를 그 규칙으로 다시 판정한다(음성 · 원본 결과는 그대로 · 판정만 다시).
+
+**손님 쪽(외 → 한) 문장 — 7개 언어 × 3 = 21문장(DEC OQ-023 · D-50)**
+
+- 기록에 손님 쪽 재료가 거의 없어(목록 2문장) **새로 짓는다** — 실제 기록 문장이 아니다.
+- 조건: **앱 7개 언어(en · ja · zh · zh-Hant · th · vi · yue) 각각 3문장 = 21문장**(D-50 — 사전 보정이 7개 언어 전부라서) · 방향 외 → 한 · 문장마다 **시드 `.7` 의 그 언어 현지명**(§4.2.4 보정 결과)이 든 시술명 1개 이상 · 기대 = 한국어 번역에 그 term 의 ko 대표명 · 손님이 클리닉에서 할 법한 말(문의 · 경험 · 희망).
+- 문장은 시드 `.7` 이 확정된 뒤 **WP24 에서** 짓고, 목록 파일에 번호를 이어(**T34 ~ T54** · 언어 순서는 §5.5 표 순서 · 언어마다 3개씩) 더한다. 이 문서에는 번호 범위 · 언어 · 판정만 적는다.
+- 합성 언어 · 세션: 말할 문장이 외국어라 **합성 = 그 언어의 Soniox 코드**(zh-Hant · yue 는 `zh` — 문장은 간체로 바꿔 합성 · §5.5 · §5.6) · `start` 의 `lang` = 앱 lang(`zh-Hant` · `yue` 그대로). zh-Hant · yue 의 합성 음성은 만다린이다(광둥어 음성이 없다 — OQ-017 ②).
+- 규칙 = ① 글자 그대로의 **뒤집은 꼴**(한국어 번역에 그 term 의 ko 대표명이 **없으면** 걸림) + ③ 발화 수.
+- 현지명이 `.7` 값이라 조합 C 에서 판정한다(A · B 는 참고로만 돌려도 된다).
+
+**울쎄라 원인 가르기(D-44 · §4.2.4 E7)** — 짝이 context 에 들어갔는데 영문으로 나온 원인을 셋으로 가른다. 시드 `.6` 기준(조합 A · B)에서:
+
+| 가르는 것 | 어떻게 | 읽는 법 |
+|---|---|---|
+| 단독 / 나란히 | **T02**(울쎄라만) 와 **T03**(울쎄라 · 써마지를 한 문장에) | 단독은 현지명 · 나란히만 영문이면 → 옆 낱말(써마지에 짝이 없음 — E5) 탓 |
+| zh 별칭 `Ultherapy` 역방향 짝 유무 | 같은 두 문장을, context 에서 **역방향 별칭 짝 `Ultherapy → 울쎄라` 하나만 뺀** 변형으로 한 번 더(시험 스크립트 인자 — 시드 파일은 안 고친다) | 뺐을 때만 현지명이면 → 별칭 짝 탓 → `.7` 에서 별칭 처분(§4.2.4 E7) |
+| 모델 | 위 넷을 A(v5) · B(v6) 둘 다 | v6 에서만 현지명이면 → 모델 탓(시드 손질과 별개) |
+
+- 결과 = 2(문장) × 2(짝 유무) × 2(모델) = **8칸의 기계 판정**(영문이 나왔는가) — WP22 가 내고, 코디가 §4.2.4 처분에 쓴다. C 에서는 `.7` 처분 뒤 모양으로 T02 · T03 을 다시 본다.
+
+**실물 번호 · 통과 조건**
+
+| # | 무엇 | 통과 조건 · 기록 |
+|---|---|---|
+| ㉒ | **v6 context 연결** — 7개 언어 각각 `stt-rt-v6` · 문안 포함 context 로 STT 연결 1회. (WP21) 시드 `.6` · (WP23) 시드 `.7` + **⑬′ 한도 재측정**(v6 · 문안 포함) | 거절 0 · 언어별 글자 수 · `text` 글자 수 · 묶음별 뺀 수 · 문안 때문에 더 빠진 수(§4.6 계산 방법). WP23 은 통과 최대치 · 거절 최소치까지 — 정방향이 빠지거나 거절이 나면 코디 보고(OQ-028) |
+| ㉓ | **품질 시험 조합 A · B** — T01 ~ T33 · 같은 음성 파일 | 33문장 × 2조합이 오류 없이 끝남 · 결과 JSON 2개 · A 의 설정이 운영과 같음(위) · **A · B 막힌 빈 원문 수 0 · `text` 글자 수 0**(0.8.1) · 규칙 파일 코디 확인 뒤 실행 |
+| ㉔ | **울쎄라 원인 가르기** | 8칸 판정 |
+| ㉕ | **품질 시험 조합 C** — T01 ~ T33 + 손님 쪽 **T34 ~ T54**(21문장 · D-50) · 같은 음성 파일(손님 쪽은 새 파일) | 오류 없이 끝남 · 결과 JSON · **전후 비교 표**(아래) · 3절 조각 수 · 지연 |
+
+**결과 — 레포에는 번호 · 수치만**
+
+- 결과 JSON(코디 작업 폴더 `orchestration/work/<slug>/` · 레포에 들어감): 조합 · STT 모델 · 시드 판 · `text` 글자 수 · 끊김 값 · 언어별 context 글자 수 · 묶음별 뺀 수 · 음성 파일 해시 + **문장마다** T 번호 · 언어 · 방향 · 절 · 기계 판정(pass · fail · 없음) · 걸린 규칙 번호(규칙 파일의 번호 — 문구 아님) · 규칙 종류(① ~ ④) · 확정 발화 수 · **기대 발화 수 · 조각 수** · 막힌 빈 원문 수 · 지연(ms) · 걸린 term id · 사람 판정(등급 — 비어 있을 수 있음). **원문 · 번역 · 문장 · FAIL 문구 0** · 키 · 토큰 0.
+- 원문 · 번역이 든 원본 결과는 **로컬 전용**(목록과 같은 폴더 · git 제외) — 사람 판정용.
+- **전후 비교 표**(보고 · 이 절 「6차 결과」): 절마다 A · B · C 의 기계 FAIL 수 / **기계 판정이 있는 문장 수**(규칙 ④ 만 있는 문장은 뺀다 — 그 수도 적는다) · 사람 판정 등급별 수 · 3절 조각 수 · 지연 중앙값, 그리고 **C 에서 기계 FAIL 이 남은 번호 목록**(번호만)과 번호마다 원인 갈래(시드 · `text` · 끊김 · 인식 · 모델).
+- **완료 조건(D-44)**: A · C 가 같은 음성 파일로 끝까지 돌았고 · 비교 표가 나왔고 · C 에 남은 FAIL 번호마다 원인 갈래와 처분(더 고침 · 안고 감 · 다음 판)이 붙었다. **「몇 개 이상 통과」 같은 기준 수치는 DEC 에 없다** — 판정은 코디 · 사용자(⑳ 과 같은 방식).
+- 3절이 B · C 에서도 조각나면(조각 수 > 0) 조각 수 · 지연을 코디 · 사용자에게 올린다(OQ-027 — 덜 끊는 쪽 · 값은 사용자가 실물에서).
+
+**6차 결과** — 아직 없음(WP22 · WP24 뒤 채움).
 
 ### 9.4 로컬 E2E (사용자 · D-12)
 
@@ -1247,18 +1569,40 @@ kubectl -n interpret-pwa-prod cp <back pod>:/data/records/<YYYY-MM-DD>.jsonl ./<
 | ④ | `/api/health` `{ok:true}` · `/api/glossary` 404 · `/docs` 404 — 통과. 「오늘 파일에 줄이 계속 써진다」는 배포 뒤 세션이 아직 없어 **미확인**(다음 사용 뒤 줄 수로 확인) |
 | ⑤ | back pod Running · `lima-worker-1` · PVC Bound · Pending 0 — 통과 |
 
+**배포 뒤 확인 (0.8.0 · WP25 · 운영 주소 — D-43 ~ D-48)** — back 만 바뀐다(front · 차트 · PVC · ConfigMap 키 그대로 · infra 는 이미지 태그만).
+
+| # | 확인 |
+|---|---|
+| ① | back 기동 로그 `glossary seed loaded: version=<…>.7 terms=<수>` · `interpret records: on dir=/data/records keep_days=off`(0.7.0 그대로) |
+| ② | 통역 연결 1회씩(7개 언어) — context 로그의 글자 수 · `text` 글자 수 · 묶음별 뺀 수 · `max=` 가 ㉒(WP23) 수치와 같음 · 거절 0 |
+| ③ | **대표 문장 확인** — 현장 지적 세 가지에 해당하는 시험 번호(토닝 **T01** · 울쎄라 · 써마지 **T03** · 시술 뉘앙스 **T05 · T06**)와 말 없음 **T29** 를 운영 주소에서(품질 시험 음성 파일 또는 사람 목소리) → 기계 판정 · 사람 판정을 **번호 · 판정만** 보고. 운영 기록에서 꺼낸 문장은 붙이지 않는다 |
+| ④ | §3.5 표면 그대로(`/api/health` `{ok}` · `/api/glossary` · `/docs` 404) · 오늘 기록 파일에 줄이 계속 써진다(수치만) · 가장 오래된 날짜 파일이 그대로(0.7.0 ②) |
+| ⑤ | 롤아웃이 PVC 를 다시 붙이며 끝남(Pending 0) · back pod `lima-worker-1` |
+
+- 배포 기록(§9.5 표)에 13(또는 그때 번호) 행을 더한다 — 코드 PR · infra PR · 시드 `.7`.
+- **사람 목소리 확인**(실장 · 중국 코디가 같은 말을 다시 해 보는 것)은 이 확인의 완료 조건이 아니다 — 결과가 오면 OQ-017 에 적는다.
+
 ## 10. 열린 것 — 근거(DEC · 공식 문서 · 원형)로 닫지 못한 것
 
 > 0.5.0 마감 정리 — **남은 것은 셋**: 사람 목소리 E2E(OQ-017) · 못 찾은 대만명 80(OQ-016) · 데모 로그인 끄기(OQ-008). 나머지는 닫았거나 합쳤다(근거는 각 행).
 > 0.6.0 — **둘을 더한다**: 처분 밖에 남은 모호 · 근거 없는 시드 값(OQ-018) · 대문자 영문 name 의 TTS · 일반 단어 역방향(OQ-019). OQ-016 에 0.6.0 의 `reviewed:false` 가 더해진다.
 > 0.7.0 — **하나를 더한다**: 베타가 끝나는 때 · 그때 넣을 보관 기간(OQ-020 · D-42).
+> 0.8.1 — **둘을 닫는다**: OQ-025(D-49 — 넷째 문장을 넣는다) · OQ-029(D-50 — 7개 언어 × 3 = 21문장). OQ-027 의 방향은 D-47 로 정해졌다(값만 열려 있다). 남은 0.8.0 OQ = 024 · 026 · 027 · 028.
+> 0.8.0 — **여섯을 더한다**(품질 개선 · 근거로 닫지 못한 것만): `text` 문안의 언어(OQ-024) · 「시술 = 수술 아님」 문장(OQ-025) · 막힌 빈 원문 발화의 기록(OQ-026) · 끊김 값(OQ-027) · v6 · 문안 · 시드 `.7` 뒤 한도와 손실(OQ-028) · 손님 쪽 문장의 언어 범위(OQ-029). DEC 「열린 것 (2026-11-14 · 품질 개선)」 OQ-021 ~ 023 은 **DEC 에서 닫혔다** — 이 문서 §9.3 「6차」 가 그 기본값을 따른다.
 > 0.6.1 마감 — **OQ-018 닫음**(처분 ① ~ ⑤ · ⑤ 는 뒤집음 · §4.2.3 D). **남은 것**: 사람 목소리 E2E(OQ-017 · ④ 새 시술 미적중 더함) · 시드 검수 숙제(OQ-016) · 데모 로그인 끄기(OQ-008) · 대문자 영문 TTS · 일반 단어 역방향(OQ-019 — 사용자 청취 대기). 계약 안에서 안고 가는 손실: zh-Hant 역방향 별칭 33(§4.6 — 별칭 정리나 줄이기 순서 변경이 필요해지면 새 결정).
 
 | ID | 무엇 | 지금 | 왜 못 닫나 · 권장 |
 |---|---|---|---|
+| **OQ-024** | **(0.8.0) context `text` 문안의 언어** — 영어 한 벌(7개 언어 공통)인가, 언어별 문안(고른 언어 · 한국어)인가 | **영어 한 벌**(§4.5 네 문장 — `general` 과 같은 언어 · 한도 계산이 단순) | 공식 문서는 「Write the context in the language people speak」 라 하지만 한 세션에 두 언어가 오간다 — 어느 쪽이 번역을 더 바꾸는지 근거가 없다. 권장: 영어 한 벌로 조합 C 를 돌려 2절 결과를 본 뒤, 효과가 약하면 언어별 문안을 **추가 실행**으로 견준다(코디 · 사용자) |
+| ~~OQ-025~~ | ~~(0.8.0) `text` 에 「시술은 수술이 아닌 미용 시술」 한 문장(S4)을 넣을지~~ | **닫힘(0.8.1) — D-49**: 넣는다 · 문안 = S1 ~ S4 네 문장(§4.5 · 439자 · zh-Hant 역방향 별칭 33 → 44 · th 여유 100 — §4.6) | — |
+| **OQ-026** | **(0.8.0) 막힌 빈 원문 발화를 통역 기록에 남길지** — D-48 은 「번역 · 음성으로 내보내지 않는다」까지만 정했고, D-41 의 기록은 「화면에 나간 확정 자막」 기준이다 | **남기지 않음**(§5.9 문구 그대로 — 나가지 않은 발화는 줄이 없다 · §5.11). 건수는 back 로그(`blank original dropped`)로만 | 남기면 얼마나 자주 생기는지 · 무엇이 지어졌는지 내부 검토에 쓸 수 있지만, 줄 모양(막힘 표시 키)이 바뀐다(§5.9 「여기 없는 키 0」). 권장: 지금은 남기지 않고, 로그 건수가 많으면 새 결정 |
+| **OQ-027** | **(0.8.0) 끊김 값을 손볼지 · 얼마로** — `max_endpoint_delay_ms`(지금 1000 · 500 ~ 3000) · `endpoint_sensitivity`(−1.0 ~ 1.0 · 기본 0.0) | 1루프는 그대로(§5.10 · D-47) | **방향은 정해졌다(0.8.1 · D-47)** — 덜 끊는 쪽 = `max_endpoint_delay_ms` 는 올리고 `endpoint_sensitivity` 는 낮춘다(공식 「Higher values make endpoints more likely」). **열린 것은 손볼지와 값**이다 — 지연과의 맞바꿈은 사용자가 실물에서. 품질 시험 3절의 조각 수(실제 − 기대) · 지연(B · C)을 올린 뒤 정한다. `endpoint_latency_adjustment_level` 은 끊김을 앞당기는 값이라 대상이 아니다 · 「누르고 말하기」(D-36)는 이 값과 무관 |
+| **OQ-028** | **(0.8.0) v6 · 문안 · 시드 `.7` 뒤 언어별 한도와 손실** — ① §4.6 언어별 표는 v5 · 시드 `.6` 실측이다(v6 에서 같은 글자 수가 통과하는지 모름) ② `text` 는 줄이지 않아 zh-Hant 역방향 별칭이 더 빠진다(`.6` 추정 33 → 44 — 네 문장 · 0.8.1) · th 여유 100자 ③ 시드 `.7` 이 짝을 늘리면 더 빠진다 | 표 그대로 · 줄이기 순서 그대로 | WP21(㉒ 연결) · WP23(㉒ ⑬′ 재측정)이 수치를 낸다. 표 · `langs.py` 를 고칠지 · zh-Hant 별칭 정리나 줄이기 순서를 바꿀지는 코디 · 사용자(0.6.1 「안고 가는 손실」 의 연장 — 워커가 바꾸지 않는다) |
+| ~~OQ-029~~ | ~~(0.8.0) 손님 쪽 시험 문장 「언어마다 3문장」 의 언어 범위~~ | **닫힘(0.8.1) — D-50**: 앱 7개 언어 × 3 = 21문장(T34 ~ T54 · §9.3 「6차」) | — |
+| ~~OQ-021~~ · ~~OQ-022~~ · ~~OQ-023~~ | ~~(DEC · 2026-11-14) 시험 목록 위치 · 시험 방식 · 손님 쪽 문장~~ | **DEC 에서 닫힘**(사용자 2026-11-14) — 로컬 전용 · Soniox TTS 음성 파일 · 언어마다 3문장 → §9.3 「6차」 | — |
 | **OQ-020** | **(0.7.0) 베타가 끝나는 때 · 그때 넣을 보관 기간** — D-42 는 「베타가 끝나면 값만 넣어 다시 켠다」까지만 정했다. 언제 끝나는지 · `INTERPRET_RECORD_KEEP_DAYS` 에 몇 일을 넣는지 · 그동안 쌓인 파일을 그때 한꺼번에 지워도 되는지(값을 넣으면 첫 기동에 N 일보다 오래된 파일이 모두 지워진다 · §5.9)는 정해지지 않았다 | 운영 = 삭제 안 함(값 없음) · 기록이 계속 쌓인다(§9.6 크기 근거 — 4일 44KB) | 사용자가 베타 종료를 정할 때 같이 정한다. 할 일: 필요한 기록을 먼저 꺼낸 뒤(§9.6 kubectl) infra ConfigMap 에 값만 넣고 back 재시작 — 코드 수정 없음(D-42). 용량 경보 · 압축 같은 정책은 계약에 없다(짓지 않는다) |
 | **OQ-017** | **사람 목소리 E2E**(0.5.0 — OQ-001 · OQ-007 의 남은 확인을 합침) — ① 대만 현지명 양방향: 한국어 「울쎄라」 · 「써마지FLX」 → 대만명이 합성 음성에서 상표명 · 음역으로 나옴(⑰ 1/4 — 짝은 context 에 있음 · 줄이기와 무관) ② `yue` = 표준 문어(번체 자막) + 만다린 음성(OQ-001) ③ iPhone 길게 누름(D-36 — 선택 · 확대 · 콘텍스트 메뉴 · 원 밖으로 미끄러짐) · 누르는 중에 TTS 가 오면 송신 막힘(반이중 그대로 · DEC 에 따로 없음) ④ **(0.6.1) 새 시술 미적중**(⑳ 합성 음성 · 짝은 context 에 있음): 프로파일로 → STT 가 「프로파일」로 들음(3개 언어 모두 · 번역 전) · 뉴라미스 zh-Hant → 「優美思」 · ja 「サーマジCPT」(시드 name `サーマクールCPT` 와 다른 음역 — ja alias 로 넣을 근거 없음 · 조사 R4 · R5) · 덴서티 ja → 「デンソティ」 · zh-Hant 에서 Exion · density · 엠페이스가 영문 | 코드 · 시드로 더 할 것이 보이지 않음 · 배포 fe8475e(④ 는 17c26b5) | 합성 음성 표본 1문장씩이라 판정 못 함. 권장: 사용자가 폰(배포 주소)에서 사람 목소리로 1회 — 결과로 시드(대만명 별칭 · ④ 의 음역 alias 는 근거가 생기면) 또는 DEC 를 고친다. 운영 기록(§5.9)의 `terms` 로 적중을 셀 수 있다 |
-| **OQ-016** | **시드 검수 숙제(사용자 PR)** — ① **대만 현지명을 못 찾은 80 term**(zh-Hant = 초안 · `draft-s2twp` · `reviewed:false` — `.5`(D-38)로 일부 정리) ② 출처 1개뿐인 대만명(`web-research` · `reviewed:false`) ③ 첫 가져오기 「그 밖」 괄호 60(OQ-012 를 합침 — 괄호를 뺀 이름 + `raw` 보존 · `reviewed:false`) ④ **(0.6.0) 새 시술 · 대륙 변경의 ✗ 칸**(§4.2.2 · §4.2.3 — 「현지에 없음 = 영문」 · 출처 1) · **C 결함 4칸의 현지 표기**(`manual` · 영문으로 둠) | 데이터 그대로 · context 에는 들어감(§4.2 — 검수 여부로 빼지 않음). 메뉴가 없어(D-37) 목록은 시드에서 `reviewed:false` 로 찾는다 | 현지명 · 별칭은 사람이 정한다(D-32 · D-33 · D-35 — 우리가 짓지 않는다). 권장: 사용자가 시드 PR(§4.2.1 규칙) → 재배포(§9.5) |
+| **OQ-016** | **시드 검수 숙제(사용자 PR)**(0.8.0 — D-46 사전 전체 보정(§4.2.4)이 이 숙제의 상당 부분을 다시 본다 · 보정 뒤 남는 `reviewed:false` 가 이 항목으로 온다) — ① **대만 현지명을 못 찾은 80 term**(zh-Hant = 초안 · `draft-s2twp` · `reviewed:false` — `.5`(D-38)로 일부 정리) ② 출처 1개뿐인 대만명(`web-research` · `reviewed:false`) ③ 첫 가져오기 「그 밖」 괄호 60(OQ-012 를 합침 — 괄호를 뺀 이름 + `raw` 보존 · `reviewed:false`) ④ **(0.6.0) 새 시술 · 대륙 변경의 ✗ 칸**(§4.2.2 · §4.2.3 — 「현지에 없음 = 영문」 · 출처 1) · **C 결함 4칸의 현지 표기**(`manual` · 영문으로 둠) | 데이터 그대로 · context 에는 들어감(§4.2 — 검수 여부로 빼지 않음). 메뉴가 없어(D-37) 목록은 시드에서 `reviewed:false` 로 찾는다 | 현지명 · 별칭은 사람이 정한다(D-32 · D-33 · D-35 — 우리가 짓지 않는다). 권장: 사용자가 시드 PR(§4.2.1 규칙) → 재배포(§9.5) |
 | **OQ-008** | **데모 로그인 끄기** · 로그아웃해도 토큰은 만료(기본 12시간)까지 유효 | 운영 **데모 켬**(`INTERPRET_DEMO_LOGIN=true`) — 주소만 알면 로그인된다 · 서버 토큰 무효화 없음 | 데모가 끝나는 때는 사용자가 정한다. 할 일: Secret 에서 `INTERPRET_DEMO_LOGIN` 값만 지우고 back 재시작(D-30 · §3.4). 토큰 무효화는 PoC 범위 밖 |
 | ~~OQ-018~~ | ~~(0.6.0) 처분 밖에 남은 시드 값~~ | **닫음(0.6.1)** — 코디 처분 2026-10-27(`research-dispositions.md` 「OQ-018 처분」 · §4.2.3 D): ① ph-123 · ph-126 zh name → 영문(모호어는 alias 에도 없음) ② yue ph-121 = `美版超聲刀`(`超聲刀` 단독 지움) ③ ph-113 zh · th = `Juvelook Volume`(옛 값 alias) ④ 리쥬란 상자 표기 그대로 · ✗ ⑤ **ko 별칭 「써마지」 — 0.6.0 처분 「그대로」를 뒤집어 지움**(실물 ⑳: 「써마지 CPT」 → zh-Hant `鳳凰電波`(FLX) 오역 → 지운 뒤 `黃金電波`(kr-001) ✓) | — |
 | **OQ-019** | **(0.6.0) 대문자 영문 name 과 일반 단어** — ① `EXION` · `DENSITY` · `EMFACE` 를 Soniox TTS 가 글자 하나씩 읽는지(en · zh · th · vi · yue 칸에서 TTS 가 읽는 말) ② en `DENSITY` 는 일반 단어(골밀도 · 피부 밀도)라 역방향 짝 `DENSITY → 덴서티` 가 일반 문장에 걸릴 수 있다(alias `Density` 는 막았지만 name 은 브랜드라 둠 — Soniox 가 대소문자를 가르는지 근거 없음) | **사용자 청취 대기**(0.6.1) — ⑳ 에서 소리 파일만 만들었다(`orchestration/work/interpret-pwa-v2/tts-samples/` 13개 · `EMFACE-zh` 2.39초로 확연히 김). en 번역문은 `Exion`(섞임) · `DENSITY` · `EMFACE` 로 나왔다. 그 전까지 name 은 제조사 표기(처분) | 권장: 사용자가 들은 결과 한 줄로 — 글자 읽기면 name 을 `Exion` · `Density` · `Emface` 꼴로 바꾸는 시드 PR(코디 · 사용자 결정 · 「영문 표기」 칸만 바꾸면 R2 칸이 따라 바뀐다) · 일반 문장 오역이 보이면 en 짝 처분 |
@@ -1323,4 +1667,12 @@ kubectl -n interpret-pwa-prod cp <back pod>:/data/records/<YYYY-MM-DD>.jsonl ./<
 | D-40 대륙 중국어 검증 — 대륙 공식명 · 한국 전용 제품 영문 · 모호어 제거 | §4.2.1 R1 · R2 · 모호어 목록 · **§4.2.3 A** · **§4.2.3 D**(0.6.1 OQ-018 처분) |
 | D-41 통역 기록 — 서버에만 · 화면 · API 없음 · 날짜별 JSONL · 음성 없음 · 7일 삭제(D-42 가 뒤집음) · kubectl(Scope Out → In) | §1 · §2.1 · §2.4 · §3.5 · §5.1 · **§5.9** · §9.1 「기록」 · §9.3 ㉑ · **§9.6** |
 | D-42 베타 기간에는 기록을 지우지 않는다 — 보관 기간 env `INTERPRET_RECORD_KEEP_DAYS` · 비면 삭제 안 함(운영 기본) · 값만 넣어 다시 켬(D-41 의 7일 삭제를 뒤집음) | §1 · §2.1 · **§2.4** · **§5.9 「보관 기간」** · §9.1 「기록」 ⑦ · ⑨ · **§9.6**(크기 근거 · 보관 기간 행 · 배포 뒤 확인 0.7.0) · OQ-020 |
+| D-43 STT 모델 `stt-rt-v6` — 모델 이름만 · v6 단독 효과를 먼저 | §5.1 · **§5.10** · §9.1 「STT 설정」 · §9.3 「6차」 조합 B · ㉒ · OQ-028 |
+| D-44 품질 개선의 완료 조건 = 시험 목록 T01 ~ T33 실물 시험 · 전후 비교 · 기계 / 사람 판정 · 울쎄라 원인 가르기 (DEC OQ-021 ~ 023 — 로컬 전용 목록 · TTS 음성 파일 · 손님 쪽 3문장) | **§9.3 「6차 — 품질 시험」**(㉒ ~ ㉕ · 0.8.1 조합을 바꾸는 길 · 규칙 종류 넷 · 기대 발화 수) · §9.1 「기본값 = 켬」 · §9.6 배포 뒤 확인 0.8.0 ③ |
+| D-45 역할 context — 한국어 쪽 = 직원 · 상대 = 손님 · `text` · `general` · 일반 낱말 짝은 `translation_terms` 에 넣지 않음 | **§4.5 「서술 칸 `text`」 · 「넣지 않는 것」** · §4.6(`text` 는 줄이지 않는 칸 · 여유 계산) · §5.1 · §9.1 「context `text`」 · OQ-024 · OQ-028 |
+| D-46 사전 전체 보정 — 7개 언어 × 그 나라 클리닉 공식 사이트 6곳 · 170 term · 현지어 우선 · 겹침 · 중복 · 확인된 오류 | **§4.2.4**(자리만 — 값은 조사 뒤) · §4.2 `version` `.7` · §4.2.1 「지금까지 반영한 판」 · §9.3 「6차」 5절 · 울쎄라 원인 가르기 · OQ-016 |
+| D-47 끊김 기준 — v6 로 먼저 보고 남으면 **덜 끊는 쪽으로**(`max_endpoint_delay_ms` 올림 · `endpoint_sensitivity` 낮춤 — 0.8.1 방향 바로잡음) · 지연은 사용자가 실물에서 | §5.1 · **§5.10 「끊김」** · §9.1 「STT 설정」 · §9.3 「6차」 3절 · 지연 · OQ-027 |
+| D-48 원문이 비었거나 문장부호뿐인 발화는 번역 · 음성으로 내보내지 않음 | §5.1 · **§5.11** · §9.1 「빈 원문」 · §9.3 「6차」 T29 · OQ-026 |
+| D-49 (SPEC OQ-025) context `text` 에 「시술은 수술이 아니라 미용 시술」 문장 — 네 문장 | **§4.5 문안 S4** · §4.6(439자 · 다시 계산) · §9.1 「context `text`」 · §9.3 1절 T05 · T06 · OQ-025 닫음 |
+| D-50 (SPEC OQ-029) 손님 쪽 시험 문장 = 7개 언어 × 3 = 21 | **§9.3 「6차」 손님 쪽 문장**(T34 ~ T54) · ㉕ · OQ-029 닫음 |
 | (DEC 밖) 운영 장애 2026-10-27 02:07 — TTS keepalive 형식 | §5.1 · §5.8 · §9.1 · §9.3 ⑱ |
