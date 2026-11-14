@@ -1,6 +1,6 @@
 # 재개 노트 — interpreter-idea (interpret-pwa)
 
-**지금**: **품질 개선(오역 수정) 문서 단계** — BASE-001 입력 5 · 확인한 사실(2026-11-14) · DEC D-43 ~ D-48 · OQ-021 ~ 023 작성(미커밋). 사용자 승인 대기 → 승인되면 planner(SPEC · WORK) + researcher(7개 언어 × 현지 피부과 6곳) 발주. 배포 12(D-42)는 완료
+**지금**: 품질 개선 — 문서 커밋 `b0892cbb`(push 전 · DEC D-43 ~ D-51 · SPEC 0.8.1) · **WP21 backend 진행** · 토닝 zh 이름은 사용자 웹 확인 대기
 **다음**: 프로필 문서 PR 은 **보류**(사용자 2026-11-14 — 오역 수정 코드 업데이트와 같이 올림). 그때 price.md 1.4 상담 문장(PUBLIC) 처리 먼저 묻기. 마감은 archive-work.sh. OQ-020(베타 종료 때 값) 열림.
 **요금 · 아이디어**: `price.md` 1 ~ 4절 · `idea.md` 커밋 `0bcb0ebe`(push 전). 남은 결정 = 마진율 · 포함 대화 수 · context 축소 · 무발화 종료 시간 · 상담 비율 기준(시간/건수) · price.md 1.4 상담 문장(인터뷰 출처 — PUBLIC) · 앞 판 문서(pricing-design · pricing-function · g*/pd*) 처분 · 원본(PDF · 캡처 · useage.md) 커밋 여부.
 **운영 통역 기록 사본**: `reference/2026-11-12-interpreter-idea/records/` (11-11 ~ 11-14 · 세션 43 · 발화 137) — `info/exclude` 로 git 제외(PUBLIC · 문장 포함).
@@ -29,12 +29,18 @@
 
 | 워커 | handle | task_id | dispatch_id | 브리프 | 상태 |
 |---|---|---|---|---|---|
-| planner (fable) | `term_5fb24b1c-5649-42e7-bcfe-dd33ee95ddc7` | `task_225c6fb1bf47` | `ctx_a1605c399ea7` | `quality-spec-brief.md` → `quality-spec-fix1-brief.md`(`task_5a94775e2759` · `ctx_7400d102ba80`) | 0.8.0 완료 → 0.8.1 보완 진행(WARN 6 · D-49 · D-50) |
-| reviewer_doc (fable) | `term_9bf4f5be-03de-42ff-81a7-d3e96f2e238d` | `task_75333f7ff9c4` | `ctx_95efde4723c0` | `review-doc-quality-brief.md` → `review-doc-quality-2-brief.md`(`task_a87949ff27e9` · `ctx_ed082c6ef49b`) | 0.8.1 재검수 완료 — WARN 경미 3(N-1 ~ N-3 문구) · `review-quality-doc-report-2.md` → 다음 planner 판(§4.2.4 값 채움)에 같이 |
+| planner (fable) | `term_bab04d70-ca05-420e-8996-9e7d2e3a953b` | `task_850059b51d60` | `ctx_9a55e9914e70` | `quality-spec-fix2-brief.md` | 완료 — SPEC 0.8.2 · WP23 · OQ-030(코디 처분 → dispositions §4) · ja · th 한도 열림(§5) |
+| reviewer_doc (fable) | `term_93cf4aa2-57e5-430b-8fb4-89738c55defa` | `task_746fd82813c9` | `ctx_bf983763709c` | `review-doc-quality-4-brief.md` | 0.8.4 PASS |
 | researcher r1 (fable) | `term_abd0126a-6243-4b84-9616-3629e04aa7d1` | `task_cda6a9026613` | `ctx_c6c23c6620bc` | `quality-r1-zh-brief.md` | 완료 — 510칸 · 표 A 95행 · 정할 것 12 · `quality-r1-zh-report.md` · `-cells.json` |
 | researcher r2 (fable) | `term_2480bb9c-aef3-4923-8c0f-2909b198366c` | `task_64d2df2acd28` | `ctx_563abe7e5e30` | `quality-r2-en-ja-th-vi-brief.md` | 완료 — 680칸 · 정할 것 17 · `quality-r2-en-ja-th-vi-report.md` · `-cells.json` |
 
-다음: 세 워커 완료 → reviewer_doc(SPEC · WORK) · 조사 리포트 → 코디 처분(사용자에게 최종 판단만) → SPEC §4.2.x 값 채움 → 사용자 리뷰 → WP21 backend 발주
+| backend WP21 (opus) | `term_1408924f-69e8-469c-b6b1-8e4fe8ed9c6b` | `task_bbd2ba29a949` | `ctx_f9cb78328c42` | `quality-wp21-be-brief.md` | 완료 — pytest 407 · ㉒ 7개 언어 거절 0 · zh-Hant `terms` 170 + 역방향 별칭 44 빠짐 · `wp21-be-report.md` |
+| reviewer WP21 (opus) | `term_023c5b4c-6d18-4fb0-a27b-ec8fa0acf608` | `task_4f1fdcc8a57f` | `ctx_d39fafe2057b` | `quality-wp21-review-brief.md` | 완료 — WARN 4(FAIL 0) · `review-wp21-code-report.md` |
+| backend WP21 수정 1 (opus) | `term_1408924f-69e8-469c-b6b1-8e4fe8ed9c6b` | `task_ddd4ca654c88` | `ctx_24b865257453` | `quality-wp21-fix1-be-brief.md` | 완료 — pytest 412 · v6 거절 = 첫 메시지(374 ~ 474ms) → `_check_config` 그대로 · 코드 로컬 커밋(push 전) |
+| researcher r3 대만 별칭 (fable) | `term_db3667db-6cfe-4684-aa18-85104b414f88` | `task_a4fb15528ddd` | `ctx_fc807016a318` | `quality-r3-tw-alias-brief.md` | 완료 — 유지 161 · 뺌 77 · 겹침 7 · 뺌 반영 22,095자(한도 21,689 · 406 초과) · `quality-r3-tw-alias-report.md` · `.json` |
+| planner 0.8.3 (fable) | `term_abdfc414-5fdf-42c2-aca3-9c64b4cc071c` | `task_e07ccf04c278` | `ctx_1574d52b5c32` | `quality-spec-fix3-brief.md` | 0.8.4 완료 · 재검수 PASS(`review-quality-doc-report-5.md`) — 사전 문서 단계 끝 |
+| backend WP22 ① (opus) | `term_1408924f-69e8-469c-b6b1-8e4fe8ed9c6b` | `task_f37486527ab4` | `ctx_b0104473b366` | `quality-wp22-be-brief.md` | ① 완료(규칙 43 · 음성 33 · 94.6초) → 코디 승인 → **② ~ ⑥ 실행 중**(`quality-wp22-run-instructions.md`) |
+다음: WP21 완료 → reviewer(코드) · 토닝 zh 사용자 확인 → planner 0.8.2(§4.2.4 값 · N-1 ~ N-3) → WP22(시험 「전」 · 12-15 전) → WP23 → WP24 → WP25
 
 ## 4. 산출물
 
