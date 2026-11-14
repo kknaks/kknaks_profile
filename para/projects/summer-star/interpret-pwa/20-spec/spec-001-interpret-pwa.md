@@ -1177,6 +1177,7 @@ front 는 아래 상태 중 하나다. 판정은 **위에서부터**(먼저 맞�
 | 9 | PR #9 → **`2a9d5a5`** | PR #34(back) | 대만어 사전 2차(D-38 · 시드 `.5`) — back 만(`back.imageTag` 오버라이드 다시 생김 · front 는 `fe8475e`) |
 | 10 | PR #10 → **`17c26b5`** | PR #35(back) | 시드 `.6`(D-39 · D-40 · OQ-018 처분) · 통역 기록(D-41) · 언어별 한도(§4.6) · back PVC `interpret-pwa-records` · `INTERPRET_RECORD_DIR=/data/records` · `lima-worker-1` 고정(§9.6) — back 만(`back.imageTag` · front 는 `fe8475e`) |
 | 11 | — | PR #36 | back `resources.requests.cpu` **100m → 50m** — `lima-worker-1`(PVC 고정 노드) CPU 예약 3,950m(98%)라 새 back pod 가 Pending · limit 1 그대로(§9.6) |
+| 12 | PR #11 → `e0fbda8` | PR #54 | 통역 기록 보관 기간 env `INTERPRET_RECORD_KEEP_DAYS`(D-42) — 운영 ConfigMap 에 넣지 않음 = 삭제 안 함 · back 만(`back.imageTag`) |
 
 - 반영 방식: Actions(main · arm64 · sha 태그) → infra `values-prod` 이미지 태그 PR → 머지 → ArgoCD **수동 sync**.
 - 운영은 **데모 로그인 켬**(`INTERPRET_DEMO_LOGIN=true` — Secret · D-30). 데모가 끝나면 값만 지우고 back 재시작.
@@ -1236,7 +1237,15 @@ kubectl -n interpret-pwa-prod cp <back pod>:/data/records/<YYYY-MM-DD>.jsonl ./<
 | ⑤ | 롤아웃이 PVC 를 다시 붙이며 끝남(Pending 0) · back pod `lima-worker-1` |
 
 - 운영 파일을 지우거나 고쳐서 시험하지 않는다(0.6.0 ⑤ 의 시험 파일 만들기는 0.7.0 에서 하지 않는다 — 삭제가 꺼져 있다). 확인 결과에는 파일 이름(날짜) · 줄 수 같은 **수치만** 적는다(문장 0).
-- 결과는 WP20 뒤 이 자리에 적는다(지금은 배포 전).
+**배포 뒤 확인 결과 (0.7.0 · WP20 · 2026-11-14 · 코디)** — 배포 12(code PR #11 → `e0fbda8` · infra PR #54 · ArgoCD sync `70490ee`)
+
+| # | 결과 |
+|---|---|
+| ① | `interpret records: on dir=/data/records keep_days=off` · 시드 `2026-10-27.6` 170 term 로드 · `sweep` 줄 0 — 통과 |
+| ② | 배포 전 4개(11-11 · 11-12 · 11-13 · 11-14 — 가장 오래된 11-11 · 11,361 B) → 롤아웃 뒤 4개 · 크기 같음 — 통과 |
+| ③ | ConfigMap 키 = `INTERPRET_FRONT_ORIGIN` · `INTERPRET_RECORD_DIR` 뿐 · infra diff = `back.imageTag` 한 줄 — 통과 |
+| ④ | `/api/health` `{ok:true}` · `/api/glossary` 404 · `/docs` 404 — 통과. 「오늘 파일에 줄이 계속 써진다」는 배포 뒤 세션이 아직 없어 **미확인**(다음 사용 뒤 줄 수로 확인) |
+| ⑤ | back pod Running · `lima-worker-1` · PVC Bound · Pending 0 — 통과 |
 
 ## 10. 열린 것 — 근거(DEC · 공식 문서 · 원형)로 닫지 못한 것
 
