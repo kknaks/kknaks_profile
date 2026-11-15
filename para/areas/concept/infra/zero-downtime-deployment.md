@@ -11,6 +11,7 @@ aliases:
 up:
   - 2025-01-13-Day10
   - 2025-01-15-Day12
+  - 2026-11-15-llm-codex-hotfix
 tags:
   - 배포
   - 인프라
@@ -86,6 +87,8 @@ socat -t0 TCP-LISTEN:8081,fork,reuseaddr TCP:localhost:8083 &
 - [[kubernetes-workload]] — 같은 일이 설정 두 줄이 되는 자리
 
 ## 출처
+
+- [[2026-11-15-llm-codex-hotfix]] §2 — 반대 사례. 메디니스 운영 back 은 `strategy: Recreate`·replicas 1 — RWO PVC(local-path)를 물고 있어 새 파드가 옛 파드와 같이 뜰 수 없다. 그래서 옛 파드를 먼저 내리고 새 이미지를 받는 동안 **API 가 18분 없었다**. 무중단의 전제는 「두 버전이 동시에 뜰 수 있는가」 이고, 상태(볼륨)를 파드가 들고 있으면 그 전제가 깨진다. 중단 시간은 이미지 받기 시간이 정한다 → 선반입·볼륨 분리가 무중단의 앞 단계
 
 - [[2025-01-15-Day12]] — 이틀 뒤. **손으로 쓴 스크립트가 기능으로 들어와 있다.** 쿠버네티스 Deployment 의 `strategy: RollingUpdate` 와 `maxSurge`·`maxUnavailable` 두 값이 「한 번에 몇 개씩 갈아 끼울지」를 정하고, 새 ReplicaSet 을 만들어 파드를 하나씩 교체한 뒤 **이전 ReplicaSet 을 남겨 롤백까지 준비**한다. 포트 두 개를 번갈아 쓰던 방식이 **복제본 N 개를 굴려 가며 바꾸는 방식**으로 일반화된 자리다 → [[kubernetes-workload]]
 - [[2025-01-13-Day10]] — 「무중단 배포 스크립트 작성」 절이 **파이썬 스크립트로 절차 전체를 구현**했다. `ServiceManager` 가 `socat_port: 8081`, `services: {blog_1: 8082, blog_2: 8083}` 를 들고, `update_service()` 가 **현재 확인 → 다음 선정 → 컨테이너 교체 → 상태 확인 → 포트 전환 → 이전 제거** 여섯 걸음으로 돈다. 전환 코드가 특히 구체적이다 — `ps aux | grep socat` 으로 기존 프로세스를 찾아 `kill -9` 하고 5초 기다린 뒤 `nohup socat -t0 TCP-LISTEN:8081,fork,reuseaddr TCP:localhost:8083 &` 로 다시 띄운다. **socat 을 「로컬에서 원격 서버로 TCP 연결을 전달하는 도구」**로 정의해 둔 것도 이 방식의 원리를 짚는다. 다만 전환 순간 진행 중이던 연결이 끊긴다는 것, 두 버전이 같은 DB 를 공유할 때의 문제는 다루지 않았다
