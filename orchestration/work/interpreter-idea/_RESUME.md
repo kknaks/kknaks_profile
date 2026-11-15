@@ -30,7 +30,7 @@
 | 워커 | handle | task_id | dispatch_id | 브리프 | 상태 |
 |---|---|---|---|---|---|
 | planner (fable) | `term_bab04d70-ca05-420e-8996-9e7d2e3a953b` | `task_850059b51d60` | `ctx_9a55e9914e70` | `quality-spec-fix2-brief.md` | 완료 — SPEC 0.8.2 · WP23 · OQ-030(코디 처분 → dispositions §4) · ja · th 한도 열림(§5) |
-| reviewer_doc (fable) | `term_93cf4aa2-57e5-430b-8fb4-89738c55defa` | `task_746fd82813c9` | `ctx_bf983763709c` | `review-doc-quality-4-brief.md` | 0.8.4 PASS |
+| reviewer_doc (fable) | `term_84f40940-7d19-4ce7-b55c-2f76c48155c8` | `task_1820b701690b` | `ctx_d63083d4076f` | `review-doc-quality-6-brief.md` | 0.9.0 검수 완료 — `review-quality-doc-report-6.md` |
 | researcher r1 (fable) | `term_abd0126a-6243-4b84-9616-3629e04aa7d1` | `task_cda6a9026613` | `ctx_c6c23c6620bc` | `quality-r1-zh-brief.md` | 완료 — 510칸 · 표 A 95행 · 정할 것 12 · `quality-r1-zh-report.md` · `-cells.json` |
 | researcher r2 (fable) | `term_2480bb9c-aef3-4923-8c0f-2909b198366c` | `task_64d2df2acd28` | `ctx_563abe7e5e30` | `quality-r2-en-ja-th-vi-brief.md` | 완료 — 680칸 · 정할 것 17 · `quality-r2-en-ja-th-vi-report.md` · `-cells.json` |
 
@@ -39,7 +39,15 @@
 | backend WP21 수정 1 (opus) | `term_1408924f-69e8-469c-b6b1-8e4fe8ed9c6b` | `task_ddd4ca654c88` | `ctx_24b865257453` | `quality-wp21-fix1-be-brief.md` | 완료 — pytest 412 · v6 거절 = 첫 메시지(374 ~ 474ms) → `_check_config` 그대로 · 코드 로컬 커밋(push 전) |
 | researcher r3 대만 별칭 (fable) | `term_db3667db-6cfe-4684-aa18-85104b414f88` | `task_a4fb15528ddd` | `ctx_fc807016a318` | `quality-r3-tw-alias-brief.md` | 완료 — 유지 161 · 뺌 77 · 겹침 7 · 뺌 반영 22,095자(한도 21,689 · 406 초과) · `quality-r3-tw-alias-report.md` · `.json` |
 | planner 0.8.3 (fable) | `term_abdfc414-5fdf-42c2-aca3-9c64b4cc071c` | `task_e07ccf04c278` | `ctx_1574d52b5c32` | `quality-spec-fix3-brief.md` | 0.8.4 완료 · 재검수 PASS(`review-quality-doc-report-5.md`) — 사전 문서 단계 끝 |
-| backend WP22 ① (opus) | `term_1408924f-69e8-469c-b6b1-8e4fe8ed9c6b` | `task_f37486527ab4` | `ctx_b0104473b366` | `quality-wp22-be-brief.md` | ① 완료(규칙 43 · 음성 33 · 94.6초) → 코디 승인 → **② ~ ⑥ 실행 중**(`quality-wp22-run-instructions.md`) |
+| backend WP22 ① (opus) | `term_1408924f-69e8-469c-b6b1-8e4fe8ed9c6b` | `task_f37486527ab4` | `ctx_b0104473b366` | `quality-wp22-be-brief.md` | 완료 — 기계 FAIL A 15 / B 7 · 사람 오역 A 12 / B 7 · 지연 중앙값 A 1,580 / B 516ms · 3절 v6 도 조각 · `wp22-be-report.md` · `wp22-human.json` |
+| backend WP23 (opus) | `term_1408924f-69e8-469c-b6b1-8e4fe8ed9c6b` | `task_cef7a343f19c` | `ctx_df891a3dd26d` | `quality-wp23-be-brief.md` | 완료 — 시드 `.7` · D-54 27 뺌 · v6 실측 → D-54 5 멈춤 → **D-56**(× 0.96) · `wp23-be-report.md` |
+| backend WP24 ① (opus) | `term_1408924f-69e8-469c-b6b1-8e4fe8ed9c6b` | `task_0755c345fe98` | `ctx_3ab444e4a44a` | `quality-wp24-be-brief.md` | ① ② 완료(C · C2 · 손님 쪽 18/21) → **다국어 묶음(D-57) 실행 중** |
+| planner 0.9.0 (fable) | `term_999506d9-1342-4e49-bca8-25f4cb1aa731` | `task_2ca15781af05` | `ctx_e69d828e6c02` | `quality-spec-v090-brief.md` | 0.9.0 → 검수 FAIL 1 · WARN 5 → **0.9.1 수정 진행**(처분 §11) |
+- **이번 판에서 다 고친다**(사용자 2026-11-15 「한김에 다 고치고 가자」) — D-58 바로잡기 · D-59 나라별 시험 · 결과 페이지 언어별 탭
+- **배포(WP25)는 사용자가 결과를 본 뒤** — 사용자 2026-11-14 「배포 전까지만 해놓자 · 24번까지 내가 결과 볼수 잇게 정리」. WP24 뒤 산출: 전후 비교 HTML(로컬 전용 · A · B · C · C2 나란히 · 요약 숫자 · 카톡 지적 문장 표시) + 결정할 것 목록(끊김 1초/2초 등 · 추천 포함)
+- 판단은 추천안으로 진행(사용자 「추천으로 가줘」) — 사용자에게만 남는 것: D-54 로 안 닫히는 한도
+- WP24 발주서에 넣을 것: 조합 C2(= C + `max_endpoint_delay_ms` 2000 · D-55) · 손님 쪽 21문장(D-50) · 사람 판정은 코디(`wp22-human.json` 과 같은 등급)
+
 다음: WP21 완료 → reviewer(코드) · 토닝 zh 사용자 확인 → planner 0.8.2(§4.2.4 값 · N-1 ~ N-3) → WP22(시험 「전」 · 12-15 전) → WP23 → WP24 → WP25
 
 ## 4. 산출물

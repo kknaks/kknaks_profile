@@ -1,0 +1,6246 @@
+{
+  "terms": 170,
+  "f_dropped": 80,
+  "r3_missing": 0,
+  "e7_dropped": 1,
+  "d54_dropped": 27,
+  "d54_by_lang": {
+    "zh-Hant": 22,
+    "ja": 2,
+    "th": 3
+  },
+  "pre_f": {
+    "en": {
+      "name": 10,
+      "alias_add_cells": 35,
+      "alias_add": 49,
+      "alias_del_cells": 0,
+      "alias_del": 0,
+      "rv_up": 1,
+      "rv_down": 2,
+      "changed": 38,
+      "unchanged": 130,
+      "aliases_total": 53
+    },
+    "ja": {
+      "name": 30,
+      "alias_add_cells": 34,
+      "alias_add": 48,
+      "alias_del_cells": 0,
+      "alias_del": 0,
+      "rv_up": 8,
+      "rv_down": 4,
+      "changed": 46,
+      "unchanged": 122,
+      "aliases_total": 121
+    },
+    "zh": {
+      "name": 19,
+      "alias_add_cells": 21,
+      "alias_add": 32,
+      "alias_del_cells": 0,
+      "alias_del": 0,
+      "rv_up": 2,
+      "rv_down": 8,
+      "changed": 33,
+      "unchanged": 135,
+      "aliases_total": 105
+    },
+    "zh-Hant": {
+      "name": 12,
+      "alias_add_cells": 7,
+      "alias_add": 11,
+      "alias_del_cells": 2,
+      "alias_del": 4,
+      "rv_up": 40,
+      "rv_down": 0,
+      "changed": 48,
+      "unchanged": 120,
+      "aliases_total": 247
+    },
+    "th": {
+      "name": 68,
+      "alias_add_cells": 60,
+      "alias_add": 84,
+      "alias_del_cells": 1,
+      "alias_del": 1,
+      "rv_up": 1,
+      "rv_down": 25,
+      "changed": 86,
+      "unchanged": 82,
+      "aliases_total": 117
+    },
+    "vi": {
+      "name": 20,
+      "alias_add_cells": 27,
+      "alias_add": 43,
+      "alias_del_cells": 0,
+      "alias_del": 0,
+      "rv_up": 10,
+      "rv_down": 3,
+      "changed": 40,
+      "unchanged": 128,
+      "aliases_total": 43
+    },
+    "yue": {
+      "name": 40,
+      "alias_add_cells": 28,
+      "alias_add": 36,
+      "alias_del_cells": 2,
+      "alias_del": 2,
+      "rv_up": 4,
+      "rv_down": 14,
+      "changed": 52,
+      "unchanged": 116,
+      "aliases_total": 64
+    }
+  },
+  "post_f": {
+    "en": {
+      "name": 10,
+      "alias_add_cells": 35,
+      "alias_add": 49,
+      "alias_del_cells": 0,
+      "alias_del": 0,
+      "rv_up": 1,
+      "rv_down": 2,
+      "changed": 38,
+      "unchanged": 130,
+      "aliases_total": 53
+    },
+    "ja": {
+      "name": 30,
+      "alias_add_cells": 32,
+      "alias_add": 46,
+      "alias_del_cells": 0,
+      "alias_del": 0,
+      "rv_up": 8,
+      "rv_down": 4,
+      "changed": 45,
+      "unchanged": 123,
+      "aliases_total": 119
+    },
+    "zh": {
+      "name": 19,
+      "alias_add_cells": 21,
+      "alias_add": 32,
+      "alias_del_cells": 1,
+      "alias_del": 1,
+      "rv_up": 2,
+      "rv_down": 8,
+      "changed": 34,
+      "unchanged": 134,
+      "aliases_total": 104
+    },
+    "zh-Hant": {
+      "name": 12,
+      "alias_add_cells": 7,
+      "alias_add": 8,
+      "alias_del_cells": 72,
+      "alias_del": 103,
+      "rv_up": 40,
+      "rv_down": 0,
+      "changed": 106,
+      "unchanged": 62,
+      "aliases_total": 145
+    },
+    "th": {
+      "name": 68,
+      "alias_add_cells": 58,
+      "alias_add": 81,
+      "alias_del_cells": 1,
+      "alias_del": 1,
+      "rv_up": 1,
+      "rv_down": 25,
+      "changed": 86,
+      "unchanged": 82,
+      "aliases_total": 114
+    },
+    "vi": {
+      "name": 20,
+      "alias_add_cells": 27,
+      "alias_add": 43,
+      "alias_del_cells": 0,
+      "alias_del": 0,
+      "rv_up": 10,
+      "rv_down": 3,
+      "changed": 40,
+      "unchanged": 128,
+      "aliases_total": 43
+    },
+    "yue": {
+      "name": 40,
+      "alias_add_cells": 28,
+      "alias_add": 36,
+      "alias_del_cells": 2,
+      "alias_del": 2,
+      "rv_up": 4,
+      "rv_down": 14,
+      "changed": 52,
+      "unchanged": 116,
+      "aliases_total": 64
+    }
+  },
+  "rows": [
+    {
+      "id": "ph-001",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-001",
+      "lang": "th",
+      "rules": [
+        "① 현지에 없음 → 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-002",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌",
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 2,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-003",
+      "lang": "en",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-003",
+      "lang": "ja",
+      "rules": [
+        "② C r2-7"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-003",
+      "lang": "vi",
+      "rules": [
+        "① 변경 n=8"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 3,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-003",
+      "lang": "yue",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-004",
+      "lang": "ja",
+      "rules": [
+        "② E 빗금"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-004",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-004",
+      "lang": "th",
+      "rules": [
+        "① 현지에 없음 → 영문"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-005",
+      "lang": "en",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-005",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-005",
+      "lang": "vi",
+      "rules": [
+        "① 변경 n=6"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-005",
+      "lang": "yue",
+      "rules": [
+        "① 변경 n=2"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-006",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 유지",
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 2,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-006",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-006",
+      "lang": "yue",
+      "rules": [
+        "① 변경 n=3"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-007",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-007",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-007",
+      "lang": "yue",
+      "rules": [
+        "① 변경 n=2"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-008",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-009",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌",
+        "D-54 뺌"
+      ],
+      "aliases_before": 2,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-009",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-010",
+      "lang": "ja",
+      "rules": [
+        "② C r2-5(E3)"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-010",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 2,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-010",
+      "lang": "yue",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-011",
+      "lang": "en",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-011",
+      "lang": "th",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-011",
+      "lang": "yue",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-012",
+      "lang": "en",
+      "rules": [
+        "② C r2-13"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-012",
+      "lang": "ja",
+      "rules": [
+        "② C r2-6(E3)"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-012",
+      "lang": "zh",
+      "rules": [
+        "② C D-52(E1)"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-012",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 2,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-012",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-012",
+      "lang": "vi",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-012",
+      "lang": "yue",
+      "rules": [
+        "② C r1-6(E2)"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-013",
+      "lang": "en",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-013",
+      "lang": "zh",
+      "rules": [
+        "① 변경 n=3"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-013",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 변경 n=3"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-013",
+      "lang": "th",
+      "rules": [
+        "① 변경 n=8"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-013",
+      "lang": "vi",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-015",
+      "lang": "zh-Hant",
+      "rules": [
+        "② C r1-2 · r1-5"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-015",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-015",
+      "lang": "yue",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-016",
+      "lang": "zh-Hant",
+      "rules": [
+        "② C r1-2 · r1-5"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-016",
+      "lang": "yue",
+      "rules": [
+        "① 변경 n=4"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-017",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-017",
+      "lang": "yue",
+      "rules": [
+        "② D r1-4(② D)"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-018",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-018",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-018",
+      "lang": "yue",
+      "rules": [
+        "② D r1-4(② D)"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-019",
+      "lang": "zh",
+      "rules": [
+        "② C r1-2(E8)"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-019",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 현지도 영문",
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 3,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-019",
+      "lang": "yue",
+      "rules": [
+        "② D r1-4(② D)"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-020",
+      "lang": "zh",
+      "rules": [
+        "② C r1-2(E8)"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-020",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-020",
+      "lang": "yue",
+      "rules": [
+        "② D r1-4(② D)"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-021",
+      "lang": "zh",
+      "rules": [
+        "① 변경 n=4"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 3,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-021",
+      "lang": "yue",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-022",
+      "lang": "ja",
+      "rules": [
+        "① 변경 n=7"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-022",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-022",
+      "lang": "vi",
+      "rules": [
+        "① 변경 n=8"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-023",
+      "lang": "zh",
+      "rules": [
+        "② C r1-2(E8)"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-023",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-023",
+      "lang": "yue",
+      "rules": [
+        "② D r1-4(② D)"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-024",
+      "lang": "ja",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-024",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 유지",
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 3,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-025",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-026",
+      "lang": "ja",
+      "rules": [
+        "② C ① 변경 · E4"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-026",
+      "lang": "zh",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-026",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-026",
+      "lang": "yue",
+      "rules": [
+        "① 변경 n=6"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-027",
+      "lang": "en",
+      "rules": [
+        "② C r2-11"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-027",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-028",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-029",
+      "lang": "en",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-029",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-029",
+      "lang": "th",
+      "rules": [
+        "② C 처분 §4-e"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-029",
+      "lang": "vi",
+      "rules": [
+        "① 변경 n=9"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-030",
+      "lang": "ja",
+      "rules": [
+        "② E 빗금"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-030",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌",
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 2,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-031",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌",
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 6,
+      "aliases_after": 4,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-031",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-032",
+      "lang": "en",
+      "rules": [
+        "② C r2-12"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-032",
+      "lang": "ja",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-032",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-032",
+      "lang": "th",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-033",
+      "lang": "zh",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-033",
+      "lang": "th",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-033",
+      "lang": "yue",
+      "rules": [
+        "① 변경 n=6"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 3,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-034",
+      "lang": "en",
+      "rules": [
+        "② C r2-12 · 처분 §4-e"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-034",
+      "lang": "ja",
+      "rules": [
+        "② C 처분 §4-e"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-034",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 변경 n=5",
+        "② F 옛 name 뺌"
+      ],
+      "aliases_before": 5,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-034",
+      "lang": "th",
+      "rules": [
+        "② C 처분 §4-e"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-034",
+      "lang": "vi",
+      "rules": [
+        "② C 처분 §4-e"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-034",
+      "lang": "yue",
+      "rules": [
+        "② C 처분 §4-e · §7 W-1"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-035",
+      "lang": "ja",
+      "rules": [
+        "② C 처분 §4-e"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-035",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-035",
+      "lang": "th",
+      "rules": [
+        "② C 처분 §4-e"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-035",
+      "lang": "vi",
+      "rules": [
+        "① 변경 n=1"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-036",
+      "lang": "en",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-036",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-037",
+      "lang": "ja",
+      "rules": [
+        "① 별칭 추가",
+        "D-54 뺌"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-037",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 3,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-037",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-038",
+      "lang": "th",
+      "rules": [
+        "② C 처분 §4-e"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-039",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 2,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-039",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-040",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-042",
+      "lang": "ja",
+      "rules": [
+        "① 변경 n=1",
+        "D-54 뺌"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-042",
+      "lang": "zh",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 2,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-042",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 6,
+      "aliases_after": 5,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-042",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-043",
+      "lang": "zh",
+      "rules": [
+        "① 변경 n=1"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-044",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌",
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 2,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-044",
+      "lang": "th",
+      "rules": [
+        "① 현지에 없음 → 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-046",
+      "lang": "ja",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-046",
+      "lang": "vi",
+      "rules": [
+        "② C r2-11"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-047",
+      "lang": "ja",
+      "rules": [
+        "② C r2-15"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-047",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-047",
+      "lang": "th",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-050",
+      "lang": "ja",
+      "rules": [
+        "② C r2-15"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-052",
+      "lang": "en",
+      "rules": [
+        "② C r2-12 · 빗금"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 3,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-052",
+      "lang": "ja",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-052",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌",
+        "② F D-53 뺌",
+        "D-54 뺌"
+      ],
+      "aliases_before": 4,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-052",
+      "lang": "th",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-052",
+      "lang": "vi",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-053",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-054",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-055",
+      "lang": "en",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-055",
+      "lang": "ja",
+      "rules": [
+        "① 변경 n=5"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-055",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 유지",
+        "② F D-53 뺌",
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 3,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-055",
+      "lang": "th",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-055",
+      "lang": "vi",
+      "rules": [
+        "① 변경 n=3"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-056",
+      "lang": "ja",
+      "rules": [
+        "① 변경 n=2"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-056",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-057",
+      "lang": "zh-Hant",
+      "rules": [
+        "② E 빗금",
+        "② F D-53 뺌",
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 2,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-058",
+      "lang": "en",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-058",
+      "lang": "ja",
+      "rules": [
+        "② C r2-8"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-058",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 변경 n=2"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-058",
+      "lang": "th",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-058",
+      "lang": "yue",
+      "rules": [
+        "① 변경 n=4"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-059",
+      "lang": "en",
+      "rules": [
+        "① 변경 n=7"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-059",
+      "lang": "ja",
+      "rules": [
+        "② C r2-8"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-059",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 4,
+      "aliases_after": 3,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-060",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-060",
+      "lang": "yue",
+      "rules": [
+        "② D r1-4(② D)"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-061",
+      "lang": "ja",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-061",
+      "lang": "zh",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-061",
+      "lang": "vi",
+      "rules": [
+        "① 변경 n=5"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-061",
+      "lang": "yue",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-062",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-062",
+      "lang": "th",
+      "rules": [
+        "① 현지에 없음 → 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-062",
+      "lang": "yue",
+      "rules": [
+        "② D r1-4(② D)"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-063",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 4,
+      "aliases_after": 3,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-063",
+      "lang": "th",
+      "rules": [
+        "① 변경 n=3"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-063",
+      "lang": "yue",
+      "rules": [
+        "② D r1-4(② D)"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-064",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌",
+        "② F D-53 뺌",
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 3,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-064",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-064",
+      "lang": "yue",
+      "rules": [
+        "② D r1-4(② D)"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-065",
+      "lang": "en",
+      "rules": [
+        "② C r2-11"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-065",
+      "lang": "zh-Hant",
+      "rules": [
+        "D-54 뺌"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-065",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-065",
+      "lang": "yue",
+      "rules": [
+        "② D r1-4(② D)"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-066",
+      "lang": "en",
+      "rules": [
+        "① 변경 n=4"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-066",
+      "lang": "ja",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-066",
+      "lang": "zh",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-066",
+      "lang": "zh-Hant",
+      "rules": [
+        "D-54 뺌"
+      ],
+      "aliases_before": 3,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-066",
+      "lang": "th",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-066",
+      "lang": "yue",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-067",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-068",
+      "lang": "en",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-069",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌",
+        "D-54 뺌"
+      ],
+      "aliases_before": 2,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-070",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌",
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 2,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-070",
+      "lang": "th",
+      "rules": [
+        "① 현지에 없음 → 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-071",
+      "lang": "ja",
+      "rules": [
+        "① 변경 n=2"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-071",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 2,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-071",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-072",
+      "lang": "ja",
+      "rules": [
+        "① 변경 n=5"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-072",
+      "lang": "zh-Hant",
+      "rules": [
+        "② C r1-2 · r1-5",
+        "② F D-53 뺌",
+        "D-54 뺌"
+      ],
+      "aliases_before": 3,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-072",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-074",
+      "lang": "ja",
+      "rules": [
+        "② C r2-7"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-074",
+      "lang": "zh",
+      "rules": [
+        "② C r1-2(E9)"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-074",
+      "lang": "th",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-075",
+      "lang": "zh-Hant",
+      "rules": [
+        "② C r1-2 · r1-5",
+        "D-54 뺌"
+      ],
+      "aliases_before": 2,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-075",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-076",
+      "lang": "en",
+      "rules": [
+        "② E 빗금"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-076",
+      "lang": "zh",
+      "rules": [
+        "② E 빗금"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-076",
+      "lang": "zh-Hant",
+      "rules": [
+        "② E 빗금"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-076",
+      "lang": "th",
+      "rules": [
+        "② E 빗금"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-076",
+      "lang": "vi",
+      "rules": [
+        "② E 빗금"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-076",
+      "lang": "yue",
+      "rules": [
+        "② E 빗금"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-077",
+      "lang": "en",
+      "rules": [
+        "② E 빗금"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-077",
+      "lang": "ja",
+      "rules": [
+        "② E 빗금"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-077",
+      "lang": "zh",
+      "rules": [
+        "② E 빗금"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-077",
+      "lang": "zh-Hant",
+      "rules": [
+        "② E 빗금"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-077",
+      "lang": "th",
+      "rules": [
+        "② E 빗금"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-077",
+      "lang": "vi",
+      "rules": [
+        "② E 빗금"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-077",
+      "lang": "yue",
+      "rules": [
+        "② E 빗금"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-078",
+      "lang": "en",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-078",
+      "lang": "ja",
+      "rules": [
+        "① 변경 n=8"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-078",
+      "lang": "zh",
+      "rules": [
+        "② C r1-2(E9)"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-078",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 2,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-078",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-078",
+      "lang": "vi",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-079",
+      "lang": "ja",
+      "rules": [
+        "① 변경 n=4"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-079",
+      "lang": "zh-Hant",
+      "rules": [
+        "② C r1-2 · r1-5",
+        "② F D-53 뺌",
+        "D-54 뺌"
+      ],
+      "aliases_before": 2,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-079",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-080",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-081",
+      "lang": "ja",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-081",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 현지도 영문",
+        "D-54 뺌"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-082",
+      "lang": "en",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-082",
+      "lang": "th",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-083",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-083",
+      "lang": "th",
+      "rules": [
+        "① 현지에 없음 → 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-084",
+      "lang": "th",
+      "rules": [
+        "① 현지에 없음 → 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-085",
+      "lang": "zh",
+      "rules": [
+        "② E 빗금"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-085",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 유지",
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-085",
+      "lang": "th",
+      "rules": [
+        "① 변경 n=4"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-085",
+      "lang": "yue",
+      "rules": [
+        "② E 빗금"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-086",
+      "lang": "ja",
+      "rules": [
+        "① 변경 n=6"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-088",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 2,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-088",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-089",
+      "lang": "en",
+      "rules": [
+        "② C r2-13"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-089",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-090",
+      "lang": "zh",
+      "rules": [
+        "① 변경 n=1"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-090",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-090",
+      "lang": "yue",
+      "rules": [
+        "① 변경 n=5"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-091",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-091",
+      "lang": "th",
+      "rules": [
+        "① 변경 n=7"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-091",
+      "lang": "vi",
+      "rules": [
+        "① 변경 n=7"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-093",
+      "lang": "ja",
+      "rules": [
+        "① 변경 n=2"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-093",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌",
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 2,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-094",
+      "lang": "en",
+      "rules": [
+        "① 변경 n=8"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-094",
+      "lang": "zh",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-094",
+      "lang": "zh-Hant",
+      "rules": [
+        "D-54 뺌"
+      ],
+      "aliases_before": 3,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-094",
+      "lang": "th",
+      "rules": [
+        "① 변경 n=8"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-094",
+      "lang": "vi",
+      "rules": [
+        "① 변경 n=10"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-094",
+      "lang": "yue",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-095",
+      "lang": "en",
+      "rules": [
+        "① 변경 n=7"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-095",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-096",
+      "lang": "ja",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-096",
+      "lang": "th",
+      "rules": [
+        "① 변경 n=6"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-096",
+      "lang": "vi",
+      "rules": [
+        "① 변경 n=8"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-097",
+      "lang": "vi",
+      "rules": [
+        "② B 합침 ph-127"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-098",
+      "lang": "zh",
+      "rules": [
+        "① 변경 n=5"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-098",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 변경 n=3",
+        "② F 옛 name 뺌"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-098",
+      "lang": "th",
+      "rules": [
+        "① 변경 n=8"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-098",
+      "lang": "vi",
+      "rules": [
+        "① 변경 n=9"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-098",
+      "lang": "yue",
+      "rules": [
+        "① 변경 n=4"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-100",
+      "lang": "ja",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-100",
+      "lang": "zh",
+      "rules": [
+        "① 변경 n=5"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-100",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 변경 n=4",
+        "② F 옛 name 뺌"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-100",
+      "lang": "th",
+      "rules": [
+        "① 변경 n=8"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-100",
+      "lang": "vi",
+      "rules": [
+        "① 변경 n=9"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-100",
+      "lang": "yue",
+      "rules": [
+        "① 변경 n=2"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-102",
+      "lang": "en",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-102",
+      "lang": "ja",
+      "rules": [
+        "① 변경 n=6"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-102",
+      "lang": "zh",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-102",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 변경 n=4"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-102",
+      "lang": "th",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-102",
+      "lang": "vi",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-102",
+      "lang": "yue",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-103",
+      "lang": "ja",
+      "rules": [
+        "① 변경 n=8"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-103",
+      "lang": "zh",
+      "rules": [
+        "② E 빗금"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-103",
+      "lang": "zh-Hant",
+      "rules": [
+        "② E 빗금"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-103",
+      "lang": "th",
+      "rules": [
+        "① 변경 n=6"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-103",
+      "lang": "vi",
+      "rules": [
+        "① 변경 n=7"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-103",
+      "lang": "yue",
+      "rules": [
+        "② E 빗금"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-104",
+      "lang": "en",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-104",
+      "lang": "zh",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-104",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 유지",
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-104",
+      "lang": "vi",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-105",
+      "lang": "en",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-105",
+      "lang": "ja",
+      "rules": [
+        "① 변경 n=4"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-105",
+      "lang": "zh",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-105",
+      "lang": "zh-Hant",
+      "rules": [
+        "D-54 뺌"
+      ],
+      "aliases_before": 3,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-105",
+      "lang": "th",
+      "rules": [
+        "① 별칭 추가",
+        "② B 합침 ph-106"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 4,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-105",
+      "lang": "vi",
+      "rules": [
+        "① 변경 n=2",
+        "② B 합침 ph-106"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 3,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-107",
+      "lang": "zh",
+      "rules": [
+        "① 변경 n=2"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 3,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-107",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-107",
+      "lang": "yue",
+      "rules": [
+        "① 변경 n=4"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-108",
+      "lang": "zh-Hant",
+      "rules": [
+        "② C r1-2 · r1-5"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-108",
+      "lang": "th",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-109",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-110",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-110",
+      "lang": "th",
+      "rules": [
+        "① 현지에 없음 → 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-111",
+      "lang": "zh",
+      "rules": [
+        "① 변경 n=2"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-111",
+      "lang": "th",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-111",
+      "lang": "yue",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-112",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 2,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-112",
+      "lang": "yue",
+      "rules": [
+        "① 변경 n=2"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-113",
+      "lang": "zh-Hant",
+      "rules": [
+        "② C r1-2 · r1-5 — 「현지도 영문」 반영 안 함",
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 3,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-113",
+      "lang": "yue",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-114",
+      "lang": "en",
+      "rules": [
+        "① 변경 n=3"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-114",
+      "lang": "zh",
+      "rules": [
+        "① 변경 n=1",
+        "② E 빗금"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 3,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-114",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-114",
+      "lang": "th",
+      "rules": [
+        "① 변경 n=7"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-114",
+      "lang": "vi",
+      "rules": [
+        "① 변경 n=5"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-115",
+      "lang": "en",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-115",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-115",
+      "lang": "vi",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-116",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 4,
+      "aliases_after": 3,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-117",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-117",
+      "lang": "vi",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-118",
+      "lang": "ja",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-118",
+      "lang": "zh",
+      "rules": [
+        "② E 빗금"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-118",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 유지",
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 2,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-118",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-118",
+      "lang": "vi",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-119",
+      "lang": "ja",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-119",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌",
+        "D-54 뺌"
+      ],
+      "aliases_before": 3,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-119",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-119",
+      "lang": "vi",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-120",
+      "lang": "en",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-120",
+      "lang": "ja",
+      "rules": [
+        "① 변경 n=6"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-120",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-120",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-120",
+      "lang": "vi",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-121",
+      "lang": "en",
+      "rules": [
+        "② C r1-3 · r2-2"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-121",
+      "lang": "zh",
+      "rules": [
+        "② C r1-3(E7 — 코디 처분 §8 은 --e7)",
+        "E7 코디 처분 §8 뺌"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-121",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌",
+        "D-54 뺌"
+      ],
+      "aliases_before": 5,
+      "aliases_after": 3,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-121",
+      "lang": "th",
+      "rules": [
+        "① 변경 n=7"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 3,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-122",
+      "lang": "zh",
+      "rules": [
+        "① 변경 n=1"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-122",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌",
+        "② F D-53 뺌",
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 3,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-122",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-123",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 3,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-123",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-124",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-124",
+      "lang": "th",
+      "rules": [
+        "① 현지에 없음 → 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-124",
+      "lang": "yue",
+      "rules": [
+        "② D r1-4(② D)"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-125",
+      "lang": "ja",
+      "rules": [
+        "① 변경 n=6"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-125",
+      "lang": "zh",
+      "rules": [
+        "② C r1-10"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-125",
+      "lang": "vi",
+      "rules": [
+        "① 변경 n=3"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-126",
+      "lang": "ja",
+      "rules": [
+        "② C r2-11 · 빗금"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-126",
+      "lang": "zh-Hant",
+      "rules": [
+        "D-54 뺌"
+      ],
+      "aliases_before": 7,
+      "aliases_after": 6,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-126",
+      "lang": "th",
+      "rules": [
+        "② C r2-11"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-126",
+      "lang": "vi",
+      "rules": [
+        "② C r2-11"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-126",
+      "lang": "yue",
+      "rules": [
+        "② D r1-4(② D)"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-128",
+      "lang": "en",
+      "rules": [
+        "② C r2-12"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-128",
+      "lang": "th",
+      "rules": [
+        "① 변경 n=7"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-130",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌",
+        "D-54 뺌",
+        "D-54 뺌"
+      ],
+      "aliases_before": 4,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-131",
+      "lang": "en",
+      "rules": [
+        "② C r2-12"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-131",
+      "lang": "ja",
+      "rules": [
+        "① 변경 n=8"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-131",
+      "lang": "zh",
+      "rules": [
+        "① 변경 n=4"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-131",
+      "lang": "th",
+      "rules": [
+        "① 변경 n=8"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 3,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-131",
+      "lang": "vi",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-131",
+      "lang": "yue",
+      "rules": [
+        "① 변경 n=6"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-132",
+      "lang": "ja",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-132",
+      "lang": "zh-Hant",
+      "rules": [
+        "D-54 뺌",
+        "D-54 뺌",
+        "D-54 뺌"
+      ],
+      "aliases_before": 3,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-132",
+      "lang": "vi",
+      "rules": [
+        "① 변경 n=2"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-133",
+      "lang": "en",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-133",
+      "lang": "th",
+      "rules": [
+        "① 변경 n=7"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-133",
+      "lang": "vi",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-133",
+      "lang": "yue",
+      "rules": [
+        "① 변경 n=6"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-134",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-134",
+      "lang": "th",
+      "rules": [
+        "① 현지에 없음 → 영문"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-135",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문",
+        "D-54 뺌",
+        "D-54 뺌"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-136",
+      "lang": "en",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-136",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-136",
+      "lang": "th",
+      "rules": [
+        "① 현지에 없음 → 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-137",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌",
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 2,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-137",
+      "lang": "th",
+      "rules": [
+        "① 현지에 없음 → 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-140",
+      "lang": "ja",
+      "rules": [
+        "② E 빗금"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-140",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-141",
+      "lang": "en",
+      "rules": [
+        "② C r2-12"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-141",
+      "lang": "zh",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-141",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-141",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 3,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-141",
+      "lang": "yue",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-143",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-146",
+      "lang": "en",
+      "rules": [
+        "② C r2-12"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-146",
+      "lang": "ja",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-146",
+      "lang": "zh",
+      "rules": [
+        "① 변경 n=5"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-146",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-146",
+      "lang": "vi",
+      "rules": [
+        "① 변경 n=8"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-146",
+      "lang": "yue",
+      "rules": [
+        "① 변경 n=5"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-149",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-149",
+      "lang": "th",
+      "rules": [
+        "① 현지에 없음 → 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-149",
+      "lang": "yue",
+      "rules": [
+        "② D r1-4(② D)"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-150",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-150",
+      "lang": "th",
+      "rules": [
+        "① 현지에 없음 → 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-150",
+      "lang": "yue",
+      "rules": [
+        "② D r1-4(② D)"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-151",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-151",
+      "lang": "th",
+      "rules": [
+        "① 현지에 없음 → 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-151",
+      "lang": "yue",
+      "rules": [
+        "② D r1-4(② D)"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-153",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌",
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 2,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-153",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문",
+        "D-54 뺌"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-153",
+      "lang": "yue",
+      "rules": [
+        "② D r1-4(② D)"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-154",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌",
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 2,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-154",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-154",
+      "lang": "yue",
+      "rules": [
+        "② D r1-4(② D)"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 1,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-156",
+      "lang": "en",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-156",
+      "lang": "zh-Hant",
+      "rules": [
+        "② F D-53 뺌"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-156",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "ph-156",
+      "lang": "vi",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-157",
+      "lang": "en",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-157",
+      "lang": "ja",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-157",
+      "lang": "zh-Hant",
+      "rules": [
+        "① 현지도 영문",
+        "② F D-53 뺌",
+        "D-54 뺌"
+      ],
+      "aliases_before": 3,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "ph-157",
+      "lang": "th",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 2,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-157",
+      "lang": "vi",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-157",
+      "lang": "yue",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-158",
+      "lang": "en",
+      "rules": [
+        "② E 빗금"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-158",
+      "lang": "zh",
+      "rules": [
+        "② E 빗금"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-158",
+      "lang": "zh-Hant",
+      "rules": [
+        "② E 빗금"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        false,
+        false
+      ]
+    },
+    {
+      "id": "ph-158",
+      "lang": "th",
+      "rules": [
+        "② E 빗금"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "ph-158",
+      "lang": "yue",
+      "rules": [
+        "② E 빗금"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": true,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "kr-001",
+      "lang": "zh-Hant",
+      "rules": [
+        "D-54 뺌"
+      ],
+      "aliases_before": 3,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "kr-001",
+      "lang": "vi",
+      "rules": [
+        "① 유지"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "kr-002",
+      "lang": "th",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "kr-005",
+      "lang": "th",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "kr-007",
+      "lang": "th",
+      "rules": [
+        "① 별칭 추가"
+      ],
+      "aliases_before": 1,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "kr-008",
+      "lang": "zh-Hant",
+      "rules": [
+        "② C r1-12"
+      ],
+      "aliases_before": 2,
+      "aliases_after": 2,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "kr-011",
+      "lang": "zh-Hant",
+      "rules": [
+        "D-54 뺌"
+      ],
+      "aliases_before": 2,
+      "aliases_after": 1,
+      "name_changed": false,
+      "reviewed": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "kr-011",
+      "lang": "yue",
+      "rules": [
+        "① 현지도 영문"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "kr-014",
+      "lang": "en",
+      "rules": [
+        "② A 새 term"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        null,
+        true
+      ]
+    },
+    {
+      "id": "kr-014",
+      "lang": "ja",
+      "rules": [
+        "② A 새 term"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        null,
+        true
+      ]
+    },
+    {
+      "id": "kr-014",
+      "lang": "zh",
+      "rules": [
+        "② A 새 term"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        null,
+        true
+      ]
+    },
+    {
+      "id": "kr-014",
+      "lang": "zh-Hant",
+      "rules": [
+        "② A 새 term"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        null,
+        false
+      ]
+    },
+    {
+      "id": "kr-014",
+      "lang": "th",
+      "rules": [
+        "② A 새 term"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        null,
+        true
+      ]
+    },
+    {
+      "id": "kr-014",
+      "lang": "vi",
+      "rules": [
+        "② A 새 term"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        null,
+        false
+      ]
+    },
+    {
+      "id": "kr-014",
+      "lang": "yue",
+      "rules": [
+        "② A 새 term"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        null,
+        true
+      ]
+    },
+    {
+      "id": "kr-015",
+      "lang": "en",
+      "rules": [
+        "② A 새 term"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        null,
+        false
+      ]
+    },
+    {
+      "id": "kr-015",
+      "lang": "ja",
+      "rules": [
+        "② A 새 term"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        null,
+        false
+      ]
+    },
+    {
+      "id": "kr-015",
+      "lang": "zh",
+      "rules": [
+        "② A 새 term"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        null,
+        false
+      ]
+    },
+    {
+      "id": "kr-015",
+      "lang": "zh-Hant",
+      "rules": [
+        "② A 새 term"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        null,
+        false
+      ]
+    },
+    {
+      "id": "kr-015",
+      "lang": "th",
+      "rules": [
+        "② A 새 term"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        null,
+        false
+      ]
+    },
+    {
+      "id": "kr-015",
+      "lang": "vi",
+      "rules": [
+        "② A 새 term"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        null,
+        false
+      ]
+    },
+    {
+      "id": "kr-015",
+      "lang": "yue",
+      "rules": [
+        "② A 새 term"
+      ],
+      "aliases_before": 0,
+      "aliases_after": 0,
+      "name_changed": false,
+      "reviewed": [
+        null,
+        false
+      ]
+    }
+  ]
+}
