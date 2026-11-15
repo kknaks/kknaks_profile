@@ -1,6 +1,6 @@
 # 재개 노트 — interpreter-idea (interpret-pwa)
 
-**지금**: 품질 개선 — 문서 커밋 `b0892cbb`(push 전 · DEC D-43 ~ D-51 · SPEC 0.8.1) · **WP21 backend 진행** · 토닝 zh 이름은 사용자 웹 확인 대기
+**지금**: 품질 개선 **배포 완료**(2026-11-15 · code PR #12 → `6d57ba3` · infra PR #55 · sync · 시드 `.10` 로드 · 기록 keep_days=off) · 패치 노트 https://claude.ai/artifact/F2ZPH3NvgH2qPisfUaWGQP(배포 완료로 갱신) · **남은 것**: 사용자 폰 실물 확인 · 프로필 문서 PR(price.md 1.4 상담 문장 PUBLIC 처리 먼저 묻기) · 마감 archive-work.sh(회고 · 개념)
 **다음**: 프로필 문서 PR 은 **보류**(사용자 2026-11-14 — 오역 수정 코드 업데이트와 같이 올림). 그때 price.md 1.4 상담 문장(PUBLIC) 처리 먼저 묻기. 마감은 archive-work.sh. OQ-020(베타 종료 때 값) 열림.
 **요금 · 아이디어**: `price.md` 1 ~ 4절 · `idea.md` 커밋 `0bcb0ebe`(push 전). 남은 결정 = 마진율 · 포함 대화 수 · context 축소 · 무발화 종료 시간 · 상담 비율 기준(시간/건수) · price.md 1.4 상담 문장(인터뷰 출처 — PUBLIC) · 앞 판 문서(pricing-design · pricing-function · g*/pd*) 처분 · 원본(PDF · 캡처 · useage.md) 커밋 여부.
 **운영 통역 기록 사본**: `reference/2026-11-12-interpreter-idea/records/` (11-11 ~ 11-14 · 세션 43 · 발화 137) — `info/exclude` 로 git 제외(PUBLIC · 문장 포함).
@@ -41,8 +41,15 @@
 | planner 0.8.3 (fable) | `term_abdfc414-5fdf-42c2-aca3-9c64b4cc071c` | `task_e07ccf04c278` | `ctx_1574d52b5c32` | `quality-spec-fix3-brief.md` | 0.8.4 완료 · 재검수 PASS(`review-quality-doc-report-5.md`) — 사전 문서 단계 끝 |
 | backend WP22 ① (opus) | `term_1408924f-69e8-469c-b6b1-8e4fe8ed9c6b` | `task_f37486527ab4` | `ctx_b0104473b366` | `quality-wp22-be-brief.md` | 완료 — 기계 FAIL A 15 / B 7 · 사람 오역 A 12 / B 7 · 지연 중앙값 A 1,580 / B 516ms · 3절 v6 도 조각 · `wp22-be-report.md` · `wp22-human.json` |
 | backend WP23 (opus) | `term_1408924f-69e8-469c-b6b1-8e4fe8ed9c6b` | `task_cef7a343f19c` | `ctx_df891a3dd26d` | `quality-wp23-be-brief.md` | 완료 — 시드 `.7` · D-54 27 뺌 · v6 실측 → D-54 5 멈춤 → **D-56**(× 0.96) · `wp23-be-report.md` |
-| backend WP24 ① (opus) | `term_1408924f-69e8-469c-b6b1-8e4fe8ed9c6b` | `task_0755c345fe98` | `ctx_3ab444e4a44a` | `quality-wp24-be-brief.md` | ① ② 완료(C · C2 · 손님 쪽 18/21) → **다국어 묶음(D-57) 실행 중** |
-| planner 0.9.0 (fable) | `term_999506d9-1342-4e49-bca8-25f4cb1aa731` | `task_2ca15781af05` | `ctx_e69d828e6c02` | `quality-spec-v090-brief.md` | 0.9.0 → 검수 FAIL 1 · WARN 5 → **0.9.1 수정 진행**(처분 §11) |
+| backend WP24 ① (opus) | `term_1408924f-69e8-469c-b6b1-8e4fe8ed9c6b` | `task_0755c345fe98` | `ctx_3ab444e4a44a` | `quality-wp24-be-brief.md` | 완료 — C · C2 · 손님 쪽 18/21 · 다국어 묶음 C 21/35 FAIL |
+| backend WP26 (opus) | `term_1408924f-69e8-469c-b6b1-8e4fe8ed9c6b` | `task_ecfce62f41be` | `ctx_bf9187793f3b` | `quality-wp26-be-brief.md` | 완료(수정 1) — 시드 `.8` · 바로잡기 · pytest 447 · 연기 22/39 · `wp26-be-report.md` |
+| reviewer WP26 (opus) | `term_15cca63d-5a2d-4753-a247-cde1162df48f` | `task_b48bf077b564` | `ctx_b3985c859892` | `quality-wp26-review-brief.md` | 완료 → 처분 §14 → backend 수정 2 완료 · 코드 커밋 `0ec772d`(push 전) |
+| researcher r4a (fable) | `term_133d6a82-b91e-4f3d-97c0-dd0ef56a50c4` | `task_90df1e6296fb` | `ctx_efe234724875` | `quality-r4a-zh-brief.md` | 완료 — 38/136 현지 글자 · `r4a-zh-report.md` |
+| researcher r4b (fable) | `term_d6e2a95f-064d-4137-8335-719a2638e4c9` | `task_2471f3ef30f2` | `ctx_24b5d715e80a` | `quality-r4b-th-ja-brief.md` | 완료 — 42/84 현지 글자 · `r4b-th-ja-report.md` |
+| backend 시드 .9 (opus) | `term_1408924f-69e8-469c-b6b1-8e4fe8ed9c6b` | `task_57b9c8dce282` | `ctx_340729d92add` | `quality-seed-v9-be-brief.md` | 완료 — name 73 · 별칭 36 뺌 · ja · th terms 줄이기(D-62) · `seed-v9-be-report.md` |
+| backend WP27 (opus) | `term_1408924f-69e8-469c-b6b1-8e4fe8ed9c6b` | `task_cf84d8c13b58` | `ctx_d7c752e3a626` | `quality-wp27-be-brief.md` | 진행 — 7차 나라별 · 문장 초안 뒤 코디 확인 |
+| planner 0.9.0 (fable) | `term_999506d9-1342-4e49-bca8-25f4cb1aa731` | `task_2ca15781af05` | `ctx_e69d828e6c02` | `quality-spec-v090-brief.md` | 0.9.1 완료 · 확인 PASS(`review-quality-doc-report-7.md`) · 문서 커밋 `b37783db` |
+- 배포 순서(사용자 2026-11-15 「진행하자」): backend 수정 3(D-65) → 배포 전 재검수 → planner 0.9.3(D-65 한 줄 · OQ-033 은 D-65 로 닫음) → 코드 · 문서 커밋 · PR → Actions sha → infra 태그 PR → sync → 운영 확인 → 패치 노트 「배포 완료」 로 다시 올림(https://claude.ai/artifact/F2ZPH3NvgH2qPisfUaWGQP · 파일 scratchpad tongky-patch-notes.html)
 - **이번 판에서 다 고친다**(사용자 2026-11-15 「한김에 다 고치고 가자」) — D-58 바로잡기 · D-59 나라별 시험 · 결과 페이지 언어별 탭
 - **배포(WP25)는 사용자가 결과를 본 뒤** — 사용자 2026-11-14 「배포 전까지만 해놓자 · 24번까지 내가 결과 볼수 잇게 정리」. WP24 뒤 산출: 전후 비교 HTML(로컬 전용 · A · B · C · C2 나란히 · 요약 숫자 · 카톡 지적 문장 표시) + 결정할 것 목록(끊김 1초/2초 등 · 추천 포함)
 - 판단은 추천안으로 진행(사용자 「추천으로 가줘」) — 사용자에게만 남는 것: D-54 로 안 닫히는 한도
