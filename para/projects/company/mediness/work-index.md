@@ -6,6 +6,7 @@
 
 | 작업 | 보관 위치 | 회고 |
 | --- | --- | --- |
+| [[orchestration/work/_archive/mediness/llm-codex-hotfix/README\|llm-codex-hotfix]] | 아카이브 | [[para/projects/company/mediness/log/2026-11-15-llm-codex-hotfix\|회고]] |
 | [[orchestration/work/_archive/mediness/mcp-library-publish/README\|mcp-library-publish]] | 아카이브 | 회고 미확인 |
 | [[orchestration/work/_archive/mediness/meeting-room-workflow/README\|meeting-room-workflow]] | 아카이브 | [[orchestration/work/_archive/mediness/meeting-room-workflow/SUMMARY\|회고]] |
 | [[orchestration/work/_archive/mediness/reservation-update-mcp/README\|reservation-update-mcp]] | 아카이브 | [[orchestration/work/_archive/mediness/reservation-update-mcp/SUMMARY\|회고]] |

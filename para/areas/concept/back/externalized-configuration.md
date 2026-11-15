@@ -12,6 +12,7 @@ up:
   - 2024-09-29-Day84
   - 2024-10-04-Day88
   - 2024-10-18-Day96
+  - 2026-11-15-llm-codex-hotfix
 tags:
   - spring
   - 설정
@@ -94,3 +95,4 @@ public NcpObjectStorageService(@Value("${ncp.accesskey}") String accessKey, ...)
 - [[2024-10-04-Day88]] — 닷새 뒤. **읽은 값을 꺼내는 방법이 셋으로 정리된다.** `@PropertySource` 에 파일을 **여럿** 지정할 수 있고(배열), 그 값을 ① `@Autowired Environment env` 로 주입받아 `env.getProperty("jdbc.username")` 으로 꺼내기 ② 필드에 `@Value("${jdbc.url}")` ③ `@Bean` 메서드의 매개변수에 `@Value` — 세 자리를 한 `AppConfig` 안에 나란히 놓은 예제가 실려 있다. `Environment` 쪽은 **이름을 실행 중에 정할 수 있다**는 점에서 `@Value` 와 성격이 다른데, 그 구별은 적혀 있지 않다
 - [[2024-09-29-Day84]] — 「Spring에 불러오기」가 `@PropertySource("classpath:config/jdvc.properties")` 로 DB 접속 정보를 빼고, 「bucket 생성」이 스토리지 정보를 **`@PropertySource("file:${user.home}/config/ncp.properties")`** 로 뺀다 — **같은 노트에서 `classpath:` 와 `file:` 두 접두어가 나란히 쓰이는 것**이 이 개념의 핵심 대비다(다만 왜 갈라 쓰는지는 적혀 있지 않다). `NcpObjectStorageService` 의 코드가 `@Value` 를 **필드와 생성자 매개변수 두 자리**에 쓰는 예도 함께 보인다. 파일명 `jdvc.properties` 는 `jdbc` 의 오기로 보이고, 예시 클래스에 `@Service` 가 두 번 붙어 있다
 - [[2026-11-11-fix]] §2 「release 빌드에서만 드러나는 설정 구멍」 — DAY dev 서버 `DAY_PUBLIC_API_BASE` 빈칸 → TestFlight 앱 `environment_unavailable`(`be-dev-env-report.md` · CENTURION_DAY#240)
+- [[2026-11-15-llm-codex-hotfix]] §2 — 메디니스 「서버가 어디서 claude 를 쓰나」 는 코드 기본값으로는 답이 안 났다. 운영 파드 env 를 실측하니 `ACTION_RUNTIME_LLM_DRIVER` 는 차트가 아니라 클러스터 secret 에 있었다(문서 절차와 다름). 핫픽스는 provider 를 코드 하드코딩에서 설정값(`SERVER_LLM_PROVIDER`)으로 빼서 되돌리기를 env 하나로 만들었다(`survey-prod-claude-usage.md` · mediness-app #153)
