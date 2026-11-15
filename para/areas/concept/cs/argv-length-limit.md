@@ -11,6 +11,7 @@ aliases:
   - 프롬프트를 stdin 으로
 up:
   - 2026-10-07-strong-hajin-enhance
+  - 2026-11-15-llm-codex-hotfix
 tags:
   - 운영체제
   - 프로세스
@@ -30,6 +31,8 @@ tags:
 ## 사용 예시
 
 Strong Hajin 회의록 최종 합성은 재전사 원문 전량 + AI 맥락 목록을 매번 싣게 되면서 프롬프트가 커졌다. 23.5분짜리 운영 회의 하나만으로 **169KB** — argv 한 칸 한도를 넘어 배포 첫 회의부터 합성이 실패할 자리였다. CLI 호출을 `codex exec -` + stdin 으로 바꾸고, 운영 파드에서 `echo … | codex exec -` 로 응답을 받아 운영 CLI 판(로컬보다 낮은 판)에서도 된다는 것을 확인했다.
+
+메디니스 서버 LLM 핫픽스(2026-11-13)에서 데일리 브리프를 claude 에서 codex 로 옮기자 같은 한도가 다시 걸릴 자리가 됐다. 브리프는 본문만 ~100KB 를 목표로 잡는데(SPEC-070 cap), codex 쪽에는 system 프롬프트까지 합친 한 덩어리가 argv 한 칸으로 나간다. 기존 경고는 본문 크기만 쟀으므로, **합본 바이트를 로그로 남겨 첫 운영 실호출에서 여유를 재는 것**을 완료 조건에 넣었다. cap 을 줄이는 건 계약 변경이라 핫픽스에서 하지 않았다.
 
 ## 왜 중요한가
 
@@ -51,3 +54,4 @@ Strong Hajin 회의록 최종 합성은 재전사 원문 전량 + AI 맥락 목�
 ## 출처
 
 - [[2026-10-07-strong-hajin-enhance]] §2 — Strong Hajin WORK-012 최종 합성 프롬프트(`cli_process.py` · 검수가 argv 한 칸 128KiB 를 짚음 · 운영 Codex 판 실호출 · 되돌이의 이중 실행 결함)
+- [[2026-11-15-llm-codex-hotfix]] §2 — 메디니스 데일리 브리프 codex 전환 · system+본문 합본이 argv 한 칸으로 나감 · 합본 바이트 로그로 첫 실호출 판정(mediness-app #153 `server_llm_submission.log_final_prompt`)

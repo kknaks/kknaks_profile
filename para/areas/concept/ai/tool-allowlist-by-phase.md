@@ -8,6 +8,7 @@ aliases:
   - MCP allow list
 up:
   - 2026-09-08-docs-v1
+  - 2026-11-15-llm-codex-hotfix
 tags:
   - agent
   - mcp
@@ -36,6 +37,8 @@ _TOOLS_BY_PHASE = {
 def build_codex_options(*, session_id, output_schema, timeout_sec, meeting_token, phase: Literal["batch", "final"]): ...
 ```
 
+메디니스 서버 LLM 을 claude 에서 codex 로 옮길 때(2026-11-13) 허용 목록의 **표기 방식이 provider 마다 다르다**는 게 드러났다. claude 는 `allowed_tools` 에 `mcp__mediness__read_file_tool` 처럼 서버 접두어를 붙인 이름을 받는다. codex 는 `-c mcp_servers.<서버>.enabled_tools=[...]` 에 **서버 안에서의 이름**(`read_file_tool`)을 받고, 툴마다 `approval_mode="approve"` 를 따로 걸어야 headless 로 돈다. 접두어를 붙인 채 넘기면 에러가 나지 않고 **조용히 「툴 0개」** 가 된다. 그래서 조립 함수에서 접두어를 떼는 방어 코드를 넣었다.
+
 ## 왜 중요한가
 
 실물 회의에서 AI 요약이 사람 노트의 톤을 그대로 따라갔다. 원인은 AI 가 `list_agendas`·`get_agenda` 로 사람 안건·줄을 읽고 미러 안건을 만드는 설계였다. 「보지 마라」는 프롬프트 지시는 모델이 어길 수 있지만, 도구가 없으면 물리적으로 못 본다. 「두 사람이 각자 쓰고 최종에 합친다」는 개념을 설정 한 줄로 강제할 수 있었다.
@@ -55,3 +58,4 @@ def build_codex_options(*, session_id, output_schema, timeout_sec, meeting_token
 
 - 코드: `app/back/integrations/agent.py` `_TOOLS_BY_PHASE` · 커밋 `1ca243e`(kknaks/task_management)
 - 결정: `reference/2026-09-06-task-management-app/Meeting flow.md` MF-71 · SPEC-007 v0.0.3 §4 도구 표
+- [[2026-11-15-llm-codex-hotfix]] §2 — claude `allowed_tools`(접두 이름) → codex `enabled_tools`(서버 안 이름) + 툴별 approve · 접두어가 남으면 조용히 툴 0개(mediness-app #153)
