@@ -24,11 +24,23 @@
 - **argv 단일 문자열 한계(`MAX_ARG_STRLEN` 128KiB)** — codex 는 프롬프트를 argv 하나로 넘긴다
   - 왜 이걸 골랐나: 회의록 v2 가 147KB 에서 `E2BIG` 로 터진 전례가 있고, 브리프는 본문만 ~100KB 를 목표로 한다. cap 을 줄이는 건 SPEC 계약 변경이라 핫픽스에서 하지 않고, system+본문 합본 바이트 로그를 넣어 첫 실호출로 여유를 재기로 했다.
   - 근거: `review-code-report.md` 실물 체크포인트 2 · [[argv-length-limit]]
+- **셀프호스트 러너(ARC)의 인증 주체 — 사람 PAT → GitHub App** — 핫픽스가 머지되고도 배포가 안 나갔다
+  - 왜 이걸 골랐나: CI(`build-k8s.yml`)가 `medisolve-arm64` 러너를 기다리며 queued 로만 남았다. 잡이 실패하지 않으니 GitHub 화면에서는 원인이 안 보였고, 클러스터의 AutoscalingListener 로그에서 403(`You must be an org admin or have the runners and runner groups fine-grained permission`)을 찾았다. 러너가 **사람 PAT** 로 붙어 있어 그 사람의 권한·토큰 변화에 배포 전체가 묶여 있었다. 인프라 담당자가 러너 전용 GitHub App(`medisolve-arc-runner`)으로 바꿨다.
+  - 무엇이 어려웠나: App 으로 바꾼 뒤에도 listener 가 사라진 EphemeralRunnerSet(`…-lsq4s`)을 가리키며 `not found` 로 죽었다 — 인증을 바꾸면서 RunnerSet 은 새로 만들어졌는데 listener 는 옛 이름을 들고 있었다. 사용자 승인으로 AutoscalingListener 를 지워 컨트롤러가 새 RunnerSet(`…-rmxtz`) 기준으로 다시 만들게 했다. 그래도 **고치기 전에 큐에 들어간 잡은 새 listener 에 배정되지 않아** 취소 → 재실행(attempt 3)해야 잡혔다.
+  - 근거: `gh run` attempt 3 · ARC 0.14.2 listener 로그 · [[ci-cd]]
+- **Recreate 배포 = 교체 동안 서비스 없음** — 운영 back 은 롤링이 아니다
+  - 왜 이걸 골랐나: 배포는 CI 성공 14:53 → worker Ready 15:00 → back Ready 15:14 KST 였고, back 은 옛 파드를 먼저 내린 뒤 새 이미지를 받기 시작해 **API 가 약 18분 응답하지 않았다**. back·worker 모두 `strategy: Recreate`·replicas 1 이다 — back 이 RWO PVC(`back-docs`·`back-pyannote`, local-path)를 물고 있어 두 파드가 같이 뜰 수 없기 때문이다. 핫픽스는 「빨리 내보내는 것」이 목적이었는데 정작 중단 시간은 이미지 크기가 정했다.
+  - 무엇이 어려웠나: rollout 감시가 `progress deadline exceeded` 를 내서 실패처럼 보였지만, 실제로는 첫 이미지 받기가 느렸을 뿐이었다 — 파드 이벤트를 보고 Running 까지 기다렸다. 감시 스크립트가 「DEPLOYED」 로 끝났을 때 back 은 아직 `Init:0/1` 이었다(이미지 태그가 바뀐 것 ≠ 파드가 떴다).
+  - 근거: `kubectl get deploy back -o jsonpath={.spec.strategy.type}` = Recreate · 파드 start/ready 시각 · [[zero-downtime-deployment]]
 
 ## 3. 막혔던 것 / 사고
 
 - 사용자 의도를 두 번 잘못 읽었다 — 「핫픽스라는 게 클로드로 생성한다는 거야?」 에 서버 쪽과 워커 쪽을 섞어 답했고, 「재개해 줘」 「코드 수정부터 하라니까」 에서 머지 확인을 한 번 더 물어 흐름을 끊었다. → 이미 「codex 로 살린다」·「테스트 안 돌려도 된다」 로 방향이 정해졌으면 남은 단계(머지)는 진행하고 보고한다.
 - 「변수만 바꾸는 거니까 테스트 안 돌려도 된다」 — 실제로는 제출 스펙 전체가 바뀌는 변경이었다. 테스트 생략은 받아들이되(CI 가 테스트를 안 돌림을 확인) 완료 조건을 운영 실물 호출로 남겼다. 기존 claude 단정 테스트 3파일은 깨진 채로 남는다.
+- **배포가 CI 러너에서 막혔다(11-13 12:13~14:53)** — 원인이 GitHub 권한(러너 등록 PAT 403)이라는 걸 찾는 데 시간이 들었고, 코드 쪽이 아니라 인프라 담당자에게 요청해야 했다. 고친 뒤에도 낡은 listener·이전 큐 잡 때문에 두 번 더 손대야 잡혔다(§2). → 「queued 가 오래 간다」 는 러너 쪽 신호다. 클러스터 listener 로그부터 본다.
+- **운영 API 18분 중단** — 핫픽스 배포가 Recreate 로 나가며 back 이 이미지 받는 동안 내려가 있었다. 사전 공지 없이 나갔다. → 운영 back 배포는 「중단 있음」 을 전제로 시간대·공지를 정한다(§7 롤링·선반입 검토).
+- **main→dev 반영을 빠뜨릴 뻔했다** — 계획엔 있었는데 운영 확인·주간회의록에 밀려 사용자가 「dev 에도 반영해야 하지 않냐」 고 짚고 나서야 #154 를 냈다. 그대로 두면 다음 dev→main 릴리스가 핫픽스를 되돌린다. → main 핫픽스는 머지 직후 같은 턴에 dev 반영 PR 까지 낸다.
+- **회고를 결과 줄만 고치고 마감하려 했다** — 이 작업에서 실제로 가장 오래 막힌 러너·배포 중단이 §2·§3 에 없었다(사용자 지적). → 마감 전에 「가장 오래 걸린 구간이 회고에 있나」 를 대조한다.
 - 프로젝트 config 에 main 기준 backend·reviewer 워커가 없었다 → `backend_hotfix`·`reviewer_code_hotfix`(repo `app_main`)를 추가했다. 첫 시도는 JSON 재직렬화로 diff 68줄이 났고, 되돌려 블록만 끼워 넣었다.
 
 ## 4. 결정

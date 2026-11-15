@@ -31,6 +31,7 @@ up:
   - 2026-10-22-myeongdong-poc-v2
   - 2026-10-27-interpret-pwa-poc
   - 2026-10-28-overall-board
+  - 2026-11-15-llm-codex-hotfix
 tags:
   - 배포
   - 자동화
@@ -129,6 +130,8 @@ GitHub 이 주는 러너 대신 **내 클러스터의 파드가 잡을 받는** 
 - **1잡 1파드(ephemeral)** — 잡마다 깨끗한 파드가 뜨고 끝나면 폐기된다. 그래서 「러너에 뭘 설치해 둔다」는 발상이 통하지 않는다 — 호스트에 깔아도 파드에서 안 보이고, 파드에 깔면 잡과 함께 사라진다. 도구가 없으면 ① 워크플로 스텝에서 설치 ② **프로토콜 수준 대체** ③ 러너 이미지에 굽기(장기) 셋 중 하나다
 - **프로토콜 대체가 설치보다 낫다** — `az acr login` 은 결국 docker login 이다. 벤더 CLI 가 없다고 CLI 를 까는 대신, 그 CLI 가 **하던 일의 실체**(레지스트리 로그인)를 표준 액션(`docker/login-action` + service principal 자격증명)으로 하면 설치 0·아키 무관이 된다
 - **러너의 아키 ≠ 산출물의 아키** — arm64 러너에서도 `platforms: linux/amd64` 로 amd64 이미지를 빌드한다(QEMU 에뮬레이션, `docker/setup-qemu-action` 필수). 느려지지만 서버에 올라가는 이미지는 동일하다. 반대로 산출물이 arm64 면 셀프호스트 arm 이 네이티브라 오히려 빠르다
+- **러너는 「누구 이름으로」 GitHub 에 붙는가가 배포의 단일 장애점이다** — ARC 의 listener 가 사람 PAT 로 등록돼 있으면 그 사람의 권한 변경·토큰 만료에 조직 배포 전체가 멈춘다. 이때 잡은 **실패하지 않고 queued 로 남기만** 해서 GitHub 화면에는 원인이 없다 — 클러스터의 AutoscalingListener 로그(403 `runners and runner groups fine-grained permission`)에 있다. 사람 대신 **러너 전용 GitHub App** 으로 붙이면 사람의 권한과 끊긴다
+- **인증을 바꾼 뒤 두 가지가 남는다** — ① listener 가 사라진 EphemeralRunnerSet 이름을 들고 `not found` 로 죽어 있으면 listener 를 지워 컨트롤러가 새 RunnerSet 기준으로 다시 만들게 한다 ② **고치기 전에 큐에 들어간 잡은 새 listener 에 배정되지 않는다** — 취소하고 재실행해야 잡힌다
 - **「5초 만에 스텝 0개로 실패」는 러너 문제처럼 보이지만 아니다** — 호스팅 러너의 결제/지출 한도 차단이 이 모양으로 나타난다. 어노테이션(`recent account payments have failed…`)을 봐야 갈린다
 
 ## 경계와 오해
@@ -154,6 +157,8 @@ GitHub 이 주는 러너 대신 **내 클러스터의 파드가 잡을 받는** 
 - [[secret-store]] — 배포가 읽는 비밀의 자리
 
 ## 출처
+
+- [[2026-11-15-llm-codex-hotfix]] §2 — 메디니스 핫픽스가 머지되고도 배포가 2시간 40분 queued. 러너 listener 의 사람 PAT 403 → 인프라가 GitHub App(`medisolve-arc-runner`)으로 교체 → 낡은 listener 삭제 → 이전 잡 재실행으로 풀림(ARC 0.14.2)
 
 - [[2026-11-09-day-data-architecture]] §2 — DAY 한 VM 두 환경: `dev` push → 빌드 · 배포 · migration, `prod` 는 fast-forward 로 같은 digest 만 · run-command · 워크플로별 concurrency group + VM flock · 실패 복구 = 배포 직전 스냅샷(코드 `937dbb68` · `1ccc101b`)
 - [[2026-10-27-interpret-pwa-poc]] §2 — 폴더별 이미지 빌드라 front 만 바뀐 sha 에 back 이미지가 없음 → `front.imageTag` / `back.imageTag` 오버라이드 → 같은 sha 배포에서 하나로 정리(`charts/interpret-pwa/values-prod.yaml` · infra #29 · #30 · #32 · #33)
