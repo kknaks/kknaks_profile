@@ -11,7 +11,7 @@
 | [[para/projects/company/day/README\|day]] | [[para/projects/company/day/work-index\|작업 목록]] | 0 | 7 |
 | [[para/projects/summer-star/interpret-pwa/README\|interpret-pwa]] | [[para/projects/summer-star/interpret-pwa/work-index\|작업 목록]] | 0 | 3 |
 | [[para/projects/summer-star/kknaks-dev/README\|kknaks-dev]] | [[para/projects/summer-star/kknaks-dev/work-index\|작업 목록]] | 0 | 3 |
-| [[para/projects/company/mediness/README\|mediness]] | [[para/projects/company/mediness/work-index\|작업 목록]] | 0 | 8 |
+| [[para/projects/company/mediness/README\|mediness]] | [[para/projects/company/mediness/work-index\|작업 목록]] | 0 | 9 |
 | [[para/projects/summer-star/mykakao/README\|mykakao]] | [[para/projects/summer-star/mykakao/work-index\|작업 목록]] | 0 | 1 |
 | [[para/projects/summer-star/ontology-demo/README\|ontology-demo]] | [[para/projects/summer-star/ontology-demo/work-index\|작업 목록]] | 0 | 2 |
 | [[para/projects/company/sc-ax/README\|sc-ax]] | [[para/projects/company/sc-ax/work-index\|작업 목록]] | 0 | 6 |
