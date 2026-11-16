@@ -7,4 +7,4 @@
 | 작업 | 보관 위치 | 회고 |
 | --- | --- | --- |
 | [[orchestration/work/_archive/procedure-hub/phub-ledger-redesign/README\|phub-ledger-redesign]] | 아카이브 | [[para/projects/company/procedure-hub/log/2026-11-16-phub-ledger-redesign\|회고]] |
-| [[orchestration/work/phub-recommend/README\|phub-recommend]] | 진행 폴더 | 회고 미확인 |
+| [[orchestration/work/_archive/procedure-hub/phub-recommend/README\|phub-recommend]] | 아카이브 | [[para/projects/company/procedure-hub/log/2026-11-16-phub-recommend\|회고]] |

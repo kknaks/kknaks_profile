@@ -11,6 +11,7 @@ up:
   - 2026-09-12-sc-meeting
   - 2026-10-02-strong-hajin-polish
   - 2026-10-03-strong-hajin-polish2
+  - 2026-11-16-phub-recommend
 tags:
   - llm
   - grounding
@@ -53,6 +54,13 @@ LLM 이 낸 정리 줄마다 **어느 원문 구간(시각 범위)에서 나왔�
 - AI 가 초안 전에 관련 회의·업무·자료를 찾아 **내용·체크리스트의 근거**로 쓰면, 답변에 출처(회의·업무 이름)를 들게 하고 그 조회는 그 턴의 답변 참조로 묶인다
 - 탐색을 열면 근거 기준이 다시 섞인다 — 「ID 와 날짜는 대화·조회 근거」 한 문장이 남아 있으면, 찾은 회의 할 일의 마감 후보가 마감일로, 참석자가 참조자로 옮겨 갈 틈이 생긴다. **ID 문장과 날짜·사람 문장을 물리적으로 나눈다** — 사람은 대화가 이름을 댄 사람만, 조회는 그 이름을 ID 로 확인할 때만
 
+## 근거 id 묶음을 응답 계약으로 내보낸다
+
+- 허브 응답에 `allowed_fact_ids · must_show_flags · rule` 블록을 같이 내고, 답을 쓰는 모델은 그 id 만 인용한다. 앱은 모델 답의 인용 id 를 제공 id 와 대조해 **누락 · 추가 · 중복이면 그 조각(part)을 실패**로 처리하고 전달 묶음에서 뺀다 — 줄만 떼는 것이 아니라 묶음 단위로 거절하는 꼴
+- 「받았는데 안 씀」을 셀 수 있게 된다 — 이 셈이 0 이면 고칠 곳은 프롬프트가 아니라 전달 · 걷기다 → [[knowledge-graph-assisted-retrieval]]
+- **전달이 됐는지는 바이트 대조로만 안다** — CLI 가 도구 결과를 ~2KB 에서 잘라 100/614 만 닿은 것을 한 판 뒤에야 알았다. 「허브가 보냈다」와 「모델이 받았다」는 다른 사실
+- 인용 자격이 없는 행(`quotable=false` · 공유 claim 의 미확정 소유 범위)은 묶음에서 빼고, 전역 메모의 출처 경로를 다른 존재 경로로 바꾼 변조는 허브가 잡아야 한다(출처 결속 검사)
+
 ## 함께 보는 개념
 
 - [[strict-json-schema-output]] · [[transcript-segmentation]] · [[two-pass-transcription]]
@@ -62,3 +70,4 @@ LLM 이 낸 정리 줄마다 **어느 원문 구간(시각 범위)에서 나왔�
 - 2026-09-12-sc-meeting §2 · ax-workspace `modules/meetings/batch.py demote_line` · `application.py batch_input covered_ms` · D47·D49
 - [[2026-10-02-strong-hajin-polish]] §2 — Strong Hajin WORK-008 Phase 5(`answer_documents.py` project 종류 · `mcp.py` `_remember` 범위 · `review-p5-report.md`)
 - [[2026-10-03-strong-hajin-polish2]] §2 — Strong Hajin WORK-009 E2E-1·E2E-6(SPEC-001 S-9 7·8 · `review-be-p3-report.md` W1 · 커밋 `1d4cd1f`)
+- [[2026-11-16-phub-recommend]] §2 — `claude_contract`(SPEC-005 O-3 · 10-30) · 앱 인용 id 완전성 검사 · 출처 결속(`app-walk-phase-a-fix6-report.md` · `app-wp4-relation-report.md` · `hub-selected-fix4-report.md` · `_RESUME.md` 11-01 「2차 분류 결과」)
